@@ -5,8 +5,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import {
   Calendar,
   Euro,
-  TrendingUp,
-  TrendingDown,
   Clock,
   Anchor,
   Eye,
@@ -25,6 +23,7 @@ import { format, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import type { Booking, Boat } from "@shared/schema";
 import { getStatusColor, getStatusLabel } from "./constants";
+import { StatCard } from "./shared/StatCard";
 import {
   AreaChart,
   Area,
@@ -109,25 +108,7 @@ function buildFetcher<T>(_adminToken: string) {
 
 // --- Sub-components ---
 
-function ChangeIndicator({ change }: { change: number | null }) {
-  if (change === null) return null;
-  const isPositive = change >= 0;
-  return (
-    <span
-      className={`inline-flex items-center gap-0.5 text-xs font-medium ${
-        isPositive ? "text-primary" : "text-destructive"
-      }`}
-    >
-      {isPositive ? (
-        <TrendingUp className="h-3 w-3" />
-      ) : (
-        <TrendingDown className="h-3 w-3" />
-      )}
-      {isPositive ? "+" : ""}
-      {change}%
-    </span>
-  );
-}
+// ChangeIndicator removed — unified into StatCard
 
 function KPICardSkeleton() {
   return (
@@ -246,7 +227,7 @@ function BoatTooltip({ active, payload }: {
   const data = payload[0].payload;
   return (
     <div className="rounded-lg border bg-card px-3 py-2 shadow-md">
-      <p className="text-sm font-semibold font-heading text-foreground mb-1">{data.boatName}</p>
+      <p className="text-sm font-semibold text-foreground mb-1">{data.boatName}</p>
       <p className="text-xs text-muted-foreground">{data.bookings} reservas</p>
       <p className="text-xs text-muted-foreground">{data.hours}h navegadas</p>
       <p className="text-xs font-medium text-foreground">
@@ -416,102 +397,33 @@ export function DashboardTab({
           </>
         ) : (
           <>
-            {/* Revenue */}
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Ingresos
-                </CardTitle>
-                <div className="rounded-md bg-primary/10 p-1.5">
-                  <Euro className="h-4 w-4 text-primary" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold font-heading text-foreground">
-                  {"\u20AC"}
-                  {(stats?.revenue ?? 0).toLocaleString("es-ES", {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })}
-                </div>
-                <div className="flex items-center gap-2 mt-1">
-                  <ChangeIndicator change={revenueChange} />
-                  <span className="text-xs text-muted-foreground">
-                    vs periodo anterior
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Bookings */}
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Reservas
-                </CardTitle>
-                <div className="rounded-md bg-primary/10 p-1.5">
-                  <Calendar className="h-4 w-4 text-primary" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold font-heading text-foreground">
-                  {stats?.bookingsCount ?? 0}
-                </div>
-                <div className="flex items-center gap-2 mt-1">
-                  <ChangeIndicator change={bookingsChange} />
-                  <span className="text-xs text-muted-foreground">
-                    vs periodo anterior
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Average Ticket */}
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Ticket Medio
-                </CardTitle>
-                <div className="rounded-md bg-cta/10 p-1.5">
-                  <Receipt className="h-4 w-4 text-cta" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold font-heading text-foreground">
-                  {"\u20AC"}
-                  {(stats?.averageTicket ?? 0).toLocaleString("es-ES", {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })}
-                </div>
-                <div className="flex items-center gap-2 mt-1">
-                  <ChangeIndicator change={ticketChange} />
-                  <span className="text-xs text-muted-foreground">
-                    vs periodo anterior
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Occupancy */}
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Ocupación
-                </CardTitle>
-                <div className="rounded-md bg-cta/10 p-1.5">
-                  <Percent className="h-4 w-4 text-cta" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold font-heading text-foreground">
-                  {occupancy}%
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {stats?.availableBoats ?? 0}/{stats?.totalBoats ?? 0} barcos libres ahora
-                </p>
-              </CardContent>
-            </Card>
+            <StatCard
+              title="Ingresos"
+              icon={<Euro className="h-4 w-4" />}
+              value={`\u20AC${(stats?.revenue ?? 0).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+              change={revenueChange}
+              changeLabel="vs periodo anterior"
+            />
+            <StatCard
+              title="Reservas"
+              icon={<Calendar className="h-4 w-4" />}
+              value={stats?.bookingsCount ?? 0}
+              change={bookingsChange}
+              changeLabel="vs periodo anterior"
+            />
+            <StatCard
+              title="Ticket Medio"
+              icon={<Receipt className="h-4 w-4" />}
+              value={`\u20AC${(stats?.averageTicket ?? 0).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+              change={ticketChange}
+              changeLabel="vs periodo anterior"
+            />
+            <StatCard
+              title="Ocupacion"
+              icon={<Percent className="h-4 w-4" />}
+              value={`${occupancy}%`}
+              description={`${stats?.availableBoats ?? 0}/${stats?.totalBoats ?? 0} barcos libres ahora`}
+            />
           </>
         )}
       </div>
@@ -524,7 +436,7 @@ export function DashboardTab({
         ) : (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold font-heading text-foreground">
+              <CardTitle className="text-base font-semibold text-foreground">
                 Ingresos últimos 30 días
               </CardTitle>
             </CardHeader>
@@ -584,7 +496,7 @@ export function DashboardTab({
         ) : (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold font-heading text-foreground">
+              <CardTitle className="text-base font-semibold text-foreground">
                 Reservas por barco
               </CardTitle>
             </CardHeader>
@@ -635,7 +547,7 @@ export function DashboardTab({
         ) : (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold font-heading text-foreground">
+              <CardTitle className="text-base font-semibold text-foreground">
                 Estado de reservas
               </CardTitle>
             </CardHeader>
@@ -696,7 +608,7 @@ export function DashboardTab({
         {/* Upcoming Bookings Mini Table */}
         <Card>
           <CardHeader className="pb-2 flex flex-row items-center justify-between">
-            <CardTitle className="text-base font-semibold font-heading text-foreground">
+            <CardTitle className="text-base font-semibold text-foreground">
               Próximas reservas
             </CardTitle>
             <Button
@@ -781,7 +693,7 @@ export function DashboardTab({
       {/* Recent Activity Section */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold font-heading text-foreground">
+          <CardTitle className="text-base font-semibold text-foreground">
             Actividad reciente
           </CardTitle>
         </CardHeader>
@@ -829,11 +741,11 @@ export function DashboardTab({
                         <span className="font-medium text-foreground">
                           {booking.customerName} {booking.customerSurname}
                         </span>
-                        {" -- "}
+                        {" \u00b7 "}
                         {activityText}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {boatName(booking.boatId)} -- {"\u20AC"}{booking.totalAmount}
+                        {boatName(booking.boatId)} \u00b7 {"\u20AC"}{booking.totalAmount}
                       </p>
                     </div>
                     <span className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0">

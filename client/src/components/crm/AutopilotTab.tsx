@@ -163,13 +163,13 @@ function OverviewPanel({ adminToken }: { adminToken: string }) {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <StatCard title="Blog posts" value={data.blogPosts.published} icon={FileText}
-          description={`${data.blogPosts.total} totales · +${data.blogPosts.last30d} últimos 30d`} />
-        <StatCard title="En bandeja" value={data.distribution.pending + data.distribution.scheduled} icon={Send}
+        <StatCard title="Blog posts" value={data.blogPosts.published} icon={<FileText className="h-4 w-4" />}
+          description={`${data.blogPosts.total} totales · +${data.blogPosts.last30d} ultimos 30d`} />
+        <StatCard title="En bandeja" value={data.distribution.pending + data.distribution.scheduled} icon={<Send className="h-4 w-4" />}
           description={`${data.distribution.published} publicados · ${data.distribution.failed} fallidos`} />
-        <StatCard title="Llamadas MCP (24h)" value={data.audit.last24h} icon={Activity}
+        <StatCard title="Llamadas MCP (24h)" value={data.audit.last24h} icon={<Activity className="h-4 w-4" />}
           description={`${data.audit.last24hErrors} errores`} />
-        <StatCard title="Tokens activos" value={data.tokens.active} icon={ShieldCheck}
+        <StatCard title="Tokens activos" value={data.tokens.active} icon={<ShieldCheck className="h-4 w-4" />}
           description={`${data.tokens.revoked} revocados`} />
       </div>
 

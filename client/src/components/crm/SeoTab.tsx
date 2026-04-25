@@ -193,7 +193,7 @@ function CampanasSubTab({ adminToken }: { adminToken: string }) {
               </div>
               {campaign.startDate && campaign.endDate && (
                 <p className="text-xs text-muted-foreground">
-                  {campaign.startDate} — {campaign.endDate}
+                  {campaign.startDate} /{campaign.endDate}
                 </p>
               )}
               {pct !== null && (
@@ -306,7 +306,7 @@ function InformesSubTab({ adminToken }: { adminToken: string }) {
                   <div className="flex items-center gap-2 flex-wrap">
                     <Badge variant="outline">{report.type}</Badge>
                     <span className="text-xs text-muted-foreground">
-                      {report.periodStart} — {report.periodEnd}
+                      {report.periodStart} /{report.periodEnd}
                     </span>
                   </div>
                   {report.summary && (

@@ -26,15 +26,16 @@ import {
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import {
-  TrendingUp,
-  TrendingDown,
-  Minus,
   Bell,
   Target,
   BarChart3,
   Users,
   Loader2,
+  TrendingUp,
+  TrendingDown,
+  Minus,
 } from "lucide-react";
+import { StatCard } from "./shared/StatCard";
 
 // --- Types ---
 
@@ -139,24 +140,26 @@ const formatDate = (d: string) =>
 // Recharts-compatible label formatter (accepts ReactNode, we cast to string)
 const labelFormatter = (label: unknown) => formatDate(String(label));
 
-function getSemaphoreColor(
+type SemaphoreStatus = "good" | "warn" | "bad" | "neutral";
+
+function getSemaphoreStatus(
   card: ActiveCard,
   data: TrendsResponse | undefined,
-): string {
-  if (!data) return "border-l-muted";
+): SemaphoreStatus {
+  if (!data) return "neutral";
 
   if (card === "posiciones") {
     const rankings = data.rankings.rankings;
-    if (rankings.length === 0) return "border-l-muted";
+    if (rankings.length === 0) return "neutral";
     const latest = rankings[rankings.length - 1].avgPosition;
-    if (latest < 5) return "border-l-emerald-500";
-    if (latest <= 10) return "border-l-amber-500";
-    return "border-l-red-500";
+    if (latest < 5) return "good";
+    if (latest <= 10) return "warn";
+    return "bad";
   }
 
   if (card === "trafico") {
     const rankings = data.rankings.rankings;
-    if (rankings.length < 2) return "border-l-muted";
+    if (rankings.length < 2) return "neutral";
     const mid = Math.floor(rankings.length / 2);
     const recentClicks = rankings
       .slice(mid)
@@ -165,16 +168,16 @@ function getSemaphoreColor(
       .slice(0, mid)
       .reduce((s, r) => s + r.totalClicks, 0);
     if (olderClicks === 0)
-      return recentClicks > 0 ? "border-l-emerald-500" : "border-l-muted";
+      return recentClicks > 0 ? "good" : "neutral";
     const pctChange = ((recentClicks - olderClicks) / olderClicks) * 100;
-    if (pctChange > 5) return "border-l-emerald-500";
-    if (pctChange >= -5) return "border-l-amber-500";
-    return "border-l-red-500";
+    if (pctChange > 5) return "good";
+    if (pctChange >= -5) return "warn";
+    return "bad";
   }
 
   // competidores
   const scoreboard = data.competitors.scoreboard;
-  if (scoreboard.length === 0) return "border-l-muted";
+  if (scoreboard.length === 0) return "neutral";
   let winning = 0;
   let losing = 0;
   for (const entry of scoreboard) {
@@ -185,86 +188,12 @@ function getSemaphoreColor(
       else if (entry.myPosition > comp.position) losing++;
     }
   }
-  if (winning > losing) return "border-l-emerald-500";
-  if (winning === losing) return "border-l-amber-500";
-  return "border-l-red-500";
+  if (winning > losing) return "good";
+  if (winning === losing) return "warn";
+  return "bad";
 }
 
-// --- Sub-components ---
-
-interface MetricCardProps {
-  title: string;
-  value: string;
-  change: number | null;
-  subtitle: string;
-  icon: React.ReactNode;
-  active: boolean;
-  semaphoreColor: string;
-  changeUnit?: string;
-  onClick: () => void;
-}
-
-function MetricCard({
-  title,
-  value,
-  change,
-  subtitle,
-  icon,
-  active,
-  semaphoreColor,
-  changeUnit = "%",
-  onClick,
-}: MetricCardProps) {
-  const isPositive =
-    change !== null ? change > 0 : null;
-  const isNeutral = change !== null && change === 0;
-
-  return (
-    <Card
-      className={`border-l-4 ${semaphoreColor} hover:shadow-md transition-all cursor-pointer ${
-        active ? "ring-2 ring-primary/50 bg-accent/30" : ""
-      }`}
-      onClick={onClick}
-    >
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
-          {title}
-        </CardTitle>
-        <div className="rounded-md bg-primary/10 p-1.5">{icon}</div>
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold font-heading text-foreground">
-          {value}
-        </div>
-        <div className="flex items-center gap-2 mt-1">
-          {change !== null && (
-            <span
-              className={`inline-flex items-center gap-0.5 text-xs font-medium ${
-                isNeutral
-                  ? "text-muted-foreground"
-                  : isPositive
-                    ? "text-primary"
-                    : "text-destructive"
-              }`}
-            >
-              {isNeutral ? (
-                <Minus className="h-3 w-3" />
-              ) : isPositive ? (
-                <TrendingUp className="h-3 w-3" />
-              ) : (
-                <TrendingDown className="h-3 w-3" />
-              )}
-              {change > 0 ? "+" : ""}
-              {change}
-              {changeUnit}
-            </span>
-          )}
-          <span className="text-xs text-muted-foreground">{subtitle}</span>
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
+// MetricCard removed — uses shared StatCard
 
 function SeoTrendChart({
   activeCard,
@@ -316,7 +245,7 @@ function SeoTrendChart({
     return (
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold font-heading text-foreground">
+          <CardTitle className="text-base font-semibold text-foreground">
             Posiciones - Top 5 keywords
           </CardTitle>
         </CardHeader>
@@ -393,7 +322,7 @@ function SeoTrendChart({
     return (
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold font-heading text-foreground">
+          <CardTitle className="text-base font-semibold text-foreground">
             Trafico organico
           </CardTitle>
         </CardHeader>
@@ -533,7 +462,7 @@ function SeoTrendChart({
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-semibold font-heading text-foreground">
+        <CardTitle className="text-base font-semibold text-foreground">
           Posicion media vs competidores
         </CardTitle>
       </CardHeader>
@@ -656,7 +585,7 @@ function SeoDataTable({
     return (
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold font-heading text-foreground">
+          <CardTitle className="text-base font-semibold text-foreground">
             Rankings por keyword
           </CardTitle>
         </CardHeader>
@@ -744,7 +673,7 @@ function SeoDataTable({
     return (
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold font-heading text-foreground">
+          <CardTitle className="text-base font-semibold text-foreground">
             Trafico por keyword
           </CardTitle>
         </CardHeader>
@@ -797,7 +726,7 @@ function SeoDataTable({
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-semibold font-heading text-foreground">
+        <CardTitle className="text-base font-semibold text-foreground">
           Comparativa de posiciones
         </CardTitle>
       </CardHeader>
@@ -1012,43 +941,34 @@ export function SeoDashboard({ adminToken }: { adminToken: string }) {
 
       {/* Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-        <MetricCard
+        <StatCard
           title="Posiciones"
-          value={
-            metrics.avgPosition !== null
-              ? metrics.avgPosition.toFixed(1)
-              : "-"
-          }
-          change={metrics.posChange !== null ? metrics.posChange : null}
+          value={metrics.avgPosition !== null ? metrics.avgPosition.toFixed(1) : "-"}
+          change={metrics.posChange}
           changeUnit=""
-          subtitle="posicion media"
-          icon={<Target className="h-4 w-4 text-primary" />}
+          changeLabel="posicion media"
+          icon={<Target className="h-4 w-4" />}
+          status={getSemaphoreStatus("posiciones", data)}
           active={activeCard === "posiciones"}
-          semaphoreColor={getSemaphoreColor("posiciones", data)}
           onClick={() => setActiveCard("posiciones")}
         />
-        <MetricCard
+        <StatCard
           title="Trafico"
-          value={
-            metrics.totalClicks !== null
-              ? metrics.totalClicks.toLocaleString("es-ES")
-              : "-"
-          }
+          value={metrics.totalClicks !== null ? metrics.totalClicks.toLocaleString("es-ES") : "-"}
           change={metrics.clicksChange}
-          subtitle="clics totales"
-          icon={<BarChart3 className="h-4 w-4 text-primary" />}
+          changeLabel="clics totales"
+          icon={<BarChart3 className="h-4 w-4" />}
+          status={getSemaphoreStatus("trafico", data)}
           active={activeCard === "trafico"}
-          semaphoreColor={getSemaphoreColor("trafico", data)}
           onClick={() => setActiveCard("trafico")}
         />
-        <MetricCard
+        <StatCard
           title="Competidores"
           value={metrics.competitorScore ?? "-"}
-          change={null}
-          subtitle="keywords ganando"
-          icon={<Users className="h-4 w-4 text-primary" />}
+          description="keywords ganando"
+          icon={<Users className="h-4 w-4" />}
+          status={getSemaphoreStatus("competidores", data)}
           active={activeCard === "competidores"}
-          semaphoreColor={getSemaphoreColor("competidores", data)}
           onClick={() => setActiveCard("competidores")}
         />
       </div>

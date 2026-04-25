@@ -35,6 +35,7 @@ import { format } from "date-fns";
 import type { CrmCustomerData, PaginatedCrmCustomersResponse } from "./types";
 import { CustomerDetailModal } from "./CustomerDetailModal";
 import { PaginationControls } from "./shared/PaginationControls";
+import { StatCard } from "./shared/StatCard";
 
 const CUSTOMERS_PER_PAGE = 25;
 
@@ -374,7 +375,7 @@ export function CustomersTab({
       {/* Mobile Card View */}
       <div className="md:hidden space-y-3">
         <div className="flex items-center justify-between px-1">
-          <div className="text-sm font-medium font-heading text-muted-foreground">Clientes CRM</div>
+          <div className="text-sm font-medium text-muted-foreground">Clientes CRM</div>
           <span className="text-xs text-muted-foreground">
             {total} resultado{total !== 1 ? "s" : ""}
           </span>
@@ -435,7 +436,7 @@ export function CustomersTab({
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex-1">
-                      <h3 className="font-semibold font-heading text-base">
+                      <h3 className="font-semibold text-base">
                         {customer.name} {customer.surname}
                       </h3>
                       <p className="text-sm text-muted-foreground mt-1">
@@ -501,60 +502,24 @@ export function CustomersTab({
 
       {/* Customer Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-6">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium font-heading">Total Clientes</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {isLoading ? "..." : error ? "Error" : total}
-            </div>
-            <p className="text-xs text-muted-foreground">Clientes únicos en CRM</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium font-heading">Mejor Cliente</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl font-bold">
-              {isLoading
-                ? "..."
-                : error
-                  ? "Error"
-                  : customersResponse?.bestCustomerName
-                    ? customersResponse.bestCustomerName
-                    : "N/A"}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              {customersResponse?.bestCustomerSpent
-                ? `${"\u20AC"}${parseFloat(customersResponse.bestCustomerSpent).toFixed(2)} gastados`
-                : "Sin datos"}
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium font-heading">Promedio por Cliente</CardTitle>
-            <Euro className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {isLoading
-                ? "..."
-                : error
-                  ? "Error"
-                  : customersResponse && customersResponse.totalCustomersAll > 0
-                    ? `${"\u20AC"}${(parseFloat(customersResponse.totalSpentAll) / customersResponse.totalCustomersAll).toFixed(2)}`
-                    : `${"\u20AC"}0.00`}
-            </div>
-            <p className="text-xs text-muted-foreground">Gasto promedio por cliente</p>
-          </CardContent>
-        </Card>
+        <StatCard
+          title="Total Clientes"
+          icon={<Users className="h-4 w-4" />}
+          value={isLoading ? "..." : error ? "Error" : total}
+          description="Clientes unicos en CRM"
+        />
+        <StatCard
+          title="Mejor Cliente"
+          icon={<TrendingUp className="h-4 w-4" />}
+          value={isLoading ? "..." : error ? "Error" : customersResponse?.bestCustomerName ?? "N/A"}
+          description={customersResponse?.bestCustomerSpent ? `\u20AC${parseFloat(customersResponse.bestCustomerSpent).toFixed(2)} gastados` : "Sin datos"}
+        />
+        <StatCard
+          title="Promedio por Cliente"
+          icon={<Euro className="h-4 w-4" />}
+          value={isLoading ? "..." : error ? "Error" : customersResponse && customersResponse.totalCustomersAll > 0 ? `\u20AC${(parseFloat(customersResponse.totalSpentAll) / customersResponse.totalCustomersAll).toFixed(2)}` : "\u20AC0.00"}
+          description="Gasto promedio por cliente"
+        />
       </div>
 
       {/* Customer Detail Sheet */}

@@ -297,7 +297,7 @@ export function BookingsTab({
       {/* Mobile Card View */}
       <div className="md:hidden space-y-3">
         <div className="flex items-center justify-between px-1">
-          <div className="text-sm font-medium font-heading text-muted-foreground">
+          <div className="text-sm font-medium text-muted-foreground">
             Todas las Reservas
           </div>
           <span className="text-xs text-muted-foreground">
@@ -353,7 +353,7 @@ export function BookingsTab({
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex-1">
-                      <h3 className="font-semibold font-heading text-base">
+                      <h3 className="font-semibold text-base">
                         {booking.customerName} {booking.customerSurname}
                       </h3>
                       <p className="text-sm text-muted-foreground mt-1">

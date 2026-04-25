@@ -121,21 +121,21 @@ export function CompetitionTab() {
       <div className="grid gap-4 md:grid-cols-3">
         <StatCard
           title="Nuestro rating GBP"
-          value={isLoading ? "—" : ourRating !== null ? ourRating.toFixed(2) : "N/A"}
-          description={`${ourReviews ?? "—"} reseñas · Sync ${lastSynced}`}
-          icon={Star}
+          value={isLoading ? "-" : ourRating !== null ? ourRating.toFixed(2) : "N/A"}
+          description={`${ourReviews ?? "-"} resenas · Sync ${lastSynced}`}
+          icon={<Star className="h-4 w-4" />}
         />
         <StatCard
-          title="Objetivo reseñas/mes"
+          title="Objetivo resenas/mes"
           value="+10"
           description="Meta del plan 90d (+30 total)"
-          icon={TrendingUp}
+          icon={<TrendingUp className="h-4 w-4" />}
         />
         <StatCard
           title="Nuestro foso idioma"
           value="8"
-          description="Máx. competencia: 4 (DE/NL/IT/RU desatendidos)"
-          icon={Languages}
+          description="Max. competencia: 4 (DE/NL/IT/RU desatendidos)"
+          icon={<Languages className="h-4 w-4" />}
         />
       </div>
 

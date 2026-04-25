@@ -176,26 +176,28 @@ export function AdminLayout({
             </span>
             <ChevronDown className={`w-3 h-3 transition-transform ${moreOpen ? "rotate-180" : ""}`} />
           </button>
-          {moreOpen && (
-            <div className="ml-2 space-y-1" role="menu">
-              {overflowTabs.map(tab => (
-                <button
-                  key={tab.id}
-                  onClick={() => onSelect(tab.id)}
-                  role="menuitem"
-                  className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors min-h-[44px] ${
-                    selectedTab === tab.id
-                      ? "bg-primary text-white"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  }`}
-                  data-testid={`tab-${tab.id}`}
-                >
-                  <tab.icon className="w-4 h-4 flex-shrink-0" />
-                  <span>{tab.label}</span>
-                </button>
-              ))}
+          <div className={`grid transition-all duration-150 ${moreOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+            <div className="overflow-hidden">
+              <div className="ml-2 space-y-1" role="menu">
+                {overflowTabs.map(tab => (
+                  <button
+                    key={tab.id}
+                    onClick={() => onSelect(tab.id)}
+                    role="menuitem"
+                    className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors min-h-[44px] ${
+                      selectedTab === tab.id
+                        ? "bg-primary text-white"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                    data-testid={`tab-${tab.id}`}
+                  >
+                    <tab.icon className="w-4 h-4 flex-shrink-0" />
+                    <span>{tab.label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
-          )}
+          </div>
         </>
       )}
       </div>

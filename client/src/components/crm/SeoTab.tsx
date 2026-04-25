@@ -273,11 +273,13 @@ function ExperimentosSubTab({ adminToken }: { adminToken: string }) {
                 Razonamiento del agente
               </Button>
             )}
-            {expandedId === exp.id && exp.agentReasoning && (
-              <p className="text-xs text-muted-foreground bg-muted/30 rounded p-2 whitespace-pre-wrap">
-                {exp.agentReasoning}
-              </p>
-            )}
+            <div className={`grid transition-all duration-150 ${expandedId === exp.id && exp.agentReasoning ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+              <div className="overflow-hidden">
+                <p className="text-xs text-muted-foreground bg-muted/30 rounded p-2 whitespace-pre-wrap">
+                  {exp.agentReasoning}
+                </p>
+              </div>
+            </div>
           </CardContent>
         </Card>
       ))}
@@ -408,30 +410,32 @@ function SaludSubTab({ adminToken }: { adminToken: string }) {
                   )}
                 </div>
               </div>
-              {expandedId === check.id && (
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mt-3 pt-3 border-t">
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <BoolIcon value={check.hasMetaTitle} />
-                    <span>Meta title</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <BoolIcon value={check.hasMetaDescription} />
-                    <span>Description</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <BoolIcon value={check.hasCanonical} />
-                    <span>Canonical</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <BoolIcon value={check.hasHreflang} />
-                    <span>Hreflang</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <BoolIcon value={check.hasSchemaOrg} />
-                    <span>Schema.org</span>
+              <div className={`grid transition-all duration-150 ${expandedId === check.id ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                <div className="overflow-hidden">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mt-3 pt-3 border-t">
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <BoolIcon value={check.hasMetaTitle} />
+                      <span>Meta title</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <BoolIcon value={check.hasMetaDescription} />
+                      <span>Description</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <BoolIcon value={check.hasCanonical} />
+                      <span>Canonical</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <BoolIcon value={check.hasHreflang} />
+                      <span>Hreflang</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <BoolIcon value={check.hasSchemaOrg} />
+                      <span>Schema.org</span>
+                    </div>
                   </div>
                 </div>
-              )}
+              </div>
             </CardContent>
           </Card>
         ))}

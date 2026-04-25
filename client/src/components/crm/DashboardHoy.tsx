@@ -325,7 +325,7 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
                 <Button
                   size="sm"
                   variant="outline"
-                  className="ml-2 flex-shrink-0 min-h-[44px] min-w-[44px]"
+                  className="ml-2 flex-shrink-0 min-h-[44px] min-w-[44px] active:scale-[0.97] transition-transform duration-75"
                   onClick={() => handleDevuelto(booking)}
                   disabled={markCompleted.isPending}
                   aria-label={`Marcar ${resolvedBoatName} como devuelto`}

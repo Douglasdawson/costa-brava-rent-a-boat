@@ -1,8 +1,8 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, Quote, Ship } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
@@ -13,6 +13,7 @@ import {
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
 import { useTranslations } from "@/lib/translations";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState, useMemo } from "react";
 import { useLocation } from "wouter";
 import { getAllReviews } from "@/data/boatReviews";
@@ -23,6 +24,15 @@ function countryFlag(code: string): string {
   const upper = code.toUpperCase();
   return String.fromCodePoint(
     ...Array.from(upper).map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)
+  );
+}
+
+function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
+      {children}
+    </div>
   );
 }
 
@@ -159,6 +169,7 @@ export default function TestimoniosPage() {
       />
 
       <Navigation />
+      <ReadingProgressBar />
 
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-600 to-teal-600 text-white pt-20 pb-12">
@@ -172,7 +183,7 @@ export default function TestimoniosPage() {
             </div>
 
             <p className="text-lg sm:text-xl max-w-3xl mx-auto mb-6 text-blue-50">
-              Descubre por qué más de 1,000 personas confían en nosotros cada temporada para vivir experiencias únicas en la Costa Brava
+              Descubre por que mas de 1,000 personas confian en nosotros cada temporada para vivir experiencias unicas en la Costa Brava
             </p>
 
             {/* Rating Summary */}
@@ -191,14 +202,43 @@ export default function TestimoniosPage() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="py-12 bg-muted">
+      {/* Intro text + image section */}
+      <RevealSection className="py-16 sm:py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-3 space-y-5">
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
+                Experiencias reales en el mar
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Cada temporada, cientos de familias, parejas y grupos de amigos zarpar desde el Puerto de Blanes para descubrir las calas mas bonitas de la Costa Brava. Estas son sus opiniones reales, sin filtros.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Navegar con nosotros significa disfrutar de barcos en perfecto estado, un trato cercano y la libertad de explorar a tu ritmo. No lo decimos nosotros: lo dicen nuestros clientes.
+              </p>
+            </div>
+            <div className="lg:col-span-2">
+              <img
+                src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-pareja-navegando-yates.webp"
+                alt="Pareja navegando en Trimarchi 57S por la Costa Brava"
+                className="w-full rounded-2xl object-cover aspect-[4/5]"
+                loading="lazy"
+                width={640}
+                height={800}
+              />
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Filter + testimonials grid */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Filter by Boat */}
           <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-4 text-foreground flex items-center gap-2">
-              <Ship className="w-5 h-5 text-primary" />
+            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-2 mb-4">
+              <Ship className="w-6 h-6 text-primary" />
               Filtrar por barco
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -228,96 +268,105 @@ export default function TestimoniosPage() {
           </div>
 
           {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredReviews.map((review) => (
-              <Card key={review.id} className="hover-elevate" data-testid={`testimonial-${review.id}`}>
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-base text-foreground">
-                        {review.flag && (
-                          <span className="mr-1.5" role="img" aria-label={review.flag}>
-                            {countryFlag(review.flag)}
-                          </span>
-                        )}
-                        {review.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground/60 mt-0.5">
-                        {new Date(review.date + "-01").toLocaleDateString(
-                          LOCALE_MAP[language] || "es-ES",
-                          { month: "long", year: "numeric" }
-                        )}
-                      </p>
-                    </div>
-                    <div className="flex">
-                      {renderStars(review.rating)}
-                    </div>
+              <div key={review.id} className="bg-background border border-border rounded-xl p-5 hover:shadow-md transition-shadow" data-testid={`testimonial-${review.id}`}>
+                <div className="flex items-start justify-between gap-2 mb-3">
+                  <div className="flex-1">
+                    <h3 className="font-heading font-semibold text-lg text-foreground">
+                      {review.flag && (
+                        <span className="mr-1.5" role="img" aria-label={review.flag}>
+                          {countryFlag(review.flag)}
+                        </span>
+                      )}
+                      {review.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground/60 mt-0.5">
+                      {new Date(review.date + "-01").toLocaleDateString(
+                        LOCALE_MAP[language] || "es-ES",
+                        { month: "long", year: "numeric" }
+                      )}
+                    </p>
                   </div>
-                </CardHeader>
-
-                <CardContent>
-                  <div className="space-y-3">
-                    {/* Boat badge */}
-                    <Badge variant="outline" className="gap-1 text-xs">
-                      <Ship className="w-3 h-3" />
-                      {review.boatName}
-                    </Badge>
-
-                    {/* Comment */}
-                    <div className="relative">
-                      <Quote className="absolute -top-1 -left-1 w-5 h-5 text-muted-foreground/40" />
-                      <p className="text-sm text-muted-foreground pl-5 leading-relaxed">
-                        {review.text}
-                      </p>
-                    </div>
-
-                    {/* View Boat Button */}
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full mt-2"
-                      onClick={() => setLocation(localizedPath("boatDetail", review.boatId))}
-                      data-testid={`button-view-boat-${review.id}`}
-                    >
-                      Ver {review.boatName}
-                    </Button>
+                  <div className="flex">
+                    {renderStars(review.rating)}
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+
+                <div className="space-y-3">
+                  {/* Boat badge */}
+                  <Badge variant="outline" className="gap-1 text-xs">
+                    <Ship className="w-3 h-3" />
+                    {review.boatName}
+                  </Badge>
+
+                  {/* Comment */}
+                  <div className="relative">
+                    <Quote className="absolute -top-1 -left-1 w-5 h-5 text-muted-foreground/40" />
+                    <p className="text-sm text-muted-foreground pl-5 leading-relaxed">
+                      {review.text}
+                    </p>
+                  </div>
+
+                  {/* View Boat Button */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full mt-2"
+                    onClick={() => setLocation(localizedPath("boatDetail", review.boatId))}
+                    data-testid={`button-view-boat-${review.id}`}
+                  >
+                    Ver {review.boatName}
+                  </Button>
+                </div>
+              </div>
             ))}
           </div>
-
-          {/* CTA Section */}
-          <Card className="bg-gradient-to-br from-blue-50 to-teal-50 border-blue-200">
-            <CardContent className="p-8 text-center">
-              <h2 className="text-2xl font-bold text-foreground mb-3">
-                ¿Listo para vivir tu propia experiencia?
-              </h2>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Únete a cientos de clientes satisfechos que han descubierto las mejores calas de la Costa Brava con nosotros. Reserva ahora y crea recuerdos inolvidables.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button
-                  size="lg"
-                  onClick={() => setLocation(localizedPath("home") + "#fleet")}
-                  data-testid="button-view-fleet"
-                >
-                  Ver Nuestra Flota
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => setLocation(localizedPath("faq"))}
-                  data-testid="button-view-faq"
-                >
-                  Preguntas Frecuentes
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
         </div>
+      </RevealSection>
+
+      {/* Photo break */}
+      <div className="w-full overflow-hidden">
+        <img
+          src="/images/blog/atardecer-mar.jpg"
+          alt="Atardecer navegando en la Costa Brava"
+          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+          loading="lazy"
+          width={1920}
+          height={600}
+        />
       </div>
+
+      {/* CTA Section */}
+      <RevealSection className="py-16 sm:py-20 bg-primary text-primary-foreground">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">
+            Listo para vivir tu propia experiencia?
+          </h2>
+          <p className="text-primary-foreground/85 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+            Unete a cientos de clientes satisfechos que han descubierto las mejores calas de la Costa Brava con nosotros. Reserva ahora y crea recuerdos inolvidables.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button
+              size="lg"
+              variant="secondary"
+              onClick={() => setLocation(localizedPath("home") + "#fleet")}
+              data-testid="button-view-fleet"
+            >
+              Ver Nuestra Flota
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              onClick={() => setLocation(localizedPath("faq"))}
+              data-testid="button-view-faq"
+            >
+              Preguntas Frecuentes
+            </Button>
+          </div>
+        </div>
+      </RevealSection>
 
       <Footer />
     </main>

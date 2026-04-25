@@ -379,9 +379,9 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
               >
                 <summary className="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
                   <span className="pr-4">{item.question}</span>
-                  <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
+                  <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-90" />
                 </summary>
-                <div className="px-6 pb-4 text-muted-foreground">
+                <div className="px-6 pb-4 text-muted-foreground animate-in fade-in duration-200">
                   {item.answer}
                 </div>
               </details>

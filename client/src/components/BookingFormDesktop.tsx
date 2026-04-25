@@ -951,7 +951,7 @@ function Step4Contact({
                 <span className="truncate text-sm">{phonePrefix}</span>
               </button>
               {showPrefixDropdown && (
-                <div className="absolute top-full left-0 mt-1 w-64 bg-background border border-cta/40 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
+                <div className="absolute top-full left-0 mt-1 w-64 bg-background border border-cta/40 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
                   <div className="p-2 border-b sticky top-0 bg-background">
                     <input
                       type="text" value={prefixSearch}

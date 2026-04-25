@@ -1089,7 +1089,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </div>
 
             {/* Tab: Características */}
-            <TabsContent value="caracteristicas" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="caracteristicas" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {boatData.features?.map((feature, index) => (
                   <div key={index} className="flex items-center">
@@ -1138,7 +1138,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Ficha Técnica */}
-            <TabsContent value="tecnico" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="tecnico" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { key: "model", icon: Anchor, label: t.boatDetail.specModel },
@@ -1161,7 +1161,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Equipamiento */}
-            <TabsContent value="equipamiento" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="equipamiento" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {boatData.equipment?.map((item, index) => (
                   <div key={index} className="flex items-center">
@@ -1173,7 +1173,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Extras */}
-            <TabsContent value="extras" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="extras" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {boatData.extras?.map((extra, index) => {
                   const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
@@ -1195,7 +1195,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Información */}
-            <TabsContent value="info" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="info" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="text-sm text-foreground/80 space-y-2 mb-4">
                 <p>• <strong>{t.boatDetail.essentialDoc}</strong>{requiresLicense ? t.boatDetail.essentialDocLicense : ""}</p>
                 <p>• {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}</p>

@@ -110,7 +110,7 @@ export function SocialProofToast() {
     setTimeout(() => {
       setVisible(false);
       setAnimState("entering");
-    }, 300);
+    }, 400);
   }, []);
 
   const showNextToast = useCallback(() => {

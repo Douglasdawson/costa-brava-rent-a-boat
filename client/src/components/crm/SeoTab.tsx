@@ -79,13 +79,12 @@ interface HealthCheck {
 
 // --- Sub-tab definitions ---
 
-type SubTab = "resumen" | "analisis" | "campanas" | "experimentos" | "informes" | "salud";
+type SubTab = "resumen" | "analisis" | "campanas" | "informes" | "salud";
 
 const SUB_TABS: { id: SubTab; label: string }[] = [
   { id: "resumen", label: "Resumen" },
   { id: "analisis", label: "Analisis" },
   { id: "campanas", label: "Campanas" },
-  { id: "experimentos", label: "Experimentos" },
   { id: "informes", label: "Informes" },
   { id: "salud", label: "Salud" },
 ];
@@ -156,8 +155,12 @@ export function SeoTab({ adminToken }: SeoTabProps) {
       {/* Sub-tab content */}
       {activeSubTab === "resumen" && <SeoDashboard adminToken={adminToken} />}
       {activeSubTab === "analisis" && <AnalyticsTab adminToken={adminToken} />}
-      {activeSubTab === "campanas" && <CampanasSubTab adminToken={adminToken} />}
-      {activeSubTab === "experimentos" && <ExperimentosSubTab adminToken={adminToken} />}
+      {activeSubTab === "campanas" && (
+        <div className="space-y-6">
+          <CampanasSubTab adminToken={adminToken} />
+          <ExperimentosSubTab adminToken={adminToken} />
+        </div>
+      )}
       {activeSubTab === "informes" && <InformesSubTab adminToken={adminToken} />}
       {activeSubTab === "salud" && <SaludSubTab adminToken={adminToken} />}
     </div>

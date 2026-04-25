@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import RelatedContent from "@/components/RelatedContent";
@@ -184,6 +185,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      <ReadingProgressBar />
 
       {/* Hero */}
       <div className={`bg-gradient-to-br ${config.gradient} pt-24 pb-12`}>

@@ -379,7 +379,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
             {processedFaqItems.map((item, index) => (
               <details
                 key={index}
-                className="group border border-border rounded-lg bg-card"
+                className="group rounded-lg bg-card shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_1px_2px_-1px_rgba(0,0,0,0.06),0_2px_4px_0_rgba(0,0,0,0.04)]"
               >
                 <summary className="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
                   <span className="pr-4">{item.question}</span>

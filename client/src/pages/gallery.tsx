@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Button } from "@/components/ui/button";
 import { Camera, Plus } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -141,6 +142,7 @@ export default function GalleryPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [showSubmitForm, setShowSubmitForm] = useState(false);
+  const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const gt = getGalleryText(language);
@@ -218,7 +220,7 @@ export default function GalleryPage() {
           </div>
         ) : (
           /* Masonry grid with CSS columns */
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+          <div ref={gridRef} className={`columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4 transition-[opacity,transform,filter] duration-500 ${gridVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
             {photos.map((photo, index) => (
               <button
                 key={photo.id}

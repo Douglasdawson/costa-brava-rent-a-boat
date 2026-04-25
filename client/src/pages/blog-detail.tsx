@@ -227,10 +227,10 @@ function ReadingProgressBar() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 z-[60] bg-transparent">
+    <div className="fixed top-0 left-0 w-full h-1 z-[60] bg-transparent pointer-events-none">
       <div
-        className="h-full bg-cta transition-[width] duration-150 ease-out"
-        style={{ width: `${progress}%` }}
+        className="h-full bg-cta origin-left will-change-transform"
+        style={{ transform: `scaleX(${progress / 100})` }}
       />
     </div>
   );

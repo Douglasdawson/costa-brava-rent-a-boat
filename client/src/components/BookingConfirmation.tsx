@@ -122,7 +122,7 @@ export function BookingConfirmation({
           >
             <CheckCircle2
               className={`h-10 w-10 text-green-600 transition-all duration-500 delay-300 ${
-                showCheckAnimation ? "scale-100" : "scale-0"
+                showCheckAnimation ? "scale-100 opacity-100" : "scale-75 opacity-0"
               }`}
             />
           </div>

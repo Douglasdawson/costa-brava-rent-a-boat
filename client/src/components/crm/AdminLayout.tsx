@@ -138,11 +138,13 @@ export function AdminLayout({
 
   // Shared sidebar nav content (used by both desktop and mobile)
   const renderSidebarNav = (onSelect: (tabId: string) => void) => (
-    <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-1">
+    <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-1" role="navigation" aria-label="Menu principal">
+      <div role="menu">
       {visiblePrimaryTabs.map(tab => (
         <button
           key={tab.id}
           onClick={() => onSelect(tab.id)}
+          role="menuitem"
           className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors min-h-[44px] ${
             selectedTab === tab.id
               ? "bg-primary text-white"
@@ -163,6 +165,8 @@ export function AdminLayout({
         <>
           <button
             onClick={() => setMoreOpen(!moreOpen)}
+            role="menuitem"
+            aria-expanded={moreOpen}
             className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors min-h-[44px]"
             data-testid="tab-more"
           >
@@ -173,11 +177,12 @@ export function AdminLayout({
             <ChevronDown className={`w-3 h-3 transition-transform ${moreOpen ? "rotate-180" : ""}`} />
           </button>
           {moreOpen && (
-            <div className="ml-2 space-y-1">
+            <div className="ml-2 space-y-1" role="menu">
               {overflowTabs.map(tab => (
                 <button
                   key={tab.id}
                   onClick={() => onSelect(tab.id)}
+                  role="menuitem"
                   className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors min-h-[44px] ${
                     selectedTab === tab.id
                       ? "bg-primary text-white"
@@ -193,6 +198,7 @@ export function AdminLayout({
           )}
         </>
       )}
+      </div>
     </nav>
   );
 

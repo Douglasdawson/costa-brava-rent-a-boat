@@ -133,7 +133,14 @@ const TABS: Array<{ id: TabId; label: string }> = [
   { id: "conversions", label: "Conversiones" },
 ];
 
-const PIE_COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899"];
+const PIE_COLORS = [
+  "hsl(var(--chart-1))",
+  "hsl(var(--chart-2))",
+  "hsl(var(--chart-3))",
+  "hsl(var(--chart-4))",
+  "hsl(var(--chart-5))",
+  "hsl(var(--primary))",
+];
 
 const CONVERSION_LABELS: Record<string, string> = {
   booking_started: "Reservas iniciadas",

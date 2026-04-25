@@ -24,7 +24,6 @@ import {
   MessageCircle,
   Download,
   RefreshCw,
-  ArrowUpDown,
   ArrowUp,
   ArrowDown,
 } from "lucide-react";
@@ -35,6 +34,7 @@ import { format } from "date-fns";
 import type { CrmCustomerData, PaginatedCrmCustomersResponse } from "./types";
 import { CustomerDetailModal } from "./CustomerDetailModal";
 import { PaginationControls } from "./shared/PaginationControls";
+import { SortableTableHead } from "./shared/SortableTableHead";
 import { StatCard } from "./shared/StatCard";
 
 const CUSTOMERS_PER_PAGE = 25;
@@ -161,15 +161,6 @@ export function CustomersTab({
   }, []);
 
 
-  const renderSortIcon = (column: string) => {
-    if (sortBy === column) {
-      return sortOrder === "asc"
-        ? <ArrowUp className="w-3 h-3" />
-        : <ArrowDown className="w-3 h-3" />;
-    }
-    return <ArrowUpDown className="w-3 h-3 text-muted-foreground/50" />;
-  };
-
   return (
     <div className="space-y-6">
       {/* Filters and Actions */}
@@ -266,46 +257,22 @@ export function CustomersTab({
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead
-                      className="cursor-pointer select-none hover:bg-muted/50"
-                      onClick={() => handleSort("name")}
-                    >
-                      <div className="flex items-center gap-1">
-                        Nombre
-                        {renderSortIcon("name")}
-                      </div>
-                    </TableHead>
+                    <SortableTableHead field="name" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
+                      Nombre
+                    </SortableTableHead>
                     <TableHead>Email</TableHead>
-                    <TableHead>Teléfono</TableHead>
+                    <TableHead>Telefono</TableHead>
                     <TableHead>Nacionalidad</TableHead>
-                    <TableHead
-                      className="cursor-pointer select-none hover:bg-muted/50 text-center"
-                      onClick={() => handleSort("totalBookings")}
-                    >
-                      <div className="flex items-center justify-center gap-1">
-                        Reservas
-                        {renderSortIcon("totalBookings")}
-                      </div>
-                    </TableHead>
-                    <TableHead
-                      className="cursor-pointer select-none hover:bg-muted/50"
-                      onClick={() => handleSort("totalSpent")}
-                    >
-                      <div className="flex items-center gap-1">
-                        Total Gastado
-                        {renderSortIcon("totalSpent")}
-                      </div>
-                    </TableHead>
+                    <SortableTableHead field="totalBookings" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort} className="text-center">
+                      Reservas
+                    </SortableTableHead>
+                    <SortableTableHead field="totalSpent" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
+                      Total Gastado
+                    </SortableTableHead>
                     <TableHead>Segmento</TableHead>
-                    <TableHead
-                      className="cursor-pointer select-none hover:bg-muted/50"
-                      onClick={() => handleSort("lastBookingDate")}
-                    >
-                      <div className="flex items-center gap-1">
-                        Última Reserva
-                        {renderSortIcon("lastBookingDate")}
-                      </div>
-                    </TableHead>
+                    <SortableTableHead field="lastBookingDate" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
+                      Ultima Reserva
+                    </SortableTableHead>
                     <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>
                 </TableHeader>

@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Anchor, Loader2, AlertTriangle } from "lucide-react";
-import { format } from "date-fns";
+import { format, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 import type { Booking, Boat } from "@shared/schema";
 
 // --- Types ---
@@ -78,6 +79,17 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
+  // Undo mechanism for "Devuelto" button
+  const undoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [pendingCompleteId, setPendingCompleteId] = useState<string | null>(null);
+
+  // Clean up pending timer on unmount
+  useEffect(() => {
+    return () => {
+      if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+    };
+  }, []);
+
   // Force re-render every 60s to update countdowns
   const [, setTick] = useState(0);
   useEffect(() => {
@@ -90,7 +102,7 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
   const todayDates = todayRange();
   const tomorrowDates = tomorrowRange();
 
-  const { data: todayBookings = [], isLoading: todayLoading } = useQuery<Booking[]>({
+  const { data: todayBookings = [], isLoading: todayLoading, dataUpdatedAt } = useQuery<Booking[]>({
     queryKey: ["/api/admin/bookings/calendar", "today"],
     queryFn: async () => {
       const params = new URLSearchParams({
@@ -150,20 +162,60 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings/calendar", "today"] });
-      toast({ title: "Barco devuelto" });
     },
   });
+
+  const handleDevuelto = useCallback((booking: Booking) => {
+    // Cancel any existing pending undo timer
+    if (undoTimerRef.current) {
+      clearTimeout(undoTimerRef.current);
+    }
+
+    const resolvedName = boats.find((b) => b.id === booking.boatId)?.name || booking.boatId;
+
+    // Optimistically hide the booking
+    setPendingCompleteId(booking.id);
+
+    // Show toast with undo action
+    toast({
+      title: "Barco devuelto",
+      description: resolvedName,
+      action: (
+        <ToastAction
+          altText="Deshacer"
+          onClick={() => {
+            if (undoTimerRef.current) {
+              clearTimeout(undoTimerRef.current);
+              undoTimerRef.current = null;
+            }
+            setPendingCompleteId(null);
+          }}
+        >
+          Deshacer
+        </ToastAction>
+      ),
+    });
+
+    // Fire the actual mutation after 3 seconds
+    undoTimerRef.current = setTimeout(() => {
+      undoTimerRef.current = null;
+      setPendingCompleteId(null);
+      markCompleted.mutate(booking.id);
+    }, 3000);
+  }, [boats, markCompleted, toast]);
 
   // --- Computed values ---
 
   const now = new Date();
 
   // "En agua" includes bookings that started and haven't been completed,
-  // even if endTime is past (overdue returns)
+  // even if endTime is past (overdue returns).
+  // Filter out the booking pending undo so it disappears optimistically.
   const enAgua = todayBookings.filter(
     (b) =>
       b.bookingStatus === "confirmed" &&
-      new Date(b.startTime) <= now,
+      new Date(b.startTime) <= now &&
+      b.id !== pendingCompleteId,
   );
 
   const upcoming = todayBookings
@@ -211,12 +263,17 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
   return (
     <div className="space-y-2">
       {/* Status bar */}
-      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
         <span className="font-medium text-foreground">{enAgua.length} en agua</span>
         <span aria-hidden="true">&middot;</span>
         <span>{boatsLibres} libres</span>
         <span aria-hidden="true">&middot;</span>
         <span>{totalReservasHoy} reservas hoy</span>
+        {dataUpdatedAt > 0 && (
+          <span className="text-xs text-muted-foreground ml-auto">
+            act. {formatDistanceToNow(new Date(dataUpdatedAt), { locale: es })}
+          </span>
+        )}
       </div>
 
       {/* EN AGUA — tight with status bar (space-y-2) */}
@@ -269,7 +326,7 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
                   size="sm"
                   variant="outline"
                   className="ml-2 flex-shrink-0 min-h-[44px] min-w-[44px]"
-                  onClick={() => markCompleted.mutate(booking.id)}
+                  onClick={() => handleDevuelto(booking)}
                   disabled={markCompleted.isPending}
                   aria-label={`Marcar ${resolvedBoatName} como devuelto`}
                 >

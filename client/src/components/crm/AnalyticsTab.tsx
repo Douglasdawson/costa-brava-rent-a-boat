@@ -562,7 +562,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold font-heading text-foreground">
+                    <div className="text-2xl font-bold text-foreground">
                       {overview.gsc?.totals?.clicks?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
@@ -579,7 +579,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold font-heading text-foreground">
+                    <div className="text-2xl font-bold text-foreground">
                       {overview.gsc?.totals?.impressions?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
@@ -596,7 +596,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold font-heading text-foreground">
+                    <div className="text-2xl font-bold text-foreground">
                       {overview.gsc?.totals ? formatCtr(overview.gsc.totals.ctr) : "—"}
                     </div>
                   </CardContent>
@@ -613,7 +613,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold font-heading text-foreground">
+                    <div className="text-2xl font-bold text-foreground">
                       {overview.gsc?.totals ? formatPosition(overview.gsc.totals.position) : "—"}
                     </div>
                   </CardContent>
@@ -630,7 +630,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold font-heading text-foreground">
+                    <div className="text-2xl font-bold text-foreground">
                       {overview.ga4?.activeUsers?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
@@ -647,7 +647,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold font-heading text-foreground">
+                    <div className="text-2xl font-bold text-foreground">
                       {overview.ga4?.sessions?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
@@ -776,7 +776,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </h3>
 
                     {lowCtrKeywords.length > 0 && (
-                      <Card className="border-l-4 border-l-amber-500">
+                      <Card className="bg-amber-500/5 border-amber-200">
                         <CardHeader className="pb-2">
                           <CardTitle className="text-sm font-heading flex items-center gap-2">
                             <AlertTriangle className="h-4 w-4 text-amber-500" />
@@ -813,7 +813,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     )}
 
                     {almostPage1Keywords.length > 0 && (
-                      <Card className="border-l-4 border-l-emerald-500">
+                      <Card className="bg-emerald-500/5 border-emerald-200">
                         <CardHeader className="pb-2">
                           <CardTitle className="text-sm font-heading flex items-center gap-2">
                             <TrendingUp className="h-4 w-4 text-emerald-500" />
@@ -1274,7 +1274,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-3xl font-bold font-heading text-foreground">
+                      <div className="text-3xl font-bold text-foreground">
                         {conv.count.toLocaleString("es-ES")}
                       </div>
                       <p className="text-xs text-muted-foreground mt-1">eventos registrados</p>

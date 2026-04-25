@@ -361,9 +361,9 @@ function AlertsPanel({ adminToken }: { adminToken: string }) {
   return (
     <div className="space-y-2">
       {alerts.map((a) => {
-        const color = a.severity === "error" ? "border-red-500" : a.severity === "warning" ? "border-amber-500" : "border-blue-500";
+        const tint = a.severity === "error" ? "bg-red-500/5 border-red-200" : a.severity === "warning" ? "bg-amber-500/5 border-amber-200" : "bg-blue-500/5 border-blue-200";
         return (
-          <Card key={a.id} className={`border-l-4 ${color}`}>
+          <Card key={a.id} className={tint}>
             <CardContent className="p-4">
               <div className="flex items-start justify-between">
                 <div>

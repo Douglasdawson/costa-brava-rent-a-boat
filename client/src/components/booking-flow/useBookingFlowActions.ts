@@ -1,5 +1,11 @@
 import { apiRequest } from "@/lib/queryClient";
-import { trackPurchaseEcommerce, trackBookingWithUserData, trackQuoteCreated } from "@/utils/analytics";
+import {
+  trackPurchaseEcommerce,
+  trackBookingWithUserData,
+  trackQuoteCreated,
+  deriveTimeSlot,
+  deriveLicenseType,
+} from "@/utils/analytics";
 import type { BookingFlowStateReturn } from "./useBookingFlowState";
 
 function delay(ms: number): Promise<void> {
@@ -124,13 +130,37 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
         const result = await successResponse.json();
         const boat = availableBoats.find(b => b.id === selectedBoat);
         const boatName = boat?.name || selectedBoat;
-        trackPurchaseEcommerce(result.bookingId, state.quote?.total || 0, selectedBoat, boatName);
-        trackBookingWithUserData(result.bookingId, state.quote?.total || 0, selectedBoat, {
+        const amount = state.quote?.total || 0;
+        const durationHours = parseInt(duration.replace('h', ''), 10) || null;
+        const startTime = (selectedDate && selectedTime)
+          ? new Date(`${selectedDate}T${selectedTime}:00`)
+          : null;
+        const timeSlot = deriveTimeSlot(startTime, durationHours);
+        const boatLike = {
+          id: selectedBoat,
+          name: boatName,
+          specifications: boat?.specifications,
+          requiresLicense: boat?.requiresLicense,
+        };
+        const meta = {
+          durationHours,
+          startTime,
+          numberOfPeople: customerData.numberOfPeople,
+        };
+        const completedMeta = {
+          boatModel: boat?.specifications?.model ?? null,
+          licenseType: boat ? deriveLicenseType(boat.requiresLicense) : null,
+          durationHours,
+          timeSlot,
+          numberOfPeople: customerData.numberOfPeople,
+        };
+        trackPurchaseEcommerce(result.bookingId, amount, boatLike, meta);
+        trackBookingWithUserData(result.bookingId, amount, selectedBoat, {
           email: customerData.customerEmail,
           phone: customerData.phonePrefix + customerData.customerPhone,
           firstName: customerData.customerName,
           lastName: customerData.customerSurname,
-        });
+        }, completedMeta);
         toast({
           title: "¡Pago exitoso!",
           description: `Reserva confirmada. ID: ${result.bookingId}`,

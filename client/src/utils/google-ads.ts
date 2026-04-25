@@ -33,6 +33,10 @@ export function trackGoogleAdsConversion(params: {
   currency?: string;
   transactionId?: string;
   newCustomer?: boolean;
+  boatModel?: string;
+  licenseType?: 'con_licencia' | 'sin_licencia';
+  durationHours?: number;
+  timeSlot?: string;
 }) {
   if (typeof window === 'undefined') return;
 
@@ -55,6 +59,10 @@ export function trackGoogleAdsConversion(params: {
       ...(params.currency && { conversion_currency: params.currency }),
       ...(params.transactionId && { transaction_id: params.transactionId }),
       ...(params.newCustomer !== undefined && { new_customer: params.newCustomer }),
+      ...(params.boatModel && { boat_model: params.boatModel }),
+      ...(params.licenseType && { license_type: params.licenseType }),
+      ...(params.durationHours !== undefined && { duration_hours: params.durationHours }),
+      ...(params.timeSlot && { time_slot: params.timeSlot }),
     });
   }
 }
@@ -102,6 +110,9 @@ export function trackGoogleAdsRemarketing(params: {
   productName?: string;
   productPrice?: number;
   totalValue?: number;
+  boatModel?: string;
+  licenseType?: 'con_licencia' | 'sin_licencia';
+  durationHours?: number;
 }) {
   if (typeof window === 'undefined' || !window.dataLayer) return;
 
@@ -112,5 +123,8 @@ export function trackGoogleAdsRemarketing(params: {
     ...(params.productName && { ecomm_prodname: params.productName }),
     ...(params.productPrice !== undefined && { ecomm_totalvalue: params.productPrice }),
     ...(params.totalValue !== undefined && { ecomm_totalvalue: params.totalValue }),
+    ...(params.boatModel && { boat_model: params.boatModel }),
+    ...(params.licenseType && { license_type: params.licenseType }),
+    ...(params.durationHours !== undefined && { duration_hours: params.durationHours }),
   });
 }

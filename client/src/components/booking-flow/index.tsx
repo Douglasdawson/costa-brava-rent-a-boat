@@ -90,6 +90,10 @@ export default function BookingFlow(props: BookingFlowProps) {
               boatId={state.selectedBoat}
               boatName={boatName}
               boatPrice={boatPrice}
+              boat={boat}
+              duration={state.duration}
+              selectedDate={state.selectedDate}
+              selectedTime={state.selectedTime}
               setStep={setStep}
               t={t}
             />

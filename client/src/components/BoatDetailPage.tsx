@@ -438,15 +438,23 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     if (boatData) {
       const pricing = boatData.pricing as Record<string, { prices: Record<string, number> }> | null;
       const price = pricing ? (getMinActivePrice(pricing.BAJA?.prices) ?? 0) : 0;
+      const licenseType: 'con_licencia' | 'sin_licencia' = boatData.requiresLicense ? 'con_licencia' : 'sin_licencia';
       trackGoogleAdsRemarketing({
         ecommPageType: 'product',
         productId: boatId,
         productName: boatData.name,
         productPrice: price,
+        ...(boatData.specifications?.model && { boatModel: boatData.specifications.model }),
+        licenseType,
       });
       trackMetaViewContent(boatId, boatData.name, price);
       // GA4 ecommerce view_item
-      trackViewItem(boatId, boatData.name, price);
+      trackViewItem({
+        id: boatId,
+        name: boatData.name,
+        specifications: boatData.specifications,
+        requiresLicense: boatData.requiresLicense,
+      }, price);
     }
   }, [boatData, boatId]);
 

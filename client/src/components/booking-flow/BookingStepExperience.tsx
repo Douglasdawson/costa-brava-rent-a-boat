@@ -367,8 +367,19 @@ export function BookingStepExperience({
               const pricing = boat?.pricing as Record<string, { prices: Record<string, number> }> | null;
               const price = pricing ? (getMinActivePrice(pricing.BAJA?.prices) ?? 75) : 0;
               const utm = getStoredUtm();
-              trackAddToCart(selectedBoat, boatName, price);
-              trackBeginCheckout(selectedBoat, boatName, price, utm);
+              const boatLike = {
+                id: selectedBoat,
+                name: boatName,
+                specifications: boat?.specifications,
+                requiresLicense: boat?.requiresLicense,
+              };
+              const durationHours = parseInt(duration.replace('h', ''), 10) || null;
+              const startTime = (selectedDate && selectedTime)
+                ? new Date(`${selectedDate}T${selectedTime}:00`)
+                : null;
+              const meta = { durationHours, startTime };
+              trackAddToCart(boatLike, price, meta);
+              trackBeginCheckout(boatLike, price, utm, meta);
               trackBookingStarted(selectedBoat, boatName, utm);
 
               // Track smart default acceptance/change

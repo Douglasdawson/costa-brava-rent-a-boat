@@ -254,7 +254,13 @@ function FleetSection() {
       trackViewItemList('fleet', 'Fleet Section', boatsData.filter(b => b.isActive).map(boat => {
         const pricing = boat.pricing as Record<string, { prices: Record<string, number> }> | null;
         const price = getMinActivePrice(pricing?.BAJA?.prices) ?? 75;
-        return { id: boat.id, name: boat.name, price };
+        return {
+          id: boat.id,
+          name: boat.name,
+          price,
+          specifications: boat.specifications,
+          requiresLicense: boat.requiresLicense,
+        };
       }));
     }
   }, [boatsData]);

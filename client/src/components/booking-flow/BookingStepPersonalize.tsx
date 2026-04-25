@@ -6,6 +6,7 @@ import { Plus, Minus, Users } from "lucide-react";
 import { trackAddShippingInfo, trackGenerateLead } from "@/utils/analytics";
 import type { Translations } from "@/lib/translations";
 import type { PhonePrefix } from "@/utils/phone-prefixes";
+import type { Boat } from "@shared/schema";
 import type { Extra, CustomerData } from "./types";
 import { BookingTrustBanner } from "./BookingTrustBanner";
 
@@ -32,6 +33,10 @@ interface BookingStepPersonalizeProps {
   boatId: string;
   boatName: string;
   boatPrice: number;
+  boat?: Boat;
+  duration?: string;
+  selectedDate?: string;
+  selectedTime?: string;
   // Navigation
   setStep: (step: number) => void;
   t: Translations;
@@ -47,6 +52,7 @@ export function BookingStepPersonalize({
   showNationalityDropdown, setShowNationalityDropdown,
   filteredNationalities,
   boatId, boatName, boatPrice,
+  boat, duration, selectedDate, selectedTime,
   setStep, t,
 }: BookingStepPersonalizeProps) {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -472,7 +478,24 @@ export function BookingStepPersonalize({
       {/* Continue to payment button */}
       <Button
         onClick={() => {
-          trackAddShippingInfo(boatId, boatName);
+          const durationHours = duration ? (parseInt(duration.replace('h', ''), 10) || null) : null;
+          const startTime = (selectedDate && selectedTime)
+            ? new Date(`${selectedDate}T${selectedTime}:00`)
+            : null;
+          trackAddShippingInfo(
+            {
+              id: boatId,
+              name: boatName,
+              specifications: boat?.specifications,
+              requiresLicense: boat?.requiresLicense,
+            },
+            boatPrice,
+            {
+              durationHours,
+              startTime,
+              numberOfPeople: customerData.numberOfPeople,
+            },
+          );
           trackGenerateLead(boatId, boatName, boatPrice);
           setStep(3);
         }}

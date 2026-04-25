@@ -60,7 +60,20 @@ export function trackBookingStarted(boatId: string, boatName: string, utm?: UtmP
   });
 }
 
-export function trackBookingCompleted(bookingId: string, amount: number, boatId: string) {
+export interface BookingCompletedMeta {
+  boatModel?: string | null;
+  licenseType?: 'con_licencia' | 'sin_licencia' | null;
+  durationHours?: number | null;
+  timeSlot?: TimeSlot | null;
+  numberOfPeople?: number | null;
+}
+
+export function trackBookingCompleted(
+  bookingId: string,
+  amount: number,
+  boatId: string,
+  meta?: BookingCompletedMeta,
+) {
   const clickIds = getStoredClickIds();
   const eventId = generateEventId();
   trackEvent("purchase", {
@@ -69,6 +82,11 @@ export function trackBookingCompleted(bookingId: string, amount: number, boatId:
     currency: "EUR",
     boat_id: boatId,
     event_id: eventId,
+    ...(meta?.boatModel && { boat_model: meta.boatModel }),
+    ...(meta?.licenseType && { license_type: meta.licenseType }),
+    ...(meta?.durationHours != null && { duration_hours: meta.durationHours }),
+    ...(meta?.timeSlot && { time_slot: meta.timeSlot }),
+    ...(meta?.numberOfPeople != null && { number_of_people: meta.numberOfPeople }),
     ...(clickIds.gclid && { gclid: clickIds.gclid }),
     ...(clickIds.fbclid && { fbclid: clickIds.fbclid }),
     ...(clickIds.msclkid && { msclkid: clickIds.msclkid }),
@@ -80,6 +98,10 @@ export function trackBookingCompleted(bookingId: string, amount: number, boatId:
     value: amount,
     currency: 'EUR',
     transactionId: bookingId,
+    ...(meta?.boatModel && { boatModel: meta.boatModel }),
+    ...(meta?.licenseType && { licenseType: meta.licenseType }),
+    ...(meta?.durationHours != null && { durationHours: meta.durationHours }),
+    ...(meta?.timeSlot && { timeSlot: meta.timeSlot }),
   });
 }
 
@@ -157,17 +179,81 @@ export function trackBookingWithUserData(bookingId: string, amount: number, boat
   phone?: string;
   firstName?: string;
   lastName?: string;
-}) {
+}, meta?: BookingCompletedMeta) {
   pushEnhancedConversionData(userData);
-  trackBookingCompleted(bookingId, amount, boatId);
+  trackBookingCompleted(bookingId, amount, boatId, meta);
 }
 
 // GA4 Ecommerce Data Layer helpers
-function buildEcommerceItem(boatId: string, boatName: string, price: number) {
-  return { item_id: boatId, item_name: boatName, item_category: 'boat_rental', price, quantity: 1, currency: 'EUR' };
+export type TimeSlot = 'morning' | 'afternoon' | 'full_day';
+
+export interface BoatLike {
+  id: string;
+  name: string;
+  specifications?: { model?: string | null } | null;
+  requiresLicense?: boolean | null;
 }
 
-export function trackViewItem(boatId: string, boatName: string, price: number) {
+export interface BookingMeta {
+  durationHours?: number | null;
+  startTime?: Date | string | null;
+  numberOfPeople?: number | null;
+}
+
+export function deriveTimeSlot(
+  startTime: Date | string | null | undefined,
+  totalHours: number | null | undefined,
+): TimeSlot | null {
+  if (!startTime || !totalHours) return null;
+  const d = typeof startTime === 'string' ? new Date(startTime) : startTime;
+  if (Number.isNaN(d.getTime())) return null;
+  if (totalHours >= 8) return 'full_day';
+  return d.getHours() < 14 ? 'morning' : 'afternoon';
+}
+
+export function deriveLicenseType(requiresLicense: boolean | null | undefined): 'con_licencia' | 'sin_licencia' {
+  return requiresLicense ? 'con_licencia' : 'sin_licencia';
+}
+
+interface BuildItemOptions {
+  price?: number;
+  quantity?: number;
+  index?: number;
+  durationHours?: number | null;
+  timeSlot?: TimeSlot | null;
+}
+
+function buildEcommerceItem(boat: BoatLike, options: BuildItemOptions = {}): Record<string, unknown> {
+  const item: Record<string, unknown> = {
+    item_id: boat.id,
+    item_name: boat.name,
+    item_category: 'boat_rental',
+    price: options.price ?? 0,
+    quantity: options.quantity ?? 1,
+    currency: 'EUR',
+  };
+  if (boat.specifications?.model) item.item_brand = boat.specifications.model;
+  if (boat.requiresLicense !== undefined && boat.requiresLicense !== null) {
+    item.item_category2 = deriveLicenseType(boat.requiresLicense);
+  }
+  if (options.durationHours != null) item.item_variant = `${options.durationHours}h`;
+  if (options.index != null) item.index = options.index;
+  return item;
+}
+
+function eventLevelDims(boat: BoatLike, meta?: BookingMeta, timeSlot?: TimeSlot | null): Record<string, unknown> {
+  const dims: Record<string, unknown> = {};
+  if (boat.specifications?.model) dims.boat_model = boat.specifications.model;
+  if (boat.requiresLicense !== undefined && boat.requiresLicense !== null) {
+    dims.license_type = deriveLicenseType(boat.requiresLicense);
+  }
+  if (meta?.durationHours != null) dims.duration_hours = meta.durationHours;
+  if (timeSlot) dims.time_slot = timeSlot;
+  if (meta?.numberOfPeople != null) dims.number_of_people = meta.numberOfPeople;
+  return dims;
+}
+
+export function trackViewItem(boat: BoatLike, price: number) {
   if (typeof window === "undefined" || !window.dataLayer) return;
   window.dataLayer.push({ ecommerce: null }); // Clear previous ecommerce data
   window.dataLayer.push({
@@ -175,12 +261,17 @@ export function trackViewItem(boatId: string, boatName: string, price: number) {
     ecommerce: {
       currency: 'EUR',
       value: price,
-      items: [buildEcommerceItem(boatId, boatName, price)],
+      items: [buildEcommerceItem(boat, { price })],
+      ...eventLevelDims(boat),
     },
   });
 }
 
-export function trackViewItemList(listId: string, listName: string, items: Array<{ id: string; name: string; price: number }>) {
+export function trackViewItemList(
+  listId: string,
+  listName: string,
+  items: Array<BoatLike & { price: number }>,
+) {
   if (typeof window === "undefined" || !window.dataLayer) return;
   window.dataLayer.push({ ecommerce: null });
   window.dataLayer.push({
@@ -188,45 +279,49 @@ export function trackViewItemList(listId: string, listName: string, items: Array
     ecommerce: {
       item_list_id: listId,
       item_list_name: listName,
-      items: items.map((item, index) => ({ ...buildEcommerceItem(item.id, item.name, item.price), index })),
+      items: items.map((item, index) => buildEcommerceItem(item, { price: item.price, index })),
     },
   });
 }
 
-export function trackSelectItem(boatId: string, boatName: string, listName: string, index: number) {
+export function trackSelectItem(boat: BoatLike, listName: string, index: number) {
   if (typeof window === "undefined" || !window.dataLayer) return;
   window.dataLayer.push({ ecommerce: null });
   window.dataLayer.push({
     event: 'select_item',
     ecommerce: {
       item_list_name: listName,
-      items: [{ ...buildEcommerceItem(boatId, boatName, 0), index }],
+      items: [buildEcommerceItem(boat, { index })],
     },
   });
 }
 
-export function trackAddToCart(boatId: string, boatName: string, price: number) {
+export function trackAddToCart(boat: BoatLike, price: number, meta?: BookingMeta) {
   if (typeof window === "undefined" || !window.dataLayer) return;
+  const timeSlot = deriveTimeSlot(meta?.startTime ?? null, meta?.durationHours ?? null);
   window.dataLayer.push({ ecommerce: null });
   window.dataLayer.push({
     event: 'add_to_cart',
     ecommerce: {
       currency: 'EUR',
       value: price,
-      items: [buildEcommerceItem(boatId, boatName, price)],
+      items: [buildEcommerceItem(boat, { price, durationHours: meta?.durationHours, timeSlot })],
+      ...eventLevelDims(boat, meta, timeSlot),
     },
   });
 }
 
-export function trackBeginCheckout(boatId: string, boatName: string, price: number, utm?: UtmParams) {
+export function trackBeginCheckout(boat: BoatLike, price: number, utm?: UtmParams, meta?: BookingMeta) {
   if (typeof window === "undefined" || !window.dataLayer) return;
+  const timeSlot = deriveTimeSlot(meta?.startTime ?? null, meta?.durationHours ?? null);
   window.dataLayer.push({ ecommerce: null });
   window.dataLayer.push({
     event: 'begin_checkout',
     ecommerce: {
       currency: 'EUR',
       value: price,
-      items: [buildEcommerceItem(boatId, boatName, price)],
+      items: [buildEcommerceItem(boat, { price, durationHours: meta?.durationHours, timeSlot })],
+      ...eventLevelDims(boat, meta, timeSlot),
     },
     ...(utm?.utm_source && { utm_source: utm.utm_source }),
     ...(utm?.utm_medium && { utm_medium: utm.utm_medium }),
@@ -234,27 +329,33 @@ export function trackBeginCheckout(boatId: string, boatName: string, price: numb
   });
 }
 
-export function trackAddShippingInfo(boatId: string, boatName: string) {
+export function trackAddShippingInfo(boat: BoatLike, price: number, meta?: BookingMeta) {
   if (typeof window === "undefined" || !window.dataLayer) return;
+  const timeSlot = deriveTimeSlot(meta?.startTime ?? null, meta?.durationHours ?? null);
   window.dataLayer.push({ ecommerce: null });
   window.dataLayer.push({
     event: 'add_shipping_info',
     ecommerce: {
-      items: [buildEcommerceItem(boatId, boatName, 0)],
+      currency: 'EUR',
+      value: price,
+      items: [buildEcommerceItem(boat, { price, durationHours: meta?.durationHours, timeSlot })],
+      ...eventLevelDims(boat, meta, timeSlot),
     },
   });
 }
 
-export function trackPurchaseEcommerce(bookingId: string, amount: number, boatId: string, boatName: string) {
+export function trackPurchaseEcommerce(transactionId: string, amount: number, boat: BoatLike, meta?: BookingMeta) {
   if (typeof window === "undefined" || !window.dataLayer) return;
+  const timeSlot = deriveTimeSlot(meta?.startTime ?? null, meta?.durationHours ?? null);
   window.dataLayer.push({ ecommerce: null });
   window.dataLayer.push({
     event: 'purchase',
     ecommerce: {
-      transaction_id: bookingId,
+      transaction_id: transactionId,
       value: amount,
       currency: 'EUR',
-      items: [buildEcommerceItem(boatId, boatName, amount)],
+      items: [buildEcommerceItem(boat, { price: amount, durationHours: meta?.durationHours, timeSlot })],
+      ...eventLevelDims(boat, meta, timeSlot),
     },
   });
 }

@@ -22,11 +22,8 @@ import {
   DiscountManagement,
   MaintenanceTab,
   InventoryTab,
-  ReportsTab,
   AnalyticsTab,
-  SeoTab,
   AutopilotTab,
-  CompetitionTab,
   BookingDetailsModal,
   getStatusLabel,
 } from "./crm";
@@ -44,10 +41,16 @@ interface CRMDashboardProps {
 
 const VALID_TABS = [
   "dashboard", "calendar", "bookings", "customers", "inquiries",
-  "fleet", "maintenance", "inventory", "reports", "analytics", "gallery",
-  "giftcards", "discounts", "blog", "employees", "config", "seo",
-  "autopilot", "competition",
+  "fleet", "maintenance", "inventory", "analytics", "gallery",
+  "giftcards", "discounts", "blog", "employees", "config",
+  "autopilot",
 ];
+
+const TAB_REDIRECTS: Record<string, string> = {
+  reports: "dashboard",
+  seo: "analytics",
+  competition: "analytics",
+};
 
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const [location, setLocation] = useLocation();
@@ -65,6 +68,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const urlSegments = location.split("/").filter(Boolean);
   const crmIndex = urlSegments.indexOf("crm");
   const rawTab = (crmIndex >= 0 && urlSegments[crmIndex + 1]) ? urlSegments[crmIndex + 1] : "dashboard";
+  const resolvedTab = TAB_REDIRECTS[rawTab] || rawTab;
   const ownerOnlyTabs = ["employees", "config"];
   const canAccessTab = (tab: string) => {
     if (!VALID_TABS.includes(tab)) return false;
@@ -73,7 +77,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
     return allowedTabs.includes(tab);
   };
   const firstAllowedTab = allowedTabs && allowedTabs.length > 0 ? allowedTabs[0] : "dashboard";
-  const selectedTab = canAccessTab(rawTab) ? rawTab : firstAllowedTab;
+  const selectedTab = canAccessTab(resolvedTab) ? resolvedTab : firstAllowedTab;
   const setSelectedTab = useCallback((tab: string) => setLocation(`/crm/${tab}`), [setLocation]);
 
   // Booking details modal state
@@ -101,14 +105,14 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       fleet: "Flota",
       maintenance: "Mantenimiento",
       inventory: "Inventario",
-      reports: "Reportes",
+      analytics: "SEO",
       gallery: "Galería",
       giftcards: "Tarjetas Regalo",
       discounts: "Descuentos",
       blog: "Blog",
       employees: "Usuarios",
       config: "Configuración",
-      seo: "SEO Engine",
+      autopilot: "Autopilot",
     };
     const prev = document.title;
     document.title = `${titles[selectedTab] || "Dashboard"} — Costa Brava Rent a Boat`;
@@ -398,29 +402,14 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
           <InventoryTab adminToken={adminToken} />
         )}
 
-        {/* Reports Tab */}
-        {selectedTab === "reports" && (
-          <ReportsTab adminToken={adminToken} />
-        )}
-
         {/* SEO & Analytics Tab */}
         {selectedTab === "analytics" && (
           <AnalyticsTab adminToken={adminToken} />
         )}
 
-        {/* SEO Engine Tab */}
-        {selectedTab === "seo" && (
-          <SeoTab adminToken={adminToken} />
-        )}
-
         {/* SEO Autopilot Tab */}
         {selectedTab === "autopilot" && (
           <AutopilotTab adminToken={adminToken} />
-        )}
-
-        {/* Competition Tab */}
-        {selectedTab === "competition" && (
-          <CompetitionTab />
         )}
 
         {/* Gallery Tab */}

@@ -552,7 +552,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               {/* KPI Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {/* Organic Clicks */}
-                <Card className="hover:shadow-md transition-shadow">
+                <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">
                       Clics organicos
@@ -569,7 +569,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                 </Card>
 
                 {/* Impressions */}
-                <Card className="hover:shadow-md transition-shadow">
+                <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">
                       Impresiones
@@ -586,7 +586,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                 </Card>
 
                 {/* CTR */}
-                <Card className="hover:shadow-md transition-shadow">
+                <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">
                       CTR medio
@@ -603,7 +603,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                 </Card>
 
                 {/* Average Position */}
-                <Card className="hover:shadow-md transition-shadow">
+                <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">
                       Posicion media
@@ -620,7 +620,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                 </Card>
 
                 {/* Users */}
-                <Card className="hover:shadow-md transition-shadow">
+                <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">
                       Usuarios
@@ -637,7 +637,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                 </Card>
 
                 {/* Sessions */}
-                <Card className="hover:shadow-md transition-shadow">
+                <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">
                       Sesiones
@@ -1264,7 +1264,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {(conversionsData?.data || []).map((conv, i) => (
-                  <Card key={i} className="hover:shadow-md transition-shadow">
+                  <Card key={i}>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         {CONVERSION_LABELS[conv.event] || conv.event}

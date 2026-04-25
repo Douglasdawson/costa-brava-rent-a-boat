@@ -35,21 +35,23 @@ export const INCLUDED_OPTIONS = [
   { id: "patron", label: "Patrón", icon: Users },
 ];
 
-// Status colors for badges - unified semantic color system
+// Status colors for badges - semantic token-based color system (dark-mode ready)
 export const getStatusColor = (status: string) => {
   switch (status) {
     case "confirmed":
-      return "bg-emerald-100 text-emerald-800";
+      return "bg-primary/10 text-primary";
     case "pending_payment":
-      return "bg-amber-100 text-amber-800";
+      return "bg-amber-500/10 text-amber-700 dark:text-amber-400";
     case "hold":
-      return "bg-amber-100 text-amber-800";
+      return "bg-blue-500/10 text-blue-700 dark:text-blue-400";
     case "cancelled":
-      return "bg-red-100 text-red-800";
+      return "bg-destructive/10 text-destructive";
+    case "completed":
+      return "bg-muted text-muted-foreground";
     case "draft":
       return "bg-muted text-muted-foreground";
-    case "completed":
-      return "bg-blue-100 text-blue-800";
+    case "no_show":
+      return "bg-destructive/10 text-destructive";
     default:
       return "bg-muted text-muted-foreground";
   }
@@ -73,17 +75,17 @@ export const getStatusLabel = (status: string) => {
   }
 };
 
-// Payment status colors for badges
+// Payment status colors for badges - semantic token-based (dark-mode ready)
 export function getPaymentStatusColor(status: string): string {
   switch (status) {
     case "completed":
-      return "bg-emerald-100 text-emerald-800";
+      return "bg-primary/10 text-primary";
     case "pending":
-      return "bg-amber-100 text-amber-800";
+      return "bg-amber-500/10 text-amber-700 dark:text-amber-400";
     case "refunded":
-      return "bg-blue-100 text-blue-800";
+      return "bg-blue-500/10 text-blue-700 dark:text-blue-400";
     case "failed":
-      return "bg-red-100 text-red-800";
+      return "bg-destructive/10 text-destructive";
     default:
       return "bg-muted text-muted-foreground";
   }

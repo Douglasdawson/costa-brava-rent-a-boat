@@ -89,7 +89,7 @@ function SortableBoatRow({
     <TableRow ref={setNodeRef} style={style} className={isDragging ? "bg-muted" : ""}>
       <TableCell>
         <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing">
-          <GripVertical className="w-4 h-4 text-muted-foreground/70" />
+          <GripVertical className="w-4 h-4 text-muted-foreground/50" />
         </div>
       </TableCell>
       <TableCell className="font-medium">{boat.name}</TableCell>
@@ -156,7 +156,7 @@ function SortableBoatCard({
       <CardContent className="p-4">
         <div className="flex items-start gap-3 mb-3">
           <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing mt-1">
-            <GripVertical className="w-5 h-5 text-muted-foreground/70" />
+            <GripVertical className="w-5 h-5 text-muted-foreground/50" />
           </div>
           <div className="flex-1">
             <div className="flex justify-between items-start mb-2">

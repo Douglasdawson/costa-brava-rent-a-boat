@@ -337,15 +337,11 @@ export function BookingsTab({
         ) : error ? (
           <ErrorState message="Error al cargar reservas" />
         ) : !bookingsData || bookingsData.length === 0 ? (
-          <Card>
-            <CardContent>
-              <EmptyState
-                icon={Calendar}
-                title="No se encontraron reservas"
-                description="Prueba a ajustar los filtros o crear una nueva reserva"
-              />
-            </CardContent>
-          </Card>
+          <EmptyState
+            icon={Calendar}
+            title="No se encontraron reservas"
+            description="Prueba a ajustar los filtros o crear una nueva reserva"
+          />
         ) : (
           <>
             {bookingsData.map((booking: Booking) => (

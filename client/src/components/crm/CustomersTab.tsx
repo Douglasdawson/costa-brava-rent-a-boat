@@ -416,15 +416,11 @@ export function CustomersTab({
         ) : error ? (
           <ErrorState message="Error al cargar clientes" />
         ) : !customersData || customersData.length === 0 ? (
-          <Card>
-            <CardContent>
-              <EmptyState
-                icon={Users}
-                title="No se encontraron clientes"
-                description='Usa "Sincronizar desde Reservas" para importar clientes'
-              />
-            </CardContent>
-          </Card>
+          <EmptyState
+            icon={Users}
+            title="No se encontraron clientes"
+            description='Usa "Sincronizar desde Reservas" para importar clientes'
+          />
         ) : (
           <>
             {customersData.map((customer) => (

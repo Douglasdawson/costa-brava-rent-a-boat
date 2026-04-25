@@ -392,7 +392,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
           {filteredItems.map(item => {
             const statusConfig = STATUS_CONFIG[item.status] || STATUS_CONFIG.available;
             return (
-              <Card key={item.id} className="hover:shadow-md transition-shadow">
+              <Card key={item.id} className="transition-shadow">
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex-1">

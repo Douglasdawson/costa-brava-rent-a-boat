@@ -332,7 +332,7 @@ export default function LocationCostaBravaPage() {
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
-            <Star className="w-6 h-6 text-cta" />
+            <Star className="w-6 h-6 text-primary" />
             {s?.whyChooseTitle || "Por que elegir la Costa Brava para alquilar un barco"}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">

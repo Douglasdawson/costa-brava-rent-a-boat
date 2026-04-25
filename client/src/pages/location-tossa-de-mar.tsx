@@ -266,7 +266,7 @@ export default function LocationTossaPage() {
           <div className="grid lg:grid-cols-5 gap-10 items-center">
             <div className="lg:col-span-3">
               <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
-                <Crown className="w-6 h-6 text-cta" />
+                <Crown className="w-6 h-6 text-primary" />
                 {s.whyTossaTitle}
               </h2>
               <div className="grid sm:grid-cols-2 gap-6">
@@ -305,6 +305,8 @@ export default function LocationTossaPage() {
           alt="Ruta costera por la Costa Brava"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
+          width={1920}
+          height={600}
         />
       </div>
 

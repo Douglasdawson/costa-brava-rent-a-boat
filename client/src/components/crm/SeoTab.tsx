@@ -11,84 +11,25 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  Search,
   Target,
   FlaskConical,
-  Bell,
-  ArrowUpDown,
   Loader2,
   ChevronDown,
   ChevronUp,
   CheckCircle2,
   XCircle,
-  Globe,
-  Activity,
   FileText,
   HeartPulse,
-  Beaker,
-  Users,
 } from "lucide-react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useToast } from "@/hooks/use-toast";
-import { StatCard } from "./shared/StatCard";
+import { useQuery } from "@tanstack/react-query";
 import { EmptyState } from "./shared/EmptyState";
 import { ErrorState } from "./shared/ErrorState";
+import { SeoDashboard } from "./SeoDashboard";
 
 // --- Types ---
 
 interface SeoTabProps {
   adminToken: string;
-}
-
-interface DashboardStats {
-  trackedKeywords: number;
-  activeCampaigns: number;
-  runningExperiments: number;
-  pendingAlerts: number;
-}
-
-interface DashboardResponse {
-  stats: DashboardStats;
-  topKeywords: Array<{
-    seo_rankings: {
-      id: number;
-      position: string | null;
-      clicks: number | null;
-      impressions: number | null;
-      ctr: string | null;
-    };
-    seo_keywords: {
-      id: number;
-      keyword: string;
-      language: string;
-      intent: string | null;
-    };
-  }>;
-}
-
-interface SeoAlert {
-  id: number;
-  type: string;
-  severity: string;
-  title: string;
-  message: string | null;
-  status: string | null;
-  createdAt: string;
-}
-
-interface KeywordRow {
-  seo_keywords: {
-    id: number;
-    keyword: string;
-    language: string;
-    intent: string | null;
-  };
-  seo_rankings: {
-    position: string | null;
-    clicks: number | null;
-    impressions: number | null;
-    ctr: string | null;
-  };
 }
 
 interface Campaign {
@@ -100,14 +41,6 @@ interface Campaign {
   endDate: string | null;
   progress: Record<string, unknown> | null;
   createdAt: string;
-}
-
-interface Competitor {
-  id: number;
-  domain: string;
-  name: string | null;
-  type: string | null;
-  active: boolean;
 }
 
 interface Experiment {
@@ -143,47 +76,19 @@ interface HealthCheck {
   checkedAt: string | null;
 }
 
-interface CwvMetric {
-  p75: number;
-  rating: string;
-  samples: number;
-}
-
-interface CwvPageSummary {
-  page: string;
-  metrics: Record<string, CwvMetric>;
-}
-
-interface CwvSummaryResponse {
-  summary: CwvPageSummary[];
-  hasAlert: boolean;
-}
-
 // --- Sub-tab definitions ---
 
-type SubTab = "resumen" | "keywords" | "campanas" | "competencia" | "experimentos" | "informes" | "salud";
+type SubTab = "dashboard" | "campanas" | "experimentos" | "informes" | "salud";
 
 const SUB_TABS: { id: SubTab; label: string }[] = [
-  { id: "resumen", label: "Resumen" },
-  { id: "keywords", label: "Keywords" },
+  { id: "dashboard", label: "Dashboard" },
   { id: "campanas", label: "Campanas" },
-  { id: "competencia", label: "Competencia" },
   { id: "experimentos", label: "Experimentos" },
   { id: "informes", label: "Informes" },
   { id: "salud", label: "Salud" },
 ];
 
 // --- Helpers ---
-
-function severityBadge(severity: string) {
-  const variants: Record<string, string> = {
-    critical: "bg-red-500/10 text-red-600 border-red-200",
-    high: "bg-orange-500/10 text-orange-600 border-orange-200",
-    medium: "bg-yellow-500/10 text-yellow-600 border-yellow-200",
-    low: "bg-blue-500/10 text-blue-600 border-blue-200",
-  };
-  return variants[severity] || "bg-muted text-muted-foreground";
-}
 
 function statusBadge(status: string | null) {
   const s = status || "draft";
@@ -227,7 +132,7 @@ function useSeoQuery<T>(key: string, endpoint: string, adminToken: string, enabl
 // --- Main Component ---
 
 export function SeoTab({ adminToken }: SeoTabProps) {
-  const [activeSubTab, setActiveSubTab] = useState<SubTab>("resumen");
+  const [activeSubTab, setActiveSubTab] = useState<SubTab>("dashboard");
 
   return (
     <div className="space-y-4">
@@ -247,248 +152,12 @@ export function SeoTab({ adminToken }: SeoTabProps) {
       </div>
 
       {/* Sub-tab content */}
-      {activeSubTab === "resumen" && <ResumenSubTab adminToken={adminToken} />}
-      {activeSubTab === "keywords" && <KeywordsSubTab adminToken={adminToken} />}
+      {activeSubTab === "dashboard" && <SeoDashboard adminToken={adminToken} />}
       {activeSubTab === "campanas" && <CampanasSubTab adminToken={adminToken} />}
-      {activeSubTab === "competencia" && <CompetenciaSubTab adminToken={adminToken} />}
       {activeSubTab === "experimentos" && <ExperimentosSubTab adminToken={adminToken} />}
       {activeSubTab === "informes" && <InformesSubTab adminToken={adminToken} />}
       {activeSubTab === "salud" && <SaludSubTab adminToken={adminToken} />}
     </div>
-  );
-}
-
-// --- Sub-tab: Resumen ---
-
-function ResumenSubTab({ adminToken }: { adminToken: string }) {
-  const queryClient = useQueryClient();
-  const { toast } = useToast();
-
-  const { data: dashboard, isLoading: dashLoading, isError: dashError } = useSeoQuery<DashboardResponse>(
-    "dashboard", "dashboard", adminToken, true
-  );
-  const { data: alerts, isLoading: alertsLoading, isError: alertsError } = useSeoQuery<SeoAlert[]>(
-    "alerts", "alerts", adminToken, true
-  );
-
-  const acknowledgeMutation = useMutation({
-    mutationFn: async (alertId: number) => {
-      const res = await fetch(`/api/admin/seo/alerts/${alertId}/acknowledge`, {
-        method: "POST",
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error("Error");
-      return res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["seo", "alerts"] });
-      queryClient.invalidateQueries({ queryKey: ["seo", "dashboard"] });
-      toast({ title: "Alerta resuelta" });
-    },
-  });
-
-  if (dashLoading || alertsLoading) return <LoadingSpinner />;
-  if (dashError || alertsError) return <ErrorState />;
-
-  const stats = dashboard?.stats;
-  const pendingAlerts = alerts?.filter((a) => a.status === "new") || [];
-
-  return (
-    <div className="space-y-4">
-      {/* Stat cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <StatCard title="Keywords" value={stats?.trackedKeywords ?? 0} icon={Search} />
-        <StatCard title="Campanas activas" value={stats?.activeCampaigns ?? 0} icon={Target} />
-        <StatCard title="Experimentos" value={stats?.runningExperiments ?? 0} icon={FlaskConical} />
-        <StatCard
-          title="Alertas"
-          value={stats?.pendingAlerts ?? 0}
-          icon={Bell}
-          description={(stats?.pendingAlerts ?? 0) > 0 ? "Pendientes" : "Sin alertas"}
-        />
-      </div>
-
-      {/* Top keywords */}
-      {dashboard?.topKeywords && dashboard.topKeywords.length > 0 && (
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-heading">Top Keywords</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto -mx-2 px-2">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Keyword</TableHead>
-                    <TableHead className="text-right">Pos.</TableHead>
-                    <TableHead className="text-right">Clics</TableHead>
-                    <TableHead className="text-right hidden md:table-cell">Impr.</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {dashboard.topKeywords.map((row, i) => (
-                    <TableRow key={i}>
-                      <TableCell className="font-medium max-w-[200px] truncate">
-                        {row.seo_keywords.keyword}
-                      </TableCell>
-                      <TableCell className="text-right">
-                        {row.seo_rankings.position ? Number(row.seo_rankings.position).toFixed(1) : "-"}
-                      </TableCell>
-                      <TableCell className="text-right">{row.seo_rankings.clicks ?? 0}</TableCell>
-                      <TableCell className="text-right hidden md:table-cell">
-                        {row.seo_rankings.impressions ?? 0}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Alerts */}
-      {pendingAlerts.length > 0 && (
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-heading flex items-center gap-2">
-              <Bell className="w-4 h-4" />
-              Alertas pendientes ({pendingAlerts.length})
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            {pendingAlerts.map((alert) => (
-              <div
-                key={alert.id}
-                className="flex items-start justify-between gap-3 p-3 rounded-lg border"
-              >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Badge variant="outline" className={severityBadge(alert.severity)}>
-                      {alert.severity}
-                    </Badge>
-                    <span className="text-sm font-medium">{alert.title}</span>
-                  </div>
-                  {alert.message && (
-                    <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{alert.message}</p>
-                  )}
-                </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="min-h-[44px] min-w-[44px] flex-shrink-0"
-                  onClick={() => acknowledgeMutation.mutate(alert.id)}
-                  disabled={acknowledgeMutation.isPending}
-                >
-                  {acknowledgeMutation.isPending ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    "Resolver"
-                  )}
-                </Button>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Core Web Vitals */}
-      <CwvWidget adminToken={adminToken} />
-
-      {!dashboard?.topKeywords?.length && pendingAlerts.length === 0 && (
-        <EmptyState
-          icon={Search}
-          title="Sin datos SEO"
-          description="El motor SEO aun no ha recopilado datos"
-        />
-      )}
-    </div>
-  );
-}
-
-// --- Sub-tab: Keywords ---
-
-function KeywordsSubTab({ adminToken }: { adminToken: string }) {
-  const [sortField, setSortField] = useState<"position" | "clicks" | "impressions" | "ctr">("impressions");
-  const [sortAsc, setSortAsc] = useState(false);
-
-  const { data, isLoading, isError } = useSeoQuery<KeywordRow[]>(
-    "keywords", "keywords", adminToken, true
-  );
-
-  if (isLoading) return <LoadingSpinner />;
-  if (isError) return <ErrorState />;
-  if (!data?.length) return <EmptyState icon={Search} title="Sin keywords" description="No hay keywords rastreados" />;
-
-  const sorted = [...data].sort((a, b) => {
-    const aVal = Number(a.seo_rankings[sortField]) || 0;
-    const bVal = Number(b.seo_rankings[sortField]) || 0;
-    return sortAsc ? aVal - bVal : bVal - aVal;
-  });
-
-  const toggleSort = (field: typeof sortField) => {
-    if (sortField === field) setSortAsc(!sortAsc);
-    else { setSortField(field); setSortAsc(false); }
-  };
-
-  const SortHeader = ({ field, children }: { field: typeof sortField; children: React.ReactNode }) => (
-    <TableHead
-      className="cursor-pointer select-none text-right"
-      onClick={() => toggleSort(field)}
-    >
-      <span className="inline-flex items-center gap-1">
-        {children}
-        <ArrowUpDown className="w-3 h-3" />
-      </span>
-    </TableHead>
-  );
-
-  return (
-    <Card>
-      <CardContent className="pt-4">
-        <div className="overflow-x-auto -mx-2 px-2">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Keyword</TableHead>
-                <SortHeader field="position">Pos.</SortHeader>
-                <SortHeader field="clicks">Clics</SortHeader>
-                <SortHeader field="impressions">Impr.</SortHeader>
-                <SortHeader field="ctr">
-                  <span className="hidden md:inline">CTR</span>
-                  <span className="md:hidden">CTR</span>
-                </SortHeader>
-                <TableHead className="hidden md:table-cell">Idioma</TableHead>
-                <TableHead className="hidden md:table-cell">Intent</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {sorted.map((row, i) => (
-                <TableRow key={i}>
-                  <TableCell className="font-medium max-w-[200px] truncate">
-                    {row.seo_keywords.keyword}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {row.seo_rankings.position ? Number(row.seo_rankings.position).toFixed(1) : "-"}
-                  </TableCell>
-                  <TableCell className="text-right">{row.seo_rankings.clicks ?? 0}</TableCell>
-                  <TableCell className="text-right">{row.seo_rankings.impressions ?? 0}</TableCell>
-                  <TableCell className="text-right">
-                    {row.seo_rankings.ctr ? (Number(row.seo_rankings.ctr) * 100).toFixed(1) + "%" : "-"}
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    <Badge variant="outline">{row.seo_keywords.language}</Badge>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell text-muted-foreground">
-                    {row.seo_keywords.intent || "-"}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </CardContent>
-    </Card>
   );
 }
 
@@ -540,74 +209,6 @@ function CampanasSubTab({ adminToken }: { adminToken: string }) {
         );
       })}
     </div>
-  );
-}
-
-// --- Sub-tab: Competencia ---
-
-function CompetenciaSubTab({ adminToken }: { adminToken: string }) {
-  const { data, isLoading, isError } = useSeoQuery<Competitor[]>(
-    "competitors", "competitors", adminToken, true
-  );
-
-  if (isLoading) return <LoadingSpinner />;
-  if (isError) return <ErrorState />;
-  if (!data?.length) return <EmptyState icon={Users} title="Sin competidores" description="No hay competidores registrados" />;
-
-  return (
-    <>
-      {/* Mobile: cards */}
-      <div className="space-y-3 md:hidden">
-        {data.map((c) => (
-          <Card key={c.id}>
-            <CardContent className="pt-4">
-              <div className="flex items-center justify-between gap-2">
-                <div className="min-w-0">
-                  <p className="font-medium text-sm truncate">{c.domain}</p>
-                  {c.name && <p className="text-xs text-muted-foreground">{c.name}</p>}
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  {c.type && <Badge variant="outline">{c.type}</Badge>}
-                  <Badge variant="outline" className={c.active ? "bg-green-500/10 text-green-600" : "bg-muted text-muted-foreground"}>
-                    {c.active ? "Activo" : "Inactivo"}
-                  </Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Desktop: table */}
-      <Card className="hidden md:block">
-        <CardContent className="pt-4">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Dominio</TableHead>
-                <TableHead>Nombre</TableHead>
-                <TableHead>Tipo</TableHead>
-                <TableHead>Estado</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {data.map((c) => (
-                <TableRow key={c.id}>
-                  <TableCell className="font-medium">{c.domain}</TableCell>
-                  <TableCell>{c.name || "-"}</TableCell>
-                  <TableCell>{c.type || "-"}</TableCell>
-                  <TableCell>
-                    <Badge variant="outline" className={c.active ? "bg-green-500/10 text-green-600" : "bg-muted text-muted-foreground"}>
-                      {c.active ? "Activo" : "Inactivo"}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
-    </>
   );
 }
 
@@ -830,98 +431,6 @@ function SaludSubTab({ adminToken }: { adminToken: string }) {
         ))}
       </div>
     </div>
-  );
-}
-
-// --- CWV Widget ---
-
-const CWV_METRIC_NAMES = ["CLS", "LCP", "INP", "TTFB", "FCP"] as const;
-
-function cwvRatingColor(rating: string): string {
-  if (rating === "good") return "text-green-600";
-  if (rating === "needs-improvement") return "text-yellow-600";
-  if (rating === "poor") return "text-red-600";
-  return "text-muted-foreground";
-}
-
-function formatCwvValue(name: string, value: number): string {
-  if (name === "CLS") return value.toFixed(3);
-  return `${Math.round(value)}ms`;
-}
-
-function CwvWidget({ adminToken }: { adminToken: string }) {
-  const { data, isLoading, isError } = useQuery<CwvSummaryResponse>({
-    queryKey: ["cwv-summary"],
-    queryFn: async () => {
-      const res = await fetch("/api/admin/cwv-summary", {
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error("Error al cargar CWV");
-      return res.json();
-    },
-    staleTime: 60_000,
-  });
-
-  if (isLoading) return null;
-  if (isError || !data?.summary?.length) return null;
-
-  return (
-    <Card>
-      <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-heading flex items-center gap-2">
-          <Activity className="w-4 h-4" />
-          Core Web Vitals (7d)
-          {data.hasAlert && (
-            <Badge variant="outline" className="bg-red-500/10 text-red-600 border-red-200 ml-auto">
-              Metricas pobres
-            </Badge>
-          )}
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="overflow-x-auto -mx-2 px-2">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Pagina</TableHead>
-                {CWV_METRIC_NAMES.map((m) => (
-                  <TableHead key={m} className="text-right">{m}</TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {data.summary.map((row) => (
-                <TableRow key={row.page}>
-                  <TableCell className="font-medium max-w-[180px] truncate text-xs">
-                    {row.page}
-                  </TableCell>
-                  {CWV_METRIC_NAMES.map((m) => {
-                    const metric = row.metrics[m];
-                    if (!metric) {
-                      return (
-                        <TableCell key={m} className="text-right text-muted-foreground text-xs">
-                          -
-                        </TableCell>
-                      );
-                    }
-                    return (
-                      <TableCell key={m} className="text-right">
-                        <span className={`text-xs font-medium ${cwvRatingColor(metric.rating)}`}>
-                          {formatCwvValue(m, metric.p75)}
-                        </span>
-                        <span className="block text-[10px] text-muted-foreground">
-                          n={metric.samples}
-                        </span>
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </CardContent>
-    </Card>
   );
 }
 

@@ -200,7 +200,7 @@ interface MetricCardProps {
   icon: React.ReactNode;
   active: boolean;
   semaphoreColor: string;
-  invertChange?: boolean;
+  changeUnit?: string;
   onClick: () => void;
 }
 
@@ -212,11 +212,11 @@ function MetricCard({
   icon,
   active,
   semaphoreColor,
-  invertChange,
+  changeUnit = "%",
   onClick,
 }: MetricCardProps) {
   const isPositive =
-    change !== null ? (invertChange ? change > 0 : change > 0) : null;
+    change !== null ? change > 0 : null;
   const isNeutral = change !== null && change === 0;
 
   return (
@@ -256,7 +256,7 @@ function MetricCard({
               )}
               {change > 0 ? "+" : ""}
               {change}
-              {invertChange ? "" : "%"}
+              {changeUnit}
             </span>
           )}
           <span className="text-xs text-muted-foreground">{subtitle}</span>
@@ -1020,7 +1020,7 @@ export function SeoDashboard({ adminToken }: { adminToken: string }) {
               : "-"
           }
           change={metrics.posChange !== null ? metrics.posChange : null}
-          invertChange
+          changeUnit=""
           subtitle="posicion media"
           icon={<Target className="h-4 w-4 text-primary" />}
           active={activeCard === "posiciones"}

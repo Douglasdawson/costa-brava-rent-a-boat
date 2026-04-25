@@ -384,6 +384,90 @@ export function DashboardTab({
         ))}
       </div>
 
+      {/* Upcoming Bookings */}
+      <Card>
+        <CardHeader className="pb-2 flex flex-row items-center justify-between">
+          <CardTitle className="text-base font-semibold text-foreground">
+            Próximas reservas
+          </CardTitle>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-xs text-muted-foreground hover:text-foreground"
+            onClick={() => onTimeRangeChange("week")}
+          >
+            Ver todas
+            <ArrowRight className="h-3 w-3 ml-1" />
+          </Button>
+        </CardHeader>
+        <CardContent>
+          {upcomingLoading ? (
+            <div className="space-y-3">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <Skeleton className="h-10 w-10 rounded-full" />
+                  <div className="flex-1">
+                    <Skeleton className="h-4 w-32 mb-1" />
+                    <Skeleton className="h-3 w-24" />
+                  </div>
+                  <Skeleton className="h-5 w-16 rounded-full" />
+                </div>
+              ))}
+            </div>
+          ) : upcomingBookings.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
+              <Anchor className="h-8 w-8 mb-2 opacity-50" />
+              <p className="text-sm">No hay reservas próximas</p>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {upcomingBookings.map((booking: Booking) => (
+                <div
+                  key={booking.id}
+                  className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors cursor-pointer group"
+                  onClick={() => onViewBooking(booking.id)}
+                >
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Clock className="h-4 w-4 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-foreground truncate">
+                      {booking.customerName} {booking.customerSurname}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {format(new Date(booking.startTime), "d MMM, HH:mm", { locale: es })}
+                      {" - "}
+                      {booking.totalHours}h
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold text-foreground">
+                      {"\u20AC"}{parseFloat(booking.totalAmount).toLocaleString("es-ES", { minimumFractionDigits: 0 })}
+                    </span>
+                    <Badge
+                      className={`text-[10px] ${getStatusColor(booking.bookingStatus)}`}
+                    >
+                      {getStatusLabel(booking.bookingStatus)}
+                    </Badge>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="md:opacity-0 md:group-hover:opacity-100 transition-opacity h-7 w-7 p-0"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onEditBooking(booking.id);
+                    }}
+                  >
+                    <Edit className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {statsLoading ? (
@@ -425,6 +509,78 @@ export function DashboardTab({
           </>
         )}
       </div>
+
+      {/* Recent Activity */}
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base font-semibold text-foreground">
+            Actividad reciente
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {recentLoading ? (
+            <div className="space-y-3">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <Skeleton className="h-8 w-8 rounded-full" />
+                  <div className="flex-1">
+                    <Skeleton className="h-4 w-48 mb-1" />
+                    <Skeleton className="h-3 w-20" />
+                  </div>
+                  <Skeleton className="h-4 w-16" />
+                </div>
+              ))}
+            </div>
+          ) : recentBookings.length === 0 ? (
+            <div className="text-center py-6 text-muted-foreground text-sm">
+              No hay actividad reciente
+            </div>
+          ) : (
+            <div className="space-y-1">
+              {recentBookings.map((booking: Booking) => {
+                const activityText =
+                  booking.bookingStatus === "confirmed"
+                    ? "Nueva reserva confirmada"
+                    : booking.bookingStatus === "cancelled"
+                      ? "Reserva cancelada"
+                      : booking.bookingStatus === "pending_payment"
+                        ? "Reserva pendiente de pago"
+                        : "Nueva reserva creada";
+
+                return (
+                  <div
+                    key={booking.id}
+                    className="flex items-center gap-3 py-2.5 px-2 rounded-lg hover:bg-muted transition-colors cursor-pointer"
+                    onClick={() => onViewBooking(booking.id)}
+                  >
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center">
+                      {getActivityIcon(booking.bookingStatus)}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm text-foreground">
+                        <span className="font-medium text-foreground">
+                          {booking.customerName} {booking.customerSurname}
+                        </span>
+                        {" \u00b7 "}
+                        {activityText}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {boatName(booking.boatId)} \u00b7 {"\u20AC"}{booking.totalAmount}
+                      </p>
+                    </div>
+                    <span className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0">
+                      {formatDistanceToNow(new Date(booking.createdAt), {
+                        addSuffix: true,
+                        locale: es,
+                      })}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6">
@@ -602,163 +758,7 @@ export function DashboardTab({
             </CardContent>
           </Card>
         )}
-
-        {/* Upcoming Bookings Mini Table */}
-        <Card>
-          <CardHeader className="pb-2 flex flex-row items-center justify-between">
-            <CardTitle className="text-base font-semibold text-foreground">
-              Próximas reservas
-            </CardTitle>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-xs text-muted-foreground hover:text-foreground"
-              onClick={() => onTimeRangeChange("week")}
-            >
-              Ver todas
-              <ArrowRight className="h-3 w-3 ml-1" />
-            </Button>
-          </CardHeader>
-          <CardContent>
-            {upcomingLoading ? (
-              <div className="space-y-3">
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <Skeleton className="h-10 w-10 rounded-full" />
-                    <div className="flex-1">
-                      <Skeleton className="h-4 w-32 mb-1" />
-                      <Skeleton className="h-3 w-24" />
-                    </div>
-                    <Skeleton className="h-5 w-16 rounded-full" />
-                  </div>
-                ))}
-              </div>
-            ) : upcomingBookings.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
-                <Anchor className="h-8 w-8 mb-2 opacity-50" />
-                <p className="text-sm">No hay reservas próximas</p>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {upcomingBookings.map((booking: Booking) => (
-                  <div
-                    key={booking.id}
-                    className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors cursor-pointer group"
-                    onClick={() => onViewBooking(booking.id)}
-                  >
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Clock className="h-4 w-4 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-foreground truncate">
-                        {booking.customerName} {booking.customerSurname}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        {format(new Date(booking.startTime), "d MMM, HH:mm", { locale: es })}
-                        {" - "}
-                        {booking.totalHours}h
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-foreground">
-                        {"\u20AC"}{parseFloat(booking.totalAmount).toLocaleString("es-ES", { minimumFractionDigits: 0 })}
-                      </span>
-                      <Badge
-                        className={`text-[10px] ${getStatusColor(booking.bookingStatus)}`}
-                      >
-                        {getStatusLabel(booking.bookingStatus)}
-                      </Badge>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="md:opacity-0 md:group-hover:opacity-100 transition-opacity h-7 w-7 p-0"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onEditBooking(booking.id);
-                      }}
-                    >
-                      <Edit className="h-3.5 w-3.5" />
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
       </div>
-
-      {/* Recent Activity Section */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold text-foreground">
-            Actividad reciente
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          {recentLoading ? (
-            <div className="space-y-3">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <Skeleton className="h-8 w-8 rounded-full" />
-                  <div className="flex-1">
-                    <Skeleton className="h-4 w-48 mb-1" />
-                    <Skeleton className="h-3 w-20" />
-                  </div>
-                  <Skeleton className="h-4 w-16" />
-                </div>
-              ))}
-            </div>
-          ) : recentBookings.length === 0 ? (
-            <div className="text-center py-6 text-muted-foreground text-sm">
-              No hay actividad reciente
-            </div>
-          ) : (
-            <div className="space-y-1">
-              {recentBookings.map((booking: Booking) => {
-                const activityText =
-                  booking.bookingStatus === "confirmed"
-                    ? "Nueva reserva confirmada"
-                    : booking.bookingStatus === "cancelled"
-                      ? "Reserva cancelada"
-                      : booking.bookingStatus === "pending_payment"
-                        ? "Reserva pendiente de pago"
-                        : "Nueva reserva creada";
-
-                return (
-                  <div
-                    key={booking.id}
-                    className="flex items-center gap-3 py-2.5 px-2 rounded-lg hover:bg-muted transition-colors cursor-pointer"
-                    onClick={() => onViewBooking(booking.id)}
-                  >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center">
-                      {getActivityIcon(booking.bookingStatus)}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-foreground">
-                        <span className="font-medium text-foreground">
-                          {booking.customerName} {booking.customerSurname}
-                        </span>
-                        {" \u00b7 "}
-                        {activityText}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        {boatName(booking.boatId)} \u00b7 {"\u20AC"}{booking.totalAmount}
-                      </p>
-                    </div>
-                    <span className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0">
-                      {formatDistanceToNow(new Date(booking.createdAt), {
-                        addSuffix: true,
-                        locale: es,
-                      })}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </CardContent>
-      </Card>
     </div>
   );
 }

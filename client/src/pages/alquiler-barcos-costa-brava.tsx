@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,6 +6,9 @@ import {
   Sun, Waves, Ship, ChevronRight, Clock
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
+import { FAQSection } from "@/components/FAQSection";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Footer from "@/components/Footer";
 import FleetSection from "@/components/FleetSection";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
@@ -18,6 +20,15 @@ import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBrea
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { Link } from "wouter";
 import { trackLocationPageView } from "@/utils/analytics";
+
+function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 export default function LocationCostaBravaPage() {
   const { language, localizedPath } = useLanguage();
@@ -224,6 +235,12 @@ export default function LocationCostaBravaPage() {
     advanced: "bg-red-100 text-red-800",
   };
 
+  // Build FAQ items for FAQSection component from the schema
+  const faqDisplayItems = faqSchema.mainEntity.map(faq => ({
+    question: faq.name,
+    answer: faq.acceptedAnswer.text,
+  }));
+
   return (
     <div className="min-h-screen">
       <SEO
@@ -237,6 +254,7 @@ export default function LocationCostaBravaPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      <ReadingProgressBar />
 
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-12">
@@ -269,13 +287,11 @@ export default function LocationCostaBravaPage() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="py-12 bg-muted">
+      {/* Introduction */}
+      <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* Introduction */}
-          <Card className="mb-8">
-            <CardContent className="p-6 md:p-8">
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-3">
               <p className="text-muted-foreground text-lg leading-relaxed mb-4">
                 {s?.introP1 || "La Costa Brava es uno de los destinos nauticos mas espectaculares del Mediterraneo."}
               </p>
@@ -285,284 +301,283 @@ export default function LocationCostaBravaPage() {
               <p className="text-muted-foreground text-lg leading-relaxed">
                 {s?.introP3 || "En los barcos sin licencia el precio incluye gasolina, seguro a todo riesgo y equipo de seguridad."}
               </p>
-            </CardContent>
-          </Card>
+            </div>
+            <div className="lg:col-span-2">
+              <img
+                src="/images/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-amigos-snorkel.webp"
+                alt="Friends enjoying a boat day on the Costa Brava"
+                className="w-full rounded-2xl object-cover aspect-[4/5]"
+                loading="lazy"
+                width={640}
+                height={800}
+              />
+            </div>
+          </div>
+        </div>
+      </RevealSection>
 
-          {/* Why Choose Costa Brava */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Star className="w-6 h-6 text-cta" />
-                {s?.whyChooseTitle || "Por que elegir la Costa Brava para alquilar un barco"}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{s?.covesTitle || "Calas y playas inaccesibles por tierra"}</h3>
-                  <p className="text-muted-foreground mb-4">
-                    {s?.covesDesc || ""}
-                  </p>
+      {/* Photo break */}
+      <div className="w-full overflow-hidden">
+        <img
+          src="/images/mejores-calas-costa-brava-mingolla-brava-rent-a-boat.webp"
+          alt="Boat anchored in a crystal-clear cove along the Costa Brava coast"
+          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+          loading="lazy"
+          width={1920}
+          height={600}
+        />
+      </div>
 
-                  <h3 className="font-semibold text-lg mb-3">{s?.calmWatersTitle || "Aguas tranquilas y protegidas"}</h3>
-                  <p className="text-muted-foreground">
-                    {s?.calmWatersDesc || ""}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{s?.accessibleTitle || "Accesible desde Barcelona y Girona"}</h3>
-                  <p className="text-muted-foreground mb-4">
-                    {s?.accessibleDesc || ""}
-                  </p>
-
-                  <h3 className="font-semibold text-lg mb-3">{s?.allLevelsTitle || "Para todos los niveles"}</h3>
-                  <p className="text-muted-foreground">
-                    {s?.allLevelsDesc || ""}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Section A: Navigation Guide */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <NavigationIcon className="w-6 h-6 text-primary" />
-                {s?.navigationGuideTitle || "Guia de Navegacion por la Costa Brava"}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                {routes.map((route, index) => (
-                  <div key={index} className="border-b border-border pb-5 last:border-0 last:pb-0">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Badge className={difficultyColors[route.difficulty]}>
-                        {route.difficulty === "easy" ? "Facil" : route.difficulty === "medium" ? "Media" : "Avanzada"}
-                      </Badge>
-                      <h3 className="font-semibold text-lg">{route.title}</h3>
-                    </div>
-                    <p className="text-muted-foreground">{route.description}</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Section B: Boat Types Comparison */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Ship className="w-6 h-6 text-primary" />
-                {s?.boatTypesTitle || "Tipos de Barcos para la Costa Brava"}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* No License Column */}
-                <div className="border border-primary rounded-lg p-6 bg-primary/5">
-                  <h3 className="font-bold text-xl mb-4 text-primary">{s?.noLicenseTitle || "Barcos Sin Licencia"}</h3>
-                  <ul className="space-y-3 mb-4">
-                    <li className="flex items-center gap-2">
-                      <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm">{s?.noLicensePower || "Hasta 15 CV de potencia"}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm">{s?.noLicenseCapacity || "Maximo 5 personas a bordo"}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <NavigationIcon className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm">{s?.noLicenseNavigation || "Navegacion costera hasta 2 millas"}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Sun className="w-4 h-4 text-green-600 flex-shrink-0" />
-                      <span className="text-sm font-semibold text-green-700">{s?.noLicenseFuel || "Gasolina incluida en el precio"}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Star className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm font-semibold">{s?.noLicensePrice || "Desde 70 EUR/hora"}</span>
-                    </li>
-                  </ul>
-                  <p className="text-muted-foreground text-sm">{s?.noLicenseDesc || ""}</p>
-                </div>
-
-                {/* Licensed Column */}
-                <div className="border border-border rounded-lg p-6">
-                  <h3 className="font-bold text-xl mb-4">{s?.licensedTitle || "Barcos Con Licencia"}</h3>
-                  <ul className="space-y-3 mb-4">
-                    <li className="flex items-center gap-2">
-                      <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm">{s?.licensedPower || "De 40 CV a 150 CV"}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm">{s?.licensedCapacity || "Hasta 12 personas a bordo"}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <NavigationIcon className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm">{s?.licensedNavigation || "Navegacion en mar abierto sin limites"}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Sun className="w-4 h-4 text-orange-600 flex-shrink-0" />
-                      <span className="text-sm font-semibold text-orange-700">{s?.licensedFuel || "Combustible NO incluido (deposito aparte)"}</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Star className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm font-semibold">{s?.licensedPrice || "Desde 90 EUR/hora"}</span>
-                    </li>
-                  </ul>
-                  <p className="text-muted-foreground text-sm">{s?.licensedDesc || ""}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Section C: Best Coves */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Waves className="w-6 h-6 text-primary" />
-                {s?.bestCovesTitle || "Las Mejores Calas de la Costa Brava en Barco"}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                {coves.map((cove, index) => (
-                  <div key={index} className="border-b border-border pb-5 last:border-0 last:pb-0">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-primary font-bold text-sm">{index + 1}</span>
-                      </div>
-                      <h3 className="font-semibold text-lg">{cove.name}</h3>
-                    </div>
-                    <p className="text-muted-foreground ml-11">{cove.description}</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Section D: Fleet / Pricing */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Clock className="w-6 h-6 text-primary" />
-                {s?.pricingTitle || "Precios Alquiler Barco Costa Brava 2026"}
-              </h2>
-              <p className="text-muted-foreground mt-2">
-                {s?.noLicenseFuel || "Gasolina incluida en el precio"} (sin licencia) | {s?.licensedFuel || "Combustible NO incluido"} (con licencia)
+      {/* Why Choose Costa Brava */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+            <Star className="w-6 h-6 text-cta" />
+            {s?.whyChooseTitle || "Por que elegir la Costa Brava para alquilar un barco"}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s?.covesTitle || "Calas y playas inaccesibles por tierra"}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                {s?.covesDesc || ""}
               </p>
-            </CardHeader>
-          </Card>
-          <FleetSection />
-
-          {/* Departure Ports */}
-          <Card className="mb-8 mt-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <NavigationIcon className="w-6 h-6 text-primary" />
-                Puertos de Salida y Destinos
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                {departurePorts.map((port) => (
-                  <Link key={port.name} href={port.href}>
-                    <div className={`p-4 rounded-lg border transition-colors hover:border-primary cursor-pointer ${
-                      port.highlight ? "border-primary bg-primary/5" : "border-border"
-                    }`}>
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                          <port.icon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <h3 className="font-semibold text-lg">{port.name}</h3>
-                            {port.highlight && (
-                              <Badge variant="secondary" className="text-xs">Puerto base</Badge>
-                            )}
-                          </div>
-                          <p className="text-muted-foreground text-sm mt-1">{port.description}</p>
-                          <span className="text-primary text-sm font-medium inline-flex items-center mt-2">
-                            Ver mas <ChevronRight className="w-4 h-4 ml-1" />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* FAQ Section */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Star className="w-6 h-6 text-cta" />
-                Preguntas Frecuentes sobre Alquiler de Barcos en la Costa Brava
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                {faqSchema.mainEntity.map((faq, index) => (
-                  <div key={index} className="border-b border-border pb-4 last:border-0 last:pb-0">
-                    <h3 className="font-semibold text-lg mb-2">{faq.name}</h3>
-                    <p className="text-muted-foreground">{faq.acceptedAnswer.text}</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Cross-link to English version */}
-          <Card className="mb-8">
-            <CardContent className="py-4">
-              <div className="flex flex-wrap gap-3">
-                <Link href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  {s?.crossLinkEnglish || "This page in English: Boat Rental Costa Brava"}
-                </Link>
-                <Link href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  Barcos sin licencia
-                </Link>
-                <Link href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  Barcos con licencia
-                </Link>
-                <Link href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  Precios y tarifas
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* CTA Section */}
-          <Card className="bg-primary text-white">
-            <CardContent className="p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">
-                {s?.ctaTitle || "Reserva tu Barco en la Costa Brava"}
-              </h2>
-              <p className="text-lg mb-6 opacity-90">
-                {s?.ctaDescription || "Elige tu barco, fecha y horario. Gasolina, seguro y formacion incluidos en barcos sin licencia. Reserva por WhatsApp y recibe confirmacion inmediata."}
+              <h3 className="font-heading font-semibold text-lg mb-3">{s?.calmWatersTitle || "Aguas tranquilas y protegidas"}</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {s?.calmWatersDesc || ""}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  onClick={handleBookingWhatsApp}
-                  data-testid="button-book-costa-brava"
-                >
-                  <Anchor className="w-5 h-5 mr-2" />
-                  {s?.ctaButton || "Reservar por WhatsApp"}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s?.accessibleTitle || "Accesible desde Barcelona y Girona"}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                {s?.accessibleDesc || ""}
+              </p>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s?.allLevelsTitle || "Para todos los niveles"}</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {s?.allLevelsDesc || ""}
+              </p>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
 
+      {/* Navigation Guide */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+            <NavigationIcon className="w-6 h-6 text-primary" />
+            {s?.navigationGuideTitle || "Guia de Navegacion por la Costa Brava"}
+          </h2>
+          <div className="space-y-6">
+            {routes.map((route, index) => (
+              <div key={index} className="border-b border-border pb-5 last:border-0 last:pb-0">
+                <div className="flex items-center gap-3 mb-2">
+                  <Badge className={difficultyColors[route.difficulty]}>
+                    {route.difficulty === "easy" ? "Facil" : route.difficulty === "medium" ? "Media" : "Avanzada"}
+                  </Badge>
+                  <h3 className="font-heading font-semibold text-lg">{route.title}</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">{route.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Boat Types Comparison */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+            <Ship className="w-6 h-6 text-primary" />
+            {s?.boatTypesTitle || "Tipos de Barcos para la Costa Brava"}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* No License Column */}
+            <div className="border border-primary rounded-lg p-6 bg-primary/5">
+              <h3 className="font-bold text-xl mb-4 text-primary">{s?.noLicenseTitle || "Barcos Sin Licencia"}</h3>
+              <ul className="space-y-3 mb-4">
+                <li className="flex items-center gap-2">
+                  <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm">{s?.noLicensePower || "Hasta 15 CV de potencia"}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm">{s?.noLicenseCapacity || "Maximo 5 personas a bordo"}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <NavigationIcon className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm">{s?.noLicenseNavigation || "Navegacion costera hasta 2 millas"}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Sun className="w-4 h-4 text-green-600 flex-shrink-0" />
+                  <span className="text-sm font-semibold text-green-700">{s?.noLicenseFuel || "Gasolina incluida en el precio"}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Star className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm font-semibold">{s?.noLicensePrice || "Desde 70 EUR/hora"}</span>
+                </li>
+              </ul>
+              <p className="text-muted-foreground text-sm">{s?.noLicenseDesc || ""}</p>
+            </div>
+
+            {/* Licensed Column */}
+            <div className="border border-border rounded-lg p-6">
+              <h3 className="font-bold text-xl mb-4">{s?.licensedTitle || "Barcos Con Licencia"}</h3>
+              <ul className="space-y-3 mb-4">
+                <li className="flex items-center gap-2">
+                  <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm">{s?.licensedPower || "De 40 CV a 150 CV"}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm">{s?.licensedCapacity || "Hasta 12 personas a bordo"}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <NavigationIcon className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm">{s?.licensedNavigation || "Navegacion en mar abierto sin limites"}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Sun className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                  <span className="text-sm font-semibold text-orange-700">{s?.licensedFuel || "Combustible NO incluido (deposito aparte)"}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Star className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm font-semibold">{s?.licensedPrice || "Desde 90 EUR/hora"}</span>
+                </li>
+              </ul>
+              <p className="text-muted-foreground text-sm">{s?.licensedDesc || ""}</p>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Best Coves */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+            <Waves className="w-6 h-6 text-primary" />
+            {s?.bestCovesTitle || "Las Mejores Calas de la Costa Brava en Barco"}
+          </h2>
+          <div className="space-y-6">
+            {coves.map((cove, index) => (
+              <div key={index} className="border-b border-border pb-5 last:border-0 last:pb-0">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold text-sm">{index + 1}</span>
+                  </div>
+                  <h3 className="font-heading font-semibold text-lg">{cove.name}</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed ml-[52px]">{cove.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Fleet / Pricing */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-2">
+            <Clock className="w-6 h-6 text-primary" />
+            {s?.pricingTitle || "Precios Alquiler Barco Costa Brava 2026"}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            {s?.noLicenseFuel || "Gasolina incluida en el precio"} (sin licencia) | {s?.licensedFuel || "Combustible NO incluido"} (con licencia)
+          </p>
+        </div>
+        <FleetSection />
+      </RevealSection>
+
+      {/* Departure Ports */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+            <NavigationIcon className="w-6 h-6 text-primary" />
+            Puertos de Salida y Destinos
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {departurePorts.map((port) => (
+              <Link key={port.name} href={port.href}>
+                <div className={`p-4 rounded-lg border transition-colors hover:border-primary cursor-pointer ${
+                  port.highlight ? "border-primary bg-primary/5" : "border-border"
+                }`}>
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <port.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-heading font-semibold text-lg">{port.name}</h3>
+                        {port.highlight && (
+                          <Badge variant="secondary" className="text-xs">Puerto base</Badge>
+                        )}
+                      </div>
+                      <p className="text-muted-foreground text-sm mt-1">{port.description}</p>
+                      <span className="text-primary text-sm font-medium inline-flex items-center mt-2">
+                        Ver mas <ChevronRight className="w-4 h-4 ml-1" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* FAQ Section */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+            Preguntas Frecuentes sobre Alquiler de Barcos en la Costa Brava
+          </h2>
+          <FAQSection items={faqDisplayItems} />
+        </div>
+      </RevealSection>
+
+      {/* Cross-links */}
+      <div className="py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap gap-3">
+            <Link href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {s?.crossLinkEnglish || "This page in English: Boat Rental Costa Brava"}
+            </Link>
+            <Link href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              Barcos sin licencia
+            </Link>
+            <Link href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              Barcos con licencia
+            </Link>
+            <Link href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              Precios y tarifas
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="py-16 sm:py-20 bg-primary">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+            {s?.ctaTitle || "Reserva tu Barco en la Costa Brava"}
+          </h2>
+          <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
+            {s?.ctaDescription || "Elige tu barco, fecha y horario. Gasolina, seguro y formacion incluidos en barcos sin licencia. Reserva por WhatsApp y recibe confirmacion inmediata."}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              variant="secondary"
+              onClick={handleBookingWhatsApp}
+              data-testid="button-book-costa-brava"
+            >
+              <Anchor className="w-5 h-5 mr-2" />
+              {s?.ctaButton || "Reservar por WhatsApp"}
+            </Button>
+          </div>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import { Shield } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import { useTranslations } from "@/lib/translations";
 
@@ -26,9 +26,10 @@ export function LegalPageLayout({ heroTitle, lastUpdated, sections }: LegalPageL
   return (
     <main id="main-content" className="min-h-screen">
       <Navigation />
+      <ReadingProgressBar />
 
       {/* Hero */}
-      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-20 sm:pt-24 pb-8">
+      <div className="bg-gradient-to-br from-muted to-background pt-20 sm:pt-24 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-4">
             <Shield className="w-8 h-8 text-primary mr-4" aria-hidden="true" />
@@ -41,8 +42,8 @@ export function LegalPageLayout({ heroTitle, lastUpdated, sections }: LegalPageL
       </div>
 
       {/* Content */}
-      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-muted">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           {disclaimer && (
             <div className="bg-amber-50 dark:bg-amber-950/30 rounded-xl p-4 text-sm text-amber-900 dark:text-amber-200">
               <p>{disclaimer}</p>
@@ -50,16 +51,17 @@ export function LegalPageLayout({ heroTitle, lastUpdated, sections }: LegalPageL
           )}
 
           {sections.map((section, i) => (
-            <Card key={i}>
-              <CardHeader>
-                <CardTitle className="text-xl">{section.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
-                  {section.body}
-                </p>
-              </CardContent>
-            </Card>
+            <section key={i} aria-labelledby={`legal-section-${i}`}>
+              <h2
+                id={`legal-section-${i}`}
+                className="text-xl font-heading font-semibold text-foreground mb-4"
+              >
+                {section.title}
+              </h2>
+              <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+                {section.body}
+              </p>
+            </section>
           ))}
         </div>
       </div>

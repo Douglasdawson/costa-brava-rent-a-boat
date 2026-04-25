@@ -223,8 +223,8 @@ function ReviewsSection() {
     <section
       ref={revealRef}
       id="reviews"
-      className={`below-fold py-16 sm:py-24 lg:py-32 bg-card transition-[opacity,transform] duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      className={`below-fold py-16 sm:py-24 lg:py-32 bg-card transition-[opacity,transform,filter] duration-500 ${
+        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

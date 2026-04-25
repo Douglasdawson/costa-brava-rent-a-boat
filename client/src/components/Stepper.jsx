@@ -169,15 +169,18 @@ function SlideTransition({ children, direction, onHeightReady }) {
 const stepVariants = {
   enter: dir => ({
     x: dir >= 0 ? '-100%' : '100%',
-    opacity: 0
+    opacity: 0,
+    filter: 'blur(4px)'
   }),
   center: {
     x: '0%',
-    opacity: 1
+    opacity: 1,
+    filter: 'blur(0px)'
   },
   exit: dir => ({
     x: dir >= 0 ? '50%' : '-50%',
-    opacity: 0
+    opacity: 0,
+    filter: 'blur(4px)'
   })
 };
 

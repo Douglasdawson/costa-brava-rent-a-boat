@@ -272,8 +272,8 @@ export function ExitIntentModal() {
       {/* Modal */}
       <div
         ref={modalRef}
-        className={`relative bg-background rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transition-transform duration-200 ${
-          show ? "scale-100" : "scale-95"
+        className={`relative bg-background rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transition-[transform,filter] duration-200 ${
+          show ? "scale-100 blur-none" : "scale-[0.97] blur-[2px]"
         }`}
         onClick={(e) => e.stopPropagation()}
       >

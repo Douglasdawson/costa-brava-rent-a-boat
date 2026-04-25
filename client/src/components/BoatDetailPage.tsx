@@ -819,7 +819,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 onClick={() => setLightboxOpen(true)}
               />
               {/* Zoom hint */}
-              <div className="absolute top-2 left-2 bg-foreground/50 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              <div className="absolute top-2 left-2 bg-foreground/50 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                 <Eye className="w-3 h-3 inline mr-1" />
                 {t.boatDetail.imageAria}
               </div>
@@ -831,7 +831,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     variant="ghost"
                     size="icon"
                     onClick={prevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200"
                     data-testid="button-prev-image"
                     aria-label="Previous image"
                   >
@@ -841,7 +841,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     variant="ghost"
                     size="icon"
                     onClick={nextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200"
                     data-testid="button-next-image"
                     aria-label="Next image"
                   >
@@ -1269,7 +1269,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <a
                     key={relBoat.id}
                     href={localizedPath("boatDetail", relBoat.id)}
-                    className="group bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-border"
+                    className="group bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-border"
                   >
                     <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
                       <img
@@ -1327,7 +1327,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <details key={idx} className="group border border-border rounded-lg">
               <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
                 {item.question}
-                <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+                <ChevronRight className="w-4 h-4 transition-transform duration-200 group-open:rotate-90" />
               </summary>
               <div className="px-4 pb-4 text-muted-foreground">
                 {item.answer}

@@ -1,11 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
-import {
   Calendar,
   CalendarDays,
   Users,
@@ -26,6 +21,8 @@ import {
   FileText,
   MoreHorizontal,
   Search,
+  Menu,
+  ChevronDown,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -117,12 +114,112 @@ export function AdminLayout({
 
   const primaryTabIds = new Set(PRIMARY_TABS.map(t => t.id));
 
-  // State for mobile popover
-  const [moreOpen, setMoreOpen] = useState(false);
+  // State for "Mas" accordion in sidebar
+  const [moreOpen, setMoreOpen] = useState(() => {
+    // Auto-open if selected tab is in overflow
+    return !primaryTabIds.has(selectedTab);
+  });
+
+  // State for mobile sidebar overlay
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Auto-open "Mas" accordion when an overflow tab is selected
+  useEffect(() => {
+    if (!primaryTabIds.has(selectedTab)) {
+      setMoreOpen(true);
+    }
+  }, [selectedTab]);
+
+  // Handle tab change on mobile: also close sidebar
+  const handleMobileTabChange = (tabId: string) => {
+    onTabChange(tabId);
+    setMobileOpen(false);
+  };
+
+  // Shared sidebar nav content (used by both desktop and mobile)
+  const renderSidebarNav = (onSelect: (tabId: string) => void) => (
+    <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-1">
+      {visiblePrimaryTabs.map(tab => (
+        <button
+          key={tab.id}
+          onClick={() => onSelect(tab.id)}
+          className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors min-h-[44px] ${
+            selectedTab === tab.id
+              ? "bg-primary text-white"
+              : "text-muted-foreground hover:text-foreground hover:bg-muted"
+          }`}
+          data-testid={`tab-${tab.id}`}
+        >
+          <tab.icon className="w-4 h-4 flex-shrink-0" />
+          <span>{tab.label}</span>
+        </button>
+      ))}
+
+      {/* Separator */}
+      {overflowTabs.length > 0 && <div className="border-t border-border my-2" />}
+
+      {/* "Mas" accordion */}
+      {overflowTabs.length > 0 && (
+        <>
+          <button
+            onClick={() => setMoreOpen(!moreOpen)}
+            className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors min-h-[44px]"
+            data-testid="tab-more"
+          >
+            <span className="flex items-center gap-3">
+              <MoreHorizontal className="w-4 h-4 flex-shrink-0" />
+              <span>Mas</span>
+            </span>
+            <ChevronDown className={`w-3 h-3 transition-transform ${moreOpen ? "rotate-180" : ""}`} />
+          </button>
+          {moreOpen && (
+            <div className="ml-2 space-y-1">
+              {overflowTabs.map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => onSelect(tab.id)}
+                  className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors min-h-[44px] ${
+                    selectedTab === tab.id
+                      ? "bg-primary text-white"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                  data-testid={`tab-${tab.id}`}
+                >
+                  <tab.icon className="w-4 h-4 flex-shrink-0" />
+                  <span>{tab.label}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+    </nav>
+  );
+
+  // Shared sidebar footer
+  const renderSidebarFooter = () => (
+    <div className="border-t border-border px-4 py-3 space-y-2">
+      <div className="text-xs text-muted-foreground truncate">
+        {adminUsername} · {adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}
+      </div>
+      <div className="flex items-center gap-1.5">
+        <Button variant="outline" size="sm" className="flex-1 min-h-[44px] text-xs" onClick={onNewBooking} data-testid="button-new-booking">
+          <Plus className="w-3 h-3 mr-1" />
+          Nueva
+        </Button>
+        <Button variant="outline" size="sm" className="min-h-[44px] text-xs" onClick={onExportCSV} title="Exportar CSV" data-testid="button-export-data">
+          <Download className="w-3 h-3" />
+        </Button>
+        <Button variant="outline" size="sm" className="min-h-[44px] text-xs" onClick={onLogout} title="Cerrar sesion" data-testid="button-logout">
+          <LogOut className="w-3 h-3" />
+        </Button>
+      </div>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-background pt-safe">
-      {/* Trial Banner */}
+      {/* Trial Banner — spans full width above everything */}
       {showTrialBanner && (
         <div className={`px-4 py-2 text-sm flex items-center justify-between ${
           trialDaysLeft! <= 3
@@ -134,13 +231,13 @@ export function AdminLayout({
             <span>
               {trialDaysLeft === 0
                 ? "Tu periodo de prueba ha expirado"
-                : `Prueba gratuita: ${trialDaysLeft} ${trialDaysLeft === 1 ? "día" : "días"} restantes`}
+                : `Prueba gratuita: ${trialDaysLeft} ${trialDaysLeft === 1 ? "dia" : "dias"} restantes`}
             </span>
           </div>
           <Button
             variant="outline"
             size="sm"
-            className={`h-10 sm:h-7 text-xs ${
+            className={`min-h-[44px] sm:min-h-0 sm:h-7 text-xs ${
               trialDaysLeft! <= 3
                 ? "border-destructive/40 text-destructive hover:bg-destructive/10"
                 : "border-accent-foreground/40 text-accent-foreground hover:bg-accent"
@@ -152,23 +249,86 @@ export function AdminLayout({
         </div>
       )}
 
-      {/* Header */}
-      <div className="bg-card border-b border-border px-4 md:px-6 py-3 md:py-4">
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center space-x-2 md:space-x-3">
-            <Anchor className="w-6 h-6 md:w-8 md:h-8 text-primary" />
-            <div>
-              <h1 className="text-lg md:text-2xl font-bold font-heading text-foreground">
+      {/* Mobile header */}
+      <div className="md:hidden sticky top-0 z-40 bg-card border-b border-border px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setMobileOpen(true)}
+            className="p-1 -ml-1 min-h-[44px] min-w-[44px] flex items-center justify-center"
+            aria-label="Abrir menu"
+          >
+            <Menu className="w-5 h-5 text-foreground" />
+          </button>
+          <span className="font-semibold text-sm text-foreground truncate">
+            {tenantName || "CBRB"}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="min-h-[44px]"
+            onClick={() => {
+              document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }));
+            }}
+          >
+            <Search className="w-4 h-4" />
+          </Button>
+          <Button size="sm" className="min-h-[44px]" onClick={onNewBooking}>
+            <Plus className="w-4 h-4 mr-1" />
+            <span>Nueva</span>
+          </Button>
+        </div>
+      </div>
+
+      {/* Mobile sidebar overlay — always mounted, animated via transform */}
+      <div
+        className={`md:hidden fixed inset-0 z-50 transition-opacity duration-200 ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-foreground/20"
+          onClick={() => setMobileOpen(false)}
+        />
+        {/* Sidebar */}
+        <aside
+          className={`absolute inset-y-0 left-0 w-64 bg-card border-r border-border flex flex-col transition-transform duration-200 will-change-transform ${
+            mobileOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          {/* Sidebar header */}
+          <div className="px-4 py-4 border-b border-border">
+            <div className="flex items-center gap-2">
+              <Anchor className="w-5 h-5 text-primary" />
+              <span className="font-semibold text-sm text-foreground truncate">
                 {tenantName || "Costa Brava Rent a Boat"}
-              </h1>
-              <p className="text-xs md:text-sm text-muted-foreground block truncate max-w-[120px] md:max-w-none">
-                {adminUsername} · {adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}
-              </p>
+              </span>
             </div>
           </div>
-          <div className="flex items-center gap-2 md:gap-3">
+
+          {/* Nav */}
+          {renderSidebarNav(handleMobileTabChange)}
+
+          {/* Footer */}
+          {renderSidebarFooter()}
+        </aside>
+      </div>
+
+      <div className="flex h-[calc(100vh-var(--trial-banner-h,0px))]">
+        {/* Desktop sidebar */}
+        <aside className="hidden md:flex md:flex-col md:w-56 bg-card border-r border-border h-full sticky top-0 flex-shrink-0">
+          {/* Sidebar header */}
+          <div className="px-4 py-4 border-b border-border">
+            <div className="flex items-center gap-2">
+              <Anchor className="w-5 h-5 text-primary" />
+              <span className="font-semibold text-sm text-foreground truncate">
+                {tenantName || "Costa Brava Rent a Boat"}
+              </span>
+            </div>
             <kbd
-              className="hidden md:inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-muted rounded border border-border cursor-pointer select-none hover:bg-muted/80 transition-colors"
+              className="mt-2 inline-flex items-center gap-1 px-2 py-1.5 text-xs text-muted-foreground bg-muted rounded border border-border cursor-pointer select-none hover:bg-muted/80 transition-colors"
               onClick={() => {
                 document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }));
               }}
@@ -176,145 +336,21 @@ export function AdminLayout({
             >
               <span className="text-xs">&#8984;</span>K
             </kbd>
-            <Button
-              variant="outline"
-              size="sm"
-              className="md:hidden"
-              onClick={() => {
-                document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }));
-              }}
-              title="Buscar"
-            >
-              <Search className="w-4 h-4" />
-            </Button>
-            <Button variant="outline" onClick={onLogout} data-testid="button-logout" size="sm" className="md:h-10">
-              <LogOut className="w-4 h-4 md:mr-2" />
-              <span className="hidden md:inline">Cerrar Sesión</span>
-            </Button>
-            <Button variant="outline" onClick={onExportCSV} data-testid="button-export-data" size="sm" className="md:h-10">
-              <Download className="w-4 h-4 md:mr-2" />
-              <span className="hidden md:inline">Exportar</span>
-            </Button>
-            <Button onClick={onNewBooking} data-testid="button-new-booking" size="sm" className="md:h-10">
-              <Plus className="w-4 h-4 md:mr-2" />
-              <span className="hidden md:inline">Nueva Reserva</span>
-              <span className="md:hidden">Nueva</span>
-            </Button>
           </div>
-        </div>
 
-        {/* Primary tabs row — Dashboard, Calendario, Reservas */}
-        <div className="flex gap-1 md:gap-2 mt-4 md:mt-5 overflow-x-auto pb-1 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
-          {visiblePrimaryTabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => onTabChange(tab.id)}
-              className={`flex items-center justify-center gap-1.5 px-3 md:px-4 py-2 md:py-2.5 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] min-h-[44px] ${
-                selectedTab === tab.id
-                  ? 'bg-primary text-white'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-              }`}
-              data-testid={`tab-${tab.id}`}
-            >
-              <tab.icon className="w-4 h-4 md:w-4 md:h-4" />
-              <span className="text-xs sm:text-sm">{tab.label}</span>
-            </button>
-          ))}
+          {/* Nav */}
+          {renderSidebarNav(onTabChange)}
 
-          {/* Mobile: "Mas" popover for overflow tabs */}
-          {overflowTabs.length > 0 && (
-            <div className="flex md:hidden flex-shrink-0">
-              <Popover open={moreOpen} onOpenChange={setMoreOpen}>
-                <PopoverTrigger asChild>
-                  <button
-                    className={`flex items-center justify-center gap-1 px-3 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] min-h-[44px] ${
-                      !primaryTabIds.has(selectedTab)
-                        ? 'bg-primary/20 text-primary'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                    }`}
-                    data-testid="tab-more"
-                  >
-                    <MoreHorizontal className="w-4 h-4" />
-                    <span className="text-xs">
-                      {!primaryTabIds.has(selectedTab)
-                        ? overflowTabs.find(t => t.id === selectedTab)?.label || "Mas"
-                        : "Mas"}
-                    </span>
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent className="w-[min(256px,calc(100vw-2rem))] p-2" align="end">
-                  <div className="flex flex-col gap-0.5">
-                    {overflowTabs.map((tab) => (
-                      <button
-                        key={tab.id}
-                        onClick={() => {
-                          onTabChange(tab.id);
-                          setMoreOpen(false);
-                        }}
-                        className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left min-h-[44px] ${
-                          selectedTab === tab.id
-                            ? 'bg-primary text-white'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                        }`}
-                        data-testid={`tab-${tab.id}`}
-                      >
-                        <tab.icon className="w-4 h-4 flex-shrink-0" />
-                        <span>{tab.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </div>
-          )}
-        </div>
+          {/* Footer */}
+          {renderSidebarFooter()}
+        </aside>
 
-        {/* Desktop: "Mas" overflow popover */}
-        {overflowTabs.length > 0 && (
-          <div className="hidden md:flex mt-2">
-            <Popover>
-              <PopoverTrigger asChild>
-                <button
-                  className={`flex items-center justify-center gap-1.5 px-3 py-1.5 font-medium rounded-lg transition-colors whitespace-nowrap min-w-[44px] ${
-                    !primaryTabIds.has(selectedTab)
-                      ? 'bg-primary/20 text-primary'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                  }`}
-                >
-                  <MoreHorizontal className="w-4 h-4" />
-                  <span className="text-sm">
-                    {!primaryTabIds.has(selectedTab)
-                      ? overflowTabs.find(t => t.id === selectedTab)?.label || "Mas"
-                      : "Mas"}
-                  </span>
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-56 p-2" align="start">
-                <div className="flex flex-col gap-0.5">
-                  {overflowTabs.map((tab) => (
-                    <button
-                      key={tab.id}
-                      onClick={() => onTabChange(tab.id)}
-                      className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left min-h-[44px] ${
-                        selectedTab === tab.id
-                          ? 'bg-primary text-white'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                      }`}
-                      data-testid={`tab-${tab.id}`}
-                    >
-                      <tab.icon className="w-4 h-4 flex-shrink-0" />
-                      <span>{tab.label}</span>
-                    </button>
-                  ))}
-                </div>
-              </PopoverContent>
-            </Popover>
+        {/* Content area */}
+        <main className="flex-1 overflow-y-auto">
+          <div className="p-2 sm:p-3 md:p-5 lg:p-6 pb-safe">
+            {children}
           </div>
-        )}
-      </div>
-
-      <div className="p-2 sm:p-3 md:p-5 lg:p-6 pb-safe">
-        {children}
+        </main>
       </div>
     </div>
   );

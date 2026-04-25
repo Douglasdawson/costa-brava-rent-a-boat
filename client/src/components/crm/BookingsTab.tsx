@@ -172,18 +172,18 @@ export function BookingsTab({
                     <SortableTableHead field="customerName" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
                       Cliente
                     </SortableTableHead>
-                    <TableHead>Contacto</TableHead>
+                    <TableHead className="hidden lg:table-cell">Contacto</TableHead>
                     <SortableTableHead field="boatId" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
                       Barco
                     </SortableTableHead>
-                    <TableHead>Horas</TableHead>
+                    <TableHead className="hidden lg:table-cell">Horas</TableHead>
                     <SortableTableHead field="totalAmount" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
                       Total
                     </SortableTableHead>
                     <SortableTableHead field="bookingStatus" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
                       Estado
                     </SortableTableHead>
-                    <TableHead>Pago</TableHead>
+                    <TableHead className="hidden lg:table-cell">Pago</TableHead>
                     <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -196,14 +196,14 @@ export function BookingsTab({
                       <TableCell>
                         {booking.customerName} {booking.customerSurname}
                       </TableCell>
-                      <TableCell className="text-sm text-muted-foreground">
+                      <TableCell className="hidden lg:table-cell text-sm text-muted-foreground">
                         <div>{booking.customerPhone}</div>
                         {booking.customerEmail && (
                           <div className="text-xs">{booking.customerEmail}</div>
                         )}
                       </TableCell>
                       <TableCell>{boatName(booking.boatId)}</TableCell>
-                      <TableCell>{booking.totalHours}h</TableCell>
+                      <TableCell className="hidden lg:table-cell">{booking.totalHours}h</TableCell>
                       <TableCell className="font-semibold">
                         {"\u20AC"}{parseFloat(booking.totalAmount).toFixed(2)}
                       </TableCell>
@@ -212,7 +212,7 @@ export function BookingsTab({
                           {getStatusLabel(booking.bookingStatus)}
                         </Badge>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="hidden lg:table-cell">
                         <Badge className={getPaymentStatusColor(booking.paymentStatus)}>
                           {getPaymentStatusLabel(booking.paymentStatus)}
                         </Badge>

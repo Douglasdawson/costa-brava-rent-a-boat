@@ -112,11 +112,11 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
         <Card>
           <CardHeader><Skeleton className="h-6 w-48" /></CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <Skeleton className="h-10 w-full" />
               <Skeleton className="h-10 w-full" />
             </div>
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <Skeleton className="h-10 w-full" />
               <Skeleton className="h-10 w-full" />
             </div>
@@ -126,7 +126,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
           <CardHeader><Skeleton className="h-6 w-32" /></CardHeader>
           <CardContent className="space-y-4">
             <Skeleton className="h-10 w-full" />
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <Skeleton className="h-10 w-full" />
               <Skeleton className="h-10 w-full" />
             </div>
@@ -152,7 +152,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div className="space-y-1">
               <Label htmlFor="c-name">Nombre de empresa</Label>
               <Input
@@ -176,7 +176,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
               />
             </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div className="space-y-1">
               <Label htmlFor="c-phone">
                 <Phone className="w-3.5 h-3.5 inline mr-1" />
@@ -235,7 +235,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
               />
             )}
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div className="space-y-1">
               <Label htmlFor="c-primary">Color primario</Label>
               <div className="flex items-center gap-2">
@@ -281,7 +281,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
       </Card>
 
       <div className="flex justify-end">
-        <Button onClick={handleSave} disabled={saveMutation.isPending}>
+        <Button onClick={handleSave} disabled={saveMutation.isPending} className="w-full sm:w-auto">
           <Save className="w-4 h-4 mr-2" />
           {saveMutation.isPending ? "Guardando..." : "Guardar cambios"}
         </Button>

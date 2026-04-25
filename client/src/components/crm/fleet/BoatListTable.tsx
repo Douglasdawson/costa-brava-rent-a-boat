@@ -18,6 +18,8 @@ import {
   Anchor,
   GripVertical,
   Loader2,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 import {
   DndContext,
@@ -70,10 +72,18 @@ function SortableBoatRow({
   boat,
   onEdit,
   onDelete,
+  onMoveUp,
+  onMoveDown,
+  isFirst,
+  isLast,
 }: {
   boat: BoatListItem;
   onEdit: (boat: BoatListItem) => void;
   onDelete: (id: string) => void;
+  onMoveUp: () => void;
+  onMoveDown: () => void;
+  isFirst: boolean;
+  isLast: boolean;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: boat.id,
@@ -106,7 +116,27 @@ function SortableBoatRow({
         </Badge>
       </TableCell>
       <TableCell className="text-right">
-        <div className="flex justify-end space-x-2">
+        <div className="flex justify-end space-x-1">
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={onMoveUp}
+            disabled={isFirst}
+            className="min-h-[44px] min-w-[44px]"
+            aria-label={`Move ${boat.name} up`}
+          >
+            <ChevronUp className="w-4 h-4" />
+          </Button>
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={onMoveDown}
+            disabled={isLast}
+            className="min-h-[44px] min-w-[44px]"
+            aria-label={`Move ${boat.name} down`}
+          >
+            <ChevronDown className="w-4 h-4" />
+          </Button>
           <Button
             size="icon"
             variant="ghost"
@@ -117,14 +147,14 @@ function SortableBoatRow({
             <Edit className="w-4 h-4" />
           </Button>
           <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => onDelete(boat.id)}
-              data-testid={`button-delete-boat-${boat.id}`}
-              aria-label={`Delete ${boat.name}`}
-            >
-              <Trash2 className="w-4 h-4" />
-            </Button>
+            size="icon"
+            variant="ghost"
+            onClick={() => onDelete(boat.id)}
+            data-testid={`button-delete-boat-${boat.id}`}
+            aria-label={`Delete ${boat.name}`}
+          >
+            <Trash2 className="w-4 h-4" />
+          </Button>
         </div>
       </TableCell>
     </TableRow>
@@ -136,10 +166,18 @@ function SortableBoatCard({
   boat,
   onEdit,
   onDelete,
+  onMoveUp,
+  onMoveDown,
+  isFirst,
+  isLast,
 }: {
   boat: BoatListItem;
   onEdit: (boat: BoatListItem) => void;
   onDelete: (id: string) => void;
+  onMoveUp: () => void;
+  onMoveDown: () => void;
+  isFirst: boolean;
+  isLast: boolean;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: boat.id,
@@ -165,7 +203,27 @@ function SortableBoatCard({
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="h-10 w-10"
+                  className="min-h-[44px] min-w-[44px]"
+                  onClick={onMoveUp}
+                  disabled={isFirst}
+                  aria-label={`Move ${boat.name} up`}
+                >
+                  <ChevronUp className="w-4 h-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="min-h-[44px] min-w-[44px]"
+                  onClick={onMoveDown}
+                  disabled={isLast}
+                  aria-label={`Move ${boat.name} down`}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="min-h-[44px] min-w-[44px]"
                   onClick={() => onEdit(boat)}
                   data-testid={`button-edit-boat-${boat.id}`}
                   aria-label={`Edit ${boat.name}`}
@@ -176,7 +234,7 @@ function SortableBoatCard({
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="h-10 w-10"
+                    className="min-h-[44px] min-w-[44px]"
                     onClick={() => onDelete(boat.id)}
                     data-testid={`button-delete-boat-${boat.id}`}
                     aria-label={`Delete ${boat.name}`}
@@ -218,6 +276,8 @@ interface BoatListTableProps {
   onEdit: (boat: BoatListItem) => void;
   onDeactivate: (id: string, name: string) => void;
   onDragEnd: (event: DragEndEvent) => void;
+  onMoveUp: (index: number) => void;
+  onMoveDown: (index: number) => void;
   onImport: () => void;
   onAdd: () => void;
   isImporting: boolean;
@@ -230,6 +290,8 @@ export function BoatListTable({
   onEdit,
   onDeactivate,
   onDragEnd,
+  onMoveUp,
+  onMoveDown,
   onImport,
   onAdd,
   isImporting,
@@ -329,12 +391,16 @@ export function BoatListTable({
                   items={orderedBoats.map(b => b.id)}
                   strategy={verticalListSortingStrategy}
                 >
-                  {orderedBoats.map((boat) => (
+                  {orderedBoats.map((boat, index) => (
                     <SortableBoatRow
                       key={boat.id}
                       boat={boat}
                       onEdit={onEdit}
                       onDelete={handleDelete}
+                      onMoveUp={() => onMoveUp(index)}
+                      onMoveDown={() => onMoveDown(index)}
+                      isFirst={index === 0}
+                      isLast={index === orderedBoats.length - 1}
                     />
                   ))}
                 </SortableContext>
@@ -358,12 +424,16 @@ export function BoatListTable({
             items={orderedBoats.map(b => b.id)}
             strategy={verticalListSortingStrategy}
           >
-            {orderedBoats.map((boat) => (
+            {orderedBoats.map((boat, index) => (
               <SortableBoatCard
                 key={boat.id}
                 boat={boat}
                 onEdit={onEdit}
                 onDelete={handleDelete}
+                onMoveUp={() => onMoveUp(index)}
+                onMoveDown={() => onMoveDown(index)}
+                isFirst={index === 0}
+                isLast={index === orderedBoats.length - 1}
               />
             ))}
           </SortableContext>

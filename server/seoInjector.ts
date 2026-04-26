@@ -562,7 +562,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-malgrat-de-mar": {
     es: {
-      title: "Alquiler Barco cerca de Malgrat de Mar | Puerto Blanes 10 min",
+      title: "Alquiler Barco cerca Malgrat | Puerto Blanes 10 min",
       description: "Alojado en Malgrat de Mar? Puerto de Blanes a 10 min en coche. Barcos sin licencia desde 70\u20ac/h con gasolina incluida.",
       ogTitle: "Alquiler Barco cerca de Malgrat de Mar | Desde Blanes",
       ogDescription: "Desde Malgrat al Puerto de Blanes en 10 min. Barcos sin licencia desde 70\u20ac con gasolina. Reserva ya.",
@@ -572,7 +572,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Staying in Malgrat de Mar? Blanes Port is 10 min by car. License-free boats from \u20ac70/h, fuel included.",
     },
     ca: {
-      title: "Lloguer Barques a prop de Malgrat de Mar | Port Blanes 10 min",
+      title: "Lloguer Barques a prop Malgrat | Port Blanes 10 min",
       description: "Allotjat a Malgrat de Mar? Port de Blanes a 10 min en cotxe. Barques sense llicència des de 70\u20ac/h.",
     },
     fr: {
@@ -588,7 +588,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Op vakantie in Malgrat de Mar? Haven Blanes op 10 min. Boten zonder vaarbewijs vanaf \u20ac70/uur.",
     },
     it: {
-      title: "Noleggio Barche vicino a Malgrat de Mar | Porto Blanes 10 min",
+      title: "Noleggio Barche vicino Malgrat | Porto Blanes 10 min",
       description: "In vacanza a Malgrat de Mar? Porto di Blanes a 10 min. Barche senza patente da 70\u20ac/ora.",
     },
     ru: {
@@ -634,7 +634,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-calella": {
     es: {
-      title: "Alquiler Barco cerca de Calella | Puerto Blanes 20 min desde 70\u20ac",
+      title: "Alquiler Barco cerca de Calella | Puerto Blanes 20 min",
       description: "En Calella? Puerto de Blanes a 20 min en coche. Barcos sin licencia desde 70\u20ac/h con gasolina incluida.",
       ogTitle: "Alquiler Barco cerca de Calella | Desde Blanes Costa Brava",
       ogDescription: "Desde Calella al Puerto de Blanes en 20 min. Barcos sin licencia desde 70\u20ac. Descubre la Costa Brava.",
@@ -644,7 +644,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Staying in Calella? Blanes Port is 20 min by car. License-free boats from \u20ac70/h, fuel included.",
     },
     ca: {
-      title: "Lloguer Barques a prop de Calella | Port Blanes 20 min des de 70\u20ac",
+      title: "Lloguer Barques a prop de Calella | Port Blanes 20 min",
       description: "A Calella? Port de Blanes a 20 min en cotxe. Barques sense llicència des de 70\u20ac/h. Gasolina inclosa.",
     },
     fr: {
@@ -660,7 +660,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "In Calella? Haven Blanes op 20 min. Boten zonder vaarbewijs vanaf \u20ac70/uur. Brandstof inbegrepen.",
     },
     it: {
-      title: "Noleggio Barche vicino a Calella | Porto Blanes 20 min da 70\u20ac",
+      title: "Noleggio Barche vicino a Calella | Porto Blanes 20 min",
       description: "A Calella? Porto di Blanes a 20 min. Barche senza patente da 70\u20ac/ora. Benzina inclusa.",
     },
     ru: {
@@ -670,33 +670,33 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-pineda-de-mar": {
     es: {
-      title: "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 70\u20ac/h",
+      title: "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min",
       description: "\u00bfAlojado en Pineda de Mar? Puerto Blanes a 18 min en coche o 12 min en tren R1. Alquila barco sin licencia desde 70\u20ac/h con gasolina incluida.",
       ogTitle: "Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes",
       ogDescription: "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 70\u20ac/h. 4.8\u2605 Google.",
     },
     en: {
-      title: "Boat Rental Pineda de Mar | Blanes Port 18 min | No License 70\u20ac/h",
+      title: "Boat Rental Pineda de Mar | Blanes Port 18 min",
       description: "Staying in Pineda de Mar? Blanes Port is 18 min by car or 12 min by R1 train. Rent a license-free boat from 70\u20ac/h, fuel included.",
     },
     ca: {
-      title: "Lloguer Barca Pineda de Mar | Port Blanes 18 min | Sense Llic\u00e8ncia 70\u20ac/h",
+      title: "Lloguer Barca Pineda de Mar | Port Blanes 18 min",
       description: "A Pineda de Mar? Port Blanes a 18 min en cotxe o 12 min en tren R1. Lloga barca sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa.",
     },
     fr: {
-      title: "Location Bateau Pineda de Mar | Port Blanes 18 min | Sans Permis 70\u20ac/h",
+      title: "Location Bateau Pineda de Mar | Port Blanes 18 min",
       description: "En s\u00e9jour \u00e0 Pineda de Mar ? Port Blanes \u00e0 18 min en voiture ou 12 min en train R1. Louez un bateau sans permis d\u00e8s 70\u20ac/h avec carburant inclus.",
     },
     de: {
-      title: "Bootsverleih Pineda de Mar | Hafen Blanes 18 Min | Ohne F\u00fchrerschein 70\u20ac/h",
+      title: "Bootsverleih Pineda de Mar | Hafen Blanes 18 Min",
       description: "Urlaub in Pineda de Mar? Hafen Blanes in 18 Min mit Auto oder 12 Min mit R1-Zug. Boot ohne F\u00fchrerschein ab 70\u20ac/h mit Kraftstoff inklusive.",
     },
     nl: {
-      title: "Bootverhuur Pineda de Mar | Haven Blanes 18 min | Zonder Vaarbewijs 70\u20ac/u",
+      title: "Bootverhuur Pineda de Mar | Haven Blanes 18 min",
       description: "Op vakantie in Pineda de Mar? Haven Blanes op 18 min met auto of 12 min met R1-trein. Boot zonder vaarbewijs vanaf 70\u20ac/u met brandstof inbegrepen.",
     },
     it: {
-      title: "Noleggio Barca Pineda de Mar | Porto Blanes 18 min | Senza Patente 70\u20ac/h",
+      title: "Noleggio Barca Pineda de Mar | Porto Blanes 18 min",
       description: "In vacanza a Pineda de Mar? Porto Blanes a 18 min in auto o 12 min in treno R1. Barca senza patente da 70\u20ac/h con carburante incluso.",
     },
     ru: {
@@ -706,33 +706,33 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-palafolls": {
     es: {
-      title: "Alquiler Barco Palafolls | Puerto Blanes 12 min | Sin Licencia 70\u20ac/h",
+      title: "Alquiler Barco Palafolls | Puerto Blanes 12 min",
       description: "\u00bfEn camping o alojamiento en Palafolls? Puerto Blanes a 12 min en coche. Alquila barco sin licencia desde 70\u20ac/h con gasolina incluida.",
       ogTitle: "Alquiler Barco Palafolls | 12 min al Puerto Blanes",
       ogDescription: "Desde Palafolls al Puerto Blanes en 12 min. Barco sin licencia desde 70\u20ac/h. Gasolina incluida. 4.8\u2605.",
     },
     en: {
-      title: "Boat Rental Palafolls | Blanes Port 12 min | No License 70\u20ac/h",
+      title: "Boat Rental Palafolls | Blanes Port 12 min",
       description: "Camping or staying in Palafolls? Blanes Port is 12 min by car. Rent a license-free boat from 70\u20ac/h, fuel included.",
     },
     ca: {
-      title: "Lloguer Barca Palafolls | Port Blanes 12 min | Sense Llic\u00e8ncia 70\u20ac/h",
+      title: "Lloguer Barca Palafolls | Port Blanes 12 min",
       description: "Allotjat a Palafolls? Port Blanes a 12 min en cotxe. Lloga barca sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa.",
     },
     fr: {
-      title: "Location Bateau Palafolls | Port Blanes 12 min | Sans Permis 70\u20ac/h",
+      title: "Location Bateau Palafolls | Port Blanes 12 min",
       description: "En camping ou en s\u00e9jour \u00e0 Palafolls ? Port Blanes \u00e0 12 min en voiture. Louez un bateau sans permis d\u00e8s 70\u20ac/h, carburant inclus.",
     },
     de: {
-      title: "Bootsverleih Palafolls | Hafen Blanes 12 Min | Ohne F\u00fchrerschein 70\u20ac/h",
+      title: "Bootsverleih Palafolls | Hafen Blanes 12 Min",
       description: "Camping oder Urlaub in Palafolls? Hafen Blanes in 12 Min mit Auto. Boot ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive.",
     },
     nl: {
-      title: "Bootverhuur Palafolls | Haven Blanes 12 min | Zonder Vaarbewijs 70\u20ac/u",
+      title: "Bootverhuur Palafolls | Haven Blanes 12 min",
       description: "Kamperen of vakantie in Palafolls? Haven Blanes op 12 min met auto. Boot zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen.",
     },
     it: {
-      title: "Noleggio Barca Palafolls | Porto Blanes 12 min | Senza Patente 70\u20ac/h",
+      title: "Noleggio Barca Palafolls | Porto Blanes 12 min",
       description: "In campeggio a Palafolls? Porto Blanes a 12 min in auto. Barca senza patente da 70\u20ac/h con carburante incluso.",
     },
     ru: {
@@ -742,33 +742,33 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-tordera": {
     es: {
-      title: "Alquiler Barco Tordera | Puerto Blanes 15 min | Delta del Tordera en Barco",
+      title: "Alquiler Barco Tordera | Puerto Blanes 15 min",
       description: "\u00bfEn Tordera o cerca del Delta? Puerto Blanes a 15 min en coche o 8 min en tren R1. Alquila barco sin licencia desde 70\u20ac/h con gasolina incluida.",
       ogTitle: "Alquiler Barco Tordera | Delta del Tordera en Barco",
       ogDescription: "Desde Tordera al Puerto Blanes en 15 min. Barco sin licencia desde 70\u20ac/h. Delta del Tordera en barco. 4.8\u2605.",
     },
     en: {
-      title: "Boat Rental Tordera | Blanes Port 15 min | Tordera Delta by Boat",
+      title: "Boat Rental Tordera | Blanes Port 15 min",
       description: "Living in Tordera or near the Delta? Blanes Port is 15 min by car or 8 min by R1 train. Rent a license-free boat from 70\u20ac/h, fuel included.",
     },
     ca: {
-      title: "Lloguer Barca Tordera | Port Blanes 15 min | Delta de la Tordera en Barca",
+      title: "Lloguer Barca Tordera | Port Blanes 15 min",
       description: "A Tordera o prop del Delta? Port Blanes a 15 min en cotxe o 8 min en tren R1. Lloga barca sense llic\u00e8ncia des de 70\u20ac/h.",
     },
     fr: {
-      title: "Location Bateau Tordera | Port Blanes 15 min | Delta de la Tordera",
+      title: "Location Bateau Tordera | Port Blanes 15 min",
       description: "\u00c0 Tordera ou pr\u00e8s du Delta ? Port Blanes \u00e0 15 min en voiture ou 8 min en train R1. Louez un bateau sans permis d\u00e8s 70\u20ac/h.",
     },
     de: {
-      title: "Bootsverleih Tordera | Hafen Blanes 15 Min | Tordera-Delta mit Boot",
+      title: "Bootsverleih Tordera | Hafen Blanes 15 Min",
       description: "In Tordera oder am Delta? Hafen Blanes 15 Min mit Auto oder 8 Min mit R1-Zug. Boot ohne F\u00fchrerschein ab 70\u20ac/h.",
     },
     nl: {
-      title: "Bootverhuur Tordera | Haven Blanes 15 min | Tordera Delta per Boot",
+      title: "Bootverhuur Tordera | Haven Blanes 15 min",
       description: "In Tordera of nabij de Delta? Haven Blanes 15 min met auto of 8 min met R1-trein. Boot zonder vaarbewijs vanaf 70\u20ac/u.",
     },
     it: {
-      title: "Noleggio Barca Tordera | Porto Blanes 15 min | Delta del Tordera in Barca",
+      title: "Noleggio Barca Tordera | Porto Blanes 15 min",
       description: "A Tordera o vicino al Delta? Porto Blanes a 15 min in auto o 8 min in treno R1. Barca senza patente da 70\u20ac/h.",
     },
     ru: {
@@ -1003,15 +1003,15 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Entdecken Sie alle Bootsziele ab Blanes Hafen: Cala Brava, Lloret de Mar, Tossa de Mar und mehr.",
     },
     ca: {
-      title: "Destinacions en Barca des de Blanes | Cales i Platges Costa Brava",
+      title: "Destinacions des de Blanes | Cales i Platges Costa Brava",
       description: "Descobreix totes les destinacions accessibles en barca des del Port de Blanes. Cales secretes i platges paradis\u00edaques.",
     },
     nl: {
-      title: "Bootbestemmingen vanuit Blanes | Baaien & Stranden Costa Brava",
+      title: "Bestemmingen vanuit Blanes | Baaien Costa Brava",
       description: "Ontdek alle bestemmingen bereikbaar per boot vanuit Haven Blanes. Geheime baaien en paradijselijke stranden.",
     },
     it: {
-      title: "Destinazioni in Barca da Blanes | Calette e Spiagge Costa Brava",
+      title: "Destinazioni da Blanes | Calette Costa Brava",
       description: "Scopri tutte le destinazioni raggiungibili in barca dal Porto di Blanes. Calette segrete e spiagge paradisiache.",
     },
     ru: {
@@ -1021,7 +1021,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-cerca-barcelona": {
     es: {
-      title: "Alquiler Barcos cerca de Barcelona | Blanes a 70min | Costa Brava",
+      title: "Alquiler Barcos cerca Barcelona | Blanes a 70 min",
       description: "Alquila barcos sin licencia a 70 minutos de Barcelona. Blanes, Costa Brava. Mejores precios, aguas cristalinas. Desde 70\u20ac. Gasolina incluida.",
     },
     en: {
@@ -1029,11 +1029,11 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Rent boats without license 70 minutes from Barcelona. Blanes, Costa Brava. Best prices, crystal clear water. From 70\u20ac. Fuel included.",
     },
     ca: {
-      title: "Lloguer Barques prop de Barcelona | Blanes a 70min | Costa Brava",
+      title: "Lloguer Barques prop Barcelona | Blanes a 70 min",
       description: "Lloga barques sense llic\u00e8ncia a 70 minuts de Barcelona. Blanes, Costa Brava. Millors preus, aig\u00fces cristal\u00b7lines. Des de 70\u20ac.",
     },
     fr: {
-      title: "Location Bateaux pr\u00e8s de Barcelone | Blanes \u00e0 70min | Costa Brava",
+      title: "Location Bateaux pr\u00e8s Barcelone | Blanes \u00e0 70 min",
       description: "Louez des bateaux sans permis \u00e0 70 minutes de Barcelone. Blanes, Costa Brava. Meilleurs prix, eaux cristallines. D\u00e8s 70\u20ac.",
     },
     de: {
@@ -1045,7 +1045,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Huur boten zonder vaarbewijs op 70 minuten van Barcelona. Blanes, Costa Brava. Beste prijzen, kristalhelder water. Vanaf 70\u20ac.",
     },
     it: {
-      title: "Noleggio Barche vicino a Barcellona | Blanes a 70min | Costa Brava",
+      title: "Noleggio Barche vicino Barcellona | Blanes a 70 min",
       description: "Noleggia barche senza patente a 70 minuti da Barcellona. Blanes, Costa Brava. Migliori prezzi, acque cristalline. Da 70\u20ac.",
     },
     ru: {
@@ -1089,13 +1089,13 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/boat-rental-costa-brava": {
     en: {
-      title: "Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain",
+      title: "Boat Rental Costa Brava | No License from 70\u20ac/h, Blanes",
       description: "Rent a boat in Blanes, Costa Brava from €70/h. License-free, fuel included, up to 5 people. 4.8★ · 310 Google reviews · 15 min training · book online.",
       ogTitle: "Boat Rental Costa Brava — From Blanes Port",
       ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour.",
     },
     es: {
-      title: "Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain",
+      title: "Boat Rental Costa Brava | No License from 70\u20ac/h, Blanes",
       description: "Rent a boat in Blanes, Costa Brava from €70/h. License-free, fuel included, up to 5 people. 4.8★ · 310 Google reviews · 15 min training · book online.",
     },
   },

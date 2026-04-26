@@ -1511,3 +1511,179 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
     return { success: false, error: message };
   }
 }
+
+// ============================================================================
+// Booking REQUEST flow (no-payment / awaiting Ivan's manual confirmation)
+// ============================================================================
+//
+// Used when the customer submits a reservation request through the website but
+// no online payment is collected. Ivan reviews the request, contacts the
+// customer to coordinate payment in person, and only then promotes the
+// booking to "confirmed". Two emails fire:
+//   - Customer: "we received your request, we'll be in touch within 24h"
+//   - Admin (Ivan): "new booking request — full details, action needed"
+//
+// Copy is intentionally hardcoded in Spanish for v1. i18n added in next pass
+// once the flow is validated in production.
+
+const ADMIN_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "costabravarentaboat@gmail.com";
+
+/**
+ * Customer-facing email after submitting a booking request.
+ * Tone: warm, sets expectation of personal contact within 24h.
+ */
+export async function sendBookingRequestReceived(data: BookingEmailData): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    logger.info("SendGrid not configured, skipping booking request email");
+    return { success: false, error: "SendGrid not configured" };
+  }
+  const { booking, boat, extras } = data;
+  if (!booking.customerEmail) {
+    return { success: false, error: "No customer email address" };
+  }
+
+  const extrasLine = extras.length > 0
+    ? `<tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Extras</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${extras.map(e => e.extraName).join(", ")}</td></tr>`
+    : "";
+
+  const content = `
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:22px;">Hemos recibido tu solicitud</h2>
+    <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.6;">
+      Hola ${booking.customerName},<br>
+      Gracias por tu inter&eacute;s en reservar con Costa Brava Rent a Boat.
+      <strong>Te contactaremos en menos de 24h</strong> para confirmar disponibilidad
+      y coordinar el pago.
+    </p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8fafc; border-radius:8px; overflow:hidden; margin:16px 0;">
+      <tr>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff;">Barco</td>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff; text-align:right;">${boat.name}</td>
+      </tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Fecha</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${formatDate(booking.startTime)}</td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Hora</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${formatTime(booking.startTime)} &mdash; ${formatTime(booking.endTime)}</td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Personas</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${booking.numberOfPeople}</td></tr>
+      ${extrasLine}
+      <tr>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:600; background-color:#eff6ff; border-top:2px solid #cbd5e1;">Importe estimado</td>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:600; background-color:#eff6ff; border-top:2px solid #cbd5e1; text-align:right;">${parseFloat(booking.totalAmount).toFixed(2)} EUR</td>
+      </tr>
+    </table>
+
+    <div style="background-color:#fef3c7; border-left:4px solid #f59e0b; border-radius:4px; padding:14px 16px; margin:20px 0;">
+      <p style="margin:0; color:#78350f; font-size:14px; line-height:1.5;">
+        <strong>Importante:</strong> esta es una <strong>solicitud</strong>, no una reserva confirmada.
+        Te contactaremos por WhatsApp o email para confirmar disponibilidad y coordinar el pago
+        antes de garantizar tu plaza.
+      </p>
+    </div>
+
+    <div style="background-color:#f0fdf4; border-left:4px solid #22c55e; border-radius:4px; padding:14px 16px; margin:20px 0;">
+      <p style="margin:0 0 4px; color:#166534; font-size:14px; font-weight:600;">&iquest;Tienes prisa?</p>
+      <p style="margin:0; color:#475569; font-size:14px;">Escr&iacute;benos directamente:</p>
+      <p style="margin:6px 0 0; color:#475569; font-size:14px;">WhatsApp: <a href="https://wa.me/34611500372" style="color:#2563eb;">+34 611 500 372</a></p>
+      <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a></p>
+    </div>
+
+    <p style="margin:24px 0 0; color:#475569; font-size:14px; line-height:1.5;">
+      Un saludo,<br>
+      <strong>Iv&aacute;n</strong> &mdash; Costa Brava Rent a Boat
+    </p>
+  `;
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: booking.customerEmail!,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      replyTo: { email: ADMIN_NOTIFICATION_EMAIL, name: "Iv&aacute;n - Costa Brava Rent a Boat" },
+      subject: `Hemos recibido tu solicitud - ${data.boat.name} - ${formatDate(booking.startTime)}`,
+      html: emailWrapper(content),
+    }));
+    logger.info("[Email] Booking request received email sent", { to: booking.customerEmail, bookingId: booking.id });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending booking request email", { to: booking.customerEmail, error: message });
+    return { success: false, error: message };
+  }
+}
+
+/**
+ * Admin-facing notification when a new booking request comes in.
+ * Includes all customer contact info so Ivan can reach out directly.
+ */
+export async function sendBookingRequestAdminNotification(data: BookingEmailData): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    logger.info("SendGrid not configured, skipping admin booking request notification");
+    return { success: false, error: "SendGrid not configured" };
+  }
+  const { booking, boat, extras } = data;
+
+  const appUrl = process.env.APP_URL || "https://www.costabravarentaboat.com";
+  const adminUrl = `${appUrl}/crm/bookings`;
+  const phoneFull = (booking.customerPhone || "").trim();
+  const whatsappLink = phoneFull
+    ? `https://wa.me/${phoneFull.replace(/\D/g, "")}`
+    : null;
+
+  const extrasLine = extras.length > 0
+    ? `<tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Extras</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${extras.map(e => e.extraName).join(", ")}</td></tr>`
+    : "";
+
+  const content = `
+    <h2 style="margin:0 0 8px; color:#dc2626; font-size:22px;">📩 Nueva solicitud de reserva</h2>
+    <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.5;">
+      Te ha llegado una solicitud por la web. Cont&aacute;ctale por WhatsApp o tel&eacute;fono
+      para confirmar disponibilidad y coordinar el pago.
+    </p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8fafc; border-radius:8px; overflow:hidden; margin:16px 0;">
+      <tr>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff;">Cliente</td>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff; text-align:right;">${booking.customerName} ${booking.customerSurname || ""}</td>
+      </tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Email</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;"><a href="mailto:${booking.customerEmail}" style="color:#2563eb;">${booking.customerEmail || "(no proporcionado)"}</a></td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Tel&eacute;fono</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${phoneFull || "(no proporcionado)"} ${whatsappLink ? `&middot; <a href="${whatsappLink}" style="color:#22c55e;">WhatsApp</a>` : ""}</td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Idioma</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${booking.language || "es"}</td></tr>
+      <tr>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff;">Barco</td>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff; text-align:right;">${boat.name}</td>
+      </tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Fecha</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${formatDate(booking.startTime)}</td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Hora</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${formatTime(booking.startTime)} &mdash; ${formatTime(booking.endTime)}</td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Personas</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${booking.numberOfPeople}</td></tr>
+      ${extrasLine}
+      <tr>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:600; background-color:#eff6ff; border-top:2px solid #cbd5e1;">Importe</td>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:600; background-color:#eff6ff; border-top:2px solid #cbd5e1; text-align:right;">${parseFloat(booking.totalAmount).toFixed(2)} EUR</td>
+      </tr>
+    </table>
+
+    <div style="text-align:center; margin:24px 0;">
+      ${whatsappLink ? `<a href="${whatsappLink}" style="display:inline-block; background-color:#22c55e; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600; font-size:14px; margin:0 6px;">Contactar por WhatsApp</a>` : ""}
+      <a href="${adminUrl}" style="display:inline-block; background-color:#1e3a5f; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600; font-size:14px; margin:0 6px;">Ver en panel admin</a>
+    </div>
+
+    <p style="margin:20px 0 0; color:#94a3b8; font-size:12px; line-height:1.5;">
+      Booking ID: <code>${booking.id}</code> &middot; Estado actual: <code>${booking.bookingStatus}</code>
+    </p>
+  `;
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: ADMIN_NOTIFICATION_EMAIL,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat - Solicitudes" },
+      replyTo: booking.customerEmail
+        ? { email: booking.customerEmail, name: `${booking.customerName} ${booking.customerSurname || ""}` }
+        : undefined,
+      subject: `🆕 Solicitud: ${boat.name} - ${formatDate(booking.startTime)} - ${booking.customerName}`,
+      html: emailWrapper(content),
+    }));
+    logger.info("[Email] Booking request admin notification sent", { to: ADMIN_NOTIFICATION_EMAIL, bookingId: booking.id });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending admin booking request notification", { error: message });
+    return { success: false, error: message };
+  }
+}

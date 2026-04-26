@@ -8,15 +8,11 @@ import {
 } from "@/utils/analytics";
 import type { BookingFlowStateReturn } from "./useBookingFlowState";
 
-function delay(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: () => void) {
   const {
     selectedDate, selectedBoat, selectedTime, duration, extras,
     customerData, holdId, availableBoats,
-    setIsLoading, setQuote, setHoldId, setPaymentIntentId,
+    setIsLoading, setQuote, setHoldId,
     isProcessingPayment, setIsProcessingPayment,
     toast, t, availableExtras,
   } = state;
@@ -79,6 +75,10 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
     }
   };
 
+  // Submit reservation request (no online payment).
+  // Replaces the mock-payment flow that 404'd in production.
+  // Customer fills the form → ve cotización → pulsa "Solicitar reserva" →
+  // Ivan recibe email con datos → contacta al cliente para coordinar pago.
   const proceedWithPayment = async () => {
     if (!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality) {
       toast({
@@ -102,78 +102,66 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
     setIsProcessingPayment(true);
 
     try {
-      const paymentResponse = await apiRequest('POST', '/api/create-payment-intent-mock', {
-        holdId: holdId
+      const submitResponse = await apiRequest('POST', '/api/bookings/submit-request', {
+        holdId,
+        termsAccepted: true,
       });
 
-      if (!paymentResponse.ok) {
-        const error = await paymentResponse.json();
-        throw new Error(error.message || "Error al procesar el pago");
+      if (!submitResponse.ok) {
+        const error = await submitResponse.json();
+        throw new Error(error.message || "Error al enviar la solicitud");
       }
 
-      const paymentData = await paymentResponse.json();
-      setPaymentIntentId(paymentData.paymentIntentId);
+      const result = await submitResponse.json();
+
+      // Track conversion event — same shape as before, retained for funnel analytics.
+      // The "purchase" semantic is now "request submitted" given the no-payment flow.
+      const boat = availableBoats.find(b => b.id === selectedBoat);
+      const boatName = boat?.name || selectedBoat;
+      const amount = state.quote?.total || 0;
+      const durationHours = parseInt(duration.replace('h', ''), 10) || null;
+      const startTime = (selectedDate && selectedTime)
+        ? new Date(`${selectedDate}T${selectedTime}:00`)
+        : null;
+      const timeSlot = deriveTimeSlot(startTime, durationHours);
+      const boatLike = {
+        id: selectedBoat,
+        name: boatName,
+        specifications: boat?.specifications,
+        requiresLicense: boat?.requiresLicense,
+      };
+      const meta = {
+        durationHours,
+        startTime,
+        numberOfPeople: customerData.numberOfPeople,
+      };
+      const completedMeta = {
+        boatModel: boat?.specifications?.model ?? null,
+        licenseType: boat ? deriveLicenseType(boat.requiresLicense) : null,
+        durationHours,
+        timeSlot,
+        numberOfPeople: customerData.numberOfPeople,
+      };
+      trackPurchaseEcommerce(result.bookingId, amount, boatLike, meta);
+      trackBookingWithUserData(result.bookingId, amount, selectedBoat, {
+        email: customerData.customerEmail,
+        phone: customerData.phonePrefix + customerData.customerPhone,
+        firstName: customerData.customerName,
+        lastName: customerData.customerSurname,
+      }, completedMeta);
 
       toast({
-        title: "Procesando pago...",
-        description: "Simulando pago exitoso para testing",
+        title: "¡Solicitud enviada!",
+        description: "Te contactaremos en menos de 24h para confirmar disponibilidad y coordinar el pago.",
+        duration: 8000,
       });
 
-      // Wait for simulated payment processing instead of detached setTimeout
-      await delay(2000);
-
-      const successResponse = await apiRequest('POST', '/api/simulate-payment-success', {
-        paymentIntentId: paymentData.paymentIntentId
-      });
-
-      if (successResponse.ok) {
-        const result = await successResponse.json();
-        const boat = availableBoats.find(b => b.id === selectedBoat);
-        const boatName = boat?.name || selectedBoat;
-        const amount = state.quote?.total || 0;
-        const durationHours = parseInt(duration.replace('h', ''), 10) || null;
-        const startTime = (selectedDate && selectedTime)
-          ? new Date(`${selectedDate}T${selectedTime}:00`)
-          : null;
-        const timeSlot = deriveTimeSlot(startTime, durationHours);
-        const boatLike = {
-          id: selectedBoat,
-          name: boatName,
-          specifications: boat?.specifications,
-          requiresLicense: boat?.requiresLicense,
-        };
-        const meta = {
-          durationHours,
-          startTime,
-          numberOfPeople: customerData.numberOfPeople,
-        };
-        const completedMeta = {
-          boatModel: boat?.specifications?.model ?? null,
-          licenseType: boat ? deriveLicenseType(boat.requiresLicense) : null,
-          durationHours,
-          timeSlot,
-          numberOfPeople: customerData.numberOfPeople,
-        };
-        trackPurchaseEcommerce(result.bookingId, amount, boatLike, meta);
-        trackBookingWithUserData(result.bookingId, amount, selectedBoat, {
-          email: customerData.customerEmail,
-          phone: customerData.phonePrefix + customerData.customerPhone,
-          firstName: customerData.customerName,
-          lastName: customerData.customerSurname,
-        }, completedMeta);
-        toast({
-          title: "¡Pago exitoso!",
-          description: `Reserva confirmada. ID: ${result.bookingId}`,
-        });
-        if (onClose) onClose();
-      } else {
-        throw new Error("Error en la simulación de pago");
-      }
+      if (onClose) onClose();
     } catch (error: unknown) {
-      if (import.meta.env.DEV) console.error('Error processing payment:', error);
+      if (import.meta.env.DEV) console.error('Error submitting reservation request:', error);
       toast({
-        title: t.booking.errorPayment,
-        description: error instanceof Error ? error.message : t.booking.errorGeneric,
+        title: "Error al enviar la solicitud",
+        description: error instanceof Error ? error.message : "Inténtalo de nuevo o escríbenos por WhatsApp al +34 611 500 372",
         variant: "destructive",
       });
     } finally {

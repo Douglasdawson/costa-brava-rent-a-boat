@@ -192,7 +192,13 @@ export function BookingStepPayment({
             <>
               <div className="bg-primary/5 p-3 rounded-lg">
                 <p className="text-sm text-primary">
-                  {t.booking.quoteCreated} <strong>{t.booking.quoteTimeLimit}</strong>
+                  Cotización confirmada. <strong>Reservaremos tu plaza al recibir tu solicitud.</strong>
+                </p>
+              </div>
+
+              <div className="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-lg">
+                <p className="text-sm text-amber-900">
+                  <strong>Sin pago online.</strong> Te contactaremos en menos de 24h por WhatsApp o email para confirmar disponibilidad y coordinar el pago en persona.
                 </p>
               </div>
 
@@ -213,18 +219,18 @@ export function BookingStepPayment({
                 onClick={() => { trackPaymentInitiated(calculateTotal() ?? 0, selectedBoat); handlePayment(); }}
                 disabled={isLoading || isProcessingPayment || !termsAccepted}
                 className="w-full py-3 text-lg font-medium"
-                data-testid="button-pay-now"
+                data-testid="button-submit-request"
               >
                 {(isLoading || isProcessingPayment) ? (
                   <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2" />
                 ) : (
                   <Send className="w-5 h-5 mr-2" />
                 )}
-                {(isLoading || isProcessingPayment) ? t.booking.processingPayment : t.booking.sendRequest}
+                {(isLoading || isProcessingPayment) ? "Enviando solicitud..." : "Solicitar Reserva"}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                {t.booking.stripePaymentSecure}
+                Es una solicitud, no un pago. Confirmaremos disponibilidad en menos de 24h.
               </p>
             </>
           )}

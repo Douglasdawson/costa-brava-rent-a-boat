@@ -6,6 +6,7 @@ import { bookings } from "@shared/schema";
 import { eq, and, gte, sql, ne } from "drizzle-orm";
 import { requireAdminSession } from "./auth";
 import { sendCancelationEmail } from "../services";
+import { sendBookingRequestReceived, sendBookingRequestAdminNotification } from "../services/emailService";
 import { getStripe } from "./payments";
 import { logger } from "../lib/logger";
 import { validatePromoCode, calculateDiscountAmount } from "../lib/discountValidation";
@@ -275,6 +276,97 @@ export function registerBookingRoutes(app: Express) {
     } catch (error: unknown) {
       logger.error("[Bookings] Error cancelling booking", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error al cancelar la reserva" });
+    }
+  });
+
+  // ─── Submit Reservation Request (no online payment) ───────────────────
+  // Promotes a hold to a "requested" booking. Sends customer a confirmation
+  // email ("we received your request") and Ivan an admin notification with
+  // contact info so he can reach out to coordinate payment in person.
+  // Replaces the obsolete mock-payment flow which 404'd in production.
+  app.post("/api/bookings/submit-request", async (req, res) => {
+    try {
+      const schema = z.object({
+        holdId: z.string().min(1, "holdId es requerido"),
+        termsAccepted: z.boolean().refine(v => v === true, {
+          message: "Debes aceptar los términos y condiciones",
+        }),
+      });
+      const parsed = schema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          success: false,
+          message: "Datos inválidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const { holdId } = parsed.data;
+      const hold = await storage.getBookingById(holdId);
+      if (!hold) {
+        return res.status(404).json({ success: false, message: "Solicitud no encontrada" });
+      }
+
+      // Allow re-submission if already requested (idempotent on client retries)
+      // but reject if already confirmed/cancelled — those are terminal states.
+      if (["confirmed", "cancelled", "completed"].includes(hold.bookingStatus)) {
+        return res.status(409).json({
+          success: false,
+          message: `La reserva ya está en estado "${hold.bookingStatus}"`,
+          status: hold.bookingStatus,
+        });
+      }
+
+      if (hold.expiresAt && new Date() > hold.expiresAt) {
+        return res.status(410).json({
+          success: false,
+          message: "La cotización ha expirado. Vuelve a empezar.",
+        });
+      }
+
+      // Promote hold → requested
+      const updated = await storage.updateBooking(hold.id, {
+        bookingStatus: "requested",
+        paymentStatus: "pending",
+      });
+
+      if (!updated) {
+        return res.status(500).json({ success: false, message: "No se pudo actualizar la reserva" });
+      }
+
+      // Fire emails fire-and-forget (don't block response on slow SMTP)
+      const boat = await storage.getBoat(updated.boatId);
+      const extras = await storage.getBookingExtras(updated.id);
+      if (boat) {
+        const emailData = { booking: updated, boat, extras };
+        sendBookingRequestReceived(emailData).catch(err =>
+          logger.error("[Bookings] Customer request email failed", { error: err instanceof Error ? err.message : String(err) }));
+        sendBookingRequestAdminNotification(emailData).catch(err =>
+          logger.error("[Bookings] Admin request email failed", { error: err instanceof Error ? err.message : String(err) }));
+      } else {
+        logger.warn("[Bookings] Boat not found, skipping request emails", { boatId: updated.boatId });
+      }
+
+      logger.info("[Bookings] Reservation request submitted", {
+        bookingId: updated.id,
+        boatId: updated.boatId,
+        customerEmail: updated.customerEmail,
+      });
+
+      return res.json({
+        success: true,
+        bookingId: updated.id,
+        status: "requested",
+        message: "Solicitud recibida. Te contactaremos en menos de 24h.",
+      });
+    } catch (error: unknown) {
+      logger.error("[Bookings] Error submitting reservation request", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      return res.status(500).json({
+        success: false,
+        message: "Error interno del servidor",
+      });
     }
   });
 

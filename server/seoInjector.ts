@@ -1101,17 +1101,17 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/excursion-snorkel-barco-blanes": {
     es: {
-      title: "Snorkel en Barco Blanes | Calas Cristalinas Costa Brava desde 70€/h",
+      title: "Snorkel en Barco Blanes | Calas Cristalinas desde 70€/h",
       description: "Excursion snorkel en barco desde Blanes. Calas de aguas cristalinas, fauna marina, equipo incluido. Sin licencia desde 70€/h. 4.8★ Google. Reserva online.",
       ogTitle: "Snorkel en Barco desde Blanes | Calas Secretas Costa Brava",
       ogDescription: "Descubre los mejores spots de snorkel en barco desde Blanes. Aguas cristalinas, peces y posidonia.",
     },
     en: {
-      title: "Snorkeling Boat Trip Blanes | Crystal Clear Coves Costa Brava from 70€/h",
+      title: "Snorkeling Boat Trip Blanes | Crystal Coves from 70€/h",
       description: "Snorkeling boat trip from Blanes. Crystal clear coves, marine life, equipment included. No license from 70€/h. 4.8★ Google. Book online.",
     },
     ca: {
-      title: "Snorkel en Barca Blanes | Cales Cristal·lines Costa Brava des de 70€/h",
+      title: "Snorkel en Barca Blanes | Cales Cristal·lines des de 70€/h",
       description: "Excursio snorkel en barca des de Blanes. Cales d'aigues cristal·lines, fauna marina, equip inclos. Sense llicencia des de 70€/h. Reserva online.",
     },
     fr: {
@@ -1119,39 +1119,39 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Excursion snorkeling en bateau depuis Blanes. Criques aux eaux cristallines, faune marine. Sans permis dès 70€/h. 4.8★ Google. Réservez en ligne.",
     },
     de: {
-      title: "Schnorcheln per Boot Blanes | Kristallklare Buchten Costa Brava ab 70€/h",
+      title: "Schnorcheln per Boot Blanes | Klare Buchten ab 70€/h",
       description: "Schnorchel-Bootsausflug ab Blanes. Kristallklare Buchten, Meeresfauna. Ohne Führerschein ab 70€/h. 4.8★ Google. Online buchen.",
     },
     nl: {
-      title: "Snorkelen per Boot Blanes | Kristalheldere Baaien Costa Brava vanaf 70€/u",
+      title: "Snorkelen per Boot Blanes | Heldere Baaien vanaf 70€/u",
       description: "Snorkelboottocht vanuit Blanes. Kristalheldere baaien, zeeleven. Zonder vaarbewijs vanaf 70€/u. 4.8★ Google. Boek online.",
     },
     it: {
-      title: "Snorkeling in Barca Blanes | Calette Cristalline Costa Brava da 70€/h",
+      title: "Snorkeling in Barca Blanes | Calette Cristalline da 70€/h",
       description: "Escursione snorkeling in barca da Blanes. Calette cristalline, fauna marina. Senza patente da 70€/h. 4.8★ Google. Prenota online.",
     },
     ru: {
-      title: "Снорклинг на Лодке Бланес | Кристальные Бухты Коста-Брава от 70€/ч",
+      title: "Снорклинг на Лодке Бланес | Бухты Коста-Брава от 70€/ч",
       description: "Снорклинг-экскурсия на лодке из Бланеса. Кристально чистые бухты, морская фауна. Без лицензии от 70€/ч. 4.8★ Google. Бронируйте онлайн.",
     },
   },
   "/barco-familias-costa-brava": {
     es: {
-      title: "Alquiler Barco Familias Costa Brava | Seguro y Divertido desde 70€/h",
+      title: "Alquiler Barco Familias Blanes | Seguro desde 70€/h",
       description: "Alquiler barco para familias en Blanes. Barcos estables, seguros para niños. Sin licencia desde 70€/h, gasolina incluida. 4.8★ Google. Reserva online.",
       ogTitle: "Barco en Familia Costa Brava | Seguro para Niños desde 70€/h",
       ogDescription: "Barcos ideales para familias con niños en Blanes. Estables, seguros, fáciles de pilotar. Gasolina incluida.",
     },
     en: {
-      title: "Family Boat Rental Costa Brava | Safe & Fun from 70€/h Blanes",
+      title: "Family Boat Rental Blanes | Safe & Fun from 70€/h",
       description: "Family boat rental in Blanes. Stable boats, safe for kids. No license from 70€/h, fuel included. 4.8★ Google. Book online.",
     },
     ca: {
-      title: "Lloguer Barca Families Costa Brava | Segur i Divertit des de 70€/h",
+      title: "Lloguer Barca Famílies Blanes | Divertit des de 70€/h",
       description: "Lloguer barca per a families a Blanes. Barques estables, segures per a nens. Sense llicencia des de 70€/h, gasolina inclosa. Reserva online.",
     },
     fr: {
-      title: "Location Bateau Familles Costa Brava | Sûr et Amusant dès 70€/h",
+      title: "Location Bateau Familles Blanes | Sûr & Amusant dès 70€/h",
       description: "Location bateau pour familles à Blanes. Bateaux stables, sûrs pour les enfants. Sans permis dès 70€/h, carburant inclus. 4.8★ Google.",
     },
     de: {
@@ -1163,17 +1163,17 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Bootverhuur voor gezinnen in Blanes. Stabiele boten, veilig voor kinderen. Zonder vaarbewijs vanaf 70€/u, brandstof inbegrepen. 4.8★ Google.",
     },
     it: {
-      title: "Barca per Famiglie Costa Brava | Sicura e Divertente da 70€/h Blanes",
+      title: "Barca per Famiglie Blanes | Sicura e Divertente da 70€/h",
       description: "Noleggio barca per famiglie a Blanes. Barche stabili, sicure per bambini. Senza patente da 70€/h, carburante incluso. 4.8★ Google.",
     },
     ru: {
-      title: "Лодка для Семей Коста-Брава | Безопасно и Весело от 70€/ч Бланес",
+      title: "Лодка для Семей Бланес | Безопасно и Весело от 70€/ч",
       description: "Аренда лодки для семей в Бланесе. Стабильные лодки, безопасные для детей. Без лицензии от 70€/ч, топливо включено. 4.8★ Google.",
     },
   },
   "/paseo-atardecer-barco-blanes": {
     es: {
-      title: "Paseo en Barco al Atardecer Blanes | Sunset Trip Costa Brava desde 70€/h",
+      title: "Paseo en Barco al Atardecer Blanes | Sunset desde 70€/h",
       description: "Paseo en barco al atardecer desde Blanes. Puesta de sol sobre la Costa Brava, calas doradas. Sin licencia desde 70€/h. 4.8★ Google. Reserva online.",
       ogTitle: "Sunset Boat Trip Blanes | Atardecer en la Costa Brava",
       ogDescription: "Vive un atardecer mágico en barco desde Blanes. Puesta de sol, calas doradas, experiencia inolvidable.",
@@ -1183,63 +1183,63 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Sunset boat trip from Blanes. Golden hour over Costa Brava, stunning coves. No license from 70€/h. 4.8★ Google. Book online.",
     },
     ca: {
-      title: "Passeig en Barca al Capvespre Blanes | Sunset Costa Brava des de 70€/h",
+      title: "Passeig en Barca al Capvespre Blanes | des de 70€/h",
       description: "Passeig en barca al capvespre des de Blanes. Posta de sol sobre la Costa Brava, cales daurades. Sense llicencia des de 70€/h. Reserva online.",
     },
     fr: {
-      title: "Balade en Bateau au Coucher de Soleil Blanes | Costa Brava dès 70€/h",
+      title: "Bateau Coucher de Soleil Blanes | Costa Brava dès 70€/h",
       description: "Balade en bateau au coucher de soleil depuis Blanes. Lumière dorée sur la Costa Brava. Sans permis dès 70€/h. 4.8★ Google. Réservez.",
     },
     de: {
-      title: "Sonnenuntergang Bootstour Blanes | Sunset Trip Costa Brava ab 70€/h",
+      title: "Sonnenuntergang Bootstour Blanes | Costa Brava ab 70€/h",
       description: "Bootstour zum Sonnenuntergang ab Blanes. Goldene Stunde über der Costa Brava. Ohne Führerschein ab 70€/h. 4.8★ Google. Online buchen.",
     },
     nl: {
-      title: "Zonsondergang Boottocht Blanes | Sunset Costa Brava vanaf 70€/u",
+      title: "Zonsondergang Boottocht Blanes | Costa Brava vanaf 70€/u",
       description: "Boottocht bij zonsondergang vanuit Blanes. Gouden uur boven de Costa Brava. Zonder vaarbewijs vanaf 70€/u. 4.8★ Google. Boek online.",
     },
     it: {
-      title: "Gita in Barca al Tramonto Blanes | Sunset Costa Brava da 70€/h",
+      title: "Gita in Barca al Tramonto Blanes | da 70€/h",
       description: "Gita in barca al tramonto da Blanes. Ora dorata sulla Costa Brava, calette dorate. Senza patente da 70€/h. 4.8★ Google. Prenota online.",
     },
     ru: {
-      title: "Прогулка на Лодке на Закате Бланес | Sunset Коста-Брава от 70€/ч",
+      title: "Прогулка на Лодке на Закате Бланес | от 70€/ч",
       description: "Прогулка на лодке на закате из Бланеса. Золотой час над Коста-Бравой. Без лицензии от 70€/ч. 4.8★ Google. Бронируйте онлайн.",
     },
   },
   "/pesca-barco-blanes": {
     es: {
-      title: "Pesca en Barco Blanes | Pesca Recreativa Costa Brava desde 70€/h",
+      title: "Pesca en Barco Blanes | Pesca Recreativa desde 70€/h",
       description: "Pesca recreativa en barco desde Blanes. Lubinas, doradas, sargos en aguas de Costa Brava. Sin licencia de navegación desde 70€/h. 4.8★ Google. Reserva online.",
       ogTitle: "Pesca en Barco desde Blanes | Costa Brava",
       ogDescription: "Sal a pescar desde Blanes. Lubinas, doradas, sargos. Barcos sin licencia. Gasolina incluida.",
     },
     en: {
-      title: "Fishing Boat Trip Blanes | Recreational Fishing Costa Brava from 70€/h",
+      title: "Fishing Boat Trip Blanes | Recreational from 70€/h",
       description: "Recreational fishing by boat from Blanes. Sea bass, bream, sargo in Costa Brava waters. No boat license from 70€/h. 4.8★ Google. Book online.",
     },
     ca: {
-      title: "Pesca en Barca Blanes | Pesca Recreativa Costa Brava des de 70€/h",
+      title: "Pesca en Barca Blanes | Pesca Recreativa des de 70€/h",
       description: "Pesca recreativa en barca des de Blanes. Llobarros, orades, sargs a la Costa Brava. Sense llicencia des de 70€/h. Reserva online.",
     },
     fr: {
-      title: "Pêche en Bateau Blanes | Pêche Récréative Costa Brava dès 70€/h",
+      title: "Pêche en Bateau Blanes | Récréative dès 70€/h",
       description: "Pêche récréative en bateau depuis Blanes. Bars, dorades, sars en Costa Brava. Sans permis bateau dès 70€/h. 4.8★ Google. Réservez.",
     },
     de: {
-      title: "Angeln per Boot Blanes | Freizeitfischen Costa Brava ab 70€/h",
+      title: "Angeln per Boot Blanes | Freizeitfischen ab 70€/h",
       description: "Freizeitfischen per Boot ab Blanes. Wolfsbarsch, Goldbrassen an der Costa Brava. Ohne Bootsführerschein ab 70€/h. 4.8★ Google. Online buchen.",
     },
     nl: {
-      title: "Vissen per Boot Blanes | Recreatief Vissen Costa Brava vanaf 70€/u",
+      title: "Vissen per Boot Blanes | Recreatief vanaf 70€/u",
       description: "Recreatief vissen per boot vanuit Blanes. Zeebaars, zeebrasem aan de Costa Brava. Zonder vaarbewijs vanaf 70€/u. 4.8★ Google. Boek online.",
     },
     it: {
-      title: "Pesca in Barca Blanes | Pesca Ricreativa Costa Brava da 70€/h",
+      title: "Pesca in Barca Blanes | Pesca Ricreativa da 70€/h",
       description: "Pesca ricreativa in barca da Blanes. Spigole, orate, saraghi in Costa Brava. Senza patente nautica da 70€/h. 4.8★ Google. Prenota online.",
     },
     ru: {
-      title: "Рыбалка на Лодке Бланес | Рекреационная Рыбалка Коста-Брава от 70€/ч",
+      title: "Рыбалка на Лодке Бланес | Рекреационная от 70€/ч",
       description: "Рекреационная рыбалка на лодке из Бланеса. Сибас, дорада на Коста-Браве. Без лицензии на лодку от 70€/ч. 4.8★ Google. Бронируйте онлайн.",
     },
   },

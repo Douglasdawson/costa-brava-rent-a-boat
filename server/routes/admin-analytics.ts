@@ -62,12 +62,37 @@ export function registerAnalyticsRoutes(app: Express) {
         }
       }
 
+      // Twilio / WhatsApp config + send test
+      const tw = {
+        hasAccountSid: !!process.env.TWILIO_ACCOUNT_SID,
+        accountSidPrefix: process.env.TWILIO_ACCOUNT_SID ? process.env.TWILIO_ACCOUNT_SID.slice(0, 6) : null,
+        hasAuthToken: !!process.env.TWILIO_AUTH_TOKEN,
+        whatsappFrom: process.env.TWILIO_WHATSAPP_FROM || "(default sandbox: whatsapp:+14155238886)",
+        adminPhone: process.env.ADMIN_NOTIFICATION_PHONE || "(default: +34611500372)",
+      };
+      let waTest: { ok: boolean; error?: string; sid?: string } = { ok: false };
+      try {
+        const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
+        if (isTwilioConfigured()) {
+          const adminPhone = process.env.ADMIN_NOTIFICATION_PHONE || "+34611500372";
+          const sid = await sendWhatsAppMessage(adminPhone, `🔧 Diag CBRB: prueba WhatsApp ${new Date().toISOString()}`);
+          waTest = { ok: true, sid };
+        } else {
+          waTest = { ok: false, error: "Twilio not configured (missing SID/TOKEN)" };
+        }
+      } catch (err: unknown) {
+        waTest = { ok: false, error: err instanceof Error ? err.message : String(err) };
+      }
+
       res.json({
-        hasApiKey: hasKey,
-        apiKeyPrefix: keyPrefix,
-        fromEmail,
-        adminEmail,
-        testSendResult,
+        sendgrid: {
+          hasApiKey: hasKey,
+          apiKeyPrefix: keyPrefix,
+          fromEmail,
+          adminEmail,
+          testSendResult,
+        },
+        twilio: { ...tw, testSendResult: waTest },
       });
     } catch (error: unknown) {
       logger.error("[diag] email-state error", { error: error instanceof Error ? error.message : String(error) });

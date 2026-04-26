@@ -351,7 +351,9 @@ export function registerBookingRoutes(app: Express) {
         return res.status(500).json({ success: false, message: "No se pudo actualizar la reserva" });
       }
 
-      // Fire emails fire-and-forget (don't block response on slow SMTP)
+      // Fire notifications fire-and-forget. We use BOTH email and WhatsApp
+      // because Iván reads WhatsApp instantly and email has historically been
+      // unreliable on this project (SendGrid not always configured / verified).
       const boat = await storage.getBoat(updated.boatId);
       const extras = await storage.getBookingExtras(updated.id);
       if (boat) {
@@ -360,6 +362,46 @@ export function registerBookingRoutes(app: Express) {
           logger.error("[Bookings] Customer request email failed", { error: err instanceof Error ? err.message : String(err) }));
         sendBookingRequestAdminNotification(emailData).catch(err =>
           logger.error("[Bookings] Admin request email failed", { error: err instanceof Error ? err.message : String(err) }));
+
+        // WhatsApp to admin — primary channel. Ivan's phone defaults to the
+        // company's published line; override via ADMIN_NOTIFICATION_PHONE env.
+        (async () => {
+          try {
+            const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
+            if (!isTwilioConfigured()) {
+              logger.warn("[Bookings] Twilio not configured, skipping admin WhatsApp notification");
+              return;
+            }
+            const adminPhone = process.env.ADMIN_NOTIFICATION_PHONE || "+34611500372";
+            const startStr = updated.startTime.toLocaleString("es-ES", {
+              timeZone: "Europe/Madrid",
+              dateStyle: "medium",
+              timeStyle: "short",
+            });
+            const customerWa = `https://wa.me/${(updated.customerPhone || "").replace(/\D/g, "")}`;
+            const msg = [
+              `🆕 *Nueva solicitud de reserva*`,
+              ``,
+              `*Cliente:* ${updated.customerName} ${updated.customerSurname || ""}`,
+              `*Tel:* ${updated.customerPhone}  ${updated.customerPhone ? `(${customerWa})` : ""}`,
+              `*Email:* ${updated.customerEmail || "-"}`,
+              ``,
+              `*Barco:* ${boat.name}`,
+              `*Fecha:* ${startStr}`,
+              `*Personas:* ${updated.numberOfPeople}`,
+              extras.length > 0 ? `*Extras:* ${extras.map(e => e.extraName).join(", ")}` : null,
+              `*Importe:* ${parseFloat(updated.totalAmount).toFixed(2)}€`,
+              ``,
+              `Booking ID: ${updated.id.slice(0, 8)}`,
+            ].filter(Boolean).join("\n");
+            await sendWhatsAppMessage(adminPhone, msg);
+            logger.info("[Bookings] Admin WhatsApp notification sent", { bookingId: updated.id, to: adminPhone });
+          } catch (err) {
+            logger.error("[Bookings] Admin WhatsApp notification failed", {
+              error: err instanceof Error ? err.message : String(err),
+            });
+          }
+        })();
       } else {
         logger.warn("[Bookings] Boat not found, skipping request emails", { boatId: updated.boatId });
       }

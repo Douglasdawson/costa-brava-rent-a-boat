@@ -102,9 +102,19 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
     setIsProcessingPayment(true);
 
     try {
+      const language = (typeof window !== "undefined")
+        ? (window.location.pathname.match(/^\/([a-z]{2})\//)?.[1] || "es")
+        : "es";
+
       const submitResponse = await apiRequest('POST', '/api/bookings/submit-request', {
         holdId,
         termsAccepted: true,
+        customerName: customerData.customerName,
+        customerSurname: customerData.customerSurname,
+        customerEmail: customerData.customerEmail,
+        customerPhone: `${customerData.phonePrefix || ""}${customerData.customerPhone || ""}`.trim(),
+        customerNationality: customerData.customerNationality,
+        language,
       });
 
       if (!submitResponse.ok) {

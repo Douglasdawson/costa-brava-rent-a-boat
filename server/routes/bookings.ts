@@ -291,6 +291,16 @@ export function registerBookingRoutes(app: Express) {
         termsAccepted: z.boolean().refine(v => v === true, {
           message: "Debes aceptar los términos y condiciones",
         }),
+        // Customer info — the hold was created with placeholder data
+        // ("Hold Temporal"/"Sistema"/"N/A") because /api/quote doesn't accept
+        // customer info. Fill in the real values now so the email and admin
+        // notification have proper data.
+        customerName: z.string().min(1, "Nombre requerido").max(80),
+        customerSurname: z.string().min(1, "Apellidos requeridos").max(80),
+        customerEmail: z.string().email("Email inválido").max(160),
+        customerPhone: z.string().min(4).max(40),
+        customerNationality: z.string().min(1).max(40),
+        language: z.string().min(2).max(5).optional(),
       });
       const parsed = schema.safeParse(req.body);
       if (!parsed.success) {
@@ -324,10 +334,17 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      // Promote hold → requested
+      // Promote hold → requested AND persist real customer data (replacing
+      // the "Hold Temporal" placeholders that /api/quote stamped).
       const updated = await storage.updateBooking(hold.id, {
         bookingStatus: "requested",
         paymentStatus: "pending",
+        customerName: parsed.data.customerName,
+        customerSurname: parsed.data.customerSurname,
+        customerEmail: parsed.data.customerEmail,
+        customerPhone: parsed.data.customerPhone,
+        customerNationality: parsed.data.customerNationality,
+        ...(parsed.data.language ? { language: parsed.data.language } : {}),
       });
 
       if (!updated) {

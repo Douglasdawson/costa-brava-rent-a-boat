@@ -9,7 +9,9 @@ const MADRID_TZ = "Europe/Madrid";
 // always Madrid local, so a non-Madrid runtime (foreign admin, VPN, server)
 // would silently shift the stored UTC by the offset delta.
 function madridOffsetAt(instant: Date): number {
-  const madridStr = instant.toLocaleString("en-CA", {
+  // formatToParts + hourCycle h23 sidesteps a Node/ICU quirk where some
+  // runtimes emit "24:00" (instead of "00:00") for midnight under hour12:false.
+  const parts = new Intl.DateTimeFormat("en-CA", {
     timeZone: MADRID_TZ,
     year: "numeric",
     month: "2-digit",
@@ -17,10 +19,14 @@ function madridOffsetAt(instant: Date): number {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
-    hour12: false,
-  });
-  const [datePart, timePart] = madridStr.split(", ");
-  const madridAsUtc = new Date(`${datePart}T${timePart}Z`);
+    hourCycle: "h23",
+  }).formatToParts(instant);
+  const get = (type: string) =>
+    parts.find((p) => p.type === type)?.value ?? "00";
+  const hour = get("hour") === "24" ? "00" : get("hour");
+  const madridAsUtc = new Date(
+    `${get("year")}-${get("month")}-${get("day")}T${hour}:${get("minute")}:${get("second")}Z`,
+  );
   return madridAsUtc.getTime() - instant.getTime();
 }
 

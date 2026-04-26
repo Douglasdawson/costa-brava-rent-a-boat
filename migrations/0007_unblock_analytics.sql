@@ -132,6 +132,7 @@ CREATE TABLE IF NOT EXISTS "ga4_daily_metrics" (
 
 ALTER TABLE "ga4_daily_metrics" ADD COLUMN IF NOT EXISTS "country" varchar(3);
 ALTER TABLE "ga4_daily_metrics" ADD COLUMN IF NOT EXISTS "device_category" varchar(12);
+ALTER TABLE "ga4_daily_metrics" ADD COLUMN IF NOT EXISTS "channel_group" varchar(40);
 ALTER TABLE "ga4_daily_metrics" ADD COLUMN IF NOT EXISTS "engagement_rate" decimal(6,5);
 ALTER TABLE "ga4_daily_metrics" ADD COLUMN IF NOT EXISTS "average_session_duration" decimal(10,2);
 ALTER TABLE "ga4_daily_metrics" ADD COLUMN IF NOT EXISTS "screen_page_views_per_session" decimal(8,2);
@@ -141,8 +142,30 @@ ALTER TABLE "ga4_daily_metrics" ADD COLUMN IF NOT EXISTS "total_revenue" decimal
 CREATE INDEX IF NOT EXISTS "ga4_daily_date_idx" ON "ga4_daily_metrics" ("date");
 CREATE INDEX IF NOT EXISTS "ga4_daily_landing_idx" ON "ga4_daily_metrics" ("landing_page");
 CREATE INDEX IF NOT EXISTS "ga4_daily_source_idx" ON "ga4_daily_metrics" ("source", "medium");
+CREATE INDEX IF NOT EXISTS "ga4_daily_channel_idx" ON "ga4_daily_metrics" ("channel_group");
 CREATE UNIQUE INDEX IF NOT EXISTS "ga4_daily_unique_idx"
   ON "ga4_daily_metrics" ("date", "landing_page", "source", "medium", "country", "device_category");
+
+
+-- ─── 4b) ga4_conversion_events ────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS "ga4_conversion_events" (
+  "id" serial PRIMARY KEY NOT NULL,
+  "date" date NOT NULL,
+  "event_name" varchar(60) NOT NULL,
+  "landing_page" text,
+  "source" text,
+  "medium" text,
+  "event_count" integer NOT NULL DEFAULT 0,
+  "created_at" timestamp with time zone NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS "ga4_conv_events_date_event_idx"
+  ON "ga4_conversion_events" ("date", "event_name");
+CREATE INDEX IF NOT EXISTS "ga4_conv_events_landing_idx"
+  ON "ga4_conversion_events" ("landing_page");
+CREATE UNIQUE INDEX IF NOT EXISTS "ga4_conv_events_unique_idx"
+  ON "ga4_conversion_events" ("date", "event_name", "landing_page", "source", "medium");
 
 
 -- ─── 5) psi_measurements ──────────────────────────────────────────
@@ -259,7 +282,8 @@ DECLARE
   rec record;
   tbl text;
   tables text[] := ARRAY['seo_keywords', 'oauth_connections', 'gsc_queries',
-    'ga4_daily_metrics', 'psi_measurements', 'serp_snapshots', 'war_room_suggestions'];
+    'ga4_daily_metrics', 'ga4_conversion_events', 'psi_measurements',
+    'serp_snapshots', 'war_room_suggestions'];
 BEGIN
   FOREACH tbl IN ARRAY tables LOOP
     EXECUTE format('SELECT 1 FROM %I LIMIT 1', tbl);

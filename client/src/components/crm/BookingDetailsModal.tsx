@@ -143,6 +143,21 @@ export function BookingDetailsModal({
     resolver: zodResolver(editBookingSchema),
   });
 
+  // Keep totalHours in sync with the start/end range. DB column is integer;
+  // fractional ranges round to the nearest hour. Admin can't override this
+  // independently — totalHours is a derived field, like in the public flow
+  // where it comes from the duration picker.
+  const watchedStart = editForm.watch("startTime");
+  const watchedEnd = editForm.watch("endTime");
+  useEffect(() => {
+    if (!watchedStart || !watchedEnd) return;
+    const start = new Date(watchedStart);
+    const end = new Date(watchedEnd);
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) return;
+    const hours = Math.round((end.getTime() - start.getTime()) / 3_600_000);
+    if (hours > 0) editForm.setValue("totalHours", hours);
+  }, [watchedStart, watchedEnd, editForm]);
+
   // Pre-fill form when creating a booking (from calendar slot click or inquiry conversion)
   useEffect(() => {
     if (isCreating && open && prefillData) {

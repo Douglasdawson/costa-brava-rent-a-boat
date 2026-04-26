@@ -82,7 +82,7 @@ export const HOW_TO_BLOG_POSTS: Record<string, HowToBlogEntry> = {
     steps: [
       {
         name: "Decide tipo de barco según grupo y experiencia",
-        text: "Si eres novato sin licencia náutica y grupo de 2-5 personas, elige un barco sin licencia 15 CV (Solar 450, Remus 450 o Astec). Para grupos de 6-7 con alguno con licencia, elige barco con Licencia Básica de Navegación (LBN). Si no tiene nadie licencia pero el grupo es grande, reserva Excursión Privada con Capitán.",
+        text: "Si eres novato sin licencia náutica y grupo de 2-5 personas, elige un barco sin licencia 15 CV (Solar 450, Remus 450 o Astec). Para grupos de 6-7 con alguno con licencia, elige barco con Licencia de Navegación Básica (LNB). Si no tiene nadie licencia pero el grupo es grande, reserva Excursión Privada con Capitán.",
       },
       {
         name: "Elige duración realista",

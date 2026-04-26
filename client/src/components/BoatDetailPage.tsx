@@ -209,8 +209,11 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
   "Más espaciosa": {
     en: "More spacious", fr: "Plus spacieux", de: "Geraeumiger", nl: "Ruimer", it: "Piu spaziosa", ru: "Bolee prostornaya", ca: "Mes espaiosa",
   },
+  "Licencia de Navegación Básica requerida": {
+    en: "Basic navigation licence (LNB) required", fr: "Permis de navigation basique (LNB) requis", de: "Basis-Navigationsschein (LNB) erforderlich", nl: "Basisvaarbewijs (LNB) vereist", it: "Patente di navigazione base (LNB) richiesta", ru: "Trebuetsya bazovaya licenziya (LNB)", ca: "Llicència de Navegació Bàsica (LNB) requerida",
+  },
   "Licencia Básica requerida": {
-    en: "Basic licence required", fr: "Permis basique requis", de: "Basis-Fuehrerschein erforderlich", nl: "Basisvaarbewijs vereist", it: "Patente base richiesta", ru: "Trebuetsya bazovaya licenziya", ca: "Llicencia basica requerida",
+    en: "Basic navigation licence (LNB) required", fr: "Permis de navigation basique (LNB) requis", de: "Basis-Navigationsschein (LNB) erforderlich", nl: "Basisvaarbewijs (LNB) vereist", it: "Patente di navigazione base (LNB) richiesta", ru: "Trebuetsya bazovaya licenziya (LNB)", ca: "Llicència de Navegació Bàsica (LNB) requerida",
   },
   "Hasta 6 personas": {
     en: "Up to 6 people", fr: "Jusqu'a 6 personnes", de: "Bis zu 6 Personen", nl: "Tot 6 personen", it: "Fino a 6 persone", ru: "Do 6 chelovek", ca: "Fins a 6 persones",

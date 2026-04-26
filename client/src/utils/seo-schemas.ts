@@ -286,9 +286,9 @@ const COVES_FROM_BLANES: CoveData[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
-// Nautical glossary — DefinedTermSet with 18 terms (LBN, PER, PNB, nudos,
+// Nautical glossary — DefinedTermSet with 18 terms (LNB, PER, PNB, nudos,
 // calas, etc.). GEO benefit: answer engines cite DefinedTerm entries for
-// educational queries ("qué es la LBN", "cuánto es un nudo", "qué es fondear").
+// educational queries ("qué es la LNB", "cuánto es un nudo", "qué es fondear").
 // Emitted without a dedicated /glosario page for now — schema alone is
 // sufficient for AI citation; visual page is a separate UX enhancement.
 // ═══════════════════════════════════════════════════════════════════════════
@@ -301,12 +301,12 @@ export interface GlossaryTerm {
 }
 
 export const NAUTICAL_GLOSSARY_ES: GlossaryTerm[] = [
-  { term: "LBN (Licencia Básica de Navegación)", definition: "Titulación náutica española que permite gobernar embarcaciones de hasta 8 metros de eslora y hasta 5 millas de la costa. Obligatoria para alquilar barcos con más de 15 CV. Válida de por vida tras aprobar el examen teórico + curso práctico.", category: "titulacion" },
-  { term: "PER (Patrón de Embarcaciones de Recreo)", definition: "Titulación náutica española superior a la LBN. Permite gobernar embarcaciones de hasta 15 metros de eslora y hasta 12 millas de la costa. Requiere examen teórico + prácticas de navegación + radiocomunicaciones.", category: "titulacion" },
-  { term: "PNB (Patrón de Navegación Básica)", definition: "Antigua titulación náutica reemplazada en 2014 por la LBN. Permite gobernar embarcaciones de hasta 8 metros hasta 5 millas. Los que la tengan siguen siendo válidos sin necesidad de actualizar a LBN.", category: "titulacion" },
+  { term: "LNB (Licencia de Navegación Básica)", definition: "Titulación náutica española que permite gobernar embarcaciones de hasta 8 metros de eslora y hasta 5 millas de la costa. Obligatoria para alquilar barcos con más de 15 CV. Válida de por vida tras aprobar el examen teórico + curso práctico.", category: "titulacion" },
+  { term: "PER (Patrón de Embarcaciones de Recreo)", definition: "Titulación náutica española superior a la LNB. Permite gobernar embarcaciones de hasta 15 metros de eslora y hasta 12 millas de la costa. Requiere examen teórico + prácticas de navegación + radiocomunicaciones.", category: "titulacion" },
+  { term: "PNB (Patrón de Navegación Básica)", definition: "Antigua titulación náutica reemplazada en 2014 por la LNB. Permite gobernar embarcaciones de hasta 8 metros hasta 5 millas. Los que la tengan siguen siendo válidos sin necesidad de actualizar a LNB.", category: "titulacion" },
   { term: "Milla náutica", definition: "Unidad de distancia marítima internacional equivalente a 1.852 metros (1,852 km). Las embarcaciones sin licencia en España pueden navegar hasta un máximo de 2 millas náuticas de la costa (3,7 km).", category: "unidad" },
   { term: "Nudo", definition: "Unidad de velocidad marítima equivalente a 1 milla náutica por hora (1,852 km/h). Las embarcaciones sin licencia están limitadas a 5 nudos (9,3 km/h). Los barcos con licencia pueden alcanzar mucha más velocidad.", category: "unidad" },
-  { term: "Eslora", definition: "Longitud total del barco, medida de proa a popa. Unidad: metros. En España, la eslora determina la titulación náutica mínima: hasta 5m puede no requerir título, hasta 8m requiere LBN, hasta 15m requiere PER.", category: "unidad" },
+  { term: "Eslora", definition: "Longitud total del barco, medida de proa a popa. Unidad: metros. En España, la eslora determina la titulación náutica mínima: hasta 5m puede no requerir título, hasta 8m requiere LNB, hasta 15m requiere PER.", category: "unidad" },
   { term: "Manga", definition: "Anchura máxima del barco, medida de un costado a otro en su punto más ancho. Unidad: metros. Junto con la eslora define la estabilidad y espacio disponible a bordo.", category: "unidad" },
   { term: "CV (caballos de vapor)", definition: "Unidad de potencia del motor marino. Los barcos sin licencia en España están limitados a 15 CV. Los barcos con licencia típicamente tienen 40-150 CV, permitiendo navegación más rápida y alcance mayor.", category: "unidad" },
   { term: "Fondear", definition: "Acción de detener el barco lanzando el ancla al fondo marino para mantenerlo estático en una cala o zona sin amarre. Requiere elegir fondo arenoso (no rocoso), echar cabo suficiente (3-4 veces la profundidad) y verificar que el ancla agarra.", category: "accion" },

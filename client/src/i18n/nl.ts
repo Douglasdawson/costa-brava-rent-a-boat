@@ -1199,8 +1199,8 @@ export const nl: Translations = {
     "remus-450-ii": "Zelfde model als onze populairste boot, met gegarandeerde beschikbaarheid zelfs in het hoogseizoen augustus. Ideaal wanneer de Remus 450 al geboekt is: geniet van hetzelfde comfort, dezelfde stabiliteit en de Bi Mini kap waar gezinnen aan de Costa Brava zo van houden. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "astec-400": "De voordeligste optie voor koppels en gezinnen die van de zee willen genieten zonder te veel uit te geven. Met 2-4 passagiers is de prijs per persoon de laagste van de hele vloot. Stabiel, makkelijk te besturen en met Bi Mini kap om de kleintjes te beschermen. Anker in rustige baaien bij Blanes — geen vaarbewijs nodig. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "astec-480": "De premium ervaring zonder vaarbewijs. Met 4,80 m, Bluetooth speakers, gewatteerd solarium en dubbele brandstoftank is het de meest complete vaarbewijsvrije boot in Blanes. Vaar met uw favoriete muziek naar de mooiste baaien van de Costa Brava. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
-    "trimarchi-57s": "110 pk Italiaans design voor groepen tot 7 personen die evenveel adrenaline als comfort willen. Dubbel solarium op voor- en achtersteven om te zonnen, een centrale tafel voor de lunch voor anker in een baai en het vermogen om elk plekje tussen Blanes en Tossa de Mar in minuten te bereiken. De boot voor wie snelheid wil zonder iets op te geven. Basisvaarbewijs (LBN) vereist.",
-    "mingolla-brava-19": "De ideale speedboot om de hele kust te verkennen: Lloret de Mar in 15 minuten, Tossa de Mar in een half uur. Met 80 pk, GPS en dieptemeter bereikt u baaien die andere boten niet halen. Zoetwaterdouche, Bluetooth en RVS beugel voor watersport. Alle uitrusting om de Costa Brava in totale vrijheid te verkennen. Basisvaarbewijs (LBN) vereist.",
+    "trimarchi-57s": "110 pk Italiaans design voor groepen tot 7 personen die evenveel adrenaline als comfort willen. Dubbel solarium op voor- en achtersteven om te zonnen, een centrale tafel voor de lunch voor anker in een baai en het vermogen om elk plekje tussen Blanes en Tossa de Mar in minuten te bereiken. De boot voor wie snelheid wil zonder iets op te geven. Basisvaarbewijs (LNB) vereist.",
+    "mingolla-brava-19": "De ideale speedboot om de hele kust te verkennen: Lloret de Mar in 15 minuten, Tossa de Mar in een half uur. Met 80 pk, GPS en dieptemeter bereikt u baaien die andere boten niet halen. Zoetwaterdouche, Bluetooth en RVS beugel voor watersport. Alle uitrusting om de Costa Brava in totale vrijheid te verkennen. Basisvaarbewijs (LNB) vereist.",
     "pacific-craft-625": "Het beste wat u in Blanes kunt huren. 6,24 m, Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Vaarbewijs vereist (ICC).",
     "excursion-privada": "U geniet gewoon — onze professionele schipper brengt u naar geheime baaien, zeegrotten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
   },
@@ -1461,7 +1461,7 @@ export const nl: Translations = {
   },
   licenseTypes: {
     none: 'Geen vergunning vereist',
-    navegacion: 'Basisvaarbewijs (LBN)',
+    navegacion: 'Basisvaarbewijs (LNB)',
     pnb: 'Schipper voor Basisnavigatie (PNB)',
     per: 'Schipper Pleziervaartuigen (PER)',
     patron_yate: 'Jachtschipper',
@@ -1948,7 +1948,7 @@ export const nl: Translations = {
         },
         {
           question: 'Kan ik met een boot zonder vaarbewijs van Lloret naar Tossa de Mar varen?',
-          answer: 'Nee. Tossa ligt 4–5 mijl ten noorden van Fenals, buiten het wettelijke bereik zonder vaarbewijs. Om met een boot van Blanes naar Tossa te gaan heb je nodig: (a) een boot met een basisvaarbewijs (LBN), of (b) een privé-excursie met schipper.',
+          answer: 'Nee. Tossa ligt 4–5 mijl ten noorden van Fenals, buiten het wettelijke bereik zonder vaarbewijs. Om met een boot van Blanes naar Tossa te gaan heb je nodig: (a) een boot met een basisvaarbewijs (LNB), of (b) een privé-excursie met schipper.',
         },
         {
           question: 'Wat gebeurt er als het slecht weer is?',
@@ -2017,7 +2017,7 @@ export const nl: Translations = {
       faqItems: [
         {
           question: 'Kan ik Tossa de Mar bereiken met een boot zonder vaarbewijs vanuit Blanes?',
-          answer: 'Nee. Boten zonder vaarbewijs (2 mijl van de kust, 5 knopen, 15 pk) bereiken tot Playa de Fenals (zuid-Lloret), 4 mijl vóór Tossa. Om Tossa te bereiken heb je een basisvaarbewijs (LBN) nodig of moet je de privé-excursie met schipper boeken.',
+          answer: 'Nee. Boten zonder vaarbewijs (2 mijl van de kust, 5 knopen, 15 pk) bereiken tot Playa de Fenals (zuid-Lloret), 4 mijl vóór Tossa. Om Tossa te bereiken heb je een basisvaarbewijs (LNB) nodig of moet je de privé-excursie met schipper boeken.',
         },
         {
           question: 'Hoe lang duurt het met de boot van Blanes naar Tossa?',
@@ -2028,7 +2028,7 @@ export const nl: Translations = {
           answer: 'Pacific Craft 625 met professionele schipper, maximaal 4 uur, tot 7 personen. Vanaf {excursionBaja4h} € laagseizoen (april-juni, september-sluiting). Inclusief btw, schipper, aanlegplaats, reiniging en verzekering. Brandstof apart.',
         },
         {
-          question: 'Hoeveel kost huren naar Tossa met een basisvaarbewijs (LBN)?',
+          question: 'Hoeveel kost huren naar Tossa met een basisvaarbewijs (LNB)?',
           answer: 'Vaste pakketten 2 u / 4 u / 8 u, zonder schipper. Vanaf {licBaja2h} € (2 u laagseizoen) met de boten met vaarbewijs. 3 seizoenscategorieën. Borg 500 €. Btw, aanlegplaats, reiniging en verzekering inbegrepen; brandstof apart.',
         },
         {
@@ -2091,7 +2091,7 @@ export const nl: Translations = {
         ctaDescription: 'Reserveer je boot vanuit de haven van Blanes en beleef de unieke ervaring om over zee aan te komen bij het mooiste middeleeuwse dorp van de Costa Brava.',
         ctaButton: 'Uitstapje naar Tossa Reserveren',
         warningTitle: 'Tossa is niet bereikbaar met een boot zonder vaarbewijs.',
-        warningBody: 'Boten zonder vaarbewijs (2 mijl, 5 knopen, 15 pk) komen tot Playa de Fenals (ten zuiden van Lloret) — 4 mijl voor Tossa. Om Tossa te bereiken vanuit Blanes heb je (1) een zelfverhuur met Basisvaarbewijs / LBN nodig (gesloten pakketten 2 u / 4 u / 8 u vanaf {licBaja2h} € met Mingolla Brava 19 of Trimarchi 57S, btw, ligplaats, schoonmaak en verzekering inbegrepen; brandstof en borg 500 € niet inbegrepen), of (2) de <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Privé-excursie met Schipper</a> (Pacific Craft 625 + schipper, max. 4 u, tot 7 personen, vanaf {excursionBaja4h} € met btw, schipper, ligplaats, schoonmaak en verzekering inbegrepen — brandstof niet inbegrepen). Het derde alternatief is om met de auto naar Tossa te gaan (20 min vanuit Lloret) en daar ter plaatse een boot zonder vaarbewijs te huren.',
+        warningBody: 'Boten zonder vaarbewijs (2 mijl, 5 knopen, 15 pk) komen tot Playa de Fenals (ten zuiden van Lloret) — 4 mijl voor Tossa. Om Tossa te bereiken vanuit Blanes heb je (1) een zelfverhuur met Basisvaarbewijs / LNB nodig (gesloten pakketten 2 u / 4 u / 8 u vanaf {licBaja2h} € met Mingolla Brava 19 of Trimarchi 57S, btw, ligplaats, schoonmaak en verzekering inbegrepen; brandstof en borg 500 € niet inbegrepen), of (2) de <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Privé-excursie met Schipper</a> (Pacific Craft 625 + schipper, max. 4 u, tot 7 personen, vanaf {excursionBaja4h} € met btw, schipper, ligplaats, schoonmaak en verzekering inbegrepen — brandstof niet inbegrepen). Het derde alternatief is om met de auto naar Tossa te gaan (20 min vanuit Lloret) en daar ter plaatse een boot zonder vaarbewijs te huren.',
         crossLinkingText: 'We bieden ook service voor toeristen die verblijven in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> en <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Vanuit deze plaatsen aan de kust van de Maresme bereik je de haven van Blanes in 10-20 minuten met de auto.',
         relatedTitle: 'Gerelateerde services en bestemmingen',
         relatedCostaBrava: 'Meer bestemmingen aan de Costa Brava',
@@ -2267,7 +2267,7 @@ export const nl: Translations = {
         },
         {
           question: 'Kan ik een bootexcursie maken van Calella naar Tossa de Mar?',
-          answer: 'Niet direct vanuit Calella (geen verhuur). Vanuit Blanes wel: met een boot met basisvaarbewijs (LBN) bereik je Tossa in 45 min (vanaf {licBaja2h} EUR/2u), of met onze privé-excursie met schipper 4u naar Tossa inclusief Cala Bona en Vila Vella (vanaf {excursionBaja4h} EUR voor maximaal 7 personen). Boten zonder vaarbewijs kunnen Tossa niet bereiken vanwege de wettelijke limiet van 2 mijl.',
+          answer: 'Niet direct vanuit Calella (geen verhuur). Vanuit Blanes wel: met een boot met basisvaarbewijs (LNB) bereik je Tossa in 45 min (vanaf {licBaja2h} EUR/2u), of met onze privé-excursie met schipper 4u naar Tossa inclusief Cala Bona en Vila Vella (vanaf {excursionBaja4h} EUR voor maximaal 7 personen). Boten zonder vaarbewijs kunnen Tossa niet bereiken vanwege de wettelijke limiet van 2 mijl.',
         },
         {
           question: 'Hoeveel kost de trein R1 van Calella naar Blanes?',
@@ -2648,8 +2648,8 @@ export const nl: Translations = {
   glossaryPage: {
     seo: {
       title: 'Nautische Woordenlijst — Bootverhuur Costa Brava | Costa Brava Rent a Boat',
-      description: 'Woordenlijst van essentiële nautische termen: LBN, PER, PNB, knopen, zeemijlen, lengte, ankeren, baaien en delen van de boot. Praktisch lexicon voor bootverhuur in Blanes.',
-      keywords: 'nautische woordenlijst, wat is LBN, wat is PER, wat is PNB, zeemijlen, knopen, lengte, ankeren, woordenlijst boten',
+      description: 'Woordenlijst van essentiële nautische termen: LNB, PER, PNB, knopen, zeemijlen, lengte, ankeren, baaien en delen van de boot. Praktisch lexicon voor bootverhuur in Blanes.',
+      keywords: 'nautische woordenlijst, wat is LNB, wat is PER, wat is PNB, zeemijlen, knopen, lengte, ankeren, woordenlijst boten',
     },
     breadcrumbName: 'Nautische Woordenlijst',
     h1: 'Nautische Woordenlijst',
@@ -2670,18 +2670,18 @@ export const nl: Translations = {
     },
     terms: [
       {
-        term: 'LBN (Licencia Básica de Navegación)',
+        term: 'LNB (Licencia de Navegación Básica)',
         definition: 'Spaans vaarbewijs waarmee je boten tot 8 meter lengte mag besturen tot 5 mijl uit de kust. Verplicht voor het huren van boten met meer dan 15 pk. Levenslang geldig na het slagen voor het theoretisch examen + praktijkcursus.',
         category: 'titulacion',
       },
       {
         term: 'PER (Patrón de Embarcaciones de Recreo)',
-        definition: 'Spaans vaarbewijs van hoger niveau dan de LBN. Geeft toestemming om boten tot 15 meter lengte te besturen tot 12 mijl uit de kust. Vereist theoretisch examen + vaarpraktijk + radiocommunicatie.',
+        definition: 'Spaans vaarbewijs van hoger niveau dan de LNB. Geeft toestemming om boten tot 15 meter lengte te besturen tot 12 mijl uit de kust. Vereist theoretisch examen + vaarpraktijk + radiocommunicatie.',
         category: 'titulacion',
       },
       {
         term: 'PNB (Patrón de Navegación Básica)',
-        definition: 'Oud vaarbewijs vervangen in 2014 door de LBN. Geeft toestemming om boten tot 8 meter te besturen tot 5 mijl uit de kust. Houders blijven geldig zonder updaten naar LBN.',
+        definition: 'Oud vaarbewijs vervangen in 2014 door de LNB. Geeft toestemming om boten tot 8 meter te besturen tot 5 mijl uit de kust. Houders blijven geldig zonder updaten naar LNB.',
         category: 'titulacion',
       },
       {
@@ -2696,7 +2696,7 @@ export const nl: Translations = {
       },
       {
         term: 'Lengte',
-        definition: 'Totale lengte van de boot, gemeten van boeg tot achtersteven. Eenheid: meters. In Spanje bepaalt de lengte het minimaal vereiste vaarbewijs: tot 5m kan zonder titel, tot 8m vereist LBN, tot 15m vereist PER.',
+        definition: 'Totale lengte van de boot, gemeten van boeg tot achtersteven. Eenheid: meters. In Spanje bepaalt de lengte het minimaal vereiste vaarbewijs: tot 5m kan zonder titel, tot 8m vereist LNB, tot 15m vereist PER.',
         category: 'unidad',
       },
       {
@@ -3073,7 +3073,7 @@ export const nl: Translations = {
         },
         {
           title: '4. Vereisten voor de huurder',
-          body: '- De schipper moet 18 jaar of ouder zijn en een geldig identiteitsbewijs of paspoort tonen.\n- Voor boten waarvoor een vergunning vereist is, moet de schipper het originele vaarbewijs tonen (LBN, PER, PNB, Kapitein Jacht of Europees equivalent).\n- Voor boten zonder vergunning is geen vaarbewijs vereist, maar de schipper krijgt een training van 15 minuten voordat hij uitvaart.\n- Minderjarigen moeten vergezeld zijn van een verantwoordelijke volwassene en tijdens de vaart verplicht een reddingsvest dragen.',
+          body: '- De schipper moet 18 jaar of ouder zijn en een geldig identiteitsbewijs of paspoort tonen.\n- Voor boten waarvoor een vergunning vereist is, moet de schipper het originele vaarbewijs tonen (LNB, PER, PNB, Kapitein Jacht of Europees equivalent).\n- Voor boten zonder vergunning is geen vaarbewijs vereist, maar de schipper krijgt een training van 15 minuten voordat hij uitvaart.\n- Minderjarigen moeten vergezeld zijn van een verantwoordelijke volwassene en tijdens de vaart verplicht een reddingsvest dragen.',
         },
         {
           title: '5. Borg en betalingsvoorwaarden',

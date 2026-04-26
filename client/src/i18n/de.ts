@@ -1200,8 +1200,8 @@ export const de: Translations = {
     "remus-450-ii": "Gleiches Modell wie unser beliebtestes Boot, mit garantierter Verfügbarkeit selbst im Hochsommer August. Ideal, wenn die Remus 450 bereits gebucht ist: Genießen Sie denselben Komfort, dieselbe Stabilität und das Bi-Mini-Verdeck, das Familien an der Costa Brava so schätzen. Treibstoff, Versicherung und Sicherheitsausrüstung inklusive.",
     "astec-400": "Die günstigste Option für Paare und Familien, die das Meer genießen möchten, ohne zu viel auszugeben. Bei 2-4 Passagieren ist der Preis pro Person der niedrigste der gesamten Flotte. Stabil, leicht zu handhaben und mit Bi-Mini-Verdeck zum Schutz der Kleinen. Ankern Sie in ruhigen Buchten nahe Blanes — kein Bootsführerschein erforderlich. Treibstoff, Versicherung und Sicherheitsausrüstung inklusive.",
     "astec-480": "Das Premium-Erlebnis ohne Führerschein. Mit 4,80 m, Bluetooth-Lautsprechern, gepolstertem Solarium und doppeltem Kraftstofftank ist es das kompletteste führerscheinfreie Boot in Blanes. Segeln Sie mit Ihrer Lieblingsmusik zu den schönsten Buchten der Costa Brava. Treibstoff, Versicherung und Sicherheitsausrüstung inklusive.",
-    "trimarchi-57s": "110 PS italienisches Design für Gruppen bis 7 Personen, die gleichermaßen Adrenalin und Komfort suchen. Doppeltes Solarium an Bug und Heck zum Sonnenbaden, ein Tisch in der Mitte zum Mittagessen vor Anker in einer Bucht und die Power, jeden Winkel zwischen Blanes und Tossa de Mar in Minuten zu erreichen. Das Boot für alle, die Geschwindigkeit wollen, ohne auf etwas zu verzichten. Grundlizenz (LBN) erforderlich.",
-    "mingolla-brava-19": "Das ideale Motorboot, um die gesamte Küste zu erkunden: Lloret de Mar in 15 Minuten, Tossa de Mar in einer halben Stunde. Mit 80 PS, GPS und Echolot erreichen Sie Buchten, die andere Boote nicht erreichen. Süßwasserdusche, Bluetooth und Edelstahlbügel für Wassersport. Alles, um die Costa Brava in voller Freiheit zu erkunden. Grundlizenz (LBN) erforderlich.",
+    "trimarchi-57s": "110 PS italienisches Design für Gruppen bis 7 Personen, die gleichermaßen Adrenalin und Komfort suchen. Doppeltes Solarium an Bug und Heck zum Sonnenbaden, ein Tisch in der Mitte zum Mittagessen vor Anker in einer Bucht und die Power, jeden Winkel zwischen Blanes und Tossa de Mar in Minuten zu erreichen. Das Boot für alle, die Geschwindigkeit wollen, ohne auf etwas zu verzichten. Grundlizenz (LNB) erforderlich.",
+    "mingolla-brava-19": "Das ideale Motorboot, um die gesamte Küste zu erkunden: Lloret de Mar in 15 Minuten, Tossa de Mar in einer halben Stunde. Mit 80 PS, GPS und Echolot erreichen Sie Buchten, die andere Boote nicht erreichen. Süßwasserdusche, Bluetooth und Edelstahlbügel für Wassersport. Alles, um die Costa Brava in voller Freiheit zu erkunden. Grundlizenz (LNB) erforderlich.",
     "pacific-craft-625": "Das beste Mietboot in Blanes. 6,24 m, Yamaha 115 PS und luxuriöser Platz für 7. Doppeltes Solarium, Tisch für Mahlzeiten vor Anker, Süßwasserdusche und elektronische Steuerung. Für alle, die keine Kompromisse eingehen und das kompletteste Bootserlebnis an der Costa Brava suchen. Bootsführerschein erforderlich (SBF See).",
     "excursion-privada": "Sie genießen einfach — unser professioneller Skipper bringt Sie zu geheimen Buchten, Meerhöhlen und zu Fuß unzugänglichen Orten zwischen Blanes und Tossa de Mar. Sie ankern in der perfekten Bucht des Tages, ausgewählt nach Wind und Strömungen. Ideal für Feiern, Jubiläen oder Familien, die einen exklusiven Privatausflug an der Costa Brava ganz ohne Sorgen erleben möchten.",
   },
@@ -1462,7 +1462,7 @@ export const de: Translations = {
   },
   licenseTypes: {
     none: 'Kein Führerschein erforderlich',
-    navegacion: 'Sportbootführerschein See (LBN)',
+    navegacion: 'Sportbootführerschein See (LNB)',
     pnb: 'Bootsführerschein für Küstengewässer (PNB)',
     per: 'Sportbootführerschein für Freizeitboote (PER)',
     patron_yate: 'Yachtführerschein',
@@ -1949,7 +1949,7 @@ export const de: Translations = {
         },
         {
           question: 'Kann ich mit einem führerscheinfreien Boot von Lloret nach Tossa de Mar fahren?',
-          answer: 'Nein. Tossa liegt 4–5 Meilen nördlich von Fenals, außerhalb der gesetzlichen Reichweite ohne Führerschein. Um von Blanes mit dem Boot nach Tossa zu fahren, benötigen Sie (a) ein Boot mit Grundlizenz (LBN) oder (b) eine private Exkursion mit Kapitän.',
+          answer: 'Nein. Tossa liegt 4–5 Meilen nördlich von Fenals, außerhalb der gesetzlichen Reichweite ohne Führerschein. Um von Blanes mit dem Boot nach Tossa zu fahren, benötigen Sie (a) ein Boot mit Grundlizenz (LNB) oder (b) eine private Exkursion mit Kapitän.',
         },
         {
           question: 'Was passiert bei schlechtem Wetter?',
@@ -2018,7 +2018,7 @@ export const de: Translations = {
       faqItems: [
         {
           question: 'Kann ich mit einem führerscheinfreien Boot von Blanes nach Tossa de Mar fahren?',
-          answer: 'Nein. Führerscheinfreie Boote (2 Meilen Küstenentfernung, 5 Knoten, 15 PS) kommen bis zum Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um nach Tossa zu gelangen, benötigen Sie eine Grundlizenz (LBN) oder buchen die private Exkursion mit Kapitän.',
+          answer: 'Nein. Führerscheinfreie Boote (2 Meilen Küstenentfernung, 5 Knoten, 15 PS) kommen bis zum Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um nach Tossa zu gelangen, benötigen Sie eine Grundlizenz (LNB) oder buchen die private Exkursion mit Kapitän.',
         },
         {
           question: 'Wie lange dauert die Fahrt mit dem Boot von Blanes nach Tossa?',
@@ -2029,7 +2029,7 @@ export const de: Translations = {
           answer: 'Pacific Craft 625 mit professionellem Skipper, max. 4 Std., bis zu 7 Personen. Ab {excursionBaja4h} € Nebensaison (April–Juni, September–Saisonende). Inklusive MwSt., Skipper, Liegeplatz, Reinigung und Versicherung. Kraftstoff separat.',
         },
         {
-          question: 'Wie viel kostet die Miete nach Tossa mit Grundlizenz (LBN)?',
+          question: 'Wie viel kostet die Miete nach Tossa mit Grundlizenz (LNB)?',
           answer: 'Feste Pakete 2 Std. / 4 Std. / 8 Std., ohne Skipper. Ab {licBaja2h} € (2 Std. Nebensaison) für Boote mit Führerschein. 3 saisonale Preisstufen. Kaution 500 €. MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff separat.',
         },
         {
@@ -2268,7 +2268,7 @@ export const de: Translations = {
         },
         {
           question: 'Kann ich von Calella aus eine Bootsexkursion nach Tossa de Mar machen?',
-          answer: 'Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Grundlizenz (LBN) erreichen Sie Tossa in 45 Min. (ab {licBaja2h} EUR/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} EUR für bis zu 7 Personen). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.',
+          answer: 'Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Grundlizenz (LNB) erreichen Sie Tossa in 45 Min. (ab {licBaja2h} EUR/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} EUR für bis zu 7 Personen). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.',
         },
         {
           question: 'Wie viel kostet der Zug R1 von Calella nach Blanes?',
@@ -2649,8 +2649,8 @@ export const de: Translations = {
   glossaryPage: {
     seo: {
       title: 'Nautisches Glossar — Bootsverleih Costa Brava | Costa Brava Rent a Boat',
-      description: 'Glossar wichtiger nautischer Begriffe: LBN, PER, PNB, Knoten, Seemeilen, Länge, Ankern, Buchten und Bootsteile. Praktisches Wörterbuch für die Bootsmiete in Blanes.',
-      keywords: 'nautisches glossar, was ist LBN, was ist PER, was ist PNB, seemeilen, knoten, bootslänge, ankern, boots glossar',
+      description: 'Glossar wichtiger nautischer Begriffe: LNB, PER, PNB, Knoten, Seemeilen, Länge, Ankern, Buchten und Bootsteile. Praktisches Wörterbuch für die Bootsmiete in Blanes.',
+      keywords: 'nautisches glossar, was ist LNB, was ist PER, was ist PNB, seemeilen, knoten, bootslänge, ankern, boots glossar',
     },
     breadcrumbName: 'Nautisches Glossar',
     h1: 'Nautisches Glossar',
@@ -2671,18 +2671,18 @@ export const de: Translations = {
     },
     terms: [
       {
-        term: 'LBN (Licencia Básica de Navegación)',
+        term: 'LNB (Licencia de Navegación Básica)',
         definition: 'Spanischer Bootsführerschein, der zum Führen von Booten bis 8 Meter Länge und bis 5 Seemeilen Küstenentfernung berechtigt. Pflicht für Bootsvermietung mit mehr als 15 PS. Lebenslang gültig nach bestandener Theorieprüfung + Praxiskurs.',
         category: 'titulacion',
       },
       {
         term: 'PER (Patrón de Embarcaciones de Recreo)',
-        definition: 'Spanischer Bootsführerschein höher als LBN. Berechtigt zum Führen von Booten bis 15 Meter Länge und bis 12 Seemeilen Küstenentfernung. Erfordert Theorieprüfung + Navigations- und Funkpraxis.',
+        definition: 'Spanischer Bootsführerschein höher als LNB. Berechtigt zum Führen von Booten bis 15 Meter Länge und bis 12 Seemeilen Küstenentfernung. Erfordert Theorieprüfung + Navigations- und Funkpraxis.',
         category: 'titulacion',
       },
       {
         term: 'PNB (Patrón de Navegación Básica)',
-        definition: 'Alter Bootsführerschein, der 2014 durch die LBN ersetzt wurde. Berechtigt zum Führen von Booten bis 8 Meter bis 5 Seemeilen. Bestehende Inhaber behalten ihre Gültigkeit ohne Aktualisierung auf LBN.',
+        definition: 'Alter Bootsführerschein, der 2014 durch die LNB ersetzt wurde. Berechtigt zum Führen von Booten bis 8 Meter bis 5 Seemeilen. Bestehende Inhaber behalten ihre Gültigkeit ohne Aktualisierung auf LNB.',
         category: 'titulacion',
       },
       {
@@ -2697,7 +2697,7 @@ export const de: Translations = {
       },
       {
         term: 'Länge (Eslora)',
-        definition: 'Gesamtlänge des Bootes, gemessen von Bug bis Heck. Einheit: Meter. In Spanien bestimmt die Länge den erforderlichen Mindestführerschein: bis 5m ggf. ohne Schein, bis 8m LBN erforderlich, bis 15m PER erforderlich.',
+        definition: 'Gesamtlänge des Bootes, gemessen von Bug bis Heck. Einheit: Meter. In Spanien bestimmt die Länge den erforderlichen Mindestführerschein: bis 5m ggf. ohne Schein, bis 8m LNB erforderlich, bis 15m PER erforderlich.',
         category: 'unidad',
       },
       {
@@ -3074,7 +3074,7 @@ export const de: Translations = {
         },
         {
           title: '4. Anforderungen an den Mieter',
-          body: '- Der Bootsführer muss mindestens 18 Jahre alt sein und einen gültigen Personalausweis oder Reisepass vorlegen.\n- Für zulassungspflichtige Boote muss der Bootsführer den Original-Bootsführerschein vorlegen (LBN, PER, PNB, Capitán de Yate oder europäisches Äquivalent).\n- Für Boote ohne Führerscheinpflicht ist keine Lizenz erforderlich, aber der Bootsführer erhält vor dem Ablegen eine 15-minütige Einweisung.\n- Minderjährige müssen von einem verantwortlichen Erwachsenen begleitet werden und während der Fahrt eine Schwimmweste tragen.',
+          body: '- Der Bootsführer muss mindestens 18 Jahre alt sein und einen gültigen Personalausweis oder Reisepass vorlegen.\n- Für zulassungspflichtige Boote muss der Bootsführer den Original-Bootsführerschein vorlegen (LNB, PER, PNB, Capitán de Yate oder europäisches Äquivalent).\n- Für Boote ohne Führerscheinpflicht ist keine Lizenz erforderlich, aber der Bootsführer erhält vor dem Ablegen eine 15-minütige Einweisung.\n- Minderjährige müssen von einem verantwortlichen Erwachsenen begleitet werden und während der Fahrt eine Schwimmweste tragen.',
         },
         {
           title: '5. Kaution und Zahlungsbedingungen',

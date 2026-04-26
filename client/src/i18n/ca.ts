@@ -1199,8 +1199,8 @@ export const ca: Translations = {
     "remus-450-ii": "Mateix model que el nostre vaixell més popular, amb disponibilitat garantida fins i tot a l'agost. Ideal si la Remus 450 ja està reservada: gaudeix del mateix confort, la mateixa estabilitat i el tendal Bi Mini que tant valoren les famílies a la Costa Brava. Gasolina, assegurança i equip de seguretat inclosos.",
     "astec-400": "L'opció més econòmica per a parelles i famílies que volen gaudir del mar sense gastar de més. En ser 2-4 persones, el preu per persona és el més baix de tota la flota. Estable, fàcil de manejar i amb tendal Bi Mini per protegir els petits del sol. Fondeja en cales tranquil·les prop de Blanes sense necessitat de carnet nàutic. Gasolina, assegurança i equip de seguretat inclosos.",
     "astec-480": "L'experiència premium sense necessitat de carnet nàutic. Amb 4,80 m d'eslora, equip de música bluetooth, solarium encoixinat i el doble de dipòsit de combustible, és l'embarcació sense llicència més completa de Blanes. Navega amb la teva música preferida cap a les cales més boniques de la Costa Brava. Gasolina, assegurança i equip de seguretat inclosos.",
-    "trimarchi-57s": "110 cv de disseny italià per a grups de fins a 7 persones que volen adrenalina i confort a parts iguals. Solarium doble a proa i popa per prendre el sol, taula central per dinar fondejats en una cala i la potència per arribar a qualsevol racó entre Blanes i Tossa de Mar en minuts. L'embarcació que tria qui vol sentir la velocitat sense renunciar a res. Requereix Llicència Bàsica de Navegació (LBN).",
-    "mingolla-brava-19": "La llanxa ideal per explorar tota la costa: Lloret de Mar en 15 minuts, Tossa de Mar en mitja hora. Amb 80 cv, GPS i sonda nàutica, arribes a cales que altres vaixells no assoleixen. Dutxa d'aigua dolça, bluetooth i arc d'acer inoxidable per a esports aquàtics. Tot l'equipament per recórrer la Costa Brava amb total autonomia. Requereix Llicència Bàsica de Navegació (LBN).",
+    "trimarchi-57s": "110 cv de disseny italià per a grups de fins a 7 persones que volen adrenalina i confort a parts iguals. Solarium doble a proa i popa per prendre el sol, taula central per dinar fondejats en una cala i la potència per arribar a qualsevol racó entre Blanes i Tossa de Mar en minuts. L'embarcació que tria qui vol sentir la velocitat sense renunciar a res. Requereix Llicència Bàsica de Navegació (LNB).",
+    "mingolla-brava-19": "La llanxa ideal per explorar tota la costa: Lloret de Mar en 15 minuts, Tossa de Mar en mitja hora. Amb 80 cv, GPS i sonda nàutica, arribes a cales que altres vaixells no assoleixen. Dutxa d'aigua dolça, bluetooth i arc d'acer inoxidable per a esports aquàtics. Tot l'equipament per recórrer la Costa Brava amb total autonomia. Requereix Llicència Bàsica de Navegació (LNB).",
     "pacific-craft-625": "El millor que pots llogar a Blanes. 6,24 metres d'eslora, motor Yamaha 115 cv i espai de luxe per a 7 persones. Solarium doble, taula per dinar fondejats davant d'una cala, dutxa d'aigua dolça i comandament electrònic. Per als qui no volen compromisos i busquen l'experiència nàutica més completa de la Costa Brava. Requereix llicència nàutica (PER/PNB).",
     "excursion-privada": "Tu només gaudeixes: el nostre patró professional et porta a cales secretes, coves marines i racons inaccessibles a peu entre Blanes i Tossa de Mar. Fondejareu a la cala perfecta del dia, escollida segons vent i corrents. Ideal per a celebracions, aniversaris o famílies que volen una excursió privada exclusiva per la Costa Brava sense preocupar-se de res.",
   },
@@ -1461,7 +1461,7 @@ export const ca: Translations = {
   },
   licenseTypes: {
     none: 'No requereix llicència',
-    navegacion: 'Llicència Bàsica de Navegació (LBN)',
+    navegacion: 'Llicència Bàsica de Navegació (LNB)',
     pnb: 'Patró per a Navegació Bàsica (PNB)',
     per: 'Patró d\'Embarcacions d\'Esbarjo (PER)',
     patron_yate: 'Patró de Iot',
@@ -1948,7 +1948,7 @@ export const ca: Translations = {
         },
         {
           question: 'Puc arribar a Tossa de Mar des de Lloret amb vaixell sense llicència?',
-          answer: 'No. Tossa està 4–5 milles al nord de Fenals, fora del rang legal sense llicència. Per anar a Tossa amb vaixell des de Blanes necessites (a) vaixell amb Llicència Bàsica de Navegació (LBN), o (b) Excursió Privada amb Capità.',
+          answer: 'No. Tossa està 4–5 milles al nord de Fenals, fora del rang legal sense llicència. Per anar a Tossa amb vaixell des de Blanes necessites (a) vaixell amb Llicència Bàsica de Navegació (LNB), o (b) Excursió Privada amb Capità.',
         },
         {
           question: 'Què passa si la mar està dolenta?',
@@ -2017,7 +2017,7 @@ export const ca: Translations = {
       faqItems: [
         {
           question: 'Puc arribar a Tossa de Mar amb vaixell sense llicència des de Blanes?',
-          answer: 'No. Els vaixells sense llicència (2 milles de costa, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa necessites Llicència Bàsica de Navegació (LBN) o contractar l\'Excursió Privada amb Capità.',
+          answer: 'No. Els vaixells sense llicència (2 milles de costa, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa necessites Llicència Bàsica de Navegació (LNB) o contractar l\'Excursió Privada amb Capità.',
         },
         {
           question: 'Quant es triga amb vaixell de Blanes a Tossa?',
@@ -2028,7 +2028,7 @@ export const ca: Translations = {
           answer: 'Pacific Craft 625 amb patró professional, 4 h màxim, fins a 7 persones. Des de {excursionBaja4h} € temporada baixa (abril-juny, setembre-tancament). Inclou IVA, patró, amarratge, neteja i assegurança. Combustible a part.',
         },
         {
-          question: 'Quan costa llogar a Tossa amb Llicència Bàsica (LBN)?',
+          question: 'Quan costa llogar a Tossa amb Llicència Bàsica (LNB)?',
           answer: 'Packs tancats 2 h / 4 h / 8 h, sense patró. Des de {licBaja2h} € (2 h temporada baixa) amb els vaixells amb llicència. 3 tiers estacionals. Fiança 500 €. IVA, amarratge, neteja i assegurança inclosos; combustible a part.',
         },
         {
@@ -2091,7 +2091,7 @@ export const ca: Translations = {
         ctaDescription: 'Reserva el teu vaixell des del Port de Blanes i viu l\'experiència única d\'arribar per mar al poble medieval més bonic de la Costa Brava.',
         ctaButton: 'Reservar Excursió a Tossa',
         warningTitle: 'Tossa no és accessible amb vaixell sense llicència.',
-        warningBody: 'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret) — 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència Bàsica de Navegació / LBN (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 7 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos — combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
+        warningBody: 'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret) — 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència Bàsica de Navegació / LNB (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 7 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos — combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
         crossLinkingText: 'També oferim servei per a turistes allotjats a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> i <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Des d\'aquests pobles de la costa del Maresme s\'arriba al Port de Blanes en 10-20 minuts amb cotxe.',
         relatedTitle: 'Serveis i destinacions relacionats',
         relatedCostaBrava: 'Més destinacions a la Costa Brava',
@@ -2267,7 +2267,7 @@ export const ca: Translations = {
         },
         {
           question: 'Puc fer una excursió amb vaixell des de Calella a Tossa de Mar?',
-          answer: 'No directament des de Calella (no hi ha lloguer). Des de Blanes sí: amb un vaixell amb Llicència Bàsica de Navegació (LBN) arribes a Tossa en 45 min (des de {licBaja2h} EUR/2h), o amb la nostra Excursió Privada amb Capità 4h fins a Tossa incloent Cala Bona i Vila Vella (des de {excursionBaja4h} EUR per a fins a 7 persones). Els vaixells sense llicència no poden arribar a Tossa pel límit legal de 2 milles.',
+          answer: 'No directament des de Calella (no hi ha lloguer). Des de Blanes sí: amb un vaixell amb Llicència Bàsica de Navegació (LNB) arribes a Tossa en 45 min (des de {licBaja2h} EUR/2h), o amb la nostra Excursió Privada amb Capità 4h fins a Tossa incloent Cala Bona i Vila Vella (des de {excursionBaja4h} EUR per a fins a 7 persones). Els vaixells sense llicència no poden arribar a Tossa pel límit legal de 2 milles.',
         },
         {
           question: 'Quan costa el tren R1 de Calella a Blanes?',
@@ -2648,8 +2648,8 @@ export const ca: Translations = {
   glossaryPage: {
     seo: {
       title: 'Glossari Nàutic — Lloguer Barques Costa Brava | Costa Brava Rent a Boat',
-      description: 'Glossari de termes nàutics essencials: LBN, PER, PNB, nusos, milles nàutiques, eslora, fondejar, cales i parts de l\'embarcació. Diccionari pràctic per llogar un vaixell a Blanes.',
-      keywords: 'glossari nautic, que es LBN, que es PER, que es PNB, milles nautiques, nusos, eslora, fondejar, glossari barques',
+      description: 'Glossari de termes nàutics essencials: LNB, PER, PNB, nusos, milles nàutiques, eslora, fondejar, cales i parts de l\'embarcació. Diccionari pràctic per llogar un vaixell a Blanes.',
+      keywords: 'glossari nautic, que es LNB, que es PER, que es PNB, milles nautiques, nusos, eslora, fondejar, glossari barques',
     },
     breadcrumbName: 'Glossari Nàutic',
     h1: 'Glossari Nàutic',
@@ -2670,18 +2670,18 @@ export const ca: Translations = {
     },
     terms: [
       {
-        term: 'LBN (Llicència Bàsica de Navegació)',
+        term: 'LNB (Llicència Bàsica de Navegació)',
         definition: 'Titulació nàutica espanyola que permet governar embarcacions de fins a 8 metres d\'eslora i fins a 5 milles de la costa. Obligatòria per llogar barques amb més de 15 CV. Vàlida de per vida després d\'aprovar l\'examen teòric + curs pràctic.',
         category: 'titulacion',
       },
       {
         term: 'PER (Patró d\'Embarcacions d\'Esbarjo)',
-        definition: 'Titulació nàutica espanyola superior a la LBN. Permet governar embarcacions de fins a 15 metres d\'eslora i fins a 12 milles de la costa. Requereix examen teòric + pràctiques de navegació + radiocomunicacions.',
+        definition: 'Titulació nàutica espanyola superior a la LNB. Permet governar embarcacions de fins a 15 metres d\'eslora i fins a 12 milles de la costa. Requereix examen teòric + pràctiques de navegació + radiocomunicacions.',
         category: 'titulacion',
       },
       {
         term: 'PNB (Patró de Navegació Bàsica)',
-        definition: 'Antiga titulació nàutica reemplaçada el 2014 per la LBN. Permet governar embarcacions de fins a 8 metres fins a 5 milles. Els qui la tenen continuen sent vàlids sense necessitat d\'actualitzar a LBN.',
+        definition: 'Antiga titulació nàutica reemplaçada el 2014 per la LNB. Permet governar embarcacions de fins a 8 metres fins a 5 milles. Els qui la tenen continuen sent vàlids sense necessitat d\'actualitzar a LNB.',
         category: 'titulacion',
       },
       {
@@ -2696,7 +2696,7 @@ export const ca: Translations = {
       },
       {
         term: 'Eslora',
-        definition: 'Longitud total de la barca, mesurada de proa a popa. Unitat: metres. A Espanya, l\'eslora determina la titulació nàutica mínima: fins a 5m pot no requerir títol, fins a 8m requereix LBN, fins a 15m requereix PER.',
+        definition: 'Longitud total de la barca, mesurada de proa a popa. Unitat: metres. A Espanya, l\'eslora determina la titulació nàutica mínima: fins a 5m pot no requerir títol, fins a 8m requereix LNB, fins a 15m requereix PER.',
         category: 'unidad',
       },
       {
@@ -3073,7 +3073,7 @@ export const ca: Translations = {
         },
         {
           title: '4. Requisits per a l\'arrendatari',
-          body: '- El patró ha de ser major de 18 anys i presentar DNI o passaport en vigor.\n- Per a embarcacions amb llicència, el patró ha de presentar la titulació nàutica original (LBN, PER, PNB, Capità de Iot o equivalent europea).\n- Per a embarcacions sense llicència, no es requereix titulació, però el patró rebrà una formació de 15 minuts abans de zarpar.\n- Els menors d\'edat hauran d\'anar acompanyats d\'un adult responsable i portar armilla salvavides obligatòria durant la navegació.',
+          body: '- El patró ha de ser major de 18 anys i presentar DNI o passaport en vigor.\n- Per a embarcacions amb llicència, el patró ha de presentar la titulació nàutica original (LNB, PER, PNB, Capità de Iot o equivalent europea).\n- Per a embarcacions sense llicència, no es requereix titulació, però el patró rebrà una formació de 15 minuts abans de zarpar.\n- Els menors d\'edat hauran d\'anar acompanyats d\'un adult responsable i portar armilla salvavides obligatòria durant la navegació.',
         },
         {
           title: '5. Fiança i condicions de pagament',

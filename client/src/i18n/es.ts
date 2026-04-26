@@ -897,7 +897,7 @@ export const es: Translations = {
         },
         {
           question: '¿Puedo llegar a Tossa de Mar desde Lloret con barco sin licencia?',
-          answer: 'No. Tossa está 4–5 millas al norte de Fenals, fuera del rango legal sin licencia. Para ir a Tossa en barco desde Blanes necesitas (a) barco con Licencia Básica de Navegación (LBN), o (b) Excursión Privada con Capitán.',
+          answer: 'No. Tossa está 4–5 millas al norte de Fenals, fuera del rango legal sin licencia. Para ir a Tossa en barco desde Blanes necesitas (a) barco con Licencia de Navegación Básica (LNB), o (b) Excursión Privada con Capitán.',
         },
         {
           question: '¿Qué pasa si el mar está malo?',
@@ -966,7 +966,7 @@ export const es: Translations = {
       faqItems: [
         {
           question: '¿Puedo llegar a Tossa de Mar con barco sin licencia desde Blanes?',
-          answer: 'No. Los barcos sin licencia (2 millas de costa, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret), 4 millas antes de Tossa. Para llegar a Tossa necesitas Licencia Básica de Navegación (LBN) o contratar la Excursión Privada con Capitán.',
+          answer: 'No. Los barcos sin licencia (2 millas de costa, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret), 4 millas antes de Tossa. Para llegar a Tossa necesitas Licencia de Navegación Básica (LNB) o contratar la Excursión Privada con Capitán.',
         },
         {
           question: '¿Cuánto se tarda en barco de Blanes a Tossa?',
@@ -977,7 +977,7 @@ export const es: Translations = {
           answer: 'Pacific Craft 625 con patrón profesional, 4 h máximo, hasta 7 personas. Desde {excursionBaja4h} € temporada baja (abril-junio, septiembre-cierre). Incluye IVA, patrón, amarre, limpieza y seguro. Combustible aparte.',
         },
         {
-          question: '¿Cuánto cuesta alquilar a Tossa con Licencia Básica (LBN)?',
+          question: '¿Cuánto cuesta alquilar a Tossa con Licencia de Navegación Básica (LNB)?',
           answer: 'Packs cerrados 2 h / 4 h / 8 h, sin patrón. Desde {licBaja2h} € (2 h temporada baja) con los barcos con licencia. 3 tiers estacionales. Fianza 500 €. IVA, amarre, limpieza y seguro incluidos; combustible aparte.',
         },
         {
@@ -990,10 +990,10 @@ export const es: Translations = {
         },
       ],
       hero: {
-        title: 'Alquiler de Barcos en Tossa de Mar — Con LBN o Excursión Privada con Capitán',
-        subtitle: 'Navega frente a la Vila Vella, el único castillo medieval sobre el mar del Mediterráneo occidental. Desde el puerto de Blanes, 30-45 minutos con Licencia Básica de Navegación (LBN) o Excursión Privada con Capitán.',
+        title: 'Alquiler de Barcos en Tossa de Mar — Con LNB o Excursión Privada con Capitán',
+        subtitle: 'Navega frente a la Vila Vella, el único castillo medieval sobre el mar del Mediterráneo occidental. Desde el puerto de Blanes, 30-45 minutos con Licencia de Navegación Básica (LNB) o Excursión Privada con Capitán.',
         badgeFrom: 'Desde el puerto de Blanes (7 millas)',
-        badgeTime: '30–45 min con LBN',
+        badgeTime: '30–45 min con LNB',
         badgeCapacity: 'Vila Vella medieval desde el mar',
       },
       sections: {
@@ -1040,7 +1040,7 @@ export const es: Translations = {
         ctaDescription: 'Reserva tu barco desde Puerto de Blanes y vive la experiencia única de llegar por mar al pueblo medieval más bonito de la Costa Brava.',
         ctaButton: 'Reservar Excursión a Tossa',
         warningTitle: 'Tossa no es alcanzable con barco sin licencia.',
-        warningBody: 'Los barcos sin licencia (2 millas, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret) — 4 millas antes de Tossa. Para llegar a Tossa desde Blanes necesitas (1) auto-alquiler con Licencia Básica de Navegación / LBN (packs cerrados 2 h / 4 h / 8 h desde {licBaja2h} € con Mingolla Brava 19 o Trimarchi 57S, IVA, amarre, limpieza y seguro incluidos; combustible y fianza 500 € aparte), o (2) la <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursión Privada con Capitán</a> (Pacific Craft 625 + patrón, 4 h máximo, hasta 7 pax, desde {excursionBaja4h} € con IVA, patrón, amarre, limpieza y seguro incluidos — combustible aparte). La tercera alternativa es ir en coche a Tossa (20 min desde Lloret) y alquilar barco sin licencia localmente allí.',
+        warningBody: 'Los barcos sin licencia (2 millas, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret) — 4 millas antes de Tossa. Para llegar a Tossa desde Blanes necesitas (1) auto-alquiler con Licencia de Navegación Básica / LNB (packs cerrados 2 h / 4 h / 8 h desde {licBaja2h} € con Mingolla Brava 19 o Trimarchi 57S, IVA, amarre, limpieza y seguro incluidos; combustible y fianza 500 € aparte), o (2) la <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursión Privada con Capitán</a> (Pacific Craft 625 + patrón, 4 h máximo, hasta 7 pax, desde {excursionBaja4h} € con IVA, patrón, amarre, limpieza y seguro incluidos — combustible aparte). La tercera alternativa es ir en coche a Tossa (20 min desde Lloret) y alquilar barco sin licencia localmente allí.',
         crossLinkingText: 'También ofrecemos servicio para turistas alojados en <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> y <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Desde estos pueblos de la costa del Maresme se llega al Puerto de Blanes en 10-20 minutos en coche.',
         relatedTitle: 'Servicios y destinos relacionados',
         relatedCostaBrava: 'Más destinos en la Costa Brava',
@@ -1113,7 +1113,7 @@ export const es: Translations = {
         },
         {
           question: '¿Qué calas se pueden alcanzar en barco desde Blanes si estoy alojado en Malgrat?',
-          answer: 'Con un barco sin licencia desde Blanes llegas en 25 minutos a Playa de Fenals (sur de Lloret), pasando por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. Con barco con Licencia Básica puedes llegar a Tossa de Mar (45 min) y más allá.',
+          answer: 'Con un barco sin licencia desde Blanes llegas en 25 minutos a Playa de Fenals (sur de Lloret), pasando por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. Con barco con Licencia de Navegación Básica puedes llegar a Tossa de Mar (45 min) y más allá.',
         },
         {
           question: '¿Hay servicio de transfer desde hoteles de Malgrat al Puerto de Blanes?',
@@ -1145,7 +1145,7 @@ export const es: Translations = {
         },
         {
           question: '¿Cuál es la mejor excursión en barco si me alojo en Santa Susanna?',
-          answer: 'Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 135 EUR para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} EUR, ideal si no tienes experiencia náutica); (c) Barco con Licencia Básica si alguno del grupo tiene titulación (desde 240 EUR / 4h).',
+          answer: 'Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 135 EUR para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} EUR, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación Básica si alguno del grupo tiene titulación (desde 240 EUR / 4h).',
         },
         {
           question: '¿Puedo hacer una excursión en barco al atardecer desde Santa Susanna?',
@@ -1216,7 +1216,7 @@ export const es: Translations = {
         },
         {
           question: '¿Puedo hacer una excursión en barco desde Calella a Tossa de Mar?',
-          answer: 'No directamente desde Calella (no hay alquiler). Desde Blanes sí: con un barco con Licencia Básica de Navegación (LBN) llegas a Tossa en 45 min (desde {licBaja2h} EUR/2h), o con nuestra Excursión Privada con Capitán 4h hasta Tossa incluyendo Cala Bona y Vila Vella (desde {excursionBaja4h} EUR para hasta 7 personas). Los barcos sin licencia no pueden llegar a Tossa por el límite legal de 2 millas.',
+          answer: 'No directamente desde Calella (no hay alquiler). Desde Blanes sí: con un barco con Licencia de Navegación Básica (LNB) llegas a Tossa en 45 min (desde {licBaja2h} EUR/2h), o con nuestra Excursión Privada con Capitán 4h hasta Tossa incluyendo Cala Bona y Vila Vella (desde {excursionBaja4h} EUR para hasta 7 personas). Los barcos sin licencia no pueden llegar a Tossa por el límite legal de 2 millas.',
         },
         {
           question: '¿Cuánto cuesta el tren R1 de Calella a Blanes?',
@@ -1822,7 +1822,7 @@ export const es: Translations = {
     withoutLicenseDesc: 'Te enseñamos en 15 minutos. Gasolina incluida. Perfecto para familias.',
     withLicenseDesc: 'Más potencia, más velocidad, más lejos. Para navegantes con titulación.',
     noLicenseNeeded: 'Sin titulación necesaria',
-    licenseRequired: 'Requiere Licencia Básica o superior',
+    licenseRequired: 'Requiere Licencia de Navegación Básica o superior',
     noLicenseFeature1: 'Barcos de hasta 15CV, fáciles de manejar',
     noLicenseFeature2: 'Perfectos para calas y playas cercanas',
     noLicenseFeature3: 'Gasolina incluida en el precio',
@@ -1917,12 +1917,12 @@ export const es: Translations = {
       {
         id: 'rango-sin-licencia',
         question: '¿Hasta dónde puedo llegar con un barco sin licencia desde Blanes?',
-        answer: 'Con un barco sin licencia (2 millas de costa, 5 nudos, 15 CV) llegas hasta la Playa de Fenals, en el extremo sur de Lloret de Mar. En el trayecto pasas por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. La Playa de Lloret (centro) y Cala Canyelles quedan al norte de Fenals, fuera del rango sin licencia — requieren barco con Licencia Básica de Navegación (LBN) o Excursión Privada con Capitán.',
+        answer: 'Con un barco sin licencia (2 millas de costa, 5 nudos, 15 CV) llegas hasta la Playa de Fenals, en el extremo sur de Lloret de Mar. En el trayecto pasas por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. La Playa de Lloret (centro) y Cala Canyelles quedan al norte de Fenals, fuera del rango sin licencia — requieren barco con Licencia de Navegación Básica (LNB) o Excursión Privada con Capitán.',
       },
       {
         id: 'tossa-sin-licencia',
         question: '¿Puedo llegar a Tossa de Mar sin licencia?',
-        answer: 'No. Tossa de Mar está fuera del rango legal de un barco sin licencia. Para llegar a Tossa desde Blanes necesitas (1) un barco con Licencia Básica de Navegación (LBN), o (2) la Excursión Privada con Capitán. La otra opción es ir en coche a Tossa (20 minutos desde Lloret) y alquilar un barco sin licencia localmente allí.',
+        answer: 'No. Tossa de Mar está fuera del rango legal de un barco sin licencia. Para llegar a Tossa desde Blanes necesitas (1) un barco con Licencia de Navegación Básica (LNB), o (2) la Excursión Privada con Capitán. La otra opción es ir en coche a Tossa (20 minutos desde Lloret) y alquilar un barco sin licencia localmente allí.',
       },
       {
         id: 'precios',
@@ -2231,8 +2231,8 @@ export const es: Translations = {
     "remus-450-ii": "Mismo modelo que nuestro barco más popular, con disponibilidad garantizada incluso en pleno agosto. Ideal si la Remus 450 ya está reservada: disfrutas del mismo confort, la misma estabilidad y el toldo Bi Mini que tanto valoran las familias en la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
     "astec-400": "La opción más económica para parejas y familias que quieren disfrutar del mar sin gastar de más. Al ser 2-4 personas, el precio por persona es el más bajo de toda la flota. Estable, fácil de manejar y con toldo Bi Mini para proteger a los peques del sol. Fondea en calas tranquilas cerca de Blanes sin necesidad de carnet náutico. Gasolina, seguro y equipo de seguridad incluidos.",
     "astec-480": "La experiencia premium sin necesidad de carnet náutico. Con 4,80m de eslora, equipo de música bluetooth, solárium acolchado y el doble de depósito de combustible, es la embarcación sin licencia más completa de Blanes. Navega con tu música favorita hacia las calas más bonitas de la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
-    "trimarchi-57s": "110cv de diseño italiano para grupos de hasta 7 personas que quieren adrenalina y confort a partes iguales. Solárium doble en proa y popa para tomar el sol, mesa central para comer fondeados en una cala y la potencia para llegar a cualquier rincón entre Blanes y Tossa de Mar en minutos. La embarcación que elige quien quiere sentir la velocidad sin renunciar a nada. Requiere Licencia Básica de Navegación (LBN).",
-    "mingolla-brava-19": "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere Licencia Básica de Navegación (LBN).",
+    "trimarchi-57s": "110cv de diseño italiano para grupos de hasta 7 personas que quieren adrenalina y confort a partes iguales. Solárium doble en proa y popa para tomar el sol, mesa central para comer fondeados en una cala y la potencia para llegar a cualquier rincón entre Blanes y Tossa de Mar en minutos. La embarcación que elige quien quiere sentir la velocidad sin renunciar a nada. Requiere Licencia de Navegación Básica (LNB).",
+    "mingolla-brava-19": "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere Licencia de Navegación Básica (LNB).",
     "pacific-craft-625": "Lo mejor que puedes alquilar en Blanes. 6,24 metros de eslora, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere licencia náutica (PER/PNB).",
     "excursion-privada": "Tú solo disfrutas: nuestro patrón profesional te lleva a calas secretas, cuevas marinas y rincones inaccesibles a pie entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según viento y corrientes. Ideal para celebraciones, aniversarios o familias que quieren una excursión privada exclusiva por la Costa Brava sin preocuparse de nada.",
   },
@@ -2240,7 +2240,7 @@ export const es: Translations = {
   rangeFromBlanes: {
     eyebrowHome: 'RANGO REAL DE NAVEGACIÓN',
     headlineHome: 'Hasta dónde llegas desde Blanes — sin licencia y con licencia',
-    introHome: 'Con un barco sin licencia navegas legalmente hasta 2 millas de la costa a 5 nudos. Desde el puerto de Blanes eso son 7 calas de Costa Brava auténtica en una sola jornada, con Playa de Fenals (sur de Lloret de Mar) como límite norte. Con Licencia Básica de Navegación (LBN) puedes extender la ruta hasta Tossa de Mar, Sant Feliu y Platja d\'Aro.',
+    introHome: 'Con un barco sin licencia navegas legalmente hasta 2 millas de la costa a 5 nudos. Desde el puerto de Blanes eso son 7 calas de Costa Brava auténtica en una sola jornada, con Playa de Fenals (sur de Lloret de Mar) como límite norte. Con Licencia de Navegación Básica (LNB) puedes extender la ruta hasta Tossa de Mar, Sant Feliu y Platja d\'Aro.',
     eyebrowLloret: 'TRAMO SIN LICENCIA — 25 MIN DE NAVEGACIÓN',
     headlineLloret: 'Las 7 calas entre Blanes y Playa de Fenals',
     introLloret: 'En orden desde el puerto de Blanes. Distancias acumuladas aproximadas a 5 nudos de crucero.',
@@ -2249,8 +2249,8 @@ export const es: Translations = {
     limitBoxTitle: '¿Por qué Fenals es el límite?',
     limitBoxBody: 'Un barco sin licencia puede navegar hasta 2 millas náuticas de la costa a 5 nudos y 15 CV. Desde el puerto de Blanes, Playa de Fenals está exactamente en el borde de esa distancia siguiendo la línea de costa.',
     noteNorthOfFenals: 'Nota: la Playa de Lloret (centro), Cala Banys y Cala Canyelles están al norte de Fenals — quedan fuera del rango sin licencia.',
-    conLicenciaTitle: 'Extensión con Licencia Básica de Navegación (LBN)',
-    conLicenciaIntro: 'Con Licencia Básica de Navegación (LBN) o patrón incluido, extiendes la ruta al norte:',
+    conLicenciaTitle: 'Extensión con Licencia de Navegación Básica (LNB)',
+    conLicenciaIntro: 'Con Licencia de Navegación Básica (LNB) o patrón incluido, extiendes la ruta al norte:',
     ext: {
       lloretCenter: 'Lloret centro y Cala Banys (pasado Fenals)',
       canyelles: 'Cala Canyelles — pequeño puerto náutico',
@@ -2259,7 +2259,7 @@ export const es: Translations = {
       platjaAro: 'Sant Feliu de Guíxols, S\'Agaró, Platja d\'Aro (medio día / día completo)',
     },
     ctaFleet: 'Ver flota sin licencia',
-    ctaLicensed: 'Barcos con Licencia Básica (LBN)',
+    ctaLicensed: 'Barcos con Licencia de Navegación Básica (LNB)',
     internalLinks: '¿Quieres saber más? Consulta la guía completa del tramo en <a href="/es/alquiler-barcos-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar desde el mar</a> o la ruta con licencia hasta <a href="/es/alquiler-barcos-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Precios completos en <a href="/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Cuánto cuesta alquilar un barco en Blanes</a>.',
   },
 
@@ -3014,7 +3014,7 @@ export const es: Translations = {
         },
         {
           title: '4. Requisitos para el arrendatario',
-          body: '- El patrón debe ser mayor de 18 años y presentar DNI o pasaporte en vigor.\n- Para embarcaciones con licencia, el patrón debe presentar la titulación náutica original (LBN, PER, PNB, Capitán de Yate o equivalente europea).\n- Para embarcaciones sin licencia, no se requiere titulación, pero el patrón recibirá una formación de 15 minutos antes de zarpar.\n- Los menores de edad deberán ir acompañados de un adulto responsable y llevar chaleco salvavidas obligatorio durante la navegación.',
+          body: '- El patrón debe ser mayor de 18 años y presentar DNI o pasaporte en vigor.\n- Para embarcaciones con licencia, el patrón debe presentar la titulación náutica original (LNB, PER, PNB, Capitán de Yate o equivalente europea).\n- Para embarcaciones sin licencia, no se requiere titulación, pero el patrón recibirá una formación de 15 minutos antes de zarpar.\n- Los menores de edad deberán ir acompañados de un adulto responsable y llevar chaleco salvavidas obligatorio durante la navegación.',
         },
         {
           title: '5. Fianza y condiciones de pago',
@@ -3082,8 +3082,8 @@ export const es: Translations = {
   glossaryPage: {
     seo: {
       title: 'Glosario Náutico — Alquiler Barcos Costa Brava | Costa Brava Rent a Boat',
-      description: 'Glosario de términos náuticos esenciales: LBN, PER, PNB, nudos, millas náuticas, eslora, fondear, calas y partes del barco. Diccionario práctico para alquilar un barco en Blanes.',
-      keywords: 'glosario nautico, que es LBN, que es PER, que es PNB, millas nauticas, nudos, eslora, fondear, glosario barcos',
+      description: 'Glosario de términos náuticos esenciales: LNB, PER, PNB, nudos, millas náuticas, eslora, fondear, calas y partes del barco. Diccionario práctico para alquilar un barco en Blanes.',
+      keywords: 'glosario nautico, que es LNB, que es PER, que es PNB, millas nauticas, nudos, eslora, fondear, glosario barcos',
     },
     breadcrumbName: 'Glosario Náutico',
     h1: 'Glosario Náutico',
@@ -3103,12 +3103,12 @@ export const es: Translations = {
       equipamiento: 'Equipamiento',
     },
     terms: [
-      { term: 'LBN (Licencia Básica de Navegación)', definition: 'Titulación náutica española que permite gobernar embarcaciones de hasta 8 metros de eslora y hasta 5 millas de la costa. Obligatoria para alquilar barcos con más de 15 CV. Válida de por vida tras aprobar el examen teórico + curso práctico.', category: 'titulacion' },
-      { term: 'PER (Patrón de Embarcaciones de Recreo)', definition: 'Titulación náutica española superior a la LBN. Permite gobernar embarcaciones de hasta 15 metros de eslora y hasta 12 millas de la costa. Requiere examen teórico + prácticas de navegación + radiocomunicaciones.', category: 'titulacion' },
-      { term: 'PNB (Patrón de Navegación Básica)', definition: 'Antigua titulación náutica reemplazada en 2014 por la LBN. Permite gobernar embarcaciones de hasta 8 metros hasta 5 millas. Los que la tengan siguen siendo válidos sin necesidad de actualizar a LBN.', category: 'titulacion' },
+      { term: 'LNB (Licencia de Navegación Básica)', definition: 'Titulación náutica española que permite gobernar embarcaciones de hasta 8 metros de eslora y hasta 5 millas de la costa. Obligatoria para alquilar barcos con más de 15 CV. Válida de por vida tras aprobar el examen teórico + curso práctico.', category: 'titulacion' },
+      { term: 'PER (Patrón de Embarcaciones de Recreo)', definition: 'Titulación náutica española superior a la LNB. Permite gobernar embarcaciones de hasta 15 metros de eslora y hasta 12 millas de la costa. Requiere examen teórico + prácticas de navegación + radiocomunicaciones.', category: 'titulacion' },
+      { term: 'PNB (Patrón de Navegación Básica)', definition: 'Antigua titulación náutica reemplazada en 2014 por la LNB. Permite gobernar embarcaciones de hasta 8 metros hasta 5 millas. Los que la tengan siguen siendo válidos sin necesidad de actualizar a LNB.', category: 'titulacion' },
       { term: 'Milla náutica', definition: 'Unidad de distancia marítima internacional equivalente a 1.852 metros (1,852 km). Las embarcaciones sin licencia en España pueden navegar hasta un máximo de 2 millas náuticas de la costa (3,7 km).', category: 'unidad' },
       { term: 'Nudo', definition: 'Unidad de velocidad marítima equivalente a 1 milla náutica por hora (1,852 km/h). Las embarcaciones sin licencia están limitadas a 5 nudos (9,3 km/h). Los barcos con licencia pueden alcanzar mucha más velocidad.', category: 'unidad' },
-      { term: 'Eslora', definition: 'Longitud total del barco, medida de proa a popa. Unidad: metros. En España, la eslora determina la titulación náutica mínima: hasta 5m puede no requerir título, hasta 8m requiere LBN, hasta 15m requiere PER.', category: 'unidad' },
+      { term: 'Eslora', definition: 'Longitud total del barco, medida de proa a popa. Unidad: metros. En España, la eslora determina la titulación náutica mínima: hasta 5m puede no requerir título, hasta 8m requiere LNB, hasta 15m requiere PER.', category: 'unidad' },
       { term: 'Manga', definition: 'Anchura máxima del barco, medida de un costado a otro en su punto más ancho. Unidad: metros. Junto con la eslora define la estabilidad y espacio disponible a bordo.', category: 'unidad' },
       { term: 'CV (caballos de vapor)', definition: 'Unidad de potencia del motor marino. Los barcos sin licencia en España están limitados a 15 CV. Los barcos con licencia típicamente tienen 40-150 CV, permitiendo navegación más rápida y alcance mayor.', category: 'unidad' },
       { term: 'Fondear', definition: 'Acción de detener el barco lanzando el ancla al fondo marino para mantenerlo estático en una cala o zona sin amarre. Requiere elegir fondo arenoso (no rocoso), echar cabo suficiente (3-4 veces la profundidad) y verificar que el ancla agarra.', category: 'accion' },
@@ -3155,7 +3155,7 @@ export const es: Translations = {
 
   licenseTypes: {
     none: 'No requiere licencia',
-    navegacion: 'Licencia Básica de Navegación (LBN)',
+    navegacion: 'Licencia de Navegación Básica (LNB)',
     pnb: 'Patrón para Navegación Básica (PNB)',
     per: 'Patrón de Embarcaciones de Recreo (PER)',
     patron_yate: 'Patrón de Yate',

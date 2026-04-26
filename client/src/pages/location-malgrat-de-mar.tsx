@@ -47,7 +47,7 @@ const config: LocationConfig = {
     },
     {
       question: "¿Qué calas se pueden alcanzar en barco desde Blanes si estoy alojado en Malgrat?",
-      answer: "Con un barco sin licencia desde Blanes llegas en 25 minutos a Playa de Fenals (sur de Lloret), pasando por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. Con barco con Licencia Básica puedes llegar a Tossa de Mar (45 min) y más allá.",
+      answer: "Con un barco sin licencia desde Blanes llegas en 25 minutos a Playa de Fenals (sur de Lloret), pasando por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. Con barco con Licencia de Navegación Básica puedes llegar a Tossa de Mar (45 min) y más allá.",
     },
     {
       question: "¿Hay servicio de transfer desde hoteles de Malgrat al Puerto de Blanes?",

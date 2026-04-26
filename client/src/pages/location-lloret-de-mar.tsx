@@ -122,7 +122,7 @@ export default function LocationLloretPage() {
     },
     {
       question: "¿Puedo llegar a Tossa de Mar desde Lloret con barco sin licencia?",
-      answer: "No. Tossa está 4–5 millas al norte de Fenals, fuera del rango legal sin licencia. Para ir a Tossa en barco desde Blanes necesitas (a) barco con Licencia Básica de Navegación (LBN), o (b) Excursión Privada con Capitán."
+      answer: "No. Tossa está 4–5 millas al norte de Fenals, fuera del rango legal sin licencia. Para ir a Tossa en barco desde Blanes necesitas (a) barco con Licencia de Navegación Básica (LNB), o (b) Excursión Privada con Capitán."
     },
     {
       question: "¿Qué pasa si el mar está malo?",

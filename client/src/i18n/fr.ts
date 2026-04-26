@@ -1200,8 +1200,8 @@ export const fr: Translations = {
     "remus-450-ii": "Même modèle que notre bateau le plus populaire, avec disponibilité garantie même en plein mois d'août. Idéal quand le Remus 450 est déjà réservé : profitez du même confort, de la même stabilité et de l'auvent Bi Mini tant apprécié des familles sur la Costa Brava. Carburant, assurance et équipement de sécurité inclus.",
     "astec-400": "L'option la plus économique pour les couples et familles qui veulent profiter de la mer sans trop dépenser. À 2-4 passagers, le prix par personne est le plus bas de toute la flotte. Stable, facile à manoeuvrer et avec un auvent Bi Mini pour protéger les petits. Mouillez dans des criques calmes près de Blanes — aucun permis bateau nécessaire. Carburant, assurance et équipement de sécurité inclus.",
     "astec-480": "L'expérience premium sans permis. Avec 4,80 m, haut-parleurs Bluetooth, solarium rembourré et double réservoir, c'est le bateau sans permis le plus complet de Blanes. Naviguez vers les plus belles criques de la Costa Brava avec votre musique préférée. Carburant, assurance et équipement de sécurité inclus.",
-    "trimarchi-57s": "110 cv de design italien pour des groupes jusqu'à 7 personnes qui veulent adrénaline et confort à parts égales. Double solarium à la proue et à la poupe, table centrale pour déjeuner au mouillage dans une crique et la puissance pour atteindre n'importe quel recoin entre Blanes et Tossa de Mar en minutes. Le bateau de ceux qui veulent de la vitesse sans rien sacrifier. Permis de Navigation de Base (LBN) requis.",
-    "mingolla-brava-19": "Le hors-bord idéal pour explorer toute la côte : Lloret de Mar en 15 minutes, Tossa de Mar en une demi-heure. Avec 80 cv, GPS et sondeur, vous atteindrez des criques inaccessibles aux autres bateaux. Douche d'eau douce, Bluetooth et arceau inox pour les sports nautiques. Tout l'équipement pour parcourir la Costa Brava en toute liberté. Permis de Navigation de Base (LBN) requis.",
+    "trimarchi-57s": "110 cv de design italien pour des groupes jusqu'à 7 personnes qui veulent adrénaline et confort à parts égales. Double solarium à la proue et à la poupe, table centrale pour déjeuner au mouillage dans une crique et la puissance pour atteindre n'importe quel recoin entre Blanes et Tossa de Mar en minutes. Le bateau de ceux qui veulent de la vitesse sans rien sacrifier. Permis de Navigation de Base (LNB) requis.",
+    "mingolla-brava-19": "Le hors-bord idéal pour explorer toute la côte : Lloret de Mar en 15 minutes, Tossa de Mar en une demi-heure. Avec 80 cv, GPS et sondeur, vous atteindrez des criques inaccessibles aux autres bateaux. Douche d'eau douce, Bluetooth et arceau inox pour les sports nautiques. Tout l'équipement pour parcourir la Costa Brava en toute liberté. Permis de Navigation de Base (LNB) requis.",
     "pacific-craft-625": "Le meilleur bateau à louer à Blanes. 6,24 m, moteur Yamaha 115 cv et espace de luxe pour 7 personnes. Double solarium, table pour déjeuner au mouillage, douche d'eau douce et commandes électroniques. Pour ceux qui ne veulent aucun compromis et recherchent l'expérience nautique la plus complète de la Costa Brava. Permis bateau requis (permis côtier).",
     "excursion-privada": "Vous n'avez qu'à profiter : notre skipper professionnel vous emmène vers des criques secrètes, des grottes marines et des recoins inaccessibles à pied entre Blanes et Tossa de Mar. Vous mouillerez dans la crique parfaite du jour, choisie selon le vent et les courants. Idéal pour les célébrations, anniversaires ou familles qui souhaitent une excursion privée exclusive sur la Costa Brava sans aucun souci.",
   },
@@ -1462,7 +1462,7 @@ export const fr: Translations = {
   },
   licenseTypes: {
     none: 'Aucun permis requis',
-    navegacion: 'Licence de Base de Navigation (LBN)',
+    navegacion: 'Licence de Base de Navigation (LNB)',
     pnb: 'Patron pour Navigation Basique (PNB)',
     per: 'Patron d\'Embarcations de Plaisance (PER)',
     patron_yate: 'Patron de Yacht',
@@ -1949,7 +1949,7 @@ export const fr: Translations = {
         },
         {
           question: 'Puis-je rejoindre Tossa de Mar depuis Lloret avec un bateau sans permis ?',
-          answer: 'Non. Tossa se trouve à 4-5 milles au nord de Fenals, en dehors de la limite légale sans permis. Pour aller à Tossa en bateau depuis Blanes, vous avez besoin (a) d\'un bateau avec Permis de Navigation de Base (LBN), ou (b) d\'une Excursion Privée avec Capitaine.',
+          answer: 'Non. Tossa se trouve à 4-5 milles au nord de Fenals, en dehors de la limite légale sans permis. Pour aller à Tossa en bateau depuis Blanes, vous avez besoin (a) d\'un bateau avec Permis de Navigation de Base (LNB), ou (b) d\'une Excursion Privée avec Capitaine.',
         },
         {
           question: 'Que se passe-t-il si la mer est mauvaise ?',
@@ -2018,7 +2018,7 @@ export const fr: Translations = {
       faqItems: [
         {
           question: 'Puis-je rejoindre Tossa de Mar avec un bateau sans permis depuis Blanes ?',
-          answer: 'Non. Les bateaux sans permis (2 milles de la côte, 5 nœuds, 15 CV) vont jusqu\'à Playa de Fenals (sud de Lloret), 4 milles avant Tossa. Pour rejoindre Tossa, vous avez besoin d\'un Permis de Navigation de Base (LBN) ou de réserver l\'Excursion Privée avec Capitaine.',
+          answer: 'Non. Les bateaux sans permis (2 milles de la côte, 5 nœuds, 15 CV) vont jusqu\'à Playa de Fenals (sud de Lloret), 4 milles avant Tossa. Pour rejoindre Tossa, vous avez besoin d\'un Permis de Navigation de Base (LNB) ou de réserver l\'Excursion Privée avec Capitaine.',
         },
         {
           question: 'Combien de temps faut-il en bateau de Blanes à Tossa ?',
@@ -2029,7 +2029,7 @@ export const fr: Translations = {
           answer: 'Pacific Craft 625 avec skipper professionnel, 4 h maximum, jusqu\'à 7 personnes. À partir de {excursionBaja4h} € en basse saison (avril-juin, septembre-clôture). TVA, skipper, amarrage, nettoyage et assurance inclus. Carburant en sus.',
         },
         {
-          question: 'Combien coûte la location pour Tossa avec le Permis de Base (LBN) ?',
+          question: 'Combien coûte la location pour Tossa avec le Permis de Base (LNB) ?',
           answer: 'Formules fixes 2 h / 4 h / 8 h, sans skipper. À partir de {licBaja2h} € (2 h basse saison) avec les bateaux avec permis. 3 paliers saisonniers. Caution 500 €. TVA, amarrage, nettoyage et assurance inclus ; carburant en sus.',
         },
         {
@@ -2092,7 +2092,7 @@ export const fr: Translations = {
         ctaDescription: 'Réservez votre bateau depuis le Port de Blanes et vivez l\'expérience unique d\'arriver par la mer au plus beau village médiéval de la Costa Brava.',
         ctaButton: 'Réserver une Excursion à Tossa',
         warningTitle: 'Tossa n\'est pas accessible en bateau sans permis.',
-        warningBody: 'Les bateaux sans permis (2 milles, 5 nœuds, 15 CV) vont jusqu\'à Playa de Fenals (sud de Lloret) — 4 milles avant Tossa. Pour rejoindre Tossa depuis Blanes, vous avez besoin (1) d\'une location avec Permis Côtier / LBN (forfaits fermés 2 h / 4 h / 8 h à partir de {licBaja2h} € avec Mingolla Brava 19 ou Trimarchi 57S, TVA, amarrage, nettoyage et assurance inclus ; carburant et caution 500 € en sus), ou (2) de l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursion Privée avec Capitaine</a> (Pacific Craft 625 + skipper, 4 h maximum, jusqu\'à 7 pax, à partir de {excursionBaja4h} € avec TVA, skipper, amarrage, nettoyage et assurance inclus — carburant en sus). La troisième alternative est de vous rendre en voiture à Tossa (20 min depuis Lloret) et de louer un bateau sans permis sur place.',
+        warningBody: 'Les bateaux sans permis (2 milles, 5 nœuds, 15 CV) vont jusqu\'à Playa de Fenals (sud de Lloret) — 4 milles avant Tossa. Pour rejoindre Tossa depuis Blanes, vous avez besoin (1) d\'une location avec Permis Côtier / LNB (forfaits fermés 2 h / 4 h / 8 h à partir de {licBaja2h} € avec Mingolla Brava 19 ou Trimarchi 57S, TVA, amarrage, nettoyage et assurance inclus ; carburant et caution 500 € en sus), ou (2) de l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursion Privée avec Capitaine</a> (Pacific Craft 625 + skipper, 4 h maximum, jusqu\'à 7 pax, à partir de {excursionBaja4h} € avec TVA, skipper, amarrage, nettoyage et assurance inclus — carburant en sus). La troisième alternative est de vous rendre en voiture à Tossa (20 min depuis Lloret) et de louer un bateau sans permis sur place.',
         crossLinkingText: 'Nous offrons également nos services aux touristes séjournant à <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> et <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Depuis ces villes de la côte du Maresme, le Port de Blanes est accessible en 10-20 minutes en voiture.',
         relatedTitle: 'Services et destinations associés',
         relatedCostaBrava: 'Plus de destinations en Costa Brava',
@@ -2268,7 +2268,7 @@ export const fr: Translations = {
         },
         {
           question: 'Puis-je faire une excursion en bateau depuis Calella jusqu\'à Tossa de Mar ?',
-          answer: 'Pas directement depuis Calella (il n\'y a pas de location). Depuis Blanes oui : avec un bateau avec Permis de Navigation de Base (LBN), vous atteignez Tossa en 45 min (à partir de {licBaja2h} EUR/2h), ou avec notre Excursion Privée avec Capitaine 4h jusqu\'à Tossa incluant Cala Bona et Vila Vella (à partir de {excursionBaja4h} EUR pour jusqu\'à 7 personnes). Les bateaux sans permis ne peuvent pas atteindre Tossa en raison de la limite légale de 2 milles.',
+          answer: 'Pas directement depuis Calella (il n\'y a pas de location). Depuis Blanes oui : avec un bateau avec Permis de Navigation de Base (LNB), vous atteignez Tossa en 45 min (à partir de {licBaja2h} EUR/2h), ou avec notre Excursion Privée avec Capitaine 4h jusqu\'à Tossa incluant Cala Bona et Vila Vella (à partir de {excursionBaja4h} EUR pour jusqu\'à 7 personnes). Les bateaux sans permis ne peuvent pas atteindre Tossa en raison de la limite légale de 2 milles.',
         },
         {
           question: 'Combien coûte le train R1 de Calella à Blanes ?',
@@ -2649,8 +2649,8 @@ export const fr: Translations = {
   glossaryPage: {
     seo: {
       title: 'Glossaire Nautique — Location Bateaux Costa Brava | Costa Brava Rent a Boat',
-      description: 'Glossaire des termes nautiques essentiels : LBN, PER, PNB, nœuds, milles nautiques, longueur, mouiller, criques et parties du bateau. Dictionnaire pratique pour louer un bateau à Blanes.',
-      keywords: 'glossaire nautique, qu\'est-ce que LBN, qu\'est-ce que PER, qu\'est-ce que PNB, milles nautiques, nœuds, longueur, mouiller, glossaire bateaux',
+      description: 'Glossaire des termes nautiques essentiels : LNB, PER, PNB, nœuds, milles nautiques, longueur, mouiller, criques et parties du bateau. Dictionnaire pratique pour louer un bateau à Blanes.',
+      keywords: 'glossaire nautique, qu\'est-ce que LNB, qu\'est-ce que PER, qu\'est-ce que PNB, milles nautiques, nœuds, longueur, mouiller, glossaire bateaux',
     },
     breadcrumbName: 'Glossaire Nautique',
     h1: 'Glossaire Nautique',
@@ -2671,18 +2671,18 @@ export const fr: Translations = {
     },
     terms: [
       {
-        term: 'LBN (Licencia Básica de Navegación)',
+        term: 'LNB (Licencia de Navegación Básica)',
         definition: 'Permis nautique espagnol permettant de piloter des embarcations jusqu\'à 8 mètres de longueur et jusqu\'à 5 milles de la côte. Obligatoire pour louer des bateaux de plus de 15 CV. Valable à vie après avoir réussi l\'examen théorique + formation pratique.',
         category: 'titulacion',
       },
       {
         term: 'PER (Patrón de Embarcaciones de Recreo)',
-        definition: 'Permis nautique espagnol supérieur au LBN. Permet de piloter des embarcations jusqu\'à 15 mètres de longueur et jusqu\'à 12 milles de la côte. Nécessite un examen théorique + pratiques de navigation + radiocommunications.',
+        definition: 'Permis nautique espagnol supérieur au LNB. Permet de piloter des embarcations jusqu\'à 15 mètres de longueur et jusqu\'à 12 milles de la côte. Nécessite un examen théorique + pratiques de navigation + radiocommunications.',
         category: 'titulacion',
       },
       {
         term: 'PNB (Patrón de Navegación Básica)',
-        definition: 'Ancien permis nautique remplacé en 2014 par le LBN. Permet de piloter des embarcations jusqu\'à 8 mètres jusqu\'à 5 milles. Ceux qui le possèdent restent valables sans nécessité de mise à jour vers le LBN.',
+        definition: 'Ancien permis nautique remplacé en 2014 par le LNB. Permet de piloter des embarcations jusqu\'à 8 mètres jusqu\'à 5 milles. Ceux qui le possèdent restent valables sans nécessité de mise à jour vers le LNB.',
         category: 'titulacion',
       },
       {
@@ -2697,7 +2697,7 @@ export const fr: Translations = {
       },
       {
         term: 'Eslora',
-        definition: 'Longueur totale du bateau, mesurée de la proue à la poupe. Unité : mètres. En Espagne, la longueur détermine le permis nautique minimum : jusqu\'à 5m peut ne pas nécessiter de permis, jusqu\'à 8m nécessite le LBN, jusqu\'à 15m nécessite le PER.',
+        definition: 'Longueur totale du bateau, mesurée de la proue à la poupe. Unité : mètres. En Espagne, la longueur détermine le permis nautique minimum : jusqu\'à 5m peut ne pas nécessiter de permis, jusqu\'à 8m nécessite le LNB, jusqu\'à 15m nécessite le PER.',
         category: 'unidad',
       },
       {
@@ -3074,7 +3074,7 @@ export const fr: Translations = {
         },
         {
           title: '4. Conditions requises pour le locataire',
-          body: '- Le capitaine doit être âgé de plus de 18 ans et présenter une carte d\'identité ou un passeport en cours de validité.\n- Pour les embarcations avec permis, le capitaine doit présenter le permis nautique original (LBN, PER, PNB, Capitaine de Yacht ou équivalent européen).\n- Pour les embarcations sans permis, aucun titre n\'est requis, mais le capitaine recevra une formation de 15 minutes avant de prendre la mer.\n- Les mineurs doivent être accompagnés d\'un adulte responsable et porter un gilet de sauvetage obligatoire pendant la navigation.',
+          body: '- Le capitaine doit être âgé de plus de 18 ans et présenter une carte d\'identité ou un passeport en cours de validité.\n- Pour les embarcations avec permis, le capitaine doit présenter le permis nautique original (LNB, PER, PNB, Capitaine de Yacht ou équivalent européen).\n- Pour les embarcations sans permis, aucun titre n\'est requis, mais le capitaine recevra une formation de 15 minutes avant de prendre la mer.\n- Les mineurs doivent être accompagnés d\'un adulte responsable et porter un gilet de sauvetage obligatoire pendant la navigation.',
         },
         {
           title: '5. Caution et conditions de paiement',

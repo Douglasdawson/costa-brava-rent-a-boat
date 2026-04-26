@@ -92,8 +92,8 @@ export default function GlosarioPage() {
     <div className="min-h-screen bg-background">
       <SEO
         title={g?.seo?.title ?? "Glosario Náutico — Alquiler Barcos Costa Brava | Costa Brava Rent a Boat"}
-        description={g?.seo?.description ?? "Glosario de términos náuticos esenciales: LBN, PER, PNB, nudos, millas náuticas, eslora, fondear, calas y partes del barco. Diccionario práctico para alquilar un barco en Blanes."}
-        keywords={g?.seo?.keywords ?? "glosario nautico, que es LBN, que es PER, que es PNB, millas nauticas, nudos, eslora, fondear, glosario barcos"}
+        description={g?.seo?.description ?? "Glosario de términos náuticos esenciales: LNB, PER, PNB, nudos, millas náuticas, eslora, fondear, calas y partes del barco. Diccionario práctico para alquilar un barco en Blanes."}
+        keywords={g?.seo?.keywords ?? "glosario nautico, que es LNB, que es PER, que es PNB, millas nauticas, nudos, eslora, fondear, glosario barcos"}
         canonical="https://www.costabravarentaboat.com/glosario"
         jsonLd={schema}
       />

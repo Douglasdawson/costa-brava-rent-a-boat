@@ -101,7 +101,7 @@ export default function ActivityFishingPage() {
         "priceValidUntil": "2026-10-31",
         "availability": "https://schema.org/InStock",
         "url": canonical,
-        "description": "Para pesca en aguas abiertas (serviolas, curricán). Requiere Licencia Básica de Navegación (LBN) o PER. Gasolina NO incluida.",
+        "description": "Para pesca en aguas abiertas (serviolas, curricán). Requiere Licencia de Navegación Básica (LNB) o PER. Gasolina NO incluida.",
       },
     ],
     "maximumAttendeeCapacity": 7,

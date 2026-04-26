@@ -103,7 +103,7 @@ export default function LocationTossaPage() {
   //
   // Tossa de Mar is OUT OF RANGE for a licence-free boat from Blanes (~7 nm,
   // over the 2-mile legal limit). The two ways to reach Tossa commercially:
-  //   (1) Auto-alquiler con Licencia Básica de Navegación (LBN) — packs cerrados 2h/4h/8h, 3 tiers
+  //   (1) Auto-alquiler con Licencia de Navegación Básica (LNB) — packs cerrados 2h/4h/8h, 3 tiers
   //       por temporada, 3 barcos de flota (Mingolla 19 / Trimarchi 57S /
   //       Pacific Craft 625). Datos canónicos en shared/boatData.ts.
   //   (2) Excursión Privada con Capitán — ÚNICO charter guiado del catálogo.
@@ -119,7 +119,7 @@ export default function LocationTossaPage() {
   const faqItems = tossaFaqFromI18n && tossaFaqFromI18n.length > 0 ? tossaFaqFromI18n : [
     {
       question: "¿Puedo llegar a Tossa de Mar con barco sin licencia desde Blanes?",
-      answer: "No. Los barcos sin licencia (2 millas de costa, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret), 4 millas antes de Tossa. Para llegar a Tossa necesitas Licencia Básica de Navegación (LBN) o contratar la Excursión Privada con Capitán."
+      answer: "No. Los barcos sin licencia (2 millas de costa, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret), 4 millas antes de Tossa. Para llegar a Tossa necesitas Licencia de Navegación Básica (LNB) o contratar la Excursión Privada con Capitán."
     },
     {
       question: "¿Cuánto se tarda en barco de Blanes a Tossa?",
@@ -130,7 +130,7 @@ export default function LocationTossaPage() {
       answer: "Pacific Craft 625 con patrón profesional, 4 h máximo, hasta 7 personas. Desde {excursionBaja4h} € temporada baja (abril-junio, septiembre-cierre). Incluye IVA, patrón, amarre, limpieza y seguro. Combustible aparte."
     },
     {
-      question: "¿Cuánto cuesta alquilar a Tossa con Licencia Básica (LBN)?",
+      question: "¿Cuánto cuesta alquilar a Tossa con Licencia de Navegación Básica (LNB)?",
       answer: "Packs cerrados 2 h / 4 h / 8 h, sin patrón. Desde {licBaja2h} € (2 h temporada baja) con los barcos con licencia. 3 tiers estacionales. Fianza 500 €. IVA, amarre, limpieza y seguro incluidos; combustible aparte."
     },
     {

@@ -104,11 +104,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Lloret de Mar en barco desde Blanes. Cala Banys, Santa Cristina y Sa Boadella a 25 min. Sin licencia desde 70\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
-      title: `Alquiler Barco Tossa de Mar | Licencia B\u00e1sica LBN o Excursi\u00f3n con Capit\u00e1n ${SEASON_YEAR}`,
-      description: "Llega a la Vila Vella de Tossa en 30-45 min desde Blanes. Con Licencia B\u00e1sica (LBN) desde 160\u20ac (pack 2h) o Excursi\u00f3n Privada con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte.",
-      keywords: "alquiler barco tossa de mar, vila vella tossa barco, licencia basica tossa, LBN tossa, excursion privada tossa, charter con patron tossa blanes, barco tossa con licencia",
-      ogTitle: "Alquiler Barco Tossa de Mar | LBN o Excursi\u00f3n con Capit\u00e1n",
-      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con LBN desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. 4.8\u2605."
+      title: `Alquiler Barco Tossa de Mar | LNB (Licencia de Navegaci\u00f3n B\u00e1sica) o Excursi\u00f3n con Capit\u00e1n ${SEASON_YEAR}`,
+      description: "Llega a la Vila Vella de Tossa en 30-45 min desde Blanes. Con Licencia de Navegaci\u00f3n B\u00e1sica (LNB) desde 160\u20ac (pack 2h) o Excursi\u00f3n Privada con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte.",
+      keywords: "alquiler barco tossa de mar, vila vella tossa barco, licencia de navegacion basica tossa, LNB tossa, excursion privada tossa, charter con patron tossa blanes, barco tossa con licencia",
+      ogTitle: "Alquiler Barco Tossa de Mar | LNB o Excursi\u00f3n con Capit\u00e1n",
+      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con LNB desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. 4.8\u2605."
     },
     locationMalgrat: {
       title: "Alquiler Barco Malgrat de Mar | Puerto Blanes a 10 min | Sin Licencia 70\u20ac/h",
@@ -140,10 +140,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicensed: {
       title: "Barcos Con Licencia Costa Brava | 80-115CV Blanes",
-      description: "3 barcos potentes de 80 a 115CV en Blanes. Lloret en 15 min, Tossa en 30 min. Con tu Licencia Basica o patron incluido. Reserva online.",
-      keywords: "alquiler barco costa brava con licencia, barcos con licencia blanes, alquiler barcos licencia basica costa brava, barcos potentes costa brava",
+      description: "3 barcos potentes de 80 a 115CV en Blanes. Lloret en 15 min, Tossa en 30 min. Con tu Licencia de Navegaci\u00f3n B\u00e1sica (LNB) o patr\u00f3n incluido. Reserva online.",
+      keywords: "alquiler barco costa brava con licencia, barcos con licencia blanes, alquiler barcos LNB costa brava, barcos potentes costa brava",
       ogTitle: "Barcos Con Licencia en Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 barcos potentes 80-115CV en Blanes. Con tu Licencia B\u00e1sica o con patr\u00f3n. Reserva online."
+      ogDescription: "3 barcos potentes 80-115CV en Blanes. Con tu LNB (Licencia de Navegaci\u00f3n B\u00e1sica) o con patr\u00f3n. Reserva online."
     },
     testimonios: {
       title: "Opiniones Clientes Alquiler Barcos Costa Brava | 4.8\u2605 · 300+ Reviews Google | Blanes",

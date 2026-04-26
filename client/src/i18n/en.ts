@@ -1259,8 +1259,8 @@ export const en: Translations = {
     "remus-450-ii": "Same model as our most popular boat, with guaranteed availability even in peak August. Ideal when the Remus 450 is already booked: enjoy the same comfort, stability and Bi Mini canopy that families on the Costa Brava love. Fuel, insurance and safety equipment included.",
     "astec-400": "The most affordable option for couples and families who want to enjoy the sea without overspending. With 2-4 passengers, the price per person is the lowest in the entire fleet. Stable, easy to handle and with a Bi Mini canopy to protect the little ones. Anchor in quiet coves near Blanes — no boating licence required. Fuel, insurance and safety equipment included.",
     "astec-480": "The premium no-licence experience. At 4.80 m, with Bluetooth speakers, a cushioned solarium and double fuel tank, it's the most complete no-licence boat in Blanes. Sail to the most beautiful Costa Brava coves with your favourite music. Fuel, insurance and safety equipment included.",
-    "trimarchi-57s": "110 hp of Italian design for groups of up to 7 who want equal parts adrenaline and comfort. Double bow and stern solariums for sunbathing, a central table for lunch anchored in a cove, and the power to reach any spot between Blanes and Tossa de Mar in minutes. The boat for those who want speed without giving anything up. Basic Navigation License (LBN) required.",
-    "mingolla-brava-19": "The ideal speedboat to explore the full coastline: Lloret de Mar in 15 minutes, Tossa de Mar in half an hour. With 80 hp, GPS and depth sounder, you'll reach coves other boats can't. Freshwater shower, Bluetooth and stainless-steel arch for water sports. All the gear to cruise the Costa Brava with total freedom. Basic Navigation License (LBN) required.",
+    "trimarchi-57s": "110 hp of Italian design for groups of up to 7 who want equal parts adrenaline and comfort. Double bow and stern solariums for sunbathing, a central table for lunch anchored in a cove, and the power to reach any spot between Blanes and Tossa de Mar in minutes. The boat for those who want speed without giving anything up. Basic Navigation License (LNB) required.",
+    "mingolla-brava-19": "The ideal speedboat to explore the full coastline: Lloret de Mar in 15 minutes, Tossa de Mar in half an hour. With 80 hp, GPS and depth sounder, you'll reach coves other boats can't. Freshwater shower, Bluetooth and stainless-steel arch for water sports. All the gear to cruise the Costa Brava with total freedom. Basic Navigation License (LNB) required.",
     "pacific-craft-625": "The best rental in Blanes. 6.24 m, 115 hp Yamaha engine and luxury space for 7. Double solarium, dining table for meals at anchor, freshwater shower and electronic controls. For those who want no compromises and seek the most complete boating experience on the Costa Brava. Boating licence required (ICC/Day Skipper).",
     "excursion-privada": "You just enjoy — our professional skipper takes you to secret coves, sea caves and spots inaccessible on foot between Blanes and Tossa de Mar. You'll anchor in the perfect cove of the day, chosen by wind and currents. Ideal for celebrations, anniversaries or families who want an exclusive private excursion on the Costa Brava with zero worries.",
   },
@@ -1521,7 +1521,7 @@ export const en: Translations = {
   },
   licenseTypes: {
     none: 'No license required',
-    navegacion: 'Basic Navigation License (LBN)',
+    navegacion: 'Basic Navigation License (LNB)',
     pnb: 'Basic Navigation Skipper (PNB)',
     per: 'Recreational Boat Skipper (PER)',
     patron_yate: 'Yacht Skipper',
@@ -2008,7 +2008,7 @@ export const en: Translations = {
         },
         {
           question: 'Can I reach Tossa de Mar from Lloret with a license-free boat?',
-          answer: 'No. Tossa is 4–5 miles north of Fenals, outside the legal range without a license. To go to Tossa by boat from Blanes you need (a) a boat with a Basic Navigation License (LBN), or (b) a Private Excursion with Captain.',
+          answer: 'No. Tossa is 4–5 miles north of Fenals, outside the legal range without a license. To go to Tossa by boat from Blanes you need (a) a boat with a Basic Navigation License (LNB), or (b) a Private Excursion with Captain.',
         },
         {
           question: 'What happens if the sea is rough?',
@@ -2077,7 +2077,7 @@ export const en: Translations = {
       faqItems: [
         {
           question: 'Can I reach Tossa de Mar with a license-free boat from Blanes?',
-          answer: 'No. License-free boats (2 miles from coast, 5 knots, 15 HP) reach as far as Fenals Beach (south of Lloret), 4 miles before Tossa. To reach Tossa you need a Basic Navigation License (LBN) or book the Private Excursion with Captain.',
+          answer: 'No. License-free boats (2 miles from coast, 5 knots, 15 HP) reach as far as Fenals Beach (south of Lloret), 4 miles before Tossa. To reach Tossa you need a Basic Navigation License (LNB) or book the Private Excursion with Captain.',
         },
         {
           question: 'How long does it take by boat from Blanes to Tossa?',
@@ -2088,7 +2088,7 @@ export const en: Translations = {
           answer: 'Pacific Craft 625 with professional skipper, 4 h maximum, up to 7 people. From {excursionBaja4h} € low season (April–June, September–close). Includes VAT, skipper, mooring, cleaning and insurance. Fuel extra.',
         },
         {
-          question: 'How much does it cost to rent to Tossa with a Basic License (LBN)?',
+          question: 'How much does it cost to rent to Tossa with a Basic License (LNB)?',
           answer: 'Fixed packs 2 h / 4 h / 8 h, without skipper. From {licBaja2h} € (2 h low season) with licensed boats. 3 seasonal tiers. Deposit 500 €. VAT, mooring, cleaning and insurance included; fuel extra.',
         },
         {
@@ -2151,7 +2151,7 @@ export const en: Translations = {
         ctaDescription: 'Book your boat from the Port of Blanes and experience the unique thrill of arriving by sea at the most beautiful medieval town on the Costa Brava.',
         ctaButton: 'Book a Trip to Tossa',
         warningTitle: 'Tossa is not reachable with a license-free boat.',
-        warningBody: 'License-free boats (2 miles, 5 knots, 15 HP) reach up to Fenals Beach (south of Lloret) — 4 miles before Tossa. To reach Tossa from Blanes you need (1) self-drive rental with Basic Boat License / LBN (fixed packages 2 h / 4 h / 8 h from {licBaja2h} € with Mingolla Brava 19 or Trimarchi 57S, VAT, mooring, cleaning and insurance included; fuel and 500 € deposit separate), or (2) the <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Private Excursion with Captain</a> (Pacific Craft 625 + skipper, 4 h maximum, up to 7 pax, from {excursionBaja4h} € with VAT, skipper, mooring, cleaning and insurance included — fuel separate). The third alternative is to drive to Tossa (20 min from Lloret) and rent a license-free boat locally there.',
+        warningBody: 'License-free boats (2 miles, 5 knots, 15 HP) reach up to Fenals Beach (south of Lloret) — 4 miles before Tossa. To reach Tossa from Blanes you need (1) self-drive rental with Basic Boat License / LNB (fixed packages 2 h / 4 h / 8 h from {licBaja2h} € with Mingolla Brava 19 or Trimarchi 57S, VAT, mooring, cleaning and insurance included; fuel and 500 € deposit separate), or (2) the <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Private Excursion with Captain</a> (Pacific Craft 625 + skipper, 4 h maximum, up to 7 pax, from {excursionBaja4h} € with VAT, skipper, mooring, cleaning and insurance included — fuel separate). The third alternative is to drive to Tossa (20 min from Lloret) and rent a license-free boat locally there.',
         crossLinkingText: 'We also offer service for tourists staying in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> and <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. From these towns on the Maresme coast, Blanes Port can be reached in 10-20 minutes by car.',
         relatedTitle: 'Related services and destinations',
         relatedCostaBrava: 'More destinations on the Costa Brava',
@@ -2327,7 +2327,7 @@ export const en: Translations = {
         },
         {
           question: 'Can I do a boat trip from Calella to Tossa de Mar?',
-          answer: 'Not directly from Calella (no rentals). From Blanes yes: with a boat with Basic Navigation License (LBN) you reach Tossa in 45 min (from {licBaja2h} EUR/2h), or with our Private Excursion with Captain 4h to Tossa including Cala Bona and Vila Vella (from {excursionBaja4h} EUR for up to 7 people). License-free boats cannot reach Tossa due to the legal limit of 2 miles.',
+          answer: 'Not directly from Calella (no rentals). From Blanes yes: with a boat with Basic Navigation License (LNB) you reach Tossa in 45 min (from {licBaja2h} EUR/2h), or with our Private Excursion with Captain 4h to Tossa including Cala Bona and Vila Vella (from {excursionBaja4h} EUR for up to 7 people). License-free boats cannot reach Tossa due to the legal limit of 2 miles.',
         },
         {
           question: 'How much does the R1 train from Calella to Blanes cost?',
@@ -2708,8 +2708,8 @@ export const en: Translations = {
   glossaryPage: {
     seo: {
       title: 'Nautical Glossary — Boat Rental Costa Brava | Costa Brava Rent a Boat',
-      description: 'Glossary of essential nautical terms: LBN, PER, PNB, knots, nautical miles, length, anchoring, coves and boat parts. Practical dictionary for renting a boat in Blanes.',
-      keywords: 'nautical glossary, what is LBN, what is PER, what is PNB, nautical miles, knots, length, anchoring, boat glossary',
+      description: 'Glossary of essential nautical terms: LNB, PER, PNB, knots, nautical miles, length, anchoring, coves and boat parts. Practical dictionary for renting a boat in Blanes.',
+      keywords: 'nautical glossary, what is LNB, what is PER, what is PNB, nautical miles, knots, length, anchoring, boat glossary',
     },
     breadcrumbName: 'Nautical Glossary',
     h1: 'Nautical Glossary',
@@ -2730,18 +2730,18 @@ export const en: Translations = {
     },
     terms: [
       {
-        term: 'LBN (Licencia Básica de Navegación)',
+        term: 'LNB (Licencia de Navegación Básica)',
         definition: 'Spanish boating license that allows you to operate vessels up to 8 metres in length and up to 5 miles from the coast. Mandatory for renting boats with more than 15 HP. Valid for life after passing the theoretical exam + practical course.',
         category: 'titulacion',
       },
       {
         term: 'PER (Patrón de Embarcaciones de Recreo)',
-        definition: 'Spanish boating license higher than the LBN. Allows you to operate vessels up to 15 metres in length and up to 12 miles from the coast. Requires theoretical exam + navigation practice + radio communications.',
+        definition: 'Spanish boating license higher than the LNB. Allows you to operate vessels up to 15 metres in length and up to 12 miles from the coast. Requires theoretical exam + navigation practice + radio communications.',
         category: 'titulacion',
       },
       {
         term: 'PNB (Patrón de Navegación Básica)',
-        definition: 'Former Spanish boating license replaced in 2014 by the LBN. Allows you to operate vessels up to 8 metres and up to 5 miles. Those who hold it remain valid without needing to upgrade to LBN.',
+        definition: 'Former Spanish boating license replaced in 2014 by the LNB. Allows you to operate vessels up to 8 metres and up to 5 miles. Those who hold it remain valid without needing to upgrade to LNB.',
         category: 'titulacion',
       },
       {
@@ -2756,7 +2756,7 @@ export const en: Translations = {
       },
       {
         term: 'Length (Eslora)',
-        definition: 'Total length of the boat, measured from bow to stern. Unit: metres. In Spain, the length determines the minimum boating license: up to 5m may not require a license, up to 8m requires LBN, up to 15m requires PER.',
+        definition: 'Total length of the boat, measured from bow to stern. Unit: metres. In Spain, the length determines the minimum boating license: up to 5m may not require a license, up to 8m requires LNB, up to 15m requires PER.',
         category: 'unidad',
       },
       {
@@ -3133,7 +3133,7 @@ export const en: Translations = {
         },
         {
           title: '4. Requirements for the Hirer',
-          body: '- The skipper must be over 18 years of age and present a valid ID card or passport.\n- For boats requiring a licence, the skipper must present the original nautical qualification (LBN, PER, PNB, Yacht Captain or European equivalent).\n- For boats without a licence, no qualification is required, but the skipper will receive 15 minutes\' training before setting sail.\n- Minors must be accompanied by a responsible adult and must wear a life jacket at all times while sailing.',
+          body: '- The skipper must be over 18 years of age and present a valid ID card or passport.\n- For boats requiring a licence, the skipper must present the original nautical qualification (LNB, PER, PNB, Yacht Captain or European equivalent).\n- For boats without a licence, no qualification is required, but the skipper will receive 15 minutes\' training before setting sail.\n- Minors must be accompanied by a responsible adult and must wear a life jacket at all times while sailing.',
         },
         {
           title: '5. Deposit and Payment Conditions',

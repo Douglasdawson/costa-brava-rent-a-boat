@@ -47,7 +47,7 @@ const config: LocationConfig = {
     },
     {
       question: "¿Puedo hacer una excursión en barco desde Calella a Tossa de Mar?",
-      answer: "No directamente desde Calella (no hay alquiler). Desde Blanes sí: con un barco con Licencia Básica de Navegación (LBN) llegas a Tossa en 45 min (desde {licBaja2h} EUR/2h), o con nuestra Excursión Privada con Capitán 4h hasta Tossa incluyendo Cala Bona y Vila Vella (desde {excursionBaja4h} EUR para hasta 7 personas). Los barcos sin licencia no pueden llegar a Tossa por el límite legal de 2 millas.",
+      answer: "No directamente desde Calella (no hay alquiler). Desde Blanes sí: con un barco con Licencia de Navegación Básica (LNB) llegas a Tossa en 45 min (desde {licBaja2h} EUR/2h), o con nuestra Excursión Privada con Capitán 4h hasta Tossa incluyendo Cala Bona y Vila Vella (desde {excursionBaja4h} EUR para hasta 7 personas). Los barcos sin licencia no pueden llegar a Tossa por el límite legal de 2 millas.",
     },
     {
       question: "¿Cuánto cuesta el tren R1 de Calella a Blanes?",

@@ -196,9 +196,9 @@ export function BookingStepPayment({
                 </p>
               </div>
 
-              <div className="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-lg">
-                <p className="text-sm text-amber-900">
-                  <strong>Sin pago online.</strong> Te contactaremos en menos de 24h por WhatsApp o email para confirmar disponibilidad y coordinar el pago en persona.
+              <div className="bg-green-50 border-l-4 border-green-500 p-3 rounded-r-lg">
+                <p className="text-sm text-green-900">
+                  <strong>📲 Te abrimos WhatsApp con tu solicitud lista.</strong> Solo tienes que pulsar Enviar y nos llega al instante. Confirmamos disponibilidad y coordinamos el pago en persona.
                 </p>
               </div>
 
@@ -226,11 +226,11 @@ export function BookingStepPayment({
                 ) : (
                   <Send className="w-5 h-5 mr-2" />
                 )}
-                {(isLoading || isProcessingPayment) ? "Enviando solicitud..." : "Solicitar Reserva"}
+                {(isLoading || isProcessingPayment) ? "Abriendo WhatsApp..." : "Solicitar por WhatsApp"}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                Es una solicitud, no un pago. Confirmaremos disponibilidad en menos de 24h.
+                Te abrimos WhatsApp con la solicitud pre-rellenada. Pulsa Enviar y nos llega al momento.
               </p>
             </>
           )}

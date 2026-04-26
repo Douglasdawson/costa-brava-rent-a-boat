@@ -28,6 +28,53 @@ function getDateRange(days: number) {
 }
 
 export function registerAnalyticsRoutes(app: Express) {
+  // Diagnostic: report email/SendGrid configuration + try a real send so we
+  // can see why booking-request emails are not arriving in production.
+  app.get("/api/admin/_diag/email-state", requireAdminSession, async (_req, res) => {
+    try {
+      const hasKey = !!process.env.SENDGRID_API_KEY;
+      const keyPrefix = process.env.SENDGRID_API_KEY ? process.env.SENDGRID_API_KEY.slice(0, 6) : null;
+      const fromEmail = process.env.SENDGRID_FROM_EMAIL || "costabravarentaboat@gmail.com";
+      const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "costabravarentaboat@gmail.com";
+
+      // Attempt a real send and capture the actual error (instead of fire-and-forget swallow)
+      let testSendResult: { ok: boolean; error?: string; response?: number } = { ok: false };
+      if (hasKey) {
+        try {
+          const sgMail = (await import("@sendgrid/mail")).default;
+          sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+          const [response] = await sgMail.send({
+            to: adminEmail,
+            from: { email: fromEmail, name: "Costa Brava Rent a Boat - Diagnostic" },
+            subject: "🔧 Diag: prueba de envío " + new Date().toISOString(),
+            html: `<p>Test de envío desde /api/admin/_diag/email-state. Si recibes este mail, SendGrid funciona.</p>`,
+          });
+          testSendResult = { ok: true, response: response.statusCode };
+        } catch (err: unknown) {
+          const e = err as { message?: string; response?: { body?: unknown; statusCode?: number } };
+          testSendResult = {
+            ok: false,
+            error: e.message || String(err),
+            response: e.response?.statusCode,
+            // @ts-expect-error - debug only
+            sgBody: e.response?.body,
+          };
+        }
+      }
+
+      res.json({
+        hasApiKey: hasKey,
+        apiKeyPrefix: keyPrefix,
+        fromEmail,
+        adminEmail,
+        testSendResult,
+      });
+    } catch (error: unknown) {
+      logger.error("[diag] email-state error", { error: error instanceof Error ? error.message : String(error) });
+      res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
+    }
+  });
+
   // Diagnostic: capture DB state from inside the deployed app process.
   // Used to investigate the schema-revert / data-wipe pattern that
   // happens on Replit Republish (see project_seo_engine_schema_revert.md).

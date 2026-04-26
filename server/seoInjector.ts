@@ -383,7 +383,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/barcos-sin-licencia": {
     es: {
       title: "Barcos Sin Licencia en Blanes | 5 Barcos desde 70€/h",
-      description: "5 barcos sin licencia en Blanes con gasolina incluida. Astec 400, Solar 450, Remus 450 y Astec 480. Formación de 15 min incluida. Sin experiencia necesaria. Reserva online.",
+      description: "5 barcos sin licencia en Blanes con gasolina incluida. Astec 400, Solar 450, Remus 450 y Astec 480. Formación 15 min. 4.8★ Google. Reserva online.",
       ogTitle: "Barcos Sin Licencia en Blanes | Fácil y Seguro Costa Brava",
       ogDescription: "Alquila barcos sin licencia en Blanes. Hasta 15 CV, 4-7 personas. No necesitas titulación.",
     },
@@ -986,7 +986,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/destinos": {
     es: {
       title: "Destinos en Barco desde Blanes | Calas y Playas Costa Brava",
-      description: "Descubre todos los destinos accesibles en barco desde Puerto de Blanes: Cala Brava, Lloret de Mar, Tossa de Mar, Sant Francesc y mas. Rutas con tiempos y distancias.",
+      description: "Destinos en barco desde Puerto de Blanes: Cala Brava, Lloret de Mar, Tossa de Mar, Sant Francesc. Rutas con tiempos y distancias.",
       ogTitle: `Destinos en Barco desde Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Explora calas secretas y playas desde Puerto de Blanes. 5 destinos a menos de 45 minutos.",
     },
@@ -1060,31 +1060,31 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     en: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h`,
-      description: "Rent boats on the Costa Brava from Blanes Port. 8 no-license boats from 70\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online.",
+      description: "Rent boats on the Costa Brava from Blanes Port. 8 no-license boats from 70\u20ac/h, fuel included. Hidden coves Blanes-Tossa. 4.8\u2605 310 reviews.",
     },
     ca: {
       title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia 70\u20ac/h`,
-      description: "Lloga barques a la Costa Brava des del Port de Blanes. 8 barques sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa. Navega a cales verges entre Blanes i Tossa de Mar. Reserva online \u00b7 Canvi de data gratu\u00eft.",
+      description: "Lloga barques a la Costa Brava des del Port de Blanes. 8 barques sense llic\u00e8ncia des de 70\u20ac/h. Cales verges Blanes-Tossa. 4.8\u2605 310 ressenyes.",
     },
     fr: {
       title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis 70\u20ac/h`,
-      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 8 bateaux sans permis d\u00e8s 70\u20ac/h, carburant inclus. Naviguez vers des criques vierges entre Blanes et Tossa de Mar. R\u00e9servez en ligne \u00b7 Changement de date gratuit.",
+      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 8 bateaux sans permis d\u00e8s 70\u20ac/h, carburant inclus. Criques Blanes-Tossa. 4.8★.",
     },
     de: {
       title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein 70\u20ac/h`,
-      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 8 Boote ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. Segeln Sie zu versteckten Buchten zwischen Blanes und Tossa de Mar. Online buchen \u00b7 Kostenlose Umbuchung.",
+      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 8 Boote ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. Buchten Blanes-Tossa. 4.8★.",
     },
     nl: {
       title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs 70\u20ac/u`,
-      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 8 boten zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. Vaar naar verborgen baaien tussen Blanes en Tossa de Mar. Online boeken \u00b7 Gratis datumwijziging.",
+      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 8 boten zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. Baaien Blanes-Tossa. 4.8★.",
     },
     it: {
       title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente 70\u20ac/h`,
-      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 8 barche senza patente da 70\u20ac/h, carburante incluso. Naviga verso calette nascoste tra Blanes e Tossa de Mar. Prenota online \u00b7 Cambio data gratuito.",
+      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 8 barche senza patente da 70\u20ac/h, carburante incluso. Calette Blanes-Tossa. 4.8★.",
     },
     ru: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} | \u0411\u0435\u0437 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447`,
-      description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. 8 \u043b\u043e\u0434\u043e\u043a \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. \u041f\u043b\u0430\u0432\u0430\u0439\u0442\u0435 \u043a \u0441\u043a\u0440\u044b\u0442\u044b\u043c \u0431\u0443\u0445\u0442\u0430\u043c \u043c\u0435\u0436\u0434\u0443 \u0411\u043b\u0430\u043d\u0435\u0441\u043e\u043c \u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440. \u0411\u0440\u043e\u043d\u0438\u0440\u0443\u0439\u0442\u0435 \u043e\u043d\u043b\u0430\u0439\u043d \u00b7 \u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e\u0435 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0435 \u0434\u0430\u0442\u044b.",
+      description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. 8 \u043b\u043e\u0434\u043e\u043a \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. \u0411\u0443\u0445\u0442\u044b \u0411\u043b\u0430\u043d\u0435\u0441-\u0422\u043e\u0441\u0441\u0430. 4.8★.",
     },
   },
   "/boat-rental-costa-brava": {

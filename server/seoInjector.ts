@@ -118,49 +118,49 @@ async function getDbMeta(pagePath: string, lang: string): Promise<{ title?: stri
 const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/": {
     es: {
-      title: "Alquiler de Barcos Costa Brava | Sin Licencia desde 70€/h | Blanes",
+      title: "Alquiler Barcos Costa Brava | Sin Licencia 70€/h | Blanes",
       description: "Alquiler de barcos en la Costa Brava desde Puerto de Blanes. Sin licencia desde 70€/h, gasolina incluida, hasta 5 personas. 8 embarcaciones · 4.8★ Google. Reserva WhatsApp · Cambio fecha gratis.",
       ogTitle: `Alquiler de Barcos Costa Brava ${SEASON_YEAR} | Sin Licencia desde 70€/h`,
       ogDescription: "Alquila barcos en la Costa Brava desde Puerto de Blanes. Sin licencia, gasolina incluida, desde 70€/h. 8 barcos disponibles. 4.8★ Google.",
     },
     en: {
-      title: "Costa Brava Boat Rental | License-Free from 70€/h | Blanes Port",
+      title: "Costa Brava Boat Rental | License-Free 70€/h Blanes",
       description: "Rent a boat on the Costa Brava from Blanes port. License-free from 70€/h, fuel included, up to 5 people. 15 min training and go. 8 boats · 4.8★ Google.",
       ogTitle: `Costa Brava Boat Rental ${SEASON_YEAR} | License-Free from 70€/h`,
       ogDescription: "Rent boats on the Costa Brava from Blanes port. No license needed, fuel included, from 70€/h. 8 boats available. 4.8★ Google.",
     },
     fr: {
-      title: "Location Bateau Costa Brava | Sans Permis dès 70€/h | Port de Blanes",
+      title: "Location Bateau Costa Brava | Sans Permis 70€/h Blanes",
       description: "Location de bateau au Port de Blanes — sans permis dès 70€/h. Carburant inclus, jusqu'à 5 personnes. 4.8★ · 310 avis · 15 min briefing. Réservez en ligne.",
       ogTitle: `Location Bateau Costa Brava ${SEASON_YEAR} | Sans Permis dès 70€/h`,
       ogDescription: "Louez un bateau sur la Costa Brava depuis Blanes. Sans permis, carburant inclus, dès 70€/h. 8 bateaux disponibles. 4.8★ Google.",
     },
     de: {
-      title: "Bootsverleih Costa Brava | Ohne Führerschein ab 70€/h | Hafen Blanes",
+      title: "Bootsverleih Costa Brava Blanes | Ohne Führerschein 70€/h",
       description: "Bootsverleih Hafen Blanes — ohne Führerschein ab 70€/h. Kraftstoff inklusive, bis zu 5 Personen. 4.8★ · 310 Bewertungen · 15 Min Einweisung. Online buchen.",
       ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne Führerschein ab 70€/h`,
       ogDescription: "Mieten Sie ein Boot an der Costa Brava vom Hafen Blanes. Ohne Führerschein, Kraftstoff inklusive, ab 70€/h. 8 Boote verfügbar. 4.8★ Google.",
     },
     ca: {
-      title: "Lloguer de Barques Costa Brava | Sense Llicència des de 70€/h | Blanes",
+      title: "Lloguer Barques Costa Brava | Sense Llicència 70€/h | Blanes",
       description: "Lloguer de barques a la Costa Brava des del Port de Blanes. Sense llicència des de 70€/h, gasolina inclosa, fins a 5 persones. 8 embarcacions. 4.8★ Google.",
       ogTitle: `Lloguer de Barques Costa Brava ${SEASON_YEAR} | Sense Llicència des de 70€/h`,
       ogDescription: "Lloga barques a la Costa Brava des del Port de Blanes. Sense llicència, gasolina inclosa, des de 70€/h. 8 barques disponibles. 4.8★ Google.",
     },
     nl: {
-      title: "Bootverhuur Costa Brava | Zonder Vaarbewijs vanaf 70€/u | Haven Blanes",
+      title: "Bootverhuur Costa Brava Blanes | Zonder Vaarbewijs 70€/u",
       description: "Bootverhuur aan de Costa Brava vanuit Haven Blanes. Zonder vaarbewijs vanaf 70€/u, brandstof inbegrepen, tot 5 personen. 8 boten · 4.8★ Google (300+ beoordelingen).",
       ogTitle: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 70€/u`,
       ogDescription: "Huur een boot aan de Costa Brava vanuit Haven Blanes. Zonder vaarbewijs, brandstof inbegrepen, vanaf 70€/u. 8 boten beschikbaar. 4.8★ Google.",
     },
     it: {
-      title: "Noleggio Barche Costa Brava | Senza Patente da 70€/h | Porto di Blanes",
+      title: "Noleggio Barche Costa Brava Blanes | Senza Patente 70€/h",
       description: "Noleggio barche sulla Costa Brava dal Porto di Blanes. Senza patente da 70€/h, carburante incluso, fino a 5 persone. 8 barche · 4.8★ Google (300+ recensioni).",
       ogTitle: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 70€/h`,
       ogDescription: "Noleggia una barca sulla Costa Brava dal Porto di Blanes. Senza patente, carburante incluso, da 70€/h. 8 barche disponibili. 4.8★ Google.",
     },
     ru: {
-      title: "Аренда лодок Коста-Брава | Без лицензии от 70€/ч | Порт Бланес",
+      title: "Аренда лодок Коста-Брава | Без лицензии 70€/ч | Бланес",
       description: "Аренда лодок на Коста-Браве из порта Бланес. Без лицензии от 70€/ч, топливо включено, до 5 человек. 8 лодок · 4.8★ Google.",
       ogTitle: `Аренда лодок Коста-Брава ${SEASON_YEAR} | Без лицензии от 70€/ч`,
       ogDescription: "Арендуйте лодку на Коста-Браве из порта Бланес. Без лицензии, топливо включено, от 70€/ч. 8 лодок. 4.8★ Google.",

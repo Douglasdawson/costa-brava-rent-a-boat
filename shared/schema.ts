@@ -504,9 +504,6 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   source: z.enum(['web', 'admin', 'whatsapp']),
   language: z.string().max(5).optional(),
   cancelationToken: z.string().uuid().optional(),
-}).refine((data) => data.startTime < data.endTime, {
-  message: "La hora de fin debe ser posterior a la hora de inicio",
-  path: ["endTime"],
 });
 
 export const insertBookingExtraSchema = createInsertSchema(bookingExtras).omit({
@@ -537,15 +534,6 @@ export const updateBookingSchema = z.object({
   paymentStatus: z.enum(['pending', 'completed', 'failed', 'refunded']).optional(),
   bookingStatus: z.enum(['draft', 'hold', 'pending_payment', 'confirmed', 'cancelled', 'completed']).optional(),
   notes: z.string().optional(),
-}).refine((data) => {
-  // If both startTime and endTime are provided, validate their order
-  if (data.startTime && data.endTime) {
-    return data.startTime < data.endTime;
-  }
-  return true;
-}, {
-  message: "La hora de fin debe ser posterior a la hora de inicio",
-  path: ["endTime"],
 });
 
 // Types

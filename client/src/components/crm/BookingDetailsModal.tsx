@@ -231,13 +231,19 @@ export function BookingDetailsModal({
   // Mutation for full booking edit
   const editBookingMutation = useMutation({
     mutationFn: async ({ bookingId, data }: { bookingId: string; data: EditBookingFormData }) => {
+      const startDate = new Date(data.startTime);
+      const endDate = new Date(data.endTime);
       const response = await fetch(`/api/admin/bookings/${bookingId}`, {
         method: 'PATCH',
         credentials: "include",
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          startTime: startDate.toISOString(),
+          endTime: endDate.toISOString(),
+        }),
       });
       if (!response.ok) {
         const error = await response.json();

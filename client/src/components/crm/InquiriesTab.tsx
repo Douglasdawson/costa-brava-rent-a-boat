@@ -58,6 +58,7 @@ import { PaginationControls } from "./shared/PaginationControls";
 import type { PaginatedResponse } from "./types";
 import { BookingDetailsModal } from "./BookingDetailsModal";
 import { calculatePricingBreakdown, type Duration } from "@shared/pricing";
+import { parseMadridLocal } from "@/lib/madridTz";
 
 type PaginatedInquiriesResponse = PaginatedResponse<WhatsappInquiry>;
 
@@ -80,10 +81,10 @@ function buildPrefillFromInquiry(inq: WhatsappInquiry) {
   const timeStr = (inq.preferredTime && /^\d{1,2}:\d{2}$/.test(inq.preferredTime))
     ? inq.preferredTime.padStart(5, "0")
     : "10:00";
-  const startDate = new Date(`${inq.bookingDate}T${timeStr}:00`);
-  // If date parsing failed (invalid format), fall back to today at 10:00
+  const startDate = parseMadridLocal(`${inq.bookingDate}T${timeStr}:00`);
+  // If date parsing failed (invalid format), fall back to today at 10:00 Madrid
   const safeStart = isNaN(startDate.getTime())
-    ? new Date(new Date().toISOString().slice(0, 10) + "T10:00:00")
+    ? parseMadridLocal(new Date().toISOString().slice(0, 10) + "T10:00:00")
     : startDate;
 
   // Parse duration ("4h" → "4h" Duration; fallback to "2h")

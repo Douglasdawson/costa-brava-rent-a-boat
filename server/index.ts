@@ -385,6 +385,25 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     });
   });
 
+  // ── STEP 2.5: Idempotent analytics schema sync ───────────────────────────────────
+  // Re-applies migrations/0007_unblock_analytics.sql on every boot. Safe to skip
+  // on failure — core booking flow doesn't depend on analytics tables. Tracks
+  // diagnostic data for the schema-revert investigation (see memory:
+  // project_seo_engine_schema_revert.md).
+  try {
+    const { applyAnalyticsUnblock } = await import("./migrations/applyAnalyticsUnblock");
+    const result = await applyAnalyticsUnblock(pool);
+    if (result.applied) {
+      log(`[migrations] analytics schema sync OK in ${result.durationMs}ms`);
+    } else if (result.error === "lock-held-by-other-instance") {
+      log(`[migrations] analytics schema sync skipped (another instance holds lock)`);
+    } else {
+      log(`[migrations] analytics schema sync FAILED: ${result.error}`);
+    }
+  } catch (err) {
+    log(`[migrations] applyAnalyticsUnblock loader threw: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   // ── STEP 3: Full async initialization (server already responding) ────────────────
   // registerRoutes now: setupAuth is fire-and-forget, WhatsApp is fire-and-forget.
   // All synchronous route registrations happen immediately.

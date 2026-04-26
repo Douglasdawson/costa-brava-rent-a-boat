@@ -464,23 +464,23 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "No license boat rental at Blanes Port from 70\u20ac/h. Fuel included, free parking. 8 boats available. 4.8\u2605 Google. Book online.",
     },
     ca: {
-      title: `Lloguer Barques Blanes Sense Llic\u00e8ncia ${SEASON_YEAR} | Port de Blanes des de 70\u20ac/h`,
+      title: `Lloguer Barques Sense Llic\u00e8ncia Blanes ${SEASON_YEAR} | des de 70\u20ac/h`,
       description: "Lloguer de barques sense llic\u00e8ncia al Port de Blanes. Des de 70\u20ac/h, gasolina inclosa. 8 barques disponibles. Reserva online.",
     },
     fr: {
-      title: `Location Bateaux Blanes Sans Permis ${SEASON_YEAR} | Port de Blanes d\u00e8s 70\u20ac/h`,
+      title: `Location Bateaux Sans Permis Blanes ${SEASON_YEAR} | d\u00e8s 70\u20ac/h`,
       description: "Location de bateaux sans permis au Port de Blanes. D\u00e8s 70\u20ac/h, carburant inclus. 8 bateaux disponibles. R\u00e9servez en ligne.",
     },
     de: {
-      title: `Bootsverleih Blanes Ohne F\u00fchrerschein ${SEASON_YEAR} | Hafen Blanes ab 70\u20ac/h`,
+      title: `Bootsverleih Ohne F\u00fchrerschein Blanes ${SEASON_YEAR} | ab 70\u20ac/h`,
       description: "Bootsverleih ohne F\u00fchrerschein im Hafen Blanes. Ab 70\u20ac/h, Kraftstoff inklusive. 8 Boote verf\u00fcgbar. Online buchen.",
     },
     nl: {
-      title: `Bootverhuur Blanes Zonder Vaarbewijs ${SEASON_YEAR} | Haven Blanes vanaf 70\u20ac/u`,
+      title: `Bootverhuur Zonder Vaarbewijs Blanes ${SEASON_YEAR} | vanaf 70\u20ac/u`,
       description: "Bootverhuur zonder vaarbewijs in Haven Blanes. Vanaf 70\u20ac/u, brandstof inbegrepen. 8 boten beschikbaar. Online boeken.",
     },
     it: {
-      title: `Noleggio Barche Blanes Senza Patente ${SEASON_YEAR} | Porto Blanes da 70\u20ac/h`,
+      title: `Noleggio Barche Senza Patente Blanes ${SEASON_YEAR} | da 70\u20ac/h`,
       description: "Noleggio barche senza patente al Porto di Blanes. Da 70\u20ac/h, carburante incluso. 8 barche disponibili. Prenota online.",
     },
     ru: {
@@ -948,7 +948,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/precios": {
     es: {
-      title: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      title: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Costa Brava`,
       description: "Consulta precios de alquiler de barcos en Blanes. Sin licencia desde 70\u20ac/hora. Con licencia desde 160\u20ac/2h. Gasolina incluida. Temporada baja, media y alta.",
       ogTitle: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Desde 70\u20ac`,
       ogDescription: "Compara precios de todos nuestros barcos en Blanes. Sin licencia desde 70\u20ac/h. Gasolina incluida. Temporada baja, media y alta.",
@@ -1059,31 +1059,31 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Alquila barco en la Costa Brava desde Puerto de Blanes. 8 barcos sin licencia, 70\u20ac/h, gasolina incluida. Calas v\u00edrgenes Blanes-Tossa. 4.8\u2605 Google.",
     },
     en: {
-      title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h | Blanes, Lloret, Tossa`,
+      title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h`,
       description: "Rent boats on the Costa Brava from Blanes Port. 8 no-license boats from 70\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online.",
     },
     ca: {
-      title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia des de 70\u20ac/h | Blanes, Lloret, Tossa`,
+      title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia 70\u20ac/h`,
       description: "Lloga barques a la Costa Brava des del Port de Blanes. 8 barques sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa. Navega a cales verges entre Blanes i Tossa de Mar. Reserva online \u00b7 Canvi de data gratu\u00eft.",
     },
     fr: {
-      title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis d\u00e8s 70\u20ac/h | Blanes, Lloret, Tossa`,
+      title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis 70\u20ac/h`,
       description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 8 bateaux sans permis d\u00e8s 70\u20ac/h, carburant inclus. Naviguez vers des criques vierges entre Blanes et Tossa de Mar. R\u00e9servez en ligne \u00b7 Changement de date gratuit.",
     },
     de: {
-      title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein ab 70\u20ac/h | Blanes, Lloret, Tossa`,
+      title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein 70\u20ac/h`,
       description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 8 Boote ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. Segeln Sie zu versteckten Buchten zwischen Blanes und Tossa de Mar. Online buchen \u00b7 Kostenlose Umbuchung.",
     },
     nl: {
-      title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 70\u20ac/u | Blanes, Lloret, Tossa`,
+      title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs 70\u20ac/u`,
       description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 8 boten zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. Vaar naar verborgen baaien tussen Blanes en Tossa de Mar. Online boeken \u00b7 Gratis datumwijziging.",
     },
     it: {
-      title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 70\u20ac/h | Blanes, Lloret, Tossa`,
+      title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente 70\u20ac/h`,
       description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 8 barche senza patente da 70\u20ac/h, carburante incluso. Naviga verso calette nascoste tra Blanes e Tossa de Mar. Prenota online \u00b7 Cambio data gratuito.",
     },
     ru: {
-      title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} | \u0411\u0435\u0437 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447 | \u0411\u043b\u0430\u043d\u0435\u0441, \u041b\u044c\u043e\u0440\u0435\u0442, \u0422\u043e\u0441\u0441\u0430`,
+      title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} | \u0411\u0435\u0437 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447`,
       description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. 8 \u043b\u043e\u0434\u043e\u043a \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. \u041f\u043b\u0430\u0432\u0430\u0439\u0442\u0435 \u043a \u0441\u043a\u0440\u044b\u0442\u044b\u043c \u0431\u0443\u0445\u0442\u0430\u043c \u043c\u0435\u0436\u0434\u0443 \u0411\u043b\u0430\u043d\u0435\u0441\u043e\u043c \u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440. \u0411\u0440\u043e\u043d\u0438\u0440\u0443\u0439\u0442\u0435 \u043e\u043d\u043b\u0430\u0439\u043d \u00b7 \u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e\u0435 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0435 \u0434\u0430\u0442\u044b.",
     },
   },
@@ -2955,35 +2955,35 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         const isExcursion = boat.id === "excursion-privada";
         const excursionMeta: Record<string, { title: string; description: string }> = {
           es: {
-            title: `Excursión Privada en Barco en Blanes | Con Capitán | Costa Brava${priceStr}`,
+            title: `Excursión Privada en Barco Blanes | Con Capitán${priceStr}`,
             description: `Contrata una excursión privada en barco con patrón en Blanes, Costa Brava. Hasta ${boat.capacity} personas. No necesitas licencia — capitán incluido. Reserva por WhatsApp.`,
           },
           en: {
-            title: `Private Boat Excursion in Blanes | With Captain | Costa Brava${priceStr}`,
+            title: `Private Boat Excursion Blanes | With Captain${priceStr}`,
             description: `Private boat trip with skipper in Blanes, Costa Brava. Up to ${boat.capacity} people. No license required — captain included. Book via WhatsApp.`,
           },
           ca: {
-            title: `Excursió Privada en Vaixell a Blanes | Amb Patró | Costa Brava${priceStr}`,
+            title: `Excursió Privada Vaixell Blanes | Amb Patró${priceStr}`,
             description: `Contracta una excursió privada en vaixell amb patró a Blanes, Costa Brava. Fins a ${boat.capacity} persones. No necessites llicència — patró inclòs. Reserva per WhatsApp.`,
           },
           fr: {
-            title: `Excursion Privée en Bateau à Blanes | Avec Capitaine | Costa Brava${priceStr}`,
+            title: `Excursion Privée Bateau Blanes | Avec Capitaine${priceStr}`,
             description: `Réservez une excursion privée en bateau avec skipper à Blanes, Costa Brava. Jusqu'à ${boat.capacity} personnes. Pas de permis requis — capitaine inclus. Réservez via WhatsApp.`,
           },
           de: {
-            title: `Private Bootsexkursion in Blanes | Mit Kapitän | Costa Brava${priceStr}`,
+            title: `Private Bootsexkursion Blanes | Mit Kapitän${priceStr}`,
             description: `Buchen Sie eine private Bootsexkursion mit Skipper in Blanes, Costa Brava. Bis zu ${boat.capacity} Personen. Kein Bootsführerschein nötig — Kapitän inklusive. Buchen per WhatsApp.`,
           },
           nl: {
-            title: `Privé Boottocht in Blanes | Met Schipper | Costa Brava${priceStr}`,
+            title: `Privé Boottocht Blanes | Met Schipper${priceStr}`,
             description: `Boek een privé boottocht met schipper in Blanes, Costa Brava. Tot ${boat.capacity} personen. Geen vaarbewijs nodig — schipper inbegrepen. Boek via WhatsApp.`,
           },
           it: {
-            title: `Escursione Privata in Barca a Blanes | Con Capitano | Costa Brava${priceStr}`,
+            title: `Escursione Privata Barca Blanes | Con Capitano${priceStr}`,
             description: `Prenota un'escursione privata in barca con skipper a Blanes, Costa Brava. Fino a ${boat.capacity} persone. Nessuna patente necessaria — capitano incluso. Prenota via WhatsApp.`,
           },
           ru: {
-            title: `Частная морская экскурсия в Бланесе | С капитаном | Коста Брава${priceStr}`,
+            title: `Частная экскурсия Бланес | С капитаном${priceStr}`,
             description: `Закажите частную экскурсию на лодке с капитаном в Бланесе, Коста Брава. До ${boat.capacity} человек. Лицензия не нужна — капитан включён. Бронируйте через WhatsApp.`,
           },
         };
@@ -3018,7 +3018,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         const meta: SEOMeta = isExcursion
           ? { title: exc.title, description: exc.description, ogImage: boatOgImage, ogImageAlt: boatOgImageAlt, ogImageWidth: boatOgImageWidth, ogImageHeight: boatOgImageHeight, ogType: "product" }
           : {
-              title: `${r.verb} ${boat.name} ${r.prep} Blanes (${licenseText}) | Costa Brava${priceStr}`,
+              title: `${r.verb} ${boat.name} ${r.prep} Blanes${priceStr}`,
               description: `${r.bookVerb} ${boat.name} ${r.prep} Blanes, Costa Brava. ${r.upTo} ${boat.capacity} ${r.people}, ${licenseText}. WhatsApp.`,
               ogImage: boatOgImage,
               ogImageAlt: boatOgImageAlt,

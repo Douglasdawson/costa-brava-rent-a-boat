@@ -171,6 +171,22 @@ body { overflow-x: hidden; }
     outline: 2px solid hsl(var(--cta));
     outline-offset: 2px;
   }
+
+  /* ── Anti-widow typography ────────────────────────────────────────────────
+   * text-wrap: balance  → redistributes words evenly across all lines
+   *                       (headings, captions, short UI labels)
+   *                       Safari 17.4+, Chrome 114+, Firefox 121+
+   * text-wrap: pretty   → like normal but avoids a single orphaned word on
+   *                       the last line of a paragraph
+   *                       Chrome/Edge 117+ (Safari not yet, balance handles it)
+   * Both are progressive enhancements — older browsers just ignore them.
+   * ──────────────────────────────────────────────────────────────────────── */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  p, li, figcaption, blockquote {
+    text-wrap: pretty;
+  }
 }
 
 @layer utilities {

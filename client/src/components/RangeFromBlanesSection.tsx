@@ -53,12 +53,12 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
           )}
           <h2
             id="range-from-blanes-title"
-            className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-4"
+            className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-4 text-balance"
           >
             {headline}
           </h2>
           {intro && (
-            <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto leading-relaxed text-pretty">
               {intro}
             </p>
           )}
@@ -101,8 +101,8 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
           {/* Note about Fenals being the limit */}
           <div className="mt-6 bg-amber-50/70 dark:bg-amber-950/30 rounded-xl p-4 sm:p-5">
             <div className="font-semibold text-sm text-foreground mb-1">{r?.limitBoxTitle}</div>
-            <p className="text-sm text-muted-foreground leading-relaxed">{r?.limitBoxBody}</p>
-            <p className="text-xs text-muted-foreground mt-2 italic">{r?.noteNorthOfFenals}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed text-pretty">{r?.limitBoxBody}</p>
+            <p className="text-xs text-muted-foreground mt-2 italic text-balance">{r?.noteNorthOfFenals}</p>
           </div>
         </div>
 

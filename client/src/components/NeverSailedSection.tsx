@@ -27,7 +27,7 @@ export default function NeverSailedSection() {
         <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-3">
           {t.neverSailed.title}
         </h2>
-        <p className="text-muted-foreground text-lg md:text-xl mb-12 md:mb-16 max-w-2xl mx-auto">
+        <p className="text-muted-foreground text-lg md:text-xl mb-12 md:mb-16 max-w-2xl mx-auto text-balance">
           {t.neverSailed.subtitle}
         </p>
 
@@ -57,10 +57,10 @@ export default function NeverSailedSection() {
                 </span>
 
                 {/* Text */}
-                <h3 className="font-display text-lg font-semibold text-foreground mb-1">
+                <h3 className="font-display text-lg font-semibold text-foreground mb-1 text-balance">
                   {t.neverSailed[step.titleKey]}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed text-balance">
                   {t.neverSailed[step.descKey]}
                 </p>
               </div>

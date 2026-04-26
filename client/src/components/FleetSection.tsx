@@ -358,7 +358,7 @@ function FleetSection() {
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
             {t.fleet.title}
           </h2>
-          <p className="text-base text-muted-foreground font-light mt-3 max-w-xl sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4">
+          <p className="text-base text-muted-foreground font-light mt-3 max-w-xl sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4 text-pretty">
             {t.fleet.subtitle}
           </p>
         </div>

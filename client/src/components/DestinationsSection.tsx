@@ -26,7 +26,7 @@ export default function DestinationsSection() {
             <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4">
               {t.destinations.fromBlanes}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
               {t.destinations.fromBlanesSub}
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function DestinationsSection() {
             <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4">
               {t.destinations.boatTypes}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
               {t.destinations.boatTypesSub}
             </p>
           </div>

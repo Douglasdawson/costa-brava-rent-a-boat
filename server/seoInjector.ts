@@ -392,7 +392,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "5 no-license boats in Blanes from 70€/h. Fuel included, 4-7 people. No experience needed, 15 min training. 4.8★ Google. Book online.",
     },
     ca: {
-      title: "Barques Sense Llicencia Costa Brava | 5 Barques des de 70€/h Blanes",
+      title: "Barques Sense Llicència Blanes | 5 Barques des de 70€/h",
       description: "5 barques sense llicencia a Blanes des de 70€/h. Gasolina inclosa, 4-7 persones. Sense experiencia, formacio 15 min. 4.8★ Google. Reserva online.",
     },
     fr: {
@@ -400,11 +400,11 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "5 bateaux sans permis a Blanes des 70€/h. Carburant inclus, 4-7 personnes. Aucune experience, formation 15 min. 4.8★ Google. Reservez en ligne.",
     },
     de: {
-      title: "Boote Ohne Führerschein Costa Brava | 5 Boote ab 70€/h Blanes",
+      title: "Boote Ohne Führerschein Blanes | 5 Boote ab 70€/h",
       description: "5 Boote ohne Führerschein in Blanes ab 70€/h. Kraftstoff inklusive, 4-5 Personen. Keine Erfahrung notig, 15 Min Einweisung. 4.8★ Google. Online buchen.",
     },
     nl: {
-      title: "Boten Zonder Vaarbewijs Costa Brava | 5 Boten vanaf 70€/u Blanes",
+      title: "Boten Zonder Vaarbewijs Blanes | 5 Boten vanaf 70€/u",
       description: "Huur een boot zonder vaarbewijs in Blanes, Costa Brava vanaf €70/u. Brandstof inbegrepen, tot 5 personen. 4.8★ · 310 reviews · 15 min training. Online boeken.",
     },
     it: {
@@ -418,7 +418,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/barcos-con-licencia": {
     es: {
-      title: "Alquiler Barcos Con Licencia Costa Brava | Blanes desde 160€/2h",
+      title: "Barcos Con Licencia Blanes Costa Brava | desde 160€/2h",
       description: "Navega a Lloret (15 min) y Tossa (30 min) desde Blanes. 3 barcos 80-115CV. Licencia Básica o con patrón incluido. 4.8★ Google. Reserva online.",
       ogTitle: "Barcos Con Licencia en Blanes | Lloret 15 min, Tossa 30 min",
       ogDescription: "3 barcos potentes 80-115CV en Blanes. Con tu Licencia Básica o con patrón. Reserva online.",
@@ -428,15 +428,15 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Sail to Lloret (15 min) and Tossa (30 min) from Blanes. 3 boats 80-115HP. Basic License or with skipper. 4.8★ Google. Book online.",
     },
     ca: {
-      title: "Lloguer Barques Amb Llicència Costa Brava | Blanes des de 160€/2h",
+      title: "Barques Amb Llicència Blanes | Costa Brava des de 160€/2h",
       description: "Navega a Lloret (15 min) i Tossa (30 min) des de Blanes. 3 barques 80-115CV. Llicència Bàsica o amb patró. 4.8★ Google. Reserva online.",
     },
     fr: {
-      title: "Location Bateaux Avec Permis Costa Brava | Blanes dès 160€/2h",
+      title: "Bateaux Avec Permis Blanes | Costa Brava dès 160€/2h",
       description: "Naviguez à Lloret (15 min) et Tossa (30 min) depuis Blanes. 3 bateaux 80-115CV. Permis côtier ou avec skipper. 4.8★ Google. Réservez en ligne.",
     },
     de: {
-      title: "Bootsverleih Mit Führerschein Costa Brava | Blanes ab 160€/2h",
+      title: "Boote Mit Führerschein Blanes | Costa Brava ab 160€/2h",
       description: "Segeln Sie nach Lloret (15 Min) und Tossa (30 Min) ab Blanes. 3 Boote 80-115PS. Bootsführerschein oder mit Skipper. 4.8★ Google. Online buchen.",
     },
     nl: {
@@ -454,7 +454,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-blanes": {
     es: {
-      title: "Alquiler Barcos Puerto de Blanes | Sin Licencia 70\u20ac/h | 4.8\u2605",
+      title: "Alquiler Barcos Puerto Blanes | Sin Licencia desde 70\u20ac/h",
       description: "Alquila barco sin licencia en Puerto de Blanes desde 70\u20ac/h. Gasolina incluida, 8 barcos, parking gratis. 4.8\u2605 Google. Reserva online.",
       ogTitle: `Alquiler de Barcos en Puerto de Blanes | ${SEASON_YEAR}`,
       ogDescription: "Alquila barcos en Puerto de Blanes. Sin licencia desde 70\u20ac/h con gasolina incluida. 8 embarcaciones disponibles. Reserva ya.",

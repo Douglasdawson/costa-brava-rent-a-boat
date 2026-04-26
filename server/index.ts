@@ -404,6 +404,24 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log(`[migrations] applyAnalyticsUnblock loader threw: ${err instanceof Error ? err.message : String(err)}`);
   }
 
+  // Auto-backfill analytics tables if empty (every Republish wipes them, see
+  // project_seo_engine_schema_revert.md). Fire-and-forget — does not block
+  // boot or registerRoutes. Single-instance via pg_advisory_lock so multiple
+  // Autoscale workers don't all hammer the Google APIs in parallel.
+  void (async () => {
+    try {
+      const { autoBackfillAnalytics } = await import("./migrations/autoBackfillAnalytics");
+      const result = await autoBackfillAnalytics(pool);
+      if (result.triggered) {
+        log(`[auto-backfill] OK in ${result.durationMs}ms — gsc:${JSON.stringify(result.results?.gsc)} ga4Daily:${JSON.stringify(result.results?.ga4Daily)} ga4Conv:${JSON.stringify(result.results?.ga4Conversions)}`);
+      } else {
+        log(`[auto-backfill] skipped (${result.reason}) in ${result.durationMs}ms`);
+      }
+    } catch (err) {
+      log(`[auto-backfill] threw: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  })();
+
   // ── STEP 3: Full async initialization (server already responding) ────────────────
   // registerRoutes now: setupAuth is fire-and-forget, WhatsApp is fire-and-forget.
   // All synchronous route registrations happen immediately.

@@ -28,6 +28,77 @@ function getDateRange(days: number) {
 }
 
 export function registerAnalyticsRoutes(app: Express) {
+  // Diagnostic: capture DB state from inside the deployed app process.
+  // Used to investigate the schema-revert / data-wipe pattern that
+  // happens on Replit Republish (see project_seo_engine_schema_revert.md).
+  // Hit this BEFORE and AFTER a Republish to see exactly what changes.
+  app.get("/api/admin/_diag/db-state", requireAdminSession, async (_req, res) => {
+    try {
+      const { db } = await import("../db");
+      const { sql } = await import("drizzle-orm");
+
+      const [meta, tables] = await Promise.all([
+        db.execute(sql`
+          SELECT
+            current_database() AS db_name,
+            pg_postmaster_start_time()::text AS pg_started_at,
+            current_setting('neon.endpoint_id', true) AS neon_endpoint,
+            current_setting('neon.branch_id', true) AS neon_branch,
+            current_setting('neon.project_id', true) AS neon_project,
+            inet_server_addr()::text AS server_addr,
+            current_setting('server_version') AS server_version,
+            now()::text AS now,
+            txid_current()::text AS current_txid
+        `),
+        db.execute(sql`
+          SELECT
+            relname,
+            n_live_tup AS rows_now,
+            n_tup_ins AS total_inserts,
+            n_tup_upd AS total_updates,
+            n_tup_del AS total_deletes,
+            last_vacuum::text,
+            last_analyze::text,
+            last_autovacuum::text,
+            last_autoanalyze::text
+          FROM pg_stat_user_tables
+          WHERE relname IN (
+            'gsc_queries','ga4_daily_metrics','ga4_conversion_events',
+            'seo_keywords','seo_rankings','psi_measurements','serp_snapshots',
+            'oauth_connections','war_room_suggestions',
+            'bookings','blog_posts','distribution_tray','mcp_tokens',
+            'seo_autopilot_audit'
+          )
+          ORDER BY relname
+        `),
+      ]);
+
+      // Plus existence check for tables that may be missing entirely
+      const existence = await db.execute(sql`
+        SELECT tablename
+        FROM pg_tables
+        WHERE schemaname = 'public'
+          AND tablename IN (
+            'gsc_queries','ga4_daily_metrics','ga4_conversion_events',
+            'seo_keywords','seo_rankings','psi_measurements','serp_snapshots',
+            'oauth_connections','war_room_suggestions'
+          )
+        ORDER BY tablename
+      `);
+
+      res.json({
+        capturedAt: new Date().toISOString(),
+        meta: meta.rows[0] || null,
+        tables: tables.rows || [],
+        analyticsTablesPresent: (existence.rows || []).map((r: { tablename: string }) => r.tablename),
+      });
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("[diag] db-state error", { error: msg });
+      res.status(500).json({ error: msg });
+    }
+  });
+
   // Status: check if Google Analytics services are configured
   app.get("/api/admin/analytics/status", requireAdminSession, async (_req, res) => {
     try {

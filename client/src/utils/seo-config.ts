@@ -71,11 +71,11 @@ export const BASE_DOMAIN = getBaseUrl();
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     home: {
-      title: `Alquiler Barcos Costa Brava ${SEASON_YEAR} \u00b7 Sin Licencia desde 70\u20ac/h`,
-      description: `Alquila barcos sin licencia en Blanes, Costa Brava desde 70\u20ac/h con gasolina incluida. ${BUSINESS_RATING_STR}\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva por WhatsApp en 2 minutos.`,
+      title: `Alquiler Barcos Costa Brava ${SEASON_YEAR} \u00b7 Sin Licencia desde 70\u20ac/h \u00b7 Blanes`,
+      description: `Alquila tu barco con o sin licencia en Blanes desde 70\u20ac/h, gasolina incluida. ${BUSINESS_RATING_STR}\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Calas vac\u00edas, briefing 15 min, reserva por WhatsApp.`,
       keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquiler barco blanes, alquiler barcos sin licencia costa brava, alquiler embarcaciones costa brava, rent a boat costa brava, barco sin licencia costa brava, alquilar barco costa brava",
-      ogTitle: `Alquiler Barcos Costa Brava ${SEASON_YEAR} \u00b7 Sin Licencia desde 70\u20ac/h`,
-      ogDescription: `Alquila barcos sin licencia en Blanes, Costa Brava desde 70\u20ac/h con gasolina incluida. ${BUSINESS_RATING_STR}\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva por WhatsApp en 2 minutos.`
+      ogTitle: `Alquiler Barcos Costa Brava ${SEASON_YEAR} \u00b7 Sin Licencia desde 70\u20ac/h \u00b7 Blanes`,
+      ogDescription: `Alquila tu barco con o sin licencia en Blanes desde 70\u20ac/h, gasolina incluida. ${BUSINESS_RATING_STR}\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Calas vac\u00edas, briefing 15 min, reserva por WhatsApp.`
     },
     booking: {
       title: "Solicitar Reserva de Barco en Blanes | Costa Brava",

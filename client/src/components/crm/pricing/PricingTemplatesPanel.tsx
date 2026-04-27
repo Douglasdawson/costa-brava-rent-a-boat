@@ -33,7 +33,11 @@ export function PricingTemplatesPanel() {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
-      toast({ title: "Plantilla aplicada", description: data.label });
+      // Multi-override response shape: { count, overrides[] }. Single: the override row.
+      const description = data.count
+        ? `${data.count} overrides creados`
+        : data.label ?? "Override creado";
+      toast({ title: "Plantilla aplicada", description });
       setPendingId(null);
     },
     onError: (error: Error) => {
@@ -67,12 +71,18 @@ export function PricingTemplatesPanel() {
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {TEMPLATE_DEFINITIONS.map((tpl) => (
+          {TEMPLATE_DEFINITIONS.map((tpl) => {
+            const badgeVariant: "default" | "secondary" | "destructive" | "outline" =
+              tpl.badge === "Recomendado" ? "default"
+              : tpl.badge === "Promo" ? "destructive"
+              : tpl.badge === "Festivo" ? "secondary"
+              : "outline";
+            return (
             <Card key={tpl.id} className="border-2 hover:border-primary/40 transition-colors">
               <CardContent className="pt-4 space-y-2">
                 <div className="flex items-start justify-between gap-2">
                   <h4 className="font-semibold text-sm leading-tight">{tpl.label}</h4>
-                  <Badge variant="secondary" className="shrink-0 text-[10px]">
+                  <Badge variant={badgeVariant} className="shrink-0 text-[10px]">
                     {tpl.badge}
                   </Badge>
                 </div>
@@ -92,7 +102,8 @@ export function PricingTemplatesPanel() {
                 </Button>
               </CardContent>
             </Card>
-          ))}
+            );
+          })}
         </div>
       </CardContent>
     </Card>

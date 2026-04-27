@@ -23,9 +23,24 @@ const applyTemplateSchema = z.object({
   year: z.number().int().min(2024).max(2099).optional(),
 });
 
-type TemplateBuilder = (year: number) => z.infer<typeof insertPricingOverrideSchema>;
+// Boat tipology — based on demand analysis 2020-2025 (see PDF for Damián v2).
+// Used to power the "differentiated" templates: each boat type gets a different
+// surcharge so we capture more revenue where demand is saturated (CORE) and
+// don't push away customers where boats already linger unsold (PREMIUM, MINGOLLA).
+const BOAT_GROUPS = {
+  CORE: ["solar-450", "remus-450", "remus-450-ii", "astec-400", "astec-480"],
+  PREMIUM: ["trimarchi-57s", "pacific-craft-625"],
+  SECONDARY: ["mingolla-brava-19"],
+  SPECIAL: ["excursion-privada"],
+} as const;
+
+type OverrideSpec = z.infer<typeof insertPricingOverrideSchema>;
+// A template can return one or many overrides (multi-override templates power
+// the differentiated strategy: a single click creates several rows in the DB).
+type TemplateBuilder = (year: number) => OverrideSpec | OverrideSpec[];
 
 const TEMPLATES: Record<string, TemplateBuilder> = {
+  // ===== UNIFORM templates (one override per template) =====
   peak_august: (year) => ({
     boatId: null,
     dateStart: `${year}-08-01`,
@@ -35,7 +50,7 @@ const TEMPLATES: Record<string, TemplateBuilder> = {
     adjustmentType: "multiplier",
     adjustmentValue: "0.10",
     label: `Pico agosto ${year} (+10%)`,
-    notes: "Plantilla automática basada en el análisis 2020-2025: la 1ª-2ª semana de agosto concentra el pico real de demanda. Subida moderada para mantenerse competitivo.",
+    notes: "Plantilla uniforme: +10% a todos los barcos durante los 17 días pico. Captura menos revenue que la diferenciada pero más simple.",
     priority: 10,
     isActive: true,
     tenantId: null,
@@ -49,8 +64,75 @@ const TEMPLATES: Record<string, TemplateBuilder> = {
     adjustmentType: "multiplier",
     adjustmentValue: "0.15",
     label: `Asunción ${year} (+15%)`,
-    notes: "Festivo nacional. Día con consistente alta demanda los 6 años analizados (top 3 del verano). Suplemento moderado.",
+    notes: "Plantilla uniforme: +15% a todos los barcos el 15 ago.",
     priority: 20,
+    isActive: true,
+    tenantId: null,
+  }),
+
+  // ===== DIFFERENTIATED templates (multi-override) =====
+  // These create one override per boat with a percentage matched to its demand profile.
+  peak_august_differentiated: (year) => {
+    const dateStart = `${year}-08-01`;
+    const dateEnd = `${year}-08-17`;
+    const make = (boatId: string, value: string, suffix: string): OverrideSpec => ({
+      boatId,
+      dateStart,
+      dateEnd,
+      weekdayFilter: null,
+      direction: "surcharge",
+      adjustmentType: "multiplier",
+      adjustmentValue: value,
+      label: `Pico agosto ${year} ${suffix}`,
+      notes: "Plantilla diferenciada por tipo de barco. Captura más revenue en barcos core (saturados) sin arriesgar reservas en premium / secundarios (sensibles a precio).",
+      priority: 10,
+      isActive: true,
+      tenantId: null,
+    });
+    return [
+      ...BOAT_GROUPS.CORE.map((id) => make(id, "0.15", "(CORE +15%)")),
+      ...BOAT_GROUPS.PREMIUM.map((id) => make(id, "0.05", "(PREMIUM +5%)")),
+      // SECONDARY (Mingolla) and SPECIAL (Excursión) get nothing in the peak template;
+      // SPECIAL has its own permanent promo template below.
+    ];
+  },
+  asuncion_differentiated: (year) => {
+    const date = `${year}-08-15`;
+    const make = (boatId: string, value: string, suffix: string): OverrideSpec => ({
+      boatId,
+      dateStart: date,
+      dateEnd: date,
+      weekdayFilter: null,
+      direction: "surcharge",
+      adjustmentType: "multiplier",
+      adjustmentValue: value,
+      label: `Asunción ${year} ${suffix}`,
+      notes: "Plantilla diferenciada Asunción. Festivo top-3 del verano según los 6 años analizados.",
+      priority: 25, // wins over the differentiated peak template (priority 10)
+      isActive: true,
+      tenantId: null,
+    });
+    return [
+      ...BOAT_GROUPS.CORE.map((id) => make(id, "0.20", "(CORE +20%)")),
+      ...BOAT_GROUPS.PREMIUM.map((id) => make(id, "0.10", "(PREMIUM +10%)")),
+      ...BOAT_GROUPS.SECONDARY.map((id) => make(id, "0.05", "(SEC +5%)")),
+    ];
+  },
+
+  // ===== PROMO template (discount, indefinite range) =====
+  // Pacific + capitán sobra el 88% de los días pico — no es problema de precio,
+  // es problema de producto. Una promo permanente del -10% por si acaso ayuda a colocar.
+  pacific_capitan_promo: (year) => ({
+    boatId: "excursion-privada",
+    dateStart: `${year}-04-01`,
+    dateEnd: `${year}-10-31`,
+    weekdayFilter: null,
+    direction: "discount",
+    adjustmentType: "multiplier",
+    adjustmentValue: "0.10",
+    label: `Promo Pacific+capitán ${year} (−10%)`,
+    notes: "Promoción permanente para Excursión Privada con Capitán. Sobra el 88% de días pico — bajamos precio para llenar los pocos huecos que se vendan.",
+    priority: 5,
     isActive: true,
     tenantId: null,
   }),
@@ -218,12 +300,25 @@ export function registerAdminPricingOverridesRoutes(app: Express) {
         }
         const year = validation.data.year ?? new Date().getFullYear();
         const data = builder(year);
-        const created = await storage.createPricingOverride(data);
-        audit(req, "apply_template", RESOURCE, created.id, {
+        const specs = Array.isArray(data) ? data : [data];
+        const created: Awaited<ReturnType<typeof storage.createPricingOverride>>[] = [];
+        for (const spec of specs) {
+          const row = await storage.createPricingOverride(spec);
+          created.push(row);
+        }
+        audit(req, "apply_template", RESOURCE, created.map((c) => c.id).join(","), {
           templateId: req.params.templateId,
           year,
+          createdCount: created.length,
         });
-        res.status(201).json(created);
+        // Backwards-compatible response shape:
+        // - Single-override templates return the override object directly (legacy clients).
+        // - Multi-override templates return { count, overrides }.
+        if (created.length === 1) {
+          res.status(201).json(created[0]);
+        } else {
+          res.status(201).json({ count: created.length, overrides: created });
+        }
       } catch (error: unknown) {
         logger.error("[Admin] Error applying pricing override template", {
           error: error instanceof Error ? error.message : String(error),

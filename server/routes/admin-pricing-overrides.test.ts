@@ -221,5 +221,85 @@ describe("Admin pricing overrides routes", () => {
 
       expect(res.body.availableTemplates).toContain("peak_august");
     });
+
+    // ===== Multi-override differentiated templates =====
+
+    it("peak_august_differentiated creates one override per CORE+PREMIUM boat (7 total)", async () => {
+      let createdCount = 0;
+      mockedStorage.createPricingOverride.mockImplementation(async (data) => {
+        createdCount++;
+        return { id: `ov-diff-${createdCount}`, ...data, createdAt: new Date(), updatedAt: new Date() } as never;
+      });
+
+      const res = await request(app)
+        .post("/api/admin/pricing-overrides/templates/peak_august_differentiated/apply")
+        .send({ year: 2026 })
+        .expect(201);
+
+      expect(res.body.count).toBe(7); // 5 CORE + 2 PREMIUM
+      expect(res.body.overrides).toHaveLength(7);
+      const calls = mockedStorage.createPricingOverride.mock.calls.map((c) => c[0]);
+      const coreBoats = ["solar-450", "remus-450", "remus-450-ii", "astec-400", "astec-480"];
+      for (const boat of coreBoats) {
+        const found = calls.find((c) => c.boatId === boat);
+        expect(found).toBeDefined();
+        expect(found!.adjustmentValue).toBe("0.15"); // CORE +15%
+      }
+      const premiumBoats = ["trimarchi-57s", "pacific-craft-625"];
+      for (const boat of premiumBoats) {
+        const found = calls.find((c) => c.boatId === boat);
+        expect(found).toBeDefined();
+        expect(found!.adjustmentValue).toBe("0.05"); // PREMIUM +5%
+      }
+      // Mingolla and Excursión NOT in this template
+      expect(calls.find((c) => c.boatId === "mingolla-brava-19")).toBeUndefined();
+      expect(calls.find((c) => c.boatId === "excursion-privada")).toBeUndefined();
+    });
+
+    it("asuncion_differentiated creates 8 overrides covering CORE+PREMIUM+SECONDARY", async () => {
+      let createdCount = 0;
+      mockedStorage.createPricingOverride.mockImplementation(async (data) => {
+        createdCount++;
+        return { id: `ov-asun-${createdCount}`, ...data, createdAt: new Date(), updatedAt: new Date() } as never;
+      });
+
+      const res = await request(app)
+        .post("/api/admin/pricing-overrides/templates/asuncion_differentiated/apply")
+        .send({ year: 2026 })
+        .expect(201);
+
+      expect(res.body.count).toBe(8); // 5 CORE + 2 PREMIUM + 1 SECONDARY
+      const calls = mockedStorage.createPricingOverride.mock.calls.map((c) => c[0]);
+      // All overrides land on the single Asunción day
+      for (const c of calls) {
+        expect(c.dateStart).toBe("2026-08-15");
+        expect(c.dateEnd).toBe("2026-08-15");
+        expect(c.priority).toBe(25); // higher than peak_august_differentiated (10) so wins on Aug 15
+      }
+      // Mingolla included with +5%
+      const mingolla = calls.find((c) => c.boatId === "mingolla-brava-19");
+      expect(mingolla?.adjustmentValue).toBe("0.05");
+    });
+
+    it("pacific_capitan_promo creates a single discount override for the season", async () => {
+      mockedStorage.createPricingOverride.mockResolvedValue({
+        id: "ov-promo",
+        label: "Promo Pacific+capitán 2026 (−10%)",
+      } as never);
+
+      const res = await request(app)
+        .post("/api/admin/pricing-overrides/templates/pacific_capitan_promo/apply")
+        .send({ year: 2026 })
+        .expect(201);
+
+      // Single-override response shape (no count field)
+      expect(res.body.id).toBe("ov-promo");
+      const call = mockedStorage.createPricingOverride.mock.calls[0][0];
+      expect(call.boatId).toBe("excursion-privada");
+      expect(call.direction).toBe("discount");
+      expect(call.adjustmentValue).toBe("0.10");
+      expect(call.dateStart).toBe("2026-04-01");
+      expect(call.dateEnd).toBe("2026-10-31");
+    });
   });
 });

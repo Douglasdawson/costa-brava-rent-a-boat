@@ -70,7 +70,7 @@ export function PricingOverrideModal({ open, onOpenChange, override }: PricingOv
         dateStart: override.dateStart,
         dateEnd: override.dateEnd,
         weekdayFilter: override.weekdayFilter,
-        direction: "surcharge",
+        direction: override.direction, // respect DB value (was hardcoded to "surcharge" — bug)
         adjustmentType: override.adjustmentType,
         adjustmentValue: override.adjustmentValue,
         boatId: override.boatId,
@@ -238,6 +238,34 @@ export function PricingOverrideModal({ open, onOpenChange, override }: PricingOv
                 })}
               </div>
             )}
+          </div>
+
+          <div>
+            <Label>Dirección del ajuste *</Label>
+            <div className="grid grid-cols-2 gap-2 mt-1">
+              <button
+                type="button"
+                onClick={() => setForm({ ...form, direction: "surcharge" })}
+                className={`px-3 py-2 rounded-md border text-sm font-medium transition ${
+                  form.direction === "surcharge"
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-background hover:bg-muted border-input"
+                }`}
+              >
+                Subir precio (recargo)
+              </button>
+              <button
+                type="button"
+                onClick={() => setForm({ ...form, direction: "discount" })}
+                className={`px-3 py-2 rounded-md border text-sm font-medium transition ${
+                  form.direction === "discount"
+                    ? "bg-destructive text-destructive-foreground border-destructive"
+                    : "bg-background hover:bg-muted border-input"
+                }`}
+              >
+                Bajar precio (promoción)
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">

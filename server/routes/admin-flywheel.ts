@@ -235,4 +235,86 @@ export function registerAdminFlywheelRoutes(app: Express) {
       }
     },
   );
+
+  // Browser-friendly smoke test: a logged-in admin can hit this URL directly
+  // from their browser. Auto-picks the most recent booking with an email
+  // address and sends a test thank-you to ?to=<email> (defaults to the
+  // booking's customer email). Throw-away test send — does not persist
+  // emailThankYouSent on the booking.
+  app.get(
+    "/api/admin/flywheel/thank-you-email/test",
+    requireAdminSession,
+    async (req, res) => {
+      const toRaw = typeof req.query?.to === "string" ? req.query.to.trim() : "";
+      const to = toRaw || undefined;
+
+      try {
+        // Find the most recent booking that has an email address. We use
+        // getAllBookings + sort because there's no dedicated "with email"
+        // storage helper and the volume is small enough.
+        const all = await storage.getAllBookings();
+        const candidate = all
+          .filter((b) => b.customerEmail && b.customerEmail.length > 0)
+          .sort((a, b) => {
+            const at = new Date(a.endTime ?? a.createdAt ?? 0).getTime();
+            const bt = new Date(b.endTime ?? b.createdAt ?? 0).getTime();
+            return bt - at;
+          })[0];
+
+        if (!candidate) {
+          return res.status(404).json({
+            message: "No hay reservas con email para usar como plantilla",
+          });
+        }
+
+        const boat = await storage.getBoat(candidate.boatId);
+        if (!boat) {
+          return res.status(404).json({ message: "Barco no encontrado" });
+        }
+
+        const extras = await storage.getBookingExtras(candidate.id);
+        const targetEmail = to || candidate.customerEmail!;
+
+        const bookingForSend = to
+          ? { ...candidate, customerEmail: to }
+          : candidate;
+
+        const result = await sendThankYouEmail(
+          { booking: bookingForSend, boat, extras },
+          "TEST-DISCOUNT-CODE",
+        );
+
+        if (!result.success) {
+          return res.status(503).json({
+            success: false,
+            message: result.error || "Error enviando email",
+          });
+        }
+
+        audit(req, "flywheel.thank_you_email_test_sent", "booking", candidate.id, {
+          channel: "email",
+          target: targetEmail,
+        });
+
+        logger.info("[AdminFlywheel] Test thank-you email sent", {
+          bookingId: candidate.id,
+          target: targetEmail,
+          language: candidate.language,
+        });
+
+        res.json({
+          success: true,
+          message: `Email de prueba enviado a ${targetEmail}. Revisa la bandeja en 5-30 segundos.`,
+          bookingIdUsed: candidate.id,
+          target: targetEmail,
+          language: candidate.language ?? "es",
+          boat: boat.name,
+        });
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : "Unknown error";
+        logger.error("[AdminFlywheel] test thank-you error", { error: msg });
+        res.status(500).json({ message: "Error: " + msg });
+      }
+    },
+  );
 }

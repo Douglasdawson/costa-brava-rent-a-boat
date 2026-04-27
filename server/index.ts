@@ -404,6 +404,25 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log(`[migrations] applyAnalyticsUnblock loader threw: ${err instanceof Error ? err.message : String(err)}`);
   }
 
+  // ── STEP 2.6: Idempotent pricing_overrides schema sync ───────────────────────────
+  // Re-applies migrations/0008_pricing_overrides.sql on every boot. Same root
+  // cause as the analytics sync above: Replit Republish wipes tables added to
+  // shared/schema.ts after the last full Publish. Without this, the dynamic
+  // pricing CRM tab returns 500 after each redeploy until a manual SQL fix.
+  try {
+    const { applyPricingOverridesEnsure } = await import("./migrations/applyPricingOverridesEnsure");
+    const result = await applyPricingOverridesEnsure(pool);
+    if (result.applied) {
+      log(`[migrations] pricing_overrides schema sync OK in ${result.durationMs}ms`);
+    } else if (result.error === "lock-held-by-other-instance") {
+      log(`[migrations] pricing_overrides schema sync skipped (another instance holds lock)`);
+    } else {
+      log(`[migrations] pricing_overrides schema sync FAILED: ${result.error}`);
+    }
+  } catch (err) {
+    log(`[migrations] applyPricingOverridesEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   // Auto-backfill analytics tables if empty (every Republish wipes them, see
   // project_seo_engine_schema_revert.md). Fire-and-forget — does not block
   // boot or registerRoutes. Single-instance via pg_advisory_lock so multiple

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Activity, AlertTriangle, FileText, KeyRound, Send, ShieldCheck,
-  CheckCircle2, XCircle, Clock, ExternalLink, Trash2, Copy, Plus,
+  CheckCircle2, XCircle, Clock, ExternalLink, Trash2, Copy, Plus, Rocket,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -86,6 +86,10 @@ function formatDate(iso: string | null | undefined): string {
     return iso;
   }
 }
+
+// Platforms supported by Distribution Engine Fase 1 (auto-publish via API).
+// Keep in sync with server/services/distribution/distributionEngine.ts SUPPORTED_PLATFORMS.
+const AUTO_PUBLISH_PLATFORMS = new Set<string>(["facebook", "linkedin", "medium", "google_business"]);
 
 function statusBadge(status: string): { variant: "default" | "secondary" | "destructive" | "outline"; label: string } {
   switch (status) {
@@ -258,6 +262,42 @@ function DistributionPanel({ adminToken }: { adminToken: string }) {
     },
   });
 
+  const publishNowMutation = useMutation({
+    mutationFn: async (id: number) => {
+      // Use raw fetch — engine returns 409 (already published) and 501/503 (unsupported)
+      // as meaningful, parseable JSON; we don't want apiFetch's throw-on-non-2xx behavior.
+      const res = await fetch(`/api/admin/distribution/publish/${id}`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${adminToken}` },
+      });
+      const json = (await res.json().catch(() => ({}))) as {
+        ok: boolean; itemId: number; publishedUrl?: string;
+        error?: string; unsupported?: boolean; alreadyPublished?: boolean;
+      };
+      return json;
+    },
+    onSuccess: (res) => {
+      queryClient.invalidateQueries({ queryKey: ["autopilot", "distribution"] });
+      queryClient.invalidateQueries({ queryKey: ["autopilot", "overview"] });
+      if (res.ok && res.publishedUrl) {
+        toast({
+          title: "Publicado",
+          description: res.publishedUrl,
+        });
+      } else if (res.unsupported) {
+        toast({ title: "Plataforma no soportada (Fase 1)", description: res.error, variant: "destructive" });
+      } else if (res.alreadyPublished) {
+        toast({ title: "Ya estaba publicado", description: res.publishedUrl });
+      } else {
+        toast({ title: "Error al publicar", description: res.error ?? "Error desconocido", variant: "destructive" });
+      }
+    },
+    onError: (err: unknown) => {
+      toast({ title: "Error", description: err instanceof Error ? err.message : "Error", variant: "destructive" });
+    },
+  });
+
   if (isLoading) return <p className="text-sm text-muted-foreground">Cargando…</p>;
   if (error) return <ErrorState message={error instanceof Error ? error.message : "Error"} />;
   const items = data?.items ?? [];
@@ -302,6 +342,7 @@ function DistributionPanel({ adminToken }: { adminToken: string }) {
               <TableBody>
                 {items.map((it) => {
                   const sb = statusBadge(it.status);
+                  const autoPublishable = AUTO_PUBLISH_PLATFORMS.has(it.platform);
                   return (
                     <TableRow key={it.id}>
                       <TableCell className="capitalize">{it.platform.replace("_", " ")}</TableCell>
@@ -315,13 +356,20 @@ function DistributionPanel({ adminToken }: { adminToken: string }) {
                             <Button size="sm" variant="ghost"><ExternalLink className="h-3 w-3" /></Button>
                           </a>
                         )}
+                        {it.status === "pending" && autoPublishable && (
+                          <Button size="sm" variant="default" className="bg-green-600 hover:bg-green-700 text-white"
+                            disabled={publishNowMutation.isPending}
+                            onClick={() => publishNowMutation.mutate(it.id)}>
+                            <Rocket className="h-3 w-3 mr-1" />Publicar ahora
+                          </Button>
+                        )}
                         {(it.status === "pending" || it.status === "scheduled") && (
                           <Button size="sm" variant="outline"
                             onClick={() => {
                               const url = window.prompt("URL de publicación:");
                               if (url) markMutation.mutate({ id: it.id, result: "published", publishedUrl: url });
                             }}>
-                            <CheckCircle2 className="h-3 w-3 mr-1" />Publicado
+                            <CheckCircle2 className="h-3 w-3 mr-1" />Marcar
                           </Button>
                         )}
                         <Button size="sm" variant="ghost"
@@ -343,6 +391,7 @@ function DistributionPanel({ adminToken }: { adminToken: string }) {
         <div className="md:hidden space-y-3">
           {items.map((it) => {
             const sb = statusBadge(it.status);
+            const autoPublishable = AUTO_PUBLISH_PLATFORMS.has(it.platform);
             return (
               <Card key={it.id}>
                 <CardContent className="p-4">
@@ -361,11 +410,18 @@ function DistributionPanel({ adminToken }: { adminToken: string }) {
                     </div>
                   </div>
                   <p className="font-mono text-xs text-muted-foreground mt-1 truncate">{it.slug}</p>
-                  <div className="flex gap-2 mt-3">
+                  <div className="flex gap-2 mt-3 flex-wrap">
                     {it.publishedUrl && (
                       <a href={it.publishedUrl} target="_blank" rel="noopener noreferrer">
                         <Button size="sm" variant="ghost" className="min-h-[44px]"><ExternalLink className="h-3 w-3" /></Button>
                       </a>
+                    )}
+                    {it.status === "pending" && autoPublishable && (
+                      <Button size="sm" variant="default" className="min-h-[44px] bg-green-600 hover:bg-green-700 text-white"
+                        disabled={publishNowMutation.isPending}
+                        onClick={() => publishNowMutation.mutate(it.id)}>
+                        <Rocket className="h-3 w-3 mr-1" />Publicar ahora
+                      </Button>
                     )}
                     {(it.status === "pending" || it.status === "scheduled") && (
                       <Button size="sm" variant="outline" className="min-h-[44px]"
@@ -373,7 +429,7 @@ function DistributionPanel({ adminToken }: { adminToken: string }) {
                           const url = window.prompt("URL de publicación:");
                           if (url) markMutation.mutate({ id: it.id, result: "published", publishedUrl: url });
                         }}>
-                        <CheckCircle2 className="h-3 w-3 mr-1" />Publicado
+                        <CheckCircle2 className="h-3 w-3 mr-1" />Marcar
                       </Button>
                     )}
                     <Button size="sm" variant="ghost" className="min-h-[44px]"

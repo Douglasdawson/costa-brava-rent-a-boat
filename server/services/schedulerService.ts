@@ -504,6 +504,26 @@ export function startScheduler(): void {
     }
   }));
 
+  // Distribution engine: auto-publish pending tray items every 6h at :05.
+  // Disabled by default — opt in by setting DISTRIBUTION_AUTO_PUBLISH=true
+  // once you've validated the on-demand flow end-to-end.
+  if (process.env.DISTRIBUTION_AUTO_PUBLISH === "true") {
+    scheduledTasks.push(cron.schedule("5 */6 * * *", async () => {
+      try {
+        const { publishPending } = await import("./distribution/distributionEngine");
+        logger.info("[Scheduler] Running distribution auto-publish");
+        const result = await publishPending({ limit: 25 });
+        logger.info("[Scheduler] distribution auto-publish completed", {
+          attempted: result.attempted, ok: result.ok, failed: result.failed, skipped: result.skipped,
+        });
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : "Unknown error";
+        logger.error("[Scheduler] distribution auto-publish error", { error: msg });
+      }
+    }));
+    logger.info("[Scheduler] Distribution auto-publish ENABLED (every 6h at :05)");
+  }
+
   logger.info("Scheduled services started: reminders (:00), flywheel (:10), thank-you (:30), hold cleanup (every 5min), abandoned recovery (:15/:45), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am), chatbot insights (Mon 6am), lead nurturing (every 2h at :20), GSC queries ETL (02:30/14:30), GA4 daily ETL (03:45), PSI collector (04:15), SERP snapshots (05:30)");
 }
 

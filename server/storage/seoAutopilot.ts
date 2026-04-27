@@ -90,6 +90,22 @@ export async function getDistributionItemById(id: number): Promise<DistributionT
   return row;
 }
 
+export async function getPendingDistributions(options: {
+  limit?: number;
+  platforms?: DistributionPlatform[];
+} = {}): Promise<DistributionTrayItem[]> {
+  const conditions = [eq(distributionTray.status, "pending")] as Array<ReturnType<typeof eq>>;
+  if (options.platforms && options.platforms.length > 0) {
+    conditions.push(inArray(distributionTray.platform, options.platforms) as never);
+  }
+  return await db
+    .select()
+    .from(distributionTray)
+    .where(and(...conditions) as never)
+    .orderBy(asc(distributionTray.createdAt))
+    .limit(Math.min(options.limit ?? 50, 200));
+}
+
 export async function updateDistributionStatus(
   id: number,
   patch: {

@@ -38,6 +38,8 @@ import { registerGdprRoutes } from "./gdpr";
 import { registerAdminMcpTokensRoutes } from "./admin-mcp-tokens";
 import { registerSeoRoutes } from "./admin-seo";
 import { registerAdminSeoAutopilotRoutes } from "./admin-seo-autopilot";
+import { registerAdminDistributionRoutes } from "./admin-distribution";
+import { registerLinkedinOAuthRoutes } from "./oauth-linkedin";
 import { registerBusinessStatsRoutes } from "./business-stats";
 import { registerAdminFlywheelRoutes } from "./admin-flywheel";
 import { registerAdminPricingOverridesRoutes } from "./admin-pricing-overrides";
@@ -91,6 +93,10 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   registerAdminMcpTokensRoutes(app);
   registerSeoRoutes(app);
   registerAdminSeoAutopilotRoutes(app);
+
+  // Distribution Engine — on-demand publish + LinkedIn OAuth
+  registerAdminDistributionRoutes(app);
+  registerLinkedinOAuthRoutes(app);
 
   // Google Business Profile stats (rating + reviews, weekly cron sync)
   registerBusinessStatsRoutes(app);

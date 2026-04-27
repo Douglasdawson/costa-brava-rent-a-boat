@@ -143,13 +143,13 @@ describe("calculateDynamicPrice", () => {
       expect(result.reason).toBe("low_demand");
     });
 
-    it("works with weekend surcharge (base already includes +15%)", () => {
-      // Saturday in BAJA, 2h: 115 * 1.15 = 132.25 -> 132
+    it("works with weekend surcharge (base rounded to nearest 10)", () => {
+      // Saturday in BAJA, 2h: 115 * 1.15 = 132.25 → roundToNearestTen → 130
       const saturday = new Date("2026-04-04T12:00:00");
       const result = calculateDynamicPrice(BOAT_ID, saturday, DURATION, 1.0);
-      // 132 * 1.25 = 165
-      expect(result.basePrice).toBe(132);
-      expect(result.adjustedPrice).toBe(165);
+      // 130 * 1.25 = 162.5 → Math.round → 163 (calculateDynamicPrice uses plain rounding)
+      expect(result.basePrice).toBe(130);
+      expect(result.adjustedPrice).toBe(163);
       expect(result.reason).toBe("high_demand");
     });
 

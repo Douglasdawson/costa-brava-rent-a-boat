@@ -192,12 +192,15 @@ describe("calculateBasePrice", () => {
     expect(price).toBe(150); // ALTA 2h = 150 per boatData.ts
   });
 
-  it("applies weekend surcharge correctly", () => {
+  it("applies weekend surcharge correctly (rounded to nearest 10)", () => {
     // Saturday (weekend) in BAJA with 2h
     const weekendPrice = calculateBasePrice("solar-450", new Date("2026-04-04T12:00:00"), "2h");
     const weekdayPrice = calculateBasePrice("solar-450", new Date("2026-04-06T12:00:00"), "2h");
-    expect(weekendPrice).toBe(Math.round(weekdayPrice * WEEKEND_SURCHARGE_FACTOR));
-    expect(weekendPrice).toBe(132); // 115 * 1.15 = 132.25 -> 132
+    // 115 * 1.15 = 132.25 → roundToNearestTen → 130
+    expect(weekendPrice).toBe(130);
+    expect(weekdayPrice).toBe(115); // catalog base, untouched
+    // sanity: WEEKEND_SURCHARGE_FACTOR is still 1.15
+    expect(WEEKEND_SURCHARGE_FACTOR).toBe(1.15);
   });
 
   it("throws for unknown boat", () => {
@@ -274,10 +277,10 @@ describe("calculatePricingBreakdown", () => {
     expect(breakdown.total).toBe(400);
   });
 
-  it("includes weekend surcharge in breakdown", () => {
+  it("includes weekend surcharge in breakdown (rounded to nearest 10)", () => {
     const breakdown = calculatePricingBreakdown("solar-450", new Date("2026-04-04T12:00:00"), "2h");
     expect(breakdown.weekendSurcharge).toBe(true);
-    expect(breakdown.basePrice).toBe(132); // 115 * 1.15 = 132.25 -> 132
+    expect(breakdown.basePrice).toBe(130); // 115 * 1.15 = 132.25 → roundToNearestTen → 130
   });
 
   it("calculates subtotal correctly (basePrice + extrasPrice)", () => {
@@ -634,10 +637,16 @@ describe("applyOverrideToPrice", () => {
     expect(applyOverrideToPrice(100, rule)).toBe(0);
   });
 
-  it("rounds half to nearest integer", () => {
+  it("rounds result to nearest 10 (no ugly figures for the customer)", () => {
     const rule = makeRule({ direction: "surcharge", adjustmentType: "multiplier", adjustmentValue: 0.115 });
-    // 200 * 1.115 = 223.0
-    expect(applyOverrideToPrice(200, rule)).toBe(223);
+    // 200 * 1.115 = 223.0 → roundToNearestTen → 220
+    expect(applyOverrideToPrice(200, rule)).toBe(220);
+  });
+
+  it("rounds 'half-up' style (e.g. 25 in last digit → up)", () => {
+    const rule = makeRule({ direction: "surcharge", adjustmentType: "flat_eur", adjustmentValue: 25 });
+    // 200 + 25 = 225 → Math.round(22.5) = 23 → 230
+    expect(applyOverrideToPrice(200, rule)).toBe(230);
   });
 });
 
@@ -656,13 +665,12 @@ describe("calculatePricingBreakdown with overrides", () => {
     const overrides = [makeRule({ adjustmentValue: 0.25 })];
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
     expect(breakdown.basePriceBeforeOverride).toBe(150);
-    expect(breakdown.basePrice).toBe(188); // 150 * 1.25 = 187.5 → 188
+    expect(breakdown.basePrice).toBe(190); // 150 * 1.25 = 187.5 → roundToNearestTen → 190
     expect(breakdown.appliedOverride?.label).toBe("Pico agosto");
-    expect(breakdown.subtotal).toBe(188);
+    expect(breakdown.subtotal).toBe(190);
   });
 
   it("override applies on top of weekend surcharge (jul, where surcharge IS active)", () => {
-    // MEDIA 2h Solar 450 on Saturday in July → weekend surcharge applies (135 * 1.15 = 155.25 → 155)
     const julySaturday = new Date("2026-07-04T10:00:00"); // Sat
     const overrides = [makeRule({
       dateStart: "2026-07-01",
@@ -670,11 +678,11 @@ describe("calculatePricingBreakdown with overrides", () => {
       adjustmentValue: 0.20,
     })];
     const breakdown = calculatePricingBreakdown("solar-450", julySaturday, "2h", [], [], overrides);
-    // Solar 450 MEDIA 2h = 135 (from boatData), * 1.15 weekend = 155.25 → 155
-    expect(breakdown.basePriceBeforeOverride).toBe(155);
+    // Solar 450 MEDIA 2h = 135. Weekend factor: 135 * 1.15 = 155.25 → roundToNearestTen → 160.
+    expect(breakdown.basePriceBeforeOverride).toBe(160);
     expect(breakdown.weekendSurcharge).toBe(true);
-    // 155 * 1.20 = 186
-    expect(breakdown.basePrice).toBe(186);
+    // 160 * 1.20 = 192 → roundToNearestTen → 190
+    expect(breakdown.basePrice).toBe(190);
   });
 
   it("override applies WITHOUT weekend surcharge in August (surcharge bypassed)", () => {
@@ -683,7 +691,7 @@ describe("calculatePricingBreakdown with overrides", () => {
     const overrides = [makeRule({ adjustmentValue: 0.10 })];
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
     expect(breakdown.basePriceBeforeOverride).toBe(150); // ALTA 2h, no weekend in Aug
-    expect(breakdown.basePrice).toBe(165); // 150 * 1.10 = 165
+    expect(breakdown.basePrice).toBe(170); // 150 * 1.10 = 165 → roundToNearestTen → 170
     expect(breakdown.weekendSurcharge).toBe(false);
   });
 
@@ -698,11 +706,11 @@ describe("calculatePricingBreakdown with overrides", () => {
       [],
       overrides,
     );
-    expect(breakdown.basePrice).toBe(188);
+    expect(breakdown.basePrice).toBe(190); // 150 * 1.25 = 187.5 → roundToNearestTen → 190
     expect(breakdown.extrasPrice).toBe(10); // unchanged
     // deposit unchanged from solar-450's spec
     expect(breakdown.deposit).toBeGreaterThan(0);
-    expect(breakdown.subtotal).toBe(198); // 188 + 10
+    expect(breakdown.subtotal).toBe(200); // 190 + 10
     expect(breakdown.total).toBe(breakdown.subtotal + breakdown.deposit);
   });
 

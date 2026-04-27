@@ -8,6 +8,16 @@ export type Duration = '1h' | '2h' | '3h' | '4h' | '6h' | '8h';
 /** Weekend surcharge factor: +15% on Saturdays and Sundays */
 export const WEEKEND_SURCHARGE_FACTOR = 1.15;
 
+/**
+ * Round a price to the nearest multiple of 10 (e.g. 231 → 230, 235 → 240, 244 → 240).
+ * Applied to outputs of weekend-surcharge and override calculations so the
+ * customer never sees ugly figures like 187.5€ or 224.9€. Catalog base prices
+ * (e.g. 75€, 115€) are NOT rounded — they're the owner's authored numbers.
+ */
+function roundToNearestTen(n: number): number {
+  return Math.round(n / 10) * 10;
+}
+
 const DAY_NAME_TO_NUMBER: Record<string, number> = {
   Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
 };
@@ -129,7 +139,7 @@ export function applyOverrideToPrice(price: number, override: PricingOverrideRul
   } else {
     result = price + sign * override.adjustmentValue;
   }
-  return Math.max(0, Math.round(result));
+  return Math.max(0, roundToNearestTen(result));
 }
 
 /**
@@ -227,7 +237,7 @@ export function calculateBasePrice(boatId: string, date: Date, duration: Duratio
   }
 
   const basePrice = seasonPricing.prices[duration];
-  return shouldApplyWeekendSurcharge(date) ? Math.round(basePrice * WEEKEND_SURCHARGE_FACTOR) : basePrice;
+  return shouldApplyWeekendSurcharge(date) ? roundToNearestTen(basePrice * WEEKEND_SURCHARGE_FACTOR) : basePrice;
 }
 
 /**

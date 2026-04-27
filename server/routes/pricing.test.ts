@@ -69,9 +69,9 @@ describe("GET /api/pricing/calendar", () => {
     const day1 = res.body.days[0];
     expect(day1.hasOverride).toBe(true);
     expect(day1.overrideLabel).toBe("Pico agosto 2026");
-    // ALTA 2h Solar 450 = 150€ base, +25% = 188€ (rounded)
+    // ALTA 2h Solar 450 = 150€ base, +25% = 187.5 → roundToNearestTen → 190
     expect(day1.basePrice).toBe(150);
-    expect(day1.finalPrice).toBe(188);
+    expect(day1.finalPrice).toBe(190);
   });
 
   it("rejects malformed date params", async () => {

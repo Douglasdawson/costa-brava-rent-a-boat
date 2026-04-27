@@ -1,7 +1,7 @@
 # Handoff — Replit Support ticket: Republish silently reverts git commits & drops DB tables
 
 ## Fecha apertura: 2026-04-27
-## Estado: ESPERANDO respuesta de Replit (ya pasaron 2 vueltas: nuestro report → Quinn pide datos → nuestro reply con datos)
+## Estado: **ESCALADO a ingeniería de Replit** (2026-04-27, sin ETA). Esperando hallazgos.
 ## Contacto Replit: Quinn (Replit Support)
 ## Canal: email a `support@replit.com`
 
@@ -26,6 +26,8 @@
 | 2026-04-27 ~12:00 | Quinn responde confirmando "definitely not expected behavior" y pide: Repl name, deployment type, Private Join Link | Quinn |
 | 2026-04-27 ~14:15 | Iván pide a Claude conseguir esos 3 datos. Claude confirma 2/3 desde el repo + saca IDs forenses internos. Compone reply en Mail.app | Claude |
 | 2026-04-27 ~14:15 | Reply pendiente de envío — Iván tiene que pegar el Private Join Link y pulsar Enviar | — |
+| 2026-04-27 (después) | Iván envía el reply con todos los datos + Private Join Link | Iván |
+| 2026-04-27 | **Quinn responde confirmando escalación a ingeniería**. Sin ETA. Cita explícitamente que la forensic data (session IDs, build IDs, hashes, workspace UUID, timestamps) es "extremely helpful for investigation" | Quinn |
 
 ---
 
@@ -177,13 +179,16 @@ Estas mitigaciones explican por qué el bug no rompe prod ahora mismo aunque vue
 
 ## Próximos pasos
 
-1. **AHORA (Iván)**: pegar Private Join Link en Mail.app y enviar el reply a Quinn.
-2. **Esperar** respuesta de Replit (Quinn dijo "I'll escalate this immediately"). SLA esperado: 24–72h.
-3. **Si pasan 72h sin respuesta**: follow-up con el mismo asunto + post en `https://replit.discourse.group/c/bugs` referenciando el ticket interno y los hashes.
-4. **Cuando llegue el verdict**:
-   - Si **Replit confirma bug y lo arregla** → quitar workarounds idempotentes (o mantenerlos como defensa adicional, decisión de Iván).
-   - Si **Replit dice "feature, no bug"** → cambiar deployment process: nunca más Republish, solo full Publish. Documentar.
-   - Si **no responden** → escalar a redes (X `@ReplitSupport`) o cambiar de plataforma.
+1. ✅ **Reply enviado** con datos + Private Join Link.
+2. ✅ **Quinn confirmó escalación** a ingeniería el 2026-04-27.
+3. **AHORA — esperar hallazgos de ingeniería**. Sin ETA explícito. Pauta interna de seguimiento:
+   - **+5 días sin novedad (2026-05-02)**: follow-up cortés pidiendo status update.
+   - **+10 días sin novedad (2026-05-07)**: post público en `https://replit.discourse.group/c/bugs` referenciando el ticket + hashes (sube presión sin quemar puentes).
+   - **+15 días sin novedad (2026-05-12)**: DM a `@ReplitSupport` en X / valorar cambio de plataforma.
+4. **Cuando llegue el verdict de ingeniería**:
+   - Si **confirman bug y lo arreglan** → quitar workarounds idempotentes (o mantenerlos como defensa adicional, decisión de Iván).
+   - Si **dicen "feature, no bug"** → cambiar deployment process: nunca más Republish, solo full Publish. Documentar.
+   - Si **silencio prolongado** → escalar a redes o evaluar migración a Railway / Render / Fly.io.
 5. **Cleanup ticket cerrado**: invalidar Private Join Link en Replit (Invite → Reset link).
 
 ---

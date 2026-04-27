@@ -3,6 +3,7 @@ import { storage } from "../storage";
 import { requireAdminSession } from "./auth-middleware";
 import { logger } from "../lib/logger";
 import { renderThankYouWhatsApp } from "../services/whatsappTemplates";
+import { sendThankYouEmail } from "../services/emailService";
 import { audit } from "../lib/audit";
 
 /**
@@ -125,6 +126,111 @@ export function registerAdminFlywheelRoutes(app: Express) {
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";
         logger.error("[AdminFlywheel] pending list error", { error: msg });
+        res.status(500).json({ message: "Error: " + msg });
+      }
+    },
+  );
+
+  // Force-send thank-you email for a specific booking, bypassing the time-window
+  // and idempotency filters of the cron job. Accepts an optional `overrideEmail`
+  // in the body to retarget the test to an arbitrary inbox without persisting
+  // changes to the booking's customer record. Useful as a smoke test after
+  // configuring SendGrid in a new environment.
+  app.post(
+    "/api/admin/flywheel/thank-you-email/:bookingId",
+    requireAdminSession,
+    async (req, res) => {
+      const { bookingId } = req.params;
+      const overrideEmailRaw = req.body?.overrideEmail;
+      const overrideEmail = typeof overrideEmailRaw === "string" && overrideEmailRaw.trim()
+        ? overrideEmailRaw.trim()
+        : undefined;
+
+      try {
+        const booking = await storage.getBooking(bookingId);
+        if (!booking) {
+          return res.status(404).json({ message: "Reserva no encontrada" });
+        }
+
+        const targetEmail = overrideEmail || booking.customerEmail;
+        if (!targetEmail) {
+          return res.status(400).json({
+            message:
+              "La reserva no tiene email de cliente. Pasa overrideEmail en el body para forzar destino.",
+          });
+        }
+
+        const boat = await storage.getBoat(booking.boatId);
+        if (!boat) {
+          return res.status(404).json({ message: "Barco no encontrado" });
+        }
+
+        const extras = await storage.getBookingExtras(booking.id);
+
+        let discountCode = "TEST-DISCOUNT-CODE";
+        if (!overrideEmail && booking.customerEmail) {
+          try {
+            const codeRecord = await storage.generateRepeatCustomerCode(
+              booking.customerEmail,
+              booking.id,
+            );
+            discountCode = codeRecord.code;
+          } catch (err: unknown) {
+            const msg = err instanceof Error ? err.message : String(err);
+            logger.warn("[AdminFlywheel] could not generate discount code", { error: msg });
+            discountCode = "REPEAT-GIFT";
+          }
+        }
+
+        const bookingForSend = overrideEmail
+          ? { ...booking, customerEmail: overrideEmail }
+          : booking;
+
+        const result = await sendThankYouEmail(
+          { booking: bookingForSend, boat, extras },
+          discountCode,
+        );
+
+        if (!result.success) {
+          return res.status(503).json({
+            success: false,
+            message: result.error || "Error enviando email",
+          });
+        }
+
+        // Only mark the real booking as sent when we used the customer's
+        // actual email — override sends are treated as throwaway tests.
+        if (!overrideEmail) {
+          await storage.updateBookingEmailStatus(booking.id, undefined, true);
+        }
+
+        audit(req, "flywheel.thank_you_email_sent", "booking", booking.id, {
+          channel: "email",
+          target: targetEmail,
+          override: Boolean(overrideEmail),
+        });
+
+        logger.info("[AdminFlywheel] Thank-you email sent", {
+          bookingId: booking.id,
+          target: targetEmail,
+          language: booking.language,
+          override: Boolean(overrideEmail),
+        });
+
+        res.json({
+          success: true,
+          bookingId: booking.id,
+          channel: "email",
+          target: targetEmail,
+          language: booking.language ?? "es",
+          discountCode,
+        });
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : "Unknown error";
+        logger.error("[AdminFlywheel] thank-you-email error", {
+          bookingId,
+          error: msg,
+        });
         res.status(500).json({ message: "Error: " + msg });
       }
     },

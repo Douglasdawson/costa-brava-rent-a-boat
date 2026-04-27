@@ -650,12 +650,6 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
       <a href="${googleReviewUrl}" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:14px 32px; border-radius:6px; font-size:16px; font-weight:700;">${strings.reviewButton}</a>
     </div>
 
-    <!-- TripAdvisor Review CTA (secondary) -->
-    <div style="background-color:#f0fdf4; border-radius:8px; padding:16px; margin:0 0 20px; text-align:center;">
-      <p style="margin:0 0 10px; color:#166534; font-size:14px; font-weight:600;">TripAdvisor</p>
-      <a href="https://www.tripadvisor.com/UserReviewEdit-g187498-e-Blanes_Province_of_Girona_Catalonia.html" target="_blank" style="display:inline-block; background-color:#34e0a1; color:#1a1a1a; text-decoration:none; padding:10px 24px; border-radius:6px; font-size:14px; font-weight:600;">${strings.reviewButton}</a>
-    </div>
-
     <!-- Social sharing -->
     <div style="text-align:center; margin:0 0 20px; padding:12px; background-color:#fafafa; border-radius:6px;">
       <p style="margin:0 0 8px; color:#64748b; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Share your experience</p>

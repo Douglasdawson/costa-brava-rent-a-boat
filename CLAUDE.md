@@ -90,6 +90,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Nuevo endpoint API | `server/routes/<modulo>.ts` + registrar en `server/routes/index.ts` |
 | Nuevo campo DB | `shared/schema.ts` + `npm run db:push` |
 | Precios/temporadas | `shared/pricing.ts` |
+| Precios dinámicos (overrides por fecha) | Tabla `pricing_overrides` (`shared/schema.ts`) + lógica en `shared/pricing.ts` (`selectApplicableOverride`) + storage `server/storage/pricingOverrides.ts` + admin API `server/routes/admin-pricing-overrides.ts` + endpoint público `server/routes/pricing.ts` (`/api/pricing/calendar`) + UI CRM `client/src/components/crm/PricingTab.tsx` (tab "Precios") |
 | Datos de barcos | `shared/boatData.ts` |
 | SEO de pagina | `client/src/utils/seo-config.ts` |
 | Slugs i18n de rutas | `shared/i18n-routes.ts` |

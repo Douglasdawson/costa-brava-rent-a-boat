@@ -20,6 +20,7 @@ import {
   GalleryManagement,
   GiftCardManagement,
   DiscountManagement,
+  PricingTab,
   MaintenanceTab,
   InventoryTab,
   AnalyticsTab,
@@ -426,6 +427,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* Discounts Tab */}
         {selectedTab === "discounts" && (
           <DiscountManagement adminToken={adminToken} />
+        )}
+
+        {/* Pricing Tab — dynamic pricing overrides */}
+        {selectedTab === "pricing" && (
+          <PricingTab adminToken={adminToken} />
         )}
 
         {/* Blog Tab */}

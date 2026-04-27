@@ -2,13 +2,14 @@ import { useState, useRef, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, Minus, Users } from "lucide-react";
+import { Plus, Minus, Users, TrendingUp } from "lucide-react";
 import { trackAddShippingInfo, trackGenerateLead } from "@/utils/analytics";
 import type { Translations } from "@/lib/translations";
 import type { PhonePrefix } from "@/utils/phone-prefixes";
 import type { Boat } from "@shared/schema";
 import type { Extra, CustomerData } from "./types";
 import { BookingTrustBanner } from "./BookingTrustBanner";
+import { usePricingOverrideForDate } from "./usePricingOverrideForDate";
 
 interface BookingStepPersonalizeProps {
   // Extras
@@ -58,6 +59,7 @@ export function BookingStepPersonalize({
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [phonePrefixActiveIndex, setPhonePrefixActiveIndex] = useState(-1);
   const [nationalityActiveIndex, setNationalityActiveIndex] = useState(-1);
+  const pricingOverride = usePricingOverrideForDate(boatId, selectedDate);
 
   const phonePrefixListRef = useRef<HTMLDivElement>(null);
   const nationalityListRef = useRef<HTMLDivElement>(null);
@@ -173,6 +175,19 @@ export function BookingStepPersonalize({
   return (
     <div className="space-y-4">
       <BookingTrustBanner t={t} stage="step2" />
+      {pricingOverride.hasOverride && (
+        <div className="bg-primary/10 border border-primary/30 rounded-lg p-3 text-sm text-foreground flex items-start gap-2">
+          <TrendingUp className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
+          <span>
+            <strong>Tarifa especial para esta fecha:</strong> precio adaptado por demanda
+            {pricingOverride.percentChange && pricingOverride.percentChange !== 0
+              ? ` (${pricingOverride.percentChange > 0 ? "+" : ""}${pricingOverride.percentChange}%)`
+              : ""}
+            {pricingOverride.overrideLabel ? ` — ${pricingOverride.overrideLabel}` : ""}
+            . El total final que se confirmará en el siguiente paso incluye este ajuste.
+          </span>
+        </div>
+      )}
       {/* Desktop: side-by-side | Mobile: stacked */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Extras section */}

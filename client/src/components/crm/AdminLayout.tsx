@@ -58,6 +58,7 @@ const OVERFLOW_TABS = [
   { id: "blog", label: "Blog", icon: FileText },
   { id: "giftcards", label: "Regalos", icon: Gift },
   { id: "discounts", label: "Descuentos", icon: Percent },
+  { id: "pricing", label: "Precios", icon: TrendingUp },
 ];
 
 const OWNER_TABS = [

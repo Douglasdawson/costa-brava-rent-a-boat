@@ -22,6 +22,7 @@ export { SeoTab } from "./SeoTab";
 export { AutopilotTab } from "./AutopilotTab";
 export { CompetitionTab } from "./CompetitionTab";
 export { BlogManagement } from "./BlogManagement";
+export { PricingTab } from "./PricingTab";
 
 // CRM Module exports - Modals
 export { BookingDetailsModal } from "./BookingDetailsModal";

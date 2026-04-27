@@ -26,6 +26,7 @@ interface EmailStrings {
   seeYouTomorrow: string;
   thankYouTitle: string;
   thankYouIntro: string;
+  thankYouPreheader: string;
   reviewTitle: string;
   reviewDesc: string;
   reviewButton: string;
@@ -63,6 +64,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     seeYouTomorrow: "Estamos deseando verte mañana. Si tienes alguna pregunta, no dudes en contactarnos.",
     thankYouTitle: "Gracias por navegar con nosotros",
     thankYouIntro: "Esperamos que disfrutaras de tu experiencia a bordo",
+    thankYouPreheader: "Tu opinión en Google nos hace crecer — y tienes un detalle dentro",
     reviewTitle: "Tu opinión nos importa",
     reviewDesc: "Si disfrutaste de la experiencia, nos encantaría que compartieras tu opinión en Google.",
     reviewButton: "Dejar una reseña en Google",
@@ -98,6 +100,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     seeYouTomorrow: "We look forward to seeing you tomorrow. If you have any questions, don't hesitate to contact us.",
     thankYouTitle: "Thank you for sailing with us",
     thankYouIntro: "We hope you enjoyed your time on board",
+    thankYouPreheader: "A Google review helps us grow — and there's a small gift inside",
     reviewTitle: "Your opinion matters to us",
     reviewDesc: "If you enjoyed the experience, we would love for you to share your review on Google.",
     reviewButton: "Leave a Google review",
@@ -133,6 +136,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     seeYouTomorrow: "Nous avons hate de vous voir demain. N'hesitez pas a nous contacter.",
     thankYouTitle: "Merci d'avoir navigue avec nous",
     thankYouIntro: "Nous esperons que vous avez apprecie votre experience a bord",
+    thankYouPreheader: "Un avis Google nous aide a grandir — et un petit cadeau vous attend",
     reviewTitle: "Votre avis nous importe",
     reviewDesc: "Si vous avez apprecie l'experience, nous serions ravis que vous partagiez votre avis sur Google.",
     reviewButton: "Laisser un avis Google",
@@ -166,6 +170,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     seeYouTomorrow: "Wir freuen uns darauf, Sie morgen zu sehen. Kontaktieren Sie uns jederzeit.",
     thankYouTitle: "Danke, dass Sie mit uns gefahren sind",
     thankYouIntro: "Wir hoffen, dass Sie Ihre Zeit an Bord genossen haben",
+    thankYouPreheader: "Eine Google-Bewertung hilft uns sehr — und ein kleines Geschenk wartet auf Sie",
     reviewTitle: "Ihre Meinung ist uns wichtig",
     reviewDesc: "Wenn Sie das Erlebnis genossen haben, wurden wir uns freuen, wenn Sie Ihre Bewertung auf Google teilen.",
     reviewButton: "Google-Bewertung hinterlassen",
@@ -199,6 +204,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     seeYouTomorrow: "We kijken ernaar uit u morgen te zien.",
     thankYouTitle: "Bedankt voor het varen met ons",
     thankYouIntro: "We hopen dat u heeft genoten van uw tijd aan boord",
+    thankYouPreheader: "Een Google-review helpt ons enorm — en er wacht een cadeautje binnen",
     reviewTitle: "Uw mening is belangrijk voor ons",
     reviewDesc: "Als u de ervaring heeft genoten, zouden we het fijn vinden als u een review op Google achterlaat.",
     reviewButton: "Google-review achterlaten",
@@ -232,6 +238,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     seeYouTomorrow: "Non vediamo l'ora di vederla domani.",
     thankYouTitle: "Grazie per aver navigato con noi",
     thankYouIntro: "Speriamo che abbia apprezzato la sua esperienza a bordo",
+    thankYouPreheader: "Una recensione su Google ci aiuta tantissimo — e dentro c'è un piccolo regalo",
     reviewTitle: "La sua opinione e importante per noi",
     reviewDesc: "Se ha apprezzato l'esperienza, ci farebbe piacere se condividesse la sua recensione su Google.",
     reviewButton: "Lascia una recensione su Google",
@@ -265,6 +272,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     seeYouTomorrow: "S neterpeniyem zhdem vstrechi zavtra.",
     thankYouTitle: "Spasibo, chto puteshestvovali s nami",
     thankYouIntro: "Nadeemsya, vam ponravilos na bortu",
+    thankYouPreheader: "Otzyv na Google ochen nam pomogaet — i vnutri vas zhdyot nebolshoy podarok",
     reviewTitle: "Vashe mnenie vazhno dlya nas",
     reviewDesc: "Yesli vam ponravilos, my budem rady otzuvu na Google.",
     reviewButton: "Ostavit otzuv v Google",
@@ -298,6 +306,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     seeYouTomorrow: "Estem desitjant veure't demà. Si tens cap pregunta, no dubtis a contactar-nos.",
     thankYouTitle: "Gràcies per navegar amb nosaltres",
     thankYouIntro: "Esperem que hagis gaudit de la teva experiència a bord",
+    thankYouPreheader: "La teva ressenya a Google ens fa créixer — i tens un detall a dins",
     reviewTitle: "La teva opinió ens importa",
     reviewDesc: "Si vas gaudir de l'experiència, ens encantaria que compartissis la teva opinió a Google.",
     reviewButton: "Deixar una ressenya a Google",
@@ -350,7 +359,10 @@ interface BookingEmailData {
 
 // ===== HTML EMAIL TEMPLATE HELPERS =====
 
-function emailWrapper(content: string): string {
+function emailWrapper(content: string, preheader?: string): string {
+  const preheaderBlock = preheader
+    ? `<div style="display:none; font-size:1px; color:#f4f7fa; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">${preheader}</div>`
+    : "";
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -358,6 +370,7 @@ function emailWrapper(content: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="margin:0; padding:0; background-color:#f4f7fa; font-family:Arial, Helvetica, sans-serif;">
+  ${preheaderBlock}
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f7fa;">
     <tr>
       <td align="center" style="padding:24px 16px;">
@@ -530,7 +543,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: `${strings.bookingConfirmed} - ${data.boat.name} - ${formatDate(booking.startTime)}`,
       html: emailWrapper(content + cancelBlock),
     }));
@@ -601,7 +614,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: `${strings.reminderTitle} - ${data.boat.name}`,
       html: emailWrapper(content),
     }));
@@ -679,9 +692,9 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: `${strings.thankYouTitle}, ${booking.customerName}!`,
-      html: emailWrapper(content),
+      html: emailWrapper(content, strings.thankYouPreheader),
     }));
 
     logger.info("Thank-you email sent", { to: booking.customerEmail, bookingId: booking.id, discountCode });
@@ -736,7 +749,7 @@ export async function sendPreSeasonEmail(
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: customerEmail,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: "La temporada empieza pronto - 10% descuento para ti",
       html: emailWrapper(content),
     }));
@@ -793,7 +806,7 @@ export async function sendWelcomeEmail(
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: `Bienvenido/a a Costa Brava Rent a Boat — Tu prueba gratuita ha comenzado`,
       html: emailWrapper(content),
     }));
@@ -849,7 +862,7 @@ export async function sendPasswordResetEmail(
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: "Restablece tu contrasena",
       html: emailWrapper(content),
     }));
@@ -972,7 +985,7 @@ export async function sendNewsletterEmail(
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: strings.subject,
       html: emailWrapper(content),
     }));
@@ -1027,7 +1040,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: `Cancelación confirmada — ${booking.customerName}`,
       html: emailWrapper(customerContent),
     }));
@@ -1053,7 +1066,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
 
   sendgridBreaker.call(() => sgMail.send({
     to: ownerEmail,
-    from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+    from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
     subject: `[CANCELACIÓN] ${booking.customerName} — ${new Date(booking.startTime).toLocaleDateString("es-ES")}`,
     html: emailWrapper(ownerContent),
   })).catch((err: unknown) => {
@@ -1116,7 +1129,7 @@ export async function sendReferralEmail(
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: strings.subject.replace("{name}", booking.customerName),
       html: emailWrapper(content),
     }));
@@ -1181,7 +1194,7 @@ export async function sendEarlyBirdEmail(
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       subject: strings.subject.replace("{name}", booking.customerName),
       html: emailWrapper(content),
     }));
@@ -1545,7 +1558,7 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: data.email,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       replyTo: { email: "costabravarentaboat@gmail.com", name: "Ivan - Costa Brava Rent a Boat" },
       subject: `${data.hotelName} x Costa Brava Rent a Boat — 10% comisión por reserva`,
       html: emailWrapper(content),
@@ -1642,7 +1655,7 @@ export async function sendBookingRequestReceived(data: BookingEmailData): Promis
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
-      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
       replyTo: { email: ADMIN_NOTIFICATION_EMAIL, name: "Iv&aacute;n - Costa Brava Rent a Boat" },
       subject: `Hemos recibido tu solicitud - ${data.boat.name} - ${formatDate(booking.startTime)}`,
       html: emailWrapper(content),

@@ -5,7 +5,7 @@ import { sendgridBreaker } from "../lib/circuitBreaker";
 import { generateOpaqueUnsubToken } from "../routes/newsletter";
 import { GOOGLE_REVIEW_URL } from "../../shared/businessProfile";
 
-type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
+type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru" | "ca";
 
 interface EmailStrings {
   bookingConfirmed: string;
@@ -278,6 +278,41 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "chas", colHours: "chasov",
     phone: "Телефон",
     emergencyCall: "В случае инцидента позвоните нам по номеру",
+  },
+  ca: {
+    bookingConfirmed: "Reserva confirmada",
+    greeting: "La teva reserva ha estat confirmada. Aquí tens els detalls:",
+    bookingDetails: "Detalls de la teva reserva",
+    meetingPoint: "Punt de trobada",
+    meetingPointDesc: "Port de Blanes, Costa Brava, Girona",
+    arriveEarly: "Presenta't <strong>15 minuts abans</strong> de l'hora de sortida.",
+    contact: "Contacte",
+    thanks: "Gràcies per confiar en nosaltres. Ens veiem al port.",
+    reminderTitle: "Recordatori: la teva reserva és demà",
+    reminderSubtitle: "Et recordem que el teu lloguer de vaixell és <strong>demà</strong>. Aquí tens els detalls:",
+    tipsTitle: "Consells per a la teva experiència",
+    tips: ["Porta protecció solar i ulleres de sol", "Vesteix-te amb roba còmoda i calçat que es pugui mullar", "Porta una tovallola i roba de recanvi", "Pots portar menjar i begudes a bord", "Consulta la previsió meteorològica abans de sortir"],
+    emergency: "Número d'emergència",
+    parking: "Aparcament",
+    parkingDesc: "Hi ha aparcament disponible a prop del port de Blanes. En temporada alta, recomanem arribar amb temps per trobar plaça.",
+    seeYouTomorrow: "Estem desitjant veure't demà. Si tens cap pregunta, no dubtis a contactar-nos.",
+    thankYouTitle: "Gràcies per navegar amb nosaltres",
+    thankYouIntro: "Esperem que hagis gaudit de la teva experiència a bord",
+    reviewTitle: "La teva opinió ens importa",
+    reviewDesc: "Si vas gaudir de l'experiència, ens encantaria que compartissis la teva opinió a Google.",
+    reviewButton: "Deixar una ressenya a Google",
+    discountTitle: "10% de descompte a la teva propera reserva",
+    discountDesc: "Regal exclusiu per a tu",
+    discountFooter: "Introdueix aquest codi en fer la teva propera reserva al nostre web.",
+    bookAgain: "Reservar de nou",
+    seeYouSoon: "Esperem tornar a veure't aviat a la Costa Brava.",
+    colBoat: "Vaixell", colDate: "Data", colSchedule: "Horari", colDuration: "Durada",
+    colPeople: "Persones", colBase: "Base imposable (sense IVA)", colVat: "IVA (21%)", colTotal: "Total (IVA inclòs)",
+    colHour: "hora", colHours: "hores",
+    phone: "Telèfon",
+    emergencyCall: "En cas d'incidència, truca'ns al",
+    cancelTitle: "Canvi de data gratuït amb 7+ dies d'antelació. Cancel·lacions no reemborsables.",
+    cancelLink: "Cancel·lar la meva reserva",
   },
 };
 
@@ -1250,6 +1285,16 @@ const REFERRAL_STRINGS: Record<EmailLang, ReferralStrings> = {
     yourRewardDesc: "Skidka 10% na sleduyushchuyu bronirovaniyu",
     bookNow: "Zabronirovat",
   },
+  ca: {
+    subject: "{name}, comparteix el mar amb els teus amics",
+    title: "Comparteix el mar",
+    intro: "ens encanta que hagis gaudit de la teva experiència a la Costa Brava. Ara pots regalar aquesta experiència als teus amics.",
+    friendTitle: "15% de descompte per al teu amic",
+    friendDesc: "Comparteix aquest codi amb algú especial",
+    yourReward: "La teva recompensa",
+    yourRewardDesc: "10% en la teva propera reserva",
+    bookNow: "Reservar ara",
+  },
 };
 
 interface EarlyBirdStrings {
@@ -1325,6 +1370,15 @@ const EARLY_BIRD_STRINGS: Record<EmailLang, EarlyBirdStrings> = {
     validUntil: "Deystvitelno do",
     bookNow: "Zabronirovat sezon",
     footer: "Eta skidka eksklyuzivna dlya vas kak klienta. Ne summiruyetsya s drugimi predlozheniyami.",
+  },
+  ca: {
+    subject: "{name}, reserva la propera temporada amb un 20% de descompte",
+    title: "Reserva anticipada",
+    intro: "la temporada passada va ser increïble. Assegura el teu lloc per a la propera temporada amb un descompte exclusiu.",
+    offerLabel: "Oferta exclusiva",
+    validUntil: "Vàlid fins al",
+    bookNow: "Reservar temporada",
+    footer: "Aquest descompte és exclusiu per a tu com a client. No és acumulable amb altres ofertes.",
   },
 };
 

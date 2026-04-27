@@ -496,18 +496,18 @@ describe("Integration: Full booking flow", () => {
     expect(breakdown.total).toBe(417.5);
   });
 
-  it("calculates pricing correctly for weekend booking in August", () => {
-    // August 2, 2026 is a Saturday
+  it("does NOT apply weekend surcharge in August (analysis showed day-of-week is irrelevant in August)", () => {
+    // August 2, 2026 is a Saturday — but in August we skip the weekend surcharge.
     const date = new Date("2026-08-02T10:00:00");
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", ["Parking delante del Barco"]);
 
     expect(breakdown.season).toBe("ALTA");
-    expect(breakdown.weekendSurcharge).toBe(true);
-    // ALTA 2h = 150, with weekend surcharge = 150 * 1.15 = 172.5 -> 173
-    expect(breakdown.basePrice).toBe(173);
+    expect(breakdown.weekendSurcharge).toBe(false);
+    // ALTA 2h = 150, no weekend surcharge in August
+    expect(breakdown.basePrice).toBe(150);
     expect(breakdown.extrasPrice).toBe(10);
-    expect(breakdown.subtotal).toBe(183);
-    expect(breakdown.total).toBe(433);
+    expect(breakdown.subtotal).toBe(160);
+    expect(breakdown.total).toBe(410);
   });
 });
 
@@ -661,14 +661,30 @@ describe("calculatePricingBreakdown with overrides", () => {
     expect(breakdown.subtotal).toBe(188);
   });
 
-  it("override applies on top of weekend surcharge (correct chaining)", () => {
-    // ALTA 2h Solar 450 weekend = 173€ (150 * 1.15)
-    const date = SATURDAY_AUG_8;
-    const overrides = [makeRule({ adjustmentValue: 0.25 })];
-    const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
-    expect(breakdown.basePriceBeforeOverride).toBe(173);
-    expect(breakdown.basePrice).toBe(216); // 173 * 1.25 = 216.25 → 216
+  it("override applies on top of weekend surcharge (jul, where surcharge IS active)", () => {
+    // MEDIA 2h Solar 450 on Saturday in July → weekend surcharge applies (135 * 1.15 = 155.25 → 155)
+    const julySaturday = new Date("2026-07-04T10:00:00"); // Sat
+    const overrides = [makeRule({
+      dateStart: "2026-07-01",
+      dateEnd: "2026-07-31",
+      adjustmentValue: 0.20,
+    })];
+    const breakdown = calculatePricingBreakdown("solar-450", julySaturday, "2h", [], [], overrides);
+    // Solar 450 MEDIA 2h = 135 (from boatData), * 1.15 weekend = 155.25 → 155
+    expect(breakdown.basePriceBeforeOverride).toBe(155);
     expect(breakdown.weekendSurcharge).toBe(true);
+    // 155 * 1.20 = 186
+    expect(breakdown.basePrice).toBe(186);
+  });
+
+  it("override applies WITHOUT weekend surcharge in August (surcharge bypassed)", () => {
+    // August Saturday — no weekend surcharge applied, override stacks directly on base
+    const date = SATURDAY_AUG_8;
+    const overrides = [makeRule({ adjustmentValue: 0.10 })];
+    const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
+    expect(breakdown.basePriceBeforeOverride).toBe(150); // ALTA 2h, no weekend in Aug
+    expect(breakdown.basePrice).toBe(165); // 150 * 1.10 = 165
+    expect(breakdown.weekendSurcharge).toBe(false);
   });
 
   it("override does NOT affect deposit nor extras", () => {

@@ -33,19 +33,13 @@ export const TEMPLATE_DEFINITIONS = [
   {
     id: "peak_august",
     label: "Pico agosto (1-17 ago)",
-    description: "+25% sobre tarifa, todos los barcos, 17 días seguidos",
+    description: "+10% sobre tarifa, todos los barcos, 17 días seguidos. Sin recargo finde extra (ya bypass en agosto).",
     badge: "Recomendado",
-  },
-  {
-    id: "weekends_jun_jul",
-    label: "Findes junio y julio",
-    description: "+15% solo sábados y domingos, jun-jul",
-    badge: "Estándar",
   },
   {
     id: "asuncion_aug15",
     label: "Festivo Asunción (15 ago)",
-    description: "+30% solo el 15 de agosto",
+    description: "+15% solo el 15 de agosto. Suma a 'Pico agosto' por prioridad.",
     badge: "Festivo",
   },
 ] as const;

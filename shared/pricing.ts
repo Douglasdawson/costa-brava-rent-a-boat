@@ -191,6 +191,25 @@ function parseExtraPrice(priceStr: string): number {
 }
 
 /**
+ * Whether the +15% weekend surcharge applies on a given date.
+ *
+ * In August (Temporada Alta) the day of the week is NOT a demand driver
+ * — analysis of 2,333 bookings 2020-2025 showed Mon and Sat in August
+ * sell within ~10% of each other. Stacking the weekend surcharge on top
+ * of the August season pricing pushed weekend-Aug rates well above
+ * market. So we skip the surcharge in August entirely.
+ *
+ * Weekend surcharge still applies in June, July, September and October,
+ * where the data clearly shows weekends outsell weekdays.
+ */
+export function shouldApplyWeekendSurcharge(date: Date): boolean {
+  if (!isWeekend(date)) return false;
+  const month = date.getMonth() + 1; // 1-12
+  if (month === 8) return false;
+  return true;
+}
+
+/**
  * Calculate the base rental price for a boat on a specific date and duration
  * Alias: priceFor() - same functionality, different name for compatibility
  */
@@ -208,7 +227,7 @@ export function calculateBasePrice(boatId: string, date: Date, duration: Duratio
   }
 
   const basePrice = seasonPricing.prices[duration];
-  return isWeekend(date) ? Math.round(basePrice * WEEKEND_SURCHARGE_FACTOR) : basePrice;
+  return shouldApplyWeekendSurcharge(date) ? Math.round(basePrice * WEEKEND_SURCHARGE_FACTOR) : basePrice;
 }
 
 /**
@@ -332,7 +351,7 @@ export function calculatePricingBreakdown(
     date: date.toISOString().split('T')[0], // YYYY-MM-DD format
     duration,
     season,
-    weekendSurcharge: isWeekend(date),
+    weekendSurcharge: shouldApplyWeekendSurcharge(date),
     basePrice,
     selectedExtras,
     selectedPacks,

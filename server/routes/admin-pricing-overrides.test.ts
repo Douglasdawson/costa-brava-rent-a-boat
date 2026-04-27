@@ -170,10 +170,10 @@ describe("Admin pricing overrides routes", () => {
   });
 
   describe("POST /api/admin/pricing-overrides/templates/:id/apply", () => {
-    it("applies the peak_august template with correct values", async () => {
+    it("applies the peak_august template with correct values (+10%)", async () => {
       mockedStorage.createPricingOverride.mockResolvedValue({
         id: "ov-tpl-1",
-        label: "Pico agosto 2026 (+25%)",
+        label: "Pico agosto 2026 (+10%)",
       } as never);
 
       const res = await request(app)
@@ -186,26 +186,11 @@ describe("Admin pricing overrides routes", () => {
       expect(call.dateStart).toBe("2026-08-01");
       expect(call.dateEnd).toBe("2026-08-17");
       expect(call.adjustmentType).toBe("multiplier");
-      expect(call.adjustmentValue).toBe("0.25");
+      expect(call.adjustmentValue).toBe("0.10");
       expect(call.weekdayFilter).toBeNull();
     });
 
-    it("applies the weekends_jun_jul template with correct weekday filter", async () => {
-      mockedStorage.createPricingOverride.mockResolvedValue({ id: "ov-tpl-2" } as never);
-
-      await request(app)
-        .post("/api/admin/pricing-overrides/templates/weekends_jun_jul/apply")
-        .send({ year: 2026 })
-        .expect(201);
-
-      const call = mockedStorage.createPricingOverride.mock.calls[0][0];
-      expect(call.dateStart).toBe("2026-06-01");
-      expect(call.dateEnd).toBe("2026-07-31");
-      expect(call.weekdayFilter).toEqual([0, 6]);
-      expect(call.adjustmentValue).toBe("0.15");
-    });
-
-    it("applies the asuncion_aug15 template (single day, +30%)", async () => {
+    it("applies the asuncion_aug15 template (single day, +15%)", async () => {
       mockedStorage.createPricingOverride.mockResolvedValue({ id: "ov-tpl-3" } as never);
 
       await request(app)
@@ -216,8 +201,16 @@ describe("Admin pricing overrides routes", () => {
       const call = mockedStorage.createPricingOverride.mock.calls[0][0];
       expect(call.dateStart).toBe("2026-08-15");
       expect(call.dateEnd).toBe("2026-08-15");
-      expect(call.adjustmentValue).toBe("0.30");
+      expect(call.adjustmentValue).toBe("0.15");
       expect(call.priority).toBeGreaterThanOrEqual(20);
+    });
+
+    it("returns 404 for the removed weekends_jun_jul template (now redundant with code-level surcharge)", async () => {
+      const res = await request(app)
+        .post("/api/admin/pricing-overrides/templates/weekends_jun_jul/apply")
+        .send({ year: 2026 })
+        .expect(404);
+      expect(res.body.availableTemplates).not.toContain("weekends_jun_jul");
     });
 
     it("returns 404 for unknown template", async () => {

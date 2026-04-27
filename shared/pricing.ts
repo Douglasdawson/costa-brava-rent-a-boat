@@ -8,16 +8,128 @@ export type Duration = '1h' | '2h' | '3h' | '4h' | '6h' | '8h';
 /** Weekend surcharge factor: +15% on Saturdays and Sundays */
 export const WEEKEND_SURCHARGE_FACTOR = 1.15;
 
+const DAY_NAME_TO_NUMBER: Record<string, number> = {
+  Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
+};
+
 /**
- * Check if the given date falls on Saturday or Sunday (Spain timezone)
+ * Get the weekday number in Madrid timezone (0=Sunday .. 6=Saturday).
+ * Uses formatToParts to avoid the Node 20 h24 quirk in Europe/Madrid.
  */
-export function isWeekend(date: Date): boolean {
+export function getWeekdayInMadrid(date: Date): number {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: 'Europe/Madrid',
     weekday: 'short',
   }).formatToParts(date);
-  const weekday = parts.find((p) => p.type === 'weekday')?.value;
-  return weekday === 'Sat' || weekday === 'Sun';
+  const weekday = parts.find((p) => p.type === 'weekday')?.value ?? 'Sun';
+  return DAY_NAME_TO_NUMBER[weekday] ?? 0;
+}
+
+/**
+ * Get YYYY-MM-DD date string in Madrid timezone.
+ * Used for inclusive comparison with override date_start / date_end (DATE columns).
+ */
+export function getDateStringInMadrid(date: Date): string {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Madrid',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date);
+  const year = parts.find((p) => p.type === 'year')?.value ?? '';
+  const month = parts.find((p) => p.type === 'month')?.value ?? '';
+  const day = parts.find((p) => p.type === 'day')?.value ?? '';
+  return `${year}-${month}-${day}`;
+}
+
+/**
+ * Check if the given date falls on Saturday or Sunday (Spain timezone)
+ */
+export function isWeekend(date: Date): boolean {
+  const wd = getWeekdayInMadrid(date);
+  return wd === 0 || wd === 6;
+}
+
+// ===== Pricing overrides (dynamic pricing by date block) =====
+
+export type PricingOverrideDirection = 'surcharge' | 'discount';
+export type PricingOverrideType = 'multiplier' | 'flat_eur';
+
+/**
+ * Reduced shape of a pricing_overrides row for use in this pure module.
+ * The DB row is mapped to this shape by the storage layer (see
+ * server/storage/pricingOverrides.ts → loadActiveOverridesForDate).
+ */
+export interface PricingOverrideRule {
+  id: string;
+  boatId: string | null;
+  dateStart: string; // YYYY-MM-DD
+  dateEnd: string; // YYYY-MM-DD inclusive
+  weekdayFilter: number[] | null; // null = applies every day; values 0=Sun..6=Sat
+  direction: PricingOverrideDirection;
+  adjustmentType: PricingOverrideType;
+  adjustmentValue: number; // always positive; direction defines sign
+  priority: number;
+  label: string;
+  isActive: boolean;
+  createdAt: Date;
+}
+
+/**
+ * Select the single override that applies to a given date+boat from a list.
+ * Resolution rules (in order):
+ *   1. is_active = true
+ *   2. date in [date_start, date_end] (Madrid TZ)
+ *   3. weekday_filter null OR contains target weekday
+ *   4. boat_id matches OR boat_id IS NULL (global)
+ *   5. boat-specific (boat_id NOT NULL) wins over global
+ *   6. higher priority wins
+ *   7. most recent created_at wins
+ */
+export function selectApplicableOverride(
+  date: Date,
+  boatId: string,
+  rules: PricingOverrideRule[],
+): PricingOverrideRule | null {
+  const dateStr = getDateStringInMadrid(date);
+  const weekdayNum = getWeekdayInMadrid(date);
+
+  const candidates = rules.filter((r) => {
+    if (!r.isActive) return false;
+    if (dateStr < r.dateStart || dateStr > r.dateEnd) return false;
+    if (r.weekdayFilter && !r.weekdayFilter.includes(weekdayNum)) return false;
+    if (r.boatId !== null && r.boatId !== boatId) return false;
+    return true;
+  });
+
+  if (candidates.length === 0) return null;
+  if (candidates.length === 1) return candidates[0];
+
+  candidates.sort((a, b) => {
+    const aSpec = a.boatId !== null ? 1 : 0;
+    const bSpec = b.boatId !== null ? 1 : 0;
+    if (aSpec !== bSpec) return bSpec - aSpec;
+    if (a.priority !== b.priority) return b.priority - a.priority;
+    return b.createdAt.getTime() - a.createdAt.getTime();
+  });
+
+  return candidates[0];
+}
+
+/**
+ * Apply a single override to a base price.
+ * Direction defines sign; multiplier value is the delta (e.g. 0.25 = +25%);
+ * flat_eur value is the absolute € delta. Result is rounded and floored at 0.
+ */
+export function applyOverrideToPrice(price: number, override: PricingOverrideRule): number {
+  const sign = override.direction === 'surcharge' ? 1 : -1;
+  let result: number;
+  if (override.adjustmentType === 'multiplier') {
+    result = price * (1 + sign * override.adjustmentValue);
+  } else {
+    result = price + sign * override.adjustmentValue;
+  }
+  return Math.max(0, Math.round(result));
 }
 
 /**
@@ -162,6 +274,14 @@ export function getDepositAmount(boatId: string): number {
 /**
  * Calculate complete pricing breakdown for a booking
  */
+export interface AppliedOverrideInfo {
+  id: string;
+  label: string;
+  direction: PricingOverrideDirection;
+  adjustmentType: PricingOverrideType;
+  adjustmentValue: number;
+}
+
 export interface PricingBreakdown {
   boatId: string;
   boatName: string;
@@ -170,11 +290,13 @@ export interface PricingBreakdown {
   season: Season;
   weekendSurcharge: boolean;
   basePrice: number;
+  basePriceBeforeOverride?: number; // present when an override is applied
+  appliedOverride?: AppliedOverrideInfo;
   selectedExtras: string[];
   selectedPacks: string[];
   extrasPrice: number;
   deposit: number;
-  subtotal: number; // basePrice + extrasPrice
+  subtotal: number; // basePrice (post-override) + extrasPrice
   total: number; // subtotal + deposit
 }
 
@@ -183,7 +305,8 @@ export function calculatePricingBreakdown(
   date: Date,
   duration: Duration,
   selectedExtras: string[] = [],
-  selectedPacks: string[] = []
+  selectedPacks: string[] = [],
+  overrides: PricingOverrideRule[] = []
 ): PricingBreakdown {
   const boat = BOAT_DATA[boatId];
   if (!boat) {
@@ -191,13 +314,19 @@ export function calculatePricingBreakdown(
   }
 
   const season = getSeason(date);
-  const basePrice = calculateBasePrice(boatId, date, duration);
+  const basePriceBeforeOverride = calculateBasePrice(boatId, date, duration);
+
+  const applicableOverride = selectApplicableOverride(date, boatId, overrides);
+  const basePrice = applicableOverride
+    ? applyOverrideToPrice(basePriceBeforeOverride, applicableOverride)
+    : basePriceBeforeOverride;
+
   const extrasPrice = calculateExtrasPrice(boatId, selectedExtras, selectedPacks);
   const deposit = getDepositAmount(boatId);
   const subtotal = basePrice + extrasPrice;
   const total = subtotal + deposit;
 
-  return {
+  const breakdown: PricingBreakdown = {
     boatId,
     boatName: boat.name,
     date: date.toISOString().split('T')[0], // YYYY-MM-DD format
@@ -210,8 +339,21 @@ export function calculatePricingBreakdown(
     extrasPrice,
     deposit,
     subtotal,
-    total
+    total,
   };
+
+  if (applicableOverride) {
+    breakdown.basePriceBeforeOverride = basePriceBeforeOverride;
+    breakdown.appliedOverride = {
+      id: applicableOverride.id,
+      label: applicableOverride.label,
+      direction: applicableOverride.direction,
+      adjustmentType: applicableOverride.adjustmentType,
+      adjustmentValue: applicableOverride.adjustmentValue,
+    };
+  }
+
+  return breakdown;
 }
 
 /**

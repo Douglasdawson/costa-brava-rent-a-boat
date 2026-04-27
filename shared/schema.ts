@@ -782,6 +782,53 @@ export const selectDiscountCodeSchema = createSelectSchema(discountCodes);
 export type DiscountCode = typeof discountCodes.$inferSelect;
 export type InsertDiscountCode = z.infer<typeof insertDiscountCodeSchema>;
 
+// ===== PRICING OVERRIDES (dynamic pricing by date block) =====
+
+export const PRICING_OVERRIDE_DIRECTIONS = ["surcharge", "discount"] as const;
+export type PricingOverrideDirection = (typeof PRICING_OVERRIDE_DIRECTIONS)[number];
+
+export const PRICING_OVERRIDE_TYPES = ["multiplier", "flat_eur"] as const;
+export type PricingOverrideType = (typeof PRICING_OVERRIDE_TYPES)[number];
+
+export const pricingOverrides = pgTable("pricing_overrides", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
+  boatId: varchar("boat_id").references(() => boats.id), // null = applies to all boats
+  dateStart: date("date_start").notNull(),
+  dateEnd: date("date_end").notNull(),
+  weekdayFilter: jsonb("weekday_filter").$type<number[] | null>(), // null = every weekday; array of JS getDay() values 0-6 (0=Sun, 6=Sat)
+  direction: text("direction").notNull().default("surcharge"), // surcharge | discount (MVP only exposes surcharge)
+  adjustmentType: text("adjustment_type").notNull(), // multiplier (e.g. 0.25 = +25%) | flat_eur (e.g. 30 = +30€)
+  adjustmentValue: decimal("adjustment_value", { precision: 10, scale: 4 }).notNull(), // always positive; direction defines sign
+  label: text("label").notNull(),
+  notes: text("notes"),
+  priority: integer("priority").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  activeDateIdx: index("pricing_overrides_active_date_idx").on(table.isActive, table.dateStart, table.dateEnd),
+  boatIdx: index("pricing_overrides_boat_idx").on(table.boatId),
+  tenantIdx: index("pricing_overrides_tenant_idx").on(table.tenantId),
+}));
+
+export const insertPricingOverrideSchema = createInsertSchema(pricingOverrides).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  direction: z.enum(PRICING_OVERRIDE_DIRECTIONS).default("surcharge"),
+  adjustmentType: z.enum(PRICING_OVERRIDE_TYPES),
+  weekdayFilter: z.array(z.number().int().min(0).max(6)).nullable().optional(),
+  adjustmentValue: z.union([z.string(), z.number()]).transform((v) => typeof v === "number" ? v.toString() : v),
+  label: z.string().min(1, "Label requerido").max(120),
+});
+
+export const selectPricingOverrideSchema = createSelectSchema(pricingOverrides);
+
+export type PricingOverride = typeof pricingOverrides.$inferSelect;
+export type InsertPricingOverride = z.infer<typeof insertPricingOverrideSchema>;
+
 // ===== WHATSAPP CHATBOT =====
 
 // Conversation states for the chatbot flow

@@ -508,7 +508,9 @@ export function registerBookingRoutes(app: Express) {
       else if (totalHours <= 6) duration = "6h";
       else duration = "8h";
 
-      const pricingBreakdown = calculatePricingBreakdown(boatId, start, duration, extras || []);
+      // Load active pricing overrides applicable to this date+boat (dynamic pricing MVP)
+      const pricingOverrides = await storage.loadActiveOverridesForDate(start, boatId);
+      const pricingBreakdown = calculatePricingBreakdown(boatId, start, duration, extras || [], [], pricingOverrides);
 
       // Server-side discount/gift card validation
       let discountInfo: {

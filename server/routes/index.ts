@@ -40,6 +40,8 @@ import { registerSeoRoutes } from "./admin-seo";
 import { registerAdminSeoAutopilotRoutes } from "./admin-seo-autopilot";
 import { registerBusinessStatsRoutes } from "./business-stats";
 import { registerAdminFlywheelRoutes } from "./admin-flywheel";
+import { registerAdminPricingOverridesRoutes } from "./admin-pricing-overrides";
+import { registerPricingRoutes } from "./pricing";
 import { createSeoAutopilotRouter } from "../mcp/seo-autopilot";
 import { startScheduledServices } from "../services";
 
@@ -95,6 +97,10 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
 
   // Post-rental flywheel admin endpoints (manual back-fill of missed review requests)
   registerAdminFlywheelRoutes(app);
+
+  // Dynamic pricing — admin overrides + public calendar endpoint
+  registerAdminPricingOverridesRoutes(app);
+  registerPricingRoutes(app);
 
   // SEO Autopilot — public MCP server (bearer-token auth, rate-limited).
   // Mounted at /api/mcp/seo-autopilot — external MCP clients connect here.

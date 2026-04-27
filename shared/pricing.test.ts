@@ -16,6 +16,11 @@ import {
   priceFor,
   getSeasonDisplayName,
   calculatePackSavings,
+  selectApplicableOverride,
+  applyOverrideToPrice,
+  getWeekdayInMadrid,
+  getDateStringInMadrid,
+  type PricingOverrideRule,
 } from "./pricing";
 
 describe("getSeason", () => {
@@ -503,5 +508,200 @@ describe("Integration: Full booking flow", () => {
     expect(breakdown.extrasPrice).toBe(10);
     expect(breakdown.subtotal).toBe(183);
     expect(breakdown.total).toBe(433);
+  });
+});
+
+// ===== Pricing overrides (dynamic pricing by date block) =====
+
+const TUESDAY_AUG_5 = new Date("2026-08-05T10:00:00"); // Mar 5 ago 2026
+const SATURDAY_AUG_8 = new Date("2026-08-08T10:00:00"); // Sáb 8 ago 2026
+const WEDNESDAY_AUG_19 = new Date("2026-08-19T10:00:00"); // Mié 19 ago (fuera de pico)
+
+function makeRule(partial: Partial<PricingOverrideRule>): PricingOverrideRule {
+  return {
+    id: "rule-1",
+    boatId: null,
+    dateStart: "2026-08-01",
+    dateEnd: "2026-08-17",
+    weekdayFilter: null,
+    direction: "surcharge",
+    adjustmentType: "multiplier",
+    adjustmentValue: 0.25,
+    priority: 0,
+    label: "Pico agosto",
+    isActive: true,
+    createdAt: new Date("2026-04-26T00:00:00Z"),
+    ...partial,
+  };
+}
+
+describe("getWeekdayInMadrid + getDateStringInMadrid", () => {
+  it("returns weekday and date in Madrid TZ", () => {
+    // 2025-08-15T22:00:00Z is already Aug 16 in Madrid (CEST = UTC+2 → 00:00 of Aug 16)
+    const date = new Date("2025-08-15T22:00:00Z");
+    expect(getDateStringInMadrid(date)).toBe("2025-08-16");
+    expect(getWeekdayInMadrid(date)).toBe(6); // Saturday
+  });
+
+  it("returns Sunday=0 for a Sunday morning in Madrid", () => {
+    const sunday = new Date("2026-08-09T08:00:00"); // Aug 9, 2026 is Sunday
+    expect(getWeekdayInMadrid(sunday)).toBe(0);
+  });
+});
+
+describe("selectApplicableOverride", () => {
+  it("returns null when no rules apply", () => {
+    const result = selectApplicableOverride(WEDNESDAY_AUG_19, "solar-450", [
+      makeRule({ dateEnd: "2026-08-17" }), // out of range
+    ]);
+    expect(result).toBeNull();
+  });
+
+  it("returns null when rule is inactive", () => {
+    const result = selectApplicableOverride(TUESDAY_AUG_5, "solar-450", [
+      makeRule({ isActive: false }),
+    ]);
+    expect(result).toBeNull();
+  });
+
+  it("matches a global rule for any boat in range", () => {
+    const rule = makeRule({});
+    const result = selectApplicableOverride(TUESDAY_AUG_5, "solar-450", [rule]);
+    expect(result?.id).toBe(rule.id);
+  });
+
+  it("respects weekday_filter (no match)", () => {
+    const result = selectApplicableOverride(TUESDAY_AUG_5, "solar-450", [
+      makeRule({ id: "weekend-only", weekdayFilter: [0, 6] }), // only Sat/Sun
+    ]);
+    expect(result).toBeNull();
+  });
+
+  it("respects weekday_filter (match)", () => {
+    const result = selectApplicableOverride(SATURDAY_AUG_8, "solar-450", [
+      makeRule({ id: "weekend-only", weekdayFilter: [0, 6] }),
+    ]);
+    expect(result?.id).toBe("weekend-only");
+  });
+
+  it("boat-specific rule wins over global", () => {
+    const global = makeRule({ id: "global", boatId: null, adjustmentValue: 0.20 });
+    const specific = makeRule({ id: "specific", boatId: "solar-450", adjustmentValue: 0.30 });
+    const result = selectApplicableOverride(TUESDAY_AUG_5, "solar-450", [global, specific]);
+    expect(result?.id).toBe("specific");
+  });
+
+  it("higher priority wins on tie of specificity", () => {
+    const low = makeRule({ id: "low", priority: 0, label: "Low" });
+    const high = makeRule({ id: "high", priority: 10, label: "High" });
+    const result = selectApplicableOverride(TUESDAY_AUG_5, "solar-450", [low, high]);
+    expect(result?.id).toBe("high");
+  });
+
+  it("most recent created_at wins on tie of priority", () => {
+    const old = makeRule({ id: "old", createdAt: new Date("2026-01-01T00:00:00Z") });
+    const fresh = makeRule({ id: "fresh", createdAt: new Date("2026-04-26T00:00:00Z") });
+    const result = selectApplicableOverride(TUESDAY_AUG_5, "solar-450", [old, fresh]);
+    expect(result?.id).toBe("fresh");
+  });
+
+  it("ignores rule for a different specific boat", () => {
+    const result = selectApplicableOverride(TUESDAY_AUG_5, "solar-450", [
+      makeRule({ id: "for-other", boatId: "trimarchi-57s" }),
+    ]);
+    expect(result).toBeNull();
+  });
+});
+
+describe("applyOverrideToPrice", () => {
+  it("applies a multiplier surcharge (+25%)", () => {
+    const rule = makeRule({ direction: "surcharge", adjustmentType: "multiplier", adjustmentValue: 0.25 });
+    expect(applyOverrideToPrice(200, rule)).toBe(250);
+  });
+
+  it("applies a flat_eur surcharge (+30€)", () => {
+    const rule = makeRule({ direction: "surcharge", adjustmentType: "flat_eur", adjustmentValue: 30 });
+    expect(applyOverrideToPrice(200, rule)).toBe(230);
+  });
+
+  it("applies a multiplier discount (-15%)", () => {
+    const rule = makeRule({ direction: "discount", adjustmentType: "multiplier", adjustmentValue: 0.15 });
+    expect(applyOverrideToPrice(200, rule)).toBe(170);
+  });
+
+  it("floors result at 0 if discount would go negative", () => {
+    const rule = makeRule({ direction: "discount", adjustmentType: "flat_eur", adjustmentValue: 500 });
+    expect(applyOverrideToPrice(100, rule)).toBe(0);
+  });
+
+  it("rounds half to nearest integer", () => {
+    const rule = makeRule({ direction: "surcharge", adjustmentType: "multiplier", adjustmentValue: 0.115 });
+    // 200 * 1.115 = 223.0
+    expect(applyOverrideToPrice(200, rule)).toBe(223);
+  });
+});
+
+describe("calculatePricingBreakdown with overrides", () => {
+  it("regression: identical output when no overrides given", () => {
+    const date = new Date("2026-08-05T10:00:00"); // Tue, ALTA, no weekend
+    const without = calculatePricingBreakdown("solar-450", date, "2h", [], []);
+    const withEmpty = calculatePricingBreakdown("solar-450", date, "2h", [], [], []);
+    expect(without).toEqual(withEmpty);
+    expect(without.appliedOverride).toBeUndefined();
+  });
+
+  it("applies a global multiplier override (+25%) on top of season pricing", () => {
+    // ALTA 2h Solar 450 = 150€ base, no weekend
+    const date = TUESDAY_AUG_5;
+    const overrides = [makeRule({ adjustmentValue: 0.25 })];
+    const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
+    expect(breakdown.basePriceBeforeOverride).toBe(150);
+    expect(breakdown.basePrice).toBe(188); // 150 * 1.25 = 187.5 → 188
+    expect(breakdown.appliedOverride?.label).toBe("Pico agosto");
+    expect(breakdown.subtotal).toBe(188);
+  });
+
+  it("override applies on top of weekend surcharge (correct chaining)", () => {
+    // ALTA 2h Solar 450 weekend = 173€ (150 * 1.15)
+    const date = SATURDAY_AUG_8;
+    const overrides = [makeRule({ adjustmentValue: 0.25 })];
+    const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
+    expect(breakdown.basePriceBeforeOverride).toBe(173);
+    expect(breakdown.basePrice).toBe(216); // 173 * 1.25 = 216.25 → 216
+    expect(breakdown.weekendSurcharge).toBe(true);
+  });
+
+  it("override does NOT affect deposit nor extras", () => {
+    const date = TUESDAY_AUG_5;
+    const overrides = [makeRule({ adjustmentValue: 0.25 })];
+    const breakdown = calculatePricingBreakdown(
+      "solar-450",
+      date,
+      "2h",
+      ["Parking delante del Barco"],
+      [],
+      overrides,
+    );
+    expect(breakdown.basePrice).toBe(188);
+    expect(breakdown.extrasPrice).toBe(10); // unchanged
+    // deposit unchanged from solar-450's spec
+    expect(breakdown.deposit).toBeGreaterThan(0);
+    expect(breakdown.subtotal).toBe(198); // 188 + 10
+    expect(breakdown.total).toBe(breakdown.subtotal + breakdown.deposit);
+  });
+
+  it("flat_eur override adds absolute € to base", () => {
+    const date = TUESDAY_AUG_5;
+    const overrides = [makeRule({ adjustmentType: "flat_eur", adjustmentValue: 30 })];
+    const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
+    expect(breakdown.basePrice).toBe(180); // 150 + 30
+  });
+
+  it("does not apply override outside its date range", () => {
+    const date = WEDNESDAY_AUG_19;
+    const overrides = [makeRule({ dateEnd: "2026-08-17" })];
+    const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
+    expect(breakdown.basePrice).toBe(150); // ALTA base, unchanged
+    expect(breakdown.appliedOverride).toBeUndefined();
   });
 });

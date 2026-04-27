@@ -27,6 +27,7 @@ import * as leadNurturingRepo from "./leadNurturing";
 import * as mcpTokensRepo from "./mcpTokens";
 import * as seoAutopilotRepo from "./seoAutopilot";
 import * as businessStatsRepo from "./businessStats";
+import * as pricingOverridesRepo from "./pricingOverrides";
 
 // Re-export the IStorage interface for consumers that import it
 export type { IStorage } from "./types";
@@ -178,6 +179,15 @@ export const storage = {
   getDiscountCodes: promotionsRepo.getDiscountCodes,
   getDiscountCodesByEmail: promotionsRepo.getDiscountCodesByEmail,
   generateRepeatCustomerCode: promotionsRepo.generateRepeatCustomerCode,
+
+  // ===== Pricing Overrides (dynamic pricing) =====
+  listPricingOverrides: pricingOverridesRepo.listPricingOverrides,
+  getPricingOverride: pricingOverridesRepo.getPricingOverride,
+  createPricingOverride: pricingOverridesRepo.createPricingOverride,
+  updatePricingOverride: pricingOverridesRepo.updatePricingOverride,
+  deactivatePricingOverride: pricingOverridesRepo.deactivatePricingOverride,
+  loadActiveOverridesForDate: pricingOverridesRepo.loadActiveOverridesForDate,
+  loadActiveOverridesForRange: pricingOverridesRepo.loadActiveOverridesForRange,
 
   // ===== CRM Customers =====
   upsertCrmCustomer: customerRepo.upsertCrmCustomer,

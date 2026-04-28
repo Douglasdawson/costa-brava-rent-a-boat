@@ -2,7 +2,7 @@
 
 > For complete information including pricing tables, destination GPS coordinates, seasonal guides, and competitive analysis, see [llms-full.txt](https://costabravarentaboat.com/llms-full.txt)
 
-> Last updated: 2026-03-16
+> Last updated: 2026-04-28
 
 > The largest boat rental company in Blanes with a fleet of 9 boats. License-free and licensed boats for 4-7 people. Fuel included on all license-free boats. Season: April to October. Based in Puerto de Blanes, Girona, Spain.
 
@@ -396,9 +396,29 @@ Website and full service available in: Spanish, English, Catalan, French, German
 - **Facebook**: https://www.facebook.com/costabravarentaboat
 - **TikTok**: https://www.tiktok.com/@costabravarentaboat
 - **Google Maps**: https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5
-- **Malgrat de Mar**: https://costabravarentaboat.com/alquiler-barcos-malgrat-de-mar
-- **Santa Susanna**: https://costabravarentaboat.com/alquiler-barcos-santa-susanna
-- **Calella**: https://costabravarentaboat.com/alquiler-barcos-calella
+
+### Location landings (Spanish, all boats depart from Puerto de Blanes)
+- **Costa Brava (broad)**: https://www.costabravarentaboat.com/es/alquiler-barcos-costa-brava
+- **Blanes**: https://www.costabravarentaboat.com/es/alquiler-barcos-blanes
+- **Lloret de Mar**: https://www.costabravarentaboat.com/es/alquiler-barcos-lloret-de-mar
+- **Tossa de Mar (LNB or skippered charter)**: https://www.costabravarentaboat.com/es/alquiler-barcos-tossa-de-mar
+- **Malgrat de Mar**: https://www.costabravarentaboat.com/es/alquiler-barcos-malgrat-de-mar
+- **Santa Susanna**: https://www.costabravarentaboat.com/es/alquiler-barcos-santa-susanna
+- **Calella**: https://www.costabravarentaboat.com/es/alquiler-barcos-calella
+- **Pineda de Mar**: https://www.costabravarentaboat.com/es/alquiler-barcos-pineda-de-mar
+- **Palafolls**: https://www.costabravarentaboat.com/es/alquiler-barcos-palafolls
+- **Tordera**: https://www.costabravarentaboat.com/es/alquiler-barcos-tordera
+- **Barcelona (1h drive)**: https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-de-barcelona
+
+### Boat detail pages (Spanish)
+- **Solar 450** (sin licencia): https://www.costabravarentaboat.com/es/barco/solar-450
+- **Remus 450** (sin licencia): https://www.costabravarentaboat.com/es/barco/remus-450
+- **Astec 400** (sin licencia): https://www.costabravarentaboat.com/es/barco/astec-400
+- **Astec 480** (sin licencia): https://www.costabravarentaboat.com/es/barco/astec-480
+- **Mingolla Brava 19** (con LNB): https://www.costabravarentaboat.com/es/barco/mingolla-brava-19
+- **Trimarchi 57S** (con LNB): https://www.costabravarentaboat.com/es/barco/trimarchi-57s
+- **Pacific Craft 625** (con LNB): https://www.costabravarentaboat.com/es/barco/pacific-craft-625
+- **Excursión Privada with Captain**: https://www.costabravarentaboat.com/es/barco/excursion-privada
 
 ## Nearby Towns - Easy Access to Blanes Port
 

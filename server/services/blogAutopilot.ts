@@ -439,6 +439,24 @@ function runSeoAudit(article: GeneratedArticle): SeoAuditResult {
 // Internal: Translate article
 // ---------------------------------------------------------------------------
 
+/**
+ * Translate a minimal post payload (title/content/excerpt/metaDescription)
+ * to the requested target languages. Returns merged maps including the
+ * source 'es' entry. Reused for both initial generation and retroactive
+ * backfill of existing posts that lack translations.
+ *
+ * Exported so the admin backfill route can call it without depending on
+ * the full GeneratedArticle / pipeline shape.
+ */
+export async function translatePostFields(
+  client: Anthropic,
+  source: { title: string; content: string; excerpt: string; metaDescription: string },
+  targetLanguages: string[],
+  model: string
+): Promise<TranslationResult> {
+  return translateArticle(client, source as GeneratedArticle, targetLanguages, model);
+}
+
 async function translateArticle(
   client: Anthropic,
   article: GeneratedArticle,

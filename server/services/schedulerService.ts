@@ -195,6 +195,13 @@ async function processThankYou(): Promise<void> {
           }
         }
 
+        // Email branch is gated so that bookings selected only because WhatsApp
+        // was still pending don't get the email re-sent.
+        if (booking.emailThankYouSent) {
+          logger.info("Thank-you processed for booking", { bookingId: booking.id, emailSent: "already-sent", whatsappSent: waThankYouSentThisRun });
+          continue;
+        }
+
         // Skip email if no address, but WhatsApp was already attempted above
         if (!booking.customerEmail) {
           await storage.updateBookingEmailStatus(booking.id, undefined, true);

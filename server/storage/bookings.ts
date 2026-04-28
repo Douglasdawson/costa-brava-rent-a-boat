@@ -580,15 +580,17 @@ export async function getCompletedBookingsForThankYou(hoursAfter: number, tenant
   const now = new Date();
   // Lower bound: earliest the trip must have ended for the thank-you to make sense.
   // Upper bound: up to 72h ago, so if cron misses the ideal hour the booking isn't
-  // lost forever. Filter on emailThankYouSent=false ensures we only fire once.
-  // Also accept 'completed' (autoCompleteBookings may have flipped the status by
-  // the time this query runs, or admin may have created the booking retroactively).
+  // lost forever. Retry while either channel still hasn't been sent — caller
+  // (processThankYou) is idempotent per channel and won't re-send a successful one.
   const windowEnd = new Date(now.getTime() - (hoursAfter - 2) * 60 * 60 * 1000);
   const windowStart = new Date(now.getTime() - 72 * 60 * 60 * 1000);
 
   const conditions = [
     inArray(bookings.bookingStatus, ["confirmed", "completed"]),
-    eq(bookings.emailThankYouSent, false),
+    or(
+      eq(bookings.emailThankYouSent, false),
+      eq(bookings.whatsappThankYouSent, false),
+    ),
     gte(bookings.endTime, windowStart),
     lte(bookings.endTime, windowEnd),
   ];

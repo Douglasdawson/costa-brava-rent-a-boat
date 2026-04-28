@@ -162,9 +162,53 @@ export default function LocationCostaBravaPage() {
   };
 
   // Combine schemas
+  // Service schema with AggregateOffer for price-range rich snippets in SERP
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Boat rental",
+    "name": "Alquiler de barcos en la Costa Brava — sin licencia y con licencia",
+    "areaServed": {
+      "@type": "Place",
+      "name": "Costa Brava, Catalonia, Spain"
+    },
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Costa Brava Rent a Boat Blanes",
+      "telephone": "+34611500372",
+      "url": "https://www.costabravarentaboat.com/",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Puerto de Blanes",
+        "addressLocality": "Blanes",
+        "addressRegion": "Girona",
+        "postalCode": "17300",
+        "addressCountry": "ES"
+      }
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "EUR",
+      "lowPrice": "70",
+      "highPrice": "420",
+      "offerCount": "8",
+      "availability": "https://schema.org/InStock",
+      "validFrom": `${new Date().getFullYear()}-04-01`,
+      "validThrough": `${new Date().getFullYear()}-10-31`,
+      "description": "8 embarcaciones disponibles. 5 sin licencia náutica desde 70€/h con gasolina incluida. 3 con LNB (con licencia) y excursión privada con capitán."
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "300",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  };
+
   const combinedJsonLd = {
     "@context": "https://schema.org",
-    "@graph": [locationSchema, breadcrumbSchema, faqSchema]
+    "@graph": [locationSchema, breadcrumbSchema, faqSchema, serviceSchema]
   };
 
   // Departure ports data

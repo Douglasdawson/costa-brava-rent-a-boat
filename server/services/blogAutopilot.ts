@@ -457,6 +457,127 @@ export async function translatePostFields(
   return translateArticle(client, source as GeneratedArticle, targetLanguages, model);
 }
 
+const BACKFILL_TARGET_LANGS = ["en", "fr", "de", "nl"] as const;
+
+/**
+ * Auto-process blog translation backfill. Picks up to `limit` posts that
+ * have any of {en, fr, de, nl} missing in titleByLang/contentByLang and
+ * translates the missing langs only, persisting the merged result.
+ *
+ * Designed to run as an idempotent cron job: runs ~every 30 min, processes
+ * a small batch each time, eventually completes the whole catalog. Once
+ * all posts are translated the function is a no-op.
+ *
+ * Returns a summary for logging.
+ */
+export async function runBlogTranslationBackfill(
+  options: { limit?: number; model?: string } = {}
+): Promise<{
+  scanned: number;
+  candidates: number;
+  processed: number;
+  failed: number;
+  totalTokensIn: number;
+  totalTokensOut: number;
+}> {
+  const limit = Math.max(1, Math.min(20, options.limit ?? 3));
+  const model = options.model ?? "claude-sonnet-4-20250514";
+
+  if (!process.env.ANTHROPIC_API_KEY) {
+    logger.info("[BlogBackfill] ANTHROPIC_API_KEY not set, skipping");
+    return { scanned: 0, candidates: 0, processed: 0, failed: 0, totalTokensIn: 0, totalTokensOut: 0 };
+  }
+
+  const allPosts = await db
+    .select({
+      id: schema.blogPosts.id,
+      slug: schema.blogPosts.slug,
+      title: schema.blogPosts.title,
+      content: schema.blogPosts.content,
+      excerpt: schema.blogPosts.excerpt,
+      metaDescription: schema.blogPosts.metaDescription,
+      titleByLang: schema.blogPosts.titleByLang,
+      contentByLang: schema.blogPosts.contentByLang,
+      excerptByLang: schema.blogPosts.excerptByLang,
+      metaDescByLang: schema.blogPosts.metaDescByLang,
+    })
+    .from(schema.blogPosts);
+
+  const candidates = allPosts
+    .map((post) => {
+      const titleByLang = (post.titleByLang ?? {}) as Record<string, string>;
+      const contentByLang = (post.contentByLang ?? {}) as Record<string, string>;
+      const missing = BACKFILL_TARGET_LANGS.filter(
+        (lang) =>
+          !titleByLang[lang]?.trim() || !contentByLang[lang]?.trim()
+      );
+      return { post, missing };
+    })
+    .filter((x) => x.missing.length > 0)
+    .slice(0, limit);
+
+  if (candidates.length === 0) {
+    logger.info("[BlogBackfill] No candidates — all posts fully translated");
+    return { scanned: allPosts.length, candidates: 0, processed: 0, failed: 0, totalTokensIn: 0, totalTokensOut: 0 };
+  }
+
+  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  let processed = 0;
+  let failed = 0;
+  let totalTokensIn = 0;
+  let totalTokensOut = 0;
+
+  for (const { post, missing } of candidates) {
+    try {
+      const tr = await translatePostFields(
+        client,
+        {
+          title: post.title,
+          content: post.content,
+          excerpt: post.excerpt ?? "",
+          metaDescription: post.metaDescription ?? "",
+        },
+        missing as string[],
+        model
+      );
+
+      const existingTitle = (post.titleByLang ?? {}) as Record<string, string>;
+      const existingContent = (post.contentByLang ?? {}) as Record<string, string>;
+      const existingExcerpt = (post.excerptByLang ?? {}) as Record<string, string>;
+      const existingMeta = (post.metaDescByLang ?? {}) as Record<string, string>;
+
+      await db
+        .update(schema.blogPosts)
+        .set({
+          titleByLang: { ...existingTitle, ...tr.titleByLang },
+          contentByLang: { ...existingContent, ...tr.contentByLang },
+          excerptByLang: { ...existingExcerpt, ...tr.excerptByLang },
+          metaDescByLang: { ...existingMeta, ...tr.metaDescByLang },
+          updatedAt: new Date(),
+        })
+        .where(eq(schema.blogPosts.id, post.id));
+
+      processed++;
+      totalTokensIn += tr.tokensIn;
+      totalTokensOut += tr.tokensOut;
+      logger.info(`[BlogBackfill] Translated ${post.slug} → ${missing.join(", ")}`);
+    } catch (err: unknown) {
+      failed++;
+      const msg = err instanceof Error ? err.message : "Unknown error";
+      logger.error(`[BlogBackfill] Failed for ${post.slug}: ${msg}`);
+    }
+  }
+
+  return {
+    scanned: allPosts.length,
+    candidates: candidates.length,
+    processed,
+    failed,
+    totalTokensIn,
+    totalTokensOut,
+  };
+}
+
 async function translateArticle(
   client: Anthropic,
   article: GeneratedArticle,

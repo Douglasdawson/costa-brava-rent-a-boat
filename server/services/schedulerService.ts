@@ -6,7 +6,7 @@ import {
   sendNewsletterEmail,
 } from "./emailService";
 import { processAbandonedBookings } from "./abandonedBookingService";
-import { runAutopilotPipeline, publishNextDraft, getConfig } from "./blogAutopilot.js";
+import { runAutopilotPipeline, publishNextDraft, getConfig, runBlogTranslationBackfill } from "./blogAutopilot.js";
 import { syncAllAnalytics } from "./googleAnalyticsService";
 import { syncReviewRequests, sendReferralCodes, sendEarlyBirdOffers } from "./flywheelService";
 import { renderThankYouWhatsApp } from "./whatsappTemplates";
@@ -340,6 +340,36 @@ export function startScheduler(): void {
       logger.error("[Scheduler] Blog publish error", { error: error instanceof Error ? error.message : String(error) });
     }
   }));
+
+  // Blog translation backfill: every 20 min, processes up to 3 posts that
+  // have missing en/fr/de/nl translations. Idempotent — once all posts are
+  // fully translated this becomes a no-op. Cost: ~$0.03-0.05 per post per
+  // missing lang. Estimated total to backfill ~45 existing posts: ~$2-3
+  // (eventually completes in ~5 hours of cycles).
+  scheduledTasks.push(cron.schedule("*/20 * * * *", async () => {
+    try {
+      const summary = await runBlogTranslationBackfill({ limit: 3 });
+      if (summary.processed > 0 || summary.failed > 0) {
+        logger.info("[Scheduler] Blog translation backfill", summary);
+      }
+    } catch (error) {
+      logger.error("[Scheduler] Blog backfill error", { error: error instanceof Error ? error.message : String(error) });
+    }
+  }));
+
+  // Run once shortly after boot so we don't wait the full 20 min for first
+  // batch (gives Replit Republish a head start on convergence).
+  setTimeout(() => {
+    runBlogTranslationBackfill({ limit: 3 })
+      .then((summary) => {
+        if (summary.processed > 0 || summary.candidates > 0) {
+          logger.info("[Scheduler] Blog backfill (boot run)", summary);
+        }
+      })
+      .catch((err) => {
+        logger.error("[Scheduler] Blog backfill (boot run) error", { error: err instanceof Error ? err.message : String(err) });
+      });
+  }, 60_000); // 1 min after startScheduler() — let DB pool warm up first
 
   // Google Analytics sync: every 6 hours at :15 past the hour
   scheduledTasks.push(cron.schedule("15 */6 * * *", async () => {

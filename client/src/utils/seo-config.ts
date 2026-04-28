@@ -186,7 +186,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     boatDetail: {
       title: "{boatName} Blanes | {capacity} Personas desde {pricePerHour}€/h Costa Brava",
-      description: "Alquila {boatName} en Blanes, Costa Brava. {capacity} personas, {license}. Desde {pricePerHour}€/h, gasolina incluida. 4.8★ Google. Reserva online!",
+      description: "Alquila {boatName} en Blanes, Costa Brava. {capacity} personas, {license}. Desde {pricePerHour}€/h, {fuelStatus}. 4.8★ Google. Reserva online!",
       keywords: "alquiler {boatName}, {boatName} blanes, barco {capacity} personas costa brava"
     },
     excursionDetail: {
@@ -397,7 +397,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     boatDetail: {
       title: "{boatName} Blanes | {capacity} People from {pricePerHour}€/h Costa Brava",
-      description: "Rent {boatName} in Blanes, Costa Brava. {capacity} people, {license}. From {pricePerHour}€/h, fuel included. 4.8★ Google. Book online!",
+      description: "Rent {boatName} in Blanes, Costa Brava. {capacity} people, {license}. From {pricePerHour}€/h, {fuelStatus}. 4.8★ Google. Book online!",
       keywords: "rent {boatName}, {boatName} blanes, boat {capacity} people costa brava"
     },
     excursionDetail: {

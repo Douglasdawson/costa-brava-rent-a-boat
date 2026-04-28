@@ -546,12 +546,26 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     it: ["con patente", "senza patente"],
     ru: ["с лицензией", "без лицензии"],
   };
+  // Fuel labels — "combustible aparte" / "gasolina incluida" honest by boat type.
+  // Sin-licencia boats include fuel; licensed boats and excursión-privada do not.
+  const fuelLabels: Record<string, [string, string]> = {
+    es: ["combustible aparte", "gasolina incluida"],
+    en: ["fuel apart", "fuel included"],
+    ca: ["combustible a part", "gasolina inclosa"],
+    fr: ["carburant en sus", "carburant inclus"],
+    de: ["Kraftstoff separat", "Kraftstoff inklusive"],
+    nl: ["brandstof apart", "brandstof inbegrepen"],
+    it: ["carburante a parte", "carburante incluso"],
+    ru: ["топливо отдельно", "топливо включено"],
+  };
   const [withLic, withoutLic] = licenseLabels[language] || licenseLabels.es;
+  const [fuelApart, fuelInc] = fuelLabels[language] || fuelLabels.es;
   const dynamicSEOData = {
     boatName: boatData.name,
     capacity: capacity.toString(),
     license: requiresLicense ? withLic : withoutLic,
-    pricePerHour: lowestPrice.toString()
+    pricePerHour: lowestPrice.toString(),
+    fuelStatus: fuelIncluded ? fuelInc : fuelApart,
   };
 
   const seoPageKey = boatId === "excursion-privada" ? 'excursionDetail' : 'boatDetail';

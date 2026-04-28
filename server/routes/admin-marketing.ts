@@ -145,7 +145,7 @@ export function registerAdminMarketingRoutes(app: Express) {
 
   // ===== BLOG TRANSLATION BACKFILL =====
   // Audit endpoint: list posts missing translations in en/fr/de/nl.
-  app.get("/api/admin/blog/translation-status", requireAdminSession, async (_req, res) => {
+  app.get("/api/admin/blog-translations/status", requireAdminSession, async (_req, res) => {
     try {
       const posts = await db
         .select({
@@ -188,7 +188,7 @@ export function registerAdminMarketingRoutes(app: Express) {
   // Backfill endpoint: translates the next N posts that are missing translations,
   // for the missing langs only. Idempotent. Body params: { limit?: number,
   // model?: string, slug?: string }. If slug is provided, processes just that post.
-  app.post("/api/admin/blog/backfill-translations", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/blog-translations/backfill", requireAdminSession, async (req, res) => {
     if (!process.env.ANTHROPIC_API_KEY) {
       return res.status(503).json({ message: "ANTHROPIC_API_KEY not configured" });
     }

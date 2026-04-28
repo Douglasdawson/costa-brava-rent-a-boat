@@ -39,6 +39,7 @@ import {
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
+import { BOAT_DATA } from "@shared/boatData";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -422,6 +423,47 @@ export default function LocationLloretPage() {
           </Button>
         </div>
       </div>
+
+      {/* Popular boats for Lloret route */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+            <Ship className="w-6 h-6 text-primary" />
+            Barcos populares para tu ruta a Lloret de Mar
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Los barcos sin licencia que más alquilamos para la ruta hasta Playa de Fenals (sur de Lloret). Todos llegan legalmente y son ideales para 2-7 personas con o sin experiencia.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {["remus-450", "solar-450", "astec-480", "pacific-craft-625"].map((boatId) => {
+              const boat = BOAT_DATA[boatId];
+              if (!boat) return null;
+              const lowestPrice = Math.min(...Object.values(boat.pricing.BAJA.prices));
+              const isNoLicense = boat.features.some((f) => f.toLowerCase().includes("sin licencia"));
+              return (
+                <a
+                  key={boat.id}
+                  href={localizedPath("boatDetail", boat.id)}
+                  className="block border rounded-lg p-4 hover:shadow-md transition-shadow bg-background"
+                  data-testid={`link-boat-${boat.id}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-heading font-semibold text-lg">{boat.name}</h3>
+                    <Badge variant={isNoLicense ? "secondary" : "outline"} className="text-xs">
+                      {isNoLicense ? "Sin licencia" : "Con licencia"}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{boat.subtitle}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-primary font-semibold text-sm">desde {lowestPrice} €</span>
+                    <span className="text-sm text-primary hover:underline">Ver barco →</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </RevealSection>
 
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">

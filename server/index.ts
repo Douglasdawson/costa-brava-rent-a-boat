@@ -423,6 +423,24 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log(`[migrations] applyPricingOverridesEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
   }
 
+  // ── STEP 2.7: Idempotent seo_url_inspections schema sync ─────────────────────────
+  // Re-applies migrations/0009_seo_url_inspections.sql on every boot. Same
+  // Replit Republish bug as 2.6 — without this, /api/admin/seo/coverage and
+  // /api/admin/seo/coverage/refresh return 500 after every redeploy.
+  try {
+    const { applySeoUrlInspectionsEnsure } = await import("./migrations/applySeoUrlInspectionsEnsure");
+    const result = await applySeoUrlInspectionsEnsure(pool);
+    if (result.applied) {
+      log(`[migrations] seo_url_inspections schema sync OK in ${result.durationMs}ms`);
+    } else if (result.error === "lock-held-by-other-instance") {
+      log(`[migrations] seo_url_inspections schema sync skipped (another instance holds lock)`);
+    } else {
+      log(`[migrations] seo_url_inspections schema sync FAILED: ${result.error}`);
+    }
+  } catch (err) {
+    log(`[migrations] applySeoUrlInspectionsEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   // Auto-backfill analytics tables if empty (every Republish wipes them, see
   // project_seo_engine_schema_revert.md). Fire-and-forget — does not block
   // boot or registerRoutes. Single-instance via pg_advisory_lock so multiple

@@ -17,7 +17,8 @@ import {
   Castle,
   Crown,
   Heart,
-  ChevronRight
+  ChevronRight,
+  Ship
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
@@ -37,6 +38,7 @@ import {
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
+import { BOAT_DATA } from "@shared/boatData";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -490,6 +492,47 @@ export default function LocationTossaPage() {
           </Button>
         </div>
       </div>
+
+      {/* Popular boats for Tossa route */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+            <Ship className="w-6 h-6 text-primary" />
+            Barcos para tu ruta a Tossa de Mar
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Tossa de Mar está fuera del rango legal sin licencia. Estos son los barcos que sí llegan: con Licencia de Navegación Básica (LNB) o nuestra Excursión Privada con Capitán (sin licencia requerida).
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {["excursion-privada", "pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"].map((boatId) => {
+              const boat = BOAT_DATA[boatId];
+              if (!boat) return null;
+              const lowestPrice = Math.min(...Object.values(boat.pricing.BAJA.prices));
+              const isExcursion = boat.id === "excursion-privada";
+              return (
+                <a
+                  key={boat.id}
+                  href={localizedPath("boatDetail", boat.id)}
+                  className="block border rounded-lg p-4 hover:shadow-md transition-shadow bg-background"
+                  data-testid={`link-boat-${boat.id}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-heading font-semibold text-lg">{boat.name}</h3>
+                    <Badge variant={isExcursion ? "secondary" : "outline"} className="text-xs">
+                      {isExcursion ? "Con capitán" : "Con LNB"}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{boat.subtitle}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-primary font-semibold text-sm">desde {lowestPrice} €</span>
+                    <span className="text-sm text-primary hover:underline">Ver barco →</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </RevealSection>
 
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">

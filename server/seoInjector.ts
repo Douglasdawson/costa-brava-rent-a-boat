@@ -1507,6 +1507,23 @@ function injectMeta(
   return result;
 }
 
+/**
+ * Inject SSR body fallback HTML inside <div id="root">. Solves the "URL is not
+ * indexable — problems detected during live test" rejection that GSC reports
+ * for 100% client-rendered pages with empty body. Crawlers that don't execute
+ * JS (or fail to) still see semantic content with H1, description, and key
+ * structured data. Removed by client/src/main.tsx before React hydrates.
+ *
+ * Subset semantic of the React-rendered content — no cloaking risk.
+ */
+function injectBodyFallback(html: string, fallbackHtml: string): string {
+  if (!fallbackHtml) return html;
+  return html.replace(
+    '<div id="root"></div>',
+    `<div id="root"><div id="seo-fallback" data-cowork-seo-fallback>${fallbackHtml}</div></div>`
+  );
+}
+
 // Build AggregateRating schema from cached Google Business Profile stats.
 // Cache is hydrated from DB at startup + refreshed hourly via businessStatsCache.
 // Source of truth: weekly Places API sync → business_stats table.
@@ -1774,6 +1791,13 @@ interface ResolvedPage {
   // <link rel="preload" as="image" fetchpriority="high"> that mirrors the eventual
   // <img> src so the browser can start the fetch in parallel with JS evaluation.
   lcpPreload?: LcpPreload;
+  // SSR body fallback HTML — injected inside <div id="root"> so that crawlers
+  // (Googlebot's Live Test, Bingbot, social previewers) get visible semantic
+  // content even before React hydrates. Removed by main.tsx before hydration
+  // to avoid mismatch warnings. Fix for boat detail pages that Google's URL
+  // Inspection rejected with "indexing problems detected during live test"
+  // because the page was 100% client-rendered with empty body.
+  bodyFallback?: string;
 }
 
 // Hero image preload aliases. Most boat ids resolve via resolveBoatImagePath;
@@ -3049,7 +3073,56 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         // non-ES URLs should be indexable and self-canonical, not redirected to
         // the ES equivalent. Prior default (hasTranslation: false) caused Google
         // to see noindex + canonical→/es/barco/... on every non-Spanish boat URL.
-        return { meta, jsonLd, lcpPreload, hasTranslation: true };
+
+        // SSR body fallback. Without this, GSC URL Inspection live-test rejects
+        // the page because the body is empty (everything renders client-side).
+        // Removed by main.tsx before React hydrates (data-cowork-seo-fallback).
+        const fallbackBoatName = esc(boat.name);
+        const fallbackTitle = esc(meta.title);
+        const fallbackDesc = esc(meta.description);
+        const capacityLabels: Record<string, string> = {
+          es: "personas", en: "people", ca: "persones", fr: "personnes",
+          de: "Personen", nl: "personen", it: "persone", ru: "человек",
+        };
+        const peopleLabel = capacityLabels[lang] || capacityLabels.es;
+        const includesLabel: Record<string, string> = {
+          es: "Incluye", en: "Includes", ca: "Inclou", fr: "Inclut",
+          de: "Umfasst", nl: "Inclusief", it: "Include", ru: "Включает",
+        };
+        const incLabel = includesLabel[lang] || includesLabel.es;
+        const fuelLabels: Record<string, [string, string]> = {
+          es: ["combustible aparte", "gasolina incluida"],
+          en: ["fuel apart", "fuel included"],
+          ca: ["combustible a part", "gasolina inclosa"],
+          fr: ["carburant en sus", "carburant inclus"],
+          de: ["Kraftstoff separat", "Kraftstoff inklusive"],
+          nl: ["brandstof apart", "brandstof inbegrepen"],
+          it: ["carburante a parte", "carburante incluso"],
+          ru: ["топливо отдельно", "топливо включено"],
+        };
+        const [fuelApart, fuelInc] = fuelLabels[lang] || fuelLabels.es;
+        const fuelText = boat.requiresLicense ? fuelApart : fuelInc;
+        const priceFromLabel = fromPrice ? `${fromLabels[lang] || "Desde"} ${fromPrice}€` : "";
+        const reservaLabel: Record<string, string> = {
+          es: "Reserva por WhatsApp", en: "Book via WhatsApp", ca: "Reserva per WhatsApp",
+          fr: "Réservez par WhatsApp", de: "Per WhatsApp buchen", nl: "Boek via WhatsApp",
+          it: "Prenota via WhatsApp", ru: "Бронирование по WhatsApp",
+        };
+        const ctaLabel = reservaLabel[lang] || reservaLabel.es;
+        const bodyFallback = `
+<h1>${fallbackTitle}</h1>
+<p>${fallbackDesc}</p>
+<ul>
+  <li><strong>${fallbackBoatName}</strong></li>
+  <li>${esc(boat.capacity || "")} ${peopleLabel}</li>
+  <li>${esc(licenseText)}, ${esc(fuelText)}</li>
+  ${priceFromLabel ? `<li>${esc(priceFromLabel)}</li>` : ""}
+</ul>
+<p>${incLabel}: IVA, amarre, limpieza, seguro embarcación y ocupantes.</p>
+<p>${ctaLabel}: <a href="https://wa.me/34611500372">+34 611 500 372</a></p>
+        `.trim();
+
+        return { meta, jsonLd, lcpPreload, hasTranslation: true, bodyFallback };
       }
     } catch {
       // fall through
@@ -3388,7 +3461,7 @@ export async function serveWithSEO(
         }
       }
       const baseHtml = await getBaseHtml(distPath);
-      const html = injectMeta(
+      let html = injectMeta(
         baseHtml,
         resolved.meta,
         canonicalUrl,
@@ -3399,6 +3472,10 @@ export async function serveWithSEO(
         canonicalOverride,
         resolved.lcpPreload,
       );
+      // SSR body fallback for crawlers (boat detail + future routes that opt in)
+      if (resolved.bodyFallback) {
+        html = injectBodyFallback(html, resolved.bodyFallback);
+      }
 
       // Cache the final injected HTML
       setCachedInjectedHtml(cacheKey, html);

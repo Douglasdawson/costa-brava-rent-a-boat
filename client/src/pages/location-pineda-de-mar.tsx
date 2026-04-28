@@ -31,6 +31,7 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { getCanonicalUrl } from "@/lib/domain";
 import { trackLocationPageView } from "@/utils/analytics";
+import PopularBoatsSection from "@/components/PopularBoatsSection";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -362,6 +363,12 @@ export default function LocationPinedaDeMarPage() {
           </Button>
         </div>
       </div>
+
+      <PopularBoatsSection
+        title="Barcos populares para alquilar desde el Puerto de Blanes"
+        description="Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas."
+        boatIds={["remus-450", "solar-450", "astec-480", "astec-400"]}
+      />
 
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">

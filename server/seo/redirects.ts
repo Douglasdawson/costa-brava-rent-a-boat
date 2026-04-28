@@ -318,6 +318,23 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/nl/boot/astec-450": "/nl/boot/astec-480",
     "/it/barca/astec-450": "/it/barca/astec-480",
     "/ru/lodka/astec-450": "/ru/lodka/astec-480",
+
+    // Legacy unprefixed boat detail URLs -> ES canonical (CRITICAL: these
+    // were getting indexed by Google as "primary" instead of /es/barco/X
+    // because Google followed cached pre-i18n internal links. Without these
+    // 301s, all 9 boat detail pages received zero impressions in GSC for
+    // 6 months. Audit 2026-04-28.)
+    "/barco/solar-450": "/es/barco/solar-450",
+    "/barco/remus-450": "/es/barco/remus-450",
+    "/barco/remus-450-ii": "/es/barco/remus-450-ii",
+    "/barco/astec-400": "/es/barco/astec-400",
+    "/barco/astec-480": "/es/barco/astec-480",
+    "/barco/astec-450": "/es/barco/astec-480", // also catches the old astec-450 slug
+    "/barco/mingolla-brava-19": "/es/barco/mingolla-brava-19",
+    "/barco/trimarchi-57s": "/es/barco/trimarchi-57s",
+    "/barco/pacific-craft-625": "/es/barco/pacific-craft-625",
+    "/barco/excursion-privada": "/es/barco/excursion-privada",
+    "/barco-mirimare-sunrise-7": "/es/categoria/sin-licencia", // discontinued model
   };
 
   const values = Object.entries(legacyRedirects).map(([from, to]) => ({

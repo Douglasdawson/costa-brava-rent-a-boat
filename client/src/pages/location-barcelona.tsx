@@ -32,6 +32,7 @@ import {
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import { trackLocationPageView } from "@/utils/analytics";
+import PopularBoatsSection from "@/components/PopularBoatsSection";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -305,6 +306,14 @@ export default function LocationBarcelonaPage() {
           </div>
         </div>
       </RevealSection>
+
+      <PopularBoatsSection
+        title="Barcos para tu escapada desde Barcelona"
+        description="A 1h en coche o en tren R1, el Puerto de Blanes es la opción más cercana para alquilar barco en la Costa Brava. Desde sin licencia (5 de los 8 barcos) hasta charter premium con patrón."
+        boatIds={["remus-450", "astec-480", "pacific-craft-625", "excursion-privada"]}
+        badgeLabel={(id) => (id === "excursion-privada" ? "Con capitán" : id === "pacific-craft-625" ? "Con LNB" : "Sin licencia")}
+        badgeVariant={(id) => (id === "excursion-privada" || id === "pacific-craft-625" ? "outline" : "secondary")}
+      />
 
       {/* FAQ section */}
       <RevealSection className="py-16 sm:py-20 bg-muted">

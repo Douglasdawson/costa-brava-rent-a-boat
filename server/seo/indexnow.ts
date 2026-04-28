@@ -72,3 +72,55 @@ export async function notifyCriticalPagesOnDeploy(): Promise<void> {
   logger.info("[SEO:IndexNow] Notifying critical pages on deploy", { count: criticalPages.length });
   await notifyIndexNow(criticalPages);
 }
+
+/**
+ * Fetch all 4 sub-sitemaps and notify IndexNow (Bing, Yandex, Seznam, Naver)
+ * about every public URL. Idempotent — safe to run on every boot/cron tick.
+ *
+ * Designed to run after every Replit Republish + daily, so the search engines
+ * that DO accept programmatic re-indexation requests get the freshest signal
+ * about the catalog. Google ignores IndexNow, but Bing+Yandex push these into
+ * priority crawl queue.
+ */
+export async function notifyAllSitemapUrls(): Promise<{ found: number; notified: number }> {
+  if (!INDEXNOW_KEY) {
+    logger.debug("[SEO:IndexNow] Skipped sitemap-wide notify — INDEXNOW_KEY not set");
+    return { found: 0, notified: 0 };
+  }
+
+  const baseUrl = SEO_CONFIG.baseUrl;
+  const subSitemaps = [
+    `${baseUrl}/sitemap-pages.xml`,
+    `${baseUrl}/sitemap-boats.xml`,
+    `${baseUrl}/sitemap-blog.xml`,
+    `${baseUrl}/sitemap-destinations.xml`,
+  ];
+
+  const allUrls: string[] = [];
+  for (const sm of subSitemaps) {
+    try {
+      const resp = await fetch(sm);
+      if (!resp.ok) {
+        logger.warn(`[SEO:IndexNow] Sub-sitemap fetch failed ${sm}: ${resp.status}`);
+        continue;
+      }
+      const xml = await resp.text();
+      const matches = xml.match(/<loc>([^<]+)<\/loc>/g) ?? [];
+      for (const m of matches) {
+        const url = m.replace(/<\/?loc>/g, "").trim();
+        if (url) allUrls.push(url);
+      }
+    } catch (err) {
+      logger.warn(`[SEO:IndexNow] Sub-sitemap error ${sm}`, { err: err instanceof Error ? err.message : String(err) });
+    }
+  }
+
+  if (allUrls.length === 0) {
+    logger.warn("[SEO:IndexNow] notifyAllSitemapUrls: zero URLs extracted");
+    return { found: 0, notified: 0 };
+  }
+
+  logger.info("[SEO:IndexNow] Notifying sitemap URLs", { count: allUrls.length });
+  await notifyIndexNow(allUrls);
+  return { found: allUrls.length, notified: allUrls.length };
+}

@@ -12,6 +12,7 @@ import { syncReviewRequests, sendReferralCodes, sendEarlyBirdOffers } from "./fl
 import { renderThankYouWhatsApp } from "./whatsappTemplates";
 import { generateWeeklyInsights } from "./chatbotInsightsService";
 import { processLeadNurturing } from "./leadNurturingService";
+import { notifyAllSitemapUrls } from "../seo/indexnow";
 import type { Booking, Boat, BlogPost } from "@shared/schema";
 import { logger } from "../lib/logger";
 
@@ -370,6 +371,31 @@ export function startScheduler(): void {
         logger.error("[Scheduler] Blog backfill (boot run) error", { error: err instanceof Error ? err.message : String(err) });
       });
   }, 60_000); // 1 min after startScheduler() — let DB pool warm up first
+
+  // IndexNow sitemap-wide notify: daily at 04:30 UTC, plus once shortly after
+  // boot. Notifies Bing/Yandex/Seznam/Naver about every URL in the sitemap.
+  // Idempotent (these endpoints accept repeat pings without rate limit).
+  // Google ignores IndexNow but the others combined cover ~5-15% of search
+  // traffic for international markets — small but free.
+  scheduledTasks.push(cron.schedule("30 4 * * *", async () => {
+    try {
+      const summary = await notifyAllSitemapUrls();
+      logger.info("[Scheduler] IndexNow daily notify", summary);
+    } catch (err) {
+      logger.error("[Scheduler] IndexNow daily error", { error: err instanceof Error ? err.message : String(err) });
+    }
+  }));
+
+  // Boot run (delayed 90s so server fully ready before crawling sitemaps)
+  setTimeout(() => {
+    notifyAllSitemapUrls()
+      .then((summary) => {
+        logger.info("[Scheduler] IndexNow boot run", summary);
+      })
+      .catch((err) => {
+        logger.error("[Scheduler] IndexNow boot run error", { error: err instanceof Error ? err.message : String(err) });
+      });
+  }, 90_000);
 
   // Google Analytics sync: every 6 hours at :15 past the hour
   scheduledTasks.push(cron.schedule("15 */6 * * *", async () => {

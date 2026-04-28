@@ -113,6 +113,30 @@ export function redirectMiddleware() {
       return res.redirect(301, `/${langParam}/${slug}`);
     }
 
+    // CRITICAL hardcoded redirects (do not depend on DB cache being warm).
+    // Reason: indexation audit 2026-04-28 found Google was indexing legacy
+    // /barco/{slug} URLs as primary because the DB-cached redirects weren't
+    // hitting (seed race or onConflictDoNothing). These hardcoded entries
+    // run before the cache lookup so they always fire.
+    const hardcoded: Record<string, string> = {
+      "/barco/solar-450": "/es/barco/solar-450",
+      "/barco/remus-450": "/es/barco/remus-450",
+      "/barco/remus-450-ii": "/es/barco/remus-450-ii",
+      "/barco/astec-400": "/es/barco/astec-400",
+      "/barco/astec-480": "/es/barco/astec-480",
+      "/barco/astec-450": "/es/barco/astec-480",
+      "/barco/mingolla-brava-19": "/es/barco/mingolla-brava-19",
+      "/barco/trimarchi-57s": "/es/barco/trimarchi-57s",
+      "/barco/pacific-craft-625": "/es/barco/pacific-craft-625",
+      "/barco/excursion-privada": "/es/barco/excursion-privada",
+      "/barco-mirimare-sunrise-7": "/es/categoria/sin-licencia",
+    };
+    const hardcodedTarget = hardcoded[req.path];
+    if (hardcodedTarget) {
+      res.set("Cache-Control", "public, max-age=31536000, immutable");
+      return res.redirect(301, hardcodedTarget);
+    }
+
     // Refresh cache if stale
     if (Date.now() - cacheLastRefresh > CACHE_TTL) {
       await refreshCache();

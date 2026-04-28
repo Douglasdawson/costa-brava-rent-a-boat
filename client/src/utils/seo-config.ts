@@ -318,7 +318,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Boat Rental Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig from Blanes ${SEASON_YEAR}`,
-      description: "Sail to Vila Vella of Tossa in 1h from Blanes. Discover Mar d'en Roig, Cala Llev\u00e1d\u00f3 and Giverola by boat. License-free from 70\u20ac/h, fuel included.",
+      description: "Sail to Tossa's Vila Vella in 30-45 min from Blanes. With Basic Boating License (LNB) from 160\u20ac (2h pack) or Private Skippered Charter 4h from 380\u20ac. Fuel apart.",
       keywords: "boat rental tossa de mar, vila vella tossa boat, cala llevado tossa boat, mar d'en roig boat, giverola tossa boat, tossa excursion from blanes, tossa no license boat",
       ogTitle: "Boat Rental Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
       ogDescription: "Tossa by boat from Blanes. Vila Vella, Mar d'en Roig and Cala Llev\u00e1d\u00f3 1h away. No license from 70\u20ac/h. 4.8\u2605."
@@ -527,7 +527,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Lloguer Barca Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 i Mar d'en Roig des de Blanes ${SEASON_YEAR}`,
-      description: "Arriba a la Vila Vella de Tossa en 1h des de Blanes. Descobreix Mar d'en Roig, Cala Llev\u00e1d\u00f3 i Giverola en barca sense llic\u00e8ncia des de 70\u20ac/h, gasolina inclosa.",
+      description: "Arriba a la Vila Vella de Tossa en 30-45 min des de Blanes. Amb Llic\u00e8ncia de Navegaci\u00f3 B\u00e0sica (LNB) des de 160\u20ac (pack 2h) o Excursi\u00f3 Privada amb Capit\u00e0 4h des de 380\u20ac. Combustible a part.",
       keywords: "lloguer barca tossa de mar, vila vella tossa barca, cala llevado tossa barca, mar d'en roig barca, giverola tossa barca, excursi\u00f3 tossa des de blanes, barca tossa sense llic\u00e8ncia",
       ogTitle: "Lloguer Barca Tossa de Mar | Vila Vella i Cala Llev\u00e1d\u00f3",
       ogDescription: "Tossa en barca des de Blanes. Vila Vella, Mar d'en Roig i Cala Llev\u00e1d\u00f3 a 1h. Sense llic\u00e8ncia des de 70\u20ac/h. 4.8\u2605."
@@ -676,7 +676,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Location Bateau Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 et Mar d'en Roig depuis Blanes ${SEASON_YEAR}`,
-      description: "Naviguez \u00e0 la Vila Vella de Tossa en 1h depuis Blanes. D\u00e9couvrez Mar d'en Roig, Cala Llev\u00e1d\u00f3 et Giverola en bateau sans permis d\u00e8s 70\u20ac/h, carburant inclus.",
+      description: "Naviguez \u00e0 la Vila Vella de Tossa en 30-45 min depuis Blanes. Avec Permis de Navigation de Base (LNB) d\u00e8s 160\u20ac (pack 2h) ou Excursion Priv\u00e9e avec Capitaine 4h d\u00e8s 380\u20ac. Carburant en sus.",
       keywords: "location bateau tossa de mar, vila vella tossa bateau, cala llevado tossa bateau, mar d'en roig bateau, giverola tossa bateau, excursion tossa depuis blanes, bateau tossa sans permis",
       ogTitle: "Location Bateau Tossa de Mar | Vila Vella et Cala Llev\u00e1d\u00f3",
       ogDescription: "Tossa en bateau depuis Blanes. Vila Vella, Mar d'en Roig et Cala Llev\u00e1d\u00f3 \u00e0 1h. Sans permis d\u00e8s 70\u20ac/h. 4.8\u2605."
@@ -823,7 +823,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Bootsverleih Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig ab Blanes ${SEASON_YEAR}`,
-      description: "Segeln Sie in 1h von Blanes zur Vila Vella von Tossa. Entdecken Sie Mar d'en Roig, Cala Llev\u00e1d\u00f3 und Giverola mit dem Boot ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive.",
+      description: "Segeln Sie in 30-45 min von Blanes zur Vila Vella von Tossa. Mit Bootsf\u00fchrerschein (LNB) ab 160\u20ac (2h-Paket) oder private Skipper-Tour 4h ab 380\u20ac. Kraftstoff separat.",
       keywords: "bootsverleih tossa de mar, vila vella tossa boot, cala llevado tossa boot, mar d'en roig boot, giverola tossa boot, tossa ausflug von blanes, boot tossa ohne f\u00fchrerschein",
       ogTitle: "Bootsverleih Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
       ogDescription: "Tossa mit dem Boot ab Blanes. Vila Vella, Mar d'en Roig und Cala Llev\u00e1d\u00f3 in 1h. Ohne F\u00fchrerschein ab 70\u20ac/h. 4.8\u2605."
@@ -970,7 +970,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Bootverhuur Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig vanuit Blanes ${SEASON_YEAR}`,
-      description: "Vaar in 1u vanuit Blanes naar de Vila Vella van Tossa. Ontdek Mar d'en Roig, Cala Llev\u00e1d\u00f3 en Giverola per boot zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen.",
+      description: "Vaar in 30-45 min vanuit Blanes naar de Vila Vella van Tossa. Met Basis Vaarbewijs (LNB) vanaf 160\u20ac (pack 2u) of Priv\u00e9 Skipper-Charter 4u vanaf 380\u20ac. Brandstof apart.",
       keywords: "bootverhuur tossa de mar, vila vella tossa boot, cala llevado tossa boot, mar d'en roig boot, giverola tossa boot, tossa excursie vanuit blanes, boot tossa zonder vaarbewijs",
       ogTitle: "Bootverhuur Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
       ogDescription: "Tossa per boot vanuit Blanes. Vila Vella, Mar d'en Roig en Cala Llev\u00e1d\u00f3 op 1u. Zonder vaarbewijs vanaf 70\u20ac/u. 4.8\u2605."
@@ -1117,7 +1117,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Noleggio Barca Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 e Mar d'en Roig da Blanes ${SEASON_YEAR}`,
-      description: "Naviga in 1h da Blanes alla Vila Vella di Tossa. Scopri Mar d'en Roig, Cala Llev\u00e1d\u00f3 e Giverola in barca senza patente da 70\u20ac/h, carburante incluso.",
+      description: "Naviga in 30-45 min da Blanes alla Vila Vella di Tossa. Con Patente Nautica Base (LNB) da 160\u20ac (pack 2h) o Escursione Privata con Capitano 4h da 380\u20ac. Carburante a parte.",
       keywords: "noleggio barca tossa de mar, vila vella tossa barca, cala llevado tossa barca, mar d'en roig barca, giverola tossa barca, escursione tossa da blanes, barca tossa senza patente",
       ogTitle: "Noleggio Barca Tossa de Mar | Vila Vella e Cala Llev\u00e1d\u00f3",
       ogDescription: "Tossa in barca da Blanes. Vila Vella, Mar d'en Roig e Cala Llev\u00e1d\u00f3 a 1h. Senza patente da 70\u20ac/h. 4.8\u2605."
@@ -1264,7 +1264,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440 | \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f, \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e \u0438 \u041c\u0430\u0440-\u0434\u0435\u043d-\u0420\u043e\u0438\u0433 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 ${SEASON_YEAR}`,
-      description: "\u0418\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 \u0432 \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f \u0422\u043e\u0441\u0441\u044b \u0437\u0430 1 \u0447\u0430\u0441. \u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u041c\u0430\u0440-\u0434\u0435\u043d-\u0420\u043e\u0438\u0433, \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e \u0438 \u0414\u0436\u0438\u0432\u0435\u0440\u043e\u043b\u0443 \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e.",
+      description: "\u0418\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 \u0432 \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f \u0422\u043e\u0441\u0441\u044b \u0437\u0430 30-45 \u043c\u0438\u043d. \u0421 \u0431\u0430\u0437\u043e\u0432\u043e\u0439 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 (LNB) \u043e\u0442 160\u20ac (\u043f\u0430\u043a\u0435\u0442 2\u0447) \u0438\u043b\u0438 \u0447\u0430\u0441\u0442\u043d\u0430\u044f \u044d\u043a\u0441\u043a\u0443\u0440\u0441\u0438\u044f \u0441 \u043a\u0430\u043f\u0438\u0442\u0430\u043d\u043e\u043c 4\u0447 \u043e\u0442 380\u20ac. \u0422\u043e\u043f\u043b\u0438\u0432\u043e \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e.",
       keywords: "аренда лодки тосса де мар, вила велла тосса лодка, кала льевадо тосса лодка, мар ден роиг лодка, дживерола тосса лодка, экскурсия тосса из бланеса, лодка тосса без лицензии",
       ogTitle: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440 | \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f \u0438 \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e",
       ogDescription: "\u0422\u043e\u0441\u0441\u0430 \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430. \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f, \u041c\u0430\u0440-\u0434\u0435\u043d-\u0420\u043e\u0438\u0433 \u0438 \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e \u0437\u0430 1\u0447. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. 4.8\u2605."

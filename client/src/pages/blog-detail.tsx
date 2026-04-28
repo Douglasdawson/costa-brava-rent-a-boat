@@ -743,7 +743,24 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd || undefined}
-        robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined}
+        robots={(() => {
+          // Always noindex for our 3 thin-translation locales
+          if (['ca', 'it', 'ru'].includes(language)) return 'noindex, follow';
+          // For any non-ES locale, noindex if THIS post has no native-language
+          // translation. Otherwise the page renders ES content under a non-ES
+          // URL — Google treats it as duplicate and penalizes the entire
+          // language cluster. Honest fix: tell crawlers to skip until a real
+          // translation exists; canonical hreflang from the ES version still
+          // gets the credit.
+          if (language !== 'es') {
+            const titleByLang = post.titleByLang as Record<string, string> | null;
+            const contentByLang = post.contentByLang as Record<string, string> | null;
+            const hasNativeTitle = !!(titleByLang && titleByLang[language]?.trim());
+            const hasNativeContent = !!(contentByLang && contentByLang[language]?.trim());
+            if (!hasNativeTitle || !hasNativeContent) return 'noindex, follow';
+          }
+          return undefined;
+        })()}
       />
 
       <Navigation />

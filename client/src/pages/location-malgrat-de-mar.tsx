@@ -54,6 +54,11 @@ const config: LocationConfig = {
       answer: "No ofrecemos transfer directo, pero el trayecto es muy corto: 5 minutos en tren R1 (Malgrat → Blanes) o 10 minutos en coche/taxi (coste aproximado 12-15 EUR). La estación de Blanes está a 10 minutos andando del puerto. También hay bus local L23.",
     },
   ],
+  popularBoats: {
+    title: "Barcos populares para alquilar desde el Puerto de Blanes",
+    description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+    boatIds: ["remus-450", "solar-450", "astec-480", "astec-400"],
+  },
 };
 
 export default function LocationMalgratPage() {

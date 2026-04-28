@@ -54,6 +54,11 @@ const config: LocationConfig = {
       answer: "El billete sencillo R1 Calella → Blanes cuesta aproximadamente 3 EUR (tarifa ATM zona 4-5). Con tarjeta T-Casual 10 viajes es más económico. Duración: 15 minutos. Frecuencia: cada 30 minutos en temporada. Desde la estación de Blanes al Puerto son 10 minutos andando o 3 min en taxi.",
     },
   ],
+  popularBoats: {
+    title: "Barcos populares para alquilar desde el Puerto de Blanes",
+    description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+    boatIds: ["remus-450", "solar-450", "astec-480", "astec-400"],
+  },
 };
 
 export default function LocationCalellaPage() {

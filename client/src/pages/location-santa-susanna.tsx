@@ -54,6 +54,11 @@ const config: LocationConfig = {
       answer: "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 115 EUR por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min en coche o 10 min en tren. Reserva con antelación en verano.",
     },
   ],
+  popularBoats: {
+    title: "Barcos populares para alquilar desde el Puerto de Blanes",
+    description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+    boatIds: ["remus-450", "solar-450", "astec-480", "astec-400"],
+  },
 };
 
 export default function LocationSantaSusannaPage() {

@@ -21,6 +21,7 @@ import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { FAQSection } from "@/components/FAQSection";
+import PopularBoatsSection from "@/components/PopularBoatsSection";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import RelatedContent from "@/components/RelatedContent";
@@ -126,6 +127,19 @@ export interface LocationConfig {
   faqItems: Array<{ question: string; answer: string }>;
   faqTitle: string;
   relatedContentPage?: string;
+
+  /**
+   * Optional "popular boats" section rendered before the FAQ. Add here to
+   * pass internal SEO signal from the location landing to specific boat
+   * detail pages, with the boat name as anchor text.
+   */
+  popularBoats?: {
+    title: string;
+    description?: string;
+    boatIds: string[];
+    badgeLabel?: (boatId: string) => string;
+    badgeVariant?: (boatId: string) => "default" | "secondary" | "outline";
+  };
 
   /** Hero image — basePath auto-generates avif/webp/jpg desktop+mobile variants. Omit for gradient fallback. */
   heroImage?: {
@@ -620,6 +634,17 @@ export default function LocationTemplate({
             </Button>
           </div>
         </div>
+      )}
+
+      {/* ═══ POPULAR BOATS (SEO crosslinking) ═══ */}
+      {config.popularBoats && (
+        <PopularBoatsSection
+          title={config.popularBoats.title}
+          description={config.popularBoats.description}
+          boatIds={config.popularBoats.boatIds}
+          badgeLabel={config.popularBoats.badgeLabel}
+          badgeVariant={config.popularBoats.badgeVariant}
+        />
       )}
 
       {/* ═══ FAQ ═══ */}

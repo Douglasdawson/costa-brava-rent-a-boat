@@ -67,6 +67,13 @@ export function startSeoWorker(): void {
     await checkSiteHealth();
   });
 
+  // URL Inspection coverage — daily at 04:30 (after PSI 04:15, before reporting)
+  // ~171 URLs × 350ms pacing ≈ 1 minute. Well under GSC's 600/day quota.
+  registerJob("url-inspection", "30 4 * * *", async () => {
+    const { collectUrlInspections } = await import("./collectors/urlInspection");
+    await collectUrlInspections();
+  });
+
   // Phase 2: Intelligence
   registerJob("serp-tracking", schedules.serpTracking, async () => {
     const { trackSerps } = await import("./collectors/serp");

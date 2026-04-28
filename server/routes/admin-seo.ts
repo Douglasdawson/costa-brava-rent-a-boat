@@ -16,8 +16,10 @@ import {
   seoReports,
   seoGeo,
   seoHealthChecks,
+  seoUrlInspections,
 } from "../../shared/schema";
 import { eq, desc, gte, and, sql, count } from "drizzle-orm";
+import { collectUrlInspections } from "../seo/collectors/urlInspection";
 import { requireAdminSession } from "./auth-middleware";
 
 export function registerSeoRoutes(app: Express): void {
@@ -241,6 +243,76 @@ export function registerSeoRoutes(app: Express): void {
       res.json(learnings);
     } catch (error) {
       res.status(500).json({ message: "Error fetching learnings" });
+    }
+  });
+
+  // ===== URL Inspection coverage =====
+  // GET /api/admin/seo/coverage — snapshot of indexation state per URL
+  // Returns aggregated counts + the list. Mismatches and failures float to top.
+  app.get("/api/admin/seo/coverage", requireAdminSession, async (_req, res) => {
+    try {
+      const rows = await db
+        .select()
+        .from(seoUrlInspections)
+        .orderBy(desc(seoUrlInspections.canonicalMismatch), desc(seoUrlInspections.inspectedAt));
+
+      const buckets = {
+        total: rows.length,
+        indexed: 0,
+        notIndexed: 0,
+        canonicalMismatch: 0,
+        softFailures: 0,
+        serverErrors: 0,
+        blockedByNoindex: 0,
+        blockedByRobots: 0,
+        unknown: 0,
+      };
+
+      for (const row of rows) {
+        const cov = (row.coverageState || "").toLowerCase();
+        const fetch = (row.pageFetchState || "").toUpperCase();
+        const indexing = (row.indexingState || "").toUpperCase();
+        const robots = (row.robotsTxtState || "").toUpperCase();
+
+        if (cov.includes("submitted and indexed") || cov.includes("indexed, not submitted")) {
+          buckets.indexed += 1;
+        } else if (row.coverageState) {
+          buckets.notIndexed += 1;
+        } else {
+          buckets.unknown += 1;
+        }
+
+        if (row.canonicalMismatch) buckets.canonicalMismatch += 1;
+        if (fetch === "SOFT_404") buckets.softFailures += 1;
+        if (fetch === "SERVER_ERROR") buckets.serverErrors += 1;
+        if (indexing === "BLOCKED_BY_NOINDEX") buckets.blockedByNoindex += 1;
+        if (robots === "DISALLOWED") buckets.blockedByRobots += 1;
+      }
+
+      const lastInspectedAt = rows.length > 0 ? rows[0].inspectedAt : null;
+
+      res.json({ buckets, lastInspectedAt, urls: rows });
+    } catch (error) {
+      logger.error("Error fetching URL inspection coverage", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.status(500).json({ message: "Error fetching coverage" });
+    }
+  });
+
+  // POST /api/admin/seo/coverage/refresh — manual trigger
+  // body: { limit?: number; onlyMissing?: boolean }
+  app.post("/api/admin/seo/coverage/refresh", requireAdminSession, async (req, res) => {
+    try {
+      const limit = typeof req.body?.limit === "number" ? req.body.limit : undefined;
+      const onlyMissing = req.body?.onlyMissing === true;
+      const summary = await collectUrlInspections({ limit, onlyMissing });
+      res.json(summary);
+    } catch (error) {
+      logger.error("URL inspection refresh failed", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.status(500).json({ message: "Error running URL inspection refresh" });
     }
   });
 }

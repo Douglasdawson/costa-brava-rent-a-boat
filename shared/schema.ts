@@ -2555,3 +2555,38 @@ export const businessStatsHistory = pgTable("business_stats_history", {
 
 export type BusinessStatsHistory = typeof businessStatsHistory.$inferSelect;
 export type InsertBusinessStatsHistory = typeof businessStatsHistory.$inferInsert;
+
+// Indexation coverage per canonical URL, populated by the GSC URL Inspection
+// API collector. One row per URL — re-runs upsert on (url) and overwrite
+// previous snapshot. History is not retained because GSC's API already exposes
+// last-crawl-time and the goal is current state, not trend.
+export const seoUrlInspections = pgTable("seo_url_inspections", {
+  id: serial("id").primaryKey(),
+  url: text("url").notNull().unique(),
+  // Verdict from GSC URL Inspection API
+  coverageState: text("coverage_state"),       // e.g. "Submitted and indexed", "Crawled — currently not indexed"
+  indexingState: text("indexing_state"),       // e.g. "INDEXING_ALLOWED", "BLOCKED_BY_NOINDEX"
+  pageFetchState: text("page_fetch_state"),    // e.g. "SUCCESSFUL", "SOFT_404", "SERVER_ERROR"
+  robotsTxtState: text("robots_txt_state"),    // e.g. "ALLOWED", "DISALLOWED"
+  verdict: text("verdict"),                    // "PASS", "PARTIAL", "FAIL", "NEUTRAL"
+  // Canonical handling
+  userCanonical: text("user_canonical"),       // The canonical we declared
+  googleCanonical: text("google_canonical"),   // The canonical Google selected
+  canonicalMismatch: boolean("canonical_mismatch").notNull().default(false),
+  // Crawl metadata
+  lastCrawlTime: timestamp("last_crawl_time", { withTimezone: true }),
+  crawledAs: text("crawled_as"),               // e.g. "MOBILE", "DESKTOP"
+  // Sitemap reference (null if URL isn't in any sitemap)
+  referringSitemap: text("referring_sitemap"),
+  // Raw payload from API for debugging without re-fetching
+  rawPayload: jsonb("raw_payload"),
+  inspectedAt: timestamp("inspected_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  coverageIdx: index("seo_url_inspections_coverage_idx").on(table.coverageState),
+  verdictIdx: index("seo_url_inspections_verdict_idx").on(table.verdict),
+  inspectedAtIdx: index("seo_url_inspections_inspected_at_idx").on(table.inspectedAt),
+  canonicalMismatchIdx: index("seo_url_inspections_canonical_mismatch_idx").on(table.canonicalMismatch),
+}));
+
+export type SeoUrlInspection = typeof seoUrlInspections.$inferSelect;
+export type InsertSeoUrlInspection = typeof seoUrlInspections.$inferInsert;

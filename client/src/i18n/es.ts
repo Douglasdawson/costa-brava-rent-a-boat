@@ -2172,6 +2172,7 @@ export const es: Translations = {
     checkWhatsApp: "Consultar disponibilidad por WhatsApp",
     viewBoatDetails: "Ver detalles del barco",
     stepOf: "de",
+    adminAccess: "Acceso administración",
   },
 
   neuro: {

@@ -109,7 +109,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
         {/* Con licencia — extension */}
         <div className="mb-10">
           <h3 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3 flex items-center gap-2">
-            <Compass className="w-5 h-5 text-blue-600" />
+            <Compass className="w-5 h-5 text-primary" />
             {r?.conLicenciaTitle}
           </h3>
           <p className="text-muted-foreground text-sm sm:text-base mb-4 leading-relaxed">
@@ -124,7 +124,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
               r?.ext?.platjaAro,
             ].filter(Boolean).map((line, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                <ChevronRight className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-500" />
+                <ChevronRight className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary/70" />
                 <span>{line}</span>
               </li>
             ))}

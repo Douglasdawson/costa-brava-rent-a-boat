@@ -1250,6 +1250,7 @@ export const en: Translations = {
     checkWhatsApp: "Check availability via WhatsApp",
     viewBoatDetails: "View boat details",
     stepOf: "of",
+    adminAccess: "Admin access",
   },
 
 

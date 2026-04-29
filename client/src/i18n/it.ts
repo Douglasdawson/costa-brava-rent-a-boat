@@ -1191,6 +1191,7 @@ export const it: Translations = {
     checkWhatsApp: "Verifica disponibilita via WhatsApp",
     viewBoatDetails: "Vedi dettagli della barca",
     stepOf: "di",
+    adminAccess: "Accesso amministrazione",
   },
 
 

@@ -920,8 +920,8 @@ export const en: Translations = {
   comparison: {
     title: 'With or without a licence?',
     subtitle: 'You don\'t need a licence to enjoy the sea. But if you have one, we have more powerful boats.',
-    withoutLicense: 'Without licence',
-    withLicense: 'With licence',
+    withoutLicense: 'No licence needed',
+    withLicense: 'Licence required',
     withoutLicenseDesc: 'We teach you in 15 minutes. Fuel included. Perfect for families.',
     withLicenseDesc: 'More power, more speed, further range. For licensed sailors.',
     noLicenseNeeded: 'No licence needed',

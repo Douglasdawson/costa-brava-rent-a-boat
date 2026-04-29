@@ -200,15 +200,20 @@ export async function collectUrlInspections(options?: {
   const siteUrl = config.GSC_SITE_URL || "sc-domain:costabravarentaboat.com";
 
   let urls: Array<[string, string]>;
+  // Track total canonical universe for the log line below — for caller-specified
+  // urls[] the universe equals the request itself.
+  let canonicalUniverseSize: number;
 
   if (options?.urls && options.urls.length > 0) {
     // Caller-specified URL list — referringSitemap unknown, label it explicitly
     urls = options.urls.map(u => [u, "manual"] as [string, string]);
     summary.totalUrls = urls.length;
+    canonicalUniverseSize = urls.length;
   } else {
     const urlsMap = await gatherCanonicalUrls();
     urls = Array.from(urlsMap.entries());
     summary.totalUrls = urls.length;
+    canonicalUniverseSize = urlsMap.size;
 
     if (options?.pathPrefix) {
       const prefix = options.pathPrefix;
@@ -232,7 +237,7 @@ export async function collectUrlInspections(options?: {
     }
   }
 
-  logger.info(`[SEO:URL-Inspect] Inspecting ${urls.length} URLs (${urlsMap.size} known canonical)`);
+  logger.info(`[SEO:URL-Inspect] Inspecting ${urls.length} URLs (${canonicalUniverseSize} known canonical)`);
 
   for (const [url, referringSitemap] of urls) {
     const result = await inspectOne(searchconsole, siteUrl, url, referringSitemap);

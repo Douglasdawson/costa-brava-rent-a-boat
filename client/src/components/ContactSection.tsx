@@ -11,6 +11,7 @@ import { trackPhoneClick, trackWhatsAppClick } from "@/utils/analytics";
 export default function ContactSection() {
   const t = useTranslations();
   const { ref: revealRef, isVisible } = useScrollReveal();
+  const { ref: mapRef, isVisible: mapInView } = useScrollReveal();
 
   return (
     <section ref={revealRef} className={`py-12 sm:py-16 lg:py-20 bg-background transition-[opacity,transform,filter] duration-500 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`} id="contact">
@@ -98,7 +99,7 @@ export default function ContactSection() {
               <div className="pt-6 border-t border-border">
                 <Button
                   onClick={() => { trackWhatsAppClick("contact_section"); window.open("https://wa.me/34611500372", "_blank"); }}
-                  className="w-full bg-whatsapp hover:bg-whatsapp-hover text-white px-6 py-3 h-12 text-base transition-colors"
+                  className="w-full bg-whatsapp hover:bg-whatsapp-hover text-primary-foreground px-6 py-3 h-12 text-base transition-colors"
                   data-testid="button-whatsapp-quick"
                   aria-label={t.a11y.checkWhatsApp}
                 >
@@ -113,17 +114,19 @@ export default function ContactSection() {
         {/* Map */}
         <div className="mt-8">
           <Card className="overflow-hidden">
-            <div className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-[450px]">
-              {/* Google Maps iframe de fondo */}
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2980.1411982500704!2d2.7957177!3d41.6742939!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb172c94a8856f%3A0x9a2dfa936ef2e0a7!2sCosta%20Brava%20Rent%20a%20Boat%20-%20Blanes%20%7C%20Alquiler%20de%20Barcos%20Con%20y%20Sin%20Licencia!5e0!3m2!1ses!2ses!4v1759782051685!5m2!1ses!2ses"
-                className="absolute inset-0 w-full h-full"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Ubicación de Costa Brava Rent a Boat en Puerto de Blanes"
-              />
+            <div ref={mapRef} className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] bg-muted">
+              {/* Google Maps iframe — only mounted when wrapper enters viewport (saves ~400KB on initial mobile load) */}
+              {mapInView && (
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2980.1411982500704!2d2.7957177!3d41.6742939!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb172c94a8856f%3A0x9a2dfa936ef2e0a7!2sCosta%20Brava%20Rent%20a%20Boat%20-%20Blanes%20%7C%20Alquiler%20de%20Barcos%20Con%20y%20Sin%20Licencia!5e0!3m2!1ses!2ses!4v1759782051685!5m2!1ses!2ses"
+                  className="absolute inset-0 w-full h-full"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ubicación de Costa Brava Rent a Boat en Puerto de Blanes"
+                />
+              )}
 
               {/* Overlay sutil para legibilidad del texto */}
               <div className="absolute inset-0 bg-foreground/20 pointer-events-none"></div>
@@ -131,11 +134,11 @@ export default function ContactSection() {
               {/* Contenido */}
               <div className="relative z-10 p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] pointer-events-none">
                 <div className="pointer-events-auto">
-                  <MapPin className="w-12 h-12 text-white mx-auto mb-4 drop-shadow-lg" />
-                  <h3 className="font-heading text-lg sm:text-xl font-semibold text-white mb-2 drop-shadow-lg text-center">
+                  <MapPin className="w-12 h-12 text-primary-foreground mx-auto mb-4 drop-shadow-lg" />
+                  <h3 className="font-heading text-lg sm:text-xl font-semibold text-primary-foreground mb-2 drop-shadow-lg text-center">
                     {t.contact.mapTitle}
                   </h3>
-                  <p className="text-sm sm:text-base text-white/90 mb-4 drop-shadow-lg text-center">
+                  <p className="text-sm sm:text-base text-primary-foreground/90 mb-4 drop-shadow-lg text-center">
                     {t.contact.mapSubtitle}
                   </p>
                   <div className="text-center">

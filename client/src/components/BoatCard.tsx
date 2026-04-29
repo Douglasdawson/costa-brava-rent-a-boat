@@ -175,7 +175,7 @@ function BoatCard({
             </div>
           )}
           {isRecommended && (
-            <div className="inline-flex items-center gap-1 bg-cta text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+            <div className="inline-flex items-center gap-1 bg-cta text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
               <ThumbsUp className="w-3 h-3" />
               {t.recommendation?.recommendedForYou}
             </div>
@@ -185,7 +185,7 @@ function BoatCard({
           </span>
         </div>
         {!requiresLicense && !features.some(f => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) && (
-          <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-green-600/90 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+          <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-green-600/90 backdrop-blur-sm text-primary-foreground text-xs font-semibold px-2.5 py-1 rounded-full">
             <Fuel className="w-3 h-3" />
             {t.boatDetail.fuelIncluded}
           </div>
@@ -241,7 +241,7 @@ function BoatCard({
         </a>
         <button
           onClick={handleBooking}
-          className="bg-cta hover:bg-cta/90 text-white text-base font-medium px-6 py-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none transition-colors cta-pulse cta-hover-lift"
+          className="bg-cta hover:bg-cta/90 text-primary-foreground text-base font-medium px-6 py-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none transition-colors cta-pulse cta-hover-lift"
           data-testid={`button-book-${id}`}
         >
           {t.boats.book}

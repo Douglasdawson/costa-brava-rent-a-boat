@@ -352,7 +352,7 @@ function FleetSection() {
   }, [setLocation, localizedPath]);
 
   return (
-    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-[opacity,transform,filter] duration-500 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`} id="fleet">
+    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-[opacity,filter] duration-500 ${isVisible ? "opacity-100 blur-none" : "opacity-0 blur-[2px]"}`} id="fleet">
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
@@ -366,7 +366,7 @@ function FleetSection() {
         {/* Filters — native selects on mobile, pill buttons on desktop */}
 
         {/* Mobile + Tablet: native OS selects */}
-        <div className="flex lg:hidden items-center justify-center gap-3 mb-6 sticky top-16 z-30 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 md:static md:bg-transparent md:backdrop-blur-none md:py-0 md:mx-0 md:px-0">
+        <div className="flex lg:hidden items-center justify-center gap-3 mb-6 sticky z-30 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 md:static md:bg-transparent md:backdrop-blur-none md:py-0 md:mx-0 md:px-0" style={{ top: 'calc(var(--nav-height) + 8px)' }}>
           <div className="relative">
             <Anchor className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             <label htmlFor="fleet-license-filter" className="sr-only">{t.recommendation?.withoutLicense || "License filter"}</label>
@@ -374,7 +374,7 @@ function FleetSection() {
               id="fleet-license-filter"
               value={licenseFilter}
               onChange={(e) => setLicenseFilter(e.target.value as 'all' | 'no' | 'yes')}
-              className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+              className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 min-h-11 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <option value="all">{t.recommendation?.all}</option>
               <option value="no">{t.recommendation?.withoutLicense}</option>
@@ -389,7 +389,7 @@ function FleetSection() {
               id="fleet-group-size"
               value={selectedGroupSize ?? ''}
               onChange={(e) => setSelectedGroupSize(e.target.value || null)}
-              className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+              className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 min-h-11 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <option value="">{t.recommendation?.all}</option>
               {groupSizeOptions.map((option) => (
@@ -421,7 +421,7 @@ function FleetSection() {
                   onClick={() => setLicenseFilter(opt.value)}
                   className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
                     licenseFilter === opt.value
-                      ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
+                      ? 'bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground'
                       : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
                   }`}
                 >
@@ -442,7 +442,7 @@ function FleetSection() {
                 onClick={() => setSelectedGroupSize(null)}
                 className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
                   selectedGroupSize === null
-                    ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
+                    ? 'bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground'
                     : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
                 }`}
               >
@@ -454,7 +454,7 @@ function FleetSection() {
                   onClick={() => setSelectedGroupSize(option.label)}
                   className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
                     selectedGroupSize === option.label
-                      ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
+                      ? 'bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground'
                       : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
                   }`}
                 >
@@ -470,7 +470,7 @@ function FleetSection() {
               onClick={() => setViewMode('grid')}
               className={`p-2.5 rounded-full transition-colors ${
                 viewMode === 'grid'
-                  ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
+                  ? 'bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground'
                   : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
               }`}
               aria-label="Grid view"
@@ -481,7 +481,7 @@ function FleetSection() {
               onClick={() => setViewMode('table')}
               className={`hidden md:inline-flex p-2.5 rounded-full transition-colors ${
                 viewMode === 'table'
-                  ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
+                  ? 'bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground'
                   : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
               }`}
               aria-label={t.comparison.compare}
@@ -720,7 +720,7 @@ function FleetSection() {
                     <TableCell key={boat.id} className="text-center">
                       <button
                         onClick={() => handleBooking(boat.id)}
-                        className="bg-cta hover:bg-cta/90 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                        className="bg-cta hover:bg-cta/90 text-primary-foreground px-4 py-2 rounded-full text-sm font-medium transition-colors"
                       >
                         {t.boats.book}
                       </button>

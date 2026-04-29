@@ -33,12 +33,19 @@ export default function Hero() {
           srcSet="/images/hero/hero-dive-desktop.avif"
         />
         <source
+          media="(max-width: 767px)"
           type="image/avif"
           srcSet="/images/hero/hero-dive-mobile.avif"
         />
         <source
           media="(min-width: 768px)"
+          type="image/webp"
           srcSet="/images/hero/hero-dive-desktop.webp"
+        />
+        <source
+          media="(max-width: 767px)"
+          type="image/webp"
+          srcSet="/images/hero/hero-dive-mobile.webp"
         />
         <img
           src="/images/hero/hero-dive-mobile.webp"
@@ -61,11 +68,15 @@ export default function Hero() {
         <div className="flex-1 flex flex-col justify-between lg:justify-center pt-24 lg:pt-24 pb-[56px] lg:pb-[52px] px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full">
           {/* Text group — top on mobile, centered with CTAs on tablet+ */}
           <div className="text-center flex flex-col items-center">
-            <h1 className="font-heading font-bold text-white tracking-tight mb-2 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ fontSize: 'clamp(1.75rem, 5.5vw, 3.5rem)' }}>
+            <h1 className="font-heading font-bold text-primary-foreground tracking-tight mb-2 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] hyphens-auto break-words" style={{ fontSize: 'clamp(1.75rem, 5.5vw, 3.5rem)' }}>
               {t.hero.title}
             </h1>
 
-            <p className="text-[0.875rem] sm:text-[1.15rem] lg:text-[1.575rem] text-white/85 font-medium mb-2 sm:mb-6 leading-snug sm:leading-relaxed sm:max-w-[720px] lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+            {t.hero.summaryGeo && (
+              <p className="sr-only" data-testid="hero-summary-geo">{t.hero.summaryGeo}</p>
+            )}
+
+            <p className="text-[0.875rem] sm:text-[1.15rem] lg:text-[1.575rem] text-primary-foreground/85 font-medium mb-2 sm:mb-6 leading-snug sm:leading-relaxed sm:max-w-[720px] lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
               <span className="hidden sm:inline">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
               <span className="sm:hidden">{t.hero.subtitleMobile || t.hero.subtitleLine1}</span>
             </p>
@@ -75,10 +86,10 @@ export default function Hero() {
           <div className="text-center flex flex-col items-center">
             {/* Price callout — single DOM instance, positioned above CTAs for all viewports */}
             <div className="mb-3 lg:mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <p className="font-bold text-white text-base sm:text-lg lg:text-xl lg:font-semibold">
+              <p className="font-bold text-primary-foreground text-base sm:text-lg lg:text-xl lg:font-semibold">
                 {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
               </p>
-              <p className="text-white/85 text-xs sm:text-sm mt-0.5">
+              <p className="text-primary-foreground/85 text-xs sm:text-sm mt-0.5">
                 {t.hero.pricePerPersonDetail}
               </p>
             </div>
@@ -87,7 +98,7 @@ export default function Hero() {
               <Button
                 onClick={() => setQuizOpen(true)}
                 size="lg"
-                className="bg-cta hover:bg-cta/90 text-white px-8 py-2.5 text-sm sm:px-10 sm:py-3.5 sm:text-base lg:text-lg rounded-full font-semibold sm:font-medium btn-elevated cta-pulse w-full sm:w-auto"
+                className="bg-cta hover:bg-cta/90 text-primary-foreground px-8 py-2.5 text-sm sm:px-10 sm:py-3.5 sm:text-base lg:text-lg rounded-full font-semibold sm:font-medium btn-elevated cta-pulse w-full sm:w-auto"
                 data-testid="button-hero-cta"
               >
                 {t.hero.findYourBoat}
@@ -111,19 +122,19 @@ export default function Hero() {
       {/* Trust badges strip — full width at bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-20 bg-foreground/90 dark:bg-cta/90 backdrop-blur-sm min-h-[40px]">
         <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-x-3 gap-y-1.5 sm:gap-6 lg:gap-8 px-3 sm:px-4 py-2 sm:py-3">
-          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
+          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
             <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
             {t.authority?.yearsExperience || '6+ años de experiencia'}
           </span>
-          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
+          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
             <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
             {t.authority?.fullInsurance || 'Seguro a todo riesgo'}
           </span>
-          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
+          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
             <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
             {t.authority?.happyCustomers || '5000+ clientes satisfechos'}
           </span>
-          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
+          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
             <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 fill-amber-400 text-amber-400" aria-hidden="true" />
             {ratingDisplay}
           </span>

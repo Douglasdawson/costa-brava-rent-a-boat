@@ -767,20 +767,22 @@ function FleetSection() {
             <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${checklistOpen ? 'rotate-180' : ''}`} />
           </button>
           <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${checklistOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-            <ul className="overflow-hidden mt-2 space-y-2 px-4 pb-2">
-              {[
-                t.reciprocity?.sunscreen,
-                t.reciprocity?.towels,
-                t.reciprocity?.waterSnacks,
-                t.reciprocity?.sunglasses,
-                t.reciprocity?.camera,
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <div className="overflow-hidden min-h-0">
+              <ul className="mt-2 space-y-2 px-4 pb-2">
+                {[
+                  t.reciprocity?.sunscreen,
+                  t.reciprocity?.towels,
+                  t.reciprocity?.waterSnacks,
+                  t.reciprocity?.sunglasses,
+                  t.reciprocity?.camera,
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

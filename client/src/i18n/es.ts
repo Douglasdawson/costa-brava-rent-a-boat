@@ -2180,6 +2180,11 @@ export const es: Translations = {
     perHour: '/hora',
   },
 
+  editorialMoment: {
+    copy: 'El sol no se pone aquí. Se queda contigo.',
+    alt: 'Atardecer dorado sobre el castillo medieval de Tossa de Mar y su cala turquesa, con un barco en la distancia',
+  },
+
   emotionTags: {
     sunLovers: 'Para amantes del sol',
     familyFavorite: 'Favorito de familias',

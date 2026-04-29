@@ -1816,6 +1816,12 @@ export interface Translations {
     perHour: string;
   };
 
+  // Editorial moment — full-bleed photographic break in the home (between Fleet and Reviews)
+  editorialMoment?: {
+    copy: string;
+    alt: string;
+  };
+
   // Emotion tags for boat cards (identity-based decision making)
   emotionTags?: {
     sunLovers: string;

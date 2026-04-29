@@ -1,16 +1,13 @@
 import { Check, Anchor, Ship, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "@/lib/translations";
-import { useLanguage } from "@/hooks/use-language";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "wouter";
 import type { Boat } from "@shared/schema";
 import { getMinActivePrice } from "@shared/pricing";
 
 export default function LicenseComparisonSection() {
   const t = useTranslations();
-  const { localizedPath } = useLanguage();
   const { ref: revealRef, isVisible } = useScrollReveal();
 
   const { data: boats } = useQuery<Boat[]>({ queryKey: ['/api/boats'] });
@@ -101,20 +98,13 @@ export default function LicenseComparisonSection() {
                 <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
                 <span className="text-xl font-heading font-medium text-foreground ml-1">{noLicenseMinPrice}€</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  onClick={() => scrollToFleetWithFilter('no')}
-                  className="rounded-full text-sm"
-                >
-                  {t.comparison.viewBoats}
-                </Button>
-                <Link href={localizedPath("categoryLicenseFree")}>
-                  <Button variant="ghost" className="rounded-full text-sm text-muted-foreground hover:text-foreground">
-                    {t.comparison.viewAll}
-                  </Button>
-                </Link>
-              </div>
+              <Button
+                variant="outline"
+                onClick={() => scrollToFleetWithFilter('no')}
+                className="rounded-full text-sm"
+              >
+                {t.comparison.viewBoats}
+              </Button>
             </div>
           </div>
 
@@ -146,20 +136,13 @@ export default function LicenseComparisonSection() {
                 <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
                 <span className="text-xl font-heading font-medium text-foreground ml-1">{withLicenseMinPrice}€</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  onClick={() => scrollToFleetWithFilter('yes')}
-                  className="rounded-full text-sm"
-                >
-                  {t.comparison.viewBoats}
-                </Button>
-                <Link href={localizedPath("categoryLicensed")}>
-                  <Button variant="ghost" className="rounded-full text-sm text-muted-foreground hover:text-foreground">
-                    {t.comparison.viewAll}
-                  </Button>
-                </Link>
-              </div>
+              <Button
+                variant="outline"
+                onClick={() => scrollToFleetWithFilter('yes')}
+                className="rounded-full text-sm"
+              >
+                {t.comparison.viewBoats}
+              </Button>
             </div>
           </div>
         </div>

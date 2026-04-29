@@ -78,7 +78,7 @@ const ReviewCard = memo(function ReviewCard({
         ))}
       </div>
       {/* Decorative quote */}
-      <span className="text-3xl font-serif text-border leading-none" aria-hidden="true">
+      <span className="text-3xl font-heading text-border leading-none" aria-hidden="true">
         &ldquo;
       </span>
       {/* Comment */}

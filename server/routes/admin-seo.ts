@@ -315,10 +315,17 @@ export function registerSeoRoutes(app: Express): void {
       const summary = await collectUrlInspections({ limit, onlyMissing, urls, pathPrefix });
       res.json(summary);
     } catch (error) {
-      logger.error("URL inspection refresh failed", {
-        error: error instanceof Error ? error.message : String(error),
+      const message = error instanceof Error ? error.message : String(error);
+      const stack = error instanceof Error ? error.stack : undefined;
+      logger.error("URL inspection refresh failed", { error: message, stack });
+      // Leak the actual error to admin callers so we can diagnose without
+      // requiring Replit log access. This route is admin-gated so the leak
+      // surface is the operator only.
+      res.status(500).json({
+        message: "Error running URL inspection refresh",
+        error: message,
+        stack: stack?.split("\n").slice(0, 6).join("\n"),
       });
-      res.status(500).json({ message: "Error running URL inspection refresh" });
     }
   });
 }

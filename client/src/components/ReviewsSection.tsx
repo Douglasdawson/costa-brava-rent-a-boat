@@ -231,20 +231,50 @@ function ReviewsSection() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header with average rating */}
-        <div className="text-center mb-10 sm:mb-14">
-          <div className="text-6xl sm:text-7xl font-heading font-light text-foreground">
-            {averageRating}
-          </div>
-          <div className="flex justify-center gap-1 mt-3">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" aria-hidden="true" />
-            ))}
-          </div>
-          <p className="text-sm text-muted-foreground mt-2">
-            {t.reviews.subtitle} ({allReviews.length} {t.reviews.opinions})
-          </p>
-        </div>
+        {/* Pull quote — featured review, editorial treatment.
+            The metric (rating + count) drops to a small caption underneath; the story leads, the proof follows. */}
+        {(() => {
+          const featured = displayReviews[0];
+          if (!featured) return null;
+          return (
+            <figure className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
+              <blockquote
+                cite="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
+                className="font-heading font-light italic text-foreground leading-[1.2] tracking-tight text-balance line-clamp-5"
+                style={{ fontSize: "clamp(1.5rem, 4vw, 2.625rem)" }}
+              >
+                <span aria-hidden="true" className="text-primary/25 not-italic font-semibold pr-1">&ldquo;</span>
+                {featured.text}
+                <span aria-hidden="true" className="text-primary/25 not-italic font-semibold pl-1">&rdquo;</span>
+              </blockquote>
+              <figcaption className="mt-6 text-sm text-muted-foreground">
+                {featured.flag && (
+                  <span role="img" aria-label={featured.flag} className="mr-1.5">
+                    {countryFlag(featured.flag)}
+                  </span>
+                )}
+                <span className="font-medium text-foreground">{featured.name}</span>
+                <span className="mx-1.5" aria-hidden="true">·</span>
+                <span>
+                  {new Date(featured.date + "-01").toLocaleDateString(locale, {
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </span>
+              </figcaption>
+              <p className="mt-3 inline-flex items-center gap-2 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-0.5" aria-hidden="true">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
+                  ))}
+                </span>
+                <span>
+                  {averageRating} · {allReviews.length} {t.reviews.opinions}
+                </span>
+              </p>
+            </figure>
+          );
+        })()}
 
         {/* Carousel with navigation arrows */}
         <div className="relative group">

@@ -21,6 +21,11 @@ import {
 import { eq, desc, gte, and, sql, count } from "drizzle-orm";
 import { collectUrlInspections } from "../seo/collectors/urlInspection";
 import { requireAdminSession } from "./auth-middleware";
+import {
+  getBotVisitsByBot,
+  getTopBotPaths,
+  getRecentBotVisits,
+} from "../storage/aiBotVisits";
 
 export function registerSeoRoutes(app: Express): void {
   // Dashboard overview
@@ -313,6 +318,36 @@ export function registerSeoRoutes(app: Express): void {
         error: error instanceof Error ? error.message : String(error),
       });
       res.status(500).json({ message: "Error running URL inspection refresh" });
+    }
+  });
+
+  // GET /api/admin/seo/bot-visits — AI crawler visit summary
+  // Surfaces how often GPTBot/ClaudeBot/PerplexityBot indexed the site over
+  // the last N days, plus the most-crawled paths and a tail of recent hits.
+  // Query: ?days=30&topPaths=20&recent=50
+  app.get("/api/admin/seo/bot-visits", requireAdminSession, async (req, res) => {
+    try {
+      const days = Math.min(Math.max(parseInt((req.query.days as string) || "30", 10) || 30, 1), 365);
+      const topPathsLimit = Math.min(Math.max(parseInt((req.query.topPaths as string) || "20", 10) || 20, 1), 200);
+      const recentLimit = Math.min(Math.max(parseInt((req.query.recent as string) || "50", 10) || 50, 1), 500);
+      const [byBot, topPaths, recent] = await Promise.all([
+        getBotVisitsByBot(days),
+        getTopBotPaths(days, topPathsLimit),
+        getRecentBotVisits(recentLimit),
+      ]);
+      const totalVisits = byBot.reduce((sum, row) => sum + row.visits, 0);
+      res.json({
+        windowDays: days,
+        totalVisits,
+        byBot,
+        topPaths,
+        recent,
+      });
+    } catch (error) {
+      logger.error("Error fetching AI bot visits", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.status(500).json({ message: "Error fetching AI bot visits" });
     }
   });
 }

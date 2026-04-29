@@ -2590,3 +2590,25 @@ export const seoUrlInspections = pgTable("seo_url_inspections", {
 
 export type SeoUrlInspection = typeof seoUrlInspections.$inferSelect;
 export type InsertSeoUrlInspection = typeof seoUrlInspections.$inferInsert;
+
+// AI bot crawler visit log — one row per HTTP hit from a known LLM crawler
+// (GPTBot, ClaudeBot, PerplexityBot, etc.). Populated by the aiBotLogger
+// middleware (server/lib/aiBotLogger.ts). Used to measure GEO presence and
+// answer "how often is ChatGPT/Claude indexing our pages this month".
+export const aiBotVisits = pgTable("ai_bot_visits", {
+  id: serial("id").primaryKey(),
+  botName: text("bot_name").notNull(),         // canonical name from AI_CRAWLER_NAMES
+  userAgent: text("user_agent").notNull(),     // full UA string for debugging
+  path: text("path").notNull(),                // request pathname
+  method: text("method").notNull().default("GET"),
+  lang: text("lang"),                          // detected lang prefix (es/en/...) or null
+  statusCode: integer("status_code"),          // response status (logged after response)
+  timestamp: timestamp("timestamp", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  botNameTimestampIdx: index("ai_bot_visits_bot_name_timestamp_idx").on(table.botName, table.timestamp),
+  pathIdx: index("ai_bot_visits_path_idx").on(table.path),
+  timestampIdx: index("ai_bot_visits_timestamp_idx").on(table.timestamp),
+}));
+
+export type AiBotVisit = typeof aiBotVisits.$inferSelect;
+export type InsertAiBotVisit = typeof aiBotVisits.$inferInsert;

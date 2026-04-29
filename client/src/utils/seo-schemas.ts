@@ -1,5 +1,6 @@
 import { BASE_DOMAIN } from "./seo-config";
 import type { Translations } from "@/lib/translations";
+import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "@shared/authors";
 
 interface ListItem {
   id: string;
@@ -32,16 +33,21 @@ interface BlogArticle {
 }
 
 export function generateArticleSchema(article: BlogArticle) {
+  // E-E-A-T: prefer Person (named author with bio + sameAs) over generic
+  // Organization. Match article.author string against AUTHORS registry;
+  // fall back to DEFAULT_AUTHOR for unknown / generic values.
+  const authorProfile =
+    Object.values(AUTHORS).find(
+      (a) => a.name.toLowerCase() === (article.author ?? "").toLowerCase(),
+    ) ?? DEFAULT_AUTHOR;
+  const personSchema = authorToPersonSchema(authorProfile, BASE_DOMAIN);
+
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": article.headline,
     "description": article.description,
-    "author": [{
-      "@type": "Organization",
-      "name": article.author,
-      "url": BASE_DOMAIN
-    }],
+    "author": [personSchema],
     "publisher": {
       "@type": "Organization",
       "name": "Costa Brava Rent a Boat",

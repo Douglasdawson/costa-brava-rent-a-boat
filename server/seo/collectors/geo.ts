@@ -5,14 +5,30 @@ import { logger } from "../../lib/logger";
 import { SEO_CONFIG } from "../config";
 
 const GEO_QUERIES = [
+  // ES - core intent
   "dónde alquilar un barco en la Costa Brava",
   "alquiler barco sin licencia Blanes",
-  "boat rental Costa Brava",
   "alquilar barco Lloret de Mar",
-  "rent a boat Blanes Spain",
   "excursión en barco Costa Brava precios",
-  "best boat rental Costa Brava",
   "alquiler embarcación Blanes precio",
+  "qué hacer en Costa Brava sin licencia náutica",
+  "alquilar barco grupo grande Costa Brava",
+  "barco con patrón Tossa de Mar",
+  "calas accesibles desde Blanes en barco",
+  // EN - international
+  "boat rental Costa Brava",
+  "rent a boat Blanes Spain",
+  "best boat rental Costa Brava",
+  "boat rental Blanes family with kids",
+  "license free boat rental Spain Mediterranean",
+  // DE/FR/NL/IT - core EU markets
+  "Bootsverleih Costa Brava ohne Führerschein",
+  "location bateau Costa Brava sans permis",
+  "boot huren Blanes zonder vaarbewijs",
+  "noleggio barca Costa Brava senza patente",
+  // Long-tail comparison
+  "Blanes vs Lloret de Mar boat rental which is cheaper",
+  "private boat tour Costa Brava with skipper price",
 ];
 
 async function queryPerplexity(query: string): Promise<{

@@ -112,6 +112,7 @@ export interface Translations {
     askWhatsApp: string;
     testimonialQuote: string;
     testimonialQuoteShort: string;
+    summaryGeo?: string;
   };
 
   // Fleet Section
@@ -477,6 +478,7 @@ export interface Translations {
     stepExperience: string;
     stepPersonalize: string;
     stepPay: string;
+    stepCounter?: string;
     chooseBoatFirst: string;
     chooseTimeFirst: string;
     // Pricing transparency
@@ -484,6 +486,14 @@ export interface Translations {
     weekendSurcharge?: string;
     weekendSurchargeLabel?: string;
     minDuration2h?: string;
+    // Step 3 — quote + WhatsApp flow
+    quoteConfirmedTitle?: string;
+    quoteConfirmedNote?: string;
+    whatsappFlowTitle?: string;
+    whatsappFlowBody?: string;
+    openingWhatsapp?: string;
+    requestViaWhatsapp?: string;
+    whatsappFooterNote?: string;
   };
 
   // FAQ Page
@@ -2163,6 +2173,26 @@ export interface Translations {
         playaDeFenals: string;
       };
     };
+  };
+
+  blogAuthorByline?: {
+    writtenBy: string;
+    publishedOn: string;
+    updatedOn: string;
+    readMore: string;
+    verifiedProfilesLabel: string;
+  };
+
+  homeReviewsBlock?: {
+    title: string;
+    subtitle: string;
+    viewAll: string;
+    fallbackAuthor: string;
+  };
+
+  contentSummary?: {
+    keyTakeawaysTitle: string;
+    quickFactsTitle: string;
   };
 }
 function deepMerge(target: Record<string, any>, fallback: Record<string, any>): Record<string, any> {

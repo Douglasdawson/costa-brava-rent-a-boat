@@ -29,13 +29,14 @@ import * as seoAutopilotRepo from "./seoAutopilot";
 import * as businessStatsRepo from "./businessStats";
 import * as pricingOverridesRepo from "./pricingOverrides";
 import * as oauthConnectionsRepo from "./oauthConnections";
+import * as aiBotVisitsRepo from "./aiBotVisits";
 
 // Re-export the IStorage interface for consumers that import it
 export type { IStorage } from "./types";
 
 // Re-export full modules for consumers that need more than what's exposed
 // on the unified `storage` object (routes, MCP server).
-export { mcpTokensRepo, seoAutopilotRepo, oauthConnectionsRepo };
+export { mcpTokensRepo, seoAutopilotRepo, oauthConnectionsRepo, aiBotVisitsRepo };
 
 /**
  * Unified storage object — backwards-compatible with all existing code.

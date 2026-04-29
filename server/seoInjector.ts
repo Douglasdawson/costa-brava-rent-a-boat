@@ -9,7 +9,8 @@ import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/se
 import { isValidLang, resolveSlug, getSlugForPage, switchLanguagePath, type PageKey } from "../shared/i18n-routes";
 import { resolveBoatImagePath, BOAT_IMAGE_WIDTH, BOAT_IMAGE_HEIGHT } from "../shared/boatImages";
 import { resolveMediaPath } from "../shared/mediaUrl";
-import { AI_CRAWLER_NAMES } from "./seo/constants";
+import { isAICrawler as isAICrawlerShared } from "./seo/constants";
+import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
 import { hasStaticTranslation } from "./seo/translatedStaticPaths";
@@ -25,13 +26,9 @@ function getSeasonYear(): number {
 }
 const SEASON_YEAR = getSeasonYear();
 
-// AI crawler user-agent patterns for enhanced content delivery
-const AI_BOT_PATTERNS = AI_CRAWLER_NAMES.map(name => new RegExp(name, "i"));
-
-export function isAICrawler(userAgent: string | undefined): boolean {
-  if (!userAgent) return false;
-  return AI_BOT_PATTERNS.some(pattern => pattern.test(userAgent));
-}
+// AI crawler detection — re-exported from shared constants so other modules
+// (aiBotLogger middleware, admin endpoints) can import a single canonical fn.
+export const isAICrawler = isAICrawlerShared;
 
 interface SEOMeta {
   title: string;
@@ -1915,6 +1912,23 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     const isEn = lang === "en";
     const homeCrumb = { name: isEn ? "Home" : "Inicio", url: BASE_URL };
 
+    // SSR body fallback helper for location pages — gives non-JS AI crawlers
+    // the citable facts (name, summary, top attractions, CTA) before hydration.
+    // Defined once here so every if/else if branch in this scope can reuse it.
+    const buildLocationBodyFallback = (
+      heading: string,
+      summary: string,
+      bullets: string[],
+      ctaLabel: string,
+    ): string => `
+<h1>${esc(heading)}</h1>
+<p>${esc(summary)}</p>
+<ul>
+${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
+</ul>
+<p><a href="https://wa.me/34611500372">${esc(ctaLabel)}</a></p>
+    `.trim();
+
     // For home page: add rich JSON-LD graph with all schemas
     // NOTE: Google will NOT show star snippets for self-reviewed LocalBusiness schemas.
     // Stars can only appear on Product schemas (boat detail pages). The AggregateRating
@@ -2129,7 +2143,49 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         "@context": "https://schema.org",
         "@graph": [localBusiness, webSite, howTo, faq, seasonalEvent]
       };
-      return { meta, jsonLd, availableLanguages };
+      // SSR body fallback for AI crawlers (CCBot, ClaudeBot etc.) that parse
+      // HTML but don't execute React hydration. Contains the citation-worthy
+      // facts a LLM would extract for "what is Costa Brava Rent a Boat".
+      const stats = getCurrentStats();
+      const homeH1 = isEn
+        ? `Costa Brava Rent a Boat — Blanes, Spain`
+        : `Costa Brava Rent a Boat — Blanes, Costa Brava`;
+      const homeSummary = isEn
+        ? `Largest boat rental fleet in the Port of Blanes (9 boats). License-free boats from 70€/h with fuel included. Licensed boats and private excursions with captain available. Season April–October. ${stats.rating.toFixed(1)}★ on Google with ${stats.userRatingCount}+ reviews.`
+        : `Mayor flota de alquiler de barcos del Puerto de Blanes (9 barcos). Sin licencia desde 70€/h con gasolina incluida. Barcos con licencia y excursión privada con capitán disponibles. Temporada abril–octubre. ${stats.rating.toFixed(1)}★ en Google con ${stats.userRatingCount}+ reseñas.`;
+      const facts = isEn
+        ? [
+            "9 boats: 5 license-free, 3 licensed, 1 private excursion with captain",
+            "Fuel included on all license-free boats",
+            "8 languages: Spanish, English, Catalan, French, German, Dutch, Italian, Russian",
+            "Coves accessible: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella, Fenals",
+            "Open daily 09:00–20:00 from April to October",
+            "Hours response time on WhatsApp +34 611 500 372",
+          ]
+        : [
+            "9 barcos: 5 sin licencia, 3 con licencia, 1 excursión privada con capitán",
+            "Gasolina incluida en todos los barcos sin licencia",
+            "8 idiomas: español, inglés, catalán, francés, alemán, neerlandés, italiano, ruso",
+            "Calas accesibles: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella, Fenals",
+            "Abierto todos los días 09:00–20:00 de abril a octubre",
+            "Respuesta inmediata por WhatsApp +34 611 500 372",
+          ];
+      const ctaLabel = isEn ? "Book via WhatsApp" : "Reserva por WhatsApp";
+      const fleetLabel = isEn ? "View fleet" : "Ver flota";
+      const faqLabel = isEn ? "FAQ" : "Preguntas frecuentes";
+      const bodyFallback = `
+<h1>${esc(homeH1)}</h1>
+<p>${esc(homeSummary)}</p>
+<ul>
+${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
+</ul>
+<p>
+  <a href="https://wa.me/34611500372">${esc(ctaLabel)}</a> ·
+  <a href="${BASE_URL}/barcos">${esc(fleetLabel)}</a> ·
+  <a href="${BASE_URL}/faq">${esc(faqLabel)}</a>
+</p>
+      `.trim();
+      return { meta, jsonLd, availableLanguages, bodyFallback };
     }
 
     // /faq - FAQPage schema (critical for AI search extraction)
@@ -2287,7 +2343,29 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           : "Alquiler de barcos sin licencia y con licencia desde el Puerto de Blanes. 8 embarcaciones disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en los barcos sin licencia.",
         { low: 70, high: 420 },
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages };
+      const blanesBodyFallback = buildLocationBodyFallback(
+        isEn ? "Boat Rental in Blanes, Costa Brava" : "Alquiler de Barcos en Blanes, Costa Brava",
+        isEn
+          ? "Rent license-free and licensed boats directly from Blanes Port (Girona). 9 boats available, up to 7 people, from 70€/hour. Fuel included on all license-free boats. The closest harbor for exploring Sa Palomera, Sant Francesc cove, and the southern Costa Brava."
+          : "Alquila barcos sin licencia y con licencia directamente desde el Puerto de Blanes (Girona). 9 barcos disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en todos los barcos sin licencia. El puerto más cercano para explorar Sa Palomera, Cala Sant Francesc y la Costa Brava sur.",
+        isEn
+          ? [
+              "Sa Palomera rock — 5 minutes from the port",
+              "Cala Sant Francesc — 10 minutes",
+              "Platja de Blanes — main town beach",
+              "Marimurtra Botanical Garden — coastal landmark",
+              "Free parking 100m from the dock",
+            ]
+          : [
+              "Roca de Sa Palomera — 5 minutos desde el puerto",
+              "Cala Sant Francesc — 10 minutos",
+              "Platja de Blanes — playa principal del pueblo",
+              "Jardín Botánico Marimurtra — referente costero",
+              "Parking gratuito a 100m del amarre",
+            ],
+        isEn ? "Book via WhatsApp +34 611 500 372" : "Reserva por WhatsApp +34 611 500 372",
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, bodyFallback: blanesBodyFallback };
     }
 
     // /alquiler-barcos-lloret-de-mar - TouristDestination + FAQPage for Lloret
@@ -2363,7 +2441,29 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           : "Navega desde Blanes hasta Lloret de Mar. Los barcos sin licencia llegan a Playa de Fenals en 25 min (zona de 2 millas). Los barcos con licencia recorren toda la costa de Lloret. Desde 70€/hora, hasta 7 personas.",
         { low: 70, high: 420 },
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: lloretLcp };
+      const lloretBodyFallback = buildLocationBodyFallback(
+        isEn ? "Boat Rental from Blanes to Lloret de Mar" : "Alquiler de Barcos de Blanes a Lloret de Mar",
+        isEn
+          ? "Sail from Blanes to Lloret de Mar in 25 minutes with a license-free boat (2-mile zone reaches Fenals Beach). Licensed boats explore the full Lloret coastline including Cala Banys and Santa Cristina. Rentals from 70€/hour, up to 7 people, fuel included on license-free boats."
+          : "Navega desde Blanes a Lloret de Mar en 25 minutos con barco sin licencia (la zona de 2 millas llega a Playa de Fenals). Los barcos con licencia recorren toda la costa de Lloret incluyendo Cala Banys y Santa Cristina. Alquileres desde 70€/hora, hasta 7 personas, gasolina incluida en barcos sin licencia.",
+        isEn
+          ? [
+              "Cala Banys — most photographed cove in Lloret",
+              "Cala Santa Cristina — family-friendly sandy beach",
+              "Cala Sa Boadella — semi-virgin pine cove",
+              "Playa de Fenals — northern legal limit for license-free boats",
+              "Sa Forcanera cove — snorkel paradise on the way",
+            ]
+          : [
+              "Cala Banys — la cala más fotografiada de Lloret",
+              "Cala Santa Cristina — playa de arena familiar",
+              "Cala Sa Boadella — cala semi-virgen con pinos",
+              "Playa de Fenals — límite norte legal para barcos sin licencia",
+              "Cala Sa Forcanera — paraíso del snorkel en la ruta",
+            ],
+        isEn ? "Book via WhatsApp +34 611 500 372" : "Reserva por WhatsApp +34 611 500 372",
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: lloretLcp, bodyFallback: lloretBodyFallback };
     }
 
     // /alquiler-barcos-tossa-de-mar - TouristDestination + FAQPage for Tossa
@@ -2438,7 +2538,29 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           : "Llega a Tossa de Mar desde el Puerto de Blanes en 30-45 min con barco con licencia o nuestra excursión privada con patrón (sin licencia). Barcos con licencia desde 160€/2h; excursión privada desde 240€/2h con patrón.",
         { low: 160, high: 420 },
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: tossaLcp };
+      const tossaBodyFallback = buildLocationBodyFallback(
+        isEn ? "Boat Trip to Tossa de Mar from Blanes" : "Excursión en Barco a Tossa de Mar desde Blanes",
+        isEn
+          ? "Reach Tossa de Mar's Vila Vella castle from Blanes in 30–45 minutes. Two options: rent a licensed boat (LNB / PER required) from 160€ for 2 hours, or join our private excursion with a professional captain (no license needed) from 240€ for 2 hours. Fuel apart on both options."
+          : "Llega a la Vila Vella de Tossa de Mar desde Blanes en 30–45 minutos. Dos opciones: alquilar un barco con licencia (LNB / PER requerida) desde 160€ por 2 horas, o unirte a nuestra excursión privada con capitán profesional (sin licencia) desde 240€ por 2 horas. Combustible aparte en ambas opciones.",
+        isEn
+          ? [
+              "Vila Vella — only fortified medieval village on the Catalan coast",
+              "Cala Pola, Cala Giverola — north of Tossa, accessible only by sea",
+              "Cala Bona, Cala Salionç — quiet coves on the southern approach",
+              "Licensed-only zone for license-free boats (legal limit at Fenals)",
+              "Private excursion with captain — no license, fully guided",
+            ]
+          : [
+              "Vila Vella — único pueblo medieval fortificado de la costa catalana",
+              "Cala Pola, Cala Giverola — al norte de Tossa, solo accesibles por mar",
+              "Cala Bona, Cala Salionç — calas tranquilas en la aproximación sur",
+              "Zona solo para barcos con licencia (límite legal sin licencia en Fenals)",
+              "Excursión privada con capitán — sin licencia, totalmente guiada",
+            ],
+        isEn ? "Book via WhatsApp +34 611 500 372" : "Reserva por WhatsApp +34 611 500 372",
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: tossaLcp, bodyFallback: tossaBodyFallback };
     }
 
     // /alquiler-barcos-malgrat-de-mar - TouristDestination + FAQPage
@@ -3179,7 +3301,18 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           mainEntityOfPage: { "@type": "WebPage", "@id": localizedBlogUrl },
           datePublished: post.publishedAt || post.createdAt,
           dateModified: post.updatedAt || post.publishedAt,
-          author: { "@type": "Organization", name: "Costa Brava Rent a Boat", url: BASE_URL },
+          // E-E-A-T: emit Person (named author with bio + sameAs) instead of
+          // Organization. Match post.author string against AUTHORS registry;
+          // fall back to DEFAULT_AUTHOR for unknown / generic strings like
+          // "Costa Brava Rent a Boat".
+          author: (() => {
+            const raw = (post.author ?? "").trim();
+            const matched = Object.values(AUTHORS).find(
+              (a) => a.name.toLowerCase() === raw.toLowerCase(),
+            );
+            const profile = matched ?? DEFAULT_AUTHOR;
+            return authorToPersonSchema(profile, BASE_URL);
+          })(),
           publisher: {
             "@type": "Organization",
             name: "Costa Brava Rent a Boat",
@@ -3205,7 +3338,30 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         const lcpPreload: LcpPreload | undefined = post.featuredImage
           ? { href: post.featuredImage }
           : undefined;
-        return { meta, jsonLd, hasTranslation: hasBlogTranslation, nativeOverride, lcpPreload };
+        // SSR body fallback for AI crawlers — emit headline + excerpt + first
+        // ~250 words of content stripped of markdown so non-JS crawlers receive
+        // the citable text. React hydration replaces this on load.
+        const stripMd = (s: string) =>
+          s
+            .replace(/```[\s\S]*?```/g, " ")
+            .replace(/`([^`]+)`/g, "$1")
+            .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
+            .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+            .replace(/[#*_>~]/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+        const plainContent = stripMd(localizedContent || "");
+        const firstWords = plainContent.split(" ").slice(0, 250).join(" ");
+        const excerptText = localizedExcerpt ? esc(localizedExcerpt) : "";
+        const bodyFallback = `
+<article>
+  <h1>${esc(localizedTitle)}</h1>
+  ${excerptText ? `<p><strong>${excerptText}</strong></p>` : ""}
+  <p>${esc(firstWords)}…</p>
+  <p><a href="https://wa.me/34611500372">+34 611 500 372</a></p>
+</article>
+        `.trim();
+        return { meta, jsonLd, hasTranslation: hasBlogTranslation, nativeOverride, lcpPreload, bodyFallback };
       }
     } catch {
       // fall through

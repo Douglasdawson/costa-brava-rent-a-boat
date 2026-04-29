@@ -169,6 +169,15 @@ export interface UrlInspectionRunSummary {
 export async function collectUrlInspections(options?: {
   limit?: number;
   onlyMissing?: boolean;
+  // Optional: inspect only these specific URLs. When provided, sitemap discovery
+  // and limit/onlyMissing filters are ignored — we trust the caller to know
+  // exactly which URLs to inspect. Used by ad-hoc diagnostics (e.g. "verify all
+  // 9 boat detail pages now") where iterating the full 262-URL sitemap set
+  // would exceed the proxy timeout.
+  urls?: string[];
+  // Optional: inspect only URLs whose path starts with this prefix. Cheaper
+  // than passing the full URL list when you want a category (e.g. "/es/barco/").
+  pathPrefix?: string;
 }): Promise<UrlInspectionRunSummary> {
   const start = Date.now();
   const summary: UrlInspectionRunSummary = {
@@ -190,18 +199,37 @@ export async function collectUrlInspections(options?: {
   const searchconsole = google.searchconsole({ version: "v1", auth });
   const siteUrl = config.GSC_SITE_URL || "sc-domain:costabravarentaboat.com";
 
-  const urlsMap = await gatherCanonicalUrls();
-  let urls = Array.from(urlsMap.entries());
-  summary.totalUrls = urls.length;
+  let urls: Array<[string, string]>;
 
-  if (options?.onlyMissing) {
-    const existing = await db.select({ url: seoUrlInspections.url }).from(seoUrlInspections);
-    const seen = new Set(existing.map(r => r.url));
-    urls = urls.filter(([url]) => !seen.has(url));
-  }
+  if (options?.urls && options.urls.length > 0) {
+    // Caller-specified URL list — referringSitemap unknown, label it explicitly
+    urls = options.urls.map(u => [u, "manual"] as [string, string]);
+    summary.totalUrls = urls.length;
+  } else {
+    const urlsMap = await gatherCanonicalUrls();
+    urls = Array.from(urlsMap.entries());
+    summary.totalUrls = urls.length;
 
-  if (typeof options?.limit === "number" && options.limit >= 0) {
-    urls = urls.slice(0, options.limit);
+    if (options?.pathPrefix) {
+      const prefix = options.pathPrefix;
+      urls = urls.filter(([u]) => {
+        try {
+          return new URL(u).pathname.startsWith(prefix);
+        } catch {
+          return false;
+        }
+      });
+    }
+
+    if (options?.onlyMissing) {
+      const existing = await db.select({ url: seoUrlInspections.url }).from(seoUrlInspections);
+      const seen = new Set(existing.map(r => r.url));
+      urls = urls.filter(([url]) => !seen.has(url));
+    }
+
+    if (typeof options?.limit === "number" && options.limit >= 0) {
+      urls = urls.slice(0, options.limit);
+    }
   }
 
   logger.info(`[SEO:URL-Inspect] Inspecting ${urls.length} URLs (${urlsMap.size} known canonical)`);

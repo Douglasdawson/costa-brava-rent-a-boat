@@ -301,12 +301,18 @@ export function registerSeoRoutes(app: Express): void {
   });
 
   // POST /api/admin/seo/coverage/refresh — manual trigger
-  // body: { limit?: number; onlyMissing?: boolean }
+  // body: { limit?: number; onlyMissing?: boolean; urls?: string[]; pathPrefix?: string }
+  //   urls       — explicit list (skips sitemap discovery)
+  //   pathPrefix — filter sitemap URLs by path prefix (e.g. "/es/barco/")
   app.post("/api/admin/seo/coverage/refresh", requireAdminSession, async (req, res) => {
     try {
       const limit = typeof req.body?.limit === "number" ? req.body.limit : undefined;
       const onlyMissing = req.body?.onlyMissing === true;
-      const summary = await collectUrlInspections({ limit, onlyMissing });
+      const urls = Array.isArray(req.body?.urls)
+        ? req.body.urls.filter((u: unknown): u is string => typeof u === "string")
+        : undefined;
+      const pathPrefix = typeof req.body?.pathPrefix === "string" ? req.body.pathPrefix : undefined;
+      const summary = await collectUrlInspections({ limit, onlyMissing, urls, pathPrefix });
       res.json(summary);
     } catch (error) {
       logger.error("URL inspection refresh failed", {

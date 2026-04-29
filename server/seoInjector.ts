@@ -69,8 +69,11 @@ const DEFAULT_OG_IMAGE_ALT: Record<LangCode, string> = {
 
 
 // Escape special HTML attribute characters
-function esc(str: string): string {
-  return str.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+function esc(str: unknown): string {
+  // Defensive: callers pass numbers (boat.capacity) and other non-strings; coerce
+  // to string before escaping so a TypeError doesn't bubble up and silently
+  // crash the seoInjector boat handler (which would 404 the canonical /es/barco/X).
+  return String(str ?? "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 // Fetch SEO meta overrides from the database (seo_meta table).

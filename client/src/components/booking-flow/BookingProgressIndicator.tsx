@@ -8,52 +8,41 @@ interface BookingProgressIndicatorProps {
 export function BookingProgressIndicator({ currentStep, t }: BookingProgressIndicatorProps) {
   const totalSteps = 3;
   const stepTitles = [
-    t.booking?.stepExperience || 'Experience',
-    t.booking?.stepPersonalize || 'Personalize',
-    t.booking?.stepPay || 'Payment',
+    t.booking?.stepExperience || 'Tu plan',
+    t.booking?.stepPersonalize || 'Tus datos',
+    t.booking?.stepPay || 'Confirmar',
   ];
 
+  const counterTemplate = t.booking?.stepCounter || 'Paso {current} de {total}';
+  const counter = counterTemplate
+    .replace('{current}', String(currentStep))
+    .replace('{total}', String(totalSteps));
+
   return (
-    <>
-      {/* Mobile: Current step only */}
-      <div className="flex sm:hidden items-center justify-center mb-6 gap-2">
-        <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">
-          {currentStep}
-        </div>
-        <span className="text-sm font-medium text-foreground">{stepTitles[currentStep - 1]}</span>
-        <span className="text-xs text-muted-foreground">/ {totalSteps}</span>
+    <div className="flex flex-col gap-3">
+      {/* Counter + active step name */}
+      <div className="flex items-baseline justify-between gap-3">
+        <h2 className="font-heading text-lg sm:text-xl font-semibold text-foreground tracking-tight">
+          {stepTitles[currentStep - 1]}
+        </h2>
+        <span className="text-xs sm:text-sm font-medium text-muted-foreground tabular-nums shrink-0">
+          {counter}
+        </span>
       </div>
 
-      {/* Desktop: Full progress bar */}
-      <div className="hidden sm:flex items-center justify-center mb-8">
+      {/* Segmented progress bar */}
+      <div className="flex items-center gap-1.5" role="progressbar" aria-valuenow={currentStep} aria-valuemin={1} aria-valuemax={totalSteps} aria-label={counter}>
         {[1, 2, 3].map((stepNumber) => (
-          <div key={stepNumber} className="flex items-center">
-            <div className="flex flex-col items-center">
-              <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium flex-shrink-0 ${
-                  stepNumber <= currentStep
-                    ? 'bg-primary text-white'
-                    : 'bg-primary/10 text-muted-foreground'
-                }`}
-              >
-                {stepNumber}
-              </div>
-              <span className={`text-xs mt-1 ${
-                stepNumber <= currentStep ? 'text-primary font-medium' : 'text-muted-foreground'
-              }`}>
-                {stepTitles[stepNumber - 1]}
-              </span>
-            </div>
-            {stepNumber < totalSteps && (
-              <div
-                className={`w-16 h-1 mx-2 mb-5 ${
-                  stepNumber < currentStep ? 'bg-primary' : 'bg-primary/10'
-                }`}
-              />
-            )}
-          </div>
+          <span
+            key={stepNumber}
+            className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${
+              stepNumber <= currentStep
+                ? 'bg-foreground'
+                : 'bg-foreground/10'
+            }`}
+          />
         ))}
       </div>
-    </>
+    </div>
   );
 }

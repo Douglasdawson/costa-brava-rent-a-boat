@@ -1232,6 +1232,11 @@ export const ca: Translations = {
     internalLinks: 'Vols saber-ne més? Consulta la guia <a href="/ca/lloguer-vaixell-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar des del mar</a> o la ruta amb llicència fins a <a href="/ca/lloguer-vaixell-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Preus complets a <a href="/ca/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quant costa llogar un vaixell a Blanes</a>.',
   },
 
+  editorialMoment: {
+    copy: "Aquí el sol no es pon. Es queda amb tu.",
+    alt: "Capvespre daurat sobre el castell medieval de Tossa de Mar i la seva cala turquesa, amb una barca al fons",
+  },
+
   emotionTags: {
     sunLovers: 'Per als amants del sol',
     familyFavorite: 'Favorit de les famílies',

@@ -1,14 +1,12 @@
 import { useState, useRef, useCallback } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, Minus, Users, TrendingUp } from "lucide-react";
+import { Plus, Minus, ArrowLeft, TrendingUp } from "lucide-react";
 import { trackAddShippingInfo, trackGenerateLead } from "@/utils/analytics";
 import type { Translations } from "@/lib/translations";
 import type { PhonePrefix } from "@/utils/phone-prefixes";
 import type { Boat } from "@shared/schema";
 import type { Extra, CustomerData } from "./types";
-import { BookingTrustBanner } from "./BookingTrustBanner";
 import { usePricingOverrideForDate } from "./usePricingOverrideForDate";
 
 interface BookingStepPersonalizeProps {
@@ -40,6 +38,7 @@ interface BookingStepPersonalizeProps {
   selectedTime?: string;
   // Navigation
   setStep: (step: number) => void;
+  onBack?: () => void;
   t: Translations;
 }
 
@@ -54,7 +53,7 @@ export function BookingStepPersonalize({
   filteredNationalities,
   boatId, boatName, boatPrice,
   boat, duration, selectedDate, selectedTime,
-  setStep, t,
+  setStep, onBack, t,
 }: BookingStepPersonalizeProps) {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [phonePrefixActiveIndex, setPhonePrefixActiveIndex] = useState(-1);
@@ -173,78 +172,81 @@ export function BookingStepPersonalize({
   }, [showNationalityDropdown, visibleNationalities, nationalityActiveIndex, setCustomerData, setNationalitySearch, setShowNationalityDropdown]);
 
   return (
-    <div className="space-y-4">
-      <BookingTrustBanner t={t} stage="step2" />
+    <div className="space-y-10 sm:space-y-12">
       {pricingOverride.hasOverride && (
-        <div className="bg-primary/10 border border-primary/30 rounded-lg p-3 text-sm text-foreground flex items-start gap-2">
-          <TrendingUp className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
+        <div className="flex items-start gap-2.5 px-3.5 py-2.5 rounded-lg bg-foreground/[0.04] text-foreground text-[13px] leading-snug">
+          <TrendingUp className="w-4 h-4 mt-0.5 shrink-0 text-foreground/70" />
           <span>
-            <strong>Tarifa especial para esta fecha:</strong> precio adaptado por demanda
+            <strong className="font-semibold">Tarifa especial para esta fecha:</strong> precio adaptado por demanda
             {pricingOverride.percentChange && pricingOverride.percentChange !== 0
               ? ` (${pricingOverride.percentChange > 0 ? "+" : ""}${pricingOverride.percentChange}%)`
               : ""}
             {pricingOverride.overrideLabel ? ` — ${pricingOverride.overrideLabel}` : ""}
-            . El total final que se confirmará en el siguiente paso incluye este ajuste.
+            . El total final del siguiente paso ya lo incluye.
           </span>
         </div>
       )}
-      {/* Desktop: side-by-side | Mobile: stacked */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10 sm:gap-y-12">
         {/* Extras section */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base">{t.booking.extras} ({t.booking.optional})</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <div className="space-y-3">
-              {availableExtras.map((extra) => (
-                <div key={extra.id} className="flex items-center justify-between p-3 border border-primary/20 rounded-lg gap-3">
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-foreground text-sm">{extra.name}</h4>
-                    <p className="text-xs text-muted-foreground">{extra.description}</p>
-                    <p className="text-xs font-medium text-primary">{extra.price}€</p>
+        <section>
+          <div className="flex items-baseline justify-between mb-3">
+            <h3 className="font-heading text-[15px] font-semibold text-foreground tracking-tight">
+              {t.booking.extras}
+            </h3>
+            <span className="text-[12px] text-muted-foreground">{t.booking.optional}</span>
+          </div>
+          <div className="space-y-2">
+              {availableExtras.map((extra) => {
+                const count = extras[extra.id] || 0;
+                const isActive = count > 0;
+                return (
+                  <div
+                    key={extra.id}
+                    className={`flex items-center justify-between gap-3 p-3 rounded-xl transition-colors ${
+                      isActive ? 'bg-foreground/[0.04] ring-1 ring-foreground/20' : 'ring-1 ring-border'
+                    }`}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-medium text-foreground text-[14px] leading-tight">{extra.name}</h4>
+                      <p className="text-[12px] text-muted-foreground mt-0.5 line-clamp-1">{extra.description}</p>
+                      <p className="text-[12px] font-semibold text-foreground mt-0.5 tabular-nums">{extra.price}€</p>
+                    </div>
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => updateExtra(extra.id, false)}
+                        disabled={count === 0}
+                        aria-label={`- ${extra.name}`}
+                        className="h-9 w-9 rounded-full inline-flex items-center justify-center bg-foreground/[0.04] text-foreground hover:bg-foreground/[0.08] disabled:opacity-30 disabled:cursor-not-allowed transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        data-testid={`button-decrease-${extra.id}`}
+                      >
+                        <Minus className="w-3.5 h-3.5" />
+                      </button>
+                      <span className="w-6 text-center font-semibold text-[14px] tabular-nums" aria-live="polite">
+                        {count}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => updateExtra(extra.id, true)}
+                        aria-label={`+ ${extra.name}`}
+                        className="h-9 w-9 rounded-full inline-flex items-center justify-center bg-foreground/[0.04] text-foreground hover:bg-foreground/[0.08] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        data-testid={`button-increase-${extra.id}`}
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2 flex-shrink-0">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="h-11 w-11 sm:h-8 sm:w-8"
-                      onClick={() => updateExtra(extra.id, false)}
-                      aria-label={`- ${extra.name}`}
-                      data-testid={`button-decrease-${extra.id}`}
-                    >
-                      <Minus className="w-3 h-3" />
-                    </Button>
-                    <span className="w-6 text-center font-medium text-sm" aria-live="polite">
-                      {extras[extra.id] || 0}
-                    </span>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="h-11 w-11 sm:h-8 sm:w-8"
-                      onClick={() => updateExtra(extra.id, true)}
-                      aria-label={`+ ${extra.name}`}
-                      data-testid={`button-increase-${extra.id}`}
-                    >
-                      <Plus className="w-3 h-3" />
-                    </Button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-          </CardContent>
-        </Card>
+        </section>
 
         {/* Customer data section */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center text-base">
-              <Users className="w-4 h-4 mr-2" />
-              {t.booking.customerData}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <div className="space-y-3">
+        <section>
+          <h3 className="font-heading text-[15px] font-semibold text-foreground tracking-tight mb-3">
+            {t.booking.customerData}
+          </h3>
+          <div className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="customerName" className="block text-sm font-medium text-foreground mb-1">
@@ -486,40 +488,54 @@ export function BookingStepPersonalize({
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+        </section>
       </div>
 
-      {/* Continue to payment button */}
-      <Button
-        onClick={() => {
-          const durationHours = duration ? (parseInt(duration.replace('h', ''), 10) || null) : null;
-          const startTime = (selectedDate && selectedTime)
-            ? new Date(`${selectedDate}T${selectedTime}:00`)
-            : null;
-          trackAddShippingInfo(
-            {
-              id: boatId,
-              name: boatName,
-              specifications: boat?.specifications,
-              requiresLicense: boat?.requiresLicense,
-            },
-            boatPrice,
-            {
-              durationHours,
-              startTime,
-              numberOfPeople: customerData.numberOfPeople,
-            },
-          );
-          trackGenerateLead(boatId, boatName, boatPrice);
-          setStep(3);
-        }}
-        disabled={!isFormValid}
-        className="w-full py-3"
-        data-testid="button-continue-payment"
-      >
-        {t.booking.continueToPayment}
-      </Button>
+      {/* Sticky footer */}
+      <div className="sticky bottom-0 z-10 -mx-5 sm:-mx-8 -mb-6 px-5 sm:px-8 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+1rem)] bg-background/95 backdrop-blur-md border-t border-border/60">
+        <div className="flex items-center gap-3">
+          {onBack && (
+            <button
+              type="button"
+              onClick={onBack}
+              aria-label={t.booking.back}
+              className="flex-shrink-0 inline-flex items-center justify-center h-12 w-12 rounded-full text-foreground/70 hover:text-foreground hover:bg-foreground/[0.04] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              data-testid="button-back-step"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+          )}
+          <Button
+            onClick={() => {
+              const durationHours = duration ? (parseInt(duration.replace('h', ''), 10) || null) : null;
+              const startTime = (selectedDate && selectedTime)
+                ? new Date(`${selectedDate}T${selectedTime}:00`)
+                : null;
+              trackAddShippingInfo(
+                {
+                  id: boatId,
+                  name: boatName,
+                  specifications: boat?.specifications,
+                  requiresLicense: boat?.requiresLicense,
+                },
+                boatPrice,
+                {
+                  durationHours,
+                  startTime,
+                  numberOfPeople: customerData.numberOfPeople,
+                },
+              );
+              trackGenerateLead(boatId, boatName, boatPrice);
+              setStep(3);
+            }}
+            disabled={!isFormValid}
+            className="flex-1 h-12 rounded-full text-[15px] font-semibold disabled:opacity-40"
+            data-testid="button-continue-payment"
+          >
+            {t.booking.continueToPayment}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

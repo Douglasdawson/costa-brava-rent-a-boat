@@ -1233,6 +1233,11 @@ export const de: Translations = {
     internalLinks: 'Mehr Details? Sehen Sie die Anleitung <a href="/de/boot-mieten-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar vom Meer</a> oder die lizenzierte Route nach <a href="/de/boot-mieten-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Vollständige Preise in <a href="/de/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Was kostet es, ein Boot in Blanes zu mieten</a>.',
   },
 
+  editorialMoment: {
+    copy: "Hier geht die Sonne nicht unter. Sie bleibt bei dir.",
+    alt: "Goldener Sonnenuntergang über der mittelalterlichen Burg von Tossa de Mar und ihrer türkisfarbenen Bucht, mit einem Boot in der Ferne",
+  },
+
   emotionTags: {
     sunLovers: 'Für Sonnenliebhaber',
     familyFavorite: 'Familienfavorit',

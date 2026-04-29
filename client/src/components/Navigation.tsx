@@ -188,7 +188,7 @@ export default function Navigation() {
     <nav className="fixed top-3 left-3 right-3 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-border shadow-md md:top-6 md:left-6 md:right-6 pt-safe">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:outline-none"
       >
         Saltar al contenido
       </a>
@@ -257,7 +257,7 @@ export default function Navigation() {
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
               aria-label={t.a11y.bookBoatNow}
-              className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium btn-elevated cta-pulse focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+              className="bg-cta hover:bg-cta/90 text-primary-foreground rounded-full px-6 py-2 text-sm font-medium btn-elevated cta-pulse focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
             >
               {t.nav.bookNow}
             </Button>
@@ -284,7 +284,7 @@ export default function Navigation() {
               data-testid="button-mobile-menu"
               aria-label={isOpen ? t.a11y.closeNavMenu : t.a11y.openNavMenu}
               aria-expanded={isOpen}
-              className="focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
+              className="min-h-11 min-w-11 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
@@ -329,7 +329,7 @@ export default function Navigation() {
             <div className="px-4 py-2 border-t border-border mt-1 pt-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Button
-                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="bg-cta hover:bg-cta/90 text-primary-foreground rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                   onClick={handleMobileBooking}
                   data-testid="mobile-button-book"
                   aria-label={t.a11y.bookBoatNow}

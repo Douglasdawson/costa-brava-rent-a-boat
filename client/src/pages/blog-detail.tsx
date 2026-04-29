@@ -9,7 +9,8 @@ import { SEO } from "@/components/SEO";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, Tag, ArrowLeft, Share2, Copy, Check, ChevronLeft, ChevronRight, Mail, List, Anchor } from "lucide-react";
+import { Calendar, Tag, ArrowLeft, Share2, Copy, Check, ChevronLeft, ChevronRight, Mail, List, Anchor } from "lucide-react";
+import { AuthorByline } from "@/components/blog/AuthorByline";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
@@ -792,11 +793,14 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                   {localized(post.titleByLang as Record<string, string> | null, post.title, language)}
                 </h1>
 
+                <AuthorByline
+                  authorName={post.author}
+                  publishedAt={post.publishedAt}
+                  updatedAt={post.updatedAt}
+                  language={language}
+                />
+
                 <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2" data-testid={`text-author-${post.slug}`}>
-                    <User className="h-4 w-4" />
-                    {post.author}
-                  </div>
                   <div className="flex items-center gap-2" data-testid={`text-date-${post.slug}`}>
                     <Calendar className="h-4 w-4" />
                     {formatDate(post.publishedAt)}

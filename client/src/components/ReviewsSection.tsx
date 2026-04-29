@@ -45,11 +45,11 @@ const ReviewCard = memo(function ReviewCard({
   locale: string;
 }) {
   return (
-    <div
+    <figure
       className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-background rounded-2xl border border-border p-5 flex flex-col"
     >
       {/* Stars */}
-      <div className="flex gap-0.5 mb-2">
+      <div className="flex gap-0.5 mb-2" aria-label={`${review.rating} de 5 estrellas`}>
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
@@ -67,11 +67,14 @@ const ReviewCard = memo(function ReviewCard({
         &ldquo;
       </span>
       {/* Comment */}
-      <p className="text-foreground text-sm leading-relaxed mt-1 line-clamp-6 flex-1">
+      <blockquote
+        cite="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
+        className="text-foreground text-sm leading-relaxed mt-1 line-clamp-6 flex-1"
+      >
         {review.text}
-      </p>
+      </blockquote>
       {/* Author */}
-      <div className="mt-auto pt-3">
+      <figcaption className="mt-auto pt-3">
         <p className="font-medium text-foreground text-[13px]">
           {review.flag && (
             <span
@@ -90,8 +93,8 @@ const ReviewCard = memo(function ReviewCard({
             { month: "long", year: "numeric" }
           )}
         </p>
-      </div>
-    </div>
+      </figcaption>
+    </figure>
   );
 });
 
@@ -285,8 +288,8 @@ function ReviewsSection() {
           </div>
         </div>
 
-        {/* Scroll indicator dots */}
-        <div className="flex justify-center gap-1.5 mt-4 mb-8">
+        {/* Scroll indicator dots — decorative, swipe is the actual interaction */}
+        <div className="flex justify-center gap-1.5 mt-4 mb-8" role="presentation" aria-hidden="true">
           {Array.from({ length: dotCount }).map((_, i) => (
             <div
               key={i}

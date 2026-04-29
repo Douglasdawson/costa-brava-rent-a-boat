@@ -79,7 +79,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
                 className={`relative rounded-xl border p-4 ${c.limit ? "bg-amber-50 dark:bg-amber-950/20 border-amber-300" : "bg-muted/30 border-border"}`}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <span className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${c.limit ? "bg-amber-500 text-white" : "bg-primary/10 text-primary"}`}>
+                  <span className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${c.limit ? "bg-amber-500 text-primary-foreground" : "bg-primary/10 text-primary"}`}>
                     {c.n}
                   </span>
                   {c.limit && (
@@ -139,7 +139,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
               const fleet = document.getElementById("fleet");
               if (fleet) fleet.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cta hover:bg-cta/90 text-white font-semibold text-sm transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cta hover:bg-cta/90 text-primary-foreground font-semibold text-sm transition-colors"
           >
             <Anchor className="w-4 h-4" />
             {r?.ctaFleet}

@@ -13,6 +13,7 @@ import { randomUUID } from "crypto";
 import { config, isDev } from "./config";
 import { errorHandler, AppError } from "./middleware/errorHandler";
 import { csrfProtection } from "./middleware/csrf";
+import { aiBotLoggerMiddleware } from "./lib/aiBotLogger";
 import { stopScheduler } from "./services/schedulerService";
 import { startSeoWorker, stopSeoWorker } from "./seo/worker";
 import { pool } from "./db";
@@ -62,6 +63,12 @@ if (config.SENTRY_DSN) {
 
 // Cookie parser — required for HttpOnly admin auth cookies
 app.use(cookieParser());
+
+// AI bot visit logger — records every hit from GPTBot/ClaudeBot/PerplexityBot
+// to the ai_bot_visits table. Fire-and-forget; never blocks the request.
+// Mounted before rate limiting so we capture the visit even if the bot is
+// throttled (gives us visibility into aggressive crawling patterns).
+app.use(aiBotLoggerMiddleware);
 
 // Security headers (disabled in development — CSP blocks HTTP localhost)
 if (!isDev) {

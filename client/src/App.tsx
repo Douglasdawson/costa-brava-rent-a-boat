@@ -26,6 +26,7 @@ const RangeFromBlanesSection = lazy(() => import("@/components/RangeFromBlanesSe
 const GiftCardBanner = lazy(() => import("@/components/GiftCardBanner"));
 const LicenseComparisonSection = lazy(() => import("@/components/LicenseComparisonSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
+const EditorialMomentSection = lazy(() => import("@/components/EditorialMomentSection"));
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const HomepageLocationsSection = lazy(() => import("@/components/HomepageLocationsSection"));
 const FAQPreview = lazy(() => import("@/components/FAQPreview"));
@@ -152,10 +153,10 @@ function HomePage() {
       <main id="main-content">
         <Hero />
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <NeverSailedSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FleetSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[60vh] below-fold" />}>
+          <EditorialMomentSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ReviewsSection />
@@ -170,16 +171,10 @@ function HomePage() {
           <FeaturesSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <HomepageLocationsSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FAQPreview />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ContactSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <GiftCardBanner />
         </Suspense>
       </main>
       <Footer />

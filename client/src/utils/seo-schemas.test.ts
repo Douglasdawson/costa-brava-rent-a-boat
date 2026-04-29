@@ -81,6 +81,19 @@ describe("generateArticleSchema", () => {
     expect(schema.articleSection).toBeUndefined();
     expect(schema.articleBody).toBeUndefined();
   });
+
+  it("emits Person schema for author with sameAs and bio (E-E-A-T)", () => {
+    const schema = generateArticleSchema(baseArticle);
+    const authors = schema.author as Array<Record<string, unknown>>;
+    expect(Array.isArray(authors)).toBe(true);
+    expect(authors[0]["@type"]).toBe("Person");
+    expect(typeof authors[0].name).toBe("string");
+    expect((authors[0].name as string).length).toBeGreaterThan(0);
+    expect(typeof authors[0].description).toBe("string");
+    expect(Array.isArray(authors[0].sameAs)).toBe(true);
+    expect((authors[0].sameAs as string[]).length).toBeGreaterThan(0);
+    expect(authors[0].worksFor).toMatchObject({ "@type": "Organization" });
+  });
 });
 
 describe("generateSeasonalEventSchema", () => {

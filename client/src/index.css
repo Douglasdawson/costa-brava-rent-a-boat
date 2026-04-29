@@ -28,6 +28,12 @@
 body { overflow-x: hidden; }
 #root { overflow-x: hidden; }
 
+/* Nav height token — consumed by sticky offsets so they sit below the floating nav pill.
+   Mobile: top-3 (12) + h-12 (48) = 60. Md: top-6 (24) + h-12 (48) = 72. Lg: top-6 (24) + h-16 (64) = 88. */
+:root { --nav-height: 60px; }
+@media (min-width: 768px) { :root { --nav-height: 72px; } }
+@media (min-width: 1024px) { :root { --nav-height: 88px; } }
+
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0,0,0, .10);
@@ -70,7 +76,7 @@ body { overflow-x: hidden; }
   --chart-4: 45 60% 65%;
   --chart-5: 270 60% 55%;
   --cta: 240 53% 11%;
-  --cta-foreground: 0 0% 100%;
+  --cta-foreground: 200 20% 98%;
   --whatsapp: 142 70% 49%;
   --whatsapp-hover: 152 68% 34%;
   --whatsapp-active: 157 80% 24%;
@@ -149,7 +155,7 @@ body { overflow-x: hidden; }
   --chart-4: 45 55% 75%;
   --chart-5: 270 55% 65%;
   --cta: 15 75% 55%;
-  --cta-foreground: 0 0% 100%;
+  --cta-foreground: 200 20% 98%;
   --shadow-2xs: 0px 1px 2px 0px hsl(215 50% 8% / 0.15);
   --shadow-xs: 0px 1px 3px 0px hsl(215 50% 8% / 0.20);
   --shadow-sm: 0px 2px 4px 0px hsl(215 50% 8% / 0.18), 0px 1px 2px -1px hsl(215 50% 8% / 0.18);

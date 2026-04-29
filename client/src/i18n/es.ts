@@ -38,6 +38,10 @@ export const es: Translations = {
     askWhatsApp: 'Preg\u00FAntanos por WhatsApp',
     testimonialQuote: 'Experiencia incre\u00EDble, repetiremos seguro',
     testimonialQuoteShort: 'Repetiremos seguro',
+    // GEO summary \u2014 declarative factual paragraph rendered as sr-only at the
+    // top of the hero. Citable by LLMs answering "what is Costa Brava Rent a
+    // Boat" without affecting visual hierarchy.
+    summaryGeo: 'Costa Brava Rent a Boat opera la mayor flota de alquiler de barcos del Puerto de Blanes con 9 embarcaciones: 5 sin licencia con gasolina incluida desde 70\u20AC/h, 3 con licencia y 1 excursi\u00F3n privada con capit\u00E1n. Atenci\u00F3n en 8 idiomas. Temporada de abril a octubre. 4.8\u2605 en Google con m\u00E1s de 300 rese\u00F1as.',
   },
 
   fleet: {
@@ -392,8 +396,16 @@ export const es: Translations = {
     stepExperience: 'Experiencia',
     stepPersonalize: 'Personaliza',
     stepPay: 'Confirmación',
+    stepCounter: 'Paso {current} de {total}',
     chooseBoatFirst: 'Selecciona un barco para elegir horario',
     chooseTimeFirst: 'Selecciona fecha y barco primero',
+    quoteConfirmedTitle: 'Cotización lista',
+    quoteConfirmedNote: 'Reservamos tu plaza en cuanto recibamos la solicitud.',
+    whatsappFlowTitle: 'Te abrimos WhatsApp con la solicitud preparada',
+    whatsappFlowBody: 'Pulsa Enviar y nos llega al momento. Confirmamos disponibilidad y coordinamos el pago en persona.',
+    openingWhatsapp: 'Abriendo WhatsApp…',
+    requestViaWhatsapp: 'Solicitar por WhatsApp',
+    whatsappFooterNote: 'Solo tienes que pulsar Enviar. Sin compromiso hasta que confirmemos.',
   },
   faq: {
     title: 'Preguntas Frecuentes',
@@ -2168,6 +2180,11 @@ export const es: Translations = {
     perHour: '/hora',
   },
 
+  editorialMoment: {
+    copy: 'El sol no se pone aquí. Se queda contigo.',
+    alt: 'Atardecer dorado sobre el castillo medieval de Tossa de Mar y su cala turquesa, con un barco en la distancia',
+  },
+
   emotionTags: {
     sunLovers: 'Para amantes del sol',
     familyFavorite: 'Favorito de familias',
@@ -3185,5 +3202,31 @@ export const es: Translations = {
     q5: '¿Cuál es la política de cancelación?',
     // TODO Fase B — migrar a site_content editable desde admin (tabla site_content + endpoint + tab CRM)
     a5: 'Puedes cambiar la fecha de tu reserva sin coste con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.',
+  },
+
+  // Visible byline rendered at the top of every blog post — boosts E-E-A-T
+  // signals (named author with bio + verified profiles) for AI search engines.
+  blogAuthorByline: {
+    writtenBy: 'Por',
+    publishedOn: 'Publicado el',
+    updatedOn: 'Actualizado el',
+    readMore: 'Más sobre el autor',
+    verifiedProfilesLabel: 'Perfiles verificados',
+  },
+
+  // Top reviews block on the homepage — renders 3 verified Google Maps
+  // reviews as <blockquote cite="..."> for citable testimonials.
+  homeReviewsBlock: {
+    title: 'Lo que dicen nuestros clientes',
+    subtitle: 'Reseñas verificadas de Google Maps',
+    viewAll: 'Ver todas las reseñas',
+    fallbackAuthor: 'Cliente verificado',
+  },
+
+  // Resumen factual mostrado al inicio de páginas largas (ubicaciones, blog).
+  // Da a los LLMs un bloque conciso citable antes del contenido extendido.
+  contentSummary: {
+    keyTakeawaysTitle: 'Puntos clave',
+    quickFactsTitle: 'Datos rápidos',
   },
 };

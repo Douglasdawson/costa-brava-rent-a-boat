@@ -1627,8 +1627,15 @@ function buildBoatProductSchema(
   reviews?: Array<{ name: string; rating: number; text: string; date: string }>,
 ): object {
   const licenseText = boat.requiresLicense ? "con licencia náutica" : "sin licencia náutica";
+  // Offer.price is REQUIRED by Google merchant listings rich-result spec.
+  // Always emit a numeric price; fall back to category floor when boat.pricing
+  // is missing or all 0 (sin licencia ≥ 70€/h, con licencia ≥ 160€/2h-paquete).
+  // Falsey-check below is `>0` not truthy so price=0 doesn't slip through.
+  const FALLBACK_PRICE_BY_CATEGORY = boat.requiresLicense ? 160 : 70;
+  const effectivePrice = (typeof fromPrice === "number" && fromPrice > 0) ? fromPrice : FALLBACK_PRICE_BY_CATEGORY;
   const offers: Record<string, unknown> = {
     "@type": "Offer",
+    price: String(effectivePrice),
     priceCurrency: "EUR",
     availability: "https://schema.org/InStock",
     availabilityStarts: `${SEASON_YEAR}-04-01`,
@@ -1642,17 +1649,14 @@ function buildBoatProductSchema(
       name: "Costa Brava Rent a Boat",
       "@id": `${BASE_URL}/#organization`,
     },
-  };
-  if (fromPrice) {
-    offers.price = String(fromPrice);
-    offers.priceSpecification = {
+    priceSpecification: {
       "@type": "UnitPriceSpecification",
-      price: fromPrice,
+      price: effectivePrice,
       priceCurrency: "EUR",
       unitText: "hour",
       referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "HUR" },
-    };
-  }
+    },
+  };
 
   let imgUrl: string | undefined;
   const resolved = resolveBoatImagePath(boat.imageUrl) || resolveBoatImagePath(boat.id);
@@ -2965,9 +2969,17 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         const [withLic, withoutLic] = licenseLabels[lang] || licenseLabels.es;
         const licenseText = boat.requiresLicense ? withLic : withoutLic;
         const fromPrice = (() => {
+          // Filter out 0 placeholders — some boat.pricing rows have 0 for
+          // tariff slots not yet defined (e.g. MEDIA.prices['6h']=0). Without
+          // the filter Math.min returns 0, which is falsy and previously
+          // caused the JSON-LD Offer to be emitted without a `price` field —
+          // GSC flagged this as a critical "merchant listings" error
+          // 2026-04-29 ("Falta el campo 'price' (en 'offers')").
           if (!boat.pricing) return null;
           const seasons = Object.values(boat.pricing) as Array<{ prices?: Record<string, number> }>;
-          const prices = seasons.flatMap(s => s?.prices ? Object.values(s.prices) : []);
+          const prices = seasons
+            .flatMap(s => s?.prices ? Object.values(s.prices) : [])
+            .filter((p): p is number => typeof p === "number" && p > 0);
           return prices.length > 0 ? Math.min(...prices) : null;
         })();
         const fromLabels: Record<string, string> = {

@@ -296,7 +296,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center justify-center gap-3 text-primary-foreground/50 text-xs">
               <span>NIF: B22566327</span>
-              <a href={localizedPath("login")} className="inline-flex items-center justify-center min-h-11 min-w-11 -m-2 hover:text-primary-foreground/60 transition-colors" aria-label="Acceso administración">
+              <a href={localizedPath("login")} className="inline-flex items-center justify-center min-h-11 min-w-11 -m-2 hover:text-primary-foreground/60 transition-colors" aria-label={t.a11y.adminAccess ?? "Acceso administración"}>
                 <Lock className="w-3 h-3" aria-hidden="true" />
               </a>
             </div>

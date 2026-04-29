@@ -1190,6 +1190,7 @@ export const nl: Translations = {
     checkWhatsApp: "Beschikbaarheid controleren via WhatsApp",
     viewBoatDetails: "Bekijk bootdetails",
     stepOf: "van",
+    adminAccess: "Beheerderstoegang",
   },
 
 

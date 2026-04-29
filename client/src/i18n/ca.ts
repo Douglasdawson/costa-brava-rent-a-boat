@@ -1190,6 +1190,7 @@ export const ca: Translations = {
     checkWhatsApp: "Consultar disponibilitat per WhatsApp",
     viewBoatDetails: "Veure detalls del vaixell",
     stepOf: "de",
+    adminAccess: "Accés administració",
   },
 
 

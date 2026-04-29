@@ -1807,6 +1807,7 @@ export interface Translations {
     checkWhatsApp: string;
     viewBoatDetails: string;
     stepOf: string;
+    adminAccess?: string;
   };
 
   // Neuro CRO techniques

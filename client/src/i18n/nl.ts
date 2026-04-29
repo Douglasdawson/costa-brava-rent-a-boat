@@ -1232,6 +1232,11 @@ export const nl: Translations = {
     internalLinks: 'Meer weten? Zie de gids <a href="/nl/boot-huren-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar vanaf zee</a> of de gelicentieerde route naar <a href="/nl/boot-huren-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Volledige prijzen in <a href="/nl/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Wat kost het om een boot te huren in Blanes</a>.',
   },
 
+  editorialMoment: {
+    copy: "De zon gaat hier niet onder. Hij blijft bij jou.",
+    alt: "Gouden zonsondergang boven het middeleeuwse kasteel van Tossa de Mar en zijn turquoise baai, met een boot in de verte",
+  },
+
   emotionTags: {
     sunLovers: 'Voor zonneliefhebbers',
     familyFavorite: 'Familiefavoriet',

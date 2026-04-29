@@ -24,6 +24,7 @@ export const DEFAULT_AUTHOR: AuthorProfile = {
   image: "/images/team/ivan-ramirez-dawson.webp",
   url: "https://www.costabravarentaboat.com/sobre-nosotros",
   sameAs: [
+    "https://www.linkedin.com/in/ivanrdawson/",
     "https://www.instagram.com/costabravarentaboat/",
     "https://www.facebook.com/costabravarentaboat",
     "https://www.tiktok.com/@costabravarentaboat",

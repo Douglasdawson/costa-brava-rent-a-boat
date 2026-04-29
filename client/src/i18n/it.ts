@@ -1233,6 +1233,11 @@ export const it: Translations = {
     internalLinks: 'Vuoi saperne di più? Consulta la guida <a href="/it/noleggio-barca-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar dal mare</a> o la rotta con patente fino a <a href="/it/noleggio-barca-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Prezzi completi in <a href="/it/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quanto costa noleggiare una barca a Blanes</a>.',
   },
 
+  editorialMoment: {
+    copy: "Qui il sole non tramonta. Resta con te.",
+    alt: "Tramonto dorato sul castello medievale di Tossa de Mar e la sua cala turchese, con una barca in lontananza",
+  },
+
   emotionTags: {
     sunLovers: 'Per gli amanti del sole',
     familyFavorite: 'Preferito dalle famiglie',

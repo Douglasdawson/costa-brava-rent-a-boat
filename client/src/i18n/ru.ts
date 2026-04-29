@@ -1232,6 +1232,11 @@ export const ru: Translations = {
     internalLinks: 'Подробнее: гид <a href="/ru/arenda-lodki-lloret-de-mar" class="underline text-primary hover:text-primary/80">Льорет-де-Мар с моря</a> или маршрут с лицензией до <a href="/ru/arenda-lodki-tossa-de-mar" class="underline text-primary hover:text-primary/80">Тосса-де-Мар</a>. Полные цены в <a href="/ru/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Сколько стоит аренда лодки в Бланесе</a>.',
   },
 
+  editorialMoment: {
+    copy: "Здесь солнце не садится. Оно остаётся с тобой.",
+    alt: "Золотой закат над средневековым замком Тосса-де-Мар и его бирюзовой бухтой, с лодкой вдали",
+  },
+
   emotionTags: {
     sunLovers: 'Для любителей солнца',
     familyFavorite: 'Любимый семейный',

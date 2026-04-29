@@ -1292,6 +1292,11 @@ export const en: Translations = {
     internalLinks: 'Want more detail? See the full guide for <a href="/en/boat-rental-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar from the sea</a> or the licensed route to <a href="/en/boat-rental-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Full pricing in <a href="/en/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">How much does it cost to rent a boat in Blanes</a>.',
   },
 
+  editorialMoment: {
+    copy: "The sun doesn't set here. It stays with you.",
+    alt: "Golden sunset over the medieval castle of Tossa de Mar and its turquoise cove, with a boat in the distance",
+  },
+
   emotionTags: {
     sunLovers: 'For sun lovers',
     familyFavorite: 'Family favourite',

@@ -2,11 +2,12 @@
 // Used by robots.ts, seoInjector.ts, and aiBotLogger middleware
 
 export const AI_CRAWLER_NAMES = [
-  "GPTBot", "ChatGPT-User", "Google-Extended", "PerplexityBot",
-  "ClaudeBot", "Claude-Web", "Anthropic", "Applebot-Extended",
-  "CCBot", "Bytespider", "cohere-ai", "Meta-ExternalAgent",
-  "Amazonbot", "YouBot", "Timpibot", "AI2Bot", "Diffbot",
-  "ImagesiftBot", "Omgili",
+  "GPTBot", "ChatGPT-User", "OAI-SearchBot", "Google-Extended",
+  "PerplexityBot", "ClaudeBot", "Claude-Web", "Anthropic",
+  "Applebot-Extended", "CCBot", "Bytespider", "cohere-ai",
+  "Meta-ExternalAgent", "FacebookBot", "Amazonbot", "YouBot",
+  "Timpibot", "AI2Bot", "Diffbot", "ImagesiftBot", "Omgili",
+  "DuckAssistBot", "MistralAI-User",
 ] as const;
 
 export type AICrawlerName = typeof AI_CRAWLER_NAMES[number];

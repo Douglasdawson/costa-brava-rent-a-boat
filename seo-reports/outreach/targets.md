@@ -53,7 +53,7 @@ Queue de targets para campaña de backlinks. Actualizado: 2026-04-27 · Validado
 | 36 | Cruising World España | cruisingworld.es | info@cruisingworld.es | 50 | drafted | Cruising lifestyle |
 | 37 | Marinos y Veleros | marinosyveleros.com | info@marinosyveleros.com | 42 | pending | Foro+blog |
 | 38 | Boat International ES | boatinternational.com/es | spain@boatinternational.com | 72 | drafted | Luxury yachts |
-| 39 | Club Nàutic Blanes | cnblanes.com | info@cnblanes.com | 40 | pending | Club local partner |
+| 39 | Club Nàutic Blanes | cnblanes.com | info@cnblanes.com | 40 | drafted | Club local partner |
 | 40 | Port de Blanes | portdeblanes.cat | info@portdeblanes.cat | 42 | drafted | Puerto local |
 
 ## 3. Asociaciones / Patronats Girona (20)
@@ -72,12 +72,12 @@ Queue de targets para campaña de backlinks. Actualizado: 2026-04-27 · Validado
 | 50 | Roses Turisme | visit.roses.cat | turisme@roses.cat | 54 | drafted | Bahía Roses |
 | 51 | Cadaqués Turisme | visitcadaques.org | turisme@cadaques.org | 56 | drafted | Icono CB norte |
 | 52 | Begur Turisme | visitbegur.cat | turisme@begur.cat | 48 | drafted | Calas top |
-| 53 | Pals Turisme | palsturisme.com | turisme@pals.cat | 42 | pending | Medieval+playa |
-| 54 | Calonge-Sant Antoni | calonge.cat/turisme | turisme@calonge.cat | 44 | pending | Costa centro |
+| 53 | Pals Turisme | palsturisme.com | turisme@pals.cat | 42 | drafted | Medieval+playa |
+| 54 | Calonge-Sant Antoni | calonge.cat/turisme | turisme@calonge.cat | 44 | drafted | Costa centro |
 | 55 | Diputació de Girona | ddgi.cat | comunicacio@ddgi.cat | 68 | drafted | Institucional top |
 | 56 | Turisme Catalunya (Generalitat) | act.gencat.cat | act@gencat.cat | 76 | drafted | Agència oficial |
-| 57 | Associació Turística Costa Brava Centre | costabravacentre.com | info@costabravacentre.com | 44 | pending | Asoc empresarios |
-| 58 | Confraria Pescadors Blanes | confrariablanes.cat | info@confrariablanes.cat | 38 | pending | Sector pesca local |
+| 57 | Associació Turística Costa Brava Centre | costabravacentre.com | info@costabravacentre.com | 44 | drafted | Asoc empresarios |
+| 58 | Confraria Pescadors Blanes | confrariablanes.cat | info@confrariablanes.cat | 38 | drafted | Sector pesca local |
 | 59 | Cambra Comerç Girona | cambragirona.cat | info@cambragirona.cat | 58 | drafted | Cámara comercio |
 | 60 | Estació Nàutica Costa Brava | enbcb.cat | info@enbcb.cat | 46 | drafted | Estación náutica |
 
@@ -99,7 +99,7 @@ Queue de targets para campaña de backlinks. Actualizado: 2026-04-27 · Validado
 | 72 | Aprendiendo en Familia | aprendiendoenfamilia.es | info@aprendiendoenfamilia.es | 42 | drafted | Educación+viajes |
 | 73 | Kids and Us Blog | kidsandus.es/blog | blog@kidsandus.es | 60 | drafted | Red escuelas+blog |
 | 74 | Time Out Barcelona Kids | timeout.es/barcelona/es/kids | kids@timeout.com | 82 | drafted | Sección infantil |
-| 75 | Viajes Mamás y Papás | viajesmamaspapas.com | info@viajesmamaspapas.com | 40 | pending | Blog familia |
+| 75 | Viajes Mamás y Papás | viajesmamaspapas.com | info@viajesmamaspapas.com | 40 | drafted | Blog familia |
 | 76 | Pequeviajes | pequeviajes.com | info@pequeviajes.com | 42 | pending | Viajes niños |
 | 77 | Viajar en Familia | viajarenfamilia.net | info@viajarenfamilia.net | 44 | drafted | Network familia |
 | 78 | Padres e Hijos | padreehijos.com | info@padreehijos.com | 46 | drafted | Revista familia |
@@ -114,7 +114,7 @@ Queue de targets para campaña de backlinks. Actualizado: 2026-04-27 · Validado
 | 82 | Preferente | preferente.com | redaccion@preferente.com | 74 | drafted | Industria turística |
 | 83 | Tourinews | tourinews.es | redaccion@tourinews.es | 58 | drafted | Noticias turismo |
 | 84 | Expansión Turismo | expansion.com/turismo | turismo@expansion.com | 88 | drafted | Sección Expansión |
-| 85 | Revista Viajes | revistaviajes.es | redaccion@revistaviajes.es | 50 | pending | Magazine viajes |
+| 85 | Revista Viajes | revistaviajes.es | redaccion@revistaviajes.es | 50 | drafted | Magazine viajes |
 | 86 | Condé Nast Traveler ES | traveler.es | redaccion@traveler.es | 82 | drafted | Lifestyle premium |
 | 87 | Traveler ES (alt) | traveler.es | info@traveler.es | 82 | drafted | Mismo anterior (Condé Nast) |
 | 88 | El Viajero (El País) | elpais.com/elviajero | elviajero@elpais.es | 92 | drafted | Suplemento viajes |
@@ -122,14 +122,14 @@ Queue de targets para campaña de backlinks. Actualizado: 2026-04-27 · Validado
 | 90 | National Geographic Viajes | viajes.nationalgeographic.com.es | redaccion@viajes.ngenespanol.com | 86 | drafted | NatGeo ES |
 | 91 | Viajar.com (Globus) | viajar.com | redaccion@viajar.com | 72 | drafted | Revista mainstream |
 | 92 | Skyscanner ES Blog | skyscanner.es/noticias | blog-es@skyscanner.net | 84 | drafted | Blog Skyscanner |
-| 93 | Booking Blog ES | booking.com/articles | press@booking.com | 92 | pending | Difícil pero premium |
+| 93 | Booking Blog ES | booking.com/articles | press@booking.com | 92 | drafted | Difícil pero premium |
 | 94 | La Vanguardia Viajes | lavanguardia.com/viajes | viajes@lavanguardia.es | 88 | drafted | Prensa catalana top |
 | 95 | El Periódico Viajar | elperiodico.com/es/viajar | viajar@elperiodico.com | 82 | drafted | Prensa BCN |
 | 96 | ABC Viajar | abc.es/viajar | viajar@abc.es | 86 | drafted | Prensa nacional |
-| 97 | AltaMar (Panorama Náutico) | panoramanautico.com | redaccion@panoramanautico.com | 52 | pending | Sector panorama |
+| 97 | AltaMar (Panorama Náutico) | panoramanautico.com | redaccion@panoramanautico.com | 52 | drafted | Sector panorama |
 | 98 | Hostelworld Blog | hostelworld.com/blog | press@hostelworld.com | 80 | drafted | Hostels+travel |
 | 99 | Euronews Travel | euronews.com/travel | travel@euronews.com | 88 | drafted | Inter europea |
-| 100 | Turismo Hoy | turismohoy.com | redaccion@turismohoy.com | 48 | pending | Noticias sector ES |
+| 100 | Turismo Hoy | turismohoy.com | redaccion@turismohoy.com | 48 | drafted | Noticias sector ES |
 
 ---
 
@@ -168,3 +168,15 @@ Targets #8, 14, 16, 19, 20, 26, 30, 31, 32, 40, 47, 48, 49, 52, 60, 69, 70, 72, 
 - Targets pendientes restantes tras esta wave: ~22 (los de DA más bajo; quedan para waves de relleno).
 
 Wave = 25 emails. Ver `seo-reports/outreach/2026-04-27/emails.md`.
+
+## Seleccionados para wave 2026-05-02 (10)
+
+Targets #39, #53, #54, #57, #58, #75, #85, #93, #97, #100 — wave reducida (10 emails) según política nueva del SKILL "calidad > cantidad".
+
+- Categorías cubiertas: 2 patronats Girona (#53, #54) + 3 asoc/partners locales Blanes (#39, #57, #58) + 3 prensa sector (#85, #97, #100) + 1 blog familia (#75) + 1 mega-tier (#93 Booking, long-shot).
+- DA medio: ~50 (rango 38–92).
+- Idioma: 5 ES + 4 CA + 1 EN (#93 Booking).
+- Tema/cluster: arranque temporada post-puente mayo, anchor evergreen `/alquiler-barcos-costa-brava` (no hubo post nuevo mié 30-abr).
+- Targets pendientes restantes tras esta wave: ~12 — todos DA bajo (Totsuma, Cat-xpedition, Skipper, Marinos y Veleros, Paps & Kids, Pequeviajes, Kids Travel ES, Club Familia Cat, El Náutico, Navegar en Familia, Barco de Vela, Ruta por Cataluña).
+
+Wave = 10 emails. Ver `seo-reports/outreach/2026-05-02/emails.md`.

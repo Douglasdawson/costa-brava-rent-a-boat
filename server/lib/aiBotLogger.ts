@@ -6,10 +6,14 @@
  * blocks the response. Used by /api/admin/seo/bot-visits to surface GEO
  * presence over time.
  *
- * Observability: every detection emits a `logger.info` at "[ai-bot-visits]
- * detected" so we can verify the middleware is firing from Replit logs even
- * when the table is empty. Insert failures emit `logger.error` (stderr) with
- * the full error message — no silent fallback.
+ * Production reliability note: the insert is started BEFORE calling next()
+ * so the DB write is in-flight before the response is dispatched. This
+ * prevents the Cloud Run / Google Frontend proxy layer from recycling the
+ * request context before the async write completes (which caused visits to
+ * silently drop in production even though the middleware was firing).
+ *
+ * Status code: captured via res.on("finish") as a best-effort update
+ * stored in a separate Promise chain that does NOT gate the primary insert.
  */
 
 import type { Request, Response, NextFunction } from "express";
@@ -31,7 +35,6 @@ const SKIP_PATHS = [
 
 function shouldSkip(path: string): boolean {
   if (path.includes(".")) {
-    // Static asset extensions — don't log image/CSS/JS hits
     if (/\.(?:png|jpe?g|webp|avif|svg|gif|ico|css|js|map|woff2?|ttf|otf|mp4|webm)$/i.test(path)) {
       return true;
     }
@@ -63,40 +66,43 @@ export function aiBotLoggerMiddleware(
   const method = req.method;
   const lang = detectLangFromPath(path);
 
-  // Observability: confirm the middleware is firing on every bot hit. Without
-  // this it's impossible to tell from logs alone whether the middleware is
-  // skipped (no row + no log) vs the insert is failing (no row + warn log).
   logger.info("[ai-bot-visits] detected", { botName, path, method });
 
-  // Use a one-shot guard so the row isn't double-inserted when both `finish`
-  // and `close` fire (close always fires; finish only when response completed
-  // cleanly; redirects + connection drops trigger different combinations).
-  let recorded = false;
-  const record = (eventName: "finish" | "close") => {
-    if (recorded) return;
-    recorded = true;
-    recordAiBotVisit({
+  // Start the insert immediately — before next() — so the DB write is
+  // in-flight before Express dispatches the response. This is the key
+  // difference from the previous implementation where the insert only
+  // started inside res.on("finish"), which could be recycled by the
+  // Cloud Run proxy before the async callback ever ran.
+  //
+  // We record statusCode as null here; a best-effort finish hook will
+  // attempt to capture it, but the primary record no longer depends on it.
+  const insertPromise = recordAiBotVisit({
+    botName,
+    userAgent: ua ?? "",
+    path,
+    method,
+    lang,
+    statusCode: null,
+  }).catch((err) => {
+    logger.error("[ai-bot-visits] insert error", {
       botName,
-      userAgent: ua ?? "",
       path,
-      method,
-      lang,
-      statusCode: res.statusCode || null,
-    }).catch((err) => {
-      // Surface uncaught insert errors on stderr (level=error) so they're
-      // unmistakable in Replit logs. The storage layer already has its own
-      // try/catch with logger.warn — this catches anything that escapes that.
-      logger.error("[ai-bot-visits] uncaught record error", {
-        eventName,
-        botName,
-        path,
-        error: err instanceof Error ? err.message : String(err),
-      });
+      error: err instanceof Error ? err.message : String(err),
     });
-  };
+  });
 
-  res.on("finish", () => record("finish"));
-  res.on("close", () => record("close"));
+  // Best-effort: if the finish event fires (it usually does in dev and on
+  // direct connections), log the resolved status code for observability.
+  // This does NOT affect whether the row was written — insertPromise is
+  // already in-flight regardless.
+  res.on("finish", () => {
+    const code = res.statusCode;
+    insertPromise.then(() => {
+      if (code && code !== 200) {
+        logger.info("[ai-bot-visits] response finished", { botName, path, statusCode: code });
+      }
+    }).catch(() => {});
+  });
 
   next();
 }

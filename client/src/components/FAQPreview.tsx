@@ -14,7 +14,7 @@ export const FALLBACK_ITEMS = [
   {
     id: "rango-sin-licencia",
     question: "¿Hasta dónde puedo llegar con un barco sin licencia desde Blanes?",
-    answer: "Con un barco sin licencia (2 millas de costa, 5 nudos, 15 CV) llegas hasta la Playa de Fenals, en el extremo sur de Lloret de Mar. En el trayecto pasas por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. La Playa de Lloret (centro) y Cala Canyelles quedan al norte de Fenals, fuera del rango sin licencia — requieren barco con licencia PER o charter con patrón.",
+    answer: "Con un barco sin licencia (2 millas de costa, 5 nudos, 15 CV) llegas hasta la Playa de Fenals, en el extremo sur de Lloret de Mar. En el trayecto pasas por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. La Playa de Lloret (centro) y Cala Canyelles quedan al norte de Fenals, fuera del rango sin licencia: requieren barco con licencia PER o charter con patrón.",
   },
   {
     id: "tossa-sin-licencia",

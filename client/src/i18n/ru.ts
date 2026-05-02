@@ -1190,6 +1190,7 @@ export const ru: Translations = {
     checkWhatsApp: "Проверить наличие через WhatsApp",
     viewBoatDetails: "Посмотреть детали лодки",
     stepOf: "из",
+    adminAccess: "Доступ администратора",
   },
 
 

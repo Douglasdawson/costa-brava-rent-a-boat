@@ -203,7 +203,7 @@ function BoatCard({
                       key={i}
                       className={`w-3 h-3 ${
                         i < Math.round(ratingData.average)
-                          ? "text-yellow-400 fill-yellow-400"
+                          ? "text-amber-400 fill-amber-400"
                           : "text-muted-foreground/30"
                       }`}
                     />

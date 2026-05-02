@@ -2347,7 +2347,7 @@ export const fr: Translations = {
         routeBlanesTossa: 'Blanes - Tossa de Mar : 45 min, moyen, permis recommandé',
         routeBlanesTossaDesc: 'La route la plus spectaculaire de toute la côte. Vous arriverez à l\'iconique Vila Vella de Tossa de Mar, la forteresse médiévale surplombant la Méditerranée.',
         routeBlaneSantFeliu: 'Blanes - Sant Feliu de Guíxols : 1h30, avancé, permis requis',
-        routeBlaneSantFeliuDesc: 'Pour les navigateurs expérimentés avec permis. Cette route traverse les criques les plus sauvages entre Tossa de Mar et Sant Feliu de Guíxols.',
+        routeBlaneSantFeliuDesc: 'Cette route traverse les criques les plus sauvages entre Tossa de Mar et Sant Feliu de Guíxols. Navigation en haute mer nécessitant planification et attention aux conditions météorologiques.',
         routeBlaneCalaBrava: 'Blanes - Cala Brava : 15 min, facile, sans permis',
         routeBlaneCalaBravaDesc: 'L\'escapade rapide parfaite pour les familles et les débutants. Seulement 15 minutes du Port de Blanes à cette crique vierge aux eaux cristallines.',
         boatTypesTitle: 'Types de Bateaux pour la Costa Brava',

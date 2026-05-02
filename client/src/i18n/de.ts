@@ -2347,7 +2347,7 @@ export const de: Translations = {
         routeBlanesTossa: 'Blanes - Tossa de Mar: 45 Min., mittel, Fuehrerschein empfohlen',
         routeBlanesTossaDesc: 'Die spektakulaerste Route der gesamten Kueste. Sie erreichen die ikonische Vila Vella von Tossa de Mar.',
         routeBlaneSantFeliu: 'Blanes - Sant Feliu de Guixols: 1,5 Std., fortgeschritten, Fuehrerschein erforderlich',
-        routeBlaneSantFeliuDesc: 'Fuer erfahrene Segler mit Fuehrerschein. Navigation auf offener See, die Planung und Aufmerksamkeit auf Wetterbedingungen erfordert.',
+        routeBlaneSantFeliuDesc: 'Navigation auf offener See, die Planung und Aufmerksamkeit auf Wetterbedingungen erfordert.',
         routeBlaneCalaBrava: 'Blanes - Cala Brava: 15 Min., leicht, ohne Fuehrerschein',
         routeBlaneCalaBravaDesc: 'Der perfekte Kurzausflug fuer Familien und Anfaenger. Nur 15 Minuten vom Hafen von Blanes zu dieser unberuehrten Bucht.',
         boatTypesTitle: 'Bootstypen fuer die Costa Brava',

@@ -235,11 +235,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquilar barco costa brava, barco sin licencia costa brava, alquiler barco sin licencia costa brava, excursion barco costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
-      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license",
+      title: `Boat Rental Costa Brava | No Licence from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No licence required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no licence",
       ogTitle: "Boat Rental Costa Brava — From Blanes Port",
-      ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour."
+      ogDescription: "Explore Spain's most beautiful coastline by boat. No licence needed. From 70\u20ac/hour."
     },
     activitySnorkel: {
       title: "Excursion Snorkel en Barco Blanes | Mejores Calas Costa Brava",
@@ -270,11 +270,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Alquila un barco para pescar en Blanes. Barcos con licencia para llegar a las mejores zonas de pesca."
     },
     boatRentalBlanes: {
-      title: "Boat Rental in Blanes | Costa Brava, Spain - No License from 70\u20ac/h",
-      description: "Rent a boat in Blanes, Costa Brava. No license needed from 70\u20ac/h, fuel included. 8 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
-      keywords: "boat rental blanes, rent boat blanes, blanes boat hire, costa brava boat rental, boat rental spain no license",
+      title: "Boat Rental in Blanes | Costa Brava, Spain - No Licence from 70\u20ac/h",
+      description: "Rent a boat in Blanes, Costa Brava. No licence needed from 70\u20ac/h, fuel included. 8 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
+      keywords: "boat rental blanes, rent boat blanes, blanes boat hire, costa brava boat rental, boat rental spain no licence",
       ogTitle: "Boat Rental in Blanes | Costa Brava, Spain",
-      ogDescription: "Rent boats in Blanes, gateway to Costa Brava. No license needed. Fuel included. 8 boats, 4-12 people. Book your adventure."
+      ogDescription: "Rent boats in Blanes, gateway to Costa Brava. No licence needed. Fuel included. 8 boats, 4-12 people. Book your adventure."
     },
     notFound: {
       title: "Página no encontrada | Costa Brava Rent a Boat",
@@ -284,23 +284,23 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   en: {
     home: {
-      title: "Costa Brava Boat Rental | License-Free from \u20ac70/h | Blanes Port",
-      description: "Rent a boat on the Costa Brava from Blanes port. License-free from \u20ac70/h, fuel included, up to 7 people. 15 min training and go. 8 boats \u00b7 4.8\u2605 Google.",
-      keywords: "costa brava boat rental, boat rental costa brava, rent boat costa brava, boat hire costa brava, costa brava boat hire no license, rent a boat costa brava, license free boat costa brava, boat rental blanes",
-      ogTitle: `Costa Brava Boat Rental ${SEASON_YEAR} | License-Free from \u20ac70/h`,
-      ogDescription: "Rent boats on the Costa Brava from Blanes port. No license needed, fuel included, from \u20ac70/h. 8 boats available. 4.8\u2605 Google."
+      title: "Costa Brava Boat Rental | Licence-Free from \u20ac70/h | Blanes Port",
+      description: "Rent a boat on the Costa Brava from Blanes port. Licence-free from \u20ac70/h, fuel included, up to 7 people. 15 min training and go. 8 boats \u00b7 4.8\u2605 Google.",
+      keywords: "costa brava boat rental, boat rental costa brava, rent boat costa brava, boat hire costa brava, costa brava boat hire no licence, rent a boat costa brava, licence free boat costa brava, boat rental blanes",
+      ogTitle: `Costa Brava Boat Rental ${SEASON_YEAR} | Licence-Free from \u20ac70/h`,
+      ogDescription: "Rent boats on the Costa Brava from Blanes port. No licence needed, fuel included, from \u20ac70/h. 8 boats available. 4.8\u2605 Google."
     },
     booking: {
       title: "Book Your Boat in Blanes | Costa Brava",
-      description: "Book your boat in Blanes in minutes. With or without license, from 1 hour. Instant WhatsApp response. Start your adventure!",
+      description: "Book your boat in Blanes in minutes. With or without licence, from 1 hour. Instant WhatsApp response. Start your adventure!",
       keywords: "book boat blanes, boat booking form, boat reservation costa brava, online boat rental"
     },
     faq: {
       title: "Boat Rental Blanes FAQ | Frequently Asked Questions",
-      description: "Do I need a license? What's included? How much does it cost? All your boat rental questions answered. Clear answers!",
+      description: "Do I need a licence? What's included? How much does it cost? All your boat rental questions answered. Clear answers!",
       keywords: "faq boat rental, frequently asked questions boats, boat rental costa brava info, blanes boats information",
       ogTitle: "Blanes Boat Rental FAQ | Your Questions Answered Costa Brava",
-      ogDescription: "Need a license? What's included? Prices? All answers about renting boats in Blanes. Clear and complete information!"
+      ogDescription: "Need a licence? What's included? Prices? All answers about renting boats in Blanes. Clear and complete information!"
     },
     locationBlanes: {
       title: `Boat Rental Blanes Port | Mooring, Sa Palomera Cove & Routes ${SEASON_YEAR}`,
@@ -311,52 +311,52 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationLloret: {
       title: `Boat Rental Lloret de Mar | Cala Banys & Santa Cristina from Blanes ${SEASON_YEAR}`,
-      description: "Sail from Blanes to Lloret de Mar in 25 min. Discover Cala Banys, Santa Cristina and Sa Boadella coves by boat. License-free from 70\u20ac/h, fuel included.",
-      keywords: "boat rental lloret de mar, cala banys lloret boat, santa cristina lloret boat, sa boadella boat, boat trip lloret, lloret no license boat, lloret by boat",
+      description: "Sail from Blanes to Lloret de Mar in 25 min. Discover Cala Banys, Santa Cristina and Sa Boadella coves by boat. Licence-free from 70\u20ac/h, fuel included.",
+      keywords: "boat rental lloret de mar, cala banys lloret boat, santa cristina lloret boat, sa boadella boat, boat trip lloret, lloret no licence boat, lloret by boat",
       ogTitle: "Boat Rental Lloret de Mar | Cala Banys & Santa Cristina by Boat",
-      ogDescription: "Lloret by boat from Blanes. Cala Banys, Santa Cristina and Sa Boadella 25 min away. No license from 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Lloret by boat from Blanes. Cala Banys, Santa Cristina and Sa Boadella 25 min away. No licence from 70\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Boat Rental Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig from Blanes ${SEASON_YEAR}`,
-      description: "Sail to Tossa's Vila Vella in 30-45 min from Blanes. With Basic Boating License (LNB) from 160\u20ac (2h pack) or Private Skippered Charter 4h from 380\u20ac. Fuel apart.",
-      keywords: "boat rental tossa de mar, vila vella tossa boat, cala llevado tossa boat, mar d'en roig boat, giverola tossa boat, tossa excursion from blanes, tossa no license boat",
+      description: "Sail to Tossa's Vila Vella in 30-45 min from Blanes. With Basic Boating Licence (LNB) from 160\u20ac (2h pack) or Private Skippered Charter 4h from 380\u20ac. Fuel apart.",
+      keywords: "boat rental tossa de mar, vila vella tossa boat, cala llevado tossa boat, mar d'en roig boat, giverola tossa boat, tossa excursion from blanes, tossa no licence boat",
       ogTitle: "Boat Rental Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa by boat from Blanes. Vila Vella, Mar d'en Roig and Cala Llev\u00e1d\u00f3 1h away. No license from 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Tossa by boat from Blanes. Vila Vella, Mar d'en Roig and Cala Llev\u00e1d\u00f3 1h away. No licence from 70\u20ac/h. 4.8\u2605."
     },
     locationMalgrat: {
-      title: "Boat Rental Malgrat de Mar | Blanes Port 10 min | No License 70\u20ac/h",
-      description: "Staying in Malgrat de Mar? Blanes Port is only 10 min by car. Rent a license-free boat from 70\u20ac/h with fuel included. Sail to Lloret or Tossa.",
-      keywords: "boat rental malgrat de mar, malgrat boat no license, rent boat malgrat, boat from malgrat, boat trip malgrat, maresme coast malgrat boat",
+      title: "Boat Rental Malgrat de Mar | Blanes Port 10 min | No Licence 70\u20ac/h",
+      description: "Staying in Malgrat de Mar? Blanes Port is only 10 min by car. Rent a licence-free boat from 70\u20ac/h with fuel included. Sail to Lloret or Tossa.",
+      keywords: "boat rental malgrat de mar, malgrat boat no licence, rent boat malgrat, boat from malgrat, boat trip malgrat, maresme coast malgrat boat",
       ogTitle: "Boat Rental Malgrat de Mar | Blanes Port 10 min",
-      ogDescription: "From Malgrat de Mar to Blanes Port in 10 min. License-free boats from 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "From Malgrat de Mar to Blanes Port in 10 min. Licence-free boats from 70\u20ac/h. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "Boat Rental Santa Susanna | Blanes Port 15 min | No License 70\u20ac/h",
-      description: "Tourists staying in Santa Susanna: Blanes Port is 15 min away by car or R1 train. Rent a license-free boat from 70\u20ac/h. Sail to Blanes, Lloret or Tossa.",
-      keywords: "boat rental santa susanna, santa susanna boat no license, rent boat santa susanna, boat from santa susanna, boat trip santa susanna, R1 train blanes boat",
+      title: "Boat Rental Santa Susanna | Blanes Port 15 min | No Licence 70\u20ac/h",
+      description: "Tourists staying in Santa Susanna: Blanes Port is 15 min away by car or R1 train. Rent a licence-free boat from 70\u20ac/h. Sail to Blanes, Lloret or Tossa.",
+      keywords: "boat rental santa susanna, santa susanna boat no licence, rent boat santa susanna, boat from santa susanna, boat trip santa susanna, R1 train blanes boat",
       ogTitle: "Boat Rental Santa Susanna | 15 min to Blanes Port",
-      ogDescription: "From Santa Susanna to Blanes Port in 15 min. No license boat from 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "From Santa Susanna to Blanes Port in 15 min. No licence boat from 70\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
       title: "Boat Rental Calella | Blanes Port 20 min | Maresme-Brava Coast 70\u20ac/h",
-      description: "Staying in Calella (Maresme)? Blanes Port is 20 min away. Rent a license-free boat from 70\u20ac/h. Sail north to Tossa or south to Tordera Delta.",
-      keywords: "boat rental calella, calella maresme boat, calella no license boat, boat trip calella, boat from calella, maresme coast calella boat",
+      description: "Staying in Calella (Maresme)? Blanes Port is 20 min away. Rent a licence-free boat from 70\u20ac/h. Sail north to Tossa or south to Tordera Delta.",
+      keywords: "boat rental calella, calella maresme boat, calella no licence boat, boat trip calella, boat from calella, maresme coast calella boat",
       ogTitle: "Boat Rental Calella | 20 min to Blanes Port",
-      ogDescription: "From Calella to Blanes Port in 20 min. No license boat from 70\u20ac/h. Discover Costa Brava. 4.8\u2605."
+      ogDescription: "From Calella to Blanes Port in 20 min. No licence boat from 70\u20ac/h. Discover Costa Brava. 4.8\u2605."
     },
     categoryLicenseFree: {
-      title: "No License Boat Rental Costa Brava | 5 Boats from 70\u20ac/h Blanes",
-      description: "5 no-license boats in Blanes from 70\u20ac/h. Fuel included, 4-7 people. No experience needed, 15 min training. 4.8\u2605 Google (300+ reviews). Book online.",
-      keywords: "license free boats blanes, boats without license, no license boat rental costa brava, 15hp boats blanes",
-      ogTitle: "No License Boats in Blanes | Easy & Safe Costa Brava",
-      ogDescription: "Rent boats without license in Blanes. Up to 15 HP, 4-7 people. No qualification needed. Easy to drive. Book your adventure!"
+      title: "No Licence Boat Rental Costa Brava | 5 Boats from 70\u20ac/h Blanes",
+      description: "5 no-licence boats in Blanes from 70\u20ac/h. Fuel included, 4-7 people. No experience needed, 15 min training. 4.8\u2605 Google (300+ reviews). Book online.",
+      keywords: "licence free boats blanes, boats without licence, no licence boat rental costa brava, 15hp boats blanes",
+      ogTitle: "No Licence Boats in Blanes | Easy & Safe Costa Brava",
+      ogDescription: "Rent boats without licence in Blanes. Up to 15 HP, 4-7 people. No qualification needed. Easy to drive. Book your adventure!"
     },
     categoryLicensed: {
       title: "Licensed Boat Rental Costa Brava | Blanes from 160\u20ac/2h",
-      description: "Sail to Lloret (15 min) and Tossa (30 min) from Blanes. 3 boats 80-115HP. Basic License or with skipper. 4.8\u2605 Google. Book online.",
-      keywords: "licensed boats blanes, boats with license, basic license boat rental, powerful boats costa brava",
+      description: "Sail to Lloret (15 min) and Tossa (30 min) from Blanes. 3 boats 80-115HP. Basic Licence or with skipper. 4.8\u2605 Google. Book online.",
+      keywords: "licensed boats blanes, boats with licence, basic licence boat rental, powerful boats costa brava",
       ogTitle: "Licensed Boats in Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 powerful boats 80-115HP in Blanes. With your Basic License or with skipper. Book online."
+      ogDescription: "3 powerful boats 80-115HP in Blanes. With your Basic Licence or with skipper. Book online."
     },
     testimonios: {
       title: "Customer Reviews Boat Rental Blanes",
@@ -428,48 +428,48 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Boat Rental Prices Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 160\u20ac/2h. Fuel included. Low, mid and high season rates.",
+      description: "Check boat rental prices in Blanes. No licence from 70\u20ac/h. Licensed from 160\u20ac/2h. Fuel included. Low, mid and high season rates.",
       keywords: "boat rental prices costa brava, how much boat rental blanes, boat hire rates blanes"
     },
     locationBarcelona: {
       title: `Boat Rental Barcelona | Costa Brava Day Trip 70 min Drive | Blanes ${SEASON_YEAR}`,
-      description: "Perfect day trip from Barcelona: Blanes Port is 70 min via AP-7. Rent a license-free boat from 70\u20ac/h with fuel included. Crystal clear water, no traffic.",
-      keywords: "boat rental barcelona, boat near barcelona, barcelona day trip boat, costa brava from barcelona car, boats no license barcelona, barcelona costa brava boat",
+      description: "Perfect day trip from Barcelona: Blanes Port is 70 min via AP-7. Rent a licence-free boat from 70\u20ac/h with fuel included. Crystal clear water, no traffic.",
+      keywords: "boat rental barcelona, boat near barcelona, barcelona day trip boat, costa brava from barcelona car, boats no licence barcelona, barcelona costa brava boat",
       ogTitle: "Boat Rental Barcelona | Costa Brava 70 min away",
-      ogDescription: "Costa Brava 70 min from Barcelona via AP-7. No license boats from 70\u20ac/h with fuel included. No traffic. 4.8\u2605."
+      ogDescription: "Costa Brava 70 min from Barcelona via AP-7. No licence boats from 70\u20ac/h with fuel included. No traffic. 4.8\u2605."
     },
     locationCostaBrava: {
-      title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Rent boats on the Costa Brava from Blanes Port. 8 no-license boats from 70\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online.",
-      keywords: "boat rental costa brava, rent a boat costa brava, costa brava boat rental, no license boat costa brava, boat hire costa brava, costa brava boat trip"
+      title: `Boat Rental Costa Brava ${SEASON_YEAR} | No Licence from 70\u20ac/h | Blanes, Lloret, Tossa`,
+      description: "Rent boats on the Costa Brava from Blanes Port. 8 no-licence boats from 70\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online.",
+      keywords: "boat rental costa brava, rent a boat costa brava, costa brava boat rental, no licence boat costa brava, boat hire costa brava, costa brava boat trip"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 8 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
-      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license, costa brava boat excursion",
+      title: `Boat Rental Costa Brava | No Licence from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No licence required. 8 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no licence, costa brava boat excursion",
       ogTitle: "Boat Rental Costa Brava — From Blanes Port",
-      ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour."
+      ogDescription: "Explore Spain's most beautiful coastline by boat. No licence needed. From 70\u20ac/hour."
     },
     activitySnorkel: {
       title: "Snorkeling Boat Trip Blanes | Best Coves Costa Brava",
       description: "Snorkeling boat excursion from Blanes. Discover the best coves for snorkeling in Costa Brava. Equipment rental from 7.50 EUR. Book online.",
       keywords: "snorkeling boat trip blanes, snorkel costa brava, boat snorkeling excursion, best snorkel coves blanes",
       ogTitle: "Snorkeling Boat Trip from Blanes | Costa Brava",
-      ogDescription: "Discover the best snorkeling coves from Blanes. No license boats, equipment available. Book your underwater adventure."
+      ogDescription: "Discover the best snorkeling coves from Blanes. No licence boats, equipment available. Book your underwater adventure."
     },
     activityFamilies: {
       title: "Family Boat Rental Costa Brava | From 70 EUR/h Blanes",
-      description: "Family boat rental in Costa Brava from 70 EUR/h. No license needed, fuel included, children life jackets. Safe coves for kids. Book online.",
-      keywords: "family boat rental costa brava, boat with kids blanes, family boat trip, no license family boat",
+      description: "Family boat rental in Costa Brava from 70 EUR/h. No licence needed, fuel included, children life jackets. Safe coves for kids. Book online.",
+      keywords: "family boat rental costa brava, boat with kids blanes, family boat trip, no licence family boat",
       ogTitle: "Family Boat Rental in Costa Brava | From Blanes",
-      ogDescription: "Safe boats for the whole family. No license needed, children life jackets included. From 70 EUR/h with fuel."
+      ogDescription: "Safe boats for the whole family. No licence needed, children life jackets included. From 70 EUR/h with fuel."
     },
     activitySunset: {
       title: "Sunset Boat Trip Blanes | Evening Boat Ride Costa Brava",
-      description: "Experience a magical sunset boat trip from Blanes, Costa Brava. No license needed, from 70 EUR/h. Perfect for couples and groups. Book your evening boat ride.",
+      description: "Experience a magical sunset boat trip from Blanes, Costa Brava. No licence needed, from 70 EUR/h. Perfect for couples and groups. Book your evening boat ride.",
       keywords: "sunset boat trip blanes, evening boat ride costa brava, sunset cruise blanes, romantic boat trip",
       ogTitle: "Sunset Boat Trip from Blanes | Costa Brava",
-      ogDescription: "Magical sunset views from the sea. No license needed. Perfect evening experience from Blanes port."
+      ogDescription: "Magical sunset views from the sea. No licence needed. Perfect evening experience from Blanes port."
     },
     activityFishing: {
       title: "Fishing Boat Rental Blanes | Boat Fishing Costa Brava",
@@ -479,11 +479,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Rent a boat for fishing in Blanes. Licensed boats to reach the best fishing grounds in Costa Brava."
     },
     boatRentalBlanes: {
-      title: "Boat Rental in Blanes | Costa Brava, Spain - No License from 70\u20ac/h",
-      description: "Rent a boat in Blanes, Costa Brava. No license needed from 70\u20ac/h, fuel included. 8 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
-      keywords: "boat rental blanes, rent boat blanes, blanes boat hire, costa brava boat rental, boat rental spain no license",
+      title: "Boat Rental in Blanes | Costa Brava, Spain - No Licence from 70\u20ac/h",
+      description: "Rent a boat in Blanes, Costa Brava. No licence needed from 70\u20ac/h, fuel included. 8 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
+      keywords: "boat rental blanes, rent boat blanes, blanes boat hire, costa brava boat rental, boat rental spain no licence",
       ogTitle: "Boat Rental in Blanes | Costa Brava, Spain",
-      ogDescription: "Rent boats in Blanes, gateway to Costa Brava. No license needed. Fuel included. 8 boats, 4-12 people. Book your adventure."
+      ogDescription: "Rent boats in Blanes, gateway to Costa Brava. No licence needed. Fuel included. 8 boats, 4-12 people. Book your adventure."
     },
     notFound: {
       title: "Page not found | Costa Brava Rent a Boat",
@@ -637,9 +637,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "lloguer barques costa brava, llogar barques costa brava, barques sense llic\u00e8ncia costa brava, excursi\u00f3 barques costa brava, lloguer embarcacions costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
-      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
+      title: `Boat Rental Costa Brava | No Licence from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No licence required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no licence"
     }
   },
   fr: {
@@ -705,7 +705,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     categoryLicenseFree: {
       title: "Bateaux Sans Permis Costa Brava | 5 Bateaux des 70\u20ac/h Blanes",
       description: "5 bateaux sans permis a Blanes des 70\u20ac/h. Carburant inclus, 4-7 personnes. Aucune experience, formation 15 min. 4.8\u2605 Google (300+ avis). Reservez en ligne.",
-      keywords: "bateaux sans permis blanes, location bateaux sans license, embarcations sans permis costa brava, bateaux 15cv blanes"
+      keywords: "bateaux sans permis blanes, location bateaux sans licence, embarcations sans permis costa brava, bateaux 15cv blanes"
     },
     categoryLicensed: {
       title: "Location Bateaux Avec Permis Costa Brava | Blanes d\u00e8s 160\u20ac/2h",
@@ -784,9 +784,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "location bateaux costa brava, louer bateau costa brava, bateau sans permis costa brava, excursion bateau costa brava, location embarcations costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
-      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
+      title: `Boat Rental Costa Brava | No Licence from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No licence required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no licence"
     }
   },
   de: {
@@ -931,9 +931,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "bootsverleih costa brava, boot mieten costa brava, boote ohne f\u00fchrerschein costa brava, bootsausflug costa brava, bootscharter costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
-      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
+      title: `Boat Rental Costa Brava | No Licence from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No licence required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no licence"
     }
   },
   nl: {
@@ -1078,9 +1078,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "bootverhuur costa brava, boot huren costa brava, boten zonder vaarbewijs costa brava, boottocht costa brava, bootexcursie costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
-      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
+      title: `Boat Rental Costa Brava | No Licence from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No licence required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no licence"
     }
   },
   it: {
@@ -1225,9 +1225,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "noleggio barche costa brava, affitto barche costa brava, barche senza patente costa brava, escursione barca costa brava, noleggio imbarcazioni costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
-      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
+      title: `Boat Rental Costa Brava | No Licence from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No licence required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no licence"
     }
   },
   ru: {
@@ -1372,9 +1372,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "аренда лодок коста брава, арендовать лодку коста брава, лодки без лицензии коста брава, экскурсия на лодке коста брава, прокат лодок коста брава"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
-      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
+      title: `Boat Rental Costa Brava | No Licence from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No licence required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no licence"
     }
   }
 };
@@ -1599,7 +1599,7 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "Boat Rental",
       "Boat Navigation",
       "Maritime Safety",
-      "License-Free Boating",
+      "Licence-Free Boating",
       "Lloret de Mar",
       "Tossa de Mar",
       "Mediterranean Sea",
@@ -1607,7 +1607,7 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "Costa Brava Coves",
       "Water Sports",
       "Snorkeling Costa Brava",
-      "Boat Rental Without License Spain",
+      "Boat Rental Without Licence Spain",
       "Puerto de Blanes",
       "Cala Brava",
       "Cala Sant Francesc",
@@ -2029,9 +2029,9 @@ export function generateHowToBookingSchema(language: Language = 'es') {
       { name: "Navega por la Costa Brava", text: "Explora calas, playas y destinos como Lloret de Mar y Tossa de Mar. Combustible, seguro y equipo de seguridad incluidos." }
     ],
     en: [
-      { name: "Choose your boat", text: "Select from our license-free boats (from 70 EUR/hour) or licensed boats (from 160 EUR/2 hours) on our website or via WhatsApp." },
+      { name: "Choose your boat", text: "Select from our licence-free boats (from 70 EUR/hour) or licensed boats (from 160 EUR/2 hours) on our website or via WhatsApp." },
       { name: "Select date and time", text: "Choose your date, start time, and rental duration. Available April to October, 09:00 to 20:00." },
-      { name: "Confirm your booking", text: "Book via WhatsApp (+34 611 500 372) or through the website. No deposit required for license-free boats." },
+      { name: "Confirm your booking", text: "Book via WhatsApp (+34 611 500 372) or through the website. No deposit required for licence-free boats." },
       { name: "Receive your briefing", text: "Upon arrival at Puerto de Blanes, our team will give you a 15-minute training on boat handling and safety rules." },
       { name: "Explore the Costa Brava", text: "Discover coves, beaches, and destinations like Lloret de Mar and Tossa de Mar. Fuel, insurance, and safety equipment included." }
     ]
@@ -2043,7 +2043,7 @@ export function generateHowToBookingSchema(language: Language = 'es') {
     "@type": "HowTo",
     "name": language === 'en' ? "How to Rent a Boat in Blanes, Costa Brava" : "Como alquilar un barco en Blanes, Costa Brava",
     "description": language === 'en'
-      ? "Step-by-step guide to renting a boat in Blanes without a license. Book in 5 minutes."
+      ? "Step-by-step guide to renting a boat in Blanes without a licence. Book in 5 minutes."
       : "Guia paso a paso para alquilar un barco en Blanes sin licencia. Reserva en 5 minutos.",
     "totalTime": "PT5M",
     "estimatedCost": {

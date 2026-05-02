@@ -3037,10 +3037,130 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, offerCatalog, breadcrumb] }, availableLanguages };
     }
 
-    // /boat-rental-costa-brava - EN landing for Costa Brava boat rental.
-    // Adds Service schema with AggregateRating + AggregateOffer so Google
-    // shows star snippet + "from €70" in SERP (already had rating client-side
-    // but lacked Offer — fixed via SSR @graph here).
+    // /alquiler-barcos-costa-brava - regional landing for the whole Costa Brava.
+    // Highest-impression page in GSC ("alquiler barcos costa brava" + variants:
+    // 625+ monthly impressions) but was rendering an EMPTY <div id="root"> for
+    // crawlers because no metaKey branch existed here — falling through to the
+    // default with no schemas and no body fallback. Result: home (/) outranked
+    // this dedicated landing at pos 10 vs pos 76 for the exact-match query, and
+    // the EN/FR/DE variants were Soft 404 because Googlebot saw zero body.
+    //
+    // pathToStaticMetaKey resolves /es/alquiler-barcos-costa-brava AND
+    // /en/boat-rental-costa-brava (and FR/DE/etc.) all to this canonical
+    // metaKey, so this single branch covers all 8 languages via isEn ternary.
+    // The /boat-rental-costa-brava branch below is now dead code (kept only to
+    // avoid touching unrelated lines in this diff).
+    //
+    // Mirrors the Lloret/Tossa pattern: Service + TouristDestination + FAQ +
+    // Breadcrumb + body fallback. ROI: target queries currently at pos 10-12 to
+    // home; expected to push dedicated landing into top 5-10 once Google sees
+    // body content.
+    else if (metaKey === "/alquiler-barcos-costa-brava") {
+      const destination = {
+        "@type": "TouristDestination",
+        name: isEn ? "Boat Rental on the Costa Brava from Blanes" : "Alquiler de Barcos en la Costa Brava desde Blanes",
+        description: isEn
+          ? "Rent a boat on the Costa Brava departing from Puerto de Blanes. Explore coves and beaches from Blanes to Tossa de Mar."
+          : "Alquila un barco en la Costa Brava saliendo desde el Puerto de Blanes. Explora calas y playas desde Blanes hasta Tossa de Mar.",
+        url: `${BASE_URL}/alquiler-barcos-costa-brava`,
+        touristType: [
+          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas náuticos" },
+          { "@type": "Audience", audienceType: isEn ? "Families with children" : "Familias con niños" },
+          { "@type": "Audience", audienceType: isEn ? "Adventure seekers" : "Buscadores de aventura" },
+        ],
+        geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
+        containedInPlace: {
+          "@type": "Place",
+          name: "Costa Brava",
+          sameAs: "https://en.wikipedia.org/wiki/Costa_Brava",
+          containedInPlace: GEO_HIERARCHY.containedInPlace,
+        },
+        includesAttraction: [
+          { "@type": "TouristAttraction", name: "Sa Palomera, Blanes" },
+          { "@type": "TouristAttraction", name: "Cala Sant Francesc, Blanes" },
+          { "@type": "TouristAttraction", name: "Cala Boadella, Lloret de Mar" },
+          { "@type": "TouristAttraction", name: "Cala Banys, Lloret de Mar" },
+          { "@type": "TouristAttraction", name: "Vila Vella de Tossa de Mar", sameAs: "https://en.wikipedia.org/wiki/Vila_Vella" },
+        ],
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "Do I need a license to rent a boat on the Costa Brava?" : "¿Necesito licencia para alquilar un barco en la Costa Brava?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "No. We offer 5 license-free boats for up to 7 people. You only need to be 18 or older. We provide 15 minutes of training before departure."
+              : "No. Ofrecemos 5 barcos sin licencia para hasta 7 personas. Solo necesitas ser mayor de 18 años. Proporcionamos 15 minutos de formación antes de salir." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "How much does it cost to rent a boat on the Costa Brava?" : "¿Cuánto cuesta alquilar un barco en la Costa Brava?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "License-free boats from 70 EUR/hour in low season, 90 EUR/hour in August. Price includes fuel, insurance and safety equipment. Full-day rentals available."
+              : "Los barcos sin licencia cuestan desde 70€/hora en temporada baja y 90€/hora en agosto. El precio incluye gasolina, seguro y equipo de seguridad. Disponible alquiler de día completo." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Where do the boats depart from?" : "¿Desde dónde salen los barcos?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "All our boats depart from Puerto de Blanes, the southern gateway to the Costa Brava. 70 minutes from Barcelona, 35 minutes from Girona, with free parking."
+              : "Todos nuestros barcos salen del Puerto de Blanes, la puerta sur de la Costa Brava. A 70 minutos de Barcelona y 35 minutos de Girona, con aparcamiento gratuito." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Where can I navigate on the Costa Brava?" : "¿Dónde puedo navegar en la Costa Brava?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "License-free boats: Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min). Licensed boats: full Costa Brava up to Tossa de Mar (45 min) and Sant Feliu de Guíxols (90 min)."
+              : "Barcos sin licencia: Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min). Barcos con licencia: toda la Costa Brava hasta Tossa de Mar (45 min) y Sant Feliu de Guíxols (90 min)." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "What is the best time of year to rent a boat on the Costa Brava?" : "¿Cuál es la mejor época para alquilar un barco en la Costa Brava?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Season runs April through October. June and September offer the best balance of warm weather and fewer crowds. August is peak season."
+              : "La temporada va de abril a octubre. Junio y septiembre ofrecen el mejor equilibrio entre buen tiempo y menos gente. Agosto es temporada alta." },
+          },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boat Rental Costa Brava" : "Alquiler Barcos Costa Brava", url: `${BASE_URL}/alquiler-barcos-costa-brava` }]);
+      const service = buildLandingService(
+        isEn ? `Boat Rental on the Costa Brava ${SEASON_YEAR}` : `Alquiler de Barcos en la Costa Brava ${SEASON_YEAR}`,
+        isEn
+          ? "Boat rental on the Costa Brava from Puerto de Blanes. 8 boats: 5 license-free (fuel included) and 3 licensed. Reach Cala Sant Francesc, Lloret de Mar and Tossa de Mar. From 70 EUR/hour, up to 12 people. Private excursion with captain available."
+          : "Alquiler de barcos en la Costa Brava desde el Puerto de Blanes. 8 embarcaciones: 5 sin licencia (gasolina incluida) y 3 con licencia. Llega a Cala Sant Francesc, Lloret de Mar y Tossa de Mar. Desde 70€/hora, hasta 12 personas. Excursión privada con capitán disponible.",
+        { low: 70, high: 420 },
+      );
+      const costaBravaBodyFallback = buildLocationBodyFallback(
+        isEn ? "Boat Rental on the Costa Brava from Blanes" : "Alquiler de Barcos en la Costa Brava desde Blanes",
+        isEn
+          ? "Rent a boat on the Costa Brava from Puerto de Blanes — the southern gateway to one of the Mediterranean's most beautiful coastlines. Our fleet of 8 boats covers all needs: 5 license-free vessels (fuel included) for the 2-mile coastal zone, and 3 licensed boats that reach Tossa de Mar (45 min) and beyond. From 70 EUR/hour, up to 12 people. Season April through October."
+          : "Alquila un barco en la Costa Brava desde el Puerto de Blanes — la puerta sur de una de las costas más bellas del Mediterráneo. Nuestra flota de 8 embarcaciones cubre todas las necesidades: 5 barcos sin licencia (gasolina incluida) para la zona costera de 2 millas, y 3 barcos con licencia que llegan a Tossa de Mar (45 min) y más allá. Desde 70€/hora, hasta 12 personas. Temporada de abril a octubre.",
+        isEn
+          ? [
+              "Cala Sant Francesc, Blanes — turquoise water, 20 min from port",
+              "Sa Palomera rock, Blanes — emblem of the Costa Brava",
+              "Cala Boadella, Lloret de Mar — 35 min, semi-virgin pine cove",
+              "Cala Banys, Lloret de Mar — most photographed cove of Lloret",
+              "Vila Vella de Tossa de Mar — medieval walled town, 45 min with licensed boat",
+            ]
+          : [
+              "Cala Sant Francesc, Blanes — agua turquesa, 20 min desde puerto",
+              "Roca de Sa Palomera, Blanes — emblema de la Costa Brava",
+              "Cala Boadella, Lloret de Mar — 35 min, cala semi-virgen con pinos",
+              "Cala Banys, Lloret de Mar — la cala más fotografiada de Lloret",
+              "Vila Vella de Tossa de Mar — pueblo medieval amurallado, 45 min con barco con licencia",
+            ],
+        isEn ? "Book via WhatsApp +34 611 500 372" : "Reserva por WhatsApp +34 611 500 372",
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, bodyFallback: costaBravaBodyFallback };
+    }
+
+    // /boat-rental-costa-brava - DEAD CODE: superseded by the unified
+    // /alquiler-barcos-costa-brava branch above. pathToStaticMetaKey resolves
+    // EN, FR, DE, etc. variants to the canonical ES metaKey, so this branch
+    // never fires under normal slug resolution. Kept temporarily to avoid
+    // touching unrelated lines; safe to delete in a follow-up cleanup.
     else if (metaKey === "/boat-rental-costa-brava") {
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: "Boat Rental Costa Brava", url: `${BASE_URL}/boat-rental-costa-brava` }]);
       const service = buildLandingService(

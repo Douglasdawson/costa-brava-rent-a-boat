@@ -193,7 +193,7 @@ export function registerAdminMarketingRoutes(app: Express) {
       return res.status(503).json({ message: "ANTHROPIC_API_KEY not configured" });
     }
 
-    const { limit = 1, model = "claude-sonnet-4-20250514", slug } = req.body ?? {};
+    const { limit = 1, model = "claude-haiku-4-5-20251001", slug } = req.body ?? {};
     const safeLimit = Math.max(1, Math.min(10, Number(limit) || 1));
 
     try {

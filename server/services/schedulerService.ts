@@ -349,12 +349,11 @@ export function startScheduler(): void {
     }
   }));
 
-  // Blog translation backfill: every 20 min, processes up to 3 posts that
-  // have missing en/fr/de/nl translations. Idempotent — once all posts are
-  // fully translated this becomes a no-op. Cost: ~$0.03-0.05 per post per
-  // missing lang. Estimated total to backfill ~45 existing posts: ~$2-3
-  // (eventually completes in ~5 hours of cycles).
-  scheduledTasks.push(cron.schedule("*/20 * * * *", async () => {
+  // Blog translation backfill: cada 6h, procesa hasta 3 posts que tengan
+  // en/fr/de/nl sin traducir. Idempotente — cuando todo está traducido es no-op.
+  // 2026-05: bajado de */20min a */6h porque un bug silenciaba errores y el
+  // cron quemaba ~$30/día sin persistir nada. Ver REVIEW.md.
+  scheduledTasks.push(cron.schedule("0 */6 * * *", async () => {
     try {
       const summary = await runBlogTranslationBackfill({ limit: 3 });
       if (summary.processed > 0 || summary.failed > 0) {

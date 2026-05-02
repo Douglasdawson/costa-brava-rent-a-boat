@@ -481,7 +481,10 @@ export async function runBlogTranslationBackfill(
   totalTokensOut: number;
 }> {
   const limit = Math.max(1, Math.min(20, options.limit ?? 3));
-  const model = options.model ?? "claude-sonnet-4-20250514";
+  // Haiku 4.5 traduces igual de bien que Sonnet para este uso y cuesta ~12× menos
+  // ($1/M input + $5/M output vs $3 + $15). Sonnet 4 viejo se quedaba a veces
+  // truncado en posts largos y dejaba JSON inválido — ver historial 2026-05.
+  const model = options.model ?? "claude-haiku-4-5-20251001";
 
   if (!process.env.ANTHROPIC_API_KEY) {
     logger.info("[BlogBackfill] ANTHROPIC_API_KEY not set, skipping");
@@ -564,7 +567,17 @@ export async function runBlogTranslationBackfill(
     } catch (err: unknown) {
       failed++;
       const msg = err instanceof Error ? err.message : "Unknown error";
-      logger.error(`[BlogBackfill] Failed for ${post.slug}: ${msg}`);
+      const stack = err instanceof Error ? err.stack : undefined;
+      const errType = err instanceof Error ? err.constructor.name : typeof err;
+      logger.error(`[BlogBackfill] Failed for ${post.slug}: ${msg}`, {
+        slug: post.slug,
+        postId: post.id,
+        contentChars: post.content?.length ?? 0,
+        missing,
+        model,
+        errType,
+        stack,
+      });
     }
   }
 
@@ -640,7 +653,9 @@ Respond with ONLY a JSON object (no markdown, no backticks):
 
         const response = await client.messages.create({
           model,
-          max_tokens: 4096,
+          // 8192 cubre con margen posts grandes traducidos a alemán/neerlandés
+          // (que tienden a ser ~15% más verbosos). Sonnet/Haiku permiten 8192.
+          max_tokens: 8192,
           messages: [{ role: "user", content: prompt }],
         });
 
@@ -649,12 +664,37 @@ Respond with ONLY a JSON object (no markdown, no backticks):
           throw new Error(`No text response for translation to ${lang}`);
         }
 
-        const translated = JSON.parse(textBlock.text) as {
-          title: string;
-          content: string;
-          excerpt: string;
-          metaDescription: string;
-        };
+        // Si la respuesta se truncó por max_tokens, el JSON queda incompleto
+        // y JSON.parse lanza. Detectarlo aquí da un error mucho más claro
+        // en logs que "Unexpected end of JSON input".
+        if (response.stop_reason === "max_tokens") {
+          throw new Error(
+            `Translation to ${lang} truncated by max_tokens (` +
+            `output=${response.usage.output_tokens}). Increase max_tokens or shorten content.`
+          );
+        }
+
+        // El modelo a veces ignora "no markdown" y envuelve la respuesta en
+        // ```json ... ```. Lo limpiamos antes de parsear.
+        const rawText = textBlock.text.trim();
+        const jsonText = rawText
+          .replace(/^```(?:json)?\s*\n?/i, "")
+          .replace(/\n?```\s*$/i, "")
+          .trim();
+
+        let translated: { title: string; content: string; excerpt: string; metaDescription: string };
+        try {
+          translated = JSON.parse(jsonText);
+        } catch (parseErr) {
+          const preview = jsonText.length > 200
+            ? `${jsonText.slice(0, 100)}...${jsonText.slice(-100)}`
+            : jsonText;
+          throw new Error(
+            `JSON parse failed for ${lang} (output=${response.usage.output_tokens}, ` +
+            `stop=${response.stop_reason}): ${(parseErr as Error).message}. ` +
+            `Preview: ${preview}`
+          );
+        }
 
         return {
           lang,

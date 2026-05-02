@@ -448,6 +448,25 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log(`[migrations] applySeoUrlInspectionsEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
   }
 
+  // ── STEP 2.8: Idempotent ai_bot_visits schema sync ──────────────────────────────
+  // Re-applies migrations/0010_ai_bot_visits.sql on every boot. Same Replit
+  // Republish bug as 2.6 / 2.7 — without this, the aiBotLogger middleware
+  // logs an insert error on every LLM crawler hit and /api/admin/seo/bot-visits
+  // returns empty arrays until a manual db:push.
+  try {
+    const { applyAiBotVisitsEnsure } = await import("./migrations/applyAiBotVisitsEnsure");
+    const result = await applyAiBotVisitsEnsure(pool);
+    if (result.applied) {
+      log(`[migrations] ai_bot_visits schema sync OK in ${result.durationMs}ms`);
+    } else if (result.error === "lock-held-by-other-instance") {
+      log(`[migrations] ai_bot_visits schema sync skipped (another instance holds lock)`);
+    } else {
+      log(`[migrations] ai_bot_visits schema sync FAILED: ${result.error}`);
+    }
+  } catch (err) {
+    log(`[migrations] applyAiBotVisitsEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   // Auto-backfill analytics tables if empty (every Republish wipes them, see
   // project_seo_engine_schema_revert.md). Fire-and-forget — does not block
   // boot or registerRoutes. Single-instance via pg_advisory_lock so multiple

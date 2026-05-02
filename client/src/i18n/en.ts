@@ -2406,7 +2406,7 @@ export const en: Translations = {
         routeBlanesTossa: 'Blanes - Tossa de Mar: 45 min, medium, licence recommended',
         routeBlanesTossaDesc: 'The most spectacular route on the entire coast. Passing Lloret de Mar and its coves, you will reach the iconic Vila Vella of Tossa de Mar, the medieval fortress rising above the Mediterranean. We recommend a boating licence for the distance, though licence-free boats can make the trip in optimal sea conditions.',
         routeBlaneSantFeliu: 'Blanes - Sant Feliu de Guixols: 1.5h, advanced, licence required',
-        routeBlaneSantFeliuDesc: 'For experienced sailors with a licence. This route passes through the wildest coves between Tossa de Mar and Sant Feliu de Guixols, including stops at Cala Giverola, Cala Futadera and Cala Senyor Ramon. Open-sea navigation requiring planning and attention to weather conditions.',
+        routeBlaneSantFeliuDesc: 'This route passes through the wildest coves between Tossa de Mar and Sant Feliu de Guixols, including stops at Cala Giverola, Cala Futadera and Cala Senyor Ramon. Open-sea navigation requiring planning and attention to weather conditions.',
         routeBlaneCalaBrava: 'Blanes - Cala Brava: 15 min, easy, no licence',
         routeBlaneCalaBravaDesc: 'The perfect quick getaway for families and beginners. Just 15 minutes separate the Port of Blanes from this pristine cove with crystal-clear waters, ideal for snorkelling and relaxation. Easy anchoring on sand, sheltered from the wind. Our recommendation for first-time boating experiences.',
         boatTypesTitle: 'Types of Boats for the Costa Brava',

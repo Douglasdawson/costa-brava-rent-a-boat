@@ -2346,7 +2346,7 @@ export const ca: Translations = {
         routeBlanesTossa: 'Blanes - Tossa de Mar: 45 min, mitjana, llicència recomanada',
         routeBlanesTossaDesc: 'La ruta més espectacular de tota la costa. Arribaràs a la icònica Vila Vella de Tossa de Mar.',
         routeBlaneSantFeliu: 'Blanes - Sant Feliu de Guíxols: 1,5h, avançada, llicència requerida',
-        routeBlaneSantFeliuDesc: 'Per a navegants experimentats amb llicència. Navegació en mar obert que requereix planificació i atenció a les condicions meteorològiques.',
+        routeBlaneSantFeliuDesc: 'Navegació en mar obert que requereix planificació i atenció a les condicions meteorològiques.',
         routeBlaneCalaBrava: 'Blanes - Cala Brava: 15 min, fàcil, sense llicència',
         routeBlaneCalaBravaDesc: 'L\'escapada ràpida perfecta per a famílies i principiants. Només 15 minuts del Port de Blanes a aquesta cala verge.',
         boatTypesTitle: 'Tipus de Barques per a la Costa Brava',

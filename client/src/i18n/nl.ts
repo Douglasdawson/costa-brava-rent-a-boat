@@ -2346,7 +2346,7 @@ export const nl: Translations = {
         routeBlanesTossa: 'Blanes - Tossa de Mar: 45 min, gemiddeld, vaarbewijs aanbevolen',
         routeBlanesTossaDesc: 'De meest spectaculaire route van de hele kust. U bereikt de iconische Vila Vella van Tossa de Mar.',
         routeBlaneSantFeliu: 'Blanes - Sant Feliu de Guixols: 1,5 uur, gevorderd, vaarbewijs vereist',
-        routeBlaneSantFeliuDesc: 'Voor ervaren zeilers met vaarbewijs. Zeilen op open zee dat planning en aandacht voor weersomstandigheden vereist.',
+        routeBlaneSantFeliuDesc: 'Zeilen op open zee dat planning en aandacht voor weersomstandigheden vereist.',
         routeBlaneCalaBrava: 'Blanes - Cala Brava: 15 min, makkelijk, zonder vaarbewijs',
         routeBlaneCalaBravaDesc: 'Het perfecte korte uitstapje voor families en beginners. Slechts 15 minuten van de haven van Blanes naar deze ongerepte baai.',
         boatTypesTitle: 'Soorten Boten voor de Costa Brava',

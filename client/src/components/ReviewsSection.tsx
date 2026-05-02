@@ -1,28 +1,35 @@
 import React, { memo, useRef, useState, useEffect, useMemo, useCallback } from "react";
 import { Star, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import type { Testimonial } from "@shared/schema";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { getAllReviews } from "@/data/boatReviews";
 import { trackReviewCarouselScroll } from "@/utils/analytics";
 
-// Convert 2-letter country code to flag emoji
-function countryFlag(code: string): string {
-  const upper = code.toUpperCase();
-  return String.fromCodePoint(
-    ...Array.from(upper).map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)
-  );
+interface GoogleReview {
+  rating: number;
+  text: string;
+  author: string;
+  publishTime: string | null;
+  relativeTime?: string | null;
+}
+
+interface BusinessStatsResponse {
+  rating: number;
+  userRatingCount: number;
+  displayName: string | null;
+  recentReviews: GoogleReview[];
+  lastSyncedAt: string | null;
+  isFallback: boolean;
 }
 
 interface NormalizedReview {
   id: string;
   name: string;
-  flag: string;
   rating: number;
   text: string;
   date: string;
+  relativeTime: string | null;
 }
 
 const LOCALE_MAP: Record<string, string> = {
@@ -44,6 +51,14 @@ const ReviewCard = memo(function ReviewCard({
   review: NormalizedReview;
   locale: string;
 }) {
+  const dateLabel =
+    review.relativeTime ||
+    (review.date
+      ? new Date(review.date).toLocaleDateString(locale, {
+          month: "long",
+          year: "numeric",
+        })
+      : "");
   return (
     <figure
       className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-background rounded-2xl border border-border p-5 flex flex-col"
@@ -75,24 +90,10 @@ const ReviewCard = memo(function ReviewCard({
       </blockquote>
       {/* Author */}
       <figcaption className="mt-auto pt-3">
-        <p className="font-medium text-foreground text-[13px]">
-          {review.flag && (
-            <span
-              className="mr-1.5"
-              role="img"
-              aria-label={review.flag}
-            >
-              {countryFlag(review.flag)}
-            </span>
-          )}
-          {review.name}
-        </p>
-        <p className="text-xs text-muted-foreground">
-          {new Date(review.date + "-01").toLocaleDateString(
-            locale,
-            { month: "long", year: "numeric" }
-          )}
-        </p>
+        <p className="font-medium text-foreground text-[13px]">{review.name}</p>
+        {dateLabel && (
+          <p className="text-xs text-muted-foreground">{dateLabel}</p>
+        )}
       </figcaption>
     </figure>
   );
@@ -109,62 +110,40 @@ function ReviewsSection() {
 
   const locale = LOCALE_MAP[language] || "es-ES";
 
-  // Server testimonials as fallback
-  const { data: testimonials } = useQuery<Testimonial[]>({
-    queryKey: ["/api/testimonials"],
+  // Live reviews + rating from Google Business Profile (synced via Places API).
+  // Endpoint cached server-side: 1h browser, 6h CDN.
+  const { data: businessStats } = useQuery<BusinessStatsResponse>({
+    queryKey: ["/api/business-stats"],
   });
 
-  // Aggregate all client-side boat reviews
-  const clientReviews: NormalizedReview[] = useMemo(() => {
-    return getAllReviews().map((r) => ({
-      id: `${r.boatId}-${r.name}-${r.date}`,
-      name: r.name,
-      flag: r.flag,
-      rating: r.rating,
-      text: r.text,
-      date: r.date,
-    }));
-  }, []);
+  // Map Google Places reviews to display shape. Preserve API order (Google
+  // ranks by relevance/recency); skip empty bodies.
+  const displayReviews = useMemo<NormalizedReview[]>(() => {
+    const reviews = businessStats?.recentReviews ?? [];
+    return reviews
+      .filter((r) => r?.text && r.text.trim().length > 0)
+      .map((r, idx) => ({
+        id: `gbp-${idx}-${r.author || "anon"}`,
+        name: r.author || "Google",
+        rating: r.rating,
+        text: r.text,
+        date: r.publishTime ?? "",
+        relativeTime: r.relativeTime ?? null,
+      }));
+  }, [businessStats]);
 
-  // Normalize server testimonials to same shape (fallback)
-  const serverReviews: NormalizedReview[] = useMemo(() => {
-    if (!testimonials) return [];
-    return testimonials.map((item) => ({
-      id: `server-${item.id}`,
-      name: item.customerName,
-      flag: "",
-      rating: item.rating,
-      text: item.comment,
-      date: typeof item.date === 'string' ? item.date : new Date(item.date).toISOString().slice(0, 7),
-    }));
-  }, [testimonials]);
-
-  // Prefer client-side reviews; use server as fallback
-  const allReviews = clientReviews.length > 0 ? clientReviews : serverReviews;
-
-  // Pick top 12 sorted by: visitor's language first, then rating (desc), then date (desc)
-  const displayReviews = useMemo(() => {
-    const NATIONALITY_TO_LANG: Record<string, string> = {
-      ES: "es", FR: "fr", DE: "de", GB: "en", UK: "en",
-      IT: "it", NL: "nl", RU: "ru", CA: "ca",
-    };
-    return [...allReviews]
-      .sort((a, b) => {
-        const aMatch = NATIONALITY_TO_LANG[a.flag?.toUpperCase()] === language ? 1 : 0;
-        const bMatch = NATIONALITY_TO_LANG[b.flag?.toUpperCase()] === language ? 1 : 0;
-        if (bMatch !== aMatch) return bMatch - aMatch;
-        if (b.rating !== a.rating) return b.rating - a.rating;
-        return b.date.localeCompare(a.date);
-      })
-      .slice(0, 12);
-  }, [allReviews, language]);
-
-  // Average rating across all reviews
+  // Use real Google rating (e.g. 4.8) — falls back to computed avg if missing.
   const averageRating = useMemo(() => {
-    if (allReviews.length === 0) return "0.0";
-    const sum = allReviews.reduce((acc, r) => acc + r.rating, 0);
-    return (sum / allReviews.length).toFixed(1);
-  }, [allReviews]);
+    if (typeof businessStats?.rating === "number") {
+      return businessStats.rating.toFixed(1);
+    }
+    if (displayReviews.length === 0) return "0.0";
+    const sum = displayReviews.reduce((acc, r) => acc + r.rating, 0);
+    return (sum / displayReviews.length).toFixed(1);
+  }, [businessStats, displayReviews]);
+
+  const totalReviewCount =
+    businessStats?.userRatingCount ?? displayReviews.length;
 
   // Scroll state tracking — batched reads in rAF to avoid forced reflow
   const scrollRafRef = useRef(0);
@@ -174,11 +153,9 @@ function ReviewsSection() {
       scrollRafRef.current = 0;
       const el = scrollRef.current;
       if (!el) return;
-      // Batch all geometric reads together (single layout pass)
       const { scrollLeft, clientWidth, scrollWidth } = el;
       const tolerance = 4;
       const maxScroll = scrollWidth - clientWidth;
-      // Batch all state writes together (React batches these automatically)
       setCanScrollLeft(scrollLeft > tolerance);
       setCanScrollRight(scrollLeft + clientWidth < scrollWidth - tolerance);
       if (maxScroll <= 0) {
@@ -208,14 +185,14 @@ function ReviewsSection() {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollBy({ left: -350, behavior: "smooth" });
-    trackReviewCarouselScroll('left');
+    trackReviewCarouselScroll("left");
   }, []);
 
   const handleScrollRight = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollBy({ left: 350, behavior: "smooth" });
-    trackReviewCarouselScroll('right');
+    trackReviewCarouselScroll("right");
   }, []);
 
   const dotCount = Math.min(displayReviews.length, 6);
@@ -231,7 +208,7 @@ function ReviewsSection() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header with average rating */}
+        {/* Header with real Google rating */}
         <div className="text-center mb-10 sm:mb-14">
           <div className="text-6xl sm:text-7xl font-heading font-light text-foreground">
             {averageRating}
@@ -242,13 +219,12 @@ function ReviewsSection() {
             ))}
           </div>
           <p className="text-sm text-muted-foreground mt-2">
-            {t.reviews.subtitle} ({allReviews.length} {t.reviews.opinions})
+            {t.reviews.subtitle} ({totalReviewCount} {t.reviews.opinions})
           </p>
         </div>
 
         {/* Carousel with navigation arrows */}
         <div className="relative group">
-          {/* Left arrow - desktop only */}
           <button
             onClick={handleScrollLeft}
             disabled={!canScrollLeft}
@@ -262,7 +238,6 @@ function ReviewsSection() {
             <ChevronLeft className="w-5 h-5 text-foreground" />
           </button>
 
-          {/* Right arrow - desktop only */}
           <button
             onClick={handleScrollRight}
             disabled={!canScrollRight}
@@ -276,7 +251,6 @@ function ReviewsSection() {
             <ChevronRight className="w-5 h-5 text-foreground" />
           </button>
 
-          {/* Review cards carousel */}
           <div
             ref={scrollRef}
             className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4"
@@ -288,15 +262,13 @@ function ReviewsSection() {
           </div>
         </div>
 
-        {/* Scroll indicator dots — decorative, swipe is the actual interaction */}
+        {/* Scroll indicator dots */}
         <div className="flex justify-center gap-1.5 mt-4 mb-8" role="presentation" aria-hidden="true">
           {Array.from({ length: dotCount }).map((_, i) => (
             <div
               key={i}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === activeIndex
-                  ? "w-6 bg-cta"
-                  : "w-1.5 bg-border"
+                i === activeIndex ? "w-6 bg-cta" : "w-1.5 bg-border"
               }`}
             />
           ))}

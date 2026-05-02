@@ -1302,7 +1302,7 @@ export const es: Translations = {
         routeBlanesTossa: 'Blanes - Tossa de Mar: 45 min, media, licencia recomendada',
         routeBlanesTossaDesc: 'La ruta más espectacular de toda la costa. Pasando por Lloret de Mar y sus calas, llegarás a la icónica Vila Vella de Tossa de Mar, la fortaleza medieval que se alza sobre el Mediterráneo. Recomendamos licencia náutica por la distancia, aunque barcos sin licencia pueden realizarla en condiciones óptimas de mar.',
         routeBlaneSantFeliu: 'Blanes - Sant Feliu de Guixols: 1,5h, avanzada, licencia requerida',
-        routeBlaneSantFeliuDesc: 'Para navegantes experimentados con licencia. Esta ruta recorre las calas más salvajes entre Tossa de Mar y Sant Feliu de Guíxols, incluyendo paradas en Cala Giverola, Cala Futadera y Cala Senyor Ramon. Navegación en mar abierto que requiere planificación y atención a las condiciones meteorológicas.',
+        routeBlaneSantFeliuDesc: 'Esta ruta recorre las calas más salvajes entre Tossa de Mar y Sant Feliu de Guíxols, incluyendo paradas en Cala Giverola, Cala Futadera y Cala Senyor Ramon. Navegación en mar abierto que requiere planificación y atención a las condiciones meteorológicas.',
         routeBlaneCalaBrava: 'Blanes - Cala Brava: 15 min, fácil, sin licencia',
         routeBlaneCalaBravaDesc: 'La escapada rápida perfecta para familias y principiantes. Solo 15 minutos separan el Puerto de Blanes de esta cala virgen de aguas cristalinas, ideal para snorkel y relajación. Fondeo fácil sobre arena, protegida del viento. Nuestra recomendación para primeras experiencias en barco.',
         boatTypesTitle: 'Tipos de Barcos para la Costa Brava',

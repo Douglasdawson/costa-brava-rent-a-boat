@@ -19,3 +19,9 @@ vite.config.ts.*
 
 # LibreOffice / OpenOffice lockfiles
 .~lock.*#
+
+# Playwright MCP local debug logs (console captures, screenshots)
+.playwright-mcp/
+
+# Local backups (never commit *.md.bak etc.)
+*.bak

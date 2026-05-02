@@ -92,3 +92,4 @@ Cambios de prioridad: actualizar columna `estado` y mover posicion en tabla.
 | 2026-04-21 | 1 | excursion-barco-blanes-2026-guia-completa | ES + EN | draft-generated |
 | 2026-04-22 | 1 | excursion-barco-blanes-2026-guia-completa | ES + EN | distribution-ready (9 piezas en distribucion-blog/excursion-barco-blanes-2026-guia-completa/) |
 | 2026-04-23 | 2 | precios-alquiler-barco-costa-brava-2026 | ES + EN | draft-generated |
+| 2026-05-02 | 5 | como-alquilar-barco-sin-licencia-blanes-2026 | ES | draft-generated (DB id 107e242d-16a7-435d-8b4e-60296653af05) |

@@ -17,17 +17,54 @@ export type { AiBotVisit, InsertAiBotVisit };
 
 /**
  * Persist a single bot visit. Fire-and-forget from the middleware: errors are
- * logged but never propagated so request latency is unaffected.
+ * logged but never propagated so request latency is unaffected. Logged at
+ * `error` level (not warn) so failures show up in stderr unmistakably.
  */
 export async function recordAiBotVisit(visit: InsertAiBotVisit): Promise<void> {
   try {
     await db.insert(aiBotVisits).values(visit);
   } catch (error) {
-    logger.warn("[ai-bot-visits] insert failed", {
+    logger.error("[ai-bot-visits] insert failed", {
       error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
       botName: visit.botName,
       path: visit.path,
     });
+  }
+}
+
+/**
+ * Boot-time self-test: insert a probe row and read it back. Surfaces both
+ * connection problems (insert fails) and read-after-write issues (different
+ * pool / replica lag) at startup with a clear log line, so we don't have to
+ * wait for an organic bot hit to discover an outage.
+ */
+export async function selfTestAiBotVisits(): Promise<{ ok: boolean; error?: string; durationMs: number }> {
+  const started = Date.now();
+  const probe: InsertAiBotVisit = {
+    botName: "_boot_self_test",
+    userAgent: "boot-self-test/1.0",
+    path: "/_self_test",
+    method: "GET",
+    lang: null,
+    statusCode: 200,
+  };
+  try {
+    await db.insert(aiBotVisits).values(probe);
+    // Best-effort cleanup — leave the row if delete fails, the dashboard
+    // filters out _boot_self_test entries downstream.
+    try {
+      await db.execute(sql`DELETE FROM ai_bot_visits WHERE bot_name = '_boot_self_test'`);
+    } catch {
+      /* ignore — the insert succeeded which is what matters */
+    }
+    return { ok: true, durationMs: Date.now() - started };
+  } catch (error) {
+    return {
+      ok: false,
+      durationMs: Date.now() - started,
+      error: error instanceof Error ? `${error.message}\n${error.stack ?? ""}` : String(error),
+    };
   }
 }
 

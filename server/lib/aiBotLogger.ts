@@ -5,11 +5,17 @@
  * PerplexityBot, etc.) to the ai_bot_visits table. Fire-and-forget — never
  * blocks the response. Used by /api/admin/seo/bot-visits to surface GEO
  * presence over time.
+ *
+ * Observability: every detection emits a `logger.info` at "[ai-bot-visits]
+ * detected" so we can verify the middleware is firing from Replit logs even
+ * when the table is empty. Insert failures emit `logger.error` (stderr) with
+ * the full error message — no silent fallback.
  */
 
 import type { Request, Response, NextFunction } from "express";
 import { detectAIBotName, isAICrawler } from "../seo/constants";
 import { recordAiBotVisit } from "../storage/aiBotVisits";
+import { logger } from "./logger";
 
 // Skip noisy paths that don't reflect content indexing intent — keeps the
 // table small and the dashboard signal-rich.
@@ -53,18 +59,44 @@ export function aiBotLoggerMiddleware(
   }
 
   const botName = detectAIBotName(ua) ?? "unknown";
+  const path = req.path;
+  const method = req.method;
+  const lang = detectLangFromPath(path);
 
-  // Capture status code after the response finishes — gives a complete record.
-  res.on("finish", () => {
-    void recordAiBotVisit({
+  // Observability: confirm the middleware is firing on every bot hit. Without
+  // this it's impossible to tell from logs alone whether the middleware is
+  // skipped (no row + no log) vs the insert is failing (no row + warn log).
+  logger.info("[ai-bot-visits] detected", { botName, path, method });
+
+  // Use a one-shot guard so the row isn't double-inserted when both `finish`
+  // and `close` fire (close always fires; finish only when response completed
+  // cleanly; redirects + connection drops trigger different combinations).
+  let recorded = false;
+  const record = (eventName: "finish" | "close") => {
+    if (recorded) return;
+    recorded = true;
+    recordAiBotVisit({
       botName,
       userAgent: ua ?? "",
-      path: req.path,
-      method: req.method,
-      lang: detectLangFromPath(req.path),
-      statusCode: res.statusCode,
+      path,
+      method,
+      lang,
+      statusCode: res.statusCode || null,
+    }).catch((err) => {
+      // Surface uncaught insert errors on stderr (level=error) so they're
+      // unmistakable in Replit logs. The storage layer already has its own
+      // try/catch with logger.warn — this catches anything that escapes that.
+      logger.error("[ai-bot-visits] uncaught record error", {
+        eventName,
+        botName,
+        path,
+        error: err instanceof Error ? err.message : String(err),
+      });
     });
-  });
+  };
+
+  res.on("finish", () => record("finish"));
+  res.on("close", () => record("close"));
 
   next();
 }

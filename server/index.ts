@@ -467,6 +467,26 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log(`[migrations] applyAiBotVisitsEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
   }
 
+  // ── STEP 2.8.1: ai_bot_visits self-test ─────────────────────────────────────────
+  // After the schema sync, insert a probe row and clean it up. Confirms the
+  // runtime db pool can write to the same table that just got migrated —
+  // catches divergence between drizzle-kit / migration pool and runtime pool,
+  // wrong DATABASE_URL, missing INSERT permission, etc. Output appears once
+  // per boot in Replit logs as either:
+  //   [boot] ai_bot_visits self-test OK in Xms
+  //   [boot] ai_bot_visits self-test FAILED: <error + stack>
+  try {
+    const { selfTestAiBotVisits } = await import("./storage/aiBotVisits");
+    const result = await selfTestAiBotVisits();
+    if (result.ok) {
+      log(`[boot] ai_bot_visits self-test OK in ${result.durationMs}ms`);
+    } else {
+      log(`[boot] ai_bot_visits self-test FAILED: ${result.error}`);
+    }
+  } catch (err) {
+    log(`[boot] ai_bot_visits self-test loader threw: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   // Auto-backfill analytics tables if empty (every Republish wipes them, see
   // project_seo_engine_schema_revert.md). Fire-and-forget — does not block
   // boot or registerRoutes. Single-instance via pg_advisory_lock so multiple

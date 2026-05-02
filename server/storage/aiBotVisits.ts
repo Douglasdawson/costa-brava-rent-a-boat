@@ -41,15 +41,16 @@ export interface MonthlyBotCount {
  */
 export async function getBotVisitsByBot(days = 30): Promise<MonthlyBotCount[]> {
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const visitCount = sql<number>`count(*)::int`.as("visits");
   const rows = await db
     .select({
       botName: aiBotVisits.botName,
-      visits: sql<number>`count(*)::int`,
+      visits: visitCount,
     })
     .from(aiBotVisits)
     .where(gte(aiBotVisits.timestamp, since))
     .groupBy(aiBotVisits.botName)
-    .orderBy(desc(sql`count(*)`));
+    .orderBy(desc(visitCount));
   return rows;
 }
 
@@ -63,15 +64,16 @@ export interface TopPath {
  */
 export async function getTopBotPaths(days = 30, limit = 20): Promise<TopPath[]> {
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const visitCount = sql<number>`count(*)::int`.as("visits");
   const rows = await db
     .select({
       path: aiBotVisits.path,
-      visits: sql<number>`count(*)::int`,
+      visits: visitCount,
     })
     .from(aiBotVisits)
     .where(gte(aiBotVisits.timestamp, since))
     .groupBy(aiBotVisits.path)
-    .orderBy(desc(sql`count(*)`))
+    .orderBy(desc(visitCount))
     .limit(limit);
   return rows;
 }

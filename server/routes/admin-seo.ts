@@ -343,24 +343,39 @@ export function registerSeoRoutes(app: Express): void {
       const days = Math.min(Math.max(parseInt((req.query.days as string) || "30", 10) || 30, 1), 365);
       const topPathsLimit = Math.min(Math.max(parseInt((req.query.topPaths as string) || "20", 10) || 20, 1), 200);
       const recentLimit = Math.min(Math.max(parseInt((req.query.recent as string) || "50", 10) || 50, 1), 500);
-      const [byBot, topPaths, recent] = await Promise.all([
+      // Use allSettled so one failing query doesn't tank the whole response —
+      // each section degrades independently and the error is surfaced inline.
+      const [byBotResult, topPathsResult, recentResult] = await Promise.allSettled([
         getBotVisitsByBot(days),
         getTopBotPaths(days, topPathsLimit),
         getRecentBotVisits(recentLimit),
       ]);
-      const totalVisits = byBot.reduce((sum, row) => sum + row.visits, 0);
+      const unwrap = <T>(r: PromiseSettledResult<T[]>, label: string): { rows: T[]; error: string | null } => {
+        if (r.status === "fulfilled") return { rows: r.value, error: null };
+        const msg = r.reason instanceof Error ? r.reason.message : String(r.reason);
+        logger.error(`[bot-visits] ${label} query failed`, { error: msg });
+        return { rows: [], error: msg };
+      };
+      const byBot = unwrap(byBotResult, "byBot");
+      const topPaths = unwrap(topPathsResult, "topPaths");
+      const recent = unwrap(recentResult, "recent");
+      const totalVisits = byBot.rows.reduce((sum, row) => sum + (row as { visits: number }).visits, 0);
       res.json({
         windowDays: days,
         totalVisits,
-        byBot,
-        topPaths,
-        recent,
+        byBot: byBot.rows,
+        topPaths: topPaths.rows,
+        recent: recent.rows,
+        errors: {
+          byBot: byBot.error,
+          topPaths: topPaths.error,
+          recent: recent.error,
+        },
       });
     } catch (error) {
-      logger.error("Error fetching AI bot visits", {
-        error: error instanceof Error ? error.message : String(error),
-      });
-      res.status(500).json({ message: "Error fetching AI bot visits" });
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("Error fetching AI bot visits", { error: msg });
+      res.status(500).json({ message: "Error fetching AI bot visits", error: msg });
     }
   });
 }

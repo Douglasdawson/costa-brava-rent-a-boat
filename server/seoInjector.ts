@@ -2035,6 +2035,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "https://www.instagram.com/costabravarentaboat/",
           "https://www.facebook.com/costabravarentaboat",
           "https://www.tiktok.com/@costabravarentaboat",
+          "https://www.linkedin.com/company/costabravarentaboat",
           "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
           "https://en.wikipedia.org/wiki/Blanes",
         ],

@@ -313,6 +313,7 @@ export function registerRobotsRoutes(app: Express): void {
           "https://www.instagram.com/costabravarentaboat/",
           "https://www.facebook.com/costabravarentaboat",
           "https://www.tiktok.com/@costabravarentaboat",
+          "https://www.linkedin.com/company/costabravarentaboat",
           "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
         ],
         hasMerchantReturnPolicy: {

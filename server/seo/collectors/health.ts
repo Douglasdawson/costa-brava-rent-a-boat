@@ -2,6 +2,14 @@ import { db } from "../../db";
 import { seoHealthChecks, seoPages, seoAlerts } from "../../../shared/schema";
 import { logger } from "../../lib/logger";
 import { SEO_CONFIG } from "../config";
+import { lt } from "drizzle-orm";
+
+const SITEMAP_PATHS = [
+  "/sitemap-pages.xml",
+  "/sitemap-boats.xml",
+  "/sitemap-blog.xml",
+  "/sitemap-destinations.xml",
+];
 
 interface HealthResult {
   url: string;
@@ -67,34 +75,76 @@ async function crawlUrl(url: string): Promise<HealthResult> {
   }
 }
 
-// Critical pages to always check
-const CRITICAL_PAGES = [
-  "/",
-  "/reservar",
-  "/flota",
-  "/precios",
-  "/faq",
-  "/contacto",
-  "/galeria",
-  "/rutas",
-  "/tarjetas-regalo",
-  "/testimonios",
-  "/blog",
-  "/blanes",
-  "/lloret-de-mar",
-  "/tossa-de-mar",
-  "/barcelona",
-  "/alquiler-barcos-costa-brava",
+// Critical pages — kept as a fallback when sitemap discovery fails. Note these
+// are bare-path legacy URLs (no /es/ prefix) that 301-redirect to canonical
+// /es/... — the previous behaviour. Real check now uses the full sitemap.
+const CRITICAL_PAGES_FALLBACK = [
+  "/", "/precios", "/faq", "/galeria", "/rutas", "/tarjetas-regalo",
+  "/testimonios", "/blog", "/alquiler-barcos-costa-brava",
 ];
+
+async function fetchSitemapPaths(): Promise<string[]> {
+  const baseUrl = SEO_CONFIG.baseUrl;
+  const urls = new Set<string>();
+  for (const sm of SITEMAP_PATHS) {
+    try {
+      const r = await fetch(`${baseUrl}${sm}`, { signal: AbortSignal.timeout(15000) });
+      if (!r.ok) continue;
+      const xml = await r.text();
+      for (const m of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+        try {
+          urls.add(new URL(m[1].trim()).pathname);
+        } catch { /* skip malformed */ }
+      }
+    } catch (err) {
+      logger.warn(`[SEO:Health] Sitemap fetch failed ${sm}`, {
+        error: err instanceof Error ? err.message : String(err),
+      });
+    }
+  }
+  return Array.from(urls);
+}
+
+/**
+ * Trim seo_health_checks to last N days so the dashboard reflects current
+ * state, not historical noise from old crawls. Called on every boot run.
+ */
+async function pruneOldChecks(daysToKeep = 14): Promise<number> {
+  const cutoff = new Date(Date.now() - daysToKeep * 24 * 60 * 60 * 1000);
+  const result = await db.delete(seoHealthChecks).where(lt(seoHealthChecks.checkedAt, cutoff));
+  // drizzle returns rowCount on PG drivers; default to 0 if not present
+  const deleted = (result as unknown as { rowCount?: number }).rowCount ?? 0;
+  if (deleted > 0) {
+    logger.info(`[SEO:Health] Pruned ${deleted} health_check rows older than ${daysToKeep}d`);
+  }
+  return deleted;
+}
 
 export async function checkSiteHealth(): Promise<void> {
   const baseUrl = SEO_CONFIG.baseUrl;
-  logger.info(`[SEO:Health] Starting health check for ${CRITICAL_PAGES.length} pages`);
+
+  // Prune historical noise so the dashboard reflects current state, not
+  // crawls from before recent SEO fixes (multi-lang H1, SSR fallback, schema).
+  await pruneOldChecks(14).catch(err =>
+    logger.warn("[SEO:Health] Prune failed (non-fatal)", {
+      error: err instanceof Error ? err.message : String(err),
+    })
+  );
+
+  // Discover real public URLs from sitemaps. Falls back to a small static list
+  // when sitemap fetch fails (network blip during boot run).
+  let paths = await fetchSitemapPaths();
+  if (paths.length === 0) {
+    logger.warn("[SEO:Health] Sitemap discovery returned 0 URLs, using fallback list");
+    paths = CRITICAL_PAGES_FALLBACK;
+  }
+
+  logger.info(`[SEO:Health] Starting health check for ${paths.length} pages`);
 
   let totalIssues = 0;
   let criticalIssues = 0;
 
-  for (const path of CRITICAL_PAGES) {
+  for (const path of paths) {
     const url = `${baseUrl}${path}`;
     const result = await crawlUrl(url);
 
@@ -146,8 +196,9 @@ export async function checkSiteHealth(): Promise<void> {
 
     totalIssues += result.issues.length;
 
-    // Small delay between requests to avoid self-DoS
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Small delay between requests to avoid self-DoS. Tightened from 500ms
+    // since we now crawl 200 URLs (200 × 250ms = 50s vs. 100s previously).
+    await new Promise(resolve => setTimeout(resolve, 250));
   }
 
   logger.info(`[SEO:Health] Check complete. ${totalIssues} issues found, ${criticalIssues} critical`);

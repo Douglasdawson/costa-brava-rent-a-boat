@@ -404,6 +404,23 @@ export function startScheduler(): void {
       });
   }, 90_000);
 
+  // Site health boot run — refreshes /crm/analytics "Salud SEO" dashboard so
+  // it reflects the current state, not stale crawls from before recent SEO
+  // fixes. The /api/admin/seo/health endpoint reads the latest 50 rows of
+  // seo_health_checks and computes the score; without a fresh crawl after a
+  // Republish, the dashboard can drift days behind reality. Delayed 120s so
+  // the IndexNow boot run finishes first (they both crawl the same sitemaps).
+  setTimeout(() => {
+    import("../seo/collectors/health")
+      .then(({ checkSiteHealth }) => checkSiteHealth())
+      .then(() => {
+        logger.info("[Scheduler] Site health boot run complete");
+      })
+      .catch((err) => {
+        logger.error("[Scheduler] Site health boot run error", { error: err instanceof Error ? err.message : String(err) });
+      });
+  }, 120_000);
+
   // Google Analytics sync: every 6 hours at :15 past the hour
   scheduledTasks.push(cron.schedule("15 */6 * * *", async () => {
     logger.info("[Scheduler] Running Google Analytics sync");

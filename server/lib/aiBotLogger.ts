@@ -6,14 +6,24 @@
  * blocks the response. Used by /api/admin/seo/bot-visits to surface GEO
  * presence over time.
  *
- * Production reliability note: the insert is started BEFORE calling next()
- * so the DB write is in-flight before the response is dispatched. This
- * prevents the Cloud Run / Google Frontend proxy layer from recycling the
- * request context before the async write completes (which caused visits to
- * silently drop in production even though the middleware was firing).
+ * Reliability + status code (the design that lets us have both):
  *
- * Status code: captured via res.on("finish") as a best-effort update
- * stored in a separate Promise chain that does NOT gate the primary insert.
+ *  - We monkey-patch `res.end()` because it's the single point where:
+ *      1. `res.statusCode` has been set definitively by Express handlers
+ *      2. The response has NOT been dispatched to the network yet
+ *      3. It's called exactly once for every response (send/json/redirect/
+ *         sendStatus/sendFile/error 500 all funnel through it)
+ *    So we fire the INSERT inside the patched end() — the promise is
+ *    in-flight BEFORE the original end() ships bytes, which means Cloud Run
+ *    can't recycle the request context before the DB write commits.
+ *
+ *  - We also subscribe to `res.on("close")` as a safety net for aborts
+ *    (client disconnect mid-response). Both paths are guarded by a
+ *    `captured` flag so the row is written exactly once.
+ *
+ * This replaces an earlier two-step approach (INSERT before next() with
+ * statusCode=null + UPDATE on finish) that left status_code as NULL in
+ * production because the finish callback was being recycled by the proxy.
  */
 
 import type { Request, Response, NextFunction } from "express";
@@ -68,40 +78,43 @@ export function aiBotLoggerMiddleware(
 
   logger.info("[ai-bot-visits] detected", { botName, path, method });
 
-  // Start the insert immediately — before next() — so the DB write is
-  // in-flight before Express dispatches the response. This is the key
-  // difference from the previous implementation where the insert only
-  // started inside res.on("finish"), which could be recycled by the
-  // Cloud Run proxy before the async callback ever ran.
-  //
-  // We record statusCode as null here; a best-effort finish hook will
-  // attempt to capture it, but the primary record no longer depends on it.
-  const insertPromise = recordAiBotVisit({
-    botName,
-    userAgent: ua ?? "",
-    path,
-    method,
-    lang,
-    statusCode: null,
-  }).catch((err) => {
-    logger.error("[ai-bot-visits] insert error", {
+  // Single-fire guard: res.end may be called once and res.on("close") may
+  // fire shortly after. Whichever fires first owns the insert.
+  let captured = false;
+  const fire = (statusCode: number | null, source: "end" | "close") => {
+    if (captured) return;
+    captured = true;
+    void recordAiBotVisit({
       botName,
+      userAgent: ua ?? "",
       path,
-      error: err instanceof Error ? err.message : String(err),
+      method,
+      lang,
+      statusCode,
+    }).catch((err) => {
+      logger.error("[ai-bot-visits] insert error", {
+        source,
+        botName,
+        path,
+        statusCode,
+        error: err instanceof Error ? err.message : String(err),
+      });
     });
-  });
+  };
 
-  // Best-effort: if the finish event fires (it usually does in dev and on
-  // direct connections), log the resolved status code for observability.
-  // This does NOT affect whether the row was written — insertPromise is
-  // already in-flight regardless.
-  res.on("finish", () => {
-    const code = res.statusCode;
-    insertPromise.then(() => {
-      if (code && code !== 200) {
-        logger.info("[ai-bot-visits] response finished", { botName, path, statusCode: code });
-      }
-    }).catch(() => {});
+  // Primary: monkey-patch res.end so we run synchronously at the moment the
+  // response is materialized — statusCode is final, and the insert promise
+  // gets queued before originalEnd() flushes bytes to the socket.
+  const originalEnd = res.end.bind(res);
+  res.end = function (...args: Parameters<typeof originalEnd>) {
+    fire(res.statusCode || 200, "end");
+    return originalEnd(...args);
+  } as typeof res.end;
+
+  // Safety net: client aborts before res.end gets called. statusCode may
+  // be 0 / unset here, which is OK — we record null in that case.
+  res.on("close", () => {
+    fire(res.statusCode || null, "close");
   });
 
   next();

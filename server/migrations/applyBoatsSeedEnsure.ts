@@ -19,6 +19,7 @@
 
 import type { Pool } from "@neondatabase/serverless";
 import { BOAT_DATA } from "@shared/boatData";
+import { audit } from "../lib/audit";
 
 // Distinct advisory-lock id (random 64-bit signed int — must not collide
 // with the analytics, pricing, seo-url-inspections or ai_bot_visits ids).
@@ -115,7 +116,14 @@ export async function applyBoatsSeedEnsure(pool: Pool): Promise<{
             displayOrder,
           ],
         );
-        if (result.rowCount && result.rowCount > 0) inserted++;
+        if (result.rowCount && result.rowCount > 0) {
+          inserted++;
+          audit(null, "restore", "boat", boat.id, {
+            source: "boot-seeder",
+            trigger: "missing-after-boot",
+            fileSource: "shared/boatData.ts",
+          });
+        }
       }
       return { applied: true, inserted, durationMs: Date.now() - started };
     } finally {

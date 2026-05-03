@@ -44,6 +44,14 @@ export function registerAdminFleetRoutes(app: Express) {
         });
       }
       const newBoat = await storage.createBoat(validationResult.data);
+      audit(req, "create", "boat", newBoat.id, {
+        snapshot: {
+          name: newBoat.name,
+          capacity: newBoat.capacity,
+          requiresLicense: newBoat.requiresLicense,
+          deposit: newBoat.deposit,
+        },
+      });
       res.status(201).json(newBoat);
     } catch (error: unknown) {
       logger.error("[Admin] Error creating boat", { error: error instanceof Error ? error.message : String(error) });
@@ -65,6 +73,19 @@ export function registerAdminFleetRoutes(app: Express) {
         });
       }
       const updatedBoat = await storage.updateBoat(req.params.id, parsed.data);
+      if (updatedBoat) {
+        const changes: Record<string, { from: unknown; to: unknown }> = {};
+        for (const field of Object.keys(parsed.data) as Array<keyof typeof parsed.data>) {
+          const before = (existingBoat as Record<string, unknown>)[field as string];
+          const after = (updatedBoat as Record<string, unknown>)[field as string];
+          if (JSON.stringify(before) !== JSON.stringify(after)) {
+            changes[field as string] = { from: before, to: after };
+          }
+        }
+        if (Object.keys(changes).length > 0) {
+          audit(req, "update", "boat", req.params.id, { changes });
+        }
+      }
       res.json(updatedBoat);
     } catch (error: unknown) {
       logger.error("[Admin] Error updating boat", { error: error instanceof Error ? error.message : String(error) });
@@ -101,6 +122,7 @@ export function registerAdminFleetRoutes(app: Express) {
       for (const item of order) {
         await storage.updateBoat(item.id, { displayOrder: item.displayOrder });
       }
+      audit(req, "reorder", "boats", "bulk", { order });
       res.json({ message: "Orden actualizado correctamente" });
     } catch (error: unknown) {
       logger.error("[Admin] Error reordering boats", { error: error instanceof Error ? error.message : String(error) });
@@ -124,6 +146,7 @@ export function registerAdminFleetRoutes(app: Express) {
       await db.insert(boats).values({ ...rest, id: newId });
       // Delete old row
       await db.delete(boats).where(eq(boats.id, req.params.id));
+      audit(req, "rename", "boat", req.params.id, { from: req.params.id, to: newId });
       res.json({ message: `Boat ID renamed from ${req.params.id} to ${newId}` });
     } catch (error: unknown) {
       logger.error("[Admin] Error renaming boat", { error: error instanceof Error ? error.message : String(error) });
@@ -173,6 +196,11 @@ export function registerAdminFleetRoutes(app: Express) {
           logger.warn("Boat might already exist", { boatId: boatData.id, error: error instanceof Error ? error.message : String(error) });
         }
       }
+
+      audit(req, "bulk-init", "boats", "init", {
+        created: createdBoats.map((b) => b.id),
+        totalAttempted: boatsToCreate.length,
+      });
 
       res.json({
         message: "Boats initialization completed",

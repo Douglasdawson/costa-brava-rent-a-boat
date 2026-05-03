@@ -1,5 +1,5 @@
-import { Language, useLanguage } from '@/hooks/use-language';
-import { es } from '../i18n/es';
+import { Language, useLanguage } from "@/hooks/use-language";
+import { es } from "../i18n/es";
 
 // Shared shape for Tordera / Palafolls / Pineda — 3 inland-town pages
 // that share the same template. Each field is optional because faqItems
@@ -84,7 +84,7 @@ export interface Translations {
     bookNow: string;
     myAccount: string;
   };
-  
+
   // Hero Section
   hero: {
     title: string;
@@ -121,6 +121,7 @@ export interface Translations {
     subtitle: string;
     helpText: string;
     callButton: string;
+    whatsappHelpPrefill: string;
   };
 
   // Boat Cards
@@ -503,7 +504,7 @@ export interface Translations {
     askQuestion: string;
     bookNow: string;
     moreQuestions: string;
-    
+
     // FAQ Sections
     pricing: {
       title: string;
@@ -514,7 +515,7 @@ export interface Translations {
         cancellation: string;
       };
     };
-    
+
     licenses: {
       title: string;
       questions: {
@@ -524,7 +525,7 @@ export interface Translations {
         experience: string;
       };
     };
-    
+
     includes: {
       title: string;
       questions: {
@@ -534,7 +535,7 @@ export interface Translations {
         bring: string;
       };
     };
-    
+
     navigation: {
       title: string;
       questions: {
@@ -544,7 +545,7 @@ export interface Translations {
         emergency: string;
       };
     };
-    
+
     practical: {
       title: string;
       questions: {
@@ -554,7 +555,7 @@ export interface Translations {
         luggage: string;
       };
     };
-    
+
     season: {
       title: string;
       questions: {
@@ -564,7 +565,7 @@ export interface Translations {
       };
     };
   };
-  
+
   // Common
   common: {
     loading: string;
@@ -1640,14 +1641,14 @@ export interface Translations {
 
   // Endowment Effect (possessive language after boat selection)
   endowment?: {
-    yourTripIn: string;        // "Tu viaje en {boat}" — step 2 header with boat name
+    yourTripIn: string; // "Tu viaje en {boat}" — step 2 header with boat name
     customizeExperience: string; // "Personaliza tu experiencia" — step 3 header
-    confirmYourBooking: string;  // "Confirma tu reserva" — step 4 header
-    yourPrice: string;          // "Tu precio" — price summary label
-    yourTrip: string;           // "Tu viaje" — progress bar step 2 label
-    yourExperience: string;     // "Tu experiencia" — progress bar step 3 label
-    confirmStep: string;        // "Confirmar" — progress bar step 4 label
-    yourBoat: string;           // "Tu {boat}" — review summary boat name
+    confirmYourBooking: string; // "Confirma tu reserva" — step 4 header
+    yourPrice: string; // "Tu precio" — price summary label
+    yourTrip: string; // "Tu viaje" — progress bar step 2 label
+    yourExperience: string; // "Tu experiencia" — progress bar step 3 label
+    confirmStep: string; // "Confirmar" — progress bar step 4 label
+    yourBoat: string; // "Tu {boat}" — review summary boat name
   };
 
   // Reciprocity — free value before asking for booking
@@ -1807,6 +1808,9 @@ export interface Translations {
     viewOnMap: string;
     checkWhatsApp: string;
     viewBoatDetails: string;
+    gridView: string;
+    reviewPrev: string;
+    reviewNext: string;
     stepOf: string;
     adminAccess?: string;
   };
@@ -1964,19 +1968,43 @@ export interface Translations {
   };
   activitySnorkel?: {
     faqItems: Array<{ question: string; answer: string }>;
-    spots?: Array<{ name: string; distance: string; depth: string; highlights: string; ideal: string }>;
-    recommendedBoats?: Array<{ name: string; duration: string; price: string; description: string }>;
+    spots?: Array<{
+      name: string;
+      distance: string;
+      depth: string;
+      highlights: string;
+      ideal: string;
+    }>;
+    recommendedBoats?: Array<{
+      name: string;
+      duration: string;
+      price: string;
+      description: string;
+    }>;
     depthLabel?: string;
   };
   activityFamilies?: {
     faqItems: Array<{ question: string; answer: string }>;
     safetyFeatures?: Array<{ title: string; description: string }>;
-    familyRoutes?: Array<{ name: string; stops: string[]; description: string; price: string; tip: string }>;
+    familyRoutes?: Array<{
+      name: string;
+      stops: string[];
+      description: string;
+      price: string;
+      tip: string;
+    }>;
   };
   activityFishing?: {
     faqItems: Array<{ question: string; answer: string }>;
     fishSpecies?: Array<{ name: string; season: string; where: string; technique: string }>;
-    recommendedBoats?: Array<{ type: string; capacity: string; autonomy: string; price: string; advantages: string[]; recommendation: string }>;
+    recommendedBoats?: Array<{
+      type: string;
+      capacity: string;
+      autonomy: string;
+      price: string;
+      advantages: string[];
+      recommendation: string;
+    }>;
     fishingSpots?: Array<{ name: string; distance: string; target: string; description: string }>;
   };
 
@@ -2129,10 +2157,26 @@ export interface Translations {
 
   legalPages?: {
     legalDisclaimer: string;
-    privacy: { heroTitle: string; lastUpdated: string; sections: Array<{ title: string; body: string }> };
-    cookies: { heroTitle: string; lastUpdated: string; sections: Array<{ title: string; body: string }> };
-    terms: { heroTitle: string; lastUpdated: string; sections: Array<{ title: string; body: string }> };
-    accessibility: { heroTitle: string; lastUpdated: string; sections: Array<{ title: string; body: string }> };
+    privacy: {
+      heroTitle: string;
+      lastUpdated: string;
+      sections: Array<{ title: string; body: string }>;
+    };
+    cookies: {
+      heroTitle: string;
+      lastUpdated: string;
+      sections: Array<{ title: string; body: string }>;
+    };
+    terms: {
+      heroTitle: string;
+      lastUpdated: string;
+      sections: Array<{ title: string; body: string }>;
+    };
+    accessibility: {
+      heroTitle: string;
+      lastUpdated: string;
+      sections: Array<{ title: string; body: string }>;
+    };
   };
 
   glossaryPage?: {
@@ -2237,14 +2281,17 @@ export interface Translations {
     countries: Record<string, string>;
   };
 }
-function deepMerge(target: Record<string, any>, fallback: Record<string, any>): Record<string, any> {
+function deepMerge(
+  target: Record<string, any>,
+  fallback: Record<string, any>
+): Record<string, any> {
   const result = { ...fallback, ...target };
   for (const key of Object.keys(fallback)) {
     if (
-      typeof fallback[key] === 'object' &&
+      typeof fallback[key] === "object" &&
       fallback[key] !== null &&
       !Array.isArray(fallback[key]) &&
-      typeof target[key] === 'object' &&
+      typeof target[key] === "object" &&
       target[key] !== null
     ) {
       result[key] = deepMerge(target[key], fallback[key]);
@@ -2256,6 +2303,9 @@ function deepMerge(target: Record<string, any>, fallback: Record<string, any>): 
 // Translation hook — loads current language lazily; falls back to Spanish for missing keys
 export function useTranslations(): Translations {
   const { language, currentTranslation } = useLanguage();
-  if (language === 'es') return currentTranslation as Translations;
-  return deepMerge(currentTranslation as Record<string, any>, es as Record<string, any>) as Translations;
+  if (language === "es") return currentTranslation as Translations;
+  return deepMerge(
+    currentTranslation as Record<string, any>,
+    es as Record<string, any>
+  ) as Translations;
 }

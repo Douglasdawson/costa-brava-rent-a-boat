@@ -11,10 +11,14 @@ import {
   generateBreadcrumbSchema,
   generateWebSiteSchema,
   generateHowToBookingSchema,
-  generateSpeakableSchema
+  generateSpeakableSchema,
 } from "@/utils/seo-config";
-import { generateItemListSchema, generateSeasonalEventSchema, generateCovesItemListSchema, generateGlossarySchema } from "@/utils/seo-schemas";
-import { FALLBACK_ITEMS } from "@/components/FAQPreview";
+import {
+  generateItemListSchema,
+  generateSeasonalEventSchema,
+  generateCovesItemListSchema,
+  generateGlossarySchema,
+} from "@/utils/seo-schemas";
 import { useBusinessStats } from "@/hooks/useBusinessStats";
 import { BUSINESS_RATING, BUSINESS_REVIEW_COUNT } from "@shared/businessProfile";
 import type { Boat } from "@shared/schema";
@@ -24,29 +28,27 @@ import { getMinActivePrice } from "@shared/pricing";
 export default function HomePageSEO() {
   const { language } = useLanguage();
   const t = useTranslations();
-  const seoConfig = getSEOConfig('home', language);
-  const hreflangLinks = generateHreflangLinks('home');
-  const canonical = generateCanonicalUrl('home', language);
+  const seoConfig = getSEOConfig("home", language);
+  const hreflangLinks = generateHreflangLinks("home");
+  const canonical = generateCanonicalUrl("home", language);
 
   const { data: boats } = useQuery<Boat[]>({
-    queryKey: ['/api/boats']
+    queryKey: ["/api/boats"],
   });
   const { data: stats } = useBusinessStats();
 
   const localBusinessSchema = generateLocalBusinessSchema(
     language,
     stats?.rating ?? BUSINESS_RATING,
-    stats?.userRatingCount ?? BUSINESS_REVIEW_COUNT,
+    stats?.userRatingCount ?? BUSINESS_REVIEW_COUNT
   );
   const serviceSchema = generateServiceSchema(language);
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" }
-  ]);
+  const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Inicio", url: "/" }]);
 
   const activeBoats = (boats || []).filter(boat => boat.isActive);
   const fleetItems = activeBoats.map(boat => ({
     id: boat.id,
-    name: boat.name
+    name: boat.name,
   }));
   const itemListSchema = generateItemListSchema(fleetItems);
 
@@ -60,7 +62,9 @@ export default function HomePageSEO() {
     for (const b of activeBoats) {
       const p = b.pricing as Record<string, { prices: Record<string, number> }> | null;
       for (const season of ["BAJA", "MEDIA", "ALTA"] as const) {
-        const vals = Object.values(p?.[season]?.prices ?? {}).filter((v): v is number => typeof v === "number" && v > 0);
+        const vals = Object.values(p?.[season]?.prices ?? {}).filter(
+          (v): v is number => typeof v === "number" && v > 0
+        );
         if (vals.length) {
           lows.push(Math.min(...vals));
           highs.push(Math.max(...vals));
@@ -69,30 +73,36 @@ export default function HomePageSEO() {
       // Also use the cheapest active BAJA price via helper for consistency
       getMinActivePrice(p?.BAJA?.prices);
     }
-    return lows.length && highs.length ? { low: Math.min(...lows), high: Math.max(...highs) } : null;
+    return lows.length && highs.length
+      ? { low: Math.min(...lows), high: Math.max(...highs) }
+      : null;
   })();
 
   const seasonalEventSchema = generateSeasonalEventSchema(priceRange, t);
   const covesItemListSchema = generateCovesItemListSchema(t);
   const glossarySchema = generateGlossarySchema();
 
-  // FAQPage schema using homepage FAQ preview items (with live-data substitution)
+  // FAQPage schema using homepage FAQ preview items (with live-data substitution).
+  // Same i18n source as the visible accordion in FAQPreview, so JSON-LD stays in sync per language.
   const faqVars = computeFaqVars(boats);
   const faqPageSchema = {
     "@type": "FAQPage",
     "@id": `${canonical}#faq`,
-    "mainEntity": FALLBACK_ITEMS.slice(0, 8).map(item => ({
+    mainEntity: t.faqPreview!.items.slice(0, 8).map(item => ({
       "@type": "Question",
-      "name": substituteFaqVars(item.question, faqVars),
-      "acceptedAnswer": {
+      name: substituteFaqVars(item.question, faqVars),
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": substituteFaqVars(item.answer, faqVars)
-      }
-    }))
+        text: substituteFaqVars(item.answer, faqVars),
+      },
+    })),
   };
 
   const speakableSpec = generateSpeakableSchema([
-    "h1", ".hero-description", ".fleet-section h2", ".faq-answer"
+    "h1",
+    ".hero-description",
+    ".fleet-section h2",
+    ".faq-answer",
   ]);
 
   localBusinessSchema.speakable = speakableSpec;
@@ -109,8 +119,8 @@ export default function HomePageSEO() {
       webSiteSchema,
       howToSchema,
       seasonalEventSchema,
-      faqPageSchema
-    ]
+      faqPageSchema,
+    ],
   };
 
   return (

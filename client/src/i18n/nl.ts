@@ -2031,7 +2031,7 @@ export const nl: Translations = {
         },
         {
           question: 'Hoeveel kost de privé-excursie met schipper naar Tossa?',
-          answer: 'Pacific Craft 625 met professionele schipper, maximaal 4 uur, tot 7 personen. Vanaf {excursionBaja4h} € laagseizoen (april-juni, september-sluiting). Inclusief btw, schipper, aanlegplaats, reiniging en verzekering. Brandstof apart.',
+          answer: 'Pacific Craft 625 met professionele schipper, maximaal 4 uur, tot 6 personen (plus de schipper). Vanaf {excursionBaja4h} € laagseizoen (april-juni, september-sluiting). Inclusief btw, schipper, aanlegplaats, reiniging en verzekering. Brandstof apart.',
         },
         {
           question: 'Hoeveel kost huren naar Tossa met een basisvaarbewijs (LNB)?',
@@ -2097,7 +2097,7 @@ export const nl: Translations = {
         ctaDescription: 'Reserveer je boot vanuit de haven van Blanes en beleef de unieke ervaring om over zee aan te komen bij het mooiste middeleeuwse dorp van de Costa Brava.',
         ctaButton: 'Uitstapje naar Tossa Reserveren',
         warningTitle: 'Tossa is niet bereikbaar met een boot zonder vaarbewijs.',
-        warningBody: 'Boten zonder vaarbewijs (2 mijl, 5 knopen, 15 pk) komen tot Playa de Fenals (ten zuiden van Lloret) — 4 mijl voor Tossa. Om Tossa te bereiken vanuit Blanes heb je (1) een zelfverhuur met Basisvaarbewijs / LNB nodig (gesloten pakketten 2 u / 4 u / 8 u vanaf {licBaja2h} € met Mingolla Brava 19 of Trimarchi 57S, btw, ligplaats, schoonmaak en verzekering inbegrepen; brandstof en borg 500 € niet inbegrepen), of (2) de <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Privé-excursie met Schipper</a> (Pacific Craft 625 + schipper, max. 4 u, tot 7 personen, vanaf {excursionBaja4h} € met btw, schipper, ligplaats, schoonmaak en verzekering inbegrepen — brandstof niet inbegrepen). Het derde alternatief is om met de auto naar Tossa te gaan (20 min vanuit Lloret) en daar ter plaatse een boot zonder vaarbewijs te huren.',
+        warningBody: 'Boten zonder vaarbewijs (2 mijl, 5 knopen, 15 pk) komen tot Playa de Fenals (ten zuiden van Lloret) — 4 mijl voor Tossa. Om Tossa te bereiken vanuit Blanes heb je (1) een zelfverhuur met Basisvaarbewijs / LNB nodig (gesloten pakketten 2 u / 4 u / 8 u vanaf {licBaja2h} € met Mingolla Brava 19 of Trimarchi 57S, btw, ligplaats, schoonmaak en verzekering inbegrepen; brandstof en borg 500 € niet inbegrepen), of (2) de <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Privé-excursie met Schipper</a> (Pacific Craft 625 + schipper, max. 4 u, tot 6 personen, vanaf {excursionBaja4h} € met btw, schipper, ligplaats, schoonmaak en verzekering inbegrepen — brandstof niet inbegrepen). Het derde alternatief is om met de auto naar Tossa te gaan (20 min vanuit Lloret) en daar ter plaatse een boot zonder vaarbewijs te huren.',
         crossLinkingText: 'We bieden ook service voor toeristen die verblijven in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> en <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Vanuit deze plaatsen aan de kust van de Maresme bereik je de haven van Blanes in 10-20 minuten met de auto.',
         relatedTitle: 'Gerelateerde services en bestemmingen',
         relatedCostaBrava: 'Meer bestemmingen aan de Costa Brava',
@@ -2273,7 +2273,7 @@ export const nl: Translations = {
         },
         {
           question: 'Kan ik een bootexcursie maken van Calella naar Tossa de Mar?',
-          answer: 'Niet direct vanuit Calella (geen verhuur). Vanuit Blanes wel: met een boot met basisvaarbewijs (LNB) bereik je Tossa in 45 min (vanaf {licBaja2h} EUR/2u), of met onze privé-excursie met schipper 4u naar Tossa inclusief Cala Bona en Vila Vella (vanaf {excursionBaja4h} EUR voor maximaal 7 personen). Boten zonder vaarbewijs kunnen Tossa niet bereiken vanwege de wettelijke limiet van 2 mijl.',
+          answer: 'Niet direct vanuit Calella (geen verhuur). Vanuit Blanes wel: met een boot met basisvaarbewijs (LNB) bereik je Tossa in 45 min (vanaf {licBaja2h} EUR/2u), of met onze privé-excursie met schipper 4u naar Tossa inclusief Cala Bona en Vila Vella (vanaf {excursionBaja4h} EUR voor maximaal 6 personen, plus de schipper). Boten zonder vaarbewijs kunnen Tossa niet bereiken vanwege de wettelijke limiet van 2 mijl.',
         },
         {
           question: 'Hoeveel kost de trein R1 van Calella naar Blanes?',

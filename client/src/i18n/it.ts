@@ -2032,7 +2032,7 @@ export const it: Translations = {
         },
         {
           question: 'Quanto costa l\'Escursione Privata con Capitano a Tossa?',
-          answer: 'Pacific Craft 625 con skipper professionista, 4 h massimo, fino a 7 persone. A partire da {excursionBaja4h} € bassa stagione (aprile-giugno, settembre-chiusura). Include IVA, skipper, ormeggio, pulizia e assicurazione. Carburante a parte.',
+          answer: 'Pacific Craft 625 con skipper professionista, 4 h massimo, fino a 6 persone (più lo skipper). A partire da {excursionBaja4h} € bassa stagione (aprile-giugno, settembre-chiusura). Include IVA, skipper, ormeggio, pulizia e assicurazione. Carburante a parte.',
         },
         {
           question: 'Quanto costa noleggiare per Tossa con Patente di Base (LNB)?',
@@ -2098,7 +2098,7 @@ export const it: Translations = {
         ctaDescription: 'Prenota la tua barca dal porto di Blanes e vivi l\'esperienza unica di arrivare via mare al borgo medievale più bello della Costa Brava.',
         ctaButton: 'Prenota Escursione a Tossa',
         warningTitle: 'Tossa non è raggiungibile con barca senza patente.',
-        warningBody: 'Le barche senza patente (2 miglia, 5 nodi, 15 CV) arrivano fino a Playa de Fenals (sud di Lloret) — 4 miglia prima di Tossa. Per raggiungere Tossa da Blanes hai bisogno di (1) noleggio con Patente Nautica di Base / LNB (pacchetti fissi 2 h / 4 h / 8 h da {licBaja2h} € con Mingolla Brava 19 o Trimarchi 57S, IVA, ormeggio, pulizia e assicurazione inclusi; carburante e cauzione 500 € a parte), oppure (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Escursione Privata con Capitano</a> (Pacific Craft 625 + skipper, 4 h massimo, fino a 7 pax, da {excursionBaja4h} € con IVA, skipper, ormeggio, pulizia e assicurazione inclusi — carburante a parte). La terza alternativa è andare in auto a Tossa (20 min da Lloret) e noleggiare una barca senza patente direttamente lì.',
+        warningBody: 'Le barche senza patente (2 miglia, 5 nodi, 15 CV) arrivano fino a Playa de Fenals (sud di Lloret) — 4 miglia prima di Tossa. Per raggiungere Tossa da Blanes hai bisogno di (1) noleggio con Patente Nautica di Base / LNB (pacchetti fissi 2 h / 4 h / 8 h da {licBaja2h} € con Mingolla Brava 19 o Trimarchi 57S, IVA, ormeggio, pulizia e assicurazione inclusi; carburante e cauzione 500 € a parte), oppure (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Escursione Privata con Capitano</a> (Pacific Craft 625 + skipper, 4 h massimo, fino a 6 pax, da {excursionBaja4h} € con IVA, skipper, ormeggio, pulizia e assicurazione inclusi — carburante a parte). La terza alternativa è andare in auto a Tossa (20 min da Lloret) e noleggiare una barca senza patente direttamente lì.',
         crossLinkingText: 'Offriamo servizio anche per turisti alloggiati a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> e <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Da questi paesi della costa del Maresme si arriva al Porto di Blanes in 10-20 minuti d\'auto.',
         relatedTitle: 'Servizi e destinazioni correlate',
         relatedCostaBrava: 'Altre destinazioni sulla Costa Brava',
@@ -2274,7 +2274,7 @@ export const it: Translations = {
         },
         {
           question: 'Posso fare un\'escursione in barca da Calella a Tossa de Mar?',
-          answer: 'Non direttamente da Calella (non c\'è noleggio). Da Blanes sì: con una barca con Patente Nautica di Base (LNB) arrivi a Tossa in 45 min (da {licBaja2h} EUR/2h), oppure con la nostra Escursione Privata con Capitano 4h fino a Tossa includendo Cala Bona e Vila Vella (da {excursionBaja4h} EUR per un massimo di 7 persone). Le barche senza patente non possono arrivare a Tossa per il limite legale di 2 miglia.',
+          answer: 'Non direttamente da Calella (non c\'è noleggio). Da Blanes sì: con una barca con Patente Nautica di Base (LNB) arrivi a Tossa in 45 min (da {licBaja2h} EUR/2h), oppure con la nostra Escursione Privata con Capitano 4h fino a Tossa includendo Cala Bona e Vila Vella (da {excursionBaja4h} EUR per un massimo di 6 persone, più lo skipper). Le barche senza patente non possono arrivare a Tossa per il limite legale di 2 miglia.',
         },
         {
           question: 'Quanto costa il treno R1 da Calella a Blanes?',

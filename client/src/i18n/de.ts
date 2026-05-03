@@ -2032,7 +2032,7 @@ export const de: Translations = {
         },
         {
           question: 'Wie viel kostet die private Exkursion mit Kapitän nach Tossa?',
-          answer: 'Pacific Craft 625 mit professionellem Skipper, max. 4 Std., bis zu 7 Personen. Ab {excursionBaja4h} € Nebensaison (April–Juni, September–Saisonende). Inklusive MwSt., Skipper, Liegeplatz, Reinigung und Versicherung. Kraftstoff separat.',
+          answer: 'Pacific Craft 625 mit professionellem Skipper, max. 4 Std., bis zu 6 Personen (plus Skipper). Ab {excursionBaja4h} € Nebensaison (April–Juni, September–Saisonende). Inklusive MwSt., Skipper, Liegeplatz, Reinigung und Versicherung. Kraftstoff separat.',
         },
         {
           question: 'Wie viel kostet die Miete nach Tossa mit Grundlizenz (LNB)?',
@@ -2098,7 +2098,7 @@ export const de: Translations = {
         ctaDescription: 'Buchen Sie Ihr Boot ab dem Hafen von Blanes und erleben Sie das einzigartige Erlebnis, auf dem Seeweg das schönste mittelalterliche Dorf der Costa Brava zu erreichen.',
         ctaButton: 'Ausflug nach Tossa buchen',
         warningTitle: 'Tossa ist mit einem Boot ohne Führerschein nicht erreichbar.',
-        warningBody: 'Boote ohne Führerschein (2 Meilen, 5 Knoten, 15 PS) reichen bis Playa de Fenals (südlich von Lloret) — 4 Meilen vor Tossa. Um von Blanes nach Tossa zu gelangen, benötigen Sie (1) eine Selbstanmietung mit Sportbootführerschein (geschlossene Pakete 2 Std. / 4 Std. / 8 Std. ab {licBaja2h} € mit Mingolla Brava 19 oder Trimarchi 57S, MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff und Kaution 500 € extra), oder (2) die <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Private Bootsfahrt mit Kapitän</a> (Pacific Craft 625 + Kapitän, max. 4 Std., bis 7 Personen, ab {excursionBaja4h} € mit MwSt., Kapitän, Liegeplatz, Reinigung und Versicherung inklusive — Kraftstoff extra). Die dritte Alternative ist, mit dem Auto nach Tossa zu fahren (20 Min. von Lloret) und dort vor Ort ein Boot ohne Führerschein zu mieten.',
+        warningBody: 'Boote ohne Führerschein (2 Meilen, 5 Knoten, 15 PS) reichen bis Playa de Fenals (südlich von Lloret) — 4 Meilen vor Tossa. Um von Blanes nach Tossa zu gelangen, benötigen Sie (1) eine Selbstanmietung mit Sportbootführerschein (geschlossene Pakete 2 Std. / 4 Std. / 8 Std. ab {licBaja2h} € mit Mingolla Brava 19 oder Trimarchi 57S, MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff und Kaution 500 € extra), oder (2) die <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Private Bootsfahrt mit Kapitän</a> (Pacific Craft 625 + Kapitän, max. 4 Std., bis 6 Personen, ab {excursionBaja4h} € mit MwSt., Kapitän, Liegeplatz, Reinigung und Versicherung inklusive — Kraftstoff extra). Die dritte Alternative ist, mit dem Auto nach Tossa zu fahren (20 Min. von Lloret) und dort vor Ort ein Boot ohne Führerschein zu mieten.',
         crossLinkingText: 'Wir bieten auch Service für Touristen, die in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> und <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a> untergebracht sind. Von diesen Küstenorten des Maresme erreicht man den Hafen von Blanes in 10-20 Minuten mit dem Auto.',
         relatedTitle: 'Verwandte Dienstleistungen und Ziele',
         relatedCostaBrava: 'Weitere Ziele an der Costa Brava',
@@ -2274,7 +2274,7 @@ export const de: Translations = {
         },
         {
           question: 'Kann ich von Calella aus eine Bootsexkursion nach Tossa de Mar machen?',
-          answer: 'Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Grundlizenz (LNB) erreichen Sie Tossa in 45 Min. (ab {licBaja2h} EUR/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} EUR für bis zu 7 Personen). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.',
+          answer: 'Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Grundlizenz (LNB) erreichen Sie Tossa in 45 Min. (ab {licBaja2h} EUR/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} EUR für bis zu 6 Personen, plus Skipper). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.',
         },
         {
           question: 'Wie viel kostet der Zug R1 von Calella nach Blanes?',

@@ -2031,7 +2031,7 @@ export const ca: Translations = {
         },
         {
           question: 'Quan costa l\'Excursió Privada amb Capità a Tossa?',
-          answer: 'Pacific Craft 625 amb patró professional, 4 h màxim, fins a 7 persones. Des de {excursionBaja4h} € temporada baixa (abril-juny, setembre-tancament). Inclou IVA, patró, amarratge, neteja i assegurança. Combustible a part.',
+          answer: 'Pacific Craft 625 amb patró professional, 4 h màxim, fins a 6 persones (més el patró). Des de {excursionBaja4h} € temporada baixa (abril-juny, setembre-tancament). Inclou IVA, patró, amarratge, neteja i assegurança. Combustible a part.',
         },
         {
           question: 'Quan costa llogar a Tossa amb Llicència Bàsica (LNB)?',
@@ -2097,7 +2097,7 @@ export const ca: Translations = {
         ctaDescription: 'Reserva el teu vaixell des del Port de Blanes i viu l\'experiència única d\'arribar per mar al poble medieval més bonic de la Costa Brava.',
         ctaButton: 'Reservar Excursió a Tossa',
         warningTitle: 'Tossa no és accessible amb vaixell sense llicència.',
-        warningBody: 'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret) — 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència Bàsica de Navegació / LNB (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 7 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos — combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
+        warningBody: 'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret) — 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència Bàsica de Navegació / LNB (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 6 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos — combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
         crossLinkingText: 'També oferim servei per a turistes allotjats a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> i <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Des d\'aquests pobles de la costa del Maresme s\'arriba al Port de Blanes en 10-20 minuts amb cotxe.',
         relatedTitle: 'Serveis i destinacions relacionats',
         relatedCostaBrava: 'Més destinacions a la Costa Brava',
@@ -2273,7 +2273,7 @@ export const ca: Translations = {
         },
         {
           question: 'Puc fer una excursió amb vaixell des de Calella a Tossa de Mar?',
-          answer: 'No directament des de Calella (no hi ha lloguer). Des de Blanes sí: amb un vaixell amb Llicència Bàsica de Navegació (LNB) arribes a Tossa en 45 min (des de {licBaja2h} EUR/2h), o amb la nostra Excursió Privada amb Capità 4h fins a Tossa incloent Cala Bona i Vila Vella (des de {excursionBaja4h} EUR per a fins a 7 persones). Els vaixells sense llicència no poden arribar a Tossa pel límit legal de 2 milles.',
+          answer: 'No directament des de Calella (no hi ha lloguer). Des de Blanes sí: amb un vaixell amb Llicència Bàsica de Navegació (LNB) arribes a Tossa en 45 min (des de {licBaja2h} EUR/2h), o amb la nostra Excursió Privada amb Capità 4h fins a Tossa incloent Cala Bona i Vila Vella (des de {excursionBaja4h} EUR per a fins a 6 persones, més el patró). Els vaixells sense llicència no poden arribar a Tossa pel límit legal de 2 milles.',
         },
         {
           question: 'Quan costa el tren R1 de Calella a Blanes?',

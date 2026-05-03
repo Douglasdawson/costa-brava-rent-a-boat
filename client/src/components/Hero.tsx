@@ -12,6 +12,7 @@ export default function Hero() {
   const { openBookingModal } = useBookingModal();
   const { data: businessStats } = useBusinessStats();
   const [quizOpen, setQuizOpen] = useState(false);
+  const authority = t.authority!;
   const ratingDisplay = businessStats
     ? `${businessStats.rating.toFixed(1)}/5 · ${businessStats.userRatingCount}+ reseñas`
     : t.hero.googleRating;
@@ -68,16 +69,25 @@ export default function Hero() {
         <div className="flex-1 flex flex-col justify-between lg:justify-center pt-24 lg:pt-24 pb-[56px] lg:pb-[52px] px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full">
           {/* Text group — top on mobile, centered with CTAs on tablet+ */}
           <div className="text-center flex flex-col items-center">
-            <h1 className="font-heading font-bold text-primary-foreground tracking-tight mb-2 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] hyphens-auto break-words" style={{ fontSize: 'clamp(1.75rem, 5.5vw, 3.5rem)' }}>
+            <h1
+              className="font-heading font-bold text-primary-foreground tracking-tight mb-2 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] hyphens-auto break-words"
+              style={{ fontSize: "clamp(1.75rem, 5.5vw, 3.5rem)" }}
+            >
               {t.hero.title}
             </h1>
 
             {t.hero.summaryGeo && (
-              <p className="sr-only" data-testid="hero-summary-geo">{t.hero.summaryGeo}</p>
+              <p className="sr-only" data-testid="hero-summary-geo">
+                {t.hero.summaryGeo}
+              </p>
             )}
 
             <p className="text-[0.875rem] sm:text-[1.15rem] lg:text-[1.575rem] text-primary-foreground/85 font-medium mb-2 sm:mb-6 leading-snug sm:leading-relaxed sm:max-w-[720px] lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <span className="hidden sm:inline">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
+              <span className="hidden sm:inline">
+                {t.hero.subtitleLine1}
+                <br />
+                {t.hero.subtitleLine2}
+              </span>
               <span className="sm:hidden">{t.hero.subtitleMobile || t.hero.subtitleLine1}</span>
             </p>
           </div>
@@ -106,10 +116,10 @@ export default function Hero() {
               <Button
                 size="lg"
                 onClick={() => {
-                  const fleet = document.getElementById('fleet');
-                  if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  const fleet = document.getElementById("fleet");
+                  if (fleet) fleet.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
-                className="bg-white/90 hover:bg-white text-cta sm:bg-hero-cta-secondary sm:hover:bg-hero-cta-secondary-hover sm:text-foreground px-6 py-2.5 text-sm sm:py-3.5 sm:text-base lg:px-10 lg:py-3.5 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
+                className="bg-white/10 hover:bg-white/20 border-2 border-white/70 text-white px-6 py-2.5 text-sm sm:py-3.5 sm:text-base lg:px-10 lg:py-3.5 lg:text-lg rounded-full font-medium w-full sm:w-auto"
                 data-testid="button-hero-explore"
               >
                 {t.hero.viewFleet}
@@ -124,28 +134,30 @@ export default function Hero() {
         <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-x-3 gap-y-1.5 sm:gap-6 lg:gap-8 px-3 sm:px-4 py-2 sm:py-3">
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
             <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
-            {t.authority?.yearsExperience || '6+ años de experiencia'}
+            {authority.yearsExperience}
           </span>
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
             <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
-            {t.authority?.fullInsurance || 'Seguro a todo riesgo'}
+            {authority.fullInsurance}
           </span>
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
             <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
-            {t.authority?.happyCustomers || '5000+ clientes satisfechos'}
+            {authority.happyCustomers}
           </span>
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
-            <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 fill-amber-400 text-amber-400" aria-hidden="true" />
+            <Star
+              className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 fill-amber-400 text-amber-400"
+              aria-hidden="true"
+            />
             {ratingDisplay}
           </span>
         </div>
       </div>
 
-
       <BoatQuizModal
         open={quizOpen}
         onOpenChange={setQuizOpen}
-        onBoatSelect={(boatId) => {
+        onBoatSelect={boatId => {
           setQuizOpen(false);
           openBookingModal(boatId);
         }}

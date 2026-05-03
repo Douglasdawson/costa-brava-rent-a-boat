@@ -29,6 +29,14 @@ import type { LangCode } from "../../shared/seoConstants";
 export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[]>> = {
   "/alquiler-barcos-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Costa Brava regional landing — Round 4 (2026-05-03). Server-side body
+  // fallback now sources per-locale copy from client/src/i18n/<lang>.ts via
+  // I18N_BY_LANG[lang].locationPages.costaBrava (see seoInjector.ts branch),
+  // so each locale receives ~200-400 unique words of native content (hero,
+  // intro paragraph, 5 cove descriptions). Marking all 8 locales indexable
+  // unblocks GSC reindex requests that previously failed the live test due
+  // to noindex meta + canonical→ES override.
+  "/alquiler-barcos-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
 };
 
 /**

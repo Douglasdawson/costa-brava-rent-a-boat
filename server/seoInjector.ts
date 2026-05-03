@@ -17,6 +17,25 @@ import { hasStaticTranslation } from "./seo/translatedStaticPaths";
 import { get404Meta } from "./seo/helpers";
 import { getCurrentStats } from "./lib/businessStatsCache";
 
+// Per-locale i18n bundles imported from the client to drive native-language
+// SSR body fallback. Type-only import follows the pattern proven by
+// scripts/validate-translations.ts (lines 11-18). esbuild bundles these
+// statically (each ~200KB; only the keys actually accessed survive
+// dead-code elimination on a small subset of branches).
+import { es as i18nEs } from "../client/src/i18n/es";
+import { en as i18nEn } from "../client/src/i18n/en";
+import { ca as i18nCa } from "../client/src/i18n/ca";
+import { fr as i18nFr } from "../client/src/i18n/fr";
+import { de as i18nDe } from "../client/src/i18n/de";
+import { nl as i18nNl } from "../client/src/i18n/nl";
+import { it as i18nIt } from "../client/src/i18n/it";
+import { ru as i18nRu } from "../client/src/i18n/ru";
+
+const I18N_BY_LANG: Record<LangCode, typeof i18nEs> = {
+  es: i18nEs, en: i18nEn, ca: i18nCa, fr: i18nFr,
+  de: i18nDe, nl: i18nNl, it: i18nIt, ru: i18nRu,
+};
+
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
 // Dynamic season year: Nov-Dec → next year, otherwise current year
@@ -3039,34 +3058,69 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
 
     // /alquiler-barcos-costa-brava - regional landing for the whole Costa Brava.
     // Highest-impression page in GSC ("alquiler barcos costa brava" + variants:
-    // 625+ monthly impressions) but was rendering an EMPTY <div id="root"> for
-    // crawlers because no metaKey branch existed here — falling through to the
-    // default with no schemas and no body fallback. Result: home (/) outranked
-    // this dedicated landing at pos 10 vs pos 76 for the exact-match query, and
-    // the EN/FR/DE variants were Soft 404 because Googlebot saw zero body.
+    // 625+ monthly impressions). Initially added in 8e670dd with isEn-only body
+    // fallback; refactored here (Round 4, 2026-05-03) to source per-locale copy
+    // directly from client/src/i18n/<lang>.ts so the SSR body served to
+    // Googlebot is genuinely native in all 8 locales (~200-400 unique words per
+    // locale instead of Spanish content with an English ternary). Without this,
+    // GSC live-test rejected reindex requests for /en/, /fr/, /de/, /nl/, /it/,
+    // /ca/, /ru/ as Soft 404 / "translated content with no unique value".
     //
-    // pathToStaticMetaKey resolves /es/alquiler-barcos-costa-brava AND
-    // /en/boat-rental-costa-brava (and FR/DE/etc.) all to this canonical
-    // metaKey, so this single branch covers all 8 languages via isEn ternary.
-    // The /boat-rental-costa-brava branch below is now dead code (kept only to
-    // avoid touching unrelated lines in this diff).
+    // pathToStaticMetaKey resolves all 8 language variants of this slug to the
+    // canonical ES metaKey, so this single branch covers them via I18N_BY_LANG
+    // lookup. The /boat-rental-costa-brava branch below is dead code (kept only
+    // to avoid touching unrelated lines).
     //
-    // Mirrors the Lloret/Tossa pattern: Service + TouristDestination + FAQ +
-    // Breadcrumb + body fallback. ROI: target queries currently at pos 10-12 to
-    // home; expected to push dedicated landing into top 5-10 once Google sees
-    // body content.
+    // FAQ Q&A and audience labels stay bilingual ES/EN inline because
+    // t.locationPages.costaBrava has no faqItems block in i18n yet — those are
+    // metadata schemas (less weighted than body text by Soft-404 detection),
+    // safe to migrate later when the i18n bundle adds them.
     else if (metaKey === "/alquiler-barcos-costa-brava") {
+      // Non-null assertion: t.locationPages.costaBrava is typed optional in
+      // Translations but guaranteed present in all 8 locales by
+      // scripts/validate-translations.ts (CI-enforced).
+      const cb = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.costaBrava!;
+      const heroTitle = cb.hero.title;
+      const heroSubtitle = cb.hero.subtitle;
+      const intro = cb.sections.introP1;
+
+      // First sentence helper for compact bullet copy.
+      const firstSentence = (s: string): string => {
+        const m = s.match(/^[^.!?]+[.!?]/);
+        return m ? m[0] : s;
+      };
+
+      const breadcrumbLabels: Record<LangCode, string> = {
+        es: "Alquiler Barcos Costa Brava",
+        en: "Boat Rental Costa Brava",
+        ca: "Lloguer Vaixells Costa Brava",
+        fr: "Location Bateaux Costa Brava",
+        de: "Bootsverleih Costa Brava",
+        nl: "Bootverhuur Costa Brava",
+        it: "Noleggio Barche Costa Brava",
+        ru: "Аренда лодок Коста-Брава",
+      };
+      const audienceLabels: Record<LangCode, [string, string, string]> = {
+        es: ["Turistas náuticos", "Familias con niños", "Buscadores de aventura"],
+        en: ["Nautical tourists", "Families with children", "Adventure seekers"],
+        ca: ["Turistes nàutics", "Famílies amb nens", "Buscadors d'aventura"],
+        fr: ["Touristes nautiques", "Familles avec enfants", "Aventuriers"],
+        de: ["Bootstouristen", "Familien mit Kindern", "Abenteurer"],
+        nl: ["Nautische toeristen", "Gezinnen met kinderen", "Avonturiers"],
+        it: ["Turisti nautici", "Famiglie con bambini", "Cercatori di avventura"],
+        ru: ["Морские туристы", "Семьи с детьми", "Искатели приключений"],
+      };
+      const [aud1, aud2, aud3] = audienceLabels[lang] ?? audienceLabels.es;
+
       const destination = {
         "@type": "TouristDestination",
-        name: isEn ? "Boat Rental on the Costa Brava from Blanes" : "Alquiler de Barcos en la Costa Brava desde Blanes",
-        description: isEn
-          ? "Rent a boat on the Costa Brava departing from Puerto de Blanes. Explore coves and beaches from Blanes to Tossa de Mar."
-          : "Alquila un barco en la Costa Brava saliendo desde el Puerto de Blanes. Explora calas y playas desde Blanes hasta Tossa de Mar.",
+        name: heroTitle,
+        description: heroSubtitle,
         url: `${BASE_URL}/alquiler-barcos-costa-brava`,
         touristType: [
-          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas náuticos" },
-          { "@type": "Audience", audienceType: isEn ? "Families with children" : "Familias con niños" },
-          { "@type": "Audience", audienceType: isEn ? "Adventure seekers" : "Buscadores de aventura" },
+          { "@type": "Audience", audienceType: aud1 },
+          { "@type": "Audience", audienceType: aud2 },
+          { "@type": "Audience", audienceType: aud3 },
         ],
         geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
         containedInPlace: {
@@ -3123,35 +3177,26 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           },
         ],
       };
-      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boat Rental Costa Brava" : "Alquiler Barcos Costa Brava", url: `${BASE_URL}/alquiler-barcos-costa-brava` }]);
+      const breadcrumb = buildBreadcrumb([
+        homeCrumb,
+        { name: breadcrumbLabels[lang] ?? breadcrumbLabels.es, url: `${BASE_URL}/alquiler-barcos-costa-brava` },
+      ]);
       const service = buildLandingService(
-        isEn ? `Boat Rental on the Costa Brava ${SEASON_YEAR}` : `Alquiler de Barcos en la Costa Brava ${SEASON_YEAR}`,
-        isEn
-          ? "Boat rental on the Costa Brava from Puerto de Blanes. 8 boats: 5 license-free (fuel included) and 3 licensed. Reach Cala Sant Francesc, Lloret de Mar and Tossa de Mar. From 70 EUR/hour, up to 12 people. Private excursion with captain available."
-          : "Alquiler de barcos en la Costa Brava desde el Puerto de Blanes. 8 embarcaciones: 5 sin licencia (gasolina incluida) y 3 con licencia. Llega a Cala Sant Francesc, Lloret de Mar y Tossa de Mar. Desde 70€/hora, hasta 12 personas. Excursión privada con capitán disponible.",
+        `${heroTitle} ${SEASON_YEAR}`,
+        intro,
         { low: 70, high: 420 },
       );
       const costaBravaBodyFallback = buildLocationBodyFallback(
-        isEn ? "Boat Rental on the Costa Brava from Blanes" : "Alquiler de Barcos en la Costa Brava desde Blanes",
-        isEn
-          ? "Rent a boat on the Costa Brava from Puerto de Blanes — the southern gateway to one of the Mediterranean's most beautiful coastlines. Our fleet of 8 boats covers all needs: 5 license-free vessels (fuel included) for the 2-mile coastal zone, and 3 licensed boats that reach Tossa de Mar (45 min) and beyond. From 70 EUR/hour, up to 12 people. Season April through October."
-          : "Alquila un barco en la Costa Brava desde el Puerto de Blanes — la puerta sur de una de las costas más bellas del Mediterráneo. Nuestra flota de 8 embarcaciones cubre todas las necesidades: 5 barcos sin licencia (gasolina incluida) para la zona costera de 2 millas, y 3 barcos con licencia que llegan a Tossa de Mar (45 min) y más allá. Desde 70€/hora, hasta 12 personas. Temporada de abril a octubre.",
-        isEn
-          ? [
-              "Cala Sant Francesc, Blanes — turquoise water, 20 min from port",
-              "Sa Palomera rock, Blanes — emblem of the Costa Brava",
-              "Cala Boadella, Lloret de Mar — 35 min, semi-virgin pine cove",
-              "Cala Banys, Lloret de Mar — most photographed cove of Lloret",
-              "Vila Vella de Tossa de Mar — medieval walled town, 45 min with licensed boat",
-            ]
-          : [
-              "Cala Sant Francesc, Blanes — agua turquesa, 20 min desde puerto",
-              "Roca de Sa Palomera, Blanes — emblema de la Costa Brava",
-              "Cala Boadella, Lloret de Mar — 35 min, cala semi-virgen con pinos",
-              "Cala Banys, Lloret de Mar — la cala más fotografiada de Lloret",
-              "Vila Vella de Tossa de Mar — pueblo medieval amurallado, 45 min con barco con licencia",
-            ],
-        isEn ? "Book via WhatsApp +34 611 500 372" : "Reserva por WhatsApp +34 611 500 372",
+        heroTitle,
+        intro,
+        [
+          `${cb.sections.calaSantFrancescName} — ${firstSentence(cb.sections.calaSantFrancescDesc)}`,
+          `${cb.sections.platjaPalomeraName} — ${firstSentence(cb.sections.platjaPalomeraDesc)}`,
+          `${cb.sections.calaBBoadellaName} — ${firstSentence(cb.sections.calaBBoadellaDesc)}`,
+          `${cb.sections.calaTreumalName} — ${firstSentence(cb.sections.calaTreumalDesc)}`,
+          `${cb.sections.calaBravaName} — ${firstSentence(cb.sections.calaBravaDesc)}`,
+        ],
+        cb.sections.ctaButton,
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, bodyFallback: costaBravaBodyFallback };
     }

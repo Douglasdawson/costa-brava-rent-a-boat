@@ -26,6 +26,7 @@ import { EmptyState } from "./shared/EmptyState";
 import { ErrorState } from "./shared/ErrorState";
 import { SeoDashboard } from "./SeoDashboard";
 import { AnalyticsTab } from "./AnalyticsTab";
+import { AiBotsSubTab } from "./AiBotsSubTab";
 
 // --- Types ---
 
@@ -79,7 +80,7 @@ interface HealthCheck {
 
 // --- Sub-tab definitions ---
 
-type SubTab = "resumen" | "analisis" | "campanas" | "informes" | "salud";
+type SubTab = "resumen" | "analisis" | "campanas" | "informes" | "salud" | "bots-ia";
 
 const SUB_TABS: { id: SubTab; label: string }[] = [
   { id: "resumen", label: "Resumen" },
@@ -87,6 +88,7 @@ const SUB_TABS: { id: SubTab; label: string }[] = [
   { id: "campanas", label: "Campanas" },
   { id: "informes", label: "Informes" },
   { id: "salud", label: "Salud" },
+  { id: "bots-ia", label: "Bots IA" },
 ];
 
 // --- Helpers ---
@@ -153,7 +155,9 @@ export function SeoTab({ adminToken }: SeoTabProps) {
       </div>
 
       {/* Sub-tab content */}
-      {activeSubTab === "resumen" && <SeoDashboard adminToken={adminToken} />}
+      {activeSubTab === "resumen" && (
+        <SeoDashboard adminToken={adminToken} onJumpToBots={() => setActiveSubTab("bots-ia")} />
+      )}
       {activeSubTab === "analisis" && <AnalyticsTab adminToken={adminToken} />}
       {activeSubTab === "campanas" && (
         <div className="space-y-6">
@@ -163,6 +167,7 @@ export function SeoTab({ adminToken }: SeoTabProps) {
       )}
       {activeSubTab === "informes" && <InformesSubTab adminToken={adminToken} />}
       {activeSubTab === "salud" && <SaludSubTab adminToken={adminToken} />}
+      {activeSubTab === "bots-ia" && <AiBotsSubTab />}
     </div>
   );
 }

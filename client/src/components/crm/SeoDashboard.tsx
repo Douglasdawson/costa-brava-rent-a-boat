@@ -34,6 +34,7 @@ import {
   TrendingUp,
   TrendingDown,
   Minus,
+  Bot,
 } from "lucide-react";
 import { StatCard } from "./shared/StatCard";
 
@@ -786,7 +787,19 @@ function SeoDataTable({
 
 // --- Main Component ---
 
-export function SeoDashboard({ adminToken }: { adminToken: string }) {
+interface SeoDashboardProps {
+  adminToken: string;
+  /** Optional: if provided, the AI Bots StatCard becomes a button that jumps
+   *  to the dedicated subtab. SeoTab passes this; standalone usage doesn't. */
+  onJumpToBots?: () => void;
+}
+
+interface BotVisitsSummary {
+  totalVisits: number;
+  byBot: Array<{ botName: string; visits: number }>;
+}
+
+export function SeoDashboard({ adminToken, onJumpToBots }: SeoDashboardProps) {
   const [dateRange, setDateRange] = useState<number>(30);
   const [activeCard, setActiveCard] = useState<ActiveCard>("posiciones");
 
@@ -800,6 +813,21 @@ export function SeoDashboard({ adminToken }: { adminToken: string }) {
       return res.json();
     },
     staleTime: 60_000,
+  });
+
+  // AI bot crawls — last 30 days. Smaller payload (no recent[]) so the
+  // dashboard load stays light. Used only for the StatCard summary.
+  const { data: botSummary } = useQuery<BotVisitsSummary>({
+    queryKey: ["seo", "bot-visits-summary", 30],
+    queryFn: async () => {
+      const res = await fetch(
+        "/api/admin/seo/bot-visits?days=30&topPaths=1&recent=1",
+        { credentials: "include" },
+      );
+      if (!res.ok) throw new Error("Error al cargar bot visits");
+      return res.json();
+    },
+    staleTime: 5 * 60_000,
   });
 
   const { data: alerts = [] } = useQuery<SeoAlert[]>({
@@ -940,7 +968,7 @@ export function SeoDashboard({ adminToken }: { adminToken: string }) {
       </div>
 
       {/* Metric Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <StatCard
           title="Posiciones"
           value={metrics.avgPosition !== null ? metrics.avgPosition.toFixed(1) : "-"}
@@ -970,6 +998,21 @@ export function SeoDashboard({ adminToken }: { adminToken: string }) {
           status={getSemaphoreStatus("competidores", data)}
           active={activeCard === "competidores"}
           onClick={() => setActiveCard("competidores")}
+        />
+        <StatCard
+          title="Bots IA"
+          value={
+            botSummary?.totalVisits != null
+              ? botSummary.totalVisits.toLocaleString("es-ES")
+              : "-"
+          }
+          description={
+            botSummary?.byBot?.[0]?.botName
+              ? `top: ${botSummary.byBot[0].botName}`
+              : "GPTBot, ClaudeBot, Perplexity…"
+          }
+          icon={<Bot className="h-4 w-4" />}
+          onClick={onJumpToBots}
         />
       </div>
 

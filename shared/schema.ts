@@ -2591,6 +2591,28 @@ export const seoUrlInspections = pgTable("seo_url_inspections", {
 export type SeoUrlInspection = typeof seoUrlInspections.$inferSelect;
 export type InsertSeoUrlInspection = typeof seoUrlInspections.$inferInsert;
 
+// SEO pilot measurements — one row per scheduled measurement of a SEO pilot
+// (e.g. T+21d after a SSR fix). Populated by the seo-pilots cron in
+// server/seo/worker.ts which runs the pilot config defined in
+// shared/seoPilots.ts. Read via /api/admin/seo-pilots for trend analysis.
+export const seoPilotRuns = pgTable("seo_pilot_runs", {
+  id: serial("id").primaryKey(),
+  pilotKey: text("pilot_key").notNull(),                // e.g. "costa-brava-ssr-multilang"
+  ranAt: timestamp("ran_at", { withTimezone: true }).notNull().default(sql`now()`),
+  scheduledFor: timestamp("scheduled_for", { withTimezone: true }).notNull(),  // the target date this run measures
+  verdict: text("verdict").notNull(),                   // "VERDE" | "AMBAR" | "ROJO"
+  summary: text("summary").notNull(),                   // 1-2 line human-readable
+  data: jsonb("data").notNull(),                        // full measurement payload (queries, inspections, html_check)
+  baseline: jsonb("baseline").notNull(),                // baseline copied at run time for self-contained record
+  notificationSent: boolean("notification_sent").notNull().default(false),
+}, (table) => ({
+  pilotIdx: index("seo_pilot_runs_pilot_idx").on(table.pilotKey, table.scheduledFor),
+  ranAtIdx: index("seo_pilot_runs_ran_at_idx").on(table.ranAt),
+}));
+
+export type SeoPilotRun = typeof seoPilotRuns.$inferSelect;
+export type InsertSeoPilotRun = typeof seoPilotRuns.$inferInsert;
+
 // AI bot crawler visit log — one row per HTTP hit from a known LLM crawler
 // (GPTBot, ClaudeBot, PerplexityBot, etc.). Populated by the aiBotLogger
 // middleware (server/lib/aiBotLogger.ts). Used to measure GEO presence and

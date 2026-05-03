@@ -94,6 +94,17 @@ export function startSeoWorker(): void {
     await exportBookingStats();
   });
 
+  // SEO pilot measurements — hourly check, runs any pilot whose scheduledFor
+  // has passed and hasn't been measured yet (idempotent via DB row check).
+  // Pilot config in shared/seoPilots.ts. Results in seo_pilot_runs table,
+  // readable via GET /api/admin/seo-pilots. Optional notification via env
+  // SEO_PILOT_WEBHOOK_URL (Discord/Slack incoming webhook).
+  registerJob("seo-pilots", "5 * * * *", async () => {
+    const { runDuePilots } = await import("./pilotRunner");
+    const result = await runDuePilots();
+    logger.info("[seo-pilots] done", result);
+  });
+
   // Phase 3: Brain
   registerJob("daily-analysis", schedules.dailyAnalysis, async () => {
     const { runDailyAnalysis } = await import("./strategist/agent");

@@ -39,6 +39,7 @@ import { registerAdminMcpTokensRoutes } from "./admin-mcp-tokens";
 import { registerSeoRoutes } from "./admin-seo";
 import { registerAdminSeoAutopilotRoutes } from "./admin-seo-autopilot";
 import { registerPublicSeoSnapshotRoutes } from "./public-seo-snapshot";
+import { registerAdminSeoPilotsRoutes } from "./admin-seo-pilots";
 import { registerAdminDistributionRoutes } from "./admin-distribution";
 import { registerLinkedinOAuthRoutes } from "./oauth-linkedin";
 import { registerBusinessStatsRoutes } from "./business-stats";
@@ -97,6 +98,9 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
 
   // Public read-only SEO snapshot (key-protected, for external observability agents)
   registerPublicSeoSnapshotRoutes(app);
+
+  // SEO pilots — measurement history + manual trigger (admin-only)
+  registerAdminSeoPilotsRoutes(app);
 
   // Distribution Engine — on-demand publish + LinkedIn OAuth
   registerAdminDistributionRoutes(app);

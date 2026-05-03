@@ -71,11 +71,14 @@ export const BASE_DOMAIN = getBaseUrl();
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     home: {
-      title: `Alquiler Barcos Costa Brava ${SEASON_YEAR} \u00b7 Sin Licencia desde 70\u20ac/h \u00b7 Blanes`,
-      description: `Alquila tu barco con o sin licencia en Blanes desde 70\u20ac/h, gasolina incluida. ${BUSINESS_RATING_STR}\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Calas vac\u00edas, briefing 15 min, reserva por WhatsApp.`,
-      keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquiler barco blanes, alquiler barcos sin licencia costa brava, alquiler embarcaciones costa brava, rent a boat costa brava, barco sin licencia costa brava, alquilar barco costa brava",
-      ogTitle: `Alquiler Barcos Costa Brava ${SEASON_YEAR} \u00b7 Sin Licencia desde 70\u20ac/h \u00b7 Blanes`,
-      ogDescription: `Alquila tu barco con o sin licencia en Blanes desde 70\u20ac/h, gasolina incluida. ${BUSINESS_RATING_STR}\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Calas vac\u00edas, briefing 15 min, reserva por WhatsApp.`
+      // GSC 2026-04: "alquiler barco costa brava" 222 imp pos 13.7 CTR 0.90%.
+      // CTR rewrite: trust signal first (\u2605 rating drives 30%+ CTR uplift on
+      // SERP), keyword "Alquiler Barco Costa Brava" exact-match at start.
+      title: `Alquiler Barco Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 70\u20ac/h Blanes`,
+      description: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Barcos con/sin licencia en Blanes desde 70\u20ac/h gasolina incluida. 8 embarcaciones, briefing 15 min. Reserva en 2 min por WhatsApp.`,
+      keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquilar barco costa brava, alquiler barco blanes, alquiler barcos sin licencia costa brava, alquiler embarcaciones costa brava, rent a boat costa brava, barco sin licencia costa brava",
+      ogTitle: `Alquiler Barco Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 70\u20ac/h Blanes`,
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Barcos con/sin licencia en Blanes desde 70\u20ac/h gasolina incluida. 8 embarcaciones, briefing 15 min. Reserva por WhatsApp.`
     },
     booking: {
       title: "Solicitar Reserva de Barco en Blanes | Costa Brava",
@@ -90,18 +93,25 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "¿Licencia necesaria? ¿Qué incluye? ¿Precios? Todas las respuestas sobre alquilar barcos en Blanes. ¡Información clara y completa!"
     },
     locationBlanes: {
-      title: `Alquiler Barco Puerto de Blanes | Amarre, Cala Sa Palomera y Rutas ${SEASON_YEAR}`,
-      description: "Alquiler de barcos directamente en el Puerto de Blanes: parking gratis a 100m del amarre, snorkel y paddle board incluidos. Cala Sa Palomera y Sant Francesc a 10 min navegando.",
-      keywords: "alquiler barco puerto de blanes, alquiler barco muelle blanes, barco sa palomera blanes, calas blanes barco, sant francesc blanes barco, amarre blanes barco, ruta barco blanes calas, cala bona blanes barco",
-      ogTitle: `Alquiler Barco Puerto de Blanes | Amarre y Calas Locales ${SEASON_YEAR}`,
-      ogDescription: "Alquila tu barco directamente desde el muelle del Puerto de Blanes. Parking gratis, snorkel incluido, calas locales a 10 min. 8 barcos desde 70\u20ac/h."
+      // GSC 2026-04: "alquiler barco blanes" 98 imp pos 10.9 CTR 0% \u2014 casi top
+      // 10. CTR rewrite: keyword exact-match al inicio + \u2605 rating + n\u00famero
+      // diferenciador (parking gratis 100m, gas incluida) que usuarios valoran.
+      title: `Alquiler Barco Blanes ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 70\u20ac/h Gasolina Incluida`,
+      description: `Alquiler de barco en Blanes desde 70\u20ac/h con gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Parking gratis a 100m del amarre, snorkel y paddle incluidos. Cambio de fecha gratis.`,
+      keywords: "alquiler barco blanes, alquilar barco blanes, alquiler barcos blanes, alquiler barco puerto de blanes, alquiler barco muelle blanes, barco sa palomera blanes, calas blanes barco, sant francesc blanes barco, amarre blanes barco",
+      ogTitle: `Alquiler Barco Blanes ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 \u00b7 70\u20ac/h Gasolina Incluida`,
+      ogDescription: `Alquiler barco en Blanes desde 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Parking gratis 100m, snorkel + paddle incluidos. Calas Sa Palomera y Sant Francesc a 10 min.`
     },
     locationLloret: {
-      title: `Alquiler Barco Lloret de Mar | Cala Banys y Santa Cristina desde Blanes ${SEASON_YEAR}`,
-      description: "Navega a Lloret de Mar desde Puerto Blanes en 25 min. Descubre Cala Banys, Santa Cristina y Sa Boadella en barco sin licencia desde 70\u20ac/h, gasolina incluida.",
-      keywords: "alquiler barco lloret de mar, cala banys lloret barco, santa cristina lloret barco, sa boadella barco, excursion barco lloret, barco lloret sin licencia, lloret de mar barco",
-      ogTitle: "Alquiler Barco Lloret de Mar | Cala Banys y Santa Cristina en Barco",
-      ogDescription: "Lloret de Mar en barco desde Blanes. Cala Banys, Santa Cristina y Sa Boadella a 25 min. Sin licencia desde 70\u20ac/h. 4.8\u2605."
+      // GSC 2026-04: "alquiler barco lloret de mar" 46 imp pos 11.2 CTR 0% +
+      // "alquiler barco sin licencia lloret de mar" 40 imp pos 7.5 CTR 0% (\u00a1pos
+      // 7-8, en p\u00e1gina 1 con 0 clicks!). CTR rewrite con \u2605 rating + 25 min de
+      // navegaci\u00f3n al inicio (specificity hook) + sin licencia.
+      title: `Alquiler Barco Lloret de Mar Sin Licencia \u00b7 ${BUSINESS_RATING_STR}\u2605 \u00b7 25min desde Blanes`,
+      description: `Alquiler barco a Lloret de Mar sin licencia desde 70\u20ac/h, gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Cala Banys, Santa Cristina y Sa Boadella a 25 min navegando desde Blanes.`,
+      keywords: "alquiler barco lloret de mar, alquiler barco sin licencia lloret de mar, alquilar barco lloret, cala banys lloret barco, santa cristina lloret barco, sa boadella barco, excursion barco lloret, barco lloret sin licencia",
+      ogTitle: `Alquiler Barco Lloret de Mar Sin Licencia \u00b7 ${BUSINESS_RATING_STR}\u2605 \u00b7 25min Blanes`,
+      ogDescription: `Lloret de Mar en barco sin licencia desde Blanes (25 min). 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Cala Banys, Santa Cristina, Sa Boadella.`
     },
     locationTossa: {
       title: `Alquiler Barco Tossa de Mar | LNB (Licencia de Navegaci\u00f3n B\u00e1sica) o Excursi\u00f3n con Capit\u00e1n ${SEASON_YEAR}`,
@@ -132,11 +142,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Desde Calella al Puerto Blanes en 20 min. Barco sin licencia desde 70\u20ac/h. Descubre Costa Brava. 4.8\u2605."
     },
     categoryLicenseFree: {
-      title: "Barcos Sin Licencia Costa Brava | 5 Barcos desde 70\u20ac/h con Gasolina | Blanes",
-      description: "5 barcos sin licencia en la Costa Brava desde el Puerto de Blanes. Gasolina incluida. Astec 400, Solar 450, Remus 450 y Astec 480. Formaci\u00f3n 15 min. Sin experiencia previa.",
-      keywords: "alquiler barco sin licencia costa brava, barco sin licencia costa brava, barcos sin licencia costa brava, alquiler barco sin carnet costa brava, barco sin titulaci\u00f3n costa brava, sin licencia nautica costa brava",
-      ogTitle: "Barcos Sin Licencia Costa Brava | 5 Barcos desde 70\u20ac/h",
-      ogDescription: "5 barcos sin licencia en la Costa Brava desde 70\u20ac/h. Gasolina incluida, 4-7 personas. Formaci\u00f3n 15 min. 4.8\u2605 Google."
+      // GSC 2026-04: "alquiler barco sin licencia" 65 imp pos 19.4, "alquiler
+      // barco blanes sin licencia" 32 imp pos 5.4 CTR 0% (\u00a1posici\u00f3n 5 de
+      // p\u00e1gina 1, 0 clicks!), "barcos sin licencia" 20 imp pos 16.8 CTR 5%.
+      // CTR rewrite con keyword exact-match + \u2605 rating + "sin experiencia
+      // previa" como tranquilizador para el target (familias).
+      title: `Alquiler Barco Sin Licencia Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 5 Barcos 70\u20ac/h Blanes`,
+      description: `5 barcos sin licencia en Blanes Costa Brava desde 70\u20ac/h con gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Hasta 7 personas, briefing 15 min, sin experiencia previa. Reserva por WhatsApp.`,
+      keywords: "alquiler barco sin licencia, alquiler barco sin licencia costa brava, alquiler barco blanes sin licencia, barcos sin licencia, barco sin licencia costa brava, barcos sin licencia costa brava, alquiler barco sin carnet costa brava, alquiler barcos sin licencia",
+      ogTitle: `Alquiler Barco Sin Licencia Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 \u00b7 5 Barcos 70\u20ac/h`,
+      ogDescription: `5 barcos sin licencia en Blanes desde 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Hasta 7 personas, sin experiencia previa, briefing 15 min.`
     },
     categoryLicensed: {
       title: "Barcos Con Licencia Costa Brava | 80-115CV Blanes",
@@ -230,8 +245,12 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "A 70 min de Barcelona en la AP-7. Barcos sin licencia desde 70\u20ac/h con gasolina. Costa Brava sin tr\u00e1fico. 4.8\u2605."
     },
     locationCostaBrava: {
-      title: `Alquiler Barcos Costa Brava ${SEASON_YEAR} | Sin Licencia desde 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Alquila barcos en la Costa Brava desde el Puerto de Blanes. 8 barcos sin licencia desde 70\u20ac/h con gasolina incluida. Navega a calas v\u00edrgenes entre Blanes y Tossa de Mar. Reserva online \u00b7 Cambio de fecha gratis.",
+      // GSC 2026-04: "alquiler barcos costa brava" 113 imp pos 12.4 CTR 0% (\u00a10
+      // clicks de 113 impresiones!) y "alquilar barco costa brava" 103 imp
+      // pos 12.2 CTR 0%. CTR rewrite: pregunta hook + \u2605 rating + n\u00famero
+      // espec\u00edfico ("8 barcos") al inicio.
+      title: `Alquiler Barco Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 8 Barcos desde 70\u20ac/h`,
+      description: `\u00bfAlquilar barco en Costa Brava? 8 embarcaciones desde Puerto de Blanes. Sin licencia 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Calas v\u00edrgenes Blanes-Tossa.`,
       keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquilar barco costa brava, barco sin licencia costa brava, alquiler barco sin licencia costa brava, excursion barco costa brava"
     },
     boatRentalCostaBrava: {

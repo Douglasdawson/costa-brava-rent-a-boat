@@ -486,6 +486,7 @@ export const en: Translations = {
     about: 'About Us',
     giftCards: 'Gift Cards',
     routes: 'Routes',
+    testimonios: 'Reviews',
   },
   relatedBoats: {
     title: 'You might also like',
@@ -3200,6 +3201,37 @@ export const en: Translations = {
           body: 'This statement was updated on 17 March 2026 through self-assessment.',
         },
       ],
+    },
+  },
+
+  testimonios: {
+    hero: {
+      title: 'What people who have already sailed with us say',
+      subtitle: 'Real reviews from families, couples and groups who have set sail with us from Blanes. No filters, no edits.',
+      ratingLabel: 'Based on {count} reviews',
+    },
+    intro: {
+      title: 'Real experiences out at sea',
+      paragraph1: 'Every season, hundreds of families, couples and groups of friends set sail from the Port of Blanes to discover the most beautiful coves on the Costa Brava. These are their words, unfiltered.',
+      paragraph2: 'We assist in 8 languages, offer licence-free boats with fuel included, and skippered options if you prefer to sit back. We don\'t say it ourselves: it comes from those who have already been on board.',
+      imageAlt: 'Couple sailing a Trimarchi 57S along the Costa Brava',
+    },
+    filter: { title: 'Filter by boat', all: 'All' },
+    card: { viewBoat: 'View {boat}' },
+    pagination: { showMore: 'Show more reviews', showing: 'Showing {shown} of {total}' },
+    photoBreakAlt: 'Sunset sailing along the Costa Brava',
+    cta: {
+      title: 'Ready to live your own story at sea?',
+      paragraph: 'Book without online payment: write to us, we confirm by WhatsApp, and on the day all you need to do is step on board.',
+      primary: 'View our fleet',
+      secondary: 'Frequently asked questions',
+    },
+    countries: {
+      ar: 'Argentina', at: 'Austria', be: 'Belgium', ca: 'Canada', ch: 'Switzerland',
+      cl: 'Chile', co: 'Colombia', cz: 'Czech Republic', de: 'Germany', dk: 'Denmark',
+      es: 'Spain', fr: 'France', gb: 'United Kingdom', ie: 'Ireland', it: 'Italy',
+      mx: 'Mexico', nl: 'Netherlands', no: 'Norway', pl: 'Poland', pt: 'Portugal',
+      ru: 'Russia', se: 'Sweden', us: 'United States',
     },
   },
 };

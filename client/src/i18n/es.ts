@@ -509,6 +509,7 @@ export const es: Translations = {
     about: 'Sobre Nosotros',
     giftCards: 'Tarjetas Regalo',
     routes: 'Rutas',
+    testimonios: 'Opiniones',
   },
   relatedBoats: {
     title: 'También te puede interesar',
@@ -3229,5 +3230,37 @@ export const es: Translations = {
   contentSummary: {
     keyTakeawaysTitle: 'Puntos clave',
     quickFactsTitle: 'Datos rápidos',
+  },
+
+  // Página /testimonios — contenido completo de la página de opiniones.
+  testimonios: {
+    hero: {
+      title: 'Lo que dicen quienes ya han navegado',
+      subtitle: 'Opiniones reales de familias, parejas y grupos que han zarpado con nosotros desde Blanes. Sin filtros, sin retoques.',
+      ratingLabel: 'Sobre {count} opiniones recogidas',
+    },
+    intro: {
+      title: 'Experiencias reales en el mar',
+      paragraph1: 'Cada temporada, cientos de familias, parejas y grupos de amigos zarpan desde el Puerto de Blanes para descubrir las calas más bonitas de la Costa Brava. Estas son sus palabras, sin filtros.',
+      paragraph2: 'Atendemos en 8 idiomas, ofrecemos barcos sin licencia con gasolina incluida y opciones con patrón si prefieres relajarte. No lo decimos nosotros: lo dicen quienes ya han subido a bordo.',
+      imageAlt: 'Pareja navegando en Trimarchi 57S por la Costa Brava',
+    },
+    filter: { title: 'Filtrar por barco', all: 'Todos' },
+    card: { viewBoat: 'Ver {boat}' },
+    pagination: { showMore: 'Ver más opiniones', showing: 'Mostrando {shown} de {total}' },
+    photoBreakAlt: 'Atardecer navegando en la Costa Brava',
+    cta: {
+      title: '¿Listo para vivir tu propia historia en el mar?',
+      paragraph: 'Reserva sin pago online: nos escribes, te confirmamos por WhatsApp y el día reservado solo te queda subir a bordo.',
+      primary: 'Ver nuestra flota',
+      secondary: 'Preguntas frecuentes',
+    },
+    countries: {
+      ar: 'Argentina', at: 'Austria', be: 'Bélgica', ca: 'Canadá', ch: 'Suiza',
+      cl: 'Chile', co: 'Colombia', cz: 'República Checa', de: 'Alemania', dk: 'Dinamarca',
+      es: 'España', fr: 'Francia', gb: 'Reino Unido', ie: 'Irlanda', it: 'Italia',
+      mx: 'México', nl: 'Países Bajos', no: 'Noruega', pl: 'Polonia', pt: 'Portugal',
+      ru: 'Rusia', se: 'Suecia', us: 'Estados Unidos',
+    },
   },
 };

@@ -486,6 +486,7 @@ export const ca: Translations = {
     about: 'Sobre Nosaltres',
     giftCards: 'Targetes Regal',
     routes: 'Rutes',
+    testimonios: 'Opinions',
   },
   relatedBoats: {
     title: 'També et pot interessar',
@@ -3140,6 +3141,37 @@ export const ca: Translations = {
           body: 'Aquesta declaració va ser actualitzada el 17 de març de 2026 mitjançant autoavaluació.',
         },
       ],
+    },
+  },
+
+  testimonios: {
+    hero: {
+      title: 'El que diuen els qui ja han navegat',
+      subtitle: 'Opinions reals de famílies, parelles i grups que han salpat amb nosaltres des de Blanes. Sense filtres, sense retocs.',
+      ratingLabel: 'Sobre {count} opinions recollides',
+    },
+    intro: {
+      title: 'Experiències reals al mar',
+      paragraph1: 'Cada temporada, centenars de famílies, parelles i grups d\'amics salpen del Port de Blanes per descobrir les cales més boniques de la Costa Brava. Aquestes són les seves paraules, sense filtres.',
+      paragraph2: 'Atenem en 8 idiomes, oferim barques sense llicència amb gasolina inclosa i opcions amb patró si prefereixes relaxar-te. No ho diem nosaltres: ho diuen els qui ja han pujat a bord.',
+      imageAlt: 'Parella navegant amb un Trimarchi 57S per la Costa Brava',
+    },
+    filter: { title: 'Filtra per barca', all: 'Totes' },
+    card: { viewBoat: 'Veure {boat}' },
+    pagination: { showMore: 'Veure més opinions', showing: 'Mostrant {shown} de {total}' },
+    photoBreakAlt: 'Capvespre navegant per la Costa Brava',
+    cta: {
+      title: 'Preparat per viure la teva pròpia història al mar?',
+      paragraph: 'Reserva sense pagament en línia: ens escrius, t\'ho confirmem per WhatsApp i el dia reservat només cal pujar a bord.',
+      primary: 'Veure la nostra flota',
+      secondary: 'Preguntes freqüents',
+    },
+    countries: {
+      ar: 'Argentina', at: 'Àustria', be: 'Bèlgica', ca: 'Canadà', ch: 'Suïssa',
+      cl: 'Xile', co: 'Colòmbia', cz: 'República Txeca', de: 'Alemanya', dk: 'Dinamarca',
+      es: 'Espanya', fr: 'França', gb: 'Regne Unit', ie: 'Irlanda', it: 'Itàlia',
+      mx: 'Mèxic', nl: 'Països Baixos', no: 'Noruega', pl: 'Polònia', pt: 'Portugal',
+      ru: 'Rússia', se: 'Suècia', us: 'Estats Units',
     },
   },
 };

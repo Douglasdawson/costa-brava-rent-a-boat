@@ -360,7 +360,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Customer Reviews Boat Rental Blanes",
-      description: "Read real customer reviews who rented boats in Blanes. +100 verified reviews. Costa Brava experiences.",
+      description: "Read real customer reviews who rented boats in Blanes. 300+ verified Google reviews. Costa Brava experiences.",
       keywords: "boat rental reviews blanes, reviews costa brava rent boat, customer testimonials boats"
     },
     privacyPolicy: {
@@ -569,7 +569,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Opinions Clients Lloguer Barques Blanes",
-      description: "Llegeix opinions reals de clients que han llogat barques a Blanes. +100 ressenyes verificades. Experiencies a la Costa Brava.",
+      description: "Llegeix opinions reals de clients que han llogat barques a Blanes. 300+ ressenyes verificades a Google. Experiencies a la Costa Brava.",
       keywords: "opinions lloguer barques blanes, ressenyes costa brava rent boat, testimonis clients barques"
     },
     privacyPolicy: {
@@ -716,7 +716,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Avis Clients Location Bateaux Blanes",
-      description: "Lisez les avis reels de clients ayant loue des bateaux a Blanes. +100 avis verifies. Experiences sur la Costa Brava.",
+      description: "Lisez les avis reels de clients ayant loue des bateaux a Blanes. 300+ avis Google verifies. Experiences sur la Costa Brava.",
       keywords: "avis location bateaux blanes, reviews costa brava rent boat, temoignages clients bateaux"
     },
     privacyPolicy: {
@@ -863,7 +863,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Kundenbewertungen Bootsverleih Blanes",
-      description: "Lesen Sie echte Bewertungen von Kunden, die Boote in Blanes gemietet haben. +100 verifizierte Bewertungen. Erfahrungen Costa Brava.",
+      description: "Lesen Sie echte Bewertungen von Kunden, die Boote in Blanes gemietet haben. 300+ verifizierte Google-Bewertungen. Erfahrungen Costa Brava.",
       keywords: "bewertungen bootsverleih blanes, rezensionen costa brava rent boat, kundenerfahrungen boote"
     },
     privacyPolicy: {
@@ -1010,7 +1010,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Klantenbeoordelingen Bootverhuur Blanes",
-      description: "Lees echte beoordelingen van klanten die boten hebben gehuurd in Blanes. +100 geverifieerde reviews. Ervaringen Costa Brava.",
+      description: "Lees echte beoordelingen van klanten die boten hebben gehuurd in Blanes. 300+ geverifieerde Google-reviews. Ervaringen Costa Brava.",
       keywords: "beoordelingen bootverhuur blanes, reviews costa brava rent boat, klantervaringen boten"
     },
     privacyPolicy: {
@@ -1157,7 +1157,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Recensioni Clienti Noleggio Barche Blanes",
-      description: "Leggi le recensioni reali dei clienti che hanno noleggiato barche a Blanes. +100 recensioni verificate. Esperienze Costa Brava.",
+      description: "Leggi le recensioni reali dei clienti che hanno noleggiato barche a Blanes. 300+ recensioni Google verificate. Esperienze Costa Brava.",
       keywords: "recensioni noleggio barche blanes, reviews costa brava rent boat, testimonianze clienti barche"
     },
     privacyPolicy: {
@@ -1304,7 +1304,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Отзывы Клиентов Аренда Лодок Бланес",
-      description: "Читайте реальные отзывы клиентов, арендовавших лодки в Бланесе. +100 проверенных отзывов. Впечатления от Коста-Бравы.",
+      description: "Читайте реальные отзывы клиентов, арендовавших лодки в Бланесе. 300+ проверенных отзывов Google. Впечатления от Коста-Бравы.",
       keywords: "отзывы аренда лодок бланес, отзывы costa brava rent boat, впечатления клиентов лодки"
     },
     privacyPolicy: {

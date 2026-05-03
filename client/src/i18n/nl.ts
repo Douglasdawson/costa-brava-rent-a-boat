@@ -486,6 +486,7 @@ export const nl: Translations = {
     about: 'Over Ons',
     giftCards: 'Cadeaubonnen',
     routes: 'Routes',
+    testimonios: 'Beoordelingen',
   },
   relatedBoats: {
     title: 'Misschien vind je dit ook leuk',
@@ -3140,6 +3141,37 @@ export const nl: Translations = {
           body: 'Deze verklaring is bijgewerkt op 17 maart 2026 door middel van zelfevaluatie.',
         },
       ],
+    },
+  },
+
+  testimonios: {
+    hero: {
+      title: 'Wat onze gasten na de vaart vertellen',
+      subtitle: 'Echte beoordelingen van gezinnen, koppels en groepen die met ons vanuit Blanes uitvoeren. Zonder filters, zonder bewerking.',
+      ratingLabel: 'Op basis van {count} beoordelingen',
+    },
+    intro: {
+      title: 'Echte ervaringen op zee',
+      paragraph1: 'Elk seizoen vertrekken honderden gezinnen, koppels en vriendengroepen vanuit de haven van Blanes om de mooiste baaien van de Costa Brava te ontdekken. Dit zijn hun woorden, ongefilterd.',
+      paragraph2: 'We helpen je in 8 talen, bieden boten zonder vaarbewijs inclusief brandstof en opties met schipper als je liever achterover leunt. Wij zeggen het niet zelf: het komt van wie al aan boord is geweest.',
+      imageAlt: 'Koppel vaart op een Trimarchi 57S langs de Costa Brava',
+    },
+    filter: { title: 'Filter op boot', all: 'Alle' },
+    card: { viewBoat: '{boat} bekijken' },
+    pagination: { showMore: 'Meer beoordelingen tonen', showing: '{shown} van {total} weergegeven' },
+    photoBreakAlt: 'Zonsondergang op zee langs de Costa Brava',
+    cta: {
+      title: 'Klaar voor je eigen verhaal op zee?',
+      paragraph: 'Boeken zonder online betaling: je schrijft ons, we bevestigen via WhatsApp, en op de dag stap je gewoon aan boord.',
+      primary: 'Bekijk onze vloot',
+      secondary: 'Veelgestelde vragen',
+    },
+    countries: {
+      ar: 'Argentinië', at: 'Oostenrijk', be: 'België', ca: 'Canada', ch: 'Zwitserland',
+      cl: 'Chili', co: 'Colombia', cz: 'Tsjechië', de: 'Duitsland', dk: 'Denemarken',
+      es: 'Spanje', fr: 'Frankrijk', gb: 'Verenigd Koninkrijk', ie: 'Ierland', it: 'Italië',
+      mx: 'Mexico', nl: 'Nederland', no: 'Noorwegen', pl: 'Polen', pt: 'Portugal',
+      ru: 'Rusland', se: 'Zweden', us: 'Verenigde Staten',
     },
   },
 };

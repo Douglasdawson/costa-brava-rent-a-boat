@@ -486,6 +486,7 @@ export const fr: Translations = {
     about: 'À Propos',
     giftCards: 'Cartes Cadeaux',
     routes: 'Itinéraires',
+    testimonios: 'Avis',
   },
   relatedBoats: {
     title: 'Vous pourriez aussi aimer',
@@ -3141,6 +3142,37 @@ export const fr: Translations = {
           body: 'Cette déclaration a été mise à jour le 17 mars 2026 par auto-évaluation.',
         },
       ],
+    },
+  },
+
+  testimonios: {
+    hero: {
+      title: 'Ce que disent ceux qui ont déjà navigué',
+      subtitle: 'Avis réels de familles, couples et groupes ayant pris la mer avec nous depuis Blanes. Sans filtre, sans retouche.',
+      ratingLabel: 'Basé sur {count} avis recueillis',
+    },
+    intro: {
+      title: 'Expériences réelles en mer',
+      paragraph1: 'Chaque saison, des centaines de familles, couples et groupes d\'amis quittent le port de Blanes pour découvrir les plus belles criques de la Costa Brava. Voici leurs mots, sans filtre.',
+      paragraph2: 'Nous parlons 8 langues, proposons des bateaux sans permis avec carburant inclus, et des formules avec skipper si vous préférez vous laisser porter. Ce n\'est pas nous qui le disons : ce sont ceux qui sont déjà montés à bord.',
+      imageAlt: 'Couple naviguant à bord d\'un Trimarchi 57S le long de la Costa Brava',
+    },
+    filter: { title: 'Filtrer par bateau', all: 'Tous' },
+    card: { viewBoat: 'Voir le {boat}' },
+    pagination: { showMore: 'Voir plus d\'avis', showing: 'Affichage de {shown} sur {total}' },
+    photoBreakAlt: 'Coucher de soleil en mer le long de la Costa Brava',
+    cta: {
+      title: 'Prêt à vivre votre propre histoire en mer ?',
+      paragraph: 'Réservez sans paiement en ligne : vous nous écrivez, nous confirmons par WhatsApp, et le jour venu il ne reste qu\'à monter à bord.',
+      primary: 'Voir notre flotte',
+      secondary: 'Questions fréquentes',
+    },
+    countries: {
+      ar: 'Argentine', at: 'Autriche', be: 'Belgique', ca: 'Canada', ch: 'Suisse',
+      cl: 'Chili', co: 'Colombie', cz: 'République tchèque', de: 'Allemagne', dk: 'Danemark',
+      es: 'Espagne', fr: 'France', gb: 'Royaume-Uni', ie: 'Irlande', it: 'Italie',
+      mx: 'Mexique', nl: 'Pays-Bas', no: 'Norvège', pl: 'Pologne', pt: 'Portugal',
+      ru: 'Russie', se: 'Suède', us: 'États-Unis',
     },
   },
 };

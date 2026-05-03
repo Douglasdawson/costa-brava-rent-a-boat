@@ -610,6 +610,7 @@ export interface Translations {
     about: string;
     giftCards: string;
     routes: string;
+    testimonios?: string;
   };
 
   // Related Boats
@@ -2200,6 +2201,40 @@ export interface Translations {
   contentSummary?: {
     keyTakeawaysTitle: string;
     quickFactsTitle: string;
+  };
+
+  // /testimonios page — full body copy (was hard-coded in JSX prior to 2026-05).
+  testimonios?: {
+    hero: {
+      title: string;
+      subtitle: string;
+      ratingLabel: string;
+    };
+    intro: {
+      title: string;
+      paragraph1: string;
+      paragraph2: string;
+      imageAlt: string;
+    };
+    filter: {
+      title: string;
+      all: string;
+    };
+    card: {
+      viewBoat: string;
+    };
+    pagination: {
+      showMore: string;
+      showing: string;
+    };
+    photoBreakAlt: string;
+    cta: {
+      title: string;
+      paragraph: string;
+      primary: string;
+      secondary: string;
+    };
+    countries: Record<string, string>;
   };
 }
 function deepMerge(target: Record<string, any>, fallback: Record<string, any>): Record<string, any> {

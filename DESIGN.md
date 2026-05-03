@@ -106,6 +106,7 @@ The system rejects three things by name. It is not a luxury yacht charter site (
 Surfaces are quiet. Photography carries emotion. Typography is confident without shouting. The palette is coastal but never obvious. Interactions feel tactile: buttons that respond, cards that breathe, a system that rewards touch.
 
 **Key Characteristics:**
+
 - Light mode. A tourist on the beach in July, phone tilted against the sun. High contrast is not optional.
 - Mobile-first. Most visitors browse on phones. Every element is designed for thumbs, not cursors.
 - Photography-led. The sea sells itself. The interface recedes.
@@ -190,9 +191,10 @@ Tactile and confident. The pill shape (rounded-full) is the signature; it distin
 
 - **Shape:** pill (border-radius 9999px). Always. No exceptions.
 - **Primary:** Deep Navy CTA background, white text. Padding 10px 24px (default), 14px 32px (large). Elevated shadow at rest. Combined `btn-elevated` + `cta-pulse` classes create a floating button with a breathing ring animation.
+- **Sizes (touch targets):** all sizes (`sm`, `default`, `lg`) cumplen 44 px de altura mínima vía `min-h-11` o mayor — WCAG 2.1 AA touch target. La variante `sm` reduce padding interno y peso tipográfico para ocupar menos visualmente, pero mantiene el touch target. Decisión 2026-05-03: prohibido reducir altura por debajo de 44 px en superficies públicas. (`client/src/components/ui/button.tsx`).
 - **Hover:** translateY(-2px), shadow deepens. Feels like lifting a physical object.
 - **Active:** translateY(0), shadow compresses. The click lands.
-- **Focus:** 2px solid teal ring, 2px offset. Visible on keyboard navigation; invisible on pointer.
+- **Focus:** 2px solid navy CTA outline, 2px offset. Visible on keyboard navigation; invisible on pointer. Decisión 2026-05-03: navy en lugar de teal — coherente con la paleta restringida y con buen contraste sobre warm-card y fondos blancos. El CSS real (`client/src/index.css:175-179`) aplica `outline: 2px solid hsl(var(--cta))`.
 - **Secondary (outline):** transparent background, 1px border at 10% opacity, foreground text. Hover darkens border to 30%. No shadow.
 - **Ghost:** transparent background, transparent border (prevents layout shift), foreground text. Hover adds underline. The quietest action.
 - **Disabled:** 50% opacity, pointer-events none. No special color treatment.
@@ -212,6 +214,26 @@ Small, pill-shaped status indicators. Never interactive (use buttons for actions
 - **Shadow Strategy:** flat at rest (The Earned Depth Rule). On hover: subtle 3D perspective tilt (2deg rotateY + 1.015 scale) for boat cards. This is GPU-composited and works on 60fps mobile.
 - **Border:** card-border token (HSL 200 15% 92%). Barely visible; structural, not decorative.
 - **Internal Padding:** 24px (p-6) for header and content. Content sections use pt-0 when following the header to avoid double spacing.
+
+### Cómo destacar sin shadow
+
+Para señalar una card "recomendada", "popular" o "tier destacado" sin violar la Earned Depth Rule (que prohíbe `shadow-md`/`shadow-lg` al reposo), el sistema usa **borde fino de color + badge superpuesto**. Decisión 2026-05-03.
+
+- **Borde:** `border-2 border-cta` (navy) — señal arquitectónica que no requiere relayout y no compite con la fotografía.
+- **Badge:** chip pill (`rounded-full bg-cta text-cta-foreground`) en la esquina superior izquierda con texto corto ("Recomendado", "Popular", "Más reservado"). Sin shadow propio.
+- **Sin tinte de fondo agresivo:** opcionalmente `bg-cta/5` como refuerzo, pero solo si el contraste con la imagen del producto sigue cumpliendo PRODUCT.md ("móvil bajo el sol").
+
+Aplicaciones canónicas:
+
+- `BoatCard` recommended (sustituye al `shadow-md ring-1` actual).
+- Booking duration cards "Mejor valor".
+- Pricing tier destacado (cuando se aplique en sesión 6).
+
+Lo que **NO** hacer:
+
+- No añadir `shadow-md`/`shadow-lg` al reposo "para destacar". Ese reflejo es la causa raíz de las violaciones detectadas en la auditoría 2026-05-03.
+- No usar `border-l-2/3/4` colored stripe — ban absoluto.
+- No usar gradient en el borde ni en el background.
 
 ### Inputs / Fields
 

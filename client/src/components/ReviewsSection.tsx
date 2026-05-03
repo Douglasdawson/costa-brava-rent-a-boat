@@ -43,6 +43,23 @@ const LOCALE_MAP: Record<string, string> = {
   ru: "ru-RU",
 };
 
+// Google's `relativeTime` is hardcoded in English. Synthesize a localized
+// equivalent ("hace 7 meses", "vor 1 Jahr") from publishTime so the visitor
+// reads the date in their language.
+function formatRelativeTime(publishTime: string, locale: string): string {
+  if (!publishTime) return "";
+  const ts = Date.parse(publishTime);
+  if (Number.isNaN(ts)) return "";
+  const diffMs = ts - Date.now();
+  const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "always" });
+  const abs = Math.abs(diffDays);
+  if (abs < 30) return rtf.format(diffDays, "day");
+  const diffMonths = Math.round(diffDays / 30);
+  if (Math.abs(diffMonths) < 12) return rtf.format(diffMonths, "month");
+  return rtf.format(Math.round(diffDays / 365), "year");
+}
+
 /** Memoized individual review card */
 const ReviewCard = memo(function ReviewCard({
   review,
@@ -51,7 +68,10 @@ const ReviewCard = memo(function ReviewCard({
   review: NormalizedReview;
   locale: string;
 }) {
+  // Prefer synthesized i18n relative time; fall back to API string, then
+  // absolute month/year if neither is available.
   const dateLabel =
+    formatRelativeTime(review.date, locale) ||
     review.relativeTime ||
     (review.date
       ? new Date(review.date).toLocaleDateString(locale, {
@@ -214,6 +234,7 @@ function ReviewsSection() {
           const featured = displayReviews[0];
           if (!featured) return null;
           const featuredDateLabel =
+            formatRelativeTime(featured.date, locale) ||
             featured.relativeTime ||
             (featured.date
               ? new Date(featured.date).toLocaleDateString(locale, {

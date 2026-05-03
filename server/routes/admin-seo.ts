@@ -335,6 +335,33 @@ export function registerSeoRoutes(app: Express): void {
     }
   });
 
+  // POST /api/admin/seo/distribution/enqueue — manual trigger for blog→tray
+  // body: { languages?: string[]; platforms?: string[] }
+  // Enqueues every published blog post into distribution_tray for the
+  // specified platforms × languages, skipping rows that already exist.
+  // Idempotent. Pairs with the boot run (schedulerService) and the cron
+  // auto-publish (DISTRIBUTION_AUTO_PUBLISH=true).
+  app.post("/api/admin/seo/distribution/enqueue", requireAdminSession, async (req, res) => {
+    try {
+      const { enqueuePublishedBlogsForDistribution } = await import("../services/distribution/enqueueBlogPost");
+      const languages = Array.isArray(req.body?.languages)
+        ? req.body.languages.filter((l: unknown): l is string => typeof l === "string")
+        : undefined;
+      const platforms = Array.isArray(req.body?.platforms)
+        ? req.body.platforms.filter((p: unknown): p is string => typeof p === "string")
+        : undefined;
+      const summary = await enqueuePublishedBlogsForDistribution({
+        languages: languages as never,
+        platforms: platforms as never,
+      });
+      res.json(summary);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      logger.error("Distribution enqueue failed", { error: message });
+      res.status(500).json({ message: "Error enqueueing distribution", error: message });
+    }
+  });
+
   // GET /api/admin/seo/bot-visits — AI crawler visit summary
   // Surfaces how often GPTBot/ClaudeBot/PerplexityBot indexed the site over
   // the last N days, plus the most-crawled paths and a tail of recent hits.

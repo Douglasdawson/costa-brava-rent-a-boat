@@ -404,6 +404,27 @@ export function startScheduler(): void {
       });
   }, 90_000);
 
+  // Blog → distribution_tray enqueue boot run. Reconciles every published
+  // blog with the tray so that new posts (or freshly translated languages)
+  // get queued for auto-publish on supported platforms. Idempotent — already
+  // queued (slug, platform, language) tuples are skipped.
+  // Requires DISTRIBUTION_AUTO_PUBLISH=true on the cron side to actually
+  // ship the posts. Without it, this just keeps the tray populated.
+  setTimeout(() => {
+    import("./distribution/enqueueBlogPost")
+      .then(({ enqueuePublishedBlogsForDistribution }) =>
+        enqueuePublishedBlogsForDistribution()
+      )
+      .then((summary) => {
+        logger.info("[Scheduler] Blog distribution enqueue boot run", summary);
+      })
+      .catch((err) => {
+        logger.error("[Scheduler] Blog distribution enqueue boot error", {
+          error: err instanceof Error ? err.message : String(err),
+        });
+      });
+  }, 150_000);
+
   // Site health boot run — refreshes /crm/analytics "Salud SEO" dashboard so
   // it reflects the current state, not stale crawls from before recent SEO
   // fixes. The /api/admin/seo/health endpoint reads the latest 50 rows of

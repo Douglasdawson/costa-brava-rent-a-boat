@@ -7,7 +7,7 @@
  */
 
 import {
-  db, sql, gte, desc,
+  db, sql, gte, desc, and, eq,
   aiBotVisits,
   type AiBotVisit, type InsertAiBotVisit,
 } from "./base";
@@ -120,6 +120,50 @@ export interface RecentVisit {
   path: string;
   timestamp: Date;
   statusCode: number | null;
+}
+
+export interface HourlyBucket {
+  hour: number;     // 0..23 in UTC
+  visits: number;
+}
+
+/**
+ * Returns hits grouped by hour-of-day (UTC) for a specific bot+path combo
+ * over the last N days. Used to distinguish:
+ *   - share-driven traffic (clusters at human-active hours: lunch, evening)
+ *   - crawl-driven traffic (uniform distribution across the 24h)
+ *
+ * Buckets are 0..23 even when there are zero hits, so the chart renders a
+ * complete 24-hour timeline. Defaults to all bots and all paths when filters
+ * are omitted.
+ */
+export async function getBotHourlyDistribution(opts: {
+  botName?: string;
+  path?: string;
+  days?: number;
+}): Promise<HourlyBucket[]> {
+  const days = opts.days ?? 30;
+  const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const conditions = [gte(aiBotVisits.timestamp, since)];
+  if (opts.botName) conditions.push(eq(aiBotVisits.botName, opts.botName));
+  if (opts.path) conditions.push(eq(aiBotVisits.path, opts.path));
+
+  const rows = await db
+    .select({
+      hour: sql<number>`extract(hour from ${aiBotVisits.timestamp})::int`.as("hour"),
+      visits: sql<number>`count(*)::int`.as("visits"),
+    })
+    .from(aiBotVisits)
+    .where(and(...conditions))
+    .groupBy(sql`extract(hour from ${aiBotVisits.timestamp})`)
+    .orderBy(sql`extract(hour from ${aiBotVisits.timestamp})`);
+
+  // Fill missing hours with zero so the chart has all 24 buckets in order.
+  const byHour = new Map(rows.map((r) => [r.hour, r.visits]));
+  return Array.from({ length: 24 }, (_, h) => ({
+    hour: h,
+    visits: byHour.get(h) ?? 0,
+  }));
 }
 
 /**

@@ -25,6 +25,7 @@ import {
   getBotVisitsByBot,
   getTopBotPaths,
   getRecentBotVisits,
+  getBotHourlyDistribution,
 } from "../storage/aiBotVisits";
 
 export function registerSeoRoutes(app: Express): void {
@@ -376,6 +377,36 @@ export function registerSeoRoutes(app: Express): void {
       const msg = error instanceof Error ? error.message : String(error);
       logger.error("Error fetching AI bot visits", { error: msg });
       res.status(500).json({ message: "Error fetching AI bot visits", error: msg });
+    }
+  });
+
+  // GET /api/admin/seo/bot-visits/timing — hourly distribution of hits
+  // Used to tell apart share-driven traffic (clusters at human-active hours)
+  // from crawl-driven traffic (uniform across 24h). Optional filters by bot
+  // and path. Returns 24 buckets with zeros where there were no hits.
+  // Query: ?bot=Meta-ExternalAgent&path=/&days=30
+  app.get("/api/admin/seo/bot-visits/timing", requireAdminSession, async (req, res) => {
+    try {
+      const days = Math.min(Math.max(parseInt((req.query.days as string) || "30", 10) || 30, 1), 365);
+      const botName = typeof req.query.bot === "string" && req.query.bot.length > 0
+        ? req.query.bot
+        : undefined;
+      const path = typeof req.query.path === "string" && req.query.path.length > 0
+        ? req.query.path
+        : undefined;
+      const buckets = await getBotHourlyDistribution({ botName, path, days });
+      const total = buckets.reduce((sum, b) => sum + b.visits, 0);
+      res.json({
+        windowDays: days,
+        botName: botName ?? null,
+        path: path ?? null,
+        total,
+        buckets,
+      });
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("Error fetching bot visit timing", { error: msg });
+      res.status(500).json({ message: "Error fetching bot visit timing", error: msg });
     }
   });
 }

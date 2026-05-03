@@ -70,12 +70,12 @@ export default function Navigation() {
       requestAnimationFrame(() => {
         element.scrollIntoView({
           behavior: "smooth",
-          block: "start"
+          block: "start",
         });
       });
       return;
     }
-    
+
     // If element not found and we have attempts left, try again
     if (maxAttempts > 0) {
       requestAnimationFrame(() => scrollToSection(sectionId, maxAttempts - 1));
@@ -87,7 +87,7 @@ export default function Navigation() {
     setLocation(localizedPath("home"));
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   };
 
@@ -105,7 +105,7 @@ export default function Navigation() {
         // Already on homepage, scroll to top
         window.scrollTo({
           top: 0,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       } else {
         // Navigate to homepage
@@ -122,7 +122,7 @@ export default function Navigation() {
         // Already on Blog, scroll to top
         window.scrollTo({
           top: 0,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       } else {
         // Navigate to Blog page
@@ -136,7 +136,7 @@ export default function Navigation() {
         // Already on FAQ page, scroll to top
         window.scrollTo({
           top: 0,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       } else {
         // Navigate to FAQ page
@@ -170,7 +170,8 @@ export default function Navigation() {
   ];
 
   const homePath = localizedPath("home");
-  const isTransparent = (currentLocation === homePath || currentLocation === homePath.replace(/\/$/, "")) && !scrolled;
+  const isTransparent =
+    (currentLocation === homePath || currentLocation === homePath.replace(/\/$/, "")) && !scrolled;
 
   const isNavItemActive = (href: string): boolean => {
     const path = window.location.pathname;
@@ -197,7 +198,10 @@ export default function Navigation() {
           {/* Logo - Left */}
           <a
             href={localizedPath("home")}
-            onClick={(e) => { e.preventDefault(); handleLogoClick(); }}
+            onClick={e => {
+              e.preventDefault();
+              handleLogoClick();
+            }}
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 z-10"
             data-testid="brand-logo"
             aria-label={t.a11y.goToHomePage}
@@ -206,8 +210,11 @@ export default function Navigation() {
           </a>
 
           {/* Desktop Navigation - Absolutely Centered */}
-          <div className="hidden lg:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
-            {navigationItems.map((item) => {
+          <nav
+            aria-label="Primary"
+            className="hidden lg:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2"
+          >
+            {navigationItems.map(item => {
               const activeClass = isNavItemActive(item.href)
                 ? "text-foreground font-semibold"
                 : "text-foreground/70 font-medium";
@@ -218,7 +225,10 @@ export default function Navigation() {
                   <a
                     key={item.label}
                     href={item.href}
-                    onClick={(e) => { e.preventDefault(); handleNavigation(item.href, item.label); }}
+                    onClick={e => {
+                      e.preventDefault();
+                      handleNavigation(item.href, item.label);
+                    }}
                     className={baseClass}
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
                     {...(isNavItemActive(item.href) ? { "aria-current": "page" as const } : {})}
@@ -239,7 +249,7 @@ export default function Navigation() {
                 </button>
               );
             })}
-          </div>
+          </nav>
 
           {/* Right side buttons */}
           <div className="hidden lg:flex items-center space-x-4 z-10">
@@ -247,12 +257,15 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              aria-label={theme === 'dark' ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
+              aria-label={theme === "dark" ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
               className="text-foreground/70 hover:text-foreground hover:bg-muted"
             >
-              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
-            <LanguageSelector variant="minimal" className="text-foreground/70 hover:text-foreground hover:bg-muted" />
+            <LanguageSelector
+              variant="minimal"
+              className="text-foreground/70 hover:text-foreground hover:bg-muted"
+            />
             <Button
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
@@ -297,68 +310,72 @@ export default function Navigation() {
           aria-hidden={!isOpen}
           className={`lg:hidden overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3 border-t border-border bg-background" : "max-h-0 opacity-0 py-0"}`}
         >
-            <div className="grid grid-cols-1 gap-0">
-              {navigationItems.map((item) => {
-                const baseClass = "px-4 py-3.5 text-foreground hover:text-primary hover:bg-muted transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none";
-                if (!item.href.startsWith("#")) {
-                  return (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={(e) => { e.preventDefault(); handleNavigation(item.href, item.label); }}
-                      className={baseClass}
-                      data-testid={`mobile-nav-${item.label.toLowerCase()}`}
-                      {...(isNavItemActive(item.href) ? { "aria-current": "page" as const } : {})}
-                    >
-                      {item.label}
-                    </a>
-                  );
-                }
+          <div className="grid grid-cols-1 gap-0">
+            {navigationItems.map(item => {
+              const baseClass =
+                "px-4 py-3.5 text-foreground hover:text-primary hover:bg-muted transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none";
+              if (!item.href.startsWith("#")) {
                 return (
-                  <button
+                  <a
                     key={item.label}
-                    onClick={() => handleNavigation(item.href, item.label)}
-                    className={`bg-transparent border-none cursor-pointer ${baseClass}`}
+                    href={item.href}
+                    onClick={e => {
+                      e.preventDefault();
+                      handleNavigation(item.href, item.label);
+                    }}
+                    className={baseClass}
                     data-testid={`mobile-nav-${item.label.toLowerCase()}`}
+                    {...(isNavItemActive(item.href) ? { "aria-current": "page" as const } : {})}
                   >
                     {item.label}
-                  </button>
+                  </a>
                 );
-              })}
-            </div>
-            <div className="px-4 py-2 border-t border-border mt-1 pt-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <Button
-                  className="bg-cta hover:bg-cta/90 text-primary-foreground rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
-                  onClick={handleMobileBooking}
-                  data-testid="mobile-button-book"
-                  aria-label={t.a11y.bookBoatNow}
+              }
+              return (
+                <button
+                  key={item.label}
+                  onClick={() => handleNavigation(item.href, item.label)}
+                  className={`bg-transparent border-none cursor-pointer ${baseClass}`}
+                  data-testid={`mobile-nav-${item.label.toLowerCase()}`}
                 >
-                  {t.nav.bookNow}
-                </Button>
-                {isAuthenticated && (
-                  <Button
-                    variant="ghost"
-                    className="min-h-11 px-4"
-                    onClick={handleMyAccountClick}
-                    data-testid="mobile-button-my-account"
-                    aria-label={t.a11y.accessMyAccount}
-                  >
-                    <UserCircle className="w-4 h-4 mr-2" />
-                    {t.nav.myAccount}
-                  </Button>
-                )}
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+          <div className="px-4 py-2 border-t border-border mt-1 pt-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <Button
+                className="bg-cta hover:bg-cta/90 text-primary-foreground rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                onClick={handleMobileBooking}
+                data-testid="mobile-button-book"
+                aria-label={t.a11y.bookBoatNow}
+              >
+                {t.nav.bookNow}
+              </Button>
+              {isAuthenticated && (
                 <Button
                   variant="ghost"
-                  size="icon"
-                  onClick={toggleTheme}
-                  aria-label={theme === 'dark' ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
+                  className="min-h-11 px-4"
+                  onClick={handleMyAccountClick}
+                  data-testid="mobile-button-my-account"
+                  aria-label={t.a11y.accessMyAccount}
                 >
-                  {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  <UserCircle className="w-4 h-4 mr-2" />
+                  {t.nav.myAccount}
                 </Button>
-                <LanguageSelector variant="minimal" />
-              </div>
+              )}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                aria-label={theme === "dark" ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
+              >
+                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+              <LanguageSelector variant="minimal" />
             </div>
+          </div>
         </nav>
       </div>
     </nav>

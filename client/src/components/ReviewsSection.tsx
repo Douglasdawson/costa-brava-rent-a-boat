@@ -80,9 +80,7 @@ const ReviewCard = memo(function ReviewCard({
         })
       : "");
   return (
-    <figure
-      className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-background rounded-2xl border border-border p-5 flex flex-col"
-    >
+    <figure className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-background rounded-2xl border border-border p-5 flex flex-col">
       {/* Stars */}
       <div className="flex gap-0.5 mb-2" aria-label={`${review.rating} de 5 estrellas`}>
         {Array.from({ length: 5 }).map((_, i) => (
@@ -90,9 +88,7 @@ const ReviewCard = memo(function ReviewCard({
             key={i}
             aria-hidden="true"
             className={`w-3 h-3 ${
-              i < review.rating
-                ? "text-amber-400 fill-amber-400"
-                : "text-muted-foreground/40"
+              i < review.rating ? "text-amber-400 fill-amber-400" : "text-muted-foreground/40"
             }`}
           />
         ))}
@@ -111,9 +107,7 @@ const ReviewCard = memo(function ReviewCard({
       {/* Author */}
       <figcaption className="mt-auto pt-3">
         <p className="font-medium text-foreground text-[13px]">{review.name}</p>
-        {dateLabel && (
-          <p className="text-xs text-muted-foreground">{dateLabel}</p>
-        )}
+        {dateLabel && <p className="text-xs text-muted-foreground">{dateLabel}</p>}
       </figcaption>
     </figure>
   );
@@ -141,7 +135,7 @@ function ReviewsSection() {
   const displayReviews = useMemo<NormalizedReview[]>(() => {
     const reviews = businessStats?.recentReviews ?? [];
     return reviews
-      .filter((r) => r?.text && r.text.trim().length > 0)
+      .filter(r => r?.text && r.text.trim().length > 0)
       .map((r, idx) => ({
         id: `gbp-${idx}-${r.author || "anon"}`,
         name: r.author || "Google",
@@ -162,8 +156,7 @@ function ReviewsSection() {
     return (sum / displayReviews.length).toFixed(1);
   }, [businessStats, displayReviews]);
 
-  const totalReviewCount =
-    businessStats?.userRatingCount ?? displayReviews.length;
+  const totalReviewCount = businessStats?.userRatingCount ?? displayReviews.length;
 
   // Scroll state tracking — batched reads in rAF to avoid forced reflow
   const scrollRafRef = useRef(0);
@@ -249,15 +242,21 @@ function ReviewsSection() {
                 className="font-heading font-light italic text-foreground leading-[1.2] tracking-tight text-balance line-clamp-5"
                 style={{ fontSize: "clamp(1.5rem, 4vw, 2.625rem)" }}
               >
-                <span aria-hidden="true" className="text-primary/25 not-italic font-semibold pr-1">&ldquo;</span>
+                <span aria-hidden="true" className="text-primary/25 not-italic font-semibold pr-1">
+                  &ldquo;
+                </span>
                 {featured.text}
-                <span aria-hidden="true" className="text-primary/25 not-italic font-semibold pl-1">&rdquo;</span>
+                <span aria-hidden="true" className="text-primary/25 not-italic font-semibold pl-1">
+                  &rdquo;
+                </span>
               </blockquote>
               <figcaption className="mt-6 text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">{featured.name}</span>
                 {featuredDateLabel && (
                   <>
-                    <span className="mx-1.5" aria-hidden="true">·</span>
+                    <span className="mx-1.5" aria-hidden="true">
+                      ·
+                    </span>
                     <span>{featuredDateLabel}</span>
                   </>
                 )}
@@ -281,7 +280,7 @@ function ReviewsSection() {
           <button
             onClick={handleScrollLeft}
             disabled={!canScrollLeft}
-            aria-label="Scroll left"
+            aria-label={t.a11y.reviewPrev}
             className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-background border border-border shadow-md transition-opacity ${
               canScrollLeft
                 ? "opacity-0 group-hover:opacity-100 hover:bg-muted cursor-pointer"
@@ -294,7 +293,7 @@ function ReviewsSection() {
           <button
             onClick={handleScrollRight}
             disabled={!canScrollRight}
-            aria-label="Scroll right"
+            aria-label={t.a11y.reviewNext}
             className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-background border border-border shadow-md transition-opacity ${
               canScrollRight
                 ? "opacity-0 group-hover:opacity-100 hover:bg-muted cursor-pointer"
@@ -309,14 +308,18 @@ function ReviewsSection() {
             className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {displayReviews.map((review) => (
+            {displayReviews.map(review => (
               <ReviewCard key={review.id} review={review} locale={locale} />
             ))}
           </div>
         </div>
 
         {/* Scroll indicator dots */}
-        <div className="flex justify-center gap-1.5 mt-4 mb-8" role="presentation" aria-hidden="true">
+        <div
+          className="flex justify-center gap-1.5 mt-4 mb-8"
+          role="presentation"
+          aria-hidden="true"
+        >
           {Array.from({ length: dotCount }).map((_, i) => (
             <div
               key={i}

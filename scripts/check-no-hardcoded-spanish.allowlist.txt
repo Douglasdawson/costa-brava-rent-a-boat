@@ -3,7 +3,6 @@
 # Each line: <relative-path>|<sha1-12>
 # When a violation is fixed (string moved to t.X), remove its line.
 # Stale entries (the string is gone) are warned but don't fail CI.
-
 client/src/App.tsx|f5adc0b835ac
 client/src/components/AvailabilityCalendar.tsx|600801f2e2cb
 client/src/components/BoatDetailPage.tsx|041cbea67022
@@ -143,34 +142,8 @@ client/src/components/CRMDashboard.tsx|4cf16c3db7a9
 client/src/components/CRMDashboard.tsx|bc60b94a0baf
 client/src/components/DestinationsSection.tsx|5d69fb61f5a1
 client/src/components/EditorialMomentSection.tsx|9c93012b43d8
-client/src/components/FAQPreview.tsx|045c304327eb
-client/src/components/FAQPreview.tsx|0e3e9624af27
-client/src/components/FAQPreview.tsx|278b52539bf7
-client/src/components/FAQPreview.tsx|2cd31ddd6028
-client/src/components/FAQPreview.tsx|3ee3605716dd
-client/src/components/FAQPreview.tsx|3eeaaea4f23a
-client/src/components/FAQPreview.tsx|44cdf6e128a9
-client/src/components/FAQPreview.tsx|45459a7e8316
-client/src/components/FAQPreview.tsx|4902a9774a8f
-client/src/components/FAQPreview.tsx|59580df09ef6
-client/src/components/FAQPreview.tsx|5a21657c6606
-client/src/components/FAQPreview.tsx|640193947e02
-client/src/components/FAQPreview.tsx|6e90ef91cf41
-client/src/components/FAQPreview.tsx|74ce53bd929e
-client/src/components/FAQPreview.tsx|83761695edb4
-client/src/components/FAQPreview.tsx|8e53aeacd9f0
-client/src/components/FAQPreview.tsx|968884872daa
-client/src/components/FAQPreview.tsx|a539c471a55c
-client/src/components/FAQPreview.tsx|a7400350268e
-client/src/components/FAQPreview.tsx|b56936c65689
-client/src/components/FAQPreview.tsx|b86b5ea16493
-client/src/components/FAQPreview.tsx|c54426de6112
-client/src/components/FAQPreview.tsx|cf10c182f53a
-client/src/components/FAQPreview.tsx|ddfde7d48eca
-client/src/components/FAQPreview.tsx|e023258388b0
 client/src/components/FeaturesSection.tsx|800e122ae16a
 client/src/components/FeaturesSection.tsx|cb247b48acb4
-client/src/components/FleetSection.tsx|1b9cba070483
 client/src/components/Hero.tsx|0ca7e272ac2a
 client/src/components/HoldCountdown.tsx|331ce3b3ef05
 client/src/components/HoldCountdown.tsx|e17bb25a234e

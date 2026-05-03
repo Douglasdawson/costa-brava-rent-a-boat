@@ -550,7 +550,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     name: "Excursión Privada con Capitán",
     image: "PACIFIC_CRAFT_625_boat_fbe4f4d0.png",
     emotionTag: "emotionTags.vip",
-    subtitle: "Con patrón · 7 personas · Experiencia VIP",
+    subtitle: "Con patrón · 6 personas · Experiencia VIP",
     description: "Tú solo disfrutas: nuestro patrón profesional te lleva a calas secretas, cuevas marinas y rincones inaccesibles a pie entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según viento y corrientes. Ideal para celebraciones, aniversarios o familias que quieren una excursión privada exclusiva por la Costa Brava sin preocuparse de nada.",
     specifications: {
       model: "Pacific Craft 625 Open",
@@ -558,7 +558,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       beam: "2,51m",
       engine: "Yamaha 115cv 4T",
       fuel: "Gasolina 127L",
-      capacity: "7 Personas",
+      capacity: "6 Personas",
       deposit: "500€"
     },
     equipment: [
@@ -582,7 +582,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     features: [
       "No requiere licencia",
       "Patrón profesional incluido",
-      "Hasta 7 personas",
+      "Hasta 6 personas",
       "Calas escondidas y cuevas",
       "Parada para nadar",
       "Combustible NO incluido"

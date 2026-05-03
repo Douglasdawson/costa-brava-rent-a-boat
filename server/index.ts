@@ -487,6 +487,26 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log(`[boot] ai_bot_visits self-test loader threw: ${err instanceof Error ? err.message : String(err)}`);
   }
 
+  // ── STEP 2.9: Idempotent boats canonical row seed ───────────────────────────────
+  // Re-seeds any missing boat row from shared/boatData.ts on every boot.
+  // Same Replit Republish pattern as 2.6/2.7/2.8, but for DML rather than DDL:
+  // the boats table survives, individual canonical rows do not. Most recently
+  // `excursion-privada` disappeared and the captained-trip option vanished from
+  // the public fleet. ON CONFLICT DO NOTHING — never overwrites admin edits.
+  try {
+    const { applyBoatsSeedEnsure } = await import("./migrations/applyBoatsSeedEnsure");
+    const result = await applyBoatsSeedEnsure(pool);
+    if (result.applied) {
+      log(`[migrations] boats seed ensure OK in ${result.durationMs}ms — inserted ${result.inserted} canonical row(s)`);
+    } else if (result.error === "lock-held-by-other-instance") {
+      log(`[migrations] boats seed ensure skipped (another instance holds lock)`);
+    } else {
+      log(`[migrations] boats seed ensure FAILED: ${result.error}`);
+    }
+  } catch (err) {
+    log(`[migrations] applyBoatsSeedEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   // Auto-backfill analytics tables if empty (every Republish wipes them, see
   // project_seo_engine_schema_revert.md). Fire-and-forget — does not block
   // boot or registerRoutes. Single-instance via pg_advisory_lock so multiple
@@ -515,7 +535,17 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   const { isValidLang } = await import("../shared/i18n-routes");
   app.use(redirectMiddleware());
 
-  // Root redirect with Accept-Language detection (302 — destination depends on visitor)
+  // Root redirect with Accept-Language detection.
+  //
+  // Status code strategy (matters for AI crawlers and SEO):
+  // - 302 (Found) when the destination depends on visitor signals
+  //   (Accept-Language header or cookie). A 301 here would let browsers
+  //   cache the redirect and trap users on the wrong locale if their
+  //   preference changes.
+  // - 301 (Moved Permanently) for the fallback to /es/. This is the path
+  //   crawlers without Accept-Language headers always take (GPTBot,
+  //   ClaudeBot, PerplexityBot etc.) — caching the redirect saves crawl
+  //   budget and removes a hop on every subsequent visit.
   app.get("/", (req, res) => {
     // 1. Check Accept-Language header
     const acceptLang = req.headers["accept-language"];
@@ -540,8 +570,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       return res.redirect(302, `/${cookieLang}/`);
     }
 
-    // 3. Fallback to Spanish
-    return res.redirect(302, "/es/");
+    // 3. Fallback to Spanish — 301 so AI crawlers cache the destination.
+    return res.redirect(301, "/es/");
   });
 
   // 404 handler for unknown API routes

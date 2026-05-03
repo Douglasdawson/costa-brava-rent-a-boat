@@ -22,7 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Bot, Loader2, Activity, FileText, Clock } from "lucide-react";
+import { Bot, Loader2, Activity, FileText, Clock, Hourglass } from "lucide-react";
 import { EmptyState } from "./shared/EmptyState";
 import { ErrorState } from "./shared/ErrorState";
 
@@ -56,6 +56,19 @@ interface BotVisitsResponse {
     topPaths: string | null;
     recent: string | null;
   };
+}
+
+interface HourlyBucket {
+  hour: number;
+  visits: number;
+}
+
+interface TimingResponse {
+  windowDays: number;
+  botName: string | null;
+  path: string | null;
+  total: number;
+  buckets: HourlyBucket[];
 }
 
 const WINDOW_OPTIONS: { days: WindowDays; label: string }[] = [
@@ -247,6 +260,9 @@ export function AiBotsSubTab() {
         </CardContent>
       </Card>
 
+      {/* Section 2.5: hourly distribution (share vs crawl signal) */}
+      <HourlyTimingCard days={days} byBot={data.byBot} topPaths={data.topPaths} />
+
       {/* Section 3: recent hits */}
       <Card>
         <CardHeader className="pb-3">
@@ -301,5 +317,154 @@ export function AiBotsSubTab() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+// --- Hourly Timing Card ---
+//
+// Shows the 24-hour distribution of hits for a chosen bot+path combo.
+// Uniform across all 24 hours → crawl-driven (training / regular crawler).
+// Clusters at human-active hours (12-15h, 19-23h Europe/Madrid) → share-driven
+// (somebody is sharing the URL on Meta-owned platforms — WhatsApp, IG, FB).
+//
+// Defaults to (Meta-ExternalAgent, /) because that's the noisy combo the
+// dashboard surfaced first; the user can switch to any other bot+path.
+
+interface HourlyTimingCardProps {
+  days: WindowDays;
+  byBot: BotCount[];
+  topPaths: PathCount[];
+}
+
+function HourlyTimingCard({ days, byBot, topPaths }: HourlyTimingCardProps) {
+  const defaultBot = byBot[0]?.botName ?? "Meta-ExternalAgent";
+  const defaultPath = topPaths[0]?.path ?? "/";
+  const [bot, setBot] = useState<string>(defaultBot);
+  const [path, setPath] = useState<string>(defaultPath);
+
+  const { data, isLoading, isError } = useQuery<TimingResponse>({
+    queryKey: ["admin", "seo", "bot-visits", "timing", days, bot, path],
+    queryFn: async () => {
+      const params = new URLSearchParams({
+        days: String(days),
+        ...(bot ? { bot } : {}),
+        ...(path ? { path } : {}),
+      });
+      const res = await fetch(`/api/admin/seo/bot-visits/timing?${params}`, {
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error("Error al cargar timing");
+      return res.json();
+    },
+    staleTime: 60_000,
+  });
+
+  const maxVisits = data ? Math.max(1, ...data.buckets.map((b) => b.visits)) : 1;
+  // Heuristic: standard deviation across 24 hours, normalized by mean.
+  // Low CV (<0.5) → uniform → crawl. High CV (>1) → bursty → share/human.
+  const interpretation = (() => {
+    if (!data || data.total < 24) return null;
+    const mean = data.total / 24;
+    const variance =
+      data.buckets.reduce((sum, b) => sum + (b.visits - mean) ** 2, 0) / 24;
+    const std = Math.sqrt(variance);
+    const cv = mean > 0 ? std / mean : 0;
+    if (cv < 0.5) return { label: "Uniforme — patrón de crawler automático", color: "text-blue-600" };
+    if (cv < 1.0) return { label: "Mixto — algo de cluster, posible mezcla", color: "text-amber-600" };
+    return { label: "Concentrado en franjas — probable share humano", color: "text-emerald-600" };
+  })();
+
+  return (
+    <Card>
+      <CardHeader className="pb-3">
+        <CardTitle className="text-sm flex items-center gap-2">
+          <Hourglass className="w-4 h-4" />
+          Distribución horaria (UTC)
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        <div className="flex flex-wrap gap-2 items-center">
+          <label className="text-xs text-muted-foreground flex items-center gap-1">
+            Bot:
+            <select
+              value={bot}
+              onChange={(e) => setBot(e.target.value)}
+              className="border rounded px-2 py-1 text-xs bg-background min-h-[36px]"
+            >
+              {byBot.map((b) => (
+                <option key={b.botName} value={b.botName}>
+                  {b.botName} ({b.visits})
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="text-xs text-muted-foreground flex items-center gap-1">
+            Path:
+            <select
+              value={path}
+              onChange={(e) => setPath(e.target.value)}
+              className="border rounded px-2 py-1 text-xs bg-background min-h-[36px] max-w-[260px]"
+            >
+              {topPaths.slice(0, 20).map((p) => (
+                <option key={p.path} value={p.path}>
+                  {p.path} ({p.visits})
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        {isLoading ? (
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
+          </div>
+        ) : isError || !data ? (
+          <p className="text-xs text-destructive">Error al cargar timing</p>
+        ) : data.total === 0 ? (
+          <p className="text-xs text-muted-foreground">
+            Sin hits para {bot} en {path} en los últimos {data.windowDays} días.
+          </p>
+        ) : (
+          <>
+            <div className="text-xs text-muted-foreground">
+              {data.total.toLocaleString("es-ES")} hits totales
+              {interpretation && (
+                <>
+                  {" · "}
+                  <span className={`font-medium ${interpretation.color}`}>{interpretation.label}</span>
+                </>
+              )}
+            </div>
+            <div className="grid grid-cols-24 gap-[2px] items-end h-32" style={{ gridTemplateColumns: "repeat(24, minmax(0, 1fr))" }}>
+              {data.buckets.map((bucket) => {
+                const heightPct = (bucket.visits / maxVisits) * 100;
+                return (
+                  <div
+                    key={bucket.hour}
+                    className="flex flex-col items-center justify-end h-full"
+                    title={`${bucket.hour.toString().padStart(2, "0")}:00 — ${bucket.visits} hits`}
+                  >
+                    <div
+                      className="w-full bg-primary/70 hover:bg-primary transition-colors rounded-t"
+                      style={{ height: `${Math.max(2, heightPct)}%` }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="grid grid-cols-24 gap-[2px] text-[9px] text-muted-foreground tabular-nums" style={{ gridTemplateColumns: "repeat(24, minmax(0, 1fr))" }}>
+              {data.buckets.map((bucket) => (
+                <div key={bucket.hour} className="text-center">
+                  {bucket.hour % 3 === 0 ? bucket.hour.toString().padStart(2, "0") : ""}
+                </div>
+              ))}
+            </div>
+            <p className="text-[10px] text-muted-foreground">
+              Horas en UTC. España = UTC+1 (invierno) / UTC+2 (verano), suma 1 o 2 al eje X para hora local.
+            </p>
+          </>
+        )}
+      </CardContent>
+    </Card>
   );
 }

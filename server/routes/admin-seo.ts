@@ -380,6 +380,37 @@ export function registerSeoRoutes(app: Express): void {
     }
   });
 
+  // GET /api/admin/seo/cannibalization — keyword cannibalization conflicts
+  // Two pages of mine ranking for the same keyword in the top 50 hurts both
+  // (Google can't decide which to surface). On-demand: runs the detector
+  // and returns conflicts; not cached, expect ~500ms latency.
+  app.get("/api/admin/seo/cannibalization", requireAdminSession, async (_req, res) => {
+    try {
+      const { detectCannibalization } = await import("../seo/analyzers/cannibalization");
+      const conflicts = await detectCannibalization();
+      res.json({ count: conflicts.length, conflicts });
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("Error detecting cannibalization", { error: msg });
+      res.status(500).json({ message: "Error detecting cannibalization", error: msg });
+    }
+  });
+
+  // GET /api/admin/seo/orphans — pages without internal inbound links
+  // Crawls the homepage + DB-tracked seoLinks and reports KNOWN_PAGES that
+  // are not linked from anywhere. On-demand; performs an HTTP fetch.
+  app.get("/api/admin/seo/orphans", requireAdminSession, async (_req, res) => {
+    try {
+      const { detectOrphanPages } = await import("../seo/analyzers/orphans");
+      const orphans = await detectOrphanPages();
+      res.json({ count: orphans.length, orphans });
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("Error detecting orphan pages", { error: msg });
+      res.status(500).json({ message: "Error detecting orphan pages", error: msg });
+    }
+  });
+
   // GET /api/admin/seo/bot-visits/timing — hourly distribution of hits
   // Used to tell apart share-driven traffic (clusters at human-active hours)
   // from crawl-driven traffic (uniform across 24h). Optional filters by bot

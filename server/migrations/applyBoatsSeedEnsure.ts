@@ -34,17 +34,14 @@ const REQUIRES_LICENSE_IDS = new Set([
 
 // Allow-list of canonical boat IDs that MUST exist in the live fleet.
 // Re-seeded from BOAT_DATA when missing. We cannot auto-insert every key in
-// BOAT_DATA because the file holds historical/deprecated entries (astec-480,
-// remus-450-ii) that were renamed or replaced and should NOT reappear in the
-// fleet. Keep this list in sync with the desired live fleet.
-//
-// Note: `astec-450` is present in the live DB but missing from BOAT_DATA —
-// kept here for awareness, but the seeder cannot recreate it without source
-// data. If a Republish ever drops it, this will be a separate cleanup task.
+// BOAT_DATA because the file holds at least one historical entry
+// (`remus-450-ii`) that should NOT reappear in the fleet without a decision.
+// Keep this list in sync with the desired live fleet.
 const CANONICAL_BOAT_IDS = new Set([
   "solar-450",
   "remus-450",
   "astec-400",
+  "astec-480",
   "mingolla-brava-19",
   "trimarchi-57s",
   "pacific-craft-625",

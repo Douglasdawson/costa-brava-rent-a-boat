@@ -134,8 +134,8 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
     if (currentStep !== prevStepRef.current) {
       setDirection(currentStep > prevStepRef.current ? "forward" : "back");
       setAnimating(true);
-      // Scroll to top of the step content
-      scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll to top of the step content (instant — DESIGN.md bans layout animations)
+      scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'instant' });
       const timer = setTimeout(() => {
         setDisplayStep(currentStep);
         setAnimating(false);
@@ -347,8 +347,7 @@ function Step1Boat({
                 role="radio"
                 aria-checked={selectedBoat === boat.id}
                 onClick={() => handleBoatSelect(boat.id)}
-                disabled={!!preSelectedBoatId && boat.id !== preSelectedBoatId}
-                className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all active:scale-[0.97] ${
+                className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-colors active:scale-[0.97] ${
                   selectedBoat === boat.id
                     ? "border-primary bg-primary/5"
                     : "border-border bg-background"

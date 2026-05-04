@@ -480,7 +480,7 @@ function Step1BoatDate({
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-2">
+          <div role="radiogroup" aria-label={t.wizard.selectABoat} className="grid grid-cols-2 gap-2">
             {filteredBoats.map(boat => {
               const firstSeason =
                 boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
@@ -490,9 +490,10 @@ function Step1BoatDate({
                 <button
                   key={boat.id}
                   type="button"
+                  role="radio"
+                  aria-checked={isSelected}
                   onClick={() => setSelectedBoat(boat.id)}
-                  disabled={!!preSelectedBoatId && boat.id !== preSelectedBoatId}
-                  className={`w-full flex items-center gap-2.5 p-3 rounded-lg border-2 text-left transition-all ${
+                  className={`w-full flex items-center gap-2.5 p-3 rounded-lg border-2 text-left transition-colors ${
                     isSelected
                       ? "border-foreground bg-foreground/5"
                       : "border-cta/40 bg-background hover:border-cta"
@@ -503,7 +504,7 @@ function Step1BoatDate({
                       isSelected ? "border-foreground bg-foreground" : "border-muted-foreground/30"
                     }`}
                   >
-                    {isSelected && <Check className="w-2.5 h-2.5 text-white" />}
+                    {isSelected && <Check className="w-2.5 h-2.5 text-background" aria-hidden="true" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-foreground text-sm truncate">{boat.name}</p>

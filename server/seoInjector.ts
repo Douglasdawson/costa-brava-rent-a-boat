@@ -1965,7 +1965,13 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
         "@type": "LocalBusiness",
         "@id": `${BASE_URL}/#organization`,
         name: "Costa Brava Rent a Boat Blanes",
-        legalName: "Costa Brava Rent a Boat - Blanes",
+        legalName: "DAMAR COSTA BRAVA S.L.",
+        alternateName: [
+          "Costa Brava Rent a Boat",
+          "Costa Brava Rent a Boat Blanes",
+          "Alquiler de Barcos Costa Brava",
+          "CBRaB",
+        ],
         description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Puerto de Blanes. 8 embarcaciones para 4-7 personas.",
         url: BASE_URL,
         telephone: "+34611500372",
@@ -2031,13 +2037,16 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "Mediterranean Sea", "Nautical Tourism", "Water Sports",
           "Maritime Safety", "Cabo de Santa Anna", "Botánico Marimurtra",
         ],
+        // sameAs: cluster de perfiles oficiales (alineado con
+        // client/src/utils/seo-config.ts). TODO: añadir YouTube cuando
+        // exista el canal del negocio.
         sameAs: [
+          "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
           "https://www.instagram.com/costabravarentaboat/",
           "https://www.facebook.com/costabravarentaboat",
           "https://www.tiktok.com/@costabravarentaboat",
           "https://www.linkedin.com/company/costabravarentaboat",
-          "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
-          "https://en.wikipedia.org/wiki/Blanes",
+          "https://www.tripadvisor.com/Attraction_Review-g580331-d19938921-Reviews-Costa_Brava_Rent_a_Boat-Blanes_Costa_Brava_Province_of_Girona_Catalonia.html",
         ],
         hasMerchantReturnPolicy: {
           "@type": "MerchantReturnPolicy",

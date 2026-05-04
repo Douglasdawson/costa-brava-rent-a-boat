@@ -72,11 +72,16 @@ function boatDataToAiContext(data: BoatData): AiContextBoat {
   };
 }
 
-// Paths that should always be disallowed
+// Paths that should always be disallowed.
+// NOTE: legacy Wix URLs `/copy-of-*` and `/copia-de-*` were removed from
+// this list in 2026-05. They are 301-redirected to canonical pages by
+// server/seo/redirects.ts, but blocking them via robots.txt prevents
+// Googlebot from ever reaching the redirect — leaving stale URLs in the
+// index. Allowing the crawl lets Google follow the 301 and clean up.
 const DISALLOWED_PATHS = [
   "/crm", "/crm/", "/admin", "/admin/", "/login",
   "/onboarding", "/client/dashboard", "/mi-cuenta",
-  "/api/", "/cancel/", "/copia-de-*", "/copy-of-*",
+  "/api/", "/cancel/",
   "/client/",
 ];
 

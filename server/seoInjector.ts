@@ -2176,18 +2176,16 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           ]
         }
       };
+      // potentialAction SearchAction removed 2026-05: urlTemplate `/?q=`
+      // didn't resolve to a working search page. Re-introduce when a
+      // real /search endpoint is built.
       const webSite = {
         "@type": "WebSite",
         "@id": `${BASE_URL}/#website`,
         name: "Costa Brava Rent a Boat Blanes",
         url: BASE_URL,
         inLanguage: ["es-ES","en-GB","ca-ES","fr-FR","de-DE","nl-NL","it-IT","ru-RU"],
-        publisher: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
-        potentialAction: {
-          "@type": "SearchAction",
-          target: { "@type": "EntryPoint", urlTemplate: `${BASE_URL}/?q={search_term_string}` },
-          "query-input": "required name=search_term_string"
-        }
+        publisher: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` }
       };
       const howTo = {
         "@type": "HowTo",

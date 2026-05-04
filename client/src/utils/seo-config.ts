@@ -2010,7 +2010,11 @@ export function generateEnhancedProductSchema(boatData: BoatProductData, languag
   return baseSchema;
 }
 
-// Generate WebSite + SearchAction schema for sitelinks search box in AI results
+// Generate WebSite schema. The `potentialAction` SearchAction was removed
+// in 2026-05 because the previous urlTemplate (`/?q=`) didn't resolve to a
+// working search results page — emitting a broken signal hurts entity
+// trust. Re-introduce a SearchAction once a real `/search` endpoint
+// exists that filters fleet/blog/destinations by query.
 export function generateWebSiteSchema() {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
 
@@ -2023,14 +2027,6 @@ export function generateWebSiteSchema() {
     "publisher": {
       "@type": "LocalBusiness",
       "@id": `${baseUrl}/#organization`
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${baseUrl}/?q={search_term_string}`
-      },
-      "query-input": "required name=search_term_string"
     }
   };
 }

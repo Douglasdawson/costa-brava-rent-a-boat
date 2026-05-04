@@ -183,6 +183,14 @@ All shadow values use the foreground hue (navy-tinted), never pure black. In dar
 
 **The Earned Depth Rule.** Shadows appear only as a response to state: hover, focus, active, open. A card at rest has no shadow. A card being hovered gets sm. A modal gets lg. If a surface has a shadow and no interaction caused it, the shadow is wrong.
 
+**Structural exceptions** (decisión 2026-05-04). Tres elementos están exentos porque el shadow cumple una función estructural — separar contenido superpuesto del flujo scrollable que pasa por debajo —, no decorativa:
+
+- **Floating Navigation pill** (`Navigation.tsx`): backdrop-blur + shadow-md sobre contenido scrollable.
+- **Sticky mobile bottom CTA** (`BoatDetailPage.tsx` — sticky inferior móvil con CTA Reservar + WhatsApp): shadow-lg porque flota sobre la página y el contenido pasa por debajo.
+- **Sticky desktop pricing sidebar** (`BoatDetailPage.tsx` — sidebar derecho fijo con precio y CTA): shadow-xl porque flota sobre la columna de contenido principal.
+
+Cualquier nuevo elemento sticky/fijo que se proponga debe (a) tener una razón estructural análoga (legibilidad sobre scroll), (b) declararse explícitamente aquí. Si solo es "para destacar", aplicar la pauta `Cómo destacar sin shadow` en su lugar.
+
 ## 5. Components
 
 ### Buttons

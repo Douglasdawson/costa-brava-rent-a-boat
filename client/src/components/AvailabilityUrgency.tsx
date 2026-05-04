@@ -32,71 +32,38 @@ function formatDateForDisplay(dateStr: string): string {
   return `${d}/${m}/${y}`;
 }
 
-function isWeekendDate(dateStr: string): boolean {
-  const [y, m, d] = dateStr.split("-").map(Number);
-  const day = new Date(y, m - 1, d).getDay();
-  return day === 0 || day === 5 || day === 6;
-}
-
-function isHighSeason(): boolean {
-  const month = new Date().getMonth(); // 0-indexed
-  return month >= 5 && month <= 8; // Jun-Sep
-}
-
-function isPeakSeason(): boolean {
-  const month = new Date().getMonth();
-  return month === 6 || month === 7; // Jul-Aug
-}
-
 function determineTier(
   scarcity: ScarcityData | undefined,
-  intentScore: IntentScore,
-  dateStr: string
+  intentScore: IntentScore
 ): { tier: UrgencyTier; remainingSlots: number } | null {
-  // If we have real scarcity data, use it
-  if (scarcity) {
-    const { remainingSlots } = scarcity;
+  // Only show urgency when backed by real scarcity data. PRODUCT.md: "no surprises, transparente".
+  if (!scarcity) return null;
+  const { remainingSlots } = scarcity;
 
-    // Urgent: high scarcity + high/very_high intent
-    if (
-      remainingSlots <= 3 &&
-      (intentScore === "high" || intentScore === "very_high")
-    ) {
-      return { tier: "urgent", remainingSlots };
-    }
-
-    // Social: medium scarcity
-    if (remainingSlots > 3 && remainingSlots <= 6) {
-      return { tier: "social", remainingSlots };
-    }
-
-    // Informational: low scarcity
-    if (remainingSlots > 6) {
-      return { tier: "informational", remainingSlots };
-    }
-
-    // remainingSlots 0-3 but low/medium intent: show social instead of urgent
-    if (remainingSlots <= 3) {
-      return { tier: "social", remainingSlots };
-    }
+  // Urgent: high scarcity + high/very_high intent
+  if (remainingSlots <= 3 && (intentScore === "high" || intentScore === "very_high")) {
+    return { tier: "urgent", remainingSlots };
   }
 
-  // Fallback: season/day heuristics (no real data)
-  const weekend = isWeekendDate(dateStr);
-  if (isPeakSeason() && weekend) {
-    return { tier: "social", remainingSlots: -1 };
+  // Social: medium scarcity
+  if (remainingSlots > 3 && remainingSlots <= 6) {
+    return { tier: "social", remainingSlots };
   }
-  if (isHighSeason()) {
-    return { tier: "informational", remainingSlots: -1 };
+
+  // Informational: low scarcity
+  if (remainingSlots > 6) {
+    return { tier: "informational", remainingSlots };
+  }
+
+  // remainingSlots 0-3 but low/medium intent: show social instead of urgent
+  if (remainingSlots <= 3) {
+    return { tier: "social", remainingSlots };
   }
 
   return null;
 }
 
-export default function AvailabilityUrgency({
-  boatId,
-  selectedDate,
-}: AvailabilityUrgencyProps) {
+export default function AvailabilityUrgency({ boatId, selectedDate }: AvailabilityUrgencyProps) {
   const dateStr = selectedDate || getTodayDateStr();
   const { intentScore } = useBehaviorSignals();
   const t = useTranslations();
@@ -115,11 +82,12 @@ export default function AvailabilityUrgency({
   });
 
   const urgency = useMemo(() => {
-    const result = determineTier(scarcity, intentScore, dateStr);
+    const result = determineTier(scarcity, intentScore);
     if (!result) return null;
 
     const { tier, remainingSlots } = result;
     const au = t.adaptiveUrgency;
+    if (!au) return null;
 
     // Track urgency tier shown
     trackEvent("urgency_tier_shown", {
@@ -129,7 +97,7 @@ export default function AvailabilityUrgency({
       boat_id: boatId,
     });
 
-    if (tier === "urgent" && remainingSlots >= 0 && au) {
+    if (tier === "urgent") {
       return {
         text: au.onlyXSlots
           .replace("{count}", String(remainingSlots))
@@ -139,35 +107,26 @@ export default function AvailabilityUrgency({
       };
     }
 
+    // Social: only when there's a real bookedToday count.
+    // Without real bookings we suppress the badge instead of fabricating "high demand weekend".
     if (tier === "social") {
-      if (scarcity && scarcity.bookedToday > 0 && au) {
+      if (scarcity && scarcity.bookedToday > 0) {
         return {
           text: au.bookingsToday.replace("{count}", String(scarcity.bookedToday)),
           icon: Users,
           variant: "secondary" as const,
         };
       }
-      if (au) {
-        return {
-          text: isWeekendDate(dateStr) ? au.highDemandWeekend : au.mostBookedWeek,
-          icon: Users,
-          variant: "secondary" as const,
-        };
-      }
+      return null;
     }
 
-    // Informational
-    if (au) {
-      return {
-        text: isWeekendDate(dateStr) && isPeakSeason()
-          ? au.highDemandWeekend
-          : au.popularBoat,
-        icon: TrendingUp,
-        variant: "secondary" as const,
-      };
-    }
-
-    return null;
+    // Informational: low scarcity (>6 slots free) — surface the boat as popular without
+    // injecting weekend/season copy that isn't tied to a real booking signal.
+    return {
+      text: au.popularBoat,
+      icon: TrendingUp,
+      variant: "secondary" as const,
+    };
   }, [scarcity, intentScore, dateStr, boatId, t]);
 
   if (!urgency) return null;
@@ -175,10 +134,7 @@ export default function AvailabilityUrgency({
   const Icon = urgency.icon;
 
   return (
-    <Badge
-      variant={urgency.variant}
-      className="text-xs font-medium px-2.5 py-1 gap-1.5"
-    >
+    <Badge variant={urgency.variant} className="text-xs font-medium px-2.5 py-1 gap-1.5">
       <Icon className="w-3 h-3" />
       {urgency.text}
     </Badge>

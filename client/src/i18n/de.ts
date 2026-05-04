@@ -1095,12 +1095,15 @@ export const de: Translations = {
       "astec-400": "Perfekt für Paare. Der beste Preis pro Person der gesamten Flotte.",
       "solar-450": "Großes Sonnendeck zum Sonnenbaden. Ideal, um die Buchten zu genießen.",
       "remus-450": "Stabil und einfach zu handhaben. Hervorragend für Familien.",
+      "remus-450-ii":
+        "Schwesterboot der Remus 450, bereit wenn die erste gebucht ist. Gleiche Stabilität, gleicher Plan.",
       "astec-480": "Die Premium-Option ohne Führerschein. Bluetooth und mehr Platz.",
-      "voraz-v2": "Vielseitig und komfortabel. Gutes Verhältnis von Preis und Ausstattung.",
       "mingolla-brava-19": "Geräumig für Gruppen. Dusche und Esstisch an Bord.",
       "trimarchi-57s": "Stark und schnell. Erreicht Tossa de Mar in 30 Minuten.",
       "pacific-craft-625":
         "Das größte, luxuriöseste und kompletteste. Für ein einzigartiges Erlebnis.",
+      "excursion-privada":
+        "Ganztags ohne Sorgen. Professioneller Skipper, geheime Buchten und maximaler Komfort.",
     },
   },
 

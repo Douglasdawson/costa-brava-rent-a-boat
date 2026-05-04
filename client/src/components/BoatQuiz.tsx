@@ -4,6 +4,7 @@ import { Users, Clock, Wallet, Anchor, ChevronLeft, ChevronRight, RotateCcw } fr
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { trackBlogCtaClick, trackBoatQuizStart, trackBoatQuizComplete } from "@/utils/analytics";
+import { BOAT_DATA, type BoatData } from "@shared/boatData";
 
 interface QuizAnswer {
   passengers: number | null;
@@ -18,38 +19,56 @@ interface BoatRecommendation {
   score: number;
 }
 
-const BOAT_PROFILES = [
-  { id: "astec-400", name: "Astec 400", capacity: 4, license: false, budget: "low", duration: "short", group: "couple", price: 70 },
-  { id: "solar-450", name: "Solar 450", capacity: 5, license: false, budget: "low", duration: "medium", group: "family", price: 80 },
-  { id: "remus-450", name: "Remus 450", capacity: 5, license: false, budget: "low", duration: "short", group: "family", price: 80 },
-  { id: "astec-480", name: "Astec 480", capacity: 5, license: false, budget: "medium", duration: "long", group: "premium", price: 90 },
-  { id: "voraz-v2", name: "Voraz V2", capacity: 5, license: false, budget: "medium", duration: "medium", group: "family", price: 85 },
-  { id: "mingolla-brava-19", name: "Mingolla Brava 19", capacity: 6, license: true, budget: "high", duration: "long", group: "adventure", price: 200 },
-  { id: "trimarchi-57s", name: "Trimarchi 57S", capacity: 7, license: true, budget: "high", duration: "long", group: "group", price: 250 },
-  { id: "pacific-craft-625", name: "Pacific Craft 625", capacity: 7, license: true, budget: "high", duration: "long", group: "group", price: 350 },
-];
+type Budget = "low" | "medium" | "high";
+type Duration = "short" | "medium" | "long";
 
-function scoreBoat(boat: typeof BOAT_PROFILES[0], answers: QuizAnswer): number {
+// Quiz-only scoring metadata. Capacity, name and license-required come from BOAT_DATA.
+const QUIZ_SCORING_META: Record<string, { budget: Budget; duration: Duration }> = {
+  "astec-400":         { budget: "low",    duration: "short"  },
+  "solar-450":         { budget: "low",    duration: "medium" },
+  "remus-450":         { budget: "low",    duration: "short"  },
+  "remus-450-ii":      { budget: "low",    duration: "short"  },
+  "astec-480":         { budget: "medium", duration: "long"   },
+  "mingolla-brava-19": { budget: "high",   duration: "long"   },
+  "trimarchi-57s":     { budget: "high",   duration: "long"   },
+  "pacific-craft-625": { budget: "high",   duration: "long"   },
+  "excursion-privada": { budget: "high",   duration: "long"   },
+};
+
+function getCapacity(boat: BoatData): number {
+  return parseInt(boat.specifications.capacity, 10) || 4;
+}
+
+// "Sin licencia" boats are licence-free for the renter (the captain handles it
+// in the case of excursión privada). "Con licencia" boats require the renter to
+// hold a Licencia de Navegación Básica.
+function isLicenseFree(boat: BoatData): boolean {
+  return boat.subtitle.toLowerCase().startsWith("sin licencia");
+}
+
+function scoreBoat(boat: BoatData, meta: { budget: Budget; duration: Duration }, answers: QuizAnswer): number {
   let score = 0;
   const passengers = answers.passengers || 2;
+  const capacity = getCapacity(boat);
+  const licenseFree = isLicenseFree(boat);
 
   // Capacity fit
-  if (passengers <= boat.capacity) score += 3;
-  if (passengers === boat.capacity) score += 2;
-  if (passengers > boat.capacity) score -= 10;
+  if (passengers <= capacity) score += 3;
+  if (passengers === capacity) score += 2;
+  if (passengers > capacity) score -= 10;
 
   // Duration preference
-  if (answers.duration === "short" && (boat.duration === "short" || boat.duration === "medium")) score += 2;
+  if (answers.duration === "short" && (meta.duration === "short" || meta.duration === "medium")) score += 2;
   if (answers.duration === "medium") score += 2;
-  if (answers.duration === "long" && boat.duration === "long") score += 3;
+  if (answers.duration === "long" && meta.duration === "long") score += 3;
 
   // Budget match
-  if (answers.budget === "low" && boat.budget === "low") score += 3;
-  if (answers.budget === "medium" && (boat.budget === "low" || boat.budget === "medium")) score += 2;
+  if (answers.budget === "low" && meta.budget === "low") score += 3;
+  if (answers.budget === "medium" && (meta.budget === "low" || meta.budget === "medium")) score += 2;
   if (answers.budget === "high") score += 1;
 
-  // Prefer no-license boats for simplicity
-  if (!boat.license) score += 1;
+  // Prefer licence-free boats for simplicity
+  if (licenseFree) score += 1;
 
   return score;
 }
@@ -82,12 +101,13 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
   };
 
   const recommendations: BoatRecommendation[] = useMemo(() => {
-    return BOAT_PROFILES
+    return Object.values(BOAT_DATA)
+      .filter(boat => QUIZ_SCORING_META[boat.id])
       .map(boat => ({
         id: boat.id,
         name: boat.name,
         reason: t?.reasons?.[boat.id] ?? "",
-        score: scoreBoat(boat, answers),
+        score: scoreBoat(boat, QUIZ_SCORING_META[boat.id], answers),
       }))
       .filter(r => r.score > 0)
       .sort((a, b) => b.score - a.score)

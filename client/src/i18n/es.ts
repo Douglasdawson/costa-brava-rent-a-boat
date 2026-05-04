@@ -2226,11 +2226,12 @@ export const es: Translations = {
       "astec-400": "Perfecto para parejas. El mejor precio por persona de toda la flota.",
       "solar-450": "Gran solárium para tomar el sol. Ideal para disfrutar de las calas.",
       "remus-450": "Estable y fácil de manejar. Excelente para familias.",
+      "remus-450-ii": "Hermana del Remus 450, lista cuando el primero está reservado. Misma estabilidad, mismo plan.",
       "astec-480": "La opción premium sin licencia. Bluetooth y más espacio.",
-      "voraz-v2": "Versátil y cómoda. Buen equilibrio entre precio y prestaciones.",
       "mingolla-brava-19": "Espaciosa para grupos. Ducha y mesa para comer a bordo.",
       "trimarchi-57s": "Potente y rápida. Llega a Tossa de Mar en 30 minutos.",
       "pacific-craft-625": "La más grande, lujosa y completa. Para disfrutar sin igual.",
+      "excursion-privada": "Día completo sin preocupaciones. Patrón profesional, calas secretas y máxima comodidad.",
     },
   },
 

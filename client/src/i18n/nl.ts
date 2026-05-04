@@ -1090,11 +1090,12 @@ export const nl: Translations = {
       "astec-400": "Perfect voor stellen. De beste prijs per persoon van de hele vloot.",
       "solar-450": "Groot zonnedek om te zonnebaden. Ideaal om van de baaien te genieten.",
       "remus-450": "Stabiel en eenvoudig te besturen. Uitstekend voor gezinnen.",
+      "remus-450-ii": "Zusterboot van de Remus 450, klaar als de eerste geboekt is. Dezelfde stabiliteit, hetzelfde plan.",
       "astec-480": "De premium optie zonder vaarbewijs. Bluetooth en meer ruimte.",
-      "voraz-v2": "Veelzijdig en comfortabel. Goede balans tussen prijs en prestaties.",
       "mingolla-brava-19": "Ruim voor groepen. Douche en eettafel aan boord.",
       "trimarchi-57s": "Krachtig en snel. Bereikt Tossa de Mar in 30 minuten.",
       "pacific-craft-625": "De grootste, meest luxueuze en complete. Voor onvergetelijk genieten.",
+      "excursion-privada": "Hele dag zonder zorgen. Professionele schipper, verborgen baaien en maximaal comfort.",
     },
   },
 

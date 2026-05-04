@@ -254,7 +254,7 @@ export const en: Translations = {
       "Costa Brava Rent a Boat is an independent company. Not to be confused with other operators of similar name.",
   },
   booking: {
-    title: "REQUEST YOUR BOOKING",
+    title: "Request your booking",
     modalSubtitle: "Takes just 2 minutes. We confirm via WhatsApp.",
     specialRateTitle: "Special rate for this date",
     specialRateBody: "demand-adjusted pricing",
@@ -314,7 +314,7 @@ export const en: Translations = {
     withoutLicense: "Without Licence",
     select: "Select...",
     pricesUpdateByDate: "Prices update based on the selected date",
-    sendBookingRequest: "SEND BOOKING REQUEST",
+    sendBookingRequest: "Send booking request",
     needHelp: "Need help?",
     people: "people",
     firstNameRequired: "Required: First Name",

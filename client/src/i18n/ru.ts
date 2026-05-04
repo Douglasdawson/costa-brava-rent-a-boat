@@ -259,7 +259,7 @@ export const ru: Translations = {
       "Costa Brava Rent a Boat — независимая компания. Не путать с другими операторами с похожим названием.",
   },
   booking: {
-    title: "ОСТАВЬТЕ ЗАЯВКУ НА БРОНИРОВАНИЕ",
+    title: "Оставьте заявку на бронирование",
     modalSubtitle: "Всего 2 минуты. Подтверждение через WhatsApp.",
     seasonCountdown:
       "Цены сезона 2026 поднимутся 1 июня · осталось {days} дней · подтвердите сегодня",
@@ -317,7 +317,7 @@ export const ru: Translations = {
     withoutLicense: "Без лицензии",
     select: "Выбрать...",
     pricesUpdateByDate: "Цены обновляются в зависимости от даты",
-    sendBookingRequest: "ОТПРАВИТЬ ЗАПРОС НА БРОНИРОВАНИЕ",
+    sendBookingRequest: "Отправить запрос",
     needHelp: "Нужна помощь?",
     people: "человек",
     firstNameRequired: "Обязательное поле: Имя",

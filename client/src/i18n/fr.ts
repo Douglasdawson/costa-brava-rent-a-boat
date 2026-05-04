@@ -266,7 +266,7 @@ export const fr: Translations = {
       "Costa Brava Rent a Boat est une entreprise indépendante. À ne pas confondre avec d'autres opérateurs au nom similaire.",
   },
   booking: {
-    title: "DEMANDEZ VOTRE RÉSERVATION",
+    title: "Demandez votre réservation",
     modalSubtitle: "En seulement 2 minutes. Confirmation par WhatsApp.",
     seasonCountdown:
       "Les prix de la saison 2026 augmentent le 1er juin · il reste {days} jours · confirmez aujourd'hui",
@@ -324,7 +324,7 @@ export const fr: Translations = {
     withoutLicense: "Sans Permis",
     select: "Sélectionner...",
     pricesUpdateByDate: "Les prix sont mis à jour selon la date",
-    sendBookingRequest: "ENVOYER DEMANDE DE RÉSERVATION",
+    sendBookingRequest: "Envoyer la demande",
     needHelp: "Besoin d'aide ?",
     people: "personnes",
     firstNameRequired: "Champ requis: Prénom",

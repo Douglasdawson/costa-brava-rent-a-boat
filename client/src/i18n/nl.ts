@@ -262,7 +262,7 @@ export const nl: Translations = {
       "Costa Brava Rent a Boat is een onafhankelijk bedrijf. Niet te verwarren met andere aanbieders met een vergelijkbare naam.",
   },
   booking: {
-    title: "VRAAG JE RESERVERING AAN",
+    title: "Vraag je reservering aan",
     modalSubtitle: "Duurt maar 2 minuten. Bevestiging via WhatsApp.",
     seasonCountdown: "Prijzen seizoen 2026 stijgen op 1 juni · nog {days} dagen · bevestig vandaag",
     selectBoat: "Boot Selecteren",
@@ -319,7 +319,7 @@ export const nl: Translations = {
     withoutLicense: "Zonder Vaarbewijs",
     select: "Selecteren...",
     pricesUpdateByDate: "Prijzen worden bijgewerkt op basis van de datum",
-    sendBookingRequest: "BOEKINGSVERZOEK VERZENDEN",
+    sendBookingRequest: "Boekingsverzoek verzenden",
     needHelp: "Hulp nodig?",
     people: "personen",
     firstNameRequired: "Verplicht: Voornaam",

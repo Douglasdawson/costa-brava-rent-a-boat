@@ -427,7 +427,7 @@ function Step1BoatDate({
       {/* License filter */}
       {!preSelectedBoatId && (
         <div>
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+          <p className="text-xs font-semibold text-muted-foreground mb-2">
             {t.wizard.haveNauticalLicense}
           </p>
           <div className="flex gap-2">
@@ -460,7 +460,7 @@ function Step1BoatDate({
       {/* Boat selection */}
       <div>
         <div className="flex items-center justify-between mb-2">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-semibold text-muted-foreground">
             {t.wizard.selectABoat}
           </p>
           {showFieldError("boat") && (
@@ -597,7 +597,7 @@ function Step2Details({
     <div className="space-y-5">
       {/* Date */}
       <div>
-        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+        <label className="block text-xs font-semibold text-muted-foreground mb-2">
           {t.wizard.date}
         </label>
         <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
@@ -658,7 +658,7 @@ function Step2Details({
       <div>
         <label
           htmlFor="desktop-time"
-          className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2"
+          className="block text-xs font-semibold text-muted-foreground mb-2"
         >
           {t.wizard.departureTime}
         </label>
@@ -691,7 +691,7 @@ function Step2Details({
 
       {/* Duration */}
       <div>
-        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+        <label className="block text-xs font-semibold text-muted-foreground mb-2">
           {t.wizard.duration}
         </label>
         <div className="grid grid-cols-3 gap-2">
@@ -733,12 +733,12 @@ function Step2Details({
                   }`}
                 >
                   {opt.value === "4h" && !isDisabled && (
-                    <p className="text-[9px] font-medium text-muted-foreground uppercase tracking-wider mb-0.5">
+                    <p className="text-xs font-medium text-muted-foreground mb-0.5">
                       {t.wizard.mostPopular}
                     </p>
                   )}
                   {opt.value === bestValueId && (
-                    <p className="text-[9px] font-semibold text-success bg-success/10 inline-block px-1.5 py-0.5 rounded-full mb-0.5">
+                    <p className="text-xs font-semibold text-success bg-success/10 inline-block px-1.5 py-0.5 rounded-full mb-0.5">
                       {t.neuro?.bestValue || "Mejor valor"}
                     </p>
                   )}
@@ -755,7 +755,7 @@ function Step2Details({
                     <p className="text-xs font-bold text-foreground">{priceText}</p>
                   ) : null}
                   {opt.price && !isDisabled && (
-                    <p className="text-[10px] text-muted-foreground">
+                    <p className="text-xs text-muted-foreground">
                       {(opt.price / parseFloat(opt.value)).toFixed(0)}
                       {t.neuro?.perHour || "/hora"} ·{" "}
                       {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}/
@@ -776,7 +776,7 @@ function Step2Details({
 
       {/* People */}
       <div>
-        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+        <label className="block text-xs font-semibold text-muted-foreground mb-2">
           {t.wizard.numberOfPeople}
           {selectedBoatInfo && (
             <span className="font-normal text-muted-foreground ml-1">(max {maxCapacity})</span>
@@ -886,7 +886,7 @@ function Step3Extras({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between mb-1">
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+        <p className="text-xs font-semibold text-muted-foreground">
           {t.endowment?.customizeExperience || t.booking.extrasSection.title}
         </p>
         {totalExtrasPrice > 0 && (
@@ -1094,7 +1094,7 @@ function Step4Contact({
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <ClipboardList className="w-4 h-4 text-muted-foreground" />
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+            <p className="text-xs font-semibold text-muted-foreground">
               {t.reviewSummary?.title || "Resumen de tu reserva"}
             </p>
           </div>
@@ -1142,7 +1142,7 @@ function Step4Contact({
 
       {/* Personal data */}
       <div>
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+        <p className="text-xs font-semibold text-muted-foreground mb-2">
           {t.endowment?.confirmYourBooking || t.wizard.yourData}
         </p>
         <div className="space-y-2.5">
@@ -1288,7 +1288,7 @@ function Step4Contact({
           onClick={() => setShowCodeSection(!showCodeSection)}
           className="flex items-center justify-between w-full mb-2"
         >
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-semibold text-muted-foreground">
             {t.codeValidation.haveCode}
           </p>
           <span className="text-muted-foreground text-xs">
@@ -1355,7 +1355,7 @@ function Step4Contact({
       {/* Price summary */}
       {price !== null && (
         <div className="bg-cta/10 border border-cta/30 rounded-xl p-4">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+          <p className="text-xs font-semibold text-muted-foreground mb-2">
             {t.endowment?.yourPrice || t.booking.estimatedTotal}
           </p>
           <div className="space-y-1">

@@ -535,16 +535,16 @@ function Step2Trip({
                     <span className="flex items-center gap-2">
                       <span className={`text-sm font-medium ${isDisabled ? "text-muted-foreground line-through" : "text-foreground"}`}>{labelText}</span>
                       {opt.value === "4h" && !isDisabled && (
-                        <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">{t.wizard.mostPopular}</span>
+                        <span className="text-xs font-medium text-muted-foreground">{t.wizard.mostPopular}</span>
                       )}
                       {opt.value === bestValueId && (
-                        <span className="text-[10px] font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full">
+                        <span className="text-xs font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full">
                           {t.neuro?.bestValue || 'Mejor valor'}
                         </span>
                       )}
                     </span>
                     {opt.price && !isDisabled && (
-                      <span className="text-[10px] text-muted-foreground block">
+                      <span className="text-xs text-muted-foreground block">
                         {(opt.price / parseFloat(opt.value)).toFixed(0)}{t.neuro?.perHour || '/hora'} · {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}/{t.boats?.perPerson || 'pers.'}
                       </span>
                     )}
@@ -848,7 +848,7 @@ function Step4Confirm({
             <div id="extras-panel" className="p-4 space-y-4 bg-background">
               {/* Packs */}
               <div>
-                <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.booking.extrasSection.packs}</p>
+                <p className="text-sm font-semibold text-muted-foreground mb-2">{t.booking.extrasSection.packs}</p>
                 <div className="space-y-2">
                   <button
                     type="button"
@@ -890,7 +890,7 @@ function Step4Confirm({
               </div>
               {/* Individual extras */}
               <div>
-                <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.booking.extrasSection.individual}</p>
+                <p className="text-sm font-semibold text-muted-foreground mb-2">{t.booking.extrasSection.individual}</p>
                 <div className="grid grid-cols-1 gap-2">
                   {boatExtras.map((extra) => {
                     const isChecked = selectedExtras.includes(extra.name);
@@ -928,7 +928,7 @@ function Step4Confirm({
       {/* Booking summary card */}
       <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-2">
         <div className="flex items-center justify-between mb-1">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-semibold text-muted-foreground">
             {t.reviewSummary?.title || 'Resumen de tu reserva'}
           </p>
           <button

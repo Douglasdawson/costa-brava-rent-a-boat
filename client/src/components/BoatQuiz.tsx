@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Link } from "wouter";
 import { Users, Clock, Wallet, Anchor, ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import { trackBlogCtaClick, trackBoatQuizStart, trackBoatQuizComplete } from "@/utils/analytics";
 
 interface QuizAnswer {
@@ -16,62 +17,6 @@ interface BoatRecommendation {
   reason: string;
   score: number;
 }
-
-const QUIZ_TRANSLATIONS: Record<string, {
-  title: string;
-  subtitle: string;
-  q1: string;
-  q1options: string[];
-  q2: string;
-  q2options: string[];
-  q3: string;
-  q3options: string[];
-  result: string;
-  bestMatch: string;
-  alsoConsider: string;
-  bookNow: string;
-  viewDetails: string;
-  back: string;
-  restart: string;
-  people: string;
-}> = {
-  es: {
-    title: "Encuentra tu barco ideal",
-    subtitle: "Responde 3 preguntas y te recomendamos el barco perfecto",
-    q1: "¿Cuántas personas sois?",
-    q1options: ["2 personas", "3-4 personas", "5 personas", "6+ personas"],
-    q2: "¿Cuánto tiempo quieres navegar?",
-    q2options: ["1-2 horas", "3-4 horas (medio día)", "6-8 horas (día completo)"],
-    q3: "¿Cuál es tu presupuesto?",
-    q3options: ["Económico (desde 70€)", "Medio (100-200€)", "Sin límite"],
-    result: "Tu barco ideal es...",
-    bestMatch: "Mejor opción",
-    alsoConsider: "También puedes considerar",
-    bookNow: "Reservar ahora",
-    viewDetails: "Ver detalles",
-    back: "Atrás",
-    restart: "Empezar de nuevo",
-    people: "personas",
-  },
-  en: {
-    title: "Find your ideal boat",
-    subtitle: "Answer 3 questions and we'll recommend the perfect boat",
-    q1: "How many people?",
-    q1options: ["2 people", "3-4 people", "5 people", "6+ people"],
-    q2: "How long do you want to sail?",
-    q2options: ["1-2 hours", "3-4 hours (half day)", "6-8 hours (full day)"],
-    q3: "What's your budget?",
-    q3options: ["Budget (from 70€)", "Mid-range (100-200€)", "No limit"],
-    result: "Your ideal boat is...",
-    bestMatch: "Best match",
-    alsoConsider: "Also consider",
-    bookNow: "Book now",
-    viewDetails: "View details",
-    back: "Back",
-    restart: "Start over",
-    people: "people",
-  },
-};
 
 const BOAT_PROFILES = [
   { id: "astec-400", name: "Astec 400", capacity: 4, license: false, budget: "low", duration: "short", group: "couple", price: 70 },
@@ -109,35 +54,10 @@ function scoreBoat(boat: typeof BOAT_PROFILES[0], answers: QuizAnswer): number {
   return score;
 }
 
-function getReasonText(boat: typeof BOAT_PROFILES[0], lang: string): string {
-  const reasons: Record<string, Record<string, string>> = {
-    es: {
-      "astec-400": "Perfecto para parejas. El mejor precio por persona de toda la flota.",
-      "solar-450": "Gran solarium para tomar el sol. Ideal para disfrutar de las calas.",
-      "remus-450": "Estable y fácil de manejar. Excelente para familias.",
-      "astec-480": "La opción premium sin licencia. Bluetooth y más espacio.",
-      "voraz-v2": "Versátil y cómoda. Buen equilibrio entre precio y prestaciones.",
-      "mingolla-brava-19": "Espaciosa para grupos. Ducha y mesa para comer a bordo.",
-      "trimarchi-57s": "Potente y rápida. Llega a Tossa de Mar en 30 minutos.",
-      "pacific-craft-625": "La más grande, lujosa y completa. Para disfrutar sin igual.",
-    },
-    en: {
-      "astec-400": "Perfect for couples. Best price per person in the fleet.",
-      "solar-450": "Great sundeck for sunbathing. Ideal for enjoying the coves.",
-      "remus-450": "Stable and easy to handle. Excellent for families.",
-      "astec-480": "Premium no-license option. Bluetooth and more space.",
-      "voraz-v2": "Versatile and comfortable. Good balance of price and features.",
-      "mingolla-brava-19": "Spacious for groups. Shower and dining table on board.",
-      "trimarchi-57s": "Powerful and fast. Reaches Tossa de Mar in 30 minutes.",
-      "pacific-craft-625": "The largest, most luxurious and complete. An unmatched experience.",
-    },
-  };
-  return reasons[lang]?.[boat.id] || reasons.es[boat.id] || "";
-}
-
 export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: string; onBoatSelect?: (boatId: string) => void }) {
-  const { language, localizedPath } = useLanguage();
-  const t = QUIZ_TRANSLATIONS[language] || QUIZ_TRANSLATIONS.es;
+  const { localizedPath } = useLanguage();
+  const tBase = useTranslations();
+  const t = tBase.boatQuiz;
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswer>({ passengers: null, duration: null, budget: null });
 
@@ -166,13 +86,13 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
       .map(boat => ({
         id: boat.id,
         name: boat.name,
-        reason: getReasonText(boat, language),
+        reason: t?.reasons?.[boat.id] ?? "",
         score: scoreBoat(boat, answers),
       }))
       .filter(r => r.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 3);
-  }, [answers, language]);
+  }, [answers, t]);
 
   useEffect(() => {
     if (step === 3 && recommendations.length > 0) {
@@ -190,6 +110,8 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
     }
   }, [step, recommendations]);
 
+  if (!t) return null;
+
   // Quiz questions UI
   if (step < 3) {
     const questions = [
@@ -203,32 +125,41 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
     return (
       <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
         <div className="text-center mb-6">
-          <Anchor className="w-8 h-8 text-cta mx-auto mb-3" />
+          <Anchor className="w-8 h-8 text-cta mx-auto mb-3" aria-hidden="true" />
           <h3 className="font-heading text-xl font-bold">{t.title}</h3>
           <p className="text-sm text-muted-foreground mt-1">{t.subtitle}</p>
         </div>
 
         {/* Progress */}
-        <div className="flex gap-1.5 mb-6">
+        <div
+          className="flex gap-1.5 mb-6"
+          role="progressbar"
+          aria-valuenow={step + 1}
+          aria-valuemin={1}
+          aria-valuemax={3}
+          aria-label={`${t.title} — ${step + 1} / 3`}
+        >
           {[0, 1, 2].map(i => (
             <div key={i} className={`h-1.5 flex-1 rounded-full transition-colors ${i <= step ? 'bg-cta' : 'bg-muted'}`} />
           ))}
         </div>
 
         <div className="text-center mb-5">
-          <Icon className="w-6 h-6 text-cta mx-auto mb-2" />
-          <p className="font-medium text-lg">{current.question}</p>
+          <Icon className="w-6 h-6 text-cta mx-auto mb-2" aria-hidden="true" />
+          <p className="font-medium text-lg" id={`quiz-question-${step}`}>{current.question}</p>
         </div>
 
-        <div className="grid gap-3">
+        <div className="grid gap-3" role="radiogroup" aria-labelledby={`quiz-question-${step}`}>
           {current.options.map((option, idx) => (
             <button
               key={idx}
+              role="radio"
+              aria-checked={false}
               onClick={() => handleAnswer(idx)}
-              className="w-full text-left px-5 py-3.5 rounded-xl border border-border hover:border-cta hover:bg-cta/5 transition-all text-sm font-medium flex items-center justify-between group"
+              className="w-full text-left px-5 py-3.5 rounded-xl border border-border hover:border-cta hover:bg-cta/5 transition-all text-sm font-medium flex items-center justify-between group min-h-11"
             >
               {option}
-              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-cta transition-colors" />
+              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-cta transition-colors" aria-hidden="true" />
             </button>
           ))}
         </div>
@@ -236,9 +167,9 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
         {step > 0 && (
           <button
             onClick={() => setStep(prev => prev - 1)}
-            className="mt-4 flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
+            className="mt-4 flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto min-h-11 px-3"
           >
-            <ChevronLeft className="w-3.5 h-3.5" />
+            <ChevronLeft className="w-3.5 h-3.5" aria-hidden="true" />
             {t.back}
           </button>
         )}
@@ -250,7 +181,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
   return (
     <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
       <div className="text-center mb-6">
-        <Anchor className="w-8 h-8 text-cta mx-auto mb-3" />
+        <Anchor className="w-8 h-8 text-cta mx-auto mb-3" aria-hidden="true" />
         <h3 className="font-heading text-xl font-bold">{t.result}</h3>
       </div>
 
@@ -275,19 +206,19 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
                     trackBlogCtaClick(rec.id, 'boat_quiz_book');
                     onBoatSelect(rec.id);
                   }}
-                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${idx === 0 ? 'bg-cta text-white hover:bg-cta/90' : 'bg-foreground/5 text-foreground hover:bg-foreground/10'}`}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors min-h-11 ${idx === 0 ? 'bg-cta text-cta-foreground hover:bg-cta/90' : 'bg-foreground/5 text-foreground hover:bg-foreground/10'}`}
                 >
                   {idx === 0 ? t.bookNow : t.viewDetails}
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </button>
               ) : (
                 <Link
                   href={`${localizedPath("boatDetail", rec.id)}?utm_source=blog&utm_medium=boat_quiz&utm_campaign=${source}`}
                   onClick={() => trackBlogCtaClick(rec.id, 'boat_quiz_book')}
-                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${idx === 0 ? 'bg-cta text-white hover:bg-cta/90' : 'bg-foreground/5 text-foreground hover:bg-foreground/10'}`}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors min-h-11 ${idx === 0 ? 'bg-cta text-cta-foreground hover:bg-cta/90' : 'bg-foreground/5 text-foreground hover:bg-foreground/10'}`}
                 >
                   {idx === 0 ? t.bookNow : t.viewDetails}
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </Link>
               )}
             </div>
@@ -297,9 +228,9 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
 
       <button
         onClick={reset}
-        className="mt-6 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
+        className="mt-6 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto min-h-11 px-3"
       >
-        <RotateCcw className="w-3.5 h-3.5" />
+        <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
         {t.restart}
       </button>
     </div>

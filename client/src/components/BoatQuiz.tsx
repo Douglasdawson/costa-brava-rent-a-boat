@@ -240,7 +240,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
         {recommendations.map((rec, idx) => (
           <div
             key={rec.id}
-            className={`rounded-xl border p-4 ${idx === 0 ? 'border-cta bg-cta/5' : 'border-border'}`}
+            className={`rounded-xl p-4 ${idx === 0 ? 'border-2 border-cta bg-cta/5' : 'border border-border'}`}
           >
             {idx === 0 && (
               <span className="inline-block text-xs font-semibold text-cta mb-2 uppercase tracking-wider">{t.bestMatch}</span>

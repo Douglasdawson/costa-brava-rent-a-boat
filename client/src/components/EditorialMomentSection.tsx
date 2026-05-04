@@ -5,8 +5,8 @@ export default function EditorialMomentSection() {
   const t = useTranslations();
   const { ref: revealRef, isVisible } = useScrollReveal();
 
-  const copy = t.editorialMoment?.copy ?? "El sol no se pone aquí. Se queda contigo.";
-  const altText = t.editorialMoment?.alt ?? "Atardecer dorado sobre el castillo medieval de Tossa de Mar y su cala turquesa, con un barco en la distancia";
+  const copy = t.editorialMoment?.copy ?? "Calas que solo existen si llegas en barco.";
+  const altText = t.editorialMoment?.alt ?? "Vista aérea de una cala escondida de la Costa Brava con aguas turquesas, un barco fondeado junto a un acantilado de pinos y dos bañistas en el agua";
 
   return (
     <section
@@ -18,25 +18,25 @@ export default function EditorialMomentSection() {
         <source
           media="(min-width: 768px)"
           type="image/avif"
-          srcSet="/images/locations/hero-tossa-de-mar.avif"
+          srcSet="/images/locations/editorial-cala-secreta.avif"
         />
         <source
           media="(max-width: 767px)"
           type="image/avif"
-          srcSet="/images/locations/hero-tossa-de-mar-mobile.avif"
+          srcSet="/images/locations/editorial-cala-secreta-mobile.avif"
         />
         <source
           media="(min-width: 768px)"
           type="image/webp"
-          srcSet="/images/locations/hero-tossa-de-mar.webp"
+          srcSet="/images/locations/editorial-cala-secreta.webp"
         />
         <source
           media="(max-width: 767px)"
           type="image/webp"
-          srcSet="/images/locations/hero-tossa-de-mar-mobile.webp"
+          srcSet="/images/locations/editorial-cala-secreta-mobile.webp"
         />
         <img
-          src="/images/locations/hero-tossa-de-mar-mobile.jpg"
+          src="/images/locations/editorial-cala-secreta-mobile.jpg"
           alt={altText}
           className="block w-full h-[60vh] min-h-[420px] md:h-[80vh] md:min-h-[560px] object-cover"
           width={1600}

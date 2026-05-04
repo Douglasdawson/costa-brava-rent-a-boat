@@ -1382,8 +1382,8 @@ export const ca: Translations = {
   },
 
   editorialMoment: {
-    copy: "Aquí el sol no es pon. Es queda amb tu.",
-    alt: "Capvespre daurat sobre el castell medieval de Tossa de Mar i la seva cala turquesa, amb una barca al fons",
+    copy: "Cales que només existeixen si hi arribes amb barca.",
+    alt: "Vista aèria d'una cala amagada de la Costa Brava amb aigües turqueses, una barca fondejada al costat d'un penya-segat de pins i dos banyistes a l'aigua",
   },
 
   emotionTags: {

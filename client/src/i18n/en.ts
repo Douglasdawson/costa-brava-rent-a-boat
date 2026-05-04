@@ -1443,8 +1443,8 @@ export const en: Translations = {
   },
 
   editorialMoment: {
-    copy: "The sun doesn't set here. It stays with you.",
-    alt: "Golden sunset over the medieval castle of Tossa de Mar and its turquoise cove, with a boat in the distance",
+    copy: "Coves that only exist if you arrive by boat.",
+    alt: "Aerial view of a hidden Costa Brava cove with turquoise water, a boat anchored next to a pine-covered cliff and two swimmers in the water",
   },
 
   emotionTags: {

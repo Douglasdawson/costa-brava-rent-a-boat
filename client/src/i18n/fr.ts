@@ -1393,8 +1393,8 @@ export const fr: Translations = {
   },
 
   editorialMoment: {
-    copy: "Ici le soleil ne se couche pas. Il reste avec toi.",
-    alt: "Coucher de soleil doré sur le château médiéval de Tossa de Mar et sa crique turquoise, avec un bateau au loin",
+    copy: "Des criques qui n'existent que si vous arrivez en bateau.",
+    alt: "Vue aérienne d'une crique cachée de la Costa Brava aux eaux turquoise, un bateau à l'ancre près d'une falaise couverte de pins et deux baigneurs dans l'eau",
   },
 
   emotionTags: {

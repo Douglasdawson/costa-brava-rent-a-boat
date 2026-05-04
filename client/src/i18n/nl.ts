@@ -1382,8 +1382,8 @@ export const nl: Translations = {
   },
 
   editorialMoment: {
-    copy: "De zon gaat hier niet onder. Hij blijft bij jou.",
-    alt: "Gouden zonsondergang boven het middeleeuwse kasteel van Tossa de Mar en zijn turquoise baai, met een boot in de verte",
+    copy: "Baaien die alleen bestaan als je met de boot komt.",
+    alt: "Luchtfoto van een verborgen baai aan de Costa Brava met turquoise water, een boot voor anker bij een met pijnbomen begroeide klif en twee zwemmers in het water",
   },
 
   emotionTags: {

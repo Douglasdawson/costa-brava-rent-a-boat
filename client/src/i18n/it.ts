@@ -1382,8 +1382,8 @@ export const it: Translations = {
   },
 
   editorialMoment: {
-    copy: "Qui il sole non tramonta. Resta con te.",
-    alt: "Tramonto dorato sul castello medievale di Tossa de Mar e la sua cala turchese, con una barca in lontananza",
+    copy: "Cale che esistono solo se ci arrivi in barca.",
+    alt: "Vista aerea di una cala nascosta della Costa Brava con acque turchesi, una barca all'ancora accanto a una scogliera ricoperta di pini e due bagnanti in acqua",
   },
 
   emotionTags: {

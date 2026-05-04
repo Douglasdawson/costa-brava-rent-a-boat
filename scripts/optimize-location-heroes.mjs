@@ -23,6 +23,7 @@ const FORMATS = [
 const SOURCES = [
   { slug: "hero-lloret-de-mar", src: "client:public:images:locations:hero-lloret-de-mar.jpg.jpg.png" },
   { slug: "hero-tossa-de-mar",  src: "client:public:images:locations:hero-tossa-de-mar.jpg.png" },
+  { slug: "editorial-cala-secreta", src: "hf_20260504_144644_50ff3478-4dd7-4f84-a07b-ab48554fc9d1.png" },
 ];
 
 async function encode(input, variant, format) {

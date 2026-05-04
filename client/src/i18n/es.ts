@@ -2557,8 +2557,8 @@ export const es: Translations = {
   },
 
   editorialMoment: {
-    copy: "El sol no se pone aquí. Se queda contigo.",
-    alt: "Atardecer dorado sobre el castillo medieval de Tossa de Mar y su cala turquesa, con un barco en la distancia",
+    copy: "Calas que solo existen si llegas en barco.",
+    alt: "Vista aérea de una cala escondida de la Costa Brava con aguas turquesas, un barco fondeado junto a un acantilado de pinos y dos bañistas en el agua",
   },
 
   emotionTags: {

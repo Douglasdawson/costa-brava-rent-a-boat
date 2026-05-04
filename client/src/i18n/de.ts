@@ -1388,8 +1388,8 @@ export const de: Translations = {
   },
 
   editorialMoment: {
-    copy: "Hier geht die Sonne nicht unter. Sie bleibt bei dir.",
-    alt: "Goldener Sonnenuntergang über der mittelalterlichen Burg von Tossa de Mar und ihrer türkisfarbenen Bucht, mit einem Boot in der Ferne",
+    copy: "Buchten, die nur existieren, wenn du mit dem Boot ankommst.",
+    alt: "Luftaufnahme einer versteckten Bucht an der Costa Brava mit türkisfarbenem Wasser, einem vor einer pinienbewachsenen Klippe ankernden Boot und zwei Schwimmern im Wasser",
   },
 
   emotionTags: {

@@ -1314,6 +1314,7 @@ export const de: Translations = {
     goBackToStep: "Zuruck zum vorherigen Schritt",
     continueToStep: "Weiter zum nachsten Schritt",
     submitBookingWhatsApp: "Buchungsanfrage per WhatsApp senden",
+    sendingBooking: "Buchungsanfrage wird gesendet…",
     filterByLicense: "Nach Bootsfuhrerschein filtern",
     phonePrefix: "Telefonvorwahl",
     scrollToTop: "Nach oben scrollen",
@@ -1465,7 +1466,7 @@ export const de: Translations = {
       "Vergleichen Sie die Preise aller unserer Boote. Neben-, Mittel- und Hochsaison. Boote ohne Führerschein mit Benzin inklusive.",
     fuelBadge: "Benzin inklusive (ohne Führerschein)",
     fleetCountSuffix: "verfügbare Boote",
-    portAccessible: "Hafen von Blanes — erreichbar ab",
+    portAccessible: "Hafen von Blanes: erreichbar ab",
     seasonLabels: {
       BAJA: "Apr-Jun, Sep-Okt",
       MEDIA: "Juli",

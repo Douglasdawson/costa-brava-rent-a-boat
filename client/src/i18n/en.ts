@@ -1075,12 +1075,14 @@ export const en: Translations = {
       "astec-400": "Perfect for couples. The best price per person in the fleet.",
       "solar-450": "Large sundeck for sunbathing. Ideal to enjoy the coves.",
       "remus-450": "Stable and easy to handle. Excellent for families.",
-      "remus-450-ii": "Sister to the Remus 450, ready when the first is booked. Same stability, same plan.",
+      "remus-450-ii":
+        "Sister to the Remus 450, ready when the first is booked. Same stability, same plan.",
       "astec-480": "The premium licence-free option. Bluetooth and more space.",
       "mingolla-brava-19": "Spacious for groups. Shower and dining table on board.",
       "trimarchi-57s": "Powerful and fast. Reaches Tossa de Mar in 30 minutes.",
       "pacific-craft-625": "The largest, most luxurious and complete. An unmatched experience.",
-      "excursion-privada": "All day, zero worries. Professional skipper, hidden coves and maximum comfort.",
+      "excursion-privada":
+        "All day, zero worries. Professional skipper, hidden coves and maximum comfort.",
     },
   },
 
@@ -1361,6 +1363,7 @@ export const en: Translations = {
     goBackToStep: "Go back to previous step",
     continueToStep: "Continue to next step",
     submitBookingWhatsApp: "Submit booking via WhatsApp",
+    sendingBooking: "Sending booking request…",
     filterByLicense: "Filter by boating license",
     phonePrefix: "Phone prefix",
     scrollToTop: "Scroll to top",
@@ -1510,7 +1513,7 @@ export const en: Translations = {
       "Check and compare prices for all our boats. Low, mid and high season. License-free boats with fuel included.",
     fuelBadge: "Fuel included (no license)",
     fleetCountSuffix: "boats available",
-    portAccessible: "Port of Blanes — accessible from",
+    portAccessible: "Port of Blanes: accessible from",
     seasonLabels: {
       BAJA: "Apr-Jun, Sep-Oct",
       MEDIA: "July",

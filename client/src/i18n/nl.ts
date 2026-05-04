@@ -1090,12 +1090,14 @@ export const nl: Translations = {
       "astec-400": "Perfect voor stellen. De beste prijs per persoon van de hele vloot.",
       "solar-450": "Groot zonnedek om te zonnebaden. Ideaal om van de baaien te genieten.",
       "remus-450": "Stabiel en eenvoudig te besturen. Uitstekend voor gezinnen.",
-      "remus-450-ii": "Zusterboot van de Remus 450, klaar als de eerste geboekt is. Dezelfde stabiliteit, hetzelfde plan.",
+      "remus-450-ii":
+        "Zusterboot van de Remus 450, klaar als de eerste geboekt is. Dezelfde stabiliteit, hetzelfde plan.",
       "astec-480": "De premium optie zonder vaarbewijs. Bluetooth en meer ruimte.",
       "mingolla-brava-19": "Ruim voor groepen. Douche en eettafel aan boord.",
       "trimarchi-57s": "Krachtig en snel. Bereikt Tossa de Mar in 30 minuten.",
       "pacific-craft-625": "De grootste, meest luxueuze en complete. Voor onvergetelijk genieten.",
-      "excursion-privada": "Hele dag zonder zorgen. Professionele schipper, verborgen baaien en maximaal comfort.",
+      "excursion-privada":
+        "Hele dag zonder zorgen. Professionele schipper, verborgen baaien en maximaal comfort.",
     },
   },
 
@@ -1306,6 +1308,7 @@ export const nl: Translations = {
     goBackToStep: "Terug naar vorige stap",
     continueToStep: "Door naar volgende stap",
     submitBookingWhatsApp: "Boekingsverzoek via WhatsApp versturen",
+    sendingBooking: "Boekingsverzoek wordt verzonden…",
     filterByLicense: "Filteren op vaarbewijs",
     phonePrefix: "Telefoonprefix",
     scrollToTop: "Naar boven scrollen",
@@ -1457,7 +1460,7 @@ export const nl: Translations = {
       "Bekijk en vergelijk de prijzen van al onze boten. Laag-, midden- en hoogseizoen. Boten zonder vergunning met brandstof inbegrepen.",
     fuelBadge: "Brandstof inbegrepen (zonder vergunning)",
     fleetCountSuffix: "beschikbare vaartuigen",
-    portAccessible: "Haven van Blanes — bereikbaar vanaf",
+    portAccessible: "Haven van Blanes: bereikbaar vanaf",
     seasonLabels: {
       BAJA: "Apr-Jun, Sep-Okt",
       MEDIA: "Juli",

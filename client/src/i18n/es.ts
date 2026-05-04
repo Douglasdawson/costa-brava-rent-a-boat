@@ -2226,12 +2226,14 @@ export const es: Translations = {
       "astec-400": "Perfecto para parejas. El mejor precio por persona de toda la flota.",
       "solar-450": "Gran solárium para tomar el sol. Ideal para disfrutar de las calas.",
       "remus-450": "Estable y fácil de manejar. Excelente para familias.",
-      "remus-450-ii": "Hermana del Remus 450, lista cuando el primero está reservado. Misma estabilidad, mismo plan.",
+      "remus-450-ii":
+        "Hermana del Remus 450, lista cuando el primero está reservado. Misma estabilidad, mismo plan.",
       "astec-480": "La opción premium sin licencia. Bluetooth y más espacio.",
       "mingolla-brava-19": "Espaciosa para grupos. Ducha y mesa para comer a bordo.",
       "trimarchi-57s": "Potente y rápida. Llega a Tossa de Mar en 30 minutos.",
       "pacific-craft-625": "La más grande, lujosa y completa. Para disfrutar sin igual.",
-      "excursion-privada": "Día completo sin preocupaciones. Patrón profesional, calas secretas y máxima comodidad.",
+      "excursion-privada":
+        "Día completo sin preocupaciones. Patrón profesional, calas secretas y máxima comodidad.",
     },
   },
 
@@ -2526,6 +2528,7 @@ export const es: Translations = {
     goBackToStep: "Volver al paso anterior",
     continueToStep: "Continuar al siguiente paso",
     submitBookingWhatsApp: "Enviar solicitud de reserva por WhatsApp",
+    sendingBooking: "Enviando solicitud de reserva…",
     filterByLicense: "Filtrar por licencia náutica",
     phonePrefix: "Prefijo de teléfono",
     scrollToTop: "Volver arriba",
@@ -3385,7 +3388,7 @@ export const es: Translations = {
       "Consulta y compara los precios de todos nuestros barcos. Temporada baja, media y alta. Barcos sin licencia con gasolina incluida.",
     fuelBadge: "Gasolina incluida (sin licencia)",
     fleetCountSuffix: "embarcaciones disponibles",
-    portAccessible: "Puerto de Blanes — accesible desde",
+    portAccessible: "Puerto de Blanes: accesible desde",
     seasonLabels: {
       BAJA: "Abr-Jun, Sep-Oct",
       MEDIA: "Julio",

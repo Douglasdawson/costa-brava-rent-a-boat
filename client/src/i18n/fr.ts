@@ -1320,6 +1320,7 @@ export const fr: Translations = {
     goBackToStep: "Revenir a l'etape precedente",
     continueToStep: "Continuer a l'etape suivante",
     submitBookingWhatsApp: "Envoyer la demande de reservation par WhatsApp",
+    sendingBooking: "Envoi de la demande de réservation…",
     filterByLicense: "Filtrer par permis bateau",
     phonePrefix: "Indicatif telephonique",
     scrollToTop: "Retour en haut",
@@ -1470,7 +1471,7 @@ export const fr: Translations = {
       "Consultez et comparez les tarifs de tous nos bateaux. Basse, moyenne et haute saison. Bateaux sans permis avec carburant inclus.",
     fuelBadge: "Carburant inclus (sans permis)",
     fleetCountSuffix: "embarcations disponibles",
-    portAccessible: "Port de Blanes — accessible depuis",
+    portAccessible: "Port de Blanes : accessible depuis",
     seasonLabels: {
       BAJA: "Avr-Juin, Sep-Oct",
       MEDIA: "Juillet",

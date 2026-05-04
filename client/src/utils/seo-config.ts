@@ -2035,6 +2035,137 @@ export function generateWebSiteSchema() {
   };
 }
 
+// Generate SiteNavigationElement schema. Lists the 6 most valuable
+// candidate sitelink pages with localized name, description and URL so
+// Google has explicit signal about which subpages to surface under the
+// main brand result.
+export function generateSiteNavigationSchema(language: Language = 'es') {
+  type LangMap = Record<Language, string>;
+
+  const items: Array<{ key: PageKey; name: LangMap; description: LangMap }> = [
+    {
+      key: "pricing",
+      name: {
+        es: "Precios", en: "Pricing", ca: "Preus", fr: "Tarifs",
+        de: "Preise", nl: "Prijzen", it: "Prezzi", ru: "Цены",
+      },
+      description: {
+        es: "Tarifas de alquiler por temporada y duración.",
+        en: "Seasonal rental rates by duration.",
+        ca: "Tarifes de lloguer per temporada i durada.",
+        fr: "Tarifs de location saisonniers par durée.",
+        de: "Saisonale Mietpreise nach Dauer.",
+        nl: "Seizoensgebonden huurtarieven per duur.",
+        it: "Tariffe di noleggio stagionali per durata.",
+        ru: "Сезонные тарифы аренды по продолжительности.",
+      },
+    },
+    {
+      key: "categoryLicenseFree",
+      name: {
+        es: "Barcos sin licencia", en: "License-Free Boats",
+        ca: "Barques sense llicència", fr: "Bateaux sans permis",
+        de: "Boote ohne Führerschein", nl: "Boten zonder vaarbewijs",
+        it: "Barche senza patente", ru: "Лодки без лицензии",
+      },
+      description: {
+        es: "Embarcaciones para conducir sin titulación náutica.",
+        en: "Boats you can pilot without a license.",
+        ca: "Embarcacions per pilotar sense titulació.",
+        fr: "Bateaux pilotables sans permis.",
+        de: "Boote ohne Führerschein fahrbar.",
+        nl: "Boten te besturen zonder vaarbewijs.",
+        it: "Barche pilotabili senza patente.",
+        ru: "Лодки, которыми можно управлять без лицензии.",
+      },
+    },
+    {
+      key: "categoryLicensed",
+      name: {
+        es: "Barcos con licencia", en: "Licensed Boats",
+        ca: "Barques amb llicència", fr: "Bateaux avec permis",
+        de: "Boote mit Führerschein", nl: "Boten met vaarbewijs",
+        it: "Barche con patente", ru: "Лодки с лицензией",
+      },
+      description: {
+        es: "Embarcaciones potentes con licencia o excursión con capitán.",
+        en: "Powerful boats with license or excursion with captain.",
+        ca: "Embarcacions potents amb llicència o excursió amb capità.",
+        fr: "Bateaux puissants avec permis ou excursion avec capitaine.",
+        de: "Leistungsstarke Boote mit Führerschein oder Ausflug mit Kapitän.",
+        nl: "Krachtige boten met vaarbewijs of excursie met kapitein.",
+        it: "Barche potenti con patente o escursione con capitano.",
+        ru: "Мощные лодки с лицензией или экскурсия с капитаном.",
+      },
+    },
+    {
+      key: "routes",
+      name: {
+        es: "Rutas", en: "Routes", ca: "Rutes", fr: "Itinéraires",
+        de: "Routen", nl: "Routes", it: "Itinerari", ru: "Маршруты",
+      },
+      description: {
+        es: "Itinerarios y calas recomendadas desde Blanes.",
+        en: "Recommended routes and coves from Blanes.",
+        ca: "Itineraris i cales recomanades des de Blanes.",
+        fr: "Itinéraires et criques recommandés depuis Blanes.",
+        de: "Empfohlene Routen und Buchten ab Blanes.",
+        nl: "Aanbevolen routes en baaien vanuit Blanes.",
+        it: "Itinerari e calette consigliati da Blanes.",
+        ru: "Рекомендуемые маршруты и бухты из Бланеса.",
+      },
+    },
+    {
+      key: "faq",
+      name: {
+        es: "FAQ", en: "FAQ", ca: "FAQ", fr: "FAQ",
+        de: "FAQ", nl: "FAQ", it: "FAQ", ru: "FAQ",
+      },
+      description: {
+        es: "Preguntas frecuentes sobre licencias, precios y reservas.",
+        en: "Frequently asked questions on licenses, prices and bookings.",
+        ca: "Preguntes freqüents sobre llicències, preus i reserves.",
+        fr: "Questions fréquentes sur permis, tarifs et réservations.",
+        de: "Häufig gestellte Fragen zu Führerschein, Preisen und Buchungen.",
+        nl: "Veelgestelde vragen over vaarbewijs, prijzen en boekingen.",
+        it: "Domande frequenti su patenti, prezzi e prenotazioni.",
+        ru: "Часто задаваемые вопросы о лицензиях, ценах и бронировании.",
+      },
+    },
+    {
+      key: "testimonials",
+      name: {
+        es: "Testimonios", en: "Testimonials", ca: "Testimonis",
+        fr: "Témoignages", de: "Bewertungen", nl: "Beoordelingen",
+        it: "Recensioni", ru: "Отзывы",
+      },
+      description: {
+        es: "300+ reseñas reales de clientes en Google.",
+        en: "300+ real customer reviews on Google.",
+        ca: "300+ ressenyes reals de clients a Google.",
+        fr: "300+ avis clients réels sur Google.",
+        de: "300+ echte Kundenbewertungen auf Google.",
+        nl: "300+ echte klantbeoordelingen op Google.",
+        it: "300+ recensioni reali dei clienti su Google.",
+        ru: "300+ реальных отзывов клиентов в Google.",
+      },
+    },
+  ];
+
+  return {
+    "@type": "ItemList",
+    "@id": `${BASE_DOMAIN}/#sitenav`,
+    "name": "Costa Brava Rent a Boat - Site Navigation",
+    "itemListElement": items.map((item, i) => ({
+      "@type": "SiteNavigationElement",
+      "position": i + 1,
+      "name": item.name[language] ?? item.name.es,
+      "description": item.description[language] ?? item.description.es,
+      "url": `${BASE_DOMAIN}${getLocalizedPath(item.key, language)}`,
+    })),
+  };
+}
+
 // Generate Speakable schema for AI voice assistants and AI Overviews
 export function generateSpeakableSchema(cssSelectors: string[]) {
   return {

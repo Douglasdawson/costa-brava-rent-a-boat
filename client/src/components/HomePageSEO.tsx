@@ -10,6 +10,7 @@ import {
   generateServiceSchema,
   generateBreadcrumbSchema,
   generateWebSiteSchema,
+  generateSiteNavigationSchema,
   generateHowToBookingSchema,
   generateSpeakableSchema,
 } from "@/utils/seo-config";
@@ -53,6 +54,7 @@ export default function HomePageSEO() {
   const itemListSchema = generateItemListSchema(fleetItems);
 
   const webSiteSchema = generateWebSiteSchema();
+  const siteNavSchema = generateSiteNavigationSchema(language);
   const howToSchema = generateHowToBookingSchema(language);
 
   // Derive live price range for AggregateOffer so Google Rich Results stay in sync with admin pricing.
@@ -117,6 +119,7 @@ export default function HomePageSEO() {
       covesItemListSchema,
       glossarySchema,
       webSiteSchema,
+      siteNavSchema,
       howToSchema,
       seasonalEventSchema,
       faqPageSchema,

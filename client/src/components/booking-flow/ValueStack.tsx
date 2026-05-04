@@ -42,7 +42,7 @@ export function ValueStack({ requiresLicense, isExcursion, t }: ValueStackProps)
     <div className="bg-emerald-50/50 dark:bg-emerald-950/10 border border-emerald-200/50 dark:border-emerald-800/30 rounded-lg p-4 mb-4">
       <div className="flex items-center gap-2 mb-3">
         <Gift className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-        <h4 className="text-sm font-medium text-foreground">{vs.title}</h4>
+        <h3 className="text-sm font-medium text-foreground">{vs.title}</h3>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {items.map((item) => (

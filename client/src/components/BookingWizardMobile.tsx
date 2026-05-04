@@ -220,7 +220,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
               type="button"
               variant="outline"
               onClick={onBack}
-              aria-label={`${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 4)`}
+              aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 4)`}
               className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
             >
               <ChevronLeft className="w-4 h-4 mr-1" aria-hidden="true" />
@@ -231,30 +231,33 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             <Button
               type="button"
               onClick={onNext}
-              aria-label={`${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} 4)`}
+              aria-label={`${props.t.booking.next}: ${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} 4)`}
               className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
             >
               {props.t.booking.next}
             </Button>
           ) : (
-            <Button
-              type="button"
-              onClick={async () => {
-                setIsSubmitting(true);
-                await handleBookingSearch();
-                setIsSubmitting(false);
-              }}
-              disabled={isSubmitting || props.isValidatingCode}
-              aria-label={props.t.a11y.submitBookingWhatsApp}
-              aria-busy={isSubmitting || props.isValidatingCode}
-              className="flex-1 py-5 text-sm font-semibold bg-whatsapp hover:bg-whatsapp-hover text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting || props.isValidatingCode
-                ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
-                : <SiWhatsapp className="w-4 h-4 mr-2" aria-hidden="true" />
-              }
-              {props.t.booking.sendBookingRequest}
-            </Button>
+            <>
+              <Button
+                type="button"
+                onClick={async () => {
+                  setIsSubmitting(true);
+                  await handleBookingSearch();
+                  setIsSubmitting(false);
+                }}
+                disabled={isSubmitting || props.isValidatingCode}
+                className="flex-1 py-5 text-sm font-semibold bg-whatsapp hover:bg-whatsapp-hover text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting || props.isValidatingCode
+                  ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
+                  : <SiWhatsapp className="w-4 h-4 mr-2" aria-hidden="true" />
+                }
+                {props.t.booking.sendBookingRequest}
+              </Button>
+              <span role="status" aria-live="polite" className="sr-only">
+                {(isSubmitting || props.isValidatingCode) ? (props.t.a11y.sendingBooking ?? "") : ""}
+              </span>
+            </>
           )}
         </div>
       </div>

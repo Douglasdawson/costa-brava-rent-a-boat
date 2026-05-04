@@ -26,6 +26,7 @@ export default function BookingProgressBar({
                 {/* Step circle + label */}
                 <div className="flex flex-col items-center gap-0.5 relative">
                   <div
+                    role="img"
                     className={`
                       w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold
                       transition-all duration-300

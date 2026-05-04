@@ -14,7 +14,14 @@ export default function BoatQuizModal({ open, onOpenChange, onBoatSelect }: Boat
   const t = useTranslations();
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md p-0 border-0 bg-transparent shadow-none [&>button]:text-white [&>button]:hover:text-white/80">
+      <DialogContent
+        tabIndex={-1}
+        onOpenAutoFocus={(e) => {
+          e.preventDefault();
+          (e.currentTarget as HTMLElement).focus();
+        }}
+        className="sm:max-w-md p-0 border-0 bg-transparent shadow-none [&>button]:text-white [&>button]:hover:text-white/80"
+      >
         <VisuallyHidden>
           <DialogTitle>{t.boatQuiz!.dialogTitle}</DialogTitle>
         </VisuallyHidden>

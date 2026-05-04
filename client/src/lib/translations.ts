@@ -1823,6 +1823,7 @@ export interface Translations {
     goBackToStep: string;
     continueToStep: string;
     submitBookingWhatsApp: string;
+    sendingBooking?: string;
     filterByLicense: string;
     phonePrefix: string;
     scrollToTop: string;

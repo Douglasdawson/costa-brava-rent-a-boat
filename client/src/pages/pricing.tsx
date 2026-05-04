@@ -10,12 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Users,
-  Anchor,
-  Fuel,
-  ArrowRight,
-} from "lucide-react";
+import { Users, Anchor, Fuel, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
@@ -49,9 +44,7 @@ function RevealSection({
     <div
       ref={ref}
       className={`transition-[opacity,transform,filter] duration-700 ${
-        isVisible
-          ? "opacity-100 translate-y-0 blur-none"
-          : "opacity-0 translate-y-6 blur-[2px]"
+        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"
       } ${className}`}
     >
       {children}
@@ -61,13 +54,31 @@ function RevealSection({
 
 function getMinPrice(boat: Boat, season: SeasonKey): number | null {
   if (!boat.pricing) return null;
-  const seasonData = (boat.pricing as Record<SeasonKey, { period: string; prices: Record<string, number> }>)[season];
+  const seasonData = (
+    boat.pricing as Record<SeasonKey, { period: string; prices: Record<string, number> }>
+  )[season];
   return getMinActivePrice(seasonData?.prices);
 }
 
-function formatPrice(price: number | null): string {
+const LOCALE_BY_LANG: Record<string, string> = {
+  es: "es-ES",
+  ca: "ca-ES",
+  en: "en-GB",
+  fr: "fr-FR",
+  de: "de-DE",
+  nl: "nl-NL",
+  it: "it-IT",
+  ru: "ru-RU",
+};
+
+function formatPrice(price: number | null, language: string): string {
   if (price === null) return "-";
-  return `${price}\u20AC`;
+  const locale = LOCALE_BY_LANG[language] || "es-ES";
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(price);
 }
 
 type PricingPageStrings = {
@@ -82,7 +93,7 @@ function getLicenseLabel(boat: Boat, strings: PricingPageStrings): string {
   }
   if (!boat.requiresLicense) return strings.licenseTypes.none;
   const licenseFeature = (boat.features as string[] | null)?.find(
-    (f) => f.toLowerCase().includes("licencia") || f.toLowerCase().includes("license")
+    f => f.toLowerCase().includes("licencia") || f.toLowerCase().includes("license")
   );
   return licenseFeature ?? strings.licenseFallback;
 }
@@ -100,7 +111,7 @@ export default function PricingPage() {
   });
 
   const activeBoats = (boats || [])
-    .filter((boat) => boat.isActive)
+    .filter(boat => boat.isActive)
     .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999));
 
   // Always defined at runtime: useTranslations deep-merges missing keys from es.ts.
@@ -147,48 +158,49 @@ export default function PricingPage() {
   };
 
   // Dynamic ItemList schema with Product entries for each boat
-  const itemListSchema = activeBoats.length > 0 ? {
-    "@type": "ItemList",
-    "name": "Precios Alquiler de Barcos en Blanes",
-    "numberOfItems": activeBoats.length,
-    "itemListElement": activeBoats.map((boat, index) => {
-      const allPrices = (["BAJA", "MEDIA", "ALTA"] as SeasonKey[])
-        .map(s => getMinPrice(boat, s))
-        .filter((p): p is number => p !== null);
-      const lowPrice = allPrices.length > 0 ? Math.min(...allPrices) : null;
-      const highPrice = allPrices.length > 0 ? Math.max(...allPrices) : null;
+  const itemListSchema =
+    activeBoats.length > 0
+      ? {
+          "@type": "ItemList",
+          name: "Precios Alquiler de Barcos en Blanes",
+          numberOfItems: activeBoats.length,
+          itemListElement: activeBoats.map((boat, index) => {
+            const allPrices = (["BAJA", "MEDIA", "ALTA"] as SeasonKey[])
+              .map(s => getMinPrice(boat, s))
+              .filter((p): p is number => p !== null);
+            const lowPrice = allPrices.length > 0 ? Math.min(...allPrices) : null;
+            const highPrice = allPrices.length > 0 ? Math.max(...allPrices) : null;
 
-      return {
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": boat.name,
-        "url": `https://www.costabravarentaboat.com/barco/${boat.id}`,
-        "item": {
-          "@type": "Product",
-          "name": `Alquiler ${boat.name} en Blanes`,
-          "description": `Barco ${boat.name} para ${boat.capacity} personas${boat.requiresLicense ? " (requiere licencia)" : " (sin licencia)"}`,
-          "brand": { "@type": "Brand", "name": "Costa Brava Rent a Boat" },
-          ...(lowPrice && highPrice ? {
-            "offers": {
-              "@type": "AggregateOffer",
-              "priceCurrency": "EUR",
-              "lowPrice": lowPrice.toString(),
-              "highPrice": highPrice.toString(),
-              "offerCount": allPrices.length,
-              "availability": "https://schema.org/InStock",
-              "seller": { "@type": "Organization", "name": "Costa Brava Rent a Boat Blanes" }
-            }
-          } : {})
+            return {
+              "@type": "ListItem",
+              position: index + 1,
+              name: boat.name,
+              url: `https://www.costabravarentaboat.com/barco/${boat.id}`,
+              item: {
+                "@type": "Product",
+                name: `Alquiler ${boat.name} en Blanes`,
+                description: `Barco ${boat.name} para ${boat.capacity} personas${boat.requiresLicense ? " (requiere licencia)" : " (sin licencia)"}`,
+                brand: { "@type": "Brand", name: "Costa Brava Rent a Boat" },
+                ...(lowPrice && highPrice
+                  ? {
+                      offers: {
+                        "@type": "AggregateOffer",
+                        priceCurrency: "EUR",
+                        lowPrice: lowPrice.toString(),
+                        highPrice: highPrice.toString(),
+                        offerCount: allPrices.length,
+                        availability: "https://schema.org/InStock",
+                        seller: { "@type": "Organization", name: "Costa Brava Rent a Boat Blanes" },
+                      },
+                    }
+                  : {}),
+              },
+            };
+          }),
         }
-      };
-    })
-  } : null;
+      : null;
 
-  const graphItems = [
-    breadcrumbSchema,
-    faqSchema,
-    ...(itemListSchema ? [itemListSchema] : []),
-  ];
+  const graphItems = [breadcrumbSchema, faqSchema, ...(itemListSchema ? [itemListSchema] : [])];
 
   const combinedJsonLd = {
     "@context": "https://schema.org",
@@ -217,9 +229,7 @@ export default function PricingPage() {
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
             {pp.heroTitle}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
-            {pp.heroSubtitle}
-          </p>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">{pp.heroSubtitle}</p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Badge variant="outline" className="text-primary border-primary">
               <Fuel className="w-4 h-4 mr-2" />
@@ -232,9 +242,21 @@ export default function PricingPage() {
           </div>
           <p className="text-muted-foreground text-sm text-center mt-4">
             {pp.portAccessible}{" "}
-            <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline">Malgrat de Mar</a> (10 min),{" "}
-            <a href={localizedPath("locationSantaSusanna")} className="text-primary hover:underline">Santa Susanna</a> (15 min),{" "}
-            <a href={localizedPath("locationCalella")} className="text-primary hover:underline">Calella</a> (20 min)
+            <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline">
+              Malgrat de Mar
+            </a>{" "}
+            (10 min),{" "}
+            <a
+              href={localizedPath("locationSantaSusanna")}
+              className="text-primary hover:underline"
+            >
+              Santa Susanna
+            </a>{" "}
+            (15 min),{" "}
+            <a href={localizedPath("locationCalella")} className="text-primary hover:underline">
+              Calella
+            </a>{" "}
+            (20 min)
           </p>
         </div>
       </div>
@@ -284,7 +306,7 @@ export default function PricingPage() {
       <div className="bg-muted border-y border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-wrap gap-4 justify-center text-sm">
-            {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map((season) => (
+            {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map(season => (
               <div key={season} className="flex items-center gap-2">
                 <span
                   className={`inline-block w-3 h-3 rounded-full ${
@@ -321,7 +343,7 @@ export default function PricingPage() {
                       <TableHead className="w-[200px]">{pp.table.boat}</TableHead>
                       <TableHead className="text-center">{pp.table.capacity}</TableHead>
                       <TableHead className="text-center">{pp.table.license}</TableHead>
-                      {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map((season) => (
+                      {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map(season => (
                         <TableHead key={season} className="text-center">
                           <div className="flex flex-col items-center">
                             <span
@@ -340,11 +362,13 @@ export default function PricingPage() {
                           </div>
                         </TableHead>
                       ))}
-                      <TableHead className="text-center w-[140px]"><span className="sr-only">Actions</span></TableHead>
+                      <TableHead className="text-center w-[140px]">
+                        <span className="sr-only">Actions</span>
+                      </TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {activeBoats.map((boat) => {
+                    {activeBoats.map(boat => {
                       const minBaja = getMinPrice(boat, "BAJA");
                       const minMedia = getMinPrice(boat, "MEDIA");
                       const minAlta = getMinPrice(boat, "ALTA");
@@ -357,7 +381,7 @@ export default function PricingPage() {
                               className="flex items-center gap-3 hover:text-primary transition-colors underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
                             >
                               <img
-                                src={getBoatImage(boat.imageUrl || '')}
+                                src={getBoatImage(boat.imageUrl || "")}
                                 alt={boat.name}
                                 className="w-12 h-9 rounded object-cover flex-shrink-0"
                                 loading="lazy"
@@ -395,10 +419,11 @@ export default function PricingPage() {
                             </Badge>
                           </TableCell>
                           {[minBaja, minMedia, minAlta].map((min, i) => (
-                            <TableCell key={i} className="text-center font-semibold">
+                            <TableCell key={i} className="text-center font-semibold tabular-nums">
                               {min !== null ? (
                                 <span>
-                                  {pp.from} {formatPrice(min)}<span className="text-sm font-normal">{pp.perHour}</span>
+                                  {pp.from} {formatPrice(min, language)}
+                                  <span className="text-sm font-normal">{pp.perHour}</span>
                                 </span>
                               ) : (
                                 "-"
@@ -408,7 +433,7 @@ export default function PricingPage() {
                           <TableCell className="text-center">
                             <Button
                               size="sm"
-                              className="bg-cta hover:bg-cta/90 text-white"
+                              variant="outline"
                               onClick={() => openBookingModal(boat.id)}
                               aria-label={`${pp.reserveButton}: ${boat.name}`}
                             >
@@ -425,17 +450,20 @@ export default function PricingPage() {
 
               {/* Mobile card view */}
               <div className="lg:hidden space-y-4">
-                {activeBoats.map((boat) => {
+                {activeBoats.map(boat => {
                   const minBaja = getMinPrice(boat, "BAJA");
                   const minMedia = getMinPrice(boat, "MEDIA");
                   const minAlta = getMinPrice(boat, "ALTA");
 
                   return (
-                    <div key={boat.id} className="bg-background rounded-2xl border border-border p-5">
+                    <div
+                      key={boat.id}
+                      className="bg-background rounded-2xl border border-border p-5"
+                    >
                       <div className="flex items-start gap-3 mb-3">
                         <a href={localizedPath("boatDetail", boat.id)} className="flex-shrink-0">
                           <img
-                            src={getBoatImage(boat.imageUrl || '')}
+                            src={getBoatImage(boat.imageUrl || "")}
                             alt={boat.name}
                             className="w-16 h-12 rounded-lg object-cover"
                             loading="lazy"
@@ -480,13 +508,10 @@ export default function PricingPage() {
                         </Badge>
                       )}
                       <div className="grid grid-cols-3 gap-3 mb-4">
-                        {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map((season) => {
+                        {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map(season => {
                           const price = getMinPrice(boat, season);
                           return (
-                            <div
-                              key={season}
-                              className="text-center rounded-lg bg-muted p-3"
-                            >
+                            <div key={season} className="text-center rounded-lg bg-muted p-3">
                               <div className="flex items-center justify-center gap-1 mb-1">
                                 <span
                                   className={`inline-block w-2 h-2 rounded-full ${
@@ -501,18 +526,21 @@ export default function PricingPage() {
                                   {pp.seasonShort[season]}
                                 </span>
                               </div>
-                              <div className="font-bold text-lg">
-                                {price !== null ? `${formatPrice(price)}` : "-"}
+                              <div className="font-bold text-lg tabular-nums">
+                                {price !== null ? formatPrice(price, language) : "-"}
                               </div>
                               {price !== null && (
-                                <div className="text-xs text-muted-foreground">{pp.perHourLong}</div>
+                                <div className="text-xs text-muted-foreground">
+                                  {pp.perHourLong}
+                                </div>
                               )}
                             </div>
                           );
                         })}
                       </div>
                       <Button
-                        className="w-full bg-cta hover:bg-cta/90 text-white"
+                        variant="outline"
+                        className="w-full"
                         onClick={() => openBookingModal(boat.id)}
                         aria-label={pp.reserveSpecificButton.replace("{name}", boat.name)}
                       >
@@ -576,7 +604,9 @@ export default function PricingPage() {
       {/* ═══ CTA ═══ full-width */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{pp.cta.title}</h2>
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+            {pp.cta.title}
+          </h2>
           <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{pp.cta.subtitle}</p>
           <Button
             size="lg"

@@ -734,12 +734,12 @@ function Step2Details({
                   }`}
                 >
                   {opt.value === "4h" && !isDisabled && (
-                    <p className="text-xs font-medium text-muted-foreground mb-0.5">
+                    <p aria-hidden="true" className="text-xs font-medium text-muted-foreground mb-0.5">
                       {t.wizard.mostPopular}
                     </p>
                   )}
                   {opt.value === bestValueId && (
-                    <p className="text-xs font-semibold text-success bg-success/10 inline-block px-1.5 py-0.5 rounded-full mb-0.5">
+                    <p aria-hidden="true" className="text-xs font-semibold text-success bg-success/10 inline-block px-1.5 py-0.5 rounded-full mb-0.5">
                       {t.neuro?.bestValue || "Mejor valor"}
                     </p>
                   )}

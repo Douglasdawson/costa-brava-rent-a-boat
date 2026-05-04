@@ -164,24 +164,26 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
           ))}
         </div>
 
-        <div className="text-center mb-5">
-          <Icon className="w-6 h-6 text-cta mx-auto mb-2" aria-hidden="true" />
-          <p className="font-medium text-lg" id={`quiz-question-${step}`}>{current.question}</p>
-        </div>
+        <div key={step} className="animate-in fade-in slide-in-from-bottom-1 duration-200 motion-reduce:animate-none">
+          <div className="text-center mb-5">
+            <Icon className="w-6 h-6 text-cta mx-auto mb-2" aria-hidden="true" />
+            <p className="font-medium text-lg" id={`quiz-question-${step}`}>{current.question}</p>
+          </div>
 
-        <div className="grid gap-3" role="radiogroup" aria-labelledby={`quiz-question-${step}`}>
-          {current.options.map((option, idx) => (
-            <button
-              key={idx}
-              role="radio"
-              aria-checked={false}
-              onClick={() => handleAnswer(idx)}
-              className="w-full text-left px-5 py-3.5 rounded-xl border border-border hover:border-cta hover:bg-cta/5 transition-all text-sm font-medium flex items-center justify-between group min-h-11"
-            >
-              {option}
-              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-cta transition-colors" aria-hidden="true" />
-            </button>
-          ))}
+          <div className="grid gap-3" role="radiogroup" aria-labelledby={`quiz-question-${step}`}>
+            {current.options.map((option, idx) => (
+              <button
+                key={idx}
+                role="radio"
+                aria-checked={false}
+                onClick={() => handleAnswer(idx)}
+                className="w-full text-left px-5 py-3.5 rounded-xl border border-border hover:border-cta hover:bg-cta/5 transition-colors text-sm font-medium flex items-center justify-between group min-h-11"
+              >
+                {option}
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-cta transition-colors" aria-hidden="true" />
+              </button>
+            ))}
+          </div>
         </div>
 
         {step > 0 && (
@@ -199,7 +201,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
 
   // Results UI
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+    <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 animate-in fade-in slide-in-from-bottom-1 duration-200 motion-reduce:animate-none">
       <div className="text-center mb-6">
         <Anchor className="w-8 h-8 text-cta mx-auto mb-3" aria-hidden="true" />
         <h3 className="font-heading text-xl font-bold">{t.result}</h3>

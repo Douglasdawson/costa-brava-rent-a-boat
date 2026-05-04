@@ -534,10 +534,10 @@ function Step2Trip({
                     <span className="flex items-center gap-2">
                       <span className={`text-sm font-medium ${isDisabled ? "text-muted-foreground line-through" : "text-foreground"}`}>{labelText}</span>
                       {opt.value === "4h" && !isDisabled && (
-                        <span className="text-xs font-medium text-muted-foreground">{t.wizard.mostPopular}</span>
+                        <span aria-hidden="true" className="text-xs font-medium text-muted-foreground">{t.wizard.mostPopular}</span>
                       )}
                       {opt.value === bestValueId && (
-                        <span className="text-xs font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full">
+                        <span aria-hidden="true" className="text-xs font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full">
                           {t.neuro?.bestValue || 'Mejor valor'}
                         </span>
                       )}

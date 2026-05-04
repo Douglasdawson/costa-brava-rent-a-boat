@@ -82,7 +82,7 @@ const ReviewCard = memo(function ReviewCard({
   return (
     <figure className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-background rounded-2xl border border-border p-5 flex flex-col">
       {/* Stars */}
-      <div className="flex gap-0.5 mb-2" aria-label={`${review.rating} de 5 estrellas`}>
+      <div className="flex gap-0.5 mb-2" role="img" aria-label={`${review.rating} de 5 estrellas`}>
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}

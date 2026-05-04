@@ -268,6 +268,9 @@ export const es: Translations = {
   booking: {
     title: "PETICIÓN DE RESERVA",
     modalSubtitle: "Solo tardas 2 minutos. Te confirmamos por WhatsApp.",
+    specialRateTitle: "Tarifa especial para esta fecha",
+    specialRateBody: "precio adaptado por demanda",
+    specialRateFooter: "El total final del siguiente paso ya lo incluye.",
     seasonCountdown:
       "Precios temporada 2026 suben el 1 de junio · quedan {days} días · confirma hoy",
     selectBoat: "Seleccionar Barco",
@@ -439,11 +442,11 @@ export const es: Translations = {
     stepCounter: "Paso {current} de {total}",
     chooseBoatFirst: "Selecciona un barco para elegir horario",
     chooseTimeFirst: "Selecciona fecha y barco primero",
-    quoteConfirmedTitle: "Cotización lista",
-    quoteConfirmedNote: "Reservamos tu plaza en cuanto recibamos la solicitud.",
-    whatsappFlowTitle: "Te abrimos WhatsApp con la solicitud preparada",
+    quoteConfirmedTitle: "Casi listo. Un mensaje y zarpamos.",
+    quoteConfirmedNote: "Te guardamos el barco en cuanto leamos tu mensaje.",
+    whatsappFlowTitle: "Te llevamos a WhatsApp con todo preparado",
     whatsappFlowBody:
-      "Pulsa Enviar y nos llega al momento. Confirmamos disponibilidad y coordinamos el pago en persona.",
+      "Pulsa Enviar y te respondemos en cuanto leamos el mensaje. Confirmamos la disponibilidad y el pago lo cerramos el día del alquiler.",
     openingWhatsapp: "Abriendo WhatsApp…",
     requestViaWhatsapp: "Solicitar por WhatsApp",
     whatsappFooterNote: "Solo tienes que pulsar Enviar. Sin compromiso hasta que confirmemos.",

@@ -256,6 +256,9 @@ export const en: Translations = {
   booking: {
     title: "REQUEST YOUR BOOKING",
     modalSubtitle: "Takes just 2 minutes. We confirm via WhatsApp.",
+    specialRateTitle: "Special rate for this date",
+    specialRateBody: "demand-adjusted pricing",
+    specialRateFooter: "The final total in the next step already includes it.",
     seasonCountdown: "2026 season prices rise on June 1 · {days} days left · confirm today",
     selectBoat: "Select Boat",
     dateTime: "Date & Time",
@@ -413,6 +416,11 @@ export const en: Translations = {
     stepPay: "Confirmation",
     chooseBoatFirst: "Select a boat to choose a time",
     chooseTimeFirst: "Select date and boat first",
+    quoteConfirmedTitle: "Almost ready. One message and we set sail.",
+    quoteConfirmedNote: "We'll hold the boat the moment we read your message.",
+    whatsappFlowTitle: "We'll take you to WhatsApp with everything ready",
+    whatsappFlowBody:
+      "Tap Send and we'll reply as soon as we read your message. We confirm availability and settle the payment on the day of the rental.",
   },
   faq: {
     title: "Frequently Asked Questions",

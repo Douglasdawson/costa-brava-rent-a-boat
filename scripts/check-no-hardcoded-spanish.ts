@@ -233,6 +233,62 @@ function loadAllowlist(): Set<string> {
   }
 }
 
+/**
+ * Scan i18n/*.ts files for em dashes (— U+2014 and ASCII --).
+ * DESIGN.md bans em dashes in copy. The main loop above excludes i18n/ to avoid
+ * false positives in localized prose; this loop covers the gap with a literal
+ * character search instead of the Spanish-word heuristic.
+ */
+function findEmDashes(): { key: string; preview: string; loc: string }[] {
+  const I18N_DIR = join(SRC_DIR, "i18n");
+  const files: string[] = [];
+  for (const entry of readdirSync(I18N_DIR)) {
+    if (entry.endsWith(".ts") && !entry.endsWith(".test.ts")) {
+      files.push(join(I18N_DIR, entry));
+    }
+  }
+  const results: { key: string; preview: string; loc: string }[] = [];
+  const stringRe = /(["'`])((?:\\.|(?!\1).)*?)\1/g;
+  for (const file of files) {
+    const content = readFileSync(file, "utf8");
+    const lines = content.split("\n");
+    let inBlockComment = false;
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      if (inBlockComment) {
+        const end = line.indexOf("*/");
+        if (end < 0) continue;
+        line = line.slice(end + 2);
+        inBlockComment = false;
+      }
+      const blockStart = line.indexOf("/*");
+      if (blockStart >= 0) {
+        const blockEnd = line.indexOf("*/", blockStart + 2);
+        if (blockEnd < 0) {
+          inBlockComment = true;
+          line = line.slice(0, blockStart);
+        } else {
+          line = line.slice(0, blockStart) + line.slice(blockEnd + 2);
+        }
+      }
+      const lineCommentIdx = findLineCommentIndex(line);
+      if (lineCommentIdx >= 0) line = line.slice(0, lineCommentIdx);
+
+      let m: RegExpExecArray | null;
+      stringRe.lastIndex = 0;
+      while ((m = stringRe.exec(line)) !== null) {
+        const text = m[2];
+        if (!text.includes("—") && !text.includes("--")) continue;
+        const rel = relative(ROOT, file);
+        const key = `${rel}|emdash:${hashString(text)}`;
+        const preview = text.length > 80 ? text.slice(0, 80) + "..." : text;
+        results.push({ key, preview, loc: `${rel}:${i + 1}:${m.index + 1}` });
+      }
+    }
+  }
+  return results;
+}
+
 function main(): void {
   const files = walk(SRC_DIR);
   const allowlist = loadAllowlist();
@@ -253,6 +309,15 @@ function main(): void {
     }
   }
 
+  // Em-dash check on i18n files (separate scope, separate hash prefix `emdash:`).
+  const emDashHits = findEmDashes();
+  const emDashViolations: string[] = [];
+  for (const hit of emDashHits) {
+    seen.add(hit.key);
+    if (allowlist.has(hit.key)) continue;
+    emDashViolations.push(`  ${hit.loc}  "${hit.preview}"  [${hit.key.split("|")[1]}]`);
+  }
+
   const stale = [...allowlist].filter(a => !seen.has(a));
 
   if (violations.length > 0) {
@@ -265,6 +330,17 @@ function main(): void {
     );
     console.error(
       `If intentional (e.g., a brand name or technical literal), append the line shown in [brackets] to scripts/check-no-hardcoded-spanish.allowlist.txt with format <path>|<hash>.`
+    );
+    process.exit(1);
+  }
+
+  if (emDashViolations.length > 0) {
+    console.error(
+      `\n✗ ${emDashViolations.length} em dash(es) found in client/src/i18n/ (not in allowlist):\n`
+    );
+    console.error(emDashViolations.join("\n"));
+    console.error(
+      `\nFix: replace — (U+2014) or -- with : , ; . · or ( ) per DESIGN.md. If intentional, append <path>|emdash:<hash> to the allowlist.`
     );
     process.exit(1);
   }

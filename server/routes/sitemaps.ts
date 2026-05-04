@@ -256,12 +256,17 @@ export function registerSitemapRoutes(app: Express) {
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
-      // Static pages omit <lastmod> — Google recommends only including lastmod
-      // when the date is accurate. Static pages don't have real modification dates.
-      // changefreq hints help AI crawlers (Perplexity, ChatGPT) understand content freshness.
+      // Static pages mostly omit <lastmod> — Google recommends only including
+      // lastmod when the date is accurate. Most static pages don't have real
+      // modification dates, so faking them would erode trust in the sitemap.
+      // changefreq hints help AI crawlers (Perplexity, ChatGPT) understand
+      // content freshness.
 
-      // Home is indexable in every language (fully i18n-covered UI + meta).
-      sitemap += generateUrlEntry(baseUrl, "home", "1.0", null, "daily", ALL_LANGS);
+      // Home is the exception: its rendered HTML (titles, JSON-LD schemas,
+      // pricing range, fleet items) really does change with each deploy, so
+      // DEPLOY_DATE is an accurate lastmod signal here. Indexable in every
+      // language (fully i18n-covered UI + meta).
+      sitemap += generateUrlEntry(baseUrl, "home", "1.0", DEPLOY_DATE, "daily", ALL_LANGS);
 
       // All non-home pages render content sourced from the DB (ES-only) on
       // every locale subdirectory. Only the ES URL is sitemap-eligible;

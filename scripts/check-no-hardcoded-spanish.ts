@@ -80,6 +80,10 @@ const EXCLUDE_PATTERNS: RegExp[] = [
   /components\/CondicionesGenerales\.tsx$/,
   // SEO-specific hardcoded copy components (per-language by design, not via i18n hook).
   /components\/HomePageSEO\.tsx$/,
+  // SEO meta config: per-language strings live in this file by design (Open Graph,
+  // Twitter Card, structured data) — they are not user-facing UI but search-engine
+  // metadata, so the i18n hook doesn't apply.
+  /utils\/seo-config\.ts$/,
 ];
 
 interface Match {

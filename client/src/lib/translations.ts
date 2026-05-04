@@ -322,6 +322,9 @@ export interface Translations {
   booking: {
     title: string;
     modalSubtitle: string;
+    specialRateTitle?: string;
+    specialRateBody?: string;
+    specialRateFooter?: string;
     seasonCountdown?: string;
     selectBoat: string;
     dateTime: string;

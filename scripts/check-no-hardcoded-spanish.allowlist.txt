@@ -26,7 +26,6 @@ client/src/components/BoatDetailPage.tsx|f54d176b4c58
 client/src/components/BoatDetailPage.tsx|fdccdd5aed41
 client/src/components/booking-flow/BookingStepPayment.tsx|1f621be671ef
 client/src/components/booking-flow/BookingStepPayment.tsx|a33bdaaaace0
-client/src/components/booking-flow/BookingStepPersonalize.tsx|2ed9504250f4
 client/src/components/booking-flow/useBookingFlowActions.ts|3900b82ca021
 client/src/components/booking-flow/useBookingFlowActions.ts|6bd1c678ad37
 client/src/components/booking-flow/useBookingFlowActions.ts|7b1a1c66e968
@@ -1420,3 +1419,5 @@ client/src/utils/seo-schemas.ts|feeaa7392b8e
 client/src/utils/whatsapp.ts|0ca8bbada192
 client/src/utils/whatsapp.ts|1a6ae7d8276c
 client/src/utils/whatsapp.ts|757b8b61e641
+client/src/components/booking-flow/BookingStepPersonalize.tsx|eed3a94c8390
+client/src/components/booking-flow/BookingStepPersonalize.tsx|13fd68eda36f

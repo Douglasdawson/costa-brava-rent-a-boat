@@ -628,6 +628,9 @@ export const de: Translations = {
     fuelIncluded: "Kraftstoff inbegriffen!",
     readyForAdventure: "Willst du das verpassen?",
     bookNowCTA: "Prüfe die Verfügbarkeit des {boatName} und buche deinen Costa Brava Tag",
+    whatsappPrefill:
+      "Hallo, ich interessiere mich für die {boatName}. Könnten Sie mir mehr Informationen geben?",
+    locationSuffix: "Blanes, Costa Brava",
     pricesBySeason: "Preise nach Saison",
     seasonLow: "Niedrig",
     seasonMid: "Mittel",
@@ -1068,6 +1071,37 @@ export const de: Translations = {
     licenseFilter: "Führerschein",
     withoutLicense: "Kein Führerschein nötig",
     withLicense: "Führerschein erforderlich",
+  },
+
+  boatQuiz: {
+    dialogTitle: "Quiz: Finde dein Boot",
+    title: "Finde dein ideales Boot",
+    subtitle: "Beantworte 3 Fragen und wir empfehlen dir das perfekte Boot",
+    q1: "Wie viele Personen seid ihr?",
+    q1options: ["2 Personen", "3-4 Personen", "5 Personen", "6+ Personen"],
+    q2: "Wie lange möchtet ihr fahren?",
+    q2options: ["1-2 Stunden", "3-4 Stunden (halber Tag)", "6-8 Stunden (ganzer Tag)"],
+    q3: "Wie hoch ist euer Budget?",
+    q3options: ["Günstig (ab 70€)", "Mittel (100-200€)", "Kein Limit"],
+    result: "Euer ideales Boot ist...",
+    bestMatch: "Beste Wahl",
+    alsoConsider: "Auch in Betracht ziehen",
+    bookNow: "Jetzt buchen",
+    viewDetails: "Details ansehen",
+    back: "Zurück",
+    restart: "Von vorne beginnen",
+    people: "Personen",
+    reasons: {
+      "astec-400": "Perfekt für Paare. Der beste Preis pro Person der gesamten Flotte.",
+      "solar-450": "Großes Sonnendeck zum Sonnenbaden. Ideal, um die Buchten zu genießen.",
+      "remus-450": "Stabil und einfach zu handhaben. Hervorragend für Familien.",
+      "astec-480": "Die Premium-Option ohne Führerschein. Bluetooth und mehr Platz.",
+      "voraz-v2": "Vielseitig und komfortabel. Gutes Verhältnis von Preis und Ausstattung.",
+      "mingolla-brava-19": "Geräumig für Gruppen. Dusche und Esstisch an Bord.",
+      "trimarchi-57s": "Stark und schnell. Erreicht Tossa de Mar in 30 Minuten.",
+      "pacific-craft-625":
+        "Das größte, luxuriöseste und kompletteste. Für ein einzigartiges Erlebnis.",
+    },
   },
 
   reviewSummary: {

@@ -628,6 +628,9 @@ export const it: Translations = {
     readyForAdventure: "Te lo vuoi perdere?",
     bookNowCTA:
       "Verifica la disponibilità del {boatName} e prenota la tua giornata sulla Costa Brava",
+    whatsappPrefill:
+      "Ciao, sono interessato alla {boatName}. Potreste darmi maggiori informazioni?",
+    locationSuffix: "Blanes, Costa Brava",
     pricesBySeason: "Prezzi per Stagione",
     seasonLow: "Bassa",
     seasonMid: "Media",
@@ -1064,6 +1067,36 @@ export const it: Translations = {
     licenseFilter: "Patente",
     withoutLicense: "Nessuna patente necessaria",
     withLicense: "Patente richiesta",
+  },
+
+  boatQuiz: {
+    dialogTitle: "Quiz per trovare la tua barca",
+    title: "Trova la tua barca ideale",
+    subtitle: "Rispondi a 3 domande e ti consiglieremo la barca perfetta",
+    q1: "Quante persone siete?",
+    q1options: ["2 persone", "3-4 persone", "5 persone", "6+ persone"],
+    q2: "Per quanto tempo vuoi navigare?",
+    q2options: ["1-2 ore", "3-4 ore (mezza giornata)", "6-8 ore (giornata intera)"],
+    q3: "Qual è il tuo budget?",
+    q3options: ["Economico (da 70€)", "Medio (100-200€)", "Senza limite"],
+    result: "La tua barca ideale è...",
+    bestMatch: "Scelta migliore",
+    alsoConsider: "Puoi anche considerare",
+    bookNow: "Prenota ora",
+    viewDetails: "Vedi dettagli",
+    back: "Indietro",
+    restart: "Ricomincia",
+    people: "persone",
+    reasons: {
+      "astec-400": "Perfetta per coppie. Il miglior prezzo a persona dell'intera flotta.",
+      "solar-450": "Ampio prendisole. Ideale per godersi le calette.",
+      "remus-450": "Stabile e facile da manovrare. Eccellente per le famiglie.",
+      "astec-480": "L'opzione premium senza patente. Bluetooth e più spazio.",
+      "voraz-v2": "Versatile e comoda. Buon equilibrio tra prezzo e prestazioni.",
+      "mingolla-brava-19": "Spaziosa per gruppi. Doccia e tavolo per mangiare a bordo.",
+      "trimarchi-57s": "Potente e veloce. Arriva a Tossa de Mar in 30 minuti.",
+      "pacific-craft-625": "La più grande, lussuosa e completa. Per un'esperienza senza eguali.",
+    },
   },
 
   reviewSummary: {

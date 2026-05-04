@@ -725,6 +725,8 @@ export interface Translations {
     fuelIncluded: string;
     readyForAdventure: string;
     bookNowCTA: string;
+    whatsappPrefill: string;
+    locationSuffix: string;
     pricesBySeason: string;
     seasonLow: string;
     seasonMid: string;
@@ -1620,6 +1622,28 @@ export interface Translations {
     licenseFilter: string;
     withoutLicense: string;
     withLicense: string;
+  };
+
+  // Boat Quiz (3-step recommender wizard launched from Hero CTA)
+  boatQuiz?: {
+    dialogTitle: string;
+    title: string;
+    subtitle: string;
+    q1: string;
+    q1options: [string, string, string, string];
+    q2: string;
+    q2options: [string, string, string];
+    q3: string;
+    q3options: [string, string, string];
+    result: string;
+    bestMatch: string;
+    alsoConsider: string;
+    bookNow: string;
+    viewDetails: string;
+    back: string;
+    restart: string;
+    people: string;
+    reasons: Record<string, string>;
   };
 
   // Social Proof Toast (FOMO notification)

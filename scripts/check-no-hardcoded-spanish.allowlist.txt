@@ -14,7 +14,6 @@ client/src/components/BoatDetailPage.tsx|46b0c01158e1
 client/src/components/BoatDetailPage.tsx|6d11211c3d26
 client/src/components/BoatDetailPage.tsx|72ad5fc24348
 client/src/components/BoatDetailPage.tsx|7d2fa613664a
-client/src/components/BoatDetailPage.tsx|7fd27cb5f49a
 client/src/components/BoatDetailPage.tsx|9e75f100775d
 client/src/components/BoatDetailPage.tsx|9fa08016aeb8
 client/src/components/BoatDetailPage.tsx|a802485e3d3b
@@ -25,13 +24,6 @@ client/src/components/BoatDetailPage.tsx|dfbfc5c8c6b6
 client/src/components/BoatDetailPage.tsx|f13938606982
 client/src/components/BoatDetailPage.tsx|f54d176b4c58
 client/src/components/BoatDetailPage.tsx|fdccdd5aed41
-client/src/components/BoatQuiz.tsx|3630eb94ce88
-client/src/components/BoatQuiz.tsx|5251fac09c86
-client/src/components/BoatQuiz.tsx|529d2414a66c
-client/src/components/BoatQuiz.tsx|54126fd458f7
-client/src/components/BoatQuiz.tsx|8b022aba1fa1
-client/src/components/BoatQuiz.tsx|e4eaea899adb
-client/src/components/BoatQuiz.tsx|eebbc0fc3ad1
 client/src/components/booking-flow/BookingStepPayment.tsx|1f621be671ef
 client/src/components/booking-flow/BookingStepPayment.tsx|a33bdaaaace0
 client/src/components/booking-flow/BookingStepPersonalize.tsx|2ed9504250f4

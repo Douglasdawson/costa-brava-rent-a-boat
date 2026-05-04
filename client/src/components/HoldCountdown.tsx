@@ -11,7 +11,12 @@ interface HoldCountdownProps {
   onVerify?: () => void;
 }
 
-const HoldCountdown = memo(function HoldCountdown({ expiresAt, onExpired, softExpiry, onVerify }: HoldCountdownProps) {
+const HoldCountdown = memo(function HoldCountdown({
+  expiresAt,
+  onExpired,
+  softExpiry,
+  onVerify,
+}: HoldCountdownProps) {
   const t = useTranslations();
   const [secondsLeft, setSecondsLeft] = useState(() => {
     const diff = Math.floor((new Date(expiresAt).getTime() - Date.now()) / 1000);
@@ -58,10 +63,10 @@ const HoldCountdown = memo(function HoldCountdown({ expiresAt, onExpired, softEx
   const bgClass = isExpired
     ? "bg-amber-500"
     : isUrgent
-    ? "bg-red-500"
-    : isWarning
-    ? "bg-amber-500"
-    : "bg-dark-surface";
+      ? "bg-red-500"
+      : isWarning
+        ? "bg-amber-500"
+        : "bg-dark-surface";
 
   const holdCountdownText = t.holdCountdown;
 
@@ -74,7 +79,8 @@ const HoldCountdown = memo(function HoldCountdown({ expiresAt, onExpired, softEx
             <Clock className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1 min-w-0">
               <p className="text-sm text-amber-800 font-medium leading-snug">
-                {holdCountdownText?.expiredSoft ?? "Tu seleccion puede haber cambiado. Puedes continuar, pero te recomendamos verificar la disponibilidad."}
+                {holdCountdownText?.expiredSoft ??
+                  "Tu seleccion puede haber cambiado. Puedes continuar, pero te recomendamos verificar la disponibilidad."}
               </p>
               {onVerify && (
                 <button
@@ -94,9 +100,7 @@ const HoldCountdown = memo(function HoldCountdown({ expiresAt, onExpired, softEx
 
     // Hard expiry (legacy behavior)
     return (
-      <div
-        className="bg-red-600 text-white rounded-lg h-10 flex items-center justify-center gap-2 px-4 w-full transition-colors duration-700"
-      >
+      <div className="bg-red-600 text-white rounded-lg h-10 flex items-center justify-center gap-2 px-4 w-full transition-colors duration-700">
         <Clock className="w-4 h-4 flex-shrink-0" />
         <span className="text-sm font-medium">
           {holdCountdownText?.expired ?? "Tu reserva ha expirado"}.{" "}
@@ -114,9 +118,7 @@ const HoldCountdown = memo(function HoldCountdown({ expiresAt, onExpired, softEx
         <Clock className="w-4 h-4 flex-shrink-0" />
         <span className="text-sm font-medium">
           {isUrgent && (
-            <span className="font-bold mr-1">
-              {holdCountdownText?.hurry ?? "Date prisa"} --
-            </span>
+            <span className="font-bold mr-1">{holdCountdownText?.hurry ?? "Date prisa"}:</span>
           )}
           {holdCountdownText?.reserved ?? "Tu barco esta reservado durante"}{" "}
           <span className="font-bold tabular-nums">{formatTime(secondsLeft)}</span>

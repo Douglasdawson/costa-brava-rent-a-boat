@@ -56,7 +56,7 @@ export default function Hero() {
           height={1080}
           sizes="100vw"
           loading="eager"
-          fetchPriority="high"
+          {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
         />
       </picture>
 

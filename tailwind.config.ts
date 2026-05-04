@@ -75,6 +75,14 @@ export default {
           hover: "hsl(var(--whatsapp-hover) / <alpha-value>)",
           active: "hsl(var(--whatsapp-active) / <alpha-value>)",
         },
+        success: {
+          DEFAULT: "hsl(var(--success) / <alpha-value>)",
+          foreground: "hsl(var(--success-foreground) / <alpha-value>)",
+        },
+        popular: {
+          DEFAULT: "hsl(var(--popular) / <alpha-value>)",
+          foreground: "hsl(var(--popular-foreground) / <alpha-value>)",
+        },
         "hero-cta-secondary": {
           DEFAULT: "hsl(var(--hero-cta-secondary) / <alpha-value>)",
           hover: "hsl(var(--hero-cta-secondary-hover) / <alpha-value>)",

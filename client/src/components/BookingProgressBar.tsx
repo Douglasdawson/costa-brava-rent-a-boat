@@ -54,7 +54,7 @@ export default function BookingProgressBar({
                       ${isActive
                         ? "text-foreground font-semibold"
                         : isComplete
-                        ? "text-foreground/70"
+                        ? "text-foreground"
                         : "text-muted-foreground"
                       }
                     `}

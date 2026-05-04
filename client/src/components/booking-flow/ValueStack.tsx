@@ -39,15 +39,15 @@ export function ValueStack({ requiresLicense, isExcursion, t }: ValueStackProps)
   }
 
   return (
-    <div className="bg-emerald-50/50 dark:bg-emerald-950/10 border border-emerald-200/50 dark:border-emerald-800/30 rounded-lg p-4 mb-4">
+    <div className="bg-success/10 border border-success/20 rounded-lg p-4 mb-4">
       <div className="flex items-center gap-2 mb-3">
-        <Gift className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+        <Gift className="w-4 h-4 text-success" aria-hidden="true" />
         <h3 className="text-sm font-medium text-foreground">{vs.title}</h3>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {items.map((item) => (
           <div key={item} className="flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-emerald-500 dark:text-emerald-400 flex-shrink-0" />
+            <CheckCircle className="w-4 h-4 text-success flex-shrink-0" aria-hidden="true" />
             <span className="text-sm text-foreground">{item}</span>
           </div>
         ))}

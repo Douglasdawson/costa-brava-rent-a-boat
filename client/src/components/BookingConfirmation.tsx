@@ -110,20 +110,21 @@ export function BookingConfirmation({
           className="absolute top-3 right-3 p-1.5 hover:bg-muted rounded-full transition-colors z-10"
           aria-label={ct.close}
         >
-          <X className="h-5 w-5 text-muted-foreground/60" />
+          <X className="h-5 w-5 text-muted-foreground" />
         </button>
 
         {/* Success header */}
         <div className="text-center pt-8 pb-4 px-6">
           <div
-            className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4 transition-all duration-700 ${
+            className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-success/10 mb-4 transition-all duration-700 ${
               showCheckAnimation ? "scale-100 opacity-100" : "scale-50 opacity-0"
             }`}
           >
             <CheckCircle2
-              className={`h-10 w-10 text-green-600 transition-all duration-500 delay-300 ${
+              className={`h-10 w-10 text-success transition-all duration-500 delay-300 ${
                 showCheckAnimation ? "scale-100 opacity-100" : "scale-75 opacity-0"
               }`}
+              aria-hidden="true"
             />
           </div>
           <h2 className="text-xl font-display font-bold text-foreground">
@@ -138,28 +139,28 @@ export function BookingConfirmation({
           </h3>
           <div className="grid grid-cols-2 gap-2 text-sm">
             <div>
-              <span className="text-muted-foreground/60">Barco:</span>
+              <span className="text-muted-foreground">Barco:</span>
               <p className="font-medium text-foreground">{boatName}</p>
             </div>
             <div>
-              <span className="text-muted-foreground/60">Fecha:</span>
+              <span className="text-muted-foreground">Fecha:</span>
               <p className="font-medium text-foreground">{formatDate(date)}</p>
             </div>
             <div>
-              <span className="text-muted-foreground/60">Hora:</span>
+              <span className="text-muted-foreground">Hora:</span>
               <p className="font-medium text-foreground">{time}h</p>
             </div>
             <div>
-              <span className="text-muted-foreground/60">Duracion:</span>
+              <span className="text-muted-foreground">Duracion:</span>
               <p className="font-medium text-foreground">{duration}</p>
             </div>
             <div>
-              <span className="text-muted-foreground/60">Personas:</span>
+              <span className="text-muted-foreground">Personas:</span>
               <p className="font-medium text-foreground">{people}</p>
             </div>
             {price !== null && (
               <div>
-                <span className="text-muted-foreground/60">Precio:</span>
+                <span className="text-muted-foreground">Precio:</span>
                 <p className="font-bold text-foreground">{price}€</p>
               </div>
             )}
@@ -186,7 +187,7 @@ export function BookingConfirmation({
                 <span
                   className={`text-sm transition-all ${
                     checkedItems[i]
-                      ? "line-through text-muted-foreground/60"
+                      ? "line-through text-muted-foreground"
                       : "text-muted-foreground group-hover:text-foreground"
                   }`}
                 >
@@ -226,7 +227,7 @@ export function BookingConfirmation({
           <div className="flex gap-2">
             <button
               onClick={handleShareWhatsApp}
-              className="flex-1 inline-flex items-center justify-center gap-1.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-2 px-3 rounded-lg transition-colors"
+              className="flex-1 inline-flex items-center justify-center gap-1.5 bg-success hover:bg-success/90 text-success-foreground text-sm font-medium py-2 px-3 rounded-lg transition-colors"
             >
               <MessageCircle className="h-4 w-4" />
               {ct.shareWhatsApp}

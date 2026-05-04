@@ -246,7 +246,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
                   setIsSubmitting(false);
                 }}
                 disabled={isSubmitting || props.isValidatingCode}
-                className="flex-1 py-5 text-sm font-semibold bg-whatsapp hover:bg-whatsapp-hover text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 py-5 text-sm font-semibold bg-whatsapp hover:bg-whatsapp-hover text-foreground border-0 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting || props.isValidatingCode
                   ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
@@ -282,7 +282,7 @@ function Step1Boat({
     <div className="space-y-5">
       <div>
         <h2 className="text-xl font-bold text-foreground mb-1">{t.wizard.chooseYourBoat}</h2>
-        <p className="text-sm text-muted-foreground/60">{t.wizard.haveNauticalLicense}</p>
+        <p className="text-sm text-muted-foreground">{t.wizard.haveNauticalLicense}</p>
       </div>
       {!preSelectedBoatId && (
         <fieldset className="border-0 p-0 m-0">
@@ -370,7 +370,7 @@ function Step1Boat({
                     </p>
                   )}
                 </div>
-                <span className="text-xs text-muted-foreground/60 flex-shrink-0">
+                <span className="text-xs text-muted-foreground flex-shrink-0">
                   {boat.capacity} pers.
                 </span>
               </button>
@@ -378,7 +378,7 @@ function Step1Boat({
           })}
         </div>
         {showFieldError('boat') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('boat')}</p>
+          <p className="text-xs text-destructive mt-1">{getFieldError('boat')}</p>
         )}
       </div>
     </div>
@@ -413,7 +413,7 @@ function Step2Trip({
             ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', selectedBoatInfo.name)
             : t.wizard.yourTrip}
         </h2>
-        <p className="text-sm text-muted-foreground/60">{t.wizard.howLongHowMany}</p>
+        <p className="text-sm text-muted-foreground">{t.wizard.howLongHowMany}</p>
       </div>
       {/* Date picker — moved from step 1 */}
       <div id="field-date">
@@ -426,13 +426,13 @@ function Step2Trip({
               type="button"
               onBlur={() => handleBlur('date')}
               className={`w-full flex items-center gap-2 p-3 border-2 rounded-xl bg-background text-left font-medium text-sm transition-all focus:ring-2 focus:ring-primary focus:outline-none ${
-                showFieldError('date') ? 'border-red-500 text-red-500' : 'border-border text-foreground'
+                showFieldError('date') ? 'border-destructive text-destructive' : 'border-border text-foreground'
               }`}
             >
               <CalendarIcon className="w-4 h-4 text-primary flex-shrink-0" />
               {selectedDate
                 ? new Date(selectedDate + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
-                : <span className="text-muted-foreground/60">{t.wizard.selectDate}</span>
+                : <span className="text-muted-foreground">{t.wizard.selectDate}</span>
               }
             </button>
           </PopoverTrigger>
@@ -455,10 +455,10 @@ function Step2Trip({
           </PopoverContent>
         </Popover>
         {showFieldError('date') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('date')}</p>
+          <p className="text-xs text-destructive mt-1">{getFieldError('date')}</p>
         )}
         {!selectedDate && nextSaturdayISO && (
-          <p className="text-xs text-muted-foreground/60 mt-1.5">
+          <p className="text-xs text-muted-foreground mt-1.5">
             {t.wizard.suggestedDate}: {new Date(nextSaturdayISO + 'T12:00:00').toLocaleDateString(language === 'en' ? 'en-GB' : 'es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
           </p>
         )}
@@ -477,7 +477,7 @@ function Step2Trip({
           aria-invalid={showFieldError('time') ? "true" : "false"}
           aria-describedby={showFieldError('time') ? "error-wizard-time" : undefined}
           className={`w-full p-3 border-2 rounded-xl text-foreground font-medium text-base focus:ring-2 focus:ring-primary focus:outline-none bg-background ${
-            showFieldError('time') ? 'border-red-500' : 'border-border'
+            showFieldError('time') ? 'border-destructive' : 'border-border'
           }`}
         >
           <option value="">{t.wizard.selectTime}</option>
@@ -491,7 +491,7 @@ function Step2Trip({
           })}
         </select>
         {showFieldError('time') && (
-          <p id="error-wizard-time" className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>
+          <p id="error-wizard-time" className="text-xs text-destructive mt-1">{getFieldError('time')}</p>
         )}
       </div>
       <div id="field-duration">
@@ -533,24 +533,24 @@ function Step2Trip({
                 >
                   <span className="flex flex-col">
                     <span className="flex items-center gap-2">
-                      <span className={`text-sm font-medium ${isDisabled ? "text-muted-foreground/60 line-through" : "text-foreground"}`}>{labelText}</span>
+                      <span className={`text-sm font-medium ${isDisabled ? "text-muted-foreground line-through" : "text-foreground"}`}>{labelText}</span>
                       {opt.value === "4h" && !isDisabled && (
-                        <span className="text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide">{t.wizard.mostPopular}</span>
+                        <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">{t.wizard.mostPopular}</span>
                       )}
                       {opt.value === bestValueId && (
-                        <span className="text-[10px] font-semibold text-green-700 bg-green-50 px-1.5 py-0.5 rounded-full">
+                        <span className="text-[10px] font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full">
                           {t.neuro?.bestValue || 'Mejor valor'}
                         </span>
                       )}
                     </span>
                     {opt.price && !isDisabled && (
-                      <span className="text-[10px] text-muted-foreground/60 block">
+                      <span className="text-[10px] text-muted-foreground block">
                         {(opt.price / parseFloat(opt.value)).toFixed(0)}{t.neuro?.perHour || '/hora'} · {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}/{t.boats?.perPerson || 'pers.'}
                       </span>
                     )}
                   </span>
                   {isDisabled ? (
-                    <span className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</span>
+                    <span className="text-xs text-popular font-medium">{opt.disabledReason || t.boats.notAvailable}</span>
                   ) : priceText ? (
                     <span className="text-xs font-bold text-primary">{priceText}</span>
                   ) : null}
@@ -560,18 +560,18 @@ function Step2Trip({
           })()}
         </div>
         {showFieldError('duration') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>
+          <p className="text-xs text-destructive mt-1">{getFieldError('duration')}</p>
         )}
       </div>
       <div id="field-people">
         <label className="block text-sm font-semibold text-muted-foreground mb-2">
           {t.wizard.numberOfPeople}
           {selectedBoatInfo && (
-            <span className="font-normal text-muted-foreground/60 ml-1">(max. {maxCapacity})</span>
+            <span className="font-normal text-muted-foreground ml-1">(max. {maxCapacity})</span>
           )}
         </label>
         <div className={`flex items-center justify-between border-2 rounded-xl bg-background px-4 py-2 ${
-          showFieldError('people') ? 'border-red-500' : 'border-border'
+          showFieldError('people') ? 'border-destructive' : 'border-border'
         }`}>
           <button
             type="button"
@@ -602,7 +602,7 @@ function Step2Trip({
           </button>
         </div>
         {showFieldError('people') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('people')}</p>
+          <p className="text-xs text-destructive mt-1">{getFieldError('people')}</p>
         )}
       </div>
     </div>
@@ -628,7 +628,7 @@ function Step3PersonalData({
     <div className="space-y-4">
       <div>
         <h2 className="text-xl font-bold text-foreground mb-1">{t.endowment?.confirmYourBooking || t.wizard.yourData}</h2>
-        <p className="text-sm text-muted-foreground/60">{t.wizard.confirmViaWhatsApp}</p>
+        <p className="text-sm text-muted-foreground">{t.wizard.confirmViaWhatsApp}</p>
       </div>
       <div>
         <label htmlFor="wizard-firstname" className="block text-sm font-semibold text-muted-foreground mb-1">
@@ -647,11 +647,11 @@ function Step3PersonalData({
           aria-invalid={showFieldError('firstName') ? "true" : "false"}
           aria-describedby={showFieldError('firstName') ? "error-wizard-firstname" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
-            showFieldError('firstName') ? 'border-red-500' : 'border-border'
+            showFieldError('firstName') ? 'border-destructive' : 'border-border'
           }`}
         />
         {showFieldError('firstName') && (
-          <p id="error-wizard-firstname" className="text-xs text-red-500 mt-1">{getFieldError('firstName')}</p>
+          <p id="error-wizard-firstname" className="text-xs text-destructive mt-1">{getFieldError('firstName')}</p>
         )}
       </div>
       <div>
@@ -671,11 +671,11 @@ function Step3PersonalData({
           aria-invalid={showFieldError('lastName') ? "true" : "false"}
           aria-describedby={showFieldError('lastName') ? "error-wizard-lastname" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
-            showFieldError('lastName') ? 'border-red-500' : 'border-border'
+            showFieldError('lastName') ? 'border-destructive' : 'border-border'
           }`}
         />
         {showFieldError('lastName') && (
-          <p id="error-wizard-lastname" className="text-xs text-red-500 mt-1">{getFieldError('lastName')}</p>
+          <p id="error-wizard-lastname" className="text-xs text-destructive mt-1">{getFieldError('lastName')}</p>
         )}
       </div>
       <div>
@@ -696,7 +696,7 @@ function Step3PersonalData({
               <span className="truncate">{selectedPrefixInfo?.flag} {phonePrefix}</span>
             </button>
             {showPrefixDropdown && (
-              <div className="absolute top-full left-0 mt-1 w-72 max-w-[calc(100vw-2rem)] bg-background border border-border rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
+              <div className="absolute top-full left-0 mt-1 w-72 max-w-[calc(100vw-2rem)] bg-background border border-border rounded-xl shadow-sm z-50 max-h-80 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
                 <div className="p-2 border-b sticky top-0 bg-background">
                   <input
                     type="text"
@@ -719,7 +719,7 @@ function Step3PersonalData({
                   >
                     <span>{prefix.flag}</span>
                     <span className="font-medium">{prefix.code}</span>
-                    <span className="text-muted-foreground/60 text-xs truncate">{prefix.country}</span>
+                    <span className="text-muted-foreground text-xs truncate">{prefix.country}</span>
                   </button>
                 ))}
               </div>
@@ -738,12 +738,12 @@ function Step3PersonalData({
             aria-invalid={showFieldError('phone') ? "true" : "false"}
             aria-describedby={showFieldError('phone') ? "error-wizard-phone" : undefined}
             className={`flex-1 p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
-              showFieldError('phone') ? 'border-red-500' : 'border-border'
+              showFieldError('phone') ? 'border-destructive' : 'border-border'
             }`}
           />
         </div>
         {showFieldError('phone') && (
-          <p id="error-wizard-phone" className="text-xs text-red-500 mt-1">{getFieldError('phone')}</p>
+          <p id="error-wizard-phone" className="text-xs text-destructive mt-1">{getFieldError('phone')}</p>
         )}
       </div>
       <div>
@@ -764,11 +764,11 @@ function Step3PersonalData({
           aria-invalid={showFieldError('email') ? "true" : "false"}
           aria-describedby={showFieldError('email') ? "error-wizard-email" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
-            showFieldError('email') ? 'border-red-500' : 'border-border'
+            showFieldError('email') ? 'border-destructive' : 'border-border'
           }`}
         />
         {showFieldError('email') && (
-          <p id="error-wizard-email" className="text-xs text-red-500 mt-1">{getFieldError('email')}</p>
+          <p id="error-wizard-email" className="text-xs text-destructive mt-1">{getFieldError('email')}</p>
         )}
       </div>
     </div>
@@ -821,7 +821,7 @@ function Step4Confirm({
             ? (t.endowment?.customizeExperience || t.booking.confirmTitle)
             : t.booking.confirmTitle}
         </h2>
-        <p className="text-sm text-muted-foreground/60">{t.booking.confirmSubtitle}</p>
+        <p className="text-sm text-muted-foreground">{t.booking.confirmSubtitle}</p>
       </div>
       {/* Extras & Packs collapsible section */}
       {boatExtras.length > 0 && (
@@ -848,7 +848,7 @@ function Step4Confirm({
             <div id="extras-panel" className="p-4 space-y-4 bg-background">
               {/* Packs */}
               <div>
-                <p className="text-sm font-semibold text-muted-foreground/60 uppercase tracking-wide mb-2">{t.booking.extrasSection.packs}</p>
+                <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.booking.extrasSection.packs}</p>
                 <div className="space-y-2">
                   <button
                     type="button"
@@ -874,12 +874,12 @@ function Step4Confirm({
                           <div className="flex items-center gap-2">
                             <IconComp className="w-4 h-4 text-primary" />
                             <span className="text-sm font-semibold">{isSpanishLang ? pack.name : pack.nameEN}</span>
-                            <span className="text-xs text-muted-foreground/60 font-normal">{pack.extras.map(e => translateExtraName(e, language)).join(', ')}</span>
+                            <span className="text-xs text-muted-foreground font-normal">{pack.extras.map(e => translateExtraName(e, language)).join(', ')}</span>
                           </div>
                           <div className="text-right">
                             <span className="text-sm font-bold text-primary">{pack.price}€</span>
                             {savings > 0 && (
-                              <span className="block text-xs text-green-600">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
+                              <span className="block text-xs text-success">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
                             )}
                           </div>
                         </div>
@@ -890,7 +890,7 @@ function Step4Confirm({
               </div>
               {/* Individual extras */}
               <div>
-                <p className="text-sm font-semibold text-muted-foreground/60 uppercase tracking-wide mb-2">{t.booking.extrasSection.individual}</p>
+                <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.booking.extrasSection.individual}</p>
                 <div className="grid grid-cols-1 gap-2">
                   {boatExtras.map((extra) => {
                     const isChecked = selectedExtras.includes(extra.name);
@@ -914,7 +914,7 @@ function Step4Confirm({
                         </div>
                         <div className="min-w-0">
                           <p className="text-sm font-medium text-muted-foreground truncate">{translateExtraName(extra.name, language)}</p>
-                          <p className="text-xs text-muted-foreground/60">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
+                          <p className="text-xs text-muted-foreground">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
                         </div>
                       </button>
                     );
@@ -928,7 +928,7 @@ function Step4Confirm({
       {/* Booking summary card */}
       <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-2">
         <div className="flex items-center justify-between mb-1">
-          <p className="text-xs font-semibold text-muted-foreground/60 uppercase tracking-wide">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             {t.reviewSummary?.title || 'Resumen de tu reserva'}
           </p>
           <button
@@ -940,34 +940,34 @@ function Step4Confirm({
           </button>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground/60">{t.booking.boat}</span>
+          <span className="text-muted-foreground">{t.booking.boat}</span>
           <span className="font-semibold text-foreground">
             {selectedBoatInfo?.name || "--"}
           </span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground/60">{t.booking.date}</span>
+          <span className="text-muted-foreground">{t.booking.date}</span>
           <span className="font-semibold text-foreground">{formatBookingDate(selectedDate, language)}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground/60">{t.booking.preferredTime}</span>
+          <span className="text-muted-foreground">{t.booking.preferredTime}</span>
           <span className="font-semibold text-foreground">{preferredTime}h</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground/60">{t.booking.duration}</span>
+          <span className="text-muted-foreground">{t.booking.duration}</span>
           <span className="font-semibold text-foreground">{selectedDuration}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground/60">{t.booking.people}</span>
+          <span className="text-muted-foreground">{t.booking.people}</span>
           <span className="font-semibold text-foreground">{numberOfPeople}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground/60">{t.booking.summaryClient}</span>
+          <span className="text-muted-foreground">{t.booking.summaryClient}</span>
           <span className="font-semibold text-foreground">{firstName} {lastName}</span>
         </div>
         {basePrice !== null && (
           <div className="flex justify-between text-sm pt-2 border-t border-primary/20">
-            <span className="text-muted-foreground/60">{t.booking.summaryBasePrice.replace(':', '').trim()}</span>
+            <span className="text-muted-foreground">{t.booking.summaryBasePrice.replace(':', '').trim()}</span>
             <span className="font-bold text-primary text-base">{basePrice}€</span>
           </div>
         )}
@@ -975,12 +975,12 @@ function Step4Confirm({
           <div className="flex justify-between items-center text-sm">
             <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
               autoDiscount.type === 'early-bird'
-                ? 'bg-green-100 text-green-700'
-                : 'bg-orange-100 text-orange-700'
+                ? 'bg-success/10 text-success'
+                : 'bg-popular/10 text-popular'
             }`}>
               {autoDiscount.type === 'early-bird' ? t.booking.earlyBirdDiscount : t.booking.flashDealDiscount}
             </span>
-            <span className="font-semibold text-green-600">-{autoDiscountAmount}€</span>
+            <span className="font-semibold text-success">-{autoDiscountAmount}€</span>
           </div>
         )}
       </div>
@@ -997,7 +997,7 @@ function Step4Confirm({
             <Tag className="w-4 h-4 text-primary" />
             {t.codeValidation.haveCode}
             {validatedCode && (
-              <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded-full">{t.codeValidation.applied}</span>
+              <span className="bg-success/100 text-white text-xs px-2 py-0.5 rounded-full">{t.codeValidation.applied}</span>
             )}
           </span>
           {showCodeSection ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -1025,26 +1025,26 @@ function Step4Confirm({
                     {isValidatingCode ? <Loader2 className="w-4 h-4 animate-spin" /> : t.codeValidation.apply}
                   </Button>
                 </div>
-                {codeError && <p className="text-xs text-red-500">{codeError}</p>}
+                {codeError && <p className="text-xs text-destructive">{codeError}</p>}
               </div>
             ) : (
-              <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-xl p-3">
+              <div className="flex items-center justify-between bg-success/10 border border-success/20 rounded-xl p-3">
                 <div className="flex items-center gap-2">
-                  {validatedCode.type === "gift_card" ? <Gift className="w-4 h-4 text-green-600" /> : <Tag className="w-4 h-4 text-green-600" />}
+                  {validatedCode.type === "gift_card" ? <Gift className="w-4 h-4 text-success" /> : <Tag className="w-4 h-4 text-success" />}
                   <div>
-                    <p className="text-xs font-semibold text-green-700">
+                    <p className="text-xs font-semibold text-success">
                       {validatedCode.type === "gift_card"
                         ? t.codeValidation.validGiftCard
                         : t.codeValidation.validDiscount}
                     </p>
-                    <p className="text-xs text-muted-foreground/60 font-mono">{validatedCode.code}</p>
+                    <p className="text-xs text-muted-foreground font-mono">{validatedCode.code}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-green-600">
+                  <span className="text-sm font-bold text-success">
                     {validatedCode.type === "gift_card" ? `-${discount}€` : `-${validatedCode.percentage}%`}
                   </span>
-                  <button type="button" onClick={handleRemoveCode} className="text-muted-foreground/60 p-2 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center">
+                  <button type="button" onClick={handleRemoveCode} className="text-muted-foreground p-2 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center">
                     <X className="w-4 h-4" />
                   </button>
                 </div>
@@ -1090,7 +1090,7 @@ function Step4Confirm({
         t={t}
       />
       {/* RGPD passive consent notice */}
-      <p className="text-xs text-muted-foreground/60 leading-relaxed text-center">
+      <p className="text-xs text-muted-foreground leading-relaxed text-center">
         {t.booking.gdprPassive?.split('{privacyPolicy}')[0] || 'Al enviar esta solicitud, aceptas nuestra '}
         <a href={localizedPath("privacyPolicy")} target="_blank" rel="noopener noreferrer" className="text-primary underline">
           {t.booking.gdprPrivacyLink}

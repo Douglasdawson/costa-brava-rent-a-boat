@@ -154,7 +154,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
   const inputBase =
     "w-full px-3 py-2.5 border-2 rounded-lg bg-background text-foreground text-base font-medium focus:ring-2 focus:ring-foreground/30 focus:border-foreground focus:outline-none h-[46px] transition-colors";
-  const inputError = "border-red-400";
+  const inputError = "border-destructive";
   const inputNormal = "border-cta/40";
 
   // Endowment Effect: once a boat is selected, shift to possessive language
@@ -356,7 +356,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           {currentStep > 1 && (
             <button
               onClick={onBack}
-              className="text-foreground/60 hover:text-foreground transition-colors px-4 py-2.5 rounded-lg font-medium text-sm"
+              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2.5 rounded-lg font-medium text-sm"
             >
               {t.booking.back}
             </button>
@@ -377,7 +377,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 setIsSubmitting(false);
               }}
               disabled={isSubmitting}
-              className="bg-whatsapp hover:bg-whatsapp-hover text-white rounded-full px-8 py-2.5 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
+              className="bg-whatsapp hover:bg-whatsapp-hover text-foreground rounded-full px-8 py-2.5 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
             >
               {isSubmitting ? (
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -464,7 +464,7 @@ function Step1BoatDate({
             {t.wizard.selectABoat}
           </p>
           {showFieldError("boat") && (
-            <p className="text-xs text-red-500">{getFieldError("boat")}</p>
+            <p className="text-xs text-destructive">{getFieldError("boat")}</p>
           )}
         </div>
         {isBoatsLoading ? (
@@ -639,12 +639,12 @@ function Step2Details({
           </PopoverContent>
         </Popover>
         {showFieldError("date") && (
-          <p id="error-desktop-date" className="text-xs text-red-500 mt-1">
+          <p id="error-desktop-date" className="text-xs text-destructive mt-1">
             {getFieldError("date")}
           </p>
         )}
         {!selectedDate && nextSaturdayISO && (
-          <p className="text-xs text-muted-foreground/60 mt-1.5">
+          <p className="text-xs text-muted-foreground mt-1.5">
             {t.wizard.suggestedDate}:{" "}
             {new Date(nextSaturdayISO + "T12:00:00").toLocaleDateString(
               language === "en" ? "en-GB" : "es-ES",
@@ -683,7 +683,7 @@ function Step2Details({
           })}
         </select>
         {showFieldError("time") && (
-          <p id="error-desktop-time" className="text-xs text-red-500 mt-1">
+          <p id="error-desktop-time" className="text-xs text-destructive mt-1">
             {getFieldError("time")}
           </p>
         )}
@@ -733,29 +733,29 @@ function Step2Details({
                   }`}
                 >
                   {opt.value === "4h" && !isDisabled && (
-                    <p className="text-[9px] font-medium text-muted-foreground/60 uppercase tracking-wider mb-0.5">
+                    <p className="text-[9px] font-medium text-muted-foreground uppercase tracking-wider mb-0.5">
                       {t.wizard.mostPopular}
                     </p>
                   )}
                   {opt.value === bestValueId && (
-                    <p className="text-[9px] font-semibold text-green-700 bg-green-50 inline-block px-1.5 py-0.5 rounded-full mb-0.5">
+                    <p className="text-[9px] font-semibold text-success bg-success/10 inline-block px-1.5 py-0.5 rounded-full mb-0.5">
                       {t.neuro?.bestValue || "Mejor valor"}
                     </p>
                   )}
                   <p
-                    className={`text-sm font-semibold ${isDisabled ? "text-muted-foreground/60 line-through" : "text-foreground"}`}
+                    className={`text-sm font-semibold ${isDisabled ? "text-muted-foreground line-through" : "text-foreground"}`}
                   >
                     {labelText}
                   </p>
                   {isDisabled ? (
-                    <p className="text-xs text-amber-600 font-medium">
+                    <p className="text-xs text-popular font-medium">
                       {opt.disabledReason || t.boats.notAvailable}
                     </p>
                   ) : priceText ? (
                     <p className="text-xs font-bold text-foreground">{priceText}</p>
                   ) : null}
                   {opt.price && !isDisabled && (
-                    <p className="text-[10px] text-muted-foreground/60">
+                    <p className="text-[10px] text-muted-foreground">
                       {(opt.price / parseFloat(opt.value)).toFixed(0)}
                       {t.neuro?.perHour || "/hora"} ·{" "}
                       {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}/
@@ -768,7 +768,7 @@ function Step2Details({
           })()}
         </div>
         {showFieldError("duration") && (
-          <p id="error-desktop-duration" className="text-xs text-red-500 mt-1">
+          <p id="error-desktop-duration" className="text-xs text-destructive mt-1">
             {getFieldError("duration")}
           </p>
         )}
@@ -779,12 +779,12 @@ function Step2Details({
         <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
           {t.wizard.numberOfPeople}
           {selectedBoatInfo && (
-            <span className="font-normal text-muted-foreground/70 ml-1">(max {maxCapacity})</span>
+            <span className="font-normal text-muted-foreground ml-1">(max {maxCapacity})</span>
           )}
         </label>
         <div
           className={`flex items-center justify-between border-2 rounded-lg bg-background px-4 py-2 ${
-            showFieldError("people") ? "border-red-400" : "border-cta/40"
+            showFieldError("people") ? "border-destructive" : "border-cta/40"
           }`}
         >
           <button
@@ -822,7 +822,7 @@ function Step2Details({
           </button>
         </div>
         {showFieldError("people") && (
-          <p id="error-desktop-people" className="text-xs text-red-500 mt-1">
+          <p id="error-desktop-people" className="text-xs text-destructive mt-1">
             {getFieldError("people")}
           </p>
         )}
@@ -874,7 +874,7 @@ function Step3Extras({
             ? "No hay extras disponibles para este barco."
             : "No extras available for this boat."}
         </p>
-        <p className="text-muted-foreground/60 text-xs mt-2">
+        <p className="text-muted-foreground text-xs mt-2">
           {isSpanishLang
             ? "Puedes continuar al siguiente paso."
             : "You can continue to the next step."}
@@ -901,10 +901,10 @@ function Step3Extras({
             key={pack.id}
             type="button"
             onClick={() => handlePackSelect(pack.id)}
-            className={`flex flex-col items-center gap-2 p-5 rounded-lg border-2 text-center transition-all ${
+            className={`flex flex-col items-center gap-2 p-5 rounded-lg border-2 text-center transition-colors ${
               selectedPack === pack.id
-                ? "border-foreground bg-gradient-to-br from-cta/55 via-cta/25 to-foreground/15 shadow-md"
-                : "border-cta/50 bg-gradient-to-br from-cta/40 via-cta/20 to-cta/5 hover:border-cta hover:from-cta/50 hover:shadow-sm"
+                ? "border-cta bg-cta/5"
+                : "border-cta/30 bg-card hover:border-cta hover:bg-cta/5"
             }`}
           >
             <div className="flex-1 flex flex-col items-center gap-1.5">
@@ -1093,7 +1093,7 @@ function Step4Contact({
       <div className="bg-cta/10 border border-cta/30 rounded-xl p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <ClipboardList className="w-4 h-4 text-foreground/70" />
+            <ClipboardList className="w-4 h-4 text-muted-foreground" />
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
               {t.reviewSummary?.title || "Resumen de tu reserva"}
             </p>
@@ -1101,7 +1101,7 @@ function Step4Contact({
           <button
             type="button"
             onClick={() => onGoToStep(1)}
-            className="text-xs font-medium text-foreground/70 hover:text-foreground transition-colors underline underline-offset-2"
+            className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
           >
             {t.reviewSummary?.modify || "Modificar"}
           </button>
@@ -1163,7 +1163,7 @@ function Step4Contact({
                 className={`${inputBase} ${showFieldError("firstName") ? inputError : inputNormal}`}
               />
               {showFieldError("firstName") && (
-                <p id="error-desktop-firstname" className="text-xs text-red-500 mt-0.5">
+                <p id="error-desktop-firstname" className="text-xs text-destructive mt-0.5">
                   {getFieldError("firstName")}
                 </p>
               )}
@@ -1182,7 +1182,7 @@ function Step4Contact({
                 className={`${inputBase} ${showFieldError("lastName") ? inputError : inputNormal}`}
               />
               {showFieldError("lastName") && (
-                <p id="error-desktop-lastname" className="text-xs text-red-500 mt-0.5">
+                <p id="error-desktop-lastname" className="text-xs text-destructive mt-0.5">
                   {getFieldError("lastName")}
                 </p>
               )}
@@ -1210,7 +1210,7 @@ function Step4Contact({
                 <span className="truncate text-sm">{phonePrefix}</span>
               </button>
               {showPrefixDropdown && (
-                <div className="absolute top-full left-0 mt-1 w-64 bg-background border border-cta/40 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
+                <div className="absolute top-full left-0 mt-1 w-64 bg-background border border-cta/40 rounded-xl shadow-sm z-50 max-h-48 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
                   <div className="p-2 border-b sticky top-0 bg-background">
                     <input
                       type="text"
@@ -1253,7 +1253,7 @@ function Step4Contact({
                 className={`${inputBase} ${showFieldError("phone") ? inputError : inputNormal}`}
               />
               {showFieldError("phone") && (
-                <p id="error-desktop-phone" className="text-xs text-red-500 mt-0.5">
+                <p id="error-desktop-phone" className="text-xs text-destructive mt-0.5">
                   {getFieldError("phone")}
                 </p>
               )}
@@ -1273,7 +1273,7 @@ function Step4Contact({
               className={`${inputBase} ${showFieldError("email") ? inputError : inputNormal}`}
             />
             {showFieldError("email") && (
-              <p id="error-desktop-email" className="text-xs text-red-500 mt-0.5">
+              <p id="error-desktop-email" className="text-xs text-destructive mt-0.5">
                 {getFieldError("email")}
               </p>
             )}
@@ -1291,7 +1291,7 @@ function Step4Contact({
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             {t.codeValidation.haveCode}
           </p>
-          <span className="text-muted-foreground/70 text-xs">
+          <span className="text-muted-foreground text-xs">
             {showCodeSection ? "\u25B2" : "\u25BC"}
           </span>
         </button>
@@ -1311,7 +1311,7 @@ function Step4Contact({
                 <button
                   type="button"
                   onClick={handleRemoveCode}
-                  className="text-muted-foreground/70 hover:text-red-500 transition-colors p-2 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  className="text-muted-foreground hover:text-destructive transition-colors p-2 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center"
                   aria-label={t.a11y.remove}
                 >
                   <X className="w-4 h-4" />
@@ -1347,7 +1347,7 @@ function Step4Contact({
                 </button>
               </div>
             )}
-            {codeError && <p className="text-xs text-red-500">{codeError}</p>}
+            {codeError && <p className="text-xs text-destructive">{codeError}</p>}
           </div>
         )}
       </div>
@@ -1374,15 +1374,15 @@ function Step4Contact({
                 <span
                   className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
                     autoDiscount.type === "early-bird"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-orange-100 text-orange-700"
+                      ? "bg-success/10 text-success"
+                      : "bg-popular/10 text-popular"
                   }`}
                 >
                   {autoDiscount.type === "early-bird"
                     ? t.booking.earlyBirdDiscount
                     : t.booking.flashDealDiscount}
                 </span>
-                <span className="font-medium text-green-600">-{autoDiscountAmount}€</span>
+                <span className="font-medium text-success">-{autoDiscountAmount}€</span>
               </div>
             )}
             {discount > 0 && validatedCode && (
@@ -1401,7 +1401,7 @@ function Step4Contact({
             </div>
             {depositAmount && (
               <div className="flex justify-between text-sm mt-2 pt-2 border-t border-cta/20 border-dashed">
-                <span className="text-muted-foreground/70">
+                <span className="text-muted-foreground">
                   {t.pricing?.depositLabel || "Fianza"} (
                   {t.pricing?.depositRefundable || "reembolsable"})
                 </span>
@@ -1409,11 +1409,11 @@ function Step4Contact({
               </div>
             )}
           </div>
-          <p className="text-xs text-muted-foreground/70 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             {t.booking.priceConfirmedWhatsApp}
           </p>
           {depositAmount && (
-            <p className="text-xs text-muted-foreground/50 mt-0.5">
+            <p className="text-xs text-muted-foreground mt-0.5">
               {t.pricing?.payAtPort || "Se paga y devuelve en el puerto"}
             </p>
           )}

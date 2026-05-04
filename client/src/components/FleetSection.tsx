@@ -691,11 +691,11 @@ function FleetSection() {
                   {sortedBoats.map(boat => (
                     <TableCell key={boat.id} className="text-center">
                       {boat.requiresLicense ? (
-                        <span className="text-amber-600 dark:text-amber-400 font-medium">
+                        <span className="text-popular font-medium">
                           {t.comparison.tableYes}
                         </span>
                       ) : (
-                        <span className="text-green-600 dark:text-green-400 font-medium">
+                        <span className="text-success font-medium">
                           {t.comparison.tableNo}
                         </span>
                       )}
@@ -774,7 +774,7 @@ function FleetSection() {
                       <TableCell key={boat.id} className="text-center">
                         {ratingData.count > 0 ? (
                           <span className="inline-flex items-center gap-1 text-sm">
-                            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                            <Star className="w-4 h-4 fill-popular text-popular" />
                             {ratingData.average.toFixed(1)}
                             <span className="text-muted-foreground">({ratingData.count})</span>
                           </span>
@@ -793,7 +793,7 @@ function FleetSection() {
                   {sortedBoats.map(boat => (
                     <TableCell key={boat.id} className="text-center">
                       {!boat.requiresLicense ? (
-                        <span className="text-green-600 dark:text-green-400 font-medium">
+                        <span className="text-success font-medium">
                           {t.comparison.tableYes}
                         </span>
                       ) : (
@@ -880,7 +880,7 @@ function FleetSection() {
                 t.reciprocity?.camera,
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-success flex-shrink-0" />
                   {item}
                 </li>
               ))}

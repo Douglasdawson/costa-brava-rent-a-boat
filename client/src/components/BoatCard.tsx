@@ -174,8 +174,8 @@ function BoatCard({
                 {t.recommendation?.recommendedForYou}
               </div>
             ) : (
-              <div className="inline-flex items-center gap-1 bg-amber-500 text-amber-950 text-xs font-bold px-2.5 py-1 rounded-full">
-                <Star className="w-3 h-3 fill-amber-950" />
+              <div className="inline-flex items-center gap-1 bg-popular text-popular-foreground text-xs font-bold px-2.5 py-1 rounded-full">
+                <Star className="w-3 h-3 fill-popular-foreground" />
                 {t.boats.mostPopular}
               </div>
             )}
@@ -194,7 +194,7 @@ function BoatCard({
                       key={i}
                       className={`w-3 h-3 ${
                         i < Math.round(ratingData.average)
-                          ? "text-amber-400 fill-amber-400"
+                          ? "text-popular fill-popular"
                           : "text-muted-foreground/30"
                       }`}
                     />
@@ -231,7 +231,7 @@ function BoatCard({
             !features.some(f => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) && (
               <>
                 <span aria-hidden="true">·</span>
-                <span className="inline-flex items-center gap-1 text-green-700 dark:text-green-400 font-medium">
+                <span className="inline-flex items-center gap-1 text-success font-medium">
                   <Fuel className="w-3 h-3" aria-hidden="true" />
                   {t.boatDetail.fuelIncluded}
                 </span>

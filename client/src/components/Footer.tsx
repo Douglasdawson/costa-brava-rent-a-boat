@@ -200,7 +200,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#fleet"
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   {t.nav.fleet}
                 </a>
@@ -208,7 +208,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("routes")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   {t.footer.destinations}
                 </a>
@@ -216,7 +216,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("blog")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                   data-testid="footer-blog-link"
                 >
                   {t.footer.blog}
@@ -225,7 +225,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("pricing")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Precios
                 </a>
@@ -233,7 +233,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("faq")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                   data-testid="footer-faq-link"
                 >
                   {t.footer.faqLabel}
@@ -242,7 +242,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("giftCards")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   {t.nav.giftCards}
                 </a>
@@ -250,7 +250,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#contact"
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   {t.nav.contact}
                 </a>
@@ -258,7 +258,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("testimonials")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                   data-testid="footer-testimonials-link"
                 >
                   {t.footer.customerReviews}
@@ -267,7 +267,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("gallery")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   {t.footer.gallery}
                 </a>
@@ -279,7 +279,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationBlanes")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Blanes
                 </a>
@@ -287,7 +287,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationLloret")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Lloret de Mar
                 </a>
@@ -295,7 +295,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationTossa")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Tossa de Mar
                 </a>
@@ -303,7 +303,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationMalgrat")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Malgrat de Mar
                 </a>
@@ -311,7 +311,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationSantaSusanna")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Santa Susanna
                 </a>
@@ -319,7 +319,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationCalella")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Calella
                 </a>
@@ -327,7 +327,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationPinedaDeMar")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Pineda de Mar
                 </a>
@@ -335,7 +335,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationPalafolls")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Palafolls
                 </a>
@@ -343,7 +343,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationTordera")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Tordera
                 </a>
@@ -351,7 +351,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationBarcelona")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Barcelona
                 </a>
@@ -359,7 +359,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationCostaBrava")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Costa Brava
                 </a>
@@ -373,7 +373,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("categoryLicenseFree")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   {t.boats.withoutLicense}
                 </a>
@@ -381,7 +381,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("categoryLicensed")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   {t.boats.withLicense}
                 </a>
@@ -389,7 +389,7 @@ export default function Footer() {
               <li>
                 <a
                   href={localizedPath("locationBarcelona")}
-                  className="hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
                   Barcos cerca de Barcelona
                 </a>

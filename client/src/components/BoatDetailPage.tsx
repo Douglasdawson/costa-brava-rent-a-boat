@@ -6,17 +6,17 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useLocation } from "wouter";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useQuery } from "@tanstack/react-query";
-import { 
-  ArrowLeft, 
-  Users, 
-  Anchor, 
-  Fuel, 
+import {
+  ArrowLeft,
+  Users,
+  Anchor,
+  Fuel,
   Euro,
   Calendar,
   CheckCircle,
   Star,
   Navigation as NavigationIcon,
-ArrowUpDown,
+  ArrowUpDown,
   ArrowLeftRight,
   Zap,
   Shield,
@@ -28,7 +28,7 @@ ArrowUpDown,
   Settings,
   ChevronLeft,
   ChevronRight,
-  X
+  X,
 } from "lucide-react";
 import SnorkelIcon from "@/components/icons/SnorkelIcon";
 import SeascooterIcon from "@/components/icons/SeascooterIcon";
@@ -46,12 +46,12 @@ import { ReadingProgressBar } from "./ReadingProgressBar";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { 
-  getSEOConfig, 
-  generateHreflangLinks, 
+import {
+  getSEOConfig,
+  generateHreflangLinks,
   generateCanonicalUrl,
   generateEnhancedProductSchema,
-  generateBreadcrumbSchema
+  generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
 import { filterActivePrices, getMinActivePrice } from "@shared/pricing";
@@ -159,177 +159,513 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
   },
 
   // === Included items (6 unique) ===
-  "IVA": {
-    en: "VAT", fr: "TVA", de: "MwSt.", nl: "BTW", it: "IVA", ru: "NDS", ca: "IVA",
+  IVA: {
+    en: "VAT",
+    fr: "TVA",
+    de: "MwSt.",
+    nl: "BTW",
+    it: "IVA",
+    ru: "NDS",
+    ca: "IVA",
   },
-  "Carburante": {
-    en: "Fuel", fr: "Carburant", de: "Kraftstoff", nl: "Brandstof", it: "Carburante", ru: "Toplivo", ca: "Combustible",
+  Carburante: {
+    en: "Fuel",
+    fr: "Carburant",
+    de: "Kraftstoff",
+    nl: "Brandstof",
+    it: "Carburante",
+    ru: "Toplivo",
+    ca: "Combustible",
   },
-  "Amarre": {
-    en: "Mooring", fr: "Amarrage", de: "Liegeplatz", nl: "Aanlegplaats", it: "Ormeggio", ru: "Shvartovka", ca: "Amarratge",
+  Amarre: {
+    en: "Mooring",
+    fr: "Amarrage",
+    de: "Liegeplatz",
+    nl: "Aanlegplaats",
+    it: "Ormeggio",
+    ru: "Shvartovka",
+    ca: "Amarratge",
   },
-  "Limpieza": {
-    en: "Cleaning", fr: "Nettoyage", de: "Reinigung", nl: "Reiniging", it: "Pulizia", ru: "Uborka", ca: "Neteja",
+  Limpieza: {
+    en: "Cleaning",
+    fr: "Nettoyage",
+    de: "Reinigung",
+    nl: "Reiniging",
+    it: "Pulizia",
+    ru: "Uborka",
+    ca: "Neteja",
   },
   "Seguro embarcación y ocupantes": {
-    en: "Boat & passenger insurance", fr: "Assurance bateau et passagers", de: "Boot- & Insassenversicherung", nl: "Boot- & passagiersverzekering", it: "Assicurazione barca e passeggeri", ru: "Strakhovka lodki i passazhirov", ca: "Asseguranca embarcacio i ocupants",
+    en: "Boat & passenger insurance",
+    fr: "Assurance bateau et passagers",
+    de: "Boot- & Insassenversicherung",
+    nl: "Boot- & passagiersverzekering",
+    it: "Assicurazione barca e passeggeri",
+    ru: "Strakhovka lodki i passazhirov",
+    ca: "Asseguranca embarcacio i ocupants",
   },
   "Patron profesional": {
-    en: "Professional skipper", fr: "Skipper professionnel", de: "Professioneller Skipper", nl: "Professionele schipper", it: "Skipper professionale", ru: "Professional'nyj shkhiper", ca: "Patro professional",
+    en: "Professional skipper",
+    fr: "Skipper professionnel",
+    de: "Professioneller Skipper",
+    nl: "Professionele schipper",
+    it: "Skipper professionale",
+    ru: "Professional'nyj shkhiper",
+    ca: "Patro professional",
   },
 
   // === Features (26 unique) ===
   "Sin licencia requerida": {
-    en: "No licence required", fr: "Sans permis requis", de: "Kein Fuehrerschein erforderlich", nl: "Geen vaarbewijs vereist", it: "Nessuna patente richiesta", ru: "Licenziya ne trebuetsya", ca: "Sense llicencia requerida",
+    en: "No licence required",
+    fr: "Sans permis requis",
+    de: "Kein Fuehrerschein erforderlich",
+    nl: "Geen vaarbewijs vereist",
+    it: "Nessuna patente richiesta",
+    ru: "Licenziya ne trebuetsya",
+    ca: "Sense llicencia requerida",
   },
   "Hasta 5 personas": {
-    en: "Up to 5 people", fr: "Jusqu'a 5 personnes", de: "Bis zu 5 Personen", nl: "Tot 5 personen", it: "Fino a 5 persone", ru: "Do 5 chelovek", ca: "Fins a 5 persones",
+    en: "Up to 5 people",
+    fr: "Jusqu'a 5 personnes",
+    de: "Bis zu 5 Personen",
+    nl: "Tot 5 personen",
+    it: "Fino a 5 persone",
+    ru: "Do 5 chelovek",
+    ca: "Fins a 5 persones",
   },
   "Gasolina incluida": {
-    en: "Fuel included", fr: "Carburant inclus", de: "Kraftstoff inklusive", nl: "Brandstof inbegrepen", it: "Carburante incluso", ru: "Toplivo vklyucheno", ca: "Gasolina inclosa",
+    en: "Fuel included",
+    fr: "Carburant inclus",
+    de: "Kraftstoff inklusive",
+    nl: "Brandstof inbegrepen",
+    it: "Carburante incluso",
+    ru: "Toplivo vklyucheno",
+    ca: "Gasolina inclosa",
   },
   "Seguro incluido": {
-    en: "Insurance included", fr: "Assurance incluse", de: "Versicherung inklusive", nl: "Verzekering inbegrepen", it: "Assicurazione inclusa", ru: "Strakhovka vklyuchena", ca: "Asseguranca inclosa",
+    en: "Insurance included",
+    fr: "Assurance incluse",
+    de: "Versicherung inklusive",
+    nl: "Verzekering inbegrepen",
+    it: "Assicurazione inclusa",
+    ru: "Strakhovka vklyuchena",
+    ca: "Asseguranca inclosa",
   },
   "Equipo de seguridad": {
-    en: "Safety equipment", fr: "Equipement de securite", de: "Sicherheitsausruestung", nl: "Veiligheidsuitrusting", it: "Equipaggiamento di sicurezza", ru: "Oborudovanie bezopasnosti", ca: "Equip de seguretat",
+    en: "Safety equipment",
+    fr: "Equipement de securite",
+    de: "Sicherheitsausruestung",
+    nl: "Veiligheidsuitrusting",
+    it: "Equipaggiamento di sicurezza",
+    ru: "Oborudovanie bezopasnosti",
+    ca: "Equip de seguretat",
   },
   "Escalera de baño": {
-    en: "Bathing ladder", fr: "Echelle de bain", de: "Badeleiter", nl: "Zwemladder", it: "Scaletta da bagno", ru: "Kupol'naya lestnica", ca: "Escala de bany",
+    en: "Bathing ladder",
+    fr: "Echelle de bain",
+    de: "Badeleiter",
+    nl: "Zwemladder",
+    it: "Scaletta da bagno",
+    ru: "Kupol'naya lestnica",
+    ca: "Escala de bany",
   },
   "Hasta 4 personas": {
-    en: "Up to 4 people", fr: "Jusqu'a 4 personnes", de: "Bis zu 4 Personen", nl: "Tot 4 personen", it: "Fino a 4 persone", ru: "Do 4 chelovek", ca: "Fins a 4 persones",
+    en: "Up to 4 people",
+    fr: "Jusqu'a 4 personnes",
+    de: "Bis zu 4 Personen",
+    nl: "Tot 4 personen",
+    it: "Fino a 4 persone",
+    ru: "Do 4 chelovek",
+    ca: "Fins a 4 persones",
   },
   "Perfecta para parejas": {
-    en: "Perfect for couples", fr: "Parfait pour les couples", de: "Perfekt fuer Paare", nl: "Perfect voor koppels", it: "Perfetta per coppie", ru: "Ideal'na dlya par", ca: "Perfecta per a parelles",
+    en: "Perfect for couples",
+    fr: "Parfait pour les couples",
+    de: "Perfekt fuer Paare",
+    nl: "Perfect voor koppels",
+    it: "Perfetta per coppie",
+    ru: "Ideal'na dlya par",
+    ca: "Perfecta per a parelles",
   },
   "Equipo de música": {
-    en: "Sound system", fr: "Systeme audio", de: "Soundsystem", nl: "Geluidsinstallatie", it: "Impianto audio", ru: "Muzykal'naya sistema", ca: "Equip de musica",
+    en: "Sound system",
+    fr: "Systeme audio",
+    de: "Soundsystem",
+    nl: "Geluidsinstallatie",
+    it: "Impianto audio",
+    ru: "Muzykal'naya sistema",
+    ca: "Equip de musica",
   },
   "Más espaciosa": {
-    en: "More spacious", fr: "Plus spacieux", de: "Geraeumiger", nl: "Ruimer", it: "Piu spaziosa", ru: "Bolee prostornaya", ca: "Mes espaiosa",
+    en: "More spacious",
+    fr: "Plus spacieux",
+    de: "Geraeumiger",
+    nl: "Ruimer",
+    it: "Piu spaziosa",
+    ru: "Bolee prostornaya",
+    ca: "Mes espaiosa",
   },
   "Licencia de Navegación Básica requerida": {
-    en: "Basic navigation licence (LNB) required", fr: "Permis de navigation basique (LNB) requis", de: "Basis-Navigationsschein (LNB) erforderlich", nl: "Basisvaarbewijs (LNB) vereist", it: "Patente di navigazione base (LNB) richiesta", ru: "Trebuetsya bazovaya licenziya (LNB)", ca: "Llicència de Navegació Bàsica (LNB) requerida",
+    en: "Basic navigation licence (LNB) required",
+    fr: "Permis de navigation basique (LNB) requis",
+    de: "Basis-Navigationsschein (LNB) erforderlich",
+    nl: "Basisvaarbewijs (LNB) vereist",
+    it: "Patente di navigazione base (LNB) richiesta",
+    ru: "Trebuetsya bazovaya licenziya (LNB)",
+    ca: "Llicència de Navegació Bàsica (LNB) requerida",
   },
   "Licencia Básica requerida": {
-    en: "Basic navigation licence (LNB) required", fr: "Permis de navigation basique (LNB) requis", de: "Basis-Navigationsschein (LNB) erforderlich", nl: "Basisvaarbewijs (LNB) vereist", it: "Patente di navigazione base (LNB) richiesta", ru: "Trebuetsya bazovaya licenziya (LNB)", ca: "Llicència de Navegació Bàsica (LNB) requerida",
+    en: "Basic navigation licence (LNB) required",
+    fr: "Permis de navigation basique (LNB) requis",
+    de: "Basis-Navigationsschein (LNB) erforderlich",
+    nl: "Basisvaarbewijs (LNB) vereist",
+    it: "Patente di navigazione base (LNB) richiesta",
+    ru: "Trebuetsya bazovaya licenziya (LNB)",
+    ca: "Llicència de Navegació Bàsica (LNB) requerida",
   },
   "Hasta 6 personas": {
-    en: "Up to 6 people", fr: "Jusqu'a 6 personnes", de: "Bis zu 6 Personen", nl: "Tot 6 personen", it: "Fino a 6 persone", ru: "Do 6 chelovek", ca: "Fins a 6 persones",
+    en: "Up to 6 people",
+    fr: "Jusqu'a 6 personnes",
+    de: "Bis zu 6 Personen",
+    nl: "Tot 6 personen",
+    it: "Fino a 6 persone",
+    ru: "Do 6 chelovek",
+    ca: "Fins a 6 persones",
   },
   "GPS y sonda incluidos": {
-    en: "GPS & fish finder included", fr: "GPS et sondeur inclus", de: "GPS & Echolot inklusive", nl: "GPS & dieptemeter inbegrepen", it: "GPS e ecoscandaglio inclusi", ru: "GPS i ehkholot vklyucheny", ca: "GPS i sonda inclosos",
+    en: "GPS & fish finder included",
+    fr: "GPS et sondeur inclus",
+    de: "GPS & Echolot inklusive",
+    nl: "GPS & dieptemeter inbegrepen",
+    it: "GPS e ecoscandaglio inclusi",
+    ru: "GPS i ehkholot vklyucheny",
+    ca: "GPS i sonda inclosos",
   },
   "Ducha agua dulce": {
-    en: "Freshwater shower", fr: "Douche eau douce", de: "Suesswasserdusche", nl: "Zoetwaterdouche", it: "Doccia acqua dolce", ru: "Dush s presnoj vodoj", ca: "Dutxa d'aigua dolca",
+    en: "Freshwater shower",
+    fr: "Douche eau douce",
+    de: "Suesswasserdusche",
+    nl: "Zoetwaterdouche",
+    it: "Doccia acqua dolce",
+    ru: "Dush s presnoj vodoj",
+    ca: "Dutxa d'aigua dolca",
   },
   "Deportiva elegante": {
-    en: "Sporty & elegant", fr: "Sportif et elegant", de: "Sportlich & elegant", nl: "Sportief & elegant", it: "Sportiva ed elegante", ru: "Sportivnaya i ehlegantnaya", ca: "Esportiva i elegant",
+    en: "Sporty & elegant",
+    fr: "Sportif et elegant",
+    de: "Sportlich & elegant",
+    nl: "Sportief & elegant",
+    it: "Sportiva ed elegante",
+    ru: "Sportivnaya i ehlegantnaya",
+    ca: "Esportiva i elegant",
   },
   "Combustible NO incluido": {
-    en: "Fuel NOT included", fr: "Carburant NON inclus", de: "Kraftstoff NICHT inklusive", nl: "Brandstof NIET inbegrepen", it: "Carburante NON incluso", ru: "Toplivo NE vklyucheno", ca: "Combustible NO inclos",
+    en: "Fuel NOT included",
+    fr: "Carburant NON inclus",
+    de: "Kraftstoff NICHT inklusive",
+    nl: "Brandstof NIET inbegrepen",
+    it: "Carburante NON incluso",
+    ru: "Toplivo NE vklyucheno",
+    ca: "Combustible NO inclos",
   },
   "Hasta 7 personas": {
-    en: "Up to 7 people", fr: "Jusqu'a 7 personnes", de: "Bis zu 7 Personen", nl: "Tot 7 personen", it: "Fino a 7 persone", ru: "Do 7 chelovek", ca: "Fins a 7 persones",
+    en: "Up to 7 people",
+    fr: "Jusqu'a 7 personnes",
+    de: "Bis zu 7 Personen",
+    nl: "Tot 7 personen",
+    it: "Fino a 7 persone",
+    ru: "Do 7 chelovek",
+    ca: "Fins a 7 persones",
   },
   "Ideal para velocidad": {
-    en: "Ideal for speed", fr: "Ideal pour la vitesse", de: "Ideal fuer Geschwindigkeit", nl: "Ideaal voor snelheid", it: "Ideale per la velocita", ru: "Ideal'na dlya skorosti", ca: "Ideal per a velocitat",
+    en: "Ideal for speed",
+    fr: "Ideal pour la vitesse",
+    de: "Ideal fuer Geschwindigkeit",
+    nl: "Ideaal voor snelheid",
+    it: "Ideale per la velocita",
+    ru: "Ideal'na dlya skorosti",
+    ca: "Ideal per a velocitat",
   },
   "Mesa central": {
-    en: "Central table", fr: "Table centrale", de: "Zentraler Tisch", nl: "Centrale tafel", it: "Tavolo centrale", ru: "Central'nyj stol", ca: "Taula central",
+    en: "Central table",
+    fr: "Table centrale",
+    de: "Zentraler Tisch",
+    nl: "Centrale tafel",
+    it: "Tavolo centrale",
+    ru: "Central'nyj stol",
+    ca: "Taula central",
   },
   "Embarcación premium": {
-    en: "Premium vessel", fr: "Embarcation premium", de: "Premium-Boot", nl: "Premiumvaartuig", it: "Imbarcazione premium", ru: "Premium sudno", ca: "Embarcacio premium",
+    en: "Premium vessel",
+    fr: "Embarcation premium",
+    de: "Premium-Boot",
+    nl: "Premiumvaartuig",
+    it: "Imbarcazione premium",
+    ru: "Premium sudno",
+    ca: "Embarcacio premium",
   },
   "Mesa para comidas": {
-    en: "Dining table", fr: "Table a manger", de: "Esstisch", nl: "Eettafel", it: "Tavolo da pranzo", ru: "Obedennyj stol", ca: "Taula per a menjar",
+    en: "Dining table",
+    fr: "Table a manger",
+    de: "Esstisch",
+    nl: "Eettafel",
+    it: "Tavolo da pranzo",
+    ru: "Obedennyj stol",
+    ca: "Taula per a menjar",
   },
   "Lujo y confort": {
-    en: "Luxury & comfort", fr: "Luxe et confort", de: "Luxus & Komfort", nl: "Luxe & comfort", it: "Lusso e comfort", ru: "Roskosh' i komfort", ca: "Luxe i confort",
+    en: "Luxury & comfort",
+    fr: "Luxe et confort",
+    de: "Luxus & Komfort",
+    nl: "Luxe & comfort",
+    it: "Lusso e comfort",
+    ru: "Roskosh' i komfort",
+    ca: "Luxe i confort",
   },
   "No requiere licencia": {
-    en: "No licence required", fr: "Sans permis", de: "Kein Fuehrerschein noetig", nl: "Geen vaarbewijs nodig", it: "Nessuna patente necessaria", ru: "Licenziya ne nuzhna", ca: "No requereix llicencia",
+    en: "No licence required",
+    fr: "Sans permis",
+    de: "Kein Fuehrerschein noetig",
+    nl: "Geen vaarbewijs nodig",
+    it: "Nessuna patente necessaria",
+    ru: "Licenziya ne nuzhna",
+    ca: "No requereix llicencia",
   },
   "Patron profesional incluido": {
-    en: "Professional skipper included", fr: "Skipper professionnel inclus", de: "Professioneller Skipper inklusive", nl: "Professionele schipper inbegrepen", it: "Skipper professionale incluso", ru: "Professional'nyj shkhiper vklyuchen", ca: "Patro professional inclos",
+    en: "Professional skipper included",
+    fr: "Skipper professionnel inclus",
+    de: "Professioneller Skipper inklusive",
+    nl: "Professionele schipper inbegrepen",
+    it: "Skipper professionale incluso",
+    ru: "Professional'nyj shkhiper vklyuchen",
+    ca: "Patro professional inclos",
   },
   "Calas escondidas y cuevas": {
-    en: "Hidden coves & caves", fr: "Criques cachees et grottes", de: "Versteckte Buchten & Hoehlen", nl: "Verborgen baaien & grotten", it: "Calette nascoste e grotte", ru: "Skrytye bukhty i peshchery", ca: "Cales amagades i coves",
+    en: "Hidden coves & caves",
+    fr: "Criques cachees et grottes",
+    de: "Versteckte Buchten & Hoehlen",
+    nl: "Verborgen baaien & grotten",
+    it: "Calette nascoste e grotte",
+    ru: "Skrytye bukhty i peshchery",
+    ca: "Cales amagades i coves",
   },
   "Parada para nadar": {
-    en: "Swimming stop", fr: "Arret baignade", de: "Badestopp", nl: "Zwemstop", it: "Sosta per nuotare", ru: "Ostanovka dlya plavaniya", ca: "Parada per nedar",
+    en: "Swimming stop",
+    fr: "Arret baignade",
+    de: "Badestopp",
+    nl: "Zwemstop",
+    it: "Sosta per nuotare",
+    ru: "Ostanovka dlya plavaniya",
+    ca: "Parada per nedar",
   },
 
   // === Equipment items (25 unique) ===
-  "Toldo": {
-    en: "Sunshade", fr: "Auvent", de: "Sonnenverdeck", nl: "Zonnetent", it: "Tendalino", ru: "Tent", ca: "Tendal",
+  Toldo: {
+    en: "Sunshade",
+    fr: "Auvent",
+    de: "Sonnenverdeck",
+    nl: "Zonnetent",
+    it: "Tendalino",
+    ru: "Tent",
+    ca: "Tendal",
   },
   "Arranque eléctrico": {
-    en: "Electric start", fr: "Demarrage electrique", de: "Elektrostart", nl: "Elektrische start", it: "Avviamento elettrico", ru: "Ehlektricheskij zapusk", ca: "Arrencada electrica",
+    en: "Electric start",
+    fr: "Demarrage electrique",
+    de: "Elektrostart",
+    nl: "Elektrische start",
+    it: "Avviamento elettrico",
+    ru: "Ehlektricheskij zapusk",
+    ca: "Arrencada electrica",
   },
   "Gran solárium de proa": {
-    en: "Large bow sundeck", fr: "Grand solarium de proue", de: "Grosses Bug-Sonnendeck", nl: "Groot voordek zonnedek", it: "Ampio solarium di prua", ru: "Bol'shoj solyarij na nosu", ca: "Gran solarium de proa",
+    en: "Large bow sundeck",
+    fr: "Grand solarium de proue",
+    de: "Grosses Bug-Sonnendeck",
+    nl: "Groot voordek zonnedek",
+    it: "Ampio solarium di prua",
+    ru: "Bol'shoj solyarij na nosu",
+    ca: "Gran solarium de proa",
   },
   "Equipo de seguridad y salvamento": {
-    en: "Safety & rescue equipment", fr: "Equipement de securite et sauvetage", de: "Sicherheits- & Rettungsausruestung", nl: "Veiligheids- & reddingsuitrusting", it: "Equipaggiamento di sicurezza e salvataggio", ru: "Oborudovanie bezopasnosti i spaseniya", ca: "Equip de seguretat i salvament",
+    en: "Safety & rescue equipment",
+    fr: "Equipement de securite et sauvetage",
+    de: "Sicherheits- & Rettungsausruestung",
+    nl: "Veiligheids- & reddingsuitrusting",
+    it: "Equipaggiamento di sicurezza e salvataggio",
+    ru: "Oborudovanie bezopasnosti i spaseniya",
+    ca: "Equip de seguretat i salvament",
   },
   "Toldo Bi Mini": {
-    en: "Bimini top", fr: "Taud bimini", de: "Bimini-Verdeck", nl: "Bimini-kap", it: "Tendalino bimini", ru: "Tent bimini", ca: "Tendal bimini",
+    en: "Bimini top",
+    fr: "Taud bimini",
+    de: "Bimini-Verdeck",
+    nl: "Bimini-kap",
+    it: "Tendalino bimini",
+    ru: "Tent bimini",
+    ca: "Tendal bimini",
   },
   "Equipo de música bluetooth": {
-    en: "Bluetooth sound system", fr: "Systeme audio bluetooth", de: "Bluetooth-Soundsystem", nl: "Bluetooth-geluidsinstallatie", it: "Impianto audio bluetooth", ru: "Bluetooth muzykal'naya sistema", ca: "Equip de musica bluetooth",
+    en: "Bluetooth sound system",
+    fr: "Systeme audio bluetooth",
+    de: "Bluetooth-Soundsystem",
+    nl: "Bluetooth-geluidsinstallatie",
+    it: "Impianto audio bluetooth",
+    ru: "Bluetooth muzykal'naya sistema",
+    ca: "Equip de musica bluetooth",
   },
   "Radio bluetooth": {
-    en: "Bluetooth radio", fr: "Radio bluetooth", de: "Bluetooth-Radio", nl: "Bluetooth-radio", it: "Radio bluetooth", ru: "Bluetooth radio", ca: "Radio bluetooth",
+    en: "Bluetooth radio",
+    fr: "Radio bluetooth",
+    de: "Bluetooth-Radio",
+    nl: "Bluetooth-radio",
+    it: "Radio bluetooth",
+    ru: "Bluetooth radio",
+    ca: "Radio bluetooth",
   },
-  "Altavoces": {
-    en: "Speakers", fr: "Haut-parleurs", de: "Lautsprecher", nl: "Luidsprekers", it: "Altoparlanti", ru: "Dinamiki", ca: "Altaveus",
+  Altavoces: {
+    en: "Speakers",
+    fr: "Haut-parleurs",
+    de: "Lautsprecher",
+    nl: "Luidsprekers",
+    it: "Altoparlanti",
+    ru: "Dinamiki",
+    ca: "Altaveus",
   },
-  "Sonda": {
-    en: "Fish finder", fr: "Sondeur", de: "Echolot", nl: "Dieptemeter", it: "Ecoscandaglio", ru: "Ehkholot", ca: "Sonda",
+  Sonda: {
+    en: "Fish finder",
+    fr: "Sondeur",
+    de: "Echolot",
+    nl: "Dieptemeter",
+    it: "Ecoscandaglio",
+    ru: "Ehkholot",
+    ca: "Sonda",
   },
-  "GPS": {
-    en: "GPS", fr: "GPS", de: "GPS", nl: "GPS", it: "GPS", ru: "GPS", ca: "GPS",
+  GPS: {
+    en: "GPS",
+    fr: "GPS",
+    de: "GPS",
+    nl: "GPS",
+    it: "GPS",
+    ru: "GPS",
+    ca: "GPS",
   },
-  "Ducha": {
-    en: "Shower", fr: "Douche", de: "Dusche", nl: "Douche", it: "Doccia", ru: "Dush", ca: "Dutxa",
+  Ducha: {
+    en: "Shower",
+    fr: "Douche",
+    de: "Dusche",
+    nl: "Douche",
+    it: "Doccia",
+    ru: "Dush",
+    ca: "Dutxa",
   },
   "Toldo bimini": {
-    en: "Bimini top", fr: "Taud bimini", de: "Bimini-Verdeck", nl: "Bimini-kap", it: "Tendalino bimini", ru: "Tent bimini", ca: "Tendal bimini",
+    en: "Bimini top",
+    fr: "Taud bimini",
+    de: "Bimini-Verdeck",
+    nl: "Bimini-kap",
+    it: "Tendalino bimini",
+    ru: "Tent bimini",
+    ca: "Tendal bimini",
   },
-  "Nevera": {
-    en: "Cooler", fr: "Glaciere", de: "Kuehlbox", nl: "Koelbox", it: "Frigo portatile", ru: "Kholodil'nik", ca: "Nevera",
+  Nevera: {
+    en: "Cooler",
+    fr: "Glaciere",
+    de: "Kuehlbox",
+    nl: "Koelbox",
+    it: "Frigo portatile",
+    ru: "Kholodil'nik",
+    ca: "Nevera",
   },
   "Arco de Inox para deportes acuáticos": {
-    en: "Stainless steel arch for water sports", fr: "Arceau inox pour sports nautiques", de: "Edelstahlbuegel fuer Wassersport", nl: "RVS beugel voor watersporten", it: "Arco in acciaio inox per sport acquatici", ru: "Arka iz nerzhaveyushchej stali dlya vodnogo sporta", ca: "Arc d'inox per a esports aquatics",
+    en: "Stainless steel arch for water sports",
+    fr: "Arceau inox pour sports nautiques",
+    de: "Edelstahlbuegel fuer Wassersport",
+    nl: "RVS beugel voor watersporten",
+    it: "Arco in acciaio inox per sport acquatici",
+    ru: "Arka iz nerzhaveyushchej stali dlya vodnogo sporta",
+    ca: "Arc d'inox per a esports aquatics",
   },
   "Solarium en proa y popa": {
-    en: "Sundeck at bow & stern", fr: "Solarium proue et poupe", de: "Sonnendeck Bug & Heck", nl: "Zonnedek voor & achter", it: "Solarium a prua e poppa", ru: "Solyarij na nosu i korme", ca: "Solarium a proa i popa",
+    en: "Sundeck at bow & stern",
+    fr: "Solarium proue et poupe",
+    de: "Sonnendeck Bug & Heck",
+    nl: "Zonnedek voor & achter",
+    it: "Solarium a prua e poppa",
+    ru: "Solyarij na nosu i korme",
+    ca: "Solarium a proa i popa",
   },
   "Toldo bimini inox": {
-    en: "Stainless steel bimini top", fr: "Taud bimini inox", de: "Edelstahl-Bimini-Verdeck", nl: "RVS bimini-kap", it: "Tendalino bimini inox", ru: "Tent bimini iz nerzhaveyushchej stali", ca: "Tendal bimini inox",
+    en: "Stainless steel bimini top",
+    fr: "Taud bimini inox",
+    de: "Edelstahl-Bimini-Verdeck",
+    nl: "RVS bimini-kap",
+    it: "Tendalino bimini inox",
+    ru: "Tent bimini iz nerzhaveyushchej stali",
+    ca: "Tendal bimini inox",
   },
   "Mesa en popa y/o proa": {
-    en: "Table at stern and/or bow", fr: "Table en poupe et/ou proue", de: "Tisch am Heck und/oder Bug", nl: "Tafel op achter- en/of voordek", it: "Tavolo a poppa e/o prua", ru: "Stol na korme i/ili nosu", ca: "Taula a popa i/o proa",
+    en: "Table at stern and/or bow",
+    fr: "Table en poupe et/ou proue",
+    de: "Tisch am Heck und/oder Bug",
+    nl: "Tafel op achter- en/of voordek",
+    it: "Tavolo a poppa e/o prua",
+    ru: "Stol na korme i/ili nosu",
+    ca: "Taula a popa i/o proa",
   },
   "Ducha de agua dulce": {
-    en: "Freshwater shower", fr: "Douche eau douce", de: "Suesswasserdusche", nl: "Zoetwaterdouche", it: "Doccia acqua dolce", ru: "Dush s presnoj vodoj", ca: "Dutxa d'aigua dolca",
+    en: "Freshwater shower",
+    fr: "Douche eau douce",
+    de: "Suesswasserdusche",
+    nl: "Zoetwaterdouche",
+    it: "Doccia acqua dolce",
+    ru: "Dush s presnoj vodoj",
+    ca: "Dutxa d'aigua dolca",
   },
   "Mando electrónico": {
-    en: "Electronic throttle", fr: "Commande electronique", de: "Elektronische Steuerung", nl: "Elektronische bediening", it: "Comando elettronico", ru: "Ehlektronnoe upravlenie", ca: "Comandament electronic",
+    en: "Electronic throttle",
+    fr: "Commande electronique",
+    de: "Elektronische Steuerung",
+    nl: "Elektronische bediening",
+    it: "Comando elettronico",
+    ru: "Ehlektronnoe upravlenie",
+    ca: "Comandament electronic",
   },
-  "Bichero": {
-    en: "Boat hook", fr: "Gaffe", de: "Bootshaken", nl: "Bootshaak", it: "Mezzo marinaio", ru: "Bagor", ca: "Bitxero",
+  Bichero: {
+    en: "Boat hook",
+    fr: "Gaffe",
+    de: "Bootshaken",
+    nl: "Bootshaak",
+    it: "Mezzo marinaio",
+    ru: "Bagor",
+    ca: "Bitxero",
   },
-  "Cabos": {
-    en: "Ropes", fr: "Cordages", de: "Leinen", nl: "Lijnen", it: "Cavi", ru: "Kanaty", ca: "Caps",
+  Cabos: {
+    en: "Ropes",
+    fr: "Cordages",
+    de: "Leinen",
+    nl: "Lijnen",
+    it: "Cavi",
+    ru: "Kanaty",
+    ca: "Caps",
   },
-  "Defensas": {
-    en: "Fenders", fr: "Defenses", de: "Fender", nl: "Stootkussens", it: "Parabordi", ru: "Kendery", ca: "Defenses",
+  Defensas: {
+    en: "Fenders",
+    fr: "Defenses",
+    de: "Fender",
+    nl: "Stootkussens",
+    it: "Parabordi",
+    ru: "Kendery",
+    ca: "Defenses",
   },
   "Apta para deportes náuticos": {
-    en: "Suitable for water sports", fr: "Adaptee aux sports nautiques", de: "Geeignet fuer Wassersport", nl: "Geschikt voor watersporten", it: "Adatta per sport acquatici", ru: "Podkhodit dlya vodnogo sporta", ca: "Apta per a esports nautics",
+    en: "Suitable for water sports",
+    fr: "Adaptee aux sports nautiques",
+    de: "Geeignet fuer Wassersport",
+    nl: "Geschikt voor watersporten",
+    it: "Adatta per sport acquatici",
+    ru: "Podkhodit dlya vodnogo sporta",
+    ca: "Apta per a esports nautics",
   },
 
   // Extras names live in a shared util (client/src/utils/extraNameTranslations.ts)
@@ -337,13 +673,31 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
 
   // === Hardcoded UI strings ===
   "Ver galería de fotos de clientes": {
-    en: "View customer photo gallery", fr: "Voir la galerie photos clients", de: "Kundenfotogalerie ansehen", nl: "Bekijk klantenfotogalerij", it: "Vedi galleria foto clienti", ru: "Smotret' galereyu foto klientov", ca: "Veure galeria de fotos de clients",
+    en: "View customer photo gallery",
+    fr: "Voir la galerie photos clients",
+    de: "Kundenfotogalerie ansehen",
+    nl: "Bekijk klantenfotogalerij",
+    it: "Vedi galleria foto clienti",
+    ru: "Smotret' galereyu foto klientov",
+    ca: "Veure galeria de fotos de clients",
   },
-  "Recomendado": {
-    en: "Recommended", fr: "Recommande", de: "Empfohlen", nl: "Aanbevolen", it: "Consigliato", ru: "Rekomendovano", ca: "Recomanat",
+  Recomendado: {
+    en: "Recommended",
+    fr: "Recommande",
+    de: "Empfohlen",
+    nl: "Aanbevolen",
+    it: "Consigliato",
+    ru: "Rekomendovano",
+    ca: "Recomanat",
   },
   "personas han visto este barco hoy": {
-    en: "people viewed this boat today", fr: "personnes ont vu ce bateau aujourd'hui", de: "Personen haben dieses Boot heute angesehen", nl: "personen hebben deze boot vandaag bekeken", it: "persone hanno visto questa barca oggi", ru: "chelovek smotreli ehtu lodku segodnya", ca: "persones han vist aquest vaixell avui",
+    en: "people viewed this boat today",
+    fr: "personnes ont vu ce bateau aujourd'hui",
+    de: "Personen haben dieses Boot heute angesehen",
+    nl: "personen hebben deze boot vandaag bekeken",
+    it: "persone hanno visto questa barca oggi",
+    ru: "chelovek smotreli ehtu lodku segodnya",
+    ca: "persones han vist aquest vaixell avui",
   },
 };
 
@@ -365,15 +719,25 @@ function translateBoatSpec(value: string, lang: string): string {
   let out = value;
   out = out.replace(/(\d+)\s*Personas?/g, (_, n) => {
     const map: Record<string, string> = {
-      en: `${n} people`, fr: `${n} personnes`, de: `${n} Personen`,
-      nl: `${n} personen`, it: `${n} persone`, ru: `${n} человек`, ca: `${n} persones`,
+      en: `${n} people`,
+      fr: `${n} personnes`,
+      de: `${n} Personen`,
+      nl: `${n} personen`,
+      it: `${n} persone`,
+      ru: `${n} человек`,
+      ca: `${n} persones`,
     };
     return map[lang] ?? `${n} Personas`;
   });
   out = out.replace(/Gasolina\s+(\d+)\s*L/gi, (_, n) => {
     const map: Record<string, string> = {
-      en: `Petrol ${n}L`, fr: `Essence ${n}L`, de: `Benzin ${n}L`,
-      nl: `Benzine ${n}L`, it: `Benzina ${n}L`, ru: `Бензин ${n}L`, ca: `Gasolina ${n}L`,
+      en: `Petrol ${n}L`,
+      fr: `Essence ${n}L`,
+      de: `Benzin ${n}L`,
+      nl: `Benzine ${n}L`,
+      it: `Benzina ${n}L`,
+      ru: `Бензин ${n}L`,
+      ca: `Gasolina ${n}L`,
     };
     return map[lang] ?? `Gasolina ${n}L`;
   });
@@ -397,7 +761,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const touchStartX = useRef<number | null>(null);
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
-  useScrollDepthTracking('boat_detail');
+  useScrollDepthTracking("boat_detail");
   const seasonPeriods: Record<string, string> = {
     BAJA: t.boatDetail.periodLow,
     MEDIA: t.boatDetail.periodMid,
@@ -414,16 +778,25 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     try {
       const current = parseInt(sessionStorage.getItem("cbrb_boatsViewed") || "0", 10);
       sessionStorage.setItem("cbrb_boatsViewed", String(current + 1));
-    } catch { /* sessionStorage unavailable */ }
+    } catch {
+      /* sessionStorage unavailable */
+    }
   }, [boatId]);
 
   // Show/hide sticky CTA based on scroll position
-  const handleStickyCTAScroll = useCallback((scrollY: number) => setShowStickyCTA(scrollY > 300), []);
+  const handleStickyCTAScroll = useCallback(
+    (scrollY: number) => setShowStickyCTA(scrollY > 300),
+    []
+  );
   useThrottledScroll(handleStickyCTAScroll);
-  
+
   // Fetch boat data from API
-  const { data: boats, isLoading, error } = useQuery<Boat[]>({
-    queryKey: ['/api/boats']
+  const {
+    data: boats,
+    isLoading,
+    error,
+  } = useQuery<Boat[]>({
+    queryKey: ["/api/boats"],
   });
 
   const boatData = useMemo(() => boats?.find(boat => boat.id === boatId), [boats, boatId]);
@@ -442,9 +815,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     if (boatData) {
       const pricing = boatData.pricing as Record<string, { prices: Record<string, number> }> | null;
       const price = pricing ? (getMinActivePrice(pricing.BAJA?.prices) ?? 0) : 0;
-      const licenseType: 'con_licencia' | 'sin_licencia' = boatData.requiresLicense ? 'con_licencia' : 'sin_licencia';
+      const licenseType: "con_licencia" | "sin_licencia" = boatData.requiresLicense
+        ? "con_licencia"
+        : "sin_licencia";
       trackGoogleAdsRemarketing({
-        ecommPageType: 'product',
+        ecommPageType: "product",
         productId: boatId,
         productName: boatData.name,
         productPrice: price,
@@ -453,12 +828,15 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       });
       trackMetaViewContent(boatId, boatData.name, price);
       // GA4 ecommerce view_item
-      trackViewItem({
-        id: boatId,
-        name: boatData.name,
-        specifications: boatData.specifications,
-        requiresLicense: boatData.requiresLicense,
-      }, price);
+      trackViewItem(
+        {
+          id: boatId,
+          name: boatData.name,
+          specifications: boatData.specifications,
+          requiresLicense: boatData.requiresLicense,
+        },
+        price
+      );
     }
   }, [boatData, boatId]);
 
@@ -476,10 +854,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     const currentRequiresLicense = boatData.requiresLicense;
     return boats
       .filter(b => b.id !== boatId)
-      .filter(b => b.requiresLicense === currentRequiresLicense || Math.abs(b.capacity - currentCapacity) <= 2)
+      .filter(
+        b =>
+          b.requiresLicense === currentRequiresLicense ||
+          Math.abs(b.capacity - currentCapacity) <= 2
+      )
       .slice(0, 3);
   }, [boats, boatData, boatId]);
-  
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
@@ -517,25 +899,32 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   };
 
   const handleWhatsApp = () => {
-    const message = `Hola, me interesa el ${boatData.name}. ¿Podrían darme más información?`;
+    const message = t.boatDetail.whatsappPrefill.replace("{boatName}", boatData.name);
     openWhatsApp(message);
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
+    setCurrentImageIndex(prev => (prev + 1) % displayImages.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + displayImages.length) % displayImages.length);
+    setCurrentImageIndex(prev => (prev - 1 + displayImages.length) % displayImages.length);
   };
 
   // SEO data for this boat
-  const lowestPrice = boatData.pricing ? (getMinActivePrice(boatData.pricing.BAJA?.prices) ?? 0) : 0;
-  const requiresLicense = boatData.subtitle?.toLowerCase().includes("con licencia") ?? boatData.requiresLicense;
-  const fuelNotIncluded = boatData.features?.some((f: string) => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) ?? false;
+  const lowestPrice = boatData.pricing
+    ? (getMinActivePrice(boatData.pricing.BAJA?.prices) ?? 0)
+    : 0;
+  const requiresLicense =
+    boatData.subtitle?.toLowerCase().includes("con licencia") ?? boatData.requiresLicense;
+  const fuelNotIncluded =
+    boatData.features?.some((f: string) => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) ??
+    false;
   const fuelIncluded = !requiresLicense && !fuelNotIncluded;
-  const capacity = boatData.specifications ? parseInt(boatData.specifications.capacity?.split(' ')[0] || String(boatData.capacity)) : boatData.capacity;
-  
+  const capacity = boatData.specifications
+    ? parseInt(boatData.specifications.capacity?.split(" ")[0] || String(boatData.capacity))
+    : boatData.capacity;
+
   const licenseLabels: Record<string, [string, string]> = {
     es: ["con licencia", "sin licencia"],
     en: ["with license", "without license"],
@@ -568,16 +957,16 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     fuelStatus: fuelIncluded ? fuelInc : fuelApart,
   };
 
-  const seoPageKey = boatId === "excursion-privada" ? 'excursionDetail' : 'boatDetail';
+  const seoPageKey = boatId === "excursion-privada" ? "excursionDetail" : "boatDetail";
   const seoConfig = getSEOConfig(seoPageKey, language, dynamicSEOData);
   const hreflangLinks = generateHreflangLinks(seoPageKey, boatId);
   const canonical = generateCanonicalUrl(seoPageKey, language, boatId);
-  
+
   // Enhanced Product JSON-LD schema with breadcrumbs
   const makeAbsoluteUrl = (url: string): string => {
     const resolved = getBoatImage(url);
-    if (resolved.startsWith('http')) return resolved;
-    if (resolved.startsWith('/')) return `${window.location.origin}${resolved}`;
+    if (resolved.startsWith("http")) return resolved;
+    if (resolved.startsWith("/")) return `${window.location.origin}${resolved}`;
     return `${window.location.origin}/${resolved}`;
   };
 
@@ -593,7 +982,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     power: parseInt(boatData.specifications?.engine?.match(/\d+/)?.[0] || "15"),
     capacity: capacity,
     pricePerHour: lowestPrice,
-    year: new Date().getFullYear() - 2 // Assuming boats are ~2 years old
+    year: new Date().getFullYear() - 2, // Assuming boats are ~2 years old
   };
 
   const baseProductSchema = generateEnhancedProductSchema(adaptedBoatData, language);
@@ -617,7 +1006,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       bestRating: 5,
       worstRating: 1,
     };
-    enhancedProductSchema.review = reviewData.map((r) => ({
+    enhancedProductSchema.review = reviewData.map(r => ({
       "@type": "Review",
       author: { "@type": "Person", name: r.name },
       datePublished: `${r.date}-01`,
@@ -641,7 +1030,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         bestRating: 5,
         worstRating: 1,
       },
-      reviewBody: "Experiencia increible navegando por la Costa Brava. El barco estaba en perfecto estado y la atencion fue excelente.",
+      reviewBody:
+        "Experiencia increible navegando por la Costa Brava. El barco estaba en perfecto estado y la atencion fue excelente.",
     };
   }
 
@@ -649,7 +1039,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: t.breadcrumbs.home, url: "/" },
     { name: t.breadcrumbs.fleet, url: "/#fleet" },
-    { name: boatData.name, url: `/barco/${boatId}` }
+    { name: boatData.name, url: `/barco/${boatId}` },
   ]);
 
   // FAQ (visible + FAQPage JSON-LD) — all answers derived from admin-edited
@@ -685,15 +1075,17 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       capacity,
       requiresLicense,
       licenseType: boatData.licenseType,
-      pricing: boatData.pricing as { BAJA?: { prices?: Record<string, number | null | undefined> | null } | null } | null,
+      pricing: boatData.pricing as {
+        BAJA?: { prices?: Record<string, number | null | undefined> | null } | null;
+      } | null,
       included: boatData.included,
     },
-    boatFaqText,
+    boatFaqText
   );
   const boatFaqTitle = buildBoatFaqTitle({ name: boatData.name }, boatFaqText);
   const boatFaqSchema = {
     "@type": "FAQPage",
-    mainEntity: boatFaqItems.map((item) => ({
+    mainEntity: boatFaqItems.map(item => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
@@ -706,11 +1098,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   // Combine schemas using @graph
   const combinedJsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
-      enhancedProductSchema,
-      breadcrumbSchema,
-      boatFaqSchema
-    ]
+    "@graph": [enhancedProductSchema, breadcrumbSchema, boatFaqSchema],
   };
 
   return (
@@ -721,7 +1109,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         keywords={seoConfig.keywords}
         canonical={canonical}
         hreflang={hreflangLinks}
-        ogImage={getBoatImage(boatData.imageUrl || '')}
+        ogImage={getBoatImage(boatData.imageUrl || "")}
         ogType="product"
         jsonLd={combinedJsonLd}
       />
@@ -760,19 +1148,24 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-8 pb-5 sm:pb-7">
           {/* License badge */}
           <div className="mb-2">
-            <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${
-              requiresLicense
-                ? "bg-primary/90 text-white"
-                : "bg-primary/80 text-white"
-            }`}>
+            <span
+              className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${
+                requiresLicense ? "bg-primary/90 text-white" : "bg-primary/80 text-white"
+              }`}
+            >
               {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
             </span>
           </div>
           <h1 className="font-heading font-bold text-white text-2xl sm:text-3xl md:text-4xl leading-tight mb-1">
-            {boatData.name} <span className="font-normal text-white/80 text-lg sm:text-xl md:text-2xl">— Blanes, Costa Brava</span>
+            {boatData.name}{" "}
+            <span className="font-normal text-white/80 text-lg sm:text-xl md:text-2xl">
+              · {t.boatDetail.locationSuffix}
+            </span>
           </h1>
           <div className="flex flex-wrap items-center gap-3 mt-2">
-            <p className="text-white/80 text-sm sm:text-base">{translateBoatText(boatData.subtitle || '', language)}</p>
+            <p className="text-white/80 text-sm sm:text-base">
+              {translateBoatText(boatData.subtitle || "", language)}
+            </p>
             {lowestPrice > 0 && (
               <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5">
                 <span className="text-white/80 text-xs">{t.boats.from}</span>
@@ -809,18 +1202,25 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       {/* TrustBadges moved inside description card below */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-6 sm:pb-8">
-
         {/* Image and Description Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Left Column - Image Gallery Carousel */}
-          <div className="bg-background rounded-xl overflow-hidden shadow-lg">
+          <div className="bg-background rounded-xl overflow-hidden border border-card-border">
             <div
               className="relative group"
-              onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
-              onTouchEnd={(e) => {
+              onTouchStart={e => {
+                touchStartX.current = e.touches[0].clientX;
+              }}
+              onTouchEnd={e => {
                 if (touchStartX.current === null || displayImages.length <= 1) return;
                 const delta = touchStartX.current - e.changedTouches[0].clientX;
-                if (Math.abs(delta) > 50) { if (delta > 0) { nextImage(); } else { prevImage(); } }
+                if (Math.abs(delta) > 50) {
+                  if (delta > 0) {
+                    nextImage();
+                  } else {
+                    prevImage();
+                  }
+                }
                 touchStartX.current = null;
               }}
             >
@@ -842,7 +1242,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <Eye className="w-3 h-3 inline mr-1" />
                 {t.boatDetail.imageAria}
               </div>
-              
+
               {/* Navigation arrows - only show if more than one image */}
               {displayImages.length > 1 && (
                 <>
@@ -868,7 +1268,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </Button>
                 </>
               )}
-              
+
               {/* Image counter */}
               {displayImages.length > 1 && (
                 <div className="absolute bottom-2 right-2 bg-foreground/70 text-white px-3 py-1 rounded-full text-sm">
@@ -876,7 +1276,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 </div>
               )}
             </div>
-            
+
             {/* Thumbnails: dots on mobile, image strip on desktop */}
             {displayImages.length > 1 && (
               <div className="bg-muted px-4 py-3">
@@ -888,8 +1288,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       onClick={() => setCurrentImageIndex(index)}
                       className={`h-3 rounded-full transition-all ${
                         index === currentImageIndex
-                          ? 'bg-primary w-8'
-                          : 'w-3 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                          ? "bg-primary w-8"
+                          : "w-3 bg-muted-foreground/30 hover:bg-muted-foreground/50"
                       }`}
                       aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
                       data-testid={`button-thumbnail-${index}`}
@@ -904,8 +1304,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       onClick={() => setCurrentImageIndex(index)}
                       className={`flex-shrink-0 w-20 h-14 rounded overflow-hidden border-2 transition-all ${
                         index === currentImageIndex
-                          ? 'border-primary ring-2 ring-primary/30'
-                          : 'border-transparent hover:border-muted-foreground/30 opacity-70 hover:opacity-100'
+                          ? "border-primary ring-2 ring-primary/30"
+                          : "border-transparent hover:border-muted-foreground/30 opacity-70 hover:opacity-100"
                       }`}
                       aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
                       data-testid={`button-thumbnail-${index}`}
@@ -965,13 +1365,18 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <Card className="mb-6 sm:mb-8">
           <CardContent className="p-6">
             <div className="text-center space-y-4">
-              <h3 className="text-xl font-bold text-foreground">{t.boatDetail.readyForAdventure}</h3>
-              <p className="text-muted-foreground">{t.boatDetail.bookNowCTA.replace('{boatName}', boatData.name)}</p>
-              
+              <h3 className="text-xl font-bold text-foreground">
+                {t.boatDetail.readyForAdventure}
+              </h3>
+              <p className="text-muted-foreground">
+                {t.boatDetail.bookNowCTA.replace("{boatName}", boatData.name)}
+              </p>
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   onClick={() => handleReservation()}
-                  className="bg-primary hover:bg-primary/90 text-white px-8 py-3 transition-colors"
+                  variant="outline"
+                  className="px-8 py-3 transition-colors"
                   data-testid="button-make-reservation"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
@@ -995,43 +1400,67 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             {boatData.pricing && (
               <>
                 <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                  {(["BAJA", "MEDIA", "ALTA"] as const).filter(s => s in boatData.pricing!).map((season) => {
-                    const seasonNames: Record<string, string> = { BAJA: t.boatDetail.seasonLow, MEDIA: t.boatDetail.seasonMid, ALTA: t.boatDetail.seasonHigh };
-                    return (
-                      <Button
-                        key={season}
-                        variant={selectedSeason === season ? "default" : "outline"}
-                        onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
-                        className="text-sm"
-                        data-testid={`button-season-${season.toLowerCase()}`}
-                      >
-                        {seasonNames[season] || season}
-                      </Button>
-                    );
-                  })}
+                  {(["BAJA", "MEDIA", "ALTA"] as const)
+                    .filter(s => s in boatData.pricing!)
+                    .map(season => {
+                      const seasonNames: Record<string, string> = {
+                        BAJA: t.boatDetail.seasonLow,
+                        MEDIA: t.boatDetail.seasonMid,
+                        ALTA: t.boatDetail.seasonHigh,
+                      };
+                      return (
+                        <Button
+                          key={season}
+                          variant={selectedSeason === season ? "default" : "outline"}
+                          onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
+                          className="text-sm"
+                          data-testid={`button-season-${season.toLowerCase()}`}
+                        >
+                          {seasonNames[season] || season}
+                        </Button>
+                      );
+                    })}
                 </div>
 
                 {/* Selected Season Details */}
                 <div className="bg-muted rounded-lg p-4 mb-4 text-center">
-                  <h4 className="font-medium mb-2">{{ BAJA: t.boatDetail.seasonLow, MEDIA: t.boatDetail.seasonMid, ALTA: t.boatDetail.seasonHigh }[selectedSeason]}</h4>
-                  <p className="text-sm text-muted-foreground mb-4">{seasonPeriods[selectedSeason]}</p>
-                  
+                  <h4 className="font-medium mb-2">
+                    {
+                      {
+                        BAJA: t.boatDetail.seasonLow,
+                        MEDIA: t.boatDetail.seasonMid,
+                        ALTA: t.boatDetail.seasonHigh,
+                      }[selectedSeason]
+                    }
+                  </h4>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {seasonPeriods[selectedSeason]}
+                  </p>
+
                   <div className="flex flex-wrap justify-center gap-4">
-                    {Object.entries(filterActivePrices(boatData.pricing[selectedSeason].prices)).sort((a, b) => parseInt(a[0]) - parseInt(b[0])).map(([duration, price]) => {
-                      const isRecommended = !requiresLicense && duration === "4h";
-                      return (
-                        <div key={duration} className={`relative text-center p-3 rounded-lg min-w-[120px] transition-all cursor-pointer ${isRecommended ? "bg-background border-2 border-primary shadow-md scale-105 hover:shadow-lg ring-3 ring-cta/35" : "bg-background border hover:bg-primary/5"}`}
-                        >
-                          {isRecommended && (
-                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide shadow-sm">
-                              {translateBoatText("Recomendado", language)}
-                            </span>
-                          )}
-                          <div className={`font-bold ${isRecommended ? "text-xl text-primary" : "text-lg text-primary"}`}>{price}€</div>
-                          <div className="text-sm text-muted-foreground">{duration}</div>
-                        </div>
-                      );
-                    })}
+                    {Object.entries(filterActivePrices(boatData.pricing[selectedSeason].prices))
+                      .sort((a, b) => parseInt(a[0]) - parseInt(b[0]))
+                      .map(([duration, price]) => {
+                        const isRecommended = !requiresLicense && duration === "4h";
+                        return (
+                          <div
+                            key={duration}
+                            className={`relative text-center p-3 rounded-lg min-w-[120px] transition-all cursor-pointer ${isRecommended ? "bg-background border-2 border-primary shadow-md scale-105 hover:shadow-lg ring-3 ring-cta/35" : "bg-background border hover:bg-primary/5"}`}
+                          >
+                            {isRecommended && (
+                              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide shadow-sm">
+                                {translateBoatText("Recomendado", language)}
+                              </span>
+                            )}
+                            <div
+                              className={`font-bold ${isRecommended ? "text-xl text-primary" : "text-lg text-primary"}`}
+                            >
+                              {price}€
+                            </div>
+                            <div className="text-sm text-muted-foreground">{duration}</div>
+                          </div>
+                        );
+                      })}
                   </div>
                 </div>
               </>
@@ -1039,7 +1468,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
             {boatData.included && boatData.included.length > 0 && (
               <div className="text-sm text-muted-foreground text-left md:text-center">
-                <p className="mb-3"><strong>{t.boatDetail.priceIncludes}</strong></p>
+                <p className="mb-3">
+                  <strong>{t.boatDetail.priceIncludes}</strong>
+                </p>
                 <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
                   {boatData.included.map((item, index) => (
                     <div key={index} className="flex items-center">
@@ -1108,14 +1539,19 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </div>
 
             {/* Tab: Características */}
-            <TabsContent value="caracteristicas" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
+            <TabsContent
+              value="caracteristicas"
+              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {boatData.features?.map((feature, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
                     <span className="text-sm">{translateBoatText(feature, language)}</span>
                   </div>
-                )) || <span className="text-sm text-muted-foreground">{t.boatDetail.noFeatures}</span>}
+                )) || (
+                  <span className="text-sm text-muted-foreground">{t.boatDetail.noFeatures}</span>
+                )}
               </div>
               {!requiresLicense && (
                 <div className="mt-6 pt-6 border-t border-border">
@@ -1125,9 +1561,16 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.boatDetail.totalAccessibility}</p>
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                        {t.boatDetail.totalAccessibility}
+                      </p>
                       <div className="space-y-1.5">
-                        {[t.boatDetail.noLicenseNeeded, t.boatDetail.quickLearning, t.boatDetail.lowerCost, t.boatDetail.perfectBeginners].map((item, i) => (
+                        {[
+                          t.boatDetail.noLicenseNeeded,
+                          t.boatDetail.quickLearning,
+                          t.boatDetail.lowerCost,
+                          t.boatDetail.perfectBeginners,
+                        ].map((item, i) => (
                           <div key={i} className="flex items-center">
                             <Star className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
                             <span className="text-sm">{item}</span>
@@ -1136,7 +1579,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       </div>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.boatDetail.guaranteedFun}</p>
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                        {t.boatDetail.guaranteedFun}
+                      </p>
                       <div className="space-y-1.5">
                         {[
                           { icon: Waves, label: t.boatDetail.accessCoves },
@@ -1157,7 +1602,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Ficha Técnica */}
-            <TabsContent value="tecnico" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
+            <TabsContent
+              value="tecnico"
+              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { key: "model", icon: Anchor, label: t.boatDetail.specModel },
@@ -1167,44 +1615,82 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   { key: "fuel", icon: Fuel, label: t.boatDetail.specFuel },
                   { key: "capacity", icon: Users, label: t.boatDetail.specCapacity },
                   { key: "deposit", icon: Shield, label: t.boatDetail.specDeposit },
-                ].filter(({ key }) => boatData.specifications?.[key as keyof typeof boatData.specifications]).map(({ key, icon: Icon, label }) => (
-                  <div key={key} className="flex items-center justify-between text-sm py-2 border-b border-border/50 last:border-0">
-                    <div className="flex items-center">
-                      <Icon className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
-                      <span className="font-medium text-foreground/80">{label}</span>
+                ]
+                  .filter(
+                    ({ key }) =>
+                      boatData.specifications?.[key as keyof typeof boatData.specifications]
+                  )
+                  .map(({ key, icon: Icon, label }) => (
+                    <div
+                      key={key}
+                      className="flex items-center justify-between text-sm py-2 border-b border-border/50 last:border-0"
+                    >
+                      <div className="flex items-center">
+                        <Icon className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
+                        <span className="font-medium text-foreground/80">{label}</span>
+                      </div>
+                      <span className="text-foreground font-medium">
+                        {translateBoatSpec(
+                          boatData.specifications![key as keyof typeof boatData.specifications] ??
+                            "",
+                          language
+                        )}
+                      </span>
                     </div>
-                    <span className="text-foreground font-medium">{translateBoatSpec(boatData.specifications![key as keyof typeof boatData.specifications] ?? '', language)}</span>
-                  </div>
-                ))}
+                  ))}
               </div>
             </TabsContent>
 
             {/* Tab: Equipamiento */}
-            <TabsContent value="equipamiento" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
+            <TabsContent
+              value="equipamiento"
+              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {boatData.equipment?.map((item, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
                     <span className="text-sm">{translateBoatText(item, language)}</span>
                   </div>
-                )) || <span className="text-sm text-muted-foreground">{t.boatDetail.noEquipment}</span>}
+                )) || (
+                  <span className="text-sm text-muted-foreground">{t.boatDetail.noEquipment}</span>
+                )}
               </div>
             </TabsContent>
 
             {/* Tab: Extras */}
-            <TabsContent value="extras" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
+            <TabsContent
+              value="extras"
+              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+            >
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {boatData.extras?.map((extra, index) => {
                   const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
-                    Parking: ParkingIcon, CircleParking: ParkingIcon, PaddleSurf: PaddleSurfIcon, Waves: PaddleSurfIcon, Nevera: NeveraIcon, Snowflake: NeveraIcon, Bebidas: BebidasIcon, Beer: BebidasIcon, Snorkel: SnorkelIcon, Eye: SnorkelIcon, Seascooter: SeascooterIcon, Zap: SeascooterIcon
+                    Parking: ParkingIcon,
+                    CircleParking: ParkingIcon,
+                    PaddleSurf: PaddleSurfIcon,
+                    Waves: PaddleSurfIcon,
+                    Nevera: NeveraIcon,
+                    Snowflake: NeveraIcon,
+                    Bebidas: BebidasIcon,
+                    Beer: BebidasIcon,
+                    Snorkel: SnorkelIcon,
+                    Eye: SnorkelIcon,
+                    Seascooter: SeascooterIcon,
+                    Zap: SeascooterIcon,
                   };
                   const IconComponent = iconMap[extra.icon] || Star;
                   return (
-                    <div key={index} className="text-center p-4 border border-border rounded-xl hover:bg-muted transition-colors">
+                    <div
+                      key={index}
+                      className="text-center p-4 border border-border rounded-xl hover:bg-muted transition-colors"
+                    >
                       <div className="flex justify-center mb-2">
                         <IconComponent className="w-8 h-8 text-primary" />
                       </div>
-                      <div className="font-medium text-sm text-foreground">{translateExtraName(extra.name, language)}</div>
+                      <div className="font-medium text-sm text-foreground">
+                        {translateExtraName(extra.name, language)}
+                      </div>
                       <div className="text-primary font-bold text-sm mt-0.5">{extra.price}</div>
                     </div>
                   );
@@ -1214,14 +1700,30 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Información */}
-            <TabsContent value="info" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
+            <TabsContent
+              value="info"
+              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+            >
               <div className="text-sm text-foreground/80 space-y-2 mb-4">
-                <p>• <strong>{t.boatDetail.essentialDoc}</strong>{requiresLicense ? t.boatDetail.essentialDocLicense : ""}</p>
-                <p>• {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}</p>
-                <p>• {t.boatDetail.idealForGroups.replace('{capacity}', String(capacity))}</p>
+                <p>
+                  • <strong>{t.boatDetail.essentialDoc}</strong>
+                  {requiresLicense ? t.boatDetail.essentialDocLicense : ""}
+                </p>
+                <p>
+                  •{" "}
+                  {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}
+                </p>
+                <p>• {t.boatDetail.idealForGroups.replace("{capacity}", String(capacity))}</p>
                 <p>• {t.boatDetail.perfectExplore}</p>
-                <p>• {fuelIncluded ? t.boatDetail.fuelInsuranceIncluded : t.boatDetail.fuelNotIncluded}</p>
-                {boatData.specifications?.deposit && <p>• {t.boatDetail.specDeposit} {boatData.specifications.deposit}</p>}
+                <p>
+                  •{" "}
+                  {fuelIncluded ? t.boatDetail.fuelInsuranceIncluded : t.boatDetail.fuelNotIncluded}
+                </p>
+                {boatData.specifications?.deposit && (
+                  <p>
+                    • {t.boatDetail.specDeposit} {boatData.specifications.deposit}
+                  </p>
+                )}
               </div>
               {/* What to bring section */}
               <div className="mt-4 pt-4 border-t border-border">
@@ -1248,7 +1750,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <strong>{t.boatDetail.conditions}</strong>{" "}
                   <button
                     onClick={() => {
-                      const targetSection = requiresLicense ? "embarcaciones-con-licencia" : "embarcaciones-sin-licencia";
+                      const targetSection = requiresLicense
+                        ? "embarcaciones-con-licencia"
+                        : "embarcaciones-sin-licencia";
                       setLocation(localizedPath("termsConditions"));
                       setTimeout(() => {
                         const element = document.getElementById(targetSection);
@@ -1268,7 +1772,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
           </Tabs>
         </Card>
-
       </div>
 
       {/* Related Boats Section */}
@@ -1279,10 +1782,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               {t.relatedBoats.title}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedBoats.map((relBoat) => {
-                const relPrice = relBoat.pricing ? (getMinActivePrice(relBoat.pricing.BAJA?.prices) ?? 0) : 0;
+              {relatedBoats.map(relBoat => {
+                const relPrice = relBoat.pricing
+                  ? (getMinActivePrice(relBoat.pricing.BAJA?.prices) ?? 0)
+                  : 0;
                 const relCapacity = relBoat.specifications
-                  ? parseInt(relBoat.specifications.capacity?.split(' ')[0] || String(relBoat.capacity))
+                  ? parseInt(
+                      relBoat.specifications.capacity?.split(" ")[0] || String(relBoat.capacity)
+                    )
                   : relBoat.capacity;
                 return (
                   <a
@@ -1290,9 +1797,16 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     href={localizedPath("boatDetail", relBoat.id)}
                     className="group bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-border"
                   >
-                    <div className="relative overflow-hidden boat-image-reveal" style={{ aspectRatio: '4/3' }}>
+                    <div
+                      className="relative overflow-hidden boat-image-reveal"
+                      style={{ aspectRatio: "4/3" }}
+                    >
                       <img
-                        src={relBoat.imageGallery?.find((img: string) => !img.includes('portrait')) || relBoat.imageGallery?.[0] || getBoatImage(relBoat.imageUrl || '')}
+                        src={
+                          relBoat.imageGallery?.find((img: string) => !img.includes("portrait")) ||
+                          relBoat.imageGallery?.[0] ||
+                          getBoatImage(relBoat.imageUrl || "")
+                        }
                         alt={getBoatAltText(relBoat.name)}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         width={400}
@@ -1302,17 +1816,21 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       />
                     </div>
                     <div className="p-4">
-                      <h3 className="font-heading font-semibold text-foreground mb-1">{relBoat.name}</h3>
+                      <h3 className="font-heading font-semibold text-foreground mb-1">
+                        {relBoat.name}
+                      </h3>
                       <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
                         <span className="flex items-center gap-1">
                           <Users className="w-3.5 h-3.5" />
                           {relCapacity} pax
                         </span>
-                        <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                          relBoat.requiresLicense
-                            ? 'bg-primary/10 text-primary'
-                            : 'bg-primary/10 text-primary'
-                        }`}>
+                        <span
+                          className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                            relBoat.requiresLicense
+                              ? "bg-primary/10 text-primary"
+                              : "bg-primary/10 text-primary"
+                          }`}
+                        >
                           {relBoat.requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
                         </span>
                       </div>
@@ -1338,9 +1856,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       {/* FAQ Section — items come from shared/boatFaqBuilder, derived from admin data */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
-          {boatFaqTitle}
-        </h2>
+        <h2 className="text-2xl font-heading font-bold text-foreground mb-6">{boatFaqTitle}</h2>
         <div className="space-y-4 max-w-3xl">
           {boatFaqItems.map((item, idx) => (
             <details key={idx} className="group border border-border rounded-lg">
@@ -1348,9 +1864,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 {item.question}
                 <ChevronRight className="w-4 h-4 transition-transform duration-200 group-open:rotate-90" />
               </summary>
-              <div className="px-4 pb-4 text-muted-foreground">
-                {item.answer}
-              </div>
+              <div className="px-4 pb-4 text-muted-foreground">{item.answer}</div>
             </details>
           ))}
         </div>
@@ -1370,7 +1884,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             className="flex-1 bg-primary text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2"
           >
             <Calendar className="w-4 h-4" />
-            <span>{t.hero.bookNow} {lowestPrice > 0 ? `· ${t.boats.from} ${lowestPrice}€` : ""}</span>
+            <span>
+              {t.hero.bookNow} {lowestPrice > 0 ? `· ${t.boats.from} ${lowestPrice}€` : ""}
+            </span>
           </button>
           <a
             href={`https://wa.me/34611500372?text=${encodeURIComponent(`Hola, me interesa el ${boatData.name}. ¿Podrían darme más información?`)}`}

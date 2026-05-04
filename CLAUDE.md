@@ -51,7 +51,8 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 |------|------|-------------|
 | Paginas publicas | `pages/*.tsx` | 37 paginas (10 locations, 4 activities, 2 categories, blog, FAQ, about, etc.) |
 | Componentes | `components/*.tsx` | Componentes publicos (Hero, Fleet, Booking, Navigation, etc.) |
-| Booking flow | `components/booking-flow/` | Wizard de reserva split en 8 steps |
+| Booking flow (modal del Hero) | `BookingFormWidget.tsx` → `BookingWizardMobile.tsx` / `BookingFormDesktop.tsx` | Wizard de 4 steps (barco / viaje / datos / confirmar). Lazy-loaded via `useBookingModal`. Es lo que abre el CTA del Hero. |
+| Booking flow (ruta separada) | `components/booking-flow/` | Wizard de 3 steps (`Tu plan` / `Tus datos` / `Confirmar`) montado en `App.tsx` como ruta. NO es el del Hero. |
 | Panel admin CRM | `components/crm/` | 25+ componentes (Dashboard, Calendar, Bookings, Fleet, etc.) |
 | UI base | `components/ui/` | Componentes shadcn/ui |
 | Traducciones i18n | `i18n/*.ts` | 8 idiomas (es, en, ca, fr, de, nl, it, ru) |

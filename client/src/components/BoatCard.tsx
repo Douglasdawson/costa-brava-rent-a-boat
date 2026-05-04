@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Anchor, ArrowRight, Fuel, Star, ThumbsUp } from "lucide-react";
+import { Anchor, Fuel, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { getBoatAverageRating } from "@/data/boatRatings";
@@ -95,13 +95,9 @@ const BoatCardPricing = memo(function BoatCardPricing({
         <span className="text-cta font-semibold text-xl">
           {Math.ceil(basePrice / capacity)}&euro;
         </span>
-        <span className="text-xs text-muted-foreground">
-          /{perPersonLabel}
-        </span>
+        <span className="text-xs text-muted-foreground">/{perPersonLabel}</span>
       </div>
-      <span className="text-xs text-muted-foreground">
-        {basePrice}&euro; total
-      </span>
+      <span className="text-xs text-muted-foreground">{basePrice}&euro; total</span>
     </div>
   );
 });
@@ -124,7 +120,7 @@ function BoatCard({
   isPopular,
   isRecommended,
   onBooking,
-  onDetails
+  onDetails,
 }: BoatCardProps) {
   const t = useTranslations();
   const { localizedPath } = useLanguage();
@@ -140,17 +136,20 @@ function BoatCard({
 
   const handleBooking = useCallback(() => onBooking(id), [onBooking, id]);
 
-  const handleDetailsClick = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    handleDetails();
-  }, [handleDetails]);
+  const handleDetailsClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      handleDetails();
+    },
+    [handleDetails]
+  );
 
   return (
-    <Card className={`overflow-hidden boat-card-tilt ${
-      isRecommended
-        ? 'border-cta ring-1 ring-cta/30 shadow-md'
-        : 'hover:border-cta/50 transition-colors'
-    }`}>
+    <Card
+      className={`overflow-hidden boat-card-tilt ${
+        isRecommended ? "border-2 border-cta" : "hover:border-cta/50 transition-colors"
+      }`}
+    >
       <a
         href={localizedPath("boatDetail", id)}
         onClick={handleDetailsClick}
@@ -167,27 +166,19 @@ function BoatCard({
           imageError={imageError}
           onImageError={handleImageError}
         />
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
-          {isPopular && (
-            <div className="inline-flex items-center gap-1 bg-amber-500 text-amber-950 text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
-              <Star className="w-3 h-3 fill-amber-950" />
-              {t.boats.mostPopular}
-            </div>
-          )}
-          {isRecommended && (
-            <div className="inline-flex items-center gap-1 bg-cta text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
-              <ThumbsUp className="w-3 h-3" />
-              {t.recommendation?.recommendedForYou}
-            </div>
-          )}
-          <span className="bg-white/90 backdrop-blur-sm text-slate-800 text-sm font-medium rounded-full px-3 py-1 self-start">
-            {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
-          </span>
-        </div>
-        {!requiresLicense && !features.some(f => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) && (
-          <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-green-600/90 backdrop-blur-sm text-primary-foreground text-xs font-semibold px-2.5 py-1 rounded-full">
-            <Fuel className="w-3 h-3" />
-            {t.boatDetail.fuelIncluded}
+        {(isRecommended || isPopular) && (
+          <div className="absolute top-3 left-3 z-10">
+            {isRecommended ? (
+              <div className="inline-flex items-center gap-1 bg-cta text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
+                <ThumbsUp className="w-3 h-3" />
+                {t.recommendation?.recommendedForYou}
+              </div>
+            ) : (
+              <div className="inline-flex items-center gap-1 bg-amber-500 text-amber-950 text-xs font-bold px-2.5 py-1 rounded-full">
+                <Star className="w-3 h-3 fill-amber-950" />
+                {t.boats.mostPopular}
+              </div>
+            )}
           </div>
         )}
       </a>
@@ -224,21 +215,31 @@ function BoatCard({
 
         <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{description}</p>
 
-        <p className="text-xs xs:text-sm text-muted-foreground mb-2">
-          {capacity} {t.boats.people}{enginePower ? ` | ${enginePower}` : ''}{` | ${requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}`}
+        <p className="text-xs xs:text-sm text-muted-foreground mb-2 inline-flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
+          <span>
+            {capacity} {t.boats.people}
+          </span>
+          {enginePower && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>{enginePower}</span>
+            </>
+          )}
+          <span aria-hidden="true">·</span>
+          <span>{requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}</span>
+          {!requiresLicense &&
+            !features.some(f => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span className="inline-flex items-center gap-1 text-green-700 dark:text-green-400 font-medium">
+                  <Fuel className="w-3 h-3" aria-hidden="true" />
+                  {t.boatDetail.fuelIncluded}
+                </span>
+              </>
+            )}
         </p>
-
       </CardContent>
-      <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-between gap-2">
-        <a
-          href={localizedPath("boatDetail", id)}
-          onClick={handleDetailsClick}
-          className="details-link text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-3 -my-1 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none rounded"
-          data-testid={`button-details-${id}`}
-          aria-label={`${t.boats.viewDetails} — ${name}`}
-        >
-          {t.boats.viewDetails} <ArrowRight className="w-4 h-4 details-link-arrow" />
-        </a>
+      <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-end">
         <button
           onClick={handleBooking}
           className="bg-cta hover:bg-cta/90 text-primary-foreground text-base font-medium px-6 py-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none transition-colors cta-pulse cta-hover-lift"

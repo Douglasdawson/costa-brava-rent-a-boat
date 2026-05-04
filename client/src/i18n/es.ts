@@ -2225,6 +2225,8 @@ export const es: Translations = {
     back: "Atrás",
     restart: "Empezar de nuevo",
     people: "personas",
+    noMatchTitle: "No encontramos una coincidencia exacta",
+    noMatchCta: "Escríbenos por WhatsApp",
     reasons: {
       "astec-400": "Perfecto para parejas. El mejor precio por persona de toda la flota.",
       "solar-450": "Gran solárium para tomar el sol. Ideal para disfrutar de las calas.",

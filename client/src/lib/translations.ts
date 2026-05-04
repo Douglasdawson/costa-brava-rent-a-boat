@@ -1646,6 +1646,8 @@ export interface Translations {
     back: string;
     restart: string;
     people: string;
+    noMatchTitle?: string;
+    noMatchCta?: string;
     reasons: Record<string, string>;
   };
 

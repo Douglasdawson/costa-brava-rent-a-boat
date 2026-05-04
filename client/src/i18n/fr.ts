@@ -1097,6 +1097,8 @@ export const fr: Translations = {
     back: "Retour",
     restart: "Recommencer",
     people: "personnes",
+    noMatchTitle: "Aucune correspondance exacte",
+    noMatchCta: "Écrivez-nous sur WhatsApp",
     reasons: {
       "astec-400": "Parfait pour les couples. Le meilleur prix par personne de toute la flotte.",
       "solar-450": "Grand bain de soleil pour bronzer. Idéal pour profiter des criques.",

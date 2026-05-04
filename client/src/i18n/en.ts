@@ -1079,6 +1079,8 @@ export const en: Translations = {
     back: "Back",
     restart: "Start over",
     people: "people",
+    noMatchTitle: "No exact match found",
+    noMatchCta: "Message us on WhatsApp",
     reasons: {
       "astec-400": "Perfect for couples. The best price per person in the fleet.",
       "solar-450": "Large sundeck for sunbathing. Ideal to enjoy the coves.",

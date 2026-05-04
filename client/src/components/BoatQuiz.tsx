@@ -46,6 +46,19 @@ function isLicenseFree(boat: BoatData): boolean {
   return boat.subtitle.toLowerCase().startsWith("sin licencia");
 }
 
+// Scoring weights — expressed as constants so edits are traceable.
+const SCORE = {
+  CAPACITY_FITS: 3,        // boat can carry the requested party
+  CAPACITY_EXACT: 2,       // bonus when capacity matches party size exactly
+  CAPACITY_OVERFLOW: -10,  // hard penalty when boat is too small
+  DURATION_MATCH: 3,       // requested duration matches boat's profile
+  DURATION_PARTIAL: 2,     // adjacent duration buckets
+  BUDGET_MATCH: 3,         // budget bucket aligned
+  BUDGET_PARTIAL: 2,       // requested medium budget covers low/medium
+  BUDGET_HIGH_FALLBACK: 1, // user with no budget cap accepts anything
+  PREFER_NO_LICENSE: 1,    // tiebreaker: licence-free is simpler for tourists
+} as const;
+
 function scoreBoat(boat: BoatData, meta: { budget: Budget; duration: Duration }, answers: QuizAnswer): number {
   let score = 0;
   const passengers = answers.passengers || 2;
@@ -53,22 +66,22 @@ function scoreBoat(boat: BoatData, meta: { budget: Budget; duration: Duration },
   const licenseFree = isLicenseFree(boat);
 
   // Capacity fit
-  if (passengers <= capacity) score += 3;
-  if (passengers === capacity) score += 2;
-  if (passengers > capacity) score -= 10;
+  if (passengers <= capacity) score += SCORE.CAPACITY_FITS;
+  if (passengers === capacity) score += SCORE.CAPACITY_EXACT;
+  if (passengers > capacity) score += SCORE.CAPACITY_OVERFLOW;
 
   // Duration preference
-  if (answers.duration === "short" && (meta.duration === "short" || meta.duration === "medium")) score += 2;
-  if (answers.duration === "medium") score += 2;
-  if (answers.duration === "long" && meta.duration === "long") score += 3;
+  if (answers.duration === "short" && (meta.duration === "short" || meta.duration === "medium")) score += SCORE.DURATION_PARTIAL;
+  if (answers.duration === "medium") score += SCORE.DURATION_PARTIAL;
+  if (answers.duration === "long" && meta.duration === "long") score += SCORE.DURATION_MATCH;
 
   // Budget match
-  if (answers.budget === "low" && meta.budget === "low") score += 3;
-  if (answers.budget === "medium" && (meta.budget === "low" || meta.budget === "medium")) score += 2;
-  if (answers.budget === "high") score += 1;
+  if (answers.budget === "low" && meta.budget === "low") score += SCORE.BUDGET_MATCH;
+  if (answers.budget === "medium" && (meta.budget === "low" || meta.budget === "medium")) score += SCORE.BUDGET_PARTIAL;
+  if (answers.budget === "high") score += SCORE.BUDGET_HIGH_FALLBACK;
 
   // Prefer licence-free boats for simplicity
-  if (licenseFree) score += 1;
+  if (licenseFree) score += SCORE.PREFER_NO_LICENSE;
 
   return score;
 }
@@ -207,6 +220,22 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
         <h3 className="font-heading text-xl font-bold">{t.result}</h3>
       </div>
 
+      {recommendations.length === 0 ? (
+        <div className="text-center py-4">
+          <p className="text-sm text-muted-foreground mb-4">
+            {t.noMatchTitle ?? t.subtitle}
+          </p>
+          <a
+            href="https://wa.me/34611500372"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium bg-cta text-cta-foreground hover:bg-cta/90 transition-colors min-h-11"
+          >
+            {t.noMatchCta ?? t.bookNow}
+            <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
+          </a>
+        </div>
+      ) : (
       <div className="space-y-4">
         {recommendations.map((rec, idx) => (
           <div
@@ -247,6 +276,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
           </div>
         ))}
       </div>
+      )}
 
       <button
         onClick={reset}

@@ -1091,6 +1091,8 @@ export const de: Translations = {
     back: "Zurück",
     restart: "Von vorne beginnen",
     people: "Personen",
+    noMatchTitle: "Keine exakte Übereinstimmung gefunden",
+    noMatchCta: "Schreib uns per WhatsApp",
     reasons: {
       "astec-400": "Perfekt für Paare. Der beste Preis pro Person der gesamten Flotte.",
       "solar-450": "Großes Sonnendeck zum Sonnenbaden. Ideal, um die Buchten zu genießen.",

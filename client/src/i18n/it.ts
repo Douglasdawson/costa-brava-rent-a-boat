@@ -1087,6 +1087,8 @@ export const it: Translations = {
     back: "Indietro",
     restart: "Ricomincia",
     people: "persone",
+    noMatchTitle: "Nessuna corrispondenza esatta",
+    noMatchCta: "Scrivici su WhatsApp",
     reasons: {
       "astec-400": "Perfetta per coppie. Il miglior prezzo a persona dell'intera flotta.",
       "solar-450": "Ampio prendisole. Ideale per godersi le calette.",

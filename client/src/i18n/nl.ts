@@ -1086,6 +1086,8 @@ export const nl: Translations = {
     back: "Terug",
     restart: "Opnieuw beginnen",
     people: "personen",
+    noMatchTitle: "Geen exacte match gevonden",
+    noMatchCta: "Stuur ons een bericht via WhatsApp",
     reasons: {
       "astec-400": "Perfect voor stellen. De beste prijs per persoon van de hele vloot.",
       "solar-450": "Groot zonnedek om te zonnebaden. Ideaal om van de baaien te genieten.",

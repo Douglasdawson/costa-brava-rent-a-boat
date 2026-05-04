@@ -1088,6 +1088,8 @@ export const ca: Translations = {
     back: "Enrere",
     restart: "Començar de nou",
     people: "persones",
+    noMatchTitle: "No hem trobat una coincidència exacta",
+    noMatchCta: "Escriu-nos per WhatsApp",
     reasons: {
       "astec-400": "Perfecte per a parelles. El millor preu per persona de tota la flota.",
       "solar-450": "Gran solàrium per prendre el sol. Ideal per gaudir de les cales.",

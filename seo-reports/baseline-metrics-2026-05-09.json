@@ -1,0 +1,99 @@
+{
+  "baseline_date": "2026-05-09",
+  "purpose": "Pre-Fase1 snapshot to measure CTR sprint impact at +14d. Compare against rerun of /tmp/seo-target-urls.sql.",
+  "window": {
+    "from": "2026-04-11",
+    "to": "2026-05-08",
+    "days": 28
+  },
+  "data_availability": {
+    "gsc_days_covered": 24,
+    "ga4_days_covered": 19
+  },
+  "gsc_overview_28d": {
+    "clicks": 106,
+    "impressions": 7164,
+    "ctr_pct": 1.48,
+    "avg_position": 15.07
+  },
+  "ga4_overview_28d": {
+    "sessions": 577,
+    "users": 487,
+    "new_users": 322,
+    "conversions_column": 0,
+    "channels": {
+      "Direct": { "sessions": 268, "users": 225 },
+      "Organic Search": { "sessions": 209, "users": 171 },
+      "Organic Social": { "sessions": 59, "users": 58 },
+      "Referral": { "sessions": 32, "users": 25 },
+      "Unassigned": { "sessions": 9, "users": 8 }
+    }
+  },
+  "ga4_conversion_events_28d": {
+    "whatsapp_click": 58,
+    "booking_started": 29,
+    "generate_lead": 29
+  },
+  "gsc_by_language_28d": {
+    "es-default": { "clicks": 92, "impressions": 4350, "ctr_pct": 2.11, "avg_pos": 8.85 },
+    "es": { "clicks": 14, "impressions": 2088, "ctr_pct": 0.67, "avg_pos": 21.77 },
+    "fr": { "clicks": 0, "impressions": 221, "ctr_pct": 0.00, "avg_pos": 24.15 },
+    "nl": { "clicks": 0, "impressions": 213, "ctr_pct": 0.00, "avg_pos": 28.15 },
+    "en": { "clicks": 0, "impressions": 142, "ctr_pct": 0.00, "avg_pos": 44.00 },
+    "ca": { "clicks": 0, "impressions": 137, "ctr_pct": 0.00, "avg_pos": 43.90 },
+    "de": { "clicks": 0, "impressions": 10, "ctr_pct": 0.00, "avg_pos": 21.10 },
+    "it": { "clicks": 0, "impressions": 3, "ctr_pct": 0.00, "avg_pos": 69.67 }
+  },
+  "gsc_top_pages_28d": [
+    { "page": "/", "clicks": 92, "impressions": 4265, "ctr_pct": 2.16, "avg_pos": 8.28 },
+    { "page": "/es/", "clicks": 13, "impressions": 1786, "ctr_pct": 0.73, "avg_pos": 16.60 },
+    { "page": "/es/alquiler-barcos-lloret-de-mar", "clicks": 1, "impressions": 24, "ctr_pct": 4.17, "avg_pos": 30.67 },
+    { "page": "/fr/", "clicks": 0, "impressions": 113, "ctr_pct": 0.00, "avg_pos": 19.24 },
+    { "page": "/es/barco-familias-costa-brava", "clicks": 0, "impressions": 85, "ctr_pct": 0.00, "avg_pos": 80.19 },
+    { "page": "/fr/tarifs", "clicks": 0, "impressions": 45, "ctr_pct": 0.00, "avg_pos": 28.38 },
+    { "page": "/nl/boot-zonder-vaarbewijs", "clicks": 0, "impressions": 45, "ctr_pct": 0.00, "avg_pos": 22.24 },
+    { "page": "/es/alquiler-barcos-costa-brava", "clicks": 0, "impressions": 43, "ctr_pct": 0.00, "avg_pos": 74.16 },
+    { "page": "/es/alquiler-barcos-tossa-de-mar", "clicks": 0, "impressions": 42, "ctr_pct": 0.00, "avg_pos": 22.52 },
+    { "page": "/nl/boot-huren-lloret-de-mar", "clicks": 0, "impressions": 42, "ctr_pct": 0.00, "avg_pos": 19.43 },
+    { "page": "/en/boats-with-license", "clicks": 0, "impressions": 42, "ctr_pct": 0.00, "avg_pos": 63.29 },
+    { "page": "/fr/location-bateau-blanes", "clicks": 0, "impressions": 42, "ctr_pct": 0.00, "avg_pos": 16.24 },
+    { "page": "/ca/fuegos-artificiales-blanes-2025", "clicks": 0, "impressions": 40, "ctr_pct": 0.00, "avg_pos": 16.60 },
+    { "page": "/en/", "clicks": 0, "impressions": 38, "ctr_pct": 0.00, "avg_pos": 55.34 },
+    { "page": "/es/alquiler-barcos-blanes", "clicks": 0, "impressions": 35, "ctr_pct": 0.00, "avg_pos": 27.89 },
+    { "page": "/nl/", "clicks": 0, "impressions": 32, "ctr_pct": 0.00, "avg_pos": 28.22 },
+    { "page": "/barcos", "clicks": 0, "impressions": 27, "ctr_pct": 0.00, "avg_pos": 65.63 },
+    { "page": "/es/barcos-sin-licencia", "clicks": 0, "impressions": 25, "ctr_pct": 0.00, "avg_pos": 29.08 },
+    { "page": "/ca/motos-de-agua", "clicks": 0, "impressions": 25, "ctr_pct": 0.00, "avg_pos": 55.28 },
+    { "page": "/barco/astec-400", "clicks": 0, "impressions": 23, "ctr_pct": 0.00, "avg_pos": 12.39 }
+  ],
+  "target_queries_per_url_winner": [
+    { "query": "alquiler barco costa brava", "winner_url": "/", "clicks": 4, "impressions": 389, "ctr_pct": 1.03, "pos": 5.77, "secondary": "/es/", "secondary_imp": 203, "secondary_pos": 11.69 },
+    { "query": "alquiler barcos costa brava", "winner_url": "/", "clicks": 2, "impressions": 172, "ctr_pct": 1.16, "pos": 6.02, "secondary": "/es/", "secondary_imp": 61, "secondary_pos": 13.16 },
+    { "query": "rent boat costa brava", "winner_url": "/", "clicks": 1, "impressions": 106, "ctr_pct": 0.94, "pos": 5.92, "secondary": "/es/", "secondary_imp": 52, "secondary_pos": 8.58 },
+    { "query": "alquilar barco costa brava", "winner_url": "/", "clicks": 2, "impressions": 93, "ctr_pct": 2.15, "pos": 7.33, "secondary": "/es/", "secondary_imp": 59, "secondary_pos": 11.86 },
+    { "query": "alquiler barcos sin licencia", "winner_url": "/es/", "clicks": 0, "impressions": 94, "ctr_pct": 0.00, "pos": 22.68, "secondary": "/", "secondary_imp": 54, "secondary_pos": 24.02 },
+    { "query": "boat rental costa brava", "winner_url": "/", "clicks": 2, "impressions": 88, "ctr_pct": 2.27, "pos": 6.70, "secondary": "/es/", "secondary_imp": 29, "secondary_pos": 12.10 },
+    { "query": "costa brava boats", "winner_url": "/", "clicks": 0, "impressions": 72, "ctr_pct": 0.00, "pos": 5.78, "secondary": "/es/", "secondary_imp": 43, "secondary_pos": 8.51 },
+    { "query": "alquiler barco sin licencia", "winner_url": "/es/", "clicks": 0, "impressions": 67, "ctr_pct": 0.00, "pos": 16.73, "secondary": "/", "secondary_imp": 43, "secondary_pos": 12.84 },
+    { "query": "alquiler de barcos costa brava", "winner_url": "/", "clicks": 0, "impressions": 67, "ctr_pct": 0.00, "pos": 4.27, "secondary": "/es/", "secondary_imp": 26, "secondary_pos": 15.00 },
+    { "query": "alquilar barco blanes", "winner_url": "/", "clicks": 1, "impressions": 67, "ctr_pct": 1.49, "pos": 3.49, "secondary": "/es/", "secondary_imp": 31, "secondary_pos": 7.32 },
+    { "query": "location bateau blanes", "winner_url": "/", "clicks": 1, "impressions": 63, "ctr_pct": 1.59, "pos": 2.73, "secondary": "/fr/", "secondary_imp": 23, "secondary_pos": 16.74 },
+    { "query": "location bateau costa brava", "winner_url": "/", "clicks": 0, "impressions": 70, "ctr_pct": 0.00, "pos": 8.09, "secondary": "/es/", "secondary_imp": 13, "secondary_pos": 29.38 },
+    { "query": "alquiler de barcos en blanes", "winner_url": "/", "clicks": 0, "impressions": 50, "ctr_pct": 0.00, "pos": 3.88, "secondary": "/es/", "secondary_imp": 26, "secondary_pos": 10.00 },
+    { "query": "alquiler barco lloret de mar", "winner_url": "/", "clicks": 0, "impressions": 52, "ctr_pct": 0.00, "pos": 8.98, "secondary": "/es/", "secondary_imp": 22, "secondary_pos": 11.00 },
+    { "query": "alquiler barco sin licencia costa brava", "winner_url": "/", "clicks": 0, "impressions": 37, "ctr_pct": 0.00, "pos": 7.11, "secondary": "/es/", "secondary_imp": 35, "secondary_pos": 10.31 },
+    { "query": "barcos costa brava", "winner_url": "/", "clicks": 1, "impressions": 31, "ctr_pct": 3.23, "pos": 8.52, "secondary": "/es/", "secondary_imp": 26, "secondary_pos": 9.58 },
+    { "query": "rent a boat", "winner_url": "/", "clicks": 1, "impressions": 54, "ctr_pct": 1.85, "pos": 10.50, "secondary": "/es/", "secondary_imp": 7, "secondary_pos": 27.86 },
+    { "query": "alquiler barco tossa de mar", "winner_url": "/", "clicks": 0, "impressions": 29, "ctr_pct": 0.00, "pos": 11.83, "secondary": "/es/", "secondary_imp": 17, "secondary_pos": 13.00 }
+  ],
+  "zombie_pages_to_handle_in_F1_4": [
+    "/es/barco-familias-costa-brava (85 imp, pos 80)",
+    "/es/alquiler-barcos-costa-brava (43 imp, pos 74)",
+    "/en/boats-with-license (42 imp, pos 63)",
+    "/en/ (38 imp, pos 55)",
+    "/barcos (27 imp, pos 66)",
+    "/ca/motos-de-agua (25 imp, pos 55)",
+    "/ca/lloguer-vaixell-costa-brava (18 imp, pos 55)"
+  ],
+  "key_insight_for_fase3": "Cannibalization confirmed: for top queries, Google shows BOTH '/' and '/es|/fr|/nl/' as separate SERP results. '/' wins ~95% of clicks but '/es/' has ~30% of impressions of the same query. Fase 3 should consolidate via 301 from / to /:lang/."
+}

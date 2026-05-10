@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from "react";
+import { parseMadridLocal } from "@/lib/madridTz";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -623,7 +624,7 @@ export function BookingStepPersonalize({
                 : null;
               const startTime =
                 selectedDate && selectedTime
-                  ? new Date(`${selectedDate}T${selectedTime}:00`)
+                  ? parseMadridLocal(`${selectedDate}T${selectedTime}:00`)
                   : null;
               trackAddShippingInfo(
                 {

@@ -1,4 +1,5 @@
 import { apiRequest } from "@/lib/queryClient";
+import { parseMadridLocal } from "@/lib/madridTz";
 import {
   trackPurchaseEcommerce,
   trackBookingWithUserData,
@@ -32,7 +33,7 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
     setIsLoading(true);
 
     try {
-      const startDateTime = new Date(`${selectedDate}T${selectedTime}:00`);
+      const startDateTime = parseMadridLocal(`${selectedDate}T${selectedTime}:00`);
       const durationHours = parseInt(duration.replace('h', ''));
       const endDateTime = new Date(startDateTime.getTime() + durationHours * 60 * 60 * 1000);
 
@@ -111,7 +112,7 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
     const peopleCount = customerData.numberOfPeople;
     const dateStr = (() => {
       try {
-        return new Date(`${selectedDate}T${selectedTime || "00:00"}:00`).toLocaleDateString("es-ES", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+        return parseMadridLocal(`${selectedDate}T${selectedTime || "00:00"}:00`).toLocaleDateString("es-ES", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
       } catch { return selectedDate; }
     })();
     const selectedExtraNames = Object.entries(extras)
@@ -204,7 +205,7 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
       // for the WhatsApp message; reuse them here.
       const durationHours = parseInt(duration.replace('h', ''), 10) || null;
       const startTime = (selectedDate && selectedTime)
-        ? new Date(`${selectedDate}T${selectedTime}:00`)
+        ? parseMadridLocal(`${selectedDate}T${selectedTime}:00`)
         : null;
       const timeSlot = deriveTimeSlot(startTime, durationHours);
       const boatLike = {

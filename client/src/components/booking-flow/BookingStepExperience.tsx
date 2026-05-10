@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { parseMadridLocal } from "@/lib/madridTz";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle } from "lucide-react";
 import { getBoatAltText } from "@/utils/boatImages";
@@ -381,7 +382,7 @@ export function BookingStepExperience({
             };
             const durationHours = parseInt(duration.replace('h', ''), 10) || null;
             const startTime = (selectedDate && selectedTime)
-              ? new Date(`${selectedDate}T${selectedTime}:00`)
+              ? parseMadridLocal(`${selectedDate}T${selectedTime}:00`)
               : null;
             const meta = { durationHours, startTime };
             trackAddToCart(boatLike, price, meta);

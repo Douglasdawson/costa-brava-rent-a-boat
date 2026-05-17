@@ -227,7 +227,7 @@ export default function Footer() {
                   href={localizedPath("pricing")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Precios
+                  {t.footer.pricing}
                 </a>
               </li>
               <li>
@@ -274,14 +274,16 @@ export default function Footer() {
               </li>
             </ul>
 
-            <h3 className="font-medium text-primary-foreground mb-4 text-sm mt-8">Destinos</h3>
+            <h3 className="font-medium text-primary-foreground mb-4 text-sm mt-8">
+              {t.footer.locationsHeading}
+            </h3>
             <ul className="space-y-1 text-sm">
               <li>
                 <a
                   href={localizedPath("locationBlanes")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Blanes
+                  {t.footer.locations.blanes}
                 </a>
               </li>
               <li>
@@ -289,7 +291,7 @@ export default function Footer() {
                   href={localizedPath("locationLloret")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Lloret de Mar
+                  {t.footer.locations.lloret}
                 </a>
               </li>
               <li>
@@ -297,7 +299,7 @@ export default function Footer() {
                   href={localizedPath("locationTossa")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Tossa de Mar
+                  {t.footer.locations.tossa}
                 </a>
               </li>
               <li>
@@ -305,7 +307,7 @@ export default function Footer() {
                   href={localizedPath("locationMalgrat")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Malgrat de Mar
+                  {t.footer.locations.malgrat}
                 </a>
               </li>
               <li>
@@ -313,7 +315,7 @@ export default function Footer() {
                   href={localizedPath("locationSantaSusanna")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Santa Susanna
+                  {t.footer.locations.santaSusanna}
                 </a>
               </li>
               <li>
@@ -321,7 +323,7 @@ export default function Footer() {
                   href={localizedPath("locationCalella")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Calella
+                  {t.footer.locations.calella}
                 </a>
               </li>
               <li>
@@ -329,7 +331,7 @@ export default function Footer() {
                   href={localizedPath("locationPinedaDeMar")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Pineda de Mar
+                  {t.footer.locations.pinedaDeMar}
                 </a>
               </li>
               <li>
@@ -337,7 +339,7 @@ export default function Footer() {
                   href={localizedPath("locationPalafolls")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Palafolls
+                  {t.footer.locations.palafolls}
                 </a>
               </li>
               <li>
@@ -345,7 +347,7 @@ export default function Footer() {
                   href={localizedPath("locationTordera")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Tordera
+                  {t.footer.locations.tordera}
                 </a>
               </li>
               <li>
@@ -353,7 +355,7 @@ export default function Footer() {
                   href={localizedPath("locationBarcelona")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Barcelona
+                  {t.footer.locations.barcelona}
                 </a>
               </li>
               <li>
@@ -361,7 +363,7 @@ export default function Footer() {
                   href={localizedPath("locationCostaBrava")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Costa Brava
+                  {t.footer.locations.costaBrava}
                 </a>
               </li>
             </ul>
@@ -391,7 +393,7 @@ export default function Footer() {
                   href={localizedPath("locationBarcelona")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
-                  Barcos cerca de Barcelona
+                  {t.footer.boatsNearBarcelona}
                 </a>
               </li>
             </ul>

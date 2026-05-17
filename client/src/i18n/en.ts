@@ -252,6 +252,23 @@ export const en: Translations = {
     independentOperator: "Our own operation · Port of Blanes",
     nameDifferentiator:
       "Costa Brava Rent a Boat is an independent company. Not to be confused with other operators of similar name.",
+    // GSC 2026-05-17: SEO rich anchor texts para reforzar señal a landings locales
+    locationsHeading: "Boat rental by location",
+    locations: {
+      blanes: "Boat rental Blanes",
+      lloret: "Boat rental Lloret de Mar",
+      tossa: "Boat rental Tossa de Mar",
+      malgrat: "Boat rental Malgrat de Mar",
+      santaSusanna: "Boat rental Santa Susanna",
+      calella: "Boat rental Calella",
+      pinedaDeMar: "Boat rental Pineda de Mar",
+      palafolls: "Boat rental Palafolls",
+      tordera: "Boat rental Tordera",
+      barcelona: "Boat rental near Barcelona",
+      costaBrava: "Boat rental Costa Brava",
+    },
+    pricing: "Pricing",
+    boatsNearBarcelona: "Boats near Barcelona",
   },
   booking: {
     title: "Request your booking",

@@ -316,6 +316,22 @@ export interface Translations {
     accessibility: string;
     independentOperator: string;
     nameDifferentiator: string;
+    locationsHeading: string;
+    locations: {
+      blanes: string;
+      lloret: string;
+      tossa: string;
+      malgrat: string;
+      santaSusanna: string;
+      calella: string;
+      pinedaDeMar: string;
+      palafolls: string;
+      tordera: string;
+      barcelona: string;
+      costaBrava: string;
+    };
+    pricing: string;
+    boatsNearBarcelona: string;
   };
 
   // Booking Flow

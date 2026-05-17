@@ -260,6 +260,23 @@ export const nl: Translations = {
     independentOperator: "Eigen exploitatie · Haven van Blanes",
     nameDifferentiator:
       "Costa Brava Rent a Boat is een onafhankelijk bedrijf. Niet te verwarren met andere aanbieders met een vergelijkbare naam.",
+    // GSC 2026-05-17: SEO rich anchor texts para reforzar señal a landings locales
+    locationsHeading: "Bootverhuur per locatie",
+    locations: {
+      blanes: "Bootverhuur Blanes",
+      lloret: "Bootverhuur Lloret de Mar",
+      tossa: "Bootverhuur Tossa de Mar",
+      malgrat: "Bootverhuur Malgrat de Mar",
+      santaSusanna: "Bootverhuur Santa Susanna",
+      calella: "Bootverhuur Calella",
+      pinedaDeMar: "Bootverhuur Pineda de Mar",
+      palafolls: "Bootverhuur Palafolls",
+      tordera: "Bootverhuur Tordera",
+      barcelona: "Bootverhuur bij Barcelona",
+      costaBrava: "Bootverhuur Costa Brava",
+    },
+    pricing: "Prijzen",
+    boatsNearBarcelona: "Boten bij Barcelona",
   },
   booking: {
     title: "Vraag je reservering aan",

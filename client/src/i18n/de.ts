@@ -262,6 +262,23 @@ export const de: Translations = {
     independentOperator: "Eigener Betrieb · Hafen von Blanes",
     nameDifferentiator:
       "Costa Brava Rent a Boat ist ein unabhängiges Unternehmen. Nicht zu verwechseln mit anderen Anbietern mit ähnlichem Namen.",
+    // GSC 2026-05-17: SEO rich anchor texts para reforzar señal a landings locales
+    locationsHeading: "Bootsverleih nach Ort",
+    locations: {
+      blanes: "Bootsverleih Blanes",
+      lloret: "Bootsverleih Lloret de Mar",
+      tossa: "Bootsverleih Tossa de Mar",
+      malgrat: "Bootsverleih Malgrat de Mar",
+      santaSusanna: "Bootsverleih Santa Susanna",
+      calella: "Bootsverleih Calella",
+      pinedaDeMar: "Bootsverleih Pineda de Mar",
+      palafolls: "Bootsverleih Palafolls",
+      tordera: "Bootsverleih Tordera",
+      barcelona: "Bootsverleih nahe Barcelona",
+      costaBrava: "Bootsverleih Costa Brava",
+    },
+    pricing: "Preise",
+    boatsNearBarcelona: "Boote nahe Barcelona",
   },
   booking: {
     title: "Buchungsanfrage stellen",

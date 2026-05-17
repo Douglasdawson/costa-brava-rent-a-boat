@@ -257,6 +257,23 @@ export const ru: Translations = {
     independentOperator: "Собственный оператор · Порт Бланеса",
     nameDifferentiator:
       "Costa Brava Rent a Boat — независимая компания. Не путать с другими операторами с похожим названием.",
+    // GSC 2026-05-17: SEO rich anchor texts para reforzar señal a landings locales
+    locationsHeading: "Аренда лодок по локации",
+    locations: {
+      blanes: "Аренда лодок Бланес",
+      lloret: "Аренда лодок Льорет-де-Мар",
+      tossa: "Аренда лодок Тосса-де-Мар",
+      malgrat: "Аренда лодок Мальграт-де-Мар",
+      santaSusanna: "Аренда лодок Санта-Сусанна",
+      calella: "Аренда лодок Калелья",
+      pinedaDeMar: "Аренда лодок Пинеда-де-Мар",
+      palafolls: "Аренда лодок Палафольс",
+      tordera: "Аренда лодок Тордера",
+      barcelona: "Аренда лодок рядом с Барселоной",
+      costaBrava: "Аренда лодок Коста-Брава",
+    },
+    pricing: "Цены",
+    boatsNearBarcelona: "Лодки рядом с Барселоной",
   },
   booking: {
     title: "Оставьте заявку на бронирование",

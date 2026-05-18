@@ -130,6 +130,10 @@ export function redirectMiddleware() {
       "/barco/pacific-craft-625": "/es/barco/pacific-craft-625",
       "/barco/excursion-privada": "/es/barco/excursion-privada",
       "/barco-mirimare-sunrise-7": "/es/categoria/sin-licencia",
+      // GSC 2026-05-18: /barcos era zombie pos 65 con redirect client-side
+      // (HTTP 200 + React Redirect). Googlebot indexaba el HTML antes del
+      // JS redirect. 301 server-side la saca del índice y consolida en /es/.
+      "/barcos": "/es/barcos-sin-licencia",
     };
     const hardcodedTarget = hardcoded[req.path];
     if (hardcodedTarget) {

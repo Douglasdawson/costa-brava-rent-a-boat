@@ -3761,7 +3761,8 @@ const LEGACY_SPA_ROUTES = new Set([
   "/testimonios",
   "/precios",
   "/blog",
-  "/barcos",
+  // GSC 2026-05-18: /barcos movida a 301 server-side en server/seo/redirects.ts
+  // (era zombie pos 65). Ya no se sirve como SPA.
   "/boat-rental-blanes",
   "/sobre-nosotros",
   "/about",

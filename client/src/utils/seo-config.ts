@@ -247,13 +247,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "A 70 min de Barcelona en la AP-7. Barcos sin licencia desde 70\u20ac/h con gasolina. Costa Brava sin tr\u00e1fico. 4.8\u2605."
     },
     locationCostaBrava: {
-      // GSC 2026-04: "alquiler barcos costa brava" 113 imp pos 12.4 CTR 0% (\u00a10
-      // clicks de 113 impresiones!) y "alquilar barco costa brava" 103 imp
-      // pos 12.2 CTR 0%. CTR rewrite: pregunta hook + \u2605 rating + n\u00famero
-      // espec\u00edfico ("8 barcos") al inicio. Lengths optimizados para SERP.
-      title: `Alquiler Barco Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 \u00b7 8 Barcos 70\u20ac/h`,
-      description: `\u00bfAlquilar barco en Costa Brava? 8 embarcaciones desde Blanes, sin licencia 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva WhatsApp.`,
-      keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquilar barco costa brava, barco sin licencia costa brava, alquiler barco sin licencia costa brava, excursion barco costa brava"
+      // GSC 2026-05-18: descannibalizaci\u00f3n. Pos 74 con 62 imp, 0 clicks porque
+      // title casi id\u00e9ntico al de "/" y "/es/" (ambos ranking para
+      // "alquiler barco costa brava"). Cambio de foco: dejar la query gen\u00e9rica
+      // a "/es/" y posicionar esta p\u00e1gina para "rutas / destinos / calas".
+      title: `Rutas en Barco por la Costa Brava \u00b7 7 Calas + Tossa de Mar \u00b7 Desde Blanes`,
+      description: `Gu\u00eda de rutas en barco por la Costa Brava desde Blanes. 7 calas v\u00edrgenes hasta Lloret sin licencia, extensi\u00f3n a Tossa de Mar con LNB. Mapa, distancias y precios.`,
+      keywords: "rutas barco costa brava, destinos barco costa brava, calas costa brava barco, navegar costa brava, excursion barco costa brava, costa brava en barco, rutas nauticas costa brava"
     },
     boatRentalCostaBrava: {
       title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,

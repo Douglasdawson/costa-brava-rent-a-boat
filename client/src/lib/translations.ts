@@ -1430,6 +1430,13 @@ export interface Translations {
     faqChildrenAnswer: string;
     faqDistanceQuestion: string;
     faqDistanceAnswer: string;
+    // GSC 2026-05-18: FAQ long-tail para "alquiler barco sin carnet/experiencia"
+    faqCarnetQuestion: string;
+    faqCarnetAnswer: string;
+    faqExperienceQuestion: string;
+    faqExperienceAnswer: string;
+    faqGroupSizeQuestion: string;
+    faqGroupSizeAnswer: string;
   };
 
   // Category Licensed Page

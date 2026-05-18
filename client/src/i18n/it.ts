@@ -808,7 +808,7 @@ export const it: Translations = {
   categoryLicenseFree: {
     heroTitle: "Barche Senza Patente a Blanes",
     heroDescription:
-      "Noleggia imbarcazioni senza patente al porto di Blanes, Costa Brava. Barche fino a 15 CV che non richiedono patente nautica. Navigazione sicura e facile per tutti!",
+      "5 barche senza patente da 70€/h al Porto di Blanes, carburante incluso. Fino a 7 persone, senza patente né titolazione, senza esperienza precedente. Briefing di sicurezza di 15 minuti e si parte per navigare nelle cale della Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina e Sa Boadella fino alla Spiaggia di Fenals (Lloret de Mar).",
     badgeNoLicense: "Nessuna Patente Necessaria",
     badgePower: "Fino a 15 CV",
     badgeCapacity: "4-7 persone",
@@ -902,6 +902,15 @@ export const it: Translations = {
     faqDistanceQuestion: "Che distanza posso percorrere senza patente da Blanes?",
     faqDistanceAnswer:
       "La normativa consente la navigazione fino a 2 miglia nautiche (3,7 km) dalla costa. Dal Porto di Blanes, questo ti permette di esplorare numerose calette verso nord (direzione Lloret de Mar) e verso sud (direzione Malgrat de Mar). In 2-3 ore puoi visitare diverse calette, ancorare per fare snorkeling e tornare al porto senza fretta.",
+    faqCarnetQuestion: "Mi serve la patente nautica per noleggiare?",
+    faqCarnetAnswer:
+      "No, non serve nessuna patente né titolazione nautica per le nostre barche senza patente fino a 15 CV. Basta avere 18 anni compiuti, un documento d'identità valido e seguire il nostro briefing di sicurezza di 15 minuti prima di salpare. Nessun corso, esame o pratica preventiva. Molti clienti ci cercano come \"noleggio barca senza patente\" o \"senza titolazione\" — è lo stesso prodotto.",
+    faqExperienceQuestion: "E se non ho mai guidato una barca?",
+    faqExperienceAnswer:
+      "È il caso più comune tra i nostri clienti. Le barche senza patente sono progettate proprio per persone senza esperienza precedente: comandi intuitivi, motore di bassa potenza (15 CV), navigazione a 5 nodi (velocità di crociera) e zona costiera protetta. Nel briefing di 15 minuti ti insegniamo a manovrare nel porto, dare fondo, usare la VHF e rientrare all'ormeggio. A oggi nessun cliente ha avuto problemi a maneggiare la barca dopo il briefing.",
+    faqGroupSizeQuestion: "Quante persone entrano in una barca senza patente?",
+    faqGroupSizeAnswer:
+      "Le nostre 5 barche senza patente hanno capacità tra 4 e 7 persone (adulti e bambini contano uguale). Solar 450 e Astec 400 sono ideali per coppie o piccole famiglie (4-5 persone). Astec 480 e Mingolla Brava 19 sono le più grandi (6-7 persone) — perfette per famiglie numerose o gruppi di amici. Il prezzo è per barca, non per persona, quindi più siete, meno costa a testa."
   },
   categoryLicensed: {
     heroTitle: "Barche Con Patente a Blanes",

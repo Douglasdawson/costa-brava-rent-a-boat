@@ -806,7 +806,7 @@ export const nl: Translations = {
   categoryLicenseFree: {
     heroTitle: "Boten Zonder Vaarbewijs in Blanes",
     heroDescription:
-      "Huur boten zonder vaarbewijs in de haven van Blanes, Costa Brava. Boten tot 15 PK waarvoor geen vaarbewijs nodig is. Veilig en eenvoudig varen voor iedereen!",
+      "5 boten zonder vaarbewijs vanaf 70€/u in de Haven van Blanes, brandstof inbegrepen. Tot 7 personen, zonder vaarbewijs of certificaat, zonder eerdere ervaring. 15 minuten veiligheidsinstructie en u vaart naar de baaien van de Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina en Sa Boadella tot het strand van Fenals (Lloret de Mar).",
     badgeNoLicense: "Geen Vaarbewijs Nodig",
     badgePower: "Tot 15 PK",
     badgeCapacity: "4-7 personen",
@@ -900,6 +900,15 @@ export const nl: Translations = {
     faqDistanceQuestion: "Hoe ver kan ik zonder vaarbewijs vanaf Blanes varen?",
     faqDistanceAnswer:
       "De regelgeving staat navigatie toe tot 2 zeemijl (3,7 km) van de kust. Vanuit de Haven van Blanes kun je talrijke baaien verkennen noordwaarts (richting Lloret de Mar) en zuidwaarts (richting Malgrat de Mar). In 2-3 uur kun je meerdere baaien bezoeken, ankeren om te snorkelen en op je gemak terugkeren naar de haven.",
+    faqCarnetQuestion: "Heb ik een vaarbewijs nodig om te huren?",
+    faqCarnetAnswer:
+      "Nee, u heeft geen vaarbewijs of nautisch certificaat nodig voor onze boten zonder vaarbewijs tot 15 PK. U hoeft alleen 18 jaar te zijn, een geldig identiteitsbewijs te hebben en onze 15 minuten veiligheidsinstructie te volgen voordat u vertrekt. Geen cursus, examen of voorafgaande formaliteiten. Veel klanten zoeken ons als \"bootverhuur zonder vaarbewijs\" of \"zonder certificaat\" — het is hetzelfde product.",
+    faqExperienceQuestion: "Wat als ik nog nooit een boot heb gevaren?",
+    faqExperienceAnswer:
+      "Dat is het meest voorkomende geval onder onze klanten. Boten zonder vaarbewijs zijn juist ontworpen voor mensen zonder eerdere ervaring: intuïtieve bediening, lichte motor (15 PK), varen op 5 knopen (cruisesnelheid) en beschermde kustzone. Tijdens de 15-minuten instructie leren we u manoeuvreren in de haven, voor anker gaan, de marifoon gebruiken en terugkeren naar de aanlegplek. Tot vandaag heeft geen enkele klant moeite gehad met de boot na de instructie.",
+    faqGroupSizeQuestion: "Hoeveel mensen passen er in een boot zonder vaarbewijs?",
+    faqGroupSizeAnswer:
+      "Onze 5 boten zonder vaarbewijs hebben een capaciteit van 4 tot 7 personen (volwassenen en kinderen tellen gelijk). Solar 450 en Astec 400 zijn ideaal voor stellen of kleine gezinnen (4-5 personen). Astec 480 en Mingolla Brava 19 zijn de grootste (6-7 personen) — perfect voor grote gezinnen of vriendengroepen. De prijs is per boot, niet per persoon — hoe meer mensen, hoe goedkoper per hoofd."
   },
   categoryLicensed: {
     heroTitle: "Boten Met Vaarbewijs in Blanes",

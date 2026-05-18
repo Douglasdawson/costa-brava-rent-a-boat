@@ -802,7 +802,7 @@ export const en: Translations = {
   categoryLicenseFree: {
     heroTitle: "Licence-Free Boats in Blanes",
     heroDescription:
-      "Hire licence-free boats at the Port of Blanes, Costa Brava. Boats up to 15 HP that require no boating licence. Safe and easy sailing for everyone!",
+      "5 license-free boats from €70/h at Blanes Port, fuel included. Up to 7 people, no license or sailing certificate, no prior experience. 15-min safety briefing and off you go to the Costa Brava coves: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina and Sa Boadella up to Fenals Beach (Lloret de Mar).",
     badgeNoLicense: "No Licence Required",
     badgePower: "Up to 15 HP",
     badgeCapacity: "4-7 people",
@@ -896,6 +896,15 @@ export const en: Translations = {
     faqDistanceQuestion: "How far can I travel without a licence from Blanes?",
     faqDistanceAnswer:
       "Regulations allow navigation up to 2 nautical miles (3.7 km) from the coast. From the Port of Blanes, this lets you explore numerous coves northwards (towards Lloret de Mar) and southwards (towards Malgrat de Mar). In 2-3 hours you can visit several coves, anchor for snorkelling and return to port at leisure.",
+    faqCarnetQuestion: "Do I need a boating licence to rent?",
+    faqCarnetAnswer:
+      "No, you don't need any licence or sailing certificate for our license-free boats up to 15 HP. You just need to be 18+, have a valid ID and take our 15-minute safety briefing before departing. No course, exam or prior paperwork needed. Many customers search for us as \"boat rental no licence\" or \"no certificate\" — it's the same product.",
+    faqExperienceQuestion: "What if I've never driven a boat?",
+    faqExperienceAnswer:
+      "That's the most common case among our customers. License-free boats are designed precisely for people with no prior experience: intuitive controls, low-power engine (15 HP), 5-knot navigation (cruising speed) and protected coastal area. In the 15-minute briefing we teach you how to manoeuvre in the harbour, anchor, use the VHF radio and return to the mooring. To date no customer has had trouble handling the boat after the briefing.",
+    faqGroupSizeQuestion: "How many people fit in a license-free boat?",
+    faqGroupSizeAnswer:
+      "Our 5 license-free boats hold between 4 and 7 people (adults and children count the same). Solar 450 and Astec 400 are ideal for couples or small families (4-5 people). Astec 480 and Mingolla Brava 19 are the largest (6-7 people) — perfect for large families or groups of friends. The price is per boat, not per person, so the more people you bring, the cheaper it gets per head."
   },
   categoryLicensed: {
     heroTitle: "Licensed Boats in Blanes",

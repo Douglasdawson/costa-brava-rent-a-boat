@@ -808,7 +808,7 @@ export const ca: Translations = {
   categoryLicenseFree: {
     heroTitle: "Vaixells Sense Llicència a Blanes",
     heroDescription:
-      "Lloga embarcacions sense llicència al Port de Blanes, Costa Brava. Vaixells de fins a 15 CV que no requereixen titulació nàutica. Navegació segura i fàcil per a tothom!",
+      "5 barques sense llicència des de 70€/h al Port de Blanes, gasolina inclosa. Fins a 7 persones, sense carnet ni titulació, sense experiència prèvia. Briefing de seguretat de 15 minuts i a navegar per les cales de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina i Sa Boadella fins a la Platja de Fenals (Lloret de Mar).",
     badgeNoLicense: "Sense Llicència Necessària",
     badgePower: "Fins a 15 CV",
     badgeCapacity: "4-7 persones",
@@ -902,6 +902,15 @@ export const ca: Translations = {
     faqDistanceQuestion: "Quina distància puc recórrer sense llicència des de Blanes?",
     faqDistanceAnswer:
       "La normativa permet navegar fins a 2 milles nàutiques (3,7 km) de la costa. Des del Port de Blanes, això et permet explorar nombroses cales cap al nord (direcció Lloret de Mar) i cap al sud (direcció Malgrat de Mar). En 2-3 hores pots visitar diverses cales, fondejar per fer snorkel i tornar al port sense pressa.",
+    faqCarnetQuestion: "Necessito carnet de barca per llogar?",
+    faqCarnetAnswer:
+      "No, no necessites cap carnet ni titulació nàutica per a les nostres barques sense llicència fins a 15 CV. Només cal tenir 18 anys complerts, un document d'identitat vàlid i rebre el nostre briefing de seguretat de 15 minuts abans de salpar. Sense cursos, exàmens ni tràmits previs. Molts clients ens busquen com \"lloguer barca sense carnet\" o \"sense titulació\" — és el mateix producte.",
+    faqExperienceQuestion: "I si mai he portat una barca?",
+    faqExperienceAnswer:
+      "És el cas més habitual entre els nostres clients. Les barques sense llicència estan dissenyades precisament per a persones sense experiència prèvia: controls intuïtius, motor de baixa potència (15 CV), navegació a 5 nusos (velocitat de passeig) i zona costanera protegida. En el briefing de 15 minuts t'ensenyem a maniobrar al port, fondejar, utilitzar la VHF i tornar a l'amarrador. Fins avui cap client ha tingut problemes per manejar la barca després del briefing.",
+    faqGroupSizeQuestion: "Quanta gent cap en una barca sense llicència?",
+    faqGroupSizeAnswer:
+      "Les nostres 5 barques sense llicència tenen capacitat entre 4 i 7 persones (adults i nens compten igual). Solar 450 i Astec 400 són ideals per a parelles o famílies petites (4-5 persones). Astec 480 i Mingolla Brava 19 són les més grans (6-7 persones) — perfectes per a famílies nombroses o grups d'amics. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap."
   },
   categoryLicensed: {
     heroTitle: "Vaixells Amb Llicència a Blanes",

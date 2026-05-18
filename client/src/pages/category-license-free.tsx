@@ -118,7 +118,20 @@ export default function CategoryLicenseFreePage() {
   const clf = t.categoryLicenseFree!;
 
   // FAQ items for structured data and display
+  // GSC 2026-05-18: added 3 long-tail FAQs (carnet, experiencia, group size)
   const faqItems = [
+    {
+      question: clf.faqCarnetQuestion,
+      answer: clf.faqCarnetAnswer,
+    },
+    {
+      question: clf.faqExperienceQuestion,
+      answer: clf.faqExperienceAnswer,
+    },
+    {
+      question: clf.faqGroupSizeQuestion,
+      answer: clf.faqGroupSizeAnswer,
+    },
     {
       question: clf.faqSpeedQuestion,
       answer: clf.faqSpeedAnswer,

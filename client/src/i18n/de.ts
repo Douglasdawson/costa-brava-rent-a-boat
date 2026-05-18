@@ -810,7 +810,7 @@ export const de: Translations = {
   categoryLicenseFree: {
     heroTitle: "Boote Ohne Führerschein in Blanes",
     heroDescription:
-      "Mieten Sie Boote ohne Führerschein im Hafen von Blanes, Costa Brava. Boote bis 15 PS, die keinen Bootsführerschein erfordern. Sichere und einfache Navigation für alle!",
+      "5 führerscheinfreie Boote ab 70€/h im Hafen Blanes, Kraftstoff inklusive. Bis zu 7 Personen, ohne Führerschein oder Bootsschein, ohne Vorerfahrung. 15-minütige Sicherheitseinweisung und los geht's zu den Buchten der Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina und Sa Boadella bis zum Strand von Fenals (Lloret de Mar).",
     badgeNoLicense: "Kein Führerschein Erforderlich",
     badgePower: "Bis 15 PS",
     badgeCapacity: "4-7 Personen",
@@ -904,6 +904,15 @@ export const de: Translations = {
     faqDistanceQuestion: "Wie weit kann ich ohne Führerschein von Blanes aus fahren?",
     faqDistanceAnswer:
       "Die Vorschriften erlauben das Fahren bis zu 2 Seemeilen (3,7 km) von der Küste. Vom Hafen Blanes aus können Sie zahlreiche Buchten nordwärts (Richtung Lloret de Mar) und südwärts (Richtung Malgrat de Mar) erkunden. In 2-3 Stunden können Sie mehrere Buchten besuchen, zum Schnorcheln ankern und gemütlich zum Hafen zurückkehren.",
+    faqCarnetQuestion: "Brauche ich einen Bootsführerschein zum Mieten?",
+    faqCarnetAnswer:
+      "Nein, Sie brauchen keinerlei Führerschein oder nautisches Zeugnis für unsere führerscheinfreien Boote bis 15 PS. Sie müssen nur 18 Jahre alt sein, einen gültigen Ausweis dabei haben und an unserer 15-minütigen Sicherheitseinweisung vor dem Auslaufen teilnehmen. Kein Kurs, keine Prüfung, keine vorherigen Formalitäten. Viele Kunden suchen uns als \"Bootsverleih ohne Führerschein\" oder \"ohne Schein\" — es ist das gleiche Produkt.",
+    faqExperienceQuestion: "Und wenn ich noch nie ein Boot gefahren bin?",
+    faqExperienceAnswer:
+      "Das ist der häufigste Fall unter unseren Kunden. Führerscheinfreie Boote sind genau für Personen ohne Vorerfahrung gemacht: intuitive Bedienung, schwacher Motor (15 PS), Fahrt bei 5 Knoten (Schiebegeschwindigkeit) und geschütztes Küstengebiet. In der 15-minütigen Einweisung zeigen wir Ihnen, wie Sie im Hafen manövrieren, ankern, das UKW-Funkgerät nutzen und zur Anlegestelle zurückkehren. Bisher hat noch kein Kunde nach der Einweisung Probleme mit dem Boot gehabt.",
+    faqGroupSizeQuestion: "Wie viele Personen passen in ein führerscheinfreies Boot?",
+    faqGroupSizeAnswer:
+      "Unsere 5 führerscheinfreien Boote bieten Platz für 4 bis 7 Personen (Erwachsene und Kinder zählen gleich). Solar 450 und Astec 400 sind ideal für Paare oder kleine Familien (4-5 Personen). Astec 480 und Mingolla Brava 19 sind die größten (6-7 Personen) — perfekt für Großfamilien oder Freundesgruppen. Der Preis ist pro Boot, nicht pro Person — je mehr Personen, desto günstiger pro Kopf."
   },
   categoryLicensed: {
     heroTitle: "Boote Mit Führerschein in Blanes",

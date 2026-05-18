@@ -816,7 +816,7 @@ export const fr: Translations = {
   categoryLicenseFree: {
     heroTitle: "Bateaux Sans Permis à Blanes",
     heroDescription:
-      "Louez des embarcations sans permis au Port de Blanes, Costa Brava. Bateaux jusqu'à 15 CV ne nécessitant aucun permis nautique. Navigation sûre et facile pour tous !",
+      "5 bateaux sans permis dès 70€/h au Port de Blanes, carburant inclus. Jusqu'à 7 personnes, sans permis ni titulation, sans expérience préalable. Briefing de sécurité de 15 min et c'est parti pour naviguer dans les criques de la Costa Brava : Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina et Sa Boadella jusqu'à la plage de Fenals (Lloret de Mar).",
     badgeNoLicense: "Aucun Permis Requis",
     badgePower: "Jusqu'à 15 CV",
     badgeCapacity: "4-7 personnes",
@@ -910,6 +910,15 @@ export const fr: Translations = {
     faqDistanceQuestion: "Quelle distance puis-je parcourir sans permis depuis Blanes ?",
     faqDistanceAnswer:
       "La reglementation permet de naviguer jusqu'a 2 milles nautiques (3,7 km) de la cote. Depuis le Port de Blanes, cela vous permet d'explorer de nombreuses criques vers le nord (direction Lloret de Mar) et vers le sud (direction Malgrat de Mar). En 2-3 heures, vous pouvez visiter plusieurs criques, mouiller pour faire du snorkeling et revenir au port sans vous presser.",
+    faqCarnetQuestion: "Ai-je besoin d'un permis bateau pour louer ?",
+    faqCarnetAnswer:
+      "Non, vous n'avez besoin d'aucun permis ni titulation nautique pour nos bateaux sans permis jusqu'à 15 CV. Vous devez seulement avoir 18 ans, présenter une pièce d'identité valide et suivre notre briefing de sécurité de 15 minutes avant de partir. Aucun cours, examen ni démarche préalable. Beaucoup de clients nous cherchent comme \"location bateau sans permis\" ou \"sans titulation\" — c'est le même produit.",
+    faqExperienceQuestion: "Et si je n'ai jamais conduit de bateau ?",
+    faqExperienceAnswer:
+      "C'est le cas le plus fréquent parmi nos clients. Les bateaux sans permis sont conçus précisément pour les personnes sans expérience préalable : commandes intuitives, moteur de faible puissance (15 CV), navigation à 5 nœuds (vitesse de croisière) et zone côtière protégée. Dans le briefing de 15 minutes nous vous apprenons à manœuvrer dans le port, à mouiller, à utiliser la VHF et à rentrer à l'amarrage. À ce jour, aucun client n'a eu de difficulté à manier le bateau après le briefing.",
+    faqGroupSizeQuestion: "Combien de personnes tiennent dans un bateau sans permis ?",
+    faqGroupSizeAnswer:
+      "Nos 5 bateaux sans permis ont une capacité de 4 à 7 personnes (adultes et enfants comptent de la même façon). Solar 450 et Astec 400 sont idéaux pour les couples ou petites familles (4-5 personnes). Astec 480 et Mingolla Brava 19 sont les plus grands (6-7 personnes) — parfaits pour familles nombreuses ou groupes d'amis. Le prix est par bateau, pas par personne — plus vous êtes, moins cela coûte par tête."
   },
   categoryLicensed: {
     heroTitle: "Bateaux Avec Permis à Blanes",

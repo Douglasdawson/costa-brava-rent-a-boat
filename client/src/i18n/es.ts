@@ -1907,8 +1907,10 @@ export const es: Translations = {
   },
   categoryLicenseFree: {
     heroTitle: "Barcos Sin Licencia en Costa Brava — Puerto de Blanes",
+    // GSC 2026-05-18: heroDescription extractable por Google cuando ignora meta.
+    // Densidad de keywords + entidades concretas (precio, calas, capacidad).
     heroDescription:
-      "El alquiler de barcos sin licencia en Costa Brava más fácil: embarcaciones hasta 15 CV desde el Puerto de Blanes. Sin titulación náutica necesaria. Navegación segura para familias y principiantes.",
+      "5 barcos sin licencia desde 70€/h en el Puerto de Blanes, gasolina incluida. Hasta 7 personas, sin carnet ni titulación, sin experiencia previa. Briefing de seguridad 15 minutos y a navegar por las calas de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina y Sa Boadella hasta Playa de Fenals (Lloret de Mar).",
     badgeNoLicense: "Sin Licencia Necesaria",
     badgePower: "Hasta 15 CV",
     badgeCapacity: "4-7 personas",
@@ -2006,6 +2008,18 @@ export const es: Translations = {
     faqDistanceQuestion: "Qué distancia puedo recorrer sin licencia desde Blanes?",
     faqDistanceAnswer:
       "La normativa permite navegar hasta 2 millas náuticas (3,7 km) de la costa. Desde el Puerto de Blanes, esto te permite explorar numerosas calas hacia el norte (dirección Lloret de Mar) y hacia el sur (dirección Malgrat de Mar). En 2-3 horas puedes visitar varias calas, fondear para hacer snorkel y volver al puerto sin prisa.",
+    // GSC 2026-05-18: FAQ long-tail. Atacan queries "alquiler barco sin carnet",
+    // "sin experiencia previa", "barco familias". Pos actual: 4 en "alquiler
+    // barco sin licencia costa brava". Target: subir a top 3 con más entities.
+    faqCarnetQuestion: "Necesito carnet de barco para alquilar?",
+    faqCarnetAnswer:
+      "No necesitas ningún carnet ni titulación náutica para los barcos sin licencia hasta 15 CV. Solo necesitas tener 18 años cumplidos, un documento de identidad válido y recibir el briefing de seguridad de 15 minutos que damos antes de zarpar. No hay que hacer ningún curso, examen ni trámite previo. Por eso muchos clientes nos buscan como \"alquiler barco sin carnet\" o \"alquiler barco sin titulación\" — es el mismo producto.",
+    faqExperienceQuestion: "Y si nunca he conducido un barco?",
+    faqExperienceAnswer:
+      "Es lo más habitual entre nuestros clientes. Los barcos sin licencia están diseñados precisamente para personas sin experiencia previa: controles intuitivos, motor de baja potencia (15 CV), navegación a 5 nudos (velocidad de paseo) y zona protegida costera. En el briefing de 15 minutos te enseñamos a maniobrar el barco en el puerto, fondear, usar la radio VHF y volver al amarre. Hasta hoy ningún cliente ha tenido problemas para manejar el barco después del briefing.",
+    faqGroupSizeQuestion: "Cuánta gente cabe en un barco sin licencia?",
+    faqGroupSizeAnswer:
+      "Nuestros 5 barcos sin licencia tienen capacidad entre 4 y 7 personas (adultos y niños cuentan igual). Solar 450 y Astec 400 son ideales para parejas o familias pequeñas (4-5 personas). Astec 480 y Mingolla Brava 19 son los más grandes (6-7 personas) — pensados para familias amplias o grupos de amigos. El precio es por barco, no por persona, así que cuanta más gente, más económico sale por cabeza.",
   },
   categoryLicensed: {
     heroTitle: "Barcos Con Licencia en Blanes",

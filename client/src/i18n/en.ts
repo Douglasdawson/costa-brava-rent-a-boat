@@ -1456,7 +1456,7 @@ export const en: Translations = {
     ctaFleet: "View licence-free fleet",
     ctaLicensed: "PER-licensed boats",
     internalLinks:
-      'Want more detail? See the full guide for <a href="/en/boat-rental-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar from the sea</a> or the licensed route to <a href="/en/boat-rental-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Full pricing in <a href="/en/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">How much does it cost to rent a boat in Blanes</a>.',
+      'Want to see all routes? Check out <a href="/en/boat-rental-blanes" class="underline text-primary hover:text-primary/80">Boat rental in Blanes</a>, the route <a href="/en/boat-rental-lloret-de-mar" class="underline text-primary hover:text-primary/80">to Lloret de Mar</a>, the licensed extension <a href="/en/boat-rental-tossa-de-mar" class="underline text-primary hover:text-primary/80">to Tossa de Mar</a>, all the <a href="/en/boat-rental-costa-brava" class="underline text-primary hover:text-primary/80">routes along the Costa Brava</a> and <a href="/en/boat-rental-near-barcelona" class="underline text-primary hover:text-primary/80">boat rental near Barcelona</a>. Full pricing in <a href="/en/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">How much does it cost to rent a boat in Blanes</a>.',
   },
 
   editorialMoment: {

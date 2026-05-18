@@ -1406,7 +1406,7 @@ export const fr: Translations = {
     ctaFleet: "Voir la flotte sans permis",
     ctaLicensed: "Bateaux avec permis PER",
     internalLinks:
-      'Plus de détails ? Consultez le guide <a href="/fr/location-bateau-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar depuis la mer</a> ou l\'itinéraire avec permis jusqu\'à <a href="/fr/location-bateau-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Tarifs complets dans <a href="/fr/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Combien coûte la location d\'un bateau à Blanes</a>.',
+      'Vous voulez voir toutes les routes ? Consultez la <a href="/fr/location-bateau-blanes" class="underline text-primary hover:text-primary/80">location de bateaux à Blanes</a>, l\'itinéraire <a href="/fr/location-bateau-lloret-de-mar" class="underline text-primary hover:text-primary/80">jusqu\'à Lloret de Mar</a>, l\'extension avec permis <a href="/fr/location-bateau-tossa-de-mar" class="underline text-primary hover:text-primary/80">jusqu\'à Tossa de Mar</a>, toutes les <a href="/fr/location-bateau-costa-brava" class="underline text-primary hover:text-primary/80">routes sur la Costa Brava</a> et la <a href="/fr/location-bateau-pres-barcelone" class="underline text-primary hover:text-primary/80">location de bateau près de Barcelone</a>. Tarifs complets dans <a href="/fr/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Combien coûte la location d\'un bateau à Blanes</a>.',
   },
 
   editorialMoment: {

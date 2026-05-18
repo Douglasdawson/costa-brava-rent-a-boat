@@ -2685,7 +2685,7 @@ export const es: Translations = {
     ctaFleet: "Ver flota sin licencia",
     ctaLicensed: "Barcos con Licencia de Navegación Básica (LNB)",
     internalLinks:
-      '¿Quieres saber más? Consulta la guía completa del tramo en <a href="/es/alquiler-barcos-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar desde el mar</a> o la ruta con licencia hasta <a href="/es/alquiler-barcos-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Precios completos en <a href="/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Cuánto cuesta alquilar un barco en Blanes</a>.',
+      '¿Quieres ver todas las rutas? Consulta <a href="/es/alquiler-barcos-blanes" class="underline text-primary hover:text-primary/80">Alquiler de barcos en Blanes</a>, la ruta <a href="/es/alquiler-barcos-lloret-de-mar" class="underline text-primary hover:text-primary/80">a Lloret de Mar</a>, la extensión con licencia <a href="/es/alquiler-barcos-tossa-de-mar" class="underline text-primary hover:text-primary/80">a Tossa de Mar</a>, todas las <a href="/es/alquiler-barcos-costa-brava" class="underline text-primary hover:text-primary/80">rutas por la Costa Brava</a> y <a href="/es/alquiler-barcos-cerca-barcelona" class="underline text-primary hover:text-primary/80">alquiler de barcos cerca de Barcelona</a>. Precios completos en <a href="/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Cuánto cuesta alquilar un barco en Blanes</a>.',
   },
 
   activitySunset: {

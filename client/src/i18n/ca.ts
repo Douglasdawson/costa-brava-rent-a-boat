@@ -1395,7 +1395,7 @@ export const ca: Translations = {
     ctaFleet: "Veure flota sense llicència",
     ctaLicensed: "Vaixells amb llicència PER",
     internalLinks:
-      'Vols saber-ne més? Consulta la guia <a href="/ca/lloguer-vaixell-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar des del mar</a> o la ruta amb llicència fins a <a href="/ca/lloguer-vaixell-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Preus complets a <a href="/ca/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quant costa llogar un vaixell a Blanes</a>.',
+      'Vols veure totes les rutes? Consulta el <a href="/ca/lloguer-vaixell-blanes" class="underline text-primary hover:text-primary/80">lloguer de barques a Blanes</a>, la ruta <a href="/ca/lloguer-vaixell-lloret-de-mar" class="underline text-primary hover:text-primary/80">fins a Lloret de Mar</a>, l\'extensió amb llicència <a href="/ca/lloguer-vaixell-tossa-de-mar" class="underline text-primary hover:text-primary/80">fins a Tossa de Mar</a>, totes les <a href="/ca/lloguer-vaixell-costa-brava" class="underline text-primary hover:text-primary/80">rutes per la Costa Brava</a> i el <a href="/ca/lloguer-vaixell-prop-barcelona" class="underline text-primary hover:text-primary/80">lloguer de barques prop de Barcelona</a>. Preus complets a <a href="/ca/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quant costa llogar un vaixell a Blanes</a>.',
   },
 
   editorialMoment: {

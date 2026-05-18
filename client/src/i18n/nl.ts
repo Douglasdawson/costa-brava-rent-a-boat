@@ -1395,7 +1395,7 @@ export const nl: Translations = {
     ctaFleet: "Vaarbewijsvrije vloot bekijken",
     ctaLicensed: "Boten met PER-vaarbewijs",
     internalLinks:
-      'Meer weten? Zie de gids <a href="/nl/boot-huren-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar vanaf zee</a> of de gelicentieerde route naar <a href="/nl/boot-huren-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Volledige prijzen in <a href="/nl/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Wat kost het om een boot te huren in Blanes</a>.',
+      'Wilt u alle routes zien? Bekijk <a href="/nl/boot-huren-blanes" class="underline text-primary hover:text-primary/80">bootverhuur in Blanes</a>, de route <a href="/nl/boot-huren-lloret-de-mar" class="underline text-primary hover:text-primary/80">naar Lloret de Mar</a>, de uitbreiding met vaarbewijs <a href="/nl/boot-huren-tossa-de-mar" class="underline text-primary hover:text-primary/80">naar Tossa de Mar</a>, alle <a href="/nl/boot-huren-costa-brava" class="underline text-primary hover:text-primary/80">routes langs de Costa Brava</a> en <a href="/nl/boot-huren-bij-barcelona" class="underline text-primary hover:text-primary/80">bootverhuur bij Barcelona</a>. Volledige prijzen in <a href="/nl/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Wat kost het om een boot te huren in Blanes</a>.',
   },
 
   editorialMoment: {

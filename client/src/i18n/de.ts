@@ -1401,7 +1401,7 @@ export const de: Translations = {
     ctaFleet: "Führerscheinfreie Flotte ansehen",
     ctaLicensed: "Boote mit PER-Schein",
     internalLinks:
-      'Mehr Details? Sehen Sie die Anleitung <a href="/de/boot-mieten-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar vom Meer</a> oder die lizenzierte Route nach <a href="/de/boot-mieten-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Vollständige Preise in <a href="/de/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Was kostet es, ein Boot in Blanes zu mieten</a>.',
+      'Möchten Sie alle Routen sehen? Schauen Sie sich <a href="/de/boot-mieten-blanes" class="underline text-primary hover:text-primary/80">Bootsverleih in Blanes</a> an, die Route <a href="/de/boot-mieten-lloret-de-mar" class="underline text-primary hover:text-primary/80">nach Lloret de Mar</a>, die lizenzierte Erweiterung <a href="/de/boot-mieten-tossa-de-mar" class="underline text-primary hover:text-primary/80">nach Tossa de Mar</a>, alle <a href="/de/boot-mieten-costa-brava" class="underline text-primary hover:text-primary/80">Routen entlang der Costa Brava</a> und <a href="/de/boot-mieten-nahe-barcelona" class="underline text-primary hover:text-primary/80">Bootsverleih nahe Barcelona</a>. Vollständige Preise in <a href="/de/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Was kostet es, ein Boot in Blanes zu mieten</a>.',
   },
 
   editorialMoment: {

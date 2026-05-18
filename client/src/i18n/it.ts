@@ -1395,7 +1395,7 @@ export const it: Translations = {
     ctaFleet: "Vedi flotta senza patente",
     ctaLicensed: "Barche con patente PER",
     internalLinks:
-      'Vuoi saperne di più? Consulta la guida <a href="/it/noleggio-barca-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar dal mare</a> o la rotta con patente fino a <a href="/it/noleggio-barca-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Prezzi completi in <a href="/it/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quanto costa noleggiare una barca a Blanes</a>.',
+      'Vuoi vedere tutte le rotte? Consulta il <a href="/it/noleggio-barca-blanes" class="underline text-primary hover:text-primary/80">noleggio barche a Blanes</a>, la rotta <a href="/it/noleggio-barca-lloret-de-mar" class="underline text-primary hover:text-primary/80">fino a Lloret de Mar</a>, l\'estensione con patente <a href="/it/noleggio-barca-tossa-de-mar" class="underline text-primary hover:text-primary/80">fino a Tossa de Mar</a>, tutte le <a href="/it/noleggio-barca-costa-brava" class="underline text-primary hover:text-primary/80">rotte sulla Costa Brava</a> e il <a href="/it/noleggio-barca-vicino-barcellona" class="underline text-primary hover:text-primary/80">noleggio barche vicino a Barcellona</a>. Prezzi completi in <a href="/it/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quanto costa noleggiare una barca a Blanes</a>.',
   },
 
   editorialMoment: {

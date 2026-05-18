@@ -2100,11 +2100,21 @@ export const de: Translations = {
           answer:
             "Ja. Unsere führerscheinfreien Boote haben maximal 15 PS, erfordern keine Lizenz und fahren küstennah. Wir bieten eine 15-minütige Sicherheitseinweisung, Schwimmwesten und Notfallausrüstung.",
         },
+        {
+          question: "Wie komme ich zum Hafen Blanes?",
+          answer:
+            "Der Hafen Blanes liegt 60 km von Barcelona (1h mit dem Auto über A-2/C-32/AP-7, Ausfahrt 9 Richtung Blanes), 35 km von Girona (40 Min über AP-7 Ausfahrt 9) und 100 km von der französischen Grenze entfernt. Mit dem Zug R1-Linie der Rodalies ab Barcelona-Sants (1h 30 Min bis Bahnhof Blanes, dann 10 Min mit Bus L2 oder Taxi zum Hafen). Nächster Flughafen: Girona-Costa Brava (35 km, 30 Min).",
+        },
+        {
+          question: "Gibt es Geschäfte oder Restaurants am Hafen Blanes?",
+          answer:
+            "Ja. Das Hafenareal von Blanes hat mehrere Restaurants mit Terrasse zum Meer (Spezialität Reisgerichte und frischer Fisch), einen kleinen Supermarkt, ein Bootszubehör-Geschäft, eine Tankstelle, öffentliche Toiletten und Duschen. Der Strand von Blanes-Stadt liegt direkt neben dem Hafen. Nach dem Bootsausflug können Sie im Hafen essen oder in die Altstadt von Blanes hochlaufen (10 Min zu Fuß).",
+        }
       ],
       hero: {
         title: "Bootsverleih in Blanes",
         subtitle:
-          "Entdecken Sie die schönsten Buchten der Costa Brava vom Hafen Blanes aus. Boote mit und ohne Führerschein für die ganze Familie.",
+          "Bootsverleih direkt am Hafen Blanes ab 70€/h, Kraftstoff inklusive. Ohne Führerschein bis 5 Personen, mit Führerschein bis 7. Kostenloser Parkplatz 100m vom Liegeplatz, 15-Minuten Sicherheitseinweisung. Von hier fahren Sie nach Sa Palomera (5 Min), Cala Sant Francesc (8 Min), Cala Treumal (15 Min) und Lloret de Mar (25 Min). Tossa de Mar 30-45 Min mit Führerschein.",
         badgePort: "Hafen Blanes",
         badgeCapacity: "4-7 Personen",
         badgeDuration: "1-8 Std.",

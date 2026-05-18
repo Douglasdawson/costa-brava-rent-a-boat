@@ -2099,11 +2099,21 @@ export const fr: Translations = {
           answer:
             "Oui. Nos bateaux sans permis ont une puissance maximale de 15 CV, ne nécessitent pas de permis et naviguent près de la côte. Nous incluons une formation de sécurité de 15 minutes, des gilets de sauvetage et un équipement d'urgence.",
         },
+        {
+          question: "Comment me rendre au Port de Blanes ?",
+          answer:
+            "Le Port de Blanes se trouve à 60 km de Barcelone (1h en voiture par la A-2/C-32/AP-7, sortie 9 direction Blanes), 35 km de Gérone (40 min par l'AP-7 sortie 9) et à 100 km de la frontière française. En train, ligne R1 de Rodalies depuis Barcelone-Sants (1h 30 min jusqu'à la gare de Blanes, puis 10 min en bus L2 ou taxi jusqu'au port). Aéroport le plus proche : Girona-Costa Brava (35 km, 30 min).",
+        },
+        {
+          question: "Y a-t-il des commerces ou restaurants au Port de Blanes ?",
+          answer:
+            "Oui. La zone portuaire de Blanes compte plusieurs restaurants avec terrasse face à la mer (spécialité riz et poisson frais), une petite supérette pour les provisions, un magasin nautique, une station-service, toilettes publiques et douches. La plage du centre de Blanes est juste à côté du port. Après la sortie en bateau vous pouvez manger au port ou monter au vieux centre de Blanes (10 min à pied).",
+        }
       ],
       hero: {
         title: "Location de Bateaux à Blanes",
         subtitle:
-          "Découvrez les plus belles criques de la Costa Brava depuis le Port de Blanes. Bateaux avec et sans permis pour toute la famille.",
+          "Location de bateaux directe au Port de Blanes dès 70€/h, carburant inclus. Sans permis jusqu'à 5 personnes, avec permis jusqu'à 7. Parking gratuit à 100m de l'amarrage, briefing de sécurité 15 minutes. D'ici vous naviguez vers Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) et Lloret de Mar (25 min). Tossa de Mar à 30-45 min avec permis.",
         badgePort: "Port de Blanes",
         badgeCapacity: "4-7 personnes",
         badgeDuration: "1h-8h durée",

@@ -2144,11 +2144,21 @@ export const en: Translations = {
           answer:
             "Yes. Our license-free boats have a maximum of 15 HP, require no qualification and navigate close to the coast. We include 15 minutes of safety training, life jackets and emergency equipment.",
         },
+        {
+          question: "How do I get to Blanes Port?",
+          answer:
+            "Blanes Port is 60 km from Barcelona (1h by car via A-2/C-32/AP-7, exit 9 toward Blanes), 35 km from Girona (40 min via AP-7 exit 9) and 100 km from the French border. By train use the R1 Rodalies line from Barcelona-Sants (1h 30 min to Blanes station, then 10 min by bus L2 or taxi to the port). Closest airport: Girona-Costa Brava (35 km, 30 min).",
+        },
+        {
+          question: "Are there shops or restaurants at Blanes Port?",
+          answer:
+            "Yes. The port area has several restaurants with seafront terraces (specialising in rice dishes and fresh fish), a small supermarket for supplies, a chandlery, fuel station, public toilets and showers. Blanes town beach is right next to the port. After your boat trip you can eat at the port or walk up to Blanes old town (10 min on foot).",
+        }
       ],
       hero: {
         title: "Boat Rentals in Blanes",
         subtitle:
-          "Discover the most beautiful coves of the Costa Brava from Blanes Harbour. Boats with and without licence for the whole family.",
+          "Boat rental directly from Blanes Port from €70/h, fuel included. License-free up to 5 people, with licence up to 7. Free parking 100m from the mooring, 15-min safety briefing. From here you sail to Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) and Lloret de Mar (25 min). Tossa de Mar 30-45 min with licence.",
         badgePort: "Blanes Harbour",
         badgeCapacity: "4-7 people",
         badgeDuration: "1h-8h duration",

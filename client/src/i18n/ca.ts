@@ -2083,11 +2083,21 @@ export const ca: Translations = {
           answer:
             "Sí. Els nostres vaixells sense llicència tenen un màxim de 15 CV, no requereixen titulació i naveguen a prop de la costa. Incloem formació de seguretat de 15 minuts, armilles salvavides i equip d'emergència.",
         },
+        {
+          question: "Com arribo al Port de Blanes?",
+          answer:
+            "El Port de Blanes és a 60 km de Barcelona (1h amb cotxe per l'A-2/C-32/AP-7, sortida 9 direcció Blanes), 35 km de Girona (40 min per l'AP-7 sortida 9) i a 100 km de la frontera francesa. Amb tren amb la línia R1 de Rodalies des de Barcelona-Sants (1h 30 min fins a l'estació de Blanes, després 10 min amb autobús L2 o taxi al port). L'aeroport més proper és Girona-Costa Brava (35 km, 30 min).",
+        },
+        {
+          question: "Hi ha botigues o restaurants al Port de Blanes?",
+          answer:
+            "Sí. La zona portuària de Blanes té diversos restaurants amb terrassa davant del mar (especialitat en arrossos i peix fresc), un petit supermercat per a queviures, botiga nàutica, gasolinera, lavabos públics i dutxes. La platja de Blanes Centre està just al costat del port. Després de la sortida en barca pots menjar al port o pujar al casc antic de Blanes (10 min a peu).",
+        }
       ],
       hero: {
         title: "Lloguer de Barques a Blanes",
         subtitle:
-          "Descobreix les cales més boniques de la Costa Brava des del Port de Blanes. Embarcacions sense llicència i amb llicència per a tota la família.",
+          "Lloguer de barques directe al Port de Blanes des de 70€/h, gasolina inclosa. Sense llicència fins a 5 persones, amb llicència fins a 7. Aparcament gratuït a 100m de l'amarrador, briefing de seguretat 15 minuts. Des d'aquí navegues fins a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) i Lloret de Mar (25 min). Tossa de Mar a 30-45 min amb llicència.",
         badgePort: "Port de Blanes",
         badgeCapacity: "4-7 persones",
         badgeDuration: "1h-8h durada",

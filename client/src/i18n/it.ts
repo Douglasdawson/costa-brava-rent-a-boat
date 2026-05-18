@@ -2091,11 +2091,21 @@ export const it: Translations = {
           answer:
             "Sì. Le nostre barche senza patente hanno un massimo di 15 CV, non richiedono abilitazione e navigano vicino alla costa. Includiamo formazione di sicurezza di 15 minuti, giubbotti di salvataggio e attrezzatura di emergenza.",
         },
+        {
+          question: "Come arrivo al Porto di Blanes?",
+          answer:
+            "Il Porto di Blanes si trova a 60 km da Barcellona (1h in auto sulla A-2/C-32/AP-7, uscita 9 direzione Blanes), 35 km da Girona (40 min sulla AP-7 uscita 9) e a 100 km dal confine francese. In treno con la linea R1 di Rodalies da Barcellona-Sants (1h 30 min fino alla stazione di Blanes, poi 10 min con autobus L2 o taxi al porto). L'aeroporto più vicino è Girona-Costa Brava (35 km, 30 min).",
+        },
+        {
+          question: "Ci sono negozi o ristoranti al Porto di Blanes?",
+          answer:
+            "Sì. La zona portuale di Blanes ha diversi ristoranti con terrazza fronte mare (specialità riso e pesce fresco), un piccolo supermercato per provviste, negozio nautico, distributore di carburante, bagni pubblici e docce. La spiaggia di Blanes Centro è proprio accanto al porto. Dopo l'uscita in barca puoi mangiare al porto o salire al centro storico di Blanes (10 min a piedi).",
+        }
       ],
       hero: {
         title: "Noleggio Barche a Blanes",
         subtitle:
-          "Scopri le insenature più belle della Costa Brava dal Porto di Blanes. Barche con e senza patente per tutta la famiglia.",
+          "Noleggio barche direttamente al Porto di Blanes da 70€/h, carburante incluso. Senza patente fino a 5 persone, con patente fino a 7. Parcheggio gratuito a 100m dall'ormeggio, briefing di sicurezza 15 minuti. Da qui navighi verso Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) e Lloret de Mar (25 min). Tossa de Mar a 30-45 min con patente.",
         badgePort: "Porto di Blanes",
         badgeCapacity: "4-7 persone",
         badgeDuration: "1h-8h",

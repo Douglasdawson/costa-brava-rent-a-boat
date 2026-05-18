@@ -870,11 +870,23 @@ export const es: Translations = {
           answer:
             "Sí. Nuestros barcos sin licencia tienen un máximo de 15 CV, no requieren titulación y navegan cerca de la costa. Incluimos formación de seguridad de 15 minutos, chalecos salvavidas y equipo de emergencia.",
         },
+        {
+          question: "¿Cómo llego al Puerto de Blanes?",
+          answer:
+            "El Puerto de Blanes está a 60 km de Barcelona (1h en coche por la A-2/C-32/AP-7, salida 9 dirección Blanes), 35 km de Girona (40 min por la AP-7 salida 9) y a 100 km de la frontera francesa. En tren llegas con la línea R1 de Rodalies desde Barcelona-Sants (1h 30 min hasta la estación de Blanes, luego 10 min en autobús L2 o taxi al puerto). El aeropuerto más cercano es Girona-Costa Brava (35 km, 30 min).",
+        },
+        {
+          question: "¿Hay tiendas o restaurantes en el Puerto de Blanes?",
+          answer:
+            "Sí. La zona portuaria de Blanes tiene varios restaurantes con terraza frente al mar (especialidad en arroces y pescado fresco), un supermercado pequeño para provisiones, tienda náutica, gasolinera, baños públicos y duchas. La playa de Blanes Centro está justo al lado del puerto. Tras la salida en barco puedes comer en el puerto o subir al casco antiguo de Blanes (10 min andando).",
+        },
       ],
       hero: {
         title: "Alquiler de Barcos en Blanes",
+        // GSC 2026-05-18: subtitle SEO-extractable con keywords long-tail
+        // (Puerto de Blanes, sin/con licencia, calas con tiempos)
         subtitle:
-          "Descubre las calas más hermosas de la Costa Brava desde el Puerto de Blanes. Embarcaciones sin licencia y con licencia para toda la familia.",
+          "Alquiler de barcos directo en el Puerto de Blanes desde 70€/h, gasolina incluida. Sin licencia hasta 5 personas, con licencia hasta 7. Parking gratuito a 100m del amarre, briefing de seguridad 15 minutos. Desde aquí navegas a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) y Lloret de Mar (25 min). Tossa de Mar a 30-45 min con licencia.",
         badgePort: "Puerto de Blanes",
         badgeCapacity: "4-7 personas",
         badgeDuration: "1h-8h duración",

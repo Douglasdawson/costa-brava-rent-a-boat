@@ -2089,11 +2089,21 @@ export const nl: Translations = {
           answer:
             "Ja. Onze boten zonder vaarbewijs hebben maximaal 15 pk, vereisen geen vaarbewijs en varen dicht bij de kust. We geven een veiligheidsinstructie van 15 minuten, reddingsvesten en nooduitrusting zijn inbegrepen.",
         },
+        {
+          question: "Hoe kom ik bij Haven Blanes?",
+          answer:
+            "Haven Blanes ligt 60 km van Barcelona (1u met de auto via A-2/C-32/AP-7, afslag 9 richting Blanes), 35 km van Girona (40 min via AP-7 afslag 9) en 100 km van de Franse grens. Met de trein de R1 Rodalies-lijn vanaf Barcelona-Sants (1u 30 min naar station Blanes, dan 10 min met bus L2 of taxi naar de haven). Dichtstbijzijnde luchthaven: Girona-Costa Brava (35 km, 30 min).",
+        },
+        {
+          question: "Zijn er winkels of restaurants in Haven Blanes?",
+          answer:
+            "Ja. Het havengebied van Blanes heeft meerdere restaurants met terras aan zee (specialiteit rijstgerechten en verse vis), een kleine supermarkt voor proviand, een nautische winkel, tankstation, openbare toiletten en douches. Het strand van Blanes centrum ligt direct naast de haven. Na de boottocht kunt u eten in de haven of naar de oude stad van Blanes lopen (10 min lopen).",
+        }
       ],
       hero: {
         title: "Bootverhuur in Blanes",
         subtitle:
-          "Ontdek de mooiste kreken van de Costa Brava vanuit de haven van Blanes. Boten met en zonder vaarbewijs voor het hele gezin.",
+          "Bootverhuur direct vanuit Haven Blanes vanaf 70€/u, brandstof inbegrepen. Zonder vaarbewijs tot 5 personen, met vaarbewijs tot 7. Gratis parkeren op 100m van de aanlegplaats, 15 minuten veiligheidsinstructie. Vanaf hier vaart u naar Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) en Lloret de Mar (25 min). Tossa de Mar op 30-45 min met vaarbewijs.",
         badgePort: "Haven van Blanes",
         badgeCapacity: "4-7 personen",
         badgeDuration: "1u-8u",

@@ -776,6 +776,10 @@ export const de: Translations = {
       included: "Kraftstoff inklusive",
       notIncluded: "Kraftstoff nicht inklusive",
     },
+    restoreBanner: {
+      message: "Wir machen da weiter, wo du aufgehört hast",
+      startOver: "Neu starten",
+    },
   },
   validation: {
     required: "Dieses Feld ist erforderlich",

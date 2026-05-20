@@ -878,6 +878,12 @@ export interface Translations {
       included?: string;
       notIncluded?: string;
     };
+    /** P1.10: shown when the form state is restored from sessionStorage so the
+     *  user understands why fields are pre-filled. */
+    restoreBanner?: {
+      message?: string;
+      startOver?: string;
+    };
     // Multi-boat (group bookings that exceed any single boat's capacity)
     multiBoat?: {
       title?: string;

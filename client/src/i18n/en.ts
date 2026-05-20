@@ -769,6 +769,10 @@ export const en: Translations = {
       included: "Fuel included",
       notIncluded: "Fuel not included",
     },
+    restoreBanner: {
+      message: "Picking up where you left off",
+      startOver: "Start fresh",
+    },
   },
   validation: {
     required: "This field is required",

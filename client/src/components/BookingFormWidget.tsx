@@ -172,6 +172,10 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const [holdExpiresAt, setHoldExpiresAt] = useState<string | null>(null);
   const [holdExpired, setHoldExpired] = useState(false);
 
+  // P1.10 (2026-05-20): surfaced when sessionStorage restored a non-trivial
+  // state (currentStep > 1) so the user understands why fields are pre-filled.
+  const [restoredFromStorage, setRestoredFromStorage] = useState(false);
+
   // Booking confirmation overlay
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [confirmationData, setConfirmationData] = useState<{
@@ -262,7 +266,12 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       if (saved.numberOfPeople && saved.numberOfPeople !== "0") setNumberOfPeople(saved.numberOfPeople);
       if (saved.licenseFilter) setLicenseFilter(saved.licenseFilter);
       // Restore step, capped to the wizard's total step count
-      if (saved.currentStep > 1) setCurrentStep(Math.min(saved.currentStep, 4));
+      if (saved.currentStep > 1) {
+        setCurrentStep(Math.min(saved.currentStep, 4));
+        // P1.10: only surface the banner when the user already advanced past
+        // step 1 — restoring just a date on step 1 is silent and not disruptive.
+        setRestoredFromStorage(true);
+      }
     } catch {
       // Silently ignore corrupted storage
       sessionStorage.removeItem(STORAGE_KEY);
@@ -306,6 +315,50 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const clearBookingStorage = useCallback(() => {
     try { sessionStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
   }, []);
+
+  // P1.10: dismiss the restore banner. When `startOver` is true, also wipe
+  // sessionStorage and reset every form field to its initial value so the
+  // user actually gets a clean slate instead of staring at fields they
+  // wanted to ditch.
+  const dismissRestoreBanner = useCallback((startOver: boolean) => {
+    setRestoredFromStorage(false);
+    if (!startOver) return;
+    clearBookingStorage();
+    // Recompute the next-Saturday default so the date matches what the user
+    // would see opening a fresh wizard.
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    const daysUntilSat = dayOfWeek === 6 ? 7 : (6 - dayOfWeek);
+    const nextSat = new Date(today);
+    nextSat.setDate(today.getDate() + daysUntilSat);
+    const y = nextSat.getFullYear();
+    const m = String(nextSat.getMonth() + 1).padStart(2, "0");
+    const d = String(nextSat.getDate()).padStart(2, "0");
+    setSelectedBoat(preSelectedBoatId || "");
+    setSelectedSecondaryBoat("");
+    setSelectedDate(prefillDate || `${y}-${m}-${d}`);
+    setSelectedDuration("");
+    setPreferredTime(prefillTime || "10:00");
+    setNumberOfPeople("2");
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhoneNumber("");
+    setSelectedExtras([]);
+    setSelectedPack(null);
+    setShowExtras(false);
+    setValidatedCode(null);
+    setCodeInput("");
+    setShowCodeSection(false);
+    setLicenseFilter("without");
+    setHoldExpiresAt(null);
+    setHoldExpired(false);
+    setCurrentStep(1);
+    // Reset funnel dedup so the same field can re-report if it fails again.
+    validationReportedRef.current = new Set();
+    // Mark this fresh state as "new step started" for time-on-step tracking.
+    stepStartedAtRef.current = Date.now();
+  }, [clearBookingStorage, preSelectedBoatId, prefillDate, prefillTime]);
 
   // --- Funnel instrumentation effects ---
   // Mirror the latest currentStep & selectedBoat into refs so the unmount
@@ -1488,6 +1541,8 @@ Looking forward to confirmation. Thanks!`;
     getBookingPrice,
     autoDiscount: autoDiscount || null,
     handleBookingSearch,
+    restoredFromStorage,
+    onDismissRestoreBanner: dismissRestoreBanner,
     privacyConsent, setPrivacyConsent,
     showFieldError,
     getFieldError,

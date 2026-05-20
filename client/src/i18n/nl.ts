@@ -773,6 +773,10 @@ export const nl: Translations = {
       included: "Brandstof inbegrepen",
       notIncluded: "Brandstof niet inbegrepen",
     },
+    restoreBanner: {
+      message: "We gaan verder waar je gebleven was",
+      startOver: "Opnieuw beginnen",
+    },
   },
   validation: {
     required: "Dit veld is verplicht",

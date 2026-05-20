@@ -813,6 +813,10 @@ export const es: Translations = {
       included: "Combustible incluido",
       notIncluded: "Combustible no incluido",
     },
+    restoreBanner: {
+      message: "Continuamos donde lo dejaste",
+      startOver: "Empezar nuevo",
+    },
   },
   validation: {
     required: "Este campo es obligatorio",

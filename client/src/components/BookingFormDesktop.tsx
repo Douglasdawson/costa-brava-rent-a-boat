@@ -113,6 +113,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     autoDiscount,
     nextSaturdayISO,
     language,
+    restoredFromStorage,
+    onDismissRestoreBanner,
   } = props;
 
   const { localizedPath } = useLanguage();
@@ -176,6 +178,30 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             softExpiry
             onVerify={onHoldVerify}
           />
+        </div>
+      )}
+
+      {/* P1.10: sessionStorage restore banner */}
+      {restoredFromStorage && (
+        <div className="flex-shrink-0 mx-6 mt-2 flex items-center gap-2 rounded-lg bg-cta/10 px-3 py-2 text-xs text-foreground">
+          <span className="flex-1">
+            {t.bookingWizard?.restoreBanner?.message ?? "Continuamos donde lo dejaste"}
+          </span>
+          <button
+            type="button"
+            onClick={() => onDismissRestoreBanner(true)}
+            className="underline font-medium hover:text-primary"
+          >
+            {t.bookingWizard?.restoreBanner?.startOver ?? "Empezar nuevo"}
+          </button>
+          <button
+            type="button"
+            onClick={() => onDismissRestoreBanner(false)}
+            aria-label={t.booking.close ?? "Cerrar"}
+            className="ml-1 inline-flex w-6 h-6 items-center justify-center rounded-full text-muted-foreground hover:text-foreground"
+          >
+            <X className="w-3.5 h-3.5" aria-hidden="true" />
+          </button>
         </div>
       )}
 

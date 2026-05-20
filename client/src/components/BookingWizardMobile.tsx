@@ -116,6 +116,9 @@ export interface BookingWizardMobileProps {
   getBookingPrice: () => number | null;
   autoDiscount: { type: 'early-bird' | 'flash-deal' | null; percentage: number; amount: number } | null;
   handleBookingSearch: () => Promise<void>;
+  // P1.10: sessionStorage restoration banner
+  restoredFromStorage: boolean;
+  onDismissRestoreBanner: (startOver: boolean) => void;
   // RGPD consent
   privacyConsent: boolean;
   setPrivacyConsent: (v: boolean) => void;
@@ -181,6 +184,29 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
 
         />
       </div>
+      {/* P1.10: sessionStorage restore banner — dismissable, optional reset */}
+      {props.restoredFromStorage && (
+        <div className="mx-3 mt-2 flex items-center gap-2 rounded-lg bg-cta/10 px-3 py-2 text-xs text-foreground">
+          <span className="flex-1">
+            {props.t.bookingWizard?.restoreBanner?.message ?? "Continuamos donde lo dejaste"}
+          </span>
+          <button
+            type="button"
+            onClick={() => props.onDismissRestoreBanner(true)}
+            className="underline font-medium hover:text-primary"
+          >
+            {props.t.bookingWizard?.restoreBanner?.startOver ?? "Empezar nuevo"}
+          </button>
+          <button
+            type="button"
+            onClick={() => props.onDismissRestoreBanner(false)}
+            aria-label={props.t.booking.close ?? "Cerrar"}
+            className="ml-1 inline-flex w-6 h-6 items-center justify-center rounded-full text-muted-foreground hover:text-foreground"
+          >
+            <X className="w-3.5 h-3.5" aria-hidden="true" />
+          </button>
+        </div>
+      )}
       {/* Hold countdown timer — only visible on final step */}
       {props.holdExpiresAt && currentStep === 4 && (
         <div className="px-4 pt-2">

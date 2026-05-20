@@ -769,6 +769,10 @@ export const ru: Translations = {
       included: "Топливо включено",
       notIncluded: "Топливо не включено",
     },
+    restoreBanner: {
+      message: "Продолжаем с того места, где остановились",
+      startOver: "Начать заново",
+    },
   },
   validation: {
     required: "Это поле обязательно",

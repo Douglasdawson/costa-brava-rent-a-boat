@@ -776,6 +776,10 @@ export const it: Translations = {
       included: "Carburante incluso",
       notIncluded: "Carburante non incluso",
     },
+    restoreBanner: {
+      message: "Riprendiamo da dove avevi lasciato",
+      startOver: "Ricominciare",
+    },
   },
   validation: {
     required: "Questo campo è obbligatorio",

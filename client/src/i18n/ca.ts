@@ -774,6 +774,10 @@ export const ca: Translations = {
       included: "Combustible inclòs",
       notIncluded: "Combustible no inclòs",
     },
+    restoreBanner: {
+      message: "Continuem on ho vas deixar",
+      startOver: "Començar de nou",
+    },
   },
   validation: {
     required: "Aquest camp és obligatori",

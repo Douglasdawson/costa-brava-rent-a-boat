@@ -1322,48 +1322,63 @@ Looking forward to confirmation. Thanks!`;
     const message = createWhatsAppBookingMessage();
     openWhatsApp(message);
 
-    // Save inquiry to database after opening WhatsApp (fire-and-forget to avoid popup blocker)
+    // P1.8 (2026-05-20): persist the inquiry via sendBeacon. The previous
+    // fire-and-forget fetch would silently lose records when the browser tore
+    // down the request while the user was navigating to WhatsApp; sendBeacon
+    // is purpose-built for "send on the way out" payloads and the browser
+    // guarantees best-effort delivery. Fallback to fetch + keepalive when
+    // sendBeacon refuses the payload (rare — usually only over the 64KB cap
+    // or in environments without the API).
     try {
       const price = getBookingPrice();
       const codeDiscount = getCodeDiscount();
       const autoDiscAmt = autoDiscount?.type ? autoDiscount.amount : 0;
       const total = price ? price + totalExtrasPrice - codeDiscount - autoDiscAmt : null;
-      fetch('/api/booking-inquiries', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          website,
-          boatId: selectedBoat,
-          boatIds: selectedBoatIds,
-          boatName: isMultiBoat && selectedSecondaryBoatInfo
-            ? `${selectedBoatInfo?.name || selectedBoat} + ${selectedSecondaryBoatInfo.name}`
-            : (selectedBoatInfo?.name || selectedBoat),
-          bookingDate: selectedDate,
-          preferredTime: preferredTime || null,
-          duration: selectedDuration,
-          numberOfPeople: parseInt(numberOfPeople) || 0,
-          firstName: firstName.trim(),
-          lastName: lastName.trim(),
-          phonePrefix,
-          phoneNumber: phoneNumber.trim(),
-          email: email.trim() || null,
-          extras: selectedExtras.length > 0 ? selectedExtras : [],
-          packId: selectedPack || null,
-          couponCode: validatedCode?.code || null,
-          estimatedTotal: total ? total.toFixed(2) : null,
-          language,
-          source: isMobile ? 'mobile' : 'desktop',
-        }),
-      }).catch(() => {
-        toast({
-          title: t.booking.errors?.inquirySave.title ?? "Error al guardar la solicitud",
-          description: t.booking.errors?.inquirySave.description
-            ?? "Tu mensaje por WhatsApp salió bien, pero no pudimos registrarlo internamente.",
-          variant: "destructive",
-        });
+      const inquiryPayload = JSON.stringify({
+        website,
+        boatId: selectedBoat,
+        boatIds: selectedBoatIds,
+        boatName: isMultiBoat && selectedSecondaryBoatInfo
+          ? `${selectedBoatInfo?.name || selectedBoat} + ${selectedSecondaryBoatInfo.name}`
+          : (selectedBoatInfo?.name || selectedBoat),
+        bookingDate: selectedDate,
+        preferredTime: preferredTime || null,
+        duration: selectedDuration,
+        numberOfPeople: parseInt(numberOfPeople) || 0,
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        phonePrefix,
+        phoneNumber: phoneNumber.trim(),
+        email: email.trim() || null,
+        extras: selectedExtras.length > 0 ? selectedExtras : [],
+        packId: selectedPack || null,
+        couponCode: validatedCode?.code || null,
+        estimatedTotal: total ? total.toFixed(2) : null,
+        language,
+        source: isMobile ? 'mobile' : 'desktop',
       });
+      const blob = new Blob([inquiryPayload], { type: 'application/json' });
+      const queued = typeof navigator !== "undefined"
+        && typeof navigator.sendBeacon === "function"
+        && navigator.sendBeacon('/api/booking-inquiries', blob);
+      if (!queued) {
+        // Fallback: keepalive lets the request survive page unload.
+        fetch('/api/booking-inquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: inquiryPayload,
+          keepalive: true,
+        }).catch(() => {
+          toast({
+            title: t.booking.errors?.inquirySave.title ?? "Error al guardar la solicitud",
+            description: t.booking.errors?.inquirySave.description
+              ?? "Tu mensaje por WhatsApp salió bien, pero no pudimos registrarlo internamente.",
+            variant: "destructive",
+          });
+        });
+      }
     } catch {
-      // Silent fail - WhatsApp was already opened
+      // WhatsApp was already opened — the user-facing flow is intact.
     }
 
     toast({

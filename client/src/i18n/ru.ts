@@ -773,6 +773,12 @@ export const ru: Translations = {
       message: "Продолжаем с того места, где остановились",
       startOver: "Начать заново",
     },
+    exitIntent: {
+      title: "Ваше бронирование сохранено",
+      description: "Подтвердим в WhatsApp?",
+      cta: "Написать в WhatsApp",
+      whatsappMessage: "Здравствуйте, я хотел забронировать лодку в Бланесе. Помогите подтвердить доступность?",
+    },
     slotConflict: {
       title: "{time} больше недоступно",
       subtitle: "Предлагаем ближайшие варианты:",

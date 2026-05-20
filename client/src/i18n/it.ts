@@ -780,6 +780,12 @@ export const it: Translations = {
       message: "Riprendiamo da dove avevi lasciato",
       startOver: "Ricominciare",
     },
+    exitIntent: {
+      title: "La tua prenotazione è ancora qui",
+      description: "La confermiamo via WhatsApp?",
+      cta: "Chatta su WhatsApp",
+      whatsappMessage: "Ciao, stavo per prenotare una barca a Blanes. Puoi aiutarmi a confermare la disponibilità?",
+    },
     slotConflict: {
       title: "Le {time} non sono più libere",
       subtitle: "Ti proponiamo questi orari vicini:",

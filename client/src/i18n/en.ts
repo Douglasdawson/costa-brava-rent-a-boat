@@ -773,6 +773,12 @@ export const en: Translations = {
       message: "Picking up where you left off",
       startOver: "Start fresh",
     },
+    exitIntent: {
+      title: "Your booking is still here",
+      description: "Want us to confirm it on WhatsApp?",
+      cta: "Chat on WhatsApp",
+      whatsappMessage: "Hi, I was about to book a boat in Blanes. Could you help me confirm availability?",
+    },
     slotConflict: {
       title: "{time} is no longer available",
       subtitle: "Try one of these nearby times:",

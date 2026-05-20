@@ -777,6 +777,12 @@ export const nl: Translations = {
       message: "We gaan verder waar je gebleven was",
       startOver: "Opnieuw beginnen",
     },
+    exitIntent: {
+      title: "Je boeking staat nog klaar",
+      description: "Zullen we het via WhatsApp bevestigen?",
+      cta: "Chat op WhatsApp",
+      whatsappMessage: "Hoi, ik wilde net een boot in Blanes boeken. Kun je me helpen de beschikbaarheid te bevestigen?",
+    },
     slotConflict: {
       title: "{time} is niet meer beschikbaar",
       subtitle: "We stellen deze tijden in de buurt voor:",

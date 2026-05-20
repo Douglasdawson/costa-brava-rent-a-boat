@@ -8,6 +8,8 @@ import NeveraIcon from "@/components/icons/NeveraIcon";
 import BebidasIcon from "@/components/icons/BebidasIcon";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -26,6 +28,8 @@ import {
   trackDurationSelected,
   trackExtrasChanged,
   trackCouponApplied,
+  trackExitIntentShown,
+  trackExitIntentCtaClick,
 } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
@@ -258,6 +262,11 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   // (which would re-run the cleanup on every change).
   const currentStepRefForUnmount = useRef<number>(1);
   const selectedBoatRefForUnmount = useRef<string>("");
+  // P1.11: exit-intent nudge reads i18n strings and partial booking data at
+  // unmount-time — kept in refs so the cleanup closure isn't stale after
+  // language changes or state edits.
+  const selectedDateRefForUnmount = useRef<string>("");
+  const preferredTimeRefForUnmount = useRef<string>("");
 
   // Restore saved state on mount (only if < 30 minutes old)
   useEffect(() => {
@@ -404,6 +413,9 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   // cleanup (deps: []) can read the values at the moment of dismissal.
   useEffect(() => { currentStepRefForUnmount.current = currentStep; }, [currentStep]);
   useEffect(() => { selectedBoatRefForUnmount.current = selectedBoat; }, [selectedBoat]);
+  // P1.11: same pattern for the exit-intent toast.
+  useEffect(() => { selectedDateRefForUnmount.current = selectedDate; }, [selectedDate]);
+  useEffect(() => { preferredTimeRefForUnmount.current = preferredTime; }, [preferredTime]);
 
   // Fire booking_step_view on every step change (and on mount). Resets the
   // per-step timer so handleNextStep can emit booking_step_complete with the
@@ -418,9 +430,25 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStep]);
 
+  const { toast } = useToast();
+  const t = useTranslations();
+  const { language } = useLanguage();
+  const isMobile = useIsMobile();
+  const isSpanishLang = language === 'es' || language === 'ca';
+  const prefixDropdownRef = useRef<HTMLDivElement>(null);
+
+  // P1.11: refs so the unmount cleanup picks up the LATEST i18n + toast
+  // dispatcher, not the closure captured at mount (which would go stale on
+  // language change).
+  const tRef = useRef(t);
+  const toastRef = useRef(toast);
+  useEffect(() => { tRef.current = t; }, [t]);
+  useEffect(() => { toastRef.current = toast; }, [toast]);
+
   // On unmount: if the user closed the modal without completing the request,
   // fire booking_abandoned (step ≥ 2 only — step 1 dismissals are very noisy
   // and not actionable) plus booking_modal_dismiss with the total open time.
+  // P1.11 also offers a one-shot exit-intent WhatsApp nudge in the same path.
   useEffect(() => {
     // Snapshot the open-at timestamp so the cleanup reads the mount-time value,
     // not the live ref (which never changes, but eslint can't prove that).
@@ -434,15 +462,58 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
         trackBookingAbandoned(`step_${step}`, boat || "unknown");
       }
       trackBookingModalDismiss(step, timeOpenMs, boat);
+
+      // P1.11: exit-intent nudge — one toast per session, only when the user
+      // had reached step ≥ 2 (real intent, not a casual modal-open dismissal).
+      // The toast lives outside the closed modal so we honour the
+      // "no modal-on-modal" constraint from the audit.
+      if (step < 2) return;
+      let alreadyShown = false;
+      try {
+        alreadyShown = sessionStorage.getItem("cbrb_exitIntentNudgeShown") === "1";
+      } catch { /* sessionStorage unavailable — show anyway */ }
+      if (alreadyShown) return;
+      try { sessionStorage.setItem("cbrb_exitIntentNudgeShown", "1"); } catch { /* noop */ }
+
+      const tt = tRef.current;
+      const copy = tt.bookingWizard?.exitIntent;
+      const title = copy?.title ?? "Tu reserva sigue ahí";
+      const description = copy?.description ?? "¿Te ayudamos a confirmar por WhatsApp?";
+      const cta = copy?.cta ?? "Hablar por WhatsApp";
+      const baseMessage = copy?.whatsappMessage ??
+        "Hola, estaba a punto de reservar un barco en Blanes. ¿Me ayudas a confirmar disponibilidad?";
+
+      // Light personalisation: append the date/time the user already chose so
+      // the WhatsApp thread opens with concrete context for the operator.
+      const date = selectedDateRefForUnmount.current;
+      const time = preferredTimeRefForUnmount.current;
+      const contextBits: string[] = [];
+      if (date) contextBits.push(date);
+      if (time) contextBits.push(time);
+      const whatsappMessage = contextBits.length > 0
+        ? `${baseMessage} (${contextBits.join(", ")})`
+        : baseMessage;
+
+      trackExitIntentShown();
+      toastRef.current({
+        title,
+        description,
+        action: (
+          <ToastAction
+            altText={cta}
+            onClick={() => {
+              trackExitIntentCtaClick();
+              openWhatsApp(whatsappMessage);
+            }}
+            className="bg-whatsapp hover:bg-whatsapp-hover text-foreground border-0 min-h-9"
+          >
+            <SiWhatsapp className="w-3.5 h-3.5 mr-1.5" aria-hidden="true" />
+            {cta}
+          </ToastAction>
+        ),
+      });
     };
   }, []);
-
-  const { toast } = useToast();
-  const t = useTranslations();
-  const { language } = useLanguage();
-  const isMobile = useIsMobile();
-  const isSpanishLang = language === 'es' || language === 'ca';
-  const prefixDropdownRef = useRef<HTMLDivElement>(null);
 
   // Update boat when preSelectedBoatId changes
   useEffect(() => {

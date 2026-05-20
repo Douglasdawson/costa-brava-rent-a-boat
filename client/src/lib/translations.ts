@@ -884,6 +884,16 @@ export interface Translations {
       message?: string;
       startOver?: string;
     };
+    /** P1.11: shown as a toast (NOT a modal-on-modal) when the user closes
+     *  the booking modal mid-wizard (step ≥ 2) without submitting. Offers
+     *  a one-tap WhatsApp escape hatch. */
+    exitIntent?: {
+      title?: string;
+      description?: string;
+      cta?: string;
+      /** Pre-filled WhatsApp message when the user accepts the nudge. */
+      whatsappMessage?: string;
+    };
     /** P1.9: shown in step 4 when the preferred slot was taken between
      *  selection and submit. Offers nearby alternatives. */
     slotConflict?: {

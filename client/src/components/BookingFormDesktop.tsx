@@ -21,11 +21,13 @@ import { useLanguage } from "@/hooks/use-language";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 
-// Slide animation variants
+// Slide animation variants — transform + opacity only. P1.17 (2026-05-20)
+// removed `filter: blur(...)` because it's compositor-dependent in Safari and
+// can jank on lower-end devices for no perceptual gain at this distance.
 const slideVariants = {
-  enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0, filter: "blur(4px)" }),
-  center: { x: 0, opacity: 1, filter: "blur(0px)" },
-  exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0, filter: "blur(4px)" }),
+  enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
 };
 
 const LOCALE_MAP_DESKTOP: Record<string, string> = {
@@ -145,7 +147,12 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   useEffect(() => {
     if (currentStep !== prevStepRef.current) {
       setDirection(currentStep > prevStepRef.current ? 1 : -1);
-      scrollContainerRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+      // P1.16 (2026-05-20): DESIGN.md bans layout-animated scroll. The
+      // motion.div slideVariants already gives a directional cue; the
+      // container reset must be instant to keep the perception clean and
+      // to honour prefers-reduced-motion (instant ignores the OS setting
+      // anyway — the user's still inside the modal viewport).
+      scrollContainerRef.current?.scrollTo({ top: 0, behavior: "instant" });
       prevStepRef.current = currentStep;
     }
   }, [currentStep]);
@@ -381,7 +388,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           {currentStep > 1 && (
             <button
               onClick={onBack}
-              className="text-muted-foreground hover:text-foreground transition-colors px-4 py-2.5 rounded-lg font-medium text-sm"
+              className="text-muted-foreground hover:text-foreground transition-colors px-4 min-h-11 rounded-lg font-medium text-sm"
             >
               {t.booking.back}
             </button>
@@ -389,7 +396,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           {currentStep < 4 ? (
             <button
               onClick={onNext}
-              className="bg-foreground text-white rounded-full px-8 py-2.5 font-medium text-sm hover:bg-foreground/90 transition-all btn-elevated"
+              className="bg-foreground text-white rounded-full px-8 min-h-11 font-medium text-sm hover:bg-foreground/90 transition-all btn-elevated"
             >
               {t.booking.next}
             </button>
@@ -402,7 +409,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 setIsSubmitting(false);
               }}
               disabled={isSubmitting}
-              className="bg-whatsapp hover:bg-whatsapp-hover text-foreground rounded-full px-8 py-2.5 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
+              className="bg-whatsapp hover:bg-whatsapp-hover text-foreground rounded-full px-8 min-h-11 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
             >
               {isSubmitting ? (
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -612,7 +619,7 @@ function BoatCardDesktop({
           <p className="text-xs text-foreground font-medium flex items-center gap-1.5">
             <span>{t.boats.from} {displayPrice}€</span>
             {hasOverride && overrideLabel && (
-              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
+              <span className="text-xs font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
                 {overrideLabel}
               </span>
             )}
@@ -742,7 +749,7 @@ function Step2Details({
             {t.wizard.duration}
           </label>
           {hasOverride && overrideLabel && (
-            <span className="text-[11px] font-medium text-popular bg-popular/10 px-2 py-0.5 rounded-full">
+            <span className="text-xs font-medium text-popular bg-popular/10 px-2 py-0.5 rounded-full">
               {overrideLabel}
             </span>
           )}

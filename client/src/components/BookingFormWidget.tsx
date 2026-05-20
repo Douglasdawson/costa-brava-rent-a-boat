@@ -808,6 +808,19 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     }
   };
 
+  // P1.22 (2026-05-20): smooth scrolling honours prefers-reduced-motion to
+  // avoid motion sickness for users with that OS setting enabled.
+  const scrollFieldIntoView = useCallback((domId: string, delayMs = 50) => {
+    if (typeof window === "undefined") return;
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    setTimeout(() => {
+      document.getElementById(domId)?.scrollIntoView({
+        behavior: reduceMotion ? "instant" : "smooth",
+        block: "center",
+      });
+    }, delayMs);
+  }, []);
+
   // Single "full name" input → split on the first whitespace and feed both
   // state fields. Backend still receives firstName + lastName (DB columns are
   // NOT NULL but accept empty strings, so a one-word name lands as
@@ -949,11 +962,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
           : (!numberOfPeople || n < 1)
           ? 'field-people'
           : null;
-        if (firstInvalid) {
-          setTimeout(() => {
-            document.getElementById(firstInvalid)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 50);
-        }
+        if (firstInvalid) scrollFieldIntoView(firstInvalid);
         return;
       }
       // Deep-link short-circuit: skip the boat step when a boat was pre-selected from a boat detail CTA
@@ -978,11 +987,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       if (!canAdvanceFromStep3()) {
         setTouched(prev => ({ ...prev, time: true, duration: true }));
         const firstInvalid = !preferredTime ? 'field-time' : !selectedDuration ? 'field-duration' : null;
-        if (firstInvalid) {
-          setTimeout(() => {
-            document.getElementById(firstInvalid)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 50);
-        }
+        if (firstInvalid) scrollFieldIntoView(firstInvalid);
         return;
       }
       // Start hold countdown when advancing to step 4 (final) — only for licensed boats
@@ -1299,18 +1304,8 @@ Looking forward to confirmation. Thanks!`;
         phone: "wizard-phone",
         email: "wizard-email",
       };
-      const firstField = errors[0];
-      const elId = fieldDomIds[firstField];
-      if (elId) {
-        const reduceMotion = typeof window !== "undefined"
-          && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-        setTimeout(() => {
-          document.getElementById(elId)?.scrollIntoView({
-            behavior: reduceMotion ? "instant" : "smooth",
-            block: "center",
-          });
-        }, 80);
-      }
+      const elId = fieldDomIds[errors[0]];
+      if (elId) scrollFieldIntoView(elId, 80);
       return;
     }
 

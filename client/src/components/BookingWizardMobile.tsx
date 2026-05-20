@@ -598,7 +598,7 @@ function BoatCardMobile({
           <p className="text-xs text-primary font-medium flex items-center gap-1.5">
             <span>{t.boats.from} {displayPrice}€</span>
             {hasOverride && overrideLabel && (
-              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
+              <span className="text-xs font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
                 {overrideLabel}
               </span>
             )}
@@ -688,7 +688,7 @@ function Step3Departure({
         <div className="flex items-center justify-between mb-2">
           <label className="block text-sm font-semibold text-muted-foreground">{t.wizard.duration}</label>
           {hasOverride && overrideLabel && (
-            <span className="text-[11px] font-medium text-popular bg-popular/10 px-2 py-0.5 rounded-full">
+            <span className="text-xs font-medium text-popular bg-popular/10 px-2 py-0.5 rounded-full">
               {overrideLabel}
             </span>
           )}
@@ -1244,7 +1244,7 @@ function Step4Final(props: BookingWizardMobileProps) {
                 <span className="text-sm font-semibold opacity-80">{depositAmount}€</span>
               </div>
             )}
-            <p className="text-sm opacity-60 mt-2">{t.booking.priceConfirmedWhatsApp}</p>
+            <p className="text-sm opacity-80 mt-2">{t.booking.priceConfirmedWhatsApp}</p>
           </div>
         );
       })()}

@@ -425,7 +425,7 @@ export const nl: Translations = {
     earlyBirdDiscount: "Vroegboekkorting -10%",
     flashDealDiscount: "Flashdeal -10%",
     priceConfirmedWhatsApp: "De definitieve prijs wordt bevestigd via WhatsApp",
-    timeSuffix: "",
+    timeSuffix: "h",
     timeSlotReservedSuffix: " · Gereserveerd",
     errors: {
       codeValidation: {

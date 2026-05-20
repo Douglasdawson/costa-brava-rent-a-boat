@@ -446,6 +446,10 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       }, 300);
       return () => clearTimeout(timer);
     }
+    // The toast / validatedCode references inside the setTimeout closure are
+    // intentionally outside the deps array — we only want this effect to
+    // re-run when the prefill coupon arrives, not on every render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prefillCoupon]);
 
   // Close prefix dropdown on outside click

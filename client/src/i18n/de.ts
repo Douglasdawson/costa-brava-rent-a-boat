@@ -426,7 +426,7 @@ export const de: Translations = {
     earlyBirdDiscount: "Frühbucher-Rabatt -10%",
     flashDealDiscount: "Flash-Angebot -10%",
     priceConfirmedWhatsApp: "Der endgültige Preis wird per WhatsApp bestätigt",
-    timeSuffix: "",
+    timeSuffix: "h",
     timeSlotReservedSuffix: " · Reserviert",
     errors: {
       codeValidation: {

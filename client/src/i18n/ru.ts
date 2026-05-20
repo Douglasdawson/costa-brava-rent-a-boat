@@ -423,7 +423,7 @@ export const ru: Translations = {
     earlyBirdDiscount: "Скидка за раннее бронирование -10%",
     flashDealDiscount: "Флеш-скидка -10%",
     priceConfirmedWhatsApp: "Окончательная цена подтверждается в WhatsApp",
-    timeSuffix: "",
+    timeSuffix: "h",
     timeSlotReservedSuffix: " · Занято",
     errors: {
       codeValidation: {

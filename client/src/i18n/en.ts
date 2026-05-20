@@ -419,7 +419,7 @@ export const en: Translations = {
     earlyBirdDiscount: "Early-bird discount -10%",
     flashDealDiscount: "Flash deal -10%",
     priceConfirmedWhatsApp: "Final price confirmed by WhatsApp",
-    timeSuffix: "",
+    timeSuffix: "h",
     timeSlotReservedSuffix: " · Booked",
     errors: {
       codeValidation: {

@@ -514,6 +514,18 @@ export interface Translations {
     openingWhatsapp?: string;
     requestViaWhatsapp?: string;
     whatsappFooterNote?: string;
+    // P1.21 (2026-05-20): time slot suffixes (locale-aware "h", "Reservado").
+    timeSuffix?: string;
+    timeSlotReservedSuffix?: string;
+    // P1.21: toast errors and post-submit confirmation surfaced to the user.
+    errors?: {
+      codeValidation: { title: string; description: string };
+      inquirySave: { title: string; description: string };
+    };
+    requestSent?: {
+      title: string;
+      description: string;
+    };
   };
 
   // FAQ Page

@@ -467,6 +467,22 @@ export const es: Translations = {
     openingWhatsapp: "Abriendo WhatsApp…",
     requestViaWhatsapp: "Solicitar por WhatsApp",
     whatsappFooterNote: "Solo tienes que pulsar Enviar. Sin compromiso hasta que confirmemos.",
+    timeSuffix: "h",
+    timeSlotReservedSuffix: " · Reservado",
+    errors: {
+      codeValidation: {
+        title: "Error al validar código",
+        description: "No se pudo verificar el código de descuento. Inténtalo de nuevo.",
+      },
+      inquirySave: {
+        title: "Error al guardar la solicitud",
+        description: "Tu mensaje por WhatsApp salió bien, pero no pudimos registrarlo internamente.",
+      },
+    },
+    requestSent: {
+      title: "Solicitud enviada por WhatsApp",
+      description: "Revisa WhatsApp para confirmar tu reserva con nosotros.",
+    },
   },
   faq: {
     title: "Preguntas Frecuentes",
@@ -773,10 +789,10 @@ export const es: Translations = {
   },
   bookingWizard: {
     steps: {
-      whenWho: "Cuándo y cuántos sois",
+      whenWho: "¿Cuándo zarpas?",
       yourBoat: "Tu barco",
-      departureDuration: "Salida y duración",
-      yourDetails: "Tus datos",
+      departureDuration: "Hora y duración",
+      yourDetails: "Confirmar",
     },
     hints: {
       pricesNextStep: "En el siguiente paso verás precios reales para tu fecha.",

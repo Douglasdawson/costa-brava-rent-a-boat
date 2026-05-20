@@ -384,8 +384,9 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
           })
           .catch(() => {
             toast({
-              title: "Error al validar codigo",
-              description: "No se pudo verificar el codigo de descuento. Intentalo de nuevo.",
+              title: t.booking.errors?.codeValidation.title ?? "Error al validar código",
+              description: t.booking.errors?.codeValidation.description
+                ?? "No se pudo verificar el código de descuento. Inténtalo de nuevo.",
               variant: "destructive",
             });
           });
@@ -1355,8 +1356,9 @@ Looking forward to confirmation. Thanks!`;
         }),
       }).catch(() => {
         toast({
-          title: "Error al guardar consulta",
-          description: "Tu solicitud de WhatsApp fue enviada, pero no pudimos registrarla internamente.",
+          title: t.booking.errors?.inquirySave.title ?? "Error al guardar la solicitud",
+          description: t.booking.errors?.inquirySave.description
+            ?? "Tu mensaje por WhatsApp salió bien, pero no pudimos registrarlo internamente.",
           variant: "destructive",
         });
       });
@@ -1365,10 +1367,12 @@ Looking forward to confirmation. Thanks!`;
     }
 
     toast({
-      title: isSpanishLang ? 'Solicitud enviada por WhatsApp' : 'Request sent via WhatsApp',
-      description: isSpanishLang
-        ? 'Revisa WhatsApp para confirmar tu reserva con nosotros.'
-        : 'Check WhatsApp to confirm your booking with us.',
+      title: t.booking.requestSent?.title
+        ?? (isSpanishLang ? 'Solicitud enviada por WhatsApp' : 'Request sent via WhatsApp'),
+      description: t.booking.requestSent?.description
+        ?? (isSpanishLang
+          ? 'Revisa WhatsApp para confirmar tu reserva con nosotros.'
+          : 'Check WhatsApp to confirm your booking with us.'),
     });
 
     // Show the enhanced confirmation overlay (peak-end rule)

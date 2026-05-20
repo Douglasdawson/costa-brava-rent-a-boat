@@ -20,6 +20,7 @@ import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
+import { formatBookingDate as formatBookingDateDesktop, getLocaleForLanguage } from "@/utils/intl-helpers";
 
 // Slide animation variants — transform + opacity only. P1.17 (2026-05-20)
 // removed `filter: blur(...)` because it's compositor-dependent in Safari and
@@ -29,28 +30,6 @@ const slideVariants = {
   center: { x: 0, opacity: 1 },
   exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
 };
-
-const LOCALE_MAP_DESKTOP: Record<string, string> = {
-  es: "es-ES",
-  ca: "ca-ES",
-  en: "en-GB",
-  fr: "fr-FR",
-  de: "de-DE",
-  nl: "nl-NL",
-  it: "it-IT",
-  ru: "ru-RU",
-};
-
-function formatBookingDateDesktop(dateStr: string, language: string): string {
-  if (!dateStr) return "--";
-  try {
-    const date = new Date(dateStr + "T12:00:00");
-    const locale = LOCALE_MAP_DESKTOP[language] || "es-ES";
-    return date.toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" });
-  } catch {
-    return dateStr;
-  }
-}
 
 export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const {
@@ -730,7 +709,7 @@ function Step2Details({
             const isUnavailable = unavailableTimeSlots.has(time);
             return (
               <option key={time} value={time} disabled={isUnavailable}>
-                {time}h{isUnavailable ? " - Reservado" : ""}
+                {time}{t.booking.timeSuffix ?? "h"}{isUnavailable ? (t.booking.timeSlotReservedSuffix ?? " · Reservado") : ""}
               </option>
             );
           })}
@@ -907,7 +886,7 @@ function Step1WhenWhoDesktop({
             >
               <CalendarIcon className="w-4 h-4 text-foreground flex-shrink-0" />
               {selectedDate ? (
-                new Date(selectedDate + "T00:00:00").toLocaleDateString("es-ES", {
+                new Date(selectedDate + "T00:00:00").toLocaleDateString(getLocaleForLanguage(language), {
                   day: "2-digit",
                   month: "short",
                   year: "numeric",
@@ -944,7 +923,7 @@ function Step1WhenWhoDesktop({
           <p className="text-xs text-muted-foreground mt-1.5">
             {t.wizard.suggestedDate}:{" "}
             {new Date(nextSaturdayISO + "T12:00:00").toLocaleDateString(
-              language === "en" ? "en-GB" : "es-ES",
+              getLocaleForLanguage(language),
               { weekday: "long", day: "numeric", month: "long" }
             )}
           </p>

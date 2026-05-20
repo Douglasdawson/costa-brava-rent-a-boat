@@ -423,6 +423,22 @@ export const ru: Translations = {
     earlyBirdDiscount: "Скидка за раннее бронирование -10%",
     flashDealDiscount: "Флеш-скидка -10%",
     priceConfirmedWhatsApp: "Окончательная цена подтверждается в WhatsApp",
+    timeSuffix: "",
+    timeSlotReservedSuffix: " · Занято",
+    errors: {
+      codeValidation: {
+        title: "Не удалось проверить код",
+        description: "Мы не смогли проверить промокод. Попробуйте ещё раз.",
+      },
+      inquirySave: {
+        title: "Не удалось сохранить заявку",
+        description: "Ваше сообщение в WhatsApp отправлено, но мы не смогли его сохранить.",
+      },
+    },
+    requestSent: {
+      title: "Заявка отправлена через WhatsApp",
+      description: "Откройте WhatsApp, чтобы подтвердить бронирование.",
+    },
     gdprConsent:
       "Я прочитал(а) и принимаю {privacyPolicy} и {termsAndConditions}. Мои данные будут обработаны для управления моим бронированием (GDPR ст. 6.1.b).",
     gdprPassive:
@@ -739,6 +755,12 @@ export const ru: Translations = {
     missingFieldsDesc: "Не хватает данных. Посмотрите на поля, выделенные красным.",
   },
   bookingWizard: {
+    steps: {
+      whenWho: "Когда отплываешь?",
+      yourBoat: "Твоя лодка",
+      departureDuration: "Время и длительность",
+      yourDetails: "Подтвердить",
+    },
     hints: {
       noOnlinePayment: "Без онлайн-оплаты — подтвердим через WhatsApp",
       submitReassurance: "Ответим в течение 2 часов. Без онлайн-оплаты, без обязательств.",

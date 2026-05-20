@@ -425,6 +425,22 @@ export const ca: Translations = {
     earlyBirdDiscount: "Descompte early-bird -10%",
     flashDealDiscount: "Oferta flash -10%",
     priceConfirmedWhatsApp: "El preu final es confirma per WhatsApp",
+    timeSuffix: "h",
+    timeSlotReservedSuffix: " · Reservat",
+    errors: {
+      codeValidation: {
+        title: "Error en validar el codi",
+        description: "No s'ha pogut verificar el codi de descompte. Torna-ho a provar.",
+      },
+      inquirySave: {
+        title: "Error en desar la sol·licitud",
+        description: "El teu missatge per WhatsApp s'ha enviat, però no l'hem pogut registrar internament.",
+      },
+    },
+    requestSent: {
+      title: "Sol·licitud enviada per WhatsApp",
+      description: "Mira WhatsApp per confirmar la teva reserva amb nosaltres.",
+    },
     gdprConsent:
       "He llegit i accepto la {privacyPolicy} i les {termsAndConditions}. Les meves dades seran tractades per gestionar la meva reserva (RGPD Art. 6.1.b).",
     gdprPassive:
@@ -744,6 +760,12 @@ export const ca: Translations = {
     missingFieldsDesc: "Falten dades per enviar la sol·licitud. Mira els camps en vermell.",
   },
   bookingWizard: {
+    steps: {
+      whenWho: "Quan salpem?",
+      yourBoat: "El teu barco",
+      departureDuration: "Hora i durada",
+      yourDetails: "Confirmar",
+    },
     hints: {
       noOnlinePayment: "Sense pagament en línia — et confirmem per WhatsApp",
       submitReassurance: "Et responem en menys de 2 hores. Sense pagament en línia, sense compromís.",

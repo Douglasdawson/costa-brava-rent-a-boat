@@ -18,6 +18,7 @@ import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
+import { formatBookingDate as formatLocalisedDate, getLocaleForLanguage } from "@/utils/intl-helpers";
 
 interface PhonePrefix {
   code: string;
@@ -468,7 +469,7 @@ function Step1WhenWho({
             >
               <CalendarIcon className="w-4 h-4 text-primary flex-shrink-0" />
               {selectedDate
-                ? new Date(selectedDate + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
+                ? new Date(selectedDate + 'T00:00:00').toLocaleDateString(getLocaleForLanguage(language), { day: '2-digit', month: 'short', year: 'numeric' })
                 : <span className="text-muted-foreground">{t.wizard.selectDate}</span>
               }
             </button>
@@ -496,7 +497,7 @@ function Step1WhenWho({
         )}
         {!selectedDate && nextSaturdayISO && (
           <p className="text-xs text-muted-foreground mt-1.5">
-            {t.wizard.suggestedDate}: {new Date(nextSaturdayISO + 'T12:00:00').toLocaleDateString(language === 'en' ? 'en-GB' : 'es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
+            {t.wizard.suggestedDate}: {new Date(nextSaturdayISO + 'T12:00:00').toLocaleDateString(getLocaleForLanguage(language), { weekday: 'long', day: 'numeric', month: 'long' })}
           </p>
         )}
       </div>
@@ -675,7 +676,7 @@ function Step3Departure({
             const isUnavailable = unavailableTimeSlots.has(time);
             return (
               <option key={time} value={time} disabled={isUnavailable}>
-                {time}h{isUnavailable ? " - Reservado" : ""}
+                {time}{t.booking.timeSuffix ?? "h"}{isUnavailable ? (t.booking.timeSlotReservedSuffix ?? " · Reservado") : ""}
               </option>
             );
           })}
@@ -913,21 +914,10 @@ function PersonalDataSection({
   );
 }
 
-const LOCALE_MAP: Record<string, string> = {
-  es: 'es-ES', ca: 'ca-ES', en: 'en-GB', fr: 'fr-FR',
-  de: 'de-DE', nl: 'nl-NL', it: 'it-IT', ru: 'ru-RU',
-};
-
-function formatBookingDate(dateStr: string, language: string): string {
-  if (!dateStr) return '--';
-  try {
-    const date = new Date(dateStr + 'T12:00:00');
-    const locale = LOCALE_MAP[language] || 'es-ES';
-    return date.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
-  } catch {
-    return dateStr;
-  }
-}
+// P1.7 (2026-05-20): locale map moved to client/src/utils/intl-helpers.ts.
+// formatBookingDate aliases the shared helper so the local callsites keep
+// reading naturally.
+const formatBookingDate = formatLocalisedDate;
 
 /**
  * Step 4 (final): combines personal data form + extras + summary + total + RGPD.

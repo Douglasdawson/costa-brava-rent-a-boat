@@ -425,6 +425,22 @@ export const nl: Translations = {
     earlyBirdDiscount: "Vroegboekkorting -10%",
     flashDealDiscount: "Flashdeal -10%",
     priceConfirmedWhatsApp: "De definitieve prijs wordt bevestigd via WhatsApp",
+    timeSuffix: "",
+    timeSlotReservedSuffix: " · Gereserveerd",
+    errors: {
+      codeValidation: {
+        title: "Code kon niet worden gevalideerd",
+        description: "We konden de kortingscode niet verifiëren. Probeer het opnieuw.",
+      },
+      inquirySave: {
+        title: "Aanvraag niet opgeslagen",
+        description: "Je WhatsApp-bericht is verzonden, maar we konden het niet intern registreren.",
+      },
+    },
+    requestSent: {
+      title: "Aanvraag verzonden via WhatsApp",
+      description: "Bekijk WhatsApp om je boeking met ons te bevestigen.",
+    },
     gdprConsent:
       "Ik heb het {privacyPolicy} en de {termsAndConditions} gelezen en accepteer deze. Mijn gegevens worden verwerkt om mijn boeking te beheren (AVG Art. 6.1.b).",
     gdprPassive:
@@ -743,6 +759,12 @@ export const nl: Translations = {
     missingFieldsDesc: "Er ontbreken gegevens. Bekijk de velden in rood.",
   },
   bookingWizard: {
+    steps: {
+      whenWho: "Wanneer vaar je uit?",
+      yourBoat: "Jouw boot",
+      departureDuration: "Tijd en duur",
+      yourDetails: "Bevestigen",
+    },
     hints: {
       noOnlinePayment: "Geen online betaling — we bevestigen via WhatsApp",
       submitReassurance: "We reageren binnen 2 uur. Geen online betaling, vrijblijvend.",

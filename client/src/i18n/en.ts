@@ -419,6 +419,22 @@ export const en: Translations = {
     earlyBirdDiscount: "Early-bird discount -10%",
     flashDealDiscount: "Flash deal -10%",
     priceConfirmedWhatsApp: "Final price confirmed by WhatsApp",
+    timeSuffix: "",
+    timeSlotReservedSuffix: " · Booked",
+    errors: {
+      codeValidation: {
+        title: "Could not validate code",
+        description: "We couldn't verify the discount code. Please try again.",
+      },
+      inquirySave: {
+        title: "Could not save your request",
+        description: "Your WhatsApp message went through, but we couldn't log it internally.",
+      },
+    },
+    requestSent: {
+      title: "Request sent via WhatsApp",
+      description: "Check WhatsApp to confirm your booking with us.",
+    },
     gdprConsent:
       "I have read and accept the {privacyPolicy} and the {termsAndConditions}. My data will be processed to manage my booking (GDPR Art. 6.1.b).",
     gdprPassive:
@@ -739,6 +755,12 @@ export const en: Translations = {
     missingFieldsDesc: "Some details are missing. Look for the fields in red.",
   },
   bookingWizard: {
+    steps: {
+      whenWho: "When do you sail?",
+      yourBoat: "Your boat",
+      departureDuration: "Time and length",
+      yourDetails: "Confirm",
+    },
     hints: {
       noOnlinePayment: "No online payment — we confirm by WhatsApp",
       submitReassurance: "We reply within 2 hours. No online payment, no commitment.",

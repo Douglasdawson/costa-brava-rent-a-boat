@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { CalendarIcon, Check, ClipboardList, Clock, Loader2, Star, Users, X } from "lucide-react";
+import { CalendarIcon, Check, ClipboardList, Clock, Fuel, Loader2, Star, Users, X } from "lucide-react";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "motion/react";
+import type { Boat } from "@shared/schema";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
 import { EXTRA_PACKS } from "@shared/boatData";
 import { getMinActivePrice } from "@shared/pricing";
+import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import { ValueStack } from "@/components/booking-flow/ValueStack";
 import { BookingTrustBanner } from "@/components/booking-flow/BookingTrustBanner";
@@ -16,6 +18,8 @@ import PriceSummaryBar from "@/components/PriceSummaryBar";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
+import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
+import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 
 // Slide animation variants
 const slideVariants = {
@@ -66,12 +70,16 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     setSelectedDuration,
     preferredTime,
     setPreferredTime,
+    onDateSelectFromUser,
+    onTimeSelectFromUser,
+    onDurationSelectFromUser,
     numberOfPeople,
     setNumberOfPeople,
     firstName,
     setFirstName,
     lastName,
     setLastName,
+    onFullNameChange,
     phonePrefix,
     setPhonePrefix,
     phoneNumber,
@@ -157,13 +165,13 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const inputError = "border-destructive";
   const inputNormal = "border-cta/40";
 
-  // Endowment Effect: once a boat is selected, shift to possessive language
+  // Step labels for the reordered 4-step wizard (date first)
   const boatSelected = !!selectedBoatInfo;
   const stepLabels = [
-    t.wizard.stepBoat,
-    boatSelected ? t.endowment?.yourTrip || t.wizard.stepTrip : t.wizard.stepTrip,
-    boatSelected ? t.endowment?.yourExperience || t.wizard.stepExtras : t.wizard.stepExtras,
-    boatSelected ? t.endowment?.confirmStep || t.wizard.stepYourData : t.wizard.stepYourData,
+    t.bookingWizard?.steps?.whenWho || 'Cuándo',
+    t.bookingWizard?.steps?.yourBoat || t.wizard.stepBoat,
+    t.bookingWizard?.steps?.departureDuration || (boatSelected ? (t.endowment?.yourTrip || t.wizard.stepTrip) : t.wizard.stepTrip),
+    t.bookingWizard?.steps?.yourDetails || (boatSelected ? (t.endowment?.confirmStep || t.wizard.stepYourData) : t.wizard.stepYourData),
   ];
 
   return (
@@ -203,34 +211,54 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               stage={currentStep <= 2 ? "step1" : currentStep === 3 ? "step2" : "step3"}
             />
             {currentStep === 1 && (
-              <Step1BoatDate
-                licenseFilter={licenseFilter}
-                setLicenseFilter={setLicenseFilter}
-                selectedBoat={selectedBoat}
-                setSelectedBoat={setSelectedBoat}
-                filteredBoats={filteredBoats}
-                isBoatsLoading={isBoatsLoading}
-                preSelectedBoatId={preSelectedBoatId}
-                showFieldError={showFieldError}
-                getFieldError={getFieldError}
-                t={t}
-              />
-            )}
-            {currentStep === 2 && (
-              <Step2Details
+              <Step1WhenWhoDesktop
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}
+                onDateSelectFromUser={onDateSelectFromUser}
                 getLocalISODate={getLocalISODate}
                 showDatePicker={showDatePicker}
                 setShowDatePicker={setShowDatePicker}
                 nextSaturdayISO={nextSaturdayISO}
                 language={language}
-                selectedDuration={selectedDuration}
-                setSelectedDuration={setSelectedDuration}
-                preferredTime={preferredTime}
-                setPreferredTime={setPreferredTime}
                 numberOfPeople={numberOfPeople}
                 setNumberOfPeople={setNumberOfPeople}
+                showFieldError={showFieldError}
+                getFieldError={getFieldError}
+                handleBlur={handleBlur}
+                t={t}
+                inputBase={inputBase}
+                inputError={inputError}
+                inputNormal={inputNormal}
+              />
+            )}
+            {currentStep === 2 && (
+              <Step1BoatDate
+                licenseFilter={licenseFilter}
+                setLicenseFilter={setLicenseFilter}
+                selectedBoat={selectedBoat}
+                setSelectedBoat={setSelectedBoat}
+                selectedSecondaryBoat={props.selectedSecondaryBoat}
+                setSelectedSecondaryBoat={props.setSelectedSecondaryBoat}
+                filteredBoats={filteredBoats}
+                isBoatsLoading={isBoatsLoading}
+                preSelectedBoatId={preSelectedBoatId}
+                selectedDate={selectedDate}
+                numberOfPeople={numberOfPeople}
+                showFieldError={showFieldError}
+                getFieldError={getFieldError}
+                t={t}
+              />
+            )}
+            {currentStep === 3 && (
+              <Step2Details
+                selectedBoat={selectedBoat}
+                selectedDate={selectedDate}
+                selectedDuration={selectedDuration}
+                setSelectedDuration={setSelectedDuration}
+                onDurationSelectFromUser={onDurationSelectFromUser}
+                preferredTime={preferredTime}
+                setPreferredTime={setPreferredTime}
+                onTimeSelectFromUser={onTimeSelectFromUser}
                 durationOptions={durationOptions}
                 maxCapacity={maxCapacity}
                 selectedBoatInfo={selectedBoatInfo}
@@ -246,29 +274,13 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 inputNormal={inputNormal}
               />
             )}
-            {currentStep === 3 && (
-              <Step3Extras
-                boatExtras={boatExtras}
-                selectedExtras={selectedExtras}
-                selectedPack={selectedPack}
-                extrasInPack={extrasInPack}
-                totalExtrasPrice={totalExtrasPrice}
-                handlePackSelect={handlePackSelect}
-                handleExtraToggle={handleExtraToggle}
-                availablePacks={availablePacks}
-                iconMap={iconMap}
-                calculatePackSavings={calculatePackSavings}
-                isSpanishLang={isSpanishLang}
-                language={language}
-                t={t}
-              />
-            )}
             {currentStep === 4 && (
-              <Step4Contact
+              <Step4FinalDesktop
                 firstName={firstName}
                 setFirstName={setFirstName}
                 lastName={lastName}
                 setLastName={setLastName}
+                onFullNameChange={onFullNameChange}
                 phonePrefix={phonePrefix}
                 setPhonePrefix={setPhonePrefix}
                 phoneNumber={phoneNumber}
@@ -312,15 +324,23 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 inputBase={inputBase}
                 inputError={inputError}
                 inputNormal={inputNormal}
+                boatExtras={boatExtras}
+                handlePackSelect={handlePackSelect}
+                handleExtraToggle={handleExtraToggle}
+                availablePacks={availablePacks}
+                iconMap={iconMap}
+                calculatePackSavings={calculatePackSavings}
+                isSpanishLang={isSpanishLang}
               />
             )}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Price summary — visible from step 2 onwards when boat + duration selected */}
+      {/* P1.1 (2026-05-20): price bar visible from step 2 through step 4
+          so the total stays on screen when the user hits submit. */}
       {currentStep >= 2 &&
-        currentStep <= 3 &&
+        currentStep <= 4 &&
         price !== null &&
         selectedBoatInfo &&
         selectedDuration && (
@@ -352,6 +372,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
       {/* Navigation footer */}
       <div className="flex-shrink-0 border-t border-cta/20 px-6 py-3">
+        {currentStep === 4 && (
+          <p className="text-xs text-muted-foreground text-center mb-2">
+            {t.bookingWizard?.hints?.submitReassurance || 'Te respondemos en menos de 2 horas. Sin pago online, sin compromiso.'}
+          </p>
+        )}
         <div className={`flex items-center ${currentStep > 1 ? "justify-between" : "justify-end"}`}>
           {currentStep > 1 && (
             <button
@@ -402,9 +427,13 @@ interface Step1Props {
   setLicenseFilter: (v: "with" | "without") => void;
   selectedBoat: string;
   setSelectedBoat: (v: string) => void;
+  selectedSecondaryBoat: string;
+  setSelectedSecondaryBoat: (v: string) => void;
   filteredBoats: BookingWizardMobileProps["filteredBoats"];
   isBoatsLoading: boolean;
   preSelectedBoatId?: string;
+  selectedDate: string;
+  numberOfPeople: string;
   showFieldError: (f: string) => boolean;
   getFieldError: (f: string) => string;
   t: BookingWizardMobileProps["t"];
@@ -415,13 +444,24 @@ function Step1BoatDate({
   setLicenseFilter,
   selectedBoat,
   setSelectedBoat,
+  selectedSecondaryBoat,
+  setSelectedSecondaryBoat,
   filteredBoats,
   isBoatsLoading,
   preSelectedBoatId,
+  selectedDate,
+  numberOfPeople,
   showFieldError,
   getFieldError,
   t,
 }: Step1Props) {
+  const peopleNum = parseInt(numberOfPeople || '1');
+  const maxSingleCapacity = filteredBoats.reduce((max, b) => Math.max(max, b.capacity), 0);
+  const needsMultiBoat = peopleNum > maxSingleCapacity && filteredBoats.length >= 2;
+  const handleComboSelect = (primary: string, secondary: string) => {
+    setSelectedBoat(primary);
+    setSelectedSecondaryBoat(secondary);
+  };
   return (
     <div className="space-y-5">
       {/* License filter */}
@@ -457,73 +497,132 @@ function Step1BoatDate({
         </div>
       )}
 
-      {/* Boat selection */}
-      <div>
-        <div className="flex items-center justify-between mb-2">
-          <p className="text-xs font-semibold text-muted-foreground">
-            {t.wizard.selectABoat}
+      {/* Boat selection / multi-boat combinations */}
+      {needsMultiBoat ? (
+        <div>
+          <p className="text-xs font-semibold text-muted-foreground mb-2">
+            {(t.bookingWizard?.multiBoat?.subtitle || 'Para {n} personas necesitamos 2 barcos').replace('{n}', String(peopleNum))}
           </p>
-          {showFieldError("boat") && (
-            <p className="text-xs text-destructive">{getFieldError("boat")}</p>
+          <MultiBoatCombinations
+            filteredBoats={filteredBoats}
+            peopleNum={peopleNum}
+            selectedDate={selectedDate}
+            selectedBoat={selectedBoat}
+            selectedSecondaryBoat={selectedSecondaryBoat}
+            onSelect={handleComboSelect}
+            t={t}
+          />
+        </div>
+      ) : (
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-xs font-semibold text-muted-foreground">
+              {t.wizard.selectABoat}
+            </p>
+            {showFieldError("boat") && (
+              <p className="text-xs text-destructive">{getFieldError("boat")}</p>
+            )}
+          </div>
+          {isBoatsLoading ? (
+            <div className="grid grid-cols-2 gap-2">
+              {[1, 2, 3, 4].map(i => (
+                <div
+                  key={i}
+                  className="animate-pulse flex items-center gap-2 p-3 rounded-lg border-2 border-cta/20"
+                >
+                  <div className="w-4 h-4 rounded-full bg-cta/30 flex-shrink-0" />
+                  <div className="flex-1 h-3 bg-cta/30 rounded w-3/4" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div role="radiogroup" aria-label={t.wizard.selectABoat} className="grid grid-cols-2 gap-2">
+              {filteredBoats.map(boat => (
+                <BoatCardDesktop
+                  key={boat.id}
+                  boat={boat}
+                  selected={selectedBoat === boat.id}
+                  fitsCapacity={boat.capacity >= peopleNum}
+                  selectedDate={selectedDate}
+                  onSelect={() => setSelectedBoat(boat.id)}
+                  t={t}
+                />
+              ))}
+            </div>
           )}
         </div>
-        {isBoatsLoading ? (
-          <div className="grid grid-cols-2 gap-2">
-            {[1, 2, 3, 4].map(i => (
-              <div
-                key={i}
-                className="animate-pulse flex items-center gap-2 p-3 rounded-lg border-2 border-cta/20"
-              >
-                <div className="w-4 h-4 rounded-full bg-cta/30 flex-shrink-0" />
-                <div className="flex-1 h-3 bg-cta/30 rounded w-3/4" />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div role="radiogroup" aria-label={t.wizard.selectABoat} className="grid grid-cols-2 gap-2">
-            {filteredBoats.map(boat => {
-              const firstSeason =
-                boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
-              const minPrice = getMinActivePrice(firstSeason?.prices);
-              const isSelected = selectedBoat === boat.id;
-              return (
-                <button
-                  key={boat.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={isSelected}
-                  onClick={() => setSelectedBoat(boat.id)}
-                  className={`w-full flex items-center gap-2.5 p-3 rounded-lg border-2 text-left transition-colors ${
-                    isSelected
-                      ? "border-foreground bg-foreground/5"
-                      : "border-cta/40 bg-background hover:border-cta"
-                  }`}
-                >
-                  <div
-                    className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      isSelected ? "border-foreground bg-foreground" : "border-muted-foreground/30"
-                    }`}
-                  >
-                    {isSelected && <Check className="w-2.5 h-2.5 text-background" aria-hidden="true" />}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-foreground text-sm truncate">{boat.name}</p>
-                    {minPrice !== null && (
-                      <p className="text-xs text-foreground font-medium">
-                        {t.boats.from} {minPrice}€
-                      </p>
-                    )}
-                  </div>
-                  <span className="text-xs text-muted-foreground flex-shrink-0">
-                    {boat.capacity}p
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Desktop boat card with real pricing for the selected date.
+ */
+function BoatCardDesktop({
+  boat,
+  selected,
+  fitsCapacity,
+  selectedDate,
+  onSelect,
+  t,
+}: {
+  boat: Boat;
+  selected: boolean;
+  fitsCapacity: boolean;
+  selectedDate: string;
+  onSelect: () => void;
+  t: Translations;
+}) {
+  const { finalPrice, hasOverride, overrideLabel } = useBoatPricingForDate({
+    boatId: boat.id,
+    date: selectedDate,
+    duration: "4h",
+    enabled: !!selectedDate && fitsCapacity,
+  });
+  const fallbackSeason = boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
+  const fallbackMin = getMinActivePrice(fallbackSeason?.prices);
+  const displayPrice = finalPrice ?? fallbackMin;
+
+  return (
+    <button
+      type="button"
+      role="radio"
+      aria-checked={selected}
+      onClick={fitsCapacity ? onSelect : undefined}
+      disabled={!fitsCapacity}
+      className={`w-full flex items-center gap-2.5 p-3 rounded-lg border-2 text-left transition-colors ${
+        !fitsCapacity
+          ? "border-cta/20 bg-muted opacity-50 cursor-not-allowed"
+          : selected
+          ? "border-foreground bg-foreground/5"
+          : "border-cta/40 bg-background hover:border-cta"
+      }`}
+    >
+      <div
+        className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+          selected ? "border-foreground bg-foreground" : "border-muted-foreground/30"
+        }`}
+      >
+        {selected && <Check className="w-2.5 h-2.5 text-background" aria-hidden="true" />}
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="font-semibold text-foreground text-sm truncate">{boat.name}</p>
+        {displayPrice !== null && (
+          <p className="text-xs text-foreground font-medium flex items-center gap-1.5">
+            <span>{t.boats.from} {displayPrice}€</span>
+            {hasOverride && overrideLabel && (
+              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
+                {overrideLabel}
+              </span>
+            )}
+          </p>
         )}
       </div>
-    </div>
+      <span className="text-xs text-muted-foreground flex-shrink-0">
+        {boat.capacity}p
+      </span>
+    </button>
   );
 }
 
@@ -532,19 +631,14 @@ function Step1BoatDate({
    ═══════════════════════════════════════════ */
 
 interface Step2Props {
+  selectedBoat: string;
   selectedDate: string;
-  setSelectedDate: (v: string) => void;
-  getLocalISODate: () => string;
-  showDatePicker: boolean;
-  setShowDatePicker: (v: boolean) => void;
-  nextSaturdayISO: string;
-  language: string;
   selectedDuration: string;
   setSelectedDuration: (v: string) => void;
+  onDurationSelectFromUser: (v: string) => void;
   preferredTime: string;
   setPreferredTime: (v: string) => void;
-  numberOfPeople: string;
-  setNumberOfPeople: (v: string) => void;
+  onTimeSelectFromUser: (v: string) => void;
   durationOptions: {
     value: string;
     label: string;
@@ -567,19 +661,12 @@ interface Step2Props {
 }
 
 function Step2Details({
+  selectedBoat,
   selectedDate,
-  setSelectedDate,
-  getLocalISODate,
-  showDatePicker,
-  setShowDatePicker,
-  nextSaturdayISO,
-  language,
   selectedDuration,
-  setSelectedDuration,
+  onDurationSelectFromUser,
   preferredTime,
-  setPreferredTime,
-  numberOfPeople,
-  setNumberOfPeople,
+  onTimeSelectFromUser,
   durationOptions,
   maxCapacity,
   selectedBoatInfo,
@@ -594,65 +681,23 @@ function Step2Details({
   inputError,
   inputNormal,
 }: Step2Props) {
+  const { hasOverride, overrideLabel } = useBoatPricingForDate({
+    boatId: selectedBoat,
+    date: selectedDate,
+    duration: "4h",
+    enabled: !!selectedBoat && !!selectedDate,
+  });
   return (
     <div className="space-y-5">
-      {/* Date */}
       <div>
-        <label className="block text-xs font-semibold text-muted-foreground mb-2">
-          {t.wizard.date}
-        </label>
-        <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
-          <PopoverTrigger asChild>
-            <button
-              type="button"
-              onBlur={() => handleBlur("date")}
-              aria-describedby={showFieldError("date") ? "error-desktop-date" : undefined}
-              className={`${inputBase} flex items-center gap-2 ${showFieldError("date") ? inputError : inputNormal}`}
-            >
-              <CalendarIcon className="w-4 h-4 text-foreground flex-shrink-0" />
-              {selectedDate ? (
-                new Date(selectedDate + "T00:00:00").toLocaleDateString("es-ES", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                })
-              ) : (
-                <span className="text-muted-foreground">{t.wizard.selectDate}</span>
-              )}
-            </button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={selectedDate ? new Date(selectedDate + "T00:00:00") : undefined}
-              onSelect={date => {
-                if (date) {
-                  const y = date.getFullYear();
-                  const m = String(date.getMonth() + 1).padStart(2, "0");
-                  const d = String(date.getDate()).padStart(2, "0");
-                  setSelectedDate(`${y}-${m}-${d}`);
-                }
-                setShowDatePicker(false);
-              }}
-              disabled={date => date < new Date(getLocalISODate() + "T00:00:00")}
-              initialFocus
-            />
-          </PopoverContent>
-        </Popover>
-        {showFieldError("date") && (
-          <p id="error-desktop-date" className="text-xs text-destructive mt-1">
-            {getFieldError("date")}
-          </p>
-        )}
-        {!selectedDate && nextSaturdayISO && (
-          <p className="text-xs text-muted-foreground mt-1.5">
-            {t.wizard.suggestedDate}:{" "}
-            {new Date(nextSaturdayISO + "T12:00:00").toLocaleDateString(
-              language === "en" ? "en-GB" : "es-ES",
-              { weekday: "long", day: "numeric", month: "long" }
-            )}
-          </p>
-        )}
+        <h2 className="text-base font-bold text-foreground mb-1">
+          {t.bookingWizard?.steps?.departureDuration || 'Salida y duración'}
+        </h2>
+        <p className="text-xs text-muted-foreground">
+          {selectedBoatInfo
+            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', selectedBoatInfo.name)
+            : t.wizard.howLongHowMany}
+        </p>
       </div>
 
       {/* Time — shown before duration so maxDuration can filter durations */}
@@ -666,7 +711,7 @@ function Step2Details({
         <select
           id="desktop-time"
           value={preferredTime}
-          onChange={e => setPreferredTime(e.target.value)}
+          onChange={e => onTimeSelectFromUser(e.target.value)}
           onBlur={() => handleBlur("time")}
           aria-required="true"
           aria-invalid={showFieldError("time") ? "true" : "false"}
@@ -692,9 +737,16 @@ function Step2Details({
 
       {/* Duration */}
       <div>
-        <label className="block text-xs font-semibold text-muted-foreground mb-2">
-          {t.wizard.duration}
-        </label>
+        <div className="flex items-center justify-between mb-2">
+          <label className="block text-xs font-semibold text-muted-foreground">
+            {t.wizard.duration}
+          </label>
+          {hasOverride && overrideLabel && (
+            <span className="text-[11px] font-medium text-popular bg-popular/10 px-2 py-0.5 rounded-full">
+              {overrideLabel}
+            </span>
+          )}
+        </div>
         <div className="grid grid-cols-3 gap-2">
           {(() => {
             const enabledWithPrice = durationOptions.filter(o => !o.disabled && o.price);
@@ -723,7 +775,7 @@ function Step2Details({
                   key={opt.value}
                   type="button"
                   disabled={isDisabled}
-                  onClick={() => !isDisabled && setSelectedDuration(opt.value)}
+                  onClick={() => !isDisabled && onDurationSelectFromUser(opt.value)}
                   title={isSeasonRestricted ? opt.disabledReason : undefined}
                   className={`py-3 px-2 rounded-lg border-2 text-center transition-all ${
                     isDisabled
@@ -774,14 +826,126 @@ function Step2Details({
           </p>
         )}
       </div>
+    </div>
+  );
+}
 
-      {/* People */}
+/* ═══════════════════════════════════════════
+   STEP 1 (DESKTOP): When + Who (date + people)
+   ═══════════════════════════════════════════ */
+
+interface Step1WhenWhoProps {
+  selectedDate: string;
+  setSelectedDate: (v: string) => void;
+  onDateSelectFromUser: (v: string) => void;
+  getLocalISODate: () => string;
+  showDatePicker: boolean;
+  setShowDatePicker: (v: boolean) => void;
+  nextSaturdayISO: string;
+  language: string;
+  numberOfPeople: string;
+  setNumberOfPeople: (v: string) => void;
+  showFieldError: (f: string) => boolean;
+  getFieldError: (f: string) => string;
+  handleBlur: (f: string) => void;
+  t: BookingWizardMobileProps["t"];
+  inputBase: string;
+  inputError: string;
+  inputNormal: string;
+}
+
+function Step1WhenWhoDesktop({
+  selectedDate,
+  onDateSelectFromUser,
+  getLocalISODate,
+  showDatePicker,
+  setShowDatePicker,
+  nextSaturdayISO,
+  language,
+  numberOfPeople,
+  setNumberOfPeople,
+  showFieldError,
+  getFieldError,
+  handleBlur,
+  t,
+  inputBase,
+  inputError,
+  inputNormal,
+}: Step1WhenWhoProps) {
+  const peopleCap = 12; // narrowed to boat capacity in step 2
+  return (
+    <div className="space-y-5">
+      <div>
+        <h2 className="text-base font-bold text-foreground mb-1">
+          {t.bookingWizard?.steps?.whenWho || 'Cuándo y cuántos sois'}
+        </h2>
+        <p className="text-xs text-muted-foreground">
+          {t.bookingWizard?.hints?.pricesNextStep || 'En el siguiente paso verás precios reales para tu fecha.'}
+        </p>
+        <p className="text-xs text-muted-foreground mt-1.5">
+          {t.bookingWizard?.hints?.noOnlinePayment || 'Sin pago online — te confirmamos por WhatsApp'}
+        </p>
+      </div>
+      <div>
+        <label className="block text-xs font-semibold text-muted-foreground mb-2">
+          {t.wizard.date}
+        </label>
+        <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
+          <PopoverTrigger asChild>
+            <button
+              type="button"
+              onBlur={() => handleBlur("date")}
+              aria-describedby={showFieldError("date") ? "error-desktop-date" : undefined}
+              className={`${inputBase} flex items-center gap-2 ${showFieldError("date") ? inputError : inputNormal}`}
+            >
+              <CalendarIcon className="w-4 h-4 text-foreground flex-shrink-0" />
+              {selectedDate ? (
+                new Date(selectedDate + "T00:00:00").toLocaleDateString("es-ES", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })
+              ) : (
+                <span className="text-muted-foreground">{t.wizard.selectDate}</span>
+              )}
+            </button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={selectedDate ? new Date(selectedDate + "T00:00:00") : undefined}
+              onSelect={date => {
+                if (date) {
+                  const y = date.getFullYear();
+                  const m = String(date.getMonth() + 1).padStart(2, "0");
+                  const d = String(date.getDate()).padStart(2, "0");
+                  onDateSelectFromUser(`${y}-${m}-${d}`);
+                }
+                setShowDatePicker(false);
+              }}
+              disabled={date => date < new Date(getLocalISODate() + "T00:00:00")}
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
+        {showFieldError("date") && (
+          <p id="error-desktop-date" className="text-xs text-destructive mt-1">
+            {getFieldError("date")}
+          </p>
+        )}
+        {!selectedDate && nextSaturdayISO && (
+          <p className="text-xs text-muted-foreground mt-1.5">
+            {t.wizard.suggestedDate}:{" "}
+            {new Date(nextSaturdayISO + "T12:00:00").toLocaleDateString(
+              language === "en" ? "en-GB" : "es-ES",
+              { weekday: "long", day: "numeric", month: "long" }
+            )}
+          </p>
+        )}
+      </div>
       <div>
         <label className="block text-xs font-semibold text-muted-foreground mb-2">
           {t.wizard.numberOfPeople}
-          {selectedBoatInfo && (
-            <span className="font-normal text-muted-foreground ml-1">(max {maxCapacity})</span>
-          )}
         </label>
         <div
           className={`flex items-center justify-between border-2 rounded-lg bg-background px-4 py-2 ${
@@ -791,31 +955,31 @@ function Step2Details({
           <button
             type="button"
             onClick={() => {
-              const c = parseInt(numberOfPeople || "0");
-              if (c > 0) {
+              const c = parseInt(numberOfPeople || "1");
+              if (c > 1) {
                 setNumberOfPeople(String(c - 1));
                 handleBlur("people");
               }
             }}
-            disabled={!numberOfPeople || parseInt(numberOfPeople) <= 0}
+            disabled={!numberOfPeople || parseInt(numberOfPeople) <= 1}
             aria-label={t.a11y.decreasePeople}
             className="w-11 h-11 rounded-full border-2 border-cta/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-foreground hover:text-foreground transition-colors text-lg"
           >
             −
           </button>
           <span className="text-2xl font-bold text-foreground min-w-[2rem] text-center">
-            {numberOfPeople || "0"}
+            {numberOfPeople || "1"}
           </span>
           <button
             type="button"
             onClick={() => {
-              const c = parseInt(numberOfPeople || "0");
-              if (c < maxCapacity) {
+              const c = parseInt(numberOfPeople || "1");
+              if (c < peopleCap) {
                 setNumberOfPeople(String(c + 1));
                 handleBlur("people");
               }
             }}
-            disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
+            disabled={!!numberOfPeople && parseInt(numberOfPeople) >= peopleCap}
             aria-label={t.a11y.increasePeople}
             className="w-11 h-11 rounded-full border-2 border-cta/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-foreground hover:text-foreground transition-colors text-lg"
           >
@@ -973,6 +1137,7 @@ interface Step4Props {
   setFirstName: (v: string) => void;
   lastName: string;
   setLastName: (v: string) => void;
+  onFullNameChange: (v: string) => void;
   phonePrefix: string;
   setPhonePrefix: (v: string) => void;
   phoneNumber: string;
@@ -1024,9 +1189,8 @@ interface Step4Props {
 
 function Step4Contact({
   firstName,
-  setFirstName,
   lastName,
-  setLastName,
+  onFullNameChange,
   phonePrefix,
   setPhonePrefix,
   phoneNumber,
@@ -1139,6 +1303,27 @@ function Step4Contact({
             </div>
           )}
         </div>
+        {/* P0.5 (2026-05-20): explicit fuel signal. Visible in the review so
+            licensed-boat users don't get surprised by an off-quote fuel cost. */}
+        {selectedBoatInfo && (
+          <div className="flex items-center gap-1.5 text-xs mt-3 pt-3 border-t border-cta/30">
+            {selectedBoatInfo.requiresLicense ? (
+              <>
+                <Fuel className="w-3 h-3 text-popular flex-shrink-0" aria-hidden="true" />
+                <span className="text-popular font-medium">
+                  {t.bookingWizard?.fuel?.notIncluded || 'Combustible no incluido'}
+                </span>
+              </>
+            ) : (
+              <>
+                <Fuel className="w-3 h-3 text-success flex-shrink-0" aria-hidden="true" />
+                <span className="text-success font-medium">
+                  {t.bookingWizard?.fuel?.included || 'Combustible incluido'}
+                </span>
+              </>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Personal data */}
@@ -1147,47 +1332,26 @@ function Step4Contact({
           {t.endowment?.confirmYourBooking || t.wizard.yourData}
         </p>
         <div className="space-y-2.5">
-          <div className="grid grid-cols-2 gap-2">
-            <div>
-              <input
-                type="text"
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
-                onBlur={() => handleBlur("firstName")}
-                placeholder={t.wizard.firstName}
-                autoComplete="given-name"
-                maxLength={100}
-                aria-required="true"
-                aria-describedby={
-                  showFieldError("firstName") ? "error-desktop-firstname" : undefined
-                }
-                className={`${inputBase} ${showFieldError("firstName") ? inputError : inputNormal}`}
-              />
-              {showFieldError("firstName") && (
-                <p id="error-desktop-firstname" className="text-xs text-destructive mt-0.5">
-                  {getFieldError("firstName")}
-                </p>
-              )}
-            </div>
-            <div>
-              <input
-                type="text"
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-                onBlur={() => handleBlur("lastName")}
-                placeholder={t.wizard.lastName}
-                autoComplete="family-name"
-                maxLength={100}
-                aria-required="true"
-                aria-describedby={showFieldError("lastName") ? "error-desktop-lastname" : undefined}
-                className={`${inputBase} ${showFieldError("lastName") ? inputError : inputNormal}`}
-              />
-              {showFieldError("lastName") && (
-                <p id="error-desktop-lastname" className="text-xs text-destructive mt-0.5">
-                  {getFieldError("lastName")}
-                </p>
-              )}
-            </div>
+          <div>
+            <input
+              type="text"
+              value={firstName + (lastName ? ` ${lastName}` : "")}
+              onChange={e => onFullNameChange(e.target.value)}
+              onBlur={() => handleBlur("firstName")}
+              placeholder={t.wizard.fullName}
+              autoComplete="name"
+              maxLength={200}
+              aria-required="true"
+              aria-describedby={
+                showFieldError("firstName") ? "error-desktop-fullname" : undefined
+              }
+              className={`${inputBase} ${showFieldError("firstName") ? inputError : inputNormal}`}
+            />
+            {showFieldError("firstName") && (
+              <p id="error-desktop-fullname" className="text-xs text-destructive mt-0.5">
+                {getFieldError("firstName")}
+              </p>
+            )}
           </div>
           <div className="flex gap-2">
             <div className="relative w-24 flex-shrink-0" ref={prefixDropdownRef}>
@@ -1266,16 +1430,20 @@ function Step4Contact({
               value={email}
               onChange={e => setEmail(e.target.value)}
               onBlur={() => handleBlur("email")}
-              placeholder={t.wizard.email}
+              placeholder={`${t.wizard.email} (${t.booking.optional})`}
               autoComplete="email"
               maxLength={254}
-              aria-required="true"
-              aria-describedby={showFieldError("email") ? "error-desktop-email" : undefined}
+              aria-required="false"
+              aria-describedby={showFieldError("email") ? "error-desktop-email" : "hint-desktop-email"}
               className={`${inputBase} ${showFieldError("email") ? inputError : inputNormal}`}
             />
-            {showFieldError("email") && (
+            {showFieldError("email") ? (
               <p id="error-desktop-email" className="text-xs text-destructive mt-0.5">
                 {getFieldError("email")}
+              </p>
+            ) : (
+              <p id="hint-desktop-email" className="text-xs text-muted-foreground mt-0.5">
+                {t.wizard.emailHelper}
               </p>
             )}
           </div>
@@ -1457,6 +1625,25 @@ function Step4Contact({
           "{termsAndConditions}"
         )[1] || "."}
       </p>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   STEP 4 (DESKTOP, FINAL): Personal data + Extras + Summary + RGPD
+   Combines Step4Contact (personal data + summary + RGPD)
+   with Step3Extras (extras section), in that order.
+   ═══════════════════════════════════════════ */
+
+function Step4FinalDesktop(props: Step4Props & Step3Props) {
+  return (
+    <div className="space-y-6">
+      <Step4Contact {...props} />
+      {props.boatExtras.length > 0 && (
+        <div className="border-t border-cta/20 pt-6">
+          <Step3Extras {...props} />
+        </div>
+      )}
     </div>
   );
 }

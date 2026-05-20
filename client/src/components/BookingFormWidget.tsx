@@ -12,7 +12,21 @@ import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
-import { trackBookingStarted, trackWhatsAppClick, trackGenerateLead } from "@/utils/analytics";
+import {
+  trackBookingStarted,
+  trackWhatsAppClick,
+  trackGenerateLead,
+  trackBookingStepView,
+  trackBookingStepComplete,
+  trackBookingValidationError,
+  trackBookingModalDismiss,
+  trackBookingAbandoned,
+  trackDateSelected,
+  trackTimeSlotSelected,
+  trackDurationSelected,
+  trackExtrasChanged,
+  trackCouponApplied,
+} from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, filterActivePrices, type DurationOption } from "@shared/pricing";
@@ -21,8 +35,8 @@ import BookingWizardMobile from "@/components/BookingWizardMobile";
 import BookingFormDesktop from "@/components/BookingFormDesktop";
 import { BookingConfirmation } from "@/components/BookingConfirmation";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { PHONE_PREFIXES, filterPhonePrefixes, findPrefixByCode } from "@/utils/phone-prefixes";
-import { validateEmail, isValidEmail, validatePhone, validateRequired, validateBookingDate, getLocalISODate } from "@/utils/booking-validation";
+import { PHONE_PREFIXES, filterPhonePrefixes, findPrefixByCode, getDefaultPhonePrefixForLanguage } from "@/utils/phone-prefixes";
+import { validateEmail, validatePhone, validateRequired, validateBookingDate, getLocalISODate } from "@/utils/booking-validation";
 
 const TIME_SLOTS = [
   "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
@@ -63,20 +77,48 @@ interface BookingFormWidgetProps {
   hideHeader?: boolean;
 }
 
+// Step names used in GA4 funnel events. Keep in sync with the wizard UI.
+const STEP_NAMES: Record<number, string> = {
+  1: "when_who",
+  2: "boat",
+  3: "departure_duration",
+  4: "your_details",
+};
+
 export default function BookingFormWidget({ preSelectedBoatId, prefillDate, prefillTime, prefillCoupon, onClose }: BookingFormWidgetProps) {
   // Form state
   const [website, setWebsite] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [phonePrefix, setPhonePrefix] = useState("+34");
+  // P0.3 (2026-05-19): default prefix derived from the user's context, not
+  // hardcoded +34. Priority: (1) previously-saved session value, (2) URL
+  // language path (/de/, /fr/, ...), (3) browser navigator language, (4) +34.
+  // The dropdown remains available for any user whose country doesn't match
+  // their UI language.
+  const [phonePrefix, setPhonePrefix] = useState<string>(() => {
+    if (typeof window === "undefined") return "+34";
+    try {
+      const raw = window.sessionStorage.getItem("bookingFormState");
+      if (raw) {
+        const saved = JSON.parse(raw) as { phonePrefix?: string };
+        if (saved.phonePrefix) return saved.phonePrefix;
+      }
+    } catch { /* fall through to language detection */ }
+    const pathLang = window.location.pathname.match(/^\/([a-z]{2})(?:\/|$)/)?.[1];
+    const lang = pathLang || (typeof navigator !== "undefined" ? navigator.language : "") || "es";
+    return getDefaultPhonePrefixForLanguage(lang);
+  });
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [numberOfPeople, setNumberOfPeople] = useState("");
+  const [numberOfPeople, setNumberOfPeople] = useState("2");
   const [preferredTime, setPreferredTime] = useState(prefillTime || "10:00");
   const [showPrefixDropdown, setShowPrefixDropdown] = useState(false);
   const [prefixSearch, setPrefixSearch] = useState("");
   const [licenseFilter, setLicenseFilter] = useState<"with" | "without">("without");
   const [selectedBoat, setSelectedBoat] = useState<string>(preSelectedBoatId || "");
+  // Secondary boat for multi-boat bookings (groups too big for a single boat).
+  // Empty string == single-boat flow (default).
+  const [selectedSecondaryBoat, setSelectedSecondaryBoat] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState(() => {
     if (prefillDate) return prefillDate;
     const today = new Date();
@@ -114,11 +156,19 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   // Track which fields the user has interacted with (blurred)
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  // Wizard step navigation
+  // Wizard step navigation (4 steps, reordered so date is first):
+  //   1. When + Who    → date + people
+  //   2. Boat          → boat selection (with real prices for the chosen date)
+  //   3. Departure     → preferred time + duration (with pricing override delta visible)
+  //   4. Personal data → contact form + extras + summary + RGPD + WhatsApp submit
+  const TOTAL_STEPS = 4;
   const [currentStep, setCurrentStep] = useState(1);
   const prevSeasonRef = useRef<string>("");
 
-  // Hold countdown: starts when user reaches step 4 (final step)
+  // Skip the boat selection step when a boatId was deep-linked (from a boat detail CTA)
+  const skipBoatStep = !!preSelectedBoatId;
+
+  // Hold countdown: starts when user reaches the final step
   const [holdExpiresAt, setHoldExpiresAt] = useState<string | null>(null);
   const [holdExpired, setHoldExpired] = useState(false);
 
@@ -135,12 +185,36 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
 
   const handleBlur = (field: string) => {
     setTouched(prev => ({ ...prev, [field]: true }));
+    // Defer one tick: getFieldError (closure over current state) is declared
+    // below in the component body. By deferring, the call happens post-render
+    // when the latest closure is available, and we report each (step, field)
+    // error only once per session.
+    setTimeout(() => {
+      if (!getFieldError(field)) return;
+      const key = `${currentStep}:${field}`;
+      if (validationReportedRef.current.has(key)) return;
+      validationReportedRef.current.add(key);
+      trackBookingValidationError(currentStep, field);
+    }, 0);
   };
 
   // --- H2: sessionStorage persistence ---
   const STORAGE_KEY = "bookingFormState";
   const STORAGE_MAX_AGE_MS = 30 * 60 * 1000; // 30 minutes
   const hasRestoredRef = useRef(false);
+
+  // --- Funnel instrumentation refs ---
+  // Timestamps & flags that survive renders without triggering them.
+  const modalOpenedAtRef = useRef<number>(Date.now());
+  const stepStartedAtRef = useRef<number>(Date.now());
+  const submittedRef = useRef<boolean>(false);
+  // Dedup map: only fire trackBookingValidationError once per (step, field).
+  const validationReportedRef = useRef<Set<string>>(new Set());
+  // Refs that mirror state, used by the unmount cleanup to read the latest
+  // values without making the cleanup depend on currentStep/selectedBoat
+  // (which would re-run the cleanup on every change).
+  const currentStepRefForUnmount = useRef<number>(1);
+  const selectedBoatRefForUnmount = useRef<string>("");
 
   // Restore saved state on mount (only if < 30 minutes old)
   useEffect(() => {
@@ -152,6 +226,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       const saved = JSON.parse(raw) as {
         timestamp: number;
         selectedBoat: string;
+        selectedSecondaryBoat?: string;
         selectedDate: string;
         preferredTime: string;
         selectedDuration: string;
@@ -173,6 +248,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       }
       // Only restore if there's no pre-selected boat overriding, and the saved state has meaningful data
       if (saved.selectedBoat && !preSelectedBoatId) setSelectedBoat(saved.selectedBoat);
+      if (saved.selectedSecondaryBoat) setSelectedSecondaryBoat(saved.selectedSecondaryBoat);
       if (saved.selectedDate && !prefillDate) setSelectedDate(saved.selectedDate);
       if (saved.preferredTime && !prefillTime) setPreferredTime(saved.preferredTime);
       if (saved.selectedDuration) setSelectedDuration(saved.selectedDuration);
@@ -185,7 +261,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       if (saved.email) setEmail(saved.email);
       if (saved.numberOfPeople && saved.numberOfPeople !== "0") setNumberOfPeople(saved.numberOfPeople);
       if (saved.licenseFilter) setLicenseFilter(saved.licenseFilter);
-      // Restore step, but cap at 1 less than saved so user re-confirms
+      // Restore step, capped to the wizard's total step count
       if (saved.currentStep > 1) setCurrentStep(Math.min(saved.currentStep, 4));
     } catch {
       // Silently ignore corrupted storage
@@ -201,6 +277,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       const stateToSave = {
         timestamp: Date.now(),
         selectedBoat,
+        selectedSecondaryBoat,
         selectedDate,
         preferredTime,
         selectedDuration,
@@ -220,7 +297,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       // Silently ignore (e.g. storage full)
     }
   }, [
-    selectedBoat, selectedDate, preferredTime, selectedDuration, currentStep,
+    selectedBoat, selectedSecondaryBoat, selectedDate, preferredTime, selectedDuration, currentStep,
     selectedExtras, selectedPack, firstName, lastName, phonePrefix, phoneNumber,
     email, numberOfPeople, licenseFilter,
   ]);
@@ -228,6 +305,44 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   // Clear sessionStorage on successful booking completion
   const clearBookingStorage = useCallback(() => {
     try { sessionStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
+  }, []);
+
+  // --- Funnel instrumentation effects ---
+  // Mirror the latest currentStep & selectedBoat into refs so the unmount
+  // cleanup (deps: []) can read the values at the moment of dismissal.
+  useEffect(() => { currentStepRefForUnmount.current = currentStep; }, [currentStep]);
+  useEffect(() => { selectedBoatRefForUnmount.current = selectedBoat; }, [selectedBoat]);
+
+  // Fire booking_step_view on every step change (and on mount). Resets the
+  // per-step timer so handleNextStep can emit booking_step_complete with the
+  // real time the user spent on the step they're leaving.
+  useEffect(() => {
+    trackBookingStepView(
+      currentStep,
+      STEP_NAMES[currentStep] || `step_${currentStep}`,
+      selectedBoat || undefined,
+    );
+    stepStartedAtRef.current = Date.now();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStep]);
+
+  // On unmount: if the user closed the modal without completing the request,
+  // fire booking_abandoned (step ≥ 2 only — step 1 dismissals are very noisy
+  // and not actionable) plus booking_modal_dismiss with the total open time.
+  useEffect(() => {
+    // Snapshot the open-at timestamp so the cleanup reads the mount-time value,
+    // not the live ref (which never changes, but eslint can't prove that).
+    const openedAt = modalOpenedAtRef.current;
+    return () => {
+      if (submittedRef.current) return;
+      const step = currentStepRefForUnmount.current;
+      const boat = selectedBoatRefForUnmount.current || undefined;
+      const timeOpenMs = Date.now() - openedAt;
+      if (step > 1) {
+        trackBookingAbandoned(`step_${step}`, boat || "unknown");
+      }
+      trackBookingModalDismiss(step, timeOpenMs, boat);
+    };
   }, []);
 
   const { toast } = useToast();
@@ -573,17 +688,32 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     }
   }, [selectedBoat, selectedBoatInfo, licenseFilter]);
 
-  // Helper function to get price
+  // Multi-boat helpers
+  const selectedSecondaryBoatInfo = allBoats.find(boat => boat.id === selectedSecondaryBoat);
+  const selectedBoatIds = useMemo(() => {
+    const ids: string[] = [];
+    if (selectedBoat) ids.push(selectedBoat);
+    if (selectedSecondaryBoat && selectedSecondaryBoat !== selectedBoat) ids.push(selectedSecondaryBoat);
+    return ids;
+  }, [selectedBoat, selectedSecondaryBoat]);
+  const isMultiBoat = selectedBoatIds.length >= 2;
+
+  // Helper function to get price (single or combined for multi-boat)
   const getBookingPrice = () => {
     if (!selectedBoatInfo || !selectedDuration || !selectedBoatInfo.pricing) return null;
-
     const season = getCurrentSeason();
-    const seasonPricing = selectedBoatInfo.pricing[season];
-    return seasonPricing?.prices[selectedDuration] || null;
+    const primary = selectedBoatInfo.pricing[season]?.prices[selectedDuration] || null;
+    if (primary === null) return null;
+    if (!isMultiBoat || !selectedSecondaryBoatInfo?.pricing) return primary;
+    const secondary = selectedSecondaryBoatInfo.pricing[season]?.prices[selectedDuration] || 0;
+    return primary + secondary;
   };
 
-  // Get max capacity for selected boat
+  // Get max capacity (sum of selected boats if multi-boat)
   const getMaxCapacity = () => {
+    if (isMultiBoat && selectedBoatInfo && selectedSecondaryBoatInfo) {
+      return selectedBoatInfo.capacity + selectedSecondaryBoatInfo.capacity;
+    }
     if (selectedBoatInfo) return selectedBoatInfo.capacity;
     return licenseFilter === "with" ? 8 : 7;
   };
@@ -618,6 +748,16 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     setSelectedPack(null);
   }, [selectedBoat]);
 
+  // Clear the secondary boat when the primary boat changes or the group shrinks.
+  // Without this, stale secondary selections survive cross-flow and break capacity checks.
+  useEffect(() => {
+    const people = parseInt(numberOfPeople || '1');
+    const primaryCapacity = selectedBoatInfo?.capacity ?? 0;
+    if (selectedSecondaryBoat && (people <= primaryCapacity || selectedSecondaryBoat === selectedBoat)) {
+      setSelectedSecondaryBoat("");
+    }
+  }, [selectedBoat, selectedBoatInfo, numberOfPeople, selectedSecondaryBoat]);
+
   // Compute next available Saturday for suggestion text near calendar
   const nextSaturdayISO = useMemo(() => {
     const today = new Date();
@@ -647,14 +787,18 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   // Handle pack selection (radio-like behavior)
   const handlePackSelect = (packId: string) => {
     if (!packId) {
+      if (selectedPack) trackExtrasChanged(`pack:${selectedPack}`, selectedPack, false);
       setSelectedPack(null);
       setSelectedExtras([]);
       return;
     }
     if (selectedPack === packId) {
+      trackExtrasChanged(`pack:${packId}`, packId, false);
       setSelectedPack(null);
       setSelectedExtras([]);
     } else {
+      if (selectedPack) trackExtrasChanged(`pack:${selectedPack}`, selectedPack, false);
+      trackExtrasChanged(`pack:${packId}`, packId, true);
       setSelectedPack(packId);
       const pack = EXTRA_PACKS.find(p => p.id === packId);
       if (pack) {
@@ -664,15 +808,50 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     }
   };
 
+  // Single "full name" input → split on the first whitespace and feed both
+  // state fields. Backend still receives firstName + lastName (DB columns are
+  // NOT NULL but accept empty strings, so a one-word name lands as
+  // firstName="Iván", lastName="" without breaking validation).
+  const onFullNameChange = useCallback((value: string) => {
+    const trimmed = value.trimStart();
+    const firstSpace = trimmed.search(/\s/);
+    if (firstSpace === -1) {
+      setFirstName(trimmed);
+      setLastName("");
+    } else {
+      setFirstName(trimmed.slice(0, firstSpace));
+      setLastName(trimmed.slice(firstSpace + 1));
+    }
+  }, []);
+
+  // Tracked setters: wrap state setters so user-initiated changes emit GA4
+  // funnel events. Plain setters keep being used by auto-resets (e.g. the
+  // season-driven duration adjustment in the useEffect chain).
+  const onDateSelectFromUser = useCallback((date: string) => {
+    setSelectedDate(date);
+    if (date) trackDateSelected(date, selectedBoat || "unknown");
+  }, [selectedBoat]);
+
+  const onTimeSelectFromUser = useCallback((time: string) => {
+    setPreferredTime(time);
+    if (time) trackTimeSlotSelected(time, selectedBoat || "unknown");
+  }, [selectedBoat]);
+
+  const onDurationSelectFromUser = useCallback((duration: string) => {
+    setSelectedDuration(duration);
+    if (duration) trackDurationSelected(duration, selectedBoat || "unknown");
+  }, [selectedBoat]);
+
   // Handle individual extra toggle
   const handleExtraToggle = (extraName: string) => {
     if (extrasInPack.has(extraName)) return;
-
+    const wasIncluded = selectedExtras.includes(extraName);
     setSelectedExtras(prev =>
       prev.includes(extraName)
         ? prev.filter(e => e !== extraName)
         : [...prev, extraName]
     );
+    trackExtrasChanged(extraName, extraName, !wasIncluded);
   };
 
   // Calculate total extras price (packs + individual)
@@ -686,14 +865,15 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const getFieldError = (field: string): string => {
     switch (field) {
       case 'firstName':
+        // P0.6 (2026-05-19): the form now uses a single "full name" input.
+        // The first word lands in firstName, the rest in lastName. We only
+        // require firstName here; lastName is accepted as "" for one-word names.
         return validateRequired(firstName) ? t.validation.required : '';
-      case 'lastName':
-        return validateRequired(lastName) ? t.validation.required : '';
       case 'email': {
-        const emailErr = validateEmail(email);
-        if (emailErr === 'required') return t.validation.required;
-        if (emailErr === 'invalid') return t.validation.invalidEmail;
-        return '';
+        // Email is optional: only fail validation if the user typed something
+        // that isn't a valid address. Empty input is accepted.
+        if (!email.trim()) return '';
+        return validateEmail(email) === 'invalid' ? t.validation.invalidEmail : '';
       }
       case 'phone': {
         const phoneErr = validatePhone(phoneNumber);
@@ -727,43 +907,46 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   };
 
   // Step validation
+  //  Step 1: When + Who      → date + people (soft cap = 12, capacity validated again on step 2)
+  //  Step 2: Boat            → boat selected + people within boat capacity (skipped on deep-link)
+  //  Step 3: Departure       → preferredTime + duration
+  //  Step 4: Personal data   → first/last name + phone + email
   const canAdvanceFromStep1 = (): boolean => {
-    return !!selectedBoat;
+    const n = parseInt(numberOfPeople);
+    const dateOk = !!selectedDate && selectedDate >= getLocalISODate();
+    const peopleOk = !!numberOfPeople && n >= 1 && n <= 12;
+    return dateOk && peopleOk;
   };
 
   const canAdvanceFromStep2 = (): boolean => {
+    if (!selectedBoat) return false;
     const n = parseInt(numberOfPeople);
-    return !!selectedDate && selectedDate >= getLocalISODate() && !!selectedDuration && !!preferredTime && !!numberOfPeople && n >= 1 && n <= getMaxCapacity();
+    return !!numberOfPeople && n >= 1 && n <= getMaxCapacity();
   };
 
   const canAdvanceFromStep3 = (): boolean => {
+    return !!preferredTime && !!selectedDuration;
+  };
+
+  const canAdvanceFromStep4 = (): boolean => {
+    // Email is optional. Accept empty; reject only non-empty invalid input.
+    const emailOk = !email.trim() || validateEmail(email) === null;
+    // Single full-name input → only firstName is required (one-word names OK).
     return (
       !validateRequired(firstName) &&
-      !validateRequired(lastName) &&
       !validatePhone(phoneNumber) &&
-      isValidEmail(email)
+      emailOk
     );
   };
 
   const handleNextStep = () => {
     if (currentStep === 1) {
       if (!canAdvanceFromStep1()) {
-        setTouched(prev => ({ ...prev, boat: true }));
-        return;
-      }
-    }
-    if (currentStep === 2) {
-      if (!canAdvanceFromStep2()) {
-        setTouched(prev => ({ ...prev, date: true, duration: true, time: true, people: true }));
-        // Scroll to the first invalid field
+        setTouched(prev => ({ ...prev, date: true, people: true }));
         const n = parseInt(numberOfPeople);
         const firstInvalid = !selectedDate || selectedDate < getLocalISODate()
           ? 'field-date'
-          : !preferredTime
-          ? 'field-time'
-          : !selectedDuration
-          ? 'field-duration'
-          : (!numberOfPeople || n < 1 || n > getMaxCapacity())
+          : (!numberOfPeople || n < 1)
           ? 'field-people'
           : null;
         if (firstInvalid) {
@@ -773,25 +956,64 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
         }
         return;
       }
-    }
-    // Step 3 (Extras) has no validation — always allow advancing
-    // Start hold countdown when advancing to step 4 — only for licensed boats
-    if (currentStep === 3 && !holdExpiresAt && selectedBoatInfo?.requiresLicense) {
-      const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
-      setHoldExpiresAt(expiresAt);
-      setHoldExpired(false);
-    }
-    if (currentStep === 4) {
-      if (!canAdvanceFromStep3()) {
-        setTouched(prev => ({ ...prev, firstName: true, lastName: true, phone: true, email: true }));
+      // Deep-link short-circuit: skip the boat step when a boat was pre-selected from a boat detail CTA
+      if (skipBoatStep && selectedBoat) {
+        trackBookingStepComplete(
+          currentStep,
+          STEP_NAMES[currentStep] || `step_${currentStep}`,
+          Date.now() - stepStartedAtRef.current,
+          selectedBoat || undefined,
+        );
+        setCurrentStep(3);
         return;
       }
     }
-    setCurrentStep(prev => Math.min(prev + 1, 4));
+    if (currentStep === 2) {
+      if (!canAdvanceFromStep2()) {
+        setTouched(prev => ({ ...prev, boat: true, people: true }));
+        return;
+      }
+    }
+    if (currentStep === 3) {
+      if (!canAdvanceFromStep3()) {
+        setTouched(prev => ({ ...prev, time: true, duration: true }));
+        const firstInvalid = !preferredTime ? 'field-time' : !selectedDuration ? 'field-duration' : null;
+        if (firstInvalid) {
+          setTimeout(() => {
+            document.getElementById(firstInvalid)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 50);
+        }
+        return;
+      }
+      // Start hold countdown when advancing to step 4 (final) — only for licensed boats
+      if (!holdExpiresAt && selectedBoatInfo?.requiresLicense) {
+        const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+        setHoldExpiresAt(expiresAt);
+        setHoldExpired(false);
+      }
+    }
+    if (currentStep === 4) {
+      if (!canAdvanceFromStep4()) {
+        setTouched(prev => ({ ...prev, firstName: true, phone: true, email: true }));
+        return;
+      }
+    }
+    // All step guards passed — emit step_complete and advance.
+    trackBookingStepComplete(
+      currentStep,
+      STEP_NAMES[currentStep] || `step_${currentStep}`,
+      Date.now() - stepStartedAtRef.current,
+      selectedBoat || undefined,
+    );
+    setCurrentStep(prev => Math.min(prev + 1, TOTAL_STEPS));
   };
 
   const handlePrevStep = () => {
-    setCurrentStep(prev => Math.max(prev - 1, 1));
+    setCurrentStep(prev => {
+      // Going back from departure (3) with a deep-linked boat → jump to step 1, skipping the boat step
+      if (prev === 3 && skipBoatStep) return 1;
+      return Math.max(prev - 1, 1);
+    });
   };
 
   // Helper functions to format date
@@ -845,7 +1067,9 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     const price = getBookingPrice();
     const fullName = `${firstName.trim()} ${lastName.trim()}`;
     const phone = `${phonePrefix} ${phoneNumber.trim()}`;
-    const boatName = selectedBoatInfo?.name || selectedBoat;
+    const boatName = isMultiBoat && selectedSecondaryBoatInfo
+      ? `${selectedBoatInfo?.name || selectedBoat} + ${selectedSecondaryBoatInfo.name}`
+      : (selectedBoatInfo?.name || selectedBoat);
     const formattedDate = isSpanish ? formatDateSpanish(selectedDate) : formatDateEnglish(selectedDate);
     const capacity = selectedBoatInfo?.capacity || "?";
     const deposit = selectedBoatInfo?.specifications?.deposit || "?";
@@ -936,6 +1160,7 @@ Looking forward to confirmation. Thanks!`;
 
     setIsValidatingCode(true);
     setCodeError("");
+    let success = false;
 
     try {
       const giftCardRes = await fetch("/api/gift-cards/validate", {
@@ -951,7 +1176,7 @@ Looking forward to confirmation. Thanks!`;
           code,
           value: data.remainingBalance || data.amount,
         });
-        setIsValidatingCode(false);
+        success = true;
         return;
       }
 
@@ -969,7 +1194,7 @@ Looking forward to confirmation. Thanks!`;
             code,
             percentage: data.discountPercent,
           });
-          setIsValidatingCode(false);
+          success = true;
           return;
         }
       }
@@ -979,6 +1204,7 @@ Looking forward to confirmation. Thanks!`;
       setCodeError(t.codeValidation.invalidCode);
     } finally {
       setIsValidatingCode(false);
+      trackCouponApplied(code, success);
     }
   };
 
@@ -1005,7 +1231,6 @@ Looking forward to confirmation. Thanks!`;
   const handleBookingSearch = async (): Promise<void> => {
     setTouched({
       firstName: true,
-      lastName: true,
       phone: true,
       email: true,
       date: true,
@@ -1015,42 +1240,83 @@ Looking forward to confirmation. Thanks!`;
       people: true,
     });
 
-    if (!firstName.trim()) {
-      toast({ title: t.booking.firstNameRequired, description: t.booking.firstNameRequiredDesc, variant: "destructive" });
+    // P0.7 (2026-05-19): single-toast validation. Previously each missing
+    // field fired its own toast with an early return, so a user with two
+    // missing fields only saw the first. Now we aggregate, track each error
+    // for the funnel, navigate to the earliest broken step, and surface ONE
+    // toast — the per-field inline errors already mark the offending inputs.
+    const errors: string[] = [];
+    if (!selectedDate) errors.push("date");
+    if (!selectedBoat) errors.push("boat");
+    if (!preferredTime) errors.push("time");
+    if (!selectedDuration) errors.push("duration");
+    if (!numberOfPeople || parseInt(numberOfPeople) < 1) errors.push("people");
+    if (!firstName.trim()) errors.push("firstName");
+    if (!phoneNumber.trim() || validatePhone(phoneNumber) !== null) errors.push("phone");
+    if (email.trim() && validateEmail(email) === "invalid") errors.push("email");
+
+    if (errors.length > 0) {
+      const stepByField: Record<string, number> = {
+        date: 1, people: 1,
+        boat: 2,
+        time: 3, duration: 3,
+        firstName: 4, phone: 4, email: 4,
+      };
+
+      // Funnel: report each unique (step, field) failure once per session.
+      errors.forEach(f => {
+        const step = stepByField[f] ?? currentStep;
+        const key = `${step}:${f}`;
+        if (!validationReportedRef.current.has(key)) {
+          validationReportedRef.current.add(key);
+          trackBookingValidationError(step, f);
+        }
+      });
+
+      // Defensive: if the earliest error belongs to a previous step, walk the
+      // user back there (canAdvanceFromStepN should prevent this in practice).
+      const earliestStep = errors.reduce(
+        (min, f) => Math.min(min, stepByField[f] ?? currentStep),
+        currentStep,
+      );
+      if (earliestStep < currentStep) {
+        setCurrentStep(earliestStep);
+      }
+
+      toast({
+        title: t.wizard.missingFieldsTitle,
+        description: t.wizard.missingFieldsDesc,
+        variant: "destructive",
+      });
+
+      // Scroll the first invalid field into view (respects reduced motion).
+      const fieldDomIds: Record<string, string> = {
+        date: "field-date",
+        people: "field-people",
+        time: "field-time",
+        duration: "field-duration",
+        firstName: "wizard-fullname",
+        phone: "wizard-phone",
+        email: "wizard-email",
+      };
+      const firstField = errors[0];
+      const elId = fieldDomIds[firstField];
+      if (elId) {
+        const reduceMotion = typeof window !== "undefined"
+          && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+        setTimeout(() => {
+          document.getElementById(elId)?.scrollIntoView({
+            behavior: reduceMotion ? "instant" : "smooth",
+            block: "center",
+          });
+        }, 80);
+      }
       return;
     }
-    if (!lastName.trim()) {
-      toast({ title: t.booking.lastNameRequired, description: t.booking.lastNameRequiredDesc, variant: "destructive" });
-      return;
-    }
-    if (!phoneNumber.trim()) {
-      toast({ title: t.booking.phoneRequired, description: t.booking.phoneRequiredDesc, variant: "destructive" });
-      return;
-    }
-    if (validateEmail(email)) {
-      toast({ title: t.booking.emailInvalid, description: t.booking.emailInvalidDesc, variant: "destructive" });
-      return;
-    }
-    if (!selectedDate) {
-      toast({ title: t.booking.dateRequired, description: t.booking.dateRequiredDesc, variant: "destructive" });
-      return;
-    }
-    if (!selectedBoat) {
-      toast({ title: t.booking.boatRequired, description: t.booking.boatRequiredDesc, variant: "destructive" });
-      return;
-    }
-    if (!selectedDuration) {
-      toast({ title: t.booking.durationRequired, description: t.booking.durationRequiredDesc, variant: "destructive" });
-      return;
-    }
-    if (!numberOfPeople || parseInt(numberOfPeople) < 1) {
-      toast({ title: t.booking.peopleRequired, description: t.booking.peopleRequiredDesc, variant: "destructive" });
-      return;
-    }
-    if (!preferredTime) {
-      toast({ title: t.booking.timeRequired, description: t.booking.timeRequiredDesc, variant: "destructive" });
-      return;
-    }
+
+    // From this point the user has actually submitted — flag it so the unmount
+    // cleanup does NOT also fire booking_abandoned / booking_modal_dismiss.
+    submittedRef.current = true;
 
     trackBookingStarted(selectedBoat, selectedBoatInfo?.name || selectedBoat, getStoredUtm());
     trackGenerateLead(selectedBoat, selectedBoatInfo?.name || selectedBoat, selectedBoatInfo?.pricePerHour ? Number(selectedBoatInfo.pricePerHour) : 70);
@@ -1072,7 +1338,10 @@ Looking forward to confirmation. Thanks!`;
         body: JSON.stringify({
           website,
           boatId: selectedBoat,
-          boatName: selectedBoatInfo?.name || selectedBoat,
+          boatIds: selectedBoatIds,
+          boatName: isMultiBoat && selectedSecondaryBoatInfo
+            ? `${selectedBoatInfo?.name || selectedBoat} + ${selectedSecondaryBoatInfo.name}`
+            : (selectedBoatInfo?.name || selectedBoat),
           bookingDate: selectedDate,
           preferredTime: preferredTime || null,
           duration: selectedDuration,
@@ -1141,6 +1410,8 @@ Looking forward to confirmation. Thanks!`;
 
   const sharedProps = {
     currentStep,
+    totalSteps: TOTAL_STEPS,
+    skipBoatStep,
     onNext: handleNextStep,
     onBack: handlePrevStep,
     onGoToStep: setCurrentStep,
@@ -1150,6 +1421,7 @@ Looking forward to confirmation. Thanks!`;
     onHoldVerify: handleHoldVerify,
     firstName, setFirstName,
     lastName, setLastName,
+    onFullNameChange,
     phonePrefix, setPhonePrefix,
     phoneNumber, setPhoneNumber,
     email, setEmail,
@@ -1160,9 +1432,16 @@ Looking forward to confirmation. Thanks!`;
     selectedPrefixInfo,
     licenseFilter, setLicenseFilter,
     selectedBoat, setSelectedBoat,
+    selectedSecondaryBoat, setSelectedSecondaryBoat,
+    selectedBoatIds,
+    isMultiBoat,
+    selectedSecondaryBoatInfo,
     selectedDate, setSelectedDate,
     selectedDuration, setSelectedDuration,
     preferredTime, setPreferredTime,
+    onDateSelectFromUser,
+    onTimeSelectFromUser,
+    onDurationSelectFromUser,
     numberOfPeople, setNumberOfPeople,
     filteredBoats,
     isBoatsLoading,

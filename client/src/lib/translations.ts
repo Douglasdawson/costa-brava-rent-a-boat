@@ -822,9 +822,13 @@ export interface Translations {
     confirmViaWhatsApp: string;
     firstName: string;
     lastName: string;
+    /** Single combined full-name input label (P0.6, 2026-05-19). */
+    fullName: string;
     phone: string;
     searchCountry: string;
     email: string;
+    /** Helper text shown under the (optional) email input. */
+    emailHelper: string;
     date: string;
     /** Tooltip: "Min. {duration} in August (peak season)" */
     durationMinPeakSeason: string;
@@ -834,6 +838,43 @@ export interface Translations {
     mostPopular: string;
     /** Suggestion text near calendar: "Next available Saturday" */
     suggestedDate: string;
+    /** P0.7 toast title shown once when the user tries to submit with missing/invalid fields. */
+    missingFieldsTitle: string;
+    /** P0.7 toast description — guides the user to fields already marked inline. */
+    missingFieldsDesc: string;
+  };
+
+  // Reordered Hero booking wizard (date-first) — distinct namespace so legacy `wizard` keys keep working
+  bookingWizard?: {
+    steps?: {
+      whenWho?: string;
+      yourBoat?: string;
+      departureDuration?: string;
+      yourDetails?: string;
+    };
+    hints?: {
+      pricesNextStep?: string;
+      boatNotAvailableForDate?: string;
+      capacityExceeded?: string;
+      /** P0.4: step 1 reassurance under the heading. Communicates the business model. */
+      noOnlinePayment?: string;
+      /** P0.4: step 4 reassurance above the submit button. */
+      submitReassurance?: string;
+    };
+    /** P0.5: explicit fuel inclusion signal. Only license-free boats include fuel. */
+    fuel?: {
+      included?: string;
+      notIncluded?: string;
+    };
+    // Multi-boat (group bookings that exceed any single boat's capacity)
+    multiBoat?: {
+      title?: string;
+      subtitle?: string; // supports {n} placeholder for peopleNum
+      recommended?: string;
+      combinedCapacity?: string; // supports {n} for total capacity
+      noCombinations?: string;
+      chooseManually?: string;
+    };
   };
 
   // Inline validation messages

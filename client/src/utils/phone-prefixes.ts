@@ -225,3 +225,23 @@ export function filterPhonePrefixes(prefixes: PhonePrefix[], search: string): Ph
 export function findPrefixByCode(code: string): PhonePrefix | undefined {
   return PHONE_PREFIXES.find(p => p.code === code);
 }
+
+// Smart default phone prefix based on the UI/browser language. Falls back to
+// +34 for any language we don't have a clear mapping for (the business is in
+// Spain, so Spanish-speaking visitors are the largest segment).
+const LANGUAGE_TO_PREFIX: Record<string, string> = {
+  es: "+34",
+  ca: "+34",
+  en: "+44",
+  fr: "+33",
+  de: "+49",
+  it: "+39",
+  nl: "+31",
+  ru: "+7",
+};
+
+export function getDefaultPhonePrefixForLanguage(lang: string | undefined | null): string {
+  if (!lang) return "+34";
+  const normalized = lang.slice(0, 2).toLowerCase();
+  return LANGUAGE_TO_PREFIX[normalized] ?? "+34";
+}

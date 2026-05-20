@@ -732,14 +732,28 @@ export const de: Translations = {
     confirmViaWhatsApp: "Bestätigung per WhatsApp in Minuten",
     firstName: "Vorname",
     lastName: "Nachname",
+    fullName: "Vollständiger Name",
     phone: "Telefon",
     searchCountry: "Land suchen...",
     email: "E-Mail",
+    emailHelper: "Wir senden dir hier die Zusammenfassung, wenn du sie eingibst",
     date: "Datum",
     durationMinPeakSeason: "Min. {duration} im August (Hochsaison)",
     durationMinWeekend: "Min. {duration} am Wochenende",
     mostPopular: "Am beliebtesten",
     suggestedDate: "Nächster verfügbarer Samstag",
+    missingFieldsTitle: "Bitte prüfe die markierten Felder",
+    missingFieldsDesc: "Einige Angaben fehlen. Schau dir die rot markierten Felder an.",
+  },
+  bookingWizard: {
+    hints: {
+      noOnlinePayment: "Keine Online-Zahlung — wir bestätigen per WhatsApp",
+      submitReassurance: "Wir antworten innerhalb von 2 Stunden. Keine Online-Zahlung, unverbindlich.",
+    },
+    fuel: {
+      included: "Kraftstoff inklusive",
+      notIncluded: "Kraftstoff nicht inklusive",
+    },
   },
   validation: {
     required: "Dieses Feld ist erforderlich",

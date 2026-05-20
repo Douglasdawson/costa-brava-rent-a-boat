@@ -729,14 +729,28 @@ export const nl: Translations = {
     confirmViaWhatsApp: "Bevestiging via WhatsApp in minuten",
     firstName: "Voornaam",
     lastName: "Achternaam",
+    fullName: "Volledige naam",
     phone: "Telefoon",
     searchCountry: "Zoek land...",
     email: "E-mail",
+    emailHelper: "We sturen je hier de samenvatting als je het invult",
     date: "Datum",
     durationMinPeakSeason: "Min. {duration} in augustus (hoogseizoen)",
     durationMinWeekend: "Min. {duration} in het weekend",
     mostPopular: "Meest populair",
     suggestedDate: "Eerstvolgende beschikbare zaterdag",
+    missingFieldsTitle: "Controleer de gemarkeerde velden",
+    missingFieldsDesc: "Er ontbreken gegevens. Bekijk de velden in rood.",
+  },
+  bookingWizard: {
+    hints: {
+      noOnlinePayment: "Geen online betaling — we bevestigen via WhatsApp",
+      submitReassurance: "We reageren binnen 2 uur. Geen online betaling, vrijblijvend.",
+    },
+    fuel: {
+      included: "Brandstof inbegrepen",
+      notIncluded: "Brandstof niet inbegrepen",
+    },
   },
   validation: {
     required: "Dit veld is verplicht",

@@ -437,6 +437,47 @@ export function trackBookingAbandoned(step: string, boatId: string) {
   trackEvent('booking_abandoned', { abandoned_step: step, boat_id: boatId });
 }
 
+// Booking wizard funnel — step view / complete / validation / dismiss.
+// Used by the Hero wizard (BookingFormWidget). Pair with trackBookingStarted
+// (modal open) and trackGenerateLead (submit) to rebuild the full funnel in GA4.
+export function trackBookingStepView(step: number, stepName: string, boatId?: string) {
+  trackEvent('booking_step_view', {
+    step,
+    step_name: stepName,
+    ...(boatId && { boat_id: boatId }),
+  });
+}
+
+export function trackBookingStepComplete(
+  step: number,
+  stepName: string,
+  timeOnStepMs: number,
+  boatId?: string,
+) {
+  trackEvent('booking_step_complete', {
+    step,
+    step_name: stepName,
+    time_on_step_ms: timeOnStepMs,
+    ...(boatId && { boat_id: boatId }),
+  });
+}
+
+export function trackBookingValidationError(step: number, field: string) {
+  trackEvent('booking_validation_error', { step, field });
+}
+
+export function trackBookingModalDismiss(
+  stepAtDismiss: number,
+  timeOpenMs: number,
+  boatId?: string,
+) {
+  trackEvent('booking_modal_dismiss', {
+    step_at_dismiss: stepAtDismiss,
+    time_open_ms: timeOpenMs,
+    ...(boatId && { boat_id: boatId }),
+  });
+}
+
 // Engagement events
 export function trackFaqExpanded(questionId: string) {
   trackEvent('faq_expanded', { question_id: questionId });

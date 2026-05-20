@@ -732,14 +732,28 @@ export const it: Translations = {
     confirmViaWhatsApp: "Conferma via WhatsApp in minuti",
     firstName: "Nome",
     lastName: "Cognome",
+    fullName: "Nome completo",
     phone: "Telefono",
     searchCountry: "Cerca paese...",
     email: "Email",
+    emailHelper: "Ti inviamo qui il riepilogo se lo lasci",
     date: "Data",
     durationMinPeakSeason: "Min. {duration} ad agosto (alta stagione)",
     durationMinWeekend: "Min. {duration} nei fine settimana",
     mostPopular: "Più popolare",
     suggestedDate: "Prossimo sabato disponibile",
+    missingFieldsTitle: "Controlla i campi evidenziati",
+    missingFieldsDesc: "Mancano alcuni dati. Guarda i campi in rosso.",
+  },
+  bookingWizard: {
+    hints: {
+      noOnlinePayment: "Nessun pagamento online — confermiamo via WhatsApp",
+      submitReassurance: "Rispondiamo entro 2 ore. Nessun pagamento online, senza impegno.",
+    },
+    fuel: {
+      included: "Carburante incluso",
+      notIncluded: "Carburante non incluso",
+    },
   },
   validation: {
     required: "Questo campo è obbligatorio",

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Clock, Gift, Loader2, Package, Star, Tag, Users, X } from "lucide-react";
+import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Clock, Fuel, Gift, Loader2, Package, Star, Tag, Users, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
@@ -16,6 +16,8 @@ import PriceSummaryBar from "@/components/PriceSummaryBar";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
+import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
+import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 
 interface PhonePrefix {
   code: string;
@@ -39,6 +41,8 @@ interface ExtraItem {
 export interface BookingWizardMobileProps {
   // Navigation
   currentStep: number;
+  totalSteps?: number;
+  skipBoatStep?: boolean;
   onNext: () => void;
   onBack: () => void;
   onGoToStep: (step: number) => void;
@@ -50,6 +54,8 @@ export interface BookingWizardMobileProps {
   // Personal data (step 3)
   firstName: string; setFirstName: (v: string) => void;
   lastName: string; setLastName: (v: string) => void;
+  // P0.6: single full-name input — splits on first whitespace into first/last name.
+  onFullNameChange: (v: string) => void;
   phonePrefix: string; setPhonePrefix: (v: string) => void;
   phoneNumber: string; setPhoneNumber: (v: string) => void;
   email: string; setEmail: (v: string) => void;
@@ -62,9 +68,17 @@ export interface BookingWizardMobileProps {
   licenseFilter: "with" | "without";
   setLicenseFilter: (v: "with" | "without") => void;
   selectedBoat: string; setSelectedBoat: (v: string) => void;
+  selectedSecondaryBoat: string; setSelectedSecondaryBoat: (v: string) => void;
+  selectedBoatIds: string[];
+  isMultiBoat: boolean;
+  selectedSecondaryBoatInfo: Boat | undefined;
   selectedDate: string; setSelectedDate: (v: string) => void;
   selectedDuration: string; setSelectedDuration: (v: string) => void;
   preferredTime: string; setPreferredTime: (v: string) => void;
+  // Tracked setters — user-initiated changes only (auto-resets keep the plain setters).
+  onDateSelectFromUser: (v: string) => void;
+  onTimeSelectFromUser: (v: string) => void;
+  onDurationSelectFromUser: (v: string) => void;
   numberOfPeople: string; setNumberOfPeople: (v: string) => void;
   filteredBoats: Boat[];
   isBoatsLoading: boolean;
@@ -158,10 +172,10 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           currentStep={currentStep}
           totalSteps={4}
           stepLabels={[
-            props.t.wizard.stepBoat,
-            props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepTrip) : props.t.wizard.stepTrip,
-            props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepYourData) : props.t.wizard.stepYourData,
-            props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepConfirm) : props.t.wizard.stepConfirm,
+            props.t.bookingWizard?.steps?.whenWho || 'Cuándo',
+            props.t.bookingWizard?.steps?.yourBoat || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepBoat) : props.t.wizard.stepBoat),
+            props.t.bookingWizard?.steps?.departureDuration || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepTrip) : props.t.wizard.stepTrip),
+            props.t.bookingWizard?.steps?.yourDetails || (props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepConfirm) : props.t.wizard.stepConfirm),
           ]}
 
         />
@@ -187,14 +201,15 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           aria-live="polite"
           aria-atomic="true"
         >
-          {displayStep === 1 && <Step1Boat {...props} />}
-          {displayStep === 2 && <Step2Trip {...props} />}
-          {displayStep === 3 && <Step3PersonalData {...props} />}
-          {displayStep === 4 && <Step4Confirm {...props} />}
+          {displayStep === 1 && <Step1WhenWho {...props} />}
+          {displayStep === 2 && <Step2Boat {...props} />}
+          {displayStep === 3 && <Step3Departure {...props} />}
+          {displayStep === 4 && <Step4Final {...props} />}
         </div>
       </div>
-      {/* Price summary bar — visible on steps 2-3 once boat + duration selected */}
-      {currentStep >= 2 && currentStep <= 3 && (() => {
+      {/* P1.1 (2026-05-20): price summary bar stays sticky through step 4 so
+          the total is visible at the exact moment the user hits submit. */}
+      {currentStep >= 2 && currentStep <= 4 && (() => {
         const price = props.getBookingPrice();
         if (!price || !props.selectedBoatInfo || !props.selectedDuration) return null;
         const discount = props.getCodeDiscount();
@@ -214,8 +229,17 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         );
       })()}
       <div className="border-t border-border bg-background px-4 py-3">
+        {currentStep === 4 && (
+          <p className="text-xs text-muted-foreground text-center mb-2 px-2">
+            {props.t.bookingWizard?.hints?.submitReassurance || 'Te respondemos en menos de 2 horas. Sin pago online, sin compromiso.'}
+          </p>
+        )}
         <div className="flex gap-3">
-          {currentStep > 1 && (
+          {/* P0.8 (2026-05-19): on the final step the primary action (submit
+              via WhatsApp) carries the row. Back becomes an icon-only ghost
+              so the One Action Rule is honoured. Steps 1-3 keep the
+              balanced Back + Next pair since the user is mid-navigation. */}
+          {currentStep === 4 ? null : currentStep > 1 && (
             <Button
               type="button"
               variant="outline"
@@ -238,6 +262,15 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             </Button>
           ) : (
             <>
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={onBack}
+                aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 4)`}
+                className="flex-shrink-0 px-3 min-h-11 text-muted-foreground hover:text-foreground"
+              >
+                <ChevronLeft className="w-5 h-5" aria-hidden="true" />
+              </Button>
               <Button
                 type="button"
                 onClick={async () => {
@@ -265,24 +298,42 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
   );
 }
 
-function Step1Boat({
+function Step2Boat({
   licenseFilter, setLicenseFilter,
   selectedBoat, setSelectedBoat,
+  selectedSecondaryBoat, setSelectedSecondaryBoat,
   filteredBoats,
   isBoatsLoading,
   preSelectedBoatId,
+  selectedDate,
+  numberOfPeople,
   showFieldError, getFieldError,
   t,
 }: BookingWizardMobileProps) {
   function handleBoatSelect(boatId: string) {
     setSelectedBoat(boatId);
   }
+  function handleComboSelect(primary: string, secondary: string) {
+    setSelectedBoat(primary);
+    setSelectedSecondaryBoat(secondary);
+  }
+  const peopleNum = parseInt(numberOfPeople || '1');
+  const maxSingleCapacity = filteredBoats.reduce((max, b) => Math.max(max, b.capacity), 0);
+  const needsMultiBoat = peopleNum > maxSingleCapacity && filteredBoats.length >= 2;
 
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-foreground mb-1">{t.wizard.chooseYourBoat}</h2>
-        <p className="text-sm text-muted-foreground">{t.wizard.haveNauticalLicense}</p>
+        <h2 className="text-xl font-bold text-foreground mb-1">
+          {needsMultiBoat
+            ? (t.bookingWizard?.multiBoat?.title || 'Vuestros barcos')
+            : t.wizard.chooseYourBoat}
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          {needsMultiBoat
+            ? (t.bookingWizard?.multiBoat?.subtitle || 'Para {n} personas necesitamos 2 barcos').replace('{n}', String(peopleNum))
+            : t.wizard.haveNauticalLicense}
+        </p>
       </div>
       {!preSelectedBoatId && (
         <fieldset className="border-0 p-0 m-0">
@@ -317,6 +368,17 @@ function Step1Boat({
           </div>
         </fieldset>
       )}
+      {needsMultiBoat ? (
+        <MultiBoatCombinations
+          filteredBoats={filteredBoats}
+          peopleNum={peopleNum}
+          selectedDate={selectedDate}
+          selectedBoat={selectedBoat}
+          selectedSecondaryBoat={selectedSecondaryBoat}
+          onSelect={handleComboSelect}
+          t={t}
+        />
+      ) : (
       <div>
         <label className="block text-sm font-semibold text-muted-foreground mb-2">
           {t.wizard.selectABoat}
@@ -338,41 +400,17 @@ function Step1Boat({
             </>
           )}
           {filteredBoats.map((boat) => {
-            const firstSeason = boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
-            const minPrice = getMinActivePrice(firstSeason?.prices);
+            const fitsCapacity = boat.capacity >= peopleNum;
             return (
-              <button
+              <BoatCardMobile
                 key={boat.id}
-                type="button"
-                role="radio"
-                aria-checked={selectedBoat === boat.id}
-                onClick={() => handleBoatSelect(boat.id)}
-                className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-colors active:scale-[0.97] ${
-                  selectedBoat === boat.id
-                    ? "border-primary bg-primary/5"
-                    : "border-border bg-background"
-                }`}
-              >
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
-                  selectedBoat === boat.id ? "border-primary bg-primary" : "border-border"
-                }`}>
-                  {selectedBoat === boat.id
-                    ? <Check className="w-3 h-3 text-white" />
-                    : null
-                  }
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-foreground text-sm">{boat.name}</p>
-                  {minPrice !== null && (
-                    <p className="text-xs text-primary font-medium">
-                      {t.boats.from} {minPrice}€
-                    </p>
-                  )}
-                </div>
-                <span className="text-xs text-muted-foreground flex-shrink-0">
-                  {boat.capacity} pers.
-                </span>
-              </button>
+                boat={boat}
+                selected={selectedBoat === boat.id}
+                fitsCapacity={fitsCapacity}
+                selectedDate={selectedDate}
+                onSelect={() => fitsCapacity && handleBoatSelect(boat.id)}
+                t={t}
+              />
             );
           })}
         </div>
@@ -380,41 +418,41 @@ function Step1Boat({
           <p className="text-xs text-destructive mt-1">{getFieldError('boat')}</p>
         )}
       </div>
+      )}
     </div>
   );
 }
 
-function Step2Trip({
-  selectedDate, setSelectedDate,
-  selectedDuration, setSelectedDuration,
-  preferredTime, setPreferredTime,
+/**
+ * Step 1: Cuándo y cuántos sois → date picker + people spinner.
+ * The earliest the user commits to a date, so subsequent steps can show veracious prices.
+ */
+function Step1WhenWho({
+  selectedDate,
+  onDateSelectFromUser,
   numberOfPeople, setNumberOfPeople,
-  selectedBoatInfo,
-  getDurationOptions, getMaxCapacity,
   getLocalISODate,
-  timeSlots,
-  unavailableTimeSlots,
-  selectedTimeMaxDuration,
   showFieldError, getFieldError, handleBlur,
   t,
   nextSaturdayISO,
   language,
 }: BookingWizardMobileProps) {
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const durationOptions = getDurationOptions();
-  const maxCapacity = getMaxCapacity();
+  const peopleCap = 12; // hard cap (max fleet capacity); narrowed to boat capacity in step 2
 
   return (
     <div className="space-y-5">
       <div>
         <h2 className="text-xl font-bold text-foreground mb-1">
-          {selectedBoatInfo
-            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', selectedBoatInfo.name)
-            : t.wizard.yourTrip}
+          {t.bookingWizard?.steps?.whenWho || 'Cuándo y cuántos sois'}
         </h2>
-        <p className="text-sm text-muted-foreground">{t.wizard.howLongHowMany}</p>
+        <p className="text-sm text-muted-foreground">
+          {t.bookingWizard?.hints?.pricesNextStep || 'En el siguiente paso verás precios reales para tu fecha.'}
+        </p>
+        <p className="text-xs text-muted-foreground mt-1.5">
+          {t.bookingWizard?.hints?.noOnlinePayment || 'Sin pago online — te confirmamos por WhatsApp'}
+        </p>
       </div>
-      {/* Date picker — moved from step 1 */}
       <div id="field-date">
         <label className="block text-sm font-semibold text-muted-foreground mb-2">
           {t.wizard.date}
@@ -444,7 +482,7 @@ function Step2Trip({
                   const y = date.getFullYear();
                   const m = String(date.getMonth() + 1).padStart(2, '0');
                   const d = String(date.getDate()).padStart(2, '0');
-                  setSelectedDate(`${y}-${m}-${d}`);
+                  onDateSelectFromUser(`${y}-${m}-${d}`);
                 }
                 setShowDatePicker(false);
               }}
@@ -462,7 +500,160 @@ function Step2Trip({
           </p>
         )}
       </div>
-      {/* Time — shown before duration so maxDuration can filter durations */}
+      <div id="field-people">
+        <label className="block text-sm font-semibold text-muted-foreground mb-2">
+          {t.wizard.numberOfPeople}
+        </label>
+        <div className={`flex items-center justify-between border-2 rounded-xl bg-background px-4 py-2 ${
+          showFieldError('people') ? 'border-destructive' : 'border-border'
+        }`}>
+          <button
+            type="button"
+            onClick={() => {
+              const current = parseInt(numberOfPeople || '1');
+              if (current > 1) { setNumberOfPeople(String(current - 1)); handleBlur('people'); }
+            }}
+            disabled={!numberOfPeople || parseInt(numberOfPeople) <= 1}
+            className="w-11 h-11 rounded-full border-2 border-border flex items-center justify-center text-xl font-bold text-muted-foreground disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
+            aria-label={t.a11y.decreasePeople}
+          >
+            −
+          </button>
+          <span className="text-2xl font-bold text-foreground min-w-[2rem] text-center">
+            {numberOfPeople || '1'}
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              const current = parseInt(numberOfPeople || '1');
+              if (current < peopleCap) { setNumberOfPeople(String(current + 1)); handleBlur('people'); }
+            }}
+            disabled={!!numberOfPeople && parseInt(numberOfPeople) >= peopleCap}
+            className="w-11 h-11 rounded-full border-2 border-border flex items-center justify-center text-xl font-bold text-muted-foreground disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
+            aria-label={t.a11y.increasePeople}
+          >
+            +
+          </button>
+        </div>
+        {showFieldError('people') && (
+          <p className="text-xs text-destructive mt-1">{getFieldError('people')}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Boat card with real pricing for the selected date (hits /api/pricing/calendar via hook).
+ * Capacity-disabled state for boats that can't fit the chosen group.
+ */
+function BoatCardMobile({
+  boat,
+  selected,
+  fitsCapacity,
+  selectedDate,
+  onSelect,
+  t,
+}: {
+  boat: Boat;
+  selected: boolean;
+  fitsCapacity: boolean;
+  selectedDate: string;
+  onSelect: () => void;
+  t: Translations;
+}) {
+  const { finalPrice, hasOverride, overrideLabel } = useBoatPricingForDate({
+    boatId: boat.id,
+    date: selectedDate,
+    duration: "4h",
+    enabled: !!selectedDate && fitsCapacity,
+  });
+  const fallbackSeason = boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
+  const fallbackMin = getMinActivePrice(fallbackSeason?.prices);
+  const displayPrice = finalPrice ?? fallbackMin;
+
+  return (
+    <button
+      type="button"
+      role="radio"
+      aria-checked={selected}
+      onClick={onSelect}
+      disabled={!fitsCapacity}
+      className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-colors active:scale-[0.97] ${
+        !fitsCapacity
+          ? "border-border bg-muted opacity-50 cursor-not-allowed"
+          : selected
+          ? "border-primary bg-primary/5"
+          : "border-border bg-background"
+      }`}
+    >
+      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+        selected ? "border-primary bg-primary" : "border-border"
+      }`}>
+        {selected ? <Check className="w-3 h-3 text-white" /> : null}
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="font-semibold text-foreground text-sm">{boat.name}</p>
+        {displayPrice !== null && (
+          <p className="text-xs text-primary font-medium flex items-center gap-1.5">
+            <span>{t.boats.from} {displayPrice}€</span>
+            {hasOverride && overrideLabel && (
+              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
+                {overrideLabel}
+              </span>
+            )}
+          </p>
+        )}
+      </div>
+      <span className="text-xs text-muted-foreground flex-shrink-0">
+        {boat.capacity} pers.
+      </span>
+    </button>
+  );
+}
+
+/**
+ * Step 3: Salida y duración → preferred time + duration grid with override delta visible.
+ * Date is set in step 1, so prices here are computed against the actual override.
+ */
+function Step3Departure({
+  selectedBoat,
+  selectedDate,
+  selectedDuration,
+  onDurationSelectFromUser,
+  preferredTime,
+  onTimeSelectFromUser,
+  selectedBoatInfo,
+  getDurationOptions, getMaxCapacity,
+  timeSlots,
+  unavailableTimeSlots,
+  selectedTimeMaxDuration,
+  showFieldError, getFieldError, handleBlur,
+  t,
+}: BookingWizardMobileProps) {
+  const durationOptions = getDurationOptions();
+  const maxCapacity = getMaxCapacity();
+
+  // Pricing override info for the selected boat+date (any duration share the same delta direction)
+  const { hasOverride, overrideLabel } = useBoatPricingForDate({
+    boatId: selectedBoat,
+    date: selectedDate,
+    duration: "4h",
+    enabled: !!selectedBoat && !!selectedDate,
+  });
+
+  return (
+    <div className="space-y-5">
+      <div>
+        <h2 className="text-xl font-bold text-foreground mb-1">
+          {t.bookingWizard?.steps?.departureDuration || 'Salida y duración'}
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          {selectedBoatInfo
+            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', selectedBoatInfo.name)
+            : t.wizard.howLongHowMany}
+        </p>
+      </div>
       <div id="field-time">
         <label htmlFor="wizard-time" className="block text-sm font-semibold text-muted-foreground mb-2">
           {t.wizard.departureTime}
@@ -470,7 +661,7 @@ function Step2Trip({
         <select
           id="wizard-time"
           value={preferredTime}
-          onChange={(e) => setPreferredTime(e.target.value)}
+          onChange={(e) => onTimeSelectFromUser(e.target.value)}
           onBlur={() => handleBlur('time')}
           aria-required="true"
           aria-invalid={showFieldError('time') ? "true" : "false"}
@@ -494,7 +685,14 @@ function Step2Trip({
         )}
       </div>
       <div id="field-duration">
-        <label className="block text-sm font-semibold text-muted-foreground mb-2">{t.wizard.duration}</label>
+        <div className="flex items-center justify-between mb-2">
+          <label className="block text-sm font-semibold text-muted-foreground">{t.wizard.duration}</label>
+          {hasOverride && overrideLabel && (
+            <span className="text-[11px] font-medium text-popular bg-popular/10 px-2 py-0.5 rounded-full">
+              {overrideLabel}
+            </span>
+          )}
+        </div>
         <div className="space-y-2">
           {(() => {
             const enabledWithPrice = durationOptions.filter(o => !o.disabled && o.price);
@@ -520,7 +718,7 @@ function Step2Trip({
                   key={opt.value}
                   type="button"
                   disabled={isDisabled}
-                  onClick={() => !isDisabled && setSelectedDuration(opt.value)}
+                  onClick={() => !isDisabled && onDurationSelectFromUser(opt.value)}
                   title={isSeasonRestricted ? opt.disabledReason : undefined}
                   className={`w-full flex items-center justify-between p-3 rounded-xl border-2 text-left transition-all ${
                     isDisabled
@@ -562,55 +760,18 @@ function Step2Trip({
           <p className="text-xs text-destructive mt-1">{getFieldError('duration')}</p>
         )}
       </div>
-      <div id="field-people">
-        <label className="block text-sm font-semibold text-muted-foreground mb-2">
-          {t.wizard.numberOfPeople}
-          {selectedBoatInfo && (
-            <span className="font-normal text-muted-foreground ml-1">(max. {maxCapacity})</span>
-          )}
-        </label>
-        <div className={`flex items-center justify-between border-2 rounded-xl bg-background px-4 py-2 ${
-          showFieldError('people') ? 'border-destructive' : 'border-border'
-        }`}>
-          <button
-            type="button"
-            onClick={() => {
-              const current = parseInt(numberOfPeople || '1');
-              if (current > 1) { setNumberOfPeople(String(current - 1)); handleBlur('people'); }
-            }}
-            disabled={!numberOfPeople || parseInt(numberOfPeople) <= 1}
-            className="w-11 h-11 rounded-full border-2 border-border flex items-center justify-center text-xl font-bold text-muted-foreground disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
-            aria-label={t.a11y.decreasePeople}
-          >
-            −
-          </button>
-          <span className="text-2xl font-bold text-foreground min-w-[2rem] text-center">
-            {numberOfPeople || '1'}
-          </span>
-          <button
-            type="button"
-            onClick={() => {
-              const current = parseInt(numberOfPeople || '1');
-              if (current < maxCapacity) { setNumberOfPeople(String(current + 1)); handleBlur('people'); }
-            }}
-            disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
-            className="w-11 h-11 rounded-full border-2 border-border flex items-center justify-center text-xl font-bold text-muted-foreground disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
-            aria-label={t.a11y.increasePeople}
-          >
-            +
-          </button>
-        </div>
-        {showFieldError('people') && (
-          <p className="text-xs text-destructive mt-1">{getFieldError('people')}</p>
-        )}
-      </div>
     </div>
   );
 }
 
-function Step3PersonalData({
-  firstName, setFirstName,
-  lastName, setLastName,
+/**
+ * Personal data form, rendered inside Step4Final. Kept as a separate section
+ * to keep the final step's render readable.
+ */
+function PersonalDataSection({
+  firstName,
+  lastName,
+  onFullNameChange,
   phonePrefix, setPhonePrefix,
   phoneNumber, setPhoneNumber,
   email, setEmail,
@@ -620,9 +781,9 @@ function Step3PersonalData({
   filteredPrefixes,
   selectedPrefixInfo,
   showFieldError, getFieldError, handleBlur,
-  onNext,
   t,
 }: BookingWizardMobileProps) {
+  const fullNameValue = firstName + (lastName ? ` ${lastName}` : "");
   return (
     <div className="space-y-4">
       <div>
@@ -630,51 +791,27 @@ function Step3PersonalData({
         <p className="text-sm text-muted-foreground">{t.wizard.confirmViaWhatsApp}</p>
       </div>
       <div>
-        <label htmlFor="wizard-firstname" className="block text-sm font-semibold text-muted-foreground mb-1">
-          {t.wizard.firstName}
+        <label htmlFor="wizard-fullname" className="block text-sm font-semibold text-muted-foreground mb-1">
+          {t.wizard.fullName}
         </label>
         <input
           type="text"
-          id="wizard-firstname"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          id="wizard-fullname"
+          value={fullNameValue}
+          onChange={(e) => onFullNameChange(e.target.value)}
           onBlur={() => handleBlur('firstName')}
           placeholder=""
-          autoComplete="given-name"
-          maxLength={100}
+          autoComplete="name"
+          maxLength={200}
           aria-required="true"
           aria-invalid={showFieldError('firstName') ? "true" : "false"}
-          aria-describedby={showFieldError('firstName') ? "error-wizard-firstname" : undefined}
+          aria-describedby={showFieldError('firstName') ? "error-wizard-fullname" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
             showFieldError('firstName') ? 'border-destructive' : 'border-border'
           }`}
         />
         {showFieldError('firstName') && (
-          <p id="error-wizard-firstname" className="text-xs text-destructive mt-1">{getFieldError('firstName')}</p>
-        )}
-      </div>
-      <div>
-        <label htmlFor="wizard-lastname" className="block text-sm font-semibold text-muted-foreground mb-1">
-          {t.wizard.lastName}
-        </label>
-        <input
-          type="text"
-          id="wizard-lastname"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          onBlur={() => handleBlur('lastName')}
-          placeholder=""
-          autoComplete="family-name"
-          maxLength={100}
-          aria-required="true"
-          aria-invalid={showFieldError('lastName') ? "true" : "false"}
-          aria-describedby={showFieldError('lastName') ? "error-wizard-lastname" : undefined}
-          className={`w-full p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
-            showFieldError('lastName') ? 'border-destructive' : 'border-border'
-          }`}
-        />
-        {showFieldError('lastName') && (
-          <p id="error-wizard-lastname" className="text-xs text-destructive mt-1">{getFieldError('lastName')}</p>
+          <p id="error-wizard-fullname" className="text-xs text-destructive mt-1">{getFieldError('firstName')}</p>
         )}
       </div>
       <div>
@@ -746,8 +883,9 @@ function Step3PersonalData({
         )}
       </div>
       <div>
-        <label htmlFor="wizard-email" className="block text-sm font-semibold text-muted-foreground mb-1">
-          {t.wizard.email}
+        <label htmlFor="wizard-email" className="flex items-baseline gap-2 text-sm font-semibold text-muted-foreground mb-1">
+          <span>{t.wizard.email}</span>
+          <span className="text-xs font-normal opacity-70">({t.booking.optional})</span>
         </label>
         <input
           type="email"
@@ -755,19 +893,20 @@ function Step3PersonalData({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => handleBlur('email')}
-          onKeyDown={(e) => { if (e.key === 'Enter') onNext(); }}
           placeholder="email@example.com"
           autoComplete="email"
           maxLength={254}
-          aria-required="true"
+          aria-required="false"
           aria-invalid={showFieldError('email') ? "true" : "false"}
-          aria-describedby={showFieldError('email') ? "error-wizard-email" : undefined}
+          aria-describedby={showFieldError('email') ? "error-wizard-email" : "hint-wizard-email"}
           className={`w-full p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
             showFieldError('email') ? 'border-destructive' : 'border-border'
           }`}
         />
-        {showFieldError('email') && (
+        {showFieldError('email') ? (
           <p id="error-wizard-email" className="text-xs text-destructive mt-1">{getFieldError('email')}</p>
+        ) : (
+          <p id="hint-wizard-email" className="text-xs text-muted-foreground mt-1">{t.wizard.emailHelper}</p>
         )}
       </div>
     </div>
@@ -790,18 +929,22 @@ function formatBookingDate(dateStr: string, language: string): string {
   }
 }
 
-function Step4Confirm({
-  selectedBoatInfo, selectedDate, selectedDuration, preferredTime, numberOfPeople,
-  firstName, lastName, onGoToStep,
-  boatExtras, selectedExtras, selectedPack, showExtras, setShowExtras,
-  extrasInPack, totalExtrasPrice, handlePackSelect, handleExtraToggle,
-  showCodeSection, setShowCodeSection, codeInput, setCodeInput,
-  isValidatingCode, validatedCode, codeError, handleValidateCode, handleRemoveCode,
-  getCodeDiscount, getBookingPrice, autoDiscount,
-  calculatePackSavings, iconMap,
-  privacyConsent, setPrivacyConsent,
-  t, isSpanishLang, language,
-}: BookingWizardMobileProps) {
+/**
+ * Step 4 (final): combines personal data form + extras + summary + total + RGPD.
+ * Submit button lives in the wizard footer.
+ */
+function Step4Final(props: BookingWizardMobileProps) {
+  const {
+    selectedBoatInfo, selectedDate, selectedDuration, preferredTime, numberOfPeople,
+    firstName, lastName, onGoToStep,
+    boatExtras, selectedExtras, selectedPack, showExtras, setShowExtras,
+    extrasInPack, totalExtrasPrice, handlePackSelect, handleExtraToggle,
+    showCodeSection, setShowCodeSection, codeInput, setCodeInput,
+    isValidatingCode, validatedCode, codeError, handleValidateCode, handleRemoveCode,
+    getCodeDiscount, getBookingPrice, autoDiscount,
+    calculatePackSavings, iconMap,
+    t, isSpanishLang, language,
+  } = props;
   const { localizedPath } = useLanguage();
   const basePrice = getBookingPrice();
   const discount = getCodeDiscount();
@@ -814,12 +957,13 @@ function Step4Confirm({
 
   return (
     <div className="space-y-5 pb-2">
-      <div>
-        <h2 className="text-xl font-bold text-foreground mb-1">
+      <PersonalDataSection {...props} />
+      <div className="border-t border-border pt-4">
+        <h3 className="text-base font-bold text-foreground mb-1">
           {selectedBoatInfo
             ? (t.endowment?.customizeExperience || t.booking.confirmTitle)
             : t.booking.confirmTitle}
-        </h2>
+        </h3>
         <p className="text-sm text-muted-foreground">{t.booking.confirmSubtitle}</p>
       </div>
       {/* Extras & Packs collapsible section */}
@@ -968,6 +1112,28 @@ function Step4Confirm({
           <div className="flex justify-between text-sm pt-2 border-t border-primary/20">
             <span className="text-muted-foreground">{t.booking.summaryBasePrice.replace(':', '').trim()}</span>
             <span className="font-bold text-primary text-base">{basePrice}€</span>
+          </div>
+        )}
+        {/* P0.5 (2026-05-20): explicit fuel signal — license-free boats include
+            fuel; licensed boats don't. Communicating this here prevents the
+            post-booking surprise that drives 1-star reviews. */}
+        {selectedBoatInfo && (
+          <div className="flex items-center gap-1.5 text-xs">
+            {selectedBoatInfo.requiresLicense ? (
+              <>
+                <Fuel className="w-3 h-3 text-popular flex-shrink-0" aria-hidden="true" />
+                <span className="text-popular font-medium">
+                  {t.bookingWizard?.fuel?.notIncluded || 'Combustible no incluido'}
+                </span>
+              </>
+            ) : (
+              <>
+                <Fuel className="w-3 h-3 text-success flex-shrink-0" aria-hidden="true" />
+                <span className="text-success font-medium">
+                  {t.bookingWizard?.fuel?.included || 'Combustible incluido'}
+                </span>
+              </>
+            )}
           </div>
         )}
         {autoDiscount?.type && autoDiscountAmount > 0 && (

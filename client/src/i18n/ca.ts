@@ -730,14 +730,28 @@ export const ca: Translations = {
     confirmViaWhatsApp: "Confirmem per WhatsApp en minuts",
     firstName: "Nom",
     lastName: "Cognoms",
+    fullName: "Nom complet",
     phone: "Telèfon",
     searchCountry: "Cercar país...",
     email: "Email",
+    emailHelper: "T'enviem el resum aquí si el deixes",
     date: "Data",
     durationMinPeakSeason: "Min. {duration} a l'agost (temporada alta)",
     durationMinWeekend: "Min. {duration} els caps de setmana",
     mostPopular: "Més popular",
     suggestedDate: "Proper dissabte disponible",
+    missingFieldsTitle: "Revisa les dades marcades",
+    missingFieldsDesc: "Falten dades per enviar la sol·licitud. Mira els camps en vermell.",
+  },
+  bookingWizard: {
+    hints: {
+      noOnlinePayment: "Sense pagament en línia — et confirmem per WhatsApp",
+      submitReassurance: "Et responem en menys de 2 hores. Sense pagament en línia, sense compromís.",
+    },
+    fuel: {
+      included: "Combustible inclòs",
+      notIncluded: "Combustible no inclòs",
+    },
   },
   validation: {
     required: "Aquest camp és obligatori",

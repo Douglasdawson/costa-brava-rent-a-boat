@@ -725,14 +725,28 @@ export const ru: Translations = {
     confirmViaWhatsApp: "Подтверждение через WhatsApp за минуты",
     firstName: "Имя",
     lastName: "Фамилия",
+    fullName: "Полное имя",
     phone: "Телефон",
     searchCountry: "Поиск страны...",
     email: "Email",
+    emailHelper: "Пришлём резюме сюда, если укажете",
     date: "Дата",
     durationMinPeakSeason: "Мин. {duration} в августе (высокий сезон)",
     durationMinWeekend: "Мин. {duration} по выходным",
     mostPopular: "Самый популярный",
     suggestedDate: "Ближайшая доступная суббота",
+    missingFieldsTitle: "Проверьте выделенные поля",
+    missingFieldsDesc: "Не хватает данных. Посмотрите на поля, выделенные красным.",
+  },
+  bookingWizard: {
+    hints: {
+      noOnlinePayment: "Без онлайн-оплаты — подтвердим через WhatsApp",
+      submitReassurance: "Ответим в течение 2 часов. Без онлайн-оплаты, без обязательств.",
+    },
+    fuel: {
+      included: "Топливо включено",
+      notIncluded: "Топливо не включено",
+    },
   },
   validation: {
     required: "Это поле обязательно",

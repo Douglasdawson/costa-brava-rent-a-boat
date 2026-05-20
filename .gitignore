@@ -25,3 +25,6 @@ vite.config.ts.*
 
 # Local backups (never commit *.md.bak etc.)
 *.bak
+
+# Claude Code project MCP config (contains MCP bearer token)
+.mcp.json

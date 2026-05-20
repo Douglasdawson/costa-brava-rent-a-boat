@@ -341,7 +341,7 @@ export const fr: Translations = {
     withoutLicense: "Sans Permis",
     select: "Sélectionner...",
     pricesUpdateByDate: "Les prix sont mis à jour selon la date",
-    sendBookingRequest: "Envoyer la demande",
+    sendBookingRequest: "Demander par WhatsApp",
     needHelp: "Besoin d'aide ?",
     people: "personnes",
     firstNameRequired: "Champ requis: Prénom",

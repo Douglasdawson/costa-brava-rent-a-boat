@@ -336,7 +336,7 @@ export const nl: Translations = {
     withoutLicense: "Zonder Vaarbewijs",
     select: "Selecteren...",
     pricesUpdateByDate: "Prijzen worden bijgewerkt op basis van de datum",
-    sendBookingRequest: "Boekingsverzoek verzenden",
+    sendBookingRequest: "Aanvragen via WhatsApp",
     needHelp: "Hulp nodig?",
     people: "personen",
     firstNameRequired: "Verplicht: Voornaam",

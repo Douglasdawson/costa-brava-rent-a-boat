@@ -334,7 +334,7 @@ export const ru: Translations = {
     withoutLicense: "Без лицензии",
     select: "Выбрать...",
     pricesUpdateByDate: "Цены обновляются в зависимости от даты",
-    sendBookingRequest: "Отправить запрос",
+    sendBookingRequest: "Запросить через WhatsApp",
     needHelp: "Нужна помощь?",
     people: "человек",
     firstNameRequired: "Обязательное поле: Имя",

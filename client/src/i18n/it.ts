@@ -337,7 +337,7 @@ export const it: Translations = {
     withoutLicense: "Senza Licenza",
     select: "Selezionare...",
     pricesUpdateByDate: "I prezzi si aggiornano in base alla data",
-    sendBookingRequest: "Invia richiesta",
+    sendBookingRequest: "Richiedi via WhatsApp",
     needHelp: "Hai bisogno di aiuto?",
     people: "persone",
     firstNameRequired: "Campo obbligatorio: Nome",

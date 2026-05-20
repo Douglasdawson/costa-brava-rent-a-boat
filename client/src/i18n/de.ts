@@ -339,7 +339,7 @@ export const de: Translations = {
     withoutLicense: "Ohne Lizenz",
     select: "Auswählen...",
     pricesUpdateByDate: "Die Preise werden je nach Datum aktualisiert",
-    sendBookingRequest: "Buchungsanfrage senden",
+    sendBookingRequest: "Per WhatsApp anfragen",
     needHelp: "Brauchen Sie Hilfe?",
     people: "Personen",
     firstNameRequired: "Pflichtfeld: Vorname",

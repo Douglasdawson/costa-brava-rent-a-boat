@@ -337,7 +337,7 @@ export const ca: Translations = {
     withoutLicense: "Sense Llicència",
     select: "Seleccionar...",
     pricesUpdateByDate: "Els preus s'actualitzen segons la data",
-    sendBookingRequest: "Enviar petició",
+    sendBookingRequest: "Demanar per WhatsApp",
     needHelp: "Necessites ajuda?",
     people: "persones",
     firstNameRequired: "Camp requerit: Nom",

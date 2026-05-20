@@ -407,7 +407,7 @@ export const es: Translations = {
     withoutLicense: "Sin Licencia",
     select: "Seleccionar...",
     pricesUpdateByDate: "Los precios se actualizan según la fecha",
-    sendBookingRequest: "Enviar petición",
+    sendBookingRequest: "Pedir por WhatsApp",
     needHelp: "¿Necesitas ayuda?",
     people: "personas",
     // BookingFormWidget validation

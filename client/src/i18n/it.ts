@@ -780,6 +780,15 @@ export const it: Translations = {
       message: "Riprendiamo da dove avevi lasciato",
       startOver: "Ricominciare",
     },
+    slotConflict: {
+      title: "Le {time} non sono più libere",
+      subtitle: "Ti proponiamo questi orari vicini:",
+      noAlternatives: "Non ci sono altri orari liberi quel giorno. Cambia data o scrivici su WhatsApp.",
+      changeDate: "Cambia data",
+      checking: "Sto controllando la disponibilità…",
+      toastTitle: "Scegli un'alternativa",
+      toastDesc: "Il tuo orario preferito non è più disponibile.",
+    },
   },
   validation: {
     required: "Questo campo è obbligatorio",

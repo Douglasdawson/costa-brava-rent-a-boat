@@ -773,6 +773,15 @@ export const en: Translations = {
       message: "Picking up where you left off",
       startOver: "Start fresh",
     },
+    slotConflict: {
+      title: "{time} is no longer available",
+      subtitle: "Try one of these nearby times:",
+      noAlternatives: "No times left that day. Change the date or message us on WhatsApp.",
+      changeDate: "Change date",
+      checking: "Checking availability…",
+      toastTitle: "Pick an alternative",
+      toastDesc: "Your preferred time is no longer available.",
+    },
   },
   validation: {
     required: "This field is required",

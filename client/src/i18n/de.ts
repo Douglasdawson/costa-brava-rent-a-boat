@@ -780,6 +780,15 @@ export const de: Translations = {
       message: "Wir machen da weiter, wo du aufgehört hast",
       startOver: "Neu starten",
     },
+    slotConflict: {
+      title: "{time} ist nicht mehr verfügbar",
+      subtitle: "Wir schlagen diese Zeiten in der Nähe vor:",
+      noAlternatives: "Keine freien Zeiten mehr an diesem Tag. Wähle ein anderes Datum oder schreib uns per WhatsApp.",
+      changeDate: "Datum ändern",
+      checking: "Verfügbarkeit wird geprüft…",
+      toastTitle: "Wähle eine Alternative",
+      toastDesc: "Deine bevorzugte Uhrzeit ist nicht mehr verfügbar.",
+    },
   },
   validation: {
     required: "Dieses Feld ist erforderlich",

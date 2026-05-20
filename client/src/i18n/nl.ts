@@ -777,6 +777,15 @@ export const nl: Translations = {
       message: "We gaan verder waar je gebleven was",
       startOver: "Opnieuw beginnen",
     },
+    slotConflict: {
+      title: "{time} is niet meer beschikbaar",
+      subtitle: "We stellen deze tijden in de buurt voor:",
+      noAlternatives: "Geen tijden meer beschikbaar die dag. Kies een andere datum of stuur ons een WhatsApp.",
+      changeDate: "Datum wijzigen",
+      checking: "Beschikbaarheid controleren…",
+      toastTitle: "Kies een alternatief",
+      toastDesc: "Je voorkeurstijd is niet meer beschikbaar.",
+    },
   },
   validation: {
     required: "Dit veld is verplicht",

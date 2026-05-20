@@ -817,6 +817,15 @@ export const es: Translations = {
       message: "Continuamos donde lo dejaste",
       startOver: "Empezar nuevo",
     },
+    slotConflict: {
+      title: "Las {time}h ya no están libres",
+      subtitle: "Te proponemos estas horas cercanas:",
+      noAlternatives: "No quedan horas libres ese día. Cambia la fecha o escríbenos por WhatsApp.",
+      changeDate: "Cambiar fecha",
+      checking: "Comprobando disponibilidad…",
+      toastTitle: "Elige una alternativa",
+      toastDesc: "Tu horario preferido ya no está disponible.",
+    },
   },
   validation: {
     required: "Este campo es obligatorio",

@@ -884,6 +884,18 @@ export interface Translations {
       message?: string;
       startOver?: string;
     };
+    /** P1.9: shown in step 4 when the preferred slot was taken between
+     *  selection and submit. Offers nearby alternatives. */
+    slotConflict?: {
+      /** "Las {time}h ya no están libres" — supports {time} placeholder */
+      title?: string;
+      subtitle?: string;
+      noAlternatives?: string;
+      changeDate?: string;
+      checking?: string;
+      toastTitle?: string;
+      toastDesc?: string;
+    };
     // Multi-boat (group bookings that exceed any single boat's capacity)
     multiBoat?: {
       title?: string;

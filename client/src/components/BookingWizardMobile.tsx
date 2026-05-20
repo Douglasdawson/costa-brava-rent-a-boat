@@ -13,6 +13,7 @@ import { ValueStack } from "@/components/booking-flow/ValueStack";
 import { BookingTrustBanner } from "@/components/booking-flow/BookingTrustBanner";
 import HoldCountdown from "@/components/HoldCountdown";
 import PriceSummaryBar from "@/components/PriceSummaryBar";
+import SlotConflictBanner from "@/components/SlotConflictBanner";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
@@ -119,6 +120,14 @@ export interface BookingWizardMobileProps {
   // P1.10: sessionStorage restoration banner
   restoredFromStorage: boolean;
   onDismissRestoreBanner: (startOver: boolean) => void;
+  // P1.9: slot conflict on step 4 (preferred time taken between selection
+  // and submit). Banner offers nearby alternatives.
+  slotConflict: {
+    alternatives: { time: string; maxDuration: number }[];
+    checkedAt: number;
+  } | null;
+  onPickAlternativeSlot: (time: string) => void;
+  onChangeDateFromConflict: () => void;
   // RGPD consent
   privacyConsent: boolean;
   setPrivacyConsent: (v: boolean) => void;
@@ -960,6 +969,8 @@ function Step4Final(props: BookingWizardMobileProps) {
     getCodeDiscount, getBookingPrice, autoDiscount,
     calculatePackSavings, iconMap,
     t, isSpanishLang, language,
+    slotConflict, onPickAlternativeSlot, onChangeDateFromConflict,
+    isAvailabilityLoading,
   } = props;
   const { localizedPath } = useLanguage();
   const basePrice = getBookingPrice();
@@ -973,6 +984,26 @@ function Step4Final(props: BookingWizardMobileProps) {
 
   return (
     <div className="space-y-5 pb-2">
+      {slotConflict && (
+        <SlotConflictBanner
+          preferredTime={preferredTime}
+          alternatives={slotConflict.alternatives}
+          isChecking={false}
+          onPickAlternative={onPickAlternativeSlot}
+          onChangeDate={onChangeDateFromConflict}
+          t={t}
+        />
+      )}
+      {!slotConflict && isAvailabilityLoading && preferredTime && (
+        <SlotConflictBanner
+          preferredTime={preferredTime}
+          alternatives={[]}
+          isChecking
+          onPickAlternative={onPickAlternativeSlot}
+          onChangeDate={onChangeDateFromConflict}
+          t={t}
+        />
+      )}
       <PersonalDataSection {...props} />
       <div className="border-t border-border pt-4">
         <h3 className="text-base font-bold text-foreground mb-1">

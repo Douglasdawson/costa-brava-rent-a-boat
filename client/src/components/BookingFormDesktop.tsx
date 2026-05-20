@@ -15,6 +15,7 @@ import { ValueStack } from "@/components/booking-flow/ValueStack";
 import { BookingTrustBanner } from "@/components/booking-flow/BookingTrustBanner";
 import HoldCountdown from "@/components/HoldCountdown";
 import PriceSummaryBar from "@/components/PriceSummaryBar";
+import SlotConflictBanner from "@/components/SlotConflictBanner";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
@@ -115,6 +116,10 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     language,
     restoredFromStorage,
     onDismissRestoreBanner,
+    slotConflict,
+    onPickAlternativeSlot,
+    onChangeDateFromConflict,
+    isAvailabilityLoading,
   } = props;
 
   const { localizedPath } = useLanguage();
@@ -288,6 +293,10 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             )}
             {currentStep === 4 && (
               <Step4FinalDesktop
+                slotConflict={slotConflict}
+                onPickAlternativeSlot={onPickAlternativeSlot}
+                onChangeDateFromConflict={onChangeDateFromConflict}
+                isAvailabilityLoading={isAvailabilityLoading}
                 firstName={firstName}
                 setFirstName={setFirstName}
                 lastName={lastName}
@@ -1197,6 +1206,11 @@ interface Step4Props {
   inputBase: string;
   inputError: string;
   inputNormal: string;
+  // P1.9: slot conflict on step 4 — pass-through to Step4FinalDesktop.
+  slotConflict: BookingWizardMobileProps["slotConflict"];
+  onPickAlternativeSlot: BookingWizardMobileProps["onPickAlternativeSlot"];
+  onChangeDateFromConflict: BookingWizardMobileProps["onChangeDateFromConflict"];
+  isAvailabilityLoading: BookingWizardMobileProps["isAvailabilityLoading"];
 }
 
 function Step4Contact({
@@ -1648,8 +1662,36 @@ function Step4Contact({
    ═══════════════════════════════════════════ */
 
 function Step4FinalDesktop(props: Step4Props & Step3Props) {
+  const {
+    slotConflict,
+    onPickAlternativeSlot,
+    onChangeDateFromConflict,
+    isAvailabilityLoading,
+    preferredTime,
+    t,
+  } = props;
   return (
     <div className="space-y-6">
+      {slotConflict && (
+        <SlotConflictBanner
+          preferredTime={preferredTime}
+          alternatives={slotConflict.alternatives}
+          isChecking={false}
+          onPickAlternative={onPickAlternativeSlot}
+          onChangeDate={onChangeDateFromConflict}
+          t={t}
+        />
+      )}
+      {!slotConflict && isAvailabilityLoading && preferredTime && (
+        <SlotConflictBanner
+          preferredTime={preferredTime}
+          alternatives={[]}
+          isChecking
+          onPickAlternative={onPickAlternativeSlot}
+          onChangeDate={onChangeDateFromConflict}
+          t={t}
+        />
+      )}
       <Step4Contact {...props} />
       {props.boatExtras.length > 0 && (
         <div className="border-t border-cta/20 pt-6">

@@ -10,7 +10,7 @@ import { openWhatsApp } from "@/utils/whatsapp";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import {
   trackBookingStarted,
@@ -48,6 +48,32 @@ const TIME_SLOTS = [
 export interface SlotAvailability {
   availableSlots: { time: string; maxDuration: number }[];
   unavailableSlots: string[];
+}
+
+/** P1.9: pick the N start slots whose time is closest to the requested
+ *  preferredTime AND whose maxDuration covers the requested rental length.
+ *  Symmetric distance (HH:MM minute-distance) keeps the suggestion balanced
+ *  around the preferred hour (e.g. preferred 12:00 → suggest 11:30 + 12:30
+ *  before 09:00). */
+function pickClosestAlternatives(
+  preferredTime: string,
+  requiredDurationHours: number,
+  availableSlots: { time: string; maxDuration: number }[],
+  count: number,
+): { time: string; maxDuration: number }[] {
+  const toMinutes = (t: string) => {
+    const [h, m] = t.split(":").map(Number);
+    return h * 60 + m;
+  };
+  const target = toMinutes(preferredTime);
+  return [...availableSlots]
+    .filter((s) => s.maxDuration >= requiredDurationHours)
+    .sort(
+      (a, b) =>
+        Math.abs(toMinutes(a.time) - target) -
+        Math.abs(toMinutes(b.time) - target),
+    )
+    .slice(0, count);
 }
 
 // Map icon name strings from boatData to Lucide icon components
@@ -175,6 +201,19 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   // P1.10 (2026-05-20): surfaced when sessionStorage restored a non-trivial
   // state (currentStep > 1) so the user understands why fields are pre-filled.
   const [restoredFromStorage, setRestoredFromStorage] = useState(false);
+
+  // P1.9 (2026-05-20): conflict detected when the preferred slot becomes
+  // unavailable (or its max duration drops below the chosen duration) while
+  // the user is on step 4. We surface alternatives instead of failing
+  // silently or letting the WhatsApp submit go through against a stale slot.
+  const [slotConflict, setSlotConflict] = useState<{
+    alternatives: { time: string; maxDuration: number }[];
+    checkedAt: number;
+  } | null>(null);
+  // Dedup: trackBookingValidationError(4, "slot_taken") fires once per detection.
+  const slotConflictTrackedRef = useRef(false);
+
+  const queryClient = useQueryClient();
 
   // Booking confirmation overlay
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -512,22 +551,110 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     return slotMaxDuration.get(preferredTime) ?? null;
   }, [preferredTime, slotMaxDuration]);
 
-  // Reset time if it becomes unavailable
+  // Reset time if it becomes unavailable — but ONLY while the user is still
+  // editing the time (steps 1-3). On step 4 we surface a SlotConflictBanner
+  // with alternatives instead of silently wiping the selection (P1.9).
   useEffect(() => {
-    if (preferredTime && unavailableTimeSlots.has(preferredTime)) {
+    if (
+      preferredTime &&
+      unavailableTimeSlots.has(preferredTime) &&
+      currentStep < 4
+    ) {
       setPreferredTime("");
     }
-  }, [unavailableTimeSlots, preferredTime]);
+  }, [unavailableTimeSlots, preferredTime, currentStep]);
 
-  // Reset duration if it exceeds maxDuration for the selected time slot
+  // Reset duration if it exceeds maxDuration for the selected time slot —
+  // same guard as above: keep the value on step 4 so SlotConflictBanner can
+  // explain it instead of silently zeroing the duration.
   useEffect(() => {
-    if (selectedDuration && selectedTimeMaxDuration !== null) {
+    if (
+      selectedDuration &&
+      selectedTimeMaxDuration !== null &&
+      currentStep < 4
+    ) {
       const durationHours = parseInt(selectedDuration.replace("h", ""));
       if (durationHours > selectedTimeMaxDuration) {
         setSelectedDuration("");
       }
     }
-  }, [selectedTimeMaxDuration, selectedDuration]);
+  }, [selectedTimeMaxDuration, selectedDuration, currentStep]);
+
+  // P1.9: force a fresh availability fetch when the user lands on step 4 so
+  // the conflict-detection effect below works against the latest data, not
+  // a 60s-stale cache.
+  useEffect(() => {
+    if (currentStep === 4 && selectedBoat && selectedDate) {
+      void queryClient.invalidateQueries({
+        queryKey: ["/api/availability", selectedBoat, selectedDate],
+      });
+    }
+  }, [currentStep, selectedBoat, selectedDate, queryClient]);
+
+  // P1.9: detect a slot conflict on step 4. Triggers whenever
+  // slotAvailability changes (cache refresh, refetchOnWindowFocus,
+  // queryClient.invalidate above). Clears itself when the user picks a
+  // valid alternative.
+  useEffect(() => {
+    if (currentStep !== 4) {
+      if (slotConflict) setSlotConflict(null);
+      slotConflictTrackedRef.current = false;
+      return;
+    }
+    if (!preferredTime || !selectedDuration || !slotAvailability) return;
+
+    const requiredDurationHours = parseInt(
+      selectedDuration.replace("h", ""),
+      10,
+    ) || 1;
+    const isTaken = unavailableTimeSlots.has(preferredTime);
+    const slotInfo = slotAvailability.availableSlots.find(
+      (s) => s.time === preferredTime,
+    );
+    const insufficient = !!slotInfo && slotInfo.maxDuration < requiredDurationHours;
+
+    if (isTaken || insufficient) {
+      const alts = pickClosestAlternatives(
+        preferredTime,
+        requiredDurationHours,
+        slotAvailability.availableSlots,
+        3,
+      );
+      const altsKey = alts.map((a) => a.time).join(",");
+      setSlotConflict((prev) =>
+        prev && prev.alternatives.map((a) => a.time).join(",") === altsKey
+          ? prev
+          : { alternatives: alts, checkedAt: Date.now() },
+      );
+      if (!slotConflictTrackedRef.current) {
+        slotConflictTrackedRef.current = true;
+        trackBookingValidationError(4, "slot_taken");
+      }
+    } else {
+      if (slotConflict) setSlotConflict(null);
+      slotConflictTrackedRef.current = false;
+    }
+  }, [
+    currentStep,
+    preferredTime,
+    selectedDuration,
+    slotAvailability,
+    unavailableTimeSlots,
+    slotConflict,
+  ]);
+
+  // P1.9 handlers passed to SlotConflictBanner in the wizards.
+  const handlePickAlternativeSlot = useCallback((time: string) => {
+    setPreferredTime(time);
+    setSlotConflict(null);
+    slotConflictTrackedRef.current = false;
+  }, []);
+
+  const handleChangeDateFromConflict = useCallback(() => {
+    setSlotConflict(null);
+    slotConflictTrackedRef.current = false;
+    setCurrentStep(1);
+  }, []);
 
   // Filter boats based on license selection
   const filteredBoats = allBoats.filter(boat => {
@@ -1367,6 +1494,23 @@ Looking forward to confirmation. Thanks!`;
       return;
     }
 
+    // P1.9: slot was taken (or its max duration dropped below the chosen
+    // duration) between selection and submit. The SlotConflictBanner is
+    // already visible above the summary — guide the user to it instead of
+    // firing WhatsApp + sendBeacon against a stale slot.
+    if (slotConflict) {
+      toast({
+        title:
+          t.bookingWizard?.slotConflict?.toastTitle ?? "Elige una alternativa",
+        description:
+          t.bookingWizard?.slotConflict?.toastDesc ??
+          "Tu horario preferido ya no está disponible.",
+        variant: "destructive",
+      });
+      scrollFieldIntoView("slot-conflict-banner", 80);
+      return;
+    }
+
     // From this point the user has actually submitted — flag it so the unmount
     // cleanup does NOT also fire booking_abandoned / booking_modal_dismiss.
     submittedRef.current = true;
@@ -1547,6 +1691,9 @@ Looking forward to confirmation. Thanks!`;
     handleBookingSearch,
     restoredFromStorage,
     onDismissRestoreBanner: dismissRestoreBanner,
+    slotConflict,
+    onPickAlternativeSlot: handlePickAlternativeSlot,
+    onChangeDateFromConflict: handleChangeDateFromConflict,
     privacyConsent, setPrivacyConsent,
     showFieldError,
     getFieldError,

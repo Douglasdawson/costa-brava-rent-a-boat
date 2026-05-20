@@ -778,6 +778,15 @@ export const ca: Translations = {
       message: "Continuem on ho vas deixar",
       startOver: "Començar de nou",
     },
+    slotConflict: {
+      title: "Les {time} ja no estan lliures",
+      subtitle: "Et proposem aquestes hores properes:",
+      noAlternatives: "No queden hores lliures aquest dia. Canvia la data o escriu-nos per WhatsApp.",
+      changeDate: "Canviar data",
+      checking: "Comprovant disponibilitat…",
+      toastTitle: "Tria una alternativa",
+      toastDesc: "El teu horari preferit ja no està disponible.",
+    },
   },
   validation: {
     required: "Aquest camp és obligatori",

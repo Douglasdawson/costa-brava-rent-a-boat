@@ -1513,7 +1513,7 @@ export const ca: Translations = {
     perHour: "/hora",
   },
   valueStack: {
-    title: "Tot inclòs en el teu preu",
+    title: "Inclòs en el preu:",
     fuelIncluded: "Combustible inclòs",
     insurance: "Assegurança de l'embarcació i ocupants",
     safetyEquipment: "Equip de seguretat complet",

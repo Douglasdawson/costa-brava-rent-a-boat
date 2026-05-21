@@ -1505,7 +1505,7 @@ export const ru: Translations = {
     perHour: "/час",
   },
   valueStack: {
-    title: "Всё включено в стоимость",
+    title: "Включено в стоимость:",
     fuelIncluded: "Топливо включено",
     insurance: "Страхование судна и пассажиров",
     safetyEquipment: "Полный комплект оборудования безопасности",

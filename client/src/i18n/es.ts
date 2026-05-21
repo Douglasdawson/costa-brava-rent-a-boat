@@ -2748,7 +2748,7 @@ export const es: Translations = {
   },
 
   valueStack: {
-    title: "Todo incluido en tu precio",
+    title: "Incluido en el precio:",
     fuelIncluded: "Combustible incluido",
     insurance: "Seguro de embarcación y ocupantes",
     safetyEquipment: "Equipo de seguridad completo",

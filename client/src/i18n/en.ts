@@ -1574,7 +1574,7 @@ export const en: Translations = {
     perHour: "/hour",
   },
   valueStack: {
-    title: "Everything included in your price",
+    title: "Included in the price:",
     fuelIncluded: "Fuel included",
     insurance: "Boat and passenger insurance",
     safetyEquipment: "Complete safety equipment",

@@ -1513,7 +1513,7 @@ export const nl: Translations = {
     perHour: "/uur",
   },
   valueStack: {
-    title: "Alles inbegrepen in je prijs",
+    title: "Inbegrepen in de prijs:",
     fuelIncluded: "Brandstof inbegrepen",
     insurance: "Verzekering voor boot en inzittenden",
     safetyEquipment: "Volledige veiligheidsuitrusting",

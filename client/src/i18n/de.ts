@@ -1519,7 +1519,7 @@ export const de: Translations = {
     perHour: "/Stunde",
   },
   valueStack: {
-    title: "Alles in Ihrem Preis inbegriffen",
+    title: "Im Preis enthalten:",
     fuelIncluded: "Kraftstoff inklusive",
     insurance: "Versicherung für Boot und Insassen",
     safetyEquipment: "Komplette Sicherheitsausrüstung",

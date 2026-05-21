@@ -1524,7 +1524,7 @@ export const fr: Translations = {
     perHour: "/heure",
   },
   valueStack: {
-    title: "Tout compris dans votre prix",
+    title: "Inclus dans le prix :",
     fuelIncluded: "Carburant inclus",
     insurance: "Assurance bateau et passagers",
     safetyEquipment: "Équipement de sécurité complet",

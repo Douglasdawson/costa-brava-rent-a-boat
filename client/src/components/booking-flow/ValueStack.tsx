@@ -1,4 +1,4 @@
-import { CheckCircle, Gift } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import type { Translations } from "@/lib/translations";
 
 interface ValueStackProps {
@@ -40,10 +40,7 @@ export function ValueStack({ requiresLicense, isExcursion, t }: ValueStackProps)
 
   return (
     <div className="bg-success/10 border border-success/20 rounded-lg p-4 mb-4">
-      <div className="flex items-center gap-2 mb-3">
-        <Gift className="w-4 h-4 text-success" aria-hidden="true" />
-        <h3 className="text-sm font-medium text-foreground">{vs.title}</h3>
-      </div>
+      <h3 className="text-sm font-medium text-foreground mb-3">{vs.title}</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {items.map((item) => (
           <div key={item} className="flex items-center gap-2">

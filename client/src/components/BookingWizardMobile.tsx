@@ -795,7 +795,7 @@ function Step3Departure({
                   {isBestValue && (
                     <span
                       aria-hidden="true"
-                      className="absolute top-1.5 right-2 text-[10px] font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full"
+                      className="absolute top-1.5 left-1/2 -translate-x-1/2 text-[10px] font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full whitespace-nowrap"
                     >
                       {t.neuro?.bestValue || 'Mejor valor'}
                     </span>
@@ -803,7 +803,7 @@ function Step3Departure({
                   {isPopular && !isBestValue && (
                     <span
                       aria-hidden="true"
-                      className="absolute top-1.5 right-2 text-[10px] font-medium text-muted-foreground"
+                      className="absolute top-1.5 left-1/2 -translate-x-1/2 text-[10px] font-medium text-muted-foreground whitespace-nowrap"
                     >
                       {t.wizard.mostPopular}
                     </span>

@@ -65,8 +65,13 @@ export default function Hero() {
 
       {/* Content — justify-between pushes CTAs to bottom, content centers in remaining space */}
       <div className="relative z-10 h-full flex flex-col justify-between">
-        {/* Top: centered content block */}
-        <div className="flex-1 flex flex-col justify-between lg:justify-center pt-24 lg:pt-24 pb-[56px] lg:pb-[52px] px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full">
+        {/* Top: centered content block.
+            pb leaves enough breathing room above the absolute trust strip:
+              - Mobile: strip is ~60px (2-col grid, 4 items). pb-24 (96px)
+                gives ~36px of air between the last CTA and the strip.
+              - Desktop: strip is ~52px (single row). pb-20 (80px) gives
+                ~28px of air. Both follow the 8pt spacing scale. */}
+        <div className="flex-1 flex flex-col justify-between lg:justify-center pt-24 lg:pt-24 pb-24 lg:pb-20 px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full">
           {/* Text group — top on mobile, centered with CTAs on tablet+ */}
           <div className="text-center flex flex-col items-center">
             <h1

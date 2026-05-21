@@ -223,10 +223,15 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="px-6 py-5"
           >
-            <BookingTrustBanner
-              t={t}
-              stage={currentStep <= 2 ? "step1" : currentStep === 3 ? "step2" : "step3"}
-            />
+            {/* Trust banner hidden on step 3 (visual noise during the
+                time/duration choice — already shown on steps 1-2 and a
+                stronger variant returns at step 4). */}
+            {currentStep !== 3 && (
+              <BookingTrustBanner
+                t={t}
+                stage={currentStep <= 2 ? "step1" : "step3"}
+              />
+            )}
             {currentStep === 1 && (
               <Step1WhenWhoDesktop
                 selectedDate={selectedDate}

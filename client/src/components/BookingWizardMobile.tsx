@@ -298,7 +298,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
       })()}
       <div className="border-t border-border bg-background px-4 py-3">
         {currentStep === 5 && (
-          <p className="text-xs text-muted-foreground text-center mb-2 px-2">
+          <p className="text-[11px] text-muted-foreground text-center mb-1.5 px-2 leading-tight">
             {props.t.bookingWizard?.hints?.submitReassurance || 'Te respondemos en menos de 2 horas. Sin pago online, sin compromiso.'}
           </p>
         )}
@@ -884,13 +884,13 @@ function PersonalDataSection({
 }: BookingWizardMobileProps) {
   const fullNameValue = firstName + (lastName ? ` ${lastName}` : "");
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div>
-        <h2 className="text-xl font-bold text-foreground mb-1">{t.endowment?.confirmYourBooking || t.wizard.yourData}</h2>
-        <p className="text-sm text-muted-foreground">{t.wizard.confirmViaWhatsApp}</p>
+        <h2 className="text-base font-bold text-foreground">{t.wizard.yourData}</h2>
+        <p className="text-xs text-muted-foreground mt-0.5">{t.wizard.confirmViaWhatsApp}</p>
       </div>
       <div>
-        <label htmlFor="wizard-fullname" className="block text-sm font-semibold text-muted-foreground mb-1">
+        <label htmlFor="wizard-fullname" className="block text-sm font-semibold text-muted-foreground mb-0.5">
           {t.wizard.fullName}
         </label>
         <input
@@ -905,7 +905,7 @@ function PersonalDataSection({
           aria-required="true"
           aria-invalid={showFieldError('firstName') ? "true" : "false"}
           aria-describedby={showFieldError('firstName') ? "error-wizard-fullname" : undefined}
-          className={`w-full p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
+          className={`w-full px-3 py-2.5 border rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
             showFieldError('firstName') ? 'border-destructive' : 'border-border'
           }`}
         />
@@ -914,7 +914,7 @@ function PersonalDataSection({
         )}
       </div>
       <div>
-        <label htmlFor="wizard-phone" className="block text-sm font-semibold text-muted-foreground mb-1">
+        <label htmlFor="wizard-phone" className="block text-sm font-semibold text-muted-foreground mb-0.5">
           {t.wizard.phone}
         </label>
         <div className="flex gap-2">
@@ -926,7 +926,7 @@ function PersonalDataSection({
               aria-haspopup="listbox"
               aria-expanded={showPrefixDropdown}
               aria-label={`${t.a11y.phonePrefix}: ${phonePrefix}`}
-              className="w-full p-3 border-2 border-border bg-background rounded-xl text-foreground font-medium text-base flex items-center gap-1 overflow-hidden"
+              className="w-full px-3 py-2.5 border border-border bg-background rounded-xl text-foreground font-medium text-base flex items-center gap-1 overflow-hidden"
             >
               <span className="truncate">{selectedPrefixInfo?.flag} {phonePrefix}</span>
             </button>
@@ -972,7 +972,7 @@ function PersonalDataSection({
             aria-required="true"
             aria-invalid={showFieldError('phone') ? "true" : "false"}
             aria-describedby={showFieldError('phone') ? "error-wizard-phone" : undefined}
-            className={`flex-1 p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
+            className={`flex-1 px-3 py-2.5 border rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
               showFieldError('phone') ? 'border-destructive' : 'border-border'
             }`}
           />
@@ -982,7 +982,7 @@ function PersonalDataSection({
         )}
       </div>
       <div>
-        <label htmlFor="wizard-email" className="flex items-baseline gap-2 text-sm font-semibold text-muted-foreground mb-1">
+        <label htmlFor="wizard-email" className="flex items-baseline gap-2 text-sm font-semibold text-muted-foreground mb-0.5">
           <span>{t.wizard.email}</span>
           <span className="text-xs font-normal opacity-70">({t.booking.optional})</span>
         </label>
@@ -998,7 +998,7 @@ function PersonalDataSection({
           aria-required="false"
           aria-invalid={showFieldError('email') ? "true" : "false"}
           aria-describedby={showFieldError('email') ? "error-wizard-email" : "hint-wizard-email"}
-          className={`w-full p-3 border-2 rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
+          className={`w-full px-3 py-2.5 border rounded-xl bg-background text-foreground font-medium text-base focus:ring-2 focus:ring-primary ${
             showFieldError('email') ? 'border-destructive' : 'border-border'
           }`}
         />
@@ -1164,7 +1164,7 @@ function Step5Final(props: BookingWizardMobileProps) {
   const total = basePrice !== null ? basePrice + totalExtrasPrice - discount - autoDiscountAmount : null;
 
   return (
-    <div className="space-y-5 pb-2">
+    <div className="space-y-4 pb-2">
       {slotConflict && (
         <SlotConflictBanner
           preferredTime={preferredTime}
@@ -1197,13 +1197,13 @@ function Step5Final(props: BookingWizardMobileProps) {
           }}
         />
       )}
-      <div className="border-t border-border pt-4">
-        <h3 className="text-base font-bold text-foreground mb-1">
+      <div className="border-t border-border pt-3">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">
           {selectedBoatInfo
             ? (t.endowment?.customizeExperience || t.booking.confirmTitle)
             : t.booking.confirmTitle}
         </h3>
-        <p className="text-sm text-muted-foreground">{t.booking.confirmSubtitle}</p>
+        <p className="text-xs text-muted-foreground mt-0.5">{t.booking.confirmSubtitle}</p>
       </div>
       {/* Booking summary card */}
       <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-2">

@@ -784,7 +784,7 @@ function Step3Departure({
                   disabled={isDisabled}
                   onClick={() => !isDisabled && onDurationSelectFromUser(opt.value)}
                   title={isSeasonRestricted ? opt.disabledReason : undefined}
-                  className={`relative flex flex-col p-3 rounded-xl border-2 text-left transition-all min-h-[88px] ${
+                  className={`relative flex flex-col items-center justify-center p-3 rounded-xl border-2 text-center transition-all min-h-[88px] ${
                     isDisabled
                       ? "border-border bg-muted opacity-50 cursor-not-allowed"
                       : selectedDuration === opt.value
@@ -808,7 +808,7 @@ function Step3Departure({
                       {t.wizard.mostPopular}
                     </span>
                   )}
-                  <div className={`flex items-baseline gap-2 ${hasBadge ? "mt-3" : ""}`}>
+                  <div className={`flex items-baseline justify-center gap-2 ${hasBadge ? "mt-3" : ""}`}>
                     <span className={`text-sm font-semibold ${isDisabled ? "text-muted-foreground line-through" : "text-foreground"}`}>
                       {durationLabel}
                     </span>

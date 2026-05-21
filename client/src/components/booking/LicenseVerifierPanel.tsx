@@ -8,6 +8,7 @@ import {
   ChevronDown,
   Loader2,
   WifiOff,
+  ExternalLink,
 } from "lucide-react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
@@ -18,6 +19,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useOnlineStatus } from "@/hooks/useOnlineStatus";
+import { useStandaloneDisplay } from "@/hooks/useStandaloneDisplay";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { LICENSE_COUNTRIES, getCountryDisplayName, findCountry } from "@/utils/license-countries";
 import {
@@ -61,6 +63,7 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
   const t = useTranslations();
   const tv = t.bookingWizard?.licenseVerifier;
   const isMobile = useIsMobile();
+  const isStandalonePwa = useStandaloneDisplay();
 
   const { state, setCountry, setLicenseCode, setHasIcc, verify, resetStatus, dismiss, undismiss } = verifier;
   const isEee = state.country ? isEeeCountry(state.country) : false;
@@ -343,9 +346,12 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
           href="https://www.boe.es/eli/es/rd/2014/10/10/875"
           target="_blank"
           rel="noopener noreferrer"
-          className={`underline underline-offset-2 hover:text-foreground inline-block py-1.5 -my-1.5 ${FOCUS_RING} ${COLOR_TRANSITION}`}
+          className={`underline underline-offset-2 hover:text-foreground inline-flex items-center gap-1 py-1.5 -my-1.5 ${FOCUS_RING} ${COLOR_TRANSITION}`}
         >
           {tv?.disclaimerLink ?? "Ver norma"}
+          {isStandalonePwa && (
+            <ExternalLink className="w-3 h-3 shrink-0" aria-hidden />
+          )}
         </a>
       </p>
     </section>

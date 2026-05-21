@@ -1,7 +1,7 @@
 # Verificador de licencia náutica
 
 **Fecha**: 21 de mayo de 2026
-**Estado**: TIER 1 + TIER 2 entregados. TIER 3 #1 (service worker), #3 (offline awareness), #5 (SVG flags Windows) y #6 (keyboard nav a11y) entregados el mismo día. Resto de TIER 3 pendiente.
+**Estado**: TIER 1 + TIER 2 entregados. TIER 3 #1 (service worker), #2 (standalone PWA), #3 (offline awareness), #5 (SVG flags Windows) y #6 (keyboard nav a11y) entregados el mismo día. Quedan #4 geo-IP y #7 iconos maskable.
 **Owner técnico**: equipo CTO
 
 ## Por qué existe
@@ -164,7 +164,7 @@ Aplica solo en el primer mount del panel cuando `state.country === ""`. Respeta 
    - `manifest: false` + `includeManifestIcons: false` → respetamos nuestro `client/public/manifest.json` manual (no queremos que el plugin sobreescriba).
    - Manifest ampliado: `scope`, `lang`, `dir`, `orientation`, `categories`. Iconos maskable 192/512 quedan pendientes de generación limpia.
    - `devOptions.enabled: false` → el SW no se registra en `npm run dev` para evitar conflictos con HMR.
-2. **Standalone PWA detection** — `window.matchMedia('(display-mode: standalone)')` para ajustar UI cuando la app está instalada.
+2. ✅ **Standalone PWA detection** — entregado 2026-05-21. Hook `useStandaloneDisplay` (SSR-safe, escucha `change` del media query, fallback `navigator.standalone` de iOS legacy). En `main.tsx` un bootstrap one-shot marca `document.documentElement.dataset.pwaStandalone = "true"` para hooks CSS globales sin React. Aplicación visible en el verificador: cuando standalone, el link "Ver norma" del disclaimer muestra un icono `ExternalLink` para señalar que abre fuera del shell de la app (especialmente útil en iOS donde el deep-link puede confundir).
 3. ✅ **Offline awareness** — entregado 2026-05-21. Hook `useOnlineStatus` (SSR-safe, listeners online/offline). En el card negativo del summary, encima del CTA WhatsApp, hint `WifiOff` + texto i18n cuando `navigator.onLine === false`. Botón sigue enabled (wa.me deep-linkea a la app nativa que maneja offline). Nueva clave `licenseVerifier.offlineHint` traducida a los 8 idiomas.
 4. **Geo-IP defaults** — endpoint `/api/geo` que devuelva el país por IP, sobre-sobreescribe el language default si difiere.
 5. ✅ **Bandera SVG override en Windows** — entregado 2026-05-21. Componente `CountryFlag` (`client/src/components/booking/CountryFlag.tsx`) detecta Windows via `navigator.userAgent` y carga **dinámicamente** `country-flag-icons/string/3x2` (Vite produce un chunk separado de ~181 KB raw / ~50 KB brotli). Caché de la promesa para evitar imports duplicados. Render: `dangerouslySetInnerHTML` con el string SVG inline (más eficiente que data-URI per render). Reemplazado en 3 sitios: trigger del country picker, summary pill negativa, y cada row de la lista. Trade-off conocido: el SW precachea el chunk de banderas (50 KB brotli) también para non-Windows users — necesario para que Windows offline siga viendo banderas.

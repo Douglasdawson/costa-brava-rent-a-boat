@@ -171,8 +171,20 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   return (
     <div className="flex flex-col h-full">
       {/* Step progress bar */}
-      <div className="flex-shrink-0 px-8 pt-3 pb-2 border-b border-cta/20">
-        <BookingProgressBar currentStep={currentStep} totalSteps={5} stepLabels={stepLabels} />
+      <div className="flex-shrink-0 px-8 pt-3 pb-2 border-b border-cta/20 flex items-center gap-3">
+        <div className="flex-1 min-w-0">
+          <BookingProgressBar currentStep={currentStep} totalSteps={5} stepLabels={stepLabels} />
+        </div>
+        {props.onClose && (
+          <button
+            type="button"
+            onClick={props.onClose}
+            aria-label={t.booking.close ?? "Cerrar"}
+            className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          >
+            <X className="w-5 h-5" aria-hidden="true" />
+          </button>
+        )}
       </div>
 
       {/* Hold countdown timer — only visible on final step */}

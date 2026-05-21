@@ -1810,6 +1810,7 @@ Looking forward to confirmation. Thanks!`;
     getBookingPrice,
     autoDiscount: autoDiscount || null,
     handleBookingSearch,
+    onClose,
     restoredFromStorage,
     onDismissRestoreBanner: dismissRestoreBanner,
     slotConflict,

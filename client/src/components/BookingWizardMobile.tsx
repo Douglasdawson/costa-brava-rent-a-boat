@@ -117,6 +117,8 @@ export interface BookingWizardMobileProps {
   getBookingPrice: () => number | null;
   autoDiscount: { type: 'early-bird' | 'flash-deal' | null; percentage: number; amount: number } | null;
   handleBookingSearch: () => Promise<void>;
+  // Close the modal from inside the wizard (header X button).
+  onClose?: () => void;
   // P1.10: sessionStorage restoration banner
   restoredFromStorage: boolean;
   onDismissRestoreBanner: (startOver: boolean) => void;
@@ -180,19 +182,30 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
 
   return (
     <div className="flex flex-col h-full overflow-x-hidden" role="form" aria-label={props.t.a11y.bookingForm}>
-      <div className="sticky top-0 z-10 bg-background px-3 py-1.5 border-b border-border">
-        <BookingProgressBar
-          currentStep={currentStep}
-          totalSteps={5}
-          stepLabels={[
-            props.t.bookingWizard?.steps?.whenWho || 'Cuándo',
-            props.t.bookingWizard?.steps?.yourBoat || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepBoat) : props.t.wizard.stepBoat),
-            props.t.bookingWizard?.steps?.departureDuration || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepTrip) : props.t.wizard.stepTrip),
-            props.t.bookingWizard?.steps?.upgradeYourDay || 'Mejora tu día',
-            props.t.bookingWizard?.steps?.yourDetails || (props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepConfirm) : props.t.wizard.stepConfirm),
-          ]}
-
-        />
+      <div className="sticky top-0 z-10 bg-background px-3 py-1.5 border-b border-border flex items-center gap-2">
+        <div className="flex-1 min-w-0">
+          <BookingProgressBar
+            currentStep={currentStep}
+            totalSteps={5}
+            stepLabels={[
+              props.t.bookingWizard?.steps?.whenWho || 'Cuándo',
+              props.t.bookingWizard?.steps?.yourBoat || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepBoat) : props.t.wizard.stepBoat),
+              props.t.bookingWizard?.steps?.departureDuration || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepTrip) : props.t.wizard.stepTrip),
+              props.t.bookingWizard?.steps?.upgradeYourDay || 'Mejora tu día',
+              props.t.bookingWizard?.steps?.yourDetails || (props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepConfirm) : props.t.wizard.stepConfirm),
+            ]}
+          />
+        </div>
+        {props.onClose && (
+          <button
+            type="button"
+            onClick={props.onClose}
+            aria-label={props.t.booking.close ?? "Cerrar"}
+            className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 -mr-1 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          >
+            <X className="w-5 h-5" aria-hidden="true" />
+          </button>
+        )}
       </div>
       {/* P1.10: sessionStorage restore banner — dismissable, optional reset */}
       {props.restoredFromStorage && (

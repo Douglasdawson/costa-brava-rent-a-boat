@@ -223,14 +223,12 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="px-6 py-5"
           >
-            {/* Trust banner hidden on step 3 (visual noise during the
-                time/duration choice — already shown on steps 1-2 and a
-                stronger variant returns at step 4). */}
-            {currentStep !== 3 && (
-              <BookingTrustBanner
-                t={t}
-                stage={currentStep <= 2 ? "step1" : "step3"}
-              />
+            {/* Trust banner only on steps 1-2. Step 3 (time/duration grid)
+                and step 4 (submit) don't need the pills — step 4 has its
+                own inline "Te respondemos en <2h" reassurance above the
+                WhatsApp button. */}
+            {currentStep <= 2 && (
+              <BookingTrustBanner t={t} stage="step1" />
             )}
             {currentStep === 1 && (
               <Step1WhenWhoDesktop

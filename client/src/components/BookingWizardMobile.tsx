@@ -228,14 +228,12 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         </div>
       )}
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto overflow-x-hidden px-4 py-4">
-        {/* Trust banner hidden on step 3 (visual noise during the time/duration
-            choice — the user already saw it in steps 1-2 and will see the
-            stronger variant again at step 4). */}
-        {currentStep !== 3 && (
-          <BookingTrustBanner
-            t={props.t}
-            stage={currentStep <= 2 ? "step1" : "step3"}
-          />
+        {/* Trust banner only on steps 1-2. Step 3 is the time/duration grid
+            (banner adds visual noise) and step 4 is the submit moment
+            (the inline reassurance "Te respondemos en menos de 2h" above
+            the WhatsApp button already does that job, no need to repeat). */}
+        {currentStep <= 2 && (
+          <BookingTrustBanner t={props.t} stage="step1" />
         )}
         <div
           className={`transition-all duration-150 ${animClass}`}

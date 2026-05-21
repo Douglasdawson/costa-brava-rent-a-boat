@@ -59,6 +59,36 @@ import type { PaginatedResponse } from "./types";
 import { BookingDetailsModal } from "./BookingDetailsModal";
 import { calculatePricingBreakdown, type Duration } from "@shared/pricing";
 import { parseMadridLocal } from "@/lib/madridTz";
+import { findLicense, type LicenseVerificationStatus, type SpanishLicenseLevel } from "@shared/nauticalLicenseRules";
+import { getCountryDisplayName } from "@/utils/license-countries";
+
+const LICENSE_BADGE_CONFIG: Record<LicenseVerificationStatus, { label: string; color: string }> = {
+  valid: { label: "Licencia válida", color: "bg-emerald-100 text-emerald-800 border-emerald-200" },
+  probably_valid: { label: "Prob. válida", color: "bg-amber-100 text-amber-800 border-amber-200" },
+  needs_icc: { label: "Falta ICC", color: "bg-amber-100 text-amber-800 border-amber-200" },
+  not_recognized: { label: "No reconocida", color: "bg-rose-100 text-rose-800 border-rose-200" },
+  insufficient: { label: "Insuficiente", color: "bg-rose-100 text-rose-800 border-rose-200" },
+  unknown: { label: "Sin verificar", color: "bg-muted text-muted-foreground border-border" },
+};
+
+const SPANISH_LEVEL_LABEL: Record<SpanishLicenseLevel, string> = {
+  navegacion: "LBN",
+  pnb: "PNB",
+  per: "PER",
+  patron_yate: "Patrón de Yate",
+  capitan_yate: "Capitán de Yate",
+};
+
+/** Resolves an inquiry's `licenseType` field (formatted as "iso2:code"
+ *  or a legacy bare code) to the native foreign-license label. */
+function getLicenseDisplayLabel(inquiryLicenseType: string | null, fallbackCountry: string | null): string {
+  if (!inquiryLicenseType) return "";
+  const parts = inquiryLicenseType.split(":");
+  const [country, code] = parts.length === 2
+    ? [parts[0].toUpperCase(), parts[1]]
+    : [(fallbackCountry || "").toUpperCase(), parts[0]];
+  return findLicense(country, code)?.label ?? inquiryLicenseType;
+}
 
 type PaginatedInquiriesResponse = PaginatedResponse<WhatsappInquiry>;
 
@@ -336,6 +366,22 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                       <TableCell>
                         <div className="font-medium text-sm">{inq.firstName} {inq.lastName}</div>
                         {inq.language && <span className="text-xs text-muted-foreground/70 uppercase">{inq.language}</span>}
+                        {inq.licenseVerificationStatus && (
+                          <div className="mt-1">
+                            <Badge
+                              variant="outline"
+                              className={`text-[10px] font-medium border ${LICENSE_BADGE_CONFIG[inq.licenseVerificationStatus as LicenseVerificationStatus]?.color || ""}`}
+                              title={[
+                                inq.licenseCountry ? getCountryDisplayName(inq.licenseCountry, "es") : "",
+                                getLicenseDisplayLabel(inq.licenseType, inq.licenseCountry),
+                                inq.licenseSpanishEquivalent ? `≈ ${SPANISH_LEVEL_LABEL[inq.licenseSpanishEquivalent as SpanishLicenseLevel]} español` : "",
+                                inq.hasIcc === true ? "ICC: sí" : inq.hasIcc === false ? "ICC: no" : "",
+                              ].filter(Boolean).join(" · ")}
+                            >
+                              {LICENSE_BADGE_CONFIG[inq.licenseVerificationStatus as LicenseVerificationStatus]?.label || inq.licenseVerificationStatus}
+                            </Badge>
+                          </div>
+                        )}
                       </TableCell>
                       <TableCell className="text-xs">
                         <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors"><Phone className="w-3 h-3" />{inq.phonePrefix} {inq.phoneNumber}</a>
@@ -343,6 +389,11 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-1 text-sm"><Ship className="w-3 h-3" />{inq.boatName}</div>
+                        {Array.isArray(inq.boatIds) && inq.boatIds.length > 1 && (
+                          <Badge variant="outline" className="mt-0.5 text-[10px] font-medium border-cta/40 text-cta">
+                            Multi-barco
+                          </Badge>
+                        )}
                       </TableCell>
                       <TableCell className="text-xs">
                         <div>{formatBookingDate(inq.bookingDate)}</div>
@@ -467,6 +518,14 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                     <div>
                       <div className="font-medium">{inq.firstName} {inq.lastName}</div>
                       <div className="text-xs text-muted-foreground">{formatDate(inq.createdAt)}</div>
+                      {inq.licenseVerificationStatus && (
+                        <Badge
+                          variant="outline"
+                          className={`mt-1 text-[10px] font-medium border ${LICENSE_BADGE_CONFIG[inq.licenseVerificationStatus as LicenseVerificationStatus]?.color || ""}`}
+                        >
+                          {LICENSE_BADGE_CONFIG[inq.licenseVerificationStatus as LicenseVerificationStatus]?.label || inq.licenseVerificationStatus}
+                        </Badge>
+                      )}
                     </div>
                     <Badge className={`${statusConf.color} text-xs border-0`}>
                       {statusConf.label}
@@ -603,6 +662,41 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                       <div className="flex items-center gap-1"><Monitor className="w-3 h-3 text-muted-foreground/70" />{inq.source}</div>
                     </div>
                   </div>
+
+                  {/* Licencia náutica */}
+                  {inq.licenseVerificationStatus && (
+                    <div className="bg-muted rounded-lg p-4 space-y-2">
+                      <h4 className="font-medium text-xs text-foreground/80 uppercase tracking-wide">Licencia náutica</h4>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <div>
+                          <span className="text-muted-foreground">País:</span>{" "}
+                          {inq.licenseCountry ? getCountryDisplayName(inq.licenseCountry, "es") : "-"}
+                        </div>
+                        <div>
+                          <span className="text-muted-foreground">Título:</span>{" "}
+                          {getLicenseDisplayLabel(inq.licenseType, inq.licenseCountry) || "-"}
+                        </div>
+                        <div>
+                          <span className="text-muted-foreground">Equivale a:</span>{" "}
+                          {inq.licenseSpanishEquivalent
+                            ? SPANISH_LEVEL_LABEL[inq.licenseSpanishEquivalent as SpanishLicenseLevel]
+                            : "—"}
+                        </div>
+                        <div>
+                          <span className="text-muted-foreground">ICC:</span>{" "}
+                          {inq.hasIcc === true ? "Sí" : inq.hasIcc === false ? "No" : "—"}
+                        </div>
+                        <div className="col-span-2">
+                          <Badge
+                            variant="outline"
+                            className={`text-[10px] font-medium border ${LICENSE_BADGE_CONFIG[inq.licenseVerificationStatus as LicenseVerificationStatus]?.color || ""}`}
+                          >
+                            {LICENSE_BADGE_CONFIG[inq.licenseVerificationStatus as LicenseVerificationStatus]?.label || inq.licenseVerificationStatus}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Extras & Pack */}
                   {((inq.extras && (inq.extras as string[]).length > 0) || inq.packId) && (

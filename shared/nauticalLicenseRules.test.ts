@@ -1,0 +1,222 @@
+import { describe, it, expect } from "vitest";
+import {
+  verifyLicense,
+  getLicensesForCountry,
+  findLicense,
+  isEeeCountry,
+  isIccIssuingCountry,
+  EEE_COUNTRIES,
+  ICC_ISSUING_COUNTRIES,
+  COUNTRY_LICENSES,
+  GENERIC_LICENSES,
+  FLEET_MIN_LICENSE,
+} from "./nauticalLicenseRules";
+
+describe("isEeeCountry", () => {
+  it("returns true for Spain", () => {
+    expect(isEeeCountry("ES")).toBe(true);
+  });
+  it("returns true for Norway (EEA non-EU)", () => {
+    expect(isEeeCountry("NO")).toBe(true);
+  });
+  it("returns false for the UK (post-Brexit, not EEA)", () => {
+    expect(isEeeCountry("GB")).toBe(false);
+  });
+  it("returns false for the USA", () => {
+    expect(isEeeCountry("US")).toBe(false);
+  });
+});
+
+describe("isIccIssuingCountry", () => {
+  it("returns true for the UK", () => {
+    expect(isIccIssuingCountry("GB")).toBe(true);
+  });
+  it("returns true for Switzerland", () => {
+    expect(isIccIssuingCountry("CH")).toBe(true);
+  });
+  it("returns false for an EEA country", () => {
+    expect(isIccIssuingCountry("DE")).toBe(false);
+  });
+  it("returns false for the USA", () => {
+    expect(isIccIssuingCountry("US")).toBe(false);
+  });
+});
+
+describe("getLicensesForCountry", () => {
+  it("France returns Permis Côtier and Permis Hauturier", () => {
+    const list = getLicensesForCountry("FR");
+    expect(list.map((l) => l.code)).toEqual(["permis_cotier", "permis_hauturier"]);
+    expect(list[0].spanishEquivalent).toBe("pnb");
+    expect(list[1].spanishEquivalent).toBe("per");
+  });
+
+  it("Germany returns the 4 Sportbootführerschein levels", () => {
+    const list = getLicensesForCountry("DE");
+    expect(list.map((l) => l.code)).toEqual(["sbf_see", "sks", "sse", "shs"]);
+    expect(list[3].spanishEquivalent).toBe("capitan_yate");
+  });
+
+  it("UK includes ICC explicitly", () => {
+    const list = getLicensesForCountry("GB");
+    const icc = list.find((l) => l.code === "icc");
+    expect(icc).toBeDefined();
+    expect(icc?.spanishEquivalent).toBe("per");
+  });
+
+  it("USA (non-curated) falls back to GENERIC_LICENSES", () => {
+    expect(getLicensesForCountry("US")).toBe(GENERIC_LICENSES);
+  });
+
+  it("lowercase iso code is normalised", () => {
+    expect(getLicensesForCountry("fr").map((l) => l.code)).toEqual(["permis_cotier", "permis_hauturier"]);
+  });
+});
+
+describe("findLicense", () => {
+  it("finds Permis Côtier by FR/permis_cotier", () => {
+    const lic = findLicense("FR", "permis_cotier");
+    expect(lic?.label).toBe("Permis Côtier");
+  });
+
+  it("returns undefined for non-existent code in curated country", () => {
+    expect(findLicense("FR", "made_up_code")).toBeUndefined();
+  });
+
+  it("finds generic ICC for non-curated country", () => {
+    expect(findLicense("US", "icc")?.spanishEquivalent).toBe("per");
+  });
+
+  it("returns undefined for empty license code", () => {
+    expect(findLicense("FR", "")).toBeUndefined();
+  });
+});
+
+describe("verifyLicense — EEE branch", () => {
+  it("Spain + PNB → valid, equivalent pnb, meets fleet min", () => {
+    expect(verifyLicense({ country: "ES", licenseCode: "pnb", hasIcc: null }))
+      .toEqual({ status: "valid", reasonKey: "eee_equivalent_sufficient", spanishEquivalent: "pnb", meetsFleetMinimum: true });
+  });
+
+  it("France + Permis Côtier → valid, equivalent pnb", () => {
+    const r = verifyLicense({ country: "FR", licenseCode: "permis_cotier", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("pnb");
+    expect(r.meetsFleetMinimum).toBe(true);
+  });
+
+  it("France + Permis Hauturier → valid, equivalent per", () => {
+    const r = verifyLicense({ country: "FR", licenseCode: "permis_hauturier", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("per");
+  });
+
+  it("Italy + Patente entro 12 miglia → valid, pnb", () => {
+    expect(verifyLicense({ country: "IT", licenseCode: "patente_12m", hasIcc: null }).spanishEquivalent)
+      .toBe("pnb");
+  });
+
+  it("Germany + SBF See → valid, pnb", () => {
+    expect(verifyLicense({ country: "DE", licenseCode: "sbf_see", hasIcc: null }).status)
+      .toBe("valid");
+  });
+
+  it("Germany + SHS → valid, capitan_yate", () => {
+    expect(verifyLicense({ country: "DE", licenseCode: "shs", hasIcc: null }).spanishEquivalent)
+      .toBe("capitan_yate");
+  });
+
+  it("EEE country + unknown code → not_recognized", () => {
+    expect(verifyLicense({ country: "FR", licenseCode: "made_up", hasIcc: null }).status)
+      .toBe("not_recognized");
+  });
+});
+
+describe("verifyLicense — non-EEE branch", () => {
+  it("UK + ICC → probably_valid, equivalent per", () => {
+    const r = verifyLicense({ country: "GB", licenseCode: "icc", hasIcc: true });
+    expect(r.status).toBe("probably_valid");
+    expect(r.spanishEquivalent).toBe("per");
+    expect(r.meetsFleetMinimum).toBe(true);
+  });
+
+  it("UK + ICC code without hasIcc flag still counts as ICC", () => {
+    expect(verifyLicense({ country: "GB", licenseCode: "icc", hasIcc: null }).status)
+      .toBe("probably_valid");
+  });
+
+  it("UK + RYA Yachtmaster + ICC=true → probably_valid, capitan_yate", () => {
+    const r = verifyLicense({ country: "GB", licenseCode: "rya_yachtmaster", hasIcc: true });
+    expect(r.status).toBe("probably_valid");
+    expect(r.spanishEquivalent).toBe("capitan_yate");
+  });
+
+  it("UK + RYA Powerboat 2 + ICC=No → needs_icc (ICC issuing country)", () => {
+    const r = verifyLicense({ country: "GB", licenseCode: "rya_powerboat_2", hasIcc: false });
+    expect(r.status).toBe("needs_icc");
+    expect(r.spanishEquivalent).toBe("pnb");
+  });
+
+  it("USA + ICC chip → probably_valid, equivalent per", () => {
+    const r = verifyLicense({ country: "US", licenseCode: "icc", hasIcc: null });
+    expect(r.status).toBe("probably_valid");
+    expect(r.spanishEquivalent).toBe("per");
+  });
+
+  it("USA + other + ICC=true → probably_valid (declared), per fallback", () => {
+    const r = verifyLicense({ country: "US", licenseCode: "other", hasIcc: true });
+    expect(r.status).toBe("probably_valid");
+    expect(r.spanishEquivalent).toBe("per");
+  });
+
+  it("USA + other + ICC=false → not_recognized", () => {
+    expect(verifyLicense({ country: "US", licenseCode: "other", hasIcc: false }).status)
+      .toBe("not_recognized");
+  });
+
+  it("Australia (ICC-issuing, non-curated) + other + ICC=false → needs_icc", () => {
+    const r = verifyLicense({ country: "AU", licenseCode: "other", hasIcc: false });
+    expect(r.status).toBe("needs_icc");
+  });
+
+  it("Switzerland (ICC-issuing) + other + ICC=false → needs_icc", () => {
+    expect(verifyLicense({ country: "CH", licenseCode: "other", hasIcc: false }).status)
+      .toBe("needs_icc");
+  });
+});
+
+describe("verifyLicense — missing input", () => {
+  it("empty country → unknown", () => {
+    expect(verifyLicense({ country: "", licenseCode: "pnb", hasIcc: null }).status)
+      .toBe("unknown");
+  });
+});
+
+describe("FLEET_MIN_LICENSE invariant", () => {
+  it("is pnb", () => {
+    expect(FLEET_MIN_LICENSE).toBe("pnb");
+  });
+});
+
+describe("country list invariants", () => {
+  it("EEE and ICC-issuing lists are disjoint", () => {
+    const eee = new Set(EEE_COUNTRIES as readonly string[]);
+    for (const c of ICC_ISSUING_COUNTRIES) {
+      expect(eee.has(c)).toBe(false);
+    }
+  });
+
+  it("Every COUNTRY_LICENSES key is a 2-letter uppercase ISO code", () => {
+    for (const k of Object.keys(COUNTRY_LICENSES)) {
+      expect(k).toMatch(/^[A-Z]{2}$/);
+    }
+  });
+
+  it("All curated licenses have non-empty codes and labels", () => {
+    for (const [, list] of Object.entries(COUNTRY_LICENSES)) {
+      for (const lic of list) {
+        expect(lic.code.length).toBeGreaterThan(0);
+        expect(lic.label.length).toBeGreaterThan(0);
+      }
+    }
+  });
+});

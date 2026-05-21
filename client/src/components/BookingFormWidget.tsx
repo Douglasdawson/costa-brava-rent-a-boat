@@ -32,6 +32,7 @@ import {
   trackExitIntentCtaClick,
 } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
+import { useLicenseVerifier } from "@/hooks/useLicenseVerifier";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, filterActivePrices, type DurationOption } from "@shared/pricing";
 import type { AutoDiscountResult } from "@shared/discounts";
@@ -146,6 +147,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const [showPrefixDropdown, setShowPrefixDropdown] = useState(false);
   const [prefixSearch, setPrefixSearch] = useState("");
   const [licenseFilter, setLicenseFilter] = useState<"with" | "without">("without");
+  const licenseVerifier = useLicenseVerifier();
   const [selectedBoat, setSelectedBoat] = useState<string>(preSelectedBoatId || "");
   // Secondary boat for multi-boat bookings (groups too big for a single boat).
   // Empty string == single-boat flow (default).
@@ -294,6 +296,13 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
         email: string;
         numberOfPeople: string;
         licenseFilter: "with" | "without";
+        licenseVerifier?: {
+          country?: string;
+          licenseType?: string;
+          hasIcc?: boolean | null;
+          status?: string | null;
+          dismissed?: boolean;
+        };
       };
       // Discard if too old
       if (Date.now() - saved.timestamp > STORAGE_MAX_AGE_MS) {
@@ -315,6 +324,10 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       if (saved.email) setEmail(saved.email);
       if (saved.numberOfPeople && saved.numberOfPeople !== "0") setNumberOfPeople(saved.numberOfPeople);
       if (saved.licenseFilter) setLicenseFilter(saved.licenseFilter);
+      if (saved.licenseVerifier) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        licenseVerifier.hydrate(saved.licenseVerifier as any);
+      }
       // Restore step, capped to the wizard's total step count
       if (saved.currentStep > 1) {
         setCurrentStep(Math.min(saved.currentStep, 5));
@@ -350,6 +363,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
         email,
         numberOfPeople,
         licenseFilter,
+        licenseVerifier: licenseVerifier.state,
       };
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
     } catch {
@@ -358,7 +372,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   }, [
     selectedBoat, selectedSecondaryBoat, selectedDate, preferredTime, selectedDuration, currentStep,
     selectedExtras, selectedPack, firstName, lastName, phonePrefix, phoneNumber,
-    email, numberOfPeople, licenseFilter,
+    email, numberOfPeople, licenseFilter, licenseVerifier.state,
   ]);
 
   // Clear sessionStorage on successful booking completion
@@ -1678,6 +1692,13 @@ Looking forward to confirmation. Thanks!`;
         estimatedTotal: total ? total.toFixed(2) : null,
         language,
         source: isMobile ? 'mobile' : 'desktop',
+        licenseCountry: licenseVerifier.state.country || null,
+        licenseType: licenseVerifier.state.country && licenseVerifier.state.licenseCode
+          ? `${licenseVerifier.state.country.toLowerCase()}:${licenseVerifier.state.licenseCode}`
+          : null,
+        hasIcc: licenseVerifier.state.hasIcc,
+        licenseVerificationStatus: licenseVerifier.state.status,
+        licenseSpanishEquivalent: licenseVerifier.state.spanishEquivalent,
       });
       const blob = new Blob([inquiryPayload], { type: 'application/json' });
       const queued = typeof navigator !== "undefined"
@@ -1767,6 +1788,7 @@ Looking forward to confirmation. Thanks!`;
     filteredPrefixes,
     selectedPrefixInfo,
     licenseFilter, setLicenseFilter,
+    licenseVerifier,
     selectedBoat, setSelectedBoat,
     selectedSecondaryBoat, setSelectedSecondaryBoat,
     selectedBoatIds,

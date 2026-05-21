@@ -21,6 +21,8 @@ import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
+import LicenseVerifierPanel from "@/components/booking/LicenseVerifierPanel";
+import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
 import { formatBookingDate as formatBookingDateDesktop, getLocaleForLanguage } from "@/utils/intl-helpers";
 
 // Slide animation variants — transform + opacity only. P1.17 (2026-05-20)
@@ -268,6 +270,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               <Step1BoatDate
                 licenseFilter={licenseFilter}
                 setLicenseFilter={setLicenseFilter}
+                licenseVerifier={props.licenseVerifier}
                 selectedBoat={selectedBoat}
                 setSelectedBoat={setSelectedBoat}
                 selectedSecondaryBoat={props.selectedSecondaryBoat}
@@ -379,6 +382,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 inputBase={inputBase}
                 inputError={inputError}
                 inputNormal={inputNormal}
+                licenseVerifier={props.licenseVerifier}
               />
             )}
           </motion.div>
@@ -473,6 +477,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 interface Step1Props {
   licenseFilter: "with" | "without";
   setLicenseFilter: (v: "with" | "without") => void;
+  licenseVerifier: BookingWizardMobileProps["licenseVerifier"];
   selectedBoat: string;
   setSelectedBoat: (v: string) => void;
   selectedSecondaryBoat: string;
@@ -490,6 +495,7 @@ interface Step1Props {
 function Step1BoatDate({
   licenseFilter,
   setLicenseFilter,
+  licenseVerifier,
   selectedBoat,
   setSelectedBoat,
   selectedSecondaryBoat,
@@ -543,6 +549,9 @@ function Step1BoatDate({
             </button>
           </div>
         </div>
+      )}
+      {!preSelectedBoatId && licenseFilter === "with" && (
+        <LicenseVerifierPanel verifier={licenseVerifier} />
       )}
 
       {/* Boat selection / multi-boat combinations */}
@@ -1256,6 +1265,7 @@ interface Step5Props {
   onPickAlternativeSlot: BookingWizardMobileProps["onPickAlternativeSlot"];
   onChangeDateFromConflict: BookingWizardMobileProps["onChangeDateFromConflict"];
   isAvailabilityLoading: BookingWizardMobileProps["isAvailabilityLoading"];
+  licenseVerifier: BookingWizardMobileProps["licenseVerifier"];
 }
 
 function Step5Contact({
@@ -1713,6 +1723,8 @@ function Step5FinalDesktop(props: Step5Props) {
     onChangeDateFromConflict,
     isAvailabilityLoading,
     preferredTime,
+    licenseVerifier,
+    onGoToStep,
     t,
   } = props;
   return (
@@ -1735,6 +1747,17 @@ function Step5FinalDesktop(props: Step5Props) {
           onPickAlternative={onPickAlternativeSlot}
           onChangeDate={onChangeDateFromConflict}
           t={t}
+        />
+      )}
+      {licenseVerifier.state.status && (
+        <LicenseStatusPill
+          country={licenseVerifier.state.country}
+          status={licenseVerifier.state.status}
+          onChange={() => {
+            licenseVerifier.resetStatus();
+            licenseVerifier.undismiss();
+            onGoToStep(2);
+          }}
         />
       )}
       <Step5Contact {...props} />

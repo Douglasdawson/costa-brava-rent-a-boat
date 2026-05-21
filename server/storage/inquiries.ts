@@ -12,7 +12,16 @@ export async function getWhatsappInquiry(id: string, tenantId?: string): Promise
 }
 
 export async function createWhatsappInquiry(data: InsertWhatsappInquiry): Promise<WhatsappInquiry> {
-  const [inquiry] = await db.insert(whatsappInquiries).values(data).returning();
+  // Normalize boatIds <-> boatId so the two fields stay consistent:
+  //  - If boatIds came in, ensure boatId === boatIds[0]
+  //  - If boatIds is missing/empty, derive [boatId]
+  const incoming = data as InsertWhatsappInquiry & { boatIds?: string[] };
+  const normalizedBoatIds = incoming.boatIds && incoming.boatIds.length > 0
+    ? incoming.boatIds
+    : [incoming.boatId];
+  const normalizedBoatId = normalizedBoatIds[0];
+  const values = { ...incoming, boatId: normalizedBoatId, boatIds: normalizedBoatIds };
+  const [inquiry] = await db.insert(whatsappInquiries).values(values).returning();
   return inquiry;
 }
 

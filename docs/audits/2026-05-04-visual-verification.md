@@ -132,3 +132,40 @@ Acción: extender `scripts/check-no-hardcoded-spanish.ts` para escanear también
 3. **Verificación visual del Booking flow modal** end-to-end (no cubierto en este pase). Requiere interacción — usar Chrome DevTools MCP `click` + `fill_form` para automatizar el flow, o visual manual.
 4. **Re-correr Lighthouse desktop** para tener baseline en ambos modos.
 5. **Replit Publish** para llevar el ciclo a producción (deploy manual, no `git push`).
+
+---
+
+## Resultados sesión 8 (2026-05-04, post-fixes)
+
+Tras los 4 commits de la sesión 8 (`913074c` Hero fetchpriority, `9841559` ReviewsSection role=img, `33e97a9` Footer contrast, `e285a01` lint extension):
+
+### Lighthouse mobile (Home)
+| Categoría | Antes | Después | Delta |
+|---|---|---|---|
+| Accessibility | 93 | **97** | +4 |
+| Best Practices | 96 | **100** | +4 |
+| SEO | 100 | 100 | — |
+| Audits passed | 53 | **55** | +2 |
+| Audits failed | 3 | 1 | −2 |
+
+### Lighthouse desktop (Home, baseline nuevo)
+| Categoría | Score |
+|---|---|
+| Accessibility | 96 |
+| Best Practices | 100 |
+| SEO | 100 |
+
+### Issue residual (1 fail)
+`color-contrast` con 2 selectores: un `<span>` sin clase (probablemente badge "Independent operator" del footer) y los links de la columna Información del footer.
+
+**Investigación en browser**: el script `evaluate_script` confirmó que el link tiene `color: rgb(249, 250, 251)` (casi blanco) sobre `bg: rgb(28, 47, 74)` (navy) — contraste real ~13:1, muy por encima del 4.5:1 requerido. Probable false positive de Lighthouse para el link. El span sin clase queda pendiente de inspección manual (badge muy pequeño, bajo impacto).
+
+### Lint i18n em dashes
+- 308 em dashes detectados en baseline (39 es, 35 en, 30-33 ca/fr/de/nl/it, 89 ru).
+- Allowlist 1418 → 1726.
+- Negative test verificado: añadir `Esto — debería fallar` a `es.ts` dispara el lint con preview correcto y exit 1.
+- `npm run check:i18n-hardcode` queda verde.
+
+### Pendiente
+- Cleanup de los 308 em dashes (sesión 9 si se decide strict ban, o decisión de revisar DESIGN.md para permitirlos en prosa larga).
+- Replit Publish manual.

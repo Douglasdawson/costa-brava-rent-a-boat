@@ -1,0 +1,418 @@
+{
+  "$schema_version": "2.0",
+  "generated_at": "2026-05-18",
+  "purpose": "Camino A: mapear cada uno de los 28 posts del blog a una foto LIMPIA de la flota (sin BOAT_ME, sin espejados, sin ubicación fuera de Costa Brava). Solo estrategia REAL (copia directa). Sin Higgsfield. Sin Nanobanana. Solo fotos del catálogo existente en /client/public/images/boats/.",
+  "constraints_acknowledged": {
+    "no_clean_sunset_photo": "Ningún Trimarchi popa-atardecer ni Pacific Craft sunset es limpio (Hotel W Barcelona). Posts de sunset usan editoriales sin sunset literal.",
+    "pacific_craft_scarce": "Solo 1 foto hero limpia (proa-solarium-cala) + 2 detalle (asientos-capitan, consola-timon-cala). Se duplica entre posts hermanos.",
+    "trimarchi_scarce": "Solo 3 fotos limpias hero (exterior-puerto, puerto-blanes, vista-completa-puerto). Resto en Barcelona.",
+    "duplicates_intentional": "5 imágenes se reutilizan entre 2 posts cada una, pero solo entre posts temáticamente hermanos (2 sobre calas, 2 sobre Tossa, 2 sobre sin-licencia, etc.)"
+  },
+  "summary": {
+    "total_posts": 28,
+    "distinct_source_images": 17,
+    "duplicates": 5,
+    "strategy_distribution": { "REAL": 28, "HIGGSFIELD": 0 },
+    "boat_distribution": {
+      "solar-450": 3,
+      "remus-450": 3,
+      "astec-400": 5,
+      "astec-480": 4,
+      "mingolla-brava-19": 4,
+      "trimarchi-57s": 4,
+      "pacific-craft-625": 5
+    }
+  },
+  "posts": [
+    {
+      "slug": "mejores-calas-costa-brava-en-barco",
+      "currentImage": "/images/blog/calas-costa-brava.jpg",
+      "boatId": "pacific-craft-625",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-proa-solarium-cala.webp",
+      "newPath": "/images/blog/mejores-calas-costa-brava-en-barco.webp",
+      "rationale": "Pacific Craft vista cubierta en cala — única foto Pacific Craft sin BOAT_ME visible",
+      "pilot": true
+    },
+    {
+      "slug": "alquiler-barco-sin-licencia-blanes-guia",
+      "currentImage": "/images/blog/barco-mar.jpg",
+      "boatId": "astec-480",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/alquiler-barco-sin-licencia-blanes-guia.webp",
+      "rationale": "Astec 480 = sin-licencia premium en puerto de Blanes",
+      "pilot": true
+    },
+    {
+      "slug": "que-hacer-en-blanes-verano",
+      "currentImage": "/images/blog/puerto-barcos.jpg",
+      "boatId": "solar-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-puerto-blanes.webp",
+      "newPath": "/images/blog/que-hacer-en-blanes-verano.webp",
+      "rationale": "Solar 450 en puerto de Blanes con Sant Joan — anclaje geográfico",
+      "pilot": true
+    },
+    {
+      "slug": "boat-rental-costa-brava-english-guide",
+      "currentImage": "/images/blog/barco-mar.jpg",
+      "boatId": "astec-400",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-costa.webp",
+      "newPath": "/images/blog/boat-rental-costa-brava-english-guide.webp",
+      "rationale": "Editorial Costa Brava clean — buena entrada visual para EN audience",
+      "pilot": true
+    },
+    {
+      "slug": "rutas-barco-desde-blanes",
+      "currentImage": "/images/blog/ruta-costera.jpg",
+      "boatId": "mingolla-brava-19",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-puerto-blanes.webp",
+      "newPath": "/images/blog/rutas-barco-desde-blanes.webp",
+      "rationale": "Mingolla = barco de rutas (80cv, GPS). Foto en Blanes confirmado",
+      "pilot": true
+    },
+    {
+      "slug": "consejos-primera-vez-alquilar-barco",
+      "currentImage": "/images/blog/barco-mar.jpg",
+      "boatId": "astec-400",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/consejos-primera-vez-alquilar-barco.webp",
+      "rationale": "Astec 400 = barco económico, primera vez",
+      "pilot": true
+    },
+    {
+      "slug": "navegar-con-ninos-costa-brava-guia-familias",
+      "currentImage": "/images/blog/familias-barco.jpg",
+      "boatId": "remus-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-familia-navegando.webp",
+      "newPath": "/images/blog/navegar-con-ninos-costa-brava-guia-familias.webp",
+      "rationale": "Match perfecto — Remus 450 con padre + 2 niños en el barco",
+      "pilot": true
+    },
+    {
+      "slug": "seguridad-navegacion-mar-guia",
+      "currentImage": "/images/blog/seguridad-barco.jpg",
+      "boatId": "astec-480",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-puerto-blanes.webp",
+      "newPath": "/images/blog/seguridad-navegacion-mar-guia.webp",
+      "rationale": "Astec 480 amarrado en Blanes — connotación de control y puerto seguro",
+      "pilot": true
+    },
+    {
+      "slug": "gastronomia-marinera-blanes",
+      "currentImage": "/images/blog/gastronomia-marina.jpg",
+      "boatId": "mingolla-brava-19",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-asiento-mesa.webp",
+      "newPath": "/images/blog/gastronomia-marinera-blanes.webp",
+      "rationale": "Mesa de proa Mingolla + cojines — la mesa donde se come a bordo. Sin contexto de Barcelona",
+      "pilot": true
+    },
+    {
+      "slug": "fauna-marina-costa-brava-barco",
+      "currentImage": "/images/blog/snorkel-mar.jpg",
+      "boatId": "mingolla-brava-19",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-popa-motor.webp",
+      "newPath": "/images/blog/fauna-marina-costa-brava-barco.webp",
+      "rationale": "Popa con motor sobre Mediterráneo — espacio abierto para avistar fauna",
+      "pilot": true
+    },
+    {
+      "slug": "historia-maritima-blanes",
+      "currentImage": "/images/blog/puerto-barcos.jpg",
+      "boatId": "astec-400",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-puerto-blanes.webp",
+      "newPath": "/images/blog/historia-maritima-blanes.webp",
+      "rationale": "Astec 400 en puerto histórico de Blanes con Sant Joan",
+      "pilot": true
+    },
+    {
+      "slug": "snorkel-buceo-costa-brava-barco",
+      "currentImage": "/images/blog/snorkel-mar.jpg",
+      "boatId": "pacific-craft-625",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-consola-timon-cala.webp",
+      "newPath": "/images/blog/snorkel-buceo-costa-brava-barco.webp",
+      "rationale": "Vista timón Pacific Craft en cala — encuadre de 'recién llegamos a zona de snorkel'",
+      "pilot": true
+    },
+    {
+      "slug": "cuanto-cuesta-alquilar-barco-blanes-precios",
+      "currentImage": "/images/blog/barco-mar.jpg",
+      "boatId": "astec-400",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-lateral-blanes.webp",
+      "newPath": "/images/blog/cuanto-cuesta-alquilar-barco-blanes-precios.webp",
+      "rationale": "Astec 400 = barco más económico de la flota",
+      "pilot": true
+    },
+    {
+      "slug": "comparativa-barcos-sin-licencia-blanes",
+      "currentImage": "/images/blog/barco-mar.jpg",
+      "boatId": "astec-480",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/comparativa-barcos-sin-licencia-blanes.webp",
+      "rationale": "Astec 480 = sin-licencia premium (dup con #2: ambos posts cubren sin-licencia)",
+      "pilot": true
+    },
+    {
+      "slug": "costa-brava-septiembre-mejor-mes-navegar",
+      "currentImage": "/images/blog/calas-costa-brava.jpg",
+      "boatId": "solar-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-cubierta-proa.webp",
+      "newPath": "/images/blog/costa-brava-septiembre-mejor-mes-navegar.webp",
+      "rationale": "Top-down sobre cubierta limpia — sugiere mar calmo, post-temporada",
+      "pilot": true
+    },
+    {
+      "slug": "preguntas-frecuentes-alquiler-barco-sin-licencia",
+      "currentImage": "/images/blog/barco-mar.jpg",
+      "boatId": "remus-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/preguntas-frecuentes-alquiler-barco-sin-licencia.webp",
+      "rationale": "Remus 450 = el más rentado, encarna el FAQ del usuario medio",
+      "pilot": true
+    },
+    {
+      "slug": "excursiones-barco-grupos-eventos-blanes",
+      "currentImage": "/images/blog/grupos-barco.jpg",
+      "boatId": "trimarchi-57s",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-vista-completa-puerto.webp",
+      "newPath": "/images/blog/excursiones-barco-grupos-eventos-blanes.webp",
+      "rationale": "Trimarchi (7 plazas) en marina con sailboats — ambiente grupos",
+      "pilot": true
+    },
+    {
+      "slug": "atardeceres-mar-rutas-sunset-costa-brava",
+      "currentImage": "/images/blog/atardecer-mar.jpg",
+      "boatId": "astec-400",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-costa.webp",
+      "newPath": "/images/blog/atardeceres-mar-rutas-sunset-costa-brava.webp",
+      "rationale": "Sin foto sunset limpia disponible (Trimarchi popa-atardecer es Hotel W Barcelona). Astec 400 con vista costera abierta (dup con #4 EN guide — diferente idioma, contexto distinto)",
+      "pilot": true
+    },
+    {
+      "slug": "excursion-barco-tossa-de-mar-desde-blanes",
+      "currentImage": "/images/blog/ruta-costera.jpg",
+      "boatId": "trimarchi-57s",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-puerto-blanes.webp",
+      "newPath": "/images/blog/excursion-barco-tossa-de-mar-desde-blanes.webp",
+      "rationale": "Trimarchi sale del puerto de Blanes hacia Tossa (requiere licencia)",
+      "pilot": true
+    },
+    {
+      "slug": "barco-sin-licencia-vs-con-licencia-guia",
+      "currentImage": "/images/blog/barco-mar.jpg",
+      "boatId": "mingolla-brava-19",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/barco-sin-licencia-vs-con-licencia-guia.webp",
+      "rationale": "Mingolla representa 'lo que desbloquea la licencia' — 80cv, GPS, alcance",
+      "pilot": true
+    },
+    {
+      "slug": "que-llevar-barco-alquiler-checklist",
+      "currentImage": "/images/blog/seguridad-barco.jpg",
+      "boatId": "solar-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/que-llevar-barco-alquiler-checklist.webp",
+      "rationale": "Solar 450 con cubierta vacía visible — invita mentalmente al checklist",
+      "pilot": true
+    },
+    {
+      "slug": "alquiler-barco-familias-costa-brava",
+      "currentImage": "/images/blog/familias-barco.jpg",
+      "boatId": "remus-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-puerto-blanes.webp",
+      "newPath": "/images/blog/alquiler-barco-familias-costa-brava.webp",
+      "rationale": "Mantenemos Remus para familias pero diferenciamos vs #7 (foto navegando) usando puerto-blanes",
+      "pilot": true
+    },
+    {
+      "slug": "mejores-calas-blanes-accesibles-en-barco",
+      "currentImage": "/images/blog/calas-costa-brava.jpg",
+      "boatId": "astec-400",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-lateral-puerto.webp",
+      "newPath": "/images/blog/mejores-calas-blanes-accesibles-en-barco.webp",
+      "rationale": "Sin-licencia llega a calas Blanes — Astec 400 lateral apropiado",
+      "pilot": true
+    },
+    {
+      "slug": "sunset-boat-trip-blanes-costa-brava",
+      "currentImage": "/images/blog/atardecer-mar.jpg",
+      "boatId": "pacific-craft-625",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-asientos-capitan.webp",
+      "newPath": "/images/blog/sunset-boat-trip-blanes-costa-brava.webp",
+      "rationale": "Pacific Craft asientos-capitan con Costa Brava al fondo — premium feel para audiencia EN (sin sunset real disponible)",
+      "pilot": true
+    },
+    {
+      "slug": "alquiler-barco-lloret-de-mar-precios-guia",
+      "currentImage": "/images/blog/ruta-costera.jpg",
+      "boatId": "astec-480",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-puerto-blanes.webp",
+      "newPath": "/images/blog/alquiler-barco-lloret-de-mar-precios-guia.webp",
+      "rationale": "Sin-licencia (Astec 480) llega hasta Lloret de Mar (dup con #8 seguridad — neutro)",
+      "pilot": true
+    },
+    {
+      "slug": "barco-tossa-de-mar-desde-blanes",
+      "currentImage": "/images/blog/ruta-costera.jpg",
+      "boatId": "trimarchi-57s",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/barco-tossa-de-mar-desde-blanes.webp",
+      "rationale": "Trimarchi en Blanes — diferenciamos vs #19 (puerto-blanes) usando exterior-puerto",
+      "pilot": true
+    },
+    {
+      "slug": "playas-solo-accesibles-barco-costa-brava",
+      "currentImage": "/images/blog/calas-costa-brava.jpg",
+      "boatId": "pacific-craft-625",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-proa-solarium-cala.webp",
+      "newPath": "/images/blog/playas-solo-accesibles-barco-costa-brava.webp",
+      "rationale": "Pacific Craft cubierta en cala virgen Costa Brava (dup con #1 calas — posts hermanos)",
+      "pilot": true
+    },
+    {
+      "slug": "alquiler-barco-cumpleanos-despedida-costa-brava",
+      "currentImage": "/images/blog/grupos-barco.jpg",
+      "boatId": "trimarchi-57s",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-vista-completa-puerto.webp",
+      "newPath": "/images/blog/alquiler-barco-cumpleanos-despedida-costa-brava.webp",
+      "rationale": "Trimarchi en marina (dup con #17 grupos — posts hermanos sobre celebraciones)",
+      "pilot": true
+    },
+    {
+      "slug": "cala-sant-francesc-blanes-en-barco",
+      "currentImage": null,
+      "boatId": "astec-400",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-proa-solarium.webp",
+      "newPath": "/images/blog/cala-sant-francesc-blanes-en-barco.webp",
+      "rationale": "Astec 400 proa-solarium — única foto Astec 400 hero sin usar. Cala Sant Francesc es sin-licencia accesible (8min desde Blanes), Astec 400 encaja perfecto",
+      "pilot": true
+    },
+    {
+      "slug": "pesca-recreativa-costa-brava-desde-barco",
+      "currentImage": null,
+      "boatId": "mingolla-brava-19",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-popa-motor.webp",
+      "newPath": "/images/blog/pesca-recreativa-costa-brava-desde-barco.webp",
+      "rationale": "Mingolla = perfil pesca (80cv, GPS, sounder, ducha). Popa con motor evoca pescar desde popa. Sibling con #10 fauna-marina (ambos perfiles pesquero/exploración)",
+      "pilot": true
+    },
+    {
+      "slug": "como-alquilar-barco-sin-licencia-blanes-2026",
+      "currentImage": null,
+      "boatId": "astec-480",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/como-alquilar-barco-sin-licencia-blanes-2026.webp",
+      "rationale": "Astec 480 = sin-licencia premium. Sibling con #2 sin-licencia-guía y #14 comparativa",
+      "pilot": true
+    },
+    {
+      "slug": "mayo-junio-mejor-momento-alquilar-barco-costa-brava",
+      "currentImage": null,
+      "boatId": "solar-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-cubierta-proa.webp",
+      "newPath": "/images/blog/mayo-junio-mejor-momento-alquilar-barco-costa-brava.webp",
+      "rationale": "Cubierta limpia top-down evoca pre-temporada, mar calmo. Sibling con #15 septiembre (familia 'best month')",
+      "pilot": true
+    },
+    {
+      "slug": "ruta-barco-blanes-tossa-mar",
+      "currentImage": "/images/blog/ruta-costera.jpg",
+      "boatId": "trimarchi-57s",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/ruta-barco-blanes-tossa-mar.webp",
+      "rationale": "Trimarchi sale de Blanes hacia Tossa (con-licencia requerida). Sibling con #19, #26 Tossa",
+      "pilot": true
+    },
+    {
+      "slug": "seguridad-alquiler-barcos-consejos",
+      "currentImage": "/images/blog/seguridad-barco.jpg",
+      "boatId": "astec-480",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-puerto-blanes.webp",
+      "newPath": "/images/blog/seguridad-alquiler-barcos-consejos.webp",
+      "rationale": "Astec 480 amarrado seguro en puerto. Sibling con #8 seguridad-navegacion-mar-guia",
+      "pilot": true
+    },
+    {
+      "slug": "comparativa-barcos-con-sin-licencia-blanes",
+      "currentImage": "/images/blog/barco-mar.jpg",
+      "boatId": "mingolla-brava-19",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/comparativa-barcos-con-sin-licencia-blanes.webp",
+      "rationale": "Mingolla representa CON-licencia (lo que desbloquea). Sibling con #20 sin-licencia-vs-con-licencia",
+      "pilot": true
+    },
+    {
+      "slug": "que-hacer-en-blanes-en-barco",
+      "currentImage": "/images/blog/puerto-barcos.jpg",
+      "boatId": "solar-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-puerto-blanes.webp",
+      "newPath": "/images/blog/que-hacer-en-blanes-en-barco.webp",
+      "rationale": "Solar 450 anclado en Blanes con Sant Joan. Sibling con #3 que-hacer-en-blanes-verano",
+      "pilot": true
+    },
+    {
+      "slug": "7-calas-secretas-costa-brava-en-barco",
+      "currentImage": "/images/blog/calas-costa-brava.jpg",
+      "boatId": "pacific-craft-625",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-proa-solarium-cala.webp",
+      "newPath": "/images/blog/7-calas-secretas-costa-brava-en-barco.webp",
+      "rationale": "Pacific Craft en cala. Sibling con #1 calas, #27 playas, #23 mejores-calas-blanes",
+      "pilot": true
+    },
+    {
+      "slug": "guia-alquiler-barcos-sin-licencia-blanes",
+      "currentImage": "/images/blog/barco-mar.jpg",
+      "boatId": "remus-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+      "newPath": "/images/blog/guia-alquiler-barcos-sin-licencia-blanes.webp",
+      "rationale": "Remus 450 = el más rentado sin-licencia. Variar el barco vs #3 y #6 extras (también sin-licencia) y dar visibilidad al Remus en posts guía",
+      "pilot": true
+    },
+    {
+      "slug": "mejor-epoca-alquilar-barco-blanes",
+      "currentImage": "/images/blog/ruta-costera.jpg",
+      "boatId": "solar-450",
+      "strategy": "REAL",
+      "referenceFile": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-cubierta-proa.webp",
+      "newPath": "/images/blog/mejor-epoca-alquilar-barco-blanes.webp",
+      "rationale": "Cubierta Solar 450 = mar calmo, mejor época. Sibling con #15 septiembre y #4-extra mayo-junio (familia 'best month')",
+      "pilot": true
+    }
+  ]
+}

@@ -927,6 +927,65 @@ export interface Translations {
       noCombinations?: string;
       chooseManually?: string;
     };
+    // Nautical license verifier (modal triggered when selecting "with licence").
+    // Orientation-only tool based on RD 875/2014.
+    licenseVerifier?: {
+      title?: string;
+      subtitle?: string;
+      panelEyebrow?: string;
+      panelHelper?: string;
+      countryLabel?: string;
+      countryPlaceholder?: string;
+      countrySearchPlaceholder?: string;
+      countryNotFound?: string;
+      licenseTypeLabel?: string;
+      licenseTypeOptions?: {
+        pnb?: string;
+        per?: string;
+        patron_yate?: string;
+        capitan_yate?: string;
+        national?: string;
+        icc_only?: string;
+        other?: string;
+      };
+      hasIccLabel?: string;
+      hasIccYes?: string;
+      hasIccNo?: string;
+      verify?: string;
+      skip?: string;
+      change?: string;
+      result?: {
+        valid?: string;
+        probablyValid?: string;
+        needsIcc?: string;
+        notRecognized?: string;
+        insufficient?: string;
+      };
+      resultDesc?: {
+        valid?: string;
+        probablyValid?: string;
+        needsIcc?: string;
+        notRecognized?: string;
+        insufficient?: string;
+      };
+      pill?: {
+        valid?: string;
+        probablyValid?: string;
+        needsIcc?: string;
+        notRecognized?: string;
+        insufficient?: string;
+        unknown?: string;
+      };
+      equivalentTo?: string;
+      meetsFleet?: string;
+      insufficientForFleet?: string;
+      ctaContinue?: string;
+      ctaContinueAnyway?: string;
+      ctaWhatsApp?: string;
+      whatsappTemplate?: string;
+      disclaimer?: string;
+      disclaimerLink?: string;
+    };
   };
 
   // Inline validation messages

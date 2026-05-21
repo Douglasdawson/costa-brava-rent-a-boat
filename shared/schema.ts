@@ -312,6 +312,8 @@ export const bookings = pgTable("bookings", {
   tenantId: varchar("tenant_id").references(() => tenants.id),
   customerId: varchar("customer_id").references(() => customers.id), // Optional link to customer profile
   boatId: varchar("boat_id").notNull().references(() => boats.id),
+  // Links sibling bookings created from the same multi-boat inquiry. Null for single-boat.
+  groupId: varchar("group_id"),
   bookingDate: timestamp("booking_date", { withTimezone: true }).notNull(),
   startTime: timestamp("start_time", { withTimezone: true }).notNull(),
   endTime: timestamp("end_time", { withTimezone: true }).notNull(),
@@ -1461,7 +1463,12 @@ export type InquiryStatus = typeof INQUIRY_STATUSES[keyof typeof INQUIRY_STATUSE
 export const whatsappInquiries = pgTable("whatsapp_inquiries", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   tenantId: varchar("tenant_id").references(() => tenants.id),
+  // Primary boat (kept singular for backward compat with existing queries / CRM).
+  // Always equals boatIds[0] when boatIds has entries.
   boatId: varchar("boat_id").notNull(),
+  // Multi-boat support: when a group requests 2 boats, both ids land here.
+  // Single-boat bookings store [boatId]. Cap is enforced at the API layer (max 2).
+  boatIds: jsonb("boat_ids").$type<string[]>().notNull().default([]),
   boatName: text("boat_name").notNull(),
   bookingDate: text("booking_date").notNull(),
   preferredTime: text("preferred_time"),
@@ -1480,6 +1487,15 @@ export const whatsappInquiries = pgTable("whatsapp_inquiries", {
   source: text("source").default("desktop"),
   status: text("status").notNull().default("pending"),
   notes: text("notes"),
+  // Nautical license verifier (optional; only populated for "with-license" requests).
+  // See shared/nauticalLicenseRules.ts for the verification logic.
+  // licenseType stores the catalogue code prefixed with iso2 (e.g. "fr:permis_cotier")
+  // so the team can identify the exact title the customer declared.
+  licenseCountry: text("license_country"),
+  licenseType: text("license_type"),
+  hasIcc: boolean("has_icc"),
+  licenseVerificationStatus: text("license_verification_status"),
+  licenseSpanishEquivalent: text("license_spanish_equivalent"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
 }, (table) => ({
   statusIdx: index("inquiry_status_idx").on(table.status),
@@ -1494,6 +1510,26 @@ export const insertWhatsappInquirySchema = createInsertSchema(whatsappInquiries)
   createdAt: true,
 }).extend({
   notes: z.string().max(5000).optional().or(z.null()),
+  // Accept boatIds explicitly (1..2). When omitted, the storage layer derives [boatId].
+  boatIds: z.array(z.string().min(1)).min(1).max(2).optional(),
+  licenseCountry: z.string().regex(/^[A-Z]{2}$/i).optional().nullable(),
+  licenseType: z.string().max(100).optional().nullable(),
+  hasIcc: z.boolean().optional().nullable(),
+  licenseVerificationStatus: z.enum([
+    "valid", "probably_valid", "needs_icc", "not_recognized", "insufficient", "unknown",
+  ]).optional().nullable(),
+  licenseSpanishEquivalent: z.enum([
+    "navegacion", "pnb", "per", "patron_yate", "capitan_yate",
+  ]).optional().nullable(),
+}).superRefine((data, ctx) => {
+  // Cross-validate: when boatIds is provided, boatId must equal boatIds[0]
+  if (data.boatIds && data.boatIds.length > 0 && data.boatId !== data.boatIds[0]) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "boatId must equal boatIds[0]",
+      path: ["boatId"],
+    });
+  }
 });
 
 export const updateWhatsappInquirySchema = z.object({

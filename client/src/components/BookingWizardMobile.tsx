@@ -19,6 +19,8 @@ import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
+import LicenseVerifierPanel from "@/components/booking/LicenseVerifierPanel";
+import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
 import { formatBookingDate as formatLocalisedDate, getLocaleForLanguage } from "@/utils/intl-helpers";
 
 interface PhonePrefix {
@@ -69,6 +71,8 @@ export interface BookingWizardMobileProps {
   // Boat & schedule (steps 1+2)
   licenseFilter: "with" | "without";
   setLicenseFilter: (v: "with" | "without") => void;
+  // Nautical license verifier (modal triggered when selecting "with licence")
+  licenseVerifier: import("@/hooks/useLicenseVerifier").UseLicenseVerifierResult;
   selectedBoat: string; setSelectedBoat: (v: string) => void;
   selectedSecondaryBoat: string; setSelectedSecondaryBoat: (v: string) => void;
   selectedBoatIds: string[];
@@ -362,6 +366,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
 
 function Step2Boat({
   licenseFilter, setLicenseFilter,
+  licenseVerifier,
   selectedBoat, setSelectedBoat,
   selectedSecondaryBoat, setSelectedSecondaryBoat,
   filteredBoats,
@@ -429,6 +434,9 @@ function Step2Boat({
             </button>
           </div>
         </fieldset>
+      )}
+      {!preSelectedBoatId && licenseFilter === "with" && (
+        <LicenseVerifierPanel verifier={licenseVerifier} />
       )}
       {needsMultiBoat ? (
         <MultiBoatCombinations
@@ -1174,6 +1182,17 @@ function Step5Final(props: BookingWizardMobileProps) {
         />
       )}
       <PersonalDataSection {...props} />
+      {props.licenseVerifier.state.status && (
+        <LicenseStatusPill
+          country={props.licenseVerifier.state.country}
+          status={props.licenseVerifier.state.status}
+          onChange={() => {
+            props.licenseVerifier.resetStatus();
+            props.licenseVerifier.undismiss();
+            onGoToStep(2);
+          }}
+        />
+      )}
       <div className="border-t border-border pt-4">
         <h3 className="text-base font-bold text-foreground mb-1">
           {selectedBoatInfo

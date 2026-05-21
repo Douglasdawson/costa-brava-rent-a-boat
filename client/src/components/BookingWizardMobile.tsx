@@ -1038,15 +1038,6 @@ function Step4Extras(props: BookingWizardMobileProps) {
         <div>
           <p className="text-sm font-semibold text-muted-foreground mb-2">{t.booking.extrasSection.packs}</p>
           <div className="grid grid-cols-2 gap-2">
-            {/* "No pack" stays full-width — it's the opt-out, not a peer. */}
-            <button
-              type="button"
-              onClick={() => handlePackSelect("")}
-              aria-pressed={!selectedPack}
-              className={`col-span-2 p-2.5 rounded-xl border-2 text-center text-sm transition-all ${!selectedPack ? 'border-primary bg-primary/5' : 'border-border'}`}
-            >
-              {t.booking.extrasSection.noPack}
-            </button>
             {availablePacks.map((pack) => {
               const isSelected = selectedPack === pack.id;
               const savings = calculatePackSavings(pack.id);
@@ -1073,6 +1064,16 @@ function Step4Extras(props: BookingWizardMobileProps) {
                 </button>
               );
             })}
+            {/* "No pack" — last cell of the grid, peer-sized so it lives
+                naturally inside the flow instead of headlining the section. */}
+            <button
+              type="button"
+              onClick={() => handlePackSelect("")}
+              aria-pressed={!selectedPack}
+              className={`flex items-center justify-center p-3 rounded-xl border-2 text-center text-sm transition-all min-h-[120px] ${!selectedPack ? 'border-primary bg-primary/5 text-foreground font-medium' : 'border-border text-muted-foreground'}`}
+            >
+              {t.booking.extrasSection.noPack}
+            </button>
           </div>
         </div>
       )}

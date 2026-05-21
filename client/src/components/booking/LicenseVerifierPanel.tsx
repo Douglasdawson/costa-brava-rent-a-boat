@@ -74,6 +74,13 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
   const deferredSearch = useDeferredValue(countrySearch);
   const [isVerifying, setIsVerifying] = useState(false);
 
+  // Tracks whether the current country selection was set automatically
+  // (language default or geo upgrade) or by the user. Flipped to false
+  // the first time the user picks something. Also flipped on hydration —
+  // a country restored from sessionStorage is a previous decision and
+  // we shouldn't second-guess it with geo.
+  const isAutoCountryRef = useRef(true);
+
   useEffect(() => {
     if (isEee && state.hasIcc !== null) setHasIcc(null);
   }, [isEee, state.hasIcc, setHasIcc]);
@@ -82,12 +89,40 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
     if (isIccCode && state.hasIcc !== null) setHasIcc(null);
   }, [isIccCode, state.hasIcc, setHasIcc]);
 
-  // Pre-fill country from active UI language on first mount, only if empty.
+  // Pre-fill country on first mount: language default first (synchronous,
+  // no flash), then upgrade to a geo-IP result if it differs AND the user
+  // hasn't manually picked yet. A country already in state means it was
+  // hydrated from sessionStorage — treat as manual to avoid overriding a
+  // prior decision.
   useEffect(() => {
-    if (!state.country) {
-      const def = getDefaultCountryForLanguage(language);
-      if (def) setCountry(def);
+    if (state.country) {
+      isAutoCountryRef.current = false;
+      return;
     }
+    const langDefault = getDefaultCountryForLanguage(language);
+    if (langDefault) setCountry(langDefault);
+
+    let cancelled = false;
+    fetch("/api/geo", { credentials: "omit" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { country?: string | null } | null) => {
+        if (cancelled || !data?.country) return;
+        if (!isAutoCountryRef.current) return; // user touched it first
+        const geo = data.country.toUpperCase();
+        if (geo === (langDefault ?? "").toUpperCase()) return; // no upgrade
+        // Only swap if the geo country is in the curated list — otherwise
+        // we'd set state to an unselectable iso2.
+        if (LICENSE_COUNTRIES.some((c) => c.iso2 === geo)) {
+          setCountry(geo);
+        }
+      })
+      .catch(() => {
+        /* offline / blocked — language default stays */
+      });
+
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -135,6 +170,7 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
   }
 
   function handleCountrySelect(iso2: string) {
+    isAutoCountryRef.current = false;
     setCountry(iso2);
     setCountryOpen(false);
     setCountrySearch("");

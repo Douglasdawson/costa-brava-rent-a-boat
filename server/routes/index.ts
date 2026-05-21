@@ -10,6 +10,7 @@ import { registerPaymentRoutes } from "./payments";
 import { registerAuthRoutes } from "./auth";
 import { registerAdminRoutes } from "./admin";
 import { registerSitemapRoutes } from "./sitemaps";
+import { registerGeoRoutes } from "./geo";
 import { registerBlogRoutes } from "./blog";
 import { registerDestinationRoutes } from "./destinations";
 import { registerTestimonialRoutes } from "./testimonials";
@@ -61,6 +62,7 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
 
   // Register all route modules (synchronous — fast)
   registerSitemapRoutes(app);
+  registerGeoRoutes(app);
   registerBoatRoutes(app);
   registerBookingRoutes(app);
   registerPaymentRoutes(app);

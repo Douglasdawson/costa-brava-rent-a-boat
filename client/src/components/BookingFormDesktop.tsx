@@ -172,7 +172,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     <div className="flex flex-col h-full">
       {/* Step progress bar */}
       <div className="flex-shrink-0 px-8 pt-3 pb-2 border-b border-cta/20 flex items-center gap-3">
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 px-4">
           <BookingProgressBar currentStep={currentStep} totalSteps={5} stepLabels={stepLabels} />
         </div>
         {props.onClose && (

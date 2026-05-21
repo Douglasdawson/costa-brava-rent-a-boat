@@ -199,8 +199,9 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             </button>
           </div>
         )}
-        {/* Row 2: progress bar full-width. */}
-        <div className={`px-3 pb-1.5 ${props.onClose ? '' : 'pt-1.5'}`}>
+        {/* Row 2: progress bar with extra horizontal breathing room so the
+            connector lines stay short and the bar doesn't hug the edges. */}
+        <div className={`px-6 pb-1.5 ${props.onClose ? '' : 'pt-1.5'}`}>
           <BookingProgressBar
             currentStep={currentStep}
             totalSteps={5}

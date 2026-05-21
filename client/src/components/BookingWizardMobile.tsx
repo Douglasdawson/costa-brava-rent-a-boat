@@ -1037,12 +1037,13 @@ function Step4Extras(props: BookingWizardMobileProps) {
       {availablePacks.length > 0 && (
         <div>
           <p className="text-sm font-semibold text-muted-foreground mb-2">{t.booking.extrasSection.packs}</p>
-          <div className="space-y-2">
+          <div className="grid grid-cols-2 gap-2">
+            {/* "No pack" stays full-width — it's the opt-out, not a peer. */}
             <button
               type="button"
               onClick={() => handlePackSelect("")}
               aria-pressed={!selectedPack}
-              className={`w-full p-3 rounded-xl border-2 text-left text-sm transition-all ${!selectedPack ? 'border-primary bg-primary/5' : 'border-border'}`}
+              className={`col-span-2 p-2.5 rounded-xl border-2 text-center text-sm transition-all ${!selectedPack ? 'border-primary bg-primary/5' : 'border-border'}`}
             >
               {t.booking.extrasSection.noPack}
             </button>
@@ -1056,21 +1057,19 @@ function Step4Extras(props: BookingWizardMobileProps) {
                   type="button"
                   onClick={() => handlePackSelect(pack.id)}
                   aria-pressed={isSelected}
-                  className={`w-full p-3 rounded-xl border-2 text-left transition-all ${isSelected ? 'border-primary bg-primary/5' : 'border-border bg-background'}`}
+                  className={`relative flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 text-center transition-all min-h-[120px] ${isSelected ? 'border-primary bg-primary/5' : 'border-border bg-background'}`}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <IconComp className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-semibold">{isSpanishLang ? pack.name : pack.nameEN}</span>
-                      <span className="text-xs text-muted-foreground font-normal">{pack.extras.map(e => translateExtraName(e, language)).join(', ')}</span>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-sm font-bold text-primary">{pack.price}€</span>
-                      {savings > 0 && (
-                        <span className="block text-xs text-success">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
-                      )}
-                    </div>
-                  </div>
+                  <IconComp className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-semibold leading-tight">{isSpanishLang ? pack.name : pack.nameEN}</span>
+                  <span className="text-[11px] text-muted-foreground leading-tight">
+                    {pack.extras.map(e => translateExtraName(e, language)).join(', ')}
+                  </span>
+                  <span className="text-sm font-bold text-primary mt-0.5">{pack.price}€</span>
+                  {savings > 0 && (
+                    <span className="text-[11px] font-semibold text-success">
+                      −{savings.toFixed(0)}€ {t.booking.extrasSection.savings.toLowerCase()}
+                    </span>
+                  )}
                 </button>
               );
             })}
@@ -1082,7 +1081,7 @@ function Step4Extras(props: BookingWizardMobileProps) {
       {boatExtras.length > 0 && (
         <div>
           <p className="text-sm font-semibold text-muted-foreground mb-2">{t.booking.extrasSection.individual}</p>
-          <div className="grid grid-cols-1 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             {boatExtras.map((extra) => {
               const isChecked = selectedExtras.includes(extra.name);
               const isInPack = extrasInPack.has(extra.name);
@@ -1093,19 +1092,19 @@ function Step4Extras(props: BookingWizardMobileProps) {
                   onClick={() => handleExtraToggle(extra.name)}
                   disabled={isInPack}
                   aria-pressed={isChecked || isInPack}
-                  className={`flex items-center gap-2 p-2.5 rounded-xl border-2 text-left transition-all ${
+                  className={`relative flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 text-center transition-all min-h-[80px] ${
                     isInPack ? 'border-primary/40 bg-primary/10 opacity-75 cursor-not-allowed'
                     : isChecked ? 'border-primary bg-primary/5'
                     : 'border-border bg-background'
                   }`}
                 >
-                  <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 ${(isChecked || isInPack) ? 'border-primary bg-primary' : 'border-border'}`}>
-                    {(isChecked || isInPack) && <Check className="w-2.5 h-2.5 text-white" />}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-foreground truncate">{translateExtraName(extra.name, language)}</p>
-                    <p className="text-xs text-muted-foreground">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
-                  </div>
+                  {(isChecked || isInPack) && (
+                    <span aria-hidden="true" className="absolute top-1.5 right-1.5 inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary">
+                      <Check className="w-2.5 h-2.5 text-white" />
+                    </span>
+                  )}
+                  <p className="text-sm font-medium text-foreground leading-tight">{translateExtraName(extra.name, language)}</p>
+                  <p className="text-[11px] text-muted-foreground">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
                 </button>
               );
             })}

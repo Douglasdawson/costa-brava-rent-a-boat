@@ -29,6 +29,7 @@ import {
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import type { Booking, Boat } from "@shared/schema";
+import { resolveEffectiveLanguage } from "@shared/languageInference";
 import { getStatusColor, getStatusLabel, getPaymentStatusColor, getPaymentStatusLabel } from "./constants";
 import { PaginationControls } from "./shared/PaginationControls";
 import { SortableTableHead } from "./shared/SortableTableHead";
@@ -69,7 +70,14 @@ const LANGUAGE_OPTIONS: ReadonlyArray<{ code: "es" | "en" | "fr" | "de" | "nl" |
  */
 function LanguageSelect({ booking }: { booking: Booking }) {
   const queryClient = useQueryClient();
-  const current = (booking.language ?? "es") as typeof LANGUAGE_OPTIONS[number]["code"];
+  // resolveEffectiveLanguage matches server-side logic in admin-flywheel: when
+  // booking.language is the URL default ("es") and the phone prefix infers
+  // another language (e.g. +49 → "de"), prefer the inferred one. Keeps the
+  // dropdown showing the language the WhatsApp message will actually be in.
+  const current = resolveEffectiveLanguage(
+    booking.language,
+    booking.customerPhone,
+  ) as typeof LANGUAGE_OPTIONS[number]["code"];
 
   const mutation = useMutation({
     mutationFn: async (newLang: string) => {

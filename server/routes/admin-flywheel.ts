@@ -5,6 +5,7 @@ import { logger } from "../lib/logger";
 import { renderThankYouWhatsApp } from "../services/whatsappTemplates";
 import { sendThankYouEmail } from "../services/emailService";
 import { audit } from "../lib/audit";
+import { resolveEffectiveLanguage } from "@shared/languageInference";
 
 /**
  * Admin-only endpoints to manually trigger the post-rental flywheel for a
@@ -51,9 +52,14 @@ export function registerAdminFlywheelRoutes(app: Express) {
           });
         }
 
+        const effectiveLanguage = resolveEffectiveLanguage(
+          booking.language,
+          booking.customerPhone,
+        );
+
         const message = renderThankYouWhatsApp({
           customerName: booking.customerName,
-          language: booking.language,
+          language: effectiveLanguage,
         });
 
         await sendWhatsAppMessage(booking.customerPhone, message);
@@ -63,18 +69,19 @@ export function registerAdminFlywheelRoutes(app: Express) {
 
         audit(req, "flywheel.review_request_sent", "booking", booking.id, {
           channel: "whatsapp",
+          language: effectiveLanguage,
         });
 
         logger.info("[AdminFlywheel] Review request WhatsApp sent", {
           bookingId: booking.id,
-          language: booking.language,
+          language: effectiveLanguage,
         });
 
         res.json({
           success: true,
           bookingId: booking.id,
           channel: "whatsapp",
-          language: booking.language ?? "es",
+          language: effectiveLanguage,
         });
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";
@@ -114,9 +121,14 @@ export function registerAdminFlywheelRoutes(app: Express) {
           });
         }
 
+        const effectiveLanguage = resolveEffectiveLanguage(
+          booking.language,
+          booking.customerPhone,
+        );
+
         const message = renderThankYouWhatsApp({
           customerName: booking.customerName,
-          language: booking.language,
+          language: effectiveLanguage,
         });
 
         // wa.me expects digits only — strip "+", spaces, dashes, parens.
@@ -126,19 +138,19 @@ export function registerAdminFlywheelRoutes(app: Express) {
         await storage.updateBookingWhatsAppThankYouStatus(booking.id, true);
 
         audit(req, "flywheel.thank_you_whatsapp_link_generated", "booking", booking.id, {
-          language: booking.language ?? "es",
+          language: effectiveLanguage,
         });
 
         logger.info("[AdminFlywheel] Thank-you WhatsApp link generated", {
           bookingId: booking.id,
-          language: booking.language,
+          language: effectiveLanguage,
         });
 
         res.json({
           success: true,
           bookingId: booking.id,
           whatsappUrl,
-          language: booking.language ?? "es",
+          language: effectiveLanguage,
         });
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";

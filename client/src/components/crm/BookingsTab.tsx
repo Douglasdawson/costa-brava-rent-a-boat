@@ -44,6 +44,79 @@ interface BookingsTabProps {
   onOpenWhatsApp: (phone: string, name: string) => void;
 }
 
+// 8 idiomas soportados, alineados con renderThankYouWhatsApp (server-side).
+// Editable inline por si el campo language de la booking no refleja el idioma
+// real del cliente (caso común: cliente alemán que reservó desde la web /es/).
+const LANGUAGE_OPTIONS: ReadonlyArray<{ code: "es" | "en" | "fr" | "de" | "nl" | "it" | "ru" | "ca"; label: string }> = [
+  { code: "es", label: "ES" },
+  { code: "en", label: "EN" },
+  { code: "fr", label: "FR" },
+  { code: "de", label: "DE" },
+  { code: "nl", label: "NL" },
+  { code: "it", label: "IT" },
+  { code: "ru", label: "RU" },
+  { code: "ca", label: "CA" },
+];
+
+/**
+ * Compact language selector for a booking row. Lets the operator correct
+ * booking.language before pressing the thank-you button — important because
+ * the field is auto-set from the web language at booking time and may not
+ * match the customer's actual native language.
+ *
+ * PATCH /api/admin/bookings/:id with { language }. Optimistic-ish: invalidates
+ * the bookings query so the row re-renders with the new value.
+ */
+function LanguageSelect({ booking }: { booking: Booking }) {
+  const queryClient = useQueryClient();
+  const current = (booking.language ?? "es") as typeof LANGUAGE_OPTIONS[number]["code"];
+
+  const mutation = useMutation({
+    mutationFn: async (newLang: string) => {
+      const res = await fetch(`/api/admin/bookings/${booking.id}`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ language: newLang }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({ message: "Error" }));
+        throw new Error(body.message ?? "Error actualizando idioma");
+      }
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
+    },
+    onError: (err) => {
+      alert(err instanceof Error ? err.message : "Error actualizando idioma");
+    },
+  });
+
+  return (
+    <Select
+      value={current}
+      onValueChange={(v) => mutation.mutate(v)}
+      disabled={mutation.isPending}
+    >
+      <SelectTrigger
+        className="h-8 w-[64px] px-2 text-xs"
+        title="Idioma del cliente (afecta al mensaje de gracias por WhatsApp)"
+        data-testid={`select-language-${booking.id}`}
+      >
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {LANGUAGE_OPTIONS.map((opt) => (
+          <SelectItem key={opt.code} value={opt.code}>
+            {opt.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+}
+
 /**
  * 3-state button for sending the post-trip thank-you + Google review WhatsApp:
  *  - Already sent: gray "✓ Enviado" badge
@@ -279,6 +352,7 @@ export function BookingsTab({
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end items-center space-x-1">
+                          <LanguageSelect booking={booking} />
                           <ThankYouButton booking={booking} />
                           <Button
                             variant="ghost"
@@ -387,6 +461,7 @@ export function BookingsTab({
                       </div>
                     </div>
                     <div className="flex gap-1 items-center">
+                      <LanguageSelect booking={booking} />
                       <ThankYouButton booking={booking} />
                       <Button
                         variant="ghost"

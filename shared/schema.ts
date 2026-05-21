@@ -534,6 +534,9 @@ export const updateBookingSchema = z.object({
   paymentStatus: z.enum(['pending', 'completed', 'failed', 'refunded']).optional(),
   bookingStatus: z.enum(['draft', 'hold', 'pending_payment', 'confirmed', 'cancelled', 'completed']).optional(),
   notes: z.string().optional(),
+  // ISO 639-1 — used to pick the WhatsApp thank-you template language.
+  // Editable so the team can correct the auto-detected language before sending.
+  language: z.enum(['es', 'en', 'fr', 'de', 'nl', 'it', 'ru', 'ca']).optional(),
 });
 
 // Types

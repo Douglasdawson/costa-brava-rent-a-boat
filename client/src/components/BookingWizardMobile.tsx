@@ -98,6 +98,7 @@ export interface BookingWizardMobileProps {
   timeSlots: string[];
   // Availability (real-time slot data)
   unavailableTimeSlots: Set<string>;
+  tooShortTimeSlots: Set<string>;
   slotMaxDuration: Map<string, number>;
   selectedTimeMaxDuration: number | null;
   isAvailabilityLoading: boolean;
@@ -698,6 +699,8 @@ function Step3Departure({
   getDurationOptions, getMaxCapacity,
   timeSlots,
   unavailableTimeSlots,
+  tooShortTimeSlots,
+  slotMaxDuration,
   selectedTimeMaxDuration,
   isAvailabilityLoading,
   showFieldError, getFieldError, handleBlur,
@@ -752,9 +755,16 @@ function Step3Departure({
           <option value="">{t.wizard.selectTime}</option>
           {timeSlots.map((time) => {
             const isUnavailable = unavailableTimeSlots.has(time);
+            const isTooShort = !isUnavailable && tooShortTimeSlots.has(time);
+            const maxDur = slotMaxDuration.get(time);
+            const suffix = isUnavailable
+              ? (t.booking.timeSlotReservedSuffix ?? " · Reservado")
+              : isTooShort && maxDur != null
+                ? (t.booking.timeSlotMaxDurationSuffix ?? " · solo {n}h").replace("{n}", String(maxDur))
+                : "";
             return (
-              <option key={time} value={time} disabled={isUnavailable}>
-                {time}{t.booking.timeSuffix ?? "h"}{isUnavailable ? (t.booking.timeSlotReservedSuffix ?? " · Reservado") : ""}
+              <option key={time} value={time} disabled={isUnavailable || isTooShort}>
+                {time}{t.booking.timeSuffix ?? "h"}{suffix}
               </option>
             );
           })}

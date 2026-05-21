@@ -302,6 +302,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 selectedBoatInfo={selectedBoatInfo}
                 timeSlots={timeSlots}
                 unavailableTimeSlots={props.unavailableTimeSlots}
+                tooShortTimeSlots={props.tooShortTimeSlots}
+                slotMaxDuration={props.slotMaxDuration}
                 selectedTimeMaxDuration={props.selectedTimeMaxDuration}
                 isAvailabilityLoading={isAvailabilityLoading}
                 showFieldError={showFieldError}
@@ -709,6 +711,8 @@ interface Step2Props {
   selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
   timeSlots: string[];
   unavailableTimeSlots: Set<string>;
+  tooShortTimeSlots: Set<string>;
+  slotMaxDuration: Map<string, number>;
   selectedTimeMaxDuration: number | null;
   isAvailabilityLoading: boolean;
   showFieldError: (f: string) => boolean;
@@ -732,6 +736,8 @@ function Step2Details({
   selectedBoatInfo,
   timeSlots,
   unavailableTimeSlots,
+  tooShortTimeSlots,
+  slotMaxDuration,
   selectedTimeMaxDuration,
   isAvailabilityLoading,
   showFieldError,
@@ -789,9 +795,16 @@ function Step2Details({
           <option value="">{t.wizard.selectTime}</option>
           {timeSlots.map(time => {
             const isUnavailable = unavailableTimeSlots.has(time);
+            const isTooShort = !isUnavailable && tooShortTimeSlots.has(time);
+            const maxDur = slotMaxDuration.get(time);
+            const suffix = isUnavailable
+              ? (t.booking.timeSlotReservedSuffix ?? " · Reservado")
+              : isTooShort && maxDur != null
+                ? (t.booking.timeSlotMaxDurationSuffix ?? " · solo {n}h").replace("{n}", String(maxDur))
+                : "";
             return (
-              <option key={time} value={time} disabled={isUnavailable}>
-                {time}{t.booking.timeSuffix ?? "h"}{isUnavailable ? (t.booking.timeSlotReservedSuffix ?? " · Reservado") : ""}
+              <option key={time} value={time} disabled={isUnavailable || isTooShort}>
+                {time}{t.booking.timeSuffix ?? "h"}{suffix}
               </option>
             );
           })}

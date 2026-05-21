@@ -427,6 +427,7 @@ export const ca: Translations = {
     priceConfirmedWhatsApp: "El preu final es confirma per WhatsApp",
     timeSuffix: "h",
     timeSlotReservedSuffix: " · Reservat",
+    timeSlotMaxDurationSuffix: " · només {n}h disponibles",
     errors: {
       codeValidation: {
         title: "Error en validar el codi",

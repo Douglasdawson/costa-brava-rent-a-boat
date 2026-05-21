@@ -470,6 +470,7 @@ export const es: Translations = {
     whatsappFooterNote: "Solo tienes que pulsar Enviar. Sin compromiso hasta que confirmemos.",
     timeSuffix: "h",
     timeSlotReservedSuffix: " · Reservado",
+    timeSlotMaxDurationSuffix: " · solo {n}h",
     errors: {
       codeValidation: {
         title: "Error al validar código",

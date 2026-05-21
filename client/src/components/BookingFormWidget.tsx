@@ -42,12 +42,19 @@ import { BookingConfirmation } from "@/components/BookingConfirmation";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { PHONE_PREFIXES, filterPhonePrefixes, findPrefixByCode, getDefaultPhonePrefixForLanguage } from "@/utils/phone-prefixes";
 import { validateEmail, validatePhone, validateRequired, validateBookingDate, getLocalISODate } from "@/utils/booking-validation";
+import { OPERATING_START_HOUR, OPERATING_END_HOUR } from "@shared/constants";
 
-const TIME_SLOTS = [
-  "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
-  "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-  "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00",
-];
+// Generated from shared operating hours so the dropdown can never include a
+// slot the server doesn't know about (the server uses the same bounds to
+// compute availability).
+const TIME_SLOTS: string[] = (() => {
+  const slots: string[] = [];
+  for (let h = OPERATING_START_HOUR; h <= OPERATING_END_HOUR - 1; h++) {
+    slots.push(`${String(h).padStart(2, "0")}:00`);
+    if (h < OPERATING_END_HOUR - 1) slots.push(`${String(h).padStart(2, "0")}:30`);
+  }
+  return slots;
+})();
 
 /** Availability data returned by GET /api/availability */
 export interface SlotAvailability {
@@ -637,6 +644,21 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     if (!preferredTime || !slotMaxDuration.has(preferredTime)) return null;
     return slotMaxDuration.get(preferredTime) ?? null;
   }, [preferredTime, slotMaxDuration]);
+
+  // Slots that ARE free at the start time but whose maxDuration is shorter
+  // than the user-picked duration. Marking them disabled prevents the case
+  // where 08:00 looks free but the duration won't fit before the next
+  // existing booking.
+  const tooShortTimeSlots = useMemo(() => {
+    const set = new Set<string>();
+    if (!slotAvailability || !selectedDuration) return set;
+    const durationHours = parseInt(selectedDuration.replace("h", ""), 10);
+    if (!Number.isFinite(durationHours) || durationHours < 1) return set;
+    for (const slot of slotAvailability.availableSlots) {
+      if (slot.maxDuration < durationHours) set.add(slot.time);
+    }
+    return set;
+  }, [slotAvailability, selectedDuration]);
 
   // Reset time if it becomes unavailable — but ONLY while the user is still
   // editing the time (steps 1-3). On step 4 we surface a SlotConflictBanner
@@ -1810,6 +1832,7 @@ Looking forward to confirmation. Thanks!`;
     preSelectedBoatId,
     timeSlots: TIME_SLOTS,
     unavailableTimeSlots,
+    tooShortTimeSlots,
     slotMaxDuration,
     selectedTimeMaxDuration,
     isAvailabilityLoading,

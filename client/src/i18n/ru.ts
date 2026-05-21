@@ -425,6 +425,7 @@ export const ru: Translations = {
     priceConfirmedWhatsApp: "Окончательная цена подтверждается в WhatsApp",
     timeSuffix: "h",
     timeSlotReservedSuffix: " · Занято",
+    timeSlotMaxDurationSuffix: " · доступно только {n}ч",
     errors: {
       codeValidation: {
         title: "Не удалось проверить код",

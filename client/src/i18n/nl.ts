@@ -427,6 +427,7 @@ export const nl: Translations = {
     priceConfirmedWhatsApp: "De definitieve prijs wordt bevestigd via WhatsApp",
     timeSuffix: "h",
     timeSlotReservedSuffix: " · Gereserveerd",
+    timeSlotMaxDurationSuffix: " · slechts {n}u beschikbaar",
     errors: {
       codeValidation: {
         title: "Code kon niet worden gevalideerd",

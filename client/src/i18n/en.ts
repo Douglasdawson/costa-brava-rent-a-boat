@@ -421,6 +421,7 @@ export const en: Translations = {
     priceConfirmedWhatsApp: "Final price confirmed by WhatsApp",
     timeSuffix: "h",
     timeSlotReservedSuffix: " · Booked",
+    timeSlotMaxDurationSuffix: " · only {n}h available",
     errors: {
       codeValidation: {
         title: "Could not validate code",

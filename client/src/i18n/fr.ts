@@ -431,6 +431,7 @@ export const fr: Translations = {
     priceConfirmedWhatsApp: "Le prix final est confirmé par WhatsApp",
     timeSuffix: "h",
     timeSlotReservedSuffix: " · Réservé",
+    timeSlotMaxDurationSuffix: " · seulement {n}h disponibles",
     errors: {
       codeValidation: {
         title: "Code non validé",

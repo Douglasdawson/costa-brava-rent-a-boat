@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
+import CountryFlag from "@/components/booking/CountryFlag";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { useLanguage } from "@/hooks/use-language";
@@ -183,7 +184,7 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
         >
           {selectedCountry ? (
             <span className="flex items-center gap-2.5 min-w-0">
-              <span className="text-lg leading-none" aria-hidden>{selectedCountry.flag}</span>
+              <CountryFlag iso2={selectedCountry.iso2} emoji={selectedCountry.flag} />
               <span className="truncate font-medium">{selectedCountryName}</span>
             </span>
           ) : (
@@ -469,8 +470,14 @@ function SummaryView({
       <div className="flex items-start gap-3">
         <Icon className={`w-5 h-5 shrink-0 mt-0.5 ${s.iconColor}`} aria-hidden />
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-foreground/70 truncate">
-            {flag} {countryName}{nativeLabel ? ` · ${nativeLabel}` : ""}
+          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-foreground/70 truncate flex items-center gap-1.5">
+            <CountryFlag
+              iso2={country}
+              emoji={flag}
+              emojiClassName="text-base leading-none"
+              svgClassName="inline-block w-[1rem] h-[0.65rem] overflow-hidden rounded-[2px] align-middle [&>svg]:w-full [&>svg]:h-full shrink-0"
+            />
+            <span className="truncate">{countryName}{nativeLabel ? ` · ${nativeLabel}` : ""}</span>
           </p>
           <p className={`text-[14px] font-semibold leading-tight mt-0.5 ${s.iconColor}`}>
             {s.short}
@@ -957,7 +964,7 @@ function CountryRow({
         "transition-transform",
       ].join(" ")}
     >
-      <span className="text-lg leading-none" aria-hidden>{flag}</span>
+      <CountryFlag iso2={iso2} emoji={flag} />
       <span className="truncate">{label}</span>
     </button>
   );

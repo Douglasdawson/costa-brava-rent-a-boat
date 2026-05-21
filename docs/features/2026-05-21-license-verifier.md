@@ -1,7 +1,7 @@
 # Verificador de licencia náutica
 
 **Fecha**: 21 de mayo de 2026
-**Estado**: TIER 1 + TIER 2 entregados. TIER 3 #1 (service worker) entregado el mismo día. Resto de TIER 3 pendiente.
+**Estado**: TIER 1 + TIER 2 entregados. TIER 3 #1 (service worker), #3 (offline awareness) y #6 (keyboard nav a11y) entregados el mismo día. Resto de TIER 3 pendiente.
 **Owner técnico**: equipo CTO
 
 ## Por qué existe
@@ -165,10 +165,10 @@ Aplica solo en el primer mount del panel cuando `state.country === ""`. Respeta 
    - Manifest ampliado: `scope`, `lang`, `dir`, `orientation`, `categories`. Iconos maskable 192/512 quedan pendientes de generación limpia.
    - `devOptions.enabled: false` → el SW no se registra en `npm run dev` para evitar conflictos con HMR.
 2. **Standalone PWA detection** — `window.matchMedia('(display-mode: standalone)')` para ajustar UI cuando la app está instalada.
-3. **Offline awareness** — si `navigator.onLine === false`, el botón WhatsApp debería decir "Abriremos la app cuando vuelvas online" (o usar `wa.me` que abre la app nativa offline-friendly).
+3. ✅ **Offline awareness** — entregado 2026-05-21. Hook `useOnlineStatus` (SSR-safe, listeners online/offline). En el card negativo del summary, encima del CTA WhatsApp, hint `WifiOff` + texto i18n cuando `navigator.onLine === false`. Botón sigue enabled (wa.me deep-linkea a la app nativa que maneja offline). Nueva clave `licenseVerifier.offlineHint` traducida a los 8 idiomas.
 4. **Geo-IP defaults** — endpoint `/api/geo` que devuelva el país por IP, sobre-sobreescribe el language default si difiere.
 5. **Bandera SVG override en Windows** — emoji flags se ven como acrónimos en Windows. Usar `country-flag-icons` solo en `navigator.userAgent.includes('Windows')`.
-6. **Arrow keys + Escape en country list** — accesibilidad: ArrowUp/Down navega items, Escape cierra el Sheet.
+6. ✅ **Arrow keys + Escape en country list** — entregado 2026-05-21. Hook local `useListboxKeyboardNav` en `LicenseVerifierPanel.tsx` centraliza ArrowUp/Down/Home/End/Enter/Escape sobre el search input. Funciona en ambos pickers (Sheet mobile + dropdown inline desktop). Auto-scroll del row activo: en virtualizado vía `rowVirtualizer.scrollToIndex({ align: "auto" })`, en inline vía `scrollIntoView({ block: "nearest" })`. Reset de `activeIndex` cuando cambia el filtro. ARIA: `aria-autocomplete="list"`, `aria-activedescendant` apuntando a la fila activa, `role="option"` con `tabIndex={-1}` (focus se queda en el input), `onMouseDown={preventDefault}` para no robar focus al hacer click. Escape llama explícitamente `onOpenChange(false)` aunque Radix ya lo maneja — consistencia entre Sheet e inline.
 7. **Iconos PWA 192/512 maskable** — generar desde el logo cuando tengamos el PNG fuente limpio. El manifest los referenciará entonces.
 
 ## Commits relevantes

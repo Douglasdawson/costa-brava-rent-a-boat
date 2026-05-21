@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, useDeferredValue } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useDeferredValue, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import {
   CheckCircle2,
   ShieldCheck,
@@ -226,6 +226,10 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
               selected={state.country}
               language={language}
               onSelect={handleCountrySelect}
+              onCancel={() => {
+                setCountryOpen(false);
+                setCountrySearch("");
+              }}
             />
           )
         )}
@@ -572,6 +576,70 @@ interface CountryPickerSharedProps {
   selected: string;
   language: string;
   onSelect: (iso2: string) => void;
+  /** Called when the user presses Escape inside the picker. */
+  onCancel?: () => void;
+}
+
+// Keyboard navigation shared by the Sheet (mobile) and inline (desktop)
+// pickers. The search input receives the keydown; we translate Arrow/Home/End
+// into activeIndex moves, Enter into a selection, and Escape into onCancel.
+// The Radix Sheet already swallows Escape at the dialog level, but we still
+// call onCancel(); having a deterministic close on both surfaces keeps a11y
+// consistent and means the inline desktop dropdown closes too.
+function useListboxKeyboardNav({
+  count,
+  onCommit,
+  onCancel,
+}: {
+  count: number;
+  onCommit: (index: number) => void;
+  onCancel?: () => void;
+}) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Reset when the filtered list changes — a previous activeIndex would
+  // otherwise point at a now-removed (or off-by-one) row.
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [count]);
+
+  const handleKeyDown = useCallback(
+    (e: ReactKeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Escape" && onCancel) {
+        e.preventDefault();
+        onCancel();
+        return;
+      }
+      if (count === 0) return;
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          setActiveIndex((i) => (i + 1) % count);
+          return;
+        case "ArrowUp":
+          e.preventDefault();
+          setActiveIndex((i) => (i - 1 + count) % count);
+          return;
+        case "Home":
+          e.preventDefault();
+          setActiveIndex(0);
+          return;
+        case "End":
+          e.preventDefault();
+          setActiveIndex(count - 1);
+          return;
+        case "Enter":
+          if (activeIndex >= 0 && activeIndex < count) {
+            e.preventDefault();
+            onCommit(activeIndex);
+          }
+          return;
+      }
+    },
+    [count, activeIndex, onCommit, onCancel],
+  );
+
+  return { activeIndex, handleKeyDown };
 }
 
 function CountrySheet({
@@ -584,6 +652,13 @@ function CountrySheet({
   onOpenChange: (open: boolean) => void;
   sheetTitle: string;
 }) {
+  const { activeIndex, handleKeyDown } = useListboxKeyboardNav({
+    count: props.countries.length,
+    onCommit: (i) => props.onSelect(props.countries[i].iso2),
+    onCancel: () => onOpenChange(false),
+  });
+  const listboxId = "license-verifier-country-listbox-mobile";
+  const rowIdPrefix = "lv-country-row-m";
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
@@ -598,13 +673,20 @@ function CountrySheet({
           <SearchInput
             value={props.search}
             onChange={props.onSearch}
+            onKeyDown={handleKeyDown}
             placeholder={props.searchPlaceholder}
             autoFocus
+            activeDescendantId={
+              props.countries.length > 0 ? `${rowIdPrefix}-${activeIndex}` : undefined
+            }
           />
         </div>
         <CountryList
           {...props}
           virtualized
+          activeIndex={activeIndex}
+          listboxId={listboxId}
+          rowIdPrefix={rowIdPrefix}
           // height fills the remaining sheet space
         />
       </SheetContent>
@@ -613,6 +695,13 @@ function CountrySheet({
 }
 
 function CountryListInline(props: CountryPickerSharedProps) {
+  const { activeIndex, handleKeyDown } = useListboxKeyboardNav({
+    count: props.countries.length,
+    onCommit: (i) => props.onSelect(props.countries[i].iso2),
+    onCancel: props.onCancel,
+  });
+  const listboxId = "license-verifier-country-listbox-desktop";
+  const rowIdPrefix = "lv-country-row-d";
   return (
     <div className={`rounded-b-md border border-t-input/70 border-input bg-background overflow-hidden ${FADE_IN_TOP}`}>
       <div className="px-3 h-11 border-b border-input/70 bg-card/40 flex items-center gap-2">
@@ -620,12 +709,22 @@ function CountryListInline(props: CountryPickerSharedProps) {
         <SearchInput
           value={props.search}
           onChange={props.onSearch}
+          onKeyDown={handleKeyDown}
           placeholder={props.searchPlaceholder}
           variant="inline"
           autoFocus
+          activeDescendantId={
+            props.countries.length > 0 ? `${rowIdPrefix}-${activeIndex}` : undefined
+          }
         />
       </div>
-      <CountryList {...props} virtualized={false} />
+      <CountryList
+        {...props}
+        virtualized={false}
+        activeIndex={activeIndex}
+        listboxId={listboxId}
+        rowIdPrefix={rowIdPrefix}
+      />
     </div>
   );
 }
@@ -633,15 +732,19 @@ function CountryListInline(props: CountryPickerSharedProps) {
 function SearchInput({
   value,
   onChange,
+  onKeyDown,
   placeholder,
   autoFocus,
   variant = "boxed",
+  activeDescendantId,
 }: {
   value: string;
   onChange: (v: string) => void;
+  onKeyDown?: (e: ReactKeyboardEvent<HTMLInputElement>) => void;
   placeholder: string;
   autoFocus?: boolean;
   variant?: "boxed" | "inline";
+  activeDescendantId?: string;
 }) {
   const ref = useRef<HTMLInputElement>(null);
 
@@ -673,9 +776,12 @@ function SearchInput({
           spellCheck={false}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onKeyDown={onKeyDown}
           placeholder={placeholder}
           className="flex-1 bg-transparent text-base placeholder:text-foreground/55 focus:outline-none"
           aria-label={placeholder}
+          aria-autocomplete="list"
+          aria-activedescendant={activeDescendantId}
         />
       </div>
     );
@@ -691,9 +797,12 @@ function SearchInput({
       spellCheck={false}
       value={value}
       onChange={(e) => onChange(e.target.value)}
+      onKeyDown={onKeyDown}
       placeholder={placeholder}
       className="flex-1 bg-transparent text-base placeholder:text-foreground/55 focus:outline-none h-11"
       aria-label={placeholder}
+      aria-autocomplete="list"
+      aria-activedescendant={activeDescendantId}
     />
   );
 }
@@ -705,7 +814,15 @@ function CountryList({
   onSelect,
   emptyText,
   virtualized,
-}: CountryPickerSharedProps & { virtualized: boolean }) {
+  activeIndex,
+  listboxId,
+  rowIdPrefix,
+}: CountryPickerSharedProps & {
+  virtualized: boolean;
+  activeIndex: number;
+  listboxId?: string;
+  rowIdPrefix?: string;
+}) {
   const parentRef = useRef<HTMLUListElement>(null);
 
   const rowVirtualizer = useVirtualizer({
@@ -716,19 +833,36 @@ function CountryList({
     enabled: virtualized,
   });
 
+  // Keep the active row in view as the user navigates with arrow keys.
+  // Virtualized list: ask the virtualizer to scroll to index (it handles
+  // partial visibility). Non-virtualized: scroll the rendered DOM node into
+  // view with block:"nearest" so we don't yank the viewport when the row
+  // is already visible.
+  useEffect(() => {
+    if (countries.length === 0) return;
+    if (virtualized) {
+      rowVirtualizer.scrollToIndex(activeIndex, { align: "auto" });
+    } else if (rowIdPrefix) {
+      const node = document.getElementById(`${rowIdPrefix}-${activeIndex}`);
+      node?.scrollIntoView({ block: "nearest" });
+    }
+  }, [activeIndex, virtualized, rowVirtualizer, countries.length, rowIdPrefix]);
+
   if (countries.length === 0) {
     return <p className="px-3 py-6 text-center text-sm text-foreground/65">{emptyText}</p>;
   }
 
   if (!virtualized) {
     return (
-      <ul role="listbox" className="max-h-60 overflow-y-auto py-1">
-        {countries.map((c) => (
+      <ul id={listboxId} role="listbox" className="max-h-60 overflow-y-auto py-1">
+        {countries.map((c, i) => (
           <CountryRow
             key={c.iso2}
             iso2={c.iso2}
             flag={c.flag}
             isSelected={c.iso2 === selected}
+            isActive={i === activeIndex}
+            rowId={rowIdPrefix ? `${rowIdPrefix}-${i}` : undefined}
             label={getCountryDisplayName(c.iso2, language)}
             onSelect={onSelect}
           />
@@ -740,6 +874,7 @@ function CountryList({
   return (
     <ul
       ref={parentRef}
+      id={listboxId}
       role="listbox"
       className="flex-1 overflow-y-auto overscroll-contain"
       style={{ contain: "strict" }}
@@ -770,6 +905,8 @@ function CountryList({
                 iso2={c.iso2}
                 flag={c.flag}
                 isSelected={c.iso2 === selected}
+                isActive={virtualRow.index === activeIndex}
+                rowId={rowIdPrefix ? `${rowIdPrefix}-${virtualRow.index}` : undefined}
                 label={getCountryDisplayName(c.iso2, language)}
                 onSelect={onSelect}
               />
@@ -785,26 +922,36 @@ function CountryRow({
   iso2,
   flag,
   isSelected,
+  isActive,
+  rowId,
   label,
   onSelect,
 }: {
   iso2: string;
   flag: string;
   isSelected: boolean;
+  isActive: boolean;
+  rowId?: string;
   label: string;
   onSelect: (iso2: string) => void;
 }) {
   return (
     <button
+      id={rowId}
       type="button"
       role="option"
       aria-selected={isSelected}
+      data-active={isActive || undefined}
+      tabIndex={-1}
       onClick={() => onSelect(iso2)}
+      onMouseDown={(e) => e.preventDefault()}
       className={[
         "flex w-full items-center gap-2.5 px-4 py-3 text-left text-[15px] min-h-11 active:scale-[0.99] transform-gpu",
         isSelected
           ? "bg-cta/10 text-foreground font-medium"
-          : "text-foreground/90 hover:bg-card/60",
+          : isActive
+            ? "bg-card/80 text-foreground"
+            : "text-foreground/90 hover:bg-card/60",
         FOCUS_RING,
         COLOR_TRANSITION,
         "transition-transform",

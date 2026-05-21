@@ -588,7 +588,7 @@ export default function LocationCostaBravaPage() {
             </Link>
             <Link href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
               <ChevronRight className="w-4 h-4" />
-              Barcos sin licencia
+              Alquiler de barcos sin licencia en la Costa Brava
             </Link>
             <Link href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
               <ChevronRight className="w-4 h-4" />

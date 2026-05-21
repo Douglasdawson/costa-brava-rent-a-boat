@@ -17,7 +17,8 @@ import {
   FileText,
   ArrowLeftRight,
   Quote,
-  Fuel
+  Fuel,
+  ListChecks
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -259,6 +260,47 @@ export default function CategoryLicenseFreePage() {
     }))
   };
 
+  // HowTo steps for "Cómo alquilar un barco sin licencia" (added 2026-05-21).
+  // Long-tail rescue: pos 13→18 caída en "alquiler barco sin licencia".
+  // Solo se renderiza si el idioma tiene las claves (es las tiene; resto pendiente i18n:translate).
+  const hasHowTo = !!(clf.howToTitle && clf.howToStep1Title);
+  const howToSteps = hasHowTo
+    ? [
+        { title: clf.howToStep1Title!, text: clf.howToStep1Text! },
+        { title: clf.howToStep2Title!, text: clf.howToStep2Text! },
+        { title: clf.howToStep3Title!, text: clf.howToStep3Text! },
+        { title: clf.howToStep4Title!, text: clf.howToStep4Text! },
+        { title: clf.howToStep5Title!, text: clf.howToStep5Text! },
+      ]
+    : [];
+
+  // HowTo schema for SERP rich result. Each step is keyword-rich.
+  const howToSchema = hasHowTo
+    ? {
+        "@type": "HowTo",
+        "name": clf.howToTitle,
+        "description": clf.howToIntro,
+        "totalTime": "PT35M",
+        "estimatedCost": {
+          "@type": "MonetaryAmount",
+          "currency": "EUR",
+          "value": "70"
+        },
+        "supply": [
+          { "@type": "HowToSupply", "name": "DNI o pasaporte (mayor de 18 años)" },
+          { "@type": "HowToSupply", "name": "Fianza 300€ (tarjeta o efectivo, reembolsable)" }
+        ],
+        "step": howToSteps.map((s, i) => ({
+          "@type": "HowToStep",
+          "position": i + 1,
+          "name": s.title,
+          "text": s.text
+        }))
+      }
+    : null;
+
+  const hasVsMarketplaces = !!(clf.vsMarketplacesTitle && clf.vsMarketplacesRow1Label);
+
   // Combine schemas using @graph
   const combinedJsonLd = {
     "@context": "https://schema.org",
@@ -266,7 +308,8 @@ export default function CategoryLicenseFreePage() {
       serviceSchema,
       itemListSchema,
       breadcrumbSchema,
-      faqSchema
+      faqSchema,
+      ...(howToSchema ? [howToSchema] : [])
     ]
   };
 
@@ -531,6 +574,56 @@ export default function CategoryLicenseFreePage() {
         </div>
       </RevealSection>
 
+      {/* vs Marketplaces - Direct booking advantage (added 2026-05-21) */}
+      {hasVsMarketplaces && (
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+            <ArrowLeftRight className="w-6 h-6 text-primary" />
+            {clf.vsMarketplacesTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            {clf.vsMarketplacesIntro}
+          </p>
+          <div className="rounded-2xl bg-background border overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b bg-muted/50">
+                    <th className="text-left p-3 font-semibold w-1/4"></th>
+                    <th className="text-left p-3 font-semibold text-primary">
+                      <CheckCircle className="w-4 h-4 inline mr-1.5" />
+                      {clf.vsMarketplacesCol1}
+                    </th>
+                    <th className="text-left p-3 font-semibold text-muted-foreground">{clf.vsMarketplacesCol2}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {([
+                    [clf.vsMarketplacesRow1Label, clf.vsMarketplacesRow1Direct, clf.vsMarketplacesRow1Market],
+                    [clf.vsMarketplacesRow2Label, clf.vsMarketplacesRow2Direct, clf.vsMarketplacesRow2Market],
+                    [clf.vsMarketplacesRow3Label, clf.vsMarketplacesRow3Direct, clf.vsMarketplacesRow3Market],
+                    [clf.vsMarketplacesRow4Label, clf.vsMarketplacesRow4Direct, clf.vsMarketplacesRow4Market],
+                    [clf.vsMarketplacesRow5Label, clf.vsMarketplacesRow5Direct, clf.vsMarketplacesRow5Market],
+                  ] as const).map(([label, direct, market], idx) => (
+                    <tr key={idx} className="border-b last:border-b-0">
+                      <td className="p-3 font-medium">{label}</td>
+                      <td className="p-3 text-foreground">{direct}</td>
+                      <td className="p-3 text-muted-foreground">{market}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p className="text-foreground leading-relaxed mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+            <Fuel className="w-5 h-5 text-green-600 inline mr-2 -mt-1" />
+            {clf.vsMarketplacesConclusion}
+          </p>
+        </div>
+      </RevealSection>
+      )}
+
       {/* Advantages */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -671,6 +764,50 @@ export default function CategoryLicenseFreePage() {
           </div>
         </div>
       </RevealSection>
+
+      {/* HowTo Section - 5 steps to rent (added 2026-05-21 for SERP rescue) */}
+      {hasHowTo && (
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+            <ListChecks className="w-6 h-6 text-primary" />
+            {clf.howToTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            {clf.howToIntro}
+          </p>
+          <ol className="space-y-6">
+            {howToSteps.map((step, idx) => (
+              <li key={idx} className="flex gap-4">
+                <div className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-heading font-bold">
+                  {idx + 1}
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading font-semibold text-lg mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+            <div className="bg-muted rounded-lg p-4 flex items-start gap-3">
+              <Clock className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-semibold">{clf.howToDurationLabel}</p>
+                <p className="text-sm text-muted-foreground">{clf.howToDurationValue}</p>
+              </div>
+            </div>
+            <div className="bg-muted rounded-lg p-4 flex items-start gap-3">
+              <Fuel className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-semibold">{clf.howToCostLabel}</p>
+                <p className="text-sm text-muted-foreground">{clf.howToCostValue}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+      )}
 
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20 bg-muted">

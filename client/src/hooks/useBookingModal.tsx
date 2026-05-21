@@ -53,6 +53,7 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
       }}>
         <DialogContent
           tabIndex={-1}
+          hideCloseButton
           onOpenAutoFocus={(e) => {
             e.preventDefault();
             (e.currentTarget as HTMLElement).focus();

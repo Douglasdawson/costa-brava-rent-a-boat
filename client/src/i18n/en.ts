@@ -826,6 +826,7 @@ export const en: Translations = {
         needsIcc: "You need an ICC",
         notRecognized: "Your licence isn't directly recognised",
         insufficient: "Your licence doesn't meet the minimum level",
+        inlandOnly: "Your licence is for inland waters only",
       },
       resultDesc: {
         valid: "Your national licence works in Spain with the attributions it gives you in your home country.",
@@ -833,6 +834,7 @@ export const en: Translations = {
         needsIcc: "Your country issues the ICC. Request it from your nautical federation before travelling.",
         notRecognized: "Your national licence isn't directly recognised in Spain. Message us on WhatsApp and we'll figure out the options together.",
         insufficient: "Your licence maps to a level below the Spanish PNB. Our licensed boats require PNB or higher — consider getting a PER or an ICC.",
+        inlandOnly: "Your licence authorises rivers and lakes, not sea navigation. Good news: our license-free boats don't require any title — they're perfect for you.",
       },
       pill: {
         valid: "Valid",
@@ -840,6 +842,7 @@ export const en: Translations = {
         needsIcc: "Needs ICC",
         notRecognized: "Not recognised",
         insufficient: "Insufficient",
+        inlandOnly: "Inland waters only",
         unknown: "Not checked",
       },
       equivalentTo: "Maps to {level} in the Spanish system",
@@ -847,6 +850,7 @@ export const en: Translations = {
       insufficientForFleet: "Not enough for our fleet. You need PER or higher.",
       ctaContinue: "Continue",
       ctaContinueAnyway: "Continue anyway",
+      ctaSwitchToUnlicensed: "View license-free boats",
       ctaWhatsApp: "Contact us on WhatsApp",
       whatsappTemplate: "Hi, I have a nautical licence from {country} and would like to confirm whether it works for renting.",
       offlineHint: "You're offline. WhatsApp will still open and send the message once you're back online.",

@@ -35,6 +35,7 @@ export type LicenseVerificationStatus =
   | "needs_icc"
   | "not_recognized"
   | "insufficient"
+  | "inland_only"
   | "unknown";
 
 /** Spanish recreational license levels, ordered by attributions (low → high). */
@@ -76,6 +77,12 @@ export interface ForeignLicense {
   code: string;
   label: string;
   spanishEquivalent: SpanishLicenseLevel | null;
+  /**
+   * Inland-only licenses (rivers/lakes) — valid in their home country but
+   * don't authorise sea navigation. Triggers a specific verdict that
+   * re-routes the user to the sin-licencia path instead of WhatsApp escalation.
+   */
+  isInland?: boolean;
 }
 
 /**
@@ -101,7 +108,7 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
     { code: "patente_senza_limiti", label: "Patente Nautica senza alcun limite", spanishEquivalent: "patron_yate" },
   ],
   DE: [
-    { code: "sbf_binnen", label: "SBF Binnen (Sportbootführerschein Binnen)", spanishEquivalent: null },
+    { code: "sbf_binnen", label: "SBF Binnen (Sportbootführerschein Binnen)", spanishEquivalent: null, isInland: true },
     { code: "sbf_see", label: "SBF See (Sportbootführerschein See)", spanishEquivalent: "pnb" },
     { code: "sks", label: "Sportküstenschifferschein (SKS)", spanishEquivalent: "per" },
     { code: "sss", label: "Sportseeschifferschein (SSS)", spanishEquivalent: "patron_yate" },
@@ -121,7 +128,7 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
     { code: "patrao_alto_mar", label: "Carta de Patrão de Alto Mar", spanishEquivalent: "patron_yate" },
   ],
   NL: [
-    { code: "klein_vaarbewijs_1", label: "Klein Vaarbewijs I", spanishEquivalent: null },
+    { code: "klein_vaarbewijs_1", label: "Klein Vaarbewijs I", spanishEquivalent: null, isInland: true },
     { code: "klein_vaarbewijs_2", label: "Klein Vaarbewijs II", spanishEquivalent: "pnb" },
     { code: "groot_pleziervaartbewijs", label: "Groot Pleziervaartbewijs", spanishEquivalent: "per" },
   ],
@@ -218,6 +225,12 @@ export function verifyLicense({ country, hasIcc, licenseCode }: VerifyLicenseInp
   const lic = findLicense(upper, licenseCode);
   const eq = lic?.spanishEquivalent ?? null;
   const meets = eq != null && LEVEL_RANK[eq] >= LEVEL_RANK[FLEET_MIN_LICENSE];
+
+  // Inland-only titles short-circuit: they're valid in their home country
+  // but don't authorise sea navigation, regardless of EEE membership.
+  if (lic?.isInland) {
+    return EMPTY_RESULT("inland_only", "inland_only_license", null, false);
+  }
 
   if (isEeeCountry(upper)) {
     if (!eq) return EMPTY_RESULT("not_recognized", "no_equivalent");

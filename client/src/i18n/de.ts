@@ -824,6 +824,7 @@ export const de: Translations = {
         needsIcc: "Du brauchst ein ICC",
         notRecognized: "Dein Schein wird nicht direkt anerkannt",
         insufficient: "Dein Schein erreicht das Mindestniveau nicht",
+        inlandOnly: "Dein Schein gilt nur für Binnengewässer",
       },
       resultDesc: {
         valid: "Dein nationaler Schein gilt in Spanien mit den Befugnissen, die er dir in deinem Heimatland gibt.",
@@ -831,6 +832,7 @@ export const de: Translations = {
         needsIcc: "Dein Land stellt das ICC aus. Beantrage es bei deinem Wassersportverband vor der Reise.",
         notRecognized: "Dein nationaler Schein wird in Spanien nicht direkt anerkannt. Schreib uns auf WhatsApp und wir prüfen die Optionen.",
         insufficient: "Dein Schein entspricht einem niedrigeren Niveau als der spanische PNB. Unsere lizenzpflichtigen Boote erfordern PNB oder höher — überlege, einen PER oder ICC zu erwerben.",
+        inlandOnly: "Dein Schein berechtigt zu Flüssen und Seen, nicht zur Seefahrt. Gute Nachricht: Unsere führerscheinfreien Boote benötigen keinen Schein — sie sind perfekt für dich.",
       },
       pill: {
         valid: "Gültig",
@@ -838,6 +840,7 @@ export const de: Translations = {
         needsIcc: "ICC erforderlich",
         notRecognized: "Nicht anerkannt",
         insufficient: "Unzureichend",
+        inlandOnly: "Nur Binnengewässer",
         unknown: "Nicht geprüft",
       },
       equivalentTo: "Entspricht {level} im spanischen System",
@@ -845,6 +848,7 @@ export const de: Translations = {
       insufficientForFleet: "Unzureichend für unsere Flotte. Du brauchst PER oder höher.",
       ctaContinue: "Weiter",
       ctaContinueAnyway: "Trotzdem weiter",
+      ctaSwitchToUnlicensed: "Führerscheinfreie Boote ansehen",
       ctaWhatsApp: "Per WhatsApp kontaktieren",
       whatsappTemplate: "Hallo, ich habe einen Bootsführerschein aus {country} und möchte bestätigen, ob er zur Miete reicht.",
       offlineHint: "Du bist offline. WhatsApp öffnet sich trotzdem und sendet die Nachricht, sobald du wieder online bist.",

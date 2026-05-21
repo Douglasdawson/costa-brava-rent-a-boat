@@ -829,6 +829,7 @@ export const fr: Translations = {
         needsIcc: "Tu as besoin d'un ICC",
         notRecognized: "Ton permis n'est pas reconnu directement",
         insufficient: "Ton permis n'atteint pas le niveau minimum",
+        inlandOnly: "Ton permis ne couvre que les eaux intérieures",
       },
       resultDesc: {
         valid: "Ton permis national est valide en Espagne avec les attributions qu'il te confère dans ton pays d'origine.",
@@ -836,6 +837,7 @@ export const fr: Translations = {
         needsIcc: "Ton pays délivre l'ICC. Demande-le à ta fédération nautique avant de partir.",
         notRecognized: "Ton permis national n'est pas reconnu directement en Espagne. Écris-nous sur WhatsApp et on regarde les options ensemble.",
         insufficient: "Ton permis correspond à un niveau inférieur au PNB espagnol. Nos bateaux avec permis exigent le PNB ou plus — pense à obtenir un PER ou un ICC.",
+        inlandOnly: "Ton permis autorise rivières et lacs, pas la navigation maritime. Bonne nouvelle : nos bateaux sans permis ne nécessitent aucun titre — ils sont parfaits pour toi.",
       },
       pill: {
         valid: "Valide",
@@ -843,6 +845,7 @@ export const fr: Translations = {
         needsIcc: "Besoin d'un ICC",
         notRecognized: "Non reconnu",
         insufficient: "Insuffisant",
+        inlandOnly: "Eaux intérieures uniquement",
         unknown: "Non vérifié",
       },
       equivalentTo: "Équivaut à {level} dans le système espagnol",
@@ -850,6 +853,7 @@ export const fr: Translations = {
       insufficientForFleet: "Insuffisant pour notre flotte. Il te faut le PER ou plus.",
       ctaContinue: "Continuer",
       ctaContinueAnyway: "Continuer quand même",
+      ctaSwitchToUnlicensed: "Voir les bateaux sans permis",
       ctaWhatsApp: "Nous contacter sur WhatsApp",
       whatsappTemplate: "Bonjour, j'ai un permis bateau de {country} et j'aimerais confirmer s'il me permet de louer.",
       offlineHint: "Vous êtes hors ligne. WhatsApp s'ouvrira quand même et enverra le message dès votre retour en ligne.",

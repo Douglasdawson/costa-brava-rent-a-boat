@@ -821,6 +821,7 @@ export const nl: Translations = {
         needsIcc: "Je hebt een ICC nodig",
         notRecognized: "Je vaarbewijs wordt niet direct erkend",
         insufficient: "Je vaarbewijs haalt het minimumniveau niet",
+        inlandOnly: "Je vaarbewijs is alleen voor binnenwateren",
       },
       resultDesc: {
         valid: "Je nationale vaarbewijs is geldig in Spanje met de bevoegdheden die het je in je thuisland geeft.",
@@ -828,6 +829,7 @@ export const nl: Translations = {
         needsIcc: "Jouw land geeft het ICC af. Vraag het aan bij je watersportbond voor je reis.",
         notRecognized: "Je nationale vaarbewijs wordt niet direct erkend in Spanje. Stuur ons een WhatsApp en we bekijken samen de opties.",
         insufficient: "Je vaarbewijs komt overeen met een niveau onder de Spaanse PNB. Onze boten met vaarbewijs vereisen PNB of hoger — overweeg een PER of ICC te halen.",
+        inlandOnly: "Je vaarbewijs is geldig voor rivieren en meren, niet voor zeevaart. Goed nieuws: onze boten zonder vaarbewijs vereisen geen titel — ze zijn perfect voor jou.",
       },
       pill: {
         valid: "Geldig",
@@ -835,6 +837,7 @@ export const nl: Translations = {
         needsIcc: "ICC nodig",
         notRecognized: "Niet erkend",
         insufficient: "Onvoldoende",
+        inlandOnly: "Alleen binnenwateren",
         unknown: "Niet gecheckt",
       },
       equivalentTo: "Komt overeen met {level} in het Spaanse systeem",
@@ -842,6 +845,7 @@ export const nl: Translations = {
       insufficientForFleet: "Onvoldoende voor onze vloot. Je hebt PER of hoger nodig.",
       ctaContinue: "Doorgaan",
       ctaContinueAnyway: "Toch doorgaan",
+      ctaSwitchToUnlicensed: "Boten zonder vaarbewijs bekijken",
       ctaWhatsApp: "Contact via WhatsApp",
       whatsappTemplate: "Hallo, ik heb een vaarbewijs uit {country} en wil graag bevestigen of het geldig is voor verhuur.",
       offlineHint: "Je bent offline. WhatsApp opent toch en verzendt het bericht zodra je weer online bent.",

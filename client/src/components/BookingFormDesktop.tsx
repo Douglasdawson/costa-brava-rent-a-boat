@@ -554,7 +554,14 @@ function Step1BoatDate({
       )}
       {!preSelectedBoatId && licenseFilter === "with" && (
         <Suspense fallback={<LicenseVerifierPanelSkeleton />}>
-          <LicenseVerifierPanel verifier={licenseVerifier} />
+          <LicenseVerifierPanel
+            verifier={licenseVerifier}
+            onSwitchToUnlicensed={() => {
+              setLicenseFilter("without");
+              setSelectedBoat("");
+              licenseVerifier.dismiss();
+            }}
+          />
         </Suspense>
       )}
 

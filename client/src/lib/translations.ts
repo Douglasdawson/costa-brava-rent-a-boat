@@ -960,6 +960,7 @@ export interface Translations {
         needsIcc?: string;
         notRecognized?: string;
         insufficient?: string;
+        inlandOnly?: string;
       };
       resultDesc?: {
         valid?: string;
@@ -967,6 +968,7 @@ export interface Translations {
         needsIcc?: string;
         notRecognized?: string;
         insufficient?: string;
+        inlandOnly?: string;
       };
       pill?: {
         valid?: string;
@@ -974,6 +976,7 @@ export interface Translations {
         needsIcc?: string;
         notRecognized?: string;
         insufficient?: string;
+        inlandOnly?: string;
         unknown?: string;
       };
       equivalentTo?: string;
@@ -981,6 +984,7 @@ export interface Translations {
       insufficientForFleet?: string;
       ctaContinue?: string;
       ctaContinueAnyway?: string;
+      ctaSwitchToUnlicensed?: string;
       ctaWhatsApp?: string;
       whatsappTemplate?: string;
       offlineHint?: string;

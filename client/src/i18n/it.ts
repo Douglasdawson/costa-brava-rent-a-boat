@@ -824,6 +824,7 @@ export const it: Translations = {
         needsIcc: "Ti serve un ICC",
         notRecognized: "La tua patente non è riconosciuta direttamente",
         insufficient: "La tua patente non raggiunge il livello minimo",
+        inlandOnly: "La tua patente è solo per acque interne",
       },
       resultDesc: {
         valid: "La tua patente nazionale è valida in Spagna con le attribuzioni che ti dà nel tuo paese di origine.",
@@ -831,6 +832,7 @@ export const it: Translations = {
         needsIcc: "Il tuo paese rilascia l'ICC. Richiedilo alla tua federazione nautica prima di viaggiare.",
         notRecognized: "La tua patente nazionale non è riconosciuta direttamente in Spagna. Scrivici su WhatsApp e vediamo insieme le opzioni.",
         insufficient: "La tua patente equivale a un livello inferiore al PNB spagnolo. Le nostre barche con patente richiedono PNB o superiore — valuta di ottenere un PER o un ICC.",
+        inlandOnly: "La tua patente autorizza fiumi e laghi, non la navigazione marittima. Buona notizia: le nostre barche senza patente non richiedono alcun titolo — sono perfette per te.",
       },
       pill: {
         valid: "Valida",
@@ -838,6 +840,7 @@ export const it: Translations = {
         needsIcc: "Serve ICC",
         notRecognized: "Non riconosciuta",
         insufficient: "Insufficiente",
+        inlandOnly: "Solo acque interne",
         unknown: "Non verificata",
       },
       equivalentTo: "Equivale a {level} nel sistema spagnolo",
@@ -845,6 +848,7 @@ export const it: Translations = {
       insufficientForFleet: "Insufficiente per la nostra flotta. Ti serve PER o superiore.",
       ctaContinue: "Continuare",
       ctaContinueAnyway: "Continuare comunque",
+      ctaSwitchToUnlicensed: "Vedi barche senza patente",
       ctaWhatsApp: "Contattaci su WhatsApp",
       whatsappTemplate: "Ciao, ho una patente nautica di {country} e vorrei confermare se è valida per noleggiare.",
       offlineHint: "Sei offline. WhatsApp si aprirà comunque e invierà il messaggio quando tornerai online.",

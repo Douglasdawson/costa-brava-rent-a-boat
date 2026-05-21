@@ -146,16 +146,18 @@ describe("verifyLicense — EEE branch", () => {
     expect(r.meetsFleetMinimum).toBe(true);
   });
 
-  it("Germany + SBF Binnen → not_recognized (inland only, no sea equivalence)", () => {
+  it("Germany + SBF Binnen → inland_only (valid inland, no sea authorisation)", () => {
     const r = verifyLicense({ country: "DE", licenseCode: "sbf_binnen", hasIcc: null });
-    expect(r.status).toBe("not_recognized");
+    expect(r.status).toBe("inland_only");
+    expect(r.reasonKey).toBe("inland_only_license");
     expect(r.spanishEquivalent).toBe(null);
     expect(r.meetsFleetMinimum).toBe(false);
   });
 
-  it("Netherlands + Klein Vaarbewijs I → not_recognized (inland only)", () => {
+  it("Netherlands + Klein Vaarbewijs I → inland_only", () => {
     const r = verifyLicense({ country: "NL", licenseCode: "klein_vaarbewijs_1", hasIcc: null });
-    expect(r.status).toBe("not_recognized");
+    expect(r.status).toBe("inland_only");
+    expect(r.reasonKey).toBe("inland_only_license");
     expect(r.spanishEquivalent).toBe(null);
   });
 

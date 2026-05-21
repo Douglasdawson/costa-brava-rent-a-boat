@@ -822,6 +822,7 @@ export const ca: Translations = {
         needsIcc: "Necessites un ICC",
         notRecognized: "La teva llicència no es reconeix directament",
         insufficient: "La teva llicència no arriba al nivell mínim",
+        inlandOnly: "La teva llicència és només per a aigües interiors",
       },
       resultDesc: {
         valid: "El teu títol nacional serveix a Espanya amb les atribucions que et doni al teu país d'origen.",
@@ -829,6 +830,7 @@ export const ca: Translations = {
         needsIcc: "El teu país emet ICC. Demana'l a la teva federació nàutica abans de viatjar.",
         notRecognized: "La teva llicència nacional no es reconeix directament a Espanya. Escriu-nos per WhatsApp i mirem amb tu quines opcions tens.",
         insufficient: "La teva llicència equival a un nivell inferior al PNB espanyol. Les nostres embarcacions amb llicència exigeixen PNB o superior — considera obtenir PER o ICC.",
+        inlandOnly: "La teva llicència autoritza rius i llacs, no navegació marítima. Bona notícia: els nostres vaixells sense llicència no necessiten cap títol — són perfectes per a tu.",
       },
       pill: {
         valid: "Vàlida",
@@ -836,6 +838,7 @@ export const ca: Translations = {
         needsIcc: "Necessita ICC",
         notRecognized: "No reconeguda",
         insufficient: "Insuficient",
+        inlandOnly: "Només aigües interiors",
         unknown: "Sense verificar",
       },
       equivalentTo: "Equival a {level} en el sistema espanyol",
@@ -843,6 +846,7 @@ export const ca: Translations = {
       insufficientForFleet: "Insuficient per a la nostra flota. Necessites PER o superior.",
       ctaContinue: "Continuar",
       ctaContinueAnyway: "Continuar igualment",
+      ctaSwitchToUnlicensed: "Veure vaixells sense llicència",
       ctaWhatsApp: "Contactar per WhatsApp",
       whatsappTemplate: "Hola, tinc llicència nàutica de {country} i vull confirmar si serveix per llogar.",
       offlineHint: "Sense connexió. WhatsApp s'obrirà igualment i enviarà el missatge quan tornis a estar en línia.",

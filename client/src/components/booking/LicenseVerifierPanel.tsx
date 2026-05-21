@@ -34,6 +34,12 @@ import type { UseLicenseVerifierResult } from "@/hooks/useLicenseVerifier";
 
 interface LicenseVerifierPanelProps {
   verifier: UseLicenseVerifierResult;
+  /**
+   * Callback fired when the user picks "Ver barcos sin licencia" on an
+   * inland-only verdict. Wizard parents pass a handler that flips the
+   * license toggle to "without". When absent, the CTA is hidden.
+   */
+  onSwitchToUnlicensed?: () => void;
 }
 
 const SPANISH_LEVEL_LABEL: Record<SpanishLicenseLevel, string> = {
@@ -58,7 +64,7 @@ function tinyHaptic() {
   }
 }
 
-export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelProps) {
+export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }: LicenseVerifierPanelProps) {
   const { language } = useLanguage();
   const t = useTranslations();
   const tv = t.bookingWizard?.licenseVerifier;
@@ -187,6 +193,7 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
         spanishEquivalent={state.spanishEquivalent}
         licenseCode={state.licenseCode}
         onChange={handleChange}
+        onSwitchToUnlicensed={onSwitchToUnlicensed}
       />
     );
   }
@@ -406,6 +413,7 @@ function SummaryView({
   spanishEquivalent,
   licenseCode,
   onChange,
+  onSwitchToUnlicensed,
 }: {
   country: string;
   countryName: string;
@@ -414,6 +422,7 @@ function SummaryView({
   spanishEquivalent: SpanishLicenseLevel | null;
   licenseCode: string;
   onChange: () => void;
+  onSwitchToUnlicensed?: () => void;
 }) {
   const t = useTranslations();
   const tv = t.bookingWizard?.licenseVerifier;
@@ -461,6 +470,14 @@ function SummaryView({
       short: tv?.pill?.notRecognized ?? "No reconocida",
       tone: "negative" as const,
     },
+    inland_only: {
+      Icon: Info,
+      iconColor: "text-[hsl(38_92%_36%)]",
+      bgColor: "bg-[hsl(38_92%_96%)]",
+      borderColor: "border-[hsl(38_70%_82%)]",
+      short: tv?.pill?.inlandOnly ?? "Solo aguas interiores",
+      tone: "informational" as const,
+    },
     unknown: {
       Icon: Info,
       iconColor: "text-foreground/70",
@@ -490,6 +507,9 @@ function SummaryView({
     }
     if (status === "insufficient") {
       return tv?.insufficientForFleet ?? "Insuficiente para nuestra flota. Necesitas PER o superior.";
+    }
+    if (status === "inland_only") {
+      return tv?.resultDesc?.inlandOnly ?? "Tu licencia autoriza ríos y lagos, no navegación marítima. Buena noticia: nuestros barcos sin licencia no requieren ningún título — son perfectos para ti.";
     }
     return null;
   })();
@@ -540,6 +560,18 @@ function SummaryView({
           {tv?.change ?? "Cambiar"}
         </button>
       </div>
+
+      {status === "inland_only" && onSwitchToUnlicensed && (
+        <div className="space-y-2">
+          <button
+            type="button"
+            onClick={onSwitchToUnlicensed}
+            className={`flex items-center justify-center gap-2 w-full h-11 rounded-full bg-cta hover:bg-cta/90 text-primary-foreground text-sm font-semibold active:scale-[0.98] transform-gpu transition-transform ${FOCUS_RING} ${COLOR_TRANSITION}`}
+          >
+            {tv?.ctaSwitchToUnlicensed ?? "Ver barcos sin licencia"}
+          </button>
+        </div>
+      )}
 
       {s.tone === "negative" && (
         <div className="space-y-2">

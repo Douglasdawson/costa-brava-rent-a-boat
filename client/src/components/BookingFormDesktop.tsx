@@ -851,9 +851,9 @@ function Step2Details({
                   ) : null}
                   {opt.price && !isDisabled && (
                     <p className="text-xs text-muted-foreground">
-                      {(opt.price / parseFloat(opt.value)).toFixed(0)}
+                      {(opt.price / parseFloat(opt.value)).toFixed(0)}€
                       {t.neuro?.perHour || "/hora"} ·{" "}
-                      {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}/
+                      {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}€/
                       {t.boats?.perPerson || "pers."}
                     </p>
                   )}

@@ -797,7 +797,7 @@ function Step3Departure({
                     </span>
                     {opt.price && !isDisabled && (
                       <span className="text-xs text-muted-foreground block">
-                        {(opt.price / parseFloat(opt.value)).toFixed(0)}{t.neuro?.perHour || '/hora'} · {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}/{t.boats?.perPerson || 'pers.'}
+                        {(opt.price / parseFloat(opt.value)).toFixed(0)}€{t.neuro?.perHour || '/hora'} · {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}€/{t.boats?.perPerson || 'pers.'}
                       </span>
                     )}
                   </span>

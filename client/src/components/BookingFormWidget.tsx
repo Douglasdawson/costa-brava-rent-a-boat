@@ -1447,11 +1447,13 @@ Looking forward to confirmation. Thanks!`;
     try {
       let mostSpecificError: string | undefined;
       const noteError = (errorCode?: string) => {
-        if (errorCode && errorCode !== "not_found") {
-          // First specific error wins — gift-card check runs first, so an
-          // expired/consumed/cancelled/inactive gift-card lookup beats any
-          // discount response.
-          mostSpecificError = mostSpecificError ?? errorCode;
+        if (!errorCode) return;
+        // Specific failure (expired / consumed / cancelled / inactive) always
+        // wins, regardless of which endpoint reported it first — the user
+        // wants to know the real reason the code is unusable, not that the
+        // first probe failed.
+        if (errorCode !== "not_found") {
+          mostSpecificError = errorCode;
         } else if (!mostSpecificError) {
           mostSpecificError = errorCode;
         }

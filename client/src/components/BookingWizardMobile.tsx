@@ -696,11 +696,8 @@ function Step3Departure({
         <label htmlFor="wizard-time" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground mb-2">
           <span>{t.wizard.departureTime}</span>
           {isAvailabilityLoading && (
-            <span
-              aria-hidden="true"
-              className="inline-flex items-center gap-1 text-xs font-normal opacity-70"
-            >
-              <Loader2 className="w-3 h-3 animate-spin" />
+            <span className="inline-flex items-center gap-1 text-xs font-normal opacity-70">
+              <Loader2 className="w-3 h-3 animate-spin" aria-hidden="true" />
               {t.bookingWizard?.slotConflict?.checking ?? "Comprobando disponibilidad…"}
             </span>
           )}

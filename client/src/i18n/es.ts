@@ -830,7 +830,7 @@ export const es: Translations = {
       whatsappMessage: "Hola, estaba a punto de reservar un barco en Blanes. ¿Me ayudas a confirmar disponibilidad?",
     },
     slotConflict: {
-      title: "Las {time}h ya no están libres",
+      title: "Las {time} ya no están libres",
       subtitle: "Te proponemos estas horas cercanas:",
       noAlternatives: "No quedan horas libres ese día. Cambia la fecha o escríbenos por WhatsApp.",
       changeDate: "Cambiar fecha",

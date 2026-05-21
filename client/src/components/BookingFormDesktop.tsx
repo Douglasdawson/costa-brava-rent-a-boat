@@ -733,11 +733,8 @@ function Step2Details({
         >
           <span>{t.wizard.departureTime}</span>
           {isAvailabilityLoading && (
-            <span
-              aria-hidden="true"
-              className="inline-flex items-center gap-1 text-[11px] font-normal opacity-70"
-            >
-              <Loader2 className="w-3 h-3 animate-spin" />
+            <span className="inline-flex items-center gap-1 text-[11px] font-normal opacity-70">
+              <Loader2 className="w-3 h-3 animate-spin" aria-hidden="true" />
               {t.bookingWizard?.slotConflict?.checking ?? "Comprobando disponibilidad…"}
             </span>
           )}

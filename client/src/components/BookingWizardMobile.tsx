@@ -6,7 +6,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import type { Boat } from "@shared/schema";
 import { EXTRA_PACKS } from "@shared/boatData";
-import { getMinActivePrice } from "@shared/pricing";
+import { getMinActivePrice, isBestValueSeasonForLongDuration } from "@shared/pricing";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import { ValueStack } from "@/components/booking-flow/ValueStack";
@@ -746,7 +746,12 @@ function Step3Departure({
         <div className="space-y-2">
           {(() => {
             const enabledWithPrice = durationOptions.filter(o => !o.disabled && o.price);
-            const bestValueId = enabledWithPrice.length > 1
+            // Best-value badge only in true low season (Apr, May, Jun 1-15, Sep, Oct).
+            // Outside that window we don't want to push 8h since shorter slots fill
+            // on their own and turnover beats fewer/longer bookings.
+            const dateObj = selectedDate ? new Date(selectedDate + 'T12:00:00') : null;
+            const allowBestValue = isBestValueSeasonForLongDuration(dateObj);
+            const bestValueId = allowBestValue && enabledWithPrice.length > 1
               ? enabledWithPrice.reduce((best, dur) => {
                   const bestPH = best.price! / parseFloat(best.value);
                   const durPH = dur.price! / parseFloat(dur.value);

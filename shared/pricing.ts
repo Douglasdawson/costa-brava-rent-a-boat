@@ -143,6 +143,26 @@ export function applyOverrideToPrice(price: number, override: PricingOverrideRul
 }
 
 /**
+ * Whether the "Mejor valor" / "Best value" badge on long-duration rentals
+ * (typically 8h) should be promoted on a given date.
+ *
+ * Business decision (2026-05-21): we only push 8h hard during true low
+ * season — April, May, June 1-15, September and October. Once peak demand
+ * kicks in (June 16 onwards through August), pushing 8h cannibalises
+ * shorter, higher-margin slots that fill anyway. The badge stays hidden
+ * for those dates.
+ */
+export function isBestValueSeasonForLongDuration(date: Date | null | undefined): boolean {
+  if (!date) return false;
+  const month = date.getMonth() + 1; // 1-12
+  const day = date.getDate();
+  if (month === 4 || month === 5) return true;          // April, May
+  if (month === 6 && day <= 15) return true;            // June 1-15
+  if (month === 9 || month === 10) return true;         // September, October
+  return false;
+}
+
+/**
  * Get the minimum allowed booking duration for a given date.
  * Returns '2h' for Temporada Alta (August) only. Weekends were dropped
  * 2026-05-21 — selling a last-hour slot (e.g. 19-20h) is a +80€ win and

@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "motion/react";
 import type { Boat } from "@shared/schema";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
 import { EXTRA_PACKS } from "@shared/boatData";
-import { getMinActivePrice } from "@shared/pricing";
+import { getMinActivePrice, isBestValueSeasonForLongDuration } from "@shared/pricing";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import { ValueStack } from "@/components/booking-flow/ValueStack";
@@ -787,8 +787,13 @@ function Step2Details({
         <div className="grid grid-cols-3 gap-2">
           {(() => {
             const enabledWithPrice = durationOptions.filter(o => !o.disabled && o.price);
+            // Best-value badge gated to true low season (Apr, May, Jun 1-15,
+            // Sep, Oct). In peak we don't want to push 8h since shorter slots
+            // sell on their own and turnover wins.
+            const dateObj = selectedDate ? new Date(selectedDate + 'T12:00:00') : null;
+            const allowBestValue = isBestValueSeasonForLongDuration(dateObj);
             const bestValueId =
-              enabledWithPrice.length > 1
+              allowBestValue && enabledWithPrice.length > 1
                 ? enabledWithPrice.reduce((best, dur) => {
                     const bestPH = best.price! / parseFloat(best.value);
                     const durPH = dur.price! / parseFloat(dur.value);

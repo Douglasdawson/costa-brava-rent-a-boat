@@ -205,7 +205,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             currentStep={currentStep}
             totalSteps={5}
             stepLabels={[
-              props.t.bookingWizard?.steps?.whenWho || 'Cuándo',
+              props.t.bookingWizard?.steps?.whenWhoShort || props.t.bookingWizard?.steps?.whenWho || 'Cuándo',
               props.t.bookingWizard?.steps?.yourBoat || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepBoat) : props.t.wizard.stepBoat),
               props.t.bookingWizard?.steps?.departureDuration || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepTrip) : props.t.wizard.stepTrip),
               props.t.bookingWizard?.steps?.upgradeYourDay || 'Mejora tu día',

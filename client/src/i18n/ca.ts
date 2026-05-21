@@ -767,6 +767,7 @@ export const ca: Translations = {
   bookingWizard: {
     steps: {
       whenWho: "Quan salpem?",
+      whenWhoShort: "Quan?",
       yourBoat: "El teu barco",
       departureDuration: "Hora i durada",
       upgradeYourDay: "Millora el teu dia",

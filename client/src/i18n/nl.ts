@@ -766,6 +766,7 @@ export const nl: Translations = {
   bookingWizard: {
     steps: {
       whenWho: "Wanneer vaar je uit?",
+      whenWhoShort: "Wanneer?",
       yourBoat: "Jouw boot",
       departureDuration: "Tijd en duur",
       upgradeYourDay: "Maak je dag beter",

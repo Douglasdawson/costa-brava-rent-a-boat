@@ -867,6 +867,9 @@ export interface Translations {
   bookingWizard?: {
     steps?: {
       whenWho?: string;
+      /** Mobile-only short variant of whenWho — keeps the step label in
+       *  the progress bar from wrapping on narrow viewports. */
+      whenWhoShort?: string;
       yourBoat?: string;
       departureDuration?: string;
       /** Step 4 of 5 — extras & packs. Shown in the progress bar. */

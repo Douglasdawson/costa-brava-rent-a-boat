@@ -769,6 +769,7 @@ export const de: Translations = {
   bookingWizard: {
     steps: {
       whenWho: "Wann legst du ab?",
+      whenWhoShort: "Wann?",
       yourBoat: "Dein Boot",
       departureDuration: "Zeit und Dauer",
       upgradeYourDay: "Mach den Tag besser",

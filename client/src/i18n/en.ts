@@ -762,6 +762,7 @@ export const en: Translations = {
   bookingWizard: {
     steps: {
       whenWho: "When do you sail?",
+      whenWhoShort: "When?",
       yourBoat: "Your boat",
       departureDuration: "Time and length",
       upgradeYourDay: "Upgrade your day",

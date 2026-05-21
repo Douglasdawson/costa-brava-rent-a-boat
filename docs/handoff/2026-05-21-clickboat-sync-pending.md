@@ -15,15 +15,125 @@ Decisiones estratégicas tomadas:
 - **Sin licencia Apr-Jun y Sep-Oct**: alinear a precio web.
 - **Findes Jul/Ago con licencia +15%**: aplazado (27 periodos custom, demasiado pesado vía MCP, mejor sesión dedicada).
 
-## Hecho hoy en C&B (3 ediciones aplicadas y verificadas)
+## Hecho hoy en C&B (6 ediciones aplicadas y verificadas)
 
 | Listing | Periodo | Antes | Después | Estado |
 |---|---|---|---|---|
 | Astec 480 #183678 | 01 Apr - 30 Jun | half €180 | **half €200** | ✅ persistido |
 | Pacific Craft 625 #183672 | 01 Apr - 30 Jun | half €280 · 1day €350 | **half €250 · 1day €300** | ✅ persistido |
 | Pacific Craft 625 #183672 | 01 Sep - 31 Oct | half €300 · 1day €420 | **half €250 · 1day €300** | ✅ persistido |
+| Remus 450 #183677 | 01 Sep - 31 Oct | (no existía) | **half €150 · 1day €220** | ✅ creado y persistido |
+| Astec 480 #183678 | 01 Sep - 31 Oct | (no existía) | **half €200 · 1day €270** | ✅ creado y persistido |
+| Mingolla Brava 19 #183710 | 01 Sep - 31 Oct | (no existía) | **half €230 · 1day €280** | ✅ creado y persistido |
 
-## Pendiente (3 periodos Sep-Oct a crear MANUALMENTE)
+**Nota técnica**: el portal de Click&Boat usa un componente DatePicker React controlado por estado interno. Inyectar fechas en los `<input readonly>` no funciona — hay que disparar clicks sintéticos (MouseEvent bubbling) sobre el input + el botón Next + el día. La navegación finalmente se automatizó con `evaluate_script` y waits de 150ms entre clicks. Truco aplicable a futuras ediciones.
+
+## ✅ Hecho en sesión 2 (Fase 3 parcial)
+
+- **Astec 480 #183678**: modelo renombrado de "Astec 450" → **"Astec 480"** (problema nominal arreglado).
+- **Astec 480 #183678**: confirmado Instant Booking activado + Cancellation Flexible activada (ya estaban OK).
+
+## ✅ Hecho en sesión 3 (Fase 3a + 3b — fuel cost + depósitos)
+
+### Fuel cost (3 sin licencia) — todos a "Included in rental price"
+
+| Listing | Antes | Después | Verificado |
+|---|---|---|---|
+| Astec 480 #183678 | Excluded | **Included** | ✅ persistido |
+| Remus 450 #183677 | Excluded | **Included** | ✅ persistido |
+| Solar 450 #183671 | Excluded | **Included** | ✅ persistido |
+
+Ubicación del campo: pestaña **Booking** (`:4`), dropdown "Fuel cost". Click en el componente → seleccionar opción → Save (botón inferior). Save redirige automáticamente a la pestaña Extras (`:10`); persistencia confirmada al volver a `:4`.
+
+### Depósitos (6 listings, en pestaña Documents `:6`)
+
+Campo "Amount of security deposit" — input `<input name="deposit">` estándar (no React custom). Cambio con fill + Save.
+
+| Listing | Antes | Después | Web objetivo | Verificado |
+|---|---|---|---|---|
+| Astec 480 #183678 | 250 ❌ | **300** | 300 | ✅ |
+| Solar 450 #183671 | 200 ❌ | **250** | 250 | ✅ |
+| Remus 450 #183677 | (vacío) ❌❌ | **200** | 200 | ✅ |
+| Mingolla #183710 | 500 | 500 | 500 | ✅ ya OK |
+| Trimarchi #183704 | 500 | 500 | 500 | ✅ ya OK |
+| Pacific Craft #183672 | 500 | 500 | 500 | ✅ ya OK |
+
+**Hallazgo crítico**: el Remus 450 tenía el campo depósito VACÍO. Significa que C&B no había cobrado fianza al cliente por reservas del Remus en C&B hasta hoy.
+
+### Hallazgo lateral
+
+Solar 450 tiene en C&B la opción skipper "With or without skipper" (no "Without skipper" como Astec/Remus). Esto permite ofrecer la "excursión privada con capitán" via este listing, aunque en `shared/boatData.ts` el barco está como sin licencia. **No tocado — revisar si es deliberado**.
+
+## ✅ Hecho en sesión 4 (Fase 0 + Fase 4)
+
+### Fase 0 — Análisis de reservas 2025
+
+Extraído Apple Calendar local via AppleScript/JXA (722 eventos → 669 reservas válidas). **Hipótesis confirmada con datos**:
+- Sin licencia (Solar/Remus/Astec): 524 reservas, solo 4.8% C&B
+- Con licencia (Mingolla/Trimarchi/Pacific): 144 reservas, 20.1% C&B
+- Trimarchi 41/42% C&B en Jul/Ago, Mingolla 55% C&B en Jul
+- Pacific Craft 1% C&B / 67 reservas — problema de visibilidad/ranking grave
+
+Reporte completo: `docs/handoff/2026-05-21-clickboat-bookings-2025.md`
+
+### Fase 4 — Visibilidad/ranking con licencia (descripciones)
+
+Re-escrito Title + Description en **EN + ES + FR** para los 3 listings con licencia, con tono comercial alineado con la web (`shared/boatData.ts`). El placeholder de C&B dice literalmente "length & quality of description impacts positioning in search results".
+
+| Listing | Tono | EN | ES | FR |
+|---|---|---|---|---|
+| Pacific Craft 625 #183672 | Premium + lujo exclusivo | 1842 chars ✅ | 1975 ✅ | 2065 ✅ |
+| Mingolla Brava 19 #183710 | Sport + exploración + GPS | 1701 ✅ | 1820 ✅ | 1857 ✅ |
+| Trimarchi 57S #183704 | Adrenalina + diseño italiano | 1934 ✅ | 2033 ✅ | 2121 ✅ |
+
+### Fase 5 — Descripciones sin licencia (coherencia de marca)
+
+Re-escrito Title + Description en **EN + ES + FR** para los 3 listings sin licencia. Tonos diferenciados por barco:
+
+| Listing | Tono / angle | EN | ES | FR |
+|---|---|---|---|---|
+| Solar 450 #183671 | Sol + solárium acolchado más amplio + gasolina incluida | 1600 ✅ | 1789 ✅ | 1892 ✅ |
+| Remus 450 #183677 | Más alquilado + familias + Bi Mini + estabilidad | 1825 ✅ | 1973 ✅ | 2078 ✅ |
+| Astec 480 #183678 | Premium sin licencia + bluetooth + 50L (doble depósito) | 1878 ✅ | 1971 ✅ | 2079 ✅ |
+
+**Total Fase 4 + 5**: los **6 listings** activos en C&B tienen ahora descripciones comerciales coherentes con la web, en EN/ES/FR (3 idiomas que cubren ~80% del tráfico Costa Brava en C&B).
+
+**Nota técnica**: el listing C&B ya tenía 11 idiomas pre-creados (FR/EN/ES/IT/DE/NL/PL/EL/RU/PT/SV) con contenido viejo plano. Los inputs tienen IDs `title[N]` / `description[N]` (N = ID de idioma: 1=FR, 2=EN, 3=ES, 4=IT, 6=DE, 7=NL...). Para escribir en React inputs hay que usar el setter nativo del prototipo (`Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set`) + dispatch `input` + `change` events, sino React lo ignora. Otros 8 idiomas (IT/DE/NL/PL/EL/RU/PT/SV) quedan con contenido viejo plano — no críticos (tráfico Costa Brava EN/ES/FR cubre 80%+).
+
+## 📋 Pendiente para próxima sesión
+
+### Calendario refresh (boost recency)
+
+Banner en C&B dice "A frequently updated calendar boosts your listing in the results". Pendiente porque:
+- Tocar calendario afecta operativa de booking → riesgo doble booking si se desincroniza con CRM interno
+- Decisión: confirmar con usuario antes de ejecutar
+
+### Fase 5 — Descripciones sin licencia (coherencia de marca)
+
+Solar 450, Remus 450, Remus 450 II, Astec 480 — re-escribir descripciones con mismo tono. No mueve volumen (canal residual), pero refuerza marca. ~30 min via el mismo patrón `evaluate_script` + React setter.
+
+### Fase 1 — Precios disuasorios + bloqueo findes sin licencia Jul/Ago
+
+Confirmado por datos: impacto perdido máximo ~25 reservas/año (5% del total sin licencia). Aplicar cuando el usuario decida.
+
+### Fase 2 — Crear Astec 400 desde cero
+
+Listing nuevo. Trabajo ~45 min. Decidir cuándo.
+
+### Fotos
+
+Pacific Craft tiene solo 6 fotos (Felix ~12-15). Material en `client/public/images/` posiblemente subible. Necesita decisión usuario.
+
+## Plan para próximas sesiones
+
+Ver `/Users/macbookpro/.claude/plans/actualmente-estoy-dado-de-glistening-wreath.md`. Fases pendientes:
+- Fase 0: análisis del .ics
+- Fase 4: visibilidad/ranking con licencia
+- Fase 5: descripciones consistentes con web
+- Fase 1: precios disuasorios + bloqueo findes sin licencia Jul/Ago
+- Fase 2: crear listing Astec 400
+
+## ~~Pendiente~~ (cerrado) — los 3 periodos Sep-Oct
 
 Estos 3 cambios requieren usar el **datepicker** del portal (la creación de periodo nuevo no se puede automatizar con JS porque las fechas las gestiona un componente React controlado, no un `<input>` estándar).
 

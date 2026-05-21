@@ -98,6 +98,20 @@ Re-escrito Title + Description en **EN + ES + FR** para los 3 listings sin licen
 
 **Total Fase 4 + 5**: los **6 listings** activos en C&B tienen ahora descripciones comerciales coherentes con la web, en EN/ES/FR (3 idiomas que cubren ~80% del tráfico Costa Brava en C&B).
 
+### Fase 1 — Precios disuasorios + bloqueo findes Jul/Ago sin licencia
+
+**Precios subidos suaves (+10-15%)** — usuario eligió variante moderada en lugar del +22-31% del plan original:
+
+| Listing | Jul antes → después | Ago antes → después |
+|---|---|---|
+| Solar 450 #183671 | 220/340 → **250/390** (+14%/+15%) | 260/380 → **295/440** (+13%/+16%) |
+| Remus 450 #183677 | 220/340 → **250/390** | 260/380 → **295/440** |
+| Astec 480 #183678 | 260/370 → **295/425** (+13%/+15%) | 320/430 → **370/495** (+16%/+15%) |
+
+**Bloqueo de findes Jul/Ago 2026** — 9 findes por barco × 3 barcos = **27 bloqueos aplicados** (Jul 4-5, 11-12, 18-19, 25-26; Ago 1-2, 8-9, 15-16, 22-23, 29-30). Reason: "Unavailable". Usuario asume riesgo doble-booking si C&B no sincroniza con CRM — recordar revisar cada lunes.
+
+**Nota técnica calendar UI**: la interfaz de bloqueo usa jQuery UI datepicker readonly + dropdown custom para Reason. `$(input).datepicker('setDate', ...)` no dispara la validación interna ("Required field"); hay que **clicar el popup datepicker día a día**. Solución batch: async loop con `navigateAndPickDay(input, mes, año, día)` → click popup .ui-datepicker-next hasta el mes objetivo, click `a.ui-state-default` con el número del día, `await sleep(200)`. Para Reason: `$('li[data-value="Unavailable"]').trigger('click')` antes de Add. El contador `li.availability` se infla durante el batch (artifact DOM intermedio), pero tras reload el estado persistente es correcto.
+
 **Nota técnica**: el listing C&B ya tenía 11 idiomas pre-creados (FR/EN/ES/IT/DE/NL/PL/EL/RU/PT/SV) con contenido viejo plano. Los inputs tienen IDs `title[N]` / `description[N]` (N = ID de idioma: 1=FR, 2=EN, 3=ES, 4=IT, 6=DE, 7=NL...). Para escribir en React inputs hay que usar el setter nativo del prototipo (`Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set`) + dispatch `input` + `change` events, sino React lo ignora. Otros 8 idiomas (IT/DE/NL/PL/EL/RU/PT/SV) quedan con contenido viejo plano — no críticos (tráfico Costa Brava EN/ES/FR cubre 80%+).
 
 ## 📋 Pendiente para próxima sesión
@@ -116,13 +130,22 @@ Solar 450, Remus 450, Remus 450 II, Astec 480 — re-escribir descripciones con 
 
 Confirmado por datos: impacto perdido máximo ~25 reservas/año (5% del total sin licencia). Aplicar cuando el usuario decida.
 
-### Fase 2 — Crear Astec 400 desde cero
+### Fase 2 — Crear Astec 400 (PARCIAL — bloqueado en Step 1)
 
-Listing nuevo. Trabajo ~45 min. Decidir cuándo.
+**Estado**: probado el wizard `/en/register-my-boat`. Step 1 ("Your yacht") rellenado completo (Type=Boat without licence, City=Blanes, Harbour=Other → "Puerto de Blanes", Manufacturer=Astec, Model=Astec 400, Skipper=Without skipper, Capacity=4, Length=4m, Company=Costa Brava Rent a Boat Blanes). **7 fotos JPG subidas** (Cover + 6 fotos del Astec 400).
 
-### Fotos
+**Bloqueo**: tras click Save+Continue, el wizard no avanza ni persiste. Hipótesis: Manufacturer es **autocomplete del catálogo oficial de C&B** y "Astec" no aparece — se marca "Unknown manufacturer" y bloquea la creación. Solución mejor manual:
+1. Ir a https://www.clickandboat.com/en/register-my-boat
+2. Escribir "Astec" en Manufacturer y **esperar dropdown de sugerencias**. Si no aparece, probar variantes ("Generic", "Other") o el nombre del fabricante real ("Astec" es una marca menor; el fabricante puede ser "Other" en C&B).
+3. Mismo con Model.
+4. Rellenar resto + subir fotos.
+5. **Fotos JPG listas** en `/tmp/astec-400-jpg/` (00-cover.jpg + 01-06 numeradas, 7 fotos ~2.4 MB total). Si necesitas re-convertir desde el repo: `for f in client/public/images/boats/astec-400/*.webp; do sips -s format jpeg "$f" --out "/tmp/$(basename ${f%.webp}).jpg"; done`.
 
-Pacific Craft tiene solo 6 fotos (Felix ~12-15). Material en `client/public/images/` posiblemente subible. Necesita decisión usuario.
+Tiempo estimado manual: ~10-15 min una vez localizado el Manufacturer correcto.
+
+### Fotos Pacific Craft
+
+Pacific Craft tiene solo 6 fotos en C&B (Felix ~12-15). Material disponible en `client/public/images/boats/pacific-craft-625/`. Decidir cuándo subir más.
 
 ## Plan para próximas sesiones
 

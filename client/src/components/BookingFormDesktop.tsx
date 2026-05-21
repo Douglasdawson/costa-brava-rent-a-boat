@@ -911,12 +911,15 @@ function Step1WhenWhoDesktop({
         <h2 className="text-base font-bold text-foreground mb-1">
           {t.bookingWizard?.steps?.whenWho || 'Cuándo y cuántos sois'}
         </h2>
-        <p className="text-xs text-muted-foreground">
-          {t.bookingWizard?.hints?.pricesNextStep || 'En el siguiente paso verás precios reales para tu fecha.'}
-        </p>
-        <p className="text-xs text-muted-foreground mt-1.5">
-          {t.bookingWizard?.hints?.noOnlinePayment || 'Sin pago online — te confirmamos por WhatsApp'}
-        </p>
+        <div className="flex flex-col gap-1.5 lg:flex-row lg:items-center lg:gap-2 text-xs text-muted-foreground">
+          <span>
+            {t.bookingWizard?.hints?.pricesNextStep || 'En el siguiente paso verás precios reales para tu fecha.'}
+          </span>
+          <span className="hidden lg:inline text-muted-foreground/50" aria-hidden="true">·</span>
+          <span>
+            {t.bookingWizard?.hints?.noOnlinePayment || 'Sin pago online — te confirmamos por WhatsApp'}
+          </span>
+        </div>
       </div>
       <div>
         <label className="block text-xs font-semibold text-muted-foreground mb-2">

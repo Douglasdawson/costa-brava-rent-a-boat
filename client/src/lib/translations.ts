@@ -1882,6 +1882,10 @@ export interface Translations {
     rating: string;
     confirmation: string;
     freeCancellation: string;
+    /** Honest footnote for the `freeCancellation` pill — the real policy
+     *  is "subject to availability of the new date", reflected by the `*`
+     *  in the pill copy. Rendered as small italic text below the banner. */
+    freeCancellationFootnote?: string;
     securePayment: string;
     insuranceIncluded: string;
     /** P2.1: SLA reassurance pill shown across the wizard stages. */

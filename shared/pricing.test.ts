@@ -150,12 +150,12 @@ describe("getMinimumDuration", () => {
     expect(getMinimumDuration(new Date("2026-08-15T12:00:00"))).toBe("2h");
   });
 
-  it("returns 2h for Saturday (weekend)", () => {
-    expect(getMinimumDuration(new Date("2026-04-04T12:00:00"))).toBe("2h");
+  it("returns 1h for Saturday outside August (weekend block lifted 2026-05-21)", () => {
+    expect(getMinimumDuration(new Date("2026-04-04T12:00:00"))).toBe("1h");
   });
 
-  it("returns 2h for Sunday (weekend)", () => {
-    expect(getMinimumDuration(new Date("2026-04-05T12:00:00"))).toBe("2h");
+  it("returns 1h for Sunday outside August (weekend block lifted 2026-05-21)", () => {
+    expect(getMinimumDuration(new Date("2026-04-05T12:00:00"))).toBe("1h");
   });
 
   it("returns 1h for weekday in April", () => {

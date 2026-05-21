@@ -144,11 +144,15 @@ export function applyOverrideToPrice(price: number, override: PricingOverrideRul
 
 /**
  * Get the minimum allowed booking duration for a given date.
- * Returns '2h' for Temporada Alta (August) and weekends; '1h' otherwise.
+ * Returns '2h' for Temporada Alta (August) only. Weekends were dropped
+ * 2026-05-21 — selling a last-hour slot (e.g. 19-20h) is a +80€ win and
+ * the previous blanket weekend block was leaving that revenue on the
+ * table. August still keeps the 2h floor because demand is hot enough
+ * that 1h slots fragment the day inefficiently.
  */
 export function getMinimumDuration(date: Date): Duration {
   const month = date.getMonth() + 1;
-  if (month === 8 || isWeekend(date)) return '2h';
+  if (month === 8) return '2h';
   return '1h';
 }
 
@@ -383,6 +387,66 @@ export function calculatePricingBreakdown(
   }
 
   return breakdown;
+}
+
+export interface MultiBoatBreakdown {
+  boatIds: string[];
+  boats: PricingBreakdown[];
+  date: string;
+  duration: Duration;
+  basePrice: number; // sum across boats, post-override
+  extrasPrice: number; // sum across boats
+  deposit: number; // sum across boats
+  subtotal: number; // basePrice + extrasPrice
+  total: number; // subtotal + deposit
+  hasAnyOverride: boolean;
+}
+
+/**
+ * Multi-boat pricing breakdown for group bookings (2 boats today).
+ * Calls calculatePricingBreakdown per boat and aggregates totals.
+ * Extras/packs apply to the primary boat only — the secondary boat is bare hire.
+ * If you need extras on both, call this with the same extras explicitly per boat.
+ */
+export function calculateMultiBoatBreakdown(
+  boatIds: string[],
+  date: Date,
+  duration: Duration,
+  selectedExtras: string[] = [],
+  selectedPacks: string[] = [],
+  overrides: PricingOverrideRule[] = []
+): MultiBoatBreakdown {
+  if (boatIds.length === 0) {
+    throw new Error("calculateMultiBoatBreakdown requires at least one boatId");
+  }
+  const boats = boatIds.map((boatId, idx) =>
+    // Extras land on the primary boat only.
+    calculatePricingBreakdown(
+      boatId,
+      date,
+      duration,
+      idx === 0 ? selectedExtras : [],
+      idx === 0 ? selectedPacks : [],
+      overrides,
+    ),
+  );
+  const basePrice = boats.reduce((sum, b) => sum + b.basePrice, 0);
+  const extrasPrice = boats.reduce((sum, b) => sum + b.extrasPrice, 0);
+  const deposit = boats.reduce((sum, b) => sum + b.deposit, 0);
+  const subtotal = basePrice + extrasPrice;
+  const total = subtotal + deposit;
+  return {
+    boatIds,
+    boats,
+    date: boats[0].date,
+    duration,
+    basePrice,
+    extrasPrice,
+    deposit,
+    subtotal,
+    total,
+    hasAnyOverride: boats.some(b => !!b.appliedOverride),
+  };
 }
 
 /**

@@ -253,6 +253,7 @@ body { overflow-x: hidden; }
     inset: 0;
     border-radius: inherit;
     background: hsl(var(--cta));
+    opacity: 0;
     animation: savings-pulse 2s ease-in-out 3;
     pointer-events: none;
     will-change: opacity;

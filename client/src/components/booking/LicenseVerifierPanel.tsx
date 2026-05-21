@@ -28,7 +28,6 @@ import {
   findLicense,
   getDefaultCountryForLanguage,
   type LicenseVerificationStatus,
-  type SpanishLicenseLevel,
 } from "@shared/nauticalLicenseRules";
 import type { UseLicenseVerifierResult } from "@/hooks/useLicenseVerifier";
 
@@ -41,14 +40,6 @@ interface LicenseVerifierPanelProps {
    */
   onSwitchToUnlicensed?: () => void;
 }
-
-const SPANISH_LEVEL_LABEL: Record<SpanishLicenseLevel, string> = {
-  navegacion: "LN",
-  pnb: "PNB",
-  per: "PER",
-  patron_yate: "Patrón de Yate",
-  capitan_yate: "Capitán de Yate",
-};
 
 // Entry animation that respects prefers-reduced-motion. Reused across the
 // filling form, the country picker dropdown, and the summary card. Slight
@@ -190,7 +181,6 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
         countryName={selectedCountryName}
         flag={selectedCountry?.flag ?? ""}
         status={state.status}
-        spanishEquivalent={state.spanishEquivalent}
         licenseCode={state.licenseCode}
         onChange={handleChange}
         onSwitchToUnlicensed={onSwitchToUnlicensed}
@@ -292,9 +282,6 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
           >
             {catalogue.map((lic) => {
               const selected = state.licenseCode === lic.code;
-              const equivLabel = lic.spanishEquivalent
-                ? `≈ ${SPANISH_LEVEL_LABEL[lic.spanishEquivalent]}`
-                : null;
               return (
                 <button
                   key={lic.code}
@@ -302,9 +289,9 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
                   role="radio"
                   aria-checked={selected}
                   onClick={() => setLicenseCode(lic.code)}
-                  aria-label={equivLabel ? `${lic.label}, ${equivLabel}` : lic.label}
+                  aria-label={lic.label}
                   className={[
-                    "text-left px-3.5 py-3 min-h-[68px] rounded-xl leading-snug active:scale-[0.98] transform-gpu",
+                    "flex flex-col justify-center text-left px-3.5 py-3 min-h-[68px] rounded-xl leading-snug active:scale-[0.98] transform-gpu",
                     selected
                       ? "bg-foreground text-white border border-foreground"
                       : "bg-background text-foreground/85 border border-border hover:border-foreground/25",
@@ -314,16 +301,6 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
                   ].join(" ")}
                 >
                   <p className="text-[14px] font-medium line-clamp-2">{lic.label}</p>
-                  {equivLabel && (
-                    <p
-                      className={[
-                        "text-[11px] mt-0.5 uppercase tracking-[0.05em]",
-                        selected ? "text-white/75" : "text-foreground/60",
-                      ].join(" ")}
-                    >
-                      {equivLabel}
-                    </p>
-                  )}
                 </button>
               );
             })}
@@ -410,7 +387,6 @@ function SummaryView({
   countryName,
   flag,
   status,
-  spanishEquivalent,
   licenseCode,
   onChange,
   onSwitchToUnlicensed,
@@ -419,7 +395,6 @@ function SummaryView({
   countryName: string;
   flag: string;
   status: LicenseVerificationStatus;
-  spanishEquivalent: SpanishLicenseLevel | null;
   licenseCode: string;
   onChange: () => void;
   onSwitchToUnlicensed?: () => void;
@@ -494,13 +469,6 @@ function SummaryView({
   const lic = country && licenseCode ? findLicense(country, licenseCode) : undefined;
   const nativeLabel = lic?.label ?? "";
 
-  const equivBlock = (() => {
-    if (!spanishEquivalent) return null;
-    const level = SPANISH_LEVEL_LABEL[spanishEquivalent];
-    const template = tv?.equivalentTo ?? "Equivale a {level} en el sistema español";
-    return template.replace("{level}", level);
-  })();
-
   const fleetBlock = (() => {
     if (status === "valid" || status === "probably_valid") {
       return tv?.meetsFleet ?? "Válida para nuestra flota con licencia.";
@@ -544,10 +512,8 @@ function SummaryView({
           <p className={`text-[14px] font-semibold leading-tight mt-0.5 ${s.iconColor}`}>
             {s.short}
           </p>
-          {(equivBlock || fleetBlock) && (
+          {fleetBlock && (
             <p className="text-[13px] leading-relaxed text-foreground/75 mt-1.5">
-              {equivBlock}
-              {equivBlock && fleetBlock ? " · " : ""}
               {fleetBlock}
             </p>
           )}

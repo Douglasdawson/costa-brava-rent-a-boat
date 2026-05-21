@@ -911,11 +911,11 @@ function Step1WhenWhoDesktop({
         <h2 className="text-base font-bold text-foreground mb-1">
           {t.bookingWizard?.steps?.whenWho || 'Cuándo y cuántos sois'}
         </h2>
-        <div className="flex flex-col gap-1.5 lg:flex-row lg:items-center lg:gap-2 text-xs text-muted-foreground">
+        <div className="flex flex-col gap-1.5 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-1.5 lg:gap-y-1 text-xs text-muted-foreground">
           <span>
             {t.bookingWizard?.hints?.pricesNextStep || 'En el siguiente paso verás precios reales para tu fecha.'}
           </span>
-          <span className="hidden lg:inline text-muted-foreground/50" aria-hidden="true">·</span>
+          <span className="hidden lg:inline text-muted-foreground/40" aria-hidden="true">·</span>
           <span>
             {t.bookingWizard?.hints?.noOnlinePayment || 'Sin pago online — te confirmamos por WhatsApp'}
           </span>

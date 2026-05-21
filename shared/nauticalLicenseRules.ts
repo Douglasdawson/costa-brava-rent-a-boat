@@ -39,7 +39,7 @@ export type LicenseVerificationStatus =
 
 /** Spanish recreational license levels, ordered by attributions (low → high). */
 export const SPANISH_LICENSE_LEVELS = [
-  "navegacion",      // LBN (legacy / very basic)
+  "navegacion",      // LN · Licencia de Navegación (≤6m motor, ≤15CV, 2nm de costa)
   "pnb",             // Patrón para Navegación Básica
   "per",             // Patrón de Embarcaciones de Recreo
   "patron_yate",     // Patrón de Yate
@@ -84,6 +84,7 @@ export interface ForeignLicense {
  */
 export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
   ES: [
+    { code: "ln", label: "LN · Licencia de Navegación", spanishEquivalent: "navegacion" },
     { code: "pnb", label: "PNB · Patrón para Navegación Básica", spanishEquivalent: "pnb" },
     { code: "per", label: "PER · Patrón de Embarcaciones de Recreo", spanishEquivalent: "per" },
     { code: "patron_yate", label: "Patrón de Yate", spanishEquivalent: "patron_yate" },

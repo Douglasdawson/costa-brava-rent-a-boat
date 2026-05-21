@@ -130,6 +130,13 @@ describe("verifyLicense — EEE branch", () => {
     expect(verifyLicense({ country: "FR", licenseCode: "made_up", hasIcc: null }).status)
       .toBe("not_recognized");
   });
+
+  it("Spain + LN → insufficient (below fleet PNB minimum)", () => {
+    const r = verifyLicense({ country: "ES", licenseCode: "ln", hasIcc: null });
+    expect(r.status).toBe("insufficient");
+    expect(r.spanishEquivalent).toBe("navegacion");
+    expect(r.meetsFleetMinimum).toBe(false);
+  });
 });
 
 describe("verifyLicense — non-EEE branch", () => {

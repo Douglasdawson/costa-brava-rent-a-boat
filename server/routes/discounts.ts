@@ -40,6 +40,7 @@ export function registerDiscountRoutes(app: Express) {
       if (!parsed.success) {
         return res.status(400).json({
           valid: false,
+          errorCode: "missing",
           error: "Codigo de descuento requerido",
         });
       }
@@ -52,6 +53,10 @@ export function registerDiscountRoutes(app: Express) {
         await new Promise(resolve => setTimeout(resolve, 300));
         return res.json({
           valid: false,
+          // P2.4: surface the discriminated errorCode so the client picks the
+          // right i18n string (not_found vs expired vs consumed vs inactive)
+          // instead of showing "Código inválido" for every failure mode.
+          errorCode: result.errorCode ?? "not_found",
           error: result.error || "Codigo de descuento no valido",
         });
       }

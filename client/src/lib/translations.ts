@@ -715,6 +715,13 @@ export interface Translations {
     discount: string;
     applied: string;
     apply: string;
+    /** P2.4: discriminated error messages from /api/{gift-cards,discounts}/validate.
+     *  Optional — fall back to `invalidCode` when an unknown errorCode arrives. */
+    notFound?: string;
+    expired?: string;
+    consumed?: string;
+    cancelled?: string;
+    inactive?: string;
   };
 
   // Gift Cards
@@ -1528,6 +1535,45 @@ export interface Translations {
     faqExperienceAnswer: string;
     faqGroupSizeQuestion: string;
     faqGroupSizeAnswer: string;
+    // GSC 2026-05-21: HowTo schema + sección "Cómo alquilar" (rescate pos 13→18)
+    // Opcionales hasta que i18n:translate propague a los 7 idiomas (es queda 1º).
+    howToTitle?: string;
+    howToIntro?: string;
+    howToStep1Title?: string;
+    howToStep1Text?: string;
+    howToStep2Title?: string;
+    howToStep2Text?: string;
+    howToStep3Title?: string;
+    howToStep3Text?: string;
+    howToStep4Title?: string;
+    howToStep4Text?: string;
+    howToStep5Title?: string;
+    howToStep5Text?: string;
+    howToDurationLabel?: string;
+    howToDurationValue?: string;
+    howToCostLabel?: string;
+    howToCostValue?: string;
+    // GSC 2026-05-21: comparativa vs marketplaces (ALERT SamBoat price floor)
+    vsMarketplacesTitle?: string;
+    vsMarketplacesIntro?: string;
+    vsMarketplacesCol1?: string;
+    vsMarketplacesCol2?: string;
+    vsMarketplacesRow1Label?: string;
+    vsMarketplacesRow1Direct?: string;
+    vsMarketplacesRow1Market?: string;
+    vsMarketplacesRow2Label?: string;
+    vsMarketplacesRow2Direct?: string;
+    vsMarketplacesRow2Market?: string;
+    vsMarketplacesRow3Label?: string;
+    vsMarketplacesRow3Direct?: string;
+    vsMarketplacesRow3Market?: string;
+    vsMarketplacesRow4Label?: string;
+    vsMarketplacesRow4Direct?: string;
+    vsMarketplacesRow4Market?: string;
+    vsMarketplacesRow5Label?: string;
+    vsMarketplacesRow5Direct?: string;
+    vsMarketplacesRow5Market?: string;
+    vsMarketplacesConclusion?: string;
   };
 
   // Category Licensed Page

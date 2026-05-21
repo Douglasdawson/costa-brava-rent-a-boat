@@ -133,7 +133,7 @@ export function registerGiftCardRoutes(app: Express) {
     try {
       const parsed = validateCodeSchema.safeParse(req.body);
       if (!parsed.success) {
-        return res.status(400).json({ message: "Codigo requerido" });
+        return res.status(400).json({ message: "Codigo requerido", errorCode: "missing", valid: false });
       }
 
       const result = await validatePromoCode(parsed.data.code);
@@ -142,13 +142,22 @@ export function registerGiftCardRoutes(app: Express) {
       if (!result.valid || result.type !== "gift_card") {
         // Delay response to slow brute-force enumeration
         await new Promise(resolve => setTimeout(resolve, 300));
-        return res.status(404).json({ message: result.error || "Codigo de tarjeta regalo no valido", valid: false });
+        // P2.4: include errorCode so the frontend picks the right i18n.
+        return res.status(404).json({
+          message: result.error || "Codigo de tarjeta regalo no valido",
+          errorCode: result.errorCode ?? "not_found",
+          valid: false,
+        });
       }
 
       // Fetch full gift card details for the response (recipient info, expiry)
       const giftCard = await storage.getGiftCardByCode(result.code!);
       if (!giftCard) {
-        return res.status(404).json({ message: "Codigo de tarjeta regalo no valido", valid: false });
+        return res.status(404).json({
+          message: "Codigo de tarjeta regalo no valido",
+          errorCode: "not_found",
+          valid: false,
+        });
       }
 
       res.json({

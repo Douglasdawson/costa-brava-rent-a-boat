@@ -628,6 +628,11 @@ export const fr: Translations = {
     discount: "Réduction",
     applied: "Appliqué",
     apply: "Appliquer",
+    notFound: "Ce code n'existe pas — vérifie l'orthographe",
+    expired: "Ce code a expiré",
+    consumed: "Ce code a déjà été utilisé",
+    cancelled: "Ce code a été annulé",
+    inactive: "Ce code n'est pas encore actif",
   },
   giftCards: {
     title: "Cartes Cadeaux",

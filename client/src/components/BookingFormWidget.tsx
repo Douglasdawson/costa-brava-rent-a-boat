@@ -1427,7 +1427,36 @@ Looking forward to confirmation. Thanks!`;
     setCodeError("");
     let success = false;
 
+    // P2.4 (2026-05-21): the backend now returns a discriminated `errorCode`
+    // (not_found / expired / consumed / cancelled / inactive). We capture the
+    // most specific code seen across both endpoints — "expired" beats
+    // "not_found" because the latter just means "not this type", whereas the
+    // former is the real reason the code is unusable.
+    const cv = t.codeValidation;
+    const codeToMessage = (errorCode?: string): string => {
+      switch (errorCode) {
+        case "not_found": return cv.notFound ?? cv.invalidCode;
+        case "expired": return cv.expired ?? cv.invalidCode;
+        case "consumed": return cv.consumed ?? cv.invalidCode;
+        case "cancelled": return cv.cancelled ?? cv.invalidCode;
+        case "inactive": return cv.inactive ?? cv.invalidCode;
+        default: return cv.invalidCode;
+      }
+    };
+
     try {
+      let mostSpecificError: string | undefined;
+      const noteError = (errorCode?: string) => {
+        if (errorCode && errorCode !== "not_found") {
+          // First specific error wins — gift-card check runs first, so an
+          // expired/consumed/cancelled/inactive gift-card lookup beats any
+          // discount response.
+          mostSpecificError = mostSpecificError ?? errorCode;
+        } else if (!mostSpecificError) {
+          mostSpecificError = errorCode;
+        }
+      };
+
       const giftCardRes = await fetch("/api/gift-cards/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1444,6 +1473,10 @@ Looking forward to confirmation. Thanks!`;
         success = true;
         return;
       }
+      try {
+        const errBody = await giftCardRes.json();
+        noteError(errBody?.errorCode);
+      } catch { /* non-JSON body — fall through */ }
 
       const discountRes = await fetch("/api/discounts/validate", {
         method: "POST",
@@ -1462,11 +1495,12 @@ Looking forward to confirmation. Thanks!`;
           success = true;
           return;
         }
+        noteError(data?.errorCode);
       }
 
-      setCodeError(t.codeValidation.invalidCode);
+      setCodeError(codeToMessage(mostSpecificError));
     } catch {
-      setCodeError(t.codeValidation.invalidCode);
+      setCodeError(cv.invalidCode);
     } finally {
       setIsValidatingCode(false);
       trackCouponApplied(code, success);

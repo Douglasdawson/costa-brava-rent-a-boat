@@ -2,11 +2,26 @@ import { storage } from "../storage";
 import { logger } from "./logger";
 
 /**
+ * Discriminator for the *kind* of validation failure. The frontend uses this
+ * to render i18n copy (Spanish strings in `error` are kept only for legacy
+ * callers and admin logging). P2.4 (2026-05-21).
+ */
+export type PromoValidationErrorCode =
+  | "missing"           // empty / blank input
+  | "not_found"         // code does not exist in the DB
+  | "expired"           // existed but past its expiresAt
+  | "consumed"          // existed but already redeemed (used / maxUses reached)
+  | "cancelled"         // gift card explicitly cancelled
+  | "inactive";         // discount inactive / gift card payment not completed
+
+/**
  * Result of validating a promo code (discount code or gift card).
  */
 export interface PromoValidationResult {
   valid: boolean;
   error?: string;
+  /** Machine-readable error discriminator. Always set when `valid === false`. */
+  errorCode?: PromoValidationErrorCode;
   /** "discount" = percentage-based code, "gift_card" = balance-based card */
   type?: "discount" | "gift_card";
   /** The normalized (uppercased, trimmed) code */
@@ -52,7 +67,7 @@ export async function validatePromoCode(code: string): Promise<PromoValidationRe
   const normalized = code.toUpperCase().trim();
 
   if (!normalized) {
-    return { valid: false, error: "Codigo requerido" };
+    return { valid: false, errorCode: "missing", error: "Codigo requerido" };
   }
 
   // 1. Try gift card first
@@ -60,16 +75,16 @@ export async function validatePromoCode(code: string): Promise<PromoValidationRe
     const giftCard = await storage.getGiftCardByCode(normalized);
     if (giftCard) {
       if (giftCard.status === "expired" || new Date() > giftCard.expiresAt) {
-        return { valid: false, error: "Esta tarjeta regalo ha expirado" };
+        return { valid: false, errorCode: "expired", error: "Esta tarjeta regalo ha expirado" };
       }
       if (giftCard.status === "used") {
-        return { valid: false, error: "Esta tarjeta regalo ya ha sido utilizada" };
+        return { valid: false, errorCode: "consumed", error: "Esta tarjeta regalo ya ha sido utilizada" };
       }
       if (giftCard.status === "cancelled") {
-        return { valid: false, error: "Esta tarjeta regalo ha sido cancelada" };
+        return { valid: false, errorCode: "cancelled", error: "Esta tarjeta regalo ha sido cancelada" };
       }
       if (giftCard.paymentStatus !== "completed") {
-        return { valid: false, error: "Esta tarjeta regalo no esta activada" };
+        return { valid: false, errorCode: "inactive", error: "Esta tarjeta regalo no esta activada" };
       }
 
       return {
@@ -90,19 +105,19 @@ export async function validatePromoCode(code: string): Promise<PromoValidationRe
   try {
     const discountCode = await storage.getDiscountCodeByCode(normalized);
     if (!discountCode) {
-      return { valid: false, error: "Codigo no valido" };
+      return { valid: false, errorCode: "not_found", error: "Codigo no valido" };
     }
 
     if (discountCode.expiresAt && new Date() > discountCode.expiresAt) {
-      return { valid: false, error: "Este codigo de descuento ha expirado" };
+      return { valid: false, errorCode: "expired", error: "Este codigo de descuento ha expirado" };
     }
 
     if (discountCode.currentUses >= discountCode.maxUses) {
-      return { valid: false, error: "Este codigo de descuento ya ha sido utilizado" };
+      return { valid: false, errorCode: "consumed", error: "Este codigo de descuento ya ha sido utilizado" };
     }
 
     if (!discountCode.isActive) {
-      return { valid: false, error: "Este codigo de descuento no esta activo" };
+      return { valid: false, errorCode: "inactive", error: "Este codigo de descuento no esta activo" };
     }
 
     return {
@@ -118,5 +133,5 @@ export async function validatePromoCode(code: string): Promise<PromoValidationRe
     });
   }
 
-  return { valid: false, error: "Codigo no valido" };
+  return { valid: false, errorCode: "not_found", error: "Codigo no valido" };
 }

@@ -624,6 +624,11 @@ export const de: Translations = {
     discount: "Rabatt",
     applied: "Angewendet",
     apply: "Anwenden",
+    notFound: "Diesen Code gibt es nicht — Schreibweise prüfen",
+    expired: "Dieser Code ist abgelaufen",
+    consumed: "Dieser Code wurde bereits eingelöst",
+    cancelled: "Dieser Code wurde storniert",
+    inactive: "Dieser Code ist noch nicht aktiv",
   },
   giftCards: {
     title: "Geschenkkarten",

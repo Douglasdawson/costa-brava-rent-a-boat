@@ -618,6 +618,11 @@ export const ru: Translations = {
     discount: "Скидка",
     applied: "Применено",
     apply: "Применить",
+    notFound: "Такого кода нет — проверьте написание",
+    expired: "Срок действия кода истёк",
+    consumed: "Этот код уже использован",
+    cancelled: "Этот код отменён",
+    inactive: "Этот код пока не активен",
   },
   giftCards: {
     title: "Подарочные карты",

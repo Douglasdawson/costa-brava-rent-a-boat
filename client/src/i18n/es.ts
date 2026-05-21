@@ -153,7 +153,8 @@ export const es: Translations = {
     },
     exploreMore: "Explora nuestros servicios",
     exploreLinks: {
-      licenseFree: "Barcos sin licencia",
+      // GSC 2026-05-21: anchor diversificado a long-tail "sin carnet" + "Blanes"
+      licenseFree: "Barcos sin licencia ni carnet en Blanes",
       licensed: "Barcos con licencia",
       pricing: "Precios y tarifas",
       costaBrava: "Alquiler barcos Costa Brava",
@@ -652,6 +653,11 @@ export const es: Translations = {
     discount: "Descuento",
     applied: "Aplicado",
     apply: "Aplicar",
+    notFound: "Este código no existe — revisa que esté bien escrito",
+    expired: "Este código ha caducado",
+    consumed: "Este código ya se usó",
+    cancelled: "Este código fue cancelado",
+    inactive: "Este código aún no está activo",
   },
   giftCards: {
     title: "Tarjetas Regalo",
@@ -2105,6 +2111,55 @@ export const es: Translations = {
     faqGroupSizeQuestion: "Cuánta gente cabe en un barco sin licencia?",
     faqGroupSizeAnswer:
       "Nuestros 5 barcos sin licencia tienen capacidad entre 4 y 7 personas (adultos y niños cuentan igual). Solar 450 y Astec 400 son ideales para parejas o familias pequeñas (4-5 personas). Astec 480 y Mingolla Brava 19 son los más grandes (6-7 personas) — pensados para familias amplias o grupos de amigos. El precio es por barco, no por persona, así que cuanta más gente, más económico sale por cabeza.",
+    // Section: HowTo (added 2026-05-21 to rescue ranking drop pos 13→18).
+    // Long-tail "cómo alquilar barco sin licencia" + HowTo rich result.
+    howToTitle: "Cómo alquilar un barco sin licencia en Blanes (5 pasos)",
+    howToIntro:
+      "Alquilar un barco sin licencia en el Puerto de Blanes es más sencillo de lo que parece. Estos son los 5 pasos del proceso, desde la reserva hasta la devolución, para que sepas exactamente qué esperar el día de tu salida.",
+    howToStep1Title: "1. Elige tu barco y horario",
+    howToStep1Text:
+      "Consulta nuestra flota sin licencia (Solar 450, Remus 450, Astec 400, Astec 480 y Mingolla Brava 19) y elige el barco que mejor encaja con tu grupo. Reserva por WhatsApp (+34 611 500 372) o desde la web indicando fecha, hora y número de personas. Confirmamos disponibilidad en minutos.",
+    howToStep2Title: "2. Llega al Puerto de Blanes 30 min antes",
+    howToStep2Text:
+      "Nuestra base está en el Puerto de Blanes (Girona), accesible en coche desde Barcelona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Parking gratuito en la zona portuaria. Trae el DNI o pasaporte del conductor (mayor de 18 años) y la fianza de 300€ (tarjeta o efectivo, se devuelve íntegra).",
+    howToStep3Title: "3. Briefing de seguridad (15 minutos)",
+    howToStep3Text:
+      "Antes de zarpar, nuestro equipo local te enseña a manejar el barco en el puerto: arrancar y parar el motor, maniobrar a baja velocidad, fondear en cala, usar la radio VHF y volver al amarre. Resolvemos todas tus dudas. No necesitas experiencia previa — el briefing está pensado para principiantes.",
+    howToStep4Title: "4. Navega por las calas de la Costa Brava",
+    howToStep4Text:
+      "Sales del Puerto de Blanes con gasolina incluida y rumbo libre dentro del límite de 2 millas náuticas. Las calas más populares: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina y Sa Boadella, hasta Playa de Fenals (Lloret de Mar). Fondea donde quieras, baña, haz snorkel y vuelve a tu ritmo.",
+    howToStep5Title: "5. Devuelve el barco y recoge tu fianza",
+    howToStep5Text:
+      "Regresa al Puerto de Blanes a la hora pactada. Nuestro equipo revisa el barco (5 min) y, si todo está correcto, te devolvemos la fianza de 300€ al instante. Sin trámites, sin comisiones extra. El precio que reservaste es el precio final.",
+    howToDurationLabel: "Duración del proceso",
+    howToDurationValue: "Reserva 5 min · briefing 15 min · navegación libre",
+    howToCostLabel: "Coste desde",
+    howToCostValue: "70€/h con gasolina incluida",
+    // Section: vs marketplaces (added 2026-05-21).
+    // Responde al ALERT-2026-04-24-A: marketplaces bajaron precio floor 80€→55€/día.
+    // Framing positivo, sin nombrar competidores. Defiende el snippet de precio.
+    vsMarketplacesTitle: "Por qué alquilar directo en Blanes en lugar de un marketplace",
+    vsMarketplacesIntro:
+      "Algunos marketplaces anuncian barcos sin licencia en la Costa Brava desde 55€/día. Suena barato, pero el precio que ves no es el precio que pagas. Esto es lo que cambia cuando reservas directamente con nosotros frente a una plataforma intermediaria.",
+    vsMarketplacesCol1: "Reservando aquí (directo)",
+    vsMarketplacesCol2: "Marketplaces intermediarios",
+    vsMarketplacesRow1Label: "Gasolina",
+    vsMarketplacesRow1Direct: "Incluida en el precio",
+    vsMarketplacesRow1Market: "Aparte (suele añadir 25-50€)",
+    vsMarketplacesRow2Label: "Comisión de plataforma",
+    vsMarketplacesRow2Direct: "0€ — pagas al armador",
+    vsMarketplacesRow2Market: "5-15% sobre el total",
+    vsMarketplacesRow3Label: "Briefing de seguridad",
+    vsMarketplacesRow3Direct: "Equipo local en 8 idiomas (es/en/fr/de/ca/nl/it/ru)",
+    vsMarketplacesRow3Market: "Variable según armador, normalmente solo español",
+    vsMarketplacesRow4Label: "Soporte el día de la salida",
+    vsMarketplacesRow4Direct: "WhatsApp directo con el equipo en puerto",
+    vsMarketplacesRow4Market: "Soporte por email del marketplace, no del armador",
+    vsMarketplacesRow5Label: "Cancelación",
+    vsMarketplacesRow5Direct: "Flexible hasta 48h antes",
+    vsMarketplacesRow5Market: "Política del marketplace + tarifa del armador",
+    vsMarketplacesConclusion:
+      "El precio final con marketplace suele ser un 20-35% mayor que el anunciado una vez sumas gasolina, comisión y extras. Nuestros 70€/h incluyen ya todo: gasolina, equipamiento, briefing, seguro de responsabilidad civil y soporte en puerto.",
   },
   categoryLicensed: {
     heroTitle: "Barcos Con Licencia en Blanes",

@@ -622,6 +622,11 @@ export const nl: Translations = {
     discount: "Korting",
     applied: "Toegepast",
     apply: "Toepassen",
+    notFound: "Deze code bestaat niet — controleer de spelling",
+    expired: "Deze code is verlopen",
+    consumed: "Deze code is al gebruikt",
+    cancelled: "Deze code is geannuleerd",
+    inactive: "Deze code is nog niet actief",
   },
   giftCards: {
     title: "Cadeaukaarten",

@@ -623,6 +623,11 @@ export const it: Translations = {
     discount: "Sconto",
     applied: "Applicato",
     apply: "Applica",
+    notFound: "Questo codice non esiste — controlla la scrittura",
+    expired: "Questo codice è scaduto",
+    consumed: "Questo codice è già stato usato",
+    cancelled: "Questo codice è stato annullato",
+    inactive: "Questo codice non è ancora attivo",
   },
   giftCards: {
     title: "Carte Regalo",

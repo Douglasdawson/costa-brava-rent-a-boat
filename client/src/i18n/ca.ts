@@ -624,6 +624,11 @@ export const ca: Translations = {
     discount: "Descompte",
     applied: "Aplicat",
     apply: "Aplicar",
+    notFound: "Aquest codi no existeix — revisa que estigui ben escrit",
+    expired: "Aquest codi ha caducat",
+    consumed: "Aquest codi ja s'ha utilitzat",
+    cancelled: "Aquest codi va ser cancel·lat",
+    inactive: "Aquest codi encara no està actiu",
   },
   giftCards: {
     title: "Targetes Regal",

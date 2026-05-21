@@ -743,7 +743,7 @@ function Step3Departure({
             </span>
           )}
         </div>
-        <div className="space-y-2">
+        <div className="grid grid-cols-2 gap-2">
           {(() => {
             const enabledWithPrice = durationOptions.filter(o => !o.disabled && o.price);
             // Best-value badge only in true low season (Apr, May, Jun 1-15, Sep, Oct).
@@ -768,6 +768,15 @@ function Step3Departure({
               const hasPrice = parts.length > 1 && lastPart.includes('€');
               const labelText = hasPrice ? parts.slice(0, -1).join(' · ') : opt.label;
               const priceText = hasPrice ? lastPart : null;
+              // Split "4 horas · Media día" into headline + descriptor (same
+              // approach as desktop, commit c5c9888) so the headline + price
+              // stay on a single line in the narrower 2-col cards.
+              const labelSegments = labelText.split(' · ');
+              const durationLabel = labelSegments[0];
+              const descriptor = labelSegments.length > 1 ? labelSegments.slice(1).join(' · ') : null;
+              const isPopular = opt.value === "4h" && !isDisabled;
+              const isBestValue = opt.value === bestValueId;
+              const hasBadge = isPopular || isBestValue;
               return (
                 <button
                   key={opt.value}
@@ -775,7 +784,7 @@ function Step3Departure({
                   disabled={isDisabled}
                   onClick={() => !isDisabled && onDurationSelectFromUser(opt.value)}
                   title={isSeasonRestricted ? opt.disabledReason : undefined}
-                  className={`w-full flex items-center justify-between p-3 rounded-xl border-2 text-left transition-all ${
+                  className={`relative flex flex-col p-3 rounded-xl border-2 text-left transition-all min-h-[88px] ${
                     isDisabled
                       ? "border-border bg-muted opacity-50 cursor-not-allowed"
                       : selectedDuration === opt.value
@@ -783,28 +792,41 @@ function Step3Departure({
                       : "border-border bg-background"
                   }`}
                 >
-                  <span className="flex flex-col">
-                    <span className="flex items-center gap-2">
-                      <span className={`text-sm font-medium ${isDisabled ? "text-muted-foreground line-through" : "text-foreground"}`}>{labelText}</span>
-                      {opt.value === "4h" && !isDisabled && (
-                        <span aria-hidden="true" className="text-xs font-medium text-muted-foreground">{t.wizard.mostPopular}</span>
-                      )}
-                      {opt.value === bestValueId && (
-                        <span aria-hidden="true" className="text-xs font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full">
-                          {t.neuro?.bestValue || 'Mejor valor'}
-                        </span>
-                      )}
+                  {isBestValue && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-1.5 right-2 text-[10px] font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full"
+                    >
+                      {t.neuro?.bestValue || 'Mejor valor'}
                     </span>
-                    {opt.price && !isDisabled && (
-                      <span className="text-xs text-muted-foreground block">
-                        {(opt.price / parseFloat(opt.value)).toFixed(0)}€{t.neuro?.perHour || '/hora'} · {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}€/{t.boats?.perPerson || 'pers.'}
-                      </span>
+                  )}
+                  {isPopular && !isBestValue && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-1.5 right-2 text-[10px] font-medium text-muted-foreground"
+                    >
+                      {t.wizard.mostPopular}
+                    </span>
+                  )}
+                  <div className={`flex items-baseline gap-2 ${hasBadge ? "mt-3" : ""}`}>
+                    <span className={`text-sm font-semibold ${isDisabled ? "text-muted-foreground line-through" : "text-foreground"}`}>
+                      {durationLabel}
+                    </span>
+                    {!isDisabled && priceText && (
+                      <span className="text-sm font-bold text-primary">{priceText}</span>
                     )}
-                  </span>
+                  </div>
+                  {descriptor && !isDisabled && (
+                    <span className="text-xs text-muted-foreground -mt-0.5">{descriptor}</span>
+                  )}
                   {isDisabled ? (
-                    <span className="text-xs text-popular font-medium">{opt.disabledReason || t.boats.notAvailable}</span>
-                  ) : priceText ? (
-                    <span className="text-xs font-bold text-primary">{priceText}</span>
+                    <span className="text-[11px] text-popular font-medium mt-1 block">
+                      {opt.disabledReason || t.boats.notAvailable}
+                    </span>
+                  ) : opt.price ? (
+                    <span className="text-[11px] text-muted-foreground mt-1 block">
+                      {(opt.price / parseFloat(opt.value)).toFixed(0)}€{t.neuro?.perHour || '/hora'} · {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}€/{t.boats?.perPerson || 'pers.'}
+                    </span>
                   ) : null}
                 </button>
               );

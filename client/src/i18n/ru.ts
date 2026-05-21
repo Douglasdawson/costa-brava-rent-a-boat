@@ -790,11 +790,18 @@ export const ru: Translations = {
     },
   },
   validation: {
-    required: "Это поле обязательно",
-    invalidEmail: "Неверный email",
-    invalidPhone: "Только цифры",
+    required: "Не хватает данных",
+    invalidEmail: "Проверьте email — нет @ или .com",
+    invalidPhone: "Только цифры, без пробелов и дефисов",
     futureDate: "Выберите будущую дату",
     minPeople: "Минимум 1 человек",
+    addName: "Укажите имя",
+    addPhone: "Укажите телефон",
+    pickDate: "Выберите дату",
+    pickTime: "Выберите время",
+    pickDuration: "Выберите длительность",
+    pickBoat: "Выберите лодку",
+    addPeople: "Сколько вас будет?",
   },
   reviews: {
     opinions: "отзывов",
@@ -1306,6 +1313,7 @@ export const ru: Translations = {
 
   confirmation: {
     title: "Запрос на бронирование успешно отправлен",
+    responseTime: "Отвечаем в WhatsApp за 2 часа",
     summary: "Сводка бронирования",
     checklist: "Что взять с собой",
     checklistItems: [
@@ -1477,6 +1485,7 @@ export const ru: Translations = {
     freeCancellation: "Бесплатное изменение даты",
     securePayment: "Безопасное бронирование",
     insuranceIncluded: "Страховка включена",
+    replyTime: "Отвечаем в WhatsApp за 2 часа",
   },
   returnVisitor: {
     welcomeBack: "С возвращением",

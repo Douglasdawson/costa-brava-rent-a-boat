@@ -795,11 +795,18 @@ export const ca: Translations = {
     },
   },
   validation: {
-    required: "Aquest camp és obligatori",
-    invalidEmail: "Email no vàlid",
-    invalidPhone: "Només números",
+    required: "Falta aquesta dada",
+    invalidEmail: "Revisa l'email — falta l'@ o el .com",
+    invalidPhone: "Només números, sense espais ni guions",
     futureDate: "Selecciona una data futura",
     minPeople: "Mínim 1 persona",
+    addName: "Afegeix el teu nom",
+    addPhone: "Afegeix el teu telèfon",
+    pickDate: "Tria una data",
+    pickTime: "Tria una hora",
+    pickDuration: "Tria quant de temps",
+    pickBoat: "Tria un vaixell",
+    addPeople: "Quants sou?",
   },
   reviews: {
     opinions: "opinions",
@@ -1315,6 +1322,7 @@ export const ca: Translations = {
 
   confirmation: {
     title: "Reserva enviada amb èxit",
+    responseTime: "Responem en menys de 2h per WhatsApp",
     summary: "Resum de la teva reserva",
     checklist: "Què portar",
     checklistItems: [
@@ -1485,6 +1493,7 @@ export const ca: Translations = {
     freeCancellation: "Canvi de data gratuït",
     securePayment: "Reserva segura",
     insuranceIncluded: "Assegurança inclosa",
+    replyTime: "Responem en <2h per WhatsApp",
   },
   returnVisitor: {
     welcomeBack: "Benvingut de nou",

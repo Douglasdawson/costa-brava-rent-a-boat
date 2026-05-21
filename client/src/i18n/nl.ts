@@ -794,11 +794,18 @@ export const nl: Translations = {
     },
   },
   validation: {
-    required: "Dit veld is verplicht",
-    invalidEmail: "Ongeldig e-mailadres",
-    invalidPhone: "Alleen cijfers",
+    required: "Dit ontbreekt nog",
+    invalidEmail: "Controleer het e-mailadres — @ of .com ontbreekt",
+    invalidPhone: "Alleen cijfers, zonder spaties of streepjes",
     futureDate: "Selecteer een toekomstige datum",
     minPeople: "Minimaal 1 persoon",
+    addName: "Voeg je naam toe",
+    addPhone: "Voeg je telefoonnummer toe",
+    pickDate: "Kies een datum",
+    pickTime: "Kies een tijd",
+    pickDuration: "Kies hoe lang",
+    pickBoat: "Kies een boot",
+    addPeople: "Met hoeveel?",
   },
   reviews: {
     opinions: "beoordelingen",
@@ -1313,6 +1320,7 @@ export const nl: Translations = {
 
   confirmation: {
     title: "Boekingsverzoek succesvol verzonden",
+    responseTime: "We reageren binnen 2 uur op WhatsApp",
     summary: "Uw boekingsoverzicht",
     checklist: "Wat meenemen",
     checklistItems: [
@@ -1485,6 +1493,7 @@ export const nl: Translations = {
     freeCancellation: "Gratis datumwijziging",
     securePayment: "Veilige boeking",
     insuranceIncluded: "Verzekering inbegrepen",
+    replyTime: "We reageren binnen 2 uur op WhatsApp",
   },
   returnVisitor: {
     welcomeBack: "Welkom terug",

@@ -1132,39 +1132,43 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
 
   // Inline validation (using shared validators from booking-validation.ts)
   const getFieldError = (field: string): string => {
+    // P2.11: prefer the context-aware "addName / pickDate / …" copy when the
+    // key exists in the locale; fall back to the generic `required` so other
+    // forms keep working and new translations have a runway.
+    const v = t.validation;
     switch (field) {
       case 'firstName':
         // P0.6 (2026-05-19): the form now uses a single "full name" input.
         // The first word lands in firstName, the rest in lastName. We only
         // require firstName here; lastName is accepted as "" for one-word names.
-        return validateRequired(firstName) ? t.validation.required : '';
+        return validateRequired(firstName) ? (v.addName ?? v.required) : '';
       case 'email': {
         // Email is optional: only fail validation if the user typed something
         // that isn't a valid address. Empty input is accepted.
         if (!email.trim()) return '';
-        return validateEmail(email) === 'invalid' ? t.validation.invalidEmail : '';
+        return validateEmail(email) === 'invalid' ? v.invalidEmail : '';
       }
       case 'phone': {
         const phoneErr = validatePhone(phoneNumber);
-        if (phoneErr === 'required') return t.validation.required;
-        if (phoneErr === 'invalid') return t.validation.invalidPhone;
+        if (phoneErr === 'required') return v.addPhone ?? v.required;
+        if (phoneErr === 'invalid') return v.invalidPhone;
         return '';
       }
       case 'date': {
         const dateErr = validateBookingDate(selectedDate, getLocalISODate());
-        if (dateErr === 'required') return t.validation.required;
-        if (dateErr === 'past') return t.validation.futureDate;
+        if (dateErr === 'required') return v.pickDate ?? v.required;
+        if (dateErr === 'past') return v.futureDate;
         return '';
       }
       case 'time':
-        return !preferredTime ? t.validation.required : '';
+        return !preferredTime ? (v.pickTime ?? v.required) : '';
       case 'duration':
-        return !selectedDuration ? t.validation.required : '';
+        return !selectedDuration ? (v.pickDuration ?? v.required) : '';
       case 'boat':
-        return !selectedBoat ? t.validation.required : '';
+        return !selectedBoat ? (v.pickBoat ?? v.required) : '';
       case 'people':
-        if (!numberOfPeople) return t.validation.required;
-        if (parseInt(numberOfPeople) < 1) return t.validation.minPeople;
+        if (!numberOfPeople) return v.addPeople ?? v.required;
+        if (parseInt(numberOfPeople) < 1) return v.minPeople;
         return '';
       default:
         return '';

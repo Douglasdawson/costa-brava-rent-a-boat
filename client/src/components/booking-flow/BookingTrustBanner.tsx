@@ -1,4 +1,4 @@
-import { CheckCircle, Star, MapPin, Users } from "lucide-react";
+import { CheckCircle, Clock, Star, MapPin, Users } from "lucide-react";
 import type { Translations } from "@/lib/translations";
 
 type TrustStage = "browse" | "step1" | "step2" | "step3";
@@ -47,8 +47,8 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
           {t.bookingTrust?.securePayment || "Secure booking"}
         </span>
         <span className="inline-flex items-center gap-1">
-          <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
-          {t.bookingTrust?.insuranceIncluded || "Insurance included"}
+          <Clock className="w-3.5 h-3.5 flex-shrink-0" />
+          {t.bookingTrust?.replyTime || "Reply in <2h on WhatsApp"}
         </span>
       </div>
     );
@@ -62,8 +62,8 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
           {t.bookingTrust?.freeCancellation || "Free date change"}
         </span>
         <span className="inline-flex items-center gap-1">
-          <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
-          {t.bookingTrust?.securePayment || "Secure booking"}
+          <Clock className="w-3.5 h-3.5 flex-shrink-0" />
+          {t.bookingTrust?.replyTime || "Reply in <2h on WhatsApp"}
         </span>
         <span className="inline-flex items-center gap-1">
           <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />

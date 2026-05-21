@@ -797,11 +797,18 @@ export const de: Translations = {
     },
   },
   validation: {
-    required: "Dieses Feld ist erforderlich",
-    invalidEmail: "Ungültige E-Mail",
-    invalidPhone: "Nur Zahlen",
+    required: "Hier fehlt etwas",
+    invalidEmail: "Prüfe die E-Mail — @ oder .com fehlt",
+    invalidPhone: "Nur Zahlen, ohne Leerzeichen oder Bindestriche",
     futureDate: "Wählen Sie ein zukünftiges Datum",
     minPeople: "Mindestens 1 Person",
+    addName: "Trag deinen Namen ein",
+    addPhone: "Trag deine Telefonnummer ein",
+    pickDate: "Wähle ein Datum",
+    pickTime: "Wähle eine Uhrzeit",
+    pickDuration: "Wie lange möchtest du fahren?",
+    pickBoat: "Wähle ein Boot",
+    addPeople: "Wie viele seid ihr?",
   },
   reviews: {
     opinions: "Bewertungen",
@@ -1319,6 +1326,7 @@ export const de: Translations = {
 
   confirmation: {
     title: "Buchungsanfrage erfolgreich gesendet",
+    responseTime: "Wir antworten innerhalb von 2 Std. per WhatsApp",
     summary: "Ihre Buchungsübersicht",
     checklist: "Was mitnehmen",
     checklistItems: [
@@ -1491,6 +1499,7 @@ export const de: Translations = {
     freeCancellation: "Kostenlose Umbuchung",
     securePayment: "Sichere Buchung",
     insuranceIncluded: "Versicherung inklusive",
+    replyTime: "Antwort innerhalb von 2 Std. per WhatsApp",
   },
   returnVisitor: {
     welcomeBack: "Willkommen zurück",

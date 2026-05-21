@@ -130,6 +130,12 @@ export function BookingConfirmation({
           <h2 className="text-xl font-display font-bold text-foreground">
             {ct.title}
           </h2>
+          {ct.responseTime && (
+            <p className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-success">
+              <Clock className="w-4 h-4" aria-hidden="true" />
+              {ct.responseTime}
+            </p>
+          )}
         </div>
 
         {/* Booking summary */}

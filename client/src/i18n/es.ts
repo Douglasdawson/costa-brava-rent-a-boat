@@ -834,11 +834,18 @@ export const es: Translations = {
     },
   },
   validation: {
-    required: "Este campo es obligatorio",
-    invalidEmail: "Email no válido",
-    invalidPhone: "Solo números",
+    required: "Falta este dato",
+    invalidEmail: "Revisa el email — falta el @ o el .com",
+    invalidPhone: "Solo números, sin espacios ni guiones",
     futureDate: "Selecciona una fecha futura",
     minPeople: "Mínimo 1 persona",
+    addName: "Añade tu nombre",
+    addPhone: "Añade tu teléfono",
+    pickDate: "Elige una fecha",
+    pickTime: "Elige una hora",
+    pickDuration: "Elige cuánto tiempo",
+    pickBoat: "Elige un barco",
+    addPeople: "¿Cuántos sois?",
   },
   reviews: {
     opinions: "opiniones",
@@ -2374,6 +2381,7 @@ export const es: Translations = {
     freeCancellation: "Cambio de fecha gratis",
     securePayment: "Reserva segura",
     insuranceIncluded: "Seguro incluido",
+    replyTime: "Respondemos en <2h por WhatsApp",
   },
 
   faqPreview: {
@@ -2558,6 +2566,7 @@ export const es: Translations = {
 
   confirmation: {
     title: "Reserva enviada con éxito",
+    responseTime: "Respondemos en menos de 2h por WhatsApp",
     summary: "Resumen de tu reserva",
     checklist: "Qué llevar",
     checklistItems: [

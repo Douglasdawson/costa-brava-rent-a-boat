@@ -924,6 +924,16 @@ export interface Translations {
     invalidPhone: string;
     futureDate: string;
     minPeople: string;
+    /** P2.11: context-aware "required" messages — more actionable than the
+     *  generic "Campo obligatorio". The wizard prefers these; other forms
+     *  may keep using `required`. */
+    addName?: string;
+    addPhone?: string;
+    pickDate?: string;
+    pickTime?: string;
+    pickDuration?: string;
+    pickBoat?: string;
+    addPeople?: string;
   };
 
   // Reviews Section
@@ -1828,6 +1838,8 @@ export interface Translations {
     freeCancellation: string;
     securePayment: string;
     insuranceIncluded: string;
+    /** P2.1: SLA reassurance pill shown across the wizard stages. */
+    replyTime?: string;
   };
 
   // Hold Countdown (booking form urgency timer)
@@ -1879,6 +1891,8 @@ export interface Translations {
   // Booking Confirmation (post-booking peak-end experience)
   confirmation?: {
     title: string;
+    /** P2.5: prominent SLA reassurance right under the success title. */
+    responseTime?: string;
     summary: string;
     checklist: string;
     checklistItems: string[];

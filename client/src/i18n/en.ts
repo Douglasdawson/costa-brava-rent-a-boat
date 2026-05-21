@@ -790,11 +790,18 @@ export const en: Translations = {
     },
   },
   validation: {
-    required: "This field is required",
-    invalidEmail: "Invalid email",
-    invalidPhone: "Numbers only",
+    required: "Missing detail",
+    invalidEmail: "Check the email — missing @ or .com",
+    invalidPhone: "Numbers only, no spaces or dashes",
     futureDate: "Select a future date",
     minPeople: "Minimum 1 person",
+    addName: "Add your name",
+    addPhone: "Add your phone",
+    pickDate: "Pick a date",
+    pickTime: "Pick a time",
+    pickDuration: "Pick how long",
+    pickBoat: "Pick a boat",
+    addPeople: "How many of you?",
   },
   reviews: {
     opinions: "reviews",
@@ -1376,6 +1383,7 @@ export const en: Translations = {
 
   confirmation: {
     title: "Booking request sent successfully",
+    responseTime: "We reply within 2 hours on WhatsApp",
     summary: "Your booking summary",
     checklist: "What to bring",
     checklistItems: [
@@ -1546,6 +1554,7 @@ export const en: Translations = {
     freeCancellation: "Free date change",
     securePayment: "Secure booking",
     insuranceIncluded: "Insurance included",
+    replyTime: "We reply within 2h on WhatsApp",
   },
   returnVisitor: {
     welcomeBack: "Welcome back",

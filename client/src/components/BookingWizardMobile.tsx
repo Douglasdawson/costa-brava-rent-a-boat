@@ -641,8 +641,9 @@ function BoatCardMobile({
           </p>
         )}
       </div>
-      <span className="text-xs text-muted-foreground flex-shrink-0">
-        {boat.capacity} pers.
+      <span className="flex-shrink-0 inline-flex items-center gap-1 text-sm text-foreground">
+        <Users className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+        {boat.capacity}
       </span>
     </button>
   );
@@ -664,6 +665,7 @@ function Step3Departure({
   timeSlots,
   unavailableTimeSlots,
   selectedTimeMaxDuration,
+  isAvailabilityLoading,
   showFieldError, getFieldError, handleBlur,
   t,
 }: BookingWizardMobileProps) {
@@ -691,8 +693,17 @@ function Step3Departure({
         </p>
       </div>
       <div id="field-time">
-        <label htmlFor="wizard-time" className="block text-sm font-semibold text-muted-foreground mb-2">
-          {t.wizard.departureTime}
+        <label htmlFor="wizard-time" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground mb-2">
+          <span>{t.wizard.departureTime}</span>
+          {isAvailabilityLoading && (
+            <span
+              aria-hidden="true"
+              className="inline-flex items-center gap-1 text-xs font-normal opacity-70"
+            >
+              <Loader2 className="w-3 h-3 animate-spin" />
+              {t.bookingWizard?.slotConflict?.checking ?? "Comprobando disponibilidad…"}
+            </span>
+          )}
         </label>
         <select
           id="wizard-time"
@@ -700,6 +711,7 @@ function Step3Departure({
           onChange={(e) => onTimeSelectFromUser(e.target.value)}
           onBlur={() => handleBlur('time')}
           aria-required="true"
+          aria-busy={isAvailabilityLoading ? "true" : "false"}
           aria-invalid={showFieldError('time') ? "true" : "false"}
           aria-describedby={showFieldError('time') ? "error-wizard-time" : undefined}
           className={`w-full p-3 border-2 rounded-xl text-foreground font-medium text-base focus:ring-2 focus:ring-primary focus:outline-none bg-background ${

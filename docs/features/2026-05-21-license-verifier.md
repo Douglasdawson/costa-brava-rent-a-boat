@@ -1,7 +1,7 @@
 # Verificador de licencia náutica
 
 **Fecha**: 21 de mayo de 2026
-**Estado**: TIER 1 + TIER 2 entregados. TIER 3 pendiente.
+**Estado**: TIER 1 + TIER 2 entregados. TIER 3 #1 (service worker) entregado el mismo día. Resto de TIER 3 pendiente.
 **Owner técnico**: equipo CTO
 
 ## Por qué existe
@@ -152,18 +152,24 @@ Aplica solo en el primer mount del panel cuando `state.country === ""`. Respeta 
 - Pill buttons (rounded-full) para CTAs primarios.
 - Clash Display reservada para hero — el panel usa Archivo (body font) intencionalmente.
 
-## TIER 3 — pendiente
+## TIER 3 — estado
 
-Tareas para sesión futura, ordenadas por valor:
-
-1. **Service worker (Workbox)** — `workbox` ya está en `package.json` pero sin configuración. El verificador funciona offline al 100% (toda la lógica es client-side); falta cachear el chunk lazy para que abra sin red.
+1. ✅ **Service worker (Workbox)** — configurado el 2026-05-21 via `vite-plugin-pwa@1.2.0` en `vite.config.ts`.
+   - `registerType: "autoUpdate"`, `injectRegister: "auto"` → inyecta `<script src="/registerSW.js">` en `index.html` automáticamente.
+   - Precache: `**/*.{js,css,html,woff2}` + `assets/**/*.{avif,webp,svg}` (116 entries, ~5.6 MiB) — incluye el chunk lazy `LicenseVerifierPanel-*.js`, por lo que el panel abre offline después de la primera visita.
+   - `navigateFallback: "/index.html"` con denylist explícita para `/api/`, `/admin/`, `/assets/`, sitemaps, feed, robots, well-known y `llms*.txt` — el SPA fallback nunca hijackea endpoints server-side.
+   - Runtime caching `CacheFirst` SOLO para `/fonts/*` (1 año, 16 entries) y `/images/*` + `/og-image.webp` (30 días, 80 entries). **Nada de `/api/*`** — decisión deliberada: el modelo de inquiries necesita red garantizada y los GET de precios/disponibilidad no deben servirse stale.
+   - `cleanupOutdatedCaches`, `skipWaiting`, `clientsClaim` → updates aplican sin requerir refresh manual.
+   - `maximumFileSizeToCacheInBytes: 4 MB` (vendor-charts ≈ 386 kb está por debajo).
+   - `manifest: false` + `includeManifestIcons: false` → respetamos nuestro `client/public/manifest.json` manual (no queremos que el plugin sobreescriba).
+   - Manifest ampliado: `scope`, `lang`, `dir`, `orientation`, `categories`. Iconos maskable 192/512 quedan pendientes de generación limpia.
+   - `devOptions.enabled: false` → el SW no se registra en `npm run dev` para evitar conflictos con HMR.
 2. **Standalone PWA detection** — `window.matchMedia('(display-mode: standalone)')` para ajustar UI cuando la app está instalada.
 3. **Offline awareness** — si `navigator.onLine === false`, el botón WhatsApp debería decir "Abriremos la app cuando vuelvas online" (o usar `wa.me` que abre la app nativa offline-friendly).
 4. **Geo-IP defaults** — endpoint `/api/geo` que devuelva el país por IP, sobre-sobreescribe el language default si difiere.
 5. **Bandera SVG override en Windows** — emoji flags se ven como acrónimos en Windows. Usar `country-flag-icons` solo en `navigator.userAgent.includes('Windows')`.
 6. **Arrow keys + Escape en country list** — accesibilidad: ArrowUp/Down navega items, Escape cierra el Sheet.
-
-Service worker es el más grande y merece su propia sesión.
+7. **Iconos PWA 192/512 maskable** — generar desde el logo cuando tengamos el PNG fuente limpio. El manifest los referenciará entonces.
 
 ## Commits relevantes
 

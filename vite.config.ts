@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import compression from "vite-plugin-compression";
+import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
   plugins: [
@@ -21,6 +22,93 @@ export default defineConfig({
       algorithm: "brotliCompress",
       ext: ".br",
       threshold: 1024,
+    }),
+    // Service worker (Workbox via vite-plugin-pwa).
+    //
+    // Strategy: precache the app shell + hashed chunks so the license verifier
+    // (and the rest of the SPA) abre offline. Runtime caching SOLO para
+    // assets estáticos pesados (fonts, imágenes). El API queda explícitamente
+    // fuera — el modelo de inquiries necesita red garantizada y los GET de
+    // precios/disponibilidad no deben servirse stale.
+    VitePWA({
+      registerType: "autoUpdate",
+      injectRegister: "auto",
+      // Don't touch our manifest at /manifest.json — we maintain it manually.
+      manifest: false,
+      // Honor existing index.html link rel="manifest".
+      includeManifestIcons: false,
+      workbox: {
+        globDirectory: "dist/public",
+        globPatterns: [
+          "**/*.{js,css,html,woff2}",
+          "assets/**/*.{avif,webp,svg}",
+        ],
+        // Exclude server-injected HTML, sourcemaps, and the manifest itself
+        // (manifest is served with no-cache so updates land immediately).
+        globIgnores: [
+          "**/sw.js",
+          "**/registerSW.js",
+          "**/workbox-*.js",
+          "manifest.json",
+          "**/*.map",
+        ],
+        // SPA fallback for offline navigation — but never hijack API, admin
+        // sessions, sitemap, feed, or hashed assets.
+        navigateFallback: "/index.html",
+        navigateFallbackDenylist: [
+          /^\/api\//,
+          /^\/admin\//,
+          /^\/assets\//,
+          /^\/sitemap.*\.xml$/,
+          /^\/feed\.xml$/,
+          /^\/robots\.txt$/,
+          /^\/\.well-known\//,
+          /^\/llms.*\.txt$/,
+        ],
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true,
+        // 4 MB — our largest chunk (vendor-charts) is below this; raises the
+        // default 2 MB cap so precache doesn't silently drop big chunks.
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+        runtimeCaching: [
+          {
+            // Self-hosted fonts (Clash Display + Archivo).
+            urlPattern: ({ url, sameOrigin }) =>
+              sameOrigin && url.pathname.startsWith("/fonts/"),
+            handler: "CacheFirst",
+            options: {
+              cacheName: "fonts",
+              expiration: {
+                maxEntries: 16,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            // Static images under /images and unhashed assets.
+            urlPattern: ({ url, request, sameOrigin }) =>
+              sameOrigin &&
+              request.destination === "image" &&
+              (url.pathname.startsWith("/images/") ||
+                url.pathname === "/og-image.webp"),
+            handler: "CacheFirst",
+            options: {
+              cacheName: "images",
+              expiration: {
+                maxEntries: 80,
+                maxAgeSeconds: 60 * 60 * 24 * 30,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
+      },
+      // Don't register the SW in dev — avoids confusing HMR + stale chunks.
+      devOptions: {
+        enabled: false,
+      },
     }),
   ],
   resolve: {

@@ -14,8 +14,8 @@
 // RULE: never hardcode rating/review count outside this file.
 
 export const BUSINESS_RATING = 4.8;
-export const BUSINESS_REVIEW_COUNT = 310;
-export const BUSINESS_RATING_LAST_UPDATED = "2026-04-22";
+export const BUSINESS_REVIEW_COUNT = 323;
+export const BUSINESS_RATING_LAST_UPDATED = "2026-05-21";
 
 // String variants for JSON-LD schemas that expect string values.
 export const BUSINESS_RATING_STR = BUSINESS_RATING.toFixed(1);

@@ -844,6 +844,7 @@ export const nl: Translations = {
       ctaContinueAnyway: "Toch doorgaan",
       ctaWhatsApp: "Contact via WhatsApp",
       whatsappTemplate: "Hallo, ik heb een vaarbewijs uit {country} en wil graag bevestigen of het geldig is voor verhuur.",
+      offlineHint: "Je bent offline. WhatsApp opent toch en verzendt het bericht zodra je weer online bent.",
       disclaimer: "Indicatieve informatie op basis van Koninklijk Besluit 875/2014. De definitieve toestemming hangt af van de Maritieme Kapitein.",
       disclaimerLink: "Bekijk de regelgeving",
     },

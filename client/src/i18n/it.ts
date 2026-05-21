@@ -847,6 +847,7 @@ export const it: Translations = {
       ctaContinueAnyway: "Continuare comunque",
       ctaWhatsApp: "Contattaci su WhatsApp",
       whatsappTemplate: "Ciao, ho una patente nautica di {country} e vorrei confermare se è valida per noleggiare.",
+      offlineHint: "Sei offline. WhatsApp si aprirà comunque e invierà il messaggio quando tornerai online.",
       disclaimer: "Informazione orientativa basata sul Regio Decreto 875/2014. L'autorizzazione finale dipende dalla Capitaneria di Porto.",
       disclaimerLink: "Vedi la norma",
     },

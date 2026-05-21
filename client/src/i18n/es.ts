@@ -894,6 +894,7 @@ export const es: Translations = {
       ctaContinueAnyway: "Continuar igualmente",
       ctaWhatsApp: "Contactar por WhatsApp",
       whatsappTemplate: "Hola, tengo licencia náutica de {country} y quiero confirmar si sirve para alquilar.",
+      offlineHint: "Sin conexión. WhatsApp se abrirá igualmente y enviará el mensaje cuando vuelvas online.",
       disclaimer: "Información orientativa basada en el Real Decreto 875/2014. La autorización final depende de la Capitanía Marítima.",
       disclaimerLink: "Ver norma",
     },

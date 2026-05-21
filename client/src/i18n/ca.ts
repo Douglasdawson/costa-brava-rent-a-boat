@@ -845,6 +845,7 @@ export const ca: Translations = {
       ctaContinueAnyway: "Continuar igualment",
       ctaWhatsApp: "Contactar per WhatsApp",
       whatsappTemplate: "Hola, tinc llicència nàutica de {country} i vull confirmar si serveix per llogar.",
+      offlineHint: "Sense connexió. WhatsApp s'obrirà igualment i enviarà el missatge quan tornis a estar en línia.",
       disclaimer: "Informació orientativa basada en el Reial Decret 875/2014. L'autorització final depèn de la Capitania Marítima.",
       disclaimerLink: "Veure norma",
     },

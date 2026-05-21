@@ -7,6 +7,7 @@ import {
   Search,
   ChevronDown,
   Loader2,
+  WifiOff,
 } from "lucide-react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
@@ -15,6 +16,7 @@ import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useOnlineStatus } from "@/hooks/useOnlineStatus";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { LICENSE_COUNTRIES, getCountryDisplayName, findCountry } from "@/utils/license-countries";
 import {
@@ -369,6 +371,7 @@ function SummaryView({
   const t = useTranslations();
   const tv = t.bookingWizard?.licenseVerifier;
   const { language } = useLanguage();
+  const online = useOnlineStatus();
 
   const theme = {
     valid: {
@@ -486,14 +489,26 @@ function SummaryView({
       </div>
 
       {s.tone === "negative" && (
-        <button
-          type="button"
-          onClick={handleWhatsApp}
-          className={`flex items-center justify-center gap-2 w-full h-11 rounded-full bg-[#25D366] hover:bg-[#1FB759] text-white text-sm font-semibold active:scale-[0.98] transform-gpu transition-transform ${FOCUS_RING} ${COLOR_TRANSITION}`}
-        >
-          <SiWhatsapp className="w-4 h-4" />
-          {tv?.ctaWhatsApp ?? "Contactar por WhatsApp"}
-        </button>
+        <div className="space-y-2">
+          {!online && (
+            <p
+              role="status"
+              aria-live="polite"
+              className={`flex items-start gap-1.5 text-[12px] leading-snug text-foreground/70 ${FADE_IN_TOP}`}
+            >
+              <WifiOff className="w-3.5 h-3.5 shrink-0 mt-0.5" aria-hidden />
+              <span>{tv?.offlineHint ?? "Sin conexión. WhatsApp se abrirá igualmente y enviará el mensaje cuando vuelvas online."}</span>
+            </p>
+          )}
+          <button
+            type="button"
+            onClick={handleWhatsApp}
+            className={`flex items-center justify-center gap-2 w-full h-11 rounded-full bg-[#25D366] hover:bg-[#1FB759] text-white text-sm font-semibold active:scale-[0.98] transform-gpu transition-transform ${FOCUS_RING} ${COLOR_TRANSITION}`}
+          >
+            <SiWhatsapp className="w-4 h-4" />
+            {tv?.ctaWhatsApp ?? "Contactar por WhatsApp"}
+          </button>
+        </div>
       )}
     </div>
   );

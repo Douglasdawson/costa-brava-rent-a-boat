@@ -852,6 +852,7 @@ export const fr: Translations = {
       ctaContinueAnyway: "Continuer quand même",
       ctaWhatsApp: "Nous contacter sur WhatsApp",
       whatsappTemplate: "Bonjour, j'ai un permis bateau de {country} et j'aimerais confirmer s'il me permet de louer.",
+      offlineHint: "Vous êtes hors ligne. WhatsApp s'ouvrira quand même et enverra le message dès votre retour en ligne.",
       disclaimer: "Information indicative basée sur le Décret royal 875/2014. L'autorisation finale dépend de la Capitainerie maritime.",
       disclaimerLink: "Voir la réglementation",
     },

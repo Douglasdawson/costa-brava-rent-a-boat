@@ -983,6 +983,7 @@ export interface Translations {
       ctaContinueAnyway?: string;
       ctaWhatsApp?: string;
       whatsappTemplate?: string;
+      offlineHint?: string;
       disclaimer?: string;
       disclaimerLink?: string;
     };

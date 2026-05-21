@@ -847,6 +847,7 @@ export const de: Translations = {
       ctaContinueAnyway: "Trotzdem weiter",
       ctaWhatsApp: "Per WhatsApp kontaktieren",
       whatsappTemplate: "Hallo, ich habe einen Bootsführerschein aus {country} und möchte bestätigen, ob er zur Miete reicht.",
+      offlineHint: "Du bist offline. WhatsApp öffnet sich trotzdem und sendet die Nachricht, sobald du wieder online bist.",
       disclaimer: "Orientierende Information nach Königlichem Dekret 875/2014. Die endgültige Genehmigung liegt bei der Hafenmeisterei.",
       disclaimerLink: "Vorschrift ansehen",
     },

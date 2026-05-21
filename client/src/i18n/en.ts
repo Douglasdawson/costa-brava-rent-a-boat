@@ -849,6 +849,7 @@ export const en: Translations = {
       ctaContinueAnyway: "Continue anyway",
       ctaWhatsApp: "Contact us on WhatsApp",
       whatsappTemplate: "Hi, I have a nautical licence from {country} and would like to confirm whether it works for renting.",
+      offlineHint: "You're offline. WhatsApp will still open and send the message once you're back online.",
       disclaimer: "Guidance only, based on Royal Decree 875/2014. Final authorisation depends on the Maritime Captaincy.",
       disclaimerLink: "View the regulation",
     },

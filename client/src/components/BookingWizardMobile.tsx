@@ -182,8 +182,25 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
 
   return (
     <div className="flex flex-col h-full overflow-x-hidden" role="form" aria-label={props.t.a11y.bookingForm}>
-      <div className="sticky top-0 z-10 bg-background px-3 py-1.5 border-b border-border flex items-center gap-2">
-        <div className="flex-1 min-w-0">
+      <div className="sticky top-0 z-10 bg-background border-b border-border">
+        {/* Row 1: close button only — separated from the progress bar so the
+            5th step label can never be visually clipped by the X (WCAG 2.5.5
+            requires a 44×44 target, which is too wide to share a row with
+            5 step labels on a 390px viewport). */}
+        {props.onClose && (
+          <div className="flex justify-end px-2 pt-1.5">
+            <button
+              type="button"
+              onClick={props.onClose}
+              aria-label={props.t.booking.close ?? "Cerrar"}
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-1"
+            >
+              <X className="w-5 h-5" aria-hidden="true" />
+            </button>
+          </div>
+        )}
+        {/* Row 2: progress bar full-width. */}
+        <div className={`px-3 pb-1.5 ${props.onClose ? '' : 'pt-1.5'}`}>
           <BookingProgressBar
             currentStep={currentStep}
             totalSteps={5}
@@ -196,16 +213,6 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             ]}
           />
         </div>
-        {props.onClose && (
-          <button
-            type="button"
-            onClick={props.onClose}
-            aria-label={props.t.booking.close ?? "Cerrar"}
-            className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 -mr-1 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-          >
-            <X className="w-5 h-5" aria-hidden="true" />
-          </button>
-        )}
       </div>
       {/* P1.10: sessionStorage restore banner — dismissable, optional reset */}
       {props.restoredFromStorage && (

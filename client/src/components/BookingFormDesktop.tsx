@@ -180,7 +180,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             type="button"
             onClick={props.onClose}
             aria-label={t.booking.close ?? "Cerrar"}
-            className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-full text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-1"
           >
             <X className="w-5 h-5" aria-hidden="true" />
           </button>

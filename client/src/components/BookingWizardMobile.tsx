@@ -444,18 +444,15 @@ function Step2Boat({
         <label className="block text-sm font-semibold text-muted-foreground mb-2">
           {t.wizard.selectABoat}
         </label>
-        <div role="radiogroup" aria-label={t.wizard.selectABoat} className="space-y-2">
+        <div role="radiogroup" aria-label={t.wizard.selectABoat} className="grid grid-cols-2 gap-2">
           {isBoatsLoading && (
             // Skeleton loading while boats load from API
             <>
-              {[1, 2, 3].map(i => (
-                <div key={i} className="w-full flex items-center gap-3 p-3 rounded-xl border-2 border-border animate-pulse">
-                  <div className="w-5 h-5 rounded-full bg-muted flex-shrink-0" />
-                  <div className="flex-1">
-                    <div className="h-4 bg-muted rounded w-3/4 mb-1.5" />
-                    <div className="h-3 bg-muted rounded w-1/4" />
-                  </div>
-                  <div className="h-3 bg-muted rounded w-12" />
+              {[1, 2, 3, 4].map(i => (
+                <div key={i} className="p-3 rounded-xl border-2 border-border animate-pulse min-h-[88px] flex flex-col items-center justify-center gap-1.5">
+                  <div className="h-4 bg-muted rounded w-3/4" />
+                  <div className="h-3 bg-muted rounded w-1/2" />
+                  <div className="h-3 bg-muted rounded w-8 mt-1" />
                 </div>
               ))}
             </>
@@ -640,7 +637,7 @@ function BoatCardMobile({
       aria-checked={selected}
       onClick={onSelect}
       disabled={!fitsCapacity}
-      className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-colors active:scale-[0.97] ${
+      className={`relative flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 text-center transition-colors active:scale-[0.97] min-h-[96px] ${
         !fitsCapacity
           ? "border-border bg-muted opacity-50 cursor-not-allowed"
           : selected
@@ -648,26 +645,27 @@ function BoatCardMobile({
           : "border-border bg-background"
       }`}
     >
-      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
-        selected ? "border-primary bg-primary" : "border-border"
-      }`}>
-        {selected ? <Check className="w-3 h-3 text-white" /> : null}
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="font-semibold text-foreground text-sm">{boat.name}</p>
-        {displayPrice !== null && (
-          <p className="text-xs text-primary font-medium flex items-center gap-1.5">
-            <span>{t.boats.from} {displayPrice}€</span>
-            {hasOverride && overrideLabel && (
-              <span className="text-xs font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
-                {overrideLabel}
-              </span>
-            )}
-          </p>
-        )}
-      </div>
-      <span className="flex-shrink-0 inline-flex items-center gap-1 text-sm text-foreground">
-        <Users className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+      {selected && (
+        <span
+          aria-hidden="true"
+          className="absolute top-1.5 right-1.5 inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary"
+        >
+          <Check className="w-2.5 h-2.5 text-white" />
+        </span>
+      )}
+      <p className="font-semibold text-foreground text-sm leading-tight">{boat.name}</p>
+      {displayPrice !== null && (
+        <p className="text-xs text-primary font-medium inline-flex items-center gap-1 flex-wrap justify-center">
+          <span>{t.boats.from} {displayPrice}€</span>
+          {hasOverride && overrideLabel && (
+            <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
+              {overrideLabel}
+            </span>
+          )}
+        </p>
+      )}
+      <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground mt-0.5">
+        <Users className="w-3.5 h-3.5" aria-hidden="true" />
         {boat.capacity}
       </span>
     </button>

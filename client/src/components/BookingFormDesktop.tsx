@@ -1124,7 +1124,7 @@ function Step3Extras({
               </p>
             </div>
             <p className="text-base font-bold text-foreground">{pack.price}€</p>
-            <span className="inline-block px-2.5 py-0.5 rounded-full text-white text-xs font-semibold animate-savings-pulse">
+            <span className="inline-block px-2.5 py-0.5 rounded-full bg-popular text-popular-foreground text-xs font-semibold animate-savings-pulse">
               -{calculatePackSavings(pack.id).toFixed(2)}€{" "}
               {t.booking.extrasSection.savings.toLowerCase()}
             </span>

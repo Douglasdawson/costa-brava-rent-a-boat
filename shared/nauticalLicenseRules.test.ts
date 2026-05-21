@@ -51,10 +51,11 @@ describe("getLicensesForCountry", () => {
     expect(list[1].spanishEquivalent).toBe("per");
   });
 
-  it("Germany returns the 4 Sportbootführerschein levels", () => {
+  it("Germany returns the 5 Sportbootführerschein levels", () => {
     const list = getLicensesForCountry("DE");
-    expect(list.map((l) => l.code)).toEqual(["sbf_see", "sks", "sse", "shs"]);
-    expect(list[3].spanishEquivalent).toBe("capitan_yate");
+    expect(list.map((l) => l.code)).toEqual(["sbf_binnen", "sbf_see", "sks", "sss", "shs"]);
+    expect(list[0].spanishEquivalent).toBe(null); // SBF Binnen — inland only
+    expect(list[4].spanishEquivalent).toBe("capitan_yate"); // SHS
   });
 
   it("UK includes ICC explicitly", () => {
@@ -131,11 +132,38 @@ describe("verifyLicense — EEE branch", () => {
       .toBe("not_recognized");
   });
 
-  it("Spain + LN → insufficient (below fleet PNB minimum)", () => {
+  it("Spain + LN → valid (LN meets fleet minimum per business policy)", () => {
     const r = verifyLicense({ country: "ES", licenseCode: "ln", hasIcc: null });
-    expect(r.status).toBe("insufficient");
+    expect(r.status).toBe("valid");
     expect(r.spanishEquivalent).toBe("navegacion");
+    expect(r.meetsFleetMinimum).toBe(true);
+  });
+
+  it("Germany + SSS → valid, patron_yate", () => {
+    const r = verifyLicense({ country: "DE", licenseCode: "sss", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("patron_yate");
+    expect(r.meetsFleetMinimum).toBe(true);
+  });
+
+  it("Germany + SBF Binnen → not_recognized (inland only, no sea equivalence)", () => {
+    const r = verifyLicense({ country: "DE", licenseCode: "sbf_binnen", hasIcc: null });
+    expect(r.status).toBe("not_recognized");
+    expect(r.spanishEquivalent).toBe(null);
     expect(r.meetsFleetMinimum).toBe(false);
+  });
+
+  it("Netherlands + Klein Vaarbewijs I → not_recognized (inland only)", () => {
+    const r = verifyLicense({ country: "NL", licenseCode: "klein_vaarbewijs_1", hasIcc: null });
+    expect(r.status).toBe("not_recognized");
+    expect(r.spanishEquivalent).toBe(null);
+  });
+
+  it("Belgium + Yachtnavigator Brevet → valid, capitan_yate", () => {
+    const r = verifyLicense({ country: "BE", licenseCode: "yachtnavigator_brevet", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("capitan_yate");
+    expect(r.meetsFleetMinimum).toBe(true);
   });
 });
 
@@ -219,8 +247,8 @@ describe("getDefaultCountryForLanguage", () => {
 });
 
 describe("FLEET_MIN_LICENSE invariant", () => {
-  it("is pnb", () => {
-    expect(FLEET_MIN_LICENSE).toBe("pnb");
+  it("is navegacion (LN suffices per business policy — RD 875/2014 art. 11.1)", () => {
+    expect(FLEET_MIN_LICENSE).toBe("navegacion");
   });
 });
 

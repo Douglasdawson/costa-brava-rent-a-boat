@@ -57,11 +57,12 @@ const LEVEL_RANK: Record<SpanishLicenseLevel, number> = {
 
 /**
  * Minimum Spanish level needed to operate any "with-license" boat in the
- * Costa Brava Rent a Boat fleet (Mingolla Brava 19, Trimarchi 57S, Pacific
- * Craft 625). All three are bounded by ≤ 6.24m and 80–115cv — PNB is the
- * de facto common threshold.
+ * Costa Brava Rent a Boat fleet (Mingolla Brava 19 · 5,99m, Trimarchi 57S
+ * · 5,7m, Pacific Craft 625 · 6,24m). Per business policy (CRM), the LN
+ * (Licencia de Navegación · ≤6m, motor adecuado, 2nm de costa) basta para
+ * los tres. RD 875/2014, art. 11.1.
  */
-export const FLEET_MIN_LICENSE: SpanishLicenseLevel = "pnb";
+export const FLEET_MIN_LICENSE: SpanishLicenseLevel = "navegacion";
 
 /**
  * A foreign nautical title shown to the user with its (orientative) Spanish
@@ -100,9 +101,10 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
     { code: "patente_senza_limiti", label: "Patente Nautica senza alcun limite", spanishEquivalent: "patron_yate" },
   ],
   DE: [
+    { code: "sbf_binnen", label: "SBF Binnen (Sportbootführerschein Binnen)", spanishEquivalent: null },
     { code: "sbf_see", label: "SBF See (Sportbootführerschein See)", spanishEquivalent: "pnb" },
     { code: "sks", label: "Sportküstenschifferschein (SKS)", spanishEquivalent: "per" },
-    { code: "sse", label: "Sportseeschifferschein (SSE)", spanishEquivalent: "patron_yate" },
+    { code: "sss", label: "Sportseeschifferschein (SSS)", spanishEquivalent: "patron_yate" },
     { code: "shs", label: "Sporthochseeschifferschein (SHS)", spanishEquivalent: "capitan_yate" },
   ],
   GB: [
@@ -119,6 +121,7 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
     { code: "patrao_alto_mar", label: "Carta de Patrão de Alto Mar", spanishEquivalent: "patron_yate" },
   ],
   NL: [
+    { code: "klein_vaarbewijs_1", label: "Klein Vaarbewijs I", spanishEquivalent: null },
     { code: "klein_vaarbewijs_2", label: "Klein Vaarbewijs II", spanishEquivalent: "pnb" },
     { code: "groot_pleziervaartbewijs", label: "Groot Pleziervaartbewijs", spanishEquivalent: "per" },
   ],
@@ -126,6 +129,7 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
     { code: "beperkt_stuurbrevet", label: "Beperkt Stuurbrevet", spanishEquivalent: "pnb" },
     { code: "algemeen_stuurbrevet", label: "Algemeen Stuurbrevet", spanishEquivalent: "per" },
     { code: "yachtman_brevet", label: "Yachtman Brevet", spanishEquivalent: "patron_yate" },
+    { code: "yachtnavigator_brevet", label: "Yachtnavigator Brevet", spanishEquivalent: "capitan_yate" },
   ],
 };
 

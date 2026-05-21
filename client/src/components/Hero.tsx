@@ -106,7 +106,7 @@ export default function Hero() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full px-2 sm:px-0 sm:w-auto">
               <Button
-                onClick={() => setQuizOpen(true)}
+                onClick={() => openBookingModal()}
                 size="lg"
                 className="bg-cta hover:bg-cta/90 text-primary-foreground px-8 py-2.5 text-sm sm:px-10 sm:py-3.5 sm:text-base lg:text-lg rounded-full font-semibold sm:font-medium btn-elevated cta-pulse w-full sm:w-auto"
                 data-testid="button-hero-cta"

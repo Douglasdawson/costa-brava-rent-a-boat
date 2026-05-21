@@ -1898,6 +1898,8 @@ export interface Translations {
   reviewSummary?: {
     title: string;
     modify: string;
+    modifyShort?: string;
+    schedule?: string;
   };
 
   // Endowment Effect (possessive language after boat selection)

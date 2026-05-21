@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
-import { CalendarIcon, Check, ClipboardList, Clock, Fuel, Loader2, Star, Users, X } from "lucide-react";
+import { CalendarIcon, Check, ClipboardList, Clock, Fuel, Loader2, Pencil, Ship, Sparkles, Star, Users, X } from "lucide-react";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -1357,78 +1357,101 @@ function Step5Contact({
     return parts;
   })();
 
+  // Schedule label: fuse preferredTime + selectedDuration into "12:00 → 20:00 (8h)".
+  // Falls back to the raw values if either is missing or malformed.
+  const scheduleDisplay = (() => {
+    if (!preferredTime && !selectedDuration) return "--";
+    if (!preferredTime || !selectedDuration) {
+      return [preferredTime ? `${preferredTime}h` : "", selectedDuration].filter(Boolean).join(" · ");
+    }
+    const durationHours = parseFloat(selectedDuration.replace(/[^0-9.]/g, ""));
+    const [startH, startM = 0] = preferredTime.split(":").map(Number);
+    if (!Number.isFinite(durationHours) || !Number.isFinite(startH)) {
+      return `${preferredTime}h · ${selectedDuration}`;
+    }
+    const endMinutesRaw = startH * 60 + (startM || 0) + durationHours * 60;
+    const endMinutes = Math.round(endMinutesRaw);
+    const endH = Math.floor(endMinutes / 60) % 24;
+    const endM = endMinutes % 60;
+    const endTime = `${String(endH).padStart(2, "0")}:${String(endM).padStart(2, "0")}`;
+    return `${preferredTime} → ${endTime} (${selectedDuration})`;
+  })();
+
   return (
     <div className="space-y-4">
       {/* Review summary card */}
-      <div className="bg-cta/10 border border-cta/30 rounded-xl p-4">
+      <div className="bg-cta/10 border border-cta/30 rounded-xl p-4 lg:p-5">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <ClipboardList className="w-4 h-4 text-muted-foreground" />
-            <p className="text-xs font-semibold text-muted-foreground">
+            <ClipboardList className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               {t.reviewSummary?.title || "Resumen de tu reserva"}
             </p>
           </div>
           <button
             type="button"
             onClick={() => onGoToStep(1)}
-            className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
+            className="inline-flex items-center gap-1 px-2.5 py-1 border border-primary/30 rounded-full text-xs font-medium text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors"
           >
-            {t.reviewSummary?.modify || "Modificar"}
+            <Pencil className="w-3 h-3" aria-hidden="true" />
+            {t.reviewSummary?.modifyShort || "Editar"}
           </button>
         </div>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
-          <div className="flex justify-between col-span-2">
-            <span className="text-muted-foreground">{t.booking.boat}</span>
-            <span className="font-medium text-foreground">{selectedBoatInfo?.name || "--"}</span>
-          </div>
-          <div className="flex justify-between col-span-2">
-            <span className="text-muted-foreground">{t.booking.date}</span>
-            <span className="font-medium text-foreground">
-              {formatBookingDateDesktop(selectedDate, language)}
-            </span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">{t.booking.preferredTime}</span>
-            <span className="font-medium text-foreground">{preferredTime}h</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">{t.booking.duration}</span>
-            <span className="font-medium text-foreground">{selectedDuration}</span>
-          </div>
-          <div className="flex justify-between col-span-2">
-            <span className="text-muted-foreground">{t.booking.people}</span>
-            <span className="font-medium text-foreground">{numberOfPeople}</span>
-          </div>
-          {extrasDisplay.length > 0 && (
-            <div className="flex justify-between col-span-2">
-              <span className="text-muted-foreground">{t.booking.extras}</span>
-              <span className="font-medium text-foreground text-right">
-                {extrasDisplay.join(", ")}
+        <div className="lg:grid lg:grid-cols-2 lg:gap-x-6">
+          <div className="space-y-2.5 text-sm">
+            <div className="flex items-center gap-2">
+              <Ship className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+              <span className="text-muted-foreground">{t.booking.boat}</span>
+              <span className="ml-auto font-medium text-foreground text-right">{selectedBoatInfo?.name || "--"}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+              <span className="text-muted-foreground">{t.booking.date}</span>
+              <span className="ml-auto font-medium text-foreground text-right">
+                {formatBookingDateDesktop(selectedDate, language)}
               </span>
             </div>
-          )}
-        </div>
-        {/* P0.5 (2026-05-20): explicit fuel signal. Visible in the review so
-            licensed-boat users don't get surprised by an off-quote fuel cost. */}
-        {selectedBoatInfo && (
-          <div className="flex items-center gap-1.5 text-xs mt-3 pt-3 border-t border-cta/30">
-            {selectedBoatInfo.requiresLicense ? (
-              <>
-                <Fuel className="w-3 h-3 text-popular flex-shrink-0" aria-hidden="true" />
-                <span className="text-popular font-medium">
-                  {t.bookingWizard?.fuel?.notIncluded || 'Combustible no incluido'}
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+              <span className="text-muted-foreground">{t.reviewSummary?.schedule || "Horario"}</span>
+              <span className="ml-auto font-medium text-foreground text-right">{scheduleDisplay}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+              <span className="text-muted-foreground">{t.booking.people}</span>
+              <span className="ml-auto font-medium text-foreground text-right">{numberOfPeople}</span>
+            </div>
+          </div>
+          <div className="space-y-2.5 text-sm mt-3 pt-3 border-t border-cta/30 lg:mt-0 lg:pt-0 lg:border-t-0">
+            {extrasDisplay.length > 0 && (
+              <div className="flex items-start gap-2">
+                <Sparkles className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-muted-foreground">{t.booking.extras}</span>
+                <span className="ml-auto font-medium text-foreground text-right">
+                  {extrasDisplay.join(", ")}
                 </span>
-              </>
-            ) : (
-              <>
-                <Fuel className="w-3 h-3 text-success flex-shrink-0" aria-hidden="true" />
-                <span className="text-success font-medium">
-                  {t.bookingWizard?.fuel?.included || 'Combustible incluido'}
+              </div>
+            )}
+            {/* P0.5 (2026-05-20): explicit fuel signal. Visible in the review so
+                licensed-boat users don't get surprised by an off-quote fuel cost. */}
+            {selectedBoatInfo && (
+              <div
+                className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium ${
+                  selectedBoatInfo.requiresLicense
+                    ? "bg-popular/10 border border-popular/20 text-popular"
+                    : "bg-success/10 border border-success/20 text-success"
+                }`}
+              >
+                <Fuel className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+                <span>
+                  {selectedBoatInfo.requiresLicense
+                    ? t.bookingWizard?.fuel?.notIncluded || "Combustible no incluido"
+                    : t.bookingWizard?.fuel?.included || "Combustible incluido"}
                 </span>
-              </>
+              </div>
             )}
           </div>
-        )}
+        </div>
       </div>
 
       {/* Personal data */}

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Clock, Fuel, Gift, Loader2, Package, Star, Tag, Users, X } from "lucide-react";
+import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, ClipboardList, Clock, Fuel, Gift, Loader2, Package, Pencil, Ship, Sparkles, Star, Tag, User, Users, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
@@ -1180,6 +1180,38 @@ function Step5Final(props: BookingWizardMobileProps) {
   );
   const total = basePrice !== null ? basePrice + totalExtrasPrice - discount - autoDiscountAmount : null;
 
+  // Schedule label: fuse preferredTime + selectedDuration into "12:00 → 20:00 (8h)".
+  // Falls back to the raw values if either is missing or malformed.
+  const scheduleDisplay = (() => {
+    if (!preferredTime && !selectedDuration) return "--";
+    if (!preferredTime || !selectedDuration) {
+      return [preferredTime ? `${preferredTime}h` : "", selectedDuration].filter(Boolean).join(" · ");
+    }
+    const durationHours = parseFloat(selectedDuration.replace(/[^0-9.]/g, ""));
+    const [startH, startM = 0] = preferredTime.split(":").map(Number);
+    if (!Number.isFinite(durationHours) || !Number.isFinite(startH)) {
+      return `${preferredTime}h · ${selectedDuration}`;
+    }
+    const endMinutesRaw = startH * 60 + (startM || 0) + durationHours * 60;
+    const endMinutes = Math.round(endMinutesRaw);
+    const endH = Math.floor(endMinutes / 60) % 24;
+    const endM = endMinutes % 60;
+    const endTime = `${String(endH).padStart(2, "0")}:${String(endM).padStart(2, "0")}`;
+    return `${preferredTime} → ${endTime} (${selectedDuration})`;
+  })();
+
+  // Extras display text for review card (mirrors desktop logic).
+  const extrasDisplay = (() => {
+    const parts: string[] = [];
+    if (selectedPack) {
+      const pack = EXTRA_PACKS.find(p => p.id === selectedPack);
+      if (pack) parts.push(pack.name);
+    }
+    const nonPackExtras = selectedExtras.filter(e => !extrasInPack.has(e));
+    parts.push(...nonPackExtras);
+    return parts;
+  })();
+
   return (
     <div className="space-y-4 pb-2">
       {slotConflict && (
@@ -1223,83 +1255,97 @@ function Step5Final(props: BookingWizardMobileProps) {
         <p className="text-xs text-muted-foreground mt-0.5">{t.booking.confirmSubtitle}</p>
       </div>
       {/* Booking summary card */}
-      <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-2">
-        <div className="flex items-center justify-between mb-1">
-          <p className="text-xs font-semibold text-muted-foreground">
-            {t.reviewSummary?.title || 'Resumen de tu reserva'}
-          </p>
+      <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <ClipboardList className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              {t.reviewSummary?.title || 'Resumen de tu reserva'}
+            </p>
+          </div>
           <button
             type="button"
             onClick={() => onGoToStep(1)}
-            className="text-xs font-medium text-primary/70 hover:text-primary transition-colors underline underline-offset-2"
+            className="inline-flex items-center gap-1 px-2.5 py-1 border border-primary/30 rounded-full text-xs font-medium text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors"
           >
-            {t.reviewSummary?.modify || 'Modificar'}
+            <Pencil className="w-3 h-3" aria-hidden="true" />
+            {t.reviewSummary?.modifyShort || 'Editar'}
           </button>
         </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">{t.booking.boat}</span>
-          <span className="font-semibold text-foreground">
-            {selectedBoatInfo?.name || "--"}
-          </span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">{t.booking.date}</span>
-          <span className="font-semibold text-foreground">{formatBookingDate(selectedDate, language)}</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">{t.booking.preferredTime}</span>
-          <span className="font-semibold text-foreground">{preferredTime}h</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">{t.booking.duration}</span>
-          <span className="font-semibold text-foreground">{selectedDuration}</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">{t.booking.people}</span>
-          <span className="font-semibold text-foreground">{numberOfPeople}</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">{t.booking.summaryClient}</span>
-          <span className="font-semibold text-foreground">{firstName} {lastName}</span>
+        <div className="space-y-2.5 text-sm">
+          <div className="flex items-center gap-2">
+            <Ship className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+            <span className="text-muted-foreground">{t.booking.boat}</span>
+            <span className="ml-auto font-semibold text-foreground text-right">
+              {selectedBoatInfo?.name || "--"}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <CalendarIcon className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+            <span className="text-muted-foreground">{t.booking.date}</span>
+            <span className="ml-auto font-semibold text-foreground text-right">{formatBookingDate(selectedDate, language)}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+            <span className="text-muted-foreground">{t.reviewSummary?.schedule || 'Horario'}</span>
+            <span className="ml-auto font-semibold text-foreground text-right">{scheduleDisplay}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Users className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+            <span className="text-muted-foreground">{t.booking.people}</span>
+            <span className="ml-auto font-semibold text-foreground text-right">{numberOfPeople}</span>
+          </div>
+          {extrasDisplay.length > 0 && (
+            <div className="flex items-start gap-2">
+              <Sparkles className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <span className="text-muted-foreground">{t.booking.extras}</span>
+              <span className="ml-auto font-semibold text-foreground text-right">
+                {extrasDisplay.join(", ")}
+              </span>
+            </div>
+          )}
+          <div className="flex items-center gap-2">
+            <User className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+            <span className="text-muted-foreground">{t.booking.summaryClient}</span>
+            <span className="ml-auto font-semibold text-foreground text-right">{firstName} {lastName}</span>
+          </div>
         </div>
         {basePrice !== null && (
-          <div className="flex justify-between text-sm pt-2 border-t border-primary/20">
+          <div className="flex justify-between items-center text-sm pt-3 mt-3 border-t border-primary/20">
             <span className="text-muted-foreground">{t.booking.summaryBasePrice.replace(':', '').trim()}</span>
             <span className="font-bold text-primary text-base">{basePrice}€</span>
+          </div>
+        )}
+        {autoDiscount?.type && autoDiscountAmount > 0 && (
+          <div className="flex justify-between items-center text-sm mt-2">
+            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1 ${
+              autoDiscount.type === 'early-bird'
+                ? 'bg-success/10 text-success'
+                : 'bg-popular/10 text-popular'
+            }`}>
+              <Tag className="w-3 h-3" aria-hidden="true" />
+              {autoDiscount.type === 'early-bird' ? t.booking.earlyBirdDiscount : t.booking.flashDealDiscount}
+            </span>
+            <span className="font-semibold text-success">-{autoDiscountAmount}€</span>
           </div>
         )}
         {/* P0.5 (2026-05-20): explicit fuel signal — license-free boats include
             fuel; licensed boats don't. Communicating this here prevents the
             post-booking surprise that drives 1-star reviews. */}
         {selectedBoatInfo && (
-          <div className="flex items-center gap-1.5 text-xs">
-            {selectedBoatInfo.requiresLicense ? (
-              <>
-                <Fuel className="w-3 h-3 text-popular flex-shrink-0" aria-hidden="true" />
-                <span className="text-popular font-medium">
-                  {t.bookingWizard?.fuel?.notIncluded || 'Combustible no incluido'}
-                </span>
-              </>
-            ) : (
-              <>
-                <Fuel className="w-3 h-3 text-success flex-shrink-0" aria-hidden="true" />
-                <span className="text-success font-medium">
-                  {t.bookingWizard?.fuel?.included || 'Combustible incluido'}
-                </span>
-              </>
-            )}
-          </div>
-        )}
-        {autoDiscount?.type && autoDiscountAmount > 0 && (
-          <div className="flex justify-between items-center text-sm">
-            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-              autoDiscount.type === 'early-bird'
-                ? 'bg-success/10 text-success'
-                : 'bg-popular/10 text-popular'
-            }`}>
-              {autoDiscount.type === 'early-bird' ? t.booking.earlyBirdDiscount : t.booking.flashDealDiscount}
+          <div
+            className={`flex items-center gap-2 rounded-lg px-3 py-2 mt-3 text-xs font-medium ${
+              selectedBoatInfo.requiresLicense
+                ? "bg-popular/10 border border-popular/20 text-popular"
+                : "bg-success/10 border border-success/20 text-success"
+            }`}
+          >
+            <Fuel className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+            <span>
+              {selectedBoatInfo.requiresLicense
+                ? t.bookingWizard?.fuel?.notIncluded || 'Combustible no incluido'
+                : t.bookingWizard?.fuel?.included || 'Combustible incluido'}
             </span>
-            <span className="font-semibold text-success">-{autoDiscountAmount}€</span>
           </div>
         )}
       </div>

@@ -1276,6 +1276,8 @@ export const fr: Translations = {
   reviewSummary: {
     title: "Résumé de votre réservation",
     modify: "Modifier",
+    modifyShort: "Modifier",
+    schedule: "Horaire",
   },
 
   endowment: {

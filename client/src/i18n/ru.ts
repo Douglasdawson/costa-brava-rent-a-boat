@@ -1257,6 +1257,8 @@ export const ru: Translations = {
   reviewSummary: {
     title: "Сводка бронирования",
     modify: "Изменить",
+    modifyShort: "Изменить",
+    schedule: "Время",
   },
 
   endowment: {

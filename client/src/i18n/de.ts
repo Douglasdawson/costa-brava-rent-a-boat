@@ -1270,6 +1270,8 @@ export const de: Translations = {
   reviewSummary: {
     title: "Zusammenfassung Ihrer Buchung",
     modify: "Ändern",
+    modifyShort: "Bearbeiten",
+    schedule: "Zeitplan",
   },
 
   endowment: {

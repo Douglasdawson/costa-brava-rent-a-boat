@@ -2481,6 +2481,8 @@ export const es: Translations = {
   reviewSummary: {
     title: "Resumen de tu reserva",
     modify: "Modificar",
+    modifyShort: "Editar",
+    schedule: "Horario",
   },
 
   endowment: {

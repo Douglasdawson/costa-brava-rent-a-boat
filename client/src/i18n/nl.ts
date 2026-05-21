@@ -1264,6 +1264,8 @@ export const nl: Translations = {
   reviewSummary: {
     title: "Samenvatting van uw boeking",
     modify: "Wijzigen",
+    modifyShort: "Bewerken",
+    schedule: "Schema",
   },
 
   endowment: {

@@ -1266,6 +1266,8 @@ export const ca: Translations = {
   reviewSummary: {
     title: "Resum de la teva reserva",
     modify: "Modificar",
+    modifyShort: "Edita",
+    schedule: "Horari",
   },
 
   endowment: {

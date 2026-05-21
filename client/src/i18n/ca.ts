@@ -769,6 +769,7 @@ export const ca: Translations = {
       whenWho: "Quan salpem?",
       yourBoat: "El teu barco",
       departureDuration: "Hora i durada",
+      upgradeYourDay: "Millora el teu dia",
       yourDetails: "Confirmar",
     },
     hints: {

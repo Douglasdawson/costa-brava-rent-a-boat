@@ -771,6 +771,7 @@ export const it: Translations = {
       whenWho: "Quando salpi?",
       yourBoat: "La tua barca",
       departureDuration: "Ora e durata",
+      upgradeYourDay: "Migliora la tua giornata",
       yourDetails: "Conferma",
     },
     hints: {

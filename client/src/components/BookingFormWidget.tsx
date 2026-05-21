@@ -112,7 +112,8 @@ const STEP_NAMES: Record<number, string> = {
   1: "when_who",
   2: "boat",
   3: "departure_duration",
-  4: "your_details",
+  4: "extras",
+  5: "your_details",
 };
 
 export default function BookingFormWidget({ preSelectedBoatId, prefillDate, prefillTime, prefillCoupon, onClose }: BookingFormWidgetProps) {
@@ -186,12 +187,13 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   // Track which fields the user has interacted with (blurred)
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  // Wizard step navigation (4 steps, reordered so date is first):
+  // Wizard step navigation (5 steps, reordered so date is first):
   //   1. When + Who    → date + people
   //   2. Boat          → boat selection (with real prices for the chosen date)
   //   3. Departure     → preferred time + duration (with pricing override delta visible)
-  //   4. Personal data → contact form + extras + summary + RGPD + WhatsApp submit
-  const TOTAL_STEPS = 4;
+  //   4. Extras        → packs + individual extras ("Mejora tu día")
+  //   5. Personal data → contact form + summary + RGPD + WhatsApp submit
+  const TOTAL_STEPS = 5;
   const [currentStep, setCurrentStep] = useState(1);
   const prevSeasonRef = useRef<string>("");
 
@@ -214,7 +216,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     alternatives: { time: string; maxDuration: number }[];
     checkedAt: number;
   } | null>(null);
-  // Dedup: trackBookingValidationError(4, "slot_taken") fires once per detection.
+  // Dedup: trackBookingValidationError(5, "slot_taken") fires once per detection.
   const slotConflictTrackedRef = useRef(false);
 
   const queryClient = useQueryClient();
@@ -315,7 +317,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       if (saved.licenseFilter) setLicenseFilter(saved.licenseFilter);
       // Restore step, capped to the wizard's total step count
       if (saved.currentStep > 1) {
-        setCurrentStep(Math.min(saved.currentStep, 4));
+        setCurrentStep(Math.min(saved.currentStep, 5));
         // P1.10: only surface the banner when the user already advanced past
         // step 1 — restoring just a date on step 1 is silent and not disruptive.
         setRestoredFromStorage(true);
@@ -651,23 +653,23 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     }
   }, [selectedTimeMaxDuration, selectedDuration, currentStep]);
 
-  // P1.9: force a fresh availability fetch when the user lands on step 4 so
+  // P1.9: force a fresh availability fetch when the user lands on step 5 so
   // the conflict-detection effect below works against the latest data, not
   // a 60s-stale cache.
   useEffect(() => {
-    if (currentStep === 4 && selectedBoat && selectedDate) {
+    if (currentStep === 5 && selectedBoat && selectedDate) {
       void queryClient.invalidateQueries({
         queryKey: ["/api/availability", selectedBoat, selectedDate],
       });
     }
   }, [currentStep, selectedBoat, selectedDate, queryClient]);
 
-  // P1.9: detect a slot conflict on step 4. Triggers whenever
+  // P1.9: detect a slot conflict on step 5. Triggers whenever
   // slotAvailability changes (cache refresh, refetchOnWindowFocus,
   // queryClient.invalidate above). Clears itself when the user picks a
   // valid alternative.
   useEffect(() => {
-    if (currentStep !== 4) {
+    if (currentStep !== 5) {
       if (slotConflict) setSlotConflict(null);
       slotConflictTrackedRef.current = false;
       return;
@@ -699,7 +701,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       );
       if (!slotConflictTrackedRef.current) {
         slotConflictTrackedRef.current = true;
-        trackBookingValidationError(4, "slot_taken");
+        trackBookingValidationError(5, "slot_taken");
       }
     } else {
       if (slotConflict) setSlotConflict(null);
@@ -1201,7 +1203,11 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     return !!preferredTime && !!selectedDuration;
   };
 
-  const canAdvanceFromStep4 = (): boolean => {
+  // canAdvanceFromStep4 — extras step. No validation; the user can pass
+  // without selecting anything.
+  const canAdvanceFromStep4 = (): boolean => true;
+
+  const canAdvanceFromStep5 = (): boolean => {
     // Email is optional. Accept empty; reject only non-empty invalid input.
     const emailOk = !email.trim() || validateEmail(email) === null;
     // Single full-name input → only firstName is required (one-word names OK).
@@ -1250,19 +1256,19 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
         if (firstInvalid) scrollFieldIntoView(firstInvalid);
         return;
       }
-      // Start hold countdown when advancing to step 4 (final) — only for licensed boats
+      // Start the hold countdown when the user leaves step 3 (time/duration
+      // chosen). The countdown is rendered only on the final step (5),
+      // giving the user time to add extras (step 4) and fill in personal
+      // data (step 5) before the soft-expiry kicks in. Licensed boats only.
       if (!holdExpiresAt && selectedBoatInfo?.requiresLicense) {
         const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
         setHoldExpiresAt(expiresAt);
         setHoldExpired(false);
       }
     }
-    if (currentStep === 4) {
-      if (!canAdvanceFromStep4()) {
-        setTouched(prev => ({ ...prev, firstName: true, phone: true, email: true }));
-        return;
-      }
-    }
+    // Step 4 (extras) has no validation — the user can pass freely.
+    // The personal-data validation moved to step 5 and is enforced by
+    // handleBookingSearch (submit) so we don't gate the Next button here.
     // All step guards passed — emit step_complete and advance.
     trackBookingStepComplete(
       currentStep,
@@ -1561,7 +1567,8 @@ Looking forward to confirmation. Thanks!`;
         date: 1, people: 1,
         boat: 2,
         time: 3, duration: 3,
-        firstName: 4, phone: 4, email: 4,
+        // step 4 (extras) has no validated fields
+        firstName: 5, phone: 5, email: 5,
       };
 
       // Funnel: report each unique (step, field) failure once per session.

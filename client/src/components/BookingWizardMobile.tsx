@@ -183,11 +183,12 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
       <div className="sticky top-0 z-10 bg-background px-3 py-1.5 border-b border-border">
         <BookingProgressBar
           currentStep={currentStep}
-          totalSteps={4}
+          totalSteps={5}
           stepLabels={[
             props.t.bookingWizard?.steps?.whenWho || 'Cuándo',
             props.t.bookingWizard?.steps?.yourBoat || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepBoat) : props.t.wizard.stepBoat),
             props.t.bookingWizard?.steps?.departureDuration || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepTrip) : props.t.wizard.stepTrip),
+            props.t.bookingWizard?.steps?.upgradeYourDay || 'Mejora tu día',
             props.t.bookingWizard?.steps?.yourDetails || (props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepConfirm) : props.t.wizard.stepConfirm),
           ]}
 
@@ -217,7 +218,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         </div>
       )}
       {/* Hold countdown timer — only visible on final step */}
-      {props.holdExpiresAt && currentStep === 4 && (
+      {props.holdExpiresAt && currentStep === 5 && (
         <div className="px-4 pt-2">
           <HoldCountdown
             expiresAt={props.holdExpiresAt}
@@ -243,12 +244,13 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           {displayStep === 1 && <Step1WhenWho {...props} />}
           {displayStep === 2 && <Step2Boat {...props} />}
           {displayStep === 3 && <Step3Departure {...props} />}
-          {displayStep === 4 && <Step4Final {...props} />}
+          {displayStep === 4 && <Step4Extras {...props} />}
+          {displayStep === 5 && <Step5Final {...props} />}
         </div>
       </div>
-      {/* P1.1 (2026-05-20): price summary bar stays sticky through step 4 so
-          the total is visible at the exact moment the user hits submit. */}
-      {currentStep >= 2 && currentStep <= 4 && (() => {
+      {/* P1.1 (2026-05-20): price summary bar stays sticky through steps 2-5
+          so the total is visible at the exact moment the user hits submit. */}
+      {currentStep >= 2 && currentStep <= 5 && (() => {
         const price = props.getBookingPrice();
         if (!price || !props.selectedBoatInfo || !props.selectedDuration) return null;
         const discount = props.getCodeDiscount();
@@ -268,7 +270,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         );
       })()}
       <div className="border-t border-border bg-background px-4 py-3">
-        {currentStep === 4 && (
+        {currentStep === 5 && (
           <p className="text-xs text-muted-foreground text-center mb-2 px-2">
             {props.t.bookingWizard?.hints?.submitReassurance || 'Te respondemos en menos de 2 horas. Sin pago online, sin compromiso.'}
           </p>
@@ -276,25 +278,25 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         <div className="flex gap-3">
           {/* P0.8 (2026-05-19): on the final step the primary action (submit
               via WhatsApp) carries the row. Back becomes an icon-only ghost
-              so the One Action Rule is honoured. Steps 1-3 keep the
+              so the One Action Rule is honoured. Steps 1-4 keep the
               balanced Back + Next pair since the user is mid-navigation. */}
-          {currentStep === 4 ? null : currentStep > 1 && (
+          {currentStep === 5 ? null : currentStep > 1 && (
             <Button
               type="button"
               variant="outline"
               onClick={onBack}
-              aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 4)`}
+              aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 5)`}
               className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
             >
               <ChevronLeft className="w-4 h-4 mr-1" aria-hidden="true" />
               {props.t.booking.back}
             </Button>
           )}
-          {currentStep < 4 ? (
+          {currentStep < 5 ? (
             <Button
               type="button"
               onClick={onNext}
-              aria-label={`${props.t.booking.next}: ${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} 4)`}
+              aria-label={`${props.t.booking.next}: ${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} 5)`}
               className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
             >
               {props.t.booking.next}
@@ -305,7 +307,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
                 type="button"
                 variant="ghost"
                 onClick={onBack}
-                aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 4)`}
+                aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 5)`}
                 className="flex-shrink-0 px-3 min-h-11 text-muted-foreground hover:text-foreground"
               >
                 <ChevronLeft className="w-5 h-5" aria-hidden="true" />
@@ -818,7 +820,7 @@ function Step3Departure({
 }
 
 /**
- * Personal data form, rendered inside Step4Final. Kept as a separate section
+ * Personal data form, rendered inside Step5Final. Kept as a separate section
  * to keep the final step's render readable.
  */
 function PersonalDataSection({
@@ -972,10 +974,128 @@ function PersonalDataSection({
 const formatBookingDate = formatLocalisedDate;
 
 /**
- * Step 4 (final): combines personal data form + extras + summary + total + RGPD.
+ * Step 4 of 5 — Extras & Packs ("Mejora tu día"). Always-expanded panel
+ * with the same packs + individual extras grids that used to live inside
+ * Step5Final (collapsed by default). Moving them to their own step lets
+ * the user see the upsell before reaching the final confirmation card.
+ */
+function Step4Extras(props: BookingWizardMobileProps) {
+  const {
+    boatExtras, selectedExtras, selectedPack,
+    extrasInPack, totalExtrasPrice, handlePackSelect, handleExtraToggle,
+    calculatePackSavings, iconMap,
+    t, isSpanishLang, language,
+  } = props;
+  const boatExtraNames = new Set(boatExtras.map(e => e.name));
+  const availablePacks = EXTRA_PACKS.filter(pack =>
+    pack.extras.every(name => boatExtraNames.has(name))
+  );
+
+  return (
+    <div className="space-y-5 pb-2">
+      <div>
+        <h2 className="text-xl font-bold text-foreground mb-1">
+          {t.bookingWizard?.steps?.upgradeYourDay || 'Mejora tu día'}
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          {t.booking.extrasSection.title}
+        </p>
+      </div>
+
+      {/* Packs */}
+      {availablePacks.length > 0 && (
+        <div>
+          <p className="text-sm font-semibold text-muted-foreground mb-2">{t.booking.extrasSection.packs}</p>
+          <div className="space-y-2">
+            <button
+              type="button"
+              onClick={() => handlePackSelect("")}
+              aria-pressed={!selectedPack}
+              className={`w-full p-3 rounded-xl border-2 text-left text-sm transition-all ${!selectedPack ? 'border-primary bg-primary/5' : 'border-border'}`}
+            >
+              {t.booking.extrasSection.noPack}
+            </button>
+            {availablePacks.map((pack) => {
+              const isSelected = selectedPack === pack.id;
+              const savings = calculatePackSavings(pack.id);
+              const IconComp = iconMap[pack.icon] || Package;
+              return (
+                <button
+                  key={pack.id}
+                  type="button"
+                  onClick={() => handlePackSelect(pack.id)}
+                  aria-pressed={isSelected}
+                  className={`w-full p-3 rounded-xl border-2 text-left transition-all ${isSelected ? 'border-primary bg-primary/5' : 'border-border bg-background'}`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <IconComp className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-semibold">{isSpanishLang ? pack.name : pack.nameEN}</span>
+                      <span className="text-xs text-muted-foreground font-normal">{pack.extras.map(e => translateExtraName(e, language)).join(', ')}</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-sm font-bold text-primary">{pack.price}€</span>
+                      {savings > 0 && (
+                        <span className="block text-xs text-success">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
+                      )}
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Individual extras */}
+      {boatExtras.length > 0 && (
+        <div>
+          <p className="text-sm font-semibold text-muted-foreground mb-2">{t.booking.extrasSection.individual}</p>
+          <div className="grid grid-cols-1 gap-2">
+            {boatExtras.map((extra) => {
+              const isChecked = selectedExtras.includes(extra.name);
+              const isInPack = extrasInPack.has(extra.name);
+              return (
+                <button
+                  key={extra.name}
+                  type="button"
+                  onClick={() => handleExtraToggle(extra.name)}
+                  disabled={isInPack}
+                  aria-pressed={isChecked || isInPack}
+                  className={`flex items-center gap-2 p-2.5 rounded-xl border-2 text-left transition-all ${
+                    isInPack ? 'border-primary/40 bg-primary/10 opacity-75 cursor-not-allowed'
+                    : isChecked ? 'border-primary bg-primary/5'
+                    : 'border-border bg-background'
+                  }`}
+                >
+                  <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 ${(isChecked || isInPack) ? 'border-primary bg-primary' : 'border-border'}`}>
+                    {(isChecked || isInPack) && <Check className="w-2.5 h-2.5 text-white" />}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium text-foreground truncate">{translateExtraName(extra.name, language)}</p>
+                    <p className="text-xs text-muted-foreground">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {totalExtrasPrice > 0 && (
+        <p className="text-xs text-muted-foreground text-center italic">
+          +{totalExtrasPrice}€ {t.booking.extrasSection.title.toLowerCase()}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Step 5 (final): personal data form + summary + RGPD.
  * Submit button lives in the wizard footer.
  */
-function Step4Final(props: BookingWizardMobileProps) {
+function Step5Final(props: BookingWizardMobileProps) {
   const {
     selectedBoatInfo, selectedDate, selectedDuration, preferredTime, numberOfPeople,
     firstName, lastName, onGoToStep,
@@ -1030,108 +1150,6 @@ function Step4Final(props: BookingWizardMobileProps) {
         </h3>
         <p className="text-sm text-muted-foreground">{t.booking.confirmSubtitle}</p>
       </div>
-      {/* Extras & Packs collapsible section */}
-      {boatExtras.length > 0 && (
-        <div className="border border-border rounded-xl overflow-hidden">
-          <button
-            type="button"
-            onClick={() => setShowExtras(!showExtras)}
-            aria-expanded={showExtras}
-            aria-controls="extras-panel"
-            className="w-full flex items-center justify-between p-4 text-sm font-semibold text-muted-foreground bg-muted"
-          >
-            <span className="flex items-center gap-2">
-              <Package className="w-4 h-4 text-primary" />
-              {t.endowment?.customizeExperience || t.booking.extrasSection.title}
-              {(selectedExtras.length > 0 || selectedPack) && (
-                <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full">
-                  {totalExtrasPrice}€
-                </span>
-              )}
-            </span>
-            {showExtras ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-          </button>
-          {showExtras && (
-            <div id="extras-panel" className="p-4 space-y-4 bg-background">
-              {/* Packs */}
-              <div>
-                <p className="text-sm font-semibold text-muted-foreground mb-2">{t.booking.extrasSection.packs}</p>
-                <div className="space-y-2">
-                  <button
-                    type="button"
-                    onClick={() => handlePackSelect("")}
-                    aria-pressed={!selectedPack}
-                    className={`w-full p-3 rounded-xl border-2 text-left text-sm transition-all ${!selectedPack ? 'border-primary bg-primary/5' : 'border-border'}`}
-                  >
-                    {t.booking.extrasSection.noPack}
-                  </button>
-                  {availablePacks.map((pack) => {
-                    const isSelected = selectedPack === pack.id;
-                    const savings = calculatePackSavings(pack.id);
-                    const IconComp = iconMap[pack.icon] || Package;
-                    return (
-                      <button
-                        key={pack.id}
-                        type="button"
-                        onClick={() => handlePackSelect(pack.id)}
-                        aria-pressed={isSelected}
-                        className={`w-full p-3 rounded-xl border-2 text-left transition-all ${isSelected ? 'border-primary bg-primary/5' : 'border-border bg-background'}`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <IconComp className="w-4 h-4 text-primary" />
-                            <span className="text-sm font-semibold">{isSpanishLang ? pack.name : pack.nameEN}</span>
-                            <span className="text-xs text-muted-foreground font-normal">{pack.extras.map(e => translateExtraName(e, language)).join(', ')}</span>
-                          </div>
-                          <div className="text-right">
-                            <span className="text-sm font-bold text-primary">{pack.price}€</span>
-                            {savings > 0 && (
-                              <span className="block text-xs text-success">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
-                            )}
-                          </div>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-              {/* Individual extras */}
-              <div>
-                <p className="text-sm font-semibold text-muted-foreground mb-2">{t.booking.extrasSection.individual}</p>
-                <div className="grid grid-cols-1 gap-2">
-                  {boatExtras.map((extra) => {
-                    const isChecked = selectedExtras.includes(extra.name);
-                    const isInPack = extrasInPack.has(extra.name);
-                    const IconComp = iconMap[extra.icon] || Package;
-                    return (
-                      <button
-                        key={extra.name}
-                        type="button"
-                        onClick={() => handleExtraToggle(extra.name)}
-                        disabled={isInPack}
-                        aria-pressed={isChecked || isInPack}
-                        className={`flex items-center gap-2 p-2.5 rounded-xl border-2 text-left transition-all ${
-                          isInPack ? 'border-primary/40 bg-primary/10 opacity-75 cursor-not-allowed'
-                          : isChecked ? 'border-primary bg-primary/5'
-                          : 'border-border bg-background'
-                        }`}
-                      >
-                        <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 ${(isChecked || isInPack) ? 'border-primary bg-primary' : 'border-border'}`}>
-                          {(isChecked || isInPack) && <Check className="w-2.5 h-2.5 text-white" />}
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-sm font-medium text-muted-foreground truncate">{translateExtraName(extra.name, language)}</p>
-                          <p className="text-xs text-muted-foreground">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
       {/* Booking summary card */}
       <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-2">
         <div className="flex items-center justify-between mb-1">

@@ -158,12 +158,13 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const inputError = "border-destructive";
   const inputNormal = "border-cta/40";
 
-  // Step labels for the reordered 4-step wizard (date first)
+  // Step labels for the 5-step wizard (date first)
   const boatSelected = !!selectedBoatInfo;
   const stepLabels = [
     t.bookingWizard?.steps?.whenWho || 'Cuándo',
     t.bookingWizard?.steps?.yourBoat || t.wizard.stepBoat,
     t.bookingWizard?.steps?.departureDuration || (boatSelected ? (t.endowment?.yourTrip || t.wizard.stepTrip) : t.wizard.stepTrip),
+    t.bookingWizard?.steps?.upgradeYourDay || 'Mejora tu día',
     t.bookingWizard?.steps?.yourDetails || (boatSelected ? (t.endowment?.confirmStep || t.wizard.stepYourData) : t.wizard.stepYourData),
   ];
 
@@ -171,11 +172,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     <div className="flex flex-col h-full">
       {/* Step progress bar */}
       <div className="flex-shrink-0 px-8 pt-3 pb-2 border-b border-cta/20">
-        <BookingProgressBar currentStep={currentStep} totalSteps={4} stepLabels={stepLabels} />
+        <BookingProgressBar currentStep={currentStep} totalSteps={5} stepLabels={stepLabels} />
       </div>
 
       {/* Hold countdown timer — only visible on final step */}
-      {holdExpiresAt && currentStep === 4 && (
+      {holdExpiresAt && currentStep === 5 && (
         <div className="flex-shrink-0 px-6 pt-3">
           <HoldCountdown
             expiresAt={holdExpiresAt}
@@ -296,7 +297,24 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               />
             )}
             {currentStep === 4 && (
-              <Step4FinalDesktop
+              <Step4ExtrasDesktop
+                t={t}
+                language={props.language}
+                isSpanishLang={isSpanishLang}
+                selectedExtras={selectedExtras}
+                selectedPack={selectedPack}
+                extrasInPack={extrasInPack}
+                boatExtras={boatExtras}
+                handlePackSelect={handlePackSelect}
+                handleExtraToggle={handleExtraToggle}
+                availablePacks={availablePacks}
+                iconMap={iconMap}
+                calculatePackSavings={calculatePackSavings}
+                totalExtrasPrice={totalExtrasPrice}
+              />
+            )}
+            {currentStep === 5 && (
+              <Step5FinalDesktop
                 slotConflict={slotConflict}
                 onPickAlternativeSlot={onPickAlternativeSlot}
                 onChangeDateFromConflict={onChangeDateFromConflict}
@@ -349,23 +367,16 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 inputBase={inputBase}
                 inputError={inputError}
                 inputNormal={inputNormal}
-                boatExtras={boatExtras}
-                handlePackSelect={handlePackSelect}
-                handleExtraToggle={handleExtraToggle}
-                availablePacks={availablePacks}
-                iconMap={iconMap}
-                calculatePackSavings={calculatePackSavings}
-                isSpanishLang={isSpanishLang}
               />
             )}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* P1.1 (2026-05-20): price bar visible from step 2 through step 4
+      {/* P1.1 (2026-05-20): price bar visible from step 2 through step 5
           so the total stays on screen when the user hits submit. */}
       {currentStep >= 2 &&
-        currentStep <= 4 &&
+        currentStep <= 5 &&
         price !== null &&
         selectedBoatInfo &&
         selectedDuration && (
@@ -397,7 +408,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
       {/* Navigation footer */}
       <div className="flex-shrink-0 border-t border-cta/20 px-6 py-3">
-        {currentStep === 4 && (
+        {currentStep === 5 && (
           <p className="text-xs text-muted-foreground text-center mb-2">
             {t.bookingWizard?.hints?.submitReassurance || 'Te respondemos en menos de 2 horas. Sin pago online, sin compromiso.'}
           </p>
@@ -411,7 +422,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               {t.booking.back}
             </button>
           )}
-          {currentStep < 4 ? (
+          {currentStep < 5 ? (
             <button
               onClick={onNext}
               className="bg-foreground text-white rounded-full px-8 min-h-11 font-medium text-sm hover:bg-foreground/90 transition-all btn-elevated"
@@ -1040,10 +1051,10 @@ function Step1WhenWhoDesktop({
 }
 
 /* ═══════════════════════════════════════════
-   STEP 3: Extras & Packs
+   STEP 4: Extras & Packs ("Mejora tu día")
    ═══════════════════════════════════════════ */
 
-interface Step3Props {
+interface Step4ExtrasProps {
   boatExtras: BookingWizardMobileProps["boatExtras"];
   selectedExtras: string[];
   selectedPack: string | null;
@@ -1059,7 +1070,7 @@ interface Step3Props {
   t: BookingWizardMobileProps["t"];
 }
 
-function Step3Extras({
+function Step4ExtrasDesktop({
   boatExtras,
   selectedExtras,
   selectedPack,
@@ -1073,29 +1084,21 @@ function Step3Extras({
   isSpanishLang,
   language,
   t,
-}: Step3Props) {
-  if (boatExtras.length === 0) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-muted-foreground text-sm">
-          {isSpanishLang
-            ? "No hay extras disponibles para este barco."
-            : "No extras available for this boat."}
-        </p>
-        <p className="text-muted-foreground text-xs mt-2">
-          {isSpanishLang
-            ? "Puedes continuar al siguiente paso."
-            : "You can continue to the next step."}
+}: Step4ExtrasProps) {
+  return (
+    <div className="space-y-4">
+      <div>
+        <h2 className="text-base font-bold text-foreground mb-1">
+          {t.bookingWizard?.steps?.upgradeYourDay || 'Mejora tu día'}
+        </h2>
+        <p className="text-xs text-muted-foreground">
+          {t.booking.extrasSection.title}
         </p>
       </div>
-    );
-  }
 
-  return (
-    <div className="space-y-3">
       <div className="flex items-center justify-between mb-1">
         <p className="text-xs font-semibold text-muted-foreground">
-          {t.endowment?.customizeExperience || t.booking.extrasSection.title}
+          {t.booking.extrasSection.packs}
         </p>
         {totalExtrasPrice > 0 && (
           <span className="text-sm text-foreground font-bold">+{totalExtrasPrice}€</span>
@@ -1172,10 +1175,10 @@ function Step3Extras({
 }
 
 /* ═══════════════════════════════════════════
-   STEP 4: Contact & Confirm
+   STEP 5: Contact & Confirm
    ═══════════════════════════════════════════ */
 
-interface Step4Props {
+interface Step5Props {
   firstName: string;
   setFirstName: (v: string) => void;
   lastName: string;
@@ -1228,14 +1231,14 @@ interface Step4Props {
   inputBase: string;
   inputError: string;
   inputNormal: string;
-  // P1.9: slot conflict on step 4 — pass-through to Step4FinalDesktop.
+  // P1.9: slot conflict on step 5 — pass-through to Step5FinalDesktop.
   slotConflict: BookingWizardMobileProps["slotConflict"];
   onPickAlternativeSlot: BookingWizardMobileProps["onPickAlternativeSlot"];
   onChangeDateFromConflict: BookingWizardMobileProps["onChangeDateFromConflict"];
   isAvailabilityLoading: BookingWizardMobileProps["isAvailabilityLoading"];
 }
 
-function Step4Contact({
+function Step5Contact({
   firstName,
   lastName,
   onFullNameChange,
@@ -1282,7 +1285,7 @@ function Step4Contact({
   inputBase,
   inputError,
   inputNormal,
-}: Step4Props) {
+}: Step5Props) {
   const { localizedPath } = useLanguage();
   const depositStr = selectedBoatInfo?.specifications?.deposit;
   const depositAmount = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, "")) : null;
@@ -1678,12 +1681,12 @@ function Step4Contact({
 }
 
 /* ═══════════════════════════════════════════
-   STEP 4 (DESKTOP, FINAL): Personal data + Extras + Summary + RGPD
-   Combines Step4Contact (personal data + summary + RGPD)
-   with Step3Extras (extras section), in that order.
+   STEP 5 (DESKTOP, FINAL): Personal data + Summary + RGPD
+   Extras moved out to their own step (Step4ExtrasDesktop) — this step
+   focuses the user on the contact form + summary right before submit.
    ═══════════════════════════════════════════ */
 
-function Step4FinalDesktop(props: Step4Props & Step3Props) {
+function Step5FinalDesktop(props: Step5Props) {
   const {
     slotConflict,
     onPickAlternativeSlot,
@@ -1714,12 +1717,7 @@ function Step4FinalDesktop(props: Step4Props & Step3Props) {
           t={t}
         />
       )}
-      <Step4Contact {...props} />
-      {props.boatExtras.length > 0 && (
-        <div className="border-t border-cta/20 pt-6">
-          <Step3Extras {...props} />
-        </div>
-      )}
+      <Step5Contact {...props} />
     </div>
   );
 }

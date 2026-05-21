@@ -869,6 +869,8 @@ export interface Translations {
       whenWho?: string;
       yourBoat?: string;
       departureDuration?: string;
+      /** Step 4 of 5 — extras & packs. Shown in the progress bar. */
+      upgradeYourDay?: string;
       yourDetails?: string;
     };
     hints?: {

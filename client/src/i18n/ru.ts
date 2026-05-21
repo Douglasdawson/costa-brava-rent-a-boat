@@ -764,6 +764,7 @@ export const ru: Translations = {
       whenWho: "Когда отплываешь?",
       yourBoat: "Твоя лодка",
       departureDuration: "Время и длительность",
+      upgradeYourDay: "Сделай день лучше",
       yourDetails: "Подтвердить",
     },
     hints: {

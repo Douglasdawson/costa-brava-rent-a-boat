@@ -764,6 +764,7 @@ export const en: Translations = {
       whenWho: "When do you sail?",
       yourBoat: "Your boat",
       departureDuration: "Time and length",
+      upgradeYourDay: "Upgrade your day",
       yourDetails: "Confirm",
     },
     hints: {

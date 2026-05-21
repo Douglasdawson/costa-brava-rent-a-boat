@@ -768,6 +768,7 @@ export const nl: Translations = {
       whenWho: "Wanneer vaar je uit?",
       yourBoat: "Jouw boot",
       departureDuration: "Tijd en duur",
+      upgradeYourDay: "Maak je dag beter",
       yourDetails: "Bevestigen",
     },
     hints: {

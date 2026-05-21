@@ -23,8 +23,10 @@ import {
   Calendar,
   ArrowUp,
   ArrowDown,
+  Star,
+  Check,
 } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import type { Booking, Boat } from "@shared/schema";
 import { getStatusColor, getStatusLabel, getPaymentStatusColor, getPaymentStatusLabel } from "./constants";
@@ -40,6 +42,64 @@ interface BookingsTabProps {
   adminToken: string;
   onViewBooking: (booking: Booking) => void;
   onOpenWhatsApp: (phone: string, name: string) => void;
+}
+
+/**
+ * 3-state button for sending the post-trip thank-you + Google review WhatsApp:
+ *  - Already sent: gray "✓ Enviado" badge
+ *  - Trip is past, not sent: prominent primary button (visual nudge to send)
+ *  - Trip is future, not sent: subtle ghost button (operator can still send if they want)
+ *
+ * Click → POST /api/admin/bookings/:id/thank-you-whatsapp → opens wa.me URL.
+ * The endpoint marks whatsappThankYouSent=true so the button flips to the sent badge.
+ */
+function ThankYouButton({ booking }: { booking: Booking }) {
+  const queryClient = useQueryClient();
+  const tripIsPast = new Date(booking.endTime).getTime() < Date.now();
+  const alreadySent = booking.whatsappThankYouSent;
+
+  const mutation = useMutation({
+    mutationFn: async () => {
+      const res = await fetch(
+        `/api/admin/bookings/${booking.id}/thank-you-whatsapp`,
+        { method: "POST", credentials: "include" }
+      );
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({ message: "Error" }));
+        throw new Error(body.message ?? "Error generando el enlace de WhatsApp");
+      }
+      return res.json() as Promise<{ whatsappUrl: string }>;
+    },
+    onSuccess: ({ whatsappUrl }) => {
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
+    },
+    onError: (err) => {
+      alert(err instanceof Error ? err.message : "Error generando el enlace");
+    },
+  });
+
+  if (alreadySent) {
+    return (
+      <Badge variant="secondary" className="gap-1" data-testid={`badge-thankyou-sent-${booking.id}`}>
+        <Check className="w-3 h-3" />
+        Enviado
+      </Badge>
+    );
+  }
+
+  return (
+    <Button
+      variant={tripIsPast ? "default" : "ghost"}
+      size="sm"
+      onClick={() => mutation.mutate()}
+      disabled={mutation.isPending}
+      title={tripIsPast ? "Gracias + petición de reseña" : "Gracias + reseña (paseo aún pendiente)"}
+      data-testid={`button-thankyou-${booking.id}`}
+    >
+      <Star className={`w-4 h-4 ${tripIsPast ? "" : "text-muted-foreground"}`} />
+    </Button>
+  );
 }
 
 export function BookingsTab({
@@ -218,7 +278,8 @@ export function BookingsTab({
                         </Badge>
                       </TableCell>
                       <TableCell className="text-right">
-                        <div className="flex justify-end space-x-1">
+                        <div className="flex justify-end items-center space-x-1">
+                          <ThankYouButton booking={booking} />
                           <Button
                             variant="ghost"
                             size="sm"
@@ -325,7 +386,8 @@ export function BookingsTab({
                         </Badge>
                       </div>
                     </div>
-                    <div className="flex gap-1">
+                    <div className="flex gap-1 items-center">
+                      <ThankYouButton booking={booking} />
                       <Button
                         variant="ghost"
                         size="sm"

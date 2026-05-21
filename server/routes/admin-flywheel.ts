@@ -87,6 +87,70 @@ export function registerAdminFlywheelRoutes(app: Express) {
     },
   );
 
+  // Generate a pre-filled wa.me URL with the thank-you + Google review template
+  // for a specific booking. Does NOT send via Twilio — the operator clicks the
+  // returned URL which opens WhatsApp Web/App with the customer's number and
+  // message pre-filled, then hits send manually. Lets the team review the
+  // message and keeps the human-in-the-loop touch.
+  //
+  // Idempotent on the DB flag: re-clicking the button regenerates the URL but
+  // doesn't unmark whatsappThankYouSent. The CRM uses that flag to switch the
+  // button to a "✓ Enviado" badge after the first click.
+  app.post(
+    "/api/admin/bookings/:bookingId/thank-you-whatsapp",
+    requireAdminSession,
+    async (req, res) => {
+      const { bookingId } = req.params;
+
+      try {
+        const booking = await storage.getBooking(bookingId);
+        if (!booking) {
+          return res.status(404).json({ message: "Reserva no encontrada" });
+        }
+
+        if (!booking.customerPhone || booking.customerPhone === "N/A") {
+          return res.status(400).json({
+            message: "La reserva no tiene teléfono válido para WhatsApp",
+          });
+        }
+
+        const message = renderThankYouWhatsApp({
+          customerName: booking.customerName,
+          language: booking.language,
+        });
+
+        // wa.me expects digits only — strip "+", spaces, dashes, parens.
+        const digits = booking.customerPhone.replace(/\D/g, "");
+        const whatsappUrl = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+
+        await storage.updateBookingWhatsAppThankYouStatus(booking.id, true);
+
+        audit(req, "flywheel.thank_you_whatsapp_link_generated", "booking", booking.id, {
+          language: booking.language ?? "es",
+        });
+
+        logger.info("[AdminFlywheel] Thank-you WhatsApp link generated", {
+          bookingId: booking.id,
+          language: booking.language,
+        });
+
+        res.json({
+          success: true,
+          bookingId: booking.id,
+          whatsappUrl,
+          language: booking.language ?? "es",
+        });
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : "Unknown error";
+        logger.error("[AdminFlywheel] thank-you-whatsapp link error", {
+          bookingId,
+          error: msg,
+        });
+        res.status(500).json({ message: "Error: " + msg });
+      }
+    },
+  );
+
   // List bookings that are eligible for a manual review-request back-fill.
   // Useful for the CRM to surface missed ones in a list.
   app.get(

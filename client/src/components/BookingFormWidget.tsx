@@ -729,12 +729,15 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     setCurrentStep(1);
   }, []);
 
-  // Filter boats based on license selection
-  const filteredBoats = allBoats.filter(boat => {
-    if (licenseFilter === "with") return !!boat.requiresLicense;
-    if (licenseFilter === "without") return !boat.requiresLicense;
-    return true;
-  });
+  // Filter boats based on license selection, then sort by displayOrder
+  // (same logic used in FleetSection so the wizard list mirrors the home).
+  const filteredBoats = allBoats
+    .filter(boat => {
+      if (licenseFilter === "with") return !!boat.requiresLicense;
+      if (licenseFilter === "without") return !boat.requiresLicense;
+      return true;
+    })
+    .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999));
 
   // Get selected boat info
   const selectedBoatInfo = allBoats.find(boat => boat.id === selectedBoat);

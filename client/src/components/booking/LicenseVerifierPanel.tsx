@@ -17,6 +17,7 @@ import {
   isEeeCountry,
   getLicensesForCountry,
   findLicense,
+  getDefaultCountryForLanguage,
   type LicenseVerificationStatus,
   type SpanishLicenseLevel,
 } from "@shared/nauticalLicenseRules";
@@ -52,6 +53,17 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
   useEffect(() => {
     if (isEee && state.hasIcc !== null) setHasIcc(null);
   }, [isEee, state.hasIcc, setHasIcc]);
+
+  // Pre-fill country from the active UI language the first time the panel
+  // becomes visible. Respects sessionStorage hydration (only triggers when
+  // state.country is empty). Runs once per mount.
+  useEffect(() => {
+    if (!state.country) {
+      const def = getDefaultCountryForLanguage(language);
+      if (def) setCountry(def);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (isIccCode && state.hasIcc !== null) setHasIcc(null);

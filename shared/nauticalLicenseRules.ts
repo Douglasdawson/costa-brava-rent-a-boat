@@ -147,6 +147,29 @@ export function getLicensesForCountry(country: string): ForeignLicense[] {
   return COUNTRY_LICENSES[upper] ?? GENERIC_LICENSES;
 }
 
+/**
+ * Best-guess country pre-selection from the active UI language.
+ *
+ * Catalan maps to Spain (the language community lives mostly in Catalonia/
+ * Valencia/Balearics). English maps to the UK over the US because the UK is
+ * the most common English-speaking origin for Costa Brava tourism and is in
+ * our curated catalogue.
+ */
+export const LANGUAGE_TO_DEFAULT_COUNTRY: Record<string, string> = {
+  es: "ES",
+  ca: "ES",
+  en: "GB",
+  fr: "FR",
+  de: "DE",
+  nl: "NL",
+  it: "IT",
+  ru: "RU",
+};
+
+export function getDefaultCountryForLanguage(lang: string): string {
+  return LANGUAGE_TO_DEFAULT_COUNTRY[(lang || "").toLowerCase()] ?? "";
+}
+
 export function findLicense(country: string, licenseCode: string): ForeignLicense | undefined {
   if (!licenseCode) return undefined;
   return getLicensesForCountry(country).find((l) => l.code === licenseCode);

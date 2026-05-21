@@ -5,6 +5,7 @@ import {
   findLicense,
   isEeeCountry,
   isIccIssuingCountry,
+  getDefaultCountryForLanguage,
   EEE_COUNTRIES,
   ICC_ISSUING_COUNTRIES,
   COUNTRY_LICENSES,
@@ -189,6 +190,25 @@ describe("verifyLicense — missing input", () => {
     expect(verifyLicense({ country: "", licenseCode: "pnb", hasIcc: null }).status)
       .toBe("unknown");
   });
+});
+
+describe("getDefaultCountryForLanguage", () => {
+  it("es → ES", () => expect(getDefaultCountryForLanguage("es")).toBe("ES"));
+  it("ca → ES (catalan community lives in Spain)", () =>
+    expect(getDefaultCountryForLanguage("ca")).toBe("ES"));
+  it("en → GB (top tourism origin, curated catalogue)", () =>
+    expect(getDefaultCountryForLanguage("en")).toBe("GB"));
+  it("fr → FR", () => expect(getDefaultCountryForLanguage("fr")).toBe("FR"));
+  it("de → DE", () => expect(getDefaultCountryForLanguage("de")).toBe("DE"));
+  it("nl → NL", () => expect(getDefaultCountryForLanguage("nl")).toBe("NL"));
+  it("it → IT", () => expect(getDefaultCountryForLanguage("it")).toBe("IT"));
+  it("ru → RU", () => expect(getDefaultCountryForLanguage("ru")).toBe("RU"));
+  it("unknown language → empty string", () =>
+    expect(getDefaultCountryForLanguage("jp")).toBe(""));
+  it("uppercase input is normalised", () =>
+    expect(getDefaultCountryForLanguage("EN")).toBe("GB"));
+  it("empty input → empty string", () =>
+    expect(getDefaultCountryForLanguage("")).toBe(""));
 });
 
 describe("FLEET_MIN_LICENSE invariant", () => {

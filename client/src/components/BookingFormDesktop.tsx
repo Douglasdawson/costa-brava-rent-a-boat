@@ -846,20 +846,36 @@ function Step2Details({
                       {t.neuro?.bestValue || "Mejor valor"}
                     </p>
                   )}
-                  <div className="flex items-baseline justify-center gap-2 flex-wrap">
-                    <p
-                      className={`text-sm font-semibold ${isDisabled ? "text-muted-foreground line-through" : "text-foreground"}`}
-                    >
-                      {labelText}
-                    </p>
-                    {isDisabled ? (
-                      <p className="text-xs text-popular font-medium">
-                        {opt.disabledReason || t.boats.notAvailable}
-                      </p>
-                    ) : priceText ? (
-                      <p className="text-sm font-bold text-foreground">{priceText}</p>
-                    ) : null}
-                  </div>
+                  {(() => {
+                    // Split "4 horas · Media día" into a tight headline
+                    // ("4 horas" + "200€" on one row) and a smaller descriptor
+                    // beneath ("Media día"). Keeps every card single-line wide
+                    // regardless of how long the label gets.
+                    const labelParts = labelText.split(" · ");
+                    const durationLabel = labelParts[0];
+                    const descriptor = labelParts.length > 1 ? labelParts.slice(1).join(" · ") : null;
+                    return (
+                      <>
+                        <div className="flex items-baseline justify-center gap-2">
+                          <p
+                            className={`text-sm font-semibold ${isDisabled ? "text-muted-foreground line-through" : "text-foreground"}`}
+                          >
+                            {durationLabel}
+                          </p>
+                          {isDisabled ? (
+                            <p className="text-xs text-popular font-medium">
+                              {opt.disabledReason || t.boats.notAvailable}
+                            </p>
+                          ) : priceText ? (
+                            <p className="text-sm font-bold text-foreground">{priceText}</p>
+                          ) : null}
+                        </div>
+                        {descriptor && !isDisabled && (
+                          <p className="text-xs text-muted-foreground -mt-0.5">{descriptor}</p>
+                        )}
+                      </>
+                    );
+                  })()}
                   {opt.price && !isDisabled && (
                     <p className="text-xs text-muted-foreground">
                       {(opt.price / parseFloat(opt.value)).toFixed(0)}€

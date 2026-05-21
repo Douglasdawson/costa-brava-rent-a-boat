@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Clock, Fuel, Gift, Loader2, Package, Star, Tag, Users, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -19,8 +19,10 @@ import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
-import LicenseVerifierPanel from "@/components/booking/LicenseVerifierPanel";
+import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
 import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
+
+const LicenseVerifierPanel = lazy(() => import("@/components/booking/LicenseVerifierPanel"));
 import { formatBookingDate as formatLocalisedDate, getLocaleForLanguage } from "@/utils/intl-helpers";
 
 interface PhonePrefix {
@@ -436,7 +438,9 @@ function Step2Boat({
         </fieldset>
       )}
       {!preSelectedBoatId && licenseFilter === "with" && (
-        <LicenseVerifierPanel verifier={licenseVerifier} />
+        <Suspense fallback={<LicenseVerifierPanelSkeleton />}>
+          <LicenseVerifierPanel verifier={licenseVerifier} />
+        </Suspense>
       )}
       {needsMultiBoat ? (
         <MultiBoatCombinations

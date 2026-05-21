@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useDeferredValue } from "react";
 import {
   CheckCircle2,
   ShieldCheck,
@@ -6,11 +6,15 @@ import {
   Info,
   Search,
   ChevronDown,
+  Loader2,
 } from "lucide-react";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { LICENSE_COUNTRIES, getCountryDisplayName, findCountry } from "@/utils/license-countries";
 import {
@@ -35,13 +39,25 @@ const SPANISH_LEVEL_LABEL: Record<SpanishLicenseLevel, string> = {
   capitan_yate: "Capitán de Yate",
 };
 
+// Entry animation that respects prefers-reduced-motion. Reused across the
+// filling form, the country picker dropdown, and the summary card. Slight
+// overshoot easing gives the summary a satisfying confirm-feel.
 const FADE_IN_TOP = "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-top-1 motion-safe:duration-150";
+const FADE_IN_TOP_BOUNCY = "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-top-1 motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.34,1.56,0.64,1)]";
 const COLOR_TRANSITION = "transition-[background-color,border-color,color] duration-150";
+const FOCUS_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+
+function tinyHaptic() {
+  if (typeof navigator !== "undefined" && typeof navigator.vibrate === "function") {
+    try { navigator.vibrate(8); } catch { /* iOS Safari without Web Vibration */ }
+  }
+}
 
 export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelProps) {
   const { language } = useLanguage();
   const t = useTranslations();
   const tv = t.bookingWizard?.licenseVerifier;
+  const isMobile = useIsMobile();
 
   const { state, setCountry, setLicenseCode, setHasIcc, verify, resetStatus, dismiss, undismiss } = verifier;
   const isEee = state.country ? isEeeCountry(state.country) : false;
@@ -49,14 +65,18 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
 
   const [countryOpen, setCountryOpen] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
+  const deferredSearch = useDeferredValue(countrySearch);
+  const [isVerifying, setIsVerifying] = useState(false);
 
   useEffect(() => {
     if (isEee && state.hasIcc !== null) setHasIcc(null);
   }, [isEee, state.hasIcc, setHasIcc]);
 
-  // Pre-fill country from the active UI language the first time the panel
-  // becomes visible. Respects sessionStorage hydration (only triggers when
-  // state.country is empty). Runs once per mount.
+  useEffect(() => {
+    if (isIccCode && state.hasIcc !== null) setHasIcc(null);
+  }, [isIccCode, state.hasIcc, setHasIcc]);
+
+  // Pre-fill country from active UI language on first mount, only if empty.
   useEffect(() => {
     if (!state.country) {
       const def = getDefaultCountryForLanguage(language);
@@ -65,18 +85,14 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (isIccCode && state.hasIcc !== null) setHasIcc(null);
-  }, [isIccCode, state.hasIcc, setHasIcc]);
-
   const filteredCountries = useMemo(() => {
-    const q = countrySearch.trim().toLowerCase();
+    const q = deferredSearch.trim().toLowerCase();
     if (!q) return LICENSE_COUNTRIES;
     return LICENSE_COUNTRIES.filter((c) => {
       const haystack = `${c.iso2} ${getCountryDisplayName(c.iso2, language)} ${getCountryDisplayName(c.iso2, "en")}`.toLowerCase();
       return haystack.includes(q);
     });
-  }, [countrySearch, language]);
+  }, [deferredSearch, language]);
 
   const catalogue = useMemo(
     () => getLicensesForCountry(state.country),
@@ -95,13 +111,27 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
   const selectedCountryName = state.country ? getCountryDisplayName(state.country, language) : "";
 
   function handleVerify() {
-    if (!canVerify) return;
-    verify();
+    if (!canVerify || isVerifying) return;
+    setIsVerifying(true);
+    // 250ms artificial latency: makes the verify feel like the system worked
+    // for the customer instead of an instant snap. Long enough to register,
+    // short enough to never feel slow.
+    window.setTimeout(() => {
+      verify();
+      setIsVerifying(false);
+      tinyHaptic();
+    }, 250);
   }
 
   function handleChange() {
     resetStatus();
     undismiss();
+  }
+
+  function handleCountrySelect(iso2: string) {
+    setCountry(iso2);
+    setCountryOpen(false);
+    setCountrySearch("");
   }
 
   /* ────────────── Summary view (collapsed) ────────────── */
@@ -139,12 +169,13 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
       <FieldSection label={tv?.countryLabel ?? "País que emitió tu licencia"}>
         <button
           type="button"
-          onClick={() => setCountryOpen((o) => !o)}
+          onClick={() => setCountryOpen(true)}
           aria-expanded={countryOpen}
-          aria-haspopup="listbox"
+          aria-haspopup={isMobile ? "dialog" : "listbox"}
           className={[
-            "flex w-full items-center justify-between gap-3 border border-input bg-background px-3.5 h-11 text-[15px] text-foreground hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background",
-            countryOpen ? "rounded-t-md border-b-0" : "rounded-md",
+            "flex w-full items-center justify-between gap-3 border border-input bg-background px-3.5 h-11 text-[15px] text-foreground hover:border-foreground/30 rounded-md active:scale-[0.99] transform-gpu",
+            !isMobile && countryOpen ? "rounded-b-none border-b-0" : "",
+            FOCUS_RING,
             COLOR_TRANSITION,
           ].join(" ")}
         >
@@ -159,26 +190,42 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
             </span>
           )}
           <ChevronDown
-            className={`w-4 h-4 shrink-0 text-foreground/55 ${countryOpen ? "rotate-180" : ""} ${COLOR_TRANSITION}`}
+            className={`w-4 h-4 shrink-0 text-foreground/55 ${countryOpen && !isMobile ? "rotate-180" : ""} ${COLOR_TRANSITION}`}
             aria-hidden
           />
         </button>
 
-        {countryOpen && (
-          <CountryListInline
+        {/* Mobile: bottom sheet. Desktop: inline expand. */}
+        {isMobile ? (
+          <CountrySheet
+            open={countryOpen}
+            onOpenChange={(v) => {
+              setCountryOpen(v);
+              if (!v) setCountrySearch("");
+            }}
+            countries={filteredCountries}
             search={countrySearch}
             onSearch={setCountrySearch}
             searchPlaceholder={tv?.countrySearchPlaceholder ?? "Buscar país..."}
             emptyText={tv?.countryNotFound ?? "No se encontraron países."}
-            countries={filteredCountries}
+            sheetTitle={tv?.countryLabel ?? "País que emitió tu licencia"}
             selected={state.country}
             language={language}
-            onSelect={(iso2) => {
-              setCountry(iso2);
-              setCountryOpen(false);
-              setCountrySearch("");
-            }}
+            onSelect={handleCountrySelect}
           />
+        ) : (
+          countryOpen && (
+            <CountryListInline
+              search={countrySearch}
+              onSearch={setCountrySearch}
+              searchPlaceholder={tv?.countrySearchPlaceholder ?? "Buscar país..."}
+              emptyText={tv?.countryNotFound ?? "No se encontraron países."}
+              countries={filteredCountries}
+              selected={state.country}
+              language={language}
+              onSelect={handleCountrySelect}
+            />
+          )
         )}
       </FieldSection>
 
@@ -204,11 +251,13 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
                   onClick={() => setLicenseCode(lic.code)}
                   aria-label={equivLabel ? `${lic.label}, ${equivLabel}` : lic.label}
                   className={[
-                    "text-left px-3.5 py-3 min-h-[68px] rounded-xl leading-snug",
+                    "text-left px-3.5 py-3 min-h-[68px] rounded-xl leading-snug active:scale-[0.98] transform-gpu",
                     selected
                       ? "bg-foreground text-white border border-foreground"
                       : "bg-background text-foreground/85 border border-border hover:border-foreground/25",
+                    FOCUS_RING,
                     COLOR_TRANSITION,
+                    "transition-transform",
                   ].join(" ")}
                 >
                   <p className="text-[14px] font-medium line-clamp-2">{lic.label}</p>
@@ -254,33 +303,40 @@ export default function LicenseVerifierPanel({ verifier }: LicenseVerifierPanelP
         </fieldset>
       )}
 
-      {/* Actions */}
-      <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
+      {/* Actions — sticky on mobile so Verify never falls below the fold */}
+      <div className="sticky bottom-0 -mx-4 sm:-mx-5 px-4 sm:px-5 pb-safe pt-3 bg-card/85 backdrop-blur-sm flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 sm:bg-transparent sm:backdrop-blur-none sm:static sm:p-0 sm:mx-0 sm:pb-0">
         <button
           type="button"
           onClick={() => dismiss()}
-          className={`text-sm text-foreground/65 hover:text-foreground underline-offset-4 hover:underline self-center sm:self-start min-h-11 inline-flex items-center -my-2.5 ${COLOR_TRANSITION}`}
+          className={`text-sm text-foreground/65 hover:text-foreground underline-offset-4 hover:underline self-center sm:self-start min-h-11 inline-flex items-center -my-2.5 ${FOCUS_RING} ${COLOR_TRANSITION}`}
         >
           {tv?.skip ?? "Lo verifico más tarde"}
         </button>
         <Button
           type="button"
           onClick={handleVerify}
-          disabled={!canVerify}
+          disabled={!canVerify || isVerifying}
           className="rounded-full px-7 h-11 font-semibold transition-opacity duration-150"
         >
-          {tv?.verify ?? "Verificar"}
+          {isVerifying ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin mr-2" aria-hidden />
+              {tv?.verify ?? "Verificar"}
+            </>
+          ) : (
+            tv?.verify ?? "Verificar"
+          )}
         </Button>
       </div>
 
       {/* Disclaimer */}
-      <p className="text-[11px] leading-relaxed text-foreground/65 pt-4 border-t border-border/60">
+      <p className="text-[11px] leading-relaxed text-foreground/65 pt-1 border-t border-border/60">
         {tv?.disclaimer ?? "Información orientativa basada en el Real Decreto 875/2014. La autorización final depende de la Capitanía Marítima."}{" "}
         <a
           href="https://www.boe.es/eli/es/rd/2014/10/10/875"
           target="_blank"
           rel="noopener noreferrer"
-          className={`underline underline-offset-2 hover:text-foreground inline-block py-1.5 -my-1.5 ${COLOR_TRANSITION}`}
+          className={`underline underline-offset-2 hover:text-foreground inline-block py-1.5 -my-1.5 ${FOCUS_RING} ${COLOR_TRANSITION}`}
         >
           {tv?.disclaimerLink ?? "Ver norma"}
         </a>
@@ -374,7 +430,7 @@ function SummaryView({
   const equivBlock = (() => {
     if (!spanishEquivalent) return null;
     const level = SPANISH_LEVEL_LABEL[spanishEquivalent];
-    const template = tv?.equivalentTo ?? "Equivale a {level} español";
+    const template = tv?.equivalentTo ?? "Equivale a {level} en el sistema español";
     return template.replace("{level}", level);
   })();
 
@@ -401,7 +457,7 @@ function SummaryView({
       role="status"
       aria-live="polite"
       data-testid="license-status-summary"
-      className={`rounded-2xl border ${s.borderColor} ${s.bgColor} p-4 space-y-3 ${FADE_IN_TOP}`}
+      className={`rounded-2xl border ${s.borderColor} ${s.bgColor} p-4 space-y-3 ${FADE_IN_TOP_BOUNCY}`}
     >
       <div className="flex items-start gap-3">
         <Icon className={`w-5 h-5 shrink-0 mt-0.5 ${s.iconColor}`} aria-hidden />
@@ -423,7 +479,7 @@ function SummaryView({
         <button
           type="button"
           onClick={onChange}
-          className={`text-[12px] font-medium text-foreground/65 hover:text-foreground underline-offset-2 hover:underline shrink-0 inline-flex items-center min-h-11 px-2 -my-2 ${COLOR_TRANSITION}`}
+          className={`text-[12px] font-medium text-foreground/65 hover:text-foreground underline-offset-2 hover:underline shrink-0 inline-flex items-center min-h-11 px-2 -my-2 ${FOCUS_RING} ${COLOR_TRANSITION}`}
         >
           {tv?.change ?? "Cambiar"}
         </button>
@@ -433,7 +489,7 @@ function SummaryView({
         <button
           type="button"
           onClick={handleWhatsApp}
-          className={`flex items-center justify-center gap-2 w-full h-11 rounded-full bg-[#25D366] hover:bg-[#1FB759] text-white text-sm font-semibold ${COLOR_TRANSITION}`}
+          className={`flex items-center justify-center gap-2 w-full h-11 rounded-full bg-[#25D366] hover:bg-[#1FB759] text-white text-sm font-semibold active:scale-[0.98] transform-gpu transition-transform ${FOCUS_RING} ${COLOR_TRANSITION}`}
         >
           <SiWhatsapp className="w-4 h-4" />
           {tv?.ctaWhatsApp ?? "Contactar por WhatsApp"}
@@ -474,11 +530,13 @@ function SegmentButton({
       aria-checked={selected}
       onClick={onClick}
       className={[
-        "h-11 rounded-full text-sm font-semibold",
+        "h-11 rounded-full text-sm font-semibold active:scale-[0.97] transform-gpu",
         selected
           ? "bg-foreground text-white"
           : "bg-transparent text-foreground/70 hover:text-foreground",
+        FOCUS_RING,
         COLOR_TRANSITION,
+        "transition-transform",
       ].join(" ")}
     >
       {label}
@@ -486,7 +544,11 @@ function SegmentButton({
   );
 }
 
-interface CountryListInlineProps {
+/* ──────────────────────────────────────────────────────────
+   Country pickers — mobile (Sheet) + desktop (inline)
+   ────────────────────────────────────────────────────────── */
+
+interface CountryPickerSharedProps {
   search: string;
   onSearch: (v: string) => void;
   searchPlaceholder: string;
@@ -497,65 +559,244 @@ interface CountryListInlineProps {
   onSelect: (iso2: string) => void;
 }
 
-function CountryListInline({
-  search,
-  onSearch,
-  searchPlaceholder,
-  emptyText,
+function CountrySheet({
+  open,
+  onOpenChange,
+  sheetTitle,
+  ...props
+}: CountryPickerSharedProps & {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  sheetTitle: string;
+}) {
+  return (
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent
+        side="bottom"
+        className="p-0 h-[85vh] rounded-t-2xl flex flex-col"
+        aria-describedby={undefined}
+      >
+        <div className="px-4 pt-5 pb-3 border-b border-border bg-background sticky top-0 z-10">
+          <SheetTitle className="text-[15px] font-semibold mb-3 pr-8">
+            {sheetTitle}
+          </SheetTitle>
+          <SearchInput
+            value={props.search}
+            onChange={props.onSearch}
+            placeholder={props.searchPlaceholder}
+            autoFocus
+          />
+        </div>
+        <CountryList
+          {...props}
+          virtualized
+          // height fills the remaining sheet space
+        />
+      </SheetContent>
+    </Sheet>
+  );
+}
+
+function CountryListInline(props: CountryPickerSharedProps) {
+  return (
+    <div className={`rounded-b-md border border-t-input/70 border-input bg-background overflow-hidden ${FADE_IN_TOP}`}>
+      <div className="px-3 h-11 border-b border-input/70 bg-card/40 flex items-center gap-2">
+        <Search className="w-3.5 h-3.5 text-foreground/55 shrink-0" aria-hidden />
+        <SearchInput
+          value={props.search}
+          onChange={props.onSearch}
+          placeholder={props.searchPlaceholder}
+          variant="inline"
+          autoFocus
+        />
+      </div>
+      <CountryList {...props} virtualized={false} />
+    </div>
+  );
+}
+
+function SearchInput({
+  value,
+  onChange,
+  placeholder,
+  autoFocus,
+  variant = "boxed",
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  placeholder: string;
+  autoFocus?: boolean;
+  variant?: "boxed" | "inline";
+}) {
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (autoFocus) {
+      const id = requestAnimationFrame(() => ref.current?.focus());
+      return () => cancelAnimationFrame(id);
+    }
+  }, [autoFocus]);
+
+  // iOS zoom prevention requires explicit 16px (text-base). text-sm = 14px
+  // would trigger Safari's auto-zoom on focus.
+  const cls =
+    variant === "boxed"
+      ? `flex items-center gap-2 w-full h-11 px-3 rounded-md border border-input bg-background ${FOCUS_RING}`
+      : "flex-1 bg-transparent";
+
+  if (variant === "boxed") {
+    return (
+      <div className={cls}>
+        <Search className="w-4 h-4 text-foreground/55 shrink-0" aria-hidden />
+        <input
+          ref={ref}
+          type="search"
+          inputMode="search"
+          enterKeyHint="search"
+          autoComplete="off"
+          autoCorrect="off"
+          spellCheck={false}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          className="flex-1 bg-transparent text-base placeholder:text-foreground/55 focus:outline-none"
+          aria-label={placeholder}
+        />
+      </div>
+    );
+  }
+  return (
+    <input
+      ref={ref}
+      type="search"
+      inputMode="search"
+      enterKeyHint="search"
+      autoComplete="off"
+      autoCorrect="off"
+      spellCheck={false}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      className="flex-1 bg-transparent text-base placeholder:text-foreground/55 focus:outline-none h-11"
+      aria-label={placeholder}
+    />
+  );
+}
+
+function CountryList({
   countries,
   selected,
   language,
   onSelect,
-}: CountryListInlineProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  emptyText,
+  virtualized,
+}: CountryPickerSharedProps & { virtualized: boolean }) {
+  const parentRef = useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    const id = requestAnimationFrame(() => inputRef.current?.focus());
-    return () => cancelAnimationFrame(id);
-  }, []);
+  const rowVirtualizer = useVirtualizer({
+    count: countries.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 52,
+    overscan: 6,
+    enabled: virtualized,
+  });
+
+  if (countries.length === 0) {
+    return <p className="px-3 py-6 text-center text-sm text-foreground/65">{emptyText}</p>;
+  }
+
+  if (!virtualized) {
+    return (
+      <ul role="listbox" className="max-h-60 overflow-y-auto py-1">
+        {countries.map((c) => (
+          <CountryRow
+            key={c.iso2}
+            iso2={c.iso2}
+            flag={c.flag}
+            isSelected={c.iso2 === selected}
+            label={getCountryDisplayName(c.iso2, language)}
+            onSelect={onSelect}
+          />
+        ))}
+      </ul>
+    );
+  }
 
   return (
-    <div className={`rounded-b-md border border-t-input/70 border-input bg-background overflow-hidden ${FADE_IN_TOP}`}>
-      <div className="flex items-center gap-2 px-3 h-11 border-b border-input/70 bg-card/40">
-        <Search className="w-3.5 h-3.5 text-foreground/55" aria-hidden />
-        <input
-          ref={inputRef}
-          type="text"
-          value={search}
-          onChange={(e) => onSearch(e.target.value)}
-          placeholder={searchPlaceholder}
-          className="flex-1 bg-transparent text-sm placeholder:text-foreground/55 focus:outline-none h-11"
-        />
-      </div>
-      {countries.length === 0 ? (
-        <p className="px-3 py-6 text-center text-sm text-foreground/65">{emptyText}</p>
-      ) : (
-        <ul role="listbox" className="max-h-60 overflow-y-auto py-1">
-          {countries.map((c) => {
-            const isSelected = c.iso2 === selected;
-            return (
-              <li key={c.iso2}>
-                <button
-                  type="button"
-                  role="option"
-                  aria-selected={isSelected}
-                  onClick={() => onSelect(c.iso2)}
-                  className={[
-                    "flex w-full items-center gap-2.5 px-3.5 py-3 text-left text-[14px] min-h-11",
-                    isSelected
-                      ? "bg-cta/8 text-foreground font-medium"
-                      : "text-foreground/85 hover:bg-card/60",
-                    COLOR_TRANSITION,
-                  ].join(" ")}
-                >
-                  <span className="text-base leading-none" aria-hidden>{c.flag}</span>
-                  <span className="truncate">{getCountryDisplayName(c.iso2, language)}</span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
+    <ul
+      ref={parentRef}
+      role="listbox"
+      className="flex-1 overflow-y-auto overscroll-contain"
+      style={{ contain: "strict" }}
+    >
+      <li
+        style={{
+          height: `${rowVirtualizer.getTotalSize()}px`,
+          width: "100%",
+          position: "relative",
+        }}
+        aria-hidden
+      >
+        {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+          const c = countries[virtualRow.index];
+          return (
+            <div
+              key={c.iso2}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: `${virtualRow.size}px`,
+                transform: `translateY(${virtualRow.start}px)`,
+              }}
+            >
+              <CountryRow
+                iso2={c.iso2}
+                flag={c.flag}
+                isSelected={c.iso2 === selected}
+                label={getCountryDisplayName(c.iso2, language)}
+                onSelect={onSelect}
+              />
+            </div>
+          );
+        })}
+      </li>
+    </ul>
+  );
+}
+
+function CountryRow({
+  iso2,
+  flag,
+  isSelected,
+  label,
+  onSelect,
+}: {
+  iso2: string;
+  flag: string;
+  isSelected: boolean;
+  label: string;
+  onSelect: (iso2: string) => void;
+}) {
+  return (
+    <button
+      type="button"
+      role="option"
+      aria-selected={isSelected}
+      onClick={() => onSelect(iso2)}
+      className={[
+        "flex w-full items-center gap-2.5 px-4 py-3 text-left text-[15px] min-h-11 active:scale-[0.99] transform-gpu",
+        isSelected
+          ? "bg-cta/10 text-foreground font-medium"
+          : "text-foreground/90 hover:bg-card/60",
+        FOCUS_RING,
+        COLOR_TRANSITION,
+        "transition-transform",
+      ].join(" ")}
+    >
+      <span className="text-lg leading-none" aria-hidden>{flag}</span>
+      <span className="truncate">{label}</span>
+    </button>
   );
 }

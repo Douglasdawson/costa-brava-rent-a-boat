@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { CalendarIcon, Check, ClipboardList, Clock, Fuel, Loader2, Star, Users, X } from "lucide-react";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -21,8 +21,10 @@ import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
-import LicenseVerifierPanel from "@/components/booking/LicenseVerifierPanel";
+import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
 import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
+
+const LicenseVerifierPanel = lazy(() => import("@/components/booking/LicenseVerifierPanel"));
 import { formatBookingDate as formatBookingDateDesktop, getLocaleForLanguage } from "@/utils/intl-helpers";
 
 // Slide animation variants — transform + opacity only. P1.17 (2026-05-20)
@@ -551,7 +553,9 @@ function Step1BoatDate({
         </div>
       )}
       {!preSelectedBoatId && licenseFilter === "with" && (
-        <LicenseVerifierPanel verifier={licenseVerifier} />
+        <Suspense fallback={<LicenseVerifierPanelSkeleton />}>
+          <LicenseVerifierPanel verifier={licenseVerifier} />
+        </Suspense>
       )}
 
       {/* Boat selection / multi-boat combinations */}

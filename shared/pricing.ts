@@ -569,6 +569,27 @@ export function getMinActivePrice(
 }
 
 /**
+ * Cheapest active (>0) price across ALL seasons and ALL durations of a boat.
+ * This is the catalog floor — used to render the public-facing "desde X€"
+ * figure on boat cards and pickers, regardless of the date the user has
+ * selected or any per-date override the admin applied. Returns null when
+ * the boat has no active pricing at all.
+ */
+export function getBoatCatalogMinPrice(
+  pricing: Record<string, { prices?: Record<string, number | null | undefined> | null } | null | undefined> | null | undefined,
+): number | null {
+  if (!pricing) return null;
+  let min: number | null = null;
+  for (const season of Object.values(pricing)) {
+    const seasonMin = getMinActivePrice(season?.prices);
+    if (seasonMin !== null && (min === null || seasonMin < min)) {
+      min = seasonMin;
+    }
+  }
+  return min;
+}
+
+/**
  * Cheapest active (>0) price for a specific duration across a set of boats.
  * Used by public pages to render "desde X€" figures derived from live admin data.
  */

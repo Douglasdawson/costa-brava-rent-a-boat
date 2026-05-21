@@ -6,7 +6,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import type { Boat } from "@shared/schema";
 import { EXTRA_PACKS } from "@shared/boatData";
-import { getMinActivePrice, isBestValueSeasonForLongDuration } from "@shared/pricing";
+import { getBoatCatalogMinPrice, isBestValueSeasonForLongDuration } from "@shared/pricing";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import { ValueStack } from "@/components/booking-flow/ValueStack";
@@ -620,15 +620,11 @@ function BoatCardMobile({
   onSelect: () => void;
   t: Translations;
 }) {
-  const { finalPrice, hasOverride, overrideLabel } = useBoatPricingForDate({
-    boatId: boat.id,
-    date: selectedDate,
-    duration: "4h",
-    enabled: !!selectedDate && fitsCapacity,
-  });
-  const fallbackSeason = boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
-  const fallbackMin = getMinActivePrice(fallbackSeason?.prices);
-  const displayPrice = finalPrice ?? fallbackMin;
+  // "desde X€" is the catalog floor — cheapest active price across every
+  // season + duration combination the admin has configured. Independent
+  // of selectedDate and any per-date override; that data only kicks in
+  // once the user picks a duration on step 3.
+  const displayPrice = getBoatCatalogMinPrice(boat.pricing);
 
   return (
     <button
@@ -655,13 +651,8 @@ function BoatCardMobile({
       )}
       <p className="font-semibold text-foreground text-sm leading-tight">{boat.name}</p>
       {displayPrice !== null && (
-        <p className="text-xs text-primary font-medium inline-flex items-center gap-1 flex-wrap justify-center">
-          <span>{t.boats.from} {displayPrice}€</span>
-          {hasOverride && overrideLabel && (
-            <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
-              {overrideLabel}
-            </span>
-          )}
+        <p className="text-xs text-primary font-medium">
+          {t.boats.from} {displayPrice}€
         </p>
       )}
       <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground mt-0.5">

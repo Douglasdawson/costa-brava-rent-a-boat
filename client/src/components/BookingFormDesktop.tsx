@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "motion/react";
 import type { Boat } from "@shared/schema";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
 import { EXTRA_PACKS } from "@shared/boatData";
-import { getMinActivePrice, isBestValueSeasonForLongDuration } from "@shared/pricing";
+import { getBoatCatalogMinPrice, isBestValueSeasonForLongDuration } from "@shared/pricing";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import { ValueStack } from "@/components/booking-flow/ValueStack";
@@ -622,15 +622,10 @@ function BoatCardDesktop({
   onSelect: () => void;
   t: Translations;
 }) {
-  const { finalPrice, hasOverride, overrideLabel } = useBoatPricingForDate({
-    boatId: boat.id,
-    date: selectedDate,
-    duration: "4h",
-    enabled: !!selectedDate && fitsCapacity,
-  });
-  const fallbackSeason = boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
-  const fallbackMin = getMinActivePrice(fallbackSeason?.prices);
-  const displayPrice = finalPrice ?? fallbackMin;
+  // "desde X€" is the catalog floor — cheapest active price across every
+  // season + duration combo the admin has configured for this boat. Not
+  // tied to selectedDate or any per-date override.
+  const displayPrice = getBoatCatalogMinPrice(boat.pricing);
 
   return (
     <button
@@ -657,13 +652,8 @@ function BoatCardDesktop({
       <div className="flex-1 min-w-0">
         <p className="font-semibold text-foreground text-sm truncate">{boat.name}</p>
         {displayPrice !== null && (
-          <p className="text-xs text-foreground font-medium flex items-center gap-1.5">
-            <span>{t.boats.from} {displayPrice}€</span>
-            {hasOverride && overrideLabel && (
-              <span className="text-xs font-medium px-1.5 py-0.5 rounded-full bg-popular/10 text-popular">
-                {overrideLabel}
-              </span>
-            )}
+          <p className="text-xs text-foreground font-medium">
+            {t.boats.from} {displayPrice}€
           </p>
         )}
       </div>

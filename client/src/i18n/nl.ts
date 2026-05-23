@@ -13,7 +13,7 @@ export const nl: Translations = {
     myAccount: "Mijn Account",
   },
   hero: {
-    title: "Boot Huren zonder Vaarbewijs in Blanes — 7 Costa Brava-baaien",
+    title: "Boot Huren zonder Vaarbewijs in Blanes, 7 Costa Brava-baaien",
     subtitle:
       "Vaar zonder vaarbewijs of ervaring vanuit de haven van Blanes tot Playa de Fenals (Lloret). Zeven ongerepte baaien op je route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella en meer. Brandstof inbegrepen.",
     subtitleLine1: "Vaar zonder vaarbewijs van Blanes naar Playa de Fenals.",
@@ -78,9 +78,9 @@ export const nl: Translations = {
     bestForFamilies: "Favoriet gezinnen",
     bestForPremium: "Premium zonder vaarbewijs",
     imageAltNoLicense:
-      "Boot huren {name} zonder vaarbewijs in Blanes, Costa Brava — {capacity} personen, vanaf {price}€",
+      "Boot huren {name} zonder vaarbewijs in Blanes, Costa Brava, {capacity} personen, vanaf {price}€",
     imageAltWithLicense:
-      "Boot huren {name} met vaarbewijs in Blanes, Costa Brava — {capacity} personen, vanaf {price}€",
+      "Boot huren {name} met vaarbewijs in Blanes, Costa Brava, {capacity} personen, vanaf {price}€",
   },
   features: {
     title: "Waarom Kiezen voor Costa Brava Rent a Boat",
@@ -186,7 +186,7 @@ export const nl: Translations = {
     seasonLabel: "Seizoen",
     seasonMonths: "April - Oktober",
     flexibleHours: "Flexibele tijden",
-    consultWhatsApp: "Stuur ons een bericht — antwoord in 5 min",
+    consultWhatsApp: "Stuur ons een bericht, antwoord in 5 min",
     discoverMore: "Ontdek Meer Opties",
     discoverMoreSub: "Verken onze bestemmingen en boottypen",
     viewDetails: "Bekijk Details",
@@ -623,7 +623,7 @@ export const nl: Translations = {
     discount: "Korting",
     applied: "Toegepast",
     apply: "Toepassen",
-    notFound: "Deze code bestaat niet — controleer de spelling",
+    notFound: "Deze code bestaat niet, controleer de spelling",
     expired: "Deze code is verlopen",
     consumed: "Deze code is al gebruikt",
     cancelled: "Deze code is geannuleerd",
@@ -785,7 +785,7 @@ export const nl: Translations = {
       yourDetails: "Bevestigen",
     },
     hints: {
-      noOnlinePayment: "Geen online betaling — we bevestigen via WhatsApp",
+      noOnlinePayment: "Geen online betaling, we bevestigen via WhatsApp",
       submitReassurance: "We reageren binnen 2 uur. Geen online betaling, vrijblijvend.",
     },
     fuel: {
@@ -840,8 +840,8 @@ export const nl: Translations = {
         probablyValid: "Breng het originele ICC mee op de huurdag. We vragen ernaar voordat je vertrekt.",
         needsIcc: "Jouw land geeft het ICC af. Vraag het aan bij je watersportbond voor je reis.",
         notRecognized: "Je nationale vaarbewijs wordt niet direct erkend in Spanje. Stuur ons een WhatsApp en we bekijken samen de opties.",
-        insufficient: "Je vaarbewijs komt overeen met een niveau onder de Spaanse PNB. Onze boten met vaarbewijs vereisen PNB of hoger — overweeg een PER of ICC te halen.",
-        inlandOnly: "Je vaarbewijs is geldig voor rivieren en meren, niet voor zeevaart. Goed nieuws: onze boten zonder vaarbewijs vereisen geen titel — ze zijn perfect voor jou.",
+        insufficient: "Je vaarbewijs komt overeen met een niveau onder de Spaanse PNB. Onze boten met vaarbewijs vereisen PNB of hoger, overweeg een PER of ICC te halen.",
+        inlandOnly: "Je vaarbewijs is geldig voor rivieren en meren, niet voor zeevaart. Goed nieuws: onze boten zonder vaarbewijs vereisen geen titel, ze zijn perfect voor jou.",
       },
       pill: {
         valid: "Geldig",
@@ -876,7 +876,7 @@ export const nl: Translations = {
   },
   validation: {
     required: "Dit ontbreekt nog",
-    invalidEmail: "Controleer het e-mailadres — @ of .com ontbreekt",
+    invalidEmail: "Controleer het e-mailadres, @ of .com ontbreekt",
     invalidPhone: "Alleen cijfers, zonder spaties of streepjes",
     futureDate: "Selecteer een toekomstige datum",
     minPeople: "Minimaal 1 persoon",
@@ -924,13 +924,13 @@ export const nl: Translations = {
     sailTo: "Bestemmingen per boot",
     nearbyTowns: "Nabijgelegen plaatsen",
     blanes: "Boot huren Blanes",
-    blanesDesc: "Thuishaven — alle boten vertrekken hier",
+    blanesDesc: "Thuishaven, alle boten vertrekken hier",
     costaBrava: "Boot huren Costa Brava",
     costaBravaDesc: "Ontdek de mooiste baaien van de Costa Brava",
     lloret: "Boot huren Lloret de Mar",
-    lloretDesc: "25 min varen — stranden en verborgen baaien",
+    lloretDesc: "25 min varen, stranden en verborgen baaien",
     tossa: "Boot huren Tossa de Mar",
-    tossaDesc: "1 uur varen — middeleeuws ommuurde stad",
+    tossaDesc: "1 uur varen, middeleeuws ommuurde stad",
     malgrat: "Boten bij Malgrat de Mar",
     malgratDesc: "10 min rijden naar haven Blanes",
     santaSusanna: "Boten bij Santa Susanna",
@@ -938,13 +938,13 @@ export const nl: Translations = {
     calella: "Boten bij Calella",
     calellaDesc: "20 min rijden naar haven Blanes",
     pineda: "Boten bij Pineda de Mar",
-    pinedaDesc: "18 min rijden — directe treinverbinding",
+    pinedaDesc: "18 min rijden, directe treinverbinding",
     palafolls: "Boten bij Palafolls",
-    palafollsDesc: "12 min rijden — ideaal vanaf de campings",
+    palafollsDesc: "12 min rijden, ideaal vanaf de campings",
     tordera: "Boten bij Tordera",
-    torderaDesc: "15 min rijden — poort naar de Costa Brava",
+    torderaDesc: "15 min rijden, poort naar de Costa Brava",
     barcelona: "Boot huren bij Barcelona",
-    barcelonaDesc: "1 uur rijden — de dichtstbijzijnde Costa Brava",
+    barcelonaDesc: "1 uur rijden, de dichtstbijzijnde Costa Brava",
   },
   categoryLicenseFree: {
     heroTitle: "Boten Zonder Vaarbewijs in Blanes",
@@ -1045,13 +1045,13 @@ export const nl: Translations = {
       "De regelgeving staat navigatie toe tot 2 zeemijl (3,7 km) van de kust. Vanuit de Haven van Blanes kun je talrijke baaien verkennen noordwaarts (richting Lloret de Mar) en zuidwaarts (richting Malgrat de Mar). In 2-3 uur kun je meerdere baaien bezoeken, ankeren om te snorkelen en op je gemak terugkeren naar de haven.",
     faqCarnetQuestion: "Heb ik een vaarbewijs nodig om te huren?",
     faqCarnetAnswer:
-      "Nee, u heeft geen vaarbewijs of nautisch certificaat nodig voor onze boten zonder vaarbewijs tot 15 PK. U hoeft alleen 18 jaar te zijn, een geldig identiteitsbewijs te hebben en onze 15 minuten veiligheidsinstructie te volgen voordat u vertrekt. Geen cursus, examen of voorafgaande formaliteiten. Veel klanten zoeken ons als \"bootverhuur zonder vaarbewijs\" of \"zonder certificaat\" — het is hetzelfde product.",
+      "Nee, u heeft geen vaarbewijs of nautisch certificaat nodig voor onze boten zonder vaarbewijs tot 15 PK. U hoeft alleen 18 jaar te zijn, een geldig identiteitsbewijs te hebben en onze 15 minuten veiligheidsinstructie te volgen voordat u vertrekt. Geen cursus, examen of voorafgaande formaliteiten. Veel klanten zoeken ons als \"bootverhuur zonder vaarbewijs\" of \"zonder certificaat\", het is hetzelfde product.",
     faqExperienceQuestion: "Wat als ik nog nooit een boot heb gevaren?",
     faqExperienceAnswer:
       "Dat is het meest voorkomende geval onder onze klanten. Boten zonder vaarbewijs zijn juist ontworpen voor mensen zonder eerdere ervaring: intuïtieve bediening, lichte motor (15 PK), varen op 5 knopen (cruisesnelheid) en beschermde kustzone. Tijdens de 15-minuten instructie leren we u manoeuvreren in de haven, voor anker gaan, de marifoon gebruiken en terugkeren naar de aanlegplek. Tot vandaag heeft geen enkele klant moeite gehad met de boot na de instructie.",
     faqGroupSizeQuestion: "Hoeveel mensen passen er in een boot zonder vaarbewijs?",
     faqGroupSizeAnswer:
-      "Onze 5 boten zonder vaarbewijs hebben een capaciteit van 4 tot 7 personen (volwassenen en kinderen tellen gelijk). Solar 450 en Astec 400 zijn ideaal voor stellen of kleine gezinnen (4-5 personen). Astec 480 en Mingolla Brava 19 zijn de grootste (6-7 personen) — perfect voor grote gezinnen of vriendengroepen. De prijs is per boot, niet per persoon — hoe meer mensen, hoe goedkoper per hoofd."
+      "Onze 5 boten zonder vaarbewijs hebben een capaciteit van 4 tot 7 personen (volwassenen en kinderen tellen gelijk). Solar 450 en Astec 400 zijn ideaal voor stellen of kleine gezinnen (4-5 personen). Astec 480 en Mingolla Brava 19 zijn de grootste (6-7 personen), perfect voor grote gezinnen of vriendengroepen. De prijs is per boot, niet per persoon, hoe meer mensen, hoe goedkoper per hoofd."
   },
   categoryLicensed: {
     heroTitle: "Boten Met Vaarbewijs in Blanes",
@@ -1151,10 +1151,10 @@ export const nl: Translations = {
     quizCta: "Vind mijn boot",
     abandonedTitle: "Je boot wacht!",
     abandonedSubtitle: "De {boat} is klaar voor je",
-    abandonedCta: "Boeking voltooien — 10% korting",
+    abandonedCta: "Boeking voltooien, 10% korting",
     quizResultTitle: "Geweldige keuze!",
     quizResultSubtitle: "Boek de {boat} nu met 10% korting",
-    quizResultCta: "Nu boeken — 10% korting",
+    quizResultCta: "Nu boeken, 10% korting",
   },
 
   socialProof: {
@@ -1501,13 +1501,13 @@ export const nl: Translations = {
 
   boatDescriptions: {
     "solar-450":
-      "Ontworpen voor zonliefhebbers. Het gewatteerde solarium is het grootste van de hele vaarbewijsvrije vloot: anker in een turquoise baai bij Blanes en ontspan als nergens anders. Geen vaarbewijs nodig — wij leren u in 15 minuten hoe u vaart. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
+      "Ontworpen voor zonliefhebbers. Het gewatteerde solarium is het grootste van de hele vaarbewijsvrije vloot: anker in een turquoise baai bij Blanes en ontspan als nergens anders. Geen vaarbewijs nodig, wij leren u in 15 minuten hoe u vaart. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "remus-450":
       "De meest gehuurde boot in Blanes en de eerste keuze voor koppels en gezinnen met kinderen. De Bi Mini kap bedekt de hele boot om de kleintjes tegen de zon te beschermen, en de stabiliteit maakt het ideaal voor beginners op zee. Perfect voor 2-5 personen die op zoek zijn naar een rustige dag in kristalheldere baaien. Wij leren u in 15 minuten hoe u het bestuurt. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "remus-450-ii":
       "Zelfde model als onze populairste boot, met gegarandeerde beschikbaarheid zelfs in het hoogseizoen augustus. Ideaal wanneer de Remus 450 al geboekt is: geniet van hetzelfde comfort, dezelfde stabiliteit en de Bi Mini kap waar gezinnen aan de Costa Brava zo van houden. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "astec-400":
-      "De voordeligste optie voor koppels en gezinnen die van de zee willen genieten zonder te veel uit te geven. Met 2-4 passagiers is de prijs per persoon de laagste van de hele vloot. Stabiel, makkelijk te besturen en met Bi Mini kap om de kleintjes te beschermen. Anker in rustige baaien bij Blanes — geen vaarbewijs nodig. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
+      "De voordeligste optie voor koppels en gezinnen die van de zee willen genieten zonder te veel uit te geven. Met 2-4 passagiers is de prijs per persoon de laagste van de hele vloot. Stabiel, makkelijk te besturen en met Bi Mini kap om de kleintjes te beschermen. Anker in rustige baaien bij Blanes, geen vaarbewijs nodig. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "astec-480":
       "De premium ervaring zonder vaarbewijs. Met 4,80 m, Bluetooth speakers, gewatteerd solarium en dubbele brandstoftank is het de meest complete vaarbewijsvrije boot in Blanes. Vaar met uw favoriete muziek naar de mooiste baaien van de Costa Brava. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "trimarchi-57s":
@@ -1517,16 +1517,16 @@ export const nl: Translations = {
     "pacific-craft-625":
       "Het beste wat u in Blanes kunt huren. 6,24 m, Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Vaarbewijs vereist (ICC).",
     "excursion-privada":
-      "U geniet gewoon — onze professionele schipper brengt u naar geheime baaien, zeegrotten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
+      "U geniet gewoon, onze professionele schipper brengt u naar geheime baaien, zeegrotten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
   },
 
   // TODO: pro-translate — functionele vertaling, proeflezen vóór productief gebruik in NL-markt
   rangeFromBlanes: {
     eyebrowHome: "ECHT NAVIGATIEBEREIK",
-    headlineHome: "Hoever je kunt varen vanaf Blanes — met en zonder vaarbewijs",
+    headlineHome: "Hoever je kunt varen vanaf Blanes, met en zonder vaarbewijs",
     introHome:
       "Met een boot zonder vaarbewijs mag je legaal tot 2 zeemijlen uit de kust varen met 5 knopen. Vanuit de haven van Blanes zijn dat 7 authentieke Costa Brava-baaien op één dag, met Playa de Fenals (zuid van Lloret de Mar) als noordelijke grens. Met een PER-vaarbewijs verleng je de route tot Tossa de Mar, Sant Feliu en Platja d'Aro.",
-    eyebrowLloret: "VAARBEWIJSVRIJ TRAJECT — 25 MIN VARENS",
+    eyebrowLloret: "VAARBEWIJSVRIJ TRAJECT, 25 MIN VARENS",
     headlineLloret: "De 7 baaien tussen Blanes en Playa de Fenals",
     introLloret:
       "Op volgorde vanaf de haven van Blanes. Cumulatieve afstanden bij 5 knopen kruissnelheid.",
@@ -1536,15 +1536,15 @@ export const nl: Translations = {
     limitBoxBody:
       "Een boot zonder vaarbewijs mag tot 2 zeemijlen uit de kust varen met 5 knopen en 15 pk. Vanuit de haven van Blanes ligt Playa de Fenals precies op die afstand langs de kust.",
     noteNorthOfFenals:
-      "Let op: Lloret centrum, Cala Banys en Cala Canyelles liggen ten noorden van Fenals — buiten het vaarbewijsvrije bereik.",
+      "Let op: Lloret centrum, Cala Banys en Cala Canyelles liggen ten noorden van Fenals, buiten het vaarbewijsvrije bereik.",
     conLicenciaTitle: "Uitbreiding met PER-vaarbewijs",
     conLicenciaIntro:
       "Met een PER-vaarbewijs of inclusive schipper breidt de route naar het noorden uit:",
     ext: {
       lloretCenter: "Lloret centrum en Cala Banys (voorbij Fenals)",
-      canyelles: "Cala Canyelles — kleine jachthaven",
-      morisca: "Cala Morisca — alleen per zee bereikbaar",
-      tossa: "Tossa de Mar — middeleeuwse Vila Vella vanaf zee (~30-45 min)",
+      canyelles: "Cala Canyelles, kleine jachthaven",
+      morisca: "Cala Morisca, alleen per zee bereikbaar",
+      tossa: "Tossa de Mar, middeleeuwse Vila Vella vanaf zee (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (halve / hele dag)",
     },
     ctaFleet: "Vaarbewijsvrije vloot bekijken",
@@ -1625,9 +1625,9 @@ export const nl: Translations = {
     afternoonLine: "Morgen kan dit jouw zonsondergang zijn",
     eveningLine: "Word morgen wakker op het water",
     nightLine: "Morgen wacht de zee op je",
-    seasonLow: "Rustig seizoen — baaien alleen voor jou",
+    seasonLow: "Rustig seizoen, baaien alleen voor jou",
     seasonMid: "Het beste moment van de zomer begint nu",
-    seasonHigh: "Laatste plekken in augustus — wacht niet langer",
+    seasonHigh: "Laatste plekken in augustus, wacht niet langer",
     seasonOff: "Het seizoen opent in april",
   },
   pricingPage: {
@@ -1785,7 +1785,7 @@ export const nl: Translations = {
   },
   seoSchemas: {
     seasonalEvent: {
-      name: "Seizoen {year} — Bootverhuur aan de Costa Brava",
+      name: "Seizoen {year}, Bootverhuur aan de Costa Brava",
       description:
         "Huur boten zonder vaarbewijs in Blanes, Costa Brava. Seizoen van april tot oktober.",
     },
@@ -1888,7 +1888,7 @@ export const nl: Translations = {
       {
         month: "Juni",
         time: "21:15 - 21:30",
-        suggestion: "Vertrek om 19:30 — dit zijn de langste zonsondergangen van het jaar.",
+        suggestion: "Vertrek om 19:30, dit zijn de langste zonsondergangen van het jaar.",
       },
       {
         month: "Juli",
@@ -1927,7 +1927,7 @@ export const nl: Translations = {
       {
         name: "Kustlijn tussen Blanes en Lloret",
         description:
-          "De kust tussen Blanes en Lloret de Mar biedt onbelemmerd uitzicht op het westen. Geen gebouwen, geen drukte — alleen jij, de zee en een ongelooflijke zonsondergang.",
+          "De kust tussen Blanes en Lloret de Mar biedt onbelemmerd uitzicht op het westen. Geen gebouwen, geen drukte, alleen jij, de zee en een ongelooflijke zonsondergang.",
         distance: "25 minuten vanuit de haven",
       },
     ],
@@ -2374,7 +2374,7 @@ export const nl: Translations = {
         {
           question: "Tot waar precies kan ik met een boot zonder vaarbewijs?",
           answer:
-            "Wettelijk gezien tot 2 zeemijl van de kust, met maximaal 5 knopen, met 15 pk. Vanuit Blanes betekent dat 25 minuten varen naar Playa de Fenals, langs 7 baaien. Playa de Lloret centrum en Cala Canyelles liggen ten noorden van Fenals — deze zijn niet bereikbaar met een boot zonder vaarbewijs.",
+            "Wettelijk gezien tot 2 zeemijl van de kust, met maximaal 5 knopen, met 15 pk. Vanuit Blanes betekent dat 25 minuten varen naar Playa de Fenals, langs 7 baaien. Playa de Lloret centrum en Cala Canyelles liggen ten noorden van Fenals, deze zijn niet bereikbaar met een boot zonder vaarbewijs.",
         },
         {
           question: "Hoeveel kost het huren van een boot zonder vaarbewijs om naar Lloret te gaan?",
@@ -2561,7 +2561,7 @@ export const nl: Translations = {
         ctaButton: "Uitstapje naar Tossa Reserveren",
         warningTitle: "Tossa is niet bereikbaar met een boot zonder vaarbewijs.",
         warningBody:
-          'Boten zonder vaarbewijs (2 mijl, 5 knopen, 15 pk) komen tot Playa de Fenals (ten zuiden van Lloret) — 4 mijl voor Tossa. Om Tossa te bereiken vanuit Blanes heb je (1) een zelfverhuur met Basisvaarbewijs / LNB nodig (gesloten pakketten 2 u / 4 u / 8 u vanaf {licBaja2h} € met Mingolla Brava 19 of Trimarchi 57S, btw, ligplaats, schoonmaak en verzekering inbegrepen; brandstof en borg 500 € niet inbegrepen), of (2) de <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Privé-excursie met Schipper</a> (Pacific Craft 625 + schipper, max. 4 u, tot 6 personen, vanaf {excursionBaja4h} € met btw, schipper, ligplaats, schoonmaak en verzekering inbegrepen — brandstof niet inbegrepen). Het derde alternatief is om met de auto naar Tossa te gaan (20 min vanuit Lloret) en daar ter plaatse een boot zonder vaarbewijs te huren.',
+          'Boten zonder vaarbewijs (2 mijl, 5 knopen, 15 pk) komen tot Playa de Fenals (ten zuiden van Lloret), 4 mijl voor Tossa. Om Tossa te bereiken vanuit Blanes heb je (1) een zelfverhuur met Basisvaarbewijs / LNB nodig (gesloten pakketten 2 u / 4 u / 8 u vanaf {licBaja2h} € met Mingolla Brava 19 of Trimarchi 57S, btw, ligplaats, schoonmaak en verzekering inbegrepen; brandstof en borg 500 € niet inbegrepen), of (2) de <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Privé-excursie met Schipper</a> (Pacific Craft 625 + schipper, max. 4 u, tot 6 personen, vanaf {excursionBaja4h} € met btw, schipper, ligplaats, schoonmaak en verzekering inbegrepen, brandstof niet inbegrepen). Het derde alternatief is om met de auto naar Tossa te gaan (20 min vanuit Lloret) en daar ter plaatse een boot zonder vaarbewijs te huren.',
         crossLinkingText:
           'We bieden ook service voor toeristen die verblijven in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> en <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Vanuit deze plaatsen aan de kust van de Maresme bereik je de haven van Blanes in 10-20 minuten met de auto.',
         relatedTitle: "Gerelateerde services en bestemmingen",
@@ -3274,7 +3274,7 @@ export const nl: Translations = {
   },
   glossaryPage: {
     seo: {
-      title: "Nautische Woordenlijst — Bootverhuur Costa Brava | Costa Brava Rent a Boat",
+      title: "Nautische Woordenlijst, Bootverhuur Costa Brava | Costa Brava Rent a Boat",
       description:
         "Woordenlijst van essentiële nautische termen: LNB, PER, PNB, knopen, zeemijlen, lengte, ankeren, baaien en delen van de boot. Praktisch lexicon voor bootverhuur in Blanes.",
       keywords:
@@ -3290,7 +3290,7 @@ export const nl: Translations = {
       "Nu je de terminologie beheerst, kies je boot zonder vaarbewijs of met vaarbewijs om de Costa Brava te verkennen.",
     ctaFleet: "Bekijk de vloot",
     ctaFaq: "Veelgestelde vragen",
-    schemaName: "Nautische woordenlijst — Bootverhuur Costa Brava",
+    schemaName: "Nautische woordenlijst, Bootverhuur Costa Brava",
     schemaDescription:
       "Definities van essentiële nautische termen voor het huren van een boot aan de Costa Brava: vaarbewijzen, meeteenheden, delen van de boot en maritieme terminologie.",
     categories: {
@@ -3690,7 +3690,7 @@ export const nl: Translations = {
         },
         {
           title: "3. Doel van de verwerking en rechtsgrondslag",
-          body: "We verwerken uw gegevens voor de volgende doeleinden en rechtsgronden (AVG):\n\n- Beheer en bevestiging van bootverhuurreserveringen — Art. 6.1.b, uitvoering van een overeenkomst\n- Verzenden van herinneringen en communicatie met betrekking tot de reservering — Art. 6.1.b, uitvoering van een overeenkomst\n- Klantenservice en afhandeling van incidenten — Art. 6.1.b en 6.1.f, uitvoering van overeenkomst / gerechtvaardigd belang\n- Statistische analyse van webverkeer (Google Analytics) — Art. 6.1.a, toestemming (cookiebanner)\n- Naleving van wettelijke en fiscale verplichtingen — Art. 6.1.c, wettelijke verplichting\n\nWe nemen geen geautomatiseerde beslissingen en maken geen profielen voor reclamedoeleinden op basis van uw reserveringsgegevens.",
+          body: "We verwerken uw gegevens voor de volgende doeleinden en rechtsgronden (AVG):\n\n- Beheer en bevestiging van bootverhuurreserveringen, Art. 6.1.b, uitvoering van een overeenkomst\n- Verzenden van herinneringen en communicatie met betrekking tot de reservering, Art. 6.1.b, uitvoering van een overeenkomst\n- Klantenservice en afhandeling van incidenten, Art. 6.1.b en 6.1.f, uitvoering van overeenkomst / gerechtvaardigd belang\n- Statistische analyse van webverkeer (Google Analytics), Art. 6.1.a, toestemming (cookiebanner)\n- Naleving van wettelijke en fiscale verplichtingen, Art. 6.1.c, wettelijke verplichting\n\nWe nemen geen geautomatiseerde beslissingen en maken geen profielen voor reclamedoeleinden op basis van uw reserveringsgegevens.",
         },
         {
           title: "4. Bewaartermijnen",

@@ -13,7 +13,7 @@ export const fr: Translations = {
     myAccount: "Mon Compte",
   },
   hero: {
-    title: "Location de Bateaux Sans Permis à Blanes — 7 Criques Costa Brava",
+    title: "Location de Bateaux Sans Permis à Blanes, 7 Criques Costa Brava",
     subtitle:
       "Naviguez sans permis ni expérience depuis le port de Blanes jusqu'à Playa de Fenals (Lloret). Sept criques vierges sur votre route : Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella et plus. Carburant inclus.",
     subtitleLine1: "Naviguez sans permis de Blanes à Playa de Fenals (Lloret).",
@@ -78,9 +78,9 @@ export const fr: Translations = {
     bestForFamilies: "Favori familles",
     bestForPremium: "Premium sans permis",
     imageAltNoLicense:
-      "Location bateau {name} sans permis à Blanes, Costa Brava — {capacity} personnes, dès {price}€",
+      "Location bateau {name} sans permis à Blanes, Costa Brava, {capacity} personnes, dès {price}€",
     imageAltWithLicense:
-      "Location bateau {name} avec permis à Blanes, Costa Brava — {capacity} personnes, dès {price}€",
+      "Location bateau {name} avec permis à Blanes, Costa Brava, {capacity} personnes, dès {price}€",
   },
   features: {
     title: "Pourquoi Choisir Costa Brava Rent a Boat",
@@ -190,7 +190,7 @@ export const fr: Translations = {
     seasonLabel: "Saison",
     seasonMonths: "Avril - Octobre",
     flexibleHours: "Horaires flexibles",
-    consultWhatsApp: "Écrivez-nous — réponse en 5 min",
+    consultWhatsApp: "Écrivez-nous, réponse en 5 min",
     discoverMore: "Découvrir Plus d'Options",
     discoverMoreSub: "Explorez nos destinations et types d'embarcation",
     viewDetails: "Voir Détails",
@@ -629,7 +629,7 @@ export const fr: Translations = {
     discount: "Réduction",
     applied: "Appliqué",
     apply: "Appliquer",
-    notFound: "Ce code n'existe pas — vérifie l'orthographe",
+    notFound: "Ce code n'existe pas, vérifie l'orthographe",
     expired: "Ce code a expiré",
     consumed: "Ce code a déjà été utilisé",
     cancelled: "Ce code a été annulé",
@@ -792,7 +792,7 @@ export const fr: Translations = {
       yourDetails: "Confirmer",
     },
     hints: {
-      noOnlinePayment: "Pas de paiement en ligne — on confirme par WhatsApp",
+      noOnlinePayment: "Pas de paiement en ligne, on confirme par WhatsApp",
       submitReassurance: "On répond en moins de 2 heures. Pas de paiement en ligne, sans engagement.",
     },
     fuel: {
@@ -847,8 +847,8 @@ export const fr: Translations = {
         probablyValid: "Apporte l'ICC original le jour de la location. Nous te le demanderons avant d'embarquer.",
         needsIcc: "Ton pays délivre l'ICC. Demande-le à ta fédération nautique avant de partir.",
         notRecognized: "Ton permis national n'est pas reconnu directement en Espagne. Écris-nous sur WhatsApp et on regarde les options ensemble.",
-        insufficient: "Ton permis correspond à un niveau inférieur au PNB espagnol. Nos bateaux avec permis exigent le PNB ou plus — pense à obtenir un PER ou un ICC.",
-        inlandOnly: "Ton permis autorise rivières et lacs, pas la navigation maritime. Bonne nouvelle : nos bateaux sans permis ne nécessitent aucun titre — ils sont parfaits pour toi.",
+        insufficient: "Ton permis correspond à un niveau inférieur au PNB espagnol. Nos bateaux avec permis exigent le PNB ou plus, pense à obtenir un PER ou un ICC.",
+        inlandOnly: "Ton permis autorise rivières et lacs, pas la navigation maritime. Bonne nouvelle : nos bateaux sans permis ne nécessitent aucun titre, ils sont parfaits pour toi.",
       },
       pill: {
         valid: "Valide",
@@ -883,7 +883,7 @@ export const fr: Translations = {
   },
   validation: {
     required: "Donnée manquante",
-    invalidEmail: "Vérifie l'email — il manque @ ou .com",
+    invalidEmail: "Vérifie l'email, il manque @ ou .com",
     invalidPhone: "Chiffres uniquement, sans espaces ni tirets",
     futureDate: "Sélectionnez une date future",
     minPeople: "Minimum 1 personne",
@@ -933,13 +933,13 @@ export const fr: Translations = {
     sailTo: "Destinations en bateau",
     nearbyTowns: "Villes proches",
     blanes: "Location bateau Blanes",
-    blanesDesc: "Port d'attache — tous les bateaux partent d'ici",
+    blanesDesc: "Port d'attache, tous les bateaux partent d'ici",
     costaBrava: "Location bateau Costa Brava",
     costaBravaDesc: "Explorez les plus belles criques de la Costa Brava",
     lloret: "Location bateau Lloret de Mar",
-    lloretDesc: "25 min de navigation — plages et criques cachées",
+    lloretDesc: "25 min de navigation, plages et criques cachées",
     tossa: "Location bateau Tossa de Mar",
-    tossaDesc: "1h de navigation — village médiéval fortifié",
+    tossaDesc: "1h de navigation, village médiéval fortifié",
     malgrat: "Bateaux près de Malgrat de Mar",
     malgratDesc: "10 min en voiture jusqu'au port de Blanes",
     santaSusanna: "Bateaux près de Santa Susanna",
@@ -947,13 +947,13 @@ export const fr: Translations = {
     calella: "Bateaux près de Calella",
     calellaDesc: "20 min en voiture jusqu'au port de Blanes",
     pineda: "Bateaux près de Pineda de Mar",
-    pinedaDesc: "18 min en voiture — connexion directe par train",
+    pinedaDesc: "18 min en voiture, connexion directe par train",
     palafolls: "Bateaux près de Palafolls",
-    palafollsDesc: "12 min en voiture — idéal depuis les campings",
+    palafollsDesc: "12 min en voiture, idéal depuis les campings",
     tordera: "Bateaux près de Tordera",
-    torderaDesc: "15 min en voiture — porte de la Costa Brava",
+    torderaDesc: "15 min en voiture, porte de la Costa Brava",
     barcelona: "Location bateau près de Barcelone",
-    barcelonaDesc: "1h en voiture — la Costa Brava la plus proche",
+    barcelonaDesc: "1h en voiture, la Costa Brava la plus proche",
   },
   categoryLicenseFree: {
     heroTitle: "Bateaux Sans Permis à Blanes",
@@ -1054,13 +1054,13 @@ export const fr: Translations = {
       "La reglementation permet de naviguer jusqu'a 2 milles nautiques (3,7 km) de la cote. Depuis le Port de Blanes, cela vous permet d'explorer de nombreuses criques vers le nord (direction Lloret de Mar) et vers le sud (direction Malgrat de Mar). En 2-3 heures, vous pouvez visiter plusieurs criques, mouiller pour faire du snorkeling et revenir au port sans vous presser.",
     faqCarnetQuestion: "Ai-je besoin d'un permis bateau pour louer ?",
     faqCarnetAnswer:
-      "Non, vous n'avez besoin d'aucun permis ni titulation nautique pour nos bateaux sans permis jusqu'à 15 CV. Vous devez seulement avoir 18 ans, présenter une pièce d'identité valide et suivre notre briefing de sécurité de 15 minutes avant de partir. Aucun cours, examen ni démarche préalable. Beaucoup de clients nous cherchent comme \"location bateau sans permis\" ou \"sans titulation\" — c'est le même produit.",
+      "Non, vous n'avez besoin d'aucun permis ni titulation nautique pour nos bateaux sans permis jusqu'à 15 CV. Vous devez seulement avoir 18 ans, présenter une pièce d'identité valide et suivre notre briefing de sécurité de 15 minutes avant de partir. Aucun cours, examen ni démarche préalable. Beaucoup de clients nous cherchent comme \"location bateau sans permis\" ou \"sans titulation\", c'est le même produit.",
     faqExperienceQuestion: "Et si je n'ai jamais conduit de bateau ?",
     faqExperienceAnswer:
       "C'est le cas le plus fréquent parmi nos clients. Les bateaux sans permis sont conçus précisément pour les personnes sans expérience préalable : commandes intuitives, moteur de faible puissance (15 CV), navigation à 5 nœuds (vitesse de croisière) et zone côtière protégée. Dans le briefing de 15 minutes nous vous apprenons à manœuvrer dans le port, à mouiller, à utiliser la VHF et à rentrer à l'amarrage. À ce jour, aucun client n'a eu de difficulté à manier le bateau après le briefing.",
     faqGroupSizeQuestion: "Combien de personnes tiennent dans un bateau sans permis ?",
     faqGroupSizeAnswer:
-      "Nos 5 bateaux sans permis ont une capacité de 4 à 7 personnes (adultes et enfants comptent de la même façon). Solar 450 et Astec 400 sont idéaux pour les couples ou petites familles (4-5 personnes). Astec 480 et Mingolla Brava 19 sont les plus grands (6-7 personnes) — parfaits pour familles nombreuses ou groupes d'amis. Le prix est par bateau, pas par personne — plus vous êtes, moins cela coûte par tête."
+      "Nos 5 bateaux sans permis ont une capacité de 4 à 7 personnes (adultes et enfants comptent de la même façon). Solar 450 et Astec 400 sont idéaux pour les couples ou petites familles (4-5 personnes). Astec 480 et Mingolla Brava 19 sont les plus grands (6-7 personnes), parfaits pour familles nombreuses ou groupes d'amis. Le prix est par bateau, pas par personne, plus vous êtes, moins cela coûte par tête."
   },
   categoryLicensed: {
     heroTitle: "Bateaux Avec Permis à Blanes",
@@ -1161,10 +1161,10 @@ export const fr: Translations = {
     quizCta: "Trouver mon bateau",
     abandonedTitle: "Votre bateau vous attend !",
     abandonedSubtitle: "Le {boat} est pret pour vous",
-    abandonedCta: "Finaliser — 10% de reduction",
+    abandonedCta: "Finaliser, 10% de reduction",
     quizResultTitle: "Excellent choix !",
     quizResultSubtitle: "Reservez le {boat} maintenant avec 10% de reduction",
-    quizResultCta: "Reserver — 10% de reduction",
+    quizResultCta: "Reserver, 10% de reduction",
   },
 
   socialProof: {
@@ -1512,13 +1512,13 @@ export const fr: Translations = {
 
   boatDescriptions: {
     "solar-450":
-      "Conçu pour les amoureux du soleil. Son solarium rembourrré est le plus grand de toute la flotte sans permis : mouillez dans une crique aux eaux turquoise près de Blanes et détendez-vous comme nulle part ailleurs. Aucun permis nécessaire — nous vous apprenons à le piloter en 15 minutes. Carburant, assurance et équipement de sécurité inclus.",
+      "Conçu pour les amoureux du soleil. Son solarium rembourrré est le plus grand de toute la flotte sans permis : mouillez dans une crique aux eaux turquoise près de Blanes et détendez-vous comme nulle part ailleurs. Aucun permis nécessaire, nous vous apprenons à le piloter en 15 minutes. Carburant, assurance et équipement de sécurité inclus.",
     "remus-450":
       "Le bateau le plus loué de Blanes et le premier choix des couples et familles avec enfants. Son auvent Bi Mini couvre tout le bateau pour protéger les petits du soleil, et sa stabilité le rend idéal pour une première sortie en mer. Parfait pour 2 à 5 personnes à la recherche d'une journée tranquille dans des criques aux eaux cristallines. Nous vous apprenons à le manoeuvrer en 15 minutes. Carburant, assurance et équipement de sécurité inclus.",
     "remus-450-ii":
       "Même modèle que notre bateau le plus populaire, avec disponibilité garantie même en plein mois d'août. Idéal quand le Remus 450 est déjà réservé : profitez du même confort, de la même stabilité et de l'auvent Bi Mini tant apprécié des familles sur la Costa Brava. Carburant, assurance et équipement de sécurité inclus.",
     "astec-400":
-      "L'option la plus économique pour les couples et familles qui veulent profiter de la mer sans trop dépenser. À 2-4 passagers, le prix par personne est le plus bas de toute la flotte. Stable, facile à manoeuvrer et avec un auvent Bi Mini pour protéger les petits. Mouillez dans des criques calmes près de Blanes — aucun permis bateau nécessaire. Carburant, assurance et équipement de sécurité inclus.",
+      "L'option la plus économique pour les couples et familles qui veulent profiter de la mer sans trop dépenser. À 2-4 passagers, le prix par personne est le plus bas de toute la flotte. Stable, facile à manoeuvrer et avec un auvent Bi Mini pour protéger les petits. Mouillez dans des criques calmes près de Blanes, aucun permis bateau nécessaire. Carburant, assurance et équipement de sécurité inclus.",
     "astec-480":
       "L'expérience premium sans permis. Avec 4,80 m, haut-parleurs Bluetooth, solarium rembourré et double réservoir, c'est le bateau sans permis le plus complet de Blanes. Naviguez vers les plus belles criques de la Costa Brava avec votre musique préférée. Carburant, assurance et équipement de sécurité inclus.",
     "trimarchi-57s":
@@ -1534,10 +1534,10 @@ export const fr: Translations = {
   // TODO: pro-translate — traduction fonctionnelle, à faire relire avant usage marketing FR
   rangeFromBlanes: {
     eyebrowHome: "PORTÉE DE NAVIGATION RÉELLE",
-    headlineHome: "Jusqu'où naviguer depuis Blanes — avec et sans permis",
+    headlineHome: "Jusqu'où naviguer depuis Blanes, avec et sans permis",
     introHome:
       "Avec un bateau sans permis, vous pouvez naviguer légalement jusqu'à 2 milles nautiques de la côte à 5 nœuds. Depuis le port de Blanes, cela représente 7 criques authentiques de la Costa Brava en une journée, avec Playa de Fenals (sud de Lloret de Mar) comme limite nord. Avec un permis PER, la route s'étend jusqu'à Tossa de Mar, Sant Feliu et Platja d'Aro.",
-    eyebrowLloret: "TRONÇON SANS PERMIS — 25 MIN DE NAVIGATION",
+    eyebrowLloret: "TRONÇON SANS PERMIS, 25 MIN DE NAVIGATION",
     headlineLloret: "Les 7 criques entre Blanes et Playa de Fenals",
     introLloret:
       "Dans l'ordre depuis le port de Blanes. Distances cumulées à 5 nœuds de croisière.",
@@ -1547,14 +1547,14 @@ export const fr: Translations = {
     limitBoxBody:
       "Un bateau sans permis peut naviguer jusqu'à 2 milles nautiques de la côte à 5 nœuds et 15 CV. Depuis le port de Blanes, Playa de Fenals se trouve exactement à cette distance en suivant la côte.",
     noteNorthOfFenals:
-      "Note : la plage de Lloret (centre), Cala Banys et Cala Canyelles sont au nord de Fenals — hors de la portée sans permis.",
+      "Note : la plage de Lloret (centre), Cala Banys et Cala Canyelles sont au nord de Fenals, hors de la portée sans permis.",
     conLicenciaTitle: "Extension avec permis PER",
     conLicenciaIntro: "Avec un permis PER ou un skipper inclus, la route s'étend vers le nord :",
     ext: {
       lloretCenter: "Lloret centre et Cala Banys (après Fenals)",
-      canyelles: "Cala Canyelles — petit port de plaisance",
-      morisca: "Cala Morisca — uniquement accessible par la mer",
-      tossa: "Tossa de Mar — Vila Vella médiévale depuis la mer (~30-45 min)",
+      canyelles: "Cala Canyelles, petit port de plaisance",
+      morisca: "Cala Morisca, uniquement accessible par la mer",
+      tossa: "Tossa de Mar, Vila Vella médiévale depuis la mer (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (demi-journée / journée complète)",
     },
     ctaFleet: "Voir la flotte sans permis",
@@ -1635,9 +1635,9 @@ export const fr: Translations = {
     afternoonLine: "Demain, ce pourrait être votre coucher de soleil",
     eveningLine: "Réveillez-vous demain sur l'eau",
     nightLine: "Demain, la mer vous attend",
-    seasonLow: "Saison tranquille — des criques rien que pour vous",
+    seasonLow: "Saison tranquille, des criques rien que pour vous",
     seasonMid: "Le meilleur moment de l'été commence maintenant",
-    seasonHigh: "Dernières places d'août — ne tardez plus",
+    seasonHigh: "Dernières places d'août, ne tardez plus",
     seasonOff: "La saison ouvre en avril",
   },
   pricingPage: {
@@ -1796,7 +1796,7 @@ export const fr: Translations = {
   },
   seoSchemas: {
     seasonalEvent: {
-      name: "Saison {year} — Location de Bateaux sur la Costa Brava",
+      name: "Saison {year}, Location de Bateaux sur la Costa Brava",
       description: "Louez des bateaux sans permis à Blanes, Costa Brava. Saison d'avril à octobre.",
     },
     coves: {
@@ -1900,7 +1900,7 @@ export const fr: Translations = {
       {
         month: "Juin",
         time: "21:15 - 21:30",
-        suggestion: "Partez à 19h30 — ce sont les couchers de soleil les plus longs de l'année.",
+        suggestion: "Partez à 19h30, ce sont les couchers de soleil les plus longs de l'année.",
       },
       {
         month: "Juillet",
@@ -1939,7 +1939,7 @@ export const fr: Translations = {
       {
         name: "Tronçon entre Blanes et Lloret",
         description:
-          "Le littoral entre Blanes et Lloret de Mar offre une vue dégagée vers l'ouest. Pas de bâtiments, pas de foule — juste vous, la mer et un coucher de soleil inoubliable.",
+          "Le littoral entre Blanes et Lloret de Mar offre une vue dégagée vers l'ouest. Pas de bâtiments, pas de foule, juste vous, la mer et un coucher de soleil inoubliable.",
         distance: "25 minutes depuis le port",
       },
     ],
@@ -2384,7 +2384,7 @@ export const fr: Translations = {
         {
           question: "Jusqu'où exactement puis-je aller avec un bateau sans permis ?",
           answer:
-            "Légalement, jusqu'à 2 milles nautiques de la côte, à une vitesse maximale de 5 nœuds, avec 15 CV. Depuis Blanes, cela représente 25 minutes de navigation jusqu'à Playa de Fenals, en passant par 7 criques. La Playa de Lloret centre et Cala Canyelles se situent au nord de Fenals — elles ne sont pas accessibles avec un bateau sans permis.",
+            "Légalement, jusqu'à 2 milles nautiques de la côte, à une vitesse maximale de 5 nœuds, avec 15 CV. Depuis Blanes, cela représente 25 minutes de navigation jusqu'à Playa de Fenals, en passant par 7 criques. La Playa de Lloret centre et Cala Canyelles se situent au nord de Fenals, elles ne sont pas accessibles avec un bateau sans permis.",
         },
         {
           question: "Combien coûte la location d'un bateau sans permis pour aller à Lloret ?",
@@ -2572,7 +2572,7 @@ export const fr: Translations = {
         ctaButton: "Réserver une Excursion à Tossa",
         warningTitle: "Tossa n'est pas accessible en bateau sans permis.",
         warningBody:
-          "Les bateaux sans permis (2 milles, 5 nœuds, 15 CV) vont jusqu'à Playa de Fenals (sud de Lloret) — 4 milles avant Tossa. Pour rejoindre Tossa depuis Blanes, vous avez besoin (1) d'une location avec Permis Côtier / LNB (forfaits fermés 2 h / 4 h / 8 h à partir de {licBaja2h} € avec Mingolla Brava 19 ou Trimarchi 57S, TVA, amarrage, nettoyage et assurance inclus ; carburant et caution 500 € en sus), ou (2) de l'<a href=\"/es/barco/excursion-privada\" class=\"underline font-medium text-foreground hover:text-primary\">Excursion Privée avec Capitaine</a> (Pacific Craft 625 + skipper, 4 h maximum, jusqu'à 6 pax, à partir de {excursionBaja4h} € avec TVA, skipper, amarrage, nettoyage et assurance inclus — carburant en sus). La troisième alternative est de vous rendre en voiture à Tossa (20 min depuis Lloret) et de louer un bateau sans permis sur place.",
+          "Les bateaux sans permis (2 milles, 5 nœuds, 15 CV) vont jusqu'à Playa de Fenals (sud de Lloret), 4 milles avant Tossa. Pour rejoindre Tossa depuis Blanes, vous avez besoin (1) d'une location avec Permis Côtier / LNB (forfaits fermés 2 h / 4 h / 8 h à partir de {licBaja2h} € avec Mingolla Brava 19 ou Trimarchi 57S, TVA, amarrage, nettoyage et assurance inclus ; carburant et caution 500 € en sus), ou (2) de l'<a href=\"/es/barco/excursion-privada\" class=\"underline font-medium text-foreground hover:text-primary\">Excursion Privée avec Capitaine</a> (Pacific Craft 625 + skipper, 4 h maximum, jusqu'à 6 pax, à partir de {excursionBaja4h} € avec TVA, skipper, amarrage, nettoyage et assurance inclus, carburant en sus). La troisième alternative est de vous rendre en voiture à Tossa (20 min depuis Lloret) et de louer un bateau sans permis sur place.",
         crossLinkingText:
           'Nous offrons également nos services aux touristes séjournant à <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> et <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Depuis ces villes de la côte du Maresme, le Port de Blanes est accessible en 10-20 minutes en voiture.',
         relatedTitle: "Services et destinations associés",
@@ -3286,7 +3286,7 @@ export const fr: Translations = {
   },
   glossaryPage: {
     seo: {
-      title: "Glossaire Nautique — Location Bateaux Costa Brava | Costa Brava Rent a Boat",
+      title: "Glossaire Nautique, Location Bateaux Costa Brava | Costa Brava Rent a Boat",
       description:
         "Glossaire des termes nautiques essentiels : LNB, PER, PNB, nœuds, milles nautiques, longueur, mouiller, criques et parties du bateau. Dictionnaire pratique pour louer un bateau à Blanes.",
       keywords:
@@ -3302,7 +3302,7 @@ export const fr: Translations = {
       "Maintenant que vous maîtrisez la terminologie, choisissez votre bateau sans permis ou avec permis pour explorer la Costa Brava.",
     ctaFleet: "Voir la flotte",
     ctaFaq: "Questions fréquentes",
-    schemaName: "Glossaire nautique — Location de bateaux Costa Brava",
+    schemaName: "Glossaire nautique, Location de bateaux Costa Brava",
     schemaDescription:
       "Définitions des termes nautiques essentiels pour louer un bateau sur la Costa Brava : permis, unités de mesure, parties du bateau et terminologie marine.",
     categories: {
@@ -3705,7 +3705,7 @@ export const fr: Translations = {
         },
         {
           title: "3. Finalité du traitement et base juridique",
-          body: "Nous traitons vos données pour les finalités et bases juridiques suivantes (RGPD) :\n\n- Gestion et confirmation des réservations d'embarcations — Art. 6.1.b, exécution d'un contrat\n- Envoi de rappels et communications relatives à la réservation — Art. 6.1.b, exécution d'un contrat\n- Service client et résolution d'incidents — Art. 6.1.b et 6.1.f, exécution de contrat / intérêt légitime\n- Analyse statistique du trafic web (Google Analytics) — Art. 6.1.a, consentement (bannière de cookies)\n- Respect des obligations légales et fiscales — Art. 6.1.c, obligation légale\n\nNous ne prenons pas de décisions automatisées et n'établissons pas de profils à des fins de segmentation publicitaire à partir de vos données de réservation.",
+          body: "Nous traitons vos données pour les finalités et bases juridiques suivantes (RGPD) :\n\n- Gestion et confirmation des réservations d'embarcations, Art. 6.1.b, exécution d'un contrat\n- Envoi de rappels et communications relatives à la réservation, Art. 6.1.b, exécution d'un contrat\n- Service client et résolution d'incidents, Art. 6.1.b et 6.1.f, exécution de contrat / intérêt légitime\n- Analyse statistique du trafic web (Google Analytics), Art. 6.1.a, consentement (bannière de cookies)\n- Respect des obligations légales et fiscales, Art. 6.1.c, obligation légale\n\nNous ne prenons pas de décisions automatisées et n'établissons pas de profils à des fins de segmentation publicitaire à partir de vos données de réservation.",
         },
         {
           title: "4. Durées de conservation",

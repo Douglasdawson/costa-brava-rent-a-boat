@@ -13,7 +13,7 @@ export const it: Translations = {
     myAccount: "Il Mio Account",
   },
   hero: {
-    title: "Noleggio Barche Senza Patente a Blanes — 7 Cale della Costa Brava",
+    title: "Noleggio Barche Senza Patente a Blanes, 7 Cale della Costa Brava",
     subtitle:
       "Naviga senza patente o esperienza dal porto di Blanes fino a Playa de Fenals (Lloret). Sette cale vergini sulla rotta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella e altre. Carburante incluso.",
     subtitleLine1: "Naviga senza patente da Blanes a Playa de Fenals (Lloret).",
@@ -78,9 +78,9 @@ export const it: Translations = {
     bestForFamilies: "Preferito famiglie",
     bestForPremium: "Premium senza patente",
     imageAltNoLicense:
-      "Noleggio barca {name} senza patente a Blanes, Costa Brava — {capacity} persone, da {price}€",
+      "Noleggio barca {name} senza patente a Blanes, Costa Brava, {capacity} persone, da {price}€",
     imageAltWithLicense:
-      "Noleggio barca {name} con patente a Blanes, Costa Brava — {capacity} persone, da {price}€",
+      "Noleggio barca {name} con patente a Blanes, Costa Brava, {capacity} persone, da {price}€",
   },
   features: {
     title: "Perché Scegliere Costa Brava Rent a Boat",
@@ -186,7 +186,7 @@ export const it: Translations = {
     seasonLabel: "Stagione",
     seasonMonths: "Aprile - Ottobre",
     flexibleHours: "Orari flessibili",
-    consultWhatsApp: "Scrivici — rispondiamo in 5 min",
+    consultWhatsApp: "Scrivici, rispondiamo in 5 min",
     discoverMore: "Scopri Altre Opzioni",
     discoverMoreSub: "Esplora le nostre destinazioni e tipi di imbarcazione",
     viewDetails: "Vedi Dettagli",
@@ -624,7 +624,7 @@ export const it: Translations = {
     discount: "Sconto",
     applied: "Applicato",
     apply: "Applica",
-    notFound: "Questo codice non esiste — controlla la scrittura",
+    notFound: "Questo codice non esiste, controlla la scrittura",
     expired: "Questo codice è scaduto",
     consumed: "Questo codice è già stato usato",
     cancelled: "Questo codice è stato annullato",
@@ -787,7 +787,7 @@ export const it: Translations = {
       yourDetails: "Conferma",
     },
     hints: {
-      noOnlinePayment: "Nessun pagamento online — confermiamo via WhatsApp",
+      noOnlinePayment: "Nessun pagamento online, confermiamo via WhatsApp",
       submitReassurance: "Rispondiamo entro 2 ore. Nessun pagamento online, senza impegno.",
     },
     fuel: {
@@ -842,8 +842,8 @@ export const it: Translations = {
         probablyValid: "Porta l'ICC originale il giorno del noleggio. Te lo chiederemo prima di salpare.",
         needsIcc: "Il tuo paese rilascia l'ICC. Richiedilo alla tua federazione nautica prima di viaggiare.",
         notRecognized: "La tua patente nazionale non è riconosciuta direttamente in Spagna. Scrivici su WhatsApp e vediamo insieme le opzioni.",
-        insufficient: "La tua patente equivale a un livello inferiore al PNB spagnolo. Le nostre barche con patente richiedono PNB o superiore — valuta di ottenere un PER o un ICC.",
-        inlandOnly: "La tua patente autorizza fiumi e laghi, non la navigazione marittima. Buona notizia: le nostre barche senza patente non richiedono alcun titolo — sono perfette per te.",
+        insufficient: "La tua patente equivale a un livello inferiore al PNB spagnolo. Le nostre barche con patente richiedono PNB o superiore, valuta di ottenere un PER o un ICC.",
+        inlandOnly: "La tua patente autorizza fiumi e laghi, non la navigazione marittima. Buona notizia: le nostre barche senza patente non richiedono alcun titolo, sono perfette per te.",
       },
       pill: {
         valid: "Valida",
@@ -878,7 +878,7 @@ export const it: Translations = {
   },
   validation: {
     required: "Manca questo dato",
-    invalidEmail: "Controlla l'email — manca la @ o il .com",
+    invalidEmail: "Controlla l'email, manca la @ o il .com",
     invalidPhone: "Solo numeri, senza spazi né trattini",
     futureDate: "Seleziona una data futura",
     minPeople: "Minimo 1 persona",
@@ -925,13 +925,13 @@ export const it: Translations = {
     sailTo: "Destinazioni in barca",
     nearbyTowns: "Città vicine",
     blanes: "Noleggio barca Blanes",
-    blanesDesc: "Porto base — tutte le barche partono da qui",
+    blanesDesc: "Porto base, tutte le barche partono da qui",
     costaBrava: "Noleggio barca Costa Brava",
     costaBravaDesc: "Esplora le migliori calette della Costa Brava",
     lloret: "Noleggio barca Lloret de Mar",
-    lloretDesc: "25 min di navigazione — spiagge e calette nascoste",
+    lloretDesc: "25 min di navigazione, spiagge e calette nascoste",
     tossa: "Noleggio barca Tossa de Mar",
-    tossaDesc: "1h di navigazione — borgo medievale fortificato",
+    tossaDesc: "1h di navigazione, borgo medievale fortificato",
     malgrat: "Barche vicino a Malgrat de Mar",
     malgratDesc: "10 min in auto fino al porto di Blanes",
     santaSusanna: "Barche vicino a Santa Susanna",
@@ -939,13 +939,13 @@ export const it: Translations = {
     calella: "Barche vicino a Calella",
     calellaDesc: "20 min in auto fino al porto di Blanes",
     pineda: "Barche vicino a Pineda de Mar",
-    pinedaDesc: "18 min in auto — collegamento diretto in treno",
+    pinedaDesc: "18 min in auto, collegamento diretto in treno",
     palafolls: "Barche vicino a Palafolls",
-    palafollsDesc: "12 min in auto — ideale dai campeggi",
+    palafollsDesc: "12 min in auto, ideale dai campeggi",
     tordera: "Barche vicino a Tordera",
-    torderaDesc: "15 min in auto — porta della Costa Brava",
+    torderaDesc: "15 min in auto, porta della Costa Brava",
     barcelona: "Noleggio barca vicino a Barcellona",
-    barcelonaDesc: "1h in auto — la Costa Brava più vicina",
+    barcelonaDesc: "1h in auto, la Costa Brava più vicina",
   },
   categoryLicenseFree: {
     heroTitle: "Barche Senza Patente a Blanes",
@@ -1046,13 +1046,13 @@ export const it: Translations = {
       "La normativa consente la navigazione fino a 2 miglia nautiche (3,7 km) dalla costa. Dal Porto di Blanes, questo ti permette di esplorare numerose calette verso nord (direzione Lloret de Mar) e verso sud (direzione Malgrat de Mar). In 2-3 ore puoi visitare diverse calette, ancorare per fare snorkeling e tornare al porto senza fretta.",
     faqCarnetQuestion: "Mi serve la patente nautica per noleggiare?",
     faqCarnetAnswer:
-      "No, non serve nessuna patente né titolazione nautica per le nostre barche senza patente fino a 15 CV. Basta avere 18 anni compiuti, un documento d'identità valido e seguire il nostro briefing di sicurezza di 15 minuti prima di salpare. Nessun corso, esame o pratica preventiva. Molti clienti ci cercano come \"noleggio barca senza patente\" o \"senza titolazione\" — è lo stesso prodotto.",
+      "No, non serve nessuna patente né titolazione nautica per le nostre barche senza patente fino a 15 CV. Basta avere 18 anni compiuti, un documento d'identità valido e seguire il nostro briefing di sicurezza di 15 minuti prima di salpare. Nessun corso, esame o pratica preventiva. Molti clienti ci cercano come \"noleggio barca senza patente\" o \"senza titolazione\", è lo stesso prodotto.",
     faqExperienceQuestion: "E se non ho mai guidato una barca?",
     faqExperienceAnswer:
       "È il caso più comune tra i nostri clienti. Le barche senza patente sono progettate proprio per persone senza esperienza precedente: comandi intuitivi, motore di bassa potenza (15 CV), navigazione a 5 nodi (velocità di crociera) e zona costiera protetta. Nel briefing di 15 minuti ti insegniamo a manovrare nel porto, dare fondo, usare la VHF e rientrare all'ormeggio. A oggi nessun cliente ha avuto problemi a maneggiare la barca dopo il briefing.",
     faqGroupSizeQuestion: "Quante persone entrano in una barca senza patente?",
     faqGroupSizeAnswer:
-      "Le nostre 5 barche senza patente hanno capacità tra 4 e 7 persone (adulti e bambini contano uguale). Solar 450 e Astec 400 sono ideali per coppie o piccole famiglie (4-5 persone). Astec 480 e Mingolla Brava 19 sono le più grandi (6-7 persone) — perfette per famiglie numerose o gruppi di amici. Il prezzo è per barca, non per persona, quindi più siete, meno costa a testa."
+      "Le nostre 5 barche senza patente hanno capacità tra 4 e 7 persone (adulti e bambini contano uguale). Solar 450 e Astec 400 sono ideali per coppie o piccole famiglie (4-5 persone). Astec 480 e Mingolla Brava 19 sono le più grandi (6-7 persone), perfette per famiglie numerose o gruppi di amici. Il prezzo è per barca, non per persona, quindi più siete, meno costa a testa."
   },
   categoryLicensed: {
     heroTitle: "Barche Con Patente a Blanes",
@@ -1153,10 +1153,10 @@ export const it: Translations = {
     quizCta: "Trova la mia barca",
     abandonedTitle: "La tua barca ti aspetta!",
     abandonedSubtitle: "La {boat} e pronta per te",
-    abandonedCta: "Completa prenotazione — 10% di sconto",
+    abandonedCta: "Completa prenotazione, 10% di sconto",
     quizResultTitle: "Ottima scelta!",
     quizResultSubtitle: "Prenota la {boat} ora con il 10% di sconto",
-    quizResultCta: "Prenota ora — 10% di sconto",
+    quizResultCta: "Prenota ora, 10% di sconto",
   },
 
   socialProof: {
@@ -1502,7 +1502,7 @@ export const it: Translations = {
 
   boatDescriptions: {
     "solar-450":
-      "Pensata per chi ama prendere il sole in mare. Il suo solarium imbottito è il più ampio di tutta la flotta senza patente: ancorate in una cala dalle acque turchesi vicino a Blanes e rilassatevi come in nessun altro posto. Nessuna patente nautica necessaria — vi insegniamo a guidarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
+      "Pensata per chi ama prendere il sole in mare. Il suo solarium imbottito è il più ampio di tutta la flotta senza patente: ancorate in una cala dalle acque turchesi vicino a Blanes e rilassatevi come in nessun altro posto. Nessuna patente nautica necessaria, vi insegniamo a guidarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
     "remus-450":
       "La barca più noleggiata di Blanes e la prima scelta di coppie e famiglie con bambini. Il suo tendalino Bi Mini copre tutta l'imbarcazione per proteggere i piccoli dal sole, e la sua stabilità la rende ideale per chi va in mare per la prima volta. Perfetta per 2-5 persone in cerca di una giornata tranquilla in cale dalle acque cristalline. Vi insegniamo a manovrarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
     "remus-450-ii":
@@ -1518,16 +1518,16 @@ export const it: Translations = {
     "pacific-craft-625":
       "Il meglio che si possa noleggiare a Blanes. 6,24 metri, motore Yamaha 115 cv e spazio di lusso per 7 persone. Doppio solarium, tavolo per pranzare all'ancora, doccia d'acqua dolce e comandi elettronici. Per chi non vuole compromessi e cerca l'esperienza nautica più completa della Costa Brava. Patente nautica richiesta (patente entro 12 miglia).",
     "excursion-privada":
-      "Voi vi godete il mare — il nostro skipper professionista vi porta in cale segrete, grotte marine e angoli inaccessibili a piedi tra Blanes e Tossa de Mar. Getterete l'ancora nella cala perfetta del giorno, scelta in base a vento e correnti. Ideale per celebrazioni, anniversari o famiglie che desiderano un'escursione privata esclusiva in Costa Brava senza pensieri.",
+      "Voi vi godete il mare, il nostro skipper professionista vi porta in cale segrete, grotte marine e angoli inaccessibili a piedi tra Blanes e Tossa de Mar. Getterete l'ancora nella cala perfetta del giorno, scelta in base a vento e correnti. Ideale per celebrazioni, anniversari o famiglie che desiderano un'escursione privata esclusiva in Costa Brava senza pensieri.",
   },
 
   // TODO: pro-translate — traduzione funzionale, revisionare prima dell'uso in mercati IT-heavy
   rangeFromBlanes: {
     eyebrowHome: "PORTATA DI NAVIGAZIONE REALE",
-    headlineHome: "Fin dove puoi arrivare da Blanes — con e senza patente",
+    headlineHome: "Fin dove puoi arrivare da Blanes, con e senza patente",
     introHome:
       "Con una barca senza patente navighi legalmente fino a 2 miglia nautiche dalla costa a 5 nodi. Dal porto di Blanes sono 7 cale autentiche della Costa Brava in una sola giornata, con Playa de Fenals (sud di Lloret de Mar) come limite nord. Con patente PER estendi la rotta fino a Tossa de Mar, Sant Feliu e Platja d'Aro.",
-    eyebrowLloret: "TRATTO SENZA PATENTE — 25 MIN DI NAVIGAZIONE",
+    eyebrowLloret: "TRATTO SENZA PATENTE, 25 MIN DI NAVIGAZIONE",
     headlineLloret: "Le 7 cale tra Blanes e Playa de Fenals",
     introLloret: "In ordine dal porto di Blanes. Distanze cumulative a 5 nodi di crociera.",
     sinLicenciaTitle: "Rotta senza patente (7 soste fino a Playa de Fenals)",
@@ -1536,14 +1536,14 @@ export const it: Translations = {
     limitBoxBody:
       "Una barca senza patente può navigare fino a 2 miglia nautiche dalla costa a 5 nodi e 15 CV. Dal porto di Blanes, Playa de Fenals si trova esattamente a quella distanza seguendo la linea di costa.",
     noteNorthOfFenals:
-      "Nota: la spiaggia di Lloret (centro), Cala Banys e Cala Canyelles sono a nord di Fenals — fuori dal raggio senza patente.",
+      "Nota: la spiaggia di Lloret (centro), Cala Banys e Cala Canyelles sono a nord di Fenals, fuori dal raggio senza patente.",
     conLicenciaTitle: "Estensione con patente PER",
     conLicenciaIntro: "Con patente PER o skipper incluso, la rotta si estende verso nord:",
     ext: {
       lloretCenter: "Lloret centro e Cala Banys (oltre Fenals)",
-      canyelles: "Cala Canyelles — piccolo porto turistico",
-      morisca: "Cala Morisca — accessibile solo dal mare",
-      tossa: "Tossa de Mar — Vila Vella medievale dal mare (~30-45 min)",
+      canyelles: "Cala Canyelles, piccolo porto turistico",
+      morisca: "Cala Morisca, accessibile solo dal mare",
+      tossa: "Tossa de Mar, Vila Vella medievale dal mare (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (mezza giornata / giornata intera)",
     },
     ctaFleet: "Vedi flotta senza patente",
@@ -1624,9 +1624,9 @@ export const it: Translations = {
     afternoonLine: "Domani, questo potrebbe essere il tuo tramonto",
     eveningLine: "Domani svegliati sull'acqua",
     nightLine: "Domani il mare ti aspetta",
-    seasonLow: "Stagione tranquilla — calette tutte per te",
+    seasonLow: "Stagione tranquilla, calette tutte per te",
     seasonMid: "Il momento migliore dell'estate inizia ora",
-    seasonHigh: "Ultimi posti ad agosto — non aspettare oltre",
+    seasonHigh: "Ultimi posti ad agosto, non aspettare oltre",
     seasonOff: "La stagione apre ad aprile",
   },
   pricingPage: {
@@ -1784,7 +1784,7 @@ export const it: Translations = {
   },
   seoSchemas: {
     seasonalEvent: {
-      name: "Stagione {year} — Noleggio Barche in Costa Brava",
+      name: "Stagione {year}, Noleggio Barche in Costa Brava",
       description:
         "Noleggia barche senza patente a Blanes, Costa Brava. Stagione da aprile a ottobre.",
     },
@@ -1887,7 +1887,7 @@ export const it: Translations = {
       {
         month: "Giugno",
         time: "21:15 - 21:30",
-        suggestion: "Parti alle 19:30 — sono i tramonti più lunghi dell'anno.",
+        suggestion: "Parti alle 19:30, sono i tramonti più lunghi dell'anno.",
       },
       {
         month: "Luglio",
@@ -1926,7 +1926,7 @@ export const it: Translations = {
       {
         name: "Tratto tra Blanes e Lloret",
         description:
-          "Il litorale tra Blanes e Lloret de Mar offre una vista a ovest senza ostacoli. Niente edifici, niente folla — solo tu, il mare e un tramonto straordinario.",
+          "Il litorale tra Blanes e Lloret de Mar offre una vista a ovest senza ostacoli. Niente edifici, niente folla, solo tu, il mare e un tramonto straordinario.",
         distance: "25 minuti dal porto",
       },
     ],
@@ -2375,7 +2375,7 @@ export const it: Translations = {
         {
           question: "Fino a dove esattamente posso arrivare con una barca senza patente?",
           answer:
-            "Legalmente, fino a 2 miglia nautiche dalla costa, a massimo 5 nodi, con 15 CV. Da Blanes sono 25 minuti di navigazione fino a Playa de Fenals, passando per 7 calette. Playa de Lloret centro e Cala Canyelles si trovano a nord di Fenals — non sono accessibili con barca senza patente.",
+            "Legalmente, fino a 2 miglia nautiche dalla costa, a massimo 5 nodi, con 15 CV. Da Blanes sono 25 minuti di navigazione fino a Playa de Fenals, passando per 7 calette. Playa de Lloret centro e Cala Canyelles si trovano a nord di Fenals, non sono accessibili con barca senza patente.",
         },
         {
           question: "Quanto costa noleggiare una barca senza patente per andare a Lloret?",
@@ -2563,7 +2563,7 @@ export const it: Translations = {
         ctaButton: "Prenota Escursione a Tossa",
         warningTitle: "Tossa non è raggiungibile con barca senza patente.",
         warningBody:
-          'Le barche senza patente (2 miglia, 5 nodi, 15 CV) arrivano fino a Playa de Fenals (sud di Lloret) — 4 miglia prima di Tossa. Per raggiungere Tossa da Blanes hai bisogno di (1) noleggio con Patente Nautica di Base / LNB (pacchetti fissi 2 h / 4 h / 8 h da {licBaja2h} € con Mingolla Brava 19 o Trimarchi 57S, IVA, ormeggio, pulizia e assicurazione inclusi; carburante e cauzione 500 € a parte), oppure (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Escursione Privata con Capitano</a> (Pacific Craft 625 + skipper, 4 h massimo, fino a 6 pax, da {excursionBaja4h} € con IVA, skipper, ormeggio, pulizia e assicurazione inclusi — carburante a parte). La terza alternativa è andare in auto a Tossa (20 min da Lloret) e noleggiare una barca senza patente direttamente lì.',
+          'Le barche senza patente (2 miglia, 5 nodi, 15 CV) arrivano fino a Playa de Fenals (sud di Lloret), 4 miglia prima di Tossa. Per raggiungere Tossa da Blanes hai bisogno di (1) noleggio con Patente Nautica di Base / LNB (pacchetti fissi 2 h / 4 h / 8 h da {licBaja2h} € con Mingolla Brava 19 o Trimarchi 57S, IVA, ormeggio, pulizia e assicurazione inclusi; carburante e cauzione 500 € a parte), oppure (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Escursione Privata con Capitano</a> (Pacific Craft 625 + skipper, 4 h massimo, fino a 6 pax, da {excursionBaja4h} € con IVA, skipper, ormeggio, pulizia e assicurazione inclusi, carburante a parte). La terza alternativa è andare in auto a Tossa (20 min da Lloret) e noleggiare una barca senza patente direttamente lì.',
         crossLinkingText:
           'Offriamo servizio anche per turisti alloggiati a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> e <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Da questi paesi della costa del Maresme si arriva al Porto di Blanes in 10-20 minuti d\'auto.',
         relatedTitle: "Servizi e destinazioni correlate",
@@ -3273,7 +3273,7 @@ export const it: Translations = {
   },
   glossaryPage: {
     seo: {
-      title: "Glossario Nautico — Noleggio Barche Costa Brava | Costa Brava Rent a Boat",
+      title: "Glossario Nautico, Noleggio Barche Costa Brava | Costa Brava Rent a Boat",
       description:
         "Glossario dei termini nautici essenziali: LNB, PER, PNB, nodi, miglia nautiche, lunghezza, ancoraggio, calette e parti della barca. Dizionario pratico per noleggiare una barca a Blanes.",
       keywords:
@@ -3289,7 +3289,7 @@ export const it: Translations = {
       "Ora che conosci la terminologia, scegli la tua barca senza patente o con patente per esplorare la Costa Brava.",
     ctaFleet: "Vedi la flotta",
     ctaFaq: "Domande frequenti",
-    schemaName: "Glossario nautico — Noleggio barche Costa Brava",
+    schemaName: "Glossario nautico, Noleggio barche Costa Brava",
     schemaDescription:
       "Definizioni dei termini nautici essenziali per noleggiare una barca sulla Costa Brava: patenti nautiche, unità di misura, parti della barca e terminologia marittima.",
     categories: {
@@ -3689,7 +3689,7 @@ export const it: Translations = {
         },
         {
           title: "3. Finalità del trattamento e base giuridica",
-          body: "Trattiamo i tuoi dati con le seguenti finalità e basi giuridiche (GDPR):\n\n- Gestione e conferma delle prenotazioni di imbarcazioni — Art. 6.1.b, esecuzione di un contratto\n- Invio di promemoria e comunicazioni relative alla prenotazione — Art. 6.1.b, esecuzione di un contratto\n- Assistenza clienti e risoluzione di problemi — Art. 6.1.b e 6.1.f, esecuzione di contratto / legittimo interesse\n- Analisi statistica del traffico web (Google Analytics) — Art. 6.1.a, consenso (banner dei cookie)\n- Adempimento di obblighi legali e fiscali — Art. 6.1.c, obbligo legale\n\nNon prendiamo decisioni automatizzate né elaboriamo profili a fini pubblicitari a partire dai tuoi dati di prenotazione.",
+          body: "Trattiamo i tuoi dati con le seguenti finalità e basi giuridiche (GDPR):\n\n- Gestione e conferma delle prenotazioni di imbarcazioni, Art. 6.1.b, esecuzione di un contratto\n- Invio di promemoria e comunicazioni relative alla prenotazione, Art. 6.1.b, esecuzione di un contratto\n- Assistenza clienti e risoluzione di problemi, Art. 6.1.b e 6.1.f, esecuzione di contratto / legittimo interesse\n- Analisi statistica del traffico web (Google Analytics), Art. 6.1.a, consenso (banner dei cookie)\n- Adempimento di obblighi legali e fiscali, Art. 6.1.c, obbligo legale\n\nNon prendiamo decisioni automatizzate né elaboriamo profili a fini pubblicitari a partire dai tuoi dati di prenotazione.",
         },
         {
           title: "4. Tempi di conservazione",

@@ -13,7 +13,7 @@ export const ca: Translations = {
     myAccount: "El Meu Compte",
   },
   hero: {
-    title: "Lloguer de Vaixells sense Llicència a Blanes — 7 Cales de la Costa Brava",
+    title: "Lloguer de Vaixells sense Llicència a Blanes, 7 Cales de la Costa Brava",
     subtitle:
       "Navega sense llicència ni experiència des del port de Blanes fins a la Platja de Fenals (Lloret). Set cales verges a la ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella i més. Gasolina inclosa.",
     subtitleLine1: "Navega sense llicència des de Blanes fins a la Platja de Fenals.",
@@ -78,9 +78,9 @@ export const ca: Translations = {
     bestForFamilies: "Favorit famílies",
     bestForPremium: "Premium sense llicència",
     imageAltNoLicense:
-      "Lloguer vaixell {name} sense titol a Blanes, Costa Brava — {capacity} persones, des de {price}€",
+      "Lloguer vaixell {name} sense titol a Blanes, Costa Brava, {capacity} persones, des de {price}€",
     imageAltWithLicense:
-      "Lloguer vaixell {name} amb titol a Blanes, Costa Brava — {capacity} persones, des de {price}€",
+      "Lloguer vaixell {name} amb titol a Blanes, Costa Brava, {capacity} persones, des de {price}€",
   },
   features: {
     title: "Per què triar Costa Brava Rent a Boat",
@@ -186,7 +186,7 @@ export const ca: Translations = {
     seasonLabel: "Temporada",
     seasonMonths: "Abril - Octubre",
     flexibleHours: "Horaris flexibles",
-    consultWhatsApp: "Escriu-nos — responem en 5 min",
+    consultWhatsApp: "Escriu-nos, responem en 5 min",
     discoverMore: "Descobreix Més Opcions",
     discoverMoreSub: "Explora els nostres destins i tipus d'embarcació",
     viewDetails: "Veure Detalls",
@@ -625,7 +625,7 @@ export const ca: Translations = {
     discount: "Descompte",
     applied: "Aplicat",
     apply: "Aplicar",
-    notFound: "Aquest codi no existeix — revisa que estigui ben escrit",
+    notFound: "Aquest codi no existeix, revisa que estigui ben escrit",
     expired: "Aquest codi ha caducat",
     consumed: "Aquest codi ja s'ha utilitzat",
     cancelled: "Aquest codi va ser cancel·lat",
@@ -786,7 +786,7 @@ export const ca: Translations = {
       yourDetails: "Confirmar",
     },
     hints: {
-      noOnlinePayment: "Sense pagament en línia — et confirmem per WhatsApp",
+      noOnlinePayment: "Sense pagament en línia, et confirmem per WhatsApp",
       submitReassurance: "Et responem en menys de 2 hores. Sense pagament en línia, sense compromís.",
     },
     fuel: {
@@ -841,8 +841,8 @@ export const ca: Translations = {
         probablyValid: "Porta l'ICC original el dia del lloguer. Te'l demanarem abans de salpar.",
         needsIcc: "El teu país emet ICC. Demana'l a la teva federació nàutica abans de viatjar.",
         notRecognized: "La teva llicència nacional no es reconeix directament a Espanya. Escriu-nos per WhatsApp i mirem amb tu quines opcions tens.",
-        insufficient: "La teva llicència equival a un nivell inferior al PNB espanyol. Les nostres embarcacions amb llicència exigeixen PNB o superior — considera obtenir PER o ICC.",
-        inlandOnly: "La teva llicència autoritza rius i llacs, no navegació marítima. Bona notícia: els nostres vaixells sense llicència no necessiten cap títol — són perfectes per a tu.",
+        insufficient: "La teva llicència equival a un nivell inferior al PNB espanyol. Les nostres embarcacions amb llicència exigeixen PNB o superior, considera obtenir PER o ICC.",
+        inlandOnly: "La teva llicència autoritza rius i llacs, no navegació marítima. Bona notícia: els nostres vaixells sense llicència no necessiten cap títol, són perfectes per a tu.",
       },
       pill: {
         valid: "Vàlida",
@@ -877,7 +877,7 @@ export const ca: Translations = {
   },
   validation: {
     required: "Falta aquesta dada",
-    invalidEmail: "Revisa l'email — falta l'@ o el .com",
+    invalidEmail: "Revisa l'email, falta l'@ o el .com",
     invalidPhone: "Només números, sense espais ni guions",
     futureDate: "Selecciona una data futura",
     minPeople: "Mínim 1 persona",
@@ -926,13 +926,13 @@ export const ca: Translations = {
     sailTo: "Destinacions en vaixell",
     nearbyTowns: "Pobles propers",
     blanes: "Lloguer vaixell Blanes",
-    blanesDesc: "Port base — tots els vaixells surten d'aquí",
+    blanesDesc: "Port base, tots els vaixells surten d'aquí",
     costaBrava: "Lloguer vaixell Costa Brava",
     costaBravaDesc: "Explora les millors cales de la Costa Brava",
     lloret: "Lloguer vaixell Lloret de Mar",
-    lloretDesc: "25 min navegant — platges i cales amagades",
+    lloretDesc: "25 min navegant, platges i cales amagades",
     tossa: "Lloguer vaixell Tossa de Mar",
-    tossaDesc: "1h navegant — vila medieval emmurallada",
+    tossaDesc: "1h navegant, vila medieval emmurallada",
     malgrat: "Vaixells prop de Malgrat de Mar",
     malgratDesc: "10 min en cotxe fins al Port de Blanes",
     santaSusanna: "Vaixells prop de Santa Susanna",
@@ -940,13 +940,13 @@ export const ca: Translations = {
     calella: "Vaixells prop de Calella",
     calellaDesc: "20 min en cotxe fins al Port de Blanes",
     pineda: "Vaixells prop de Pineda de Mar",
-    pinedaDesc: "18 min en cotxe — connexió directa per tren",
+    pinedaDesc: "18 min en cotxe, connexió directa per tren",
     palafolls: "Vaixells prop de Palafolls",
-    palafollsDesc: "12 min en cotxe — ideal des dels càmpings",
+    palafollsDesc: "12 min en cotxe, ideal des dels càmpings",
     tordera: "Vaixells prop de Tordera",
-    torderaDesc: "15 min en cotxe — porta de la Costa Brava",
+    torderaDesc: "15 min en cotxe, porta de la Costa Brava",
     barcelona: "Lloguer vaixell prop de Barcelona",
-    barcelonaDesc: "1h en cotxe — la Costa Brava més propera",
+    barcelonaDesc: "1h en cotxe, la Costa Brava més propera",
   },
   categoryLicenseFree: {
     heroTitle: "Vaixells Sense Llicència a Blanes",
@@ -1047,13 +1047,13 @@ export const ca: Translations = {
       "La normativa permet navegar fins a 2 milles nàutiques (3,7 km) de la costa. Des del Port de Blanes, això et permet explorar nombroses cales cap al nord (direcció Lloret de Mar) i cap al sud (direcció Malgrat de Mar). En 2-3 hores pots visitar diverses cales, fondejar per fer snorkel i tornar al port sense pressa.",
     faqCarnetQuestion: "Necessito carnet de barca per llogar?",
     faqCarnetAnswer:
-      "No, no necessites cap carnet ni titulació nàutica per a les nostres barques sense llicència fins a 15 CV. Només cal tenir 18 anys complerts, un document d'identitat vàlid i rebre el nostre briefing de seguretat de 15 minuts abans de salpar. Sense cursos, exàmens ni tràmits previs. Molts clients ens busquen com \"lloguer barca sense carnet\" o \"sense titulació\" — és el mateix producte.",
+      "No, no necessites cap carnet ni titulació nàutica per a les nostres barques sense llicència fins a 15 CV. Només cal tenir 18 anys complerts, un document d'identitat vàlid i rebre el nostre briefing de seguretat de 15 minuts abans de salpar. Sense cursos, exàmens ni tràmits previs. Molts clients ens busquen com \"lloguer barca sense carnet\" o \"sense titulació\", és el mateix producte.",
     faqExperienceQuestion: "I si mai he portat una barca?",
     faqExperienceAnswer:
       "És el cas més habitual entre els nostres clients. Les barques sense llicència estan dissenyades precisament per a persones sense experiència prèvia: controls intuïtius, motor de baixa potència (15 CV), navegació a 5 nusos (velocitat de passeig) i zona costanera protegida. En el briefing de 15 minuts t'ensenyem a maniobrar al port, fondejar, utilitzar la VHF i tornar a l'amarrador. Fins avui cap client ha tingut problemes per manejar la barca després del briefing.",
     faqGroupSizeQuestion: "Quanta gent cap en una barca sense llicència?",
     faqGroupSizeAnswer:
-      "Les nostres 5 barques sense llicència tenen capacitat entre 4 i 7 persones (adults i nens compten igual). Solar 450 i Astec 400 són ideals per a parelles o famílies petites (4-5 persones). Astec 480 i Mingolla Brava 19 són les més grans (6-7 persones) — perfectes per a famílies nombroses o grups d'amics. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap."
+      "Les nostres 5 barques sense llicència tenen capacitat entre 4 i 7 persones (adults i nens compten igual). Solar 450 i Astec 400 són ideals per a parelles o famílies petites (4-5 persones). Astec 480 i Mingolla Brava 19 són les més grans (6-7 persones), perfectes per a famílies nombroses o grups d'amics. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap."
   },
   categoryLicensed: {
     heroTitle: "Vaixells Amb Llicència a Blanes",
@@ -1154,10 +1154,10 @@ export const ca: Translations = {
     quizCta: "Trobar el meu vaixell",
     abandonedTitle: "El teu vaixell t'espera!",
     abandonedSubtitle: "El {boat} està llest per a tu",
-    abandonedCta: "Completar reserva — 10% dte.",
+    abandonedCta: "Completar reserva, 10% dte.",
     quizResultTitle: "Gran eleccio!",
     quizResultSubtitle: "Reserva el {boat} ara amb un 10% de descompte",
-    quizResultCta: "Reservar ara — 10% dte.",
+    quizResultCta: "Reservar ara, 10% dte.",
   },
 
   socialProof: {
@@ -1525,10 +1525,10 @@ export const ca: Translations = {
   // TODO: pro-translate — traducció funcional, revisar abans de publicar a mercats CA-heavy
   rangeFromBlanes: {
     eyebrowHome: "ABAST REAL DE NAVEGACIÓ",
-    headlineHome: "Fins on arribes des de Blanes — amb i sense llicència",
+    headlineHome: "Fins on arribes des de Blanes, amb i sense llicència",
     introHome:
       "Amb una embarcació sense llicència navegues legalment fins a 2 milles de la costa a 5 nusos. Des del port de Blanes això són 7 cales autèntiques de la Costa Brava en una jornada, amb la Platja de Fenals (sud de Lloret de Mar) com a límit nord. Amb llicència PER pots estendre la ruta fins a Tossa de Mar, Sant Feliu i Platja d'Aro.",
-    eyebrowLloret: "TRAM SENSE LLICÈNCIA — 25 MIN DE NAVEGACIÓ",
+    eyebrowLloret: "TRAM SENSE LLICÈNCIA, 25 MIN DE NAVEGACIÓ",
     headlineLloret: "Les 7 cales entre Blanes i la Platja de Fenals",
     introLloret: "Per ordre des del port de Blanes. Distàncies acumulades a 5 nusos de creuer.",
     sinLicenciaTitle: "Ruta sense llicència (7 parades fins a la Platja de Fenals)",
@@ -1537,14 +1537,14 @@ export const ca: Translations = {
     limitBoxBody:
       "Una embarcació sense llicència pot navegar fins a 2 milles nàutiques de la costa a 5 nusos i 15 CV. Des del port de Blanes, la Platja de Fenals està just al llindar d'aquesta distància seguint la línia de costa.",
     noteNorthOfFenals:
-      "Nota: la Platja de Lloret (centre), Cala Banys i Cala Canyelles queden al nord de Fenals — fora del rang sense llicència.",
+      "Nota: la Platja de Lloret (centre), Cala Banys i Cala Canyelles queden al nord de Fenals, fora del rang sense llicència.",
     conLicenciaTitle: "Extensió amb llicència PER",
     conLicenciaIntro: "Amb llicència PER o patró inclòs, estens la ruta cap al nord:",
     ext: {
       lloretCenter: "Lloret centre i Cala Banys (passada Fenals)",
-      canyelles: "Cala Canyelles — petit port esportiu",
-      morisca: "Cala Morisca — només accessible per mar",
-      tossa: "Tossa de Mar — Vila Vella medieval des del mar (~30-45 min)",
+      canyelles: "Cala Canyelles, petit port esportiu",
+      morisca: "Cala Morisca, només accessible per mar",
+      tossa: "Tossa de Mar, Vila Vella medieval des del mar (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (mig dia / dia complet)",
     },
     ctaFleet: "Veure flota sense llicència",
@@ -1625,9 +1625,9 @@ export const ca: Translations = {
     afternoonLine: "Demà, aquest podria ser el teu capvespre",
     eveningLine: "Desperta demà a l'aigua",
     nightLine: "Demà, el mar t'espera",
-    seasonLow: "Temporada tranquil·la — cales només per a tu",
+    seasonLow: "Temporada tranquil·la, cales només per a tu",
     seasonMid: "El millor moment de l'estiu comença ara",
-    seasonHigh: "Últimes places d'agost — no esperis més",
+    seasonHigh: "Últimes places d'agost, no esperis més",
     seasonOff: "La temporada obre l'abril",
   },
   pricingPage: {
@@ -1786,7 +1786,7 @@ export const ca: Translations = {
   },
   seoSchemas: {
     seasonalEvent: {
-      name: "Temporada {year} — Lloguer de Barques a la Costa Brava",
+      name: "Temporada {year}, Lloguer de Barques a la Costa Brava",
       description:
         "Lloga barques sense llicència a Blanes, Costa Brava. Temporada d'abril a octubre.",
     },
@@ -1888,7 +1888,7 @@ export const ca: Translations = {
       {
         month: "Juny",
         time: "21:15 - 21:30",
-        suggestion: "Surt a les 19:30 — són les postes de sol més llargues de l'any.",
+        suggestion: "Surt a les 19:30, són les postes de sol més llargues de l'any.",
       },
       {
         month: "Juliol",
@@ -1927,7 +1927,7 @@ export const ca: Translations = {
       {
         name: "Tram entre Blanes i Lloret",
         description:
-          "El litoral entre Blanes i Lloret de Mar ofereix vistes a l'oest sense obstacles. Sense edificis, sense multituds — només tu, el mar i una posta de sol increïble.",
+          "El litoral entre Blanes i Lloret de Mar ofereix vistes a l'oest sense obstacles. Sense edificis, sense multituds, només tu, el mar i una posta de sol increïble.",
         distance: "25 minuts des del port",
       },
     ],
@@ -2369,7 +2369,7 @@ export const ca: Translations = {
         {
           question: "Fins on exactament puc arribar amb vaixell sense llicència?",
           answer:
-            "Legalment, fins a 2 milles nàutiques de la costa, a màxim 5 nusos, amb 15 CV. Des de Blanes, això són 25 minuts de navegació fins a la Platja de Fenals, passant per 7 cales. La Platja de Lloret centre i Cala Canyelles queden al nord de Fenals — no són accessibles amb vaixell sense llicència.",
+            "Legalment, fins a 2 milles nàutiques de la costa, a màxim 5 nusos, amb 15 CV. Des de Blanes, això són 25 minuts de navegació fins a la Platja de Fenals, passant per 7 cales. La Platja de Lloret centre i Cala Canyelles queden al nord de Fenals, no són accessibles amb vaixell sense llicència.",
         },
         {
           question: "Quan costa llogar un vaixell sense llicència per anar a Lloret?",
@@ -2557,7 +2557,7 @@ export const ca: Translations = {
         ctaButton: "Reservar Excursió a Tossa",
         warningTitle: "Tossa no és accessible amb vaixell sense llicència.",
         warningBody:
-          'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret) — 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència Bàsica de Navegació / LNB (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 6 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos — combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
+          'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència Bàsica de Navegació / LNB (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 6 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos, combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
         crossLinkingText:
           'També oferim servei per a turistes allotjats a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> i <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Des d\'aquests pobles de la costa del Maresme s\'arriba al Port de Blanes en 10-20 minuts amb cotxe.',
         relatedTitle: "Serveis i destinacions relacionats",
@@ -3273,7 +3273,7 @@ export const ca: Translations = {
   },
   glossaryPage: {
     seo: {
-      title: "Glossari Nàutic — Lloguer Barques Costa Brava | Costa Brava Rent a Boat",
+      title: "Glossari Nàutic, Lloguer Barques Costa Brava | Costa Brava Rent a Boat",
       description:
         "Glossari de termes nàutics essencials: LNB, PER, PNB, nusos, milles nàutiques, eslora, fondejar, cales i parts de l'embarcació. Diccionari pràctic per llogar un vaixell a Blanes.",
       keywords:
@@ -3289,7 +3289,7 @@ export const ca: Translations = {
       "Ara que domines la terminologia, tria la teva barca sense llicència o amb llicència per explorar la Costa Brava.",
     ctaFleet: "Veure la flota",
     ctaFaq: "Preguntes freqüents",
-    schemaName: "Glossari nàutic — Lloguer de barques Costa Brava",
+    schemaName: "Glossari nàutic, Lloguer de barques Costa Brava",
     schemaDescription:
       "Definicions de termes nàutics essencials per llogar una barca a la Costa Brava: titulacions, unitats de mesura, parts de l'embarcació i terminologia marina.",
     categories: {
@@ -3690,7 +3690,7 @@ export const ca: Translations = {
         },
         {
           title: "3. Finalitat del tractament i base jurídica",
-          body: "Gestionem les teves dades amb les finalitats i bases jurídiques següents (RGPD):\n\n- Gestió i confirmació de reserves d'embarcacions — Art. 6.1.b, execució d'un contracte\n- Enviament de recordatoris i comunicacions relatives a la reserva — Art. 6.1.b, execució d'un contracte\n- Atenció al client i resolució d'incidències — Art. 6.1.b i 6.1.f, execució de contracte / interès legítim\n- Anàlisi estadística del trànsit web (Google Analytics) — Art. 6.1.a, consentiment (bàner de galetes)\n- Compliment d'obligacions legals i fiscals — Art. 6.1.c, obligació legal\n\nNo prenem decisions automatitzades ni elaborem perfils amb fins de segmentació publicitària a partir de les teves dades de reserva.",
+          body: "Gestionem les teves dades amb les finalitats i bases jurídiques següents (RGPD):\n\n- Gestió i confirmació de reserves d'embarcacions, Art. 6.1.b, execució d'un contracte\n- Enviament de recordatoris i comunicacions relatives a la reserva, Art. 6.1.b, execució d'un contracte\n- Atenció al client i resolució d'incidències, Art. 6.1.b i 6.1.f, execució de contracte / interès legítim\n- Anàlisi estadística del trànsit web (Google Analytics), Art. 6.1.a, consentiment (bàner de galetes)\n- Compliment d'obligacions legals i fiscals, Art. 6.1.c, obligació legal\n\nNo prenem decisions automatitzades ni elaborem perfils amb fins de segmentació publicitària a partir de les teves dades de reserva.",
         },
         {
           title: "4. Terminis de conservació",

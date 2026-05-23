@@ -1196,7 +1196,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-2">
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">
             <Eye className="w-3.5 h-3.5" />
-            {viewsData.views} {translateBoatText("personas han visto este barco hoy", language)}
+            {viewsData.views} {t.boatDetail.viewsToday}
           </p>
         </div>
       )}
@@ -1333,7 +1333,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             )}
             <div className="px-4 py-2 text-center border-t border-border">
               <a href={localizedPath("gallery")} className="text-sm text-primary hover:underline">
-                {translateBoatText("Ver galería de fotos de clientes", language)}
+                {t.boatDetail.viewCustomerGallery}
               </a>
             </div>
           </div>
@@ -1812,7 +1812,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             {fuelIncluded && (
               <p className="text-xs text-muted-foreground flex items-center gap-1">
                 <Fuel className="w-3 h-3" />
-                {translateBoatText("Gasolina incluida", language)}
+                {t.boatDetail.fuelIncludedShort}
               </p>
             )}
             <Button

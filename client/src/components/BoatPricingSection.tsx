@@ -187,7 +187,7 @@ function SeasonPricingMode({ boatData, requiresLicense, translate }: SeasonPrici
                 >
                   {isRecommended && (
                     <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide shadow-sm">
-                      {translate("Recomendado")}
+                      {t.boatDetail.recommendedBadge}
                     </span>
                   )}
                   <div
@@ -329,7 +329,7 @@ function DayPricingMode({
               const isRecommended = !requiresLicense && r.duration === "4h";
               const hasDiff = r.hasOverride && r.basePrice !== null && r.basePrice !== r.finalPrice;
               const ariaLabel = `${t.hero.bookNow} ${r.duration} · ${r.finalPrice}€${
-                isRecommended ? ` · ${translate("Recomendado")}` : ""
+                isRecommended ? ` · ${t.boatDetail.recommendedBadge}` : ""
               }`;
               return (
                 <button
@@ -346,7 +346,7 @@ function DayPricingMode({
                 >
                   {isRecommended && (
                     <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide shadow-sm">
-                      {translate("Recomendado")}
+                      {t.boatDetail.recommendedBadge}
                     </span>
                   )}
                   <div

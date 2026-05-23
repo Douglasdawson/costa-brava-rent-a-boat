@@ -783,6 +783,10 @@ export interface Translations {
     noPricesForDate: string;
     selectDateHint: string;
     checkAvailability: string;
+    recommendedBadge: string;
+    viewsToday: string;
+    viewCustomerGallery: string;
+    fuelIncludedShort: string;
     mainFeatures: string;
     noFeatures: string;
     technicalSpecs: string;

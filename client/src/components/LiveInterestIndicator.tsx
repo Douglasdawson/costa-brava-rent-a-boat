@@ -52,17 +52,38 @@ export function LiveInterestIndicator({ boatId }: LiveInterestIndicatorProps) {
     tokenRef.current = getOrCreateToken();
     trackedRef.current = false;
 
-    // Initial ping + fetch
-    sendPing();
-    fetchCount();
+    const start = () => {
+      if (pingIntervalRef.current) return; // already polling
+      sendPing();
+      fetchCount();
+      pingIntervalRef.current = setInterval(sendPing, 30_000);
+      fetchIntervalRef.current = setInterval(fetchCount, 15_000);
+    };
 
-    // Ping every 30s, fetch every 15s
-    pingIntervalRef.current = setInterval(sendPing, 30_000);
-    fetchIntervalRef.current = setInterval(fetchCount, 15_000);
+    const stop = () => {
+      if (pingIntervalRef.current) {
+        clearInterval(pingIntervalRef.current);
+        pingIntervalRef.current = null;
+      }
+      if (fetchIntervalRef.current) {
+        clearInterval(fetchIntervalRef.current);
+        fetchIntervalRef.current = null;
+      }
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+
+    // Only start if the tab is currently visible. Tabs opened in background
+    // (e.g. cmd-click) stay paused until they get focus.
+    if (!document.hidden) start();
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
-      if (pingIntervalRef.current) clearInterval(pingIntervalRef.current);
-      if (fetchIntervalRef.current) clearInterval(fetchIntervalRef.current);
+      stop();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, [boatId, sendPing, fetchCount]);
 

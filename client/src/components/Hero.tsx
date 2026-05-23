@@ -87,7 +87,7 @@ export default function Hero() {
               </p>
             )}
 
-            <p className="text-[0.875rem] sm:text-[1.15rem] lg:text-[1.575rem] text-primary-foreground/85 font-medium mb-2 sm:mb-6 leading-snug sm:leading-relaxed sm:max-w-[720px] lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+            <p data-speakable className="text-[0.875rem] sm:text-[1.15rem] lg:text-[1.575rem] text-primary-foreground/85 font-medium mb-2 sm:mb-6 leading-snug sm:leading-relaxed sm:max-w-[720px] lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
               <span className="hidden sm:inline">
                 {t.hero.subtitleLine1}
                 <br />
@@ -101,7 +101,7 @@ export default function Hero() {
           <div className="text-center flex flex-col items-center">
             {/* Price callout — single DOM instance, positioned above CTAs for all viewports */}
             <div className="mb-3 lg:mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <p className="font-bold text-primary-foreground text-base sm:text-lg lg:text-xl lg:font-semibold">
+              <p data-speakable className="font-bold text-primary-foreground text-base sm:text-lg lg:text-xl lg:font-semibold">
                 {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
               </p>
               <p className="text-primary-foreground/85 text-xs sm:text-sm mt-0.5">

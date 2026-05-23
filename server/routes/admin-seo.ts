@@ -26,7 +26,11 @@ import {
   getTopBotPaths,
   getRecentBotVisits,
   getBotHourlyDistribution,
+  getBotLanguageDistribution,
+  getBotLastSeen,
+  getBotVisitsForExport,
 } from "../storage/aiBotVisits";
+import { AI_CRAWLER_NAMES } from "../seo/constants";
 
 export function registerSeoRoutes(app: Express): void {
   // Dashboard overview
@@ -465,6 +469,76 @@ export function registerSeoRoutes(app: Express): void {
       const msg = error instanceof Error ? error.message : String(error);
       logger.error("Error fetching bot visit timing", { error: msg });
       res.status(500).json({ message: "Error fetching bot visit timing", error: msg });
+    }
+  });
+
+  // GET /api/admin/seo/bot-visits/language-distribution
+  // Per-bot per-language visit counts so the dashboard can show "what % of
+  // ChatGPT hits go to /es vs /en". Aggregated server-side because the cross
+  // product is small (~23 bots × ~9 languages).
+  app.get("/api/admin/seo/bot-visits/language-distribution", requireAdminSession, async (req, res) => {
+    try {
+      const days = Math.min(Math.max(parseInt((req.query.days as string) || "30", 10) || 30, 1), 365);
+      const rows = await getBotLanguageDistribution(days);
+      res.json({ windowDays: days, rows });
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("Error fetching bot language distribution", { error: msg });
+      res.status(500).json({ message: "Error fetching language distribution", error: msg });
+    }
+  });
+
+  // GET /api/admin/seo/bot-visits/last-seen
+  // Latest hit per bot + visits over 7/30 day windows. Lets the dashboard
+  // surface "PerplexityBot hasn't crawled in 12 days" alerts. Also flags any
+  // bot name that arrived but isn't in our canonical AI_CRAWLER_NAMES list
+  // (i.e. a new crawler showed up — worth investigating).
+  app.get("/api/admin/seo/bot-visits/last-seen", requireAdminSession, async (_req, res) => {
+    try {
+      const rows = await getBotLastSeen();
+      const known = new Set<string>(AI_CRAWLER_NAMES as readonly string[]);
+      const unknownBots = rows.filter((r) => !known.has(r.botName) && r.botName !== "_boot_self_test");
+      res.json({ rows, unknownBots, canonicalBots: Array.from(known) });
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("Error fetching bot last-seen", { error: msg });
+      res.status(500).json({ message: "Error fetching last-seen", error: msg });
+    }
+  });
+
+  // GET /api/admin/seo/bot-visits/export.csv
+  // Streams the last N days of raw bot visits as CSV. Hard cap of 5000 rows
+  // (defined in storage). Useful for ad-hoc analysis in spreadsheets.
+  app.get("/api/admin/seo/bot-visits/export.csv", requireAdminSession, async (req, res) => {
+    try {
+      const days = Math.min(Math.max(parseInt((req.query.days as string) || "30", 10) || 30, 1), 365);
+      const rows = await getBotVisitsForExport(days, 5000);
+      const escape = (v: unknown): string => {
+        if (v == null) return "";
+        const s = String(v);
+        return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+      };
+      const header = ["timestamp", "bot_name", "user_agent", "path", "method", "lang", "status_code"].join(",");
+      const body = rows
+        .map((r) =>
+          [
+            r.timestamp instanceof Date ? r.timestamp.toISOString() : String(r.timestamp),
+            escape(r.botName),
+            escape(r.userAgent),
+            escape(r.path),
+            escape(r.method),
+            escape(r.lang ?? ""),
+            escape(r.statusCode ?? ""),
+          ].join(","),
+        )
+        .join("\n");
+      res.setHeader("Content-Type", "text/csv; charset=utf-8");
+      res.setHeader("Content-Disposition", `attachment; filename="bot-visits-${days}d.csv"`);
+      res.send(`${header}\n${body}\n`);
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("Error exporting bot visits", { error: msg });
+      res.status(500).json({ message: "Error exporting CSV", error: msg });
     }
   });
 }

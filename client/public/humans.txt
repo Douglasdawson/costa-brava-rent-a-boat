@@ -1,0 +1,14 @@
+/* TEAM */
+Operations & ownership: Iván Ramírez Dawson
+Website: https://www.costabravarentaboat.com
+Contact: costabravarentaboat@gmail.com
+Location: Puerto de Blanes, Girona, Catalonia, Spain
+
+/* SISTER BRAND */
+Coast Rent (scooter rental, Lloret de Mar): https://coastrent.es
+
+/* SITE */
+Standards: HTML5, ES2022 modules, Tailwind CSS
+Stack: React 18 + Vite + Express + Drizzle ORM + Neon Postgres
+Languages: es, en, ca, fr, de, nl, it, ru
+Last update: see /llms.txt — runtime injected

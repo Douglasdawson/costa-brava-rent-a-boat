@@ -61,6 +61,7 @@ const ClientDashboardPage = lazy(() => import("@/pages/ClientDashboardPage"));
 const LoginPage = lazy(() => import("@/pages/LoginPage"));
 const GalleryPage = lazy(() => import("@/pages/gallery"));
 const RoutesPage = lazy(() => import("@/pages/routes"));
+const AiCitationsPage = lazy(() => import("@/pages/ai-citations"));
 const GiftCardsPage = lazy(() => import("@/pages/gift-cards"));
 const CancelBookingPage = lazy(() => import("@/pages/CancelBookingPage"));
 const PricingPage = lazy(() => import("@/pages/pricing"));
@@ -519,6 +520,11 @@ function Router() {
       <Route path="/barco/:id" component={LegacyBoatRedirect} />
       <Route path="/blog/:slug" component={LegacyBlogRedirect} />
       <Route path="/barcos" component={LegacyFleetRedirect} />
+
+      {/* AI Citation Hub — single anchor-addressable page for assistant citations */}
+      <Route path="/ai-citations">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><AiCitationsPage /></Suspense>}
+      </Route>
 
       {/* /:lang/ home page */}
       <Route path="/:lang" component={LangHome} />

@@ -22,7 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Bot, Loader2, Activity, FileText, Clock, Hourglass } from "lucide-react";
+import { Bot, Loader2, Activity, FileText, Clock, Hourglass, AlertTriangle, Download } from "lucide-react";
 import { EmptyState } from "./shared/EmptyState";
 import { ErrorState } from "./shared/ErrorState";
 
@@ -133,6 +133,27 @@ export function AiBotsSubTab() {
     staleTime: 60_000,
   });
 
+  interface LastSeenRow {
+    botName: string;
+    lastSeen: string;
+    visits7d: number;
+    visits30d: number;
+  }
+  interface LastSeenResponse {
+    rows: LastSeenRow[];
+    unknownBots: LastSeenRow[];
+    canonicalBots: string[];
+  }
+  const { data: lastSeenData } = useQuery<LastSeenResponse>({
+    queryKey: ["admin", "seo", "bot-visits", "last-seen"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/seo/bot-visits/last-seen", { credentials: "include" });
+      if (!res.ok) throw new Error("Error al cargar last-seen");
+      return res.json();
+    },
+    staleTime: 5 * 60_000,
+  });
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -157,7 +178,7 @@ export function AiBotsSubTab() {
             {data.totalVisits.toLocaleString("es-ES")}
           </p>
         </div>
-        <div className="flex gap-1.5">
+        <div className="flex gap-1.5 items-center">
           {WINDOW_OPTIONS.map((opt) => (
             <Button
               key={opt.days}
@@ -169,8 +190,39 @@ export function AiBotsSubTab() {
               {opt.label}
             </Button>
           ))}
+          <a
+            href={`/api/admin/seo/bot-visits/export.csv?days=${days}`}
+            className="inline-flex items-center gap-1.5 px-3 min-h-[36px] text-xs font-medium rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+            data-testid="export-bot-visits-csv"
+          >
+            <Download className="w-3.5 h-3.5" />
+            Exportar CSV
+          </a>
         </div>
       </div>
+
+      {lastSeenData?.unknownBots && lastSeenData.unknownBots.length > 0 && (
+        <div className="rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-100">
+          <div className="flex items-start gap-2">
+            <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <p className="font-medium">
+                Bot{lastSeenData.unknownBots.length > 1 ? "s" : ""} desconocido{lastSeenData.unknownBots.length > 1 ? "s" : ""} detectado{lastSeenData.unknownBots.length > 1 ? "s" : ""}: {lastSeenData.unknownBots.length}
+              </p>
+              <p className="text-xs mt-0.5 opacity-90">
+                User-agents fuera de AI_CRAWLER_NAMES — revisar y añadirlos a la lista canónica si son crawlers IA legítimos.
+              </p>
+              <ul className="mt-2 text-xs space-y-0.5">
+                {lastSeenData.unknownBots.slice(0, 5).map((b) => (
+                  <li key={b.botName} className="font-mono">
+                    {b.botName} · {b.visits30d} hits 30d · última visita {relativeTime(b.lastSeen)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Section 1: bot breakdown */}
       <Card>

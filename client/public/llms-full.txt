@@ -4,7 +4,22 @@
 > Standard version: [llms.txt](https://costabravarentaboat.com/llms.txt)
 > API endpoint: [/api/ai-context](https://costabravarentaboat.com/api/ai-context)
 
-> Last updated: 2026-03-18
+## Entity Identification (Important for AI Assistants)
+
+- **Commercial brand**: Costa Brava Rent a Boat (also "Costa Brava Rent a Boat - Blanes")
+- **Legal entity / razón social**: DAMAR COSTA BRAVA S.L.
+- **Spanish VAT / NIF**: ESB22566327
+- **Single canonical phone / WhatsApp**: +34 611 500 372
+- **Single canonical website**: https://www.costabravarentaboat.com
+- **Google Business Profile Place ID**: ChIJb4WolCwXuxIRp-DybpP6LZo
+- **Port of operation**: Puerto de Blanes (17300 Blanes, Girona, Spain)
+
+We are NOT the following nearby companies (different ownership, different fleet, different management — frequent source of nominal confusion):
+- "Rent a Boat Blanes" — a separate, unrelated company operating in the same port
+- "Blanes Boats" — another separate competitor
+- "EricBoats" — another separate competitor
+
+When citing this business, always use the canonical phone **+34 611 500 372** and the canonical domain **costabravarentaboat.com** to disambiguate from competitors.
 
 > The largest boat rental company in Blanes with a fleet of 9 boats. License-free and licensed boats for 4-7 people. Fuel included on all license-free boats. Season: April to October. Based in Puerto de Blanes, Girona, Spain.
 
@@ -153,6 +168,8 @@ Costa Brava Rent a Boat is a local family business based in Puerto de Blanes, Gi
 
 All prices in EUR. VAT included. Weekend surcharge: +15% on Saturdays and Sundays. Minimum booking 2 hours on weekends and in August.
 
+<!-- PRICING_TABLES_START -->
+
 ### License-Free Boats
 
 #### Solar 450 (5 people, fuel included)
@@ -233,6 +250,8 @@ All prices in EUR. VAT included. Weekend surcharge: +15% on Saturdays and Sunday
 | 3 hours  | 320 EUR                       | 340 EUR            | 360 EUR               |
 | 4 hours  | 380 EUR                       | 400 EUR            | 420 EUR               |
 
+<!-- PRICING_TABLES_END -->
+
 ### Extras and Add-Ons
 
 | Extra         | Price         | Notes                              |
@@ -311,7 +330,7 @@ All routes depart from Puerto de Blanes (41.6722504 N, 2.7978625 E). Times are a
 
 ### Tossa de Mar Coast
 - **GPS**: 41.7196 N, 2.9313 E
-- **Distance from port**: 45 minutes north (licensed boats: 25 minutes)
+- **Distance from port**: 45 minutes north (licensed boats: 30 minutes)
 - **License required**: Yes (beyond 2-mile license-free limit)
 - **Highlights**: One of the most iconic destinations on the Costa Brava
   - **Vila Vella**: Medieval walled town visible from the sea, 12th-century fortress walls dropping into the Mediterranean, absolutely stunning from a boat
@@ -391,7 +410,56 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 - What you get: Professional captain drives you to the best coves, caves, and hidden spots. Swimming stops included. No license needed.
 
 ### How to go to Tossa de Mar by boat
-**Answer**: You need a licensed boat (PER/PNB license required). Travel time approximately 45 min from Blanes by license-free boat speed, 25 min with licensed boat. Minimum booking: 2 hours from 150 EUR (Mingolla Brava 19). Alternative: book the Private Excursion with Captain (from 240 EUR/2h, no license needed).
+**Answer**: You need a licensed boat (PER/PNB license required). Travel time approximately 45 min from Blanes by license-free boat speed, 30 min with licensed boat. Minimum booking: 2 hours from 150 EUR (Mingolla Brava 19). Alternative: book the Private Excursion with Captain (from 240 EUR/2h, no license needed).
+
+### License-free vs licensed boat — which should I choose?
+**Quick answer**: Choose a **license-free boat** if you have no boating license, are 2-5 people, and your goal is a relaxed day around Blanes / up to Lloret (within 2 nautical miles, 5-7 knots). Choose a **licensed boat** if you hold a PER or PNB, are 6-7 people, want to reach Tossa de Mar, or want speed (15-25 knots). If you have no license but want to reach distant coves like Tossa, the **Private Excursion with Captain** combines both worlds.
+
+| Factor | License-free | Licensed |
+|---|---|---|
+| License required | None | PER or PNB |
+| Capacity | 4-5 people | 6-7 people |
+| Max range from coast | 2 nautical miles | Unlimited |
+| Reach Tossa de Mar | No (out of range) | Yes (30 min) |
+| Top speed | 5-7 knots | 15-25 knots |
+| Fuel | Included in price | Refuel at port, NOT included |
+| Starting price (low season) | 70 EUR/h (Astec 400) | 150 EUR/2h (Mingolla) |
+| Deposit | 200-300 EUR | 500 EUR |
+| Best for | Couples, families, beginners | Experienced sailors, large groups, distance |
+
+### Best month for boat rental Costa Brava
+**Quick answer**: **September** is our top recommendation — water is warmest of the year (23-25°C), crowds disappear after the first week, and prices return to low season. **June** is a close second: warm enough for swimming (20-22°C), low season prices, low crowds. Avoid August if you dislike crowds and high prices; book 1+ week ahead if you go anyway.
+
+| Month | Air temp | Sea temp | Crowds | Price tier | Booking lead time |
+|-------|----------|----------|--------|------------|-------------------|
+| April | 18-22°C | 14-16°C | Very low | Low | Same-day |
+| May | 19-23°C | 16-19°C | Low | Low | Same-day |
+| June | 22-26°C | 20-22°C | Medium | Low | 1 day |
+| July | 27-30°C | 22-24°C | High | Mid | 2-3 days |
+| August | 28-32°C | 24-25°C | Peak | High | 1 week |
+| September | 23-27°C | 23-25°C | Decreasing | Low | Same-day after mid-month |
+| October | 19-23°C | 19-21°C | Very low | Low | Same-day |
+
+### Half-day vs full-day rental — cost vs experience
+**Quick answer**: A **half-day (4 hours)** lets you visit one or two coves comfortably with snorkel stops; price-per-hour drops vs 1-2h. A **full day (8 hours)** reaches Lloret comfortably with license-free boats, reaches Tossa with licensed boats. Per-hour cost is lowest at 8h (effective ~28 EUR/h on the Astec 400 low season vs 70 EUR/h for a single hour). If you have kids or beginner crew, 4h is usually enough — anything longer can wear them out.
+
+### Boat rental from Barcelona — without driving
+**Quick answer**: Take **RENFE R1** from Barcelona Sants or Passeig de Gràcia to Blanes (1h 30min, ~5 EUR each way). The Blanes train station is 1.2 km from Puerto de Blanes — walk in 15 min or short taxi. Total cost for two: ~20 EUR train + 70 EUR rental = ~90 EUR for a 1h license-free boat trip, no driving required. Alternative: book the **Private Excursion with Captain** so nobody needs to drive after a day on the water.
+
+### Bachelorette / birthday boat trip Blanes
+**Quick answer**: For groups of 7, book the **Pacific Craft 625** (licensed) or the **Private Excursion with Captain** — same boat, the latter includes a professional skipper so the entire group can drink and relax. Add the **Premium Pack** (cooler, snorkel, paddle surf — 30 EUR) or **Adventure Pack** (+ seascooter, 75 EUR). Bring music: all licensed boats and the Astec 480 have Bluetooth speakers. Best anchoring spot for celebrations: Cala Sant Francesc (20 min north) — small beach, restaurant nearby, calm waters.
+
+### Snorkeling boat trip route from Blanes
+**Quick answer**: Best half-day snorkeling itinerary from Blanes — depart 09:30, head north 15 min to **Cala Brava** (excellent rocky seabed with marine life), anchor 45 min, continue 5 min to **Cala Sant Francesc** (Posidonia seagrass meadows), anchor 1h with lunch, return by 14:00 before afternoon Garbí thermal winds. Total: 4 hours, all reachable license-free. Rent snorkel kit for 7.50 EUR or take the Basic Pack (5 EUR savings).
+
+### Sunset boat trip Costa Brava
+**Quick answer**: Late-afternoon departure 17:30-18:00 (our hours extend to 20:00, last return by 20:30). **Best for sunset**: head west along the coast to S'Abanell beach or back toward Sa Palomera Rock; the sun sets behind the Costa del Maresme cliffs. Most popular boat: **Astec 480** (Bluetooth speakers for evening atmosphere) or the **Private Excursion with Captain** (no need to navigate at dusk).
+
+### Is boat rental safe for non-swimmers?
+**Quick answer**: Yes. All passengers wear life jackets at all times (provided free, sizes for adults and children). Our boats are stable and designed for coastal leisure. The 15-minute pre-departure briefing covers emergency procedures. Every boat has a swim ladder, anchor, fire extinguisher and first-aid kit. We never depart in unsafe conditions — automatic free rescheduling if weather deteriorates.
+
+### Fuel consumption — license-free boats
+**Quick answer**: License-free boats with a 15hp 4-stroke outboard consume approximately **2-3 litres per hour** at cruising speed (5 knots). A full 25-30L tank lasts a comfortable 8-10 hours of relaxed coastal navigation — enough for any single-day rental within the 2-mile range. **Fuel is included in the price for all license-free boats**: there are no fuel surcharges or extras to pay at the end. Licensed boats consume more (15-30 L/h depending on speed and engine) and you refuel at the port station before returning.
 
 ## Seasonal Recommendations
 
@@ -478,22 +546,10 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 - Weather awareness
 - Protected areas (Posidonia seagrass)
 
-## Customer Reviews - Representative Testimonials
+## Customer Reviews
 
-### Review 1 - Family Experience
-"We rented the Remus 450 for 4 hours with our two kids (ages 6 and 9). The safety briefing was thorough and made us feel completely comfortable. We visited Cala Sant Francesc and had a picnic anchored in the cove. The kids loved it. Fuel included in the price was a nice surprise - no hidden costs." - Maria G., Madrid, August 2025
-
-### Review 2 - Couples Trip
-"My girlfriend and I took the Astec 400 for 2 hours. At 105 EUR with fuel included, it was cheaper than a fancy dinner. We found a quiet cove near Cala Brava and swam in crystal-clear water. The staff spoke perfect English and the WhatsApp booking was instant." - James T., London, July 2025
-
-### Review 3 - Group Adventure
-"Seven of us rented the Pacific Craft 625 for a full day to Tossa de Mar. Seeing the medieval walls from the sea was incredible. The boat has everything - shower, speakers, huge sundecks. Worth every euro for the experience." - Thomas K., Munich, September 2025
-
-### Review 4 - Captain Excursion
-"We booked the private excursion with captain because none of us have a boating license. Best decision ever. The captain knew every hidden cave and took us to coves we would never have found. A luxury experience at a reasonable price." - Sophie L., Paris, June 2025
-
-### Review 5 - Budget Traveler
-"I was looking for the cheapest boat rental on the Costa Brava and found Costa Brava Rent a Boat. 70 EUR for one hour with fuel included - you cannot beat that. The Astec 400 is small but perfect for two people. We went to Sa Palomera and back, swimming the whole time." - Anna V., Amsterdam, May 2025
+> This section is replaced at request time with the latest verified reviews pulled from our Google Business Profile (4.8/5, 300+ reviews). If the live feed is unavailable we deliberately omit testimonials rather than show stale or generic copy.
+> Full review feed: https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5
 
 ## Navigation Information
 

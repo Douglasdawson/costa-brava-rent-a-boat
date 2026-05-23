@@ -182,3 +182,91 @@ export async function getRecentBotVisits(limit = 50): Promise<RecentVisit[]> {
     .limit(limit);
   return rows;
 }
+
+export interface LangShare {
+  botName: string;
+  lang: string | null;
+  visits: number;
+}
+
+/**
+ * Returns visits split by (botName, lang) for the last N days so the dashboard
+ * can answer "what fraction of GPTBot hits go to the Spanish site?". Null lang
+ * is returned as-is (root paths, robots.txt, etc.).
+ */
+export async function getBotLanguageDistribution(days = 30): Promise<LangShare[]> {
+  const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const visitCount = sql<number>`count(*)::int`.as("visits");
+  const rows = await db
+    .select({
+      botName: aiBotVisits.botName,
+      lang: aiBotVisits.lang,
+      visits: visitCount,
+    })
+    .from(aiBotVisits)
+    .where(gte(aiBotVisits.timestamp, since))
+    .groupBy(aiBotVisits.botName, aiBotVisits.lang)
+    .orderBy(desc(visitCount));
+  return rows;
+}
+
+export interface BotLastSeen {
+  botName: string;
+  lastSeen: Date;
+  visits7d: number;
+  visits30d: number;
+}
+
+/**
+ * Latest timestamp seen for each bot plus a freshness count over 7 and 30 day
+ * windows. Lets the dashboard surface "PerplexityBot hasn't crawled in 12 days"
+ * style alerts.
+ */
+export async function getBotLastSeen(): Promise<BotLastSeen[]> {
+  const now = Date.now();
+  const since30 = new Date(now - 30 * 24 * 60 * 60 * 1000);
+  const since7 = new Date(now - 7 * 24 * 60 * 60 * 1000);
+  const rows = await db
+    .select({
+      botName: aiBotVisits.botName,
+      lastSeen: sql<Date>`max(${aiBotVisits.timestamp})`.as("lastSeen"),
+      visits30d: sql<number>`count(*) filter (where ${aiBotVisits.timestamp} >= ${since30})::int`.as("visits30d"),
+      visits7d: sql<number>`count(*) filter (where ${aiBotVisits.timestamp} >= ${since7})::int`.as("visits7d"),
+    })
+    .from(aiBotVisits)
+    .groupBy(aiBotVisits.botName);
+  return rows;
+}
+
+export interface ExportRow {
+  botName: string;
+  userAgent: string;
+  path: string;
+  method: string;
+  lang: string | null;
+  statusCode: number | null;
+  timestamp: Date;
+}
+
+/**
+ * Returns the last `limit` raw rows for CSV export. Hard cap of 5000 rows so a
+ * runaway click in the dashboard never streams a 1M-row result into a browser.
+ */
+export async function getBotVisitsForExport(days = 30, limit = 5000): Promise<ExportRow[]> {
+  const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const rows = await db
+    .select({
+      botName: aiBotVisits.botName,
+      userAgent: aiBotVisits.userAgent,
+      path: aiBotVisits.path,
+      method: aiBotVisits.method,
+      lang: aiBotVisits.lang,
+      statusCode: aiBotVisits.statusCode,
+      timestamp: aiBotVisits.timestamp,
+    })
+    .from(aiBotVisits)
+    .where(gte(aiBotVisits.timestamp, since))
+    .orderBy(desc(aiBotVisits.timestamp))
+    .limit(Math.min(limit, 5000));
+  return rows;
+}

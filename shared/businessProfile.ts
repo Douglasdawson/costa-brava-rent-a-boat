@@ -23,6 +23,13 @@ export const BUSINESS_REVIEW_COUNT_STR = String(BUSINESS_REVIEW_COUNT);
 
 export const BUSINESS_DISPLAY_NAME = "Costa Brava Rent a Boat - Blanes";
 
+// Fiscal entity (razón social) — used for JSON-LD `legalName`, invoices,
+// terms-and-conditions, and AI disambiguation. The commercial brand above is
+// the consumer-facing name; this is the legal company that owns it.
+export const BUSINESS_LEGAL_NAME = "DAMAR COSTA BRAVA S.L.";
+export const BUSINESS_VAT_ID = "ESB22566327";
+export const BUSINESS_TAX_ID = "B22566327";
+
 // Google Business Profile Place ID. Single source of truth. Verified via
 // Places API v1 (rating 4.8, 310 reviews, name "Costa Brava Rent a Boat - Blanes").
 // Used to build the canonical "write review" URL that opens the correct GBP.

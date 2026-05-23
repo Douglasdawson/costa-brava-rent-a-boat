@@ -678,6 +678,8 @@ export const ca: Translations = {
     pricesForDay: "Preus per a {day}",
     backToSeasonPrices: "Veure preus per temporada",
     specialRate: "Tarifa especial",
+    specialRateIncrease: "Tarifa especial",
+    specialRateDiscount: "Descompte aplicat",
     loadingPrices: "Carregant preus…",
     noPricesForDate: "No hi ha tarifa configurada per a aquesta data",
     selectDateHint: "Tria una data al calendari per veure el preu exacte",

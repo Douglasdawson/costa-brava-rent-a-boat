@@ -1553,7 +1553,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               value="extras"
               className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
             >
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              <div className="flex flex-col divide-y divide-border rounded-xl border border-border overflow-hidden">
                 {boatData.extras?.map((extra, index) => {
                   const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
                     Parking: ParkingIcon,
@@ -1573,15 +1573,17 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   return (
                     <div
                       key={index}
-                      className="text-center p-4 border border-border rounded-xl hover:bg-muted transition-colors"
+                      className="flex items-center gap-4 px-4 py-3 hover:bg-muted/40 transition-colors"
                     >
-                      <div className="flex justify-center mb-2">
-                        <IconComponent className="w-8 h-8 text-primary" />
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
+                        <IconComponent className="w-5 h-5 text-primary" />
                       </div>
-                      <div className="font-medium text-sm text-foreground">
+                      <div className="flex-1 min-w-0 font-medium text-sm text-foreground">
                         {translateExtraName(extra.name, language)}
                       </div>
-                      <div className="text-primary font-bold text-sm mt-0.5">{extra.price}</div>
+                      <div className="flex-shrink-0 text-primary font-bold text-sm tabular-nums">
+                        {extra.price}
+                      </div>
                     </div>
                   );
                 })}
@@ -1664,14 +1666,17 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         </Card>
       </div>
 
-      {/* Related Boats Section */}
+      {/* Related Boats Section — horizontal shelf */}
       {relatedBoats.length > 0 && (
         <section className="bg-muted py-12">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="font-heading font-bold text-xl sm:text-2xl text-foreground mb-6">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-heading font-bold text-xl sm:text-2xl text-foreground mb-6 px-4">
               {t.relatedBoats.title}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 -mx-1 scroll-pl-4"
+              style={{ scrollbarWidth: "thin" }}
+            >
               {relatedBoats.map(relBoat => {
                 const relPrice = relBoat.pricing
                   ? (getMinActivePrice(relBoat.pricing.BAJA?.prices) ?? 0)
@@ -1685,11 +1690,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <a
                     key={relBoat.id}
                     href={localizedPath("boatDetail", relBoat.id)}
-                    className="group bg-background rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200 border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+                    className="group bg-background rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200 border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 flex-shrink-0 w-[260px] sm:w-[280px] snap-start"
                   >
                     <div
                       className="relative overflow-hidden boat-image-reveal"
-                      style={{ aspectRatio: "4/3" }}
+                      style={{ aspectRatio: "16/10" }}
                     >
                       <img
                         src={
@@ -1700,40 +1705,35 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                         alt={getBoatAltText(relBoat.name)}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         width={400}
-                        height={300}
+                        height={250}
                         loading="lazy"
                         decoding="async"
                       />
+                      <span
+                        className={`absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm ${
+                          relBoat.requiresLicense
+                            ? "bg-primary text-white"
+                            : "bg-white/95 text-primary"
+                        }`}
+                      >
+                        {relBoat.requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
+                      </span>
                     </div>
                     <div className="p-4">
-                      <h3 className="font-heading font-semibold text-foreground mb-1">
+                      <h3 className="font-heading font-semibold text-foreground mb-1 truncate">
                         {relBoat.name}
                       </h3>
-                      <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
-                        <span className="flex items-center gap-1">
+                      <div className="flex items-center justify-between gap-2 text-sm">
+                        <span className="flex items-center gap-1 text-muted-foreground">
                           <Users className="w-3.5 h-3.5" />
-                          {relCapacity} pax
+                          {relCapacity}
                         </span>
-                        <span
-                          className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                            relBoat.requiresLicense
-                              ? "bg-primary text-white"
-                              : "bg-primary/10 text-primary"
-                          }`}
-                        >
-                          {relBoat.requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between">
                         {relPrice > 0 && (
                           <div className="text-sm">
-                            <span className="text-muted-foreground">{t.relatedBoats.from} </span>
+                            <span className="text-muted-foreground text-xs">{t.relatedBoats.from} </span>
                             <span className="font-bold text-primary">{relPrice}€</span>
                           </div>
                         )}
-                        <span className="text-sm font-medium text-primary group-hover:underline">
-                          {t.relatedBoats.viewDetails}
-                        </span>
                       </div>
                     </div>
                   </a>

@@ -677,6 +677,8 @@ export const nl: Translations = {
     pricesForDay: "Prijzen voor {day}",
     backToSeasonPrices: "Seizoensprijzen bekijken",
     specialRate: "Speciaal tarief",
+    specialRateIncrease: "Speciaal tarief",
+    specialRateDiscount: "Korting toegepast",
     loadingPrices: "Prijzen laden…",
     noPricesForDate: "Geen tarief geconfigureerd voor deze datum",
     selectDateHint: "Kies een datum in de kalender om de exacte prijs te zien",

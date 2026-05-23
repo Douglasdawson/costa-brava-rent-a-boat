@@ -678,6 +678,8 @@ export const it: Translations = {
     pricesForDay: "Prezzi per {day}",
     backToSeasonPrices: "Vedi prezzi stagionali",
     specialRate: "Tariffa speciale",
+    specialRateIncrease: "Tariffa speciale",
+    specialRateDiscount: "Sconto applicato",
     loadingPrices: "Caricamento prezzi…",
     noPricesForDate: "Nessuna tariffa configurata per questa data",
     selectDateHint: "Scegli una data sul calendario per vedere il prezzo esatto",

@@ -264,6 +264,17 @@ function DayPricingMode({
   const isLoading = results.length > 0 && results.every((r) => r.finalPrice === null);
   const allEmpty = !isLoading && results.every((r) => r.finalPrice === null);
   const overrideHit = results.find((r) => r.hasOverride);
+  const isDiscount =
+    !!overrideHit &&
+    overrideHit.basePrice !== null &&
+    overrideHit.finalPrice !== null &&
+    overrideHit.finalPrice < overrideHit.basePrice;
+  const overrideHeadline = isDiscount
+    ? t.boatDetail.specialRateDiscount
+    : t.boatDetail.specialRateIncrease;
+  const overrideBadgeClass = isDiscount
+    ? "bg-emerald-50 border border-emerald-300"
+    : "bg-popular/10 border border-popular/30";
 
   return (
     <div className="space-y-4">
@@ -284,9 +295,9 @@ function DayPricingMode({
       </div>
 
       {overrideHit?.overrideLabel && (
-        <div className="bg-popular/10 border border-popular/30 rounded-md px-3 py-2 text-center">
+        <div className={`rounded-md px-3 py-2 text-center ${overrideBadgeClass}`}>
           <span className="text-xs font-medium text-foreground">
-            <strong>{t.boatDetail.specialRate}:</strong> {overrideHit.overrideLabel}
+            <strong>{overrideHeadline}:</strong> {overrideHit.overrideLabel}
           </span>
         </div>
       )}

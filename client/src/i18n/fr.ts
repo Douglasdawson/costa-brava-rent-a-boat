@@ -683,6 +683,8 @@ export const fr: Translations = {
     pricesForDay: "Prix pour {day}",
     backToSeasonPrices: "Voir les prix par saison",
     specialRate: "Tarif spécial",
+    specialRateIncrease: "Tarif spécial",
+    specialRateDiscount: "Remise appliquée",
     loadingPrices: "Chargement des prix…",
     noPricesForDate: "Aucun tarif configuré pour cette date",
     selectDateHint: "Choisissez une date sur le calendrier pour voir le prix exact",

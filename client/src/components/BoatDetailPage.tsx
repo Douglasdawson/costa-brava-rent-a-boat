@@ -37,6 +37,23 @@ import NeveraIcon from "@/components/icons/NeveraIcon";
 import BebidasIcon from "@/components/icons/BebidasIcon";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { openWhatsApp } from "@/utils/whatsapp";
+
+// Static map; keep outside the component so it isn't reallocated per render
+// or per .map() iteration of boatData.extras.
+const EXTRA_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  Parking: ParkingIcon,
+  CircleParking: ParkingIcon,
+  PaddleSurf: PaddleSurfIcon,
+  Waves: PaddleSurfIcon,
+  Nevera: NeveraIcon,
+  Snowflake: NeveraIcon,
+  Bebidas: BebidasIcon,
+  Beer: BebidasIcon,
+  Snorkel: SnorkelIcon,
+  Eye: SnorkelIcon,
+  Seascooter: SeascooterIcon,
+  Zap: SeascooterIcon,
+};
 import { getBoatImage, getBoatImageSrcSet, getBoatAltText } from "@/utils/boatImages";
 import { useResponsiveGallery } from "@/hooks/useResponsiveGallery";
 import { useThrottledScroll } from "@/hooks/useThrottledScroll";
@@ -1572,27 +1589,16 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               value="extras"
               className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
             >
-              <div className="flex flex-col divide-y divide-border rounded-xl border border-border overflow-hidden">
+              <ul
+                role="list"
+                className="flex flex-col divide-y divide-border rounded-2xl border border-border overflow-hidden"
+              >
                 {boatData.extras?.map((extra, index) => {
-                  const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
-                    Parking: ParkingIcon,
-                    CircleParking: ParkingIcon,
-                    PaddleSurf: PaddleSurfIcon,
-                    Waves: PaddleSurfIcon,
-                    Nevera: NeveraIcon,
-                    Snowflake: NeveraIcon,
-                    Bebidas: BebidasIcon,
-                    Beer: BebidasIcon,
-                    Snorkel: SnorkelIcon,
-                    Eye: SnorkelIcon,
-                    Seascooter: SeascooterIcon,
-                    Zap: SeascooterIcon,
-                  };
-                  const IconComponent = iconMap[extra.icon] || Star;
+                  const IconComponent = EXTRA_ICONS[extra.icon] || Star;
                   return (
-                    <div
+                    <li
                       key={index}
-                      className="flex items-center gap-4 px-4 py-3 hover:bg-muted/40 transition-colors"
+                      className="flex items-center gap-4 px-4 py-3"
                     >
                       <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
                         <IconComponent className="w-5 h-5 text-primary" />
@@ -1603,10 +1609,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       <div className="flex-shrink-0 text-primary font-bold text-sm tabular-nums">
                         {extra.price}
                       </div>
-                    </div>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
               <p className="text-xs text-muted-foreground mt-4">{t.boatDetail.extrasNote}</p>
             </TabsContent>
 

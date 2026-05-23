@@ -3766,6 +3766,9 @@ const LEGACY_SPA_ROUTES = new Set([
   "/boat-rental-blanes",
   "/sobre-nosotros",
   "/about",
+  // Lang-agnostic page intentionally served at the root (no /:lang prefix)
+  // because its primary audience is AI crawlers, not localized humans.
+  "/ai-citations",
 ]);
 
 const LEGACY_DYNAMIC_PATTERNS = [

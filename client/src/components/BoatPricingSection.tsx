@@ -184,14 +184,14 @@ function SeasonPricingMode({ boatData, requiresLicense }: SeasonPricingModeProps
 
   return (
     <div className="space-y-4">
-      <div>
+      <div className="text-center">
         <h3 className="text-base font-semibold font-heading mb-1">
           {t.boatDetail.pricesBySeason}
         </h3>
         <p className="text-xs text-muted-foreground italic">{t.boatDetail.selectDateHint}</p>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap justify-center gap-2">
         {(["BAJA", "MEDIA", "ALTA"] as const)
           .filter((s) => s in pricing)
           .map((season) => (
@@ -211,7 +211,7 @@ function SeasonPricingMode({ boatData, requiresLicense }: SeasonPricingModeProps
         <p className="text-sm text-muted-foreground mb-3 text-center">
           {seasonPeriods[selectedSeason]}
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="flex flex-wrap justify-center gap-3">
           {Object.entries(filterActivePrices(pricing[selectedSeason].prices))
             .sort((a, b) => parseInt(a[0]) - parseInt(b[0]))
             .map(([duration, price]) => {
@@ -219,7 +219,7 @@ function SeasonPricingMode({ boatData, requiresLicense }: SeasonPricingModeProps
               return (
                 <div
                   key={duration}
-                  className={`relative text-center p-3 rounded-lg ${
+                  className={`relative text-center p-3 rounded-lg w-[calc(50%-0.375rem)] sm:w-[160px] ${
                     isRecommended
                       ? "bg-background border-2 border-cta"
                       : "bg-background border"
@@ -348,14 +348,14 @@ function DayPricingMode({
       <div className="bg-muted rounded-lg p-4 md:p-6">
         {isLoading ? (
           <div
-            className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+            className="flex flex-wrap justify-center gap-3"
             role="status"
             aria-label={t.boatDetail.loadingPrices}
           >
             {results.map((r) => (
               <div
                 key={`skel-${r.duration}`}
-                className="text-center p-3 rounded-lg bg-background border"
+                className="text-center p-3 rounded-lg bg-background border w-[calc(50%-0.375rem)] sm:w-[160px]"
                 aria-hidden="true"
               >
                 <div className="h-7 w-16 mx-auto bg-foreground/10 animate-pulse rounded mb-1" />
@@ -366,7 +366,7 @@ function DayPricingMode({
         ) : allEmpty ? (
           <p className="text-sm text-muted-foreground text-center">{t.boatDetail.noPricesForDate}</p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             {results.map((r) => {
               if (r.finalPrice === null) return null;
               const isRecommended = !requiresLicense && r.duration === "4h";
@@ -380,7 +380,7 @@ function DayPricingMode({
                   type="button"
                   onClick={() => onDurationSelect(r.duration, dateKey)}
                   aria-label={ariaLabel}
-                  className={`relative text-center p-3 rounded-lg transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none ${
+                  className={`relative text-center p-3 rounded-lg transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none w-[calc(50%-0.375rem)] sm:w-[160px] ${
                     isRecommended
                       ? "bg-background border-2 border-cta hover:shadow-lg hover:-translate-y-0.5"
                       : "bg-background border hover:bg-primary/5 hover:-translate-y-0.5 hover:shadow-sm"

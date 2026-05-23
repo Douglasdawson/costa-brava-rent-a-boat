@@ -20,6 +20,22 @@ function countryFlag(code: string): string {
   );
 }
 
+// Idiomatic quotation marks per language:
+//   es / ca / fr / it / ru → guillemets «…»
+//   en / nl                → curly “…”
+//   de                     → low-9 + curly „…“
+function getQuoteMarks(language: string): [string, string] {
+  switch (language) {
+    case "de":
+      return ["„", "“"];
+    case "en":
+    case "nl":
+      return ["“", "”"];
+    default:
+      return ["«", "»"];
+  }
+}
+
 interface BoatReviewCarouselProps {
   boatId: string;
 }
@@ -29,6 +45,7 @@ export default function BoatReviewCarousel({ boatId }: BoatReviewCarouselProps) 
   const { language } = useLanguage();
   const reviews = useMemo(() => getBoatReviews(boatId), [boatId]);
   const { average, count } = useMemo(() => getBoatAverageRating(boatId), [boatId]);
+  const [openQuote, closeQuote] = getQuoteMarks(language);
 
   if (reviews.length === 0) return null;
 
@@ -85,7 +102,7 @@ export default function BoatReviewCarousel({ boatId }: BoatReviewCarouselProps) 
                   </div>
                   {/* Review text */}
                   <p className="text-sm text-foreground/80 leading-relaxed flex-1 line-clamp-5">
-                    "{review.text}"
+                    {openQuote}{review.text}{closeQuote}
                   </p>
                   {/* Author */}
                   <div className="flex items-center gap-2 mt-4 pt-3 border-t border-border/50">

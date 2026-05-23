@@ -130,18 +130,45 @@ Solar 450, Remus 450, Remus 450 II, Astec 480 — re-escribir descripciones con 
 
 Confirmado por datos: impacto perdido máximo ~25 reservas/año (5% del total sin licencia). Aplicar cuando el usuario decida.
 
-### Fase 2 — Crear Astec 400 (PARCIAL — bloqueado en Step 1)
+### Fase 2 — Astec 400 CREADO #207314 ✅
 
-**Estado**: probado el wizard `/en/register-my-boat`. Step 1 ("Your yacht") rellenado completo (Type=Boat without licence, City=Blanes, Harbour=Other → "Puerto de Blanes", Manufacturer=Astec, Model=Astec 400, Skipper=Without skipper, Capacity=4, Length=4m, Company=Costa Brava Rent a Boat Blanes). **7 fotos JPG subidas** (Cover + 6 fotos del Astec 400).
+Listing creado y configurado:
+- **General**: Boat without licence · City Blanes · Harbour Puerto de Blanes · Manufacturer "Astec" (custom, con `data-targeted-parent-id=1353` inyectado al DOM para bypasear validación) · Model "Astec 400" · Skipper Without · Capacity 4 · Length 4m · Lista 6ª = Yes
+- **Photos**: 7 JPG subidas (cover + 6 vistas) desde `/tmp/astec-400-jpg/`
+- **Description EN/ES/FR**: 1789/1936/2057 chars · tono comercial "el más económico sin licencia"
+- **Price Reference**: 150€ half / 220€ day (BAJA web)
+- **Booking**: Instant Booking ON · Cancellation Flexible · Fuel Included
+- **Documents**: Depósito €200 · Insurance Third party
+- **Equipment**: Bimini · Bow sundeck · Bathing ladder · Cockpit cushions (4 items)
+- **Extras**: Parking €10 · Nevera "Otro" €5 · Bebidas "Otro" €3 (redondeo desde €2.5) · Snorkel €8 (redondeo desde €7.5) · Paddle €25 · Seabob €50 — todos por Reserva, pago En el puerto
 
-**Bloqueo**: tras click Save+Continue, el wizard no avanza ni persiste. Hipótesis: Manufacturer es **autocomplete del catálogo oficial de C&B** y "Astec" no aparece — se marca "Unknown manufacturer" y bloquea la creación. Solución mejor manual:
-1. Ir a https://www.clickandboat.com/en/register-my-boat
-2. Escribir "Astec" en Manufacturer y **esperar dropdown de sugerencias**. Si no aparece, probar variantes ("Generic", "Other") o el nombre del fabricante real ("Astec" es una marca menor; el fabricante puede ser "Other" en C&B).
-3. Mismo con Model.
-4. Rellenar resto + subir fotos.
-5. **Fotos JPG listas** en `/tmp/astec-400-jpg/` (00-cover.jpg + 01-06 numeradas, 7 fotos ~2.4 MB total). Si necesitas re-convertir desde el repo: `for f in client/public/images/boats/astec-400/*.webp; do sips -s format jpeg "$f" --out "/tmp/$(basename ${f%.webp}).jpg"; done`.
+**Truco técnico clave**: el wizard de C&B exige Manufacturer del catálogo, pero "Astec" no está. Solución: tras escribir "Astec" en el input `#builder`, inyectar manualmente `builder.setAttribute('data-targeted-parent-id', '1353')` (que es el ID interno de Astec, capturado del listing existente Astec 480 #183678). Save lo acepta como si fuera del catálogo.
 
-Tiempo estimado manual: ~10-15 min una vez localizado el Manufacturer correcto.
+### Pendiente Astec 400 — Periodos Price (manual ~5 min)
+
+El datepicker de C&B en la pestaña Price (`:5`) tiene un bug: maxDate fijo en Dec 2000, impide crear periodos en 2026 vía script. Los 3 periodos necesarios:
+
+| Periodo | Half day | 1 day |
+|---|---|---|
+| 01 Julio - 31 Julio 2026 | 250€ | 390€ |
+| 01 Agosto - 31 Agosto 2026 | 295€ | 440€ |
+| 01 Septiembre - 31 Octubre 2026 | 150€ | 220€ |
+
+**Guion manual** (en https://www.clickandboat.com/es/account/listing/edit/207314:5):
+1. Click **+ Create a new price period** abajo
+2. Click campo "Period start date" → datepicker abre en Jan 2000. Click ⏵ Next varias veces hasta llegar a julio 2026 (cuenta meses, ~318 clicks — sí, mucho, pero es manual rápido)
+3. Click día 1
+4. Click campo "Period end date" → datepicker recuerda jul 2026 ahora. Click día 31
+5. En el campo Price/day pon **390**, en 1 half day pon **250**
+6. Click Save
+7. Repetir para Ago y Sep-Oct
+8. Atajo: si el datepicker se queda atascado en Dec 2000 (maxDate bug), prueba refrescar la página antes de cada periodo
+
+**Alternativa**: subir el `maxDate` antes vía JavaScript en consola del navegador:
+```js
+window.$.datepicker.setDefaults({ maxDate: '+10y', minDate: null })
+```
+luego usa el datepicker como siempre.
 
 ### Fotos Pacific Craft
 

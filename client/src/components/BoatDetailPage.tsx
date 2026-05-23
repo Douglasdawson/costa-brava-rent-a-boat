@@ -857,6 +857,20 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       .slice(0, 3);
   }, [boats, boatData, boatId]);
 
+  // ── Hooks below must run on every render to keep React's hook order stable.
+  // Anything that uses boatData stays optional-chained until after the guards.
+  // SEO data for this boat (static; do not factor in pricing_overrides — schema must be stable)
+  const lowestPrice = boatData?.pricing
+    ? (getMinActivePrice(boatData.pricing.BAJA?.prices) ?? 0)
+    : 0;
+  // Dynamic price for surfaces that should react to the date the user picks in the calendar.
+  // Falls back to lowestPrice when no date is selected.
+  const dynamicLowest = useBoatLowestPriceForDate({
+    boatId,
+    selectedDate,
+    fallbackPrice: lowestPrice,
+  });
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
@@ -906,17 +920,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     setCurrentImageIndex(prev => (prev - 1 + displayImages.length) % displayImages.length);
   };
 
-  // SEO data for this boat (static; do not factor in pricing_overrides — schema must be stable)
-  const lowestPrice = boatData.pricing
-    ? (getMinActivePrice(boatData.pricing.BAJA?.prices) ?? 0)
-    : 0;
-  // Dynamic price for surfaces that should react to the date the user picks in the calendar.
-  // Falls back to lowestPrice when no date is selected.
-  const dynamicLowest = useBoatLowestPriceForDate({
-    boatId,
-    selectedDate,
-    fallbackPrice: lowestPrice,
-  });
   const requiresLicense =
     boatData.subtitle?.toLowerCase().includes("con licencia") ?? boatData.requiresLicense;
   const fuelNotIncluded =

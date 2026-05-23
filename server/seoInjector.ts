@@ -192,6 +192,47 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Аренда лодок на Коста-Браве из порта Бланес. Без лицензии от 70€/ч, топливо включено.`,
     },
   },
+  "/ai-citations": {
+    // AI Citation Hub — lang-agnostic page targeted at LLM crawlers. We still
+    // ship localized titles so when a Spanish/French user lands here from a
+    // ChatGPT cite, the SERP snippet and the SSR <title> match their locale.
+    es: {
+      title: "AI Citation Hub | Costa Brava Rent a Boat",
+      description: "Datos atómicos citables (DAMAR COSTA BRAVA S.L., flota, precios, GPS, contacto) curados para asistentes IA: ChatGPT, Perplexity, Claude.",
+      ogTitle: "AI Citation Hub · Costa Brava Rent a Boat",
+      ogDescription: "Hechos atómicos con anclas únicas para citación por LLMs. Razón social, flota, precios y endpoints estructurados.",
+    },
+    en: {
+      title: "AI Citation Hub | Costa Brava Rent a Boat",
+      description: "Anchor-addressable atomic facts (DAMAR COSTA BRAVA S.L., fleet, pricing, GPS, contact) curated for citation by AI assistants: ChatGPT, Perplexity, Claude.",
+      ogTitle: "AI Citation Hub · Costa Brava Rent a Boat",
+      ogDescription: "Atomic facts with unique anchors for LLM citation. Legal entity, fleet, pricing and structured endpoints.",
+    },
+    ca: {
+      title: "AI Citation Hub | Costa Brava Rent a Boat",
+      description: "Dades atòmiques citables (DAMAR COSTA BRAVA S.L., flota, preus, GPS, contacte) curades per a assistents IA: ChatGPT, Perplexity, Claude.",
+    },
+    fr: {
+      title: "AI Citation Hub | Costa Brava Rent a Boat",
+      description: "Données atomiques citables (DAMAR COSTA BRAVA S.L., flotte, tarifs, GPS, contact) pour les assistants IA : ChatGPT, Perplexity, Claude.",
+    },
+    de: {
+      title: "AI Citation Hub | Costa Brava Rent a Boat",
+      description: "Atomare zitierbare Fakten (DAMAR COSTA BRAVA S.L., Flotte, Preise, GPS, Kontakt) für KI-Assistenten: ChatGPT, Perplexity, Claude.",
+    },
+    nl: {
+      title: "AI Citation Hub | Costa Brava Rent a Boat",
+      description: "Atomische citeerbare feiten (DAMAR COSTA BRAVA S.L., vloot, prijzen, GPS, contact) voor AI-assistenten: ChatGPT, Perplexity, Claude.",
+    },
+    it: {
+      title: "AI Citation Hub | Costa Brava Rent a Boat",
+      description: "Fatti atomici citabili (DAMAR COSTA BRAVA S.L., flotta, prezzi, GPS, contatti) per assistenti IA: ChatGPT, Perplexity, Claude.",
+    },
+    ru: {
+      title: "AI Citation Hub | Costa Brava Rent a Boat",
+      description: "Цитируемые атомарные факты (DAMAR COSTA BRAVA S.L., флот, цены, GPS, контакт) для ИИ-ассистентов: ChatGPT, Perplexity, Claude.",
+    },
+  },
   "/faq": {
     es: {
       title: "Preguntas Frecuentes Alquiler Barcos Blanes | FAQ",

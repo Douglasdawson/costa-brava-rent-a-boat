@@ -11,7 +11,6 @@ import {
   Users,
   Anchor,
   Fuel,
-  Euro,
   Calendar,
   CheckCircle,
   Star,
@@ -54,11 +53,12 @@ import {
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
-import { filterActivePrices, getMinActivePrice } from "@shared/pricing";
+import { getMinActivePrice } from "@shared/pricing";
 import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "@shared/boatFaqBuilder";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
-import AvailabilityCalendar from "./AvailabilityCalendar";
+import BoatPricingSection from "./BoatPricingSection";
+import { useBoatLowestPriceForDate } from "@/hooks/useBoatLowestPriceForDate";
 import AvailabilityUrgency from "./AvailabilityUrgency";
 import { LiveInterestIndicator } from "./LiveInterestIndicator";
 import { TrustBadges } from "./TrustBadges";
@@ -752,21 +752,16 @@ interface BoatDetailPageProps {
 }
 
 export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDetailPageProps) {
-  const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [, setLocation] = useLocation();
   const { openBookingModal, isOpen: isBookingModalOpen } = useBookingModal();
   const [showStickyCTA, setShowStickyCTA] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const touchStartX = useRef<number | null>(null);
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   useScrollDepthTracking("boat_detail");
-  const seasonPeriods: Record<string, string> = {
-    BAJA: t.boatDetail.periodLow,
-    MEDIA: t.boatDetail.periodMid,
-    ALTA: t.boatDetail.periodHigh,
-  };
 
   // Reset image index when boat changes
   useEffect(() => {
@@ -911,10 +906,17 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     setCurrentImageIndex(prev => (prev - 1 + displayImages.length) % displayImages.length);
   };
 
-  // SEO data for this boat
+  // SEO data for this boat (static; do not factor in pricing_overrides — schema must be stable)
   const lowestPrice = boatData.pricing
     ? (getMinActivePrice(boatData.pricing.BAJA?.prices) ?? 0)
     : 0;
+  // Dynamic price for surfaces that should react to the date the user picks in the calendar.
+  // Falls back to lowestPrice when no date is selected.
+  const dynamicLowest = useBoatLowestPriceForDate({
+    boatId,
+    selectedDate,
+    fallbackPrice: lowestPrice,
+  });
   const requiresLicense =
     boatData.subtitle?.toLowerCase().includes("con licencia") ?? boatData.requiresLicense;
   const fuelNotIncluded =
@@ -1130,13 +1132,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           loading="eager"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/50 to-foreground/20" />
 
         {/* Back button overlay */}
         {onBack && (
           <button
             onClick={onBack}
-            className="absolute top-4 left-4 flex items-center gap-1.5 text-white/90 hover:text-white text-sm font-medium bg-foreground/30 hover:bg-foreground/50 rounded-full px-3 py-1.5 transition-colors"
+            className="absolute top-4 left-4 flex items-center gap-1.5 text-white/90 hover:text-white text-sm font-medium bg-foreground/30 hover:bg-foreground/50 rounded-full px-3 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
             data-testid="button-back"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -1150,26 +1152,31 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <div className="mb-2">
             <span
               className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${
-                requiresLicense ? "bg-primary/90 text-white" : "bg-primary/80 text-white"
+                requiresLicense
+                  ? "bg-primary text-white"
+                  : "bg-white/95 text-primary"
               }`}
             >
               {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
             </span>
           </div>
           <h1 className="font-heading font-bold text-white text-2xl sm:text-3xl md:text-4xl leading-tight mb-1">
-            {boatData.name}{" "}
+            {boatData.name}
+            <span className="font-normal text-white/70 text-lg sm:text-xl md:text-2xl mx-2">·</span>
             <span className="font-normal text-white/80 text-lg sm:text-xl md:text-2xl">
-              · {t.boatDetail.locationSuffix}
+              {t.boatDetail.locationSuffix}
             </span>
           </h1>
           <div className="flex flex-wrap items-center gap-3 mt-2">
             <p className="text-white/80 text-sm sm:text-base">
               {translateBoatText(boatData.subtitle || "", language)}
             </p>
-            {lowestPrice > 0 && (
-              <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5">
-                <span className="text-white/80 text-xs">{t.boats.from}</span>
-                <span className="text-white font-bold text-lg">{lowestPrice}€</span>
+            {dynamicLowest.price > 0 && (
+              <div className="flex items-center gap-2 bg-foreground/40 rounded-full px-4 py-1.5">
+                {!dynamicLowest.isForDate && (
+                  <span className="text-white/80 text-xs">{t.boats.from}</span>
+                )}
+                <span className="text-white font-bold text-lg">{dynamicLowest.price}€</span>
               </div>
             )}
             <Button
@@ -1205,7 +1212,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Image and Description Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Left Column - Image Gallery Carousel */}
-          <div className="bg-background rounded-xl overflow-hidden border border-card-border">
+          <div className="bg-background rounded-2xl overflow-hidden border border-card-border">
             <div
               className="relative group"
               onTouchStart={e => {
@@ -1361,136 +1368,19 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <AvailabilityUrgency boatId={boatId} />
         </div>
 
-        {/* Booking Actions - CTA */}
-        <Card className="mb-6 sm:mb-8">
-          <CardContent className="p-6">
-            <div className="text-center space-y-4">
-              <h3 className="text-xl font-bold text-foreground">
-                {t.boatDetail.readyForAdventure}
-              </h3>
-              <p className="text-muted-foreground">
-                {t.boatDetail.bookNowCTA.replace("{boatName}", boatData.name)}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  onClick={() => handleReservation()}
-                  variant="outline"
-                  className="px-8 py-3 transition-colors"
-                  data-testid="button-make-reservation"
-                >
-                  <Calendar className="w-4 h-4 mr-2" />
-                  {t.hero.bookNow}
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Pricing Section */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center md:justify-center">
-              <Euro className="w-5 h-5 mr-2 text-primary" />
-              {t.boatDetail.pricesBySeason}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Season Selector */}
-            {boatData.pricing && (
-              <>
-                <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                  {(["BAJA", "MEDIA", "ALTA"] as const)
-                    .filter(s => s in boatData.pricing!)
-                    .map(season => {
-                      const seasonNames: Record<string, string> = {
-                        BAJA: t.boatDetail.seasonLow,
-                        MEDIA: t.boatDetail.seasonMid,
-                        ALTA: t.boatDetail.seasonHigh,
-                      };
-                      return (
-                        <Button
-                          key={season}
-                          variant={selectedSeason === season ? "default" : "outline"}
-                          onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
-                          className="text-sm"
-                          data-testid={`button-season-${season.toLowerCase()}`}
-                        >
-                          {seasonNames[season] || season}
-                        </Button>
-                      );
-                    })}
-                </div>
-
-                {/* Selected Season Details */}
-                <div className="bg-muted rounded-lg p-4 mb-4 text-center">
-                  <h4 className="font-medium mb-2">
-                    {
-                      {
-                        BAJA: t.boatDetail.seasonLow,
-                        MEDIA: t.boatDetail.seasonMid,
-                        ALTA: t.boatDetail.seasonHigh,
-                      }[selectedSeason]
-                    }
-                  </h4>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {seasonPeriods[selectedSeason]}
-                  </p>
-
-                  <div className="flex flex-wrap justify-center gap-4">
-                    {Object.entries(filterActivePrices(boatData.pricing[selectedSeason].prices))
-                      .sort((a, b) => parseInt(a[0]) - parseInt(b[0]))
-                      .map(([duration, price]) => {
-                        const isRecommended = !requiresLicense && duration === "4h";
-                        return (
-                          <div
-                            key={duration}
-                            className={`relative text-center p-3 rounded-lg min-w-[120px] transition-all cursor-pointer ${isRecommended ? "bg-background border-2 border-primary shadow-md scale-105 hover:shadow-lg ring-3 ring-cta/35" : "bg-background border hover:bg-primary/5"}`}
-                          >
-                            {isRecommended && (
-                              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide shadow-sm">
-                                {translateBoatText("Recomendado", language)}
-                              </span>
-                            )}
-                            <div
-                              className={`font-bold ${isRecommended ? "text-xl text-primary" : "text-lg text-primary"}`}
-                            >
-                              {price}€
-                            </div>
-                            <div className="text-sm text-muted-foreground">{duration}</div>
-                          </div>
-                        );
-                      })}
-                  </div>
-                </div>
-              </>
-            )}
-
-            {boatData.included && boatData.included.length > 0 && (
-              <div className="text-sm text-muted-foreground text-left md:text-center">
-                <p className="mb-3">
-                  <strong>{t.boatDetail.priceIncludes}</strong>
-                </p>
-                <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
-                  {boatData.included.map((item, index) => (
-                    <div key={index} className="flex items-center">
-                      <CheckCircle className="w-3 h-3 text-primary mr-1" />
-                      <span className="text-xs">{translateBoatText(item, language)}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Availability Calendar */}
-        <div className="mb-6 sm:mb-8">
-          <AvailabilityCalendar
-            boatId={boatId}
-            onSlotSelect={(date, time) => handleReservation({ date, time })}
-          />
-        </div>
+        {/* Availability + Pricing — unified flow: pick a day → see real prices */}
+        <BoatPricingSection
+          boatData={boatData}
+          boatId={boatId}
+          requiresLicense={requiresLicense}
+          selectedDate={selectedDate}
+          onDateSelect={setSelectedDate}
+          onDateClear={() => setSelectedDate(undefined)}
+          onDurationSelect={(duration, dateKey) =>
+            handleReservation({ date: dateKey, duration })
+          }
+          translate={(text) => translateBoatText(text, language)}
+        />
 
         {/* Customer Reviews Carousel */}
         <BoatReviewCarousel boatId={boatId} />
@@ -1555,7 +1445,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               </div>
               {!requiresLicense && (
                 <div className="mt-6 pt-6 border-t border-border">
-                  <h4 className="font-semibold text-sm text-foreground/80 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-base text-foreground mb-4 flex items-center gap-2">
                     <Heart className="w-4 h-4 text-primary" />
                     {t.boatDetail.licenseFreeAdvantages}
                   </h4>
@@ -1727,7 +1617,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               </div>
               {/* What to bring section */}
               <div className="mt-4 pt-4 border-t border-border">
-                <h4 className="font-semibold text-sm text-foreground/80 mb-3 flex items-center gap-2">
+                <h4 className="font-bold text-base text-foreground mb-3 flex items-center gap-2">
                   <Sun className="w-4 h-4 text-primary" />
                   {t.boatDetail.whatToBringTitle}
                 </h4>
@@ -1795,7 +1685,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <a
                     key={relBoat.id}
                     href={localizedPath("boatDetail", relBoat.id)}
-                    className="group bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-border"
+                    className="group bg-background rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200 border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
                   >
                     <div
                       className="relative overflow-hidden boat-image-reveal"
@@ -1827,7 +1717,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                         <span
                           className={`text-xs font-medium px-2 py-0.5 rounded-full ${
                             relBoat.requiresLicense
-                              ? "bg-primary/10 text-primary"
+                              ? "bg-primary text-white"
                               : "bg-primary/10 text-primary"
                           }`}
                         >
@@ -1881,11 +1771,15 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <button
             onClick={() => handleReservation()}
             tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-            className="flex-1 bg-primary text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2"
+            className="flex-1 bg-primary text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
           >
             <Calendar className="w-4 h-4" />
             <span>
-              {t.hero.bookNow} {lowestPrice > 0 ? `· ${t.boats.from} ${lowestPrice}€` : ""}
+              {t.hero.bookNow}
+              {dynamicLowest.price > 0 &&
+                (dynamicLowest.isForDate
+                  ? ` · ${dynamicLowest.price}€`
+                  : ` · ${t.boats.from} ${dynamicLowest.price}€`)}
             </span>
           </button>
           <a
@@ -1893,7 +1787,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             target="_blank"
             rel="noopener noreferrer"
             tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-            className="flex-1 bg-whatsapp text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2"
+            className="flex-1 bg-whatsapp text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2"
           >
             <SiWhatsapp className="w-4 h-4" />
             <span>WhatsApp</span>
@@ -1902,16 +1796,18 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       </div>
 
       {/* Sticky pricing sidebar for desktop — always mounted, visibility via CSS */}
-      {lowestPrice > 0 && (
+      {dynamicLowest.price > 0 && (
         <div
           className={`hidden lg:block fixed right-6 top-24 w-64 z-30 transition-all duration-300 ${showStickyCTA && !isBookingModalOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8 pointer-events-none"}`}
           aria-hidden={!showStickyCTA || isBookingModalOpen}
         >
-          <div className="bg-background rounded-xl shadow-xl border border-border p-4 space-y-3">
+          <div className="bg-background rounded-2xl shadow-xl border border-border p-4 space-y-3">
             <p className="font-bold text-foreground truncate">{boatData.name}</p>
             <div className="flex items-baseline gap-2">
-              <span className="text-sm text-muted-foreground">{t.boats.from}</span>
-              <span className="text-2xl font-bold text-primary">{lowestPrice}€</span>
+              {!dynamicLowest.isForDate && (
+                <span className="text-sm text-muted-foreground">{t.boats.from}</span>
+              )}
+              <span className="text-2xl font-bold text-primary">{dynamicLowest.price}€</span>
             </div>
             {fuelIncluded && (
               <p className="text-xs text-muted-foreground flex items-center gap-1">
@@ -1941,7 +1837,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       {/* Lightbox for gallery images */}
       <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
-        <DialogContent className="max-w-4xl w-[95vw] p-0 gap-0 bg-slate-950/95 border-none [&>button]:hidden">
+        <DialogContent className="max-w-4xl w-[95vw] p-0 gap-0 bg-foreground/95 border-none [&>button]:hidden">
           <div className="relative">
             <Button
               variant="ghost"

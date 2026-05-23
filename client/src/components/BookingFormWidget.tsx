@@ -110,6 +110,7 @@ interface BookingFormWidgetProps {
   preSelectedBoatId?: string;
   prefillDate?: string;
   prefillTime?: string;
+  prefillDuration?: string;
   prefillCoupon?: string;
   onClose?: () => void;
   hideHeader?: boolean;
@@ -124,7 +125,7 @@ const STEP_NAMES: Record<number, string> = {
   5: "your_details",
 };
 
-export default function BookingFormWidget({ preSelectedBoatId, prefillDate, prefillTime, prefillCoupon, onClose }: BookingFormWidgetProps) {
+export default function BookingFormWidget({ preSelectedBoatId, prefillDate, prefillTime, prefillDuration, prefillCoupon, onClose }: BookingFormWidgetProps) {
   // Form state
   const [website, setWebsite] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -171,7 +172,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     const d = String(nextSat.getDate()).padStart(2, '0');
     return `${y}-${m}-${d}`;
   });
-  const [selectedDuration, setSelectedDuration] = useState<string>("");
+  const [selectedDuration, setSelectedDuration] = useState<string>(prefillDuration || "");
 
   // Extras & Packs state
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
@@ -321,7 +322,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       if (saved.selectedSecondaryBoat) setSelectedSecondaryBoat(saved.selectedSecondaryBoat);
       if (saved.selectedDate && !prefillDate) setSelectedDate(saved.selectedDate);
       if (saved.preferredTime && !prefillTime) setPreferredTime(saved.preferredTime);
-      if (saved.selectedDuration) setSelectedDuration(saved.selectedDuration);
+      if (saved.selectedDuration && !prefillDuration) setSelectedDuration(saved.selectedDuration);
       if (saved.selectedExtras?.length) setSelectedExtras(saved.selectedExtras);
       if (saved.selectedPack) setSelectedPack(saved.selectedPack);
       if (saved.firstName) setFirstName(saved.firstName);
@@ -408,7 +409,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     setSelectedBoat(preSelectedBoatId || "");
     setSelectedSecondaryBoat("");
     setSelectedDate(prefillDate || `${y}-${m}-${d}`);
-    setSelectedDuration("");
+    setSelectedDuration(prefillDuration || "");
     setPreferredTime(prefillTime || "10:00");
     setNumberOfPeople("2");
     setFirstName("");
@@ -429,7 +430,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     validationReportedRef.current = new Set();
     // Mark this fresh state as "new step started" for time-on-step tracking.
     stepStartedAtRef.current = Date.now();
-  }, [clearBookingStorage, preSelectedBoatId, prefillDate, prefillTime]);
+  }, [clearBookingStorage, preSelectedBoatId, prefillDate, prefillTime, prefillDuration]);
 
   // --- Funnel instrumentation effects ---
   // Mirror the latest currentStep & selectedBoat into refs so the unmount

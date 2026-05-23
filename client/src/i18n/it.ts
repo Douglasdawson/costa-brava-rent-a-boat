@@ -664,9 +664,6 @@ export const it: Translations = {
     backToFleet: "Torna alla flotta",
     description: "Descrizione",
     fuelIncluded: "Carburante incluso!",
-    readyForAdventure: "Te lo vuoi perdere?",
-    bookNowCTA:
-      "Verifica la disponibilità del {boatName} e prenota la tua giornata sulla Costa Brava",
     whatsappPrefill:
       "Ciao, sono interessato alla {boatName}. Potreste darmi maggiori informazioni?",
     locationSuffix: "Blanes, Costa Brava",
@@ -678,6 +675,13 @@ export const it: Translations = {
     periodMid: "Luglio",
     periodHigh: "Agosto",
     priceIncludes: "Il prezzo include:",
+    pricesForDay: "Prezzi per {day}",
+    backToSeasonPrices: "Vedi prezzi stagionali",
+    specialRate: "Tariffa speciale",
+    loadingPrices: "Caricamento prezzi…",
+    noPricesForDate: "Nessuna tariffa configurata per questa data",
+    selectDateHint: "Scegli una data sul calendario per vedere il prezzo esatto",
+    checkAvailability: "Verifica disponibilità",
     mainFeatures: "Caratteristiche Principali",
     noFeatures: "Nessuna caratteristica disponibile",
     technicalSpecs: "Specifiche Tecniche",

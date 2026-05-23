@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 export interface BookingPrefillData {
   date?: string;
   time?: string;
+  duration?: string;
   coupon?: string;
 }
 

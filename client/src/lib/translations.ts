@@ -764,8 +764,6 @@ export interface Translations {
     backToFleet: string;
     description: string;
     fuelIncluded: string;
-    readyForAdventure: string;
-    bookNowCTA: string;
     whatsappPrefill: string;
     locationSuffix: string;
     pricesBySeason: string;
@@ -776,6 +774,13 @@ export interface Translations {
     periodMid: string;
     periodHigh: string;
     priceIncludes: string;
+    pricesForDay: string;
+    backToSeasonPrices: string;
+    specialRate: string;
+    loadingPrices: string;
+    noPricesForDate: string;
+    selectDateHint: string;
+    checkAvailability: string;
     mainFeatures: string;
     noFeatures: string;
     technicalSpecs: string;

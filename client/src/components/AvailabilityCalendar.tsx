@@ -316,18 +316,10 @@ export default function AvailabilityCalendar({
   const handleDayClick = useCallback(
     (info: DayInfo) => {
       if (info.isPast || info.isOffSeason || info.status === "booked") return;
-      const date = info.date;
-      setInternalSelected(date);
-      onDateSelect?.(date);
-
-      // If no slot panel will appear, open booking directly with the selected date
-      const dateStr = toDateKey(date.getFullYear(), date.getMonth() + 1, date.getDate());
-      const daySlots = availability?.days[dateStr]?.slots || [];
-      if (onSlotSelect && daySlots.length === 0) {
-        onSlotSelect(dateStr, "");
-      }
+      setInternalSelected(info.date);
+      onDateSelect?.(info.date);
     },
-    [onDateSelect, onSlotSelect, availability]
+    [onDateSelect]
   );
 
   // ---------------------------------------------------------------------------

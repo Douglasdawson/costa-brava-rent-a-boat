@@ -75,6 +75,7 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
               preSelectedBoatId={selectedBoatId}
               prefillDate={prefillData?.date}
               prefillTime={prefillData?.time}
+              prefillDuration={prefillData?.duration}
               prefillCoupon={prefillData?.coupon}
               onClose={closeBookingModal}
             />

@@ -1377,7 +1377,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
         {/* Availability urgency indicator */}
         <div className="mb-4">
-          <AvailabilityUrgency boatId={boatId} />
+          <AvailabilityUrgency
+            boatId={boatId}
+            selectedDate={
+              selectedDate
+                ? `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`
+                : undefined
+            }
+          />
         </div>
 
         {/* Availability + Pricing — unified flow: pick a day → see real prices */}

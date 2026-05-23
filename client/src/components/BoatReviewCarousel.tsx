@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { getBoatReviews, getBoatAverageRating } from "@/data/boatReviews";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 
 // Convert 2-letter country code to flag emoji
 function countryFlag(code: string): string {
@@ -25,6 +26,7 @@ interface BoatReviewCarouselProps {
 
 export default function BoatReviewCarousel({ boatId }: BoatReviewCarouselProps) {
   const t = useTranslations();
+  const { language } = useLanguage();
   const reviews = useMemo(() => getBoatReviews(boatId), [boatId]);
   const { average, count } = useMemo(() => getBoatAverageRating(boatId), [boatId]);
 
@@ -58,7 +60,7 @@ export default function BoatReviewCarousel({ boatId }: BoatReviewCarouselProps) 
       </CardHeader>
       <CardContent>
         <Carousel
-          opts={{ align: "start", loop: true }}
+          opts={{ align: "start", loop: reviews.length > 1 }}
           className="w-full"
         >
           <CarouselContent className="-ml-3">
@@ -67,7 +69,7 @@ export default function BoatReviewCarousel({ boatId }: BoatReviewCarouselProps) 
                 key={index}
                 className="pl-3 basis-full sm:basis-1/2 lg:basis-1/3"
               >
-                <div className="h-full border border-border rounded-xl p-5 flex flex-col">
+                <div className="h-full border border-border rounded-2xl p-5 flex flex-col">
                   {/* Stars */}
                   <div className="flex mb-3">
                     {Array.from({ length: 5 }).map((_, i) => (
@@ -93,7 +95,7 @@ export default function BoatReviewCarousel({ boatId }: BoatReviewCarouselProps) 
                     <div>
                       <p className="text-sm font-semibold text-foreground">{review.name}</p>
                       <p className="text-xs text-muted-foreground">
-                        {new Date(review.date).toLocaleDateString("es-ES", {
+                        {new Date(review.date).toLocaleDateString(language, {
                           month: "long",
                           year: "numeric",
                         })}

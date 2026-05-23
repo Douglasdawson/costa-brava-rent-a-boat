@@ -22,7 +22,7 @@ export function TrustBadges({ t }: TrustBadgesProps) {
       </span>
       <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted border border-border px-2 py-1 rounded-full">
         <Award className="w-3 h-3 text-cta" aria-hidden="true" />
-        {t.trustEscalation?.yearsExperience || "5 anos de experiencia"}
+        {t.trustEscalation?.yearsExperience || "5 años de experiencia"}
       </span>
     </div>
   );

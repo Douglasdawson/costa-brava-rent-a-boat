@@ -82,9 +82,13 @@ export function LiveInterestIndicator({ boatId }: LiveInterestIndicatorProps) {
   );
 
   return (
-    <div className="animate-in fade-in duration-300 bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-800/30 rounded-lg px-3 py-2">
-      <div className="flex items-center gap-1.5 text-xs font-medium text-amber-600 dark:text-amber-400">
-        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+    <div
+      role="status"
+      aria-live="polite"
+      className="animate-in fade-in duration-300 bg-popular/10 border border-popular/30 rounded-lg px-3 py-2"
+    >
+      <div className="flex items-center gap-1.5 text-xs font-medium text-popular">
+        <span className="w-1.5 h-1.5 rounded-full bg-popular animate-pulse" aria-hidden="true" />
         {text}
       </div>
     </div>

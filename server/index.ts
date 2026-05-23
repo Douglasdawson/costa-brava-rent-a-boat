@@ -97,12 +97,14 @@ if (!isDev) {
   }));
 }
 
-// Rate limiting
+// Rate limiting. Skipped in development so HMR + reloads + screenshot tooling
+// don't trip the 100 req / 15 min ceiling during normal dev workflow.
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: () => isDev,
   message: { message: "Demasiadas peticiones. Intenta de nuevo en unos minutos." },
 });
 
@@ -111,6 +113,7 @@ const authLimiter = rateLimit({
   max: 5,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: () => isDev,
   message: { message: "Demasiados intentos de login. Intenta de nuevo en 15 minutos." },
 });
 
@@ -120,6 +123,7 @@ const adminLimiter = rateLimit({
   max: 300,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: () => isDev,
   message: { message: "Demasiadas peticiones al panel de administración. Intenta de nuevo en unos minutos." },
 });
 

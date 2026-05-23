@@ -842,17 +842,21 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     }
   }, [boatData, boatId]);
 
-  // Related boats: same license type OR similar capacity (+-2), excluding current boat
+  // Related boats: cross-sell the OPPOSITE license category, sorted by capacity
+  // proximity to the current boat so we still surface comparable options.
+  // Falls back to same-category boats only if the opposite category is empty.
   const relatedBoats = useMemo(() => {
     if (!boats || !boatData) return [];
     const currentCapacity = boatData.capacity;
     const currentRequiresLicense = boatData.requiresLicense;
-    return boats
-      .filter(b => b.id !== boatId)
-      .filter(
-        b =>
-          b.requiresLicense === currentRequiresLicense ||
-          Math.abs(b.capacity - currentCapacity) <= 2
+    const candidates = boats.filter(b => b.id !== boatId);
+    const opposite = candidates.filter(b => b.requiresLicense !== currentRequiresLicense);
+    const pool = opposite.length > 0 ? opposite : candidates;
+    return pool
+      .slice()
+      .sort(
+        (a, b) =>
+          Math.abs(a.capacity - currentCapacity) - Math.abs(b.capacity - currentCapacity)
       )
       .slice(0, 3);
   }, [boats, boatData, boatId]);
@@ -1673,11 +1677,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       {relatedBoats.length > 0 && (
         <section className="bg-muted py-12">
           <div className="max-w-7xl mx-auto">
-            <h2 className="font-heading font-bold text-xl sm:text-2xl text-foreground mb-6 px-4">
+            <h2 className="font-heading font-bold text-xl sm:text-2xl text-foreground mb-6 px-4 text-center">
               {t.relatedBoats.title}
             </h2>
             <div
-              className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 -mx-1 scroll-pl-4"
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 md:justify-center scroll-pl-4"
               style={{ scrollbarWidth: "thin" }}
             >
               {relatedBoats.map(relBoat => {
@@ -1749,8 +1753,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       {/* FAQ Section — items come from shared/boatFaqBuilder, derived from admin data */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <h2 className="text-2xl font-heading font-bold text-foreground mb-6">{boatFaqTitle}</h2>
-        <div className="space-y-4 max-w-3xl">
+        <h2 className="text-2xl font-heading font-bold text-foreground mb-6 text-center">{boatFaqTitle}</h2>
+        <div className="space-y-4 max-w-3xl mx-auto">
           {boatFaqItems.map((item, idx) => (
             <details key={idx} className="group border border-border rounded-lg">
               <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">

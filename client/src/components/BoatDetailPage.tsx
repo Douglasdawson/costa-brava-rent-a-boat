@@ -1294,20 +1294,25 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             {/* Thumbnails: dots on mobile, image strip on desktop */}
             {displayImages.length > 1 && (
               <div className="bg-muted px-4 py-3">
-                {/* Mobile: dots */}
-                <div className="flex justify-center gap-2 md:hidden">
+                {/* Mobile: dots (44x44 hit area, 12px visual) */}
+                <div className="flex justify-center md:hidden">
                   {displayImages.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`h-3 rounded-full transition-all ${
-                        index === currentImageIndex
-                          ? "bg-primary w-8"
-                          : "w-3 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                      }`}
+                      className="min-h-11 min-w-11 inline-flex items-center justify-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-1 rounded-full"
                       aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
                       data-testid={`button-thumbnail-${index}`}
-                    />
+                    >
+                      <span
+                        className={`block h-3 rounded-full transition-all ${
+                          index === currentImageIndex
+                            ? "bg-primary w-8"
+                            : "w-3 bg-muted-foreground/30 group-hover:bg-muted-foreground/50"
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
                   ))}
                 </div>
                 {/* Desktop: image thumbnails */}

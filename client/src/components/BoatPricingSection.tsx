@@ -24,6 +24,32 @@ function toDateKey(d: Date): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
+/**
+ * Catalog items can drift to overlapping variants ("Seguro" vs.
+ * "Seguro embarcación y ocupantes"). Prefer the most specific phrasing:
+ * drop anything that is a strict substring of another item, then collapse
+ * exact normalized duplicates.
+ */
+function dedupeIncluded(items: string[]): string[] {
+  const norm = (s: string) => s.toLowerCase().trim();
+  const seen = new Set<string>();
+  const exact = items.filter((item) => {
+    const key = norm(item);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+  return exact.filter((item) => {
+    const itemN = norm(item);
+    return !exact.some(
+      (other) =>
+        other !== item &&
+        norm(other).includes(itemN) &&
+        norm(other).length > itemN.length
+    );
+  });
+}
+
 function formatDayLabel(date: Date, language: string): string {
   try {
     return new Intl.DateTimeFormat(language, {
@@ -92,21 +118,24 @@ export default function BoatPricingSection({
           </div>
         </div>
 
-        {boatData.included && boatData.included.length > 0 && (
-          <div className="text-sm text-muted-foreground text-left md:text-center pt-4 border-t">
-            <p className="mb-3 mt-3">
-              <strong>{t.boatDetail.priceIncludes}</strong>
-            </p>
-            <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
-              {boatData.included.map((item, index) => (
-                <div key={index} className="flex items-center">
-                  <CheckCircle className="w-3 h-3 text-primary mr-1" />
-                  <span className="text-xs">{translate(item)}</span>
-                </div>
-              ))}
+        {boatData.included && boatData.included.length > 0 && (() => {
+          const items = dedupeIncluded(boatData.included);
+          return (
+            <div className="text-sm text-muted-foreground text-left md:text-center pt-4 border-t">
+              <p className="mb-3 mt-3">
+                <strong>{t.boatDetail.priceIncludes}</strong>
+              </p>
+              <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
+                {items.map((item, index) => (
+                  <div key={index} className="flex items-center">
+                    <CheckCircle className="w-3 h-3 text-primary mr-1" />
+                    <span className="text-xs">{translate(item)}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
       </CardContent>
     </Card>
   );

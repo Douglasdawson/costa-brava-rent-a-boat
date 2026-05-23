@@ -1666,7 +1666,6 @@ export const en: Translations = {
     viewing: "{count} people viewing this boat right now",
   },
   adaptiveUrgency: {
-    popularBoat: "Popular boat this season",
     highDemandWeekend: "High demand this weekend",
     bookingsToday: "{count} bookings today",
     mostBookedWeek: "Most booked this week",

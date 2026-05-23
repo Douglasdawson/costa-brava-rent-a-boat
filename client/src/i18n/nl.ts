@@ -1605,7 +1605,6 @@ export const nl: Translations = {
     viewing: "{count} personen bekijken deze boot op dit moment",
   },
   adaptiveUrgency: {
-    popularBoat: "Populaire boot dit seizoen",
     highDemandWeekend: "Grote vraag dit weekend",
     bookingsToday: "{count} boekingen vandaag",
     mostBookedWeek: "Meest geboekt deze week",

@@ -1605,7 +1605,6 @@ export const ca: Translations = {
     viewing: "{count} persones mirant aquest vaixell ara mateix",
   },
   adaptiveUrgency: {
-    popularBoat: "Embarcació popular aquesta temporada",
     highDemandWeekend: "Alta demanda aquest cap de setmana",
     bookingsToday: "{count} reserves avui",
     mostBookedWeek: "El més reservat aquesta setmana",

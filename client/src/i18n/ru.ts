@@ -1597,7 +1597,6 @@ export const ru: Translations = {
     viewing: "{count} человек смотрят эту лодку прямо сейчас",
   },
   adaptiveUrgency: {
-    popularBoat: "Популярная лодка в этом сезоне",
     highDemandWeekend: "Высокий спрос в эти выходные",
     bookingsToday: "{count} бронирований сегодня",
     mostBookedWeek: "Самая бронируемая на этой неделе",

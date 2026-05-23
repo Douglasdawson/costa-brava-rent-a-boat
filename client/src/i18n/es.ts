@@ -2842,7 +2842,6 @@ export const es: Translations = {
   },
 
   adaptiveUrgency: {
-    popularBoat: "Barco popular esta temporada",
     highDemandWeekend: "Alta demanda este fin de semana",
     bookingsToday: "{count} reservas hoy",
     mostBookedWeek: "El más reservado esta semana",

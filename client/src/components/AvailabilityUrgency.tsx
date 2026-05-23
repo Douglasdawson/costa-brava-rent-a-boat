@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Users, Flame } from "lucide-react";
+import { Users, Flame } from "lucide-react";
 import { useBehaviorSignals, type IntentScore } from "@/hooks/useBehaviorSignals";
 import { useTranslations } from "@/lib/translations";
 import { trackEvent } from "@/utils/analytics";
@@ -17,7 +17,7 @@ interface ScarcityData {
   bookedToday: number;
 }
 
-type UrgencyTier = "informational" | "social" | "urgent";
+type UrgencyTier = "social" | "urgent";
 
 function getTodayDateStr(): string {
   const now = new Date();
@@ -45,21 +45,13 @@ function determineTier(
     return { tier: "urgent", remainingSlots };
   }
 
-  // Social: medium scarcity
-  if (remainingSlots > 3 && remainingSlots <= 6) {
+  // Social: medium scarcity, or low scarcity without high intent (downgrade urgent → social)
+  if (remainingSlots <= 6) {
     return { tier: "social", remainingSlots };
   }
 
-  // Informational: low scarcity
-  if (remainingSlots > 6) {
-    return { tier: "informational", remainingSlots };
-  }
-
-  // remainingSlots 0-3 but low/medium intent: show social instead of urgent
-  if (remainingSlots <= 3) {
-    return { tier: "social", remainingSlots };
-  }
-
+  // > 6 slots free: no real urgency. Don't fabricate a "popular boat" signal
+  // when the boat is actually wide open. Stay silent — PRODUCT.md.
   return null;
 }
 
@@ -108,25 +100,16 @@ export default function AvailabilityUrgency({ boatId, selectedDate }: Availabili
     }
 
     // Social: only when there's a real bookedToday count.
-    // Without real bookings we suppress the badge instead of fabricating "high demand weekend".
-    if (tier === "social") {
-      if (scarcity && scarcity.bookedToday > 0) {
-        return {
-          text: au.bookingsToday.replace("{count}", String(scarcity.bookedToday)),
-          icon: Users,
-          variant: "secondary" as const,
-        };
-      }
-      return null;
+    // Without real bookings we suppress the badge instead of fabricating signals.
+    if (tier === "social" && scarcity && scarcity.bookedToday > 0) {
+      return {
+        text: au.bookingsToday.replace("{count}", String(scarcity.bookedToday)),
+        icon: Users,
+        variant: "secondary" as const,
+      };
     }
 
-    // Informational: low scarcity (>6 slots free) — surface the boat as popular without
-    // injecting weekend/season copy that isn't tied to a real booking signal.
-    return {
-      text: au.popularBoat,
-      icon: TrendingUp,
-      variant: "secondary" as const,
-    };
+    return null;
   }, [scarcity, intentScore, dateStr, boatId, t]);
 
   if (!urgency) return null;

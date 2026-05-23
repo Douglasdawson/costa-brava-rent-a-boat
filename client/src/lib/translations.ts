@@ -2144,7 +2144,6 @@ export interface Translations {
 
   // Adaptive Urgency
   adaptiveUrgency?: {
-    popularBoat: string;
     highDemandWeekend: string;
     bookingsToday: string;
     mostBookedWeek: string;

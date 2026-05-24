@@ -339,17 +339,19 @@ export default function AvailabilityCalendar({
 
     switch (info.status) {
       case "available":
-        // Border + tinted bg gives affordance at rest; shadow only on hover
-        // per DESIGN.md "Earned Depth Rule".
-        return cn(base, "bg-emerald-100 hover:bg-emerald-200 text-emerald-900 border border-emerald-300 hover:border-emerald-400 cursor-pointer hover:shadow-sm");
+        // Tinted bg + border at rest; shadow only on hover per the Earned Depth Rule.
+        // Uses --success (brand sea green) instead of generic Tailwind emerald.
+        return cn(base, "bg-success/15 hover:bg-success/25 text-success border border-success/30 hover:border-success/50 cursor-pointer hover:shadow-sm");
       case "partial":
-        return cn(base, "bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 hover:border-amber-400 cursor-pointer hover:shadow-sm");
+        // --popular (brand amber). Text stays on --foreground because popular at low
+        // opacity over white needs more contrast than the success branch (amber lighter).
+        return cn(base, "bg-popular/15 hover:bg-popular/25 text-foreground border border-popular/40 hover:border-popular/60 cursor-pointer hover:shadow-sm");
       case "booked":
-        return cn(base, "bg-red-100 text-red-400 cursor-not-allowed");
+        return cn(base, "bg-destructive/10 text-destructive/70 border border-destructive/25 cursor-not-allowed");
       case "off_season":
-        return cn(base, "bg-gray-100 text-gray-400 cursor-not-allowed");
+        return cn(base, "bg-muted text-muted-foreground/60 cursor-not-allowed");
       case "past":
-        return cn(base, "bg-gray-50 text-gray-300 cursor-not-allowed");
+        return cn(base, "bg-muted/50 text-muted-foreground/40 cursor-not-allowed");
       default:
         return cn(base, "text-foreground");
     }
@@ -483,22 +485,23 @@ export default function AvailabilityCalendar({
         </div>
       )}
 
-      {/* Legend */}
+      {/* Legend — swatches use the same tokens as the cells so the legend stays
+          true if the design system shifts a color. */}
       <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-4 px-1 text-xs text-muted-foreground">
         <div className="flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm bg-emerald-50 border border-emerald-300" />
+          <span className="inline-block w-3 h-3 rounded-sm bg-success/15 border border-success/40" />
           {legend.available}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm bg-amber-50 border border-amber-300" />
+          <span className="inline-block w-3 h-3 rounded-sm bg-popular/15 border border-popular/50" />
           {legend.partial}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm bg-red-100 border border-red-300" />
+          <span className="inline-block w-3 h-3 rounded-sm bg-destructive/10 border border-destructive/30" />
           {legend.booked}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm bg-gray-100 border border-gray-300" />
+          <span className="inline-block w-3 h-3 rounded-sm bg-muted border border-muted-foreground/20" />
           {legend.offSeason}
         </div>
       </div>

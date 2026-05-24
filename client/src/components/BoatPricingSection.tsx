@@ -154,18 +154,11 @@ export default function BoatPricingSection({
                 />
               </div>
             ) : (
-              <div>
-                {!selectedDate && (
-                  <p className="text-xs text-muted-foreground mb-2 px-1 text-center md:text-left">
-                    {t.boatDetail.calendarHint}
-                  </p>
-                )}
-                <AvailabilityCalendar
-                  boatId={boatId}
-                  selectedDate={selectedDate}
-                  onDateSelect={onDateSelect}
-                />
-              </div>
+              <AvailabilityCalendar
+                boatId={boatId}
+                selectedDate={selectedDate}
+                onDateSelect={onDateSelect}
+              />
             )}
           </div>
 

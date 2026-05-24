@@ -778,7 +778,6 @@ export interface Translations {
     noPricesForDate: string;
     selectDateTitle: string;
     selectDateBody: string;
-    calendarHint: string;
     checkAvailability: string;
     recommendedBadge: string;
     viewsToday: string;

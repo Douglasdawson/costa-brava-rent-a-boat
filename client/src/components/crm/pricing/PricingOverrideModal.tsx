@@ -22,7 +22,8 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
-import { Loader2, TrendingUp, TrendingDown } from "lucide-react";
+import { Loader2, TrendingUp, TrendingDown, AlertTriangle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   WEEKDAY_LABELS,
   type PricingOverride,
@@ -36,6 +37,40 @@ import {
 import { BOAT_DATA } from "@shared/boatData";
 
 const PREVIEW_DURATIONS: Duration[] = ["1h", "2h", "4h", "8h"];
+
+function weekdaysIntersect(a: number[] | null, b: number[] | null): boolean {
+  if (!a || a.length === 0 || !b || b.length === 0) return true;
+  return a.some((d) => b.includes(d));
+}
+
+function appliesToSameBoat(aBoatId: string | null, bBoatId: string | null): boolean {
+  // global (null) affects every boat, so it overlaps any boat-specific or another global.
+  if (aBoatId === null || bBoatId === null) return true;
+  return aBoatId === bBoatId;
+}
+
+function findOverlappingOverrides(
+  candidate: {
+    dateStart: string;
+    dateEnd: string;
+    weekdayFilter: number[] | null;
+    boatId: string | null;
+  },
+  all: PricingOverride[],
+  excludeId?: string
+): PricingOverride[] {
+  if (!candidate.dateStart || !candidate.dateEnd || candidate.dateStart > candidate.dateEnd) {
+    return [];
+  }
+  return all.filter((o) => {
+    if (o.id === excludeId) return false;
+    if (!o.isActive) return false;
+    if (candidate.dateStart > o.dateEnd || candidate.dateEnd < o.dateStart) return false;
+    if (!appliesToSameBoat(candidate.boatId, o.boatId)) return false;
+    if (!weekdaysIntersect(candidate.weekdayFilter, o.weekdayFilter)) return false;
+    return true;
+  });
+}
 
 function pickPreviewDate(
   dateStart: string,
@@ -82,6 +117,69 @@ const emptyForm: PricingOverrideFormData = {
   notes: "",
   priority: 0,
 };
+
+interface OverlapWarningProps {
+  candidate: {
+    dateStart: string;
+    dateEnd: string;
+    weekdayFilter: number[] | null;
+    boatId: string | null;
+  };
+  excludeId?: string;
+}
+
+function OverlapWarning({ candidate, excludeId }: OverlapWarningProps) {
+  // Reuses the React Query cache populated by PricingOverridesList — no extra request.
+  const { data: allOverrides = [] } = useQuery<PricingOverride[]>({
+    queryKey: ["/api/admin/pricing-overrides"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/pricing-overrides", { credentials: "include" });
+      if (!res.ok) throw new Error("Error cargando overrides");
+      return res.json();
+    },
+  });
+
+  const overlapping = useMemo(
+    () => findOverlappingOverrides(candidate, allOverrides, excludeId),
+    [candidate, allOverrides, excludeId]
+  );
+
+  if (overlapping.length === 0) return null;
+
+  const fmtRange = (s: string, e: string) => (s === e ? s : `${s} → ${e}`);
+
+  return (
+    <Alert className="border-popular/40 bg-popular/5">
+      <AlertTriangle className="h-4 w-4 text-popular" />
+      <AlertTitle>
+        {overlapping.length === 1
+          ? "Hay otro override en estas fechas"
+          : `Hay ${overlapping.length} overrides en estas fechas`}
+      </AlertTitle>
+      <AlertDescription>
+        <p className="text-xs mb-2">
+          Si las condiciones se cruzan, gana el más específico (un barco concreto antes que «todos»),
+          luego el de mayor prioridad, luego el más reciente.
+        </p>
+        <ul className="space-y-1 text-xs">
+          {overlapping.slice(0, 4).map((o) => (
+            <li key={o.id}>
+              · <strong>{o.label}</strong>{" "}
+              <span className="text-muted-foreground">
+                ({fmtRange(o.dateStart, o.dateEnd)}
+                {o.priority !== 0 ? ` · prio ${o.priority}` : ""}
+                {o.boatId ? ` · barco específico` : ` · todos los barcos`})
+              </span>
+            </li>
+          ))}
+          {overlapping.length > 4 && (
+            <li className="text-muted-foreground italic">y {overlapping.length - 4} más…</li>
+          )}
+        </ul>
+      </AlertDescription>
+    </Alert>
+  );
+}
 
 interface OverridePreviewProps {
   form: PricingOverrideFormData;
@@ -484,6 +582,16 @@ export function PricingOverrideModal({ open, onOpenChange, override }: PricingOv
               placeholder="Razón del ajuste, contexto, etc."
             />
           </div>
+
+          <OverlapWarning
+            candidate={{
+              dateStart: form.dateStart,
+              dateEnd: form.dateEnd,
+              weekdayFilter: restrictWeekdays ? form.weekdayFilter : null,
+              boatId: form.boatId,
+            }}
+            excludeId={override?.id}
+          />
 
           <OverridePreview form={form} restrictWeekdays={restrictWeekdays} />
 

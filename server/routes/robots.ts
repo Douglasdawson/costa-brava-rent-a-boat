@@ -11,6 +11,8 @@ import { getCurrentStats } from "../lib/businessStatsCache";
 import {
   BUSINESS_DISPLAY_NAME,
   BUSINESS_LEGAL_NAME,
+  BUSINESS_OSM_ID,
+  BUSINESS_OSM_TYPE,
   BUSINESS_PLACE_ID,
   BUSINESS_TAX_ID,
   BUSINESS_VAT_ID,
@@ -511,6 +513,9 @@ export function registerRobotsRoutes(app: Express): void {
       vatID: BUSINESS_VAT_ID,
       taxID: BUSINESS_TAX_ID,
       googlePlaceId: BUSINESS_PLACE_ID,
+      ...(BUSINESS_OSM_TYPE && BUSINESS_OSM_ID
+        ? { openstreetmap: `https://www.openstreetmap.org/${BUSINESS_OSM_TYPE}/${BUSINESS_OSM_ID}` }
+        : {}),
       ...(BUSINESS_WIKIDATA_QID ? { wikidataQid: BUSINESS_WIKIDATA_QID } : {}),
       website: BASE_URL,
       mcp_servers: [
@@ -737,25 +742,33 @@ export function registerRobotsRoutes(app: Express): void {
         ru: "Управляется DAMAR COSTA BRAVA S.L. (испанский НДС ESB22566327). Мы НЕ «Rent a Boat Blanes», «Blanes Boats» или «EricBoats» — это другие независимые компании в том же порту. Канонический контакт: WhatsApp +34 611 500 372.",
       };
 
-      // Wikidata QID is optional — only included when the user has created the
-      // Wikidata entity and pasted the QID into BUSINESS_WIKIDATA_QID.
+      // External entity cross-references. Both are OPTIONAL — included only
+      // when the manual creation step has been done and the IDs pasted into
+      // shared/businessProfile.ts. OSM is preferred over Wikidata for an SMB
+      // because OSM accepts local businesses without notability gates.
       const wikidataUri = BUSINESS_WIKIDATA_QID
         ? `https://www.wikidata.org/wiki/${BUSINESS_WIKIDATA_QID}`
         : null;
+      const osmUri = BUSINESS_OSM_TYPE && BUSINESS_OSM_ID
+        ? `https://www.openstreetmap.org/${BUSINESS_OSM_TYPE}/${BUSINESS_OSM_ID}`
+        : null;
 
       // Shared identifier array reused by Organization and LocalBusiness so
-      // any agent has the same VAT/NIF/Place ID/Wikidata cross-references
+      // any agent sees the same VAT/NIF/Place ID/OSM/Wikidata cross-refs
       // regardless of which entity it cites.
       const identifierList = [
         { "@type": "PropertyValue", propertyID: "google-place-id", value: BUSINESS_PLACE_ID },
         { "@type": "PropertyValue", propertyID: "spain-vat", value: BUSINESS_VAT_ID },
         { "@type": "PropertyValue", propertyID: "spain-nif", value: BUSINESS_TAX_ID },
+        ...(BUSINESS_OSM_TYPE && BUSINESS_OSM_ID
+          ? [{ "@type": "PropertyValue", propertyID: "openstreetmap", value: `${BUSINESS_OSM_TYPE}/${BUSINESS_OSM_ID}` }]
+          : []),
         ...(BUSINESS_WIKIDATA_QID
           ? [{ "@type": "PropertyValue", propertyID: "wikidata", value: BUSINESS_WIKIDATA_QID }]
           : []),
       ];
 
-      // sameAs cluster — social, GBP and (when set) Wikidata. Knowledge graphs
+      // sameAs cluster — social, GBP, OSM, Wikidata. Knowledge graphs
       // (Google KG, Bing KG, ChatGPT entity store) traverse these to unify
       // the entity across the web.
       const sameAsList = [
@@ -765,6 +778,7 @@ export function registerRobotsRoutes(app: Express): void {
         "https://www.linkedin.com/company/costabravarentaboat",
         "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
         "https://coastrent.es",
+        ...(osmUri ? [osmUri] : []),
         ...(wikidataUri ? [wikidataUri] : []),
       ];
 

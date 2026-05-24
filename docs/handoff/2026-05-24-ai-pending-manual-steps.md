@@ -1,56 +1,73 @@
 # AI discoverability — pasos manuales pendientes
 
 Tres acciones que cierran el roadmap "máximo nivel". Cada una vive en una
-herramienta externa, ninguna se puede automatizar desde el repo. Tiempo
-total estimado: ~75 min en una sola tarde.
+herramienta externa, ninguna se puede automatizar desde el repo.
 
 ---
 
-## 1. Wikidata QID (~30 min)
+## 1. OpenStreetMap node (~20 min)  ⭐ recomendado sobre Wikidata
 
-**Por qué importa**: Wikidata alimenta directamente el Google Knowledge
-Panel, la Bing Knowledge Box y la entidad-resolución de ChatGPT / Claude
-/ Perplexity. Sin QID, las IAs tienen que reconstruir la entidad cada
-vez desde sameAs[] y a veces nos confunden con "Rent a Boat Blanes".
+**Por qué OSM y no Wikidata**: Wikidata exige notabilidad (cobertura en
+prensa, libros, enciclopedias). Una empresa local pequeña sin esa
+cobertura es probable que sea marcada para borrado tras crear el ítem.
+OSM **sí acepta negocios locales por diseño** (operadores legítimos
+verificables sobre el terreno). Y los LLMs (ChatGPT/Claude/Perplexity)
+leen OSM para entity resolution de ubicaciones físicas igual que leen
+Wikidata.
 
 ### Pasos
 
-1. Crear cuenta en https://www.wikidata.org/wiki/Special:CreateAccount
-2. Una vez logueado, ir a https://www.wikidata.org/wiki/Special:NewItem
-3. **Label (en)**: `Costa Brava Rent a Boat`
-4. **Label (es)**: `Costa Brava Rent a Boat`
-5. **Description (en)**: `Boat rental company based at Puerto de Blanes, Costa Brava, Spain. Operates a 9-boat fleet (license-free and licensed). Operated by DAMAR COSTA BRAVA S.L.`
-6. **Description (es)**: `Empresa de alquiler de barcos en el Puerto de Blanes, Costa Brava, España. Flota de 9 barcos (sin licencia y con licencia). Operada por DAMAR COSTA BRAVA S.L.`
-7. Aliases (en+es): `DAMAR COSTA BRAVA S.L.`, `Costa Brava Rent a Boat Blanes`
-8. **Add statement** — añade estas propiedades:
+1. Cuenta en https://www.openstreetmap.org/user/new (gratis, 2 min)
+2. Ir a https://www.openstreetmap.org/edit?editor=id#map=18/41.6722504/2.7978625
+   (iD editor abre directamente sobre el Puerto de Blanes con zoom 18)
+3. Click sobre el punto exacto de tu oficina/caseta dentro del puerto.
+   Si ya hay un nodo allí, edítalo. Si no, click derecho → **Añadir nodo**.
+4. Buscar la categoría **"Alquiler de barcos"** o introducir tag
+   `tourism=boat_rental` manualmente.
+5. Rellenar tags (todos opcionales pero recomendados):
 
-| Property | Value |
+| Tag | Valor |
 |---|---|
-| P31 — instance of | Q4830453 (business) |
-| P17 — country | Q29 (Spain) |
-| P131 — located in admin. entity | Q15303 (Blanes) |
-| P856 — official website | `https://www.costabravarentaboat.com` |
-| P625 — coordinate location | `41.6722504, 2.7978625` |
-| P1278 — Legal Entity Identifier (si lo tenéis) | (skip si no) |
-| P2814 — CIF number (Spanish company ID) | `B22566327` |
-| P969 — street address | `Puerto de Blanes, 17300 Blanes, Girona` |
-| P2002 — Instagram username | `costabravarentaboat` |
-| P2003 — TikTok username | `costabravarentaboat` |
-| P2013 — Facebook ID | `costabravarentaboat` |
-| P646 — Freebase ID (si Google KG lo tiene) | (skip — solo si conoces el `/m/xxx`) |
+| `tourism` | `boat_rental` |
+| `name` | `Costa Brava Rent a Boat` |
+| `operator` | `DAMAR COSTA BRAVA S.L.` |
+| `operator:type` | `private` |
+| `brand` | `Costa Brava Rent a Boat` |
+| `website` | `https://www.costabravarentaboat.com` |
+| `contact:phone` | `+34611500372` |
+| `contact:email` | `costabravarentaboat@gmail.com` |
+| `contact:instagram` | `https://www.instagram.com/costabravarentaboat/` |
+| `contact:facebook` | `https://www.facebook.com/costabravarentaboat` |
+| `opening_hours` | `Apr-Oct 09:00-20:00` |
+| `payment:cash` | `yes` |
+| `payment:cards` | `yes` |
+| `description` | `Boat rental Puerto de Blanes — 9-boat fleet, license-free and licensed, fuel included` |
+| `description:es` | `Alquiler de barcos en el Puerto de Blanes — flota de 9 barcos sin/con licencia, gasolina incluida` |
+| `ref:vatin` | `ESB22566327` |
+| `addr:street` | `Puerto de Blanes` |
+| `addr:postcode` | `17300` |
+| `addr:city` | `Blanes` |
+| `addr:country` | `ES` |
 
-9. Click **Publish**. Verás el ítem en una URL tipo
-   `https://www.wikidata.org/wiki/Q123456789`
-10. **Copia el QID** (parte `Q123456789`) y pásamelo en chat — yo lo pongo
-    en `shared/businessProfile.ts` → `BUSINESS_WIKIDATA_QID`, commit + push,
-    y se propaga automáticamente a `/api/ai-context` graph (sameAs +
-    identifier) y a `/.well-known/agent.json`.
+6. **Guardar** (botón Save arriba derecha) → escribir comentario
+   "Add Costa Brava Rent a Boat (DAMAR COSTA BRAVA S.L.) at Puerto de
+   Blanes" → Upload.
+7. Verás una URL del nodo recién creado:
+   `https://www.openstreetmap.org/node/<NUMERIC_ID>`
+8. **Pásame el ID numérico** (la parte `<NUMERIC_ID>`) en chat y te lo
+   enchufo en `shared/businessProfile.ts` →
+   `BUSINESS_OSM_TYPE = "node"` y `BUSINESS_OSM_ID = "<ID>"`.
 
-### Bonus opcional
+### Tras el push
 
-- Edita el artículo de Wikipedia https://es.wikipedia.org/wiki/Blanes
-  (sección "Puerto" o "Economía") para mencionar el puerto deportivo y
-  añadir referencia al QID. Backlink desde Wikipedia es señal premium.
+`/api/ai-context` añadirá automáticamente:
+- En `identifier[]`: `{ propertyID: "openstreetmap", value: "node/<ID>" }`
+- En `sameAs[]`: `https://www.openstreetmap.org/node/<ID>`
+- En `/.well-known/agent.json`: campo `openstreetmap`
+
+OSM se propaga a Mapbox, Overture, Apple Maps (parcialmente), Bing Maps
+data, y se ingiere por los crawlers de ChatGPT y Claude para entity
+resolution geoespacial.
 
 ---
 
@@ -74,20 +91,14 @@ Pionero absoluto en hospitality SMB.
    ```bash
    HF_TOKEN=$HF_TOKEN npx tsx scripts/publish-hf-dataset.ts
    ```
-   (Tarda ~10 segundos. Crea el repo si no existe, sube los 5 archivos.)
 6. Verifica:
    https://huggingface.co/datasets/costabravarentaboat/boat-rental-blanes
 
-### Refresco mensual (opcional)
-
-Puedes meter una tarea cron Replit que ejecute el script el día 1 de
-cada mes. Coste ~$0 — el upload es gratis.
-
 ### Si algo falla
 
-- `Repo create failed (409)` → el repo ya existe, eso es OK, sigue.
-- `Upload failed (401)` → el token no tiene scope write. Re-genera.
-- `Upload failed (404)` → el organization name no existe. Ajusta `REPO_ID`.
+- `Repo create failed (409)` → ya existe, OK, sigue.
+- `Upload failed (401)` → token sin scope write. Re-genera.
+- `Upload failed (404)` → org name no existe. Ajusta `REPO_ID`.
 
 ---
 
@@ -95,13 +106,12 @@ cada mes. Coste ~$0 — el upload es gratis.
 
 **Por qué importa**: mcp.run es el primer registry público vivo de MCP
 servers. Estar allí significa que cualquier usuario de Claude Desktop,
-Cursor o Continue puede descubrirnos cuando busca herramientas para
-"boat rental" o "tourism".
+Cursor o Continue puede descubrirnos.
 
 ### Pasos
 
 1. Cuenta en https://www.mcp.run/
-2. Click **"Add MCP Server"** o ir a https://www.mcp.run/submit
+2. Click **"Add MCP Server"** → https://www.mcp.run/submit
 3. Rellena con este texto literal:
 
 ```
@@ -121,7 +131,7 @@ Description (short, max 200 chars):
   Boat rental Puerto de Blanes (Costa Brava, Spain). 9-tool MCP for searching boats, checking availability, getting prices, and creating booking holds. Operated by DAMAR COSTA BRAVA S.L.
 
 Description (long):
-  Public MCP server for Costa Brava Rent a Boat — the largest boat rental fleet in Blanes, Spain (9 boats, license-free and licensed). The server wraps our public REST surface and exposes 9 tools agents can use natively:
+  Public MCP server for Costa Brava Rent a Boat — the largest boat rental fleet in Blanes, Spain (9 boats, license-free and licensed). Wraps our public REST surface and exposes 9 tools agents can use natively:
 
   • search_boats(query, capacity, license, max_price) — filter the fleet
   • check_availability(boatId, date) — real-time slot availability
@@ -160,12 +170,50 @@ Publisher contact:
   costabravarentaboat@gmail.com
 ```
 
-4. Submit. Suele aprobarse en horas (revisión humana ligera).
+4. Submit. Suele aprobarse en horas.
 
 ### Otros registries
 
 - **Continue.dev** — PR a https://github.com/continuedev/continue
-  añadiendo entrada al registro de MCP servers. Igual texto que arriba.
-- **Cursor Marketplace** — aún no admite HTTP MCPs sin OAuth. Cuando lo
-  hagan (rumor Q2 2026), mismo texto.
-- **Claude Connectors Directory** — pendiente apertura a SMBs.
+- **Cursor Marketplace** — aún no admite HTTP MCPs sin OAuth (rumor Q2 2026)
+- **Claude Connectors Directory** — pendiente apertura a SMBs
+
+---
+
+## Apéndice — Wikidata (NO recomendado para SMB, pero corregido por si acaso)
+
+Riesgo alto de borrado por política de notabilidad WD:N. Solo intentar si
+encuentras cobertura significativa en prensa nacional sobre el negocio.
+
+Si decides probar, abre https://www.wikidata.org/wiki/Special:NewItem con
+estos datos VERIFICADOS (corregidos del original que tenía errores):
+
+### Labels/descriptions/aliases (neutrales, no promocionales)
+
+| lang | Label | Description | Aliases |
+|---|---|---|---|
+| es | Costa Brava Rent a Boat | Empresa de alquiler de embarcaciones recreativas con y sin titulación, con sede en el Puerto de Blanes (Girona, Cataluña, España). Nombre comercial de la sociedad DAMAR COSTA BRAVA S.L. | DAMAR COSTA BRAVA S.L.; DAMAR COSTA BRAVA; Costa Brava Rent a Boat Blanes |
+| en | Costa Brava Rent a Boat | Recreational boat rental company (licensed and unlicensed boats) based at the Port of Blanes, Girona, Catalonia, Spain. Trading name of DAMAR COSTA BRAVA S.L. | DAMAR COSTA BRAVA S.L.; DAMAR COSTA BRAVA |
+| ca | Costa Brava Rent a Boat | Empresa de lloguer d'embarcacions recreatives amb i sense titulació, amb seu al Port de Blanes (Girona, Catalunya). Nom comercial de la societat DAMAR COSTA BRAVA S.L. | DAMAR COSTA BRAVA S.L.; Lloguer de barques Costa Brava Blanes |
+| fr | Costa Brava Rent a Boat | Société de location de bateaux de plaisance (avec et sans permis) basée au Port de Blanes (Gérone, Catalogne, Espagne). Nom commercial de DAMAR COSTA BRAVA S.L. | DAMAR COSTA BRAVA S.L.; Location de bateaux Costa Brava Blanes |
+
+### Statements (corregidos — P/Q originales tenían errores)
+
+| Property | Value | Notas |
+|---|---|---|
+| P31 instance of | Q15648901 (sociedad limitada) | Más preciso que Q4830453 |
+| P17 country | Q29 (Spain) | |
+| P131 located in admin entity | **Q12991 (Blanes)** | Original Q15303 era una montaña |
+| P6375 street address | "Puerto de Blanes, 17300 Blanes" (lang=es) | Original P969 fue borrada |
+| P625 coordinate location | 41.6722504, 2.7978625 | |
+| P856 official website | https://www.costabravarentaboat.com | |
+| P968 email | mailto:costabravarentaboat@gmail.com | Prefijo `mailto:` obligatorio |
+| P3608 EU VAT number | ESB22566327 | Original P2814 era P-number danés |
+| P452 industry | Q25384001 (boat rental) | |
+| P2003 Instagram username | costabravarentaboat | Sin @ |
+| P2013 Facebook username | costabravarentaboat | |
+| P7085 TikTok username | costabravarentaboat | Sin @ |
+| P1448 official name | "DAMAR COSTA BRAVA S.L." (lang=es) | Sustituye al P127 owned by |
+
+**NO incluir**: P127 (owned by — circular), P2671 (Google KG ID — solo
+acepta `/m/xxx`, no `ChIJ...`), año fundación (no confirmado).

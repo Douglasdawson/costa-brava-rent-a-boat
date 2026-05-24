@@ -30,12 +30,24 @@ export const BUSINESS_LEGAL_NAME = "DAMAR COSTA BRAVA S.L.";
 export const BUSINESS_VAT_ID = "ESB22566327";
 export const BUSINESS_TAX_ID = "B22566327";
 
-// Wikidata entity ID (Q-prefixed). Once the Wikidata item is created
-// (manual ~30 min on wikidata.org), replace this placeholder. Used in
-// /api/ai-context `sameAs` and `identifier[]` so Google Knowledge Graph,
-// Bing Knowledge Panel and the major LLMs can resolve the entity.
-// Empty string = not yet created → omitted from JSON-LD downstream.
+// Wikidata entity ID (Q-prefixed). Wikidata's notability policy makes it
+// risky for a local SMB; we deprioritised this in favour of OpenStreetMap
+// (see below). Kept as an optional slot — if a Wikidata item is eventually
+// created and survives notability review, paste its QID here and it
+// auto-propagates to /api/ai-context sameAs[] and identifier[].
 export const BUSINESS_WIKIDATA_QID = "";
+
+// OpenStreetMap canonical IDs. OSM accepts local businesses by design
+// (no notability gate). ChatGPT / Claude / Perplexity all read OSM for
+// entity resolution of physical locations.
+//   • BUSINESS_OSM_TYPE: "node" | "way" | "relation" (typical for a
+//     boat-rental kiosk: "node")
+//   • BUSINESS_OSM_ID:   numeric ID — paste once the node is created via
+//     openstreetmap.org/edit (instructions in
+//     docs/handoff/2026-05-24-ai-pending-manual-steps.md)
+// Empty values are omitted from JSON-LD downstream.
+export const BUSINESS_OSM_TYPE: "node" | "way" | "relation" | "" = "";
+export const BUSINESS_OSM_ID = "";
 
 // Google Business Profile Place ID. Single source of truth. Verified via
 // Places API v1 (rating 4.8, 310 reviews, name "Costa Brava Rent a Boat - Blanes").

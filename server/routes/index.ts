@@ -46,6 +46,7 @@ import { registerLinkedinOAuthRoutes } from "./oauth-linkedin";
 import { registerBusinessStatsRoutes } from "./business-stats";
 import { registerAdminFlywheelRoutes } from "./admin-flywheel";
 import { registerAdminPricingOverridesRoutes } from "./admin-pricing-overrides";
+import { registerAdminPricingOverrideTemplatesRoutes } from "./admin-pricing-override-templates";
 import { registerPricingRoutes } from "./pricing";
 import { registerOpenApiRoutes } from "./openapi";
 import { registerAiMentionsRoutes } from "./admin-ai-mentions";
@@ -120,6 +121,7 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
 
   // Dynamic pricing — admin overrides + public calendar endpoint
   registerAdminPricingOverridesRoutes(app);
+  registerAdminPricingOverrideTemplatesRoutes(app);
   registerPricingRoutes(app);
 
   // OpenAPI 3.1 spec at /openapi.json — for SDK generation, agent discovery

@@ -7,7 +7,7 @@ import { PricingOverridesList } from "./pricing/PricingOverridesList";
 import { PricingOverrideModal } from "./pricing/PricingOverrideModal";
 import { PricingCalendar } from "./pricing/PricingCalendar";
 import { PricingAuditPanel } from "./pricing/PricingAuditPanel";
-import type { PricingOverride } from "./pricing/types";
+import type { PricingOverride, PricingOverrideFormData } from "./pricing/types";
 
 interface PricingTabProps {
   adminToken: string;
@@ -17,23 +17,34 @@ export function PricingTab({ adminToken: _adminToken }: PricingTabProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const [editingOverride, setEditingOverride] = useState<PricingOverride | null>(null);
   const [prefillDate, setPrefillDate] = useState<string | null>(null);
+  const [initialValues, setInitialValues] = useState<Partial<PricingOverrideFormData> | null>(null);
   const [view, setView] = useState<"list" | "calendar">("list");
 
   const openCreate = () => {
     setEditingOverride(null);
     setPrefillDate(null);
+    setInitialValues(null);
     setModalOpen(true);
   };
 
   const openCreateForDay = (dayKey: string) => {
     setEditingOverride(null);
     setPrefillDate(dayKey);
+    setInitialValues(null);
     setModalOpen(true);
   };
 
   const openEdit = (override: PricingOverride) => {
     setEditingOverride(override);
     setPrefillDate(null);
+    setInitialValues(null);
+    setModalOpen(true);
+  };
+
+  const openFromCustomTemplate = (values: Partial<PricingOverrideFormData>) => {
+    setEditingOverride(null);
+    setPrefillDate(null);
+    setInitialValues(values);
     setModalOpen(true);
   };
 
@@ -89,7 +100,7 @@ export function PricingTab({ adminToken: _adminToken }: PricingTabProps) {
         </CardContent>
       </Card>
 
-      <PricingTemplatesPanel />
+      <PricingTemplatesPanel onApplyCustom={openFromCustomTemplate} />
 
       {view === "list" ? (
         <PricingOverridesList onEdit={openEdit} />
@@ -104,6 +115,7 @@ export function PricingTab({ adminToken: _adminToken }: PricingTabProps) {
         onOpenChange={setModalOpen}
         override={editingOverride}
         prefillDate={prefillDate}
+        initialValues={initialValues}
       />
     </div>
   );

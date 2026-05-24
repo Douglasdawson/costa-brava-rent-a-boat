@@ -29,6 +29,37 @@ export interface PricingOverrideFormData {
   priority: number;
 }
 
+export interface PricingOverrideTemplate {
+  id: string;
+  tenantId: string | null;
+  name: string;
+  description: string | null;
+  boatId: string | null;
+  weekdayFilter: number[] | null;
+  direction: "surcharge" | "discount";
+  adjustmentType: "multiplier" | "flat_eur";
+  adjustmentValue: string;
+  label: string;
+  notes: string | null;
+  priority: number;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PricingOverrideTemplateFormData {
+  name: string;
+  description: string;
+  label: string;
+  weekdayFilter: number[] | null;
+  direction: "surcharge" | "discount";
+  adjustmentType: "multiplier" | "flat_eur";
+  adjustmentValue: string;
+  boatId: string | null;
+  notes: string;
+  priority: number;
+}
+
 export const TEMPLATE_DEFINITIONS = [
   // Differentiated by boat type — preferred (captures more revenue, avoids
   // pricing risk on premium/secondary boats that already linger unsold).

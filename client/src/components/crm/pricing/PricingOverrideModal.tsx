@@ -102,6 +102,8 @@ interface PricingOverrideModalProps {
   onOpenChange: (open: boolean) => void;
   override?: PricingOverride | null; // null/undefined = create mode; otherwise edit
   prefillDate?: string | null; // ISO YYYY-MM-DD; used only in create mode to seed dateStart/dateEnd
+  /** Used only in create mode. Seeds all non-date fields from a saved template. */
+  initialValues?: Partial<PricingOverrideFormData> | null;
 }
 
 const todayISO = () => new Date().toISOString().slice(0, 10);
@@ -295,7 +297,13 @@ function OverridePreview({ form, restrictWeekdays }: OverridePreviewProps) {
   );
 }
 
-export function PricingOverrideModal({ open, onOpenChange, override, prefillDate }: PricingOverrideModalProps) {
+export function PricingOverrideModal({
+  open,
+  onOpenChange,
+  override,
+  prefillDate,
+  initialValues,
+}: PricingOverrideModalProps) {
   const { toast } = useToast();
   const isEdit = !!override;
   const [form, setForm] = useState<PricingOverrideFormData>(emptyForm);
@@ -318,14 +326,19 @@ export function PricingOverrideModal({ open, onOpenChange, override, prefillDate
         priority: override.priority,
       });
       setRestrictWeekdays(!!override.weekdayFilter);
-    } else if (prefillDate) {
-      setForm({ ...emptyForm, dateStart: prefillDate, dateEnd: prefillDate });
-      setRestrictWeekdays(false);
     } else {
-      setForm(emptyForm);
-      setRestrictWeekdays(false);
+      // Create mode: start from empty, then overlay template values (everything
+      // except dates), then overlay the date prefill (calendar day-click).
+      const base: PricingOverrideFormData = { ...emptyForm };
+      if (initialValues) Object.assign(base, initialValues);
+      if (prefillDate) {
+        base.dateStart = prefillDate;
+        base.dateEnd = prefillDate;
+      }
+      setForm(base);
+      setRestrictWeekdays(!!base.weekdayFilter);
     }
-  }, [open, override, prefillDate]);
+  }, [open, override, prefillDate, initialValues]);
 
   const { data: boats = [] } = useQuery<BoatOption[]>({
     queryKey: ["/api/admin/boats"],

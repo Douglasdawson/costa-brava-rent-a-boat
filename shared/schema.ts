@@ -834,6 +834,45 @@ export const selectPricingOverrideSchema = createSelectSchema(pricingOverrides);
 export type PricingOverride = typeof pricingOverrides.$inferSelect;
 export type InsertPricingOverride = z.infer<typeof insertPricingOverrideSchema>;
 
+// ===== PRICING OVERRIDE TEMPLATES (admin-saved presets) =====
+// Mirror of pricing_overrides without dateStart/dateEnd. The admin saves a
+// preset for things they apply repeatedly ("recargo finde Solar 450"), then
+// at apply time picks the date range and gets a real override created from it.
+export const pricingOverrideTemplates = pgTable("pricing_override_templates", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
+  name: text("name").notNull(), // internal-only identifier the admin picks ("Recargo finde Solar 450")
+  description: text("description"),
+  boatId: varchar("boat_id").references(() => boats.id), // null = all boats
+  weekdayFilter: jsonb("weekday_filter").$type<number[] | null>(),
+  direction: text("direction").notNull().default("surcharge"),
+  adjustmentType: text("adjustment_type").notNull(),
+  adjustmentValue: decimal("adjustment_value", { precision: 10, scale: 4 }).notNull(),
+  label: text("label").notNull(), // default label suggested when applying ("Pico agosto 2026")
+  notes: text("notes"),
+  priority: integer("priority").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  activeIdx: index("pricing_override_templates_active_idx").on(table.isActive),
+  tenantIdx: index("pricing_override_templates_tenant_idx").on(table.tenantId),
+}));
+
+export const insertPricingOverrideTemplateSchema = createInsertSchema(pricingOverrideTemplates)
+  .omit({ id: true, createdAt: true, updatedAt: true })
+  .extend({
+    direction: z.enum(PRICING_OVERRIDE_DIRECTIONS).default("surcharge"),
+    adjustmentType: z.enum(PRICING_OVERRIDE_TYPES),
+    weekdayFilter: z.array(z.number().int().min(0).max(6)).nullable().optional(),
+    adjustmentValue: z.union([z.string(), z.number()]).transform((v) => typeof v === "number" ? v.toString() : v),
+    name: z.string().min(1, "Nombre requerido").max(120),
+    label: z.string().min(1, "Label requerido").max(120),
+  });
+
+export type PricingOverrideTemplate = typeof pricingOverrideTemplates.$inferSelect;
+export type InsertPricingOverrideTemplate = z.infer<typeof insertPricingOverrideTemplateSchema>;
+
 // ===== WHATSAPP CHATBOT =====
 
 // Conversation states for the chatbot flow

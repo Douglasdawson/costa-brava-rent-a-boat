@@ -28,6 +28,7 @@ import * as mcpTokensRepo from "./mcpTokens";
 import * as seoAutopilotRepo from "./seoAutopilot";
 import * as businessStatsRepo from "./businessStats";
 import * as pricingOverridesRepo from "./pricingOverrides";
+import * as pricingOverrideTemplatesRepo from "./pricingOverrideTemplates";
 import * as oauthConnectionsRepo from "./oauthConnections";
 import * as aiBotVisitsRepo from "./aiBotVisits";
 
@@ -192,6 +193,13 @@ export const storage = {
   bulkActivatePricingOverrides: pricingOverridesRepo.bulkActivatePricingOverrides,
   loadActiveOverridesForDate: pricingOverridesRepo.loadActiveOverridesForDate,
   loadActiveOverridesForRange: pricingOverridesRepo.loadActiveOverridesForRange,
+
+  // ===== Pricing Override Templates (admin-saved presets) =====
+  listPricingOverrideTemplates: pricingOverrideTemplatesRepo.listPricingOverrideTemplates,
+  getPricingOverrideTemplate: pricingOverrideTemplatesRepo.getPricingOverrideTemplate,
+  createPricingOverrideTemplate: pricingOverrideTemplatesRepo.createPricingOverrideTemplate,
+  updatePricingOverrideTemplate: pricingOverrideTemplatesRepo.updatePricingOverrideTemplate,
+  deactivatePricingOverrideTemplate: pricingOverrideTemplatesRepo.deactivatePricingOverrideTemplate,
 
   // ===== CRM Customers =====
   upsertCrmCustomer: customerRepo.upsertCrmCustomer,

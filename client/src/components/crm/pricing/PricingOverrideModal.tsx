@@ -360,6 +360,7 @@ export function PricingOverrideModal({ open, onOpenChange, override, prefillDate
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides/audit"] });
       toast({ title: isEdit ? "Override actualizado" : "Override creado" });
       onOpenChange(false);
     },

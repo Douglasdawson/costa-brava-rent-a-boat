@@ -6,6 +6,7 @@ import { PricingTemplatesPanel } from "./pricing/PricingTemplatesPanel";
 import { PricingOverridesList } from "./pricing/PricingOverridesList";
 import { PricingOverrideModal } from "./pricing/PricingOverrideModal";
 import { PricingCalendar } from "./pricing/PricingCalendar";
+import { PricingAuditPanel } from "./pricing/PricingAuditPanel";
 import type { PricingOverride } from "./pricing/types";
 
 interface PricingTabProps {
@@ -95,6 +96,8 @@ export function PricingTab({ adminToken: _adminToken }: PricingTabProps) {
       ) : (
         <PricingCalendar onCreateForDay={openCreateForDay} onEditOverride={openEdit} />
       )}
+
+      <PricingAuditPanel />
 
       <PricingOverrideModal
         open={modalOpen}

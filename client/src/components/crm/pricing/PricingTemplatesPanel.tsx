@@ -33,6 +33,7 @@ export function PricingTemplatesPanel() {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides/audit"] });
       // Multi-override response shape: { count, overrides[] }. Single: the override row.
       const description = data.count
         ? `${data.count} overrides creados`

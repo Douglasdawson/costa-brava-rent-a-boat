@@ -129,6 +129,7 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides/audit"] });
       toast({ title: "Override eliminado" });
       setConfirmDeleteId(null);
     },
@@ -153,6 +154,7 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides/audit"] });
       toast({
         title: `${data.deactivatedCount} ${data.deactivatedCount === 1 ? "override desactivado" : "overrides desactivados"}`,
       });
@@ -180,6 +182,7 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides/audit"] });
       toast({
         title: `${data.activatedCount} ${data.activatedCount === 1 ? "override reactivado" : "overrides reactivados"}`,
       });
@@ -206,6 +209,7 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides/audit"] });
       toast({ title: "Override reactivado" });
     },
     onError: (error: Error) => {

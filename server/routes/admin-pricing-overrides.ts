@@ -170,6 +170,29 @@ export function registerAdminPricingOverridesRoutes(app: Express) {
     },
   );
 
+  // ===== AUDIT LOG =====
+  // IMPORTANT: this must be declared BEFORE the GET /:id route below, otherwise
+  // Express matches /audit against /:id with id="audit".
+  app.get(
+    "/api/admin/pricing-overrides/audit",
+    requireAdminSession,
+    requireTabAccess("pricing"),
+    async (req, res) => {
+      try {
+        const raw = req.query.limit;
+        const parsed = typeof raw === "string" ? parseInt(raw, 10) : NaN;
+        const limit = Number.isFinite(parsed) ? Math.min(Math.max(parsed, 1), 200) : 50;
+        const logs = await storage.listAuditLogsByResource(RESOURCE, limit);
+        res.json(logs);
+      } catch (error: unknown) {
+        logger.error("[Admin] Error fetching pricing override audit log", {
+          error: error instanceof Error ? error.message : String(error),
+        });
+        res.status(500).json({ message: "Error interno del servidor" });
+      }
+    },
+  );
+
   // ===== GET ONE =====
   app.get(
     "/api/admin/pricing-overrides/:id",

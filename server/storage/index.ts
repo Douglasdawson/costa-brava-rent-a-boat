@@ -248,6 +248,7 @@ export const storage = {
   // ===== Audit Log =====
   createAuditLog: auditRepo.createAuditLog,
   getRecentAuditLogs: auditRepo.getRecentAuditLogs,
+  listAuditLogsByResource: auditRepo.listAuditLogsByResource,
 
   // ===== Memberships (Boat Club) =====
   createMembership: membershipRepo.createMembership,

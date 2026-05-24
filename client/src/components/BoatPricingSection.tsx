@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useMemo, useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, X, TrendingUp, TrendingDown, Calendar, ChevronDown } from "lucide-react";
@@ -7,7 +7,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { filterActivePrices } from "@shared/pricing";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
-import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
+import { SEASON_END_MONTH } from "@shared/constants";
 import AvailabilityCalendar from "./AvailabilityCalendar";
 import type { Boat } from "@shared/schema";
 
@@ -79,10 +79,11 @@ export default function BoatPricingSection({
   const { language } = useLanguage();
   const isMobile = useIsMobile();
   const pricingColRef = useRef<HTMLDivElement>(null);
-  const [sheetOpen, setSheetOpen] = useState(false);
+  // Used to focus the hidden <input type="date"> when the visible button is clicked.
+  const nativeDateInputRef = useRef<HTMLInputElement>(null);
 
   // Mobile-only: scroll the pricing column into view when the user picks a date,
-  // so the feedback isn't hidden below the calendar trigger.
+  // so the feedback isn't hidden below the trigger.
   useEffect(() => {
     if (!selectedDate || !pricingColRef.current) return;
     if (typeof window === "undefined") return;
@@ -92,10 +93,38 @@ export default function BoatPricingSection({
 
   const dayLabel = selectedDate ? formatDayLabel(selectedDate, language, isMobile) : "";
 
-  // Pick a date from inside the bottom sheet and auto-close it.
-  const handleDateFromSheet = (date: Date) => {
-    onDateSelect(date);
-    setSheetOpen(false);
+  // min / max bounds for the native date picker. Today through end of operational season.
+  const { todayKey, maxKey } = useMemo(() => {
+    const now = new Date();
+    const t0 = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    // If we're past the end of this season, allow next season instead.
+    const year = now.getMonth() + 1 > SEASON_END_MONTH ? now.getFullYear() + 1 : now.getFullYear();
+    const lastDay = new Date(year, SEASON_END_MONTH, 0).getDate();
+    const tMax = `${year}-${String(SEASON_END_MONTH).padStart(2, "0")}-${String(lastDay).padStart(2, "0")}`;
+    return { todayKey: t0, maxKey: tMax };
+  }, []);
+
+  const handleNativeDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (!val) return;
+    const [y, m, d] = val.split("-").map(Number);
+    onDateSelect(new Date(y, m - 1, d));
+  };
+
+  const openNativeDatePicker = () => {
+    const el = nativeDateInputRef.current;
+    if (!el) return;
+    // Modern browsers expose showPicker(); fall back to focus()+click() on older ones.
+    if (typeof el.showPicker === "function") {
+      try {
+        el.showPicker();
+        return;
+      } catch {
+        // showPicker can throw if not triggered by user gesture in some envs
+      }
+    }
+    el.focus();
+    el.click();
   };
 
   return (
@@ -105,14 +134,12 @@ export default function BoatPricingSection({
           {/* Calendar — left column on tablet+, compact trigger + bottom sheet on mobile */}
           <div className="md:max-w-none max-w-md mx-auto md:mx-0 w-full">
             {isMobile ? (
-              <>
+              <div className="relative">
                 <button
                   type="button"
-                  onClick={() => setSheetOpen(true)}
+                  onClick={openNativeDatePicker}
                   className="w-full bg-background border-2 border-border rounded-lg px-4 py-3 flex items-center justify-between gap-3 hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 transition-colors"
                   data-testid="button-open-calendar"
-                  aria-haspopup="dialog"
-                  aria-expanded={sheetOpen}
                 >
                   <span className="flex items-center gap-2 min-w-0">
                     <Calendar className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
@@ -122,19 +149,21 @@ export default function BoatPricingSection({
                   </span>
                   <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" aria-hidden="true" />
                 </button>
-                <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-                  <SheetContent side="bottom" className="max-h-[85vh] overflow-y-auto">
-                    <SheetTitle className="text-base font-semibold mb-4">
-                      {t.boatDetail.checkAvailability}
-                    </SheetTitle>
-                    <AvailabilityCalendar
-                      boatId={boatId}
-                      selectedDate={selectedDate}
-                      onDateSelect={handleDateFromSheet}
-                    />
-                  </SheetContent>
-                </Sheet>
-              </>
+                {/* Native OS date picker, visually hidden but reachable by tap on browsers
+                    that don't honor showPicker(). Positioned over the button so a tap
+                    falls through to the input on older Safari versions. */}
+                <input
+                  ref={nativeDateInputRef}
+                  type="date"
+                  value={selectedDate ? toDateKey(selectedDate) : ""}
+                  min={todayKey}
+                  max={maxKey}
+                  onChange={handleNativeDateChange}
+                  aria-label={t.boatDetail.checkAvailability}
+                  className="absolute inset-0 w-full h-full opacity-0 pointer-events-none"
+                  tabIndex={-1}
+                />
+              </div>
             ) : (
               <AvailabilityCalendar
                 boatId={boatId}

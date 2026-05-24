@@ -531,6 +531,8 @@ export function registerRobotsRoutes(app: Express): void {
         },
       ],
       openapi: `${BASE_URL}/openapi.json`,
+      agent_skill: `${BASE_URL}/.well-known/skills/booking.skill.json`,
+      hf_dataset: "https://huggingface.co/datasets/costabravarentaboat/boat-rental-blanes",
       llms_txt: `${BASE_URL}/llms.txt`,
       llms_full_txt: `${BASE_URL}/llms-full.txt`,
       ai_context: `${BASE_URL}/api/ai-context`,
@@ -572,6 +574,24 @@ export function registerRobotsRoutes(app: Express): void {
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.setHeader("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
     res.json(manifest);
+  });
+
+  // Agent skill package — declarative description of how an agent should use
+  // our MCP server (workflow, limits, disambiguation against competitors).
+  // Frontier convention; served as JSON for now. When Anthropic ships a
+  // formal Skills binary format we'll add a /.well-known/skills/booking.skill
+  // alias that returns the zipped manifest.
+  app.get("/.well-known/skills/booking.skill.json", (_req, res) => {
+    try {
+      const p = path.resolve(process.cwd(), "client/public/.well-known/skills/booking.skill.json");
+      const content = fs.readFileSync(p, "utf-8");
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
+      res.send(content);
+    } catch (error) {
+      logger.warn("[robots] booking.skill.json missing", { error: error instanceof Error ? error.message : String(error) });
+      res.status(404).json({ error: "skill manifest not found" });
+    }
   });
 
   // RFC 9116 security disclosure file. Explicit handler because some
@@ -896,6 +916,8 @@ export function registerRobotsRoutes(app: Express): void {
         openapi: `${BASE_URL}/openapi.json`,
         mcpServer: `${BASE_URL}/api/mcp/public`,
         agentManifest: `${BASE_URL}/.well-known/agent.json`,
+        agentSkill: `${BASE_URL}/.well-known/skills/booking.skill.json`,
+        hfDataset: "https://huggingface.co/datasets/costabravarentaboat/boat-rental-blanes",
       };
 
       res.setHeader("Content-Type", "application/ld+json; charset=utf-8");

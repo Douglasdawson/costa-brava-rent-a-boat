@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,12 +22,40 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
-import { Loader2 } from "lucide-react";
+import { Loader2, TrendingUp, TrendingDown } from "lucide-react";
 import {
   WEEKDAY_LABELS,
   type PricingOverride,
   type PricingOverrideFormData,
 } from "./types";
+import {
+  calculatePricingBreakdown,
+  type Duration,
+  type PricingOverrideRule,
+} from "@shared/pricing";
+import { BOAT_DATA } from "@shared/boatData";
+
+const PREVIEW_DURATIONS: Duration[] = ["1h", "2h", "4h", "8h"];
+
+function pickPreviewDate(
+  dateStart: string,
+  dateEnd: string,
+  weekdayFilter: number[] | null
+): Date | null {
+  if (!dateStart) return null;
+  const start = new Date(dateStart + "T12:00:00");
+  const end = new Date(dateEnd + "T12:00:00");
+  if (isNaN(start.getTime()) || isNaN(end.getTime()) || start > end) return null;
+  const cursor = new Date(start);
+  while (cursor <= end) {
+    const wd = cursor.getDay();
+    if (!weekdayFilter || weekdayFilter.length === 0 || weekdayFilter.includes(wd)) {
+      return new Date(cursor);
+    }
+    cursor.setDate(cursor.getDate() + 1);
+  }
+  return null;
+}
 
 interface BoatOption {
   id: string;
@@ -54,6 +82,117 @@ const emptyForm: PricingOverrideFormData = {
   notes: "",
   priority: 0,
 };
+
+interface OverridePreviewProps {
+  form: PricingOverrideFormData;
+  restrictWeekdays: boolean;
+}
+
+function OverridePreview({ form, restrictWeekdays }: OverridePreviewProps) {
+  const candidate = useMemo<PricingOverrideRule | null>(() => {
+    const value = parseFloat(form.adjustmentValue);
+    if (!form.dateStart || !form.dateEnd || Number.isNaN(value) || value <= 0) return null;
+    return {
+      id: "preview",
+      boatId: form.boatId,
+      dateStart: form.dateStart,
+      dateEnd: form.dateEnd,
+      weekdayFilter: restrictWeekdays ? form.weekdayFilter : null,
+      direction: form.direction,
+      adjustmentType: form.adjustmentType,
+      adjustmentValue: value,
+      priority: form.priority,
+      label: form.label || "Preview",
+      isActive: true,
+      createdAt: new Date(),
+    };
+  }, [form, restrictWeekdays]);
+
+  const sampleDate = useMemo(
+    () => pickPreviewDate(form.dateStart, form.dateEnd, restrictWeekdays ? form.weekdayFilter : null),
+    [form.dateStart, form.dateEnd, form.weekdayFilter, restrictWeekdays]
+  );
+
+  const boatsToPreview = useMemo(() => {
+    const all = Object.values(BOAT_DATA);
+    if (form.boatId) {
+      const one = all.find((b) => b.id === form.boatId);
+      return one ? [one] : [];
+    }
+    return all.slice(0, 5);
+  }, [form.boatId]);
+
+  if (!candidate || !sampleDate || boatsToPreview.length === 0) {
+    return (
+      <div className="rounded-md border border-dashed p-3 text-xs text-muted-foreground">
+        Rellena fechas y valor para ver el impacto previsto.
+      </div>
+    );
+  }
+
+  const sampleLabel = sampleDate.toLocaleDateString("es-ES", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+
+  return (
+    <div className="rounded-md border p-3 space-y-2">
+      <p className="text-xs font-medium text-muted-foreground">
+        Impacto previsto · {sampleLabel}
+        {form.boatId ? "" : ` · primeros ${boatsToPreview.length} barcos`}
+      </p>
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="text-muted-foreground">
+              <th className="text-left font-medium pb-1.5 pr-2">Barco</th>
+              {PREVIEW_DURATIONS.map((d) => (
+                <th key={d} className="text-right font-medium pb-1.5 px-2">{d}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {boatsToPreview.map((boat) => (
+              <tr key={boat.id} className="border-t">
+                <td className="py-1.5 pr-2 truncate max-w-[160px]" title={boat.name}>
+                  {boat.name}
+                </td>
+                {PREVIEW_DURATIONS.map((d) => {
+                  let before = 0;
+                  let after = 0;
+                  try {
+                    before = calculatePricingBreakdown(boat.id, sampleDate, d, [], [], []).basePrice;
+                    after = calculatePricingBreakdown(boat.id, sampleDate, d, [], [], [candidate]).basePrice;
+                  } catch {
+                    return <td key={d} className="py-1.5 px-2 text-right text-muted-foreground">—</td>;
+                  }
+                  if (before <= 0) {
+                    return <td key={d} className="py-1.5 px-2 text-right text-muted-foreground">—</td>;
+                  }
+                  const isDown = after < before;
+                  const Arrow = isDown ? TrendingDown : TrendingUp;
+                  const colorClass = after === before
+                    ? "text-muted-foreground"
+                    : isDown
+                      ? "text-success"
+                      : "text-foreground";
+                  return (
+                    <td key={d} className={`py-1.5 px-2 text-right tabular-nums ${colorClass}`}>
+                      <span className="text-muted-foreground line-through mr-1">{before}€</span>
+                      <Arrow className="inline w-3 h-3 mx-0.5 -mt-0.5" aria-hidden="true" />
+                      <strong>{after}€</strong>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
 
 export function PricingOverrideModal({ open, onOpenChange, override }: PricingOverrideModalProps) {
   const { toast } = useToast();
@@ -345,6 +484,8 @@ export function PricingOverrideModal({ open, onOpenChange, override }: PricingOv
               placeholder="Razón del ajuste, contexto, etc."
             />
           </div>
+
+          <OverridePreview form={form} restrictWeekdays={restrictWeekdays} />
 
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>

@@ -1,11 +1,10 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, X, TrendingUp, TrendingDown, Calendar, ChevronDown } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { filterActivePrices } from "@shared/pricing";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { SEASON_END_MONTH } from "@shared/constants";
 import AvailabilityCalendar from "./AvailabilityCalendar";
@@ -178,12 +177,8 @@ export default function BoatPricingSection({
                 />
               </div>
             ) : (
-              <div key="season" className="animate-in fade-in duration-300">
-                <SeasonPricingMode
-                  boatData={boatData}
-                  requiresLicense={requiresLicense}
-                  translate={translate}
-                />
+              <div key="empty" className="animate-in fade-in duration-300">
+                <EmptyPricingState />
               </div>
             )}
           </div>
@@ -212,97 +207,15 @@ export default function BoatPricingSection({
   );
 }
 
-interface SeasonPricingModeProps {
-  boatData: Boat;
-  requiresLicense: boolean;
-  translate: (text: string) => string;
-}
-
-function SeasonPricingMode({ boatData, requiresLicense }: SeasonPricingModeProps) {
+function EmptyPricingState() {
   const t = useTranslations();
-  const pricing = boatData.pricing;
-  const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
-
-  if (!pricing) {
-    return (
-      <p className="text-sm text-muted-foreground text-center italic">
-        {t.boatDetail.selectDateHint}
-      </p>
-    );
-  }
-
-  const seasonLabels: Record<"BAJA" | "MEDIA" | "ALTA", string> = {
-    BAJA: t.boatDetail.seasonLow,
-    MEDIA: t.boatDetail.seasonMid,
-    ALTA: t.boatDetail.seasonHigh,
-  };
-  const seasonPeriods: Record<"BAJA" | "MEDIA" | "ALTA", string> = {
-    BAJA: t.boatDetail.periodLow,
-    MEDIA: t.boatDetail.periodMid,
-    ALTA: t.boatDetail.periodHigh,
-  };
-
   return (
-    <div className="space-y-4">
-      <div className="text-center">
-        <h3 className="text-base font-semibold font-heading mb-1">
-          {t.boatDetail.pricesBySeason}
-        </h3>
-        <p className="text-xs text-muted-foreground italic">{t.boatDetail.selectDateHint}</p>
-      </div>
-
-      <div className="flex flex-wrap justify-center gap-2">
-        {(["BAJA", "MEDIA", "ALTA"] as const)
-          .filter((s) => s in pricing)
-          .map((season) => (
-            <Button
-              key={season}
-              variant={selectedSeason === season ? "default" : "outline"}
-              onClick={() => setSelectedSeason(season)}
-              className="text-sm"
-              data-testid={`button-season-${season.toLowerCase()}`}
-            >
-              {seasonLabels[season]}
-            </Button>
-          ))}
-      </div>
-
-      <div className="bg-muted rounded-lg p-4 md:p-6">
-        <p className="text-sm text-muted-foreground mb-3 text-center">
-          {seasonPeriods[selectedSeason]}
-        </p>
-        <div className="flex flex-wrap justify-center gap-x-3 gap-y-6">
-          {Object.entries(filterActivePrices(pricing[selectedSeason].prices))
-            .sort((a, b) => parseInt(a[0]) - parseInt(b[0]))
-            .map(([duration, price]) => {
-              const isRecommended = !requiresLicense && duration === "4h";
-              return (
-                <div
-                  key={duration}
-                  className={`relative text-center p-3 rounded-lg w-[calc(50%-0.375rem)] sm:w-[160px] ${
-                    isRecommended
-                      ? "bg-background border-2 border-cta"
-                      : "bg-background border"
-                  }`}
-                >
-                  {isRecommended && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cta text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide">
-                      {t.boatDetail.recommendedBadge}
-                    </span>
-                  )}
-                  <div
-                    className={`font-bold tabular-nums ${
-                      isRecommended ? "text-xl text-primary" : "text-lg text-primary"
-                    }`}
-                  >
-                    {price}€
-                  </div>
-                  <div className="text-sm text-muted-foreground">{duration}</div>
-                </div>
-              );
-            })}
-        </div>
-      </div>
+    <div className="rounded-lg bg-muted p-8 text-center space-y-3">
+      <Calendar className="w-10 h-10 text-primary/40 mx-auto" aria-hidden="true" />
+      <h3 className="text-base font-semibold font-heading">{t.boatDetail.selectDateTitle}</h3>
+      <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+        {t.boatDetail.selectDateBody}
+      </p>
     </div>
   );
 }

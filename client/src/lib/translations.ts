@@ -766,13 +766,9 @@ export interface Translations {
     fuelIncluded: string;
     whatsappPrefill: string;
     locationSuffix: string;
-    pricesBySeason: string;
     seasonLow: string;
     seasonMid: string;
     seasonHigh: string;
-    periodLow: string;
-    periodMid: string;
-    periodHigh: string;
     priceIncludes: string;
     pricesForDay: string;
     backToSeasonPrices: string;
@@ -781,7 +777,8 @@ export interface Translations {
     specialRateDiscount: string;
     loadingPrices: string;
     noPricesForDate: string;
-    selectDateHint: string;
+    selectDateTitle: string;
+    selectDateBody: string;
     checkAvailability: string;
     recommendedBadge: string;
     viewsToday: string;

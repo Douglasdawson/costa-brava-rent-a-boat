@@ -442,7 +442,6 @@ export const es: Translations = {
     estimatedTotal: "Total estimado",
     basePrice: "Precio base",
     discountApplied: "Descuento aplicado",
-    earlyBirdDiscount: "Descuento early-bird -10%",
     flashDealDiscount: "Oferta flash -10%",
     priceConfirmedWhatsApp: "El precio final se confirma por WhatsApp",
     gdprConsent:

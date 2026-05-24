@@ -122,7 +122,7 @@ export interface BookingWizardMobileProps {
   getCodeDiscount: () => number;
   // Price & submit
   getBookingPrice: () => number | null;
-  autoDiscount: { type: 'early-bird' | 'flash-deal' | null; percentage: number; amount: number } | null;
+  autoDiscount: { type: 'flash-deal' | null; percentage: number; amount: number } | null;
   handleBookingSearch: () => Promise<void>;
   // Close the modal from inside the wizard (header X button).
   onClose?: () => void;
@@ -291,7 +291,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             discount={discount}
             discountLabel={props.validatedCode?.percentage ? `${props.validatedCode.code} (${props.validatedCode.percentage}%)` : undefined}
             autoDiscountAmount={props.autoDiscount?.type ? props.autoDiscount.amount : 0}
-            autoDiscountLabel={props.autoDiscount?.type === 'early-bird' ? props.t.booking.earlyBirdDiscount : props.autoDiscount?.type === 'flash-deal' ? props.t.booking.flashDealDiscount : undefined}
+            autoDiscountLabel={props.autoDiscount?.type === 'flash-deal' ? props.t.booking.flashDealDiscount : undefined}
             t={props.t}
             variant="mobile"
           />
@@ -1316,15 +1316,11 @@ function Step5Final(props: BookingWizardMobileProps) {
             <span className="font-bold text-primary text-base">{basePrice}€</span>
           </div>
         )}
-        {autoDiscount?.type && autoDiscountAmount > 0 && (
+        {autoDiscount?.type === 'flash-deal' && autoDiscountAmount > 0 && (
           <div className="flex justify-between items-center text-sm mt-2">
-            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1 ${
-              autoDiscount.type === 'early-bird'
-                ? 'bg-success/10 text-success'
-                : 'bg-popular/10 text-popular'
-            }`}>
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1 bg-popular/10 text-popular">
               <Tag className="w-3 h-3" aria-hidden="true" />
-              {autoDiscount.type === 'early-bird' ? t.booking.earlyBirdDiscount : t.booking.flashDealDiscount}
+              {t.booking.flashDealDiscount}
             </span>
             <span className="font-semibold text-success">-{autoDiscountAmount}€</span>
           </div>
@@ -1428,9 +1424,9 @@ function Step5Final(props: BookingWizardMobileProps) {
               <span className="text-sm font-medium opacity-90">{t.endowment?.yourPrice || t.booking.estimatedTotal}</span>
               <span className="text-2xl font-bold">{total}€</span>
             </div>
-            {autoDiscountAmount > 0 && autoDiscount?.type && (
+            {autoDiscountAmount > 0 && autoDiscount?.type === 'flash-deal' && (
               <p className="text-sm opacity-75 mt-1">
-                {autoDiscount.type === 'early-bird' ? t.booking.earlyBirdDiscount : t.booking.flashDealDiscount}: -{autoDiscountAmount}€
+                {t.booking.flashDealDiscount}: -{autoDiscountAmount}€
               </p>
             )}
             {discount > 0 && (

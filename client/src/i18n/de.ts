@@ -423,7 +423,6 @@ export const de: Translations = {
     estimatedTotal: "Geschätzter Gesamtbetrag",
     basePrice: "Grundpreis",
     discountApplied: "Rabatt angewendet",
-    earlyBirdDiscount: "Frühbucher-Rabatt -10%",
     flashDealDiscount: "Flash-Angebot -10%",
     priceConfirmedWhatsApp: "Der endgültige Preis wird per WhatsApp bestätigt",
     timeSuffix: "h",

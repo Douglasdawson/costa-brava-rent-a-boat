@@ -414,11 +414,9 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               }
               autoDiscountAmount={props.autoDiscount?.type ? props.autoDiscount.amount : 0}
               autoDiscountLabel={
-                props.autoDiscount?.type === "early-bird"
-                  ? t.booking.earlyBirdDiscount
-                  : props.autoDiscount?.type === "flash-deal"
-                    ? t.booking.flashDealDiscount
-                    : undefined
+                props.autoDiscount?.type === "flash-deal"
+                  ? t.booking.flashDealDiscount
+                  : undefined
               }
               t={t}
               variant="desktop"
@@ -1263,7 +1261,7 @@ interface Step5Props {
   totalExtrasPrice: number;
   discount: number;
   autoDiscount: {
-    type: "early-bird" | "flash-deal" | null;
+    type: "flash-deal" | null;
     percentage: number;
     amount: number;
   } | null;
@@ -1666,18 +1664,10 @@ function Step5Contact({
                 <span className="font-medium">+{totalExtrasPrice}€</span>
               </div>
             )}
-            {autoDiscountAmount > 0 && autoDiscount?.type && (
+            {autoDiscountAmount > 0 && autoDiscount?.type === "flash-deal" && (
               <div className="flex justify-between text-sm">
-                <span
-                  className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                    autoDiscount.type === "early-bird"
-                      ? "bg-success/10 text-success"
-                      : "bg-popular/10 text-popular"
-                  }`}
-                >
-                  {autoDiscount.type === "early-bird"
-                    ? t.booking.earlyBirdDiscount
-                    : t.booking.flashDealDiscount}
+                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-popular/10 text-popular">
+                  {t.booking.flashDealDiscount}
                 </span>
                 <span className="font-medium text-success">-{autoDiscountAmount}€</span>
               </div>

@@ -1,16 +1,14 @@
 /**
  * Automatic discount calculation for booking flow.
  *
- * Two mutually exclusive discounts (early-bird takes priority):
- *
- * 1. Early-bird (-10%): booking 7+ days in advance, LOW season only.
- * 2. Flash deal (-10%): booking for TOMORROW with no existing bookings
- *    for that day, LOW or MID season only.
+ * Flash deal (-10%): booking for TOMORROW with no existing bookings
+ * for that day, LOW or MID season only. Last-minute fill, not advertised
+ * — surfaces in the wizard when the conditions happen to match.
  */
 
 import type { Season } from './pricing';
 
-export type AutoDiscountType = 'early-bird' | 'flash-deal';
+export type AutoDiscountType = 'flash-deal';
 
 export interface AutoDiscountResult {
   type: AutoDiscountType | null;
@@ -30,17 +28,6 @@ function getSeasonForMonth(month: number): Season | null {
   if (month >= 4 && month <= 6) return 'BAJA';
   if (month >= 9 && month <= 10) return 'BAJA';
   return null; // off-season
-}
-
-/**
- * Calculate the number of full days between two YYYY-MM-DD date strings.
- * Positive if bookingDate is in the future relative to today.
- */
-function daysBetween(todayStr: string, bookingDateStr: string): number {
-  const today = new Date(todayStr + 'T00:00:00');
-  const booking = new Date(bookingDateStr + 'T00:00:00');
-  const diffMs = booking.getTime() - today.getTime();
-  return Math.round(diffMs / (1000 * 60 * 60 * 24));
 }
 
 /**
@@ -77,14 +64,6 @@ export function calculateAutoDiscount(params: {
 
   // No discounts outside operational season or in ALTA
   if (!season || season === 'ALTA') return noDiscount;
-
-  const daysInAdvance = daysBetween(today, bookingDate);
-
-  // Early-bird: 7+ days in advance, LOW season only
-  if (daysInAdvance >= 7 && season === 'BAJA') {
-    const amount = Math.round((basePrice * DISCOUNT_PERCENTAGE) / 100);
-    return { type: 'early-bird', percentage: DISCOUNT_PERCENTAGE, amount };
-  }
 
   // Flash deal: booking is for tomorrow, no existing bookings, LOW or MID season
   if (bookingDate === getTomorrow(today) && existingBookingsForDate === 0) {

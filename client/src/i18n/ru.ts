@@ -420,7 +420,6 @@ export const ru: Translations = {
     estimatedTotal: "Примерная сумма",
     basePrice: "Базовая цена",
     discountApplied: "Скидка применена",
-    earlyBirdDiscount: "Скидка за раннее бронирование -10%",
     flashDealDiscount: "Флеш-скидка -10%",
     priceConfirmedWhatsApp: "Окончательная цена подтверждается в WhatsApp",
     timeSuffix: "h",

@@ -1,66 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { calculateAutoDiscount } from "./discounts";
 
-describe("Early-bird discounts", () => {
-  it("gives 10% for 7+ days advance in LOW season (BAJA)", () => {
-    const result = calculateAutoDiscount({
-      bookingDate: "2026-05-20",
-      today: "2026-05-10",
-      basePrice: 150,
-      existingBookingsForDate: 0,
-    });
-    expect(result.type).toBe("early-bird");
-    expect(result.percentage).toBe(10);
-    expect(result.amount).toBe(15);
-  });
-
-  it("gives 10% for exactly 7 days advance in BAJA", () => {
-    const result = calculateAutoDiscount({
-      bookingDate: "2026-06-17",
-      today: "2026-06-10",
-      basePrice: 200,
-      existingBookingsForDate: 3,
-    });
-    expect(result.type).toBe("early-bird");
-    expect(result.percentage).toBe(10);
-    expect(result.amount).toBe(20);
-  });
-
-  it("gives no discount for 6 days advance (below threshold)", () => {
-    const result = calculateAutoDiscount({
-      bookingDate: "2026-05-16",
-      today: "2026-05-10",
-      basePrice: 150,
-      existingBookingsForDate: 0,
-    });
-    expect(result.type).toBeNull();
-    expect(result.percentage).toBe(0);
-    expect(result.amount).toBe(0);
-  });
-
-  it("gives no early-bird discount for MID season (July)", () => {
-    const result = calculateAutoDiscount({
-      bookingDate: "2026-07-20",
-      today: "2026-07-01",
-      basePrice: 200,
-      existingBookingsForDate: 0,
-    });
-    // 19 days advance but MEDIA season -> no early-bird (early-bird is BAJA only)
-    expect(result.type).toBeNull();
-    expect(result.percentage).toBe(0);
-  });
-
-  it("rounds the discount amount to nearest integer", () => {
-    const result = calculateAutoDiscount({
-      bookingDate: "2026-05-20",
-      today: "2026-05-10",
-      basePrice: 115,
-      existingBookingsForDate: 0,
-    });
-    expect(result.amount).toBe(12); // Math.round(115 * 10 / 100) = 12
-  });
-});
-
 describe("Flash deals", () => {
   it("gives 10% for tomorrow with no bookings in LOW season", () => {
     const result = calculateAutoDiscount({
@@ -119,6 +59,41 @@ describe("Flash deals", () => {
     expect(result.type).toBeNull();
     expect(result.percentage).toBe(0);
   });
+
+  it("rounds the discount amount to nearest integer", () => {
+    const result = calculateAutoDiscount({
+      bookingDate: "2026-05-11",
+      today: "2026-05-10",
+      basePrice: 115,
+      existingBookingsForDate: 0,
+    });
+    expect(result.amount).toBe(12); // Math.round(115 * 10 / 100) = 12
+  });
+});
+
+describe("No discount for 7+ days advance (early-bird removed 2026-05-24)", () => {
+  it("returns null for 10 days advance in BAJA season", () => {
+    const result = calculateAutoDiscount({
+      bookingDate: "2026-05-20",
+      today: "2026-05-10",
+      basePrice: 150,
+      existingBookingsForDate: 0,
+    });
+    expect(result.type).toBeNull();
+    expect(result.percentage).toBe(0);
+    expect(result.amount).toBe(0);
+  });
+
+  it("returns null for 19 days advance in MEDIA season", () => {
+    const result = calculateAutoDiscount({
+      bookingDate: "2026-07-20",
+      today: "2026-07-01",
+      basePrice: 200,
+      existingBookingsForDate: 0,
+    });
+    expect(result.type).toBeNull();
+    expect(result.percentage).toBe(0);
+  });
 });
 
 describe("HIGH season (ALTA - August)", () => {
@@ -157,19 +132,5 @@ describe("Off-season (November-March)", () => {
     expect(result.type).toBeNull();
     expect(result.percentage).toBe(0);
     expect(result.amount).toBe(0);
-  });
-});
-
-describe("Early-bird takes priority over flash deal", () => {
-  it("returns early-bird when both conditions match (7+ days, BAJA, tomorrow impossible at 7+ days)", () => {
-    // At 7+ days advance, it can't be "tomorrow", so they're mutually exclusive by design.
-    // But if somehow both could apply, early-bird is checked first.
-    const result = calculateAutoDiscount({
-      bookingDate: "2026-05-20",
-      today: "2026-05-10",
-      basePrice: 100,
-      existingBookingsForDate: 0,
-    });
-    expect(result.type).toBe("early-bird");
   });
 });

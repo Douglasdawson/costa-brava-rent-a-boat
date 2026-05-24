@@ -816,7 +816,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     return seasonPricing?.prices[selectedDuration] || null;
   }, [selectedBoatInfo, selectedDuration, selectedDate]);
 
-  // Fetch auto-discount (early-bird / flash deal) when boat, date, and price are known
+  // Fetch auto-discount (flash deal) when boat, date, and price are known
   const { data: autoDiscount } = useQuery<AutoDiscountResult>({
     queryKey: ["/api/auto-discount/check", selectedBoat, selectedDate, currentBasePrice],
     queryFn: async () => {
@@ -1398,10 +1398,8 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     const separator = '┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄';
 
     let autoDiscountBlock = '';
-    if (autoDiscount?.type) {
-      const label = autoDiscount.type === 'early-bird'
-        ? (isSpanish ? 'Descuento early-bird' : 'Early-bird discount')
-        : (isSpanish ? 'Oferta flash' : 'Flash deal');
+    if (autoDiscount?.type === 'flash-deal') {
+      const label = isSpanish ? 'Oferta flash' : 'Flash deal';
       autoDiscountBlock = `\n\n🏷️ *${label}*\n-${autoDiscountAmount}€ (-10%)`;
     }
 

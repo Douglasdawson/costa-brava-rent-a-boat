@@ -484,7 +484,6 @@ export interface Translations {
     estimatedTotal: string;
     basePrice: string;
     discountApplied: string;
-    earlyBirdDiscount: string;
     flashDealDiscount: string;
     priceConfirmedWhatsApp: string;
     gdprConsent: string;

@@ -416,7 +416,6 @@ export const en: Translations = {
     estimatedTotal: "Estimated total",
     basePrice: "Base price",
     discountApplied: "Discount applied",
-    earlyBirdDiscount: "Early-bird discount -10%",
     flashDealDiscount: "Flash deal -10%",
     priceConfirmedWhatsApp: "Final price confirmed by WhatsApp",
     timeSuffix: "h",

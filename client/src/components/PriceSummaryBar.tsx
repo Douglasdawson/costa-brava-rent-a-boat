@@ -9,7 +9,7 @@ interface PriceSummaryBarProps {
   extrasPrice: number;
   discount: number;
   discountLabel?: string;
-  /** Auto-discount (early-bird / flash deal) */
+  /** Auto-discount (flash deal) */
   autoDiscountAmount?: number;
   autoDiscountLabel?: string;
   t: Translations;

@@ -1,0 +1,117 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.7905,
+          41.6742
+        ]
+      },
+      "properties": {
+        "name": "Sa Palomera",
+        "descEs": "Roca emblemática que separa la playa de Blanes del puerto. Aguas cristalinas y poco profundas. Ideal para fondear cerca."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.802,
+          41.6727
+        ]
+      },
+      "properties": {
+        "name": "Sa Forcanera",
+        "descEs": "Cala pequeña a 5 min del puerto. Fondo arenoso, agua transparente."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.806,
+          41.6735
+        ]
+      },
+      "properties": {
+        "name": "Cala Sant Francesc (Blanes)",
+        "descEs": "Cala protegida con bosque mediterráneo. Chiringuito en playa. Excelente para snorkel."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.812,
+          41.682
+        ]
+      },
+      "properties": {
+        "name": "Cala de s'Agulla",
+        "descEs": "Cala secreta a 12 min del puerto. Praderas de Posidonia."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.8185,
+          41.686
+        ]
+      },
+      "properties": {
+        "name": "Cala Treumal",
+        "descEs": "Conecta Santa Cristina con Fenals. Aguas turquesa."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.826,
+          41.6906
+        ]
+      },
+      "properties": {
+        "name": "Playa de Santa Cristina",
+        "descEs": "Playa con pinos hasta la arena. Ermita visible. Mar tranquilo."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.837,
+          41.6938
+        ]
+      },
+      "properties": {
+        "name": "Cala Sa Boadella",
+        "descEs": "Playa naturista. Una de las más bonitas de la Costa Brava."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.8466,
+          41.6988
+        ]
+      },
+      "properties": {
+        "name": "Playa de Fenals",
+        "descEs": "Límite norte para barcos sin licencia (2 NM). Alternativa tranquila a Lloret."
+      }
+    }
+  ]
+}

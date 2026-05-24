@@ -984,6 +984,12 @@ export function registerRobotsRoutes(app: Express): void {
           "Latest blog posts, boats and route guides from Costa Brava Rent a Boat. Built for ChatGPT Search, Perplexity and Claude to discover fresh content.",
         language: "en",
         authors: [{ name: "Costa Brava Rent a Boat", url: BASE_URL }],
+        // WebSub hubs — subscribers can register here for push notifications
+        // when this feed updates. Standard PubSubHubbub protocol.
+        hubs: [
+          { type: "WebSub", url: "https://pubsubhubbub.appspot.com/" },
+          { type: "WebSub", url: "https://websub.rocks/hub" },
+        ],
         items: [...blogItems, ...boatItems],
       };
       res.setHeader("Content-Type", "application/feed+json; charset=utf-8");
@@ -995,18 +1001,43 @@ export function registerRobotsRoutes(app: Express): void {
     }
   });
 
-  // Lightweight Q&A search over FAQs + boats + glossary. MVP keyword scoring,
-  // returns matched items with URL anchors so LLMs can cite specific answers.
+  // Hybrid Q&A search — BM25 + dense embeddings + Reciprocal Rank Fusion.
+  // Uses the ai_search_index table populated by server/services/aiSearchIndex.ts
+  // (rebuilt nightly). Falls back to in-memory keyword scoring across BOAT_DATA
+  // + NAUTICAL_GLOSSARY_ES + seoFaqs if the table is empty (cold start).
   app.get("/api/ai-search", async (req, res) => {
     try {
-      const q = typeof req.query.q === "string" ? req.query.q.trim().toLowerCase() : "";
+      const q = typeof req.query.q === "string" ? req.query.q.trim() : "";
       const limit = Math.min(Math.max(parseInt(String(req.query.limit ?? "10"), 10) || 10, 1), 50);
+      const lang = typeof req.query.lang === "string" ? req.query.lang.toLowerCase() : undefined;
       if (q.length < 2) {
         res.setHeader("Content-Type", "application/json; charset=utf-8");
         res.status(400).json({ error: "Provide ?q=<at least 2 characters>" });
         return;
       }
-      const tokens = q.split(/\s+/).filter(Boolean);
+
+      // Try hybrid search first
+      try {
+        const { hybridSearch } = await import("../services/aiSearchIndex");
+        const result = await hybridSearch(q, { limit, lang });
+        if (result.results.length > 0 || result.totalCandidates > 0) {
+          res.setHeader("Content-Type", "application/json; charset=utf-8");
+          res.setHeader("Cache-Control", "public, max-age=300");
+          res.json({
+            ...result,
+            citationHint:
+              "Cite results with their `url` field. For atomic facts use https://www.costabravarentaboat.com/ai-citations with section anchors.",
+          });
+          return;
+        }
+      } catch (hybridErr) {
+        logger.warn("[ai-search] hybrid lookup failed, falling back to keyword", {
+          error: hybridErr instanceof Error ? hybridErr.message : String(hybridErr),
+        });
+      }
+
+      // Fallback: legacy in-memory keyword search (no embeddings required).
+      const tokens = q.toLowerCase().split(/\s+/).filter(Boolean);
       const score = (text: string): number => {
         if (!text) return 0;
         const lower = text.toLowerCase();
@@ -1017,7 +1048,6 @@ export function registerRobotsRoutes(app: Express): void {
         }
         return s;
       };
-
       interface Hit {
         type: "boat" | "glossary" | "faq";
         title: string;
@@ -1026,34 +1056,15 @@ export function registerRobotsRoutes(app: Express): void {
         score: number;
       }
       const hits: Hit[] = [];
-
       for (const b of Object.values(BOAT_DATA)) {
         const blob = [b.name, b.subtitle, b.description, ...(b.features ?? []), ...(b.equipment ?? [])].join(" ");
         const s = score(blob);
-        if (s > 0) {
-          hits.push({
-            type: "boat",
-            title: b.name,
-            snippet: b.description.slice(0, 240),
-            url: `${BASE_URL}/es/barco/${b.id}`,
-            score: s,
-          });
-        }
+        if (s > 0) hits.push({ type: "boat", title: b.name, snippet: b.description.slice(0, 240), url: `${BASE_URL}/es/barco/${b.id}`, score: s });
       }
-
       for (const g of NAUTICAL_GLOSSARY_ES) {
         const s = score(`${g.term} ${g.definition}`);
-        if (s > 0) {
-          hits.push({
-            type: "glossary",
-            title: g.term,
-            snippet: g.definition.slice(0, 240),
-            url: `${BASE_URL}/glosario#${g.term.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
-            score: s,
-          });
-        }
+        if (s > 0) hits.push({ type: "glossary", title: g.term, snippet: g.definition.slice(0, 240), url: `${BASE_URL}/glosario#${g.term.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, score: s });
       }
-
       try {
         const { db } = await import("../db");
         const { seoFaqs } = await import("../../shared/schema");
@@ -1061,31 +1072,19 @@ export function registerRobotsRoutes(app: Express): void {
         const faqRows = await db.select().from(seoFaqs).where(eq(seoFaqs.active, true));
         for (const f of faqRows) {
           const s = score(`${f.question} ${f.answer}`);
-          if (s > 0) {
-            hits.push({
-              type: "faq",
-              title: f.question,
-              snippet: f.answer.slice(0, 240),
-              url: `${BASE_URL}/${f.language === "es" ? "" : f.language + "/"}faq`,
-              score: s,
-            });
-          }
+          if (s > 0) hits.push({ type: "faq", title: f.question, snippet: f.answer.slice(0, 240), url: `${BASE_URL}/${f.language === "es" ? "" : f.language + "/"}faq`, score: s });
         }
-      } catch (faqErr) {
-        logger.warn("[ai-search] FAQ lookup failed (non-fatal)", {
-          error: faqErr instanceof Error ? faqErr.message : String(faqErr),
-        });
+      } catch {
+        // best-effort
       }
-
       hits.sort((a, b) => b.score - a.score);
-      const top = hits.slice(0, limit);
-
       res.setHeader("Content-Type", "application/json; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=300");
       res.json({
         query: q,
+        retrievalMethod: "keyword_fallback",
         totalHits: hits.length,
-        results: top,
+        results: hits.slice(0, limit),
         citationHint:
           "Cite results with their `url` field. For atomic facts use https://www.costabravarentaboat.com/ai-citations with section anchors.",
       });

@@ -2727,3 +2727,29 @@ export const citationExperiments = pgTable("citation_experiments", {
 
 export type CitationExperiment = typeof citationExperiments.$inferSelect;
 export type InsertCitationExperiment = typeof citationExperiments.$inferInsert;
+
+// Hybrid search index — pre-computed text + dense embedding for every
+// indexable item (boat, route, FAQ, glossary term, blog post). Populated
+// by server/services/aiSearchIndex.ts (full reindex daily + on-demand
+// admin endpoint). Used by /api/ai-search to combine BM25 (PostgreSQL
+// full-text) with cosine similarity on `embedding`, fused via RRF.
+export const aiSearchIndex = pgTable("ai_search_index", {
+  id: serial("id").primaryKey(),
+  sourceType: varchar("source_type", { length: 16 }).notNull(),  // "boat" | "route" | "faq" | "glossary" | "blog"
+  sourceId: varchar("source_id", { length: 128 }).notNull(),      // boat.id / route.id / faq.id / etc.
+  lang: varchar("lang", { length: 5 }).notNull().default("es"),
+  title: text("title").notNull(),
+  body: text("body").notNull(),                                   // full searchable text
+  snippet: text("snippet").notNull(),                             // ≤240 chars for response
+  url: text("url").notNull(),
+  embedding: json("embedding").$type<number[]>(),                 // null if generation failed; row still BM25-searchable
+  embeddingModel: varchar("embedding_model", { length: 64 }),
+  indexedAt: timestamp("indexed_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  sourceUnique: uniqueIndex("ai_search_index_source_unique").on(table.sourceType, table.sourceId, table.lang),
+  langIdx: index("ai_search_index_lang_idx").on(table.lang),
+  sourceTypeIdx: index("ai_search_index_source_type_idx").on(table.sourceType),
+}));
+
+export type AiSearchIndexRow = typeof aiSearchIndex.$inferSelect;
+export type InsertAiSearchIndex = typeof aiSearchIndex.$inferInsert;

@@ -1,11 +1,31 @@
-// IndexNow API client for instant indexing notifications
+// IndexNow API client for instant indexing notifications.
+//
+// The shared api.indexnow.org endpoint fans out to participating engines
+// (Bing, Yandex, Seznam, Naver). We also POST directly to Bing and Yandex
+// because the shared endpoint sometimes has higher propagation latency,
+// and these are the two engines that move citation volume for us.
 import { logger } from "../lib/logger";
 import { SEO_CONFIG } from "./config";
 
-const INDEXNOW_ENDPOINT = "https://api.indexnow.org/IndexNow";
+const INDEXNOW_ENDPOINTS = [
+  "https://api.indexnow.org/IndexNow",   // shared — fans out to Bing/Yandex/Seznam/Naver
+  "https://www.bing.com/indexnow",        // direct — same payload accepted
+  "https://yandex.com/indexnow",          // direct — same payload accepted
+];
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || "";
 
-// Batch notify IndexNow of URL changes (max 10,000 per call)
+// WebSub hubs we ping when /feed-llms.json updates. Public hubs that
+// fan-out notifications to any subscribed consumer (typically the
+// PubSubHubbub clients of Bing/Google content discovery indexers).
+const WEBSUB_HUBS = [
+  "https://pubsubhubbub.appspot.com/",
+  "https://websub.rocks/hub",
+];
+
+// Batch notify IndexNow of URL changes (max 10,000 per call).
+// Fans out to all configured endpoints (shared api.indexnow.org + direct
+// Bing + direct Yandex) in parallel — each engine succeeds or fails
+// independently so one outage doesn't block the others.
 export async function notifyIndexNow(urls: string[], retryCount = 0): Promise<void> {
   if (!INDEXNOW_KEY) {
     logger.debug("[SEO:IndexNow] Skipped — INDEXNOW_KEY not set");
@@ -15,35 +35,70 @@ export async function notifyIndexNow(urls: string[], retryCount = 0): Promise<vo
 
   const baseUrl = SEO_CONFIG.baseUrl;
   const fullUrls = urls.map(u => u.startsWith("http") ? u : `${baseUrl}${u}`);
+  const body = JSON.stringify({
+    host: new URL(baseUrl).hostname,
+    key: INDEXNOW_KEY,
+    keyLocation: `${baseUrl}/${INDEXNOW_KEY}.txt`,
+    urlList: fullUrls.slice(0, 10000),
+  });
 
-  try {
-    const response = await fetch(INDEXNOW_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        host: new URL(baseUrl).hostname,
-        key: INDEXNOW_KEY,
-        keyLocation: `${baseUrl}/${INDEXNOW_KEY}.txt`,
-        urlList: fullUrls.slice(0, 10000),
-      }),
-    });
+  await Promise.all(
+    INDEXNOW_ENDPOINTS.map(async (endpoint) => {
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body,
+        });
+        if (response.ok || response.status === 202) {
+          logger.info("[SEO:IndexNow] Submission successful", { endpoint, urls: fullUrls.length, status: response.status });
+        } else if ((response.status === 429 || response.status >= 500) && retryCount < 1) {
+          logger.warn("[SEO:IndexNow] Retrying endpoint in 5s", { endpoint, status: response.status });
+          setTimeout(() => {
+            // Retry only the failing endpoint, not the whole fan-out.
+            void fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body }).catch(() => undefined);
+          }, 5000);
+        } else {
+          logger.warn("[SEO:IndexNow] Submission failed", { endpoint, status: response.status, statusText: response.statusText });
+        }
+      } catch (error) {
+        logger.warn("[SEO:IndexNow] Endpoint request failed", { endpoint, error: error instanceof Error ? error.message : String(error) });
+      }
+    }),
+  );
+}
 
-    if (response.ok || response.status === 202) {
-      logger.info("[SEO:IndexNow] Submission successful", { urls: fullUrls.length, status: response.status });
-    } else if ((response.status === 429 || response.status >= 500) && retryCount < 1) {
-      logger.warn("[SEO:IndexNow] Retrying in 5s", { status: response.status });
-      setTimeout(() => notifyIndexNow(urls, retryCount + 1), 5000);
-    } else {
-      logger.warn("[SEO:IndexNow] Submission failed", { status: response.status, statusText: response.statusText });
-    }
-  } catch (error) {
-    if (retryCount < 1) {
-      logger.warn("[SEO:IndexNow] Request failed, retrying in 5s", { error: error instanceof Error ? error.message : String(error) });
-      setTimeout(() => notifyIndexNow(urls, retryCount + 1), 5000);
-    } else {
-      logger.warn("[SEO:IndexNow] Request failed after retry", { error: error instanceof Error ? error.message : String(error) });
-    }
-  }
+/**
+ * WebSub publish — pings the configured hubs with our feed URL so subscribers
+ * are notified of the change. Standard PubSubHubbub protocol: POST with
+ * `hub.mode=publish&hub.url=<feed URL>`. Hubs fan out the notification to
+ * every subscribed crawler / indexer. Failures are non-fatal.
+ */
+export async function notifyWebSubHubs(
+  feedUrl: string = `${SEO_CONFIG.baseUrl}/feed-llms.json`,
+): Promise<void> {
+  await Promise.all(
+    WEBSUB_HUBS.map(async (hub) => {
+      try {
+        const body = new URLSearchParams({
+          "hub.mode": "publish",
+          "hub.url": feedUrl,
+        });
+        const res = await fetch(hub, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body.toString(),
+        });
+        if (res.ok || res.status === 204) {
+          logger.info("[SEO:WebSub] Hub notified", { hub, feedUrl, status: res.status });
+        } else {
+          logger.warn("[SEO:WebSub] Hub notification failed", { hub, status: res.status });
+        }
+      } catch (err) {
+        logger.warn("[SEO:WebSub] Hub request failed", { hub, err: err instanceof Error ? err.message : String(err) });
+      }
+    }),
+  );
 }
 
 // Safe wrapper with logging for page change notifications
@@ -121,6 +176,10 @@ export async function notifyAllSitemapUrls(): Promise<{ found: number; notified:
   }
 
   logger.info("[SEO:IndexNow] Notifying sitemap URLs", { count: allUrls.length });
-  await notifyIndexNow(allUrls);
+  // Fan out to IndexNow (Bing/Yandex/etc.) AND WebSub hubs in parallel.
+  await Promise.all([
+    notifyIndexNow(allUrls),
+    notifyWebSubHubs(),
+  ]);
   return { found: allUrls.length, notified: allUrls.length };
 }

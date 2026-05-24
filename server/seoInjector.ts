@@ -2422,7 +2422,13 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: "FAQ", url: `${BASE_URL}/faq` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [faqPage, breadcrumb] }, availableLanguages };
+      // Speakable: voice assistants and AI engines can lift the answer text
+      // verbatim. Targets the answer body of every Question/Answer block.
+      const speakable = {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["h1", "h2", "[data-speakable]", ".faq-answer", "[data-faq-answer]"],
+      };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [{ ...faqPage, speakable }, breadcrumb] }, availableLanguages };
     }
 
     // /testimonios - LocalBusiness with AggregateRating + individual Reviews
@@ -3098,7 +3104,31 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Routes" : "Rutas", url: `${BASE_URL}/rutas` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] }, availableLanguages };
+      // HowTo: paso-a-paso para planificar una ruta. AI agents que respondan
+      // "cómo planeo una ruta en barco" pueden surface exactly these steps.
+      const howTo = {
+        "@type": "HowTo",
+        "@id": `${BASE_URL}/rutas#howto`,
+        name: isEn ? "How to plan a boat route from Blanes" : "Cómo planificar una ruta en barco desde Blanes",
+        description: isEn
+          ? "Step-by-step guide to choosing a maritime route departing from Puerto de Blanes based on your boat type, time available and experience."
+          : "Guía paso a paso para elegir una ruta marítima desde el Puerto de Blanes según tu tipo de barco, tiempo disponible y experiencia.",
+        totalTime: "PT4H",
+        supply: [{ "@type": "HowToSupply", name: isEn ? "Sunscreen, water, swimwear, snacks" : "Crema solar, agua, bañador, snacks" }],
+        tool: [{ "@type": "HowToTool", name: isEn ? "Smartphone with marine weather app (Windy/Windguru)" : "Móvil con app de meteo marina (Windy/Windguru)" }],
+        step: [
+          { "@type": "HowToStep", position: 1, name: isEn ? "Check the morning weather window" : "Comprueba la ventana de tiempo matinal", text: isEn ? "Mornings 09:00-12:00 are calmest. From midday the southerly Garbí thermal wind picks up — return to port by 15:00 if you want flat seas." : "Las mañanas 09:00-12:00 son las más tranquilas. A mediodía suele entrar el térmico sur (Garbí); regresa al puerto antes de las 15:00 para mantener mar plana." },
+          { "@type": "HowToStep", position: 2, name: isEn ? "Pick a route within your boat's range" : "Elige una ruta dentro del alcance del barco", text: isEn ? "License-free boats: stay within 2 nautical miles, top destination Lloret de Mar (30 min). Licensed boats: full coast up to Tossa de Mar (30 min) and beyond." : "Barco sin licencia: hasta 2 millas náuticas, destino top Lloret de Mar (30 min). Con licencia: costa completa hasta Tossa de Mar (30 min) y más allá." },
+          { "@type": "HowToStep", position: 3, name: isEn ? "Plan anchoring stops" : "Planifica las paradas de fondeo", text: isEn ? "Sa Palomera (5 min), Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina (25 min), Fenals (30 min). Anchor on sandy bottom only — Posidonia seagrass is protected." : "Sa Palomera (5 min), Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina (25 min), Fenals (30 min). Fondea solo en arena — la Posidonia está protegida." },
+          { "@type": "HowToStep", position: 4, name: isEn ? "Plan fuel and return time" : "Planifica gasolina y hora de retorno", text: isEn ? "License-free boats consume ~2-3 L/h at cruising speed. 25-30 L tank lasts 8-10 h easily. Return 30 min before sunset for safe mooring." : "Barco sin licencia consume ~2-3 L/h a velocidad de crucero. Depósito 25-30 L da para 8-10 h sin problemas. Regresa 30 min antes del ocaso." },
+          { "@type": "HowToStep", position: 5, name: isEn ? "Bring snorkel gear + water" : "Lleva snorkel + agua", text: isEn ? "Most coves have crystal-clear rocky seabeds (Cala Brava and Cala Sant Francesc especially). Rent snorkel kit on board for 7.50 EUR if you didn't bring." : "La mayoría de calas tiene fondos rocosos cristalinos (especialmente Cala Brava y Cala Sant Francesc). Alquila equipo de snorkel a bordo por 7,50 EUR si no llevas." },
+        ],
+      };
+      const speakable = {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["h1", "h2", "h3", "[data-speakable]"],
+      };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, howTo, breadcrumb, speakable] }, availableLanguages };
     }
 
     // /galeria - CollectionPage + BreadcrumbList
@@ -3217,7 +3247,11 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           : "Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Barcos sin licencia desde 70€/hora (gasolina incluida). Barcos con licencia desde 160€/2h. Excursión privada con patrón desde 240€/2h. Tarifas temporada baja, media y alta.",
         { low: 70, high: 420 },
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, offerCatalog, breadcrumb] }, availableLanguages };
+      const speakable = {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["h1", "h2", "h3", ".pricing-amount", "[data-speakable]", "[data-pricing-amount]"],
+      };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, { ...faq, speakable }, offerCatalog, breadcrumb] }, availableLanguages };
     }
 
     // /alquiler-barcos-costa-brava - regional landing for the whole Costa Brava.

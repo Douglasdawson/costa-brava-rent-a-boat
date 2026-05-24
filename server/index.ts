@@ -14,6 +14,7 @@ import { config, isDev } from "./config";
 import { errorHandler, AppError } from "./middleware/errorHandler";
 import { csrfProtection } from "./middleware/csrf";
 import { aiBotLoggerMiddleware } from "./lib/aiBotLogger";
+import { aiBotRateLimitMiddleware } from "./lib/aiBotRateLimit";
 import { stopScheduler } from "./services/schedulerService";
 import { startSeoWorker, stopSeoWorker } from "./seo/worker";
 import { pool } from "./db";
@@ -66,9 +67,16 @@ app.use(cookieParser());
 
 // AI bot visit logger — records every hit from GPTBot/ClaudeBot/PerplexityBot
 // to the ai_bot_visits table. Fire-and-forget; never blocks the request.
-// Mounted before rate limiting so we capture the visit even if the bot is
-// throttled (gives us visibility into aggressive crawling patterns).
+// Mounted before the rate limiter so we still capture aggressive scrapers
+// that get throttled (the 429 statusCode is also written to the table).
 app.use(aiBotLoggerMiddleware);
+
+// Selective per-tier rate limit for AI crawlers. Generous for OpenAI /
+// Anthropic / Google-Extended / Perplexity (the engines that drive citations
+// to us). Tight for Bytespider / Amazonbot / CCBot etc. Human traffic is
+// passed through untouched. Allowlist for /robots.txt, /sitemap*.xml,
+// /llms.txt, /openapi.json so discovery files are always reachable.
+app.use(aiBotRateLimitMiddleware);
 
 // Security headers (disabled in development — CSP blocks HTTP localhost)
 if (!isDev) {

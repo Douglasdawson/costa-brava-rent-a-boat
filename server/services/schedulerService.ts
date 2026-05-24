@@ -641,6 +641,21 @@ export function startScheduler(): void {
     }
   }));
 
+  // AI search index reindex — refresh ai_search_index daily at 04:30 UTC.
+  // Only generates new embeddings for items that don't have one yet (idempotent).
+  // Full embedding cost ~$0.10/run with the current corpus of ~500 items.
+  scheduledTasks.push(cron.schedule("30 4 * * *", async () => {
+    try {
+      const { rebuildSearchIndex } = await import("./aiSearchIndex");
+      logger.info("[Scheduler] Running AI search index rebuild");
+      const result = await rebuildSearchIndex({ force: false });
+      logger.info("[Scheduler] AI search index rebuild complete", result);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] AI search index rebuild error", { error: msg });
+    }
+  }));
+
   logger.info("Scheduled services started: reminders (:00), flywheel (:10), thank-you (:30), hold cleanup (every 5min), abandoned recovery (:15/:45), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am), chatbot insights (Mon 6am), lead nurturing (every 2h at :20), GSC queries ETL (02:30/14:30), GA4 daily ETL (03:45), PSI collector (04:15), SERP snapshots (05:30), AI mentions probe (02:15)");
 }
 

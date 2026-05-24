@@ -59,6 +59,19 @@ export function registerAiMentionsRoutes(app: Express): void {
     }
   });
 
+  app.post("/api/admin/ai-search/reindex", requireAdminSession, async (req, res) => {
+    try {
+      const force = req.body?.force === true;
+      const { rebuildSearchIndex } = await import("../services/aiSearchIndex");
+      const result = await rebuildSearchIndex({ force });
+      res.json({ success: true, ...result });
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("[ai-search-index] manual rebuild failed", { error: msg });
+      res.status(500).json({ success: false, error: msg });
+    }
+  });
+
   app.post("/api/admin/ai-mentions/run-now", requireAdminSession, async (req, res) => {
     try {
       // Dynamic import to keep the schedulerService module decoupled from

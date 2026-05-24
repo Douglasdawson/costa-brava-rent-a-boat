@@ -49,6 +49,7 @@ import { registerAdminPricingOverridesRoutes } from "./admin-pricing-overrides";
 import { registerPricingRoutes } from "./pricing";
 import { registerOpenApiRoutes } from "./openapi";
 import { registerAiMentionsRoutes } from "./admin-ai-mentions";
+import { registerCitationExperimentsRoutes } from "./admin-citation-experiments";
 import { createSeoAutopilotRouter } from "../mcp/seo-autopilot";
 import { createPublicMcpRouter } from "../mcp/public";
 import { startScheduledServices } from "../services";
@@ -128,6 +129,10 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   // AI Mentions Monitor — admin dashboard endpoints (citation rate, share of
   // voice, sentiment). Cron in schedulerService runs the nightly probe.
   registerAiMentionsRoutes(app);
+
+  // Citation A/B testing — admin CRUD over citation_experiments, plus a
+  // results endpoint that runs a two-proportion z-test per variant pair.
+  registerCitationExperimentsRoutes(app);
 
   // SEO Autopilot — internal MCP server (bearer-token auth, rate-limited).
   // Mounted at /api/mcp/seo-autopilot — only external clients holding a token.

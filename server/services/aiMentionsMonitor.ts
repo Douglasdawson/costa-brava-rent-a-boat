@@ -340,6 +340,7 @@ export interface MonitorRunOptions {
 export async function runNightlyMonitor(opts: MonitorRunOptions = {}): Promise<{
   totalRuns: number;
   byEngine: Record<string, number>;
+  activeExperiments: number;
   durationMs: number;
 }> {
   const started = Date.now();
@@ -347,6 +348,33 @@ export async function runNightlyMonitor(opts: MonitorRunOptions = {}): Promise<{
   const prompts = ALL_PROMPTS.filter((p) => !opts.langs || opts.langs.includes(p.lang));
   const perEngineCap = opts.maxPromptsPerEngine ?? prompts.length;
   const counts: Record<string, number> = {};
+
+  // Discover active citation A/B experiments. For each (prompt, engine) we
+  // assign a variant deterministically so the citation_rate delta is
+  // attributable. Multiple experiments can run in parallel for different
+  // targets; we stamp the first matching variantId on the row.
+  let assignVariantFn: ((promptId: string) => string | null) | null = null;
+  try {
+    const { getActiveExperimentForTarget, assignVariant } = await import("./citationExperiments");
+    // The "monitor" target is a meta-target that simply tags every probe so
+    // we can A/B test e.g. llms.txt variants by toggling them server-side.
+    const exp = await getActiveExperimentForTarget("llms_txt_intro");
+    if (exp) {
+      const variants = exp.variants as Array<{ id: string; label: string; content: string }>;
+      assignVariantFn = (promptId: string) => {
+        try {
+          return assignVariant(exp.id, promptId, variants).id;
+        } catch {
+          return null;
+        }
+      };
+      logger.info("[ai-mentions] active experiment detected", { experimentId: exp.id, name: exp.name, variants: variants.length });
+    }
+  } catch (err) {
+    logger.warn("[ai-mentions] experiment lookup failed (continuing without variants)", {
+      error: err instanceof Error ? err.message : String(err),
+    });
+  }
 
   // Run engines concurrently, but probes within an engine sequentially to
   // respect per-API rate limits. Failures inside probeOne are swallowed so
@@ -356,7 +384,8 @@ export async function runNightlyMonitor(opts: MonitorRunOptions = {}): Promise<{
       counts[engine] = 0;
       const slice = prompts.slice(0, perEngineCap);
       for (const p of slice) {
-        await probeOne(engine, p, opts.variantId ?? null);
+        const variantId = opts.variantId ?? assignVariantFn?.(p.id) ?? null;
+        await probeOne(engine, p, variantId);
         counts[engine]++;
       }
     }),
@@ -364,6 +393,7 @@ export async function runNightlyMonitor(opts: MonitorRunOptions = {}): Promise<{
 
   const totalRuns = Object.values(counts).reduce((s, n) => s + n, 0);
   const durationMs = Date.now() - started;
-  logger.info("[ai-mentions] nightly monitor complete", { totalRuns, byEngine: counts, durationMs });
-  return { totalRuns, byEngine: counts, durationMs };
+  const activeExperiments = assignVariantFn ? 1 : 0;
+  logger.info("[ai-mentions] nightly monitor complete", { totalRuns, byEngine: counts, activeExperiments, durationMs });
+  return { totalRuns, byEngine: counts, activeExperiments, durationMs };
 }

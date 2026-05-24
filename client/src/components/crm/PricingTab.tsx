@@ -53,7 +53,7 @@ export function PricingTab({ adminToken: _adminToken }: PricingTabProps) {
           <p>· El precio final = tarifa base × temporada × recargo finde × override × cupón</p>
           <p>· Solo un override puede aplicar por fecha+barco. Si hay varios, gana el más específico (un barco concreto antes que «todos»), luego mayor prioridad, luego más reciente.</p>
           <p>· Eliminar un override lo desactiva (las reservas pasadas conservan el precio que pagaron).</p>
-          <p>· MVP: solo subidas. Las promociones a la baja llegarán en una próxima versión.</p>
+          <p>· Soporta subidas (recargo) y bajadas (promoción).</p>
         </CardContent>
       </Card>
 

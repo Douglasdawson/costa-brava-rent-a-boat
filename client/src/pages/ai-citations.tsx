@@ -198,6 +198,26 @@ export default function AiCitationsPage() {
           <h2 className="font-display text-2xl">Machine-readable endpoints</h2>
           <ul className="mt-3 space-y-2 text-sm">
             <li>
+              <a className="underline" href="/api/mcp/public">/api/mcp/public</a> —{" "}
+              <strong>MCP server</strong> (Model Context Protocol over HTTP, no auth). Tools:{" "}
+              <code className="rounded bg-muted px-1 text-xs">search_boats</code>,{" "}
+              <code className="rounded bg-muted px-1 text-xs">check_availability</code>,{" "}
+              <code className="rounded bg-muted px-1 text-xs">get_pricing_calendar</code>,{" "}
+              <code className="rounded bg-muted px-1 text-xs">list_routes</code>,{" "}
+              <code className="rounded bg-muted px-1 text-xs">get_faq</code>,{" "}
+              <code className="rounded bg-muted px-1 text-xs">search_knowledge</code>,{" "}
+              <code className="rounded bg-muted px-1 text-xs">get_business_info</code>,{" "}
+              <code className="rounded bg-muted px-1 text-xs">request_booking_hold</code>
+            </li>
+            <li>
+              <a className="underline" href="/openapi.json">/openapi.json</a> — OpenAPI 3.1 spec (drives SDK generation
+              and agent discovery)
+            </li>
+            <li>
+              <a className="underline" href="/.well-known/agent.json">/.well-known/agent.json</a> — agent capabilities
+              manifest
+            </li>
+            <li>
               <a className="underline" href="/api/ai-context">/api/ai-context</a> — JSON-LD LocalBusiness with live
               rating, fleet, products, season Event (supports <code className="rounded bg-muted px-1 text-xs">?lang=</code>)
             </li>

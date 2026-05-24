@@ -14,7 +14,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Pencil, Trash2, Calendar as CalendarIcon, Anchor } from "lucide-react";
+import { Pencil, Trash2, Calendar as CalendarIcon, Anchor, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import { format } from "date-fns";
@@ -148,7 +148,15 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
                           <h4 className="font-medium text-sm truncate">{o.label}</h4>
-                          <Badge variant="default">{formatAdjustment(o)}</Badge>
+                          <Badge
+                            className={
+                              o.direction === "discount"
+                                ? "bg-success/15 text-success-foreground border border-success/40 hover:bg-success/15"
+                                : "bg-popular/15 text-foreground border border-popular/40 hover:bg-popular/15"
+                            }
+                          >
+                            {formatAdjustment(o)}
+                          </Badge>
                           {o.priority > 0 && (
                             <Badge variant="outline" className="text-[10px]">
                               prio {o.priority}
@@ -161,13 +169,17 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                             {formatDateRange(o.dateStart, o.dateEnd)}
                           </span>
                           {weekdayLabel && <span>· {weekdayLabel}</span>}
-                          {boatName && (
+                          {boatName ? (
                             <span className="flex items-center gap-1">
                               <Anchor className="w-3 h-3" />
                               {boatName}
                             </span>
+                          ) : (
+                            <span className="flex items-center gap-1">
+                              <Globe className="w-3 h-3" />
+                              Todos los barcos
+                            </span>
                           )}
-                          {!boatName && <span>· Todos los barcos</span>}
                         </div>
                         {o.notes && (
                           <p className="text-xs text-muted-foreground mt-1 italic line-clamp-2">{o.notes}</p>

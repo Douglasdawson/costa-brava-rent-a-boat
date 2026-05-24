@@ -27,6 +27,7 @@ import { ErrorState } from "./shared/ErrorState";
 import { SeoDashboard } from "./SeoDashboard";
 import { AnalyticsTab } from "./AnalyticsTab";
 import { AiBotsSubTab } from "./AiBotsSubTab";
+import { AiMentionsSubTab } from "./AiMentionsSubTab";
 import { SeoDiagnosticoSubTab } from "./SeoDiagnosticoSubTab";
 
 // --- Types ---
@@ -81,7 +82,7 @@ interface HealthCheck {
 
 // --- Sub-tab definitions ---
 
-type SubTab = "resumen" | "analisis" | "campanas" | "informes" | "salud" | "bots-ia" | "diagnostico";
+type SubTab = "resumen" | "analisis" | "campanas" | "informes" | "salud" | "bots-ia" | "ai-mentions" | "diagnostico";
 
 const SUB_TABS: { id: SubTab; label: string }[] = [
   { id: "resumen", label: "Resumen" },
@@ -90,6 +91,7 @@ const SUB_TABS: { id: SubTab; label: string }[] = [
   { id: "informes", label: "Informes" },
   { id: "salud", label: "Salud" },
   { id: "bots-ia", label: "Bots IA" },
+  { id: "ai-mentions", label: "AI Mentions" },
   { id: "diagnostico", label: "Diagnóstico" },
 ];
 
@@ -170,6 +172,7 @@ export function SeoTab({ adminToken }: SeoTabProps) {
       {activeSubTab === "informes" && <InformesSubTab adminToken={adminToken} />}
       {activeSubTab === "salud" && <SaludSubTab adminToken={adminToken} />}
       {activeSubTab === "bots-ia" && <AiBotsSubTab />}
+      {activeSubTab === "ai-mentions" && <AiMentionsSubTab />}
       {activeSubTab === "diagnostico" && <SeoDiagnosticoSubTab />}
     </div>
   );

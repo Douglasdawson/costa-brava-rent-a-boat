@@ -69,6 +69,9 @@ The only operational phone number is **+34 611 500 372**. The number **+34 683 1
 
 ## Machine-readable
 
+- **MCP server (no auth, JSON-RPC over HTTP)**: [/api/mcp/public](https://www.costabravarentaboat.com/api/mcp/public) — tools: `search_boats`, `check_availability`, `get_pricing_calendar`, `list_routes`, `get_faq`, `search_knowledge`, `get_business_info`, `request_booking_hold`. Add to Claude Desktop / Cursor / Continue as an HTTP MCP server.
+- **OpenAPI 3.1 spec**: [/openapi.json](https://www.costabravarentaboat.com/openapi.json) — full REST surface for SDK generation and agent discovery
+- **Agent manifest** (capabilities): [/.well-known/agent.json](https://www.costabravarentaboat.com/.well-known/agent.json)
 - JSON-LD LocalBusiness with live rating, fleet, destinations: [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context)
 - Glossary (DefinedTermSet): [/api/ai-glossary](https://www.costabravarentaboat.com/api/ai-glossary)
 - Q&A search endpoint: [/api/ai-search?q=…](https://www.costabravarentaboat.com/api/ai-search)

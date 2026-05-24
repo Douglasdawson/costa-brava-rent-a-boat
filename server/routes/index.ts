@@ -47,7 +47,10 @@ import { registerBusinessStatsRoutes } from "./business-stats";
 import { registerAdminFlywheelRoutes } from "./admin-flywheel";
 import { registerAdminPricingOverridesRoutes } from "./admin-pricing-overrides";
 import { registerPricingRoutes } from "./pricing";
+import { registerOpenApiRoutes } from "./openapi";
+import { registerAiMentionsRoutes } from "./admin-ai-mentions";
 import { createSeoAutopilotRouter } from "../mcp/seo-autopilot";
+import { createPublicMcpRouter } from "../mcp/public";
 import { startScheduledServices } from "../services";
 
 export async function registerRoutes(app: Express, existingServer?: Server): Promise<Server> {
@@ -118,9 +121,23 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   registerAdminPricingOverridesRoutes(app);
   registerPricingRoutes(app);
 
-  // SEO Autopilot — public MCP server (bearer-token auth, rate-limited).
-  // Mounted at /api/mcp/seo-autopilot — external MCP clients connect here.
+  // OpenAPI 3.1 spec at /openapi.json — for SDK generation, agent discovery
+  // and Swagger UI rendering. Documents every public endpoint here.
+  registerOpenApiRoutes(app);
+
+  // AI Mentions Monitor — admin dashboard endpoints (citation rate, share of
+  // voice, sentiment). Cron in schedulerService runs the nightly probe.
+  registerAiMentionsRoutes(app);
+
+  // SEO Autopilot — internal MCP server (bearer-token auth, rate-limited).
+  // Mounted at /api/mcp/seo-autopilot — only external clients holding a token.
   app.use("/api/mcp/seo-autopilot", createSeoAutopilotRouter());
+
+  // Public MCP server — NO authentication required. Mounted at /api/mcp/public.
+  // Designed for Claude Desktop / Cursor / Continue / LangGraph etc. to connect
+  // and use the read-mostly tools (search_boats, check_availability,
+  // get_pricing_calendar, etc.). Rate-limited to 60 req/min/IP.
+  app.use("/api/mcp/public", createPublicMcpRouter());
 
   // WhatsApp routes — fire-and-forget: dynamic AI imports can be slow.
   // The webhook endpoints will be available once the import resolves (<5s typically).

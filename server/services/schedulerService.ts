@@ -625,7 +625,23 @@ export function startScheduler(): void {
     logger.info("[Scheduler] Distribution auto-publish ENABLED (every 6h at :05)");
   }
 
-  logger.info("Scheduled services started: reminders (:00), flywheel (:10), thank-you (:30), hold cleanup (every 5min), abandoned recovery (:15/:45), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am), chatbot insights (Mon 6am), lead nurturing (every 2h at :20), GSC queries ETL (02:30/14:30), GA4 daily ETL (03:45), PSI collector (04:15), SERP snapshots (05:30)");
+  // AI Mentions Monitor — nightly probe of ChatGPT / Claude / Perplexity /
+  // Gemini with our curated prompt set. Runs at 02:15 UTC to land in low-cost
+  // off-peak windows for the underlying APIs. Cost: ~$1-2/night with all 4
+  // engines + 120 prompts active.
+  scheduledTasks.push(cron.schedule("15 2 * * *", async () => {
+    try {
+      const { runNightlyMonitor } = await import("./aiMentionsMonitor");
+      logger.info("[Scheduler] Running AI Mentions nightly probe");
+      const result = await runNightlyMonitor();
+      logger.info("[Scheduler] AI Mentions probe complete", result);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] AI Mentions probe error", { error: msg });
+    }
+  }));
+
+  logger.info("Scheduled services started: reminders (:00), flywheel (:10), thank-you (:30), hold cleanup (every 5min), abandoned recovery (:15/:45), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am), chatbot insights (Mon 6am), lead nurturing (every 2h at :20), GSC queries ETL (02:30/14:30), GA4 daily ETL (03:45), PSI collector (04:15), SERP snapshots (05:30), AI mentions probe (02:15)");
 }
 
 /**

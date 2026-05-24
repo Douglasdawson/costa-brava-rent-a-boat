@@ -70,7 +70,7 @@ export function PricingOverrideModal({ open, onOpenChange, override }: PricingOv
         dateStart: override.dateStart,
         dateEnd: override.dateEnd,
         weekdayFilter: override.weekdayFilter,
-        direction: override.direction, // respect DB value (was hardcoded to "surcharge" — bug)
+        direction: override.direction,
         adjustmentType: override.adjustmentType,
         adjustmentValue: override.adjustmentValue,
         boatId: override.boatId,
@@ -259,7 +259,7 @@ export function PricingOverrideModal({ open, onOpenChange, override }: PricingOv
                 onClick={() => setForm({ ...form, direction: "discount" })}
                 className={`px-3 py-2 rounded-md border text-sm font-medium transition ${
                   form.direction === "discount"
-                    ? "bg-destructive text-destructive-foreground border-destructive"
+                    ? "bg-success text-success-foreground border-success"
                     : "bg-background hover:bg-muted border-input"
                 }`}
               >
@@ -323,17 +323,16 @@ export function PricingOverrideModal({ open, onOpenChange, override }: PricingOv
             </Select>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <Label htmlFor="priority">Prioridad</Label>
-              <Input
-                id="priority"
-                type="number"
-                value={form.priority}
-                onChange={(e) => setForm({ ...form, priority: parseInt(e.target.value) || 0 })}
-              />
-              <p className="text-xs text-muted-foreground mt-1">Mayor número = gana en conflictos</p>
-            </div>
+          <div>
+            <Label htmlFor="priority">Prioridad</Label>
+            <Input
+              id="priority"
+              type="number"
+              value={form.priority}
+              onChange={(e) => setForm({ ...form, priority: parseInt(e.target.value) || 0 })}
+              className="max-w-xs"
+            />
+            <p className="text-xs text-muted-foreground mt-1">Mayor número = gana en conflictos</p>
           </div>
 
           <div>

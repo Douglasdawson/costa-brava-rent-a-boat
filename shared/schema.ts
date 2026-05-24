@@ -2673,3 +2673,57 @@ export const aiBotVisits = pgTable("ai_bot_visits", {
 
 export type AiBotVisit = typeof aiBotVisits.$inferSelect;
 export type InsertAiBotVisit = typeof aiBotVisits.$inferInsert;
+
+// AI Mentions Monitor — nightly job records every (prompt, engine) → response
+// so we can measure citation_rate (% of answers where our domain or business
+// name appears), share-of-voice vs competitors, and sentiment trends.
+//
+// Populated by server/services/aiMentionsMonitor.ts, queried by the CRM
+// dashboard at /crm/seo → "AI Mentions". Designed to also support T3.3
+// (citation A/B testing) via the optional variant_id column.
+export const aiMentions = pgTable("ai_mentions", {
+  id: serial("id").primaryKey(),
+  engine: varchar("engine", { length: 32 }).notNull(),            // "chatgpt" | "claude" | "perplexity" | "gemini" | "google_ai_overview"
+  model: varchar("model", { length: 64 }),                        // e.g. "gpt-4o-search", "claude-sonnet-4-6", "pplx-7b-online"
+  prompt: text("prompt").notNull(),
+  promptCategory: varchar("prompt_category", { length: 32 }),     // "branded" | "comparative" | "intent" | "informational" | "local"
+  promptLang: varchar("prompt_lang", { length: 5 }).notNull().default("en"),
+  responseText: text("response_text"),                            // raw answer; null if engine error
+  citedUs: boolean("cited_us").notNull().default(false),
+  citationUrl: text("citation_url"),                              // first cited URL from our domain, if any
+  competitorsMentioned: text("competitors_mentioned").array(),    // canonical competitor names found in the response
+  sentiment: varchar("sentiment", { length: 16 }),                // "positive" | "neutral" | "negative" | null
+  variantId: varchar("variant_id", { length: 64 }),               // T3.3 A/B testing — null means no experiment active
+  tokensUsed: integer("tokens_used"),
+  latencyMs: integer("latency_ms"),
+  errorMessage: text("error_message"),                            // populated when the engine call failed
+  ranAt: timestamp("ran_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  engineRanAtIdx: index("ai_mentions_engine_ran_at_idx").on(table.engine, table.ranAt),
+  citedRanAtIdx: index("ai_mentions_cited_ran_at_idx").on(table.citedUs, table.ranAt),
+  promptCategoryIdx: index("ai_mentions_prompt_category_idx").on(table.promptCategory),
+  variantIdx: index("ai_mentions_variant_idx").on(table.variantId),
+}));
+
+export type AiMention = typeof aiMentions.$inferSelect;
+export type InsertAiMention = typeof aiMentions.$inferInsert;
+
+// Citation A/B testing experiments (T3.3) — each row defines a running
+// experiment with a set of variants. Variant assignment is recorded on
+// ai_mentions.variantId so we can measure citation_rate delta per variant.
+export const citationExperiments = pgTable("citation_experiments", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 100 }).notNull(),
+  hypothesis: text("hypothesis"),                                 // short description of what we're testing
+  variants: jsonb("variants").notNull(),                          // [{ id: "control", content: "..." }, { id: "v1", content: "..." }]
+  target: varchar("target", { length: 64 }).notNull(),            // e.g. "llms_txt_intro", "ai_context_disambig"
+  status: varchar("status", { length: 16 }).notNull().default("draft"), // "draft" | "running" | "completed" | "cancelled"
+  startedAt: timestamp("started_at", { withTimezone: true }),
+  endedAt: timestamp("ended_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  statusIdx: index("citation_experiments_status_idx").on(table.status),
+}));
+
+export type CitationExperiment = typeof citationExperiments.$inferSelect;
+export type InsertCitationExperiment = typeof citationExperiments.$inferInsert;

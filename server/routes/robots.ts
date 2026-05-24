@@ -14,6 +14,7 @@ import {
   BUSINESS_PLACE_ID,
   BUSINESS_TAX_ID,
   BUSINESS_VAT_ID,
+  BUSINESS_WIKIDATA_QID,
 } from "../../shared/businessProfile";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
@@ -231,7 +232,8 @@ function boatToProductSchema(boat: BoatData, businessUrl: string, ratingValue: n
     url: `${businessUrl}/es/barco/${boat.id}`,
     image: `${businessUrl}/images/${boat.image}`,
     category,
-    brand: { "@type": "Brand", name: "Costa Brava Rent a Boat" },
+    brand: { "@id": `${businessUrl}/#brand` },
+    seller: { "@id": `${businessUrl}/#business` },
     additionalProperty: [
       { "@type": "PropertyValue", name: "capacity", value: parseCapacity(boat.specifications.capacity) },
       { "@type": "PropertyValue", name: "lengthMeters", value: boat.specifications.length },
@@ -306,7 +308,7 @@ function buildSeasonEvent(businessUrl: string) {
       },
       geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
     },
-    organizer: { "@type": "Organization", "@id": `${businessUrl}/#business`, name: "Costa Brava Rent a Boat" },
+    organizer: { "@id": `${businessUrl}/#business` },
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "EUR",
@@ -497,6 +499,81 @@ export function registerRobotsRoutes(app: Express): void {
     }
   });
 
+  // Agent capabilities manifest — frontier convention (no W3C spec yet).
+  // Designed so an agent landing on any of our pages can fetch one file and
+  // discover every discoverable surface: MCP, OpenAPI, llms.txt, content
+  // feeds, supported languages, business hours and constraints.
+  app.get("/.well-known/agent.json", (_req, res) => {
+    const manifest = {
+      version: "1.0",
+      name: "Costa Brava Rent a Boat",
+      legalEntity: BUSINESS_LEGAL_NAME,
+      vatID: BUSINESS_VAT_ID,
+      taxID: BUSINESS_TAX_ID,
+      googlePlaceId: BUSINESS_PLACE_ID,
+      ...(BUSINESS_WIKIDATA_QID ? { wikidataQid: BUSINESS_WIKIDATA_QID } : {}),
+      website: BASE_URL,
+      mcp_servers: [
+        {
+          url: `${BASE_URL}/api/mcp/public`,
+          transport: "http",
+          auth: "none",
+          tools: [
+            "search_boats",
+            "check_availability",
+            "get_pricing_calendar",
+            "list_routes",
+            "get_faq",
+            "search_knowledge",
+            "get_business_info",
+            "request_booking_hold",
+          ],
+        },
+      ],
+      openapi: `${BASE_URL}/openapi.json`,
+      llms_txt: `${BASE_URL}/llms.txt`,
+      llms_full_txt: `${BASE_URL}/llms-full.txt`,
+      ai_context: `${BASE_URL}/api/ai-context`,
+      ai_search: `${BASE_URL}/api/ai-search`,
+      ai_glossary: `${BASE_URL}/api/ai-glossary`,
+      ai_citations: `${BASE_URL}/ai-citations`,
+      content_feed: `${BASE_URL}/feed-llms.json`,
+      sitemap: `${BASE_URL}/sitemap.xml`,
+      supported_languages: ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
+      localized_llms_txt: {
+        es: `${BASE_URL}/es/llms.txt`,
+        fr: `${BASE_URL}/fr/llms.txt`,
+        de: `${BASE_URL}/de/llms.txt`,
+        it: `${BASE_URL}/it/llms.txt`,
+      },
+      business_hours: "Mo-Su 09:00-20:00",
+      season: { start: "04-01", end: "10-31", note: "Closed November to March" },
+      booking_model: "request-based (no online payment capture)",
+      payment_methods: ["cash", "credit_card", "debit_card"],
+      payment_location: "at the port, in person",
+      max_lead_time_days: 365,
+      min_lead_time_hours: 0,
+      languages_at_briefing: ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
+      geo: {
+        lat: 41.6722504,
+        lng: 2.7978625,
+        address: "Puerto de Blanes, 17300 Blanes, Girona, ES",
+      },
+      contact: {
+        phone: "+34611500372",
+        whatsapp: "+34611500372",
+        email: "costabravarentaboat@gmail.com",
+      },
+      disambiguation: {
+        not_us: ["Rent a Boat Blanes", "Blanes Boats", "EricBoats"],
+        note: "Different unrelated companies in the same port.",
+      },
+    };
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
+    res.json(manifest);
+  });
+
   // RFC 9116 security disclosure file. Explicit handler because some
   // static-file middlewares hide dotfile-prefixed paths by default.
   app.get("/.well-known/security.txt", (_req, res) => {
@@ -640,8 +717,83 @@ export function registerRobotsRoutes(app: Express): void {
         ru: "Управляется DAMAR COSTA BRAVA S.L. (испанский НДС ESB22566327). Мы НЕ «Rent a Boat Blanes», «Blanes Boats» или «EricBoats» — это другие независимые компании в том же порту. Канонический контакт: WhatsApp +34 611 500 372.",
       };
 
-      const context = {
-        "@context": "https://schema.org",
+      // Wikidata QID is optional — only included when the user has created the
+      // Wikidata entity and pasted the QID into BUSINESS_WIKIDATA_QID.
+      const wikidataUri = BUSINESS_WIKIDATA_QID
+        ? `https://www.wikidata.org/wiki/${BUSINESS_WIKIDATA_QID}`
+        : null;
+
+      // Shared identifier array reused by Organization and LocalBusiness so
+      // any agent has the same VAT/NIF/Place ID/Wikidata cross-references
+      // regardless of which entity it cites.
+      const identifierList = [
+        { "@type": "PropertyValue", propertyID: "google-place-id", value: BUSINESS_PLACE_ID },
+        { "@type": "PropertyValue", propertyID: "spain-vat", value: BUSINESS_VAT_ID },
+        { "@type": "PropertyValue", propertyID: "spain-nif", value: BUSINESS_TAX_ID },
+        ...(BUSINESS_WIKIDATA_QID
+          ? [{ "@type": "PropertyValue", propertyID: "wikidata", value: BUSINESS_WIKIDATA_QID }]
+          : []),
+      ];
+
+      // sameAs cluster — social, GBP and (when set) Wikidata. Knowledge graphs
+      // (Google KG, Bing KG, ChatGPT entity store) traverse these to unify
+      // the entity across the web.
+      const sameAsList = [
+        "https://www.instagram.com/costabravarentaboat/",
+        "https://www.facebook.com/costabravarentaboat",
+        "https://www.tiktok.com/@costabravarentaboat",
+        "https://www.linkedin.com/company/costabravarentaboat",
+        "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
+        "https://coastrent.es",
+        ...(wikidataUri ? [wikidataUri] : []),
+      ];
+
+      // Reusable entity references — every entity in the graph carries its
+      // own @id and other entities link via { "@id": ... } instead of
+      // duplicating the full object. Lets schema validators see one connected
+      // graph rather than 8 floating blobs.
+      const brandNode = {
+        "@type": "Brand",
+        "@id": `${BASE_URL}/#brand`,
+        name: "Costa Brava Rent a Boat",
+        logo: `${BASE_URL}/og-image.webp`,
+        url: BASE_URL,
+      };
+
+      const placeNode = {
+        "@type": "Place",
+        "@id": `${BASE_URL}/#place`,
+        name: "Puerto de Blanes",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Puerto de Blanes",
+          addressLocality: "Blanes",
+          postalCode: "17300",
+          addressRegion: "Girona",
+          addressCountry: "ES",
+        },
+        geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
+      };
+
+      // Fiscal entity (razón social) — the parent organization that owns the
+      // commercial brand. Separate node so legal disambiguation is explicit
+      // (DAMAR COSTA BRAVA S.L. ≠ "Costa Brava Rent a Boat - Blanes" in
+      // strict graph terms).
+      const organizationNode = {
+        "@type": "Organization",
+        "@id": `${BASE_URL}/#org`,
+        name: BUSINESS_LEGAL_NAME,
+        legalName: BUSINESS_LEGAL_NAME,
+        vatID: BUSINESS_VAT_ID,
+        taxID: BUSINESS_TAX_ID,
+        identifier: identifierList,
+        url: BASE_URL,
+        ...(wikidataUri ? { mainEntityOfPage: wikidataUri } : {}),
+        brand: { "@id": `${BASE_URL}/#brand` },
+        subOrganization: { "@id": `${BASE_URL}/#business` },
+      };
+
+      const localBusinessNode = {
         "@type": "LocalBusiness",
         "@id": `${BASE_URL}/#business`,
         inLanguage: lang,
@@ -652,53 +804,31 @@ export function registerRobotsRoutes(app: Express): void {
           BUSINESS_LEGAL_NAME,
           "Costa Brava Rent a Boat Blanes",
         ],
-        brand: {
-          "@type": "Brand",
-          name: "Costa Brava Rent a Boat",
-          logo: `${BASE_URL}/og-image.webp`,
-        },
+        parentOrganization: { "@id": `${BASE_URL}/#org` },
+        brand: { "@id": `${BASE_URL}/#brand` },
+        location: { "@id": `${BASE_URL}/#place` },
         vatID: BUSINESS_VAT_ID,
         taxID: BUSINESS_TAX_ID,
-        identifier: [
-          { "@type": "PropertyValue", propertyID: "google-place-id", value: BUSINESS_PLACE_ID },
-          { "@type": "PropertyValue", propertyID: "spain-vat", value: BUSINESS_VAT_ID },
-          { "@type": "PropertyValue", propertyID: "spain-nif", value: BUSINESS_TAX_ID },
-        ],
+        identifier: identifierList,
         disambiguatingDescription: disambByLang[lang],
         description: descByLang[lang],
-        url: "https://www.costabravarentaboat.com",
+        url: BASE_URL,
         telephone: "+34611500372",
         email: "costabravarentaboat@gmail.com",
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "Puerto de Blanes",
-          addressLocality: "Blanes",
-          postalCode: "17300",
-          addressRegion: "Girona",
-          addressCountry: "ES",
-        },
-        geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
+        address: { ...placeNode.address },
+        geo: { ...placeNode.geo },
         openingHours: "Mo-Su 09:00-20:00",
         openingSeason: "April-October",
         priceRange: "70-420 EUR",
         aggregateRating: { "@type": "AggregateRating", ratingValue: gbpStats.rating, reviewCount: gbpStats.userRatingCount, bestRating: 5 },
-        sameAs: [
-          "https://www.instagram.com/costabravarentaboat/",
-          "https://www.facebook.com/costabravarentaboat",
-          "https://www.tiktok.com/@costabravarentaboat",
-          "https://www.linkedin.com/company/costabravarentaboat",
-          "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
-          // Sister brand (same owner, scooter rental in Lloret de Mar) — used
-          // by knowledge-graph crawlers to link related local businesses.
-          "https://coastrent.es",
-        ],
+        sameAs: sameAsList,
         hasMerchantReturnPolicy: {
           "@type": "MerchantReturnPolicy",
-          "@id": "https://www.costabravarentaboat.com/#return-policy",
+          "@id": `${BASE_URL}/#return-policy`,
           applicableCountry: "ES",
           returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
           refundType: "https://schema.org/NoReturnRefund",
-          additionalType: "https://www.costabravarentaboat.com/terms-conditions",
+          additionalType: `${BASE_URL}/terms-conditions`,
           description: "Las cancelaciones no son reembolsables. Cambio de fecha gratuito con 7 días de antelación sujeto a disponibilidad. Mal tiempo: reprogramación completa sin coste.",
         },
         availableLanguage: ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
@@ -737,16 +867,35 @@ export function registerRobotsRoutes(app: Express): void {
           { name: "Santa Susanna", distanceKm: 12, driveTime: "15 min", trainTime: "10 min", page: "/alquiler-barcos-santa-susanna" },
           { name: "Calella", distanceKm: 17, driveTime: "20 min", trainTime: "15 min", page: "/alquiler-barcos-calella" },
         ],
-        productCatalog: Object.values(BOAT_DATA).map((b) =>
-          boatToProductSchema(b, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
-        ),
-        event: buildSeasonEvent(BASE_URL),
+      };
+
+      // Final response is a JSON-LD @graph with all entities cross-linked
+      // by @id. Brand, Organization, Place are reusable nodes referenced
+      // from LocalBusiness, Products and Event. Single connected graph =
+      // higher entity-resolution score in Knowledge Graph pipelines.
+      const context = {
+        "@context": "https://schema.org",
+        "@graph": [
+          organizationNode,
+          brandNode,
+          placeNode,
+          localBusinessNode,
+          buildSeasonEvent(BASE_URL),
+          ...Object.values(BOAT_DATA).map((b) =>
+            boatToProductSchema(b, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
+          ),
+        ],
+        // Convenience fields outside the @graph for agents that don't parse
+        // JSON-LD graphs but still want the discovery URLs.
         llmsTxt: `${BASE_URL}/llms.txt`,
         llmsFullTxt: `${BASE_URL}/llms-full.txt`,
         aiCitations: `${BASE_URL}/ai-citations`,
         aiSearch: `${BASE_URL}/api/ai-search`,
         aiGlossary: `${BASE_URL}/api/ai-glossary`,
         contentFeed: `${BASE_URL}/feed-llms.json`,
+        openapi: `${BASE_URL}/openapi.json`,
+        mcpServer: `${BASE_URL}/api/mcp/public`,
+        agentManifest: `${BASE_URL}/.well-known/agent.json`,
       };
 
       res.setHeader("Content-Type", "application/ld+json; charset=utf-8");

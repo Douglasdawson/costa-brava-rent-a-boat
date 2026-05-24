@@ -122,7 +122,9 @@ export function PricingCalendar({ onCreateForDay, onEditOverride }: PricingCalen
   const { data: overrides = [], isLoading } = useQuery<PricingOverride[]>({
     queryKey: ["/api/admin/pricing-overrides"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/pricing-overrides", { credentials: "include" });
+      const res = await fetch("/api/admin/pricing-overrides?includeInactive=true", {
+        credentials: "include",
+      });
       if (!res.ok) throw new Error("Error cargando overrides");
       return res.json();
     },

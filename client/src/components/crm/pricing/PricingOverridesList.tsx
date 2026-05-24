@@ -22,7 +22,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Pencil, Trash2, Calendar as CalendarIcon, Anchor, Globe, X } from "lucide-react";
+import { Pencil, Trash2, Calendar as CalendarIcon, Anchor, Globe, X, RotateCcw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import { format } from "date-fns";
@@ -70,6 +70,7 @@ function formatDateRange(start: string, end: string): string {
 }
 
 type TemporalFilter = "all" | "upcoming" | "current" | "past";
+type StatusFilter = "active" | "inactive" | "all";
 
 const todayKey = () => {
   const n = new Date();
@@ -83,12 +84,18 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [filterBoat, setFilterBoat] = useState<string>("all"); // "all" | "global" | boatId
   const [filterTemporal, setFilterTemporal] = useState<TemporalFilter>("all");
+  const [filterStatus, setFilterStatus] = useState<StatusFilter>("active");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Shared cache with PricingCalendar and OverlapWarning. We now fetch inactive
+  // rows too — those consumers already filter isActive themselves, and the
+  // status filter / bulk reactivate need to see them here.
   const { data: overrides = [], isLoading } = useQuery<PricingOverride[]>({
     queryKey: ["/api/admin/pricing-overrides"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/pricing-overrides", { credentials: "include" });
+      const res = await fetch("/api/admin/pricing-overrides?includeInactive=true", {
+        credentials: "include",
+      });
       if (!res.ok) throw new Error("Error cargando overrides");
       return res.json();
     },
@@ -157,10 +164,61 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
     },
   });
 
+  const bulkActivateMutation = useMutation({
+    mutationFn: async (ids: string[]) => {
+      const res = await fetch("/api/admin/pricing-overrides/bulk-activate", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || "Error al reactivar");
+      }
+      return (await res.json()) as { activatedCount: number; activatedIds: string[] };
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
+      toast({
+        title: `${data.activatedCount} ${data.activatedCount === 1 ? "override reactivado" : "overrides reactivados"}`,
+      });
+      setSelectedIds(new Set());
+    },
+    onError: (error: Error) => {
+      toast({ variant: "destructive", title: "Error", description: error.message });
+    },
+  });
+
+  const reactivateOneMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const res = await fetch(`/api/admin/pricing-overrides/${id}`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isActive: true }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || "Error al reactivar");
+      }
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
+      toast({ title: "Override reactivado" });
+    },
+    onError: (error: Error) => {
+      toast({ variant: "destructive", title: "Error", description: error.message });
+    },
+  });
+
   const filteredOverrides = useMemo(() => {
     const today = todayKey();
     const q = searchQuery.trim().toLowerCase();
     return overrides.filter((o) => {
+      if (filterStatus === "active" && !o.isActive) return false;
+      if (filterStatus === "inactive" && o.isActive) return false;
       if (filterBoat === "global" && o.boatId !== null) return false;
       if (filterBoat !== "all" && filterBoat !== "global" && o.boatId !== filterBoat) return false;
       if (filterTemporal === "upcoming" && o.dateStart <= today) return false;
@@ -169,9 +227,18 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
       if (q && !o.label.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [overrides, filterBoat, filterTemporal, searchQuery]);
+  }, [overrides, filterBoat, filterTemporal, filterStatus, searchQuery]);
 
-  const filtersActive = filterBoat !== "all" || filterTemporal !== "all" || searchQuery.trim() !== "";
+  const visibleCount = useMemo(
+    () => overrides.filter((o) => (filterStatus === "all" ? true : filterStatus === "active" ? o.isActive : !o.isActive)).length,
+    [overrides, filterStatus],
+  );
+
+  const filtersActive =
+    filterBoat !== "all" ||
+    filterTemporal !== "all" ||
+    filterStatus !== "active" ||
+    searchQuery.trim() !== "";
 
   // Selection scoped to the currently filtered list — selecting "all" never reaches
   // overrides hidden by the active filters, so the admin can't accidentally deactivate
@@ -183,6 +250,25 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
   const allFilteredSelected =
     filteredOverrides.length > 0 && filteredSelectedCount === filteredOverrides.length;
   const someFilteredSelected = filteredSelectedCount > 0 && !allFilteredSelected;
+
+  // Selection split by current status, so we know which bulk button to show.
+  // Bulk actions only target rows currently visible AND of the matching status.
+  const selectedById = useMemo(() => {
+    const map = new Map<string, PricingOverride>();
+    for (const o of overrides) {
+      if (selectedIds.has(o.id)) map.set(o.id, o);
+    }
+    return map;
+  }, [overrides, selectedIds]);
+
+  const selectedActiveIds = useMemo(
+    () => Array.from(selectedById.values()).filter((o) => o.isActive).map((o) => o.id),
+    [selectedById],
+  );
+  const selectedInactiveIds = useMemo(
+    () => Array.from(selectedById.values()).filter((o) => !o.isActive).map((o) => o.id),
+    [selectedById],
+  );
 
   const toggleOne = (id: string) => {
     setSelectedIds((prev) => {
@@ -227,11 +313,12 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
       <Card>
         <CardHeader className="space-y-3">
           <CardTitle>
-            Overrides activos{" "}
-            <span className="text-sm font-normal text-muted-foreground">
+            Overrides{" "}
+            {filterStatus === "active" ? "activos" : filterStatus === "inactive" ? "inactivos" : ""}
+            <span className="text-sm font-normal text-muted-foreground ml-1">
               ({filteredOverrides.length}
-              {filtersActive && filteredOverrides.length !== overrides.length
-                ? ` de ${overrides.length}`
+              {filtersActive && filteredOverrides.length !== visibleCount
+                ? ` de ${visibleCount}`
                 : ""}
               )
             </span>
@@ -272,6 +359,19 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                   <SelectItem value="past">Pasados</SelectItem>
                 </SelectContent>
               </Select>
+              <Select
+                value={filterStatus}
+                onValueChange={(v) => setFilterStatus(v as StatusFilter)}
+              >
+                <SelectTrigger className="h-9 w-[150px]">
+                  <SelectValue placeholder="Estado" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="active">Activos</SelectItem>
+                  <SelectItem value="inactive">Inactivos</SelectItem>
+                  <SelectItem value="all">Todos</SelectItem>
+                </SelectContent>
+              </Select>
               {filtersActive && (
                 <Button
                   variant="ghost"
@@ -280,6 +380,7 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                   onClick={() => {
                     setFilterBoat("all");
                     setFilterTemporal("all");
+                    setFilterStatus("active");
                     setSearchQuery("");
                   }}
                 >
@@ -318,7 +419,7 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                     : "Seleccionar todos los visibles"}
                 </label>
                 {selectedIds.size > 0 && (
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap justify-end">
                     <Button
                       size="sm"
                       variant="ghost"
@@ -328,15 +429,29 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                       <X className="w-3.5 h-3.5 mr-1" />
                       Limpiar selección
                     </Button>
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      className="h-8 text-xs"
-                      onClick={() => setConfirmBulkOpen(true)}
-                    >
-                      <Trash2 className="w-3.5 h-3.5 mr-1" />
-                      Desactivar {selectedIds.size}
-                    </Button>
+                    {selectedInactiveIds.length > 0 && (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="h-8 text-xs"
+                        onClick={() => bulkActivateMutation.mutate(selectedInactiveIds)}
+                        disabled={bulkActivateMutation.isPending}
+                      >
+                        <RotateCcw className="w-3.5 h-3.5 mr-1" />
+                        Reactivar {selectedInactiveIds.length}
+                      </Button>
+                    )}
+                    {selectedActiveIds.length > 0 && (
+                      <Button
+                        size="sm"
+                        variant="destructive"
+                        className="h-8 text-xs"
+                        onClick={() => setConfirmBulkOpen(true)}
+                      >
+                        <Trash2 className="w-3.5 h-3.5 mr-1" />
+                        Desactivar {selectedActiveIds.length}
+                      </Button>
+                    )}
                   </div>
                 )}
               </div>
@@ -349,7 +464,7 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                     key={o.id}
                     className={`border rounded-md p-3 space-y-2 hover:border-primary/40 transition-colors ${
                       isSelected ? "border-primary/60 bg-primary/5" : ""
-                    }`}
+                    } ${!o.isActive ? "opacity-60 bg-muted/30 border-dashed" : ""}`}
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-start gap-3 min-w-0 flex-1">
@@ -362,6 +477,11 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                         <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
                           <h4 className="font-medium text-sm truncate">{o.label}</h4>
+                          {!o.isActive && (
+                            <Badge variant="outline" className="text-[10px] text-muted-foreground">
+                              Inactivo
+                            </Badge>
+                          )}
                           <Badge
                             className={
                               o.direction === "discount"
@@ -404,14 +524,26 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                         <Button size="sm" variant="ghost" onClick={() => onEdit(o)} aria-label="Editar">
                           <Pencil className="w-4 h-4" />
                         </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => setConfirmDeleteId(o.id)}
-                          aria-label="Eliminar"
-                        >
-                          <Trash2 className="w-4 h-4 text-destructive" />
-                        </Button>
+                        {o.isActive ? (
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => setConfirmDeleteId(o.id)}
+                            aria-label="Eliminar"
+                          >
+                            <Trash2 className="w-4 h-4 text-destructive" />
+                          </Button>
+                        ) : (
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => reactivateOneMutation.mutate(o.id)}
+                            disabled={reactivateOneMutation.isPending}
+                            aria-label="Reactivar"
+                          >
+                            <RotateCcw className="w-4 h-4" />
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -446,18 +578,18 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              ¿Desactivar {selectedIds.size} {selectedIds.size === 1 ? "override" : "overrides"}?
+              ¿Desactivar {selectedActiveIds.length} {selectedActiveIds.length === 1 ? "override" : "overrides"}?
             </AlertDialogTitle>
             <AlertDialogDescription>
               Quedarán desactivados y dejarán de aplicarse. Las reservas pasadas conservan el precio
-              que pagaron — no se toca el historial. Puedes recrearlos manualmente si los necesitas
-              de nuevo.
+              que pagaron — no se toca el historial. Puedes reactivarlos después desde el filtro
+              «Inactivos».
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel disabled={bulkDeactivateMutation.isPending}>Cancelar</AlertDialogCancel>
             <AlertDialogAction
-              onClick={() => bulkDeactivateMutation.mutate(Array.from(selectedIds))}
+              onClick={() => bulkDeactivateMutation.mutate(selectedActiveIds)}
               disabled={bulkDeactivateMutation.isPending}
             >
               Desactivar

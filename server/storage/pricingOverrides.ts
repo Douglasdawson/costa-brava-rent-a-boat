@@ -124,6 +124,19 @@ export async function bulkDeactivatePricingOverrides(
   return rows;
 }
 
+/** Mirror of bulkDeactivate — only flips currently-inactive rows. */
+export async function bulkActivatePricingOverrides(
+  ids: string[],
+): Promise<PricingOverride[]> {
+  if (ids.length === 0) return [];
+  const rows = await db
+    .update(pricingOverrides)
+    .set({ isActive: true, updatedAt: new Date() })
+    .where(and(inArray(pricingOverrides.id, ids), eq(pricingOverrides.isActive, false)))
+    .returning();
+  return rows;
+}
+
 /**
  * Load all overrides that are potentially applicable to the given date and boat.
  * Returns rules in PricingOverrideRule format (consumable by selectApplicableOverride).

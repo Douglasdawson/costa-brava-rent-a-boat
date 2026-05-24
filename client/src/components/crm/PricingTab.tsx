@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, TrendingUp } from "lucide-react";
+import { Plus, TrendingUp, List, CalendarRange } from "lucide-react";
 import { PricingTemplatesPanel } from "./pricing/PricingTemplatesPanel";
 import { PricingOverridesList } from "./pricing/PricingOverridesList";
 import { PricingOverrideModal } from "./pricing/PricingOverrideModal";
+import { PricingCalendar } from "./pricing/PricingCalendar";
 import type { PricingOverride } from "./pricing/types";
 
 interface PricingTabProps {
@@ -14,14 +15,24 @@ interface PricingTabProps {
 export function PricingTab({ adminToken: _adminToken }: PricingTabProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const [editingOverride, setEditingOverride] = useState<PricingOverride | null>(null);
+  const [prefillDate, setPrefillDate] = useState<string | null>(null);
+  const [view, setView] = useState<"list" | "calendar">("list");
 
   const openCreate = () => {
     setEditingOverride(null);
+    setPrefillDate(null);
+    setModalOpen(true);
+  };
+
+  const openCreateForDay = (dayKey: string) => {
+    setEditingOverride(null);
+    setPrefillDate(dayKey);
     setModalOpen(true);
   };
 
   const openEdit = (override: PricingOverride) => {
     setEditingOverride(override);
+    setPrefillDate(null);
     setModalOpen(true);
   };
 
@@ -39,10 +50,30 @@ export function PricingTab({ adminToken: _adminToken }: PricingTabProps) {
             promociones puntuales. Los ajustes se aplican antes de cualquier cupón de descuento.
           </p>
         </div>
-        <Button onClick={openCreate}>
-          <Plus className="w-4 h-4 mr-2" />
-          Nuevo override
-        </Button>
+        <div className="flex items-center gap-2">
+          <div className="flex gap-1 border rounded-md p-0.5">
+            <Button
+              variant={view === "list" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setView("list")}
+              aria-pressed={view === "list"}
+            >
+              <List className="w-4 h-4 mr-1.5" /> Lista
+            </Button>
+            <Button
+              variant={view === "calendar" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setView("calendar")}
+              aria-pressed={view === "calendar"}
+            >
+              <CalendarRange className="w-4 h-4 mr-1.5" /> Calendario
+            </Button>
+          </div>
+          <Button onClick={openCreate}>
+            <Plus className="w-4 h-4 mr-2" />
+            Nuevo override
+          </Button>
+        </div>
       </div>
 
       <Card className="bg-muted/30">
@@ -59,12 +90,17 @@ export function PricingTab({ adminToken: _adminToken }: PricingTabProps) {
 
       <PricingTemplatesPanel />
 
-      <PricingOverridesList onEdit={openEdit} />
+      {view === "list" ? (
+        <PricingOverridesList onEdit={openEdit} />
+      ) : (
+        <PricingCalendar onCreateForDay={openCreateForDay} onEditOverride={openEdit} />
+      )}
 
       <PricingOverrideModal
         open={modalOpen}
         onOpenChange={setModalOpen}
         override={editingOverride}
+        prefillDate={prefillDate}
       />
     </div>
   );

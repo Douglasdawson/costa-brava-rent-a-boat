@@ -101,6 +101,7 @@ interface PricingOverrideModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   override?: PricingOverride | null; // null/undefined = create mode; otherwise edit
+  prefillDate?: string | null; // ISO YYYY-MM-DD; used only in create mode to seed dateStart/dateEnd
 }
 
 const todayISO = () => new Date().toISOString().slice(0, 10);
@@ -292,7 +293,7 @@ function OverridePreview({ form, restrictWeekdays }: OverridePreviewProps) {
   );
 }
 
-export function PricingOverrideModal({ open, onOpenChange, override }: PricingOverrideModalProps) {
+export function PricingOverrideModal({ open, onOpenChange, override, prefillDate }: PricingOverrideModalProps) {
   const { toast } = useToast();
   const isEdit = !!override;
   const [form, setForm] = useState<PricingOverrideFormData>(emptyForm);
@@ -315,11 +316,14 @@ export function PricingOverrideModal({ open, onOpenChange, override }: PricingOv
         priority: override.priority,
       });
       setRestrictWeekdays(!!override.weekdayFilter);
+    } else if (prefillDate) {
+      setForm({ ...emptyForm, dateStart: prefillDate, dateEnd: prefillDate });
+      setRestrictWeekdays(false);
     } else {
       setForm(emptyForm);
       setRestrictWeekdays(false);
     }
-  }, [open, override]);
+  }, [open, override, prefillDate]);
 
   const { data: boats = [] } = useQuery<BoatOption[]>({
     queryKey: ["/api/admin/boats"],

@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useRef } from "react";
+import { useState, useCallback, useEffect, useMemo, useRef, type KeyboardEvent } from "react";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage, type Language } from "@/hooks/use-language";
@@ -323,6 +323,98 @@ export default function AvailabilityCalendar({
   );
 
   // ---------------------------------------------------------------------------
+  // Keyboard navigation (WAI-ARIA grid pattern with roving tabindex)
+  // ---------------------------------------------------------------------------
+  const dayRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
+  const keyboardNavRef = useRef(false);
+
+  // The day that holds tabIndex=0. Preference: selected → today → first clickable.
+  const initialRoveDay = useMemo<number | null>(() => {
+    const selectedInMonth = effectiveSelected &&
+      effectiveSelected.getFullYear() === year &&
+      effectiveSelected.getMonth() === month - 1;
+    if (selectedInMonth) return effectiveSelected.getDate();
+    const todayInMonth = today.getFullYear() === year && today.getMonth() === month - 1;
+    if (todayInMonth) return today.getDate();
+    // First clickable day in the visible month
+    const daysInMonth = new Date(year, month, 0).getDate();
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(year, month - 1, d);
+      if (date >= today && isInSeason) return d;
+    }
+    return null;
+  }, [effectiveSelected, today, year, month, isInSeason]);
+
+  const [roveDay, setRoveDay] = useState<number | null>(initialRoveDay);
+
+  // Reset roveDay when the month changes externally (not by keyboard nav).
+  useEffect(() => {
+    if (!keyboardNavRef.current) {
+      setRoveDay(initialRoveDay);
+    }
+  }, [initialRoveDay]);
+
+  // After keyboard nav, focus the new cell.
+  useEffect(() => {
+    if (keyboardNavRef.current && roveDay !== null) {
+      dayRefs.current.get(roveDay)?.focus();
+      keyboardNavRef.current = false;
+    }
+  }, [roveDay, year, month]);
+
+  const handleGridKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLDivElement>) => {
+      if (roveDay == null) return;
+      const daysInMonth = new Date(year, month, 0).getDate();
+      let next: number | "prev-month" | "next-month" = roveDay;
+      switch (e.key) {
+        case "ArrowRight": next = roveDay + 1; break;
+        case "ArrowLeft": next = roveDay - 1; break;
+        case "ArrowDown": next = roveDay + 7; break;
+        case "ArrowUp": next = roveDay - 7; break;
+        case "Home": next = 1; break;
+        case "End": next = daysInMonth; break;
+        case "PageDown": next = "next-month"; break;
+        case "PageUp": next = "prev-month"; break;
+        case "Enter":
+        case " ": {
+          const info = dayInfoMap.get(roveDay);
+          if (info) handleDayClick(info);
+          e.preventDefault();
+          return;
+        }
+        default:
+          return;
+      }
+      e.preventDefault();
+      keyboardNavRef.current = true;
+
+      // Within-month moves
+      if (typeof next === "number" && next >= 1 && next <= daysInMonth) {
+        setRoveDay(next);
+        return;
+      }
+      // Cross-month moves (arrow keys that overflow + Page keys)
+      const goingPrev = next === "prev-month" || (typeof next === "number" && next < 1);
+      const goingNext = next === "next-month" || (typeof next === "number" && next > daysInMonth);
+      if (goingPrev) {
+        if (!canGoPrev) { keyboardNavRef.current = false; return; }
+        const prevMonthDays = new Date(year, month - 1, 0).getDate();
+        const newDay = typeof next === "number" ? prevMonthDays + next : Math.min(roveDay, prevMonthDays);
+        setDisplayMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+        setRoveDay(newDay);
+      } else if (goingNext) {
+        if (!canGoNext) { keyboardNavRef.current = false; return; }
+        const nextMonthDays = new Date(year, month + 1, 0).getDate();
+        const newDay = typeof next === "number" ? next - daysInMonth : Math.min(roveDay, nextMonthDays);
+        setDisplayMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+        setRoveDay(newDay);
+      }
+    },
+    [roveDay, year, month, dayInfoMap, handleDayClick, canGoPrev, canGoNext]
+  );
+
+  // ---------------------------------------------------------------------------
   // Rendering helpers
   // ---------------------------------------------------------------------------
   const monthNames = MONTH_NAMES[lang] || MONTH_NAMES.es;
@@ -424,8 +516,14 @@ export default function AvailabilityCalendar({
         ))}
       </div>
 
-      {/* Calendar grid */}
-      <div className="grid grid-cols-7 gap-1 px-1" role="grid" aria-label={`${monthNames[month - 1]} ${year}`}>
+      {/* Calendar grid — roving tabindex: only roveDay is in the tab order;
+          arrow keys move focus among cells. */}
+      <div
+        className="grid grid-cols-7 gap-1 px-1"
+        role="grid"
+        aria-label={`${monthNames[month - 1]} ${year}`}
+        onKeyDown={handleGridKeyDown}
+      >
         {isLoading && shouldFetch ? (
           // Skeleton: 42 cells
           Array.from({ length: 42 }).map((_, i) => (
@@ -444,23 +542,29 @@ export default function AvailabilityCalendar({
             if (!info) return <div key={`none-${i}`} className="min-h-[3rem] sm:min-h-[3.5rem]" />;
 
             const clickable = !info.isPast && !info.isOffSeason && info.status !== "booked";
+            const isRoved = day === roveDay;
             const ariaLabel = `${day} ${monthNames[month - 1]}${info.price ? `, ${fromLabel} ${info.price}€` : ""}${info.status === "booked" ? `, ${legend.booked}` : ""}`;
 
             return (
               <button
                 key={`day-${day}`}
+                ref={(el) => {
+                  if (el) dayRefs.current.set(day, el);
+                  else dayRefs.current.delete(day);
+                }}
                 type="button"
                 role="gridcell"
                 aria-label={ariaLabel}
                 aria-selected={info.isSelected}
                 aria-disabled={!clickable}
                 disabled={!clickable}
-                tabIndex={clickable ? 0 : -1}
+                tabIndex={isRoved ? 0 : -1}
                 className={getDayCellClasses(info)}
                 onClick={() => handleDayClick(info)}
               >
-                {/* Day number */}
-                <span className={cn("leading-none", info.isToday && "font-bold underline underline-offset-2")}>
+                {/* Day number — when today coincides with the selected day, drop the
+                    underline so the selection ring carries the signal alone. */}
+                <span className={cn("leading-none", info.isToday && !info.isSelected && "font-bold underline underline-offset-2")}>
                   {day}
                 </span>
 
@@ -468,7 +572,7 @@ export default function AvailabilityCalendar({
 
                 {/* Booked indicator */}
                 {info.status === "booked" && (
-                  <span className="text-[9px] leading-tight font-medium text-red-500">
+                  <span className="text-[9px] leading-tight font-medium text-destructive/70">
                     --
                   </span>
                 )}

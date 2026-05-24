@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, X, TrendingUp, TrendingDown, Calendar, ChevronDown } from "lucide-react";
@@ -78,18 +78,8 @@ export default function BoatPricingSection({
   const t = useTranslations();
   const { language } = useLanguage();
   const isMobile = useIsMobile();
-  const pricingColRef = useRef<HTMLDivElement>(null);
   // Used to focus the hidden <input type="date"> when the visible button is clicked.
   const nativeDateInputRef = useRef<HTMLInputElement>(null);
-
-  // Mobile-only: scroll the pricing column into view when the user picks a date,
-  // so the feedback isn't hidden below the trigger.
-  useEffect(() => {
-    if (!selectedDate || !pricingColRef.current) return;
-    if (typeof window === "undefined") return;
-    if (!window.matchMedia("(max-width: 767px)").matches) return;
-    pricingColRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [selectedDate]);
 
   const dayLabel = selectedDate ? formatDayLabel(selectedDate, language, isMobile) : "";
 
@@ -174,7 +164,7 @@ export default function BoatPricingSection({
           </div>
 
           {/* Pricing — right column on tablet+ */}
-          <div ref={pricingColRef} aria-live="polite">
+          <div aria-live="polite">
             {selectedDate ? (
               <div key={`day-${dayLabel}`} className="animate-in fade-in duration-300">
                 <DayPricingMode
@@ -281,7 +271,7 @@ function SeasonPricingMode({ boatData, requiresLicense }: SeasonPricingModeProps
         <p className="text-sm text-muted-foreground mb-3 text-center">
           {seasonPeriods[selectedSeason]}
         </p>
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-x-3 gap-y-6">
           {Object.entries(filterActivePrices(pricing[selectedSeason].prices))
             .sort((a, b) => parseInt(a[0]) - parseInt(b[0]))
             .map(([duration, price]) => {
@@ -418,7 +408,7 @@ function DayPricingMode({
       <div className="bg-muted rounded-lg p-4 md:p-6">
         {isLoading ? (
           <div
-            className="flex flex-wrap justify-center gap-3"
+            className="flex flex-wrap justify-center gap-x-3 gap-y-6"
             role="status"
             aria-label={t.boatDetail.loadingPrices}
           >
@@ -436,7 +426,7 @@ function DayPricingMode({
         ) : allEmpty ? (
           <p className="text-sm text-muted-foreground text-center">{t.boatDetail.noPricesForDate}</p>
         ) : (
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-x-3 gap-y-6">
             {results.map((r) => {
               if (r.finalPrice === null) return null;
               const isRecommended = !requiresLicense && r.duration === "4h";

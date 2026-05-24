@@ -1,12 +1,13 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, X, TrendingUp, TrendingDown } from "lucide-react";
+import { CheckCircle, X, TrendingUp, TrendingDown, Calendar, ChevronDown } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { filterActivePrices } from "@shared/pricing";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import AvailabilityCalendar from "./AvailabilityCalendar";
 import type { Boat } from "@shared/schema";
 
@@ -78,9 +79,10 @@ export default function BoatPricingSection({
   const { language } = useLanguage();
   const isMobile = useIsMobile();
   const pricingColRef = useRef<HTMLDivElement>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   // Mobile-only: scroll the pricing column into view when the user picks a date,
-  // so the feedback isn't hidden below the calendar.
+  // so the feedback isn't hidden below the calendar trigger.
   useEffect(() => {
     if (!selectedDate || !pricingColRef.current) return;
     if (typeof window === "undefined") return;
@@ -90,17 +92,56 @@ export default function BoatPricingSection({
 
   const dayLabel = selectedDate ? formatDayLabel(selectedDate, language, isMobile) : "";
 
+  // Pick a date from inside the bottom sheet and auto-close it.
+  const handleDateFromSheet = (date: Date) => {
+    onDateSelect(date);
+    setSheetOpen(false);
+  };
+
   return (
     <Card className="mb-8">
       <CardContent className="space-y-6 pt-6">
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] gap-6 md:gap-10 items-start">
-          {/* Calendar — left column on tablet+ */}
+          {/* Calendar — left column on tablet+, compact trigger + bottom sheet on mobile */}
           <div className="md:max-w-none max-w-md mx-auto md:mx-0 w-full">
-            <AvailabilityCalendar
-              boatId={boatId}
-              selectedDate={selectedDate}
-              onDateSelect={onDateSelect}
-            />
+            {isMobile ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setSheetOpen(true)}
+                  className="w-full bg-background border-2 border-border rounded-lg px-4 py-3 flex items-center justify-between gap-3 hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 transition-colors"
+                  data-testid="button-open-calendar"
+                  aria-haspopup="dialog"
+                  aria-expanded={sheetOpen}
+                >
+                  <span className="flex items-center gap-2 min-w-0">
+                    <Calendar className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
+                    <span className="text-sm font-medium text-foreground truncate">
+                      {selectedDate ? dayLabel : t.boatDetail.checkAvailability}
+                    </span>
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" aria-hidden="true" />
+                </button>
+                <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+                  <SheetContent side="bottom" className="max-h-[85vh] overflow-y-auto">
+                    <SheetTitle className="text-base font-semibold mb-4">
+                      {t.boatDetail.checkAvailability}
+                    </SheetTitle>
+                    <AvailabilityCalendar
+                      boatId={boatId}
+                      selectedDate={selectedDate}
+                      onDateSelect={handleDateFromSheet}
+                    />
+                  </SheetContent>
+                </Sheet>
+              </>
+            ) : (
+              <AvailabilityCalendar
+                boatId={boatId}
+                selectedDate={selectedDate}
+                onDateSelect={onDateSelect}
+              />
+            )}
           </div>
 
           {/* Pricing — right column on tablet+ */}

@@ -339,9 +339,11 @@ export default function AvailabilityCalendar({
 
     switch (info.status) {
       case "available":
-        return cn(base, "bg-emerald-50 hover:bg-emerald-100 text-emerald-900 cursor-pointer");
+        // Bumped saturation + added border so days clearly read as clickable buttons.
+        // The previous emerald-50 was so pale users mistook the calendar for static info.
+        return cn(base, "bg-emerald-100 hover:bg-emerald-200 text-emerald-900 border border-emerald-300 hover:border-emerald-400 cursor-pointer shadow-sm");
       case "partial":
-        return cn(base, "bg-amber-50 hover:bg-amber-100 text-amber-900 cursor-pointer");
+        return cn(base, "bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 hover:border-amber-400 cursor-pointer shadow-sm");
       case "booked":
         return cn(base, "bg-red-100 text-red-400 cursor-not-allowed");
       case "off_season":

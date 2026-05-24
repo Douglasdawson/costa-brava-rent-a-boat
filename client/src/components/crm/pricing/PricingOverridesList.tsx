@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -60,9 +68,19 @@ function formatDateRange(start: string, end: string): string {
   return `${format(s, "d MMM", { locale: es })} – ${format(e, "d MMM yyyy", { locale: es })}`;
 }
 
+type TemporalFilter = "all" | "upcoming" | "current" | "past";
+
+const todayKey = () => {
+  const n = new Date();
+  return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`;
+};
+
 export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
   const { toast } = useToast();
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [filterBoat, setFilterBoat] = useState<string>("all"); // "all" | "global" | boatId
+  const [filterTemporal, setFilterTemporal] = useState<TemporalFilter>("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { data: overrides = [], isLoading } = useQuery<PricingOverride[]>({
     queryKey: ["/api/admin/pricing-overrides"],
@@ -109,6 +127,22 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
     },
   });
 
+  const filteredOverrides = useMemo(() => {
+    const today = todayKey();
+    const q = searchQuery.trim().toLowerCase();
+    return overrides.filter((o) => {
+      if (filterBoat === "global" && o.boatId !== null) return false;
+      if (filterBoat !== "all" && filterBoat !== "global" && o.boatId !== filterBoat) return false;
+      if (filterTemporal === "upcoming" && o.dateStart <= today) return false;
+      if (filterTemporal === "current" && (o.dateStart > today || o.dateEnd < today)) return false;
+      if (filterTemporal === "past" && o.dateEnd >= today) return false;
+      if (q && !o.label.toLowerCase().includes(q)) return false;
+      return true;
+    });
+  }, [overrides, filterBoat, filterTemporal, searchQuery]);
+
+  const filtersActive = filterBoat !== "all" || filterTemporal !== "all" || searchQuery.trim() !== "";
+
   if (isLoading) {
     return (
       <Card>
@@ -126,17 +160,82 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
   return (
     <>
       <Card>
-        <CardHeader>
-          <CardTitle>Overrides activos ({overrides.length})</CardTitle>
+        <CardHeader className="space-y-3">
+          <CardTitle>
+            Overrides activos{" "}
+            <span className="text-sm font-normal text-muted-foreground">
+              ({filteredOverrides.length}
+              {filtersActive && filteredOverrides.length !== overrides.length
+                ? ` de ${overrides.length}`
+                : ""}
+              )
+            </span>
+          </CardTitle>
+          {overrides.length > 0 && (
+            <div className="flex flex-wrap items-center gap-2">
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Buscar por nombre…"
+                className="h-9 flex-1 min-w-[180px] max-w-xs"
+              />
+              <Select value={filterBoat} onValueChange={setFilterBoat}>
+                <SelectTrigger className="h-9 w-[180px]">
+                  <SelectValue placeholder="Barco" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Todos los barcos</SelectItem>
+                  <SelectItem value="global">Globales (sin barco)</SelectItem>
+                  {boats.map((b) => (
+                    <SelectItem key={b.id} value={b.id}>
+                      {b.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select
+                value={filterTemporal}
+                onValueChange={(v) => setFilterTemporal(v as TemporalFilter)}
+              >
+                <SelectTrigger className="h-9 w-[160px]">
+                  <SelectValue placeholder="Cuándo" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Todas las fechas</SelectItem>
+                  <SelectItem value="upcoming">Próximos</SelectItem>
+                  <SelectItem value="current">En curso</SelectItem>
+                  <SelectItem value="past">Pasados</SelectItem>
+                </SelectContent>
+              </Select>
+              {filtersActive && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-9 text-xs"
+                  onClick={() => {
+                    setFilterBoat("all");
+                    setFilterTemporal("all");
+                    setSearchQuery("");
+                  }}
+                >
+                  Limpiar
+                </Button>
+              )}
+            </div>
+          )}
         </CardHeader>
         <CardContent>
           {overrides.length === 0 ? (
             <p className="text-sm text-muted-foreground py-4 text-center">
               No hay overrides activos. Crea uno desde una plantilla o con el botón de arriba.
             </p>
+          ) : filteredOverrides.length === 0 ? (
+            <p className="text-sm text-muted-foreground py-4 text-center">
+              Ningún override coincide con los filtros.
+            </p>
           ) : (
             <div className="space-y-3">
-              {overrides.map((o) => {
+              {filteredOverrides.map((o) => {
                 const boatName = boatNameById(o.boatId);
                 const weekdayLabel = formatWeekdayFilter(o.weekdayFilter);
                 return (

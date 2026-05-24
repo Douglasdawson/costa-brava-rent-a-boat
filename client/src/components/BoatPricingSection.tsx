@@ -256,9 +256,14 @@ function DayPricingMode({
     return set;
   }, [boatData.pricing]);
 
+  // One hook per possible duration. Hooks must be unconditional, but each one
+  // gates its own fetch via `enabled` so we don't hit the API for slots the boat
+  // doesn't sell. The filter at the bottom keeps the final array clean.
   const p1h = useBoatPricingForDate({ boatId, date: dateKey, duration: "1h", enabled: activeDurations.has("1h") });
   const p2h = useBoatPricingForDate({ boatId, date: dateKey, duration: "2h", enabled: activeDurations.has("2h") });
+  const p3h = useBoatPricingForDate({ boatId, date: dateKey, duration: "3h", enabled: activeDurations.has("3h") });
   const p4h = useBoatPricingForDate({ boatId, date: dateKey, duration: "4h", enabled: activeDurations.has("4h") });
+  const p6h = useBoatPricingForDate({ boatId, date: dateKey, duration: "6h", enabled: activeDurations.has("6h") });
   const p8h = useBoatPricingForDate({ boatId, date: dateKey, duration: "8h", enabled: activeDurations.has("8h") });
 
   const results = useMemo(
@@ -266,10 +271,12 @@ function DayPricingMode({
       [
         { duration: "1h", ...p1h },
         { duration: "2h", ...p2h },
+        { duration: "3h", ...p3h },
         { duration: "4h", ...p4h },
+        { duration: "6h", ...p6h },
         { duration: "8h", ...p8h },
       ].filter((r) => activeDurations.has(r.duration)),
-    [activeDurations, p1h, p2h, p4h, p8h]
+    [activeDurations, p1h, p2h, p3h, p4h, p6h, p8h]
   );
 
   const isLoading = results.length > 0 && results.every((r) => r.finalPrice === null);

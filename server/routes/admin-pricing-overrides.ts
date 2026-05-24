@@ -19,6 +19,10 @@ const listFiltersSchema = z.object({
 
 const updatePricingOverrideSchema = insertPricingOverrideSchema.partial();
 
+const bulkDeactivateSchema = z.object({
+  ids: z.array(z.string().min(1)).min(1).max(200),
+});
+
 const applyTemplateSchema = z.object({
   year: z.number().int().min(2024).max(2099).optional(),
 });
@@ -248,6 +252,39 @@ export function registerAdminPricingOverridesRoutes(app: Express) {
         res.json(updated);
       } catch (error: unknown) {
         logger.error("[Admin] Error updating pricing override", {
+          error: error instanceof Error ? error.message : String(error),
+        });
+        res.status(500).json({ message: "Error interno del servidor" });
+      }
+    },
+  );
+
+  // ===== BULK SOFT-DELETE =====
+  app.post(
+    "/api/admin/pricing-overrides/bulk-deactivate",
+    requireAdminSession,
+    requireTabAccess("pricing"),
+    async (req, res) => {
+      try {
+        const validation = bulkDeactivateSchema.safeParse(req.body);
+        if (!validation.success) {
+          return res.status(400).json({
+            message: "Datos inválidos",
+            errors: validation.error.flatten().fieldErrors,
+          });
+        }
+        const { ids } = validation.data;
+        const deactivated = await storage.bulkDeactivatePricingOverrides(ids);
+        audit(req, "bulk_deactivate", RESOURCE, deactivated.map((r) => r.id).join(","), {
+          requestedCount: ids.length,
+          deactivatedCount: deactivated.length,
+        });
+        res.json({
+          deactivatedCount: deactivated.length,
+          deactivatedIds: deactivated.map((r) => r.id),
+        });
+      } catch (error: unknown) {
+        logger.error("[Admin] Error bulk-deactivating pricing overrides", {
           error: error instanceof Error ? error.message : String(error),
         });
         res.status(500).json({ message: "Error interno del servidor" });

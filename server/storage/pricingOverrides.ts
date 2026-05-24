@@ -1,5 +1,5 @@
 import {
-  db, eq, and, or, gte, lte, isNull, desc, sql,
+  db, eq, and, or, gte, lte, isNull, inArray, desc, sql,
   pricingOverrides,
   type PricingOverride,
   type InsertPricingOverride,
@@ -105,6 +105,23 @@ export async function deactivatePricingOverride(id: string): Promise<PricingOver
     .where(eq(pricingOverrides.id, id))
     .returning();
   return updated;
+}
+
+/**
+ * Deactivate multiple overrides in a single SQL UPDATE. Only acts on rows that
+ * are currently active — already-inactive rows are skipped silently so the
+ * returned count reflects the actual effect (useful for the admin UI feedback).
+ */
+export async function bulkDeactivatePricingOverrides(
+  ids: string[],
+): Promise<PricingOverride[]> {
+  if (ids.length === 0) return [];
+  const rows = await db
+    .update(pricingOverrides)
+    .set({ isActive: false, updatedAt: new Date() })
+    .where(and(inArray(pricingOverrides.id, ids), eq(pricingOverrides.isActive, true)))
+    .returning();
+  return rows;
 }
 
 /**

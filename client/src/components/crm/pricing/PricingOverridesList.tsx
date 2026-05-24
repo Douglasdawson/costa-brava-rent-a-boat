@@ -22,11 +22,12 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Pencil, Trash2, Calendar as CalendarIcon, Anchor, Globe } from "lucide-react";
+import { Pencil, Trash2, Calendar as CalendarIcon, Anchor, Globe, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { Checkbox } from "@/components/ui/checkbox";
 import { WEEKDAY_LABELS, type PricingOverride } from "./types";
 
 interface PricingOverridesListProps {
@@ -78,6 +79,8 @@ const todayKey = () => {
 export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
   const { toast } = useToast();
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [confirmBulkOpen, setConfirmBulkOpen] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [filterBoat, setFilterBoat] = useState<string>("all"); // "all" | "global" | boatId
   const [filterTemporal, setFilterTemporal] = useState<TemporalFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -127,6 +130,33 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
     },
   });
 
+  const bulkDeactivateMutation = useMutation({
+    mutationFn: async (ids: string[]) => {
+      const res = await fetch("/api/admin/pricing-overrides/bulk-deactivate", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || "Error al desactivar");
+      }
+      return (await res.json()) as { deactivatedCount: number; deactivatedIds: string[] };
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pricing-overrides"] });
+      toast({
+        title: `${data.deactivatedCount} ${data.deactivatedCount === 1 ? "override desactivado" : "overrides desactivados"}`,
+      });
+      setSelectedIds(new Set());
+      setConfirmBulkOpen(false);
+    },
+    onError: (error: Error) => {
+      toast({ variant: "destructive", title: "Error", description: error.message });
+    },
+  });
+
   const filteredOverrides = useMemo(() => {
     const today = todayKey();
     const q = searchQuery.trim().toLowerCase();
@@ -142,6 +172,41 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
   }, [overrides, filterBoat, filterTemporal, searchQuery]);
 
   const filtersActive = filterBoat !== "all" || filterTemporal !== "all" || searchQuery.trim() !== "";
+
+  // Selection scoped to the currently filtered list — selecting "all" never reaches
+  // overrides hidden by the active filters, so the admin can't accidentally deactivate
+  // off-screen rows.
+  const filteredSelectedCount = useMemo(
+    () => filteredOverrides.filter((o) => selectedIds.has(o.id)).length,
+    [filteredOverrides, selectedIds],
+  );
+  const allFilteredSelected =
+    filteredOverrides.length > 0 && filteredSelectedCount === filteredOverrides.length;
+  const someFilteredSelected = filteredSelectedCount > 0 && !allFilteredSelected;
+
+  const toggleOne = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleAllFiltered = () => {
+    setSelectedIds((prev) => {
+      if (allFilteredSelected) {
+        const next = new Set(prev);
+        for (const o of filteredOverrides) next.delete(o.id);
+        return next;
+      }
+      const next = new Set(prev);
+      for (const o of filteredOverrides) next.add(o.id);
+      return next;
+    });
+  };
+
+  const clearSelection = () => setSelectedIds(new Set());
 
   if (isLoading) {
     return (
@@ -235,16 +300,66 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
             </p>
           ) : (
             <div className="space-y-3">
+              <div className="flex items-center justify-between gap-3 px-1">
+                <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none">
+                  <Checkbox
+                    checked={
+                      allFilteredSelected
+                        ? true
+                        : someFilteredSelected
+                          ? "indeterminate"
+                          : false
+                    }
+                    onCheckedChange={toggleAllFiltered}
+                    aria-label="Seleccionar todos los overrides visibles"
+                  />
+                  {filteredSelectedCount > 0
+                    ? `${filteredSelectedCount} de ${filteredOverrides.length} seleccionados`
+                    : "Seleccionar todos los visibles"}
+                </label>
+                {selectedIds.size > 0 && (
+                  <div className="flex items-center gap-2">
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="h-8 text-xs"
+                      onClick={clearSelection}
+                    >
+                      <X className="w-3.5 h-3.5 mr-1" />
+                      Limpiar selección
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      className="h-8 text-xs"
+                      onClick={() => setConfirmBulkOpen(true)}
+                    >
+                      <Trash2 className="w-3.5 h-3.5 mr-1" />
+                      Desactivar {selectedIds.size}
+                    </Button>
+                  </div>
+                )}
+              </div>
               {filteredOverrides.map((o) => {
                 const boatName = boatNameById(o.boatId);
                 const weekdayLabel = formatWeekdayFilter(o.weekdayFilter);
+                const isSelected = selectedIds.has(o.id);
                 return (
                   <div
                     key={o.id}
-                    className="border rounded-md p-3 space-y-2 hover:border-primary/40 transition-colors"
+                    className={`border rounded-md p-3 space-y-2 hover:border-primary/40 transition-colors ${
+                      isSelected ? "border-primary/60 bg-primary/5" : ""
+                    }`}
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <div className="min-w-0 flex-1">
+                      <div className="flex items-start gap-3 min-w-0 flex-1">
+                        <Checkbox
+                          checked={isSelected}
+                          onCheckedChange={() => toggleOne(o.id)}
+                          aria-label={`Seleccionar ${o.label}`}
+                          className="mt-0.5"
+                        />
+                        <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
                           <h4 className="font-medium text-sm truncate">{o.label}</h4>
                           <Badge
@@ -283,6 +398,7 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
                         {o.notes && (
                           <p className="text-xs text-muted-foreground mt-1 italic line-clamp-2">{o.notes}</p>
                         )}
+                        </div>
                       </div>
                       <div className="flex gap-1 shrink-0">
                         <Button size="sm" variant="ghost" onClick={() => onEdit(o)} aria-label="Editar">
@@ -321,6 +437,30 @@ export function PricingOverridesList({ onEdit }: PricingOverridesListProps) {
               onClick={() => confirmDeleteId && deactivateMutation.mutate(confirmDeleteId)}
             >
               Eliminar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <AlertDialog open={confirmBulkOpen} onOpenChange={(open) => !open && setConfirmBulkOpen(false)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              ¿Desactivar {selectedIds.size} {selectedIds.size === 1 ? "override" : "overrides"}?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              Quedarán desactivados y dejarán de aplicarse. Las reservas pasadas conservan el precio
+              que pagaron — no se toca el historial. Puedes recrearlos manualmente si los necesitas
+              de nuevo.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={bulkDeactivateMutation.isPending}>Cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => bulkDeactivateMutation.mutate(Array.from(selectedIds))}
+              disabled={bulkDeactivateMutation.isPending}
+            >
+              Desactivar
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

@@ -188,6 +188,7 @@ export const storage = {
   createPricingOverride: pricingOverridesRepo.createPricingOverride,
   updatePricingOverride: pricingOverridesRepo.updatePricingOverride,
   deactivatePricingOverride: pricingOverridesRepo.deactivatePricingOverride,
+  bulkDeactivatePricingOverrides: pricingOverridesRepo.bulkDeactivatePricingOverrides,
   loadActiveOverridesForDate: pricingOverridesRepo.loadActiveOverridesForDate,
   loadActiveOverridesForRange: pricingOverridesRepo.loadActiveOverridesForRange,
 

@@ -7,13 +7,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus, Minus, ArrowLeft, TrendingUp } from "lucide-react";
+import { Plus, Minus, ArrowLeft } from "lucide-react";
 import { trackAddShippingInfo, trackGenerateLead } from "@/utils/analytics";
 import type { Translations } from "@/lib/translations";
 import type { PhonePrefix } from "@/utils/phone-prefixes";
 import type { Boat } from "@shared/schema";
 import type { Extra, CustomerData } from "./types";
-import { usePricingOverrideForDate } from "./usePricingOverrideForDate";
 
 interface BookingStepPersonalizeProps {
   // Extras
@@ -79,7 +78,6 @@ export function BookingStepPersonalize({
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [phonePrefixActiveIndex, setPhonePrefixActiveIndex] = useState(-1);
   const [nationalityActiveIndex, setNationalityActiveIndex] = useState(-1);
-  const pricingOverride = usePricingOverrideForDate(boatId, selectedDate);
 
   const phonePrefixListRef = useRef<HTMLDivElement>(null);
   const nationalityListRef = useRef<HTMLDivElement>(null);
@@ -211,22 +209,6 @@ export function BookingStepPersonalize({
 
   return (
     <div className="space-y-10 sm:space-y-12">
-      {pricingOverride.hasOverride && (
-        <div className="flex items-start gap-2.5 px-3.5 py-2.5 rounded-lg bg-foreground/[0.04] text-foreground text-[13px] leading-snug">
-          <TrendingUp className="w-4 h-4 mt-0.5 shrink-0 text-foreground/70" />
-          <span>
-            <strong className="font-semibold">
-              {t.booking.specialRateTitle ?? "Tarifa especial para esta fecha"}:
-            </strong>{" "}
-            {t.booking.specialRateBody ?? "precio adaptado por demanda"}
-            {pricingOverride.percentChange && pricingOverride.percentChange !== 0
-              ? ` (${pricingOverride.percentChange > 0 ? "+" : ""}${pricingOverride.percentChange}%)`
-              : ""}
-            {pricingOverride.overrideLabel ? `: ${pricingOverride.overrideLabel}` : ""}.{" "}
-            {t.booking.specialRateFooter ?? "El total final del siguiente paso ya lo incluye."}
-          </span>
-        </div>
-      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10 sm:gap-y-12">
         {/* Extras section */}
         <section>

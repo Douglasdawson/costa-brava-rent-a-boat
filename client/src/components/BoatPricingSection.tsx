@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, X, TrendingUp, TrendingDown, Calendar, ChevronDown } from "lucide-react";
+import { CheckCircle, X, Calendar, ChevronDown } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -261,19 +261,6 @@ function DayPricingMode({
 
   const isLoading = results.length > 0 && results.every((r) => r.finalPrice === null);
   const allEmpty = !isLoading && results.every((r) => r.finalPrice === null);
-  const overrideHit = results.find((r) => r.hasOverride);
-  const isDiscount =
-    !!overrideHit &&
-    overrideHit.basePrice !== null &&
-    overrideHit.finalPrice !== null &&
-    overrideHit.finalPrice < overrideHit.basePrice;
-  const overrideHeadline = isDiscount
-    ? t.boatDetail.specialRateDiscount
-    : t.boatDetail.specialRateIncrease;
-  const overrideBadgeClass = isDiscount
-    ? "bg-success/10 border border-success/30"
-    : "bg-popular/10 border border-popular/30";
-  const OverrideIcon = isDiscount ? TrendingDown : TrendingUp;
 
   return (
     <div className="space-y-4">
@@ -293,17 +280,6 @@ function DayPricingMode({
           <span className="hidden sm:inline">{t.boatDetail.backToSeasonPrices}</span>
         </Button>
       </div>
-
-      {overrideHit?.overrideLabel && (
-        <div
-          className={`rounded-md px-3 py-2 flex items-center justify-center gap-1.5 ${overrideBadgeClass}`}
-        >
-          <OverrideIcon className="w-3.5 h-3.5 text-foreground/70 shrink-0" aria-hidden="true" />
-          <span className="text-xs font-medium text-foreground">
-            <strong>{overrideHeadline}:</strong> {overrideHit.overrideLabel}
-          </span>
-        </div>
-      )}
 
       <div className="bg-muted rounded-lg p-4 md:p-6">
         {isLoading ? (
@@ -331,6 +307,10 @@ function DayPricingMode({
               if (r.finalPrice === null) return null;
               const isRecommended = !requiresLicense && r.duration === "4h";
               const hasDiff = r.hasOverride && r.basePrice !== null && r.basePrice !== r.finalPrice;
+              // Strike-through only for discounts. For surcharges, striking the cheaper
+              // catalogue price reads as the inverse of the e-commerce convention.
+              const showStrikethroughBase =
+                hasDiff && r.basePrice !== null && r.finalPrice < r.basePrice;
               const ariaLabel = `${t.hero.bookNow} ${r.duration} · ${r.finalPrice}€${
                 isRecommended ? ` · ${t.boatDetail.recommendedBadge}` : ""
               }`;
@@ -360,7 +340,7 @@ function DayPricingMode({
                     {r.finalPrice}€
                   </div>
                   <div className="text-sm text-muted-foreground">{r.duration}</div>
-                  {hasDiff && (
+                  {showStrikethroughBase && (
                     <div className="text-[10px] line-through text-muted-foreground mt-0.5 tabular-nums">
                       {r.basePrice}€
                     </div>

@@ -701,7 +701,6 @@ export const es: Translations = {
     priceIncludes: "El precio incluye:",
     pricesForDay: "Precios para {day}",
     backToSeasonPrices: "Ver precios por temporada",
-    specialRate: "Tarifa especial",
     specialRateIncrease: "Tarifa especial",
     specialRateDiscount: "Descuento aplicado",
     loadingPrices: "Cargando precios…",

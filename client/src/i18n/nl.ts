@@ -671,7 +671,6 @@ export const nl: Translations = {
     priceIncludes: "Prijs is inclusief:",
     pricesForDay: "Prijzen voor {day}",
     backToSeasonPrices: "Seizoensprijzen bekijken",
-    specialRate: "Speciaal tarief",
     specialRateIncrease: "Speciaal tarief",
     specialRateDiscount: "Korting toegepast",
     loadingPrices: "Prijzen laden…",

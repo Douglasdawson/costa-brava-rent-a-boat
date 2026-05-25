@@ -673,7 +673,6 @@ export const de: Translations = {
     priceIncludes: "Im Preis enthalten:",
     pricesForDay: "Preise für {day}",
     backToSeasonPrices: "Saisonpreise ansehen",
-    specialRate: "Sondertarif",
     specialRateIncrease: "Sondertarif",
     specialRateDiscount: "Rabatt angewendet",
     loadingPrices: "Preise werden geladen…",

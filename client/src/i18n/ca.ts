@@ -672,7 +672,6 @@ export const ca: Translations = {
     priceIncludes: "El preu inclou:",
     pricesForDay: "Preus per a {day}",
     backToSeasonPrices: "Veure preus per temporada",
-    specialRate: "Tarifa especial",
     specialRateIncrease: "Tarifa especial",
     specialRateDiscount: "Descompte aplicat",
     loadingPrices: "Carregant preus…",

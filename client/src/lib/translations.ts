@@ -771,7 +771,6 @@ export interface Translations {
     priceIncludes: string;
     pricesForDay: string;
     backToSeasonPrices: string;
-    specialRate: string;
     specialRateIncrease: string;
     specialRateDiscount: string;
     loadingPrices: string;

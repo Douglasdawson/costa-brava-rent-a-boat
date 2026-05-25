@@ -667,7 +667,6 @@ export const ru: Translations = {
     priceIncludes: "В стоимость входит:",
     pricesForDay: "Цены на {day}",
     backToSeasonPrices: "Посмотреть сезонные цены",
-    specialRate: "Специальный тариф",
     specialRateIncrease: "Специальный тариф",
     specialRateDiscount: "Применена скидка",
     loadingPrices: "Загрузка цен…",

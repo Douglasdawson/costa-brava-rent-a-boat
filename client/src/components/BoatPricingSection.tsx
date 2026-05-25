@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, X, TrendingUp, TrendingDown, Calendar, ChevronDown } from "lucide-react";
@@ -77,9 +77,6 @@ export default function BoatPricingSection({
   const t = useTranslations();
   const { language } = useLanguage();
   const isMobile = useIsMobile();
-  // Used to focus the hidden <input type="date"> when the visible button is clicked.
-  const nativeDateInputRef = useRef<HTMLInputElement>(null);
-
   const dayLabel = selectedDate ? formatDayLabel(selectedDate, language, isMobile) : "";
 
   // min / max bounds for the native date picker. Today through end of operational season.
@@ -100,22 +97,6 @@ export default function BoatPricingSection({
     onDateSelect(new Date(y, m - 1, d));
   };
 
-  const openNativeDatePicker = () => {
-    const el = nativeDateInputRef.current;
-    if (!el) return;
-    // Modern browsers expose showPicker(); fall back to focus()+click() on older ones.
-    if (typeof el.showPicker === "function") {
-      try {
-        el.showPicker();
-        return;
-      } catch {
-        // showPicker can throw if not triggered by user gesture in some envs
-      }
-    }
-    el.focus();
-    el.click();
-  };
-
   return (
     <Card className="mb-8">
       <CardContent className="space-y-6 pt-6">
@@ -123,36 +104,35 @@ export default function BoatPricingSection({
           {/* Calendar — left column on tablet+, compact trigger + bottom sheet on mobile */}
           <div className="md:max-w-none max-w-md mx-auto md:mx-0 w-full">
             {isMobile ? (
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={openNativeDatePicker}
-                  className="w-full bg-background border-2 border-border rounded-lg px-4 py-3 flex items-center justify-between gap-3 hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 transition-colors"
+              // iOS-friendly pattern: <label> wraps a styled span + an opacity-0
+              // native date input on top. The tap lands on the input directly
+              // and the browser opens the OS picker. Trying to drive the input
+              // via showPicker()/focus()+click() failed on iOS Safari because
+              // opacity:0 + pointer-events:none made the input unreachable; the
+              // spec also forbids showPicker on hidden inputs (NotAllowedError).
+              <label className="relative block w-full cursor-pointer">
+                <span
+                  className="flex w-full items-center justify-between gap-3 rounded-lg border-2 border-border bg-background px-4 py-3 transition-colors hover:border-foreground/30"
                   data-testid="button-open-calendar"
                 >
-                  <span className="flex items-center gap-2 min-w-0">
+                  <span className="flex min-w-0 items-center gap-2">
                     <Calendar className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
                     <span className="text-sm font-medium text-foreground truncate">
                       {selectedDate ? dayLabel : t.boatDetail.checkAvailability}
                     </span>
                   </span>
                   <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" aria-hidden="true" />
-                </button>
-                {/* Native OS date picker, visually hidden but reachable by tap on browsers
-                    that don't honor showPicker(). Positioned over the button so a tap
-                    falls through to the input on older Safari versions. */}
+                </span>
                 <input
-                  ref={nativeDateInputRef}
                   type="date"
                   value={selectedDate ? toDateKey(selectedDate) : ""}
                   min={todayKey}
                   max={maxKey}
                   onChange={handleNativeDateChange}
                   aria-label={t.boatDetail.checkAvailability}
-                  className="absolute inset-0 w-full h-full opacity-0 pointer-events-none"
-                  tabIndex={-1}
+                  className="absolute inset-0 h-full w-full cursor-pointer appearance-none border-0 bg-transparent opacity-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
                 />
-              </div>
+              </label>
             ) : (
               <AvailabilityCalendar
                 boatId={boatId}

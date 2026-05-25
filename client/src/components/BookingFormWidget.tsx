@@ -1417,7 +1417,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     }
 
     if (isSpanish) {
-      return `⛵ *NUEVA RESERVA*
+      return `⛵ *NUEVA PETICIÓN DE RESERVA*
 
 👤 *Datos del cliente*
 ${separator}
@@ -1439,7 +1439,7 @@ Fianza: ${deposit}
 
 Quedo a la espera de confirmacion. ¡Gracias!`;
     } else {
-      return `⛵ *NEW BOOKING*
+      return `⛵ *NEW BOOKING REQUEST*
 
 👤 *Client details*
 ${separator}

@@ -34,13 +34,12 @@ const REQUIRES_LICENSE_IDS = new Set([
 ]);
 
 // Allow-list of canonical boat IDs that MUST exist in the live fleet.
-// Re-seeded from BOAT_DATA when missing. We cannot auto-insert every key in
-// BOAT_DATA because the file holds at least one historical entry
-// (`remus-450-ii`) that should NOT reappear in the fleet without a decision.
-// Keep this list in sync with the desired live fleet.
+// Re-seeded from BOAT_DATA when missing. Keep this list in sync with the
+// desired live fleet.
 const CANONICAL_BOAT_IDS = new Set([
   "solar-450",
   "remus-450",
+  "remus-450-ii",
   "astec-400",
   "astec-480",
   "mingolla-brava-19",

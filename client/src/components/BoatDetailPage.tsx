@@ -860,16 +860,18 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     }
   }, [boatData, boatId]);
 
-  // Related boats: cross-sell the OPPOSITE license category, sorted by capacity
-  // proximity to the current boat so we still surface comparable options.
-  // Falls back to same-category boats only if the opposite category is empty.
+  // Related boats: same license category, sorted by capacity proximity to the
+  // current boat so we surface the most comparable options first. A visitor on
+  // a sin-licencia page has self-selected by constraint; cross-selling licensed
+  // boats was confusing — keep them in their lane. Falls back to all boats if
+  // the same-category pool is empty (defensive — shouldn't happen in practice).
   const relatedBoats = useMemo(() => {
     if (!boats || !boatData) return [];
     const currentCapacity = boatData.capacity;
     const currentRequiresLicense = boatData.requiresLicense;
     const candidates = boats.filter(b => b.id !== boatId);
-    const opposite = candidates.filter(b => b.requiresLicense !== currentRequiresLicense);
-    const pool = opposite.length > 0 ? opposite : candidates;
+    const sameCategory = candidates.filter(b => b.requiresLicense === currentRequiresLicense);
+    const pool = sameCategory.length > 0 ? sameCategory : candidates;
     return pool
       .slice()
       .sort(

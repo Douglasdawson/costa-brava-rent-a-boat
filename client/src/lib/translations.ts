@@ -777,6 +777,12 @@ export interface Translations {
     noPricesForDate: string;
     selectDateTitle: string;
     selectDateBody: string;
+    heroChipsLabel: string;
+    heroChipReviews: string;
+    heroChipFuelInsurance: string;
+    heroChipInsurance: string;
+    heroChipDateChange: string;
+    heroChipWeather: string;
     checkAvailability: string;
     recommendedBadge: string;
     viewsToday: string;

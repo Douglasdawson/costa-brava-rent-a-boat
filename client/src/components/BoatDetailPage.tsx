@@ -79,6 +79,7 @@ import { useBoatLowestPriceForDate } from "@/hooks/useBoatLowestPriceForDate";
 import AvailabilityUrgency from "./AvailabilityUrgency";
 import { LiveInterestIndicator } from "./LiveInterestIndicator";
 import { TrustBadges } from "./TrustBadges";
+import { BoatHeroChips } from "./BoatHeroChips";
 import BoatReviewCarousel from "./BoatReviewCarousel";
 import { getBoatReviews, getBoatAverageRating } from "@/data/boatReviews";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -1215,6 +1216,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         </div>
       </div>
 
+      {/* Trust + risk reversal strip — above the fold on every viewport.
+          Four pill chips: rating, fuel/insurance (license-aware), free date
+          change, weather rescheduling. All claims backed by CondicionesGenerales
+          and shared/businessProfile. */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+        <BoatHeroChips t={t} requiresLicense={requiresLicense} />
+      </div>
+
       {/* View counter - only shown when views > 3 */}
       {viewsData && viewsData.views > 3 && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-2">
@@ -1774,7 +1783,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <h2 className="text-2xl font-heading font-bold text-foreground mb-6 text-center">{boatFaqTitle}</h2>
         <div className="space-y-4 max-w-3xl mx-auto">
           {boatFaqItems.map((item, idx) => (
-            <details key={idx} className="group border border-border rounded-lg">
+            <details
+              key={idx}
+              className="group border border-border rounded-lg"
+              open={idx < 2}
+            >
               <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
                 {item.question}
                 <ChevronRight className="w-4 h-4 transition-transform duration-200 group-open:rotate-90" />

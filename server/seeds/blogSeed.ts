@@ -2066,10 +2066,11 @@ El pago se realiza de forma segura mediante Stripe. Aceptamos todas las tarjetas
 
 ### Política de cancelación
 
-Entendemos que los planes pueden cambiar. Nuestra política de cancelación es flexible:
+Una sola política, igual para todos los barcos:
 
-- **Cancelación por mal tiempo:** Si las condiciones meteorológicas no permiten navegar, te ofrecemos cambio de fecha sin coste o reembolso completo.
-- **Cancelación con antelación:** Consulta las condiciones específicas al hacer la reserva.
+- **Cambio de fecha gratuito** hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación.
+- **Mal tiempo** verificado por nuestro equipo: reprogramación sin coste o devolución íntegra del depósito.
+- **Las reservas confirmadas con depósito no son reembolsables** fuera del supuesto de mal tiempo.
 
 ### El día del alquiler
 

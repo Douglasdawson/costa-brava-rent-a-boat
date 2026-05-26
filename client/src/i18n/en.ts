@@ -1324,13 +1324,13 @@ export const en: Translations = {
         id: "cancelacion",
         question: "What is the cancellation policy?",
         answer:
-          "You can change your booking date at no cost with at least 7 days' notice. Cancellations are non-refundable. In case of bad weather, we offer full rescheduling at no cost.",
+          "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases.",
       },
       {
         id: "mal-tiempo",
         question: "What happens if the weather is bad?",
         answer:
-          "If weather conditions are unsafe, we offer a free date change or full refund. We check the forecast 24h in advance and notify you.",
+          "If weather conditions are unsafe, we offer a free date change or full deposit refund. We check the forecast 24h in advance and notify you.",
       },
       {
         id: "experiencia",
@@ -1909,7 +1909,7 @@ export const en: Translations = {
     a4FuelIncluded: "Fuel is included.",
     a4FuelNotIncluded: "Fuel is not included (paid separately based on consumption).",
     q5: "What is the cancellation policy?",
-    a5: "You can change your booking date free of charge with a minimum of 7 days' notice. Cancellations are non-refundable. In case of bad weather, we offer full rescheduling at no cost.",
+    a5: "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases.",
   },
   activitySunset: {
     faqItems: [
@@ -3513,7 +3513,7 @@ export const en: Translations = {
       cancelacion: {
         question: "What is the cancellation policy?",
         answer:
-          "Flexible policy: More than 48h before = 100% refund, 24-48h before = 50% refund, less than 24h = no refund. Bad weather = free rescheduling or 100% refund.",
+          "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases.",
       },
       sinLicencia: {
         question: "Can I rent without a boat license?",
@@ -3568,7 +3568,7 @@ export const en: Translations = {
       malTiempo: {
         question: "What happens if the weather is bad?",
         answer:
-          "Strong wind: we don't go out in winds above force 4. Heavy rain: we reschedule at no cost. Storm: automatic suspension. Change during navigation: guided return to port. We always prioritize safety with free rescheduling or 100% refund.",
+          "Strong wind: we don't go out in winds above force 4. Heavy rain: we reschedule at no cost. Storm: automatic suspension. Change during navigation: guided return to port. We always prioritize safety with free rescheduling or full deposit refund.",
       },
       emergencia: {
         question: "What do I do in case of emergency?",
@@ -3831,7 +3831,7 @@ export const en: Translations = {
         },
         {
           title: "7. Cancellation Policy",
-          body: "- Cancellation more than 48 hours in advance: 100% refund.\n- Cancellation between 24 and 48 hours before: 50% refund.\n- Cancellation less than 24 hours before: no refund.\n- Bad weather (wind force 4 or above, heavy rain or maritime alert): free rescheduling or 100% refund.\n\nThe decision on suspension due to weather conditions rests with the provider and is made on safety grounds.",
+          body: "- Free date change up to 7 days before departure, subject to boat availability.\n- Bad weather verified by our team: rescheduling at no cost or full deposit refund.\n- Confirmed bookings with deposit are non-refundable outside of bad weather cases.\n\nThe decision on suspension due to weather conditions rests with the provider and is made on safety grounds. Written communication to costabravarentaboat@gmail.com or WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Customer Obligations",

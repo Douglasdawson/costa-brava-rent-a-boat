@@ -2558,13 +2558,13 @@ export const es: Translations = {
         id: "cancelacion",
         question: "¿Cuál es la política de cancelación?",
         answer:
-          "Puedes cambiar la fecha de tu reserva sin coste con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.",
+          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
       },
       {
         id: "mal-tiempo",
         question: "¿Qué pasa si hace mal tiempo?",
         answer:
-          "Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o reembolso completo. Consultamos la previsión 24h antes y te avisamos.",
+          "Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o devolución íntegra del depósito. Consultamos la previsión 24h antes y te avisamos.",
       },
       {
         id: "experiencia",
@@ -3459,7 +3459,7 @@ export const es: Translations = {
       cancelacion: {
         question: "¿Cuál es la política de cancelación?",
         answer:
-          "Política flexible: Más de 48h antes = 100% reembolso, 24-48h antes = 50% reembolso, menos de 24h = sin reembolso. Mal tiempo = reprogramación gratuita o 100% reembolso.",
+          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
       },
       sinLicencia: {
         question: "¿Puedo alquilar sin tener licencia náutica?",
@@ -3514,7 +3514,7 @@ export const es: Translations = {
       malTiempo: {
         question: "¿Qué pasa si hace mal tiempo?",
         answer:
-          "Viento fuerte: no salimos con viento superior a fuerza 4. Lluvia intensa: reprogramamos sin coste. Tormenta: suspensión automática. Cambio durante navegación: regreso guiado al puerto. Siempre priorizamos la seguridad con reprogramación gratuita o reembolso del 100%.",
+          "Viento fuerte: no salimos con viento superior a fuerza 4. Lluvia intensa: reprogramamos sin coste. Tormenta: suspensión automática. Cambio durante navegación: regreso guiado al puerto. Siempre priorizamos la seguridad con reprogramación gratuita o devolución íntegra del depósito.",
       },
       emergencia: {
         question: "¿Qué hago en caso de emergencia?",
@@ -3831,7 +3831,7 @@ export const es: Translations = {
         },
         {
           title: "7. Política de cancelación",
-          body: "- Cancelación con más de 48 h de antelación: reembolso del 100 %.\n- Cancelación entre 24 y 48 h antes: reembolso del 50 %.\n- Cancelación con menos de 24 h: sin reembolso.\n- Mal tiempo (viento superior a fuerza 4, lluvia intensa o alerta marítima): reprogramación gratuita o reembolso del 100 %.\n\nLa decisión sobre suspensión por condiciones meteorológicas corresponde al prestador y se toma con criterios de seguridad.",
+          body: "- Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación.\n- Mal tiempo verificado por nuestro equipo: reprogramación sin coste o devolución íntegra del depósito.\n- Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.\n\nLa decisión sobre suspensión por condiciones meteorológicas corresponde al prestador y se toma con criterios de seguridad. Comunicación por escrito a costabravarentaboat@gmail.com o WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obligaciones del cliente",
@@ -4095,7 +4095,7 @@ export const es: Translations = {
     a4FuelNotIncluded: "El combustible no está incluido (se paga aparte según consumo).",
     q5: "¿Cuál es la política de cancelación?",
     // TODO Fase B — migrar a site_content editable desde admin (tabla site_content + endpoint + tab CRM)
-    a5: "Puedes cambiar la fecha de tu reserva sin coste con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.",
+    a5: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
   },
 
   // Visible byline rendered at the top of every blog post — boosts E-E-A-T

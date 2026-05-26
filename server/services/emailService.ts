@@ -78,7 +78,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hora", colHours: "horas",
     phone: "Teléfono",
     emergencyCall: "En caso de incidencia, llámanos al",
-    cancelTitle: "Cambio de fecha gratis con 7+ días de antelación. Cancelaciones no reembolsables.",
+    cancelTitle: "Cambio de fecha gratis hasta 7 días antes. Reservas con depósito no reembolsables (excepto mal tiempo).",
     cancelLink: "Cancelar mi reserva",
   },
   en: {
@@ -114,7 +114,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hour", colHours: "hours",
     phone: "Phone",
     emergencyCall: "In case of emergency, call us at",
-    cancelTitle: "Free date change with 7+ days notice. Cancellations are non-refundable.",
+    cancelTitle: "Free date change up to 7 days before. Deposit bookings are non-refundable (except in bad weather).",
     cancelLink: "Cancel my booking",
   },
   fr: {
@@ -320,7 +320,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hora", colHours: "hores",
     phone: "Telèfon",
     emergencyCall: "En cas d'incidència, truca'ns al",
-    cancelTitle: "Canvi de data gratuït amb 7+ dies d'antelació. Cancel·lacions no reemborsables.",
+    cancelTitle: "Canvi de data gratuït fins a 7 dies abans. Reserves amb dipòsit no reemborsables (excepte mal temps).",
     cancelLink: "Cancel·lar la meva reserva",
   },
 };
@@ -535,7 +535,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
 
   const cancelBlock = cancelUrl ? `
     <div style="margin-top:24px; padding:16px; background-color:#f8fafc; border-radius:8px; border:1px solid #e2e8f0; text-align:center;">
-      <p style="margin:0 0 8px; color:#64748b; font-size:13px;">${strings.cancelTitle || "Cambio de fecha gratis con 7+ días de antelación. Cancelaciones no reembolsables."}</p>
+      <p style="margin:0 0 8px; color:#64748b; font-size:13px;">${strings.cancelTitle || "Cambio de fecha gratis hasta 7 días antes. Reservas con depósito no reembolsables (excepto mal tiempo)."}</p>
       <a href="${cancelUrl}" style="color:#dc2626; font-size:13px; text-decoration:underline;">${strings.cancelLink || "Cancelar mi reserva"}</a>
     </div>
   ` : "";
@@ -1018,19 +1018,22 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     return { success: false, error: "SendGrid not configured" };
   }
 
-  const { booking, refundAmount, refundPercentage } = data;
+  const { booking } = data;
   const appUrl = process.env.APP_URL || "https://www.costabravarentaboat.com";
 
-  const refundBlock = refundAmount > 0
-    ? `<p style="color:#16a34a; font-weight:bold;">Reembolso: ${refundAmount.toFixed(2)} EUR (${refundPercentage}%) — se procesará en los próximos días hábiles.</p>`
-    : `<p style="color:#dc2626;">Sin reembolso según política de cancelación (menos de 24h de antelación).</p>`;
+  const policyBlock = `
+    <div style="background:#f1f5f9; border-radius:8px; padding:16px; margin:16px 0; font-size:14px; color:#334155;">
+      <p style="margin:0 0 8px; font-weight:bold;">Política de cancelación</p>
+      <p style="margin:0;">Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.</p>
+    </div>
+  `;
 
   const customerContent = `
     <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:22px;">Reserva cancelada</h2>
     <p style="color:#475569; font-size:15px; margin:0 0 16px;">
       Hola ${booking.customerName}, hemos procesado la cancelación de tu reserva.
     </p>
-    ${refundBlock}
+    ${policyBlock}
     <p style="color:#64748b; font-size:13px; margin-top:24px;">
       Si tienes dudas, contactanos en <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a> o al +34 611 500 372.
     </p>
@@ -1061,7 +1064,6 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     <p>Teléfono: ${booking.customerPhone}</p>
     <p>Fecha: ${new Date(booking.startTime).toLocaleDateString("es-ES")}</p>
     <p>Total: ${booking.totalAmount} EUR</p>
-    ${refundAmount > 0 ? `<p style="color:#dc2626;">Reembolso a procesar: ${refundAmount.toFixed(2)} EUR (${refundPercentage}%)</p>` : "<p>Sin reembolso.</p>"}
   `;
 
   sendgridBreaker.call(() => sgMail.send({

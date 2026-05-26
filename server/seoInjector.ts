@@ -2210,7 +2210,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
           refundType: "https://schema.org/NoReturnRefund",
           additionalType: "https://www.costabravarentaboat.com/terms-conditions",
-          description: "Las cancelaciones no son reembolsables. Cambio de fecha gratuito con un mínimo de 7 días de antelación sujeto a disponibilidad. En caso de mal tiempo ofrecemos reprogramación completa sin coste.",
+          description: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
         },
         speakable: {
           "@type": "SpeakableSpecification",
@@ -2290,7 +2290,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Cuál es la política de cancelación?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "El cambio de fecha es gratuito con un mínimo de 7 días de antelación, sujeto a disponibilidad. Las cancelaciones no son reembolsables. En caso de mal tiempo, reprogramación gratuita."
+              text: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo."
             }
           },
           {
@@ -2306,7 +2306,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Qué pasa si hace mal tiempo?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o reembolso completo. Consultamos la previsión 24h antes y te avisamos."
+              text: "Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o devolución íntegra del depósito. Consultamos la previsión 24h antes y te avisamos."
             }
           },
           {
@@ -2409,8 +2409,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
             "@type": "Question",
             name: isEn ? "What is the cancellation policy?" : "¿Cuál es la política de cancelación?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Free date changes with at least 7 days' notice. Cancellations are non-refundable. In case of bad weather, we offer full rescheduling at no cost."
-              : "Cambio de fecha gratuito con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste." },
+              ? "Free date changes up to 7 days before departure (subject to availability). Bad weather: free rescheduling or full deposit refund. Confirmed bookings with deposit are non-refundable outside the bad-weather case."
+              : "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo." },
           },
           {
             "@type": "Question",

@@ -1318,13 +1318,13 @@ export const it: Translations = {
         id: "cancelacion",
         question: "Qual è la politica di cancellazione?",
         answer:
-          "Puoi cambiare la data della prenotazione senza costi con almeno 7 giorni di preavviso. Le cancellazioni non sono rimborsabili. In caso di maltempo, offriamo riprogrammazione completa senza costi.",
+          "Cambio data gratuito fino a 7 giorni prima della partenza (in base alla disponibilità). Maltempo: riprogrammiamo senza costi o rimborsiamo la caparra per intero. Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.",
       },
       {
         id: "mal-tiempo",
         question: "Cosa succede se c'è brutto tempo?",
         answer:
-          "Se le condizioni meteo non sono sicure, offriamo cambio data gratuito o rimborso completo. Controlliamo le previsioni 24h prima e ti avvisiamo.",
+          "Se le condizioni meteo non sono sicure, offriamo cambio data gratuito o rimborso integrale della caparra. Controlliamo le previsioni 24h prima e ti avvisiamo.",
       },
       {
         id: "experiencia",
@@ -1848,7 +1848,7 @@ export const it: Translations = {
     a4FuelIncluded: "Il carburante è incluso.",
     a4FuelNotIncluded: "Il carburante non è incluso (si paga a parte in base al consumo).",
     q5: "Qual è la politica di cancellazione?",
-    a5: "Puoi modificare la data della tua prenotazione senza costi con un minimo di 7 giorni di anticipo. Le cancellazioni non sono rimborsabili. In caso di maltempo, offriamo la riprogrammazione completa senza alcun costo.",
+    a5: "Cambio data gratuito fino a 7 giorni prima della partenza (in base alla disponibilità). Maltempo: riprogrammiamo senza costi o rimborsiamo integralmente la caparra. Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.",
   },
   activitySunset: {
     faqItems: [
@@ -3459,7 +3459,7 @@ export const it: Translations = {
       cancelacion: {
         question: "Qual è la politica di cancellazione?",
         answer:
-          "Politica flessibile: Più di 48h prima = rimborso 100%, 24-48h prima = rimborso 50%, meno di 24h = nessun rimborso. Maltempo = riprogrammazione gratuita o rimborso 100%.",
+          "Cambio data gratuito fino a 7 giorni prima della partenza (in base alla disponibilità). Maltempo: riprogrammiamo senza costi o rimborsiamo la caparra per intero. Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.",
       },
       sinLicencia: {
         question: "Posso noleggiare senza avere la patente nautica?",
@@ -3514,7 +3514,7 @@ export const it: Translations = {
       malTiempo: {
         question: "Cosa succede se c'è maltempo?",
         answer:
-          "Vento forte: non usciamo con vento superiore a forza 4. Pioggia intensa: riprogrammiamo senza costi. Temporale: sospensione automatica. Cambiamento durante la navigazione: rientro guidato al porto. Diamo sempre priorità alla sicurezza con riprogrammazione gratuita o rimborso del 100%.",
+          "Vento forte: non usciamo con vento superiore a forza 4. Pioggia intensa: riprogrammiamo senza costi. Temporale: sospensione automatica. Cambiamento durante la navigazione: rientro guidato al porto. Diamo sempre priorità alla sicurezza con riprogrammazione gratuita o rimborso integrale della caparra.",
       },
       emergencia: {
         question: "Cosa faccio in caso di emergenza?",
@@ -3777,7 +3777,7 @@ export const it: Translations = {
         },
         {
           title: "7. Politica di cancellazione",
-          body: "- Cancellazione con più di 48 ore di anticipo: rimborso del 100%.\n- Cancellazione tra 24 e 48 ore prima: rimborso del 50%.\n- Cancellazione con meno di 24 ore: nessun rimborso.\n- Maltempo (vento superiore a forza 4, pioggia intensa o allerta marittima): riprogrammazione gratuita o rimborso del 100%.\n\nLa decisione sulla sospensione per condizioni meteorologiche spetta al prestatore ed è presa con criteri di sicurezza.",
+          body: "- Cambio data gratuito fino a 7 giorni prima della partenza, in base alla disponibilità dell'imbarcazione.\n- Maltempo verificato dal nostro team: riprogrammazione senza costi o rimborso integrale della caparra.\n- Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.\n\nLa decisione sulla sospensione per condizioni meteorologiche spetta al prestatore ed è presa con criteri di sicurezza. Comunicazione scritta a costabravarentaboat@gmail.com o WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obblighi del cliente",

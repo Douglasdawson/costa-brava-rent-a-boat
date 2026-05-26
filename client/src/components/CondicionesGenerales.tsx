@@ -81,6 +81,16 @@ export default function CondicionesGenerales() {
               </div>
 
               <div>
+                <h3 className="text-lg font-semibold text-foreground mb-3">CANCELACIONES Y CAMBIOS:</h3>
+                <div className="space-y-3 text-foreground">
+                  <p>• Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación. Comunícalo por escrito a <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">costabravarentaboat@gmail.com</a> o por WhatsApp al +34 611 500 372.</p>
+                  <p>• Mal tiempo verificado por nuestro equipo: reprogramación sin coste o devolución íntegra del depósito.</p>
+                  <p>• Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.</p>
+                  <p>La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.</p>
+                </div>
+              </div>
+
+              <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ZONA DE NAVEGACIÓN:</h3>
                 <p className="text-foreground">
                   Costa Brava Rent a Boat recomienda por seguridad no sobrepasar el puerto de Sant Feliu, ya que en caso de mal tiempo o cambio repentino de climatología puede ocasionar problemas hallarse tan lejos del puerto base. Si bajo su responsabilidad deciden rebasar ese punto deben saber que si navegando en zonas no autorizadas se requiere de asistencia la empresa no se hará responsable y el seguro no cubrirá ningún tipo de pérdidas y/o daños personales. En caso de necesidad de remolque de la embarcación por avería o falta de combustible se cobrará 1.000,00€ en concepto de maniobra de rescate.
@@ -158,11 +168,10 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">CANCELACIONES Y CAMBIOS:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>La cancelación de la reserva por parte del cliente ocasionará gastos de tramitación, gestión y bloqueo de la embarcación, por lo que todas las cancelaciones conllevarán la no devolución del importe pagado al formalizar la reserva.</p>
-                  <p>• Costa Brava Rent a Boat Blanes acepta el cambio de una reserva por parte del cliente únicamente con una comunicación previa por escrito a <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">costabravarentaboat@gmail.com</a> o por WhatsApp al +34 611 500 372, con un mínimo de 7 días de antelación al día del alquiler.</p>
-                  <p>• Cuando el alquiler no pueda disfrutarse por motivos climatológicos justificados y verificados por Costa Brava Rent a Boat Blanes, se ofrecerá al cliente un cambio de fecha para disfrutar del alquiler otro día, sujeto a la disponibilidad de la embarcación.</p>
-                  <p>• No se realizarán cambios por condiciones meteorológicas hasta el mismo día del alquiler. Nuestro personal informará de las condiciones meteorológicas en la fecha de la reserva. Si el cliente decide no salir a navegar aun siendo positivo el veredicto de nuestro personal, Costa Brava Rent a Boat Blanes no efectuará la devolución del importe pagado al formalizar la reserva.</p>
-                  <p>• Si el cliente no puede salir a navegar por un problema personal, Costa Brava Rent a Boat Blanes no se hará responsable, por lo tanto no se devolverá el importe de la reserva ni se cambiará el día del alquiler.</p>
+                  <p>• Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación. Comunícalo por escrito a <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">costabravarentaboat@gmail.com</a> o por WhatsApp al +34 611 500 372.</p>
+                  <p>• Mal tiempo verificado por nuestro equipo: reprogramación sin coste o devolución íntegra del depósito.</p>
+                  <p>• Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.</p>
+                  <p>La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.</p>
                 </div>
               </div>
 

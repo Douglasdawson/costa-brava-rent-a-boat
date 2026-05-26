@@ -1318,13 +1318,13 @@ export const nl: Translations = {
         id: "cancelacion",
         question: "Wat is het annuleringsbeleid?",
         answer:
-          "U kunt de datum van uw boeking gratis wijzigen met minimaal 7 dagen vooraf. Annuleringen worden niet terugbetaald. Bij slecht weer bieden wij gratis omboeken aan.",
+          "Gratis datumwijziging tot 7 dagen vóór vertrek (afhankelijk van beschikbaarheid). Slecht weer: we boeken kosteloos om of betalen de aanbetaling volledig terug. Bevestigde boekingen met aanbetaling zijn niet restitueerbaar buiten gevallen van slecht weer.",
       },
       {
         id: "mal-tiempo",
         question: "Wat gebeurt er bij slecht weer?",
         answer:
-          "Als de weersomstandigheden onveilig zijn, bieden we een gratis datumwijziging of volledige terugbetaling. We raadplegen de voorspelling 24u van tevoren en laten het je weten.",
+          "Als de weersomstandigheden onveilig zijn, bieden we een gratis datumwijziging of volledige terugbetaling van de aanbetaling. We raadplegen de voorspelling 24u van tevoren en laten het je weten.",
       },
       {
         id: "experiencia",
@@ -1848,7 +1848,7 @@ export const nl: Translations = {
     a4FuelIncluded: "Brandstof is inbegrepen.",
     a4FuelNotIncluded: "Brandstof is niet inbegrepen (wordt apart betaald op basis van verbruik).",
     q5: "Wat is het annuleringsbeleid?",
-    a5: "Je kunt de datum van je reservering kosteloos wijzigen met minimaal 7 dagen voorafgaande kennisgeving. Annuleringen zijn niet restitueerbaar. Bij slecht weer bieden we kosteloos volledige omboekingsmogelijkheden.",
+    a5: "Gratis datumwijziging tot 7 dagen voor vertrek (afhankelijk van beschikbaarheid). Slecht weer: we plannen kosteloos om of restitueren de volledige aanbetaling. Bevestigde boekingen met aanbetaling zijn buiten gevallen van slecht weer niet restitueerbaar.",
   },
   activitySunset: {
     faqItems: [
@@ -3460,7 +3460,7 @@ export const nl: Translations = {
       cancelacion: {
         question: "Wat is het annuleringsbeleid?",
         answer:
-          "Flexibel beleid: Meer dan 48u van tevoren = 100% restitutie, 24-48u van tevoren = 50% restitutie, minder dan 24u = geen restitutie. Slecht weer = gratis omboeken of 100% restitutie.",
+          "Gratis datumwijziging tot 7 dagen vóór vertrek (afhankelijk van beschikbaarheid). Slecht weer: we boeken kosteloos om of betalen de aanbetaling volledig terug. Bevestigde boekingen met aanbetaling zijn niet restitueerbaar buiten gevallen van slecht weer.",
       },
       sinLicencia: {
         question: "Kan ik huren zonder vaarbewijs?",
@@ -3515,7 +3515,7 @@ export const nl: Translations = {
       malTiempo: {
         question: "Wat gebeurt er bij slecht weer?",
         answer:
-          "Harde wind: we varen niet uit bij wind boven kracht 4. Hevige regen: kosteloos omboeken. Onweer: automatische annulering. Weersverandering tijdens het varen: begeleide terugkeer naar de haven. We stellen veiligheid altijd voorop met gratis omboeken of 100% restitutie.",
+          "Harde wind: we varen niet uit bij wind boven kracht 4. Hevige regen: kosteloos omboeken. Onweer: automatische annulering. Weersverandering tijdens het varen: begeleide terugkeer naar de haven. We stellen veiligheid altijd voorop met gratis omboeken of volledige terugbetaling van de aanbetaling.",
       },
       emergencia: {
         question: "Wat moet ik doen bij een noodgeval?",
@@ -3778,7 +3778,7 @@ export const nl: Translations = {
         },
         {
           title: "7. Annuleringsbeleid",
-          body: "- Annulering meer dan 48 uur van tevoren: 100% terugbetaling.\n- Annulering tussen 24 en 48 uur van tevoren: 50% terugbetaling.\n- Annulering minder dan 24 uur van tevoren: geen terugbetaling.\n- Slecht weer (wind hoger dan kracht 4, hevige regen of maritiem alarm): gratis herschikking of 100% terugbetaling.\n\nDe beslissing over opschorting wegens weersomstandigheden ligt bij de aanbieder en wordt genomen op basis van veiligheidscriteria.",
+          body: "- Gratis datumwijziging tot 7 dagen vóór vertrek, afhankelijk van de beschikbaarheid van de boot.\n- Slecht weer geverifieerd door ons team: kosteloze herschikking of volledige terugbetaling van de aanbetaling.\n- Bevestigde boekingen met aanbetaling zijn niet restitueerbaar buiten gevallen van slecht weer.\n\nDe beslissing over opschorting wegens weersomstandigheden ligt bij de aanbieder en wordt genomen op basis van veiligheidscriteria. Schriftelijke communicatie naar costabravarentaboat@gmail.com of WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Verplichtingen van de klant",

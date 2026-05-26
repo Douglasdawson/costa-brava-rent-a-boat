@@ -84,8 +84,8 @@ describe("GET /api/bookings/cancel-info/:token", () => {
     expect(res.body.message).toContain("no puede cancelarse");
   });
 
-  it("returns 100% refund when more than 48h before start", async () => {
-    const startTime = new Date(Date.now() + 72 * 3600000); // 72h from now
+  it("returns booking info with zero refund regardless of hours until start", async () => {
+    const startTime = new Date(Date.now() + 72 * 3600000);
     mockedStorage.getBookingByCancelationToken.mockResolvedValue({
       id: "booking-1",
       customerName: "Juan",
@@ -105,52 +105,6 @@ describe("GET /api/bookings/cancel-info/:token", () => {
 
     expect(res.body.booking).toBeDefined();
     expect(res.body.refundPolicy).toBeDefined();
-    expect(res.body.refundPolicy.refundPercentage).toBe(100);
-    expect(res.body.refundPolicy.refundAmount).toBe(200);
-  });
-
-  it("returns 50% refund when 24-48h before start", async () => {
-    const startTime = new Date(Date.now() + 30 * 3600000); // 30h from now
-    mockedStorage.getBookingByCancelationToken.mockResolvedValue({
-      id: "booking-1",
-      customerName: "Juan",
-      customerSurname: "Garcia",
-      bookingStatus: "confirmed",
-      startTime,
-      endTime: new Date(startTime.getTime() + 3 * 3600000),
-      totalAmount: "200.00",
-      boatId: "boat-1",
-      language: "es",
-    } as never);
-    mockedStorage.getBoat.mockResolvedValue({ id: "boat-1", name: "Barco Test" } as never);
-
-    const res = await request(app)
-      .get(`/api/bookings/cancel-info/${VALID_UUID}`)
-      .expect(200);
-
-    expect(res.body.refundPolicy.refundPercentage).toBe(50);
-    expect(res.body.refundPolicy.refundAmount).toBe(100);
-  });
-
-  it("returns 0% refund when less than 24h before start", async () => {
-    const startTime = new Date(Date.now() + 12 * 3600000); // 12h from now
-    mockedStorage.getBookingByCancelationToken.mockResolvedValue({
-      id: "booking-1",
-      customerName: "Juan",
-      customerSurname: "Garcia",
-      bookingStatus: "confirmed",
-      startTime,
-      endTime: new Date(startTime.getTime() + 3 * 3600000),
-      totalAmount: "200.00",
-      boatId: "boat-1",
-      language: "es",
-    } as never);
-    mockedStorage.getBoat.mockResolvedValue({ id: "boat-1", name: "Barco Test" } as never);
-
-    const res = await request(app)
-      .get(`/api/bookings/cancel-info/${VALID_UUID}`)
-      .expect(200);
-
     expect(res.body.refundPolicy.refundPercentage).toBe(0);
     expect(res.body.refundPolicy.refundAmount).toBe(0);
   });
@@ -181,24 +135,7 @@ describe("POST /api/bookings/cancel/:token", () => {
     expect(res.body.message).toContain("no encontrada");
   });
 
-  it("returns success with refund info when cancellation succeeds", async () => {
-    mockedStorage.cancelBookingByToken.mockResolvedValue({
-      booking: { id: "booking-1", customerName: "Juan" },
-      refundAmount: 150,
-      refundPercentage: 100,
-    } as never);
-
-    const res = await request(app)
-      .post(`/api/bookings/cancel/${VALID_UUID}`)
-      .expect(200);
-
-    expect(res.body.success).toBe(true);
-    expect(res.body.refundAmount).toBe(150);
-    expect(res.body.refundPercentage).toBe(100);
-    expect(res.body.message).toContain("150.00");
-  });
-
-  it("returns no-refund message when refund is 0", async () => {
+  it("returns success with zero refund when cancellation succeeds", async () => {
     mockedStorage.cancelBookingByToken.mockResolvedValue({
       booking: { id: "booking-1", customerName: "Juan" },
       refundAmount: 0,
@@ -211,6 +148,7 @@ describe("POST /api/bookings/cancel/:token", () => {
 
     expect(res.body.success).toBe(true);
     expect(res.body.refundAmount).toBe(0);
-    expect(res.body.message).toContain("No aplica reembolso");
+    expect(res.body.refundPercentage).toBe(0);
+    expect(res.body.message).toContain("Reserva cancelada");
   });
 });

@@ -1329,13 +1329,13 @@ export const fr: Translations = {
         id: "cancelacion",
         question: "Quelle est la politique d'annulation ?",
         answer:
-          "Vous pouvez changer la date de votre reservation sans frais avec un preavis d'au moins 7 jours. Les annulations ne sont pas remboursables. En cas de mauvais temps, nous offrons un report complet sans frais.",
+          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Mauvais temps : nous reprogrammons sans frais ou remboursons l'acompte intégral. Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.",
       },
       {
         id: "mal-tiempo",
         question: "Que se passe-t-il en cas de mauvais temps ?",
         answer:
-          "Si les conditions météo ne sont pas sûres, nous vous offrons un changement de date gratuit ou un remboursement complet. Nous consultons les prévisions 24h avant et vous prévenons.",
+          "Si les conditions météo ne sont pas sûres, nous vous offrons un changement de date gratuit ou un remboursement intégral de l'acompte. Nous consultons les prévisions 24h avant et vous prévenons.",
       },
       {
         id: "experiencia",
@@ -1859,7 +1859,7 @@ export const fr: Translations = {
     a4FuelIncluded: "Le carburant est inclus.",
     a4FuelNotIncluded: "Le carburant n'est pas inclus (à régler séparément selon la consommation).",
     q5: "Quelle est la politique d'annulation ?",
-    a5: "Vous pouvez modifier la date de votre réservation sans frais avec un minimum de 7 jours d'anticipation. Les annulations ne sont pas remboursables. En cas de mauvais temps, nous proposons une reprogrammation complète sans frais.",
+    a5: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Mauvais temps : reprogrammation sans frais ou remboursement intégral de l'acompte. Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.",
   },
   activitySunset: {
     faqItems: [
@@ -3474,7 +3474,7 @@ export const fr: Translations = {
       cancelacion: {
         question: "Quelle est la politique d'annulation ?",
         answer:
-          "Politique flexible : Plus de 48h avant = remboursement à 100%, 24-48h avant = remboursement à 50%, moins de 24h = aucun remboursement. Mauvais temps = reprogrammation gratuite ou remboursement à 100%.",
+          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Mauvais temps : nous reprogrammons sans frais ou remboursons l'acompte intégral. Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.",
       },
       sinLicencia: {
         question: "Puis-je louer sans avoir de permis bateau ?",
@@ -3529,7 +3529,7 @@ export const fr: Translations = {
       malTiempo: {
         question: "Que se passe-t-il s'il fait mauvais temps ?",
         answer:
-          "Vent fort : nous ne sortons pas avec un vent supérieur à force 4. Pluie intense : nous reprogrammons sans frais. Orage : suspension automatique. Changement pendant la navigation : retour guidé au port. Nous privilégions toujours la sécurité avec reprogrammation gratuite ou remboursement à 100%.",
+          "Vent fort : nous ne sortons pas avec un vent supérieur à force 4. Pluie intense : nous reprogrammons sans frais. Orage : suspension automatique. Changement pendant la navigation : retour guidé au port. Nous privilégions toujours la sécurité avec reprogrammation gratuite ou remboursement intégral de l'acompte.",
       },
       emergencia: {
         question: "Que faire en cas d'urgence ?",
@@ -3793,7 +3793,7 @@ export const fr: Translations = {
         },
         {
           title: "7. Politique d'annulation",
-          body: "- Annulation plus de 48 h à l'avance : remboursement à 100 %.\n- Annulation entre 24 et 48 h avant : remboursement à 50 %.\n- Annulation moins de 24 h avant : aucun remboursement.\n- Mauvais temps (vent supérieur à force 4, pluie intense ou alerte maritime) : reprogrammation gratuite ou remboursement à 100 %.\n\nLa décision de suspension pour conditions météorologiques relève du prestataire et est prise selon des critères de sécurité.",
+          body: "- Changement de date gratuit jusqu'à 7 jours avant le départ, sous réserve de disponibilité de l'embarcation.\n- Mauvais temps vérifié par notre équipe : reprogrammation sans frais ou remboursement intégral de l'acompte.\n- Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.\n\nLa décision de suspension pour conditions météorologiques relève du prestataire et est prise selon des critères de sécurité. Communication par écrit à costabravarentaboat@gmail.com ou WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obligations du client",

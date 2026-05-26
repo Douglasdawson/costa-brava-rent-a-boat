@@ -48,7 +48,7 @@ const FAQS_ES = [
   },
   {
     title: "Política de cancelación",
-    content: "El cambio de fecha es gratuito con un mínimo de 7 días de antelación, sujeto a disponibilidad. Todas las cancelaciones son no reembolsables (el importe pagado no se devuelve). En caso de mal tiempo, reprogramamos sin coste.",
+    content: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
     category: "policy",
     keywords: ["cancelación", "anular", "reembolso", "devolución"],
     priority: 9,
@@ -165,7 +165,7 @@ const FAQS_CA = [
   },
   {
     title: "Política de cancel·lació",
-    content: "El canvi de data és gratuït amb un mínim de 7 dies d'antelació, subjecte a disponibilitat. Totes les cancel·lacions no són reemborsables (l'import pagat no es retorna). En cas de mal temps, reprogramem sense cost.",
+    content: "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Mal temps: reprogramem sense cost o tornem el dipòsit íntegre. Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
     category: "policy",
     keywords: ["cancel·lació", "anul·lar", "reemborsament", "devolució"],
     priority: 9,
@@ -282,7 +282,7 @@ const FAQS_EN = [
   },
   {
     title: "Cancellation policy",
-    content: "Date changes are free with at least 7 days notice, subject to availability. All cancellations are non-refundable (the amount paid is not returned). In the event of bad weather, we reschedule at no cost.",
+    content: "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases.",
     category: "policy",
     keywords: ["cancellation", "cancel", "refund", "reschedule"],
     priority: 9,
@@ -399,7 +399,7 @@ const FAQS_FR = [
   },
   {
     title: "Politique d'annulation",
-    content: "Le changement de date est gratuit avec un minimum de 7 jours de préavis, sous réserve de disponibilité. Toutes les annulations sont non remboursables (le montant payé n'est pas restitué). En cas de mauvais temps, nous reprogrammons sans frais.",
+    content: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Mauvais temps : reprogrammation sans frais ou remboursement intégral de l'acompte. Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.",
     category: "policy",
     keywords: ["annulation", "annuler", "remboursement", "reprogrammer"],
     priority: 9,
@@ -516,7 +516,7 @@ const FAQS_DE = [
   },
   {
     title: "Stornierungsbedingungen",
-    content: "Kostenlose Umbuchung mit mindestens 7 Tagen Vorlauf, vorbehaltlich Verfügbarkeit. Alle Stornierungen sind nicht erstattungsfähig (der gezahlte Betrag wird nicht zurückerstattet). Bei schlechtem Wetter wird kostenlos umgebucht.",
+    content: "Kostenlose Terminänderung bis 7 Tage vor Abfahrt (vorbehaltlich der Verfügbarkeit). Schlechtes Wetter: kostenlose Umbuchung oder vollständige Rückerstattung der Anzahlung. Bestätigte Buchungen mit Anzahlung sind außerhalb von Schlechtwetterfällen nicht erstattungsfähig.",
     category: "policy",
     keywords: ["stornierung", "stornieren", "erstattung", "umbuchung"],
     priority: 9,
@@ -633,7 +633,7 @@ const FAQS_NL = [
   },
   {
     title: "Annuleringsbeleid",
-    content: "Gratis datumwijziging met minimaal 7 dagen van tevoren, onder voorbehoud van beschikbaarheid. Alle annuleringen zijn niet restitueerbaar (het betaalde bedrag wordt niet teruggestort). Bij slecht weer plannen we kosteloos opnieuw in.",
+    content: "Gratis datumwijziging tot 7 dagen voor vertrek (afhankelijk van beschikbaarheid). Slecht weer: we plannen kosteloos om of restitueren de volledige aanbetaling. Bevestigde boekingen met aanbetaling zijn buiten gevallen van slecht weer niet restitueerbaar.",
     category: "policy",
     keywords: ["annulering", "annuleren", "terugbetaling", "verplaatsen"],
     priority: 9,
@@ -750,7 +750,7 @@ const FAQS_IT = [
   },
   {
     title: "Politica di cancellazione",
-    content: "Il cambio data è gratuito con un minimo di 7 giorni di preavviso, soggetto a disponibilità. Tutte le cancellazioni non sono rimborsabili (l'importo pagato non viene restituito). In caso di maltempo, riprogrammiamo senza costi.",
+    content: "Cambio data gratuito fino a 7 giorni prima della partenza (in base alla disponibilità). Maltempo: riprogrammiamo senza costi o rimborsiamo integralmente la caparra. Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.",
     category: "policy",
     keywords: ["cancellazione", "annullare", "rimborso", "riprogrammare"],
     priority: 9,

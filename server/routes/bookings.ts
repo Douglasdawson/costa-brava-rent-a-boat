@@ -145,15 +145,6 @@ export function registerBookingRoutes(app: Express) {
       }
 
       const hoursUntilStart = (new Date(booking.startTime).getTime() - Date.now()) / (1000 * 60 * 60);
-      let refundPercentage = 0;
-      if (hoursUntilStart >= 48) refundPercentage = 100;
-      else if (hoursUntilStart >= 24) refundPercentage = 50;
-
-      const totalAmount = parseFloat(booking.totalAmount);
-      let refundAmount = 0;
-      if (refundPercentage === 100) refundAmount = totalAmount;
-      else if (refundPercentage === 50) refundAmount = Math.round(totalAmount * 0.5 * 100) / 100;
-
       const boat = await storage.getBoat(booking.boatId);
 
       res.json({
@@ -170,8 +161,8 @@ export function registerBookingRoutes(app: Express) {
         },
         refundPolicy: {
           hoursUntilStart: Math.max(0, hoursUntilStart),
-          refundPercentage,
-          refundAmount,
+          refundPercentage: 0,
+          refundAmount: 0,
         },
       });
     } catch (error: unknown) {
@@ -269,9 +260,7 @@ export function registerBookingRoutes(app: Express) {
         success: true,
         refundAmount,
         refundPercentage,
-        message: refundAmount > 0
-          ? `Reserva cancelada. Reembolso de ${refundAmount.toFixed(2)}EUR (${refundPercentage}%) en proceso.`
-          : "Reserva cancelada. No aplica reembolso según la política de cancelación.",
+        message: "Reserva cancelada. Recibirás un email de confirmación.",
       });
     } catch (error: unknown) {
       logger.error("[Bookings] Error cancelling booking", { error: error instanceof Error ? error.message : String(error) });

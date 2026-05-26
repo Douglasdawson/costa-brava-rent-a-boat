@@ -1324,13 +1324,13 @@ export const de: Translations = {
         id: "cancelacion",
         question: "Wie lautet die Stornierungsrichtlinie?",
         answer:
-          "Sie können das Datum Ihrer Buchung kostenlos ändern, sofern Sie mindestens 7 Tage vorher Bescheid geben. Stornierungen sind nicht erstattungsfähig. Bei schlechtem Wetter bieten wir kostenlose Umbuchung an.",
+          "Kostenlose Terminänderung bis 7 Tage vor Abfahrt (vorbehaltlich Verfügbarkeit). Schlechtes Wetter: Wir buchen kostenlos um oder erstatten die Anzahlung vollständig. Bestätigte Buchungen mit Anzahlung sind außerhalb von Schlechtwetterfällen nicht erstattungsfähig.",
       },
       {
         id: "mal-tiempo",
         question: "Was passiert bei schlechtem Wetter?",
         answer:
-          "Wenn die Wetterbedingungen unsicher sind, bieten wir Ihnen eine kostenlose Terminänderung oder eine vollständige Rückerstattung an. Wir prüfen die Vorhersage 24h vorher und informieren Sie.",
+          "Wenn die Wetterbedingungen unsicher sind, bieten wir Ihnen eine kostenlose Terminänderung oder die vollständige Rückerstattung der Anzahlung an. Wir prüfen die Vorhersage 24h vorher und informieren Sie.",
       },
       {
         id: "experiencia",
@@ -1856,7 +1856,7 @@ export const de: Translations = {
     a4FuelNotIncluded:
       "Der Kraftstoff ist nicht im Preis enthalten (wird separat je nach Verbrauch berechnet).",
     q5: "Wie lautet die Stornierungsbedingung?",
-    a5: "Du kannst dein Buchungsdatum kostenlos ändern, sofern dies mindestens 7 Tage im Voraus erfolgt. Stornierungen sind nicht erstattungsfähig. Bei schlechtem Wetter bieten wir eine kostenlose Umbuchung an.",
+    a5: "Kostenlose Terminänderung bis 7 Tage vor Abfahrt (vorbehaltlich der Verfügbarkeit). Schlechtes Wetter: kostenlose Umbuchung oder vollständige Rückerstattung der Anzahlung. Bestätigte Buchungen mit Anzahlung sind außerhalb von Schlechtwetterfällen nicht erstattungsfähig.",
   },
   activitySunset: {
     faqItems: [
@@ -3482,7 +3482,7 @@ export const de: Translations = {
       cancelacion: {
         question: "Wie lautet die Stornierungsbedingung?",
         answer:
-          "Flexible Regelung: Mehr als 48h vorher = 100% Erstattung, 24-48h vorher = 50% Erstattung, weniger als 24h = keine Erstattung. Schlechtes Wetter = kostenlose Umbuchung oder 100% Erstattung.",
+          "Kostenlose Terminänderung bis 7 Tage vor Abfahrt (vorbehaltlich Verfügbarkeit). Schlechtes Wetter: Wir buchen kostenlos um oder erstatten die Anzahlung vollständig. Bestätigte Buchungen mit Anzahlung sind außerhalb von Schlechtwetterfällen nicht erstattungsfähig.",
       },
       sinLicencia: {
         question: "Kann ich ein Boot ohne Bootsführerschein mieten?",
@@ -3537,7 +3537,7 @@ export const de: Translations = {
       malTiempo: {
         question: "Was passiert bei schlechtem Wetter?",
         answer:
-          "Starker Wind: Wir fahren nicht bei Wind über Stärke 4. Starker Regen: Kostenlose Umbuchung. Gewitter: Automatische Stornierung. Wetterumschwung während der Fahrt: Geführte Rückkehr zum Hafen. Sicherheit hat immer Vorrang mit kostenloser Umbuchung oder 100% Erstattung.",
+          "Starker Wind: Wir fahren nicht bei Wind über Stärke 4. Starker Regen: Kostenlose Umbuchung. Gewitter: Automatische Stornierung. Wetterumschwung während der Fahrt: Geführte Rückkehr zum Hafen. Sicherheit hat immer Vorrang mit kostenloser Umbuchung oder vollständiger Rückerstattung der Anzahlung.",
       },
       emergencia: {
         question: "Was mache ich im Notfall?",
@@ -3801,7 +3801,7 @@ export const de: Translations = {
         },
         {
           title: "7. Stornierungsbedingungen",
-          body: "- Stornierung mehr als 48 Std. im Voraus: 100 % Rückerstattung.\n- Stornierung zwischen 24 und 48 Std. vorher: 50 % Rückerstattung.\n- Stornierung weniger als 24 Std. vorher: keine Rückerstattung.\n- Schlechtes Wetter (Wind über Stärke 4, starker Regen oder maritime Warnung): kostenlose Umbuchung oder 100 % Rückerstattung.\n\nDie Entscheidung über eine Absage aufgrund von Wetterbedingungen liegt beim Anbieter und erfolgt nach Sicherheitskriterien.",
+          body: "- Kostenlose Terminänderung bis 7 Tage vor Abfahrt, vorbehaltlich der Verfügbarkeit des Bootes.\n- Schlechtes Wetter, von unserem Team bestätigt: kostenlose Umbuchung oder vollständige Rückerstattung der Anzahlung.\n- Bestätigte Buchungen mit Anzahlung sind außerhalb von Schlechtwetterfällen nicht erstattungsfähig.\n\nDie Entscheidung über eine Absage aufgrund von Wetterbedingungen liegt beim Anbieter und erfolgt nach Sicherheitskriterien. Schriftliche Mitteilung an costabravarentaboat@gmail.com oder WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Pflichten des Kunden",

@@ -194,25 +194,9 @@ export async function cancelBookingByToken(token: string): Promise<{ booking: Bo
 
   if (!['confirmed', 'pending_payment'].includes(booking.bookingStatus)) return undefined;
 
-  const hoursUntilStart = (new Date(booking.startTime).getTime() - Date.now()) / (1000 * 60 * 60);
-  const totalAmount = parseFloat(booking.totalAmount);
-  let refundPercentage = 0;
-  let refundAmount = 0;
-  if (hoursUntilStart >= 48) {
-    refundPercentage = 100;
-    refundAmount = totalAmount;
-  } else if (hoursUntilStart >= 24) {
-    refundPercentage = 50;
-    refundAmount = Math.round(totalAmount * 0.5 * 100) / 100;
-  }
-
   const [updated] = await db
     .update(bookings)
-    .set({
-      bookingStatus: 'cancelled',
-      refundAmount: refundAmount.toString(),
-      refundStatus: refundAmount > 0 ? 'requested' : null,
-    })
+    .set({ bookingStatus: 'cancelled' })
     .where(
       and(
         eq(bookings.cancelationToken, token),
@@ -222,7 +206,7 @@ export async function cancelBookingByToken(token: string): Promise<{ booking: Bo
     .returning();
 
   if (!updated) return undefined;
-  return { booking: updated, refundAmount, refundPercentage };
+  return { booking: updated, refundAmount: 0, refundPercentage: 0 };
 }
 
 export async function getPaginatedBookings(params: {

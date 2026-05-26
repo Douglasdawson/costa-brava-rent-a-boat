@@ -1683,7 +1683,7 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
       "refundType": "https://schema.org/NoReturnRefund",
       "additionalType": "https://www.costabravarentaboat.com/terms-conditions",
-      "description": "Las cancelaciones no son reembolsables. Se admite cambio de fecha gratuito con un mínimo de 7 días de antelación sujeto a disponibilidad. En caso de mal tiempo ofrecemos reprogramación completa sin coste. / Cancellations are non-refundable. Date change is free with at least 7 days' notice subject to availability. In case of bad weather we offer full free rescheduling."
+      "description": "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo. / Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases."
     }
   };
 

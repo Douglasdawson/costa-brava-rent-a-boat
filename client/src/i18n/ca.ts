@@ -1320,13 +1320,13 @@ export const ca: Translations = {
         id: "cancelacion",
         question: "Quina és la política de cancel·lació?",
         answer:
-          "Pots canviar la data de la teva reserva sense cost amb un mínim de 7 dies d'antelació. Les cancel·lacions no són reemborsables. En cas de mal temps, oferim reprogramació completa sense cost.",
+          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Mal temps: reprogramem sense cost o retornem el dipòsit íntegre. Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
       },
       {
         id: "mal-tiempo",
         question: "Què passa si fa mal temps?",
         answer:
-          "Si les condicions meteorològiques no són segures, t'oferim canvi de data gratuït o reemborsament complet. Consultem la previsió 24h abans i t'avisem.",
+          "Si les condicions meteorològiques no són segures, t'oferim canvi de data gratuït o devolució íntegra del dipòsit. Consultem la previsió 24h abans i t'avisem.",
       },
       {
         id: "experiencia",
@@ -1849,7 +1849,7 @@ export const ca: Translations = {
     a4FuelIncluded: "El combustible està inclòs.",
     a4FuelNotIncluded: "El combustible no està inclòs (es paga a part segons consum).",
     q5: "Quina és la política de cancel·lació?",
-    a5: "Pots canviar la data de la teva reserva sense cost amb un mínim de 7 dies d'antelació. Les cancel·lacions no són reemborsables. En cas de mal temps, oferim reprogramació completa sense cost.",
+    a5: "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Mal temps: reprogramem sense cost o tornem el dipòsit íntegre. Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
   },
   activitySunset: {
     faqItems: [
@@ -3460,7 +3460,7 @@ export const ca: Translations = {
       cancelacion: {
         question: "Quina és la política de cancel·lació?",
         answer:
-          "Política flexible: Més de 48h abans = 100% reemborsament, 24-48h abans = 50% reemborsament, menys de 24h = sense reemborsament. Mal temps = reprogramació gratuïta o 100% reemborsament.",
+          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Mal temps: reprogramem sense cost o retornem el dipòsit íntegre. Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
       },
       sinLicencia: {
         question: "Puc llogar sense tenir llicència nàutica?",
@@ -3515,7 +3515,7 @@ export const ca: Translations = {
       malTiempo: {
         question: "Què passa si fa mal temps?",
         answer:
-          "Vent fort: no sortim amb vent superior a força 4. Pluja intensa: reprogramem sense cost. Tempesta: suspensió automàtica. Canvi durant navegació: retorn guiat al port. Sempre prioritzem la seguretat amb reprogramació gratuïta o reemborsament del 100%.",
+          "Vent fort: no sortim amb vent superior a força 4. Pluja intensa: reprogramem sense cost. Tempesta: suspensió automàtica. Canvi durant navegació: retorn guiat al port. Sempre prioritzem la seguretat amb reprogramació gratuïta o devolució íntegra del dipòsit.",
       },
       emergencia: {
         question: "Què faig en cas d'emergència?",
@@ -3778,7 +3778,7 @@ export const ca: Translations = {
         },
         {
           title: "7. Política de cancel·lació",
-          body: "- Cancel·lació amb més de 48 h d'antelació: reemborsament del 100 %.\n- Cancel·lació entre 24 i 48 h abans: reemborsament del 50 %.\n- Cancel·lació amb menys de 24 h: sense reemborsament.\n- Mal temps (vent superior a força 4, pluja intensa o alerta marítima): reprogramació gratuïta o reemborsament del 100 %.\n\nLa decisió sobre suspensió per condicions meteorològiques correspon al prestador i es pren amb criteris de seguretat.",
+          body: "- Canvi de data gratuït fins a 7 dies abans de la sortida, subjecte a disponibilitat de l'embarcació.\n- Mal temps verificat pel nostre equip: reprogramació sense cost o devolució íntegra del dipòsit.\n- Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.\n\nLa decisió sobre suspensió per condicions meteorològiques correspon al prestador i es pren amb criteris de seguretat. Comunicació per escrit a costabravarentaboat@gmail.com o WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obligacions del client",

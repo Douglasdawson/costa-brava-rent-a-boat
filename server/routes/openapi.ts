@@ -238,7 +238,7 @@ function buildOpenApiDoc() {
         get: {
           tags: ["Booking"],
           operationId: "getCancelInfo",
-          summary: "Refund policy for a booking, addressed by cancelation token.",
+          summary: "Booking info for cancellation flow, addressed by cancelation token.",
           parameters: [
             {
               name: "token",
@@ -248,7 +248,7 @@ function buildOpenApiDoc() {
             },
           ],
           responses: {
-            "200": { description: "Cancel info with refund tier." },
+            "200": { description: "Cancel info. Refund is always 0 per current policy." },
             "400": { $ref: "#/components/responses/BadRequest" },
             "404": { $ref: "#/components/responses/NotFound" },
           },

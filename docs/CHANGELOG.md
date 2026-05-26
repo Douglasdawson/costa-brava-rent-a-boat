@@ -4,6 +4,182 @@
 
 ---
 
+## [Mayo 2026]
+
+### Pricing — Realineamiento Astec 400 + promocion Remus 450 II + UI sin badges (semana 25-26)
+- Catalogo Astec 400 realineado a "Solar 450 × 0,95 floor 10€" en las 3 temporadas (`shared/boatData.ts:266-277`). Cambio mas notable: 8h BAJA pasa de 225€ a 200€ (9fe6dc2)
+- Remus 450 II promovido de "barco fantasma" a operativo real: row insertada en tabla `boats` (display_order=3) + anadido a `CANONICAL_BOAT_IDS` del seed-ensure migration (b1ffb06). Confirmado como segundo casco fisico real, no duplicado de marketing
+- Eliminado banner "Tarifa especial: …" del picker de duraciones en boat-detail y del wizard de reserva (25ea4e8). Strike-through del precio anterior limitado a descuentos reales — para surcharges era anti-patron de ecommerce
+- 12 overrides activos en BD para junio + agosto 2026: Solar/Remus/Remus II findes 1-15 jun igualados a findes 16-30; Astec 480 con regla suave 15-30 jun (+10% L-V, +5% S-D); global +20% para 16-30 jun; agosto 1-15 ±5% para Solar/Remus/II
+- Bug fix: Remus 450 II tenia ~25 referencias activas en blogs/SEO/redirects/chatbot/admin pero la tabla `boats` lo ignoraba intencionalmente. Decision binding tomada y documentada
+
+### CRM Pricing — Tab "Precios" completo (semana 24)
+- Sistema completo de overrides editable desde admin (a924673, 181bd89, b5b8869, a744afe)
+- Plantillas guardadas por usuario con flujo "aplicar como override" (f999ac3)
+- Preview de impacto en vivo dentro del modal (b5b8869)
+- Conflicto de solapamiento warning en linea (a744afe)
+- Vista calendario integrada con view toggle (34bacf4, 64006e3)
+- Filtro estado + activate/desactivate masivo via checkboxes (01409ed, a1f2c81)
+- Historial de cambios en panel colapsable (0076dc2)
+- Fix: removida auto-descuento early-bird del booking flow publico (01795c4)
+
+### Boat detail — Pricing sync + impeccable polish (semana 23-25)
+- Calendario de disponibilidad conectado a precios live (no mas precios cacheados) (71b38e4)
+- Trust + risk-reversal strip above-the-fold + top FAQ abierto (96a7b55)
+- Related boats: misma categoria (sin↔sin, con↔con), no cross-sell (aa24682)
+- Mobile: native OS date picker reemplaza bottom sheet custom (2ebd163, 48a28eb)
+- Calendar palette migrada a tokens HSL + retire shadow at rest (9b6e000, 36ff045)
+- Keyboard arrow nav en calendar + combined today/selected state (19a5a4a)
+- Empty state branded + dual hint collapsed (7716bba, ba90b9f)
+- Fix: mobile date trigger abre el iOS picker correctamente (8bf29a9)
+- Fix: muestra todas las duraciones activas, no solo 1/2/4/8h (ba26e01)
+- 4 componentes auxiliares pulidos (9eee39e)
+- WCAG touch target en gallery dots + dedupe "included" items (540bba5)
+
+### Booking wizard — Rewrite 5 steps + P1+P2 (semana 20-21)
+- Wizard reescrito a 5 steps (nuevo paso "Mejora tu dia" para extras) (2b9dc5a)
+- P1 + P2 quick wins: capacidad, skeleton, confirmacion SLA, errores, trust (4a60287)
+- Code-validation con discriminated error codes: not_found / expired / consumed / cancelled / inactive (1fd23c2)
+- Exit-intent WhatsApp nudge al cerrar modal (ea88909)
+- sendBeacon + fetch keepalive fallback para persistir inquiry (efaa3f4)
+- Revalidate slot en step 4 + inline alternatives banner (dfa3478)
+- Restore banner al rehidratar de sessionStorage (948d960)
+- I18n centralisation + strings hardcoded fuera + headings conversacionales (997812a)
+- 2-column grid en mobile para boats / durations / extras (75da974, c78e499, 416e4db)
+- Submit CTA renombrada: "Pedir por WhatsApp" (e92e917)
+- Mensaje WhatsApp clarificado como solicitud de reserva (0508537)
+- Eliminado minimo 2h en findes (mantiene minimo solo agosto) (07a9708)
+- Step 5: redesign con icons + fused schedule + ambient fuel notice (f084b18)
+- Trust banner ocultado en steps 3 y 4 (bc0ad30, b8aaf6e)
+- WIP avance multi-feature (license verifier, multi-boat bookings, blog content) (567ec77)
+
+### Verificador de licencia nautica — Feature completa (semana 21)
+- Catalogo 8 paises curados con pre-fill por idioma UI (74c2907)
+- PWA: service worker via vite-plugin-pwa (be76e25), maskable icons (a91fd6c), standalone-display detection + external-link hint (aca11d6), offline-aware WhatsApp CTA (2867597)
+- SVG flags via country-flag-icons para Windows (ba95313)
+- Geo-IP default country upgrade (9525a91)
+- Keyboard nav + Escape en country picker (1068702)
+- LN (Licencia de Navegacion) añadida al catalogo Espana — basta para los 3 barcos con licencia (dc4f3f3, 32b6646)
+- Inland-only verdict reroutes al license-free path (f293d05)
+- Traducido a 7 idiomas (74c2907)
+- Hyper-optimize mobile-first + PWA (f103cc5)
+- Doc fuente: `docs/features/2026-05-21-license-verifier.md` (7c77947)
+
+### SEO AI Crawlers — Auditoria completa (semana 23-24)
+- Auditoria full: llms.txt minimal+multilingual, productCatalog, ai-search, citation hub (d0a3033)
+- Tier 2 + T3.3/T3.4: hybrid search, selective rate limit, citation A/B, WebSub (b4c8cbe)
+- Tier 3 closeout: HF dataset script + Skill manifest + handoff (14003f9)
+- Pivot Wikidata → OpenStreetMap + fix corrected QIDs/PIDs (8e308d4)
+- SSR title + description para crawlers que no ejecutan JS (bac1865)
+- Exempt /api/mcp/public de CSRF origin check (560593e)
+- Refresh GA4/GSC exports + check in HF dataset build (ece443b)
+
+### SEO long-tail — Rescate ranking (semana 17-21)
+- Rich anchor texts en footer locations (Palanca 1) (1b967f4)
+- Expand home internalLinks 2→5 location links (Palanca 2) (d7b8ecb)
+- SEO-extractable hero + long-tail FAQs en category-license-free y location-blanes (Palanca 2.2) (003a13d, 8534a5a)
+- 301 /barcos + differentiate locationCostaBrava ES (c479ba9)
+- Rescate ranking license-free: HowTo schema + vs marketplaces section + anchor diversification (936aad3)
+
+### Hero + home + boat polish (semana 4-23)
+- "Reservar ahora" abre wizard directo (e8b656b)
+- Trust strip con WhatsApp icon + "Respondemos en <2h" (6a82e73)
+- Hero secondary CTA + trust badges via i18n (dd901c8)
+- A11y fixes (touch targets, semantic nav, real aria-labels) (69984c4)
+- Perf + visual hierarchy (b57620a)
+- Migrate hardcoded Spanish a i18n (FleetSection + FAQPreview) (6e9e335)
+- Editorial moment image + copy a cala oculta (1f0ac39)
+- Pricing cards centradas en tablet+ (86eff1c)
+- Boat reviews: comillas idiomaticas por idioma (4863ff9)
+- Availability urgency: tier "popular boat" oculto cuando no hay scarcity (eea75da)
+
+### Impeccable design audit — P0 a11y closeout (semana 3-4)
+- Cross-cutting design audit + decisions 2026-05-03 (287237c)
+- Wizards (BoatQuiz + booking): close P0 a11y findings — focus, ARIA, heading-order (9f470ad)
+- Visual verification + Lighthouse baseline post-polish (42f7512). Mejora 90→96
+- Fleet section: BoatCard refactor (Earned Depth + Sea Sells Itself + One Action) (d8e308f)
+- AvailabilityUrgency real data only (b3d83f3)
+- Boat detail: central card CTA demoted to outline (a953095), hardcoded Spanish migrado + em-dash strip en HoldCountdown (2e2d8a4)
+- Pricing: One Action Rule + Intl currency + tabular-nums (c5ec823)
+- Booking: Personalize step i18n special-rate banner + iOS auto-zoom fix (0610d8a)
+- Quiz: t.boatQuiz i18n + a11y (942e29d), named scoring weights + empty-state safety (135002e)
+- Style wizards: title case + drop uppercase + replace Tailwind defaults con semantic tokens (fc22f9b, 03665f0)
+
+### CRM Bookings + Reviews (semana 21)
+- Boton "Gracias + reseña" WhatsApp por reserva (3b80a4f)
+- Infer WhatsApp review language from phone prefix (25841f7)
+- Selector de idioma editable por fila en bookings (f9d82d0)
+- Bump review count 310 → 323 (verificado en GBP 2026-05-21) (1ab5440)
+
+### Click&Boat sync (semana 21-23)
+- Analisis bookings 2025 + sync pending update (377f7d7)
+- Astec 400 listing creado #207314 — manual pricing periods pending (10d5ffd)
+- Price uplift + Jul/Ago weekend blocks + Astec 400 partial + Jun 1 instant-booking handoff (6967276)
+
+---
+
+## [Abril 2026]
+
+### SEO Autopilot — MCP Server (semana 20)
+- Servidor MCP HTTP montado en `/api/mcp/seo-autopilot` con autenticacion bearer token (e3f361c)
+- Distribution tray + admin dashboard CRM (`AutopilotTab.tsx`)
+- Storage `mcpTokens` + `seoAutopilot`
+- Admin API `admin-mcp-tokens.ts` + `admin-seo-autopilot.ts`
+
+### SEO Fase 1 — Quick wins (semana 17)
+- Quick wins SEO: titulos, canonicals, redirects, tracking (0eb0f83)
+- Localize blog posts + fix sunset STATIC_META key + mas redirects (f1596c3)
+- Sync homepage titles en server STATIC_META con client seo-config (cbdede6)
+- Phase 1 design doc + implementation plan + GSC baseline (23ec85a)
+
+### SEO tecnico (semana 5-12)
+- Meta titles/descriptions optimizadas para CTR (fb16be5, 4ea2c35)
+- BreadcrumbList schema en 6 paginas que faltaban (c8bf351)
+- FAQPage schema en home (server-side, 8 questions, defer GTM, hero sizes) (796047d, f92ad1f)
+- Noindex para blog en idiomas low-traffic (ca, it, ru) (4cc93c9)
+- Normalize non-www → www (9c6290e)
+- Service-oriented titles para excursion privada en 8 idiomas (90d8c00)
+- Auto-export GSC data a GSC-export.md tras cada sync (ef06e88)
+- 3 auto-export markdown reports para equipo marketing (613ab87)
+- Redirect language subdomains a canonical /:lang/ paths (6ebf5a2)
+- Multi-language SEO + calendar layout + GSC sync fix (86aca85)
+- Keyword cannibalization fix + strengthen internal linking (2e1d52a)
+
+### Performance + a11y (semana 5-6)
+- Remove react-icons + add Brotli + decouple review ratings (8e29a6e)
+- Remove JS dependency para hero image visibility + preload heading font (0b00069)
+- Remove dead code + unused fonts + compress blog images (8dbcc3c)
+- Improve Unsplash image search con local context + variety (1d3cf3f)
+- Hero: lowercase fetchpriority attr (silence React 18 warning) (913074c)
+- A11y: role="img" en review stars container (aria-label valid) (9841559)
+- A11y: footer info links explicit text color (WCAG AA contrast) (33e97a9)
+- Improve server startup time + readiness for deployments (2f2cef3, c313d37)
+- Fix deploy: prevent startup timeout via deferred redirect seeding (3ca589c)
+- Fix infinite crash loop durante server shutdown (ed32a2e)
+
+### Security hardening (semana 16)
+- Auth, CSRF, headers + upgrade drizzle-orm (ed84d43)
+- Allow same-origin API requests sin Origin header (2cac35e)
+- Add IndexNow verification key (d25ab26)
+
+### CRM mobile (semana 13-16)
+- Auditoria mobile UX completa: 30 fixes en 14 archivos (dca745d)
+- WhatsApp inquiry → calendar booking conversion (303066c)
+
+### Refactors + Content
+- LocationTemplate extraido de 3 location pages duplicadas (Tordera, Palafolls, Pineda) (4e81676)
+- Slot props anadidos a LocationTemplate para extensibilidad (37d1ab6)
+- Cancellation policy alignment con T&C + expand calas blog post (34d543e)
+- Backlinks strategy doc + square logo (861c5d3)
+- Fix wrong boat specs en seed articles (3b6e520)
+
+### Docs
+- Update PROJECT_CONTEXT, STATE, design_guidelines con current data (a1e63bb)
+- Update CLAUDE.md con complete project structure + conventions (4e3d803)
+- I18n: corregir errores de acento y ortografia en 8 idiomas (64db612)
+
+---
+
 ## [Marzo 2026]
 
 ### Blog: Enlaces y Rediseno de Articulos

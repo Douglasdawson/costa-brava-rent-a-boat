@@ -243,8 +243,8 @@ Aplicar al precio actual de Jul/Ago de cada barco. `roundToNearestTen()` para pr
 ## Barcos del catálogo web NO listados en C&B
 
 Si interesa publicarlos:
-- **Remus 450 II** (duplicado intencional del Remus para disponibilidad extra) — replicaría al Remus 450 actual
-- **Astec 400** — barco económico sin licencia (4 personas, web BAJA 8h=225)
+- **Remus 450 II** — 2026-05-25 confirmado como segundo casco físico real del modelo Remus 450 y promovido a la tabla `boats`. Calendario independiente del Remus 450. Mismo catálogo de precios, misma foto (compartida en `seoInjector.ts:1985` hasta tener foto propia)
+- **Astec 400** — barco económico sin licencia (4 personas, web BAJA 8h=200 tras realineamiento Solar×0,95 del 2026-05-25)
 - **Excursión Privada con Capitán** — paquete VIP con patrón profesional
 
 ## Anclas de competencia (Click&Boat Blanes)

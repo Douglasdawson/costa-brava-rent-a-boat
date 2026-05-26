@@ -15,7 +15,7 @@ Validado punto por punto con el propietario
 | Margen bruto | ~60% |
 | Break-even | 239 alquileres |
 | Objetivo 2026 (realista) | 140.000 EUR (+29%) |
-| Flota real | 8 barcos fisicos + Excursion Privada |
+| Flota real | 9 barcos fisicos + Excursion Privada (Remus 450 II promovido a operativo 2026-05-25) |
 
 ---
 
@@ -32,9 +32,10 @@ Validado punto por punto con el propietario
 - **Archivo**: Buscar "5€" o "5 EUR" para snorkel en BookingFlow y corregir a 7.50 EUR
 - **Precio correcto**: 7.50 EUR (ya correcto en boatData.ts)
 
-### 1.3 Anadir segundo Remus 450 a la flota
-- **Archivo**: `shared/boatData.ts` - anadir entrada "remus-450-ii"
-- **Base de datos**: Insertar nuevo barco
+### 1.3 Anadir segundo Remus 450 a la flota ✅ COMPLETADO 2026-05-25
+- **Archivo**: `shared/boatData.ts` - entrada "remus-450-ii" ya existia desde fase historica
+- **Base de datos**: row insertada en tabla `boats` (display_order=3, clonando datos de Remus 450)
+- **Migration**: `remus-450-ii` añadido a `CANONICAL_BOAT_IDS` en `server/migrations/applyBoatsSeedEnsure.ts` para que el seed-ensure lo mantenga
 
 ### 1.4 Anadir Excursion Privada como producto
 - **Archivo**: `shared/boatData.ts` - anadir entrada "excursion-privada" (servicio con skipper)

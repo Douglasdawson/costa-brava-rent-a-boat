@@ -1488,7 +1488,7 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
     <div style="background:rgba(168, 196, 221, 0.15); border-radius:12px; padding:24px; margin:0 0 28px;">
       <h3 style="margin:0 0 16px; color:#0d1a2d; font-size:17px; font-weight:700; font-family:'Clash Display', Arial, sans-serif;">Nuestra flota</h3>
       <table role="presentation" cellpadding="0" cellspacing="0">
-        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">8 barcos (con y sin licencia) para 4-7 personas</td></tr>
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">9 barcos (con y sin licencia) para 4-7 personas</td></tr>
         <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Gasolina incluida en barcos sin licencia (desde 70 EUR/h)</td></tr>
         <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Excursiones a calas, Lloret de Mar, Tossa de Mar</td></tr>
         <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Reserva online inmediata o por WhatsApp</td></tr>

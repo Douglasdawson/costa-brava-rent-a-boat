@@ -64,7 +64,7 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
   activityFishing: [
     { title: "Barcos con licencia", description: "Barcos potentes para zonas de pesca", pageKey: "categoryLicensed", type: "guia" },
     { title: "Rutas en barco desde Blanes", description: "Descubre las mejores zonas", pageKey: "routes", type: "guia" },
-    { title: "Alquiler barcos Costa Brava", description: "8 barcos disponibles en Blanes", pageKey: "locationCostaBrava", type: "ubicacion" },
+    { title: "Alquiler barcos Costa Brava", description: "9 barcos disponibles en Blanes", pageKey: "locationCostaBrava", type: "ubicacion" },
   ],
   categoryLicenseFree: [
     { title: "Barco sin licencia vs con licencia", description: "Guia comparativa completa", pageKey: "blogDetail", param: "barco-sin-licencia-vs-con-licencia-guia", type: "blog" },

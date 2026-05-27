@@ -41,7 +41,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
       url: localizedPath("locationCostaBrava"),
       description: "Descubre toda la costa en barco. Rutas, calas y destinos desde el Puerto de Blanes en el corazon de la Costa Brava.",
       duration: "Region completa",
-      highlights: ["Calas virginales", "Rutas guiadas", "8 barcos"],
+      highlights: ["Calas virginales", "Rutas guiadas", "9 barcos"],
       icon: Compass,
       color: "text-primary",
       bgColor: "bg-primary/5",

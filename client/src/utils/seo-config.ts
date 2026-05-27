@@ -465,7 +465,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Rent boats on the Costa Brava from Blanes Port. 8 no-license boats from 70\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online.",
+      description: "Rent boats on the Costa Brava from Blanes Port. 5 no-license boats from 70\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online.",
       keywords: "boat rental costa brava, rent a boat costa brava, costa brava boat rental, no license boat costa brava, boat hire costa brava, costa brava boat trip"
     },
     boatRentalCostaBrava: {

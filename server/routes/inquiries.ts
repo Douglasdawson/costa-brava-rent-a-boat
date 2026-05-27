@@ -6,6 +6,7 @@ import { insertWhatsappInquirySchema, updateWhatsappInquirySchema } from "@share
 import { requireAdminSession, requireTabAccess } from "./auth";
 import { sendMetaWhatsAppMessage, isMetaWhatsAppConfigured } from "../whatsapp/metaClient";
 import { logger } from "../lib/logger";
+import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
 
 const submitLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -39,6 +40,24 @@ export function registerInquiryRoutes(app: Express) {
         });
       }
       const inquiry = await storage.createWhatsappInquiry(parsed.data);
+
+      // Server-side GA4 event — sobrevive a cookie consent denial y race conditions del cliente.
+      void sendGA4Event(
+        "generate_lead",
+        {
+          currency: "EUR",
+          value: Number(inquiry.estimatedTotal) || 0,
+          source: "booking_inquiry_form",
+          boat_id: inquiry.boatId,
+          inquiry_id: inquiry.id,
+          language: inquiry.language || "es",
+        },
+        {
+          clientId: deriveClientIdFromRequest(req),
+          userAgent: req.headers["user-agent"],
+        },
+      );
+
       res.status(201).json({ success: true, id: inquiry.id });
     } catch (error: unknown) {
       logger.error("[Inquiries] Error creating inquiry", { error: error instanceof Error ? error.message : String(error) });

@@ -10,6 +10,7 @@ import { sendBookingRequestReceived, sendBookingRequestAdminNotification } from 
 import { getStripe } from "./payments";
 import { logger } from "../lib/logger";
 import { validatePromoCode, calculateDiscountAmount } from "../lib/discountValidation";
+import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
 import { OPERATING_START_HOUR, OPERATING_END_HOUR } from "@shared/constants";
 
 const isoDateString = z
@@ -339,6 +340,22 @@ export function registerBookingRoutes(app: Express) {
       if (!updated) {
         return res.status(500).json({ success: false, message: "No se pudo actualizar la reserva" });
       }
+
+      // Server-side GA4 conversion — fuente de verdad, independiente de cookie consent.
+      void sendGA4Event(
+        "booking_request_submitted",
+        {
+          currency: "EUR",
+          value: Number(updated.totalAmount) || 0,
+          booking_id: updated.id,
+          boat_id: updated.boatId,
+          language: updated.language || "es",
+        },
+        {
+          clientId: deriveClientIdFromRequest(req),
+          userAgent: req.headers["user-agent"],
+        },
+      );
 
       // Fire customer + admin emails fire-and-forget (best-effort; the primary
       // notification channel is the customer-initiated WhatsApp opened on the

@@ -17,7 +17,6 @@ import SlotConflictBanner from "@/components/SlotConflictBanner";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
-import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
 import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
@@ -709,14 +708,6 @@ function Step3Departure({
   const durationOptions = getDurationOptions();
   const maxCapacity = getMaxCapacity();
 
-  // Pricing override info for the selected boat+date (any duration share the same delta direction)
-  const { hasOverride, overrideLabel } = useBoatPricingForDate({
-    boatId: selectedBoat,
-    date: selectedDate,
-    duration: "4h",
-    enabled: !!selectedBoat && !!selectedDate,
-  });
-
   return (
     <div className="space-y-5">
       <div>
@@ -776,11 +767,6 @@ function Step3Departure({
       <div id="field-duration">
         <div className="flex items-center justify-between mb-2">
           <label className="block text-sm font-semibold text-muted-foreground">{t.wizard.duration}</label>
-          {hasOverride && overrideLabel && (
-            <span className="text-xs font-medium text-popular bg-popular/10 px-2 py-0.5 rounded-full">
-              {overrideLabel}
-            </span>
-          )}
         </div>
         <div className="grid grid-cols-2 gap-2">
           {(() => {

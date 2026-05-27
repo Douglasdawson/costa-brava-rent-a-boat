@@ -19,7 +19,6 @@ import SlotConflictBanner from "@/components/SlotConflictBanner";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
-import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
 import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
@@ -746,12 +745,6 @@ function Step2Details({
   inputError,
   inputNormal,
 }: Step2Props) {
-  const { hasOverride, overrideLabel } = useBoatPricingForDate({
-    boatId: selectedBoat,
-    date: selectedDate,
-    duration: "4h",
-    enabled: !!selectedBoat && !!selectedDate,
-  });
   return (
     <div className="space-y-5">
       <div>
@@ -820,11 +813,6 @@ function Step2Details({
           <label className="block text-xs font-semibold text-muted-foreground">
             {t.wizard.duration}
           </label>
-          {hasOverride && overrideLabel && (
-            <span className="text-xs font-medium text-popular bg-popular/10 px-2 py-0.5 rounded-full">
-              {overrideLabel}
-            </span>
-          )}
         </div>
         <div className="grid grid-cols-3 gap-2">
           {(() => {

@@ -248,7 +248,28 @@ Cuando añadas texto nuevo a cualquiera de los archivos pendientes, **aprovecha 
 - NO modificar `package.json` sin explicar por que
 - NO usar `any` en TypeScript
 - NO sugerir Stripe como solucion de pago -- la web captura solicitudes de reserva, el pago es manual
+- NO inventar variantes de la politica de cancelacion (ver "Hechos canonicos" abajo). Texto unico para toda la flota desde 2026-05-26
+- NO citar capacidades/eslora/motor sin leer `shared/boatData.ts` primero. Astec 400 es 4 pax, Pacific Craft 625 es 7 pax, Excursion Privada es 6 pax. La flota tiene 9 barcos (5 sin licencia + 3 con licencia + 1 excursion privada con patron)
 - Tests con Vitest: `npm test` para correr, archivos `*.test.ts` junto al codigo que testean
+
+## Hechos canonicos (fuentes de verdad)
+
+Cuando un hecho aparece en varias capas (i18n, SEO, blog, JSX, emails, KB chatbot, schema.org, legales), respeta la fuente unica. Drift previo se cerro el 2026-05-27 (ver `docs/audits/2026-05-27-drift-sweep.md`).
+
+| Dominio | Fuente de verdad |
+|---|---|
+| Catalogo flota (nombre, capacidad, eslora, motor, fianza, modelo) | `shared/boatData.ts` |
+| Precios por temporada/duracion | `shared/pricing.ts` |
+| Overrides dinamicos de precio | tabla `pricing_overrides` + `selectApplicableOverride()` en `shared/pricing.ts` |
+| Reglas licencia nautica (thresholds eslora/CV, distancias legales) | `shared/nauticalLicenseRules.ts` + `shared/nauticalGlossary.ts` |
+| Rating + review count (Google Business Profile) | `shared/businessProfile.ts` -- usa `BUSINESS_RATING_STR` y `BUSINESS_REVIEW_COUNT_STR` en template literals |
+| Texto legal (condiciones de alquiler) | `client/src/components/CondicionesGenerales.tsx` |
+| Politica de cancelacion (texto unico multi-idioma) | `client/src/i18n/es.ts` -> propaga via `npm run i18n:translate` |
+
+Politica de cancelacion (texto literal a usar en cualquier surface nueva):
+> Cambio de fecha gratuito hasta 7 dias antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el deposito integro. Las reservas confirmadas con deposito no son reembolsables fuera del supuesto de mal tiempo.
+
+Distancia maxima de navegacion sin licencia: **2 millas nauticas (3,7 km)** -- RD 875/2014 art. 6.2. No reintroducir "1 milla".
 
 ## Flujo de Trabajo Recomendado
 
@@ -265,13 +286,16 @@ Cuando añadas texto nuevo a cualquiera de los archivos pendientes, **aprovecha 
 ## Informacion de Negocio
 
 - **Temporada**: Abril - Octubre (fuera de temporada no se aceptan reservas)
+- **Horario operativo**: 09:00 - 20:00 (Madrid time) -- 11h de ventana diaria
 - **Ubicacion**: Puerto de Blanes, Girona, Espana
 - **Telefono**: +34 611 500 372
 - **Email**: costabravarentaboat@gmail.com
 - **PIN Admin CRM**: variable de entorno `ADMIN_PIN`
 - **JWT Secret**: variable de entorno `JWT_SECRET` (min 32 caracteres)
 - **Modelo**: Sin pagos online -- la web captura solicitudes de reserva, el pago se gestiona manualmente
+- **Flota**: 9 barcos (5 sin licencia + 3 con licencia + 1 excursion privada con patron). Capacidades exactas en `shared/boatData.ts`
 - **Combustible**: Solo barcos sin-licencia incluyen gasolina; barcos con licencia y excursion privada NO
+- **Analytics**: GA4 server-side (Measurement Protocol) instrumentado para `generate_lead` (inquiries) y `booking_request_submitted` (bookings) -- requiere `GA4_MEASUREMENT_ID` + `GA4_API_SECRET` en env. Helper: `server/lib/analyticsServer.ts`
 
 ## Preguntas Frecuentes del Desarrollo
 

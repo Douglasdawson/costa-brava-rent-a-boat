@@ -1,6 +1,8 @@
 # Costa Brava Rent a Boat
 
-Boat rental booking platform for the Port of Blanes, Costa Brava (Girona, Spain). Full-stack application with online booking, Stripe payments, WhatsApp chatbot, AI-powered customer support, and a CRM admin panel.
+Boat rental request platform for the Port of Blanes, Costa Brava (Girona, Spain). Full-stack application: the website captures booking requests (payment is handled manually at the port — no online charge), with WhatsApp chatbot, AI-powered customer support, and a CRM admin panel. Stripe is wired but inactive — the operative model is request-based.
+
+Fleet: 9 boats (5 license-free + 3 licensed + 1 private excursion with skipper). Source of truth: `shared/boatData.ts`.
 
 Website: [costabravarentaboat.com](https://costabravarentaboat.com)
 
@@ -11,7 +13,7 @@ Website: [costabravarentaboat.com](https://costabravarentaboat.com)
 | Frontend | React 18 + TypeScript + Vite + Tailwind CSS + shadcn/ui |
 | Backend | Express.js + Node.js |
 | Database | PostgreSQL (Neon) + Drizzle ORM |
-| Payments | Stripe (PaymentIntents, Webhooks) |
+| Payments | Stripe wired (PaymentIntents, Webhooks) but inactive — manual payment at port |
 | Messaging | Twilio (WhatsApp Business API) |
 | AI | OpenAI (gpt-4o-mini chatbot, text-embedding-3-small RAG) |
 | Email | SendGrid |

@@ -6,6 +6,23 @@
 
 ## [Mayo 2026]
 
+### Drift sweep — Politica de cancelacion + fleet count + capacidades + nav distance (2026-05-26 / 27)
+- Politica de cancelacion unificada para toda la flota: una sola politica reemplaza dos variantes contradictorias que convivian (legacy "no reembolsable / 7d antelacion" + tier-based "100/50/0% segun horas"). Backend `cancelBookingByToken` ya no calcula tramos % (eran codigo fantasma porque la web no cobra online) (`83de9eb`)
+- Fleet count 8 -> 9 propagado en SEO, blog, i18n, JSX, emails, KB chatbot post-Remus 450 II promotion 2026-05-25 (`f11764c`, `a5edd9a`, hereda `826215b`)
+- Pacific Craft 625 capacidad 8 -> 7 (real per `boatData.ts`); Excursion Privada 10 -> 6; Mingolla Brava 19 sacada de respuesta "sin licencia" en FAQ (es con licencia) (`f11764c`)
+- Horario apertura MCP business-server 10:00 -> 09:00 (consistente con resto del sitio); `totalOperatingHours` 10 -> 11 (`826215b`)
+- `CondicionesGenerales.tsx` SIN LICENCIA: "una milla / 1.8 km" -> "2 millas nauticas / 3,7 km" (RD 875/2014 art. 6.2) (`cabecf4`)
+- `CondicionesGenerales.tsx` CON LICENCIA: clausula "una milla" copy-pasted reemplazada por referencia a titulacion del patron + ZONA DE NAVEGACION (`28879d5`)
+- Review count hardcoded "310" -> `${BUSINESS_REVIEW_COUNT_STR}` (canonical 323, vivo en `shared/businessProfile.ts`) en 7 metas SEO (`cabecf4`)
+- 15 metas SEO residuales con "8 boats / barques / Boote / boten / barche / лодок" corregidas (CA/FR/DE/NL/IT/RU) — categorizadas en total fleet -> 9 vs. subset sin-licencia -> 5 segun calificador (`cabecf4`)
+- Audit completo: `docs/audits/2026-05-27-drift-sweep.md`. Memorias nuevas para prevenir reintroduccion: `project_cancellation_policy.md`, `project_fleet_canonical_facts.md`, `project_nav_distance_2nm.md`, `project_drift_sweep_2026_05_27.md`
+
+### Analytics — GA4 server-side Measurement Protocol (2026-05-27)
+- Nuevo `server/lib/analyticsServer.ts`: helper GA4 MP v1, lee cookie `_ga` para continuidad de sesion con stream client-side
+- Eventos disparados desde el server: `generate_lead` en `routes/inquiries.ts` + `booking_request_submitted` en `routes/bookings.ts` — fire-and-forget, no bloquean response
+- Cierra brecha de reporting: BD tenia 79 inquiries + 28 bookings reales en mayo pero GA4 reportaba 0 (cookie consent denial + script blockers comen client-side events)
+- Activacion: requiere `GA4_MEASUREMENT_ID` + `GA4_API_SECRET` en env de Replit; sin ellos hace no-op con warning unico al arrancar (`ae7edc0`)
+
 ### Pricing — Realineamiento Astec 400 + promocion Remus 450 II + UI sin badges (semana 25-26)
 - Catalogo Astec 400 realineado a "Solar 450 × 0,95 floor 10€" en las 3 temporadas (`shared/boatData.ts:266-277`). Cambio mas notable: 8h BAJA pasa de 225€ a 200€ (9fe6dc2)
 - Remus 450 II promovido de "barco fantasma" a operativo real: row insertada en tabla `boats` (display_order=3) + anadido a `CANONICAL_BOAT_IDS` del seed-ensure migration (b1ffb06). Confirmado como segundo casco fisico real, no duplicado de marketing

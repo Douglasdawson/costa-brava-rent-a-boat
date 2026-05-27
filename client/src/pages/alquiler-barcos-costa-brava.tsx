@@ -195,7 +195,7 @@ export default function LocationCostaBravaPage() {
       "availability": "https://schema.org/InStock",
       "validFrom": `${new Date().getFullYear()}-04-01`,
       "validThrough": `${new Date().getFullYear()}-10-31`,
-      "description": "8 embarcaciones disponibles. 5 sin licencia náutica desde 70€/h con gasolina incluida. 3 con LNB (con licencia) y excursión privada con capitán."
+      "description": "9 embarcaciones disponibles. 5 sin licencia náutica desde 70€/h con gasolina incluida. 3 con LNB (con licencia) y excursión privada con capitán."
     },
     "aggregateRating": {
       "@type": "AggregateRating",

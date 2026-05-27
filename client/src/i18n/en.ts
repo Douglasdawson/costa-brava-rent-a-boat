@@ -1373,7 +1373,7 @@ export const en: Translations = {
         id: "diferencia-licencia",
         question: "What is the difference between licence-free and licensed boats?",
         answer:
-          "Licence-free boats have up to 15 HP engines, capacity for 4-5 people, fuel included and start from 70€. Licensed boats have 40-150 HP engines, capacity for up to 8 people, greater range and start from 160€ (fuel not included). Licensed boats allow you to navigate further, all the way to Tossa de Mar and beyond.",
+          "Licence-free boats have up to 15 HP engines, capacity for 4-5 people, fuel included and start from 70€. Licensed boats have 40-150 HP engines, capacity for up to 7 people, greater range and start from 160€ (fuel not included). Licensed boats allow you to navigate further, all the way to Tossa de Mar and beyond.",
       },
       {
         id: "precio-blanes-vs-lloret",
@@ -1404,7 +1404,7 @@ export const en: Translations = {
         id: "excursion-con-patron",
         question: "How much does a boat trip with a captain cost?",
         answer:
-          "Our private excursions with a professional captain start from 240€ for 2 hours for up to 10 people. The captain takes you to the best coves, handles all the navigation and you do not need a licence. It is the perfect option for families or groups who want to enjoy without any worries.",
+          "Our private excursions with a professional captain start from 240€ for 2 hours for up to 6 people. The captain takes you to the best coves, handles all the navigation and you do not need a licence. It is the perfect option for families or groups who want to enjoy without any worries.",
       },
       // Decision-helping questions
       {
@@ -3648,7 +3648,7 @@ export const en: Translations = {
       diferenciaLicencia: {
         question: "What's the difference between boats without license and with license?",
         answer:
-          "Boats without license have up to 15 HP, capacity for 4-5 people, fuel included and cost from {noLicBaja1h}€. Boats with license have 40-150 HP engines, capacity for up to 8 people, greater range and cost from {licBaja2h}€ (fuel not included). Boats with license allow you to navigate further, to Tossa de Mar and beyond.",
+          "Boats without license have up to 15 HP, capacity for 4-5 people, fuel included and cost from {noLicBaja1h}€. Boats with license have 40-150 HP engines, capacity for up to 7 people, greater range and cost from {licBaja2h}€ (fuel not included). Boats with license allow you to navigate further, to Tossa de Mar and beyond.",
       },
       precioBlanesVsLloret: {
         question: "Is it cheaper to rent a boat in Blanes or Lloret de Mar?",
@@ -3673,7 +3673,7 @@ export const en: Translations = {
       excursionPatron: {
         question: "How much does an excursion with a captain cost?",
         answer:
-          "Our private excursions with professional captain start from {excursionBaja2h}€ for 2 hours for up to 10 people. The captain takes you to the best coves, handles all the navigation and you don't need a license. It's the perfect option for families or groups who want to enjoy without worrying about anything.",
+          "Our private excursions with professional captain start from {excursionBaja2h}€ for 2 hours for up to 6 people. The captain takes you to the best coves, handles all the navigation and you don't need a license. It's the perfect option for families or groups who want to enjoy without worrying about anything.",
       },
       seguroSinExperiencia: {
         question: "Is it safe to rent a boat without experience?",

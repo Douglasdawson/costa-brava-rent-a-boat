@@ -3609,7 +3609,7 @@ export const fr: Translations = {
       diferenciaLicencia: {
         question: "Quelle est la différence entre les bateaux sans permis et avec permis ?",
         answer:
-          "Les bateaux sans permis ont jusqu'à 15 CV, une capacité de 4-5 personnes, l'essence incluse et coûtent à partir de {noLicBaja1h}€. Les bateaux avec permis ont des moteurs de 40-150 CV, une capacité jusqu'à 8 personnes, une plus grande autonomie et coûtent à partir de {licBaja2h}€ (essence non incluse). Les bateaux avec permis permettent de naviguer plus loin, jusqu'à Tossa de Mar et au-delà.",
+          "Les bateaux sans permis ont jusqu'à 15 CV, une capacité de 4-5 personnes, l'essence incluse et coûtent à partir de {noLicBaja1h}€. Les bateaux avec permis ont des moteurs de 40-150 CV, une capacité jusqu'à 7 personnes, une plus grande autonomie et coûtent à partir de {licBaja2h}€ (essence non incluse). Les bateaux avec permis permettent de naviguer plus loin, jusqu'à Tossa de Mar et au-delà.",
       },
       precioBlanesVsLloret: {
         question: "Est-il moins cher de louer un bateau à Blanes ou à Lloret de Mar ?",
@@ -3634,7 +3634,7 @@ export const fr: Translations = {
       excursionPatron: {
         question: "Combien coûte une excursion en bateau avec skipper ?",
         answer:
-          "Nos excursions privées avec skipper professionnel démarrent à partir de {excursionBaja2h}€ pour 2 heures pour jusqu'à 10 personnes. Le skipper vous emmène aux meilleures criques, s'occupe de toute la navigation et vous n'avez pas besoin de permis. C'est l'option parfaite pour les familles ou groupes qui veulent profiter sans se soucier de rien.",
+          "Nos excursions privées avec skipper professionnel démarrent à partir de {excursionBaja2h}€ pour 2 heures pour jusqu'à 6 personnes. Le skipper vous emmène aux meilleures criques, s'occupe de toute la navigation et vous n'avez pas besoin de permis. C'est l'option parfaite pour les familles ou groupes qui veulent profiter sans se soucier de rien.",
       },
       seguroSinExperiencia: {
         question: "Est-il sûr de louer un bateau sans expérience ?",

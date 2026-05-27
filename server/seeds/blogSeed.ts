@@ -3193,7 +3193,7 @@ Nuestros [barcos con licencia](/barcos-con-licencia) incluyen el [Pacific Craft 
 | **Potencia motor** | Hasta 15 CV | 100-150 CV |
 | **Velocidad maxima** | 5-6 nudos (~10 km/h) | 20-30 nudos (~45 km/h) |
 | **Distancia de costa** | 2 millas nauticas | Sin limite practico |
-| **Capacidad** | 4-5 personas | 6-8 personas |
+| **Capacidad** | 4-5 personas | 6-7 personas |
 | **Combustible incluido** | Si | No (se paga aparte) |
 | **Precio desde** | 70 EUR/hora | 150 EUR/hora |
 | **Ideal para** | Familias, principiantes, calas cercanas | Grupos grandes, rutas largas, experiencias deportivas |
@@ -3221,13 +3221,13 @@ El barco con licencia es la mejor opcion si:
 
 - **Tienes experiencia nautica.** Ya sabes navegar y quieres un barco con mas prestaciones.
 - **Quieres llegar mas lejos.** Puedes hacer la [ruta Blanes - Tossa de Mar](/rutas) ida y vuelta en un solo dia con tiempo de sobra.
-- **Venís en un grupo grande.** Capacidad para 6-8 personas con espacio para moverse comodamente.
+- **Venís en un grupo grande.** Capacidad para 6-7 personas con espacio para moverse comodamente.
 - **Buscas velocidad.** Los barcos con licencia alcanzan 20-30 nudos, lo que te permite cubrir mas terreno y visitar mas calas.
 - **Quieres pescar o hacer deportes nauticos.** La potencia extra permite actividades que no son posibles con barcos mas pequenos.
 
 ### Barcos con licencia recomendados
 
-- [Pacific Craft 625](/barco/pacific-craft-625): 150 CV, hasta 8 personas, ideal para rutas largas hasta Tossa de Mar.
+- [Pacific Craft 625](/barco/pacific-craft-625): 150 CV, hasta 7 personas, ideal para rutas largas hasta Tossa de Mar.
 - [Mingolla Brava 19](/barco/mingolla-brava-19): 100 CV, versatil y comoda, perfecta para grupos de 6 personas.
 
 ## Y si quiero un barco grande pero no tengo licencia?
@@ -3418,7 +3418,7 @@ El [Solar 450](/barco/solar-450) es compacto, agil y muy facil de manejar. Perfe
 
 ### Familias grandes (6+ personas)
 
-Si sois mas de 5, necesitareis un [barco con licencia](/barcos-con-licencia) como el [Pacific Craft 625](/barco/pacific-craft-625) (hasta 8 personas) o contratar nuestra [excursion privada con capitan](/barco/excursion-privada), donde un patron profesional os lleva por las mejores calas sin que necesiteis ningun titulo.
+Si sois mas de 5, necesitareis un [barco con licencia](/barcos-con-licencia) como el [Pacific Craft 625](/barco/pacific-craft-625) (hasta 7 personas) o contratar nuestra [excursion privada con capitan](/barco/excursion-privada), donde un patron profesional os lleva por las mejores calas sin que necesiteis ningun titulo.
 
 ## Itinerario familiar recomendado: 2 horas
 

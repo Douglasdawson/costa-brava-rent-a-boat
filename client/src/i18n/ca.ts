@@ -3595,7 +3595,7 @@ export const ca: Translations = {
       diferenciaLicencia: {
         question: "Quina és la diferència entre barques sense llicència i amb llicència?",
         answer:
-          "Les barques sense llicència tenen fins a 15 CV, capacitat de 4-5 persones, benzina inclosa i costen des de {noLicBaja1h}€. Les barques amb llicència tenen motors de 40-150 CV, capacitat de fins a 8 persones, major autonomia i costen des de {licBaja2h}€ (benzina no inclosa). Les barques amb llicència permeten navegar més lluny, fins a Tossa de Mar i més enllà.",
+          "Les barques sense llicència tenen fins a 15 CV, capacitat de 4-5 persones, benzina inclosa i costen des de {noLicBaja1h}€. Les barques amb llicència tenen motors de 40-150 CV, capacitat de fins a 7 persones, major autonomia i costen des de {licBaja2h}€ (benzina no inclosa). Les barques amb llicència permeten navegar més lluny, fins a Tossa de Mar i més enllà.",
       },
       precioBlanesVsLloret: {
         question: "És més barat llogar una barca a Blanes o a Lloret de Mar?",
@@ -3620,7 +3620,7 @@ export const ca: Translations = {
       excursionPatron: {
         question: "Quant costa una excursió en barca amb patró?",
         answer:
-          "Les nostres excursions privades amb patró professional des de {excursionBaja2h}€ per 2 hores per a fins a 10 persones. El patró us porta a les millors cales, s'encarrega de tota la navegació i no necessiteu llicència. És l'opció perfecta per a famílies o grups que volen gaudir sense preocupar-se de res.",
+          "Les nostres excursions privades amb patró professional des de {excursionBaja2h}€ per 2 hores per a fins a 6 persones. El patró us porta a les millors cales, s'encarrega de tota la navegació i no necessiteu llicència. És l'opció perfecta per a famílies o grups que volen gaudir sense preocupar-se de res.",
       },
       seguroSinExperiencia: {
         question: "És segur llogar una barca sense experiència?",

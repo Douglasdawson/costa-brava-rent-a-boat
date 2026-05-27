@@ -3595,7 +3595,7 @@ export const nl: Translations = {
       diferenciaLicencia: {
         question: "Wat is het verschil tussen boten zonder en met vaarbewijs?",
         answer:
-          "Boten zonder vaarbewijs hebben maximaal 15 PK, capaciteit van 4-5 personen, brandstof inbegrepen en kosten vanaf {noLicBaja1h}€. Boten met vaarbewijs hebben motoren van 40-150 PK, capaciteit van maximaal 8 personen, groter bereik en kosten vanaf {licBaja2h}€ (brandstof niet inbegrepen). Met boten met vaarbewijs kun je verder varen, tot Tossa de Mar en verder.",
+          "Boten zonder vaarbewijs hebben maximaal 15 PK, capaciteit van 4-5 personen, brandstof inbegrepen en kosten vanaf {noLicBaja1h}€. Boten met vaarbewijs hebben motoren van 40-150 PK, capaciteit van maximaal 7 personen, groter bereik en kosten vanaf {licBaja2h}€ (brandstof niet inbegrepen). Met boten met vaarbewijs kun je verder varen, tot Tossa de Mar en verder.",
       },
       precioBlanesVsLloret: {
         question: "Is het goedkoper om een boot te huren in Blanes of in Lloret de Mar?",
@@ -3620,7 +3620,7 @@ export const nl: Translations = {
       excursionPatron: {
         question: "Hoeveel kost een bootexcursie met schipper?",
         answer:
-          "Onze privé-excursies met professionele schipper beginnen vanaf {excursionBaja2h}€ voor 2 uur voor maximaal 10 personen. De schipper brengt jullie naar de mooiste baaien, verzorgt alle navigatie en je hebt geen vaarbewijs nodig. Het is de perfecte optie voor gezinnen of groepen die willen genieten zonder zorgen.",
+          "Onze privé-excursies met professionele schipper beginnen vanaf {excursionBaja2h}€ voor 2 uur voor maximaal 6 personen. De schipper brengt jullie naar de mooiste baaien, verzorgt alle navigatie en je hebt geen vaarbewijs nodig. Het is de perfecte optie voor gezinnen of groepen die willen genieten zonder zorgen.",
       },
       seguroSinExperiencia: {
         question: "Is het veilig om een boot te huren zonder ervaring?",

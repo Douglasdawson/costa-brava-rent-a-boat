@@ -112,7 +112,7 @@ const GENERAL_ES = [
   },
   {
     title: "Capacidad de los barcos",
-    content: "Nuestros barcos tienen capacidades desde 4 hasta 8 personas dependiendo del modelo. Es importante respetar la capacidad máxima por seguridad. Para grupos grandes, podemos organizar salidas con varios barcos. Contacta con nosotros para grupos especiales.",
+    content: "Nuestros barcos tienen capacidades desde 4 hasta 7 personas dependiendo del modelo. Es importante respetar la capacidad máxima por seguridad. Para grupos grandes, podemos organizar salidas con varios barcos. Contacta con nosotros para grupos especiales.",
     category: "general",
     keywords: ["capacidad", "personas", "grupo", "cuantos"],
     priority: 6,

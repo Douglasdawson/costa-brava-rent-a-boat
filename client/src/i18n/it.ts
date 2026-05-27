@@ -3594,7 +3594,7 @@ export const it: Translations = {
       diferenciaLicencia: {
         question: "Qual è la differenza tra barche senza patente e con patente?",
         answer:
-          "Le barche senza patente hanno fino a 15 CV, capacità di 4-5 persone, carburante incluso e costano da {noLicBaja1h}€. Le barche con patente hanno motori da 40-150 CV, capacità fino a 8 persone, maggiore autonomia e costano da {licBaja2h}€ (carburante non incluso). Le barche con patente permettono di navigare più lontano, fino a Tossa de Mar e oltre.",
+          "Le barche senza patente hanno fino a 15 CV, capacità di 4-5 persone, carburante incluso e costano da {noLicBaja1h}€. Le barche con patente hanno motori da 40-150 CV, capacità fino a 7 persone, maggiore autonomia e costano da {licBaja2h}€ (carburante non incluso). Le barche con patente permettono di navigare più lontano, fino a Tossa de Mar e oltre.",
       },
       precioBlanesVsLloret: {
         question: "È più economico noleggiare una barca a Blanes o a Lloret de Mar?",
@@ -3619,7 +3619,7 @@ export const it: Translations = {
       excursionPatron: {
         question: "Quanto costa un'escursione in barca con skipper?",
         answer:
-          "Le nostre escursioni private con skipper professionista partono da {excursionBaja2h}€ per 2 ore per un massimo di 10 persone. Lo skipper vi porta alle migliori calette, si occupa di tutta la navigazione e non serve la patente. È l'opzione perfetta per famiglie o gruppi che vogliono godersi la giornata senza preoccuparsi di nulla.",
+          "Le nostre escursioni private con skipper professionista partono da {excursionBaja2h}€ per 2 ore per un massimo di 6 persone. Lo skipper vi porta alle migliori calette, si occupa di tutta la navigazione e non serve la patente. È l'opzione perfetta per famiglie o gruppi che vogliono godersi la giornata senza preoccuparsi di nulla.",
       },
       seguroSinExperiencia: {
         question: "È sicuro noleggiare una barca senza esperienza?",

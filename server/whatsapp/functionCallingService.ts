@@ -383,7 +383,7 @@ async function listAvailableBoats(
   if (capacityMin && filteredBoats.length === 0) {
     return JSON.stringify({
       available: false,
-      message: `No tenemos barcos disponibles para ${capacityMin} personas. Nuestra capacidad maxima es de 8 personas por barco. Para grupos mas grandes, podemos organizar varios barcos. Contactanos al +34 611 500 372.`,
+      message: `No tenemos barcos disponibles para ${capacityMin} personas. Nuestra capacidad maxima es de 7 personas por barco. Para grupos mas grandes, podemos organizar varios barcos. Contactanos al +34 611 500 372.`,
     });
   }
 

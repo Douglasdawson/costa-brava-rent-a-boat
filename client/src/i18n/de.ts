@@ -3617,7 +3617,7 @@ export const de: Translations = {
       diferenciaLicencia: {
         question: "Was ist der Unterschied zwischen Booten ohne und mit Führerschein?",
         answer:
-          "Boote ohne Führerschein haben bis zu 15 PS, Kapazität für 4-5 Personen, Benzin inklusive und kosten ab {noLicBaja1h}€. Boote mit Führerschein haben Motoren von 40-150 PS, Kapazität bis zu 8 Personen, größere Reichweite und kosten ab {licBaja2h}€ (Benzin nicht inbegriffen). Boote mit Führerschein ermöglichen Fahrten bis nach Tossa de Mar und darüber hinaus.",
+          "Boote ohne Führerschein haben bis zu 15 PS, Kapazität für 4-5 Personen, Benzin inklusive und kosten ab {noLicBaja1h}€. Boote mit Führerschein haben Motoren von 40-150 PS, Kapazität bis zu 7 Personen, größere Reichweite und kosten ab {licBaja2h}€ (Benzin nicht inbegriffen). Boote mit Führerschein ermöglichen Fahrten bis nach Tossa de Mar und darüber hinaus.",
       },
       precioBlanesVsLloret: {
         question: "Ist es günstiger, ein Boot in Blanes oder in Lloret de Mar zu mieten?",
@@ -3642,7 +3642,7 @@ export const de: Translations = {
       excursionPatron: {
         question: "Wie viel kostet eine Bootsausfahrt mit Skipper?",
         answer:
-          "Unsere privaten Ausfahrten mit professionellem Skipper beginnen bei {excursionBaja2h}€ für 2 Stunden für bis zu 10 Personen. Der Skipper bringt Sie zu den besten Buchten, übernimmt die gesamte Navigation und Sie benötigen keinen Führerschein. Die perfekte Option für Familien oder Gruppen, die sich um nichts kümmern möchten.",
+          "Unsere privaten Ausfahrten mit professionellem Skipper beginnen bei {excursionBaja2h}€ für 2 Stunden für bis zu 6 Personen. Der Skipper bringt Sie zu den besten Buchten, übernimmt die gesamte Navigation und Sie benötigen keinen Führerschein. Die perfekte Option für Familien oder Gruppen, die sich um nichts kümmern möchten.",
       },
       seguroSinExperiencia: {
         question: "Ist es sicher, ein Boot ohne Erfahrung zu mieten?",

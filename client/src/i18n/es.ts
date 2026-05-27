@@ -2607,7 +2607,7 @@ export const es: Translations = {
         id: "diferencia-licencia",
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 70€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomía y cuestan desde 160€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
+          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 70€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde 160€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
       },
       {
         id: "precio-blanes-vs-lloret",
@@ -2638,7 +2638,7 @@ export const es: Translations = {
         id: "excursion-con-patron",
         question: "¿Cuánto cuesta una excursión en barco con patrón?",
         answer:
-          "Nuestras excursiones privadas con patrón profesional parten desde 240€ por 2 horas para hasta 10 personas. El patrón os lleva a las mejores calas, se encarga de toda la navegación y no necesitáis licencia. Es la opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.",
+          "Nuestras excursiones privadas con patrón profesional parten desde 240€ por 2 horas para hasta 6 personas. El patrón os lleva a las mejores calas, se encarga de toda la navegación y no necesitáis licencia. Es la opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.",
       },
       // Decision-helping questions
       {
@@ -3594,7 +3594,7 @@ export const es: Translations = {
       diferenciaLicencia: {
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde {noLicBaja1h}€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomía y cuestan desde {licBaja2h}€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
+          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde {noLicBaja1h}€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde {licBaja2h}€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
       },
       precioBlanesVsLloret: {
         question: "¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?",
@@ -3619,7 +3619,7 @@ export const es: Translations = {
       excursionPatron: {
         question: "¿Cuánto cuesta una excursión en barco con patrón?",
         answer:
-          "Nuestras excursiones privadas con patrón profesional parten desde {excursionBaja2h}€ por 2 horas para hasta 10 personas. El patrón os lleva a las mejores calas, se encarga de toda la navegación y no necesitáis licencia. Es la opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.",
+          "Nuestras excursiones privadas con patrón profesional parten desde {excursionBaja2h}€ por 2 horas para hasta 6 personas. El patrón os lleva a las mejores calas, se encarga de toda la navegación y no necesitáis licencia. Es la opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.",
       },
       seguroSinExperiencia: {
         question: "¿Es seguro alquilar un barco sin experiencia?",

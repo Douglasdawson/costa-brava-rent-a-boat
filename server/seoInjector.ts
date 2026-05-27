@@ -2127,7 +2127,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "Alquiler de Barcos Costa Brava",
           "CBRaB",
         ],
-        description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Puerto de Blanes. 8 embarcaciones para 4-7 personas.",
+        description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Puerto de Blanes. 9 embarcaciones para 4-7 personas.",
         url: BASE_URL,
         telephone: "+34611500372",
         email: "costabravarentaboat@gmail.com",

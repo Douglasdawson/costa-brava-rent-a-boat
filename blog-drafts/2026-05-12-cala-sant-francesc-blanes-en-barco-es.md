@@ -65,7 +65,7 @@ Salida desde el [alquiler de barcos en Blanes](/es/alquiler-barcos-blanes) en el
 **Distancia**: aproximadamente 1,5 km / 0,8 millas náuticas desde la bocana del puerto.
 **Tiempo de navegación**: 10-15 minutos en cualquiera de nuestros barcos sin licencia, que navegan a 6-8 nudos. Es decir, está al lado: para una salida de 2 horas, Cala Sant Francesc es la primera parada lógica.
 
-Sí, esto entra holgado en el rango de un [barco sin licencia](/es/barcos-sin-licencia) (limitado a 5 millas de la costa y 15 cv de motor). De hecho, es una de las calas más fáciles para una primera salida.
+Sí, esto entra holgado en el rango de un [barco sin licencia](/es/barcos-sin-licencia) (limitado a 2 millas náuticas de la costa y 15 cv de motor). De hecho, es una de las calas más fáciles para una primera salida.
 
 ## Qué hacer en Cala Sant Francesc
 

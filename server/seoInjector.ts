@@ -594,9 +594,9 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/alquiler-barcos-tossa-de-mar": {
     es: {
       title: "Barco Tossa de Mar Con Licencia | Vila Vella desde el Mar",
-      description: "Alquila barco con licencia PER o charter con patrón desde Blanes a Tossa de Mar. Navega frente a la Vila Vella medieval. 30-45 min ida. Cala Pola, Giverola.",
-      ogTitle: "Alquiler Barco Tossa de Mar | Licencia B\u00e1sica (LBN) o Excursi\u00f3n con Capit\u00e1n",
-      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con LBN desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte. 4.8\u2605.",
+      description: "Alquila barco con licencia (LN o superior) o charter con patrón desde Blanes a Tossa de Mar. Navega frente a la Vila Vella medieval. 30-45 min ida. Cala Pola, Giverola.",
+      ogTitle: "Alquiler Barco Tossa de Mar | Licencia de Navegaci\u00f3n (LN) o Excursi\u00f3n con Capit\u00e1n",
+      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con LN desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte. 4.8\u2605.",
     },
     en: {
       title: "Boat Trip to Tossa de Mar from Blanes",
@@ -2180,7 +2180,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "Cala Treumal", "Platja de Santa Cristina", "Cala Sa Boadella",
           "Cala Bona", "Cala Canyelles",
           // Terminología y regulación náutica
-          "Licencia Básica de Navegación (LBN)", "PER (Patrón de Embarcaciones de Recreo)",
+          "Licencia de Navegación (LN)", "Licencia de Navegación Básica (LNB)", "PER (Patrón de Embarcaciones de Recreo)",
           "PNB (Patrón de Navegación Básica)", "Límite 2 millas náuticas",
           "Navegación a 5 nudos", "Matrícula lista 6ª", "Título náutico",
           // Actividades / servicios
@@ -2706,7 +2706,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
             name: isEn ? "Do I need a license to reach Tossa de Mar by boat?" : "¿Necesito licencia para llegar a Tossa de Mar en barco?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "Yes, Tossa de Mar is beyond the 2-mile zone for license-free boats. You need a licensed boat (Basic Navigation License or ICC) or our private excursion with captain."
-              : "Si, Tossa de Mar esta mas alla de la zona de 2 millas para barcos sin licencia. Necesitas un barco con licencia (Licencia Básica de Navegación o ICC) o nuestra excursion privada con patron." },
+              : "Si, Tossa de Mar esta mas alla de la zona de 2 millas para barcos sin licencia. Necesitas un barco con licencia (Licencia de Navegacion o ICC) o nuestra excursion privada con patron." },
           },
           {
             "@type": "Question",
@@ -3203,7 +3203,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
             name: isEn ? "How much does it cost to rent a licensed boat in Blanes?" : "¿Cuánto cuesta alquilar un barco con licencia en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "Licensed boats in Blanes start from 160 EUR/2h in low season. They require a boating license (Basic Navigation License or ICC). More powerful boats with greater range to explore Costa Brava."
-              : "Los barcos con licencia en Blanes cuestan desde 160 EUR/2h en temporada baja. Requieren Licencia Básica de Navegación o ICC. Son barcos mas potentes con mayor autonomia para explorar la Costa Brava." },
+              : "Los barcos con licencia en Blanes cuestan desde 160 EUR/2h en temporada baja. Requieren Licencia de Navegacion (LN) o equivalente (ICC). Son barcos mas potentes con mayor autonomia para explorar la Costa Brava." },
           },
         ],
       };

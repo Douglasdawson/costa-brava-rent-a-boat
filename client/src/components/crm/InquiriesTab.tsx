@@ -72,7 +72,7 @@ const LICENSE_BADGE_CONFIG: Record<LicenseVerificationStatus, { label: string; c
 };
 
 const SPANISH_LEVEL_LABEL: Record<SpanishLicenseLevel, string> = {
-  navegacion: "LBN",
+  navegacion: "LN",
   pnb: "PNB",
   per: "PER",
   patron_yate: "Patrón de Yate",

@@ -32,7 +32,7 @@ const blogPostsData: BlogPostSeed[] = [
       es: "Descubre las 15 mejores calas de la Costa Brava accesibles solo en barco. Mapa con coordenadas GPS, fotos y consejos para llegar desde Blanes.",
       en: "Discover the 15 best Costa Brava coves accessible only by boat. GPS coordinates map, photos and tips for getting there from Blanes.",
     },
-    content: `La Costa Brava esconde algunos de los rincones más espectaculares del Mediterráneo occidental, pero muchos de ellos tienen un secreto: solo se puede llegar por mar. Acantilados de 50 metros, pinos que crecen hasta el borde del agua y aguas tan transparentes que ves el fondo a 8 metros de profundidad. Las calas de la zona Blanes-Lloret (calas 1-11) son accesibles con un barco **sin licencia**; las calas del tramo Lloret-Tossa (calas 12-15) requieren **Licencia Básica de Navegación (LBN)** o nuestra **Excursión Privada con Capitán**.
+    content: `La Costa Brava esconde algunos de los rincones más espectaculares del Mediterráneo occidental, pero muchos de ellos tienen un secreto: solo se puede llegar por mar. Acantilados de 50 metros, pinos que crecen hasta el borde del agua y aguas tan transparentes que ves el fondo a 8 metros de profundidad. Las calas de la zona Blanes-Lloret (calas 1-11) son accesibles con un barco **sin licencia**; las calas del tramo Lloret-Tossa (calas 12-15) requieren **Licencia de Navegación (LN)** o superior, o nuestra **Excursión Privada con Capitán**.
 
 En este artículo hemos recopilado las **15 calas más impresionantes entre Blanes y Tossa de Mar** — la zona sur de la Costa Brava — con coordenadas GPS exactas, nivel de dificultad, y consejos prácticos para que planifiques tu ruta desde el Puerto de Blanes.
 
@@ -172,13 +172,13 @@ Completamente salvaje y sin ningún tipo de servicio ni acceso terrestre practic
 - **Guarda las coordenadas GPS:** Descarga un mapa offline en tu móvil antes de salir. Te servirán para encontrar las calas más escondidas.
 - **Respeta el entorno:** No tires basura al mar y respeta las zonas de fondeo marcadas.
 - **Consulta el tiempo:** Antes de planificar tu ruta, consulta la previsión meteorológica. Nosotros te asesoraremos en el briefing de seguridad.
-- **Combina calas:** Con 4 horas sin licencia puedes visitar 3-4 calas del tramo Blanes-Lloret cómodamente. Para llegar a las calas de Tossa (Giverola, Pola, Llevadó, Morisca) necesitas barco con LBN o nuestra Excursión Privada con Capitán (pack 4h).
+- **Combina calas:** Con 4 horas sin licencia puedes visitar 3-4 calas del tramo Blanes-Lloret cómodamente. Para llegar a las calas de Tossa (Giverola, Pola, Llevadó, Morisca) necesitas barco con LN (o superior) o nuestra Excursión Privada con Capitán (pack 4h).
 
 ## Cómo llegar a estas calas desde Blanes
 
 **Calas 1-11 (Blanes-Lloret) — barcos sin licencia:** Todas estas calas están dentro del límite legal de 2 millas náuticas para barcos sin licencia. Nuestros barcos alcanzan las calas más cercanas (Sa Forcanera, Sant Francesc) en menos de 10 minutos, y las más lejanas del tramo sin licencia (hasta Cala de los Frares, Lloret) en unos 30 minutos. No necesitas ninguna titulación náutica — antes de salir te damos una **formación práctica de 15 minutos** sobre el manejo del barco, las normas básicas de navegación y te indicamos las mejores calas según las condiciones del día. Gasolina incluida en el precio.
 
-**Calas 12-15 (Tossa de Mar) — requieren LBN o Excursión Privada con Capitán:** Las calas de Giverola, Pola, Llevadó y Morisca están fuera del alcance legal de los barcos sin licencia. Para llegar a ellas necesitas barco con **Licencia Básica de Navegación (LBN)** desde 160 € (pack 2h) o nuestra **Excursión Privada con Capitán** 4h desde 380 €. El trayecto desde Blanes es de **30-45 min** hasta la zona de Tossa. Importante: los barcos con licencia **no incluyen gasolina** (calcula 30-50 € adicionales para ida y vuelta).
+**Calas 12-15 (Tossa de Mar) — requieren LN o superior, o Excursión Privada con Capitán:** Las calas de Giverola, Pola, Llevadó y Morisca están fuera del alcance legal de los barcos sin licencia. Para llegar a ellas necesitas barco con **Licencia de Navegación (LN)** o superior desde 160 € (pack 2h) o nuestra **Excursión Privada con Capitán** 4h desde 380 €. El trayecto desde Blanes es de **30-45 min** hasta la zona de Tossa. Importante: los barcos con licencia **no incluyen gasolina** (calcula 30-50 € adicionales para ida y vuelta).
 
 ### Barcos sin licencia recomendados (calas 1-11)
 
@@ -3180,7 +3180,7 @@ En [Costa Brava Rent a Boat](/barcos-sin-licencia) disponemos de varios modelos 
 
 ## Que es un barco con licencia
 
-Un barco con licencia requiere que el patron (la persona que conduce) tenga una titulacion nautica oficial, como el PER (Patron de Embarcaciones de Recreo) o superior. Estos barcos son mas grandes, mas potentes y te permiten navegar a mayor distancia de la costa.
+Un barco con licencia requiere que el patron (la persona que conduce) tenga una titulacion nautica oficial. Para nuestra flota basta la LN (Licencia de Navegacion) o superior — LNB, PER, PNB o Capitan de Yate. Estos barcos son mas grandes, mas potentes y te permiten navegar a mayor distancia de la costa.
 
 Nuestros [barcos con licencia](/barcos-con-licencia) incluyen el [Pacific Craft 625](/barco/pacific-craft-625) y la [Mingolla Brava 19](/barco/mingolla-brava-19). Tambien ofrecemos la [excursion privada con capitan](/barco/excursion-privada) para quienes quieran un barco grande sin tener licencia.
 

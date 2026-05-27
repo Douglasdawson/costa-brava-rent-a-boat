@@ -87,7 +87,7 @@ El [alquiler de motos en Lloret de Mar](https://coastrent.es) es una opcion perf
 
 ### 7. Tossa de Mar: La Vila Vella
 
-A 25 km de Blanes, Tossa de Mar es uno de los pueblos mas fotografiados de la Costa Brava. Su recinto amurallado medieval (la Vila Vella) es el unico de toda la costa catalana que se conserva intacto. Puedes llegar en barco con nosotros (1h 15min con [barco con licencia](/barcos-con-licencia)), en coche o en scooter por la carretera costera.
+A 25 km de Blanes, Tossa de Mar es uno de los pueblos mas fotografiados de la Costa Brava. Su recinto amurallado medieval (la Vila Vella) es el unico de toda la costa catalana que se conserva intacto. Puedes llegar en barco con nosotros (30-45 min con [barco con licencia](/barcos-con-licencia)), en coche o en scooter por la carretera costera.
 
 ### 8. Las Calas Secretas del Camino de Ronda
 
@@ -209,7 +209,7 @@ One of the best ways to discover the Costa Brava by land is on two wheels. From 
 
 ### 7. Tossa de Mar: The Vila Vella
 
-25 km from Blanes, Tossa de Mar is one of the most photographed towns on the Costa Brava. Its medieval walled enclosure (the Vila Vella) is the only one along the entire Catalan coast that remains intact. You can get there by boat with us (1h 15min with a [licensed boat](/boats-with-license)), by car, or by scooter along the coastal road.
+25 km from Blanes, Tossa de Mar is one of the most photographed towns on the Costa Brava. Its medieval walled enclosure (the Vila Vella) is the only one along the entire Catalan coast that remains intact. You can get there by boat with us (30-45 min with a [licensed boat](/boats-with-license)), by car, or by scooter along the coastal road.
 
 ### 8. The Secret Coves of the Camino de Ronda
 
@@ -332,7 +332,7 @@ El [alquiler de motos en Lloret de Mar](https://coastrent.es) es una opcion perf
 
 ### 7. Tossa de Mar: La Vila Vella
 
-A 25 km de Blanes, Tossa de Mar es uno de los pueblos mas fotografiados de la Costa Brava. Su recinto amurallado medieval (la Vila Vella) es el unico de toda la costa catalana que se conserva intacto. Puedes llegar en barco con nosotros (1h 15min con [barco con licencia](/barcos-con-licencia)), en coche o en scooter por la carretera costera.
+A 25 km de Blanes, Tossa de Mar es uno de los pueblos mas fotografiados de la Costa Brava. Su recinto amurallado medieval (la Vila Vella) es el unico de toda la costa catalana que se conserva intacto. Puedes llegar en barco con nosotros (30-45 min con [barco con licencia](/barcos-con-licencia)), en coche o en scooter por la carretera costera.
 
 ### 8. Las Calas Secretas del Camino de Ronda
 

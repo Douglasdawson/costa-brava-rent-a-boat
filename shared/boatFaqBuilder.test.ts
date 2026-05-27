@@ -25,7 +25,7 @@ const esText: BoatFaqText = {
   a5: "Puedes cambiar la fecha sin coste con 7 días de antelación.",
   licenseTypes: {
     none: "No requiere licencia",
-    navegacion: "Licencia Básica de Navegación (LBN)",
+    navegacion: "Licencia de Navegación (LN)",
     pnb: "Patrón para Navegación Básica (PNB)",
     per: "Patrón de Embarcaciones de Recreo (PER)",
     patron_yate: "Patrón de Yate",
@@ -124,9 +124,9 @@ describe("buildBoatFaqItems", () => {
   });
 
   describe("Q3 license", () => {
-    it("returns LBN answer for Mingolla (navegacion)", () => {
+    it("returns LN answer for Mingolla (navegacion)", () => {
       const items = buildBoatFaqItems(mingolla, esText);
-      expect(items[2].answer).toContain("Licencia Básica de Navegación (LBN)");
+      expect(items[2].answer).toContain("Licencia de Navegación (LN)");
       expect(items[2].answer).not.toContain("PER");
     });
 

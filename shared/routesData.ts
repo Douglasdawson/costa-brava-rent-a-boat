@@ -249,7 +249,7 @@ export const boatRoutes: BoatRoute[] = [
     ],
     color: "#ef4444",
     distance: "12 km",
-    estimatedTime: "1h 15min",
+    estimatedTime: "30-45 min",
     difficulty: "moderate",
     highlights: ["Tossa de Mar", "Vila Vella", "Cala Giverola"],
     descriptions: {

@@ -872,7 +872,7 @@ export function registerRobotsRoutes(app: Express): void {
           "Sa Palomera", "Sa Forcanera", "Cala Sant Francesc",
           "Cala de s'Agulla", "Cala Treumal", "Platja de Santa Cristina",
           "Cala Sa Boadella", "Cala Bona",
-          "Licencia Básica de Navegación (LBN)", "PER", "PNB",
+          "Licencia de Navegación (LN)", "Licencia de Navegación Básica (LNB)", "PER", "PNB",
           "Límite 2 millas náuticas", "Navegación a 5 nudos",
           "Alquiler de barcos sin licencia", "Alquiler de barcos con licencia",
           "Excursión privada con capitán", "Snorkel Costa Brava",

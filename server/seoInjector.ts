@@ -472,7 +472,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     nl: {
       title: "Boten Zonder Vaarbewijs Blanes | 5 Boten vanaf 70€/u",
-      description: "Huur een boot zonder vaarbewijs in Blanes, Costa Brava vanaf €70/u. Brandstof inbegrepen, tot 5 personen. 4.8★ · 310 reviews · 15 min training. Online boeken.",
+      description: `Huur een boot zonder vaarbewijs in Blanes, Costa Brava vanaf €70/u. Brandstof inbegrepen, tot 5 personen. 4.8★ · ${BUSINESS_REVIEW_COUNT_STR} reviews · 15 min training. Online boeken.`,
     },
     it: {
       title: "Barche Senza Patente Costa Brava | 5 Barche da 70€/h Blanes",
@@ -532,23 +532,23 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     ca: {
       title: `Lloguer Barques Sense Llic\u00e8ncia Blanes ${SEASON_YEAR} | des de 70\u20ac/h`,
-      description: "Lloguer de barques sense llic\u00e8ncia al Port de Blanes. Des de 70\u20ac/h, gasolina inclosa. 8 barques disponibles. Reserva online.",
+      description: "Lloguer de barques sense llic\u00e8ncia al Port de Blanes. Des de 70\u20ac/h, gasolina inclosa. 9 barques disponibles. Reserva online.",
     },
     fr: {
       title: `Location Bateaux Sans Permis Blanes ${SEASON_YEAR} | d\u00e8s 70\u20ac/h`,
-      description: "Location de bateaux sans permis au Port de Blanes. D\u00e8s 70\u20ac/h, carburant inclus. 8 bateaux disponibles. R\u00e9servez en ligne.",
+      description: "Location de bateaux sans permis au Port de Blanes. D\u00e8s 70\u20ac/h, carburant inclus. 9 bateaux disponibles. R\u00e9servez en ligne.",
     },
     de: {
       title: `Bootsverleih Ohne F\u00fchrerschein Blanes ${SEASON_YEAR} | ab 70\u20ac/h`,
-      description: "Bootsverleih ohne F\u00fchrerschein im Hafen Blanes. Ab 70\u20ac/h, Kraftstoff inklusive. 8 Boote verf\u00fcgbar. Online buchen.",
+      description: "Bootsverleih ohne F\u00fchrerschein im Hafen Blanes. Ab 70\u20ac/h, Kraftstoff inklusive. 9 Boote verf\u00fcgbar. Online buchen.",
     },
     nl: {
       title: `Bootverhuur Zonder Vaarbewijs Blanes ${SEASON_YEAR} | vanaf 70\u20ac/u`,
-      description: "Bootverhuur zonder vaarbewijs in Haven Blanes. Vanaf 70\u20ac/u, brandstof inbegrepen. 8 boten beschikbaar. Online boeken.",
+      description: "Bootverhuur zonder vaarbewijs in Haven Blanes. Vanaf 70\u20ac/u, brandstof inbegrepen. 9 boten beschikbaar. Online boeken.",
     },
     it: {
       title: `Noleggio Barche Senza Patente Blanes ${SEASON_YEAR} | da 70\u20ac/h`,
-      description: "Noleggio barche senza patente al Porto di Blanes. Da 70\u20ac/h, carburante incluso. 8 barche disponibili. Prenota online.",
+      description: "Noleggio barche senza patente al Porto di Blanes. Da 70\u20ac/h, carburante incluso. 9 barche disponibili. Prenota online.",
     },
     ru: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u0411\u043b\u0430\u043d\u0435\u0441 \u0411\u0435\u0437 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 ${SEASON_YEAR} | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u043e\u0442 70\u20ac/\u0447`,
@@ -580,7 +580,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     nl: {
       title: "Boottocht naar Lloret de Mar vanuit Blanes",
-      description: "Vaar naar Lloret de Mar vanaf Blanes. 7 cala's op de route. Boot huren zonder vaarbewijs vanaf €70/u. Brandstof inbegrepen. 4.8★ · 310 reviews. Boek online.",
+      description: `Vaar naar Lloret de Mar vanaf Blanes. 7 cala's op de route. Boot huren zonder vaarbewijs vanaf €70/u. Brandstof inbegrepen. 4.8★ · ${BUSINESS_REVIEW_COUNT_STR} reviews. Boek online.`,
     },
     it: {
       title: "Escursione in Barca a Lloret de Mar da Blanes",
@@ -616,7 +616,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     nl: {
       title: "Boottocht naar Tossa de Mar vanuit Blanes",
-      description: "Vaar naar Tossa de Mar vanaf Blanes. Boot huren zonder vaarbewijs vanaf €70/u. Brandstof inbegrepen, tot 5 personen. 4.8★ · 310 reviews. Online boeken.",
+      description: `Vaar naar Tossa de Mar vanaf Blanes. Boot huren zonder vaarbewijs vanaf €70/u. Brandstof inbegrepen, tot 5 personen. 4.8★ · ${BUSINESS_REVIEW_COUNT_STR} reviews. Online boeken.`,
     },
     it: {
       title: "Escursione in Barca a Tossa de Mar da Blanes",
@@ -1127,43 +1127,43 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     en: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h`,
-      description: "Rent boats on the Costa Brava from Blanes Port. 8 no-license boats from 70\u20ac/h, fuel included. Hidden coves Blanes-Tossa. 4.8\u2605 310 reviews.",
+      description: `Rent boats on the Costa Brava from Blanes Port. 5 no-license boats from 70\u20ac/h, fuel included. Hidden coves Blanes-Tossa. 4.8\u2605 ${BUSINESS_REVIEW_COUNT_STR} reviews.`,
     },
     ca: {
       title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia 70\u20ac/h`,
-      description: "Lloga barques a la Costa Brava des del Port de Blanes. 8 barques sense llic\u00e8ncia des de 70\u20ac/h. Cales verges Blanes-Tossa. 4.8\u2605 310 ressenyes.",
+      description: `Lloga barques a la Costa Brava des del Port de Blanes. 5 barques sense llic\u00e8ncia des de 70\u20ac/h. Cales verges Blanes-Tossa. 4.8\u2605 ${BUSINESS_REVIEW_COUNT_STR} ressenyes.`,
     },
     fr: {
       title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis 70\u20ac/h`,
-      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 8 bateaux sans permis d\u00e8s 70\u20ac/h, carburant inclus. Criques Blanes-Tossa. 4.8★.",
+      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 5 bateaux sans permis d\u00e8s 70\u20ac/h, carburant inclus. Criques Blanes-Tossa. 4.8★.",
     },
     de: {
       title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein 70\u20ac/h`,
-      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 8 Boote ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. Buchten Blanes-Tossa. 4.8★.",
+      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 5 Boote ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. Buchten Blanes-Tossa. 4.8★.",
     },
     nl: {
       title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs 70\u20ac/u`,
-      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 8 boten zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. Baaien Blanes-Tossa. 4.8★.",
+      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 5 boten zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. Baaien Blanes-Tossa. 4.8★.",
     },
     it: {
       title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente 70\u20ac/h`,
-      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 8 barche senza patente da 70\u20ac/h, carburante incluso. Calette Blanes-Tossa. 4.8★.",
+      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 5 barche senza patente da 70\u20ac/h, carburante incluso. Calette Blanes-Tossa. 4.8★.",
     },
     ru: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} | \u0411\u0435\u0437 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447`,
-      description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. 8 \u043b\u043e\u0434\u043e\u043a \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. \u0411\u0443\u0445\u0442\u044b \u0411\u043b\u0430\u043d\u0435\u0441-\u0422\u043e\u0441\u0441\u0430. 4.8★.",
+      description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. 5 \u043b\u043e\u0434\u043e\u043a \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. \u0411\u0443\u0445\u0442\u044b \u0411\u043b\u0430\u043d\u0435\u0441-\u0422\u043e\u0441\u0441\u0430. 4.8★.",
     },
   },
   "/boat-rental-costa-brava": {
     en: {
       title: "Boat Rental Costa Brava | No License from 70\u20ac/h, Blanes",
-      description: "Rent a boat in Blanes, Costa Brava from €70/h. License-free, fuel included, up to 5 people. 4.8★ · 310 Google reviews · 15 min training · book online.",
+      description: `Rent a boat in Blanes, Costa Brava from €70/h. License-free, fuel included, up to 5 people. 4.8★ · ${BUSINESS_REVIEW_COUNT_STR} Google reviews · 15 min training · book online.`,
       ogTitle: "Boat Rental Costa Brava — From Blanes Port",
       ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour.",
     },
     es: {
       title: "Boat Rental Costa Brava | No License from 70\u20ac/h, Blanes",
-      description: "Rent a boat in Blanes, Costa Brava from €70/h. License-free, fuel included, up to 5 people. 4.8★ · 310 Google reviews · 15 min training · book online.",
+      description: `Rent a boat in Blanes, Costa Brava from €70/h. License-free, fuel included, up to 5 people. 4.8★ · ${BUSINESS_REVIEW_COUNT_STR} Google reviews · 15 min training · book online.`,
     },
   },
   "/excursion-snorkel-barco-blanes": {

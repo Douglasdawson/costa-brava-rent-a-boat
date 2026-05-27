@@ -21,7 +21,37 @@ import { Upload, X, GripVertical, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import ImageCropDialog from "./ImageCropDialog";
+
+async function fileToWebpBlob(file: File): Promise<Blob> {
+  const dataUrl = await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(new Error("Failed to read file"));
+    reader.readAsDataURL(file);
+  });
+
+  const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = () => reject(new Error("Failed to load image"));
+    image.src = dataUrl;
+  });
+
+  const canvas = document.createElement("canvas");
+  canvas.width = img.naturalWidth;
+  canvas.height = img.naturalHeight;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Canvas 2D context unavailable");
+  ctx.drawImage(img, 0, 0);
+
+  return await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => (blob ? resolve(blob) : reject(new Error("Canvas toBlob returned null"))),
+      "image/webp",
+      0.9,
+    );
+  });
+}
 
 interface ImageGalleryUploaderProps {
   images: string[];
@@ -123,7 +153,6 @@ function GalleryTab({
   onMainImageChange,
 }: GalleryTabProps) {
   const [uploading, setUploading] = useState(false);
-  const [cropQueue, setCropQueue] = useState<{ file: File; dataUrl: string }[]>([]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -161,29 +190,6 @@ function GalleryTab({
     return normalizedPath;
   }, []);
 
-  // When user confirms crop, upload and move to next in queue
-  const handleCropConfirm = useCallback(async (croppedBlob: Blob) => {
-    setUploading(true);
-    try {
-      const normalizedPath = await uploadBlob(croppedBlob);
-      const newImages = [...images, normalizedPath];
-      onImagesChange(newImages);
-      if (onMainImageChange && newImages.length > 0) {
-        onMainImageChange(newImages[0]);
-      }
-    } catch (error) {
-      if (import.meta.env.DEV) console.error("Error uploading cropped image:", error);
-      alert("Error al subir la imagen. Por favor, intenta de nuevo.");
-    } finally {
-      setUploading(false);
-      setCropQueue(prev => prev.slice(1));
-    }
-  }, [images, onImagesChange, onMainImageChange, uploadBlob]);
-
-  const handleCropCancel = useCallback(() => {
-    setCropQueue(prev => prev.slice(1));
-  }, []);
-
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       if (images.length >= maxImages) {
@@ -200,19 +206,29 @@ function GalleryTab({
         );
       }
 
-      // Read files as data URLs and queue them for cropping
-      const items: { file: File; dataUrl: string }[] = [];
-      for (const file of filesToProcess) {
-        const dataUrl = await new Promise<string>((resolve) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
-          reader.readAsDataURL(file);
-        });
-        items.push({ file, dataUrl });
+      setUploading(true);
+      const uploaded: string[] = [];
+      try {
+        for (const file of filesToProcess) {
+          const webpBlob = await fileToWebpBlob(file);
+          const normalizedPath = await uploadBlob(webpBlob);
+          uploaded.push(normalizedPath);
+        }
+      } catch (error) {
+        if (import.meta.env.DEV) console.error("Error uploading image:", error);
+        alert("Error al subir la imagen. Por favor, intenta de nuevo.");
+      } finally {
+        if (uploaded.length > 0) {
+          const newImages = [...images, ...uploaded];
+          onImagesChange(newImages);
+          if (onMainImageChange && newImages.length > 0) {
+            onMainImageChange(newImages[0]);
+          }
+        }
+        setUploading(false);
       }
-      setCropQueue(prev => [...prev, ...items]);
     },
-    [images, maxImages]
+    [images, maxImages, onImagesChange, onMainImageChange, uploadBlob]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -336,15 +352,6 @@ function GalleryTab({
             </SortableContext>
           </DndContext>
         </div>
-      )}
-      {/* Crop dialog */}
-      {cropQueue.length > 0 && (
-        <ImageCropDialog
-          imageSrc={cropQueue[0].dataUrl}
-          aspect={4 / 3}
-          onConfirm={handleCropConfirm}
-          onCancel={handleCropCancel}
-        />
       )}
     </div>
   );

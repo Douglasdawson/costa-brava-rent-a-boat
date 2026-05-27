@@ -336,9 +336,9 @@ server.tool(
       customer: `${b.customerName} ${b.customerSurname}`.trim(),
     }));
 
-    // Operating hours: 10:00 - 20:00 Madrid time (typical)
-    const operatingHours = { open: "10:00", close: "20:00" };
-    const totalOperatingHours = 10;
+    // Operating hours: 09:00 - 20:00 Madrid time
+    const operatingHours = { open: "09:00", close: "20:00" };
+    const totalOperatingHours = 11;
     const bookedHours = activeBookings.reduce(
       (sum, b) => sum + (b.totalHours ?? 0),
       0

@@ -1056,7 +1056,7 @@ export const de: Translations = {
       "Das ist der häufigste Fall unter unseren Kunden. Führerscheinfreie Boote sind genau für Personen ohne Vorerfahrung gemacht: intuitive Bedienung, schwacher Motor (15 PS), Fahrt bei 5 Knoten (Schiebegeschwindigkeit) und geschütztes Küstengebiet. In der 15-minütigen Einweisung zeigen wir Ihnen, wie Sie im Hafen manövrieren, ankern, das UKW-Funkgerät nutzen und zur Anlegestelle zurückkehren. Bisher hat noch kein Kunde nach der Einweisung Probleme mit dem Boot gehabt.",
     faqGroupSizeQuestion: "Wie viele Personen passen in ein führerscheinfreies Boot?",
     faqGroupSizeAnswer:
-      "Unsere 5 führerscheinfreien Boote bieten Platz für 4 bis 7 Personen (Erwachsene und Kinder zählen gleich). Solar 450 und Astec 400 sind ideal für Paare oder kleine Familien (4-5 Personen). Astec 480 und Mingolla Brava 19 sind die größten (6-7 Personen), perfekt für Großfamilien oder Freundesgruppen. Der Preis ist pro Boot, nicht pro Person, je mehr Personen, desto günstiger pro Kopf."
+      "Unsere 5 führerscheinfreien Boote bieten Platz für 4 bis 5 Personen (Erwachsene und Kinder zählen gleich). Die Astec 400 ist ideal für Paare oder kleine Familien (4 Personen). Solar 450, Remus 450, Remus 450 II und Astec 480 sind die größten der führerscheinfreien Kategorie (5 Personen). Wenn Sie 6 oder 7 Plätze benötigen, schauen Sie sich die Boote mit Führerschein an (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) oder unseren Privaten Ausflug mit Skipper. Der Preis ist pro Boot, nicht pro Person, je mehr Personen, desto günstiger pro Kopf."
   },
   categoryLicensed: {
     heroTitle: "Boote Mit Führerschein in Blanes",
@@ -2216,7 +2216,7 @@ export const de: Translations = {
         {
           question: "Brauche ich einen Führerschein, um in Blanes ein Boot zu mieten?",
           answer:
-            "Nein. Wir haben 5 führerscheinfreie Boote für bis zu 5 Personen. Sie müssen lediglich mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine 15-minütige Einweisung.",
+            "Nein. Wir haben 5 führerscheinfreie Boote für 4 oder 5 Personen. Sie müssen lediglich mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine 15-minütige Einweisung.",
         },
         {
           question: "Wie viel kostet es, im Hafen von Blanes ein Boot zu mieten?",
@@ -2310,7 +2310,7 @@ export const de: Translations = {
         mapTitle: "Standort - Hafen von Blanes",
         fleetTitle: "Unsere Flotte im Hafen von Blanes",
         fleetIntro:
-          "Wir verfuegen ueber 8 Boote im Hafen von Blanes, bereit zum Segeln von April bis Oktober. Unsere Flotte umfasst 5 fuehrerscheinfreie Boote, perfekt fuer Familien und Paare, sowie 3 Optionen mit Fuehrerschein fuer erfahrene Segler. Alle Boote werden taeglich inspiziert und sind vollkaskoversichert.",
+          "Wir verfuegen ueber 9 Boote im Hafen von Blanes, bereit zum Segeln von April bis Oktober. Unsere Flotte umfasst 5 fuehrerscheinfreie Boote, perfekt fuer Familien und Paare, die die nahegelegenen Buchten erkunden moechten, 3 Optionen mit Fuehrerschein fuer erfahrene Segler mit mehr Reichweite und Leistung, sowie einen Privaten Ausflug mit Skipper fuer Gruppen, die lieber fahren lassen statt selbst am Steuer zu stehen. Alle Boote werden taeglich inspiziert und sind vollkaskoversichert.",
         fleetNoLicense: "Ohne Fuehrerschein",
         fleetLicense: "Mit Fuehrerschein",
         fleetFrom: "Ab",
@@ -3627,7 +3627,7 @@ export const de: Translations = {
       barcoGrupoGrande: {
         question: "Welches Boot empfehlen Sie für eine große Gruppe?",
         answer:
-          "Für große Gruppen empfehlen wir die Pacific Craft 625 (bis zu 8 Personen, mit Führerschein) oder unsere private Ausfahrt mit Skipper (bis zu 10 Personen). Die Ausfahrt mit Skipper ist ideal, wenn niemand in der Gruppe einen Bootsführerschein hat, da ein professioneller Kapitän Sie zu den besten Buchten bringt.",
+          "Für große Gruppen empfehlen wir die Pacific Craft 625 (bis zu 7 Personen, mit Führerschein) oder unsere private Ausfahrt mit Skipper (bis zu 6 Personen, ohne Führerschein nötig). Die Ausfahrt mit Skipper ist ideal, wenn niemand in der Gruppe einen Bootsführerschein hat, da ein professioneller Kapitän Sie zu den besten Buchten bringt.",
       },
       precioCostaBrava: {
         question: "Wie viel kostet es, ein Boot an der Costa Brava zu mieten?",

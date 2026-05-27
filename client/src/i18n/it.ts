@@ -1053,7 +1053,7 @@ export const it: Translations = {
       "È il caso più comune tra i nostri clienti. Le barche senza patente sono progettate proprio per persone senza esperienza precedente: comandi intuitivi, motore di bassa potenza (15 CV), navigazione a 5 nodi (velocità di crociera) e zona costiera protetta. Nel briefing di 15 minuti ti insegniamo a manovrare nel porto, dare fondo, usare la VHF e rientrare all'ormeggio. A oggi nessun cliente ha avuto problemi a maneggiare la barca dopo il briefing.",
     faqGroupSizeQuestion: "Quante persone entrano in una barca senza patente?",
     faqGroupSizeAnswer:
-      "Le nostre 5 barche senza patente hanno capacità tra 4 e 7 persone (adulti e bambini contano uguale). Solar 450 e Astec 400 sono ideali per coppie o piccole famiglie (4-5 persone). Astec 480 e Mingolla Brava 19 sono le più grandi (6-7 persone), perfette per famiglie numerose o gruppi di amici. Il prezzo è per barca, non per persona, quindi più siete, meno costa a testa."
+      "Le nostre 5 barche senza patente hanno capacità tra 4 e 5 persone (adulti e bambini contano uguale). L'Astec 400 è ideale per coppie o piccole famiglie (4 persone). Solar 450, Remus 450, Remus 450 II e Astec 480 sono le più grandi della categoria senza patente (5 persone). Se hai bisogno di 6 o 7 posti, dai un'occhiata alle barche con patente (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o alla nostra Escursione Privata con skipper. Il prezzo è per barca, non per persona, quindi più siete, meno costa a testa."
   },
   categoryLicensed: {
     heroTitle: "Barche Con Patente a Blanes",
@@ -2206,7 +2206,7 @@ export const it: Translations = {
         {
           question: "Ho bisogno della patente per noleggiare una barca a Blanes?",
           answer:
-            "No. Abbiamo 5 barche senza patente per un massimo di 5 persone. Devi solo essere maggiorenne. Ti forniamo una formazione di 15 minuti prima di partire.",
+            "No. Abbiamo 5 barche senza patente per 4 o 5 persone. Devi solo essere maggiorenne. Ti forniamo una formazione di 15 minuti prima di partire.",
         },
         {
           question: "Quanto costa noleggiare una barca al Porto di Blanes?",
@@ -2299,7 +2299,7 @@ export const it: Translations = {
         mapTitle: "Posizione - Porto di Blanes",
         fleetTitle: "La Nostra Flotta nel Porto di Blanes",
         fleetIntro:
-          "Disponiamo di 8 imbarcazioni ormeggiate nel Porto di Blanes, pronte a navigare da aprile a ottobre. La nostra flotta comprende 5 barche senza patente perfette per famiglie e coppie, e 3 opzioni con patente per navigatori esperti. Tutte le imbarcazioni vengono ispezionate quotidianamente e hanno assicurazione completa.",
+          "Disponiamo di 9 imbarcazioni ormeggiate nel Porto di Blanes, pronte a navigare da aprile a ottobre. La nostra flotta comprende 5 barche senza patente perfette per famiglie e coppie che vogliono esplorare le cale vicine, 3 opzioni con patente per navigatori esperti che cercano maggiore autonomia e potenza, e un'Escursione Privata con skipper per gruppi che preferiscono navigare senza dover stare al timone. Tutte le imbarcazioni vengono ispezionate quotidianamente e hanno assicurazione completa.",
         fleetNoLicense: "Senza patente",
         fleetLicense: "Con patente",
         fleetFrom: "Da",
@@ -3604,7 +3604,7 @@ export const it: Translations = {
       barcoGrupoGrande: {
         question: "Quale barca consigliate per un gruppo grande?",
         answer:
-          "Per gruppi grandi consigliamo il Pacific Craft 625 (fino a 8 persone, con patente) o la nostra Escursione Privata con skipper (fino a 10 persone). L'escursione con skipper è ideale se nessuno del gruppo ha la patente nautica, poiché include un capitano professionista che vi porta alle migliori calette.",
+          "Per gruppi grandi consigliamo il Pacific Craft 625 (fino a 7 persone, con patente) o la nostra Escursione Privata con skipper (fino a 6 persone, senza patente richiesta). L'escursione con skipper è ideale se nessuno del gruppo ha la patente nautica, poiché include un capitano professionista che vi porta alle migliori calette.",
       },
       precioCostaBrava: {
         question: "Quanto costa noleggiare una barca in Costa Brava?",

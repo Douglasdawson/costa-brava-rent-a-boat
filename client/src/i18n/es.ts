@@ -994,7 +994,7 @@ export const es: Translations = {
         {
           question: "¿Necesito licencia para alquilar un barco en Blanes?",
           answer:
-            "No. Tenemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18 años. Te damos una formación de 15 minutos antes de salir.",
+            "No. Tenemos 5 barcos sin licencia para 4 o 5 personas. Solo necesitas ser mayor de 18 años. Te damos una formación de 15 minutos antes de salir.",
         },
         {
           question: "¿Cuánto cuesta alquilar un barco en el Puerto de Blanes?",
@@ -1089,7 +1089,7 @@ export const es: Translations = {
         // Section A: Fleet
         fleetTitle: "Nuestra Flota en el Puerto de Blanes",
         fleetIntro:
-          "Disponemos de 8 embarcaciones amarradas en el Puerto de Blanes, listas para navegar de abril a octubre. Nuestra flota incluye 5 barcos sin licencia perfectos para familias y parejas que quieren explorar las calas cercanas, y 3 opciones con licencia para navegantes experimentados que buscan mayor autonomía y potencia. Todas las embarcaciones se revisan diariamente y cuentan con seguro a todo riesgo.",
+          "Disponemos de 9 embarcaciones amarradas en el Puerto de Blanes, listas para navegar de abril a octubre. Nuestra flota incluye 5 barcos sin licencia perfectos para familias y parejas que quieren explorar las calas cercanas, 3 opciones con licencia para navegantes experimentados que buscan mayor autonomía y potencia, y una Excursión Privada con patrón para grupos que prefieren navegar sin tener que llevar el timón. Todas las embarcaciones se revisan diariamente y cuentan con seguro a todo riesgo.",
         fleetNoLicense: "Sin licencia",
         fleetLicense: "Con licencia",
         fleetFrom: "Desde",
@@ -2187,7 +2187,7 @@ export const es: Translations = {
       "Es lo más habitual entre nuestros clientes. Los barcos sin licencia están diseñados precisamente para personas sin experiencia previa: controles intuitivos, motor de baja potencia (15 CV), navegación a 5 nudos (velocidad de paseo) y zona protegida costera. En el briefing de 15 minutos te enseñamos a maniobrar el barco en el puerto, fondear, usar la radio VHF y volver al amarre. Hasta hoy ningún cliente ha tenido problemas para manejar el barco después del briefing.",
     faqGroupSizeQuestion: "Cuánta gente cabe en un barco sin licencia?",
     faqGroupSizeAnswer:
-      "Nuestros 5 barcos sin licencia tienen capacidad entre 4 y 7 personas (adultos y niños cuentan igual). Solar 450 y Astec 400 son ideales para parejas o familias pequeñas (4-5 personas). Astec 480 y Mingolla Brava 19 son los más grandes (6-7 personas) — pensados para familias amplias o grupos de amigos. El precio es por barco, no por persona, así que cuanta más gente, más económico sale por cabeza.",
+      "Nuestros 5 barcos sin licencia tienen capacidad de 4 a 5 personas (adultos y niños cuentan igual). Astec 400 es ideal para parejas o familias pequeñas (4 personas). Solar 450, Remus 450, Remus 450 II y Astec 480 son los más grandes de la categoría sin licencia (5 personas). Si necesitas 6 o 7 plazas, mira los barcos con licencia (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o la Excursión Privada con patrón. El precio es por barco, no por persona, así que cuanta más gente, más económico sale por cabeza.",
     // Section: HowTo (added 2026-05-21 to rescue ranking drop pos 13→18).
     // Long-tail "cómo alquilar barco sin licencia" + HowTo rich result.
     howToTitle: "Cómo alquilar un barco sin licencia en Blanes (5 pasos)",
@@ -2619,7 +2619,7 @@ export const es: Translations = {
         id: "barco-grupo-grande",
         question: "¿Qué barco me recomendáis para un grupo grande?",
         answer:
-          "Para grupos grandes recomendamos el Pacific Craft 625 (hasta 8 personas, con licencia) o nuestra Excursión Privada con patrón (hasta 10 personas). La excursión con patrón es ideal si nadie del grupo tiene licencia náutica, ya que incluye un capitán profesional que os lleva a las mejores calas.",
+          "Para grupos grandes recomendamos el Pacific Craft 625 (hasta 7 personas, con licencia) o nuestra Excursión Privada con patrón (hasta 6 personas, sin necesidad de licencia). La excursión con patrón es ideal si nadie del grupo tiene licencia náutica, ya que incluye un capitán profesional que os lleva a las mejores calas.",
       },
       // Location-specific pricing questions
       {
@@ -3604,7 +3604,7 @@ export const es: Translations = {
       barcoGrupoGrande: {
         question: "¿Qué barco recomendáis para un grupo grande?",
         answer:
-          "Para grupos grandes recomendamos el Pacific Craft 625 (hasta 8 personas, con licencia) o nuestra Excursión Privada con patrón (hasta 10 personas). La excursión con patrón es ideal si nadie del grupo tiene licencia náutica, ya que incluye un capitán profesional que os lleva a las mejores calas.",
+          "Para grupos grandes recomendamos el Pacific Craft 625 (hasta 7 personas, con licencia) o nuestra Excursión Privada con patrón (hasta 6 personas, sin necesidad de licencia). La excursión con patrón es ideal si nadie del grupo tiene licencia náutica, ya que incluye un capitán profesional que os lleva a las mejores calas.",
       },
       precioCostaBrava: {
         question: "¿Cuánto cuesta alquilar un barco en la Costa Brava?",

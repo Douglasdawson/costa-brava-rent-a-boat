@@ -1054,7 +1054,7 @@ export const ca: Translations = {
       "És el cas més habitual entre els nostres clients. Les barques sense llicència estan dissenyades precisament per a persones sense experiència prèvia: controls intuïtius, motor de baixa potència (15 CV), navegació a 5 nusos (velocitat de passeig) i zona costanera protegida. En el briefing de 15 minuts t'ensenyem a maniobrar al port, fondejar, utilitzar la VHF i tornar a l'amarrador. Fins avui cap client ha tingut problemes per manejar la barca després del briefing.",
     faqGroupSizeQuestion: "Quanta gent cap en una barca sense llicència?",
     faqGroupSizeAnswer:
-      "Les nostres 5 barques sense llicència tenen capacitat entre 4 i 7 persones (adults i nens compten igual). Solar 450 i Astec 400 són ideals per a parelles o famílies petites (4-5 persones). Astec 480 i Mingolla Brava 19 són les més grans (6-7 persones), perfectes per a famílies nombroses o grups d'amics. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap."
+      "Les nostres 5 barques sense llicència tenen capacitat entre 4 i 5 persones (adults i nens compten igual). L'Astec 400 és ideal per a parelles o famílies petites (4 persones). Solar 450, Remus 450, Remus 450 II i Astec 480 són les més grans de la categoria sense llicència (5 persones). Si necessites 6 o 7 places, mira les barques amb llicència (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o l'Excursió Privada amb patró. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap."
   },
   categoryLicensed: {
     heroTitle: "Vaixells Amb Llicència a Blanes",
@@ -2199,7 +2199,7 @@ export const ca: Translations = {
         {
           question: "Necessito llicència per llogar un vaixell a Blanes?",
           answer:
-            "No. Tenim 5 vaixells sense llicència per a fins a 5 persones. Només cal ser major de 18 anys. Et donem una formació de 15 minuts abans de sortir.",
+            "No. Tenim 5 vaixells sense llicència per a 4 o 5 persones. Només cal ser major de 18 anys. Et donem una formació de 15 minuts abans de sortir.",
         },
         {
           question: "Quan costa llogar un vaixell al Port de Blanes?",
@@ -2293,7 +2293,7 @@ export const ca: Translations = {
         mapTitle: "Ubicació - Port de Blanes",
         fleetTitle: "La Nostra Flota al Port de Blanes",
         fleetIntro:
-          "Disposem de 8 embarcacions amarrades al Port de Blanes, preparades per navegar d'abril a octubre. La nostra flota inclou 5 vaixells sense llicència perfectes per a famílies i parelles, i 3 opcions amb llicència per a navegants experimentats. Totes les embarcacions es revisen diàriament i disposen d'assegurança a tot risc.",
+          "Disposem de 9 embarcacions amarrades al Port de Blanes, preparades per navegar d'abril a octubre. La nostra flota inclou 5 vaixells sense llicència perfectes per a famílies i parelles que volen explorar les cales properes, 3 opcions amb llicència per a navegants experimentats que busquen més autonomia i potència, i una Excursió Privada amb patró per a grups que prefereixen navegar sense haver de portar el timó. Totes les embarcacions es revisen diàriament i disposen d'assegurança a tot risc.",
         fleetNoLicense: "Sense llicència",
         fleetLicense: "Amb llicència",
         fleetFrom: "Des de",
@@ -3605,7 +3605,7 @@ export const ca: Translations = {
       barcoGrupoGrande: {
         question: "Quina barca recomaneu per a un grup gran?",
         answer:
-          "Per a grups grans recomanem el Pacific Craft 625 (fins a 8 persones, amb llicència) o la nostra Excursió Privada amb patró (fins a 10 persones). L'excursió amb patró és ideal si ningú del grup té llicència nàutica, ja que inclou un capità professional que us porta a les millors cales.",
+          "Per a grups grans recomanem el Pacific Craft 625 (fins a 7 persones, amb llicència) o la nostra Excursió Privada amb patró (fins a 6 persones, sense necessitat de llicència). L'excursió amb patró és ideal si ningú del grup té llicència nàutica, ja que inclou un capità professional que us porta a les millors cales.",
       },
       precioCostaBrava: {
         question: "Quant costa llogar una barca a la Costa Brava?",

@@ -1048,7 +1048,7 @@ export const en: Translations = {
       "That's the most common case among our customers. License-free boats are designed precisely for people with no prior experience: intuitive controls, low-power engine (15 HP), 5-knot navigation (cruising speed) and protected coastal area. In the 15-minute briefing we teach you how to manoeuvre in the harbour, anchor, use the VHF radio and return to the mooring. To date no customer has had trouble handling the boat after the briefing.",
     faqGroupSizeQuestion: "How many people fit in a license-free boat?",
     faqGroupSizeAnswer:
-      "Our 5 license-free boats hold between 4 and 7 people (adults and children count the same). Solar 450 and Astec 400 are ideal for couples or small families (4-5 people). Astec 480 and Mingolla Brava 19 are the largest (6-7 people), perfect for large families or groups of friends. The price is per boat, not per person, so the more people you bring, the cheaper it gets per head."
+      "Our 5 license-free boats hold 4 to 5 people (adults and children count the same). Astec 400 is ideal for couples or small families (4 people). Solar 450, Remus 450, Remus 450 II and Astec 480 are the largest in the license-free category (5 people). If you need 6 or 7 seats, take a look at the licensed boats (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) or our Private Excursion with skipper. The price is per boat, not per person, so the more people you bring, the cheaper it gets per head."
   },
   categoryLicensed: {
     heroTitle: "Licensed Boats in Blanes",
@@ -1385,7 +1385,7 @@ export const en: Translations = {
         id: "barco-grupo-grande",
         question: "Which boat do you recommend for a large group?",
         answer:
-          "For large groups we recommend the Pacific Craft 625 (up to 8 people, licence required) or our Private Excursion with captain (up to 10 people). The captain excursion is ideal if nobody in the group has a boating licence, as it includes a professional skipper who takes you to the best coves.",
+          "For large groups we recommend the Pacific Craft 625 (up to 7 people, licence required) or our Private Excursion with skipper (up to 6 people, no licence needed). The skipper excursion is ideal if nobody in the group has a boating licence, as it includes a professional captain who takes you to the best coves.",
       },
       // Location-specific pricing questions
       {
@@ -2260,7 +2260,7 @@ export const en: Translations = {
         {
           question: "Do I need a license to rent a boat in Blanes?",
           answer:
-            "No. We have 5 boats that don't require a license for up to 5 people. You just need to be over 18 years old. We give you a 15-minute briefing before you set off.",
+            "No. We have 5 license-free boats for 4 or 5 people. You just need to be over 18 years old. We give you a 15-minute briefing before you set off.",
         },
         {
           question: "How much does it cost to rent a boat at Blanes Marina?",
@@ -2353,7 +2353,7 @@ export const en: Translations = {
         mapTitle: "Location - Port of Blanes",
         fleetTitle: "Our Fleet at the Port of Blanes",
         fleetIntro:
-          "We have 8 boats moored at the Port of Blanes, ready to sail from April to October. Our fleet includes 5 no-licence boats perfect for families and couples wanting to explore nearby coves, and 3 licensed options for experienced sailors seeking greater range and power. Every vessel is inspected daily and carries fully comprehensive insurance.",
+          "We have 9 boats moored at the Port of Blanes, ready to sail from April to October. Our fleet includes 5 license-free boats perfect for families and couples wanting to explore nearby coves, 3 licensed options for experienced sailors seeking greater range and power, and a Private Excursion with skipper for groups who prefer to sail without taking the helm. Every vessel is inspected daily and carries fully comprehensive insurance.",
         fleetNoLicense: "No licence",
         fleetLicense: "Licence required",
         fleetFrom: "From",
@@ -3658,7 +3658,7 @@ export const en: Translations = {
       barcoGrupoGrande: {
         question: "Which boat do you recommend for a large group?",
         answer:
-          "For large groups we recommend the Pacific Craft 625 (up to 8 people, with license) or our Private Excursion with captain (up to 10 people). The excursion with captain is ideal if no one in the group has a boat license, as it includes a professional captain who takes you to the best coves.",
+          "For large groups we recommend the Pacific Craft 625 (up to 7 people, with license) or our Private Excursion with skipper (up to 6 people, no license needed). The skipper excursion is ideal if no one in the group has a boat license, as it includes a professional captain who takes you to the best coves.",
       },
       precioCostaBrava: {
         question: "How much does it cost to rent a boat on the Costa Brava?",

@@ -522,13 +522,13 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/alquiler-barcos-blanes": {
     es: {
       title: "Alquiler Barcos Puerto Blanes | Sin Licencia desde 70\u20ac/h",
-      description: "Alquila barco sin licencia en Puerto de Blanes desde 70\u20ac/h. Gasolina incluida, 8 barcos, parking gratis. 4.8\u2605 Google. Reserva online.",
+      description: "Alquila barco sin licencia en Puerto de Blanes desde 70\u20ac/h. Gasolina incluida, 9 barcos, parking gratis. 4.8\u2605 Google. Reserva online.",
       ogTitle: `Alquiler de Barcos en Puerto de Blanes | ${SEASON_YEAR}`,
-      ogDescription: "Alquila barcos en Puerto de Blanes. Sin licencia desde 70\u20ac/h con gasolina incluida. 8 embarcaciones disponibles. Reserva ya.",
+      ogDescription: "Alquila barcos en Puerto de Blanes. Sin licencia desde 70\u20ac/h con gasolina incluida. 9 embarcaciones disponibles. Reserva ya.",
     },
     en: {
       title: `Boat Rental Blanes Port ${SEASON_YEAR} | No License from 70\u20ac/h`,
-      description: "No license boat rental at Blanes Port from 70\u20ac/h. Fuel included, free parking. 8 boats available. 4.8\u2605 Google. Book online.",
+      description: "No license boat rental at Blanes Port from 70\u20ac/h. Fuel included, free parking. 9 boats available. 4.8\u2605 Google. Book online.",
     },
     ca: {
       title: `Lloguer Barques Sense Llic\u00e8ncia Blanes ${SEASON_YEAR} | des de 70\u20ac/h`,
@@ -1123,7 +1123,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/alquiler-barcos-costa-brava": {
     es: {
       title: "Alquiler Barcos Costa Brava | Sin Licencia 70\u20ac/h | 4.8\u2605",
-      description: "Alquila barco en la Costa Brava desde Puerto de Blanes. 8 barcos sin licencia, 70\u20ac/h, gasolina incluida. Calas v\u00edrgenes Blanes-Tossa. 4.8\u2605 Google.",
+      description: "Alquila barco en la Costa Brava desde Puerto de Blanes. 9 barcos (sin y con licencia), 70\u20ac/h, gasolina incluida. Calas v\u00edrgenes Blanes-Tossa. 4.8\u2605 Google.",
     },
     en: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h`,
@@ -1313,13 +1313,13 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/boat-rental-blanes": {
     en: {
       title: `Boat Rental Blanes Port ${SEASON_YEAR} | No License from 70\u20ac/h`,
-      description: "Rent a boat at Blanes Port. No license needed from 70\u20ac/h, fuel included. 8 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
+      description: "Rent a boat at Blanes Port. No license needed from 70\u20ac/h, fuel included. 9 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
       ogTitle: `Boat Rental in Blanes | Port of Blanes ${SEASON_YEAR}`,
-      ogDescription: "Rent boats in Blanes port. No license needed. Fuel included. 8 boats, 4-12 people. Book your adventure.",
+      ogDescription: "Rent boats in Blanes port. No license needed. Fuel included. 9 boats, 4-12 people. Book your adventure.",
     },
     es: {
       title: `Boat Rental in Blanes | Alquiler Barcos Blanes ${SEASON_YEAR}`,
-      description: "Alquila un barco en el Puerto de Blanes. Sin licencia desde 70\u20ac/h, gasolina incluida. 8 barcos para 4-12 personas. Reserva online.",
+      description: "Alquila un barco en el Puerto de Blanes. Sin licencia desde 70\u20ac/h, gasolina incluida. 9 barcos para 4-12 personas. Reserva online.",
     },
   },
 };
@@ -1791,8 +1791,8 @@ function buildSeasonalEvent(isEn: boolean): object {
     "@type": "Event",
     name: isEn ? `Costa Brava Boat Rental Season ${SEASON_YEAR}` : `Temporada de Alquiler de Barcos Costa Brava ${SEASON_YEAR}`,
     description: isEn
-      ? `Boat rental season in Blanes, Costa Brava. April to October ${SEASON_YEAR}. License-free boats from 70 EUR/hour. 8 boats available.`
-      : `Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre ${SEASON_YEAR}. Barcos sin licencia desde 70 EUR/hora. 8 embarcaciones disponibles.`,
+      ? `Boat rental season in Blanes, Costa Brava. April to October ${SEASON_YEAR}. License-free boats from 70 EUR/hour. 9 boats available.`
+      : `Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre ${SEASON_YEAR}. Barcos sin licencia desde 70 EUR/hora. 9 embarcaciones disponibles.`,
     startDate: `${SEASON_YEAR}-04-01`,
     endDate: `${SEASON_YEAR}-10-31`,
     eventStatus: "https://schema.org/EventScheduled",
@@ -2488,8 +2488,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         "@type": "TouristDestination",
         name: isEn ? "Blanes Port - Boat Rental" : "Puerto de Blanes - Alquiler de Barcos",
         description: isEn
-          ? "Rent boats in Blanes Port, the gateway to Costa Brava. 8 boats available with and without license. Explore coves, beaches, and the Mediterranean coast."
-          : "Alquila barcos en el Puerto de Blanes, la puerta de la Costa Brava. 8 embarcaciones disponibles con y sin licencia. Explora calas, playas y la costa mediterránea.",
+          ? "Rent boats in Blanes Port, the gateway to Costa Brava. 9 boats available with and without license. Explore coves, beaches, and the Mediterranean coast."
+          : "Alquila barcos en el Puerto de Blanes, la puerta de la Costa Brava. 9 embarcaciones disponibles con y sin licencia. Explora calas, playas y la costa mediterránea.",
         url: `${BASE_URL}/alquiler-barcos-blanes`,
         touristType: [
           { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas náuticos" },
@@ -2535,8 +2535,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const service = buildLandingService(
         isEn ? "Boat Rental in Blanes, Costa Brava" : "Alquiler de Barcos en Blanes, Costa Brava",
         isEn
-          ? "Rent license-free and licensed boats from Blanes Port. 8 boats available, up to 7 people, from 70 EUR/hour. Fuel included on license-free boats."
-          : "Alquiler de barcos sin licencia y con licencia desde el Puerto de Blanes. 8 embarcaciones disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en los barcos sin licencia.",
+          ? "Rent license-free and licensed boats from Blanes Port. 9 boats available, up to 7 people, from 70 EUR/hour. Fuel included on license-free boats."
+          : "Alquiler de barcos sin licencia y con licencia desde el Puerto de Blanes. 9 embarcaciones disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en los barcos sin licencia.",
         { low: 70, high: 420 },
       );
       const blanesBodyFallback = buildLocationBodyFallback(

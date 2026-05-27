@@ -1052,7 +1052,7 @@ export const nl: Translations = {
       "Dat is het meest voorkomende geval onder onze klanten. Boten zonder vaarbewijs zijn juist ontworpen voor mensen zonder eerdere ervaring: intuïtieve bediening, lichte motor (15 PK), varen op 5 knopen (cruisesnelheid) en beschermde kustzone. Tijdens de 15-minuten instructie leren we u manoeuvreren in de haven, voor anker gaan, de marifoon gebruiken en terugkeren naar de aanlegplek. Tot vandaag heeft geen enkele klant moeite gehad met de boot na de instructie.",
     faqGroupSizeQuestion: "Hoeveel mensen passen er in een boot zonder vaarbewijs?",
     faqGroupSizeAnswer:
-      "Onze 5 boten zonder vaarbewijs hebben een capaciteit van 4 tot 7 personen (volwassenen en kinderen tellen gelijk). Solar 450 en Astec 400 zijn ideaal voor stellen of kleine gezinnen (4-5 personen). Astec 480 en Mingolla Brava 19 zijn de grootste (6-7 personen), perfect voor grote gezinnen of vriendengroepen. De prijs is per boot, niet per persoon, hoe meer mensen, hoe goedkoper per hoofd."
+      "Onze 5 boten zonder vaarbewijs hebben een capaciteit van 4 tot 5 personen (volwassenen en kinderen tellen gelijk). De Astec 400 is ideaal voor stellen of kleine gezinnen (4 personen). Solar 450, Remus 450, Remus 450 II en Astec 480 zijn de grootste in de categorie zonder vaarbewijs (5 personen). Heb je 6 of 7 plaatsen nodig, kijk dan naar de boten met vaarbewijs (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) of onze Privé-excursie met schipper. De prijs is per boot, niet per persoon, hoe meer mensen, hoe goedkoper per hoofd."
   },
   categoryLicensed: {
     heroTitle: "Boten Met Vaarbewijs in Blanes",
@@ -2205,7 +2205,7 @@ export const nl: Translations = {
         {
           question: "Heb ik een vaarbewijs nodig om een boot te huren in Blanes?",
           answer:
-            "Nee. We hebben 5 boten zonder vaarbewijs voor maximaal 5 personen. Je hoeft alleen 18 jaar of ouder te zijn. We geven je een instructie van 15 minuten voordat je vertrekt.",
+            "Nee. We hebben 5 boten zonder vaarbewijs voor 4 of 5 personen. Je hoeft alleen 18 jaar of ouder te zijn. We geven je een instructie van 15 minuten voordat je vertrekt.",
         },
         {
           question: "Hoeveel kost het om een boot te huren in de haven van Blanes?",
@@ -2298,7 +2298,7 @@ export const nl: Translations = {
         mapTitle: "Locatie - Haven van Blanes",
         fleetTitle: "Onze Vloot in de Haven van Blanes",
         fleetIntro:
-          "Wij beschikken over 8 boten in de haven van Blanes, klaar om te varen van april tot oktober. Onze vloot omvat 5 boten zonder vaarbewijs, perfect voor gezinnen en koppels, en 3 opties met vaarbewijs voor ervaren zeilers. Alle boten worden dagelijks geinspecteerd en zijn volledig verzekerd.",
+          "Wij beschikken over 9 boten in de haven van Blanes, klaar om te varen van april tot oktober. Onze vloot omvat 5 boten zonder vaarbewijs, perfect voor gezinnen en koppels die de nabijgelegen baaien willen verkennen, 3 opties met vaarbewijs voor ervaren zeilers die meer bereik en vermogen zoeken, en een Privé-excursie met schipper voor groepen die liever varen zonder zelf aan het roer te staan. Alle boten worden dagelijks geinspecteerd en zijn volledig verzekerd.",
         fleetNoLicense: "Zonder vaarbewijs",
         fleetLicense: "Met vaarbewijs",
         fleetFrom: "Vanaf",
@@ -3605,7 +3605,7 @@ export const nl: Translations = {
       barcoGrupoGrande: {
         question: "Welke boot raden jullie aan voor een grote groep?",
         answer:
-          "Voor grote groepen raden we de Pacific Craft 625 aan (maximaal 8 personen, met vaarbewijs) of onze Privé-excursie met schipper (maximaal 10 personen). De excursie met schipper is ideaal als niemand in de groep een vaarbewijs heeft, want die omvat een professionele kapitein die jullie naar de mooiste baaien brengt.",
+          "Voor grote groepen raden we de Pacific Craft 625 aan (maximaal 7 personen, met vaarbewijs) of onze Privé-excursie met schipper (maximaal 6 personen, geen vaarbewijs nodig). De excursie met schipper is ideaal als niemand in de groep een vaarbewijs heeft, want die omvat een professionele kapitein die jullie naar de mooiste baaien brengt.",
       },
       precioCostaBrava: {
         question: "Hoeveel kost het om een boot te huren aan de Costa Brava?",

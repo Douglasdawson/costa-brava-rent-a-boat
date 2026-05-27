@@ -1061,7 +1061,7 @@ export const fr: Translations = {
       "C'est le cas le plus fréquent parmi nos clients. Les bateaux sans permis sont conçus précisément pour les personnes sans expérience préalable : commandes intuitives, moteur de faible puissance (15 CV), navigation à 5 nœuds (vitesse de croisière) et zone côtière protégée. Dans le briefing de 15 minutes nous vous apprenons à manœuvrer dans le port, à mouiller, à utiliser la VHF et à rentrer à l'amarrage. À ce jour, aucun client n'a eu de difficulté à manier le bateau après le briefing.",
     faqGroupSizeQuestion: "Combien de personnes tiennent dans un bateau sans permis ?",
     faqGroupSizeAnswer:
-      "Nos 5 bateaux sans permis ont une capacité de 4 à 7 personnes (adultes et enfants comptent de la même façon). Solar 450 et Astec 400 sont idéaux pour les couples ou petites familles (4-5 personnes). Astec 480 et Mingolla Brava 19 sont les plus grands (6-7 personnes), parfaits pour familles nombreuses ou groupes d'amis. Le prix est par bateau, pas par personne, plus vous êtes, moins cela coûte par tête."
+      "Nos 5 bateaux sans permis ont une capacité de 4 à 5 personnes (adultes et enfants comptent de la même façon). L'Astec 400 est idéal pour les couples ou petites familles (4 personnes). Solar 450, Remus 450, Remus 450 II et Astec 480 sont les plus grands de la catégorie sans permis (5 personnes). Si vous avez besoin de 6 ou 7 places, consultez les bateaux avec permis (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) ou notre Excursion Privée avec skipper. Le prix est par bateau, pas par personne, plus vous êtes, moins cela coûte par tête."
   },
   categoryLicensed: {
     heroTitle: "Bateaux Avec Permis à Blanes",
@@ -2214,7 +2214,7 @@ export const fr: Translations = {
         {
           question: "Ai-je besoin d'un permis pour louer un bateau à Blanes ?",
           answer:
-            "Non. Nous disposons de 5 bateaux sans permis pouvant accueillir jusqu'à 5 personnes. Vous devez simplement être âgé d'au moins 18 ans. Nous vous proposons une formation de 15 minutes avant le départ.",
+            "Non. Nous disposons de 5 bateaux sans permis pour 4 ou 5 personnes. Vous devez simplement être âgé d'au moins 18 ans. Nous vous proposons une formation de 15 minutes avant le départ.",
         },
         {
           question: "Combien coûte la location d'un bateau au Port de Blanes ?",
@@ -2308,7 +2308,7 @@ export const fr: Translations = {
         mapTitle: "Emplacement - Port de Blanes",
         fleetTitle: "Notre Flotte au Port de Blanes",
         fleetIntro:
-          "Nous disposons de 8 bateaux amarrés au Port de Blanes, prêts à naviguer d'avril à octobre. Notre flotte comprend 5 bateaux sans permis parfaits pour les familles et les couples souhaitant explorer les criques proches, et 3 options avec permis pour les navigateurs expérimentés recherchant plus d'autonomie et de puissance. Tous les bateaux sont inspectés quotidiennement et disposent d'une assurance tous risques.",
+          "Nous disposons de 9 bateaux amarrés au Port de Blanes, prêts à naviguer d'avril à octobre. Notre flotte comprend 5 bateaux sans permis parfaits pour les familles et les couples souhaitant explorer les criques proches, 3 options avec permis pour les navigateurs expérimentés recherchant plus d'autonomie et de puissance, et une Excursion Privée avec skipper pour les groupes qui préfèrent naviguer sans tenir la barre. Tous les bateaux sont inspectés quotidiennement et disposent d'une assurance tous risques.",
         fleetNoLicense: "Sans permis",
         fleetLicense: "Avec permis",
         fleetFrom: "A partir de",
@@ -3619,7 +3619,7 @@ export const fr: Translations = {
       barcoGrupoGrande: {
         question: "Quel bateau recommandez-vous pour un grand groupe ?",
         answer:
-          "Pour les grands groupes nous recommandons le Pacific Craft 625 (jusqu'à 8 personnes, avec permis) ou notre Excursion Privée avec skipper (jusqu'à 10 personnes). L'excursion avec skipper est idéale si personne dans le groupe n'a de permis bateau, car elle inclut un capitaine professionnel qui vous emmène aux meilleures criques.",
+          "Pour les grands groupes nous recommandons le Pacific Craft 625 (jusqu'à 7 personnes, avec permis) ou notre Excursion Privée avec skipper (jusqu'à 6 personnes, sans permis requis). L'excursion avec skipper est idéale si personne dans le groupe n'a de permis bateau, car elle inclut un capitaine professionnel qui vous emmène aux meilleures criques.",
       },
       precioCostaBrava: {
         question: "Combien coûte la location d'un bateau sur la Costa Brava ?",

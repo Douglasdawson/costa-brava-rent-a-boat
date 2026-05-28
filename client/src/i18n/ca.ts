@@ -2020,6 +2020,73 @@ export const ca: Translations = {
       },
     ],
     depthLabel: "Profunditat:",
+    heroTitle: "Excursió de Snorkel en Vaixell des de Blanes",
+    heroDescription:
+      "Descobreix els fons marins de la Costa Brava des dels nostres vaixells al Port de Blanes. Navega fins a les millors cales, fondeja i submergeix-te en aigües cristal·lines amb visibilitat de fins a 15 metres. Equip de snorkel disponible per 7,50 EUR/persona.",
+    badgeSpots: "3 cales de snorkel",
+    badgeVisibility: "Visibilitat 10-15m",
+    badgeDuration: "2-4 hores recomanades",
+    whyTitle: "Per què fer snorkel des d'un vaixell",
+    whyAccessTitle: "Accés a cales inaccessibles",
+    whyAccessDesc:
+      "Les millors cales per fer snorkel a la Costa Brava no tenen accés per carretera o requereixen caminades llargues. Des del vaixell hi arribes directament, fondeges a pocs metres de la riba i et tires a l'aigua. Sense aglomeracions, sense caminar amb l'equip sota el sol.",
+    whyBaseTitle: "La teva pròpia base flotant",
+    whyBaseDesc:
+      "El vaixell és el teu punt de referència a l'aigua. Pots deixar tovalloles, menjar i beguda a bord. Descanses entre immersions, t'eixugues al sol a la coberta i, quan vulguis, canvies de cala en minuts.",
+    whyMultiTitle: "Múltiples spots en una sortida",
+    whyMultiDesc:
+      "En una sortida de 3-4 hores pots visitar 2-3 cales diferents. Cadascuna té un ecosistema diferent: prats de posidònia, fons rocosos, parets verticals. És com fer tres excursions de snorkel en una sola.",
+    whyNoExpTitle: "Sense necessitat d'experiència",
+    whyNoExpDesc:
+      "No necessites llicència de navegació per als nostres vaixells sense llicència. Et donem una formació de 15 minuts al port. El snorkel és l'activitat aquàtica més accessible: només necessites màscara, tub i ganes de descobrir.",
+    spotsTitle: "Millors cales per fer snorkel a prop de Blanes",
+    equipmentTitle: "Equip de snorkel inclòs i disponible",
+    includedTitle: "Inclòs amb tots els vaixells",
+    includedItems: [
+      "Armilles salvavides per a tots els passatgers",
+      "Escala de bany per pujar i baixar a l'aigua",
+      "Tendal / bimini per fer ombra a la coberta",
+      "Àncora per fondejar a les cales",
+    ],
+    rentalTitle: "Lloguer addicional: 7,50 EUR/persona",
+    rentalItems: [
+      "Màscara de snorkel de qualitat",
+      "Tub amb vàlvula anti-entrada d'aigua",
+      "Aletes ajustables (diverses talles disponibles)",
+      "També pots portar el teu propi equip",
+    ],
+    boatsTitle: "Vaixells recomanats per fer snorkel",
+    routeTitle: "Ruta de snorkel recomanada (3 hores)",
+    routeSteps: [
+      {
+        title: "Port de Blanes - Sortida",
+        desc: "Formació de 15 minuts, recollida d'equip de snorkel. Sortida cap al nord per la costa.",
+      },
+      {
+        title: "Cala Bona - Primera parada (45 min)",
+        desc: "Fondejar i fer snorkel entre formacions rocoses. Busca pops entre les escletxes i observa els bancs de castanyoles.",
+      },
+      {
+        title: "Cala Sant Francesc - Segona parada (45 min)",
+        desc: "La joia de la corona. Prat de posidònia amb sargs, oblades i estrelles de mar. Aigua cristal·lina i fons de sorra blanca.",
+      },
+      {
+        title: "Tornada al Port de Blanes",
+        desc: "Navegació de tornada gaudint de les vistes de la costa. Devolució de l'equip de snorkel al port.",
+      },
+    ],
+    exploreTitle: "Explora més activitats i serveis",
+    linkNoLicense: "Vaixells sense llicència",
+    linkLicensed: "Vaixells amb llicència",
+    linkFamilies: "Vaixells per a famílies",
+    linkPrices: "Preus i tarifes",
+    linkRoutes: "Rutes marítimes",
+    ctaTitle: "Reserva la teva excursió de snorkel des de Blanes",
+    ctaDescription:
+      "Tria el teu vaixell, afegeix l'equip de snorkel i descobreix els fons marins de la Costa Brava. Sortides des del Port de Blanes d'abril a octubre.",
+    ctaWhatsApp: "Reservar per WhatsApp",
+    ctaViewBoats: "Veure vaixells disponibles",
+    faqTitle: "Preguntes freqüents sobre snorkel en vaixell",
   },
   activityFamilies: {
     faqItems: [

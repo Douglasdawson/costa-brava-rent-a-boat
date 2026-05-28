@@ -48,6 +48,7 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // activity pages (snorkel/families/fishing) still have hardcoded ES copy and
   // stay ES-only until migrated.
   "/paseo-atardecer-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/excursion-snorkel-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
 };
 
 /**

@@ -3146,6 +3146,36 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] }, availableLanguages, bodyFallback: sunsetBodyFallback };
     }
 
+    // /excursion-snorkel-barco-blanes - Snorkel activity. Fase 2 (2026-05-28):
+    // migrated to i18n in all 8 locales, so emit native SSR body + index.
+    else if (metaKey === "/excursion-snorkel-barco-blanes") {
+      const sn = (I18N_BY_LANG[lang] ?? i18nEs).activitySnorkel!;
+      const heading = sn.heroTitle ?? meta.title;
+      const summary = sn.heroDescription ?? meta.description;
+      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: (sn.faqItems ?? []).map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
+      const snorkelBodyFallback = buildLocationBodyFallback(
+        heading,
+        summary,
+        [
+          `${sn.whyAccessTitle} — ${sn.whyAccessDesc}`,
+          `${sn.whyBaseTitle} — ${sn.whyBaseDesc}`,
+          `${sn.whyMultiTitle} — ${sn.whyMultiDesc}`,
+          `${sn.whyNoExpTitle} — ${sn.whyNoExpDesc}`,
+        ],
+        sn.ctaWhatsApp ?? heading,
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] }, availableLanguages, bodyFallback: snorkelBodyFallback };
+    }
+
     // /rutas - ItemList of routes
     else if (metaKey === "/rutas") {
       const itemList = {

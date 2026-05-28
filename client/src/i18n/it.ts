@@ -2022,6 +2022,73 @@ export const it: Translations = {
       },
     ],
     depthLabel: "Profondità:",
+    heroTitle: "Escursione di Snorkeling in Barca da Blanes",
+    heroDescription:
+      "Scopri i fondali della Costa Brava dalle nostre barche al Porto di Blanes. Naviga verso le migliori cale, getta l'ancora e immergiti in acque cristalline con visibilità fino a 15 metri. Attrezzatura da snorkeling disponibile a 7,50 EUR/persona.",
+    badgeSpots: "3 cale per lo snorkeling",
+    badgeVisibility: "Visibilità 10-15m",
+    badgeDuration: "2-4 ore consigliate",
+    whyTitle: "Perché fare snorkeling dalla barca",
+    whyAccessTitle: "Accesso a cale irraggiungibili",
+    whyAccessDesc:
+      "Le migliori cale per lo snorkeling sulla Costa Brava non hanno accesso stradale o richiedono lunghe camminate. Dalla barca arrivi direttamente, getti l'ancora a pochi metri dalla riva e ti tuffi in acqua. Niente folla, niente camminate con l'attrezzatura sotto il sole.",
+    whyBaseTitle: "La tua base galleggiante",
+    whyBaseDesc:
+      "La barca è il tuo punto di riferimento in acqua. Puoi lasciare asciugamani, cibo e bevande a bordo. Riposi tra un'immersione e l'altra, ti asciughi al sole sul ponte e, quando vuoi, cambi cala in pochi minuti.",
+    whyMultiTitle: "Più spot in un'unica uscita",
+    whyMultiDesc:
+      "In un'uscita di 3-4 ore puoi visitare 2-3 cale diverse. Ognuna ha un ecosistema diverso: praterie di posidonia, fondali rocciosi, pareti verticali. È come fare tre escursioni di snorkeling in una sola.",
+    whyNoExpTitle: "Nessuna esperienza necessaria",
+    whyNoExpDesc:
+      "Non serve la patente nautica per le nostre barche senza patente. Ti diamo una formazione di 15 minuti al porto. Lo snorkeling è l'attività acquatica più accessibile: ti servono solo maschera, boccaglio e voglia di scoprire.",
+    spotsTitle: "Migliori cale per lo snorkeling vicino a Blanes",
+    equipmentTitle: "Attrezzatura da snorkeling inclusa e disponibile",
+    includedTitle: "Incluso con tutte le barche",
+    includedItems: [
+      "Giubbotti di salvataggio per tutti i passeggeri",
+      "Scaletta da bagno per salire e scendere dall'acqua",
+      "Tendalino / bimini per l'ombra sul ponte",
+      "Ancora per ormeggiare nelle cale",
+    ],
+    rentalTitle: "Noleggio aggiuntivo: 7,50 EUR/persona",
+    rentalItems: [
+      "Maschera da snorkeling di qualità",
+      "Boccaglio con valvola anti-allagamento",
+      "Pinne regolabili (varie taglie disponibili)",
+      "Puoi anche portare la tua attrezzatura",
+    ],
+    boatsTitle: "Barche consigliate per lo snorkeling",
+    routeTitle: "Itinerario di snorkeling consigliato (3 ore)",
+    routeSteps: [
+      {
+        title: "Porto di Blanes - Partenza",
+        desc: "Formazione di 15 minuti, ritiro dell'attrezzatura da snorkeling. Partenza verso nord lungo la costa.",
+      },
+      {
+        title: "Cala Bona - Prima tappa (45 min)",
+        desc: "Gettare l'ancora e fare snorkeling tra le formazioni rocciose. Cerca i polpi nelle fessure e osserva i banchi di castagnole.",
+      },
+      {
+        title: "Cala Sant Francesc - Seconda tappa (45 min)",
+        desc: "Il gioiello della corona. Prateria di posidonia con saraghi, occhiate e stelle marine. Acqua cristallina e fondale di sabbia bianca.",
+      },
+      {
+        title: "Ritorno al Porto di Blanes",
+        desc: "Navigazione di ritorno godendo delle viste sulla costa. Restituzione dell'attrezzatura da snorkeling al porto.",
+      },
+    ],
+    exploreTitle: "Esplora altre attività e servizi",
+    linkNoLicense: "Barche senza patente",
+    linkLicensed: "Barche con patente",
+    linkFamilies: "Barche per famiglie",
+    linkPrices: "Prezzi e tariffe",
+    linkRoutes: "Rotte marittime",
+    ctaTitle: "Prenota la tua escursione di snorkeling da Blanes",
+    ctaDescription:
+      "Scegli la tua barca, aggiungi l'attrezzatura da snorkeling e scopri i fondali della Costa Brava. Partenze dal Porto di Blanes da aprile a ottobre.",
+    ctaWhatsApp: "Prenota su WhatsApp",
+    ctaViewBoats: "Vedi le barche disponibili",
+    faqTitle: "Domande frequenti sullo snorkeling in barca",
   },
   activityFamilies: {
     faqItems: [

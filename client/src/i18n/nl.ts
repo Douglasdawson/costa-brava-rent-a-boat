@@ -2021,6 +2021,73 @@ export const nl: Translations = {
       },
     ],
     depthLabel: "Diepte:",
+    heroTitle: "Snorkeluitje per Boot vanuit Blanes",
+    heroDescription:
+      "Ontdek de zeebodem van de Costa Brava vanaf onze boten in de haven van Blanes. Vaar naar de mooiste baaien, gooi het anker uit en duik in kristalhelder water met een zicht tot 15 meter. Snorkeluitrusting beschikbaar voor 7,50 EUR/persoon.",
+    badgeSpots: "3 snorkelbaaien",
+    badgeVisibility: "Zicht 10-15m",
+    badgeDuration: "2-4 uur aanbevolen",
+    whyTitle: "Waarom snorkelen vanaf een boot",
+    whyAccessTitle: "Toegang tot onbereikbare baaien",
+    whyAccessDesc:
+      "De beste snorkelbaaien aan de Costa Brava zijn niet bereikbaar over de weg of vereisen lange wandelingen. Vanaf de boot kom je er rechtstreeks aan, anker je een paar meter van de kust en spring je het water in. Geen drukte, geen lopen met je uitrusting in de zon.",
+    whyBaseTitle: "Je eigen drijvende basis",
+    whyBaseDesc:
+      "De boot is je referentiepunt in het water. Je kunt handdoeken, eten en drinken aan boord laten. Rust uit tussen de duiken, droog op in de zon op het dek en wissel wanneer je wilt in enkele minuten van baai.",
+    whyMultiTitle: "Meerdere spots in één uitje",
+    whyMultiDesc:
+      "Tijdens een uitje van 3-4 uur kun je 2-3 verschillende baaien bezoeken. Elke baai heeft een ander ecosysteem: posidonia-velden, rotsbodems, verticale wanden. Het is alsof je drie snorkeluitjes in één doet.",
+    whyNoExpTitle: "Geen ervaring nodig",
+    whyNoExpDesc:
+      "Je hebt geen vaarbewijs nodig voor onze boten zonder vaarbewijs. We geven je een instructie van 15 minuten in de haven. Snorkelen is de meest toegankelijke wateractiviteit: je hebt alleen een masker, snorkel en zin om te ontdekken nodig.",
+    spotsTitle: "Beste snorkelbaaien bij Blanes",
+    equipmentTitle: "Snorkeluitrusting inbegrepen en beschikbaar",
+    includedTitle: "Inbegrepen bij elke boot",
+    includedItems: [
+      "Reddingsvesten voor alle passagiers",
+      "Badladder om in en uit het water te komen",
+      "Zonnescherm / bimini voor schaduw op het dek",
+      "Anker om in de baaien te ankeren",
+    ],
+    rentalTitle: "Extra huur: 7,50 EUR/persoon",
+    rentalItems: [
+      "Kwaliteitssnorkelmasker",
+      "Snorkel met anti-overstromingsventiel",
+      "Verstelbare zwemvliezen (verschillende maten beschikbaar)",
+      "Je kunt ook je eigen uitrusting meenemen",
+    ],
+    boatsTitle: "Aanbevolen boten om te snorkelen",
+    routeTitle: "Aanbevolen snorkelroute (3 uur)",
+    routeSteps: [
+      {
+        title: "Haven van Blanes - Vertrek",
+        desc: "Instructie van 15 minuten, ophalen van snorkeluitrusting. Vertrek naar het noorden langs de kust.",
+      },
+      {
+        title: "Cala Bona - Eerste stop (45 min)",
+        desc: "Ankeren en snorkelen tussen rotsformaties. Zoek naar octopussen in de spleten en bekijk de scholen rifbaarzen.",
+      },
+      {
+        title: "Cala Sant Francesc - Tweede stop (45 min)",
+        desc: "Het kroonjuweel. Posidonia-veld met zeebrasem, bokvis en zeesterren. Kristalhelder water en witte zandbodem.",
+      },
+      {
+        title: "Terugkeer naar de haven van Blanes",
+        desc: "Terugvaart met uitzicht op de kust. Inleveren van de snorkeluitrusting in de haven.",
+      },
+    ],
+    exploreTitle: "Ontdek meer activiteiten en diensten",
+    linkNoLicense: "Boten zonder vaarbewijs",
+    linkLicensed: "Boten met vaarbewijs",
+    linkFamilies: "Boten voor gezinnen",
+    linkPrices: "Prijzen en tarieven",
+    linkRoutes: "Zeeroutes",
+    ctaTitle: "Boek je snorkeluitje vanuit Blanes",
+    ctaDescription:
+      "Kies je boot, voeg de snorkeluitrusting toe en ontdek de zeebodem van de Costa Brava. Vertrek vanuit de haven van Blanes van april tot oktober.",
+    ctaWhatsApp: "Boeken via WhatsApp",
+    ctaViewBoats: "Beschikbare boten bekijken",
+    faqTitle: "Veelgestelde vragen over snorkelen per boot",
   },
   activityFamilies: {
     faqItems: [

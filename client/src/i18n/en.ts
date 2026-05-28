@@ -2082,6 +2082,73 @@ export const en: Translations = {
       },
     ],
     depthLabel: "Depth:",
+    heroTitle: "Boat Snorkelling Trip from Blanes",
+    heroDescription:
+      "Discover the Costa Brava seabed from our boats at the Port of Blanes. Sail to the best coves, drop anchor and dive into crystal-clear waters with visibility of up to 15 metres. Snorkelling gear available for EUR 7.50/person.",
+    badgeSpots: "3 snorkelling coves",
+    badgeVisibility: "Visibility 10-15m",
+    badgeDuration: "2-4 hours recommended",
+    whyTitle: "Why go snorkelling from a boat",
+    whyAccessTitle: "Access to unreachable coves",
+    whyAccessDesc:
+      "The best snorkelling coves on the Costa Brava have no road access or require long hikes. From the boat you arrive directly, anchor a few metres from the shore and jump into the water. No crowds, no walking with your gear under the sun.",
+    whyBaseTitle: "Your own floating base",
+    whyBaseDesc:
+      "The boat is your reference point in the water. You can leave towels, food and drinks on board. Rest between dives, dry off in the sun on deck and, whenever you want, switch coves in minutes.",
+    whyMultiTitle: "Multiple spots in one trip",
+    whyMultiDesc:
+      "On a 3-4 hour outing you can visit 2-3 different coves. Each one has a distinct ecosystem: posidonia meadows, rocky bottoms, vertical walls. It's like doing three snorkelling trips in one.",
+    whyNoExpTitle: "No experience needed",
+    whyNoExpDesc:
+      "You don't need a boating licence for our licence-free boats. We give you a 15-minute briefing at the port. Snorkelling is the most accessible water activity: all you need is a mask, snorkel and the desire to explore.",
+    spotsTitle: "Best snorkelling coves near Blanes",
+    equipmentTitle: "Snorkelling gear included and available",
+    includedTitle: "Included with every boat",
+    includedItems: [
+      "Life jackets for all passengers",
+      "Bathing ladder to get in and out of the water",
+      "Awning / bimini for shade on deck",
+      "Anchor for mooring in the coves",
+    ],
+    rentalTitle: "Extra rental: EUR 7.50/person",
+    rentalItems: [
+      "Quality snorkelling mask",
+      "Snorkel with anti-flood valve",
+      "Adjustable fins (various sizes available)",
+      "You can also bring your own gear",
+    ],
+    boatsTitle: "Recommended boats for snorkelling",
+    routeTitle: "Recommended snorkelling route (3 hours)",
+    routeSteps: [
+      {
+        title: "Port of Blanes - Departure",
+        desc: "15-minute briefing, snorkelling gear pick-up. Departure northwards along the coast.",
+      },
+      {
+        title: "Cala Bona - First stop (45 min)",
+        desc: "Anchor and snorkel among rock formations. Look for octopus in the crevices and watch the shoals of damselfish.",
+      },
+      {
+        title: "Cala Sant Francesc - Second stop (45 min)",
+        desc: "The crown jewel. Posidonia meadow with sea bream, saddled bream and starfish. Crystal-clear water and white sandy bottom.",
+      },
+      {
+        title: "Return to the Port of Blanes",
+        desc: "Sail back enjoying the coastal views. Return of the snorkelling gear at the port.",
+      },
+    ],
+    exploreTitle: "Explore more activities and services",
+    linkNoLicense: "Licence-free boats",
+    linkLicensed: "Licensed boats",
+    linkFamilies: "Boats for families",
+    linkPrices: "Prices and rates",
+    linkRoutes: "Sea routes",
+    ctaTitle: "Book your snorkelling trip from Blanes",
+    ctaDescription:
+      "Choose your boat, add the snorkelling gear and discover the Costa Brava seabed. Departures from the Port of Blanes from April to October.",
+    ctaWhatsApp: "Book via WhatsApp",
+    ctaViewBoats: "View available boats",
+    faqTitle: "Frequently asked questions about boat snorkelling",
   },
   activityFamilies: {
     faqItems: [

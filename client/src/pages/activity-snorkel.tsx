@@ -43,8 +43,9 @@ function RevealSection({ children, className = "" }: { children: React.ReactNode
 export default function ActivitySnorkelPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
-  const faqs = t.activitySnorkel?.faqItems ?? faqsFallback;
-  const snorkelSpots = (t.activitySnorkel?.spots ?? []).map((spot, i) => ({
+  const s = t.activitySnorkel;
+  const faqs = s?.faqItems ?? faqsFallback;
+  const snorkelSpots = (s?.spots ?? []).map((spot, i) => ({
     ...spot,
     icon: SPOT_ICONS[i] ?? Star,
   }));
@@ -140,26 +141,24 @@ export default function ActivitySnorkelPage() {
             <div className="flex items-center justify-center mb-6">
               <Waves className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                Excursion de Snorkel en Barco desde Blanes
+                {s?.heroTitle ?? "Excursión de Snorkel en Barco desde Blanes"}
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed">
-              Descubre los fondos marinos de la Costa Brava desde nuestros barcos en el Puerto de Blanes.
-              Navega hasta las mejores calas, fondea y sumérgete en aguas cristalinas con visibilidad
-              de hasta 15 metros. Equipo de snorkel disponible por 7,50 EUR/persona.
+              {s?.heroDescription ?? "Descubre los fondos marinos de la Costa Brava desde nuestros barcos en el Puerto de Blanes. Navega hasta las mejores calas, fondea y sumérgete en aguas cristalinas con visibilidad de hasta 15 metros. Equipo de snorkel disponible por 7,50 EUR/persona."}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <Waves className="w-4 h-4 mr-2" />
-                3 calas de snorkel
+                {s?.badgeSpots ?? "3 calas de snorkel"}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Eye className="w-4 h-4 mr-2" />
-                Visibilidad 10-15m
+                {s?.badgeVisibility ?? "Visibilidad 10-15m"}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Clock className="w-4 h-4 mr-2" />
-                2-4 horas recomendadas
+                {s?.badgeDuration ?? "2-4 horas recomendadas"}
               </Badge>
             </div>
           </div>
@@ -171,38 +170,29 @@ export default function ActivitySnorkelPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <Star className="w-6 h-6 text-primary" />
-            Por que hacer snorkel desde un barco
+            {s?.whyTitle ?? "Por qué hacer snorkel desde un barco"}
           </h2>
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">Acceso a calas inaccesibles</h3>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyAccessTitle ?? "Acceso a calas inaccesibles"}</h3>
                   <p className="text-muted-foreground mb-4 leading-relaxed">
-                    Las mejores calas para snorkel en la Costa Brava no tienen acceso por carretera
-                    o requieren caminatas largas. Desde el barco llegas directamente, fondeas a pocos
-                    metros de la orilla y te tiras al agua. Sin aglomeraciones, sin caminar con el
-                    equipo al sol.
+                    {s?.whyAccessDesc ?? "Las mejores calas para snorkel en la Costa Brava no tienen acceso por carretera o requieren caminatas largas. Desde el barco llegas directamente, fondeas a pocos metros de la orilla y te tiras al agua. Sin aglomeraciones, sin caminar con el equipo al sol."}
                   </p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">Tu propia base flotante</h3>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyBaseTitle ?? "Tu propia base flotante"}</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    El barco es tu punto de referencia en el agua. Puedes dejar toallas, comida y
-                    bebida a bordo. Descansas entre inmersiones, te secas al sol en cubierta y
-                    cuando quieres, cambias de cala en minutos.
+                    {s?.whyBaseDesc ?? "El barco es tu punto de referencia en el agua. Puedes dejar toallas, comida y bebida a bordo. Descansas entre inmersiones, te secas al sol en cubierta y cuando quieres, cambias de cala en minutos."}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">Multiples spots en una salida</h3>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyMultiTitle ?? "Múltiples spots en una salida"}</h3>
                   <p className="text-muted-foreground mb-4 leading-relaxed">
-                    En una salida de 3-4 horas puedes visitar 2-3 calas diferentes. Cada una tiene
-                    un ecosistema distinto: praderas de posidonia, fondos rocosos, paredes verticales.
-                    Es como hacer tres excursiones de snorkel en una sola.
+                    {s?.whyMultiDesc ?? "En una salida de 3-4 horas puedes visitar 2-3 calas diferentes. Cada una tiene un ecosistema distinto: praderas de posidonia, fondos rocosos, paredes verticales. Es como hacer tres excursiones de snorkel en una sola."}
                   </p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">Sin necesidad de experiencia</h3>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyNoExpTitle ?? "Sin necesidad de experiencia"}</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    No necesitas licencia de navegacion para nuestros barcos sin licencia. Te damos
-                    una formacion de 15 minutos en el puerto. El snorkel es la actividad acuatica
-                    mas accesible: solo necesitas mascara, tubo y ganas de descubrir.
+                    {s?.whyNoExpDesc ?? "No necesitas licencia de navegación para nuestros barcos sin licencia. Te damos una formación de 15 minutos en el puerto. El snorkel es la actividad acuática más accesible: solo necesitas máscara, tubo y ganas de descubrir."}
                   </p>
                 </div>
               </div>
@@ -238,7 +228,7 @@ export default function ActivitySnorkelPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <MapPin className="w-6 h-6 text-primary" />
-            Mejores calas para snorkel cerca de Blanes
+            {s?.spotsTitle ?? "Mejores calas para snorkel cerca de Blanes"}
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             {snorkelSpots.map((spot) => {
@@ -265,49 +255,29 @@ export default function ActivitySnorkelPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <Anchor className="w-6 h-6 text-primary" />
-            Equipo de snorkel incluido y disponible
+            {s?.equipmentTitle ?? "Equipo de snorkel incluido y disponible"}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Incluido con todos los barcos</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s?.includedTitle ?? "Incluido con todos los barcos"}</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-center">
-                  <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                  Chalecos salvavidas para todos los pasajeros
-                </li>
-                <li className="flex items-center">
-                  <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                  Escalera de bano para subir y bajar al agua
-                </li>
-                <li className="flex items-center">
-                  <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                  Toldo / bimini para sombra en cubierta
-                </li>
-                <li className="flex items-center">
-                  <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                  Ancla para fondear en las calas
-                </li>
+                {(s?.includedItems ?? ["Chalecos salvavidas para todos los pasajeros", "Escalera de baño para subir y bajar al agua", "Toldo / bimini para sombra en cubierta", "Ancla para fondear en las calas"]).map((item) => (
+                  <li key={item} className="flex items-center">
+                    <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Alquiler adicional: 7,50 EUR/persona</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s?.rentalTitle ?? "Alquiler adicional: 7,50 EUR/persona"}</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-center">
-                  <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                  Mascara de snorkel de calidad
-                </li>
-                <li className="flex items-center">
-                  <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                  Tubo con valvula anti-entrada de agua
-                </li>
-                <li className="flex items-center">
-                  <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                  Aletas ajustables (varias tallas disponibles)
-                </li>
-                <li className="flex items-center">
-                  <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                  Tambien puedes traer tu propio equipo
-                </li>
+                {(s?.rentalItems ?? ["Máscara de snorkel de calidad", "Tubo con válvula anti-entrada de agua", "Aletas ajustables (varias tallas disponibles)", "También puedes traer tu propio equipo"]).map((item) => (
+                  <li key={item} className="flex items-center">
+                    <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -319,7 +289,7 @@ export default function ActivitySnorkelPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <Users className="w-6 h-6 text-primary" />
-            Barcos recomendados para snorkel
+            {s?.boatsTitle ?? "Barcos recomendados para snorkel"}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {recommendedBoats.map((boat) => (
@@ -344,37 +314,23 @@ export default function ActivitySnorkelPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <Sun className="w-6 h-6 text-primary" />
-            Ruta de snorkel recomendada (3 horas)
+            {s?.routeTitle ?? "Ruta de snorkel recomendada (3 horas)"}
           </h2>
           <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">1</div>
-              <div>
-                <h3 className="font-heading font-semibold">Puerto de Blanes - Salida</h3>
-                <p className="text-muted-foreground leading-relaxed">Formacion de 15 minutos, recogida de equipo de snorkel. Salida hacia el norte por la costa.</p>
+            {(s?.routeSteps ?? [
+              { title: "Puerto de Blanes - Salida", desc: "Formación de 15 minutos, recogida de equipo de snorkel. Salida hacia el norte por la costa." },
+              { title: "Cala Bona - Primera parada (45 min)", desc: "Fondear y snorkel entre formaciones rocosas. Busca pulpos entre las grietas y observa los bancos de castañolas." },
+              { title: "Cala Sant Francesc - Segunda parada (45 min)", desc: "La joya de la corona. Pradera de posidonia con sargos, obladas y estrellas de mar. Agua cristalina y fondo de arena blanca." },
+              { title: "Regreso al Puerto de Blanes", desc: "Navegación de vuelta disfrutando de las vistas de la costa. Devolución del equipo de snorkel en el puerto." },
+            ]).map((step, i) => (
+              <div key={step.title} className="flex items-start gap-4">
+                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">{i + 1}</div>
+                <div>
+                  <h3 className="font-heading font-semibold">{step.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{step.desc}</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">2</div>
-              <div>
-                <h3 className="font-heading font-semibold">Cala Bona - Primera parada (45 min)</h3>
-                <p className="text-muted-foreground leading-relaxed">Fondear y snorkel entre formaciones rocosas. Busca pulpos entre las grietas y observa los bancos de castanolas.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">3</div>
-              <div>
-                <h3 className="font-heading font-semibold">Cala Sant Francesc - Segunda parada (45 min)</h3>
-                <p className="text-muted-foreground leading-relaxed">La joya de la corona. Pradera de posidonia con sargos, obladas y estrellas de mar. Agua cristalina y fondo de arena blanca.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">4</div>
-              <div>
-                <h3 className="font-heading font-semibold">Regreso al Puerto de Blanes</h3>
-                <p className="text-muted-foreground leading-relaxed">Navegacion de vuelta disfrutando de las vistas de la costa. Devolucion del equipo de snorkel en el puerto.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </RevealSection>
@@ -382,27 +338,27 @@ export default function ActivitySnorkelPage() {
       {/* Internal Links */}
       <div className="py-8 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading font-semibold text-lg mb-4">Explora mas actividades y servicios</h3>
+          <h3 className="font-heading font-semibold text-lg mb-4">{s?.exploreTitle ?? "Explora más actividades y servicios"}</h3>
           <div className="flex flex-wrap gap-3">
             <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
               <ChevronRight className="w-4 h-4" />
-              Barcos sin licencia
+              {s?.linkNoLicense ?? "Barcos sin licencia"}
             </a>
             <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
               <ChevronRight className="w-4 h-4" />
-              Barcos con licencia
+              {s?.linkLicensed ?? "Barcos con licencia"}
             </a>
             <a href={localizedPath("activityFamilies")} className="text-primary hover:underline flex items-center gap-1">
               <ChevronRight className="w-4 h-4" />
-              Barcos para familias
+              {s?.linkFamilies ?? "Barcos para familias"}
             </a>
             <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
               <ChevronRight className="w-4 h-4" />
-              Precios y tarifas
+              {s?.linkPrices ?? "Precios y tarifas"}
             </a>
             <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
               <ChevronRight className="w-4 h-4" />
-              Rutas maritimas
+              {s?.linkRoutes ?? "Rutas marítimas"}
             </a>
           </div>
         </div>
@@ -411,10 +367,9 @@ export default function ActivitySnorkelPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">Reserva tu excursion de snorkel desde Blanes</h2>
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">{s?.ctaTitle ?? "Reserva tu excursión de snorkel desde Blanes"}</h2>
           <p className="text-lg mb-6 text-white/90 leading-relaxed">
-            Elige tu barco, anade el equipo de snorkel y descubre los fondos marinos de la Costa Brava.
-            Salidas desde el Puerto de Blanes de abril a octubre.
+            {s?.ctaDescription ?? "Elige tu barco, añade el equipo de snorkel y descubre los fondos marinos de la Costa Brava. Salidas desde el Puerto de Blanes de abril a octubre."}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -423,12 +378,12 @@ export default function ActivitySnorkelPage() {
               onClick={handleBookingWhatsApp}
             >
               <MessageCircle className="w-5 h-5 mr-2" />
-              Reservar por WhatsApp
+              {s?.ctaWhatsApp ?? "Reservar por WhatsApp"}
             </Button>
             <a href={localizedPath("categoryLicenseFree")}>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
                 <Anchor className="w-5 h-5 mr-2" />
-                Ver barcos disponibles
+                {s?.ctaViewBoats ?? "Ver barcos disponibles"}
               </Button>
             </a>
           </div>
@@ -439,7 +394,7 @@ export default function ActivitySnorkelPage() {
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
-            Preguntas frecuentes sobre snorkel en barco
+            {s?.faqTitle ?? "Preguntas frecuentes sobre snorkel en barco"}
           </h2>
           <FAQSection items={faqs} />
         </div>

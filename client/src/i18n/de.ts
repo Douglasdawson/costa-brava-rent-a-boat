@@ -2032,6 +2032,73 @@ export const de: Translations = {
       },
     ],
     depthLabel: "Tiefe:",
+    heroTitle: "Schnorchel-Bootsausflug ab Blanes",
+    heroDescription:
+      "Entdecken Sie die Unterwasserwelt der Costa Brava von unseren Booten im Hafen von Blanes aus. Fahren Sie zu den schönsten Buchten, ankern Sie und tauchen Sie in kristallklares Wasser mit einer Sicht von bis zu 15 Metern ein. Schnorchelausrüstung verfügbar für 7,50 EUR/Person.",
+    badgeSpots: "3 Schnorchelbuchten",
+    badgeVisibility: "Sicht 10-15m",
+    badgeDuration: "2-4 Stunden empfohlen",
+    whyTitle: "Warum vom Boot aus schnorcheln",
+    whyAccessTitle: "Zugang zu unerreichbaren Buchten",
+    whyAccessDesc:
+      "Die besten Schnorchelbuchten an der Costa Brava haben keinen Straßenzugang oder erfordern lange Fußmärsche. Vom Boot aus kommen Sie direkt an, ankern wenige Meter vom Ufer entfernt und springen ins Wasser. Keine Menschenmassen, kein Laufen mit der Ausrüstung in der Sonne.",
+    whyBaseTitle: "Ihre eigene schwimmende Basis",
+    whyBaseDesc:
+      "Das Boot ist Ihr Bezugspunkt im Wasser. Sie können Handtücher, Essen und Getränke an Bord lassen. Ruhen Sie sich zwischen den Tauchgängen aus, trocknen Sie in der Sonne an Deck und wechseln Sie die Bucht, wann immer Sie wollen, in wenigen Minuten.",
+    whyMultiTitle: "Mehrere Spots in einer Ausfahrt",
+    whyMultiDesc:
+      "Bei einer 3-4-stündigen Ausfahrt können Sie 2-3 verschiedene Buchten besuchen. Jede hat ein eigenes Ökosystem: Posidonia-Wiesen, felsige Böden, senkrechte Wände. Es ist wie drei Schnorchelausflüge in einem.",
+    whyNoExpTitle: "Keine Erfahrung nötig",
+    whyNoExpDesc:
+      "Für unsere führerscheinfreien Boote brauchen Sie keinen Bootsführerschein. Wir geben Ihnen eine 15-minütige Einweisung im Hafen. Schnorcheln ist die zugänglichste Wasseraktivität: Sie brauchen nur Maske, Schnorchel und Lust zu entdecken.",
+    spotsTitle: "Beste Schnorchelbuchten in der Nähe von Blanes",
+    equipmentTitle: "Schnorchelausrüstung inklusive und verfügbar",
+    includedTitle: "Bei jedem Boot inbegriffen",
+    includedItems: [
+      "Rettungswesten für alle Passagiere",
+      "Badeleiter zum Ein- und Aussteigen ins Wasser",
+      "Sonnensegel / Bimini für Schatten an Deck",
+      "Anker zum Ankern in den Buchten",
+    ],
+    rentalTitle: "Zusätzliche Miete: 7,50 EUR/Person",
+    rentalItems: [
+      "Hochwertige Schnorchelmaske",
+      "Schnorchel mit Wasserstopp-Ventil",
+      "Verstellbare Flossen (verschiedene Größen verfügbar)",
+      "Sie können auch Ihre eigene Ausrüstung mitbringen",
+    ],
+    boatsTitle: "Empfohlene Boote zum Schnorcheln",
+    routeTitle: "Empfohlene Schnorchelroute (3 Stunden)",
+    routeSteps: [
+      {
+        title: "Hafen von Blanes - Abfahrt",
+        desc: "15-minütige Einweisung, Abholung der Schnorchelausrüstung. Abfahrt nach Norden entlang der Küste.",
+      },
+      {
+        title: "Cala Bona - Erster Halt (45 Min.)",
+        desc: "Ankern und Schnorcheln zwischen Felsformationen. Suchen Sie nach Kraken in den Spalten und beobachten Sie die Schwärme von Mönchsfischen.",
+      },
+      {
+        title: "Cala Sant Francesc - Zweiter Halt (45 Min.)",
+        desc: "Das Kronjuwel. Posidonia-Wiese mit Geißbrassen, Brandbrassen und Seesternen. Kristallklares Wasser und weißer Sandboden.",
+      },
+      {
+        title: "Rückkehr zum Hafen von Blanes",
+        desc: "Rückfahrt mit Blick auf die Küste. Rückgabe der Schnorchelausrüstung im Hafen.",
+      },
+    ],
+    exploreTitle: "Entdecken Sie weitere Aktivitäten und Services",
+    linkNoLicense: "Führerscheinfreie Boote",
+    linkLicensed: "Boote mit Führerschein",
+    linkFamilies: "Boote für Familien",
+    linkPrices: "Preise und Tarife",
+    linkRoutes: "Seerouten",
+    ctaTitle: "Buchen Sie Ihren Schnorchelausflug ab Blanes",
+    ctaDescription:
+      "Wählen Sie Ihr Boot, fügen Sie die Schnorchelausrüstung hinzu und entdecken Sie die Unterwasserwelt der Costa Brava. Abfahrten vom Hafen von Blanes von April bis Oktober.",
+    ctaWhatsApp: "Per WhatsApp buchen",
+    ctaViewBoats: "Verfügbare Boote ansehen",
+    faqTitle: "Häufige Fragen zum Schnorcheln per Boot",
   },
   activityFamilies: {
     faqItems: [

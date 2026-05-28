@@ -2035,6 +2035,73 @@ export const fr: Translations = {
       },
     ],
     depthLabel: "Profondeur :",
+    heroTitle: "Excursion Snorkeling en Bateau depuis Blanes",
+    heroDescription:
+      "Découvrez les fonds marins de la Costa Brava depuis nos bateaux au Port de Blanes. Naviguez jusqu'aux plus belles criques, jetez l'ancre et plongez dans des eaux cristallines avec une visibilité jusqu'à 15 mètres. Équipement de snorkeling disponible pour 7,50 EUR/personne.",
+    badgeSpots: "3 criques de snorkeling",
+    badgeVisibility: "Visibilité 10-15m",
+    badgeDuration: "2-4 heures recommandées",
+    whyTitle: "Pourquoi faire du snorkeling depuis un bateau",
+    whyAccessTitle: "Accès à des criques inaccessibles",
+    whyAccessDesc:
+      "Les meilleures criques de snorkeling de la Costa Brava n'ont pas d'accès routier ou nécessitent de longues marches. Depuis le bateau, vous arrivez directement, jetez l'ancre à quelques mètres du rivage et plongez dans l'eau. Sans foule, sans marcher avec l'équipement sous le soleil.",
+    whyBaseTitle: "Votre propre base flottante",
+    whyBaseDesc:
+      "Le bateau est votre point de référence dans l'eau. Vous pouvez laisser serviettes, nourriture et boissons à bord. Reposez-vous entre les plongées, séchez-vous au soleil sur le pont et, quand vous voulez, changez de crique en quelques minutes.",
+    whyMultiTitle: "Plusieurs spots en une sortie",
+    whyMultiDesc:
+      "Lors d'une sortie de 3-4 heures, vous pouvez visiter 2-3 criques différentes. Chacune a un écosystème distinct : prairies de posidonie, fonds rocheux, parois verticales. C'est comme faire trois excursions de snorkeling en une seule.",
+    whyNoExpTitle: "Aucune expérience nécessaire",
+    whyNoExpDesc:
+      "Vous n'avez pas besoin de permis bateau pour nos bateaux sans permis. Nous vous donnons une formation de 15 minutes au port. Le snorkeling est l'activité aquatique la plus accessible : il vous suffit d'un masque, d'un tuba et de l'envie de découvrir.",
+    spotsTitle: "Meilleures criques de snorkeling près de Blanes",
+    equipmentTitle: "Équipement de snorkeling inclus et disponible",
+    includedTitle: "Inclus avec tous les bateaux",
+    includedItems: [
+      "Gilets de sauvetage pour tous les passagers",
+      "Échelle de bain pour entrer et sortir de l'eau",
+      "Taud / bimini pour l'ombre sur le pont",
+      "Ancre pour mouiller dans les criques",
+    ],
+    rentalTitle: "Location supplémentaire : 7,50 EUR/personne",
+    rentalItems: [
+      "Masque de snorkeling de qualité",
+      "Tuba avec valve anti-remontée d'eau",
+      "Palmes ajustables (plusieurs tailles disponibles)",
+      "Vous pouvez aussi apporter votre propre équipement",
+    ],
+    boatsTitle: "Bateaux recommandés pour le snorkeling",
+    routeTitle: "Itinéraire de snorkeling recommandé (3 heures)",
+    routeSteps: [
+      {
+        title: "Port de Blanes - Départ",
+        desc: "Formation de 15 minutes, récupération de l'équipement de snorkeling. Départ vers le nord le long de la côte.",
+      },
+      {
+        title: "Cala Bona - Premier arrêt (45 min)",
+        desc: "Jeter l'ancre et faire du snorkeling parmi les formations rocheuses. Cherchez les poulpes dans les fissures et observez les bancs de castagnoles.",
+      },
+      {
+        title: "Cala Sant Francesc - Deuxième arrêt (45 min)",
+        desc: "Le joyau de la couronne. Prairie de posidonie avec sars, oblades et étoiles de mer. Eau cristalline et fond de sable blanc.",
+      },
+      {
+        title: "Retour au Port de Blanes",
+        desc: "Navigation de retour en profitant des vues sur la côte. Restitution de l'équipement de snorkeling au port.",
+      },
+    ],
+    exploreTitle: "Explorez plus d'activités et de services",
+    linkNoLicense: "Bateaux sans permis",
+    linkLicensed: "Bateaux avec permis",
+    linkFamilies: "Bateaux pour familles",
+    linkPrices: "Prix et tarifs",
+    linkRoutes: "Routes maritimes",
+    ctaTitle: "Réservez votre excursion de snorkeling depuis Blanes",
+    ctaDescription:
+      "Choisissez votre bateau, ajoutez l'équipement de snorkeling et découvrez les fonds marins de la Costa Brava. Départs du Port de Blanes d'avril à octobre.",
+    ctaWhatsApp: "Réserver par WhatsApp",
+    ctaViewBoats: "Voir les bateaux disponibles",
+    faqTitle: "Questions fréquentes sur le snorkeling en bateau",
   },
   activityFamilies: {
     faqItems: [

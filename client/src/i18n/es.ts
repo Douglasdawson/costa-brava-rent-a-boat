@@ -3150,6 +3150,73 @@ export const es: Translations = {
       },
     ],
     depthLabel: "Profundidad:",
+    heroTitle: "Excursión de Snorkel en Barco desde Blanes",
+    heroDescription:
+      "Descubre los fondos marinos de la Costa Brava desde nuestros barcos en el Puerto de Blanes. Navega hasta las mejores calas, fondea y sumérgete en aguas cristalinas con visibilidad de hasta 15 metros. Equipo de snorkel disponible por 7,50 EUR/persona.",
+    badgeSpots: "3 calas de snorkel",
+    badgeVisibility: "Visibilidad 10-15m",
+    badgeDuration: "2-4 horas recomendadas",
+    whyTitle: "Por qué hacer snorkel desde un barco",
+    whyAccessTitle: "Acceso a calas inaccesibles",
+    whyAccessDesc:
+      "Las mejores calas para snorkel en la Costa Brava no tienen acceso por carretera o requieren caminatas largas. Desde el barco llegas directamente, fondeas a pocos metros de la orilla y te tiras al agua. Sin aglomeraciones, sin caminar con el equipo al sol.",
+    whyBaseTitle: "Tu propia base flotante",
+    whyBaseDesc:
+      "El barco es tu punto de referencia en el agua. Puedes dejar toallas, comida y bebida a bordo. Descansas entre inmersiones, te secas al sol en cubierta y cuando quieres, cambias de cala en minutos.",
+    whyMultiTitle: "Múltiples spots en una salida",
+    whyMultiDesc:
+      "En una salida de 3-4 horas puedes visitar 2-3 calas diferentes. Cada una tiene un ecosistema distinto: praderas de posidonia, fondos rocosos, paredes verticales. Es como hacer tres excursiones de snorkel en una sola.",
+    whyNoExpTitle: "Sin necesidad de experiencia",
+    whyNoExpDesc:
+      "No necesitas licencia de navegación para nuestros barcos sin licencia. Te damos una formación de 15 minutos en el puerto. El snorkel es la actividad acuática más accesible: solo necesitas máscara, tubo y ganas de descubrir.",
+    spotsTitle: "Mejores calas para snorkel cerca de Blanes",
+    equipmentTitle: "Equipo de snorkel incluido y disponible",
+    includedTitle: "Incluido con todos los barcos",
+    includedItems: [
+      "Chalecos salvavidas para todos los pasajeros",
+      "Escalera de baño para subir y bajar al agua",
+      "Toldo / bimini para sombra en cubierta",
+      "Ancla para fondear en las calas",
+    ],
+    rentalTitle: "Alquiler adicional: 7,50 EUR/persona",
+    rentalItems: [
+      "Máscara de snorkel de calidad",
+      "Tubo con válvula anti-entrada de agua",
+      "Aletas ajustables (varias tallas disponibles)",
+      "También puedes traer tu propio equipo",
+    ],
+    boatsTitle: "Barcos recomendados para snorkel",
+    routeTitle: "Ruta de snorkel recomendada (3 horas)",
+    routeSteps: [
+      {
+        title: "Puerto de Blanes - Salida",
+        desc: "Formación de 15 minutos, recogida de equipo de snorkel. Salida hacia el norte por la costa.",
+      },
+      {
+        title: "Cala Bona - Primera parada (45 min)",
+        desc: "Fondear y snorkel entre formaciones rocosas. Busca pulpos entre las grietas y observa los bancos de castañolas.",
+      },
+      {
+        title: "Cala Sant Francesc - Segunda parada (45 min)",
+        desc: "La joya de la corona. Pradera de posidonia con sargos, obladas y estrellas de mar. Agua cristalina y fondo de arena blanca.",
+      },
+      {
+        title: "Regreso al Puerto de Blanes",
+        desc: "Navegación de vuelta disfrutando de las vistas de la costa. Devolución del equipo de snorkel en el puerto.",
+      },
+    ],
+    exploreTitle: "Explora más actividades y servicios",
+    linkNoLicense: "Barcos sin licencia",
+    linkLicensed: "Barcos con licencia",
+    linkFamilies: "Barcos para familias",
+    linkPrices: "Precios y tarifas",
+    linkRoutes: "Rutas marítimas",
+    ctaTitle: "Reserva tu excursión de snorkel desde Blanes",
+    ctaDescription:
+      "Elige tu barco, añade el equipo de snorkel y descubre los fondos marinos de la Costa Brava. Salidas desde el Puerto de Blanes de abril a octubre.",
+    ctaWhatsApp: "Reservar por WhatsApp",
+    ctaViewBoats: "Ver barcos disponibles",
+    faqTitle: "Preguntas frecuentes sobre snorkel en barco",
   },
 
   activityFamilies: {

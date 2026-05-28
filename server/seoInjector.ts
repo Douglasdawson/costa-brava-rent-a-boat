@@ -3236,6 +3236,57 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] }, availableLanguages, bodyFallback: snorkelBodyFallback };
     }
 
+    // Satellite location pages (tordera / palafolls / pineda). Fase 2 (2026-05-28):
+    // already 100% i18n-complete (t.locationPages.<town>), so add a native SSR
+    // body + index in all 8 locales. Same shape across the three towns.
+    else if (metaKey === "/alquiler-barcos-tordera") {
+      const sec = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.tordera?.sections;
+      const heading = sec?.heroTitle ?? meta.title;
+      const summary = sec?.heroSubtitle ?? meta.description;
+      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
+      const bullets = ([
+        [sec?.whyCard1Title, sec?.whyCard1Desc],
+        [sec?.whyCard3Title, sec?.whyCard3Desc],
+        [sec?.whyCard4Title, sec?.whyCard4Desc],
+      ] as Array<[string | undefined, string | undefined]>)
+        .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`);
+      const body = buildLocationBodyFallback(heading, summary, bullets, sec?.ctaButton ?? heading);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, breadcrumb] }, availableLanguages, bodyFallback: body };
+    }
+
+    else if (metaKey === "/alquiler-barcos-palafolls") {
+      const sec = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.palafolls?.sections;
+      const heading = sec?.heroTitle ?? meta.title;
+      const summary = sec?.heroSubtitle ?? meta.description;
+      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
+      const bullets = ([
+        [sec?.whyCard1Title, sec?.whyCard1Desc],
+        [sec?.whyCard3Title, sec?.whyCard3Desc],
+        [sec?.whyCard4Title, sec?.whyCard4Desc],
+      ] as Array<[string | undefined, string | undefined]>)
+        .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`);
+      const body = buildLocationBodyFallback(heading, summary, bullets, sec?.ctaButton ?? heading);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, breadcrumb] }, availableLanguages, bodyFallback: body };
+    }
+
+    else if (metaKey === "/alquiler-barcos-pineda-de-mar") {
+      const sec = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.pineda?.sections;
+      const heading = sec?.heroTitle ?? meta.title;
+      const summary = sec?.heroSubtitle ?? meta.description;
+      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
+      const bullets = ([
+        [sec?.whyCard1Title, sec?.whyCard1Desc],
+        [sec?.whyCard3Title, sec?.whyCard3Desc],
+        [sec?.whyCard4Title, sec?.whyCard4Desc],
+      ] as Array<[string | undefined, string | undefined]>)
+        .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`);
+      const body = buildLocationBodyFallback(heading, summary, bullets, sec?.ctaButton ?? heading);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, breadcrumb] }, availableLanguages, bodyFallback: body };
+    }
+
     // /rutas - ItemList of routes
     else if (metaKey === "/rutas") {
       const itemList = {

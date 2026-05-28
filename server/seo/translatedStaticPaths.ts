@@ -51,6 +51,10 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   "/excursion-snorkel-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/barco-familias-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/pesca-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Satellite location pages — i18n-complete (t.locationPages.<town>) + native SSR body.
+  "/alquiler-barcos-tordera": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/alquiler-barcos-palafolls": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/alquiler-barcos-pineda-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
 };
 
 /**

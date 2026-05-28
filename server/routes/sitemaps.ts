@@ -285,6 +285,10 @@ export function registerSitemapRoutes(app: Express) {
       const MULTILANG_LOCATIONS: Partial<Record<PageKey, readonly LangCode[]>> = {
         locationLloret: ALL_LOCATION_LANGS,
         locationTossa: ALL_LOCATION_LANGS,
+        // Fase 2 (2026-05-28): i18n-complete satellite pages with native SSR body.
+        locationTordera: ALL_LOCATION_LANGS,
+        locationPalafolls: ALL_LOCATION_LANGS,
+        locationPinedaDeMar: ALL_LOCATION_LANGS,
       };
       locationPages.forEach(pageKey => {
         const langs = MULTILANG_LOCATIONS[pageKey] ?? ES_ONLY;

@@ -43,6 +43,11 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // content instead of a noindex'd Spanish/English ternary.
   "/barcos-sin-licencia": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/barcos-con-licencia": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Activity page — sunset is fully i18n-driven (no hardcoded Spanish in the
+  // component) so it ships native SSR body in all 8 locales. The other three
+  // activity pages (snorkel/families/fishing) still have hardcoded ES copy and
+  // stay ES-only until migrated.
+  "/paseo-atardecer-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
 };
 
 /**

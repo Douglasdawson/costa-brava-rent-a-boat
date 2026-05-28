@@ -3115,6 +3115,37 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqLicense, breadcrumb] }, availableLanguages, bodyFallback: licensedBodyFallback };
     }
 
+    // /paseo-atardecer-barco-blanes - Sunset activity. Fase 2 (2026-05-28):
+    // i18n-complete in all 8 locales, so emit a native SSR body + register as
+    // indexable. Same pattern as the category/location branches above.
+    else if (metaKey === "/paseo-atardecer-barco-blanes") {
+      const su = (I18N_BY_LANG[lang] ?? i18nEs).activitySunset!;
+      const heading = su.heroTitle ?? meta.title;
+      const summary = su.heroDescription ?? meta.description;
+      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: su.faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
+      const sunsetBodyFallback = buildLocationBodyFallback(
+        heading,
+        summary,
+        [
+          `${su.whyGoldenHourTitle} — ${su.whyGoldenHourDesc}`,
+          `${su.whyPrivateTitle} — ${su.whyPrivateDesc}`,
+          `${su.whyAffordableTitle} — ${su.whyAffordableDesc}`,
+          `${su.whyTemperatureTitle} — ${su.whyTemperatureDesc}`,
+        ],
+        su.ctaWhatsApp ?? heading,
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] }, availableLanguages, bodyFallback: sunsetBodyFallback };
+    }
+
     // /rutas - ItemList of routes
     else if (metaKey === "/rutas") {
       const itemList = {

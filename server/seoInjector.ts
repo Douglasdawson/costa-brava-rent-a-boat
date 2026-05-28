@@ -3146,6 +3146,66 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] }, availableLanguages, bodyFallback: sunsetBodyFallback };
     }
 
+    // /pesca-barco-blanes - Fishing activity. Fase 2 (2026-05-28):
+    // migrated to i18n in all 8 locales, so emit native SSR body + index.
+    else if (metaKey === "/pesca-barco-blanes") {
+      const fsh = (I18N_BY_LANG[lang] ?? i18nEs).activityFishing!;
+      const heading = fsh.heroTitle ?? meta.title;
+      const summary = fsh.heroDescription ?? meta.description;
+      const service = buildLandingService(heading, summary, { low: 115, high: 200 });
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: (fsh.faqItems ?? []).map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
+      const fishingBodyFallback = buildLocationBodyFallback(
+        heading,
+        summary,
+        [
+          `${fsh.whyLocationTitle} — ${fsh.whyLocationDesc}`,
+          `${fsh.whyPortTitle} — ${fsh.whyPortDesc}`,
+          `${fsh.whyVarietyTitle} — ${fsh.whyVarietyDesc}`,
+          `${fsh.whySeasonTitle} — ${fsh.whySeasonDesc}`,
+        ],
+        fsh.ctaWhatsApp ?? heading,
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] }, availableLanguages, bodyFallback: fishingBodyFallback };
+    }
+
+    // /barco-familias-costa-brava - Families activity. Fase 2 (2026-05-28):
+    // migrated to i18n in all 8 locales, so emit native SSR body + index.
+    else if (metaKey === "/barco-familias-costa-brava") {
+      const fa = (I18N_BY_LANG[lang] ?? i18nEs).activityFamilies!;
+      const heading = fa.heroTitle ?? meta.title;
+      const summary = fa.heroDescription ?? meta.description;
+      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: (fa.faqItems ?? []).map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
+      const familiesBodyFallback = buildLocationBodyFallback(
+        heading,
+        summary,
+        [
+          `${fa.whyMemoriesTitle} — ${fa.whyMemoriesDesc}`,
+          `${fa.whyNoStressTitle} — ${fa.whyNoStressDesc}`,
+          `${fa.whyCalmCovesTitle} — ${fa.whyCalmCovesDesc}`,
+          `${fa.whyFlexTitle} — ${fa.whyFlexDesc}`,
+        ],
+        fa.ctaWhatsApp ?? heading,
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] }, availableLanguages, bodyFallback: familiesBodyFallback };
+    }
+
     // /excursion-snorkel-barco-blanes - Snorkel activity. Fase 2 (2026-05-28):
     // migrated to i18n in all 8 locales, so emit native SSR body + index.
     else if (metaKey === "/excursion-snorkel-barco-blanes") {

@@ -314,9 +314,9 @@ export function registerSitemapRoutes(app: Express) {
 
       // Activity pages
       sitemap += generateUrlEntry(baseUrl, "activitySnorkel", "0.7", null, "monthly", ALL_LANGS);
-      sitemap += generateUrlEntry(baseUrl, "activityFamilies", "0.7", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "activityFamilies", "0.7", null, "monthly", ALL_LANGS);
       sitemap += generateUrlEntry(baseUrl, "activitySunset", "0.7", null, "monthly", ALL_LANGS);
-      sitemap += generateUrlEntry(baseUrl, "activityFishing", "0.7", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "activityFishing", "0.7", null, "monthly", ALL_LANGS);
 
       // Legal pages
       sitemap += generateUrlEntry(baseUrl, "privacyPolicy", "0.3", null, "yearly", ES_ONLY);

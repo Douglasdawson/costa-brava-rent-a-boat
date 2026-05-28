@@ -49,6 +49,8 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // stay ES-only until migrated.
   "/paseo-atardecer-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/excursion-snorkel-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/barco-familias-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/pesca-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
 };
 
 /**

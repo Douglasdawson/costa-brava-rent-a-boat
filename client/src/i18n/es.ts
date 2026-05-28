@@ -3288,6 +3288,63 @@ export const es: Translations = {
         tip: "Recomendada para niños a partir de 4 años. Llevar comida, agua, crema solar y gorras.",
       },
     ],
+    heroTitle: "Alquiler de Barco para Familias en Costa Brava",
+    heroDescription:
+      "Una aventura segura y divertida para toda la familia. Barcos sin licencia desde el Puerto de Blanes con gasolina incluida, chalecos infantiles y calas protegidas perfectas para niños. Desde 70 EUR/hora.",
+    badgeNoLicense: "Sin licencia necesaria",
+    badgeKidsVests: "Chalecos infantiles incluidos",
+    badgeFuel: "Gasolina incluida",
+    whyTitle: "Por qué es perfecto para familias",
+    whyMemoriesTitle: "Una experiencia que recordarán siempre",
+    whyMemoriesDesc:
+      "Alquilar un barco en familia es mucho más que un paseo por el mar. Es descubrir calas escondidas juntos, ver peces bajo el agua, hacer un picnic flotando en aguas turquesas y crear recuerdos que los niños contarán durante años. En la Costa Brava, la costa entre Blanes y Lloret ofrece el escenario perfecto.",
+    whyNoStressTitle: "Sin estrés, sin complicaciones",
+    whyNoStressDesc:
+      "No necesitas experiencia previa ni licencia de navegación. Te enseñamos todo en 15 minutos. Los barcos son estables, fáciles de manejar y tienen velocidad limitada. La gasolina está incluida, así que no hay sorpresas con el precio. Solo necesitas venir con ganas de pasarlo bien.",
+    whyCalmCovesTitle: "Calas tranquilas para niños",
+    whyCalmCovesDesc:
+      "Recomendamos calas protegidas con agua poco profunda y sin oleaje. Cala Sant Francesc tiene fondo de arena ideal para que los niños se bañen con seguridad. Cala Bona ofrece aguas cristalinas perfectas para primeras experiencias de snorkel.",
+    whyFlexTitle: "Flexibilidad total",
+    whyFlexDesc:
+      "Tú decides el ritmo. Si los niños quieren quedarse más tiempo en una cala, sin problema. Si alguien se cansa, volvemos. No hay horarios fijos ni rutas obligatorias. Es vuestro barco, vuestro plan, vuestro día en el mar.",
+    safetyTitle: "Seguridad para toda la familia",
+    routesTitle: "Itinerarios recomendados para familias",
+    stopsLabel: "Paradas:",
+    tipLabel: "Consejo:",
+    whatToBringTitle: "Qué llevar para un día en barco con niños",
+    essentialTitle: "Imprescindible",
+    essentialItems: [
+      "Crema solar SPF 50+ waterproof",
+      "Agua abundante (mínimo 1L por persona)",
+      "Gorras o sombreros para el sol",
+      "Toallas",
+    ],
+    recommendedTitle: "Recomendado",
+    recommendedItems: [
+      "Snacks o picnic preparado",
+      "Camisetas UV para niños",
+      "Gafas de sol con cordón",
+      "Ropa seca para el regreso",
+    ],
+    optionalTitle: "Opcional",
+    optionalItems: [
+      "Cámara acuática o funda móvil",
+      "Equipo de snorkel propio",
+      "Nevera pequeña con hielo",
+      "Juguetes de playa hinchables",
+    ],
+    exploreTitle: "Descubre más sobre nuestros servicios",
+    linkNoLicense: "Barcos sin licencia",
+    linkSnorkel: "Excursión de snorkel",
+    linkPrices: "Precios y tarifas",
+    linkBlanes: "Puerto de Blanes",
+    linkRoutes: "Rutas marítimas",
+    ctaTitle: "Reserva un barco para toda la familia",
+    ctaDescription:
+      "Barcos seguros, fáciles de manejar y con todo incluido. El plan perfecto para un día en familia en la Costa Brava. Salidas desde el Puerto de Blanes de abril a octubre.",
+    ctaWhatsApp: "Reservar por WhatsApp",
+    ctaViewBoats: "Ver barcos sin licencia",
+    faqTitle: "Preguntas frecuentes sobre barcos para familias",
   },
 
   activityFishing: {
@@ -3397,6 +3454,79 @@ export const es: Translations = {
           "A 3-5 millas de la costa, profundidades de 40-80 metros. Solo accesible con barcos con licencia. Jigging y curricán.",
       },
     ],
+    heroTitle: "Pesca desde Barco en Blanes - Costa Brava",
+    heroDescription:
+      "Alquila un barco en el Puerto de Blanes y sal a pescar en las aguas de la Costa Brava. Lubinas, doradas, serviolas y más. Barcos con y sin licencia para adaptarse a tu nivel de experiencia. Trae tu equipo y nosotros ponemos el barco.",
+    badgeSpecies: "5+ especies objetivo",
+    badgeLicense: "Con y sin licencia",
+    badgeDuration: "4-6 horas recomendadas",
+    whyTitle: "Por qué pescar desde Blanes",
+    whyLocationTitle: "Ubicación estratégica",
+    whyLocationDesc:
+      "Blanes está en el punto donde el litoral cambia de carácter: al sur playas de arena del Maresme, al norte la costa rocosa de la Costa Brava. Esta transición crea una diversidad de hábitats marinos excepcional para la pesca: fondos de arena, praderas de posidonia, formaciones rocosas y aguas abiertas, todo accesible en menos de 30 minutos de navegación.",
+    whyPortTitle: "Puerto cómodo y bien equipado",
+    whyPortDesc:
+      "El Puerto de Blanes tiene aparcamiento gratuito, gasolinera náutica y tiendas donde comprar cebo fresco. Sales del puerto y en 10 minutos ya estás en zonas de pesca productivas. Al volver, puedes limpiar las capturas y comer en los restaurantes del puerto.",
+    whyVarietyTitle: "Variedad de especies",
+    whyVarietyDesc:
+      "Las aguas frente a Blanes albergan una gran diversidad de especies. Cerca de la costa encontrarás lubinas, doradas, sargos y mojarras. Un poco más lejos, en aguas abiertas, serviolas, bonitos y dentones. En otoño e invierno, la pesca de calamares con potera es excelente.",
+    whySeasonTitle: "Temporada extendida",
+    whySeasonDesc:
+      "Aunque la temporada de alquiler de barcos va de abril a octubre, cada mes tiene sus propias oportunidades de pesca. Primavera para doradas, verano para serviolas, otoño para calamares y dentones. Siempre hay algo que pescar en Blanes.",
+    speciesTitle: "Especies que puedes pescar en Blanes",
+    seasonLabel: "Temporada:",
+    whereLabel: "Dónde:",
+    techniqueLabel: "Técnica:",
+    boatsTitle: "Barcos recomendados para pesca",
+    spotsTitle: "Zonas de pesca desde Blanes",
+    targetLabel: "Objetivo:",
+    regulationsTitle: "Regulaciones y normativa de pesca",
+    licenseTitle: "Licencia de pesca obligatoria",
+    licenseDesc:
+      "Para pescar en el mar desde un barco necesitas la licencia de pesca recreativa marítima de la Generalitat de Catalunya. Puedes obtenerla online en gencat.cat por aproximadamente 14 EUR con validez de 2 años.",
+    catchLimitsTitle: "Límites de captura",
+    catchLimitsItems: [
+      "Máximo 5 kg por persona y día",
+      "Si una pieza supera 5 kg, cuenta como cupo",
+      "Máximo 2 cañas por persona",
+    ],
+    minSizesTitle: "Tallas mínimas principales",
+    minSizesItems: [
+      "Lubina: 36 cm",
+      "Dorada: 20 cm",
+      "Dentón: 35 cm",
+      "Serviola: 40 cm",
+    ],
+    prohibitedTitle: "Zonas prohibidas",
+    prohibitedDesc:
+      "Está prohibido pescar en zonas de baño señalizadas, reservas marinas y dentro de puertos. Respeta siempre las boyas de balizamiento y las zonas protegidas.",
+    equipmentTitle: "Equipo de pesca: trae el tuyo",
+    whatToBringTitle: "Qué traer",
+    whatToBringItems: [
+      "Cañas y carretes (spinning, jigging o fondo)",
+      "Señuelos, plomos y anzuelos",
+      "Cebo fresco (disponible en tiendas del puerto)",
+      "Nevera con hielo para las capturas",
+      "Alicates de pesca y cuchillo",
+    ],
+    whereBaitTitle: "Dónde comprar cebo en Blanes",
+    whereBaitDesc:
+      "Cerca del Puerto de Blanes hay varias tiendas náuticas donde puedes comprar cebo fresco (gusano americano, gusano coreano, gamba) y material de pesca básico. Recomendamos comprar el cebo el mismo día de la salida para máxima frescura.",
+    recommendationsTitle: "Recomendaciones",
+    recommendationsDesc:
+      "Lleva crema solar, agua abundante, gorra y gafas de sol polarizadas (ayudan a ver peces en el agua). Una camiseta de manga larga te protege del sol durante las horas de pesca. No olvides la licencia de pesca impresa o en el móvil.",
+    exploreTitle: "Explora más actividades y servicios",
+    linkLicensed: "Barcos con licencia",
+    linkNoLicense: "Barcos sin licencia",
+    linkSnorkel: "Excursión de snorkel",
+    linkPrices: "Precios y tarifas",
+    linkBlanes: "Puerto de Blanes",
+    ctaTitle: "Reserva tu barco para pescar en Blanes",
+    ctaDescription:
+      "Trae tu equipo, nosotros ponemos el barco. Lubinas, doradas, serviolas y más te esperan en las aguas de la Costa Brava. Salidas desde el Puerto de Blanes.",
+    ctaWhatsApp: "Reservar por WhatsApp",
+    ctaViewBoats: "Ver barcos con licencia",
+    faqTitle: "Preguntas frecuentes sobre pesca desde barco",
   },
 
   whatsappMessages: {

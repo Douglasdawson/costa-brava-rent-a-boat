@@ -1733,7 +1733,7 @@ function buildBoatProductSchema(
     "@type": "Product",
     name: `${boat.name} - Alquiler en Blanes Costa Brava`,
     description: `Alquila el ${boat.name} en Blanes, Costa Brava. Hasta ${boat.capacity} personas, ${licenseText}. Temporada ${SEASON_YEAR} abril-octubre.`,
-    url: `${BASE_URL}/barco/${boat.id}`,
+    url: `${BASE_URL}/es/barco/${boat.id}`,
     brand: {
       "@type": "Brand",
       name: "Costa Brava Rent a Boat",

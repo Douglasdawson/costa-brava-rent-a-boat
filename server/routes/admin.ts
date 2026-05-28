@@ -24,6 +24,28 @@ export function registerAdminRoutes(app: Express) {
 
   // ===== OBJECT STORAGE =====
 
+  // Boat images are public marketing content (rendered on the home page and
+  // boat detail pages to anonymous visitors), so this subtree is served without
+  // auth. Everything else under /objects stays admin-gated by the route below.
+  app.get("/objects/boat-images/:id", async (req, res) => {
+    const id = req.params.id;
+    if (id.includes("..") || id.includes("/") || id.includes("\0")) {
+      return res.status(400).json({ message: "Ruta no valida" });
+    }
+
+    const objectStorageService = new ObjectStorageService();
+    try {
+      const objectFile = await objectStorageService.getObjectEntityFile(`/objects/boat-images/${id}`);
+      objectStorageService.downloadObject(objectFile, res, 86400);
+    } catch (error) {
+      logger.error("Error serving boat image", { error: error instanceof Error ? error.message : String(error) });
+      if (error instanceof ObjectNotFoundError) {
+        return res.sendStatus(404);
+      }
+      return res.sendStatus(500);
+    }
+  });
+
   app.get("/objects/:objectPath(*)", requireAdminSession, async (req, res) => {
     const objectPath = req.params.objectPath;
     // Reject path traversal attempts

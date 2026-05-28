@@ -34,7 +34,9 @@ import {
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { useLicenseVerifier } from "@/hooks/useLicenseVerifier";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
-import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, filterActivePrices, type DurationOption } from "@shared/pricing";
+import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, filterActivePrices, type DurationOption, type Duration } from "@shared/pricing";
+import { useBoatPricingAllDurations } from "@/hooks/useBoatPricingAllDurations";
+import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import type { AutoDiscountResult } from "@shared/discounts";
 import BookingWizardMobile from "@/components/BookingWizardMobile";
 import BookingFormDesktop from "@/components/BookingFormDesktop";
@@ -806,15 +808,33 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     return "BAJA";
   };
 
-  // Compute base price for auto-discount query (derived from state)
+  // Date-aware prices from the same engine the public pricing calendar uses
+  // (`/api/pricing/calendar`): includes the weekend +15% surcharge and any active
+  // pricing override. The static catalog prices on `selectedBoatInfo.pricing` ignore
+  // both, which is why the wizard used to disagree with the calendar. We prefer these
+  // figures everywhere a price is shown, falling back to the catalog until they load.
+  const datePricing = useBoatPricingAllDurations(selectedBoat, selectedDate);
+  // Secondary boat (multi-boat group bookings) — only the selected duration is needed.
+  const secondaryDatePricing = useBoatPricingForDate({
+    boatId: selectedSecondaryBoat || null,
+    date: selectedDate || null,
+    duration: (selectedDuration || "4h") as Duration,
+    enabled: !!selectedSecondaryBoat && !!selectedDate && !!selectedDuration,
+  });
+
+  // Compute base price for auto-discount query (derived from state).
+  // Uses the date-aware price so the flash-deal check runs against the figure the
+  // customer actually sees (post weekend surcharge / override).
   const currentBasePrice = useMemo(() => {
     if (!selectedBoatInfo || !selectedDuration || !selectedBoatInfo.pricing) return null;
+    const dateAware = datePricing.prices[selectedDuration as Duration];
+    if (typeof dateAware === "number") return dateAware;
     const date = selectedDate ? new Date(selectedDate) : new Date();
     const month = date.getMonth() + 1;
     const season = month === 8 ? "ALTA" : month === 7 ? "MEDIA" : "BAJA";
     const seasonPricing = selectedBoatInfo.pricing[season];
     return seasonPricing?.prices[selectedDuration] || null;
-  }, [selectedBoatInfo, selectedDuration, selectedDate]);
+  }, [selectedBoatInfo, selectedDuration, selectedDate, datePricing]);
 
   // Fetch auto-discount (flash deal) when boat, date, and price are known
   const { data: autoDiscount } = useQuery<AutoDiscountResult>({
@@ -854,6 +874,12 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const getDurationOptions = (): { value: string; label: string; price?: number; disabled?: boolean; disabledReason?: string }[] => {
     const getPriceForDuration = (durationKey: string) => {
       if (!selectedBoatInfo || !selectedBoatInfo.pricing) return null;
+
+      // Prefer the date-aware price (weekend surcharge + override) so the grid
+      // matches the public pricing calendar. Fall back to the static catalog
+      // price until the API response loads.
+      const dateAware = datePricing.prices[durationKey as Duration];
+      if (typeof dateAware === "number") return dateAware;
 
       const season = getCurrentSeason();
       const seasonPricing = selectedBoatInfo.pricing[season];
@@ -1000,10 +1026,14 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const getBookingPrice = () => {
     if (!selectedBoatInfo || !selectedDuration || !selectedBoatInfo.pricing) return null;
     const season = getCurrentSeason();
-    const primary = selectedBoatInfo.pricing[season]?.prices[selectedDuration] || null;
+    // Date-aware price (weekend surcharge + override) with catalog fallback, to stay
+    // in sync with the public pricing calendar.
+    const catalogPrimary = selectedBoatInfo.pricing[season]?.prices[selectedDuration] ?? null;
+    const primary = datePricing.prices[selectedDuration as Duration] ?? catalogPrimary;
     if (primary === null) return null;
     if (!isMultiBoat || !selectedSecondaryBoatInfo?.pricing) return primary;
-    const secondary = selectedSecondaryBoatInfo.pricing[season]?.prices[selectedDuration] || 0;
+    const catalogSecondary = selectedSecondaryBoatInfo.pricing[season]?.prices[selectedDuration] || 0;
+    const secondary = secondaryDatePricing.finalPrice ?? catalogSecondary;
     return primary + secondary;
   };
 

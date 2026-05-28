@@ -304,18 +304,26 @@ function FleetSection() {
           return {
             id: boat.id,
             name: boat.name,
-            image:
-              boat.imageGallery?.[0]?.trim() ||
-              (boat.imageUrl ? getBoatImage(boat.imageUrl) : "/placeholder-boat.jpg"),
+            image: boat.imageGallery?.[0]?.trim()
+              ? getBoatImage(boat.imageGallery[0].trim())
+              : boat.imageUrl
+                ? getBoatImage(boat.imageUrl)
+                : "/placeholder-boat.jpg",
             imageSrcSet: boat.imageGallery?.[0]?.trim()
               ? ""
               : boat.imageUrl
                 ? getBoatImageSrcSet(boat.imageUrl)
                 : "",
-            imageTablet:
-              boat.imageGalleryTablet?.[0]?.trim() || boat.imageGallery?.[0]?.trim() || undefined,
-            imageMobile:
-              boat.imageGalleryMobile?.[0]?.trim() || boat.imageGallery?.[0]?.trim() || undefined,
+            imageTablet: boat.imageGalleryTablet?.[0]?.trim()
+              ? getBoatImage(boat.imageGalleryTablet[0].trim())
+              : boat.imageGallery?.[0]?.trim()
+                ? getBoatImage(boat.imageGallery[0].trim())
+                : undefined,
+            imageMobile: boat.imageGalleryMobile?.[0]?.trim()
+              ? getBoatImage(boat.imageGalleryMobile[0].trim())
+              : boat.imageGallery?.[0]?.trim()
+                ? getBoatImage(boat.imageGallery[0].trim())
+                : undefined,
             imageAlt:
               (boat.requiresLicense ? t.boats.imageAltWithLicense : t.boats.imageAltNoLicense)
                 ?.replace("{name}", boat.name)

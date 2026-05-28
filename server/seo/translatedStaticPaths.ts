@@ -37,6 +37,12 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // unblocks GSC reindex requests that previously failed the live test due
   // to noindex meta + canonical→ES override.
   "/alquiler-barcos-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Category pages — Fase 2 (2026-05-28). Copy lives in t.categoryLicenseFree /
+  // t.categoryLicensed (CI-validated in all 8 locales) and seoInjector now emits
+  // a native-language SSR bodyFallback from it, so non-ES locales carry unique
+  // content instead of a noindex'd Spanish/English ternary.
+  "/barcos-sin-licencia": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/barcos-con-licencia": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
 };
 
 /**

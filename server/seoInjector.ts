@@ -3003,7 +3003,23 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           : "5 barcos sin licencia (hasta 15 CV) para alquilar en Blanes, Costa Brava. No se necesita titulación, cualquier persona mayor de 18 años puede conducir. Formación de seguridad de 15 minutos incluida. Gasolina, seguro y equipo de seguridad incluidos en el precio.",
         { low: 70, high: 370 },
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqNoLicense, breadcrumb] }, availableLanguages };
+      // Native-language SSR body so non-ES locales carry unique content (not a
+      // Spanish/English ternary) — prerequisite for indexing them. Sourced from
+      // the CI-validated category i18n bundle. See translatedStaticPaths.ts.
+      // Non-null assertion: CI (validate-translations) guarantees the key in all locales.
+      const cf = (I18N_BY_LANG[lang] ?? i18nEs).categoryLicenseFree!;
+      const noLicenseBodyFallback = buildLocationBodyFallback(
+        cf.heroTitle,
+        cf.heroDescription,
+        [
+          `${cf.freeNavigation} — ${cf.freeNavigationDesc}`,
+          `${cf.easyToHandle} — ${cf.easyToHandleDesc}`,
+          `${cf.safeLimits} — ${cf.safeLimitsDesc}`,
+          `${cf.completeEquipment} — ${cf.completeEquipmentDesc}`,
+        ],
+        cf.ctaButton,
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqNoLicense, breadcrumb] }, availableLanguages, bodyFallback: noLicenseBodyFallback };
     }
 
     // /barcos-con-licencia - ItemList of licensed boats (dynamic from DB)
@@ -3083,7 +3099,20 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           : "3 barcos con licencia (70-115 CV, motores Yamaha) para alquilar en Blanes, Costa Brava. Requiere titulación náutica (PER, PNB o equivalente). Mayor autonomía: llega a Tossa de Mar, Cala Giverola y más allá. Combustible aparte.",
         { low: 160, high: 420 },
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqLicense, breadcrumb] }, availableLanguages };
+      // Non-null assertion: CI (validate-translations) guarantees the key in all locales.
+      const cl = (I18N_BY_LANG[lang] ?? i18nEs).categoryLicensed!;
+      const licensedBodyFallback = buildLocationBodyFallback(
+        cl.heroTitle,
+        cl.heroDescription,
+        [
+          `${cl.advancedNavigation} — ${cl.advancedNavigationDesc}`,
+          `${cl.greaterFreedom} — ${cl.greaterFreedomDesc}`,
+          `${cl.professionalEquipment} — ${cl.professionalEquipmentDesc}`,
+          `${cl.superiorPerformance} — ${cl.superiorPerformanceDesc}`,
+        ],
+        cl.ctaButton,
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqLicense, breadcrumb] }, availableLanguages, bodyFallback: licensedBodyFallback };
     }
 
     // /rutas - ItemList of routes

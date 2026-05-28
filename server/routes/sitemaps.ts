@@ -304,9 +304,10 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "about", "0.6", null, "monthly", ES_ONLY);
       sitemap += generateUrlEntry(baseUrl, "destinations", "0.7", null, "monthly", ES_ONLY);
 
-      // Category pages
-      sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "categoryLicensed", "0.7", null, "monthly", ES_ONLY);
+      // Category pages — indexable in all 8 locales (Fase 2 2026-05-28): native
+      // SSR body from i18n + entry in translatedStaticPaths.ts.
+      sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly", ALL_LANGS);
+      sitemap += generateUrlEntry(baseUrl, "categoryLicensed", "0.7", null, "monthly", ALL_LANGS);
 
       // Blog index (the listing page itself; individual posts are in sitemap-blog.xml)
       sitemap += generateUrlEntry(baseUrl, "blog", "0.7", null, "weekly", ES_ONLY);

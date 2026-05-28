@@ -141,6 +141,7 @@ export async function exportGa4Markdown(): Promise<void> {
       `| whatsapp_click | ${fmtNum(evtCount(conversions24h, "whatsapp_click"))} |`,
       `| phone_click | ${fmtNum(evtCount(conversions24h, "phone_click"))} |`,
       `| booking_started | ${fmtNum(evtCount(conversions24h, "booking_started"))} |`,
+      `| booking_request_submitted | ${fmtNum(evtCount(conversions24h, "booking_request_submitted"))} |`,
       `| purchase | ${fmtNum(evtCount(conversions24h, "purchase"))} |`,
       `| generate_lead | ${fmtNum(evtCount(conversions24h, "generate_lead"))} |`,
       ``,

@@ -544,45 +544,19 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
   // Dynamic 301 redirects (managed via DB, seeded after listen)
   const { redirectMiddleware, seedLegacyRedirects } = await import("./seo/redirects");
-  const { isValidLang } = await import("../shared/i18n-routes");
   app.use(redirectMiddleware());
 
-  // Root redirect with Accept-Language detection.
+  // Root redirect — hard 301 to the Spanish home (our x-default).
   //
-  // Status code strategy (matters for AI crawlers and SEO):
-  // - 302 (Found) when the destination depends on visitor signals
-  //   (Accept-Language header or cookie). A 301 here would let browsers
-  //   cache the redirect and trap users on the wrong locale if their
-  //   preference changes.
-  // - 301 (Moved Permanently) for the fallback to /es/. This is the path
-  //   crawlers without Accept-Language headers always take (GPTBot,
-  //   ClaudeBot, PerplexityBot etc.) — caching the redirect saves crawl
-  //   budget and removes a hop on every subsequent visit.
-  app.get("/", (req, res) => {
-    // 1. Check Accept-Language header
-    const acceptLang = req.headers["accept-language"];
-    if (acceptLang) {
-      const langPrefs = acceptLang.split(",").map(part => {
-        const [lang, q] = part.trim().split(";q=");
-        return { lang: lang.split("-")[0].toLowerCase(), q: q ? parseFloat(q) : 1 };
-      }).sort((a, b) => b.q - a.q);
-
-      for (const pref of langPrefs) {
-        if (isValidLang(pref.lang)) {
-          return res.redirect(302, `/${pref.lang}/`);
-        }
-      }
-    }
-
-    // 2. Check language cookie (read manually from header — no cookie-parser needed)
-    const cookieHeader = req.headers.cookie || "";
-    const match = cookieHeader.match(/costa-brava-language=(\w+)/);
-    const cookieLang = match?.[1];
-    if (cookieLang && isValidLang(cookieLang)) {
-      return res.redirect(302, `/${cookieLang}/`);
-    }
-
-    // 3. Fallback to Spanish — 301 so AI crawlers cache the destination.
+  // GSC 2026-05-28: the bare root `/` and `/es/` cannibalized each other for head
+  // terms ("alquiler barco costa brava" ranked at `/` pos 3.4 AND `/es/` pos 9.8).
+  // The previous Accept-Language 302 kept `/` indexed as its own URL, so signals
+  // never consolidated. A permanent 301 to /es/ (x-default + primary market)
+  // collapses the duplicate and passes the root's backlink authority to /es/.
+  // Non-Spanish visitors switch via the language selector; hreflang on /es/ still
+  // surfaces localized versions in SERPs.
+  app.get("/", (_req, res) => {
+    res.set("Cache-Control", "public, max-age=31536000, immutable");
     return res.redirect(301, "/es/");
   });
 

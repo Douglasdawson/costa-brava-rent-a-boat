@@ -22,6 +22,7 @@ const PAGE_SIZE = 100000;
 // page_view / scroll / session_start.
 const TRACKED_EVENTS = [
   "booking_started",
+  "booking_request_submitted",
   "purchase",
   "whatsapp_click",
   "phone_click",

@@ -144,6 +144,7 @@ const PIE_COLORS = [
 
 const CONVERSION_LABELS: Record<string, string> = {
   booking_started: "Reservas iniciadas",
+  booking_request_submitted: "Solicitudes de reserva",
   purchase: "Compras completadas",
   whatsapp_click: "Clics WhatsApp",
   phone_click: "Clics telefono",

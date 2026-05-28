@@ -5,6 +5,17 @@ import { logger } from "../../lib/logger";
 import { isConfigured } from "../../services/googleAnalyticsService";
 import { google } from "googleapis";
 import { config } from "../../config";
+import { SUPPORTED_LANGUAGES } from "../../../shared/seoConstants";
+
+const SUPPORTED_LANG_SET = new Set<string>(SUPPORTED_LANGUAGES);
+
+// Derive language from the page's path prefix (/fr/, /de/, ...). The root and
+// unprefixed paths serve Spanish. Replaces the old hardcoded "es" that
+// mislabeled every foreign-language query.
+function detectLanguageFromPath(pagePath: string): string {
+  const code = pagePath.match(/^\/([a-z]{2})(?:\/|$)/)?.[1];
+  return code && SUPPORTED_LANG_SET.has(code) ? code : "es";
+}
 
 function getAuth() {
   return new google.auth.JWT({
@@ -55,10 +66,14 @@ export async function collectGscData(): Promise<void> {
       const [keyword, page, date] = row.keys || [];
       if (!keyword || !page || !date) continue;
 
+      // Strip domain from page URL to get path, then derive the language.
+      const pagePath = page.replace(/^https?:\/\/[^/]+/, "") || "/";
+      const language = detectLanguageFromPath(pagePath);
+
       // Upsert keyword
       const [kw] = await db
         .insert(seoKeywords)
-        .values({ keyword, language: "es" })
+        .values({ keyword, language })
         .onConflictDoUpdate({
           target: [seoKeywords.keyword, seoKeywords.language],
           set: { tracked: true },
@@ -66,9 +81,6 @@ export async function collectGscData(): Promise<void> {
         .returning({ id: seoKeywords.id });
 
       keywordsUpserted++;
-
-      // Strip domain from page URL to get path
-      const pagePath = page.replace(/^https?:\/\/[^/]+/, "") || "/";
 
       // Upsert ranking
       await db

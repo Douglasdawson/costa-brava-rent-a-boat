@@ -260,7 +260,7 @@ export async function fetchGA4Conversions(startDate: string, endDate: string) {
         filter: {
           fieldName: "eventName",
           inListFilter: {
-            values: ["booking_started", "purchase", "whatsapp_click", "phone_click", "generate_lead"],
+            values: ["booking_started", "booking_request_submitted", "purchase", "whatsapp_click", "phone_click", "generate_lead"],
           },
         },
       },

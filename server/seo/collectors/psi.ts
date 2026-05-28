@@ -32,15 +32,18 @@ function baseUrl(): string {
  */
 export function defaultTargets(): PsiUrlTarget[] {
   const b = baseUrl();
+  // Real canonical (language-prefixed) URLs. The old unprefixed paths
+  // (/blanes, /tossa-de-mar, ...) are not routes — the SPA served a 404 shell,
+  // so the measurements were meaningless.
   return [
-    { url: `${b}/` },
-    { url: `${b}/blanes` },
-    { url: `${b}/tossa-de-mar` },
-    { url: `${b}/lloret-de-mar` },
-    { url: `${b}/blog` },
-    { url: `${b}/barcos-sin-licencia` },
-    { url: `${b}/barcos-con-licencia` },
-    { url: `${b}/excursion-privada` },
+    { url: `${b}/es/` },
+    { url: `${b}/es/alquiler-barcos-blanes` },
+    { url: `${b}/es/alquiler-barcos-tossa-de-mar` },
+    { url: `${b}/es/alquiler-barcos-lloret-de-mar` },
+    { url: `${b}/es/blog` },
+    { url: `${b}/es/barcos-sin-licencia` },
+    { url: `${b}/es/barcos-con-licencia` },
+    { url: `${b}/es/barco/excursion-privada` },
   ];
 }
 
@@ -91,6 +94,11 @@ async function runPsi(url: string, strategy: PsiStrategy): Promise<PsiResponse |
   });
   for (const cat of ["accessibility", "best-practices", "seo"]) {
     params.append("category", cat);
+  }
+  // Without a key, PSI throttles server-IP calls hard (HTTP 429), which is why
+  // psi_measurements stayed empty. A free PageSpeed API key lifts the quota.
+  if (config.PAGESPEED_API_KEY) {
+    params.append("key", config.PAGESPEED_API_KEY);
   }
 
   const resp = await fetch(`${PSI_ENDPOINT}?${params.toString()}`, {

@@ -1,6 +1,7 @@
 import { BASE_DOMAIN } from "./seo-config";
 import type { Translations } from "@/lib/translations";
 import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "@shared/authors";
+import { boatRoutes, BLANES_PORT, type BoatRoute } from "@shared/routesData";
 
 interface ListItem {
   id: string;
@@ -371,6 +372,76 @@ export function generateCovesItemListSchema(t?: Translations) {
         ],
       },
     })),
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Maritime routes from Port of Blanes — ItemList of TouristTrip. GEO benefit:
+// answer engines enumerate concrete boat itineraries for queries like "ruta en
+// barco Blanes Tossa", "boat route Costa Brava", returning distance, duration
+// and waypoints per trip. Trip name/description are localized from
+// shared/routesData (all 8 locales); waypoint names use language-neutral proper
+// nouns (Sa Palomera, Tossa de Mar, ...). Origin Place carries real geo coords.
+// ═══════════════════════════════════════════════════════════════════════════
+
+export function generateRoutesItemListSchema(language: string = "es") {
+  const lang = language as keyof BoatRoute["descriptions"];
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": "https://www.costabravarentaboat.com/#routes-from-blanes",
+    "name": "Rutas en barco desde el Puerto de Blanes",
+    "description": "Itinerarios marítimos sugeridos desde el Puerto de Blanes por la Costa Brava, con distancia, duración estimada y puntos de interés.",
+    "numberOfItems": boatRoutes.length,
+    "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    "itemListElement": boatRoutes.map((route, i) => {
+      const desc = route.descriptions[lang] ?? route.descriptions.es;
+      const origin = route.coordinates[0];
+      return {
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": "TouristTrip",
+          "name": desc.name,
+          "description": desc.description,
+          "inLanguage": language,
+          "itinerary": {
+            "@type": "ItemList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "Place",
+                  "name": BLANES_PORT.name,
+                  "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": origin.lat,
+                    "longitude": origin.lng,
+                  },
+                },
+              },
+              ...route.highlights.map((highlight, j) => ({
+                "@type": "ListItem",
+                "position": j + 2,
+                "item": { "@type": "Place", "name": highlight },
+              })),
+            ],
+          },
+          "additionalProperty": [
+            { "@type": "PropertyValue", "name": "Distancia", "value": route.distance },
+            { "@type": "PropertyValue", "name": "Duración estimada", "value": route.estimatedTime },
+            { "@type": "PropertyValue", "name": "Dificultad", "value": route.difficulty },
+          ],
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Costa Brava Rent a Boat Blanes",
+            "telephone": "+34611500372",
+            "url": "https://www.costabravarentaboat.com/",
+          },
+        },
+      };
+    }),
   };
 }
 

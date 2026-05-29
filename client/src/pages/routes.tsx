@@ -14,6 +14,7 @@ import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
+import { generateRoutesItemListSchema } from "@/utils/seo-schemas";
 
 function RevealSection({
   children,
@@ -138,6 +139,10 @@ function RoutesPage() {
     { name: t.breadcrumbs.home, url: "/" },
     { name: t.breadcrumbs.routes, url: "/rutas" }
   ]);
+  const combinedJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, generateRoutesItemListSchema(language)],
+  };
 
   const handleRouteSelect = useCallback((id: string) => {
     setSelectedRouteId(prev => prev === id ? null : id);
@@ -146,7 +151,7 @@ function RoutesPage() {
 
   return (
     <main id="main-content" className="min-h-screen">
-      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
+      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={combinedJsonLd} />
       <Navigation />
       <ReadingProgressBar />
 

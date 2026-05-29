@@ -4007,9 +4007,9 @@ export const en: Translations = {
       badge: "New · Social plan",
       title: "Share a boat. Meet people. Live the Costa Brava.",
       subtitle:
-        "Hop on a shared trip from Blanes and spend the day exploring coves with new people.",
-      priceHook: "Full day from €40/person",
-      priceNote: "8 h sharing the boat between 5",
+        "Hop on a shared trip from Blanes and spend half a day exploring coves with new people.",
+      priceHook: "4 hours · €40/person",
+      priceNote: "4 h sharing the boat between 5",
       scarcity: "Limited spots per boat · waiting list open",
       socialProof: "{rating}★ on Google · {count} reviews",
       cta: "Join for free",

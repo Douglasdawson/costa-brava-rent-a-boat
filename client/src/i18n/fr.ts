@@ -3969,9 +3969,9 @@ export const fr: Translations = {
       badge: "Nouveau · Plan social",
       title: "Partagez un bateau. Rencontrez du monde. Vivez la Costa Brava.",
       subtitle:
-        "Embarquez pour une sortie partagée depuis Blanes et passez la journée dans les criques avec de nouvelles personnes.",
-      priceHook: "Journée complète dès 40€/personne",
-      priceNote: "8 h en partageant le bateau entre 5",
+        "Embarquez pour une sortie partagée depuis Blanes et passez une demi-journée dans les criques avec de nouvelles personnes.",
+      priceHook: "4 heures · 40€/personne",
+      priceNote: "4 h en partageant le bateau entre 5",
       scarcity: "Places limitées par bateau · liste d'attente ouverte",
       socialProof: "{rating}★ sur Google · {count} avis",
       cta: "Inscription gratuite",

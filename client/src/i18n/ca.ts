@@ -3954,9 +3954,9 @@ export const ca: Translations = {
       badge: "Nou · Pla social",
       title: "Comparteix vaixell. Coneix gent. Viu la Costa Brava.",
       subtitle:
-        "Apunta't a una sortida compartida des de Blanes i passa el dia de cales amb gent nova.",
-      priceHook: "Dia complet des de 40€/persona",
-      priceNote: "8 h compartint el vaixell entre 5",
+        "Apunta't a una sortida compartida des de Blanes i passa mitja jornada de cales amb gent nova.",
+      priceHook: "4 hores · 40€/persona",
+      priceNote: "4 h compartint el vaixell entre 5",
       scarcity: "Places limitades per vaixell · llista d'espera oberta",
       socialProof: "{rating}★ a Google · {count} ressenyes",
       cta: "Apunta't gratis",

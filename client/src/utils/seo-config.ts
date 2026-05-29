@@ -72,7 +72,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     sharedSailing: {
       title: "Salidas en Barco Compartido Costa Brava | Conoce Gente",
-      description: "Navega y conoce gente nueva desde Blanes. Comparte un barco sin licencia, reparte el coste y disfruta de un día de calas. Apúntate a la lista de interés.",
+      description: "Navega y conoce gente nueva desde Blanes. Comparte un barco sin licencia, reparte el coste y disfruta de 4 horas de calas. Apúntate a la lista de interés.",
       keywords: "barco compartido costa brava, conocer gente barco blanes, salidas compartidas barco, plan social barco costa brava, navegar conocer gente",
     },
     home: {
@@ -311,7 +311,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   en: {
     sharedSailing: {
       title: "Shared Boat Trips on the Costa Brava | Meet New People",
-      description: "Sail from Blanes and meet new people. Share a licence-free boat, split the cost and enjoy a day of coves. Join the interest list.",
+      description: "Sail from Blanes and meet new people. Share a licence-free boat, split the cost and enjoy 4 hours of coves. Join the interest list.",
       keywords: "shared boat trips costa brava, meet people boat blanes, social sailing, boat sharing costa brava, solo travellers boat",
     },
     home: {
@@ -529,7 +529,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   ca: {
     sharedSailing: {
       title: "Sortides en Vaixell Compartit Costa Brava | Coneix Gent",
-      description: "Navega i coneix gent nova des de Blanes. Comparteix un vaixell sense llicència, reparteix el cost i gaudeix d'un dia de cales. Apunta't a la llista.",
+      description: "Navega i coneix gent nova des de Blanes. Comparteix un vaixell sense llicència, reparteix el cost i gaudeix de 4 hores de cales. Apunta't a la llista.",
       keywords: "vaixell compartit costa brava, conèixer gent vaixell blanes, sortides compartides, navegar conèixer gent",
     },
     home: {
@@ -1151,7 +1151,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   it: {
     sharedSailing: {
       title: "Gite in Barca Condivisa Costa Brava | Conosci Gente",
-      description: "Naviga da Blanes e conosci gente nuova. Condividi una barca senza patente, dividi il costo e goditi una giornata tra le cale. Iscriviti alla lista.",
+      description: "Naviga da Blanes e conosci gente nuova. Condividi una barca senza patente, dividi il costo e goditi 4 ore tra le cale. Iscriviti alla lista.",
       keywords: "barca condivisa costa brava, conoscere gente barca blanes, gite condivise, navigare conoscere gente",
     },
     home: {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Sparkles, CheckCircle2, Star, ArrowRight } from "lucide-react";
+import { Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -15,10 +15,6 @@ import {
   PHONE_PREFIXES,
   getDefaultPhonePrefixForLanguage,
 } from "@/utils/phone-prefixes";
-import {
-  BUSINESS_RATING_STR,
-  BUSINESS_REVIEW_COUNT_STR,
-} from "@shared/businessProfile";
 
 const HERO_IMAGE =
   "/images/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-amigos-snorkel.webp";
@@ -33,10 +29,6 @@ export default function SharedSailingPage() {
   const seoConfig = getSEOConfig("sharedSailing", language);
   const hreflangLinks = generateHreflangLinks("sharedSailing");
   const canonical = generateCanonicalUrl("sharedSailing", language);
-
-  const socialProof = s.hero.socialProof
-    .replace("{rating}", BUSINESS_RATING_STR)
-    .replace("{count}", BUSINESS_REVIEW_COUNT_STR);
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -257,10 +249,6 @@ export default function SharedSailingPage() {
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-sm font-medium text-white ring-1 ring-white/25 backdrop-blur">
                 <Sparkles className="h-4 w-4" />
                 {s.hero.badge}
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-white/90">
-                <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                {socialProof}
               </span>
             </div>
 

@@ -4379,9 +4379,9 @@ export const es: Translations = {
       badge: "Nuevo · Plan social",
       title: "Comparte barco. Conoce gente. Vive la Costa Brava.",
       subtitle:
-        "Súbete a una salida compartida desde Blanes y pasa el día de calas con gente nueva.",
-      priceHook: "Día completo desde 40€/persona",
-      priceNote: "8 h compartiendo el barco entre 5",
+        "Súbete a una salida compartida desde Blanes y pasa media jornada de calas con gente nueva.",
+      priceHook: "4 horas · 40€/persona",
+      priceNote: "4 h compartiendo el barco entre 5",
       scarcity: "Plazas limitadas por barco · lista de espera abierta",
       socialProof: "{rating}★ en Google · {count} reseñas",
       cta: "Apúntate gratis",

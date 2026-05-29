@@ -3980,9 +3980,9 @@ export const de: Translations = {
       badge: "Neu · Social-Plan",
       title: "Boot teilen. Leute kennenlernen. Costa Brava erleben.",
       subtitle:
-        "Steigen Sie bei einer geteilten Fahrt ab Blanes ein und verbringen Sie den Tag in den Buchten mit neuen Leuten.",
-      priceHook: "Ganzer Tag ab 40€/Person",
-      priceNote: "8 h, Boot geteilt durch 5",
+        "Steigen Sie bei einer geteilten Fahrt ab Blanes ein und verbringen Sie einen halben Tag in den Buchten mit neuen Leuten.",
+      priceHook: "4 Stunden · 40€/Person",
+      priceNote: "4 h, Boot geteilt durch 5",
       scarcity: "Begrenzte Plätze pro Boot · Warteliste offen",
       socialProof: "{rating}★ auf Google · {count} Bewertungen",
       cta: "Kostenlos anmelden",

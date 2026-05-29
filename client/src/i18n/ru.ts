@@ -3920,9 +3920,9 @@ export const ru: Translations = {
     },
   },
   sharedSailing: {
-    navLabel: "Совместные прогулки",
+    navLabel: "Social Boat",
     hero: {
-      badge: "Новинка · Социальный план",
+      badge: "Social Boat · Новинка",
       title: "Разделите лодку. Знакомьтесь. Живите Коста-Брава.",
       subtitle:
         "Присоединяйтесь к совместному выходу из Бланеса и проведите полдня среди бухт с новыми людьми.",

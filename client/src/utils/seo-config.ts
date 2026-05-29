@@ -71,7 +71,7 @@ export const BASE_DOMAIN = getBaseUrl();
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     sharedSailing: {
-      title: "Salidas en Barco Compartido Costa Brava | Conoce Gente",
+      title: "Barco Compartido Costa Brava · Social Boat | Conoce Gente",
       description: "Navega y conoce gente nueva desde Blanes. Comparte un barco sin licencia, reparte el coste y disfruta de 4 horas de calas. Apúntate a la lista de interés.",
       keywords: "barco compartido costa brava, conocer gente barco blanes, salidas compartidas barco, plan social barco costa brava, navegar conocer gente",
     },
@@ -310,7 +310,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   en: {
     sharedSailing: {
-      title: "Shared Boat Trips on the Costa Brava | Meet New People",
+      title: "Shared Boat Trips Costa Brava · Social Boat | Meet People",
       description: "Sail from Blanes and meet new people. Share a licence-free boat, split the cost and enjoy 4 hours of coves. Join the interest list.",
       keywords: "shared boat trips costa brava, meet people boat blanes, social sailing, boat sharing costa brava, solo travellers boat",
     },
@@ -528,7 +528,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   ca: {
     sharedSailing: {
-      title: "Sortides en Vaixell Compartit Costa Brava | Coneix Gent",
+      title: "Vaixell Compartit Costa Brava · Social Boat | Coneix Gent",
       description: "Navega i coneix gent nova des de Blanes. Comparteix un vaixell sense llicència, reparteix el cost i gaudeix de 4 hores de cales. Apunta't a la llista.",
       keywords: "vaixell compartit costa brava, conèixer gent vaixell blanes, sortides compartides, navegar conèixer gent",
     },
@@ -685,7 +685,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   fr: {
     sharedSailing: {
-      title: "Sorties en Bateau Partagé Costa Brava | Rencontres",
+      title: "Bateau Partagé Costa Brava · Social Boat | Rencontres",
       description: "Naviguez depuis Blanes et rencontrez de nouvelles personnes. Partagez un bateau sans permis, divisez le coût et profitez des criques. Inscrivez-vous.",
       keywords: "bateau partagé costa brava, rencontrer des gens bateau blanes, sorties partagées, navigation sociale costa brava",
     },
@@ -841,7 +841,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   de: {
     sharedSailing: {
-      title: "Geteilte Bootsfahrten Costa Brava | Leute kennenlernen",
+      title: "Geteilte Bootsfahrten Costa Brava · Social Boat",
       description: "Fahren Sie ab Blanes und lernen Sie neue Leute kennen. Teilen Sie ein führerscheinfreies Boot, teilen Sie die Kosten und genießen Sie die Buchten.",
       keywords: "geteilte bootsfahrt costa brava, leute kennenlernen boot blanes, boot teilen, soziales segeln costa brava",
     },
@@ -994,7 +994,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   nl: {
     sharedSailing: {
-      title: "Gedeelde Boottochten Costa Brava | Mensen Ontmoeten",
+      title: "Gedeelde Boottochten Costa Brava · Social Boat | Ontmoeten",
       description: "Vaar vanuit Blanes en ontmoet nieuwe mensen. Deel een boot zonder vaarbewijs, deel de kosten en geniet van de baaien. Schrijf je in op de lijst.",
       keywords: "gedeelde boottocht costa brava, mensen ontmoeten boot blanes, boot delen, sociaal varen costa brava",
     },
@@ -1150,7 +1150,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   it: {
     sharedSailing: {
-      title: "Gite in Barca Condivisa Costa Brava | Conosci Gente",
+      title: "Barca Condivisa Costa Brava · Social Boat | Conosci Gente",
       description: "Naviga da Blanes e conosci gente nuova. Condividi una barca senza patente, dividi il costo e goditi 4 ore tra le cale. Iscriviti alla lista.",
       keywords: "barca condivisa costa brava, conoscere gente barca blanes, gite condivise, navigare conoscere gente",
     },
@@ -1303,7 +1303,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   ru: {
     sharedSailing: {
-      title: "Совместные прогулки на лодке Коста-Брава | Знакомства",
+      title: "Лодка компанией Коста-Брава · Social Boat | Знакомства",
       description: "Отправляйтесь из Бланеса и знакомьтесь с новыми людьми. Разделите лодку без лицензии и расходы, наслаждайтесь бухтами. Запишитесь в список.",
       keywords: "совместная аренда лодки коста брава, знакомства лодка бланес, совместные прогулки, социальный отдых на лодке",
     },

@@ -4374,9 +4374,9 @@ export const es: Translations = {
     },
   },
   sharedSailing: {
-    navLabel: "Salidas compartidas",
+    navLabel: "Social Boat",
     hero: {
-      badge: "Nuevo · Plan social",
+      badge: "Social Boat · Nuevo",
       title: "Comparte barco. Conoce gente. Vive la Costa Brava.",
       subtitle:
         "Súbete a una salida compartida desde Blanes y pasa media jornada de calas con gente nueva.",

@@ -3975,9 +3975,9 @@ export const de: Translations = {
     },
   },
   sharedSailing: {
-    navLabel: "Geteilte Bootsfahrten",
+    navLabel: "Social Boat",
     hero: {
-      badge: "Neu · Social-Plan",
+      badge: "Social Boat · Neu",
       title: "Boot teilen. Leute kennenlernen. Costa Brava erleben.",
       subtitle:
         "Steigen Sie bei einer geteilten Fahrt ab Blanes ein und verbringen Sie einen halben Tag in den Buchten mit neuen Leuten.",

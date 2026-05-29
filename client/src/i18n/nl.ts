@@ -3952,9 +3952,9 @@ export const nl: Translations = {
     },
   },
   sharedSailing: {
-    navLabel: "Gedeelde boottochten",
+    navLabel: "Social Boat",
     hero: {
-      badge: "Nieuw · Sociaal plan",
+      badge: "Social Boat · Nieuw",
       title: "Deel een boot. Ontmoet mensen. Beleef de Costa Brava.",
       subtitle:
         "Stap aan boord van een gedeelde tocht vanuit Blanes en breng een halve dag door in de baaien met nieuwe mensen.",

@@ -4002,9 +4002,9 @@ export const en: Translations = {
     },
   },
   sharedSailing: {
-    navLabel: "Shared boat trips",
+    navLabel: "Social Boat",
     hero: {
-      badge: "New · Social plan",
+      badge: "Social Boat · New",
       title: "Share a boat. Meet people. Live the Costa Brava.",
       subtitle:
         "Hop on a shared trip from Blanes and spend half a day exploring coves with new people.",

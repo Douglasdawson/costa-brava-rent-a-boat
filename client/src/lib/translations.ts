@@ -2695,6 +2695,8 @@ export interface Translations {
       cta: string;
     };
     chips: string[];
+    faqTitle: string;
+    faq: { q: string; a: string }[];
     form: {
       title: string;
       subtitle: string;
@@ -2703,6 +2705,17 @@ export interface Translations {
       phone: string;
       email: string;
       emailHint: string;
+      people: string;
+      when: string;
+      whenFlexible: string;
+      whenOptions: string[];
+      pilot: string;
+      pilotHint: string;
+      pilotYes: string;
+      pilotMaybe: string;
+      pilotNo: string;
+      message: string;
+      messagePlaceholder: string;
       submit: string;
       submitting: string;
       reassurance: string;

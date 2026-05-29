@@ -13,6 +13,7 @@
 - [Tarifs](https://www.costabravarentaboat.com/fr/precios): grille tarifaire par saison (Basse Avr-Juin/Sep-Oct, Moyenne Juil, Haute Août), extras et packs
 - [FAQ](https://www.costabravarentaboat.com/fr/faq): plus de 90 questions concrètes sur la réservation, le permis, la navigation, la sécurité et la saison
 - [Itinéraires et destinations](https://www.costabravarentaboat.com/fr/rutas): 5 itinéraires maritimes au départ de Blanes avec distance, durée et difficulté
+- [Social Boat / sorties partagées](https://www.costabravarentaboat.com/fr/sorties-bateau-partagees): rencontrez du monde, partagez un bateau sans permis, sorties sociales d'une demi-journée (4h, 10€/personne/heure), liste d'intérêt
 - [Blog](https://www.costabravarentaboat.com/fr/blog): guides du littoral, recommandations d'itinéraires, articles de sécurité
 - [Glossaire nautique](https://www.costabravarentaboat.com/fr/glosario): 18 termes essentiels (LNB, PER, nœud, ancre, crique)
 - [Galerie](https://www.costabravarentaboat.com/fr/galeria): bateaux, clients, photos de la côte

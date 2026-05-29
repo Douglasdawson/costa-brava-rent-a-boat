@@ -9,7 +9,12 @@ import {
   getSEOConfig,
   generateHreflangLinks,
   generateCanonicalUrl,
+  BASE_DOMAIN,
 } from "@/utils/seo-config";
+import {
+  generateBreadcrumbSchema,
+  generateFAQSchema,
+} from "@/utils/seo-schemas";
 import {
   PHONE_PREFIXES,
   getDefaultPhonePrefixForLanguage,
@@ -33,6 +38,35 @@ export default function SharedSailingPage() {
   const hreflangLinks = generateHreflangLinks("sharedSailing");
   const canonical = generateCanonicalUrl("sharedSailing", language);
 
+  // GEO / AI-search structured data: breadcrumb + service + FAQ (one array node).
+  const jsonLd = [
+    generateBreadcrumbSchema([
+      { name: t.nav.home, url: generateCanonicalUrl("home", language) },
+      { name: s.navLabel, url: canonical },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Social Boat",
+      serviceType: s.navLabel,
+      description: s.hero.subtitle,
+      url: canonical,
+      provider: {
+        "@type": "LocalBusiness",
+        name: "Costa Brava Rent a Boat - Blanes",
+        "@id": `${BASE_DOMAIN}/#business`,
+      },
+      areaServed: { "@type": "Place", name: "Blanes, Costa Brava" },
+      offers: {
+        "@type": "Offer",
+        price: "40",
+        priceCurrency: "EUR",
+        description: `${s.hero.priceHook} · ${s.hero.priceNote}`,
+      },
+    },
+    generateFAQSchema(s.faq.map((f) => ({ question: f.q, answer: f.a }))),
+  ];
+
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -42,8 +76,18 @@ export default function SharedSailingPage() {
   );
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [people, setPeople] = useState(1);
+  const [when, setWhen] = useState(s.form.whenFlexible);
+  const [pilot, setPilot] = useState<"yes" | "maybe" | "no">("maybe");
+  const [message, setMessage] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<SubmitStatus>("idle");
+
+  const pilotLabel: Record<typeof pilot, string> = {
+    yes: s.form.pilotYes,
+    maybe: s.form.pilotMaybe,
+    no: s.form.pilotNo,
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,9 +111,9 @@ export default function SharedSailingPage() {
         body: JSON.stringify({
           boatId: "salida-compartida",
           boatName: "Salida compartida (lista de interés)",
-          bookingDate: "Flexible",
+          bookingDate: when || "Flexible",
           duration: "flexible",
-          numberOfPeople: 1,
+          numberOfPeople: people,
           firstName,
           lastName,
           phonePrefix,
@@ -78,7 +122,9 @@ export default function SharedSailingPage() {
           source: "salida-compartida",
           language,
           website, // honeypot — empty for real users
-          notes: "[SALIDA COMPARTIDA – lista de interés]",
+          notes: `[SALIDA COMPARTIDA – lista de interés] Pilota: ${pilotLabel[pilot]}.${
+            message.trim() ? ` Nota: ${message.trim()}` : ""
+          }`,
         }),
       });
       if (!res.ok) throw new Error("submit failed");
@@ -99,6 +145,7 @@ export default function SharedSailingPage() {
         keywords={seoConfig.keywords}
         canonical={canonical}
         hreflang={hreflangLinks}
+        jsonLd={jsonLd}
       />
       <Navigation />
 
@@ -271,6 +318,87 @@ export default function SharedSailingPage() {
                   />
                 </div>
 
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="ss-people"
+                      className="mb-1 block text-sm font-medium text-muted-foreground"
+                    >
+                      {s.form.people}
+                    </label>
+                    <select
+                      id="ss-people"
+                      className={inputClass}
+                      value={people}
+                      onChange={(e) => setPeople(Number(e.target.value))}
+                    >
+                      {[1, 2, 3, 4, 5].map((n) => (
+                        <option key={n} value={n}>
+                          {n}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="ss-when"
+                      className="mb-1 block text-sm font-medium text-muted-foreground"
+                    >
+                      {s.form.when}
+                    </label>
+                    <select
+                      id="ss-when"
+                      className={inputClass}
+                      value={when}
+                      onChange={(e) => setWhen(e.target.value)}
+                    >
+                      {s.form.whenOptions.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="ss-pilot"
+                    className="mb-1 block text-sm font-medium text-muted-foreground"
+                  >
+                    {s.form.pilot}
+                  </label>
+                  <select
+                    id="ss-pilot"
+                    className={inputClass}
+                    value={pilot}
+                    onChange={(e) => setPilot(e.target.value as typeof pilot)}
+                  >
+                    <option value="yes">{s.form.pilotYes}</option>
+                    <option value="maybe">{s.form.pilotMaybe}</option>
+                    <option value="no">{s.form.pilotNo}</option>
+                  </select>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {s.form.pilotHint}
+                  </p>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="ss-message"
+                    className="mb-1 block text-sm font-medium text-muted-foreground"
+                  >
+                    {s.form.message}
+                  </label>
+                  <textarea
+                    id="ss-message"
+                    className={`${inputClass} min-h-[88px]`}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder={s.form.messagePlaceholder}
+                  />
+                </div>
+
                 {status === "error" && (
                   <p role="alert" className="text-sm text-destructive">
                     {name.trim() && phoneNumber.trim()
@@ -294,6 +422,25 @@ export default function SharedSailingPage() {
               </form>
             </>
           )}
+        </div>
+      </section>
+
+      {/* ═══ FAQ (contenido citable para buscadores de IA) ═══ */}
+      <section className="px-4 py-16 sm:px-6 lg:py-20">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            {s.faqTitle}
+          </h2>
+          <dl className="mt-8 divide-y divide-border">
+            {s.faq.map((f) => (
+              <div key={f.q} className="py-5 first:pt-0 last:pb-0">
+                <dt className="font-heading font-semibold text-foreground">
+                  {f.q}
+                </dt>
+                <dd className="mt-1.5 text-muted-foreground">{f.a}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 

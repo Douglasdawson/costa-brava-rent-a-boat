@@ -3977,7 +3977,7 @@ export const de: Translations = {
   sharedSailing: {
     navLabel: "Social Boat",
     hero: {
-      badge: "Social Boat · Neu",
+      badge: "Social Boat · Neues Konzept!",
       title: "Boot teilen. Leute kennenlernen. Costa Brava erleben.",
       subtitle:
         "Steigen Sie bei einer geteilten Fahrt ab Blanes ein und verbringen Sie einen halben Tag in den Buchten mit neuen Leuten.",
@@ -3988,10 +3988,29 @@ export const de: Translations = {
       cta: "Kostenlos anmelden",
     },
     chips: [
-      "Ohne Führerschein",
+      "Fahren ganz ohne Führerschein",
       "Einer aus der Gruppe steuert",
       "Ab dem Hafen von Blanes",
       "April–Oktober",
+    ],
+    faqTitle: "Häufige Fragen",
+    faq: [
+      {
+        q: "Brauche ich einen Führerschein?",
+        a: "Nein. Es sind führerscheinfreie Boote (unter 5 m und 15 PS) und einer aus der Gruppe steuert, bei Tag und bis zu 2 Seemeilen von der Küste. Keine Vorerfahrung nötig.",
+      },
+      {
+        q: "Was kostet es?",
+        a: "10€ pro Person und Stunde. Ein halber Tag mit 4 Stunden kommt auf 40€ pro Person bei geteiltem Boot. Die Zahlung wird separat abgewickelt, ohne Online-Zahlung.",
+      },
+      {
+        q: "Bin ich mit Leuten zusammen, die ich nicht kenne?",
+        a: "Ja, genau das ist der Sinn: Wir bringen mehrere Personen oder kleine Gruppen auf demselben Boot zusammen, um neue Leute kennenzulernen. Kleine Gruppen von 4 bis 5.",
+      },
+      {
+        q: "Wann und von wo starten wir?",
+        a: "Ab dem Hafen von Blanes, April bis Oktober (09:00–20:00). Wir bereiten die ersten Fahrten vor: Tragen Sie sich ein und wir melden uns.",
+      },
     ],
     form: {
       title: "Sichern Sie sich Ihren Platz auf der Liste",
@@ -4001,6 +4020,17 @@ export const de: Translations = {
       phone: "Telefon / WhatsApp",
       email: "E-Mail",
       emailHint: "Optional",
+      people: "Wie viele sind Sie?",
+      when: "Wann möchten Sie fahren?",
+      whenFlexible: "Flexibel / egal wann",
+      whenOptions: ["Flexibel / egal wann", "Juni", "Juli", "August", "September"],
+      pilot: "Würden Sie selbst steuern?",
+      pilotHint: "Für diese Boote ist kein Führerschein nötig. Es hilft uns, die Gruppe zu organisieren.",
+      pilotYes: "Ja, kein Problem",
+      pilotMaybe: "Vielleicht",
+      pilotNo: "Lieber soll jemand anderes steuern",
+      message: "Möchten Sie uns noch etwas sagen?",
+      messagePlaceholder: "Sagen Sie uns, was Sie suchen (optional)",
       submit: "Kostenlos anmelden",
       submitting: "Wird gesendet...",
       reassurance: "Unverbindlich · begrenzte Plätze",

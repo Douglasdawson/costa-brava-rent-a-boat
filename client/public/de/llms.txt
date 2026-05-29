@@ -13,6 +13,7 @@
 - [Preise](https://www.costabravarentaboat.com/de/precios): Tarife nach Saison (Nebensaison Apr-Jun/Sep-Okt, Mittelsaison Jul, Hauptsaison Aug), Extras und Pakete
 - [FAQ](https://www.costabravarentaboat.com/de/faq): über 90 echte Fragen zu Buchung, Bootsführerschein, Navigation, Sicherheit und Saison
 - [Routen und Ziele](https://www.costabravarentaboat.com/de/rutas): 5 maritime Routen ab Blanes mit Entfernung, Fahrzeit und Schwierigkeitsgrad
+- [Social Boat / geteilte Bootsfahrten](https://www.costabravarentaboat.com/de/geteilte-bootsfahrten): Leute kennenlernen, führerscheinfreies Boot teilen, soziale Halbtagesfahrten (4h, 10€/Person/Stunde), Interessentenliste
 - [Blog](https://www.costabravarentaboat.com/de/blog): Küstenführer, Routenempfehlungen, Sicherheitsartikel
 - [Nautisches Glossar](https://www.costabravarentaboat.com/de/glosario): 18 wesentliche Begriffe (LNB, PER, Knoten, Anker, Bucht)
 - [Galerie](https://www.costabravarentaboat.com/de/galeria): Boote, Kunden, Küstenfotos

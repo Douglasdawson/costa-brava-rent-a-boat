@@ -55,6 +55,10 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   "/alquiler-barcos-tordera": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-palafolls": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-pineda-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Social Boat (salidas compartidas) — validation landing, ES-only launch.
+  // i18n exists in all 8 locales but only ES is prerendered/indexed for now;
+  // open more locales once the concept is validated and copy is reviewed.
+  "/salidas-compartidas": ["es"],
 };
 
 /**

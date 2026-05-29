@@ -13,6 +13,7 @@
 - [Pricing](https://www.costabravarentaboat.com/precios): rate card by season (Low Apr-Jun/Sep-Oct, Mid Jul, High Aug), extras and packs
 - [FAQ](https://www.costabravarentaboat.com/faq): 90+ verified questions across booking, license, navigation, safety, season
 - [Routes & destinations](https://www.costabravarentaboat.com/rutas): 5 maritime itineraries from Blanes with distance, time, difficulty
+- [Social Boat / shared boat trips](https://www.costabravarentaboat.com/en/shared-boat-trips): meet travelers, share a licence-free boat, half-day social outings (4h, €10/person/hour), interest-list signup
 - [Blog](https://www.costabravarentaboat.com/blog): coastal guides, route recommendations, safety articles
 - [Nautical glossary](https://www.costabravarentaboat.com/glosario): 18 essential terms (LNB, PER, knot, anchor, cove)
 - [Gallery](https://www.costabravarentaboat.com/galeria): boats, customers, coastline photos

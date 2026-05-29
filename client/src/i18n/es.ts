@@ -4376,7 +4376,7 @@ export const es: Translations = {
   sharedSailing: {
     navLabel: "Social Boat",
     hero: {
-      badge: "Social Boat · Nuevo",
+      badge: "Social Boat · ¡Nuevo Concepto!",
       title: "Comparte barco. Conoce gente. Vive la Costa Brava.",
       subtitle:
         "Súbete a una salida compartida desde Blanes y pasa media jornada de calas con gente nueva.",
@@ -4387,10 +4387,29 @@ export const es: Translations = {
       cta: "Apúntate gratis",
     },
     chips: [
-      "Sin licencia",
+      "Navega Sin Necesidad de Tener Licencia",
       "Uno del grupo pilota",
       "Desde el Puerto de Blanes",
       "Abril–Octubre",
+    ],
+    faqTitle: "Preguntas frecuentes",
+    faq: [
+      {
+        q: "¿Necesito licencia?",
+        a: "No. Son barcos sin licencia (menos de 5 m y 15 cv) y uno del grupo pilota, de día y hasta 2 millas náuticas de la costa. No hace falta experiencia previa.",
+      },
+      {
+        q: "¿Cuánto cuesta?",
+        a: "10€ por persona y hora. Una media jornada de 4 horas sale a 40€ por persona compartiendo el barco. El pago se gestiona aparte, sin pagos online.",
+      },
+      {
+        q: "¿Voy con gente que no conozco?",
+        a: "Sí, esa es la idea: juntamos a varias personas o grupos pequeños en el mismo barco para conocer gente nueva. Grupos reducidos de 4 a 5 personas.",
+      },
+      {
+        q: "¿Cuándo y desde dónde salimos?",
+        a: "Desde el Puerto de Blanes, de abril a octubre (09:00–20:00). Estamos preparando las primeras salidas: apúntate y te avisamos.",
+      },
     ],
     form: {
       title: "Reserva tu plaza en la lista",
@@ -4400,6 +4419,17 @@ export const es: Translations = {
       phone: "Teléfono / WhatsApp",
       email: "Email",
       emailHint: "Opcional",
+      people: "¿Cuántos sois?",
+      when: "¿Cuándo te gustaría?",
+      whenFlexible: "Flexible / cuando sea",
+      whenOptions: ["Flexible / cuando sea", "Junio", "Julio", "Agosto", "Septiembre"],
+      pilot: "¿Te animarías a pilotar?",
+      pilotHint: "Con estos barcos no se necesita licencia. Nos ayuda a organizar el grupo.",
+      pilotYes: "Sí, sin problema",
+      pilotMaybe: "Quizás",
+      pilotNo: "Prefiero que pilote otro",
+      message: "¿Algo más que quieras contarnos?",
+      messagePlaceholder: "Cuéntanos qué buscas (opcional)",
       submit: "Apúntate gratis",
       submitting: "Enviando...",
       reassurance: "Sin compromiso · plazas limitadas",

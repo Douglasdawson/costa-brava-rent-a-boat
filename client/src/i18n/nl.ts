@@ -3954,7 +3954,7 @@ export const nl: Translations = {
   sharedSailing: {
     navLabel: "Social Boat",
     hero: {
-      badge: "Social Boat · Nieuw",
+      badge: "Social Boat · Nieuw concept!",
       title: "Deel een boot. Ontmoet mensen. Beleef de Costa Brava.",
       subtitle:
         "Stap aan boord van een gedeelde tocht vanuit Blanes en breng een halve dag door in de baaien met nieuwe mensen.",
@@ -3965,10 +3965,29 @@ export const nl: Translations = {
       cta: "Gratis aanmelden",
     },
     chips: [
-      "Zonder vaarbewijs",
+      "Varen zonder vaarbewijs nodig",
       "Eén van de groep vaart",
       "Vanuit de haven van Blanes",
       "April–Oktober",
+    ],
+    faqTitle: "Veelgestelde vragen",
+    faq: [
+      {
+        q: "Heb ik een vaarbewijs nodig?",
+        a: "Nee. Dit zijn boten zonder vaarbewijs (minder dan 5 m en 15 pk) en één van de groep vaart, overdag en tot 2 zeemijl van de kust. Geen ervaring nodig.",
+      },
+      {
+        q: "Wat kost het?",
+        a: "€10 per persoon per uur. Een halve dag van 4 uur komt op €40 per persoon bij het delen van de boot. Betaling wordt apart geregeld, zonder online betalingen.",
+      },
+      {
+        q: "Ben ik met mensen die ik niet ken?",
+        a: "Ja, dat is juist de bedoeling: we brengen meerdere mensen of kleine groepen samen op dezelfde boot om nieuwe mensen te ontmoeten. Kleine groepen van 4 tot 5.",
+      },
+      {
+        q: "Wanneer en vanwaar vertrekken we?",
+        a: "Vanuit de haven van Blanes, april tot oktober (09:00–20:00). We bereiden de eerste tochten voor: schrijf je in en we laten het weten.",
+      },
     ],
     form: {
       title: "Reserveer je plek op de lijst",
@@ -3978,6 +3997,17 @@ export const nl: Translations = {
       phone: "Telefoon / WhatsApp",
       email: "E-mail",
       emailHint: "Optioneel",
+      people: "Met hoeveel zijn jullie?",
+      when: "Wanneer zou je willen gaan?",
+      whenFlexible: "Flexibel / wanneer dan ook",
+      whenOptions: ["Flexibel / wanneer dan ook", "Juni", "Juli", "Augustus", "September"],
+      pilot: "Zou je zelf willen varen?",
+      pilotHint: "Voor deze boten is geen vaarbewijs nodig. Het helpt ons de groep te organiseren.",
+      pilotYes: "Ja, geen probleem",
+      pilotMaybe: "Misschien",
+      pilotNo: "Liever dat iemand anders vaart",
+      message: "Wil je ons nog iets vertellen?",
+      messagePlaceholder: "Vertel ons wat je zoekt (optioneel)",
       submit: "Gratis aanmelden",
       submitting: "Verzenden...",
       reassurance: "Vrijblijvend · beperkte plaatsen",

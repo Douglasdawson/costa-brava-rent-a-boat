@@ -22,6 +22,7 @@
     { "path": "/blog", "langs": ["es"] },
     { "path": "/testimonios", "langs": ["es", "en"] },
     { "path": "/rutas-maritimas", "langs": ["es", "en"] },
+    { "path": "/salidas-compartidas", "langs": ["es"] },
     { "path": "/gift-cards", "langs": ["es", "en"] }
   ],
   "dynamicRoutes": {

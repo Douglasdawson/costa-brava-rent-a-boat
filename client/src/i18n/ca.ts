@@ -3951,7 +3951,7 @@ export const ca: Translations = {
   sharedSailing: {
     navLabel: "Social Boat",
     hero: {
-      badge: "Social Boat · Nou",
+      badge: "Social Boat · Nou Concepte!",
       title: "Comparteix vaixell. Coneix gent. Viu la Costa Brava.",
       subtitle:
         "Apunta't a una sortida compartida des de Blanes i passa mitja jornada de cales amb gent nova.",
@@ -3962,10 +3962,29 @@ export const ca: Translations = {
       cta: "Apunta't gratis",
     },
     chips: [
-      "Sense llicència",
+      "Navega Sense Necessitat de Llicència",
       "Un del grup pilota",
       "Des del Port de Blanes",
       "Abril–Octubre",
+    ],
+    faqTitle: "Preguntes freqüents",
+    faq: [
+      {
+        q: "Necessito llicència?",
+        a: "No. Són vaixells sense llicència (menys de 5 m i 15 cv) i un del grup pilota, de dia i fins a 2 milles nàutiques de la costa. No cal experiència prèvia.",
+      },
+      {
+        q: "Quant costa?",
+        a: "10€ per persona i hora. Una mitja jornada de 4 hores surt a 40€ per persona compartint el vaixell. El pagament es gestiona a part, sense pagaments en línia.",
+      },
+      {
+        q: "Aniré amb gent que no conec?",
+        a: "Sí, aquesta és la idea: ajuntem diverses persones o grups petits al mateix vaixell per conèixer gent nova. Grups reduïts de 4 a 5 persones.",
+      },
+      {
+        q: "Quan i des d'on sortim?",
+        a: "Des del Port de Blanes, d'abril a octubre (09:00–20:00). Estem preparant les primeres sortides: apunta't i t'avisem.",
+      },
     ],
     form: {
       title: "Reserva la teva plaça a la llista",
@@ -3975,6 +3994,17 @@ export const ca: Translations = {
       phone: "Telèfon / WhatsApp",
       email: "Correu electrònic",
       emailHint: "Opcional",
+      people: "Quants sou?",
+      when: "Quan t'agradaria?",
+      whenFlexible: "Flexible / quan sigui",
+      whenOptions: ["Flexible / quan sigui", "Juny", "Juliol", "Agost", "Setembre"],
+      pilot: "T'animaries a pilotar?",
+      pilotHint: "Amb aquests vaixells no es necessita llicència. Ens ajuda a organitzar el grup.",
+      pilotYes: "Sí, sense problema",
+      pilotMaybe: "Potser",
+      pilotNo: "Prefereixo que piloti un altre",
+      message: "Alguna cosa més que ens vulguis explicar?",
+      messagePlaceholder: "Explica'ns què busques (opcional)",
       submit: "Apunta't gratis",
       submitting: "Enviant...",
       reassurance: "Sense compromís · places limitades",

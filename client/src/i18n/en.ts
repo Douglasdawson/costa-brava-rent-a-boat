@@ -4004,7 +4004,7 @@ export const en: Translations = {
   sharedSailing: {
     navLabel: "Social Boat",
     hero: {
-      badge: "Social Boat · New",
+      badge: "Social Boat · New Concept!",
       title: "Share a boat. Meet people. Live the Costa Brava.",
       subtitle:
         "Hop on a shared trip from Blanes and spend half a day exploring coves with new people.",
@@ -4015,10 +4015,29 @@ export const en: Translations = {
       cta: "Join for free",
     },
     chips: [
-      "No licence",
+      "Sail Without Needing a Licence",
       "One of the group steers",
       "From the Port of Blanes",
       "April–October",
+    ],
+    faqTitle: "Frequently asked questions",
+    faq: [
+      {
+        q: "Do I need a licence?",
+        a: "No. These are licence-free boats (under 5 m and 15 hp) and one of the group steers, in daytime and up to 2 nautical miles from the coast. No previous experience needed.",
+      },
+      {
+        q: "How much does it cost?",
+        a: "€10 per person per hour. A half day of 4 hours works out at €40 per person sharing the boat. Payment is handled separately, with no online payments.",
+      },
+      {
+        q: "Will I be with people I don't know?",
+        a: "Yes, that's the point: we bring together several people or small groups on the same boat to meet new people. Small groups of 4 to 5.",
+      },
+      {
+        q: "When and where do we set off?",
+        a: "From the Port of Blanes, April to October (09:00–20:00). We're preparing the first trips: join the list and we'll let you know.",
+      },
     ],
     form: {
       title: "Save your spot on the list",
@@ -4028,6 +4047,17 @@ export const en: Translations = {
       phone: "Phone / WhatsApp",
       email: "Email",
       emailHint: "Optional",
+      people: "How many are you?",
+      when: "When would you like to go?",
+      whenFlexible: "Flexible / whenever",
+      whenOptions: ["Flexible / whenever", "June", "July", "August", "September"],
+      pilot: "Would you be up for steering?",
+      pilotHint: "No licence is needed with these boats. It helps us organise the group.",
+      pilotYes: "Yes, no problem",
+      pilotMaybe: "Maybe",
+      pilotNo: "I'd rather someone else steers",
+      message: "Anything else you'd like to tell us?",
+      messagePlaceholder: "Tell us what you're looking for (optional)",
       submit: "Join for free",
       submitting: "Sending...",
       reassurance: "No commitment · limited spots",

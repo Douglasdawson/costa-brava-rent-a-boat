@@ -123,6 +123,7 @@ export async function notifyCriticalPagesOnDeploy(): Promise<void> {
     "/precios", "/faq",
     "/excursion-snorkel-barco-blanes", "/barco-familias-costa-brava",
     "/sunset-boat-trip-blanes", "/pesca-barco-blanes",
+    "/salidas-compartidas",
   ];
   logger.info("[SEO:IndexNow] Notifying critical pages on deploy", { count: criticalPages.length });
   await notifyIndexNow(criticalPages);

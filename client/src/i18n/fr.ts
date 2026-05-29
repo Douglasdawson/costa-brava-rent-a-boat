@@ -3966,7 +3966,7 @@ export const fr: Translations = {
   sharedSailing: {
     navLabel: "Social Boat",
     hero: {
-      badge: "Social Boat · Nouveau",
+      badge: "Social Boat · Nouveau concept !",
       title: "Partagez un bateau. Rencontrez du monde. Vivez la Costa Brava.",
       subtitle:
         "Embarquez pour une sortie partagée depuis Blanes et passez une demi-journée dans les criques avec de nouvelles personnes.",
@@ -3977,10 +3977,29 @@ export const fr: Translations = {
       cta: "Inscription gratuite",
     },
     chips: [
-      "Sans permis",
+      "Naviguez Sans Avoir de Permis",
       "L'un du groupe pilote",
       "Depuis le Port de Blanes",
       "Avril–Octobre",
+    ],
+    faqTitle: "Questions fréquentes",
+    faq: [
+      {
+        q: "Ai-je besoin d'un permis ?",
+        a: "Non. Ce sont des bateaux sans permis (moins de 5 m et 15 cv) et l'un du groupe pilote, de jour et jusqu'à 2 milles nautiques de la côte. Aucune expérience requise.",
+      },
+      {
+        q: "Combien ça coûte ?",
+        a: "10€ par personne et par heure. Une demi-journée de 4 heures revient à 40€ par personne en partageant le bateau. Le paiement se gère à part, sans paiement en ligne.",
+      },
+      {
+        q: "Serai-je avec des gens que je ne connais pas ?",
+        a: "Oui, c'est le but : nous réunissons plusieurs personnes ou petits groupes sur le même bateau pour rencontrer du monde. Petits groupes de 4 à 5 personnes.",
+      },
+      {
+        q: "Quand et d'où partons-nous ?",
+        a: "Depuis le Port de Blanes, d'avril à octobre (09h00–20h00). Nous préparons les premières sorties : inscrivez-vous et nous vous préviendrons.",
+      },
     ],
     form: {
       title: "Réservez votre place sur la liste",
@@ -3990,6 +4009,17 @@ export const fr: Translations = {
       phone: "Téléphone / WhatsApp",
       email: "E-mail",
       emailHint: "Facultatif",
+      people: "Combien êtes-vous ?",
+      when: "Quand aimeriez-vous partir ?",
+      whenFlexible: "Flexible / quand vous voulez",
+      whenOptions: ["Flexible / quand vous voulez", "Juin", "Juillet", "Août", "Septembre"],
+      pilot: "Seriez-vous prêt à piloter ?",
+      pilotHint: "Aucun permis n'est nécessaire avec ces bateaux. Cela nous aide à organiser le groupe.",
+      pilotYes: "Oui, sans problème",
+      pilotMaybe: "Peut-être",
+      pilotNo: "Je préfère que quelqu'un d'autre pilote",
+      message: "Autre chose à nous dire ?",
+      messagePlaceholder: "Dites-nous ce que vous recherchez (facultatif)",
       submit: "Inscription gratuite",
       submitting: "Envoi...",
       reassurance: "Sans engagement · places limitées",

@@ -3950,7 +3950,7 @@ export const it: Translations = {
   sharedSailing: {
     navLabel: "Social Boat",
     hero: {
-      badge: "Social Boat · Nuovo",
+      badge: "Social Boat · Nuovo concetto!",
       title: "Condividi una barca. Conosci gente. Vivi la Costa Brava.",
       subtitle:
         "Sali a bordo di un'uscita condivisa da Blanes e passa mezza giornata tra le cale con gente nuova.",
@@ -3961,10 +3961,29 @@ export const it: Translations = {
       cta: "Iscriviti gratis",
     },
     chips: [
-      "Senza patente",
+      "Naviga Senza Bisogno di Patente",
       "Uno del gruppo guida",
       "Dal Porto di Blanes",
       "Aprile–Ottobre",
+    ],
+    faqTitle: "Domande frequenti",
+    faq: [
+      {
+        q: "Serve la patente?",
+        a: "No. Sono barche senza patente (meno di 5 m e 15 cv) e uno del gruppo guida, di giorno e fino a 2 miglia nautiche dalla costa. Non serve esperienza.",
+      },
+      {
+        q: "Quanto costa?",
+        a: "10€ a persona all'ora. Una mezza giornata di 4 ore viene 40€ a persona condividendo la barca. Il pagamento si gestisce a parte, senza pagamenti online.",
+      },
+      {
+        q: "Sarò con persone che non conosco?",
+        a: "Sì, è proprio questo il bello: mettiamo insieme più persone o piccoli gruppi sulla stessa barca per conoscere gente nuova. Gruppi ridotti da 4 a 5 persone.",
+      },
+      {
+        q: "Quando e da dove si parte?",
+        a: "Dal Porto di Blanes, da aprile a ottobre (09:00–20:00). Stiamo preparando le prime uscite: iscriviti e ti avviseremo.",
+      },
     ],
     form: {
       title: "Prenota il tuo posto nella lista",
@@ -3974,6 +3993,17 @@ export const it: Translations = {
       phone: "Telefono / WhatsApp",
       email: "Email",
       emailHint: "Facoltativo",
+      people: "In quanti siete?",
+      when: "Quando ti piacerebbe?",
+      whenFlexible: "Flessibile / quando capita",
+      whenOptions: ["Flessibile / quando capita", "Giugno", "Luglio", "Agosto", "Settembre"],
+      pilot: "Ti andrebbe di guidare tu?",
+      pilotHint: "Con queste barche non serve la patente. Ci aiuta a organizzare il gruppo.",
+      pilotYes: "Sì, nessun problema",
+      pilotMaybe: "Forse",
+      pilotNo: "Preferisco che guidi un altro",
+      message: "Vuoi dirci altro?",
+      messagePlaceholder: "Raccontaci cosa cerchi (facoltativo)",
       submit: "Iscriviti gratis",
       submitting: "Invio...",
       reassurance: "Senza impegno · posti limitati",

@@ -114,7 +114,6 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     handleValidateCode,
     handleRemoveCode,
     getCodeDiscount,
-    autoDiscount,
     nextSaturdayISO,
     language,
     restoredFromStorage,
@@ -150,7 +149,6 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const maxCapacity = getMaxCapacity();
   const price = getBookingPrice();
   const discount = getCodeDiscount();
-  const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;
   const boatExtraNames = new Set(boatExtras.map(e => e.name));
   const availablePacks = EXTRA_PACKS.filter(pack =>
     pack.extras.every(name => boatExtraNames.has(name))
@@ -367,7 +365,6 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 price={price}
                 totalExtrasPrice={totalExtrasPrice}
                 discount={discount}
-                autoDiscount={autoDiscount}
                 selectedBoatInfo={selectedBoatInfo}
                 selectedDate={selectedDate}
                 selectedDuration={selectedDuration}
@@ -409,12 +406,6 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               discountLabel={
                 validatedCode?.percentage
                   ? `${validatedCode.code} (${validatedCode.percentage}%)`
-                  : undefined
-              }
-              autoDiscountAmount={props.autoDiscount?.type ? props.autoDiscount.amount : 0}
-              autoDiscountLabel={
-                props.autoDiscount?.type === "flash-deal"
-                  ? t.booking.flashDealDiscount
                   : undefined
               }
               t={t}
@@ -1248,11 +1239,6 @@ interface Step5Props {
   price: number | null;
   totalExtrasPrice: number;
   discount: number;
-  autoDiscount: {
-    type: "flash-deal" | null;
-    percentage: number;
-    amount: number;
-  } | null;
   selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
   selectedDate: string;
   selectedDuration: string;
@@ -1307,7 +1293,6 @@ function Step5Contact({
   price,
   totalExtrasPrice,
   discount,
-  autoDiscount,
   selectedBoatInfo,
   selectedDate,
   selectedDuration,
@@ -1329,7 +1314,6 @@ function Step5Contact({
   const { localizedPath } = useLanguage();
   const depositStr = selectedBoatInfo?.specifications?.deposit;
   const depositAmount = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, "")) : null;
-  const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;
 
   // Build extras display text for review card
   const extrasDisplay = (() => {
@@ -1652,14 +1636,6 @@ function Step5Contact({
                 <span className="font-medium">+{totalExtrasPrice}€</span>
               </div>
             )}
-            {autoDiscountAmount > 0 && autoDiscount?.type === "flash-deal" && (
-              <div className="flex justify-between text-sm">
-                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-popular/10 text-popular">
-                  {t.booking.flashDealDiscount}
-                </span>
-                <span className="font-medium text-success">-{autoDiscountAmount}€</span>
-              </div>
-            )}
             {discount > 0 && validatedCode && (
               <div className="flex justify-between text-sm text-foreground">
                 <span>{validatedCode.code}</span>
@@ -1671,7 +1647,7 @@ function Step5Contact({
                 {t.endowment?.yourPrice || "Total"}
               </span>
               <span className="text-xl font-bold text-foreground">
-                {price + totalExtrasPrice - discount - autoDiscountAmount}€
+                {price + totalExtrasPrice - discount}€
               </span>
             </div>
             {depositAmount && (

@@ -224,6 +224,15 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href={localizedPath("sharedSailing")}
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  data-testid="footer-shared-sailing-link"
+                >
+                  {t.sharedSailing.navLabel}
+                </a>
+              </li>
+              <li>
+                <a
                   href={localizedPath("pricing")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >

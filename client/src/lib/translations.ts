@@ -484,7 +484,6 @@ export interface Translations {
     estimatedTotal: string;
     basePrice: string;
     discountApplied: string;
-    flashDealDiscount: string;
     priceConfirmedWhatsApp: string;
     gdprConsent: string;
     gdprPrivacyLink: string;
@@ -2680,6 +2679,38 @@ export interface Translations {
       secondary: string;
     };
     countries: Record<string, string>;
+  };
+
+  // Shared Sailing — "barco compartido" social experience validation landing
+  sharedSailing: {
+    navLabel: string;
+    hero: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      priceHook: string;
+      priceNote: string;
+      scarcity: string;
+      socialProof: string;
+      cta: string;
+    };
+    chips: string[];
+    form: {
+      title: string;
+      subtitle: string;
+      name: string;
+      namePlaceholder: string;
+      phone: string;
+      email: string;
+      emailHint: string;
+      submit: string;
+      submitting: string;
+      reassurance: string;
+      successTitle: string;
+      successText: string;
+      errorText: string;
+      requiredError: string;
+    };
   };
 }
 function deepMerge(

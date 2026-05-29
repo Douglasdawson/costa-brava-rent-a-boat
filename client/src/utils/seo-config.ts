@@ -70,6 +70,11 @@ export const BASE_DOMAIN = getBaseUrl();
 // Language-specific SEO configurations
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
+    sharedSailing: {
+      title: "Salidas en Barco Compartido Costa Brava | Conoce Gente",
+      description: "Navega y conoce gente nueva desde Blanes. Comparte un barco sin licencia, reparte el coste y disfruta de un día de calas. Apúntate a la lista de interés.",
+      keywords: "barco compartido costa brava, conocer gente barco blanes, salidas compartidas barco, plan social barco costa brava, navegar conocer gente",
+    },
     home: {
       // 2026-05: GSC data → homepage acapara 2929 imp/266 keywords con CTR 1.02%.
       // Causa: brand-first ocultaba keyword en SERP snippet. Fix: keyword-first
@@ -304,6 +309,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   en: {
+    sharedSailing: {
+      title: "Shared Boat Trips on the Costa Brava | Meet New People",
+      description: "Sail from Blanes and meet new people. Share a licence-free boat, split the cost and enjoy a day of coves. Join the interest list.",
+      keywords: "shared boat trips costa brava, meet people boat blanes, social sailing, boat sharing costa brava, solo travellers boat",
+    },
     home: {
       // GSC 2026-05-09: CTR rewrite. EN home ten\u00eda brand-first y 0 clicks en
       // 28d con 142 imp. Cambiamos a keyword-first ("Costa Brava Boat Rental"
@@ -517,6 +527,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   ca: {
+    sharedSailing: {
+      title: "Sortides en Vaixell Compartit Costa Brava | Coneix Gent",
+      description: "Navega i coneix gent nova des de Blanes. Comparteix un vaixell sense llicència, reparteix el cost i gaudeix d'un dia de cales. Apunta't a la llista.",
+      keywords: "vaixell compartit costa brava, conèixer gent vaixell blanes, sortides compartides, navegar conèixer gent",
+    },
     home: {
       // GSC 2026-05-09: CTR rewrite. CA brand-first → keyword-first. 137 imp, 0 clicks.
       title: `Lloguer Barques Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Ressenyes \u00b7 Blanes 70\u20ac/h`,
@@ -669,6 +684,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   fr: {
+    sharedSailing: {
+      title: "Sorties en Bateau Partagé Costa Brava | Rencontres",
+      description: "Naviguez depuis Blanes et rencontrez de nouvelles personnes. Partagez un bateau sans permis, divisez le coût et profitez des criques. Inscrivez-vous.",
+      keywords: "bateau partagé costa brava, rencontrer des gens bateau blanes, sorties partagées, navigation sociale costa brava",
+    },
     home: {
       // GSC 2026-05-09: CTR rewrite. FR home ten\u00eda brand-first y 0 clicks con
       // 113 imp en 28d. Query #1 FR es "location bateau blanes" (104 imp pos
@@ -820,6 +840,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   de: {
+    sharedSailing: {
+      title: "Geteilte Bootsfahrten Costa Brava | Leute kennenlernen",
+      description: "Fahren Sie ab Blanes und lernen Sie neue Leute kennen. Teilen Sie ein führerscheinfreies Boot, teilen Sie die Kosten und genießen Sie die Buchten.",
+      keywords: "geteilte bootsfahrt costa brava, leute kennenlernen boot blanes, boot teilen, soziales segeln costa brava",
+    },
     home: {
       // GSC 2026-05-09: CTR rewrite. DE brand-first → keyword-first.
       title: `Bootsverleih Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Bewertungen \u00b7 Blanes 70\u20ac/h`,
@@ -968,6 +993,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   nl: {
+    sharedSailing: {
+      title: "Gedeelde Boottochten Costa Brava | Mensen Ontmoeten",
+      description: "Vaar vanuit Blanes en ontmoet nieuwe mensen. Deel een boot zonder vaarbewijs, deel de kosten en geniet van de baaien. Schrijf je in op de lijst.",
+      keywords: "gedeelde boottocht costa brava, mensen ontmoeten boot blanes, boot delen, sociaal varen costa brava",
+    },
     home: {
       // GSC 2026-05-09: CTR rewrite. NL home ten\u00eda brand-first y 0 clicks con
       // 213 imp en 28d. Query top NL "boot huren blanes" (40 imp pos 19.73
@@ -1119,6 +1149,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   it: {
+    sharedSailing: {
+      title: "Gite in Barca Condivisa Costa Brava | Conosci Gente",
+      description: "Naviga da Blanes e conosci gente nuova. Condividi una barca senza patente, dividi il costo e goditi una giornata tra le cale. Iscriviti alla lista.",
+      keywords: "barca condivisa costa brava, conoscere gente barca blanes, gite condivise, navigare conoscere gente",
+    },
     home: {
       // GSC 2026-05-09: CTR rewrite. IT brand-first → keyword-first.
       title: `Noleggio Barche Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Recensioni \u00b7 Blanes 70\u20ac/h`,
@@ -1267,6 +1302,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   ru: {
+    sharedSailing: {
+      title: "Совместные прогулки на лодке Коста-Брава | Знакомства",
+      description: "Отправляйтесь из Бланеса и знакомьтесь с новыми людьми. Разделите лодку без лицензии и расходы, наслаждайтесь бухтами. Запишитесь в список.",
+      keywords: "совместная аренда лодки коста брава, знакомства лодка бланес, совместные прогулки, социальный отдых на лодке",
+    },
     home: {
       // GSC 2026-05-09: CTR rewrite. RU brand-first → keyword-first.
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432 \u00b7 \u0411\u043b\u0430\u043d\u0435\u0441 70\u20ac/\u0447`,

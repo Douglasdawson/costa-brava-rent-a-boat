@@ -37,7 +37,6 @@ import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, filterActivePrices, type DurationOption, type Duration } from "@shared/pricing";
 import { useBoatPricingAllDurations } from "@/hooks/useBoatPricingAllDurations";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
-import type { AutoDiscountResult } from "@shared/discounts";
 import BookingWizardMobile from "@/components/BookingWizardMobile";
 import BookingFormDesktop from "@/components/BookingFormDesktop";
 import { BookingConfirmation } from "@/components/BookingConfirmation";
@@ -822,34 +821,6 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     enabled: !!selectedSecondaryBoat && !!selectedDate && !!selectedDuration,
   });
 
-  // Compute base price for auto-discount query (derived from state).
-  // Uses the date-aware price so the flash-deal check runs against the figure the
-  // customer actually sees (post weekend surcharge / override).
-  const currentBasePrice = useMemo(() => {
-    if (!selectedBoatInfo || !selectedDuration || !selectedBoatInfo.pricing) return null;
-    const dateAware = datePricing.prices[selectedDuration as Duration];
-    if (typeof dateAware === "number") return dateAware;
-    const date = selectedDate ? new Date(selectedDate) : new Date();
-    const month = date.getMonth() + 1;
-    const season = month === 8 ? "ALTA" : month === 7 ? "MEDIA" : "BAJA";
-    const seasonPricing = selectedBoatInfo.pricing[season];
-    return seasonPricing?.prices[selectedDuration] || null;
-  }, [selectedBoatInfo, selectedDuration, selectedDate, datePricing]);
-
-  // Fetch auto-discount (flash deal) when boat, date, and price are known
-  const { data: autoDiscount } = useQuery<AutoDiscountResult>({
-    queryKey: ["/api/auto-discount/check", selectedBoat, selectedDate, currentBasePrice],
-    queryFn: async () => {
-      const res = await fetch(
-        `/api/auto-discount/check?boatId=${encodeURIComponent(selectedBoat)}&date=${encodeURIComponent(selectedDate)}&price=${currentBasePrice}`
-      );
-      if (!res.ok) return { type: null, percentage: 0, amount: 0 };
-      return res.json();
-    },
-    enabled: !!selectedBoat && !!selectedDate && currentBasePrice !== null && currentBasePrice > 0,
-    staleTime: 30_000,
-  });
-
   // Map duration keys to i18n labels
   const durationLabelMap: Record<string, string> = {
     "1h": t.booking.oneHour || "1 hora",
@@ -1422,16 +1393,9 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     const extrasBlock = extrasText ? `\n${extrasText}\n${isSpanish ? 'Total extras' : 'Extras total'}: ${totalExtrasPrice}€` : '';
 
     const codeDiscount = getCodeDiscount();
-    const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;
-    const totalPrice = price ? price + totalExtrasPrice - codeDiscount - autoDiscountAmount : null;
+    const totalPrice = price ? price + totalExtrasPrice - codeDiscount : null;
 
     const separator = '┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄';
-
-    let autoDiscountBlock = '';
-    if (autoDiscount?.type === 'flash-deal') {
-      const label = isSpanish ? 'Oferta flash' : 'Flash deal';
-      autoDiscountBlock = `\n\n🏷️ *${label}*\n-${autoDiscountAmount}€ (-10%)`;
-    }
 
     let codeBlock = '';
     if (validatedCode) {
@@ -1463,7 +1427,7 @@ Hora: ${preferredTime}h
 Duracion: ${durationText}
 Nº de Personas: ${numberOfPeople}
 Temporada: ${getSeasonLabel()}
-Precio base: ${price ? price + '€' : 'Consultar'}${extrasBlock ? `\n\n🎒 *Extras*\n${separator}` + extrasBlock : ''}${autoDiscountBlock}${codeBlock}
+Precio base: ${price ? price + '€' : 'Consultar'}${extrasBlock ? `\n\n🎒 *Extras*\n${separator}` + extrasBlock : ''}${codeBlock}
 ${totalPrice ? `\n💰 *TOTAL: ${totalPrice}€*` : ''}
 Fianza: ${deposit}
 
@@ -1485,7 +1449,7 @@ Time: ${preferredTime}h
 Duration: ${durationText}
 Nº of People: ${numberOfPeople}
 Season: ${getSeasonLabel()}
-Base price: ${price ? price + '€' : 'Ask'}${extrasBlock ? `\n\n🎒 *Extras*\n${separator}` + extrasBlock : ''}${autoDiscountBlock}${codeBlock}
+Base price: ${price ? price + '€' : 'Ask'}${extrasBlock ? `\n\n🎒 *Extras*\n${separator}` + extrasBlock : ''}${codeBlock}
 ${totalPrice ? `\n💰 *TOTAL: ${totalPrice}€*` : ''}
 Deposit: ${deposit}
 
@@ -1719,8 +1683,7 @@ Looking forward to confirmation. Thanks!`;
     try {
       const price = getBookingPrice();
       const codeDiscount = getCodeDiscount();
-      const autoDiscAmt = autoDiscount?.type ? autoDiscount.amount : 0;
-      const total = price ? price + totalExtrasPrice - codeDiscount - autoDiscAmt : null;
+      const total = price ? price + totalExtrasPrice - codeDiscount : null;
       const inquiryPayload = JSON.stringify({
         website,
         boatId: selectedBoat,
@@ -1787,8 +1750,7 @@ Looking forward to confirmation. Thanks!`;
     // Show the enhanced confirmation overlay (peak-end rule)
     const bookingPrice = getBookingPrice();
     const discount = getCodeDiscount();
-    const autoDiscFinal = autoDiscount?.type ? autoDiscount.amount : 0;
-    const finalPrice = bookingPrice ? bookingPrice + totalExtrasPrice - discount - autoDiscFinal : null;
+    const finalPrice = bookingPrice ? bookingPrice + totalExtrasPrice - discount : null;
     setConfirmationData({
       boatName: selectedBoatInfo?.name || selectedBoat,
       date: selectedDate,
@@ -1882,7 +1844,6 @@ Looking forward to confirmation. Thanks!`;
     handleRemoveCode,
     getCodeDiscount,
     getBookingPrice,
-    autoDiscount: autoDiscount || null,
     handleBookingSearch,
     onClose,
     restoredFromStorage,

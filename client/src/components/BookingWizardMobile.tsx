@@ -121,7 +121,6 @@ export interface BookingWizardMobileProps {
   getCodeDiscount: () => number;
   // Price & submit
   getBookingPrice: () => number | null;
-  autoDiscount: { type: 'flash-deal' | null; percentage: number; amount: number } | null;
   handleBookingSearch: () => Promise<void>;
   // Close the modal from inside the wizard (header X button).
   onClose?: () => void;
@@ -289,8 +288,6 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             extrasPrice={props.totalExtrasPrice}
             discount={discount}
             discountLabel={props.validatedCode?.percentage ? `${props.validatedCode.code} (${props.validatedCode.percentage}%)` : undefined}
-            autoDiscountAmount={props.autoDiscount?.type ? props.autoDiscount.amount : 0}
-            autoDiscountLabel={props.autoDiscount?.type === 'flash-deal' ? props.t.booking.flashDealDiscount : undefined}
             t={props.t}
             variant="mobile"
           />
@@ -1150,7 +1147,7 @@ function Step5Final(props: BookingWizardMobileProps) {
     extrasInPack, totalExtrasPrice, handlePackSelect, handleExtraToggle,
     showCodeSection, setShowCodeSection, codeInput, setCodeInput,
     isValidatingCode, validatedCode, codeError, handleValidateCode, handleRemoveCode,
-    getCodeDiscount, getBookingPrice, autoDiscount,
+    getCodeDiscount, getBookingPrice,
     calculatePackSavings, iconMap,
     t, isSpanishLang, language,
     slotConflict, onPickAlternativeSlot, onChangeDateFromConflict,
@@ -1159,12 +1156,11 @@ function Step5Final(props: BookingWizardMobileProps) {
   const { localizedPath } = useLanguage();
   const basePrice = getBookingPrice();
   const discount = getCodeDiscount();
-  const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;
   const boatExtraNames = new Set(boatExtras.map(e => e.name));
   const availablePacks = EXTRA_PACKS.filter(pack =>
     pack.extras.every(name => boatExtraNames.has(name))
   );
-  const total = basePrice !== null ? basePrice + totalExtrasPrice - discount - autoDiscountAmount : null;
+  const total = basePrice !== null ? basePrice + totalExtrasPrice - discount : null;
 
   // Schedule label: fuse preferredTime + selectedDuration into "12:00 → 20:00 (8h)".
   // Falls back to the raw values if either is missing or malformed.
@@ -1302,15 +1298,6 @@ function Step5Final(props: BookingWizardMobileProps) {
             <span className="font-bold text-primary text-base">{basePrice}€</span>
           </div>
         )}
-        {autoDiscount?.type === 'flash-deal' && autoDiscountAmount > 0 && (
-          <div className="flex justify-between items-center text-sm mt-2">
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1 bg-popular/10 text-popular">
-              <Tag className="w-3 h-3" aria-hidden="true" />
-              {t.booking.flashDealDiscount}
-            </span>
-            <span className="font-semibold text-success">-{autoDiscountAmount}€</span>
-          </div>
-        )}
         {/* P0.5 (2026-05-20): explicit fuel signal — license-free boats include
             fuel; licensed boats don't. Communicating this here prevents the
             post-booking surprise that drives 1-star reviews. */}
@@ -1410,11 +1397,6 @@ function Step5Final(props: BookingWizardMobileProps) {
               <span className="text-sm font-medium opacity-90">{t.endowment?.yourPrice || t.booking.estimatedTotal}</span>
               <span className="text-2xl font-bold">{total}€</span>
             </div>
-            {autoDiscountAmount > 0 && autoDiscount?.type === 'flash-deal' && (
-              <p className="text-sm opacity-75 mt-1">
-                {t.booking.flashDealDiscount}: -{autoDiscountAmount}€
-              </p>
-            )}
             {discount > 0 && (
               <p className="text-sm opacity-75 mt-1">{t.booking.discountApplied}: -{discount}€</p>
             )}

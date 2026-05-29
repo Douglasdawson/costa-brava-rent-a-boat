@@ -9,9 +9,6 @@ interface PriceSummaryBarProps {
   extrasPrice: number;
   discount: number;
   discountLabel?: string;
-  /** Auto-discount (flash deal) */
-  autoDiscountAmount?: number;
-  autoDiscountLabel?: string;
   t: Translations;
   /** "desktop" renders a card; "mobile" renders a compact sticky bar */
   variant: "desktop" | "mobile";
@@ -29,14 +26,12 @@ export default function PriceSummaryBar({
   extrasPrice,
   discount,
   discountLabel,
-  autoDiscountAmount = 0,
-  autoDiscountLabel,
   t,
   variant,
 }: PriceSummaryBarProps) {
   const [expanded, setExpanded] = useState(false);
 
-  const total = basePrice + extrasPrice - discount - autoDiscountAmount;
+  const total = basePrice + extrasPrice - discount;
   const ps = t.priceSummary;
   const baseLabel = ps?.base || "Base";
   const extrasLabel = ps?.extras || "Extras";
@@ -44,7 +39,7 @@ export default function PriceSummaryBar({
   const totalLabel = ps?.total || "Total";
   const seeDetailsLabel = ps?.seeDetails || "See details";
 
-  const hasBreakdown = extrasPrice > 0 || discount > 0 || autoDiscountAmount > 0;
+  const hasBreakdown = extrasPrice > 0 || discount > 0;
 
   // --- DESKTOP: compact card with breakdown ---
   if (variant === "desktop") {
@@ -65,12 +60,6 @@ export default function PriceSummaryBar({
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">{extrasLabel}</span>
               <span className="text-foreground">+{extrasPrice}€</span>
-            </div>
-          )}
-          {autoDiscountAmount > 0 && autoDiscountLabel && (
-            <div className="flex justify-between text-sm">
-              <span className="text-green-600 dark:text-green-400 font-medium">{autoDiscountLabel}</span>
-              <span className="text-green-600 dark:text-green-400 font-medium">-{autoDiscountAmount}€</span>
             </div>
           )}
           {discount > 0 && (
@@ -127,12 +116,6 @@ export default function PriceSummaryBar({
             <div className="flex justify-between">
               <span className="opacity-70">{extrasLabel}</span>
               <span>+{extrasPrice}€</span>
-            </div>
-          )}
-          {autoDiscountAmount > 0 && autoDiscountLabel && (
-            <div className="flex justify-between">
-              <span className="text-green-400">{autoDiscountLabel}</span>
-              <span className="text-green-400">-{autoDiscountAmount}€</span>
             </div>
           )}
           {discount > 0 && (

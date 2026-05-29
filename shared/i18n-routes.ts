@@ -39,6 +39,7 @@ export const ROUTE_SLUGS = {
   giftCards: { es: "tarjetas-regalo", en: "gift-cards", fr: "cartes-cadeaux", de: "geschenkkarten", nl: "cadeaukaarten", it: "buoni-regalo", ca: "targetes-regal", ru: "podarochnye-karty" },
   about: { es: "sobre-nosotros", en: "about", fr: "a-propos", de: "ueber-uns", nl: "over-ons", it: "chi-siamo", ca: "sobre-nosaltres", ru: "o-nas" },
   destinations: { es: "destinos", en: "destinations", fr: "destinations", de: "reiseziele", nl: "bestemmingen", it: "destinazioni", ca: "destinacions", ru: "napravleniya" },
+  sharedSailing: { es: "salidas-compartidas", en: "shared-boat-trips", fr: "sorties-bateau-partagees", de: "geteilte-bootsfahrten", nl: "gedeelde-boottochten", it: "gite-barca-condivise", ca: "sortides-compartides", ru: "sovmestnye-progulki" },
 
   // Dynamic route prefixes
   boatDetail: { es: "barco", en: "boat", fr: "bateau", de: "boot", nl: "boot", it: "barca", ca: "vaixell", ru: "lodka" },

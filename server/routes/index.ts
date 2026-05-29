@@ -26,7 +26,6 @@ import { registerNewsletterRoutes } from "./newsletter";
 import { registerInquiryRoutes } from "./inquiries";
 import { registerMetaWebhookRoutes } from "./metaWebhook";
 import { registerHealthRoutes } from "./health";
-import { registerAutoDiscountRoutes } from "./auto-discounts";
 import { registerCompanyRoutes } from "./company";
 import { registerAnalyticsRoutes } from "./admin-analytics";
 import { registerMetaCAPIRoutes } from "./meta-capi";
@@ -87,7 +86,6 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   registerInquiryRoutes(app);
   registerMetaWebhookRoutes(app);
   registerHealthRoutes(app);
-  registerAutoDiscountRoutes(app);
   registerCompanyRoutes(app);
   registerAnalyticsRoutes(app);
   registerMetaCAPIRoutes(app);

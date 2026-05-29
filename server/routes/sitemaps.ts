@@ -307,6 +307,7 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "testimonials", "0.6", null, "monthly", ES_ONLY);
       sitemap += generateUrlEntry(baseUrl, "about", "0.6", null, "monthly", ES_ONLY);
       sitemap += generateUrlEntry(baseUrl, "destinations", "0.7", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "sharedSailing", "0.6", null, "monthly", ES_ONLY);
 
       // Category pages — indexable in all 8 locales (Fase 2 2026-05-28): native
       // SSR body from i18n + entry in translatedStaticPaths.ts.

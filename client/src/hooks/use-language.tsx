@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, createContext, useContext } from 'react';
+import { useState, useEffect, useCallback, useMemo, createContext, useContext } from 'react';
 import { useLocation } from 'wouter';
 import { trackLanguageChange } from "@/utils/analytics";
 import {
@@ -125,15 +125,23 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const currentTranslation = loadedLangs[language] ?? es;
 
-  return (
-    <LanguageContext.Provider value={{
+  // Memoize so the ~84 components consuming useTranslations()/useLanguage()
+  // only re-render when one of these values actually changes, not on every
+  // provider render.
+  const contextValue = useMemo(
+    () => ({
       language,
       setLanguage,
       isLoading,
       localizedPath: localizedPathFn,
       switchLanguageUrl: switchLanguageUrlFn,
       currentTranslation,
-    }}>
+    }),
+    [language, setLanguage, isLoading, localizedPathFn, switchLanguageUrlFn, currentTranslation],
+  );
+
+  return (
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );

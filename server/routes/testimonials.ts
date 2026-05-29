@@ -25,6 +25,7 @@ export function registerTestimonialRoutes(app: Express) {
         testimonialsData = await storage.getTestimonials();
       }
 
+      res.set("Cache-Control", "public, max-age=300, stale-while-revalidate=3600");
       res.json(testimonialsData);
     } catch (error: unknown) {
       logger.error("[Testimonials] Error fetching testimonials", { error: error instanceof Error ? error.message : String(error) });

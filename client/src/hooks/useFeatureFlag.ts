@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getQueryFn } from "@/lib/queryClient";
 
@@ -60,12 +61,16 @@ export function useFeatureFlags(): {
     retry: false,
   });
 
-  const flags = new Map<string, boolean>();
-  if (flagsArray && Array.isArray(flagsArray)) {
-    for (const f of flagsArray) {
-      flags.set(f.name, f.enabled);
+  // Rebuild the Map only when the underlying data changes, not on every render.
+  const flags = useMemo(() => {
+    const map = new Map<string, boolean>();
+    if (flagsArray && Array.isArray(flagsArray)) {
+      for (const f of flagsArray) {
+        map.set(f.name, f.enabled);
+      }
     }
-  }
+    return map;
+  }, [flagsArray]);
 
   return { flags, isLoading };
 }

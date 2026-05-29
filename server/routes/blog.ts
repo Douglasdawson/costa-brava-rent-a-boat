@@ -22,6 +22,7 @@ export function registerBlogRoutes(app: Express) {
         posts = await storage.getPublishedBlogPosts();
       }
 
+      res.set("Cache-Control", "public, max-age=300, stale-while-revalidate=3600");
       res.json(posts);
     } catch (error: unknown) {
       logger.error("[Blog] Error fetching blog posts", { error: error instanceof Error ? error.message : String(error) });
@@ -34,7 +35,8 @@ export function registerBlogRoutes(app: Express) {
   // Convention aliases: /feed.xml, /rss.xml (crawlers and AI bots check root)
   const atomFeedHandler = async (req: Request, res: Response) => {
     try {
-      const posts = await storage.getPublishedBlogPosts();
+      // Feeds only need the most recent posts; bound the query (was: fetch all).
+      const posts = await storage.getPublishedBlogPosts(undefined, 50);
       const siteUrl = "https://www.costabravarentaboat.com";
 
       // Determine feed-level updated date from the most recently updated post
@@ -92,6 +94,7 @@ ${entries}
 </feed>`;
 
       res.set("Content-Type", "application/atom+xml; charset=utf-8");
+      res.set("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
       res.send(atom);
     } catch (error: unknown) {
       logger.error("[Blog] Error generating Atom feed", { error: error instanceof Error ? error.message : String(error) });

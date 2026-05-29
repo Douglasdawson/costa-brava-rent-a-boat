@@ -41,16 +41,19 @@ export async function getAllBlogPosts(tenantId?: string): Promise<BlogPost[]> {
   return await db.select().from(blogPosts);
 }
 
-export async function getPublishedBlogPosts(tenantId?: string): Promise<BlogPost[]> {
+export async function getPublishedBlogPosts(tenantId?: string, limit?: number): Promise<BlogPost[]> {
   const conditions = [
     eq(blogPosts.isPublished, true),
     lte(blogPosts.publishedAt, new Date()),
   ];
   if (tenantId) conditions.push(eq(blogPosts.tenantId, tenantId));
-  return await db.select()
+  const query = db.select()
     .from(blogPosts)
     .where(and(...conditions))
     .orderBy(desc(blogPosts.publishedAt));
+  // Feeds (Atom/RSS/LLM) only need the most recent N — push the bound into SQL
+  // instead of fetching every published post and slicing in memory.
+  return limit && limit > 0 ? await query.limit(limit) : await query;
 }
 
 export async function getBlogPost(id: string): Promise<BlogPost | undefined> {

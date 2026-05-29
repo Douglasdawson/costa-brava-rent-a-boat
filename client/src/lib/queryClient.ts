@@ -46,7 +46,10 @@ export const queryClient = new QueryClient({
     queries: {
       queryFn: getQueryFn({ on401: "throw" }),
       refetchInterval: false,
-      refetchOnWindowFocus: true,
+      // Disabled globally: most public data changes rarely and we already have a
+      // 5min staleTime. Tab switches no longer trigger a refetch storm. Enable
+      // refetchOnWindowFocus per-query in the CRM where freshness matters.
+      refetchOnWindowFocus: false,
       staleTime: 5 * 60 * 1000, // 5 minutes
       retry: false,
     },

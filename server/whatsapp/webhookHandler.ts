@@ -24,7 +24,7 @@ setInterval(() => {
       aiRateLimit.delete(key);
     }
   });
-}, AI_RATE_LIMIT_WINDOW);
+}, AI_RATE_LIMIT_WINDOW).unref();
 
 // --- Global daily AI call budget ---
 let dailyAiCalls = 0;

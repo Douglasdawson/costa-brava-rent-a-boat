@@ -136,7 +136,7 @@ export interface IStorage {
 
   // Blog
   getAllBlogPosts(): Promise<BlogPost[]>;
-  getPublishedBlogPosts(): Promise<BlogPost[]>;
+  getPublishedBlogPosts(tenantId?: string, limit?: number): Promise<BlogPost[]>;
   getBlogPost(id: string): Promise<BlogPost | undefined>;
   getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
   getBlogPostsByCategory(category: string): Promise<BlogPost[]>;

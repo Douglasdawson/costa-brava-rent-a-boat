@@ -87,6 +87,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
               key={currentIndex}
               src={photo.imageUrl}
               alt={photo.caption || `Foto de experiencia nautica en Costa Brava por ${photo.customerName}${photo.boatName ? ` en ${photo.boatName}` : ""}`}
+              decoding="async"
               className="max-w-full max-h-[80vh] object-contain animate-in fade-in duration-200"
             />
           </div>

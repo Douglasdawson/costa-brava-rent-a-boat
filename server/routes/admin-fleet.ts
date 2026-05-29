@@ -119,9 +119,12 @@ export function registerAdminFleetRoutes(app: Express) {
       }
 
       const { order } = parsed.data;
-      for (const item of order) {
-        await storage.updateBoat(item.id, { displayOrder: item.displayOrder });
-      }
+      // Run the updates concurrently instead of awaiting each in series (N+1).
+      await Promise.all(
+        order.map((item) =>
+          storage.updateBoat(item.id, { displayOrder: item.displayOrder }),
+        ),
+      );
       audit(req, "reorder", "boats", "bulk", { order });
       res.json({ message: "Orden actualizado correctamente" });
     } catch (error: unknown) {

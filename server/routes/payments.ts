@@ -100,7 +100,7 @@ setInterval(() => {
   processedEvents.forEach((ts, id) => {
     if (ts < cutoff) processedEvents.delete(id);
   });
-}, 60 * 60 * 1000);
+}, 60 * 60 * 1000).unref();
 
 // Initialize Stripe lazily
 let stripe: Stripe | null = null;

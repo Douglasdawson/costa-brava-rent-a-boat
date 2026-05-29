@@ -17,6 +17,7 @@ import { aiBotLoggerMiddleware } from "./lib/aiBotLogger";
 import { aiBotRateLimitMiddleware } from "./lib/aiBotRateLimit";
 import { stopScheduler } from "./services/schedulerService";
 import { startSeoWorker, stopSeoWorker } from "./seo/worker";
+import { emailQueue, whatsappQueue } from "./lib/retryQueue";
 import { pool } from "./db";
 
 // Enable HTTP keep-alive globally for external API connections (Stripe, Twilio, OpenAI, etc.)
@@ -618,6 +619,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     httpServer.close(() => {
       stopScheduler();
       stopSeoWorker();
+      emailQueue.stop();
+      whatsappQueue.stop();
       pool.end().then(() => process.exit(0)).catch(() => process.exit(0));
     });
     setTimeout(() => process.exit(1), 10000);

@@ -1,4 +1,4 @@
-import { useState, useCallback, lazy, Suspense } from "react";
+import { useState, useCallback, useMemo, lazy, Suspense } from "react";
 import {
   Dialog,
   DialogContent,
@@ -42,8 +42,16 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
     setPrefillData(undefined);
   }, []);
 
+  // Memoize the context value so consumers don't re-render when the provider
+  // re-renders for unrelated reasons. openBookingModal/closeBookingModal are
+  // already stable via useCallback, so this only changes when isOpen flips.
+  const contextValue = useMemo(
+    () => ({ isOpen, openBookingModal, closeBookingModal }),
+    [isOpen, openBookingModal, closeBookingModal],
+  );
+
   return (
-    <BookingModalContext.Provider value={{ isOpen, openBookingModal, closeBookingModal }}>
+    <BookingModalContext.Provider value={contextValue}>
       {children}
 
       <Dialog open={isOpen} onOpenChange={(open) => {

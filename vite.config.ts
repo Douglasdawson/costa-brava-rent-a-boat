@@ -124,6 +124,9 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     sourcemap: false,
+    minify: "esbuild",
+    // Surface any chunk that creeps past ~600KB so bloat is caught in CI/build logs.
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -135,6 +138,9 @@ export default defineConfig({
           }
           if (id.includes("node_modules/recharts") || id.includes("node_modules/d3-")) {
             return "vendor-charts";
+          }
+          if (id.includes("node_modules/leaflet") || id.includes("node_modules/react-leaflet") || id.includes("node_modules/@react-leaflet/")) {
+            return "vendor-maps";
           }
           if (id.includes("node_modules/framer-motion")) {
             return "vendor-motion";

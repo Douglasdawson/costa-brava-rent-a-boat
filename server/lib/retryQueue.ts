@@ -15,7 +15,9 @@ export class RetryQueue {
   private timer: ReturnType<typeof setInterval> | null = null;
 
   constructor(private readonly name: string) {
+    // .unref() so this interval never keeps the process alive on shutdown.
     this.timer = setInterval(() => this.process(), 5000);
+    this.timer.unref();
   }
 
   enqueue(fn: RetryFn, maxRetries = 3): void {

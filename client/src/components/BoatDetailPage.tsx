@@ -1892,6 +1892,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <img
                 src={getBoatImage(displayImages[currentImageIndex])}
                 alt={getBoatAltText(boatData.name, currentImageIndex)}
+                decoding="async"
                 className="max-w-full max-h-[85vh] object-contain"
               />
             </div>

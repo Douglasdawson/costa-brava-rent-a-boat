@@ -41,6 +41,7 @@ export function registerDestinationRoutes(app: Express) {
   app.get("/api/destinations", async (req, res) => {
     try {
       const destinations = await storage.getPublishedDestinations();
+      res.set("Cache-Control", "public, max-age=300, stale-while-revalidate=3600");
       // Fallback to boatRoutes when no DB destinations exist
       if (destinations.length === 0) {
         const fallbackDestinations = boatRoutes

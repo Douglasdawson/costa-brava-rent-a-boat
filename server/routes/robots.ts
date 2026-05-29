@@ -985,9 +985,9 @@ export function registerRobotsRoutes(app: Express): void {
     try {
       let blogItems: Array<Record<string, unknown>> = [];
       try {
-        const posts = await storage.getPublishedBlogPosts?.();
+        const posts = await storage.getPublishedBlogPosts?.(undefined, 30);
         if (Array.isArray(posts)) {
-          blogItems = posts.slice(0, 30).map((p: any) => ({
+          blogItems = posts.map((p: any) => ({
             id: `${BASE_URL}/blog/${p.slug}`,
             url: `${BASE_URL}/blog/${p.slug}`,
             title: p.title,

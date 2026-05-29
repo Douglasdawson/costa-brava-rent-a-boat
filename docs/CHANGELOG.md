@@ -6,6 +6,13 @@
 
 ## [Mayo 2026]
 
+### SEO/GEO — Auditoria profunda + schema TouristTrip + IndexNow (2026-05-29)
+- Auditoria de maxima exigencia de todo el sistema SEO/GEO: `docs/audits/2026-05-29-seo-geo-deep-audit.md`. Veredicto: infra A+, gap = activacion + contenido + batallas pendientes (no infraestructura). Scorecard por area, hallazgos por severidad, gap vs SEO Domination Program, roadmap en 6 fases
+- Schema `TouristTrip` en `/rutas-maritimas`: nuevo `generateRoutesItemListSchema` (ItemList de 5 itinerarios con origen/waypoints, distancia, duracion, dificultad; nombre+descripcion localizados en los 8 idiomas desde `routesData.ts`) (`cd39e5a`)
+- `INDEXNOW_KEY` configurado en Workspace + Deployment (clave publica servida via `/<key>.txt`, `server/routes/sitemaps.ts:185`). Activa indexacion instantanea Bing/Yandex en el proximo deploy
+- Activacion: confirmada paridad de Secrets Replit (GA4/PSI/Google ya presentes). ValueSERP + Perplexity descartados (medicion de pago, no crecimiento). Traduccion i18n de ~1340 claves pendientes bloqueada por tope de API hasta 2026-06-01
+- CLAUDE.md: corregida tabla de deuda i18n (tordera/palafolls/pineda ya migradas; pendiente real = props de `PopularBoatsSection`). Memoria: `project_seo_geo_audit_2026_05_29.md`
+
 ### Drift sweep — Politica de cancelacion + fleet count + capacidades + nav distance (2026-05-26 / 27)
 - Politica de cancelacion unificada para toda la flota: una sola politica reemplaza dos variantes contradictorias que convivian (legacy "no reembolsable / 7d antelacion" + tier-based "100/50/0% segun horas"). Backend `cancelBookingByToken` ya no calcula tramos % (eran codigo fantasma porque la web no cobra online) (`83de9eb`)
 - Fleet count 8 -> 9 propagado en SEO, blog, i18n, JSX, emails, KB chatbot post-Remus 450 II promotion 2026-05-25 (`f11764c`, `a5edd9a`, hereda `826215b`)

@@ -17,6 +17,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
+import { generateFAQSchema } from "@/utils/seo-schemas";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -56,6 +57,50 @@ export default function GiftCardsPage() {
     { name: t.breadcrumbs.home, url: "/" },
     { name: t.breadcrumbs.giftCards, url: "/tarjetas-regalo" }
   ]);
+
+  // Single source for the visible FAQ + the FAQPage JSON-LD (no drift).
+  const giftCardFaqs = [
+    {
+      question: "¿Cuánto tiempo es válida la tarjeta regalo?",
+      answer: "La tarjeta regalo tiene una validez de 1 año desde la fecha de compra. Puede utilizarse en cualquier momento durante la temporada de navegación (abril a octubre).",
+    },
+    {
+      question: "¿El destinatario puede elegir el barco?",
+      answer: "Sí, el destinatario puede elegir cualquier barco de nuestra flota, sujeto a disponibilidad. Si el valor de la tarjeta no cubre el total, puede pagar la diferencia.",
+    },
+    {
+      question: "¿Cómo se canjea la tarjeta regalo?",
+      answer: "El destinatario recibirá un código único por email. Para canjearla, solo tiene que contactarnos por WhatsApp al +34 611 500 372 o por email indicando el código y la fecha deseada.",
+    },
+  ];
+
+  // Product + AggregateOffer so the gift card is eligible for product/offer
+  // rich results and is machine-readable by AI answer engines.
+  const giftCardProductSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: t.giftCards?.title || "Tarjeta Regalo — Costa Brava Rent a Boat",
+    description:
+      t.giftCards?.subtitle ||
+      "Regala una experiencia en barco por la Costa Brava. Válida para toda la flota durante la temporada (abril–octubre).",
+    brand: { "@type": "Brand", name: "Costa Brava Rent a Boat - Blanes" },
+    category: "Gift Card",
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "EUR",
+      lowPrice: String(Math.min(...AMOUNTS)),
+      highPrice: String(Math.max(...AMOUNTS)),
+      offerCount: AMOUNTS.length,
+      availability: "https://schema.org/InStock",
+      url: canonical,
+    },
+  };
+
+  const jsonLd = [
+    breadcrumbSchema,
+    giftCardProductSchema,
+    generateFAQSchema(giftCardFaqs),
+  ];
 
   const effectiveAmount = selectedAmount === -1 ? Number(customAmount) : selectedAmount;
 
@@ -118,7 +163,7 @@ export default function GiftCardsPage() {
   if (purchaseComplete) {
     return (
       <main id="main-content" className="min-h-screen bg-background">
-        <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
+        <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={jsonLd} />
         <Navigation />
         <ReadingProgressBar />
         <div className="py-16 sm:py-20 bg-background">
@@ -168,7 +213,7 @@ export default function GiftCardsPage() {
 
   return (
     <main id="main-content" className="min-h-screen bg-background">
-      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
+      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={jsonLd} />
       <Navigation />
       <ReadingProgressBar />
 
@@ -387,36 +432,17 @@ export default function GiftCardsPage() {
             Preguntas frecuentes sobre tarjetas regalo
           </h2>
           <div className="space-y-3">
-            <details className="group border border-border rounded-lg bg-muted">
-              <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                Cuanto tiempo es valida la tarjeta regalo?
-                <Gift className="w-4 h-4 transition-transform group-open:rotate-90" />
-              </summary>
-              <p className="px-4 pb-4 text-muted-foreground leading-relaxed">
-                La tarjeta regalo tiene una validez de 1 ano desde la fecha de compra.
-                Puede utilizarse en cualquier momento durante la temporada de navegacion (abril a octubre).
-              </p>
-            </details>
-            <details className="group border border-border rounded-lg bg-muted">
-              <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                El destinatario puede elegir el barco?
-                <Gift className="w-4 h-4 transition-transform group-open:rotate-90" />
-              </summary>
-              <p className="px-4 pb-4 text-muted-foreground leading-relaxed">
-                Si, el destinatario puede elegir cualquier barco de nuestra flota, sujeto a disponibilidad.
-                Si el valor de la tarjeta no cubre el total, puede pagar la diferencia.
-              </p>
-            </details>
-            <details className="group border border-border rounded-lg bg-muted">
-              <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                Como se canjea la tarjeta regalo?
-                <Gift className="w-4 h-4 transition-transform group-open:rotate-90" />
-              </summary>
-              <p className="px-4 pb-4 text-muted-foreground leading-relaxed">
-                El destinatario recibira un codigo unico por email. Para canjearla, solo tiene que contactarnos
-                por WhatsApp al +34 611 500 372 o por email indicando el codigo y la fecha deseada.
-              </p>
-            </details>
+            {giftCardFaqs.map((faq) => (
+              <details key={faq.question} className="group border border-border rounded-lg bg-muted">
+                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                  {faq.question}
+                  <Gift className="w-4 h-4 transition-transform group-open:rotate-90" />
+                </summary>
+                <p className="px-4 pb-4 text-muted-foreground leading-relaxed">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
           </div>
         </div>
       </RevealSection>

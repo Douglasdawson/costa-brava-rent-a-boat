@@ -14,6 +14,7 @@ import { spawn, type ChildProcess } from "child_process";
 import fs from "fs";
 import path from "path";
 import { chromium, type Browser, type BrowserContext } from "playwright";
+import { TRANSLATED_STATIC_PATHS } from "../server/seo/translatedStaticPaths";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -55,6 +56,38 @@ const MANIFEST_PATH = path.join(ROOT, "scripts", "prerender-manifest.json");
 function loadManifest(): Manifest {
   const raw = fs.readFileSync(MANIFEST_PATH, "utf-8");
   return JSON.parse(raw) as Manifest;
+}
+
+/**
+ * Guarantee that every route declared indexable in TRANSLATED_STATIC_PATHS is
+ * prerendered in (at least) every locale it's indexable in.
+ *
+ * The manifest is the human-curated base — it may prerender extra locales for
+ * UX on pages that are noindex outside ES (e.g. /faq at es+en). This union is
+ * the durable anti-drift guard: it prevents the silent regression where a route
+ * is marked indexable in 8 languages (translatedStaticPaths.ts) but only listed
+ * for 1-2 in the manifest, leaving JS-less AI crawlers an empty shell in the
+ * other locales. Editing only one of the two files can no longer break it.
+ */
+function reconcileWithIndexableRoutes(manifest: Manifest): void {
+  const byPath = new Map(manifest.routes.map((r) => [r.path, r]));
+  for (const [routePath, indexableLangs] of Object.entries(TRANSLATED_STATIC_PATHS)) {
+    const existing = byPath.get(routePath);
+    if (!existing) {
+      manifest.routes.push({ path: routePath, langs: [...indexableLangs] });
+      console.warn(
+        `  [reconcile] Added indexable route missing from manifest: ${routePath} [${indexableLangs.join(", ")}]`,
+      );
+      continue;
+    }
+    const missing = indexableLangs.filter((l) => !existing.langs.includes(l));
+    if (missing.length > 0) {
+      existing.langs.push(...missing);
+      console.warn(
+        `  [reconcile] Expanded ${routePath} with indexable locales: ${missing.join(", ")}`,
+      );
+    }
+  }
 }
 
 function randomPort(): number {
@@ -193,6 +226,7 @@ async function main() {
   console.log("=== Prerender: starting ===\n");
 
   const manifest = loadManifest();
+  reconcileWithIndexableRoutes(manifest);
   const port = randomPort();
   const baseUrl = `http://localhost:${port}`;
   const outputDir = path.resolve(ROOT, manifest.outputDir);

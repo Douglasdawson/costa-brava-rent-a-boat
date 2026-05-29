@@ -29,6 +29,12 @@ import type { LangCode } from "../../shared/seoConstants";
 export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[]>> = {
   "/alquiler-barcos-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Home-port flagship — location-blanes.tsx is fully i18n-driven (hero,
+  // sections, schema and faqItems all read from t.locationPages.blanes, which
+  // is CI-validated in all 8 locales). It was already prerendered in 8 langs
+  // but missing here, so it was served noindex outside ES — an oversight for
+  // the base port. Marking all 8 indexable, on par with Lloret/Tossa/Costa Brava.
+  "/alquiler-barcos-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   // Costa Brava regional landing — Round 4 (2026-05-03). Server-side body
   // fallback now sources per-locale copy from client/src/i18n/<lang>.ts via
   // I18N_BY_LANG[lang].locationPages.costaBrava (see seoInjector.ts branch),

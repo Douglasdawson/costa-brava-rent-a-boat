@@ -5,8 +5,9 @@ import { registerRobotsRoutes } from "./robots";
 import { requireAdminSession } from "./auth-middleware";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES } from "../../shared/seoConstants";
 import type { LangCode } from "../../shared/seoConstants";
-import { getLocalizedPath } from "../../shared/i18n-routes";
+import { getLocalizedPath, getSlugForPage } from "../../shared/i18n-routes";
 import type { PageKey } from "../../shared/i18n-routes";
+import { hasStaticTranslation } from "../seo/translatedStaticPaths";
 import { getNativeOverride } from "../seo/nativeLanguageOverrides";
 import { resolveBoatImagePath } from "../../shared/boatImages";
 import { resolveMediaAbsoluteUrl } from "../../shared/mediaUrl";
@@ -141,13 +142,27 @@ const getLanguagePriority = (basePriority: string, lang: string): string => {
   return adjusted.toFixed(1);
 };
 
+// Single source of truth for which locales a static page is indexable in:
+// server/seo/translatedStaticPaths.ts (the same data seoInjector uses to decide
+// noindex/canonical at request time, and prerender.ts uses to pick locales).
+// Deriving here instead of a hand-kept list stops the sitemap from drifting
+// out of sync with what's actually indexable. Pages not listed there fall back
+// to ES-only, which is the correct default for DB-backed / untranslated pages.
+const indexableLangsFor = (pageKey: PageKey): readonly LangCode[] => {
+  const metaKey = `/${getSlugForPage(pageKey, "es")}`;
+  const langs = ALL_LANGS.filter((l) => hasStaticTranslation(metaKey, l));
+  return langs.length > 0 ? langs : ES_ONLY;
+};
+
 const generateUrlEntry = (
   baseUrl: string,
   pageKey: PageKey,
   priority: string,
   lastmod: string | null,
   changefreq?: string,
-  indexableLangs: readonly LangCode[] = ALL_LANGS,
+  // Omit to derive from translatedStaticPaths.ts; pass explicitly only to
+  // override (e.g. home, which is fully i18n but has no static-path entry).
+  indexableLangs: readonly LangCode[] = indexableLangsFor(pageKey),
 ): string => {
   const hreflangLinks = buildHreflangLinks(baseUrl, pageKey, undefined, indexableLangs);
   const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : "";
@@ -268,67 +283,55 @@ export function registerSitemapRoutes(app: Express) {
       // language (fully i18n-covered UI + meta).
       sitemap += generateUrlEntry(baseUrl, "home", "1.0", DEPLOY_DATE, "daily", ALL_LANGS);
 
-      // All non-home pages render content sourced from the DB (ES-only) on
-      // every locale subdirectory. Only the ES URL is sitemap-eligible;
-      // non-ES counterparts are served with robots=noindex + canonical to ES
-      // by seoInjector until real translations exist in the DB.
-      const locationPages: PageKey[] = [
-        "locationBlanes", "locationLloret", "locationTossa", "locationMalgrat",
-        "locationSantaSusanna", "locationCalella", "locationPinedaDeMar",
-        "locationPalafolls", "locationTordera",
-      ];
-      // Location pages rewritten in Round 3 PR C with fully-translated i18n
-      // (Lloret + Tossa) are indexable in all 8 locales per
-      // server/seo/translatedStaticPaths.ts. The rest stay ES-only until
-      // their copy gets the same treatment.
-      const ALL_LOCATION_LANGS: readonly LangCode[] = ALL_LANGS;
-      const MULTILANG_LOCATIONS: Partial<Record<PageKey, readonly LangCode[]>> = {
-        locationLloret: ALL_LOCATION_LANGS,
-        locationTossa: ALL_LOCATION_LANGS,
-        // Fase 2 (2026-05-28): i18n-complete satellite pages with native SSR body.
-        locationTordera: ALL_LOCATION_LANGS,
-        locationPalafolls: ALL_LOCATION_LANGS,
-        locationPinedaDeMar: ALL_LOCATION_LANGS,
-      };
-      locationPages.forEach(pageKey => {
-        const langs = MULTILANG_LOCATIONS[pageKey] ?? ES_ONLY;
-        sitemap += generateUrlEntry(baseUrl, pageKey, "0.7", null, "monthly", langs);
-      });
+      // Every page below derives its indexable locales from
+      // translatedStaticPaths.ts (via generateUrlEntry's default) — no per-page
+      // language list to maintain. Mark a page indexable in N locales there and
+      // it automatically gets N hreflang-annotated entries here. Pages absent
+      // from that file fall back to ES-only.
 
-      sitemap += generateUrlEntry(baseUrl, "locationBarcelona", "0.7", null, "monthly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "locationCostaBrava", "0.9", null, "monthly", ES_ONLY);
+      // Location pages
+      sitemap += generateUrlEntry(baseUrl, "locationBlanes", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationLloret", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationTossa", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationMalgrat", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationSantaSusanna", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationCalella", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationPinedaDeMar", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationPalafolls", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationTordera", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationBarcelona", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationCostaBrava", "0.9", null, "monthly");
 
       // Content pages
-      sitemap += generateUrlEntry(baseUrl, "gallery", "0.6", null, "monthly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "routes", "0.7", null, "monthly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "giftCards", "0.6", null, "monthly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "pricing", "0.8", null, "weekly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "faq", "0.6", null, "monthly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "testimonials", "0.6", null, "monthly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "about", "0.6", null, "monthly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "destinations", "0.7", null, "monthly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "sharedSailing", "0.6", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "gallery", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "routes", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "giftCards", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "pricing", "0.8", null, "weekly");
+      sitemap += generateUrlEntry(baseUrl, "faq", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "testimonials", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "about", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "destinations", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "sharedSailing", "0.6", null, "monthly");
 
-      // Category pages — indexable in all 8 locales (Fase 2 2026-05-28): native
-      // SSR body from i18n + entry in translatedStaticPaths.ts.
-      sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly", ALL_LANGS);
-      sitemap += generateUrlEntry(baseUrl, "categoryLicensed", "0.7", null, "monthly", ALL_LANGS);
+      // Category pages
+      sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "categoryLicensed", "0.7", null, "monthly");
 
       // Blog index (the listing page itself; individual posts are in sitemap-blog.xml)
-      sitemap += generateUrlEntry(baseUrl, "blog", "0.7", null, "weekly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "blog", "0.7", null, "weekly");
 
       // Activity pages
-      sitemap += generateUrlEntry(baseUrl, "activitySnorkel", "0.7", null, "monthly", ALL_LANGS);
-      sitemap += generateUrlEntry(baseUrl, "activityFamilies", "0.7", null, "monthly", ALL_LANGS);
-      sitemap += generateUrlEntry(baseUrl, "activitySunset", "0.7", null, "monthly", ALL_LANGS);
-      sitemap += generateUrlEntry(baseUrl, "activityFishing", "0.7", null, "monthly", ALL_LANGS);
+      sitemap += generateUrlEntry(baseUrl, "activitySnorkel", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "activityFamilies", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "activitySunset", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "activityFishing", "0.7", null, "monthly");
 
       // Legal pages
-      sitemap += generateUrlEntry(baseUrl, "privacyPolicy", "0.3", null, "yearly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "termsConditions", "0.3", null, "yearly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "condicionesGenerales", "0.3", null, "yearly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "cookiesPolicy", "0.3", null, "yearly", ES_ONLY);
-      sitemap += generateUrlEntry(baseUrl, "accessibility", "0.3", null, "yearly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "privacyPolicy", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "termsConditions", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "condicionesGenerales", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "cookiesPolicy", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "accessibility", "0.3", null, "yearly");
 
       sitemap += `</urlset>`;
 

@@ -11,6 +11,7 @@ import { eq, desc, asc, and, sql, gte, lte } from "drizzle-orm";
 import { db } from "../shared/db.js";
 import * as schema from "../../../shared/schema.js";
 import * as seoAutopilot from "../../storage/seoAutopilot.js";
+import { getCachedGbpStats } from "../../services/gbpSync.js";
 import type { DistributionPlatform } from "../../../shared/schema.js";
 
 const TEXT = (obj: unknown) => ({
@@ -513,19 +514,33 @@ export function registerAutopilotTools(server: McpServer, ctx: ToolContext): voi
             eq(schema.oauthConnections.status, "active"),
           ))
           .limit(1);
-        if (conn.length === 0) {
-          return {
-            status: "not_configured",
-            message: "Connect Google Business Profile via OAuth to populate this tool.",
-            setupPath: "/crm/autopilot#connect-gbp",
-          };
-        }
-        // Placeholder — full integration lives behind OAuth. Returning shape
-        // keeps the contract stable for consumers.
+        const oauthConnected = conn.length > 0;
+
+        // Rating + review count already flow from the Places API sync (gbpSync),
+        // no OAuth required — surface them so the tool is useful immediately.
+        // Performance metrics (views/calls/directions) still need the OAuth +
+        // Business Profile Performance API collector.
+        const stats = await getCachedGbpStats();
+
         return {
-          status: "pending_implementation",
-          account: conn[0].accountIdentifier,
-          note: "GBP API fetch is not yet wired. Reviews, posts, and insights will appear here once collectGbp() runs.",
+          profile: {
+            displayName: stats.displayName,
+            rating: stats.rating,
+            reviewCount: stats.userRatingCount,
+            lastSyncedAt: stats.lastSyncedAt,
+            source: stats.isFallback ? "fallback_constants" : "places_api",
+          },
+          performanceMetrics: oauthConnected
+            ? {
+                status: "pending_implementation",
+                account: conn[0].accountIdentifier,
+                note: "OAuth connected. Business Profile Performance API collector (views/calls/directions/searches) not yet wired.",
+              }
+            : {
+                status: "not_connected",
+                message: "Connect Google Business Profile via OAuth for views/calls/directions metrics.",
+                setupPath: "/crm/autopilot#connect-gbp",
+              },
         };
       }));
     },

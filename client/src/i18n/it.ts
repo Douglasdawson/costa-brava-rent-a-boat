@@ -3955,7 +3955,7 @@ export const it: Translations = {
       subtitle:
         "Sali a bordo di un'uscita condivisa da Blanes e passa mezza giornata tra le cale con gente nuova.",
       priceHook: "4 ore · 40€/persona",
-      priceNote: "4 h condividendo la barca tra 5",
+      priceNote: "Solo 10€ a persona all'ora",
       scarcity: "Posti limitati per barca · lista d'attesa aperta",
       socialProof: "{rating}★ su Google · {count} recensioni",
       cta: "Iscriviti gratis",

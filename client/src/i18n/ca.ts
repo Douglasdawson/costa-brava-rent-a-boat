@@ -3956,7 +3956,7 @@ export const ca: Translations = {
       subtitle:
         "Apunta't a una sortida compartida des de Blanes i passa mitja jornada de cales amb gent nova.",
       priceHook: "4 hores · 40€/persona",
-      priceNote: "4 h compartint el vaixell entre 5",
+      priceNote: "Només 10€ per persona i hora",
       scarcity: "Places limitades per vaixell · llista d'espera oberta",
       socialProof: "{rating}★ a Google · {count} ressenyes",
       cta: "Apunta't gratis",

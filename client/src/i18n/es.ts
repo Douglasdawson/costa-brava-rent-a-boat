@@ -4381,7 +4381,7 @@ export const es: Translations = {
       subtitle:
         "Súbete a una salida compartida desde Blanes y pasa media jornada de calas con gente nueva.",
       priceHook: "4 horas · 40€/persona",
-      priceNote: "4 h compartiendo el barco entre 5",
+      priceNote: "Solo 10€ por persona y hora",
       scarcity: "Plazas limitadas por barco · lista de espera abierta",
       socialProof: "{rating}★ en Google · {count} reseñas",
       cta: "Apúntate gratis",

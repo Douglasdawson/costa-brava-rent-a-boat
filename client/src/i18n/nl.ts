@@ -3959,7 +3959,7 @@ export const nl: Translations = {
       subtitle:
         "Stap aan boord van een gedeelde tocht vanuit Blanes en breng een halve dag door in de baaien met nieuwe mensen.",
       priceHook: "4 uur · €40/persoon",
-      priceNote: "4 u, boot gedeeld door 5",
+      priceNote: "Slechts €10 per persoon per uur",
       scarcity: "Beperkte plaatsen per boot · wachtlijst open",
       socialProof: "{rating}★ op Google · {count} reviews",
       cta: "Gratis aanmelden",

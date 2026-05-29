@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
@@ -20,6 +19,10 @@ const HERO_IMAGE =
   "/images/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-amigos-snorkel.webp";
 
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
+
+// Canonical primary CTA treatment (mirrors Hero.tsx): deep-navy pill, elevated.
+const CTA_CLASS =
+  "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 disabled:opacity-60 disabled:pointer-events-none";
 
 export default function SharedSailingPage() {
   const { language } = useLanguage();
@@ -86,17 +89,17 @@ export default function SharedSailingPage() {
   };
 
   const inputClass =
-    "w-full rounded-lg border border-border bg-background px-3 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40";
+    "w-full rounded-lg border border-border bg-background px-3 py-3 text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring";
 
   const captureCard = (
     <div
       id="interes"
-      className="scroll-mt-24 rounded-2xl border border-border bg-card p-6 shadow-2xl sm:p-7"
+      className="scroll-mt-24 rounded-2xl border border-border bg-card p-6 shadow-[0_12px_40px_-12px_hsl(215_45%_20%/0.45)] sm:p-7"
     >
       {status === "success" ? (
-        <div className="py-6 text-center">
-          <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-primary" />
-          <h2 className="mb-2 text-2xl font-heading font-bold text-foreground">
+        <div role="status" className="py-6 text-center">
+          <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-[hsl(var(--ring))]" />
+          <h2 className="mb-2 font-heading text-2xl font-bold text-foreground">
             {s.form.successTitle}
           </h2>
           <p className="text-muted-foreground">{s.form.successText}</p>
@@ -104,7 +107,7 @@ export default function SharedSailingPage() {
       ) : (
         <>
           <div className="mb-5 text-center">
-            <h2 className="text-xl font-heading font-bold text-foreground sm:text-2xl">
+            <h2 className="font-heading text-xl font-bold text-foreground sm:text-2xl">
               {s.form.title}
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
@@ -148,7 +151,7 @@ export default function SharedSailingPage() {
               <div className="flex gap-2">
                 <select
                   aria-label={s.form.phone}
-                  className="w-24 flex-shrink-0 rounded-lg border border-border bg-background px-2 py-3 text-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className="w-24 flex-shrink-0 rounded-lg border border-border bg-background px-2 py-3 text-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
                   value={phonePrefix}
                   onChange={(e) => setPhonePrefix(e.target.value)}
                 >
@@ -187,22 +190,21 @@ export default function SharedSailingPage() {
             </div>
 
             {status === "error" && (
-              <p className="text-sm text-destructive">
+              <p role="alert" className="text-sm text-destructive">
                 {name.trim() && phoneNumber.trim()
                   ? s.form.errorText
                   : s.form.requiredError}
               </p>
             )}
 
-            <Button
+            <button
               type="submit"
-              size="lg"
-              className="w-full text-base"
               disabled={status === "submitting"}
+              className={`${CTA_CLASS} min-h-12 w-full px-8 text-base`}
             >
               {status === "submitting" ? s.form.submitting : s.form.submit}
-              {status !== "submitting" && <ArrowRight className="ml-2 h-5 w-5" />}
-            </Button>
+              {status !== "submitting" && <ArrowRight className="h-5 w-5" />}
+            </button>
 
             <p className="text-center text-xs text-muted-foreground">
               {s.form.reassurance}
@@ -225,53 +227,49 @@ export default function SharedSailingPage() {
       <Navigation />
 
       {/* ═══ HERO a pantalla completa ═══ */}
-      <section className="relative isolate flex min-h-[92vh] items-center overflow-hidden pt-20">
-        {/* Imagen de fondo + overlay */}
+      <section className="relative isolate flex min-h-[640px] items-center overflow-hidden pb-28 pt-24 lg:min-h-[88vh] lg:pb-12">
+        {/* Imagen de fondo + overlay (la foto respira hacia abajo-derecha) */}
         <img
           src={HERO_IMAGE}
           alt=""
           aria-hidden="true"
-          fetchPriority="high"
-          className={`absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[6000ms] ease-out ${
-            mounted ? "scale-100" : "scale-110"
+          decoding="async"
+          draggable={false}
+          className={`absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[1200ms] ease-out ${
+            mounted ? "scale-100" : "scale-[1.06]"
           }`}
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/80 via-black/55 to-primary/40" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/80 via-black/45 to-black/10" />
 
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           {/* Columna izquierda: mensaje */}
           <div
-            className={`text-white transition-all duration-700 ${
-              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            className={`text-white transition-all duration-700 ease-out ${
+              mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
           >
-            <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-sm font-medium text-white ring-1 ring-white/25 backdrop-blur">
-                <Sparkles className="h-4 w-4" />
-                {s.hero.badge}
-              </span>
-            </div>
+            <span className="mb-5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-sm font-medium text-white ring-1 ring-white/25">
+              <Sparkles className="h-4 w-4" />
+              {s.hero.badge}
+            </span>
 
-            <h1 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_16px_hsl(215_45%_12%/0.45)] sm:text-5xl lg:text-6xl">
               {s.hero.title}
             </h1>
 
-            <p className="mt-5 max-w-xl text-lg text-white/90">
+            <p className="mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.4)]">
               {s.hero.subtitle}
             </p>
 
             <div className="mt-7 flex flex-wrap items-end gap-x-4 gap-y-1">
-              <span className="font-heading text-3xl font-extrabold text-white sm:text-4xl">
+              <span className="font-heading text-3xl font-extrabold text-white [text-shadow:0_2px_16px_hsl(215_45%_12%/0.5)] sm:text-4xl">
                 {s.hero.priceHook}
               </span>
-              <span className="text-sm text-white/75">{s.hero.priceNote}</span>
+              <span className="text-sm text-white/80">{s.hero.priceNote}</span>
             </div>
 
             <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-popular px-4 py-2 text-sm font-semibold text-popular-foreground">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-popular-foreground/70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-popular-foreground" />
-              </span>
+              <span className="h-2 w-2 rounded-full bg-popular-foreground" />
               {s.hero.scarcity}
             </div>
 
@@ -279,7 +277,7 @@ export default function SharedSailingPage() {
               {s.chips.map((chip) => (
                 <span
                   key={chip}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-sm text-white ring-1 ring-white/20 backdrop-blur"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-black/25 px-3 py-1.5 text-sm text-white ring-1 ring-white/20"
                 >
                   <CheckCircle2 className="h-4 w-4 text-white" />
                   {chip}
@@ -290,8 +288,8 @@ export default function SharedSailingPage() {
 
           {/* Columna derecha: tarjeta de captura */}
           <div
-            className={`transition-all duration-700 ${
-              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`transition-all duration-700 ease-out ${
+              mounted ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
             {captureCard}
@@ -301,7 +299,7 @@ export default function SharedSailingPage() {
 
       {/* ═══ Barra CTA fija (solo móvil) ═══ */}
       {status !== "success" && (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-4 py-3 backdrop-blur lg:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-[0_-6px_24px_-8px_hsl(215_45%_20%/0.3)] backdrop-blur lg:hidden">
           <div className="mx-auto flex max-w-md items-center justify-between gap-3">
             <div className="leading-tight">
               <p className="text-sm font-bold text-foreground">
@@ -309,14 +307,14 @@ export default function SharedSailingPage() {
               </p>
               <p className="text-xs text-muted-foreground">{s.hero.priceNote}</p>
             </div>
-            <Button asChild size="lg" className="flex-shrink-0">
-              <a href="#interes">{s.hero.cta}</a>
-            </Button>
+            <a href="#interes" className={`${CTA_CLASS} min-h-11 flex-shrink-0 px-6 text-sm`}>
+              {s.hero.cta}
+            </a>
           </div>
         </div>
       )}
 
-      {/* Margen para que la barra fija no tape el footer en móvil */}
+      {/* Margen para que la barra fija no tape el contenido en móvil */}
       <div className="h-20 lg:hidden" />
 
       <Footer />

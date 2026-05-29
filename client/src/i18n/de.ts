@@ -3982,7 +3982,7 @@ export const de: Translations = {
       subtitle:
         "Steigen Sie bei einer geteilten Fahrt ab Blanes ein und verbringen Sie einen halben Tag in den Buchten mit neuen Leuten.",
       priceHook: "4 Stunden · 40€/Person",
-      priceNote: "4 h, Boot geteilt durch 5",
+      priceNote: "Nur 10€ pro Person und Stunde",
       scarcity: "Begrenzte Plätze pro Boot · Warteliste offen",
       socialProof: "{rating}★ auf Google · {count} Bewertungen",
       cta: "Kostenlos anmelden",

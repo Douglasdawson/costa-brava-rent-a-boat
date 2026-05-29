@@ -4009,7 +4009,7 @@ export const en: Translations = {
       subtitle:
         "Hop on a shared trip from Blanes and spend half a day exploring coves with new people.",
       priceHook: "4 hours · €40/person",
-      priceNote: "4 h sharing the boat between 5",
+      priceNote: "Just €10 per person per hour",
       scarcity: "Limited spots per boat · waiting list open",
       socialProof: "{rating}★ on Google · {count} reviews",
       cta: "Join for free",

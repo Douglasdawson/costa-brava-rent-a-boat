@@ -17,6 +17,26 @@ function detectLanguageFromPath(pagePath: string): string {
   return code && SUPPORTED_LANG_SET.has(code) ? code : "es";
 }
 
+// Rule-based cluster + intent tagging so the keyword radar is groupable and
+// filterable without a paid keyword API. Deterministic from the query string
+// (multilingual patterns since GSC queries arrive in 8 languages).
+function clusterForKeyword(keyword: string): string {
+  const k = keyword.toLowerCase();
+  if (/sin licencia|without licen|sans permis|ohne f[üu]hrerschein|zonder vaarbewijs|senza patente|sense llic|без лиценз/.test(k)) return "sin-licencia";
+  if (/con licencia|with licen|avec permis|mit f[üu]hrerschein|met vaarbewijs|con patente|amb llic|с лиценз/.test(k)) return "con-licencia";
+  if (/snorkel|pesca|fishing|p[êe]che|atardecer|sunset|coucher|tramonto|famil|kinder|gezin/.test(k)) return "actividades";
+  if (/blanes|lloret|tossa|malgrat|santa susanna|calella|pineda|palafolls|tordera|barcelona/.test(k)) return "local";
+  if (/costa brava/.test(k)) return "costa-brava-broad";
+  return "general";
+}
+
+function intentForKeyword(keyword: string): string {
+  const k = keyword.toLowerCase();
+  if (/alquil|rent|location|mieten|huren|noleggi|lloguer|аренд|charter|hire|precio|price|tarif|prezz|cost|cuesta|cu[áa]nto|preis|prijz/.test(k)) return "transactional";
+  if (/qu[ée]|c[óo]mo|how |gu[íi]a|guide|best|mejor|d[óo]nde|where|consejo|tips/.test(k)) return "informational";
+  return "commercial";
+}
+
 function getAuth() {
   return new google.auth.JWT({
     email: config.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -69,14 +89,16 @@ export async function collectGscData(): Promise<void> {
       // Strip domain from page URL to get path, then derive the language.
       const pagePath = page.replace(/^https?:\/\/[^/]+/, "") || "/";
       const language = detectLanguageFromPath(pagePath);
+      const cluster = clusterForKeyword(keyword);
+      const intent = intentForKeyword(keyword);
 
-      // Upsert keyword
+      // Upsert keyword (cluster/intent are deterministic, so safe to re-set on conflict)
       const [kw] = await db
         .insert(seoKeywords)
-        .values({ keyword, language })
+        .values({ keyword, language, cluster, intent })
         .onConflictDoUpdate({
           target: [seoKeywords.keyword, seoKeywords.language],
-          set: { tracked: true },
+          set: { tracked: true, cluster, intent },
         })
         .returning({ id: seoKeywords.id });
 

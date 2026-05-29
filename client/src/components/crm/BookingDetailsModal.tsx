@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -19,13 +19,9 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { NATIONALITIES } from "../booking-flow/useBookingFlowState";
+import { searchNationalities, findNationalityByValue, flagEmoji } from "@/data/nationalities";
 import {
   Dialog,
   DialogContent,
@@ -63,7 +59,12 @@ import { format } from "date-fns";
 import type { Booking, Boat } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { getStatusColor, getStatusLabel, getPaymentStatusColor, getPaymentStatusLabel } from "./constants";
+import {
+  getStatusColor,
+  getStatusLabel,
+  getPaymentStatusColor,
+  getPaymentStatusLabel,
+} from "./constants";
 import { editBookingSchema, type EditBookingFormData, type CheckinData } from "./types";
 import { CheckinForm } from "./CheckinForm";
 
@@ -134,10 +135,10 @@ export function BookingDetailsModal({
     enabled: !!booking && open && !isEditing && !isCreating,
   });
 
-  const hasCheckin = bookingCheckins?.some((c) => c.type === "checkin") ?? false;
-  const hasCheckout = bookingCheckins?.some((c) => c.type === "checkout") ?? false;
-  const checkinRecord = bookingCheckins?.find((c) => c.type === "checkin");
-  const checkoutRecord = bookingCheckins?.find((c) => c.type === "checkout");
+  const hasCheckin = bookingCheckins?.some(c => c.type === "checkin") ?? false;
+  const hasCheckout = bookingCheckins?.some(c => c.type === "checkout") ?? false;
+  const checkinRecord = bookingCheckins?.find(c => c.type === "checkin");
+  const checkoutRecord = bookingCheckins?.find(c => c.type === "checkout");
 
   const editForm = useForm<EditBookingFormData>({
     resolver: zodResolver(editBookingSchema),
@@ -210,28 +211,34 @@ export function BookingDetailsModal({
 
   // Mutation for quick status updates
   const updateBookingMutation = useMutation({
-    mutationFn: async ({ bookingId, updates }: { bookingId: string; updates: Record<string, string> }) => {
+    mutationFn: async ({
+      bookingId,
+      updates,
+    }: {
+      bookingId: string;
+      updates: Record<string, string>;
+    }) => {
       const response = await fetch(`/api/admin/bookings/${bookingId}`, {
-        method: 'PATCH',
+        method: "PATCH",
         credentials: "include",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(updates)
+        body: JSON.stringify(updates),
       });
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Error desconocido' }));
-        throw new Error(errorData.message || 'Error actualizando reserva');
+        const errorData = await response.json().catch(() => ({ message: "Error desconocido" }));
+        throw new Error(errorData.message || "Error actualizando reserva");
       }
       return response.json();
     },
-    onSuccess: (data) => {
+    onSuccess: data => {
       toast({
         title: "Éxito",
         description: data.message || "Reserva actualizada correctamente",
       });
-      queryClient.invalidateQueries({ queryKey: ['/api/admin/bookings'] });
-      queryClient.invalidateQueries({ queryKey: ['/api/admin/stats'] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/stats"] });
       onOpenChange(false);
     },
     onError: (error: Error) => {
@@ -240,7 +247,7 @@ export function BookingDetailsModal({
         title: "Error",
         description: error.message || "No se pudo actualizar la reserva",
       });
-    }
+    },
   });
 
   // Mutation for full booking edit
@@ -249,10 +256,10 @@ export function BookingDetailsModal({
       const startDate = new Date(data.startTime);
       const endDate = new Date(data.endTime);
       const response = await fetch(`/api/admin/bookings/${bookingId}`, {
-        method: 'PATCH',
+        method: "PATCH",
         credentials: "include",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...data,
@@ -262,14 +269,14 @@ export function BookingDetailsModal({
       });
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.message || 'Error al actualizar la reserva');
+        throw new Error(error.message || "Error al actualizar la reserva");
       }
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/admin/bookings'] });
-      queryClient.invalidateQueries({ queryKey: ['/api/admin/stats'] });
-      queryClient.invalidateQueries({ queryKey: ['/api/admin/customers'] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/stats"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/customers"] });
       toast({
         title: "Reserva actualizada",
         description: "Los cambios se han guardado correctamente",
@@ -283,7 +290,7 @@ export function BookingDetailsModal({
         title: "Error",
         description: error.message || "No se pudo actualizar la reserva",
       });
-    }
+    },
   });
 
   // Mutation for creating a new booking
@@ -291,31 +298,31 @@ export function BookingDetailsModal({
     mutationFn: async (data: EditBookingFormData) => {
       const startDate = new Date(data.startTime);
       const endDate = new Date(data.endTime);
-      const response = await fetch('/api/admin/bookings', {
-        method: 'POST',
+      const response = await fetch("/api/admin/bookings", {
+        method: "POST",
         credentials: "include",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...data,
           bookingDate: startDate.toISOString(),
           startTime: startDate.toISOString(),
           endTime: endDate.toISOString(),
-          source: 'admin',
+          source: "admin",
         }),
       });
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.message || 'Error al crear la reserva');
+        throw new Error(error.message || "Error al crear la reserva");
       }
       return response.json();
     },
-    onSuccess: (response) => {
-      queryClient.invalidateQueries({ queryKey: ['/api/admin/bookings'] });
-      queryClient.invalidateQueries({ queryKey: ['/api/admin/bookings/calendar'] });
-      queryClient.invalidateQueries({ queryKey: ['/api/admin/stats'] });
-      queryClient.invalidateQueries({ queryKey: ['/api/admin/customers'] });
+    onSuccess: response => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings/calendar"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/stats"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/customers"] });
       toast({
         title: "Reserva creada",
         description: "La nueva reserva se ha creado correctamente",
@@ -333,7 +340,7 @@ export function BookingDetailsModal({
         title: "Error",
         description: error.message || "No se pudo crear la reserva",
       });
-    }
+    },
   });
 
   const handleEditSubmit = (data: EditBookingFormData) => {
@@ -350,7 +357,7 @@ export function BookingDetailsModal({
     if (booking) {
       updateBookingMutation.mutate({
         bookingId: booking.id,
-        updates: { bookingStatus: "confirmed", paymentStatus: "completed" }
+        updates: { bookingStatus: "confirmed", paymentStatus: "completed" },
       });
     }
   };
@@ -369,12 +376,15 @@ export function BookingDetailsModal({
   const isPending = isCreating ? createBookingMutation.isPending : editBookingMutation.isPending;
 
   return (
-    <Dialog open={open} onOpenChange={(isOpen) => {
-      onOpenChange(isOpen);
-      if (!isOpen) {
-        onEditCancel();
-      }
-    }}>
+    <Dialog
+      open={open}
+      onOpenChange={isOpen => {
+        onOpenChange(isOpen);
+        if (!isOpen) {
+          onEditCancel();
+        }
+      }}
+    >
       <DialogContent className="w-full h-[100dvh] md:h-auto md:max-h-[90vh] max-w-none md:max-w-2xl rounded-none md:rounded-lg overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
@@ -394,7 +404,9 @@ export function BookingDetailsModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Nombre Completo</p>
-                  <p className="font-medium">{booking.customerName} {booking.customerSurname}</p>
+                  <p className="font-medium">
+                    {booking.customerName} {booking.customerSurname}
+                  </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Teléfono</p>
@@ -408,7 +420,23 @@ export function BookingDetailsModal({
                 )}
                 <div>
                   <p className="text-muted-foreground">Nacionalidad</p>
-                  <p className="font-medium">{booking.customerNationality}</p>
+                  <p className="font-medium">
+                    {(() => {
+                      const nat = findNationalityByValue(booking.customerNationality);
+                      if (!nat) return booking.customerNationality || "—";
+                      return (
+                        <span className="inline-flex items-center gap-2">
+                          <span aria-hidden className="text-base leading-none">
+                            {flagEmoji(nat.code)}
+                          </span>
+                          <span>
+                            {nat.country}
+                            <span className="text-muted-foreground"> · {nat.value}</span>
+                          </span>
+                        </span>
+                      );
+                    })()}
+                  </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Número de Personas</p>
@@ -427,11 +455,15 @@ export function BookingDetailsModal({
                 </div>
                 <div>
                   <p className="text-muted-foreground">Fecha de Inicio</p>
-                  <p className="font-medium">{format(new Date(booking.startTime), 'dd/MM/yyyy HH:mm')}</p>
+                  <p className="font-medium">
+                    {format(new Date(booking.startTime), "dd/MM/yyyy HH:mm")}
+                  </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Fecha de Fin</p>
-                  <p className="font-medium">{format(new Date(booking.endTime), 'dd/MM/yyyy HH:mm')}</p>
+                  <p className="font-medium">
+                    {format(new Date(booking.endTime), "dd/MM/yyyy HH:mm")}
+                  </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Duración</p>
@@ -458,19 +490,31 @@ export function BookingDetailsModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Subtotal</p>
-                  <p className="font-medium">{"\u20AC"}{parseFloat(booking.subtotal).toFixed(2)}</p>
+                  <p className="font-medium">
+                    {"\u20AC"}
+                    {parseFloat(booking.subtotal).toFixed(2)}
+                  </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Extras</p>
-                  <p className="font-medium">{"\u20AC"}{parseFloat(booking.extrasTotal).toFixed(2)}</p>
+                  <p className="font-medium">
+                    {"\u20AC"}
+                    {parseFloat(booking.extrasTotal).toFixed(2)}
+                  </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Depósito</p>
-                  <p className="font-medium">{"\u20AC"}{parseFloat(booking.deposit).toFixed(2)}</p>
+                  <p className="font-medium">
+                    {"\u20AC"}
+                    {parseFloat(booking.deposit).toFixed(2)}
+                  </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Total</p>
-                  <p className="font-semibold text-lg">{"\u20AC"}{parseFloat(booking.totalAmount).toFixed(2)}</p>
+                  <p className="font-semibold text-lg">
+                    {"\u20AC"}
+                    {parseFloat(booking.totalAmount).toFixed(2)}
+                  </p>
                 </div>
                 {booking.stripePaymentIntentId && (
                   <div className="col-span-2">
@@ -503,23 +547,35 @@ export function BookingDetailsModal({
             )}
 
             {/* Check-in / Check-out Section */}
-            {(booking.bookingStatus === "confirmed") && (
+            {booking.bookingStatus === "confirmed" && (
               <div className="border-t border-border pt-4">
                 <h3 className="font-semibold text-lg mb-3">Check-in / Check-out</h3>
                 <div className="space-y-3">
                   {/* Status indicators */}
                   <div className="flex flex-wrap gap-3 text-sm">
                     <div className="flex items-center gap-2">
-                      <ClipboardCheck className={`w-4 h-4 ${hasCheckin ? "text-green-600" : "text-muted-foreground/70"}`} />
-                      <span className={hasCheckin ? "text-green-700 font-medium" : "text-muted-foreground/70"}>
+                      <ClipboardCheck
+                        className={`w-4 h-4 ${hasCheckin ? "text-green-600" : "text-muted-foreground/70"}`}
+                      />
+                      <span
+                        className={
+                          hasCheckin ? "text-green-700 font-medium" : "text-muted-foreground/70"
+                        }
+                      >
                         {hasCheckin
                           ? `Check-in: ${format(new Date(checkinRecord!.performedAt), "dd/MM/yy HH:mm")}`
                           : "Sin check-in"}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <ClipboardList className={`w-4 h-4 ${hasCheckout ? "text-green-600" : "text-muted-foreground/70"}`} />
-                      <span className={hasCheckout ? "text-green-700 font-medium" : "text-muted-foreground/70"}>
+                      <ClipboardList
+                        className={`w-4 h-4 ${hasCheckout ? "text-green-600" : "text-muted-foreground/70"}`}
+                      />
+                      <span
+                        className={
+                          hasCheckout ? "text-green-700 font-medium" : "text-muted-foreground/70"
+                        }
+                      >
                         {hasCheckout
                           ? `Check-out: ${format(new Date(checkoutRecord!.performedAt), "dd/MM/yy HH:mm")}`
                           : "Sin check-out"}
@@ -530,16 +586,28 @@ export function BookingDetailsModal({
                   {/* Checkin details if exists */}
                   {checkinRecord && (
                     <div className="bg-muted rounded-lg p-3 text-xs space-y-1">
-                      <p><span className="font-medium">Combustible:</span> {checkinRecord.fuelLevel}</p>
-                      <p><span className="font-medium">Estado:</span> {checkinRecord.condition}</p>
+                      <p>
+                        <span className="font-medium">Combustible:</span> {checkinRecord.fuelLevel}
+                      </p>
+                      <p>
+                        <span className="font-medium">Estado:</span> {checkinRecord.condition}
+                      </p>
                       {checkinRecord.engineHours && (
-                        <p><span className="font-medium">Horas motor:</span> {checkinRecord.engineHours}</p>
+                        <p>
+                          <span className="font-medium">Horas motor:</span>{" "}
+                          {checkinRecord.engineHours}
+                        </p>
                       )}
                       {checkinRecord.notes && (
-                        <p><span className="font-medium">Notas:</span> {checkinRecord.notes}</p>
+                        <p>
+                          <span className="font-medium">Notas:</span> {checkinRecord.notes}
+                        </p>
                       )}
                       {checkinRecord.performedBy && (
-                        <p><span className="font-medium">Realizado por:</span> {checkinRecord.performedBy}</p>
+                        <p>
+                          <span className="font-medium">Realizado por:</span>{" "}
+                          {checkinRecord.performedBy}
+                        </p>
                       )}
                     </div>
                   )}
@@ -548,13 +616,22 @@ export function BookingDetailsModal({
                   {checkoutRecord && (
                     <div className="bg-muted rounded-lg p-3 text-xs space-y-1">
                       <p className="font-medium text-foreground mb-1">Check-out:</p>
-                      <p><span className="font-medium">Combustible:</span> {checkoutRecord.fuelLevel}</p>
-                      <p><span className="font-medium">Estado:</span> {checkoutRecord.condition}</p>
+                      <p>
+                        <span className="font-medium">Combustible:</span> {checkoutRecord.fuelLevel}
+                      </p>
+                      <p>
+                        <span className="font-medium">Estado:</span> {checkoutRecord.condition}
+                      </p>
                       {checkoutRecord.engineHours && (
-                        <p><span className="font-medium">Horas motor:</span> {checkoutRecord.engineHours}</p>
+                        <p>
+                          <span className="font-medium">Horas motor:</span>{" "}
+                          {checkoutRecord.engineHours}
+                        </p>
                       )}
                       {checkoutRecord.notes && (
-                        <p><span className="font-medium">Notas:</span> {checkoutRecord.notes}</p>
+                        <p>
+                          <span className="font-medium">Notas:</span> {checkoutRecord.notes}
+                        </p>
                       )}
                     </div>
                   )}
@@ -609,7 +686,7 @@ export function BookingDetailsModal({
                   <MessageCircle className="w-4 h-4 mr-2" />
                   WhatsApp
                 </Button>
-                {booking.bookingStatus === 'pending_payment' && (
+                {booking.bookingStatus === "pending_payment" && (
                   <Button
                     variant="default"
                     onClick={handleConfirm}
@@ -619,7 +696,8 @@ export function BookingDetailsModal({
                     Confirmar Reserva
                   </Button>
                 )}
-                {(booking.bookingStatus === 'confirmed' || booking.bookingStatus === 'pending_payment') && (
+                {(booking.bookingStatus === "confirmed" ||
+                  booking.bookingStatus === "pending_payment") && (
                   <Button
                     variant="destructive"
                     onClick={handleCancel}
@@ -641,15 +719,25 @@ export function BookingDetailsModal({
             </div>
 
             <div className="text-xs text-muted-foreground border-t border-border pt-4">
-              <p>Creada: {format(new Date(booking.createdAt), 'dd/MM/yyyy HH:mm')}</p>
-              <p>Fuente: {booking.source === 'web' ? 'Web' : booking.source === 'whatsapp' ? 'WhatsApp' : 'Admin'}</p>
+              <p>Creada: {format(new Date(booking.createdAt), "dd/MM/yyyy HH:mm")}</p>
+              <p>
+                Fuente:{" "}
+                {booking.source === "web"
+                  ? "Web"
+                  : booking.source === "whatsapp"
+                    ? "WhatsApp"
+                    : "Admin"}
+              </p>
             </div>
           </div>
         )}
 
         {/* Edit / Create Form */}
         {(isCreating || (booking && isEditing)) && (
-          <form onSubmit={editForm.handleSubmit(isCreating ? handleCreateSubmit : handleEditSubmit)} className="space-y-6">
+          <form
+            onSubmit={editForm.handleSubmit(isCreating ? handleCreateSubmit : handleEditSubmit)}
+            className="space-y-6"
+          >
             {/* Customer Info */}
             <div>
               <h3 className="font-semibold text-lg mb-3">Información del Cliente</h3>
@@ -663,7 +751,9 @@ export function BookingDetailsModal({
                     data-testid="input-customer-name"
                   />
                   {editForm.formState.errors.customerName && (
-                    <p className="text-red-500 text-xs mt-1">{editForm.formState.errors.customerName.message}</p>
+                    <p className="text-destructive text-xs mt-1">
+                      {editForm.formState.errors.customerName.message}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -675,7 +765,9 @@ export function BookingDetailsModal({
                     data-testid="input-customer-surname"
                   />
                   {editForm.formState.errors.customerSurname && (
-                    <p className="text-red-500 text-xs mt-1">{editForm.formState.errors.customerSurname.message}</p>
+                    <p className="text-destructive text-xs mt-1">
+                      {editForm.formState.errors.customerSurname.message}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -687,7 +779,9 @@ export function BookingDetailsModal({
                     data-testid="input-customer-phone"
                   />
                   {editForm.formState.errors.customerPhone && (
-                    <p className="text-red-500 text-xs mt-1">{editForm.formState.errors.customerPhone.message}</p>
+                    <p className="text-destructive text-xs mt-1">
+                      {editForm.formState.errors.customerPhone.message}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -703,9 +797,21 @@ export function BookingDetailsModal({
                 <div>
                   <Label htmlFor="customerNationality">Nacionalidad</Label>
                   <NationalityCombobox
+                    id="customerNationality"
                     value={editForm.watch("customerNationality") ?? ""}
-                    onChange={(value) => editForm.setValue("customerNationality", value, { shouldDirty: true })}
+                    invalid={!!editForm.formState.errors.customerNationality}
+                    onChange={value =>
+                      editForm.setValue("customerNationality", value, {
+                        shouldDirty: true,
+                        shouldValidate: true,
+                      })
+                    }
                   />
+                  {editForm.formState.errors.customerNationality && (
+                    <p className="text-destructive text-xs mt-1">
+                      {editForm.formState.errors.customerNationality.message}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <Label htmlFor="numberOfPeople">Número de Personas</Label>
@@ -725,14 +831,21 @@ export function BookingDetailsModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="boatId">Barco</Label>
-                  <Select value={editForm.watch("boatId")} onValueChange={(val) => editForm.setValue("boatId", val)}>
+                  <Select
+                    value={editForm.watch("boatId")}
+                    onValueChange={val => editForm.setValue("boatId", val)}
+                  >
                     <SelectTrigger data-testid="input-boat-id">
                       <SelectValue placeholder="Seleccionar barco" />
                     </SelectTrigger>
                     <SelectContent>
-                      {boats.filter(b => b.isActive).map(b => (
-                        <SelectItem key={b.id} value={b.id}>{b.name}</SelectItem>
-                      ))}
+                      {boats
+                        .filter(b => b.isActive)
+                        .map(b => (
+                          <SelectItem key={b.id} value={b.id}>
+                            {b.name}
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -767,7 +880,12 @@ export function BookingDetailsModal({
                   <Label htmlFor="bookingStatus">Estado de Reserva</Label>
                   <Select
                     value={editForm.watch("bookingStatus")}
-                    onValueChange={(value) => editForm.setValue("bookingStatus", value as EditBookingFormData["bookingStatus"])}
+                    onValueChange={value =>
+                      editForm.setValue(
+                        "bookingStatus",
+                        value as EditBookingFormData["bookingStatus"]
+                      )
+                    }
                   >
                     <SelectTrigger data-testid="select-booking-status">
                       <SelectValue />
@@ -785,7 +903,12 @@ export function BookingDetailsModal({
                   <Label htmlFor="paymentStatus">Estado de Pago</Label>
                   <Select
                     value={editForm.watch("paymentStatus")}
-                    onValueChange={(value) => editForm.setValue("paymentStatus", value as EditBookingFormData["paymentStatus"])}
+                    onValueChange={value =>
+                      editForm.setValue(
+                        "paymentStatus",
+                        value as EditBookingFormData["paymentStatus"]
+                      )
+                    }
                   >
                     <SelectTrigger data-testid="select-payment-status">
                       <SelectValue />
@@ -852,11 +975,7 @@ export function BookingDetailsModal({
             </div>
 
             <div className="flex gap-2 sticky bottom-0 bg-background pt-3 pb-4 -mx-6 px-6 md:static md:mx-0 md:px-0 md:pt-0 md:pb-0">
-              <Button
-                type="submit"
-                disabled={isPending}
-                data-testid="button-save-booking"
-              >
+              <Button type="submit" disabled={isPending} data-testid="button-save-booking">
                 {isPending ? (
                   "Guardando..."
                 ) : (
@@ -881,7 +1000,11 @@ export function BookingDetailsModal({
 
         <DialogFooter>
           {!isEditing && (
-            <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="button-close-modal">
+            <Button
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+              data-testid="button-close-modal"
+            >
               Cerrar
             </Button>
           )}
@@ -915,15 +1038,17 @@ export function BookingDetailsModal({
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Volver</AlertDialogCancel>
-            <AlertDialogAction onClick={() => {
-              if (booking) {
-                updateBookingMutation.mutate({
-                  bookingId: booking.id,
-                  updates: { bookingStatus: "cancelled" }
-                });
-              }
-              setShowCancelConfirm(false);
-            }}>
+            <AlertDialogAction
+              onClick={() => {
+                if (booking) {
+                  updateBookingMutation.mutate({
+                    bookingId: booking.id,
+                    updates: { bookingStatus: "cancelled" },
+                  });
+                }
+                setShowCancelConfirm(false);
+              }}
+            >
               Cancelar reserva
             </AlertDialogAction>
           </AlertDialogFooter>
@@ -937,50 +1062,95 @@ export function BookingDetailsModal({
 // Nationality combobox (dropdown + search)
 // ---------------------------------------------------------------------------
 function NationalityCombobox({
+  id,
   value,
   onChange,
+  invalid = false,
 }: {
+  id?: string;
   value: string;
   onChange: (value: string) => void;
+  invalid?: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+
+  // Own accent-insensitive filter (country / English / masculine / ISO / aliases).
+  const results = useMemo(() => searchNationalities(search), [search]);
+  const selected = findNationalityByValue(value);
+
+  const handleOpenChange = (next: boolean) => {
+    setOpen(next);
+    if (!next) setSearch("");
+  };
+
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={handleOpenChange}>
       <PopoverTrigger asChild>
         <Button
+          id={id}
           type="button"
           variant="outline"
           role="combobox"
           aria-expanded={open}
+          aria-invalid={invalid}
           className={cn(
             "w-full justify-between font-normal",
             !value && "text-muted-foreground",
+            invalid && "border-destructive focus-visible:ring-destructive/30"
           )}
           data-testid="input-customer-nationality"
         >
-          {value || "Selecciona nacionalidad"}
+          <span className="flex min-w-0 items-center gap-2">
+            {selected && (
+              <span aria-hidden className="shrink-0 text-base leading-none">
+                {flagEmoji(selected.code)}
+              </span>
+            )}
+            <span className="truncate">
+              {selected ? selected.country : value || "Selecciona nacionalidad"}
+            </span>
+          </span>
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
-        <Command>
-          <CommandInput placeholder="Buscar nacionalidad..." />
+        <Command shouldFilter={false}>
+          <CommandInput
+            autoFocus
+            placeholder="Busca país, nacionalidad o código…"
+            value={search}
+            onValueChange={setSearch}
+          />
           <CommandList>
-            <CommandEmpty>Sin resultados.</CommandEmpty>
+            <CommandEmpty className="py-6 px-4 text-center text-sm text-muted-foreground">
+              No la encontramos. Prueba con el país o su nombre en inglés (Netherlands, Germany…).
+            </CommandEmpty>
             <CommandGroup>
-              {NATIONALITIES.map((nationality) => (
-                <CommandItem
-                  key={nationality}
-                  value={nationality}
-                  onSelect={(selected) => {
-                    onChange(selected === value ? "" : selected);
-                    setOpen(false);
-                  }}
-                >
-                  <Check className={cn("mr-2 h-4 w-4", value === nationality ? "opacity-100" : "opacity-0")} />
-                  {nationality}
-                </CommandItem>
-              ))}
+              {results.map(nationality => {
+                const isSelected = value === nationality.value;
+                return (
+                  <CommandItem
+                    key={nationality.value}
+                    value={nationality.value}
+                    onSelect={() => {
+                      onChange(isSelected ? "" : nationality.value);
+                      handleOpenChange(false);
+                    }}
+                  >
+                    <Check
+                      className={cn("h-4 w-4 shrink-0", isSelected ? "opacity-100" : "opacity-0")}
+                    />
+                    <span aria-hidden className="text-base leading-none">
+                      {flagEmoji(nationality.code)}
+                    </span>
+                    <span className="truncate">{nationality.country}</span>
+                    <span className="ml-auto pl-2 text-xs text-muted-foreground truncate">
+                      {nationality.value}
+                    </span>
+                  </CommandItem>
+                );
+              })}
             </CommandGroup>
           </CommandList>
         </Command>

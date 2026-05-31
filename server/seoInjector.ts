@@ -15,6 +15,7 @@ import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR } from "../shared/busine
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
 import { hasStaticTranslation } from "./seo/translatedStaticPaths";
+import { shouldNoindexThinContent } from "./seo/thinContentGuard";
 import { get404Meta } from "./seo/helpers";
 import { getCurrentStats } from "./lib/businessStatsCache";
 
@@ -4168,8 +4169,15 @@ export async function serveWithSEO(
       );
       const canonicalTarget = canonicalOverride || canonicalUrl;
 
-      // Check LRU cache for pre-injected HTML (avoids 9+ regex replacements)
-      const cacheKey = `${canonicalPath}:${lang}`;
+      // Thin-content guard: a page that's otherwise indexable but that real GA4
+      // engagement shows users bounce off gets auto-noindex'd. Skipped when the
+      // page is already noindex. Fail-safe (errors → not noindex). Cached 1h, so
+      // this is a Map lookup on the hot path after the first request per page.
+      const effectiveNoindex = noindex || (await shouldNoindexThinContent(canonicalPath));
+
+      // Check LRU cache for pre-injected HTML (avoids 9+ regex replacements).
+      // Key includes the index decision so a thin/healthy flip can't serve stale robots.
+      const cacheKey = `${canonicalPath}:${lang}:${effectiveNoindex ? "n" : "i"}`;
       const cachedHtml = getCachedInjectedHtml(cacheKey);
       if (cachedHtml) {
         res.set("Content-Type", "text/html; charset=utf-8");
@@ -4177,7 +4185,7 @@ export async function serveWithSEO(
         res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
         res.set("X-SEO-Cache", "HIT");
         res.set("Link", `<${BASE_URL}${canonicalTarget}>; rel="canonical"`);
-        if (noindex) res.set("X-Robots-Tag", "noindex, follow");
+        if (effectiveNoindex) res.set("X-Robots-Tag", "noindex, follow");
         res.send(cachedHtml);
         return;
       }
@@ -4207,7 +4215,7 @@ export async function serveWithSEO(
         resolved.jsonLd,
         lang,
         resolved.availableLanguages,
-        noindex,
+        effectiveNoindex,
         canonicalOverride,
         resolved.lcpPreload,
       );
@@ -4224,7 +4232,7 @@ export async function serveWithSEO(
       res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
       res.set("X-SEO-Cache", "MISS");
       res.set("Link", `<${BASE_URL}${canonicalTarget}>; rel="canonical"`);
-      if (noindex) res.set("X-Robots-Tag", "noindex, follow");
+      if (effectiveNoindex) res.set("X-Robots-Tag", "noindex, follow");
       res.send(html);
     } else {
       // Dynamic content routes that resolveMeta couldn't match

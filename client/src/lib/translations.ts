@@ -695,6 +695,21 @@ export interface Translations {
     tossaDesc: string;
     pricesTitle: string;
     pricesDesc: string;
+    guide?: {
+      heading: string;
+      geographyTitle: string;
+      geographyBody: string;
+      seaTitle: string;
+      seaBody: string;
+      calasTitle: string;
+      calasBody: string;
+      seasonTitle: string;
+      seasonBody: string;
+    };
+  };
+
+  lastUpdated?: {
+    label: string;
   };
 
   // Gift Card Banner (homepage)
@@ -2597,6 +2612,8 @@ export interface Translations {
       accion: string;
       parte: string;
       equipamiento: string;
+      seguridad?: string;
+      meteo?: string;
     };
     terms: Array<{ term: string; definition: string; category: string }>;
   };

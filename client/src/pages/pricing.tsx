@@ -15,6 +15,7 @@ import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { LastUpdated } from "@/components/LastUpdated";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
@@ -258,6 +259,7 @@ export default function PricingPage() {
             </a>{" "}
             (20 min)
           </p>
+          <LastUpdated date="2026-05-31" className="text-center mt-4" />
         </div>
       </div>
 

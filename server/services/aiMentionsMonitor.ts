@@ -235,6 +235,20 @@ const ENGINES: Record<EngineId, (p: MonitorPrompt) => Promise<EngineResponse>> =
   gemini: callGemini,
 };
 
+/**
+ * Which engines have an API key configured. Lets the monitor run on whatever
+ * is available (e.g. the `claude` engine on ANTHROPIC_API_KEY alone) without
+ * polluting aiMentions with MISSING_API_KEY rows for engines we can't reach.
+ */
+function engineHasKey(engine: EngineId): boolean {
+  switch (engine) {
+    case "chatgpt": return !!process.env.OPENAI_API_KEY;
+    case "claude": return !!process.env.ANTHROPIC_API_KEY;
+    case "perplexity": return !!process.env.PERPLEXITY_API_KEY;
+    case "gemini": return !!(process.env.GOOGLE_AI_API_KEY ?? process.env.GEMINI_API_KEY);
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Sentiment classifier — Claude Haiku, 1 token decision.
 // Returns null on error so it never blocks a monitor run.
@@ -344,7 +358,16 @@ export async function runNightlyMonitor(opts: MonitorRunOptions = {}): Promise<{
   durationMs: number;
 }> {
   const started = Date.now();
-  const engines: EngineId[] = opts.engines ?? ["chatgpt", "claude", "perplexity", "gemini"];
+  const requested: EngineId[] = opts.engines ?? ["chatgpt", "claude", "perplexity", "gemini"];
+  const engines = requested.filter(engineHasKey);
+  const skipped = requested.filter((e) => !engineHasKey(e));
+  if (skipped.length > 0) {
+    logger.info(`[ai-mentions] skipping engines without API key: ${skipped.join(", ")}`);
+  }
+  if (engines.length === 0) {
+    logger.warn("[ai-mentions] no engine has an API key configured — nothing to probe");
+    return { totalRuns: 0, byEngine: {}, activeExperiments: 0, durationMs: Date.now() - started };
+  }
   const prompts = ALL_PROMPTS.filter((p) => !opts.langs || opts.langs.includes(p.lang));
   const perEngineCap = opts.maxPromptsPerEngine ?? prompts.length;
   const counts: Record<string, number> = {};

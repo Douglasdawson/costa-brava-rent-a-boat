@@ -32,6 +32,7 @@ import {
   rejectExperiment,
   rollbackExperiment,
 } from "../seo/executors/review";
+import { getMilestoneScorecard } from "../seo/milestones";
 import { logger } from "../lib/logger";
 
 // ===== Schemas =====
@@ -242,6 +243,17 @@ export function registerAdminSeoAutopilotRoutes(app: Express): void {
     } catch (err) {
       logger.error("autopilot audit failed", { err: err instanceof Error ? err.message : String(err) });
       res.status(500).json({ message: "Error obteniendo auditoría" });
+    }
+  });
+
+  // --- Milestones: KPIs-vs-targets scorecard ---------------------------
+  app.get("/api/admin/autopilot/milestones", requireAdminSession, async (_req: Request, res: Response) => {
+    try {
+      const scorecard = await getMilestoneScorecard();
+      res.json({ count: scorecard.length, scorecard });
+    } catch (err) {
+      logger.error("autopilot milestones failed", { err: err instanceof Error ? err.message : String(err) });
+      res.status(500).json({ message: "Error obteniendo hitos" });
     }
   });
 

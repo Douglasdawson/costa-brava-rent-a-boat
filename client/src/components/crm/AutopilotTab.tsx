@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Activity, AlertTriangle, FileText, KeyRound, Send, ShieldCheck,
   CheckCircle2, XCircle, Clock, ExternalLink, Trash2, Copy, Plus, Rocket,
-  FlaskConical, Undo2,
+  FlaskConical, Undo2, Target,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -68,6 +68,24 @@ interface ExperimentItem {
   createdAt: string;
 }
 
+interface MilestoneEntry {
+  milestone: {
+    id: string;
+    label: string;
+    metric: string;
+    target: number;
+    comparison: "gte" | "lte";
+    unit?: string;
+    deadline: string;
+  };
+  score: {
+    status: "completed" | "on_track" | "at_risk";
+    progressPct: number;
+    current: number;
+    daysLeft: number;
+  };
+}
+
 interface McpTokenPublic {
   id: number; name: string; tokenPrefix: string;
   scopes: string[]; active: boolean;
@@ -112,6 +130,20 @@ function experimentStatusBadge(status: string | null): { variant: "default" | "s
     case "completed": return { variant: "default", label: "Completado" };
     default: return { variant: "outline", label: status ?? "—" };
   }
+}
+
+function milestoneStatusBadge(status: string): { variant: "default" | "secondary" | "destructive" | "outline"; label: string; bar: string } {
+  switch (status) {
+    case "completed": return { variant: "default", label: "Cumplido", bar: "bg-green-600" };
+    case "on_track": return { variant: "secondary", label: "En camino", bar: "bg-blue-500" };
+    case "at_risk": return { variant: "destructive", label: "En riesgo", bar: "bg-red-500" };
+    default: return { variant: "outline", label: status, bar: "bg-muted-foreground" };
+  }
+}
+
+function formatMetricValue(value: number, metric: string, unit?: string): string {
+  const rounded = metric === "avg_position" || unit === "%" ? value.toFixed(1) : Math.round(value).toLocaleString("es-ES");
+  return unit ? `${rounded}${unit === "%" ? "%" : " " + unit}` : `${rounded}`;
 }
 
 const EXPERIMENT_TYPE_LABELS: Record<string, string> = {
@@ -159,6 +191,7 @@ export function AutopilotTab({ adminToken }: AutopilotTabProps) {
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="flex w-full max-w-3xl overflow-x-auto">
           <TabsTrigger value="overview" className="flex-shrink-0"><Activity className="h-4 w-4 mr-1" /><span className="hidden sm:inline">Overview</span><span className="sm:hidden">Info</span></TabsTrigger>
+          <TabsTrigger value="milestones" className="flex-shrink-0"><Target className="h-4 w-4 mr-1" />Hitos</TabsTrigger>
           <TabsTrigger value="experiments" className="flex-shrink-0"><FlaskConical className="h-4 w-4 mr-1" /><span className="hidden sm:inline">Experimentos</span><span className="sm:hidden">Exp</span></TabsTrigger>
           <TabsTrigger value="distribution" className="flex-shrink-0"><Send className="h-4 w-4 mr-1" />Bandeja</TabsTrigger>
           <TabsTrigger value="alerts" className="flex-shrink-0"><AlertTriangle className="h-4 w-4 mr-1" />Alertas</TabsTrigger>
@@ -168,6 +201,9 @@ export function AutopilotTab({ adminToken }: AutopilotTabProps) {
 
         <TabsContent value="overview" className="mt-4">
           <OverviewPanel adminToken={adminToken} />
+        </TabsContent>
+        <TabsContent value="milestones" className="mt-4">
+          <MilestonesPanel adminToken={adminToken} />
         </TabsContent>
         <TabsContent value="experiments" className="mt-4">
           <ExperimentsPanel adminToken={adminToken} />
@@ -255,6 +291,63 @@ function OverviewPanel({ adminToken }: { adminToken: string }) {
       <p className="text-xs text-muted-foreground">
         Generado: {formatDate(data.generatedAt)} · <button className="underline" onClick={() => refetch()}>Actualizar</button>
       </p>
+    </div>
+  );
+}
+
+// ============================================================================
+// Milestones — KPIs vs program targets
+// ============================================================================
+function MilestonesPanel({ adminToken }: { adminToken: string }) {
+  const { data, isLoading, error } = useQuery<{ scorecard: MilestoneEntry[]; count: number }>({
+    queryKey: ["autopilot", "milestones"],
+    queryFn: () => apiFetch("/api/admin/autopilot/milestones", adminToken),
+    refetchInterval: 300_000,
+  });
+
+  if (isLoading) return <p className="text-sm text-muted-foreground">Cargando…</p>;
+  if (error) return <ErrorState message={error instanceof Error ? error.message : "Error"} />;
+  const items = data?.scorecard ?? [];
+
+  if (items.length === 0) {
+    return <EmptyState icon={Target} title="Sin hitos" description="Define objetivos en shared/seoMilestones.ts." />;
+  }
+
+  const completed = items.filter((i) => i.score.status === "completed").length;
+
+  return (
+    <div className="space-y-3">
+      <p className="text-sm text-muted-foreground">
+        Progreso hacia los objetivos del programa SEO/GEO. {completed}/{items.length} cumplidos.
+        Objetivos editables en <code className="text-xs">shared/seoMilestones.ts</code>.
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {items.map(({ milestone, score }) => {
+          const sb = milestoneStatusBadge(score.status);
+          return (
+            <Card key={milestone.id}>
+              <CardContent className="p-4">
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <span className="font-medium text-sm">{milestone.label}</span>
+                  <Badge variant={sb.variant}>{sb.label}</Badge>
+                </div>
+                <div className="flex items-baseline justify-between text-sm mb-2">
+                  <span>
+                    <span className="font-bold">{formatMetricValue(score.current, milestone.metric, milestone.unit)}</span>
+                    <span className="text-muted-foreground"> / {formatMetricValue(milestone.target, milestone.metric, milestone.unit)}</span>
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {score.daysLeft >= 0 ? `${score.daysLeft} días` : "Plazo vencido"}
+                  </span>
+                </div>
+                <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
+                  <div className={`h-full ${sb.bar} transition-all`} style={{ width: `${score.progressPct}%` }} />
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 }

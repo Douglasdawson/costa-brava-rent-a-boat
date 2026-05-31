@@ -41,3 +41,10 @@ export function enumerateMatrix(): MatrixCombo[] {
 
 /** Total seed size of the matrix (occasions × eligible locations). */
 export const MATRIX_SIZE = OCCASION_LIST.length * MATRIX_LOCATION_KEYS.length;
+
+// Master kill-switch for the programmatic matrix. While false (the default), the
+// matrix contributes NOTHING to live routing, sitemap or prerender — the data
+// layer, slugs and enumerators all exist and are tested, but no thin/empty page
+// can ship. Flip to true ONLY once each combo carries unique, translated copy.
+// Keep this flag as the single gate that routing/sitemap/prerender all check.
+export const OCCASION_MATRIX_ENABLED = false;

@@ -712,6 +712,30 @@ export interface Translations {
     label: string;
   };
 
+  // Programmatic matrix pages (occasion × location) — keyed by comboId, e.g.
+  // "snorkel__locationBlanes". Gated behind OCCASION_MATRIX_ENABLED.
+  occasionMatrix?: {
+    pages: Record<
+      string,
+      {
+        seoTitle: string;
+        seoDescription: string;
+        h1: string;
+        intro: string;
+        spotsTitle: string;
+        spots: Array<{ name: string; description: string }>;
+        boatsTitle: string;
+        boatsIntro: string;
+        practicalTitle: string;
+        practicalBody: string;
+        faqTitle: string;
+        faq: Array<{ q: string; a: string }>;
+        ctaTitle: string;
+        ctaText: string;
+      }
+    >;
+  };
+
   // Gift Card Banner (homepage)
   giftCardBanner: {
     title: string;

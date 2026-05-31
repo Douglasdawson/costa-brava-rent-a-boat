@@ -681,6 +681,122 @@ export const es: Translations = {
   lastUpdated: {
     label: "Última actualización",
   },
+  occasionMatrix: {
+    pages: {
+      snorkel__locationBlanes: {
+        seoTitle: "Snorkel en barco desde Blanes — Mejores calas | Costa Brava Rent a Boat",
+        seoDescription:
+          "Alquila un barco sin licencia en Blanes y haz snorkel en Cala Sant Francesc, Sa Forcanera o Cala Treumal. Gasolina incluida, sin experiencia previa, calas a menos de 2 millas.",
+        h1: "Snorkel en barco desde Blanes",
+        intro:
+          "Desde el Puerto de Blanes, en pocos minutos de navegación llegas a calas de aguas cristalinas y fondos rocosos perfectos para el snorkel. Con un barco sin licencia —gasolina incluida y sin necesidad de experiencia— eliges tu cala, fondeas y te lanzas al agua a tu ritmo.",
+        spotsTitle: "Mejores calas para snorkel cerca de Blanes",
+        spots: [
+          { name: "Cala Sant Francesc (Cala Bona)", description: "Ensenada protegida de pinos a la salida de Blanes, de agua tranquila y rocas laterales llenas de vida: el mejor primer fondeo para snorkel en familia." },
+          { name: "Sa Forcanera", description: "Pequeña cala bajo los acantilados del Jardín Botánico Marimurtra, de aguas profundas y transparentes, ideal para nadar sobre fondos rocosos." },
+          { name: "Cala Treumal", description: "En el límite entre Blanes y Lloret, fondo de roca y arena que atrae peces; buen fondeadero resguardado del garbí." },
+          { name: "Punta de Santa Anna", description: "Junto al castillo de Sant Joan, paredes rocosas que caen al mar con excelente visibilidad para observar fauna mediterránea." },
+        ],
+        boatsTitle: "Qué barco elegir para hacer snorkel",
+        boatsIntro:
+          "Para el snorkel en Blanes recomendamos nuestros barcos sin licencia: llevan la gasolina incluida, se gobiernan sin titulación y llegan sin problema a estas calas, todas dentro de las 2 millas de la costa. Incorporan escalera de baño para entrar y salir del agua con comodidad.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Los barcos sin licencia navegan hasta 2 millas náuticas de la costa, distancia más que suficiente para todas estas calas. Trae tus gafas y tubo, protección solar y agua. Recuerda fondear sobre arena, nunca sobre las praderas de posidonia.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Necesito licencia para hacer snorkel en barco desde Blanes?", a: "No. Nuestros barcos sin licencia se gobiernan sin titulación náutica y llegan a todas las calas de snorkel cercanas a Blanes. Te explicamos el manejo antes de salir." },
+          { q: "¿Está incluido el equipo de snorkel?", a: "El barco incluye escalera de baño y la gasolina. Para el snorkel te recomendamos traer tus propias gafas y tubo, así te aseguras una talla cómoda." },
+        ],
+        ctaTitle: "Reserva tu salida de snorkel en Blanes",
+        ctaText: "Elige fecha y barco sin licencia, y prepara la mejor jornada de snorkel por las calas de Blanes.",
+      },
+      snorkel__locationLloret: {
+        seoTitle: "Snorkel en barco en Lloret de Mar — Calas Boadella y Banys | Costa Brava Rent a Boat",
+        seoDescription:
+          "Descubre las mejores calas de snorkel de Lloret de Mar en barco desde Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Barco con licencia, unos 20 minutos de navegación.",
+        h1: "Snorkel en barco en Lloret de Mar",
+        intro:
+          "Lloret de Mar esconde algunas de las calas con mejor agua de la Costa Brava sur, muchas accesibles solo por mar. Saliendo desde Blanes en unos 20 minutos de navegación llegas a sus rincones rocosos y los recorres haciendo snorkel sin las multitudes de la playa.",
+        spotsTitle: "Mejores calas para snorkel en Lloret de Mar",
+        spots: [
+          { name: "Cala Boadella", description: "Una de las calas más bonitas de Lloret; su extremo sur, rocoso y de agua limpia, deja ver peces nada más asomar la cabeza." },
+          { name: "Cala Banys", description: "Entrante rocoso de acantilados oscuros y agua profunda, un clásico para snorkel de roca con buena visibilidad." },
+          { name: "Cala dels Frares", description: "Pequeña cala de cantos rodados rodeada de paredes verticales, refugio de fauna mediterránea ideal para nadar despacio." },
+          { name: "Santa Cristina", description: "Amplia cala de arena con extremos rocosos; los laterales ofrecen un snorkel fácil y seguro, perfecto para principiantes." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Lloret",
+        boatsIntro:
+          "Las calas de Lloret quedan más allá del límite de 2 millas de los barcos sin licencia, así que para llegar hasta ellas necesitas uno de nuestros barcos con licencia. Son cómodos, cubren el trayecto desde Blanes en unos 20 minutos y te dan autonomía para encadenar varias calas en la misma salida.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. El trayecto hasta las calas de Lloret son unos 20 minutos de navegación tranquila pegada a la costa. Trae tus gafas y tubo, protección solar y agua. Fondea sobre arena, nunca sobre las praderas de posidonia.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Cuánto se tarda de Blanes a las calas de Lloret en barco?", a: "Unos 20 minutos de navegación tranquila bordeando la costa, según la cala y el estado del mar." },
+          { q: "¿Qué calas de Lloret son mejores para snorkel?", a: "Cala Boadella, Cala Banys y Cala dels Frares destacan por su fondo rocoso y la transparencia del agua." },
+        ],
+        ctaTitle: "Reserva tu salida de snorkel en Lloret de Mar",
+        ctaText: "Elige fecha y barco con licencia, y descubre las calas de snorkel de Lloret saliendo desde Blanes.",
+      },
+      snorkel__locationTossa: {
+        seoTitle: "Snorkel en barco en Tossa de Mar — Calas vírgenes y aguas protegidas | Costa Brava Rent a Boat",
+        seoDescription:
+          "Haz snorkel en las aguas limpias de Tossa de Mar: La Mar Menuda, Cala Giverola, Cala Pola. Salida en barco con licencia desde Blanes, 30-45 minutos de navegación.",
+        h1: "Snorkel en barco en Tossa de Mar",
+        intro:
+          "Tossa de Mar es uno de los mejores destinos de snorkel de la Costa Brava: parte de su litoral está protegido, con fondos rocosos y praderas rebosantes de vida. Desde Blanes son unos 30-45 minutos de navegación con un barco con licencia hasta sus calas más vírgenes.",
+        spotsTitle: "Mejores calas para snorkel en Tossa de Mar",
+        spots: [
+          { name: "La Mar Menuda", description: "Junto al casco antiguo, una bahía de aguas resguardadas y fondo rocoso muy apreciada por buceadores y aficionados al snorkel por su riqueza de fauna." },
+          { name: "Cala Giverola", description: "Cala profunda encajada entre montañas, de agua especialmente clara y paredes rocosas perfectas para nadar observando peces." },
+          { name: "Cala Pola", description: "Entorno natural protegido al norte de Tossa, con fondo de roca y arena y una transparencia excelente." },
+          { name: "Cala Futadera", description: "Cala virgen sin acceso rodado, solo por mar o sendero; aguas limpias y tranquilas, un fondeo de snorkel exclusivo." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Tossa",
+        boatsIntro:
+          "Tossa queda bastante más allá de las 2 millas, fuera del alcance de los barcos sin licencia. Para llegar a sus calas necesitas uno de nuestros barcos con licencia, que cubren el trayecto desde Blanes en 30-45 minutos y te permiten pasar el día explorando varias calas.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. La navegación hasta Tossa es de 30-45 minutos; por eso conviene reservar duraciones de 4 horas o más para disfrutar el destino sin prisa. Trae tus gafas y tubo, protección solar y agua. Respeta las zonas protegidas y fondea solo sobre arena.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Se puede ir de Blanes a Tossa en barco sin licencia?", a: "No. Tossa está fuera del límite de 2 millas de los barcos sin licencia; el trayecto se hace con un barco con licencia, en 30-45 minutos desde Blanes." },
+          { q: "¿Por qué Tossa es buena para snorkel?", a: "Parte de su litoral está protegido, con fondos rocosos y praderas muy bien conservados; calas como La Mar Menuda o Giverola ofrecen una visibilidad excelente." },
+        ],
+        ctaTitle: "Reserva tu salida de snorkel en Tossa de Mar",
+        ctaText: "Elige fecha y barco con licencia, y dedica el día a las calas protegidas de Tossa saliendo desde Blanes.",
+      },
+      snorkel__locationCostaBrava: {
+        seoTitle: "Snorkel en barco por la Costa Brava — Las mejores calas desde Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Recorre en barco las mejores calas de snorkel de la Costa Brava sur, de Blanes a Tossa de Mar. Barcos sin licencia para las calas cercanas y con licencia para el tramo completo.",
+        h1: "Snorkel en barco por la Costa Brava",
+        intro:
+          "El tramo sur de la Costa Brava, de Blanes a Tossa de Mar, concentra decenas de calas de fondo rocoso y agua transparente ideales para el snorkel. Desde el Puerto de Blanes puedes elegir entre una salida corta a las calas más cercanas o una jornada completa recorriendo la costa.",
+        spotsTitle: "Calas de snorkel imprescindibles en la Costa Brava sur",
+        spots: [
+          { name: "Cala Sant Francesc (Blanes)", description: "La cala más accesible, resguardada y familiar: el punto de partida perfecto, dentro del alcance de un barco sin licencia." },
+          { name: "Cala Boadella (Lloret)", description: "Rincón rocoso de agua limpia, uno de los mejores fondeos de snorkel del tramo medio de la costa." },
+          { name: "Cala Giverola (Tossa)", description: "Cala profunda de aguas cristalinas entre montañas, ya en el extremo norte del recorrido." },
+          { name: "Cala Pola (Tossa)", description: "Entorno natural protegido con fondo de roca y arena, recompensa para quien hace la travesía completa." },
+        ],
+        boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
+        boatsIntro:
+          "Para las calas más cercanas a Blanes basta un barco sin licencia, con gasolina incluida y sin titulación. Para recorrer el tramo completo hasta Lloret y Tossa —más allá de las 2 millas— necesitas un barco con licencia, con autonomía para encadenar varias calas en el día.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Los barcos sin licencia navegan hasta 2 millas; para llegar a Lloret (~20 min) o Tossa (30-45 min) se usa un barco con licencia. Trae tus gafas y tubo, protección solar y agua. Fondea siempre sobre arena, nunca sobre posidonia.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Qué tramo de la Costa Brava puedo recorrer en una salida?", a: "Con un barco con licencia puedes encadenar calas de Blanes, Lloret y Tossa en una jornada; con uno sin licencia disfrutarás de las calas más cercanas a Blanes." },
+          { q: "¿Cuál es la mejor época para el snorkel?", a: "De junio a septiembre el mar está más cálido y claro; julio y agosto ofrecen las mejores condiciones, y junio o septiembre, calas más tranquilas." },
+        ],
+        ctaTitle: "Reserva tu ruta de snorkel por la Costa Brava",
+        ctaText: "Elige tu barco según hasta dónde quieras llegar y descubre las mejores calas de la costa saliendo desde Blanes.",
+      },
+    },
+  },
   giftCardBanner: {
     title: "Regala una experiencia única en el mar",
     subtitle: "Tarjetas regalo desde 50 €. El regalo perfecto para cualquier ocasión.",

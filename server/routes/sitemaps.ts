@@ -8,6 +8,8 @@ import type { LangCode } from "../../shared/seoConstants";
 import { getLocalizedPath, getSlugForPage } from "../../shared/i18n-routes";
 import type { PageKey } from "../../shared/i18n-routes";
 import { hasStaticTranslation } from "../seo/translatedStaticPaths";
+import { OCCASION_MATRIX_ENABLED, liveMatrixCombos } from "../../shared/occasionMatrix";
+import { enumerateMatrixSitemapEntries } from "../../shared/occasionMatrixPage";
 import { getNativeOverride } from "../seo/nativeLanguageOverrides";
 import { resolveBoatImagePath } from "../../shared/boatImages";
 import { resolveMediaAbsoluteUrl } from "../../shared/mediaUrl";
@@ -325,6 +327,31 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "activityFamilies", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "activitySunset", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "activityFishing", "0.7", null, "monthly");
+
+      // Programmatic matrix pages (occasion × location) — gated by the master
+      // switch. Locales derive from translatedStaticPaths via the combo's own
+      // entry intersected with its parent pages (enumerateMatrixSitemapEntries),
+      // so untranslated combos/locales never appear here.
+      if (OCCASION_MATRIX_ENABLED) {
+        const matrixEntries = enumerateMatrixSitemapEntries(liveMatrixCombos(), hasStaticTranslation);
+        for (const entry of matrixEntries) {
+          let hreflangLinks = "";
+          const esAlt = entry.alternates.find((a) => a.lang === "es") ?? entry.alternates[0];
+          if (esAlt) {
+            hreflangLinks += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${esAlt.path}"/>\n`;
+          }
+          for (const alt of entry.alternates) {
+            hreflangLinks += `    <xhtml:link rel="alternate" hreflang="${HREFLANG_CODES[alt.lang]}" href="${baseUrl}${alt.path}"/>\n`;
+          }
+          for (const alt of entry.alternates) {
+            sitemap += `  <url>
+    <loc>${baseUrl}${alt.path}</loc>
+    <priority>${getLanguagePriority("0.7", alt.lang)}</priority>
+    <changefreq>monthly</changefreq>
+${hreflangLinks}  </url>\n`;
+          }
+        }
+      }
 
       // Legal pages
       sitemap += generateUrlEntry(baseUrl, "privacyPolicy", "0.3", null, "yearly");

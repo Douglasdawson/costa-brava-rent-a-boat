@@ -15,6 +15,14 @@ import fs from "fs";
 import path from "path";
 import { chromium, type Browser, type BrowserContext } from "playwright";
 import { TRANSLATED_STATIC_PATHS } from "../server/seo/translatedStaticPaths";
+import { OCCASION_MATRIX_ENABLED, liveMatrixCombos } from "../shared/occasionMatrix";
+import { matrixSlug } from "../shared/occasionMatrixPage";
+
+// ES paths of the launched matrix combos — used to skip them during prerender
+// while the matrix is gated off (their routes return 404 until enabled).
+const MATRIX_ES_PATHS = new Set(
+  liveMatrixCombos().map((c) => `/${matrixSlug(c.occasion.id, c.locationKey, "es")}`),
+);
 
 // ---------------------------------------------------------------------------
 // Types
@@ -72,6 +80,8 @@ function loadManifest(): Manifest {
 function reconcileWithIndexableRoutes(manifest: Manifest): void {
   const byPath = new Map(manifest.routes.map((r) => [r.path, r]));
   for (const [routePath, indexableLangs] of Object.entries(TRANSLATED_STATIC_PATHS)) {
+    // Skip matrix routes while the feature is gated off — they 404 until enabled.
+    if (!OCCASION_MATRIX_ENABLED && MATRIX_ES_PATHS.has(routePath)) continue;
     const existing = byPath.get(routePath);
     if (!existing) {
       manifest.routes.push({ path: routePath, langs: [...indexableLangs] });

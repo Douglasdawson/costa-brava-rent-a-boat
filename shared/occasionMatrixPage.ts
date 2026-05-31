@@ -17,8 +17,18 @@ import type { Duration } from "./pricing";
 import type { LangCode } from "./seoConstants";
 import { getSlugForPage, resolveSlug, type PageKey } from "./i18n-routes";
 import { getOccasion, type Occasion, type OccasionId } from "./occasions";
-import { getOccasionBoats, type OccasionBoat } from "./occasionData";
-import { type MatrixCombo, type MatrixLocationKey } from "./occasionMatrix";
+import { getOccasionBoats, resolveBoatIds, type OccasionBoat } from "./occasionData";
+import {
+  liveMatrixCombos,
+  MATRIX_LOCATION_REACHABLE_UNLICENSED,
+  type MatrixCombo,
+  type MatrixLocationKey,
+} from "./occasionMatrix";
+
+// Licensed boats to recommend when a location lies beyond the unlicensed 2-mile
+// range (e.g. snorkel trips to Lloret/Tossa). Comfortable cruisers that range
+// further; ids from shared/boatData.ts.
+const LICENSED_RANGE_BOAT_IDS = ["pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"];
 
 const ALL_LANGS: readonly LangCode[] = ["es", "en", "fr", "de", "ca", "nl", "it", "ru"];
 
@@ -106,8 +116,11 @@ export interface MatrixPageData {
   locationKey: MatrixLocationKey;
   /** PageKey of the occasion's standalone activity page (copy source). */
   occasionRouteKey: PageKey;
-  /** Boats recommended for this occasion, resolved against the live catalog. */
+  /** Boats recommended for this combo (occasion's boats if the location is within
+   *  unlicensed range, otherwise licensed range boats), resolved against the catalog. */
   boats: OccasionBoat[];
+  /** True when the location's coves are reachable with an unlicensed boat from Blanes. */
+  reachableUnlicensed: boolean;
   /** Durations that make commercial sense for this occasion. */
   durations: Duration[];
 }
@@ -129,12 +142,14 @@ function metaKeyFor(pageKey: PageKey): string {
 export function resolveMatrixCombo(combo: MatrixCombo): MatrixPageData | null {
   const occasion = getOccasion(combo.occasion.id);
   if (!occasion) return null;
+  const reachableUnlicensed = MATRIX_LOCATION_REACHABLE_UNLICENSED[combo.locationKey];
   return {
     comboId: comboId(occasion.id, combo.locationKey),
     occasion,
     locationKey: combo.locationKey,
     occasionRouteKey: occasion.routeKey,
-    boats: getOccasionBoats(occasion.id),
+    boats: reachableUnlicensed ? getOccasionBoats(occasion.id) : resolveBoatIds(LICENSED_RANGE_BOAT_IDS),
+    reachableUnlicensed,
     durations: occasion.recommendedDurations,
   };
 }
@@ -150,9 +165,36 @@ export function indexableLangsForCombo(
   combo: MatrixCombo,
   isIndexable: (metaKey: string, lang: LangCode) => boolean,
 ): LangCode[] {
+  // The combo's OWN page must carry translated copy in the lang (its entry in
+  // translatedStaticPaths), AND both parents must be indexable there — so we
+  // never open a matrix locale that lacks its own content or whose context
+  // pages aren't translated.
+  const matrixMeta = `/${matrixSlug(combo.occasion.id, combo.locationKey, "es")}`;
   const occasionMeta = metaKeyFor(combo.occasion.routeKey);
   const locationMeta = metaKeyFor(combo.locationKey);
   return ALL_LANGS.filter(
-    (lang) => isIndexable(occasionMeta, lang) && isIndexable(locationMeta, lang),
+    (lang) =>
+      isIndexable(matrixMeta, lang) &&
+      isIndexable(occasionMeta, lang) &&
+      isIndexable(locationMeta, lang),
   );
+}
+
+// Reverse slug → combo lookup, built once over the LIVE combos only (so enabling
+// the master switch never resolves a not-yet-authored combo). Covers all langs.
+let matrixReverse: Map<string, MatrixCombo> | null = null;
+function getMatrixReverse(): Map<string, MatrixCombo> {
+  if (matrixReverse) return matrixReverse;
+  matrixReverse = new Map();
+  for (const combo of liveMatrixCombos()) {
+    for (const lang of ALL_LANGS) {
+      matrixReverse.set(matrixSlug(combo.occasion.id, combo.locationKey, lang), combo);
+    }
+  }
+  return matrixReverse;
+}
+
+/** Resolve a URL slug to its live MatrixCombo, or null if it isn't a launched matrix page. */
+export function resolveMatrixSlug(slug: string): MatrixCombo | null {
+  return getMatrixReverse().get(slug) ?? null;
 }

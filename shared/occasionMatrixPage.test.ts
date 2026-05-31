@@ -7,8 +7,9 @@ import {
   matrixPath,
   matrixSlugCollisions,
   enumerateMatrixSitemapEntries,
+  resolveMatrixSlug,
 } from "./occasionMatrixPage";
-import { enumerateMatrix, MATRIX_LOCATION_KEYS } from "./occasionMatrix";
+import { enumerateMatrix, liveMatrixCombos, MATRIX_LOCATION_KEYS } from "./occasionMatrix";
 import { OCCASIONS } from "./occasions";
 import type { LangCode } from "./seoConstants";
 
@@ -32,6 +33,17 @@ describe("occasionMatrixPage", () => {
       expect(b.name).toBeTruthy();
       expect(b.capacity).toBeTruthy();
     }
+  });
+
+  it("recommends unlicensed boats for Blanes, licensed boats for far locations", () => {
+    const blanes = resolveMatrixCombo({ occasion: OCCASIONS.snorkel, locationKey: "locationBlanes" })!;
+    const tossa = resolveMatrixCombo({ occasion: OCCASIONS.snorkel, locationKey: "locationTossa" })!;
+    expect(blanes.reachableUnlicensed).toBe(true);
+    expect(tossa.reachableUnlicensed).toBe(false);
+    // Far location must NOT recommend the unlicensed snorkel boats.
+    expect(blanes.boats.map((b) => b.id)).toContain("solar-450");
+    expect(tossa.boats.map((b) => b.id)).toContain("pacific-craft-625");
+    expect(tossa.boats.map((b) => b.id)).not.toContain("solar-450");
   });
 
   it("comboId is stable and unique across the matrix", () => {
@@ -105,6 +117,29 @@ describe("occasionMatrixPage", () => {
       for (const e of entries) {
         expect(e.alternates.map((a) => a.lang)).toEqual(["es"]);
       }
+    });
+  });
+
+  describe("resolveMatrixSlug (live combos only)", () => {
+    it("resolves a launched snorkel slug in any language", () => {
+      expect(resolveMatrixSlug("snorkel-tossa-de-mar")?.occasion.id).toBe("snorkel");
+      expect(resolveMatrixSlug("schnorcheln-tossa-de-mar")?.occasion.id).toBe("snorkel");
+      expect(resolveMatrixSlug("snorkeling-lloret-de-mar")?.locationKey).toBe("locationLloret");
+    });
+
+    it("does NOT resolve a not-yet-launched occasion (e.g. fishing)", () => {
+      expect(resolveMatrixSlug("pesca-tossa-de-mar")).toBeNull();
+      expect(resolveMatrixSlug("fishing-tossa-de-mar")).toBeNull();
+    });
+
+    it("returns null for an unrelated slug", () => {
+      expect(resolveMatrixSlug("alquiler-barcos-blanes")).toBeNull();
+    });
+
+    it("live combos are exactly snorkel × all eligible locations", () => {
+      const live = liveMatrixCombos();
+      expect(live.length).toBe(MATRIX_LOCATION_KEYS.length);
+      expect(live.every((c) => c.occasion.id === "snorkel")).toBe(true);
     });
   });
 });

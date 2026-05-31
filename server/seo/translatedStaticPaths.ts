@@ -65,6 +65,14 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // i18n exists in all 8 locales but only ES is prerendered/indexed for now;
   // open more locales once the concept is validated and copy is reviewed.
   "/salidas-compartidas": ["es"],
+  // Programmatic matrix — snorkel vertical (occasion × location), ES-only launch.
+  // Copy lives in t.occasionMatrix.pages.<comboId>; gated behind
+  // OCCASION_MATRIX_ENABLED. Bump each to the 8 locales once translated (its two
+  // parent pages are already 8-locale, so indexableLangsForCombo will open them).
+  "/snorkel-blanes": ["es"],
+  "/snorkel-lloret-de-mar": ["es"],
+  "/snorkel-tossa-de-mar": ["es"],
+  "/snorkel-costa-brava": ["es"],
 };
 
 /**

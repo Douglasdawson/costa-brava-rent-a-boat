@@ -4,6 +4,7 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import compression from "vite-plugin-compression";
 import { VitePWA } from "vite-plugin-pwa";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
   plugins: [
@@ -110,6 +111,18 @@ export default defineConfig({
         enabled: false,
       },
     }),
+    // Bundle analysis — opt-in via `ANALYZE=1 npm run build`. Emits dist/stats.html
+    // (treemap + gzip/brotli sizes). Never runs in normal/prod builds.
+    ...(process.env.ANALYZE
+      ? [
+          visualizer({
+            filename: "dist/stats.html",
+            template: "treemap",
+            gzipSize: true,
+            brotliSize: true,
+          }),
+        ]
+      : []),
   ],
   resolve: {
     alias: {

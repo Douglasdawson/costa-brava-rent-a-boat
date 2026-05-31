@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Activity, AlertTriangle, FileText, KeyRound, Send, ShieldCheck,
   CheckCircle2, XCircle, Clock, ExternalLink, Trash2, Copy, Plus, Rocket,
+  FlaskConical, Undo2,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -52,6 +53,21 @@ interface AuditEntry {
   tokenId: number | null; createdAt: string;
 }
 
+interface ExperimentItem {
+  id: number;
+  type: string | null;
+  page: string | null;
+  hypothesis: string | null;
+  action: string | null;
+  previousValue: string | null;
+  newValue: string | null;
+  status: string | null;
+  executedAt: string | null;
+  measureAt: string | null;
+  agentReasoning: string | null;
+  createdAt: string;
+}
+
 interface McpTokenPublic {
   id: number; name: string; tokenPrefix: string;
   scopes: string[]; active: boolean;
@@ -86,6 +102,25 @@ function formatDate(iso: string | null | undefined): string {
     return iso;
   }
 }
+
+function experimentStatusBadge(status: string | null): { variant: "default" | "secondary" | "destructive" | "outline"; label: string } {
+  switch (status) {
+    case "pending_approval": return { variant: "secondary", label: "Pendiente" };
+    case "running": return { variant: "default", label: "Aplicado" };
+    case "rejected": return { variant: "outline", label: "Rechazado" };
+    case "rolled_back": return { variant: "outline", label: "Revertido" };
+    case "completed": return { variant: "default", label: "Completado" };
+    default: return { variant: "outline", label: status ?? "—" };
+  }
+}
+
+const EXPERIMENT_TYPE_LABELS: Record<string, string> = {
+  meta_title: "Título meta",
+  meta_description: "Descripción meta",
+  faq_add: "Añadir FAQ",
+  internal_link: "Enlace interno",
+  schema_update: "Schema/keywords",
+};
 
 // Platforms supported by Distribution Engine Fase 1 (auto-publish via API).
 // Keep in sync with server/services/distribution/distributionEngine.ts SUPPORTED_PLATFORMS.
@@ -124,6 +159,7 @@ export function AutopilotTab({ adminToken }: AutopilotTabProps) {
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="flex w-full max-w-3xl overflow-x-auto">
           <TabsTrigger value="overview" className="flex-shrink-0"><Activity className="h-4 w-4 mr-1" /><span className="hidden sm:inline">Overview</span><span className="sm:hidden">Info</span></TabsTrigger>
+          <TabsTrigger value="experiments" className="flex-shrink-0"><FlaskConical className="h-4 w-4 mr-1" /><span className="hidden sm:inline">Experimentos</span><span className="sm:hidden">Exp</span></TabsTrigger>
           <TabsTrigger value="distribution" className="flex-shrink-0"><Send className="h-4 w-4 mr-1" />Bandeja</TabsTrigger>
           <TabsTrigger value="alerts" className="flex-shrink-0"><AlertTriangle className="h-4 w-4 mr-1" />Alertas</TabsTrigger>
           <TabsTrigger value="audit" className="flex-shrink-0"><FileText className="h-4 w-4 mr-1" /><span className="hidden sm:inline">Auditoría</span><span className="sm:hidden">Audit</span></TabsTrigger>
@@ -132,6 +168,9 @@ export function AutopilotTab({ adminToken }: AutopilotTabProps) {
 
         <TabsContent value="overview" className="mt-4">
           <OverviewPanel adminToken={adminToken} />
+        </TabsContent>
+        <TabsContent value="experiments" className="mt-4">
+          <ExperimentsPanel adminToken={adminToken} />
         </TabsContent>
         <TabsContent value="distribution" className="mt-4">
           <DistributionPanel adminToken={adminToken} />
@@ -216,6 +255,123 @@ function OverviewPanel({ adminToken }: { adminToken: string }) {
       <p className="text-xs text-muted-foreground">
         Generado: {formatDate(data.generatedAt)} · <button className="underline" onClick={() => refetch()}>Actualizar</button>
       </p>
+    </div>
+  );
+}
+
+// ============================================================================
+// Experiments — approval gate for the autonomous executor loop
+// ============================================================================
+function ExperimentsPanel({ adminToken }: { adminToken: string }) {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  const [filterStatus, setFilterStatus] = useState<string>("pending_approval");
+
+  const { data, isLoading, error } = useQuery<{ items: ExperimentItem[]; count: number }>({
+    queryKey: ["autopilot", "experiments", filterStatus],
+    queryFn: () => {
+      const q = filterStatus ? `?status=${filterStatus}` : "";
+      return apiFetch(`/api/admin/autopilot/experiments${q}`, adminToken);
+    },
+  });
+
+  const action = useMutation({
+    mutationFn: async (args: { id: number; verb: "approve" | "reject" | "rollback"; reason?: string }) =>
+      apiFetch(`/api/admin/autopilot/experiments/${args.id}/${args.verb}`, adminToken, {
+        method: "POST",
+        body: JSON.stringify(args.reason ? { reason: args.reason } : {}),
+      }),
+    onSuccess: (_res, vars) => {
+      queryClient.invalidateQueries({ queryKey: ["autopilot", "experiments"] });
+      const labels = { approve: "Aplicado", reject: "Rechazado", rollback: "Revertido" };
+      toast({ title: labels[vars.verb] });
+    },
+    onError: (err: unknown) => {
+      toast({ title: "Error", description: err instanceof Error ? err.message : "Error", variant: "destructive" });
+    },
+  });
+
+  if (isLoading) return <p className="text-sm text-muted-foreground">Cargando…</p>;
+  if (error) return <ErrorState message={error instanceof Error ? error.message : "Error"} />;
+  const items = data?.items ?? [];
+
+  return (
+    <div className="space-y-3">
+      <p className="text-sm text-muted-foreground">
+        Cambios SEO propuestos por el loop autónomo. Con el gate activo se preparan como{" "}
+        <strong>pendientes</strong> (vista previa, sin tocar la BD) hasta que los apruebes aquí.
+      </p>
+      <div className="flex items-center gap-2">
+        <Label htmlFor="exp-status" className="text-sm">Estado:</Label>
+        <select id="exp-status" className="text-sm border rounded px-2 py-1 bg-background"
+          value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+          <option value="pending_approval">Pendientes</option>
+          <option value="running">Aplicados</option>
+          <option value="rejected">Rechazados</option>
+          <option value="rolled_back">Revertidos</option>
+          <option value="">Todos</option>
+        </select>
+      </div>
+
+      {items.length === 0 ? (
+        <EmptyState icon={FlaskConical} title="Sin experimentos" description="Cuando el loop proponga cambios, aparecerán aquí para revisión." />
+      ) : (
+        <div className="space-y-3">
+          {items.map((it) => {
+            const sb = experimentStatusBadge(it.status);
+            const typeLabel = it.type ? (EXPERIMENT_TYPE_LABELS[it.type] ?? it.type) : "—";
+            return (
+              <Card key={it.id}>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2 gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Badge variant="outline">{typeLabel}</Badge>
+                      <code className="text-xs text-muted-foreground truncate">{it.page}</code>
+                    </div>
+                    <Badge variant={sb.variant}>{sb.label}</Badge>
+                  </div>
+                  {it.hypothesis && <p className="text-xs text-muted-foreground mb-2">{it.hypothesis}</p>}
+                  <div className="text-xs space-y-1">
+                    {it.previousValue ? (
+                      <p><span className="text-muted-foreground">Antes:</span> <span className="line-through">{it.previousValue}</span></p>
+                    ) : null}
+                    <p><span className="text-muted-foreground">Propuesto:</span> <span className="font-medium">{it.newValue}</span></p>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2">{formatDate(it.createdAt)}</p>
+                  <div className="flex gap-2 mt-3 flex-wrap">
+                    {it.status === "pending_approval" && (
+                      <>
+                        <Button size="sm" variant="default" className="bg-green-600 hover:bg-green-700 text-white min-h-[40px]"
+                          disabled={action.isPending}
+                          onClick={() => action.mutate({ id: it.id, verb: "approve" })}>
+                          <CheckCircle2 className="h-3 w-3 mr-1" />Aprobar y aplicar
+                        </Button>
+                        <Button size="sm" variant="outline" className="min-h-[40px]"
+                          disabled={action.isPending}
+                          onClick={() => {
+                            const reason = window.prompt("Motivo del rechazo (opcional):") ?? undefined;
+                            action.mutate({ id: it.id, verb: "reject", reason });
+                          }}>
+                          <XCircle className="h-3 w-3 mr-1" />Rechazar
+                        </Button>
+                      </>
+                    )}
+                    {it.status === "running" && (
+                      <Button size="sm" variant="ghost" className="min-h-[40px] text-destructive"
+                        disabled={action.isPending}
+                        onClick={() => {
+                          if (window.confirm("¿Revertir este cambio al valor anterior?")) action.mutate({ id: it.id, verb: "rollback" });
+                        }}>
+                        <Undo2 className="h-3 w-3 mr-1" />Revertir
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

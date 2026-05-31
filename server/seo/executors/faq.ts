@@ -93,7 +93,7 @@ export async function addFaq(action: {
   details: string;
   hypothesis: string;
   campaignId: number | null;
-}): Promise<{ previousValue: string; newValue: string }> {
+}, opts?: { dryRun?: boolean }): Promise<{ previousValue: string; newValue: string }> {
   // Parse details - expected format: "question: What is X?\nanswer: X is Y."
   const lines = action.details.split("\n");
   let question = "";
@@ -111,6 +111,10 @@ export async function addFaq(action: {
   if (!question || !answer) {
     throw new Error(`Invalid FAQ format. Expected "question: ...\nanswer: ...". Got: ${action.details}`);
   }
+
+  // Dry-run: preview the ES question only — skip the (paid) translation call
+  // and the inserts. The real run translates + inserts all 8 locales.
+  if (opts?.dryRun) return { previousValue: "", newValue: question };
 
   // Build the full multi-locale row set: ES source + machine translations, so
   // the FAQ (and the FAQPage/Q&A schema built from it) exists in all 8 locales

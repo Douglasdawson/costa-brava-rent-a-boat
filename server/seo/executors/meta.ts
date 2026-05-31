@@ -10,7 +10,7 @@ export async function updateMeta(action: {
   details: string;
   hypothesis: string;
   campaignId: number | null;
-}): Promise<{ previousValue: string; newValue: string }> {
+}, opts?: { dryRun?: boolean }): Promise<{ previousValue: string; newValue: string }> {
   // Parse details - expected format: "title: New Title Here" or "description: New description here"
   const [field, ...valueParts] = action.details.split(": ");
   const newValue = valueParts.join(": ").trim();
@@ -30,6 +30,9 @@ export async function updateMeta(action: {
   const previousValue = existing
     ? (fieldName === "title" ? existing.title : existing.description) || ""
     : "";
+
+  // Dry-run: return the preview without touching the DB or notifying engines.
+  if (opts?.dryRun) return { previousValue, newValue };
 
   // Upsert new value
   const updateData = fieldName === "title"

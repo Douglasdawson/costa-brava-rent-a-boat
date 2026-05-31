@@ -36,6 +36,13 @@ export const SEO_CONFIG = {
   maxSerpQueriesPerDay: 50,
   maxTokensPerDay: 100000,
 
+  // Human approval gate for the autonomous executor loop. When true (default),
+  // strategist actions are staged as `pending_approval` with a dry-run preview
+  // instead of being applied live to the DB; an admin approves/rejects them
+  // from the CRM "Experiments" tab. Set SEO_AUTO_APPLY=true to restore the old
+  // fire-and-forget behaviour.
+  approvalRequired: process.env.SEO_AUTO_APPLY !== "true",
+
   getSeasonMode(): "aggressive" | "protective" | "building" {
     const month = new Date().getMonth() + 1;
     if (month >= 3 && month <= 5) return "aggressive";

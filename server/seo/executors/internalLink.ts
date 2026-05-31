@@ -8,7 +8,7 @@ export async function addInternalLink(action: {
   details: string;
   hypothesis: string;
   campaignId: number | null;
-}): Promise<{ previousValue: string; newValue: string }> {
+}, opts?: { dryRun?: boolean }): Promise<{ previousValue: string; newValue: string }> {
   // Parse details - expected format: "from: /page-a\nto: /page-b\nanchor: click here"
   const lines = action.details.split("\n");
   let fromPage = action.page;
@@ -28,6 +28,11 @@ export async function addInternalLink(action: {
 
   if (!toPage || !anchorText) {
     throw new Error(`Invalid link format. Expected "to: ...\nanchor: ...". Got: ${action.details}`);
+  }
+
+  // Dry-run: return the preview without inserting the link.
+  if (opts?.dryRun) {
+    return { previousValue: "", newValue: `${fromPage} -> ${toPage} [${anchorText}]` };
   }
 
   await db.insert(seoLinks).values({

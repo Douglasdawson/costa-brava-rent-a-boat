@@ -26,6 +26,12 @@ import {
   deleteDistributionItem,
   getAuditLog,
 } from "../storage/seoAutopilot";
+import {
+  listExperiments,
+  applyExperiment,
+  rejectExperiment,
+  rollbackExperiment,
+} from "../seo/executors/review";
 import { logger } from "../lib/logger";
 
 // ===== Schemas =====
@@ -49,6 +55,17 @@ const markDistributionBodySchema = z.object({
   result: z.enum(["published", "failed", "discarded"]),
   publishedUrl: z.string().url().optional(),
   reason: z.string().optional(),
+});
+
+const experimentsQuerySchema = z.object({
+  status: z.enum([
+    "pending_approval",
+    "running",
+    "rejected",
+    "rolled_back",
+    "completed",
+  ]).optional(),
+  limit: z.coerce.number().int().positive().max(500).optional(),
 });
 
 const auditQuerySchema = z.object({
@@ -225,6 +242,71 @@ export function registerAdminSeoAutopilotRoutes(app: Express): void {
     } catch (err) {
       logger.error("autopilot audit failed", { err: err instanceof Error ? err.message : String(err) });
       res.status(500).json({ message: "Error obteniendo auditoría" });
+    }
+  });
+
+  // --- Experiments: approval gate for the autonomous executor loop -----
+  app.get("/api/admin/autopilot/experiments", requireAdminSession, async (req: Request, res: Response) => {
+    const parsed = experimentsQuerySchema.safeParse(req.query);
+    if (!parsed.success) {
+      res.status(400).json({ message: "Filtros inválidos", errors: parsed.error.issues });
+      return;
+    }
+    try {
+      const items = await listExperiments(parsed.data.status, parsed.data.limit ?? 100);
+      res.json({ count: items.length, items });
+    } catch (err) {
+      logger.error("autopilot experiments list failed", { err: err instanceof Error ? err.message : String(err) });
+      res.status(500).json({ message: "Error obteniendo experimentos" });
+    }
+  });
+
+  app.post("/api/admin/autopilot/experiments/:id/approve", requireAdminSession, async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    if (!Number.isFinite(id) || id <= 0) {
+      res.status(400).json({ message: "ID inválido" });
+      return;
+    }
+    try {
+      const item = await applyExperiment(id);
+      res.json({ item });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      logger.error("autopilot experiment approve failed", { id, err: msg });
+      res.status(400).json({ message: msg });
+    }
+  });
+
+  app.post("/api/admin/autopilot/experiments/:id/reject", requireAdminSession, async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    if (!Number.isFinite(id) || id <= 0) {
+      res.status(400).json({ message: "ID inválido" });
+      return;
+    }
+    try {
+      const reason = typeof req.body?.reason === "string" ? req.body.reason : undefined;
+      const item = await rejectExperiment(id, reason);
+      res.json({ item });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      logger.error("autopilot experiment reject failed", { id, err: msg });
+      res.status(400).json({ message: msg });
+    }
+  });
+
+  app.post("/api/admin/autopilot/experiments/:id/rollback", requireAdminSession, async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    if (!Number.isFinite(id) || id <= 0) {
+      res.status(400).json({ message: "ID inválido" });
+      return;
+    }
+    try {
+      const item = await rollbackExperiment(id);
+      res.json({ item });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      logger.error("autopilot experiment rollback failed", { id, err: msg });
+      res.status(400).json({ message: msg });
     }
   });
 

@@ -9,7 +9,7 @@ export async function updateSchema(action: {
   details: string;
   hypothesis: string;
   campaignId: number | null;
-}): Promise<{ previousValue: string; newValue: string }> {
+}, opts?: { dryRun?: boolean }): Promise<{ previousValue: string; newValue: string }> {
   // Get existing seoMeta row for this page
   const [existing] = await db
     .select()
@@ -18,6 +18,9 @@ export async function updateSchema(action: {
     .limit(1);
 
   const previousValue = existing?.keywords || "";
+
+  // Dry-run: return the preview without touching the DB.
+  if (opts?.dryRun) return { previousValue, newValue: action.details };
 
   // Upsert keywords field with schema markup instructions
   await db

@@ -1,7 +1,7 @@
 # Competitors Check — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-04-06 16:39:57 UTC
-**Periodo comparado:** 2026-03-30 vs 2026-04-06
+**Ultima actualizacion:** 2026-05-31 05:00:19 UTC
+**Periodo comparado:** 2026-05-24 vs 2026-05-31
 
 ---
 
@@ -25,7 +25,9 @@
 
 ### "rent boat blanes"
 
-*Keyword no trackeada en la base de datos.*
+**Nuestra posicion:** -
+
+*Ningun competidor trackeado por encima de nosotros.*
 
 ### "boat rental costa brava"
 

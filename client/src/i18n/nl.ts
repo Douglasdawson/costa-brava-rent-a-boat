@@ -41,6 +41,8 @@ export const nl: Translations = {
     askWhatsApp: "Vraag ons via WhatsApp",
     testimonialQuote: "Ongelooflijke ervaring, we komen terug",
     testimonialQuoteShort: "We komen terug",
+    summaryGeo:
+      "Costa Brava Rent a Boat beheert de grootste bootverhuurvloot van de haven van Blanes met 9 vaartuigen: 5 zonder vaarbewijs inclusief brandstof vanaf 70€/u, 3 met vaarbewijs en 1 privé-excursie met schipper. Service in 8 talen. Seizoen van april tot oktober. 4.8★ op Google met meer dan 300 beoordelingen.",
   },
 
   fleet: {
@@ -281,6 +283,9 @@ export const nl: Translations = {
   booking: {
     title: "Vraag je reservering aan",
     modalSubtitle: "Duurt maar 2 minuten. Bevestiging via WhatsApp.",
+    specialRateTitle: "Speciaal tarief voor deze datum",
+    specialRateBody: "vraaggestuurd tarief",
+    specialRateFooter: "Het eindtotaal in de volgende stap is al inclusief.",
     seasonCountdown: "Prijzen seizoen 2026 stijgen op 1 juni · nog {days} dagen · bevestig vandaag",
     selectBoat: "Boot Selecteren",
     dateTime: "Datum & Tijd",
@@ -452,8 +457,17 @@ export const nl: Translations = {
     stepExperience: "Ervaring",
     stepPersonalize: "Personaliseer",
     stepPay: "Bevestiging",
+    stepCounter: "Stap {current} van {total}",
     chooseBoatFirst: "Selecteer een boot om een tijd te kiezen",
     chooseTimeFirst: "Selecteer eerst datum en boot",
+    quoteConfirmedTitle: "Bijna klaar. Eén berichtje en we varen uit.",
+    quoteConfirmedNote: "We houden de boot voor je vrij zodra we je bericht lezen.",
+    whatsappFlowTitle: "We sturen je naar WhatsApp met alles klaar",
+    whatsappFlowBody:
+      "Druk op Versturen en we reageren zodra we het bericht lezen. We bevestigen de beschikbaarheid en de betaling wordt op de dag van verhuur geregeld.",
+    openingWhatsapp: "WhatsApp openen…",
+    requestViaWhatsapp: "Aanvragen via WhatsApp",
+    whatsappFooterNote: "Je hoeft alleen op Versturen te drukken. Vrijblijvend tot we bevestigen.",
   },
   faq: {
     title: "Veelgestelde Vragen",
@@ -785,8 +799,19 @@ export const nl: Translations = {
       yourDetails: "Bevestigen",
     },
     hints: {
+      pricesNextStep: "In de volgende stap zie je de echte prijzen voor jouw datum.",
+      boatNotAvailableForDate: "Geen beschikbaarheid voor {date}. Kies een andere dag of een andere boot.",
+      capacityExceeded: "Deze boot is geschikt voor maximaal {max} personen. Verander de boot of de groepsgrootte.",
       noOnlinePayment: "Geen online betaling, we bevestigen via WhatsApp",
       submitReassurance: "We reageren binnen 2 uur. Geen online betaling, vrijblijvend.",
+    },
+    multiBoat: {
+      title: "Jullie boten",
+      subtitle: "Voor {n} personen hebben we 2 boten nodig",
+      recommended: "Aanbevolen",
+      combinedCapacity: "{n} personen in totaal",
+      noCombinations: "Geen beschikbare combinaties voor deze groep.",
+      chooseManually: "Boten handmatig kiezen",
     },
     fuel: {
       included: "Brandstof inbegrepen",
@@ -1051,7 +1076,51 @@ export const nl: Translations = {
       "Dat is het meest voorkomende geval onder onze klanten. Boten zonder vaarbewijs zijn juist ontworpen voor mensen zonder eerdere ervaring: intuïtieve bediening, lichte motor (15 PK), varen op 5 knopen (cruisesnelheid) en beschermde kustzone. Tijdens de 15-minuten instructie leren we u manoeuvreren in de haven, voor anker gaan, de marifoon gebruiken en terugkeren naar de aanlegplek. Tot vandaag heeft geen enkele klant moeite gehad met de boot na de instructie.",
     faqGroupSizeQuestion: "Hoeveel mensen passen er in een boot zonder vaarbewijs?",
     faqGroupSizeAnswer:
-      "Onze 5 boten zonder vaarbewijs hebben een capaciteit van 4 tot 5 personen (volwassenen en kinderen tellen gelijk). De Astec 400 is ideaal voor stellen of kleine gezinnen (4 personen). Solar 450, Remus 450, Remus 450 II en Astec 480 zijn de grootste in de categorie zonder vaarbewijs (5 personen). Heb je 6 of 7 plaatsen nodig, kijk dan naar de boten met vaarbewijs (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) of onze Privé-excursie met schipper. De prijs is per boot, niet per persoon, hoe meer mensen, hoe goedkoper per hoofd."
+      "Onze 5 boten zonder vaarbewijs hebben een capaciteit van 4 tot 5 personen (volwassenen en kinderen tellen gelijk). De Astec 400 is ideaal voor stellen of kleine gezinnen (4 personen). Solar 450, Remus 450, Remus 450 II en Astec 480 zijn de grootste in de categorie zonder vaarbewijs (5 personen). Heb je 6 of 7 plaatsen nodig, kijk dan naar de boten met vaarbewijs (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) of onze Privé-excursie met schipper. De prijs is per boot, niet per persoon, hoe meer mensen, hoe goedkoper per hoofd.",
+    howToTitle: "Een boot zonder vaarbewijs huren in Blanes (5 stappen)",
+    howToIntro:
+      "Een boot zonder vaarbewijs huren in de haven van Blanes is eenvoudiger dan het lijkt. Dit zijn de 5 stappen van het proces, van de reservering tot de teruggave, zodat je precies weet wat je kunt verwachten op de dag van vertrek.",
+    howToStep1Title: "1. Kies je boot en tijdstip",
+    howToStep1Text:
+      "Bekijk onze vloot zonder vaarbewijs (Solar 450, Remus 450, Astec 400, Astec 480 en Mingolla Brava 19) en kies de boot die het beste bij jouw groep past. Reserveer via WhatsApp (+34 611 500 372) of via de website met vermelding van datum, tijd en aantal personen. We bevestigen de beschikbaarheid in enkele minuten.",
+    howToStep2Title: "2. Kom 30 minuten voor vertrek naar de haven van Blanes",
+    howToStep2Text:
+      "Onze basis is gevestigd in de haven van Blanes (Girona), bereikbaar per auto vanuit Barcelona (1u), Lloret de Mar (15 min) of Tossa de Mar (30 min). Gratis parkeren in de havenzone. Neem het identiteitsbewijs of paspoort van de bestuurder (18 jaar of ouder) en de borg van 300€ mee (pinpas of contant, wordt volledig terugbetaald).",
+    howToStep3Title: "3. Veiligheidsinstructie (15 minuten)",
+    howToStep3Text:
+      "Voordat je vertrekt, leert ons lokale team je de boot te besturen in de haven: motor starten en stoppen, langzaam manoeuvreren, voor anker gaan in een baai, de marifoon gebruiken en terugkeren naar de aanlegplaats. We beantwoorden al je vragen. Geen eerdere ervaring nodig — de instructie is ontworpen voor beginners.",
+    howToStep4Title: "4. Vaar naar de baaien van de Costa Brava",
+    howToStep4Text:
+      "Je vertrekt vanuit de haven van Blanes met brandstof inbegrepen en vrije koers binnen de limiet van 2 zeemijl. De populairste baaien: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina en Sa Boadella, tot aan het strand van Fenals (Lloret de Mar). Anker waar je wilt, zwem, snorkel en keer op je eigen tempo terug.",
+    howToStep5Title: "5. Lever de boot in en haal je borg op",
+    howToStep5Text:
+      "Keer terug naar de haven van Blanes op het afgesproken tijdstip. Ons team inspecteert de boot (5 min) en als alles in orde is, ontvang je onmiddellijk je borg van 300€ terug. Geen gedoe, geen extra kosten. De prijs die je hebt gereserveerd is de eindprijs.",
+    howToDurationLabel: "Duur van het proces",
+    howToDurationValue: "Reservering 5 min · instructie 15 min · vrij varen",
+    howToCostLabel: "Prijs vanaf",
+    howToCostValue: "70€/u inclusief brandstof",
+    vsMarketplacesTitle: "Waarom direct huren in Blanes in plaats van via een marktplaats",
+    vsMarketplacesIntro:
+      "Sommige marktplaatsen adverteren boten zonder vaarbewijs aan de Costa Brava vanaf 55€/dag. Dat klinkt goedkoop, maar de prijs die je ziet is niet de prijs die je betaalt. Dit is wat er verandert als je direct bij ons reserveert tegenover een tussenpersoon.",
+    vsMarketplacesCol1: "Hier reserveren (direct)",
+    vsMarketplacesCol2: "Tussenpersoon marktplaatsen",
+    vsMarketplacesRow1Label: "Brandstof",
+    vsMarketplacesRow1Direct: "Inbegrepen in de prijs",
+    vsMarketplacesRow1Market: "Apart (voegt vaak 25-50€ toe)",
+    vsMarketplacesRow2Label: "Platformcommissie",
+    vsMarketplacesRow2Direct: "0€ — je betaalt de eigenaar",
+    vsMarketplacesRow2Market: "5-15% over het totaal",
+    vsMarketplacesRow3Label: "Veiligheidsinstructie",
+    vsMarketplacesRow3Direct: "Lokaal team in 8 talen (es/en/fr/de/ca/nl/it/ru)",
+    vsMarketplacesRow3Market: "Afhankelijk van eigenaar, meestal alleen Spaans",
+    vsMarketplacesRow4Label: "Ondersteuning op de dag zelf",
+    vsMarketplacesRow4Direct: "Directe WhatsApp met ons team in de haven",
+    vsMarketplacesRow4Market: "E-mailsupport van de marktplaats, niet van de eigenaar",
+    vsMarketplacesRow5Label: "Annulering",
+    vsMarketplacesRow5Direct: "Flexibel tot 48u van tevoren",
+    vsMarketplacesRow5Market: "Beleid van de marktplaats + tarief van de eigenaar",
+    vsMarketplacesConclusion:
+      "De uiteindelijke prijs via een marktplaats is doorgaans 20-35% hoger dan geadverteerd zodra je brandstof, commissie en extra's optelt. Onze 70€/u is al-inclusive: brandstof, uitrusting, instructie, aansprakelijkheidsverzekering en havensupport.",
   },
   categoryLicensed: {
     heroTitle: "Boten Met Vaarbewijs in Blanes",
@@ -1952,6 +2021,62 @@ export const nl: Translations = {
           "Neem een duik vlak voor zonsondergang. Het water is aan het eind van de middag op zijn warmst en zwemmen in gouden licht is een onvergetelijke ervaring.",
       },
     ],
+    heroTitle: "Boottocht bij Zonsondergang vanuit Blanes",
+    heroDescription:
+      "Aanschouw de zonsondergang boven de Costa Brava vanaf het dek van je eigen boot. Vertrek uit de haven van Blanes, vaar langs verborgen baaien en geniet van het meest magische licht van de dag boven de Middellandse Zee. Zonder vaarbewijs. Vanaf 70 EUR/uur.",
+    badgeGoldenHour: "Uitzicht tijdens gouden uur",
+    badgeDuration: "2 uur aanbevolen",
+    badgeCouples: "Perfect voor koppels",
+    whyTitle: "Waarom een boottocht bij zonsondergang vanuit Blanes",
+    whyGoldenHourTitle: "Het gouden uur van de Middellandse Zee",
+    whyGoldenHourDesc:
+      "Er is iets buitengewoons aan het zien van de zonsondergang vanuit zee. Het licht wordt goudkleurig, dan amberkleurig, dan roze. De kliffen van de Costa Brava glanzen alsof ze in brand staan. Het water verandert in een spiegel die alle kleuren van de hemel weerspiegelt. Dit is het soort ervaring dat een vakantie onvergetelijk maakt.",
+    whyPrivateTitle: "Jouw eigen privé-ervaring",
+    whyPrivateDesc:
+      "In tegenstelling tot groepscruises bij zonsondergang is de boot alleen voor jullie. Jullie kiezen waar je ankert, hoe lang je blijft en wat je meeneemt aan boord. Geen gids die jullie opjaagt, geen andere toeristen. Alleen jullie en de Middellandse Zee op haar mooiste moment.",
+    whyAffordableTitle: "Eenvoudig en betaalbaar",
+    whyAffordableDesc:
+      "Onze boten zonder vaarbewijs zijn ongelooflijk eenvoudig te besturen. Na een instructie van 15 minuten in de haven zijn jullie klaar. De boot heeft ruimte voor maximaal 5 personen, dus een zonsondergangtocht van 2 uur kan al vanaf 28 EUR per persoon inclusief brandstof. Goedkoper dan de meeste diners aan de Costa Brava.",
+    whyTemperatureTitle: "Perfecte temperatuur bij zonsondergang",
+    whyTemperatureDesc:
+      "In de late namiddag is de hitte van de dag afgezwakt. De zeebries houdt jullie aangenaam. Het water is op zijn warmst na een dag in de zon. Het is het ideale moment om op het water te zijn, of het nu gaat om zwemmen, dobberen of gewoon kijken hoe de hemel van kleur verandert.",
+    viewpointsTitle: "De mooiste zonsondergangsuitzichten vanuit zee",
+    sunsetTimesTitle: "Zonsondergangstijden en aanbevolen vertrektijden",
+    sunsetTimesTableMonth: "Maand",
+    sunsetTimesTableTime: "Tijd van zonsondergang",
+    sunsetTimesTableDeparture: "Aanbevolen vertrek",
+    sunsetTimesNote:
+      "De tijden zijn bij benadering en variëren een paar minuten per week. Ons team in de haven bevestigt de exacte zonsondergangstijd en adviseert het beste vertrekmoment.",
+    romanticIdeasTitle: "Ideeën om het speciaal te maken",
+    whatToBringTitle: "Wat mee te nemen voor je zonsondergangtocht",
+    whatToBringEssentials: "Onmisbaar",
+    whatToBringEssentialItems: [
+      "Licht jasje of trui (het koelt af na zonsondergang)",
+      "Zonnebril (de laagstaande zon kan verblinden)",
+      "Telefoon of camera voor foto's",
+      "Zwemkleding als jullie willen zwemmen tijdens het gouden uur",
+    ],
+    whatToBringNice: "Aanbevolen",
+    whatToBringNiceItems: [
+      "Picknick of hapjes: kaas, vleeswaren, olijven",
+      "Wijn, cava of dranken in een koeltas",
+      "Bluetooth-speaker voor muziek",
+      "Handdoeken als jullie gaan zwemmen",
+    ],
+    exploreMore: "Ontdek meer ervaringen",
+    linkNoLicense: "Boten zonder vaarbewijs",
+    linkSnorkel: "Snorkeluitje",
+    linkPrices: "Prijzen en tarieven",
+    linkBlanes: "Info haven van Blanes",
+    linkRoutes: "Zeeroutes",
+    faqTitle: "Veelgestelde vragen",
+    ctaTitle: "Reserveer je boottocht bij zonsondergang vanuit Blanes",
+    ctaDescription:
+      "De meest magische manier om een dag aan de Costa Brava af te sluiten. Vertrek vanuit de haven van Blanes, van april tot oktober. Zonder vaarbewijs. Brandstof inbegrepen.",
+    ctaWhatsApp: "Reserveren via WhatsApp",
+    ctaViewBoats: "Beschikbare boten bekijken",
+    breadcrumbHome: "Home",
+    breadcrumbSunset: "Boottocht bij zonsondergang",
   },
   activitySnorkel: {
     faqItems: [
@@ -2157,6 +2282,63 @@ export const nl: Translations = {
         tip: "Aanbevolen voor kinderen vanaf 4 jaar. Neem eten, water, zonnebrand en petjes mee.",
       },
     ],
+    heroTitle: "Boot Huren voor Gezinnen aan de Costa Brava",
+    heroDescription:
+      "Een veilig en leuk avontuur voor het hele gezin. Boten zonder vaarbewijs vanuit de haven van Blanes met brandstof inbegrepen, kinderzwemvesten en beschermde baaien perfect voor kinderen. Vanaf 70 EUR/uur.",
+    badgeNoLicense: "Geen vaarbewijs nodig",
+    badgeKidsVests: "Kinderzwemvesten inbegrepen",
+    badgeFuel: "Brandstof inbegrepen",
+    whyTitle: "Waarom het perfect is voor gezinnen",
+    whyMemoriesTitle: "Een ervaring die ze altijd zullen herinneren",
+    whyMemoriesDesc:
+      "Een boot huren als gezin is veel meer dan een uitstapje op zee. Het is samen verborgen baaien ontdekken, vissen onder water zien, picknicken terwijl je dobbert op turkoois water en herinneringen creëren die de kinderen nog jarenlang zullen vertellen. Aan de Costa Brava biedt de kust tussen Blanes en Lloret het perfecte decor.",
+    whyNoStressTitle: "Geen stress, geen gedoe",
+    whyNoStressDesc:
+      "Je hebt geen eerdere ervaring of vaarbewijs nodig. We leren je alles in 15 minuten. De boten zijn stabiel, gemakkelijk te besturen en hebben een beperkte snelheid. Brandstof is inbegrepen, dus geen verrassingen in de prijs. Je hoeft alleen te komen met zin om plezier te hebben.",
+    whyCalmCovesTitle: "Rustige baaien voor kinderen",
+    whyCalmCovesDesc:
+      "We bevelen beschermde baaien aan met ondiep water en zonder golfslag. Cala Sant Francesc heeft een zandbodem die ideaal is voor kinderen om veilig te zwemmen. Cala Bona biedt kristalhelder water perfect voor eerste snorkelervaringen.",
+    whyFlexTitle: "Volledige flexibiliteit",
+    whyFlexDesc:
+      "Jij bepaalt het tempo. Als de kinderen langer in een baai willen blijven, geen probleem. Als iemand moe wordt, keren we terug. Geen vaste tijdschema's, geen verplichte routes. Het is jullie boot, jullie plan, jullie dag op zee.",
+    safetyTitle: "Veiligheid voor het hele gezin",
+    routesTitle: "Aanbevolen routes voor gezinnen",
+    stopsLabel: "Stops:",
+    tipLabel: "Tip:",
+    whatToBringTitle: "Wat mee te nemen voor een dag op zee met kinderen",
+    essentialTitle: "Onmisbaar",
+    essentialItems: [
+      "Waterproof zonnebrand SPF 50+",
+      "Voldoende water (minimaal 1L per persoon)",
+      "Petten of hoeden voor de zon",
+      "Handdoeken",
+    ],
+    recommendedTitle: "Aanbevolen",
+    recommendedItems: [
+      "Snacks of een voorbereide picknick",
+      "UV-shirts voor kinderen",
+      "Zonnebril met nekkoord",
+      "Droge kleren voor de terugkeer",
+    ],
+    optionalTitle: "Optioneel",
+    optionalItems: [
+      "Waterdichte camera of telefoonhoes",
+      "Eigen snorkeluitrusting",
+      "Kleine koelbox met ijs",
+      "Opblaasbaar strandspeelgoed",
+    ],
+    exploreTitle: "Ontdek meer over onze diensten",
+    linkNoLicense: "Boten zonder vaarbewijs",
+    linkSnorkel: "Snorkeluitje",
+    linkPrices: "Prijzen en tarieven",
+    linkBlanes: "Haven van Blanes",
+    linkRoutes: "Zeeroutes",
+    ctaTitle: "Reserveer een boot voor het hele gezin",
+    ctaDescription:
+      "Veilige boten, eenvoudig te besturen en alles inbegrepen. Het perfecte plan voor een dag op zee als gezin aan de Costa Brava. Vertrek vanuit de haven van Blanes van april tot oktober.",
+    ctaWhatsApp: "Reserveren via WhatsApp",
+    ctaViewBoats: "Boten zonder vaarbewijs bekijken",
+    faqTitle: "Veelgestelde vragen over boten voor gezinnen",
   },
   activityFishing: {
     faqItems: [
@@ -2264,6 +2446,79 @@ export const nl: Translations = {
           "Op 3-5 mijl uit de kust, dieptes van 40-80 meter. Alleen toegankelijk met boten met vergunning. Jigging en trolling.",
       },
     ],
+    heroTitle: "Vissen vanuit een Boot in Blanes - Costa Brava",
+    heroDescription:
+      "Huur een boot in de haven van Blanes en ga vissen in de wateren van de Costa Brava. Zeebaarzen, goudbrasems, geelstaartmakrelen en meer. Boten met en zonder vaarbewijs afgestemd op jouw ervaringsniveau. Breng je uitrusting mee en wij leveren de boot.",
+    badgeSpecies: "5+ doelsoorten",
+    badgeLicense: "Met en zonder vaarbewijs",
+    badgeDuration: "4-6 uur aanbevolen",
+    whyTitle: "Waarom vissen vanuit Blanes",
+    whyLocationTitle: "Strategische ligging",
+    whyLocationDesc:
+      "Blanes ligt op het punt waar de kustlijn van karakter verandert: in het zuiden de zandstranden van de Maresme, in het noorden de rotsachtige kust van de Costa Brava. Deze overgang creëert een uitzonderlijke diversiteit aan mariene habitats voor de visserij: zandbodem, zeegraspercelen, rotsformaties en open water, alles bereikbaar in minder dan 30 minuten varen.",
+    whyPortTitle: "Comfortabele en goed uitgeruste haven",
+    whyPortDesc:
+      "De haven van Blanes heeft gratis parkeren, een nautisch tankstation en winkels voor vers aas. Je vertrekt vanuit de haven en binnen 10 minuten ben je al in productieve visgebieden. Bij terugkomst kun je je vangst schoonmaken en eten in de havenrestaurants.",
+    whyVarietyTitle: "Verscheidenheid aan soorten",
+    whyVarietyDesc:
+      "De wateren voor Blanes herbergen een grote verscheidenheid aan soorten. Dicht bij de kust vind je zeebaarzen, goudbrasems, zeebrasems en geepvissen. Iets verder in open water kom je geelstaartmakrelen, bonito en tandbaarzen tegen. In herfst en winter is het inktvisvissen met jigs uitstekend.",
+    whySeasonTitle: "Verlengd seizoen",
+    whySeasonDesc:
+      "Hoewel het verhuurseizoen van april tot oktober loopt, heeft elke maand zijn eigen visserijkansen. Lente voor goudbrasems, zomer voor geelstaartmakrelen, herfst voor inktvissen en tandbaarzen. Er is altijd wel iets te vangen in Blanes.",
+    speciesTitle: "Soorten die je kunt vangen in Blanes",
+    seasonLabel: "Seizoen:",
+    whereLabel: "Waar:",
+    techniqueLabel: "Techniek:",
+    boatsTitle: "Aanbevolen boten voor vissen",
+    spotsTitle: "Visgebieden vanuit Blanes",
+    targetLabel: "Doel:",
+    regulationsTitle: "Regelgeving en visserijwetgeving",
+    licenseTitle: "Verplichte visvergunning",
+    licenseDesc:
+      "Om op zee te vissen vanuit een boot heb je de recreatieve zeevisvergunning van de Generalitat de Catalunya nodig. Je kunt die online verkrijgen via gencat.cat voor ongeveer 14 EUR met een geldigheidsduur van 2 jaar.",
+    catchLimitsTitle: "Vangstlimieten",
+    catchLimitsItems: [
+      "Maximaal 5 kg per persoon per dag",
+      "Als één exemplaar meer dan 5 kg weegt, telt dit als quotum",
+      "Maximaal 2 hengels per persoon",
+    ],
+    minSizesTitle: "Belangrijkste minimummaten",
+    minSizesItems: [
+      "Zeebaars: 36 cm",
+      "Goudbrasem: 20 cm",
+      "Tandbaars: 35 cm",
+      "Geelstaartmakreel: 40 cm",
+    ],
+    prohibitedTitle: "Verboden zones",
+    prohibitedDesc:
+      "Het is verboden te vissen in gemarkeerde zwemzones, zeereservaten en binnen havens. Respecteer altijd de boeienlijnen en beschermde gebieden.",
+    equipmentTitle: "Visuitrusting: breng de jouwe mee",
+    whatToBringTitle: "Wat mee te nemen",
+    whatToBringItems: [
+      "Hengels en molens (spinning, jigging of bodemvissen)",
+      "Kunstaas, lood en haken",
+      "Vers aas (verkrijgbaar in winkels bij de haven)",
+      "Koelbox met ijs voor de vangst",
+      "Visserstang en mes",
+    ],
+    whereBaitTitle: "Waar aas kopen in Blanes",
+    whereBaitDesc:
+      "Nabij de haven van Blanes zijn er verschillende nautische winkels waar je vers aas (pier, koreaanse pier, garnaal) en basisvismateriaal kunt kopen. We raden aan het aas op de dag van vertrek te kopen voor maximale versheid.",
+    recommendationsTitle: "Aanbevelingen",
+    recommendationsDesc:
+      "Neem zonnebrand mee, voldoende water, een pet en een polariserende zonnebril (helpt vissen in het water te zien). Een shirt met lange mouwen beschermt je tegen de zon tijdens de visuren. Vergeet je visvergunning niet, afgedrukt of op je telefoon.",
+    exploreTitle: "Ontdek meer activiteiten en diensten",
+    linkLicensed: "Boten met vaarbewijs",
+    linkNoLicense: "Boten zonder vaarbewijs",
+    linkSnorkel: "Snorkeluitje",
+    linkPrices: "Prijzen en tarieven",
+    linkBlanes: "Haven van Blanes",
+    ctaTitle: "Reserveer je boot voor vissen in Blanes",
+    ctaDescription:
+      "Breng je uitrusting, wij leveren de boot. Zeebaarzen, goudbrasems, geelstaartmakrelen en meer wachten op je in de wateren van de Costa Brava. Vertrek vanuit de haven van Blanes.",
+    ctaWhatsApp: "Reserveren via WhatsApp",
+    ctaViewBoats: "Boten met vaarbewijs bekijken",
+    faqTitle: "Veelgestelde vragen over vissen vanuit een boot",
   },
   locationPages: {
     blanes: {
@@ -3894,6 +4149,26 @@ export const nl: Translations = {
         },
       ],
     },
+  },
+
+  blogAuthorByline: {
+    writtenBy: "Door",
+    publishedOn: "Gepubliceerd op",
+    updatedOn: "Bijgewerkt op",
+    readMore: "Meer over de auteur",
+    verifiedProfilesLabel: "Geverifieerde profielen",
+  },
+
+  homeReviewsBlock: {
+    title: "Wat onze klanten zeggen",
+    subtitle: "Geverifieerde Google Maps-recensies",
+    viewAll: "Alle recensies bekijken",
+    fallbackAuthor: "Geverifieerde klant",
+  },
+
+  contentSummary: {
+    keyTakeawaysTitle: "Belangrijkste punten",
+    quickFactsTitle: "Snelle feiten",
   },
 
   testimonios: {

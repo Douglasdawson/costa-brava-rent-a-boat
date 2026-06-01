@@ -41,6 +41,8 @@ export const ca: Translations = {
     askWhatsApp: "Pregunta'ns per WhatsApp",
     testimonialQuote: "Experi\u00E8ncia incre\u00EFble, repetirem segur",
     testimonialQuoteShort: "Repetirem segur",
+    summaryGeo:
+      "Costa Brava Rent a Boat opera la flota de lloguer de vaixells més gran del Port de Blanes amb 9 embarcacions: 5 sense llicència amb gasolina inclosa des de 70€/h, 3 amb llicència i 1 excursió privada amb patró. Atenció en 8 idiomes. Temporada d'abril a octubre. 4,8★ a Google amb més de 300 ressenyes.",
   },
 
   fleet: {
@@ -281,6 +283,9 @@ export const ca: Translations = {
   booking: {
     title: "Sol·licita la teva reserva",
     modalSubtitle: "Només 2 minuts. Confirmem per WhatsApp.",
+    specialRateTitle: "Tarifa especial per a aquesta data",
+    specialRateBody: "preu adaptat per demanda",
+    specialRateFooter: "El total final del pas següent ja ho inclou.",
     seasonCountdown:
       "Els preus de la temporada 2026 pugen l'1 de juny · queden {days} dies · confirma avui",
     selectBoat: "Seleccionar Barca",
@@ -452,8 +457,17 @@ export const ca: Translations = {
     stepExperience: "Experiència",
     stepPersonalize: "Personalitza",
     stepPay: "Confirmació",
+    stepCounter: "Pas {current} de {total}",
     chooseBoatFirst: "Selecciona un vaixell per triar horari",
     chooseTimeFirst: "Selecciona data i vaixell primer",
+    quoteConfirmedTitle: "Gairebé llest. Un missatge i zarpen.",
+    quoteConfirmedNote: "Et guardem el vaixell en quan llegim el teu missatge.",
+    whatsappFlowTitle: "Et portem a WhatsApp amb tot preparat",
+    whatsappFlowBody:
+      "Prem Enviar i et responem en quan llegim el missatge. Confirmem la disponibilitat i el pagament el tanquem el dia del lloguer.",
+    openingWhatsapp: "Obrint WhatsApp…",
+    requestViaWhatsapp: "Sol·licitar per WhatsApp",
+    whatsappFooterNote: "Només has de prémer Enviar. Sense compromís fins que confirmem.",
   },
   faq: {
     title: "Preguntes Freqüents",
@@ -786,8 +800,19 @@ export const ca: Translations = {
       yourDetails: "Confirmar",
     },
     hints: {
+      pricesNextStep: "Al pas següent veuràs preus reals per a la teva data.",
+      boatNotAvailableForDate: "Sense disponibilitat per al {date}. Mira un altre dia o canvia de vaixell.",
+      capacityExceeded: "Aquest vaixell admet fins a {max} persones. Canvia el vaixell o el grup.",
       noOnlinePayment: "Sense pagament en línia, et confirmem per WhatsApp",
       submitReassurance: "Et responem en menys de 2 hores. Sense pagament en línia, sense compromís.",
+    },
+    multiBoat: {
+      title: "Els vostres vaixells",
+      subtitle: "Per a {n} persones necessitem 2 vaixells",
+      recommended: "Recomanat",
+      combinedCapacity: "{n}p en total",
+      noCombinations: "No hi ha combinacions disponibles per a aquest grup.",
+      chooseManually: "Triar vaixells manualment",
     },
     fuel: {
       included: "Combustible inclòs",
@@ -1053,7 +1078,51 @@ export const ca: Translations = {
       "És el cas més habitual entre els nostres clients. Les barques sense llicència estan dissenyades precisament per a persones sense experiència prèvia: controls intuïtius, motor de baixa potència (15 CV), navegació a 5 nusos (velocitat de passeig) i zona costanera protegida. En el briefing de 15 minuts t'ensenyem a maniobrar al port, fondejar, utilitzar la VHF i tornar a l'amarrador. Fins avui cap client ha tingut problemes per manejar la barca després del briefing.",
     faqGroupSizeQuestion: "Quanta gent cap en una barca sense llicència?",
     faqGroupSizeAnswer:
-      "Les nostres 5 barques sense llicència tenen capacitat entre 4 i 5 persones (adults i nens compten igual). L'Astec 400 és ideal per a parelles o famílies petites (4 persones). Solar 450, Remus 450, Remus 450 II i Astec 480 són les més grans de la categoria sense llicència (5 persones). Si necessites 6 o 7 places, mira les barques amb llicència (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o l'Excursió Privada amb patró. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap."
+      "Les nostres 5 barques sense llicència tenen capacitat entre 4 i 5 persones (adults i nens compten igual). L'Astec 400 és ideal per a parelles o famílies petites (4 persones). Solar 450, Remus 450, Remus 450 II i Astec 480 són les més grans de la categoria sense llicència (5 persones). Si necessites 6 o 7 places, mira les barques amb llicència (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o l'Excursió Privada amb patró. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap.",
+    howToTitle: "Com llogar un vaixell sense llicència a Blanes (5 passos)",
+    howToIntro:
+      "Llogar un vaixell sense llicència al Port de Blanes és més senzill del que sembla. Aquí tens els 5 passos del procés, des de la reserva fins a la devolució, perquè sàpigues exactament què esperar el dia de la teva sortida.",
+    howToStep1Title: "1. Tria el teu vaixell i horari",
+    howToStep1Text:
+      "Consulta la nostra flota sense llicència (Solar 450, Remus 450, Astec 400, Astec 480 i Mingolla Brava 19) i tria el vaixell que millor s'adapti al teu grup. Reserva per WhatsApp (+34 611 500 372) o des de la web indicant data, hora i nombre de persones. Confirmem disponibilitat en minuts.",
+    howToStep2Title: "2. Arriba al Port de Blanes 30 min abans",
+    howToStep2Text:
+      "La nostra base és al Port de Blanes (Girona), accessible en cotxe des de Barcelona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Aparcament gratuït a la zona portuària. Porta el DNI o passaport del conductor (major de 18 anys) i la fiança de 300€ (targeta o efectiu, es retorna íntegra).",
+    howToStep3Title: "3. Briefing de seguretat (15 minuts)",
+    howToStep3Text:
+      "Abans de salpar, el nostre equip local t'ensenya a manejar el vaixell al port: arrencar i parar el motor, maniobrar a baixa velocitat, fondejar a cala, usar la ràdio VHF i tornar a l'amarrador. Resolem tots els teus dubtes. No necessites experiència prèvia — el briefing està pensat per a principiants.",
+    howToStep4Title: "4. Navega per les cales de la Costa Brava",
+    howToStep4Text:
+      "Surts del Port de Blanes amb gasolina inclosa i rumb lliure dins del límit de 2 milles nàutiques. Les cales més populars: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina i Sa Boadella, fins a la Platja de Fenals (Lloret de Mar). Fondeja on vulguis, banya't, fes snorkel i torna al teu ritme.",
+    howToStep5Title: "5. Retorna el vaixell i recull la teva fiança",
+    howToStep5Text:
+      "Torna al Port de Blanes a l'hora acordada. El nostre equip revisa el vaixell (5 min) i, si tot és correcte, et retornem la fiança de 300€ a l'instant. Sense tràmits, sense comissions extra. El preu que vas reservar és el preu final.",
+    howToDurationLabel: "Durada del procés",
+    howToDurationValue: "Reserva 5 min · briefing 15 min · navegació lliure",
+    howToCostLabel: "Cost des de",
+    howToCostValue: "70€/h amb gasolina inclosa",
+    vsMarketplacesTitle: "Per què llogar directe a Blanes en lloc d'un marketplace",
+    vsMarketplacesIntro:
+      "Alguns marketplaces anuncien vaixells sense llicència a la Costa Brava des de 55€/dia. Sona barat, però el preu que veus no és el preu que pagues. Això és el que canvia quan reserves directament amb nosaltres enfront d'una plataforma intermediària.",
+    vsMarketplacesCol1: "Reservant aquí (directe)",
+    vsMarketplacesCol2: "Marketplaces intermediaris",
+    vsMarketplacesRow1Label: "Gasolina",
+    vsMarketplacesRow1Direct: "Inclosa en el preu",
+    vsMarketplacesRow1Market: "A part (sol afegir 25-50€)",
+    vsMarketplacesRow2Label: "Comissió de plataforma",
+    vsMarketplacesRow2Direct: "0€ — pagues a l'armador",
+    vsMarketplacesRow2Market: "5-15% sobre el total",
+    vsMarketplacesRow3Label: "Briefing de seguretat",
+    vsMarketplacesRow3Direct: "Equip local en 8 idiomes (es/en/fr/de/ca/nl/it/ru)",
+    vsMarketplacesRow3Market: "Variable segons armador, normalment només en espanyol",
+    vsMarketplacesRow4Label: "Suport el dia de la sortida",
+    vsMarketplacesRow4Direct: "WhatsApp directe amb l'equip al port",
+    vsMarketplacesRow4Market: "Suport per email del marketplace, no de l'armador",
+    vsMarketplacesRow5Label: "Cancel·lació",
+    vsMarketplacesRow5Direct: "Flexible fins a 48h abans",
+    vsMarketplacesRow5Market: "Política del marketplace + tarifa de l'armador",
+    vsMarketplacesConclusion:
+      "El preu final amb marketplace sol ser un 20-35% major que l'anunciat un cop sumes gasolina, comissió i extres. Els nostres 70€/h ja ho inclouen tot: gasolina, equipament, briefing, assegurança de responsabilitat civil i suport al port.",
   },
   categoryLicensed: {
     heroTitle: "Vaixells Amb Llicència a Blanes",
@@ -1952,6 +2021,62 @@ export const ca: Translations = {
           "Fes-te un capbussó just abans de la posta de sol. L'aigua està més càlida al final de la tarda i nedar amb llum daurada és una experiència inoblidable.",
       },
     ],
+    heroTitle: "Passeig en Vaixell a la Posta de Sol des de Blanes",
+    heroDescription:
+      "Contempla la posta de sol sobre la Costa Brava des de la coberta del teu propi vaixell. Surt del port de Blanes, navega entre cales amagades i gaudeix de la llum més màgica del dia sobre la Mediterrània. Sense llicència de navegació. Des de 70 EUR/hora.",
+    badgeGoldenHour: "Vistes a l'hora daurada",
+    badgeDuration: "2 hores recomanades",
+    badgeCouples: "Perfecte per a parelles",
+    whyTitle: "Per què una excursió en vaixell a la posta de sol des de Blanes",
+    whyGoldenHourTitle: "L'hora daurada de la Mediterrània",
+    whyGoldenHourDesc:
+      "Hi ha alguna cosa extraordinària en veure la posta de sol des del mar. La llum es torna daurada, després àmbar, després rosa. Els penya-segats de la Costa Brava brillen com si estiguessin en flames. L'aigua es converteix en un mirall que reflecteix tots els colors del cel. És el tipus d'experiència que fa unes vacances inoblidables.",
+    whyPrivateTitle: "La teva pròpia experiència privada",
+    whyPrivateDesc:
+      "A diferència dels creuers al capvespre en grup, el vaixell és només vostre. Trieu on fondejar, quant de temps quedar-vos i què portar a bord. No hi ha cap guia que us pressi, ni altres turistes. Només vosaltres i la Mediterrània en el seu moment més bonic.",
+    whyAffordableTitle: "Fàcil i assequible",
+    whyAffordableDesc:
+      "Els nostres vaixells sense llicència són increïblement fàcils de manejar. Després d'una formació de 15 minuts al port, esteu a punt. El vaixell admet fins a 5 persones, així que una excursió de 2 hores a la posta de sol pot costar des de 28 EUR per persona amb gasolina inclosa. Menys que la majoria de sopars a la Costa Brava.",
+    whyTemperatureTitle: "Temperatura perfecta al capvespre",
+    whyTemperatureDesc:
+      "A última hora de la tarda, la calor del dia s'ha suavitzat. La brisa marina us manté còmodes. L'aigua està en el seu punt més càlid després d'absorbir sol tot el dia. És el moment ideal per estar a l'aigua, ja sigui per nedar, flotar o simplement contemplar com canvia el cel de color.",
+    viewpointsTitle: "Les millors vistes a la posta de sol des del mar",
+    sunsetTimesTitle: "Horaris de posta de sol i suggeriments de sortida",
+    sunsetTimesTableMonth: "Mes",
+    sunsetTimesTableTime: "Hora de la posta de sol",
+    sunsetTimesTableDeparture: "Sortida recomanada",
+    sunsetTimesNote:
+      "Els horaris són aproximats i varien uns minuts cada setmana. El nostre equip al port et confirmarà l'hora exacta de la posta de sol i et recomanarà la millor hora de sortida.",
+    romanticIdeasTitle: "Idees per fer-ho especial",
+    whatToBringTitle: "Què portar a la teva excursió al capvespre",
+    whatToBringEssentials: "Imprescindible",
+    whatToBringEssentialItems: [
+      "Jaqueta lleugera o dessuadora (refreda després de la posta de sol)",
+      "Ulleres de sol (el sol baix pot enlluerndar)",
+      "Telèfon o càmera per a fotos",
+      "Banyador si voleu nedar a l'hora daurada",
+    ],
+    whatToBringNice: "Recomanable",
+    whatToBringNiceItems: [
+      "Pícnic o aperitiu: formatge, embotits, olives",
+      "Vi, cava o begudes en una bossa tèrmica",
+      "Altaveu Bluetooth per a música",
+      "Tovalloles si aneu a nedar",
+    ],
+    exploreMore: "Explora més experiències",
+    linkNoLicense: "Vaixells sense llicència",
+    linkSnorkel: "Excursió de snorkel",
+    linkPrices: "Preus i tarifes",
+    linkBlanes: "Informació del port de Blanes",
+    linkRoutes: "Rutes marítimes",
+    faqTitle: "Preguntes freqüents",
+    ctaTitle: "Reserva el teu passeig en vaixell a la posta de sol des de Blanes",
+    ctaDescription:
+      "La forma més màgica d'acabar un dia a la Costa Brava. Sortides des del port de Blanes, d'abril a octubre. Sense llicència. Gasolina inclosa.",
+    ctaWhatsApp: "Reservar per WhatsApp",
+    ctaViewBoats: "Veure vaixells disponibles",
+    breadcrumbHome: "Inici",
+    breadcrumbSunset: "Passeig en vaixell al capvespre",
   },
   activitySnorkel: {
     faqItems: [
@@ -2150,6 +2275,63 @@ export const ca: Translations = {
         tip: "Recomanada per a nens a partir de 4 anys. Porteu menjar, aigua, crema solar i gorres.",
       },
     ],
+    heroTitle: "Lloguer de Vaixell per a Famílies a la Costa Brava",
+    heroDescription:
+      "Una aventura segura i divertida per a tota la família. Vaixells sense llicència des del Port de Blanes amb gasolina inclosa, armilles infantils i cales protegides perfectes per a nens. Des de 70 EUR/hora.",
+    badgeNoLicense: "Sense llicència necessària",
+    badgeKidsVests: "Armilles infantils incloses",
+    badgeFuel: "Gasolina inclosa",
+    whyTitle: "Per què és perfecte per a famílies",
+    whyMemoriesTitle: "Una experiència que recordaran sempre",
+    whyMemoriesDesc:
+      "Llogar un vaixell en família és molt més que un passeig pel mar. És descobrir cales amagades junts, veure peixos sota l'aigua, fer un pícnic flotant en aigües turqueses i crear records que els nens explicaran durant anys. A la Costa Brava, la costa entre Blanes i Lloret ofereix l'escenari perfecte.",
+    whyNoStressTitle: "Sense estrès, sense complicacions",
+    whyNoStressDesc:
+      "No necessites experiència prèvia ni llicència de navegació. T'ensenyem tot en 15 minuts. Els vaixells són estables, fàcils de manejar i tenen velocitat limitada. La gasolina està inclosa, així que no hi ha sorpreses amb el preu. Només cal venir amb ganes de passar-ho bé.",
+    whyCalmCovesTitle: "Cales tranquil·les per a nens",
+    whyCalmCovesDesc:
+      "Recomanem cales protegides amb aigua poc profunda i sense onatge. Cala Sant Francesc té fons de sorra ideal perquè els nens es banyin amb seguretat. Cala Bona ofereix aigües cristal·lines perfectes per a primeres experiències de snorkel.",
+    whyFlexTitle: "Flexibilitat total",
+    whyFlexDesc:
+      "Tu decideixes el ritme. Si els nens volen quedar-se més temps en una cala, cap problema. Si algú es cansa, tornem. No hi ha horaris fixos ni rutes obligatòries. És el vostre vaixell, el vostre pla, el vostre dia al mar.",
+    safetyTitle: "Seguretat per a tota la família",
+    routesTitle: "Itineraris recomanats per a famílies",
+    stopsLabel: "Parades:",
+    tipLabel: "Consell:",
+    whatToBringTitle: "Què portar per a un dia en vaixell amb nens",
+    essentialTitle: "Imprescindible",
+    essentialItems: [
+      "Crema solar SPF 50+ waterproof",
+      "Aigua abundant (mínim 1L per persona)",
+      "Gorres o barrets per al sol",
+      "Tovalloles",
+    ],
+    recommendedTitle: "Recomanat",
+    recommendedItems: [
+      "Snacks o pícnic preparat",
+      "Samarretes UV per a nens",
+      "Ulleres de sol amb cordó",
+      "Roba seca per al retorn",
+    ],
+    optionalTitle: "Opcional",
+    optionalItems: [
+      "Càmera aquàtica o funda de mòbil",
+      "Equip de snorkel propi",
+      "Nevera petita amb gel",
+      "Joguines de platja inflables",
+    ],
+    exploreTitle: "Descobreix més sobre els nostres serveis",
+    linkNoLicense: "Vaixells sense llicència",
+    linkSnorkel: "Excursió de snorkel",
+    linkPrices: "Preus i tarifes",
+    linkBlanes: "Port de Blanes",
+    linkRoutes: "Rutes marítimes",
+    ctaTitle: "Reserva un vaixell per a tota la família",
+    ctaDescription:
+      "Vaixells segurs, fàcils de manejar i amb tot inclòs. El pla perfecte per a un dia en família a la Costa Brava. Sortides des del Port de Blanes d'abril a octubre.",
+    ctaWhatsApp: "Reservar per WhatsApp",
+    ctaViewBoats: "Veure vaixells sense llicència",
+    faqTitle: "Preguntes freqüents sobre vaixells per a famílies",
   },
   activityFishing: {
     faqItems: [
@@ -2258,6 +2440,79 @@ export const ca: Translations = {
           "A 3-5 milles de la costa, profunditats de 40-80 metres. Només accessible amb embarcacions amb llicència. Jigging i curricà.",
       },
     ],
+    heroTitle: "Pesca des de Vaixell a Blanes - Costa Brava",
+    heroDescription:
+      "Lloga un vaixell al Port de Blanes i surt a pescar a les aigües de la Costa Brava. Llobarros, orades, serioles i més. Vaixells amb i sense llicència per adaptar-se al teu nivell d'experiència. Porta el teu equip i nosaltres posem el vaixell.",
+    badgeSpecies: "5+ espècies objectiu",
+    badgeLicense: "Amb i sense llicència",
+    badgeDuration: "4-6 hores recomanades",
+    whyTitle: "Per què pescar des de Blanes",
+    whyLocationTitle: "Ubicació estratègica",
+    whyLocationDesc:
+      "Blanes és al punt on el litoral canvia de caràcter: al sud les platges de sorra del Maresme, al nord la costa rocosa de la Costa Brava. Aquesta transició crea una diversitat d'hàbitats marins excepcional per a la pesca: fons de sorra, praderies de posidònia, formacions rocoses i aigües obertes, tot accessible en menys de 30 minuts de navegació.",
+    whyPortTitle: "Port còmode i ben equipat",
+    whyPortDesc:
+      "El Port de Blanes té aparcament gratuït, gasolinera nàutica i botigues on comprar esquer fresc. Surts del port i en 10 minuts ja estàs en zones de pesca productives. En tornar, pots netejar les captures i menjar als restaurants del port.",
+    whyVarietyTitle: "Varietat d'espècies",
+    whyVarietyDesc:
+      "Les aigües davant de Blanes acullen una gran diversitat d'espècies. Prop de la costa trobaràs llobarros, orades, sards i mólleres. Una mica més lluny, en aigües obertes, serioles, bonítols i déntols. A la tardor i l'hivern, la pesca de calamars amb potera és excel·lent.",
+    whySeasonTitle: "Temporada estesa",
+    whySeasonDesc:
+      "Tot i que la temporada de lloguer de vaixells va d'abril a octubre, cada mes té les seves pròpies oportunitats de pesca. Primavera per a orades, estiu per a serioles, tardor per a calamars i déntols. Sempre hi ha alguna cosa per pescar a Blanes.",
+    speciesTitle: "Espècies que pots pescar a Blanes",
+    seasonLabel: "Temporada:",
+    whereLabel: "On:",
+    techniqueLabel: "Tècnica:",
+    boatsTitle: "Vaixells recomanats per a pesca",
+    spotsTitle: "Zones de pesca des de Blanes",
+    targetLabel: "Objectiu:",
+    regulationsTitle: "Regulacions i normativa de pesca",
+    licenseTitle: "Llicència de pesca obligatòria",
+    licenseDesc:
+      "Per pescar al mar des d'un vaixell necessites la llicència de pesca recreativa marítima de la Generalitat de Catalunya. Pots obtenir-la online a gencat.cat per aproximadament 14 EUR amb validesa de 2 anys.",
+    catchLimitsTitle: "Límits de captura",
+    catchLimitsItems: [
+      "Màxim 5 kg per persona i dia",
+      "Si una peça supera 5 kg, compta com a quota",
+      "Màxim 2 canyes per persona",
+    ],
+    minSizesTitle: "Talles mínimes principals",
+    minSizesItems: [
+      "Llobarro: 36 cm",
+      "Orada: 20 cm",
+      "Déntol: 35 cm",
+      "Seriola: 40 cm",
+    ],
+    prohibitedTitle: "Zones prohibides",
+    prohibitedDesc:
+      "Està prohibit pescar en zones de bany senyalitzades, reserves marines i dins de ports. Respecta sempre les boies de balisament i les zones protegides.",
+    equipmentTitle: "Equip de pesca: porta el teu",
+    whatToBringTitle: "Què portar",
+    whatToBringItems: [
+      "Canyes i reels (spinning, jigging o fons)",
+      "Esquers artificials, ploms i hams",
+      "Esquer fresc (disponible a les botigues del port)",
+      "Nevera amb gel per a les captures",
+      "Alicates de pesca i ganivet",
+    ],
+    whereBaitTitle: "On comprar esquer a Blanes",
+    whereBaitDesc:
+      "A prop del Port de Blanes hi ha diverses botigues nàutiques on pots comprar esquer fresc (cuc americà, cuc coreà, gamba) i material de pesca bàsic. Recomanem comprar l'esquer el mateix dia de la sortida per a màxima frescor.",
+    recommendationsTitle: "Recomanacions",
+    recommendationsDesc:
+      "Porta crema solar, aigua abundant, gorra i ulleres de sol polaritzades (ajuden a veure peixos a l'aigua). Una samarreta de màniga llarga et protegeix del sol durant les hores de pesca. No oblidis la llicència de pesca impresa o al mòbil.",
+    exploreTitle: "Explora més activitats i serveis",
+    linkLicensed: "Vaixells amb llicència",
+    linkNoLicense: "Vaixells sense llicència",
+    linkSnorkel: "Excursió de snorkel",
+    linkPrices: "Preus i tarifes",
+    linkBlanes: "Port de Blanes",
+    ctaTitle: "Reserva el teu vaixell per pescar a Blanes",
+    ctaDescription:
+      "Porta el teu equip, nosaltres posem el vaixell. Llobarros, orades, serioles i més t'esperen a les aigües de la Costa Brava. Sortides des del Port de Blanes.",
+    ctaWhatsApp: "Reservar per WhatsApp",
+    ctaViewBoats: "Veure vaixells amb llicència",
+    faqTitle: "Preguntes freqüents sobre pesca des de vaixell",
   },
   locationPages: {
     blanes: {
@@ -3894,6 +4149,26 @@ export const ca: Translations = {
         },
       ],
     },
+  },
+
+  blogAuthorByline: {
+    writtenBy: "Per",
+    publishedOn: "Publicat el",
+    updatedOn: "Actualitzat el",
+    readMore: "Més sobre l'autor",
+    verifiedProfilesLabel: "Perfils verificats",
+  },
+
+  homeReviewsBlock: {
+    title: "El que diuen els nostres clients",
+    subtitle: "Ressenyes verificades de Google Maps",
+    viewAll: "Veure totes les ressenyes",
+    fallbackAuthor: "Client verificat",
+  },
+
+  contentSummary: {
+    keyTakeawaysTitle: "Punts clau",
+    quickFactsTitle: "Dades ràpides",
   },
 
   testimonios: {

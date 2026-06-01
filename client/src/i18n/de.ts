@@ -41,6 +41,8 @@ export const de: Translations = {
     askWhatsApp: "Fragen Sie uns per WhatsApp",
     testimonialQuote: "Unglaubliche Erfahrung, wir kommen wieder",
     testimonialQuoteShort: "Wir kommen wieder",
+    summaryGeo:
+      "Costa Brava Rent a Boat betreibt die größte Bootsverleihflotte im Hafen von Blanes mit 9 Booten: 5 ohne Führerschein mit Benzin inklusive ab 70€/h, 3 mit Führerschein und 1 Privatausflug mit Skipper. Beratung in 8 Sprachen. Saison April bis Oktober. 4,8★ bei Google mit über 300 Bewertungen.",
   },
 
   fleet: {
@@ -283,6 +285,9 @@ export const de: Translations = {
   booking: {
     title: "Buchungsanfrage stellen",
     modalSubtitle: "Dauert nur 2 Minuten. Bestätigung per WhatsApp.",
+    specialRateTitle: "Sonderpreis für dieses Datum",
+    specialRateBody: "nachfrageabhängiger Preis",
+    specialRateFooter: "Der Endpreis im nächsten Schritt ist bereits inklusive.",
     seasonCountdown:
       "Preise der Saison 2026 steigen am 1. Juni · noch {days} Tage · heute bestätigen",
     selectBoat: "Boot Auswählen",
@@ -453,8 +458,17 @@ export const de: Translations = {
     stepExperience: "Erlebnis",
     stepPersonalize: "Personalisieren",
     stepPay: "Bestätigung",
+    stepCounter: "Schritt {current} von {total}",
     chooseBoatFirst: "Wählen Sie ein Boot, um eine Zeit zu wählen",
     chooseTimeFirst: "Wahlen Sie zuerst Datum und Boot",
+    quoteConfirmedTitle: "Fast fertig. Eine Nachricht und wir legen ab.",
+    quoteConfirmedNote: "Wir reservieren das Boot, sobald wir Ihre Nachricht gelesen haben.",
+    whatsappFlowTitle: "Wir leiten Sie zu WhatsApp weiter, alles ist vorbereitet",
+    whatsappFlowBody:
+      "Tippen Sie auf Senden und wir antworten, sobald wir Ihre Nachricht lesen. Wir bestätigen die Verfügbarkeit und die Zahlung erfolgt am Tag des Ausflugs.",
+    openingWhatsapp: "WhatsApp wird geöffnet…",
+    requestViaWhatsapp: "Per WhatsApp anfragen",
+    whatsappFooterNote: "Sie müssen nur auf Senden tippen. Unverbindlich bis zur Bestätigung.",
   },
   faq: {
     title: "Häufig Gestellte Fragen",
@@ -788,8 +802,19 @@ export const de: Translations = {
       yourDetails: "Bestätigen",
     },
     hints: {
+      pricesNextStep: "Im nächsten Schritt sehen Sie die aktuellen Preise für Ihr Datum.",
+      boatNotAvailableForDate: "Keine Verfügbarkeit für {date}. Probieren Sie einen anderen Tag oder ein anderes Boot.",
+      capacityExceeded: "Dieses Boot bietet Platz für maximal {max} Personen. Wechseln Sie das Boot oder verkleinern Sie die Gruppe.",
       noOnlinePayment: "Keine Online-Zahlung, wir bestätigen per WhatsApp",
       submitReassurance: "Wir antworten innerhalb von 2 Stunden. Keine Online-Zahlung, unverbindlich.",
+    },
+    multiBoat: {
+      title: "Ihre Boote",
+      subtitle: "Für {n} Personen benötigen wir 2 Boote",
+      recommended: "Empfohlen",
+      combinedCapacity: "{n} Personen insgesamt",
+      noCombinations: "Keine verfügbaren Kombinationen für diese Gruppe.",
+      chooseManually: "Boote manuell auswählen",
     },
     fuel: {
       included: "Kraftstoff inklusive",
@@ -1055,7 +1080,51 @@ export const de: Translations = {
       "Das ist der häufigste Fall unter unseren Kunden. Führerscheinfreie Boote sind genau für Personen ohne Vorerfahrung gemacht: intuitive Bedienung, schwacher Motor (15 PS), Fahrt bei 5 Knoten (Schiebegeschwindigkeit) und geschütztes Küstengebiet. In der 15-minütigen Einweisung zeigen wir Ihnen, wie Sie im Hafen manövrieren, ankern, das UKW-Funkgerät nutzen und zur Anlegestelle zurückkehren. Bisher hat noch kein Kunde nach der Einweisung Probleme mit dem Boot gehabt.",
     faqGroupSizeQuestion: "Wie viele Personen passen in ein führerscheinfreies Boot?",
     faqGroupSizeAnswer:
-      "Unsere 5 führerscheinfreien Boote bieten Platz für 4 bis 5 Personen (Erwachsene und Kinder zählen gleich). Die Astec 400 ist ideal für Paare oder kleine Familien (4 Personen). Solar 450, Remus 450, Remus 450 II und Astec 480 sind die größten der führerscheinfreien Kategorie (5 Personen). Wenn Sie 6 oder 7 Plätze benötigen, schauen Sie sich die Boote mit Führerschein an (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) oder unseren Privaten Ausflug mit Skipper. Der Preis ist pro Boot, nicht pro Person, je mehr Personen, desto günstiger pro Kopf."
+      "Unsere 5 führerscheinfreien Boote bieten Platz für 4 bis 5 Personen (Erwachsene und Kinder zählen gleich). Die Astec 400 ist ideal für Paare oder kleine Familien (4 Personen). Solar 450, Remus 450, Remus 450 II und Astec 480 sind die größten der führerscheinfreien Kategorie (5 Personen). Wenn Sie 6 oder 7 Plätze benötigen, schauen Sie sich die Boote mit Führerschein an (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) oder unseren Privaten Ausflug mit Skipper. Der Preis ist pro Boot, nicht pro Person, je mehr Personen, desto günstiger pro Kopf.",
+    howToTitle: "Wie man in Blanes ein Boot ohne Führerschein mietet (5 Schritte)",
+    howToIntro:
+      "Ein Boot ohne Führerschein im Hafen von Blanes zu mieten ist einfacher als gedacht. Hier sind die 5 Schritte des Ablaufs – von der Buchung bis zur Rückgabe – damit Sie genau wissen, was Sie am Tag der Abfahrt erwartet.",
+    howToStep1Title: "1. Boot und Uhrzeit wählen",
+    howToStep1Text:
+      "Sehen Sie sich unsere führerscheinfreie Flotte an (Solar 450, Remus 450, Astec 400, Astec 480 und Mingolla Brava 19) und wählen Sie das Boot, das am besten zu Ihrer Gruppe passt. Buchen Sie per WhatsApp (+34 611 500 372) oder über die Website mit Angabe von Datum, Uhrzeit und Personenzahl. Wir bestätigen die Verfügbarkeit in wenigen Minuten.",
+    howToStep2Title: "2. 30 Minuten vor Abfahrt im Hafen von Blanes eintreffen",
+    howToStep2Text:
+      "Unsere Basis befindet sich im Hafen von Blanes (Girona), erreichbar mit dem Auto aus Barcelona (1 Std.), Lloret de Mar (15 Min.) oder Tossa de Mar (30 Min.). Kostenlose Parkplätze im Hafengebiet. Bringen Sie den Ausweis oder Reisepass des Fahrers (mindestens 18 Jahre) und die Kaution von 300 € mit (Karte oder Bar, wird vollständig zurückgegeben).",
+    howToStep3Title: "3. Sicherheitseinweisung (15 Minuten)",
+    howToStep3Text:
+      "Vor dem Ablegen zeigt Ihnen unser Team vor Ort, wie man das Boot im Hafen handhabt: Motor starten und stoppen, langsam manövrieren, in einer Bucht ankern, das VHF-Funkgerät benutzen und zum Liegeplatz zurückkehren. Wir beantworten alle Ihre Fragen. Keine Vorerfahrung nötig – die Einweisung ist für Anfänger konzipiert.",
+    howToStep4Title: "4. Die Buchten der Costa Brava erkunden",
+    howToStep4Text:
+      "Sie verlassen den Hafen von Blanes mit inkludiertem Benzin und freier Kurswahl innerhalb der 2-Seemeilen-Grenze. Die beliebtesten Buchten: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina und Sa Boadella, bis zum Playa de Fenals (Lloret de Mar). Ankern Sie, wo Sie möchten, schwimmen, schnorcheln und kehren Sie in Ihrem Tempo zurück.",
+    howToStep5Title: "5. Boot zurückgeben und Kaution erhalten",
+    howToStep5Text:
+      "Kehren Sie zur vereinbarten Zeit in den Hafen von Blanes zurück. Unser Team überprüft das Boot (5 Min.) und wenn alles in Ordnung ist, erstatten wir Ihnen die Kaution von 300 € sofort zurück. Keine Formalitäten, keine zusätzlichen Gebühren. Der Preis, zu dem Sie gebucht haben, ist der Endpreis.",
+    howToDurationLabel: "Dauer des Vorgangs",
+    howToDurationValue: "Buchung 5 Min. · Einweisung 15 Min. · freie Navigation",
+    howToCostLabel: "Preis ab",
+    howToCostValue: "70 €/Std. mit inkludiertem Benzin",
+    vsMarketplacesTitle: "Warum direkt in Blanes buchen statt über einen Marktplatz",
+    vsMarketplacesIntro:
+      "Einige Marktplätze bewerben führerscheinfreie Boote an der Costa Brava ab 55 €/Tag. Das klingt günstig, aber der angezeigte Preis ist nicht der, den Sie zahlen. Das ändert sich, wenn Sie direkt bei uns statt über eine Vermittlungsplattform buchen.",
+    vsMarketplacesCol1: "Direkt hier buchen",
+    vsMarketplacesCol2: "Vermittlungsmarktplätze",
+    vsMarketplacesRow1Label: "Benzin",
+    vsMarketplacesRow1Direct: "Im Preis inbegriffen",
+    vsMarketplacesRow1Market: "Separat (meist 25–50 € extra)",
+    vsMarketplacesRow2Label: "Plattformgebühr",
+    vsMarketplacesRow2Direct: "0 € — Sie zahlen direkt an den Anbieter",
+    vsMarketplacesRow2Market: "5–15 % auf den Gesamtbetrag",
+    vsMarketplacesRow3Label: "Sicherheitseinweisung",
+    vsMarketplacesRow3Direct: "Lokales Team in 8 Sprachen (es/en/fr/de/ca/nl/it/ru)",
+    vsMarketplacesRow3Market: "Je nach Anbieter, meist nur Spanisch",
+    vsMarketplacesRow4Label: "Support am Abfahrtstag",
+    vsMarketplacesRow4Direct: "WhatsApp direkt mit dem Team im Hafen",
+    vsMarketplacesRow4Market: "E-Mail-Support des Marktplatzes, nicht des Anbieters",
+    vsMarketplacesRow5Label: "Stornierung",
+    vsMarketplacesRow5Direct: "Flexibel bis 48 Std. vorher",
+    vsMarketplacesRow5Market: "Marktplatzrichtlinie + Anbietergebühr",
+    vsMarketplacesConclusion:
+      "Der Endpreis über einen Marktplatz ist nach Addition von Benzin, Gebühr und Extras meist 20–35 % höher als angekündigt. Unsere 70 €/Std. sind bereits alles inklusive: Benzin, Ausrüstung, Einweisung, Haftpflichtversicherung und Unterstützung im Hafen.",
   },
   categoryLicensed: {
     heroTitle: "Boote Mit Führerschein in Blanes",
@@ -1962,6 +2031,62 @@ export const de: Translations = {
           "Nehmen Sie kurz vor Sonnenuntergang ein Bad. Das Wasser ist am späten Nachmittag wärmer und Schwimmen im goldenen Licht ist ein unvergessliches Erlebnis.",
       },
     ],
+    heroTitle: "Bootsausflug bei Sonnenuntergang ab Blanes",
+    heroDescription:
+      "Erleben Sie den Sonnenuntergang über der Costa Brava vom Deck Ihres eigenen Bootes aus. Fahren Sie vom Hafen Blanes ab, navigieren Sie zwischen versteckten Buchten und genießen Sie das magischste Licht des Tages über dem Mittelmeer. Kein Führerschein erforderlich. Ab 70 EUR/Stunde.",
+    badgeGoldenHour: "Aussicht zur goldenen Stunde",
+    badgeDuration: "2 Stunden empfohlen",
+    badgeCouples: "Perfekt für Paare",
+    whyTitle: "Warum ein Bootsausflug bei Sonnenuntergang ab Blanes",
+    whyGoldenHourTitle: "Die goldene Stunde des Mittelmeers",
+    whyGoldenHourDesc:
+      "Es ist etwas Außergewöhnliches, den Sonnenuntergang vom Meer aus zu sehen. Das Licht wird golden, dann bernsteinfarben, dann rosa. Die Klippen der Costa Brava leuchten, als stünden sie in Flammen. Das Wasser verwandelt sich in einen Spiegel, der alle Farben des Himmels widerspiegelt. Es ist die Art von Erlebnis, die einen Urlaub unvergesslich macht.",
+    whyPrivateTitle: "Ihr ganz privates Erlebnis",
+    whyPrivateDesc:
+      "Anders als bei Gruppen-Sonnenuntergangstouren gehört das Boot nur Ihnen. Sie entscheiden, wo Sie ankern, wie lange Sie bleiben und was Sie an Bord mitbringen. Kein Reiseleiter, der Sie drängt, keine anderen Touristen. Nur Sie und das Mittelmeer in seinem schönsten Moment.",
+    whyAffordableTitle: "Einfach und erschwinglich",
+    whyAffordableDesc:
+      "Unsere führerscheinfreien Boote sind unglaublich einfach zu handhaben. Nach einer 15-minütigen Einweisung im Hafen sind Sie startklar. Das Boot fasst bis zu 5 Personen, sodass ein 2-stündiger Sonnenuntergangsausflug ab 28 EUR pro Person mit inkludiertem Benzin kosten kann. Weniger als die meisten Abendessen an der Costa Brava.",
+    whyTemperatureTitle: "Perfekte Abendtemperatur",
+    whyTemperatureDesc:
+      "Am späten Nachmittag hat sich die Tageshitze gelegt. Die Meeresbrise hält Sie angenehm kühl. Das Wasser ist nach einem Tag voller Sonneneinstrahlung am wärmsten. Es ist der ideale Moment, um im Wasser zu sein – ob zum Schwimmen, Treiben oder einfach zuzuschauen, wie der Himmel die Farben wechselt.",
+    viewpointsTitle: "Die besten Sonnenuntergangsaussichten vom Meer",
+    sunsetTimesTitle: "Sonnenuntergangszeiten und Abfahrtsempfehlungen",
+    sunsetTimesTableMonth: "Monat",
+    sunsetTimesTableTime: "Sonnenuntergangszeit",
+    sunsetTimesTableDeparture: "Empfohlene Abfahrt",
+    sunsetTimesNote:
+      "Die Zeiten sind Näherungswerte und variieren von Woche zu Woche leicht. Unser Team im Hafen teilt Ihnen am Tag Ihrer Abfahrt die genaue Sonnenuntergangszeit mit und empfiehlt die beste Abfahrtsstunde.",
+    romanticIdeasTitle: "Ideen, um den Moment besonders zu machen",
+    whatToBringTitle: "Was Sie zum Sonnenuntergangsausflug mitbringen sollten",
+    whatToBringEssentials: "Unverzichtbar",
+    whatToBringEssentialItems: [
+      "Leichte Jacke oder Pullover (es kühlt nach dem Sonnenuntergang ab)",
+      "Sonnenbrille (die tiefstehende Sonne kann blenden)",
+      "Handy oder Kamera für Fotos",
+      "Badeanzug, falls Sie zur goldenen Stunde schwimmen möchten",
+    ],
+    whatToBringNice: "Empfehlenswert",
+    whatToBringNiceItems: [
+      "Picknick oder Aperitif: Käse, Aufschnitt, Oliven",
+      "Wein, Cava oder Getränke in einer Kühltasche",
+      "Bluetooth-Lautsprecher für Musik",
+      "Handtücher, falls Sie schwimmen möchten",
+    ],
+    exploreMore: "Weitere Erlebnisse entdecken",
+    linkNoLicense: "Boote ohne Führerschein",
+    linkSnorkel: "Schnorchelausflug",
+    linkPrices: "Preise und Tarife",
+    linkBlanes: "Info zum Hafen Blanes",
+    linkRoutes: "Seerouten",
+    faqTitle: "Häufig gestellte Fragen",
+    ctaTitle: "Ihren Bootsausflug bei Sonnenuntergang ab Blanes buchen",
+    ctaDescription:
+      "Die magischste Art, einen Tag an der Costa Brava zu beenden. Abfahrten vom Hafen Blanes von April bis Oktober. Kein Führerschein. Benzin inklusive.",
+    ctaWhatsApp: "Per WhatsApp buchen",
+    ctaViewBoats: "Verfügbare Boote ansehen",
+    breadcrumbHome: "Startseite",
+    breadcrumbSunset: "Bootsausflug bei Sonnenuntergang",
   },
   activitySnorkel: {
     faqItems: [
@@ -2168,6 +2293,63 @@ export const de: Translations = {
         tip: "Empfohlen für Kinder ab 4 Jahren. Essen, Wasser, Sonnencreme und Mützen mitbringen.",
       },
     ],
+    heroTitle: "Bootsverleih für Familien an der Costa Brava",
+    heroDescription:
+      "Ein sicheres und spaßiges Abenteuer für die ganze Familie. Führerscheinfreie Boote vom Hafen von Blanes mit inkludiertem Benzin, Kinder-Schwimmwesten und geschützten Buchten, die perfekt für Kinder sind. Ab 70 EUR/Stunde.",
+    badgeNoLicense: "Kein Führerschein erforderlich",
+    badgeKidsVests: "Kinder-Schwimmwesten inklusive",
+    badgeFuel: "Benzin inklusive",
+    whyTitle: "Warum es perfekt für Familien ist",
+    whyMemoriesTitle: "Ein Erlebnis, das sie immer in Erinnerung behalten werden",
+    whyMemoriesDesc:
+      "Ein Boot als Familie zu mieten ist viel mehr als eine Fahrt über das Meer. Es bedeutet, gemeinsam versteckte Buchten zu entdecken, Fische unter Wasser zu beobachten, ein Picknick auf türkisblauem Wasser zu genießen und Erinnerungen zu schaffen, von denen die Kinder noch jahrelang erzählen werden. An der Costa Brava bietet die Küste zwischen Blanes und Lloret die perfekte Kulisse.",
+    whyNoStressTitle: "Kein Stress, keine Komplikationen",
+    whyNoStressDesc:
+      "Keine Vorerfahrung oder Führerschein erforderlich. Wir zeigen Ihnen alles in 15 Minuten. Die Boote sind stabil, leicht zu handhaben und haben eine begrenzte Geschwindigkeit. Das Benzin ist inklusive, also keine Preisüberraschungen. Sie müssen nur mit Lust auf Spaß kommen.",
+    whyCalmCovesTitle: "Ruhige Buchten für Kinder",
+    whyCalmCovesDesc:
+      "Wir empfehlen geschützte Buchten mit flachem, wellenfreiem Wasser. Cala Sant Francesc hat einen Sanduntergrund, ideal für sicheres Baden für Kinder. Cala Bona bietet kristallklares Wasser, perfekt für erste Schnorchelerlebnisse.",
+    whyFlexTitle: "Volle Flexibilität",
+    whyFlexDesc:
+      "Sie bestimmen das Tempo. Wenn die Kinder länger in einer Bucht bleiben wollen, kein Problem. Wenn jemand müde wird, fahren wir zurück. Keine festen Zeiten, keine Pflichtrouten. Es ist Ihr Boot, Ihr Plan, Ihr Tag auf dem Meer.",
+    safetyTitle: "Sicherheit für die ganze Familie",
+    routesTitle: "Empfohlene Routen für Familien",
+    stopsLabel: "Stopps:",
+    tipLabel: "Tipp:",
+    whatToBringTitle: "Was Sie für einen Tag auf dem Boot mit Kindern mitnehmen sollten",
+    essentialTitle: "Unverzichtbar",
+    essentialItems: [
+      "Sonnencreme LSF 50+ wasserfest",
+      "Viel Wasser (mindestens 1 Liter pro Person)",
+      "Kappen oder Hüte zum Sonnenschutz",
+      "Handtücher",
+    ],
+    recommendedTitle: "Empfohlen",
+    recommendedItems: [
+      "Snacks oder vorbereitetes Picknick",
+      "UV-Shirts für Kinder",
+      "Sonnenbrille mit Halteschnur",
+      "Trockene Kleidung für die Rückfahrt",
+    ],
+    optionalTitle: "Optional",
+    optionalItems: [
+      "Unterwasserkamera oder wasserdichte Handyhülle",
+      "Eigene Schnorchelausrüstung",
+      "Kleine Kühlbox mit Eis",
+      "Aufblasbare Strandspielzeuge",
+    ],
+    exploreTitle: "Entdecken Sie mehr über unsere Angebote",
+    linkNoLicense: "Boote ohne Führerschein",
+    linkSnorkel: "Schnorchelausflug",
+    linkPrices: "Preise und Tarife",
+    linkBlanes: "Hafen von Blanes",
+    linkRoutes: "Seerouten",
+    ctaTitle: "Ein Boot für die ganze Familie buchen",
+    ctaDescription:
+      "Sichere, leicht zu handhabende Boote mit allem inklusive. Der perfekte Plan für einen Familientag an der Costa Brava. Abfahrten vom Hafen von Blanes von April bis Oktober.",
+    ctaWhatsApp: "Per WhatsApp buchen",
+    ctaViewBoats: "Führerscheinfreie Boote ansehen",
+    faqTitle: "Häufig gestellte Fragen zu Familienbooten",
   },
   activityFishing: {
     faqItems: [
@@ -2275,6 +2457,79 @@ export const de: Translations = {
           "3-5 Meilen von der Küste, Tiefen von 40-80 Metern. Nur mit Booten mit Lizenz erreichbar. Jigging und Schleppangeln.",
       },
     ],
+    heroTitle: "Angeln vom Boot in Blanes – Costa Brava",
+    heroDescription:
+      "Mieten Sie ein Boot im Hafen von Blanes und fahren Sie in den Gewässern der Costa Brava angeln. Wolfsbarsche, Goldbrassen, Bernsteinmakrelen und mehr. Boote mit und ohne Führerschein, angepasst an Ihr Erfahrungsniveau. Bringen Sie Ihre Ausrüstung mit – wir stellen das Boot.",
+    badgeSpecies: "5+ Zielarten",
+    badgeLicense: "Mit und ohne Führerschein",
+    badgeDuration: "4–6 Stunden empfohlen",
+    whyTitle: "Warum von Blanes aus angeln",
+    whyLocationTitle: "Strategische Lage",
+    whyLocationDesc:
+      "Blanes liegt an dem Punkt, wo die Küste ihren Charakter wechselt: im Süden die Sandstrände des Maresme, im Norden die felsige Küste der Costa Brava. Dieser Übergang schafft eine außergewöhnliche Vielfalt mariner Lebensräume für den Angelsport: Sandböden, Posidonia-Wiesen, Felsformationen und offenes Wasser – alles in weniger als 30 Minuten Fahrtzeit erreichbar.",
+    whyPortTitle: "Bequemer und gut ausgestatteter Hafen",
+    whyPortDesc:
+      "Der Hafen von Blanes bietet kostenlose Parkplätze, eine Schiffstankstelle und Geschäfte, wo Sie frischen Köder kaufen können. Sie legen ab und sind in 10 Minuten bereits in ertragreichen Angelgebieten. Nach der Rückkehr können Sie den Fang reinigen und in den Hafenrestaurants essen.",
+    whyVarietyTitle: "Artenvielfalt",
+    whyVarietyDesc:
+      "Die Gewässer vor Blanes beherbergen eine große Artenvielfalt. Küstennah finden Sie Wolfsbarsche, Goldbrassen, Geißbrassen und Meerbrassen. Etwas weiter draußen in offenen Gewässern: Bernsteinmakrelen, Bonitos und Zahnbrassen. Im Herbst und Winter ist der Tintenfischfang mit Potera ausgezeichnet.",
+    whySeasonTitle: "Verlängerte Saison",
+    whySeasonDesc:
+      "Obwohl die Bootsverleih-Saison von April bis Oktober geht, bietet jeder Monat seine eigenen Angelmöglichkeiten. Frühling für Goldbrassen, Sommer für Bernsteinmakrelen, Herbst für Tintenfische und Zahnbrassen. In Blanes gibt es immer etwas zu fangen.",
+    speciesTitle: "Arten, die Sie in Blanes fangen können",
+    seasonLabel: "Saison:",
+    whereLabel: "Wo:",
+    techniqueLabel: "Technik:",
+    boatsTitle: "Empfohlene Boote zum Angeln",
+    spotsTitle: "Angelgebiete ab Blanes",
+    targetLabel: "Zielarten:",
+    regulationsTitle: "Angelvorschriften und -regelungen",
+    licenseTitle: "Angelschein Pflicht",
+    licenseDesc:
+      "Um vom Boot aus auf See zu angeln, benötigen Sie den maritimen Freizeitangelschein der Generalitat de Catalunya. Sie können ihn online auf gencat.cat für ca. 14 EUR erwerben (Gültigkeit 2 Jahre).",
+    catchLimitsTitle: "Fangbeschränkungen",
+    catchLimitsItems: [
+      "Maximal 5 kg pro Person und Tag",
+      "Übersteigt ein einzelnes Exemplar 5 kg, gilt es als Tageskontingent",
+      "Maximal 2 Ruten pro Person",
+    ],
+    minSizesTitle: "Wichtigste Mindestgrößen",
+    minSizesItems: [
+      "Wolfsbarsch: 36 cm",
+      "Goldbrasse: 20 cm",
+      "Zahnbrasse: 35 cm",
+      "Bernsteinmakrele: 40 cm",
+    ],
+    prohibitedTitle: "Verbotene Zonen",
+    prohibitedDesc:
+      "Das Angeln in ausgeschilderten Badegebieten, Meeresschutzgebieten und innerhalb von Häfen ist verboten. Halten Sie stets die Bojen- und Schutzzonenkennzeichnungen ein.",
+    equipmentTitle: "Angelausrüstung: Bringen Sie Ihre eigene mit",
+    whatToBringTitle: "Was Sie mitbringen sollten",
+    whatToBringItems: [
+      "Ruten und Rollen (Spinning, Jigging oder Grundangeln)",
+      "Kunstköder, Blei und Haken",
+      "Frischer Köder (erhältlich in Hafengeschäften)",
+      "Kühlbox mit Eis für den Fang",
+      "Angelzange und Messer",
+    ],
+    whereBaitTitle: "Wo Sie in Blanes Köder kaufen können",
+    whereBaitDesc:
+      "In der Nähe des Hafens von Blanes gibt es mehrere Schiffsausrüster, wo Sie frischen Köder (Amerikanerwurm, Koreanerwurm, Garnele) und Grundangelmaterial kaufen können. Wir empfehlen, den Köder am selben Tag der Abfahrt zu kaufen, um maximale Frische zu gewährleisten.",
+    recommendationsTitle: "Empfehlungen",
+    recommendationsDesc:
+      "Bringen Sie Sonnencreme, viel Wasser, Kappe und polarisierte Sonnenbrille mit (helfen, Fische im Wasser zu sehen). Ein langärmeliges Shirt schützt während der Angelstunden vor der Sonne. Vergessen Sie nicht, den Angelschein ausgedruckt oder auf dem Handy dabei zu haben.",
+    exploreTitle: "Weitere Aktivitäten und Angebote entdecken",
+    linkLicensed: "Boote mit Führerschein",
+    linkNoLicense: "Boote ohne Führerschein",
+    linkSnorkel: "Schnorchelausflug",
+    linkPrices: "Preise und Tarife",
+    linkBlanes: "Hafen von Blanes",
+    ctaTitle: "Ihr Boot zum Angeln in Blanes buchen",
+    ctaDescription:
+      "Bringen Sie Ihre Ausrüstung mit – wir stellen das Boot. Wolfsbarsche, Goldbrassen, Bernsteinmakrelen und mehr warten in den Gewässern der Costa Brava. Abfahrten vom Hafen von Blanes.",
+    ctaWhatsApp: "Per WhatsApp buchen",
+    ctaViewBoats: "Boote mit Führerschein ansehen",
+    faqTitle: "Häufig gestellte Fragen zum Angeln vom Boot",
   },
   locationPages: {
     blanes: {
@@ -3917,6 +4172,26 @@ export const de: Translations = {
         },
       ],
     },
+  },
+
+  blogAuthorByline: {
+    writtenBy: "Von",
+    publishedOn: "Veröffentlicht am",
+    updatedOn: "Aktualisiert am",
+    readMore: "Mehr über den Autor",
+    verifiedProfilesLabel: "Verifizierte Profile",
+  },
+
+  homeReviewsBlock: {
+    title: "Was unsere Kunden sagen",
+    subtitle: "Verifizierte Google Maps Bewertungen",
+    viewAll: "Alle Bewertungen ansehen",
+    fallbackAuthor: "Verifizierter Kunde",
+  },
+
+  contentSummary: {
+    keyTakeawaysTitle: "Wichtigste Punkte",
+    quickFactsTitle: "Schnelle Fakten",
   },
 
   testimonios: {

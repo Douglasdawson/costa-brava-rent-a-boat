@@ -41,6 +41,8 @@ export const fr: Translations = {
     askWhatsApp: "Demandez-nous sur WhatsApp",
     testimonialQuote: "Exp\u00E9rience incroyable, nous reviendrons",
     testimonialQuoteShort: "Nous reviendrons",
+    summaryGeo:
+      "Costa Brava Rent a Boat exploite la plus grande flotte de location de bateaux du Port de Blanes avec 9 embarcations : 5 sans permis avec carburant inclus dès 70€/h, 3 avec permis et 1 excursion privée avec capitaine. Service en 8 langues. Saison d'avril à octobre. 4,8★ sur Google avec plus de 300 avis.",
   },
 
   fleet: {
@@ -285,6 +287,9 @@ export const fr: Translations = {
   booking: {
     title: "Demandez votre réservation",
     modalSubtitle: "En seulement 2 minutes. Confirmation par WhatsApp.",
+    specialRateTitle: "Tarif spécial pour cette date",
+    specialRateBody: "prix ajusté selon la demande",
+    specialRateFooter: "Le total final de l'étape suivante l'inclut déjà.",
     seasonCountdown:
       "Les prix de la saison 2026 augmentent le 1er juin · il reste {days} jours · confirmez aujourd'hui",
     selectBoat: "Sélectionner Bateau",
@@ -456,8 +461,17 @@ export const fr: Translations = {
     stepExperience: "Experience",
     stepPersonalize: "Personnaliser",
     stepPay: "Confirmation",
+    stepCounter: "Étape {current} sur {total}",
     chooseBoatFirst: "Selectionnez un bateau pour choisir un horaire",
     chooseTimeFirst: "Selectionnez d'abord la date et le bateau",
+    quoteConfirmedTitle: "Presque prêt. Un message et on largue les amarres.",
+    quoteConfirmedNote: "On vous réserve le bateau dès que nous lirons votre message.",
+    whatsappFlowTitle: "On vous emmène sur WhatsApp avec tout prêt",
+    whatsappFlowBody:
+      "Appuyez sur Envoyer et nous répondons dès que nous lisons le message. Nous confirmons la disponibilité et le paiement se règle le jour de la location.",
+    openingWhatsapp: "Ouverture de WhatsApp…",
+    requestViaWhatsapp: "Demander par WhatsApp",
+    whatsappFooterNote: "Il suffit d'appuyer sur Envoyer. Sans engagement jusqu'à notre confirmation.",
   },
   faq: {
     title: "Questions Fréquentes",
@@ -792,8 +806,19 @@ export const fr: Translations = {
       yourDetails: "Confirmer",
     },
     hints: {
+      pricesNextStep: "À l'étape suivante vous verrez les vrais prix pour votre date.",
+      boatNotAvailableForDate: "Pas de disponibilité pour le {date}. Essayez un autre jour ou changez de bateau.",
+      capacityExceeded: "Ce bateau accueille jusqu'à {max} personnes. Changez de bateau ou réduisez le groupe.",
       noOnlinePayment: "Pas de paiement en ligne, on confirme par WhatsApp",
       submitReassurance: "On répond en moins de 2 heures. Pas de paiement en ligne, sans engagement.",
+    },
+    multiBoat: {
+      title: "Vos bateaux",
+      subtitle: "Pour {n} personnes nous avons besoin de 2 bateaux",
+      recommended: "Recommandé",
+      combinedCapacity: "{n}p au total",
+      noCombinations: "Aucune combinaison disponible pour ce groupe.",
+      chooseManually: "Choisir les bateaux manuellement",
     },
     fuel: {
       included: "Carburant inclus",
@@ -1060,7 +1085,51 @@ export const fr: Translations = {
       "C'est le cas le plus fréquent parmi nos clients. Les bateaux sans permis sont conçus précisément pour les personnes sans expérience préalable : commandes intuitives, moteur de faible puissance (15 CV), navigation à 5 nœuds (vitesse de croisière) et zone côtière protégée. Dans le briefing de 15 minutes nous vous apprenons à manœuvrer dans le port, à mouiller, à utiliser la VHF et à rentrer à l'amarrage. À ce jour, aucun client n'a eu de difficulté à manier le bateau après le briefing.",
     faqGroupSizeQuestion: "Combien de personnes tiennent dans un bateau sans permis ?",
     faqGroupSizeAnswer:
-      "Nos 5 bateaux sans permis ont une capacité de 4 à 5 personnes (adultes et enfants comptent de la même façon). L'Astec 400 est idéal pour les couples ou petites familles (4 personnes). Solar 450, Remus 450, Remus 450 II et Astec 480 sont les plus grands de la catégorie sans permis (5 personnes). Si vous avez besoin de 6 ou 7 places, consultez les bateaux avec permis (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) ou notre Excursion Privée avec skipper. Le prix est par bateau, pas par personne, plus vous êtes, moins cela coûte par tête."
+      "Nos 5 bateaux sans permis ont une capacité de 4 à 5 personnes (adultes et enfants comptent de la même façon). L'Astec 400 est idéal pour les couples ou petites familles (4 personnes). Solar 450, Remus 450, Remus 450 II et Astec 480 sont les plus grands de la catégorie sans permis (5 personnes). Si vous avez besoin de 6 ou 7 places, consultez les bateaux avec permis (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) ou notre Excursion Privée avec skipper. Le prix est par bateau, pas par personne, plus vous êtes, moins cela coûte par tête.",
+    howToTitle: "Comment louer un bateau sans permis à Blanes (5 étapes)",
+    howToIntro:
+      "Louer un bateau sans permis au Port de Blanes est plus simple qu'il n'y paraît. Voici les 5 étapes du processus, de la réservation au retour, pour savoir exactement à quoi s'attendre le jour de votre sortie.",
+    howToStep1Title: "1. Choisissez votre bateau et votre horaire",
+    howToStep1Text:
+      "Consultez notre flotte sans permis (Solar 450, Remus 450, Astec 400, Astec 480 et Mingolla Brava 19) et choisissez le bateau qui convient le mieux à votre groupe. Réservez par WhatsApp (+34 611 500 372) ou depuis le site en indiquant la date, l'heure et le nombre de personnes. Nous confirmons la disponibilité en quelques minutes.",
+    howToStep2Title: "2. Arrivez au Port de Blanes 30 min à l'avance",
+    howToStep2Text:
+      "Notre base se trouve au Port de Blanes (Gérone), accessible en voiture depuis Barcelone (1h), Lloret de Mar (15 min) ou Tossa de Mar (30 min). Parking gratuit dans la zone portuaire. Apportez la pièce d'identité ou le passeport du conducteur (plus de 18 ans) et la caution de 300 € (carte ou espèces, intégralement restituée).",
+    howToStep3Title: "3. Formation à la sécurité (15 minutes)",
+    howToStep3Text:
+      "Avant d'appareiller, notre équipe local vous apprend à manœuvrer le bateau dans le port : démarrer et arrêter le moteur, manœuvrer à basse vitesse, mouiller dans une crique, utiliser la radio VHF et revenir à l'amarrage. Nous répondons à toutes vos questions. Aucune expérience préalable n'est nécessaire — la formation est conçue pour les débutants.",
+    howToStep4Title: "4. Naviguez dans les criques de la Costa Brava",
+    howToStep4Text:
+      "Vous quittez le Port de Blanes avec le carburant inclus et cap libre dans la limite de 2 milles nautiques. Les criques les plus populaires : Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina et Sa Boadella, jusqu'à Playa de Fenals (Lloret de Mar). Mouilllez où vous voulez, baignez-vous, faites du snorkeling et revenez à votre rythme.",
+    howToStep5Title: "5. Retournez le bateau et récupérez votre caution",
+    howToStep5Text:
+      "Rentrez au Port de Blanes à l'heure convenue. Notre équipe inspecte le bateau (5 min) et, si tout est en ordre, vous restituons la caution de 300 € immédiatement. Sans démarches, sans frais supplémentaires. Le prix que vous avez réservé est le prix final.",
+    howToDurationLabel: "Durée du processus",
+    howToDurationValue: "Réservation 5 min · formation 15 min · navigation libre",
+    howToCostLabel: "Tarif à partir de",
+    howToCostValue: "70 €/h carburant inclus",
+    vsMarketplacesTitle: "Pourquoi réserver directement à Blanes plutôt que via un marketplace",
+    vsMarketplacesIntro:
+      "Certains marketplaces annoncent des bateaux sans permis sur la Costa Brava à partir de 55 €/jour. Cela semble bon marché, mais le prix affiché n'est pas le prix que vous payez. Voici ce qui change lorsque vous réservez directement avec nous plutôt que via une plateforme intermédiaire.",
+    vsMarketplacesCol1: "En réservant ici (direct)",
+    vsMarketplacesCol2: "Marketplaces intermédiaires",
+    vsMarketplacesRow1Label: "Carburant",
+    vsMarketplacesRow1Direct: "Inclus dans le prix",
+    vsMarketplacesRow1Market: "En supplément (ajoute généralement 25-50 €)",
+    vsMarketplacesRow2Label: "Commission de plateforme",
+    vsMarketplacesRow2Direct: "0 € — vous payez l'armateur directement",
+    vsMarketplacesRow2Market: "5-15 % sur le total",
+    vsMarketplacesRow3Label: "Formation à la sécurité",
+    vsMarketplacesRow3Direct: "Équipe locale en 8 langues (es/en/fr/de/ca/nl/it/ru)",
+    vsMarketplacesRow3Market: "Variable selon l'armateur, généralement en espagnol uniquement",
+    vsMarketplacesRow4Label: "Assistance le jour du départ",
+    vsMarketplacesRow4Direct: "WhatsApp direct avec l'équipe au port",
+    vsMarketplacesRow4Market: "Support e-mail du marketplace, pas de l'armateur",
+    vsMarketplacesRow5Label: "Annulation",
+    vsMarketplacesRow5Direct: "Flexible jusqu'à 48h avant",
+    vsMarketplacesRow5Market: "Politique du marketplace + frais de l'armateur",
+    vsMarketplacesConclusion:
+      "Le prix final via marketplace est généralement 20-35 % supérieur au prix annoncé une fois ajoutés le carburant, la commission et les extras. Nos 70 €/h incluent tout : carburant, équipement, formation, assurance responsabilité civile et assistance au port.",
   },
   categoryLicensed: {
     heroTitle: "Bateaux Avec Permis à Blanes",
@@ -1964,6 +2033,62 @@ export const fr: Translations = {
           "Piquez une tête juste avant le coucher de soleil. L'eau est plus chaude en fin d'après-midi et nager dans la lumière dorée est une expérience inoubliable.",
       },
     ],
+    heroTitle: "Balade en Bateau au Coucher du Soleil depuis Blanes",
+    heroDescription:
+      "Contemplez le coucher de soleil sur la Costa Brava depuis le pont de votre propre bateau. Partez du port de Blanes, naviguez entre criques cachées et profitez de la lumière la plus magique de la journée sur la Méditerranée. Sans permis bateau. À partir de 70 EUR/heure.",
+    badgeGoldenHour: "Vues à l'heure dorée",
+    badgeDuration: "2 heures recommandées",
+    badgeCouples: "Parfait pour les couples",
+    whyTitle: "Pourquoi une balade en bateau au coucher du soleil depuis Blanes",
+    whyGoldenHourTitle: "L'heure dorée de la Méditerranée",
+    whyGoldenHourDesc:
+      "Il y a quelque chose d'extraordinaire à voir le coucher de soleil depuis la mer. La lumière devient dorée, puis ambrée, puis rosée. Les falaises de la Costa Brava brillent comme embrasées. L'eau se transforme en miroir reflétant toutes les couleurs du ciel. C'est le type d'expérience qui rend des vacances inoubliables.",
+    whyPrivateTitle: "Votre expérience privée",
+    whyPrivateDesc:
+      "Contrairement aux croisières coucher de soleil en groupe, le bateau est rien que pour vous. Vous choisissez où mouiller, combien de temps rester et ce que vous apportez à bord. Pas de guide qui vous presse, pas d'autres touristes. Juste vous et la Méditerranée dans son plus beau moment.",
+    whyAffordableTitle: "Facile et abordable",
+    whyAffordableDesc:
+      "Nos bateaux sans permis sont incroyablement faciles à manœuvrer. Après une formation de 15 minutes au port, vous êtes prêts. Le bateau accueille jusqu'à 5 personnes, donc une excursion de 2 heures au coucher du soleil peut coûter à partir de 28 EUR par personne carburant inclus. Moins que la plupart des dîners sur la Costa Brava.",
+    whyTemperatureTitle: "Température parfaite au coucher du soleil",
+    whyTemperatureDesc:
+      "En fin d'après-midi, la chaleur du jour s'est atténuée. La brise marine vous garde à l'aise. L'eau est à son point le plus chaud après avoir absorbé le soleil toute la journée. C'est le moment idéal pour être dans l'eau, que ce soit pour nager, flotter ou simplement contempler le ciel qui change de couleur.",
+    viewpointsTitle: "Les meilleures vues au coucher du soleil depuis la mer",
+    sunsetTimesTitle: "Horaires de coucher de soleil et suggestions de départ",
+    sunsetTimesTableMonth: "Mois",
+    sunsetTimesTableTime: "Heure du coucher de soleil",
+    sunsetTimesTableDeparture: "Départ recommandé",
+    sunsetTimesNote:
+      "Les horaires sont approximatifs et varient de quelques minutes chaque semaine. Notre équipe au port vous confirmera l'heure exacte du coucher de soleil et vous recommandera le meilleur moment de départ.",
+    romanticIdeasTitle: "Idées pour le rendre spécial",
+    whatToBringTitle: "Que prendre pour votre balade au coucher du soleil",
+    whatToBringEssentials: "Indispensable",
+    whatToBringEssentialItems: [
+      "Veste légère ou sweat-shirt (il fait plus frais après le coucher du soleil)",
+      "Lunettes de soleil (le soleil bas peut éblouir)",
+      "Téléphone ou appareil photo pour les photos",
+      "Maillot de bain si vous voulez nager à l'heure dorée",
+    ],
+    whatToBringNice: "Recommandé",
+    whatToBringNiceItems: [
+      "Pique-nique ou apéritif : fromage, charcuterie, olives",
+      "Vin, cava ou boissons dans un sac isotherme",
+      "Enceinte Bluetooth pour la musique",
+      "Serviettes si vous allez nager",
+    ],
+    exploreMore: "Explorez plus d'expériences",
+    linkNoLicense: "Bateaux sans permis",
+    linkSnorkel: "Excursion snorkeling",
+    linkPrices: "Prix et tarifs",
+    linkBlanes: "Infos sur le port de Blanes",
+    linkRoutes: "Routes maritimes",
+    faqTitle: "Questions fréquentes",
+    ctaTitle: "Réservez votre balade en bateau au coucher du soleil depuis Blanes",
+    ctaDescription:
+      "La façon la plus magique de terminer une journée sur la Costa Brava. Départs depuis le port de Blanes, d'avril à octobre. Sans permis. Carburant inclus.",
+    ctaWhatsApp: "Réserver par WhatsApp",
+    ctaViewBoats: "Voir les bateaux disponibles",
+    breadcrumbHome: "Accueil",
+    breadcrumbSunset: "Balade en bateau au coucher du soleil",
   },
   activitySnorkel: {
     faqItems: [
@@ -2165,6 +2290,63 @@ export const fr: Translations = {
         tip: "Recommandé pour les enfants à partir de 4 ans. Prévoir nourriture, eau, crème solaire et casquettes.",
       },
     ],
+    heroTitle: "Location de Bateau en Famille sur la Costa Brava",
+    heroDescription:
+      "Une aventure sûre et amusante pour toute la famille. Bateaux sans permis depuis le Port de Blanes avec carburant inclus, gilets de sauvetage pour enfants et criques protégées parfaites pour les petits. À partir de 70 EUR/heure.",
+    badgeNoLicense: "Sans permis nécessaire",
+    badgeKidsVests: "Gilets enfants inclus",
+    badgeFuel: "Carburant inclus",
+    whyTitle: "Pourquoi c'est parfait pour les familles",
+    whyMemoriesTitle: "Une expérience dont ils se souviendront toujours",
+    whyMemoriesDesc:
+      "Louer un bateau en famille, c'est bien plus qu'une promenade sur la mer. C'est découvrir des criques cachées ensemble, observer les poissons sous l'eau, pique-niquer en flottant dans des eaux turquoise et créer des souvenirs que les enfants raconteront pendant des années. Sur la Costa Brava, la côte entre Blanes et Lloret offre le décor parfait.",
+    whyNoStressTitle: "Sans stress, sans complications",
+    whyNoStressDesc:
+      "Aucune expérience préalable ni permis bateau n'est nécessaire. Nous vous apprenons tout en 15 minutes. Les bateaux sont stables, faciles à manœuvrer et à vitesse limitée. Le carburant est inclus, donc pas de surprises sur le prix. Il vous suffit de venir avec l'envie de passer du bon temps.",
+    whyCalmCovesTitle: "Criques tranquilles pour les enfants",
+    whyCalmCovesDesc:
+      "Nous recommandons des criques protégées avec eau peu profonde et sans houle. Cala Sant Francesc a un fond de sable idéal pour que les enfants se baignent en toute sécurité. Cala Bona offre des eaux cristallines parfaites pour les premières expériences de snorkeling.",
+    whyFlexTitle: "Flexibilité totale",
+    whyFlexDesc:
+      "Vous décidez du rythme. Si les enfants veulent rester plus longtemps dans une crique, pas de problème. Si quelqu'un est fatigué, on rentre. Pas d'horaires fixes ni de routes imposées. C'est votre bateau, votre plan, votre journée en mer.",
+    safetyTitle: "Sécurité pour toute la famille",
+    routesTitle: "Itinéraires recommandés pour les familles",
+    stopsLabel: "Arrêts :",
+    tipLabel: "Conseil :",
+    whatToBringTitle: "Que prendre pour une journée en bateau avec des enfants",
+    essentialTitle: "Indispensable",
+    essentialItems: [
+      "Crème solaire SPF 50+ waterproof",
+      "Eau en abondance (minimum 1 L par personne)",
+      "Casquettes ou chapeaux pour le soleil",
+      "Serviettes",
+    ],
+    recommendedTitle: "Recommandé",
+    recommendedItems: [
+      "Collations ou pique-nique préparé",
+      "T-shirts anti-UV pour les enfants",
+      "Lunettes de soleil avec cordon",
+      "Vêtements secs pour le retour",
+    ],
+    optionalTitle: "Optionnel",
+    optionalItems: [
+      "Appareil photo étanche ou housse pour téléphone",
+      "Équipement de snorkeling personnel",
+      "Petite glacière avec glace",
+      "Jouets de plage gonflables",
+    ],
+    exploreTitle: "Découvrez plus sur nos services",
+    linkNoLicense: "Bateaux sans permis",
+    linkSnorkel: "Excursion snorkeling",
+    linkPrices: "Prix et tarifs",
+    linkBlanes: "Port de Blanes",
+    linkRoutes: "Routes maritimes",
+    ctaTitle: "Réservez un bateau pour toute la famille",
+    ctaDescription:
+      "Bateaux sûrs, faciles à manœuvrer et tout compris. Le plan parfait pour une journée en famille sur la Costa Brava. Départs depuis le Port de Blanes d'avril à octobre.",
+    ctaWhatsApp: "Réserver par WhatsApp",
+    ctaViewBoats: "Voir les bateaux sans permis",
+    faqTitle: "Questions fréquentes sur les bateaux pour familles",
   },
   activityFishing: {
     faqItems: [
@@ -2273,6 +2455,79 @@ export const fr: Translations = {
           "À 3-5 milles de la côte, profondeurs de 40-80 mètres. Accessible uniquement avec bateaux avec permis. Jigging et traîne.",
       },
     ],
+    heroTitle: "Pêche en Bateau à Blanes - Costa Brava",
+    heroDescription:
+      "Louez un bateau au Port de Blanes et partez pêcher dans les eaux de la Costa Brava. Bars, daurades, sérioles et plus encore. Bateaux avec et sans permis pour s'adapter à votre niveau d'expérience. Apportez votre matériel, nous fournissons le bateau.",
+    badgeSpecies: "5+ espèces cibles",
+    badgeLicense: "Avec et sans permis",
+    badgeDuration: "4-6 heures recommandées",
+    whyTitle: "Pourquoi pêcher depuis Blanes",
+    whyLocationTitle: "Emplacement stratégique",
+    whyLocationDesc:
+      "Blanes se trouve au point où le littoral change de caractère : au sud les plages de sable du Maresme, au nord la côte rocheuse de la Costa Brava. Cette transition crée une diversité d'habitats marins exceptionnelle pour la pêche : fonds de sable, herbiers de posidonie, formations rocheuses et eaux du large, tous accessibles en moins de 30 minutes de navigation.",
+    whyPortTitle: "Port pratique et bien équipé",
+    whyPortDesc:
+      "Le Port de Blanes dispose d'un parking gratuit, d'une station-service nautique et de boutiques où acheter des appâts frais. Vous quittez le port et en 10 minutes vous êtes déjà dans des zones de pêche productives. Au retour, vous pouvez nettoyer les prises et manger dans les restaurants du port.",
+    whyVarietyTitle: "Variété d'espèces",
+    whyVarietyDesc:
+      "Les eaux face à Blanes abritent une grande diversité d'espèces. Près de la côte, vous trouverez des bars, des daurades, des sars et des bogues. Un peu plus loin, en eaux du large, des sérioles, des bonites et des dentés. En automne et hiver, la pêche aux calmars à la turlutte est excellente.",
+    whySeasonTitle: "Saison étendue",
+    whySeasonDesc:
+      "Bien que la saison de location de bateaux aille d'avril à octobre, chaque mois a ses propres opportunités de pêche. Le printemps pour les daurades, l'été pour les sérioles, l'automne pour les calmars et les dentés. Il y a toujours quelque chose à pêcher à Blanes.",
+    speciesTitle: "Espèces que vous pouvez pêcher à Blanes",
+    seasonLabel: "Saison :",
+    whereLabel: "Où :",
+    techniqueLabel: "Technique :",
+    boatsTitle: "Bateaux recommandés pour la pêche",
+    spotsTitle: "Zones de pêche depuis Blanes",
+    targetLabel: "Cible :",
+    regulationsTitle: "Réglementations et normes de pêche",
+    licenseTitle: "Permis de pêche obligatoire",
+    licenseDesc:
+      "Pour pêcher en mer depuis un bateau, vous avez besoin du permis de pêche récréative maritime de la Generalitat de Catalunya. Vous pouvez l'obtenir en ligne sur gencat.cat pour environ 14 EUR avec une validité de 2 ans.",
+    catchLimitsTitle: "Limites de capture",
+    catchLimitsItems: [
+      "Maximum 5 kg par personne et par jour",
+      "Si une prise dépasse 5 kg, elle compte comme quota",
+      "Maximum 2 cannes par personne",
+    ],
+    minSizesTitle: "Tailles minimales principales",
+    minSizesItems: [
+      "Bar : 36 cm",
+      "Daurade : 20 cm",
+      "Denté : 35 cm",
+      "Sériole : 40 cm",
+    ],
+    prohibitedTitle: "Zones interdites",
+    prohibitedDesc:
+      "Il est interdit de pêcher dans les zones de baignade balisées, les réserves marines et à l'intérieur des ports. Respectez toujours les bouées de balisage et les zones protégées.",
+    equipmentTitle: "Matériel de pêche : apportez le vôtre",
+    whatToBringTitle: "Que prendre",
+    whatToBringItems: [
+      "Cannes et moulinets (spinning, jigging ou fond)",
+      "Leurres, plombs et hameçons",
+      "Appâts frais (disponibles dans les boutiques du port)",
+      "Glacière avec glace pour les prises",
+      "Pinces de pêche et couteau",
+    ],
+    whereBaitTitle: "Où acheter des appâts à Blanes",
+    whereBaitDesc:
+      "À proximité du Port de Blanes, plusieurs boutiques nautiques proposent des appâts frais (ver américain, ver coréen, crevette) et du matériel de pêche de base. Nous recommandons d'acheter les appâts le jour même de la sortie pour une fraîcheur maximale.",
+    recommendationsTitle: "Recommandations",
+    recommendationsDesc:
+      "Emportez de la crème solaire, de l'eau en abondance, une casquette et des lunettes de soleil polarisées (elles aident à voir les poissons dans l'eau). Un t-shirt à manches longues vous protège du soleil pendant les heures de pêche. N'oubliez pas le permis de pêche imprimé ou sur votre téléphone.",
+    exploreTitle: "Explorez plus d'activités et de services",
+    linkLicensed: "Bateaux avec permis",
+    linkNoLicense: "Bateaux sans permis",
+    linkSnorkel: "Excursion snorkeling",
+    linkPrices: "Prix et tarifs",
+    linkBlanes: "Port de Blanes",
+    ctaTitle: "Réservez votre bateau pour pêcher à Blanes",
+    ctaDescription:
+      "Apportez votre matériel, nous fournissons le bateau. Bars, daurades, sérioles et plus vous attendent dans les eaux de la Costa Brava. Départs depuis le Port de Blanes.",
+    ctaWhatsApp: "Réserver par WhatsApp",
+    ctaViewBoats: "Voir les bateaux avec permis",
+    faqTitle: "Questions fréquentes sur la pêche en bateau",
   },
   locationPages: {
     blanes: {
@@ -3909,6 +4164,26 @@ export const fr: Translations = {
         },
       ],
     },
+  },
+
+  blogAuthorByline: {
+    writtenBy: "Par",
+    publishedOn: "Publié le",
+    updatedOn: "Mis à jour le",
+    readMore: "En savoir plus sur l'auteur",
+    verifiedProfilesLabel: "Profils vérifiés",
+  },
+
+  homeReviewsBlock: {
+    title: "Ce que disent nos clients",
+    subtitle: "Avis vérifiés sur Google Maps",
+    viewAll: "Voir tous les avis",
+    fallbackAuthor: "Client vérifié",
+  },
+
+  contentSummary: {
+    keyTakeawaysTitle: "Points clés",
+    quickFactsTitle: "Données rapides",
   },
 
   testimonios: {

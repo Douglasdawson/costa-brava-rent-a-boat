@@ -41,6 +41,8 @@ export const en: Translations = {
     askWhatsApp: "Ask us on WhatsApp",
     testimonialQuote: "Amazing experience, we will definitely come back",
     testimonialQuoteShort: "We will be back",
+    summaryGeo:
+      "Costa Brava Rent a Boat operates the largest boat rental fleet in the Port of Blanes with 9 vessels: 5 licence-free with fuel included from €70/h, 3 licensed and 1 private excursion with skipper. Assistance in 8 languages. Season from April to October. 4.8★ on Google with over 300 reviews.",
   },
 
   fleet: {
@@ -446,6 +448,7 @@ export const en: Translations = {
     stepExperience: "Experience",
     stepPersonalize: "Personalize",
     stepPay: "Confirmation",
+    stepCounter: "Step {current} of {total}",
     chooseBoatFirst: "Select a boat to choose a time",
     chooseTimeFirst: "Select date and boat first",
     quoteConfirmedTitle: "Almost ready. One message and we set sail.",
@@ -453,6 +456,9 @@ export const en: Translations = {
     whatsappFlowTitle: "We'll take you to WhatsApp with everything ready",
     whatsappFlowBody:
       "Tap Send and we'll reply as soon as we read your message. We confirm availability and settle the payment on the day of the rental.",
+    openingWhatsapp: "Opening WhatsApp…",
+    requestViaWhatsapp: "Request via WhatsApp",
+    whatsappFooterNote: "Just tap Send. No commitment until we confirm.",
   },
   faq: {
     title: "Frequently Asked Questions",
@@ -781,8 +787,19 @@ export const en: Translations = {
       yourDetails: "Confirm",
     },
     hints: {
+      pricesNextStep: "In the next step you'll see real prices for your chosen date.",
+      boatNotAvailableForDate: "No availability for {date}. Try another day or switch boats.",
+      capacityExceeded: "This boat holds a maximum of {max} people. Change the boat or your group size.",
       noOnlinePayment: "No online payment, we confirm by WhatsApp",
       submitReassurance: "We reply within 2 hours. No online payment, no commitment.",
+    },
+    multiBoat: {
+      title: "Your boats",
+      subtitle: "For {n} people we need 2 boats",
+      recommended: "Recommended",
+      combinedCapacity: "{n}p in total",
+      noCombinations: "No combinations available for this group.",
+      chooseManually: "Choose boats manually",
     },
     fuel: {
       included: "Fuel included",
@@ -1047,7 +1064,51 @@ export const en: Translations = {
       "That's the most common case among our customers. License-free boats are designed precisely for people with no prior experience: intuitive controls, low-power engine (15 HP), 5-knot navigation (cruising speed) and protected coastal area. In the 15-minute briefing we teach you how to manoeuvre in the harbour, anchor, use the VHF radio and return to the mooring. To date no customer has had trouble handling the boat after the briefing.",
     faqGroupSizeQuestion: "How many people fit in a license-free boat?",
     faqGroupSizeAnswer:
-      "Our 5 license-free boats hold 4 to 5 people (adults and children count the same). Astec 400 is ideal for couples or small families (4 people). Solar 450, Remus 450, Remus 450 II and Astec 480 are the largest in the license-free category (5 people). If you need 6 or 7 seats, take a look at the licensed boats (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) or our Private Excursion with skipper. The price is per boat, not per person, so the more people you bring, the cheaper it gets per head."
+      "Our 5 license-free boats hold 4 to 5 people (adults and children count the same). Astec 400 is ideal for couples or small families (4 people). Solar 450, Remus 450, Remus 450 II and Astec 480 are the largest in the license-free category (5 people). If you need 6 or 7 seats, take a look at the licensed boats (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) or our Private Excursion with skipper. The price is per boat, not per person, so the more people you bring, the cheaper it gets per head.",
+    howToTitle: "How to Hire a Licence-Free Boat in Blanes (5 Steps)",
+    howToIntro:
+      "Hiring a licence-free boat at the Port of Blanes is simpler than it sounds. Here are the 5 steps of the process, from booking to return, so you know exactly what to expect on the day.",
+    howToStep1Title: "1. Choose Your Boat and Time",
+    howToStep1Text:
+      "Browse our licence-free fleet (Solar 450, Remus 450, Astec 400, Astec 480 and Mingolla Brava 19) and pick the boat that best suits your group. Book via WhatsApp (+34 611 500 372) or through the website with your date, time and number of people. We confirm availability in minutes.",
+    howToStep2Title: "2. Arrive at the Port of Blanes 30 Min Before",
+    howToStep2Text:
+      "Our base is at the Port of Blanes (Girona), easily reachable by car from Barcelona (1h), Lloret de Mar (15 min) or Tossa de Mar (30 min). Free parking in the port area. Bring the driver's ID or passport (must be over 18) and the €300 deposit (card or cash, fully refunded on return).",
+    howToStep3Title: "3. Safety Briefing (15 Minutes)",
+    howToStep3Text:
+      "Before departure, our local team teaches you how to handle the boat in the harbour: starting and stopping the engine, low-speed manoeuvring, anchoring in a cove, using the VHF radio and returning to the mooring. We answer all your questions. No prior experience needed — the briefing is designed for beginners.",
+    howToStep4Title: "4. Sail the Costa Brava Coves",
+    howToStep4Text:
+      "You leave the Port of Blanes with fuel included and free navigation within the 2 nautical mile limit. The most popular coves: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina and Sa Boadella, up to Fenals Beach (Lloret de Mar). Anchor wherever you like, swim, snorkel and return at your own pace.",
+    howToStep5Title: "5. Return the Boat and Collect Your Deposit",
+    howToStep5Text:
+      "Return to the Port of Blanes at the agreed time. Our team inspects the boat (5 min) and, if everything is in order, returns your €300 deposit immediately. No paperwork, no extra fees. The price you booked is the final price.",
+    howToDurationLabel: "Process duration",
+    howToDurationValue: "Booking 5 min · briefing 15 min · free sailing",
+    howToCostLabel: "From",
+    howToCostValue: "€70/h with fuel included",
+    vsMarketplacesTitle: "Why Book Directly in Blanes Instead of a Marketplace",
+    vsMarketplacesIntro:
+      "Some marketplaces advertise licence-free boats on the Costa Brava from €55/day. It sounds cheap, but the price you see is not the price you pay. Here is what changes when you book directly with us compared to an intermediary platform.",
+    vsMarketplacesCol1: "Booking here (direct)",
+    vsMarketplacesCol2: "Intermediary marketplaces",
+    vsMarketplacesRow1Label: "Fuel",
+    vsMarketplacesRow1Direct: "Included in the price",
+    vsMarketplacesRow1Market: "Extra (typically adds €25-50)",
+    vsMarketplacesRow2Label: "Platform commission",
+    vsMarketplacesRow2Direct: "€0 — you pay the operator",
+    vsMarketplacesRow2Market: "5-15% on top of the total",
+    vsMarketplacesRow3Label: "Safety briefing",
+    vsMarketplacesRow3Direct: "Local team in 8 languages (es/en/fr/de/ca/nl/it/ru)",
+    vsMarketplacesRow3Market: "Varies by operator, usually Spanish only",
+    vsMarketplacesRow4Label: "On-the-day support",
+    vsMarketplacesRow4Direct: "Direct WhatsApp with the team at the port",
+    vsMarketplacesRow4Market: "Marketplace email support, not the operator",
+    vsMarketplacesRow5Label: "Cancellation",
+    vsMarketplacesRow5Direct: "Flexible up to 48h before",
+    vsMarketplacesRow5Market: "Marketplace policy + operator's own fee",
+    vsMarketplacesConclusion:
+      "The final price with a marketplace is typically 20-35% higher than advertised once you add fuel, commission and extras. Our €70/h already includes everything: fuel, equipment, briefing, civil liability insurance and on-site support.",
   },
   categoryLicensed: {
     heroTitle: "Licensed Boats in Blanes",
@@ -2012,6 +2073,62 @@ export const en: Translations = {
           "Take a dip just before sunset. The water is warmest in the late afternoon and swimming in golden light is an unforgettable experience.",
       },
     ],
+    heroTitle: "Sunset Boat Trip from Blanes",
+    heroDescription:
+      "Watch the sunset over the Costa Brava from the deck of your own boat. Leave Blanes harbour, sail between hidden coves and enjoy the most magical light of the day over the Mediterranean. No boating licence needed. From €70/hour.",
+    badgeGoldenHour: "Golden hour views",
+    badgeDuration: "2 hours recommended",
+    badgeCouples: "Perfect for couples",
+    whyTitle: "Why a sunset boat trip from Blanes",
+    whyGoldenHourTitle: "The Mediterranean golden hour",
+    whyGoldenHourDesc:
+      "There is something extraordinary about watching the sunset from the sea. The light turns golden, then amber, then pink. The Costa Brava cliffs glow as if ablaze. The water becomes a mirror reflecting every colour of the sky. It is the kind of experience that makes a holiday truly unforgettable.",
+    whyPrivateTitle: "Your own private experience",
+    whyPrivateDesc:
+      "Unlike group sunset cruises, the boat is yours alone. You choose where to anchor, how long to stay and what to bring on board. No guide rushing you along, no other tourists. Just you and the Mediterranean at its most beautiful.",
+    whyAffordableTitle: "Easy and affordable",
+    whyAffordableDesc:
+      "Our licence-free boats are incredibly easy to handle. After a 15-minute briefing at the harbour, you're ready to go. The boat holds up to 5 people, so a 2-hour sunset trip can cost from €28 per person with fuel included. Less than most dinners on the Costa Brava.",
+    whyTemperatureTitle: "Perfect evening temperature",
+    whyTemperatureDesc:
+      "By late afternoon, the heat of the day has eased. The sea breeze keeps you comfortable. The water is at its warmest after absorbing sun all day. It is the ideal time to be on the water, whether swimming, floating or simply watching the sky change colour.",
+    viewpointsTitle: "The best sunset views from the sea",
+    sunsetTimesTitle: "Sunset times and suggested departure times",
+    sunsetTimesTableMonth: "Month",
+    sunsetTimesTableTime: "Sunset time",
+    sunsetTimesTableDeparture: "Recommended departure",
+    sunsetTimesNote:
+      "Times are approximate and vary by a few minutes each week. Our team at the port will confirm the exact sunset time and recommend the best departure time on the day.",
+    romanticIdeasTitle: "Ideas to make it special",
+    whatToBringTitle: "What to bring on your sunset trip",
+    whatToBringEssentials: "Essential",
+    whatToBringEssentialItems: [
+      "A light jacket or hoodie (it cools down after sunset)",
+      "Sunglasses (the low sun can be dazzling)",
+      "Phone or camera for photos",
+      "Swimwear if you want to swim at golden hour",
+    ],
+    whatToBringNice: "Recommended",
+    whatToBringNiceItems: [
+      "Picnic or snacks: cheese, cured meats, olives",
+      "Wine, cava or drinks in a cool bag",
+      "Bluetooth speaker for music",
+      "Towels if you plan to swim",
+    ],
+    exploreMore: "Explore more experiences",
+    linkNoLicense: "Licence-free boats",
+    linkSnorkel: "Snorkelling trip",
+    linkPrices: "Prices and rates",
+    linkBlanes: "Blanes harbour info",
+    linkRoutes: "Sea routes",
+    faqTitle: "Frequently asked questions",
+    ctaTitle: "Book your sunset boat trip from Blanes",
+    ctaDescription:
+      "The most magical way to end a day on the Costa Brava. Departures from the Port of Blanes, April to October. No licence needed. Fuel included.",
+    ctaWhatsApp: "Book via WhatsApp",
+    ctaViewBoats: "View available boats",
+    breadcrumbHome: "Home",
+    breadcrumbSunset: "Sunset boat trip",
   },
   activitySnorkel: {
     faqItems: [
@@ -2212,6 +2329,63 @@ export const en: Translations = {
         tip: "Recommended for children aged 4 and up. Bring food, water, sun cream, and hats.",
       },
     ],
+    heroTitle: "Family Boat Rental on the Costa Brava",
+    heroDescription:
+      "A safe and fun adventure for the whole family. Licence-free boats from the Port of Blanes with fuel included, children's life jackets and sheltered coves perfect for kids. From €70/hour.",
+    badgeNoLicense: "No licence required",
+    badgeKidsVests: "Children's life jackets included",
+    badgeFuel: "Fuel included",
+    whyTitle: "Why it's perfect for families",
+    whyMemoriesTitle: "An experience they'll always remember",
+    whyMemoriesDesc:
+      "Renting a boat as a family is much more than a trip on the sea. It's discovering hidden coves together, watching fish through the water, picnicking while floating in turquoise water and creating memories that children will talk about for years. On the Costa Brava, the coastline between Blanes and Lloret offers the perfect setting.",
+    whyNoStressTitle: "No stress, no hassle",
+    whyNoStressDesc:
+      "No prior experience or boating licence needed. We teach you everything in 15 minutes. The boats are stable, easy to handle and speed-limited. Fuel is included, so no price surprises. All you need to bring is the desire to have a great time.",
+    whyCalmCovesTitle: "Calm coves for children",
+    whyCalmCovesDesc:
+      "We recommend sheltered coves with shallow, wave-free water. Cala Sant Francesc has a sandy bottom ideal for children to swim safely. Cala Bona offers crystal-clear water perfect for first snorkelling experiences.",
+    whyFlexTitle: "Total flexibility",
+    whyFlexDesc:
+      "You set the pace. If the children want to stay longer in a cove, no problem. If someone gets tired, we head back. No fixed schedules, no mandatory routes. It's your boat, your plan, your day at sea.",
+    safetyTitle: "Safety for the whole family",
+    routesTitle: "Recommended family itineraries",
+    stopsLabel: "Stops:",
+    tipLabel: "Tip:",
+    whatToBringTitle: "What to bring for a day at sea with children",
+    essentialTitle: "Essential",
+    essentialItems: [
+      "SPF 50+ waterproof sunscreen",
+      "Plenty of water (at least 1L per person)",
+      "Caps or hats for sun protection",
+      "Towels",
+    ],
+    recommendedTitle: "Recommended",
+    recommendedItems: [
+      "Snacks or packed picnic",
+      "UV shirts for children",
+      "Sunglasses with a retainer strap",
+      "Dry clothes for the return",
+    ],
+    optionalTitle: "Optional",
+    optionalItems: [
+      "Waterproof camera or phone case",
+      "Your own snorkelling equipment",
+      "Small cool box with ice",
+      "Inflatable beach toys",
+    ],
+    exploreTitle: "Discover more about our services",
+    linkNoLicense: "Licence-free boats",
+    linkSnorkel: "Snorkelling trip",
+    linkPrices: "Prices and rates",
+    linkBlanes: "Port of Blanes",
+    linkRoutes: "Sea routes",
+    ctaTitle: "Book a boat for the whole family",
+    ctaDescription:
+      "Safe, easy-to-handle boats with everything included. The perfect plan for a family day on the Costa Brava. Departures from the Port of Blanes, April to October.",
+    ctaWhatsApp: "Book via WhatsApp",
+    ctaViewBoats: "View licence-free boats",
+    faqTitle: "Frequently asked questions about family boats",
   },
   activityFishing: {
     faqItems: [
@@ -2319,6 +2493,79 @@ export const en: Translations = {
           "3-5 miles from the coast, depths of 40-80 meters. Only accessible with licensed boats. Jigging and trolling.",
       },
     ],
+    heroTitle: "Sea Fishing from Blanes - Costa Brava",
+    heroDescription:
+      "Hire a boat at the Port of Blanes and head out fishing in the waters of the Costa Brava. Sea bass, gilt-head bream, greater amberjack and more. Boats with and without licence to suit your experience level. Bring your gear and we'll provide the boat.",
+    badgeSpecies: "5+ target species",
+    badgeLicense: "With and without licence",
+    badgeDuration: "4-6 hours recommended",
+    whyTitle: "Why fish from Blanes",
+    whyLocationTitle: "Strategic location",
+    whyLocationDesc:
+      "Blanes sits at the point where the coastline changes character: sandy Maresme beaches to the south, the rocky Costa Brava to the north. This transition creates an exceptional diversity of marine habitats for fishing: sandy bottoms, seagrass meadows, rocky formations and open waters, all reachable within 30 minutes of leaving port.",
+    whyPortTitle: "Comfortable, well-equipped port",
+    whyPortDesc:
+      "The Port of Blanes has free parking, a marine fuel station and shops where you can buy fresh bait. Leave the harbour and within 10 minutes you're in productive fishing grounds. On your return, you can clean your catch and eat at the port restaurants.",
+    whyVarietyTitle: "Species variety",
+    whyVarietyDesc:
+      "The waters off Blanes are home to a wide diversity of species. Close to shore you'll find sea bass, gilt-head bream, white seabream and picarel. A little further out in open water, greater amberjack, bonito and dentex. In autumn and winter, squid jigging is excellent.",
+    whySeasonTitle: "Extended season",
+    whySeasonDesc:
+      "Although the boat rental season runs from April to October, each month brings its own fishing opportunities. Spring for gilt-head bream, summer for greater amberjack, autumn for squid and dentex. There is always something to catch in Blanes.",
+    speciesTitle: "Species you can catch in Blanes",
+    seasonLabel: "Season:",
+    whereLabel: "Where:",
+    techniqueLabel: "Technique:",
+    boatsTitle: "Recommended boats for fishing",
+    spotsTitle: "Fishing spots from Blanes",
+    targetLabel: "Target:",
+    regulationsTitle: "Fishing regulations and rules",
+    licenseTitle: "Fishing licence required",
+    licenseDesc:
+      "To fish at sea from a boat you need the maritime recreational fishing licence from the Generalitat de Catalunya. You can obtain it online at gencat.cat for approximately €14, valid for 2 years.",
+    catchLimitsTitle: "Catch limits",
+    catchLimitsItems: [
+      "Maximum 5 kg per person per day",
+      "If a single fish exceeds 5 kg, it counts as your quota",
+      "Maximum 2 rods per person",
+    ],
+    minSizesTitle: "Main minimum sizes",
+    minSizesItems: [
+      "Sea bass: 36 cm",
+      "Gilt-head bream: 20 cm",
+      "Dentex: 35 cm",
+      "Greater amberjack: 40 cm",
+    ],
+    prohibitedTitle: "Prohibited areas",
+    prohibitedDesc:
+      "Fishing is prohibited in marked bathing areas, marine reserves and inside harbours. Always respect marker buoys and protected zones.",
+    equipmentTitle: "Fishing gear: bring your own",
+    whatToBringTitle: "What to bring",
+    whatToBringItems: [
+      "Rods and reels (spinning, jigging or bottom fishing)",
+      "Lures, weights and hooks",
+      "Fresh bait (available at port shops)",
+      "Cool box with ice for your catch",
+      "Fishing pliers and a knife",
+    ],
+    whereBaitTitle: "Where to buy bait in Blanes",
+    whereBaitDesc:
+      "Near the Port of Blanes there are several chandleries where you can buy fresh bait (American worm, Korean worm, shrimp) and basic fishing gear. We recommend buying bait on the day of your trip for maximum freshness.",
+    recommendationsTitle: "Recommendations",
+    recommendationsDesc:
+      "Bring sunscreen, plenty of water, a cap and polarised sunglasses (they help spot fish in the water). A long-sleeved shirt protects you from the sun during fishing hours. Don't forget your fishing licence — printed or on your phone.",
+    exploreTitle: "Explore more activities and services",
+    linkLicensed: "Licensed boats",
+    linkNoLicense: "Licence-free boats",
+    linkSnorkel: "Snorkelling trip",
+    linkPrices: "Prices and rates",
+    linkBlanes: "Port of Blanes",
+    ctaTitle: "Book your fishing boat in Blanes",
+    ctaDescription:
+      "Bring your gear, we'll provide the boat. Sea bass, gilt-head bream, greater amberjack and more await you in the waters of the Costa Brava. Departures from the Port of Blanes.",
+    ctaWhatsApp: "Book via WhatsApp",
+    ctaViewBoats: "View licensed boats",
+    faqTitle: "Frequently asked questions about boat fishing",
   },
   locationPages: {
     blanes: {
@@ -3947,6 +4194,26 @@ export const en: Translations = {
         },
       ],
     },
+  },
+
+  blogAuthorByline: {
+    writtenBy: "By",
+    publishedOn: "Published on",
+    updatedOn: "Updated on",
+    readMore: "More about the author",
+    verifiedProfilesLabel: "Verified profiles",
+  },
+
+  homeReviewsBlock: {
+    title: "What our customers say",
+    subtitle: "Verified Google Maps reviews",
+    viewAll: "View all reviews",
+    fallbackAuthor: "Verified customer",
+  },
+
+  contentSummary: {
+    keyTakeawaysTitle: "Key takeaways",
+    quickFactsTitle: "Quick facts",
   },
 
   testimonios: {

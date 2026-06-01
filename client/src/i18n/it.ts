@@ -41,6 +41,8 @@ export const it: Translations = {
     askWhatsApp: "Chiedici su WhatsApp",
     testimonialQuote: "Esperienza incredibile, torneremo sicuramente",
     testimonialQuoteShort: "Torneremo sicuramente",
+    summaryGeo:
+      "Costa Brava Rent a Boat gestisce la flotta di noleggio barche più grande del Porto di Blanes con 9 imbarcazioni: 5 senza patente con carburante incluso da 70€/h, 3 con patente e 1 escursione privata con skipper. Assistenza in 8 lingue. Stagione da aprile a ottobre. 4.8★ su Google con oltre 300 recensioni.",
   },
 
   fleet: {
@@ -281,6 +283,9 @@ export const it: Translations = {
   booking: {
     title: "Richiedi la tua prenotazione",
     modalSubtitle: "Solo 2 minuti. Conferma via WhatsApp.",
+    specialRateTitle: "Tariffa speciale per questa data",
+    specialRateBody: "prezzo adattato alla domanda",
+    specialRateFooter: "Il totale finale nel passaggio successivo lo include già.",
     seasonCountdown:
       "I prezzi della stagione 2026 salgono il 1° giugno · mancano {days} giorni · conferma oggi",
     selectBoat: "Seleziona Barca",
@@ -453,8 +458,17 @@ export const it: Translations = {
     stepExperience: "Esperienza",
     stepPersonalize: "Personalizza",
     stepPay: "Conferma",
+    stepCounter: "Passo {current} di {total}",
     chooseBoatFirst: "Seleziona una barca per scegliere un orario",
     chooseTimeFirst: "Seleziona prima data e barca",
+    quoteConfirmedTitle: "Quasi pronto. Un messaggio e si salpa.",
+    quoteConfirmedNote: "Ti teniamo la barca non appena leggiamo il tuo messaggio.",
+    whatsappFlowTitle: "Ti portiamo su WhatsApp con tutto pronto",
+    whatsappFlowBody:
+      "Premi Invia e ti rispondiamo non appena leggiamo il messaggio. Confermiamo la disponibilità e il pagamento lo chiudiamo il giorno del noleggio.",
+    openingWhatsapp: "Apertura di WhatsApp…",
+    requestViaWhatsapp: "Richiedi via WhatsApp",
+    whatsappFooterNote: "Devi solo premere Invia. Senza impegno finché non confermiamo.",
   },
   faq: {
     title: "Domande Frequenti",
@@ -787,8 +801,19 @@ export const it: Translations = {
       yourDetails: "Conferma",
     },
     hints: {
+      pricesNextStep: "Nel passaggio successivo vedrai i prezzi reali per la tua data.",
+      boatNotAvailableForDate: "Nessuna disponibilità per il {date}. Prova un altro giorno o cambia barca.",
+      capacityExceeded: "Questa barca ammette fino a {max} persone. Cambia barca o riduci il gruppo.",
       noOnlinePayment: "Nessun pagamento online, confermiamo via WhatsApp",
       submitReassurance: "Rispondiamo entro 2 ore. Nessun pagamento online, senza impegno.",
+    },
+    multiBoat: {
+      title: "Le vostre barche",
+      subtitle: "Per {n} persone abbiamo bisogno di 2 barche",
+      recommended: "Consigliato",
+      combinedCapacity: "{n} posti in totale",
+      noCombinations: "Nessuna combinazione disponibile per questo gruppo.",
+      chooseManually: "Scegliere le barche manualmente",
     },
     fuel: {
       included: "Carburante incluso",
@@ -1052,7 +1077,51 @@ export const it: Translations = {
       "È il caso più comune tra i nostri clienti. Le barche senza patente sono progettate proprio per persone senza esperienza precedente: comandi intuitivi, motore di bassa potenza (15 CV), navigazione a 5 nodi (velocità di crociera) e zona costiera protetta. Nel briefing di 15 minuti ti insegniamo a manovrare nel porto, dare fondo, usare la VHF e rientrare all'ormeggio. A oggi nessun cliente ha avuto problemi a maneggiare la barca dopo il briefing.",
     faqGroupSizeQuestion: "Quante persone entrano in una barca senza patente?",
     faqGroupSizeAnswer:
-      "Le nostre 5 barche senza patente hanno capacità tra 4 e 5 persone (adulti e bambini contano uguale). L'Astec 400 è ideale per coppie o piccole famiglie (4 persone). Solar 450, Remus 450, Remus 450 II e Astec 480 sono le più grandi della categoria senza patente (5 persone). Se hai bisogno di 6 o 7 posti, dai un'occhiata alle barche con patente (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o alla nostra Escursione Privata con skipper. Il prezzo è per barca, non per persona, quindi più siete, meno costa a testa."
+      "Le nostre 5 barche senza patente hanno capacità tra 4 e 5 persone (adulti e bambini contano uguale). L'Astec 400 è ideale per coppie o piccole famiglie (4 persone). Solar 450, Remus 450, Remus 450 II e Astec 480 sono le più grandi della categoria senza patente (5 persone). Se hai bisogno di 6 o 7 posti, dai un'occhiata alle barche con patente (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o alla nostra Escursione Privata con skipper. Il prezzo è per barca, non per persona, quindi più siete, meno costa a testa.",
+    howToTitle: "Come noleggiare una barca senza patente a Blanes (5 passi)",
+    howToIntro:
+      "Noleggiare una barca senza patente al Porto di Blanes è più semplice di quanto sembri. Ecco i 5 passi del processo, dalla prenotazione alla riconsegna, per sapere esattamente cosa aspettarti il giorno della tua uscita.",
+    howToStep1Title: "1. Scegli la tua barca e l'orario",
+    howToStep1Text:
+      "Consulta la nostra flotta senza patente (Solar 450, Remus 450, Astec 400, Astec 480 e Mingolla Brava 19) e scegli la barca più adatta al tuo gruppo. Prenota via WhatsApp (+34 611 500 372) o dal sito indicando data, ora e numero di persone. Confermiamo la disponibilità in pochi minuti.",
+    howToStep2Title: "2. Arriva al Porto di Blanes 30 min prima",
+    howToStep2Text:
+      "La nostra base si trova al Porto di Blanes (Girona), raggiungibile in auto da Barcellona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Parcheggio gratuito nella zona portuale. Porta il documento d'identità o passaporto del conducente (maggiorenne) e la cauzione di 300€ (carta o contanti, restituita integralmente).",
+    howToStep3Title: "3. Briefing di sicurezza (15 minuti)",
+    howToStep3Text:
+      "Prima di salpare, il nostro team locale ti insegna a manovrare la barca nel porto: avviare e spegnere il motore, manovrare a bassa velocità, ancorare in caletta, usare la radio VHF e tornare all'ormeggio. Risolviamo tutti i tuoi dubbi. Non è richiesta esperienza precedente — il briefing è pensato per i principianti.",
+    howToStep4Title: "4. Naviga nelle calette della Costa Brava",
+    howToStep4Text:
+      "Esci dal Porto di Blanes con il carburante incluso e rotta libera entro il limite di 2 miglia nautiche. Le calette più popolari: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina e Sa Boadella, fino a Playa de Fenals (Lloret de Mar). Ancórati dove vuoi, fai il bagno, fai snorkeling e torna al tuo ritmo.",
+    howToStep5Title: "5. Riconsegna la barca e ritira la cauzione",
+    howToStep5Text:
+      "Torna al Porto di Blanes all'ora concordata. Il nostro team controlla la barca (5 min) e, se tutto è a posto, ti restituiamo subito la cauzione di 300€. Senza pratiche burocratiche, senza commissioni extra. Il prezzo che hai prenotato è il prezzo finale.",
+    howToDurationLabel: "Durata del processo",
+    howToDurationValue: "Prenotazione 5 min · briefing 15 min · navigazione libera",
+    howToCostLabel: "Costo a partire da",
+    howToCostValue: "70€/h con carburante incluso",
+    vsMarketplacesTitle: "Perché prenotare direttamente a Blanes invece di un marketplace",
+    vsMarketplacesIntro:
+      "Alcuni marketplace pubblicizzano barche senza patente sulla Costa Brava a partire da 55€/giorno. Sembra economico, ma il prezzo che vedi non è il prezzo che paghi. Ecco cosa cambia quando prenoti direttamente con noi rispetto a una piattaforma intermediaria.",
+    vsMarketplacesCol1: "Prenotando qui (diretto)",
+    vsMarketplacesCol2: "Marketplace intermediari",
+    vsMarketplacesRow1Label: "Carburante",
+    vsMarketplacesRow1Direct: "Incluso nel prezzo",
+    vsMarketplacesRow1Market: "A parte (di solito aggiunge 25-50€)",
+    vsMarketplacesRow2Label: "Commissione di piattaforma",
+    vsMarketplacesRow2Direct: "0€ — paghi direttamente all'armatore",
+    vsMarketplacesRow2Market: "5-15% sul totale",
+    vsMarketplacesRow3Label: "Briefing di sicurezza",
+    vsMarketplacesRow3Direct: "Team locale in 8 lingue (es/en/fr/de/ca/nl/it/ru)",
+    vsMarketplacesRow3Market: "Variabile secondo l'armatore, normalmente solo in spagnolo",
+    vsMarketplacesRow4Label: "Supporto il giorno della partenza",
+    vsMarketplacesRow4Direct: "WhatsApp diretto con il team in porto",
+    vsMarketplacesRow4Market: "Supporto email del marketplace, non dell'armatore",
+    vsMarketplacesRow5Label: "Cancellazione",
+    vsMarketplacesRow5Direct: "Flessibile fino a 48h prima",
+    vsMarketplacesRow5Market: "Politica del marketplace + tariffa dell'armatore",
+    vsMarketplacesConclusion:
+      "Il prezzo finale con marketplace è di solito del 20-35% superiore a quello pubblicizzato, una volta sommati carburante, commissione ed extra. I nostri 70€/h includono già tutto: carburante, attrezzatura, briefing, assicurazione RC e assistenza in porto.",
   },
   categoryLicensed: {
     heroTitle: "Barche Con Patente a Blanes",
@@ -1951,6 +2020,62 @@ export const it: Translations = {
           "Fatti un tuffo poco prima del tramonto. L'acqua è più calda a fine pomeriggio e nuotare con la luce dorata è un'esperienza indimenticabile.",
       },
     ],
+    heroTitle: "Gita in Barca al Tramonto da Blanes",
+    heroDescription:
+      "Contempla il tramonto sulla Costa Brava dal ponte della tua barca. Parti dal porto di Blanes, naviga tra calette nascoste e goditi la luce più magica del giorno sul Mediterraneo. Senza patente nautica. Da 70 EUR/ora.",
+    badgeGoldenHour: "Viste alla golden hour",
+    badgeDuration: "2 ore consigliate",
+    badgeCouples: "Perfetto per coppie",
+    whyTitle: "Perché una gita in barca al tramonto da Blanes",
+    whyGoldenHourTitle: "La golden hour del Mediterraneo",
+    whyGoldenHourDesc:
+      "C'è qualcosa di straordinario nel vedere il tramonto dal mare. La luce diventa dorata, poi ambrata, poi rosa. Le scogliere della Costa Brava brillano come se fossero in fiamme. L'acqua si trasforma in uno specchio che riflette tutti i colori del cielo. È il tipo di esperienza che rende indimenticabile una vacanza.",
+    whyPrivateTitle: "La vostra esperienza privata",
+    whyPrivateDesc:
+      "A differenza delle crociere al tramonto di gruppo, la barca è solo vostra. Scegliete dove ancorare, quanto tempo restare e cosa portare a bordo. Nessuna guida che vi mette fretta, nessun altro turista. Solo voi e il Mediterraneo nel suo momento più bello.",
+    whyAffordableTitle: "Facile e accessibile",
+    whyAffordableDesc:
+      "Le nostre barche senza patente sono incredibilmente facili da manovrare. Dopo una formazione di 15 minuti al porto, siete pronti. La barca può ospitare fino a 5 persone, quindi una gita di 2 ore al tramonto può costare da 28 EUR a persona con carburante incluso. Meno della maggior parte delle cene sulla Costa Brava.",
+    whyTemperatureTitle: "Temperatura perfetta al tramonto",
+    whyTemperatureDesc:
+      "A tarda sera, il calore del giorno si è attenuato. La brezza marina vi mantiene comodi. L'acqua è al suo punto più caldo dopo aver assorbito il sole tutto il giorno. È il momento ideale per stare in acqua, che si tratti di nuotare, galleggiare o semplicemente contemplare il cielo che cambia colore.",
+    viewpointsTitle: "Le migliori viste al tramonto dal mare",
+    sunsetTimesTitle: "Orari del tramonto e suggerimenti per la partenza",
+    sunsetTimesTableMonth: "Mese",
+    sunsetTimesTableTime: "Ora del tramonto",
+    sunsetTimesTableDeparture: "Partenza consigliata",
+    sunsetTimesNote:
+      "Gli orari sono approssimativi e variano di qualche minuto ogni settimana. Il nostro staff al porto vi confermerà l'orario esatto del tramonto e vi consiglierà il momento migliore per partire.",
+    romanticIdeasTitle: "Idee per renderlo speciale",
+    whatToBringTitle: "Cosa portare per la gita al tramonto",
+    whatToBringEssentials: "Indispensabile",
+    whatToBringEssentialItems: [
+      "Giacca leggera o felpa (rinfresca dopo il tramonto)",
+      "Occhiali da sole (il sole basso può abbagliare)",
+      "Telefono o fotocamera per le foto",
+      "Costume da bagno se volete nuotare alla golden hour",
+    ],
+    whatToBringNice: "Consigliato",
+    whatToBringNiceItems: [
+      "Picnic o aperitivo: formaggi, salumi, olive",
+      "Vino, cava o bevande in una borsa termica",
+      "Altoparlante Bluetooth per la musica",
+      "Asciugamani se andate a nuotare",
+    ],
+    exploreMore: "Esplora altre esperienze",
+    linkNoLicense: "Barche senza patente",
+    linkSnorkel: "Escursione di snorkeling",
+    linkPrices: "Prezzi e tariffe",
+    linkBlanes: "Info sul porto di Blanes",
+    linkRoutes: "Rotte marittime",
+    faqTitle: "Domande frequenti",
+    ctaTitle: "Prenota la tua gita in barca al tramonto da Blanes",
+    ctaDescription:
+      "Il modo più magico per concludere una giornata sulla Costa Brava. Partenze dal porto di Blanes, da aprile a ottobre. Senza patente. Carburante incluso.",
+    ctaWhatsApp: "Prenota su WhatsApp",
+    ctaViewBoats: "Vedi le barche disponibili",
+    breadcrumbHome: "Home",
+    breadcrumbSunset: "Gita in barca al tramonto",
   },
   activitySnorkel: {
     faqItems: [
@@ -2158,6 +2283,63 @@ export const it: Translations = {
         tip: "Consigliata per bambini dai 4 anni in su. Portare cibo, acqua, crema solare e cappelli.",
       },
     ],
+    heroTitle: "Noleggio Barca per Famiglie sulla Costa Brava",
+    heroDescription:
+      "Un'avventura sicura e divertente per tutta la famiglia. Barche senza patente dal Porto di Blanes con carburante incluso, giubbotti per bambini e calette protette perfette per i più piccoli. Da 70 EUR/ora.",
+    badgeNoLicense: "Senza patente necessaria",
+    badgeKidsVests: "Giubbotti per bambini inclusi",
+    badgeFuel: "Carburante incluso",
+    whyTitle: "Perché è perfetto per le famiglie",
+    whyMemoriesTitle: "Un'esperienza che ricorderanno sempre",
+    whyMemoriesDesc:
+      "Noleggiare una barca in famiglia è molto più di una gita in mare. Significa scoprire insieme calette nascoste, vedere pesci sott'acqua, fare un picnic galleggiando in acque turchesi e creare ricordi che i bambini racconteranno per anni. Sulla Costa Brava, la costa tra Blanes e Lloret offre lo scenario perfetto.",
+    whyNoStressTitle: "Senza stress, senza complicazioni",
+    whyNoStressDesc:
+      "Non serve esperienza precedente né patente nautica. Vi insegniamo tutto in 15 minuti. Le barche sono stabili, facili da manovrare e con velocità limitata. Il carburante è incluso, quindi nessuna sorpresa sul prezzo. Venite solo con voglia di divertirvi.",
+    whyCalmCovesTitle: "Calette tranquille per i bambini",
+    whyCalmCovesDesc:
+      "Consigliamo calette riparate con acqua bassa e senza moto ondoso. Cala Sant Francesc ha un fondale sabbioso ideale per il bagno sicuro dei bambini. Cala Bona offre acque cristalline perfette per le prime esperienze di snorkeling.",
+    whyFlexTitle: "Flessibilità totale",
+    whyFlexDesc:
+      "Decidete voi il ritmo. Se i bambini vogliono restare più a lungo in una caletta, nessun problema. Se qualcuno si stanca, si torna. Niente orari fissi né percorsi obbligatori. È la vostra barca, il vostro piano, la vostra giornata in mare.",
+    safetyTitle: "Sicurezza per tutta la famiglia",
+    routesTitle: "Itinerari consigliati per famiglie",
+    stopsLabel: "Tappe:",
+    tipLabel: "Consiglio:",
+    whatToBringTitle: "Cosa portare per una giornata in barca con bambini",
+    essentialTitle: "Indispensabile",
+    essentialItems: [
+      "Crema solare SPF 50+ waterproof",
+      "Acqua abbondante (minimo 1L per persona)",
+      "Cappellini o cappelli da sole",
+      "Asciugamani",
+    ],
+    recommendedTitle: "Consigliato",
+    recommendedItems: [
+      "Snack o picnic preparato",
+      "Magliette UV per bambini",
+      "Occhiali da sole con laccetto",
+      "Vestiti asciutti per il ritorno",
+    ],
+    optionalTitle: "Opzionale",
+    optionalItems: [
+      "Fotocamera subacquea o custodia per telefono",
+      "Attrezzatura da snorkeling propria",
+      "Borsa frigo piccola con ghiaccio",
+      "Giochi da spiaggia gonfiabili",
+    ],
+    exploreTitle: "Scopri di più sui nostri servizi",
+    linkNoLicense: "Barche senza patente",
+    linkSnorkel: "Escursione di snorkeling",
+    linkPrices: "Prezzi e tariffe",
+    linkBlanes: "Porto di Blanes",
+    linkRoutes: "Rotte marittime",
+    ctaTitle: "Prenota una barca per tutta la famiglia",
+    ctaDescription:
+      "Barche sicure, facili da manovrare e con tutto incluso. Il piano perfetto per una giornata in famiglia sulla Costa Brava. Partenze dal Porto di Blanes da aprile a ottobre.",
+    ctaWhatsApp: "Prenota su WhatsApp",
+    ctaViewBoats: "Vedi barche senza patente",
+    faqTitle: "Domande frequenti sulle barche per famiglie",
   },
   activityFishing: {
     faqItems: [
@@ -2265,6 +2447,79 @@ export const it: Translations = {
           "A 3-5 miglia dalla costa, profondità di 40-80 metri. Accessibile solo con barche con patente. Jigging e traina.",
       },
     ],
+    heroTitle: "Pesca dalla Barca a Blanes - Costa Brava",
+    heroDescription:
+      "Noleggia una barca al Porto di Blanes e vai a pescare nelle acque della Costa Brava. Spigole, orate, ricciole e altro ancora. Barche con e senza patente per adattarsi al tuo livello di esperienza. Porta la tua attrezzatura e noi mettiamo la barca.",
+    badgeSpecies: "5+ specie target",
+    badgeLicense: "Con e senza patente",
+    badgeDuration: "4-6 ore consigliate",
+    whyTitle: "Perché pescare da Blanes",
+    whyLocationTitle: "Posizione strategica",
+    whyLocationDesc:
+      "Blanes si trova nel punto in cui il litorale cambia carattere: a sud le spiagge sabbiose del Maresme, a nord la costa rocciosa della Costa Brava. Questa transizione crea una diversità di habitat marini eccezionale per la pesca: fondali sabbiosi, praterie di posidonia, formazioni rocciose e acque aperte, tutto accessibile in meno di 30 minuti di navigazione.",
+    whyPortTitle: "Porto comodo e ben attrezzato",
+    whyPortDesc:
+      "Il Porto di Blanes ha parcheggio gratuito, distributore di carburante nautico e negozi dove comprare esca fresca. Parti dal porto e in 10 minuti sei già in zone di pesca produttive. Al ritorno puoi pulire le catture e mangiare nei ristoranti del porto.",
+    whyVarietyTitle: "Varietà di specie",
+    whyVarietyDesc:
+      "Le acque al largo di Blanes ospitano una grande diversità di specie. Vicino alla costa troverai spigole, orate, saraghi e boghe. Un po' più lontano, in acque aperte, ricciole, palamite e dentici. In autunno e inverno, la pesca di calamari con totanare è eccellente.",
+    whySeasonTitle: "Stagione prolungata",
+    whySeasonDesc:
+      "Sebbene la stagione di noleggio barche vada da aprile a ottobre, ogni mese ha le proprie opportunità di pesca. Primavera per le orate, estate per le ricciole, autunno per calamari e dentici. C'è sempre qualcosa da pescare a Blanes.",
+    speciesTitle: "Specie che puoi pescare a Blanes",
+    seasonLabel: "Stagione:",
+    whereLabel: "Dove:",
+    techniqueLabel: "Tecnica:",
+    boatsTitle: "Barche consigliate per la pesca",
+    spotsTitle: "Zone di pesca da Blanes",
+    targetLabel: "Obiettivo:",
+    regulationsTitle: "Normativa e regolamenti sulla pesca",
+    licenseTitle: "Licenza di pesca obbligatoria",
+    licenseDesc:
+      "Per pescare in mare da una barca hai bisogno della licenza di pesca ricreativa marittima della Generalitat de Catalunya. Puoi ottenerla online su gencat.cat per circa 14 EUR con validità di 2 anni.",
+    catchLimitsTitle: "Limiti di cattura",
+    catchLimitsItems: [
+      "Massimo 5 kg per persona al giorno",
+      "Se un singolo esemplare supera 5 kg, conta come quota",
+      "Massimo 2 canne per persona",
+    ],
+    minSizesTitle: "Taglie minime principali",
+    minSizesItems: [
+      "Spigola: 36 cm",
+      "Orata: 20 cm",
+      "Dentice: 35 cm",
+      "Ricciola: 40 cm",
+    ],
+    prohibitedTitle: "Zone vietate",
+    prohibitedDesc:
+      "È vietato pescare nelle zone di balneazione segnalate, nelle riserve marine e all'interno dei porti. Rispettare sempre le boe di delimitazione e le zone protette.",
+    equipmentTitle: "Attrezzatura da pesca: porta la tua",
+    whatToBringTitle: "Cosa portare",
+    whatToBringItems: [
+      "Canne e mulinelli (spinning, jigging o fondo)",
+      "Esche artificiali, piombi e ami",
+      "Esca fresca (disponibile nei negozi del porto)",
+      "Borsa frigo con ghiaccio per le catture",
+      "Pinze da pesca e coltello",
+    ],
+    whereBaitTitle: "Dove comprare esca a Blanes",
+    whereBaitDesc:
+      "Vicino al Porto di Blanes ci sono diversi negozi nautici dove puoi acquistare esca fresca (verme americano, verme coreano, gambero) e materiale da pesca di base. Consigliamo di comprare l'esca lo stesso giorno dell'uscita per la massima freschezza.",
+    recommendationsTitle: "Raccomandazioni",
+    recommendationsDesc:
+      "Porta crema solare, acqua abbondante, cappello e occhiali da sole polarizzati (aiutano a vedere i pesci in acqua). Una maglietta a maniche lunghe ti protegge dal sole durante le ore di pesca. Non dimenticare la licenza di pesca stampata o sul cellulare.",
+    exploreTitle: "Esplora altre attività e servizi",
+    linkLicensed: "Barche con patente",
+    linkNoLicense: "Barche senza patente",
+    linkSnorkel: "Escursione di snorkeling",
+    linkPrices: "Prezzi e tariffe",
+    linkBlanes: "Porto di Blanes",
+    ctaTitle: "Prenota la tua barca per pescare a Blanes",
+    ctaDescription:
+      "Porta la tua attrezzatura, noi mettiamo la barca. Spigole, orate, ricciole e altro ancora ti aspettano nelle acque della Costa Brava. Partenze dal Porto di Blanes.",
+    ctaWhatsApp: "Prenota su WhatsApp",
+    ctaViewBoats: "Vedi barche con patente",
+    faqTitle: "Domande frequenti sulla pesca dalla barca",
   },
   locationPages: {
     blanes: {
@@ -3893,6 +4148,26 @@ export const it: Translations = {
         },
       ],
     },
+  },
+
+  blogAuthorByline: {
+    writtenBy: "Di",
+    publishedOn: "Pubblicato il",
+    updatedOn: "Aggiornato il",
+    readMore: "Altro sull'autore",
+    verifiedProfilesLabel: "Profili verificati",
+  },
+
+  homeReviewsBlock: {
+    title: "Cosa dicono i nostri clienti",
+    subtitle: "Recensioni verificate su Google Maps",
+    viewAll: "Vedi tutte le recensioni",
+    fallbackAuthor: "Cliente verificato",
+  },
+
+  contentSummary: {
+    keyTakeawaysTitle: "Punti chiave",
+    quickFactsTitle: "Dati rapidi",
   },
 
   testimonios: {

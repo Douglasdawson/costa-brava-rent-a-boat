@@ -4345,6 +4345,330 @@ export const fr: Translations = {
         ctaTitle: 'Réservez votre itinéraire snorkeling sur la Costa Brava',
         ctaText: 'Choisissez votre bateau selon jusqu\'où vous voulez aller et découvrez les meilleures criques de la côte en partant de Blanes.',
       },
+      families__locationBlanes: {
+        seoTitle: "Location de bateau en famille à Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Une journée en bateau en famille depuis Blanes : criques tranquilles, eau peu profonde et bateaux spacieux et stables, plusieurs sans permis avec essence incluse. Sans expérience préalable.",
+        h1: "Location de bateau en famille à Blanes",
+        intro:
+          "Une journée en bateau en famille depuis le port de Blanes est l'un des meilleurs plans de la Costa Brava : des criques abritées à quelques minutes, une eau calme où les enfants se baignent en toute tranquillité et des bateaux spacieux et stables. Sans expérience préalable : nous vous expliquons tout avant le départ.",
+        spotsTitle: "Meilleures criques en famille près de Blanes",
+        spots: [
+          { name: "Cala Sant Francesc (Cala Bona)", description: "Crique de sable abritée par les pins, à l'eau calme et peu profonde au bord : la préférée des familles avec de jeunes enfants." },
+          { name: "Cala Treumal", description: "Petite crique de sable et de roche entre Blanes et Lloret, protégée du vent, idéale pour mouiller et se baigner sans houle." },
+          { name: "Baie de Blanes et Sa Palomera", description: "La grande plage de Blanes près du rocher de Sa Palomera, avec des services à proximité et des eaux ouvertes mais calmes pour une première baignade sans s'éloigner du port." },
+        ],
+        boatsTitle: "Quel bateau choisir pour partir en famille",
+        boatsIntro:
+          "Pour les familles, nous recommandons des bateaux spacieux et stables, avec solarium et zone d'ombre. Plusieurs sont sans permis —avec essence incluse et sans permis bateau—, et pour les grands groupes nous disposons d'embarcations jusqu'à 7 places.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Nous fournissons des gilets de sauvetage de toutes les tailles, y compris pour enfants. Apportez protection solaire, casquette, eau et de quoi grignoter. Les criques proches de Blanes sont dans les 2 milles, accessibles même avec un bateau sans permis.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Est-il sûr de partir en bateau avec des enfants ?", a: "Oui. Nous fournissons des gilets de sauvetage pour enfants, les criques proches sont calmes et peu profondes, et nous vous expliquons la conduite et la sécurité avant le départ." },
+          { q: "Faut-il un permis pour partir en famille depuis Blanes ?", a: "Non pour les criques proches : plusieurs de nos bateaux se pilotent sans permis. Pour les grands groupes ou plus d'autonomie, il existe aussi des options avec permis." },
+        ],
+        ctaTitle: "Réservez votre journée en bateau en famille à Blanes",
+        ctaText: "Choisissez date et bateau, et profitez d'une journée en mer avec les vôtres au départ du port de Blanes.",
+      },
+      families__locationLloret: {
+        seoTitle: "Location de bateau en famille à Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Journée en bateau en famille à Lloret de Mar au départ de Blanes (~20 min avec un bateau avec permis) : plages de sable, criques tranquilles et bateaux spacieux jusqu'à 7 places.",
+        h1: "Location de bateau en famille à Lloret de Mar",
+        intro:
+          "Lloret de Mar associe de vastes plages de sable et des criques abritées, parfaites pour une journée en famille. Au départ de Blanes vous y arrivez en une vingtaine de minutes de navigation tranquille et parcourez ses plages avec la liberté de mouiller où vous voulez.",
+        spotsTitle: "Meilleures plages et criques en famille à Lloret",
+        spots: [
+          { name: "Santa Cristina", description: "Vaste plage de sable fin aux eaux calmes et avec des services à proximité, l'une des plus confortables de la zone pour venir avec des enfants." },
+          { name: "Cala Boadella", description: "Crique de sable et de roche entourée de pins, à l'eau limpide et aux zones abritées idéales pour la baignade en famille." },
+          { name: "Platja de Fenals", description: "Plage vaste et protégée, à la pente douce, parfaite pour mouiller à proximité et passer la journée avec les plus petits." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Lloret en famille",
+        boatsIntro:
+          "Lloret se trouve au-delà des 2 milles, on y accède donc avec l'un de nos bateaux avec permis. Ils sont spacieux et stables —le Pacific Craft 625 admet jusqu'à 7 personnes— et couvrent le trajet depuis Blanes en une vingtaine de minutes.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Le trajet jusqu'à Lloret prend une vingtaine de minutes. Nous fournissons des gilets de toutes les tailles ; apportez protection solaire, casquette, eau et de quoi grignoter.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Combien de temps faut-il de Blanes à Lloret en bateau ?", a: "Une vingtaine de minutes de navigation tranquille en longeant la côte avec un bateau avec permis." },
+          { q: "Quelle plage de Lloret est la meilleure avec des enfants ?", a: "Santa Cristina et Fenals, pour leur sable, leurs eaux calmes et leurs services à proximité." },
+        ],
+        ctaTitle: "Réservez votre journée en bateau en famille à Lloret",
+        ctaText: "Choisissez date et bateau avec permis, et profitez des plages de Lloret en famille au départ de Blanes.",
+      },
+      families__locationTossa: {
+        seoTitle: "Location de bateau en famille à Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Journée en bateau en famille à Tossa de Mar depuis Blanes (30-45 min avec un bateau avec permis) : la Platja Gran, des criques abritées et des bateaux spacieux jusqu'à 7 places.",
+        h1: "Location de bateau en famille à Tossa de Mar",
+        intro:
+          "Tossa de Mar offre aux familles une carte postale inoubliable : la Vila Vella médiévale au-dessus de la mer et des criques aux eaux limpides. Depuis Blanes, comptez 30-45 minutes de navigation avec un bateau avec permis, idéal pour une excursion à la journée.",
+        spotsTitle: "Meilleures plages et criques en famille à Tossa",
+        spots: [
+          { name: "Platja Gran de Tossa", description: "La plage principale, de sable et au pied du château ; des eaux calmes et tous les services pour une journée confortable avec les enfants." },
+          { name: "La Mar Menuda", description: "Baie abritée à côté de la vieille ville, aux eaux calmes, parfaite pour mouiller et se baigner en famille." },
+          { name: "Cala Llevadó", description: "Cadre naturel de pins et d'eau cristalline ; une crique plus tranquille pour qui cherche à s'éloigner de l'agitation." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Tossa en famille",
+        boatsIntro:
+          "Tossa est hors de portée des bateaux sans permis, le voyage se fait donc avec l'un de nos bateaux avec permis, spacieux et jusqu'à 7 places. Ils couvrent le trajet depuis Blanes en 30-45 minutes ; il convient de réserver des durées d'une demi-journée ou plus.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. La navigation jusqu'à Tossa dure 30-45 minutes. Nous fournissons des gilets de toutes les tailles ; apportez protection solaire, casquette, eau et de quoi manger pour la journée.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Peut-on aller à Tossa en famille avec un bateau sans permis ?", a: "Non. Tossa est au-delà de la limite des 2 milles ; le voyage se fait avec un bateau avec permis, en 30-45 minutes depuis Blanes." },
+          { q: "Est-ce un bon plan pour une journée complète ?", a: "Oui : compte tenu de la distance, l'idéal est de réserver une demi-journée ou une journée entière et de combiner la Platja Gran avec une crique voisine." },
+        ],
+        ctaTitle: "Réservez votre journée en bateau en famille à Tossa",
+        ctaText: "Choisissez date et bateau avec permis, et vivez une journée en famille à Tossa de Mar au départ de Blanes.",
+      },
+      families__locationCostaBrava: {
+        seoTitle: "Location de bateau en famille sur la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Journée en bateau en famille sur la Costa Brava sud depuis Blanes : criques tranquilles et plages de sable de Blanes à Tossa. Bateaux sans permis pour les coins proches et avec permis pour le tronçon complet.",
+        h1: "Location de bateau en famille sur la Costa Brava",
+        intro:
+          "La Costa Brava sud, de Blanes à Tossa de Mar, est faite pour en profiter en famille : criques abritées, plages de sable et eau calme. Depuis le port de Blanes vous choisissez entre une sortie courte vers les criques proches ou une journée à explorer la côte.",
+        spotsTitle: "Criques et plages familiales incontournables",
+        spots: [
+          { name: "Cala Sant Francesc (Blanes)", description: "La plus accessible et la plus abritée, à portée d'un bateau sans permis : le plan parfait pour débuter avec des enfants." },
+          { name: "Santa Cristina (Lloret)", description: "Grande plage de sable avec services et eaux calmes, sur le tronçon central de la côte." },
+          { name: "Platja Gran de Tossa", description: "Du sable au pied de la Vila Vella médiévale, la récompense de qui fait la traversée complète avec un bateau avec permis." },
+        ],
+        boatsTitle: "Quel bateau choisir selon jusqu'où vous voulez aller",
+        boatsIntro:
+          "Pour les criques proches de Blanes, un bateau sans permis suffit, avec essence incluse. Pour parcourir le tronçon jusqu'à Lloret et Tossa —au-delà des 2 milles— vous avez besoin d'un bateau avec permis, spacieux et jusqu'à 7 places.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu'à 2 milles ; pour rejoindre Lloret (~20 min) ou Tossa (30-45 min) on utilise un bateau avec permis. Nous fournissons des gilets de toutes les tailles.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Quel tronçon pouvons-nous parcourir en famille en une journée ?", a: "Avec un bateau avec permis, les criques de Blanes, Lloret et Tossa en une journée ; avec un sans permis, les criques tranquilles les plus proches de Blanes." },
+          { q: "Quelle est la meilleure période pour venir avec des enfants ?", a: "De juin à septembre, avec une mer plus chaude et plus calme ; juillet et août offrent les meilleures conditions de baignade." },
+        ],
+        ctaTitle: "Réservez votre journée en bateau en famille sur la Costa Brava",
+        ctaText: "Choisissez votre bateau selon jusqu'où vous voulez aller et profitez de la côte en famille au départ de Blanes.",
+      },
+      sunset__locationBlanes: {
+        seoTitle: "Balade en bateau au coucher du soleil à Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Naviguez en fin d'après-midi depuis Blanes et profitez de la lumière dorée sur la côte, le rocher de Sa Palomera et la baie. Balade tranquille en bateau, sans expérience préalable.",
+        h1: "Balade en bateau au coucher du soleil à Blanes",
+        intro:
+          "En fin d'après-midi, quand la lumière devient dorée, la côte de Blanes offre son plus beau visage depuis la mer. Une balade tranquille en bateau au départ du port de Blanes pour voir le rocher de Sa Palomera et les falaises s'embraser sous les derniers rayons.",
+        spotsTitle: "Meilleurs coins pour le coucher du soleil près de Blanes",
+        spots: [
+          { name: "Sa Palomera", description: "Le rocher qui marque le début de la Costa Brava ; avec la lumière basse, sa silhouette et la baie de Blanes se teintent de tons chauds." },
+          { name: "Falaises de Marimurtra", description: "Les parois rocheuses sous le Jardin Botanique, particulièrement photogéniques quand le soleil effleure la côte." },
+          { name: "Baie de Blanes", description: "Eaux calmes face au village, parfaites pour mouiller, trinquer et voir s'allumer les lumières du port." },
+        ],
+        boatsTitle: "Quel bateau choisir pour le coucher du soleil",
+        boatsIntro:
+          "Pour une balade au coucher du soleil, nous recommandons des bateaux confortables dotés d'un bon solarium. Plusieurs sont sans permis —avec essence incluse et sans permis bateau—, idéaux pour une sortie courte et détendue près de Blanes.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes ; la fin d'après-midi est le créneau qui offre la plus belle lumière. Sur la Costa Brava le soleil se couche derrière la côte, vous profiterez donc de la lumière dorée et des falaises illuminées plus que du coucher sur l'eau. Apportez une veste légère : il rafraîchit en soirée.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "À quelle heure a lieu le départ au coucher du soleil ?", a: "Nous opérons jusqu'à 20h00 ; la fin d'après-midi est le créneau qui offre la lumière dorée. Nous vous recommandons de réserver 1 ou 2 heures en fin de journée." },
+          { q: "Ai-je besoin d'un permis ?", a: "Non pour une balade proche de Blanes : plusieurs de nos bateaux se pilotent sans permis et nous vous expliquons la conduite avant le départ." },
+        ],
+        ctaTitle: "Réservez votre balade au coucher du soleil à Blanes",
+        ctaText: "Choisissez date et bateau, et profitez de l'heure dorée en mer au départ du port de Blanes.",
+      },
+      sunset__locationLloret: {
+        seoTitle: "Balade en bateau au coucher du soleil à Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Coucher de soleil en bateau à Lloret de Mar au départ de Blanes (~20 min avec un bateau avec permis) : lumière dorée sur les falaises de Cala Banys et le château de Lloret.",
+        h1: "Balade en bateau au coucher du soleil à Lloret de Mar",
+        intro:
+          "La côte de Lloret de Mar, avec ses falaises et son château au-dessus de la mer, devient spectaculaire en fin d'après-midi. Au départ de Blanes en une vingtaine de minutes avec un bateau avec permis vous arrivez à temps pour la plus belle lumière du jour.",
+        spotsTitle: "Meilleurs coins pour le coucher du soleil à Lloret",
+        spots: [
+          { name: "Cala Banys", description: "Falaises sombres et recoins rocheux qui, avec la lumière basse, offrent l'une des images les plus saisissantes de la zone." },
+          { name: "Castell d'en Plaja", description: "Le château emblématique au-dessus de la plage de Lloret, magnifique vu depuis la mer lorsqu'il s'illumine en fin d'après-midi." },
+          { name: "Santa Cristina", description: "Crique vaste et abritée, idéale pour mouiller en toute tranquillité et voir la lumière dorée baigner les pins." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Lloret au coucher du soleil",
+        boatsIntro:
+          "Lloret se trouve au-delà des 2 milles, la balade se fait donc avec l'un de nos bateaux avec permis, confortables et dotés d'un bon solarium. Ils couvrent le trajet depuis Blanes en une vingtaine de minutes.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes. Sur la Costa Brava le soleil se couche derrière la côte : vous profiterez de la lumière dorée sur les falaises et le château plus que du coucher sur la mer. Apportez une veste légère pour le retour.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Combien de temps faut-il de Blanes à Lloret au coucher du soleil ?", a: "Une vingtaine de minutes avec un bateau avec permis ; mieux vaut partir avec de la marge pour profiter de la plus belle lumière." },
+          { q: "Voit-on le coucher de soleil sur la mer ?", a: "Sur cette côte le soleil se couche derrière la terre, pas sur l'eau ; ce qui est beau c'est la lumière dorée et les falaises et le château illuminés." },
+        ],
+        ctaTitle: "Réservez votre balade au coucher du soleil à Lloret",
+        ctaText: "Choisissez date et bateau avec permis, et vivez l'heure dorée sur la côte de Lloret au départ de Blanes.",
+      },
+      sunset__locationTossa: {
+        seoTitle: "Balade en bateau au coucher du soleil à Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Coucher de soleil en bateau à Tossa de Mar depuis Blanes (30-45 min avec un bateau avec permis) : la Vila Vella médiévale illuminée et la lumière dorée sur les criques.",
+        h1: "Balade en bateau au coucher du soleil à Tossa de Mar",
+        intro:
+          "Peu d'images de la Costa Brava égalent la Vila Vella de Tossa de Mar illuminée en fin d'après-midi, vue depuis la mer. Depuis Blanes, comptez 30-45 minutes de navigation avec un bateau avec permis jusqu'à ce décor unique.",
+        spotsTitle: "Meilleurs coins pour le coucher du soleil à Tossa",
+        spots: [
+          { name: "Vila Vella", description: "Les remparts médiévaux au-dessus de la mer, qui s'embrasent de tons chauds en fin d'après-midi : l'image la plus emblématique de Tossa." },
+          { name: "La Mar Menuda", description: "Baie abritée à côté de la vieille ville, parfaite pour mouiller et contempler la côte avec la lumière basse." },
+          { name: "Cala Giverola", description: "Crique profonde entre les montagnes, aux eaux calmes, idéale pour un mouillage serein avant le retour." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Tossa au coucher du soleil",
+        boatsIntro:
+          "Tossa est hors de portée des bateaux sans permis, la balade se fait donc avec l'un de nos bateaux avec permis, confortables et dotés d'un bon solarium. Le trajet depuis Blanes est de 30-45 minutes.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes. Compte tenu de la distance (30-45 min), planifiez le départ pour profiter de la dernière lumière et rentrer tranquillement. Sur cette côte le soleil se couche derrière la terre : le spectaculaire, c'est la Vila Vella illuminée. Apportez une veste légère.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "A-t-on le temps d'aller à Tossa et d'en revenir au coucher du soleil ?", a: "Oui, en le planifiant : il faut 30-45 minutes par trajet, mieux vaut donc réserver plusieurs heures et partir avec de la marge." },
+          { q: "Qu'est-ce qui rend le coucher du soleil spécial à Tossa ?", a: "La Vila Vella médiévale au-dessus de la mer, qui s'illumine en fin d'après-midi et se voit de façon unique depuis le bateau." },
+        ],
+        ctaTitle: "Réservez votre balade au coucher du soleil à Tossa",
+        ctaText: "Choisissez date et bateau avec permis, et contemplez la Vila Vella illuminée depuis la mer au départ de Blanes.",
+      },
+      sunset__locationCostaBrava: {
+        seoTitle: "Balade en bateau au coucher du soleil sur la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Coucher de soleil en bateau sur la Costa Brava sud depuis Blanes : lumière dorée sur les falaises, les criques et la Vila Vella de Tossa. Bateau sans permis pour les coins proches, avec permis pour le tronçon complet.",
+        h1: "Balade en bateau au coucher du soleil sur la Costa Brava",
+        intro:
+          "La Costa Brava sud, de Blanes à Tossa, offre en fin d'après-midi une succession de falaises, de criques et de villages qui s'embrasent de lumière dorée. Depuis le port de Blanes vous choisissez entre une balade courte à proximité ou une sortie plus longue le long de la côte.",
+        spotsTitle: "Meilleurs coins de la côte au coucher du soleil",
+        spots: [
+          { name: "Sa Palomera (Blanes)", description: "Le rocher qui ouvre la Costa Brava, à portée d'un bateau sans permis : le plan le plus simple pour l'heure dorée." },
+          { name: "Cala Banys (Lloret)", description: "Falaises spectaculaires qui ressortent avec la lumière basse, sur le tronçon central de la côte." },
+          { name: "Vila Vella (Tossa)", description: "Les remparts médiévaux illuminés au-dessus de la mer, la récompense de la traversée complète avec un bateau avec permis." },
+        ],
+        boatsTitle: "Quel bateau choisir selon jusqu'où vous voulez aller",
+        boatsIntro:
+          "Pour une balade proche de Blanes, un bateau sans permis suffit, avec essence incluse. Pour parcourir le tronçon jusqu'à Lloret et Tossa —au-delà des 2 milles— vous avez besoin d'un bateau avec permis, confortable et doté d'un bon solarium.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes. Sur cette côte le soleil se couche derrière la terre : vous profiterez de la lumière dorée et des villages et falaises illuminés. Les bateaux sans permis vont jusqu'à 2 milles ; pour Lloret ou Tossa on utilise un bateau avec permis. Apportez une veste légère.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Où voit-on le plus beau coucher de soleil depuis le bateau ?", a: "Près de Blanes, Sa Palomera ; sur le tronçon complet, la Vila Vella de Tossa illuminée est le plus spectaculaire." },
+          { q: "Ai-je besoin d'un bateau avec permis ?", a: "Seulement si vous voulez rejoindre Lloret ou Tossa. Pour l'heure dorée près de Blanes, un bateau sans permis suffit." },
+        ],
+        ctaTitle: "Réservez votre balade au coucher du soleil sur la Costa Brava",
+        ctaText: "Choisissez votre bateau selon jusqu'où vous voulez aller et poursuivez l'heure dorée au départ de Blanes.",
+      },
+      fishing__locationBlanes: {
+        seoTitle: "Location de bateau pour pêcher à Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Partez pêcher en bateau depuis Blanes avec nos embarcations avec permis. Eaux et fonds rocheux face à la côte. Il vous faut une licence de pêche récréative ; nous vous informons.",
+        h1: "Location de bateau pour pêcher à Blanes",
+        intro:
+          "Partir pêcher en bateau depuis le port de Blanes est une excellente façon de profiter de la mer de la Costa Brava. Nous vous louons une embarcation avec permis pour vous approcher des eaux et des fonds proches de la côte pour une journée de pêche récréative.",
+        spotsTitle: "Zones de pêche près de Blanes",
+        spots: [
+          { name: "Eaux face à Sa Palomera", description: "Les alentours du rocher, aux fonds rocheux où la pêche de roche est courante, à courte distance du port." },
+          { name: "Fonds rocheux de la côte de Blanes", description: "Tronçons de roche et de sable face au littoral, accessibles pour une sortie tranquille d'une demi-journée." },
+          { name: "Zone extérieure de la baie", description: "Eaux un peu plus profondes pour qui cherche à tenter sa chance hors de l'abri de la baie, toujours dans le respect de la réglementation." },
+        ],
+        boatsTitle: "Quel bateau choisir pour pêcher",
+        boatsIntro:
+          "Pour pêcher nous utilisons nos bateaux avec permis, dotés d'une plus grande autonomie et d'une plus grande portée que les bateaux sans permis. Ce sont les plus adaptés pour vous déplacer entre les zones de pêche et passer la journée confortablement.",
+        practicalTitle: "Informations pratiques et réglementation",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Pour pêcher il vous faut la licence de pêche récréative de Catalogne, qui relève de la responsabilité du client. Respectez les tailles minimales, les espèces protégées et les zones réglementées. Le matériel de pêche n'est pas inclus.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Ai-je besoin d'une licence pour pêcher depuis le bateau ?", a: "Oui. La pêche récréative en Catalogne requiert une licence, que le client se procure et fournit. La location du bateau ne l'inclut pas." },
+          { q: "Le bateau est-il équipé de matériel de pêche ?", a: "Non, le matériel de pêche n'est pas inclus ; nous vous louons l'embarcation avec permis pour votre sortie." },
+        ],
+        ctaTitle: "Réservez votre sortie de pêche à Blanes",
+        ctaText: "Choisissez date et bateau avec permis, et préparez votre journée de pêche récréative au départ du port de Blanes.",
+      },
+      fishing__locationLloret: {
+        seoTitle: "Location de bateau pour pêcher à Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pêche récréative en bateau à Lloret de Mar depuis Blanes (~20 min avec un bateau avec permis). Fonds rocheux face à la côte. Licence de pêche à la charge du client.",
+        h1: "Location de bateau pour pêcher à Lloret de Mar",
+        intro:
+          "La côte de Lloret de Mar, faite de falaises et de fonds rocheux, offre de bonnes zones pour la pêche récréative. Au départ de Blanes avec un bateau avec permis vous arrivez en une vingtaine de minutes et disposez de l'autonomie pour vous déplacer entre les points.",
+        spotsTitle: "Zones de pêche près de Lloret",
+        spots: [
+          { name: "Fonds de Cala Banys", description: "Tronçon de falaises et de roche où la pêche de roche est courante, face à la côte de Lloret." },
+          { name: "Eaux de Fenals", description: "Zone un peu plus ouverte près de la pointe de Fenals, pour essayer différentes techniques en une journée." },
+          { name: "Littoral entre Lloret et Tossa", description: "Côte rocheuse et peu urbanisée aux fonds intéressants, toujours dans le respect des zones réglementées." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Lloret pour pêcher",
+        boatsIntro:
+          "Lloret se trouve au-delà des 2 milles, on y accède donc avec l'un de nos bateaux avec permis, dotés de l'autonomie pour vous déplacer entre les zones de pêche. Le trajet depuis Blanes est d'une vingtaine de minutes.",
+        practicalTitle: "Informations pratiques et réglementation",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Il vous faut la licence de pêche récréative de Catalogne (à la charge du client). Respectez tailles minimales, espèces protégées et zones réglementées. Le matériel de pêche n'est pas inclus.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Combien de temps faut-il de Blanes à Lloret en bateau ?", a: "Une vingtaine de minutes avec un bateau avec permis, ceux que nous utilisons pour les sorties de pêche." },
+          { q: "Faut-il une licence de pêche ?", a: "Oui, la licence de pêche récréative de Catalogne est fournie par le client ; la location du bateau ne l'inclut pas." },
+        ],
+        ctaTitle: "Réservez votre sortie de pêche à Lloret",
+        ctaText: "Choisissez date et bateau avec permis, et préparez votre journée de pêche face à Lloret au départ de Blanes.",
+      },
+      fishing__locationTossa: {
+        seoTitle: "Location de bateau pour pêcher à Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pêche récréative en bateau près de Tossa de Mar depuis Blanes (30-45 min avec un bateau avec permis). Attention : une partie du littoral est une réserve protégée où la pêche est restreinte.",
+        h1: "Location de bateau pour pêcher à Tossa de Mar",
+        intro:
+          "Les eaux de Tossa de Mar sont célèbres pour leur richesse, en grande partie grâce à leur protection. Depuis Blanes, comptez 30-45 minutes avec un bateau avec permis, mais il faut bien garder à l'esprit qu'une partie de ce littoral est une zone protégée où la pêche est restreinte.",
+        spotsTitle: "Zones de pêche et aires protégées à Tossa",
+        spots: [
+          { name: "Eaux extérieures à la réserve", description: "La pêche récréative n'est possible qu'en dehors des zones protégées ; renseignez-vous sur les limites en vigueur avant de mouiller vos lignes." },
+          { name: "Littoral entre Lloret et Tossa", description: "Tronçons de roche hors de l'aire protégée où la pêche de roche est autorisée avec licence." },
+          { name: "Réserve marine de Tossa (protégée)", description: "Une frange de son littoral est protégée et la pêche y est restreinte ou interdite : respectez-la toujours." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Tossa",
+        boatsIntro:
+          "Tossa est hors de portée des bateaux sans permis, le voyage se fait donc avec l'un de nos bateaux avec permis, dotés de l'autonomie pour la journée. Le trajet depuis Blanes est de 30-45 minutes.",
+        practicalTitle: "Informations pratiques et réglementation",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Une partie du littoral de Tossa est une zone protégée où la pêche est restreinte : respectez ses limites. Il vous faut la licence de pêche récréative de Catalogne (à la charge du client) et vous devez respecter tailles et espèces. Le matériel de pêche n'est pas inclus.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Peut-on pêcher à Tossa de Mar ?", a: "Uniquement en dehors des zones protégées et avec une licence de pêche récréative. Une partie du littoral est une réserve où la pêche est restreinte ou interdite." },
+          { q: "Y accède-t-on avec un bateau sans permis ?", a: "Non. Tossa est au-delà de la limite des 2 milles ; on y accède avec un bateau avec permis, en 30-45 minutes depuis Blanes." },
+        ],
+        ctaTitle: "Réservez votre sortie de pêche près de Tossa",
+        ctaText: "Choisissez date et bateau avec permis, respectez les zones protégées et préparez votre journée de pêche au départ de Blanes.",
+      },
+      fishing__locationCostaBrava: {
+        seoTitle: "Location de bateau pour pêcher sur la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pêche récréative en bateau sur la Costa Brava sud depuis Blanes. Bateaux avec permis pour vous déplacer entre les zones. Licence de pêche à la charge du client ; respectez les aires protégées.",
+        h1: "Location de bateau pour pêcher sur la Costa Brava",
+        intro:
+          "La Costa Brava sud, de Blanes à Tossa, alterne fonds rocheux, pointes et eaux ouvertes qui en font une bonne destination de pêche récréative. Depuis le port de Blanes nous vous louons un bateau avec permis pour vous déplacer entre les différentes zones.",
+        spotsTitle: "Zones de pêche sur la Costa Brava sud",
+        spots: [
+          { name: "Eaux face à Blanes", description: "Fonds rocheux près du port, le point de départ le plus simple pour une sortie d'une demi-journée." },
+          { name: "Littoral de Lloret", description: "Falaises et roche autour de Cala Banys et de Fenals, avec de bonnes zones de pêche de roche." },
+          { name: "Côte de Tossa (avec réserve protégée)", description: "Eaux riches, mais avec une frange protégée où la pêche est restreinte : ne pêchez qu'en dehors de celle-ci." },
+        ],
+        boatsTitle: "Quel bateau choisir pour pêcher le long de la côte",
+        boatsIntro:
+          "Pour la pêche nous utilisons des bateaux avec permis, dotés de l'autonomie nécessaire pour parcourir la côte entre les zones. Les bateaux sans permis, limités à 2 milles, ne sont pas l'option pour ce type de sorties.",
+        practicalTitle: "Informations pratiques et réglementation",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Il vous faut la licence de pêche récréative de Catalogne (à la charge du client). Respectez les tailles minimales, les espèces protégées et, tout particulièrement, les zones réglementées comme la réserve de Tossa. Le matériel de pêche n'est pas inclus.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Que me faut-il pour pêcher depuis le bateau ?", a: "La licence de pêche récréative de Catalogne, fournie par le client, et le respect de la réglementation sur les tailles, les espèces et les zones protégées." },
+          { q: "Où peut-on pêcher sur la Costa Brava sud ?", a: "Sur les fonds rocheux face à Blanes et Lloret, toujours en dehors des aires protégées comme une partie du littoral de Tossa." },
+        ],
+        ctaTitle: "Réservez votre sortie de pêche sur la Costa Brava",
+        ctaText: "Choisissez votre bateau avec permis, respectez la réglementation et les zones protégées, et préparez votre journée de pêche au départ de Blanes.",
+      },
     },
   },
   glossaryPage: {

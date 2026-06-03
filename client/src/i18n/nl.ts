@@ -4334,6 +4334,330 @@ export const nl: Translations = {
         ctaTitle: 'Reserveer je snorkelroute langs de Costa Brava',
         ctaText: 'Kies je boot naar gelang hoe ver je wilt gaan en ontdek de beste baaien van de kust met vertrek vanuit Blanes.',
       },
+      families__locationBlanes: {
+        seoTitle: "Boot huren voor gezinnen in Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Een dagje varen met het gezin vanuit Blanes: rustige baaien, ondiep water en ruime, stabiele boten, meerdere zonder vaarbewijs en met benzine inbegrepen. Geen ervaring vereist.",
+        h1: "Boot huren voor gezinnen in Blanes",
+        intro:
+          "Een dagje varen met het gezin vanuit de haven van Blanes is een van de leukste plannen van de Costa Brava: beschutte baaien op enkele minuten afstand, rustig water waar de kinderen kalm kunnen zwemmen en ruime, stabiele boten. Geen ervaring vereist: we leggen je alles uit voor je vertrekt.",
+        spotsTitle: "Beste baaien voor gezinnen in de buurt van Blanes",
+        spots: [
+          { name: "Cala Sant Francesc (Cala Bona)", description: "Zandstrandje beschut door pijnbomen, met rustig en ondiep water aan de oever: de favoriet voor gezinnen met kleine kinderen." },
+          { name: "Cala Treumal", description: "Klein baaitje van zand en rots tussen Blanes en Lloret, beschut tegen de wind, ideaal om te ankeren en te zwemmen zonder golfslag." },
+          { name: "Baai van Blanes en Sa Palomera", description: "Het grote strand van Blanes naast de rots van Sa Palomera, met voorzieningen dichtbij en open maar rustig water voor een eerste duik zonder ver van de haven te gaan." },
+        ],
+        boatsTitle: "Welke boot kiezen voor een gezinsuitje",
+        boatsIntro:
+          "Voor gezinnen raden we ruime en stabiele boten aan, met zonnedek en een schaduwzone. Meerdere zijn zonder vaarbewijs — met benzine inbegrepen en zonder vergunning —, en voor grote groepen hebben we boten tot 7 plaatsen.",
+        practicalTitle: "Praktische informatie",
+        practicalBody:
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. We hebben reddingsvesten in alle maten aan boord, ook voor kinderen. Neem zonnebescherming, een pet, water en wat te eten mee. De baaien dicht bij Blanes liggen binnen de 2 zeemijl, bereikbaar zelfs met een boot zonder vaarbewijs.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Is varen met kinderen veilig?", a: "Ja. We hebben reddingsvesten voor kinderen aan boord, de nabije baaien zijn rustig en ondiep, en we leggen je de bediening en de veiligheid uit voor je vertrekt." },
+          { q: "Heb ik een vaarbewijs nodig voor een gezinsuitje vanuit Blanes?", a: "Niet voor de nabije baaien: meerdere van onze boten worden bestuurd zonder vergunning. Voor grote groepen of meer autonomie zijn er ook opties met vaarbewijs." },
+        ],
+        ctaTitle: "Reserveer je dagje varen met het gezin in Blanes",
+        ctaText: "Kies datum en boot, en geniet van een dag op zee met je dierbaren met vertrek vanuit de haven van Blanes.",
+      },
+      families__locationLloret: {
+        seoTitle: "Boot huren voor gezinnen in Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Dagje varen met het gezin in Lloret de Mar met vertrek vanuit Blanes (~20 min met een boot met vaarbewijs): zandstranden, rustige baaien en ruime boten tot 7 plaatsen.",
+        h1: "Boot huren voor gezinnen in Lloret de Mar",
+        intro:
+          "Lloret de Mar combineert ruime zandstranden en beschutte baaien, perfect voor een dagje met het gezin. Met vertrek vanuit Blanes kom je er in zo'n 20 minuten rustig varen en doe je de stranden aan met de vrijheid om te ankeren waar je wilt.",
+        spotsTitle: "Beste stranden en baaien voor gezinnen in Lloret",
+        spots: [
+          { name: "Santa Cristina", description: "Ruim strand met fijn zand, rustig water en voorzieningen dichtbij, een van de meest comfortabele van de streek om met kinderen te gaan." },
+          { name: "Cala Boadella", description: "Baai van zand en rots omringd door pijnbomen, met helder water en beschutte zones, ideaal om met het gezin te zwemmen." },
+          { name: "Platja de Fenals", description: "Ruim en beschut strand met een zachte helling, perfect om dichtbij te ankeren en de dag door te brengen met de allerkleinsten." },
+        ],
+        boatsTitle: "Welke boot kiezen om met het gezin naar Lloret te varen",
+        boatsIntro:
+          "Lloret ligt voorbij de 2 zeemijl, dus je komt er met een van onze boten met vaarbewijs. Ze zijn ruim en stabiel — de Pacific Craft 625 biedt plaats aan tot 7 personen — en overbruggen het traject vanuit Blanes in zo'n 20 minuten.",
+        practicalTitle: "Praktische informatie",
+        practicalBody:
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Het traject tot Lloret duurt zo'n 20 minuten. We hebben reddingsvesten in alle maten aan boord; neem zonnebescherming, een pet, water en wat te eten mee.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Hoelang duurt het van Blanes naar Lloret per boot?", a: "Zo'n 20 minuten rustig varen langs de kust met een boot met vaarbewijs." },
+          { q: "Welk strand van Lloret is het beste met kinderen?", a: "Santa Cristina en Fenals, vanwege hun zand, rustig water en nabije voorzieningen." },
+        ],
+        ctaTitle: "Reserveer je dagje varen met het gezin in Lloret",
+        ctaText: "Kies datum en een boot met vaarbewijs, en geniet met het gezin van de stranden van Lloret met vertrek vanuit Blanes.",
+      },
+      families__locationTossa: {
+        seoTitle: "Boot huren voor gezinnen in Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Dagje varen met het gezin in Tossa de Mar vanuit Blanes (30-45 min met een boot met vaarbewijs): de Platja Gran, beschutte baaien en ruime boten tot 7 plaatsen.",
+        h1: "Boot huren voor gezinnen in Tossa de Mar",
+        intro:
+          "Tossa de Mar schenkt gezinnen een onvergetelijk plaatje: de middeleeuwse Vila Vella boven de zee en baaien met helder water. Vanuit Blanes is het zo'n 30-45 minuten varen met een boot met vaarbewijs, ideaal voor een uitstapje van een hele dag.",
+        spotsTitle: "Beste stranden en baaien voor gezinnen in Tossa",
+        spots: [
+          { name: "Platja Gran de Tossa", description: "Het hoofdstrand, van zand en aan de voet van het kasteel; rustig water en alle voorzieningen voor een comfortabele dag met kinderen." },
+          { name: "La Mar Menuda", description: "Beschutte baai naast de oude stadskern, met kalm water, perfect om te ankeren en met het gezin te zwemmen." },
+          { name: "Cala Llevadó", description: "Natuurlijke omgeving van pijnbomen en kristalhelder water; een rustigere baai voor wie de drukte wil ontvluchten." },
+        ],
+        boatsTitle: "Welke boot kiezen om met het gezin naar Tossa te varen",
+        boatsIntro:
+          "Tossa ligt buiten het bereik van boten zonder vaarbewijs, dus de tocht maak je met een van onze boten met vaarbewijs, ruim en tot 7 plaatsen. Ze overbruggen het traject vanuit Blanes in 30-45 minuten; het is aan te raden een halve dag of langer te reserveren.",
+        practicalTitle: "Praktische informatie",
+        practicalBody:
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Het varen tot Tossa duurt 30-45 minuten. We hebben reddingsvesten in alle maten aan boord; neem zonnebescherming, een pet, water en eten voor de dag mee.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Kun je met het gezin naar Tossa met een boot zonder vaarbewijs?", a: "Nee. Tossa ligt buiten de grens van 2 zeemijl; de tocht maak je met een boot met vaarbewijs, in 30-45 minuten vanuit Blanes." },
+          { q: "Is het een goed plan voor een hele dag?", a: "Ja: vanwege de afstand reserveer je het beste een halve of hele dag en combineer je de Platja Gran met een nabijgelegen baai." },
+        ],
+        ctaTitle: "Reserveer je dagje varen met het gezin in Tossa",
+        ctaText: "Kies datum en een boot met vaarbewijs, en beleef een dag met het gezin in Tossa de Mar met vertrek vanuit Blanes.",
+      },
+      families__locationCostaBrava: {
+        seoTitle: "Boot huren voor gezinnen aan de Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Dagje varen met het gezin langs de zuidelijke Costa Brava vanuit Blanes: rustige baaien en zandstranden van Blanes tot Tossa. Boten zonder vaarbewijs voor het nabije en met vaarbewijs voor het hele traject.",
+        h1: "Boot huren voor gezinnen langs de Costa Brava",
+        intro:
+          "De zuidelijke Costa Brava, van Blanes tot Tossa de Mar, is gemaakt om met het gezin van te genieten: beschutte baaien, zandstranden en rustig water. Vanuit de haven van Blanes kies je tussen een korte tocht naar de nabije baaien of een hele dag de kust verkennen.",
+        spotsTitle: "Onmisbare baaien en stranden voor gezinnen",
+        spots: [
+          { name: "Cala Sant Francesc (Blanes)", description: "De meest toegankelijke en beschutte, binnen het bereik van een boot zonder vaarbewijs: het perfecte plan om met kinderen te beginnen." },
+          { name: "Santa Cristina (Lloret)", description: "Groot zandstrand met voorzieningen en rustig water, in het middelste deel van de kust." },
+          { name: "Platja Gran de Tossa", description: "Zand aan de voet van de middeleeuwse Vila Vella, een beloning voor wie de volledige oversteek maakt met een boot met vaarbewijs." },
+        ],
+        boatsTitle: "Welke boot kiezen naar gelang hoe ver je wilt gaan",
+        boatsIntro:
+          "Voor de baaien dicht bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen. Om het traject tot Lloret en Tossa af te leggen — voorbij de 2 zeemijl — heb je een boot met vaarbewijs nodig, ruim en tot 7 plaatsen.",
+        practicalTitle: "Praktische informatie",
+        practicalBody:
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Boten zonder vaarbewijs varen tot 2 zeemijl; om Lloret (~20 min) of Tossa (30-45 min) te bereiken gebruik je een boot met vaarbewijs. We hebben reddingsvesten in alle maten aan boord.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Welk traject kunnen we met het gezin in één dag afleggen?", a: "Met een boot met vaarbewijs de baaien van Blanes, Lloret en Tossa op één dag; met een boot zonder vaarbewijs de rustige baaien het dichtst bij Blanes." },
+          { q: "Wat is de beste tijd om met kinderen te gaan?", a: "Van juni tot september, met een warmere en rustigere zee; juli en augustus bieden de beste zwemomstandigheden." },
+        ],
+        ctaTitle: "Reserveer je dagje varen met het gezin langs de Costa Brava",
+        ctaText: "Kies je boot naar gelang hoe ver je wilt gaan en geniet met het gezin van de kust met vertrek vanuit Blanes.",
+      },
+      sunset__locationBlanes: {
+        seoTitle: "Boottocht bij zonsondergang in Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Vaar laat in de namiddag vanuit Blanes en geniet van het gouden licht over de kust, de rots van Sa Palomera en de baai. Rustige boottocht, geen ervaring vereist.",
+        h1: "Boottocht bij zonsondergang in Blanes",
+        intro:
+          "Laat in de namiddag, wanneer het licht goudkleurig wordt, toont de kust van Blanes haar mooiste gezicht vanaf zee. Een rustige boottocht met vertrek vanuit de haven van Blanes om de rots van Sa Palomera en de kliffen te zien oplichten in de laatste zonnestralen.",
+        spotsTitle: "Beste plekjes voor de zonsondergang in de buurt van Blanes",
+        spots: [
+          { name: "Sa Palomera", description: "De rots die het begin van de Costa Brava markeert; met het lage licht kleuren haar silhouet en de baai van Blanes in warme tinten." },
+          { name: "Kliffen van Marimurtra", description: "De rotswanden onder de Botanische Tuin, bijzonder fotogeniek wanneer de zon de kust streelt." },
+          { name: "Baai van Blanes", description: "Rustig water tegenover het dorp, perfect om te ankeren, te proosten en te zien hoe de lichten van de haven aangaan." },
+        ],
+        boatsTitle: "Welke boot kiezen voor de zonsondergang",
+        boatsIntro:
+          "Voor een tocht bij zonsondergang raden we comfortabele boten met een goed zonnedek aan. Meerdere zijn zonder vaarbewijs — met benzine inbegrepen en zonder vergunning —, ideaal voor een korte en ontspannen tocht dicht bij Blanes.",
+        practicalTitle: "Praktische informatie",
+        practicalBody:
+          "Seizoen van april tot oktober, met vertrektijden tot 20:00 uur vanuit de haven van Blanes; de late namiddag is de tijdspanne met het mooiste licht. Aan de Costa Brava gaat de zon achter de kust onder, dus je geniet meer van het gouden licht en de verlichte kliffen dan van de zonsondergang boven het water. Neem een licht jasje mee: tegen het einde van de namiddag koelt het af.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Hoe laat vertrek je voor de zonsondergang?", a: "We varen tot 20:00 uur; de late namiddag biedt het gouden licht. We raden je aan 1 of 2 uur aan het einde van de dag te reserveren." },
+          { q: "Heb ik een vaarbewijs nodig?", a: "Niet voor een tocht dicht bij Blanes: meerdere van onze boten worden bestuurd zonder vergunning en we leggen je de bediening uit voor je vertrekt." },
+        ],
+        ctaTitle: "Reserveer je tocht bij zonsondergang in Blanes",
+        ctaText: "Kies datum en boot, en geniet van het gouden uur op zee met vertrek vanuit de haven van Blanes.",
+      },
+      sunset__locationLloret: {
+        seoTitle: "Boottocht bij zonsondergang in Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Zonsondergang per boot in Lloret de Mar met vertrek vanuit Blanes (~20 min met een boot met vaarbewijs): gouden licht over de kliffen van Cala Banys en het kasteel van Lloret.",
+        h1: "Boottocht bij zonsondergang in Lloret de Mar",
+        intro:
+          "De kust van Lloret de Mar, met haar kliffen en haar kasteel boven de zee, wordt spectaculair laat in de namiddag. Met vertrek vanuit Blanes in zo'n 20 minuten met een boot met vaarbewijs kom je op tijd voor het mooiste licht van de dag.",
+        spotsTitle: "Beste plekjes voor de zonsondergang in Lloret",
+        spots: [
+          { name: "Cala Banys", description: "Donkere kliffen en rotsachtige hoekjes die met het lage licht een van de meest dramatische beelden van de streek opleveren." },
+          { name: "Castell d'en Plaja", description: "Het iconische kasteel boven het strand van Lloret, prachtig gezien vanaf zee wanneer het tegen de avond verlicht wordt." },
+          { name: "Santa Cristina", description: "Ruime en beschutte baai, ideaal om rustig te ankeren en te zien hoe het gouden licht de pijnbomen baadt." },
+        ],
+        boatsTitle: "Welke boot kiezen om bij zonsondergang naar Lloret te varen",
+        boatsIntro:
+          "Lloret ligt voorbij de 2 zeemijl, dus de tocht maak je met een van onze boten met vaarbewijs, comfortabel en met een goed zonnedek. Ze overbruggen het traject vanuit Blanes in zo'n 20 minuten.",
+        practicalTitle: "Praktische informatie",
+        practicalBody:
+          "Seizoen van april tot oktober, met vertrektijden tot 20:00 uur vanuit de haven van Blanes. Aan de Costa Brava gaat de zon achter de kust onder: je geniet van het gouden licht over de kliffen en het kasteel meer dan van de zonsondergang boven zee. Neem een licht jasje mee voor de terugtocht.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Hoelang duurt het van Blanes naar Lloret bij zonsondergang?", a: "Zo'n 20 minuten met een boot met vaarbewijs; het is aan te raden met wat marge te vertrekken om het mooiste licht te benutten." },
+          { q: "Zie je de zonsondergang boven de zee?", a: "Aan deze kust gaat de zon achter het land onder, niet boven het water; het mooie is het gouden licht en de verlichte kliffen en het kasteel." },
+        ],
+        ctaTitle: "Reserveer je tocht bij zonsondergang in Lloret",
+        ctaText: "Kies datum en een boot met vaarbewijs, en beleef het gouden uur aan de kust van Lloret met vertrek vanuit Blanes.",
+      },
+      sunset__locationTossa: {
+        seoTitle: "Boottocht bij zonsondergang in Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Zonsondergang per boot in Tossa de Mar vanuit Blanes (30-45 min met een boot met vaarbewijs): de verlichte middeleeuwse Vila Vella en het gouden licht over de baaien.",
+        h1: "Boottocht bij zonsondergang in Tossa de Mar",
+        intro:
+          "Weinig beelden van de Costa Brava evenaren de Vila Vella van Tossa de Mar, verlicht tegen de avond en gezien vanaf zee. Vanuit Blanes is het zo'n 30-45 minuten varen met een boot met vaarbewijs naar dit unieke decor.",
+        spotsTitle: "Beste plekjes voor de zonsondergang in Tossa",
+        spots: [
+          { name: "Vila Vella", description: "De middeleeuwse stadsmuren boven de zee, die bij het vallen van de avond oplichten in warme tinten: het meest iconische beeld van Tossa." },
+          { name: "La Mar Menuda", description: "Beschutte baai naast de oude stadskern, perfect om te ankeren en de kust te aanschouwen in het lage licht." },
+          { name: "Cala Giverola", description: "Diepe baai tussen bergen, met rustig water, ideaal voor een serene ankerstop voor de terugtocht." },
+        ],
+        boatsTitle: "Welke boot kiezen om bij zonsondergang naar Tossa te varen",
+        boatsIntro:
+          "Tossa ligt buiten het bereik van boten zonder vaarbewijs, dus de tocht maak je met een van onze boten met vaarbewijs, comfortabel en met een goed zonnedek. Het traject vanuit Blanes duurt 30-45 minuten.",
+        practicalTitle: "Praktische informatie",
+        practicalBody:
+          "Seizoen van april tot oktober, met vertrektijden tot 20:00 uur vanuit de haven van Blanes. Vanwege de afstand (30-45 min) plan je het vertrek zo dat je het laatste licht benut en rustig terugkeert. Aan deze kust gaat de zon achter het land onder: het spectaculaire is de verlichte Vila Vella. Neem een licht jasje mee.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Is er tijd om bij zonsondergang heen en terug naar Tossa te varen?", a: "Ja, mits goed gepland: het is 30-45 minuten per traject, dus reserveer best meerdere uren en vertrek met marge." },
+          { q: "Wat maakt de zonsondergang in Tossa bijzonder?", a: "De middeleeuwse Vila Vella boven de zee, die bij het vallen van de avond verlicht wordt en op een unieke manier vanaf de boot te zien is." },
+        ],
+        ctaTitle: "Reserveer je tocht bij zonsondergang in Tossa",
+        ctaText: "Kies datum en een boot met vaarbewijs, en aanschouw de verlichte Vila Vella vanaf zee met vertrek vanuit Blanes.",
+      },
+      sunset__locationCostaBrava: {
+        seoTitle: "Boottocht bij zonsondergang langs de Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Zonsondergang per boot langs de zuidelijke Costa Brava vanuit Blanes: gouden licht over kliffen, baaien en de Vila Vella van Tossa. Boot zonder vaarbewijs voor het nabije, met vaarbewijs voor het hele traject.",
+        h1: "Boottocht bij zonsondergang langs de Costa Brava",
+        intro:
+          "De zuidelijke Costa Brava, van Blanes tot Tossa, biedt laat in de namiddag een opeenvolging van kliffen, baaien en dorpen die oplichten in het gouden licht. Vanuit de haven van Blanes kies je tussen een korte tocht dichtbij of een langere tocht langs de kust.",
+        spotsTitle: "Beste plekjes van de kust bij zonsondergang",
+        spots: [
+          { name: "Sa Palomera (Blanes)", description: "De rots die de Costa Brava opent, binnen het bereik van een boot zonder vaarbewijs: het eenvoudigste plan voor het gouden uur." },
+          { name: "Cala Banys (Lloret)", description: "Dramatische kliffen die opvallen in het lage licht, in het middelste deel van de kust." },
+          { name: "Vila Vella (Tossa)", description: "De verlichte middeleeuwse stadsmuren boven de zee, de beloning van de volledige oversteek met een boot met vaarbewijs." },
+        ],
+        boatsTitle: "Welke boot kiezen naar gelang hoe ver je wilt gaan",
+        boatsIntro:
+          "Voor een tocht dicht bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen. Om het traject tot Lloret en Tossa af te leggen — voorbij de 2 zeemijl — heb je een boot met vaarbewijs nodig, comfortabel en met een goed zonnedek.",
+        practicalTitle: "Praktische informatie",
+        practicalBody:
+          "Seizoen van april tot oktober, met vertrektijden tot 20:00 uur vanuit de haven van Blanes. Aan deze kust gaat de zon achter het land onder: je geniet van het gouden licht en de verlichte dorpen en kliffen. Boten zonder vaarbewijs komen tot 2 zeemijl; voor Lloret of Tossa gebruik je een boot met vaarbewijs. Neem een licht jasje mee.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Waar zie je de mooiste zonsondergang vanaf de boot?", a: "Dicht bij Blanes, Sa Palomera; op het volledige traject is de verlichte Vila Vella van Tossa het meest spectaculair." },
+          { q: "Heb ik een boot met vaarbewijs nodig?", a: "Alleen als je Lloret of Tossa wilt bereiken. Voor het gouden uur dicht bij Blanes volstaat een boot zonder vaarbewijs." },
+        ],
+        ctaTitle: "Reserveer je tocht bij zonsondergang langs de Costa Brava",
+        ctaText: "Kies je boot naar gelang hoe ver je wilt gaan en jaag het gouden uur na met vertrek vanuit Blanes.",
+      },
+      fishing__locationBlanes: {
+        seoTitle: "Boot huren om te vissen in Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Ga vissen per boot vanuit Blanes met onze boten met vaarbewijs. Wateren en rotsachtige bodems voor de kust. Je hebt een vergunning voor recreatieve visserij nodig; wij informeren je.",
+        h1: "Boot huren om te vissen in Blanes",
+        intro:
+          "Per boot gaan vissen vanuit de haven van Blanes is een geweldige manier om te genieten van de zee van de Costa Brava. We verhuren je een boot met vaarbewijs waarmee je de nabije wateren en bodems langs de kust kunt bereiken voor een dag recreatieve visserij.",
+        spotsTitle: "Visgebieden in de buurt van Blanes",
+        spots: [
+          { name: "Wateren voor Sa Palomera", description: "De omgeving van de rots, met rotsachtige bodems waar rotsvissen op korte afstand van de haven gebruikelijk is." },
+          { name: "Rotsachtige bodems van de kust van Blanes", description: "Stroken rots en zand voor de kustlijn, toegankelijk voor een rustig uitje van een halve dag." },
+          { name: "Buitenzone van de baai", description: "Iets dieper water voor wie geluk wil beproeven buiten de luwte van de baai, altijd binnen de regelgeving." },
+        ],
+        boatsTitle: "Welke boot kiezen om te vissen",
+        boatsIntro:
+          "Om te vissen gebruiken we onze boten met vaarbewijs, met meer autonomie en bereik dan de boten zonder vaarbewijs. Ze zijn het meest geschikt om je tussen visgebieden te verplaatsen en de dag comfortabel door te brengen.",
+        practicalTitle: "Praktische informatie en regelgeving",
+        practicalBody:
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Om te vissen heb je de vergunning voor recreatieve visserij van Catalonië nodig, die de verantwoordelijkheid van de klant is. Respecteer de minimummaten, de beschermde soorten en de gereguleerde zones. De visuitrusting is niet inbegrepen.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Heb ik een vergunning nodig om vanaf de boot te vissen?", a: "Ja. Recreatieve visserij in Catalonië vereist een vergunning, die de klant aanvraagt en aanlevert. De boothuur omvat deze niet." },
+          { q: "Is er visuitrusting aan boord?", a: "Nee, de visuitrusting is niet inbegrepen; we verhuren je de boot met vaarbewijs voor je uitje." },
+        ],
+        ctaTitle: "Reserveer je visuitje in Blanes",
+        ctaText: "Kies datum en een boot met vaarbewijs, en bereid je dag recreatieve visserij voor met vertrek vanuit de haven van Blanes.",
+      },
+      fishing__locationLloret: {
+        seoTitle: "Boot huren om te vissen in Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Recreatieve visserij per boot in Lloret de Mar vanuit Blanes (~20 min met een boot met vaarbewijs). Rotsachtige bodems voor de kust. Visvergunning ten laste van de klant.",
+        h1: "Boot huren om te vissen in Lloret de Mar",
+        intro:
+          "De kust van Lloret de Mar, met kliffen en rotsachtige bodems, biedt goede gebieden voor recreatieve visserij. Met vertrek vanuit Blanes met een boot met vaarbewijs kom je er in zo'n 20 minuten en heb je autonomie om je tussen punten te verplaatsen.",
+        spotsTitle: "Visgebieden in de buurt van Lloret",
+        spots: [
+          { name: "Bodems van Cala Banys", description: "Strook van kliffen en rots waar rotsvissen gebruikelijk is, voor de kust van Lloret." },
+          { name: "Wateren van Fenals", description: "Iets meer open zone naast de punt van Fenals, om verschillende technieken op één dag te proberen." },
+          { name: "Kustlijn tussen Lloret en Tossa", description: "Rotsachtige en weinig verstedelijkte kust met interessante bodems, altijd met respect voor de gereguleerde zones." },
+        ],
+        boatsTitle: "Welke boot kiezen om naar Lloret te varen om te vissen",
+        boatsIntro:
+          "Lloret ligt voorbij de 2 zeemijl, dus je komt er met een van onze boten met vaarbewijs, met autonomie om je tussen visgebieden te verplaatsen. Het traject vanuit Blanes duurt zo'n 20 minuten.",
+        practicalTitle: "Praktische informatie en regelgeving",
+        practicalBody:
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Je hebt de vergunning voor recreatieve visserij van Catalonië nodig (ten laste van de klant). Respecteer minimummaten, beschermde soorten en gereguleerde zones. De visuitrusting is niet inbegrepen.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Hoelang duurt het van Blanes naar Lloret per boot?", a: "Zo'n 20 minuten met een boot met vaarbewijs, die we gebruiken voor de visuitjes." },
+          { q: "Heb ik een visvergunning nodig?", a: "Ja, de vergunning voor recreatieve visserij van Catalonië levert de klant aan; de boothuur omvat deze niet." },
+        ],
+        ctaTitle: "Reserveer je visuitje in Lloret",
+        ctaText: "Kies datum en een boot met vaarbewijs, en bereid je visdag voor de kust van Lloret voor met vertrek vanuit Blanes.",
+      },
+      fishing__locationTossa: {
+        seoTitle: "Boot huren om te vissen in Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Recreatieve visserij per boot bij Tossa de Mar vanuit Blanes (30-45 min met een boot met vaarbewijs). Let op: een deel van de kustlijn is een beschermd reservaat waar vissen beperkt is.",
+        h1: "Boot huren om te vissen in Tossa de Mar",
+        intro:
+          "De wateren van Tossa de Mar zijn beroemd om hun rijkdom, voor een groot deel dankzij hun bescherming. Vanuit Blanes is het zo'n 30-45 minuten met een boot met vaarbewijs, maar houd er goed rekening mee dat een deel van deze kustlijn een beschermde zone is waar vissen beperkt is.",
+        spotsTitle: "Visgebieden en beschermde gebieden in Tossa",
+        spots: [
+          { name: "Wateren buiten het reservaat", description: "Recreatieve visserij is alleen mogelijk buiten de beschermde zones; informeer je over de geldende grenzen voor je je lijn uitzet." },
+          { name: "Kustlijn tussen Lloret en Tossa", description: "Stroken rots buiten het beschermde gebied waar rotsvissen met vergunning is toegestaan." },
+          { name: "Zeereservaat van Tossa (beschermd)", description: "Een strook van haar kustlijn is beschermd en vissen is beperkt of verboden: respecteer dit altijd." },
+        ],
+        boatsTitle: "Welke boot kiezen om naar Tossa te varen",
+        boatsIntro:
+          "Tossa ligt buiten het bereik van boten zonder vaarbewijs, dus de tocht maak je met een van onze boten met vaarbewijs, met autonomie voor de dag. Het traject vanuit Blanes duurt 30-45 minuten.",
+        practicalTitle: "Praktische informatie en regelgeving",
+        practicalBody:
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Een deel van de kustlijn van Tossa is een beschermde zone waar vissen beperkt is: respecteer de grenzen ervan. Je hebt de vergunning voor recreatieve visserij van Catalonië nodig (ten laste van de klant) en je moet maten en soorten respecteren. De visuitrusting is niet inbegrepen.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Mag je vissen in Tossa de Mar?", a: "Alleen buiten de beschermde zones en met een vergunning voor recreatieve visserij. Een deel van de kustlijn is een reservaat waar vissen beperkt of verboden is." },
+          { q: "Kom je er met een boot zonder vaarbewijs?", a: "Nee. Tossa ligt buiten de grens van 2 zeemijl; je komt er met een boot met vaarbewijs, in 30-45 minuten vanuit Blanes." },
+        ],
+        ctaTitle: "Reserveer je visuitje bij Tossa",
+        ctaText: "Kies datum en een boot met vaarbewijs, respecteer de beschermde zones en bereid je visdag voor met vertrek vanuit Blanes.",
+      },
+      fishing__locationCostaBrava: {
+        seoTitle: "Boot huren om te vissen aan de Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Recreatieve visserij per boot langs de zuidelijke Costa Brava vanuit Blanes. Boten met vaarbewijs om je tussen zones te verplaatsen. Visvergunning ten laste van de klant; respecteer de beschermde gebieden.",
+        h1: "Boot huren om te vissen langs de Costa Brava",
+        intro:
+          "De zuidelijke Costa Brava, van Blanes tot Tossa, wisselt rotsachtige bodems, kapen en open water af die haar tot een goede bestemming voor recreatieve visserij maken. Vanuit de haven van Blanes verhuren we je een boot met vaarbewijs om je tussen de verschillende zones te verplaatsen.",
+        spotsTitle: "Visgebieden aan de zuidelijke Costa Brava",
+        spots: [
+          { name: "Wateren voor Blanes", description: "Rotsachtige bodems dicht bij de haven, het eenvoudigste startpunt voor een uitje van een halve dag." },
+          { name: "Kustlijn van Lloret", description: "Kliffen en rots rond Cala Banys en Fenals, met goede gebieden voor rotsvissen." },
+          { name: "Kust van Tossa (met beschermd reservaat)", description: "Rijke wateren, maar met een beschermde strook waar vissen beperkt is: vis alleen buiten dit gebied." },
+        ],
+        boatsTitle: "Welke boot kiezen om langs de kust te vissen",
+        boatsIntro:
+          "Voor de visserij gebruiken we boten met vaarbewijs, met de nodige autonomie om de kust tussen zones af te leggen. De boten zonder vaarbewijs, beperkt tot 2 zeemijl, zijn niet de optie voor dit soort uitjes.",
+        practicalTitle: "Praktische informatie en regelgeving",
+        practicalBody:
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Je hebt de vergunning voor recreatieve visserij van Catalonië nodig (ten laste van de klant). Respecteer minimummaten, beschermde soorten en, heel in het bijzonder, de gereguleerde zones zoals het reservaat van Tossa. De visuitrusting is niet inbegrepen.",
+        faqTitle: "Veelgestelde vragen",
+        faq: [
+          { q: "Wat heb ik nodig om vanaf de boot te vissen?", a: "De vergunning voor recreatieve visserij van Catalonië, die de klant aanlevert, en respect voor de regelgeving inzake maten, soorten en beschermde zones." },
+          { q: "Waar kun je vissen aan de zuidelijke Costa Brava?", a: "Op de rotsachtige bodems voor Blanes en Lloret, altijd buiten de beschermde gebieden zoals een deel van de kustlijn van Tossa." },
+        ],
+        ctaTitle: "Reserveer je visuitje langs de Costa Brava",
+        ctaText: "Kies je boot met vaarbewijs, respecteer de regelgeving en de beschermde zones, en bereid je visdag voor met vertrek vanuit Blanes.",
+      },
     },
   },
   glossaryPage: {

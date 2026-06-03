@@ -4357,6 +4357,330 @@ export const de: Translations = {
         ctaTitle: 'Buche deine Schnorchel-Route entlang der Costa Brava',
         ctaText: 'Wähle dein Boot je nachdem, wie weit du fahren möchtest, und entdecke die besten Buchten der Küste ab Blanes.',
       },
+      families__locationBlanes: {
+        seoTitle: 'Bootsverleih für Familien in Blanes | Costa Brava Rent a Boat',
+        seoDescription:
+          'Ein Tag auf dem Boot mit der Familie ab Blanes: ruhige Buchten, flaches Wasser und geräumige, stabile Boote, mehrere ohne Führerschein mit Benzin inklusive. Keine Vorerfahrung nötig.',
+        h1: 'Bootsverleih für Familien in Blanes',
+        intro:
+          'Ein Tag auf dem Boot mit der Familie ab dem Hafen Blanes gehört zu den schönsten Erlebnissen an der Costa Brava: geschützte Buchten nur wenige Minuten entfernt, ruhiges Wasser, in dem die Kinder unbeschwert baden, und geräumige, stabile Boote. Keine Vorerfahrung nötig: Wir erklären dir vor der Abfahrt alles.',
+        spotsTitle: 'Die besten Buchten für Familien in der Nähe von Blanes',
+        spots: [
+          { name: 'Cala Sant Francesc (Cala Bona)', description: 'Von Pinien geschützte Sandbucht mit ruhigem, flachem Wasser am Ufer: der Favorit für Familien mit kleinen Kindern.' },
+          { name: 'Cala Treumal', description: 'Kleine Sand- und Felsbucht zwischen Blanes und Lloret, windgeschützt, ideal zum Ankern und Baden ohne Wellengang.' },
+          { name: 'Bucht von Blanes und Sa Palomera', description: 'Der große Strand von Blanes neben dem Felsen Sa Palomera, mit Einrichtungen in der Nähe und offenem, aber ruhigem Wasser für ein erstes Bad ganz in Hafennähe.' },
+        ],
+        boatsTitle: 'Welches Boot für einen Familienausflug wählen',
+        boatsIntro:
+          'Für Familien empfehlen wir geräumige und stabile Boote mit Sonnendeck und Schattenbereich. Mehrere sind ohne Führerschein – mit Benzin inklusive und ohne Bootsführerschein –, und für größere Gruppen haben wir Boote mit bis zu 7 Plätzen.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody:
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Wir stellen Rettungswesten in allen Größen, auch für Kinder. Bring Sonnenschutz, Mütze, Wasser und etwas zu essen mit. Die Buchten in der Nähe von Blanes liegen innerhalb der 2 Seemeilen und sind sogar mit einem Boot ohne Führerschein erreichbar.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Ist es sicher, mit Kindern Boot zu fahren?', a: 'Ja. Wir stellen Rettungswesten für Kinder, die nahegelegenen Buchten sind ruhig und flach, und wir erklären dir vor der Abfahrt die Bedienung und die Sicherheit.' },
+          { q: 'Braucht man für einen Familienausflug ab Blanes einen Führerschein?', a: 'Nicht für die nahegelegenen Buchten: Mehrere unserer Boote lassen sich ohne Bootsführerschein steuern. Für größere Gruppen oder mehr Reichweite gibt es auch Optionen mit Führerschein.' },
+        ],
+        ctaTitle: 'Buche deinen Familien-Bootstag in Blanes',
+        ctaText: 'Wähle Datum und Boot und genieße einen Tag auf dem Meer mit deinen Liebsten ab dem Hafen Blanes.',
+      },
+      families__locationLloret: {
+        seoTitle: 'Bootsverleih für Familien in Lloret de Mar | Costa Brava Rent a Boat',
+        seoDescription:
+          'Ein Tag auf dem Boot mit der Familie in Lloret de Mar ab Blanes (~20 Min. mit Boot mit Führerschein): Sandstrände, ruhige Buchten und geräumige Boote mit bis zu 7 Plätzen.',
+        h1: 'Bootsverleih für Familien in Lloret de Mar',
+        intro:
+          'Lloret de Mar verbindet weite Sandstrände und geschützte Buchten, perfekt für einen Tag mit der Familie. Von Blanes aus erreichst du es in rund 20 Minuten ruhiger Fahrt und kannst seine Strände mit der Freiheit erkunden, überall zu ankern.',
+        spotsTitle: 'Die besten Strände und Buchten für Familien in Lloret',
+        spots: [
+          { name: 'Santa Cristina', description: 'Weiter Strand mit feinem Sand, ruhigem Wasser und Einrichtungen in der Nähe, einer der bequemsten der Gegend für einen Ausflug mit Kindern.' },
+          { name: 'Cala Boadella', description: 'Von Pinien umgebene Sand- und Felsbucht mit sauberem Wasser und geschützten Bereichen, ideal zum Baden mit der Familie.' },
+          { name: 'Platja de Fenals', description: 'Weiter, geschützter Strand mit sanftem Gefälle, perfekt, um in der Nähe zu ankern und den Tag mit den Kleinsten zu verbringen.' },
+        ],
+        boatsTitle: 'Welches Boot wählen, um mit der Familie nach Lloret zu gelangen',
+        boatsIntro:
+          'Lloret liegt jenseits der 2 Seemeilen, daher erreicht man es mit einem unserer Boote mit Führerschein. Sie sind geräumig und stabil – die Pacific Craft 625 fasst bis zu 7 Personen – und bewältigen die Strecke ab Blanes in etwa 20 Minuten.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody:
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Die Strecke nach Lloret dauert etwa 20 Minuten. Wir stellen Rettungswesten in allen Größen; bring Sonnenschutz, Mütze, Wasser und etwas zu essen mit.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Wie lange dauert die Fahrt von Blanes nach Lloret mit dem Boot?', a: 'Etwa 20 Minuten ruhiger Fahrt entlang der Küste mit einem Boot mit Führerschein.' },
+          { q: 'Welcher Strand in Lloret ist mit Kindern am besten?', a: 'Santa Cristina und Fenals, wegen ihres Sandes, des ruhigen Wassers und der nahegelegenen Einrichtungen.' },
+        ],
+        ctaTitle: 'Buche deinen Familien-Bootstag in Lloret',
+        ctaText: 'Wähle Datum und Boot mit Führerschein und genieße die Strände von Lloret mit der Familie ab Blanes.',
+      },
+      families__locationTossa: {
+        seoTitle: 'Bootsverleih für Familien in Tossa de Mar | Costa Brava Rent a Boat',
+        seoDescription:
+          'Ein Tag auf dem Boot mit der Familie in Tossa de Mar ab Blanes (30-45 Min. mit Boot mit Führerschein): die Platja Gran, geschützte Buchten und geräumige Boote mit bis zu 7 Plätzen.',
+        h1: 'Bootsverleih für Familien in Tossa de Mar',
+        intro:
+          'Tossa de Mar schenkt Familien ein unvergessliches Postkartenmotiv: die mittelalterliche Vila Vella über dem Meer und Buchten mit klarem Wasser. Von Blanes sind es etwa 30-45 Minuten Fahrt mit einem Boot mit Führerschein, ideal für einen Ganztagesausflug.',
+        spotsTitle: 'Die besten Strände und Buchten für Familien in Tossa',
+        spots: [
+          { name: 'Platja Gran de Tossa', description: 'Der Hauptstrand, aus Sand und am Fuße der Burg; ruhiges Wasser und alle Einrichtungen für einen bequemen Tag mit Kindern.' },
+          { name: 'La Mar Menuda', description: 'Geschützte Bucht neben der Altstadt, mit ruhigem Wasser, perfekt zum Ankern und Baden mit der Familie.' },
+          { name: 'Cala Llevadó', description: 'Natürliche Umgebung aus Pinien und kristallklarem Wasser; eine ruhigere Bucht für alle, die dem Trubel entfliehen möchten.' },
+        ],
+        boatsTitle: 'Welches Boot wählen, um mit der Familie nach Tossa zu gelangen',
+        boatsIntro:
+          'Tossa liegt außerhalb der Reichweite von Booten ohne Führerschein, daher erfolgt die Fahrt mit einem unserer Boote mit Führerschein, geräumig und mit bis zu 7 Plätzen. Sie bewältigen die Strecke ab Blanes in 30-45 Minuten; es empfiehlt sich, einen halben Tag oder länger zu buchen.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody:
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Die Fahrt nach Tossa dauert 30-45 Minuten. Wir stellen Rettungswesten in allen Größen; bring Sonnenschutz, Mütze, Wasser und Verpflegung für den Tag mit.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Kann man mit der Familie mit einem Boot ohne Führerschein nach Tossa fahren?', a: 'Nein. Tossa liegt außerhalb der 2-Seemeilen-Grenze; die Fahrt erfolgt mit einem Boot mit Führerschein, in 30-45 Minuten ab Blanes.' },
+          { q: 'Ist es ein guter Plan für einen ganzen Tag?', a: 'Ja: Aufgrund der Entfernung ist es ideal, einen halben oder ganzen Tag zu buchen und die Platja Gran mit einer nahegelegenen Bucht zu verbinden.' },
+        ],
+        ctaTitle: 'Buche deinen Familien-Bootstag in Tossa',
+        ctaText: 'Wähle Datum und Boot mit Führerschein und erlebe einen Familientag in Tossa de Mar ab Blanes.',
+      },
+      families__locationCostaBrava: {
+        seoTitle: 'Bootsverleih für Familien an der Costa Brava | Costa Brava Rent a Boat',
+        seoDescription:
+          'Ein Tag auf dem Boot mit der Familie entlang der südlichen Costa Brava ab Blanes: ruhige Buchten und Sandstrände von Blanes bis Tossa. Boote ohne Führerschein für die Nähe und mit Führerschein für die gesamte Strecke.',
+        h1: 'Bootsverleih für Familien entlang der Costa Brava',
+        intro:
+          'Die südliche Costa Brava, von Blanes bis Tossa de Mar, ist wie geschaffen, um sie mit der Familie zu genießen: geschützte Buchten, Sandstrände und ruhiges Wasser. Ab dem Hafen Blanes wählst du zwischen einem kurzen Ausflug zu den nahegelegenen Buchten oder einem Tag entlang der Küste.',
+        spotsTitle: 'Unverzichtbare familienfreundliche Buchten und Strände',
+        spots: [
+          { name: 'Cala Sant Francesc (Blanes)', description: 'Die zugänglichste und geschützteste, in Reichweite eines Bootes ohne Führerschein: der perfekte Plan für den Einstieg mit Kindern.' },
+          { name: 'Santa Cristina (Lloret)', description: 'Großer Sandstrand mit Einrichtungen und ruhigem Wasser, im mittleren Abschnitt der Küste.' },
+          { name: 'Platja Gran de Tossa', description: 'Sand am Fuße der mittelalterlichen Vila Vella, die Belohnung für alle, die die gesamte Überfahrt mit einem Boot mit Führerschein machen.' },
+        ],
+        boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
+        boatsIntro:
+          'Für die Buchten in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive. Um den Abschnitt bis Lloret und Tossa – jenseits der 2 Seemeilen – zurückzulegen, benötigst du ein Boot mit Führerschein, geräumig und mit bis zu 7 Plätzen.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody:
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Boote ohne Führerschein fahren bis zu 2 Seemeilen; um Lloret (~20 Min.) oder Tossa (30-45 Min.) zu erreichen, wird ein Boot mit Führerschein verwendet. Wir stellen Rettungswesten in allen Größen.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Welchen Abschnitt können wir mit der Familie an einem Tag zurücklegen?', a: 'Mit einem Boot mit Führerschein die Buchten von Blanes, Lloret und Tossa an einem Tag; mit einem ohne Führerschein die ruhigen Buchten in der Nähe von Blanes.' },
+          { q: 'Wann ist die beste Zeit für einen Ausflug mit Kindern?', a: 'Von Juni bis September, wenn das Meer wärmer und ruhiger ist; Juli und August bieten die besten Badebedingungen.' },
+        ],
+        ctaTitle: 'Buche deinen Familien-Bootstag entlang der Costa Brava',
+        ctaText: 'Wähle dein Boot je nachdem, wie weit du fahren möchtest, und genieße die Küste mit der Familie ab Blanes.',
+      },
+      sunset__locationBlanes: {
+        seoTitle: 'Bootsausflug bei Sonnenuntergang in Blanes | Costa Brava Rent a Boat',
+        seoDescription:
+          'Fahre am späten Nachmittag ab Blanes und genieße das goldene Licht über der Küste, den Felsen Sa Palomera und die Bucht. Entspannter Bootsausflug, keine Vorerfahrung nötig.',
+        h1: 'Bootsausflug bei Sonnenuntergang in Blanes',
+        intro:
+          'Am späten Nachmittag, wenn das Licht golden wird, zeigt sich die Küste von Blanes vom Meer aus von ihrer schönsten Seite. Ein entspannter Bootsausflug ab dem Hafen Blanes, um den Felsen Sa Palomera und die Klippen in den letzten Sonnenstrahlen aufleuchten zu sehen.',
+        spotsTitle: 'Die schönsten Orte für den Sonnenuntergang in der Nähe von Blanes',
+        spots: [
+          { name: 'Sa Palomera', description: 'Der Felsen, der den Beginn der Costa Brava markiert; im tiefen Licht färben sich seine Silhouette und die Bucht von Blanes in warmen Tönen.' },
+          { name: 'Klippen von Marimurtra', description: 'Die Felswände unterhalb des Botanischen Gartens, besonders fotogen, wenn die Sonne die Küste streift.' },
+          { name: 'Bucht von Blanes', description: 'Ruhiges Wasser vor dem Ort, perfekt zum Ankern, Anstoßen und Zusehen, wie die Lichter des Hafens angehen.' },
+        ],
+        boatsTitle: 'Welches Boot für den Sonnenuntergang wählen',
+        boatsIntro:
+          'Für einen Ausflug bei Sonnenuntergang empfehlen wir bequeme Boote mit gutem Sonnendeck. Mehrere sind ohne Führerschein – mit Benzin inklusive und ohne Bootsführerschein –, ideal für einen kurzen, entspannten Ausflug in der Nähe von Blanes.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody:
+          'Saison von April bis Oktober, mit Abfahrten bis 20:00 Uhr ab Hafen Blanes; die Zeit am späten Nachmittag schenkt das beste Licht. An der Costa Brava geht die Sonne hinter der Küste unter, du genießt also eher das goldene Licht und die beleuchteten Klippen als den Sonnenuntergang über dem Wasser. Bring eine leichte Jacke mit: Am Abend wird es kühler.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Um welche Uhrzeit ist die Abfahrt bei Sonnenuntergang?', a: 'Wir fahren bis 20:00 Uhr; die letzte Zeit am Nachmittag bietet das goldene Licht. Wir empfehlen, 1 oder 2 Stunden am späten Tag zu buchen.' },
+          { q: 'Brauche ich einen Führerschein?', a: 'Nicht für einen Ausflug in der Nähe von Blanes: Mehrere unserer Boote lassen sich ohne Bootsführerschein steuern, und wir erklären dir vor der Abfahrt die Bedienung.' },
+        ],
+        ctaTitle: 'Buche deinen Ausflug bei Sonnenuntergang in Blanes',
+        ctaText: 'Wähle Datum und Boot und genieße die goldene Stunde auf dem Meer ab dem Hafen Blanes.',
+      },
+      sunset__locationLloret: {
+        seoTitle: 'Bootsausflug bei Sonnenuntergang in Lloret de Mar | Costa Brava Rent a Boat',
+        seoDescription:
+          'Sonnenuntergang auf dem Boot in Lloret de Mar ab Blanes (~20 Min. mit Boot mit Führerschein): goldenes Licht über den Klippen von Cala Banys und der Burg von Lloret.',
+        h1: 'Bootsausflug bei Sonnenuntergang in Lloret de Mar',
+        intro:
+          'Die Küste von Lloret de Mar mit ihren Klippen und ihrer Burg über dem Meer wird am späten Nachmittag spektakulär. Von Blanes aus erreichst du sie in rund 20 Minuten mit einem Boot mit Führerschein, rechtzeitig zum besten Licht des Tages.',
+        spotsTitle: 'Die schönsten Orte für den Sonnenuntergang in Lloret',
+        spots: [
+          { name: 'Cala Banys', description: 'Dunkle Klippen und felsige Winkel, die im tiefen Licht eine der dramatischsten Ansichten der Gegend bieten.' },
+          { name: 'Castell d\'en Plaja', description: 'Die ikonische Burg über dem Strand von Lloret, wunderschön vom Meer aus zu sehen, wenn sie am Abend beleuchtet wird.' },
+          { name: 'Santa Cristina', description: 'Weite, geschützte Bucht, ideal zum gemütlichen Ankern und um zuzusehen, wie das goldene Licht die Pinien überzieht.' },
+        ],
+        boatsTitle: 'Welches Boot wählen, um bei Sonnenuntergang nach Lloret zu gelangen',
+        boatsIntro:
+          'Lloret liegt jenseits der 2 Seemeilen, daher erfolgt der Ausflug mit einem unserer Boote mit Führerschein, bequem und mit gutem Sonnendeck. Sie bewältigen die Strecke ab Blanes in etwa 20 Minuten.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody:
+          'Saison von April bis Oktober, mit Abfahrten bis 20:00 Uhr ab Hafen Blanes. An der Costa Brava geht die Sonne hinter der Küste unter: Du genießt das goldene Licht über den Klippen und der Burg eher als den Sonnenuntergang über dem Meer. Bring eine leichte Jacke für die Rückfahrt mit.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Wie lange dauert die Fahrt von Blanes nach Lloret bei Sonnenuntergang?', a: 'Etwa 20 Minuten mit einem Boot mit Führerschein; es empfiehlt sich, mit etwas Vorlauf loszufahren, um das beste Licht zu nutzen.' },
+          { q: 'Sieht man den Sonnenuntergang über dem Meer?', a: 'An dieser Küste geht die Sonne hinter dem Land unter, nicht über dem Wasser; das Schöne ist das goldene Licht und die beleuchteten Klippen und die Burg.' },
+        ],
+        ctaTitle: 'Buche deinen Ausflug bei Sonnenuntergang in Lloret',
+        ctaText: 'Wähle Datum und Boot mit Führerschein und erlebe die goldene Stunde an der Küste von Lloret ab Blanes.',
+      },
+      sunset__locationTossa: {
+        seoTitle: 'Bootsausflug bei Sonnenuntergang in Tossa de Mar | Costa Brava Rent a Boat',
+        seoDescription:
+          'Sonnenuntergang auf dem Boot in Tossa de Mar ab Blanes (30-45 Min. mit Boot mit Führerschein): die beleuchtete mittelalterliche Vila Vella und das goldene Licht über den Buchten.',
+        h1: 'Bootsausflug bei Sonnenuntergang in Tossa de Mar',
+        intro:
+          'Nur wenige Bilder der Costa Brava kommen der bei einbrechender Dämmerung beleuchteten Vila Vella von Tossa de Mar gleich, vom Meer aus betrachtet. Von Blanes sind es etwa 30-45 Minuten Fahrt mit einem Boot mit Führerschein bis zu dieser einzigartigen Kulisse.',
+        spotsTitle: 'Die schönsten Orte für den Sonnenuntergang in Tossa',
+        spots: [
+          { name: 'Vila Vella', description: 'Die mittelalterlichen Mauern über dem Meer, die sich am Abend in warmen Tönen entzünden: das ikonischste Bild von Tossa.' },
+          { name: 'La Mar Menuda', description: 'Geschützte Bucht neben der Altstadt, perfekt zum Ankern und um die Küste im tiefen Licht zu betrachten.' },
+          { name: 'Cala Giverola', description: 'Tiefe Bucht zwischen Bergen, mit ruhigem Wasser, ideal für einen friedlichen Ankerstopp vor der Rückfahrt.' },
+        ],
+        boatsTitle: 'Welches Boot wählen, um bei Sonnenuntergang nach Tossa zu gelangen',
+        boatsIntro:
+          'Tossa liegt außerhalb der Reichweite von Booten ohne Führerschein, daher erfolgt der Ausflug mit einem unserer Boote mit Führerschein, bequem und mit gutem Sonnendeck. Die Strecke ab Blanes dauert 30-45 Minuten.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody:
+          'Saison von April bis Oktober, mit Abfahrten bis 20:00 Uhr ab Hafen Blanes. Aufgrund der Entfernung (30-45 Min.) plane die Abfahrt so, dass du das letzte Licht nutzt und die Rückfahrt in Ruhe antrittst. An dieser Küste geht die Sonne hinter dem Land unter: Das Spektakuläre ist die beleuchtete Vila Vella. Bring eine leichte Jacke mit.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Reicht die Zeit für Hin- und Rückfahrt nach Tossa bei Sonnenuntergang?', a: 'Ja, mit Planung: Es sind 30-45 Minuten pro Strecke, daher empfiehlt es sich, mehrere Stunden zu buchen und mit Vorlauf loszufahren.' },
+          { q: 'Was macht den Sonnenuntergang in Tossa besonders?', a: 'Die mittelalterliche Vila Vella über dem Meer, die am Abend beleuchtet wird und vom Boot aus einzigartig zu sehen ist.' },
+        ],
+        ctaTitle: 'Buche deinen Ausflug bei Sonnenuntergang in Tossa',
+        ctaText: 'Wähle Datum und Boot mit Führerschein und betrachte die beleuchtete Vila Vella vom Meer aus ab Blanes.',
+      },
+      sunset__locationCostaBrava: {
+        seoTitle: 'Bootsausflug bei Sonnenuntergang entlang der Costa Brava | Costa Brava Rent a Boat',
+        seoDescription:
+          'Sonnenuntergang auf dem Boot entlang der südlichen Costa Brava ab Blanes: goldenes Licht über Klippen, Buchten und der Vila Vella von Tossa. Boot ohne Führerschein für die Nähe, mit Führerschein für die gesamte Strecke.',
+        h1: 'Bootsausflug bei Sonnenuntergang entlang der Costa Brava',
+        intro:
+          'Die südliche Costa Brava, von Blanes bis Tossa, bietet am späten Nachmittag eine Abfolge von Klippen, Buchten und Orten, die sich im goldenen Licht entzünden. Ab dem Hafen Blanes wählst du zwischen einem kurzen Ausflug in der Nähe oder einer längeren Fahrt entlang der Küste.',
+        spotsTitle: 'Die schönsten Orte der Küste bei Sonnenuntergang',
+        spots: [
+          { name: 'Sa Palomera (Blanes)', description: 'Der Felsen, der die Costa Brava eröffnet, in Reichweite eines Bootes ohne Führerschein: der einfachste Plan für die goldene Stunde.' },
+          { name: 'Cala Banys (Lloret)', description: 'Dramatische Klippen, die im tiefen Licht hervortreten, im mittleren Abschnitt der Küste.' },
+          { name: 'Vila Vella (Tossa)', description: 'Die beleuchteten mittelalterlichen Mauern über dem Meer, die Belohnung der vollständigen Überfahrt mit einem Boot mit Führerschein.' },
+        ],
+        boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
+        boatsIntro:
+          'Für einen Ausflug in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive. Um den Abschnitt bis Lloret und Tossa – jenseits der 2 Seemeilen – zurückzulegen, benötigst du ein Boot mit Führerschein, bequem und mit gutem Sonnendeck.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody:
+          'Saison von April bis Oktober, mit Abfahrten bis 20:00 Uhr ab Hafen Blanes. An dieser Küste geht die Sonne hinter dem Land unter: Du genießt das goldene Licht und die beleuchteten Orte und Klippen. Boote ohne Führerschein fahren bis zu 2 Seemeilen; für Lloret oder Tossa wird ein Boot mit Führerschein verwendet. Bring eine leichte Jacke mit.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Wo sieht man vom Boot aus den schönsten Sonnenuntergang?', a: 'In der Nähe von Blanes Sa Palomera; auf der gesamten Strecke ist die beleuchtete Vila Vella von Tossa am spektakulärsten.' },
+          { q: 'Brauche ich ein Boot mit Führerschein?', a: 'Nur wenn du Lloret oder Tossa erreichen möchtest. Für die goldene Stunde in der Nähe von Blanes reicht ein Boot ohne Führerschein.' },
+        ],
+        ctaTitle: 'Buche deinen Ausflug bei Sonnenuntergang entlang der Costa Brava',
+        ctaText: 'Wähle dein Boot je nachdem, wie weit du fahren möchtest, und jage die goldene Stunde ab Blanes.',
+      },
+      fishing__locationBlanes: {
+        seoTitle: 'Bootsverleih zum Angeln in Blanes | Costa Brava Rent a Boat',
+        seoDescription:
+          'Fahre zum Angeln mit dem Boot ab Blanes mit unseren Booten mit Führerschein. Gewässer und felsiger Grund vor der Küste. Du benötigst eine Lizenz für die Freizeitfischerei; wir informieren dich.',
+        h1: 'Bootsverleih zum Angeln in Blanes',
+        intro:
+          'Zum Angeln mit dem Boot ab dem Hafen Blanes aufzubrechen, ist eine wunderbare Art, das Meer der Costa Brava zu genießen. Wir vermieten dir ein Boot mit Führerschein, mit dem du dich den küstennahen Gewässern und Gründen für einen Tag der Freizeitfischerei nähern kannst.',
+        spotsTitle: 'Angelzonen in der Nähe von Blanes',
+        spots: [
+          { name: 'Gewässer vor Sa Palomera', description: 'Die Umgebung des Felsens, mit felsigem Grund, wo die Felsfischerei nur kurze Distanz vom Hafen entfernt üblich ist.' },
+          { name: 'Felsiger Grund der Küste von Blanes', description: 'Fels- und Sandabschnitte vor der Küste, erreichbar für einen entspannten Halbtagesausflug.' },
+          { name: 'Äußerer Bereich der Bucht', description: 'Etwas tieferes Wasser für alle, die ihr Glück außerhalb des Schutzes der Bucht versuchen wollen, stets im Rahmen der Vorschriften.' },
+        ],
+        boatsTitle: 'Welches Boot zum Angeln wählen',
+        boatsIntro:
+          'Zum Angeln verwenden wir unsere Boote mit Führerschein, mit größerer Reichweite als die Boote ohne Führerschein. Sie eignen sich am besten, um sich zwischen den Angelzonen zu bewegen und den Tag bequem zu verbringen.',
+        practicalTitle: 'Praktische Informationen und Vorschriften',
+        practicalBody:
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Zum Angeln benötigst du die katalanische Lizenz für die Freizeitfischerei, die in der Verantwortung des Kunden liegt. Beachte die Mindestgrößen, die geschützten Arten und die regulierten Zonen. Die Angelausrüstung ist nicht inbegriffen.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Brauche ich eine Lizenz, um vom Boot aus zu angeln?', a: 'Ja. Die Freizeitfischerei in Katalonien erfordert eine Lizenz, die der Kunde beantragt und mitbringt. Die Bootsmiete schließt sie nicht ein.' },
+          { q: 'Ist Angelausrüstung an Bord?', a: 'Nein, die Angelausrüstung ist nicht inbegriffen; wir vermieten dir das Boot mit Führerschein für deinen Ausflug.' },
+        ],
+        ctaTitle: 'Buche deinen Angelausflug in Blanes',
+        ctaText: 'Wähle Datum und Boot mit Führerschein und bereite deinen Tag der Freizeitfischerei ab dem Hafen Blanes vor.',
+      },
+      fishing__locationLloret: {
+        seoTitle: 'Bootsverleih zum Angeln in Lloret de Mar | Costa Brava Rent a Boat',
+        seoDescription:
+          'Freizeitfischerei mit dem Boot in Lloret de Mar ab Blanes (~20 Min. mit Boot mit Führerschein). Felsiger Grund vor der Küste. Angellizenz zu Lasten des Kunden.',
+        h1: 'Bootsverleih zum Angeln in Lloret de Mar',
+        intro:
+          'Die Küste von Lloret de Mar mit ihren Klippen und felsigen Gründen bietet gute Zonen für die Freizeitfischerei. Von Blanes aus erreichst du sie mit einem Boot mit Führerschein in etwa 20 Minuten und hast die Reichweite, dich zwischen den Plätzen zu bewegen.',
+        spotsTitle: 'Angelzonen in der Nähe von Lloret',
+        spots: [
+          { name: 'Gründe von Cala Banys', description: 'Abschnitt aus Klippen und Fels, wo die Felsfischerei vor der Küste von Lloret üblich ist.' },
+          { name: 'Gewässer von Fenals', description: 'Etwas offenere Zone neben der Spitze von Fenals, um an einem Tag verschiedene Techniken auszuprobieren.' },
+          { name: 'Küste zwischen Lloret und Tossa', description: 'Felsige, wenig bebaute Küste mit interessanten Gründen, stets unter Beachtung der regulierten Zonen.' },
+        ],
+        boatsTitle: 'Welches Boot wählen, um zum Angeln nach Lloret zu gelangen',
+        boatsIntro:
+          'Lloret liegt jenseits der 2 Seemeilen, daher erreicht man es mit einem unserer Boote mit Führerschein, mit der Reichweite, sich zwischen den Angelzonen zu bewegen. Die Strecke ab Blanes dauert etwa 20 Minuten.',
+        practicalTitle: 'Praktische Informationen und Vorschriften',
+        practicalBody:
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Du benötigst die katalanische Lizenz für die Freizeitfischerei (zu Lasten des Kunden). Beachte Mindestgrößen, geschützte Arten und regulierte Zonen. Die Angelausrüstung ist nicht inbegriffen.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Wie lange dauert die Fahrt von Blanes nach Lloret mit dem Boot?', a: 'Etwa 20 Minuten mit einem Boot mit Führerschein, die wir für die Angelausflüge verwenden.' },
+          { q: 'Braucht man eine Angellizenz?', a: 'Ja, die katalanische Lizenz für die Freizeitfischerei bringt der Kunde mit; die Bootsmiete schließt sie nicht ein.' },
+        ],
+        ctaTitle: 'Buche deinen Angelausflug in Lloret',
+        ctaText: 'Wähle Datum und Boot mit Führerschein und bereite deinen Angeltag vor Lloret ab Blanes vor.',
+      },
+      fishing__locationTossa: {
+        seoTitle: 'Bootsverleih zum Angeln in Tossa de Mar | Costa Brava Rent a Boat',
+        seoDescription:
+          'Freizeitfischerei mit dem Boot in der Nähe von Tossa de Mar ab Blanes (30-45 Min. mit Boot mit Führerschein). Achtung: Ein Teil der Küste ist geschütztes Reservat, in dem das Angeln eingeschränkt ist.',
+        h1: 'Bootsverleih zum Angeln in Tossa de Mar',
+        intro:
+          'Die Gewässer von Tossa de Mar sind für ihren Reichtum berühmt, zu großen Teilen dank ihres Schutzes. Von Blanes sind es etwa 30-45 Minuten mit einem Boot mit Führerschein, aber man sollte unbedingt beachten, dass ein Teil dieser Küste Schutzgebiet mit eingeschränkter Fischerei ist.',
+        spotsTitle: 'Angelzonen und Schutzgebiete in Tossa',
+        spots: [
+          { name: 'Gewässer außerhalb des Reservats', description: 'Die Freizeitfischerei ist nur außerhalb der Schutzgebiete möglich; informiere dich vor dem Auswerfen über die geltenden Grenzen.' },
+          { name: 'Küste zwischen Lloret und Tossa', description: 'Felsabschnitte außerhalb des Schutzgebiets, in denen die Felsfischerei mit Lizenz erlaubt ist.' },
+          { name: 'Meeresreservat von Tossa (geschützt)', description: 'Ein Streifen seiner Küste ist geschützt und das Angeln eingeschränkt oder verboten: respektiere es stets.' },
+        ],
+        boatsTitle: 'Welches Boot wählen, um nach Tossa zu gelangen',
+        boatsIntro:
+          'Tossa liegt außerhalb der Reichweite von Booten ohne Führerschein, daher erfolgt die Fahrt mit einem unserer Boote mit Führerschein, mit der Reichweite für den Tag. Die Strecke ab Blanes dauert 30-45 Minuten.',
+        practicalTitle: 'Praktische Informationen und Vorschriften',
+        practicalBody:
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Ein Teil der Küste von Tossa ist Schutzgebiet, in dem das Angeln eingeschränkt ist: respektiere seine Grenzen. Du benötigst die katalanische Lizenz für die Freizeitfischerei (zu Lasten des Kunden) und musst Größen und Arten beachten. Die Angelausrüstung ist nicht inbegriffen.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Darf man in Tossa de Mar angeln?', a: 'Nur außerhalb der Schutzgebiete und mit Lizenz für die Freizeitfischerei. Ein Teil der Küste ist Reservat, in dem das Angeln eingeschränkt oder verboten ist.' },
+          { q: 'Gelangt man mit einem Boot ohne Führerschein hin?', a: 'Nein. Tossa liegt außerhalb der 2-Seemeilen-Grenze; man erreicht es mit einem Boot mit Führerschein, in 30-45 Minuten ab Blanes.' },
+        ],
+        ctaTitle: 'Buche deinen Angelausflug in der Nähe von Tossa',
+        ctaText: 'Wähle Datum und Boot mit Führerschein, respektiere die Schutzgebiete und bereite deinen Angeltag ab Blanes vor.',
+      },
+      fishing__locationCostaBrava: {
+        seoTitle: 'Bootsverleih zum Angeln an der Costa Brava | Costa Brava Rent a Boat',
+        seoDescription:
+          'Freizeitfischerei mit dem Boot entlang der südlichen Costa Brava ab Blanes. Boote mit Führerschein, um dich zwischen den Zonen zu bewegen. Angellizenz zu Lasten des Kunden; respektiere die Schutzgebiete.',
+        h1: 'Bootsverleih zum Angeln entlang der Costa Brava',
+        intro:
+          'Die südliche Costa Brava, von Blanes bis Tossa, wechselt zwischen felsigen Gründen, Landspitzen und offenen Gewässern, was sie zu einem guten Ziel für die Freizeitfischerei macht. Ab dem Hafen Blanes vermieten wir dir ein Boot mit Führerschein, um dich zwischen den verschiedenen Zonen zu bewegen.',
+        spotsTitle: 'Angelzonen an der südlichen Costa Brava',
+        spots: [
+          { name: 'Gewässer vor Blanes', description: 'Felsiger Grund in Hafennähe, der einfachste Ausgangspunkt für einen Halbtagesausflug.' },
+          { name: 'Küste von Lloret', description: 'Klippen und Fels rund um Cala Banys und Fenals, mit guten Zonen für die Felsfischerei.' },
+          { name: 'Küste von Tossa (mit geschütztem Reservat)', description: 'Reiche Gewässer, aber mit einem geschützten Streifen, in dem das Angeln eingeschränkt ist: angle nur außerhalb davon.' },
+        ],
+        boatsTitle: 'Welches Boot zum Angeln entlang der Küste wählen',
+        boatsIntro:
+          'Zum Angeln verwenden wir Boote mit Führerschein, mit der nötigen Reichweite, um die Küste zwischen den Zonen zu befahren. Die Boote ohne Führerschein, begrenzt auf 2 Seemeilen, sind nicht die richtige Option für diese Art von Ausflügen.',
+        practicalTitle: 'Praktische Informationen und Vorschriften',
+        practicalBody:
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Du benötigst die katalanische Lizenz für die Freizeitfischerei (zu Lasten des Kunden). Beachte Mindestgrößen, geschützte Arten und ganz besonders die regulierten Zonen wie das Reservat von Tossa. Die Angelausrüstung ist nicht inbegriffen.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          { q: 'Was brauche ich, um vom Boot aus zu angeln?', a: 'Die katalanische Lizenz für die Freizeitfischerei, die der Kunde mitbringt, und die Beachtung der Vorschriften zu Größen, Arten und Schutzgebieten.' },
+          { q: 'Wo darf man an der südlichen Costa Brava angeln?', a: 'Auf dem felsigen Grund vor Blanes und Lloret, stets außerhalb der Schutzgebiete wie eines Teils der Küste von Tossa.' },
+        ],
+        ctaTitle: 'Buche deinen Angelausflug entlang der Costa Brava',
+        ctaText: 'Wähle dein Boot je nachdem, wie weit du fahren möchtest, und bereite deinen Angeltag entlang der Küste ab Blanes vor.',
+      },
     },
   },
   glossaryPage: {

@@ -74,21 +74,20 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   "/snorkel-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/snorkel-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   // Matrix verticals 2/3/4 — families / sunset / fishing × 4 locations.
-  // Copy authored in es.ts (t.occasionMatrix.pages.<comboId>); ES-only launch —
-  // translation to the other 7 locales is blocked until the Anthropic monthly
-  // API cap resets (2026-07-01). Bump each to 8 locales once translated.
-  "/familias-blanes": ["es"],
-  "/familias-lloret-de-mar": ["es"],
-  "/familias-tossa-de-mar": ["es"],
-  "/familias-costa-brava": ["es"],
-  "/atardecer-blanes": ["es"],
-  "/atardecer-lloret-de-mar": ["es"],
-  "/atardecer-tossa-de-mar": ["es"],
-  "/atardecer-costa-brava": ["es"],
-  "/pesca-blanes": ["es"],
-  "/pesca-lloret-de-mar": ["es"],
-  "/pesca-tossa-de-mar": ["es"],
-  "/pesca-costa-brava": ["es"],
+  // Copy in es.ts + translated/validated to all 8 locales (2026-06-03, done
+  // directly without the capped API script). Both parent pages are 8-locale.
+  "/familias-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/familias-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/familias-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/familias-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/atardecer-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/atardecer-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/atardecer-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/atardecer-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/pesca-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/pesca-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/pesca-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/pesca-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
 };
 
 /**

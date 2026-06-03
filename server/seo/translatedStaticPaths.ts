@@ -57,6 +57,9 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   "/excursion-snorkel-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/barco-familias-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/pesca-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/circuito-jet-ski-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/excursion-jet-ski-blanes-tossa": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/alquiler-moto-de-agua-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   // Satellite location pages — i18n-complete (t.locationPages.<town>) + native SSR body.
   "/alquiler-barcos-tordera": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-palafolls": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
@@ -65,6 +68,29 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // i18n exists in all 8 locales but only ES is prerendered/indexed for now;
   // open more locales once the concept is validated and copy is reviewed.
   "/salidas-compartidas": ["es"],
+  // Programmatic matrix — snorkel vertical (occasion × location). Copy lives in
+  // t.occasionMatrix.pages.<comboId>, translated + i18n-validated in all 8
+  // locales (2026-06-03); both parent pages (activity + location) are 8-locale,
+  // so indexableLangsForCombo opens all 8. Live behind OCCASION_MATRIX_ENABLED.
+  "/snorkel-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/snorkel-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/snorkel-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/snorkel-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Matrix verticals 2/3/4 — families / sunset / fishing × 4 locations.
+  // Copy in es.ts + translated/validated to all 8 locales (2026-06-03, done
+  // directly without the capped API script). Both parent pages are 8-locale.
+  "/familias-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/familias-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/familias-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/familias-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/atardecer-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/atardecer-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/atardecer-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/atardecer-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/pesca-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/pesca-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/pesca-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/pesca-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
 };
 
 /**

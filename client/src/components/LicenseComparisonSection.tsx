@@ -5,6 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { getMinActivePrice } from "@shared/pricing";
+import { isJetSkiProduct } from "@shared/jetskiProducts";
 
 export default function LicenseComparisonSection() {
   const t = useTranslations();
@@ -13,7 +14,7 @@ export default function LicenseComparisonSection() {
   const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
 
   const noLicenseMinPriceRaw = boats
-    ?.filter(b => !b.requiresLicense && b.pricing)
+    ?.filter(b => !b.requiresLicense && b.pricing && !isJetSkiProduct(b.id))
     .reduce((min, b) => {
       const boatMin = getMinActivePrice(b.pricing!.BAJA?.prices);
       return boatMin !== null && boatMin < min ? boatMin : min;

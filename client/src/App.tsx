@@ -12,6 +12,8 @@ import { useUtmCapture } from "@/hooks/useUtmCapture";
 import { trackJsError } from "@/utils/analytics";
 import { useJourneyState } from "@/hooks/useJourneyState";
 import { isValidLang, resolveSlug } from "@shared/i18n-routes";
+import { OCCASION_MATRIX_ENABLED } from "@shared/occasionMatrix";
+import { resolveMatrixSlug } from "@shared/occasionMatrixPage";
 import type { PageKey } from "@shared/i18n-routes";
 
 // Import critical components (above the fold)
@@ -73,6 +75,10 @@ const ActivitySunsetPage = lazy(() => import("@/pages/activity-sunset"));
 const ActivityFishingPage = lazy(() => import("@/pages/activity-fishing"));
 const AboutPage = lazy(() => import("@/pages/about"));
 const SharedSailingPage = lazy(() => import("@/pages/shared-sailing"));
+const JetSkiCircuitoPage = lazy(() => import("@/pages/jet-ski-circuito"));
+const JetSkiExcursionPage = lazy(() => import("@/pages/jet-ski-excursion"));
+const JetSkiBlanesHubPage = lazy(() => import("@/pages/jet-ski-blanes"));
+const OccasionMatrixPage = lazy(() => import("@/pages/OccasionMatrixPage"));
 
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
@@ -324,6 +330,9 @@ const PAGE_COMPONENTS: Record<string, React.LazyExoticComponent<any> | React.Com
   giftCards: GiftCardsPage,
   about: AboutPage,
   sharedSailing: SharedSailingPage,
+  jetskiCircuito: JetSkiCircuitoPage,
+  jetskiExcursion: JetSkiExcursionPage,
+  jetskiHub: JetSkiBlanesHubPage,
   activitySnorkel: ActivitySnorkelPage,
   activityFamilies: ActivityFamiliesPage,
   activitySunset: ActivitySunsetPage,
@@ -380,6 +389,19 @@ function PageResolver() {
   const bookingSlugs = ["reservar", "reserva", "buchen", "boeken", "prenotare", "rezervirovat"];
   if (bookingSlugs.includes(slug)) {
     return <Redirect to={localizedPath("booking")} />;
+  }
+
+  // Programmatic matrix pages (occasion × location) — gated by the master switch.
+  // Resolved here because their composite slugs are not in ROUTE_SLUGS.
+  if (OCCASION_MATRIX_ENABLED) {
+    const matrixCombo = resolveMatrixSlug(slug);
+    if (matrixCombo) {
+      return (
+        <Suspense fallback={<MinimalRouteFallback />}>
+          <OccasionMatrixPage combo={matrixCombo} />
+        </Suspense>
+      );
+    }
   }
 
   const resolved = resolveSlug(slug);

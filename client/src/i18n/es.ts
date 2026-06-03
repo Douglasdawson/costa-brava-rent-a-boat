@@ -9,6 +9,7 @@ export const es: Translations = {
     faq: "FAQ",
     giftCards: "Tarjetas Regalo",
     viewComponents: "Ver Componentes",
+    jetski: "Motos de agua",
     bookNow: "Reservar",
     myAccount: "Mi Cuenta",
   },
@@ -49,7 +50,7 @@ export const es: Translations = {
   },
 
   fleet: {
-    title: "Elige tu barco",
+    title: "Elige tu plan en el mar",
     subtitle:
       "Según el tamaño de tu grupo y la experiencia que buscas. Todos con seguro y equipo de seguridad incluido.",
     helpText: "¿No sabes cuál elegir? Te ayudamos en menos de 5 minutos",
@@ -68,7 +69,7 @@ export const es: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Elige entre 2h, 4h, u 8h para alquilar nuestra {boatName}",
     withLicense: "Con licencia",
-    withoutLicense: "Sin licencia",
+    withoutLicense: "Sin necesidad de licencia",
     available: "Disponible",
     occupied: "Ocupado",
     more: "más",
@@ -635,6 +636,464 @@ export const es: Translations = {
     pricesTitle: "Precios y tarifas",
     pricesDesc:
       "Consulta los precios por temporada de todos nuestros barcos. Desde 70€/hora sin licencia.",
+    guide: {
+      heading: "Guía para navegar la Costa Brava desde Blanes",
+      geographyTitle: "El litoral: de Blanes a Tossa de Mar",
+      geographyBody:
+        "El Puerto de Blanes marca el inicio de la Costa Brava. Navegando hacia el norte, el peñón de Sa Palomera da paso a una sucesión de calas de aguas turquesas: Cala Sant Francesc, Santa Cristina y Cala Treumal antes de llegar a Lloret de Mar (a unos 20 minutos en barco), y más allá Cala Boadella y las calas vírgenes de Tossa de Mar, con su Vila Vella medieval coronando el mar. Con un barco con licencia, el trayecto Blanes–Tossa son unos 30-45 minutos de navegación tranquila pegado a la costa.",
+      seaTitle: "Condiciones de mar y vientos",
+      seaBody:
+        "El tramo sur de la Costa Brava es, en general, de navegación cómoda en verano. Por la mañana el mar suele estar en calma; por la tarde puede entrar el garbí, la brisa del suroeste que riza ligeramente la superficie. El viento a vigilar es la tramontana, fuerte y del norte, que puede levantarse con rapidez: consulta siempre el parte meteorológico marítimo antes de salir. Las embarcaciones sin licencia navegan hasta 2 millas náuticas de la costa (3,7 km) y a un máximo de 5 nudos, suficiente para recorrer todas estas calas con seguridad.",
+      calasTitle: "Calas y snorkel",
+      calasBody:
+        "Las calas entre Blanes y Tossa tienen fondos rocosos y aguas cristalinas, ideales para fondear y hacer snorkel. Cala Bona, Cala Treumal y Santa Cristina ofrecen aguas resguardadas; en Lloret, Cala Boadella; y hacia Tossa, Cala Llevadó, Cala Giverola y Cala Pola, muchas accesibles solo por mar. Recuerda fondear sobre fondo arenoso —nunca sobre las praderas de posidonia, protegidas— y largar cabo suficiente para que el ancla agarre.",
+      seasonTitle: "Mejor época para navegar",
+      seasonBody:
+        "La temporada de navegación va de abril a octubre, con horario de salidas de 09:00 a 20:00. Julio y agosto ofrecen el mar más cálido y estable, ideal para baño y snorkel; junio y septiembre son perfectos para quien busca calas menos concurridas y luz dorada. Fuera de temporada no operamos. En los meses de verano conviene reservar con antelación: la disponibilidad de barco y franja horaria es limitada.",
+    },
+  },
+  lastUpdated: {
+    label: "Última actualización",
+  },
+  occasionMatrix: {
+    pages: {
+      snorkel__locationBlanes: {
+        seoTitle: "Snorkel en barco desde Blanes — Mejores calas | Costa Brava Rent a Boat",
+        seoDescription:
+          "Alquila un barco sin licencia en Blanes y haz snorkel en Cala Sant Francesc, Sa Forcanera o Cala Treumal. Gasolina incluida, sin experiencia previa, calas a menos de 2 millas.",
+        h1: "Snorkel en barco desde Blanes",
+        intro:
+          "Desde el Puerto de Blanes, en pocos minutos de navegación llegas a calas de aguas cristalinas y fondos rocosos perfectos para el snorkel. Con un barco sin licencia —gasolina incluida y sin necesidad de experiencia— eliges tu cala, fondeas y te lanzas al agua a tu ritmo.",
+        spotsTitle: "Mejores calas para snorkel cerca de Blanes",
+        spots: [
+          { name: "Cala Sant Francesc (Cala Bona)", description: "Ensenada protegida de pinos a la salida de Blanes, de agua tranquila y rocas laterales llenas de vida: el mejor primer fondeo para snorkel en familia." },
+          { name: "Sa Forcanera", description: "Pequeña cala bajo los acantilados del Jardín Botánico Marimurtra, de aguas profundas y transparentes, ideal para nadar sobre fondos rocosos." },
+          { name: "Cala Treumal", description: "En el límite entre Blanes y Lloret, fondo de roca y arena que atrae peces; buen fondeadero resguardado del garbí." },
+          { name: "Punta de Santa Anna", description: "Junto al castillo de Sant Joan, paredes rocosas que caen al mar con excelente visibilidad para observar fauna mediterránea." },
+        ],
+        boatsTitle: "Qué barco elegir para hacer snorkel",
+        boatsIntro:
+          "Para el snorkel en Blanes recomendamos nuestros barcos sin licencia: llevan la gasolina incluida, se gobiernan sin titulación y llegan sin problema a estas calas, todas dentro de las 2 millas de la costa. Incorporan escalera de baño para entrar y salir del agua con comodidad.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Los barcos sin licencia navegan hasta 2 millas náuticas de la costa, distancia más que suficiente para todas estas calas. Trae tus gafas y tubo, protección solar y agua. Recuerda fondear sobre arena, nunca sobre las praderas de posidonia.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Necesito licencia para hacer snorkel en barco desde Blanes?", a: "No. Nuestros barcos sin licencia se gobiernan sin titulación náutica y llegan a todas las calas de snorkel cercanas a Blanes. Te explicamos el manejo antes de salir." },
+          { q: "¿Está incluido el equipo de snorkel?", a: "El barco incluye escalera de baño y la gasolina. Para el snorkel te recomendamos traer tus propias gafas y tubo, así te aseguras una talla cómoda." },
+        ],
+        ctaTitle: "Reserva tu salida de snorkel en Blanes",
+        ctaText: "Elige fecha y barco sin licencia, y prepara la mejor jornada de snorkel por las calas de Blanes.",
+      },
+      snorkel__locationLloret: {
+        seoTitle: "Snorkel en barco en Lloret de Mar — Calas Boadella y Banys | Costa Brava Rent a Boat",
+        seoDescription:
+          "Descubre las mejores calas de snorkel de Lloret de Mar en barco desde Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Barco con licencia, unos 20 minutos de navegación.",
+        h1: "Snorkel en barco en Lloret de Mar",
+        intro:
+          "Lloret de Mar esconde algunas de las calas con mejor agua de la Costa Brava sur, muchas accesibles solo por mar. Saliendo desde Blanes en unos 20 minutos de navegación llegas a sus rincones rocosos y los recorres haciendo snorkel sin las multitudes de la playa.",
+        spotsTitle: "Mejores calas para snorkel en Lloret de Mar",
+        spots: [
+          { name: "Cala Boadella", description: "Una de las calas más bonitas de Lloret; su extremo sur, rocoso y de agua limpia, deja ver peces nada más asomar la cabeza." },
+          { name: "Cala Banys", description: "Entrante rocoso de acantilados oscuros y agua profunda, un clásico para snorkel de roca con buena visibilidad." },
+          { name: "Cala dels Frares", description: "Pequeña cala de cantos rodados rodeada de paredes verticales, refugio de fauna mediterránea ideal para nadar despacio." },
+          { name: "Santa Cristina", description: "Amplia cala de arena con extremos rocosos; los laterales ofrecen un snorkel fácil y seguro, perfecto para principiantes." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Lloret",
+        boatsIntro:
+          "Las calas de Lloret quedan más allá del límite de 2 millas de los barcos sin licencia, así que para llegar hasta ellas necesitas uno de nuestros barcos con licencia. Son cómodos, cubren el trayecto desde Blanes en unos 20 minutos y te dan autonomía para encadenar varias calas en la misma salida.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. El trayecto hasta las calas de Lloret son unos 20 minutos de navegación tranquila pegada a la costa. Trae tus gafas y tubo, protección solar y agua. Fondea sobre arena, nunca sobre las praderas de posidonia.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Cuánto se tarda de Blanes a las calas de Lloret en barco?", a: "Unos 20 minutos de navegación tranquila bordeando la costa, según la cala y el estado del mar." },
+          { q: "¿Qué calas de Lloret son mejores para snorkel?", a: "Cala Boadella, Cala Banys y Cala dels Frares destacan por su fondo rocoso y la transparencia del agua." },
+        ],
+        ctaTitle: "Reserva tu salida de snorkel en Lloret de Mar",
+        ctaText: "Elige fecha y barco con licencia, y descubre las calas de snorkel de Lloret saliendo desde Blanes.",
+      },
+      snorkel__locationTossa: {
+        seoTitle: "Snorkel en barco en Tossa de Mar — Calas vírgenes y aguas protegidas | Costa Brava Rent a Boat",
+        seoDescription:
+          "Haz snorkel en las aguas limpias de Tossa de Mar: La Mar Menuda, Cala Giverola, Cala Pola. Salida en barco con licencia desde Blanes, 30-45 minutos de navegación.",
+        h1: "Snorkel en barco en Tossa de Mar",
+        intro:
+          "Tossa de Mar es uno de los mejores destinos de snorkel de la Costa Brava: parte de su litoral está protegido, con fondos rocosos y praderas rebosantes de vida. Desde Blanes son unos 30-45 minutos de navegación con un barco con licencia hasta sus calas más vírgenes.",
+        spotsTitle: "Mejores calas para snorkel en Tossa de Mar",
+        spots: [
+          { name: "La Mar Menuda", description: "Junto al casco antiguo, una bahía de aguas resguardadas y fondo rocoso muy apreciada por buceadores y aficionados al snorkel por su riqueza de fauna." },
+          { name: "Cala Giverola", description: "Cala profunda encajada entre montañas, de agua especialmente clara y paredes rocosas perfectas para nadar observando peces." },
+          { name: "Cala Pola", description: "Entorno natural protegido al norte de Tossa, con fondo de roca y arena y una transparencia excelente." },
+          { name: "Cala Futadera", description: "Cala virgen sin acceso rodado, solo por mar o sendero; aguas limpias y tranquilas, un fondeo de snorkel exclusivo." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Tossa",
+        boatsIntro:
+          "Tossa queda bastante más allá de las 2 millas, fuera del alcance de los barcos sin licencia. Para llegar a sus calas necesitas uno de nuestros barcos con licencia, que cubren el trayecto desde Blanes en 30-45 minutos y te permiten pasar el día explorando varias calas.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. La navegación hasta Tossa es de 30-45 minutos; por eso conviene reservar duraciones de 4 horas o más para disfrutar el destino sin prisa. Trae tus gafas y tubo, protección solar y agua. Respeta las zonas protegidas y fondea solo sobre arena.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Se puede ir de Blanes a Tossa en barco sin licencia?", a: "No. Tossa está fuera del límite de 2 millas de los barcos sin licencia; el trayecto se hace con un barco con licencia, en 30-45 minutos desde Blanes." },
+          { q: "¿Por qué Tossa es buena para snorkel?", a: "Parte de su litoral está protegido, con fondos rocosos y praderas muy bien conservados; calas como La Mar Menuda o Giverola ofrecen una visibilidad excelente." },
+        ],
+        ctaTitle: "Reserva tu salida de snorkel en Tossa de Mar",
+        ctaText: "Elige fecha y barco con licencia, y dedica el día a las calas protegidas de Tossa saliendo desde Blanes.",
+      },
+      snorkel__locationCostaBrava: {
+        seoTitle: "Snorkel en barco por la Costa Brava — Las mejores calas desde Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Recorre en barco las mejores calas de snorkel de la Costa Brava sur, de Blanes a Tossa de Mar. Barcos sin licencia para las calas cercanas y con licencia para el tramo completo.",
+        h1: "Snorkel en barco por la Costa Brava",
+        intro:
+          "El tramo sur de la Costa Brava, de Blanes a Tossa de Mar, concentra decenas de calas de fondo rocoso y agua transparente ideales para el snorkel. Desde el Puerto de Blanes puedes elegir entre una salida corta a las calas más cercanas o una jornada completa recorriendo la costa.",
+        spotsTitle: "Calas de snorkel imprescindibles en la Costa Brava sur",
+        spots: [
+          { name: "Cala Sant Francesc (Blanes)", description: "La cala más accesible, resguardada y familiar: el punto de partida perfecto, dentro del alcance de un barco sin licencia." },
+          { name: "Cala Boadella (Lloret)", description: "Rincón rocoso de agua limpia, uno de los mejores fondeos de snorkel del tramo medio de la costa." },
+          { name: "Cala Giverola (Tossa)", description: "Cala profunda de aguas cristalinas entre montañas, ya en el extremo norte del recorrido." },
+          { name: "Cala Pola (Tossa)", description: "Entorno natural protegido con fondo de roca y arena, recompensa para quien hace la travesía completa." },
+        ],
+        boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
+        boatsIntro:
+          "Para las calas más cercanas a Blanes basta un barco sin licencia, con gasolina incluida y sin titulación. Para recorrer el tramo completo hasta Lloret y Tossa —más allá de las 2 millas— necesitas un barco con licencia, con autonomía para encadenar varias calas en el día.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Los barcos sin licencia navegan hasta 2 millas; para llegar a Lloret (~20 min) o Tossa (30-45 min) se usa un barco con licencia. Trae tus gafas y tubo, protección solar y agua. Fondea siempre sobre arena, nunca sobre posidonia.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Qué tramo de la Costa Brava puedo recorrer en una salida?", a: "Con un barco con licencia puedes encadenar calas de Blanes, Lloret y Tossa en una jornada; con uno sin licencia disfrutarás de las calas más cercanas a Blanes." },
+          { q: "¿Cuál es la mejor época para el snorkel?", a: "De junio a septiembre el mar está más cálido y claro; julio y agosto ofrecen las mejores condiciones, y junio o septiembre, calas más tranquilas." },
+        ],
+        ctaTitle: "Reserva tu ruta de snorkel por la Costa Brava",
+        ctaText: "Elige tu barco según hasta dónde quieras llegar y descubre las mejores calas de la costa saliendo desde Blanes.",
+      },
+      families__locationBlanes: {
+        seoTitle: "Alquiler de barco para familias en Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Un día de barco en familia desde Blanes: calas tranquilas, agua poco profunda y barcos amplios y estables, varios sin licencia con gasolina incluida. Sin experiencia previa.",
+        h1: "Alquiler de barco para familias en Blanes",
+        intro:
+          "Un día de barco en familia desde el Puerto de Blanes es de los mejores planes de la Costa Brava: calas resguardadas a pocos minutos, agua tranquila donde los niños se bañan con calma y barcos amplios y estables. Sin experiencia previa: te explicamos todo antes de salir.",
+        spotsTitle: "Mejores calas para ir en familia cerca de Blanes",
+        spots: [
+          { name: "Cala Sant Francesc (Cala Bona)", description: "Cala de arena resguardada de pinos, con agua tranquila y poco profunda en la orilla: la favorita para familias con niños pequeños." },
+          { name: "Cala Treumal", description: "Pequeña cala de arena y roca entre Blanes y Lloret, protegida del viento, ideal para fondear y bañarse sin oleaje." },
+          { name: "Bahía de Blanes y Sa Palomera", description: "La gran playa de Blanes junto al peñón de Sa Palomera, con servicios cerca y aguas abiertas pero tranquilas para un primer chapuzón sin alejarse del puerto." },
+        ],
+        boatsTitle: "Qué barco elegir para ir en familia",
+        boatsIntro:
+          "Para familias recomendamos barcos espaciosos y estables, con solárium y zona de sombra. Varios son sin licencia —con gasolina incluida y sin titulación—, y para grupos grandes contamos con embarcaciones de hasta 7 plazas.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Llevamos chalecos salvavidas de todas las tallas, incluidas infantiles. Trae protección solar, gorra, agua y algo de picar. Las calas cercanas a Blanes están dentro de las 2 millas, alcanzables incluso con barco sin licencia.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Es seguro ir en barco con niños?", a: "Sí. Llevamos chalecos salvavidas infantiles, las calas cercanas son tranquilas y poco profundas, y te explicamos el manejo y la seguridad antes de salir." },
+          { q: "¿Hace falta licencia para ir en familia desde Blanes?", a: "No para las calas cercanas: varios de nuestros barcos se gobiernan sin titulación. Para grupos grandes o más autonomía también hay opciones con licencia." },
+        ],
+        ctaTitle: "Reserva tu día de barco en familia en Blanes",
+        ctaText: "Elige fecha y barco, y disfruta de un día en el mar con los tuyos saliendo del Puerto de Blanes.",
+      },
+      families__locationLloret: {
+        seoTitle: "Alquiler de barco para familias en Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Día de barco en familia en Lloret de Mar saliendo desde Blanes (~20 min con barco con licencia): playas de arena, calas tranquilas y barcos amplios de hasta 7 plazas.",
+        h1: "Alquiler de barco para familias en Lloret de Mar",
+        intro:
+          "Lloret de Mar combina playas amplias de arena y calas resguardadas, perfectas para un día en familia. Saliendo desde Blanes llegas en unos 20 minutos de navegación tranquila y recorres sus playas con la libertad de fondear donde quieras.",
+        spotsTitle: "Mejores playas y calas para familias en Lloret",
+        spots: [
+          { name: "Santa Cristina", description: "Amplia playa de arena fina con aguas tranquilas y servicios cerca, una de las más cómodas de la zona para ir con niños." },
+          { name: "Cala Boadella", description: "Cala de arena y roca rodeada de pinos, con agua limpia y zonas resguardadas ideales para el baño en familia." },
+          { name: "Platja de Fenals", description: "Playa amplia y protegida, de pendiente suave, perfecta para fondear cerca y pasar el día con los más pequeños." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Lloret en familia",
+        boatsIntro:
+          "Lloret queda más allá de las 2 millas, así que se llega con uno de nuestros barcos con licencia. Son espaciosos y estables —el Pacific Craft 625 admite hasta 7 personas— y cubren el trayecto desde Blanes en unos 20 minutos.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. El trayecto hasta Lloret son unos 20 minutos. Llevamos chalecos de todas las tallas; trae protección solar, gorra, agua y algo de picar.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Cuánto se tarda de Blanes a Lloret en barco?", a: "Unos 20 minutos de navegación tranquila bordeando la costa con un barco con licencia." },
+          { q: "¿Qué playa de Lloret es mejor con niños?", a: "Santa Cristina y Fenals, por su arena, aguas tranquilas y servicios cercanos." },
+        ],
+        ctaTitle: "Reserva tu día de barco en familia en Lloret",
+        ctaText: "Elige fecha y barco con licencia, y disfruta de las playas de Lloret en familia saliendo desde Blanes.",
+      },
+      families__locationTossa: {
+        seoTitle: "Alquiler de barco para familias en Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Día de barco en familia en Tossa de Mar desde Blanes (30-45 min con barco con licencia): la Platja Gran, calas resguardadas y barcos amplios de hasta 7 plazas.",
+        h1: "Alquiler de barco para familias en Tossa de Mar",
+        intro:
+          "Tossa de Mar regala a las familias una postal inolvidable: la Vila Vella medieval sobre el mar y calas de aguas limpias. Desde Blanes son unos 30-45 minutos de navegación con un barco con licencia, ideal para una excursión de día completo.",
+        spotsTitle: "Mejores playas y calas para familias en Tossa",
+        spots: [
+          { name: "Platja Gran de Tossa", description: "La playa principal, de arena y al pie del castillo; aguas tranquilas y todos los servicios para un día cómodo con niños." },
+          { name: "La Mar Menuda", description: "Bahía resguardada junto al casco antiguo, de aguas calmadas, perfecta para fondear y bañarse en familia." },
+          { name: "Cala Llevadó", description: "Entorno natural de pinos y agua cristalina; una cala más tranquila para quien busca alejarse del bullicio." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Tossa en familia",
+        boatsIntro:
+          "Tossa está fuera del alcance de los barcos sin licencia, así que el viaje se hace con uno de nuestros barcos con licencia, espaciosos y de hasta 7 plazas. Cubren el trayecto desde Blanes en 30-45 minutos; conviene reservar duraciones de medio día o más.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. La navegación hasta Tossa es de 30-45 minutos. Llevamos chalecos de todas las tallas; trae protección solar, gorra, agua y comida para el día.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Se puede ir a Tossa en familia con barco sin licencia?", a: "No. Tossa está fuera del límite de 2 millas; el viaje se hace con un barco con licencia, en 30-45 minutos desde Blanes." },
+          { q: "¿Es buen plan para un día completo?", a: "Sí: por la distancia, lo ideal es reservar medio día o jornada completa y combinar la Platja Gran con alguna cala cercana." },
+        ],
+        ctaTitle: "Reserva tu día de barco en familia en Tossa",
+        ctaText: "Elige fecha y barco con licencia, y vive un día en familia en Tossa de Mar saliendo desde Blanes.",
+      },
+      families__locationCostaBrava: {
+        seoTitle: "Alquiler de barco para familias en la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Día de barco en familia por la Costa Brava sur desde Blanes: calas tranquilas y playas de arena de Blanes a Tossa. Barcos sin licencia para lo cercano y con licencia para el tramo completo.",
+        h1: "Alquiler de barco para familias por la Costa Brava",
+        intro:
+          "La Costa Brava sur, de Blanes a Tossa de Mar, está hecha para disfrutarla en familia: calas resguardadas, playas de arena y agua tranquila. Desde el Puerto de Blanes eliges entre una salida corta a las calas cercanas o una jornada explorando la costa.",
+        spotsTitle: "Calas y playas familiares imprescindibles",
+        spots: [
+          { name: "Cala Sant Francesc (Blanes)", description: "La más accesible y resguardada, dentro del alcance de un barco sin licencia: el plan perfecto para empezar con niños." },
+          { name: "Santa Cristina (Lloret)", description: "Gran playa de arena con servicios y aguas tranquilas, en el tramo medio de la costa." },
+          { name: "Platja Gran de Tossa", description: "Arena al pie de la Vila Vella medieval, recompensa para quien hace la travesía completa con un barco con licencia." },
+        ],
+        boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
+        boatsIntro:
+          "Para las calas cercanas a Blanes basta un barco sin licencia, con gasolina incluida. Para recorrer el tramo hasta Lloret y Tossa —más allá de las 2 millas— necesitas un barco con licencia, espacioso y de hasta 7 plazas.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Los barcos sin licencia navegan hasta 2 millas; para llegar a Lloret (~20 min) o Tossa (30-45 min) se usa un barco con licencia. Llevamos chalecos de todas las tallas.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Qué tramo podemos recorrer en familia en un día?", a: "Con un barco con licencia, calas de Blanes, Lloret y Tossa en una jornada; con uno sin licencia, las calas tranquilas más cercanas a Blanes." },
+          { q: "¿Cuál es la mejor época para ir con niños?", a: "De junio a septiembre, con el mar más cálido y tranquilo; julio y agosto ofrecen las mejores condiciones de baño." },
+        ],
+        ctaTitle: "Reserva tu día de barco en familia por la Costa Brava",
+        ctaText: "Elige tu barco según hasta dónde quieras llegar y disfruta de la costa en familia saliendo desde Blanes.",
+      },
+      sunset__locationBlanes: {
+        seoTitle: "Paseo en barco al atardecer en Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Navega a última hora de la tarde desde Blanes y disfruta de la luz dorada sobre la costa, el peñón de Sa Palomera y la bahía. Paseo tranquilo en barco, sin experiencia previa.",
+        h1: "Paseo en barco al atardecer en Blanes",
+        intro:
+          "A última hora de la tarde, cuando la luz se vuelve dorada, la costa de Blanes ofrece su cara más bonita desde el mar. Un paseo tranquilo en barco saliendo del Puerto de Blanes para ver el peñón de Sa Palomera y los acantilados encenderse con los últimos rayos.",
+        spotsTitle: "Mejores rincones para el atardecer cerca de Blanes",
+        spots: [
+          { name: "Sa Palomera", description: "El peñón que marca el inicio de la Costa Brava; con la luz baja, su silueta y la bahía de Blanes se tiñen de tonos cálidos." },
+          { name: "Acantilados de Marimurtra", description: "Las paredes rocosas bajo el Jardín Botánico, especialmente fotogénicas cuando el sol roza la costa." },
+          { name: "Bahía de Blanes", description: "Aguas tranquilas frente al pueblo, perfectas para fondear, brindar y ver cómo se encienden las luces del puerto." },
+        ],
+        boatsTitle: "Qué barco elegir para el atardecer",
+        boatsIntro:
+          "Para un paseo al atardecer recomendamos barcos cómodos con buen solárium. Varios son sin licencia —con gasolina incluida y sin titulación—, ideales para una salida corta y relajada cerca de Blanes.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes; la franja de última hora de la tarde es la que regala la mejor luz. En la Costa Brava el sol se pone tras la costa, así que disfrutarás de la luz dorada y los acantilados iluminados más que de la puesta sobre el agua. Trae una chaqueta ligera: al caer la tarde refresca.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿A qué hora es la salida al atardecer?", a: "Operamos hasta las 20:00; la última franja de la tarde es la que ofrece la luz dorada. Te recomendamos reservar 1 o 2 horas a última hora del día." },
+          { q: "¿Necesito licencia?", a: "No para un paseo cercano a Blanes: varios de nuestros barcos se gobiernan sin titulación y te explicamos el manejo antes de salir." },
+        ],
+        ctaTitle: "Reserva tu paseo al atardecer en Blanes",
+        ctaText: "Elige fecha y barco, y disfruta de la hora dorada en el mar saliendo del Puerto de Blanes.",
+      },
+      sunset__locationLloret: {
+        seoTitle: "Paseo en barco al atardecer en Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Atardecer en barco en Lloret de Mar saliendo desde Blanes (~20 min con barco con licencia): luz dorada sobre los acantilados de Cala Banys y el castillo de Lloret.",
+        h1: "Paseo en barco al atardecer en Lloret de Mar",
+        intro:
+          "La costa de Lloret de Mar, con sus acantilados y su castillo sobre el mar, se vuelve espectacular a última hora de la tarde. Saliendo desde Blanes en unos 20 minutos con un barco con licencia llegas a tiempo para la mejor luz del día.",
+        spotsTitle: "Mejores rincones para el atardecer en Lloret",
+        spots: [
+          { name: "Cala Banys", description: "Acantilados oscuros y rincones rocosos que, con la luz baja, ofrecen una de las estampas más dramáticas de la zona." },
+          { name: "Castell d'en Plaja", description: "El icónico castillo sobre la playa de Lloret, precioso visto desde el mar cuando se ilumina al caer la tarde." },
+          { name: "Santa Cristina", description: "Cala amplia y resguardada, ideal para fondear con calma y ver cómo la luz dorada baña los pinos." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Lloret al atardecer",
+        boatsIntro:
+          "Lloret queda más allá de las 2 millas, así que el paseo se hace con uno de nuestros barcos con licencia, cómodos y con buen solárium. Cubren el trayecto desde Blanes en unos 20 minutos.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes. En la Costa Brava el sol se pone tras la costa: disfrutarás de la luz dorada sobre los acantilados y el castillo más que de la puesta sobre el mar. Trae una chaqueta ligera para el regreso.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Cuánto se tarda de Blanes a Lloret al atardecer?", a: "Unos 20 minutos con un barco con licencia; conviene salir con margen para aprovechar la mejor luz." },
+          { q: "¿Se ve la puesta de sol sobre el mar?", a: "En esta costa el sol se pone tras la tierra, no sobre el agua; lo bonito es la luz dorada y los acantilados y el castillo iluminados." },
+        ],
+        ctaTitle: "Reserva tu paseo al atardecer en Lloret",
+        ctaText: "Elige fecha y barco con licencia, y vive la hora dorada en la costa de Lloret saliendo desde Blanes.",
+      },
+      sunset__locationTossa: {
+        seoTitle: "Paseo en barco al atardecer en Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Atardecer en barco en Tossa de Mar desde Blanes (30-45 min con barco con licencia): la Vila Vella medieval iluminada y la luz dorada sobre las calas.",
+        h1: "Paseo en barco al atardecer en Tossa de Mar",
+        intro:
+          "Pocas imágenes de la Costa Brava igualan la Vila Vella de Tossa de Mar iluminada al caer la tarde, vista desde el mar. Desde Blanes son unos 30-45 minutos de navegación con un barco con licencia hasta este escenario único.",
+        spotsTitle: "Mejores rincones para el atardecer en Tossa",
+        spots: [
+          { name: "Vila Vella", description: "Las murallas medievales sobre el mar, que se encienden con tonos cálidos al caer la tarde: la estampa más icónica de Tossa." },
+          { name: "La Mar Menuda", description: "Bahía resguardada junto al casco antiguo, perfecta para fondear y contemplar la costa con la luz baja." },
+          { name: "Cala Giverola", description: "Cala profunda entre montañas, de aguas tranquilas, ideal para un fondeo sereno antes del regreso." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Tossa al atardecer",
+        boatsIntro:
+          "Tossa está fuera del alcance de los barcos sin licencia, así que el paseo se hace con uno de nuestros barcos con licencia, cómodos y con buen solárium. El trayecto desde Blanes es de 30-45 minutos.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes. Por la distancia (30-45 min), planifica la salida para aprovechar la última luz y el regreso con tranquilidad. En esta costa el sol se pone tras la tierra: lo espectacular es la Vila Vella iluminada. Trae una chaqueta ligera.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Da tiempo a ir y volver de Tossa al atardecer?", a: "Sí, planificándolo: son 30-45 minutos por trayecto, así que conviene reservar varias horas y salir con margen." },
+          { q: "¿Qué hace especial el atardecer en Tossa?", a: "La Vila Vella medieval sobre el mar, que se ilumina al caer la tarde y se ve de forma única desde el barco." },
+        ],
+        ctaTitle: "Reserva tu paseo al atardecer en Tossa",
+        ctaText: "Elige fecha y barco con licencia, y contempla la Vila Vella iluminada desde el mar saliendo desde Blanes.",
+      },
+      sunset__locationCostaBrava: {
+        seoTitle: "Paseo en barco al atardecer por la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Atardecer en barco por la Costa Brava sur desde Blanes: luz dorada sobre acantilados, calas y la Vila Vella de Tossa. Barco sin licencia para lo cercano, con licencia para el tramo completo.",
+        h1: "Paseo en barco al atardecer por la Costa Brava",
+        intro:
+          "La Costa Brava sur, de Blanes a Tossa, ofrece a última hora de la tarde una sucesión de acantilados, calas y pueblos que se encienden con la luz dorada. Desde el Puerto de Blanes eliges entre un paseo corto cerca o una salida más larga por la costa.",
+        spotsTitle: "Mejores rincones de la costa al atardecer",
+        spots: [
+          { name: "Sa Palomera (Blanes)", description: "El peñón que abre la Costa Brava, dentro del alcance de un barco sin licencia: el plan más sencillo para la hora dorada." },
+          { name: "Cala Banys (Lloret)", description: "Acantilados dramáticos que destacan con la luz baja, en el tramo medio de la costa." },
+          { name: "Vila Vella (Tossa)", description: "Las murallas medievales iluminadas sobre el mar, la recompensa de la travesía completa con un barco con licencia." },
+        ],
+        boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
+        boatsIntro:
+          "Para un paseo cercano a Blanes basta un barco sin licencia, con gasolina incluida. Para recorrer el tramo hasta Lloret y Tossa —más allá de las 2 millas— necesitas un barco con licencia, cómodo y con buen solárium.",
+        practicalTitle: "Información práctica",
+        practicalBody:
+          "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes. En esta costa el sol se pone tras la tierra: disfrutarás de la luz dorada y los pueblos y acantilados iluminados. Los barcos sin licencia llegan hasta 2 millas; para Lloret o Tossa se usa un barco con licencia. Trae una chaqueta ligera.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Dónde se ve el mejor atardecer desde el barco?", a: "Cerca de Blanes, Sa Palomera; en el tramo completo, la Vila Vella de Tossa iluminada es lo más espectacular." },
+          { q: "¿Necesito barco con licencia?", a: "Solo si quieres llegar a Lloret o Tossa. Para la hora dorada cerca de Blanes basta un barco sin licencia." },
+        ],
+        ctaTitle: "Reserva tu paseo al atardecer por la Costa Brava",
+        ctaText: "Elige tu barco según hasta dónde quieras llegar y persigue la hora dorada saliendo desde Blanes.",
+      },
+      fishing__locationBlanes: {
+        seoTitle: "Alquiler de barco para pescar en Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Sal a pescar en barco desde Blanes con nuestras embarcaciones con licencia. Aguas y fondos rocosos frente a la costa. Necesitas licencia de pesca recreativa; te informamos.",
+        h1: "Alquiler de barco para pescar en Blanes",
+        intro:
+          "Salir a pescar en barco desde el Puerto de Blanes es una forma estupenda de disfrutar el mar de la Costa Brava. Te alquilamos una embarcación con licencia con la que acercarte a las aguas y fondos cercanos a la costa para una jornada de pesca recreativa.",
+        spotsTitle: "Zonas de pesca cerca de Blanes",
+        spots: [
+          { name: "Aguas frente a Sa Palomera", description: "Los alrededores del peñón, con fondos rocosos donde es habitual la pesca de roca a poca distancia del puerto." },
+          { name: "Fondos rocosos de la costa de Blanes", description: "Tramos de roca y arena frente al litoral, accesibles para una salida tranquila de media jornada." },
+          { name: "Zona exterior de la bahía", description: "Aguas algo más profundas para quien busca probar suerte fuera del abrigo de la bahía, siempre dentro de la normativa." },
+        ],
+        boatsTitle: "Qué barco elegir para pescar",
+        boatsIntro:
+          "Para pescar usamos nuestros barcos con licencia, con mayor autonomía y alcance que los barcos sin licencia. Son los más indicados para moverte entre zonas de pesca y pasar la jornada con comodidad.",
+        practicalTitle: "Información práctica y normativa",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Para pescar necesitas la licencia de pesca recreativa de Cataluña, que es responsabilidad del cliente. Respeta las tallas mínimas, las especies protegidas y las zonas reguladas. El equipo de pesca no está incluido.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Necesito licencia para pescar desde el barco?", a: "Sí. La pesca recreativa en Cataluña requiere licencia, que tramita y aporta el cliente. El alquiler del barco no la incluye." },
+          { q: "¿El barco lleva equipo de pesca?", a: "No, el equipo de pesca no está incluido; te alquilamos la embarcación con licencia para tu salida." },
+        ],
+        ctaTitle: "Reserva tu salida de pesca en Blanes",
+        ctaText: "Elige fecha y barco con licencia, y prepara tu jornada de pesca recreativa saliendo del Puerto de Blanes.",
+      },
+      fishing__locationLloret: {
+        seoTitle: "Alquiler de barco para pescar en Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pesca recreativa en barco en Lloret de Mar desde Blanes (~20 min con barco con licencia). Fondos rocosos frente a la costa. Licencia de pesca a cargo del cliente.",
+        h1: "Alquiler de barco para pescar en Lloret de Mar",
+        intro:
+          "La costa de Lloret de Mar, de acantilados y fondos rocosos, ofrece buenas zonas para la pesca recreativa. Saliendo desde Blanes con un barco con licencia llegas en unos 20 minutos y dispones de autonomía para moverte entre puntos.",
+        spotsTitle: "Zonas de pesca cerca de Lloret",
+        spots: [
+          { name: "Fondos de Cala Banys", description: "Tramo de acantilados y roca donde es habitual la pesca de roca, frente a la costa de Lloret." },
+          { name: "Aguas de Fenals", description: "Zona algo más abierta junto a la punta de Fenals, para probar distintas técnicas en una jornada." },
+          { name: "Litoral entre Lloret y Tossa", description: "Costa rocosa y poco urbanizada con fondos interesantes, siempre respetando las zonas reguladas." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Lloret a pescar",
+        boatsIntro:
+          "Lloret queda más allá de las 2 millas, así que se llega con uno de nuestros barcos con licencia, con autonomía para moverte entre zonas de pesca. El trayecto desde Blanes es de unos 20 minutos.",
+        practicalTitle: "Información práctica y normativa",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Necesitas la licencia de pesca recreativa de Cataluña (a cargo del cliente). Respeta tallas mínimas, especies protegidas y zonas reguladas. El equipo de pesca no está incluido.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Cuánto se tarda de Blanes a Lloret en barco?", a: "Unos 20 minutos con un barco con licencia, los que usamos para las salidas de pesca." },
+          { q: "¿Hace falta licencia de pesca?", a: "Sí, la licencia de pesca recreativa de Cataluña la aporta el cliente; el alquiler del barco no la incluye." },
+        ],
+        ctaTitle: "Reserva tu salida de pesca en Lloret",
+        ctaText: "Elige fecha y barco con licencia, y prepara tu jornada de pesca frente a Lloret saliendo desde Blanes.",
+      },
+      fishing__locationTossa: {
+        seoTitle: "Alquiler de barco para pescar en Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pesca recreativa en barco cerca de Tossa de Mar desde Blanes (30-45 min con barco con licencia). Ojo: parte del litoral es reserva protegida donde la pesca está restringida.",
+        h1: "Alquiler de barco para pescar en Tossa de Mar",
+        intro:
+          "Las aguas de Tossa de Mar son célebres por su riqueza, en buena parte gracias a su protección. Desde Blanes son unos 30-45 minutos con un barco con licencia, pero conviene tener muy presente que parte de este litoral es zona protegida con la pesca restringida.",
+        spotsTitle: "Zonas de pesca y áreas protegidas en Tossa",
+        spots: [
+          { name: "Aguas exteriores a la reserva", description: "La pesca recreativa solo es posible fuera de las zonas protegidas; infórmate de los límites vigentes antes de calar." },
+          { name: "Litoral entre Lloret y Tossa", description: "Tramos de roca fuera del área protegida donde la pesca de roca está permitida con licencia." },
+          { name: "Reserva marina de Tossa (protegida)", description: "Una franja de su litoral está protegida y la pesca está restringida o prohibida: respétala siempre." },
+        ],
+        boatsTitle: "Qué barco elegir para llegar a Tossa",
+        boatsIntro:
+          "Tossa está fuera del alcance de los barcos sin licencia, así que el viaje se hace con uno de nuestros barcos con licencia, con autonomía para la jornada. El trayecto desde Blanes es de 30-45 minutos.",
+        practicalTitle: "Información práctica y normativa",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Parte del litoral de Tossa es zona protegida donde la pesca está restringida: respeta sus límites. Necesitas la licencia de pesca recreativa de Cataluña (a cargo del cliente) y debes respetar tallas y especies. El equipo de pesca no está incluido.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Se puede pescar en Tossa de Mar?", a: "Solo fuera de las zonas protegidas y con licencia de pesca recreativa. Parte del litoral es reserva donde la pesca está restringida o prohibida." },
+          { q: "¿Se llega en barco sin licencia?", a: "No. Tossa está fuera del límite de 2 millas; se llega con un barco con licencia, en 30-45 minutos desde Blanes." },
+        ],
+        ctaTitle: "Reserva tu salida de pesca cerca de Tossa",
+        ctaText: "Elige fecha y barco con licencia, respeta las zonas protegidas y prepara tu jornada de pesca saliendo desde Blanes.",
+      },
+      fishing__locationCostaBrava: {
+        seoTitle: "Alquiler de barco para pescar en la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pesca recreativa en barco por la Costa Brava sur desde Blanes. Barcos con licencia para moverte entre zonas. Licencia de pesca a cargo del cliente; respeta las áreas protegidas.",
+        h1: "Alquiler de barco para pescar por la Costa Brava",
+        intro:
+          "La Costa Brava sur, de Blanes a Tossa, alterna fondos rocosos, puntas y aguas abiertas que la convierten en un buen destino de pesca recreativa. Desde el Puerto de Blanes te alquilamos un barco con licencia para moverte entre las distintas zonas.",
+        spotsTitle: "Zonas de pesca en la Costa Brava sur",
+        spots: [
+          { name: "Aguas frente a Blanes", description: "Fondos rocosos cerca del puerto, el punto de partida más sencillo para una salida de media jornada." },
+          { name: "Litoral de Lloret", description: "Acantilados y roca alrededor de Cala Banys y Fenals, con buenas zonas de pesca de roca." },
+          { name: "Costa de Tossa (con reserva protegida)", description: "Aguas ricas, pero con una franja protegida donde la pesca está restringida: pesca solo fuera de ella." },
+        ],
+        boatsTitle: "Qué barco elegir para pescar por la costa",
+        boatsIntro:
+          "Para la pesca usamos barcos con licencia, con la autonomía necesaria para recorrer la costa entre zonas. Los barcos sin licencia, limitados a 2 millas, no son la opción para este tipo de salidas.",
+        practicalTitle: "Información práctica y normativa",
+        practicalBody:
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Necesitas la licencia de pesca recreativa de Cataluña (a cargo del cliente). Respeta tallas mínimas, especies protegidas y, muy especialmente, las zonas reguladas como la reserva de Tossa. El equipo de pesca no está incluido.",
+        faqTitle: "Preguntas frecuentes",
+        faq: [
+          { q: "¿Qué necesito para pescar desde el barco?", a: "La licencia de pesca recreativa de Cataluña, que aporta el cliente, y respetar la normativa de tallas, especies y zonas protegidas." },
+          { q: "¿Dónde se puede pescar en la Costa Brava sur?", a: "En los fondos rocosos frente a Blanes y Lloret, siempre fuera de las áreas protegidas como parte del litoral de Tossa." },
+        ],
+        ctaTitle: "Reserva tu salida de pesca por la Costa Brava",
+        ctaText: "Elige tu barco con licencia, respeta la normativa y las zonas protegidas, y prepara tu jornada de pesca saliendo desde Blanes.",
+      },
+    },
   },
   giftCardBanner: {
     title: "Regala una experiencia única en el mar",
@@ -2387,7 +2846,7 @@ export const es: Translations = {
     title: "¿Con o sin licencia?",
     subtitle:
       "No necesitas carnet para disfrutar del mar. Pero si lo tienes, tenemos barcos más potentes.",
-    withoutLicense: "Sin licencia",
+    withoutLicense: "Sin necesidad de licencia",
     withLicense: "Con licencia",
     withoutLicenseDesc: "Te enseñamos en 15 minutos. Gasolina incluida. Perfecto para familias.",
     withLicenseDesc: "Más potencia, más velocidad, más lejos. Para navegantes con titulación.",
@@ -4104,15 +4563,23 @@ export const es: Translations = {
     categories: {
       titulacion: "Titulaciones",
       unidad: "Unidades de medida",
-      accion: "Acciones",
+      accion: "Maniobras y acciones",
       parte: "Partes del barco y costa",
       equipamiento: "Equipamiento",
+      seguridad: "Seguridad a bordo",
+      meteo: "Meteorología y mar",
     },
     terms: [
       {
+        term: "LN (Licencia de Navegación)",
+        definition:
+          "Titulación náutica española mínima reconocida por el RD 875/2014. Permite gobernar embarcaciones de hasta 6 metros de eslora, con motor adecuado al casco y hasta 2 millas náuticas de la costa, en horario diurno. Es la titulación mínima requerida para los barcos con licencia de nuestra flota (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625). Examen teórico + curso de seguridad básico.",
+        category: "titulacion",
+      },
+      {
         term: "LNB (Licencia de Navegación Básica)",
         definition:
-          "Titulación náutica española que permite gobernar embarcaciones de hasta 8 metros de eslora y hasta 5 millas de la costa. Obligatoria para alquilar barcos con más de 15 CV. Válida de por vida tras aprobar el examen teórico + curso práctico.",
+          "Titulación náutica española superior a la LN. Permite gobernar embarcaciones de hasta 8 metros de eslora y hasta 5 millas de la costa. Recomendable para quien quiera flexibilidad de zona. Válida de por vida tras aprobar el examen teórico + curso práctico.",
         category: "titulacion",
       },
       {
@@ -4190,7 +4657,7 @@ export const es: Translations = {
       {
         term: "Estribor",
         definition:
-          'Lado derecho del barco mirando desde popa hacia proa. Se identifica por la luz verde de navegación. Regla de oro: "Estribor = derecho" (ambas empiezan con E).',
+          "Lado derecho del barco mirando desde popa hacia proa. Se identifica por la luz verde de navegación. Regla de oro: 'Estribor = derecho' (ambas empiezan con E).",
         category: "parte",
       },
       {
@@ -4216,6 +4683,228 @@ export const es: Translations = {
         definition:
           "Zona central del barco donde se ubican los asientos, el puesto de gobierno y la mesa. Es el espacio operativo del barco durante la navegación.",
         category: "parte",
+      },
+      {
+        term: "PY (Patrón de Yate)",
+        definition:
+          "Titulación náutica española superior al PER. Permite gobernar embarcaciones de hasta 24 metros de eslora y hasta 150 millas de la costa. Amplía el PER con navegación, meteorología e inglés técnico. No hace falta para ningún barco de nuestra flota, pero es la referencia para navegación de altura.",
+        category: "titulacion",
+      },
+      {
+        term: "Calado",
+        definition:
+          "Profundidad que necesita un barco para flotar sin tocar fondo, medida desde la línea de flotación hasta el punto más bajo de la quilla o la hélice. Unidad: metros. Las embarcaciones de recreo ligeras tienen calados pequeños, lo que permite acercarse a calas poco profundas.",
+        category: "unidad",
+      },
+      {
+        term: "Rumbo",
+        definition:
+          "Dirección hacia la que navega el barco, medida en grados (0° a 360°) respecto al norte: 0°/360° norte, 90° este, 180° sur, 270° oeste. Mantener un rumbo constante es la base de la navegación entre Blanes y las calas de la Costa Brava.",
+        category: "unidad",
+      },
+      {
+        term: "Singladura",
+        definition:
+          "Distancia recorrida o navegación realizada en un día. En navegación de recreo costera se usa de forma coloquial para referirse a la salida o jornada de mar completa.",
+        category: "unidad",
+      },
+      {
+        term: "Braza",
+        definition:
+          "Antigua unidad de profundidad equivalente a 1,8288 metros (6 pies). Todavía aparece en algunas cartas náuticas y entre marineros para referirse al fondo o a la longitud de cabo largado al fondear.",
+        category: "unidad",
+      },
+      {
+        term: "Atracar",
+        definition:
+          "Maniobra de aproximar y amarrar el barco a un muelle, pantalán o embarcadero. Requiere controlar la velocidad, anticipar el viento y la corriente y proteger el casco con defensas.",
+        category: "accion",
+      },
+      {
+        term: "Largar amarras",
+        definition:
+          "Soltar los cabos que sujetan el barco al amarre para iniciar la navegación; lo contrario de amarrar. Coloquialmente, 'largar amarras' equivale a zarpar.",
+        category: "accion",
+      },
+      {
+        term: "Virar",
+        definition:
+          "Cambiar el rumbo del barco girando la proa hacia un lado. También describe el giro completo para invertir el sentido de la marcha.",
+        category: "accion",
+      },
+      {
+        term: "Capear",
+        definition:
+          "Aguantar el mal tiempo o la mar gruesa manteniendo el barco con la proa o la amura al oleaje y a poca velocidad, para minimizar el balanceo y los golpes de mar.",
+        category: "accion",
+      },
+      {
+        term: "Dar avante / dar atrás",
+        definition:
+          "Órdenes de máquina. 'Dar avante' es propulsar el barco hacia adelante; 'dar atrás' (o ciar) es propulsarlo hacia atrás. Esenciales en maniobras de puerto y al fondear.",
+        category: "accion",
+      },
+      {
+        term: "Aproar",
+        definition:
+          "Orientar la proa del barco hacia un punto concreto: el oleaje, el viento o el rumbo deseado. Aproar a la mar es la técnica básica para navegar con seguridad cuando hay olas.",
+        category: "accion",
+      },
+      {
+        term: "Quilla",
+        definition:
+          "Pieza longitudinal en la base del casco que da estabilidad y rigidez al barco y reduce la deriva lateral. En embarcaciones ligeras a motor es poco pronunciada.",
+        category: "parte",
+      },
+      {
+        term: "Casco",
+        definition:
+          "Cuerpo o estructura flotante del barco, que lo mantiene a flote y soporta el resto de elementos. Lo más común en recreo es la fibra de vidrio; también los hay de aluminio o madera.",
+        category: "parte",
+      },
+      {
+        term: "Timón",
+        definition:
+          "Pieza móvil situada bajo la popa que, al girar, desvía el flujo de agua y hace que el barco cambie de rumbo. Se gobierna con la rueda o la caña del puesto de gobierno.",
+        category: "parte",
+      },
+      {
+        term: "Hélice",
+        definition:
+          "Pieza giratoria de palas que, accionada por el motor, impulsa el barco al desplazar el agua. En los motores fueraborda va integrada en la cola del motor.",
+        category: "parte",
+      },
+      {
+        term: "Amura",
+        definition:
+          "Zona del costado del barco próxima a la proa, entre esta y el través. Se habla de amura de babor o de estribor; 'mar de amura' es el oleaje que llega por esa zona.",
+        category: "parte",
+      },
+      {
+        term: "Aleta",
+        definition:
+          "Zona del costado del barco próxima a la popa, entre el través y la popa. Se habla de aleta de babor o de estribor.",
+        category: "parte",
+      },
+      {
+        term: "Línea de flotación",
+        definition:
+          "Línea donde la superficie del agua toca el casco con el barco a flote y con su carga normal. Separa la obra viva (sumergida) de la obra muerta (emergida).",
+        category: "parte",
+      },
+      {
+        term: "Ancla",
+        definition:
+          "Pieza de metal que se lanza al fondo marino, unida al barco por cadena o cabo, para fondear y mantener la posición. El rezón es un tipo de ancla ligera de varias uñas habitual en embarcaciones pequeñas.",
+        category: "equipamiento",
+      },
+      {
+        term: "Cabo",
+        definition:
+          "Nombre marinero de toda cuerda a bordo: nunca se dice 'cuerda'. Los cabos sirven para amarrar, fondear, remolcar o sujetar elementos del barco.",
+        category: "equipamiento",
+      },
+      {
+        term: "Defensas",
+        definition:
+          "Elementos cilíndricos o esféricos, normalmente inflables, que se cuelgan del costado para proteger el casco de golpes contra el muelle u otras embarcaciones al atracar.",
+        category: "equipamiento",
+      },
+      {
+        term: "Cornamusa",
+        definition:
+          "Pieza metálica con forma de T fijada en cubierta donde se hacen firmes los cabos de amarre. Permite asegurar y soltar el cabo con rapidez.",
+        category: "equipamiento",
+      },
+      {
+        term: "Ecosonda",
+        definition:
+          "Instrumento que mide la profundidad del agua bajo el casco emitiendo ultrasonidos y midiendo el eco del fondo. Imprescindible para fondear con seguridad y evitar embarrancar.",
+        category: "equipamiento",
+      },
+      {
+        term: "GPS y carta náutica",
+        definition:
+          "El GPS da la posición del barco por satélite; el plotter la representa sobre una carta náutica electrónica con profundidades, balizas y peligros. La carta náutica es el mapa oficial del mar.",
+        category: "equipamiento",
+      },
+      {
+        term: "Chaleco salvavidas",
+        definition:
+          "Equipo individual de flotación obligatorio a bordo, uno por persona. Mantiene a flote a quien cae al agua. Su uso es obligatorio en situaciones de riesgo y muy recomendable para menores y no nadadores.",
+        category: "seguridad",
+      },
+      {
+        term: "Aro salvavidas",
+        definition:
+          "Flotador circular que se lanza a una persona caída al agua para que se agarre mientras se la recupera. Suele llevar una rabiza (cabo) y, en algunos casos, luz de localización.",
+        category: "seguridad",
+      },
+      {
+        term: "Hombre al agua",
+        definition:
+          "Emergencia en la que una persona cae al mar. La maniobra consiste en señalar al accidentado, no perderlo de vista, lanzar un aro salvavidas y regresar aproando con cuidado para recogerlo por sotavento.",
+        category: "seguridad",
+      },
+      {
+        term: "Bengalas y señales de socorro",
+        definition:
+          "Material de seguridad pirotécnico (bengalas de mano, cohetes con paracaídas, señales de humo) para pedir ayuda y ser localizado en caso de emergencia en la mar.",
+        category: "seguridad",
+      },
+      {
+        term: "VHF (Canal 16)",
+        definition:
+          "Radio de muy alta frecuencia para comunicaciones marítimas. El canal 16 es la frecuencia internacional de socorro, urgencia y llamada, monitorizada por Salvamento Marítimo.",
+        category: "seguridad",
+      },
+      {
+        term: "Botiquín de a bordo",
+        definition:
+          "Conjunto de material sanitario, obligatorio según la zona de navegación, para atender mareos, cortes, quemaduras solares y pequeñas urgencias durante la salida.",
+        category: "seguridad",
+      },
+      {
+        term: "Tramontana",
+        definition:
+          "Viento fuerte, frío y seco del norte característico del Golfo de León y del norte de la Costa Brava. Puede levantarse con rapidez y complicar la navegación; conviene consultar la previsión antes de salir de Blanes.",
+        category: "meteo",
+      },
+      {
+        term: "Garbí (Garbino)",
+        definition:
+          "Viento del suroeste típico de las tardes de verano en la Costa Brava, asociado a la brisa marina. Suele ser moderado y refrescante, aunque puede rizar la mar por la tarde.",
+        category: "meteo",
+      },
+      {
+        term: "Migjorn",
+        definition:
+          "Viento del sur (mediodía) en la costa catalana. Cálido y húmedo, suele anunciar cambio de tiempo y aumento del oleaje.",
+        category: "meteo",
+      },
+      {
+        term: "Mar de fondo",
+        definition:
+          "Oleaje formado por viento lejano o ya pasado que llega a la costa como olas largas y regulares, aun sin viento local. Puede hacer incómodo el fondeo en calas expuestas.",
+        category: "meteo",
+      },
+      {
+        term: "Marejada y mar rizada",
+        definition:
+          "Estados de la mar según la altura de las olas: 'mar rizada' son olas muy pequeñas (hasta 0,5 m) y 'marejada' olas de 0,5 a 1,25 m. Son términos del parte meteorológico marítimo.",
+        category: "meteo",
+      },
+      {
+        term: "Banderas de baño",
+        definition:
+          "Señalización de playa: bandera verde (baño permitido), amarilla (precaución, baño con limitaciones) y roja (baño prohibido). Orientan también sobre el estado de la mar para salir en barco.",
+        category: "meteo",
+      },
+      {
+        term: "Parte meteorológico marítimo",
+        definition:
+          "Previsión específica para la mar (viento, estado de la mar, visibilidad y fenómenos) emitida por la AEMET por zonas. Consultarlo antes de cada salida es la primera norma de seguridad.",
+        category: "meteo",
       },
     ],
   },
@@ -4438,5 +5127,127 @@ export const es: Translations = {
       errorText: "No hemos podido enviar tus datos. Inténtalo de nuevo o escríbenos por WhatsApp.",
       requiredError: "Por favor, completa tu nombre y teléfono.",
     },
+  },
+  jetski: {
+    badge: "Jet ski",
+    requestCta: "Reservar",
+    fromLabel: "desde",
+    modal: {
+      title: "Solicita tu jet ski",
+      subtitle: "Elige la franja y te confirmamos disponibilidad.",
+      slot: "Franja",
+      date: "Fecha preferida",
+      datePlaceholder: "¿Qué día te gustaría?",
+      people: "Personas",
+      name: "Nombre",
+      namePlaceholder: "Tu nombre y apellido",
+      firstName: "Nombre",
+      firstNamePlaceholder: "Nombre",
+      lastName: "Apellidos",
+      lastNamePlaceholder: "Apellidos",
+      phone: "Teléfono / WhatsApp",
+      email: "Email",
+      emailHint: "Opcional",
+      submit: "Enviar solicitud",
+      submitting: "Enviando...",
+      reassurance: "Sin compromiso · te confirmamos por WhatsApp o email",
+      whatsappDirect: "Prefiero escribir por WhatsApp",
+      successTitle: "¡Pulsa enviar en WhatsApp!",
+      successText: "Hemos abierto WhatsApp con tu solicitud. Pulsa Enviar y te confirmamos la disponibilidad enseguida.",
+      errorText: "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.",
+      requiredError: "Por favor, completa tu nombre y teléfono.",
+    },
+  },
+  jetskiHub: {
+    seoTitle: "Alquiler de motos de agua en Blanes (Costa Brava) | Sin licencia",
+    navLabel: "Motos de agua",
+    hero: {
+      title: "Alquiler de motos de agua en Blanes",
+      subtitle:
+        "Pilota una moto de agua sin licencia en la Costa Brava: circuito balizado frente a Blanes o excursión guiada a Tossa de Mar. Chaleco y combustible incluidos.",
+    },
+    intro:
+      "Dos formas de disfrutar la moto de agua sin licencia desde el puerto de Blanes. Elige el circuito para una primera toma de contacto o la excursión guiada, con monitor, para recorrer la costa hasta Tossa de Mar.",
+    productsTitle: "Nuestras experiencias en moto de agua",
+    faqTitle: "Preguntas frecuentes",
+    faq: [
+      {
+        q: "¿Necesito licencia para la moto de agua?",
+        a: "No. Todas nuestras experiencias son sin licencia: vas siempre acompañado o vigilado por un monitor titulado.",
+      },
+      {
+        q: "¿Cuántas personas pueden ir por moto?",
+        a: "Entre 1 y 2 personas por moto de agua, según la experiencia que elijas.",
+      },
+      {
+        q: "¿Desde dónde salen?",
+        a: "Desde el puerto de Blanes (Girona), en el mismo pantalán que nuestros barcos.",
+      },
+    ],
+  },
+  jetskiLanding: {
+    "fromLabel": "desde",
+    "ctaRequest": "Reservar",
+    "slotsTitle": "Franjas y precios",
+    "includedTitle": "Qué incluye",
+    "faqTitle": "Preguntas frecuentes",
+    "reassurance": "Sin compromiso · te confirmamos por WhatsApp",
+    "circuito": {
+      "navLabel": "Circuito en Jet Ski",
+      "seoTitle": "Alquiler de moto de agua en Blanes · Circuito en jet ski sin licencia",
+      "hero": {
+        "title": "Circuito en Jet Ski en Blanes",
+        "subtitle": "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes, con monitor vigilando. Sin licencia, desde 15 minutos."
+      },
+      "chips": [
+        "Sin necesidad de licencia",
+        "1-2 personas",
+        "Desde 15 min"
+      ],
+      "intro": "Tu primera vez en moto de agua, sin complicaciones: te explicamos todo y pilotas en una zona segura frente al puerto de Blanes.",
+      "faq": [
+        {
+          "q": "¿Necesito licencia?",
+          "a": "No. El circuito se hace en zona balizada con un monitor vigilando en todo momento."
+        },
+        {
+          "q": "¿Cuántas personas por moto?",
+          "a": "Hasta 2 personas por moto de agua."
+        },
+        {
+          "q": "¿Desde qué edad?",
+          "a": "18 años para pilotar; menores pueden ir de pasajeros según normativa del operador."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Excursión en Jet Ski con Monitor",
+      "seoTitle": "Alquiler de moto de agua en Blanes · Excursión guiada a Tossa de Mar",
+      "hero": {
+        "title": "Excursión en Jet Ski de Blanes a Tossa",
+        "subtitle": "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada desde Blanes hacia Tossa de Mar. Sin licencia."
+      },
+      "chips": [
+        "Sin necesidad de licencia",
+        "Guía a Tossa de Mar",
+        "Combustible incluido",
+        "1-2 personas"
+      ],
+      "intro": "Una ruta guiada por calas y acantilados de la Costa Brava, con un monitor que va contigo en todo momento. Combustible y seguro incluidos.",
+      "faq": [
+        {
+          "q": "¿Necesito licencia?",
+          "a": "No. Vas acompañado por un monitor titulado durante toda la excursión."
+        },
+        {
+          "q": "¿Qué incluye?",
+          "a": "Combustible, seguro de responsabilidad civil, monitor/guía, chaleco y briefing de seguridad."
+        },
+        {
+          "q": "¿Cuánto dura?",
+          "a": "Hay opción de 1 hora o 2 horas hacia Tossa de Mar."
+        }
+      ]
+    }
   },
 };

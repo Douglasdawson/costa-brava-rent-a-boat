@@ -9,6 +9,7 @@ export const ca: Translations = {
     faq: "FAQ",
     giftCards: "Targetes Regal",
     viewComponents: "Veure Components",
+    jetski: "Motos aquàtiques",
     bookNow: "Veure Disponibilitat",
     myAccount: "El Meu Compte",
   },
@@ -46,7 +47,7 @@ export const ca: Translations = {
   },
 
   fleet: {
-    title: "Tria el teu vaixell",
+    title: "Tria el teu pla al mar",
     subtitle:
       "Segons la mida del teu grup i l'experiència que busques. Assegurança i equip de seguretat inclosos.",
     helpText: "No saps quin triar? T'ajudem en menys de 5 minuts",
@@ -65,7 +66,7 @@ export const ca: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Tria entre 2h, 4h, o 8h per llogar la nostra {boatName}",
     withLicense: "Amb llicència",
-    withoutLicense: "Sense llicència",
+    withoutLicense: "Sense necessitat de llicència",
     available: "Disponible",
     occupied: "Ocupat",
     more: "més",
@@ -602,24 +603,6 @@ export const ca: Translations = {
     boat: "Barca",
     tripDate: "Data",
     submit: "Enviar foto",
-  },
-  routes: {
-    title: "Rutes Suggerides",
-    subtitle: "Descobreix les millors rutes en barca des del Port de Blanes",
-    bookBoat: "Reservar barca",
-    introText:
-      "Des del Port de Blanes, la porta d'entrada a la Costa Brava, tens accés directe a algunes de les rutes costaneres més espectaculars de la Mediterrània. Cada ruta està pensada per a diferents nivells d'experiència i duracions, des d'escapades d'1 hora fins a excursions de dia complet. Explora les nostres",
-    introFleetLink: "embarcacions disponibles",
-    introSuffix: "per trobar la barca perfecta per a la teva ruta.",
-    lloretTitle: "Lloret de Mar en barca",
-    lloretDesc:
-      "Platges daurades, cales amagades i vida nocturna. A només 20 min en barca des de Blanes.",
-    tossaTitle: "Tossa de Mar en barca",
-    tossaDesc:
-      "La Vila Vella medieval, penya-segats impressionants i les cales més verges de la Costa Brava.",
-    pricesTitle: "Preus i tarifes",
-    pricesDesc:
-      "Consulta els preus per temporada de totes les nostres embarcacions. Des de 70€/hora sense llicència.",
   },
   giftCardBanner: {
     title: "Regala una experiència única al mar",
@@ -3592,145 +3575,6 @@ export const ca: Translations = {
       error: "Error en enviar. Torna-ho a intentar.",
     },
   },
-  glossaryPage: {
-    seo: {
-      title: "Glossari Nàutic, Lloguer Barques Costa Brava | Costa Brava Rent a Boat",
-      description:
-        "Glossari de termes nàutics essencials: LNB, PER, PNB, nusos, milles nàutiques, eslora, fondejar, cales i parts de l'embarcació. Diccionari pràctic per llogar un vaixell a Blanes.",
-      keywords:
-        "glossari nautic, que es LNB, que es PER, que es PNB, milles nautiques, nusos, eslora, fondejar, glossari barques",
-    },
-    breadcrumbName: "Glossari Nàutic",
-    h1: "Glossari Nàutic",
-    intro:
-      "{count} termes essencials per llogar una barca a la Costa Brava. Titulacions, unitats de mesura, parts de l'embarcació i vocabulari marí.",
-    filterAll: "Tots",
-    ctaTitle: "A punt per llogar la teva barca?",
-    ctaDesc:
-      "Ara que domines la terminologia, tria la teva barca sense llicència o amb llicència per explorar la Costa Brava.",
-    ctaFleet: "Veure la flota",
-    ctaFaq: "Preguntes freqüents",
-    schemaName: "Glossari nàutic, Lloguer de barques Costa Brava",
-    schemaDescription:
-      "Definicions de termes nàutics essencials per llogar una barca a la Costa Brava: titulacions, unitats de mesura, parts de l'embarcació i terminologia marina.",
-    categories: {
-      titulacion: "Titulacions",
-      unidad: "Unitats de mesura",
-      accion: "Accions",
-      parte: "Parts de l'embarcació i costa",
-      equipamiento: "Equipament",
-    },
-    terms: [
-      {
-        term: "LNB (Llicència Bàsica de Navegació)",
-        definition:
-          "Titulació nàutica espanyola que permet governar embarcacions de fins a 8 metres d'eslora i fins a 5 milles de la costa. Obligatòria per llogar barques amb més de 15 CV. Vàlida de per vida després d'aprovar l'examen teòric + curs pràctic.",
-        category: "titulacion",
-      },
-      {
-        term: "PER (Patró d'Embarcacions d'Esbarjo)",
-        definition:
-          "Titulació nàutica espanyola superior a la LNB. Permet governar embarcacions de fins a 15 metres d'eslora i fins a 12 milles de la costa. Requereix examen teòric + pràctiques de navegació + radiocomunicacions.",
-        category: "titulacion",
-      },
-      {
-        term: "PNB (Patró de Navegació Bàsica)",
-        definition:
-          "Antiga titulació nàutica reemplaçada el 2014 per la LNB. Permet governar embarcacions de fins a 8 metres fins a 5 milles. Els qui la tenen continuen sent vàlids sense necessitat d'actualitzar a LNB.",
-        category: "titulacion",
-      },
-      {
-        term: "Milla nàutica",
-        definition:
-          "Unitat de distància marítima internacional equivalent a 1.852 metres (1,852 km). Les embarcacions sense llicència a Espanya poden navegar fins a un màxim de 2 milles nàutiques de la costa (3,7 km).",
-        category: "unidad",
-      },
-      {
-        term: "Nus",
-        definition:
-          "Unitat de velocitat marítima equivalent a 1 milla nàutica per hora (1,852 km/h). Les embarcacions sense llicència estan limitades a 5 nusos (9,3 km/h). Les barques amb llicència poden assolir molta més velocitat.",
-        category: "unidad",
-      },
-      {
-        term: "Eslora",
-        definition:
-          "Longitud total de la barca, mesurada de proa a popa. Unitat: metres. A Espanya, l'eslora determina la titulació nàutica mínima: fins a 5m pot no requerir títol, fins a 8m requereix LNB, fins a 15m requereix PER.",
-        category: "unidad",
-      },
-      {
-        term: "Mànega",
-        definition:
-          "Amplada màxima de la barca, mesurada d'un costat a l'altre en el seu punt més ample. Unitat: metres. Juntament amb l'eslora defineix l'estabilitat i l'espai disponible a bord.",
-        category: "unidad",
-      },
-      {
-        term: "CV (cavalls de vapor)",
-        definition:
-          "Unitat de potència del motor marí. Les barques sense llicència a Espanya estan limitades a 15 CV. Les barques amb llicència típicament tenen 40-150 CV, permetent navegació més ràpida i abast més gran.",
-        category: "unidad",
-      },
-      {
-        term: "Fondejar",
-        definition:
-          "Acció d'aturar la barca llançant l'àncora al fons marí per mantenir-la estàtica en una cala o zona sense amarratge. Requereix triar fons arenós (no rocós), llançar cap suficient (3-4 vegades la profunditat) i verificar que l'àncora agafa.",
-        category: "accion",
-      },
-      {
-        term: "Cala",
-        definition:
-          "Ensenada petita i abrigada a la costa, típicament envoltada de penya-segats o vegetació. A la Costa Brava hi ha desenes de cales accessibles només per mar, amb aigües cristal·lines i fons rocosos ideals per fer snorkel.",
-        category: "parte",
-      },
-      {
-        term: "Port esportiu",
-        definition:
-          "Instal·lació portuària destinada a embarcacions d'esbarjo amb amarratges, serveis de combustible, aigua, electricitat i varador. El Port de Blanes (Girona) és el port esportiu nàutic de referència a la Costa Brava Sud.",
-        category: "parte",
-      },
-      {
-        term: "Proa",
-        definition:
-          "Part davantera de la barca, oposada a la popa. En barques d'esbarjo sol portar el solàrium principal i el llum de navegació blanc.",
-        category: "parte",
-      },
-      {
-        term: "Popa",
-        definition:
-          "Part posterior de la barca, oposada a la proa. Allotja el motor fora borda, l'escala de bany i típicament la zona de taula central.",
-        category: "parte",
-      },
-      {
-        term: "Estribord",
-        definition:
-          "Costat dret de la barca mirant des de popa cap a proa. S'identifica pel llum verd de navegació. Regla d'or: \"Estribord = dret\" (tots dos comencen amb E).",
-        category: "parte",
-      },
-      {
-        term: "Babord",
-        definition:
-          "Costat esquerre de la barca mirant des de popa cap a proa. S'identifica pel llum vermell de navegació.",
-        category: "parte",
-      },
-      {
-        term: "Bimini / Tendal bimini",
-        definition:
-          "Tendal desplegable que cobreix la banyera de la barca proporcionant ombra. Essencial per a navegació amb nens o a l'estiu. La majoria de les nostres barques sense llicència el porten de sèrie.",
-        category: "equipamiento",
-      },
-      {
-        term: "Solàrium",
-        definition:
-          "Zona encoixinada de la barca destinada a estirar-se al sol, típicament a proa o popa. Les barques prèmium tenen solàrium doble (proa i popa).",
-        category: "equipamiento",
-      },
-      {
-        term: "Banyera",
-        definition:
-          "Zona central de la barca on s'ubiquen els seients, el lloc de govern i la taula. És l'espai operatiu de la barca durant la navegació.",
-        category: "parte",
-      },
-    ],
-  },
   faqPage: {
     heroTitle: "Preguntes Freqüents",
     heroDescription:
@@ -4288,5 +4132,957 @@ export const ca: Translations = {
       errorText: "No hem pogut enviar les teves dades. Torna-ho a provar o escriu-nos per WhatsApp.",
       requiredError: "Si us plau, completa el teu nom i telèfon.",
     },
+  },
+  routes: {
+    title: 'Rutes Suggerides',
+    subtitle: 'Descobreix les millors rutes en barca des del Port de Blanes',
+    bookBoat: 'Reservar barca',
+    introText: 'Des del Port de Blanes, la porta d\'entrada a la Costa Brava, tens accés directe a algunes de les rutes costaneres més espectaculars de la Mediterrània. Cada ruta està pensada per a diferents nivells d\'experiència i duracions, des d\'escapades d\'1 hora fins a excursions de dia complet. Explora les nostres',
+    introFleetLink: 'embarcacions disponibles',
+    introSuffix: 'per trobar la barca perfecta per a la teva ruta.',
+    lloretTitle: 'Lloret de Mar en barca',
+    lloretDesc: 'Platges daurades, cales amagades i vida nocturna. A només 20 min en barca des de Blanes.',
+    tossaTitle: 'Tossa de Mar en barca',
+    tossaDesc: 'La Vila Vella medieval, penya-segats impressionants i les cales més verges de la Costa Brava.',
+    pricesTitle: 'Preus i tarifes',
+    pricesDesc: 'Consulta els preus per temporada de totes les nostres embarcacions. Des de 70€/hora sense llicència.',
+    guide: {
+      heading: 'Guia per navegar la Costa Brava des de Blanes',
+      geographyTitle: 'El litoral: de Blanes a Tossa de Mar',
+      geographyBody: 'El Port de Blanes marca l\'inici de la Costa Brava. Navegant cap al nord, el penyal de Sa Palomera dóna pas a una successió de cales d\'aigües turqueses: Cala Sant Francesc, Santa Cristina i Cala Treumal abans d\'arribar a Lloret de Mar (uns 20 minuts en vaixell), i més enllà Cala Boadella i les cales verges de Tossa de Mar, amb la seva Vila Vella medieval coronant el mar. Amb un vaixell amb llicència, el trajecte Blanes–Tossa són uns 30-45 minuts de navegació tranquil·la vora costa.',
+      seaTitle: 'Condicions de mar i vents',
+      seaBody: 'El tram sud de la Costa Brava és, en general, de navegació còmoda a l\'estiu. Al matí el mar sol estar en calma; a la tarda pot entrar el garbí, la brisa del sud-oest que arrissa lleugerament la superfície. El vent a vigilar és la tramuntana, fort i del nord, que pot aixecar-se amb rapidesa: consulta sempre el part meteorològic marítim abans de sortir. Les embarcacions sense llicència naveguen fins a 2 milles nàutiques de la costa (3,7 km) i a un màxim de 5 nusos, suficient per recórrer totes aquestes cales amb seguretat.',
+      calasTitle: 'Cales i snorkel',
+      calasBody: 'Les cales entre Blanes i Tossa tenen fons rocosos i aigües cristal·lines, ideals per fondejar i fer snorkel. Cala Bona, Cala Treumal i Santa Cristina ofereixen aigües resguardades; a Lloret, Cala Boadella; i cap a Tossa, Cala Llevadó, Cala Giverola i Cala Pola, moltes accessibles només per mar. Recorda fondejar sobre fons arenós —mai sobre les praderies de posidònia, protegides— i llançar cap suficient perquè l\'àncora agafi.',
+      seasonTitle: 'Millor època per navegar',
+      seasonBody: 'La temporada de navegació va d\'abril a octubre, amb horari de sortides de 09:00 a 20:00. Juliol i agost ofereixen el mar més càlid i estable, ideal per al bany i el snorkel; juny i setembre són perfectes per a qui busca cales menys concorregudes i llum daurada. Fora de temporada no operem. Als mesos d\'estiu convé reservar amb antelació: la disponibilitat de vaixell i franja horària és limitada.',
+    },
+  },
+  lastUpdated: {
+    label: 'Última actualització',
+  },
+  occasionMatrix: {
+    pages: {
+      snorkel__locationBlanes: {
+        seoTitle: 'Snorkel en vaixell des de Blanes — Millors cales | Costa Brava Rent a Boat',
+        seoDescription: 'Lloga un vaixell sense llicència a Blanes i fes snorkel a Cala Sant Francesc, Sa Forcanera o Cala Treumal. Gasolina inclosa, sense experiència prèvia, cales a menys de 2 milles.',
+        h1: 'Snorkel en vaixell des de Blanes',
+        intro: 'Des del Port de Blanes, en pocs minuts de navegació arribes a cales d\'aigües cristal·lines i fons rocosos perfectes per al snorkel. Amb un vaixell sense llicència —gasolina inclosa i sense necessitat d\'experiència— tries la teva cala, fondeges i et llences a l\'aigua al teu ritme.',
+        spotsTitle: 'Millors cales per fer snorkel a prop de Blanes',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Cala Bona)',
+            description: 'Cala protegida de pins a la sortida de Blanes, d\'aigua tranquil·la i roques laterals plenes de vida: el millor primer fondeig per fer snorkel en família.',
+          },
+          {
+            name: 'Sa Forcanera',
+            description: 'Petita cala sota els penya-segats del Jardí Botànic Marimurtra, d\'aigües pregones i transparents, ideal per nedar sobre fons rocosos.',
+          },
+          {
+            name: 'Cala Treumal',
+            description: 'Al límit entre Blanes i Lloret, fons de roca i sorra que atrau peixos; bon fondeig protegit del garbí.',
+          },
+          {
+            name: 'Punta de Santa Anna',
+            description: 'Al costat del castell de Sant Joan, parets rocoses que cauen al mar amb excel·lent visibilitat per observar fauna mediterrània.',
+          },
+        ],
+        boatsTitle: 'Quin vaixell triar per fer snorkel',
+        boatsIntro: 'Per al snorkel a Blanes recomanem els nostres vaixells sense llicència: porten la gasolina inclosa, es governen sense titulació i arriben sense problema a aquestes cales, totes dins de les 2 milles de la costa. Incorporen escala de bany per entrar i sortir de l\'aigua amb comoditat.',
+        practicalTitle: 'Informació pràctica',
+        practicalBody: 'Temporada d\'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Els vaixells sense llicència naveguen fins a 2 milles nàutiques de la costa, distància més que suficient per a totes aquestes cales. Porta les teves ulleres i tub, protecció solar i aigua. Recorda fondejar sobre sorra, mai sobre les praderies de posidònia.',
+        faqTitle: 'Preguntes freqüents',
+        faq: [
+          {
+            q: 'Necessito llicència per fer snorkel en vaixell des de Blanes?',
+            a: 'No. Els nostres vaixells sense llicència es governen sense titulació nàutica i arriben a totes les cales de snorkel properes a Blanes. T\'expliquem el maneig abans de sortir.',
+          },
+          {
+            q: 'Està inclòs l\'equip de snorkel?',
+            a: 'El vaixell inclou escala de bany i la gasolina. Per al snorkel et recomanem portar les teves pròpies ulleres i tub, així t\'assegures una talla còmoda.',
+          },
+        ],
+        ctaTitle: 'Reserva la teva sortida de snorkel a Blanes',
+        ctaText: 'Tria data i vaixell sense llicència, i prepara la millor jornada de snorkel per les cales de Blanes.',
+      },
+      snorkel__locationLloret: {
+        seoTitle: 'Snorkel en vaixell a Lloret de Mar — Cales Boadella i Banys | Costa Brava Rent a Boat',
+        seoDescription: 'Descobreix les millors cales de snorkel de Lloret de Mar en vaixell des de Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Vaixell amb llicència, uns 20 minuts de navegació.',
+        h1: 'Snorkel en vaixell a Lloret de Mar',
+        intro: 'Lloret de Mar amaga algunes de les cales amb millor aigua de la Costa Brava sud, moltes accessibles només per mar. Sortint des de Blanes en uns 20 minuts de navegació arribes als seus racons rocosos i els recorres fent snorkel sense les multituds de la platja.',
+        spotsTitle: 'Millors cales per fer snorkel a Lloret de Mar',
+        spots: [
+          {
+            name: 'Cala Boadella',
+            description: 'Una de les cales més boniques de Lloret; el seu extrem sud, rocós i d\'aigua neta, deixa veure peixos de seguida que treus el cap.',
+          },
+          {
+            name: 'Cala Banys',
+            description: 'Entrant rocós de penya-segats foscos i aigua pregona, un clàssic per fer snorkel de roca amb bona visibilitat.',
+          },
+          {
+            name: 'Cala dels Frares',
+            description: 'Petita cala de còdols envoltada de parets verticals, refugi de fauna mediterrània ideal per nedar a poc a poc.',
+          },
+          {
+            name: 'Santa Cristina',
+            description: 'Àmplia cala de sorra amb extrems rocosos; els laterals ofereixen un snorkel fàcil i segur, perfecte per a principiants.',
+          },
+        ],
+        boatsTitle: 'Quin vaixell triar per arribar a Lloret',
+        boatsIntro: 'Les cales de Lloret queden més enllà del límit de 2 milles dels vaixells sense llicència, així que per arribar-hi necessites un dels nostres vaixells amb llicència. Són còmodes, cobreixen el trajecte des de Blanes en uns 20 minuts i et donen autonomia per encadenar diverses cales a la mateixa sortida.',
+        practicalTitle: 'Informació pràctica',
+        practicalBody: 'Temporada d\'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. El trajecte fins a les cales de Lloret són uns 20 minuts de navegació tranquil·la enganxats a la costa. Porta les teves ulleres i tub, protecció solar i aigua. Fondeja sobre sorra, mai sobre les praderies de posidònia.',
+        faqTitle: 'Preguntes freqüents',
+        faq: [
+          {
+            q: 'Quant es triga de Blanes a les cales de Lloret en vaixell?',
+            a: 'Uns 20 minuts de navegació tranquil·la vorejant la costa, segons la cala i l\'estat de la mar.',
+          },
+          {
+            q: 'Quines cales de Lloret són millors per fer snorkel?',
+            a: 'Cala Boadella, Cala Banys i Cala dels Frares destaquen pel seu fons rocós i la transparència de l\'aigua.',
+          },
+        ],
+        ctaTitle: 'Reserva la teva sortida de snorkel a Lloret de Mar',
+        ctaText: 'Tria data i vaixell amb llicència, i descobreix les cales de snorkel de Lloret sortint des de Blanes.',
+      },
+      snorkel__locationTossa: {
+        seoTitle: 'Snorkel en vaixell a Tossa de Mar — Cales verges i aigües protegides | Costa Brava Rent a Boat',
+        seoDescription: 'Fes snorkel a les aigües netes de Tossa de Mar: La Mar Menuda, Cala Giverola, Cala Pola. Sortida en vaixell amb llicència des de Blanes, 30-45 minuts de navegació.',
+        h1: 'Snorkel en vaixell a Tossa de Mar',
+        intro: 'Tossa de Mar és un dels millors destins de snorkel de la Costa Brava: part del seu litoral està protegit, amb fons rocosos i praderies plenes de vida. Des de Blanes són uns 30-45 minuts de navegació amb un vaixell amb llicència fins a les seves cales més verges.',
+        spotsTitle: 'Millors cales per fer snorkel a Tossa de Mar',
+        spots: [
+          {
+            name: 'La Mar Menuda',
+            description: 'Al costat del casc antic, una badia d\'aigües protegides i fons rocós molt apreciada per bussejadors i aficionats al snorkel per la seva riquesa de fauna.',
+          },
+          {
+            name: 'Cala Giverola',
+            description: 'Cala pregona encaixada entre muntanyes, d\'aigua especialment clara i parets rocoses perfectes per nedar observant peixos.',
+          },
+          {
+            name: 'Cala Pola',
+            description: 'Entorn natural protegit al nord de Tossa, amb fons de roca i sorra i una transparència excel·lent.',
+          },
+          {
+            name: 'Cala Futadera',
+            description: 'Cala verge sense accés rodat, només per mar o sender; aigües netes i tranquil·les, un fondeig de snorkel exclusiu.',
+          },
+        ],
+        boatsTitle: 'Quin vaixell triar per arribar a Tossa',
+        boatsIntro: 'Tossa queda força més enllà de les 2 milles, fora de l\'abast dels vaixells sense llicència. Per arribar a les seves cales necessites un dels nostres vaixells amb llicència, que cobreixen el trajecte des de Blanes en 30-45 minuts i et permeten passar el dia explorant diverses cales.',
+        practicalTitle: 'Informació pràctica',
+        practicalBody: 'Temporada d\'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. La navegació fins a Tossa és de 30-45 minuts; per això convé reservar durades de 4 hores o més per gaudir del destí sense presses. Porta les teves ulleres i tub, protecció solar i aigua. Respecta les zones protegides i fondeja només sobre sorra.',
+        faqTitle: 'Preguntes freqüents',
+        faq: [
+          {
+            q: 'Es pot anar de Blanes a Tossa en vaixell sense llicència?',
+            a: 'No. Tossa està fora del límit de 2 milles dels vaixells sense llicència; el trajecte es fa amb un vaixell amb llicència, en 30-45 minuts des de Blanes.',
+          },
+          {
+            q: 'Per què Tossa és bona per fer snorkel?',
+            a: 'Part del seu litoral està protegit, amb fons rocosos i praderies molt ben conservats; cales com La Mar Menuda o Giverola ofereixen una visibilitat excel·lent.',
+          },
+        ],
+        ctaTitle: 'Reserva la teva sortida de snorkel a Tossa de Mar',
+        ctaText: 'Tria data i vaixell amb llicència, i dedica el dia a les cales protegides de Tossa sortint des de Blanes.',
+      },
+      snorkel__locationCostaBrava: {
+        seoTitle: 'Snorkel en vaixell per la Costa Brava — Les millors cales des de Blanes | Costa Brava Rent a Boat',
+        seoDescription: 'Recorre en vaixell les millors cales de snorkel de la Costa Brava sud, de Blanes a Tossa de Mar. Vaixells sense llicència per a les cales properes i amb llicència per al tram complet.',
+        h1: 'Snorkel en vaixell per la Costa Brava',
+        intro: 'El tram sud de la Costa Brava, de Blanes a Tossa de Mar, concentra desenes de cales de fons rocós i aigua transparent ideals per al snorkel. Des del Port de Blanes pots triar entre una sortida curta a les cales més properes o una jornada completa recorrent la costa.',
+        spotsTitle: 'Cales de snorkel imprescindibles a la Costa Brava sud',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Blanes)',
+            description: 'La cala més accessible, protegida i familiar: el punt de partida perfecte, a l\'abast d\'un vaixell sense llicència.',
+          },
+          {
+            name: 'Cala Boadella (Lloret)',
+            description: 'Racó rocós d\'aigua neta, un dels millors fondeigs de snorkel del tram mig de la costa.',
+          },
+          {
+            name: 'Cala Giverola (Tossa)',
+            description: 'Cala pregona d\'aigües cristal·lines entre muntanyes, ja a l\'extrem nord del recorregut.',
+          },
+          {
+            name: 'Cala Pola (Tossa)',
+            description: 'Entorn natural protegit amb fons de roca i sorra, recompensa per a qui fa la travessa completa.',
+          },
+        ],
+        boatsTitle: 'Quin vaixell triar segons fins on vulguis arribar',
+        boatsIntro: 'Per a les cales més properes a Blanes n\'hi ha prou amb un vaixell sense llicència, amb gasolina inclosa i sense titulació. Per recórrer el tram complet fins a Lloret i Tossa —més enllà de les 2 milles— necessites un vaixell amb llicència, amb autonomia per encadenar diverses cales al dia.',
+        practicalTitle: 'Informació pràctica',
+        practicalBody: 'Temporada d\'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Els vaixells sense llicència naveguen fins a 2 milles; per arribar a Lloret (~20 min) o Tossa (30-45 min) s\'usa un vaixell amb llicència. Porta les teves ulleres i tub, protecció solar i aigua. Fondeja sempre sobre sorra, mai sobre posidònia.',
+        faqTitle: 'Preguntes freqüents',
+        faq: [
+          {
+            q: 'Quin tram de la Costa Brava puc recórrer en una sortida?',
+            a: 'Amb un vaixell amb llicència pots encadenar cales de Blanes, Lloret i Tossa en una jornada; amb un sense llicència gaudiràs de les cales més properes a Blanes.',
+          },
+          {
+            q: 'Quina és la millor època per fer snorkel?',
+            a: 'De juny a setembre la mar està més càlida i clara; juliol i agost ofereixen les millors condicions, i juny o setembre, cales més tranquil·les.',
+          },
+        ],
+        ctaTitle: 'Reserva la teva ruta de snorkel per la Costa Brava',
+        ctaText: 'Tria el teu vaixell segons fins on vulguis arribar i descobreix les millors cales de la costa sortint des de Blanes.',
+      },
+      families__locationBlanes: {
+        seoTitle: "Lloguer de vaixell per a famílies a Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Un dia de vaixell en família des de Blanes: cales tranquil·les, aigua poc profunda i vaixells amplis i estables, diversos sense llicència amb gasolina inclosa. Sense experiència prèvia.",
+        h1: "Lloguer de vaixell per a famílies a Blanes",
+        intro:
+          "Un dia de vaixell en família des del Port de Blanes és dels millors plans de la Costa Brava: cales arrecerades a pocs minuts, aigua tranquil·la on els nens es banyen amb calma i vaixells amplis i estables. Sense experiència prèvia: t'ho expliquem tot abans de sortir.",
+        spotsTitle: "Millors cales per anar en família a prop de Blanes",
+        spots: [
+          { name: "Cala Sant Francesc (Cala Bona)", description: "Cala de sorra arrecerada de pins, amb aigua tranquil·la i poc profunda a la vora: la favorita per a famílies amb nens petits." },
+          { name: "Cala Treumal", description: "Petita cala de sorra i roca entre Blanes i Lloret, protegida del vent, ideal per fondejar i banyar-se sense onatge." },
+          { name: "Badia de Blanes i Sa Palomera", description: "La gran platja de Blanes vora el penyal de Sa Palomera, amb serveis a prop i aigües obertes però tranquil·les per a un primer capbussó sense allunyar-se del port." },
+        ],
+        boatsTitle: "Quin vaixell triar per anar en família",
+        boatsIntro:
+          "Per a famílies recomanem vaixells espaiosos i estables, amb solàrium i zona d'ombra. Diversos són sense llicència —amb gasolina inclosa i sense titulació—, i per a grups grans tenim embarcacions de fins a 7 places.",
+        practicalTitle: "Informació pràctica",
+        practicalBody:
+          "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Portem armilles salvavides de totes les talles, incloses infantils. Porta protecció solar, gorra, aigua i alguna cosa per picar. Les cales properes a Blanes estan dins de les 2 milles, assolibles fins i tot amb vaixell sense llicència.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "És segur anar en vaixell amb nens?", a: "Sí. Portem armilles salvavides infantils, les cales properes són tranquil·les i poc profundes, i t'expliquem el maneig i la seguretat abans de sortir." },
+          { q: "Cal llicència per anar en família des de Blanes?", a: "No per a les cales properes: diversos dels nostres vaixells es governen sense titulació. Per a grups grans o més autonomia també hi ha opcions amb llicència." },
+        ],
+        ctaTitle: "Reserva el teu dia de vaixell en família a Blanes",
+        ctaText: "Tria data i vaixell, i gaudeix d'un dia al mar amb els teus sortint del Port de Blanes.",
+      },
+      families__locationLloret: {
+        seoTitle: "Lloguer de vaixell per a famílies a Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Dia de vaixell en família a Lloret de Mar sortint des de Blanes (~20 min amb vaixell amb llicència): platges de sorra, cales tranquil·les i vaixells amplis de fins a 7 places.",
+        h1: "Lloguer de vaixell per a famílies a Lloret de Mar",
+        intro:
+          "Lloret de Mar combina platges àmplies de sorra i cales arrecerades, perfectes per a un dia en família. Sortint des de Blanes hi arribes en uns 20 minuts de navegació tranquil·la i recorres les seves platges amb la llibertat de fondejar on vulguis.",
+        spotsTitle: "Millors platges i cales per a famílies a Lloret",
+        spots: [
+          { name: "Santa Cristina", description: "Àmplia platja de sorra fina amb aigües tranquil·les i serveis a prop, una de les més còmodes de la zona per anar amb nens." },
+          { name: "Cala Boadella", description: "Cala de sorra i roca envoltada de pins, amb aigua neta i zones arrecerades ideals per al bany en família." },
+          { name: "Platja de Fenals", description: "Platja àmplia i protegida, de pendent suau, perfecta per fondejar a prop i passar el dia amb els més petits." },
+        ],
+        boatsTitle: "Quin vaixell triar per arribar a Lloret en família",
+        boatsIntro:
+          "Lloret queda més enllà de les 2 milles, així que s'hi arriba amb un dels nostres vaixells amb llicència. Són espaiosos i estables —el Pacific Craft 625 admet fins a 7 persones— i cobreixen el trajecte des de Blanes en uns 20 minuts.",
+        practicalTitle: "Informació pràctica",
+        practicalBody:
+          "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. El trajecte fins a Lloret són uns 20 minuts. Portem armilles de totes les talles; porta protecció solar, gorra, aigua i alguna cosa per picar.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "Quant es triga de Blanes a Lloret en vaixell?", a: "Uns 20 minuts de navegació tranquil·la vorejant la costa amb un vaixell amb llicència." },
+          { q: "Quina platja de Lloret és millor amb nens?", a: "Santa Cristina i Fenals, per la seva sorra, aigües tranquil·les i serveis propers." },
+        ],
+        ctaTitle: "Reserva el teu dia de vaixell en família a Lloret",
+        ctaText: "Tria data i vaixell amb llicència, i gaudeix de les platges de Lloret en família sortint des de Blanes.",
+      },
+      families__locationTossa: {
+        seoTitle: "Lloguer de vaixell per a famílies a Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Dia de vaixell en família a Tossa de Mar des de Blanes (30-45 minuts amb vaixell amb llicència): la Platja Gran, cales arrecerades i vaixells amplis de fins a 7 places.",
+        h1: "Lloguer de vaixell per a famílies a Tossa de Mar",
+        intro:
+          "Tossa de Mar regala a les famílies una postal inoblidable: la Vila Vella medieval sobre el mar i cales d'aigües netes. Des de Blanes són uns 30-45 minuts de navegació amb un vaixell amb llicència, ideal per a una excursió de dia complet.",
+        spotsTitle: "Millors platges i cales per a famílies a Tossa",
+        spots: [
+          { name: "Platja Gran de Tossa", description: "La platja principal, de sorra i al peu del castell; aigües tranquil·les i tots els serveis per a un dia còmode amb nens." },
+          { name: "La Mar Menuda", description: "Badia arrecerada vora el nucli antic, d'aigües calmades, perfecta per fondejar i banyar-se en família." },
+          { name: "Cala Llevadó", description: "Entorn natural de pins i aigua cristal·lina; una cala més tranquil·la per a qui busca allunyar-se del brogit." },
+        ],
+        boatsTitle: "Quin vaixell triar per arribar a Tossa en família",
+        boatsIntro:
+          "Tossa està fora de l'abast dels vaixells sense llicència, així que el viatge es fa amb un dels nostres vaixells amb llicència, espaiosos i de fins a 7 places. Cobreixen el trajecte des de Blanes en 30-45 minuts; convé reservar durades de mig dia o més.",
+        practicalTitle: "Informació pràctica",
+        practicalBody:
+          "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. La navegació fins a Tossa és de 30-45 minuts. Portem armilles de totes les talles; porta protecció solar, gorra, aigua i menjar per al dia.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "Es pot anar a Tossa en família amb vaixell sense llicència?", a: "No. Tossa està fora del límit de 2 milles; el viatge es fa amb un vaixell amb llicència, en 30-45 minuts des de Blanes." },
+          { q: "És bon pla per a un dia complet?", a: "Sí: per la distància, l'ideal és reservar mig dia o jornada completa i combinar la Platja Gran amb alguna cala propera." },
+        ],
+        ctaTitle: "Reserva el teu dia de vaixell en família a Tossa",
+        ctaText: "Tria data i vaixell amb llicència, i viu un dia en família a Tossa de Mar sortint des de Blanes.",
+      },
+      families__locationCostaBrava: {
+        seoTitle: "Lloguer de vaixell per a famílies a la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Dia de vaixell en família per la Costa Brava sud des de Blanes: cales tranquil·les i platges de sorra de Blanes a Tossa. Vaixells sense llicència per al que és a prop i amb llicència per al tram complet.",
+        h1: "Lloguer de vaixell per a famílies per la Costa Brava",
+        intro:
+          "La Costa Brava sud, de Blanes a Tossa de Mar, està feta per gaudir-la en família: cales arrecerades, platges de sorra i aigua tranquil·la. Des del Port de Blanes tries entre una sortida curta a les cales properes o una jornada explorant la costa.",
+        spotsTitle: "Cales i platges familiars imprescindibles",
+        spots: [
+          { name: "Cala Sant Francesc (Blanes)", description: "La més accessible i arrecerada, dins de l'abast d'un vaixell sense llicència: el pla perfecte per començar amb nens." },
+          { name: "Santa Cristina (Lloret)", description: "Gran platja de sorra amb serveis i aigües tranquil·les, al tram mig de la costa." },
+          { name: "Platja Gran de Tossa", description: "Sorra al peu de la Vila Vella medieval, recompensa per a qui fa la travessa completa amb un vaixell amb llicència." },
+        ],
+        boatsTitle: "Quin vaixell triar segons fins on vulguis arribar",
+        boatsIntro:
+          "Per a les cales properes a Blanes n'hi ha prou amb un vaixell sense llicència, amb gasolina inclosa. Per recórrer el tram fins a Lloret i Tossa —més enllà de les 2 milles— necessites un vaixell amb llicència, espaiós i de fins a 7 places.",
+        practicalTitle: "Informació pràctica",
+        practicalBody:
+          "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Els vaixells sense llicència naveguen fins a 2 milles; per arribar a Lloret (~20 min) o Tossa (30-45 min) s'usa un vaixell amb llicència. Portem armilles de totes les talles.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "Quin tram podem recórrer en família en un dia?", a: "Amb un vaixell amb llicència, cales de Blanes, Lloret i Tossa en una jornada; amb un de sense llicència, les cales tranquil·les més properes a Blanes." },
+          { q: "Quina és la millor època per anar amb nens?", a: "De juny a setembre, amb la mar més càlida i tranquil·la; juliol i agost ofereixen les millors condicions de bany." },
+        ],
+        ctaTitle: "Reserva el teu dia de vaixell en família per la Costa Brava",
+        ctaText: "Tria el teu vaixell segons fins on vulguis arribar i gaudeix de la costa en família sortint des de Blanes.",
+      },
+      sunset__locationBlanes: {
+        seoTitle: "Passeig en vaixell al capvespre a Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Navega a última hora de la tarda des de Blanes i gaudeix de la llum daurada sobre la costa, el penyal de Sa Palomera i la badia. Passeig tranquil en vaixell, sense experiència prèvia.",
+        h1: "Passeig en vaixell al capvespre a Blanes",
+        intro:
+          "A última hora de la tarda, quan la llum es torna daurada, la costa de Blanes ofereix la seva cara més bonica des del mar. Un passeig tranquil en vaixell sortint del Port de Blanes per veure el penyal de Sa Palomera i els penya-segats encendre's amb els últims raigs.",
+        spotsTitle: "Millors racons per al capvespre a prop de Blanes",
+        spots: [
+          { name: "Sa Palomera", description: "El penyal que marca l'inici de la Costa Brava; amb la llum baixa, la seva silueta i la badia de Blanes es tenyeixen de tons càlids." },
+          { name: "Penya-segats de Marimurtra", description: "Les parets rocoses sota el Jardí Botànic, especialment fotogèniques quan el sol frega la costa." },
+          { name: "Badia de Blanes", description: "Aigües tranquil·les davant del poble, perfectes per fondejar, brindar i veure com s'encenen els llums del port." },
+        ],
+        boatsTitle: "Quin vaixell triar per al capvespre",
+        boatsIntro:
+          "Per a un passeig al capvespre recomanem vaixells còmodes amb bon solàrium. Diversos són sense llicència —amb gasolina inclosa i sense titulació—, ideals per a una sortida curta i relaxada a prop de Blanes.",
+        practicalTitle: "Informació pràctica",
+        practicalBody:
+          "Temporada d'abril a octubre, amb sortides fins a les 20:00 des del Port de Blanes; la franja d'última hora de la tarda és la que regala la millor llum. A la Costa Brava el sol es pon darrere la costa, així que gaudiràs de la llum daurada i els penya-segats il·luminats més que de la posta sobre l'aigua. Porta una jaqueta lleugera: en caure la tarda refresca.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "A quina hora és la sortida al capvespre?", a: "Operem fins a les 20:00; l'última franja de la tarda és la que ofereix la llum daurada. Et recomanem reservar 1 o 2 hores a última hora del dia." },
+          { q: "Necessito llicència?", a: "No per a un passeig a prop de Blanes: diversos dels nostres vaixells es governen sense titulació i t'expliquem el maneig abans de sortir." },
+        ],
+        ctaTitle: "Reserva el teu passeig al capvespre a Blanes",
+        ctaText: "Tria data i vaixell, i gaudeix de l'hora daurada al mar sortint del Port de Blanes.",
+      },
+      sunset__locationLloret: {
+        seoTitle: "Passeig en vaixell al capvespre a Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Capvespre en vaixell a Lloret de Mar sortint des de Blanes (~20 min amb vaixell amb llicència): llum daurada sobre els penya-segats de Cala Banys i el castell de Lloret.",
+        h1: "Passeig en vaixell al capvespre a Lloret de Mar",
+        intro:
+          "La costa de Lloret de Mar, amb els seus penya-segats i el seu castell sobre el mar, es torna espectacular a última hora de la tarda. Sortint des de Blanes en uns 20 minuts amb un vaixell amb llicència hi arribes a temps per a la millor llum del dia.",
+        spotsTitle: "Millors racons per al capvespre a Lloret",
+        spots: [
+          { name: "Cala Banys", description: "Penya-segats foscos i racons rocosos que, amb la llum baixa, ofereixen una de les estampes més dramàtiques de la zona." },
+          { name: "Castell d'en Plaja", description: "L'icònic castell sobre la platja de Lloret, preciós vist des del mar quan s'il·lumina en caure la tarda." },
+          { name: "Santa Cristina", description: "Cala àmplia i arrecerada, ideal per fondejar amb calma i veure com la llum daurada banya els pins." },
+        ],
+        boatsTitle: "Quin vaixell triar per arribar a Lloret al capvespre",
+        boatsIntro:
+          "Lloret queda més enllà de les 2 milles, així que el passeig es fa amb un dels nostres vaixells amb llicència, còmodes i amb bon solàrium. Cobreixen el trajecte des de Blanes en uns 20 minuts.",
+        practicalTitle: "Informació pràctica",
+        practicalBody:
+          "Temporada d'abril a octubre, amb sortides fins a les 20:00 des del Port de Blanes. A la Costa Brava el sol es pon darrere la costa: gaudiràs de la llum daurada sobre els penya-segats i el castell més que de la posta sobre el mar. Porta una jaqueta lleugera per a la tornada.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "Quant es triga de Blanes a Lloret al capvespre?", a: "Uns 20 minuts amb un vaixell amb llicència; convé sortir amb marge per aprofitar la millor llum." },
+          { q: "Es veu la posta de sol sobre el mar?", a: "En aquesta costa el sol es pon darrere la terra, no sobre l'aigua; el que és bonic és la llum daurada i els penya-segats i el castell il·luminats." },
+        ],
+        ctaTitle: "Reserva el teu passeig al capvespre a Lloret",
+        ctaText: "Tria data i vaixell amb llicència, i viu l'hora daurada a la costa de Lloret sortint des de Blanes.",
+      },
+      sunset__locationTossa: {
+        seoTitle: "Passeig en vaixell al capvespre a Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Capvespre en vaixell a Tossa de Mar des de Blanes (30-45 min amb vaixell amb llicència): la Vila Vella medieval il·luminada i la llum daurada sobre les cales.",
+        h1: "Passeig en vaixell al capvespre a Tossa de Mar",
+        intro:
+          "Poques imatges de la Costa Brava igualen la Vila Vella de Tossa de Mar il·luminada en caure la tarda, vista des del mar. Des de Blanes són uns 30-45 minuts de navegació amb un vaixell amb llicència fins a aquest escenari únic.",
+        spotsTitle: "Millors racons per al capvespre a Tossa",
+        spots: [
+          { name: "Vila Vella", description: "Les muralles medievals sobre el mar, que s'encenen amb tons càlids en caure la tarda: l'estampa més icònica de Tossa." },
+          { name: "La Mar Menuda", description: "Badia arrecerada vora el nucli antic, perfecta per fondejar i contemplar la costa amb la llum baixa." },
+          { name: "Cala Giverola", description: "Cala pregona entre muntanyes, d'aigües tranquil·les, ideal per a un fondeig serè abans de la tornada." },
+        ],
+        boatsTitle: "Quin vaixell triar per arribar a Tossa al capvespre",
+        boatsIntro:
+          "Tossa està fora de l'abast dels vaixells sense llicència, així que el passeig es fa amb un dels nostres vaixells amb llicència, còmodes i amb bon solàrium. El trajecte des de Blanes és de 30-45 minuts.",
+        practicalTitle: "Informació pràctica",
+        practicalBody:
+          "Temporada d'abril a octubre, amb sortides fins a les 20:00 des del Port de Blanes. Per la distància (30-45 min), planifica la sortida per aprofitar l'última llum i la tornada amb tranquil·litat. En aquesta costa el sol es pon darrere la terra: el que és espectacular és la Vila Vella il·luminada. Porta una jaqueta lleugera.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "Dóna temps a anar i tornar de Tossa al capvespre?", a: "Sí, planificant-ho: són 30-45 minuts per trajecte, així que convé reservar diverses hores i sortir amb marge." },
+          { q: "Què fa especial el capvespre a Tossa?", a: "La Vila Vella medieval sobre el mar, que s'il·lumina en caure la tarda i es veu de manera única des del vaixell." },
+        ],
+        ctaTitle: "Reserva el teu passeig al capvespre a Tossa",
+        ctaText: "Tria data i vaixell amb llicència, i contempla la Vila Vella il·luminada des del mar sortint des de Blanes.",
+      },
+      sunset__locationCostaBrava: {
+        seoTitle: "Passeig en vaixell al capvespre per la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Capvespre en vaixell per la Costa Brava sud des de Blanes: llum daurada sobre penya-segats, cales i la Vila Vella de Tossa. Vaixell sense llicència per al que és a prop, amb llicència per al tram complet.",
+        h1: "Passeig en vaixell al capvespre per la Costa Brava",
+        intro:
+          "La Costa Brava sud, de Blanes a Tossa, ofereix a última hora de la tarda una successió de penya-segats, cales i pobles que s'encenen amb la llum daurada. Des del Port de Blanes tries entre un passeig curt a prop o una sortida més llarga per la costa.",
+        spotsTitle: "Millors racons de la costa al capvespre",
+        spots: [
+          { name: "Sa Palomera (Blanes)", description: "El penyal que obre la Costa Brava, dins de l'abast d'un vaixell sense llicència: el pla més senzill per a l'hora daurada." },
+          { name: "Cala Banys (Lloret)", description: "Penya-segats dramàtics que destaquen amb la llum baixa, al tram mig de la costa." },
+          { name: "Vila Vella (Tossa)", description: "Les muralles medievals il·luminades sobre el mar, la recompensa de la travessa completa amb un vaixell amb llicència." },
+        ],
+        boatsTitle: "Quin vaixell triar segons fins on vulguis arribar",
+        boatsIntro:
+          "Per a un passeig a prop de Blanes n'hi ha prou amb un vaixell sense llicència, amb gasolina inclosa. Per recórrer el tram fins a Lloret i Tossa —més enllà de les 2 milles— necessites un vaixell amb llicència, còmode i amb bon solàrium.",
+        practicalTitle: "Informació pràctica",
+        practicalBody:
+          "Temporada d'abril a octubre, amb sortides fins a les 20:00 des del Port de Blanes. En aquesta costa el sol es pon darrere la terra: gaudiràs de la llum daurada i els pobles i penya-segats il·luminats. Els vaixells sense llicència arriben fins a 2 milles; per a Lloret o Tossa s'usa un vaixell amb llicència. Porta una jaqueta lleugera.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "On es veu el millor capvespre des del vaixell?", a: "A prop de Blanes, Sa Palomera; al tram complet, la Vila Vella de Tossa il·luminada és el més espectacular." },
+          { q: "Necessito vaixell amb llicència?", a: "Només si vols arribar a Lloret o Tossa. Per a l'hora daurada a prop de Blanes n'hi ha prou amb un vaixell sense llicència." },
+        ],
+        ctaTitle: "Reserva el teu passeig al capvespre per la Costa Brava",
+        ctaText: "Tria el teu vaixell segons fins on vulguis arribar i persegueix l'hora daurada sortint des de Blanes.",
+      },
+      fishing__locationBlanes: {
+        seoTitle: "Lloguer de vaixell per pescar a Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Surt a pescar en vaixell des de Blanes amb les nostres embarcacions amb llicència. Aigües i fons rocosos davant la costa. Necessites llicència de pesca recreativa; t'informem.",
+        h1: "Lloguer de vaixell per pescar a Blanes",
+        intro:
+          "Sortir a pescar en vaixell des del Port de Blanes és una manera fantàstica de gaudir del mar de la Costa Brava. Et lloguem una embarcació amb llicència amb la qual acostar-te a les aigües i fons propers a la costa per a una jornada de pesca recreativa.",
+        spotsTitle: "Zones de pesca a prop de Blanes",
+        spots: [
+          { name: "Aigües davant de Sa Palomera", description: "Els voltants del penyal, amb fons rocosos on és habitual la pesca de roca a poca distància del port." },
+          { name: "Fons rocosos de la costa de Blanes", description: "Trams de roca i sorra davant el litoral, accessibles per a una sortida tranquil·la de mitja jornada." },
+          { name: "Zona exterior de la badia", description: "Aigües una mica més profundes per a qui busca provar sort fora de l'aixopluc de la badia, sempre dins de la normativa." },
+        ],
+        boatsTitle: "Quin vaixell triar per pescar",
+        boatsIntro:
+          "Per pescar fem servir els nostres vaixells amb llicència, amb més autonomia i abast que els vaixells sense llicència. Són els més indicats per moure't entre zones de pesca i passar la jornada amb comoditat.",
+        practicalTitle: "Informació pràctica i normativa",
+        practicalBody:
+          "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Per pescar necessites la llicència de pesca recreativa de Catalunya, que és responsabilitat del client. Respecta les talles mínimes, les espècies protegides i les zones regulades. L'equip de pesca no està inclòs.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "Necessito llicència per pescar des del vaixell?", a: "Sí. La pesca recreativa a Catalunya requereix llicència, que tramita i aporta el client. El lloguer del vaixell no la inclou." },
+          { q: "El vaixell porta equip de pesca?", a: "No, l'equip de pesca no està inclòs; et lloguem l'embarcació amb llicència per a la teva sortida." },
+        ],
+        ctaTitle: "Reserva la teva sortida de pesca a Blanes",
+        ctaText: "Tria data i vaixell amb llicència, i prepara la teva jornada de pesca recreativa sortint del Port de Blanes.",
+      },
+      fishing__locationLloret: {
+        seoTitle: "Lloguer de vaixell per pescar a Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pesca recreativa en vaixell a Lloret de Mar des de Blanes (~20 min amb vaixell amb llicència). Fons rocosos davant la costa. Llicència de pesca a càrrec del client.",
+        h1: "Lloguer de vaixell per pescar a Lloret de Mar",
+        intro:
+          "La costa de Lloret de Mar, de penya-segats i fons rocosos, ofereix bones zones per a la pesca recreativa. Sortint des de Blanes amb un vaixell amb llicència hi arribes en uns 20 minuts i disposes d'autonomia per moure't entre punts.",
+        spotsTitle: "Zones de pesca a prop de Lloret",
+        spots: [
+          { name: "Fons de Cala Banys", description: "Tram de penya-segats i roca on és habitual la pesca de roca, davant la costa de Lloret." },
+          { name: "Aigües de Fenals", description: "Zona una mica més oberta vora la punta de Fenals, per provar diferents tècniques en una jornada." },
+          { name: "Litoral entre Lloret i Tossa", description: "Costa rocosa i poc urbanitzada amb fons interessants, sempre respectant les zones regulades." },
+        ],
+        boatsTitle: "Quin vaixell triar per arribar a Lloret a pescar",
+        boatsIntro:
+          "Lloret queda més enllà de les 2 milles, així que s'hi arriba amb un dels nostres vaixells amb llicència, amb autonomia per moure't entre zones de pesca. El trajecte des de Blanes és d'uns 20 minuts.",
+        practicalTitle: "Informació pràctica i normativa",
+        practicalBody:
+          "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Necessites la llicència de pesca recreativa de Catalunya (a càrrec del client). Respecta talles mínimes, espècies protegides i zones regulades. L'equip de pesca no està inclòs.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "Quant es triga de Blanes a Lloret en vaixell?", a: "Uns 20 minuts amb un vaixell amb llicència, els que fem servir per a les sortides de pesca." },
+          { q: "Cal llicència de pesca?", a: "Sí, la llicència de pesca recreativa de Catalunya l'aporta el client; el lloguer del vaixell no la inclou." },
+        ],
+        ctaTitle: "Reserva la teva sortida de pesca a Lloret",
+        ctaText: "Tria data i vaixell amb llicència, i prepara la teva jornada de pesca davant de Lloret sortint des de Blanes.",
+      },
+      fishing__locationTossa: {
+        seoTitle: "Lloguer de vaixell per pescar a Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pesca recreativa en vaixell a prop de Tossa de Mar des de Blanes (30-45 min amb vaixell amb llicència). Compte: part del litoral és reserva protegida on la pesca està restringida.",
+        h1: "Lloguer de vaixell per pescar a Tossa de Mar",
+        intro:
+          "Les aigües de Tossa de Mar són cèlebres per la seva riquesa, en bona part gràcies a la seva protecció. Des de Blanes són uns 30-45 minuts amb un vaixell amb llicència, però convé tenir molt present que part d'aquest litoral és zona protegida amb la pesca restringida.",
+        spotsTitle: "Zones de pesca i àrees protegides a Tossa",
+        spots: [
+          { name: "Aigües exteriors a la reserva", description: "La pesca recreativa només és possible fora de les zones protegides; informa't dels límits vigents abans de calar." },
+          { name: "Litoral entre Lloret i Tossa", description: "Trams de roca fora de l'àrea protegida on la pesca de roca està permesa amb llicència." },
+          { name: "Reserva marina de Tossa (protegida)", description: "Una franja del seu litoral està protegida i la pesca està restringida o prohibida: respecta-la sempre." },
+        ],
+        boatsTitle: "Quin vaixell triar per arribar a Tossa",
+        boatsIntro:
+          "Tossa està fora de l'abast dels vaixells sense llicència, així que el viatge es fa amb un dels nostres vaixells amb llicència, amb autonomia per a la jornada. El trajecte des de Blanes és de 30-45 minuts.",
+        practicalTitle: "Informació pràctica i normativa",
+        practicalBody:
+          "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Part del litoral de Tossa és zona protegida on la pesca està restringida: respecta'n els límits. Necessites la llicència de pesca recreativa de Catalunya (a càrrec del client) i has de respectar talles i espècies. L'equip de pesca no està inclòs.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "Es pot pescar a Tossa de Mar?", a: "Només fora de les zones protegides i amb llicència de pesca recreativa. Part del litoral és reserva on la pesca està restringida o prohibida." },
+          { q: "S'hi arriba en vaixell sense llicència?", a: "No. Tossa està fora del límit de 2 milles; s'hi arriba amb un vaixell amb llicència, en 30-45 minuts des de Blanes." },
+        ],
+        ctaTitle: "Reserva la teva sortida de pesca a prop de Tossa",
+        ctaText: "Tria data i vaixell amb llicència, respecta les zones protegides i prepara la teva jornada de pesca sortint des de Blanes.",
+      },
+      fishing__locationCostaBrava: {
+        seoTitle: "Lloguer de vaixell per pescar a la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pesca recreativa en vaixell per la Costa Brava sud des de Blanes. Vaixells amb llicència per moure't entre zones. Llicència de pesca a càrrec del client; respecta les àrees protegides.",
+        h1: "Lloguer de vaixell per pescar per la Costa Brava",
+        intro:
+          "La Costa Brava sud, de Blanes a Tossa, alterna fons rocosos, puntes i aigües obertes que la converteixen en un bon destí de pesca recreativa. Des del Port de Blanes et lloguem un vaixell amb llicència per moure't entre les diferents zones.",
+        spotsTitle: "Zones de pesca a la Costa Brava sud",
+        spots: [
+          { name: "Aigües davant de Blanes", description: "Fons rocosos a prop del port, el punt de partida més senzill per a una sortida de mitja jornada." },
+          { name: "Litoral de Lloret", description: "Penya-segats i roca al voltant de Cala Banys i Fenals, amb bones zones de pesca de roca." },
+          { name: "Costa de Tossa (amb reserva protegida)", description: "Aigües riques, però amb una franja protegida on la pesca està restringida: pesca només fora d'ella." },
+        ],
+        boatsTitle: "Quin vaixell triar per pescar per la costa",
+        boatsIntro:
+          "Per a la pesca fem servir vaixells amb llicència, amb l'autonomia necessària per recórrer la costa entre zones. Els vaixells sense llicència, limitats a 2 milles, no són l'opció per a aquest tipus de sortides.",
+        practicalTitle: "Informació pràctica i normativa",
+        practicalBody:
+          "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Necessites la llicència de pesca recreativa de Catalunya (a càrrec del client). Respecta talles mínimes, espècies protegides i, molt especialment, les zones regulades com la reserva de Tossa. L'equip de pesca no està inclòs.",
+        faqTitle: "Preguntes freqüents",
+        faq: [
+          { q: "Què necessito per pescar des del vaixell?", a: "La llicència de pesca recreativa de Catalunya, que aporta el client, i respectar la normativa de talles, espècies i zones protegides." },
+          { q: "On es pot pescar a la Costa Brava sud?", a: "Als fons rocosos davant de Blanes i Lloret, sempre fora de les àrees protegides com part del litoral de Tossa." },
+        ],
+        ctaTitle: "Reserva la teva sortida de pesca per la Costa Brava",
+        ctaText: "Tria el teu vaixell amb llicència, respecta la normativa i les zones protegides, i prepara la teva jornada de pesca sortint des de Blanes.",
+      },
+    },
+  },
+  glossaryPage: {
+    seo: {
+      title: 'Glossari Nàutic, Lloguer Barques Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossari de termes nàutics essencials: LNB, PER, PNB, nusos, milles nàutiques, eslora, fondejar, cales i parts de l\'embarcació. Diccionari pràctic per llogar un vaixell a Blanes.',
+      keywords: 'glossari nautic, que es LNB, que es PER, que es PNB, milles nautiques, nusos, eslora, fondejar, glossari barques',
+    },
+    breadcrumbName: 'Glossari Nàutic',
+    h1: 'Glossari Nàutic',
+    intro: '{count} termes essencials per llogar una barca a la Costa Brava. Titulacions, unitats de mesura, parts de l\'embarcació i vocabulari marí.',
+    filterAll: 'Tots',
+    ctaTitle: 'A punt per llogar la teva barca?',
+    ctaDesc: 'Ara que domines la terminologia, tria la teva barca sense llicència o amb llicència per explorar la Costa Brava.',
+    ctaFleet: 'Veure la flota',
+    ctaFaq: 'Preguntes freqüents',
+    schemaName: 'Glossari nàutic, Lloguer de barques Costa Brava',
+    schemaDescription: 'Definicions de termes nàutics essencials per llogar una barca a la Costa Brava: titulacions, unitats de mesura, parts de l\'embarcació i terminologia marina.',
+    categories: {
+      titulacion: 'Titulacions',
+      unidad: 'Unitats de mesura',
+      accion: 'Accions',
+      parte: 'Parts de l\'embarcació i costa',
+      equipamiento: 'Equipament',
+      seguridad: 'Seguretat a bord',
+      meteo: 'Meteorologia i mar',
+    },
+    terms: [
+      {
+        term: 'LN (Licencia de Navegación)',
+        definition: 'Titulació nàutica espanyola mínima reconeguda pel RD 875/2014. Permet governar embarcacions de fins a 6 metres d\'eslora, amb motor adequat al casc i fins a 2 milles nàutiques de la costa, en horari diürn. És la titulació mínima requerida per als vaixells amb llicència de la nostra flota (Mingolla Brava 19, Trimarchi 57S i Pacific Craft 625). Examen teòric + curs de seguretat bàsic.',
+        category: 'titulacion',
+      },
+      {
+        term: 'LNB (Licencia de Navegación Básica)',
+        definition: 'Titulació nàutica espanyola superior a la LN. Permet governar embarcacions de fins a 8 metres d\'eslora i fins a 5 milles de la costa. Recomanable per a qui vulgui flexibilitat de zona. Vàlida de per vida després d\'aprovar l\'examen teòric + curs pràctic.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Titulació nàutica espanyola superior a la LNB. Permet governar embarcacions de fins a 15 metres d\'eslora i fins a 12 milles de la costa. Requereix examen teòric + pràctiques de navegació + radiocomunicacions.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Antiga titulació nàutica reemplaçada el 2014 per la LNB. Permet governar embarcacions de fins a 8 metres fins a 5 milles. Els qui la tinguin segueixen sent vàlids sense necessitat d\'actualitzar a LNB.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Milla náutica',
+        definition: 'Unitat de distància marítima internacional equivalent a 1.852 metres (1,852 km). Les embarcacions sense llicència a Espanya poden navegar fins a un màxim de 2 milles nàutiques de la costa (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Nudo',
+        definition: 'Unitat de velocitat marítima equivalent a 1 milla nàutica per hora (1,852 km/h). Les embarcacions sense llicència estan limitades a 5 nusos (9,3 km/h). Els vaixells amb llicència poden assolir molta més velocitat.',
+        category: 'unidad',
+      },
+      {
+        term: 'Eslora',
+        definition: 'Longitud total del vaixell, mesurada de proa a popa. Unitat: metres. A Espanya, l\'eslora determina la titulació nàutica mínima: fins a 5m pot no requerir títol, fins a 8m requereix LNB, fins a 15m requereix PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Manga',
+        definition: 'Amplada màxima del vaixell, mesurada d\'un costat a l\'altre en el seu punt més ample. Unitat: metres. Juntament amb l\'eslora defineix l\'estabilitat i l\'espai disponible a bord.',
+        category: 'unidad',
+      },
+      {
+        term: 'CV (caballos de vapor)',
+        definition: 'Unitat de potència del motor marí. Els vaixells sense llicència a Espanya estan limitats a 15 CV. Els vaixells amb llicència típicament tenen 40-150 CV, permetent navegació més ràpida i abast més gran.',
+        category: 'unidad',
+      },
+      {
+        term: 'Fondear',
+        definition: 'Acció d\'aturar el vaixell llançant l\'àncora al fons marí per mantenir-lo estàtic en una cala o zona sense amarratge. Requereix triar fons sorrenc (no rocós), llançar cap suficient (3-4 vegades la profunditat) i verificar que l\'àncora agafa.',
+        category: 'accion',
+      },
+      {
+        term: 'Cala',
+        definition: 'Cala petita i protegida a la costa, típicament envoltada de penya-segats o vegetació. A la Costa Brava hi ha desenes de cales accessibles només per mar, amb aigües cristal·lines i fons rocosos ideals per fer snorkel.',
+        category: 'parte',
+      },
+      {
+        term: 'Puerto deportivo',
+        definition: 'Instal·lació portuària destinada a embarcacions de recreo amb amarratges, serveis de combustible, aigua, electricitat i varador. El Port de Blanes (Girona) és el port esportiu nàutic de referència a la Costa Brava Sud.',
+        category: 'parte',
+      },
+      {
+        term: 'Proa',
+        definition: 'Part davantera del vaixell, oposada a la popa. En vaixells de recreo sol portar el solàrium principal i el llum de navegació blanc.',
+        category: 'parte',
+      },
+      {
+        term: 'Popa',
+        definition: 'Part posterior del vaixell, oposada a la proa. Allotja el motor fora borda, l\'escala de bany i típicament la zona de taula central.',
+        category: 'parte',
+      },
+      {
+        term: 'Estribor',
+        definition: 'Costat dret del vaixell mirant des de la popa cap a la proa. S\'identifica pel llum verd de navegació. Regla d\'or: \'Estribor = dret\' (ambdós comencen amb E).',
+        category: 'parte',
+      },
+      {
+        term: 'Babor',
+        definition: 'Costat esquerre del vaixell mirant des de la popa cap a la proa. S\'identifica pel llum vermell de navegació.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Toldo bimini',
+        definition: 'Tendal desplegable que cobreix la banyera del vaixell proporcionant ombra. Essencial per a navegació amb nens o a l\'estiu. La majoria dels nostres vaixells sense llicència l\'incorporen de sèrie.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Solárium',
+        definition: 'Zona encoixinada del vaixell destinada a ajeure\'s al sol, típicament a proa o popa. Els vaixells premium tenen solàrium doble (proa i popa).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Bañera',
+        definition: 'Zona central del vaixell on s\'ubiquen els seients, el lloc de govern i la taula. És l\'espai operatiu del vaixell durant la navegació.',
+        category: 'parte',
+      },
+      {
+        term: 'PY (Patrón de Yate)',
+        definition: 'Titulació nàutica espanyola superior al PER. Permet governar embarcacions de fins a 24 metres d\'eslora i fins a 150 milles de la costa. Amplia el PER amb navegació, meteorologia i anglès tècnic. No cal per a cap vaixell de la nostra flota, però és la referència per a navegació d\'altura.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Calado',
+        definition: 'Profunditat que necessita un vaixell per flotar sense tocar fons, mesurada des de la línia de flotació fins al punt més baix de la quilla o l\'hèlix. Unitat: metres. Les embarcacions de recreo lleugeres tenen calats petits, la qual cosa permet acostar-se a cales poc profundes.',
+        category: 'unidad',
+      },
+      {
+        term: 'Rumbo',
+        definition: 'Direcció cap a la qual navega el vaixell, mesurada en graus (0° a 360°) respecte al nord: 0°/360° nord, 90° est, 180° sud, 270° oest. Mantenir un rumb constant és la base de la navegació entre Blanes i les cales de la Costa Brava.',
+        category: 'unidad',
+      },
+      {
+        term: 'Singladura',
+        definition: 'Distància recorreguda o navegació realitzada en un dia. En navegació de recreo costanera s\'usa de forma col·loquial per referir-se a la sortida o jornada de mar completa.',
+        category: 'unidad',
+      },
+      {
+        term: 'Braza',
+        definition: 'Antiga unitat de profunditat equivalent a 1,8288 metres (6 peus). Encara apareix en algunes cartes nàutiques i entre mariners per referir-se al fons o a la longitud de cap llargat en fondejar.',
+        category: 'unidad',
+      },
+      {
+        term: 'Atracar',
+        definition: 'Maniobra d\'apropar i amarrar el vaixell a un moll, pantalà o embarcador. Requereix controlar la velocitat, anticipar el vent i el corrent i protegir el casc amb defenses.',
+        category: 'accion',
+      },
+      {
+        term: 'Largar amarras',
+        definition: 'Deslligar els caps que subjecten el vaixell a l\'amarratge per iniciar la navegació; el contrari d\'amarrar. Col·loquialment, \'llençar amarres\' equival a zarpar.',
+        category: 'accion',
+      },
+      {
+        term: 'Virar',
+        definition: 'Canviar el rumb del vaixell girant la proa cap a un costat. També descriu el gir complet per invertir el sentit de la marxa.',
+        category: 'accion',
+      },
+      {
+        term: 'Capear',
+        definition: 'Aguantar el mal temps o la mar grossa mantenint el vaixell amb la proa o l\'amura a l\'onatge i a poca velocitat, per minimitzar el balanceig i els cops de mar.',
+        category: 'accion',
+      },
+      {
+        term: 'Dar avante / dar atrás',
+        definition: 'Ordres de màquina. \'Donar avante\' és propulsar el vaixell cap endavant; \'donar enrere\' (o ciar) és propulsar-lo cap enrere. Essencials en maniobres de port i en fondejar.',
+        category: 'accion',
+      },
+      {
+        term: 'Aproar',
+        definition: 'Orientar la proa del vaixell cap a un punt concret: l\'onatge, el vent o el rumb desitjat. Aproar a la mar és la tècnica bàsica per navegar amb seguretat quan hi ha ones.',
+        category: 'accion',
+      },
+      {
+        term: 'Quilla',
+        definition: 'Peça longitudinal a la base del casc que dóna estabilitat i rigidesa al vaixell i redueix la deriva lateral. En embarcacions lleugeres a motor és poc pronunciada.',
+        category: 'parte',
+      },
+      {
+        term: 'Casco',
+        definition: 'Cos o estructura flotant del vaixell, que el manté a flotació i suporta la resta d\'elements. El més comú en recreo és la fibra de vidre; també n\'hi ha d\'alumini o fusta.',
+        category: 'parte',
+      },
+      {
+        term: 'Timón',
+        definition: 'Peça mòbil situada sota la popa que, en girar, desvia el flux d\'aigua i fa que el vaixell canviï de rumb. Es governa amb la roda o la canya del lloc de govern.',
+        category: 'parte',
+      },
+      {
+        term: 'Hélice',
+        definition: 'Peça giratòria de pales que, accionada pel motor, impulsa el vaixell en desplaçar l\'aigua. En els motors fora borda va integrada a la cua del motor.',
+        category: 'parte',
+      },
+      {
+        term: 'Amura',
+        definition: 'Zona del costat del vaixell pròxima a la proa, entre aquesta i el través. Es parla d\'amura de babor o d\'estribor; \'mar d\'amura\' és l\'onatge que arriba per aquesta zona.',
+        category: 'parte',
+      },
+      {
+        term: 'Aleta',
+        definition: 'Zona del costat del vaixell pròxima a la popa, entre el través i la popa. Es parla d\'aleta de babor o d\'estribor.',
+        category: 'parte',
+      },
+      {
+        term: 'Línea de flotación',
+        definition: 'Línia on la superfície de l\'aigua toca el casc amb el vaixell a flotació i amb la seva càrrega normal. Separa l\'obra viva (submergida) de l\'obra morta (emergida).',
+        category: 'parte',
+      },
+      {
+        term: 'Ancla',
+        definition: 'Peça de metall que es llança al fons marí, unida al vaixell per cadena o cap, per fondejar i mantenir la posició. El petó és un tipus d\'àncora lleugera de diverses unglots habitual en embarcacions petites.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cabo',
+        definition: 'Nom mariner de tota corda a bord: mai es diu \'corda\'. Els caps serveixen per amarrar, fondejar, remolcar o subjectar elements del vaixell.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Defensas',
+        definition: 'Elements cilíndrics o esfèrics, normalment inflables, que es pengen del costat per protegir el casc de cops contra el moll o altres embarcacions en atracar.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cornamusa',
+        definition: 'Peça metàl·lica amb forma de T fixada en coberta on es fan ferms els caps d\'amarratge. Permet assegurar i deslligar el cap amb rapidesa.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Ecosonda',
+        definition: 'Instrument que mesura la profunditat de l\'aigua sota el casc emetent ultrasons i mesurant l\'eco del fons. Imprescindible per fondejar amb seguretat i evitar embarrancar.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'GPS y carta náutica',
+        definition: 'El GPS dóna la posició del vaixell per satèl·lit; el plotter la representa sobre una carta nàutica electrònica amb profunditats, balises i perills. La carta nàutica és el mapa oficial del mar.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Chaleco salvavidas',
+        definition: 'Equip individual de flotació obligatori a bord, un per persona. Manté a flotació qui cau a l\'aigua. El seu ús és obligatori en situacions de risc i molt recomanable per a menors i no nedadors.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Aro salvavidas',
+        definition: 'Flotador circular que es llança a una persona caiguda a l\'aigua perquè s\'hi agafi mentre se la recupera. Sol portar una rabassa (cap) i, en alguns casos, llum de localització.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Hombre al agua',
+        definition: 'Emergència en què una persona cau al mar. La maniobra consisteix a assenyalar l\'accidentat, no perdre\'l de vista, llançar un anell salvavides i tornar aproant amb cura per recollir-lo per sotavent.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Bengalas y señales de socorro',
+        definition: 'Material de seguretat pirotècnic (bengales de mà, coets amb paracaigudes, senyals de fum) per demanar ajuda i ser localitzat en cas d\'emergència a la mar.',
+        category: 'seguridad',
+      },
+      {
+        term: 'VHF (Canal 16)',
+        definition: 'Ràdio de molt alta freqüència per a comunicacions marítimes. El canal 16 és la freqüència internacional de socors, urgència i crida, monitoritzada per Salvament Marítim.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Botiquín de a bordo',
+        definition: 'Conjunt de material sanitari, obligatori segons la zona de navegació, per atendre marejos, talls, cremades solars i petites urgències durant la sortida.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Tramontana',
+        definition: 'Vent fort, fred i sec del nord característic del Golf de Lleó i del nord de la Costa Brava. Pot aixecar-se amb rapidesa i complicar la navegació; convé consultar la previsió abans de sortir de Blanes.',
+        category: 'meteo',
+      },
+      {
+        term: 'Garbí (Garbino)',
+        definition: 'Vent del sud-oest típic de les tardes d\'estiu a la Costa Brava, associat a la brisa marina. Sol ser moderat i refrescant, tot i que pot arrissar la mar a la tarda.',
+        category: 'meteo',
+      },
+      {
+        term: 'Migjorn',
+        definition: 'Vent del sud (migdia) a la costa catalana. Càlid i humit, sol anunciar canvi de temps i augment de l\'onatge.',
+        category: 'meteo',
+      },
+      {
+        term: 'Mar de fondo',
+        definition: 'Onatge format per vent llunyà o ja passat que arriba a la costa com a ones llargues i regulars, fins i tot sense vent local. Pot fer incòmode el fondeig en cales exposades.',
+        category: 'meteo',
+      },
+      {
+        term: 'Marejada y mar rizada',
+        definition: 'Estats de la mar segons l\'alçada de les ones: \'mar arrissada\' són ones molt petites (fins a 0,5 m) i \'maror\' ones de 0,5 a 1,25 m. Són termes del part meteorològic marítim.',
+        category: 'meteo',
+      },
+      {
+        term: 'Banderas de baño',
+        definition: 'Senyalització de platja: bandera verda (bany permès), groga (precaució, bany amb limitacions) i vermella (bany prohibit). Orienten també sobre l\'estat de la mar per sortir en vaixell.',
+        category: 'meteo',
+      },
+      {
+        term: 'Parte meteorológico marítimo',
+        definition: 'Previsió específica per a la mar (vent, estat de la mar, visibilitat i fenòmens) emesa per l\'AEMET per zones. Consultar-lo abans de cada sortida és la primera norma de seguretat.',
+        category: 'meteo',
+      },
+    ],
+  },
+  jetski: {
+    badge: 'Jet ski',
+    requestCta: 'Reservar',
+    fromLabel: 'des de',
+    modal: {
+      title: 'Sol·licita la teva jet ski',
+      subtitle: 'Tria la franja i et confirmem disponibilitat.',
+      slot: 'Franja',
+      date: 'Data preferida',
+      datePlaceholder: 'Quin dia t\'agradaria?',
+      people: 'Persones',
+      name: 'Nom',
+      namePlaceholder: 'El teu nom i cognoms',
+      firstName: 'Nom',
+      firstNamePlaceholder: 'Nom',
+      lastName: 'Cognoms',
+      lastNamePlaceholder: 'Cognoms',
+      phone: 'Telèfon / WhatsApp',
+      email: 'Email',
+      emailHint: 'Opcional',
+      submit: 'Enviar sol·licitud',
+      submitting: 'Enviant...',
+      reassurance: 'Sense compromís · et confirmem per WhatsApp o email',
+      whatsappDirect: 'Prefereixo escriure per WhatsApp',
+      successTitle: 'Prem enviar a WhatsApp!',
+      successText: 'Hem obert WhatsApp amb la teva sol·licitud. Prem Envia i et confirmem la disponibilitat de seguida.',
+      errorText: 'No hem pogut enviar la teva sol·licitud. Torna-ho a provar o escriu-nos per WhatsApp.',
+      requiredError: 'Si us plau, completa el teu nom i telèfon.',
+    },
+  },
+  jetskiHub: {
+    "seoTitle": "Lloguer de motos aquàtiques a Blanes (Costa Brava) | Sense llicència",
+    "navLabel": "Motos aquàtiques",
+    "hero": {
+      "title": "Lloguer de motos aquàtiques a Blanes",
+      "subtitle": "Pilota una moto aquàtica sense llicència a la Costa Brava: circuit vigilat davant de Blanes o excursió guiada a Tossa de Mar. Amb monitor, armilla i combustible inclosos."
+    },
+    "intro": "Dues maneres de gaudir de la moto aquàtica sense llicència des del port de Blanes, sempre amb monitor. Tria el circuit per a un primer contacte o l'excursió guiada per recórrer la costa fins a Tossa de Mar.",
+    "productsTitle": "Les nostres experiències en moto aquàtica",
+    "faqTitle": "Preguntes freqüents",
+    "faq": [
+      {
+        "q": "Necessito llicència per a la moto aquàtica?",
+        "a": "No. Totes les nostres experiències són sense llicència: sempre vas acompanyat o vigilat per un monitor titulat."
+      },
+      {
+        "q": "Quantes persones poden anar per moto?",
+        "a": "Entre 1 i 2 persones per moto aquàtica, segons l'experiència que triïs."
+      },
+      {
+        "q": "Des d'on surten?",
+        "a": "Des del port de Blanes (Girona), al mateix pantalà que els nostres vaixells."
+      }
+    ]
+  },
+  jetskiLanding: {
+    "fromLabel": "des de",
+    "ctaRequest": "Reservar",
+    "slotsTitle": "Franges i preus",
+    "includedTitle": "Què inclou",
+    "faqTitle": "Preguntes freqüents",
+    "reassurance": "Sense compromís · ho confirmem per WhatsApp",
+    "circuito": {
+      "navLabel": "Circuit en Moto d'Aigua",
+      "seoTitle": "Lloguer de moto d'aigua a Blanes · Circuit en moto aquàtica sense llicència",
+      "hero": {
+        "title": "Circuit en Moto d'Aigua a Blanes",
+        "subtitle": "Posa't als comandaments d'una moto d'aigua en un circuit balisat davant de Blanes, amb un monitor vigilant. Sense llicència, des de 15 minuts."
+      },
+      "chips": [
+        "Sense necessitat de llicència",
+        "1-2 persones",
+        "Des de 15 min"
+      ],
+      "intro": "La teva primera vegada en moto d'aigua, sense complicacions: t'ho expliquem tot i pilotes en una zona segura davant del port de Blanes.",
+      "faq": [
+        {
+          "q": "Necessito llicència?",
+          "a": "No. El circuit es fa en una zona balisada amb un monitor vigilant en tot moment."
+        },
+        {
+          "q": "Quantes persones per moto?",
+          "a": "Fins a 2 persones per moto d'aigua."
+        },
+        {
+          "q": "Edat mínima?",
+          "a": "18 anys per pilotar; els menors poden anar de passatgers segons la normativa de l'operador."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Excursió en Moto d'Aigua amb Monitor",
+      "seoTitle": "Lloguer de moto d'aigua a Blanes · Excursió guiada a Tossa de Mar",
+      "hero": {
+        "title": "Excursió en Moto d'Aigua de Blanes a Tossa",
+        "subtitle": "Recorre la Costa Brava en moto d'aigua acompanyat d'un monitor titulat, amb ruta guiada des de Blanes fins a Tossa de Mar. Sense llicència."
+      },
+      "chips": [
+        "Sense necessitat de llicència",
+        "Guia fins a Tossa",
+        "Combustible inclòs",
+        "1-2 persones"
+      ],
+      "intro": "Una ruta guiada per cales i penya-segats de la Costa Brava, amb un monitor que va amb tu en tot moment. Combustible i assegurança inclosos.",
+      "faq": [
+        {
+          "q": "Necessito llicència?",
+          "a": "No. Vas acompanyat d'un monitor titulat durant tota l'excursió."
+        },
+        {
+          "q": "Què inclou?",
+          "a": "Combustible, assegurança de responsabilitat civil, monitor/guia, armilla i briefing de seguretat."
+        },
+        {
+          "q": "Quant dura?",
+          "a": "Hi ha opció d'1 hora o 2 hores cap a Tossa de Mar."
+        }
+      ]
+    }
   },
 };

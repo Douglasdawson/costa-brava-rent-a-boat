@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { LastUpdated } from "@/components/LastUpdated";
 const RouteMap = lazy(() => import("@/components/RouteMap"));
 import { boatRoutes } from "@shared/routesData";
 import { trackRouteSelected } from "@/utils/analytics";
@@ -164,6 +165,7 @@ function RoutesPage() {
           <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             {t.routes?.subtitle || "Descubre las mejores rutas en barco desde el Puerto de Blanes"}
           </p>
+          <LastUpdated date="2026-05-31" className="mt-3" />
         </div>
       </div>
 
@@ -236,6 +238,35 @@ function RoutesPage() {
           height={600}
         />
       </div>
+
+      {/* ═══ NAVIGATION GUIDE (GEO prose) ═══ */}
+      {t.routes?.guide && (
+        <RevealSection className="py-16 sm:py-20">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-8">
+              {t.routes.guide.heading}
+            </h2>
+            <div className="space-y-8">
+              <div>
+                <h3 className="font-heading font-semibold text-lg text-foreground mb-2">{t.routes.guide.geographyTitle}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t.routes.guide.geographyBody}</p>
+              </div>
+              <div>
+                <h3 className="font-heading font-semibold text-lg text-foreground mb-2">{t.routes.guide.seaTitle}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t.routes.guide.seaBody}</p>
+              </div>
+              <div>
+                <h3 className="font-heading font-semibold text-lg text-foreground mb-2">{t.routes.guide.calasTitle}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t.routes.guide.calasBody}</p>
+              </div>
+              <div>
+                <h3 className="font-heading font-semibold text-lg text-foreground mb-2">{t.routes.guide.seasonTitle}</h3>
+                <p className="text-muted-foreground leading-relaxed">{t.routes.guide.seasonBody}</p>
+              </div>
+            </div>
+          </div>
+        </RevealSection>
+      )}
 
       {/* ═══ RELATED DESTINATIONS ═══ */}
       <RevealSection className="py-16 sm:py-20 bg-muted">

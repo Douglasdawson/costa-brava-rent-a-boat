@@ -34,6 +34,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { filterActivePrices, getMinActivePrice } from "@shared/pricing";
+import {
+  isJetSkiProduct,
+  getJetSkiProduct,
+  getJetSkiPageKey,
+  type JetSkiProduct,
+} from "@shared/jetskiProducts";
+import type { PageKey } from "@shared/i18n-routes";
+import JetSkiRequestModal from "./JetSkiRequestModal";
 
 /** Skeleton that mirrors BoatCard layout: image 4/3 + content + buttons */
 function BoatCardSkeleton() {
@@ -147,6 +155,8 @@ interface VirtualizedBoatGridProps {
     features: string[];
     available: boolean;
     enginePower: string;
+    isJetSki: boolean;
+    jetskiHref?: string;
   }>;
   popularBoatId: string;
   selectedGroupSize: string | null;
@@ -234,6 +244,7 @@ function FleetSection() {
   const [, setLocation] = useLocation();
   const { openBookingModal } = useBookingModal();
   const { ref: revealRef, isVisible } = useScrollReveal();
+  const [jetskiProduct, setJetskiProduct] = useState<JetSkiProduct | null>(null);
   const [selectedGroupSize, setSelectedGroupSize] = useState<string | null>(null);
   const [licenseFilter, setLicenseFilter] = useState<"all" | "no" | "yes">("all");
   const [checklistOpen, setChecklistOpen] = useState(false);
@@ -301,29 +312,41 @@ function FleetSection() {
           // Extract engine power from specifications
           const enginePower = boat.specifications?.engine || "";
 
+          // Jet ski cards use the canonical image from shared/jetskiProducts.ts
+          // (single source of truth) instead of the DB-seeded path, so the fleet
+          // card always matches the hub and landing imagery without re-seeding.
+          const jsk = getJetSkiProduct(boat.id);
+
           return {
             id: boat.id,
             name: boat.name,
-            image: boat.imageGallery?.[0]?.trim()
-              ? getBoatImage(boat.imageGallery[0].trim())
-              : boat.imageUrl
-                ? getBoatImage(boat.imageUrl)
-                : "/placeholder-boat.jpg",
-            imageSrcSet: boat.imageGallery?.[0]?.trim()
-              ? ""
-              : boat.imageUrl
-                ? getBoatImageSrcSet(boat.imageUrl)
-                : "",
-            imageTablet: boat.imageGalleryTablet?.[0]?.trim()
-              ? getBoatImage(boat.imageGalleryTablet[0].trim())
+            image: jsk
+              ? getBoatImage(jsk.image)
               : boat.imageGallery?.[0]?.trim()
                 ? getBoatImage(boat.imageGallery[0].trim())
-                : undefined,
-            imageMobile: boat.imageGalleryMobile?.[0]?.trim()
-              ? getBoatImage(boat.imageGalleryMobile[0].trim())
-              : boat.imageGallery?.[0]?.trim()
-                ? getBoatImage(boat.imageGallery[0].trim())
-                : undefined,
+                : boat.imageUrl
+                  ? getBoatImage(boat.imageUrl)
+                  : "/placeholder-boat.jpg",
+            imageSrcSet:
+              jsk || boat.imageGallery?.[0]?.trim()
+                ? ""
+                : boat.imageUrl
+                  ? getBoatImageSrcSet(boat.imageUrl)
+                  : "",
+            imageTablet: jsk
+              ? undefined
+              : boat.imageGalleryTablet?.[0]?.trim()
+                ? getBoatImage(boat.imageGalleryTablet[0].trim())
+                : boat.imageGallery?.[0]?.trim()
+                  ? getBoatImage(boat.imageGallery[0].trim())
+                  : undefined,
+            imageMobile: jsk
+              ? undefined
+              : boat.imageGalleryMobile?.[0]?.trim()
+                ? getBoatImage(boat.imageGalleryMobile[0].trim())
+                : boat.imageGallery?.[0]?.trim()
+                  ? getBoatImage(boat.imageGallery[0].trim())
+                  : undefined,
             imageAlt:
               (boat.requiresLicense ? t.boats.imageAltWithLicense : t.boats.imageAltNoLicense)
                 ?.replace("{name}", boat.name)
@@ -340,6 +363,10 @@ function FleetSection() {
             features: boat.equipment || [],
             available: true,
             enginePower: enginePower,
+            isJetSki: isJetSkiProduct(boat.id),
+            jetskiHref: isJetSkiProduct(boat.id)
+              ? localizedPath(getJetSkiPageKey(boat.id) as PageKey)
+              : undefined,
           };
         }),
     [boatsData, currentSeason, t]
@@ -383,6 +410,13 @@ function FleetSection() {
   const handleBooking = useCallback(
     (boatId: string) => {
       trackBoatClickedFromFleet(boatId, "book");
+      // Jet ski products use the lightweight slot-request modal, not the
+      // per-hour booking wizard (they're not in the pricing engine).
+      const jetski = getJetSkiProduct(boatId);
+      if (jetski) {
+        setJetskiProduct(jetski);
+        return;
+      }
       openBookingModal(boatId);
     },
     [openBookingModal]
@@ -391,6 +425,12 @@ function FleetSection() {
   const handleDetails = useCallback(
     (boatId: string) => {
       trackBoatClickedFromFleet(boatId, "details");
+      const jetskiPageKey = getJetSkiPageKey(boatId);
+      if (jetskiPageKey) {
+        setLocation(localizedPath(jetskiPageKey as PageKey));
+        window.scrollTo(0, 0);
+        return;
+      }
       setLocation(localizedPath("boatDetail", boatId));
       window.scrollTo(0, 0);
     },
@@ -735,7 +775,9 @@ function FleetSection() {
                     return (
                       <TableCell key={boat.id} className="text-center text-sm">
                         {durations.length > 0
-                          ? durations.map(d => (String(d).endsWith("h") ? d : `${d}h`)).join(", ")
+                          ? durations
+                              .map(d => (/h$|min$/.test(String(d)) ? String(d) : `${d}h`))
+                              .join(", ")
                           : "-"}
                       </TableCell>
                     );
@@ -896,6 +938,11 @@ function FleetSection() {
           </div>
         </div>
       </div>
+
+      <JetSkiRequestModal
+        product={jetskiProduct}
+        onClose={() => setJetskiProduct(null)}
+      />
     </section>
   );
 }

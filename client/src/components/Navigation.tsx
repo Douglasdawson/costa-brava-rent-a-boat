@@ -165,6 +165,7 @@ export default function Navigation() {
   const navigationItems = [
     { label: t.nav.home, href: localizedPath("home") },
     { label: t.nav.fleet, href: "#fleet" },
+    { label: t.nav.jetski, href: localizedPath("jetskiHub") },
     { label: t.footer.destinations, href: localizedPath("routes") },
     { label: "Blog", href: localizedPath("blog") },
   ];

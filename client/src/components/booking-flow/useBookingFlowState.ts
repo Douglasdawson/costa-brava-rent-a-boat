@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getSeason } from "@shared/pricing";
+import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslations } from "@/lib/translations";
 import { useAuth } from "@/hooks/useAuth";
@@ -149,7 +150,9 @@ export function useBookingFlowState(props: BookingFlowProps) {
     [debouncedNationalitySearch]
   );
 
-  const allBoats = boats || [];
+  // Jet ski products are not bookable through this per-hour wizard — they have
+  // their own slot-request modal in the fleet section.
+  const allBoats = (boats || []).filter((b: Boat) => !isJetSkiProduct(b.id));
 
   const availableBoats = useMemo(() => {
     if (licenseFilter === "all") return allBoats;

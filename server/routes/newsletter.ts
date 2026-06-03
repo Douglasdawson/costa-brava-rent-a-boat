@@ -65,9 +65,17 @@ export function registerNewsletterRoutes(app: Express) {
       const subscriber = await storage.createNewsletterSubscriber(email, language, source);
       res.status(201).json({ success: true, id: subscriber.id });
     } catch (error: unknown) {
-      const msg = error instanceof Error ? error.message : String(error);
-      // Unique constraint violation — already subscribed
-      if (msg.includes("unique") || msg.includes("duplicate") || msg.includes("23505")) {
+      // Unique constraint violation — already subscribed. Drizzle wraps the pg
+      // error (DrizzleQueryError), so the 23505 code/message live on error.cause,
+      // not on the top-level "Failed query: ..." message.
+      const err = error as {
+        code?: string;
+        message?: string;
+        cause?: { code?: string; message?: string };
+      };
+      const code = err?.code ?? err?.cause?.code;
+      const msg = `${err?.message ?? String(error)} ${err?.cause?.message ?? ""}`;
+      if (code === "23505" || /unique|duplicate/i.test(msg)) {
         return res.status(409).json({ message: "Este email ya está suscrito" });
       }
       logger.error("[Newsletter] Error subscribing", { error: msg });

@@ -9,6 +9,7 @@ export const fr: Translations = {
     faq: "FAQ",
     giftCards: "Cartes Cadeaux",
     viewComponents: "Voir Composants",
+    jetski: "Jet-skis",
     bookNow: "Voir Disponibilités",
     myAccount: "Mon Compte",
   },
@@ -46,7 +47,7 @@ export const fr: Translations = {
   },
 
   fleet: {
-    title: "Choisissez votre bateau",
+    title: "Choisissez votre sortie en mer",
     subtitle:
       "Selon la taille de votre groupe et l'expérience souhaitée. Assurance et équipement de sécurité inclus.",
     helpText: "Vous hésitez ? On vous aide en moins de 5 minutes",
@@ -65,7 +66,7 @@ export const fr: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Choisissez entre 2h, 4h ou 8h pour louer notre {boatName}",
     withLicense: "Avec permis",
-    withoutLicense: "Sans permis",
+    withoutLicense: "Aucun permis nécessaire",
     available: "Disponible",
     occupied: "Occupé",
     more: "plus",
@@ -606,24 +607,6 @@ export const fr: Translations = {
     boat: "Bateau",
     tripDate: "Date",
     submit: "Envoyer la photo",
-  },
-  routes: {
-    title: "Itinéraires Suggérés",
-    subtitle: "Découvrez les meilleures routes en bateau depuis le port de Blanes",
-    bookBoat: "Réserver un bateau",
-    introText:
-      "Depuis le port de Blanes, porte d'entree de la Costa Brava, vous avez un acces direct a certains des itineraires cotiers les plus spectaculaires de la Mediterranee. Chaque itineraire est concu pour differents niveaux d'experience et durees, des escapades d'1 heure aux excursions a la journee. Explorez nos",
-    introFleetLink: "bateaux disponibles",
-    introSuffix: "pour trouver le bateau parfait pour votre itineraire.",
-    lloretTitle: "Lloret de Mar en bateau",
-    lloretDesc:
-      "Plages dorees, criques cachees et vie nocturne. A seulement 20 min en bateau depuis Blanes.",
-    tossaTitle: "Tossa de Mar en bateau",
-    tossaDesc:
-      "La Vila Vella medievale, des falaises impressionnantes et les criques les plus sauvages de la Costa Brava.",
-    pricesTitle: "Prix et tarifs",
-    pricesDesc:
-      "Consultez les prix par saison de tous nos bateaux. A partir de 70€/heure sans permis.",
   },
   giftCardBanner: {
     title: "Offrez une expérience unique en mer",
@@ -1247,7 +1230,7 @@ export const fr: Translations = {
     title: "Avec ou sans permis ?",
     subtitle:
       "Pas besoin de permis pour profiter de la mer. Mais si vous en avez un, nous avons des bateaux plus puissants.",
-    withoutLicense: "Sans permis",
+    withoutLicense: "Aucun permis nécessaire",
     withLicense: "Avec permis",
     withoutLicenseDesc:
       "On vous apprend en 15 minutes. Essence incluse. Parfait pour les familles.",
@@ -3605,145 +3588,6 @@ export const fr: Translations = {
       error: "Échec de l'envoi. Veuillez réessayer.",
     },
   },
-  glossaryPage: {
-    seo: {
-      title: "Glossaire Nautique, Location Bateaux Costa Brava | Costa Brava Rent a Boat",
-      description:
-        "Glossaire des termes nautiques essentiels : LNB, PER, PNB, nœuds, milles nautiques, longueur, mouiller, criques et parties du bateau. Dictionnaire pratique pour louer un bateau à Blanes.",
-      keywords:
-        "glossaire nautique, qu'est-ce que LNB, qu'est-ce que PER, qu'est-ce que PNB, milles nautiques, nœuds, longueur, mouiller, glossaire bateaux",
-    },
-    breadcrumbName: "Glossaire Nautique",
-    h1: "Glossaire Nautique",
-    intro:
-      "{count} termes essentiels pour louer un bateau sur la Costa Brava. Permis, unités de mesure, parties du bateau et vocabulaire marin.",
-    filterAll: "Tous",
-    ctaTitle: "Prêt à louer votre bateau ?",
-    ctaDesc:
-      "Maintenant que vous maîtrisez la terminologie, choisissez votre bateau sans permis ou avec permis pour explorer la Costa Brava.",
-    ctaFleet: "Voir la flotte",
-    ctaFaq: "Questions fréquentes",
-    schemaName: "Glossaire nautique, Location de bateaux Costa Brava",
-    schemaDescription:
-      "Définitions des termes nautiques essentiels pour louer un bateau sur la Costa Brava : permis, unités de mesure, parties du bateau et terminologie marine.",
-    categories: {
-      titulacion: "Permis",
-      unidad: "Unités de mesure",
-      accion: "Actions",
-      parte: "Parties du bateau et côte",
-      equipamiento: "Équipement",
-    },
-    terms: [
-      {
-        term: "LNB (Licencia de Navegación Básica)",
-        definition:
-          "Permis nautique espagnol permettant de piloter des embarcations jusqu'à 8 mètres de longueur et jusqu'à 5 milles de la côte. Obligatoire pour louer des bateaux de plus de 15 CV. Valable à vie après avoir réussi l'examen théorique + formation pratique.",
-        category: "titulacion",
-      },
-      {
-        term: "PER (Patrón de Embarcaciones de Recreo)",
-        definition:
-          "Permis nautique espagnol supérieur au LNB. Permet de piloter des embarcations jusqu'à 15 mètres de longueur et jusqu'à 12 milles de la côte. Nécessite un examen théorique + pratiques de navigation + radiocommunications.",
-        category: "titulacion",
-      },
-      {
-        term: "PNB (Patrón de Navegación Básica)",
-        definition:
-          "Ancien permis nautique remplacé en 2014 par le LNB. Permet de piloter des embarcations jusqu'à 8 mètres jusqu'à 5 milles. Ceux qui le possèdent restent valables sans nécessité de mise à jour vers le LNB.",
-        category: "titulacion",
-      },
-      {
-        term: "Mille nautique",
-        definition:
-          "Unité de distance maritime internationale équivalant à 1 852 mètres (1,852 km). Les embarcations sans permis en Espagne peuvent naviguer jusqu'à un maximum de 2 milles nautiques de la côte (3,7 km).",
-        category: "unidad",
-      },
-      {
-        term: "Nœud",
-        definition:
-          "Unité de vitesse maritime équivalant à 1 mille nautique par heure (1,852 km/h). Les embarcations sans permis sont limitées à 5 nœuds (9,3 km/h). Les bateaux avec permis peuvent atteindre une vitesse bien supérieure.",
-        category: "unidad",
-      },
-      {
-        term: "Eslora",
-        definition:
-          "Longueur totale du bateau, mesurée de la proue à la poupe. Unité : mètres. En Espagne, la longueur détermine le permis nautique minimum : jusqu'à 5m peut ne pas nécessiter de permis, jusqu'à 8m nécessite le LNB, jusqu'à 15m nécessite le PER.",
-        category: "unidad",
-      },
-      {
-        term: "Manga",
-        definition:
-          "Largeur maximale du bateau, mesurée d'un côté à l'autre en son point le plus large. Unité : mètres. Avec la longueur, elle définit la stabilité et l'espace disponible à bord.",
-        category: "unidad",
-      },
-      {
-        term: "CV (caballos de vapor)",
-        definition:
-          "Unité de puissance du moteur marin. Les bateaux sans permis en Espagne sont limités à 15 CV. Les bateaux avec permis ont généralement entre 40 et 150 CV, permettant une navigation plus rapide et une plus grande autonomie.",
-        category: "unidad",
-      },
-      {
-        term: "Fondear",
-        definition:
-          "Action d'arrêter le bateau en jetant l'ancre sur le fond marin pour le maintenir immobile dans une crique ou zone sans amarrage. Nécessite de choisir un fond sableux (non rocheux), de laisser suffisamment de chaîne (3-4 fois la profondeur) et de vérifier que l'ancre accroche.",
-        category: "accion",
-      },
-      {
-        term: "Cala",
-        definition:
-          "Petite anse abritée sur la côte, généralement entourée de falaises ou de végétation. Sur la Costa Brava, il existe des dizaines de criques accessibles uniquement par la mer, avec des eaux cristallines et des fonds rocheux idéaux pour le snorkeling.",
-        category: "parte",
-      },
-      {
-        term: "Puerto deportivo",
-        definition:
-          "Installation portuaire destinée aux embarcations de plaisance avec amarrages, services de carburant, eau, électricité et aire de carénage. Le Port de Blanes (Gérone) est le port de plaisance de référence sur la Costa Brava Sud.",
-        category: "parte",
-      },
-      {
-        term: "Proa",
-        definition:
-          "Partie avant du bateau, opposée à la poupe. Sur les bateaux de plaisance, elle accueille généralement le bain de soleil principal et le feu de navigation blanc.",
-        category: "parte",
-      },
-      {
-        term: "Popa",
-        definition:
-          "Partie arrière du bateau, opposée à la proue. Elle accueille le moteur hors-bord, l'échelle de bain et généralement la zone de table centrale.",
-        category: "parte",
-      },
-      {
-        term: "Estribor",
-        definition:
-          "Côté droit du bateau en regardant de la poupe vers la proue. Il est identifié par le feu de navigation vert. Règle d'or : « Tribord = droit ».",
-        category: "parte",
-      },
-      {
-        term: "Babor",
-        definition:
-          "Côté gauche du bateau en regardant de la poupe vers la proue. Il est identifié par le feu de navigation rouge.",
-        category: "parte",
-      },
-      {
-        term: "Bimini / Toldo bimini",
-        definition:
-          "Taud dépliable qui couvre le cockpit du bateau en fournissant de l'ombre. Essentiel pour la navigation avec des enfants ou en été. La plupart de nos bateaux sans permis l'incluent de série.",
-        category: "equipamiento",
-      },
-      {
-        term: "Solárium",
-        definition:
-          "Zone rembourrée du bateau destinée à s'allonger au soleil, généralement à la proue ou à la poupe. Les bateaux premium ont un double bain de soleil (proue et poupe).",
-        category: "equipamiento",
-      },
-      {
-        term: "Bañera",
-        definition:
-          "Zone centrale du bateau où se trouvent les sièges, le poste de pilotage et la table. C'est l'espace opérationnel du bateau pendant la navigation.",
-        category: "parte",
-      },
-    ],
-  },
   faqPage: {
     heroTitle: "Questions Fréquentes",
     heroDescription:
@@ -4303,5 +4147,957 @@ export const fr: Translations = {
       errorText: "Nous n'avons pas pu envoyer vos coordonnées. Réessayez ou écrivez-nous sur WhatsApp.",
       requiredError: "Veuillez compléter votre nom et téléphone.",
     },
+  },
+  routes: {
+    title: 'Itinéraires Suggérés',
+    subtitle: 'Découvrez les meilleures routes en bateau depuis le port de Blanes',
+    bookBoat: 'Réserver un bateau',
+    introText: 'Depuis le port de Blanes, porte d\'entree de la Costa Brava, vous avez un acces direct a certains des itineraires cotiers les plus spectaculaires de la Mediterranee. Chaque itineraire est concu pour differents niveaux d\'experience et durees, des escapades d\'1 heure aux excursions a la journee. Explorez nos',
+    introFleetLink: 'bateaux disponibles',
+    introSuffix: 'pour trouver le bateau parfait pour votre itineraire.',
+    lloretTitle: 'Lloret de Mar en bateau',
+    lloretDesc: 'Plages dorees, criques cachees et vie nocturne. A seulement 20 min en bateau depuis Blanes.',
+    tossaTitle: 'Tossa de Mar en bateau',
+    tossaDesc: 'La Vila Vella medievale, des falaises impressionnantes et les criques les plus sauvages de la Costa Brava.',
+    pricesTitle: 'Prix et tarifs',
+    pricesDesc: 'Consultez les prix par saison de tous nos bateaux. A partir de 70€/heure sans permis.',
+    guide: {
+      heading: 'Guide pour naviguer sur la Costa Brava depuis Blanes',
+      geographyTitle: 'Le littoral : de Blanes à Tossa de Mar',
+      geographyBody: 'Le port de Blanes marque le début de la Costa Brava. En naviguant vers le nord, le rocher de Sa Palomera laisse place à une succession de criques aux eaux turquoise : Cala Sant Francesc, Santa Cristina et Cala Treumal avant d\'atteindre Lloret de Mar (à environ 20 minutes en bateau), et plus loin Cala Boadella et les criques vierges de Tossa de Mar, avec sa Vila Vella médiévale dominant la mer. Avec un bateau avec permis, le trajet Blanes–Tossa représente environ 30-45 minutes de navigation tranquille le long de la côte.',
+      seaTitle: 'Conditions de mer et vents',
+      seaBody: 'La partie sud de la Costa Brava offre généralement une navigation confortable en été. Le matin, la mer est habituellement calme ; l\'après-midi, le garbí peut se lever, cette brise du sud-ouest qui ride légèrement la surface. Le vent à surveiller est la tramontane, forte et venant du nord, qui peut se lever rapidement : consultez toujours les prévisions météo maritimes avant de sortir. Les embarcations sans permis naviguent jusqu\'à 2 milles nautiques de la côte (3,7 km) et à une vitesse maximale de 5 nœuds, suffisant pour parcourir toutes ces criques en toute sécurité.',
+      calasTitle: 'Criques et snorkeling',
+      calasBody: 'Les criques entre Blanes et Tossa ont des fonds rocheux et des eaux cristallines, idéales pour mouiller et faire du snorkeling. Cala Bona, Cala Treumal et Santa Cristina offrent des eaux abritées ; à Lloret, Cala Boadella ; et vers Tossa, Cala Llevadó, Cala Giverola et Cala Pola, dont beaucoup ne sont accessibles que par la mer. Pensez à mouiller sur fond sableux — jamais sur les herbiers de posidonie, qui sont protégés — et à filer suffisamment de chaîne pour que l\'ancre accroche.',
+      seasonTitle: 'Meilleure période pour naviguer',
+      seasonBody: 'La saison de navigation s\'étend d\'avril à octobre, avec des horaires de départ de 09:00 à 20:00. Juillet et août offrent la mer la plus chaude et la plus stable, idéale pour la baignade et le snorkeling ; juin et septembre sont parfaits pour ceux qui recherchent des criques moins fréquentées et une lumière dorée. Hors saison, nous n\'opérons pas. Pendant les mois d\'été, il est conseillé de réserver à l\'avance : la disponibilité des bateaux et des créneaux horaires est limitée.',
+    },
+  },
+  lastUpdated: {
+    label: 'Dernière mise à jour',
+  },
+  occasionMatrix: {
+    pages: {
+      snorkel__locationBlanes: {
+        seoTitle: 'Snorkeling en bateau depuis Blanes — Meilleures criques | Costa Brava Rent a Boat',
+        seoDescription: 'Louez un bateau sans permis à Blanes et faites du snorkeling à Cala Sant Francesc, Sa Forcanera ou Cala Treumal. Essence incluse, sans expérience préalable, criques à moins de 2 milles.',
+        h1: 'Snorkeling en bateau depuis Blanes',
+        intro: 'Depuis le port de Blanes, en quelques minutes de navigation vous atteignez des criques aux eaux cristallines et aux fonds rocheux parfaits pour le snorkeling. Avec un bateau sans permis — essence incluse et sans besoin d\'expérience — vous choisissez votre crique, vous mouillez et vous plongez à votre rythme.',
+        spotsTitle: 'Meilleures criques pour le snorkeling près de Blanes',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Cala Bona)',
+            description: 'Anse protégée de pins à la sortie de Blanes, d\'eau calme et de rochers latéraux pleins de vie : le meilleur premier mouillage pour le snorkeling en famille.',
+          },
+          {
+            name: 'Sa Forcanera',
+            description: 'Petite crique sous les falaises du Jardin Botanique Marimurtra, aux eaux profondes et transparentes, idéale pour nager au-dessus de fonds rocheux.',
+          },
+          {
+            name: 'Cala Treumal',
+            description: 'À la limite entre Blanes et Lloret, fond de roche et de sable qui attire les poissons ; bon mouillage abrité du garbí.',
+          },
+          {
+            name: 'Punta de Santa Anna',
+            description: 'Près du château de Sant Joan, parois rocheuses plongeant dans la mer avec une excellente visibilité pour observer la faune méditerranéenne.',
+          },
+        ],
+        boatsTitle: 'Quel bateau choisir pour faire du snorkeling',
+        boatsIntro: 'Pour le snorkeling à Blanes nous recommandons nos bateaux sans permis : ils incluent l\'essence, se pilotent sans permis bateau et atteignent sans problème ces criques, toutes situées dans les 2 milles de la côte. Ils sont équipés d\'une échelle de bain pour entrer et sortir de l\'eau confortablement.',
+        practicalTitle: 'Informations pratiques',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu\'à 2 milles nautiques de la côte, distance largement suffisante pour toutes ces criques. Apportez vos lunettes et tuba, protection solaire et eau. Pensez à mouiller sur le sable, jamais sur les herbiers de posidonie.',
+        faqTitle: 'Questions fréquentes',
+        faq: [
+          {
+            q: 'Ai-je besoin d\'un permis pour faire du snorkeling en bateau depuis Blanes ?',
+            a: 'Non. Nos bateaux sans permis se pilotent sans permis bateau et atteignent toutes les criques de snorkeling proches de Blanes. Nous vous expliquons le maniement avant de partir.',
+          },
+          {
+            q: 'L\'équipement de snorkeling est-il inclus ?',
+            a: 'Le bateau comprend une échelle de bain et l\'essence. Pour le snorkeling nous vous recommandons d\'apporter vos propres lunettes et tuba, ainsi vous êtes sûr d\'avoir une taille confortable.',
+          },
+        ],
+        ctaTitle: 'Réservez votre sortie snorkeling à Blanes',
+        ctaText: 'Choisissez votre date et votre bateau sans permis, et préparez la meilleure journée de snorkeling dans les criques de Blanes.',
+      },
+      snorkel__locationLloret: {
+        seoTitle: 'Snorkeling en bateau à Lloret de Mar — Calas Boadella et Banys | Costa Brava Rent a Boat',
+        seoDescription: 'Découvrez les meilleures criques de snorkeling de Lloret de Mar en bateau depuis Blanes : Cala Boadella, Cala Banys, Cala dels Frares. Bateau avec permis, environ 20 minutes de navigation.',
+        h1: 'Snorkeling en bateau à Lloret de Mar',
+        intro: 'Lloret de Mar cache quelques-unes des criques aux plus belles eaux de la Costa Brava sud, beaucoup accessibles uniquement par la mer. En partant de Blanes, en une vingtaine de minutes de navigation vous atteignez ses recoins rocheux et les parcourez en snorkeling sans les foules de la plage.',
+        spotsTitle: 'Meilleures criques pour le snorkeling à Lloret de Mar',
+        spots: [
+          {
+            name: 'Cala Boadella',
+            description: 'L\'une des plus jolies criques de Lloret ; son extrémité sud, rocheuse et d\'eau limpide, laisse voir des poissons dès que l\'on met la tête sous l\'eau.',
+          },
+          {
+            name: 'Cala Banys',
+            description: 'Renfoncement rocheux de falaises sombres et d\'eau profonde, un classique pour le snorkeling de roche avec une bonne visibilité.',
+          },
+          {
+            name: 'Cala dels Frares',
+            description: 'Petite crique de galets entourée de parois verticales, refuge de faune méditerranéenne idéal pour nager tranquillement.',
+          },
+          {
+            name: 'Santa Cristina',
+            description: 'Large crique de sable avec des extrémités rocheuses ; les côtés offrent un snorkeling facile et sûr, parfait pour les débutants.',
+          },
+        ],
+        boatsTitle: 'Quel bateau choisir pour rejoindre Lloret',
+        boatsIntro: 'Les criques de Lloret se trouvent au-delà de la limite des 2 milles des bateaux sans permis, donc pour les atteindre vous avez besoin d\'un de nos bateaux avec permis. Ils sont confortables, couvrent le trajet depuis Blanes en une vingtaine de minutes et vous donnent l\'autonomie pour enchaîner plusieurs criques lors de la même sortie.',
+        practicalTitle: 'Informations pratiques',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Le trajet jusqu\'aux criques de Lloret est d\'environ 20 minutes de navigation tranquille le long de la côte. Apportez vos lunettes et tuba, protection solaire et eau. Mouillez sur le sable, jamais sur les herbiers de posidonie.',
+        faqTitle: 'Questions fréquentes',
+        faq: [
+          {
+            q: 'Combien de temps faut-il de Blanes aux criques de Lloret en bateau ?',
+            a: 'Environ 20 minutes de navigation tranquille en longeant la côte, selon la crique et l\'état de la mer.',
+          },
+          {
+            q: 'Quelles criques de Lloret sont les meilleures pour le snorkeling ?',
+            a: 'Cala Boadella, Cala Banys et Cala dels Frares se distinguent par leur fond rocheux et la transparence de l\'eau.',
+          },
+        ],
+        ctaTitle: 'Réservez votre sortie snorkeling à Lloret de Mar',
+        ctaText: 'Choisissez votre date et votre bateau avec permis, et découvrez les criques de snorkeling de Lloret en partant de Blanes.',
+      },
+      snorkel__locationTossa: {
+        seoTitle: 'Snorkeling en bateau à Tossa de Mar — Criques vierges et eaux protégées | Costa Brava Rent a Boat',
+        seoDescription: 'Faites du snorkeling dans les eaux limpides de Tossa de Mar : La Mar Menuda, Cala Giverola, Cala Pola. Sortie en bateau avec permis depuis Blanes, 30-45 minutes de navigation.',
+        h1: 'Snorkeling en bateau à Tossa de Mar',
+        intro: 'Tossa de Mar est l\'une des meilleures destinations de snorkeling de la Costa Brava : une partie de son littoral est protégée, avec des fonds rocheux et des herbiers regorgeant de vie. Depuis Blanes comptez environ 30-45 minutes de navigation avec un bateau avec permis jusqu\'à ses criques les plus sauvages.',
+        spotsTitle: 'Meilleures criques pour le snorkeling à Tossa de Mar',
+        spots: [
+          {
+            name: 'La Mar Menuda',
+            description: 'Près de la vieille ville, une baie aux eaux abritées et au fond rocheux très appréciée des plongeurs et amateurs de snorkeling pour sa richesse faunistique.',
+          },
+          {
+            name: 'Cala Giverola',
+            description: 'Crique profonde encaissée entre les montagnes, d\'eau particulièrement claire et de parois rocheuses parfaites pour nager en observant les poissons.',
+          },
+          {
+            name: 'Cala Pola',
+            description: 'Environnement naturel protégé au nord de Tossa, avec un fond de roche et de sable et une transparence excellente.',
+          },
+          {
+            name: 'Cala Futadera',
+            description: 'Crique vierge sans accès routier, uniquement par mer ou sentier ; eaux limpides et tranquilles, un mouillage snorkeling exclusif.',
+          },
+        ],
+        boatsTitle: 'Quel bateau choisir pour rejoindre Tossa',
+        boatsIntro: 'Tossa se trouve bien au-delà des 2 milles, hors de portée des bateaux sans permis. Pour rejoindre ses criques vous avez besoin d\'un de nos bateaux avec permis, qui couvrent le trajet depuis Blanes en 30-45 minutes et vous permettent de passer la journée à explorer plusieurs criques.',
+        practicalTitle: 'Informations pratiques',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. La navigation jusqu\'à Tossa est de 30-45 minutes ; c\'est pourquoi il convient de réserver des durées de 4 heures ou plus pour profiter de la destination sans se presser. Apportez vos lunettes et tuba, protection solaire et eau. Respectez les zones protégées et mouillez uniquement sur le sable.',
+        faqTitle: 'Questions fréquentes',
+        faq: [
+          {
+            q: 'Peut-on aller de Blanes à Tossa en bateau sans permis ?',
+            a: 'Non. Tossa se trouve au-delà de la limite des 2 milles des bateaux sans permis ; le trajet se fait avec un bateau avec permis, en 30-45 minutes depuis Blanes.',
+          },
+          {
+            q: 'Pourquoi Tossa est-elle bonne pour le snorkeling ?',
+            a: 'Une partie de son littoral est protégée, avec des fonds rocheux et des herbiers très bien conservés ; des criques comme La Mar Menuda ou Giverola offrent une visibilité excellente.',
+          },
+        ],
+        ctaTitle: 'Réservez votre sortie snorkeling à Tossa de Mar',
+        ctaText: 'Choisissez votre date et votre bateau avec permis, et consacrez la journée aux criques protégées de Tossa en partant de Blanes.',
+      },
+      snorkel__locationCostaBrava: {
+        seoTitle: 'Snorkeling en bateau sur la Costa Brava — Les meilleures criques depuis Blanes | Costa Brava Rent a Boat',
+        seoDescription: 'Parcourez en bateau les meilleures criques de snorkeling de la Costa Brava sud, de Blanes à Tossa de Mar. Bateaux sans permis pour les criques proches et avec permis pour le trajet complet.',
+        h1: 'Snorkeling en bateau sur la Costa Brava',
+        intro: 'Le tronçon sud de la Costa Brava, de Blanes à Tossa de Mar, concentre des dizaines de criques à fond rocheux et eau transparente idéales pour le snorkeling. Depuis le port de Blanes vous pouvez choisir entre une sortie courte vers les criques les plus proches ou une journée complète à parcourir la côte.',
+        spotsTitle: 'Criques de snorkeling incontournables sur la Costa Brava sud',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Blanes)',
+            description: 'La crique la plus accessible, abritée et familiale : le point de départ parfait, à portée d\'un bateau sans permis.',
+          },
+          {
+            name: 'Cala Boadella (Lloret)',
+            description: 'Recoin rocheux d\'eau limpide, l\'un des meilleurs mouillages de snorkeling du tronçon moyen de la côte.',
+          },
+          {
+            name: 'Cala Giverola (Tossa)',
+            description: 'Crique profonde aux eaux cristallines entre les montagnes, déjà à l\'extrémité nord du parcours.',
+          },
+          {
+            name: 'Cala Pola (Tossa)',
+            description: 'Environnement naturel protégé avec fond de roche et de sable, récompense pour qui fait la traversée complète.',
+          },
+        ],
+        boatsTitle: 'Quel bateau choisir selon jusqu\'où vous voulez aller',
+        boatsIntro: 'Pour les criques les plus proches de Blanes un bateau sans permis suffit, avec essence incluse et sans permis bateau. Pour parcourir le tronçon complet jusqu\'à Lloret et Tossa — au-delà des 2 milles — vous avez besoin d\'un bateau avec permis, avec l\'autonomie pour enchaîner plusieurs criques dans la journée.',
+        practicalTitle: 'Informations pratiques',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu\'à 2 milles ; pour rejoindre Lloret (~20 min) ou Tossa (30-45 min) on utilise un bateau avec permis. Apportez vos lunettes et tuba, protection solaire et eau. Mouillez toujours sur le sable, jamais sur la posidonie.',
+        faqTitle: 'Questions fréquentes',
+        faq: [
+          {
+            q: 'Quel tronçon de la Costa Brava puis-je parcourir en une sortie ?',
+            a: 'Avec un bateau avec permis vous pouvez enchaîner les criques de Blanes, Lloret et Tossa en une journée ; avec un sans permis vous profiterez des criques les plus proches de Blanes.',
+          },
+          {
+            q: 'Quelle est la meilleure période pour le snorkeling ?',
+            a: 'De juin à septembre la mer est plus chaude et claire ; juillet et août offrent les meilleures conditions, et juin ou septembre, des criques plus tranquilles.',
+          },
+        ],
+        ctaTitle: 'Réservez votre itinéraire snorkeling sur la Costa Brava',
+        ctaText: 'Choisissez votre bateau selon jusqu\'où vous voulez aller et découvrez les meilleures criques de la côte en partant de Blanes.',
+      },
+      families__locationBlanes: {
+        seoTitle: "Location de bateau en famille à Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Une journée en bateau en famille depuis Blanes : criques tranquilles, eau peu profonde et bateaux spacieux et stables, plusieurs sans permis avec essence incluse. Sans expérience préalable.",
+        h1: "Location de bateau en famille à Blanes",
+        intro:
+          "Une journée en bateau en famille depuis le port de Blanes est l'un des meilleurs plans de la Costa Brava : des criques abritées à quelques minutes, une eau calme où les enfants se baignent en toute tranquillité et des bateaux spacieux et stables. Sans expérience préalable : nous vous expliquons tout avant le départ.",
+        spotsTitle: "Meilleures criques en famille près de Blanes",
+        spots: [
+          { name: "Cala Sant Francesc (Cala Bona)", description: "Crique de sable abritée par les pins, à l'eau calme et peu profonde au bord : la préférée des familles avec de jeunes enfants." },
+          { name: "Cala Treumal", description: "Petite crique de sable et de roche entre Blanes et Lloret, protégée du vent, idéale pour mouiller et se baigner sans houle." },
+          { name: "Baie de Blanes et Sa Palomera", description: "La grande plage de Blanes près du rocher de Sa Palomera, avec des services à proximité et des eaux ouvertes mais calmes pour une première baignade sans s'éloigner du port." },
+        ],
+        boatsTitle: "Quel bateau choisir pour partir en famille",
+        boatsIntro:
+          "Pour les familles, nous recommandons des bateaux spacieux et stables, avec solarium et zone d'ombre. Plusieurs sont sans permis —avec essence incluse et sans permis bateau—, et pour les grands groupes nous disposons d'embarcations jusqu'à 7 places.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Nous fournissons des gilets de sauvetage de toutes les tailles, y compris pour enfants. Apportez protection solaire, casquette, eau et de quoi grignoter. Les criques proches de Blanes sont dans les 2 milles, accessibles même avec un bateau sans permis.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Est-il sûr de partir en bateau avec des enfants ?", a: "Oui. Nous fournissons des gilets de sauvetage pour enfants, les criques proches sont calmes et peu profondes, et nous vous expliquons la conduite et la sécurité avant le départ." },
+          { q: "Faut-il un permis pour partir en famille depuis Blanes ?", a: "Non pour les criques proches : plusieurs de nos bateaux se pilotent sans permis. Pour les grands groupes ou plus d'autonomie, il existe aussi des options avec permis." },
+        ],
+        ctaTitle: "Réservez votre journée en bateau en famille à Blanes",
+        ctaText: "Choisissez date et bateau, et profitez d'une journée en mer avec les vôtres au départ du port de Blanes.",
+      },
+      families__locationLloret: {
+        seoTitle: "Location de bateau en famille à Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Journée en bateau en famille à Lloret de Mar au départ de Blanes (~20 min avec un bateau avec permis) : plages de sable, criques tranquilles et bateaux spacieux jusqu'à 7 places.",
+        h1: "Location de bateau en famille à Lloret de Mar",
+        intro:
+          "Lloret de Mar associe de vastes plages de sable et des criques abritées, parfaites pour une journée en famille. Au départ de Blanes vous y arrivez en une vingtaine de minutes de navigation tranquille et parcourez ses plages avec la liberté de mouiller où vous voulez.",
+        spotsTitle: "Meilleures plages et criques en famille à Lloret",
+        spots: [
+          { name: "Santa Cristina", description: "Vaste plage de sable fin aux eaux calmes et avec des services à proximité, l'une des plus confortables de la zone pour venir avec des enfants." },
+          { name: "Cala Boadella", description: "Crique de sable et de roche entourée de pins, à l'eau limpide et aux zones abritées idéales pour la baignade en famille." },
+          { name: "Platja de Fenals", description: "Plage vaste et protégée, à la pente douce, parfaite pour mouiller à proximité et passer la journée avec les plus petits." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Lloret en famille",
+        boatsIntro:
+          "Lloret se trouve au-delà des 2 milles, on y accède donc avec l'un de nos bateaux avec permis. Ils sont spacieux et stables —le Pacific Craft 625 admet jusqu'à 7 personnes— et couvrent le trajet depuis Blanes en une vingtaine de minutes.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Le trajet jusqu'à Lloret prend une vingtaine de minutes. Nous fournissons des gilets de toutes les tailles ; apportez protection solaire, casquette, eau et de quoi grignoter.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Combien de temps faut-il de Blanes à Lloret en bateau ?", a: "Une vingtaine de minutes de navigation tranquille en longeant la côte avec un bateau avec permis." },
+          { q: "Quelle plage de Lloret est la meilleure avec des enfants ?", a: "Santa Cristina et Fenals, pour leur sable, leurs eaux calmes et leurs services à proximité." },
+        ],
+        ctaTitle: "Réservez votre journée en bateau en famille à Lloret",
+        ctaText: "Choisissez date et bateau avec permis, et profitez des plages de Lloret en famille au départ de Blanes.",
+      },
+      families__locationTossa: {
+        seoTitle: "Location de bateau en famille à Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Journée en bateau en famille à Tossa de Mar depuis Blanes (30-45 min avec un bateau avec permis) : la Platja Gran, des criques abritées et des bateaux spacieux jusqu'à 7 places.",
+        h1: "Location de bateau en famille à Tossa de Mar",
+        intro:
+          "Tossa de Mar offre aux familles une carte postale inoubliable : la Vila Vella médiévale au-dessus de la mer et des criques aux eaux limpides. Depuis Blanes, comptez 30-45 minutes de navigation avec un bateau avec permis, idéal pour une excursion à la journée.",
+        spotsTitle: "Meilleures plages et criques en famille à Tossa",
+        spots: [
+          { name: "Platja Gran de Tossa", description: "La plage principale, de sable et au pied du château ; des eaux calmes et tous les services pour une journée confortable avec les enfants." },
+          { name: "La Mar Menuda", description: "Baie abritée à côté de la vieille ville, aux eaux calmes, parfaite pour mouiller et se baigner en famille." },
+          { name: "Cala Llevadó", description: "Cadre naturel de pins et d'eau cristalline ; une crique plus tranquille pour qui cherche à s'éloigner de l'agitation." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Tossa en famille",
+        boatsIntro:
+          "Tossa est hors de portée des bateaux sans permis, le voyage se fait donc avec l'un de nos bateaux avec permis, spacieux et jusqu'à 7 places. Ils couvrent le trajet depuis Blanes en 30-45 minutes ; il convient de réserver des durées d'une demi-journée ou plus.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. La navigation jusqu'à Tossa dure 30-45 minutes. Nous fournissons des gilets de toutes les tailles ; apportez protection solaire, casquette, eau et de quoi manger pour la journée.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Peut-on aller à Tossa en famille avec un bateau sans permis ?", a: "Non. Tossa est au-delà de la limite des 2 milles ; le voyage se fait avec un bateau avec permis, en 30-45 minutes depuis Blanes." },
+          { q: "Est-ce un bon plan pour une journée complète ?", a: "Oui : compte tenu de la distance, l'idéal est de réserver une demi-journée ou une journée entière et de combiner la Platja Gran avec une crique voisine." },
+        ],
+        ctaTitle: "Réservez votre journée en bateau en famille à Tossa",
+        ctaText: "Choisissez date et bateau avec permis, et vivez une journée en famille à Tossa de Mar au départ de Blanes.",
+      },
+      families__locationCostaBrava: {
+        seoTitle: "Location de bateau en famille sur la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Journée en bateau en famille sur la Costa Brava sud depuis Blanes : criques tranquilles et plages de sable de Blanes à Tossa. Bateaux sans permis pour les coins proches et avec permis pour le tronçon complet.",
+        h1: "Location de bateau en famille sur la Costa Brava",
+        intro:
+          "La Costa Brava sud, de Blanes à Tossa de Mar, est faite pour en profiter en famille : criques abritées, plages de sable et eau calme. Depuis le port de Blanes vous choisissez entre une sortie courte vers les criques proches ou une journée à explorer la côte.",
+        spotsTitle: "Criques et plages familiales incontournables",
+        spots: [
+          { name: "Cala Sant Francesc (Blanes)", description: "La plus accessible et la plus abritée, à portée d'un bateau sans permis : le plan parfait pour débuter avec des enfants." },
+          { name: "Santa Cristina (Lloret)", description: "Grande plage de sable avec services et eaux calmes, sur le tronçon central de la côte." },
+          { name: "Platja Gran de Tossa", description: "Du sable au pied de la Vila Vella médiévale, la récompense de qui fait la traversée complète avec un bateau avec permis." },
+        ],
+        boatsTitle: "Quel bateau choisir selon jusqu'où vous voulez aller",
+        boatsIntro:
+          "Pour les criques proches de Blanes, un bateau sans permis suffit, avec essence incluse. Pour parcourir le tronçon jusqu'à Lloret et Tossa —au-delà des 2 milles— vous avez besoin d'un bateau avec permis, spacieux et jusqu'à 7 places.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu'à 2 milles ; pour rejoindre Lloret (~20 min) ou Tossa (30-45 min) on utilise un bateau avec permis. Nous fournissons des gilets de toutes les tailles.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Quel tronçon pouvons-nous parcourir en famille en une journée ?", a: "Avec un bateau avec permis, les criques de Blanes, Lloret et Tossa en une journée ; avec un sans permis, les criques tranquilles les plus proches de Blanes." },
+          { q: "Quelle est la meilleure période pour venir avec des enfants ?", a: "De juin à septembre, avec une mer plus chaude et plus calme ; juillet et août offrent les meilleures conditions de baignade." },
+        ],
+        ctaTitle: "Réservez votre journée en bateau en famille sur la Costa Brava",
+        ctaText: "Choisissez votre bateau selon jusqu'où vous voulez aller et profitez de la côte en famille au départ de Blanes.",
+      },
+      sunset__locationBlanes: {
+        seoTitle: "Balade en bateau au coucher du soleil à Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Naviguez en fin d'après-midi depuis Blanes et profitez de la lumière dorée sur la côte, le rocher de Sa Palomera et la baie. Balade tranquille en bateau, sans expérience préalable.",
+        h1: "Balade en bateau au coucher du soleil à Blanes",
+        intro:
+          "En fin d'après-midi, quand la lumière devient dorée, la côte de Blanes offre son plus beau visage depuis la mer. Une balade tranquille en bateau au départ du port de Blanes pour voir le rocher de Sa Palomera et les falaises s'embraser sous les derniers rayons.",
+        spotsTitle: "Meilleurs coins pour le coucher du soleil près de Blanes",
+        spots: [
+          { name: "Sa Palomera", description: "Le rocher qui marque le début de la Costa Brava ; avec la lumière basse, sa silhouette et la baie de Blanes se teintent de tons chauds." },
+          { name: "Falaises de Marimurtra", description: "Les parois rocheuses sous le Jardin Botanique, particulièrement photogéniques quand le soleil effleure la côte." },
+          { name: "Baie de Blanes", description: "Eaux calmes face au village, parfaites pour mouiller, trinquer et voir s'allumer les lumières du port." },
+        ],
+        boatsTitle: "Quel bateau choisir pour le coucher du soleil",
+        boatsIntro:
+          "Pour une balade au coucher du soleil, nous recommandons des bateaux confortables dotés d'un bon solarium. Plusieurs sont sans permis —avec essence incluse et sans permis bateau—, idéaux pour une sortie courte et détendue près de Blanes.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes ; la fin d'après-midi est le créneau qui offre la plus belle lumière. Sur la Costa Brava le soleil se couche derrière la côte, vous profiterez donc de la lumière dorée et des falaises illuminées plus que du coucher sur l'eau. Apportez une veste légère : il rafraîchit en soirée.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "À quelle heure a lieu le départ au coucher du soleil ?", a: "Nous opérons jusqu'à 20h00 ; la fin d'après-midi est le créneau qui offre la lumière dorée. Nous vous recommandons de réserver 1 ou 2 heures en fin de journée." },
+          { q: "Ai-je besoin d'un permis ?", a: "Non pour une balade proche de Blanes : plusieurs de nos bateaux se pilotent sans permis et nous vous expliquons la conduite avant le départ." },
+        ],
+        ctaTitle: "Réservez votre balade au coucher du soleil à Blanes",
+        ctaText: "Choisissez date et bateau, et profitez de l'heure dorée en mer au départ du port de Blanes.",
+      },
+      sunset__locationLloret: {
+        seoTitle: "Balade en bateau au coucher du soleil à Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Coucher de soleil en bateau à Lloret de Mar au départ de Blanes (~20 min avec un bateau avec permis) : lumière dorée sur les falaises de Cala Banys et le château de Lloret.",
+        h1: "Balade en bateau au coucher du soleil à Lloret de Mar",
+        intro:
+          "La côte de Lloret de Mar, avec ses falaises et son château au-dessus de la mer, devient spectaculaire en fin d'après-midi. Au départ de Blanes en une vingtaine de minutes avec un bateau avec permis vous arrivez à temps pour la plus belle lumière du jour.",
+        spotsTitle: "Meilleurs coins pour le coucher du soleil à Lloret",
+        spots: [
+          { name: "Cala Banys", description: "Falaises sombres et recoins rocheux qui, avec la lumière basse, offrent l'une des images les plus saisissantes de la zone." },
+          { name: "Castell d'en Plaja", description: "Le château emblématique au-dessus de la plage de Lloret, magnifique vu depuis la mer lorsqu'il s'illumine en fin d'après-midi." },
+          { name: "Santa Cristina", description: "Crique vaste et abritée, idéale pour mouiller en toute tranquillité et voir la lumière dorée baigner les pins." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Lloret au coucher du soleil",
+        boatsIntro:
+          "Lloret se trouve au-delà des 2 milles, la balade se fait donc avec l'un de nos bateaux avec permis, confortables et dotés d'un bon solarium. Ils couvrent le trajet depuis Blanes en une vingtaine de minutes.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes. Sur la Costa Brava le soleil se couche derrière la côte : vous profiterez de la lumière dorée sur les falaises et le château plus que du coucher sur la mer. Apportez une veste légère pour le retour.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Combien de temps faut-il de Blanes à Lloret au coucher du soleil ?", a: "Une vingtaine de minutes avec un bateau avec permis ; mieux vaut partir avec de la marge pour profiter de la plus belle lumière." },
+          { q: "Voit-on le coucher de soleil sur la mer ?", a: "Sur cette côte le soleil se couche derrière la terre, pas sur l'eau ; ce qui est beau c'est la lumière dorée et les falaises et le château illuminés." },
+        ],
+        ctaTitle: "Réservez votre balade au coucher du soleil à Lloret",
+        ctaText: "Choisissez date et bateau avec permis, et vivez l'heure dorée sur la côte de Lloret au départ de Blanes.",
+      },
+      sunset__locationTossa: {
+        seoTitle: "Balade en bateau au coucher du soleil à Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Coucher de soleil en bateau à Tossa de Mar depuis Blanes (30-45 min avec un bateau avec permis) : la Vila Vella médiévale illuminée et la lumière dorée sur les criques.",
+        h1: "Balade en bateau au coucher du soleil à Tossa de Mar",
+        intro:
+          "Peu d'images de la Costa Brava égalent la Vila Vella de Tossa de Mar illuminée en fin d'après-midi, vue depuis la mer. Depuis Blanes, comptez 30-45 minutes de navigation avec un bateau avec permis jusqu'à ce décor unique.",
+        spotsTitle: "Meilleurs coins pour le coucher du soleil à Tossa",
+        spots: [
+          { name: "Vila Vella", description: "Les remparts médiévaux au-dessus de la mer, qui s'embrasent de tons chauds en fin d'après-midi : l'image la plus emblématique de Tossa." },
+          { name: "La Mar Menuda", description: "Baie abritée à côté de la vieille ville, parfaite pour mouiller et contempler la côte avec la lumière basse." },
+          { name: "Cala Giverola", description: "Crique profonde entre les montagnes, aux eaux calmes, idéale pour un mouillage serein avant le retour." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Tossa au coucher du soleil",
+        boatsIntro:
+          "Tossa est hors de portée des bateaux sans permis, la balade se fait donc avec l'un de nos bateaux avec permis, confortables et dotés d'un bon solarium. Le trajet depuis Blanes est de 30-45 minutes.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes. Compte tenu de la distance (30-45 min), planifiez le départ pour profiter de la dernière lumière et rentrer tranquillement. Sur cette côte le soleil se couche derrière la terre : le spectaculaire, c'est la Vila Vella illuminée. Apportez une veste légère.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "A-t-on le temps d'aller à Tossa et d'en revenir au coucher du soleil ?", a: "Oui, en le planifiant : il faut 30-45 minutes par trajet, mieux vaut donc réserver plusieurs heures et partir avec de la marge." },
+          { q: "Qu'est-ce qui rend le coucher du soleil spécial à Tossa ?", a: "La Vila Vella médiévale au-dessus de la mer, qui s'illumine en fin d'après-midi et se voit de façon unique depuis le bateau." },
+        ],
+        ctaTitle: "Réservez votre balade au coucher du soleil à Tossa",
+        ctaText: "Choisissez date et bateau avec permis, et contemplez la Vila Vella illuminée depuis la mer au départ de Blanes.",
+      },
+      sunset__locationCostaBrava: {
+        seoTitle: "Balade en bateau au coucher du soleil sur la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Coucher de soleil en bateau sur la Costa Brava sud depuis Blanes : lumière dorée sur les falaises, les criques et la Vila Vella de Tossa. Bateau sans permis pour les coins proches, avec permis pour le tronçon complet.",
+        h1: "Balade en bateau au coucher du soleil sur la Costa Brava",
+        intro:
+          "La Costa Brava sud, de Blanes à Tossa, offre en fin d'après-midi une succession de falaises, de criques et de villages qui s'embrasent de lumière dorée. Depuis le port de Blanes vous choisissez entre une balade courte à proximité ou une sortie plus longue le long de la côte.",
+        spotsTitle: "Meilleurs coins de la côte au coucher du soleil",
+        spots: [
+          { name: "Sa Palomera (Blanes)", description: "Le rocher qui ouvre la Costa Brava, à portée d'un bateau sans permis : le plan le plus simple pour l'heure dorée." },
+          { name: "Cala Banys (Lloret)", description: "Falaises spectaculaires qui ressortent avec la lumière basse, sur le tronçon central de la côte." },
+          { name: "Vila Vella (Tossa)", description: "Les remparts médiévaux illuminés au-dessus de la mer, la récompense de la traversée complète avec un bateau avec permis." },
+        ],
+        boatsTitle: "Quel bateau choisir selon jusqu'où vous voulez aller",
+        boatsIntro:
+          "Pour une balade proche de Blanes, un bateau sans permis suffit, avec essence incluse. Pour parcourir le tronçon jusqu'à Lloret et Tossa —au-delà des 2 milles— vous avez besoin d'un bateau avec permis, confortable et doté d'un bon solarium.",
+        practicalTitle: "Informations pratiques",
+        practicalBody:
+          "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes. Sur cette côte le soleil se couche derrière la terre : vous profiterez de la lumière dorée et des villages et falaises illuminés. Les bateaux sans permis vont jusqu'à 2 milles ; pour Lloret ou Tossa on utilise un bateau avec permis. Apportez une veste légère.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Où voit-on le plus beau coucher de soleil depuis le bateau ?", a: "Près de Blanes, Sa Palomera ; sur le tronçon complet, la Vila Vella de Tossa illuminée est le plus spectaculaire." },
+          { q: "Ai-je besoin d'un bateau avec permis ?", a: "Seulement si vous voulez rejoindre Lloret ou Tossa. Pour l'heure dorée près de Blanes, un bateau sans permis suffit." },
+        ],
+        ctaTitle: "Réservez votre balade au coucher du soleil sur la Costa Brava",
+        ctaText: "Choisissez votre bateau selon jusqu'où vous voulez aller et poursuivez l'heure dorée au départ de Blanes.",
+      },
+      fishing__locationBlanes: {
+        seoTitle: "Location de bateau pour pêcher à Blanes | Costa Brava Rent a Boat",
+        seoDescription:
+          "Partez pêcher en bateau depuis Blanes avec nos embarcations avec permis. Eaux et fonds rocheux face à la côte. Il vous faut une licence de pêche récréative ; nous vous informons.",
+        h1: "Location de bateau pour pêcher à Blanes",
+        intro:
+          "Partir pêcher en bateau depuis le port de Blanes est une excellente façon de profiter de la mer de la Costa Brava. Nous vous louons une embarcation avec permis pour vous approcher des eaux et des fonds proches de la côte pour une journée de pêche récréative.",
+        spotsTitle: "Zones de pêche près de Blanes",
+        spots: [
+          { name: "Eaux face à Sa Palomera", description: "Les alentours du rocher, aux fonds rocheux où la pêche de roche est courante, à courte distance du port." },
+          { name: "Fonds rocheux de la côte de Blanes", description: "Tronçons de roche et de sable face au littoral, accessibles pour une sortie tranquille d'une demi-journée." },
+          { name: "Zone extérieure de la baie", description: "Eaux un peu plus profondes pour qui cherche à tenter sa chance hors de l'abri de la baie, toujours dans le respect de la réglementation." },
+        ],
+        boatsTitle: "Quel bateau choisir pour pêcher",
+        boatsIntro:
+          "Pour pêcher nous utilisons nos bateaux avec permis, dotés d'une plus grande autonomie et d'une plus grande portée que les bateaux sans permis. Ce sont les plus adaptés pour vous déplacer entre les zones de pêche et passer la journée confortablement.",
+        practicalTitle: "Informations pratiques et réglementation",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Pour pêcher il vous faut la licence de pêche récréative de Catalogne, qui relève de la responsabilité du client. Respectez les tailles minimales, les espèces protégées et les zones réglementées. Le matériel de pêche n'est pas inclus.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Ai-je besoin d'une licence pour pêcher depuis le bateau ?", a: "Oui. La pêche récréative en Catalogne requiert une licence, que le client se procure et fournit. La location du bateau ne l'inclut pas." },
+          { q: "Le bateau est-il équipé de matériel de pêche ?", a: "Non, le matériel de pêche n'est pas inclus ; nous vous louons l'embarcation avec permis pour votre sortie." },
+        ],
+        ctaTitle: "Réservez votre sortie de pêche à Blanes",
+        ctaText: "Choisissez date et bateau avec permis, et préparez votre journée de pêche récréative au départ du port de Blanes.",
+      },
+      fishing__locationLloret: {
+        seoTitle: "Location de bateau pour pêcher à Lloret de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pêche récréative en bateau à Lloret de Mar depuis Blanes (~20 min avec un bateau avec permis). Fonds rocheux face à la côte. Licence de pêche à la charge du client.",
+        h1: "Location de bateau pour pêcher à Lloret de Mar",
+        intro:
+          "La côte de Lloret de Mar, faite de falaises et de fonds rocheux, offre de bonnes zones pour la pêche récréative. Au départ de Blanes avec un bateau avec permis vous arrivez en une vingtaine de minutes et disposez de l'autonomie pour vous déplacer entre les points.",
+        spotsTitle: "Zones de pêche près de Lloret",
+        spots: [
+          { name: "Fonds de Cala Banys", description: "Tronçon de falaises et de roche où la pêche de roche est courante, face à la côte de Lloret." },
+          { name: "Eaux de Fenals", description: "Zone un peu plus ouverte près de la pointe de Fenals, pour essayer différentes techniques en une journée." },
+          { name: "Littoral entre Lloret et Tossa", description: "Côte rocheuse et peu urbanisée aux fonds intéressants, toujours dans le respect des zones réglementées." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Lloret pour pêcher",
+        boatsIntro:
+          "Lloret se trouve au-delà des 2 milles, on y accède donc avec l'un de nos bateaux avec permis, dotés de l'autonomie pour vous déplacer entre les zones de pêche. Le trajet depuis Blanes est d'une vingtaine de minutes.",
+        practicalTitle: "Informations pratiques et réglementation",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Il vous faut la licence de pêche récréative de Catalogne (à la charge du client). Respectez tailles minimales, espèces protégées et zones réglementées. Le matériel de pêche n'est pas inclus.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Combien de temps faut-il de Blanes à Lloret en bateau ?", a: "Une vingtaine de minutes avec un bateau avec permis, ceux que nous utilisons pour les sorties de pêche." },
+          { q: "Faut-il une licence de pêche ?", a: "Oui, la licence de pêche récréative de Catalogne est fournie par le client ; la location du bateau ne l'inclut pas." },
+        ],
+        ctaTitle: "Réservez votre sortie de pêche à Lloret",
+        ctaText: "Choisissez date et bateau avec permis, et préparez votre journée de pêche face à Lloret au départ de Blanes.",
+      },
+      fishing__locationTossa: {
+        seoTitle: "Location de bateau pour pêcher à Tossa de Mar | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pêche récréative en bateau près de Tossa de Mar depuis Blanes (30-45 min avec un bateau avec permis). Attention : une partie du littoral est une réserve protégée où la pêche est restreinte.",
+        h1: "Location de bateau pour pêcher à Tossa de Mar",
+        intro:
+          "Les eaux de Tossa de Mar sont célèbres pour leur richesse, en grande partie grâce à leur protection. Depuis Blanes, comptez 30-45 minutes avec un bateau avec permis, mais il faut bien garder à l'esprit qu'une partie de ce littoral est une zone protégée où la pêche est restreinte.",
+        spotsTitle: "Zones de pêche et aires protégées à Tossa",
+        spots: [
+          { name: "Eaux extérieures à la réserve", description: "La pêche récréative n'est possible qu'en dehors des zones protégées ; renseignez-vous sur les limites en vigueur avant de mouiller vos lignes." },
+          { name: "Littoral entre Lloret et Tossa", description: "Tronçons de roche hors de l'aire protégée où la pêche de roche est autorisée avec licence." },
+          { name: "Réserve marine de Tossa (protégée)", description: "Une frange de son littoral est protégée et la pêche y est restreinte ou interdite : respectez-la toujours." },
+        ],
+        boatsTitle: "Quel bateau choisir pour rejoindre Tossa",
+        boatsIntro:
+          "Tossa est hors de portée des bateaux sans permis, le voyage se fait donc avec l'un de nos bateaux avec permis, dotés de l'autonomie pour la journée. Le trajet depuis Blanes est de 30-45 minutes.",
+        practicalTitle: "Informations pratiques et réglementation",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Une partie du littoral de Tossa est une zone protégée où la pêche est restreinte : respectez ses limites. Il vous faut la licence de pêche récréative de Catalogne (à la charge du client) et vous devez respecter tailles et espèces. Le matériel de pêche n'est pas inclus.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Peut-on pêcher à Tossa de Mar ?", a: "Uniquement en dehors des zones protégées et avec une licence de pêche récréative. Une partie du littoral est une réserve où la pêche est restreinte ou interdite." },
+          { q: "Y accède-t-on avec un bateau sans permis ?", a: "Non. Tossa est au-delà de la limite des 2 milles ; on y accède avec un bateau avec permis, en 30-45 minutes depuis Blanes." },
+        ],
+        ctaTitle: "Réservez votre sortie de pêche près de Tossa",
+        ctaText: "Choisissez date et bateau avec permis, respectez les zones protégées et préparez votre journée de pêche au départ de Blanes.",
+      },
+      fishing__locationCostaBrava: {
+        seoTitle: "Location de bateau pour pêcher sur la Costa Brava | Costa Brava Rent a Boat",
+        seoDescription:
+          "Pêche récréative en bateau sur la Costa Brava sud depuis Blanes. Bateaux avec permis pour vous déplacer entre les zones. Licence de pêche à la charge du client ; respectez les aires protégées.",
+        h1: "Location de bateau pour pêcher sur la Costa Brava",
+        intro:
+          "La Costa Brava sud, de Blanes à Tossa, alterne fonds rocheux, pointes et eaux ouvertes qui en font une bonne destination de pêche récréative. Depuis le port de Blanes nous vous louons un bateau avec permis pour vous déplacer entre les différentes zones.",
+        spotsTitle: "Zones de pêche sur la Costa Brava sud",
+        spots: [
+          { name: "Eaux face à Blanes", description: "Fonds rocheux près du port, le point de départ le plus simple pour une sortie d'une demi-journée." },
+          { name: "Littoral de Lloret", description: "Falaises et roche autour de Cala Banys et de Fenals, avec de bonnes zones de pêche de roche." },
+          { name: "Côte de Tossa (avec réserve protégée)", description: "Eaux riches, mais avec une frange protégée où la pêche est restreinte : ne pêchez qu'en dehors de celle-ci." },
+        ],
+        boatsTitle: "Quel bateau choisir pour pêcher le long de la côte",
+        boatsIntro:
+          "Pour la pêche nous utilisons des bateaux avec permis, dotés de l'autonomie nécessaire pour parcourir la côte entre les zones. Les bateaux sans permis, limités à 2 milles, ne sont pas l'option pour ce type de sorties.",
+        practicalTitle: "Informations pratiques et réglementation",
+        practicalBody:
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Il vous faut la licence de pêche récréative de Catalogne (à la charge du client). Respectez les tailles minimales, les espèces protégées et, tout particulièrement, les zones réglementées comme la réserve de Tossa. Le matériel de pêche n'est pas inclus.",
+        faqTitle: "Questions fréquentes",
+        faq: [
+          { q: "Que me faut-il pour pêcher depuis le bateau ?", a: "La licence de pêche récréative de Catalogne, fournie par le client, et le respect de la réglementation sur les tailles, les espèces et les zones protégées." },
+          { q: "Où peut-on pêcher sur la Costa Brava sud ?", a: "Sur les fonds rocheux face à Blanes et Lloret, toujours en dehors des aires protégées comme une partie du littoral de Tossa." },
+        ],
+        ctaTitle: "Réservez votre sortie de pêche sur la Costa Brava",
+        ctaText: "Choisissez votre bateau avec permis, respectez la réglementation et les zones protégées, et préparez votre journée de pêche au départ de Blanes.",
+      },
+    },
+  },
+  glossaryPage: {
+    seo: {
+      title: 'Glossaire Nautique, Location Bateaux Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossaire des termes nautiques essentiels : LNB, PER, PNB, nœuds, milles nautiques, longueur, mouiller, criques et parties du bateau. Dictionnaire pratique pour louer un bateau à Blanes.',
+      keywords: 'glossaire nautique, qu\'est-ce que LNB, qu\'est-ce que PER, qu\'est-ce que PNB, milles nautiques, nœuds, longueur, mouiller, glossaire bateaux',
+    },
+    breadcrumbName: 'Glossaire Nautique',
+    h1: 'Glossaire Nautique',
+    intro: '{count} termes essentiels pour louer un bateau sur la Costa Brava. Permis, unités de mesure, parties du bateau et vocabulaire marin.',
+    filterAll: 'Tous',
+    ctaTitle: 'Prêt à louer votre bateau ?',
+    ctaDesc: 'Maintenant que vous maîtrisez la terminologie, choisissez votre bateau sans permis ou avec permis pour explorer la Costa Brava.',
+    ctaFleet: 'Voir la flotte',
+    ctaFaq: 'Questions fréquentes',
+    schemaName: 'Glossaire nautique, Location de bateaux Costa Brava',
+    schemaDescription: 'Définitions des termes nautiques essentiels pour louer un bateau sur la Costa Brava : permis, unités de mesure, parties du bateau et terminologie marine.',
+    categories: {
+      titulacion: 'Permis',
+      unidad: 'Unités de mesure',
+      accion: 'Actions',
+      parte: 'Parties du bateau et côte',
+      equipamiento: 'Équipement',
+      seguridad: 'Sécurité à bord',
+      meteo: 'Météorologie et mer',
+    },
+    terms: [
+      {
+        term: 'LN (Licencia de Navegación)',
+        definition: 'Permis nautique espagnol minimum reconnu par le RD 875/2014. Permet de piloter des embarcations jusqu\'à 6 mètres de longueur, avec un moteur adapté à la coque et jusqu\'à 2 milles nautiques de la côte, en journée. C\'est le permis minimum requis pour les bateaux avec licence de notre flotte (Mingolla Brava 19, Trimarchi 57S et Pacific Craft 625). Examen théorique + formation de sécurité de base.',
+        category: 'titulacion',
+      },
+      {
+        term: 'LNB (Licencia de Navegación Básica)',
+        definition: 'Permis nautique espagnol supérieur au LN. Permet de piloter des embarcations jusqu\'à 8 mètres de longueur et jusqu\'à 5 milles de la côte. Recommandé pour ceux qui souhaitent plus de flexibilité de zone. Valable à vie après avoir réussi l\'examen théorique + formation pratique.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Permis nautique espagnol supérieur au LNB. Permet de piloter des embarcations jusqu\'à 15 mètres de longueur et jusqu\'à 12 milles de la côte. Nécessite un examen théorique + pratique de navigation + radiocommunications.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Ancien permis nautique remplacé en 2014 par le LNB. Permet de piloter des embarcations jusqu\'à 8 mètres jusqu\'à 5 milles. Ceux qui le possèdent restent valides sans nécessité de passer au LNB.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Milla náutica',
+        definition: 'Unité de distance maritime internationale équivalente à 1 852 mètres (1,852 km). Les embarcations sans licence en Espagne peuvent naviguer jusqu\'à un maximum de 2 milles nautiques de la côte (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Nudo',
+        definition: 'Unité de vitesse maritime équivalente à 1 mille nautique par heure (1,852 km/h). Les embarcations sans licence sont limitées à 5 nœuds (9,3 km/h). Les bateaux avec licence peuvent atteindre une vitesse bien plus élevée.',
+        category: 'unidad',
+      },
+      {
+        term: 'Eslora',
+        definition: 'Longueur totale du bateau, mesurée de la proue à la poupe. Unité : mètres. En Espagne, la longueur détermine le permis nautique minimum : jusqu\'à 5 m peut ne pas nécessiter de permis, jusqu\'à 8 m nécessite le LNB, jusqu\'à 15 m nécessite le PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Manga',
+        definition: 'Largeur maximale du bateau, mesurée d\'un bord à l\'autre à son point le plus large. Unité : mètres. Avec la longueur, elle définit la stabilité et l\'espace disponible à bord.',
+        category: 'unidad',
+      },
+      {
+        term: 'CV (caballos de vapor)',
+        definition: 'Unité de puissance du moteur marin. Les bateaux sans licence en Espagne sont limités à 15 CV. Les bateaux avec licence ont généralement 40-150 CV, permettant une navigation plus rapide et une plus grande portée.',
+        category: 'unidad',
+      },
+      {
+        term: 'Fondear',
+        definition: 'Action d\'arrêter le bateau en jetant l\'ancre sur le fond marin pour le maintenir immobile dans une crique ou zone sans amarrage. Il faut choisir un fond sablonneux (non rocheux), laisser filer suffisamment de ligne (3-4 fois la profondeur) et vérifier que l\'ancre accroche.',
+        category: 'accion',
+      },
+      {
+        term: 'Cala',
+        definition: 'Petite anse abritée sur la côte, généralement entourée de falaises ou de végétation. Sur la Costa Brava, il existe des dizaines de criques accessibles uniquement par mer, avec des eaux cristallines et des fonds rocheux idéaux pour le snorkeling.',
+        category: 'parte',
+      },
+      {
+        term: 'Puerto deportivo',
+        definition: 'Installation portuaire destinée aux embarcations de plaisance avec postes d\'amarrage, services de carburant, eau, électricité et cale de mise à sec. Le port de Blanes (Gérone) est le port de plaisance de référence sur la Costa Brava Sud.',
+        category: 'parte',
+      },
+      {
+        term: 'Proa',
+        definition: 'Partie avant du bateau, opposée à la poupe. Sur les bateaux de plaisance, elle accueille généralement le bain de soleil principal et le feu de navigation blanc.',
+        category: 'parte',
+      },
+      {
+        term: 'Popa',
+        definition: 'Partie arrière du bateau, opposée à la proue. Elle abrite le moteur hors-bord, l\'échelle de bain et généralement la zone avec table centrale.',
+        category: 'parte',
+      },
+      {
+        term: 'Estribor',
+        definition: 'Côté droit du bateau en regardant de la poupe vers la proue. Identifié par le feu de navigation vert. Règle d\'or : « Estribor = derecho » (tous deux commencent par E).',
+        category: 'parte',
+      },
+      {
+        term: 'Babor',
+        definition: 'Côté gauche du bateau en regardant de la poupe vers la proue. Identifié par le feu de navigation rouge.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Toldo bimini',
+        definition: 'Taud déployable qui couvre le cockpit du bateau en fournissant de l\'ombre. Essentiel pour naviguer avec des enfants ou en été. La plupart de nos bateaux sans licence en sont équipés de série.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Solárium',
+        definition: 'Zone rembourrée du bateau destinée à s\'allonger au soleil, généralement à la proue ou à la poupe. Les bateaux premium ont un double bain de soleil (proue et poupe).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Bañera',
+        definition: 'Zone centrale du bateau où se trouvent les sièges, le poste de pilotage et la table. C\'est l\'espace opérationnel du bateau pendant la navigation.',
+        category: 'parte',
+      },
+      {
+        term: 'PY (Patrón de Yate)',
+        definition: 'Permis nautique espagnol supérieur au PER. Permet de piloter des embarcations jusqu\'à 24 mètres de longueur et jusqu\'à 150 milles de la côte. Complète le PER avec navigation, météorologie et anglais technique. Pas nécessaire pour les bateaux de notre flotte, mais c\'est la référence pour la navigation hauturière.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Calado',
+        definition: 'Profondeur nécessaire à un bateau pour flotter sans toucher le fond, mesurée de la ligne de flottaison au point le plus bas de la quille ou de l\'hélice. Unité : mètres. Les embarcations de plaisance légères ont un faible tirant d\'eau, ce qui permet de s\'approcher des criques peu profondes.',
+        category: 'unidad',
+      },
+      {
+        term: 'Rumbo',
+        definition: 'Direction vers laquelle navigue le bateau, mesurée en degrés (0° à 360°) par rapport au nord : 0°/360° nord, 90° est, 180° sud, 270° ouest. Maintenir un cap constant est la base de la navigation entre Blanes et les criques de la Costa Brava.',
+        category: 'unidad',
+      },
+      {
+        term: 'Singladura',
+        definition: 'Distance parcourue ou navigation effectuée en une journée. En navigation de plaisance côtière, utilisé familièrement pour désigner la sortie ou la journée en mer complète.',
+        category: 'unidad',
+      },
+      {
+        term: 'Braza',
+        definition: 'Ancienne unité de profondeur équivalente à 1,8288 mètres (6 pieds). Apparaît encore sur certaines cartes marines et parmi les marins pour parler du fond ou de la longueur de ligne filée au mouillage.',
+        category: 'unidad',
+      },
+      {
+        term: 'Atracar',
+        definition: 'Manœuvre consistant à approcher et amarrer le bateau à un quai, ponton ou embarcadère. Nécessite de contrôler la vitesse, anticiper le vent et le courant et protéger la coque avec des pare-battages.',
+        category: 'accion',
+      },
+      {
+        term: 'Largar amarras',
+        definition: 'Larguer les amarres qui maintiennent le bateau au poste d\'amarrage pour commencer la navigation ; le contraire d\'amarrer. Familièrement, « larguer les amarres » équivaut à appareiller.',
+        category: 'accion',
+      },
+      {
+        term: 'Virar',
+        definition: 'Changer le cap du bateau en tournant la proue vers un côté. Décrit également le virage complet pour inverser le sens de la marche.',
+        category: 'accion',
+      },
+      {
+        term: 'Capear',
+        definition: 'Affronter le mauvais temps ou la mer grosse en maintenant le bateau avec la proue ou la hanche au vent et à faible vitesse, pour minimiser le roulis et les coups de mer.',
+        category: 'accion',
+      },
+      {
+        term: 'Dar avante / dar atrás',
+        definition: 'Ordres de machine. « Dar avante » est propulser le bateau vers l\'avant ; « dar atrás » (ou culer) est le propulser vers l\'arrière. Essentiels dans les manœuvres de port et au mouillage.',
+        category: 'accion',
+      },
+      {
+        term: 'Aproar',
+        definition: 'Orienter la proue du bateau vers un point précis : la houle, le vent ou le cap désiré. Mettre la proue à la mer est la technique de base pour naviguer en sécurité quand il y a des vagues.',
+        category: 'accion',
+      },
+      {
+        term: 'Quilla',
+        definition: 'Pièce longitudinale à la base de la coque qui donne stabilité et rigidité au bateau et réduit la dérive latérale. Sur les embarcations légères à moteur, elle est peu prononcée.',
+        category: 'parte',
+      },
+      {
+        term: 'Casco',
+        definition: 'Corps ou structure flottante du bateau, qui le maintient à flot et supporte les autres éléments. Le plus courant en plaisance est la fibre de verre ; il y en a aussi en aluminium ou en bois.',
+        category: 'parte',
+      },
+      {
+        term: 'Timón',
+        definition: 'Pièce mobile située sous la poupe qui, en tournant, dévie le flux d\'eau et fait changer le bateau de cap. Il est gouverné avec la roue ou la barre du poste de pilotage.',
+        category: 'parte',
+      },
+      {
+        term: 'Hélice',
+        definition: 'Pièce rotative à pales qui, actionnée par le moteur, propulse le bateau en déplaçant l\'eau. Sur les moteurs hors-bord, elle est intégrée dans l\'embase du moteur.',
+        category: 'parte',
+      },
+      {
+        term: 'Amura',
+        definition: 'Zone du flanc du bateau proche de la proue, entre celle-ci et le travers. On parle d\'amure bâbord ou tribord ; « mer d\'amure » est la houle qui arrive par cette zone.',
+        category: 'parte',
+      },
+      {
+        term: 'Aleta',
+        definition: 'Zone du flanc du bateau proche de la poupe, entre le travers et la poupe. On parle de hanche bâbord ou tribord.',
+        category: 'parte',
+      },
+      {
+        term: 'Línea de flotación',
+        definition: 'Ligne où la surface de l\'eau touche la coque avec le bateau à flot et à sa charge normale. Sépare les œuvres vives (immergées) des œuvres mortes (émergées).',
+        category: 'parte',
+      },
+      {
+        term: 'Ancla',
+        definition: 'Pièce métallique jetée sur le fond marin, reliée au bateau par chaîne ou amarre, pour mouiller et maintenir la position. Le grappin est un type d\'ancre légère à plusieurs becs courant sur les petites embarcations.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cabo',
+        definition: 'Nom marin de toute corde à bord : on ne dit jamais « corde ». Les amarres servent à amarrer, mouiller, remorquer ou fixer des éléments du bateau.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Defensas',
+        definition: 'Éléments cylindriques ou sphériques, normalement gonflables, suspendus au flanc pour protéger la coque des chocs contre le quai ou d\'autres embarcations lors de l\'accostage.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cornamusa',
+        definition: 'Pièce métallique en forme de T fixée sur le pont où l\'on amarre les cordages. Permet de sécuriser et larguer l\'amarre rapidement.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Ecosonda',
+        definition: 'Instrument qui mesure la profondeur de l\'eau sous la coque en émettant des ultrasons et en mesurant l\'écho du fond. Indispensable pour mouiller en sécurité et éviter l\'échouage.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'GPS y carta náutica',
+        definition: 'Le GPS donne la position du bateau par satellite ; le traceur la représente sur une carte marine électronique avec profondeurs, balises et dangers. La carte marine est la carte officielle de la mer.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Chaleco salvavidas',
+        definition: 'Équipement individuel de flottabilité obligatoire à bord, un par personne. Maintient à flot quiconque tombe à l\'eau. Son port est obligatoire en situation de risque et fortement recommandé pour les mineurs et les non-nageurs.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Aro salvavidas',
+        definition: 'Bouée circulaire lancée à une personne tombée à l\'eau pour qu\'elle s\'y accroche pendant qu\'on la récupère. Elle porte généralement une ligne de vie (cordage) et, dans certains cas, une lumière de localisation.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Hombre al agua',
+        definition: 'Urgence dans laquelle une personne tombe à la mer. La manœuvre consiste à signaler l\'accidenté, ne pas le perdre de vue, lancer une bouée et revenir proue au vent avec précaution pour le récupérer sous le vent.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Bengalas y señales de socorro',
+        definition: 'Matériel de sécurité pyrotechnique (fusées à main, fusées à parachute, signaux fumigènes) pour demander de l\'aide et être localisé en cas d\'urgence en mer.',
+        category: 'seguridad',
+      },
+      {
+        term: 'VHF (Canal 16)',
+        definition: 'Radio très haute fréquence pour les communications maritimes. Le canal 16 est la fréquence internationale de détresse, d\'urgence et d\'appel, surveillée par les Secours maritimes.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Botiquín de a bordo',
+        definition: 'Ensemble de matériel sanitaire, obligatoire selon la zone de navigation, pour traiter les mal de mer, coupures, coups de soleil et petites urgences pendant la sortie.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Tramontana',
+        definition: 'Vent fort, froid et sec du nord caractéristique du golfe du Lion et du nord de la Costa Brava. Peut se lever rapidement et compliquer la navigation ; il convient de consulter les prévisions avant de partir de Blanes.',
+        category: 'meteo',
+      },
+      {
+        term: 'Garbí (Garbino)',
+        definition: 'Vent de sud-ouest typique des après-midi d\'été sur la Costa Brava, associé à la brise marine. Généralement modéré et rafraîchissant, bien qu\'il puisse rider la mer l\'après-midi.',
+        category: 'meteo',
+      },
+      {
+        term: 'Migjorn',
+        definition: 'Vent du sud (midi) sur la côte catalane. Chaud et humide, il annonce généralement un changement de temps et une augmentation de la houle.',
+        category: 'meteo',
+      },
+      {
+        term: 'Mar de fondo',
+        definition: 'Houle formée par un vent lointain ou déjà passé qui arrive sur la côte sous forme de vagues longues et régulières, même sans vent local. Peut rendre le mouillage inconfortable dans les criques exposées.',
+        category: 'meteo',
+      },
+      {
+        term: 'Marejada y mar rizada',
+        definition: 'États de la mer selon la hauteur des vagues : « mer ridée » ce sont de très petites vagues (jusqu\'à 0,5 m) et « mer agitée » des vagues de 0,5 à 1,25 m. Ce sont des termes du bulletin météorologique maritime.',
+        category: 'meteo',
+      },
+      {
+        term: 'Banderas de baño',
+        definition: 'Signalisation de plage : drapeau vert (baignade autorisée), jaune (prudence, baignade avec restrictions) et rouge (baignade interdite). Renseignent aussi sur l\'état de la mer pour sortir en bateau.',
+        category: 'meteo',
+      },
+      {
+        term: 'Parte meteorológico marítimo',
+        definition: 'Prévision spécifique pour la mer (vent, état de la mer, visibilité et phénomènes) émise par l\'AEMET par zones. La consulter avant chaque sortie est la première règle de sécurité.',
+        category: 'meteo',
+      },
+    ],
+  },
+  jetski: {
+    badge: 'Jet ski',
+    requestCta: 'Réserver',
+    fromLabel: 'à partir de',
+    modal: {
+      title: 'Demandez votre jet ski',
+      subtitle: 'Choisissez le créneau et nous vous confirmons la disponibilité.',
+      slot: 'Créneau',
+      date: 'Date souhaitée',
+      datePlaceholder: 'Quel jour souhaitez-vous ?',
+      people: 'Personnes',
+      name: 'Nom',
+      namePlaceholder: 'Votre nom et prénom',
+      firstName: 'Prénom',
+      firstNamePlaceholder: 'Prénom',
+      lastName: 'Nom',
+      lastNamePlaceholder: 'Nom',
+      phone: 'Téléphone / WhatsApp',
+      email: 'Email',
+      emailHint: 'Facultatif',
+      submit: 'Envoyer la demande',
+      submitting: 'Envoi en cours...',
+      reassurance: 'Sans engagement · nous vous confirmons par WhatsApp ou email',
+      whatsappDirect: 'Je préfère écrire sur WhatsApp',
+      successTitle: 'Appuyez sur envoyer dans WhatsApp !',
+      successText: 'Nous avons ouvert WhatsApp avec votre demande. Appuyez sur Envoyer et nous confirmons la disponibilité rapidement.',
+      errorText: 'Nous n\'avons pas pu envoyer votre demande. Réessayez ou écrivez-nous par WhatsApp.',
+      requiredError: 'Veuillez remplir votre nom et téléphone.',
+    },
+  },
+  jetskiHub: {
+    "seoTitle": "Location de jet-skis à Blanes (Costa Brava) | Sans permis",
+    "navLabel": "Jet-skis",
+    "hero": {
+      "title": "Location de jet-skis à Blanes",
+      "subtitle": "Pilotez un jet-ski sans permis sur la Costa Brava : circuit balisé au large de Blanes ou excursion guidée à Tossa de Mar. Gilet et carburant inclus.",
+    },
+    "intro": "Deux façons de profiter du jet-ski sans permis depuis le port de Blanes, toujours avec un moniteur. Choisissez le circuit pour un premier contact ou l'excursion guidée pour parcourir la côte jusqu'à Tossa de Mar.",
+    "productsTitle": "Nos expériences en jet-ski",
+    "faqTitle": "Questions fréquentes",
+    "faq": [
+      {
+        "q": "Ai-je besoin d'un permis pour le jet-ski ?",
+        "a": "Non. Toutes nos expériences sont sans permis : vous êtes toujours accompagné ou surveillé par un moniteur diplômé."
+      },
+      {
+        "q": "Combien de personnes par jet-ski ?",
+        "a": "Entre 1 et 2 personnes par jet-ski, selon l'expérience que vous choisissez."
+      },
+      {
+        "q": "D'où partent-ils ?",
+        "a": "Du port de Blanes (Gérone), au même ponton que nos bateaux."
+      }
+    ]
+  },
+  jetskiLanding: {
+    "fromLabel": "dès",
+    "ctaRequest": "Réserver",
+    "slotsTitle": "Créneaux et tarifs",
+    "includedTitle": "Ce qui est inclus",
+    "faqTitle": "Questions fréquentes",
+    "reassurance": "Sans engagement · confirmation par WhatsApp",
+    "circuito": {
+      "navLabel": "Circuit en Jet Ski",
+      "seoTitle": "Location de jet-ski à Blanes · Circuit en jet-ski sans permis",
+      "hero": {
+        "title": "Circuit en Jet Ski à Blanes",
+        "subtitle": "Prenez les commandes d'un jet ski sur un circuit balisé au large de Blanes, avec un moniteur qui veille sur vous. Sans permis, dès 15 minutes."
+      },
+      "chips": [
+        "Aucun permis nécessaire",
+        "1-2 personnes",
+        "Dès 15 min"
+      ],
+      "intro": "Votre première fois en jet ski, sans souci : on vous explique tout et vous pilotez dans une zone sûre au large du port de Blanes.",
+      "faq": [
+        {
+          "q": "Ai-je besoin d'un permis ?",
+          "a": "Non. Le circuit se déroule dans une zone balisée avec un moniteur qui surveille en permanence."
+        },
+        {
+          "q": "Combien de personnes par jet ski ?",
+          "a": "Jusqu'à 2 personnes par jet ski."
+        },
+        {
+          "q": "Âge minimum ?",
+          "a": "18 ans pour piloter ; les mineurs peuvent être passagers selon les règles de l'opérateur."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Excursion en Jet Ski avec Moniteur",
+      "seoTitle": "Location de jet-ski à Blanes · Excursion guidée à Tossa de Mar",
+      "hero": {
+        "title": "Excursion en Jet Ski de Blanes à Tossa",
+        "subtitle": "Parcourez la Costa Brava en jet ski accompagné d'un moniteur diplômé, sur un itinéraire guidé de Blanes à Tossa de Mar. Sans permis."
+      },
+      "chips": [
+        "Aucun permis nécessaire",
+        "Guide jusqu'à Tossa",
+        "Carburant inclus",
+        "1-2 personnes"
+      ],
+      "intro": "Un itinéraire guidé le long des criques et falaises de la Costa Brava, avec un moniteur à vos côtés tout le temps. Carburant et assurance inclus.",
+      "faq": [
+        {
+          "q": "Ai-je besoin d'un permis ?",
+          "a": "Non. Vous êtes accompagné par un moniteur diplômé pendant toute l'excursion."
+        },
+        {
+          "q": "Qu'est-ce qui est inclus ?",
+          "a": "Carburant, assurance responsabilité civile, moniteur/guide, gilet et briefing de sécurité."
+        },
+        {
+          "q": "Quelle durée ?",
+          "a": "Option de 1 heure ou 2 heures vers Tossa de Mar."
+        }
+      ]
+    }
   },
 };

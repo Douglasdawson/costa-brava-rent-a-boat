@@ -23,6 +23,11 @@ vite.config.ts.*
 # Playwright MCP local debug logs (console captures, screenshots)
 .playwright-mcp/
 
+# Playwright e2e artifacts (auth state has session cookies; results are transient)
+e2e/.auth/
+test-results/
+playwright-report/
+
 # Local backups (never commit *.md.bak etc.)
 *.bak
 

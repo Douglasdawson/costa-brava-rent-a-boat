@@ -71,6 +71,7 @@ import {
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
 import { getMinActivePrice } from "@shared/pricing";
+import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "@shared/boatFaqBuilder";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
@@ -869,7 +870,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     if (!boats || !boatData) return [];
     const currentCapacity = boatData.capacity;
     const currentRequiresLicense = boatData.requiresLicense;
-    const candidates = boats.filter(b => b.id !== boatId);
+    const candidates = boats.filter(b => b.id !== boatId && !isJetSkiProduct(b.id));
     const sameCategory = candidates.filter(b => b.requiresLicense === currentRequiresLicense);
     const pool = sameCategory.length > 0 ? sameCategory : candidates;
     return pool

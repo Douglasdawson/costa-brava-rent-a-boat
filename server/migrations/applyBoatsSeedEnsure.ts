@@ -19,6 +19,7 @@
 
 import type { Pool } from "@neondatabase/serverless";
 import { BOAT_DATA } from "@shared/boatData";
+import { JETSKI_PRODUCTS, buildJetSkiPricing } from "@shared/jetskiProducts";
 import { audit } from "../lib/audit";
 
 // Distinct advisory-lock id (random 64-bit signed int — must not collide
@@ -124,6 +125,53 @@ export async function applyBoatsSeedEnsure(pool: Pool): Promise<{
           });
         }
       }
+
+      // Jet ski products resold from partner Jet Ski Blanes. Modelled as fleet
+      // rows (so they show in the fleet section + admin) but kept OUT of the
+      // per-hour pricing engine — their `pricing` JSON uses fixed slot keys and
+      // they are filtered out of every hourly booking flow on the client.
+      for (const product of JETSKI_PRODUCTS) {
+        const displayOrder = 100 + JETSKI_PRODUCTS.indexOf(product);
+        const result = await client.query(
+          `INSERT INTO boats (
+            id, name, capacity, requires_license, deposit, is_active,
+            image_url, image_gallery, subtitle, description,
+            specifications, equipment, included, features, pricing, extras,
+            display_order, license_type
+          ) VALUES (
+            $1, $2, $3, false, '0.00', true,
+            $4, $5, $6, $7,
+            $8::json, $9, $10, $11, $12::json, $13::json,
+            $14, 'none'
+          )
+          ON CONFLICT (id) DO NOTHING`,
+          [
+            product.id,
+            product.name,
+            product.capacity,
+            product.image,
+            [product.image],
+            product.subtitle,
+            product.description,
+            JSON.stringify(product.specifications),
+            product.features,
+            product.included,
+            product.features,
+            JSON.stringify(buildJetSkiPricing(product)),
+            JSON.stringify([]),
+            displayOrder,
+          ],
+        );
+        if (result.rowCount && result.rowCount > 0) {
+          inserted++;
+          audit(null, "restore", "boat", product.id, {
+            source: "boot-seeder",
+            trigger: "missing-after-boot",
+            fileSource: "shared/jetskiProducts.ts",
+          });
+        }
+      }
+
       return { applied: true, inserted, durationMs: Date.now() - started };
     } finally {
       await client.query("SELECT pg_advisory_unlock($1::bigint)", [

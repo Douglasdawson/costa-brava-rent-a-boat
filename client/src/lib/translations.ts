@@ -81,6 +81,7 @@ export interface Translations {
     faq: string;
     giftCards: string;
     viewComponents: string;
+    jetski: string;
     bookNow: string;
     myAccount: string;
   };
@@ -695,6 +696,45 @@ export interface Translations {
     tossaDesc: string;
     pricesTitle: string;
     pricesDesc: string;
+    guide?: {
+      heading: string;
+      geographyTitle: string;
+      geographyBody: string;
+      seaTitle: string;
+      seaBody: string;
+      calasTitle: string;
+      calasBody: string;
+      seasonTitle: string;
+      seasonBody: string;
+    };
+  };
+
+  lastUpdated?: {
+    label: string;
+  };
+
+  // Programmatic matrix pages (occasion × location) — keyed by comboId, e.g.
+  // "snorkel__locationBlanes". Gated behind OCCASION_MATRIX_ENABLED.
+  occasionMatrix?: {
+    pages: Record<
+      string,
+      {
+        seoTitle: string;
+        seoDescription: string;
+        h1: string;
+        intro: string;
+        spotsTitle: string;
+        spots: Array<{ name: string; description: string }>;
+        boatsTitle: string;
+        boatsIntro: string;
+        practicalTitle: string;
+        practicalBody: string;
+        faqTitle: string;
+        faq: Array<{ q: string; a: string }>;
+        ctaTitle: string;
+        ctaText: string;
+      }
+    >;
   };
 
   // Gift Card Banner (homepage)
@@ -2597,6 +2637,8 @@ export interface Translations {
       accion: string;
       parte: string;
       equipamiento: string;
+      seguridad?: string;
+      meteo?: string;
     };
     terms: Array<{ term: string; definition: string; category: string }>;
   };
@@ -2725,6 +2767,63 @@ export interface Translations {
       requiredError: string;
     };
   };
+  jetski: {
+    badge: string;
+    requestCta: string;
+    fromLabel: string;
+    modal: {
+      title: string;
+      subtitle: string;
+      slot: string;
+      date: string;
+      datePlaceholder: string;
+      people: string;
+      name: string;
+      namePlaceholder: string;
+      firstName: string;
+      firstNamePlaceholder: string;
+      lastName: string;
+      lastNamePlaceholder: string;
+      phone: string;
+      email: string;
+      emailHint: string;
+      submit: string;
+      submitting: string;
+      reassurance: string;
+      whatsappDirect: string;
+      successTitle: string;
+      successText: string;
+      errorText: string;
+      requiredError: string;
+    };
+  };
+  jetskiLanding: {
+    fromLabel: string;
+    ctaRequest: string;
+    slotsTitle: string;
+    includedTitle: string;
+    faqTitle: string;
+    reassurance: string;
+    circuito: JetskiLandingCopy;
+    excursion: JetskiLandingCopy;
+  };
+  jetskiHub: {
+    seoTitle: string;
+    navLabel: string;
+    hero: { title: string; subtitle: string };
+    intro: string;
+    productsTitle: string;
+    faqTitle: string;
+    faq: { q: string; a: string }[];
+  };
+}
+interface JetskiLandingCopy {
+  navLabel: string;
+  seoTitle: string;
+  hero: { title: string; subtitle: string };
+  chips: string[];
+  intro: string;
+  faq: { q: string; a: string }[];
 }
 function deepMerge(
   target: Record<string, any>,

@@ -6,6 +6,7 @@ import { SEO } from "@/components/SEO";
 import { Anchor, BookOpen, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
+import { LastUpdated } from "@/components/LastUpdated";
 import {
   NAUTICAL_GLOSSARY_ES,
   generateGlossarySchema,
@@ -20,9 +21,11 @@ const CATEGORY_ICONS: Record<string, string> = {
   accion: "⚓",
   parte: "🚤",
   equipamiento: "🧰",
+  seguridad: "🦺",
+  meteo: "🌬️",
 };
 
-const CATEGORY_ORDER = ["titulacion", "unidad", "accion", "parte", "equipamiento"];
+const CATEGORY_ORDER = ["titulacion", "unidad", "accion", "parte", "equipamiento", "seguridad", "meteo"];
 
 function slugify(s: string): string {
   return s
@@ -119,6 +122,7 @@ export default function GlosarioPage() {
             <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
               {introText}
             </p>
+            <LastUpdated date="2026-05-31" className="mt-3" />
           </div>
 
           {/* Category filter */}

@@ -111,6 +111,10 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | SEO Autopilot storage | `server/storage/{mcpTokens,seoAutopilot}.ts` |
 | SEO Autopilot admin API | `server/routes/admin-{mcp-tokens,seo-autopilot}.ts` |
 | SEO Autopilot UI (CRM tab) | `client/src/components/crm/AutopilotTab.tsx` |
+| Jet ski (reventa partner) — catálogo | `shared/jetskiProducts.ts` (fuente única: 2 productos Circuito + Excursión, franjas/precios, helpers). NUNCA mostrar "partner/reventa" en superficies públicas |
+| Jet ski — flota + petición | Sembrado en `boats` vía `server/migrations/applyBoatsSeedEnsure.ts`; modal `client/src/components/JetSkiRequestModal.tsx` (WhatsApp prerrellenado + `/api/booking-inquiries` + `/api/jetski-booking` estado `requested`). Excluido del wizard horario/`/api/quote`/pricing |
+| Jet ski — páginas dedicadas | `client/src/components/JetSkiLanding.tsx` + `client/src/pages/jet-ski-{circuito,excursion}.tsx`; rutas `jetskiCircuito`/`jetskiExcursion` en `shared/i18n-routes.ts`; i18n bloque `jetskiLanding` (8 idiomas) |
+| Jet ski — SEO/GEO | `server/seoInjector.ts` (STATIC_META+resolveMeta SSR), `server/routes/robots.ts` + `server/services/aiSearchIndex.ts` (ai-context/feed-llms/ai-search), `client/public/llms*.txt`, `translatedStaticPaths.ts`+`sitemaps.ts` |
 
 ## Patrones Comunes
 

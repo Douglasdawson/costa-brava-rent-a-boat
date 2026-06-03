@@ -4969,7 +4969,7 @@ export const nl: Translations = {
     ],
   },
   jetski: {
-    badge: 'Jet ski · partner',
+    badge: 'Jet ski',
     requestCta: 'Aanvragen',
     fromLabel: 'vanaf',
     modal: {
@@ -4991,11 +4991,74 @@ export const nl: Translations = {
       submit: 'Aanvraag versturen',
       submitting: 'Verzenden...',
       reassurance: 'Vrijblijvend · wij bevestigen via WhatsApp of e-mail',
-      partnerNote: 'Product aangeboden door onze partner Jet Ski Blanes, op dezelfde steiger.',
       successTitle: 'Tik op verzenden in WhatsApp!',
       successText: 'We hebben WhatsApp geopend met je aanvraag. Tik op Verzenden en we bevestigen de beschikbaarheid snel.',
       errorText: 'We konden je aanvraag niet versturen. Probeer het opnieuw of stuur ons een bericht via WhatsApp.',
       requiredError: 'Vul alsjeblieft je naam en telefoonnummer in.',
     },
+  },
+  jetskiLanding: {
+    "fromLabel": "vanaf",
+    "ctaRequest": "Aanvragen",
+    "slotsTitle": "Tijdsloten & prijzen",
+    "includedTitle": "Inbegrepen",
+    "faqTitle": "Veelgestelde vragen",
+    "reassurance": "Vrijblijvend · we bevestigen via WhatsApp",
+    "circuito": {
+      "navLabel": "Jetski-circuit",
+      "hero": {
+        "title": "Jetski-circuit in Blanes",
+        "subtitle": "Neem de besturing van een jetski op een uitgezet circuit voor de kust van Blanes, met een instructeur die op je let. Zonder vaarbewijs, vanaf 15 minuten."
+      },
+      "chips": [
+        "Zonder vaarbewijs",
+        "Instructeur inbegrepen",
+        "1-2 personen",
+        "Vanaf 15 min"
+      ],
+      "intro": "Je eerste keer op een jetski, zonder gedoe: we leggen alles uit en je vaart in een veilig gebied voor de haven van Blanes.",
+      "faq": [
+        {
+          "q": "Heb ik een vaarbewijs nodig?",
+          "a": "Nee. Het circuit vindt plaats in een uitgezet gebied met voortdurend toezicht van een instructeur."
+        },
+        {
+          "q": "Hoeveel personen per jetski?",
+          "a": "Tot 2 personen per jetski."
+        },
+        {
+          "q": "Minimumleeftijd?",
+          "a": "18 jaar om te besturen; minderjarigen mogen mee als passagier volgens de regels van de aanbieder."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Jetski-tour met Instructeur",
+      "hero": {
+        "title": "Jetski-tour van Blanes naar Tossa",
+        "subtitle": "Verken de Costa Brava per jetski, begeleid door een gediplomeerde instructeur, op een begeleide route van Blanes naar Tossa de Mar. Zonder vaarbewijs."
+      },
+      "chips": [
+        "Zonder vaarbewijs",
+        "Gids naar Tossa",
+        "Brandstof inbegrepen",
+        "1-2 personen"
+      ],
+      "intro": "Een begeleide route langs de baaien en kliffen van de Costa Brava, met de hele tijd een instructeur aan je zijde. Brandstof en verzekering inbegrepen.",
+      "faq": [
+        {
+          "q": "Heb ik een vaarbewijs nodig?",
+          "a": "Nee. Je wordt tijdens de hele tour begeleid door een gediplomeerde instructeur."
+        },
+        {
+          "q": "Wat is inbegrepen?",
+          "a": "Brandstof, WA-verzekering, instructeur/gids, zwemvest en veiligheidsbriefing."
+        },
+        {
+          "q": "Hoe lang duurt het?",
+          "a": "Er is een optie van 1 uur of 2 uur richting Tossa de Mar."
+        }
+      ]
+    }
   },
 };

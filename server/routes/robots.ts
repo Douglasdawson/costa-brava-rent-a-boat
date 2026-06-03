@@ -6,6 +6,8 @@ import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { AI_CRAWLER_NAMES } from "../seo/constants";
 import { BOAT_DATA, type BoatData } from "../../shared/boatData";
+import { JETSKI_PRODUCTS, type JetSkiProduct } from "../../shared/jetskiProducts";
+import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
 import { getCurrentStats } from "../lib/businessStatsCache";
 import {
@@ -201,7 +203,31 @@ function generatePricingTables(): string {
     }
     sections.push("");
   }
+  sections.push(renderJetSkiPricingBlock());
   return sections.join("\n").trim();
+}
+
+/**
+ * Short Jet Ski pricing block injected into llms.txt / llms-full.txt. One
+ * markdown table per product listing each closed time-slot and its flat price.
+ * Built from the canonical JETSKI_PRODUCTS shared module (our own offering).
+ */
+function renderJetSkiPricingBlock(): string {
+  const lines: string[] = ["### Jet Ski (Costa Brava)"];
+  for (const product of JETSKI_PRODUCTS) {
+    lines.push("");
+    lines.push(`#### ${product.name} (${product.subtitle})`);
+    lines.push("");
+    lines.push("| Slot | Price |");
+    lines.push("|------|-------|");
+    for (const slot of product.slots) {
+      const price = slot.price2
+        ? `${slot.price} EUR (1 person) / ${slot.price2} EUR (2 people)`
+        : `${slot.price} EUR`;
+      lines.push(`| ${slot.label} | ${price} |`);
+    }
+  }
+  return lines.join("\n");
 }
 
 /**
@@ -272,6 +298,59 @@ function boatToProductSchema(boat: BoatData, businessUrl: string, ratingValue: n
         })),
       ],
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue,
+      reviewCount,
+      bestRating: 5,
+    },
+  };
+}
+
+/** Absolute ES landing URL for a jet ski product (single source: i18n-routes). */
+function jetskiLandingUrl(product: JetSkiProduct, businessUrl: string): string {
+  return `${businessUrl}${getLocalizedPath(product.pageKey as PageKey, "es")}`;
+}
+
+/**
+ * Map a JetSkiProduct to a Schema.org Service node, mirroring how
+ * `boatToProductSchema` exposes the boat fleet. One Offer per closed time-slot
+ * (15/30/60 min for the circuit, 1h/2h for the guided excursion) so AI agents
+ * can quote exact prices. Reuses the same GBP rating vars for aggregateRating.
+ */
+function jetskiToServiceSchema(
+  product: JetSkiProduct,
+  businessUrl: string,
+  ratingValue: number,
+  reviewCount: number,
+) {
+  const url = jetskiLandingUrl(product, businessUrl);
+  return {
+    "@type": "Service",
+    "@id": `${url}#service`,
+    name: product.name,
+    description: product.description,
+    url,
+    image: `${businessUrl}${product.image}`,
+    serviceType: "Jet ski rental",
+    category: "Jet ski rental",
+    provider: { "@id": `${businessUrl}/#business` },
+    areaServed: [
+      { "@type": "Place", name: "Blanes" },
+      { "@type": "Place", name: "Costa Brava" },
+    ],
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "capacity", value: product.capacity },
+      { "@type": "PropertyValue", name: "licenseRequired", value: false },
+    ],
+    offers: product.slots.map((slot) => ({
+      "@type": "Offer",
+      name: `${product.name} — ${slot.label}`,
+      price: slot.price,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      url,
+    })),
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue,
@@ -918,6 +997,9 @@ export function registerRobotsRoutes(app: Express): void {
           ...Object.values(BOAT_DATA).map((b) =>
             boatToProductSchema(b, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
           ),
+          ...JETSKI_PRODUCTS.map((p) =>
+            jetskiToServiceSchema(p, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
+          ),
         ],
         // Convenience fields outside the @graph for agents that don't parse
         // JSON-LD graphs but still want the discovery URLs.
@@ -1011,6 +1093,18 @@ export function registerRobotsRoutes(app: Express): void {
         tags: b.features,
       }));
 
+      const jetskiItems = JETSKI_PRODUCTS.map((p) => {
+        const url = `${BASE_URL}${getLocalizedPath(p.pageKey as PageKey, "es")}`;
+        return {
+          id: url,
+          url,
+          title: `${p.name} — ${p.subtitle}`,
+          content_text: p.description,
+          summary: p.subtitle,
+          tags: p.features,
+        };
+      });
+
       const body = {
         version: "https://jsonfeed.org/version/1.1",
         title: "Costa Brava Rent a Boat — content feed for AI assistants",
@@ -1026,7 +1120,7 @@ export function registerRobotsRoutes(app: Express): void {
           { type: "WebSub", url: "https://pubsubhubbub.appspot.com/" },
           { type: "WebSub", url: "https://websub.rocks/hub" },
         ],
-        items: [...blogItems, ...boatItems],
+        items: [...blogItems, ...boatItems, ...jetskiItems],
       };
       res.setHeader("Content-Type", "application/feed+json; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
@@ -1085,7 +1179,7 @@ export function registerRobotsRoutes(app: Express): void {
         return s;
       };
       interface Hit {
-        type: "boat" | "glossary" | "faq";
+        type: "boat" | "jetski" | "glossary" | "faq";
         title: string;
         snippet: string;
         url: string;
@@ -1096,6 +1190,11 @@ export function registerRobotsRoutes(app: Express): void {
         const blob = [b.name, b.subtitle, b.description, ...(b.features ?? []), ...(b.equipment ?? [])].join(" ");
         const s = score(blob);
         if (s > 0) hits.push({ type: "boat", title: b.name, snippet: b.description.slice(0, 240), url: `${BASE_URL}/es/barco/${b.id}`, score: s });
+      }
+      for (const p of JETSKI_PRODUCTS) {
+        const blob = [p.name, p.subtitle, p.description, ...(p.features ?? []), ...(p.included ?? [])].join(" ");
+        const s = score(blob);
+        if (s > 0) hits.push({ type: "jetski", title: p.name, snippet: p.description.slice(0, 240), url: `${BASE_URL}${getLocalizedPath(p.pageKey as PageKey, "es")}`, score: s });
       }
       for (const g of NAUTICAL_GLOSSARY_ES) {
         const s = score(`${g.term} ${g.definition}`);

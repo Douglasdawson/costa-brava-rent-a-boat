@@ -314,6 +314,8 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "about", "0.6", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "destinations", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "sharedSailing", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "jetskiCircuito", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "jetskiExcursion", "0.7", null, "monthly");
 
       // Category pages
       sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly");

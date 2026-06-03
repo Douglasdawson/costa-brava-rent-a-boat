@@ -22,8 +22,10 @@ interface BoatCardProps {
   enginePower?: string;
   isPopular?: boolean;
   isRecommended?: boolean;
-  /** Resold jet ski product: no detail page, slot-based request, partner badge. */
+  /** Jet ski product: slot-based request modal, links to dedicated landing. */
   isJetSki?: boolean;
+  /** Dedicated landing page href for jet ski products (image links here). */
+  jetskiHref?: string;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -134,6 +136,7 @@ function BoatCard({
   isPopular,
   isRecommended,
   isJetSki,
+  jetskiHref,
   onBooking,
   onDetails,
 }: BoatCardProps) {
@@ -180,7 +183,7 @@ function BoatCard({
             {isJetSki ? (
               <div className="absolute top-3 left-3 z-10">
                 <div className="inline-flex items-center gap-1 bg-foreground text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
-                  {t.jetski?.badge || "Jet ski · partner"}
+                  {t.jetski?.badge || "Jet ski"}
                 </div>
               </div>
             ) : (
@@ -202,18 +205,18 @@ function BoatCard({
             )}
           </>
         );
-        // Jet ski products have no detail page (they're not in BOAT_DATA);
-        // the image opens the slot-request modal instead of a boat detail link.
+        // Jet ski products link to their dedicated landing page (like boats link
+        // to their detail page); the "Solicitar" button below opens the modal.
         return isJetSki ? (
-          <button
-            type="button"
-            onClick={handleBooking}
-            className="relative block w-full cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+          <a
+            href={jetskiHref || "#"}
+            onClick={handleDetailsClick}
+            className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
             data-testid={`image-${id}`}
-            aria-label={`${t.jetski?.requestCta || t.boats.book} ${name}`}
+            aria-label={`${name}`}
           >
             {imageInner}
-          </button>
+          </a>
         ) : (
           <a
             href={localizedPath("boatDetail", id)}

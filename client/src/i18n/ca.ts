@@ -4965,7 +4965,7 @@ export const ca: Translations = {
     ],
   },
   jetski: {
-    badge: 'Jet ski · partner',
+    badge: 'Jet ski',
     requestCta: 'Sol·licitar',
     fromLabel: 'des de',
     modal: {
@@ -4987,11 +4987,74 @@ export const ca: Translations = {
       submit: 'Enviar sol·licitud',
       submitting: 'Enviant...',
       reassurance: 'Sense compromís · et confirmem per WhatsApp o email',
-      partnerNote: 'Producte operat pel nostre partner Jet Ski Blanes, al mateix pantalà.',
       successTitle: 'Prem enviar a WhatsApp!',
       successText: 'Hem obert WhatsApp amb la teva sol·licitud. Prem Envia i et confirmem la disponibilitat de seguida.',
       errorText: 'No hem pogut enviar la teva sol·licitud. Torna-ho a provar o escriu-nos per WhatsApp.',
       requiredError: 'Si us plau, completa el teu nom i telèfon.',
     },
+  },
+  jetskiLanding: {
+    "fromLabel": "des de",
+    "ctaRequest": "Sol·licitar",
+    "slotsTitle": "Franges i preus",
+    "includedTitle": "Què inclou",
+    "faqTitle": "Preguntes freqüents",
+    "reassurance": "Sense compromís · ho confirmem per WhatsApp",
+    "circuito": {
+      "navLabel": "Circuit en Moto d'Aigua",
+      "hero": {
+        "title": "Circuit en Moto d'Aigua a Blanes",
+        "subtitle": "Posa't als comandaments d'una moto d'aigua en un circuit balisat davant de Blanes, amb un monitor vigilant. Sense llicència, des de 15 minuts."
+      },
+      "chips": [
+        "Sense llicència",
+        "Monitor inclòs",
+        "1-2 persones",
+        "Des de 15 min"
+      ],
+      "intro": "La teva primera vegada en moto d'aigua, sense complicacions: t'ho expliquem tot i pilotes en una zona segura davant del port de Blanes.",
+      "faq": [
+        {
+          "q": "Necessito llicència?",
+          "a": "No. El circuit es fa en una zona balisada amb un monitor vigilant en tot moment."
+        },
+        {
+          "q": "Quantes persones per moto?",
+          "a": "Fins a 2 persones per moto d'aigua."
+        },
+        {
+          "q": "Edat mínima?",
+          "a": "18 anys per pilotar; els menors poden anar de passatgers segons la normativa de l'operador."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Excursió en Moto d'Aigua amb Monitor",
+      "hero": {
+        "title": "Excursió en Moto d'Aigua de Blanes a Tossa",
+        "subtitle": "Recorre la Costa Brava en moto d'aigua acompanyat d'un monitor titulat, amb ruta guiada des de Blanes fins a Tossa de Mar. Sense llicència."
+      },
+      "chips": [
+        "Sense llicència",
+        "Guia fins a Tossa",
+        "Combustible inclòs",
+        "1-2 persones"
+      ],
+      "intro": "Una ruta guiada per cales i penya-segats de la Costa Brava, amb un monitor que va amb tu en tot moment. Combustible i assegurança inclosos.",
+      "faq": [
+        {
+          "q": "Necessito llicència?",
+          "a": "No. Vas acompanyat d'un monitor titulat durant tota l'excursió."
+        },
+        {
+          "q": "Què inclou?",
+          "a": "Combustible, assegurança de responsabilitat civil, monitor/guia, armilla i briefing de seguretat."
+        },
+        {
+          "q": "Quant dura?",
+          "a": "Hi ha opció d'1 hora o 2 hores cap a Tossa de Mar."
+        }
+      ]
+    }
   },
 };

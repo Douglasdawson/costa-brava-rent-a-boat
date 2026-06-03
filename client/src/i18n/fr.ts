@@ -4980,7 +4980,7 @@ export const fr: Translations = {
     ],
   },
   jetski: {
-    badge: 'Jet ski · partenaire',
+    badge: 'Jet ski',
     requestCta: 'Demander',
     fromLabel: 'à partir de',
     modal: {
@@ -5002,11 +5002,74 @@ export const fr: Translations = {
       submit: 'Envoyer la demande',
       submitting: 'Envoi en cours...',
       reassurance: 'Sans engagement · nous vous confirmons par WhatsApp ou email',
-      partnerNote: 'Produit exploité par notre partenaire Jet Ski Blanes, sur le même ponton.',
       successTitle: 'Appuyez sur envoyer dans WhatsApp !',
       successText: 'Nous avons ouvert WhatsApp avec votre demande. Appuyez sur Envoyer et nous confirmons la disponibilité rapidement.',
       errorText: 'Nous n\'avons pas pu envoyer votre demande. Réessayez ou écrivez-nous par WhatsApp.',
       requiredError: 'Veuillez remplir votre nom et téléphone.',
     },
+  },
+  jetskiLanding: {
+    "fromLabel": "dès",
+    "ctaRequest": "Demander",
+    "slotsTitle": "Créneaux et tarifs",
+    "includedTitle": "Ce qui est inclus",
+    "faqTitle": "Questions fréquentes",
+    "reassurance": "Sans engagement · confirmation par WhatsApp",
+    "circuito": {
+      "navLabel": "Circuit en Jet Ski",
+      "hero": {
+        "title": "Circuit en Jet Ski à Blanes",
+        "subtitle": "Prenez les commandes d'un jet ski sur un circuit balisé au large de Blanes, avec un moniteur qui veille sur vous. Sans permis, dès 15 minutes."
+      },
+      "chips": [
+        "Sans permis",
+        "Moniteur inclus",
+        "1-2 personnes",
+        "Dès 15 min"
+      ],
+      "intro": "Votre première fois en jet ski, sans souci : on vous explique tout et vous pilotez dans une zone sûre au large du port de Blanes.",
+      "faq": [
+        {
+          "q": "Ai-je besoin d'un permis ?",
+          "a": "Non. Le circuit se déroule dans une zone balisée avec un moniteur qui surveille en permanence."
+        },
+        {
+          "q": "Combien de personnes par jet ski ?",
+          "a": "Jusqu'à 2 personnes par jet ski."
+        },
+        {
+          "q": "Âge minimum ?",
+          "a": "18 ans pour piloter ; les mineurs peuvent être passagers selon les règles de l'opérateur."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Excursion en Jet Ski avec Moniteur",
+      "hero": {
+        "title": "Excursion en Jet Ski de Blanes à Tossa",
+        "subtitle": "Parcourez la Costa Brava en jet ski accompagné d'un moniteur diplômé, sur un itinéraire guidé de Blanes à Tossa de Mar. Sans permis."
+      },
+      "chips": [
+        "Sans permis",
+        "Guide jusqu'à Tossa",
+        "Carburant inclus",
+        "1-2 personnes"
+      ],
+      "intro": "Un itinéraire guidé le long des criques et falaises de la Costa Brava, avec un moniteur à vos côtés tout le temps. Carburant et assurance inclus.",
+      "faq": [
+        {
+          "q": "Ai-je besoin d'un permis ?",
+          "a": "Non. Vous êtes accompagné par un moniteur diplômé pendant toute l'excursion."
+        },
+        {
+          "q": "Qu'est-ce qui est inclus ?",
+          "a": "Carburant, assurance responsabilité civile, moniteur/guide, gilet et briefing de sécurité."
+        },
+        {
+          "q": "Quelle durée ?",
+          "a": "Option de 1 heure ou 2 heures vers Tossa de Mar."
+        }
+      ]
+    }
   },
 };

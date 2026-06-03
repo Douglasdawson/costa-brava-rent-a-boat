@@ -445,3 +445,59 @@ export function generateRoutesItemListSchema(language: string = "es") {
   };
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// A single guided water-sports trip (e.g. the jet ski excursion Blanes → Tossa).
+// Renders a TouristTrip node with an ItemList itinerary of waypoints, so answer
+// engines can enumerate the route for queries like "jet ski Blanes Tossa".
+// Names/descriptions are passed pre-localized by the caller (from i18n copy).
+// ═══════════════════════════════════════════════════════════════════════════
+
+interface TouristTripWaypoint {
+  name: string;
+  description?: string;
+}
+
+interface TouristTripInput {
+  name: string;
+  description: string;
+  url: string;
+  language?: string;
+  touristType?: string[];
+  maximumAttendeeCapacity?: number;
+  waypoints: TouristTripWaypoint[];
+}
+
+export function generateTouristTripSchema(input: TouristTripInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    "@id": `${input.url}#tour`,
+    "name": input.name,
+    "description": input.description,
+    "url": input.url,
+    "inLanguage": input.language ?? "es",
+    "touristType": input.touristType ?? ["Water sports", "Adventure"],
+    ...(input.maximumAttendeeCapacity !== undefined
+      ? { "maximumAttendeeCapacity": input.maximumAttendeeCapacity }
+      : {}),
+    "itinerary": {
+      "@type": "ItemList",
+      "itemListElement": input.waypoints.map((wp, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": "Place",
+          "name": wp.name,
+          ...(wp.description ? { "description": wp.description } : {}),
+        },
+      })),
+    },
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Costa Brava Rent a Boat - Blanes",
+      "telephone": "+34611500372",
+      "url": "https://www.costabravarentaboat.com/",
+    },
+  };
+}
+

@@ -35,8 +35,12 @@ export interface JetSkiProduct {
   name: string;
   subtitle: string;
   description: string;
+  /** i18n-routes PageKey of this product's dedicated landing page. */
+  pageKey: string;
   /** Canonical image path under /images/boats/<id>/...webp */
   image: string;
+  /** Descriptive alt text for the hero/cover image (SEO + a11y). */
+  altText: string;
   capacity: number;
   specifications: {
     model: string;
@@ -56,11 +60,13 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
   {
     id: "jetski-circuito",
     name: "Circuito en Jet Ski",
+    pageKey: "jetskiCircuito",
     subtitle: "Sin licencia · 1-2 personas · Aprende a pilotar en circuito vigilado",
     description:
-      "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes, con monitor vigilando en todo momento. Ideal para una primera toma de contacto: desde 15 minutos, sin licencia y con briefing y chaleco incluidos. Producto operado por nuestro partner Jet Ski Blanes, en el mismo pantalán.",
+      "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes, con monitor vigilando en todo momento. Ideal para una primera toma de contacto: desde 15 minutos, sin licencia y con briefing y chaleco incluidos.",
     image:
       "/images/boats/jetski-circuito/jet-ski-circuito-blanes-costa-brava.webp",
+    altText: "Moto de agua en circuito frente a Blanes, Costa Brava",
     capacity: 2,
     specifications: {
       model: "Moto de agua (jet ski)",
@@ -92,11 +98,14 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
   {
     id: "jetski-excursion-monitor",
     name: "Excursión en Jet Ski con Monitor",
+    pageKey: "jetskiExcursion",
     subtitle: "Sin licencia · 1-2 personas · Ruta guiada Blanes → Tossa de Mar",
     description:
-      "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada desde Blanes hacia Tossa de Mar. Sin licencia: el guía va contigo en todo momento. Incluye combustible, seguro de responsabilidad civil, chaleco y briefing. Producto operado por nuestro partner Jet Ski Blanes, en el mismo pantalán.",
+      "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada desde Blanes hacia Tossa de Mar. Sin licencia: el guía va contigo en todo momento. Incluye combustible, seguro de responsabilidad civil, chaleco y briefing.",
     image:
       "/images/boats/jetski-excursion-monitor/jet-ski-excursion-monitor-blanes-tossa.webp",
+    altText:
+      "Excursión en moto de agua de Blanes a Tossa de Mar, Costa Brava",
     capacity: 2,
     specifications: {
       model: "Moto de agua (jet ski)",
@@ -143,6 +152,11 @@ export function getJetSkiProduct(
 ): JetSkiProduct | null {
   if (!id) return null;
   return JETSKI_PRODUCTS.find((p) => p.id === id) ?? null;
+}
+
+/** i18n-routes PageKey of a jet ski product's landing page (null when not a jet ski). */
+export function getJetSkiPageKey(id: string | null | undefined): string | null {
+  return getJetSkiProduct(id)?.pageKey ?? null;
 }
 
 /**

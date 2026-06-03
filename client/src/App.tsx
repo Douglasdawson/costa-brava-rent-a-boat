@@ -75,6 +75,8 @@ const ActivitySunsetPage = lazy(() => import("@/pages/activity-sunset"));
 const ActivityFishingPage = lazy(() => import("@/pages/activity-fishing"));
 const AboutPage = lazy(() => import("@/pages/about"));
 const SharedSailingPage = lazy(() => import("@/pages/shared-sailing"));
+const JetSkiCircuitoPage = lazy(() => import("@/pages/jet-ski-circuito"));
+const JetSkiExcursionPage = lazy(() => import("@/pages/jet-ski-excursion"));
 const OccasionMatrixPage = lazy(() => import("@/pages/OccasionMatrixPage"));
 
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -327,6 +329,8 @@ const PAGE_COMPONENTS: Record<string, React.LazyExoticComponent<any> | React.Com
   giftCards: GiftCardsPage,
   about: AboutPage,
   sharedSailing: SharedSailingPage,
+  jetskiCircuito: JetSkiCircuitoPage,
+  jetskiExcursion: JetSkiExcursionPage,
   activitySnorkel: ActivitySnorkelPage,
   activityFamilies: ActivityFamiliesPage,
   activitySunset: ActivitySunsetPage,

@@ -4965,7 +4965,7 @@ export const it: Translations = {
     ],
   },
   jetski: {
-    badge: 'Jet ski · partner',
+    badge: 'Jet ski',
     requestCta: 'Richiedi',
     fromLabel: 'da',
     modal: {
@@ -4987,11 +4987,74 @@ export const it: Translations = {
       submit: 'Invia richiesta',
       submitting: 'Invio in corso...',
       reassurance: 'Senza impegno · ti confermiamo via WhatsApp o email',
-      partnerNote: 'Prodotto gestito dal nostro partner Jet Ski Blanes, sullo stesso pontile.',
       successTitle: 'Premi invia su WhatsApp!',
       successText: 'Abbiamo aperto WhatsApp con la tua richiesta. Premi Invia e ti confermiamo la disponibilità a breve.',
       errorText: 'Non siamo riusciti a inviare la tua richiesta. Riprova o scrivici su WhatsApp.',
       requiredError: 'Per favore, completa il tuo nome e telefono.',
     },
+  },
+  jetskiLanding: {
+    "fromLabel": "da",
+    "ctaRequest": "Richiedi",
+    "slotsTitle": "Fasce orarie e prezzi",
+    "includedTitle": "Cosa include",
+    "faqTitle": "Domande frequenti",
+    "reassurance": "Senza impegno · confermiamo via WhatsApp",
+    "circuito": {
+      "navLabel": "Circuito in Moto d'Acqua",
+      "hero": {
+        "title": "Circuito in Moto d'Acqua a Blanes",
+        "subtitle": "Prendi i comandi di una moto d'acqua in un circuito delimitato davanti a Blanes, con un istruttore che ti sorveglia. Senza patente, da 15 minuti."
+      },
+      "chips": [
+        "Senza patente",
+        "Istruttore incluso",
+        "1-2 persone",
+        "Da 15 min"
+      ],
+      "intro": "La tua prima volta in moto d'acqua, senza pensieri: ti spieghiamo tutto e guidi in una zona sicura davanti al porto di Blanes.",
+      "faq": [
+        {
+          "q": "Serve la patente?",
+          "a": "No. Il circuito si svolge in una zona delimitata con un istruttore che sorveglia in ogni momento."
+        },
+        {
+          "q": "Quante persone per moto d'acqua?",
+          "a": "Fino a 2 persone per moto d'acqua."
+        },
+        {
+          "q": "Età minima?",
+          "a": "18 anni per guidare; i minori possono salire come passeggeri secondo le regole dell'operatore."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Escursione in Moto d'Acqua con Istruttore",
+      "hero": {
+        "title": "Escursione in Moto d'Acqua da Blanes a Tossa",
+        "subtitle": "Percorri la Costa Brava in moto d'acqua accompagnato da un istruttore qualificato, su un itinerario guidato da Blanes a Tossa de Mar. Senza patente."
+      },
+      "chips": [
+        "Senza patente",
+        "Guida fino a Tossa",
+        "Carburante incluso",
+        "1-2 persone"
+      ],
+      "intro": "Un itinerario guidato tra le calette e le scogliere della Costa Brava, con un istruttore al tuo fianco per tutto il tempo. Carburante e assicurazione inclusi.",
+      "faq": [
+        {
+          "q": "Serve la patente?",
+          "a": "No. Sei accompagnato da un istruttore qualificato per tutta l'escursione."
+        },
+        {
+          "q": "Cosa include?",
+          "a": "Carburante, assicurazione RC, istruttore/guida, giubbotto e briefing di sicurezza."
+        },
+        {
+          "q": "Quanto dura?",
+          "a": "C'è un'opzione di 1 ora o 2 ore verso Tossa de Mar."
+        }
+      ]
+    }
   },
 };

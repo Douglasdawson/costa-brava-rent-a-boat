@@ -37,8 +37,10 @@ import { filterActivePrices, getMinActivePrice } from "@shared/pricing";
 import {
   isJetSkiProduct,
   getJetSkiProduct,
+  getJetSkiPageKey,
   type JetSkiProduct,
 } from "@shared/jetskiProducts";
+import type { PageKey } from "@shared/i18n-routes";
 import JetSkiRequestModal from "./JetSkiRequestModal";
 
 /** Skeleton that mirrors BoatCard layout: image 4/3 + content + buttons */
@@ -154,6 +156,7 @@ interface VirtualizedBoatGridProps {
     available: boolean;
     enginePower: string;
     isJetSki: boolean;
+    jetskiHref?: string;
   }>;
   popularBoatId: string;
   selectedGroupSize: string | null;
@@ -349,6 +352,9 @@ function FleetSection() {
             available: true,
             enginePower: enginePower,
             isJetSki: isJetSkiProduct(boat.id),
+            jetskiHref: isJetSkiProduct(boat.id)
+              ? localizedPath(getJetSkiPageKey(boat.id) as PageKey)
+              : undefined,
           };
         }),
     [boatsData, currentSeason, t]
@@ -407,6 +413,12 @@ function FleetSection() {
   const handleDetails = useCallback(
     (boatId: string) => {
       trackBoatClickedFromFleet(boatId, "details");
+      const jetskiPageKey = getJetSkiPageKey(boatId);
+      if (jetskiPageKey) {
+        setLocation(localizedPath(jetskiPageKey as PageKey));
+        window.scrollTo(0, 0);
+        return;
+      }
       setLocation(localizedPath("boatDetail", boatId));
       window.scrollTo(0, 0);
     },

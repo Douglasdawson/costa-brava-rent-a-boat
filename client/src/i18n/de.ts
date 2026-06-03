@@ -4992,7 +4992,7 @@ export const de: Translations = {
     ],
   },
   jetski: {
-    badge: 'Jet ski · Partner',
+    badge: 'Jet ski',
     requestCta: 'Anfragen',
     fromLabel: 'ab',
     modal: {
@@ -5014,11 +5014,74 @@ export const de: Translations = {
       submit: 'Anfrage senden',
       submitting: 'Wird gesendet...',
       reassurance: 'Unverbindlich · wir bestätigen per WhatsApp oder E-Mail',
-      partnerNote: 'Dieses Angebot wird von unserem Partner Jet Ski Blanes am selben Steg betrieben.',
       successTitle: 'Auf Senden in WhatsApp tippen!',
       successText: 'Wir haben WhatsApp mit deiner Anfrage geöffnet. Tippe auf Senden und wir bestätigen die Verfügbarkeit gleich.',
       errorText: 'Wir konnten deine Anfrage nicht senden. Versuche es erneut oder schreib uns per WhatsApp.',
       requiredError: 'Bitte gib deinen Namen und deine Telefonnummer an.',
     },
+  },
+  jetskiLanding: {
+    "fromLabel": "ab",
+    "ctaRequest": "Anfragen",
+    "slotsTitle": "Zeitfenster & Preise",
+    "includedTitle": "Inklusive",
+    "faqTitle": "Häufige Fragen",
+    "reassurance": "Unverbindlich · Bestätigung per WhatsApp",
+    "circuito": {
+      "navLabel": "Jet-Ski-Rundkurs",
+      "hero": {
+        "title": "Jet-Ski-Rundkurs in Blanes",
+        "subtitle": "Übernimm das Steuer eines Jet-Skis auf einem markierten Kurs vor Blanes, mit einem Monitor, der auf dich aufpasst. Ohne Führerschein, ab 15 Minuten."
+      },
+      "chips": [
+        "Ohne Führerschein",
+        "Monitor inklusive",
+        "1-2 Personen",
+        "Ab 15 Min"
+      ],
+      "intro": "Dein erstes Mal auf dem Jet-Ski, ganz entspannt: Wir erklären alles und du fährst in einem sicheren Bereich vor dem Hafen von Blanes.",
+      "faq": [
+        {
+          "q": "Brauche ich einen Führerschein?",
+          "a": "Nein. Der Rundkurs findet in einem markierten Bereich statt, mit ständiger Aufsicht durch einen Monitor."
+        },
+        {
+          "q": "Wie viele Personen pro Jet-Ski?",
+          "a": "Bis zu 2 Personen pro Jet-Ski."
+        },
+        {
+          "q": "Mindestalter?",
+          "a": "18 zum Fahren; Minderjährige können je nach Regeln des Betreibers als Mitfahrer mit."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Jet-Ski-Tour mit Monitor",
+      "hero": {
+        "title": "Jet-Ski-Tour von Blanes nach Tossa",
+        "subtitle": "Erkunde die Costa Brava mit dem Jet-Ski in Begleitung eines ausgebildeten Monitors, auf einer geführten Route von Blanes nach Tossa de Mar. Ohne Führerschein."
+      },
+      "chips": [
+        "Ohne Führerschein",
+        "Guide nach Tossa",
+        "Kraftstoff inklusive",
+        "1-2 Personen"
+      ],
+      "intro": "Eine geführte Route entlang der Buchten und Klippen der Costa Brava, mit einem Monitor die ganze Zeit an deiner Seite. Kraftstoff und Versicherung inklusive.",
+      "faq": [
+        {
+          "q": "Brauche ich einen Führerschein?",
+          "a": "Nein. Du wirst während der gesamten Tour von einem ausgebildeten Monitor begleitet."
+        },
+        {
+          "q": "Was ist inklusive?",
+          "a": "Kraftstoff, Haftpflichtversicherung, Monitor/Guide, Schwimmweste und Sicherheitseinweisung."
+        },
+        {
+          "q": "Wie lange dauert es?",
+          "a": "Es gibt eine Option von 1 Stunde oder 2 Stunden Richtung Tossa de Mar."
+        }
+      ]
+    }
   },
 };

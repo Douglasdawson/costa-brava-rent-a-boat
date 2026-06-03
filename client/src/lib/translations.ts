@@ -2789,13 +2789,29 @@ export interface Translations {
       submit: string;
       submitting: string;
       reassurance: string;
-      partnerNote: string;
       successTitle: string;
       successText: string;
       errorText: string;
       requiredError: string;
     };
   };
+  jetskiLanding: {
+    fromLabel: string;
+    ctaRequest: string;
+    slotsTitle: string;
+    includedTitle: string;
+    faqTitle: string;
+    reassurance: string;
+    circuito: JetskiLandingCopy;
+    excursion: JetskiLandingCopy;
+  };
+}
+interface JetskiLandingCopy {
+  navLabel: string;
+  hero: { title: string; subtitle: string };
+  chips: string[];
+  intro: string;
+  faq: { q: string; a: string }[];
 }
 function deepMerge(
   target: Record<string, any>,

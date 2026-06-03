@@ -5012,7 +5012,7 @@ export const en: Translations = {
     ],
   },
   jetski: {
-    badge: 'Jet ski · partner',
+    badge: 'Jet ski',
     requestCta: 'Request',
     fromLabel: 'from',
     modal: {
@@ -5034,11 +5034,74 @@ export const en: Translations = {
       submit: 'Send request',
       submitting: 'Sending...',
       reassurance: 'No commitment · we\'ll confirm via WhatsApp or email',
-      partnerNote: 'Service operated by our partner Jet Ski Blanes, at the same dock.',
       successTitle: 'Tap send on WhatsApp!',
       successText: 'We’ve opened WhatsApp with your request. Tap Send and we’ll confirm availability shortly.',
       errorText: 'We couldn\'t send your request. Please try again or message us on WhatsApp.',
       requiredError: 'Please complete your name and phone number.',
     },
+  },
+  jetskiLanding: {
+    "fromLabel": "from",
+    "ctaRequest": "Request",
+    "slotsTitle": "Time slots & prices",
+    "includedTitle": "What's included",
+    "faqTitle": "FAQ",
+    "reassurance": "No commitment · we confirm via WhatsApp",
+    "circuito": {
+      "navLabel": "Jet Ski Circuit",
+      "hero": {
+        "title": "Jet Ski Circuit in Blanes",
+        "subtitle": "Take the controls of a jet ski in a marked circuit off Blanes, with an instructor watching over you. No license, from 15 minutes."
+      },
+      "chips": [
+        "No license",
+        "Instructor included",
+        "1-2 people",
+        "From 15 min"
+      ],
+      "intro": "Your first time on a jet ski, hassle-free: we explain everything and you ride in a safe area off the port of Blanes.",
+      "faq": [
+        {
+          "q": "Do I need a license?",
+          "a": "No. The circuit takes place in a marked area with an instructor watching at all times."
+        },
+        {
+          "q": "How many people per jet ski?",
+          "a": "Up to 2 people per jet ski."
+        },
+        {
+          "q": "Minimum age?",
+          "a": "18 to drive; minors may ride as passengers per the operator's rules."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Guided Jet Ski Tour",
+      "hero": {
+        "title": "Jet Ski Tour from Blanes to Tossa",
+        "subtitle": "Explore the Costa Brava by jet ski accompanied by a qualified instructor, on a guided route from Blanes to Tossa de Mar. No license."
+      },
+      "chips": [
+        "No license",
+        "Guide to Tossa de Mar",
+        "Fuel included",
+        "1-2 people"
+      ],
+      "intro": "A guided route along the coves and cliffs of the Costa Brava, with an instructor by your side the whole time. Fuel and insurance included.",
+      "faq": [
+        {
+          "q": "Do I need a license?",
+          "a": "No. You're accompanied by a qualified instructor throughout the tour."
+        },
+        {
+          "q": "What's included?",
+          "a": "Fuel, liability insurance, instructor/guide, life jacket and safety briefing."
+        },
+        {
+          "q": "How long is it?",
+          "a": "There's a 1-hour or 2-hour option towards Tossa de Mar."
+        }
+      ]
+    }
   },
 };

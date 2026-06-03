@@ -24,12 +24,14 @@ import { eq, sql, desc } from "drizzle-orm";
 import { logger } from "../lib/logger";
 import { generateEmbedding } from "../whatsapp/ragService";
 import { BOAT_DATA } from "../../shared/boatData";
+import { JETSKI_PRODUCTS } from "../../shared/jetskiProducts";
+import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { boatRoutes } from "../../shared/routesData";
 import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
-export type SourceType = "boat" | "route" | "faq" | "glossary" | "blog";
+export type SourceType = "boat" | "jetski" | "route" | "faq" | "glossary" | "blog";
 
 export interface SearchHit {
   type: SourceType;
@@ -69,6 +71,18 @@ async function collectBoats(): Promise<IndexItem[]> {
     body: [b.name, b.subtitle, b.description, ...(b.features ?? []), ...(b.equipment ?? []), ...(b.included ?? [])].join(" \n "),
     snippet: b.description.slice(0, 240),
     url: `${BASE_URL}/es/barco/${b.id}`,
+  }));
+}
+
+function collectJetSkiProducts(): IndexItem[] {
+  return JETSKI_PRODUCTS.map((p) => ({
+    sourceType: "jetski",
+    sourceId: p.id,
+    lang: "es",
+    title: p.name,
+    body: [p.name, p.subtitle, p.description, ...(p.features ?? []), ...(p.included ?? [])].join(" \n "),
+    snippet: p.description.slice(0, 240),
+    url: `${BASE_URL}${getLocalizedPath(p.pageKey as PageKey, "es")}`,
   }));
 }
 
@@ -161,7 +175,7 @@ export async function rebuildSearchIndex(opts: { force?: boolean } = {}): Promis
     collectFaqs(),
     collectBlogPosts(),
   ]);
-  const items: IndexItem[] = [...boats, ...routes, ...glossary, ...faqs, ...blogs];
+  const items: IndexItem[] = [...boats, ...collectJetSkiProducts(), ...routes, ...glossary, ...faqs, ...blogs];
 
   // Snapshot of existing rows so we only regenerate embeddings when body
   // actually changed. Body→hash via SHA-256 stored as `embeddingModel`-suffix.

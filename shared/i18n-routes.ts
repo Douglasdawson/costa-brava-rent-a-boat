@@ -41,6 +41,10 @@ export const ROUTE_SLUGS = {
   destinations: { es: "destinos", en: "destinations", fr: "destinations", de: "reiseziele", nl: "bestemmingen", it: "destinazioni", ca: "destinacions", ru: "napravleniya" },
   sharedSailing: { es: "salidas-compartidas", en: "shared-boat-trips", fr: "sorties-bateau-partagees", de: "geteilte-bootsfahrten", nl: "gedeelde-boottochten", it: "gite-barca-condivise", ca: "sortides-compartides", ru: "sovmestnye-progulki" },
 
+  // Jet ski landing pages (partner resale — Jet Ski Blanes)
+  jetskiCircuito: { es: "circuito-jet-ski-blanes", en: "jet-ski-circuit-blanes", fr: "circuit-jet-ski-blanes", de: "jet-ski-rundkurs-blanes", nl: "jet-ski-circuit-blanes", it: "circuito-jet-ski-blanes", ca: "circuit-jet-ski-blanes", ru: "jet-ski-krug-blanes" },
+  jetskiExcursion: { es: "excursion-jet-ski-blanes-tossa", en: "jet-ski-tour-blanes-tossa", fr: "excursion-jet-ski-blanes-tossa", de: "jet-ski-tour-blanes-tossa", nl: "jet-ski-tour-blanes-tossa", it: "escursione-jet-ski-blanes-tossa", ca: "excursio-jet-ski-blanes-tossa", ru: "ekskursiya-jet-ski-blanes-tossa" },
+
   // Dynamic route prefixes
   boatDetail: { es: "barco", en: "boat", fr: "bateau", de: "boot", nl: "boot", it: "barca", ca: "vaixell", ru: "lodka" },
   blogDetail: { es: "blog", en: "blog", fr: "blog", de: "blog", nl: "blog", it: "blog", ca: "blog", ru: "blog" },

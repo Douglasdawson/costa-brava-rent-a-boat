@@ -5127,67 +5127,8 @@ export const es: Translations = {
       requiredError: "Por favor, completa tu nombre y teléfono.",
     },
   },
-
-  // Página /testimonios — contenido completo de la página de opiniones.
-  // Cada cadena visible vive aquí; testimonios.tsx las consume vía useTranslations().
-  testimonios: {
-    hero: {
-      title: 'Lo que dicen quienes ya han navegado',
-      subtitle: 'Opiniones reales de familias, parejas y grupos que han zarpado con nosotros desde Blanes. Sin filtros, sin retoques.',
-      ratingLabel: 'Sobre {count} opiniones recogidas',
-    },
-    intro: {
-      title: 'Experiencias reales en el mar',
-      paragraph1: 'Cada temporada, cientos de familias, parejas y grupos de amigos zarpan desde el Puerto de Blanes para descubrir las calas más bonitas de la Costa Brava. Estas son sus palabras, sin filtros.',
-      paragraph2: 'Atendemos en 8 idiomas, ofrecemos barcos sin licencia con gasolina incluida y opciones con patrón si prefieres relajarte. No lo decimos nosotros: lo dicen quienes ya han subido a bordo.',
-      imageAlt: 'Pareja navegando en Trimarchi 57S por la Costa Brava',
-    },
-    filter: {
-      title: 'Filtrar por barco',
-      all: 'Todos',
-    },
-    card: {
-      viewBoat: 'Ver {boat}',
-    },
-    pagination: {
-      showMore: 'Ver más opiniones',
-      showing: 'Mostrando {shown} de {total}',
-    },
-    photoBreakAlt: 'Atardecer navegando en la Costa Brava',
-    cta: {
-      title: '¿Listo para vivir tu propia historia en el mar?',
-      paragraph: 'Reserva sin pago online: nos escribes, te confirmamos por WhatsApp y el día reservado solo te queda subir a bordo.',
-      primary: 'Ver nuestra flota',
-      secondary: 'Preguntas frecuentes',
-    },
-    countries: {
-      ar: 'Argentina',
-      at: 'Austria',
-      be: 'Bélgica',
-      ca: 'Canadá',
-      ch: 'Suiza',
-      cl: 'Chile',
-      co: 'Colombia',
-      cz: 'República Checa',
-      de: 'Alemania',
-      dk: 'Dinamarca',
-      es: 'España',
-      fr: 'Francia',
-      gb: 'Reino Unido',
-      ie: 'Irlanda',
-      it: 'Italia',
-      mx: 'México',
-      nl: 'Países Bajos',
-      no: 'Noruega',
-      pl: 'Polonia',
-      pt: 'Portugal',
-      ru: 'Rusia',
-      se: 'Suecia',
-      us: 'Estados Unidos',
-    },
-  },
   jetski: {
-    badge: "Jet ski · partner",
+    badge: "Jet ski",
     requestCta: "Solicitar",
     fromLabel: "desde",
     modal: {
@@ -5209,11 +5150,74 @@ export const es: Translations = {
       submit: "Enviar solicitud",
       submitting: "Enviando...",
       reassurance: "Sin compromiso · te confirmamos por WhatsApp o email",
-      partnerNote: "Producto operado por nuestro partner Jet Ski Blanes, en el mismo pantalán.",
       successTitle: "¡Pulsa enviar en WhatsApp!",
       successText: "Hemos abierto WhatsApp con tu solicitud. Pulsa Enviar y te confirmamos la disponibilidad enseguida.",
       errorText: "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.",
       requiredError: "Por favor, completa tu nombre y teléfono.",
     },
+  },
+  jetskiLanding: {
+    "fromLabel": "desde",
+    "ctaRequest": "Solicitar",
+    "slotsTitle": "Franjas y precios",
+    "includedTitle": "Qué incluye",
+    "faqTitle": "Preguntas frecuentes",
+    "reassurance": "Sin compromiso · te confirmamos por WhatsApp",
+    "circuito": {
+      "navLabel": "Circuito en Jet Ski",
+      "hero": {
+        "title": "Circuito en Jet Ski en Blanes",
+        "subtitle": "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes, con monitor vigilando. Sin licencia, desde 15 minutos."
+      },
+      "chips": [
+        "Sin licencia",
+        "Monitor incluido",
+        "1-2 personas",
+        "Desde 15 min"
+      ],
+      "intro": "Tu primera vez en moto de agua, sin complicaciones: te explicamos todo y pilotas en una zona segura frente al puerto de Blanes.",
+      "faq": [
+        {
+          "q": "¿Necesito licencia?",
+          "a": "No. El circuito se hace en zona balizada con un monitor vigilando en todo momento."
+        },
+        {
+          "q": "¿Cuántas personas por moto?",
+          "a": "Hasta 2 personas por moto de agua."
+        },
+        {
+          "q": "¿Desde qué edad?",
+          "a": "18 años para pilotar; menores pueden ir de pasajeros según normativa del operador."
+        }
+      ]
+    },
+    "excursion": {
+      "navLabel": "Excursión en Jet Ski con Monitor",
+      "hero": {
+        "title": "Excursión en Jet Ski de Blanes a Tossa",
+        "subtitle": "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada desde Blanes hacia Tossa de Mar. Sin licencia."
+      },
+      "chips": [
+        "Sin licencia",
+        "Guía a Tossa de Mar",
+        "Combustible incluido",
+        "1-2 personas"
+      ],
+      "intro": "Una ruta guiada por calas y acantilados de la Costa Brava, con un monitor que va contigo en todo momento. Combustible y seguro incluidos.",
+      "faq": [
+        {
+          "q": "¿Necesito licencia?",
+          "a": "No. Vas acompañado por un monitor titulado durante toda la excursión."
+        },
+        {
+          "q": "¿Qué incluye?",
+          "a": "Combustible, seguro de responsabilidad civil, monitor/guía, chaleco y briefing de seguridad."
+        },
+        {
+          "q": "¿Cuánto dura?",
+          "a": "Hay opción de 1 hora o 2 horas hacia Tossa de Mar."
+        }
+      ]
+    }
   },
 };

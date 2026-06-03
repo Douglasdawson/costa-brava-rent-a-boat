@@ -604,23 +604,6 @@ export const de: Translations = {
     tripDate: "Datum",
     submit: "Foto senden",
   },
-  routes: {
-    title: "Vorgeschlagene Routen",
-    subtitle: "Entdecken Sie die besten Bootsrouten ab dem Hafen von Blanes",
-    bookBoat: "Boot buchen",
-    introText:
-      "Vom Hafen von Blanes, dem Tor zur Costa Brava, haben Sie direkten Zugang zu einigen der spektakulärsten Küstenrouten des Mittelmeers. Jede Route ist für verschiedene Erfahrungsstufen und Dauern konzipiert, von 1-stündigen Ausflügen bis zu Ganztagesexkursionen. Entdecken Sie unsere",
-    introFleetLink: "verfügbaren Boote",
-    introSuffix: "um das perfekte Boot für Ihre Route zu finden.",
-    lloretTitle: "Lloret de Mar per Boot",
-    lloretDesc:
-      "Goldene Strande, versteckte Buchten und Nachtleben. Nur 20 Min. per Boot ab Blanes.",
-    tossaTitle: "Tossa de Mar per Boot",
-    tossaDesc:
-      "Die mittelalterliche Vila Vella, beeindruckende Klippen und die unberuhrtesten Buchten der Costa Brava.",
-    pricesTitle: "Preise und Tarife",
-    pricesDesc: "Saisonpreise für alle unsere Boote. Ab 70€/Stunde ohne Führerschein.",
-  },
   giftCardBanner: {
     title: "Verschenken Sie ein einzigartiges Erlebnis auf dem Meer",
     subtitle: "Geschenkkarten ab 50 €. Das perfekte Geschenk für jeden Anlass.",
@@ -3614,145 +3597,6 @@ export const de: Translations = {
       error: "Fehler beim Senden. Bitte erneut versuchen.",
     },
   },
-  glossaryPage: {
-    seo: {
-      title: "Nautisches Glossar, Bootsverleih Costa Brava | Costa Brava Rent a Boat",
-      description:
-        "Glossar wichtiger nautischer Begriffe: LNB, PER, PNB, Knoten, Seemeilen, Länge, Ankern, Buchten und Bootsteile. Praktisches Wörterbuch für die Bootsmiete in Blanes.",
-      keywords:
-        "nautisches glossar, was ist LNB, was ist PER, was ist PNB, seemeilen, knoten, bootslänge, ankern, boots glossar",
-    },
-    breadcrumbName: "Nautisches Glossar",
-    h1: "Nautisches Glossar",
-    intro:
-      "{count} wichtige Begriffe für die Bootsmiete an der Costa Brava. Befähigungsnachweise, Maßeinheiten, Bootsteile und nautisches Vokabular.",
-    filterAll: "Alle",
-    ctaTitle: "Bereit, Ihr Boot zu mieten?",
-    ctaDesc:
-      "Jetzt, da Sie die Terminologie beherrschen, wählen Sie Ihr Boot ohne oder mit Führerschein, um die Costa Brava zu erkunden.",
-    ctaFleet: "Zur Flotte",
-    ctaFaq: "Häufige Fragen",
-    schemaName: "Nautisches Glossar, Bootsverleih Costa Brava",
-    schemaDescription:
-      "Definitionen wichtiger nautischer Begriffe für die Bootsmiete an der Costa Brava: Befähigungsnachweise, Maßeinheiten, Bootsteile und maritime Terminologie.",
-    categories: {
-      titulacion: "Befähigungsnachweise",
-      unidad: "Maßeinheiten",
-      accion: "Aktionen",
-      parte: "Bootsteile und Küste",
-      equipamiento: "Ausstattung",
-    },
-    terms: [
-      {
-        term: "LNB (Licencia de Navegación Básica)",
-        definition:
-          "Spanischer Bootsführerschein, der zum Führen von Booten bis 8 Meter Länge und bis 5 Seemeilen Küstenentfernung berechtigt. Pflicht für Bootsvermietung mit mehr als 15 PS. Lebenslang gültig nach bestandener Theorieprüfung + Praxiskurs.",
-        category: "titulacion",
-      },
-      {
-        term: "PER (Patrón de Embarcaciones de Recreo)",
-        definition:
-          "Spanischer Bootsführerschein höher als LNB. Berechtigt zum Führen von Booten bis 15 Meter Länge und bis 12 Seemeilen Küstenentfernung. Erfordert Theorieprüfung + Navigations- und Funkpraxis.",
-        category: "titulacion",
-      },
-      {
-        term: "PNB (Patrón de Navegación Básica)",
-        definition:
-          "Alter Bootsführerschein, der 2014 durch die LNB ersetzt wurde. Berechtigt zum Führen von Booten bis 8 Meter bis 5 Seemeilen. Bestehende Inhaber behalten ihre Gültigkeit ohne Aktualisierung auf LNB.",
-        category: "titulacion",
-      },
-      {
-        term: "Seemeile",
-        definition:
-          "Internationale maritime Entfernungseinheit, entspricht 1.852 Meter (1,852 km). Boote ohne Führerschein dürfen in Spanien maximal 2 Seemeilen von der Küste entfernt fahren (3,7 km).",
-        category: "unidad",
-      },
-      {
-        term: "Knoten",
-        definition:
-          "Maritime Geschwindigkeitseinheit, entspricht 1 Seemeile pro Stunde (1,852 km/h). Boote ohne Führerschein sind auf 5 Knoten (9,3 km/h) begrenzt. Boote mit Führerschein können deutlich schneller fahren.",
-        category: "unidad",
-      },
-      {
-        term: "Länge (Eslora)",
-        definition:
-          "Gesamtlänge des Bootes, gemessen von Bug bis Heck. Einheit: Meter. In Spanien bestimmt die Länge den erforderlichen Mindestführerschein: bis 5m ggf. ohne Schein, bis 8m LNB erforderlich, bis 15m PER erforderlich.",
-        category: "unidad",
-      },
-      {
-        term: "Breite (Manga)",
-        definition:
-          "Maximale Breite des Bootes, gemessen von einer Seite zur anderen an der breitesten Stelle. Einheit: Meter. Bestimmt zusammen mit der Länge die Stabilität und den verfügbaren Raum an Bord.",
-        category: "unidad",
-      },
-      {
-        term: "PS (Pferdestärken)",
-        definition:
-          "Leistungseinheit des Bootsmotors. Boote ohne Führerschein sind in Spanien auf 15 PS begrenzt. Boote mit Führerschein haben typischerweise 40-150 PS, was schnellere Navigation und größere Reichweite ermöglicht.",
-        category: "unidad",
-      },
-      {
-        term: "Ankern (Fondear)",
-        definition:
-          "Vorgang, bei dem das Boot durch Auswerfen des Ankers auf den Meeresgrund gestoppt wird, um es in einer Bucht oder Zone ohne Liegeplatz zu fixieren. Erfordert sandigen Grund (nicht felsig), ausreichend Ankerleine (3-4 mal die Tiefe) und Überprüfung, dass der Anker hält.",
-        category: "accion",
-      },
-      {
-        term: "Bucht (Cala)",
-        definition:
-          "Kleine geschützte Meeresbucht an der Küste, typischerweise von Klippen oder Vegetation umgeben. An der Costa Brava gibt es Dutzende nur vom Meer aus zugängliche Buchten mit kristallklarem Wasser und felsigem Grund, ideal zum Schnorcheln.",
-        category: "parte",
-      },
-      {
-        term: "Yachthafen (Puerto deportivo)",
-        definition:
-          "Hafenanlage für Freizeitboote mit Liegeplätzen, Treibstoff-, Wasser-, Strom- und Slipanlagen. Der Hafen von Blanes (Girona) ist der nautische Referenzhafen im Süden der Costa Brava.",
-        category: "parte",
-      },
-      {
-        term: "Bug (Proa)",
-        definition:
-          "Vorderer Teil des Bootes, gegenüber dem Heck. Bei Freizeitbooten befindet sich hier meist das Hauptsonnendeck und die weiße Navigationsleuchte.",
-        category: "parte",
-      },
-      {
-        term: "Heck (Popa)",
-        definition:
-          "Hinterer Teil des Bootes, gegenüber dem Bug. Beherbergt den Außenbordmotor, die Badeleiter und typischerweise den zentralen Tischbereich.",
-        category: "parte",
-      },
-      {
-        term: "Steuerbord (Estribor)",
-        definition:
-          'Rechte Seite des Bootes, vom Heck in Richtung Bug blickend. Gekennzeichnet durch die grüne Navigationsleuchte. Faustregel: "Steuerbord = rechts".',
-        category: "parte",
-      },
-      {
-        term: "Backbord (Babor)",
-        definition:
-          "Linke Seite des Bootes, vom Heck in Richtung Bug blickend. Gekennzeichnet durch die rote Navigationsleuchte.",
-        category: "parte",
-      },
-      {
-        term: "Bimini / Bimini-Verdeck",
-        definition:
-          "Ausklappbares Sonnenverdeck, das das Cockpit des Bootes abdeckt und Schatten spendet. Unverzichtbar für Fahrten mit Kindern oder im Sommer. Die meisten unserer Boote ohne Führerschein haben es serienmäßig.",
-        category: "equipamiento",
-      },
-      {
-        term: "Sonnendeck (Solárium)",
-        definition:
-          "Gepolsterter Bereich des Bootes zum Sonnen, typischerweise am Bug oder Heck. Premium-Boote haben ein Doppel-Sonnendeck (Bug und Heck).",
-        category: "equipamiento",
-      },
-      {
-        term: "Cockpit (Bañera)",
-        definition:
-          "Zentraler Bereich des Bootes mit Sitzgelegenheiten, Steuerstand und Tisch. Dies ist der Arbeitsbereich des Bootes während der Fahrt.",
-        category: "parte",
-      },
-    ],
-  },
   faqPage: {
     heroTitle: "Häufig gestellte Fragen",
     heroDescription:
@@ -4314,5 +4158,513 @@ export const de: Translations = {
       errorText: "Wir konnten Ihre Daten nicht senden. Versuchen Sie es erneut oder schreiben Sie uns auf WhatsApp.",
       requiredError: "Bitte füllen Sie Ihren Namen und Telefon aus.",
     },
+  },
+  routes: {
+    title: 'Vorgeschlagene Routen',
+    subtitle: 'Entdecken Sie die besten Bootsrouten ab dem Hafen von Blanes',
+    bookBoat: 'Boot buchen',
+    introText: 'Vom Hafen von Blanes, dem Tor zur Costa Brava, haben Sie direkten Zugang zu einigen der spektakulärsten Küstenrouten des Mittelmeers. Jede Route ist für verschiedene Erfahrungsstufen und Dauern konzipiert, von 1-stündigen Ausflügen bis zu Ganztagesexkursionen. Entdecken Sie unsere',
+    introFleetLink: 'verfügbaren Boote',
+    introSuffix: 'um das perfekte Boot für Ihre Route zu finden.',
+    lloretTitle: 'Lloret de Mar per Boot',
+    lloretDesc: 'Goldene Strande, versteckte Buchten und Nachtleben. Nur 20 Min. per Boot ab Blanes.',
+    tossaTitle: 'Tossa de Mar per Boot',
+    tossaDesc: 'Die mittelalterliche Vila Vella, beeindruckende Klippen und die unberuhrtesten Buchten der Costa Brava.',
+    pricesTitle: 'Preise und Tarife',
+    pricesDesc: 'Saisonpreise für alle unsere Boote. Ab 70€/Stunde ohne Führerschein.',
+    guide: {
+      heading: 'Leitfaden zum Befahren der Costa Brava von Blanes aus',
+      geographyTitle: 'Die Küste: von Blanes nach Tossa de Mar',
+      geographyBody: 'Der Hafen von Blanes markiert den Beginn der Costa Brava. Wenn Sie nach Norden fahren, folgt auf den Felsen Sa Palomera eine Abfolge von Buchten mit türkisfarbenem Wasser: Cala Sant Francesc, Santa Cristina und Cala Treumal, bevor Sie Lloret de Mar erreichen (etwa 20 Minuten mit dem Boot), und weiter Cala Boadella und die unberührten Buchten von Tossa de Mar mit der mittelalterlichen Vila Vella, die das Meer überragt. Mit einem Boot mit Führerschein dauert die Strecke Blanes–Tossa etwa 30-45 Minuten ruhiger Fahrt entlang der Küste.',
+      seaTitle: 'Meeresbedingungen und Winde',
+      seaBody: 'Der südliche Abschnitt der Costa Brava bietet im Sommer im Allgemeinen komfortables Fahren. Morgens ist das Meer meist ruhig; nachmittags kann der Garbí aufkommen, die Südwestbrise, die die Oberfläche leicht kräuselt. Der Wind, auf den man achten sollte, ist die Tramontana, ein starker Nordwind, der schnell aufziehen kann: Prüfen Sie immer den Seewetterbericht, bevor Sie ablegen. Boote ohne Führerschein fahren bis zu 2 Seemeilen von der Küste entfernt (3,7 km) und mit maximal 5 Knoten, ausreichend, um all diese Buchten sicher zu erkunden.',
+      calasTitle: 'Buchten und Schnorcheln',
+      calasBody: 'Die Buchten zwischen Blanes und Tossa haben felsige Böden und kristallklares Wasser, ideal zum Ankern und Schnorcheln. Cala Bona, Cala Treumal und Santa Cristina bieten geschützte Gewässer; in Lloret die Cala Boadella; und in Richtung Tossa Cala Llevadó, Cala Giverola und Cala Pola, viele nur vom Meer aus erreichbar. Denken Sie daran, auf sandigem Grund zu ankern – niemals auf den geschützten Posidonia-Wiesen – und genügend Seil auszulegen, damit der Anker greift.',
+      seasonTitle: 'Beste Zeit zum Fahren',
+      seasonBody: 'Die Fahrsaison läuft von April bis Oktober mit Abfahrtszeiten von 09:00 bis 20:00 Uhr. Juli und August bieten das wärmste und stabilste Meer, ideal zum Baden und Schnorcheln; Juni und September sind perfekt für alle, die weniger überfüllte Buchten und goldenes Licht suchen. Außerhalb der Saison sind wir nicht in Betrieb. In den Sommermonaten empfiehlt sich eine frühzeitige Reservierung: Die Verfügbarkeit von Booten und Zeitfenstern ist begrenzt.',
+    },
+  },
+  lastUpdated: {
+    label: 'Letzte Aktualisierung',
+  },
+  occasionMatrix: {
+    pages: {
+      snorkel__locationBlanes: {
+        seoTitle: 'Schnorcheln mit dem Boot ab Blanes — Beste Buchten | Costa Brava Rent a Boat',
+        seoDescription: 'Boot ohne Führerschein in Blanes mieten und schnorcheln in Cala Sant Francesc, Sa Forcanera oder Cala Treumal. Benzin inklusive, keine Vorkenntnisse nötig, Buchten unter 2 Seemeilen.',
+        h1: 'Schnorcheln mit dem Boot ab Blanes',
+        intro: 'Vom Hafen Blanes aus erreichst du in wenigen Fahrminuten Buchten mit kristallklarem Wasser und felsigem Grund – perfekt zum Schnorcheln. Mit einem Boot ohne Führerschein – Benzin inklusive und keine Vorkenntnisse nötig – wählst du deine Bucht, wirfst Anker und gehst in deinem Tempo ins Wasser.',
+        spotsTitle: 'Beste Buchten zum Schnorcheln in der Nähe von Blanes',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Cala Bona)',
+            description: 'Geschützte Bucht mit Pinien direkt vor Blanes, ruhiges Wasser und seitliche Felsen voller Leben: der beste erste Ankerplatz zum Schnorcheln mit der Familie.',
+          },
+          {
+            name: 'Sa Forcanera',
+            description: 'Kleine Bucht unterhalb der Klippen des Botanischen Gartens Marimurtra, mit tiefem und transparentem Wasser, ideal zum Schwimmen über felsigem Grund.',
+          },
+          {
+            name: 'Cala Treumal',
+            description: 'An der Grenze zwischen Blanes und Lloret, Untergrund aus Fels und Sand, der Fische anzieht; guter Ankerplatz, geschützt vor dem Garbí.',
+          },
+          {
+            name: 'Punta de Santa Anna',
+            description: 'Neben der Burg Sant Joan, Felswände, die ins Meer abfallen, mit hervorragender Sicht zur Beobachtung mediterraner Fauna.',
+          },
+        ],
+        boatsTitle: 'Welches Boot zum Schnorcheln wählen',
+        boatsIntro: 'Zum Schnorcheln in Blanes empfehlen wir unsere Boote ohne Führerschein: Benzin inklusive, ohne Bootsführerschein zu steuern und problemlos zu diesen Buchten zu gelangen, die alle innerhalb von 2 Seemeilen vor der Küste liegen. Sie verfügen über eine Badeleiter für bequemes Ein- und Aussteigen.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody: 'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Boote ohne Führerschein fahren bis zu 2 Seemeilen vor der Küste – mehr als genug für all diese Buchten. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Denk daran, über Sand zu ankern, niemals über Seegraswiesen.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          {
+            q: 'Brauche ich einen Führerschein, um mit dem Boot von Blanes aus zu schnorcheln?',
+            a: 'Nein. Unsere Boote ohne Führerschein werden ohne Bootsführerschein gesteuert und erreichen alle Schnorchelbuchten in der Nähe von Blanes. Wir erklären dir die Handhabung vor der Abfahrt.',
+          },
+          {
+            q: 'Ist die Schnorchelausrüstung inbegriffen?',
+            a: 'Das Boot verfügt über eine Badeleiter und Benzin ist inklusive. Zum Schnorcheln empfehlen wir, deine eigene Brille und Schnorchel mitzubringen, damit du eine bequeme Größe hast.',
+          },
+        ],
+        ctaTitle: 'Buche deinen Schnorchelausflug in Blanes',
+        ctaText: 'Wähle Datum und Boot ohne Führerschein und erlebe den besten Schnorcheltag in den Buchten von Blanes.',
+      },
+      snorkel__locationLloret: {
+        seoTitle: 'Schnorcheln mit dem Boot in Lloret de Mar — Calas Boadella und Banys | Costa Brava Rent a Boat',
+        seoDescription: 'Entdecke die besten Schnorchelbuchten von Lloret de Mar mit dem Boot ab Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Boot mit Führerschein, ca. 20 Minuten Fahrt.',
+        h1: 'Schnorcheln mit dem Boot in Lloret de Mar',
+        intro: 'Lloret de Mar verbirgt einige der Buchten mit dem besten Wasser an der südlichen Costa Brava, viele nur vom Meer aus erreichbar. Von Blanes aus erreichst du in etwa 20 Fahrminuten diese felsigen Winkel und erkundest sie schnorchelnd ohne die Menschenmassen vom Strand.',
+        spotsTitle: 'Beste Buchten zum Schnorcheln in Lloret de Mar',
+        spots: [
+          {
+            name: 'Cala Boadella',
+            description: 'Eine der schönsten Buchten von Lloret; ihr südliches Ende ist felsig mit klarem Wasser, wo man Fische schon beim ersten Eintauchen sehen kann.',
+          },
+          {
+            name: 'Cala Banys',
+            description: 'Felsige Einbuchtung mit dunklen Klippen und tiefem Wasser, ein Klassiker zum Felssschnorcheln mit guter Sicht.',
+          },
+          {
+            name: 'Cala dels Frares',
+            description: 'Kleine Kieselbucht umgeben von senkrechten Wänden, Zufluchtsort mediterraner Fauna, ideal zum langsamen Schwimmen.',
+          },
+          {
+            name: 'Santa Cristina',
+            description: 'Weitläufige Sandbucht mit felsigen Enden; die Seiten bieten einfaches und sicheres Schnorcheln, perfekt für Anfänger.',
+          },
+        ],
+        boatsTitle: 'Welches Boot wählen, um nach Lloret zu gelangen',
+        boatsIntro: 'Die Buchten von Lloret liegen jenseits der 2-Seemeilen-Grenze für Boote ohne Führerschein, daher benötigst du eines unserer Boote mit Führerschein, um dorthin zu gelangen. Sie sind komfortabel, bewältigen die Strecke von Blanes in etwa 20 Minuten und geben dir die Freiheit, mehrere Buchten bei derselben Fahrt zu verbinden.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody: 'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Die Fahrt zu den Buchten von Lloret dauert etwa 20 Minuten ruhige Fahrt entlang der Küste. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Ankere über Sand, niemals über Seegraswiesen.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          {
+            q: 'Wie lange dauert die Fahrt von Blanes zu den Buchten von Lloret mit dem Boot?',
+            a: 'Etwa 20 Minuten ruhige Fahrt entlang der Küste, je nach Bucht und Seegang.',
+          },
+          {
+            q: 'Welche Buchten von Lloret sind am besten zum Schnorcheln?',
+            a: 'Cala Boadella, Cala Banys und Cala dels Frares zeichnen sich durch ihren felsigen Grund und die Transparenz des Wassers aus.',
+          },
+        ],
+        ctaTitle: 'Buche deinen Schnorchelausflug in Lloret de Mar',
+        ctaText: 'Wähle Datum und Boot mit Führerschein und entdecke die Schnorchelbuchten von Lloret ab Blanes.',
+      },
+      snorkel__locationTossa: {
+        seoTitle: 'Schnorcheln mit dem Boot in Tossa de Mar — Unberührte Buchten und geschützte Gewässer | Costa Brava Rent a Boat',
+        seoDescription: 'Schnorchle im klaren Wasser von Tossa de Mar: La Mar Menuda, Cala Giverola, Cala Pola. Bootsfahrt mit Führerschein ab Blanes, 30-45 Minuten Fahrt.',
+        h1: 'Schnorcheln mit dem Boot in Tossa de Mar',
+        intro: 'Tossa de Mar ist eines der besten Schnorchelziele an der Costa Brava: Ein Teil seiner Küste ist geschützt, mit felsigem Grund und Wiesen voller Leben. Von Blanes sind es etwa 30-45 Fahrminuten mit einem Boot mit Führerschein zu seinen unberührtesten Buchten.',
+        spotsTitle: 'Beste Buchten zum Schnorcheln in Tossa de Mar',
+        spots: [
+          {
+            name: 'La Mar Menuda',
+            description: 'Neben der Altstadt, eine Bucht mit geschütztem Wasser und felsigem Grund, sehr geschätzt von Tauchern und Schnorchlern wegen ihres Artenreichtums.',
+          },
+          {
+            name: 'Cala Giverola',
+            description: 'Tiefe Bucht zwischen Bergen eingeklemmt, mit besonders klarem Wasser und Felswänden, perfekt zum Schwimmen und Fischbeobachten.',
+          },
+          {
+            name: 'Cala Pola',
+            description: 'Geschützte Naturlandschaft nördlich von Tossa, mit Fels- und Sandgrund und hervorragender Transparenz.',
+          },
+          {
+            name: 'Cala Futadera',
+            description: 'Unberührte Bucht ohne Straßenzugang, nur per Boot oder Wanderweg erreichbar; sauberes und ruhiges Wasser, ein exklusiver Schnorchelankerplatz.',
+          },
+        ],
+        boatsTitle: 'Welches Boot wählen, um nach Tossa zu gelangen',
+        boatsIntro: 'Tossa liegt deutlich jenseits der 2 Seemeilen, außerhalb der Reichweite von Booten ohne Führerschein. Um seine Buchten zu erreichen, benötigst du eines unserer Boote mit Führerschein, die die Strecke von Blanes in 30-45 Minuten zurücklegen und dir ermöglichen, den Tag mit der Erkundung mehrerer Buchten zu verbringen.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody: 'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Die Fahrt nach Tossa dauert 30-45 Minuten; daher empfiehlt es sich, Zeiträume von 4 Stunden oder mehr zu buchen, um das Ziel ohne Eile zu genießen. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Respektiere die Schutzzonen und ankere nur über Sand.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          {
+            q: 'Kann man von Blanes nach Tossa mit einem Boot ohne Führerschein fahren?',
+            a: 'Nein. Tossa liegt außerhalb der 2-Seemeilen-Grenze für Boote ohne Führerschein; die Fahrt erfolgt mit einem Boot mit Führerschein, in 30-45 Minuten ab Blanes.',
+          },
+          {
+            q: 'Warum ist Tossa gut zum Schnorcheln?',
+            a: 'Ein Teil seiner Küste ist geschützt, mit sehr gut erhaltenen Felsböden und Wiesen; Buchten wie La Mar Menuda oder Giverola bieten hervorragende Sicht.',
+          },
+        ],
+        ctaTitle: 'Buche deinen Schnorchelausflug in Tossa de Mar',
+        ctaText: 'Wähle Datum und Boot mit Führerschein und widme den Tag den geschützten Buchten von Tossa ab Blanes.',
+      },
+      snorkel__locationCostaBrava: {
+        seoTitle: 'Schnorcheln mit dem Boot entlang der Costa Brava — Die besten Buchten ab Blanes | Costa Brava Rent a Boat',
+        seoDescription: 'Erkunde mit dem Boot die besten Schnorchelbuchten der südlichen Costa Brava, von Blanes bis Tossa de Mar. Boote ohne Führerschein für nahe Buchten und mit Führerschein für die gesamte Strecke.',
+        h1: 'Schnorcheln mit dem Boot entlang der Costa Brava',
+        intro: 'Der südliche Abschnitt der Costa Brava, von Blanes bis Tossa de Mar, vereint Dutzende von Buchten mit felsigem Grund und transparentem Wasser, ideal zum Schnorcheln. Vom Hafen Blanes aus kannst du zwischen einem kurzen Ausflug zu den nächstgelegenen Buchten oder einem ganzen Tag entlang der Küste wählen.',
+        spotsTitle: 'Unverzichtbare Schnorchelbuchten an der südlichen Costa Brava',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Blanes)',
+            description: 'Die zugänglichste, geschützte und familienfreundliche Bucht: der perfekte Ausgangspunkt, in Reichweite eines Bootes ohne Führerschein.',
+          },
+          {
+            name: 'Cala Boadella (Lloret)',
+            description: 'Felsiger Winkel mit klarem Wasser, einer der besten Schnorchelankerplätze im mittleren Abschnitt der Küste.',
+          },
+          {
+            name: 'Cala Giverola (Tossa)',
+            description: 'Tiefe Bucht mit kristallklarem Wasser zwischen Bergen, bereits im nördlichen Ende der Route.',
+          },
+          {
+            name: 'Cala Pola (Tossa)',
+            description: 'Geschützte Naturlandschaft mit Fels- und Sandgrund, Belohnung für diejenigen, die die vollständige Überfahrt machen.',
+          },
+        ],
+        boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
+        boatsIntro: 'Für die Buchten in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive und ohne Bootsführerschein. Um die gesamte Strecke bis Lloret und Tossa zurückzulegen – jenseits der 2 Seemeilen – benötigst du ein Boot mit Führerschein, mit Reichweite für mehrere Buchten am Tag.',
+        practicalTitle: 'Praktische Informationen',
+        practicalBody: 'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Boote ohne Führerschein fahren bis zu 2 Seemeilen; um Lloret (~20 Min.) oder Tossa (30-45 Min.) zu erreichen, wird ein Boot mit Führerschein verwendet. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Ankere immer über Sand, niemals über Seegras.',
+        faqTitle: 'Häufig gestellte Fragen',
+        faq: [
+          {
+            q: 'Welchen Abschnitt der Costa Brava kann ich bei einer Fahrt erkunden?',
+            a: 'Mit einem Boot mit Führerschein kannst du Buchten von Blanes, Lloret und Tossa an einem Tag verbinden; mit einem ohne Führerschein genießt du die Buchten in der Nähe von Blanes.',
+          },
+          {
+            q: 'Was ist die beste Zeit zum Schnorcheln?',
+            a: 'Von Juni bis September ist das Meer wärmer und klarer; Juli und August bieten die besten Bedingungen, Juni oder September ruhigere Buchten.',
+          },
+        ],
+        ctaTitle: 'Buche deine Schnorchel-Route entlang der Costa Brava',
+        ctaText: 'Wähle dein Boot je nachdem, wie weit du fahren möchtest, und entdecke die besten Buchten der Küste ab Blanes.',
+      },
+    },
+  },
+  glossaryPage: {
+    seo: {
+      title: 'Nautisches Glossar, Bootsverleih Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossar wichtiger nautischer Begriffe: LNB, PER, PNB, Knoten, Seemeilen, Länge, Ankern, Buchten und Bootsteile. Praktisches Wörterbuch für die Bootsmiete in Blanes.',
+      keywords: 'nautisches glossar, was ist LNB, was ist PER, was ist PNB, seemeilen, knoten, bootslänge, ankern, boots glossar',
+    },
+    breadcrumbName: 'Nautisches Glossar',
+    h1: 'Nautisches Glossar',
+    intro: '{count} wichtige Begriffe für die Bootsmiete an der Costa Brava. Befähigungsnachweise, Maßeinheiten, Bootsteile und nautisches Vokabular.',
+    filterAll: 'Alle',
+    ctaTitle: 'Bereit, Ihr Boot zu mieten?',
+    ctaDesc: 'Jetzt, da Sie die Terminologie beherrschen, wählen Sie Ihr Boot ohne oder mit Führerschein, um die Costa Brava zu erkunden.',
+    ctaFleet: 'Zur Flotte',
+    ctaFaq: 'Häufige Fragen',
+    schemaName: 'Nautisches Glossar, Bootsverleih Costa Brava',
+    schemaDescription: 'Definitionen wichtiger nautischer Begriffe für die Bootsmiete an der Costa Brava: Befähigungsnachweise, Maßeinheiten, Bootsteile und maritime Terminologie.',
+    categories: {
+      titulacion: 'Befähigungsnachweise',
+      unidad: 'Maßeinheiten',
+      accion: 'Aktionen',
+      parte: 'Bootsteile und Küste',
+      equipamiento: 'Ausstattung',
+      seguridad: 'Sicherheit an Bord',
+      meteo: 'Wetter und Meer',
+    },
+    terms: [
+      {
+        term: 'LN (Licencia de Navegación)',
+        definition: 'Spanischer Bootsführerschein der untersten Stufe, anerkannt durch das RD 875/2014. Berechtigt zum Führen von Booten bis 6 Meter Länge mit zum Rumpf passendem Motor und bis 2 Seemeilen von der Küste entfernt, bei Tageslicht. Dies ist der Mindestführerschein für die lizenzpflichtigen Boote unserer Flotte (Mingolla Brava 19, Trimarchi 57S und Pacific Craft 625). Theoretische Prüfung + Basissicherheitskurs.',
+        category: 'titulacion',
+      },
+      {
+        term: 'LNB (Licencia de Navegación Básica)',
+        definition: 'Spanischer Bootsführerschein, höher als der LN. Berechtigt zum Führen von Booten bis 8 Meter Länge und bis 5 Seemeilen von der Küste entfernt. Empfehlenswert für alle, die mehr Flexibilität beim Fahrtgebiet wünschen. Lebenslang gültig nach bestandener theoretischer Prüfung + Praxiskurs.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Spanischer Bootsführerschein, höher als der LNB. Berechtigt zum Führen von Booten bis 15 Meter Länge und bis 12 Seemeilen von der Küste entfernt. Erfordert theoretische Prüfung + Navigations-Praxis + Seefunkzeugnis.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Alter Bootsführerschein, der 2014 durch den LNB ersetzt wurde. Berechtigt zum Führen von Booten bis 8 Meter und bis 5 Seemeilen. Inhaber behalten ihre Gültigkeit, ohne auf den LNB aktualisieren zu müssen.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Milla náutica',
+        definition: 'Internationale Maßeinheit für Entfernungen auf See, entspricht 1.852 Metern (1,852 km). Führerscheinfreie Boote dürfen in Spanien maximal 2 Seemeilen von der Küste entfernt fahren (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Nudo',
+        definition: 'Maßeinheit für Geschwindigkeit auf See, entspricht 1 Seemeile pro Stunde (1,852 km/h). Führerscheinfreie Boote sind auf 5 Knoten (9,3 km/h) begrenzt. Lizenzpflichtige Boote können deutlich höhere Geschwindigkeiten erreichen.',
+        category: 'unidad',
+      },
+      {
+        term: 'Eslora',
+        definition: 'Gesamtlänge des Bootes, gemessen vom Bug bis zum Heck. Einheit: Meter. In Spanien bestimmt die Länge den erforderlichen Mindestführerschein: bis 5 m kann führerscheinfrei sein, bis 8 m erfordert LNB, bis 15 m erfordert PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Manga',
+        definition: 'Maximale Breite des Bootes, gemessen von einer Seite zur anderen an der breitesten Stelle. Einheit: Meter. Bestimmt zusammen mit der Länge die Stabilität und den verfügbaren Platz an Bord.',
+        category: 'unidad',
+      },
+      {
+        term: 'CV (caballos de vapor)',
+        definition: 'Maßeinheit für die Motorleistung. Führerscheinfreie Boote sind in Spanien auf 15 PS begrenzt. Lizenzpflichtige Boote haben typischerweise 40-150 PS, was schnellere Fahrt und größere Reichweite ermöglicht.',
+        category: 'unidad',
+      },
+      {
+        term: 'Fondear',
+        definition: 'Das Boot durch Auswerfen des Ankers auf dem Meeresgrund an einer Stelle halten, um in einer Bucht oder einem Gebiet ohne Liegeplatz zu verweilen. Erfordert sandigen Grund (nicht felsig), ausreichend Leine (3-4 mal die Wassertiefe) und Überprüfung des Ankerhalts.',
+        category: 'accion',
+      },
+      {
+        term: 'Cala',
+        definition: 'Kleine, geschützte Bucht an der Küste, typischerweise von Klippen oder Vegetation umgeben. An der Costa Brava gibt es Dutzende Buchten, die nur auf dem Seeweg erreichbar sind, mit kristallklarem Wasser und felsigem Grund, ideal zum Schnorcheln.',
+        category: 'parte',
+      },
+      {
+        term: 'Puerto deportivo',
+        definition: 'Hafen für Sportboote mit Liegeplätzen, Kraftstoff-, Wasser-, Strom- und Slipanlagen. Der Hafen von Blanes (Girona) ist der führende Yachthafen an der südlichen Costa Brava.',
+        category: 'parte',
+      },
+      {
+        term: 'Proa',
+        definition: 'Vorderer Teil des Bootes, dem Heck gegenüberliegend. Bei Sportbooten befindet sich hier meist die Hauptliegefläche und das weiße Navigationslicht.',
+        category: 'parte',
+      },
+      {
+        term: 'Popa',
+        definition: 'Hinterer Teil des Bootes, dem Bug gegenüberliegend. Hier befinden sich der Außenbordmotor, die Badeleiter und typischerweise der zentrale Tischbereich.',
+        category: 'parte',
+      },
+      {
+        term: 'Estribor',
+        definition: 'Rechte Seite des Bootes, vom Heck zum Bug blickend. Wird durch das grüne Navigationslicht gekennzeichnet. Merksatz: \'Estribor = rechts\' (beide beginnen im Spanischen mit E).',
+        category: 'parte',
+      },
+      {
+        term: 'Babor',
+        definition: 'Linke Seite des Bootes, vom Heck zum Bug blickend. Wird durch das rote Navigationslicht gekennzeichnet.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Toldo bimini',
+        definition: 'Klappbares Sonnendach, das den Cockpitbereich des Bootes überdacht und Schatten spendet. Unverzichtbar bei Fahrten mit Kindern oder im Sommer. Die meisten unserer führerscheinfreien Boote haben es serienmäßig.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Solárium',
+        definition: 'Gepolsterter Bereich des Bootes zum Sonnenbaden, typischerweise am Bug oder Heck. Premium-Boote haben doppelte Liegeflächen (Bug und Heck).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Bañera',
+        definition: 'Zentraler Bereich des Bootes mit Sitzen, Steuerstand und Tisch. Dies ist der Arbeitsbereich des Bootes während der Fahrt.',
+        category: 'parte',
+      },
+      {
+        term: 'PY (Patrón de Yate)',
+        definition: 'Spanischer Bootsführerschein, höher als der PER. Berechtigt zum Führen von Booten bis 24 Meter Länge und bis 150 Seemeilen von der Küste. Erweitert den PER um Navigation, Meteorologie und technisches Englisch. Für kein Boot unserer Flotte erforderlich, aber die Referenz für Hochseenavigation.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Calado',
+        definition: 'Tiefe, die ein Boot zum Schwimmen benötigt, ohne Grund zu berühren, gemessen von der Wasserlinie bis zum tiefsten Punkt des Kiels oder der Schraube. Einheit: Meter. Leichte Sportboote haben geringen Tiefgang, was das Anlaufen flacher Buchten ermöglicht.',
+        category: 'unidad',
+      },
+      {
+        term: 'Rumbo',
+        definition: 'Richtung, in die das Boot fährt, gemessen in Grad (0° bis 360°) relativ zu Nord: 0°/360° Nord, 90° Ost, 180° Süd, 270° West. Einen konstanten Kurs zu halten ist die Grundlage der Navigation zwischen Blanes und den Buchten der Costa Brava.',
+        category: 'unidad',
+      },
+      {
+        term: 'Singladura',
+        definition: 'An einem Tag zurückgelegte Strecke oder durchgeführte Navigation. Bei der Küstenfahrt wird der Begriff umgangssprachlich für den kompletten Törn oder Seetag verwendet.',
+        category: 'unidad',
+      },
+      {
+        term: 'Braza',
+        definition: 'Alte Maßeinheit für Tiefe, entspricht 1,8288 Metern (6 Fuß). Erscheint noch auf manchen Seekarten und wird von Seeleuten für die Tiefe oder die Länge der beim Ankern ausgelegten Leine verwendet.',
+        category: 'unidad',
+      },
+      {
+        term: 'Atracar',
+        definition: 'Manöver, bei dem das Boot an eine Mole, einen Steg oder Anleger herangebracht und festgemacht wird. Erfordert Geschwindigkeitskontrolle, Vorausberechnung von Wind und Strömung sowie Schutz des Rumpfes durch Fender.',
+        category: 'accion',
+      },
+      {
+        term: 'Largar amarras',
+        definition: 'Die Leinen lösen, die das Boot am Liegeplatz halten, um die Fahrt zu beginnen; das Gegenteil von Festmachen. Umgangssprachlich bedeutet ‚largar amarras\' ablegen.',
+        category: 'accion',
+      },
+      {
+        term: 'Virar',
+        definition: 'Den Kurs des Bootes ändern, indem der Bug zu einer Seite gedreht wird. Beschreibt auch die vollständige Drehung zur Umkehr der Fahrtrichtung.',
+        category: 'accion',
+      },
+      {
+        term: 'Capear',
+        definition: 'Schlechtes Wetter oder schwere See durchstehen, indem das Boot mit dem Bug oder der Bug-Seite zur Dünung bei geringer Geschwindigkeit gehalten wird, um Schaukeln und Welleneinbrüche zu minimieren.',
+        category: 'accion',
+      },
+      {
+        term: 'Dar avante / dar atrás',
+        definition: 'Maschinenbefehle. ‚Dar avante\' heißt das Boot vorwärts antreiben; ‚dar atrás\' (oder zurücksetzen) heißt es rückwärts antreiben. Unverzichtbar bei Hafenmanövern und beim Ankern.',
+        category: 'accion',
+      },
+      {
+        term: 'Aproar',
+        definition: 'Den Bug des Bootes auf einen bestimmten Punkt ausrichten: die Wellen, den Wind oder den gewünschten Kurs. Den Bug zur See zu richten ist die grundlegende Technik für sicheres Fahren bei Wellengang.',
+        category: 'accion',
+      },
+      {
+        term: 'Quilla',
+        definition: 'Längsverlaufendes Bauteil an der Unterseite des Rumpfes, das dem Boot Stabilität und Steifigkeit verleiht und seitliches Abtreiben verringert. Bei leichten Motorbooten ist es wenig ausgeprägt.',
+        category: 'parte',
+      },
+      {
+        term: 'Casco',
+        definition: 'Körper oder schwimmende Struktur des Bootes, die es über Wasser hält und alle anderen Elemente trägt. Am häufigsten bei Sportbooten ist Glasfaser; es gibt auch welche aus Aluminium oder Holz.',
+        category: 'parte',
+      },
+      {
+        term: 'Timón',
+        definition: 'Bewegliches Teil unter dem Heck, das beim Drehen den Wasserstrom umlenkt und das Boot den Kurs ändern lässt. Wird mit dem Steuerrad oder der Pinne am Steuerstand bedient.',
+        category: 'parte',
+      },
+      {
+        term: 'Hélice',
+        definition: 'Rotierendes Bauteil mit Flügeln, das vom Motor angetrieben das Boot durch Wasserverdrängung vorwärts bewegt. Bei Außenbordmotoren ist es in den Motorschaft integriert.',
+        category: 'parte',
+      },
+      {
+        term: 'Amura',
+        definition: 'Bereich der Schiffsseite nahe dem Bug, zwischen diesem und der Mitte. Man spricht von Backbord- oder Steuerbord-Bug; ‚See von der Amura\' ist Wellengang aus diesem Bereich.',
+        category: 'parte',
+      },
+      {
+        term: 'Aleta',
+        definition: 'Bereich der Schiffsseite nahe dem Heck, zwischen der Mitte und dem Heck. Man spricht von Backbord- oder Steuerbord-Heck.',
+        category: 'parte',
+      },
+      {
+        term: 'Línea de flotación',
+        definition: 'Linie, wo die Wasseroberfläche den Rumpf bei schwimmendem Boot mit normaler Beladung berührt. Trennt den Unterwasserschiff (eingetaucht) vom Überwasserschiff (herausragend).',
+        category: 'parte',
+      },
+      {
+        term: 'Ancla',
+        definition: 'Metallstück, das mit Kette oder Leine am Boot befestigt auf den Meeresgrund geworfen wird, um zu ankern und die Position zu halten. Der Draggen ist ein leichter Ankertyp mit mehreren Krallen, üblich bei kleinen Booten.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cabo',
+        definition: 'Seemännische Bezeichnung für jedes Seil an Bord: man sagt niemals ‚Seil\'. Leinen dienen zum Festmachen, Ankern, Schleppen oder Sichern von Bootselementen.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Defensas',
+        definition: 'Zylindrische oder kugelförmige Elemente, normalerweise aufblasbar, die an der Bordwand aufgehängt werden, um den Rumpf vor Stößen gegen die Mole oder andere Boote beim Anlegen zu schützen.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cornamusa',
+        definition: 'T-förmiges Metallteil, das am Deck befestigt ist, wo die Festmacherleinen belegt werden. Ermöglicht schnelles Befestigen und Lösen der Leine.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Ecosonda',
+        definition: 'Instrument, das die Wassertiefe unter dem Rumpf misst, indem es Ultraschall aussendet und das Echo vom Grund misst. Unverzichtbar zum sicheren Ankern und zur Vermeidung von Grundberührung.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'GPS y carta náutica',
+        definition: 'Das GPS bestimmt die Position des Bootes per Satellit; der Kartenplotter zeigt sie auf einer elektronischen Seekarte mit Tiefen, Tonnen und Gefahren an. Die Seekarte ist die offizielle Karte des Meeres.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Chaleco salvavidas',
+        definition: 'Persönliche Auftriebsmittel, an Bord vorgeschrieben, eines pro Person. Hält eine ins Wasser gefallene Person über Wasser. Tragen ist in Gefahrensituationen Pflicht und für Minderjährige und Nichtschwimmer sehr empfehlenswert.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Aro salvavidas',
+        definition: 'Ringförmiger Schwimmkörper, der einer über Bord gegangenen Person zugeworfen wird, damit sie sich festhalten kann, während sie geborgen wird. Meist mit einer Wurfleine (Leine) und manchmal mit Ortungslicht.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Hombre al agua',
+        definition: 'Notfall, bei dem eine Person über Bord fällt. Das Manöver besteht darin, auf die verunglückte Person zu zeigen, sie nicht aus den Augen zu verlieren, einen Rettungsring zu werfen und vorsichtig unter Luvannäherung zurückzukehren, um sie zu bergen.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Bengalas y señales de socorro',
+        definition: 'Pyrotechnisches Sicherheitsmaterial (Handfackeln, Fallschirmraketen, Rauchsignale) zum Anfordern von Hilfe und zur Ortung im Notfall auf See.',
+        category: 'seguridad',
+      },
+      {
+        term: 'VHF (Canal 16)',
+        definition: 'UKW-Funkgerät für die Seefunkkommunikation. Kanal 16 ist die internationale Notfall-, Dringlichkeits- und Anruffrequenz, die vom Seenotrettungsdienst überwacht wird.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Botiquín de a bordo',
+        definition: 'Medizinisches Material an Bord, je nach Fahrtgebiet vorgeschrieben, zur Behandlung von Seekrankheit, Schnittwunden, Sonnenbrand und kleinen Notfällen während des Törns.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Tramontana',
+        definition: 'Starker, kalter und trockener Nordwind, charakteristisch für den Golf von Lion und die nördliche Costa Brava. Kann schnell aufkommen und die Navigation erschweren; vor Abfahrt von Blanes sollte die Vorhersage geprüft werden.',
+        category: 'meteo',
+      },
+      {
+        term: 'Garbí (Garbino)',
+        definition: 'Südwestwind, typisch für Sommernachmittage an der Costa Brava, verbunden mit der Seebrise. Meist mäßig und erfrischend, kann aber nachmittags die See kräuseln.',
+        category: 'meteo',
+      },
+      {
+        term: 'Migjorn',
+        definition: 'Südwind (Mittag) an der katalanischen Küste. Warm und feucht, kündigt meist Wetterwechsel und zunehmenden Seegang an.',
+        category: 'meteo',
+      },
+      {
+        term: 'Mar de fondo',
+        definition: 'Dünung durch fernen oder bereits vergangenen Wind, die als lange, regelmäßige Wellen die Küste erreicht, auch ohne lokalen Wind. Kann das Ankern in exponierten Buchten ungemütlich machen.',
+        category: 'meteo',
+      },
+      {
+        term: 'Marejada y mar rizada',
+        definition: 'Seezustände nach Wellenhöhe: ‚mar rizada\' sind sehr kleine Wellen (bis 0,5 m) und ‚marejada\' Wellen von 0,5 bis 1,25 m. Dies sind Begriffe aus dem Seewetterbericht.',
+        category: 'meteo',
+      },
+      {
+        term: 'Banderas de baño',
+        definition: 'Strandflaggen: grüne Flagge (Baden erlaubt), gelbe Flagge (Vorsicht, Baden mit Einschränkungen) und rote Flagge (Baden verboten). Geben auch Orientierung über den Seezustand für Bootsausfahrten.',
+        category: 'meteo',
+      },
+      {
+        term: 'Parte meteorológico marítimo',
+        definition: 'Spezielle Vorhersage für die See (Wind, Seegang, Sicht und Phänomene), von der AEMET nach Zonen herausgegeben. Die Konsultation vor jeder Fahrt ist die erste Sicherheitsregel.',
+        category: 'meteo',
+      },
+    ],
   },
 };

@@ -607,24 +607,6 @@ export const fr: Translations = {
     tripDate: "Date",
     submit: "Envoyer la photo",
   },
-  routes: {
-    title: "Itinéraires Suggérés",
-    subtitle: "Découvrez les meilleures routes en bateau depuis le port de Blanes",
-    bookBoat: "Réserver un bateau",
-    introText:
-      "Depuis le port de Blanes, porte d'entree de la Costa Brava, vous avez un acces direct a certains des itineraires cotiers les plus spectaculaires de la Mediterranee. Chaque itineraire est concu pour differents niveaux d'experience et durees, des escapades d'1 heure aux excursions a la journee. Explorez nos",
-    introFleetLink: "bateaux disponibles",
-    introSuffix: "pour trouver le bateau parfait pour votre itineraire.",
-    lloretTitle: "Lloret de Mar en bateau",
-    lloretDesc:
-      "Plages dorees, criques cachees et vie nocturne. A seulement 20 min en bateau depuis Blanes.",
-    tossaTitle: "Tossa de Mar en bateau",
-    tossaDesc:
-      "La Vila Vella medievale, des falaises impressionnantes et les criques les plus sauvages de la Costa Brava.",
-    pricesTitle: "Prix et tarifs",
-    pricesDesc:
-      "Consultez les prix par saison de tous nos bateaux. A partir de 70€/heure sans permis.",
-  },
   giftCardBanner: {
     title: "Offrez une expérience unique en mer",
     subtitle: "Cartes cadeaux à partir de 50 €. Le cadeau parfait pour toute occasion.",
@@ -3605,145 +3587,6 @@ export const fr: Translations = {
       error: "Échec de l'envoi. Veuillez réessayer.",
     },
   },
-  glossaryPage: {
-    seo: {
-      title: "Glossaire Nautique, Location Bateaux Costa Brava | Costa Brava Rent a Boat",
-      description:
-        "Glossaire des termes nautiques essentiels : LNB, PER, PNB, nœuds, milles nautiques, longueur, mouiller, criques et parties du bateau. Dictionnaire pratique pour louer un bateau à Blanes.",
-      keywords:
-        "glossaire nautique, qu'est-ce que LNB, qu'est-ce que PER, qu'est-ce que PNB, milles nautiques, nœuds, longueur, mouiller, glossaire bateaux",
-    },
-    breadcrumbName: "Glossaire Nautique",
-    h1: "Glossaire Nautique",
-    intro:
-      "{count} termes essentiels pour louer un bateau sur la Costa Brava. Permis, unités de mesure, parties du bateau et vocabulaire marin.",
-    filterAll: "Tous",
-    ctaTitle: "Prêt à louer votre bateau ?",
-    ctaDesc:
-      "Maintenant que vous maîtrisez la terminologie, choisissez votre bateau sans permis ou avec permis pour explorer la Costa Brava.",
-    ctaFleet: "Voir la flotte",
-    ctaFaq: "Questions fréquentes",
-    schemaName: "Glossaire nautique, Location de bateaux Costa Brava",
-    schemaDescription:
-      "Définitions des termes nautiques essentiels pour louer un bateau sur la Costa Brava : permis, unités de mesure, parties du bateau et terminologie marine.",
-    categories: {
-      titulacion: "Permis",
-      unidad: "Unités de mesure",
-      accion: "Actions",
-      parte: "Parties du bateau et côte",
-      equipamiento: "Équipement",
-    },
-    terms: [
-      {
-        term: "LNB (Licencia de Navegación Básica)",
-        definition:
-          "Permis nautique espagnol permettant de piloter des embarcations jusqu'à 8 mètres de longueur et jusqu'à 5 milles de la côte. Obligatoire pour louer des bateaux de plus de 15 CV. Valable à vie après avoir réussi l'examen théorique + formation pratique.",
-        category: "titulacion",
-      },
-      {
-        term: "PER (Patrón de Embarcaciones de Recreo)",
-        definition:
-          "Permis nautique espagnol supérieur au LNB. Permet de piloter des embarcations jusqu'à 15 mètres de longueur et jusqu'à 12 milles de la côte. Nécessite un examen théorique + pratiques de navigation + radiocommunications.",
-        category: "titulacion",
-      },
-      {
-        term: "PNB (Patrón de Navegación Básica)",
-        definition:
-          "Ancien permis nautique remplacé en 2014 par le LNB. Permet de piloter des embarcations jusqu'à 8 mètres jusqu'à 5 milles. Ceux qui le possèdent restent valables sans nécessité de mise à jour vers le LNB.",
-        category: "titulacion",
-      },
-      {
-        term: "Mille nautique",
-        definition:
-          "Unité de distance maritime internationale équivalant à 1 852 mètres (1,852 km). Les embarcations sans permis en Espagne peuvent naviguer jusqu'à un maximum de 2 milles nautiques de la côte (3,7 km).",
-        category: "unidad",
-      },
-      {
-        term: "Nœud",
-        definition:
-          "Unité de vitesse maritime équivalant à 1 mille nautique par heure (1,852 km/h). Les embarcations sans permis sont limitées à 5 nœuds (9,3 km/h). Les bateaux avec permis peuvent atteindre une vitesse bien supérieure.",
-        category: "unidad",
-      },
-      {
-        term: "Eslora",
-        definition:
-          "Longueur totale du bateau, mesurée de la proue à la poupe. Unité : mètres. En Espagne, la longueur détermine le permis nautique minimum : jusqu'à 5m peut ne pas nécessiter de permis, jusqu'à 8m nécessite le LNB, jusqu'à 15m nécessite le PER.",
-        category: "unidad",
-      },
-      {
-        term: "Manga",
-        definition:
-          "Largeur maximale du bateau, mesurée d'un côté à l'autre en son point le plus large. Unité : mètres. Avec la longueur, elle définit la stabilité et l'espace disponible à bord.",
-        category: "unidad",
-      },
-      {
-        term: "CV (caballos de vapor)",
-        definition:
-          "Unité de puissance du moteur marin. Les bateaux sans permis en Espagne sont limités à 15 CV. Les bateaux avec permis ont généralement entre 40 et 150 CV, permettant une navigation plus rapide et une plus grande autonomie.",
-        category: "unidad",
-      },
-      {
-        term: "Fondear",
-        definition:
-          "Action d'arrêter le bateau en jetant l'ancre sur le fond marin pour le maintenir immobile dans une crique ou zone sans amarrage. Nécessite de choisir un fond sableux (non rocheux), de laisser suffisamment de chaîne (3-4 fois la profondeur) et de vérifier que l'ancre accroche.",
-        category: "accion",
-      },
-      {
-        term: "Cala",
-        definition:
-          "Petite anse abritée sur la côte, généralement entourée de falaises ou de végétation. Sur la Costa Brava, il existe des dizaines de criques accessibles uniquement par la mer, avec des eaux cristallines et des fonds rocheux idéaux pour le snorkeling.",
-        category: "parte",
-      },
-      {
-        term: "Puerto deportivo",
-        definition:
-          "Installation portuaire destinée aux embarcations de plaisance avec amarrages, services de carburant, eau, électricité et aire de carénage. Le Port de Blanes (Gérone) est le port de plaisance de référence sur la Costa Brava Sud.",
-        category: "parte",
-      },
-      {
-        term: "Proa",
-        definition:
-          "Partie avant du bateau, opposée à la poupe. Sur les bateaux de plaisance, elle accueille généralement le bain de soleil principal et le feu de navigation blanc.",
-        category: "parte",
-      },
-      {
-        term: "Popa",
-        definition:
-          "Partie arrière du bateau, opposée à la proue. Elle accueille le moteur hors-bord, l'échelle de bain et généralement la zone de table centrale.",
-        category: "parte",
-      },
-      {
-        term: "Estribor",
-        definition:
-          "Côté droit du bateau en regardant de la poupe vers la proue. Il est identifié par le feu de navigation vert. Règle d'or : « Tribord = droit ».",
-        category: "parte",
-      },
-      {
-        term: "Babor",
-        definition:
-          "Côté gauche du bateau en regardant de la poupe vers la proue. Il est identifié par le feu de navigation rouge.",
-        category: "parte",
-      },
-      {
-        term: "Bimini / Toldo bimini",
-        definition:
-          "Taud dépliable qui couvre le cockpit du bateau en fournissant de l'ombre. Essentiel pour la navigation avec des enfants ou en été. La plupart de nos bateaux sans permis l'incluent de série.",
-        category: "equipamiento",
-      },
-      {
-        term: "Solárium",
-        definition:
-          "Zone rembourrée du bateau destinée à s'allonger au soleil, généralement à la proue ou à la poupe. Les bateaux premium ont un double bain de soleil (proue et poupe).",
-        category: "equipamiento",
-      },
-      {
-        term: "Bañera",
-        definition:
-          "Zone centrale du bateau où se trouvent les sièges, le poste de pilotage et la table. C'est l'espace opérationnel du bateau pendant la navigation.",
-        category: "parte",
-      },
-    ],
-  },
   faqPage: {
     heroTitle: "Questions Fréquentes",
     heroDescription:
@@ -4303,5 +4146,513 @@ export const fr: Translations = {
       errorText: "Nous n'avons pas pu envoyer vos coordonnées. Réessayez ou écrivez-nous sur WhatsApp.",
       requiredError: "Veuillez compléter votre nom et téléphone.",
     },
+  },
+  routes: {
+    title: 'Itinéraires Suggérés',
+    subtitle: 'Découvrez les meilleures routes en bateau depuis le port de Blanes',
+    bookBoat: 'Réserver un bateau',
+    introText: 'Depuis le port de Blanes, porte d\'entree de la Costa Brava, vous avez un acces direct a certains des itineraires cotiers les plus spectaculaires de la Mediterranee. Chaque itineraire est concu pour differents niveaux d\'experience et durees, des escapades d\'1 heure aux excursions a la journee. Explorez nos',
+    introFleetLink: 'bateaux disponibles',
+    introSuffix: 'pour trouver le bateau parfait pour votre itineraire.',
+    lloretTitle: 'Lloret de Mar en bateau',
+    lloretDesc: 'Plages dorees, criques cachees et vie nocturne. A seulement 20 min en bateau depuis Blanes.',
+    tossaTitle: 'Tossa de Mar en bateau',
+    tossaDesc: 'La Vila Vella medievale, des falaises impressionnantes et les criques les plus sauvages de la Costa Brava.',
+    pricesTitle: 'Prix et tarifs',
+    pricesDesc: 'Consultez les prix par saison de tous nos bateaux. A partir de 70€/heure sans permis.',
+    guide: {
+      heading: 'Guide pour naviguer sur la Costa Brava depuis Blanes',
+      geographyTitle: 'Le littoral : de Blanes à Tossa de Mar',
+      geographyBody: 'Le port de Blanes marque le début de la Costa Brava. En naviguant vers le nord, le rocher de Sa Palomera laisse place à une succession de criques aux eaux turquoise : Cala Sant Francesc, Santa Cristina et Cala Treumal avant d\'atteindre Lloret de Mar (à environ 20 minutes en bateau), et plus loin Cala Boadella et les criques vierges de Tossa de Mar, avec sa Vila Vella médiévale dominant la mer. Avec un bateau avec permis, le trajet Blanes–Tossa représente environ 30-45 minutes de navigation tranquille le long de la côte.',
+      seaTitle: 'Conditions de mer et vents',
+      seaBody: 'La partie sud de la Costa Brava offre généralement une navigation confortable en été. Le matin, la mer est habituellement calme ; l\'après-midi, le garbí peut se lever, cette brise du sud-ouest qui ride légèrement la surface. Le vent à surveiller est la tramontane, forte et venant du nord, qui peut se lever rapidement : consultez toujours les prévisions météo maritimes avant de sortir. Les embarcations sans permis naviguent jusqu\'à 2 milles nautiques de la côte (3,7 km) et à une vitesse maximale de 5 nœuds, suffisant pour parcourir toutes ces criques en toute sécurité.',
+      calasTitle: 'Criques et snorkeling',
+      calasBody: 'Les criques entre Blanes et Tossa ont des fonds rocheux et des eaux cristallines, idéales pour mouiller et faire du snorkeling. Cala Bona, Cala Treumal et Santa Cristina offrent des eaux abritées ; à Lloret, Cala Boadella ; et vers Tossa, Cala Llevadó, Cala Giverola et Cala Pola, dont beaucoup ne sont accessibles que par la mer. Pensez à mouiller sur fond sableux — jamais sur les herbiers de posidonie, qui sont protégés — et à filer suffisamment de chaîne pour que l\'ancre accroche.',
+      seasonTitle: 'Meilleure période pour naviguer',
+      seasonBody: 'La saison de navigation s\'étend d\'avril à octobre, avec des horaires de départ de 09:00 à 20:00. Juillet et août offrent la mer la plus chaude et la plus stable, idéale pour la baignade et le snorkeling ; juin et septembre sont parfaits pour ceux qui recherchent des criques moins fréquentées et une lumière dorée. Hors saison, nous n\'opérons pas. Pendant les mois d\'été, il est conseillé de réserver à l\'avance : la disponibilité des bateaux et des créneaux horaires est limitée.',
+    },
+  },
+  lastUpdated: {
+    label: 'Dernière mise à jour',
+  },
+  occasionMatrix: {
+    pages: {
+      snorkel__locationBlanes: {
+        seoTitle: 'Snorkeling en bateau depuis Blanes — Meilleures criques | Costa Brava Rent a Boat',
+        seoDescription: 'Louez un bateau sans permis à Blanes et faites du snorkeling à Cala Sant Francesc, Sa Forcanera ou Cala Treumal. Essence incluse, sans expérience préalable, criques à moins de 2 milles.',
+        h1: 'Snorkeling en bateau depuis Blanes',
+        intro: 'Depuis le port de Blanes, en quelques minutes de navigation vous atteignez des criques aux eaux cristallines et aux fonds rocheux parfaits pour le snorkeling. Avec un bateau sans permis — essence incluse et sans besoin d\'expérience — vous choisissez votre crique, vous mouillez et vous plongez à votre rythme.',
+        spotsTitle: 'Meilleures criques pour le snorkeling près de Blanes',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Cala Bona)',
+            description: 'Anse protégée de pins à la sortie de Blanes, d\'eau calme et de rochers latéraux pleins de vie : le meilleur premier mouillage pour le snorkeling en famille.',
+          },
+          {
+            name: 'Sa Forcanera',
+            description: 'Petite crique sous les falaises du Jardin Botanique Marimurtra, aux eaux profondes et transparentes, idéale pour nager au-dessus de fonds rocheux.',
+          },
+          {
+            name: 'Cala Treumal',
+            description: 'À la limite entre Blanes et Lloret, fond de roche et de sable qui attire les poissons ; bon mouillage abrité du garbí.',
+          },
+          {
+            name: 'Punta de Santa Anna',
+            description: 'Près du château de Sant Joan, parois rocheuses plongeant dans la mer avec une excellente visibilité pour observer la faune méditerranéenne.',
+          },
+        ],
+        boatsTitle: 'Quel bateau choisir pour faire du snorkeling',
+        boatsIntro: 'Pour le snorkeling à Blanes nous recommandons nos bateaux sans permis : ils incluent l\'essence, se pilotent sans permis bateau et atteignent sans problème ces criques, toutes situées dans les 2 milles de la côte. Ils sont équipés d\'une échelle de bain pour entrer et sortir de l\'eau confortablement.',
+        practicalTitle: 'Informations pratiques',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu\'à 2 milles nautiques de la côte, distance largement suffisante pour toutes ces criques. Apportez vos lunettes et tuba, protection solaire et eau. Pensez à mouiller sur le sable, jamais sur les herbiers de posidonie.',
+        faqTitle: 'Questions fréquentes',
+        faq: [
+          {
+            q: 'Ai-je besoin d\'un permis pour faire du snorkeling en bateau depuis Blanes ?',
+            a: 'Non. Nos bateaux sans permis se pilotent sans permis bateau et atteignent toutes les criques de snorkeling proches de Blanes. Nous vous expliquons le maniement avant de partir.',
+          },
+          {
+            q: 'L\'équipement de snorkeling est-il inclus ?',
+            a: 'Le bateau comprend une échelle de bain et l\'essence. Pour le snorkeling nous vous recommandons d\'apporter vos propres lunettes et tuba, ainsi vous êtes sûr d\'avoir une taille confortable.',
+          },
+        ],
+        ctaTitle: 'Réservez votre sortie snorkeling à Blanes',
+        ctaText: 'Choisissez votre date et votre bateau sans permis, et préparez la meilleure journée de snorkeling dans les criques de Blanes.',
+      },
+      snorkel__locationLloret: {
+        seoTitle: 'Snorkeling en bateau à Lloret de Mar — Calas Boadella et Banys | Costa Brava Rent a Boat',
+        seoDescription: 'Découvrez les meilleures criques de snorkeling de Lloret de Mar en bateau depuis Blanes : Cala Boadella, Cala Banys, Cala dels Frares. Bateau avec permis, environ 20 minutes de navigation.',
+        h1: 'Snorkeling en bateau à Lloret de Mar',
+        intro: 'Lloret de Mar cache quelques-unes des criques aux plus belles eaux de la Costa Brava sud, beaucoup accessibles uniquement par la mer. En partant de Blanes, en une vingtaine de minutes de navigation vous atteignez ses recoins rocheux et les parcourez en snorkeling sans les foules de la plage.',
+        spotsTitle: 'Meilleures criques pour le snorkeling à Lloret de Mar',
+        spots: [
+          {
+            name: 'Cala Boadella',
+            description: 'L\'une des plus jolies criques de Lloret ; son extrémité sud, rocheuse et d\'eau limpide, laisse voir des poissons dès que l\'on met la tête sous l\'eau.',
+          },
+          {
+            name: 'Cala Banys',
+            description: 'Renfoncement rocheux de falaises sombres et d\'eau profonde, un classique pour le snorkeling de roche avec une bonne visibilité.',
+          },
+          {
+            name: 'Cala dels Frares',
+            description: 'Petite crique de galets entourée de parois verticales, refuge de faune méditerranéenne idéal pour nager tranquillement.',
+          },
+          {
+            name: 'Santa Cristina',
+            description: 'Large crique de sable avec des extrémités rocheuses ; les côtés offrent un snorkeling facile et sûr, parfait pour les débutants.',
+          },
+        ],
+        boatsTitle: 'Quel bateau choisir pour rejoindre Lloret',
+        boatsIntro: 'Les criques de Lloret se trouvent au-delà de la limite des 2 milles des bateaux sans permis, donc pour les atteindre vous avez besoin d\'un de nos bateaux avec permis. Ils sont confortables, couvrent le trajet depuis Blanes en une vingtaine de minutes et vous donnent l\'autonomie pour enchaîner plusieurs criques lors de la même sortie.',
+        practicalTitle: 'Informations pratiques',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Le trajet jusqu\'aux criques de Lloret est d\'environ 20 minutes de navigation tranquille le long de la côte. Apportez vos lunettes et tuba, protection solaire et eau. Mouillez sur le sable, jamais sur les herbiers de posidonie.',
+        faqTitle: 'Questions fréquentes',
+        faq: [
+          {
+            q: 'Combien de temps faut-il de Blanes aux criques de Lloret en bateau ?',
+            a: 'Environ 20 minutes de navigation tranquille en longeant la côte, selon la crique et l\'état de la mer.',
+          },
+          {
+            q: 'Quelles criques de Lloret sont les meilleures pour le snorkeling ?',
+            a: 'Cala Boadella, Cala Banys et Cala dels Frares se distinguent par leur fond rocheux et la transparence de l\'eau.',
+          },
+        ],
+        ctaTitle: 'Réservez votre sortie snorkeling à Lloret de Mar',
+        ctaText: 'Choisissez votre date et votre bateau avec permis, et découvrez les criques de snorkeling de Lloret en partant de Blanes.',
+      },
+      snorkel__locationTossa: {
+        seoTitle: 'Snorkeling en bateau à Tossa de Mar — Criques vierges et eaux protégées | Costa Brava Rent a Boat',
+        seoDescription: 'Faites du snorkeling dans les eaux limpides de Tossa de Mar : La Mar Menuda, Cala Giverola, Cala Pola. Sortie en bateau avec permis depuis Blanes, 30-45 minutes de navigation.',
+        h1: 'Snorkeling en bateau à Tossa de Mar',
+        intro: 'Tossa de Mar est l\'une des meilleures destinations de snorkeling de la Costa Brava : une partie de son littoral est protégée, avec des fonds rocheux et des herbiers regorgeant de vie. Depuis Blanes comptez environ 30-45 minutes de navigation avec un bateau avec permis jusqu\'à ses criques les plus sauvages.',
+        spotsTitle: 'Meilleures criques pour le snorkeling à Tossa de Mar',
+        spots: [
+          {
+            name: 'La Mar Menuda',
+            description: 'Près de la vieille ville, une baie aux eaux abritées et au fond rocheux très appréciée des plongeurs et amateurs de snorkeling pour sa richesse faunistique.',
+          },
+          {
+            name: 'Cala Giverola',
+            description: 'Crique profonde encaissée entre les montagnes, d\'eau particulièrement claire et de parois rocheuses parfaites pour nager en observant les poissons.',
+          },
+          {
+            name: 'Cala Pola',
+            description: 'Environnement naturel protégé au nord de Tossa, avec un fond de roche et de sable et une transparence excellente.',
+          },
+          {
+            name: 'Cala Futadera',
+            description: 'Crique vierge sans accès routier, uniquement par mer ou sentier ; eaux limpides et tranquilles, un mouillage snorkeling exclusif.',
+          },
+        ],
+        boatsTitle: 'Quel bateau choisir pour rejoindre Tossa',
+        boatsIntro: 'Tossa se trouve bien au-delà des 2 milles, hors de portée des bateaux sans permis. Pour rejoindre ses criques vous avez besoin d\'un de nos bateaux avec permis, qui couvrent le trajet depuis Blanes en 30-45 minutes et vous permettent de passer la journée à explorer plusieurs criques.',
+        practicalTitle: 'Informations pratiques',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. La navigation jusqu\'à Tossa est de 30-45 minutes ; c\'est pourquoi il convient de réserver des durées de 4 heures ou plus pour profiter de la destination sans se presser. Apportez vos lunettes et tuba, protection solaire et eau. Respectez les zones protégées et mouillez uniquement sur le sable.',
+        faqTitle: 'Questions fréquentes',
+        faq: [
+          {
+            q: 'Peut-on aller de Blanes à Tossa en bateau sans permis ?',
+            a: 'Non. Tossa se trouve au-delà de la limite des 2 milles des bateaux sans permis ; le trajet se fait avec un bateau avec permis, en 30-45 minutes depuis Blanes.',
+          },
+          {
+            q: 'Pourquoi Tossa est-elle bonne pour le snorkeling ?',
+            a: 'Une partie de son littoral est protégée, avec des fonds rocheux et des herbiers très bien conservés ; des criques comme La Mar Menuda ou Giverola offrent une visibilité excellente.',
+          },
+        ],
+        ctaTitle: 'Réservez votre sortie snorkeling à Tossa de Mar',
+        ctaText: 'Choisissez votre date et votre bateau avec permis, et consacrez la journée aux criques protégées de Tossa en partant de Blanes.',
+      },
+      snorkel__locationCostaBrava: {
+        seoTitle: 'Snorkeling en bateau sur la Costa Brava — Les meilleures criques depuis Blanes | Costa Brava Rent a Boat',
+        seoDescription: 'Parcourez en bateau les meilleures criques de snorkeling de la Costa Brava sud, de Blanes à Tossa de Mar. Bateaux sans permis pour les criques proches et avec permis pour le trajet complet.',
+        h1: 'Snorkeling en bateau sur la Costa Brava',
+        intro: 'Le tronçon sud de la Costa Brava, de Blanes à Tossa de Mar, concentre des dizaines de criques à fond rocheux et eau transparente idéales pour le snorkeling. Depuis le port de Blanes vous pouvez choisir entre une sortie courte vers les criques les plus proches ou une journée complète à parcourir la côte.',
+        spotsTitle: 'Criques de snorkeling incontournables sur la Costa Brava sud',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Blanes)',
+            description: 'La crique la plus accessible, abritée et familiale : le point de départ parfait, à portée d\'un bateau sans permis.',
+          },
+          {
+            name: 'Cala Boadella (Lloret)',
+            description: 'Recoin rocheux d\'eau limpide, l\'un des meilleurs mouillages de snorkeling du tronçon moyen de la côte.',
+          },
+          {
+            name: 'Cala Giverola (Tossa)',
+            description: 'Crique profonde aux eaux cristallines entre les montagnes, déjà à l\'extrémité nord du parcours.',
+          },
+          {
+            name: 'Cala Pola (Tossa)',
+            description: 'Environnement naturel protégé avec fond de roche et de sable, récompense pour qui fait la traversée complète.',
+          },
+        ],
+        boatsTitle: 'Quel bateau choisir selon jusqu\'où vous voulez aller',
+        boatsIntro: 'Pour les criques les plus proches de Blanes un bateau sans permis suffit, avec essence incluse et sans permis bateau. Pour parcourir le tronçon complet jusqu\'à Lloret et Tossa — au-delà des 2 milles — vous avez besoin d\'un bateau avec permis, avec l\'autonomie pour enchaîner plusieurs criques dans la journée.',
+        practicalTitle: 'Informations pratiques',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu\'à 2 milles ; pour rejoindre Lloret (~20 min) ou Tossa (30-45 min) on utilise un bateau avec permis. Apportez vos lunettes et tuba, protection solaire et eau. Mouillez toujours sur le sable, jamais sur la posidonie.',
+        faqTitle: 'Questions fréquentes',
+        faq: [
+          {
+            q: 'Quel tronçon de la Costa Brava puis-je parcourir en une sortie ?',
+            a: 'Avec un bateau avec permis vous pouvez enchaîner les criques de Blanes, Lloret et Tossa en une journée ; avec un sans permis vous profiterez des criques les plus proches de Blanes.',
+          },
+          {
+            q: 'Quelle est la meilleure période pour le snorkeling ?',
+            a: 'De juin à septembre la mer est plus chaude et claire ; juillet et août offrent les meilleures conditions, et juin ou septembre, des criques plus tranquilles.',
+          },
+        ],
+        ctaTitle: 'Réservez votre itinéraire snorkeling sur la Costa Brava',
+        ctaText: 'Choisissez votre bateau selon jusqu\'où vous voulez aller et découvrez les meilleures criques de la côte en partant de Blanes.',
+      },
+    },
+  },
+  glossaryPage: {
+    seo: {
+      title: 'Glossaire Nautique, Location Bateaux Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossaire des termes nautiques essentiels : LNB, PER, PNB, nœuds, milles nautiques, longueur, mouiller, criques et parties du bateau. Dictionnaire pratique pour louer un bateau à Blanes.',
+      keywords: 'glossaire nautique, qu\'est-ce que LNB, qu\'est-ce que PER, qu\'est-ce que PNB, milles nautiques, nœuds, longueur, mouiller, glossaire bateaux',
+    },
+    breadcrumbName: 'Glossaire Nautique',
+    h1: 'Glossaire Nautique',
+    intro: '{count} termes essentiels pour louer un bateau sur la Costa Brava. Permis, unités de mesure, parties du bateau et vocabulaire marin.',
+    filterAll: 'Tous',
+    ctaTitle: 'Prêt à louer votre bateau ?',
+    ctaDesc: 'Maintenant que vous maîtrisez la terminologie, choisissez votre bateau sans permis ou avec permis pour explorer la Costa Brava.',
+    ctaFleet: 'Voir la flotte',
+    ctaFaq: 'Questions fréquentes',
+    schemaName: 'Glossaire nautique, Location de bateaux Costa Brava',
+    schemaDescription: 'Définitions des termes nautiques essentiels pour louer un bateau sur la Costa Brava : permis, unités de mesure, parties du bateau et terminologie marine.',
+    categories: {
+      titulacion: 'Permis',
+      unidad: 'Unités de mesure',
+      accion: 'Actions',
+      parte: 'Parties du bateau et côte',
+      equipamiento: 'Équipement',
+      seguridad: 'Sécurité à bord',
+      meteo: 'Météorologie et mer',
+    },
+    terms: [
+      {
+        term: 'LN (Licencia de Navegación)',
+        definition: 'Permis nautique espagnol minimum reconnu par le RD 875/2014. Permet de piloter des embarcations jusqu\'à 6 mètres de longueur, avec un moteur adapté à la coque et jusqu\'à 2 milles nautiques de la côte, en journée. C\'est le permis minimum requis pour les bateaux avec licence de notre flotte (Mingolla Brava 19, Trimarchi 57S et Pacific Craft 625). Examen théorique + formation de sécurité de base.',
+        category: 'titulacion',
+      },
+      {
+        term: 'LNB (Licencia de Navegación Básica)',
+        definition: 'Permis nautique espagnol supérieur au LN. Permet de piloter des embarcations jusqu\'à 8 mètres de longueur et jusqu\'à 5 milles de la côte. Recommandé pour ceux qui souhaitent plus de flexibilité de zone. Valable à vie après avoir réussi l\'examen théorique + formation pratique.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Permis nautique espagnol supérieur au LNB. Permet de piloter des embarcations jusqu\'à 15 mètres de longueur et jusqu\'à 12 milles de la côte. Nécessite un examen théorique + pratique de navigation + radiocommunications.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Ancien permis nautique remplacé en 2014 par le LNB. Permet de piloter des embarcations jusqu\'à 8 mètres jusqu\'à 5 milles. Ceux qui le possèdent restent valides sans nécessité de passer au LNB.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Milla náutica',
+        definition: 'Unité de distance maritime internationale équivalente à 1 852 mètres (1,852 km). Les embarcations sans licence en Espagne peuvent naviguer jusqu\'à un maximum de 2 milles nautiques de la côte (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Nudo',
+        definition: 'Unité de vitesse maritime équivalente à 1 mille nautique par heure (1,852 km/h). Les embarcations sans licence sont limitées à 5 nœuds (9,3 km/h). Les bateaux avec licence peuvent atteindre une vitesse bien plus élevée.',
+        category: 'unidad',
+      },
+      {
+        term: 'Eslora',
+        definition: 'Longueur totale du bateau, mesurée de la proue à la poupe. Unité : mètres. En Espagne, la longueur détermine le permis nautique minimum : jusqu\'à 5 m peut ne pas nécessiter de permis, jusqu\'à 8 m nécessite le LNB, jusqu\'à 15 m nécessite le PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Manga',
+        definition: 'Largeur maximale du bateau, mesurée d\'un bord à l\'autre à son point le plus large. Unité : mètres. Avec la longueur, elle définit la stabilité et l\'espace disponible à bord.',
+        category: 'unidad',
+      },
+      {
+        term: 'CV (caballos de vapor)',
+        definition: 'Unité de puissance du moteur marin. Les bateaux sans licence en Espagne sont limités à 15 CV. Les bateaux avec licence ont généralement 40-150 CV, permettant une navigation plus rapide et une plus grande portée.',
+        category: 'unidad',
+      },
+      {
+        term: 'Fondear',
+        definition: 'Action d\'arrêter le bateau en jetant l\'ancre sur le fond marin pour le maintenir immobile dans une crique ou zone sans amarrage. Il faut choisir un fond sablonneux (non rocheux), laisser filer suffisamment de ligne (3-4 fois la profondeur) et vérifier que l\'ancre accroche.',
+        category: 'accion',
+      },
+      {
+        term: 'Cala',
+        definition: 'Petite anse abritée sur la côte, généralement entourée de falaises ou de végétation. Sur la Costa Brava, il existe des dizaines de criques accessibles uniquement par mer, avec des eaux cristallines et des fonds rocheux idéaux pour le snorkeling.',
+        category: 'parte',
+      },
+      {
+        term: 'Puerto deportivo',
+        definition: 'Installation portuaire destinée aux embarcations de plaisance avec postes d\'amarrage, services de carburant, eau, électricité et cale de mise à sec. Le port de Blanes (Gérone) est le port de plaisance de référence sur la Costa Brava Sud.',
+        category: 'parte',
+      },
+      {
+        term: 'Proa',
+        definition: 'Partie avant du bateau, opposée à la poupe. Sur les bateaux de plaisance, elle accueille généralement le bain de soleil principal et le feu de navigation blanc.',
+        category: 'parte',
+      },
+      {
+        term: 'Popa',
+        definition: 'Partie arrière du bateau, opposée à la proue. Elle abrite le moteur hors-bord, l\'échelle de bain et généralement la zone avec table centrale.',
+        category: 'parte',
+      },
+      {
+        term: 'Estribor',
+        definition: 'Côté droit du bateau en regardant de la poupe vers la proue. Identifié par le feu de navigation vert. Règle d\'or : « Estribor = derecho » (tous deux commencent par E).',
+        category: 'parte',
+      },
+      {
+        term: 'Babor',
+        definition: 'Côté gauche du bateau en regardant de la poupe vers la proue. Identifié par le feu de navigation rouge.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Toldo bimini',
+        definition: 'Taud déployable qui couvre le cockpit du bateau en fournissant de l\'ombre. Essentiel pour naviguer avec des enfants ou en été. La plupart de nos bateaux sans licence en sont équipés de série.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Solárium',
+        definition: 'Zone rembourrée du bateau destinée à s\'allonger au soleil, généralement à la proue ou à la poupe. Les bateaux premium ont un double bain de soleil (proue et poupe).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Bañera',
+        definition: 'Zone centrale du bateau où se trouvent les sièges, le poste de pilotage et la table. C\'est l\'espace opérationnel du bateau pendant la navigation.',
+        category: 'parte',
+      },
+      {
+        term: 'PY (Patrón de Yate)',
+        definition: 'Permis nautique espagnol supérieur au PER. Permet de piloter des embarcations jusqu\'à 24 mètres de longueur et jusqu\'à 150 milles de la côte. Complète le PER avec navigation, météorologie et anglais technique. Pas nécessaire pour les bateaux de notre flotte, mais c\'est la référence pour la navigation hauturière.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Calado',
+        definition: 'Profondeur nécessaire à un bateau pour flotter sans toucher le fond, mesurée de la ligne de flottaison au point le plus bas de la quille ou de l\'hélice. Unité : mètres. Les embarcations de plaisance légères ont un faible tirant d\'eau, ce qui permet de s\'approcher des criques peu profondes.',
+        category: 'unidad',
+      },
+      {
+        term: 'Rumbo',
+        definition: 'Direction vers laquelle navigue le bateau, mesurée en degrés (0° à 360°) par rapport au nord : 0°/360° nord, 90° est, 180° sud, 270° ouest. Maintenir un cap constant est la base de la navigation entre Blanes et les criques de la Costa Brava.',
+        category: 'unidad',
+      },
+      {
+        term: 'Singladura',
+        definition: 'Distance parcourue ou navigation effectuée en une journée. En navigation de plaisance côtière, utilisé familièrement pour désigner la sortie ou la journée en mer complète.',
+        category: 'unidad',
+      },
+      {
+        term: 'Braza',
+        definition: 'Ancienne unité de profondeur équivalente à 1,8288 mètres (6 pieds). Apparaît encore sur certaines cartes marines et parmi les marins pour parler du fond ou de la longueur de ligne filée au mouillage.',
+        category: 'unidad',
+      },
+      {
+        term: 'Atracar',
+        definition: 'Manœuvre consistant à approcher et amarrer le bateau à un quai, ponton ou embarcadère. Nécessite de contrôler la vitesse, anticiper le vent et le courant et protéger la coque avec des pare-battages.',
+        category: 'accion',
+      },
+      {
+        term: 'Largar amarras',
+        definition: 'Larguer les amarres qui maintiennent le bateau au poste d\'amarrage pour commencer la navigation ; le contraire d\'amarrer. Familièrement, « larguer les amarres » équivaut à appareiller.',
+        category: 'accion',
+      },
+      {
+        term: 'Virar',
+        definition: 'Changer le cap du bateau en tournant la proue vers un côté. Décrit également le virage complet pour inverser le sens de la marche.',
+        category: 'accion',
+      },
+      {
+        term: 'Capear',
+        definition: 'Affronter le mauvais temps ou la mer grosse en maintenant le bateau avec la proue ou la hanche au vent et à faible vitesse, pour minimiser le roulis et les coups de mer.',
+        category: 'accion',
+      },
+      {
+        term: 'Dar avante / dar atrás',
+        definition: 'Ordres de machine. « Dar avante » est propulser le bateau vers l\'avant ; « dar atrás » (ou culer) est le propulser vers l\'arrière. Essentiels dans les manœuvres de port et au mouillage.',
+        category: 'accion',
+      },
+      {
+        term: 'Aproar',
+        definition: 'Orienter la proue du bateau vers un point précis : la houle, le vent ou le cap désiré. Mettre la proue à la mer est la technique de base pour naviguer en sécurité quand il y a des vagues.',
+        category: 'accion',
+      },
+      {
+        term: 'Quilla',
+        definition: 'Pièce longitudinale à la base de la coque qui donne stabilité et rigidité au bateau et réduit la dérive latérale. Sur les embarcations légères à moteur, elle est peu prononcée.',
+        category: 'parte',
+      },
+      {
+        term: 'Casco',
+        definition: 'Corps ou structure flottante du bateau, qui le maintient à flot et supporte les autres éléments. Le plus courant en plaisance est la fibre de verre ; il y en a aussi en aluminium ou en bois.',
+        category: 'parte',
+      },
+      {
+        term: 'Timón',
+        definition: 'Pièce mobile située sous la poupe qui, en tournant, dévie le flux d\'eau et fait changer le bateau de cap. Il est gouverné avec la roue ou la barre du poste de pilotage.',
+        category: 'parte',
+      },
+      {
+        term: 'Hélice',
+        definition: 'Pièce rotative à pales qui, actionnée par le moteur, propulse le bateau en déplaçant l\'eau. Sur les moteurs hors-bord, elle est intégrée dans l\'embase du moteur.',
+        category: 'parte',
+      },
+      {
+        term: 'Amura',
+        definition: 'Zone du flanc du bateau proche de la proue, entre celle-ci et le travers. On parle d\'amure bâbord ou tribord ; « mer d\'amure » est la houle qui arrive par cette zone.',
+        category: 'parte',
+      },
+      {
+        term: 'Aleta',
+        definition: 'Zone du flanc du bateau proche de la poupe, entre le travers et la poupe. On parle de hanche bâbord ou tribord.',
+        category: 'parte',
+      },
+      {
+        term: 'Línea de flotación',
+        definition: 'Ligne où la surface de l\'eau touche la coque avec le bateau à flot et à sa charge normale. Sépare les œuvres vives (immergées) des œuvres mortes (émergées).',
+        category: 'parte',
+      },
+      {
+        term: 'Ancla',
+        definition: 'Pièce métallique jetée sur le fond marin, reliée au bateau par chaîne ou amarre, pour mouiller et maintenir la position. Le grappin est un type d\'ancre légère à plusieurs becs courant sur les petites embarcations.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cabo',
+        definition: 'Nom marin de toute corde à bord : on ne dit jamais « corde ». Les amarres servent à amarrer, mouiller, remorquer ou fixer des éléments du bateau.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Defensas',
+        definition: 'Éléments cylindriques ou sphériques, normalement gonflables, suspendus au flanc pour protéger la coque des chocs contre le quai ou d\'autres embarcations lors de l\'accostage.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cornamusa',
+        definition: 'Pièce métallique en forme de T fixée sur le pont où l\'on amarre les cordages. Permet de sécuriser et larguer l\'amarre rapidement.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Ecosonda',
+        definition: 'Instrument qui mesure la profondeur de l\'eau sous la coque en émettant des ultrasons et en mesurant l\'écho du fond. Indispensable pour mouiller en sécurité et éviter l\'échouage.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'GPS y carta náutica',
+        definition: 'Le GPS donne la position du bateau par satellite ; le traceur la représente sur une carte marine électronique avec profondeurs, balises et dangers. La carte marine est la carte officielle de la mer.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Chaleco salvavidas',
+        definition: 'Équipement individuel de flottabilité obligatoire à bord, un par personne. Maintient à flot quiconque tombe à l\'eau. Son port est obligatoire en situation de risque et fortement recommandé pour les mineurs et les non-nageurs.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Aro salvavidas',
+        definition: 'Bouée circulaire lancée à une personne tombée à l\'eau pour qu\'elle s\'y accroche pendant qu\'on la récupère. Elle porte généralement une ligne de vie (cordage) et, dans certains cas, une lumière de localisation.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Hombre al agua',
+        definition: 'Urgence dans laquelle une personne tombe à la mer. La manœuvre consiste à signaler l\'accidenté, ne pas le perdre de vue, lancer une bouée et revenir proue au vent avec précaution pour le récupérer sous le vent.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Bengalas y señales de socorro',
+        definition: 'Matériel de sécurité pyrotechnique (fusées à main, fusées à parachute, signaux fumigènes) pour demander de l\'aide et être localisé en cas d\'urgence en mer.',
+        category: 'seguridad',
+      },
+      {
+        term: 'VHF (Canal 16)',
+        definition: 'Radio très haute fréquence pour les communications maritimes. Le canal 16 est la fréquence internationale de détresse, d\'urgence et d\'appel, surveillée par les Secours maritimes.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Botiquín de a bordo',
+        definition: 'Ensemble de matériel sanitaire, obligatoire selon la zone de navigation, pour traiter les mal de mer, coupures, coups de soleil et petites urgences pendant la sortie.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Tramontana',
+        definition: 'Vent fort, froid et sec du nord caractéristique du golfe du Lion et du nord de la Costa Brava. Peut se lever rapidement et compliquer la navigation ; il convient de consulter les prévisions avant de partir de Blanes.',
+        category: 'meteo',
+      },
+      {
+        term: 'Garbí (Garbino)',
+        definition: 'Vent de sud-ouest typique des après-midi d\'été sur la Costa Brava, associé à la brise marine. Généralement modéré et rafraîchissant, bien qu\'il puisse rider la mer l\'après-midi.',
+        category: 'meteo',
+      },
+      {
+        term: 'Migjorn',
+        definition: 'Vent du sud (midi) sur la côte catalane. Chaud et humide, il annonce généralement un changement de temps et une augmentation de la houle.',
+        category: 'meteo',
+      },
+      {
+        term: 'Mar de fondo',
+        definition: 'Houle formée par un vent lointain ou déjà passé qui arrive sur la côte sous forme de vagues longues et régulières, même sans vent local. Peut rendre le mouillage inconfortable dans les criques exposées.',
+        category: 'meteo',
+      },
+      {
+        term: 'Marejada y mar rizada',
+        definition: 'États de la mer selon la hauteur des vagues : « mer ridée » ce sont de très petites vagues (jusqu\'à 0,5 m) et « mer agitée » des vagues de 0,5 à 1,25 m. Ce sont des termes du bulletin météorologique maritime.',
+        category: 'meteo',
+      },
+      {
+        term: 'Banderas de baño',
+        definition: 'Signalisation de plage : drapeau vert (baignade autorisée), jaune (prudence, baignade avec restrictions) et rouge (baignade interdite). Renseignent aussi sur l\'état de la mer pour sortir en bateau.',
+        category: 'meteo',
+      },
+      {
+        term: 'Parte meteorológico marítimo',
+        definition: 'Prévision spécifique pour la mer (vent, état de la mer, visibilité et phénomènes) émise par l\'AEMET par zones. La consulter avant chaque sortie est la première règle de sécurité.',
+        category: 'meteo',
+      },
+    ],
   },
 };

@@ -603,23 +603,6 @@ export const it: Translations = {
     tripDate: "Data",
     submit: "Invia foto",
   },
-  routes: {
-    title: "Percorsi Suggeriti",
-    subtitle: "Scopri i migliori percorsi in barca dal Porto di Blanes",
-    bookBoat: "Prenota barca",
-    introText:
-      "Dal Porto di Blanes, la porta d'ingresso alla Costa Brava, avete accesso diretto ad alcuni dei percorsi costieri più spettacolari del Mediterraneo. Ogni percorso è pensato per diversi livelli di esperienza e durate, dalle fughe di 1 ora alle escursioni di un'intera giornata. Esplorate le nostre",
-    introFleetLink: "imbarcazioni disponibili",
-    introSuffix: "per trovare la barca perfetta per il vostro percorso.",
-    lloretTitle: "Lloret de Mar in barca",
-    lloretDesc: "Spiagge dorate, cale nascoste e vita notturna. A soli 20 min in barca da Blanes.",
-    tossaTitle: "Tossa de Mar in barca",
-    tossaDesc:
-      "La Vila Vella medievale, scogliere impressionanti e le cale più incontaminate della Costa Brava.",
-    pricesTitle: "Prezzi e tariffe",
-    pricesDesc:
-      "Consultate i prezzi stagionali di tutte le nostre barche. Da 70€/ora senza patente.",
-  },
   giftCardBanner: {
     title: "Regala un'esperienza unica in mare",
     subtitle: "Carte regalo da 50 €. Il regalo perfetto per ogni occasione.",
@@ -3592,145 +3575,6 @@ export const it: Translations = {
       error: "Errore di invio. Riprova.",
     },
   },
-  glossaryPage: {
-    seo: {
-      title: "Glossario Nautico, Noleggio Barche Costa Brava | Costa Brava Rent a Boat",
-      description:
-        "Glossario dei termini nautici essenziali: LNB, PER, PNB, nodi, miglia nautiche, lunghezza, ancoraggio, calette e parti della barca. Dizionario pratico per noleggiare una barca a Blanes.",
-      keywords:
-        "glossario nautico, cosa è LNB, cosa è PER, cosa è PNB, miglia nautiche, nodi, lunghezza, ancorare, glossario barche",
-    },
-    breadcrumbName: "Glossario Nautico",
-    h1: "Glossario Nautico",
-    intro:
-      "{count} termini essenziali per noleggiare una barca sulla Costa Brava. Patenti nautiche, unità di misura, parti della barca e vocabolario marino.",
-    filterAll: "Tutti",
-    ctaTitle: "Pronto a noleggiare la tua barca?",
-    ctaDesc:
-      "Ora che conosci la terminologia, scegli la tua barca senza patente o con patente per esplorare la Costa Brava.",
-    ctaFleet: "Vedi la flotta",
-    ctaFaq: "Domande frequenti",
-    schemaName: "Glossario nautico, Noleggio barche Costa Brava",
-    schemaDescription:
-      "Definizioni dei termini nautici essenziali per noleggiare una barca sulla Costa Brava: patenti nautiche, unità di misura, parti della barca e terminologia marittima.",
-    categories: {
-      titulacion: "Patenti nautiche",
-      unidad: "Unità di misura",
-      accion: "Azioni",
-      parte: "Parti della barca e costa",
-      equipamiento: "Equipaggiamento",
-    },
-    terms: [
-      {
-        term: "LNB (Licencia de Navegación Básica)",
-        definition:
-          "Patente nautica spagnola che permette di governare imbarcazioni fino a 8 metri di lunghezza e fino a 5 miglia dalla costa. Obbligatoria per noleggiare barche con più di 15 CV. Valida a vita dopo aver superato l'esame teorico + corso pratico.",
-        category: "titulacion",
-      },
-      {
-        term: "PER (Patrón de Embarcaciones de Recreo)",
-        definition:
-          "Patente nautica spagnola superiore alla LNB. Permette di governare imbarcazioni fino a 15 metri di lunghezza e fino a 12 miglia dalla costa. Richiede esame teorico + pratiche di navigazione + radiocomunicazioni.",
-        category: "titulacion",
-      },
-      {
-        term: "PNB (Patrón de Navegación Básica)",
-        definition:
-          "Vecchia patente nautica sostituita nel 2014 dalla LNB. Permette di governare imbarcazioni fino a 8 metri fino a 5 miglia. Chi la possiede può continuare a usarla senza necessità di aggiornarla alla LNB.",
-        category: "titulacion",
-      },
-      {
-        term: "Miglio nautico",
-        definition:
-          "Unità di distanza marittima internazionale equivalente a 1.852 metri (1,852 km). Le imbarcazioni senza patente in Spagna possono navigare fino a un massimo di 2 miglia nautiche dalla costa (3,7 km).",
-        category: "unidad",
-      },
-      {
-        term: "Nodo",
-        definition:
-          "Unità di velocità marittima equivalente a 1 miglio nautico all'ora (1,852 km/h). Le imbarcazioni senza patente sono limitate a 5 nodi (9,3 km/h). Le barche con patente possono raggiungere velocità molto maggiori.",
-        category: "unidad",
-      },
-      {
-        term: "Lunghezza fuori tutto",
-        definition:
-          "Lunghezza totale della barca, misurata da prua a poppa. Unità: metri. In Spagna, la lunghezza determina la patente nautica minima: fino a 5m può non richiedere patente, fino a 8m richiede LNB, fino a 15m richiede PER.",
-        category: "unidad",
-      },
-      {
-        term: "Baglio",
-        definition:
-          "Larghezza massima della barca, misurata da un lato all'altro nel suo punto più largo. Unità: metri. Insieme alla lunghezza definisce la stabilità e lo spazio disponibile a bordo.",
-        category: "unidad",
-      },
-      {
-        term: "CV (cavalli vapore)",
-        definition:
-          "Unità di potenza del motore marino. Le barche senza patente in Spagna sono limitate a 15 CV. Le barche con patente hanno tipicamente 40-150 CV, permettendo navigazione più veloce e maggiore autonomia.",
-        category: "unidad",
-      },
-      {
-        term: "Ancorare",
-        definition:
-          "Azione di fermare la barca gettando l'ancora sul fondo marino per mantenerla ferma in una caletta o zona senza ormeggio. Richiede di scegliere un fondo sabbioso (non roccioso), dare cima sufficiente (3-4 volte la profondità) e verificare che l'ancora faccia presa.",
-        category: "accion",
-      },
-      {
-        term: "Caletta",
-        definition:
-          "Piccola insenatura riparata sulla costa, tipicamente circondata da scogliere o vegetazione. Sulla Costa Brava esistono decine di calette accessibili solo via mare, con acque cristalline e fondali rocciosi ideali per lo snorkeling.",
-        category: "parte",
-      },
-      {
-        term: "Porto turistico",
-        definition:
-          "Infrastruttura portuale destinata alle imbarcazioni da diporto con ormeggi, servizi di rifornimento carburante, acqua, elettricità e cantiere. Il Porto di Blanes (Girona) è il porto turistico nautico di riferimento sulla Costa Brava meridionale.",
-        category: "parte",
-      },
-      {
-        term: "Prua",
-        definition:
-          "Parte anteriore della barca, opposta alla poppa. Nelle barche da diporto ospita solitamente il prendisole principale e la luce di navigazione bianca.",
-        category: "parte",
-      },
-      {
-        term: "Poppa",
-        definition:
-          "Parte posteriore della barca, opposta alla prua. Ospita il motore fuoribordo, la scaletta da bagno e tipicamente la zona con tavolo centrale.",
-        category: "parte",
-      },
-      {
-        term: "Dritta",
-        definition:
-          'Lato destro della barca guardando da poppa verso prua. Si identifica con la luce di navigazione verde. Regola d\'oro: "Dritta = destra" (entrambe iniziano con D).',
-        category: "parte",
-      },
-      {
-        term: "Sinistra",
-        definition:
-          "Lato sinistro della barca guardando da poppa verso prua. Si identifica con la luce di navigazione rossa.",
-        category: "parte",
-      },
-      {
-        term: "Bimini / Tendalino bimini",
-        definition:
-          "Tendalino apribile che copre il pozzetto della barca fornendo ombra. Essenziale per la navigazione con bambini o in estate. La maggior parte delle nostre barche senza patente lo include di serie.",
-        category: "equipamiento",
-      },
-      {
-        term: "Prendisole",
-        definition:
-          "Zona imbottita della barca destinata a sdraiarsi al sole, tipicamente a prua o a poppa. Le barche premium hanno prendisole doppio (prua e poppa).",
-        category: "equipamiento",
-      },
-      {
-        term: "Pozzetto",
-        definition:
-          "Zona centrale della barca dove si trovano i sedili, il posto di comando e il tavolo. È lo spazio operativo della barca durante la navigazione.",
-        category: "parte",
-      },
-    ],
-  },
   faqPage: {
     heroTitle: "Domande Frequenti",
     heroDescription:
@@ -4287,5 +4131,513 @@ export const it: Translations = {
       errorText: "Non siamo riusciti a inviare i tuoi dati. Riprova o scrivici su WhatsApp.",
       requiredError: "Completa nome e telefono, per favore.",
     },
+  },
+  routes: {
+    title: 'Percorsi Suggeriti',
+    subtitle: 'Scopri i migliori percorsi in barca dal Porto di Blanes',
+    bookBoat: 'Prenota barca',
+    introText: 'Dal Porto di Blanes, la porta d\'ingresso alla Costa Brava, avete accesso diretto ad alcuni dei percorsi costieri più spettacolari del Mediterraneo. Ogni percorso è pensato per diversi livelli di esperienza e durate, dalle fughe di 1 ora alle escursioni di un\'intera giornata. Esplorate le nostre',
+    introFleetLink: 'imbarcazioni disponibili',
+    introSuffix: 'per trovare la barca perfetta per il vostro percorso.',
+    lloretTitle: 'Lloret de Mar in barca',
+    lloretDesc: 'Spiagge dorate, cale nascoste e vita notturna. A soli 20 min in barca da Blanes.',
+    tossaTitle: 'Tossa de Mar in barca',
+    tossaDesc: 'La Vila Vella medievale, scogliere impressionanti e le cale più incontaminate della Costa Brava.',
+    pricesTitle: 'Prezzi e tariffe',
+    pricesDesc: 'Consultate i prezzi stagionali di tutte le nostre barche. Da 70€/ora senza patente.',
+    guide: {
+      heading: 'Guida per navigare la Costa Brava da Blanes',
+      geographyTitle: 'Il litorale: da Blanes a Tossa de Mar',
+      geographyBody: 'Il Porto di Blanes segna l\'inizio della Costa Brava. Navigando verso nord, lo scoglio di Sa Palomera lascia il posto a una successione di calette dalle acque turchesi: Cala Sant Francesc, Santa Cristina e Cala Treumal prima di arrivare a Lloret de Mar (circa 20 minuti in barca), e più oltre Cala Boadella e le calette incontaminate di Tossa de Mar, con la sua Vila Vella medievale che domina il mare. Con una barca con patente, il tragitto Blanes–Tossa richiede circa 30-45 minuti di navigazione tranquilla lungo la costa.',
+      seaTitle: 'Condizioni del mare e venti',
+      seaBody: 'Il tratto meridionale della Costa Brava offre, in generale, una navigazione comoda in estate. Al mattino il mare è solitamente calmo; nel pomeriggio può arrivare il garbí, la brezza di sudovest che increspa leggermente la superficie. Il vento da tenere d\'occhio è la tramontana, forte e da nord, che può alzarsi rapidamente: consulta sempre le previsioni meteo marine prima di partire. Le imbarcazioni senza patente possono navigare fino a 2 miglia nautiche dalla costa (3,7 km) e a una velocità massima di 5 nodi, sufficiente per esplorare tutte queste calette in sicurezza.',
+      calasTitle: 'Calette e snorkeling',
+      calasBody: 'Le calette tra Blanes e Tossa hanno fondali rocciosi e acque cristalline, ideali per ancorare e fare snorkeling. Cala Bona, Cala Treumal e Santa Cristina offrono acque riparate; a Lloret, Cala Boadella; e verso Tossa, Cala Llevadó, Cala Giverola e Cala Pola, molte delle quali accessibili solo via mare. Ricorda di ancorare su fondale sabbioso — mai sulle praterie di posidonia, che sono protette — e di dare cima sufficiente perché l\'ancora faccia presa.',
+      seasonTitle: 'Periodo migliore per navigare',
+      seasonBody: 'La stagione di navigazione va da aprile a ottobre, con orario di partenze dalle 09:00 alle 20:00. Luglio e agosto offrono il mare più caldo e stabile, ideale per il bagno e lo snorkeling; giugno e settembre sono perfetti per chi cerca calette meno affollate e luce dorata. Fuori stagione non operiamo. Nei mesi estivi conviene prenotare con anticipo: la disponibilità di barche e fasce orarie è limitata.',
+    },
+  },
+  lastUpdated: {
+    label: 'Ultimo aggiornamento',
+  },
+  occasionMatrix: {
+    pages: {
+      snorkel__locationBlanes: {
+        seoTitle: 'Snorkeling in barca da Blanes — Migliori calette | Costa Brava Rent a Boat',
+        seoDescription: 'Noleggia una barca senza patente a Blanes e fai snorkeling a Cala Sant Francesc, Sa Forcanera o Cala Treumal. Carburante incluso, senza esperienza, calette a meno di 2 miglia.',
+        h1: 'Snorkeling in barca da Blanes',
+        intro: 'Dal Porto di Blanes, in pochi minuti di navigazione arrivi a calette con acque cristalline e fondali rocciosi perfetti per lo snorkeling. Con una barca senza patente — carburante incluso e senza bisogno di esperienza — scegli la tua caletta, ancori e ti tuffi in acqua al tuo ritmo.',
+        spotsTitle: 'Migliori calette per snorkeling vicino a Blanes',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Cala Bona)',
+            description: 'Insenatura protetta dai pini all\'uscita di Blanes, con acqua tranquilla e rocce laterali piene di vita: il miglior primo ancoraggio per snorkeling in famiglia.',
+          },
+          {
+            name: 'Sa Forcanera',
+            description: 'Piccola caletta sotto le scogliere del Giardino Botanico Marimurtra, con acque profonde e trasparenti, ideale per nuotare sopra fondali rocciosi.',
+          },
+          {
+            name: 'Cala Treumal',
+            description: 'Al confine tra Blanes e Lloret, fondale di roccia e sabbia che attira pesci; buon ancoraggio riparato dal garbí.',
+          },
+          {
+            name: 'Punta de Santa Anna',
+            description: 'Accanto al castello di Sant Joan, pareti rocciose che scendono a picco sul mare con eccellente visibilità per osservare la fauna mediterranea.',
+          },
+        ],
+        boatsTitle: 'Quale barca scegliere per fare snorkeling',
+        boatsIntro: 'Per lo snorkeling a Blanes raccomandiamo le nostre barche senza patente: includono il carburante, si guidano senza patente nautica e arrivano senza problema a queste calette, tutte entro le 2 miglia dalla costa. Sono dotate di scaletta da bagno per entrare e uscire dall\'acqua comodamente.',
+        practicalTitle: 'Informazioni pratiche',
+        practicalBody: 'Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Le barche senza patente navigano fino a 2 miglia nautiche dalla costa, distanza più che sufficiente per tutte queste calette. Porta maschera e boccaglio, protezione solare e acqua. Ricorda di ancorare sulla sabbia, mai sulle praterie di posidonia.',
+        faqTitle: 'Domande frequenti',
+        faq: [
+          {
+            q: 'Ho bisogno della patente per fare snorkeling in barca da Blanes?',
+            a: 'No. Le nostre barche senza patente si guidano senza patente nautica e arrivano a tutte le calette di snorkeling vicine a Blanes. Ti spieghiamo il funzionamento prima di partire.',
+          },
+          {
+            q: 'L\'attrezzatura da snorkeling è inclusa?',
+            a: 'La barca include scaletta da bagno e carburante. Per lo snorkeling ti consigliamo di portare la tua maschera e il tuo boccaglio, così ti assicuri una taglia comoda.',
+          },
+        ],
+        ctaTitle: 'Prenota la tua uscita di snorkeling a Blanes',
+        ctaText: 'Scegli data e barca senza patente, e preparati alla migliore giornata di snorkeling tra le calette di Blanes.',
+      },
+      snorkel__locationLloret: {
+        seoTitle: 'Snorkeling in barca a Lloret de Mar — Cala Boadella e Cala Banys | Costa Brava Rent a Boat',
+        seoDescription: 'Scopri le migliori calette per snorkeling di Lloret de Mar in barca da Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Barca con patente, circa 20 minuti di navigazione.',
+        h1: 'Snorkeling in barca a Lloret de Mar',
+        intro: 'Lloret de Mar nasconde alcune delle calette con l\'acqua migliore della Costa Brava sud, molte accessibili solo via mare. Partendo da Blanes in circa 20 minuti di navigazione arrivi ai suoi angoli rocciosi e li percorri facendo snorkeling senza le folle della spiaggia.',
+        spotsTitle: 'Migliori calette per snorkeling a Lloret de Mar',
+        spots: [
+          {
+            name: 'Cala Boadella',
+            description: 'Una delle calette più belle di Lloret; la sua estremità sud, rocciosa e con acqua limpida, lascia vedere pesci appena si mette la testa sott\'acqua.',
+          },
+          {
+            name: 'Cala Banys',
+            description: 'Insenatura rocciosa con scogliere scure e acqua profonda, un classico per snorkeling su roccia con buona visibilità.',
+          },
+          {
+            name: 'Cala dels Frares',
+            description: 'Piccola caletta di ciottoli circondata da pareti verticali, rifugio di fauna mediterranea ideale per nuotare lentamente.',
+          },
+          {
+            name: 'Santa Cristina',
+            description: 'Ampia caletta di sabbia con estremità rocciose; i lati offrono uno snorkeling facile e sicuro, perfetto per principianti.',
+          },
+        ],
+        boatsTitle: 'Quale barca scegliere per arrivare a Lloret',
+        boatsIntro: 'Le calette di Lloret si trovano oltre il limite di 2 miglia delle barche senza patente, quindi per arrivarci serve una delle nostre barche con patente. Sono comode, coprono il tragitto da Blanes in circa 20 minuti e ti danno autonomia per visitare più calette nella stessa uscita.',
+        practicalTitle: 'Informazioni pratiche',
+        practicalBody: 'Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Il tragitto fino alle calette di Lloret richiede circa 20 minuti di navigazione tranquilla lungo la costa. Porta maschera e boccaglio, protezione solare e acqua. Ancora sulla sabbia, mai sulle praterie di posidonia.',
+        faqTitle: 'Domande frequenti',
+        faq: [
+          {
+            q: 'Quanto tempo ci vuole da Blanes alle calette di Lloret in barca?',
+            a: 'Circa 20 minuti di navigazione tranquilla costeggiando, a seconda della caletta e delle condizioni del mare.',
+          },
+          {
+            q: 'Quali calette di Lloret sono migliori per lo snorkeling?',
+            a: 'Cala Boadella, Cala Banys e Cala dels Frares si distinguono per il fondale roccioso e la trasparenza dell\'acqua.',
+          },
+        ],
+        ctaTitle: 'Prenota la tua uscita di snorkeling a Lloret de Mar',
+        ctaText: 'Scegli data e barca con patente, e scopri le calette di snorkeling di Lloret partendo da Blanes.',
+      },
+      snorkel__locationTossa: {
+        seoTitle: 'Snorkeling in barca a Tossa de Mar — Calette vergini e acque protette | Costa Brava Rent a Boat',
+        seoDescription: 'Fai snorkeling nelle acque limpide di Tossa de Mar: La Mar Menuda, Cala Giverola, Cala Pola. Partenza in barca con patente da Blanes, 30-45 minuti di navigazione.',
+        h1: 'Snorkeling in barca a Tossa de Mar',
+        intro: 'Tossa de Mar è una delle migliori destinazioni per snorkeling della Costa Brava: parte del suo litorale è protetto, con fondali rocciosi e praterie ricche di vita. Da Blanes sono circa 30-45 minuti di navigazione con una barca con patente fino alle sue calette più vergini.',
+        spotsTitle: 'Migliori calette per snorkeling a Tossa de Mar',
+        spots: [
+          {
+            name: 'La Mar Menuda',
+            description: 'Accanto al centro storico, una baia con acque riparate e fondale roccioso molto apprezzata da subacquei e appassionati di snorkeling per la ricchezza di fauna.',
+          },
+          {
+            name: 'Cala Giverola',
+            description: 'Caletta profonda incastonata tra montagne, con acqua particolarmente chiara e pareti rocciose perfette per nuotare osservando i pesci.',
+          },
+          {
+            name: 'Cala Pola',
+            description: 'Ambiente naturale protetto a nord di Tossa, con fondale di roccia e sabbia e una trasparenza eccellente.',
+          },
+          {
+            name: 'Cala Futadera',
+            description: 'Caletta vergine senza accesso stradale, solo via mare o sentiero; acque pulite e tranquille, un ancoraggio esclusivo per snorkeling.',
+          },
+        ],
+        boatsTitle: 'Quale barca scegliere per arrivare a Tossa',
+        boatsIntro: 'Tossa si trova ben oltre le 2 miglia, fuori dalla portata delle barche senza patente. Per arrivare alle sue calette serve una delle nostre barche con patente, che coprono il tragitto da Blanes in 30-45 minuti e ti permettono di passare la giornata esplorando più calette.',
+        practicalTitle: 'Informazioni pratiche',
+        practicalBody: 'Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. La navigazione fino a Tossa richiede 30-45 minuti; per questo conviene prenotare durate di 4 ore o più per godersi la destinazione con calma. Porta maschera e boccaglio, protezione solare e acqua. Rispetta le zone protette e ancora solo sulla sabbia.',
+        faqTitle: 'Domande frequenti',
+        faq: [
+          {
+            q: 'Si può andare da Blanes a Tossa con una barca senza patente?',
+            a: 'No. Tossa si trova fuori dal limite di 2 miglia delle barche senza patente; il tragitto si fa con una barca con patente, in 30-45 minuti da Blanes.',
+          },
+          {
+            q: 'Perché Tossa è buona per lo snorkeling?',
+            a: 'Parte del suo litorale è protetto, con fondali rocciosi e praterie molto ben conservati; calette come La Mar Menuda o Giverola offrono una visibilità eccellente.',
+          },
+        ],
+        ctaTitle: 'Prenota la tua uscita di snorkeling a Tossa de Mar',
+        ctaText: 'Scegli data e barca con patente, e dedica la giornata alle calette protette di Tossa partendo da Blanes.',
+      },
+      snorkel__locationCostaBrava: {
+        seoTitle: 'Snorkeling in barca sulla Costa Brava — Le migliori calette da Blanes | Costa Brava Rent a Boat',
+        seoDescription: 'Percorri in barca le migliori calette per snorkeling della Costa Brava sud, da Blanes a Tossa de Mar. Barche senza patente per le calette vicine e con patente per il tratto completo.',
+        h1: 'Snorkeling in barca sulla Costa Brava',
+        intro: 'Il tratto sud della Costa Brava, da Blanes a Tossa de Mar, concentra decine di calette con fondali rocciosi e acqua trasparente ideali per lo snorkeling. Dal Porto di Blanes puoi scegliere tra un\'uscita breve alle calette più vicine o una giornata completa percorrendo la costa.',
+        spotsTitle: 'Calette imperdibili per snorkeling sulla Costa Brava sud',
+        spots: [
+          {
+            name: 'Cala Sant Francesc (Blanes)',
+            description: 'La caletta più accessibile, riparata e adatta alle famiglie: il punto di partenza perfetto, alla portata di una barca senza patente.',
+          },
+          {
+            name: 'Cala Boadella (Lloret)',
+            description: 'Angolo roccioso con acqua limpida, uno dei migliori ancoraggi per snorkeling del tratto centrale della costa.',
+          },
+          {
+            name: 'Cala Giverola (Tossa)',
+            description: 'Caletta profonda con acque cristalline tra montagne, già nell\'estremità nord del percorso.',
+          },
+          {
+            name: 'Cala Pola (Tossa)',
+            description: 'Ambiente naturale protetto con fondale di roccia e sabbia, ricompensa per chi fa la traversata completa.',
+          },
+        ],
+        boatsTitle: 'Quale barca scegliere a seconda di quanto lontano vuoi arrivare',
+        boatsIntro: 'Per le calette più vicine a Blanes basta una barca senza patente, con carburante incluso e senza patente nautica. Per percorrere il tratto completo fino a Lloret e Tossa — oltre le 2 miglia — serve una barca con patente, con autonomia per visitare più calette in giornata.',
+        practicalTitle: 'Informazioni pratiche',
+        practicalBody: 'Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Le barche senza patente navigano fino a 2 miglia; per arrivare a Lloret (~20 min) o Tossa (30-45 min) si usa una barca con patente. Porta maschera e boccaglio, protezione solare e acqua. Ancora sempre sulla sabbia, mai sulla posidonia.',
+        faqTitle: 'Domande frequenti',
+        faq: [
+          {
+            q: 'Che tratto della Costa Brava posso percorrere in un\'uscita?',
+            a: 'Con una barca con patente puoi visitare calette di Blanes, Lloret e Tossa in una giornata; con una senza patente ti godrai le calette più vicine a Blanes.',
+          },
+          {
+            q: 'Qual è il periodo migliore per lo snorkeling?',
+            a: 'Da giugno a settembre il mare è più caldo e limpido; luglio e agosto offrono le migliori condizioni, mentre giugno o settembre calette più tranquille.',
+          },
+        ],
+        ctaTitle: 'Prenota il tuo percorso di snorkeling sulla Costa Brava',
+        ctaText: 'Scegli la tua barca a seconda di quanto lontano vuoi arrivare e scopri le migliori calette della costa partendo da Blanes.',
+      },
+    },
+  },
+  glossaryPage: {
+    seo: {
+      title: 'Glossario Nautico, Noleggio Barche Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossario dei termini nautici essenziali: LNB, PER, PNB, nodi, miglia nautiche, lunghezza, ancoraggio, calette e parti della barca. Dizionario pratico per noleggiare una barca a Blanes.',
+      keywords: 'glossario nautico, cosa è LNB, cosa è PER, cosa è PNB, miglia nautiche, nodi, lunghezza, ancorare, glossario barche',
+    },
+    breadcrumbName: 'Glossario Nautico',
+    h1: 'Glossario Nautico',
+    intro: '{count} termini essenziali per noleggiare una barca sulla Costa Brava. Patenti nautiche, unità di misura, parti della barca e vocabolario marino.',
+    filterAll: 'Tutti',
+    ctaTitle: 'Pronto a noleggiare la tua barca?',
+    ctaDesc: 'Ora che conosci la terminologia, scegli la tua barca senza patente o con patente per esplorare la Costa Brava.',
+    ctaFleet: 'Vedi la flotta',
+    ctaFaq: 'Domande frequenti',
+    schemaName: 'Glossario nautico, Noleggio barche Costa Brava',
+    schemaDescription: 'Definizioni dei termini nautici essenziali per noleggiare una barca sulla Costa Brava: patenti nautiche, unità di misura, parti della barca e terminologia marittima.',
+    categories: {
+      titulacion: 'Patenti nautiche',
+      unidad: 'Unità di misura',
+      accion: 'Azioni',
+      parte: 'Parti della barca e costa',
+      equipamiento: 'Equipaggiamento',
+      seguridad: 'Sicurezza a bordo',
+      meteo: 'Meteorologia e mare',
+    },
+    terms: [
+      {
+        term: 'LN (Licencia de Navegación)',
+        definition: 'Patente nautica spagnola minima riconosciuta dal RD 875/2014. Permette di condurre imbarcazioni fino a 6 metri di lunghezza, con motore adeguato allo scafo e fino a 2 miglia nautiche dalla costa, in orario diurno. È la patente minima richiesta per le barche con licenza della nostra flotta (Mingolla Brava 19, Trimarchi 57S e Pacific Craft 625). Esame teorico + corso di sicurezza di base.',
+        category: 'titulacion',
+      },
+      {
+        term: 'LNB (Licencia de Navegación Básica)',
+        definition: 'Patente nautica spagnola superiore alla LN. Permette di condurre imbarcazioni fino a 8 metri di lunghezza e fino a 5 miglia dalla costa. Consigliata per chi desidera maggiore flessibilità di zona. Valida a vita dopo aver superato l\'esame teorico + corso pratico.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Patente nautica spagnola superiore alla LNB. Permette di condurre imbarcazioni fino a 15 metri di lunghezza e fino a 12 miglia dalla costa. Richiede esame teorico + pratica di navigazione + radiocomunicazioni.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Vecchia patente nautica sostituita nel 2014 dalla LNB. Permette di condurre imbarcazioni fino a 8 metri fino a 5 miglia. Chi la possiede può continuare a utilizzarla senza doverla aggiornare alla LNB.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Miglia nautica',
+        definition: 'Unità di distanza marittima internazionale equivalente a 1.852 metri (1,852 km). In Spagna le imbarcazioni senza licenza possono navigare fino a un massimo di 2 miglia nautiche dalla costa (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Nodo',
+        definition: 'Unità di velocità marittima equivalente a 1 miglio nautico all\'ora (1,852 km/h). Le imbarcazioni senza licenza sono limitate a 5 nodi (9,3 km/h). Le barche con licenza possono raggiungere velocità molto superiori.',
+        category: 'unidad',
+      },
+      {
+        term: 'Eslora',
+        definition: 'Lunghezza totale della barca, misurata da prua a poppa. Unità: metri. In Spagna, la lunghezza determina la patente nautica minima: fino a 5m può non richiedere patente, fino a 8m richiede LNB, fino a 15m richiede PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Manga',
+        definition: 'Larghezza massima della barca, misurata da un lato all\'altro nel suo punto più largo. Unità: metri. Insieme alla lunghezza definisce la stabilità e lo spazio disponibile a bordo.',
+        category: 'unidad',
+      },
+      {
+        term: 'CV (cavalli vapore)',
+        definition: 'Unità di potenza del motore marino. Le barche senza licenza in Spagna sono limitate a 15 CV. Le barche con licenza hanno tipicamente 40-150 CV, consentendo una navigazione più veloce e una maggiore autonomia.',
+        category: 'unidad',
+      },
+      {
+        term: 'Fondear',
+        definition: 'Azione di fermare la barca gettando l\'ancora sul fondo marino per mantenerla ferma in una cala o zona senza ormeggio. Richiede di scegliere un fondale sabbioso (non roccioso), filare cavo sufficiente (3-4 volte la profondità) e verificare che l\'ancora tenga.',
+        category: 'accion',
+      },
+      {
+        term: 'Cala',
+        definition: 'Piccola insenatura riparata sulla costa, tipicamente circondata da scogliere o vegetazione. Nella Costa Brava esistono decine di calette accessibili solo via mare, con acque cristalline e fondali rocciosi ideali per lo snorkeling.',
+        category: 'parte',
+      },
+      {
+        term: 'Puerto deportivo',
+        definition: 'Impianto portuale destinato a imbarcazioni da diporto con ormeggi, servizi di carburante, acqua, elettricità e rimessaggio. Il Porto di Blanes (Girona) è il porto turistico nautico di riferimento nella Costa Brava Sud.',
+        category: 'parte',
+      },
+      {
+        term: 'Proa',
+        definition: 'Parte anteriore della barca, opposta alla poppa. Nelle barche da diporto ospita solitamente il prendisole principale e la luce di navigazione bianca.',
+        category: 'parte',
+      },
+      {
+        term: 'Popa',
+        definition: 'Parte posteriore della barca, opposta alla prua. Ospita il motore fuoribordo, la scaletta da bagno e tipicamente la zona con il tavolo centrale.',
+        category: 'parte',
+      },
+      {
+        term: 'Estribor',
+        definition: 'Lato destro della barca guardando da poppa verso prua. Si identifica con la luce verde di navigazione. Regola d\'oro: \'Estribor = destro\' (entrambi iniziano con la stessa lettera in spagnolo).',
+        category: 'parte',
+      },
+      {
+        term: 'Babor',
+        definition: 'Lato sinistro della barca guardando da poppa verso prua. Si identifica con la luce rossa di navigazione.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Toldo bimini',
+        definition: 'Tendalino apribile che copre il pozzetto della barca fornendo ombra. Essenziale per la navigazione con bambini o in estate. La maggior parte delle nostre barche senza licenza lo include di serie.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Solárium',
+        definition: 'Zona imbottita della barca destinata a sdraiarsi al sole, tipicamente a prua o a poppa. Le barche premium hanno prendisole doppio (prua e poppa).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Bañera',
+        definition: 'Zona centrale della barca dove si trovano i sedili, il posto di comando e il tavolo. È lo spazio operativo della barca durante la navigazione.',
+        category: 'parte',
+      },
+      {
+        term: 'PY (Patrón de Yate)',
+        definition: 'Patente nautica spagnola superiore al PER. Permette di condurre imbarcazioni fino a 24 metri di lunghezza e fino a 150 miglia dalla costa. Amplia il PER con navigazione, meteorologia e inglese tecnico. Non serve per nessuna barca della nostra flotta, ma è il riferimento per la navigazione d\'altura.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Calado',
+        definition: 'Profondità necessaria a una barca per galleggiare senza toccare il fondo, misurata dalla linea di galleggiamento fino al punto più basso della chiglia o dell\'elica. Unità: metri. Le imbarcazioni da diporto leggere hanno pescaggi ridotti, il che permette di avvicinarsi a calette poco profonde.',
+        category: 'unidad',
+      },
+      {
+        term: 'Rumbo',
+        definition: 'Direzione verso cui naviga la barca, misurata in gradi (0° a 360°) rispetto al nord: 0°/360° nord, 90° est, 180° sud, 270° ovest. Mantenere una rotta costante è la base della navigazione tra Blanes e le calette della Costa Brava.',
+        category: 'unidad',
+      },
+      {
+        term: 'Singladura',
+        definition: 'Distanza percorsa o navigazione effettuata in un giorno. Nella navigazione da diporto costiera si usa in modo colloquiale per riferirsi all\'uscita o alla giornata di mare completa.',
+        category: 'unidad',
+      },
+      {
+        term: 'Braza',
+        definition: 'Antica unità di profondità equivalente a 1,8288 metri (6 piedi). Compare ancora in alcune carte nautiche e tra i marinai per riferirsi al fondale o alla lunghezza di cavo filato quando si getta l\'ancora.',
+        category: 'unidad',
+      },
+      {
+        term: 'Atracar',
+        definition: 'Manovra di avvicinamento e ormeggio della barca a una banchina, pontile o molo. Richiede di controllare la velocità, anticipare vento e corrente e proteggere lo scafo con i parabordi.',
+        category: 'accion',
+      },
+      {
+        term: 'Largar amarras',
+        definition: 'Mollare le cime che tengono la barca all\'ormeggio per iniziare la navigazione; il contrario di ormeggiare. Colloquialmente, \'largar amarras\' equivale a salpare.',
+        category: 'accion',
+      },
+      {
+        term: 'Virar',
+        definition: 'Cambiare la rotta della barca girando la prua verso un lato. Descrive anche la rotazione completa per invertire la direzione di marcia.',
+        category: 'accion',
+      },
+      {
+        term: 'Capear',
+        definition: 'Affrontare il maltempo o il mare grosso mantenendo la barca con la prua o la mascone al moto ondoso e a bassa velocità, per ridurre al minimo il rollio e i colpi di mare.',
+        category: 'accion',
+      },
+      {
+        term: 'Dar avante / dar atrás',
+        definition: 'Comandi di macchina. \'Dar avante\' significa spingere la barca in avanti; \'dar atrás\' (o indietreggiare) significa spingerla all\'indietro. Essenziali nelle manovre in porto e quando si getta l\'ancora.',
+        category: 'accion',
+      },
+      {
+        term: 'Aproar',
+        definition: 'Orientare la prua della barca verso un punto specifico: il moto ondoso, il vento o la rotta desiderata. Mettere la prua al mare è la tecnica base per navigare in sicurezza quando ci sono onde.',
+        category: 'accion',
+      },
+      {
+        term: 'Quilla',
+        definition: 'Elemento longitudinale alla base dello scafo che conferisce stabilità e rigidità alla barca e riduce la deriva laterale. Nelle imbarcazioni leggere a motore è poco pronunciata.',
+        category: 'parte',
+      },
+      {
+        term: 'Casco',
+        definition: 'Corpo o struttura galleggiante della barca, che la mantiene a galla e sostiene tutti gli altri elementi. Il materiale più comune nel diporto è la vetroresina; esistono anche scafi in alluminio o legno.',
+        category: 'parte',
+      },
+      {
+        term: 'Timón',
+        definition: 'Elemento mobile situato sotto la poppa che, ruotando, devia il flusso dell\'acqua e fa cambiare rotta alla barca. Si governa con il volante o la barra del posto di comando.',
+        category: 'parte',
+      },
+      {
+        term: 'Hélice',
+        definition: 'Elemento rotante a pale che, azionato dal motore, spinge la barca spostando l\'acqua. Nei motori fuoribordo è integrata nella coda del motore.',
+        category: 'parte',
+      },
+      {
+        term: 'Amura',
+        definition: 'Zona del fianco della barca prossima alla prua, tra questa e il mascone. Si parla di mascone di babordo o di dritta; \'mare di mascone\' è il moto ondoso che arriva da quella zona.',
+        category: 'parte',
+      },
+      {
+        term: 'Aleta',
+        definition: 'Zona del fianco della barca prossima alla poppa, tra il mascone e la poppa. Si parla di giardinetto di babordo o di dritta.',
+        category: 'parte',
+      },
+      {
+        term: 'Línea de flotación',
+        definition: 'Linea in cui la superficie dell\'acqua tocca lo scafo con la barca a galla e con il suo carico normale. Separa l\'opera viva (sommersa) dall\'opera morta (emersa).',
+        category: 'parte',
+      },
+      {
+        term: 'Ancla',
+        definition: 'Elemento metallico che si getta sul fondo marino, collegato alla barca da catena o cima, per ancorarsi e mantenere la posizione. Il grappino è un tipo di ancora leggera a più marre tipica delle imbarcazioni piccole.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cabo',
+        definition: 'Nome marinaro di ogni corda a bordo: non si dice mai \'corda\'. Le cime servono per ormeggiare, ancorare, rimorchiare o fissare elementi della barca.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Defensas',
+        definition: 'Elementi cilindrici o sferici, normalmente gonfiabili, che si appendono al fianco per proteggere lo scafo da urti contro la banchina o altre imbarcazioni durante l\'ormeggio.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cornamusa',
+        definition: 'Elemento metallico a forma di T fissato in coperta dove si fissano le cime di ormeggio. Permette di assicurare e mollare la cima rapidamente.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Ecosonda',
+        definition: 'Strumento che misura la profondità dell\'acqua sotto lo scafo emettendo ultrasuoni e misurando l\'eco del fondale. Indispensabile per ancorare in sicurezza ed evitare di incagliarsi.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'GPS y carta náutica',
+        definition: 'Il GPS fornisce la posizione della barca via satellite; il plotter la rappresenta su una carta nautica elettronica con profondità, boe e pericoli. La carta nautica è la mappa ufficiale del mare.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Chaleco salvavidas',
+        definition: 'Dispositivo individuale di galleggiamento obbligatorio a bordo, uno per persona. Mantiene a galla chi cade in acqua. Il suo uso è obbligatorio in situazioni di rischio e fortemente consigliato per minori e non nuotatori.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Aro salvavidas',
+        definition: 'Salvagente circolare che si lancia a una persona caduta in acqua perché vi si aggrappi mentre la si recupera. Solitamente ha una sagola (cima) e, in alcuni casi, luce di localizzazione.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Hombre al agua',
+        definition: 'Emergenza in cui una persona cade in mare. La manovra consiste nel segnalare l\'infortunato, non perderlo di vista, lanciare un salvagente e tornare indietro con la prua orientata con cautela per recuperarlo sottovento.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Bengalas y señales de socorro',
+        definition: 'Materiale di sicurezza pirotecnico (razzi a mano, razzi con paracadute, segnali fumogeni) per chiedere aiuto ed essere localizzati in caso di emergenza in mare.',
+        category: 'seguridad',
+      },
+      {
+        term: 'VHF (Canal 16)',
+        definition: 'Radio in altissima frequenza per comunicazioni marittime. Il canale 16 è la frequenza internazionale di soccorso, urgenza e chiamata, monitorata dalla Guardia Costiera.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Botiquín de a bordo',
+        definition: 'Kit di materiale sanitario, obbligatorio secondo la zona di navigazione, per curare mal di mare, tagli, scottature solari e piccole emergenze durante l\'uscita.',
+        category: 'seguridad',
+      },
+      {
+        term: 'Tramontana',
+        definition: 'Vento forte, freddo e secco da nord caratteristico del Golfo del Leone e del nord della Costa Brava. Può alzarsi rapidamente e rendere difficile la navigazione; conviene consultare le previsioni prima di partire da Blanes.',
+        category: 'meteo',
+      },
+      {
+        term: 'Garbí (Garbino)',
+        definition: 'Vento da sud-ovest tipico dei pomeriggi estivi nella Costa Brava, associato alla brezza marina. Di solito è moderato e rinfrescante, anche se può increspare il mare nel pomeriggio.',
+        category: 'meteo',
+      },
+      {
+        term: 'Migjorn',
+        definition: 'Vento da sud (mezzogiorno) sulla costa catalana. Caldo e umido, solitamente annuncia cambio di tempo e aumento del moto ondoso.',
+        category: 'meteo',
+      },
+      {
+        term: 'Mar de fondo',
+        definition: 'Moto ondoso formato da vento lontano o già passato che arriva alla costa come onde lunghe e regolari, anche senza vento locale. Può rendere scomodo l\'ancoraggio in calette esposte.',
+        category: 'meteo',
+      },
+      {
+        term: 'Marejada y mar rizada',
+        definition: 'Stati del mare secondo l\'altezza delle onde: \'mare increspato\' sono onde molto piccole (fino a 0,5 m) e \'mare mosso\' onde da 0,5 a 1,25 m. Sono termini del bollettino meteorologico marino.',
+        category: 'meteo',
+      },
+      {
+        term: 'Banderas de baño',
+        definition: 'Segnalazione da spiaggia: bandiera verde (balneazione consentita), gialla (prudenza, balneazione con limitazioni) e rossa (balneazione vietata). Orientano anche sulle condizioni del mare per uscire in barca.',
+        category: 'meteo',
+      },
+      {
+        term: 'Parte meteorológico marítimo',
+        definition: 'Previsione specifica per il mare (vento, stato del mare, visibilità e fenomeni) emessa dall\'AEMET per zone. Consultarlo prima di ogni uscita è la prima regola di sicurezza.',
+        category: 'meteo',
+      },
+    ],
   },
 };

@@ -13,6 +13,9 @@ export const BOAT_IMAGES: Record<string, string> = {
   "trimarchi-57s": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
   "pacific-craft-625": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
   "excursion-privada": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  // Jet ski products resold from partner Jet Ski Blanes (see shared/jetskiProducts.ts).
+  "jetski-circuito": "/images/boats/jetski-circuito/jet-ski-circuito-blanes-costa-brava.webp",
+  "jetski-excursion-monitor": "/images/boats/jetski-excursion-monitor/jet-ski-excursion-monitor-blanes-tossa.webp",
 };
 
 export const BOAT_LEGACY_PREFIX_MAP: Array<{ pattern: string; boatId: string }> = [

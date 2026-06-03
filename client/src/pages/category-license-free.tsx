@@ -39,6 +39,7 @@ import { useTranslations } from "@/lib/translations";
 import { BOAT_DATA, type BoatData } from "@shared/boatData";
 import type { Boat } from "@shared/schema";
 import { minPriceAcrossBoats } from "@shared/pricing";
+import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { useQuery } from "@tanstack/react-query";
 import {
   BUSINESS_RATING_STR,
@@ -71,7 +72,11 @@ export default function CategoryLicenseFreePage() {
   // excluded because it's a captained service, not a self-service rental.
   const { data: apiBoats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const liveUnlicensed = (apiBoats ?? []).filter(
-    (b) => b.isActive && !b.requiresLicense && b.id !== "excursion-privada",
+    (b) =>
+      b.isActive &&
+      !b.requiresLicense &&
+      b.id !== "excursion-privada" &&
+      !isJetSkiProduct(b.id),
   );
   const fallbackUnlicensed = Object.values(BOAT_DATA).filter(
     (b) => b.subtitle.startsWith("Sin licencia") && b.id !== "excursion-privada",

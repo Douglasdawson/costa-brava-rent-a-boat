@@ -22,6 +22,8 @@ interface BoatCardProps {
   enginePower?: string;
   isPopular?: boolean;
   isRecommended?: boolean;
+  /** Resold jet ski product: no detail page, slot-based request, partner badge. */
+  isJetSki?: boolean;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -82,12 +84,24 @@ const BoatCardPricing = memo(function BoatCardPricing({
   capacity,
   perPersonLabel,
   fromLabel,
+  hidePerPerson,
 }: {
   basePrice: number;
   capacity: number;
   perPersonLabel: string;
   fromLabel: string;
+  hidePerPerson?: boolean;
 }) {
+  if (hidePerPerson) {
+    return (
+      <div className="text-right flex-shrink-0 space-y-0.5">
+        <div className="text-sm text-muted-foreground">{fromLabel}</div>
+        <div className="flex items-baseline justify-end">
+          <span className="text-cta font-semibold text-xl">{basePrice}&euro;</span>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="text-right flex-shrink-0 space-y-0.5">
       <div className="text-sm text-muted-foreground">{fromLabel}</div>
@@ -119,6 +133,7 @@ function BoatCard({
   enginePower,
   isPopular,
   isRecommended,
+  isJetSki,
   onBooking,
   onDetails,
 }: BoatCardProps) {
@@ -150,38 +165,67 @@ function BoatCard({
         isRecommended ? "border-2 border-cta" : "hover:border-cta/50 transition-colors"
       }`}
     >
-      <a
-        href={localizedPath("boatDetail", id)}
-        onClick={handleDetailsClick}
-        className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
-        data-testid={`image-${id}`}
-        aria-label={`${t.a11y.viewBoatDetails} ${name}`}
-      >
-        <BoatCardImage
-          image={image}
-          imageSrcSet={imageSrcSet}
-          imageTablet={imageTablet}
-          imageMobile={imageMobile}
-          imageAlt={imageAlt}
-          imageError={imageError}
-          onImageError={handleImageError}
-        />
-        {(isRecommended || isPopular) && (
-          <div className="absolute top-3 left-3 z-10">
-            {isRecommended ? (
-              <div className="inline-flex items-center gap-1 bg-cta text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
-                <ThumbsUp className="w-3 h-3" />
-                {t.recommendation?.recommendedForYou}
+      {(() => {
+        const imageInner = (
+          <>
+            <BoatCardImage
+              image={image}
+              imageSrcSet={imageSrcSet}
+              imageTablet={imageTablet}
+              imageMobile={imageMobile}
+              imageAlt={imageAlt}
+              imageError={imageError}
+              onImageError={handleImageError}
+            />
+            {isJetSki ? (
+              <div className="absolute top-3 left-3 z-10">
+                <div className="inline-flex items-center gap-1 bg-foreground text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
+                  {t.jetski?.badge || "Jet ski · partner"}
+                </div>
               </div>
             ) : (
-              <div className="inline-flex items-center gap-1 bg-popular text-popular-foreground text-xs font-bold px-2.5 py-1 rounded-full">
-                <Star className="w-3 h-3 fill-popular-foreground" />
-                {t.boats.mostPopular}
-              </div>
+              (isRecommended || isPopular) && (
+                <div className="absolute top-3 left-3 z-10">
+                  {isRecommended ? (
+                    <div className="inline-flex items-center gap-1 bg-cta text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
+                      <ThumbsUp className="w-3 h-3" />
+                      {t.recommendation?.recommendedForYou}
+                    </div>
+                  ) : (
+                    <div className="inline-flex items-center gap-1 bg-popular text-popular-foreground text-xs font-bold px-2.5 py-1 rounded-full">
+                      <Star className="w-3 h-3 fill-popular-foreground" />
+                      {t.boats.mostPopular}
+                    </div>
+                  )}
+                </div>
+              )
             )}
-          </div>
-        )}
-      </a>
+          </>
+        );
+        // Jet ski products have no detail page (they're not in BOAT_DATA);
+        // the image opens the slot-request modal instead of a boat detail link.
+        return isJetSki ? (
+          <button
+            type="button"
+            onClick={handleBooking}
+            className="relative block w-full cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+            data-testid={`image-${id}`}
+            aria-label={`${t.jetski?.requestCta || t.boats.book} ${name}`}
+          >
+            {imageInner}
+          </button>
+        ) : (
+          <a
+            href={localizedPath("boatDetail", id)}
+            onClick={handleDetailsClick}
+            className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+            data-testid={`image-${id}`}
+            aria-label={`${t.a11y.viewBoatDetails} ${name}`}
+          >
+            {imageInner}
+          </a>
+        );
+      })()}
       <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1 mr-2">
@@ -209,7 +253,8 @@ function BoatCard({
             basePrice={basePrice}
             capacity={capacity}
             perPersonLabel={t.boats.perPerson}
-            fromLabel={t.boats.from}
+            fromLabel={isJetSki ? t.jetski?.fromLabel || t.boats.from : t.boats.from}
+            hidePerPerson={isJetSki}
           />
         </div>
 
@@ -227,7 +272,8 @@ function BoatCard({
           )}
           <span aria-hidden="true">·</span>
           <span>{requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}</span>
-          {!requiresLicense &&
+          {!isJetSki &&
+            !requiresLicense &&
             !features.some(f => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) && (
               <>
                 <span aria-hidden="true">·</span>
@@ -245,7 +291,7 @@ function BoatCard({
           className="bg-cta hover:bg-cta/90 text-primary-foreground text-base font-medium px-6 py-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none transition-colors cta-pulse cta-hover-lift"
           data-testid={`button-book-${id}`}
         >
-          {t.boats.book}
+          {isJetSki ? t.jetski?.requestCta || t.boats.book : t.boats.book}
         </button>
       </div>
     </Card>

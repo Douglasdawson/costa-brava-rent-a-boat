@@ -44,6 +44,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { PHONE_PREFIXES, filterPhonePrefixes, findPrefixByCode, getDefaultPhonePrefixForLanguage } from "@/utils/phone-prefixes";
 import { validateEmail, validatePhone, validateRequired, validateBookingDate, getLocalISODate } from "@/utils/booking-validation";
 import { OPERATING_START_HOUR, OPERATING_END_HOUR } from "@shared/constants";
+import { isJetSkiProduct } from "@shared/jetskiProducts";
 
 // Generated from shared operating hours so the dropdown can never include a
 // slot the server doesn't know about (the server uses the same bounds to
@@ -126,7 +127,11 @@ const STEP_NAMES: Record<number, string> = {
   5: "your_details",
 };
 
-export default function BookingFormWidget({ preSelectedBoatId, prefillDate, prefillTime, prefillDuration, prefillCoupon, onClose }: BookingFormWidgetProps) {
+export default function BookingFormWidget({ preSelectedBoatId: rawPreSelectedBoatId, prefillDate, prefillTime, prefillDuration, prefillCoupon, onClose }: BookingFormWidgetProps) {
+  // Safety net: jet skis use their own request modal (JetSkiRequestModal), never
+  // this per-hour boat wizard. Ignore any jet ski id passed as a preselection so
+  // it can't be carried into the wizard (the boat list already excludes them).
+  const preSelectedBoatId = isJetSkiProduct(rawPreSelectedBoatId) ? undefined : rawPreSelectedBoatId;
   // Form state
   const [website, setWebsite] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -770,6 +775,9 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   // Filter boats based on license selection, then sort by displayOrder
   // (same logic used in FleetSection so the wizard list mirrors the home).
   const filteredBoats = allBoats
+    // Jet ski products are not part of the per-hour pricing engine — they use
+    // their own slot-request modal in the fleet section, never this wizard.
+    .filter(boat => !isJetSkiProduct(boat.id))
     .filter(boat => {
       if (licenseFilter === "with") return !!boat.requiresLicense;
       if (licenseFilter === "without") return !boat.requiresLicense;

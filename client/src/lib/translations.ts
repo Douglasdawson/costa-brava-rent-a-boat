@@ -2766,6 +2766,36 @@ export interface Translations {
       requiredError: string;
     };
   };
+  jetski: {
+    badge: string;
+    requestCta: string;
+    fromLabel: string;
+    modal: {
+      title: string;
+      subtitle: string;
+      slot: string;
+      date: string;
+      datePlaceholder: string;
+      people: string;
+      name: string;
+      namePlaceholder: string;
+      firstName: string;
+      firstNamePlaceholder: string;
+      lastName: string;
+      lastNamePlaceholder: string;
+      phone: string;
+      email: string;
+      emailHint: string;
+      submit: string;
+      submitting: string;
+      reassurance: string;
+      partnerNote: string;
+      successTitle: string;
+      successText: string;
+      errorText: string;
+      requiredError: string;
+    };
+  };
 }
 function deepMerge(
   target: Record<string, any>,

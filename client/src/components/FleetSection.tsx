@@ -34,6 +34,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { filterActivePrices, getMinActivePrice } from "@shared/pricing";
+import {
+  isJetSkiProduct,
+  getJetSkiProduct,
+  type JetSkiProduct,
+} from "@shared/jetskiProducts";
+import JetSkiRequestModal from "./JetSkiRequestModal";
 
 /** Skeleton that mirrors BoatCard layout: image 4/3 + content + buttons */
 function BoatCardSkeleton() {
@@ -147,6 +153,7 @@ interface VirtualizedBoatGridProps {
     features: string[];
     available: boolean;
     enginePower: string;
+    isJetSki: boolean;
   }>;
   popularBoatId: string;
   selectedGroupSize: string | null;
@@ -234,6 +241,7 @@ function FleetSection() {
   const [, setLocation] = useLocation();
   const { openBookingModal } = useBookingModal();
   const { ref: revealRef, isVisible } = useScrollReveal();
+  const [jetskiProduct, setJetskiProduct] = useState<JetSkiProduct | null>(null);
   const [selectedGroupSize, setSelectedGroupSize] = useState<string | null>(null);
   const [licenseFilter, setLicenseFilter] = useState<"all" | "no" | "yes">("all");
   const [checklistOpen, setChecklistOpen] = useState(false);
@@ -340,6 +348,7 @@ function FleetSection() {
             features: boat.equipment || [],
             available: true,
             enginePower: enginePower,
+            isJetSki: isJetSkiProduct(boat.id),
           };
         }),
     [boatsData, currentSeason, t]
@@ -383,6 +392,13 @@ function FleetSection() {
   const handleBooking = useCallback(
     (boatId: string) => {
       trackBoatClickedFromFleet(boatId, "book");
+      // Jet ski products use the lightweight slot-request modal, not the
+      // per-hour booking wizard (they're not in the pricing engine).
+      const jetski = getJetSkiProduct(boatId);
+      if (jetski) {
+        setJetskiProduct(jetski);
+        return;
+      }
       openBookingModal(boatId);
     },
     [openBookingModal]
@@ -735,7 +751,9 @@ function FleetSection() {
                     return (
                       <TableCell key={boat.id} className="text-center text-sm">
                         {durations.length > 0
-                          ? durations.map(d => (String(d).endsWith("h") ? d : `${d}h`)).join(", ")
+                          ? durations
+                              .map(d => (/h$|min$/.test(String(d)) ? String(d) : `${d}h`))
+                              .join(", ")
                           : "-"}
                       </TableCell>
                     );
@@ -896,6 +914,11 @@ function FleetSection() {
           </div>
         </div>
       </div>
+
+      <JetSkiRequestModal
+        product={jetskiProduct}
+        onClose={() => setJetskiProduct(null)}
+      />
     </section>
   );
 }

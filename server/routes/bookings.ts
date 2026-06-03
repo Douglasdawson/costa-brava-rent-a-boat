@@ -12,6 +12,7 @@ import { logger } from "../lib/logger";
 import { validatePromoCode, calculateDiscountAmount } from "../lib/discountValidation";
 import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
 import { OPERATING_START_HOUR, OPERATING_END_HOUR } from "@shared/constants";
+import { isJetSkiProduct } from "@shared/jetskiProducts";
 
 const isoDateString = z
   .string()
@@ -424,6 +425,17 @@ export function registerBookingRoutes(app: Express) {
       }
 
       const { boatId, startTime, endTime, numberOfPeople, extras, discountCode } = parsed.data;
+
+      // Jet ski products are resold partner items with fixed slot pricing — they
+      // are not priced by the per-hour engine and are requested via the
+      // lightweight inquiry flow (POST /api/booking-inquiries), not /api/quote.
+      if (isJetSkiProduct(boatId)) {
+        return res.status(400).json({
+          message: "Este producto se solicita directamente, no por cotización por horas.",
+          available: false,
+          reason: "jetski_product",
+        });
+      }
 
       const start = new Date(startTime);
       const end = new Date(endTime);

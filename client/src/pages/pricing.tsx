@@ -28,6 +28,7 @@ import {
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
 import { getMinActivePrice, minPriceAcrossBoats } from "@shared/pricing";
+import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { substituteFaqVars, computeFaqVars } from "@/utils/faqVars";
 import { getBoatImage } from "@/utils/boatImages";
 
@@ -112,7 +113,8 @@ export default function PricingPage() {
   });
 
   const activeBoats = (boats || [])
-    .filter(boat => boat.isActive)
+    // Jet ski products use slot pricing, not the per-hour/season table shown here.
+    .filter(boat => boat.isActive && !isJetSkiProduct(boat.id))
     .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999));
 
   // Always defined at runtime: useTranslations deep-merges missing keys from es.ts.

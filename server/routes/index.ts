@@ -24,6 +24,7 @@ import { registerImageResizeRoutes } from "./imageResize";
 import { registerTenantRoutes } from "./tenant";
 import { registerNewsletterRoutes } from "./newsletter";
 import { registerInquiryRoutes } from "./inquiries";
+import { registerJetskiRoutes } from "./jetski";
 import { registerMetaWebhookRoutes } from "./metaWebhook";
 import { registerHealthRoutes } from "./health";
 import { registerCompanyRoutes } from "./company";
@@ -84,6 +85,7 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   registerTenantRoutes(app);
   registerNewsletterRoutes(app);
   registerInquiryRoutes(app);
+  registerJetskiRoutes(app);
   registerMetaWebhookRoutes(app);
   registerHealthRoutes(app);
   registerCompanyRoutes(app);

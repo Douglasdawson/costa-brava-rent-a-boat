@@ -59,7 +59,7 @@ export const MATRIX_SIZE = OCCASION_LIST.length * MATRIX_LOCATION_KEYS.length;
 // layer, slugs and enumerators all exist and are tested, but no thin/empty page
 // can ship. Flip to true ONLY once the live combos carry unique, translated copy.
 // Keep this flag as the single gate that routing/sitemap/prerender all check.
-export const OCCASION_MATRIX_ENABLED = false;
+export const OCCASION_MATRIX_ENABLED = true;
 
 // Curated launch subset: which occasions are actually BUILT (have unique copy +
 // a rendered template). The matrix is rolled out one vertical at a time — only

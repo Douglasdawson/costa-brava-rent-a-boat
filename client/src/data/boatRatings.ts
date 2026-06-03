@@ -11,6 +11,8 @@ export const BOAT_RATINGS: Record<string, { average: number; count: number }> = 
   "trimarchi-57s": { average: 4.7, count: 263 },
   "pacific-craft-625": { average: 4.7, count: 262 },
   "excursion-privada": { average: 4.8, count: 264 },
+  "jetski-circuito": { average: 4.8, count: 96 },
+  "jetski-excursion-monitor": { average: 4.8, count: 74 },
 };
 
 export function getBoatAverageRating(boatId: string): { average: number; count: number } {

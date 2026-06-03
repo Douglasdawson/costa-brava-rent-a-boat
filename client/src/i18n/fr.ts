@@ -9,6 +9,7 @@ export const fr: Translations = {
     faq: "FAQ",
     giftCards: "Cartes Cadeaux",
     viewComponents: "Voir Composants",
+    jetski: "Jet-skis",
     bookNow: "Voir Disponibilités",
     myAccount: "Mon Compte",
   },
@@ -46,7 +47,7 @@ export const fr: Translations = {
   },
 
   fleet: {
-    title: "Choisissez votre bateau",
+    title: "Choisissez votre sortie en mer",
     subtitle:
       "Selon la taille de votre groupe et l'expérience souhaitée. Assurance et équipement de sécurité inclus.",
     helpText: "Vous hésitez ? On vous aide en moins de 5 minutes",
@@ -65,7 +66,7 @@ export const fr: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Choisissez entre 2h, 4h ou 8h pour louer notre {boatName}",
     withLicense: "Avec permis",
-    withoutLicense: "Sans permis",
+    withoutLicense: "Aucun permis nécessaire",
     available: "Disponible",
     occupied: "Occupé",
     more: "plus",
@@ -1229,7 +1230,7 @@ export const fr: Translations = {
     title: "Avec ou sans permis ?",
     subtitle:
       "Pas besoin de permis pour profiter de la mer. Mais si vous en avez un, nous avons des bateaux plus puissants.",
-    withoutLicense: "Sans permis",
+    withoutLicense: "Aucun permis nécessaire",
     withLicense: "Avec permis",
     withoutLicenseDesc:
       "On vous apprend en 15 minutes. Essence incluse. Parfait pour les familles.",
@@ -4981,11 +4982,11 @@ export const fr: Translations = {
   },
   jetski: {
     badge: 'Jet ski',
-    requestCta: 'Demander',
+    requestCta: 'Réserver',
     fromLabel: 'à partir de',
     modal: {
       title: 'Demandez votre jet ski',
-      subtitle: 'Choisissez le créneau et nous vous confirmons la disponibilité. Sans paiement en ligne.',
+      subtitle: 'Choisissez le créneau et nous vous confirmons la disponibilité.',
       slot: 'Créneau',
       date: 'Date souhaitée',
       datePlaceholder: 'Quel jour souhaitez-vous ?',
@@ -5002,28 +5003,54 @@ export const fr: Translations = {
       submit: 'Envoyer la demande',
       submitting: 'Envoi en cours...',
       reassurance: 'Sans engagement · nous vous confirmons par WhatsApp ou email',
+      whatsappDirect: 'Je préfère écrire sur WhatsApp',
       successTitle: 'Appuyez sur envoyer dans WhatsApp !',
       successText: 'Nous avons ouvert WhatsApp avec votre demande. Appuyez sur Envoyer et nous confirmons la disponibilité rapidement.',
       errorText: 'Nous n\'avons pas pu envoyer votre demande. Réessayez ou écrivez-nous par WhatsApp.',
       requiredError: 'Veuillez remplir votre nom et téléphone.',
     },
   },
+  jetskiHub: {
+    "seoTitle": "Location de jet-skis à Blanes (Costa Brava) | Sans permis",
+    "navLabel": "Jet-skis",
+    "hero": {
+      "title": "Location de jet-skis à Blanes",
+      "subtitle": "Pilotez un jet-ski sans permis sur la Costa Brava : circuit balisé au large de Blanes ou excursion guidée à Tossa de Mar. Gilet et carburant inclus.",
+    },
+    "intro": "Deux façons de profiter du jet-ski sans permis depuis le port de Blanes, toujours avec un moniteur. Choisissez le circuit pour un premier contact ou l'excursion guidée pour parcourir la côte jusqu'à Tossa de Mar.",
+    "productsTitle": "Nos expériences en jet-ski",
+    "faqTitle": "Questions fréquentes",
+    "faq": [
+      {
+        "q": "Ai-je besoin d'un permis pour le jet-ski ?",
+        "a": "Non. Toutes nos expériences sont sans permis : vous êtes toujours accompagné ou surveillé par un moniteur diplômé."
+      },
+      {
+        "q": "Combien de personnes par jet-ski ?",
+        "a": "Entre 1 et 2 personnes par jet-ski, selon l'expérience que vous choisissez."
+      },
+      {
+        "q": "D'où partent-ils ?",
+        "a": "Du port de Blanes (Gérone), au même ponton que nos bateaux."
+      }
+    ]
+  },
   jetskiLanding: {
     "fromLabel": "dès",
-    "ctaRequest": "Demander",
+    "ctaRequest": "Réserver",
     "slotsTitle": "Créneaux et tarifs",
     "includedTitle": "Ce qui est inclus",
     "faqTitle": "Questions fréquentes",
     "reassurance": "Sans engagement · confirmation par WhatsApp",
     "circuito": {
       "navLabel": "Circuit en Jet Ski",
+      "seoTitle": "Location de jet-ski à Blanes · Circuit en jet-ski sans permis",
       "hero": {
         "title": "Circuit en Jet Ski à Blanes",
         "subtitle": "Prenez les commandes d'un jet ski sur un circuit balisé au large de Blanes, avec un moniteur qui veille sur vous. Sans permis, dès 15 minutes."
       },
       "chips": [
-        "Sans permis",
-        "Moniteur inclus",
+        "Aucun permis nécessaire",
         "1-2 personnes",
         "Dès 15 min"
       ],
@@ -5045,12 +5072,13 @@ export const fr: Translations = {
     },
     "excursion": {
       "navLabel": "Excursion en Jet Ski avec Moniteur",
+      "seoTitle": "Location de jet-ski à Blanes · Excursion guidée à Tossa de Mar",
       "hero": {
         "title": "Excursion en Jet Ski de Blanes à Tossa",
         "subtitle": "Parcourez la Costa Brava en jet ski accompagné d'un moniteur diplômé, sur un itinéraire guidé de Blanes à Tossa de Mar. Sans permis."
       },
       "chips": [
-        "Sans permis",
+        "Aucun permis nécessaire",
         "Guide jusqu'à Tossa",
         "Carburant inclus",
         "1-2 personnes"

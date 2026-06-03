@@ -9,6 +9,7 @@ export const nl: Translations = {
     faq: "FAQ",
     giftCards: "Cadeaukaarten",
     viewComponents: "Componenten Bekijken",
+    jetski: "Jetski's",
     bookNow: "Beschikbaarheid bekijken",
     myAccount: "Mijn Account",
   },
@@ -46,7 +47,7 @@ export const nl: Translations = {
   },
 
   fleet: {
-    title: "Kies jouw boot",
+    title: "Kies jouw dagje op zee",
     subtitle:
       "Op basis van je groepsgrootte en de ervaring die je zoekt. Verzekering en veiligheidsuitrusting inbegrepen.",
     helpText: "Twijfel je? We helpen je binnen 5 minuten",
@@ -65,7 +66,7 @@ export const nl: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Kies tussen 2u, 4u of 8u om onze {boatName} te huren",
     withLicense: "Met vaarbewijs",
-    withoutLicense: "Zonder vaarbewijs",
+    withoutLicense: "Geen vaarbewijs nodig",
     available: "Beschikbaar",
     occupied: "Bezet",
     more: "meer",
@@ -1220,7 +1221,7 @@ export const nl: Translations = {
     title: "Met of zonder vaarbewijs?",
     subtitle:
       "Je hebt geen vaarbewijs nodig om van de zee te genieten. Maar als je er een hebt, hebben we krachtigere boten.",
-    withoutLicense: "Zonder vaarbewijs",
+    withoutLicense: "Geen vaarbewijs nodig",
     withLicense: "Met vaarbewijs",
     withoutLicenseDesc:
       "We leren het je in 15 minuten. Brandstof inbegrepen. Perfect voor families.",
@@ -4970,11 +4971,11 @@ export const nl: Translations = {
   },
   jetski: {
     badge: 'Jet ski',
-    requestCta: 'Aanvragen',
+    requestCta: 'Boeken',
     fromLabel: 'vanaf',
     modal: {
       title: 'Vraag je jet ski aan',
-      subtitle: 'Kies het tijdslot en wij bevestigen de beschikbaarheid. Geen online betaling.',
+      subtitle: 'Kies het tijdslot en wij bevestigen de beschikbaarheid.',
       slot: 'Tijdslot',
       date: 'Gewenste datum',
       datePlaceholder: 'Welke dag zou je willen?',
@@ -4991,28 +4992,54 @@ export const nl: Translations = {
       submit: 'Aanvraag versturen',
       submitting: 'Verzenden...',
       reassurance: 'Vrijblijvend · wij bevestigen via WhatsApp of e-mail',
+      whatsappDirect: 'Ik stuur liever een bericht via WhatsApp',
       successTitle: 'Tik op verzenden in WhatsApp!',
       successText: 'We hebben WhatsApp geopend met je aanvraag. Tik op Verzenden en we bevestigen de beschikbaarheid snel.',
       errorText: 'We konden je aanvraag niet versturen. Probeer het opnieuw of stuur ons een bericht via WhatsApp.',
       requiredError: 'Vul alsjeblieft je naam en telefoonnummer in.',
     },
   },
+  jetskiHub: {
+    "seoTitle": "Jetski's huren in Blanes (Costa Brava) | Zonder vaarbewijs",
+    "navLabel": "Jetski's",
+    "hero": {
+      "title": "Jetski's huren in Blanes",
+      "subtitle": "Bestuur een jetski zonder vaarbewijs aan de Costa Brava: een uitgebakend circuit voor de kust van Blanes of een begeleide tour naar Tossa de Mar. Reddingsvest en brandstof inbegrepen.",
+    },
+    "intro": "Twee manieren om zonder vaarbewijs van de jetski te genieten vanuit de haven van Blanes. Kies het circuit voor een eerste kennismaking of de begeleide tour, met begeleider, om de kust tot Tossa de Mar te verkennen.",
+    "productsTitle": "Onze jetski-ervaringen",
+    "faqTitle": "Veelgestelde vragen",
+    "faq": [
+      {
+        "q": "Heb ik een vaarbewijs nodig voor de jetski?",
+        "a": "Nee. Al onze ervaringen zijn zonder vaarbewijs: je wordt altijd begeleid of in de gaten gehouden door een gediplomeerde begeleider."
+      },
+      {
+        "q": "Hoeveel personen kunnen er per jetski mee?",
+        "a": "Tussen 1 en 2 personen per jetski, afhankelijk van de ervaring die je kiest."
+      },
+      {
+        "q": "Waar vertrekken ze vandaan?",
+        "a": "Vanuit de haven van Blanes (Girona), aan dezelfde steiger als onze boten."
+      }
+    ]
+  },
   jetskiLanding: {
     "fromLabel": "vanaf",
-    "ctaRequest": "Aanvragen",
+    "ctaRequest": "Boeken",
     "slotsTitle": "Tijdsloten & prijzen",
     "includedTitle": "Inbegrepen",
     "faqTitle": "Veelgestelde vragen",
     "reassurance": "Vrijblijvend · we bevestigen via WhatsApp",
     "circuito": {
       "navLabel": "Jetski-circuit",
+      "seoTitle": "Jetski huren in Blanes · Jetski-circuit zonder vaarbewijs",
       "hero": {
         "title": "Jetski-circuit in Blanes",
-        "subtitle": "Neem de besturing van een jetski op een uitgezet circuit voor de kust van Blanes, met een instructeur die op je let. Zonder vaarbewijs, vanaf 15 minuten."
+        "subtitle": "Neem de besturing van een jetski op een uitgebakend circuit voor de kust van Blanes. Zonder vaarbewijs, vanaf 15 minuten.",
       },
       "chips": [
-        "Zonder vaarbewijs",
-        "Instructeur inbegrepen",
+        "Geen vaarbewijs nodig",
         "1-2 personen",
         "Vanaf 15 min"
       ],
@@ -5020,7 +5047,7 @@ export const nl: Translations = {
       "faq": [
         {
           "q": "Heb ik een vaarbewijs nodig?",
-          "a": "Nee. Het circuit vindt plaats in een uitgezet gebied met voortdurend toezicht van een instructeur."
+          "a": "Nee. Het circuit vindt plaats in een uitgebakend gebied en zonder dat een vaarbewijs nodig is."
         },
         {
           "q": "Hoeveel personen per jetski?",
@@ -5033,26 +5060,27 @@ export const nl: Translations = {
       ]
     },
     "excursion": {
-      "navLabel": "Jetski-tour met Instructeur",
+      "navLabel": "Jetski-tour met begeleider",
+      "seoTitle": "Jetski huren in Blanes · Begeleide tour naar Tossa de Mar",
       "hero": {
         "title": "Jetski-tour van Blanes naar Tossa",
-        "subtitle": "Verken de Costa Brava per jetski, begeleid door een gediplomeerde instructeur, op een begeleide route van Blanes naar Tossa de Mar. Zonder vaarbewijs."
+        "subtitle": "Verken de Costa Brava op een jetski, vergezeld door een gediplomeerde begeleider, met een begeleide route van Blanes naar Tossa de Mar. Zonder vaarbewijs.",
       },
       "chips": [
-        "Zonder vaarbewijs",
+        "Geen vaarbewijs nodig",
         "Gids naar Tossa",
         "Brandstof inbegrepen",
         "1-2 personen"
       ],
-      "intro": "Een begeleide route langs de baaien en kliffen van de Costa Brava, met de hele tijd een instructeur aan je zijde. Brandstof en verzekering inbegrepen.",
+      "intro": "Een begeleide route langs de baaien en kliffen van de Costa Brava, met een begeleider die de hele tijd met je meegaat. Brandstof en verzekering inbegrepen.",
       "faq": [
         {
           "q": "Heb ik een vaarbewijs nodig?",
-          "a": "Nee. Je wordt tijdens de hele tour begeleid door een gediplomeerde instructeur."
+          "a": "Nee. Je wordt tijdens de hele tour vergezeld door een gediplomeerde begeleider."
         },
         {
           "q": "Wat is inbegrepen?",
-          "a": "Brandstof, WA-verzekering, instructeur/gids, zwemvest en veiligheidsbriefing."
+          "a": "Brandstof, aansprakelijkheidsverzekering, begeleider/gids, reddingsvest en een veiligheidsbriefing."
         },
         {
           "q": "Hoe lang duurt het?",

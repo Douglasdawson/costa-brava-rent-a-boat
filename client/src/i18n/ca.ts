@@ -9,6 +9,7 @@ export const ca: Translations = {
     faq: "FAQ",
     giftCards: "Targetes Regal",
     viewComponents: "Veure Components",
+    jetski: "Motos aquàtiques",
     bookNow: "Veure Disponibilitat",
     myAccount: "El Meu Compte",
   },
@@ -46,7 +47,7 @@ export const ca: Translations = {
   },
 
   fleet: {
-    title: "Tria el teu vaixell",
+    title: "Tria el teu pla al mar",
     subtitle:
       "Segons la mida del teu grup i l'experiència que busques. Assegurança i equip de seguretat inclosos.",
     helpText: "No saps quin triar? T'ajudem en menys de 5 minuts",
@@ -65,7 +66,7 @@ export const ca: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Tria entre 2h, 4h, o 8h per llogar la nostra {boatName}",
     withLicense: "Amb llicència",
-    withoutLicense: "Sense llicència",
+    withoutLicense: "Sense necessitat de llicència",
     available: "Disponible",
     occupied: "Ocupat",
     more: "més",
@@ -4966,11 +4967,11 @@ export const ca: Translations = {
   },
   jetski: {
     badge: 'Jet ski',
-    requestCta: 'Sol·licitar',
+    requestCta: 'Reservar',
     fromLabel: 'des de',
     modal: {
       title: 'Sol·licita la teva jet ski',
-      subtitle: 'Tria la franja i et confirmem disponibilitat. Sense pagaments online.',
+      subtitle: 'Tria la franja i et confirmem disponibilitat.',
       slot: 'Franja',
       date: 'Data preferida',
       datePlaceholder: 'Quin dia t\'agradaria?',
@@ -4987,28 +4988,54 @@ export const ca: Translations = {
       submit: 'Enviar sol·licitud',
       submitting: 'Enviant...',
       reassurance: 'Sense compromís · et confirmem per WhatsApp o email',
+      whatsappDirect: 'Prefereixo escriure per WhatsApp',
       successTitle: 'Prem enviar a WhatsApp!',
       successText: 'Hem obert WhatsApp amb la teva sol·licitud. Prem Envia i et confirmem la disponibilitat de seguida.',
       errorText: 'No hem pogut enviar la teva sol·licitud. Torna-ho a provar o escriu-nos per WhatsApp.',
       requiredError: 'Si us plau, completa el teu nom i telèfon.',
     },
   },
+  jetskiHub: {
+    "seoTitle": "Lloguer de motos aquàtiques a Blanes (Costa Brava) | Sense llicència",
+    "navLabel": "Motos aquàtiques",
+    "hero": {
+      "title": "Lloguer de motos aquàtiques a Blanes",
+      "subtitle": "Pilota una moto aquàtica sense llicència a la Costa Brava: circuit vigilat davant de Blanes o excursió guiada a Tossa de Mar. Amb monitor, armilla i combustible inclosos."
+    },
+    "intro": "Dues maneres de gaudir de la moto aquàtica sense llicència des del port de Blanes, sempre amb monitor. Tria el circuit per a un primer contacte o l'excursió guiada per recórrer la costa fins a Tossa de Mar.",
+    "productsTitle": "Les nostres experiències en moto aquàtica",
+    "faqTitle": "Preguntes freqüents",
+    "faq": [
+      {
+        "q": "Necessito llicència per a la moto aquàtica?",
+        "a": "No. Totes les nostres experiències són sense llicència: sempre vas acompanyat o vigilat per un monitor titulat."
+      },
+      {
+        "q": "Quantes persones poden anar per moto?",
+        "a": "Entre 1 i 2 persones per moto aquàtica, segons l'experiència que triïs."
+      },
+      {
+        "q": "Des d'on surten?",
+        "a": "Des del port de Blanes (Girona), al mateix pantalà que els nostres vaixells."
+      }
+    ]
+  },
   jetskiLanding: {
     "fromLabel": "des de",
-    "ctaRequest": "Sol·licitar",
+    "ctaRequest": "Reservar",
     "slotsTitle": "Franges i preus",
     "includedTitle": "Què inclou",
     "faqTitle": "Preguntes freqüents",
     "reassurance": "Sense compromís · ho confirmem per WhatsApp",
     "circuito": {
       "navLabel": "Circuit en Moto d'Aigua",
+      "seoTitle": "Lloguer de moto d'aigua a Blanes · Circuit en moto aquàtica sense llicència",
       "hero": {
         "title": "Circuit en Moto d'Aigua a Blanes",
         "subtitle": "Posa't als comandaments d'una moto d'aigua en un circuit balisat davant de Blanes, amb un monitor vigilant. Sense llicència, des de 15 minuts."
       },
       "chips": [
-        "Sense llicència",
-        "Monitor inclòs",
+        "Sense necessitat de llicència",
         "1-2 persones",
         "Des de 15 min"
       ],
@@ -5030,12 +5057,13 @@ export const ca: Translations = {
     },
     "excursion": {
       "navLabel": "Excursió en Moto d'Aigua amb Monitor",
+      "seoTitle": "Lloguer de moto d'aigua a Blanes · Excursió guiada a Tossa de Mar",
       "hero": {
         "title": "Excursió en Moto d'Aigua de Blanes a Tossa",
         "subtitle": "Recorre la Costa Brava en moto d'aigua acompanyat d'un monitor titulat, amb ruta guiada des de Blanes fins a Tossa de Mar. Sense llicència."
       },
       "chips": [
-        "Sense llicència",
+        "Sense necessitat de llicència",
         "Guia fins a Tossa",
         "Combustible inclòs",
         "1-2 persones"

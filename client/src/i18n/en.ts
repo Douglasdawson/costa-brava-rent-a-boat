@@ -9,6 +9,7 @@ export const en: Translations = {
     faq: "FAQ",
     giftCards: "Gift Cards",
     viewComponents: "View Components",
+    jetski: "Jet skis",
     bookNow: "Check Availability",
     myAccount: "My Account",
   },
@@ -46,7 +47,7 @@ export const en: Translations = {
   },
 
   fleet: {
-    title: "Choose your boat",
+    title: "Choose your day on the water",
     subtitle:
       "Based on your group size and the experience you want. All include insurance and safety equipment.",
     helpText: "Not sure which one? We'll help you in under 5 minutes",
@@ -65,7 +66,7 @@ export const en: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Choose between 2h, 4h, or 8h to rent our {boatName}",
     withLicense: "With licence",
-    withoutLicense: "Without licence",
+    withoutLicense: "No licence needed",
     available: "Available",
     occupied: "Occupied",
     more: "more",
@@ -5013,11 +5014,11 @@ export const en: Translations = {
   },
   jetski: {
     badge: 'Jet ski',
-    requestCta: 'Request',
+    requestCta: 'Book now',
     fromLabel: 'from',
     modal: {
       title: 'Request your jet ski',
-      subtitle: 'Choose your time slot and we\'ll confirm availability. No online payment.',
+      subtitle: 'Choose your time slot and we\'ll confirm availability.',
       slot: 'Time slot',
       date: 'Preferred date',
       datePlaceholder: 'What day would you like?',
@@ -5034,28 +5035,54 @@ export const en: Translations = {
       submit: 'Send request',
       submitting: 'Sending...',
       reassurance: 'No commitment · we\'ll confirm via WhatsApp or email',
+      whatsappDirect: 'I\'d rather message on WhatsApp',
       successTitle: 'Tap send on WhatsApp!',
       successText: 'We’ve opened WhatsApp with your request. Tap Send and we’ll confirm availability shortly.',
       errorText: 'We couldn\'t send your request. Please try again or message us on WhatsApp.',
       requiredError: 'Please complete your name and phone number.',
     },
   },
+  jetskiHub: {
+    "seoTitle": "Jet ski rental in Blanes (Costa Brava) | No license required",
+    "navLabel": "Jet skis",
+    "hero": {
+      "title": "Jet ski rental in Blanes",
+      "subtitle": "Ride a jet ski without a license on the Costa Brava: a marked circuit off Blanes or a guided tour to Tossa de Mar. Life jacket and fuel included.",
+    },
+    "intro": "Two ways to enjoy a jet ski without a license from the port of Blanes, always with an instructor. Choose the circuit for a first taste or the guided tour to travel the coast all the way to Tossa de Mar.",
+    "productsTitle": "Our jet ski experiences",
+    "faqTitle": "FAQ",
+    "faq": [
+      {
+        "q": "Do I need a license for the jet ski?",
+        "a": "No. All our experiences are license-free: you're always accompanied or supervised by a qualified instructor."
+      },
+      {
+        "q": "How many people can ride per jet ski?",
+        "a": "Between 1 and 2 people per jet ski, depending on the experience you choose."
+      },
+      {
+        "q": "Where do they depart from?",
+        "a": "From the port of Blanes (Girona), at the same jetty as our boats."
+      }
+    ]
+  },
   jetskiLanding: {
     "fromLabel": "from",
-    "ctaRequest": "Request",
+    "ctaRequest": "Book now",
     "slotsTitle": "Time slots & prices",
     "includedTitle": "What's included",
     "faqTitle": "FAQ",
     "reassurance": "No commitment · we confirm via WhatsApp",
     "circuito": {
       "navLabel": "Jet Ski Circuit",
+      "seoTitle": "Jet ski rental in Blanes · No-license jet ski circuit",
       "hero": {
         "title": "Jet Ski Circuit in Blanes",
         "subtitle": "Take the controls of a jet ski in a marked circuit off Blanes, with an instructor watching over you. No license, from 15 minutes."
       },
       "chips": [
-        "No license",
-        "Instructor included",
+        "No licence needed",
         "1-2 people",
         "From 15 min"
       ],
@@ -5077,12 +5104,13 @@ export const en: Translations = {
     },
     "excursion": {
       "navLabel": "Guided Jet Ski Tour",
+      "seoTitle": "Jet ski rental in Blanes · Guided tour to Tossa de Mar",
       "hero": {
         "title": "Jet Ski Tour from Blanes to Tossa",
         "subtitle": "Explore the Costa Brava by jet ski accompanied by a qualified instructor, on a guided route from Blanes to Tossa de Mar. No license."
       },
       "chips": [
-        "No license",
+        "No licence needed",
         "Guide to Tossa de Mar",
         "Fuel included",
         "1-2 people"

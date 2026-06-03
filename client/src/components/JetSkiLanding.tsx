@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Sparkles, CheckCircle2, ArrowRight, Clock, Users, Anchor } from "lucide-react";
+import { CheckCircle2, ArrowRight, Clock, Users, Anchor } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -17,6 +17,7 @@ import {
   generateTouristTripSchema,
 } from "@/utils/seo-schemas";
 import RelatedContent from "@/components/RelatedContent";
+import ReviewsSection from "@/components/ReviewsSection";
 import { getJetSkiProduct, type JetSkiProduct } from "@shared/jetskiProducts";
 import {
   BUSINESS_RATING_STR,
@@ -53,7 +54,9 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
 
   // SEO meta built from the (already translated) i18n copy, so each locale gets
   // a native title/description without separate seo-config entries.
-  const seoTitle = `${c?.hero?.title || product.name} | ${g?.fromLabel || "desde"} ${minPrice}€ · Blanes`;
+  const seoTitle =
+    c?.seoTitle ||
+    `${c?.hero?.title || product.name} | ${g?.fromLabel || "desde"} ${minPrice}€ · Blanes`;
   const seoDescription = c?.hero?.subtitle || product.subtitle;
   const seoKeywords = c?.navLabel || product.name;
 
@@ -138,10 +141,6 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-black/65" />
 
         <div className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
-          <span className="mb-5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-sm font-medium text-white ring-1 ring-white/25">
-            <Sparkles className="h-4 w-4" />
-            {c?.navLabel || product.name}
-          </span>
           <h1 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)] sm:text-5xl lg:text-6xl">
             {c?.hero?.title || product.name}
           </h1>
@@ -263,6 +262,7 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
       </div>
       <div className="h-20 lg:hidden" />
 
+      <ReviewsSection />
       <RelatedContent currentPage={pageKey} />
       <Footer />
 

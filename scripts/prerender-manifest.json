@@ -32,6 +32,7 @@
     { "path": "/salidas-compartidas", "langs": ["es"] },
     { "path": "/circuito-jet-ski-blanes", "langs": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"] },
     { "path": "/excursion-jet-ski-blanes-tossa", "langs": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"] },
+    { "path": "/alquiler-moto-de-agua-blanes", "langs": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"] },
     { "path": "/gift-cards", "langs": ["es", "en"] }
   ],
   "dynamicRoutes": {

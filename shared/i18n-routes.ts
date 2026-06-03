@@ -44,6 +44,7 @@ export const ROUTE_SLUGS = {
   // Jet ski landing pages (partner resale — Jet Ski Blanes)
   jetskiCircuito: { es: "circuito-jet-ski-blanes", en: "jet-ski-circuit-blanes", fr: "circuit-jet-ski-blanes", de: "jet-ski-rundkurs-blanes", nl: "jet-ski-circuit-blanes", it: "circuito-jet-ski-blanes", ca: "circuit-jet-ski-blanes", ru: "jet-ski-krug-blanes" },
   jetskiExcursion: { es: "excursion-jet-ski-blanes-tossa", en: "jet-ski-tour-blanes-tossa", fr: "excursion-jet-ski-blanes-tossa", de: "jet-ski-tour-blanes-tossa", nl: "jet-ski-tour-blanes-tossa", it: "escursione-jet-ski-blanes-tossa", ca: "excursio-jet-ski-blanes-tossa", ru: "ekskursiya-jet-ski-blanes-tossa" },
+  jetskiHub: { es: "alquiler-moto-de-agua-blanes", en: "jet-ski-rental-blanes", fr: "location-jet-ski-blanes", de: "jetski-mieten-blanes", nl: "jetski-huren-blanes", it: "noleggio-moto-acqua-blanes", ca: "lloguer-moto-aquatica-blanes", ru: "arenda-gidrocikla-blanes" },
 
   // Dynamic route prefixes
   boatDetail: { es: "barco", en: "boat", fr: "bateau", de: "boot", nl: "boot", it: "barca", ca: "vaixell", ru: "lodka" },

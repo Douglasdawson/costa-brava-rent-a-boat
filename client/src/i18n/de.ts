@@ -9,6 +9,7 @@ export const de: Translations = {
     faq: "FAQ",
     giftCards: "Geschenkkarten",
     viewComponents: "Komponenten Anzeigen",
+    jetski: "Jetskis",
     bookNow: "Verfügbarkeit prüfen",
     myAccount: "Mein Konto",
   },
@@ -46,7 +47,7 @@ export const de: Translations = {
   },
 
   fleet: {
-    title: "Wähle dein Boot",
+    title: "Wähle deinen Tag auf dem Meer",
     subtitle:
       "Je nach Gruppengröße und gewünschtem Erlebnis. Versicherung und Sicherheitsausrüstung inklusive.",
     helpText: "Nicht sicher welches? Wir helfen dir in unter 5 Minuten",
@@ -65,7 +66,7 @@ export const de: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Wählen Sie zwischen 2h, 4h oder 8h, um unser {boatName} zu mieten",
     withLicense: "Mit Führerschein",
-    withoutLicense: "Ohne Führerschein",
+    withoutLicense: "Kein Führerschein nötig",
     available: "Verfügbar",
     occupied: "Besetzt",
     more: "mehr",
@@ -4993,11 +4994,11 @@ export const de: Translations = {
   },
   jetski: {
     badge: 'Jet ski',
-    requestCta: 'Anfragen',
+    requestCta: 'Buchen',
     fromLabel: 'ab',
     modal: {
       title: 'Jet Ski anfragen',
-      subtitle: 'Wähle ein Zeitfenster und wir bestätigen die Verfügbarkeit. Keine Online-Zahlung.',
+      subtitle: 'Wähle ein Zeitfenster und wir bestätigen die Verfügbarkeit.',
       slot: 'Zeitfenster',
       date: 'Wunschdatum',
       datePlaceholder: 'An welchem Tag möchtest du fahren?',
@@ -5014,28 +5015,54 @@ export const de: Translations = {
       submit: 'Anfrage senden',
       submitting: 'Wird gesendet...',
       reassurance: 'Unverbindlich · wir bestätigen per WhatsApp oder E-Mail',
+      whatsappDirect: 'Ich schreibe lieber per WhatsApp',
       successTitle: 'Auf Senden in WhatsApp tippen!',
       successText: 'Wir haben WhatsApp mit deiner Anfrage geöffnet. Tippe auf Senden und wir bestätigen die Verfügbarkeit gleich.',
       errorText: 'Wir konnten deine Anfrage nicht senden. Versuche es erneut oder schreib uns per WhatsApp.',
       requiredError: 'Bitte gib deinen Namen und deine Telefonnummer an.',
     },
   },
+  jetskiHub: {
+    "seoTitle": "Jetski-Verleih in Blanes (Costa Brava) | Ohne Führerschein",
+    "navLabel": "Jetskis",
+    "hero": {
+      "title": "Jetski-Verleih in Blanes",
+      "subtitle": "Fahre einen Jetski ohne Führerschein an der Costa Brava: markierter Rundkurs vor Blanes oder geführte Tour nach Tossa de Mar. Schwimmweste und Kraftstoff inklusive.",
+    },
+    "intro": "Zwei Möglichkeiten, den Jetski ohne Führerschein vom Hafen von Blanes aus zu genießen, immer mit einem Monitor. Wähle den Rundkurs für einen ersten Kontakt oder die geführte Tour, um die Küste bis nach Tossa de Mar zu erkunden.",
+    "productsTitle": "Unsere Jetski-Erlebnisse",
+    "faqTitle": "Häufige Fragen",
+    "faq": [
+      {
+        "q": "Brauche ich einen Führerschein für den Jetski?",
+        "a": "Nein. Alle unsere Erlebnisse sind ohne Führerschein: Du wirst immer von einem qualifizierten Monitor begleitet oder beaufsichtigt."
+      },
+      {
+        "q": "Wie viele Personen können pro Jetski mitfahren?",
+        "a": "Zwischen 1 und 2 Personen pro Jetski, je nach gewähltem Erlebnis."
+      },
+      {
+        "q": "Von wo starten sie?",
+        "a": "Vom Hafen von Blanes (Girona), am selben Steg wie unsere Boote."
+      }
+    ]
+  },
   jetskiLanding: {
     "fromLabel": "ab",
-    "ctaRequest": "Anfragen",
+    "ctaRequest": "Buchen",
     "slotsTitle": "Zeitfenster & Preise",
     "includedTitle": "Inklusive",
     "faqTitle": "Häufige Fragen",
     "reassurance": "Unverbindlich · Bestätigung per WhatsApp",
     "circuito": {
       "navLabel": "Jet-Ski-Rundkurs",
+      "seoTitle": "Jetski-Verleih in Blanes · Jetski-Rundkurs ohne Führerschein",
       "hero": {
         "title": "Jet-Ski-Rundkurs in Blanes",
         "subtitle": "Übernimm das Steuer eines Jet-Skis auf einem markierten Kurs vor Blanes, mit einem Monitor, der auf dich aufpasst. Ohne Führerschein, ab 15 Minuten."
       },
       "chips": [
-        "Ohne Führerschein",
-        "Monitor inklusive",
+        "Kein Führerschein nötig",
         "1-2 Personen",
         "Ab 15 Min"
       ],
@@ -5057,12 +5084,13 @@ export const de: Translations = {
     },
     "excursion": {
       "navLabel": "Jet-Ski-Tour mit Monitor",
+      "seoTitle": "Jetski-Verleih in Blanes · Geführte Tour nach Tossa de Mar",
       "hero": {
         "title": "Jet-Ski-Tour von Blanes nach Tossa",
         "subtitle": "Erkunde die Costa Brava mit dem Jet-Ski in Begleitung eines ausgebildeten Monitors, auf einer geführten Route von Blanes nach Tossa de Mar. Ohne Führerschein."
       },
       "chips": [
-        "Ohne Führerschein",
+        "Kein Führerschein nötig",
         "Guide nach Tossa",
         "Kraftstoff inklusive",
         "1-2 Personen"

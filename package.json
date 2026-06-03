@@ -15,6 +15,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,json,md}\"",
     "test": "vitest run",
     "test:watch": "vitest",
+    "e2e": "playwright test",
     "check:all": "npm run check && npm run lint && npm run format:check && npm run test && npm run i18n:validate && npm run check:i18n-hardcode",
     "check:i18n-hardcode": "tsx scripts/check-no-hardcoded-spanish.ts",
     "clean": "rm -rf dist node_modules/.vite",
@@ -131,6 +132,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
+    "@playwright/test": "^1.58.2",
     "@remotion/cli": "^4.0.431",
     "@replit/vite-plugin-cartographer": "^0.4.4",
     "@replit/vite-plugin-runtime-error-modal": "^0.0.3",

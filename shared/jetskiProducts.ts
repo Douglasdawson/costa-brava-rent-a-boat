@@ -65,8 +65,8 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
     description:
       "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes, con monitor vigilando en todo momento. Ideal para una primera toma de contacto: desde 15 minutos, sin licencia y con briefing y chaleco incluidos.",
     image:
-      "/images/boats/jetski-circuito/jet-ski-circuito-blanes-costa-brava.webp",
-    altText: "Moto de agua en circuito frente a Blanes, Costa Brava",
+      "/images/boats/jetski-circuito/jet-ski-circuito-yamaha-vx-blanes.webp",
+    altText: "Moto de agua Yamaha VX en circuito frente a Blanes, Costa Brava",
     capacity: 2,
     specifications: {
       model: "Moto de agua (jet ski)",
@@ -103,9 +103,9 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
     description:
       "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada desde Blanes hacia Tossa de Mar. Sin licencia: el guía va contigo en todo momento. Incluye combustible, seguro de responsabilidad civil, chaleco y briefing.",
     image:
-      "/images/boats/jetski-excursion-monitor/jet-ski-excursion-monitor-blanes-tossa.webp",
+      "/images/boats/jetski-excursion-monitor/jet-ski-excursion-yamaha-vx-tossa.webp",
     altText:
-      "Excursión en moto de agua de Blanes a Tossa de Mar, Costa Brava",
+      "Excursión en moto de agua Yamaha VX de Blanes a Tossa de Mar, Costa Brava",
     capacity: 2,
     specifications: {
       model: "Moto de agua (jet ski)",

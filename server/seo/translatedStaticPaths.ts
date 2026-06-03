@@ -59,6 +59,7 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   "/pesca-barco-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/circuito-jet-ski-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/excursion-jet-ski-blanes-tossa": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/alquiler-moto-de-agua-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   // Satellite location pages — i18n-complete (t.locationPages.<town>) + native SSR body.
   "/alquiler-barcos-tordera": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-palafolls": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],

@@ -312,29 +312,41 @@ function FleetSection() {
           // Extract engine power from specifications
           const enginePower = boat.specifications?.engine || "";
 
+          // Jet ski cards use the canonical image from shared/jetskiProducts.ts
+          // (single source of truth) instead of the DB-seeded path, so the fleet
+          // card always matches the hub and landing imagery without re-seeding.
+          const jsk = getJetSkiProduct(boat.id);
+
           return {
             id: boat.id,
             name: boat.name,
-            image: boat.imageGallery?.[0]?.trim()
-              ? getBoatImage(boat.imageGallery[0].trim())
-              : boat.imageUrl
-                ? getBoatImage(boat.imageUrl)
-                : "/placeholder-boat.jpg",
-            imageSrcSet: boat.imageGallery?.[0]?.trim()
-              ? ""
-              : boat.imageUrl
-                ? getBoatImageSrcSet(boat.imageUrl)
-                : "",
-            imageTablet: boat.imageGalleryTablet?.[0]?.trim()
-              ? getBoatImage(boat.imageGalleryTablet[0].trim())
+            image: jsk
+              ? getBoatImage(jsk.image)
               : boat.imageGallery?.[0]?.trim()
                 ? getBoatImage(boat.imageGallery[0].trim())
-                : undefined,
-            imageMobile: boat.imageGalleryMobile?.[0]?.trim()
-              ? getBoatImage(boat.imageGalleryMobile[0].trim())
-              : boat.imageGallery?.[0]?.trim()
-                ? getBoatImage(boat.imageGallery[0].trim())
-                : undefined,
+                : boat.imageUrl
+                  ? getBoatImage(boat.imageUrl)
+                  : "/placeholder-boat.jpg",
+            imageSrcSet:
+              jsk || boat.imageGallery?.[0]?.trim()
+                ? ""
+                : boat.imageUrl
+                  ? getBoatImageSrcSet(boat.imageUrl)
+                  : "",
+            imageTablet: jsk
+              ? undefined
+              : boat.imageGalleryTablet?.[0]?.trim()
+                ? getBoatImage(boat.imageGalleryTablet[0].trim())
+                : boat.imageGallery?.[0]?.trim()
+                  ? getBoatImage(boat.imageGallery[0].trim())
+                  : undefined,
+            imageMobile: jsk
+              ? undefined
+              : boat.imageGalleryMobile?.[0]?.trim()
+                ? getBoatImage(boat.imageGalleryMobile[0].trim())
+                : boat.imageGallery?.[0]?.trim()
+                  ? getBoatImage(boat.imageGallery[0].trim())
+                  : undefined,
             imageAlt:
               (boat.requiresLicense ? t.boats.imageAltWithLicense : t.boats.imageAltNoLicense)
                 ?.replace("{name}", boat.name)

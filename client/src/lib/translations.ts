@@ -81,6 +81,7 @@ export interface Translations {
     faq: string;
     giftCards: string;
     viewComponents: string;
+    jetski: string;
     bookNow: string;
     myAccount: string;
   };
@@ -2789,6 +2790,7 @@ export interface Translations {
       submit: string;
       submitting: string;
       reassurance: string;
+      whatsappDirect: string;
       successTitle: string;
       successText: string;
       errorText: string;
@@ -2805,9 +2807,19 @@ export interface Translations {
     circuito: JetskiLandingCopy;
     excursion: JetskiLandingCopy;
   };
+  jetskiHub: {
+    seoTitle: string;
+    navLabel: string;
+    hero: { title: string; subtitle: string };
+    intro: string;
+    productsTitle: string;
+    faqTitle: string;
+    faq: { q: string; a: string }[];
+  };
 }
 interface JetskiLandingCopy {
   navLabel: string;
+  seoTitle: string;
   hero: { title: string; subtitle: string };
   chips: string[];
   intro: string;

@@ -174,6 +174,24 @@ export default function JetSkiRequestModal({
     }
   };
 
+  // Low-friction escape hatch: write on WhatsApp without filling the form. The
+  // form remains the primary path (it persists to the CRM); this is for users
+  // who prefer to just chat. Prefills product + slot + party size.
+  const handleWhatsAppDirect = () => {
+    const lines = [
+      `¡Hola! Me gustaría información para ir en jet ski:`,
+      ``,
+      `🚀 *Producto:* ${product.name}`,
+      `⏱️ *Duración:* ${selectedSlot.label}`,
+      `👥 *Persona/s:* ${people}`,
+      when.trim() ? `📅 *Fecha:* ${when.trim()}` : "",
+      ``,
+      `¡Gracias!`,
+    ].filter(Boolean);
+    trackWhatsAppClick("jetski_whatsapp_direct");
+    openWhatsApp(lines.join("\n"));
+  };
+
   return (
     <Dialog open={!!product} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
@@ -395,6 +413,14 @@ export default function JetSkiRequestModal({
                   ? m?.submitting || "Enviando..."
                   : m?.submit || "Enviar solicitud"}
                 {status !== "submitting" && <ArrowRight className="h-5 w-5" />}
+              </button>
+
+              <button
+                type="button"
+                onClick={handleWhatsAppDirect}
+                className="w-full text-center text-sm font-medium text-cta underline underline-offset-4 hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 rounded"
+              >
+                {m?.whatsappDirect || "Prefiero escribir por WhatsApp"}
               </button>
             </form>
           </>

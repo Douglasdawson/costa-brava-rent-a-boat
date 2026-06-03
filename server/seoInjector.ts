@@ -145,10 +145,22 @@ function buildJetskiStaticMeta(
     const jl = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
     const product = jl[copyKey];
     const fromLabel = jl.fromLabel;
+    // Prefer the keyword-rich seoTitle ("alquiler moto de agua…") when present;
+    // fall back to the hero title + price for older locales.
     out[lang] = {
-      title: `${product.hero.title} | ${fromLabel} ${minPrice}€ · Blanes`,
+      title: product.seoTitle || `${product.hero.title} | ${fromLabel} ${minPrice}€ · Blanes`,
       description: product.hero.subtitle,
     };
+  }
+  return out;
+}
+
+// Jet ski hub/category page ("alquiler de moto de agua en Blanes"), head term.
+function buildJetskiHubStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
+  const out: Partial<Record<LangCode, SEOMeta>> = {};
+  for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+    const hub = (I18N_BY_LANG[lang] ?? i18nEs).jetskiHub;
+    out[lang] = { title: hub.seoTitle, description: hub.hero.subtitle };
   }
   return out;
 }
@@ -158,6 +170,7 @@ function buildJetskiStaticMeta(
 const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/circuito-jet-ski-blanes": buildJetskiStaticMeta("circuito", 65),
   "/excursion-jet-ski-blanes-tossa": buildJetskiStaticMeta("excursion", 190),
+  "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
   "/": {
     // GSC 2026-05-09: CTR rewrite. URL "/" captura 92 de 106 clicks 28d (87%) en
     // pos 8.28 con CTR 2.16%. Reformulación: keyword-singular en title (match
@@ -3336,6 +3349,50 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         jl?.ctaRequest ?? heading,
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, touristTrip, faq, breadcrumb] }, availableLanguages, bodyFallback: jetskiExcursionBodyFallback };
+    }
+
+    // /alquiler-moto-de-agua-blanes - Jet ski hub/category (head term). Groups
+    // both activities; CollectionPage + ItemList linking to the two landings.
+    else if (metaKey === "/alquiler-moto-de-agua-blanes") {
+      const hub = (I18N_BY_LANG[lang] ?? i18nEs).jetskiHub;
+      const jlh = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
+      const heading = hub?.hero?.title ?? meta.title;
+      const summary = hub?.hero?.subtitle ?? meta.description;
+      const items = [
+        { key: "jetskiCircuito" as const, label: jlh?.circuito?.navLabel ?? "" },
+        { key: "jetskiExcursion" as const, label: jlh?.excursion?.navLabel ?? "" },
+      ];
+      const collection = {
+        "@type": "CollectionPage",
+        name: heading,
+        description: summary,
+        url: `${BASE_URL}${metaKey}`,
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: items.map((it, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: it.label,
+            url: `${BASE_URL}${getLocalizedPath(it.key, lang)}`,
+          })),
+        },
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: (hub?.faq ?? []).map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
+      const hubBodyFallback = buildLocationBodyFallback(
+        heading,
+        summary,
+        items.map((it) => it.label).filter(Boolean),
+        hub?.navLabel ?? heading,
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [collection, faq, breadcrumb] }, availableLanguages, bodyFallback: hubBodyFallback };
     }
 
     // Satellite location pages (tordera / palafolls / pineda). Fase 2 (2026-05-28):

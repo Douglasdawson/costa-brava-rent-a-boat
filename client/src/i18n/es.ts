@@ -9,6 +9,7 @@ export const es: Translations = {
     faq: "FAQ",
     giftCards: "Tarjetas Regalo",
     viewComponents: "Ver Componentes",
+    jetski: "Motos de agua",
     bookNow: "Reservar",
     myAccount: "Mi Cuenta",
   },
@@ -49,7 +50,7 @@ export const es: Translations = {
   },
 
   fleet: {
-    title: "Elige tu barco",
+    title: "Elige tu plan en el mar",
     subtitle:
       "Según el tamaño de tu grupo y la experiencia que buscas. Todos con seguro y equipo de seguridad incluido.",
     helpText: "¿No sabes cuál elegir? Te ayudamos en menos de 5 minutos",
@@ -68,7 +69,7 @@ export const es: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Elige entre 2h, 4h, u 8h para alquilar nuestra {boatName}",
     withLicense: "Con licencia",
-    withoutLicense: "Sin licencia",
+    withoutLicense: "Sin necesidad de licencia",
     available: "Disponible",
     occupied: "Ocupado",
     more: "más",
@@ -2845,7 +2846,7 @@ export const es: Translations = {
     title: "¿Con o sin licencia?",
     subtitle:
       "No necesitas carnet para disfrutar del mar. Pero si lo tienes, tenemos barcos más potentes.",
-    withoutLicense: "Sin licencia",
+    withoutLicense: "Sin necesidad de licencia",
     withLicense: "Con licencia",
     withoutLicenseDesc: "Te enseñamos en 15 minutos. Gasolina incluida. Perfecto para familias.",
     withLicenseDesc: "Más potencia, más velocidad, más lejos. Para navegantes con titulación.",
@@ -5129,11 +5130,11 @@ export const es: Translations = {
   },
   jetski: {
     badge: "Jet ski",
-    requestCta: "Solicitar",
+    requestCta: "Reservar",
     fromLabel: "desde",
     modal: {
       title: "Solicita tu jet ski",
-      subtitle: "Elige la franja y te confirmamos disponibilidad. Sin pagos online.",
+      subtitle: "Elige la franja y te confirmamos disponibilidad.",
       slot: "Franja",
       date: "Fecha preferida",
       datePlaceholder: "¿Qué día te gustaría?",
@@ -5150,28 +5151,56 @@ export const es: Translations = {
       submit: "Enviar solicitud",
       submitting: "Enviando...",
       reassurance: "Sin compromiso · te confirmamos por WhatsApp o email",
+      whatsappDirect: "Prefiero escribir por WhatsApp",
       successTitle: "¡Pulsa enviar en WhatsApp!",
       successText: "Hemos abierto WhatsApp con tu solicitud. Pulsa Enviar y te confirmamos la disponibilidad enseguida.",
       errorText: "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.",
       requiredError: "Por favor, completa tu nombre y teléfono.",
     },
   },
+  jetskiHub: {
+    seoTitle: "Alquiler de motos de agua en Blanes (Costa Brava) | Sin licencia",
+    navLabel: "Motos de agua",
+    hero: {
+      title: "Alquiler de motos de agua en Blanes",
+      subtitle:
+        "Pilota una moto de agua sin licencia en la Costa Brava: circuito balizado frente a Blanes o excursión guiada a Tossa de Mar. Chaleco y combustible incluidos.",
+    },
+    intro:
+      "Dos formas de disfrutar la moto de agua sin licencia desde el puerto de Blanes. Elige el circuito para una primera toma de contacto o la excursión guiada, con monitor, para recorrer la costa hasta Tossa de Mar.",
+    productsTitle: "Nuestras experiencias en moto de agua",
+    faqTitle: "Preguntas frecuentes",
+    faq: [
+      {
+        q: "¿Necesito licencia para la moto de agua?",
+        a: "No. Todas nuestras experiencias son sin licencia: vas siempre acompañado o vigilado por un monitor titulado.",
+      },
+      {
+        q: "¿Cuántas personas pueden ir por moto?",
+        a: "Entre 1 y 2 personas por moto de agua, según la experiencia que elijas.",
+      },
+      {
+        q: "¿Desde dónde salen?",
+        a: "Desde el puerto de Blanes (Girona), en el mismo pantalán que nuestros barcos.",
+      },
+    ],
+  },
   jetskiLanding: {
     "fromLabel": "desde",
-    "ctaRequest": "Solicitar",
+    "ctaRequest": "Reservar",
     "slotsTitle": "Franjas y precios",
     "includedTitle": "Qué incluye",
     "faqTitle": "Preguntas frecuentes",
     "reassurance": "Sin compromiso · te confirmamos por WhatsApp",
     "circuito": {
       "navLabel": "Circuito en Jet Ski",
+      "seoTitle": "Alquiler de moto de agua en Blanes · Circuito en jet ski sin licencia",
       "hero": {
         "title": "Circuito en Jet Ski en Blanes",
         "subtitle": "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes, con monitor vigilando. Sin licencia, desde 15 minutos."
       },
       "chips": [
-        "Sin licencia",
-        "Monitor incluido",
+        "Sin necesidad de licencia",
         "1-2 personas",
         "Desde 15 min"
       ],
@@ -5193,12 +5222,13 @@ export const es: Translations = {
     },
     "excursion": {
       "navLabel": "Excursión en Jet Ski con Monitor",
+      "seoTitle": "Alquiler de moto de agua en Blanes · Excursión guiada a Tossa de Mar",
       "hero": {
         "title": "Excursión en Jet Ski de Blanes a Tossa",
         "subtitle": "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada desde Blanes hacia Tossa de Mar. Sin licencia."
       },
       "chips": [
-        "Sin licencia",
+        "Sin necesidad de licencia",
         "Guía a Tossa de Mar",
         "Combustible incluido",
         "1-2 personas"

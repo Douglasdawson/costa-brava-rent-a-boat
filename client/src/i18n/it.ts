@@ -9,6 +9,7 @@ export const it: Translations = {
     faq: "FAQ",
     giftCards: "Carte Regalo",
     viewComponents: "Visualizza Componenti",
+    jetski: "Moto d'acqua",
     bookNow: "Verifica Disponibilità",
     myAccount: "Il Mio Account",
   },
@@ -46,7 +47,7 @@ export const it: Translations = {
   },
 
   fleet: {
-    title: "Scegli la tua barca",
+    title: "Scegli la tua uscita in mare",
     subtitle:
       "In base al tuo gruppo e all'esperienza che cerchi. Assicurazione e attrezzatura di sicurezza incluse.",
     helpText: "Non sai quale scegliere? Ti aiutiamo in meno di 5 minuti",
@@ -65,7 +66,7 @@ export const it: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Scegli tra 2h, 4h o 8h per noleggiare la nostra {boatName}",
     withLicense: "Con patente",
-    withoutLicense: "Senza patente",
+    withoutLicense: "Nessuna patente necessaria",
     available: "Disponibile",
     occupied: "Occupato",
     more: "altro",
@@ -1222,7 +1223,7 @@ export const it: Translations = {
     title: "Con o senza patente?",
     subtitle:
       "Non serve la patente per godersi il mare. Ma se ce l'hai, abbiamo barche più potenti.",
-    withoutLicense: "Senza patente",
+    withoutLicense: "Nessuna patente necessaria",
     withLicense: "Con patente",
     withoutLicenseDesc: "Ti insegniamo in 15 minuti. Carburante incluso. Perfetto per famiglie.",
     withLicenseDesc: "Più potenza, più velocità, più lontano. Per navigatori con patente.",
@@ -4966,11 +4967,11 @@ export const it: Translations = {
   },
   jetski: {
     badge: 'Jet ski',
-    requestCta: 'Richiedi',
+    requestCta: 'Prenota',
     fromLabel: 'da',
     modal: {
       title: 'Richiedi il tuo jet ski',
-      subtitle: 'Scegli la fascia oraria e ti confermiamo la disponibilità. Nessun pagamento online.',
+      subtitle: 'Scegli la fascia oraria e ti confermiamo la disponibilità.',
       slot: 'Fascia oraria',
       date: 'Data preferita',
       datePlaceholder: 'Che giorno ti piacerebbe?',
@@ -4987,28 +4988,54 @@ export const it: Translations = {
       submit: 'Invia richiesta',
       submitting: 'Invio in corso...',
       reassurance: 'Senza impegno · ti confermiamo via WhatsApp o email',
+      whatsappDirect: 'Preferisco scrivere su WhatsApp',
       successTitle: 'Premi invia su WhatsApp!',
       successText: 'Abbiamo aperto WhatsApp con la tua richiesta. Premi Invia e ti confermiamo la disponibilità a breve.',
       errorText: 'Non siamo riusciti a inviare la tua richiesta. Riprova o scrivici su WhatsApp.',
       requiredError: 'Per favore, completa il tuo nome e telefono.',
     },
   },
+  jetskiHub: {
+    "seoTitle": "Noleggio moto d'acqua a Blanes (Costa Brava) | Senza patente",
+    "navLabel": "Moto d'acqua",
+    "hero": {
+      "title": "Noleggio moto d'acqua a Blanes",
+      "subtitle": "Guida una moto d'acqua senza patente sulla Costa Brava: circuito segnalato davanti a Blanes o escursione guidata a Tossa de Mar. Giubbotto e carburante inclusi.",
+    },
+    "intro": "Due modi per goderti la moto d'acqua senza patente dal porto di Blanes, sempre con un istruttore. Scegli il circuito per un primo approccio o l'escursione guidata per percorrere la costa fino a Tossa de Mar.",
+    "productsTitle": "Le nostre esperienze in moto d'acqua",
+    "faqTitle": "Domande frequenti",
+    "faq": [
+      {
+        "q": "Serve la patente per la moto d'acqua?",
+        "a": "No. Tutte le nostre esperienze sono senza patente: sei sempre accompagnato o sorvegliato da un istruttore qualificato."
+      },
+      {
+        "q": "Quante persone possono salire per moto d'acqua?",
+        "a": "Tra 1 e 2 persone per moto d'acqua, a seconda dell'esperienza che scegli."
+      },
+      {
+        "q": "Da dove partono?",
+        "a": "Dal porto di Blanes (Girona), allo stesso pontile delle nostre barche."
+      }
+    ]
+  },
   jetskiLanding: {
     "fromLabel": "da",
-    "ctaRequest": "Richiedi",
+    "ctaRequest": "Prenota",
     "slotsTitle": "Fasce orarie e prezzi",
     "includedTitle": "Cosa include",
     "faqTitle": "Domande frequenti",
     "reassurance": "Senza impegno · confermiamo via WhatsApp",
     "circuito": {
       "navLabel": "Circuito in Moto d'Acqua",
+      "seoTitle": "Noleggio moto d'acqua a Blanes · Circuito in moto d'acqua senza patente",
       "hero": {
         "title": "Circuito in Moto d'Acqua a Blanes",
         "subtitle": "Prendi i comandi di una moto d'acqua in un circuito delimitato davanti a Blanes, con un istruttore che ti sorveglia. Senza patente, da 15 minuti."
       },
       "chips": [
-        "Senza patente",
-        "Istruttore incluso",
+        "Nessuna patente necessaria",
         "1-2 persone",
         "Da 15 min"
       ],
@@ -5030,12 +5057,13 @@ export const it: Translations = {
     },
     "excursion": {
       "navLabel": "Escursione in Moto d'Acqua con Istruttore",
+      "seoTitle": "Noleggio moto d'acqua a Blanes · Escursione guidata a Tossa de Mar",
       "hero": {
         "title": "Escursione in Moto d'Acqua da Blanes a Tossa",
         "subtitle": "Percorri la Costa Brava in moto d'acqua accompagnato da un istruttore qualificato, su un itinerario guidato da Blanes a Tossa de Mar. Senza patente."
       },
       "chips": [
-        "Senza patente",
+        "Nessuna patente necessaria",
         "Guida fino a Tossa",
         "Carburante incluso",
         "1-2 persone"

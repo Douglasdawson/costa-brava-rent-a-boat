@@ -27,7 +27,7 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     { title: "Explorar toda la Costa Brava en barco", description: "Rutas, calas y destinos desde el Puerto de Blanes", pageKey: "locationCostaBrava", type: "ubicacion" },
     { title: "Las 10 mejores calas de Blanes en barco", description: "Descubre las calas mas bonitas accesibles solo desde el mar", pageKey: "blogDetail", param: "mejores-calas-blanes-accesibles-en-barco", type: "blog" },
     { title: "Excursion de snorkel en barco", description: "Las mejores calas para snorkel cerca de Blanes", pageKey: "activitySnorkel", type: "actividad" },
-    { title: "Circuito en moto de agua", description: "Pilota una moto de agua sin licencia frente a Blanes", pageKey: "jetskiCircuito", type: "actividad" },
+    { title: "Alquiler de moto de agua sin licencia", description: "Circuito y excursion guiada en moto de agua desde Blanes", pageKey: "jetskiHub", type: "actividad" },
     { title: "Rutas en barco desde Blanes", description: "5 rutas con mapas interactivos", pageKey: "routes", type: "guia" },
   ],
   locationLloret: [
@@ -74,20 +74,28 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     { title: "Barco sin licencia vs con licencia", description: "Guia comparativa completa", pageKey: "blogDetail", param: "barco-sin-licencia-vs-con-licencia-guia", type: "blog" },
     { title: "Barcos para familias", description: "Experiencia perfecta sin necesidad de licencia", pageKey: "activityFamilies", type: "actividad" },
     { title: "Que llevar en el barco", description: "Checklist para tu dia en el mar", pageKey: "blogDetail", param: "que-llevar-barco-alquiler-checklist", type: "blog" },
-    { title: "Circuito en moto de agua", description: "Otra forma sin licencia de disfrutar del mar en Blanes", pageKey: "jetskiCircuito", type: "actividad" },
+    { title: "Alquiler de moto de agua sin licencia", description: "Circuito y excursion guiada en moto de agua desde Blanes", pageKey: "jetskiHub", type: "actividad" },
   ],
   categoryLicensed: [
     { title: "Barco sin licencia vs con licencia", description: "Guia comparativa completa", pageKey: "blogDetail", param: "barco-sin-licencia-vs-con-licencia-guia", type: "blog" },
     { title: "Pesca desde barco", description: "Barcos con licencia para zonas de pesca", pageKey: "activityFishing", type: "actividad" },
     { title: "Excursion a Tossa de Mar", description: "Llega en 30 min con barco con licencia", pageKey: "locationTossa", type: "ubicacion" },
   ],
-  jetskiCircuito: [
+  jetskiHub: [
+    { title: "Circuito en moto de agua", description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes", pageKey: "jetskiCircuito", type: "actividad" },
+    { title: "Excursion guiada a Tossa en moto de agua", description: "Ruta guiada de Blanes a Tossa de Mar con monitor", pageKey: "jetskiExcursion", type: "actividad" },
     { title: "Barcos sin licencia", description: "5 barcos desde 70EUR/h, gasolina incluida", pageKey: "categoryLicenseFree", type: "guia" },
     { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes", pageKey: "locationBlanes", type: "ubicacion" },
-    { title: "Precios y tarifas", description: "Consulta tarifas por temporada", pageKey: "pricing", type: "guia" },
+  ],
+  jetskiCircuito: [
+    { title: "Alquiler de moto de agua en Blanes", description: "Todas las experiencias en moto de agua sin licencia", pageKey: "jetskiHub", type: "actividad" },
+    { title: "Excursion guiada a Tossa en moto de agua", description: "Ruta guiada de Blanes a Tossa de Mar con monitor", pageKey: "jetskiExcursion", type: "actividad" },
+    { title: "Barcos sin licencia", description: "5 barcos desde 70EUR/h, gasolina incluida", pageKey: "categoryLicenseFree", type: "guia" },
+    { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes", pageKey: "locationBlanes", type: "ubicacion" },
   ],
   jetskiExcursion: [
-    { title: "Barcos sin licencia", description: "5 barcos desde 70EUR/h, gasolina incluida", pageKey: "categoryLicenseFree", type: "guia" },
+    { title: "Alquiler de moto de agua en Blanes", description: "Todas las experiencias en moto de agua sin licencia", pageKey: "jetskiHub", type: "actividad" },
+    { title: "Circuito en moto de agua sin licencia", description: "Primera toma de contacto en un circuito vigilado frente a Blanes", pageKey: "jetskiCircuito", type: "actividad" },
     { title: "Excursion a Tossa de Mar", description: "Descubre la Vila Vella y sus calas cristalinas", pageKey: "locationTossa", type: "ubicacion" },
     { title: "Precios y tarifas", description: "Consulta tarifas por temporada", pageKey: "pricing", type: "guia" },
   ],

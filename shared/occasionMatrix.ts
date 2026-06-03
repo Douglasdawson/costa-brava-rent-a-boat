@@ -66,7 +66,7 @@ export const OCCASION_MATRIX_ENABLED = true;
 // these combos are exposed to routing/sitemap/prerender even when the master
 // switch is on, so the 12 not-yet-authored combos never ship as thin pages.
 // Grow this list as each vertical's content lands.
-export const MATRIX_LIVE_OCCASIONS: readonly OccasionId[] = ["snorkel"];
+export const MATRIX_LIVE_OCCASIONS: readonly OccasionId[] = ["snorkel", "families", "sunset", "fishing"];
 
 /** The enumerated combos that are actually launched (live occasions × eligible locations). */
 export function liveMatrixCombos(): MatrixCombo[] {

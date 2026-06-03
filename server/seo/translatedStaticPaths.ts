@@ -73,6 +73,22 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   "/snorkel-lloret-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/snorkel-tossa-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/snorkel-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Matrix verticals 2/3/4 — families / sunset / fishing × 4 locations.
+  // Copy authored in es.ts (t.occasionMatrix.pages.<comboId>); ES-only launch —
+  // translation to the other 7 locales is blocked until the Anthropic monthly
+  // API cap resets (2026-07-01). Bump each to 8 locales once translated.
+  "/familias-blanes": ["es"],
+  "/familias-lloret-de-mar": ["es"],
+  "/familias-tossa-de-mar": ["es"],
+  "/familias-costa-brava": ["es"],
+  "/atardecer-blanes": ["es"],
+  "/atardecer-lloret-de-mar": ["es"],
+  "/atardecer-tossa-de-mar": ["es"],
+  "/atardecer-costa-brava": ["es"],
+  "/pesca-blanes": ["es"],
+  "/pesca-lloret-de-mar": ["es"],
+  "/pesca-tossa-de-mar": ["es"],
+  "/pesca-costa-brava": ["es"],
 };
 
 /**

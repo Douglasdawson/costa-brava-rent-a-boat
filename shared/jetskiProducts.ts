@@ -61,9 +61,9 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
     id: "jetski-circuito",
     name: "Circuito en Jet Ski",
     pageKey: "jetskiCircuito",
-    subtitle: "Sin licencia · 1-2 personas · Aprende a pilotar en circuito vigilado",
+    subtitle: "Sin licencia · 1-2 personas · Aprende a pilotar en circuito balizado",
     description:
-      "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes, con monitor vigilando en todo momento. Ideal para una primera toma de contacto: desde 15 minutos, sin licencia y con briefing y chaleco incluidos.",
+      "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes. Ideal para una primera toma de contacto: desde 15 minutos, sin licencia y con briefing y chaleco incluidos.",
     image:
       "/images/boats/jetski-circuito/jet-ski-circuito-yamaha-vx-blanes.webp",
     altText: "Moto de agua Yamaha VX en circuito frente a Blanes, Costa Brava",
@@ -72,21 +72,21 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
       model: "Moto de agua (jet ski)",
       length: "—",
       beam: "—",
-      engine: "Moto de agua con monitor",
+      engine: "Moto de agua",
       fuel: "Combustible incluido",
       capacity: "1-2 personas",
       deposit: "—",
     },
     included: [
       "Chaleco salvavidas",
-      "Monitor y vigilancia",
+      "Circuito balizado",
       "Briefing de seguridad",
       "Combustible",
     ],
     features: [
       "Sin licencia requerida",
       "Desde 15 minutos",
-      "Monitor incluido",
+      "Circuito balizado",
       "1-2 personas por moto",
     ],
     slots: [

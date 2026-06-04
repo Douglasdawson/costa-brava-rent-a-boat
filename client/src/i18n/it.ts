@@ -5001,14 +5001,15 @@ export const it: Translations = {
     "hero": {
       "title": "Noleggio moto d'acqua a Blanes",
       "subtitle": "Guida una moto d'acqua senza patente sulla Costa Brava: circuito segnalato davanti a Blanes o escursione guidata a Tossa de Mar. Giubbotto e carburante inclusi.",
+      "cta": "Vedi le esperienze",
     },
-    "intro": "Due modi per goderti la moto d'acqua senza patente dal porto di Blanes, sempre con un istruttore. Scegli il circuito per un primo approccio o l'escursione guidata per percorrere la costa fino a Tossa de Mar.",
+    "intro": "Due modi per goderti la moto d'acqua senza patente dal porto di Blanes. Scegli il circuito per un primo approccio o l'escursione guidata, con un istruttore, per percorrere la costa fino a Tossa de Mar.",
     "productsTitle": "Le nostre esperienze in moto d'acqua",
     "faqTitle": "Domande frequenti",
     "faq": [
       {
         "q": "Serve la patente per la moto d'acqua?",
-        "a": "No. Tutte le nostre esperienze sono senza patente: sei sempre accompagnato o sorvegliato da un istruttore qualificato."
+        "a": "No. Nessuna delle nostre esperienze richiede la patente: nel circuito guidi in una zona delimitata e nell'escursione ti accompagna un istruttore qualificato."
       },
       {
         "q": "Quante persone possono salire per moto d'acqua?",
@@ -5032,7 +5033,7 @@ export const it: Translations = {
       "seoTitle": "Noleggio moto d'acqua a Blanes · Circuito in moto d'acqua senza patente",
       "hero": {
         "title": "Circuito in Moto d'Acqua a Blanes",
-        "subtitle": "Prendi i comandi di una moto d'acqua in un circuito delimitato davanti a Blanes, con un istruttore che ti sorveglia. Senza patente, da 15 minuti."
+        "subtitle": "Prendi i comandi di una moto d'acqua su un percorso delimitato davanti a Blanes. Senza patente, da 15 minuti."
       },
       "chips": [
         "Nessuna patente necessaria",
@@ -5043,7 +5044,7 @@ export const it: Translations = {
       "faq": [
         {
           "q": "Serve la patente?",
-          "a": "No. Il circuito si svolge in una zona delimitata con un istruttore che sorveglia in ogni momento."
+          "a": "No. Il circuito si svolge in una zona delimitata e segnalata davanti al porto di Blanes."
         },
         {
           "q": "Quante persone per moto d'acqua?",

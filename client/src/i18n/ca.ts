@@ -5000,15 +5000,16 @@ export const ca: Translations = {
     "navLabel": "Motos aquàtiques",
     "hero": {
       "title": "Lloguer de motos aquàtiques a Blanes",
-      "subtitle": "Pilota una moto aquàtica sense llicència a la Costa Brava: circuit vigilat davant de Blanes o excursió guiada a Tossa de Mar. Amb monitor, armilla i combustible inclosos."
+      "subtitle": "Pilota una moto aquàtica sense llicència a la Costa Brava: circuit balisat davant de Blanes o excursió guiada a Tossa de Mar. Armilla i combustible inclosos.",
+      "cta": "Veure experiències"
     },
-    "intro": "Dues maneres de gaudir de la moto aquàtica sense llicència des del port de Blanes, sempre amb monitor. Tria el circuit per a un primer contacte o l'excursió guiada per recórrer la costa fins a Tossa de Mar.",
+    "intro": "Dues maneres de gaudir de la moto aquàtica sense llicència des del port de Blanes. Tria el circuit per a un primer contacte o l'excursió guiada, amb monitor, per recórrer la costa fins a Tossa de Mar.",
     "productsTitle": "Les nostres experiències en moto aquàtica",
     "faqTitle": "Preguntes freqüents",
     "faq": [
       {
         "q": "Necessito llicència per a la moto aquàtica?",
-        "a": "No. Totes les nostres experiències són sense llicència: sempre vas acompanyat o vigilat per un monitor titulat."
+        "a": "No. Cap de les nostres experiències requereix llicència: al circuit pilotes en una zona balisada i a l'excursió t'acompanya un monitor titulat."
       },
       {
         "q": "Quantes persones poden anar per moto?",
@@ -5032,7 +5033,7 @@ export const ca: Translations = {
       "seoTitle": "Lloguer de moto d'aigua a Blanes · Circuit en moto aquàtica sense llicència",
       "hero": {
         "title": "Circuit en Moto d'Aigua a Blanes",
-        "subtitle": "Posa't als comandaments d'una moto d'aigua en un circuit balisat davant de Blanes, amb un monitor vigilant. Sense llicència, des de 15 minuts."
+        "subtitle": "Posa't als comandaments d'una moto d'aigua en un circuit balisat davant de Blanes. Sense llicència, des de 15 minuts."
       },
       "chips": [
         "Sense necessitat de llicència",
@@ -5043,7 +5044,7 @@ export const ca: Translations = {
       "faq": [
         {
           "q": "Necessito llicència?",
-          "a": "No. El circuit es fa en una zona balisada amb un monitor vigilant en tot moment."
+          "a": "No. El circuit es fa en una zona balisada i senyalitzada davant del port de Blanes."
         },
         {
           "q": "Quantes persones per moto?",

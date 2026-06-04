@@ -194,7 +194,7 @@ export default function JetSkiRequestModal({
 
   return (
     <Dialog open={!!product} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+      <DialogContent className="w-[calc(100%-2rem)] max-w-md max-h-[90vh] overflow-y-auto overflow-x-hidden">
         {status === "success" ? (
           <div role="status" className="py-6 text-center">
             <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-[hsl(var(--ring))]" />
@@ -368,7 +368,7 @@ export default function JetSkiRequestModal({
                   </select>
                   <input
                     id="js-phone"
-                    className={inputClass}
+                    className={`${inputClass} min-w-0`}
                     type="tel"
                     inputMode="tel"
                     value={phoneNumber}

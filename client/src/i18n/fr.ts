@@ -5016,14 +5016,15 @@ export const fr: Translations = {
     "hero": {
       "title": "Location de jet-skis à Blanes",
       "subtitle": "Pilotez un jet-ski sans permis sur la Costa Brava : circuit balisé au large de Blanes ou excursion guidée à Tossa de Mar. Gilet et carburant inclus.",
+      "cta": "Voir les expériences",
     },
-    "intro": "Deux façons de profiter du jet-ski sans permis depuis le port de Blanes, toujours avec un moniteur. Choisissez le circuit pour un premier contact ou l'excursion guidée pour parcourir la côte jusqu'à Tossa de Mar.",
+    "intro": "Deux façons de profiter du jet-ski sans permis depuis le port de Blanes. Choisissez le circuit pour un premier contact ou l'excursion guidée, avec un moniteur, pour parcourir la côte jusqu'à Tossa de Mar.",
     "productsTitle": "Nos expériences en jet-ski",
     "faqTitle": "Questions fréquentes",
     "faq": [
       {
         "q": "Ai-je besoin d'un permis pour le jet-ski ?",
-        "a": "Non. Toutes nos expériences sont sans permis : vous êtes toujours accompagné ou surveillé par un moniteur diplômé."
+        "a": "Non. Aucune de nos expériences ne nécessite de permis : sur le circuit, vous pilotez dans une zone balisée et, lors de l'excursion, un moniteur diplômé vous accompagne."
       },
       {
         "q": "Combien de personnes par jet-ski ?",
@@ -5047,7 +5048,7 @@ export const fr: Translations = {
       "seoTitle": "Location de jet-ski à Blanes · Circuit en jet-ski sans permis",
       "hero": {
         "title": "Circuit en Jet Ski à Blanes",
-        "subtitle": "Prenez les commandes d'un jet ski sur un circuit balisé au large de Blanes, avec un moniteur qui veille sur vous. Sans permis, dès 15 minutes."
+        "subtitle": "Prenez les commandes d'un jet ski sur un circuit balisé au large de Blanes. Sans permis, à partir de 15 minutes."
       },
       "chips": [
         "Aucun permis nécessaire",
@@ -5058,7 +5059,7 @@ export const fr: Translations = {
       "faq": [
         {
           "q": "Ai-je besoin d'un permis ?",
-          "a": "Non. Le circuit se déroule dans une zone balisée avec un moniteur qui surveille en permanence."
+          "a": "Non. Le circuit se déroule dans une zone balisée et signalée au large du port de Blanes."
         },
         {
           "q": "Combien de personnes par jet ski ?",

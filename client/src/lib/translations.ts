@@ -2810,7 +2810,7 @@ export interface Translations {
   jetskiHub: {
     seoTitle: string;
     navLabel: string;
-    hero: { title: string; subtitle: string };
+    hero: { title: string; subtitle: string; cta: string };
     intro: string;
     productsTitle: string;
     faqTitle: string;

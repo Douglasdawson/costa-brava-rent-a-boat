@@ -5048,14 +5048,15 @@ export const en: Translations = {
     "hero": {
       "title": "Jet ski rental in Blanes",
       "subtitle": "Ride a jet ski without a license on the Costa Brava: a marked circuit off Blanes or a guided tour to Tossa de Mar. Life jacket and fuel included.",
+      "cta": "See experiences",
     },
-    "intro": "Two ways to enjoy a jet ski without a license from the port of Blanes, always with an instructor. Choose the circuit for a first taste or the guided tour to travel the coast all the way to Tossa de Mar.",
+    "intro": "Two ways to enjoy a jet ski without a license from the port of Blanes. Choose the circuit for a first taste or the guided tour, with an instructor, to travel the coast all the way to Tossa de Mar.",
     "productsTitle": "Our jet ski experiences",
     "faqTitle": "FAQ",
     "faq": [
       {
         "q": "Do I need a license for the jet ski?",
-        "a": "No. All our experiences are license-free: you're always accompanied or supervised by a qualified instructor."
+        "a": "No. None of our experiences require a licence: on the circuit you ride in a marked area, and on the excursion a qualified instructor goes with you."
       },
       {
         "q": "How many people can ride per jet ski?",
@@ -5079,7 +5080,7 @@ export const en: Translations = {
       "seoTitle": "Jet ski rental in Blanes · No-license jet ski circuit",
       "hero": {
         "title": "Jet Ski Circuit in Blanes",
-        "subtitle": "Take the controls of a jet ski in a marked circuit off Blanes, with an instructor watching over you. No license, from 15 minutes."
+        "subtitle": "Take the controls of a jet ski on a marked course off Blanes. No licence needed, from 15 minutes."
       },
       "chips": [
         "No licence needed",
@@ -5090,7 +5091,7 @@ export const en: Translations = {
       "faq": [
         {
           "q": "Do I need a license?",
-          "a": "No. The circuit takes place in a marked area with an instructor watching at all times."
+          "a": "No. The circuit takes place in a marked, signposted area off the port of Blanes."
         },
         {
           "q": "How many people per jet ski?",

@@ -5005,14 +5005,15 @@ export const nl: Translations = {
     "hero": {
       "title": "Jetski's huren in Blanes",
       "subtitle": "Bestuur een jetski zonder vaarbewijs aan de Costa Brava: een uitgebakend circuit voor de kust van Blanes of een begeleide tour naar Tossa de Mar. Reddingsvest en brandstof inbegrepen.",
+      "cta": "Bekijk de ervaringen",
     },
-    "intro": "Twee manieren om zonder vaarbewijs van de jetski te genieten vanuit de haven van Blanes. Kies het circuit voor een eerste kennismaking of de begeleide tour, met begeleider, om de kust tot Tossa de Mar te verkennen.",
+    "intro": "Twee manieren om zonder vaarbewijs van de jetski te genieten vanuit de haven van Blanes. Kies het circuit voor een eerste kennismaking of de begeleide tour, met een instructeur, om de kust tot Tossa de Mar te verkennen.",
     "productsTitle": "Onze jetski-ervaringen",
     "faqTitle": "Veelgestelde vragen",
     "faq": [
       {
         "q": "Heb ik een vaarbewijs nodig voor de jetski?",
-        "a": "Nee. Al onze ervaringen zijn zonder vaarbewijs: je wordt altijd begeleid of in de gaten gehouden door een gediplomeerde begeleider."
+        "a": "Nee. Geen van onze ervaringen vereist een vaarbewijs: op het parcours rijd je in een uitgezet gebied en tijdens de excursie gaat een gediplomeerde instructeur met je mee."
       },
       {
         "q": "Hoeveel personen kunnen er per jetski mee?",
@@ -5036,7 +5037,7 @@ export const nl: Translations = {
       "seoTitle": "Jetski huren in Blanes · Jetski-circuit zonder vaarbewijs",
       "hero": {
         "title": "Jetski-circuit in Blanes",
-        "subtitle": "Neem de besturing van een jetski op een uitgebakend circuit voor de kust van Blanes. Zonder vaarbewijs, vanaf 15 minuten.",
+        "subtitle": "Neem het stuur van een jetski op een uitgezet parcours voor Blanes. Geen vaarbewijs nodig, vanaf 15 minuten.",
       },
       "chips": [
         "Geen vaarbewijs nodig",
@@ -5047,7 +5048,7 @@ export const nl: Translations = {
       "faq": [
         {
           "q": "Heb ik een vaarbewijs nodig?",
-          "a": "Nee. Het circuit vindt plaats in een uitgebakend gebied en zonder dat een vaarbewijs nodig is."
+          "a": "Nee. Het parcours ligt in een uitgezet, gemarkeerd gebied voor de haven van Blanes."
         },
         {
           "q": "Hoeveel personen per jetski?",

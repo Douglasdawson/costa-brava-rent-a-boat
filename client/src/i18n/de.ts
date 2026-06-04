@@ -5028,14 +5028,15 @@ export const de: Translations = {
     "hero": {
       "title": "Jetski-Verleih in Blanes",
       "subtitle": "Fahre einen Jetski ohne Führerschein an der Costa Brava: markierter Rundkurs vor Blanes oder geführte Tour nach Tossa de Mar. Schwimmweste und Kraftstoff inklusive.",
+      "cta": "Erlebnisse ansehen",
     },
-    "intro": "Zwei Möglichkeiten, den Jetski ohne Führerschein vom Hafen von Blanes aus zu genießen, immer mit einem Monitor. Wähle den Rundkurs für einen ersten Kontakt oder die geführte Tour, um die Küste bis nach Tossa de Mar zu erkunden.",
+    "intro": "Zwei Möglichkeiten, den Jetski ohne Führerschein vom Hafen von Blanes aus zu genießen. Wähle den Rundkurs für einen ersten Kontakt oder die geführte Tour, mit einem Guide, um die Küste bis nach Tossa de Mar zu erkunden.",
     "productsTitle": "Unsere Jetski-Erlebnisse",
     "faqTitle": "Häufige Fragen",
     "faq": [
       {
         "q": "Brauche ich einen Führerschein für den Jetski?",
-        "a": "Nein. Alle unsere Erlebnisse sind ohne Führerschein: Du wirst immer von einem qualifizierten Monitor begleitet oder beaufsichtigt."
+        "a": "Nein. Keines unserer Erlebnisse erfordert einen Führerschein: Auf dem Rundkurs fährst du in einem markierten Bereich, und auf der geführten Tour begleitet dich ein ausgebildeter Guide."
       },
       {
         "q": "Wie viele Personen können pro Jetski mitfahren?",
@@ -5059,7 +5060,7 @@ export const de: Translations = {
       "seoTitle": "Jetski-Verleih in Blanes · Jetski-Rundkurs ohne Führerschein",
       "hero": {
         "title": "Jet-Ski-Rundkurs in Blanes",
-        "subtitle": "Übernimm das Steuer eines Jet-Skis auf einem markierten Kurs vor Blanes, mit einem Monitor, der auf dich aufpasst. Ohne Führerschein, ab 15 Minuten."
+        "subtitle": "Übernimm das Steuer eines Jetskis auf einem markierten Rundkurs vor Blanes. Ohne Führerschein, ab 15 Minuten."
       },
       "chips": [
         "Kein Führerschein nötig",
@@ -5070,7 +5071,7 @@ export const de: Translations = {
       "faq": [
         {
           "q": "Brauche ich einen Führerschein?",
-          "a": "Nein. Der Rundkurs findet in einem markierten Bereich statt, mit ständiger Aufsicht durch einen Monitor."
+          "a": "Nein. Der Rundkurs findet in einem markierten, ausgeschilderten Bereich vor dem Hafen von Blanes statt."
         },
         {
           "q": "Wie viele Personen pro Jet-Ski?",

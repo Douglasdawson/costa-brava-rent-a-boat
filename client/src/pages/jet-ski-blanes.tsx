@@ -125,7 +125,7 @@ export default function JetSkiBlanesHub() {
           </p>
           <div className="mt-8">
             <a href="#experiencias" className={`${NAVY_CTA} min-h-12 px-9 text-base`}>
-              {h?.productsTitle || "Ver experiencias"}
+              {h?.hero?.cta || "Ver experiencias"}
               <ArrowRight className="h-5 w-5" />
             </a>
           </div>

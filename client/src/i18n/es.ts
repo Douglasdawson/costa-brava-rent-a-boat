@@ -5165,6 +5165,7 @@ export const es: Translations = {
       title: "Alquiler de motos de agua en Blanes",
       subtitle:
         "Pilota una moto de agua sin licencia en la Costa Brava: circuito balizado frente a Blanes o excursión guiada a Tossa de Mar. Chaleco y combustible incluidos.",
+      cta: "Ver experiencias",
     },
     intro:
       "Dos formas de disfrutar la moto de agua sin licencia desde el puerto de Blanes. Elige el circuito para una primera toma de contacto o la excursión guiada, con monitor, para recorrer la costa hasta Tossa de Mar.",
@@ -5173,7 +5174,7 @@ export const es: Translations = {
     faq: [
       {
         q: "¿Necesito licencia para la moto de agua?",
-        a: "No. Todas nuestras experiencias son sin licencia: vas siempre acompañado o vigilado por un monitor titulado.",
+        a: "No. Ninguna de nuestras experiencias requiere licencia: en el circuito pilotas en una zona balizada y en la excursión te acompaña un monitor titulado.",
       },
       {
         q: "¿Cuántas personas pueden ir por moto?",
@@ -5197,7 +5198,7 @@ export const es: Translations = {
       "seoTitle": "Alquiler de moto de agua en Blanes · Circuito en jet ski sin licencia",
       "hero": {
         "title": "Circuito en Jet Ski en Blanes",
-        "subtitle": "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes, con monitor vigilando. Sin licencia, desde 15 minutos."
+        "subtitle": "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes. Sin licencia, desde 15 minutos."
       },
       "chips": [
         "Sin necesidad de licencia",
@@ -5208,7 +5209,7 @@ export const es: Translations = {
       "faq": [
         {
           "q": "¿Necesito licencia?",
-          "a": "No. El circuito se hace en zona balizada con un monitor vigilando en todo momento."
+          "a": "No. El circuito se hace en una zona balizada y señalizada frente al puerto de Blanes."
         },
         {
           "q": "¿Cuántas personas por moto?",

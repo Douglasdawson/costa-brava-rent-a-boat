@@ -129,6 +129,22 @@ export default function BoatPricingSection({
                   min={todayKey}
                   max={maxKey}
                   onChange={handleNativeDateChange}
+                  onClick={(e) => {
+                    // Desktop browsers at <768px (narrow window, not a touch
+                    // device) hit this mobile branch but only FOCUS the date
+                    // input on click without opening the calendar — so the user
+                    // can't pick a date. showPicker() forces it open. On real
+                    // touch devices the OS picker already opens on tap, so this
+                    // is a harmless no-op there (and any throw is swallowed).
+                    const el = e.currentTarget as HTMLInputElement & {
+                      showPicker?: () => void;
+                    };
+                    try {
+                      el.showPicker?.();
+                    } catch {
+                      /* unsupported/blocked (older Safari) — native tap still works */
+                    }
+                  }}
                   aria-label={t.boatDetail.checkAvailability}
                   className="absolute inset-0 h-full w-full cursor-pointer appearance-none border-0 bg-transparent opacity-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
                 />

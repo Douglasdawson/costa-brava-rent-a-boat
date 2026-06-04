@@ -1158,7 +1158,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           width={1200}
           height={800}
           loading="eager"
-          fetchPriority="high"
+          // react-dom 18.3 doesn't map camelCase `fetchPriority` (it drops the
+          // prop and warns); pass the real lowercase attribute so the browser
+          // actually applies the LCP priority hint. Cast satisfies tsc until React 19.
+          {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/50 to-foreground/20" />
 

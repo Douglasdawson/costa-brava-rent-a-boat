@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Ship } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BOAT_DATA } from "@shared/boatData";
 
@@ -15,7 +16,7 @@ interface PopularBoatsSectionProps {
   badgeLabel?: (boatId: string) => string;
   /** Optional custom badge variant resolver. Defaults to outline. */
   badgeVariant?: (boatId: string) => "default" | "secondary" | "outline";
-  /** Optional CTA suffix used on each card. Defaults to "Ver barco →". */
+  /** Optional CTA suffix used on each card. Defaults to the localized "Ver detalles →". */
   ctaLabel?: string;
   /** Section background class. Defaults to "bg-muted". */
   bgClass?: string;
@@ -47,10 +48,14 @@ export default function PopularBoatsSection({
   boatIds,
   badgeLabel,
   badgeVariant,
-  ctaLabel = "Ver barco →",
+  ctaLabel,
   bgClass = "bg-muted",
 }: PopularBoatsSectionProps) {
   const { localizedPath } = useLanguage();
+  const t = useTranslations();
+  // Localized defaults so a non-Spanish visitor never sees Spanish badges/CTA
+  // mixed into an otherwise translated page. Callers can still override.
+  const effectiveCtaLabel = ctaLabel ?? `${t.boats.viewDetails} →`;
 
   return (
     <RevealSection className={`py-16 sm:py-20 ${bgClass}`}>
@@ -69,7 +74,7 @@ export default function PopularBoatsSection({
             .map(({ boatId, boat }) => {
               const lowestPrice = Math.min(...Object.values(boat.pricing.BAJA.prices));
               const isNoLicense = boat.features.some((f) => f.toLowerCase().includes("sin licencia"));
-              const label = badgeLabel ? badgeLabel(boatId) : isNoLicense ? "Sin licencia" : "Con licencia";
+              const label = badgeLabel ? badgeLabel(boatId) : isNoLicense ? t.booking.withoutLicense : t.booking.withLicense;
               const variant = badgeVariant ? badgeVariant(boatId) : isNoLicense ? "secondary" : "outline";
               return (
                 <a
@@ -86,8 +91,8 @@ export default function PopularBoatsSection({
                   </div>
                   <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{boat.subtitle}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-primary font-semibold text-sm">desde {lowestPrice} €</span>
-                    <span className="text-sm text-primary hover:underline">{ctaLabel}</span>
+                    <span className="text-primary font-semibold text-sm">{t.boats.from} {lowestPrice} €</span>
+                    <span className="text-sm text-primary hover:underline">{effectiveCtaLabel}</span>
                   </div>
                 </a>
               );

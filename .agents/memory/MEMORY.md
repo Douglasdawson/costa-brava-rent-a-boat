@@ -1,0 +1,1 @@
+- [Neon serverless WebSocket crash](neon-websocket-crash.md) — @neondatabase/serverless v0.10.4 throws uncaught TypeError on transient DB drops; filter it in uncaughtException handler or server shuts down every ~30-60min.

@@ -661,12 +661,33 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     });
     setTimeout(() => process.exit(1), 10000);
   };
+  // Known non-fatal errors from @neondatabase/serverless that should not crash the server.
+  // The package attempts to assign to ErrorEvent.message (read-only in some envs) when a
+  // WebSocket connection drops. The connection is automatically retried by the pool.
+  const isNeonWebSocketError = (err: unknown): boolean => {
+    if (!(err instanceof TypeError)) return false;
+    const msg = (err as TypeError).message || "";
+    return (
+      msg.includes("Cannot set property message of #<ErrorEvent>") ||
+      msg.includes("reportStreamError") ||
+      msg.includes("_handleErrorWhileConnecting")
+    );
+  };
+
   process.on("uncaughtException", (err) => {
+    if (isNeonWebSocketError(err)) {
+      log(`[DB] Neon WebSocket transient error (non-fatal, connection will retry): ${err.message}`);
+      return;
+    }
     log(`Uncaught exception — shutting down: ${err.message}\n${err.stack}`);
     shutdown();
   });
 
   process.on("unhandledRejection", (reason) => {
+    if (isNeonWebSocketError(reason)) {
+      log(`[DB] Neon WebSocket transient rejection (non-fatal, connection will retry)`);
+      return;
+    }
     log(`Unhandled rejection — shutting down: ${reason instanceof Error ? reason.message : String(reason)}`);
     shutdown();
   });

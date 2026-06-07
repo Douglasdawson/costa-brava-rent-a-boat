@@ -566,11 +566,17 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   app.get("/", (req, res) => {
     res.set("Vary", "Accept-Language, Cookie, User-Agent");
 
+    // Preserve the query string on human redirects so paid-campaign attribution
+    // (utm_*, gclid, fbclid, affiliate codes) survives the hop to /{lang}/.
+    // Bots get a clean /es/ so the consolidated canonical stays parameter-free.
+    const qIdx = req.url.indexOf("?");
+    const qs = qIdx >= 0 ? req.url.slice(qIdx) : "";
+
     // 1. Explicit prior choice wins (set by the language selector / autodetect).
     const cookieLang = req.cookies?.["costa-brava-language"];
     if (typeof cookieLang === "string" && isValidLang(cookieLang)) {
       res.set("Cache-Control", "private, no-store");
-      return res.redirect(302, `/${cookieLang}/`);
+      return res.redirect(302, `/${cookieLang}/${qs}`);
     }
 
     // 2. Crawlers (search + social + AI) always get the consolidated canonical.
@@ -583,12 +589,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     const best = req.acceptsLanguages([...SUPPORTED_LANGUAGES]);
     if (best && isValidLang(best) && best !== "es") {
       res.set("Cache-Control", "private, no-store");
-      return res.redirect(302, `/${best}/`);
+      return res.redirect(302, `/${best}/${qs}`);
     }
 
     // 4. Spanish or no match -> x-default home.
     res.set("Cache-Control", "private, no-store");
-    return res.redirect(301, "/es/");
+    return res.redirect(301, `/es/${qs}`);
   });
 
   // 404 handler for unknown API routes

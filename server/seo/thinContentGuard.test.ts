@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   evaluateThinContent,
+  isThinGuardExempt,
   MIN_SESSIONS_TO_JUDGE,
   MAX_BOUNCE_PERCENT,
   MIN_AVG_DURATION_SECONDS,
@@ -50,5 +51,27 @@ describe("evaluateThinContent", () => {
   it("treats the thresholds as strict boundaries (exactly at limit = keep)", () => {
     expect(evaluateThinContent({ ...base, bouncePercent: MAX_BOUNCE_PERCENT }).noindex).toBe(false);
     expect(evaluateThinContent({ ...base, avgSessionDurationSeconds: MIN_AVG_DURATION_SECONDS }).noindex).toBe(false);
+  });
+});
+
+describe("isThinGuardExempt — money pages are never auto-noindexed", () => {
+  it("exempts the home and core money metaKeys", () => {
+    expect(isThinGuardExempt("/")).toBe(true);
+    expect(isThinGuardExempt("/barcos")).toBe(true);
+    expect(isThinGuardExempt("/barcos-sin-licencia")).toBe(true);
+    expect(isThinGuardExempt("/barcos-con-licencia")).toBe(true);
+    expect(isThinGuardExempt("/precios")).toBe(true);
+  });
+
+  it("exempts all location landings and boat detail pages by prefix", () => {
+    expect(isThinGuardExempt("/alquiler-barcos-blanes")).toBe(true);
+    expect(isThinGuardExempt("/alquiler-barcos-malgrat-de-mar")).toBe(true);
+    expect(isThinGuardExempt("/barco/solar-450")).toBe(true);
+  });
+
+  it("does NOT exempt long-tail / programmatic pages (the guard's real target)", () => {
+    expect(isThinGuardExempt("/blog/algun-post")).toBe(false);
+    expect(isThinGuardExempt("/destinos/cala-sant-francesc")).toBe(false);
+    expect(isThinGuardExempt("/faq")).toBe(false);
   });
 });

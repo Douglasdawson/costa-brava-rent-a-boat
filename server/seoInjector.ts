@@ -4399,9 +4399,12 @@ export async function serveWithSEO(
 
       // Thin-content guard: a page that's otherwise indexable but that real GA4
       // engagement shows users bounce off gets auto-noindex'd. Skipped when the
-      // page is already noindex. Fail-safe (errors → not noindex). Cached 1h, so
-      // this is a Map lookup on the hot path after the first request per page.
-      const effectiveNoindex = noindex || (await shouldNoindexThinContent(canonicalPath));
+      // page is already noindex, and exempt for strategically critical "money"
+      // pages (home, category, location landings, boat detail — see
+      // isThinGuardExempt). Fail-safe (errors → not noindex). Cached 1h, so this
+      // is a Map lookup on the hot path after the first request per page.
+      const { metaKey: thinGuardMetaKey } = pathToStaticMetaKey(canonicalPath);
+      const effectiveNoindex = noindex || (await shouldNoindexThinContent(canonicalPath, thinGuardMetaKey));
 
       // Check LRU cache for pre-injected HTML (avoids 9+ regex replacements).
       // Key includes the index decision so a thin/healthy flip can't serve stale robots.

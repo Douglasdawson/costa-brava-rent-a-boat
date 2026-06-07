@@ -50,6 +50,30 @@ export function evaluateThinContent(
   return { noindex: false };
 }
 
+// Strategically critical "money" pages are NEVER auto-noindexed by engagement
+// signals. A high bounce on the home or a head-term landing is a reason to FIX
+// the page, not to hide it from Google — losing one of these from the index is
+// far costlier (and slower to recover) than tolerating an underperforming page.
+// The guard still applies to programmatic long-tail pages (the boat×location×
+// occasion matrix), which is exactly what it exists for.
+//
+// Keyed by the canonical (un-prefixed, un-translated) metaKey from
+// pathToStaticMetaKey, so it covers all 8 locales at once.
+const MONEY_PAGE_METAKEYS = new Set<string>([
+  "/",                    // home (all languages)
+  "/barcos",              // fleet
+  "/barcos-sin-licencia", // category
+  "/barcos-con-licencia", // category
+  "/precios",             // pricing
+]);
+
+export function isThinGuardExempt(metaKey: string): boolean {
+  if (MONEY_PAGE_METAKEYS.has(metaKey)) return true;
+  if (metaKey.startsWith("/alquiler-barcos-")) return true; // location landings
+  if (metaKey.startsWith("/barco/")) return true;           // boat detail pages
+  return false;
+}
+
 /** Aggregate GA4 daily rows for one landing page over the lookback window. */
 export async function getPageEngagementMetrics(
   landingPage: string,
@@ -82,7 +106,10 @@ const cache = new Map<string, { value: boolean; expires: number }>();
  * any DB/parse error → false (never accidentally noindex on infra hiccups).
  * `pagePath` must be the localized path as GA4 stores it (e.g. /es/alquiler-barcos-blanes).
  */
-export async function shouldNoindexThinContent(pagePath: string): Promise<boolean> {
+export async function shouldNoindexThinContent(pagePath: string, metaKey?: string): Promise<boolean> {
+  // Never let engagement signals hide a strategically critical page.
+  if (metaKey && isThinGuardExempt(metaKey)) return false;
+
   const now = Date.now();
   const hit = cache.get(pagePath);
   if (hit && hit.expires > now) return hit.value;

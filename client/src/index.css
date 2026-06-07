@@ -297,6 +297,23 @@ body { overflow-x: hidden; }
     100% { transform: scale(1.15); opacity: 0; }
   }
 
+  /* Boat Club promo modal entrance (GPU-composited: transform + opacity) */
+  @keyframes bcm-card-in {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes bcm-rise-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bcm-scrim-in { from { opacity: 0; } to { opacity: 1; } }
+  .bcm-card { animation: bcm-card-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both; will-change: transform, opacity; }
+  .bcm-rise { opacity: 0; animation: bcm-rise-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .bcm-scrim { animation: bcm-scrim-in 0.45s ease both; }
+  @media (prefers-reduced-motion: reduce) {
+    .bcm-card, .bcm-rise, .bcm-scrim { animation: none; opacity: 1; transform: none; }
+  }
+
   .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
   .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
   .mb-safe { margin-bottom: env(safe-area-inset-bottom, 0px); }

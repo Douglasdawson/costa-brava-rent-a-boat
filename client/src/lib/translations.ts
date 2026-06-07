@@ -744,6 +744,21 @@ export interface Translations {
     cta: string;
   };
 
+  // Boat Club cross-promo modal (sister business)
+  boatClubPromo?: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    perk1: string;
+    perk2: string;
+    perk3: string;
+    priceFrom: string;
+    priceAmount: string;
+    pricePer: string;
+    cta: string;
+    dismiss: string;
+  };
+
   // Code Validation (booking form)
   codeValidation: {
     haveCode: string;

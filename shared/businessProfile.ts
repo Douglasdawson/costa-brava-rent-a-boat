@@ -30,6 +30,17 @@ export const BUSINESS_LEGAL_NAME = "DAMAR COSTA BRAVA S.L.";
 export const BUSINESS_VAT_ID = "ESB22566327";
 export const BUSINESS_TAX_ID = "B22566327";
 
+// Postal address — single source of truth. MUST match the Google Business
+// Profile exactly (Name/Address/Phone consistency for local SEO). The street
+// is the real mailing street ("Carrer Esplanada del Port"); "Puerto de Blanes"
+// is only a landmark/marketing label and must NOT be used as streetAddress.
+export const BUSINESS_STREET = "Carrer Esplanada del Port";
+export const BUSINESS_LOCALITY = "Blanes";
+export const BUSINESS_REGION = "Girona";
+export const BUSINESS_POSTAL_CODE = "17300";
+export const BUSINESS_COUNTRY = "ES";
+export const BUSINESS_ADDRESS_FORMATTED = `${BUSINESS_STREET}, ${BUSINESS_POSTAL_CODE} ${BUSINESS_LOCALITY}, ${BUSINESS_REGION}`;
+
 // Wikidata entity ID (Q-prefixed). Wikidata's notability policy makes it
 // risky for a local SMB; we deprioritised this in favour of OpenStreetMap
 // (see below). Kept as an optional slot — if a Wikidata item is eventually

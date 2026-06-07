@@ -19,6 +19,8 @@ import {
   BUSINESS_TAX_ID,
   BUSINESS_VAT_ID,
   BUSINESS_WIKIDATA_QID,
+  BUSINESS_STREET,
+  BUSINESS_ADDRESS_FORMATTED,
 } from "../../shared/businessProfile";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
@@ -381,7 +383,7 @@ function buildSeasonEvent(businessUrl: string) {
       name: "Puerto de Blanes",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Puerto de Blanes",
+        streetAddress: BUSINESS_STREET,
         addressLocality: "Blanes",
         postalCode: "17300",
         addressRegion: "Girona",
@@ -569,7 +571,7 @@ export function registerRobotsRoutes(app: Express): void {
 
 ## Key Facts
 
-- **Location**: Puerto de Blanes, 17300 Blanes, Girona, Catalonia, Spain
+- **Location**: ${BUSINESS_STREET}, 17300 Blanes, Girona, Catalonia, Spain (Puerto de Blanes)
 - **Price range**: 70-420 EUR
 - **Phone / WhatsApp**: +34 611 500 372
 - **Website**: https://www.costabravarentaboat.com
@@ -643,7 +645,7 @@ export function registerRobotsRoutes(app: Express): void {
       geo: {
         lat: 41.6722504,
         lng: 2.7978625,
-        address: "Puerto de Blanes, 17300 Blanes, Girona, ES",
+        address: `${BUSINESS_ADDRESS_FORMATTED}, ES`,
       },
       contact: {
         phone: "+34611500372",
@@ -879,7 +881,7 @@ export function registerRobotsRoutes(app: Express): void {
         name: "Puerto de Blanes",
         address: {
           "@type": "PostalAddress",
-          streetAddress: "Puerto de Blanes",
+          streetAddress: BUSINESS_STREET,
           addressLocality: "Blanes",
           postalCode: "17300",
           addressRegion: "Girona",

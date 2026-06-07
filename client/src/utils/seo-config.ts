@@ -6,6 +6,11 @@ import type { PageKey } from "@shared/i18n-routes";
 import {
   BUSINESS_RATING_STR,
   BUSINESS_REVIEW_COUNT_STR,
+  BUSINESS_STREET,
+  BUSINESS_LOCALITY,
+  BUSINESS_REGION,
+  BUSINESS_POSTAL_CODE,
+  BUSINESS_COUNTRY,
 } from "@shared/businessProfile";
 
 // Dynamic season year: Nov-Dec → next year, otherwise current year
@@ -45,11 +50,11 @@ export const BUSINESS_INFO = {
   email: "costabravarentaboat@gmail.com",
   url: getBaseUrl(),
   address: {
-    streetAddress: "Puerto de Blanes",
-    addressLocality: "Blanes", 
-    addressRegion: "Girona",
-    postalCode: "17300",
-    addressCountry: "ES"
+    streetAddress: BUSINESS_STREET,
+    addressLocality: BUSINESS_LOCALITY,
+    addressRegion: BUSINESS_REGION,
+    postalCode: BUSINESS_POSTAL_CODE,
+    addressCountry: BUSINESS_COUNTRY
   },
   geo: {
     latitude: 41.6722504,

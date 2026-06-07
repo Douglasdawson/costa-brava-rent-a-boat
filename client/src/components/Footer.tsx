@@ -15,6 +15,7 @@ import LogoCostaBravaFooter from "@/components/icons/LogoCostaBravaFooter";
 import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "@/components/icons/BrandIcons";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
+import { BUSINESS_ADDRESS_FORMATTED } from "@shared/businessProfile";
 import CentresNLCatalunyaLogo from "@/components/icons/CentresNLCatalunyaLogo";
 import ClusterNauticLogo from "@/components/icons/ClusterNauticLogo";
 import DonQualitaLogo from "@/components/icons/DonQualitaLogo";
@@ -460,6 +461,9 @@ export default function Footer() {
                   >
                     {t.footer.location}
                   </a>
+                  <p className="text-xs text-primary-foreground/60 mt-0.5">
+                    {BUSINESS_ADDRESS_FORMATTED}
+                  </p>
                   <p className="text-xs text-primary-foreground/60 mt-0.5">{t.footer.region}</p>
                 </div>
               </div>

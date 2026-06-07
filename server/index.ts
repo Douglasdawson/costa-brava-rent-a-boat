@@ -11,6 +11,8 @@ import { setupVite, serveStatic, log } from "./vite";
 import * as Sentry from "@sentry/node";
 import { randomUUID } from "crypto";
 import { config, isDev } from "./config";
+import { SUPPORTED_LANGUAGES } from "../shared/seoConstants";
+import { isValidLang } from "../shared/i18n-routes";
 import { errorHandler, AppError } from "./middleware/errorHandler";
 import { csrfProtection } from "./middleware/csrf";
 import { aiBotLoggerMiddleware } from "./lib/aiBotLogger";
@@ -547,17 +549,45 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   const { redirectMiddleware, seedLegacyRedirects } = await import("./seo/redirects");
   app.use(redirectMiddleware());
 
-  // Root redirect — hard 301 to the Spanish home (our x-default).
+  // Root redirect — language-negotiated for humans, consolidated 301 for bots.
   //
   // GSC 2026-05-28: the bare root `/` and `/es/` cannibalized each other for head
   // terms ("alquiler barco costa brava" ranked at `/` pos 3.4 AND `/es/` pos 9.8).
-  // The previous Accept-Language 302 kept `/` indexed as its own URL, so signals
-  // never consolidated. A permanent 301 to /es/ (x-default + primary market)
-  // collapses the duplicate and passes the root's backlink authority to /es/.
-  // Non-Spanish visitors switch via the language selector; hreflang on /es/ still
-  // surfaces localized versions in SERPs.
-  app.get("/", (_req, res) => {
-    res.set("Cache-Control", "public, max-age=31536000, immutable");
+  // To consolidate, crawlers must always see a permanent 301 to /es/ (our
+  // x-default + primary market) so the root's authority collapses into /es/.
+  //
+  // BUT a blanket 301 to /es/ also pinned every *human* to Spanish: the client
+  // reads language from the URL path before navigator.language, so a German
+  // visitor entering the homepage stayed in Spanish (lost conversion in a target
+  // market). Fix: negotiate Accept-Language for real browsers only. Bots keep the
+  // 301 -> /es/ so SEO consolidation is untouched; humans get a 302 to their
+  // language home. Respects an explicit cookie preference first.
+  const { isCrawler } = await import("./seo/constants");
+  app.get("/", (req, res) => {
+    res.set("Vary", "Accept-Language, Cookie, User-Agent");
+
+    // 1. Explicit prior choice wins (set by the language selector / autodetect).
+    const cookieLang = req.cookies?.["costa-brava-language"];
+    if (typeof cookieLang === "string" && isValidLang(cookieLang)) {
+      res.set("Cache-Control", "private, no-store");
+      return res.redirect(302, `/${cookieLang}/`);
+    }
+
+    // 2. Crawlers (search + social + AI) always get the consolidated canonical.
+    if (isCrawler(req.headers["user-agent"])) {
+      res.set("Cache-Control", "public, max-age=86400");
+      return res.redirect(301, "/es/");
+    }
+
+    // 3. Human, no preference: negotiate by Accept-Language (respects q-values).
+    const best = req.acceptsLanguages([...SUPPORTED_LANGUAGES]);
+    if (best && isValidLang(best) && best !== "es") {
+      res.set("Cache-Control", "private, no-store");
+      return res.redirect(302, `/${best}/`);
+    }
+
+    // 4. Spanish or no match -> x-default home.
+    res.set("Cache-Control", "private, no-store");
     return res.redirect(301, "/es/");
   });
 

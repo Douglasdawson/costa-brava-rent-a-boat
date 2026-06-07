@@ -1,6 +1,6 @@
 # GA4 Export — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-05-31 04:20:57 UTC
+**Ultima actualizacion:** 2026-06-04 16:15:02 UTC
 
 ---
 
@@ -8,12 +8,12 @@
 
 | Metrica | Ultimas 24h | Ultimos 7 dias |
 |---------|-------------|----------------|
-| Sesiones | 83 | 743 |
-| Usuarios activos | 61 | 481 |
-| Nuevos usuarios | 48 | 444 |
-| Paginas vistas | 130 | 1110 |
-| Tasa de rebote | 26.5% | 25.7% |
-| Duracion media sesion | 4m 48s | 5m 41s |
+| Sesiones | 89 | 701 |
+| Usuarios activos | 63 | 443 |
+| Nuevos usuarios | 54 | 408 |
+| Paginas vistas | 181 | 1080 |
+| Tasa de rebote | 19.1% | 27.2% |
+| Duracion media sesion | 8m 52s | 5m 40s |
 
 ---
 
@@ -21,22 +21,22 @@
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Direct | 37 | 26 |
-| 2 | Organic Search | 21 | 16 |
-| 3 | Organic Social | 19 | 16 |
-| 4 | Unassigned | 4 | 5 |
-| 5 | Referral | 2 | 1 |
+| 1 | Direct | 43 | 33 |
+| 2 | Organic Search | 40 | 26 |
+| 3 | Unassigned | 4 | 5 |
+| 4 | Organic Social | 3 | 3 |
+| 5 | Referral | 1 | 0 |
 
 ## Trafico por Fuente (ultimos 7 dias)
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Direct | 297 | 188 |
-| 2 | Organic Search | 280 | 178 |
-| 3 | Organic Social | 130 | 95 |
-| 4 | Referral | 16 | 10 |
-| 5 | Unassigned | 15 | 19 |
-| 6 | Paid Social | 4 | 3 |
+| 1 | Direct | 288 | 177 |
+| 2 | Organic Search | 270 | 168 |
+| 3 | Organic Social | 102 | 82 |
+| 4 | Unassigned | 20 | 31 |
+| 5 | Referral | 18 | 8 |
+| 6 | Paid Social | 3 | 0 |
 
 ---
 
@@ -44,16 +44,16 @@
 
 | # | Pagina | Visitas | Usuarios | Duracion media |
 |---|--------|---------|----------|----------------|
-| 1 | /es/ | 502 | 304 | 3m 56s |
-| 2 | /en/ | 143 | 73 | 3m 14s |
-| 3 | /de/ | 73 | 40 | 4m 46s |
-| 4 | /es/barco/solar-450 | 48 | 37 | 3m 24s |
-| 5 | /fr/ | 36 | 27 | 3m 8s |
-| 6 | /es/salidas-compartidas | 30 | 4 | 29m 2s |
-| 7 | /en/boat/astec-480 | 19 | 9 | 5m 4s |
-| 8 | /es/barco/astec-480 | 19 | 23 | 5m 3s |
-| 9 | /nl/ | 16 | 10 | 2m 42s |
-| 10 | /ru/ | 16 | 5 | 3m 51s |
+| 1 | /es/ | 682 | 385 | 3m 32s |
+| 2 | /en/ | 71 | 51 | 3m 25s |
+| 3 | /de/ | 34 | 14 | 7m 3s |
+| 4 | /es/barco/solar-450 | 34 | 41 | 4m 17s |
+| 5 | /es/salidas-compartidas | 30 | 4 | 29m 2s |
+| 6 | /en/boat/astec-480 | 25 | 6 | 2m 9s |
+| 7 | /es/galeria | 18 | 15 | 0m 35s |
+| 8 | /es/alquiler-moto-de-agua-blanes | 16 | 3 | 21m 53s |
+| 9 | /es/barco/remus-450-ii | 13 | 17 | 5m 46s |
+| 10 | /en/boat/solar-450 | 9 | 8 | 2m 29s |
 
 ---
 
@@ -61,18 +61,18 @@
 
 | Evento | Cantidad |
 |--------|----------|
-| whatsapp_click | 7 |
+| whatsapp_click | 8 |
 | phone_click | 0 |
-| booking_started | 6 |
+| booking_started | 1 |
 | booking_request_submitted | 0 |
 | purchase | 0 |
-| generate_lead | 16 |
+| generate_lead | 3 |
 
 ## Tasa de Conversion (ultimos 7 dias)
 
 | Metrica | Valor |
 |---------|-------|
-| Reservas iniciadas | 24 |
+| Reservas iniciadas | 23 |
 | Compras completadas | 0 |
 | Tasa de conversion | **0.0%** |
 

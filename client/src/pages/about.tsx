@@ -603,7 +603,7 @@ export default function AboutPage() {
         "email": "costabravarentaboat@gmail.com",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Puerto de Blanes",
+          "streetAddress": "Carrer Esplanada del Port",
           "addressLocality": "Blanes",
           "addressRegion": "Girona",
           "postalCode": "17300",

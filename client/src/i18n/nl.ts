@@ -241,7 +241,7 @@ export const nl: Translations = {
     region: "Girona, Costa Brava",
     services: "Diensten",
     hours: "Openingstijden",
-    businessHours: "9:00 - 19:00 (Hoogseizoen)",
+    businessHours: "9:00 - 20:00 (Hoogseizoen)",
     flexibleHours: "Flexibele tijden op beschikbaarheid",
     legal: "Juridisch",
     call: "Bellen",

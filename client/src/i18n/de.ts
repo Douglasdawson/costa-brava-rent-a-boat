@@ -243,7 +243,7 @@ export const de: Translations = {
     region: "Girona, Costa Brava",
     services: "Dienstleistungen",
     hours: "Öffnungszeiten",
-    businessHours: "9:00 - 19:00 (Hochsaison)",
+    businessHours: "9:00 - 20:00 (Hochsaison)",
     flexibleHours: "Flexible Zeiten nach Verfügbarkeit",
     legal: "Rechtliches",
     call: "Anrufen",

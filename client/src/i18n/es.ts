@@ -244,7 +244,7 @@ export const es: Translations = {
     region: "Girona, Costa Brava",
     services: "Servicios",
     hours: "Horarios",
-    businessHours: "9:00 - 19:00 (Temporada alta)",
+    businessHours: "9:00 - 20:00 (Temporada alta)",
     flexibleHours: "Horarios flexibles según disponibilidad",
     legal: "Legal",
     call: "Llamar",

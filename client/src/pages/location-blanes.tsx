@@ -71,7 +71,7 @@ export default function LocationBlanesPage() {
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Puerto de Blanes",
+      "streetAddress": "Carrer Esplanada del Port",
       "addressLocality": "Blanes",
       "addressRegion": "Girona",
       "postalCode": "17300",
@@ -570,7 +570,7 @@ export default function LocationBlanesPage() {
               className="hover:text-primary transition-colors cursor-pointer underline"
               data-testid="link-blanes-maps"
             >
-              Costa Brava Rent a Boat - Blanes, Puerto de Blanes, 17300 Blanes, Girona
+              Costa Brava Rent a Boat - Blanes, Carrer Esplanada del Port, 17300 Blanes, Girona
             </a>
           </p>
         </div>

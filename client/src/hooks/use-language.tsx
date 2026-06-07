@@ -78,10 +78,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // 4. Detect from browser
+    // 4. Detect from browser. Also persist as a cookie so the server-side root
+    // language negotiation (server/index.ts) honors this preference on the next
+    // visit to the bare domain.
     const detectedLanguage = detectBrowserLanguage();
     setLanguageState(detectedLanguage);
     localStorage.setItem('costa-brava-language', detectedLanguage);
+    document.cookie = `costa-brava-language=${detectedLanguage};path=/;max-age=31536000;SameSite=Lax`;
     setIsLoading(false);
   }, []);
 

@@ -245,7 +245,7 @@ export const fr: Translations = {
     region: "Gérone, Costa Brava",
     services: "Services",
     hours: "Horaires",
-    businessHours: "9h00 - 19h00 (Haute saison)",
+    businessHours: "9h00 - 20h00 (Haute saison)",
     flexibleHours: "Horaires flexibles selon disponibilité",
     legal: "Légal",
     call: "Appeler",

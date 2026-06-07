@@ -6,7 +6,7 @@ const DEFAULTS = {
   name: "Costa Brava Rent a Boat",
   email: "costabravarentaboat@gmail.com",
   phone: "+34 611 500 372",
-  address: "Puerto de Blanes, Girona, Espana",
+  address: "Carrer Esplanada del Port, 17300 Blanes, Girona",
   primaryColor: "#2B3E50",
   secondaryColor: "#A8C4DD",
 };

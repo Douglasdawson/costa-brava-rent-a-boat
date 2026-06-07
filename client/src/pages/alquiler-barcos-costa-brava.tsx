@@ -60,7 +60,7 @@ export default function LocationCostaBravaPage() {
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Puerto de Blanes",
+      "streetAddress": "Carrer Esplanada del Port",
       "addressLocality": "Blanes",
       "addressRegion": "Girona",
       "postalCode": "17300",
@@ -179,7 +179,7 @@ export default function LocationCostaBravaPage() {
       "url": "https://www.costabravarentaboat.com/",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Puerto de Blanes",
+        "streetAddress": "Carrer Esplanada del Port",
         "addressLocality": "Blanes",
         "addressRegion": "Girona",
         "postalCode": "17300",

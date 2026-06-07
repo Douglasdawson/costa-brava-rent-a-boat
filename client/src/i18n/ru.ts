@@ -238,7 +238,7 @@ export const ru: Translations = {
     region: "Жирона, Коста-Брава",
     services: "Услуги",
     hours: "Часы работы",
-    businessHours: "9:00 - 19:00 (Высокий сезон)",
+    businessHours: "9:00 - 20:00 (Высокий сезон)",
     flexibleHours: "Гибкие часы по доступности",
     legal: "Правовая информация",
     call: "Позвонить",

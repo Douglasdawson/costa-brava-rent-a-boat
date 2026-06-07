@@ -7,6 +7,7 @@ import { MapPin, Phone, Mail, Clock, Camera, Star, ExternalLink, Waves } from "l
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Link } from "wouter";
 import { trackPhoneClick, trackWhatsAppClick } from "@/utils/analytics";
+import { BUSINESS_ADDRESS_FORMATTED } from "@shared/businessProfile";
 
 export default function ContactSection() {
   const t = useTranslations();
@@ -90,6 +91,9 @@ export default function ContactSection() {
                     aria-label={`${t.a11y.viewOnMap}: Puerto de Blanes`}
                   >
                     <span className="block mb-1 text-sm">Puerto de Blanes</span>
+                    <span className="block text-xs text-muted-foreground hover:text-primary/80">
+                      {BUSINESS_ADDRESS_FORMATTED}
+                    </span>
                     <span className="block text-xs text-muted-foreground hover:text-primary/80">
                       {t.contact.locationCity}
                     </span>

@@ -11,7 +11,7 @@ import { resolveBoatImagePath, BOAT_IMAGE_WIDTH, BOAT_IMAGE_HEIGHT } from "../sh
 import { resolveMediaPath } from "../shared/mediaUrl";
 import { isAICrawler as isAICrawlerShared } from "./seo/constants";
 import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors";
-import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR } from "../shared/businessProfile";
+import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET } from "../shared/businessProfile";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
 import { hasStaticTranslation } from "./seo/translatedStaticPaths";
@@ -1362,6 +1362,30 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
 // Cached base HTML to avoid re-reading from disk on every request
 let cachedBaseHtml: string | null = null;
 
+// Hashed filenames of the per-language i18n chunks (de-DzstEYSA.js, fr-…js, …).
+// Built once from the assets dir (Vite emits no manifest — manifest:false in
+// vite.config.ts). Lets injectMeta emit a <link rel="modulepreload"> so a
+// non-Spanish visitor's translation chunk downloads in parallel with the main
+// bundle instead of waiting for React to hydrate and lazy-import it.
+let cachedLangChunkHrefs: Record<string, string> | null = null;
+
+function buildLangChunkHrefs(distPath: string): Record<string, string> {
+  const map: Record<string, string> = {};
+  try {
+    const assetsDir = path.resolve(distPath, "assets");
+    const files = fs.readdirSync(assetsDir);
+    for (const lang of SUPPORTED_LANGUAGES) {
+      if (lang === "es") continue; // es is bundled in the main entry, not lazy
+      const re = new RegExp(`^${lang}-[A-Za-z0-9_-]+\\.js$`);
+      const match = files.find((f) => re.test(f));
+      if (match) map[lang] = `/assets/${match}`;
+    }
+  } catch {
+    // dev mode or missing build — no preloads, harmless.
+  }
+  return map;
+}
+
 // LRU cache for final injected HTML to avoid repeated regex replacements.
 // Keyed by "path:lang", TTL 5 minutes, max 200 entries.
 const injectedHtmlCache = new Map<string, { html: string; timestamp: number }>();
@@ -1433,6 +1457,7 @@ async function getBaseHtml(distPath: string): Promise<string> {
     html = html.replace(/\s*<link rel="modulepreload"[^>]*href="data:[^"]*"[^>]*>\s*/g, "");
 
     cachedBaseHtml = html;
+    cachedLangChunkHrefs = buildLangChunkHrefs(distPath);
   }
   return cachedBaseHtml;
 }
@@ -1505,6 +1530,20 @@ function injectMeta(
   const isHome = canonicalUrl === "/" || /^\/[a-z]{2}\/?$/.test(canonicalUrl);
   if (!isHome) {
     result = result.replace(/\s*<link rel="preload" as="image"[^>]*hero-[^>]*>/g, "");
+  }
+
+  // Preload the active language's translation chunk for non-Spanish visitors.
+  // Without this the chunk is only discovered after React hydrates and calls the
+  // lazy langLoader, so the user sees the Spanish fallback for an extra round
+  // trip. modulepreload fetches it in parallel with the main bundle.
+  if (lang !== "es") {
+    const langHref = cachedLangChunkHrefs?.[lang];
+    if (langHref) {
+      result = result.replace(
+        "</head>",
+        `    <link rel="modulepreload" crossorigin href="${langHref}">\n</head>`,
+      );
+    }
   }
 
   // Emit a route-specific LCP image preload when the resolver provided one
@@ -1837,7 +1876,7 @@ function buildSeasonalEvent(isEn: boolean): object {
       name: "Puerto de Blanes",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Puerto de Blanes",
+        streetAddress: BUSINESS_STREET,
         addressLocality: "Blanes",
         addressRegion: "Girona",
         postalCode: "17300",
@@ -2168,7 +2207,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
         email: "costabravarentaboat@gmail.com",
         address: {
           "@type": "PostalAddress",
-          streetAddress: "Puerto de Blanes",
+          streetAddress: BUSINESS_STREET,
           addressLocality: "Blanes",
           addressRegion: "Girona",
           postalCode: "17300",
@@ -2372,12 +2411,19 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       // HTML but don't execute React hydration. Contains the citation-worthy
       // facts a LLM would extract for "what is Costa Brava Rent a Boat".
       const stats = getCurrentStats();
-      const homeH1 = isEn
-        ? `Costa Brava Rent a Boat — Blanes, Spain`
-        : `Costa Brava Rent a Boat — Blanes, Costa Brava`;
-      const homeSummary = isEn
-        ? `Largest boat rental fleet in the Port of Blanes (9 boats). License-free boats from 70€/h with fuel included. Licensed boats and private excursions with captain available. Season April–October. ${stats.rating.toFixed(1)}★ on Google with ${stats.userRatingCount}+ reviews.`
-        : `Mayor flota de alquiler de barcos del Puerto de Blanes (9 barcos). Sin licencia desde 70€/h con gasolina incluida. Barcos con licencia y excursión privada con capitán disponibles. Temporada abril–octubre. ${stats.rating.toFixed(1)}★ en Google con ${stats.userRatingCount}+ reseñas.`;
+      // Use the real per-language hero copy so the pre-hydration paint matches
+      // the H1 React eventually renders (Hero.tsx → t.hero.title) AND is in the
+      // visitor's language. Before this, the SSR fallback H1/summary were
+      // ES/EN-only, so a German visitor saw a Spanish H1 flash before hydration
+      // (the reported "página en castellano" symptom). Falls back to the brand
+      // string only if a locale somehow lacks the hero block.
+      const heroT = (I18N_BY_LANG[lang] ?? i18nEs).hero;
+      const homeH1 = heroT?.title
+        ?? (isEn ? `Costa Brava Rent a Boat — Blanes, Spain` : `Costa Brava Rent a Boat — Blanes, Costa Brava`);
+      const homeSummary = heroT?.summaryGeo ?? heroT?.subtitle
+        ?? (isEn
+          ? `Largest boat rental fleet in the Port of Blanes (9 boats). License-free boats from 70€/h with fuel included. Licensed boats and private excursions with captain available. Season April–October. ${stats.rating.toFixed(1)}★ on Google with ${stats.userRatingCount}+ reviews.`
+          : `Mayor flota de alquiler de barcos del Puerto de Blanes (9 barcos). Sin licencia desde 70€/h con gasolina incluida. Barcos con licencia y excursión privada con capitán disponibles. Temporada abril–octubre. ${stats.rating.toFixed(1)}★ en Google con ${stats.userRatingCount}+ reseñas.`);
       const facts = isEn
         ? [
             "9 boats: 5 license-free, 3 licensed, 1 private excursion with captain",
@@ -2477,7 +2523,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         telephone: "+34611500372",
         address: {
           "@type": "PostalAddress",
-          streetAddress: "Puerto de Blanes",
+          streetAddress: BUSINESS_STREET,
           addressLocality: "Blanes",
           addressRegion: "Girona",
           postalCode: "17300",

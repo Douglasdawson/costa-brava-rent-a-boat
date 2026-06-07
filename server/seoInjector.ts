@@ -2893,7 +2893,15 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Malgrat de Mar" : "Barcos cerca de Malgrat de Mar", url: `${BASE_URL}/alquiler-barcos-malgrat-de-mar` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
+      const bodyFallback = buildLocationBodyFallback(
+        destination.name,
+        destination.description,
+        isEn
+          ? ["License-free boats from 70€/h, fuel included", "8 km / 10 min by car from Blanes Port (RENFE R1: 5 min)", "No license needed — 15 min training before departure", "Open daily 09:00–20:00, April–October"]
+          : ["Barcos sin licencia desde 70€/h, gasolina incluida", "A 8 km / 10 min en coche del Puerto de Blanes (RENFE R1: 5 min)", "Sin licencia — 15 min de formación antes de zarpar", "Abierto cada día 09:00–20:00, abril–octubre"],
+        isEn ? "Book via WhatsApp" : "Reserva por WhatsApp",
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
     }
 
     // /alquiler-barcos-santa-susanna - TouristDestination + FAQPage
@@ -2948,7 +2956,15 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Santa Susanna" : "Barcos cerca de Santa Susanna", url: `${BASE_URL}/alquiler-barcos-santa-susanna` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
+      const bodyFallback = buildLocationBodyFallback(
+        destination.name,
+        destination.description,
+        isEn
+          ? ["License-free boats from 70€/h, fuel included", "12 km / 15 min by car from Blanes Port (RENFE R1: 10 min)", "No license needed — 15 min training before departure", "Open daily 09:00–20:00, April–October"]
+          : ["Barcos sin licencia desde 70€/h, gasolina incluida", "A 12 km / 15 min en coche del Puerto de Blanes (RENFE R1: 10 min)", "Sin licencia — 15 min de formación antes de zarpar", "Abierto cada día 09:00–20:00, abril–octubre"],
+        isEn ? "Book via WhatsApp" : "Reserva por WhatsApp",
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
     }
 
     // /alquiler-barcos-calella - TouristDestination + FAQPage
@@ -3004,7 +3020,15 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Calella" : "Barcos cerca de Calella", url: `${BASE_URL}/alquiler-barcos-calella` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
+      const bodyFallback = buildLocationBodyFallback(
+        destination.name,
+        destination.description,
+        isEn
+          ? ["License-free boats from 70€/h, fuel included", "17 km / 20 min by car from Blanes Port (RENFE R1: 15 min)", "No license needed — 15 min training before departure", "Open daily 09:00–20:00, April–October"]
+          : ["Barcos sin licencia desde 70€/h, gasolina incluida", "A 17 km / 20 min en coche del Puerto de Blanes (RENFE R1: 15 min)", "Sin licencia — 15 min de formación antes de zarpar", "Abierto cada día 09:00–20:00, abril–octubre"],
+        isEn ? "Book via WhatsApp" : "Reserva por WhatsApp",
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
     }
 
     // /barcos-sin-licencia - ItemList of license-free boats (dynamic from DB)

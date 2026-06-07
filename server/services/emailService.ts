@@ -1,5 +1,5 @@
 import sgMail from "@sendgrid/mail";
-import type { Booking, Boat, BookingExtra } from "@shared/schema";
+import type { Booking, Boat, BookingExtra, WhatsappInquiry } from "@shared/schema";
 import { logger } from "../lib/logger";
 import { sendgridBreaker } from "../lib/circuitBreaker";
 import { generateOpaqueUnsubToken } from "../routes/newsletter";
@@ -1747,6 +1747,84 @@ export async function sendBookingRequestAdminNotification(data: BookingEmailData
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     logger.error("[Email] Error sending admin booking request notification", { error: message });
+    return { success: false, error: message };
+  }
+}
+
+/**
+ * Admin notification for a lightweight inquiry captured by the Hero wizard
+ * (/api/booking-inquiries). Unlike the payment flow, this path's only "ping"
+ * to the team was the customer-initiated WhatsApp — so a visitor who fills the
+ * form but never sends the WhatsApp left a warm lead sitting unseen in the CRM.
+ * This is the safety net. Best-effort: no-ops gracefully when SendGrid is not
+ * configured (same as every other email in the app).
+ */
+export async function sendInquiryAdminNotification(inquiry: WhatsappInquiry): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    logger.info("SendGrid not configured, skipping inquiry admin notification");
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const appUrl = process.env.APP_URL || "https://www.costabravarentaboat.com";
+  const adminUrl = `${appUrl}/crm/inquiries`;
+  const phoneFull = `${inquiry.phonePrefix || ""}${inquiry.phoneNumber || ""}`.trim();
+  const whatsappLink = phoneFull ? `https://wa.me/${phoneFull.replace(/\D/g, "")}` : null;
+  const customerName = `${inquiry.firstName} ${inquiry.lastName || ""}`.trim();
+  const total = inquiry.estimatedTotal ? `${parseFloat(inquiry.estimatedTotal).toFixed(2)} EUR` : "(estimado no disponible)";
+
+  const content = `
+    <h2 style="margin:0 0 8px; color:#dc2626; font-size:22px;">📩 Nueva solicitud (web)</h2>
+    <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.5;">
+      Te ha llegado una solicitud por el formulario de la web. Cont&aacute;ctale por WhatsApp
+      o tel&eacute;fono para confirmar disponibilidad y coordinar el pago.
+    </p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8fafc; border-radius:8px; overflow:hidden; margin:16px 0;">
+      <tr>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff;">Cliente</td>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff; text-align:right;">${customerName}</td>
+      </tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Email</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.email ? `<a href="mailto:${inquiry.email}" style="color:#2563eb;">${inquiry.email}</a>` : "(no proporcionado)"}</td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Tel&eacute;fono</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${phoneFull || "(no proporcionado)"} ${whatsappLink ? `&middot; <a href="${whatsappLink}" style="color:#22c55e;">WhatsApp</a>` : ""}</td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Idioma</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.language || "es"}</td></tr>
+      <tr>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff;">Barco</td>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff; text-align:right;">${inquiry.boatName}</td>
+      </tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Fecha</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.bookingDate}${inquiry.preferredTime ? ` &middot; ${inquiry.preferredTime}` : ""}</td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Duraci&oacute;n</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.duration}</td></tr>
+      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Personas</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.numberOfPeople}</td></tr>
+      <tr>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:600; background-color:#eff6ff; border-top:2px solid #cbd5e1;">Estimado</td>
+        <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:600; background-color:#eff6ff; border-top:2px solid #cbd5e1; text-align:right;">${total}</td>
+      </tr>
+    </table>
+
+    <div style="text-align:center; margin:24px 0;">
+      ${whatsappLink ? `<a href="${whatsappLink}" style="display:inline-block; background-color:#22c55e; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600; font-size:14px; margin:0 6px;">Contactar por WhatsApp</a>` : ""}
+      <a href="${adminUrl}" style="display:inline-block; background-color:#1e3a5f; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600; font-size:14px; margin:0 6px;">Ver en panel admin</a>
+    </div>
+
+    <p style="margin:20px 0 0; color:#94a3b8; font-size:12px; line-height:1.5;">
+      Inquiry ID: <code>${inquiry.id}</code> &middot; Origen: <code>${inquiry.source || "web"}</code>
+    </p>
+  `;
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: ADMIN_NOTIFICATION_EMAIL,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat - Solicitudes" },
+      replyTo: inquiry.email
+        ? { email: inquiry.email, name: customerName }
+        : undefined,
+      subject: `🆕 Solicitud web: ${inquiry.boatName} - ${inquiry.bookingDate} - ${customerName}`,
+      html: emailWrapper(content),
+    }));
+    logger.info("[Email] Inquiry admin notification sent", { to: ADMIN_NOTIFICATION_EMAIL, inquiryId: inquiry.id });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending inquiry admin notification", { error: message });
     return { success: false, error: message };
   }
 }

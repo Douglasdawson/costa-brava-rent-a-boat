@@ -37,6 +37,7 @@ import NeveraIcon from "@/components/icons/NeveraIcon";
 import BebidasIcon from "@/components/icons/BebidasIcon";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { openWhatsApp } from "@/utils/whatsapp";
+import { WHATSAPP_PHONE } from "@/lib/config";
 
 // Static map; keep outside the component so it isn't reallocated per render
 // or per .map() iteration of boatData.extras.
@@ -1827,7 +1828,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </span>
           </button>
           <a
-            href={`https://wa.me/34611500372?text=${encodeURIComponent(`Hola, me interesa el ${boatData.name}. ¿Podrían darme más información?`)}`}
+            href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(t.boatDetail.whatsappPrefill.replace("{boatName}", boatData.name))}`}
             target="_blank"
             rel="noopener noreferrer"
             tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}

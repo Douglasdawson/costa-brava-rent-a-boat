@@ -7,6 +7,7 @@ import { requireAdminSession, requireTabAccess } from "./auth";
 import { sendMetaWhatsAppMessage, isMetaWhatsAppConfigured } from "../whatsapp/metaClient";
 import { logger } from "../lib/logger";
 import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
+import { sendInquiryAdminNotification } from "../services/emailService";
 
 const submitLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -40,6 +41,17 @@ export function registerInquiryRoutes(app: Express) {
         });
       }
       const inquiry = await storage.createWhatsappInquiry(parsed.data);
+
+      // Safety-net admin notification: the wizard's only ping to the team was
+      // the customer-initiated WhatsApp. A visitor who fills the form but never
+      // hits send in WhatsApp left a warm lead unseen in the CRM. Fire-and-forget
+      // and best-effort (no-ops if SendGrid isn't configured) so it never blocks
+      // or fails the response.
+      void sendInquiryAdminNotification(inquiry).catch((err) =>
+        logger.error("[Inquiries] Admin notification failed", {
+          error: err instanceof Error ? err.message : String(err),
+        }),
+      );
 
       // Server-side GA4 event — sobrevive a cookie consent denial y race conditions del cliente.
       void sendGA4Event(

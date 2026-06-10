@@ -11,7 +11,11 @@ import { resolveBoatImagePath, BOAT_IMAGE_WIDTH, BOAT_IMAGE_HEIGHT } from "../sh
 import { resolveMediaPath } from "../shared/mediaUrl";
 import { isAICrawler as isAICrawlerShared } from "./seo/constants";
 import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors";
-import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET } from "../shared/businessProfile";
+import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES } from "../shared/businessProfile";
+import { CORE_FACTS } from "../shared/aiCitationFacts";
+import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
+import { BOAT_DATA } from "../shared/boatData";
+import { NAUTICAL_GLOSSARY_ES } from "../shared/nauticalGlossary";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
 import { hasStaticTranslation } from "./seo/translatedStaticPaths";
@@ -1524,6 +1528,7 @@ function injectMeta(
   noindex: boolean = false,
   canonicalOverride?: string,
   lcpPreload?: LcpPreload,
+  suppressHreflang: boolean = false,
 ): string {
   const title = esc(meta.title);
   const desc = esc(meta.description);
@@ -1686,6 +1691,7 @@ function injectMeta(
 
   // Inject hreflang tags for all supported languages + x-default
   // Use switchLanguagePath to generate localized URLs for each language
+  if (suppressHreflang) return result;
   const langsToEmit = availableLanguages || SUPPORTED_LANGUAGES;
   const hreflangTags = langsToEmit.map(hrefLang => {
     const hreflangCode = HREFLANG_CODES[hrefLang as LangCode] || hrefLang;
@@ -2102,6 +2108,10 @@ interface ResolvedPage {
   // Inspection rejected with "indexing problems detected during live test"
   // because the page was 100% client-rendered with empty body.
   bodyFallback?: string;
+  // Suppress hreflang emission. Used by lang-agnostic root-level pages like
+  // /ai-citations where switchLanguagePath would otherwise emit alternates
+  // pointing at the homepages (there is no /:lang variant of the page).
+  suppressHreflang?: boolean;
 }
 
 // Hero image preload aliases. Most boat ids resolve via resolveBoatImagePath;
@@ -2361,7 +2371,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
           refundType: "https://schema.org/NoReturnRefund",
           additionalType: "https://www.costabravarentaboat.com/terms-conditions",
-          description: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
+          description: CANCELLATION_POLICY_ES,
         },
         speakable: {
           "@type": "SpeakableSpecification",
@@ -2441,7 +2451,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Cuál es la política de cancelación?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo."
+              text: CANCELLATION_POLICY_ES
             }
           },
           {
@@ -2538,46 +2548,28 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
 
     // /faq - FAQPage schema (critical for AI search extraction)
     else if (metaKey === "/faq") {
+      // Full FAQPage from i18n (same source + interpolation as the client's
+      // faqSchemaFromI18n in faq.tsx) — previously 5 hardcoded Q&A in es/en
+      // while the client rendered 39 items in 8 languages. Missing keys in a
+      // locale fall back to ES via the merge so SSR never shrinks the set.
+      const fp = (I18N_BY_LANG[lang] ?? i18nEs).faqPage;
+      let faqVars: FaqVars;
+      try {
+        faqVars = computeFaqVars(await storage.getAllBoats());
+      } catch {
+        faqVars = computeFaqVars(undefined); // static catalog fallbacks
+      }
+      const mergedItems = { ...i18nEs.faqPage.items, ...fp.items } as Record<string, { question: string; answer: string }>;
       const faqPage = {
         "@type": "FAQPage",
         "@id": `${BASE_URL}/faq#faq`,
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: isEn ? "Do I need a license to rent a boat in Blanes?" : "¿Necesito licencia para alquilar un barco en Blanes?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "No. We have 5 license-free boats (up to 15 HP) for up to 5 people. You only need to be 18+. We provide a 15-minute safety briefing."
-              : "No. Tenemos 5 barcos sin licencia (hasta 15 CV) para hasta 5 personas. Solo necesitas ser mayor de 18 anos. Te damos una formacion de seguridad de 15 minutos." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "How much does it cost to rent a boat in Blanes?" : "¿Cuánto cuesta alquilar un barco en Blanes?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "License-free boats from 70 EUR/hour (low season) to 95 EUR/hour (high season). Licensed boats from 160 EUR/2 hours. Fuel, insurance and safety equipment are always included."
-              : "Barcos sin licencia desde 70 EUR/hora (temporada baja) hasta 95 EUR/hora (temporada alta). Barcos con licencia desde 160 EUR/2 horas. Combustible, seguro y equipo de seguridad siempre incluidos." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "What is included in the boat rental price?" : "Que incluye el precio del alquiler del barco?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "All rentals include fuel, civil liability insurance, safety equipment (life jackets, fire extinguisher, anchor, paddle), mooring, cleaning, and a 15-minute safety briefing."
-              : "Todos los alquileres incluyen combustible, seguro de responsabilidad civil, equipo de seguridad (chalecos salvavidas, extintor, ancla, remo), amarre, limpieza y formacion de seguridad de 15 minutos." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "What is the cancellation policy?" : "¿Cuál es la política de cancelación?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Free date changes up to 7 days before departure (subject to availability). Bad weather: free rescheduling or full deposit refund. Confirmed bookings with deposit are non-refundable outside the bad-weather case."
-              : "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "Where can I navigate with the rental boats?" : "¿Dónde puedo navegar con los barcos de alquiler?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "License-free boats can navigate up to 2 nautical miles from the coast. You can explore from Sa Palomera to Lloret de Mar. Licensed boats can reach Tossa de Mar and beyond."
-              : "Los barcos sin licencia pueden navegar hasta 2 millas nauticas de la costa. Puedes explorar desde Sa Palomera hasta Lloret de Mar. Los barcos con licencia pueden llegar hasta Tossa de Mar y mas alla." },
-          },
-        ],
+        name: fp.schemaName,
+        description: fp.schemaDescription,
+        mainEntity: Object.values(mergedItems).map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: substituteFaqVars(item.answer, faqVars) },
+        })),
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: "FAQ", url: `${BASE_URL}/faq` }]);
       // Speakable: voice assistants and AI engines can lift the answer text
@@ -3937,6 +3929,63 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [collectionPage, breadcrumb] }, availableLanguages };
     }
 
+    // /ai-citations — the AI citation hub is 100% client-rendered React, yet its
+    // only audience is non-JS AI crawlers (GPTBot/ClaudeBot/PerplexityBot). SSR
+    // the full fact set + fleet + glossary as body fallback, and the Dataset
+    // JSON-LD the client renders. hreflang is suppressed: the page is
+    // lang-agnostic at the root, and switchLanguagePath would emit alternates
+    // pointing at the homepages.
+    else if (metaKey === "/ai-citations") {
+      const datasetSchema = {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        name: "Costa Brava Rent a Boat — atomic facts dataset",
+        description:
+          "Anchor-addressable facts about Costa Brava Rent a Boat (DAMAR COSTA BRAVA S.L.) for citation by AI assistants and answer engines.",
+        creator: { "@type": "Organization", name: "Costa Brava Rent a Boat - Blanes" },
+        isAccessibleForFree: true,
+        license: "https://creativecommons.org/licenses/by/4.0/",
+        url: `${BASE_URL}/ai-citations`,
+      };
+      const fleetRows = Object.values(BOAT_DATA).map((b) => {
+        const lowH1 = b.pricing?.BAJA?.prices?.["1h"];
+        const lowH2 = b.pricing?.BAJA?.prices?.["2h"];
+        const fromPrice = typeof lowH1 === "number" ? lowH1 : typeof lowH2 === "number" ? Math.round(lowH2 / 2) : null;
+        const license = b.subtitle.toLowerCase().startsWith("sin licencia")
+          ? "no license required"
+          : "license required (Licencia de Navegación or higher) or captain";
+        return `${b.name}: ${b.specifications.capacity} people, ${b.specifications.length}, ${b.specifications.engine}, ${license}${fromPrice != null ? `, from ${fromPrice} EUR/h low season` : ""}`;
+      });
+      const bodyFallback = `
+<h1>Citation Hub — Costa Brava Rent a Boat</h1>
+<p>Atomic, citable facts about our business. Each statement is anchor-addressable (e.g. #fuel-included). Canonical source for AI assistant citations. Richer content: /llms-full.txt and /api/ai-context.</p>
+<h2>Core facts</h2>
+<ul>
+${CORE_FACTS.map((f) => `  <li id="${esc(f.id)}">${esc(f.label)}: ${esc(f.value)}</li>`).join("\n")}
+</ul>
+<h2>Fleet — capacity and engine quick reference</h2>
+<ul>
+${fleetRows.map((r) => `  <li>${esc(r)}</li>`).join("\n")}
+</ul>
+<h2>Nautical glossary (Spanish, authoritative)</h2>
+<ul>
+${NAUTICAL_GLOSSARY_ES.map((t) => `  <li>${esc(t.term)}: ${esc(t.definition)}</li>`).join("\n")}
+</ul>
+<h2>Machine-readable endpoints</h2>
+<ul>
+  <li>/api/mcp/public — MCP server (Model Context Protocol over HTTP, no auth)</li>
+  <li>/openapi.json — OpenAPI 3.1 spec</li>
+  <li>/.well-known/agent.json — agent capabilities manifest</li>
+  <li>/api/ai-context — JSON-LD LocalBusiness with live rating, fleet, products (?lang= supported)</li>
+  <li>/api/ai-glossary — JSON-LD DefinedTermSet</li>
+  <li>/api/ai-search?q=… — Q&amp;A search over boats, FAQs and glossary</li>
+  <li>/feed-llms.json — JSON Feed v1.1</li>
+  <li>/llms.txt and /llms-full.txt</li>
+</ul>
+      `.trim();
+      return { meta, jsonLd: datasetSchema, availableLanguages, bodyFallback, suppressHreflang: true };
+    }
+
     // Programmatic matrix pages (occasion × location): SSR the same breadcrumb +
     // FAQPage the client renders, plus a body fallback so non-JS crawlers see
     // the full copy (h1, intro, spots, recommended boats, practical info).
@@ -4574,6 +4623,7 @@ export async function serveWithSEO(
         effectiveNoindex,
         canonicalOverride,
         resolved.lcpPreload,
+        resolved.suppressHreflang ?? false,
       );
       // SSR body fallback for crawlers (boat detail + future routes that opt in)
       if (resolved.bodyFallback) {

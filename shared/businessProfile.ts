@@ -65,3 +65,10 @@ export const BUSINESS_OSM_ID = "";
 // Used to build the canonical "write review" URL that opens the correct GBP.
 export const BUSINESS_PLACE_ID = "ChIJb4WolCwXuxIRp-DybpP6LZo";
 export const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${BUSINESS_PLACE_ID}`;
+
+// Política de cancelación canónica (texto único para toda la flota desde
+// 2026-05-26 — ver CLAUDE.md "Hechos canonicos"). Cualquier surface nueva
+// (schema.org, llms.txt, FAQ, emails) debe referenciar esta constante en vez
+// de duplicar el texto. La versión i18n vive en client/src/i18n/<lang>.ts.
+export const CANCELLATION_POLICY_ES =
+  "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.";

@@ -9,7 +9,7 @@ import {
   enumerateMatrixSitemapEntries,
   resolveMatrixSlug,
 } from "./occasionMatrixPage";
-import { enumerateMatrix, liveMatrixCombos, MATRIX_LOCATION_KEYS } from "./occasionMatrix";
+import { enumerateMatrix, liveMatrixCombos, MATRIX_LOCATION_KEYS, MATRIX_LIVE_OCCASIONS } from "./occasionMatrix";
 import { OCCASIONS } from "./occasions";
 import type { LangCode } from "./seoConstants";
 
@@ -127,19 +127,22 @@ describe("occasionMatrixPage", () => {
       expect(resolveMatrixSlug("snorkeling-lloret-de-mar")?.locationKey).toBe("locationLloret");
     });
 
-    it("does NOT resolve a not-yet-launched occasion (e.g. fishing)", () => {
-      expect(resolveMatrixSlug("pesca-tossa-de-mar")).toBeNull();
-      expect(resolveMatrixSlug("fishing-tossa-de-mar")).toBeNull();
+    // All 4 verticals (snorkel/families/sunset/fishing) launched 2026-06-03,
+    // so every enumerated combo now resolves. The "not-yet-launched" guard is
+    // covered by asserting the live set matches MATRIX_LIVE_OCCASIONS exactly.
+    it("resolves slugs of every launched occasion (e.g. fishing since 2026-06-03)", () => {
+      expect(resolveMatrixSlug("pesca-tossa-de-mar")?.occasion.id).toBe("fishing");
+      expect(resolveMatrixSlug("fishing-tossa-de-mar")?.occasion.id).toBe("fishing");
     });
 
     it("returns null for an unrelated slug", () => {
       expect(resolveMatrixSlug("alquiler-barcos-blanes")).toBeNull();
     });
 
-    it("live combos are exactly snorkel × all eligible locations", () => {
+    it("live combos are exactly the launched occasions × all eligible locations", () => {
       const live = liveMatrixCombos();
-      expect(live.length).toBe(MATRIX_LOCATION_KEYS.length);
-      expect(live.every((c) => c.occasion.id === "snorkel")).toBe(true);
+      expect(live.length).toBe(MATRIX_LIVE_OCCASIONS.length * MATRIX_LOCATION_KEYS.length);
+      expect(live.every((c) => MATRIX_LIVE_OCCASIONS.includes(c.occasion.id))).toBe(true);
     });
   });
 });

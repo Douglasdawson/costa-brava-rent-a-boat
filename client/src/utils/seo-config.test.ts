@@ -127,9 +127,11 @@ describe("generateBreadcrumbSchema", () => {
 describe("generateWebSiteSchema", () => {
   const schema = generateWebSiteSchema();
 
-  it("has @type WebSite with SearchAction potentialAction", () => {
+  // potentialAction (SearchAction) was removed from the schema — Google
+  // deprecated the sitelinks searchbox in 2024 and the site has no public
+  // search endpoint; the test asserted a field the code no longer emits.
+  it("has @type WebSite", () => {
     expect(schema["@type"]).toBe("WebSite");
-    expect(schema.potentialAction).toBeDefined();
   });
 
   it("declares all 8 supported languages in inLanguage", () => {

@@ -6,7 +6,7 @@ import { Anchor, MapPin, Ship, Clock, Waves, Info } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { generateBreadcrumbSchema, BASE_DOMAIN } from "@/utils/seo-config";
-import { HREFLANG_CODES } from "@shared/seoConstants";
+import { HREFLANG_CODES, SUPPORTED_LANGUAGES } from "@shared/seoConstants";
 import { resolveMatrixCombo, matrixPath } from "@shared/occasionMatrixPage";
 import type { MatrixCombo } from "@shared/occasionMatrix";
 
@@ -22,24 +22,27 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
   const data = resolveMatrixCombo(combo);
   const copy = data ? t.occasionMatrix?.pages?.[data.comboId] : undefined;
 
-  // ES-only launch: every locale canonicalizes to the Spanish URL and non-ES is
-  // marked noindex (mirrors the server single source in translatedStaticPaths).
-  // When more locales are translated, open them there AND broaden hreflang here.
+  // 8-locale launch (translatedStaticPaths + sitemap already index all 8):
+  // self-canonical per locale, hreflang across the full set with x-default → ES.
+  // Mirrors what the server SSR injects so hydration never downgrades the head.
   const esPath = data ? matrixPath(combo.occasion.id, combo.locationKey, "es") : "/";
-  const canonical = `${BASE_DOMAIN}${esPath}`;
+  const canonical = `${BASE_DOMAIN}${data ? matrixPath(combo.occasion.id, combo.locationKey, language) : "/"}`;
   const hreflang = useMemo(
     () => [
-      { lang: HREFLANG_CODES.es, url: canonical },
-      { lang: "x-default", url: canonical },
+      ...SUPPORTED_LANGUAGES.map((l) => ({
+        lang: HREFLANG_CODES[l] ?? l,
+        url: `${BASE_DOMAIN}${matrixPath(combo.occasion.id, combo.locationKey, l)}`,
+      })),
+      { lang: "x-default", url: `${BASE_DOMAIN}${esPath}` },
     ],
-    [canonical],
+    [combo.occasion.id, combo.locationKey, esPath],
   );
 
   const jsonLd = useMemo(() => {
     if (!copy) return undefined;
     const breadcrumb = generateBreadcrumbSchema([
       { name: t.breadcrumbs.home, url: "/" },
-      { name: copy.h1, url: esPath },
+      { name: copy.h1, url: matrixPath(combo.occasion.id, combo.locationKey, language) },
     ]);
     const faqSchema = {
       "@context": "https://schema.org",
@@ -51,7 +54,7 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
       })),
     };
     return { "@context": "https://schema.org", "@graph": [breadcrumb, faqSchema] };
-  }, [copy, esPath, t.breadcrumbs.home]);
+  }, [copy, combo.occasion.id, combo.locationKey, language, t.breadcrumbs.home]);
 
   if (!data || !copy) {
     return (
@@ -72,7 +75,6 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
         canonical={canonical}
         hreflang={hreflang}
         jsonLd={jsonLd}
-        robots={language === "es" ? undefined : "noindex, follow"}
       />
       <Navigation />
 

@@ -16,6 +16,8 @@ import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
 import { hasStaticTranslation } from "./seo/translatedStaticPaths";
 import { shouldNoindexThinContent } from "./seo/thinContentGuard";
+import { OCCASION_MATRIX_ENABLED, liveMatrixCombos, type MatrixCombo } from "../shared/occasionMatrix";
+import { resolveMatrixSlug, resolveMatrixCombo, matrixSlug, matrixPath, comboId } from "../shared/occasionMatrixPage";
 import { get404Meta } from "./seo/helpers";
 import { getCurrentStats } from "./lib/businessStatsCache";
 
@@ -165,9 +167,59 @@ function buildJetskiHubStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
   return out;
 }
 
+// Programmatic matrix pages (occasion × location). Copy lives in i18n
+// occasionMatrix.pages keyed by comboId; slugs are composite (occasionWord-place)
+// and live OUTSIDE ROUTE_SLUGS, so they get their own STATIC_META entries keyed
+// by the ES slug (same normalization contract as pathToStaticMetaKey).
+interface MatrixPageCopy {
+  seoTitle: string;
+  seoDescription: string;
+  h1: string;
+  intro: string;
+  spotsTitle: string;
+  spots: Array<{ name: string; description: string }>;
+  boatsTitle: string;
+  boatsIntro: string;
+  practicalTitle: string;
+  practicalBody: string;
+  faqTitle: string;
+  faq: Array<{ q: string; a: string }>;
+  ctaTitle: string;
+  ctaText: string;
+}
+
+function getMatrixCopy(lang: LangCode, id: string): MatrixPageCopy | undefined {
+  const pages = (I18N_BY_LANG[lang] ?? i18nEs).occasionMatrix?.pages as
+    | Record<string, MatrixPageCopy | undefined>
+    | undefined;
+  return pages?.[id];
+}
+
+function buildMatrixStaticMetaEntries(): Record<string, Partial<Record<LangCode, SEOMeta>>> {
+  if (!OCCASION_MATRIX_ENABLED) return {};
+  const out: Record<string, Partial<Record<LangCode, SEOMeta>>> = {};
+  for (const combo of liveMatrixCombos()) {
+    const id = comboId(combo.occasion.id, combo.locationKey);
+    const entry: Partial<Record<LangCode, SEOMeta>> = {};
+    for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+      const copy = getMatrixCopy(lang, id);
+      // Defensive: skip locales whose copy hasn't landed yet so availableLanguages
+      // (and therefore hreflang) only advertises real translations.
+      if (copy?.seoTitle && copy?.seoDescription) {
+        entry[lang] = { title: copy.seoTitle, description: copy.seoDescription };
+      }
+    }
+    if (Object.keys(entry).length > 0) {
+      out[`/${matrixSlug(combo.occasion.id, combo.locationKey, "es")}`] = entry;
+    }
+  }
+  return out;
+}
+
 // Per-route, per-language SEO meta. Covers main crawled pages.
 // Note: titles/descriptions with year are built dynamically via SEASON_YEAR
 const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
+  ...buildMatrixStaticMetaEntries(),
   "/circuito-jet-ski-blanes": buildJetskiStaticMeta("circuito", 65),
   "/excursion-jet-ski-blanes-tossa": buildJetskiStaticMeta("excursion", 190),
   "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
@@ -1637,11 +1689,11 @@ function injectMeta(
   const langsToEmit = availableLanguages || SUPPORTED_LANGUAGES;
   const hreflangTags = langsToEmit.map(hrefLang => {
     const hreflangCode = HREFLANG_CODES[hrefLang as LangCode] || hrefLang;
-    const localizedPath = switchLanguagePath(canonicalUrl, hrefLang as LangCode);
+    const localizedPath = localizedAlternatePath(canonicalUrl, hrefLang as LangCode);
     return `  <link rel="alternate" hreflang="${hreflangCode}" href="${esc(BASE_URL + localizedPath)}" />`;
   });
   // x-default points to the Spanish version
-  const xDefaultPath = switchLanguagePath(canonicalUrl, "es");
+  const xDefaultPath = localizedAlternatePath(canonicalUrl, "es");
   hreflangTags.push(`  <link rel="alternate" hreflang="x-default" href="${esc(BASE_URL + xDefaultPath)}" />`);
   result = result.replace("</head>", `${hreflangTags.join("\n")}\n</head>`);
 
@@ -2103,7 +2155,7 @@ function computeTranslationIndex(
   if (hasStaticTranslation(metaKey, lang)) return { noindex: false };
   return {
     noindex: true,
-    canonicalOverride: switchLanguagePath(pathname, "es"),
+    canonicalOverride: localizedAlternatePath(pathname, "es"),
   };
 }
 
@@ -2137,8 +2189,33 @@ function pathToStaticMetaKey(pathname: string): { metaKey: string; lang: LangCod
     return { metaKey: params ? `${metaKey}/${params}` : metaKey, lang };
   }
 
+  // Programmatic matrix slugs (occasion × location) live outside ROUTE_SLUGS;
+  // normalize any localized matrix slug to its ES metaKey, mirroring the
+  // resolveSlug branch above. matrixSlugCollisions guarantees no shadowing.
+  if (OCCASION_MATRIX_ENABLED && parts.length === 2) {
+    const matrixCombo = resolveMatrixSlug(slug);
+    if (matrixCombo) {
+      return { metaKey: `/${matrixSlug(matrixCombo.occasion.id, matrixCombo.locationKey, "es")}`, lang };
+    }
+  }
+
   // Fallback: use slug as-is (may match old STATIC_META keys like /privacy-policy)
   return { metaKey: `/${parts.slice(1).join("/")}`, lang };
+}
+
+// Like switchLanguagePath, but understands matrix slugs (whose localized form
+// is NOT in ROUTE_SLUGS — e.g. /de/schnorcheln-blanes ↔ /fr/snorkeling-blanes).
+// Used for hreflang alternates and canonical overrides so matrix pages don't
+// emit same-slug alternates that 404 in other languages.
+function localizedAlternatePath(pathname: string, targetLang: LangCode): string {
+  if (OCCASION_MATRIX_ENABLED) {
+    const parts = pathname.split("/").filter(Boolean);
+    if (parts.length === 2 && isValidLang(parts[0])) {
+      const combo = resolveMatrixSlug(parts[1]);
+      if (combo) return matrixPath(combo.occasion.id, combo.locationKey, targetLang);
+    }
+  }
+  return switchLanguagePath(pathname, targetLang);
 }
 
 async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPage | null> {
@@ -3860,6 +3937,51 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [collectionPage, breadcrumb] }, availableLanguages };
     }
 
+    // Programmatic matrix pages (occasion × location): SSR the same breadcrumb +
+    // FAQPage the client renders, plus a body fallback so non-JS crawlers see
+    // the full copy (h1, intro, spots, recommended boats, practical info).
+    else if (OCCASION_MATRIX_ENABLED && resolveMatrixSlug(metaKey.slice(1))) {
+      const matrixCombo = resolveMatrixSlug(metaKey.slice(1)) as MatrixCombo;
+      const id = comboId(matrixCombo.occasion.id, matrixCombo.locationKey);
+      const copy = getMatrixCopy(lang, id) ?? getMatrixCopy("es", id);
+      const data = resolveMatrixCombo(matrixCombo);
+      if (copy && data) {
+        const pagePath = matrixPath(matrixCombo.occasion.id, matrixCombo.locationKey, lang);
+        const breadcrumb = buildBreadcrumb([homeCrumb, { name: copy.h1, url: `${BASE_URL}${pagePath}` }]);
+        const faqSchema = {
+          "@type": "FAQPage",
+          "@id": `${BASE_URL}${pagePath}#faq`,
+          mainEntity: copy.faq.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        };
+        const bodyFallback = `
+<h1>${esc(copy.h1)}</h1>
+<p>${esc(copy.intro)}</p>
+<h2>${esc(copy.spotsTitle)}</h2>
+<ul>
+${copy.spots.map((s) => `  <li>${esc(s.name)} — ${esc(s.description)}</li>`).join("\n")}
+</ul>
+<h2>${esc(copy.boatsTitle)}</h2>
+<p>${esc(copy.boatsIntro)}</p>
+<ul>
+${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join("\n")}
+</ul>
+<p>${esc(copy.practicalBody)}</p>
+<p><a href="https://wa.me/34611500372">${esc(copy.ctaTitle)}</a></p>
+        `.trim();
+        return {
+          meta,
+          jsonLd: { "@context": "https://schema.org", "@graph": [breadcrumb, faqSchema] },
+          availableLanguages,
+          bodyFallback,
+        };
+      }
+      return { meta, availableLanguages };
+    }
+
     return { meta, availableLanguages };
   }
 
@@ -4311,6 +4433,9 @@ export function isValidSPARoute(pathname: string): boolean {
       // /:lang/:slug/:param (dynamic page like blog detail, boat detail)
       if (segments.length === 3) return true;
     }
+
+    // Programmatic matrix pages (occasion × location) — slugs live outside ROUTE_SLUGS
+    if (OCCASION_MATRIX_ENABLED && segments.length === 2 && resolveMatrixSlug(slug)) return true;
 
     // CRM with optional tab: /:lang/crm/:tab?
     if (slug === "crm" && segments.length <= 3) return true;

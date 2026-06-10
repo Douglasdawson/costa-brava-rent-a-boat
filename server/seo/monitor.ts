@@ -130,10 +130,14 @@ async function createEngineAlert(message: string, severity: string): Promise<voi
 
   if (existing) return; // Already alerted
 
+  // status must be "new" explicitly — the alert engine only routes alerts
+  // matching eq(status, "new"), and the column has no default (NULL rows
+  // were created but never delivered before 2026-06-10).
   await db.insert(seoAlerts).values({
     type: "engine_health",
     severity,
     title: message,
+    status: "new",
   });
 
   logger.warn(`[SEO:Monitor] ${severity}: ${message}`);

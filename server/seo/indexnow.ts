@@ -115,20 +115,6 @@ export async function notifyPageChanged(path: string): Promise<void> {
   await notifyIndexNow([path]);
 }
 
-// Batch notify critical pages on deploy (call on startup if INDEXNOW_ON_DEPLOY is set)
-export async function notifyCriticalPagesOnDeploy(): Promise<void> {
-  const criticalPages = [
-    "/", "/barcos-sin-licencia", "/barcos-con-licencia",
-    "/alquiler-barcos-blanes", "/alquiler-barcos-costa-brava",
-    "/precios", "/faq",
-    "/excursion-snorkel-barco-blanes", "/barco-familias-costa-brava",
-    "/sunset-boat-trip-blanes", "/pesca-barco-blanes",
-    "/salidas-compartidas",
-  ];
-  logger.info("[SEO:IndexNow] Notifying critical pages on deploy", { count: criticalPages.length });
-  await notifyIndexNow(criticalPages);
-}
-
 /**
  * Fetch all 4 sub-sitemaps and notify IndexNow (Bing, Yandex, Seznam, Naver)
  * about every public URL. Idempotent — safe to run on every boot/cron tick.

@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import type { Express } from "express";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
@@ -26,8 +28,28 @@ const getBaseUrl = () => {
   return process.env.BASE_URL || "https://www.costabravarentaboat.com";
 };
 
-// Stable lastmod for static pages — computed once at server start (approximates last deploy)
-const DEPLOY_DATE = new Date().toISOString().split("T")[0];
+// Stable lastmod for static pages. Previously `new Date()` at server start,
+// which "refreshed" every static lastmod on each Replit Autoscale restart with
+// no real content change — eroding Google's trust in the sitemap. Now derived
+// from the server bundle's mtime (set once per deploy build); falls back to
+// boot time only when no build artifact exists (local dev).
+const DEPLOY_DATE = (() => {
+  // In production this file is bundled into dist/index.js (import.meta.dirname
+  // = dist); in dev it lives at server/routes (the dist candidate covers a
+  // previous local build, else fall back to boot time).
+  const candidates = [
+    path.resolve(import.meta.dirname, "index.js"),
+    path.resolve(import.meta.dirname, "..", "..", "dist", "index.js"),
+  ];
+  for (const candidate of candidates) {
+    try {
+      return fs.statSync(candidate).mtime.toISOString().split("T")[0];
+    } catch {
+      // try next candidate
+    }
+  }
+  return new Date().toISOString().split("T")[0];
+})();
 
 // Helper to format a date or timestamp as YYYY-MM-DD for sitemaps
 const formatSitemapDate = (date?: Date | string | null): string => {

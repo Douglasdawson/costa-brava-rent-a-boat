@@ -1,6 +1,6 @@
 // server/seo/executors/runner.ts
 import { db } from "../../db";
-import { seoExperiments, seoCampaigns } from "../../../shared/schema";
+import { seoExperiments, seoCampaigns, seoAlerts } from "../../../shared/schema";
 import { eq } from "drizzle-orm";
 import { logger } from "../../lib/logger";
 import { SEO_CONFIG } from "../config";
@@ -30,11 +30,100 @@ export const executors: Record<string, Executor> = {
   schema_update: updateSchema,
 };
 
+// Persist the strategist's campaign decisions. Until 2026-06-10 campaigns were
+// parsed but NEVER written anywhere (seo_campaigns had 0 rows ever), so the
+// campaignId lookup below always missed and the briefing's "active campaigns"
+// section was permanently empty — the brain's output evaporated each run.
+export async function syncCampaigns(
+  campaigns: Array<{ action: string; name: string; objective: string; cluster: string }>,
+): Promise<void> {
+  for (const c of campaigns) {
+    if (!c.name) continue;
+    try {
+      const [existing] = await db
+        .select({ id: seoCampaigns.id })
+        .from(seoCampaigns)
+        .where(eq(seoCampaigns.name, c.name))
+        .limit(1);
+
+      if (c.action === "create" && !existing) {
+        await db.insert(seoCampaigns).values({
+          name: c.name,
+          objective: c.objective || null,
+          cluster: c.cluster || null,
+          status: "active",
+          startDate: new Date().toISOString().slice(0, 10),
+        });
+        logger.info(`[SEO:Executor] Campaign created: ${c.name}`);
+      } else if (existing && (c.action === "pause" || c.action === "complete")) {
+        await db
+          .update(seoCampaigns)
+          .set({
+            status: c.action === "pause" ? "paused" : "completed",
+            endDate: c.action === "complete" ? new Date().toISOString().slice(0, 10) : null,
+          })
+          .where(eq(seoCampaigns.id, existing.id));
+        logger.info(`[SEO:Executor] Campaign ${c.action}d: ${c.name}`);
+      } else if (existing && c.action === "update") {
+        await db
+          .update(seoCampaigns)
+          .set({ objective: c.objective || null, cluster: c.cluster || null })
+          .where(eq(seoCampaigns.id, existing.id));
+      }
+    } catch (error) {
+      logger.error(`[SEO:Executor] Campaign sync failed: ${c.name}`, { error: String(error) });
+    }
+  }
+}
+
+// Persist strategist alerts so they flow through the alert engine
+// (Telegram/WhatsApp for critical/high, dashboard otherwise). Previously
+// parsed and dropped.
+export async function persistStrategyAlerts(
+  alerts: Array<{ severity: string; title: string; message: string }>,
+): Promise<void> {
+  for (const alert of alerts) {
+    if (!alert.title) continue;
+    try {
+      await db.insert(seoAlerts).values({
+        type: "strategist",
+        severity: alert.severity || "low",
+        title: alert.title,
+        message: alert.message || null,
+        status: "new",
+      });
+    } catch (error) {
+      logger.error(`[SEO:Executor] Alert persist failed: ${alert.title}`, { error: String(error) });
+    }
+  }
+}
+
+// Shared persistence for daily/weekly strategist runs (campaigns + alerts).
+// Called by the worker jobs so the 09:00 analysis isn't discarded in memory.
+export async function persistStrategyDecisions(
+  decisions: { campaigns: Array<{ action: string; name: string; objective: string; cluster: string }>; alerts: Array<{ severity: string; title: string; message: string }> } | null,
+): Promise<void> {
+  if (!decisions) return;
+  await syncCampaigns(decisions.campaigns);
+  await persistStrategyAlerts(decisions.alerts);
+}
+
 export async function executeScheduledActions(): Promise<void> {
   // Get latest strategy decisions
   const decisions = await runDailyAnalysis();
-  if (!decisions || decisions.immediateActions.length === 0) {
-    logger.info("[SEO:Executor] No actions to execute");
+  if (!decisions) {
+    logger.info("[SEO:Executor] No decisions (strategist unavailable)");
+    return;
+  }
+
+  // Persist campaigns FIRST so the campaignId lookup below can resolve them.
+  await syncCampaigns(decisions.campaigns);
+  await persistStrategyAlerts(decisions.alerts);
+
+  if (decisions.immediateActions.length === 0) {
+    logger.warn(
+      `[SEO:Executor] Strategist returned 0 immediate actions (summary: ${(decisions.summary || "").slice(0, 200)})`,
+    );
     return;
   }
 

@@ -227,6 +227,14 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/circuito-jet-ski-blanes": buildJetskiStaticMeta("circuito", 65),
   "/excursion-jet-ski-blanes-tossa": buildJetskiStaticMeta("excursion", 190),
   "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
+  // Social Boat (salidas compartidas) — ES-only launch (translatedStaticPaths
+  // gates indexability); was served as raw index.html with no SSR meta at all.
+  "/salidas-compartidas": {
+    es: {
+      title: "Barco Compartido Costa Brava · Social Boat | Conoce Gente",
+      description: "Navega y conoce gente nueva desde Blanes. Comparte un barco sin licencia, reparte el coste y disfruta de 4 horas de calas. Apúntate a la lista de interés.",
+    },
+  },
   "/": {
     // GSC 2026-05-09: CTR rewrite. URL "/" captura 92 de 106 clicks 28d (87%) en
     // pos 8.28 con CTR 2.16%. Reformulación: keyword-singular en title (match
@@ -3927,6 +3935,33 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: "Blog", url: `${BASE_URL}/blog` }]);
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [collectionPage, breadcrumb] }, availableLanguages };
+    }
+
+    // Social Boat landing — FAQPage + body fallback from t.sharedSailing so
+    // crawlers see the concept (shared rental, one of the group pilots, price
+    // per person) instead of an empty SPA shell.
+    else if (metaKey === "/salidas-compartidas") {
+      const ss = (I18N_BY_LANG[lang] ?? i18nEs).sharedSailing;
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: ss.hero.title, url: `${BASE_URL}/es/salidas-compartidas` }]);
+      const faqSchema = {
+        "@type": "FAQPage",
+        "@id": `${BASE_URL}/es/salidas-compartidas#faq`,
+        mainEntity: ss.faq.map((f: { q: string; a: string }) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      };
+      const bodyFallback = `
+<h1>${esc(ss.hero.title)}</h1>
+<p>${esc(ss.hero.subtitle)}</p>
+<p>${esc(ss.hero.priceHook)} — ${esc(ss.hero.priceNote)}</p>
+<ul>
+${ss.chips.map((c: string) => `  <li>${esc(c)}</li>`).join("\n")}
+</ul>
+<p><a href="https://wa.me/34611500372">${esc(ss.hero.cta)}</a></p>
+      `.trim();
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [breadcrumb, faqSchema] }, availableLanguages, bodyFallback };
     }
 
     // /ai-citations — the AI citation hub is 100% client-rendered React, yet its

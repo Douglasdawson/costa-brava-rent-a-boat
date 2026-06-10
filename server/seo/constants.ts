@@ -3,7 +3,10 @@
 
 export const AI_CRAWLER_NAMES = [
   "GPTBot", "ChatGPT-User", "OAI-SearchBot", "Google-Extended",
-  "PerplexityBot", "ClaudeBot", "Claude-Web", "Anthropic",
+  // Specific tokens BEFORE generic ones: detectAIBotName returns the first
+  // match, and Claude-SearchBot/Claude-User UAs also contain "Anthropic".
+  "PerplexityBot", "Perplexity-User",
+  "ClaudeBot", "Claude-SearchBot", "Claude-User", "Claude-Web", "Anthropic",
   "Applebot-Extended", "CCBot", "Bytespider", "cohere-ai",
   "Meta-ExternalAgent", "FacebookBot", "Amazonbot", "YouBot",
   "Timpibot", "AI2Bot", "Diffbot", "ImagesiftBot", "Omgili",

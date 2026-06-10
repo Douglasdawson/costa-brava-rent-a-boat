@@ -65,6 +65,16 @@ const MONEY_PAGE_METAKEYS = new Set<string>([
   "/barcos-sin-licencia", // category
   "/barcos-con-licencia", // category
   "/precios",             // pricing
+  // Jet ski money pages — they convert via WhatsApp tap-out, which GA4 can
+  // read as a bounce; never let engagement noise hide them from the index.
+  "/alquiler-moto-de-agua-blanes",
+  "/circuito-jet-ski-blanes",
+  "/excursion-jet-ski-blanes-tossa",
+  // Activity landings (sunset/snorkel/families/fishing) — same tap-out pattern.
+  "/paseo-atardecer-barco-blanes",
+  "/excursion-snorkel-barco-blanes",
+  "/barco-familias-costa-brava",
+  "/pesca-barco-blanes",
 ]);
 
 export function isThinGuardExempt(metaKey: string): boolean {

@@ -4,15 +4,16 @@ import { logger } from "../../lib/logger";
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "";
 
-export async function sendTelegramMessage(title: string, message: string): Promise<void> {
+export async function sendTelegramMessage(title: string, message: string): Promise<boolean> {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
     logger.warn("[Telegram] Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID — skipping send");
-    return;
+    return false;
   }
 
   // Telegram has a 4096 char limit per message — split if needed
   const fullText = `*${title}*\n\n${message}`;
   const chunks = splitMessage(fullText, 4000);
+  let allOk = true;
 
   for (const chunk of chunks) {
     try {
@@ -38,14 +39,22 @@ export async function sendTelegramMessage(title: string, message: string): Promi
         });
         if (!retry.ok) {
           logger.warn(`[Telegram] Failed to send message: ${retry.status}`);
+          allOk = false;
         }
       }
     } catch (error) {
       logger.warn(`[Telegram] Error sending message: ${error}`);
+      allOk = false;
     }
   }
 
-  logger.info(`[Telegram] Message sent: ${title}`);
+  if (allOk) logger.info(`[Telegram] Message sent: ${title}`);
+  return allOk;
+}
+
+/** Severity-prefixed alert wrapper used by the SEO alert engine. */
+export async function sendTelegramAlert(title: string, message: string, severity: string): Promise<boolean> {
+  return sendTelegramMessage(`[${severity.toUpperCase()}] SEO: ${title}`, message);
 }
 
 function splitMessage(text: string, maxLength: number): string[] {

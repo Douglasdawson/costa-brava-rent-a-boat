@@ -20,7 +20,7 @@
 
 import { db } from "../db";
 import { aiSearchIndex } from "../../shared/schema";
-import { eq, sql, desc } from "drizzle-orm";
+import { eq, sql, desc, inArray } from "drizzle-orm";
 import { logger } from "../lib/logger";
 import { generateEmbedding } from "../whatsapp/ragService";
 import { BOAT_DATA } from "../../shared/boatData";
@@ -298,7 +298,7 @@ export async function hybridSearch(
     FROM ai_search_index
     WHERE to_tsvector('simple', coalesce(title,'') || ' ' || coalesce(body,''))
           @@ websearch_to_tsquery('simple', ${query})
-      ${lang ? sql`AND lang = ${lang}` : sql``}
+      ${lang && lang !== "es" ? sql`AND lang IN (${lang}, 'es')` : lang ? sql`AND lang = ${lang}` : sql``}
     ORDER BY rank DESC
     LIMIT ${bm25Limit}
   `);
@@ -343,7 +343,10 @@ export async function hybridSearch(
         embedding: aiSearchIndex.embedding,
       })
       .from(aiSearchIndex)
-      .where(lang ? eq(aiSearchIndex.lang, lang) : sql`true`);
+      // Non-ES queries include ES rows: boats/jetski/glossary/blog are indexed
+      // lang:"es" only, so a strict filter would empty most of the corpus for
+      // EN/FR/DE callers. ES acts as the lang-agnostic fallback tier.
+      .where(lang && lang !== "es" ? inArray(aiSearchIndex.lang, [lang, "es"]) : lang ? eq(aiSearchIndex.lang, lang) : sql`true`);
 
     const scored = (allRows as unknown as CandidateRow[])
       .filter((r) => r.embedding && r.embedding.length > 0)

@@ -105,15 +105,18 @@ export function startSeoWorker(): void {
     logger.info("[seo-pilots] done", result);
   });
 
-  // Phase 3: Brain
+  // Phase 3: Brain — decisions are persisted (campaigns + alerts), not just
+  // logged: before 2026-06-10 both jobs discarded the strategist output.
   registerJob("daily-analysis", schedules.dailyAnalysis, async () => {
     const { runDailyAnalysis } = await import("./strategist/agent");
-    await runDailyAnalysis();
+    const { persistStrategyDecisions } = await import("./executors/runner");
+    await persistStrategyDecisions(await runDailyAnalysis());
   });
 
   registerJob("weekly-strategy", schedules.weeklyStrategy, async () => {
     const { runWeeklyStrategy } = await import("./strategist/agent");
-    await runWeeklyStrategy();
+    const { persistStrategyDecisions } = await import("./executors/runner");
+    await persistStrategyDecisions(await runWeeklyStrategy());
   });
 
   // Phase 4: Execution

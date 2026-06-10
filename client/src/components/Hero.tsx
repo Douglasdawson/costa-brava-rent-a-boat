@@ -12,6 +12,8 @@ export default function Hero() {
   const { openBookingModal } = useBookingModal();
   const { data: businessStats } = useBusinessStats();
   const [quizOpen, setQuizOpen] = useState(false);
+  const [showHeroVideo, setShowHeroVideo] = useState(false);
+  const [heroVideoReady, setHeroVideoReady] = useState(false);
   const authority = t.authority!;
   const ratingDisplay = businessStats
     ? `${businessStats.rating.toFixed(1)}/5 · ${businessStats.userRatingCount}+ reseñas`
@@ -22,6 +24,17 @@ export default function Hero() {
     const handleOpenQuiz = () => setQuizOpen(true);
     window.addEventListener("cbrb:openQuiz", handleOpenQuiz);
     return () => window.removeEventListener("cbrb:openQuiz", handleOpenQuiz);
+  }, []);
+
+  // Desktop-only background video: mobile keeps the lightweight LCP image and
+  // never downloads the clip. Respects reduced-motion.
+  useEffect(() => {
+    const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setShowHeroVideo(motionOk && mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
   return (
@@ -59,6 +72,25 @@ export default function Hero() {
           {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
         />
       </picture>
+
+      {/* Desktop-only background video — layered over the LCP image, fades in
+          once it can play. Mobile never mounts/downloads it. */}
+      {showHeroVideo && (
+        <video
+          className={`absolute inset-0 w-full h-full object-cover saturate-[1.05] transition-opacity duration-700 ${
+            heroVideoReady ? "opacity-100" : "opacity-0"
+          }`}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          onPlaying={() => setHeroVideoReady(true)}
+        >
+          <source src="/videos/hero-clip.mp4" type="video/mp4" />
+        </video>
+      )}
 
       {/* Overlay — lighter center on mobile/tablet to show image, stronger on desktop where text covers center */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/50 lg:from-black/50 lg:via-black/40 lg:to-black/50" />

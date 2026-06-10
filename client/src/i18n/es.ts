@@ -10,6 +10,7 @@ export const es: Translations = {
     giftCards: "Tarjetas Regalo",
     viewComponents: "Ver Componentes",
     jetski: "Motos de agua",
+    scooters: "Scooters",
     bookNow: "Reservar",
     myAccount: "Mi Cuenta",
   },
@@ -709,6 +710,7 @@ export const es: Translations = {
         { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
         { title: "Salida al atardecer en barco", description: "Experiencia de atardecer en barco" },
         { title: "Barcos sin licencia", description: "5 barcos desde 70€/h, gasolina incluida" },
+        { title: "Alquiler de scooters en Lloret de Mar", description: "Recorre la Costa Brava por carretera, desde 8€/h con seguro incluido" },
       ],
       locationTossa: [
         { title: "Más destinos en la Costa Brava", description: "Descubre todas las rutas y calas de la Costa Brava en barco" },
@@ -773,6 +775,12 @@ export const es: Translations = {
         { title: "Circuito en moto de agua sin licencia", description: "Primera toma de contacto en un circuito vigilado frente a Blanes" },
         { title: "Excursión a Tossa de Mar", description: "Descubre la Vila Vella y sus calas cristalinas" },
         { title: "Precios y tarifas", description: "Consulta tarifas por temporada" },
+      ],
+      scooters: [
+        { title: "Alquiler barcos en Lloret de Mar", description: "Playas y calas espectaculares desde el puerto de Blanes" },
+        { title: "Barcos sin licencia", description: "5 barcos desde 70€/h, gasolina incluida" },
+        { title: "Alquiler de moto de agua sin licencia", description: "Circuito y excursión guiada en moto de agua desde Blanes" },
+        { title: "Excursión a Tossa de Mar", description: "Descubre la Vila Vella y sus calas cristalinas" },
       ],
     },
   },
@@ -5390,5 +5398,65 @@ export const es: Translations = {
         }
       ]
     }
+  },
+  scootersPage: {
+    seoTitle: "Alquiler de motos y scooters en Lloret de Mar | Coast Rent",
+    seoDescription:
+      "Alquila scooters, motos y bicicletas eléctricas en Lloret de Mar con Coast Rent: desde 8€/hora, seguro incluido, sin fianza y cancelación gratuita. Combínalo con tu día en barco por la Costa Brava.",
+    navLabel: "Scooters",
+    hero: {
+      title: "Alquiler de scooters y motos en Lloret de Mar",
+      subtitle:
+        "Recorre la Costa Brava por carretera con Coast Rent: scooters, motos y bicicletas eléctricas en Lloret de Mar desde 8€/hora, con seguro incluido y sin fianza.",
+    },
+    chips: ["Desde 8€/hora", "Seguro incluido", "Sin fianza", "Cancelación gratuita"],
+    intro:
+      "El mar no es la única forma de descubrir la Costa Brava. Con una moto o un scooter puedes enlazar Lloret de Mar, Tossa de Mar y las carreteras de curvas junto a los acantilados a tu ritmo. Coast Rent, en Lloret de Mar, alquila scooters, motos y bicicletas eléctricas con recogida en pocos minutos y cancelación gratuita.",
+    vehiclesTitle: "Vehículos disponibles",
+    vehicles: [
+      {
+        name: "Scooter 49cc",
+        description: "Ideal para moverte por Lloret y la costa cercana. Se conduce desde el carnet AM.",
+      },
+      {
+        name: "Scooter 125cc",
+        description: "El equilibrio perfecto para excursiones por la Costa Brava. Vale el carnet B de coche con 3 años de antigüedad.",
+      },
+      {
+        name: "Moto CF Moto 650 MT",
+        description: "Para rutas largas por las carreteras de la Costa Brava y el interior de Girona. Requiere carnet A2 o A.",
+      },
+      {
+        name: "Bicicleta eléctrica",
+        description: "Sin carnet y sin esfuerzo: paseos por el paseo marítimo y los caminos de ronda.",
+      },
+    ],
+    operatedByTitle: "Un servicio de Coast Rent",
+    operatedByText:
+      "El alquiler de scooters y motos lo opera Coast Rent, empresa local de Lloret de Mar que recomendamos. La reserva, la entrega y la atención al cliente se gestionan directamente en su web, disponible en tu idioma.",
+    combineTitle: "Combina mar y carretera",
+    combineText:
+      "Por la mañana, barco sin licencia desde el puerto de Blanes; por la tarde, scooter hasta Tossa de Mar por una de las carreteras costeras más bonitas de Cataluña. Blanes y Lloret están a 10 minutos: puedes hacer ambas cosas el mismo día.",
+    cta: "Ver disponibilidad en coastrent.es",
+    ctaNote: "Se abre la web de Coast Rent en una pestaña nueva.",
+    faqTitle: "Preguntas frecuentes",
+    faq: [
+      {
+        q: "¿Qué carnet necesito para alquilar un scooter en Lloret de Mar?",
+        a: "Para el scooter de 49cc basta el carnet AM. Para el de 125cc vale el carnet B de coche con al menos 3 años de antigüedad. La moto de 650cc requiere carnet A2 o A. Las bicicletas eléctricas no necesitan carnet.",
+      },
+      {
+        q: "¿Hay que dejar fianza?",
+        a: "No. Coast Rent no pide fianza, y el seguro está incluido en el precio del alquiler.",
+      },
+      {
+        q: "¿Puedo cancelar la reserva?",
+        a: "Sí, la cancelación es gratuita hasta 24 horas antes de la recogida.",
+      },
+      {
+        q: "¿Puedo combinar el scooter con un día de barco?",
+        a: "Sí. Nuestros barcos salen del puerto de Blanes, a unos 10 minutos de Lloret de Mar, así que puedes navegar por la mañana y recorrer la costa en scooter por la tarde, o al revés.",
+      },
+    ],
   },
 };

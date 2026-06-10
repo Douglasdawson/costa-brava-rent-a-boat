@@ -46,6 +46,9 @@ export const ROUTE_SLUGS = {
   jetskiExcursion: { es: "excursion-jet-ski-blanes-tossa", en: "jet-ski-tour-blanes-tossa", fr: "excursion-jet-ski-blanes-tossa", de: "jet-ski-tour-blanes-tossa", nl: "jet-ski-tour-blanes-tossa", it: "escursione-jet-ski-blanes-tossa", ca: "excursio-jet-ski-blanes-tossa", ru: "ekskursiya-jet-ski-blanes-tossa" },
   jetskiHub: { es: "alquiler-moto-de-agua-blanes", en: "jet-ski-rental-blanes", fr: "location-jet-ski-blanes", de: "jetski-mieten-blanes", nl: "jetski-huren-blanes", it: "noleggio-moto-acqua-blanes", ca: "lloguer-moto-aquatica-blanes", ru: "arenda-gidrocikla-blanes" },
 
+  // Scooter rental bridge page (links out to Coast Rent, Lloret de Mar)
+  scooters: { es: "alquiler-motos-lloret", en: "scooter-rental-lloret", fr: "location-scooter-lloret", de: "roller-mieten-lloret", nl: "scooter-huren-lloret", it: "noleggio-scooter-lloret", ca: "lloguer-motos-lloret", ru: "arenda-skuterov-lloret" },
+
   // Dynamic route prefixes
   boatDetail: { es: "barco", en: "boat", fr: "bateau", de: "boot", nl: "boot", it: "barca", ca: "vaixell", ru: "lodka" },
   blogDetail: { es: "blog", en: "blog", fr: "blog", de: "blog", nl: "blog", it: "blog", ca: "blog", ru: "blog" },

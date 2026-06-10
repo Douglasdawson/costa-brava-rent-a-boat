@@ -60,6 +60,9 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   "/circuito-jet-ski-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/excursion-jet-ski-blanes-tossa": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-moto-de-agua-blanes": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Scooter rental bridge page (Coast Rent, Lloret) — t.scootersPage is
+  // i18n-complete in all 8 locales; SSR meta via buildScootersStaticMeta.
+  "/alquiler-motos-lloret": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   // Satellite location pages — i18n-complete (t.locationPages.<town>) + native SSR body.
   "/alquiler-barcos-tordera": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-palafolls": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],

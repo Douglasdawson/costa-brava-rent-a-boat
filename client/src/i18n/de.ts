@@ -10,6 +10,7 @@ export const de: Translations = {
     giftCards: "Geschenkkarten",
     viewComponents: "Komponenten Anzeigen",
     jetski: "Jetskis",
+    scooters: "Roller",
     bookNow: "Verfügbarkeit prüfen",
     myAccount: "Mein Konto",
   },
@@ -4257,6 +4258,7 @@ export const de: Translations = {
         { title: "Die besten Buchten der Costa Brava mit dem Boot", description: "Die 10 spektakulärsten Buchten zwischen Blanes und Tossa" },
         { title: "Bootstour bei Sonnenuntergang", description: "Sonnenuntergangserlebnis auf dem Boot" },
         { title: "Boote ohne Führerschein", description: "5 Boote ab 70€/Std., Kraftstoff inklusive" },
+        { title: "Rollerverleih in Lloret de Mar", description: "Erkunden Sie die Costa Brava auf der Straße, ab 8€/Std. mit Versicherung inklusive" },
       ],
       locationTossa: [
         { title: "Weitere Ziele an der Costa Brava", description: "Entdecken Sie alle Routen und Buchten der Costa Brava mit dem Boot" },
@@ -4321,6 +4323,12 @@ export const de: Translations = {
         { title: "Jetski-Rundkurs ohne Führerschein", description: "Erster Kontakt auf einem überwachten Rundkurs vor Blanes" },
         { title: "Ausflug nach Tossa de Mar", description: "Entdecken Sie die Vila Vella und ihre kristallklaren Buchten" },
         { title: "Preise und Tarife", description: "Preise nach Saison ansehen" },
+      ],
+      scooters: [
+        { title: "Bootsverleih in Lloret de Mar", description: "Spektakuläre Strände und Buchten ab dem Hafen von Blanes" },
+        { title: "Boote ohne Führerschein", description: "5 Boote ab 70€/Std., Kraftstoff inklusive" },
+        { title: "Jetski-Verleih ohne Führerschein", description: "Rundkurs und geführte Jetski-Tour ab Blanes" },
+        { title: "Ausflug nach Tossa de Mar", description: "Entdecken Sie die Vila Vella und ihre kristallklaren Buchten" },
       ],
     },
   },
@@ -5248,5 +5256,65 @@ export const de: Translations = {
         }
       ]
     }
+  },
+  scootersPage: {
+    seoTitle: "Roller- und Motorradverleih in Lloret de Mar | Coast Rent",
+    seoDescription:
+      "Mieten Sie Roller, Motorräder und E-Bikes in Lloret de Mar bei Coast Rent: ab 8€/Stunde, Versicherung inklusive, ohne Kaution und mit kostenloser Stornierung. Kombinieren Sie es mit Ihrem Bootstag an der Costa Brava.",
+    navLabel: "Roller",
+    hero: {
+      title: "Roller- und Motorradverleih in Lloret de Mar",
+      subtitle:
+        "Erkunden Sie die Costa Brava auf der Straße mit Coast Rent: Roller, Motorräder und E-Bikes in Lloret de Mar ab 8€/Stunde, mit Versicherung inklusive und ohne Kaution.",
+    },
+    chips: ["Ab 8€/Stunde", "Versicherung inklusive", "Ohne Kaution", "Kostenlose Stornierung"],
+    intro:
+      "Das Meer ist nicht der einzige Weg, die Costa Brava zu entdecken. Mit einem Motorrad oder Roller verbinden Sie Lloret de Mar, Tossa de Mar und die Kurvenstraßen entlang der Steilküste in Ihrem eigenen Tempo. Coast Rent in Lloret de Mar vermietet Roller, Motorräder und E-Bikes mit Übergabe in wenigen Minuten und kostenloser Stornierung.",
+    vehiclesTitle: "Verfügbare Fahrzeuge",
+    vehicles: [
+      {
+        name: "Roller 49ccm",
+        description: "Ideal für Lloret und die nahe Küste. Fahrbar bereits mit Führerschein der Klasse AM.",
+      },
+      {
+        name: "Roller 125ccm",
+        description: "Die perfekte Balance für Ausflüge entlang der Costa Brava. Ein Pkw-Führerschein (B) mit 3 Jahren Fahrpraxis genügt.",
+      },
+      {
+        name: "Motorrad CF Moto 650 MT",
+        description: "Für lange Touren über die Straßen der Costa Brava und das Hinterland von Girona. Erfordert Führerschein A2 oder A.",
+      },
+      {
+        name: "E-Bike",
+        description: "Ohne Führerschein und ohne Anstrengung: Touren auf der Strandpromenade und den Küstenwegen.",
+      },
+    ],
+    operatedByTitle: "Ein Service von Coast Rent",
+    operatedByText:
+      "Der Roller- und Motorradverleih wird von Coast Rent betrieben, einem lokalen Unternehmen in Lloret de Mar, das wir empfehlen. Buchung, Übergabe und Kundenservice laufen direkt über deren Website, die in Ihrer Sprache verfügbar ist.",
+    combineTitle: "Meer und Straße kombinieren",
+    combineText:
+      "Morgens ein führerscheinfreies Boot ab dem Hafen von Blanes, nachmittags mit dem Roller nach Tossa de Mar über eine der schönsten Küstenstraßen Kataloniens. Blanes und Lloret liegen 10 Minuten auseinander: Beides ist an einem Tag möglich.",
+    cta: "Verfügbarkeit auf coastrent.es prüfen",
+    ctaNote: "Öffnet die Website von Coast Rent in einem neuen Tab.",
+    faqTitle: "Häufige Fragen",
+    faq: [
+      {
+        q: "Welchen Führerschein brauche ich, um in Lloret de Mar einen Roller zu mieten?",
+        a: "Für den 49ccm-Roller genügt der Führerschein der Klasse AM. Für den 125ccm reicht ein Pkw-Führerschein (B) mit mindestens 3 Jahren Fahrpraxis. Das 650ccm-Motorrad erfordert die Klasse A2 oder A. E-Bikes benötigen keinen Führerschein.",
+      },
+      {
+        q: "Muss ich eine Kaution hinterlegen?",
+        a: "Nein. Coast Rent verlangt keine Kaution, und die Versicherung ist im Mietpreis enthalten.",
+      },
+      {
+        q: "Kann ich meine Buchung stornieren?",
+        a: "Ja, die Stornierung ist bis 24 Stunden vor der Abholung kostenlos.",
+      },
+      {
+        q: "Kann ich den Roller mit einem Bootstag kombinieren?",
+        a: "Ja. Unsere Boote starten im Hafen von Blanes, etwa 10 Minuten von Lloret de Mar entfernt. Sie können also morgens aufs Meer und nachmittags mit dem Roller die Küste erkunden – oder umgekehrt.",
+      },
+    ],
   },
 };

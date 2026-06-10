@@ -82,6 +82,7 @@ export interface Translations {
     giftCards: string;
     viewComponents: string;
     jetski: string;
+    scooters: string;
     bookNow: string;
     myAccount: string;
   };
@@ -2848,6 +2849,24 @@ export interface Translations {
     hero: { title: string; subtitle: string; cta: string };
     intro: string;
     productsTitle: string;
+    faqTitle: string;
+    faq: { q: string; a: string }[];
+  };
+  scootersPage: {
+    seoTitle: string;
+    seoDescription: string;
+    navLabel: string;
+    hero: { title: string; subtitle: string };
+    chips: string[];
+    intro: string;
+    vehiclesTitle: string;
+    vehicles: { name: string; description: string }[];
+    operatedByTitle: string;
+    operatedByText: string;
+    combineTitle: string;
+    combineText: string;
+    cta: string;
+    ctaNote: string;
     faqTitle: string;
     faq: { q: string; a: string }[];
   };

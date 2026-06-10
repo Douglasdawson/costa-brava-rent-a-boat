@@ -10,6 +10,7 @@ export const ca: Translations = {
     giftCards: "Targetes Regal",
     viewComponents: "Veure Components",
     jetski: "Motos aquàtiques",
+    scooters: "Scooters",
     bookNow: "Veure Disponibilitat",
     myAccount: "El Meu Compte",
   },
@@ -4230,6 +4231,7 @@ export const ca: Translations = {
         { title: "Millors cales de la Costa Brava en vaixell", description: "Les 10 cales més espectaculars entre Blanes i Tossa" },
         { title: "Sortida en vaixell a la posta de sol", description: "Experiència de posta de sol en vaixell" },
         { title: "Vaixells sense llicència", description: "5 vaixells des de 70€/h, gasolina inclosa" },
+        { title: "Lloguer de scooters a Lloret de Mar", description: "Recorre la Costa Brava per carretera, des de 8€/h amb assegurança inclosa" },
       ],
       locationTossa: [
         { title: "Més destins a la Costa Brava", description: "Descobreix totes les rutes i cales de la Costa Brava en vaixell" },
@@ -4294,6 +4296,12 @@ export const ca: Translations = {
         { title: "Circuit en moto d'aigua sense llicència", description: "Primera presa de contacte en un circuit vigilat davant de Blanes" },
         { title: "Excursió a Tossa de Mar", description: "Descobreix la Vila Vella i les seves cales cristal·lines" },
         { title: "Preus i tarifes", description: "Consulta tarifes per temporada" },
+      ],
+      scooters: [
+        { title: "Lloguer de vaixells a Lloret de Mar", description: "Platges i cales espectaculars des del port de Blanes" },
+        { title: "Vaixells sense llicència", description: "5 vaixells des de 70€/h, gasolina inclosa" },
+        { title: "Lloguer de moto d'aigua sense llicència", description: "Circuit i excursió guiada en moto d'aigua des de Blanes" },
+        { title: "Excursió a Tossa de Mar", description: "Descobreix la Vila Vella i les seves cales cristal·lines" },
       ],
     },
   },
@@ -5221,5 +5229,65 @@ export const ca: Translations = {
         }
       ]
     }
+  },
+  scootersPage: {
+    seoTitle: "Lloguer de motos i scooters a Lloret de Mar | Coast Rent",
+    seoDescription:
+      "Lloga scooters, motos i bicicletes elèctriques a Lloret de Mar amb Coast Rent: des de 8€/hora, assegurança inclosa, sense fiança i cancel·lació gratuïta. Combina-ho amb el teu dia en vaixell per la Costa Brava.",
+    navLabel: "Scooters",
+    hero: {
+      title: "Lloguer de scooters i motos a Lloret de Mar",
+      subtitle:
+        "Recorre la Costa Brava per carretera amb Coast Rent: scooters, motos i bicicletes elèctriques a Lloret de Mar des de 8€/hora, amb assegurança inclosa i sense fiança.",
+    },
+    chips: ["Des de 8€/hora", "Assegurança inclosa", "Sense fiança", "Cancel·lació gratuïta"],
+    intro:
+      "El mar no és l'única manera de descobrir la Costa Brava. Amb una moto o un scooter pots enllaçar Lloret de Mar, Tossa de Mar i les carreteres de revolts arran dels penya-segats al teu ritme. Coast Rent, a Lloret de Mar, lloga scooters, motos i bicicletes elèctriques amb recollida en pocs minuts i cancel·lació gratuïta.",
+    vehiclesTitle: "Vehicles disponibles",
+    vehicles: [
+      {
+        name: "Scooter 49cc",
+        description: "Ideal per moure't per Lloret i la costa propera. Es condueix des del carnet AM.",
+      },
+      {
+        name: "Scooter 125cc",
+        description: "L'equilibri perfecte per a excursions per la Costa Brava. Val el carnet B de cotxe amb 3 anys d'antiguitat.",
+      },
+      {
+        name: "Moto CF Moto 650 MT",
+        description: "Per a rutes llargues per les carreteres de la Costa Brava i l'interior de Girona. Requereix carnet A2 o A.",
+      },
+      {
+        name: "Bicicleta elèctrica",
+        description: "Sense carnet i sense esforç: passejades pel passeig marítim i els camins de ronda.",
+      },
+    ],
+    operatedByTitle: "Un servei de Coast Rent",
+    operatedByText:
+      "El lloguer de scooters i motos l'opera Coast Rent, empresa local de Lloret de Mar que recomanem. La reserva, el lliurament i l'atenció al client es gestionen directament al seu web, disponible en el teu idioma.",
+    combineTitle: "Combina mar i carretera",
+    combineText:
+      "Al matí, vaixell sense llicència des del port de Blanes; a la tarda, scooter fins a Tossa de Mar per una de les carreteres costaneres més boniques de Catalunya. Blanes i Lloret són a 10 minuts: pots fer totes dues coses el mateix dia.",
+    cta: "Veure disponibilitat a coastrent.es",
+    ctaNote: "S'obre el web de Coast Rent en una pestanya nova.",
+    faqTitle: "Preguntes freqüents",
+    faq: [
+      {
+        q: "Quin carnet necessito per llogar un scooter a Lloret de Mar?",
+        a: "Per a l'scooter de 49cc n'hi ha prou amb el carnet AM. Per al de 125cc val el carnet B de cotxe amb almenys 3 anys d'antiguitat. La moto de 650cc requereix carnet A2 o A. Les bicicletes elèctriques no necessiten carnet.",
+      },
+      {
+        q: "Cal deixar fiança?",
+        a: "No. Coast Rent no demana fiança, i l'assegurança està inclosa en el preu del lloguer.",
+      },
+      {
+        q: "Puc cancel·lar la reserva?",
+        a: "Sí, la cancel·lació és gratuïta fins a 24 hores abans de la recollida.",
+      },
+      {
+        q: "Puc combinar l'scooter amb un dia de vaixell?",
+        a: "Sí. Els nostres vaixells surten del port de Blanes, a uns 10 minuts de Lloret de Mar, així que pots navegar al matí i recórrer la costa en scooter a la tarda, o a l'inrevés.",
+      },
+    ],
   },
 };

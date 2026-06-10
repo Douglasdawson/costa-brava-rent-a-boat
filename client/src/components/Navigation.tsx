@@ -166,6 +166,7 @@ export default function Navigation() {
     { label: t.nav.home, href: localizedPath("home") },
     { label: t.nav.fleet, href: "#fleet" },
     { label: t.nav.jetski, href: localizedPath("jetskiHub") },
+    { label: t.nav.scooters, href: localizedPath("scooters") },
     { label: t.footer.destinations, href: localizedPath("routes") },
     { label: "Blog", href: localizedPath("blog") },
   ];

@@ -10,6 +10,7 @@ export const nl: Translations = {
     giftCards: "Cadeaukaarten",
     viewComponents: "Componenten Bekijken",
     jetski: "Jetski's",
+    scooters: "Scooters",
     bookNow: "Beschikbaarheid bekijken",
     myAccount: "Mijn Account",
   },
@@ -4234,6 +4235,7 @@ export const nl: Translations = {
         { title: "Mooiste baaien van de Costa Brava per boot", description: "De 10 spectaculairste baaien tussen Blanes en Tossa" },
         { title: "Boottocht bij zonsondergang", description: "Zonsondergang beleven op een boot" },
         { title: "Boten zonder vaarbewijs", description: "5 boten vanaf 70€/u, brandstof inbegrepen" },
+        { title: "Scooterverhuur in Lloret de Mar", description: "Verken de Costa Brava over de weg, vanaf 8€/u met verzekering inbegrepen" },
       ],
       locationTossa: [
         { title: "Meer bestemmingen aan de Costa Brava", description: "Ontdek alle routes en baaien van de Costa Brava per boot" },
@@ -4298,6 +4300,12 @@ export const nl: Translations = {
         { title: "Jetski-circuit zonder vaarbewijs", description: "Eerste kennismaking op een bewaakt circuit voor Blanes" },
         { title: "Tocht naar Tossa de Mar", description: "Ontdek de Vila Vella en haar kristalheldere baaien" },
         { title: "Prijzen en tarieven", description: "Bekijk tarieven per seizoen" },
+      ],
+      scooters: [
+        { title: "Boot huren in Lloret de Mar", description: "Spectaculaire stranden en baaien vanuit de haven van Blanes" },
+        { title: "Boten zonder vaarbewijs", description: "5 boten vanaf 70€/u, brandstof inbegrepen" },
+        { title: "Jetski huren zonder vaarbewijs", description: "Circuit en begeleide jetski-tocht vanuit Blanes" },
+        { title: "Tocht naar Tossa de Mar", description: "Ontdek de Vila Vella en haar kristalheldere baaien" },
       ],
     },
   },
@@ -5225,5 +5233,65 @@ export const nl: Translations = {
         }
       ]
     }
+  },
+  scootersPage: {
+    seoTitle: "Scooter- en motorverhuur in Lloret de Mar | Coast Rent",
+    seoDescription:
+      "Huur scooters, motoren en e-bikes in Lloret de Mar bij Coast Rent: vanaf 8€/uur, verzekering inbegrepen, geen borg en gratis annuleren. Combineer het met je bootdag aan de Costa Brava.",
+    navLabel: "Scooters",
+    hero: {
+      title: "Scooter- en motorverhuur in Lloret de Mar",
+      subtitle:
+        "Verken de Costa Brava over de weg met Coast Rent: scooters, motoren en e-bikes in Lloret de Mar vanaf 8€/uur, met verzekering inbegrepen en zonder borg.",
+    },
+    chips: ["Vanaf 8€/uur", "Verzekering inbegrepen", "Geen borg", "Gratis annuleren"],
+    intro:
+      "De zee is niet de enige manier om de Costa Brava te ontdekken. Met een motor of scooter verbind je Lloret de Mar, Tossa de Mar en de bochtige kustwegen langs de kliffen in je eigen tempo. Coast Rent in Lloret de Mar verhuurt scooters, motoren en e-bikes met ophalen binnen enkele minuten en gratis annuleren.",
+    vehiclesTitle: "Beschikbare voertuigen",
+    vehicles: [
+      {
+        name: "Scooter 49cc",
+        description: "Ideaal om je te verplaatsen in Lloret en langs de nabije kust. Te rijden vanaf rijbewijs AM.",
+      },
+      {
+        name: "Scooter 125cc",
+        description: "De perfecte balans voor tochten langs de Costa Brava. Een autorijbewijs (B) van 3+ jaar volstaat.",
+      },
+      {
+        name: "Motor CF Moto 650 MT",
+        description: "Voor lange ritten over de wegen van de Costa Brava en het binnenland van Girona. Vereist rijbewijs A2 of A.",
+      },
+      {
+        name: "Elektrische fiets",
+        description: "Geen rijbewijs en geen inspanning: tochtjes over de boulevard en de kustpaden.",
+      },
+    ],
+    operatedByTitle: "Een service van Coast Rent",
+    operatedByText:
+      "De verhuur van scooters en motoren wordt verzorgd door Coast Rent, een lokaal bedrijf in Lloret de Mar dat wij aanbevelen. Reserveren, overdracht en klantenservice verlopen rechtstreeks via hun website, beschikbaar in jouw taal.",
+    combineTitle: "Combineer zee en weg",
+    combineText:
+      "'s Ochtends een boot zonder vaarbewijs vanuit de haven van Blanes; 's middags met de scooter naar Tossa de Mar over een van de mooiste kustwegen van Catalonië. Blanes en Lloret liggen 10 minuten van elkaar: je kunt beide op dezelfde dag doen.",
+    cta: "Bekijk beschikbaarheid op coastrent.es",
+    ctaNote: "Opent de website van Coast Rent in een nieuw tabblad.",
+    faqTitle: "Veelgestelde vragen",
+    faq: [
+      {
+        q: "Welk rijbewijs heb ik nodig om een scooter te huren in Lloret de Mar?",
+        a: "Voor de 49cc-scooter volstaat rijbewijs AM. Voor de 125cc volstaat een autorijbewijs (B) van minstens 3 jaar oud. De 650cc-motor vereist rijbewijs A2 of A. Voor e-bikes is geen rijbewijs nodig.",
+      },
+      {
+        q: "Moet ik een borg betalen?",
+        a: "Nee. Coast Rent vraagt geen borg, en de verzekering is inbegrepen in de huurprijs.",
+      },
+      {
+        q: "Kan ik mijn reservering annuleren?",
+        a: "Ja, annuleren is gratis tot 24 uur voor het ophalen.",
+      },
+      {
+        q: "Kan ik de scooter combineren met een bootdag?",
+        a: "Ja. Onze boten vertrekken vanuit de haven van Blanes, op zo'n 10 minuten van Lloret de Mar. Je kunt dus 's ochtends varen en 's middags de kust verkennen per scooter, of andersom.",
+      },
+    ],
   },
 };

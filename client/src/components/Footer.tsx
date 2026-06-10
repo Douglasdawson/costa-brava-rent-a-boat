@@ -406,6 +406,14 @@ export default function Footer() {
                   {t.footer.boatsNearBarcelona}
                 </a>
               </li>
+              <li>
+                <a
+                  href={localizedPath("scooters")}
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                >
+                  {t.scootersPage?.hero?.title ?? t.nav.scooters}
+                </a>
+              </li>
             </ul>
           </div>
 

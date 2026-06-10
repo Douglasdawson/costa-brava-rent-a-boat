@@ -24,7 +24,8 @@
     "i18n:translate": "tsx scripts/i18n-translate.ts",
     "seo:worker": "NODE_ENV=production tsx server/seo/worker.ts",
     "prerender": "npx playwright install chromium 2>/dev/null; tsx scripts/prerender.ts",
-    "build:full": "npm run build && npm run prerender"
+    "build:full": "npm run build && npm run prerender",
+    "build:deploy": "npm run build && (npm run prerender || echo 'WARN: prerender failed, deploying with SSR fallbacks only')"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

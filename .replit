@@ -8,7 +8,11 @@ packages = ["chromium"]
 
 [deployment]
 deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
+# build:deploy = build + prerender (non-fatal). dist/ is gitignored, so the
+# prerendered HTML for bots ONLY exists in production if it's generated during
+# the deployment build — plain "build" shipped a server with zero prerendered
+# pages since April 2026.
+build = ["npm", "run", "build:deploy"]
 run = ["npm", "run", "start"]
 
 [[ports]]

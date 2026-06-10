@@ -16,7 +16,8 @@ import path from "path";
 import { chromium, type Browser, type BrowserContext } from "playwright";
 import { TRANSLATED_STATIC_PATHS } from "../server/seo/translatedStaticPaths";
 import { OCCASION_MATRIX_ENABLED, liveMatrixCombos } from "../shared/occasionMatrix";
-import { matrixSlug } from "../shared/occasionMatrixPage";
+import { matrixSlug, matrixPath, resolveMatrixSlug } from "../shared/occasionMatrixPage";
+import { getLocalizedPath, resolveSlug, type LangCode } from "../shared/i18n-routes";
 
 // ES paths of the launched matrix combos — used to skip them during prerender
 // while the matrix is gated off (their routes return 404 until enabled).
@@ -104,12 +105,53 @@ function randomPort(): number {
   return 5100 + Math.floor(Math.random() * 900); // 5100-5999
 }
 
-/** Resolve the output file path for a given route + language. */
-function resolveFilePath(outputDir: string, routePath: string, lang: string): string {
-  // Root path => index
-  const normalised = routePath === "/" ? "/index" : routePath;
-  const langSuffix = lang !== "es" ? `__lang_${lang}` : "";
-  return path.join(outputDir, `${normalised}${langSuffix}.html`);
+/**
+ * Resolve a manifest route (ES-canonical path, optionally with a dynamic
+ * param segment like /barco/{slug}) to its CANONICAL localized URL and the
+ * output file the server expects:
+ *
+ *   ("/", "de")                        → /de/            → {out}/de/index.html
+ *   ("/alquiler-barcos-blanes", "de")  → /de/boot-mieten-blanes → {out}/de/boot-mieten-blanes.html
+ *   ("/snorkel-blanes", "fr")          → /fr/snorkeling-blanes  → {out}/fr/snorkeling-blanes.html
+ *   ("/barco/solar-450", "de")         → /de/boot/solar-450     → {out}/de/boot/solar-450.html
+ *
+ * This matches what prerenderedMiddleware serves (subdirectory format) AND
+ * means Playwright visits the real canonical URL — the previous `?lang=`
+ * scheme got 301-redirected by redirectMiddleware and saved files under a
+ * legacy naming the server never reads, so prerender was dead in production.
+ *
+ * Returns null for paths that don't resolve to a known route (the job is
+ * skipped with a warning instead of capturing a redirect or 404).
+ */
+function localizedRoute(
+  outputDir: string,
+  routePath: string,
+  lang: string,
+): { url: string; filePath: string; urlPath: string } | null {
+  const l = lang as LangCode;
+  if (routePath === "/") {
+    return {
+      urlPath: `/${l}/`,
+      url: `/${l}/`,
+      filePath: path.join(outputDir, l, "index.html"),
+    };
+  }
+  const parts = routePath.replace(/^\//, "").split("/");
+  const resolved = resolveSlug(parts[0]);
+  let urlPath: string | null = null;
+  if (resolved) {
+    const param = parts[1];
+    urlPath = getLocalizedPath(resolved.pageKey, l, param ? { slug: param } : undefined);
+  } else if (parts.length === 1 && OCCASION_MATRIX_ENABLED) {
+    const combo = resolveMatrixSlug(parts[0]);
+    if (combo) urlPath = matrixPath(combo.occasion.id, combo.locationKey, l);
+  }
+  if (!urlPath) return null;
+  return {
+    urlPath,
+    url: urlPath,
+    filePath: path.join(outputDir, `${urlPath.replace(/^\//, "")}.html`),
+  };
 }
 
 /** Wait until the server responds to GET /api/health (up to `timeoutMs`). */
@@ -205,7 +247,7 @@ async function renderPage(
   const page = await context.newPage();
   try {
     await page.goto(job.url, { waitUntil: "domcontentloaded", timeout: 30_000 });
-    await page.waitForSelector(waitForSelector, { timeout: 15_000 });
+    await page.waitForSelector(waitForSelector, { timeout: 30_000 });
 
     // Wait for React to fully render content (lazy components, data fetching)
     await page.waitForTimeout(3000);
@@ -255,19 +297,37 @@ async function main() {
 
   try {
     await waitForServer(baseUrl);
+    // Warm up the SPA shell + SEO cache before the first Playwright batch:
+    // the very first renders (home pages) used to hit a cold server and time
+    // out on waitForSelector while assets compiled/caches filled.
+    await fetch(`${baseUrl}/es/`).catch(() => {});
+    await fetch(`${baseUrl}/api/boats`).catch(() => {});
     console.log("Server is ready.\n");
 
-    // 2. Build job list — static routes
+    // 2. Build job list — static routes (canonical localized URLs, deduped:
+    // manifest entries in different source languages can map to the same
+    // localized page, e.g. /boat-rental-blanes[en] ≡ /alquiler-barcos-blanes[en])
     const jobs: RenderJob[] = [];
+    const seenFiles = new Set<string>();
+
+    const pushJob = (routePath: string, lang: string) => {
+      const route = localizedRoute(outputDir, routePath, lang);
+      if (!route) {
+        console.warn(`  WARN: cannot localize ${routePath} [${lang}] — unknown slug, skipping`);
+        return;
+      }
+      if (seenFiles.has(route.filePath)) return;
+      seenFiles.add(route.filePath);
+      jobs.push({
+        url: `${baseUrl}${route.url}`,
+        filePath: route.filePath,
+        label: `${route.urlPath}`,
+      });
+    };
 
     for (const route of manifest.routes) {
       for (const lang of route.langs) {
-        const langQuery = lang !== "es" ? `?lang=${lang}` : "";
-        jobs.push({
-          url: `${baseUrl}${route.path}${langQuery}`,
-          filePath: resolveFilePath(outputDir, route.path, lang),
-          label: `${route.path} [${lang}]`,
-        });
+        pushJob(route.path, lang);
       }
     }
 
@@ -280,12 +340,7 @@ async function main() {
       for (const slug of slugs) {
         const routePath = config.pathTemplate.replace("{slug}", slug);
         for (const lang of config.langs) {
-          const langQuery = lang !== "es" ? `?lang=${lang}` : "";
-          jobs.push({
-            url: `${baseUrl}${routePath}${langQuery}`,
-            filePath: resolveFilePath(outputDir, routePath, lang),
-            label: `${routePath} [${lang}]`,
-          });
+          pushJob(routePath, lang);
         }
       }
     }
@@ -349,6 +404,7 @@ async function main() {
     let succeeded = 0;
     let failed = 0;
     let processed = 0;
+    const failedJobs: RenderJob[] = [];
 
     // Process jobs in batches of `concurrency`
     for (let i = 0; i < jobs.length; i += concurrency) {
@@ -365,7 +421,7 @@ async function main() {
                 `  [${processed}/${jobs.length}] OK: ${job.label}`,
               );
             } else {
-              failed++;
+              failedJobs.push(job);
             }
             return ok;
           } finally {
@@ -375,6 +431,23 @@ async function main() {
       );
       // results used implicitly via succeeded/failed counters
       void results;
+    }
+
+    // 5b. One sequential retry pass for transient failures (cold-start
+    // timeouts hit the very first batch — the home pages, of all things).
+    for (const job of failedJobs) {
+      const context = await browser!.newContext();
+      try {
+        const ok = await renderPage(context, job, manifest.waitForSelector);
+        if (ok) {
+          succeeded++;
+          console.log(`  [retry] OK: ${job.label}`);
+        } else {
+          failed++;
+        }
+      } finally {
+        await context.close();
+      }
     }
 
     // 6. Report

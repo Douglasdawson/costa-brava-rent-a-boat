@@ -171,6 +171,17 @@ function buildJetskiHubStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
   return out;
 }
 
+// Scooter rental bridge page (Coast Rent, Lloret de Mar). Copy lives in i18n
+// scootersPage, so all 8 locales get a native title/description.
+function buildScootersStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
+  const out: Partial<Record<LangCode, SEOMeta>> = {};
+  for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+    const sp = (I18N_BY_LANG[lang] ?? i18nEs).scootersPage;
+    out[lang] = { title: sp.seoTitle, description: sp.seoDescription };
+  }
+  return out;
+}
+
 // Programmatic matrix pages (occasion × location). Copy lives in i18n
 // occasionMatrix.pages keyed by comboId; slugs are composite (occasionWord-place)
 // and live OUTSIDE ROUTE_SLUGS, so they get their own STATIC_META entries keyed
@@ -227,6 +238,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/circuito-jet-ski-blanes": buildJetskiStaticMeta("circuito", 65),
   "/excursion-jet-ski-blanes-tossa": buildJetskiStaticMeta("excursion", 190),
   "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
+  "/alquiler-motos-lloret": buildScootersStaticMeta(),
   // Social Boat (salidas compartidas) — ES-only launch (translatedStaticPaths
   // gates indexability); was served as raw index.html with no SSR meta at all.
   "/salidas-compartidas": {
@@ -1799,6 +1811,7 @@ function buildLandingService(
   serviceName: string,
   description: string,
   priceRange: { low: number; high: number },
+  opts: { includeRating?: boolean } = {},
 ): object {
   return {
     "@type": "Service",
@@ -1806,7 +1819,10 @@ function buildLandingService(
     description,
     provider: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
     areaServed: GEO_HIERARCHY,
-    aggregateRating: buildAggregateRating(),
+    // Rating is the BUSINESS aggregate. Resale products (jet ski) opt out:
+    // borrowing it for a product the reviews aren't about risks rich-result
+    // invalidation.
+    ...(opts.includeRating === false ? {} : { aggregateRating: buildAggregateRating() }),
     offers: {
       "@type": "AggregateOffer",
       lowPrice: String(priceRange.low),
@@ -3428,7 +3444,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       // No aggregateRating on the Service: the business reviews are not reviews
       // of the jet ski product; Google can invalidate rich results for that.
       // The rating lives on the LocalBusiness node only.
-      const service = buildLandingService(heading, summary, { low: 65, high: 190 });
+      const service = buildLandingService(heading, summary, { low: 65, high: 190 }, { includeRating: false });
       const faq = {
         "@type": "FAQPage",
         mainEntity: (jsk?.faq ?? []).map((item) => ({
@@ -3455,7 +3471,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const heading = jsk?.hero.title ?? meta.title;
       const summary = jsk?.hero.subtitle ?? meta.description;
       // No aggregateRating on the Service (see circuito branch above).
-      const service = buildLandingService(heading, summary, { low: 190, high: 330 });
+      const service = buildLandingService(heading, summary, { low: 190, high: 330 }, { includeRating: false });
       const touristTrip = {
         "@type": "TouristTrip",
         name: heading,
@@ -4556,26 +4572,9 @@ export async function serveWithSEO(
       lang = (legacyLang && isValidLang(legacyLang)) ? legacyLang as LangCode : "es";
     }
 
-    // Serve prerendered HTML if available (full page content for SEO crawlers)
-    // Only serve NEW format prerendered files (prerendered/:lang/:slug.html)
-    // Legacy format (prerendered/slug__lang_xx.html) is disabled until files are
-    // regenerated for subdirectory URLs — old prerendered files lack JS bundles
-    // and break the SPA when served for /:lang/ routes.
-    const prerenderedDir = path.resolve(distPath, "..", "prerendered");
-    if (fs.existsSync(prerenderedDir)) {
-      // For subdirectory URLs, the file path mirrors the URL structure
-      const routePath = pathname === "/" ? `/${lang}/index` : pathname.replace(/\/$/, "");
-      const candidate = path.join(prerenderedDir, `${routePath}.html`);
-
-      if (fs.existsSync(candidate)) {
-        res.set("Content-Type", "text/html; charset=utf-8");
-        res.set("Content-Language", lang);
-        res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
-        res.set("X-Prerendered", "true");
-        res.sendFile(path.resolve(candidate));
-        return;
-      }
-    }
+    // Prerendered HTML is served by prerenderedMiddleware (mounted BEFORE this
+    // catch-all in serveStatic) — the redundant inline check that lived here
+    // had a /:lang/ trailing-slash mismatch and was removed 2026-06-10.
 
     // The canonical URL is the full localized path (e.g. /fr/location-bateau-blanes).
     // Home pages (root or /:lang[/?]) canonicalize to "/${lang}/" with trailing slash;

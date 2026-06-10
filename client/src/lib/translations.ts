@@ -713,6 +713,21 @@ export interface Translations {
     label: string;
   };
 
+  // "You might also like" cross-linking cards (RelatedContent.tsx). Structure
+  // (pageKey/param/type) stays in the component; copy lives here per locale.
+  relatedContent?: {
+    sectionTitle: string;
+    learnMore: string;
+    types: { blog: string; actividad: string; ubicacion: string; guia: string };
+    items: Record<string, Array<{ title: string; description: string }>>;
+  };
+
+  // PopularBoatsSection props per location page (title/description/badges).
+  popularBoatsSection?: {
+    badges: { captain: string; licensed: string; noLicense: string };
+    pages: Record<string, { title: string; description: string }>;
+  };
+
   // Programmatic matrix pages (occasion × location) — keyed by comboId, e.g.
   // "snorkel__locationBlanes". Gated behind OCCASION_MATRIX_ENABLED.
   occasionMatrix?: {
@@ -1599,6 +1614,11 @@ export interface Translations {
     safeLimitsDesc: string;
     completeEquipment: string;
     completeEquipmentDesc: string;
+    // "Lancha / embarcación / barca" synonym section (GSC 2026-06-10:
+    // ~190 impressions with zero targeting). Optional: older locales render
+    // the section only when present.
+    synonymsTitle?: string;
+    synonymsBody?: string;
     fleetTitle: string;
     advantagesTitle: string;
     totalAccessibility: string;

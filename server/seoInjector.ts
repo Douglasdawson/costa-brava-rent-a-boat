@@ -2576,19 +2576,20 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       // faqSchemaFromI18n in faq.tsx) — previously 5 hardcoded Q&A in es/en
       // while the client rendered 39 items in 8 languages. Missing keys in a
       // locale fall back to ES via the merge so SSR never shrinks the set.
-      const fp = (I18N_BY_LANG[lang] ?? i18nEs).faqPage;
+      const fpEs = i18nEs.faqPage;
+      const fp = (I18N_BY_LANG[lang] ?? i18nEs).faqPage ?? fpEs;
       let faqVars: FaqVars;
       try {
         faqVars = computeFaqVars(await storage.getAllBoats());
       } catch {
         faqVars = computeFaqVars(undefined); // static catalog fallbacks
       }
-      const mergedItems = { ...i18nEs.faqPage.items, ...fp.items } as Record<string, { question: string; answer: string }>;
+      const mergedItems = { ...(fpEs?.items ?? {}), ...(fp?.items ?? {}) } as Record<string, { question: string; answer: string }>;
       const faqPage = {
         "@type": "FAQPage",
         "@id": `${BASE_URL}/faq#faq`,
-        name: fp.schemaName,
-        description: fp.schemaDescription,
+        name: fp?.schemaName,
+        description: fp?.schemaDescription,
         mainEntity: Object.values(mergedItems).map((item) => ({
           "@type": "Question",
           name: item.question,

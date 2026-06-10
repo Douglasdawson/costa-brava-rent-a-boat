@@ -49,7 +49,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 ### Frontend (`client/src/`)
 | Area | Ruta | Descripcion |
 |------|------|-------------|
-| Paginas publicas | `pages/*.tsx` | 37 paginas (10 locations, 4 activities, 2 categories, blog, FAQ, about, etc.) |
+| Paginas publicas | `pages/*.tsx` | 39 paginas (10 locations, 4 activities, 3 jet ski, scooters, 2 categories, blog, FAQ, about, etc.) |
 | Componentes | `components/*.tsx` | Componentes publicos (Hero, Fleet, Booking, Navigation, etc.) |
 | Booking flow (modal del Hero) | `BookingFormWidget.tsx` → `BookingWizardMobile.tsx` / `BookingFormDesktop.tsx` | Wizard de 4 steps (barco / viaje / datos / confirmar). Lazy-loaded via `useBookingModal`. Es lo que abre el CTA del Hero. |
 | Booking flow (ruta separada) | `components/booking-flow/` | Wizard de 3 steps (`Tu plan` / `Tus datos` / `Confirmar`) montado en `App.tsx` como ruta. NO es el del Hero. |
@@ -115,6 +115,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Jet ski — flota + petición | Sembrado en `boats` vía `server/migrations/applyBoatsSeedEnsure.ts`; modal `client/src/components/JetSkiRequestModal.tsx` (WhatsApp prerrellenado + `/api/booking-inquiries` + `/api/jetski-booking` estado `requested`). Excluido del wizard horario/`/api/quote`/pricing |
 | Jet ski — páginas dedicadas | `client/src/components/JetSkiLanding.tsx` + `client/src/pages/jet-ski-{circuito,excursion}.tsx`; rutas `jetskiCircuito`/`jetskiExcursion` en `shared/i18n-routes.ts`; i18n bloque `jetskiLanding` (8 idiomas) |
 | Jet ski — SEO/GEO | `server/seoInjector.ts` (STATIC_META+resolveMeta SSR), `server/routes/robots.ts` + `server/services/aiSearchIndex.ts` (ai-context/feed-llms/ai-search), `client/public/llms*.txt`, `translatedStaticPaths.ts`+`sitemaps.ts` |
+| Scooters (Coast Rent) — página puente | `client/src/pages/scooters.tsx` (ruta `scooters` en `shared/i18n-routes.ts`, copy `t.scootersPage` 8 idiomas, CTA dofollow a `coastrent.es/{lang}`). SEO: `buildScootersStaticMeta` en `seoInjector.ts` + `translatedStaticPaths.ts` + `sitemaps.ts` + `llms*.txt`. A diferencia del jet ski, la página dice abiertamente "operado por Coast Rent" (empresa de Lloret recomendada, mismo entorno de propietarios) |
 
 ## Patrones Comunes
 
@@ -268,6 +269,7 @@ Cuando un hecho aparece en varias capas (i18n, SEO, blog, JSX, emails, KB chatbo
 | Rating + review count (Google Business Profile) | `shared/businessProfile.ts` -- usa `BUSINESS_RATING_STR` y `BUSINESS_REVIEW_COUNT_STR` en template literals |
 | Texto legal (condiciones de alquiler) | `client/src/components/CondicionesGenerales.tsx` |
 | Politica de cancelacion (texto unico multi-idioma) | `client/src/i18n/es.ts` -> propaga via `npm run i18n:translate` |
+| Datos de scooters Coast Rent (precios, vehiculos, condiciones) | Web en vivo `coastrent.es` (negocio externo) -> reflejado en `t.scootersPage`. Verificar contra su web antes de tocar; NO inventar precios por modelo |
 
 Politica de cancelacion (texto literal a usar en cualquier surface nueva):
 > Cambio de fecha gratuito hasta 7 dias antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el deposito integro. Las reservas confirmadas con deposito no son reembolsables fuera del supuesto de mal tiempo.

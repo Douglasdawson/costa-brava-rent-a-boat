@@ -431,6 +431,8 @@ ANTHROPIC_API_KEY=sk-ant-...
 | `/alquiler-barcos-tossa-de-mar` | Landing Tossa |
 | `/barcos-sin-licencia` | Categoría |
 | `/barcos-con-licencia` | Categoría |
+| `/alquiler-moto-de-agua-blanes` | Hub jet ski (+ `/circuito-jet-ski-blanes` y `/excursion-jet-ski-blanes-tossa`) |
+| `/alquiler-motos-lloret` | Página puente scooters (Coast Rent, enlaza a coastrent.es) |
 
 ### Autenticadas
 | Ruta | Auth |

@@ -1,4 +1,5 @@
 import { useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import { ArrowRight } from "lucide-react";
 
 type ContentType = "blog" | "actividad" | "ubicacion" | "guia";
@@ -103,15 +104,21 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
 
 export default function RelatedContent({ currentPage }: RelatedContentProps) {
   const { language, localizedPath } = useLanguage();
+  const t = useTranslations();
   const itemDefs = RELATED_CONTENT[currentPage];
 
   if (!itemDefs || itemDefs.length === 0) {
     return null;
   }
 
+  // Card copy now lives in t.relatedContent (8 locales); the structural data
+  // (pageKey/param/type) stays here. The hardcoded titles below are only the
+  // fallback if a locale is missing the keys.
+  const rc = t.relatedContent;
+  const rcItems = (rc?.items as Record<string, Array<{ title: string; description: string }> | undefined> | undefined)?.[currentPage];
   const isEnglish = language === "en";
-  const sectionTitle = isEnglish ? "You might also like" : "Tambien te puede interesar";
-  const linkText = isEnglish ? "Learn more" : "Ver mas";
+  const sectionTitle = rc?.sectionTitle ?? (isEnglish ? "You might also like" : "Tambien te puede interesar");
+  const linkText = rc?.learnMore ?? (isEnglish ? "Learn more" : "Ver mas");
 
   return (
     <section className="py-12 bg-muted/30">
@@ -122,7 +129,10 @@ export default function RelatedContent({ currentPage }: RelatedContentProps) {
         <div className={`grid grid-cols-1 md:grid-cols-2 ${itemDefs.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-6 max-w-5xl mx-auto`}>
           {itemDefs.map((item, index) => {
             const typeStyle = TYPE_STYLES[item.type];
-            const typeLabel = isEnglish ? typeStyle.labelEn : typeStyle.label;
+            const typeLabel = rc?.types?.[item.type] ?? (isEnglish ? typeStyle.labelEn : typeStyle.label);
+            const copy = rcItems?.[index];
+            const title = copy?.title ?? item.title;
+            const description = copy?.description ?? item.description;
             const href = localizedPath(item.pageKey, item.param);
 
             return (
@@ -135,10 +145,10 @@ export default function RelatedContent({ currentPage }: RelatedContentProps) {
                   {typeLabel}
                 </span>
                 <h3 className="font-heading font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
-                  {item.title}
+                  {title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                  {item.description}
+                  {description}
                 </p>
                 <span className="inline-flex items-center gap-1 text-sm font-medium text-primary mt-auto">
                   {linkText}

@@ -19,10 +19,6 @@ import {
 import RelatedContent from "@/components/RelatedContent";
 import ReviewsSection from "@/components/ReviewsSection";
 import { getJetSkiProduct, type JetSkiProduct } from "@shared/jetskiProducts";
-import {
-  BUSINESS_RATING_STR,
-  BUSINESS_REVIEW_COUNT_STR,
-} from "@shared/businessProfile";
 import type { PageKey } from "@shared/i18n-routes";
 
 const CTA_CLASS =
@@ -79,11 +75,8 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
         "@id": `${BASE_DOMAIN}/#business`,
       },
       areaServed: { "@type": "Place", name: "Blanes, Costa Brava" },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: BUSINESS_RATING_STR,
-        reviewCount: BUSINESS_REVIEW_COUNT_STR,
-      },
+      // No aggregateRating: the business reviews are not reviews of this
+      // product; Google can invalidate rich results for borrowed ratings.
       offers: product.slots.map((s) => ({
         "@type": "Offer",
         name: `${product.name} · ${s.label}`,

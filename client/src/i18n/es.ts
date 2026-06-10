@@ -655,6 +655,127 @@ export const es: Translations = {
   lastUpdated: {
     label: "Última actualización",
   },
+  popularBoatsSection: {
+    badges: {
+      captain: "Con capitán",
+      licensed: "Con licencia",
+      noLicense: "Sin licencia",
+    },
+    pages: {
+      barcelona: {
+        title: "Barcos para tu escapada desde Barcelona",
+        description: "A 1h en coche o en tren R1, el Puerto de Blanes es la opción más cercana para alquilar barco en la Costa Brava. Desde sin licencia (5 de los 9 barcos) hasta charter premium con patrón.",
+      },
+      lloret: {
+        title: "Barcos populares para tu ruta a Lloret de Mar",
+        description: "Los barcos sin licencia que más alquilamos para la ruta hasta Playa de Fenals (sur de Lloret). Todos llegan legalmente y son ideales para 2-7 personas con o sin experiencia.",
+      },
+      pineda: {
+        title: "Barcos populares para alquilar desde el Puerto de Blanes",
+        description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+      },
+      palafolls: {
+        title: "Barcos populares para alquilar desde el Puerto de Blanes",
+        description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+      },
+      tordera: {
+        title: "Barcos populares para alquilar desde el Puerto de Blanes",
+        description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+      },
+      tossa: {
+        title: "Barcos para tu ruta a Tossa de Mar",
+        description: "Tossa de Mar está fuera del rango legal sin licencia. Estos son los barcos que sí llegan: con Licencia de Navegación o nuestra Excursión Privada con Capitán (sin licencia requerida).",
+      },
+    },
+  },
+  relatedContent: {
+    sectionTitle: "También te puede interesar",
+    learnMore: "Ver más",
+    types: {
+      blog: "Blog",
+      actividad: "Actividad",
+      ubicacion: "Ubicación",
+      guia: "Guía",
+    },
+    items: {
+      locationBlanes: [
+        { title: "Explorar toda la Costa Brava en barco", description: "Rutas, calas y destinos desde el Puerto de Blanes" },
+        { title: "Las 10 mejores calas de Blanes en barco", description: "Descubre las calas más bonitas accesibles solo desde el mar" },
+        { title: "Excursión de snorkel en barco", description: "Las mejores calas para snorkel cerca de Blanes" },
+        { title: "Alquiler de moto de agua sin licencia", description: "Circuito y excursión guiada en moto de agua desde Blanes" },
+        { title: "Rutas en barco desde Blanes", description: "5 rutas con mapas interactivos" },
+      ],
+      locationLloret: [
+        { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
+        { title: "Salida al atardecer en barco", description: "Experiencia de atardecer en barco" },
+        { title: "Barcos sin licencia", description: "5 barcos desde 70€/h, gasolina incluida" },
+      ],
+      locationTossa: [
+        { title: "Más destinos en la Costa Brava", description: "Descubre todas las rutas y calas de la Costa Brava en barco" },
+        { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
+        { title: "Barcos con licencia", description: "Llega a Tossa en 30 min con nuestros barcos potentes" },
+        { title: "Pesca desde barco", description: "Pesca deportiva en las aguas de la Costa Brava" },
+        { title: "Excursión en moto de agua a Tossa", description: "Ruta guiada en moto de agua de Blanes a Tossa de Mar" },
+      ],
+      locationCostaBrava: [
+        { title: "Alquiler barcos en Blanes", description: "Puerto base con parking gratuito y todos los servicios" },
+        { title: "Excursión a Lloret de Mar", description: "Playas y calas espectaculares a 25 min en barco" },
+        { title: "Navega hasta Tossa de Mar", description: "Vila Vella medieval y calas cristalinas a 1h" },
+        { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
+      ],
+      activitySnorkel: [
+        { title: "Mejores calas de Blanes en barco", description: "Calas con aguas cristalinas perfectas para snorkel" },
+        { title: "Barcos sin licencia", description: "Perfectos para excursiones de snorkel" },
+        { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
+        { title: "Circuito en moto de agua", description: "Adrenalina en moto de agua sin licencia frente a Blanes" },
+      ],
+      activityFamilies: [
+        { title: "Qué llevar en un barco", description: "Checklist completo para tu día en el mar" },
+        { title: "Excursión de snorkel", description: "Actividad perfecta para niños" },
+        { title: "Precios alquiler barcos", description: "Consulta tarifas por temporada" },
+      ],
+      activitySunset: [
+        { title: "Rutas en barco desde Blanes", description: "5 rutas con mapas interactivos" },
+        { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
+        { title: "Barcos sin licencia", description: "Perfectos para salidas al atardecer, desde 70€/h" },
+      ],
+      activityFishing: [
+        { title: "Barcos con licencia", description: "Barcos potentes para zonas de pesca" },
+        { title: "Rutas en barco desde Blanes", description: "Descubre las mejores zonas" },
+        { title: "Alquiler barcos Costa Brava", description: "9 barcos disponibles en Blanes" },
+        { title: "Excursión en moto de agua", description: "Ruta guiada en moto de agua de Blanes a Tossa de Mar" },
+      ],
+      categoryLicenseFree: [
+        { title: "Barco sin licencia vs con licencia", description: "Guía comparativa completa" },
+        { title: "Barcos para familias", description: "Experiencia perfecta sin necesidad de licencia" },
+        { title: "Qué llevar en el barco", description: "Checklist para tu día en el mar" },
+        { title: "Alquiler de moto de agua sin licencia", description: "Circuito y excursión guiada en moto de agua desde Blanes" },
+      ],
+      categoryLicensed: [
+        { title: "Barco sin licencia vs con licencia", description: "Guía comparativa completa" },
+        { title: "Pesca desde barco", description: "Barcos con licencia para zonas de pesca" },
+        { title: "Excursión a Tossa de Mar", description: "Llega en 30 min con barco con licencia" },
+      ],
+      jetskiHub: [
+        { title: "Circuito en moto de agua", description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes" },
+        { title: "Excursión guiada a Tossa en moto de agua", description: "Ruta guiada de Blanes a Tossa de Mar con monitor" },
+        { title: "Barcos sin licencia", description: "5 barcos desde 70€/h, gasolina incluida" },
+        { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
+      ],
+      jetskiCircuito: [
+        { title: "Alquiler de moto de agua en Blanes", description: "Todas las experiencias en moto de agua sin licencia" },
+        { title: "Excursión guiada a Tossa en moto de agua", description: "Ruta guiada de Blanes a Tossa de Mar con monitor" },
+        { title: "Barcos sin licencia", description: "5 barcos desde 70€/h, gasolina incluida" },
+        { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
+      ],
+      jetskiExcursion: [
+        { title: "Alquiler de moto de agua en Blanes", description: "Todas las experiencias en moto de agua sin licencia" },
+        { title: "Circuito en moto de agua sin licencia", description: "Primera toma de contacto en un circuito vigilado frente a Blanes" },
+        { title: "Excursión a Tossa de Mar", description: "Descubre la Vila Vella y sus calas cristalinas" },
+        { title: "Precios y tarifas", description: "Consulta tarifas por temporada" },
+      ],
+    },
+  },
   occasionMatrix: {
     pages: {
       snorkel__locationBlanes: {
@@ -2566,6 +2687,12 @@ export const es: Translations = {
     completeEquipment: "Equipamiento Completo",
     completeEquipmentDesc:
       "Todos nuestros barcos incluyen equipo de seguridad reglamentario, chalecos salvavidas, extintor, y extras como nevera, toldo solar, equipo de snorkel y radio.",
+    // GSC 2026-06-10: "alquiler embarcaciones" (121 imp, pos 15) y "alquiler
+    // lancha costa brava" (68 imp, pos 9.5) sin targeting en ninguna página.
+    // Sinónimos integrados aquí en vez de crear una landing duplicada.
+    synonymsTitle: "¿Lancha, barca o embarcación? Es lo mismo",
+    synonymsBody:
+      "Da igual cómo lo busques: alquiler de lanchas en la Costa Brava, alquiler de embarcaciones sin titulación o alquilar una barca en Blanes. Nuestros 5 barcos sin licencia son lanchas de recreo de hasta 5 metros y 15 CV que cualquier adulto puede pilotar sin carnet náutico. Mismo barco y mismo precio desde 70€/h con gasolina incluida, lo llames como lo llames.",
     fleetTitle: "Nuestra Flota Sin Licencia",
     advantagesTitle: "Ventajas del Alquiler de Barcos Sin Licencia en Costa Brava",
     totalAccessibility: "Accesibilidad Total",
@@ -4096,8 +4223,8 @@ export const es: Translations = {
     infoPortDesc: "Salida desde Puerto de Blanes, Costa Brava. Fácil acceso y parking disponible.",
     infoSeasonTitle: "Temporada",
     infoSeasonDesc: "Abril - Octubre. Reservas flexibles con duración de 1-8 horas.",
-    infoFleetTitle: "7 Embarcaciones",
-    infoFleetDesc: "Flota para desde 4-7 personas. Con y sin licencia náutica.",
+    infoFleetTitle: "9 Embarcaciones",
+    infoFleetDesc: "Flota para 4-7 personas. Con y sin licencia náutica, y excursión privada con patrón.",
     categories: {
       all: "Todas",
       reservas: "Reservas y Precios",
@@ -4117,7 +4244,7 @@ export const es: Translations = {
       reserva: {
         question: "¿Cómo puedo hacer una reserva?",
         answer:
-          "Hacer una reserva es muy fácil: 1) Selecciona tu barco favorito, 2) Elige fecha, hora y duración, 3) Completa tus datos y extras, 4) Realiza el pago seguro, 5) Recibe confirmación por WhatsApp y email.",
+          "Hacer una reserva es muy fácil: 1) Selecciona tu barco favorito, 2) Elige fecha, hora y duración, 3) Completa tus datos y extras, 4) Envía tu solicitud, 5) Te confirmamos disponibilidad por WhatsApp y el pago se gestiona directamente con nosotros (sin pagos online).",
       },
       pago: {
         question: "¿Qué formas de pago aceptan?",
@@ -4365,7 +4492,7 @@ export const es: Translations = {
       freeCancellation:
         "<strong>Cambio de fecha gratuito</strong> con un mínimo de 7 días de antelación.",
       licenseRequired:
-        "Los barcos con licencia requieren <strong>PER o título náutico</strong> equivalente en vigor.",
+        "Los barcos con licencia requieren <strong>Licencia de Navegación o título superior</strong> (PNB/PER) en vigor. La Licencia de Navegación basta para toda nuestra flota con licencia.",
     },
     faqTitle: "Preguntas frecuentes sobre precios",
     faq: {

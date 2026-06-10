@@ -81,15 +81,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "barco compartido costa brava, conocer gente barco blanes, salidas compartidas barco, plan social barco costa brava, navegar conocer gente",
     },
     home: {
-      // 2026-05: GSC data → homepage acapara 2929 imp/266 keywords con CTR 1.02%.
-      // Causa: brand-first ocultaba keyword en SERP snippet. Fix: keyword-first
-      // "Alquiler Barco Costa Brava" (302 imp, CTR 0.66%) + "Sin Licencia"
-      // (diferenciador top) + precio + rating. ogTitle mantiene marca + año.
-      title: `Alquiler Barco Costa Brava | Sin Licencia desde 70\u20ac/h \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 Blanes`,
-      description: `\u00bfAlquilar barco en la Costa Brava sin licencia? Desde Blanes: 70\u20ac/h gasolina incluida, 7 calas v\u00edrgenes. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Snorkel + paddle. Reserva WhatsApp.`,
-      keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquilar barco costa brava, alquiler barco blanes, alquiler barcos sin licencia costa brava, alquiler embarcaciones costa brava, rent a boat costa brava, barco sin licencia costa brava",
-      ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco Sin Licencia \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 Blanes`,
-      ogDescription: `Alquila un barco sin licencia en la Costa Brava desde Blanes. 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). 7 calas, snorkel, paddle. Reserva WhatsApp.`
+      // 2026-06-10: des-canibalizacion. "Sin Licencia" salio del title: la home
+      // competia con /barcos-sin-licencia por "alquiler barco sin licencia costa
+      // brava" (pos 11.4 con la categoria dedicada existiendo) y Google alternaba
+      // URLs. La home defiende el head term "alquiler barco costa brava"; el
+      // cluster sin-licencia es integro de la categoria.
+      title: `Alquiler Barco Costa Brava \u00b7 desde 70\u20ac/h Gasolina Incluida \u00b7 \u2605${BUSINESS_RATING_STR} Blanes`,
+      description: `Alquiler de barcos en la Costa Brava desde el Puerto de Blanes: con y sin licencia desde 70\u20ac/h, gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). 7 calas v\u00edrgenes, snorkel + paddle. Reserva WhatsApp.`,
+      keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquilar barco costa brava, alquiler barco blanes, alquiler embarcaciones costa brava, alquiler lancha costa brava, rent a boat costa brava",
+      ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco Costa Brava \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 Blanes`,
+      ogDescription: `Alquiler de barcos en la Costa Brava desde Blanes. Desde 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). 7 calas, snorkel, paddle. Reserva WhatsApp.`
     },
     booking: {
       title: "Solicitar Reserva de Barco en Blanes | Costa Brava",
@@ -126,11 +127,15 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: `Lloret de Mar en barco sin licencia desde Blanes (25 min). 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Cala Banys, Santa Cristina, Sa Boadella.`
     },
     locationTossa: {
-      title: `Alquiler Barco Tossa de Mar | LNB (Licencia de Navegaci\u00f3n B\u00e1sica) o Excursi\u00f3n con Capit\u00e1n ${SEASON_YEAR}`,
-      description: "Llega a la Vila Vella de Tossa en 30-45 min desde Blanes. Con Licencia de Navegaci\u00f3n B\u00e1sica (LNB) desde 160\u20ac (pack 2h) o Excursi\u00f3n Privada con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte.",
+      // 2026-06-10: title rewrite. El anterior (90+ chars, jerga "LNB" delante,
+      // sin rating ni hook visual) era el m\u00e1s flojo del set con 210 imp pos 10.7
+      // CTR 1.4% \u2014 el de m\u00e1s impresiones de todas las locations. Estilo Lloret:
+      // hook concreto (Vila Vella + tiempo) + rating delante.
+      title: `Alquiler Barco a Tossa de Mar \u00b7 Vila Vella 30-45 min \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 desde Blanes`,
+      description: "Llega a la Vila Vella de Tossa en 30-45 min desde Blanes. Barco con licencia desde 160\u20ac (pack 2h) o Excursi\u00f3n Privada con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte.",
       keywords: "alquiler barco tossa de mar, vila vella tossa barco, licencia de navegacion basica tossa, LNB tossa, excursion privada tossa, charter con patron tossa blanes, barco tossa con licencia",
-      ogTitle: "Alquiler Barco Tossa de Mar | LNB o Excursi\u00f3n con Capit\u00e1n",
-      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con LNB desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. 4.8\u2605."
+      ogTitle: `Alquiler Barco a Tossa de Mar \u00b7 Vila Vella 30-45 min \u00b7 \u2605${BUSINESS_RATING_STR}`,
+      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con licencia desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. 4.8\u2605."
     },
     locationMalgrat: {
       title: "Alquiler Barco Malgrat de Mar | Puerto Blanes a 10 min | Sin Licencia 70\u20ac/h",

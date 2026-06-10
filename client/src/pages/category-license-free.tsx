@@ -420,9 +420,18 @@ export default function CategoryLicenseFreePage() {
                   </p>
 
                   <h3 className="font-heading font-semibold text-lg mb-3">{clf.completeEquipment}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed mb-4">
                     {clf.completeEquipmentDesc}
                   </p>
+
+                  {clf.synonymsTitle && (
+                    <>
+                      <h3 className="font-heading font-semibold text-lg mb-3">{clf.synonymsTitle}</h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {clf.synonymsBody}
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

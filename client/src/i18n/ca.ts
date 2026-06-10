@@ -970,6 +970,8 @@ export const ca: Translations = {
     barcelonaDesc: "1h en cotxe, la Costa Brava més propera",
   },
   categoryLicenseFree: {
+    synonymsTitle: "Llanxa, barca o embarcació? És el mateix",
+    synonymsBody: "Tant és com ho busquis: lloguer de llanxes a la Costa Brava, lloguer d'embarcacions sense titulació o llogar una barca a Blanes. Els nostres 5 vaixells sense llicència són llanxes d'esbarjo de fins a 5 metres i 15 CV que qualsevol adult pot pilotar sense carnet nàutic. Mateix vaixell i mateix preu des de 70€/h amb gasolina inclosa, ho diguis com ho diguis.",
     heroTitle: "Vaixells Sense Llicència a Blanes",
     heroDescription:
       "5 barques sense llicència des de 70€/h al Port de Blanes, gasolina inclosa. Fins a 7 persones, sense carnet ni titulació, sense experiència prèvia. Briefing de seguretat de 15 minuts i a navegar per les cales de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina i Sa Boadella fins a la Platja de Fenals (Lloret de Mar).",
@@ -1752,7 +1754,7 @@ export const ca: Translations = {
       freeCancellation:
         "<strong>Canvi de data gratuït</strong> amb un mínim de 7 dies d'antelació.",
       licenseRequired:
-        "Les barques amb llicència requereixen <strong>PER o títol nàutic</strong> equivalent en vigor.",
+        "Els vaixells amb llicència requereixen <strong>Llicència de Navegació o títol superior</strong> (PNB/PER) en vigor. La Llicència de Navegació és suficient per a tota la nostra flota amb llicència.",
     },
     faqTitle: "Preguntes freqüents sobre preus",
     faq: {
@@ -3607,8 +3609,8 @@ export const ca: Translations = {
     infoPortDesc: "Sortida des del Port de Blanes, Costa Brava. Fàcil accés i pàrquing disponible.",
     infoSeasonTitle: "Temporada",
     infoSeasonDesc: "Abril - Octubre. Reserves flexibles amb durada d'1-8 hores.",
-    infoFleetTitle: "7 Embarcacions",
-    infoFleetDesc: "Flota per a 4-7 persones. Amb i sense llicència nàutica.",
+    infoFleetTitle: "9 Embarcacions",
+    infoFleetDesc: "Flota per a 4-7 persones. Amb i sense llicència nàutica, i excursió privada amb patró.",
     categories: {
       all: "Totes",
       reservas: "Reserves i Preus",
@@ -3628,7 +3630,7 @@ export const ca: Translations = {
       reserva: {
         question: "Com puc fer una reserva?",
         answer:
-          "Fer una reserva és molt fàcil: 1) Selecciona la teva barca preferida, 2) Tria data, hora i durada, 3) Completa les teves dades i extres, 4) Realitza el pagament segur, 5) Rep confirmació per WhatsApp i email.",
+          "Fer una reserva és molt fàcil: 1) Selecciona la teva barca preferida, 2) Tria data, hora i durada, 3) Completa les teves dades i extres, 4) Envia la teva sol·licitud, 5) Et confirmem disponibilitat per WhatsApp i el pagament es gestiona directament amb nosaltres (sense pagaments en línia).",
       },
       pago: {
         question: "Quines formes de pagament accepteu?",
@@ -4173,6 +4175,127 @@ export const ca: Translations = {
   },
   lastUpdated: {
     label: 'Última actualització',
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: "Amb capità",
+      licensed: "Amb llicència",
+      noLicense: "Sense llicència",
+    },
+    pages: {
+      barcelona: {
+        title: "Vaixells per a la teva escapada des de Barcelona",
+        description: "A 1h en cotxe o amb el tren R1, el Port de Blanes és l'opció més propera per llogar un vaixell a la Costa Brava. Des de sense llicència (5 dels 9 vaixells) fins a xàrter premium amb patró.",
+      },
+      lloret: {
+        title: "Vaixells populars per a la teva ruta a Lloret de Mar",
+        description: "Els vaixells sense llicència que més lloguem per a la ruta fins a la Platja de Fenals (sud de Lloret). Tots hi arriben legalment i són ideals per a 2-7 persones amb o sense experiència.",
+      },
+      pineda: {
+        title: "Vaixells populars per llogar des del Port de Blanes",
+        description: "Aquests són els vaixells sense llicència que més lloguem. Tots arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-7 persones.",
+      },
+      palafolls: {
+        title: "Vaixells populars per llogar des del Port de Blanes",
+        description: "Aquests són els vaixells sense llicència que més lloguem. Tots arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-7 persones.",
+      },
+      tordera: {
+        title: "Vaixells populars per llogar des del Port de Blanes",
+        description: "Aquests són els vaixells sense llicència que més lloguem. Tots arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-7 persones.",
+      },
+      tossa: {
+        title: "Vaixells per a la teva ruta a Tossa de Mar",
+        description: "Tossa de Mar queda fora del rang legal sense llicència. Aquests són els vaixells que sí que hi arriben: amb Llicència de Navegació o la nostra Excursió Privada amb Capità (sense llicència requerida).",
+      },
+    },
+  },
+  relatedContent: {
+    sectionTitle: "També et pot interessar",
+    learnMore: "Veure més",
+    types: {
+      blog: "Blog",
+      actividad: "Activitat",
+      ubicacion: "Ubicació",
+      guia: "Guia",
+    },
+    items: {
+      locationBlanes: [
+        { title: "Explorar tota la Costa Brava en vaixell", description: "Rutes, cales i destins des del Port de Blanes" },
+        { title: "Les 10 millors cales de Blanes en vaixell", description: "Descobreix les cales més boniques accessibles només des del mar" },
+        { title: "Excursió de snorkel en vaixell", description: "Les millors cales per fer snorkel a prop de Blanes" },
+        { title: "Lloguer de moto d'aigua sense llicència", description: "Circuit i excursió guiada en moto d'aigua des de Blanes" },
+        { title: "Rutes en vaixell des de Blanes", description: "5 rutes amb mapes interactius" },
+      ],
+      locationLloret: [
+        { title: "Millors cales de la Costa Brava en vaixell", description: "Les 10 cales més espectaculars entre Blanes i Tossa" },
+        { title: "Sortida en vaixell a la posta de sol", description: "Experiència de posta de sol en vaixell" },
+        { title: "Vaixells sense llicència", description: "5 vaixells des de 70€/h, gasolina inclosa" },
+      ],
+      locationTossa: [
+        { title: "Més destins a la Costa Brava", description: "Descobreix totes les rutes i cales de la Costa Brava en vaixell" },
+        { title: "Millors cales de la Costa Brava en vaixell", description: "Les 10 cales més espectaculars entre Blanes i Tossa" },
+        { title: "Vaixells amb llicència", description: "Arriba a Tossa en 30 min amb els nostres vaixells potents" },
+        { title: "Pesca des de vaixell", description: "Pesca esportiva a les aigües de la Costa Brava" },
+        { title: "Excursió en moto d'aigua a Tossa", description: "Ruta guiada en moto d'aigua de Blanes a Tossa de Mar" },
+      ],
+      locationCostaBrava: [
+        { title: "Lloguer de vaixells a Blanes", description: "Port base amb pàrquing gratuït i tots els serveis" },
+        { title: "Excursió a Lloret de Mar", description: "Platges i cales espectaculars a 25 min en vaixell" },
+        { title: "Navega fins a Tossa de Mar", description: "Vila Vella medieval i cales cristal·lines a 1h" },
+        { title: "Millors cales de la Costa Brava en vaixell", description: "Les 10 cales més espectaculars entre Blanes i Tossa" },
+      ],
+      activitySnorkel: [
+        { title: "Millors cales de Blanes en vaixell", description: "Cales d'aigües cristal·lines perfectes per fer snorkel" },
+        { title: "Vaixells sense llicència", description: "Perfectes per a excursions de snorkel" },
+        { title: "Lloguer de vaixells Blanes", description: "Tot sobre llogar un vaixell al Port de Blanes" },
+        { title: "Circuit en moto d'aigua", description: "Adrenalina en moto d'aigua sense llicència davant de Blanes" },
+      ],
+      activityFamilies: [
+        { title: "Què portar en un vaixell", description: "Checklist completa per al teu dia al mar" },
+        { title: "Excursió de snorkel", description: "Activitat perfecta per a nens" },
+        { title: "Preus de lloguer de vaixells", description: "Consulta tarifes per temporada" },
+      ],
+      activitySunset: [
+        { title: "Rutes en vaixell des de Blanes", description: "5 rutes amb mapes interactius" },
+        { title: "Millors cales de la Costa Brava en vaixell", description: "Les 10 cales més espectaculars entre Blanes i Tossa" },
+        { title: "Vaixells sense llicència", description: "Perfectes per a sortides a la posta de sol, des de 70€/h" },
+      ],
+      activityFishing: [
+        { title: "Vaixells amb llicència", description: "Vaixells potents per a zones de pesca" },
+        { title: "Rutes en vaixell des de Blanes", description: "Descobreix les millors zones" },
+        { title: "Lloguer de vaixells Costa Brava", description: "9 vaixells disponibles a Blanes" },
+        { title: "Excursió en moto d'aigua", description: "Ruta guiada en moto d'aigua de Blanes a Tossa de Mar" },
+      ],
+      categoryLicenseFree: [
+        { title: "Vaixell sense llicència vs amb llicència", description: "Guia comparativa completa" },
+        { title: "Vaixells per a famílies", description: "Experiència perfecta sense necessitat de llicència" },
+        { title: "Què portar al vaixell", description: "Checklist per al teu dia al mar" },
+        { title: "Lloguer de moto d'aigua sense llicència", description: "Circuit i excursió guiada en moto d'aigua des de Blanes" },
+      ],
+      categoryLicensed: [
+        { title: "Vaixell sense llicència vs amb llicència", description: "Guia comparativa completa" },
+        { title: "Pesca des de vaixell", description: "Vaixells amb llicència per a zones de pesca" },
+        { title: "Excursió a Tossa de Mar", description: "Arriba-hi en 30 min amb vaixell amb llicència" },
+      ],
+      jetskiHub: [
+        { title: "Circuit en moto d'aigua", description: "Pilota una moto d'aigua sense llicència en un circuit vigilat davant de Blanes" },
+        { title: "Excursió guiada a Tossa en moto d'aigua", description: "Ruta guiada de Blanes a Tossa de Mar amb monitor" },
+        { title: "Vaixells sense llicència", description: "5 vaixells des de 70€/h, gasolina inclosa" },
+        { title: "Lloguer de vaixells Blanes", description: "Tot sobre llogar un vaixell al Port de Blanes" },
+      ],
+      jetskiCircuito: [
+        { title: "Lloguer de moto d'aigua a Blanes", description: "Totes les experiències en moto d'aigua sense llicència" },
+        { title: "Excursió guiada a Tossa en moto d'aigua", description: "Ruta guiada de Blanes a Tossa de Mar amb monitor" },
+        { title: "Vaixells sense llicència", description: "5 vaixells des de 70€/h, gasolina inclosa" },
+        { title: "Lloguer de vaixells Blanes", description: "Tot sobre llogar un vaixell al Port de Blanes" },
+      ],
+      jetskiExcursion: [
+        { title: "Lloguer de moto d'aigua a Blanes", description: "Totes les experiències en moto d'aigua sense llicència" },
+        { title: "Circuit en moto d'aigua sense llicència", description: "Primera presa de contacte en un circuit vigilat davant de Blanes" },
+        { title: "Excursió a Tossa de Mar", description: "Descobreix la Vila Vella i les seves cales cristal·lines" },
+        { title: "Preus i tarifes", description: "Consulta tarifes per temporada" },
+      ],
+    },
   },
   occasionMatrix: {
     pages: {

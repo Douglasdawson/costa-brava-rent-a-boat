@@ -365,8 +365,8 @@ export default function LocationPalafollsPage() {
       </div>
 
       <PopularBoatsSection
-        title="Barcos populares para alquilar desde el Puerto de Blanes"
-        description="Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas."
+        title={t.popularBoatsSection?.pages?.palafolls?.title ?? "Barcos populares para alquilar desde el Puerto de Blanes"}
+        description={t.popularBoatsSection?.pages?.palafolls?.description}
         boatIds={["remus-450", "solar-450", "astec-480", "astec-400"]}
       />
 

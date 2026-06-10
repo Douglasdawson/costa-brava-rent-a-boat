@@ -1049,22 +1049,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       },
       reviewBody: r.text,
     }));
-  } else {
-    // Fallback review when no per-boat reviews exist (required by Google for review rich snippet)
-    enhancedProductSchema.review = {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Maria G." },
-      datePublished: "2025-08-15",
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: 5,
-        bestRating: 5,
-        worstRating: 1,
-      },
-      reviewBody:
-        "Experiencia increible navegando por la Costa Brava. El barco estaba en perfecto estado y la atencion fue excelente.",
-    };
   }
+  // No fallback review when per-boat reviews are missing: a fabricated Review
+  // violates Google's review policies and risks AI engines quoting a fake
+  // person. The Product keeps the business AggregateRating from the base
+  // schema; that is enough structured data without inventing a reviewer.
 
   // Generate breadcrumb schema with localized names
   const breadcrumbSchema = generateBreadcrumbSchema([

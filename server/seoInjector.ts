@@ -3425,14 +3425,10 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const jl = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
       const heading = jsk?.hero.title ?? meta.title;
       const summary = jsk?.hero.subtitle ?? meta.description;
-      const service = {
-        ...buildLandingService(heading, summary, { low: 65, high: 190 }),
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: BUSINESS_RATING_STR,
-          reviewCount: BUSINESS_REVIEW_COUNT_STR,
-        },
-      };
+      // No aggregateRating on the Service: the business reviews are not reviews
+      // of the jet ski product; Google can invalidate rich results for that.
+      // The rating lives on the LocalBusiness node only.
+      const service = buildLandingService(heading, summary, { low: 65, high: 190 });
       const faq = {
         "@type": "FAQPage",
         mainEntity: (jsk?.faq ?? []).map((item) => ({
@@ -3458,14 +3454,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const jl = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
       const heading = jsk?.hero.title ?? meta.title;
       const summary = jsk?.hero.subtitle ?? meta.description;
-      const service = {
-        ...buildLandingService(heading, summary, { low: 190, high: 330 }),
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: BUSINESS_RATING_STR,
-          reviewCount: BUSINESS_REVIEW_COUNT_STR,
-        },
-      };
+      // No aggregateRating on the Service (see circuito branch above).
+      const service = buildLandingService(heading, summary, { low: 190, high: 330 });
       const touristTrip = {
         "@type": "TouristTrip",
         name: heading,

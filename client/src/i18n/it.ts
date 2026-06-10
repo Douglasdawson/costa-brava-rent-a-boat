@@ -970,6 +970,8 @@ export const it: Translations = {
     barcelonaDesc: "1h in auto, la Costa Brava più vicina",
   },
   categoryLicenseFree: {
+    synonymsTitle: "Motoscafo, barca o imbarcazione? È lo stesso",
+    synonymsBody: "Comunque lo cerchi: noleggio motoscafi sulla Costa Brava, noleggio imbarcazioni senza patente o affittare una barca a Blanes. Le nostre 5 barche senza patente sono motoscafi da diporto fino a 5 metri e 15 CV che qualsiasi adulto può guidare senza patente nautica. Stessa barca e stesso prezzo da 70€/h con carburante incluso, comunque tu la chiami.",
     heroTitle: "Barche Senza Patente a Blanes",
     heroDescription:
       "5 barche senza patente da 70€/h al Porto di Blanes, carburante incluso. Fino a 7 persone, senza patente né titolazione, senza esperienza precedente. Briefing di sicurezza di 15 minuti e si parte per navigare nelle cale della Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina e Sa Boadella fino alla Spiaggia di Fenals (Lloret de Mar).",
@@ -1751,7 +1753,7 @@ export const it: Translations = {
         "È richiesta una <strong>cauzione</strong> che viene restituita al termine del noleggio senza incidenti.",
       freeCancellation: "<strong>Cambio data gratuito</strong> con almeno 7 giorni di anticipo.",
       licenseRequired:
-        "Le barche con patente richiedono <strong>PER o titolo nautico</strong> equivalente in corso di validità.",
+        "Le barche con patente richiedono <strong>Licencia de Navegación o titolo superiore</strong> (PNB/PER) in corso di validità. La Licencia de Navegación spagnola è sufficiente per tutta la nostra flotta con patente.",
     },
     faqTitle: "Domande frequenti sui prezzi",
     faq: {
@@ -3607,8 +3609,8 @@ export const it: Translations = {
       "Partenza dal Porto di Blanes, Costa Brava. Facile accesso e parcheggio disponibile.",
     infoSeasonTitle: "Stagione",
     infoSeasonDesc: "Aprile - Ottobre. Prenotazioni flessibili da 1 a 8 ore.",
-    infoFleetTitle: "7 Imbarcazioni",
-    infoFleetDesc: "Flotta per 4-7 persone. Con e senza patente nautica.",
+    infoFleetTitle: "9 Imbarcazioni",
+    infoFleetDesc: "Flotta per 4-7 persone. Con e senza patente nautica, più escursione privata con skipper.",
     categories: {
       all: "Tutte",
       reservas: "Prenotazioni e Prezzi",
@@ -3628,7 +3630,7 @@ export const it: Translations = {
       reserva: {
         question: "Come posso fare una prenotazione?",
         answer:
-          "Prenotare è molto semplice: 1) Scegli la tua barca preferita, 2) Seleziona data, ora e durata, 3) Completa i tuoi dati ed extra, 4) Effettua il pagamento sicuro, 5) Ricevi la conferma via WhatsApp ed email.",
+          "Prenotare è molto semplice: 1) Scegli la tua barca preferita, 2) Seleziona data, ora e durata, 3) Completa i tuoi dati ed extra, 4) Invia la tua richiesta, 5) Ti confermiamo la disponibilità via WhatsApp e il pagamento si gestisce direttamente con noi (nessun pagamento online).",
       },
       pago: {
         question: "Quali metodi di pagamento accettate?",
@@ -4173,6 +4175,127 @@ export const it: Translations = {
   },
   lastUpdated: {
     label: 'Ultimo aggiornamento',
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: "Con skipper",
+      licensed: "Con patente",
+      noLicense: "Senza patente",
+    },
+    pages: {
+      barcelona: {
+        title: "Barche per la tua gita da Barcellona",
+        description: "A 1h in auto o con il treno R1, il porto di Blanes è l'opzione più vicina per noleggiare una barca sulla Costa Brava. Dal senza patente (5 delle 9 barche) al charter premium con skipper.",
+      },
+      lloret: {
+        title: "Barche popolari per la tua rotta verso Lloret de Mar",
+        description: "Le barche senza patente che noleggiamo di più per la rotta fino alla spiaggia di Fenals (sud di Lloret). Tutte ci arrivano legalmente e sono ideali per 2-7 persone con o senza esperienza.",
+      },
+      pineda: {
+        title: "Barche popolari da noleggiare dal porto di Blanes",
+        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-7 persone.",
+      },
+      palafolls: {
+        title: "Barche popolari da noleggiare dal porto di Blanes",
+        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-7 persone.",
+      },
+      tordera: {
+        title: "Barche popolari da noleggiare dal porto di Blanes",
+        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-7 persone.",
+      },
+      tossa: {
+        title: "Barche per la tua rotta verso Tossa de Mar",
+        description: "Tossa de Mar è oltre il raggio legale senza patente. Queste sono le barche che ci arrivano: con la Licencia de Navegación o la nostra escursione privata con skipper (nessuna patente richiesta).",
+      },
+    },
+  },
+  relatedContent: {
+    sectionTitle: "Potrebbe interessarti anche",
+    learnMore: "Scopri di più",
+    types: {
+      blog: "Blog",
+      actividad: "Attività",
+      ubicacion: "Località",
+      guia: "Guida",
+    },
+    items: {
+      locationBlanes: [
+        { title: "Esplora tutta la Costa Brava in barca", description: "Rotte, calette e destinazioni dal porto di Blanes" },
+        { title: "Le 10 migliori calette di Blanes in barca", description: "Scopri le calette più belle raggiungibili solo dal mare" },
+        { title: "Escursione snorkeling in barca", description: "Le migliori calette per lo snorkeling vicino a Blanes" },
+        { title: "Noleggio moto d'acqua senza patente", description: "Circuito ed escursione guidata in moto d'acqua da Blanes" },
+        { title: "Rotte in barca da Blanes", description: "5 rotte con mappe interattive" },
+      ],
+      locationLloret: [
+        { title: "Le migliori calette della Costa Brava in barca", description: "Le 10 calette più spettacolari tra Blanes e Tossa" },
+        { title: "Uscita in barca al tramonto", description: "Esperienza al tramonto in barca" },
+        { title: "Barche senza patente", description: "5 barche da 70€/h, carburante incluso" },
+      ],
+      locationTossa: [
+        { title: "Altre destinazioni sulla Costa Brava", description: "Scopri tutte le rotte e le calette della Costa Brava in barca" },
+        { title: "Le migliori calette della Costa Brava in barca", description: "Le 10 calette più spettacolari tra Blanes e Tossa" },
+        { title: "Barche con patente", description: "Raggiungi Tossa in 30 min con le nostre barche potenti" },
+        { title: "Pesca dalla barca", description: "Pesca sportiva nelle acque della Costa Brava" },
+        { title: "Escursione in moto d'acqua a Tossa", description: "Rotta guidata in moto d'acqua da Blanes a Tossa de Mar" },
+      ],
+      locationCostaBrava: [
+        { title: "Noleggio barche a Blanes", description: "Porto base con parcheggio gratuito e tutti i servizi" },
+        { title: "Escursione a Lloret de Mar", description: "Spiagge e calette spettacolari a 25 min in barca" },
+        { title: "Naviga fino a Tossa de Mar", description: "Vila Vella medievale e calette cristalline a 1h" },
+        { title: "Le migliori calette della Costa Brava in barca", description: "Le 10 calette più spettacolari tra Blanes e Tossa" },
+      ],
+      activitySnorkel: [
+        { title: "Le migliori calette di Blanes in barca", description: "Calette dalle acque cristalline perfette per lo snorkeling" },
+        { title: "Barche senza patente", description: "Perfette per escursioni di snorkeling" },
+        { title: "Noleggio barche Blanes", description: "Tutto sul noleggio barche al porto di Blanes" },
+        { title: "Circuito in moto d'acqua", description: "Adrenalina in moto d'acqua senza patente davanti a Blanes" },
+      ],
+      activityFamilies: [
+        { title: "Cosa portare in barca", description: "Checklist completa per la tua giornata in mare" },
+        { title: "Escursione snorkeling", description: "Attività perfetta per i bambini" },
+        { title: "Prezzi noleggio barche", description: "Consulta le tariffe per stagione" },
+      ],
+      activitySunset: [
+        { title: "Rotte in barca da Blanes", description: "5 rotte con mappe interattive" },
+        { title: "Le migliori calette della Costa Brava in barca", description: "Le 10 calette più spettacolari tra Blanes e Tossa" },
+        { title: "Barche senza patente", description: "Perfette per uscite al tramonto, da 70€/h" },
+      ],
+      activityFishing: [
+        { title: "Barche con patente", description: "Barche potenti per le zone di pesca" },
+        { title: "Rotte in barca da Blanes", description: "Scopri le zone migliori" },
+        { title: "Noleggio barche Costa Brava", description: "9 barche disponibili a Blanes" },
+        { title: "Escursione in moto d'acqua", description: "Rotta guidata in moto d'acqua da Blanes a Tossa de Mar" },
+      ],
+      categoryLicenseFree: [
+        { title: "Barca senza patente vs con patente", description: "Guida comparativa completa" },
+        { title: "Barche per famiglie", description: "Un'esperienza perfetta senza bisogno di patente" },
+        { title: "Cosa portare in barca con te", description: "Checklist per la tua giornata in mare" },
+        { title: "Noleggio moto d'acqua senza patente", description: "Circuito ed escursione guidata in moto d'acqua da Blanes" },
+      ],
+      categoryLicensed: [
+        { title: "Barca senza patente vs con patente", description: "Guida comparativa completa" },
+        { title: "Pesca dalla barca", description: "Barche con patente per le zone di pesca" },
+        { title: "Escursione a Tossa de Mar", description: "Arrivaci in 30 min con una barca con patente" },
+      ],
+      jetskiHub: [
+        { title: "Circuito in moto d'acqua", description: "Guida una moto d'acqua senza patente in un circuito sorvegliato davanti a Blanes" },
+        { title: "Escursione guidata a Tossa in moto d'acqua", description: "Rotta guidata da Blanes a Tossa de Mar con istruttore" },
+        { title: "Barche senza patente", description: "5 barche da 70€/h, carburante incluso" },
+        { title: "Noleggio barche Blanes", description: "Tutto sul noleggio barche al porto di Blanes" },
+      ],
+      jetskiCircuito: [
+        { title: "Noleggio moto d'acqua a Blanes", description: "Tutte le esperienze in moto d'acqua senza patente" },
+        { title: "Escursione guidata a Tossa in moto d'acqua", description: "Rotta guidata da Blanes a Tossa de Mar con istruttore" },
+        { title: "Barche senza patente", description: "5 barche da 70€/h, carburante incluso" },
+        { title: "Noleggio barche Blanes", description: "Tutto sul noleggio barche al porto di Blanes" },
+      ],
+      jetskiExcursion: [
+        { title: "Noleggio moto d'acqua a Blanes", description: "Tutte le esperienze in moto d'acqua senza patente" },
+        { title: "Circuito in moto d'acqua senza patente", description: "Primo approccio in un circuito sorvegliato davanti a Blanes" },
+        { title: "Escursione a Tossa de Mar", description: "Scopri la Vila Vella e le sue calette cristalline" },
+        { title: "Prezzi e tariffe", description: "Consulta le tariffe per stagione" },
+      ],
+    },
   },
   occasionMatrix: {
     pages: {

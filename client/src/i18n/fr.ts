@@ -977,6 +977,8 @@ export const fr: Translations = {
     barcelonaDesc: "1h en voiture, la Costa Brava la plus proche",
   },
   categoryLicenseFree: {
+    synonymsTitle: "Vedette, barque ou embarcation ? C'est pareil",
+    synonymsBody: "Peu importe comment vous le cherchez : location de vedettes sur la Costa Brava, location d'embarcations sans diplôme ou louer une barque à Blanes. Nos 5 bateaux sans permis sont des vedettes de plaisance jusqu'à 5 mètres et 15 CV que tout adulte peut piloter sans permis nautique. Même bateau, même prix dès 70€/h carburant inclus, quel que soit le nom que vous lui donnez.",
     heroTitle: "Bateaux Sans Permis à Blanes",
     heroDescription:
       "5 bateaux sans permis dès 70€/h au Port de Blanes, carburant inclus. Jusqu'à 7 personnes, sans permis ni titulation, sans expérience préalable. Briefing de sécurité de 15 min et c'est parti pour naviguer dans les criques de la Costa Brava : Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina et Sa Boadella jusqu'à la plage de Fenals (Lloret de Mar).",
@@ -1762,7 +1764,7 @@ export const fr: Translations = {
       freeCancellation:
         "<strong>Changement de date gratuit</strong> avec un minimum de 7 jours d'anticipation.",
       licenseRequired:
-        "Les bateaux avec permis nécessitent un <strong>permis côtier ou titre nautique</strong> équivalent en cours de validité.",
+        "Les bateaux avec permis nécessitent une <strong>Licencia de Navegación espagnole ou un titre supérieur</strong> (PNB/PER) en cours de validité. La Licencia de Navegación suffit pour toute notre flotte avec permis.",
     },
     faqTitle: "Questions fréquentes sur les tarifs",
     faq: {
@@ -3621,8 +3623,8 @@ export const fr: Translations = {
       "Départ depuis le Port de Blanes, Costa Brava. Accès facile et parking disponible.",
     infoSeasonTitle: "Saison",
     infoSeasonDesc: "Avril - Octobre. Réservations flexibles d'une durée de 1 à 8 heures.",
-    infoFleetTitle: "7 Embarcations",
-    infoFleetDesc: "Flotte pour 4 à 7 personnes. Avec et sans permis bateau.",
+    infoFleetTitle: "9 Embarcations",
+    infoFleetDesc: "Flotte pour 4 à 7 personnes. Avec et sans permis bateau, plus une excursion privée avec skipper.",
     categories: {
       all: "Toutes",
       reservas: "Réservations et Tarifs",
@@ -3642,7 +3644,7 @@ export const fr: Translations = {
       reserva: {
         question: "Comment puis-je effectuer une réservation ?",
         answer:
-          "Réserver est très simple : 1) Sélectionnez votre bateau préféré, 2) Choisissez la date, l'heure et la durée, 3) Complétez vos informations et les extras, 4) Effectuez le paiement sécurisé, 5) Recevez la confirmation par WhatsApp et email.",
+          "Réserver est très simple : 1) Sélectionnez votre bateau préféré, 2) Choisissez la date, l'heure et la durée, 3) Complétez vos informations et les extras, 4) Envoyez votre demande, 5) Nous confirmons la disponibilité par WhatsApp et le paiement se gère directement avec nous (pas de paiement en ligne).",
       },
       pago: {
         question: "Quels moyens de paiement acceptez-vous ?",
@@ -4188,6 +4190,127 @@ export const fr: Translations = {
   },
   lastUpdated: {
     label: 'Dernière mise à jour',
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: "Avec capitaine",
+      licensed: "Avec permis",
+      noLicense: "Sans permis",
+    },
+    pages: {
+      barcelona: {
+        title: "Bateaux pour votre escapade depuis Barcelone",
+        description: "À 1h en voiture ou en train R1, le port de Blanes est l'option la plus proche pour louer un bateau sur la Costa Brava. Du sans permis (5 des 9 bateaux) au charter premium avec capitaine.",
+      },
+      lloret: {
+        title: "Bateaux populaires pour votre itinéraire vers Lloret de Mar",
+        description: "Les bateaux sans permis que nous louons le plus pour l'itinéraire jusqu'à la plage de Fenals (sud de Lloret). Tous y arrivent légalement et sont parfaits pour 2 à 7 personnes, avec ou sans expérience.",
+      },
+      pineda: {
+        title: "Bateaux populaires à louer depuis le port de Blanes",
+        description: "Voici les bateaux sans permis que nous louons le plus. Tous atteignent la plage de Fenals (sud de Lloret) en 25 minutes et sont parfaits pour 2 à 7 personnes.",
+      },
+      palafolls: {
+        title: "Bateaux populaires à louer depuis le port de Blanes",
+        description: "Voici les bateaux sans permis que nous louons le plus. Tous atteignent la plage de Fenals (sud de Lloret) en 25 minutes et sont parfaits pour 2 à 7 personnes.",
+      },
+      tordera: {
+        title: "Bateaux populaires à louer depuis le port de Blanes",
+        description: "Voici les bateaux sans permis que nous louons le plus. Tous atteignent la plage de Fenals (sud de Lloret) en 25 minutes et sont parfaits pour 2 à 7 personnes.",
+      },
+      tossa: {
+        title: "Bateaux pour votre itinéraire vers Tossa de Mar",
+        description: "Tossa de Mar est hors du rayon légal sans permis. Voici les bateaux qui y arrivent : avec la Licencia de Navegación, ou notre excursion privée avec capitaine (aucun permis requis).",
+      },
+    },
+  },
+  relatedContent: {
+    sectionTitle: "Cela peut aussi vous intéresser",
+    learnMore: "En savoir plus",
+    types: {
+      blog: "Blog",
+      actividad: "Activité",
+      ubicacion: "Lieu",
+      guia: "Guide",
+    },
+    items: {
+      locationBlanes: [
+        { title: "Explorer toute la Costa Brava en bateau", description: "Itinéraires, criques et destinations depuis le port de Blanes" },
+        { title: "Les 10 plus belles criques de Blanes en bateau", description: "Découvrez les plus belles criques accessibles uniquement par la mer" },
+        { title: "Excursion snorkeling en bateau", description: "Les meilleures criques de snorkeling près de Blanes" },
+        { title: "Location de jet ski sans permis", description: "Circuit et excursion guidée en jet ski depuis Blanes" },
+        { title: "Itinéraires en bateau depuis Blanes", description: "5 itinéraires avec cartes interactives" },
+      ],
+      locationLloret: [
+        { title: "Meilleures criques de la Costa Brava en bateau", description: "Les 10 criques les plus spectaculaires entre Blanes et Tossa" },
+        { title: "Sortie en bateau au coucher du soleil", description: "Une expérience au coucher du soleil en bateau" },
+        { title: "Bateaux sans permis", description: "5 bateaux dès 70€/h, carburant inclus" },
+      ],
+      locationTossa: [
+        { title: "Plus de destinations sur la Costa Brava", description: "Découvrez tous les itinéraires et criques de la Costa Brava en bateau" },
+        { title: "Meilleures criques de la Costa Brava en bateau", description: "Les 10 criques les plus spectaculaires entre Blanes et Tossa" },
+        { title: "Bateaux avec permis", description: "Rejoignez Tossa en 30 min avec nos bateaux puissants" },
+        { title: "Pêche en bateau", description: "Pêche sportive dans les eaux de la Costa Brava" },
+        { title: "Excursion en jet ski à Tossa", description: "Itinéraire guidé en jet ski de Blanes à Tossa de Mar" },
+      ],
+      locationCostaBrava: [
+        { title: "Location de bateaux à Blanes", description: "Port d'attache avec parking gratuit et tous les services" },
+        { title: "Excursion à Lloret de Mar", description: "Plages et criques spectaculaires à 25 min en bateau" },
+        { title: "Naviguez jusqu'à Tossa de Mar", description: "Vila Vella médiévale et criques cristallines à 1h" },
+        { title: "Meilleures criques de la Costa Brava en bateau", description: "Les 10 criques les plus spectaculaires entre Blanes et Tossa" },
+      ],
+      activitySnorkel: [
+        { title: "Meilleures criques de Blanes en bateau", description: "Criques aux eaux cristallines parfaites pour le snorkeling" },
+        { title: "Bateaux sans permis", description: "Parfaits pour les sorties snorkeling" },
+        { title: "Location de bateaux Blanes", description: "Tout sur la location de bateau au port de Blanes" },
+        { title: "Circuit en jet ski", description: "Adrénaline en jet ski sans permis face à Blanes" },
+      ],
+      activityFamilies: [
+        { title: "Quoi emporter sur un bateau", description: "Checklist complète pour votre journée en mer" },
+        { title: "Sortie snorkeling", description: "Une activité parfaite pour les enfants" },
+        { title: "Tarifs de location de bateaux", description: "Consultez les tarifs par saison" },
+      ],
+      activitySunset: [
+        { title: "Itinéraires en bateau depuis Blanes", description: "5 itinéraires avec cartes interactives" },
+        { title: "Meilleures criques de la Costa Brava en bateau", description: "Les 10 criques les plus spectaculaires entre Blanes et Tossa" },
+        { title: "Bateaux sans permis", description: "Parfaits pour les sorties au coucher du soleil, dès 70€/h" },
+      ],
+      activityFishing: [
+        { title: "Bateaux avec permis", description: "Bateaux puissants pour les zones de pêche" },
+        { title: "Itinéraires en bateau depuis Blanes", description: "Découvrez les meilleures zones" },
+        { title: "Location de bateaux Costa Brava", description: "9 bateaux disponibles à Blanes" },
+        { title: "Excursion en jet ski", description: "Itinéraire guidé en jet ski de Blanes à Tossa de Mar" },
+      ],
+      categoryLicenseFree: [
+        { title: "Bateau sans permis vs avec permis", description: "Guide comparatif complet" },
+        { title: "Bateaux pour familles", description: "Une expérience parfaite sans permis" },
+        { title: "Quoi emporter sur le bateau", description: "Checklist pour votre journée en mer" },
+        { title: "Location de jet ski sans permis", description: "Circuit et excursion guidée en jet ski depuis Blanes" },
+      ],
+      categoryLicensed: [
+        { title: "Bateau sans permis vs avec permis", description: "Guide comparatif complet" },
+        { title: "Pêche en bateau", description: "Bateaux avec permis pour les zones de pêche" },
+        { title: "Excursion à Tossa de Mar", description: "Rejoignez-la en 30 min avec un bateau avec permis" },
+      ],
+      jetskiHub: [
+        { title: "Circuit en jet ski", description: "Pilotez un jet ski sans permis sur un circuit surveillé face à Blanes" },
+        { title: "Excursion guidée à Tossa en jet ski", description: "Itinéraire guidé de Blanes à Tossa de Mar avec moniteur" },
+        { title: "Bateaux sans permis", description: "5 bateaux dès 70€/h, carburant inclus" },
+        { title: "Location de bateaux Blanes", description: "Tout sur la location de bateau au port de Blanes" },
+      ],
+      jetskiCircuito: [
+        { title: "Location de jet ski à Blanes", description: "Toutes les expériences en jet ski sans permis" },
+        { title: "Excursion guidée à Tossa en jet ski", description: "Itinéraire guidé de Blanes à Tossa de Mar avec moniteur" },
+        { title: "Bateaux sans permis", description: "5 bateaux dès 70€/h, carburant inclus" },
+        { title: "Location de bateaux Blanes", description: "Tout sur la location de bateau au port de Blanes" },
+      ],
+      jetskiExcursion: [
+        { title: "Location de jet ski à Blanes", description: "Toutes les expériences en jet ski sans permis" },
+        { title: "Circuit en jet ski sans permis", description: "Première prise en main sur un circuit surveillé face à Blanes" },
+        { title: "Excursion à Tossa de Mar", description: "Découvrez la Vila Vella et ses criques cristallines" },
+        { title: "Prix et tarifs", description: "Consultez les tarifs par saison" },
+      ],
+    },
   },
   occasionMatrix: {
     pages: {

@@ -958,6 +958,8 @@ export const en: Translations = {
     barcelonaDesc: "1h drive, the closest Costa Brava experience",
   },
   categoryLicenseFree: {
+    synonymsTitle: "Motorboat, dinghy or vessel? Same thing",
+    synonymsBody: "However you search for it — motorboat hire on the Costa Brava, renting a vessel without a qualification, or hiring a small boat in Blanes — our 5 license-free boats are leisure motorboats up to 5 metres and 15 HP that any adult can drive without a nautical license. Same boat, same price from 70€/h with fuel included, whatever you call it.",
     heroTitle: "Licence-Free Boats in Blanes",
     heroDescription:
       "5 license-free boats from €70/h at Blanes Port, fuel included. Up to 7 people, no license or sailing certificate, no prior experience. 15-min safety briefing and off you go to the Costa Brava coves: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina and Sa Boadella up to Fenals Beach (Lloret de Mar).",
@@ -1806,7 +1808,7 @@ export const en: Translations = {
         "A <strong>deposit</strong> is required and will be refunded at the end of the rental if there are no incidents.",
       freeCancellation: "<strong>Free date change</strong> with at least 7 days' notice.",
       licenseRequired:
-        "Licensed boats require a valid <strong>PER or equivalent nautical qualification</strong>.",
+        "Licensed boats require a valid <strong>Licencia de Navegación or higher qualification</strong> (PNB/PER). The Spanish Licencia de Navegación covers our entire licensed fleet.",
     },
     faqTitle: "Frequently asked questions about pricing",
     faq: {
@@ -3654,8 +3656,8 @@ export const en: Translations = {
     infoPortDesc: "Departure from Port of Blanes, Costa Brava. Easy access and parking available.",
     infoSeasonTitle: "Season",
     infoSeasonDesc: "April - October. Flexible bookings from 1-8 hours.",
-    infoFleetTitle: "7 Boats",
-    infoFleetDesc: "Fleet for 4-7 people. With and without boat licence.",
+    infoFleetTitle: "9 Boats",
+    infoFleetDesc: "Fleet for 4-7 people. With and without boat licence, plus a private excursion with skipper.",
     categories: {
       all: "All",
       reservas: "Bookings & Pricing",
@@ -3675,7 +3677,7 @@ export const en: Translations = {
       reserva: {
         question: "How can I make a booking?",
         answer:
-          "Making a booking is very easy: 1) Select your favorite boat, 2) Choose date, time and duration, 3) Complete your details and extras, 4) Make secure payment, 5) Receive confirmation via WhatsApp and email.",
+          "Making a booking is very easy: 1) Select your favorite boat, 2) Choose date, time and duration, 3) Complete your details and extras, 4) Send your request, 5) We confirm availability via WhatsApp and payment is handled directly with us (no online payments).",
       },
       pago: {
         question: "What payment methods do you accept?",
@@ -4220,6 +4222,127 @@ export const en: Translations = {
   },
   lastUpdated: {
     label: 'Last updated',
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: "With captain",
+      licensed: "License required",
+      noLicense: "No license needed",
+    },
+    pages: {
+      barcelona: {
+        title: "Boats for your getaway from Barcelona",
+        description: "Just 1h by car or on the R1 train, Blanes Port is the closest place to rent a boat on the Costa Brava. From license-free (5 of our 9 boats) to a premium skippered charter.",
+      },
+      lloret: {
+        title: "Popular boats for your route to Lloret de Mar",
+        description: "The license-free boats we rent most for the route to Fenals Beach (south Lloret). All of them get there legally and are ideal for 2-7 people, with or without experience.",
+      },
+      pineda: {
+        title: "Popular boats to rent from Blanes Port",
+        description: "These are the license-free boats we rent most. All reach Fenals Beach (south Lloret) in 25 minutes and are ideal for 2-7 people.",
+      },
+      palafolls: {
+        title: "Popular boats to rent from Blanes Port",
+        description: "These are the license-free boats we rent most. All reach Fenals Beach (south Lloret) in 25 minutes and are ideal for 2-7 people.",
+      },
+      tordera: {
+        title: "Popular boats to rent from Blanes Port",
+        description: "These are the license-free boats we rent most. All reach Fenals Beach (south Lloret) in 25 minutes and are ideal for 2-7 people.",
+      },
+      tossa: {
+        title: "Boats for your route to Tossa de Mar",
+        description: "Tossa de Mar lies beyond the legal license-free range. These are the boats that do get there: with a Licencia de Navegación, or our Private Excursion with Captain (no license required).",
+      },
+    },
+  },
+  relatedContent: {
+    sectionTitle: "You might also like",
+    learnMore: "Learn more",
+    types: {
+      blog: "Blog",
+      actividad: "Activity",
+      ubicacion: "Location",
+      guia: "Guide",
+    },
+    items: {
+      locationBlanes: [
+        { title: "Explore the whole Costa Brava by boat", description: "Routes, coves and destinations from Blanes Port" },
+        { title: "The 10 best coves of Blanes by boat", description: "Discover the most beautiful coves reachable only from the sea" },
+        { title: "Snorkel boat trip", description: "The best snorkel coves near Blanes" },
+        { title: "Jet ski rental without a license", description: "Jet ski circuit and guided excursion from Blanes" },
+        { title: "Boat routes from Blanes", description: "5 routes with interactive maps" },
+      ],
+      locationLloret: [
+        { title: "Best Costa Brava coves by boat", description: "The 10 most spectacular coves between Blanes and Tossa" },
+        { title: "Sunset boat trip", description: "A sunset experience on a boat" },
+        { title: "License-free boats", description: "5 boats from 70€/h, fuel included" },
+      ],
+      locationTossa: [
+        { title: "More destinations on the Costa Brava", description: "Discover every Costa Brava route and cove by boat" },
+        { title: "Best Costa Brava coves by boat", description: "The 10 most spectacular coves between Blanes and Tossa" },
+        { title: "Licensed boats", description: "Reach Tossa in 30 min with our powerful boats" },
+        { title: "Boat fishing", description: "Sport fishing in Costa Brava waters" },
+        { title: "Jet ski excursion to Tossa", description: "Guided jet ski route from Blanes to Tossa de Mar" },
+      ],
+      locationCostaBrava: [
+        { title: "Boat rental in Blanes", description: "Home port with free parking and every service" },
+        { title: "Trip to Lloret de Mar", description: "Spectacular beaches and coves 25 min away by boat" },
+        { title: "Sail to Tossa de Mar", description: "Medieval Vila Vella and crystal-clear coves 1h away" },
+        { title: "Best Costa Brava coves by boat", description: "The 10 most spectacular coves between Blanes and Tossa" },
+      ],
+      activitySnorkel: [
+        { title: "Best Blanes coves by boat", description: "Coves with crystal-clear water, perfect for snorkelling" },
+        { title: "License-free boats", description: "Perfect for snorkel trips" },
+        { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
+        { title: "Jet ski circuit", description: "License-free jet ski adrenaline off Blanes" },
+      ],
+      activityFamilies: [
+        { title: "What to bring on a boat", description: "Complete checklist for your day at sea" },
+        { title: "Snorkel trip", description: "A perfect activity for kids" },
+        { title: "Boat rental prices", description: "Check rates by season" },
+      ],
+      activitySunset: [
+        { title: "Boat routes from Blanes", description: "5 routes with interactive maps" },
+        { title: "Best Costa Brava coves by boat", description: "The 10 most spectacular coves between Blanes and Tossa" },
+        { title: "License-free boats", description: "Perfect for sunset trips, from 70€/h" },
+      ],
+      activityFishing: [
+        { title: "Licensed boats", description: "Powerful boats for fishing spots" },
+        { title: "Boat routes from Blanes", description: "Discover the best areas" },
+        { title: "Costa Brava boat rental", description: "9 boats available in Blanes" },
+        { title: "Jet ski excursion", description: "Guided jet ski route from Blanes to Tossa de Mar" },
+      ],
+      categoryLicenseFree: [
+        { title: "License-free vs licensed boat", description: "Complete comparison guide" },
+        { title: "Boats for families", description: "A perfect experience, no license needed" },
+        { title: "What to bring on the boat", description: "Checklist for your day at sea" },
+        { title: "Jet ski rental without a license", description: "Jet ski circuit and guided excursion from Blanes" },
+      ],
+      categoryLicensed: [
+        { title: "License-free vs licensed boat", description: "Complete comparison guide" },
+        { title: "Boat fishing", description: "Licensed boats for fishing areas" },
+        { title: "Trip to Tossa de Mar", description: "Get there in 30 min with a licensed boat" },
+      ],
+      jetskiHub: [
+        { title: "Jet ski circuit", description: "Ride a license-free jet ski on a supervised circuit off Blanes" },
+        { title: "Guided jet ski excursion to Tossa", description: "Guided route from Blanes to Tossa de Mar with a monitor" },
+        { title: "License-free boats", description: "5 boats from 70€/h, fuel included" },
+        { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
+      ],
+      jetskiCircuito: [
+        { title: "Jet ski rental in Blanes", description: "Every license-free jet ski experience" },
+        { title: "Guided jet ski excursion to Tossa", description: "Guided route from Blanes to Tossa de Mar with a monitor" },
+        { title: "License-free boats", description: "5 boats from 70€/h, fuel included" },
+        { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
+      ],
+      jetskiExcursion: [
+        { title: "Jet ski rental in Blanes", description: "Every license-free jet ski experience" },
+        { title: "License-free jet ski circuit", description: "A first taste on a supervised circuit off Blanes" },
+        { title: "Trip to Tossa de Mar", description: "Discover the Vila Vella and its crystal-clear coves" },
+        { title: "Prices and rates", description: "Check rates by season" },
+      ],
+    },
   },
   occasionMatrix: {
     pages: {

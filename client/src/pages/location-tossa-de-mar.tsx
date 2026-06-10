@@ -494,10 +494,10 @@ export default function LocationTossaPage() {
       </div>
 
       <PopularBoatsSection
-        title="Barcos para tu ruta a Tossa de Mar"
-        description="Tossa de Mar está fuera del rango legal sin licencia. Estos son los barcos que sí llegan: con Licencia de Navegación Básica (LNB) o nuestra Excursión Privada con Capitán (sin licencia requerida)."
+        title={t.popularBoatsSection?.pages?.tossa?.title ?? "Barcos para tu ruta a Tossa de Mar"}
+        description={t.popularBoatsSection?.pages?.tossa?.description}
         boatIds={["excursion-privada", "pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"]}
-        badgeLabel={(id) => (id === "excursion-privada" ? "Con capitán" : "Con LNB")}
+        badgeLabel={(id) => (id === "excursion-privada" ? (t.popularBoatsSection?.badges?.captain ?? "Con capitán") : (t.popularBoatsSection?.badges?.licensed ?? "Con licencia"))}
         badgeVariant={(id) => (id === "excursion-privada" ? "secondary" : "outline")}
       />
 

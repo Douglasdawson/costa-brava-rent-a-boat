@@ -969,6 +969,8 @@ export const nl: Translations = {
     barcelonaDesc: "1 uur rijden, de dichtstbijzijnde Costa Brava",
   },
   categoryLicenseFree: {
+    synonymsTitle: "Motorboot, sloep of vaartuig? Hetzelfde",
+    synonymsBody: "Hoe je het ook zoekt: motorboot huren aan de Costa Brava, een vaartuig huren zonder vaarbewijs of een sloep huren in Blanes. Onze 5 boten zonder vaarbewijs zijn recreatieve motorboten tot 5 meter en 15 pk die elke volwassene zonder vaarbewijs mag besturen. Dezelfde boot en dezelfde prijs vanaf 70€/u inclusief brandstof, hoe je het ook noemt.",
     heroTitle: "Boten Zonder Vaarbewijs in Blanes",
     heroDescription:
       "5 boten zonder vaarbewijs vanaf 70€/u in de Haven van Blanes, brandstof inbegrepen. Tot 7 personen, zonder vaarbewijs of certificaat, zonder eerdere ervaring. 15 minuten veiligheidsinstructie en u vaart naar de baaien van de Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina en Sa Boadella tot het strand van Fenals (Lloret de Mar).",
@@ -1752,7 +1754,7 @@ export const nl: Translations = {
         "Er is een <strong>borg</strong> vereist die wordt terugbetaald na afloop van de verhuur zonder incidenten.",
       freeCancellation: "<strong>Gratis datumwijziging</strong> bij minimaal 7 dagen van tevoren.",
       licenseRequired:
-        "Voor boten met vergunning is een geldig <strong>PER of gelijkwaardig vaarbewijs</strong> vereist.",
+        "Voor boten met vaarbewijs is een geldige <strong>Licencia de Navegación of hoger</strong> (PNB/PER) vereist. De Spaanse Licencia de Navegación volstaat voor onze hele vloot met vaarbewijs.",
     },
     faqTitle: "Veelgestelde vragen over prijzen",
     faq: {
@@ -3608,8 +3610,8 @@ export const nl: Translations = {
       "Vertrek vanuit de haven van Blanes, Costa Brava. Gemakkelijk bereikbaar en parkeren beschikbaar.",
     infoSeasonTitle: "Seizoen",
     infoSeasonDesc: "April - Oktober. Flexibele reserveringen met een duur van 1-8 uur.",
-    infoFleetTitle: "7 Boten",
-    infoFleetDesc: "Vloot voor 4-7 personen. Met en zonder vaarbewijs.",
+    infoFleetTitle: "9 Boten",
+    infoFleetDesc: "Vloot voor 4-7 personen. Met en zonder vaarbewijs, plus privétocht met schipper.",
     categories: {
       all: "Alle",
       reservas: "Reserveringen en Prijzen",
@@ -3629,7 +3631,7 @@ export const nl: Translations = {
       reserva: {
         question: "Hoe kan ik een reservering maken?",
         answer:
-          "Reserveren is heel eenvoudig: 1) Kies je favoriete boot, 2) Selecteer datum, tijd en duur, 3) Vul je gegevens en extra's in, 4) Doe de veilige betaling, 5) Ontvang bevestiging via WhatsApp en e-mail.",
+          "Reserveren is heel eenvoudig: 1) Kies je favoriete boot, 2) Selecteer datum, tijd en duur, 3) Vul je gegevens en extra's in, 4) Verstuur je aanvraag, 5) We bevestigen de beschikbaarheid via WhatsApp en de betaling regel je rechtstreeks met ons (geen online betalingen).",
       },
       pago: {
         question: "Welke betaalmethoden accepteren jullie?",
@@ -4177,6 +4179,127 @@ export const nl: Translations = {
   },
   lastUpdated: {
     label: 'Laatst bijgewerkt',
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: "Met schipper",
+      licensed: "Met vaarbewijs",
+      noLicense: "Zonder vaarbewijs",
+    },
+    pages: {
+      barcelona: {
+        title: "Boten voor je uitje vanuit Barcelona",
+        description: "Op 1 uur met de auto of de R1-trein is de haven van Blanes de dichtstbijzijnde optie om een boot te huren aan de Costa Brava. Van zonder vaarbewijs (5 van de 9 boten) tot premium charter met schipper.",
+      },
+      lloret: {
+        title: "Populaire boten voor je route naar Lloret de Mar",
+        description: "De boten zonder vaarbewijs die we het meest verhuren voor de route naar het strand van Fenals (zuid-Lloret). Ze komen er allemaal legaal en zijn ideaal voor 2-7 personen, met of zonder ervaring.",
+      },
+      pineda: {
+        title: "Populaire boten om te huren vanaf de haven van Blanes",
+        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-7 personen.",
+      },
+      palafolls: {
+        title: "Populaire boten om te huren vanaf de haven van Blanes",
+        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-7 personen.",
+      },
+      tordera: {
+        title: "Populaire boten om te huren vanaf de haven van Blanes",
+        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-7 personen.",
+      },
+      tossa: {
+        title: "Boten voor je route naar Tossa de Mar",
+        description: "Tossa de Mar ligt buiten het wettelijke bereik zonder vaarbewijs. Dit zijn de boten die er wél komen: met een Licencia de Navegación of onze privétocht met schipper (geen vaarbewijs nodig).",
+      },
+    },
+  },
+  relatedContent: {
+    sectionTitle: "Misschien vind je dit ook interessant",
+    learnMore: "Meer informatie",
+    types: {
+      blog: "Blog",
+      actividad: "Activiteit",
+      ubicacion: "Locatie",
+      guia: "Gids",
+    },
+    items: {
+      locationBlanes: [
+        { title: "De hele Costa Brava per boot verkennen", description: "Routes, baaien en bestemmingen vanaf de haven van Blanes" },
+        { title: "De 10 mooiste baaien van Blanes per boot", description: "Ontdek de mooiste baaien die alleen vanaf zee bereikbaar zijn" },
+        { title: "Snorkeltocht per boot", description: "De beste snorkelbaaien bij Blanes" },
+        { title: "Jetski huren zonder vaarbewijs", description: "Jetski-circuit en begeleide tocht vanuit Blanes" },
+        { title: "Vaarroutes vanuit Blanes", description: "5 routes met interactieve kaarten" },
+      ],
+      locationLloret: [
+        { title: "Mooiste baaien van de Costa Brava per boot", description: "De 10 spectaculairste baaien tussen Blanes en Tossa" },
+        { title: "Boottocht bij zonsondergang", description: "Zonsondergang beleven op een boot" },
+        { title: "Boten zonder vaarbewijs", description: "5 boten vanaf 70€/u, brandstof inbegrepen" },
+      ],
+      locationTossa: [
+        { title: "Meer bestemmingen aan de Costa Brava", description: "Ontdek alle routes en baaien van de Costa Brava per boot" },
+        { title: "Mooiste baaien van de Costa Brava per boot", description: "De 10 spectaculairste baaien tussen Blanes en Tossa" },
+        { title: "Boten met vaarbewijs", description: "Bereik Tossa in 30 min met onze krachtige boten" },
+        { title: "Vissen vanaf de boot", description: "Sportvissen in de wateren van de Costa Brava" },
+        { title: "Jetski-tocht naar Tossa", description: "Begeleide jetski-route van Blanes naar Tossa de Mar" },
+      ],
+      locationCostaBrava: [
+        { title: "Botenverhuur in Blanes", description: "Thuishaven met gratis parkeren en alle voorzieningen" },
+        { title: "Tocht naar Lloret de Mar", description: "Spectaculaire stranden en baaien op 25 min varen" },
+        { title: "Vaar naar Tossa de Mar", description: "Middeleeuwse Vila Vella en kristalheldere baaien op 1 uur" },
+        { title: "Mooiste baaien van de Costa Brava per boot", description: "De 10 spectaculairste baaien tussen Blanes en Tossa" },
+      ],
+      activitySnorkel: [
+        { title: "Mooiste baaien van Blanes per boot", description: "Baaien met kristalhelder water, perfect om te snorkelen" },
+        { title: "Boten zonder vaarbewijs", description: "Perfect voor snorkeltochten" },
+        { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
+        { title: "Jetski-circuit", description: "Jetski-adrenaline zonder vaarbewijs voor de kust van Blanes" },
+      ],
+      activityFamilies: [
+        { title: "Wat neem je mee op een boot", description: "Complete checklist voor je dag op zee" },
+        { title: "Snorkeltocht", description: "Een perfecte activiteit voor kinderen" },
+        { title: "Prijzen botenverhuur", description: "Bekijk tarieven per seizoen" },
+      ],
+      activitySunset: [
+        { title: "Vaarroutes vanuit Blanes", description: "5 routes met interactieve kaarten" },
+        { title: "Mooiste baaien van de Costa Brava per boot", description: "De 10 spectaculairste baaien tussen Blanes en Tossa" },
+        { title: "Boten zonder vaarbewijs", description: "Perfect voor tochten bij zonsondergang, vanaf 70€/u" },
+      ],
+      activityFishing: [
+        { title: "Boten met vaarbewijs", description: "Krachtige boten voor visgebieden" },
+        { title: "Vaarroutes vanuit Blanes", description: "Ontdek de beste plekken" },
+        { title: "Botenverhuur Costa Brava", description: "9 boten beschikbaar in Blanes" },
+        { title: "Jetski-tocht", description: "Begeleide jetski-route van Blanes naar Tossa de Mar" },
+      ],
+      categoryLicenseFree: [
+        { title: "Boot zonder vs. met vaarbewijs", description: "Complete vergelijkingsgids" },
+        { title: "Boten voor gezinnen", description: "Een perfecte ervaring, geen vaarbewijs nodig" },
+        { title: "Wat neem je mee op de boot", description: "Checklist voor je dag op zee" },
+        { title: "Jetski huren zonder vaarbewijs", description: "Jetski-circuit en begeleide tocht vanuit Blanes" },
+      ],
+      categoryLicensed: [
+        { title: "Boot zonder vs. met vaarbewijs", description: "Complete vergelijkingsgids" },
+        { title: "Vissen vanaf de boot", description: "Boten met vaarbewijs voor visgebieden" },
+        { title: "Tocht naar Tossa de Mar", description: "Bereikbaar in 30 min met een boot met vaarbewijs" },
+      ],
+      jetskiHub: [
+        { title: "Jetski-circuit", description: "Bestuur een jetski zonder vaarbewijs op een bewaakt circuit voor Blanes" },
+        { title: "Begeleide jetski-tocht naar Tossa", description: "Begeleide route van Blanes naar Tossa de Mar met instructeur" },
+        { title: "Boten zonder vaarbewijs", description: "5 boten vanaf 70€/u, brandstof inbegrepen" },
+        { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
+      ],
+      jetskiCircuito: [
+        { title: "Jetski huren in Blanes", description: "Alle jetski-ervaringen zonder vaarbewijs" },
+        { title: "Begeleide jetski-tocht naar Tossa", description: "Begeleide route van Blanes naar Tossa de Mar met instructeur" },
+        { title: "Boten zonder vaarbewijs", description: "5 boten vanaf 70€/u, brandstof inbegrepen" },
+        { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
+      ],
+      jetskiExcursion: [
+        { title: "Jetski huren in Blanes", description: "Alle jetski-ervaringen zonder vaarbewijs" },
+        { title: "Jetski-circuit zonder vaarbewijs", description: "Eerste kennismaking op een bewaakt circuit voor Blanes" },
+        { title: "Tocht naar Tossa de Mar", description: "Ontdek de Vila Vella en haar kristalheldere baaien" },
+        { title: "Prijzen en tarieven", description: "Bekijk tarieven per seizoen" },
+      ],
+    },
   },
   occasionMatrix: {
     pages: {

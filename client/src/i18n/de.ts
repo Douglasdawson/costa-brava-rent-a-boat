@@ -973,6 +973,8 @@ export const de: Translations = {
     barcelonaDesc: "1 Std. Fahrt, die nächste Costa Brava",
   },
   categoryLicenseFree: {
+    synonymsTitle: "Motorboot, Barke oder Wasserfahrzeug? Dasselbe",
+    synonymsBody: "Egal wie Sie suchen: Motorboot mieten an der Costa Brava, Wasserfahrzeug ohne Schein leihen oder eine Barke in Blanes mieten. Unsere 5 führerscheinfreien Boote sind Freizeit-Motorboote bis 5 Meter und 15 PS, die jeder Erwachsene ohne Bootsführerschein fahren darf. Gleiches Boot, gleicher Preis ab 70€/Std. inkl. Kraftstoff — wie auch immer Sie es nennen.",
     heroTitle: "Boote Ohne Führerschein in Blanes",
     heroDescription:
       "5 führerscheinfreie Boote ab 70€/h im Hafen Blanes, Kraftstoff inklusive. Bis zu 7 Personen, ohne Führerschein oder Bootsschein, ohne Vorerfahrung. 15-minütige Sicherheitseinweisung und los geht's zu den Buchten der Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina und Sa Boadella bis zum Strand von Fenals (Lloret de Mar).",
@@ -1759,7 +1761,7 @@ export const de: Translations = {
       freeCancellation:
         "<strong>Kostenlose Datumsänderung</strong> bei Stornierung mindestens 7 Tage im Voraus.",
       licenseRequired:
-        "Boote mit Führerscheinpflicht erfordern einen <strong>gültigen PER oder gleichwertigen Bootsführerschein</strong>.",
+        "Boote mit Führerschein erfordern eine gültige <strong>Licencia de Navegación oder einen höheren Schein</strong> (PNB/PER). Die spanische Licencia de Navegación genügt für unsere gesamte Flotte mit Führerschein.",
     },
     faqTitle: "Häufig gestellte Fragen zu Preisen",
     faq: {
@@ -3630,8 +3632,8 @@ export const de: Translations = {
       "Abfahrt vom Hafen von Blanes, Costa Brava. Gute Anbindung und Parkplätze vorhanden.",
     infoSeasonTitle: "Saison",
     infoSeasonDesc: "April - Oktober. Flexible Buchungen mit einer Dauer von 1-8 Stunden.",
-    infoFleetTitle: "7 Boote",
-    infoFleetDesc: "Flotte für 4-7 Personen. Mit und ohne Bootsführerschein.",
+    infoFleetTitle: "9 Boote",
+    infoFleetDesc: "Flotte für 4-7 Personen. Mit und ohne Bootsführerschein, plus private Tour mit Skipper.",
     categories: {
       all: "Alle",
       reservas: "Buchungen und Preise",
@@ -3651,7 +3653,7 @@ export const de: Translations = {
       reserva: {
         question: "Wie kann ich eine Buchung vornehmen?",
         answer:
-          "Eine Buchung ist ganz einfach: 1) Wählen Sie Ihr Lieblingsboot, 2) Wählen Sie Datum, Uhrzeit und Dauer, 3) Geben Sie Ihre Daten und Extras ein, 4) Führen Sie die sichere Zahlung durch, 5) Erhalten Sie die Bestätigung per WhatsApp und E-Mail.",
+          "Eine Buchung ist ganz einfach: 1) Wählen Sie Ihr Lieblingsboot, 2) Wählen Sie Datum, Uhrzeit und Dauer, 3) Geben Sie Ihre Daten und Extras ein, 4) Senden Sie Ihre Anfrage, 5) Wir bestätigen die Verfügbarkeit per WhatsApp und die Zahlung erfolgt direkt bei uns (keine Online-Zahlung).",
       },
       pago: {
         question: "Welche Zahlungsmethoden akzeptieren Sie?",
@@ -4200,6 +4202,127 @@ export const de: Translations = {
   },
   lastUpdated: {
     label: 'Letzte Aktualisierung',
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: "Mit Skipper",
+      licensed: "Mit Führerschein",
+      noLicense: "Ohne Führerschein",
+    },
+    pages: {
+      barcelona: {
+        title: "Boote für Ihren Ausflug ab Barcelona",
+        description: "Nur 1 Std. mit dem Auto oder dem R1-Zug entfernt ist der Hafen von Blanes die nächstgelegene Option, um an der Costa Brava ein Boot zu mieten. Vom führerscheinfreien Boot (5 von 9 Booten) bis zum Premium-Charter mit Skipper.",
+      },
+      lloret: {
+        title: "Beliebte Boote für Ihre Route nach Lloret de Mar",
+        description: "Die führerscheinfreien Boote, die wir am häufigsten für die Route zum Strand von Fenals (Süd-Lloret) vermieten. Alle erreichen ihn legal und sind ideal für 2-7 Personen mit oder ohne Erfahrung.",
+      },
+      pineda: {
+        title: "Beliebte Boote zum Mieten ab dem Hafen von Blanes",
+        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-7 Personen.",
+      },
+      palafolls: {
+        title: "Beliebte Boote zum Mieten ab dem Hafen von Blanes",
+        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-7 Personen.",
+      },
+      tordera: {
+        title: "Beliebte Boote zum Mieten ab dem Hafen von Blanes",
+        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-7 Personen.",
+      },
+      tossa: {
+        title: "Boote für Ihre Route nach Tossa de Mar",
+        description: "Tossa de Mar liegt außerhalb der legalen führerscheinfreien Reichweite. Diese Boote kommen hin: mit der Licencia de Navegación oder unserer privaten Tour mit Skipper (kein Führerschein nötig).",
+      },
+    },
+  },
+  relatedContent: {
+    sectionTitle: "Das könnte Sie auch interessieren",
+    learnMore: "Mehr erfahren",
+    types: {
+      blog: "Blog",
+      actividad: "Aktivität",
+      ubicacion: "Standort",
+      guia: "Ratgeber",
+    },
+    items: {
+      locationBlanes: [
+        { title: "Die ganze Costa Brava mit dem Boot erkunden", description: "Routen, Buchten und Ziele ab dem Hafen von Blanes" },
+        { title: "Die 10 schönsten Buchten von Blanes mit dem Boot", description: "Entdecken Sie die schönsten Buchten, die nur vom Meer aus erreichbar sind" },
+        { title: "Schnorchel-Bootstour", description: "Die besten Schnorchelbuchten bei Blanes" },
+        { title: "Jetski-Verleih ohne Führerschein", description: "Jetski-Rundkurs und geführte Tour ab Blanes" },
+        { title: "Bootsrouten ab Blanes", description: "5 Routen mit interaktiven Karten" },
+      ],
+      locationLloret: [
+        { title: "Die besten Buchten der Costa Brava mit dem Boot", description: "Die 10 spektakulärsten Buchten zwischen Blanes und Tossa" },
+        { title: "Bootstour bei Sonnenuntergang", description: "Sonnenuntergangserlebnis auf dem Boot" },
+        { title: "Boote ohne Führerschein", description: "5 Boote ab 70€/Std., Kraftstoff inklusive" },
+      ],
+      locationTossa: [
+        { title: "Weitere Ziele an der Costa Brava", description: "Entdecken Sie alle Routen und Buchten der Costa Brava mit dem Boot" },
+        { title: "Die besten Buchten der Costa Brava mit dem Boot", description: "Die 10 spektakulärsten Buchten zwischen Blanes und Tossa" },
+        { title: "Boote mit Führerschein", description: "Erreichen Sie Tossa in 30 Min. mit unseren leistungsstarken Booten" },
+        { title: "Angeln vom Boot", description: "Sportangeln in den Gewässern der Costa Brava" },
+        { title: "Jetski-Tour nach Tossa", description: "Geführte Jetski-Route von Blanes nach Tossa de Mar" },
+      ],
+      locationCostaBrava: [
+        { title: "Bootsverleih in Blanes", description: "Heimathafen mit kostenlosem Parkplatz und allen Services" },
+        { title: "Ausflug nach Lloret de Mar", description: "Spektakuläre Strände und Buchten 25 Min. mit dem Boot entfernt" },
+        { title: "Fahren Sie nach Tossa de Mar", description: "Mittelalterliche Vila Vella und kristallklare Buchten in 1 Std." },
+        { title: "Die besten Buchten der Costa Brava mit dem Boot", description: "Die 10 spektakulärsten Buchten zwischen Blanes und Tossa" },
+      ],
+      activitySnorkel: [
+        { title: "Die besten Buchten von Blanes mit dem Boot", description: "Buchten mit kristallklarem Wasser, perfekt zum Schnorcheln" },
+        { title: "Boote ohne Führerschein", description: "Perfekt für Schnorchelausflüge" },
+        { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
+        { title: "Jetski-Rundkurs", description: "Jetski-Adrenalin ohne Führerschein vor Blanes" },
+      ],
+      activityFamilies: [
+        { title: "Was man auf ein Boot mitnimmt", description: "Komplette Checkliste für Ihren Tag auf See" },
+        { title: "Schnorchelausflug", description: "Eine perfekte Aktivität für Kinder" },
+        { title: "Bootsverleih-Preise", description: "Preise nach Saison ansehen" },
+      ],
+      activitySunset: [
+        { title: "Bootsrouten ab Blanes", description: "5 Routen mit interaktiven Karten" },
+        { title: "Die besten Buchten der Costa Brava mit dem Boot", description: "Die 10 spektakulärsten Buchten zwischen Blanes und Tossa" },
+        { title: "Boote ohne Führerschein", description: "Perfekt für Sonnenuntergangstouren, ab 70€/Std." },
+      ],
+      activityFishing: [
+        { title: "Boote mit Führerschein", description: "Leistungsstarke Boote für Angelgebiete" },
+        { title: "Bootsrouten ab Blanes", description: "Entdecken Sie die besten Gebiete" },
+        { title: "Bootsverleih Costa Brava", description: "9 Boote in Blanes verfügbar" },
+        { title: "Jetski-Tour", description: "Geführte Jetski-Route von Blanes nach Tossa de Mar" },
+      ],
+      categoryLicenseFree: [
+        { title: "Boot ohne vs. mit Führerschein", description: "Kompletter Vergleichsratgeber" },
+        { title: "Boote für Familien", description: "Ein perfektes Erlebnis ganz ohne Führerschein" },
+        { title: "Was man aufs Boot mitnimmt", description: "Checkliste für Ihren Tag auf See" },
+        { title: "Jetski-Verleih ohne Führerschein", description: "Jetski-Rundkurs und geführte Tour ab Blanes" },
+      ],
+      categoryLicensed: [
+        { title: "Boot ohne vs. mit Führerschein", description: "Kompletter Vergleichsratgeber" },
+        { title: "Angeln vom Boot", description: "Boote mit Führerschein für Angelgebiete" },
+        { title: "Ausflug nach Tossa de Mar", description: "In 30 Min. mit einem Boot mit Führerschein erreichbar" },
+      ],
+      jetskiHub: [
+        { title: "Jetski-Rundkurs", description: "Fahren Sie einen Jetski ohne Führerschein auf einem überwachten Rundkurs vor Blanes" },
+        { title: "Geführte Jetski-Tour nach Tossa", description: "Geführte Route von Blanes nach Tossa de Mar mit Betreuer" },
+        { title: "Boote ohne Führerschein", description: "5 Boote ab 70€/Std., Kraftstoff inklusive" },
+        { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
+      ],
+      jetskiCircuito: [
+        { title: "Jetski-Verleih in Blanes", description: "Alle Jetski-Erlebnisse ohne Führerschein" },
+        { title: "Geführte Jetski-Tour nach Tossa", description: "Geführte Route von Blanes nach Tossa de Mar mit Betreuer" },
+        { title: "Boote ohne Führerschein", description: "5 Boote ab 70€/Std., Kraftstoff inklusive" },
+        { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
+      ],
+      jetskiExcursion: [
+        { title: "Jetski-Verleih in Blanes", description: "Alle Jetski-Erlebnisse ohne Führerschein" },
+        { title: "Jetski-Rundkurs ohne Führerschein", description: "Erster Kontakt auf einem überwachten Rundkurs vor Blanes" },
+        { title: "Ausflug nach Tossa de Mar", description: "Entdecken Sie die Vila Vella und ihre kristallklaren Buchten" },
+        { title: "Preise und Tarife", description: "Preise nach Saison ansehen" },
+      ],
+    },
   },
   occasionMatrix: {
     pages: {

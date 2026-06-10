@@ -308,10 +308,10 @@ export default function LocationBarcelonaPage() {
       </RevealSection>
 
       <PopularBoatsSection
-        title="Barcos para tu escapada desde Barcelona"
-        description="A 1h en coche o en tren R1, el Puerto de Blanes es la opción más cercana para alquilar barco en la Costa Brava. Desde sin licencia (5 de los 9 barcos) hasta charter premium con patrón."
+        title={t.popularBoatsSection?.pages?.barcelona?.title ?? "Barcos para tu escapada desde Barcelona"}
+        description={t.popularBoatsSection?.pages?.barcelona?.description}
         boatIds={["remus-450", "astec-480", "pacific-craft-625", "excursion-privada"]}
-        badgeLabel={(id) => (id === "excursion-privada" ? "Con capitán" : id === "pacific-craft-625" ? "Con LNB" : "Sin licencia")}
+        badgeLabel={(id) => (id === "excursion-privada" ? (t.popularBoatsSection?.badges?.captain ?? "Con capitán") : id === "pacific-craft-625" ? (t.popularBoatsSection?.badges?.licensed ?? "Con licencia") : (t.popularBoatsSection?.badges?.noLicense ?? "Sin licencia"))}
         badgeVariant={(id) => (id === "excursion-privada" || id === "pacific-craft-625" ? "outline" : "secondary")}
       />
 

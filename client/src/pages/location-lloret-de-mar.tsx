@@ -425,8 +425,8 @@ export default function LocationLloretPage() {
       </div>
 
       <PopularBoatsSection
-        title="Barcos populares para tu ruta a Lloret de Mar"
-        description="Los barcos sin licencia que más alquilamos para la ruta hasta Playa de Fenals (sur de Lloret). Todos llegan legalmente y son ideales para 2-7 personas con o sin experiencia."
+        title={t.popularBoatsSection?.pages?.lloret?.title ?? "Barcos populares para tu ruta a Lloret de Mar"}
+        description={t.popularBoatsSection?.pages?.lloret?.description}
         boatIds={["remus-450", "solar-450", "astec-480", "pacific-craft-625"]}
       />
 

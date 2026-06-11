@@ -43,6 +43,7 @@ import { registerPublicSeoSnapshotRoutes } from "./public-seo-snapshot";
 import { registerAdminSeoPilotsRoutes } from "./admin-seo-pilots";
 import { registerAdminDistributionRoutes } from "./admin-distribution";
 import { registerLinkedinOAuthRoutes } from "./oauth-linkedin";
+import { registerGbpOAuthRoutes } from "./oauth-gbp";
 import { registerBusinessStatsRoutes } from "./business-stats";
 import { registerAdminFlywheelRoutes } from "./admin-flywheel";
 import { registerAdminPricingOverridesRoutes } from "./admin-pricing-overrides";
@@ -112,6 +113,7 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   // Distribution Engine — on-demand publish + LinkedIn OAuth
   registerAdminDistributionRoutes(app);
   registerLinkedinOAuthRoutes(app);
+  registerGbpOAuthRoutes(app);
 
   // Google Business Profile stats (rating + reviews, weekly cron sync)
   registerBusinessStatsRoutes(app);

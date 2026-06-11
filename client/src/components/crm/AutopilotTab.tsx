@@ -228,6 +228,63 @@ export function AutopilotTab({ adminToken }: AutopilotTabProps) {
 // ============================================================================
 // Overview
 // ============================================================================
+interface GbpStatus {
+  connected: boolean;
+  status?: string;
+  accountIdentifier?: string | null;
+  locationTitle?: string | null;
+  expiresAt?: string | null;
+  lastErrorMessage?: string | null;
+}
+
+// Connection card for Google Business Profile. The connect button NAVIGATES
+// (no fetch): /api/admin/oauth/gbp/start needs a browser redirect carrying the
+// admin session cookie through Google's consent screen and back.
+function GbpConnectionCard({ adminToken }: { adminToken: string }) {
+  const { data } = useQuery<GbpStatus>({
+    queryKey: ["autopilot", "gbp-status"],
+    queryFn: () => apiFetch<GbpStatus>("/api/admin/autopilot/gbp-status", adminToken),
+    refetchInterval: 60_000,
+  });
+
+  const connected = data?.connected === true;
+  const hasError = !connected && Boolean(data?.lastErrorMessage || (data?.status && data.status !== "active"));
+
+  return (
+    <Card id="connect-gbp">
+      <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium">Google Business Profile</span>
+            {connected ? (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-800">Conectado</span>
+            ) : hasError ? (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-800">Error</span>
+            ) : (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground">Sin conectar</span>
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground">
+            {connected
+              ? `Publicando en: ${data?.locationTitle ?? data?.accountIdentifier}`
+              : hasError
+                ? `${data?.lastErrorMessage ?? "Conexión caducada"} — vuelve a conectar.`
+                : "Conecta la ficha para que la bandeja publique posts de Google Business automáticamente."}
+          </p>
+        </div>
+        {!connected && (
+          <a
+            href="/api/admin/oauth/gbp/start"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 whitespace-nowrap"
+          >
+            Conectar Google Business
+          </a>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
 function OverviewPanel({ adminToken }: { adminToken: string }) {
   const { data, isLoading, error, refetch } = useQuery<AutopilotOverview>({
     queryKey: ["autopilot", "overview"],
@@ -241,6 +298,7 @@ function OverviewPanel({ adminToken }: { adminToken: string }) {
 
   return (
     <div className="space-y-4">
+      <GbpConnectionCard adminToken={adminToken} />
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <StatCard title="Blog posts" value={data.blogPosts.published} icon={<FileText className="h-4 w-4" />}
           description={`${data.blogPosts.total} totales · +${data.blogPosts.last30d} ultimos 30d`} />

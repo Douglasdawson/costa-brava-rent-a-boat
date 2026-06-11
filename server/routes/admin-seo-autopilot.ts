@@ -79,6 +79,30 @@ const auditQuerySchema = z.object({
 
 // ===========================================================================
 export function registerAdminSeoAutopilotRoutes(app: Express): void {
+  // --- GBP connection status (consumed by the AutopilotTab connect card) ---
+  app.get("/api/admin/autopilot/gbp-status", requireAdminSession, async (_req: Request, res: Response) => {
+    try {
+      const { oauthConnectionsRepo } = await import("../storage");
+      const conn = await oauthConnectionsRepo.getOAuthConnection("gbp");
+      if (!conn) {
+        res.json({ connected: false });
+        return;
+      }
+      const metadata = (conn.metadata ?? {}) as { locationTitle?: string | null };
+      res.json({
+        connected: conn.status === "active" && Boolean(conn.accountIdentifier),
+        status: conn.status,
+        accountIdentifier: conn.accountIdentifier,
+        locationTitle: metadata.locationTitle ?? null,
+        expiresAt: conn.expiresAt?.toISOString() ?? null,
+        lastErrorMessage: conn.lastErrorMessage ?? null,
+      });
+    } catch (err) {
+      logger.error("[autopilot] gbp-status failed", { error: err instanceof Error ? err.message : String(err) });
+      res.status(500).json({ message: "Error consultando el estado de Google Business" });
+    }
+  });
+
   // --- Overview --------------------------------------------------------
   app.get("/api/admin/autopilot/overview", requireAdminSession, async (_req: Request, res: Response) => {
     try {

@@ -12,6 +12,7 @@ import type { AdapterResult, PlatformAdapter } from "./types";
 import type { DistributionTrayItem } from "@shared/schema";
 import { logger } from "../../../lib/logger";
 import { oauthConnectionsRepo } from "../../../storage";
+import { getFreshGbpConnection } from "../googleOAuth";
 
 function buildSummary(item: DistributionTrayItem): string {
   const parts: string[] = [];
@@ -23,8 +24,11 @@ function buildSummary(item: DistributionTrayItem): string {
 
 export const gbpAdapter: PlatformAdapter = {
   async publish(item: DistributionTrayItem): Promise<AdapterResult> {
-    const conn = await oauthConnectionsRepo.getOAuthConnection("gbp");
-    if (!conn || conn.status !== "active" || !conn.accessToken || !conn.accountIdentifier) {
+    // getFreshGbpConnection transparently refreshes the 1h Google access token
+    // (the cron publishes long after connect time, so the stored token is
+    // almost always stale by the time this runs).
+    const conn = await getFreshGbpConnection();
+    if (!conn) {
       return {
         ok: false,
         statusCode: 503,
@@ -68,7 +72,7 @@ export const gbpAdapter: PlatformAdapter = {
         const message = json.error?.message ?? `GBP returned ${res.status}`;
         logger.warn("[gbpAdapter] publish failed", { itemId: item.id, status: res.status, message });
         if (res.status === 401 || res.status === 403) {
-          await oauthConnectionsRepo.markOAuthError(conn.id, message, "expired");
+          await oauthConnectionsRepo.markOAuthError(conn.connectionId, message, "expired");
         }
         return { ok: false, statusCode: res.status, error: message };
       }

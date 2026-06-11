@@ -1,8 +1,52 @@
 import type { Request, Response, NextFunction } from "express";
 import fs from "fs";
 import path from "path";
+import { logger } from "./lib/logger";
 
 const SUPPORTED_LANGS = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"];
+
+/**
+ * Freshness guard: a prerendered snapshot is only servable if the hashed
+ * entry bundle it references (/assets/index-XXXX.js) still exists in the
+ * current build's dist/public/assets. Snapshots captured against a previous
+ * build reference hashes that no longer exist — serving them yields a page
+ * whose assets 404 and never hydrates ("dead home" incident, 2026-06-10).
+ *
+ * Results are cached per snapshot file for the lifetime of the process
+ * (dist is immutable per deploy), so the HTML is read at most once per file.
+ */
+const ENTRY_SCRIPT_REGEX = /\/assets\/(index-[\w.-]+\.js)/;
+const freshnessCache = new Map<string, boolean>();
+
+function isSnapshotFresh(snapshotPath: string, assetsDir: string): boolean {
+  const cached = freshnessCache.get(snapshotPath);
+  if (cached !== undefined) return cached;
+
+  let fresh = true;
+  let staleReason = "";
+  try {
+    const html = fs.readFileSync(snapshotPath, "utf-8");
+    const match = html.match(ENTRY_SCRIPT_REGEX);
+    if (match) {
+      fresh = fs.existsSync(path.join(assetsDir, match[1]));
+      if (!fresh) staleReason = `entry bundle ${match[1]} not found in current build`;
+    }
+    // No entry script reference at all: leave as fresh (nothing to validate).
+  } catch (err) {
+    fresh = false;
+    staleReason = `unreadable snapshot: ${err instanceof Error ? err.message : String(err)}`;
+  }
+
+  freshnessCache.set(snapshotPath, fresh);
+  if (!fresh) {
+    // Warn exactly once per file (cache guarantees we never get here twice).
+    logger.warn("Stale prerendered snapshot skipped, falling back to SSR shell", {
+      snapshot: snapshotPath,
+      reason: staleReason,
+    });
+  }
+  return fresh;
+}
 
 /**
  * Express middleware that serves prerendered HTML files when available.
@@ -24,6 +68,10 @@ const SUPPORTED_LANGS = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"];
  * regular SPA catch-all (serveWithSEO) to handle the request.
  */
 export function prerenderedMiddleware(prerenderedDir: string) {
+  // Hashed client assets of the CURRENT build (dist/public/assets) — used by
+  // the freshness guard to reject snapshots from a different build.
+  const assetsDir = path.resolve(prerenderedDir, "..", "public", "assets");
+
   return (req: Request, res: Response, next: NextFunction) => {
     // Only serve GET requests
     if (req.method !== "GET") return next();
@@ -97,6 +145,9 @@ export function prerenderedMiddleware(prerenderedDir: string) {
 
     for (const candidate of candidates) {
       if (fs.existsSync(candidate)) {
+        // Skip snapshots captured against a previous build (stale asset hashes)
+        if (!isSnapshotFresh(candidate, assetsDir)) continue;
+
         const effectiveLang = detectLang(candidate);
 
         res.set("Content-Type", "text/html; charset=utf-8");

@@ -42,7 +42,9 @@ export default function JetSkiBlanesHub() {
   // Dedicated 4K hero (golden-hour Costa Brava jet ski), served as responsive WebP.
   const heroImage = "/images/jetski-hub/jet-ski-blanes-hero.webp";
   const heroSrcSet =
-    "/images/jetski-hub/jet-ski-blanes-hero-1600.webp 1600w, /images/jetski-hub/jet-ski-blanes-hero.webp 2560w";
+    "/images/jetski-hub/jet-ski-blanes-hero-800.webp 800w, /images/jetski-hub/jet-ski-blanes-hero-1600.webp 1600w, /images/jetski-hub/jet-ski-blanes-hero.webp 2560w";
+  const heroSrcSetAvif =
+    "/images/jetski-hub/jet-ski-blanes-hero-800.avif 800w, /images/jetski-hub/jet-ski-blanes-hero-1600.avif 1600w";
   const heroAlt = excursion?.altText ?? "Moto de agua al atardecer en la Costa Brava";
 
   // Experience cards from the canonical catalogue + translated copy.
@@ -101,17 +103,20 @@ export default function JetSkiBlanesHub() {
 
       {/* HERO — full-bleed coastal photography, the Salt Memory entry */}
       <section className="relative isolate flex min-h-[80vh] items-center overflow-hidden pb-20 pt-28">
-        <img
-          src={heroImage}
-          srcSet={heroSrcSet}
-          sizes="100vw"
-          alt={heroAlt}
-          width={2560}
-          height={1440}
-          decoding="async"
-          draggable={false}
-          className={`absolute inset-0 -z-10 h-full w-full object-cover will-change-transform transition-transform duration-[1400ms] ease-out ${mounted ? "scale-100" : "scale-[1.08]"}`}
-        />
+        <picture>
+          <source type="image/avif" srcSet={heroSrcSetAvif} sizes="100vw" />
+          <img
+            src={heroImage}
+            srcSet={heroSrcSet}
+            sizes="100vw"
+            alt={heroAlt}
+            width={2560}
+            height={1440}
+            decoding="async"
+            draggable={false}
+            className={`absolute inset-0 -z-10 h-full w-full object-cover will-change-transform transition-transform duration-[1400ms] ease-out ${mounted ? "scale-100" : "scale-[1.08]"}`}
+          />
+        </picture>
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
         <div

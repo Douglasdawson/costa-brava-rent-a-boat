@@ -287,14 +287,17 @@ export default function LocationLloretPage() {
 
       {/* Photo break */}
       <div className="relative w-full h-64 sm:h-80 overflow-hidden">
-        <img
-          src="/images/blog/calas-costa-brava.jpg"
-          alt="Calas de la Costa Brava"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
+        <picture>
+          <source type="image/webp" srcSet="/images/blog/calas-costa-brava.webp" />
+          <img
+            src="/images/blog/calas-costa-brava.jpg"
+            alt="Calas de la Costa Brava"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            width={1920}
+            height={600}
+          />
+        </picture>
       </div>
 
       {/* What to Do in Lloret */}

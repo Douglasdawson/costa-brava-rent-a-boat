@@ -314,14 +314,17 @@ export default function LocationTossaPage() {
 
       {/* Photo break */}
       <div className="relative w-full h-64 sm:h-80 overflow-hidden">
-        <img
-          src="/images/blog/ruta-costera.jpg"
-          alt="Ruta costera por la Costa Brava"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
+        <picture>
+          <source type="image/webp" srcSet="/images/blog/ruta-costera.webp" />
+          <img
+            src="/images/blog/ruta-costera.jpg"
+            alt="Ruta costera por la Costa Brava"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            width={1920}
+            height={600}
+          />
+        </picture>
       </div>
 
       {/* Main Beaches and Historic Sites */}

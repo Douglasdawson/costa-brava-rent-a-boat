@@ -52,6 +52,14 @@ export default defineConfig({
           "**/workbox-*.js",
           "manifest.json",
           "**/*.map",
+          // Keep the install payload lean (load audit 2026-06-11, A7): the
+          // admin bundle, the 7 non-active language packs, charts and the
+          // blog runtime are huge and already covered by runtime caching
+          // once actually visited. Precaching them cost ~3.5 MB on install.
+          "assets/CRMDashboard-*.js",
+          "assets/{ca,de,en,fr,it,nl,ru}-*.js",
+          "assets/vendor-charts-*.js",
+          "assets/blog-detail-*.js",
         ],
         // SPA fallback for offline navigation — but never hijack API, admin
         // sessions, sitemap, feed, or hashed assets.
@@ -148,6 +156,13 @@ export default defineConfig({
           }
           if (id.includes("node_modules/@tanstack/")) {
             return "vendor-query";
+          }
+          // clsx and use-sync-external-store are shared by the public entry
+          // (wouter, cva) AND recharts; without an explicit rule rollup parks
+          // them inside vendor-charts, dragging 94kb br of charts into every
+          // public page (load audit 2026-06-11, C1).
+          if (id.includes("node_modules/clsx") || id.includes("node_modules/use-sync-external-store")) {
+            return "vendor-react";
           }
           if (id.includes("node_modules/recharts") || id.includes("node_modules/d3-")) {
             return "vendor-charts";

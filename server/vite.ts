@@ -133,6 +133,15 @@ export function serveStatic(app: Express) {
     },
   }));
 
+  // A request that reaches this point under /assets/ means the hashed file
+  // does NOT exist in this build (stale prerender/SW or an old tab). Without
+  // this guard it would fall through to the SPA catch-all and ship HTML with
+  // the immutable 1-year header set upstream — poisoning caches (load audit
+  // 2026-06-11, C2). Always answer 404 + no-store instead.
+  app.use("/assets", (_req, res) => {
+    res.status(404).set("Cache-Control", "no-store").type("text/plain").send("Not found");
+  });
+
   // Serve prerendered HTML when available (BEFORE express.static and SPA catch-all)
   const prerenderedDir = path.resolve(distPath, "..", "prerendered");
   if (fs.existsSync(prerenderedDir)) {

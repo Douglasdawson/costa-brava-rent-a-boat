@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { queryClient, getQueryFn } from "@/lib/queryClient";
+import { ROUTE_SLUGS } from "@shared/i18n-routes";
 
 export interface AuthUser {
   id: string;
@@ -7,11 +9,26 @@ export interface AuthUser {
   name?: string;
 }
 
+const PRIVATE_PAGE_KEYS = ["crm", "login", "myAccount", "onboarding"] as const;
+
+const PRIVATE_SLUGS: ReadonlySet<string> = new Set(
+  PRIVATE_PAGE_KEYS.flatMap((key) => Object.values(ROUTE_SLUGS[key])),
+);
+
+export function isPrivateAreaPath(pathname: string): boolean {
+  return pathname
+    .split("/")
+    .filter(Boolean)
+    .some((segment) => PRIVATE_SLUGS.has(segment));
+}
+
 export function useAuth() {
+  const [location] = useLocation();
   const { data: user, isLoading } = useQuery<AuthUser>({
     queryKey: ["/api/auth/user"],
     queryFn: getQueryFn({ on401: "returnNull" }),
     retry: false,
+    enabled: isPrivateAreaPath(location),
   });
 
   const logout = async () => {

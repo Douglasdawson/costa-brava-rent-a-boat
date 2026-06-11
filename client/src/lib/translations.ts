@@ -1,5 +1,12 @@
 import { Language, useLanguage } from "@/hooks/use-language";
-import { es } from "../i18n/es";
+// The Spanish reference bundle is NO longer imported statically: it weighed
+// ~65kb br inside the main chunk for every locale (load audit 2026-06-11,
+// A2). The LanguageProvider lazy-loads it (eagerly for "es", on idle for the
+// other locales) and registers it here for the deep-merge safety net.
+let esFallback: Record<string, any> | null = null;
+export function registerEsFallback(bundle: Record<string, any>): void {
+  esFallback = bundle;
+}
 
 // Shared shape for Tordera / Palafolls / Pineda — 3 inland-town pages
 // that share the same template. Each field is optional because faqItems
@@ -2940,8 +2947,12 @@ function deepMerge(
 export function useTranslations(): Translations {
   const { language, currentTranslation } = useLanguage();
   if (language === "es") return currentTranslation as Translations;
+  // Until the idle-loaded Spanish fallback arrives, serve the raw bundle.
+  // CI (i18n:validate) guarantees all 8 locales are key-complete, so the
+  // merge is a safety net against runtime drift, not a correctness need.
+  if (!esFallback) return currentTranslation as Translations;
   return deepMerge(
     currentTranslation as Record<string, any>,
-    es as Record<string, any>
+    esFallback
   ) as Translations;
 }

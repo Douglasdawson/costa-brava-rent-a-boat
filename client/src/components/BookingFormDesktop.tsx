@@ -4,7 +4,9 @@ import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "motion/react";
+// MotionConfig lives here (not in App.tsx) so framer-motion stays out of the
+// critical bundle — this component is lazy-loaded via the booking modal.
+import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import type { Boat } from "@shared/schema";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
 import { EXTRA_PACKS } from "@shared/boatData";
@@ -228,6 +230,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
       {/* Step content — scrollable */}
       <div ref={scrollContainerRef} className="flex-1 min-h-0 overflow-y-auto">
+        <MotionConfig reducedMotion="user">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentStep}
@@ -389,6 +392,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             )}
           </motion.div>
         </AnimatePresence>
+        </MotionConfig>
       </div>
 
       {/* P1.1 (2026-05-20): price bar visible from step 2 through step 5

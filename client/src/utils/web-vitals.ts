@@ -40,12 +40,22 @@ function sendToBeacon(metric: { name: string; value: number; id: string }) {
   navigator.sendBeacon("/api/cwv-beacon", new Blob([data], { type: "application/json" }));
 }
 
+// Dedupe guards: initWebVitals can be invoked more than once per page load
+// (e.g. React StrictMode double-running the deferred init effect), which would
+// register duplicate web-vitals subscriptions and send every metric twice.
+let initialized = false;
+const reportedMetricIds = new Set<string>();
+
 function handleMetric(metric: { name: string; value: number; id: string }) {
+  if (reportedMetricIds.has(metric.id)) return;
+  reportedMetricIds.add(metric.id);
   sendToGA4(metric);
   sendToBeacon(metric);
 }
 
 export function initWebVitals() {
+  if (initialized) return;
+  initialized = true;
   try {
     onCLS(handleMetric);
     onLCP(handleMetric);

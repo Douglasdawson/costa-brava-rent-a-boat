@@ -8,8 +8,8 @@ import {
 } from "@shared/i18n-routes";
 import type { LangCode } from "@shared/seoConstants";
 import { SUPPORTED_LANGUAGES } from "@shared/seoConstants";
-import { es } from '../i18n/es';
 import { langLoaders } from '../i18n/loaders';
+import { registerEsFallback } from '@/lib/translations';
 
 export type Language = LangCode;
 
@@ -23,6 +23,28 @@ function detectBrowserLanguage(): Language {
     return langCode;
   }
   return 'es';
+}
+
+/**
+ * Resolve the language the app will boot with, using the same priority
+ * order as the provider effect (path > ?lang > localStorage > browser).
+ * Used by main.tsx to fetch the locale bundle BEFORE mounting React, so the
+ * SSR fallback stays on screen during the fetch (no blank frame, no CLS).
+ */
+export function detectInitialLanguage(): Language {
+  const pathLang = detectLangFromPath();
+  if (pathLang) return pathLang;
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  if (urlLang && isValidLang(urlLang)) return urlLang as Language;
+  const saved = localStorage.getItem('costa-brava-language');
+  if (saved && isValidLang(saved)) return saved as Language;
+  return detectBrowserLanguage();
+}
+
+let initialSeed: { lang: Language; bundle: Record<string, any> } | null = null;
+export function seedInitialLanguage(lang: Language, bundle: Record<string, any>): void {
+  initialSeed = { lang, bundle };
+  if (lang === 'es') registerEsFallback(bundle);
 }
 
 function detectLangFromPath(): Language | null {
@@ -45,10 +67,16 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('es');
+  const [language, setLanguageState] = useState<Language>(initialSeed?.lang ?? 'es');
   const [isLoading, setIsLoading] = useState(true);
   const [, setLocation] = useLocation();
-  const [loadedLangs, setLoadedLangs] = useState<Record<string, Record<string, any>>>({ es });
+  // No language is bundled eagerly anymore (load audit 2026-06-11, A2):
+  // the active locale chunk is fetched on mount (the server emits a
+  // per-locale <link rel="modulepreload"> so there is no extra waterfall)
+  // and Spanish is additionally idle-loaded as the deep-merge safety net.
+  const [loadedLangs, setLoadedLangs] = useState<Record<string, Record<string, any>>>(() =>
+    initialSeed ? { [initialSeed.lang]: initialSeed.bundle } : {}
+  );
 
   useEffect(() => {
     // 1. Check URL path first segment (highest priority)
@@ -94,14 +122,34 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   // Lazy-load the active language translation file if not already cached
   useEffect(() => {
-    if (language === 'es' || loadedLangs[language]) return;
+    if (loadedLangs[language]) return;
     const loader = langLoaders[language];
     if (loader) {
       loader().then(trans => {
+        if (language === 'es') registerEsFallback(trans);
         setLoadedLangs(prev => ({ ...prev, [language]: trans }));
       });
     }
   }, [language, loadedLangs]);
+
+  // Idle-load the Spanish reference bundle for non-es locales: it backs the
+  // deep-merge fallback in useTranslations without sitting on the critical
+  // path of foreign-market visitors.
+  useEffect(() => {
+    if (language === 'es') return;
+    const load = () => {
+      langLoaders.es().then(trans => {
+        registerEsFallback(trans);
+        setLoadedLangs(prev => (prev.es ? prev : { ...prev, es: trans }));
+      });
+    };
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(load, { timeout: 4000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = setTimeout(load, 2500);
+    return () => clearTimeout(id);
+  }, [language]);
 
   const setLanguage = useCallback((lang: Language) => {
     trackLanguageChange(language, lang);
@@ -126,7 +174,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     return switchLanguagePath(window.location.pathname, targetLang);
   }, []);
 
-  const currentTranslation = loadedLangs[language] ?? es;
+  // Keep showing the previous bundle during a runtime language switch (no
+  // blank flash); only the very first render has nothing to show.
+  const currentTranslation =
+    loadedLangs[language] ?? Object.values(loadedLangs)[0] ?? null;
 
   // Memoize so the ~84 components consuming useTranslations()/useLanguage()
   // only re-render when one of these values actually changes, not on every
@@ -138,10 +189,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       isLoading,
       localizedPath: localizedPathFn,
       switchLanguageUrl: switchLanguageUrlFn,
-      currentTranslation,
+      currentTranslation: (currentTranslation ?? {}) as Record<string, any>,
     }),
     [language, setLanguage, isLoading, localizedPathFn, switchLanguageUrlFn, currentTranslation],
   );
+
+  // Gate the tree until the first locale bundle arrives (~one RTT, fetched
+  // in parallel with the entry thanks to the server-emitted modulepreload).
+  // Rendering with a null translation object would crash the 84 consumers.
+  if (!currentTranslation) {
+    return null;
+  }
 
   return (
     <LanguageContext.Provider value={contextValue}>

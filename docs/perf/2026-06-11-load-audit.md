@@ -62,3 +62,21 @@ Preloads de LCP (abril #1) funcionando; assets hasheados `immutable` + brotli pr
 | **P4 backlog** | M2, M3, subset fonts | cuando toque | −1,3 MB peso total |
 
 Proyección tras P1+P2+P3: JS crítico ~150-160 kb br (de 344), LCP móvil lab ~3,5-4s (de 5,9), score ~85-90. La validación final real debe hacerse con PageSpeed contra producción tras el siguiente Publish.
+
+---
+
+## Resultados de la ejecución (mismo día, P1-P4 completas)
+
+| Métrica (Lighthouse móvil 4x, build prod local) | Antes | Después |
+|---|---|---|
+| Home: score / LCP / FCP / TBT / CLS | 69 / 5,9s / 2,9s / 210ms / 0 | **78 / 5,0s / 2,0s / 160ms / 0** |
+| Ficha: score / LCP / FCP / TBT / CLS | 72 / 5,9s / 2,9s / 130ms / 0,09 | **76 / 5,1-5,6s / 2,0s / 140ms / 0** |
+| JS crítico home fría (br) | ~344 kb | **~150 kb** (entry 115→49, vendor-charts y motion fuera, es.ts a chunk propio) |
+| Hero móvil AVIF | 131 kb | **71 kb** (q48 desde el webp fuente) |
+| Precache del service worker | 6,35 MB / 134 entradas | **3,06 MB / 124 entradas** |
+
+Implementado: C1 (clsx/use-sync-external-store → vendor-react), C2 (404+no-store para /assets/* inexistentes), C3 (guard de frescura en prerenderedMiddleware + snapshots saneados — popup/scroll-lock/video — + `build` limpia dist/prerendered), A1 (cache 30d para webp/avif/woff2/mp4), A2 (TODOS los locales son chunks lazy; main.tsx descarga el bundle del idioma ANTES de montar React — el fallback SSR queda visible durante el fetch, swap atómico sin CLS; el server emite modulepreload por locale incluida es; el fallback castellano se carga en idle en mercados extranjeros), A3 (GTM inyectado en idle/primera interacción; dataLayer+Consent Mode inline intactos; fuera dns-prefetch de Stripe), A4 (framer-motion eliminado de App: MotionConfig movido al wizard lazy), A5, A6 (preload de Archivo), A7 (globIgnores: CRM/idiomas/charts/blog fuera del precache), M1 (jet ski hub con AVIF+800w; scooters con AVIF), M2 (6 JPGs legacy → WebP con `<picture>`, −0,4 MB), M3 (auth/user solo en área privada; cwv-beacon deduplicado).
+
+No ejecutado: subset latin de las fuentes (requiere tooling de fonttools y pruebas de glifos; ganancia ~30 kb — backlog). El LCP restante (~5s lab) es ahora mayormente element render delay del H1 sobre la foto del hero en throttle 4x; el siguiente salto real vendría del prerender funcionando en producción (Chromium en el builder de Replit) — ya blindado para ello.
+
+Validado: 8 locales renderizan (es/de/ru muestreados), wizard/fichas/precios operativos, vendor-charts y vendor-motion ausentes del grafo público, asset fantasma → 404 no-store, AVIF con cache 30d, tests 559/559 (3 fallos preexistentes), tsc/lint sin errores nuevos. Validación final en producción: PageSpeed tras el próximo Publish.

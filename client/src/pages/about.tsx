@@ -797,14 +797,17 @@ export default function AboutPage() {
 
       {/* Photo break */}
       <div className="w-full overflow-hidden">
-        <img
-          src="/images/blog/ruta-costera.jpg"
-          alt="Coastal route along the Costa Brava from Blanes"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
+        <picture>
+          <source type="image/webp" srcSet="/images/blog/ruta-costera.webp" />
+          <img
+            src="/images/blog/ruta-costera.jpg"
+            alt="Coastal route along the Costa Brava from Blanes"
+            className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+            loading="lazy"
+            width={1920}
+            height={600}
+          />
+        </picture>
       </div>
 
       {/* Our Fleet */}

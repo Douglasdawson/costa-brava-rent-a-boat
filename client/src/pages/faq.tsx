@@ -268,14 +268,17 @@ export default function FAQPage() {
               </div>
             </div>
             <div className="lg:col-span-2">
-              <img
-                src="/images/blog/seguridad-barco.jpg"
-                alt="Boat safety and frequently asked questions"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                width={640}
-                height={800}
-              />
+              <picture>
+                <source type="image/webp" srcSet="/images/blog/seguridad-barco.webp" />
+                <img
+                  src="/images/blog/seguridad-barco.jpg"
+                  alt="Boat safety and frequently asked questions"
+                  className="w-full rounded-2xl object-cover aspect-[4/5]"
+                  loading="lazy"
+                  width={640}
+                  height={800}
+                />
+              </picture>
             </div>
           </div>
         </div>
@@ -316,14 +319,17 @@ export default function FAQPage() {
 
       {/* ═══ PHOTO BREAK ═══ */}
       <div className="w-full overflow-hidden">
-        <img
-          src="/images/blog/familias-barco.jpg"
-          alt="Families enjoying a boat trip on the Costa Brava"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
+        <picture>
+          <source type="image/webp" srcSet="/images/blog/familias-barco.webp" />
+          <img
+            src="/images/blog/familias-barco.jpg"
+            alt="Families enjoying a boat trip on the Costa Brava"
+            className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+            loading="lazy"
+            width={1920}
+            height={600}
+          />
+        </picture>
       </div>
 
       {/* ═══ CONTACT ═══ */}

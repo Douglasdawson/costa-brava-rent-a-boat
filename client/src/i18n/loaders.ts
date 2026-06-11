@@ -1,4 +1,5 @@
 export const langLoaders: Record<string, () => Promise<Record<string, any>>> = {
+  es: () => import('./es').then(m => m.es),
   ca: () => import('./ca').then(m => m.ca),
   en: () => import('./en').then(m => m.en),
   fr: () => import('./fr').then(m => m.fr),

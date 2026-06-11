@@ -1,14 +1,9 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { ThemeProvider } from "./hooks/use-theme";
+import { detectInitialLanguage, seedInitialLanguage } from "./hooks/use-language";
+import { langLoaders } from "./i18n/loaders";
 import "./index.css";
-
-// Remove SSR body fallback (injected by server/seoInjector.ts on boat detail
-// pages so crawlers see semantic content even without JS). Removing it BEFORE
-// createRoot avoids React hydration mismatch warnings — the root container is
-// empty when React mounts, exactly as it expects.
-const seoFallback = document.getElementById("seo-fallback");
-if (seoFallback) seoFallback.remove();
 
 // Expose installed-PWA state via a data attribute so components and CSS can
 // hook into it without each one importing useStandaloneDisplay. Initial state
@@ -30,10 +25,25 @@ if (seoFallback) seoFallback.remove();
   window.matchMedia?.("(display-mode: standalone)").addEventListener("change", () => apply(detect()));
 })();
 
-createRoot(document.getElementById("root")!).render(
-  <ThemeProvider>
-    <App />
-  </ThemeProvider>
-);
+// Locale bundles are lazy chunks since the 2026-06-11 load audit (A2): fetch
+// the active one BEFORE mounting so the first React commit already has its
+// translations. The SSR fallback injected by server/seoInjector.ts stays
+// visible during the fetch (the server emits a modulepreload for the chunk,
+// so this is one already-in-flight request, not an extra round trip) and the
+// swap fallback → app happens in a single commit: no blank frame, no CLS.
+const initialLang = detectInitialLanguage();
+const loadBundle = langLoaders[initialLang] ?? langLoaders.es;
+loadBundle()
+  .catch(() => langLoaders.es())
+  .then(bundle => {
+    seedInitialLanguage(initialLang, bundle);
+    const seoFallback = document.getElementById("seo-fallback");
+    if (seoFallback) seoFallback.remove();
+    createRoot(document.getElementById("root")!).render(
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    );
+  });
 
 // Service worker registration is handled by vite-plugin-pwa (registerType: "autoUpdate")

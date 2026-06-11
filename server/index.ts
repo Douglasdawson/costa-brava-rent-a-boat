@@ -637,6 +637,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
         res.setHeader('CDN-Cache-Control', 'public, s-maxage=31536000');
         res.setHeader('Vary', 'Accept-Encoding');
       }
+      // Media + fonts outside /assets (images, hero video, woff2) — these
+      // files only change when the asset itself is replaced; 30 days + SWR
+      // (they were falling through with max-age=0: load audit 2026-06-11, A1)
+      else if (p.match(/\.(webp|avif|woff2|mp4|jpeg|gif)$/) && !p.startsWith('/api')) {
+        res.setHeader('Cache-Control', 'public, max-age=2592000, stale-while-revalidate=604800');
+      }
       // Other static assets (favicon, robots.txt, manifest, etc.) — cache 1 day, revalidate
       else if (p.match(/\.(ico|txt|xml|json|webmanifest|png|jpg|svg)$/) && !p.startsWith('/api')) {
         res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');

@@ -201,14 +201,17 @@ export default function ActivityFishingPage() {
 
       {/* Photo break */}
       <div className="w-full overflow-hidden">
-        <img
-          src="/images/blog/puerto-barcos.jpg"
-          alt="Boats in the port of Blanes, Costa Brava"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
+        <picture>
+          <source type="image/webp" srcSet="/images/blog/puerto-barcos.webp" />
+          <img
+            src="/images/blog/puerto-barcos.jpg"
+            alt="Boats in the port of Blanes, Costa Brava"
+            className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+            loading="lazy"
+            width={1920}
+            height={600}
+          />
+        </picture>
       </div>
 
       {/* Fish Species */}

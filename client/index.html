@@ -54,12 +54,12 @@
     <link rel="preload" as="image" type="image/avif" href="/images/hero/hero-dive-desktop.avif" media="(min-width: 768px)" fetchpriority="high">
     <!-- Preload critical font for LCP (H1 heading) -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/ClashDisplay-Variable.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Archivo-Variable.woff2" crossorigin>
     <!-- Preconnect to Google Tag Manager -->
     <link rel="preconnect" href="https://www.googletagmanager.com">
 
     <!-- DNS Prefetch for external resources -->
     <link rel="dns-prefetch" href="https://api.whatsapp.com">
-    <link rel="dns-prefetch" href="https://js.stripe.com">
     <link rel="dns-prefetch" href="https://connect.facebook.net">
     
     <!-- Resource hints for better performance -->
@@ -184,10 +184,18 @@
         page_type: location.pathname === '/' ? 'home' : 'content',
       });
     </script>
-    <!-- GTM — deferred after page load to avoid blocking LCP/TBT (GA4 + Google Ads configured as GTM tags) -->
+    <!-- GTM — lazy-injected on idle or first interaction to keep ~300ms of main
+         thread off the critical path (GA4 + Google Ads configured as GTM tags).
+         dataLayer + Consent Mode are inline above, so gtag()/dataLayer.push()
+         queue events safely until gtm.js arrives. -->
     <script>
     (function(){
+      var w=window,d=document,loaded=false;
       function loadTracking(){
+        if(loaded)return;loaded=true;
+        ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
+          w.removeEventListener(ev,loadTracking);
+        });
         // Google Tag Manager (handles GA4 + Google Ads + all tags)
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -195,9 +203,17 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(w,d,'script','dataLayer','GTM-WPSV63W');
       }
-      var w=window,d=document;
+      // First interaction wins (passive listeners, self-removing)
+      ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
+        w.addEventListener(ev,loadTracking,{passive:true,once:false});
+      });
+      // Otherwise wait for idle after load (fallback: 3s timer)
       w.addEventListener('load',function(){
-        setTimeout(loadTracking, 1500);
+        if('requestIdleCallback' in w){
+          w.requestIdleCallback(loadTracking,{timeout:3000});
+        }else{
+          setTimeout(loadTracking,3000);
+        }
       });
     })();
     </script>

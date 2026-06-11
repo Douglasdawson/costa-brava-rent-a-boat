@@ -95,7 +95,16 @@ export default function ScootersPage() {
       {/* HERO */}
       <section className="relative isolate flex min-h-[70vh] items-center overflow-hidden pb-16 pt-28">
         <picture>
+          <source
+            media="(max-width: 640px)"
+            type="image/avif"
+            srcSet="/images/scooters/alquiler-scooter-lloret-de-mar-costa-brava-mobile.avif"
+          />
           <source media="(max-width: 640px)" srcSet={heroImageMobile} />
+          <source
+            type="image/avif"
+            srcSet="/images/scooters/alquiler-scooter-lloret-de-mar-costa-brava.avif"
+          />
           <img
             src={heroImage}
             alt={s?.hero?.title || "Alquiler de scooters en Lloret de Mar"}

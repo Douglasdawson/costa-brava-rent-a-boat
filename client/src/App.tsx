@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, lazy, Suspense, Component } from "react";
 import { Switch, Route, useSearch, useLocation, useParams, Redirect } from "wouter";
-import { MotionConfig } from "motion/react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -605,24 +604,22 @@ function App() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <MotionConfig reducedMotion="user">
-          <LanguageProvider>
-            <BookingModalProvider>
-              <TooltipProvider>
-                <Toaster />
-                <RouteProgressBar />
-                <Router />
-                <ScrollToTop />
-                <Suspense fallback={null}>
-                  <BoatClubModal />
-                  <ReturnVisitorBanner />
-                  <WhatsAppFloatingButton />
-                  <CookieBanner />
-                </Suspense>
-              </TooltipProvider>
-            </BookingModalProvider>
-          </LanguageProvider>
-        </MotionConfig>
+        <LanguageProvider>
+          <BookingModalProvider>
+            <TooltipProvider>
+              <Toaster />
+              <RouteProgressBar />
+              <Router />
+              <ScrollToTop />
+              <Suspense fallback={null}>
+                <BoatClubModal />
+                <ReturnVisitorBanner />
+                <WhatsAppFloatingButton />
+                <CookieBanner />
+              </Suspense>
+            </TooltipProvider>
+          </BookingModalProvider>
+        </LanguageProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   );

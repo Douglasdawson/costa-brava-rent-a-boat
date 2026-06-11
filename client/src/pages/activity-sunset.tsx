@@ -249,14 +249,17 @@ export default function ActivitySunsetPage() {
 
       {/* ═══ SUNSET PHOTO BREAK ═══ */}
       <div className="w-full overflow-hidden">
-        <img
-          src="/images/blog/atardecer-mar.jpg"
-          alt="Golden sunset over the Mediterranean sea from a boat"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
+        <picture>
+          <source type="image/webp" srcSet="/images/blog/atardecer-mar.webp" />
+          <img
+            src="/images/blog/atardecer-mar.jpg"
+            alt="Golden sunset over the Mediterranean sea from a boat"
+            className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+            loading="lazy"
+            width={1920}
+            height={600}
+          />
+        </picture>
       </div>
 
       {/* ═══ BEST VIEWPOINTS ═══ feature grid */}

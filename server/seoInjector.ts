@@ -1451,7 +1451,8 @@ function buildLangChunkHrefs(distPath: string): Record<string, string> {
     const assetsDir = path.resolve(distPath, "assets");
     const files = fs.readdirSync(assetsDir);
     for (const lang of SUPPORTED_LANGUAGES) {
-      if (lang === "es") continue; // es is bundled in the main entry, not lazy
+      // Since the 2026-06-11 load audit (A2) EVERY locale, es included, is a
+      // lazy chunk: the main entry no longer embeds Spanish.
       const re = new RegExp(`^${lang}-[A-Za-z0-9_-]+\\.js$`);
       const match = files.find((f) => re.test(f));
       if (match) map[lang] = `/assets/${match}`;
@@ -1609,11 +1610,11 @@ function injectMeta(
     result = result.replace(/\s*<link rel="preload" as="image"[^>]*hero-[^>]*>/g, "");
   }
 
-  // Preload the active language's translation chunk for non-Spanish visitors.
-  // Without this the chunk is only discovered after React hydrates and calls the
-  // lazy langLoader, so the user sees the Spanish fallback for an extra round
-  // trip. modulepreload fetches it in parallel with the main bundle.
-  if (lang !== "es") {
+  // Preload the active language's translation chunk. Every locale (es
+  // included since the 2026-06-11 load audit) is a lazy chunk, and the app
+  // gates its first render on it: without this modulepreload the chunk would
+  // only be discovered after the entry executes, adding a full round trip.
+  {
     const langHref = cachedLangChunkHrefs?.[lang];
     if (langHref) {
       result = result.replace(

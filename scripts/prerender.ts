@@ -13,7 +13,7 @@
 import { spawn, type ChildProcess } from "child_process";
 import fs from "fs";
 import path from "path";
-import { chromium, type Browser, type BrowserContext } from "playwright";
+import { chromium, type Browser, type BrowserContext, type Page } from "playwright";
 import { TRANSLATED_STATIC_PATHS } from "../server/seo/translatedStaticPaths";
 import { OCCASION_MATRIX_ENABLED, liveMatrixCombos } from "../shared/occasionMatrix";
 import { matrixSlug, matrixPath, resolveMatrixSlug } from "../shared/occasionMatrixPage";
@@ -239,11 +239,55 @@ async function fetchSlugs(
 // Core rendering
 // ---------------------------------------------------------------------------
 
+/**
+ * Pre-seed storage BEFORE any page script runs so consent-gated overlays
+ * (cookie banner) and the Boat Club cross-promo modal never open during
+ * capture. Keys must match CookieBanner.tsx / BoatClubModal.tsx.
+ */
+async function seedStorage(context: BrowserContext): Promise<void> {
+  await context.addInitScript(() => {
+    try {
+      window.localStorage.setItem("cookieConsent", "essential");
+      window.localStorage.setItem("boatClubPromoDismissed", "true");
+      window.sessionStorage.setItem("boatClubPromoShown", "true");
+    } catch {
+      // Storage unavailable — overlays will be stripped post-load anyway.
+    }
+  });
+}
+
+/**
+ * Strip transient UI from the DOM right before capturing the snapshot:
+ *  - open dialogs/popups (role="dialog") and fixed overlays with z-index>=200
+ *    (cookie banner included — it renders at z-[300])
+ *  - body inline style (Radix scroll-lock leaves overflow:hidden behind)
+ *  - <video> elements (their hashed src can 404 on a later build; the client
+ *    re-renders them on hydration, so the snapshot doesn't need them)
+ */
+async function sanitizeSnapshot(page: Page): Promise<void> {
+  await page.evaluate(() => {
+    document.querySelectorAll('[role="dialog"]').forEach((el) => el.remove());
+
+    for (const el of Array.from(document.body.querySelectorAll<HTMLElement>("*"))) {
+      if (!el.isConnected) continue;
+      const style = window.getComputedStyle(el);
+      if (style.position !== "fixed") continue;
+      const z = parseInt(style.zIndex, 10);
+      if (!Number.isNaN(z) && z >= 200) el.remove();
+    }
+
+    document.body.removeAttribute("style");
+
+    document.querySelectorAll("video").forEach((el) => el.remove());
+  });
+}
+
 async function renderPage(
   context: BrowserContext,
   job: RenderJob,
   waitForSelector: string,
 ): Promise<boolean> {
+  await seedStorage(context);
   const page = await context.newPage();
   try {
     await page.goto(job.url, { waitUntil: "domcontentloaded", timeout: 30_000 });
@@ -251,6 +295,9 @@ async function renderPage(
 
     // Wait for React to fully render content (lazy components, data fetching)
     await page.waitForTimeout(3000);
+
+    // Remove popups/overlays/scroll-lock/videos before capturing
+    await sanitizeSnapshot(page);
 
     const html = await page.content();
 

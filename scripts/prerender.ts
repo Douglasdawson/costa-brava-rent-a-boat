@@ -392,9 +392,13 @@ async function main() {
       }
 
       if (!launched) {
-        console.warn("\nWARN: Chromium not available in this environment — skipping prerender.");
-        console.warn("      Prerendered HTML will not be generated; the SPA fallback will be used.");
+        console.warn("\nPRERENDER SKIPPED: Chromium not available in this environment.");
+        console.warn("      Prerendered HTML will not be generated; SSR fallbacks will serve crawlers.");
         console.warn("      Install Chromium or set PLAYWRIGHT_CHROMIUM_PATH to enable prerendering.\n");
+        // Non-zero so build:deploy's `|| echo WARN...` branch fires and the
+        // deploy log shows the skip explicitly (it used to exit 0 silently —
+        // that's why nobody noticed production never had prerendered HTML).
+        process.exitCode = 2;
         return;
       }
     }

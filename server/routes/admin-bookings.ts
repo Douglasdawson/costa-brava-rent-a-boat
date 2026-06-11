@@ -5,6 +5,21 @@ import { updateBookingSchema, insertBookingSchema } from "@shared/schema";
 import { requireAdminSession, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
 import { audit } from "../lib/audit";
+import { sendGA4Event } from "../lib/analyticsServer";
+
+// CRM-created/confirmed bookings were analytics-blind (May 2026: 28 real
+// bookings, 0 GA4 events). booking_confirmed is its own event — NOT
+// booking_request_submitted, which means "customer asked" rather than
+// "team confirmed". Fire-and-forget; sendGA4Event never throws.
+function trackBookingConfirmed(booking: { id: string; boatId: string; totalAmount?: string | null }): void {
+  void sendGA4Event("booking_confirmed", {
+    currency: "EUR",
+    value: booking.totalAmount ? Number(booking.totalAmount) : undefined,
+    booking_id: booking.id,
+    boat_id: booking.boatId,
+    source: "crm",
+  });
+}
 
 const calendarBookingsQuerySchema = z.object({
   startDate: z.coerce.date({ required_error: "startDate es requerido" }),
@@ -41,6 +56,10 @@ export function registerAdminBookingRoutes(app: Express) {
       }
 
       const newBooking = await storage.createBooking(validationResult.data);
+
+      if (newBooking.bookingStatus === "confirmed") {
+        trackBookingConfirmed(newBooking);
+      }
 
       res.status(201).json({
         success: true,
@@ -151,6 +170,15 @@ export function registerAdminBookingRoutes(app: Express) {
 
       if (validatedUpdates.bookingStatus === "cancelled") {
         audit(req, "cancel", "booking", req.params.id, { previousStatus: existingBooking.bookingStatus });
+      }
+
+      // Fire only on the TRANSITION into confirmed (editing an already-
+      // confirmed booking must not double-count the conversion).
+      if (
+        validatedUpdates.bookingStatus === "confirmed" &&
+        existingBooking.bookingStatus !== "confirmed"
+      ) {
+        trackBookingConfirmed(updatedBooking);
       }
 
       res.json({

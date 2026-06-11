@@ -7,6 +7,19 @@ export interface PhonePrefix {
   country: string;
 }
 
+/**
+ * Derive the ISO 3166-1 alpha-2 code from a regional-indicator flag emoji
+ * (e.g. the Spain flag emoji -> "ES"). Used to render SVG flags via
+ * country-flag-icons instead of emoji glyphs (project rule: no emoji in UI).
+ */
+export function flagEmojiToIso2(flag: string): string {
+  return Array.from(flag)
+    .map(char => char.codePointAt(0) ?? 0)
+    .filter(cp => cp >= 0x1f1e6 && cp <= 0x1f1ff)
+    .map(cp => String.fromCharCode(cp - 0x1f1e6 + 65))
+    .join("");
+}
+
 export const PHONE_PREFIXES: PhonePrefix[] = [
   // Priority: top tourism origins for Costa Brava
   { code: "+34", flag: "\u{1F1EA}\u{1F1F8}", country: "Spain" },

@@ -11,6 +11,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import {
   PHONE_PREFIXES,
+  flagEmojiToIso2,
   getDefaultPhonePrefixForLanguage,
 } from "@/utils/phone-prefixes";
 import { openWhatsApp } from "@/utils/whatsapp";
@@ -362,7 +363,7 @@ export default function JetSkiRequestModal({
                   >
                     {PHONE_PREFIXES.map((p) => (
                       <option key={`${p.code}-${p.country}`} value={p.code}>
-                        {p.flag} {p.code}
+                        {p.code} {flagEmojiToIso2(p.flag)}
                       </option>
                     ))}
                   </select>

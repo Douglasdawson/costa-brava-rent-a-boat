@@ -46,6 +46,19 @@ export default function Navigation() {
     return () => unlockScroll("mobile-nav");
   }, []);
 
+  // Close the mobile menu with Escape (keyboard parity with dialogs)
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+        unlockScroll("mobile-nav");
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
   const handleMyAccountClick = () => {
     closeMenu();
     setLocation(localizedPath("clientDashboard"));

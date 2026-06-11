@@ -17,6 +17,7 @@ import {
 } from "@/utils/seo-schemas";
 import {
   PHONE_PREFIXES,
+  flagEmojiToIso2,
   getDefaultPhonePrefixForLanguage,
 } from "@/utils/phone-prefixes";
 
@@ -307,7 +308,7 @@ export default function SharedSailingPage() {
                     >
                       {PHONE_PREFIXES.map((p) => (
                         <option key={`${p.code}-${p.country}`} value={p.code}>
-                          {p.flag} {p.code}
+                          {p.code} {flagEmojiToIso2(p.flag)}
                         </option>
                       ))}
                     </select>

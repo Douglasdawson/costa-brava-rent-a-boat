@@ -429,7 +429,7 @@ export const fr: Translations = {
       packSelected: "Pack sélectionné",
     },
     confirmTitle: "Confirmer la réservation",
-    confirmSubtitle: "Vérifiez les détails. Confirmation par WhatsApp en quelques minutes.",
+    confirmSubtitle: "Vérifiez les détails. Confirmation par WhatsApp en moins de 2 heures.",
     summaryClient: "Client",
     estimatedTotal: "Total estimé",
     basePrice: "Prix de base",
@@ -791,7 +791,7 @@ export const fr: Translations = {
     numberOfPeople: "Nombre de personnes",
     maxCapacityError: "Ce bateau a une capacité maximale de {max} personnes",
     yourData: "Vos données",
-    confirmViaWhatsApp: "Confirmation par WhatsApp en minutes",
+    confirmViaWhatsApp: "Confirmation par WhatsApp en moins de 2 heures",
     firstName: "Prénom",
     lastName: "Nom de famille",
     fullName: "Nom complet",
@@ -1511,7 +1511,7 @@ export const fr: Translations = {
     ],
     whatsNext: "Prochaines étapes",
     whatsNextSteps: [
-      "Vous recevrez une confirmation par WhatsApp en quelques minutes",
+      "Vous recevrez une confirmation par WhatsApp en moins de 2 heures",
       "24h avant : rappel avec instructions",
       "Jour de la location : présentez-vous au Puerto de Blanes",
     ],
@@ -1671,7 +1671,7 @@ export const fr: Translations = {
   bookingTrust: {
     customers: "Plus de 5000 clients",
     rating: "4.8 Google",
-    confirmation: "Réponse en quelques minutes",
+    confirmation: "Réponse en moins de 2 heures",
     freeCancellation: "Changement de date gratuit*",
     freeCancellationFootnote: "* Sous réserve de disponibilité",
     securePayment: "Réservation sécurisée",
@@ -1974,7 +1974,7 @@ export const fr: Translations = {
       {
         question: "Combien coûte une excursion en bateau au coucher du soleil ?",
         answer:
-          "Une excursion de 2 heures au coucher du soleil en bateau sans permis coûte à partir de 140 EUR au total ({noLicBaja1h} EUR/heure en basse saison). L'essence est incluse pour les bateaux sans permis. Le bateau peut accueillir jusqu'à 5 personnes, donc le coût par personne peut être à partir de 28 EUR. Les bateaux sans permis incluent l'essence, l'assurance, l'équipement de sécurité et la formation.",
+          "Une excursion de 2 heures au coucher du soleil en bateau sans permis coûte à partir de 140 € au total ({noLicBaja1h} €/heure en basse saison). L'essence est incluse pour les bateaux sans permis. Le bateau peut accueillir jusqu'à 5 personnes, donc le coût par personne peut être à partir de 28 €. Les bateaux sans permis incluent l'essence, l'assurance, l'équipement de sécurité et la formation.",
       },
     ],
     sunsetTimes: [
@@ -2071,7 +2071,7 @@ export const fr: Translations = {
       "Contrairement aux croisières coucher de soleil en groupe, le bateau est rien que pour vous. Vous choisissez où mouiller, combien de temps rester et ce que vous apportez à bord. Pas de guide qui vous presse, pas d'autres touristes. Juste vous et la Méditerranée dans son plus beau moment.",
     whyAffordableTitle: "Facile et abordable",
     whyAffordableDesc:
-      "Nos bateaux sans permis sont incroyablement faciles à manœuvrer. Après une formation de 15 minutes au port, vous êtes prêts. Le bateau accueille jusqu'à 5 personnes, donc une excursion de 2 heures au coucher du soleil peut coûter à partir de 28 EUR par personne carburant inclus. Moins que la plupart des dîners sur la Costa Brava.",
+      "Nos bateaux sans permis sont incroyablement faciles à manœuvrer. Après une formation de 15 minutes au port, vous êtes prêts. Le bateau accueille jusqu'à 5 personnes, donc une excursion de 2 heures au coucher du soleil peut coûter à partir de 28 € par personne carburant inclus. Moins que la plupart des dîners sur la Costa Brava.",
     whyTemperatureTitle: "Température parfaite au coucher du soleil",
     whyTemperatureDesc:
       "En fin d'après-midi, la chaleur du jour s'est atténuée. La brise marine vous garde à l'aise. L'eau est à son point le plus chaud après avoir absorbé le soleil toute la journée. C'est le moment idéal pour être dans l'eau, que ce soit pour nager, flotter ou simplement contempler le ciel qui change de couleur.",
@@ -2118,7 +2118,7 @@ export const fr: Translations = {
       {
         question: "Puis-je louer du matériel de snorkeling avec le bateau ?",
         answer:
-          "Oui. Nous proposons des kits de snorkeling (masque, tuba et palmes) pour 7,50 EUR par personne. Le matériel est récupéré à l'embarquement et rendu à la fin de la location. Vous pouvez également apporter votre propre équipement sans frais supplémentaires.",
+          "Oui. Nous proposons des kits de snorkeling (masque, tuba et palmes) pour 7,50 € par personne. Le matériel est récupéré à l'embarquement et rendu à la fin de la location. Vous pouvez également apporter votre propre équipement sans frais supplémentaires.",
       },
       {
         question: "Quelle est la meilleure période pour faire du snorkeling à Blanes ?",
@@ -2176,7 +2176,7 @@ export const fr: Translations = {
       {
         name: "Bateaux avec permis (6-7 personnes)",
         duration: "4-6 heures recommandées",
-        price: "À partir de 90 EUR/heure",
+        price: "À partir de 90 €/heure",
         description:
           "Plus grande autonomie pour visiter plusieurs criques en une seule sortie. Idéaux pour les groupes qui souhaitent combiner snorkeling et navigation vers Lloret ou Tossa.",
       },
@@ -2184,7 +2184,7 @@ export const fr: Translations = {
     depthLabel: "Profondeur :",
     heroTitle: "Excursion Snorkeling en Bateau depuis Blanes",
     heroDescription:
-      "Découvrez les fonds marins de la Costa Brava depuis nos bateaux au Port de Blanes. Naviguez jusqu'aux plus belles criques, jetez l'ancre et plongez dans des eaux cristallines avec une visibilité jusqu'à 15 mètres. Équipement de snorkeling disponible pour 7,50 EUR/personne.",
+      "Découvrez les fonds marins de la Costa Brava depuis nos bateaux au Port de Blanes. Naviguez jusqu'aux plus belles criques, jetez l'ancre et plongez dans des eaux cristallines avec une visibilité jusqu'à 15 mètres. Équipement de snorkeling disponible pour 7,50 €/personne.",
     badgeSpots: "3 criques de snorkeling",
     badgeVisibility: "Visibilité 10-15m",
     badgeDuration: "2-4 heures recommandées",
@@ -2210,7 +2210,7 @@ export const fr: Translations = {
       "Taud / bimini pour l'ombre sur le pont",
       "Ancre pour mouiller dans les criques",
     ],
-    rentalTitle: "Location supplémentaire : 7,50 EUR/personne",
+    rentalTitle: "Location supplémentaire : 7,50 €/personne",
     rentalItems: [
       "Masque de snorkeling de qualité",
       "Tuba avec valve anti-remontée d'eau",
@@ -2265,7 +2265,7 @@ export const fr: Translations = {
       {
         question: "Qu'est-ce qui est inclus dans le prix de la location ?",
         answer:
-          "Le prix des bateaux sans permis comprend l'essence, l'assurance, les gilets de sauvetage pour tous (y compris enfants), l'échelle de bain, le taud/bimini pour l'ombrage et la formation à la sécurité. Seul l'équipement de snorkeling est en supplément (7,50 EUR/personne).",
+          "Le prix des bateaux sans permis comprend l'essence, l'assurance, les gilets de sauvetage pour tous (y compris enfants), l'échelle de bain, le taud/bimini pour l'ombrage et la formation à la sécurité. Seul l'équipement de snorkeling est en supplément (7,50 €/personne).",
       },
       {
         question: "Que devons-nous emporter pour une sortie en bateau avec des enfants ?",
@@ -2381,7 +2381,7 @@ export const fr: Translations = {
       {
         question: "Ai-je besoin d'un permis de pêche pour pêcher depuis le bateau ?",
         answer:
-          "Oui. Pour la pêche récréative en mer, vous avez besoin du permis de pêche récréative maritime de la Generalitat de Catalunya. Vous pouvez l'obtenir en ligne sur gencat.cat pour environ 14 EUR (validité 2 ans). Il est différent du permis de navigation : le permis de pêche est pour pêcher, celui de navigation pour piloter le bateau.",
+          "Oui. Pour la pêche récréative en mer, vous avez besoin du permis de pêche récréative maritime de la Generalitat de Catalunya. Vous pouvez l'obtenir en ligne sur gencat.cat pour environ 14 € (validité 2 ans). Il est différent du permis de navigation : le permis de pêche est pour pêcher, celui de navigation pour piloter le bateau.",
       },
       {
         question: "Quel bateau me faut-il pour pêcher en mer ?",
@@ -2431,7 +2431,7 @@ export const fr: Translations = {
         type: "Bateaux avec permis",
         capacity: "6-7 personnes",
         autonomy: "Plus grande autonomie et rayon d'action",
-        price: "À partir de 90 EUR/heure (essence non incluse)",
+        price: "À partir de 90 €/heure (essence non incluse)",
         advantages: [
           "Accès aux zones de pêche plus éloignées (5+ milles)",
           "Plus de puissance pour la traîne et le jigging",
@@ -2507,7 +2507,7 @@ export const fr: Translations = {
     regulationsTitle: "Réglementations et normes de pêche",
     licenseTitle: "Permis de pêche obligatoire",
     licenseDesc:
-      "Pour pêcher en mer depuis un bateau, vous avez besoin du permis de pêche récréative maritime de la Generalitat de Catalunya. Vous pouvez l'obtenir en ligne sur gencat.cat pour environ 14 EUR avec une validité de 2 ans.",
+      "Pour pêcher en mer depuis un bateau, vous avez besoin du permis de pêche récréative maritime de la Generalitat de Catalunya. Vous pouvez l'obtenir en ligne sur gencat.cat pour environ 14 € avec une validité de 2 ans.",
     catchLimitsTitle: "Limites de capture",
     catchLimitsItems: [
       "Maximum 5 kg par personne et par jour",
@@ -2563,7 +2563,7 @@ export const fr: Translations = {
         {
           question: "Combien coûte la location d'un bateau au Port de Blanes ?",
           answer:
-            "Les bateaux sans permis coûtent à partir de {noLicBaja1h} EUR/heure en basse saison (avril-juin, septembre-octobre). En haute saison (août), à partir de {noLicAlta1h} EUR/heure. Le prix comprend le carburant, l'assurance et l'équipement de sécurité.",
+            "Les bateaux sans permis coûtent à partir de {noLicBaja1h} €/heure en basse saison (avril-juin, septembre-octobre). En haute saison (août), à partir de {noLicAlta1h} €/heure. Le prix comprend le carburant, l'assurance et l'équipement de sécurité.",
         },
         {
           question: "Où puis-je aller en bateau depuis Blanes ?",
@@ -2685,7 +2685,7 @@ export const fr: Translations = {
         experiencesTitle: "Expériences Populaires depuis Blanes",
         expSnorkelTitle: "Snorkeling à Cala Brava",
         expSnorkelDesc:
-          "Naviguez 15 minutes jusqu'à Cala Brava et découvrez ses fonds marins. Eaux cristallines avec une visibilité jusqu'à 15 mètres, idéales pour observer les poissons de roche et les poulpes. Location de masque et tuba pour seulement 7,50 EUR.",
+          "Naviguez 15 minutes jusqu'à Cala Brava et découvrez ses fonds marins. Eaux cristallines avec une visibilité jusqu'à 15 mètres, idéales pour observer les poissons de roche et les poulpes. Location de masque et tuba pour seulement 7,50 €.",
         expSunsetTitle: "Sortie au coucher de soleil",
         expSunsetDesc:
           "Réservez le dernier créneau de l'après-midi et profitez du coucher de soleil en mer. La lumière dorée sur les falaises de la Costa Brava est un spectacle inoubliable. Idéal pour les couples.",
@@ -2963,7 +2963,7 @@ export const fr: Translations = {
         byCar: "En Voiture",
         byCarDesc: "Depuis Malgrat, prenez la N-II direction Blanes. 8 km, environ 10 minutes.",
         byTaxi: "En Taxi",
-        byTaxiDesc: "Taxi depuis Malgrat au Port de Blanes : environ 12-15 EUR, 10 minutes.",
+        byTaxiDesc: "Taxi depuis Malgrat au Port de Blanes : environ 12-15 €, 10 minutes.",
         byPublicTransport: "En Transport Public",
         byPublicTransportDesc:
           "Train RENFE ligne R1 depuis Malgrat à Blanes (5 min, toutes les 30 min). De la gare, 15 min à pied.",
@@ -2986,7 +2986,7 @@ export const fr: Translations = {
         {
           question: "Combien coûte la location d'un bateau depuis Blanes ?",
           answer:
-            "La location de bateau commence à partir de {noLicBaja1h} EUR par heure avec essence incluse. Aucun permis n'est nécessaire pour les bateaux jusqu'à 15 CV. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
+            "La location de bateau commence à partir de {noLicBaja1h} € par heure avec essence incluse. Aucun permis n'est nécessaire pour les bateaux jusqu'à 15 CV. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
         },
         {
           question: "Ai-je besoin d'un permis de navigation ?",
@@ -3013,7 +3013,7 @@ export const fr: Translations = {
           question:
             "Y a-t-il un service de transfert depuis les hôtels de Malgrat vers le Port de Blanes ?",
           answer:
-            "Nous n'offrons pas de transfert direct, mais le trajet est très court : 5 minutes en train R1 (Malgrat → Blanes) ou 10 minutes en voiture/taxi (coût approximatif 12-15 EUR). La gare de Blanes se trouve à 10 minutes à pied du port. Il y a aussi le bus local L23.",
+            "Nous n'offrons pas de transfert direct, mais le trajet est très court : 5 minutes en train R1 (Malgrat → Blanes) ou 10 minutes en voiture/taxi (coût approximatif 12-15 €). La gare de Blanes se trouve à 10 minutes à pied du port. Il y a aussi le bus local L23.",
         },
       ],
     },
@@ -3028,7 +3028,7 @@ export const fr: Translations = {
           question:
             "Combien coûte la location d'un bateau depuis Blanes si je suis à Santa Susanna ?",
           answer:
-            "La location de bateau commence à partir de {noLicBaja1h} EUR par heure avec essence incluse. Aucun permis n'est nécessaire pour les bateaux jusqu'à 15 CV. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
+            "La location de bateau commence à partir de {noLicBaja1h} € par heure avec essence incluse. Aucun permis n'est nécessaire pour les bateaux jusqu'à 15 CV. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
         },
         {
           question: "Ai-je besoin d'un permis de navigation pour louer un bateau ?",
@@ -3048,13 +3048,13 @@ export const fr: Translations = {
         {
           question: "Quelle est la meilleure excursion en bateau si je séjourne à Santa Susanna ?",
           answer:
-            "Depuis Blanes, nous recommandons : (a) Circuit des criques 4h sans permis jusqu'à Playa de Fenals avec mouillage dans 2-3 criques cristallines (à partir de 135 EUR pour 5 personnes) ; (b) Excursion privée avec skipper 4h jusqu'à Tossa et Cala Bona (à partir de {excursionBaja4h} EUR, idéal si vous n'avez pas d'expérience nautique) ; (c) Bateau avec Permis de Base si quelqu'un du groupe a le permis (à partir de 240 EUR / 4h).",
+            "Depuis Blanes, nous recommandons : (a) Circuit des criques 4h sans permis jusqu'à Playa de Fenals avec mouillage dans 2-3 criques cristallines (à partir de 135 € pour 5 personnes) ; (b) Excursion privée avec skipper 4h jusqu'à Tossa et Cala Bona (à partir de {excursionBaja4h} €, idéal si vous n'avez pas d'expérience nautique) ; (c) Bateau avec Permis de Base si quelqu'un du groupe a le permis (à partir de 240 € / 4h).",
         },
         {
           question:
             "Puis-je faire une excursion en bateau au coucher du soleil depuis Santa Susanna ?",
           answer:
-            "Oui, c'est très populaire. Depuis Blanes, nous proposons des promenades au coucher du soleil (18h30-21h00 selon le mois) avec bateau sans permis à 115 EUR pour 2 heures. Vous naviguerez le long des 7 criques avec une lumière dorée. Depuis Santa Susanna, vous arrivez en 15 min en voiture ou 10 min en train. Réservez à l'avance en été.",
+            "Oui, c'est très populaire. Depuis Blanes, nous proposons des promenades au coucher du soleil (18h30-21h00 selon le mois) avec bateau sans permis à 115 € pour 2 heures. Vous naviguerez le long des 7 criques avec une lumière dorée. Depuis Santa Susanna, vous arrivez en 15 min en voiture ou 10 min en train. Réservez à l'avance en été.",
         },
       ],
       hero: {
@@ -3094,7 +3094,7 @@ export const fr: Translations = {
         byCarDesc:
           "Depuis Santa Susanna, prenez la N-II direction nord vers Blanes. 12 km, environ 15 minutes.",
         byTaxi: "En Taxi",
-        byTaxiDesc: "Taxi depuis Santa Susanna au Port de Blanes : environ 18-22 EUR, 15 minutes.",
+        byTaxiDesc: "Taxi depuis Santa Susanna au Port de Blanes : environ 18-22 €, 15 minutes.",
         byPublicTransport: "En Transport Public",
         byPublicTransportDesc:
           "Train RENFE ligne R1 depuis Santa Susanna à Blanes (10 min, toutes les 30 min). De la gare, 15 min à pied.",
@@ -3120,7 +3120,7 @@ export const fr: Translations = {
         {
           question: "Combien coûte la location d'un bateau depuis Blanes si je suis à Calella ?",
           answer:
-            "La location de bateau commence à partir de {noLicBaja1h} EUR par heure avec essence incluse. Aucun permis n'est nécessaire pour les bateaux jusqu'à 15 CV. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
+            "La location de bateau commence à partir de {noLicBaja1h} € par heure avec essence incluse. Aucun permis n'est nécessaire pour les bateaux jusqu'à 15 CV. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
         },
         {
           question: "Ai-je besoin d'expérience préalable pour louer un bateau ?",
@@ -3140,12 +3140,12 @@ export const fr: Translations = {
         {
           question: "Puis-je faire une excursion en bateau depuis Calella jusqu'à Tossa de Mar ?",
           answer:
-            "Pas directement depuis Calella (il n'y a pas de location). Depuis Blanes oui : avec un bateau avec la Licencia de Navegación (LN), vous atteignez Tossa en 45 min (à partir de {licBaja2h} EUR/2h), ou avec notre Excursion Privée avec Capitaine 4h jusqu'à Tossa incluant Cala Bona et Vila Vella (à partir de {excursionBaja4h} EUR pour jusqu'à 6 personnes, plus le skipper). Les bateaux sans permis ne peuvent pas atteindre Tossa en raison de la limite légale de 2 milles.",
+            "Pas directement depuis Calella (il n'y a pas de location). Depuis Blanes oui : avec un bateau avec la Licencia de Navegación (LN), vous atteignez Tossa en 45 min (à partir de {licBaja2h} €/2h), ou avec notre Excursion Privée avec Capitaine 4h jusqu'à Tossa incluant Cala Bona et Vila Vella (à partir de {excursionBaja4h} € pour jusqu'à 6 personnes, plus le skipper). Les bateaux sans permis ne peuvent pas atteindre Tossa en raison de la limite légale de 2 milles.",
         },
         {
           question: "Combien coûte le train R1 de Calella à Blanes ?",
           answer:
-            "Le billet simple R1 Calella → Blanes coûte environ 3 EUR (tarif ATM zone 4-5). Avec la carte T-Casual 10 voyages, c'est plus économique. Durée : 15 minutes. Fréquence : toutes les 30 minutes en saison. De la gare de Blanes au Port, comptez 10 minutes à pied ou 3 min en taxi.",
+            "Le billet simple R1 Calella → Blanes coûte environ 3 € (tarif ATM zone 4-5). Avec la carte T-Casual 10 voyages, c'est plus économique. Durée : 15 minutes. Fréquence : toutes les 30 minutes en saison. De la gare de Blanes au Port, comptez 10 minutes à pied ou 3 min en taxi.",
         },
       ],
       hero: {
@@ -3185,7 +3185,7 @@ export const fr: Translations = {
         byCarDesc:
           "Depuis Calella, prenez la N-II direction nord vers Blanes. 17 km, environ 20 minutes.",
         byTaxi: "En Taxi",
-        byTaxiDesc: "Taxi depuis Calella au Port de Blanes : environ 25-30 EUR, 20 minutes.",
+        byTaxiDesc: "Taxi depuis Calella au Port de Blanes : environ 25-30 €, 20 minutes.",
         byPublicTransport: "En Transport Public",
         byPublicTransportDesc:
           "Train RENFE ligne R1 depuis Calella à Blanes (15 min, toutes les 30 min). De la gare, 15 min à pied.",
@@ -3257,7 +3257,7 @@ export const fr: Translations = {
         licensedCapacity: "Jusqu'à 7 personnes à bord",
         licensedNavigation: "Navigation en haute mer sans limites",
         licensedFuel: "Carburant NON inclus (dépôt séparé)",
-        licensedPrice: "À partir de 90 EUR/heure",
+        licensedPrice: "À partir de 90 €/heure",
         licensedDesc:
           "Pour les navigateurs qualifiés souhaitant explorer au-delà de la côte immédiate. Plus de puissance, d'autonomie et de capacité. Le carburant est facturé séparément. La Licencia de Navegación (LN) suffit ; PNB, PER ou équivalents européens acceptés.",
         bestCovesTitle: "Les Meilleures Criques de la Costa Brava en Bateau",
@@ -3308,7 +3308,7 @@ export const fr: Translations = {
         {
           question: "Combien coûte la location d'un bateau depuis Blanes si j'habite à Tordera ?",
           answer:
-            "La location de bateau sans permis commence à partir de {noLicBaja1h} EUR par heure avec essence incluse. Bateaux avec permis à partir de {licBaja2h} EUR pour 2 heures. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
+            "La location de bateau sans permis commence à partir de {noLicBaja1h} € par heure avec essence incluse. Bateaux avec permis à partir de {licBaja2h} € pour 2 heures. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
         },
         {
           question: "Ai-je besoin d'un permis de navigation ?",
@@ -3374,7 +3374,7 @@ export const fr: Translations = {
           "Depuis Tordera, prenez la route direction Blanes (GI-600 ou C-32). Ce sont 10 km de trajet direct jusqu'au Port de Blanes. Le stationnement dans la zone du port est gratuit et dispose généralement d'une bonne disponibilité, surtout si vous arrivez le matin.",
         howTaxiTitle: "En taxi",
         howTaxiDesc:
-          "Un taxi depuis Tordera jusqu'au Port de Blanes coûte environ 15-20 EUR. C'est une option rapide et confortable pour l'aller-retour.",
+          "Un taxi depuis Tordera jusqu'au Port de Blanes coûte environ 15-20 €. C'est une option rapide et confortable pour l'aller-retour.",
         howTransportTitle: "En train RENFE (8 minutes)",
         howTransportDesc:
           "La ligne R1 de Rodalies de RENFE relie Tordera à Blanes en seulement 8 minutes. C'est l'option la plus rapide et économique. Les trains partent toutes les 30 minutes en saison. Depuis la gare de Blanes, le port se trouve à 10-15 minutes à pied par la promenade maritime.",
@@ -3391,10 +3391,10 @@ export const fr: Translations = {
         pricingIntro:
           "Tarifs transparents avec essence incluse pour tous les bateaux sans permis. Sans surprises ni coûts additionnels.",
         pricingNoLicTitle: "Bateaux sans permis",
-        pricingNoLicFrom: "Dès {noLicBaja1h} EUR/heure (essence incluse)",
+        pricingNoLicFrom: "Dès {noLicBaja1h} €/heure (essence incluse)",
         pricingNoLicCapacity: "Capacité : 4-7 personnes selon le modèle",
         pricingLicTitle: "Bateaux avec permis",
-        pricingLicFrom: "Dès {licBaja2h} EUR / 2 heures",
+        pricingLicFrom: "Dès {licBaja2h} € / 2 heures",
         pricingLicEngines: "Moteurs de 40 à 115 CV",
         pricingLicCapacity: "Capacité : jusqu'à 11 personnes",
         pricingButton: "Voir tous les tarifs et bateaux",
@@ -3415,7 +3415,7 @@ export const fr: Translations = {
         {
           question: "Combien coûte la location d'un bateau depuis Blanes si je suis à Palafolls ?",
           answer:
-            "La location de bateau sans permis commence à partir de {noLicBaja1h} EUR par heure avec essence incluse. Bateaux avec permis à partir de {licBaja2h} EUR pour 2 heures. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
+            "La location de bateau sans permis commence à partir de {noLicBaja1h} € par heure avec essence incluse. Bateaux avec permis à partir de {licBaja2h} € pour 2 heures. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
         },
         {
           question: "Puis-je aller depuis le camping de Palafolls au Port de Blanes facilement ?",
@@ -3480,7 +3480,7 @@ export const fr: Translations = {
           "Depuis Palafolls, prenez la BV-6001 direction Blanes. Ce ne sont que 8 km jusqu'au Port de Blanes. Le trajet est rapide et simple, avec une bonne signalisation. Depuis les campings de la zone, le parcours est encore plus direct.",
         howTaxiTitle: "En taxi",
         howTaxiDesc:
-          "Un taxi depuis Palafolls jusqu'au Port de Blanes coûte environ 12-18 EUR. C'est une option confortable si vous ne disposez pas de voiture.",
+          "Un taxi depuis Palafolls jusqu'au Port de Blanes coûte environ 12-18 €. C'est une option confortable si vous ne disposez pas de voiture.",
         howTransportTitle: "En bus",
         howTransportDesc:
           "Palafolls n'a pas de gare, mais il y a des lignes de bus qui relient Blanes. Le trajet dure environ 20 minutes. Consultez les horaires des lignes locales en haute saison, car la fréquence augmente pendant l'été.",
@@ -3497,10 +3497,10 @@ export const fr: Translations = {
         pricingIntro:
           "Tarifs transparents avec essence incluse pour tous les bateaux sans permis. Sans coûts cachés.",
         pricingNoLicTitle: "Bateaux sans permis",
-        pricingNoLicFrom: "Dès {noLicBaja1h} EUR/heure (essence incluse)",
+        pricingNoLicFrom: "Dès {noLicBaja1h} €/heure (essence incluse)",
         pricingNoLicCapacity: "Capacité : 4-7 personnes selon le modèle",
         pricingLicTitle: "Bateaux avec permis",
-        pricingLicFrom: "Dès {licBaja2h} EUR / 2 heures",
+        pricingLicFrom: "Dès {licBaja2h} € / 2 heures",
         pricingLicEngines: "Moteurs de 40 à 115 CV",
         pricingLicCapacity: "Capacité : jusqu'à 11 personnes",
         pricingButton: "Voir tous les tarifs et bateaux",
@@ -3522,7 +3522,7 @@ export const fr: Translations = {
           question:
             "Combien coûte la location d'un bateau depuis Blanes si je suis à Pineda de Mar ?",
           answer:
-            "La location de bateau sans permis commence à partir de {noLicBaja1h} EUR par heure avec essence incluse. Bateaux avec permis à partir de {licBaja2h} EUR pour 2 heures. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
+            "La location de bateau sans permis commence à partir de {noLicBaja1h} € par heure avec essence incluse. Bateaux avec permis à partir de {licBaja2h} € pour 2 heures. Nous disposons de {fleetCount} bateaux pour 4 à 11 personnes.",
         },
         {
           question: "Ai-je besoin d'un permis de navigation pour louer un bateau ?",
@@ -3587,7 +3587,7 @@ export const fr: Translations = {
           "Prenez la N-II direction nord vers Blanes. Ce sont 15 km de trajet confortable et direct. Depuis la plupart des hôtels de Pineda de Mar, vous arriverez au Port de Blanes en environ 18 minutes. Le trajet longe la côte et est très agréable.",
         howTaxiTitle: "En taxi",
         howTaxiDesc:
-          "Un taxi depuis Pineda de Mar jusqu'au Port de Blanes coûte environ 20-25 EUR. C'est une bonne option si vous ne disposez pas de voiture ou préférez ne pas vous préoccuper du stationnement.",
+          "Un taxi depuis Pineda de Mar jusqu'au Port de Blanes coûte environ 20-25 €. C'est une bonne option si vous ne disposez pas de voiture ou préférez ne pas vous préoccuper du stationnement.",
         howTransportTitle: "En train RENFE (12 minutes)",
         howTransportDesc:
           "La ligne R1 de Rodalies de RENFE relie Pineda de Mar à Blanes en seulement 12 minutes. Les trains partent toutes les 30 minutes en haute saison. Depuis la gare de Blanes, le port se trouve à environ 10-15 minutes à pied par la promenade maritime.",
@@ -3604,10 +3604,10 @@ export const fr: Translations = {
         pricingIntro:
           "Nous proposons des tarifs compétitifs avec essence incluse pour tous les bateaux sans permis. Pas de coûts cachés ni de suppléments pour le carburant.",
         pricingNoLicTitle: "Bateaux sans permis",
-        pricingNoLicFrom: "Dès {noLicBaja1h} EUR/heure (essence incluse)",
+        pricingNoLicFrom: "Dès {noLicBaja1h} €/heure (essence incluse)",
         pricingNoLicCapacity: "Capacité : 4-7 personnes selon le modèle",
         pricingLicTitle: "Bateaux avec permis",
-        pricingLicFrom: "Dès {licBaja2h} EUR / 2 heures",
+        pricingLicFrom: "Dès {licBaja2h} € / 2 heures",
         pricingLicEngines: "Moteurs de 40 à 115 CV",
         pricingLicCapacity: "Capacité : jusqu'à 11 personnes",
         pricingButton: "Voir tous les tarifs et bateaux",
@@ -3889,7 +3889,7 @@ export const fr: Translations = {
     relatedBlanesName: "Blanes",
     relatedBlanesDesc: "Port d'attache. Bateaux sans permis à partir de 75€/h.",
     relatedLloretName: "Lloret de Mar",
-    relatedLloretDesc: "Criques et plages à 20 min en bateau depuis Blanes.",
+    relatedLloretDesc: "Criques et plages à 25 min en bateau depuis Blanes.",
     relatedTossaName: "Tossa de Mar",
     relatedTossaDesc: "Vila Vella médiévale et les plus belles criques de la Costa Brava.",
   },
@@ -4281,7 +4281,7 @@ export const fr: Translations = {
     introFleetLink: 'bateaux disponibles',
     introSuffix: 'pour trouver le bateau parfait pour votre itineraire.',
     lloretTitle: 'Lloret de Mar en bateau',
-    lloretDesc: 'Plages dorees, criques cachees et vie nocturne. A seulement 20 min en bateau depuis Blanes.',
+    lloretDesc: 'Plages dorees, criques cachees et vie nocturne. A seulement 25 min en bateau depuis Blanes.',
     tossaTitle: 'Tossa de Mar en bateau',
     tossaDesc: 'La Vila Vella medievale, des falaises impressionnantes et les criques les plus sauvages de la Costa Brava.',
     pricesTitle: 'Prix et tarifs',
@@ -4289,7 +4289,7 @@ export const fr: Translations = {
     guide: {
       heading: 'Guide pour naviguer sur la Costa Brava depuis Blanes',
       geographyTitle: 'Le littoral : de Blanes à Tossa de Mar',
-      geographyBody: 'Le port de Blanes marque le début de la Costa Brava. En naviguant vers le nord, le rocher de Sa Palomera laisse place à une succession de criques aux eaux turquoise : Cala Sant Francesc, Santa Cristina et Cala Treumal avant d\'atteindre Lloret de Mar (à environ 20 minutes en bateau), et plus loin Cala Boadella et les criques vierges de Tossa de Mar, avec sa Vila Vella médiévale dominant la mer. Avec un bateau avec permis, le trajet Blanes–Tossa représente environ 30-45 minutes de navigation tranquille le long de la côte.',
+      geographyBody: 'Le port de Blanes marque le début de la Costa Brava. En naviguant vers le nord, le rocher de Sa Palomera laisse place à une succession de criques aux eaux turquoise : Cala Sant Francesc, Santa Cristina et Cala Treumal avant d\'atteindre Lloret de Mar (à environ 25 minutes en bateau), et plus loin Cala Boadella et les criques vierges de Tossa de Mar, avec sa Vila Vella médiévale dominant la mer. Avec un bateau avec permis, le trajet Blanes–Tossa représente environ 30-45 minutes de navigation tranquille le long de la côte.',
       seaTitle: 'Conditions de mer et vents',
       seaBody: 'La partie sud de la Costa Brava offre généralement une navigation confortable en été. Le matin, la mer est habituellement calme ; l\'après-midi, le garbí peut se lever, cette brise du sud-ouest qui ride légèrement la surface. Le vent à surveiller est la tramontane, forte et venant du nord, qui peut se lever rapidement : consultez toujours les prévisions météo maritimes avant de sortir. Les embarcations sans permis naviguent jusqu\'à 2 milles nautiques de la côte (3,7 km) et à une vitesse maximale de 5 nœuds, suffisant pour parcourir toutes ces criques en toute sécurité.',
       calasTitle: 'Criques et snorkeling',
@@ -4475,9 +4475,9 @@ export const fr: Translations = {
       },
       snorkel__locationLloret: {
         seoTitle: 'Snorkeling en bateau à Lloret de Mar : calas Boadella et Banys | Costa Brava Rent a Boat',
-        seoDescription: 'Découvrez les meilleures criques de snorkeling de Lloret de Mar en bateau depuis Blanes : Cala Boadella, Cala Banys, Cala dels Frares. Bateau avec permis, environ 20 minutes de navigation.',
+        seoDescription: 'Découvrez les meilleures criques de snorkeling de Lloret de Mar en bateau depuis Blanes : Cala Boadella, Cala Banys, Cala dels Frares. Bateau avec permis, environ 25 minutes de navigation.',
         h1: 'Snorkeling en bateau à Lloret de Mar',
-        intro: 'Lloret de Mar cache quelques-unes des criques aux plus belles eaux de la Costa Brava sud, beaucoup accessibles uniquement par la mer. En partant de Blanes, en une vingtaine de minutes de navigation vous atteignez ses recoins rocheux et les parcourez en snorkeling sans les foules de la plage.',
+        intro: 'Lloret de Mar cache quelques-unes des criques aux plus belles eaux de la Costa Brava sud, beaucoup accessibles uniquement par la mer. En partant de Blanes, en environ 25 minutes de navigation vous atteignez ses recoins rocheux et les parcourez en snorkeling sans les foules de la plage.',
         spotsTitle: 'Meilleures criques pour le snorkeling à Lloret de Mar',
         spots: [
           {
@@ -4498,14 +4498,14 @@ export const fr: Translations = {
           },
         ],
         boatsTitle: 'Quel bateau choisir pour rejoindre Lloret',
-        boatsIntro: 'Les criques de Lloret se trouvent au-delà de la limite des 2 milles des bateaux sans permis, donc pour les atteindre vous avez besoin d\'un de nos bateaux avec permis. Ils sont confortables, couvrent le trajet depuis Blanes en une vingtaine de minutes et vous donnent l\'autonomie pour enchaîner plusieurs criques lors de la même sortie.',
+        boatsIntro: 'Les criques de Lloret se trouvent au-delà de la limite des 2 milles des bateaux sans permis, donc pour les atteindre vous avez besoin d\'un de nos bateaux avec permis. Ils sont confortables, couvrent le trajet depuis Blanes en environ 25 minutes et vous donnent l\'autonomie pour enchaîner plusieurs criques lors de la même sortie.',
         practicalTitle: 'Informations pratiques',
-        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Le trajet jusqu\'aux criques de Lloret est d\'environ 20 minutes de navigation tranquille le long de la côte. Apportez vos lunettes et tuba, protection solaire et eau. Mouillez sur le sable, jamais sur les herbiers de posidonie.',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Le trajet jusqu\'aux criques de Lloret est d\'environ 25 minutes de navigation tranquille le long de la côte. Apportez vos lunettes et tuba, protection solaire et eau. Mouillez sur le sable, jamais sur les herbiers de posidonie.',
         faqTitle: 'Questions fréquentes',
         faq: [
           {
             q: 'Combien de temps faut-il de Blanes aux criques de Lloret en bateau ?',
-            a: 'Environ 20 minutes de navigation tranquille en longeant la côte, selon la crique et l\'état de la mer.',
+            a: 'Environ 25 minutes de navigation tranquille en longeant la côte, selon la crique et l\'état de la mer.',
           },
           {
             q: 'Quelles criques de Lloret sont les meilleures pour le snorkeling ?',
@@ -4584,7 +4584,7 @@ export const fr: Translations = {
         boatsTitle: 'Quel bateau choisir selon jusqu\'où vous voulez aller',
         boatsIntro: 'Pour les criques les plus proches de Blanes un bateau sans permis suffit, avec essence incluse et sans permis bateau. Pour parcourir le tronçon complet jusqu\'à Lloret et Tossa (au-delà des 2 milles) vous avez besoin d\'un bateau avec permis, avec l\'autonomie pour enchaîner plusieurs criques dans la journée.',
         practicalTitle: 'Informations pratiques',
-        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu\'à 2 milles ; pour rejoindre Lloret (~20 min) ou Tossa (30-45 min) on utilise un bateau avec permis. Apportez vos lunettes et tuba, protection solaire et eau. Mouillez toujours sur le sable, jamais sur la posidonie.',
+        practicalBody: 'Saison d\'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu\'à 2 milles ; pour rejoindre Lloret (~25 min) ou Tossa (30-45 min) on utilise un bateau avec permis. Apportez vos lunettes et tuba, protection solaire et eau. Mouillez toujours sur le sable, jamais sur la posidonie.',
         faqTitle: 'Questions fréquentes',
         faq: [
           {
@@ -4629,10 +4629,10 @@ export const fr: Translations = {
       families__locationLloret: {
         seoTitle: "Location de bateau en famille à Lloret de Mar | Costa Brava Rent a Boat",
         seoDescription:
-          "Journée en bateau en famille à Lloret de Mar au départ de Blanes (~20 min avec un bateau avec permis) : plages de sable, criques tranquilles et bateaux spacieux jusqu'à 7 places.",
+          "Journée en bateau en famille à Lloret de Mar au départ de Blanes (~25 min avec un bateau avec permis) : plages de sable, criques tranquilles et bateaux spacieux jusqu'à 7 places.",
         h1: "Location de bateau en famille à Lloret de Mar",
         intro:
-          "Lloret de Mar associe de vastes plages de sable et des criques abritées, parfaites pour une journée en famille. Au départ de Blanes vous y arrivez en une vingtaine de minutes de navigation tranquille et parcourez ses plages avec la liberté de mouiller où vous voulez.",
+          "Lloret de Mar associe de vastes plages de sable et des criques abritées, parfaites pour une journée en famille. Au départ de Blanes vous y arrivez en environ 25 minutes de navigation tranquille et parcourez ses plages avec la liberté de mouiller où vous voulez.",
         spotsTitle: "Meilleures plages et criques en famille à Lloret",
         spots: [
           { name: "Santa Cristina", description: "Vaste plage de sable fin aux eaux calmes et avec des services à proximité, l'une des plus confortables de la zone pour venir avec des enfants." },
@@ -4641,13 +4641,13 @@ export const fr: Translations = {
         ],
         boatsTitle: "Quel bateau choisir pour rejoindre Lloret en famille",
         boatsIntro:
-          "Lloret se trouve au-delà des 2 milles, on y accède donc avec l'un de nos bateaux avec permis. Ils sont spacieux et stables (le Pacific Craft 625 admet jusqu'à 7 personnes) et couvrent le trajet depuis Blanes en une vingtaine de minutes.",
+          "Lloret se trouve au-delà des 2 milles, on y accède donc avec l'un de nos bateaux avec permis. Ils sont spacieux et stables (le Pacific Craft 625 admet jusqu'à 7 personnes) et couvrent le trajet depuis Blanes en environ 25 minutes.",
         practicalTitle: "Informations pratiques",
         practicalBody:
-          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Le trajet jusqu'à Lloret prend une vingtaine de minutes. Nous fournissons des gilets de toutes les tailles ; apportez protection solaire, casquette, eau et de quoi grignoter.",
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Le trajet jusqu'à Lloret prend environ 25 minutes. Nous fournissons des gilets de toutes les tailles ; apportez protection solaire, casquette, eau et de quoi grignoter.",
         faqTitle: "Questions fréquentes",
         faq: [
-          { q: "Combien de temps faut-il de Blanes à Lloret en bateau ?", a: "Une vingtaine de minutes de navigation tranquille en longeant la côte avec un bateau avec permis." },
+          { q: "Combien de temps faut-il de Blanes à Lloret en bateau ?", a: "Environ 25 minutes de navigation tranquille en longeant la côte avec un bateau avec permis." },
           { q: "Quelle plage de Lloret est la meilleure avec des enfants ?", a: "Santa Cristina et Fenals, pour leur sable, leurs eaux calmes et leurs services à proximité." },
         ],
         ctaTitle: "Réservez votre journée en bateau en famille à Lloret",
@@ -4698,7 +4698,7 @@ export const fr: Translations = {
           "Pour les criques proches de Blanes, un bateau sans permis suffit, avec essence incluse. Pour parcourir le tronçon jusqu'à Lloret et Tossa (au-delà des 2 milles) vous avez besoin d'un bateau avec permis, spacieux et jusqu'à 7 places.",
         practicalTitle: "Informations pratiques",
         practicalBody:
-          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu'à 2 milles ; pour rejoindre Lloret (~20 min) ou Tossa (30-45 min) on utilise un bateau avec permis. Nous fournissons des gilets de toutes les tailles.",
+          "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Les bateaux sans permis naviguent jusqu'à 2 milles ; pour rejoindre Lloret (~25 min) ou Tossa (30-45 min) on utilise un bateau avec permis. Nous fournissons des gilets de toutes les tailles.",
         faqTitle: "Questions fréquentes",
         faq: [
           { q: "Quel tronçon pouvons-nous parcourir en famille en une journée ?", a: "Avec un bateau avec permis, les criques de Blanes, Lloret et Tossa en une journée ; avec un sans permis, les criques tranquilles les plus proches de Blanes." },
@@ -4737,10 +4737,10 @@ export const fr: Translations = {
       sunset__locationLloret: {
         seoTitle: "Balade en bateau au coucher du soleil à Lloret de Mar | Costa Brava Rent a Boat",
         seoDescription:
-          "Coucher de soleil en bateau à Lloret de Mar au départ de Blanes (~20 min avec un bateau avec permis) : lumière dorée sur les falaises de Cala Banys et le château de Lloret.",
+          "Coucher de soleil en bateau à Lloret de Mar au départ de Blanes (~25 min avec un bateau avec permis) : lumière dorée sur les falaises de Cala Banys et le château de Lloret.",
         h1: "Balade en bateau au coucher du soleil à Lloret de Mar",
         intro:
-          "La côte de Lloret de Mar, avec ses falaises et son château au-dessus de la mer, devient spectaculaire en fin d'après-midi. Au départ de Blanes en une vingtaine de minutes avec un bateau avec permis vous arrivez à temps pour la plus belle lumière du jour.",
+          "La côte de Lloret de Mar, avec ses falaises et son château au-dessus de la mer, devient spectaculaire en fin d'après-midi. Au départ de Blanes en environ 25 minutes avec un bateau avec permis vous arrivez à temps pour la plus belle lumière du jour.",
         spotsTitle: "Meilleurs coins pour le coucher du soleil à Lloret",
         spots: [
           { name: "Cala Banys", description: "Falaises sombres et recoins rocheux qui, avec la lumière basse, offrent l'une des images les plus saisissantes de la zone." },
@@ -4749,13 +4749,13 @@ export const fr: Translations = {
         ],
         boatsTitle: "Quel bateau choisir pour rejoindre Lloret au coucher du soleil",
         boatsIntro:
-          "Lloret se trouve au-delà des 2 milles, la balade se fait donc avec l'un de nos bateaux avec permis, confortables et dotés d'un bon solarium. Ils couvrent le trajet depuis Blanes en une vingtaine de minutes.",
+          "Lloret se trouve au-delà des 2 milles, la balade se fait donc avec l'un de nos bateaux avec permis, confortables et dotés d'un bon solarium. Ils couvrent le trajet depuis Blanes en environ 25 minutes.",
         practicalTitle: "Informations pratiques",
         practicalBody:
           "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes. Sur la Costa Brava le soleil se couche derrière la côte : vous profiterez de la lumière dorée sur les falaises et le château plus que du coucher sur la mer. Apportez une veste légère pour le retour.",
         faqTitle: "Questions fréquentes",
         faq: [
-          { q: "Combien de temps faut-il de Blanes à Lloret au coucher du soleil ?", a: "Une vingtaine de minutes avec un bateau avec permis ; mieux vaut partir avec de la marge pour profiter de la plus belle lumière." },
+          { q: "Combien de temps faut-il de Blanes à Lloret au coucher du soleil ?", a: "Environ 25 minutes avec un bateau avec permis ; mieux vaut partir avec de la marge pour profiter de la plus belle lumière." },
           { q: "Voit-on le coucher de soleil sur la mer ?", a: "Sur cette côte le soleil se couche derrière la terre, pas sur l'eau ; ce qui est beau c'est la lumière dorée et les falaises et le château illuminés." },
         ],
         ctaTitle: "Réservez votre balade au coucher du soleil à Lloret",
@@ -4845,10 +4845,10 @@ export const fr: Translations = {
       fishing__locationLloret: {
         seoTitle: "Location de bateau pour pêcher à Lloret de Mar | Costa Brava Rent a Boat",
         seoDescription:
-          "Pêche récréative en bateau à Lloret de Mar depuis Blanes (~20 min avec un bateau avec permis). Fonds rocheux face à la côte. Licence de pêche à la charge du client.",
+          "Pêche récréative en bateau à Lloret de Mar depuis Blanes (~25 min avec un bateau avec permis). Fonds rocheux face à la côte. Licence de pêche à la charge du client.",
         h1: "Location de bateau pour pêcher à Lloret de Mar",
         intro:
-          "La côte de Lloret de Mar, faite de falaises et de fonds rocheux, offre de bonnes zones pour la pêche récréative. Au départ de Blanes avec un bateau avec permis vous arrivez en une vingtaine de minutes et disposez de l'autonomie pour vous déplacer entre les points.",
+          "La côte de Lloret de Mar, faite de falaises et de fonds rocheux, offre de bonnes zones pour la pêche récréative. Au départ de Blanes avec un bateau avec permis vous arrivez en environ 25 minutes et disposez de l'autonomie pour vous déplacer entre les points.",
         spotsTitle: "Zones de pêche près de Lloret",
         spots: [
           { name: "Fonds de Cala Banys", description: "Tronçon de falaises et de roche où la pêche de roche est courante, face à la côte de Lloret." },
@@ -4857,13 +4857,13 @@ export const fr: Translations = {
         ],
         boatsTitle: "Quel bateau choisir pour rejoindre Lloret pour pêcher",
         boatsIntro:
-          "Lloret se trouve au-delà des 2 milles, on y accède donc avec l'un de nos bateaux avec permis, dotés de l'autonomie pour vous déplacer entre les zones de pêche. Le trajet depuis Blanes est d'une vingtaine de minutes.",
+          "Lloret se trouve au-delà des 2 milles, on y accède donc avec l'un de nos bateaux avec permis, dotés de l'autonomie pour vous déplacer entre les zones de pêche. Le trajet depuis Blanes est d'environ 25 minutes.",
         practicalTitle: "Informations pratiques et réglementation",
         practicalBody:
           "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Il vous faut la licence de pêche récréative de Catalogne (à la charge du client). Respectez tailles minimales, espèces protégées et zones réglementées. Le matériel de pêche n'est pas inclus.",
         faqTitle: "Questions fréquentes",
         faq: [
-          { q: "Combien de temps faut-il de Blanes à Lloret en bateau ?", a: "Une vingtaine de minutes avec un bateau avec permis, ceux que nous utilisons pour les sorties de pêche." },
+          { q: "Combien de temps faut-il de Blanes à Lloret en bateau ?", a: "Environ 25 minutes avec un bateau avec permis, ceux que nous utilisons pour les sorties de pêche." },
           { q: "Faut-il une licence de pêche ?", a: "Oui, la licence de pêche récréative de Catalogne est fournie par le client ; la location du bateau ne l'inclut pas." },
         ],
         ctaTitle: "Réservez votre sortie de pêche à Lloret",

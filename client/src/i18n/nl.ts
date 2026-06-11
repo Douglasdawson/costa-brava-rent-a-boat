@@ -425,7 +425,7 @@ export const nl: Translations = {
       packSelected: "Pakket geselecteerd",
     },
     confirmTitle: "Boeking bevestigen",
-    confirmSubtitle: "Controleer de details. Bevestiging via WhatsApp binnen enkele minuten.",
+    confirmSubtitle: "Controleer de details. Bevestiging via WhatsApp binnen 2 uur.",
     summaryClient: "Klant",
     estimatedTotal: "Geschat totaal",
     basePrice: "Basisprijs",
@@ -785,7 +785,7 @@ export const nl: Translations = {
     numberOfPeople: "Aantal personen",
     maxCapacityError: "Deze boot heeft een maximale capaciteit van {max} personen",
     yourData: "Uw gegevens",
-    confirmViaWhatsApp: "Bevestiging via WhatsApp in minuten",
+    confirmViaWhatsApp: "Bevestiging via WhatsApp binnen 2 uur",
     firstName: "Voornaam",
     lastName: "Achternaam",
     fullName: "Volledige naam",
@@ -1501,7 +1501,7 @@ export const nl: Translations = {
     ],
     whatsNext: "Volgende stappen",
     whatsNextSteps: [
-      "U ontvangt binnen enkele minuten een bevestiging via WhatsApp",
+      "U ontvangt binnen 2 uur een bevestiging via WhatsApp",
       "24u van tevoren: herinnering met instructies",
       "Dag van verhuur: meld u bij Puerto de Blanes",
     ],
@@ -1662,7 +1662,7 @@ export const nl: Translations = {
   bookingTrust: {
     customers: "5000+ klanten",
     rating: "4.8 Google",
-    confirmation: "Reactie binnen enkele minuten",
+    confirmation: "Reactie binnen 2 uur",
     freeCancellation: "Gratis datumwijziging*",
     freeCancellationFootnote: "* Op basis van beschikbaarheid",
     securePayment: "Veilige boeking",
@@ -1963,7 +1963,7 @@ export const nl: Translations = {
       {
         question: "Hoeveel kost een boottocht bij zonsondergang?",
         answer:
-          "Een boottocht van 2 uur bij zonsondergang in een boot zonder vaarbewijs kost vanaf 140 EUR in totaal ({noLicBaja1h} EUR/uur in het laagseizoen). Brandstof is inbegrepen bij boten zonder vaarbewijs. De boot is geschikt voor maximaal 5 personen, dus de prijs per persoon kan vanaf 28 EUR zijn. Boten zonder vaarbewijs zijn inclusief brandstof, verzekering, veiligheidsuitrusting en instructie.",
+          "Een boottocht van 2 uur bij zonsondergang in een boot zonder vaarbewijs kost vanaf 140 € in totaal ({noLicBaja1h} €/uur in het laagseizoen). Brandstof is inbegrepen bij boten zonder vaarbewijs. De boot is geschikt voor maximaal 5 personen, dus de prijs per persoon kan vanaf 28 € zijn. Boten zonder vaarbewijs zijn inclusief brandstof, verzekering, veiligheidsuitrusting en instructie.",
       },
     ],
     sunsetTimes: [
@@ -2060,7 +2060,7 @@ export const nl: Translations = {
       "In tegenstelling tot groepscruises bij zonsondergang is de boot alleen voor jullie. Jullie kiezen waar je ankert, hoe lang je blijft en wat je meeneemt aan boord. Geen gids die jullie opjaagt, geen andere toeristen. Alleen jullie en de Middellandse Zee op haar mooiste moment.",
     whyAffordableTitle: "Eenvoudig en betaalbaar",
     whyAffordableDesc:
-      "Onze boten zonder vaarbewijs zijn ongelooflijk eenvoudig te besturen. Na een instructie van 15 minuten in de haven zijn jullie klaar. De boot heeft ruimte voor maximaal 5 personen, dus een zonsondergangtocht van 2 uur kan al vanaf 28 EUR per persoon inclusief brandstof. Goedkoper dan de meeste diners aan de Costa Brava.",
+      "Onze boten zonder vaarbewijs zijn ongelooflijk eenvoudig te besturen. Na een instructie van 15 minuten in de haven zijn jullie klaar. De boot heeft ruimte voor maximaal 5 personen, dus een zonsondergangtocht van 2 uur kan al vanaf 28 € per persoon inclusief brandstof. Goedkoper dan de meeste diners aan de Costa Brava.",
     whyTemperatureTitle: "Perfecte temperatuur bij zonsondergang",
     whyTemperatureDesc:
       "In de late namiddag is de hitte van de dag afgezwakt. De zeebries houdt jullie aangenaam. Het water is op zijn warmst na een dag in de zon. Het is het ideale moment om op het water te zijn, of het nu gaat om zwemmen, dobberen of gewoon kijken hoe de hemel van kleur verandert.",
@@ -2107,7 +2107,7 @@ export const nl: Translations = {
       {
         question: "Kan ik snorkeluitrusting huren bij de boot?",
         answer:
-          "Ja. Wij bieden snorkelsets (masker, snorkel en vinnen) aan voor 7,50 EUR per persoon. De uitrusting wordt opgehaald bij het instappen en ingeleverd aan het einde van de huurperiode. Je mag ook je eigen uitrusting meenemen zonder extra kosten.",
+          "Ja. Wij bieden snorkelsets (masker, snorkel en vinnen) aan voor 7,50 € per persoon. De uitrusting wordt opgehaald bij het instappen en ingeleverd aan het einde van de huurperiode. Je mag ook je eigen uitrusting meenemen zonder extra kosten.",
       },
       {
         question: "Wat is de beste tijd om te snorkelen in Blanes?",
@@ -2163,7 +2163,7 @@ export const nl: Translations = {
       {
         name: "Boten met vergunning (6-7 personen)",
         duration: "4-6 uur aanbevolen",
-        price: "Vanaf 90 EUR/uur",
+        price: "Vanaf 90 €/uur",
         description:
           "Groter bereik om meerdere baaien in één tocht te bezoeken. Ideaal voor groepen die snorkelen willen combineren met varen naar Lloret of Tossa.",
       },
@@ -2171,7 +2171,7 @@ export const nl: Translations = {
     depthLabel: "Diepte:",
     heroTitle: "Snorkeluitje per Boot vanuit Blanes",
     heroDescription:
-      "Ontdek de zeebodem van de Costa Brava vanaf onze boten in de haven van Blanes. Vaar naar de mooiste baaien, gooi het anker uit en duik in kristalhelder water met een zicht tot 15 meter. Snorkeluitrusting beschikbaar voor 7,50 EUR/persoon.",
+      "Ontdek de zeebodem van de Costa Brava vanaf onze boten in de haven van Blanes. Vaar naar de mooiste baaien, gooi het anker uit en duik in kristalhelder water met een zicht tot 15 meter. Snorkeluitrusting beschikbaar voor 7,50 €/persoon.",
     badgeSpots: "3 snorkelbaaien",
     badgeVisibility: "Zicht 10-15m",
     badgeDuration: "2-4 uur aanbevolen",
@@ -2197,7 +2197,7 @@ export const nl: Translations = {
       "Zonnescherm / bimini voor schaduw op het dek",
       "Anker om in de baaien te ankeren",
     ],
-    rentalTitle: "Extra huur: 7,50 EUR/persoon",
+    rentalTitle: "Extra huur: 7,50 €/persoon",
     rentalItems: [
       "Kwaliteitssnorkelmasker",
       "Snorkel met anti-overstromingsventiel",
@@ -2252,7 +2252,7 @@ export const nl: Translations = {
       {
         question: "Wat is inbegrepen bij de huurprijs?",
         answer:
-          "De prijs voor boten zonder vaarbewijs is inclusief brandstof, verzekering, zwemvesten voor iedereen (ook kindermaten), zwemladder, zonnescherm/bimini en de veiligheidsinstructie. Alleen snorkeluitrusting is extra (7,50 EUR/persoon).",
+          "De prijs voor boten zonder vaarbewijs is inclusief brandstof, verzekering, zwemvesten voor iedereen (ook kindermaten), zwemladder, zonnescherm/bimini en de veiligheidsinstructie. Alleen snorkeluitrusting is extra (7,50 €/persoon).",
       },
       {
         question: "Wat moeten we meenemen voor een boottocht met kinderen?",
@@ -2374,7 +2374,7 @@ export const nl: Translations = {
       {
         question: "Heb ik een visvergunning nodig om vanaf de boot te vissen?",
         answer:
-          "Ja. Voor recreatief zeevissen heb je de recreatieve zeevisvergunning van de Generalitat de Catalunya nodig. Je kunt deze online verkrijgen via gencat.cat voor ongeveer 14 EUR (geldig 2 jaar). Dit is iets anders dan een vaarbewijs: de visvergunning is voor het vissen, het vaarbewijs voor het besturen van de boot.",
+          "Ja. Voor recreatief zeevissen heb je de recreatieve zeevisvergunning van de Generalitat de Catalunya nodig. Je kunt deze online verkrijgen via gencat.cat voor ongeveer 14 € (geldig 2 jaar). Dit is iets anders dan een vaarbewijs: de visvergunning is voor het vissen, het vaarbewijs voor het besturen van de boot.",
       },
       {
         question: "Welke boot heb ik nodig om op zee te vissen?",
@@ -2424,7 +2424,7 @@ export const nl: Translations = {
         type: "Boten met vergunning",
         capacity: "6-7 personen",
         autonomy: "Groter bereik en actieradius",
-        price: "Vanaf 90 EUR/uur (brandstof niet inbegrepen)",
+        price: "Vanaf 90 €/uur (brandstof niet inbegrepen)",
         advantages: [
           "Toegang tot verder gelegen visgebieden (5+ mijl)",
           "Meer vermogen voor trolling en jigging",
@@ -2499,7 +2499,7 @@ export const nl: Translations = {
     regulationsTitle: "Regelgeving en visserijwetgeving",
     licenseTitle: "Verplichte visvergunning",
     licenseDesc:
-      "Om op zee te vissen vanuit een boot heb je de recreatieve zeevisvergunning van de Generalitat de Catalunya nodig. Je kunt die online verkrijgen via gencat.cat voor ongeveer 14 EUR met een geldigheidsduur van 2 jaar.",
+      "Om op zee te vissen vanuit een boot heb je de recreatieve zeevisvergunning van de Generalitat de Catalunya nodig. Je kunt die online verkrijgen via gencat.cat voor ongeveer 14 € met een geldigheidsduur van 2 jaar.",
     catchLimitsTitle: "Vangstlimieten",
     catchLimitsItems: [
       "Maximaal 5 kg per persoon per dag",
@@ -2555,7 +2555,7 @@ export const nl: Translations = {
         {
           question: "Hoeveel kost het om een boot te huren in de haven van Blanes?",
           answer:
-            "Boten zonder vaarbewijs kosten vanaf {noLicBaja1h} EUR/uur in het laagseizoen (april-juni, september-oktober). In het hoogseizoen (augustus) vanaf {noLicAlta1h} EUR/uur. De prijs is inclusief brandstof, verzekering en veiligheidsuitrusting.",
+            "Boten zonder vaarbewijs kosten vanaf {noLicBaja1h} €/uur in het laagseizoen (april-juni, september-oktober). In het hoogseizoen (augustus) vanaf {noLicAlta1h} €/uur. De prijs is inclusief brandstof, verzekering en veiligheidsuitrusting.",
         },
         {
           question: "Waar kan ik naartoe varen vanuit Blanes?",
@@ -2676,7 +2676,7 @@ export const nl: Translations = {
         experiencesTitle: "Populaire Ervaringen vanuit Blanes",
         expSnorkelTitle: "Snorkelen bij Cala Brava",
         expSnorkelDesc:
-          "Vaar 15 minuten naar Cala Brava en ontdek de onderwaterwereld. Kristalhelder water met tot 15 meter zicht. Snorkeluitrusting te huur voor slechts 7,50 EUR.",
+          "Vaar 15 minuten naar Cala Brava en ontdek de onderwaterwereld. Kristalhelder water met tot 15 meter zicht. Snorkeluitrusting te huur voor slechts 7,50 €.",
         expSunsetTitle: "Zonsondergangstocht",
         expSunsetDesc:
           "Boek het laatste middagslot en geniet van de zonsondergang op zee. Het gouden licht op de kliffen van de Costa Brava is onvergetelijk.",
@@ -2953,7 +2953,7 @@ export const nl: Translations = {
         byCar: "Met de Auto",
         byCarDesc: "Vanuit Malgrat neemt u de N-II richting Blanes. 8 km, ongeveer 10 minuten.",
         byTaxi: "Met de Taxi",
-        byTaxiDesc: "Taxi van Malgrat naar de haven van Blanes: circa 12-15 EUR, 10 minuten.",
+        byTaxiDesc: "Taxi van Malgrat naar de haven van Blanes: circa 12-15 €, 10 minuten.",
         byPublicTransport: "Openbaar Vervoer",
         byPublicTransportDesc:
           "RENFE-trein lijn R1 van Malgrat naar Blanes (5 min., elke 30 min.). Vanaf het station 15 min. lopen.",
@@ -2976,7 +2976,7 @@ export const nl: Translations = {
         {
           question: "Hoeveel kost het huren van een boot vanuit Blanes?",
           answer:
-            "Bootverhuur begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Je hebt geen vaarbewijs nodig voor boten tot 15 pk. We hebben {fleetCount} boten voor 4-11 personen.",
+            "Bootverhuur begint vanaf {noLicBaja1h} € per uur inclusief benzine. Je hebt geen vaarbewijs nodig voor boten tot 15 pk. We hebben {fleetCount} boten voor 4-11 personen.",
         },
         {
           question: "Heb ik een vaarbewijs nodig?",
@@ -3002,7 +3002,7 @@ export const nl: Translations = {
         {
           question: "Is er een transferservice van hotels in Malgrat naar de haven van Blanes?",
           answer:
-            "We bieden geen directe transfer, maar de rit is zeer kort: 5 minuten met trein R1 (Malgrat → Blanes) of 10 minuten met auto/taxi (kosten ongeveer 12-15 EUR). Het station van Blanes ligt op 10 minuten lopen van de haven. Er is ook lokale bus L23.",
+            "We bieden geen directe transfer, maar de rit is zeer kort: 5 minuten met trein R1 (Malgrat → Blanes) of 10 minuten met auto/taxi (kosten ongeveer 12-15 €). Het station van Blanes ligt op 10 minuten lopen van de haven. Er is ook lokale bus L23.",
         },
       ],
     },
@@ -3017,7 +3017,7 @@ export const nl: Translations = {
           question:
             "Hoeveel kost het huren van een boot vanuit Blanes als ik in Santa Susanna ben?",
           answer:
-            "Bootverhuur begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Je hebt geen vaarbewijs nodig voor boten tot 15 pk. We hebben {fleetCount} boten voor 4-11 personen.",
+            "Bootverhuur begint vanaf {noLicBaja1h} € per uur inclusief benzine. Je hebt geen vaarbewijs nodig voor boten tot 15 pk. We hebben {fleetCount} boten voor 4-11 personen.",
         },
         {
           question: "Heb ik een vaarbewijs nodig om een boot te huren?",
@@ -3037,12 +3037,12 @@ export const nl: Translations = {
         {
           question: "Wat is de beste bootexcursie als ik in Santa Susanna verblijf?",
           answer:
-            "Vanuit Blanes raden we aan: (a) Baaiënroute 4u zonder vaarbewijs tot Playa de Fenals met ankeren in 2-3 kristalheldere baaien (vanaf 135 EUR voor 5 personen); (b) Privé-excursie met schipper 4u naar Tossa en Cala Bona (vanaf {excursionBaja4h} EUR, ideaal als je geen vaarervaring hebt); (c) Boot met basisvaarbewijs als iemand in de groep een vaarbewijs heeft (vanaf 240 EUR / 4u).",
+            "Vanuit Blanes raden we aan: (a) Baaiënroute 4u zonder vaarbewijs tot Playa de Fenals met ankeren in 2-3 kristalheldere baaien (vanaf 135 € voor 5 personen); (b) Privé-excursie met schipper 4u naar Tossa en Cala Bona (vanaf {excursionBaja4h} €, ideaal als je geen vaarervaring hebt); (c) Boot met basisvaarbewijs als iemand in de groep een vaarbewijs heeft (vanaf 240 € / 4u).",
         },
         {
           question: "Kan ik een bootexcursie bij zonsondergang maken vanuit Santa Susanna?",
           answer:
-            "Ja, dat is erg populair. Vanuit Blanes bieden we zonsondergangstochten (18:30-21:00 afhankelijk van de maand) met een boot zonder vaarbewijs voor 115 EUR voor 2 uur. Je vaart langs de 7 baaien in goudkleurig licht. Vanuit Santa Susanna ben je er in 15 min met de auto of 10 min met de trein. Reserveer van tevoren in de zomer.",
+            "Ja, dat is erg populair. Vanuit Blanes bieden we zonsondergangstochten (18:30-21:00 afhankelijk van de maand) met een boot zonder vaarbewijs voor 115 € voor 2 uur. Je vaart langs de 7 baaien in goudkleurig licht. Vanuit Santa Susanna ben je er in 15 min met de auto of 10 min met de trein. Reserveer van tevoren in de zomer.",
         },
       ],
       hero: {
@@ -3082,7 +3082,7 @@ export const nl: Translations = {
         byCarDesc:
           "Vanuit Santa Susanna neemt u de N-II richting noorden naar Blanes. 12 km, ongeveer 15 minuten.",
         byTaxi: "Met de Taxi",
-        byTaxiDesc: "Taxi van Santa Susanna naar de haven van Blanes: circa 18-22 EUR, 15 minuten.",
+        byTaxiDesc: "Taxi van Santa Susanna naar de haven van Blanes: circa 18-22 €, 15 minuten.",
         byPublicTransport: "Openbaar Vervoer",
         byPublicTransportDesc:
           "RENFE-trein lijn R1 van Santa Susanna naar Blanes (10 min., elke 30 min.). Vanaf het station 15 min. lopen.",
@@ -3108,7 +3108,7 @@ export const nl: Translations = {
         {
           question: "Hoeveel kost het huren van een boot vanuit Blanes als ik in Calella ben?",
           answer:
-            "Bootverhuur begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Je hebt geen vaarbewijs nodig voor boten tot 15 pk. We hebben {fleetCount} boten voor 4-11 personen.",
+            "Bootverhuur begint vanaf {noLicBaja1h} € per uur inclusief benzine. Je hebt geen vaarbewijs nodig voor boten tot 15 pk. We hebben {fleetCount} boten voor 4-11 personen.",
         },
         {
           question: "Heb ik eerdere ervaring nodig om een boot te huren?",
@@ -3128,12 +3128,12 @@ export const nl: Translations = {
         {
           question: "Kan ik een bootexcursie maken van Calella naar Tossa de Mar?",
           answer:
-            "Niet direct vanuit Calella (geen verhuur). Vanuit Blanes wel: met een boot met Licencia de Navegación (LN) bereik je Tossa in 45 min (vanaf {licBaja2h} EUR/2u), of met onze privé-excursie met schipper 4u naar Tossa inclusief Cala Bona en Vila Vella (vanaf {excursionBaja4h} EUR voor maximaal 6 personen, plus de schipper). Boten zonder vaarbewijs kunnen Tossa niet bereiken vanwege de wettelijke limiet van 2 mijl.",
+            "Niet direct vanuit Calella (geen verhuur). Vanuit Blanes wel: met een boot met Licencia de Navegación (LN) bereik je Tossa in 45 min (vanaf {licBaja2h} €/2u), of met onze privé-excursie met schipper 4u naar Tossa inclusief Cala Bona en Vila Vella (vanaf {excursionBaja4h} € voor maximaal 6 personen, plus de schipper). Boten zonder vaarbewijs kunnen Tossa niet bereiken vanwege de wettelijke limiet van 2 mijl.",
         },
         {
           question: "Hoeveel kost de trein R1 van Calella naar Blanes?",
           answer:
-            "Een enkel ticket R1 Calella → Blanes kost ongeveer 3 EUR (ATM tarief zone 4-5). Met een T-Casual kaart voor 10 ritten is het goedkoper. Duur: 15 minuten. Frequentie: elke 30 minuten in het seizoen. Van het station van Blanes naar de haven is het 10 minuten lopen of 3 min met de taxi.",
+            "Een enkel ticket R1 Calella → Blanes kost ongeveer 3 € (ATM tarief zone 4-5). Met een T-Casual kaart voor 10 ritten is het goedkoper. Duur: 15 minuten. Frequentie: elke 30 minuten in het seizoen. Van het station van Blanes naar de haven is het 10 minuten lopen of 3 min met de taxi.",
         },
       ],
       hero: {
@@ -3173,7 +3173,7 @@ export const nl: Translations = {
         byCarDesc:
           "Vanuit Calella neemt u de N-II richting noorden naar Blanes. 17 km, ongeveer 20 minuten.",
         byTaxi: "Met de Taxi",
-        byTaxiDesc: "Taxi van Calella naar de haven van Blanes: circa 25-30 EUR, 20 minuten.",
+        byTaxiDesc: "Taxi van Calella naar de haven van Blanes: circa 25-30 €, 20 minuten.",
         byPublicTransport: "Openbaar Vervoer",
         byPublicTransportDesc:
           "RENFE-trein lijn R1 van Calella naar Blanes (15 min., elke 30 min.). Vanaf het station 15 min. lopen.",
@@ -3246,7 +3246,7 @@ export const nl: Translations = {
         licensedCapacity: "Tot 7 personen aan boord",
         licensedNavigation: "Navigatie op open zee zonder beperkingen",
         licensedFuel: "Brandstof NIET inbegrepen (aparte borg)",
-        licensedPrice: "Vanaf 90 EUR/uur",
+        licensedPrice: "Vanaf 90 €/uur",
         licensedDesc:
           "Voor gekwalificeerde zeilers die verder willen verkennen dan de directe kust. Meer vermogen, bereik en capaciteit. Brandstof wordt apart berekend. De Licencia de Navegación (LN) volstaat; ook PNB, PER of Europese equivalenten zijn geldig.",
         bestCovesTitle: "De Mooiste Baaien van de Costa Brava per Boot",
@@ -3297,7 +3297,7 @@ export const nl: Translations = {
         {
           question: "Hoeveel kost het huren van een boot vanuit Blanes als ik in Tordera woon?",
           answer:
-            "Bootverhuur zonder vaarbewijs begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Boten met vaarbewijs vanaf {licBaja2h} EUR voor 2 uur. We hebben {fleetCount} boten voor 4-11 personen.",
+            "Bootverhuur zonder vaarbewijs begint vanaf {noLicBaja1h} € per uur inclusief benzine. Boten met vaarbewijs vanaf {licBaja2h} € voor 2 uur. We hebben {fleetCount} boten voor 4-11 personen.",
         },
         {
           question: "Heb ik een vaarbewijs nodig?",
@@ -3363,7 +3363,7 @@ export const nl: Translations = {
           "Vanuit Tordera neem je de weg richting Blanes (GI-600 of C-32). Het is 10 km rechtstreeks naar de Haven van Blanes. Parkeren in de havenzone is gratis en over het algemeen goed beschikbaar, vooral als je 's ochtends aankomt.",
         howTaxiTitle: "Per taxi",
         howTaxiDesc:
-          "Een taxi van Tordera naar de Haven van Blanes kost ongeveer 15-20 EUR. Het is een snelle en comfortabele optie voor heen en terug.",
+          "Een taxi van Tordera naar de Haven van Blanes kost ongeveer 15-20 €. Het is een snelle en comfortabele optie voor heen en terug.",
         howTransportTitle: "Met de RENFE trein (8 minuten)",
         howTransportDesc:
           "De R1 Rodalies lijn van RENFE verbindt Tordera met Blanes in slechts 8 minuten. Het is de snelste en voordeligste optie. De treinen vertrekken in het seizoen elke 30 minuten. Vanaf het station Blanes is de haven 10-15 minuten lopen via de boulevard.",
@@ -3380,10 +3380,10 @@ export const nl: Translations = {
         pricingIntro:
           "Transparante prijzen met brandstof inbegrepen bij alle boten zonder vaarbewijs. Geen verrassingen of extra kosten.",
         pricingNoLicTitle: "Boten zonder vaarbewijs",
-        pricingNoLicFrom: "Vanaf {noLicBaja1h} EUR/uur (brandstof inbegrepen)",
+        pricingNoLicFrom: "Vanaf {noLicBaja1h} €/uur (brandstof inbegrepen)",
         pricingNoLicCapacity: "Capaciteit: 4-7 personen afhankelijk van model",
         pricingLicTitle: "Boten met vaarbewijs",
-        pricingLicFrom: "Vanaf {licBaja2h} EUR / 2 uur",
+        pricingLicFrom: "Vanaf {licBaja2h} € / 2 uur",
         pricingLicEngines: "Motoren van 40 tot 115 PK",
         pricingLicCapacity: "Capaciteit: tot 11 personen",
         pricingButton: "Bekijk alle prijzen en boten",
@@ -3404,7 +3404,7 @@ export const nl: Translations = {
         {
           question: "Hoeveel kost het huren van een boot vanuit Blanes als ik in Palafolls ben?",
           answer:
-            "Bootverhuur zonder vaarbewijs begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Boten met vaarbewijs vanaf {licBaja2h} EUR voor 2 uur. We hebben {fleetCount} boten voor 4-11 personen.",
+            "Bootverhuur zonder vaarbewijs begint vanaf {noLicBaja1h} € per uur inclusief benzine. Boten met vaarbewijs vanaf {licBaja2h} € voor 2 uur. We hebben {fleetCount} boten voor 4-11 personen.",
         },
         {
           question: "Kan ik vanaf de camping in Palafolls gemakkelijk naar de haven van Blanes?",
@@ -3469,7 +3469,7 @@ export const nl: Translations = {
           "Vanuit Palafolls neem je de BV-6001 richting Blanes. Het is slechts 8 km naar de Haven van Blanes. De reis is snel en eenvoudig, met goede bewegwijzering. Vanaf de campings in de omgeving is de route nog directer.",
         howTaxiTitle: "Per taxi",
         howTaxiDesc:
-          "Een taxi van Palafolls naar de Haven van Blanes kost ongeveer 12-18 EUR. Het is een comfortabele optie als je geen eigen auto hebt.",
+          "Een taxi van Palafolls naar de Haven van Blanes kost ongeveer 12-18 €. Het is een comfortabele optie als je geen eigen auto hebt.",
         howTransportTitle: "Per bus",
         howTransportDesc:
           "Palafolls heeft geen treinstation, maar er zijn buslijnen die verbinding maken met Blanes. De reis duurt ongeveer 20 minuten. Raadpleeg de dienstregelingen van de lokale lijnen in het hoogseizoen, aangezien de frequentie tijdens de zomer toeneemt.",
@@ -3486,10 +3486,10 @@ export const nl: Translations = {
         pricingIntro:
           "Transparante prijzen met brandstof inbegrepen bij alle boten zonder vaarbewijs. Geen verborgen kosten.",
         pricingNoLicTitle: "Boten zonder vaarbewijs",
-        pricingNoLicFrom: "Vanaf {noLicBaja1h} EUR/uur (brandstof inbegrepen)",
+        pricingNoLicFrom: "Vanaf {noLicBaja1h} €/uur (brandstof inbegrepen)",
         pricingNoLicCapacity: "Capaciteit: 4-7 personen afhankelijk van model",
         pricingLicTitle: "Boten met vaarbewijs",
-        pricingLicFrom: "Vanaf {licBaja2h} EUR / 2 uur",
+        pricingLicFrom: "Vanaf {licBaja2h} € / 2 uur",
         pricingLicEngines: "Motoren van 40 tot 115 PK",
         pricingLicCapacity: "Capaciteit: tot 11 personen",
         pricingButton: "Bekijk alle prijzen en boten",
@@ -3511,7 +3511,7 @@ export const nl: Translations = {
           question:
             "Hoeveel kost het huren van een boot vanuit Blanes als ik in Pineda de Mar ben?",
           answer:
-            "Bootverhuur zonder vaarbewijs begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Boten met vaarbewijs vanaf {licBaja2h} EUR voor 2 uur. We hebben {fleetCount} boten voor 4-11 personen.",
+            "Bootverhuur zonder vaarbewijs begint vanaf {noLicBaja1h} € per uur inclusief benzine. Boten met vaarbewijs vanaf {licBaja2h} € voor 2 uur. We hebben {fleetCount} boten voor 4-11 personen.",
         },
         {
           question: "Heb ik een vaarbewijs nodig om een boot te huren?",
@@ -3576,7 +3576,7 @@ export const nl: Translations = {
           "Neem de N-II noordwaarts richting Blanes. Het is 15 km comfortabel en direct rijden. Vanaf de meeste hotels in Pineda de Mar ben je in ongeveer 18 minuten bij de Haven van Blanes. De route loopt langs de kust en is zeer aangenaam.",
         howTaxiTitle: "Per taxi",
         howTaxiDesc:
-          "Een taxi van Pineda de Mar naar de Haven van Blanes kost ongeveer 20-25 EUR. Het is een goede optie als je geen auto hebt of je niet wilt zorgen maken over parkeren.",
+          "Een taxi van Pineda de Mar naar de Haven van Blanes kost ongeveer 20-25 €. Het is een goede optie als je geen auto hebt of je niet wilt zorgen maken over parkeren.",
         howTransportTitle: "Met de RENFE trein (12 minuten)",
         howTransportDesc:
           "De R1 Rodalies lijn van RENFE verbindt Pineda de Mar met Blanes in slechts 12 minuten. De treinen vertrekken in het hoogseizoen elke 30 minuten. Vanaf het station Blanes is de haven ongeveer 10-15 minuten lopen via de boulevard.",
@@ -3593,10 +3593,10 @@ export const nl: Translations = {
         pricingIntro:
           "Wij bieden concurrerende prijzen met brandstof inbegrepen bij alle boten zonder vaarbewijs. Geen verborgen kosten of toeslagen voor brandstof.",
         pricingNoLicTitle: "Boten zonder vaarbewijs",
-        pricingNoLicFrom: "Vanaf {noLicBaja1h} EUR/uur (brandstof inbegrepen)",
+        pricingNoLicFrom: "Vanaf {noLicBaja1h} €/uur (brandstof inbegrepen)",
         pricingNoLicCapacity: "Capaciteit: 4-7 personen afhankelijk van model",
         pricingLicTitle: "Boten met vaarbewijs",
-        pricingLicFrom: "Vanaf {licBaja2h} EUR / 2 uur",
+        pricingLicFrom: "Vanaf {licBaja2h} € / 2 uur",
         pricingLicEngines: "Motoren van 40 tot 115 PK",
         pricingLicCapacity: "Capaciteit: tot 11 personen",
         pricingButton: "Bekijk alle prijzen en boten",
@@ -3875,7 +3875,7 @@ export const nl: Translations = {
     relatedBlanesName: "Blanes",
     relatedBlanesDesc: "Thuishaven. Boten zonder vaarbewijs vanaf €75/u.",
     relatedLloretName: "Lloret de Mar",
-    relatedLloretDesc: "Baaien en stranden op 20 min varen vanaf Blanes.",
+    relatedLloretDesc: "Baaien en stranden op 25 min varen vanaf Blanes.",
     relatedTossaName: "Tossa de Mar",
     relatedTossaDesc: "Middeleeuwse Vila Vella en de mooiste baaien van de Costa Brava.",
   },
@@ -4270,7 +4270,7 @@ export const nl: Translations = {
     introFleetLink: 'beschikbare boten',
     introSuffix: 'om de perfecte boot voor uw route te vinden.',
     lloretTitle: 'Lloret de Mar per boot',
-    lloretDesc: 'Gouden stranden, verborgen baaien en nachtleven. Slechts 20 min per boot vanuit Blanes.',
+    lloretDesc: 'Gouden stranden, verborgen baaien en nachtleven. Slechts 25 min per boot vanuit Blanes.',
     tossaTitle: 'Tossa de Mar per boot',
     tossaDesc: 'De middeleeuwse Vila Vella, indrukwekkende kliffen en de meest ongerepte baaien van de Costa Brava.',
     pricesTitle: 'Prijzen en tarieven',
@@ -4278,7 +4278,7 @@ export const nl: Translations = {
     guide: {
       heading: 'Gids voor varen langs de Costa Brava vanuit Blanes',
       geographyTitle: 'De kustlijn: van Blanes naar Tossa de Mar',
-      geographyBody: 'De haven van Blanes markeert het begin van de Costa Brava. Varend richting het noorden geeft de rots Sa Palomera de weg vrij naar een opeenvolging van baaien met turquoise water: Cala Sant Francesc, Santa Cristina en Cala Treumal voordat je Lloret de Mar bereikt (ongeveer 20 minuten varen), en verderop Cala Boadella en de ongerepte baaien van Tossa de Mar, met de middeleeuwse Vila Vella op de klippen boven zee. Met een boot met vaarbewijs is de route Blanes–Tossa zo\'n 30-45 minuten rustig varen langs de kust.',
+      geographyBody: 'De haven van Blanes markeert het begin van de Costa Brava. Varend richting het noorden geeft de rots Sa Palomera de weg vrij naar een opeenvolging van baaien met turquoise water: Cala Sant Francesc, Santa Cristina en Cala Treumal voordat je Lloret de Mar bereikt (ongeveer 25 minuten varen), en verderop Cala Boadella en de ongerepte baaien van Tossa de Mar, met de middeleeuwse Vila Vella op de klippen boven zee. Met een boot met vaarbewijs is de route Blanes–Tossa zo\'n 30-45 minuten rustig varen langs de kust.',
       seaTitle: 'Zeecondities en wind',
       seaBody: 'Het zuidelijke deel van de Costa Brava is over het algemeen comfortabel bevaarbaar in de zomer. \'s Ochtends is de zee meestal kalm; \'s middags kan de garbí opkomen, de zuidwestelijke bries die het wateroppervlak licht rimpelt. De wind om in de gaten te houden is de tramontana, een sterke noordenwind die snel kan opsteken: raadpleeg altijd het zeeweersbericht voordat je uitvaart. Boten zonder vaarbewijs mogen tot 2 zeemijl uit de kust (3,7 km) en maximaal 5 knopen varen, voldoende om al deze baaien veilig te verkennen.',
       calasTitle: 'Baaien en snorkelen',
@@ -4464,9 +4464,9 @@ export const nl: Translations = {
       },
       snorkel__locationLloret: {
         seoTitle: 'Snorkelen per boot in Lloret de Mar: Cala Boadella en Banys | Costa Brava Rent a Boat',
-        seoDescription: 'Ontdek de beste snorkelbaaien van Lloret de Mar per boot vanuit Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Boot met vaarbewijs, ongeveer 20 minuten varen.',
+        seoDescription: 'Ontdek de beste snorkelbaaien van Lloret de Mar per boot vanuit Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Boot met vaarbewijs, ongeveer 25 minuten varen.',
         h1: 'Snorkelen per boot in Lloret de Mar',
-        intro: 'Lloret de Mar verbergt enkele van de baaien met het beste water van de zuidelijke Costa Brava, waarvan velen alleen over zee bereikbaar zijn. Als je vanuit Blanes vertrekt, bereik je in ongeveer 20 minuten varen de rotsachtige plekjes waar je kunt snorkelen zonder de massa\'s van het strand.',
+        intro: 'Lloret de Mar verbergt enkele van de baaien met het beste water van de zuidelijke Costa Brava, waarvan velen alleen over zee bereikbaar zijn. Als je vanuit Blanes vertrekt, bereik je in ongeveer 25 minuten varen de rotsachtige plekjes waar je kunt snorkelen zonder de massa\'s van het strand.',
         spotsTitle: 'Beste baaien om te snorkelen in Lloret de Mar',
         spots: [
           {
@@ -4487,14 +4487,14 @@ export const nl: Translations = {
           },
         ],
         boatsTitle: 'Welke boot kiezen om Lloret te bereiken',
-        boatsIntro: 'De baaien van Lloret liggen voorbij de 2-mijlsgrens van boten zonder vaarbewijs, dus om ze te bereiken heb je een van onze boten met vaarbewijs nodig. Ze zijn comfortabel, leggen de afstand vanuit Blanes af in ongeveer 20 minuten en geven je de vrijheid om meerdere baaien in één tocht te bezoeken.',
+        boatsIntro: 'De baaien van Lloret liggen voorbij de 2-mijlsgrens van boten zonder vaarbewijs, dus om ze te bereiken heb je een van onze boten met vaarbewijs nodig. Ze zijn comfortabel, leggen de afstand vanuit Blanes af in ongeveer 25 minuten en geven je de vrijheid om meerdere baaien in één tocht te bezoeken.',
         practicalTitle: 'Praktische informatie',
-        practicalBody: 'Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. De tocht naar de baaien van Lloret duurt ongeveer 20 minuten rustig varen langs de kust. Neem je duikbril en snorkel mee, zonnebescherming en water. Anker op zand, nooit op de posidonia-weiden.',
+        practicalBody: 'Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. De tocht naar de baaien van Lloret duurt ongeveer 25 minuten rustig varen langs de kust. Neem je duikbril en snorkel mee, zonnebescherming en water. Anker op zand, nooit op de posidonia-weiden.',
         faqTitle: 'Veelgestelde vragen',
         faq: [
           {
             q: 'Hoe lang duurt het van Blanes naar de baaien van Lloret per boot?',
-            a: 'Ongeveer 20 minuten rustig varen langs de kust, afhankelijk van de baai en de staat van de zee.',
+            a: 'Ongeveer 25 minuten rustig varen langs de kust, afhankelijk van de baai en de staat van de zee.',
           },
           {
             q: 'Welke baaien van Lloret zijn het beste om te snorkelen?',
@@ -4573,7 +4573,7 @@ export const nl: Translations = {
         boatsTitle: 'Welke boot kiezen afhankelijk van hoe ver je wilt gaan',
         boatsIntro: 'Voor de baaien het dichtst bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen en zonder vergunning. Om het hele traject naar Lloret en Tossa af te leggen (voorbij de 2 mijl) heb je een boot met vaarbewijs nodig, met autonomie om meerdere baaien op één dag te bezoeken.',
         practicalTitle: 'Praktische informatie',
-        practicalBody: 'Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Boten zonder vaarbewijs varen tot 2 mijl; om Lloret (~20 min) of Tossa (30-45 min) te bereiken gebruik je een boot met vaarbewijs. Neem je duikbril en snorkel mee, zonnebescherming en water. Anker altijd op zand, nooit op posidonia.',
+        practicalBody: 'Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Boten zonder vaarbewijs varen tot 2 mijl; om Lloret (~25 min) of Tossa (30-45 min) te bereiken gebruik je een boot met vaarbewijs. Neem je duikbril en snorkel mee, zonnebescherming en water. Anker altijd op zand, nooit op posidonia.',
         faqTitle: 'Veelgestelde vragen',
         faq: [
           {
@@ -4618,10 +4618,10 @@ export const nl: Translations = {
       families__locationLloret: {
         seoTitle: "Boot huren voor gezinnen in Lloret de Mar | Costa Brava Rent a Boat",
         seoDescription:
-          "Dagje varen met het gezin in Lloret de Mar met vertrek vanuit Blanes (~20 min met een boot met vaarbewijs): zandstranden, rustige baaien en ruime boten tot 7 plaatsen.",
+          "Dagje varen met het gezin in Lloret de Mar met vertrek vanuit Blanes (~25 min met een boot met vaarbewijs): zandstranden, rustige baaien en ruime boten tot 7 plaatsen.",
         h1: "Boot huren voor gezinnen in Lloret de Mar",
         intro:
-          "Lloret de Mar combineert ruime zandstranden en beschutte baaien, perfect voor een dagje met het gezin. Met vertrek vanuit Blanes kom je er in zo'n 20 minuten rustig varen en doe je de stranden aan met de vrijheid om te ankeren waar je wilt.",
+          "Lloret de Mar combineert ruime zandstranden en beschutte baaien, perfect voor een dagje met het gezin. Met vertrek vanuit Blanes kom je er in zo'n 25 minuten rustig varen en doe je de stranden aan met de vrijheid om te ankeren waar je wilt.",
         spotsTitle: "Beste stranden en baaien voor gezinnen in Lloret",
         spots: [
           { name: "Santa Cristina", description: "Ruim strand met fijn zand, rustig water en voorzieningen dichtbij, een van de meest comfortabele van de streek om met kinderen te gaan." },
@@ -4630,13 +4630,13 @@ export const nl: Translations = {
         ],
         boatsTitle: "Welke boot kiezen om met het gezin naar Lloret te varen",
         boatsIntro:
-          "Lloret ligt voorbij de 2 zeemijl, dus je komt er met een van onze boten met vaarbewijs. Ze zijn ruim en stabiel (de Pacific Craft 625 biedt plaats aan tot 7 personen) en overbruggen het traject vanuit Blanes in zo'n 20 minuten.",
+          "Lloret ligt voorbij de 2 zeemijl, dus je komt er met een van onze boten met vaarbewijs. Ze zijn ruim en stabiel (de Pacific Craft 625 biedt plaats aan tot 7 personen) en overbruggen het traject vanuit Blanes in zo'n 25 minuten.",
         practicalTitle: "Praktische informatie",
         practicalBody:
-          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Het traject tot Lloret duurt zo'n 20 minuten. We hebben reddingsvesten in alle maten aan boord; neem zonnebescherming, een pet, water en wat te eten mee.",
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Het traject tot Lloret duurt zo'n 25 minuten. We hebben reddingsvesten in alle maten aan boord; neem zonnebescherming, een pet, water en wat te eten mee.",
         faqTitle: "Veelgestelde vragen",
         faq: [
-          { q: "Hoelang duurt het van Blanes naar Lloret per boot?", a: "Zo'n 20 minuten rustig varen langs de kust met een boot met vaarbewijs." },
+          { q: "Hoelang duurt het van Blanes naar Lloret per boot?", a: "Zo'n 25 minuten rustig varen langs de kust met een boot met vaarbewijs." },
           { q: "Welk strand van Lloret is het beste met kinderen?", a: "Santa Cristina en Fenals, vanwege hun zand, rustig water en nabije voorzieningen." },
         ],
         ctaTitle: "Reserveer je dagje varen met het gezin in Lloret",
@@ -4687,7 +4687,7 @@ export const nl: Translations = {
           "Voor de baaien dicht bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen. Om het traject tot Lloret en Tossa af te leggen (voorbij de 2 zeemijl) heb je een boot met vaarbewijs nodig, ruim en tot 7 plaatsen.",
         practicalTitle: "Praktische informatie",
         practicalBody:
-          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Boten zonder vaarbewijs varen tot 2 zeemijl; om Lloret (~20 min) of Tossa (30-45 min) te bereiken gebruik je een boot met vaarbewijs. We hebben reddingsvesten in alle maten aan boord.",
+          "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Boten zonder vaarbewijs varen tot 2 zeemijl; om Lloret (~25 min) of Tossa (30-45 min) te bereiken gebruik je een boot met vaarbewijs. We hebben reddingsvesten in alle maten aan boord.",
         faqTitle: "Veelgestelde vragen",
         faq: [
           { q: "Welk traject kunnen we met het gezin in één dag afleggen?", a: "Met een boot met vaarbewijs de baaien van Blanes, Lloret en Tossa op één dag; met een boot zonder vaarbewijs de rustige baaien het dichtst bij Blanes." },
@@ -4726,10 +4726,10 @@ export const nl: Translations = {
       sunset__locationLloret: {
         seoTitle: "Boottocht bij zonsondergang in Lloret de Mar | Costa Brava Rent a Boat",
         seoDescription:
-          "Zonsondergang per boot in Lloret de Mar met vertrek vanuit Blanes (~20 min met een boot met vaarbewijs): gouden licht over de kliffen van Cala Banys en het kasteel van Lloret.",
+          "Zonsondergang per boot in Lloret de Mar met vertrek vanuit Blanes (~25 min met een boot met vaarbewijs): gouden licht over de kliffen van Cala Banys en het kasteel van Lloret.",
         h1: "Boottocht bij zonsondergang in Lloret de Mar",
         intro:
-          "De kust van Lloret de Mar, met haar kliffen en haar kasteel boven de zee, wordt spectaculair laat in de namiddag. Met vertrek vanuit Blanes in zo'n 20 minuten met een boot met vaarbewijs kom je op tijd voor het mooiste licht van de dag.",
+          "De kust van Lloret de Mar, met haar kliffen en haar kasteel boven de zee, wordt spectaculair laat in de namiddag. Met vertrek vanuit Blanes in zo'n 25 minuten met een boot met vaarbewijs kom je op tijd voor het mooiste licht van de dag.",
         spotsTitle: "Beste plekjes voor de zonsondergang in Lloret",
         spots: [
           { name: "Cala Banys", description: "Donkere kliffen en rotsachtige hoekjes die met het lage licht een van de meest dramatische beelden van de streek opleveren." },
@@ -4738,13 +4738,13 @@ export const nl: Translations = {
         ],
         boatsTitle: "Welke boot kiezen om bij zonsondergang naar Lloret te varen",
         boatsIntro:
-          "Lloret ligt voorbij de 2 zeemijl, dus de tocht maak je met een van onze boten met vaarbewijs, comfortabel en met een goed zonnedek. Ze overbruggen het traject vanuit Blanes in zo'n 20 minuten.",
+          "Lloret ligt voorbij de 2 zeemijl, dus de tocht maak je met een van onze boten met vaarbewijs, comfortabel en met een goed zonnedek. Ze overbruggen het traject vanuit Blanes in zo'n 25 minuten.",
         practicalTitle: "Praktische informatie",
         practicalBody:
           "Seizoen van april tot oktober, met vertrektijden tot 20:00 uur vanuit de haven van Blanes. Aan de Costa Brava gaat de zon achter de kust onder: je geniet van het gouden licht over de kliffen en het kasteel meer dan van de zonsondergang boven zee. Neem een licht jasje mee voor de terugtocht.",
         faqTitle: "Veelgestelde vragen",
         faq: [
-          { q: "Hoelang duurt het van Blanes naar Lloret bij zonsondergang?", a: "Zo'n 20 minuten met een boot met vaarbewijs; het is aan te raden met wat marge te vertrekken om het mooiste licht te benutten." },
+          { q: "Hoelang duurt het van Blanes naar Lloret bij zonsondergang?", a: "Zo'n 25 minuten met een boot met vaarbewijs; het is aan te raden met wat marge te vertrekken om het mooiste licht te benutten." },
           { q: "Zie je de zonsondergang boven de zee?", a: "Aan deze kust gaat de zon achter het land onder, niet boven het water; het mooie is het gouden licht en de verlichte kliffen en het kasteel." },
         ],
         ctaTitle: "Reserveer je tocht bij zonsondergang in Lloret",
@@ -4834,10 +4834,10 @@ export const nl: Translations = {
       fishing__locationLloret: {
         seoTitle: "Boot huren om te vissen in Lloret de Mar | Costa Brava Rent a Boat",
         seoDescription:
-          "Recreatieve visserij per boot in Lloret de Mar vanuit Blanes (~20 min met een boot met vaarbewijs). Rotsachtige bodems voor de kust. Visvergunning ten laste van de klant.",
+          "Recreatieve visserij per boot in Lloret de Mar vanuit Blanes (~25 min met een boot met vaarbewijs). Rotsachtige bodems voor de kust. Visvergunning ten laste van de klant.",
         h1: "Boot huren om te vissen in Lloret de Mar",
         intro:
-          "De kust van Lloret de Mar, met kliffen en rotsachtige bodems, biedt goede gebieden voor recreatieve visserij. Met vertrek vanuit Blanes met een boot met vaarbewijs kom je er in zo'n 20 minuten en heb je autonomie om je tussen punten te verplaatsen.",
+          "De kust van Lloret de Mar, met kliffen en rotsachtige bodems, biedt goede gebieden voor recreatieve visserij. Met vertrek vanuit Blanes met een boot met vaarbewijs kom je er in zo'n 25 minuten en heb je autonomie om je tussen punten te verplaatsen.",
         spotsTitle: "Visgebieden in de buurt van Lloret",
         spots: [
           { name: "Bodems van Cala Banys", description: "Strook van kliffen en rots waar rotsvissen gebruikelijk is, voor de kust van Lloret." },
@@ -4846,13 +4846,13 @@ export const nl: Translations = {
         ],
         boatsTitle: "Welke boot kiezen om naar Lloret te varen om te vissen",
         boatsIntro:
-          "Lloret ligt voorbij de 2 zeemijl, dus je komt er met een van onze boten met vaarbewijs, met autonomie om je tussen visgebieden te verplaatsen. Het traject vanuit Blanes duurt zo'n 20 minuten.",
+          "Lloret ligt voorbij de 2 zeemijl, dus je komt er met een van onze boten met vaarbewijs, met autonomie om je tussen visgebieden te verplaatsen. Het traject vanuit Blanes duurt zo'n 25 minuten.",
         practicalTitle: "Praktische informatie en regelgeving",
         practicalBody:
           "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Je hebt de vergunning voor recreatieve visserij van Catalonië nodig (ten laste van de klant). Respecteer minimummaten, beschermde soorten en gereguleerde zones. De visuitrusting is niet inbegrepen.",
         faqTitle: "Veelgestelde vragen",
         faq: [
-          { q: "Hoelang duurt het van Blanes naar Lloret per boot?", a: "Zo'n 20 minuten met een boot met vaarbewijs, die we gebruiken voor de visuitjes." },
+          { q: "Hoelang duurt het van Blanes naar Lloret per boot?", a: "Zo'n 25 minuten met een boot met vaarbewijs, die we gebruiken voor de visuitjes." },
           { q: "Heb ik een visvergunning nodig?", a: "Ja, de vergunning voor recreatieve visserij van Catalonië levert de klant aan; de boothuur omvat deze niet." },
         ],
         ctaTitle: "Reserveer je visuitje in Lloret",

@@ -37,7 +37,12 @@ const CATEGORY_ALIASES: Record<string, string> = {
 };
 
 function normalizeCategory(category: string): string {
-  return CATEGORY_ALIASES[category] || category;
+  // Normalize render capitalization ("guías" / "GUÍAS" → "Guías") so pills look
+  // consistent and the category filter doesn't show case-duplicates.
+  const trimmed = category.trim();
+  const capitalized =
+    trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+  return CATEGORY_ALIASES[capitalized] || capitalized;
 }
 
 function localizeCategory(category: string, lang: string): string {

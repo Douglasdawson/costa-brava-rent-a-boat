@@ -426,7 +426,7 @@ export const de: Translations = {
       packSelected: "Paket ausgewählt",
     },
     confirmTitle: "Buchung bestätigen",
-    confirmSubtitle: "Überprüfe die Details. Bestätigung per WhatsApp in Minuten.",
+    confirmSubtitle: "Überprüfe die Details. Bestätigung per WhatsApp in weniger als 2 Stunden.",
     summaryClient: "Kunde",
     estimatedTotal: "Geschätzter Gesamtbetrag",
     basePrice: "Grundpreis",
@@ -788,7 +788,7 @@ export const de: Translations = {
     numberOfPeople: "Anzahl der Personen",
     maxCapacityError: "Dieses Boot hat eine maximale Kapazität von {max} Personen",
     yourData: "Ihre Daten",
-    confirmViaWhatsApp: "Bestätigung per WhatsApp in Minuten",
+    confirmViaWhatsApp: "Bestätigung per WhatsApp in weniger als 2 Stunden",
     firstName: "Vorname",
     lastName: "Nachname",
     fullName: "Vollständiger Name",
@@ -1507,7 +1507,7 @@ export const de: Translations = {
     ],
     whatsNext: "Nächste Schritte",
     whatsNextSteps: [
-      "Sie erhalten eine Bestätigung per WhatsApp innerhalb von Minuten",
+      "Sie erhalten eine Bestätigung per WhatsApp innerhalb von 2 Stunden",
       "24h vorher: Erinnerung mit Anweisungen",
       "Am Miettag: Erscheinen Sie am Puerto de Blanes",
     ],
@@ -1668,7 +1668,7 @@ export const de: Translations = {
   bookingTrust: {
     customers: "5000+ Kunden",
     rating: "4.8 Google",
-    confirmation: "Antwort in Minuten",
+    confirmation: "Antwort in weniger als 2 Stunden",
     freeCancellation: "Kostenlose Umbuchung*",
     freeCancellationFootnote: "* Nach Verfügbarkeit",
     securePayment: "Sichere Buchung",
@@ -1971,7 +1971,7 @@ export const de: Translations = {
       {
         question: "Was kostet ein Bootsausflug bei Sonnenuntergang?",
         answer:
-          "Ein 2-stündiger Sonnenuntergangsausflug mit einem führerscheinfreien Boot kostet ab 140 EUR insgesamt ({noLicBaja1h} EUR/Stunde in der Nebensaison). Der Treibstoff ist bei führerscheinfreien Booten im Preis inbegriffen. Das Boot bietet Platz für bis zu 5 Personen, sodass die Kosten pro Person ab 28 EUR betragen können. Die führerscheinfreien Boote beinhalten Treibstoff, Versicherung, Sicherheitsausrüstung und die Einweisung.",
+          "Ein 2-stündiger Sonnenuntergangsausflug mit einem führerscheinfreien Boot kostet ab 140 € insgesamt ({noLicBaja1h} €/Stunde in der Nebensaison). Der Treibstoff ist bei führerscheinfreien Booten im Preis inbegriffen. Das Boot bietet Platz für bis zu 5 Personen, sodass die Kosten pro Person ab 28 € betragen können. Die führerscheinfreien Boote beinhalten Treibstoff, Versicherung, Sicherheitsausrüstung und die Einweisung.",
       },
     ],
     sunsetTimes: [
@@ -2070,7 +2070,7 @@ export const de: Translations = {
       "Anders als bei Gruppen-Sonnenuntergangstouren gehört das Boot nur Ihnen. Sie entscheiden, wo Sie ankern, wie lange Sie bleiben und was Sie an Bord mitbringen. Kein Reiseleiter, der Sie drängt, keine anderen Touristen. Nur Sie und das Mittelmeer in seinem schönsten Moment.",
     whyAffordableTitle: "Einfach und erschwinglich",
     whyAffordableDesc:
-      "Unsere führerscheinfreien Boote sind unglaublich einfach zu handhaben. Nach einer 15-minütigen Einweisung im Hafen sind Sie startklar. Das Boot fasst bis zu 5 Personen, sodass ein 2-stündiger Sonnenuntergangsausflug ab 28 EUR pro Person mit inkludiertem Benzin kosten kann. Weniger als die meisten Abendessen an der Costa Brava.",
+      "Unsere führerscheinfreien Boote sind unglaublich einfach zu handhaben. Nach einer 15-minütigen Einweisung im Hafen sind Sie startklar. Das Boot fasst bis zu 5 Personen, sodass ein 2-stündiger Sonnenuntergangsausflug ab 28 € pro Person mit inkludiertem Benzin kosten kann. Weniger als die meisten Abendessen an der Costa Brava.",
     whyTemperatureTitle: "Perfekte Abendtemperatur",
     whyTemperatureDesc:
       "Am späten Nachmittag hat sich die Tageshitze gelegt. Die Meeresbrise hält Sie angenehm kühl. Das Wasser ist nach einem Tag voller Sonneneinstrahlung am wärmsten. Es ist der ideale Moment, um im Wasser zu sein – ob zum Schwimmen, Treiben oder einfach zuzuschauen, wie der Himmel die Farben wechselt.",
@@ -2117,7 +2117,7 @@ export const de: Translations = {
       {
         question: "Kann ich Schnorchelausrüstung mit dem Boot mieten?",
         answer:
-          "Ja. Wir bieten Schnorchelsets (Maske, Schnorchel und Flossen) für 7,50 EUR pro Person an. Die Ausrüstung wird beim Einsteigen abgeholt und am Ende der Miete zurückgegeben. Sie können auch Ihre eigene Ausrüstung ohne zusätzliche Kosten mitbringen.",
+          "Ja. Wir bieten Schnorchelsets (Maske, Schnorchel und Flossen) für 7,50 € pro Person an. Die Ausrüstung wird beim Einsteigen abgeholt und am Ende der Miete zurückgegeben. Sie können auch Ihre eigene Ausrüstung ohne zusätzliche Kosten mitbringen.",
       },
       {
         question: "Wann ist die beste Zeit zum Schnorcheln in Blanes?",
@@ -2174,7 +2174,7 @@ export const de: Translations = {
       {
         name: "Boote mit Führerschein (6-7 Personen)",
         duration: "4-6 Stunden empfohlen",
-        price: "Ab 90 EUR/Stunde",
+        price: "Ab 90 €/Stunde",
         description:
           "Größere Reichweite für den Besuch mehrerer Buchten in einem Ausflug. Ideal für Gruppen, die Schnorcheln mit einer Fahrt nach Lloret oder Tossa verbinden möchten.",
       },
@@ -2182,7 +2182,7 @@ export const de: Translations = {
     depthLabel: "Tiefe:",
     heroTitle: "Schnorchel-Bootsausflug ab Blanes",
     heroDescription:
-      "Entdecken Sie die Unterwasserwelt der Costa Brava von unseren Booten im Hafen von Blanes aus. Fahren Sie zu den schönsten Buchten, ankern Sie und tauchen Sie in kristallklares Wasser mit einer Sicht von bis zu 15 Metern ein. Schnorchelausrüstung verfügbar für 7,50 EUR/Person.",
+      "Entdecken Sie die Unterwasserwelt der Costa Brava von unseren Booten im Hafen von Blanes aus. Fahren Sie zu den schönsten Buchten, ankern Sie und tauchen Sie in kristallklares Wasser mit einer Sicht von bis zu 15 Metern ein. Schnorchelausrüstung verfügbar für 7,50 €/Person.",
     badgeSpots: "3 Schnorchelbuchten",
     badgeVisibility: "Sicht 10-15m",
     badgeDuration: "2-4 Stunden empfohlen",
@@ -2208,7 +2208,7 @@ export const de: Translations = {
       "Sonnensegel / Bimini für Schatten an Deck",
       "Anker zum Ankern in den Buchten",
     ],
-    rentalTitle: "Zusätzliche Miete: 7,50 EUR/Person",
+    rentalTitle: "Zusätzliche Miete: 7,50 €/Person",
     rentalItems: [
       "Hochwertige Schnorchelmaske",
       "Schnorchel mit Wasserstopp-Ventil",
@@ -2263,7 +2263,7 @@ export const de: Translations = {
       {
         question: "Was ist im Mietpreis enthalten?",
         answer:
-          "Der Preis für die führerscheinfreien Boote beinhaltet Benzin, Versicherung, Schwimmwesten für alle (einschließlich Kinder), Badeleiter, Sonnenverdeck/Bimini und die Sicherheitseinweisung. Nur die Schnorchelausrüstung kostet extra (7,50 EUR/Person).",
+          "Der Preis für die führerscheinfreien Boote beinhaltet Benzin, Versicherung, Schwimmwesten für alle (einschließlich Kinder), Badeleiter, Sonnenverdeck/Bimini und die Sicherheitseinweisung. Nur die Schnorchelausrüstung kostet extra (7,50 €/Person).",
       },
       {
         question: "Was sollten wir für einen Bootsausflug mit Kindern mitnehmen?",
@@ -2385,7 +2385,7 @@ export const de: Translations = {
       {
         question: "Benötige ich einen Angelschein, um vom Boot aus zu angeln?",
         answer:
-          "Ja. Für das Freizeitangeln auf See benötigen Sie den maritimen Freizeitangelschein der Generalitat de Catalunya. Sie können ihn online auf gencat.cat für ca. 14 EUR erwerben (Gültigkeit 2 Jahre). Er unterscheidet sich vom Bootsführerschein: Der Angelschein ist zum Angeln, der Bootsführerschein zum Führen des Bootes.",
+          "Ja. Für das Freizeitangeln auf See benötigen Sie den maritimen Freizeitangelschein der Generalitat de Catalunya. Sie können ihn online auf gencat.cat für ca. 14 € erwerben (Gültigkeit 2 Jahre). Er unterscheidet sich vom Bootsführerschein: Der Angelschein ist zum Angeln, der Bootsführerschein zum Führen des Bootes.",
       },
       {
         question: "Welches Boot brauche ich zum Meeresangeln?",
@@ -2435,7 +2435,7 @@ export const de: Translations = {
         type: "Boote mit Lizenz",
         capacity: "6-7 Personen",
         autonomy: "Größere Reichweite und Aktionsradius",
-        price: "Ab 90 EUR/Stunde (Benzin nicht inkludiert)",
+        price: "Ab 90 €/Stunde (Benzin nicht inkludiert)",
         advantages: [
           "Zugang zu weiter entfernten Angelgebieten (5+ Meilen)",
           "Mehr Leistung für Schlepp- und Jigging-Angeln",
@@ -2510,7 +2510,7 @@ export const de: Translations = {
     regulationsTitle: "Angelvorschriften und -regelungen",
     licenseTitle: "Angelschein Pflicht",
     licenseDesc:
-      "Um vom Boot aus auf See zu angeln, benötigen Sie den maritimen Freizeitangelschein der Generalitat de Catalunya. Sie können ihn online auf gencat.cat für ca. 14 EUR erwerben (Gültigkeit 2 Jahre).",
+      "Um vom Boot aus auf See zu angeln, benötigen Sie den maritimen Freizeitangelschein der Generalitat de Catalunya. Sie können ihn online auf gencat.cat für ca. 14 € erwerben (Gültigkeit 2 Jahre).",
     catchLimitsTitle: "Fangbeschränkungen",
     catchLimitsItems: [
       "Maximal 5 kg pro Person und Tag",
@@ -2566,7 +2566,7 @@ export const de: Translations = {
         {
           question: "Wie viel kostet es, im Hafen von Blanes ein Boot zu mieten?",
           answer:
-            "Führerscheinfreie Boote kosten ab {noLicBaja1h} EUR/Stunde in der Nebensaison (April–Juni, September–Oktober). In der Hochsaison (August) ab {noLicAlta1h} EUR/Stunde. Der Preis beinhaltet Kraftstoff, Versicherung und Sicherheitsausrüstung.",
+            "Führerscheinfreie Boote kosten ab {noLicBaja1h} €/Stunde in der Nebensaison (April–Juni, September–Oktober). In der Hochsaison (August) ab {noLicAlta1h} €/Stunde. Der Preis beinhaltet Kraftstoff, Versicherung und Sicherheitsausrüstung.",
         },
         {
           question: "Wohin kann ich mit dem Boot von Blanes aus fahren?",
@@ -2688,7 +2688,7 @@ export const de: Translations = {
         experiencesTitle: "Beliebte Erlebnisse ab Blanes",
         expSnorkelTitle: "Schnorcheln in Cala Brava",
         expSnorkelDesc:
-          "Fahren Sie 15 Minuten zur Cala Brava und entdecken Sie ihre Unterwasserwelt. Kristallklares Wasser mit bis zu 15 Metern Sicht. Schnorchelausruestung fuer nur 7,50 EUR.",
+          "Fahren Sie 15 Minuten zur Cala Brava und entdecken Sie ihre Unterwasserwelt. Kristallklares Wasser mit bis zu 15 Metern Sicht. Schnorchelausruestung fuer nur 7,50 €.",
         expSunsetTitle: "Sonnenuntergangsfahrt",
         expSunsetDesc:
           "Buchen Sie den letzten Nachmittagsslot und geniessen Sie den Sonnenuntergang ueber dem Meer. Das goldene Licht auf den Klippen der Costa Brava ist unvergesslich.",
@@ -2968,7 +2968,7 @@ export const de: Translations = {
         byCar: "Mit dem Auto",
         byCarDesc: "Von Malgrat nehmen Sie die N-II Richtung Blanes. 8 km, etwa 10 Minuten.",
         byTaxi: "Mit dem Taxi",
-        byTaxiDesc: "Taxi von Malgrat zum Hafen von Blanes: ca. 12-15 EUR, 10 Minuten.",
+        byTaxiDesc: "Taxi von Malgrat zum Hafen von Blanes: ca. 12-15 €, 10 Minuten.",
         byPublicTransport: "Öffentliche Verkehrsmittel",
         byPublicTransportDesc:
           "RENFE-Zug Linie R1 von Malgrat nach Blanes (5 Min., alle 30 Min.). Vom Bahnhof 15 Min. zu Fuß.",
@@ -2992,7 +2992,7 @@ export const de: Translations = {
         {
           question: "Wie viel kostet es, ein Boot von Blanes aus zu mieten?",
           answer:
-            "Die Bootsvermietung beginnt ab {noLicBaja1h} EUR pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
+            "Die Bootsvermietung beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
         },
         {
           question: "Brauche ich einen Bootsführerschein?",
@@ -3018,7 +3018,7 @@ export const de: Translations = {
         {
           question: "Gibt es einen Transfer-Service von Hotels in Malgrat zum Hafen von Blanes?",
           answer:
-            "Wir bieten keinen direkten Transfer an, aber die Strecke ist sehr kurz: 5 Minuten mit dem Zug R1 (Malgrat → Blanes) oder 10 Minuten mit dem Auto/Taxi (ca. 12–15 EUR). Der Bahnhof Blanes liegt 10 Gehminuten vom Hafen entfernt. Es gibt auch den lokalen Bus L23.",
+            "Wir bieten keinen direkten Transfer an, aber die Strecke ist sehr kurz: 5 Minuten mit dem Zug R1 (Malgrat → Blanes) oder 10 Minuten mit dem Auto/Taxi (ca. 12–15 €). Der Bahnhof Blanes liegt 10 Gehminuten vom Hafen entfernt. Es gibt auch den lokalen Bus L23.",
         },
       ],
     },
@@ -3033,7 +3033,7 @@ export const de: Translations = {
           question:
             "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Santa Susanna bin?",
           answer:
-            "Die Bootsvermietung beginnt ab {noLicBaja1h} EUR pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
+            "Die Bootsvermietung beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
         },
         {
           question: "Brauche ich einen Bootsführerschein, um ein Boot zu mieten?",
@@ -3054,12 +3054,12 @@ export const de: Translations = {
         {
           question: "Was ist die beste Bootsexkursion, wenn ich in Santa Susanna wohne?",
           answer:
-            "Von Blanes aus empfehlen wir: (a) 4-stündige Buchtentour ohne Führerschein bis Playa de Fenals mit Ankern in 2–3 kristallklaren Buchten (ab 135 EUR für 5 Personen); (b) 4-stündige private Exkursion mit Skipper bis Tossa und Cala Bona (ab {excursionBaja4h} EUR, ideal ohne nautische Erfahrung); (c) Boot mit Grundlizenz, wenn jemand in der Gruppe eine Lizenz hat (ab 240 EUR / 4 Std.).",
+            "Von Blanes aus empfehlen wir: (a) 4-stündige Buchtentour ohne Führerschein bis Playa de Fenals mit Ankern in 2–3 kristallklaren Buchten (ab 135 € für 5 Personen); (b) 4-stündige private Exkursion mit Skipper bis Tossa und Cala Bona (ab {excursionBaja4h} €, ideal ohne nautische Erfahrung); (c) Boot mit Grundlizenz, wenn jemand in der Gruppe eine Lizenz hat (ab 240 € / 4 Std.).",
         },
         {
           question: "Kann ich von Santa Susanna aus eine Bootsfahrt bei Sonnenuntergang machen?",
           answer:
-            "Ja, sehr beliebt. Von Blanes aus bieten wir Sonnenuntergangsfahrten (18:30–21:00 Uhr je nach Monat) mit führerscheinfreiem Boot für 115 EUR für 2 Stunden an. Sie fahren bei goldenem Licht an 7 Buchten vorbei. Von Santa Susanna erreichen Sie uns in 15 Min. mit dem Auto oder 10 Min. mit dem Zug. Im Sommer bitte im Voraus buchen.",
+            "Ja, sehr beliebt. Von Blanes aus bieten wir Sonnenuntergangsfahrten (18:30–21:00 Uhr je nach Monat) mit führerscheinfreiem Boot für 115 € für 2 Stunden an. Sie fahren bei goldenem Licht an 7 Buchten vorbei. Von Santa Susanna erreichen Sie uns in 15 Min. mit dem Auto oder 10 Min. mit dem Zug. Im Sommer bitte im Voraus buchen.",
         },
       ],
       hero: {
@@ -3099,7 +3099,7 @@ export const de: Translations = {
         byCarDesc:
           "Von Santa Susanna nehmen Sie die N-II Richtung Norden nach Blanes. 12 km, etwa 15 Minuten.",
         byTaxi: "Mit dem Taxi",
-        byTaxiDesc: "Taxi von Santa Susanna zum Hafen von Blanes: ca. 18-22 EUR, 15 Minuten.",
+        byTaxiDesc: "Taxi von Santa Susanna zum Hafen von Blanes: ca. 18-22 €, 15 Minuten.",
         byPublicTransport: "Öffentliche Verkehrsmittel",
         byPublicTransportDesc:
           "RENFE-Zug Linie R1 von Santa Susanna nach Blanes (10 Min., alle 30 Min.). Vom Bahnhof 15 Min. zu Fuß.",
@@ -3126,7 +3126,7 @@ export const de: Translations = {
           question:
             "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Calella bin?",
           answer:
-            "Die Bootsvermietung beginnt ab {noLicBaja1h} EUR pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
+            "Die Bootsvermietung beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
         },
         {
           question: "Brauche ich Vorkenntnisse, um ein Boot zu mieten?",
@@ -3146,12 +3146,12 @@ export const de: Translations = {
         {
           question: "Kann ich von Calella aus eine Bootsexkursion nach Tossa de Mar machen?",
           answer:
-            "Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Licencia de Navegación (LN) erreichst du Tossa in 45 Min. (ab {licBaja2h} EUR/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} EUR für bis zu 6 Personen, plus Skipper). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.",
+            "Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Licencia de Navegación (LN) erreichst du Tossa in 45 Min. (ab {licBaja2h} €/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} € für bis zu 6 Personen, plus Skipper). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.",
         },
         {
           question: "Wie viel kostet der Zug R1 von Calella nach Blanes?",
           answer:
-            "Das Einzelticket R1 Calella → Blanes kostet etwa 3 EUR (ATM-Tarif Zone 4–5). Mit der T-Casual-Karte für 10 Fahrten ist es günstiger. Dauer: 15 Minuten. Frequenz: alle 30 Minuten in der Saison. Vom Bahnhof Blanes zum Hafen sind es 10 Gehminuten oder 3 Min. mit dem Taxi.",
+            "Das Einzelticket R1 Calella → Blanes kostet etwa 3 € (ATM-Tarif Zone 4–5). Mit der T-Casual-Karte für 10 Fahrten ist es günstiger. Dauer: 15 Minuten. Frequenz: alle 30 Minuten in der Saison. Vom Bahnhof Blanes zum Hafen sind es 10 Gehminuten oder 3 Min. mit dem Taxi.",
         },
       ],
       hero: {
@@ -3191,7 +3191,7 @@ export const de: Translations = {
         byCarDesc:
           "Von Calella nehmen Sie die N-II Richtung Norden nach Blanes. 17 km, etwa 20 Minuten.",
         byTaxi: "Mit dem Taxi",
-        byTaxiDesc: "Taxi von Calella zum Hafen von Blanes: ca. 25-30 EUR, 20 Minuten.",
+        byTaxiDesc: "Taxi von Calella zum Hafen von Blanes: ca. 25-30 €, 20 Minuten.",
         byPublicTransport: "Öffentliche Verkehrsmittel",
         byPublicTransportDesc:
           "RENFE-Zug Linie R1 von Calella nach Blanes (15 Min., alle 30 Min.). Vom Bahnhof 15 Min. zu Fuß.",
@@ -3264,7 +3264,7 @@ export const de: Translations = {
         licensedCapacity: "Bis zu 7 Personen an Bord",
         licensedNavigation: "Hochseenavigation ohne Einschraenkungen",
         licensedFuel: "Treibstoff NICHT inbegriffen (separate Kaution)",
-        licensedPrice: "Ab 90 EUR/Stunde",
+        licensedPrice: "Ab 90 €/Stunde",
         licensedDesc:
           "Für qualifizierte Skipper, die über die unmittelbare Küste hinaus erkunden möchten. Mehr Leistung, Reichweite und Kapazität. Der Treibstoff wird separat nach tatsächlichem Verbrauch berechnet. Die Licencia de Navegación (LN) genügt; auch PNB, PER oder europäische Äquivalente sind gültig.",
         bestCovesTitle: "Die besten Buchten der Costa Brava per Boot",
@@ -3316,7 +3316,7 @@ export const de: Translations = {
           question:
             "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Tordera wohne?",
           answer:
-            "Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} EUR pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} EUR für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
+            "Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} € für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
         },
         {
           question: "Brauche ich einen Bootsführerschein?",
@@ -3382,7 +3382,7 @@ export const de: Translations = {
           "Nehmen Sie von Tordera aus die Straße Richtung Blanes (GI-600 oder C-32). Es sind 10 km direkte Fahrt zum Hafen von Blanes. Das Parken im Hafenbereich ist kostenlos und in der Regel gut verfügbar, besonders wenn Sie morgens ankommen.",
         howTaxiTitle: "Mit dem Taxi",
         howTaxiDesc:
-          "Ein Taxi von Tordera zum Hafen Blanes kostet ca. 15-20 EUR. Es ist eine schnelle und bequeme Option für Hin- und Rückfahrt.",
+          "Ein Taxi von Tordera zum Hafen Blanes kostet ca. 15-20 €. Es ist eine schnelle und bequeme Option für Hin- und Rückfahrt.",
         howTransportTitle: "Mit dem RENFE-Zug (8 Minuten)",
         howTransportDesc:
           "Die R1-Linie der RENFE Rodalies verbindet Tordera mit Blanes in nur 8 Minuten. Es ist die schnellste und günstigste Option. Die Züge fahren in der Saison alle 30 Minuten. Vom Bahnhof Blanes aus ist der Hafen 10-15 Gehminuten über die Strandpromenade entfernt.",
@@ -3399,10 +3399,10 @@ export const de: Translations = {
         pricingIntro:
           "Transparente Preise mit Benzin inklusive bei allen Booten ohne Führerschein. Keine Überraschungen oder zusätzlichen Kosten.",
         pricingNoLicTitle: "Boote ohne Führerschein",
-        pricingNoLicFrom: "Ab {noLicBaja1h} EUR/Stunde (Benzin inklusive)",
+        pricingNoLicFrom: "Ab {noLicBaja1h} €/Stunde (Benzin inklusive)",
         pricingNoLicCapacity: "Kapazität: 4-7 Personen je nach Modell",
         pricingLicTitle: "Boote mit Führerschein",
-        pricingLicFrom: "Ab {licBaja2h} EUR / 2 Stunden",
+        pricingLicFrom: "Ab {licBaja2h} € / 2 Stunden",
         pricingLicEngines: "Motoren von 40 bis 115 PS",
         pricingLicCapacity: "Kapazität: bis zu 11 Personen",
         pricingButton: "Alle Preise und Boote ansehen",
@@ -3424,7 +3424,7 @@ export const de: Translations = {
           question:
             "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Palafolls bin?",
           answer:
-            "Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} EUR pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} EUR für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
+            "Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} € für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
         },
         {
           question: "Kann ich vom Campingplatz in Palafolls zum Hafen von Blanes gelangen?",
@@ -3489,7 +3489,7 @@ export const de: Translations = {
           "Nehmen Sie von Palafolls aus die BV-6001 Richtung Blanes. Es sind nur 8 km zum Hafen von Blanes. Die Fahrt ist schnell und einfach, mit guter Beschilderung. Von den Campingplätzen der Gegend aus ist die Route noch direkter.",
         howTaxiTitle: "Mit dem Taxi",
         howTaxiDesc:
-          "Ein Taxi von Palafolls zum Hafen Blanes kostet ca. 12-18 EUR. Es ist eine bequeme Option, wenn Sie kein eigenes Auto haben.",
+          "Ein Taxi von Palafolls zum Hafen Blanes kostet ca. 12-18 €. Es ist eine bequeme Option, wenn Sie kein eigenes Auto haben.",
         howTransportTitle: "Mit dem Bus",
         howTransportDesc:
           "Palafolls hat keinen Bahnhof, aber es gibt Buslinien, die mit Blanes verbinden. Die Fahrt dauert ca. 20 Minuten. Informieren Sie sich in der Hochsaison über die Fahrpläne der lokalen Linien, da die Frequenz im Sommer zunimmt.",
@@ -3506,10 +3506,10 @@ export const de: Translations = {
         pricingIntro:
           "Transparente Preise mit Benzin inklusive bei allen Booten ohne Führerschein. Keine versteckten Kosten.",
         pricingNoLicTitle: "Boote ohne Führerschein",
-        pricingNoLicFrom: "Ab {noLicBaja1h} EUR/Stunde (Benzin inklusive)",
+        pricingNoLicFrom: "Ab {noLicBaja1h} €/Stunde (Benzin inklusive)",
         pricingNoLicCapacity: "Kapazität: 4-7 Personen je nach Modell",
         pricingLicTitle: "Boote mit Führerschein",
-        pricingLicFrom: "Ab {licBaja2h} EUR / 2 Stunden",
+        pricingLicFrom: "Ab {licBaja2h} € / 2 Stunden",
         pricingLicEngines: "Motoren von 40 bis 115 PS",
         pricingLicCapacity: "Kapazität: bis zu 11 Personen",
         pricingButton: "Alle Preise und Boote ansehen",
@@ -3531,7 +3531,7 @@ export const de: Translations = {
           question:
             "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Pineda de Mar bin?",
           answer:
-            "Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} EUR pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} EUR für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
+            "Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} € für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
         },
         {
           question: "Brauche ich einen Bootsführerschein, um ein Boot zu mieten?",
@@ -3597,7 +3597,7 @@ export const de: Translations = {
           "Nehmen Sie die N-II in nördlicher Richtung nach Blanes. Es sind 15 km bequeme und direkte Fahrt. Von den meisten Hotels in Pineda de Mar erreichen Sie den Hafen von Blanes in ca. 18 Minuten. Die Fahrt führt entlang der Küste und ist sehr angenehm.",
         howTaxiTitle: "Mit dem Taxi",
         howTaxiDesc:
-          "Ein Taxi von Pineda de Mar zum Hafen Blanes kostet ca. 20-25 EUR. Es ist eine gute Option, wenn Sie kein Auto haben oder sich nicht um das Parken kümmern möchten.",
+          "Ein Taxi von Pineda de Mar zum Hafen Blanes kostet ca. 20-25 €. Es ist eine gute Option, wenn Sie kein Auto haben oder sich nicht um das Parken kümmern möchten.",
         howTransportTitle: "Mit dem RENFE-Zug (12 Minuten)",
         howTransportDesc:
           "Die R1-Linie der RENFE Rodalies verbindet Pineda de Mar mit Blanes in nur 12 Minuten. Die Züge fahren in der Hochsaison alle 30 Minuten. Vom Bahnhof Blanes aus ist der Hafen ca. 10-15 Gehminuten über die Strandpromenade entfernt.",
@@ -3614,10 +3614,10 @@ export const de: Translations = {
         pricingIntro:
           "Wir bieten wettbewerbsfähige Preise mit Benzin inklusive bei allen Booten ohne Führerschein. Keine versteckten Kosten oder Treibstoffzuschläge.",
         pricingNoLicTitle: "Boote ohne Führerschein",
-        pricingNoLicFrom: "Ab {noLicBaja1h} EUR/Stunde (Benzin inklusive)",
+        pricingNoLicFrom: "Ab {noLicBaja1h} €/Stunde (Benzin inklusive)",
         pricingNoLicCapacity: "Kapazität: 4-7 Personen je nach Modell",
         pricingLicTitle: "Boote mit Führerschein",
-        pricingLicFrom: "Ab {licBaja2h} EUR / 2 Stunden",
+        pricingLicFrom: "Ab {licBaja2h} € / 2 Stunden",
         pricingLicEngines: "Motoren von 40 bis 115 PS",
         pricingLicCapacity: "Kapazität: bis zu 11 Personen",
         pricingButton: "Alle Preise und Boote ansehen",
@@ -3898,7 +3898,7 @@ export const de: Translations = {
     relatedBlanesName: "Blanes",
     relatedBlanesDesc: "Heimathafen. Boote ohne Führerschein ab 75€/Std.",
     relatedLloretName: "Lloret de Mar",
-    relatedLloretDesc: "Buchten und Strände 20 Min. mit dem Boot von Blanes.",
+    relatedLloretDesc: "Buchten und Strände 25 Min. mit dem Boot von Blanes.",
     relatedTossaName: "Tossa de Mar",
     relatedTossaDesc: "Mittelalterliche Vila Vella und die schönsten Buchten der Costa Brava.",
   },
@@ -4293,7 +4293,7 @@ export const de: Translations = {
     introFleetLink: 'verfügbaren Boote',
     introSuffix: 'um das perfekte Boot für Ihre Route zu finden.',
     lloretTitle: 'Lloret de Mar per Boot',
-    lloretDesc: 'Goldene Strande, versteckte Buchten und Nachtleben. Nur 20 Min. per Boot ab Blanes.',
+    lloretDesc: 'Goldene Strande, versteckte Buchten und Nachtleben. Nur 25 Min. per Boot ab Blanes.',
     tossaTitle: 'Tossa de Mar per Boot',
     tossaDesc: 'Die mittelalterliche Vila Vella, beeindruckende Klippen und die unberuhrtesten Buchten der Costa Brava.',
     pricesTitle: 'Preise und Tarife',
@@ -4301,7 +4301,7 @@ export const de: Translations = {
     guide: {
       heading: 'Leitfaden zum Befahren der Costa Brava von Blanes aus',
       geographyTitle: 'Die Küste: von Blanes nach Tossa de Mar',
-      geographyBody: 'Der Hafen von Blanes markiert den Beginn der Costa Brava. Wenn Sie nach Norden fahren, folgt auf den Felsen Sa Palomera eine Abfolge von Buchten mit türkisfarbenem Wasser: Cala Sant Francesc, Santa Cristina und Cala Treumal, bevor Sie Lloret de Mar erreichen (etwa 20 Minuten mit dem Boot), und weiter Cala Boadella und die unberührten Buchten von Tossa de Mar mit der mittelalterlichen Vila Vella, die das Meer überragt. Mit einem Boot mit Führerschein dauert die Strecke Blanes–Tossa etwa 30-45 Minuten ruhiger Fahrt entlang der Küste.',
+      geographyBody: 'Der Hafen von Blanes markiert den Beginn der Costa Brava. Wenn Sie nach Norden fahren, folgt auf den Felsen Sa Palomera eine Abfolge von Buchten mit türkisfarbenem Wasser: Cala Sant Francesc, Santa Cristina und Cala Treumal, bevor Sie Lloret de Mar erreichen (etwa 25 Minuten mit dem Boot), und weiter Cala Boadella und die unberührten Buchten von Tossa de Mar mit der mittelalterlichen Vila Vella, die das Meer überragt. Mit einem Boot mit Führerschein dauert die Strecke Blanes–Tossa etwa 30-45 Minuten ruhiger Fahrt entlang der Küste.',
       seaTitle: 'Meeresbedingungen und Winde',
       seaBody: 'Der südliche Abschnitt der Costa Brava bietet im Sommer im Allgemeinen komfortables Fahren. Morgens ist das Meer meist ruhig; nachmittags kann der Garbí aufkommen, die Südwestbrise, die die Oberfläche leicht kräuselt. Der Wind, auf den man achten sollte, ist die Tramontana, ein starker Nordwind, der schnell aufziehen kann: Prüfen Sie immer den Seewetterbericht, bevor Sie ablegen. Boote ohne Führerschein fahren bis zu 2 Seemeilen von der Küste entfernt (3,7 km) und mit maximal 5 Knoten, ausreichend, um all diese Buchten sicher zu erkunden.',
       calasTitle: 'Buchten und Schnorcheln',
@@ -4487,9 +4487,9 @@ export const de: Translations = {
       },
       snorkel__locationLloret: {
         seoTitle: 'Schnorcheln mit dem Boot in Lloret de Mar: Calas Boadella und Banys | Costa Brava Rent a Boat',
-        seoDescription: 'Entdecke die besten Schnorchelbuchten von Lloret de Mar mit dem Boot ab Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Boot mit Führerschein, ca. 20 Minuten Fahrt.',
+        seoDescription: 'Entdecke die besten Schnorchelbuchten von Lloret de Mar mit dem Boot ab Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Boot mit Führerschein, ca. 25 Minuten Fahrt.',
         h1: 'Schnorcheln mit dem Boot in Lloret de Mar',
-        intro: 'Lloret de Mar verbirgt einige der Buchten mit dem besten Wasser an der südlichen Costa Brava, viele nur vom Meer aus erreichbar. Von Blanes aus erreichst du in etwa 20 Fahrminuten diese felsigen Winkel und erkundest sie schnorchelnd ohne die Menschenmassen vom Strand.',
+        intro: 'Lloret de Mar verbirgt einige der Buchten mit dem besten Wasser an der südlichen Costa Brava, viele nur vom Meer aus erreichbar. Von Blanes aus erreichst du in etwa 25 Fahrminuten diese felsigen Winkel und erkundest sie schnorchelnd ohne die Menschenmassen vom Strand.',
         spotsTitle: 'Beste Buchten zum Schnorcheln in Lloret de Mar',
         spots: [
           {
@@ -4510,14 +4510,14 @@ export const de: Translations = {
           },
         ],
         boatsTitle: 'Welches Boot wählen, um nach Lloret zu gelangen',
-        boatsIntro: 'Die Buchten von Lloret liegen jenseits der 2-Seemeilen-Grenze für Boote ohne Führerschein, daher benötigst du eines unserer Boote mit Führerschein, um dorthin zu gelangen. Sie sind komfortabel, bewältigen die Strecke von Blanes in etwa 20 Minuten und geben dir die Freiheit, mehrere Buchten bei derselben Fahrt zu verbinden.',
+        boatsIntro: 'Die Buchten von Lloret liegen jenseits der 2-Seemeilen-Grenze für Boote ohne Führerschein, daher benötigst du eines unserer Boote mit Führerschein, um dorthin zu gelangen. Sie sind komfortabel, bewältigen die Strecke von Blanes in etwa 25 Minuten und geben dir die Freiheit, mehrere Buchten bei derselben Fahrt zu verbinden.',
         practicalTitle: 'Praktische Informationen',
-        practicalBody: 'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Die Fahrt zu den Buchten von Lloret dauert etwa 20 Minuten ruhige Fahrt entlang der Küste. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Ankere über Sand, niemals über Seegraswiesen.',
+        practicalBody: 'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Die Fahrt zu den Buchten von Lloret dauert etwa 25 Minuten ruhige Fahrt entlang der Küste. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Ankere über Sand, niemals über Seegraswiesen.',
         faqTitle: 'Häufig gestellte Fragen',
         faq: [
           {
             q: 'Wie lange dauert die Fahrt von Blanes zu den Buchten von Lloret mit dem Boot?',
-            a: 'Etwa 20 Minuten ruhige Fahrt entlang der Küste, je nach Bucht und Seegang.',
+            a: 'Etwa 25 Minuten ruhige Fahrt entlang der Küste, je nach Bucht und Seegang.',
           },
           {
             q: 'Welche Buchten von Lloret sind am besten zum Schnorcheln?',
@@ -4596,7 +4596,7 @@ export const de: Translations = {
         boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
         boatsIntro: 'Für die Buchten in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive und ohne Bootsführerschein. Um die gesamte Strecke bis Lloret und Tossa zurückzulegen (jenseits der 2 Seemeilen) benötigst du ein Boot mit Führerschein, mit Reichweite für mehrere Buchten am Tag.',
         practicalTitle: 'Praktische Informationen',
-        practicalBody: 'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Boote ohne Führerschein fahren bis zu 2 Seemeilen; um Lloret (~20 Min.) oder Tossa (30-45 Min.) zu erreichen, wird ein Boot mit Führerschein verwendet. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Ankere immer über Sand, niemals über Seegras.',
+        practicalBody: 'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Boote ohne Führerschein fahren bis zu 2 Seemeilen; um Lloret (~25 Min.) oder Tossa (30-45 Min.) zu erreichen, wird ein Boot mit Führerschein verwendet. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Ankere immer über Sand, niemals über Seegras.',
         faqTitle: 'Häufig gestellte Fragen',
         faq: [
           {
@@ -4641,10 +4641,10 @@ export const de: Translations = {
       families__locationLloret: {
         seoTitle: 'Bootsverleih für Familien in Lloret de Mar | Costa Brava Rent a Boat',
         seoDescription:
-          'Ein Tag auf dem Boot mit der Familie in Lloret de Mar ab Blanes (~20 Min. mit Boot mit Führerschein): Sandstrände, ruhige Buchten und geräumige Boote mit bis zu 7 Plätzen.',
+          'Ein Tag auf dem Boot mit der Familie in Lloret de Mar ab Blanes (~25 Min. mit Boot mit Führerschein): Sandstrände, ruhige Buchten und geräumige Boote mit bis zu 7 Plätzen.',
         h1: 'Bootsverleih für Familien in Lloret de Mar',
         intro:
-          'Lloret de Mar verbindet weite Sandstrände und geschützte Buchten, perfekt für einen Tag mit der Familie. Von Blanes aus erreichst du es in rund 20 Minuten ruhiger Fahrt und kannst seine Strände mit der Freiheit erkunden, überall zu ankern.',
+          'Lloret de Mar verbindet weite Sandstrände und geschützte Buchten, perfekt für einen Tag mit der Familie. Von Blanes aus erreichst du es in rund 25 Minuten ruhiger Fahrt und kannst seine Strände mit der Freiheit erkunden, überall zu ankern.',
         spotsTitle: 'Die besten Strände und Buchten für Familien in Lloret',
         spots: [
           { name: 'Santa Cristina', description: 'Weiter Strand mit feinem Sand, ruhigem Wasser und Einrichtungen in der Nähe, einer der bequemsten der Gegend für einen Ausflug mit Kindern.' },
@@ -4653,13 +4653,13 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot wählen, um mit der Familie nach Lloret zu gelangen',
         boatsIntro:
-          'Lloret liegt jenseits der 2 Seemeilen, daher erreicht man es mit einem unserer Boote mit Führerschein. Sie sind geräumig und stabil (die Pacific Craft 625 fasst bis zu 7 Personen) und bewältigen die Strecke ab Blanes in etwa 20 Minuten.',
+          'Lloret liegt jenseits der 2 Seemeilen, daher erreicht man es mit einem unserer Boote mit Führerschein. Sie sind geräumig und stabil (die Pacific Craft 625 fasst bis zu 7 Personen) und bewältigen die Strecke ab Blanes in etwa 25 Minuten.',
         practicalTitle: 'Praktische Informationen',
         practicalBody:
-          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Die Strecke nach Lloret dauert etwa 20 Minuten. Wir stellen Rettungswesten in allen Größen; bring Sonnenschutz, Mütze, Wasser und etwas zu essen mit.',
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Die Strecke nach Lloret dauert etwa 25 Minuten. Wir stellen Rettungswesten in allen Größen; bring Sonnenschutz, Mütze, Wasser und etwas zu essen mit.',
         faqTitle: 'Häufig gestellte Fragen',
         faq: [
-          { q: 'Wie lange dauert die Fahrt von Blanes nach Lloret mit dem Boot?', a: 'Etwa 20 Minuten ruhiger Fahrt entlang der Küste mit einem Boot mit Führerschein.' },
+          { q: 'Wie lange dauert die Fahrt von Blanes nach Lloret mit dem Boot?', a: 'Etwa 25 Minuten ruhiger Fahrt entlang der Küste mit einem Boot mit Führerschein.' },
           { q: 'Welcher Strand in Lloret ist mit Kindern am besten?', a: 'Santa Cristina und Fenals, wegen ihres Sandes, des ruhigen Wassers und der nahegelegenen Einrichtungen.' },
         ],
         ctaTitle: 'Buche deinen Familien-Bootstag in Lloret',
@@ -4710,7 +4710,7 @@ export const de: Translations = {
           'Für die Buchten in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive. Um den Abschnitt bis Lloret und Tossa (jenseits der 2 Seemeilen) zurückzulegen, benötigst du ein Boot mit Führerschein, geräumig und mit bis zu 7 Plätzen.',
         practicalTitle: 'Praktische Informationen',
         practicalBody:
-          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Boote ohne Führerschein fahren bis zu 2 Seemeilen; um Lloret (~20 Min.) oder Tossa (30-45 Min.) zu erreichen, wird ein Boot mit Führerschein verwendet. Wir stellen Rettungswesten in allen Größen.',
+          'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Boote ohne Führerschein fahren bis zu 2 Seemeilen; um Lloret (~25 Min.) oder Tossa (30-45 Min.) zu erreichen, wird ein Boot mit Führerschein verwendet. Wir stellen Rettungswesten in allen Größen.',
         faqTitle: 'Häufig gestellte Fragen',
         faq: [
           { q: 'Welchen Abschnitt können wir mit der Familie an einem Tag zurücklegen?', a: 'Mit einem Boot mit Führerschein die Buchten von Blanes, Lloret und Tossa an einem Tag; mit einem ohne Führerschein die ruhigen Buchten in der Nähe von Blanes.' },
@@ -4749,10 +4749,10 @@ export const de: Translations = {
       sunset__locationLloret: {
         seoTitle: 'Bootsausflug bei Sonnenuntergang in Lloret de Mar | Costa Brava Rent a Boat',
         seoDescription:
-          'Sonnenuntergang auf dem Boot in Lloret de Mar ab Blanes (~20 Min. mit Boot mit Führerschein): goldenes Licht über den Klippen von Cala Banys und der Burg von Lloret.',
+          'Sonnenuntergang auf dem Boot in Lloret de Mar ab Blanes (~25 Min. mit Boot mit Führerschein): goldenes Licht über den Klippen von Cala Banys und der Burg von Lloret.',
         h1: 'Bootsausflug bei Sonnenuntergang in Lloret de Mar',
         intro:
-          'Die Küste von Lloret de Mar mit ihren Klippen und ihrer Burg über dem Meer wird am späten Nachmittag spektakulär. Von Blanes aus erreichst du sie in rund 20 Minuten mit einem Boot mit Führerschein, rechtzeitig zum besten Licht des Tages.',
+          'Die Küste von Lloret de Mar mit ihren Klippen und ihrer Burg über dem Meer wird am späten Nachmittag spektakulär. Von Blanes aus erreichst du sie in rund 25 Minuten mit einem Boot mit Führerschein, rechtzeitig zum besten Licht des Tages.',
         spotsTitle: 'Die schönsten Orte für den Sonnenuntergang in Lloret',
         spots: [
           { name: 'Cala Banys', description: 'Dunkle Klippen und felsige Winkel, die im tiefen Licht eine der dramatischsten Ansichten der Gegend bieten.' },
@@ -4761,13 +4761,13 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot wählen, um bei Sonnenuntergang nach Lloret zu gelangen',
         boatsIntro:
-          'Lloret liegt jenseits der 2 Seemeilen, daher erfolgt der Ausflug mit einem unserer Boote mit Führerschein, bequem und mit gutem Sonnendeck. Sie bewältigen die Strecke ab Blanes in etwa 20 Minuten.',
+          'Lloret liegt jenseits der 2 Seemeilen, daher erfolgt der Ausflug mit einem unserer Boote mit Führerschein, bequem und mit gutem Sonnendeck. Sie bewältigen die Strecke ab Blanes in etwa 25 Minuten.',
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           'Saison von April bis Oktober, mit Abfahrten bis 20:00 Uhr ab Hafen Blanes. An der Costa Brava geht die Sonne hinter der Küste unter: Du genießt das goldene Licht über den Klippen und der Burg eher als den Sonnenuntergang über dem Meer. Bring eine leichte Jacke für die Rückfahrt mit.',
         faqTitle: 'Häufig gestellte Fragen',
         faq: [
-          { q: 'Wie lange dauert die Fahrt von Blanes nach Lloret bei Sonnenuntergang?', a: 'Etwa 20 Minuten mit einem Boot mit Führerschein; es empfiehlt sich, mit etwas Vorlauf loszufahren, um das beste Licht zu nutzen.' },
+          { q: 'Wie lange dauert die Fahrt von Blanes nach Lloret bei Sonnenuntergang?', a: 'Etwa 25 Minuten mit einem Boot mit Führerschein; es empfiehlt sich, mit etwas Vorlauf loszufahren, um das beste Licht zu nutzen.' },
           { q: 'Sieht man den Sonnenuntergang über dem Meer?', a: 'An dieser Küste geht die Sonne hinter dem Land unter, nicht über dem Wasser; das Schöne ist das goldene Licht und die beleuchteten Klippen und die Burg.' },
         ],
         ctaTitle: 'Buche deinen Ausflug bei Sonnenuntergang in Lloret',
@@ -4857,10 +4857,10 @@ export const de: Translations = {
       fishing__locationLloret: {
         seoTitle: 'Bootsverleih zum Angeln in Lloret de Mar | Costa Brava Rent a Boat',
         seoDescription:
-          'Freizeitfischerei mit dem Boot in Lloret de Mar ab Blanes (~20 Min. mit Boot mit Führerschein). Felsiger Grund vor der Küste. Angellizenz zu Lasten des Kunden.',
+          'Freizeitfischerei mit dem Boot in Lloret de Mar ab Blanes (~25 Min. mit Boot mit Führerschein). Felsiger Grund vor der Küste. Angellizenz zu Lasten des Kunden.',
         h1: 'Bootsverleih zum Angeln in Lloret de Mar',
         intro:
-          'Die Küste von Lloret de Mar mit ihren Klippen und felsigen Gründen bietet gute Zonen für die Freizeitfischerei. Von Blanes aus erreichst du sie mit einem Boot mit Führerschein in etwa 20 Minuten und hast die Reichweite, dich zwischen den Plätzen zu bewegen.',
+          'Die Küste von Lloret de Mar mit ihren Klippen und felsigen Gründen bietet gute Zonen für die Freizeitfischerei. Von Blanes aus erreichst du sie mit einem Boot mit Führerschein in etwa 25 Minuten und hast die Reichweite, dich zwischen den Plätzen zu bewegen.',
         spotsTitle: 'Angelzonen in der Nähe von Lloret',
         spots: [
           { name: 'Gründe von Cala Banys', description: 'Abschnitt aus Klippen und Fels, wo die Felsfischerei vor der Küste von Lloret üblich ist.' },
@@ -4869,13 +4869,13 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot wählen, um zum Angeln nach Lloret zu gelangen',
         boatsIntro:
-          'Lloret liegt jenseits der 2 Seemeilen, daher erreicht man es mit einem unserer Boote mit Führerschein, mit der Reichweite, sich zwischen den Angelzonen zu bewegen. Die Strecke ab Blanes dauert etwa 20 Minuten.',
+          'Lloret liegt jenseits der 2 Seemeilen, daher erreicht man es mit einem unserer Boote mit Führerschein, mit der Reichweite, sich zwischen den Angelzonen zu bewegen. Die Strecke ab Blanes dauert etwa 25 Minuten.',
         practicalTitle: 'Praktische Informationen und Vorschriften',
         practicalBody:
           'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Du benötigst die katalanische Lizenz für die Freizeitfischerei (zu Lasten des Kunden). Beachte Mindestgrößen, geschützte Arten und regulierte Zonen. Die Angelausrüstung ist nicht inbegriffen.',
         faqTitle: 'Häufig gestellte Fragen',
         faq: [
-          { q: 'Wie lange dauert die Fahrt von Blanes nach Lloret mit dem Boot?', a: 'Etwa 20 Minuten mit einem Boot mit Führerschein, die wir für die Angelausflüge verwenden.' },
+          { q: 'Wie lange dauert die Fahrt von Blanes nach Lloret mit dem Boot?', a: 'Etwa 25 Minuten mit einem Boot mit Führerschein, die wir für die Angelausflüge verwenden.' },
           { q: 'Braucht man eine Angellizenz?', a: 'Ja, die katalanische Lizenz für die Freizeitfischerei bringt der Kunde mit; die Bootsmiete schließt sie nicht ein.' },
         ],
         ctaTitle: 'Buche deinen Angelausflug in Lloret',

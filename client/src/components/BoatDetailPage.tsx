@@ -1404,7 +1404,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Tabbed detail sections */}
         <Card className="mb-8">
           <Tabs defaultValue="caracteristicas">
-            <div className="border-b border-border px-4 pt-4 overflow-x-auto">
+            <div className="relative border-b border-border">
+              <div className="px-4 pt-4 overflow-x-auto">
               <TabsList className="h-auto bg-transparent p-0 gap-1 w-max">
                 <TabsTrigger
                   value="caracteristicas"
@@ -1442,6 +1443,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   {t.boatDetail.importantInfo}
                 </TabsTrigger>
               </TabsList>
+              </div>
+              {/* Mobile scroll hint: fade-out over the right edge of the tab strip */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-background to-transparent md:hidden"
+              />
             </div>
 
             {/* Tab: Características */}
@@ -1819,7 +1826,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           aria-hidden={!showStickyCTA || isBookingModalOpen}
         >
           <div className="bg-background rounded-2xl shadow-xl border border-border p-4 space-y-3">
-            <p className="font-bold text-foreground truncate">{boatData.name}</p>
+            <p className="font-bold text-foreground line-clamp-2">{boatData.name}</p>
             <div className="flex items-baseline gap-2">
               {!dynamicLowest.isForDate && (
                 <span className="text-sm text-muted-foreground">{t.boats.from}</span>

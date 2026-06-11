@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
 
 // Why this component exists:
-// Windows renders regional-indicator emoji as letters ("ES" instead of 🇪🇸)
-// because the Segoe UI Emoji font ships without flag glyphs. The verifier
-// shows ~58 flags in the country picker, so on Windows the entire list
-// turns into a wall of two-letter codes. Same hint Slack/Discord use:
-// detect the platform and substitute SVGs.
+// The project bans emoji in the UI, and platform rendering is inconsistent
+// anyway (Windows renders regional-indicator emoji as plain letters because
+// Segoe UI Emoji ships without flag glyphs). So every flag renders as an
+// SVG from country-flag-icons on all platforms.
 //
 // Cost control: the SVG strings live in country-flag-icons (~1.6 MB for
-// all 250 flags). We pay that cost only on Windows by dynamically
-// importing the module — Vite emits it as a separate chunk that
-// non-Windows users never download. The verifier panel itself is also
-// lazy-loaded, so the chunk lands only when a Windows user opens the
-// wizard's step 2 and the panel mounts.
-
-const IS_WINDOWS =
-  typeof navigator !== "undefined" && /Windows/i.test(navigator.userAgent);
+// all 250 flags). The module is dynamically imported, so Vite emits it as
+// a separate chunk that only downloads when a component showing flags
+// actually mounts (wizard phone step, license verifier panel). The emoji
+// prop is kept only as a transient fallback while the chunk loads.
 
 type FlagStringsModule = Record<string, string>;
 
@@ -52,7 +47,7 @@ export default function CountryFlag({
   const [svg, setSvg] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!IS_WINDOWS || !iso2) return;
+    if (!iso2) return;
     let cancelled = false;
     loadFlagsModule().then((mod) => {
       if (cancelled) return;

@@ -20,6 +20,8 @@ import { useLanguage } from "@/hooks/use-language";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
 import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
+import CountryFlag from "@/components/booking/CountryFlag";
+import { flagEmojiToIso2 } from "@/utils/phone-prefixes";
 
 const LicenseVerifierPanel = lazy(() => import("@/components/booking/LicenseVerifierPanel"));
 import { formatBookingDate as formatLocalisedDate, getLocaleForLanguage } from "@/utils/intl-helpers";
@@ -928,7 +930,15 @@ function PersonalDataSection({
               aria-label={`${t.a11y.phonePrefix}: ${phonePrefix}`}
               className="w-full px-3 py-2.5 border border-border bg-background rounded-xl text-foreground font-medium text-base flex items-center gap-1 overflow-hidden"
             >
-              <span className="truncate">{selectedPrefixInfo?.flag} {phonePrefix}</span>
+              <span className="truncate flex items-center gap-1">
+                {selectedPrefixInfo && (
+                  <CountryFlag
+                    iso2={flagEmojiToIso2(selectedPrefixInfo.flag)}
+                    emoji={selectedPrefixInfo.flag}
+                  />
+                )}
+                {phonePrefix}
+              </span>
             </button>
             {showPrefixDropdown && (
               <div className="absolute top-full left-0 mt-1 w-72 max-w-[calc(100vw-2rem)] bg-background border border-border rounded-xl shadow-sm z-50 max-h-80 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
@@ -952,7 +962,7 @@ function PersonalDataSection({
                     }}
                     className="w-full p-2.5 hover:bg-muted text-left flex items-center gap-2 text-sm"
                   >
-                    <span>{prefix.flag}</span>
+                    <CountryFlag iso2={flagEmojiToIso2(prefix.flag)} emoji={prefix.flag} />
                     <span className="font-medium">{prefix.code}</span>
                     <span className="text-muted-foreground text-xs truncate">{prefix.country}</span>
                   </button>

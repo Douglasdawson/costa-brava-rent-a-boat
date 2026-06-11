@@ -22,6 +22,8 @@ import { useLanguage } from "@/hooks/use-language";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
 import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
+import CountryFlag from "@/components/booking/CountryFlag";
+import { flagEmojiToIso2 } from "@/utils/phone-prefixes";
 
 const LicenseVerifierPanel = lazy(() => import("@/components/booking/LicenseVerifierPanel"));
 import { formatBookingDate as formatBookingDateDesktop, getLocaleForLanguage } from "@/utils/intl-helpers";
@@ -1469,7 +1471,13 @@ function Step5Contact({
                 aria-label={`${t.a11y.phonePrefix}: ${phonePrefix}`}
                 className={`${inputBase} ${inputNormal} flex items-center justify-center gap-2`}
               >
-                <span className="text-sm">{selectedPrefixInfo?.flag}</span>
+                {selectedPrefixInfo && (
+                  <CountryFlag
+                    iso2={flagEmojiToIso2(selectedPrefixInfo.flag)}
+                    emoji={selectedPrefixInfo.flag}
+                    emojiClassName="text-sm leading-none"
+                  />
+                )}
                 <span className="truncate text-sm">{phonePrefix}</span>
               </button>
               {showPrefixDropdown && (
@@ -1494,7 +1502,7 @@ function Step5Contact({
                       }}
                       className="w-full p-2 hover:bg-cta/10 text-left flex items-center gap-2 text-sm bg-background"
                     >
-                      <span>{prefix.flag}</span>
+                      <CountryFlag iso2={flagEmojiToIso2(prefix.flag)} emoji={prefix.flag} />
                       <span className="font-medium">{prefix.code}</span>
                       <span className="text-muted-foreground truncate">{prefix.country}</span>
                     </button>

@@ -324,7 +324,7 @@ export default function PricingPage() {
                       ? "bg-green-500"
                       : season === "MEDIA"
                         ? "bg-yellow-500"
-                        : "bg-red-500"
+                        : "bg-primary"
                   }`}
                 />
                 <span className="font-medium">{pp.seasonNames[season]}</span>
@@ -362,7 +362,7 @@ export default function PricingPage() {
                                   ? "bg-green-500"
                                   : season === "MEDIA"
                                     ? "bg-yellow-500"
-                                    : "bg-red-500"
+                                    : "bg-primary"
                               }`}
                             />
                             <span>{pp.seasonShort[season]}</span>
@@ -529,7 +529,7 @@ export default function PricingPage() {
                                       ? "bg-green-500"
                                       : season === "MEDIA"
                                         ? "bg-yellow-500"
-                                        : "bg-red-500"
+                                        : "bg-primary"
                                   }`}
                                 />
                                 <span className="text-xs text-muted-foreground font-medium">

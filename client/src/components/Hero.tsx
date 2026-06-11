@@ -104,7 +104,7 @@ export default function Hero() {
               <p data-speakable className="font-bold text-primary-foreground text-base sm:text-lg lg:text-xl lg:font-semibold">
                 {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
               </p>
-              <p className="text-primary-foreground/85 text-xs sm:text-sm mt-0.5">
+              <p className="mt-1.5 inline-block rounded-full bg-black/35 px-3 py-1 text-sm text-primary-foreground/90 backdrop-blur-sm">
                 {t.hero.pricePerPersonDetail}
               </p>
             </div>

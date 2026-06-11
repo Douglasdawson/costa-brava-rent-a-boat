@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Tag, ArrowLeft, Share2, Copy, Check, ChevronLeft, ChevronRight, Mail, List, Anchor } from "lucide-react";
 import { AuthorByline } from "@/components/blog/AuthorByline";
+import type React from "react";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
@@ -843,7 +844,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                     alt={localized(post.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(post.titleByLang as Record<string, string> | null, post.title, language)}
                     className="w-full aspect-video object-cover rounded-lg"
                     loading="eager"
-                    fetchPriority="high"
+                    {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
                     width={1200}
                     height={630}
                     onError={(e) => { (e.target as HTMLImageElement).src = "/images/blog/barco-mar.jpg"; }}
@@ -860,7 +861,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
 
               {/* Article Content */}
               <div
-                className="prose max-w-none dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-cta prose-a:decoration-cta/40 hover:prose-a:decoration-cta prose-img:rounded-lg prose-table:m-0"
+                className="prose max-w-prose dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-cta prose-a:decoration-cta/40 hover:prose-a:decoration-cta prose-img:rounded-lg prose-table:m-0"
                 data-testid={`content-article-${post.slug}`}
               >
                 <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>

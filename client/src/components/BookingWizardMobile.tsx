@@ -1230,9 +1230,7 @@ function Step5Final(props: BookingWizardMobileProps) {
       )}
       <div className="border-t border-border pt-3">
         <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">
-          {selectedBoatInfo
-            ? (t.endowment?.customizeExperience || t.booking.confirmTitle)
-            : t.booking.confirmTitle}
+          {t.booking.confirmTitle}
         </h3>
         <p className="text-xs text-muted-foreground mt-0.5">{t.booking.confirmSubtitle}</p>
       </div>

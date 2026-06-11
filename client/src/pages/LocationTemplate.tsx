@@ -86,7 +86,7 @@ function HeroImage({ basePath, alt }: { basePath: string; alt: string }) {
         width={1920}
         height={1080}
         loading="eager"
-        fetchPriority="high"
+        {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
       />
     </picture>
   );

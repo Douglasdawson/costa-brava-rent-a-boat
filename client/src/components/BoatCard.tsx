@@ -73,6 +73,8 @@ const BoatCardImage = memo(function BoatCardImage({
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           loading="lazy"
           decoding="async"
+          width={400}
+          height={300}
           onError={onImageError}
         />
       </picture>
@@ -269,7 +271,11 @@ function BoatCard({
       <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-end">
         <button
           onClick={handleBooking}
-          className="bg-cta hover:bg-cta/90 text-primary-foreground text-base font-medium px-6 py-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none transition-colors cta-pulse cta-hover-lift"
+          className={`text-base font-medium px-6 py-2.5 min-h-11 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none transition-colors ${
+            isRecommended || isPopular
+              ? "bg-cta hover:bg-cta/90 text-primary-foreground cta-pulse cta-hover-lift"
+              : "border border-foreground/15 text-foreground hover:border-foreground/40 bg-transparent"
+          }`}
           data-testid={`button-book-${id}`}
         >
           {isJetSki ? t.jetski?.requestCta || t.boats.book : t.boats.book}

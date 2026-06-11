@@ -1,5 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useLocation } from "wouter";
 import { Anchor, Clock, Users, CalendarCheck, ArrowRight, X } from "lucide-react";
+import { ROUTE_SLUGS } from "@shared/i18n-routes";
+import type { PageKey } from "@shared/i18n-routes";
 import { useTranslations } from "@/lib/translations";
 import { isMobileNavOpen, isAnyModalOpen } from "@/utils/overlay-guards";
 import { lockScroll, unlockScroll } from "@/utils/scroll-lock";
@@ -7,17 +10,38 @@ import { trackEvent } from "@/utils/analytics";
 
 const DISMISS_KEY = "boatClubPromoDismissed";
 const SESSION_KEY = "boatClubPromoShown";
-const SHOW_DELAY = 2500;
+// Engagement triggers: show after scrolling past 40% of the page, or after
+// 25s on the page — whichever happens first. Never on first paint.
+const ENGAGEMENT_TIMEOUT = 25_000;
+const SCROLL_THRESHOLD = 0.4;
 const RETRY_INTERVAL = 1500;
 const MAX_ATTEMPTS = 12;
 const BOAT_CLUB_URL = "https://costabravaboatclub.com/";
 
-// Functional surfaces where an upsell popup would get in the way.
-const EXCLUDED_SLUGS = ["crm", "login", "onboarding", "booking", "cancel"];
+// Pages where an upsell popup would get in the way: functional flows,
+// boat detail pages, booking, gift cards, jet ski landings and shared sailing.
+// Slugs are collected across all 8 languages from the i18n route map.
+const EXCLUDED_PAGE_KEYS: readonly PageKey[] = [
+  "crm",
+  "login",
+  "onboarding",
+  "booking",
+  "cancel",
+  "boatDetail",
+  "giftCards",
+  "jetskiCircuito",
+  "jetskiExcursion",
+  "jetskiHub",
+  "sharedSailing",
+];
+
+const EXCLUDED_SLUGS = new Set<string>(
+  EXCLUDED_PAGE_KEYS.flatMap((key) => Object.values(ROUTE_SLUGS[key])),
+);
 
 function isExcludedPage(): boolean {
   const segments = window.location.pathname.split("/").filter(Boolean);
-  return segments.some((seg) => EXCLUDED_SLUGS.includes(seg));
+  return segments.some((seg) => EXCLUDED_SLUGS.has(seg));
 }
 
 /**
@@ -27,6 +51,7 @@ function isExcludedPage(): boolean {
  */
 export function BoatClubModal() {
   const t = useTranslations();
+  const [location] = useLocation();
   const [show, setShow] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -56,8 +81,10 @@ export function BoatClubModal() {
     trackEvent("boat_club_promo_shown", {});
   }, []);
 
-  // Show after a short delay, retrying while a cookie banner, mobile nav or
-  // another modal is on screen, so the promo still appears once the view clears.
+  // Arm engagement triggers (scroll depth or dwell time), retrying while a
+  // cookie banner, mobile nav or another modal is on screen, so the promo
+  // still appears once the view clears. Re-arms on client-side navigation so
+  // landing on an excluded page does not suppress the promo for the session.
   useEffect(() => {
     if (dismissed) return;
     try {
@@ -66,24 +93,50 @@ export function BoatClubModal() {
     } catch {
       // storage unavailable — fall through and show once
     }
+    if (isExcludedPage()) return; // never show on excluded surfaces
 
-    let timer: ReturnType<typeof setTimeout>;
+    let retryTimer: ReturnType<typeof setTimeout> | undefined;
+    let triggered = false;
     let attempts = 0;
 
     const attempt = () => {
-      if (isExcludedPage()) return; // never show on functional flows
+      if (isExcludedPage()) return; // route may have changed mid-retry
       const blocked = isMobileNavOpen() || isAnyModalOpen();
       if (!blocked) {
         doShow();
         return;
       }
       attempts += 1;
-      if (attempts < MAX_ATTEMPTS) timer = setTimeout(attempt, RETRY_INTERVAL);
+      if (attempts < MAX_ATTEMPTS) retryTimer = setTimeout(attempt, RETRY_INTERVAL);
     };
 
-    timer = setTimeout(attempt, SHOW_DELAY);
-    return () => clearTimeout(timer);
-  }, [dismissed, doShow]);
+    const onScroll = () => {
+      const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      if (window.scrollY / scrollable >= SCROLL_THRESHOLD) trigger();
+    };
+
+    const removeTriggers = () => {
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(dwellTimer);
+    };
+
+    const trigger = () => {
+      if (triggered) return;
+      triggered = true;
+      removeTriggers();
+      attempt();
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const dwellTimer = setTimeout(trigger, ENGAGEMENT_TIMEOUT);
+
+    return () => {
+      removeTriggers();
+      if (retryTimer) clearTimeout(retryTimer);
+    };
+  }, [dismissed, doShow, location]);
 
   // Guarantee scroll unlock if unmounted while open (client-side navigation).
   useEffect(() => () => unlockScroll("boat-club-promo"), []);
@@ -205,7 +258,7 @@ export function BoatClubModal() {
 
           <button
             onClick={() => close(true)}
-            className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full bg-foreground/45 text-white transition-colors hover:bg-foreground/65"
+            className="absolute right-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-foreground/45 text-white transition-colors hover:bg-foreground/65"
             aria-label={t.a11y?.close ?? "Cerrar"}
           >
             <X className="h-[18px] w-[18px]" />
@@ -293,7 +346,7 @@ export function BoatClubModal() {
 
           <button
             onClick={() => close(true)}
-            className="bcm-rise mt-3 w-full py-1.5 text-center text-[14px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="bcm-rise mt-2 min-h-11 w-full py-1.5 text-center text-[14px] font-medium text-muted-foreground transition-colors hover:text-foreground"
             style={{ animationDelay: "0.36s" }}
           >
             {dismiss}

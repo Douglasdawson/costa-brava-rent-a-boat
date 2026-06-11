@@ -225,7 +225,18 @@ app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
     return next();
   }
 
-  if (!isOriginAllowed(origin)) {
+  // Same-origin requests are always allowed: browsers attach an Origin header
+  // to all POSTs (e.g. navigator.sendBeacon to /api/cwv-beacon), and rejecting
+  // them when the dev server runs on a non-listed port (PORT=5181) produced
+  // spurious 403s. Origin host matching the request Host is not a CORS case.
+  let isSameOrigin = false;
+  try {
+    isSameOrigin = new URL(origin).host === req.headers.host;
+  } catch {
+    // malformed Origin header — fall through to the allowlist check
+  }
+
+  if (!isSameOrigin && !isOriginAllowed(origin)) {
     res.status(403).json({ message: 'Forbidden: origin not allowed' });
     return;
   }

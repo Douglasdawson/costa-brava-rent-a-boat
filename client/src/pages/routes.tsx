@@ -174,9 +174,9 @@ function RoutesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+              <p className="text-lg text-muted-foreground leading-relaxed mb-4">
                 {t.routes?.introText}
-              </h2>
+              </p>
               <p className="text-muted-foreground leading-relaxed">
                 <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">{t.routes?.introFleetLink}</a>{" "}
                 {t.routes?.introSuffix}

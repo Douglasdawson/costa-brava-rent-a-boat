@@ -23,12 +23,19 @@ export function useScrollReveal(threshold = 0.1) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (!entry.isIntersecting) return;
+        // Sections taller than the viewport can never reach the ratio
+        // threshold (e.g. the ~7000px fleet grid on mobile maxes out at
+        // ~0.12 visible), which left them stuck at opacity-0 for a full
+        // screen of scrolling. Reveal those on first intersection instead.
+        const tallerThanViewport =
+          entry.boundingClientRect.height >= window.innerHeight;
+        if (tallerThanViewport || entry.intersectionRatio >= threshold) {
           setIsVisible(true);
           observer.unobserve(node);
         }
       },
-      { threshold, rootMargin: "0px 0px 100px 0px" }
+      { threshold: [0, threshold], rootMargin: "0px 0px 100px 0px" }
     );
 
     observer.observe(node);

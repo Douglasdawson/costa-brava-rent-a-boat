@@ -485,7 +485,7 @@ function BlogPage() {
                         alt={localized(featuredPost.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(featuredPost.titleByLang as Record<string, string> | null, featuredPost.title, language)}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="eager"
-                        fetchPriority="high"
+                        {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
                         width={1200}
                         height={630}
                         data-testid={`img-blog-${featuredPost.slug}`}

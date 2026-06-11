@@ -1,3 +1,4 @@
+import type React from "react";
 import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
@@ -196,7 +197,7 @@ export default function LocationLloretPage() {
               width={1920}
               height={1080}
               loading="eager"
-              fetchPriority="high"
+              {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
             />
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
@@ -451,18 +452,6 @@ export default function LocationLloretPage() {
         </div>
       </RevealSection>
 
-      {/* Blog section */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
-            Artículos del blog
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            Descubre más sobre navegar por la Costa Brava en nuestro{" "}
-            <a href={localizedPath("blog")} className="text-primary hover:underline font-medium">blog de navegación</a>.
-          </p>
-        </div>
-      </RevealSection>
 
       <RelatedLocationsSection currentLocation="lloret" />
 

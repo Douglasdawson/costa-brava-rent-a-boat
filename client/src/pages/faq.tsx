@@ -251,9 +251,6 @@ export default function FAQPage() {
               <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
                 {fp.filterLabel}
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {fp.heroDescription}
-              </p>
               <div className="flex flex-wrap gap-2">
                 {filterButtons.map(({ id, name, icon: Icon }) => (
                   <Button
@@ -303,7 +300,7 @@ export default function FAQPage() {
                       <AccordionItem key={value} value={value} data-testid={`faq-${value}`}>
                         <AccordionTrigger>{sub(item.question)}</AccordionTrigger>
                         <AccordionContent>
-                          <p className="whitespace-pre-line text-muted-foreground leading-relaxed">
+                          <p className="whitespace-pre-line text-muted-foreground leading-relaxed max-w-prose">
                             {sub(item.answer)}
                           </p>
                         </AccordionContent>

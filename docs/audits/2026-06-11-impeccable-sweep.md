@@ -163,3 +163,22 @@ P1.4-P1.9 (FAQ excursión, Solar DB, tiempos, capacidades, "7 embarcaciones", ca
 **Tanda 4 — P3 pulido fino.**
 
 Notas operativas: los cambios de copy van SIEMPRE por `es.ts` + `npm run i18n:translate` (API con crédito a partir del 2026-07-01; hasta entonces, traducción manual de los 7 idiomas como en junio). P1.1 y P1.5 requieren decisión/acceso a DB del dueño. Tras cada tanda: re-captura de páginas tocadas + `npm run check:all`.
+
+---
+
+## Estado de ejecución (2026-06-11, misma jornada)
+
+Las 4 tandas se ejecutaron en 8 commits (`2a39a8f..6e9ff31`, local sin push):
+
+- **Tanda 1** (`2a39a8f`, `c43b17d`, `c445046`, `4a51d75`): P0.1 reveal corregido y verificado; Astec 400 NO se reactivó (lo desactivó el owner vía CRM el 2026-05-29, audit log) — copy alineado a flota viva 8/4/75€ y quiz filtrando por flota activa; P1.2/P1.3/P1.10-P1.12/P1.15/P1.16 cerrados; dataset de ~2.370 reseñas sintéticas RETIRADO por decisión del owner (incluido el JSON-LD que las emitía y /testimonios reescrita sobre reseñas reales de GBP).
+- **Tanda 2** (`240d152`): P1.4-P1.9, P1.13, P1.14, P1.17-P1.19 cerrados; DB de producción resincronizada (Solar 450 130/150/fianza 250€ — era el origen del "180€" del wizard — y features LN en los 3 con licencia).
+- **Tanda 3** (`1ed9ce7`, `b1935d6`): popup con gate de engagement + exclusión de money pages, FAB/scroll-to-top sin solapes, verificador descubrible (inline en ficha y categoría), quiz con entrada visible, legibilidad prose, formularios con validación propia, fecha en condiciones, warning React y CORS del beacon.
+- **Tanda 4** (`6e9ff31`): banderas SVG, EUR→€, tiempos "menos de 2 horas", 25 min a Lloret, tap targets, Escape, fade tabs, semáforo, hero desktop.
+
+**No ejecutado (consciente):**
+- Inputs pill del paso datos del wizard y decimales mixtos de extras (P2.6 parcial): micro-polish pendiente de localizar el componente exacto.
+- Fotos no pertinentes (W Hotel en atardecer, buceo en snorkel, P2.11): requiere assets nuevos del owner.
+- Posts de blog sin imágenes inline (P2.10 parcial): contenido en DB, no UI.
+- `/es/booking` como ruta secundaria (P1.16 resto): renombrado el CTA, pero la decisión de despublicar la ruta o darle identidad completa es del owner.
+- El formato de fecha nativo "mm/dd/yyyy" se descartó como no-bug (depende del locale del navegador del usuario).
+- 6 errores tsc + 1 error lint (robots.ts) preexistentes en main, fuera del alcance.

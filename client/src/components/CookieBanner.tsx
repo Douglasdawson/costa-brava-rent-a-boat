@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Cookie } from "lucide-react";
 import { trackCookieConsent } from "@/utils/analytics";
 import { useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 
 function updateGTMConsent(granted: boolean) {
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
@@ -20,6 +21,8 @@ function updateGTMConsent(granted: boolean) {
 
 export default function CookieBanner() {
   const { localizedPath } = useLanguage();
+  const t = useTranslations();
+  const cb = t.cookieBanner;
   const [visible, setVisible] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
 
@@ -60,9 +63,8 @@ export default function CookieBanner() {
 
   return (
     <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Aviso de cookies"
+      role="region"
+      aria-label={cb?.ariaLabel ?? "Aviso de cookies"}
       className={`fixed bottom-0 left-0 right-0 z-[300] bg-background border-t border-border shadow-lg pb-safe transition-transform duration-200 ease-out ${
         animateIn ? "translate-y-0" : "translate-y-full"
       }`}
@@ -72,19 +74,19 @@ export default function CookieBanner() {
           <Cookie className="w-6 h-6 text-primary flex-shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" />
           <div className="flex-1 text-sm text-foreground">
             <p>
-              Utilizamos cookies propias y de terceros (Google Analytics) para mejorar tu experiencia y analizar el tráfico web. Puedes aceptar todas las cookies o solo las esenciales.{" "}
+              {cb?.message ?? "Utilizamos cookies propias y de terceros (Google Analytics) para mejorar tu experiencia y analizar el tráfico web."}{" "}
               <a
                 href={localizedPath("cookiesPolicy")}
                 className="text-primary underline hover:text-primary/80 transition-colors"
               >
-                Política de Cookies
+                {cb?.cookiesPolicy ?? "Política de Cookies"}
               </a>
               {" · "}
               <a
                 href={localizedPath("privacyPolicy")}
                 className="text-primary underline hover:text-primary/80 transition-colors"
               >
-                Política de Privacidad
+                {cb?.privacyPolicy ?? "Política de Privacidad"}
               </a>
             </p>
           </div>
@@ -95,14 +97,14 @@ export default function CookieBanner() {
               onClick={handleEssentialOnly}
               className="flex-1 sm:flex-none text-xs"
             >
-              Solo esenciales
+              {cb?.essentialOnly ?? "Solo esenciales"}
             </Button>
             <Button
               size="sm"
               onClick={handleAcceptAll}
               className="flex-1 sm:flex-none text-xs"
             >
-              Aceptar todas
+              {cb?.acceptAll ?? "Aceptar todas"}
             </Button>
           </div>
         </div>

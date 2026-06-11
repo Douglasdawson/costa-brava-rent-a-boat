@@ -21,6 +21,12 @@ export type BoatFaqInput = {
   name: string;
   capacity: number;
   requiresLicense: boolean;
+  /**
+   * Captained boats (excursión privada): the customer never pilots, so the
+   * licence-free template ("recibirás una formación de 15 minutos") and the
+   * fuel-included sentence are both wrong for them.
+   */
+  captained?: boolean;
   licenseType?: BoatLicenseType | string | null;
   pricing?: {
     BAJA?: { prices?: Record<string, number | null | undefined> | null } | null;
@@ -41,6 +47,7 @@ export type BoatFaqText = {
   audienceLarge: string;
   q3: string;
   a3None: string;
+  a3Captained?: string;
   a3Licensed: string;
   a3Fallback: string;
   q4: string;
@@ -114,6 +121,9 @@ function buildCapacityAnswer(boat: BoatFaqInput, text: BoatFaqText): string {
 }
 
 function buildLicenseAnswer(boat: BoatFaqInput, text: BoatFaqText): string {
+  if (boat.captained) {
+    return interpolate(text.a3Captained ?? text.a3None, { name: boat.name });
+  }
   if (!boat.requiresLicense) {
     return interpolate(text.a3None, { name: boat.name });
   }
@@ -133,8 +143,9 @@ function buildLicenseAnswer(boat: BoatFaqInput, text: BoatFaqText): string {
 }
 
 // Matches fuel-like entries across the site languages so the admin's
-// included[] doesn't contradict the authoritative fuel sentence when
-// requiresLicense=true (business rule: licensed boats never include fuel).
+// included[] doesn't contradict the authoritative fuel sentence when fuel is
+// NOT included (business rule: licensed boats and the captained excursion
+// never include fuel).
 const FUEL_ITEM_PATTERN = /\b(carburante|gasolina|combustible|fuel|brandstof|kraftstoff|carburant|topliv|benzin)/i;
 
 function buildIncludedAnswer(boat: BoatFaqInput, text: BoatFaqText): string {
@@ -151,11 +162,12 @@ function buildIncludedAnswer(boat: BoatFaqInput, text: BoatFaqText): string {
     // On licensed boats, strip fuel-like entries. The fuel sentence below
     // (a4FuelNotIncluded) is the single source of truth; letting both live
     // produces public-facing contradictions when admin data is stale.
-    if (boat.requiresLicense && FUEL_ITEM_PATTERN.test(normalized)) continue;
+    if ((boat.requiresLicense || boat.captained) && FUEL_ITEM_PATTERN.test(normalized)) continue;
     seen.add(key);
     items.push(normalized);
   }
-  const fuelSentence = boat.requiresLicense ? text.a4FuelNotIncluded : text.a4FuelIncluded;
+  const fuelIncluded = !boat.requiresLicense && !boat.captained;
+  const fuelSentence = fuelIncluded ? text.a4FuelIncluded : text.a4FuelNotIncluded;
 
   const base =
     items.length === 0

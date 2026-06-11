@@ -82,7 +82,7 @@ import AvailabilityUrgency from "./AvailabilityUrgency";
 import { LiveInterestIndicator } from "./LiveInterestIndicator";
 import { TrustBadges } from "./TrustBadges";
 import { BoatHeroChips } from "./BoatHeroChips";
-import { boatIncludesFuel } from "@shared/boatData";
+import { boatIncludesFuel, isCaptainedBoat } from "@shared/boatData";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { BookingPrefillData } from "@/hooks/bookingModalContext";
 import { trackGoogleAdsRemarketing } from "@/utils/google-ads";
@@ -1053,6 +1053,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     audienceLarge: t.boatFaq!.audienceLarge,
     q3: t.boatFaq!.q3,
     a3None: t.boatFaq!.a3None,
+    a3Captained: t.boatFaq!.a3Captained,
     a3Licensed: t.boatFaq!.a3Licensed,
     a3Fallback: t.boatFaq!.a3Fallback,
     q4: t.boatFaq!.q4,
@@ -1069,6 +1070,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       name: boatData.name,
       capacity,
       requiresLicense,
+      captained: isCaptainedBoat(boatId),
       licenseType: boatData.licenseType,
       pricing: boatData.pricing as {
         BAJA?: { prices?: Record<string, number | null | undefined> | null } | null;
@@ -1456,7 +1458,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <span className="text-sm text-muted-foreground">{t.boatDetail.noFeatures}</span>
                 )}
               </div>
-              {!requiresLicense && (
+              {!requiresLicense && !isCaptainedBoat(boatId) && (
                 <div className="mt-6 pt-6 border-t border-border">
                   <h4 className="font-bold text-base text-foreground mb-4 flex items-center gap-2">
                     <Heart className="w-4 h-4 text-primary" />

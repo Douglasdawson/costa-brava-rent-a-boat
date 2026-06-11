@@ -825,6 +825,13 @@ export interface Translations {
     forRecipient: string;
     backHome: string;
     buyAnother: string;
+    whyTitle?: string;
+    whyP1?: string;
+    whyP2?: string;
+    whyP3?: string;
+    viewFleet?: string;
+    ctaTitle?: string;
+    ctaSubtitle?: string;
   };
 
   // Boat Detail Page
@@ -1099,6 +1106,7 @@ export interface Translations {
 
   // Reviews Section
   reviews: {
+    googleReviews?: string;
     opinions: string;
     title: string;
     subtitle: string;
@@ -2612,6 +2620,7 @@ export interface Translations {
     audienceLarge: string;
     q3: string;
     a3None: string;
+    a3Captained?: string;
     a3Licensed: string;
     a3Fallback: string;
     q4: string;
@@ -2729,6 +2738,28 @@ export interface Translations {
   };
 
   // /testimonios page — full body copy (was hard-coded in JSX prior to 2026-05).
+  relatedLocations?: {
+    boatTitle: string;
+    boatIntro: string;
+    carTitle: string;
+    carIntro: string;
+    categoriesTitle: string;
+    categoriesIntro: string;
+    viewDetails: string;
+    viewBoats: string;
+    locations: Record<string, { name: string; description: string; duration: string }>;
+    categories: Record<string, { name: string; description: string; features: string[] }>;
+  };
+
+  cookieBanner?: {
+    ariaLabel: string;
+    message: string;
+    cookiesPolicy: string;
+    privacyPolicy: string;
+    essentialOnly: string;
+    acceptAll: string;
+  };
+
   testimonios?: {
     hero: {
       title: string;
@@ -2837,6 +2868,7 @@ export interface Translations {
     };
   };
   jetskiLanding: {
+    specCapacity?: string;
     fromLabel: string;
     ctaRequest: string;
     slotsTitle: string;

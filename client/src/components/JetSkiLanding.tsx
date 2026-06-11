@@ -190,7 +190,7 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
             ))}
           </div>
           <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5"><Users className="h-4 w-4" />{product.specifications.capacity}</span>
+            <span className="inline-flex items-center gap-1.5"><Users className="h-4 w-4" />{g?.specCapacity ?? product.specifications.capacity}</span>
             <span className="inline-flex items-center gap-1.5"><Anchor className="h-4 w-4" />{t.boats.withoutLicense}</span>
           </div>
           <div className="mt-8 text-center">
@@ -246,7 +246,7 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
         <div className="mx-auto flex max-w-md items-center justify-between gap-3">
           <div className="leading-tight">
             <p className="text-sm font-bold text-foreground">{g?.fromLabel || "desde"} {minPrice}€</p>
-            <p className="text-xs text-muted-foreground">{product.specifications.capacity}</p>
+            <p className="text-xs text-muted-foreground">{g?.specCapacity ?? product.specifications.capacity}</p>
           </div>
           <button type="button" onClick={() => setOpen(true)} className={`${CTA_CLASS} min-h-11 flex-shrink-0 px-6 text-sm`}>
             {g?.ctaRequest || "Solicitar"}

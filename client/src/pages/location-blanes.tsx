@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 import {
   MapPin,
   Clock,
@@ -46,6 +47,7 @@ export default function LocationBlanesPage() {
   const { language, localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("blanes"); }, []);
   const t = useTranslations();
+  const { openBookingModal } = useBookingModal();
   const seoConfig = getSEOConfig('locationBlanes', language);
   const hreflangLinks = generateHreflangLinks('locationBlanes');
   const canonical = generateCanonicalUrl('locationBlanes', language);
@@ -154,6 +156,15 @@ export default function LocationBlanesPage() {
                 <Clock className="w-4 h-4 mr-2" />
                 {t.locationPages.blanes.hero.badgeDuration}
               </Badge>
+            </div>
+            <div className="mt-6 text-center">
+              <Button
+                onClick={() => openBookingModal()}
+                className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
+                data-testid="button-location-hero-book"
+              >
+                {t.nav.bookNow}
+              </Button>
             </div>
           </div>
         </div>

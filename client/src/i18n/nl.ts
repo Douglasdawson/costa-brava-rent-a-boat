@@ -659,14 +659,26 @@ export const nl: Translations = {
     total: "Totaal",
     validOneYear: "1 jaar geldig",
     allBoats: "Inwisselbaar voor alle boten",
-    buy: "Cadeaukaart kopen",
-    processing: "Verwerken...",
-    purchaseSuccess: "Aankoop voltooid!",
-    purchaseSuccessDesc: "De cadeaukaart is succesvol aangemaakt",
+    buy: "Cadeaubon aanvragen",
+    processing: "Aanvraag verzenden...",
+    purchaseSuccess: "Aanvraag ontvangen",
+    purchaseSuccessDesc:
+      "We mailen je de stappen om de betaling af te ronden. Zodra die bevestigd is, sturen we de cadeaubon naar de ontvanger. Geen online betaling.",
     code: "Kaartcode",
     forRecipient: "Voor",
     backHome: "Terug naar home",
-    buyAnother: "Nog een kopen",
+    buyAnother: "Nog een aanvragen",
+    whyTitle: "Waarom een bootervaring cadeau geven?",
+    whyP1:
+      "Een origineel cadeau dat je niet vergeet. Varen langs de baaien van de Costa Brava, verborgen stranden ontdekken en genieten van de Middellandse Zee is een unieke ervaring die elk materieel cadeau overtreft.",
+    whyP2:
+      "Onze cadeaubonnen zijn geldig voor al onze {count} boten, zowel zonder als met vaarbewijs. De ontvanger kiest de boot, de datum en de duur die hij of zij wil, het hele seizoen lang (april tot oktober).",
+    whyP3:
+      "Perfect voor verjaardagen, jubilea, vrijgezellenfeesten of gewoon om iemand bijzonders te verrassen. De zee is altijd het beste cadeau.",
+    viewFleet: "Bekijk de vloot",
+    ctaTitle: "De zee is altijd het beste cadeau",
+    ctaSubtitle:
+      "Verras iemand bijzonders met een onvergetelijke vaartocht langs de baaien van de Costa Brava.",
   },
   boatDetail: {
     notFound: "Boot niet gevonden",
@@ -912,6 +924,7 @@ export const nl: Translations = {
     addPeople: "Met hoeveel?",
   },
   reviews: {
+    googleReviews: "op Google",
     opinions: "beoordelingen",
     title: "Duizenden families hebben het al beleefd",
     subtitle: "Echte ervaringen van klanten die elke zomer terugkomen",
@@ -938,7 +951,7 @@ export const nl: Translations = {
     licenseFreeDesc:
       "Vaartuigen tot 15 PK waarvoor geen vaarbewijs nodig is. Ideaal voor beginners en gezinnen.",
     licenseFreeFeat1: "Tot 15 PK",
-    licenseFreeFeat2: "4-7 personen",
+    licenseFreeFeat2: "4-5 personen",
     licenseFreeFeat3: "Eenvoudig te besturen",
   },
   homepageLocations: {
@@ -1117,7 +1130,7 @@ export const nl: Translations = {
     vsMarketplacesRow4Direct: "Directe WhatsApp met ons team in de haven",
     vsMarketplacesRow4Market: "E-mailsupport van de marktplaats, niet van de eigenaar",
     vsMarketplacesRow5Label: "Annulering",
-    vsMarketplacesRow5Direct: "Flexibel tot 48u van tevoren",
+    vsMarketplacesRow5Direct: "Gratis datumwijziging tot 7 dagen van tevoren",
     vsMarketplacesRow5Market: "Beleid van de marktplaats + tarief van de eigenaar",
     vsMarketplacesConclusion:
       "De uiteindelijke prijs via een marktplaats is doorgaans 20-35% hoger dan geadverteerd zodra je brandstof, commissie en extra's optelt. Onze 75€/u is al-inclusive: brandstof, uitrusting, instructie, aansprakelijkheidsverzekering en havensupport.",
@@ -1570,6 +1583,10 @@ export const nl: Translations = {
   },
 
   boatDescriptions: {
+    "jetski-circuito":
+      "Neem zelf de besturing van een waterscooter op een afgebakend circuit voor de kust van Blanes. Ideaal om de adrenaline van jetskiën te proeven zonder vaarbewijs: veiligheidsbriefing en zwemvest inbegrepen.",
+    "jetski-excursion-monitor":
+      "Verken de Costa Brava per waterscooter onder begeleiding van een gediplomeerde instructeur, met een begeleide route langs de baaien tussen Blanes en Lloret. Zonder vaarbewijs, met briefing, zwemvest en brandstof voor de tocht inbegrepen.",
     "solar-450":
       "Ontworpen voor zonliefhebbers. Het gewatteerde solarium is het grootste van de hele vaarbewijsvrije vloot: anker in een turquoise baai bij Blanes en ontspan als nergens anders. Geen vaarbewijs nodig, wij leren u in 15 minuten hoe u vaart. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "remus-450":
@@ -1909,6 +1926,8 @@ export const nl: Translations = {
     q3: "Heb ik een vaarbewijs nodig voor de {name}?",
     a3None:
       "Nee, voor de {name} is geen vaarbewijs vereist. Je moet alleen 18 jaar of ouder zijn. Voordat je uitvaart krijg je een instructie van 15 minuten over de bediening van de boot.",
+    a3Captained:
+      "Je hebt geen vaarbewijs of ervaring nodig: de {name} vaart altijd met onze professionele schipper. Jij stapt aan boord en geniet van de tocht.",
     a3Licensed:
       "Ja, voor de {name} is {license} vereist. Je moet je geldige vaarbewijs tonen voordat je uitvaart.",
     a3Fallback: "een geldig vaarbewijs",
@@ -2721,7 +2740,7 @@ export const nl: Translations = {
           "Ontdek de beroemde stranden van Lloret de Mar vanuit de haven van Blanes. 25 minuten varen naar een van de populairste bestemmingen van de Costa Brava.",
         badgeFrom: "Vanuit haven Blanes",
         badgeTime: "25 min varen",
-        badgeCapacity: "4-7 personen",
+        badgeCapacity: "4-5 personen per boot",
       },
       sections: {
         whyLloretTitle: "Waarom Lloret de Mar bezoeken per boot?",
@@ -3352,7 +3371,7 @@ export const nl: Translations = {
         destsIntro:
           "Vanuit de Haven van Blanes kun je noordwaarts varen langs de spectaculaire kust van de Costa Brava. Ontdek baaien met turquoise water verborgen tussen kliffen, stranden alleen bereikbaar via zee, en charmante plaatsjes zoals Lloret de Mar en het historische Tossa de Mar met zijn ommuurde middeleeuwse stad.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1u",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Baaien van Blanes",
         pricingTitle: "Prijzen bootverhuur",
         pricingIntro:
@@ -3458,7 +3477,7 @@ export const nl: Translations = {
         destsIntro:
           "Vanuit de Haven van Blanes kun je noordwaarts varen en de spectaculaire kust van de Costa Brava verkennen. Verborgen baaien met turquoise water, met dennenbomen bedekte kliffen en het indrukwekkende silhouet van Tossa de Mar aan de horizon. Dit alles binnen handbereik vanaf de boot.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1u",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Baaien van Blanes",
         pricingTitle: "Prijzen bootverhuur",
         pricingIntro:
@@ -3565,7 +3584,7 @@ export const nl: Translations = {
         destsIntro:
           "Vanuit de Haven van Blanes kun je noordwaarts varen langs de spectaculaire kust van de Costa Brava. Ontdek verborgen baaien, indrukwekkende kliffen en middeleeuwse plaatsjes zoals Tossa de Mar. Met een boot zonder vaarbewijs kun je tot 2 mijl uit de kust verkennen, voldoende om de mooiste baaien van de omgeving te bereiken.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1u",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Baaien van Blanes",
         pricingTitle: "Prijzen bootverhuur",
         pricingIntro:
@@ -4034,6 +4053,91 @@ export const nl: Translations = {
     quickFactsTitle: "Snelle feiten",
   },
 
+  cookieBanner: {
+    ariaLabel: "Cookiemelding",
+    message:
+      "We gebruiken eigen cookies en cookies van derden (Google Analytics) om je ervaring te verbeteren en het webverkeer te analyseren. Je kunt alle cookies accepteren of alleen de essentiële.",
+    cookiesPolicy: "Cookiebeleid",
+    privacyPolicy: "Privacybeleid",
+    essentialOnly: "Alleen essentiële",
+    acceptAll: "Alles accepteren",
+  },
+
+  relatedLocations: {
+    boatTitle: "Bestemmingen per boot",
+    boatIntro: "Vaar vanuit de haven van Blanes naar het noorden van de Costa Brava",
+    carTitle: "Verblijf je in de buurt?",
+    carIntro: "Als je aan de kust van de Maresme verblijft, ligt de haven van Blanes op een paar minuten rijden.",
+    categoriesTitle: "Type boten",
+    categoriesIntro: "Vind de perfecte boot voor jouw ervaring",
+    viewDetails: "Bekijk details",
+    viewBoats: "Bekijk boten",
+    locations: {
+      costaBrava: {
+        name: "Bootverhuur aan de Costa Brava",
+        description: "Ontdek de hele kust per boot: routes, baaien en bestemmingen vanuit de haven van Blanes.",
+        duration: "Hele regio",
+      },
+      blanes: {
+        name: "Bootverhuur in Blanes",
+        description: "Thuishaven met gratis parkeren vlak bij de ligplaats. Vertrekpunt van alle tochten.",
+        duration: "Thuishaven",
+      },
+      lloret: {
+        name: "Tocht naar Lloret de Mar",
+        description: "Levendige stranden en verborgen baaien. Vanuit Blanes bereik je Fenals in 25 minuten varend langs de kust.",
+        duration: "25 min per boot",
+      },
+      tossa: {
+        name: "Bezoek Tossa de Mar",
+        description: "Middeleeuws stadje beschermd door stadsmuren, het historische juweel van de Costa Brava. Bereikbaar met een boot met vaarbewijs of een excursie met schipper.",
+        duration: "30-45 min met vaarbewijs",
+      },
+      malgrat: {
+        name: "Malgrat de Mar",
+        description: "Het dichtstbijzijnde bootverhuurpunt voor wie in Malgrat verblijft.",
+        duration: "10 min met de auto",
+      },
+      santaSusanna: {
+        name: "Santa Susanna",
+        description: "Resortgebied op een kwartier van de haven van Blanes.",
+        duration: "15 min met de auto",
+      },
+      calella: {
+        name: "Calella",
+        description: "Playa Gran, het oude centrum en de haven van Blanes op 20 minuten.",
+        duration: "20 min met de auto",
+      },
+      pineda: {
+        name: "Pineda de Mar",
+        description: "Hotelzone met directe verbinding per R1-trein of auto.",
+        duration: "18 min met de auto",
+      },
+      palafolls: {
+        name: "Palafolls",
+        description: "Het perfecte uitje vanaf de campings van Palafolls.",
+        duration: "12 min met de auto",
+      },
+      tordera: {
+        name: "Tordera",
+        description: "Toegangspoort tot de Costa Brava, met makkelijk parkeren bij de haven.",
+        duration: "15 min met de auto",
+      },
+    },
+    categories: {
+      licenseFree: {
+        name: "Boten zonder vaarbewijs",
+        description: "Boten tot 15 pk, perfect voor beginners en gezinnen.",
+        features: ["Tot 15 pk", "4-5 personen", "Makkelijk te besturen"],
+      },
+      licensed: {
+        name: "Boten met vaarbewijs",
+        description: "Krachtige boten voor gevorderd varen met vaarbewijs.",
+        features: ["40-115 pk", "Hogere snelheid", "Grotere actieradius"],
+      },
+    },
+  },
+
   testimonios: {
     hero: {
       title: "Wat onze gasten na de vaart vertellen",
@@ -4196,19 +4300,19 @@ export const nl: Translations = {
       },
       lloret: {
         title: "Populaire boten voor je route naar Lloret de Mar",
-        description: "De boten zonder vaarbewijs die we het meest verhuren voor de route naar het strand van Fenals (zuid-Lloret). Ze komen er allemaal legaal en zijn ideaal voor 2-7 personen, met of zonder ervaring.",
+        description: "De boten die we het meest verhuren voor de route richting Lloret: de boten zonder vaarbewijs bereiken legaal het strand van Fenals en met vaarbewijs vaar je door tot het strand van Lloret. Voor 2-7 personen, afhankelijk van de boot.",
       },
       pineda: {
         title: "Populaire boten om te huren vanaf de haven van Blanes",
-        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-7 personen.",
+        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-5 personen.",
       },
       palafolls: {
         title: "Populaire boten om te huren vanaf de haven van Blanes",
-        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-7 personen.",
+        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-5 personen.",
       },
       tordera: {
         title: "Populaire boten om te huren vanaf de haven van Blanes",
-        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-7 personen.",
+        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-5 personen.",
       },
       tossa: {
         title: "Boten voor je route naar Tossa de Mar",
@@ -4249,7 +4353,7 @@ export const nl: Translations = {
       locationCostaBrava: [
         { title: "Botenverhuur in Blanes", description: "Thuishaven met gratis parkeren en alle voorzieningen" },
         { title: "Tocht naar Lloret de Mar", description: "Spectaculaire stranden en baaien op 25 min varen" },
-        { title: "Vaar naar Tossa de Mar", description: "Middeleeuwse Vila Vella en kristalheldere baaien op 1 uur" },
+        { title: "Vaar naar Tossa de Mar", description: "Middeleeuwse Vila Vella en kristalheldere baaien op 30-45 min met vaarbewijs" },
         { title: "Mooiste baaien van de Costa Brava per boot", description: "De 10 spectaculairste baaien tussen Blanes en Tossa" },
       ],
       activitySnorkel: [
@@ -5172,6 +5276,7 @@ export const nl: Translations = {
     ]
   },
   jetskiLanding: {
+    specCapacity: "1-2 personen",
     "fromLabel": "vanaf",
     "ctaRequest": "Boeken",
     "slotsTitle": "Tijdsloten & prijzen",

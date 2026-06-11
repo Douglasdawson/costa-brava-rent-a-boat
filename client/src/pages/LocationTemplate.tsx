@@ -6,6 +6,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 import {
   MapPin,
   Clock,
@@ -185,6 +186,7 @@ export default function LocationTemplate({
 }: LocationTemplateProps) {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
+  const { openBookingModal } = useBookingModal();
 
   useEffect(() => {
     trackLocationPageView(config.slug);
@@ -348,6 +350,15 @@ export default function LocationTemplate({
                     {hero?.badgeBeach}
                   </Badge>
                 </div>
+                <div className="mt-6">
+                  <Button
+                    onClick={() => openBookingModal()}
+                    className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
+                    data-testid="button-location-hero-book"
+                  >
+                    {t.nav.bookNow}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -387,6 +398,15 @@ export default function LocationTemplate({
                 >
                   {hero?.badgeBeach}
                 </Badge>
+              </div>
+              <div className="mt-6">
+                <Button
+                  onClick={() => openBookingModal()}
+                  className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
+                  data-testid="button-location-hero-book"
+                >
+                  {t.nav.bookNow}
+                </Button>
               </div>
             </div>
           </div>

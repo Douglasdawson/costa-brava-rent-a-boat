@@ -661,14 +661,26 @@ export const de: Translations = {
     total: "Gesamt",
     validOneYear: "1 Jahr gültig",
     allBoats: "Einlösbar für alle Boote",
-    buy: "Geschenkkarte kaufen",
-    processing: "Wird verarbeitet...",
-    purchaseSuccess: "Kauf abgeschlossen!",
-    purchaseSuccessDesc: "Die Geschenkkarte wurde erfolgreich erstellt",
+    buy: "Gutschein anfragen",
+    processing: "Anfrage wird gesendet...",
+    purchaseSuccess: "Anfrage erhalten",
+    purchaseSuccessDesc:
+      "Wir schreiben dir per E-Mail mit den Schritten zum Abschluss der Zahlung. Sobald sie bestätigt ist, senden wir den Gutschein an den Empfänger. Keine Online-Zahlung.",
     code: "Kartencode",
     forRecipient: "Für",
     backHome: "Zurück zur Startseite",
-    buyAnother: "Weitere kaufen",
+    buyAnother: "Noch einen anfragen",
+    whyTitle: "Warum ein Bootserlebnis verschenken?",
+    whyP1:
+      "Ein originelles Geschenk, das man nicht vergisst. Durch die Buchten der Costa Brava fahren, versteckte Strände entdecken und das Mittelmeer genießen: ein einzigartiges Erlebnis, das jedes materielle Geschenk übertrifft.",
+    whyP2:
+      "Unsere Geschenkkarten gelten für jedes unserer {count} Boote, sowohl ohne als auch mit Führerschein. Der Beschenkte wählt das Boot, das Datum und die Dauer nach Wunsch, während der gesamten Saison (April bis Oktober).",
+    whyP3:
+      "Perfekt für Geburtstage, Jahrestage, Junggesellen- und Junggesellinnenabschiede oder einfach, um jemand Besonderen zu überraschen. Das Meer ist immer das beste Geschenk.",
+    viewFleet: "Flotte ansehen",
+    ctaTitle: "Das Meer ist immer das beste Geschenk",
+    ctaSubtitle:
+      "Überrasche jemand Besonderen mit einem unvergesslichen Erlebnis in den Buchten der Costa Brava.",
   },
   boatDetail: {
     notFound: "Boot nicht gefunden",
@@ -795,8 +807,8 @@ export const de: Translations = {
       whenWho: "Wann legst du ab?",
       whenWhoShort: "Wann?",
       yourBoat: "Dein Boot",
-      departureDuration: "Zeit und Dauer",
-      upgradeYourDay: "Mach den Tag besser",
+      departureDuration: "Uhrzeit",
+      upgradeYourDay: "Extras",
       yourDetails: "Bestätigen",
     },
     hints: {
@@ -915,6 +927,7 @@ export const de: Translations = {
     addPeople: "Wie viele seid ihr?",
   },
   reviews: {
+    googleReviews: "bei Google",
     opinions: "Bewertungen",
     title: "Tausende Familien haben es schon erlebt",
     subtitle: "Echte Erfahrungen von Kunden, die jeden Sommer wiederkommen",
@@ -942,7 +955,7 @@ export const de: Translations = {
     licenseFreeDesc:
       "Boote bis 15 PS, die keinen Bootsführerschein benötigen. Perfekt für Anfänger und Familien.",
     licenseFreeFeat1: "Bis zu 15 PS",
-    licenseFreeFeat2: "4-7 Personen",
+    licenseFreeFeat2: "4-5 Personen",
     licenseFreeFeat3: "Einfache Handhabung",
   },
   homepageLocations: {
@@ -1121,7 +1134,7 @@ export const de: Translations = {
     vsMarketplacesRow4Direct: "WhatsApp direkt mit dem Team im Hafen",
     vsMarketplacesRow4Market: "E-Mail-Support des Marktplatzes, nicht des Anbieters",
     vsMarketplacesRow5Label: "Stornierung",
-    vsMarketplacesRow5Direct: "Flexibel bis 48 Std. vorher",
+    vsMarketplacesRow5Direct: "Kostenlose Terminänderung bis 7 Tage vorher",
     vsMarketplacesRow5Market: "Marktplatzrichtlinie + Anbietergebühr",
     vsMarketplacesConclusion:
       "Der Endpreis über einen Marktplatz ist nach Addition von Benzin, Gebühr und Extras meist 20–35 % höher als angekündigt. Unsere 75 €/Std. sind bereits alles inklusive: Benzin, Ausrüstung, Einweisung, Haftpflichtversicherung und Unterstützung im Hafen.",
@@ -1576,6 +1589,10 @@ export const de: Translations = {
   },
 
   boatDescriptions: {
+    "jetski-circuito":
+      "Übernimm das Steuer eines Jetskis auf einem markierten Rundkurs vor Blanes. Ideal, um den Adrenalinkick des Jetski-Fahrens ohne Führerschein zu erleben: Sicherheitseinweisung und Schwimmweste inklusive.",
+    "jetski-excursion-monitor":
+      "Erkunde die Costa Brava auf dem Jetski in Begleitung eines lizenzierten Guides, mit geführter Route durch die Buchten zwischen Blanes und Lloret. Ohne Führerschein, mit Einweisung, Schwimmweste und Kraftstoff für die Tour inklusive.",
     "solar-450":
       "Für Sonnenliebhaber gemacht. Sein gepolstertes Solarium ist das größte der gesamten führerscheinfreien Flotte: Ankern Sie in einer türkisfarbenen Bucht nahe Blanes und entspannen Sie wie nirgendwo sonst. Kein Bootsführerschein nötig, wir zeigen Ihnen in 15 Minuten, wie es geht. Treibstoff, Versicherung und Sicherheitsausrüstung inklusive.",
     "remus-450":
@@ -1916,6 +1933,8 @@ export const de: Translations = {
     q3: "Benötige ich einen Bootsführerschein für die {name}?",
     a3None:
       "Nein, für die {name} ist kein Bootsführerschein erforderlich. Du musst lediglich mindestens 18 Jahre alt sein. Vor dem Ablegen erhältst du eine 15-minütige Einweisung in die Bedienung des Bootes.",
+    a3Captained:
+      "Du brauchst weder Führerschein noch Erfahrung: Die {name} fährt immer mit unserem professionellen Skipper. Du gehst an Bord und genießt die Fahrt.",
     a3Licensed:
       "Ja, für die {name} wird {license} benötigt. Du musst deine gültige Lizenz vor dem Ablegen vorlegen.",
     a3Fallback: "ein gültiger Bootsführerschein",
@@ -2735,7 +2754,7 @@ export const de: Translations = {
           "Entdecken Sie die berühmten Strände von Lloret de Mar vom Hafen Blanes aus. 25 Minuten Fahrt zu einem der beliebtesten Reiseziele der Costa Brava.",
         badgeFrom: "Ab Hafen Blanes",
         badgeTime: "25 Min. Fahrt",
-        badgeCapacity: "4-7 Personen",
+        badgeCapacity: "4-5 Personen pro Boot",
       },
       sections: {
         whyLloretTitle: "Warum Lloret de Mar mit dem Boot besuchen?",
@@ -3371,7 +3390,7 @@ export const de: Translations = {
         destsIntro:
           "Vom Hafen Blanes aus können Sie nach Norden entlang der spektakulären Küste der Costa Brava fahren. Entdecken Sie türkisfarbene Buchten, die zwischen Klippen versteckt sind, Strände, die nur vom Meer aus zugänglich sind, und charmante Orte wie Lloret de Mar und das historische Tossa de Mar mit seiner ummauerten mittelalterlichen Altstadt.",
         destLloret: "Lloret de Mar - 25 Min",
-        destTossa: "Tossa de Mar - 1 Std",
+        destTossa: "Tossa de Mar - 30-45 Min",
         destBlanes: "Buchten von Blanes",
         pricingTitle: "Preise für Bootsvermietung",
         pricingIntro:
@@ -3478,7 +3497,7 @@ export const de: Translations = {
         destsIntro:
           "Vom Hafen Blanes aus können Sie nach Norden fahren und die spektakuläre Küste der Costa Brava erkunden. Versteckte Buchten mit türkisfarbenem Wasser, mit Pinien bewachsene Klippen und die beeindruckende Silhouette von Tossa de Mar am Horizont. All das ist vom Boot aus für Sie erreichbar.",
         destLloret: "Lloret de Mar - 25 Min",
-        destTossa: "Tossa de Mar - 1 Std",
+        destTossa: "Tossa de Mar - 30-45 Min",
         destBlanes: "Buchten von Blanes",
         pricingTitle: "Preise für Bootsvermietung",
         pricingIntro:
@@ -3586,7 +3605,7 @@ export const de: Translations = {
         destsIntro:
           "Vom Hafen Blanes aus können Sie nach Norden entlang der spektakulären Küste der Costa Brava fahren. Entdecken Sie versteckte Buchten, beeindruckende Klippen und mittelalterliche Dörfer wie Tossa de Mar. Mit einem Boot ohne Führerschein können Sie bis zu 2 Meilen von der Küste entfernt erkunden, ausreichend, um die schönsten Buchten der Gegend zu erreichen.",
         destLloret: "Lloret de Mar - 25 Min",
-        destTossa: "Tossa de Mar - 1 Std",
+        destTossa: "Tossa de Mar - 30-45 Min",
         destBlanes: "Buchten von Blanes",
         pricingTitle: "Preise für Bootsvermietung",
         pricingIntro:
@@ -4057,6 +4076,91 @@ export const de: Translations = {
     quickFactsTitle: "Schnelle Fakten",
   },
 
+  cookieBanner: {
+    ariaLabel: "Cookie-Hinweis",
+    message:
+      "Wir verwenden eigene Cookies und Cookies von Drittanbietern (Google Analytics), um dein Erlebnis zu verbessern und den Website-Traffic zu analysieren. Du kannst alle Cookies akzeptieren oder nur die essenziellen.",
+    cookiesPolicy: "Cookie-Richtlinie",
+    privacyPolicy: "Datenschutzerklärung",
+    essentialOnly: "Nur essenzielle",
+    acceptAll: "Alle akzeptieren",
+  },
+
+  relatedLocations: {
+    boatTitle: "Ziele per Boot",
+    boatIntro: "Fahre vom Hafen Blanes in den Norden der Costa Brava",
+    carTitle: "Übernachtest du in der Nähe?",
+    carIntro: "Wenn du an der Maresme-Küste bist, liegt der Hafen von Blanes nur wenige Autominuten entfernt.",
+    categoriesTitle: "Bootstypen",
+    categoriesIntro: "Finde das perfekte Boot für deine Erfahrung",
+    viewDetails: "Details ansehen",
+    viewBoats: "Boote ansehen",
+    locations: {
+      costaBrava: {
+        name: "Bootsverleih an der Costa Brava",
+        description: "Entdecke die ganze Küste per Boot: Routen, Buchten und Ziele ab dem Hafen von Blanes.",
+        duration: "Gesamte Region",
+      },
+      blanes: {
+        name: "Bootsverleih in Blanes",
+        description: "Heimathafen mit kostenlosem Parkplatz nahe dem Liegeplatz. Startpunkt aller Ausfahrten.",
+        duration: "Heimathafen",
+      },
+      lloret: {
+        name: "Ausflug nach Lloret de Mar",
+        description: "Lebhafte Strände und versteckte Buchten. Von Blanes erreichst du Fenals in 25 Minuten entlang der Küste.",
+        duration: "25 Min. per Boot",
+      },
+      tossa: {
+        name: "Besuche Tossa de Mar",
+        description: "Von Stadtmauern geschütztes mittelalterliches Städtchen, das historische Juwel der Costa Brava. Erreichbar mit Boot mit Führerschein oder Exkursion mit Skipper.",
+        duration: "30-45 Min. mit Führerschein",
+      },
+      malgrat: {
+        name: "Malgrat de Mar",
+        description: "Der nächstgelegene Bootsverleih für alle, die in Malgrat übernachten.",
+        duration: "10 Min. mit dem Auto",
+      },
+      santaSusanna: {
+        name: "Santa Susanna",
+        description: "Resort-Zone, eine Viertelstunde vom Hafen Blanes entfernt.",
+        duration: "15 Min. mit dem Auto",
+      },
+      calella: {
+        name: "Calella",
+        description: "Playa Gran, Altstadt und der Hafen von Blanes in 20 Minuten.",
+        duration: "20 Min. mit dem Auto",
+      },
+      pineda: {
+        name: "Pineda de Mar",
+        description: "Hotelzone mit direkter Anbindung per R1-Zug oder Auto.",
+        duration: "18 Min. mit dem Auto",
+      },
+      palafolls: {
+        name: "Palafolls",
+        description: "Der perfekte Ausflug von den Campingplätzen in Palafolls.",
+        duration: "12 Min. mit dem Auto",
+      },
+      tordera: {
+        name: "Tordera",
+        description: "Tor zur Costa Brava, mit einfachem Parken am Hafen.",
+        duration: "15 Min. mit dem Auto",
+      },
+    },
+    categories: {
+      licenseFree: {
+        name: "Boote ohne Führerschein",
+        description: "Boote bis 15 PS, perfekt für Anfänger und Familien.",
+        features: ["Bis 15 PS", "4-5 Personen", "Einfache Handhabung"],
+      },
+      licensed: {
+        name: "Boote mit Führerschein",
+        description: "Leistungsstarke Boote für fortgeschrittene Navigation mit Bootsführerschein.",
+        features: ["40-115 PS", "Höhere Geschwindigkeit", "Größere Reichweite"],
+      },
+    },
+  },
+
   testimonios: {
     hero: {
       title: "Was unsere Gäste nach der Fahrt sagen",
@@ -4219,19 +4323,19 @@ export const de: Translations = {
       },
       lloret: {
         title: "Beliebte Boote für Ihre Route nach Lloret de Mar",
-        description: "Die führerscheinfreien Boote, die wir am häufigsten für die Route zum Strand von Fenals (Süd-Lloret) vermieten. Alle erreichen ihn legal und sind ideal für 2-7 Personen mit oder ohne Erfahrung.",
+        description: "Die Boote, die wir am häufigsten für die Route Richtung Lloret vermieten: Die führerscheinfreien erreichen legal den Strand von Fenals, und mit Führerschein geht es weiter bis zum Strand von Lloret. Für 2-7 Personen je nach Boot.",
       },
       pineda: {
         title: "Beliebte Boote zum Mieten ab dem Hafen von Blanes",
-        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-7 Personen.",
+        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-5 Personen.",
       },
       palafolls: {
         title: "Beliebte Boote zum Mieten ab dem Hafen von Blanes",
-        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-7 Personen.",
+        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-5 Personen.",
       },
       tordera: {
         title: "Beliebte Boote zum Mieten ab dem Hafen von Blanes",
-        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-7 Personen.",
+        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-5 Personen.",
       },
       tossa: {
         title: "Boote für Ihre Route nach Tossa de Mar",
@@ -4272,7 +4376,7 @@ export const de: Translations = {
       locationCostaBrava: [
         { title: "Bootsverleih in Blanes", description: "Heimathafen mit kostenlosem Parkplatz und allen Services" },
         { title: "Ausflug nach Lloret de Mar", description: "Spektakuläre Strände und Buchten 25 Min. mit dem Boot entfernt" },
-        { title: "Fahren Sie nach Tossa de Mar", description: "Mittelalterliche Vila Vella und kristallklare Buchten in 1 Std." },
+        { title: "Fahren Sie nach Tossa de Mar", description: "Mittelalterliche Vila Vella und kristallklare Buchten, 30-45 Min. mit Führerschein" },
         { title: "Die besten Buchten der Costa Brava mit dem Boot", description: "Die 10 spektakulärsten Buchten zwischen Blanes und Tossa" },
       ],
       activitySnorkel: [
@@ -5195,6 +5299,7 @@ export const de: Translations = {
     ]
   },
   jetskiLanding: {
+    specCapacity: "1-2 Personen",
     "fromLabel": "ab",
     "ctaRequest": "Buchen",
     "slotsTitle": "Zeitfenster & Preise",

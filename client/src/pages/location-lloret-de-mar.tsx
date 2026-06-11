@@ -4,6 +4,7 @@ import type { Boat } from "@shared/schema";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 import {
   MapPin,
   Clock,
@@ -57,6 +58,7 @@ export default function LocationLloretPage() {
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const t = useTranslations();
+  const { openBookingModal } = useBookingModal();
   const seoConfig = getSEOConfig('locationLloret', language);
   const hreflangLinks = generateHreflangLinks('locationLloret');
   const canonical = generateCanonicalUrl('locationLloret', language);
@@ -223,6 +225,15 @@ export default function LocationLloretPage() {
                     <Users className="w-4 h-4 mr-2" />
                     {t.locationPages.lloret.hero.badgeCapacity}
                   </Badge>
+                </div>
+                <div className="mt-6">
+                  <Button
+                    onClick={() => openBookingModal()}
+                    className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
+                    data-testid="button-location-hero-book"
+                  >
+                    {t.nav.bookNow}
+                  </Button>
                 </div>
               </div>
             </div>

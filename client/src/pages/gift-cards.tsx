@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
+import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -42,7 +43,7 @@ export default function GiftCardsPage() {
   const [purchaseComplete, setPurchaseComplete] = useState(false);
   const [giftCardCode, setGiftCardCode] = useState("");
   const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
-  const fleetCount = (boats || []).filter((b) => b.isActive).length || 9;
+  const fleetCount = (boats || []).filter((b) => b.isActive && !isJetSkiProduct(b.id)).length || 8;
   const { toast } = useToast();
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
@@ -221,11 +222,11 @@ export default function GiftCardsPage() {
       <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-24 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mt-8">
-            <Gift className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-blue-100" />
+            <Gift className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-primary" />
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">
               {t.giftCards?.title || "Tarjetas Regalo"}
             </h1>
-            <p className="text-lg sm:text-xl max-w-3xl mx-auto text-blue-50">
+            <p className="text-lg sm:text-xl max-w-3xl mx-auto text-muted-foreground">
               {t.giftCards?.subtitle || "Regala una experiencia inolvidable en barco por la Costa Brava"}
             </p>
           </div>
@@ -238,23 +239,22 @@ export default function GiftCardsPage() {
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3 space-y-5">
               <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
-                Por que regalar una experiencia en barco?
+                {t.giftCards?.whyTitle || "¿Por qué regalar una experiencia en barco?"}
               </h2>
+              <p className="text-muted-foreground leading-relaxed">{t.giftCards?.whyP1 || ""}</p>
               <p className="text-muted-foreground leading-relaxed">
-                Un regalo original que no se olvida. Navegar por las calas de la Costa Brava,
-                descubrir playas escondidas y disfrutar del Mediterraneo es una experiencia unica
-                que supera cualquier regalo material.
+                {(t.giftCards?.whyP2 || "Válidas para nuestros {count} barcos.").replace(
+                  "{count}",
+                  String(fleetCount)
+                )}{" "}
+                <a
+                  href={localizedPath("home") + "#fleet"}
+                  className="text-primary hover:underline"
+                >
+                  {t.giftCards?.viewFleet || "Ver la flota"}
+                </a>
               </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Nuestras tarjetas regalo son validas para cualquiera de nuestros{" "}
-                <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">{fleetCount} barcos</a>,
-                tanto sin licencia como con licencia. El destinatario puede elegir el barco,
-                la fecha y la duracion que prefiera durante toda la temporada (abril a octubre).
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Perfecta para cumpleanos, aniversarios, despedidas de soltero/a o simplemente
-                para sorprender a alguien especial. El mar siempre es el mejor regalo.
-              </p>
+              <p className="text-muted-foreground leading-relaxed">{t.giftCards?.whyP3 || ""}</p>
             </div>
             <div className="lg:col-span-2">
               <img
@@ -291,7 +291,7 @@ export default function GiftCardsPage() {
                     setCustomAmount("");
                   }}
                 >
-                  {amount}EUR
+                  {amount}€
                 </Button>
               ))}
             </div>
@@ -310,7 +310,7 @@ export default function GiftCardsPage() {
                   max={1000}
                   value={customAmount}
                   onChange={(e) => setCustomAmount(e.target.value)}
-                  placeholder="EUR"
+                  placeholder="€"
                   className="w-32"
                 />
               )}
@@ -387,7 +387,7 @@ export default function GiftCardsPage() {
               <div>
                 <p className="text-sm text-muted-foreground/60">{t.giftCards?.total || "Total"}</p>
                 <p className="text-3xl font-bold">
-                  {effectiveAmount ? `${effectiveAmount}EUR` : "---"}
+                  {effectiveAmount ? `${effectiveAmount}€` : "---"}
                 </p>
               </div>
               <div className="text-right">
@@ -407,7 +407,7 @@ export default function GiftCardsPage() {
             >
               {isSubmitting
                 ? (t.giftCards?.processing || "Procesando...")
-                : (t.giftCards?.buy || "Comprar Tarjeta Regalo")}
+                : (t.giftCards?.buy || "Solicitar tarjeta regalo")}
             </Button>
           </div>
         </div>
@@ -451,17 +451,18 @@ export default function GiftCardsPage() {
       <RevealSection className="py-16 sm:py-20 bg-primary text-primary-foreground">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">
-            El mar siempre es el mejor regalo
+            {t.giftCards?.ctaTitle || "El mar siempre es el mejor regalo"}
           </h2>
           <p className="text-primary-foreground/85 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
-            Sorprende a alguien especial con una experiencia inolvidable navegando por las calas de la Costa Brava.
+            {t.giftCards?.ctaSubtitle ||
+              "Sorprende a alguien especial con una experiencia inolvidable navegando por las calas de la Costa Brava."}
           </p>
           <Button
             size="lg"
             variant="secondary"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            Comprar Tarjeta Regalo
+            {t.giftCards?.buy || "Solicitar tarjeta regalo"}
           </Button>
         </div>
       </RevealSection>

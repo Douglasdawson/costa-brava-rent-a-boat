@@ -669,19 +669,19 @@ export const es: Translations = {
       },
       lloret: {
         title: "Barcos populares para tu ruta a Lloret de Mar",
-        description: "Los barcos sin licencia que más alquilamos para la ruta hasta Playa de Fenals (sur de Lloret). Todos llegan legalmente y son ideales para 2-7 personas con o sin experiencia.",
+        description: "Los barcos que más alquilamos para la ruta hacia Lloret: los sin licencia llegan legalmente hasta Playa de Fenals y, con licencia, sigues hasta la playa de Lloret. Para 2-7 personas según el barco.",
       },
       pineda: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
-        description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+        description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-5 personas.",
       },
       palafolls: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
-        description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+        description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-5 personas.",
       },
       tordera: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
-        description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+        description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-5 personas.",
       },
       tossa: {
         title: "Barcos para tu ruta a Tossa de Mar",
@@ -722,7 +722,7 @@ export const es: Translations = {
       locationCostaBrava: [
         { title: "Alquiler barcos en Blanes", description: "Puerto base con parking gratuito y todos los servicios" },
         { title: "Excursión a Lloret de Mar", description: "Playas y calas espectaculares a 25 min en barco" },
-        { title: "Navega hasta Tossa de Mar", description: "Vila Vella medieval y calas cristalinas a 1h" },
+        { title: "Navega hasta Tossa de Mar", description: "Vila Vella medieval y calas cristalinas a 30-45 min con licencia" },
         { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
       ],
       activitySnorkel: [
@@ -1279,14 +1279,26 @@ export const es: Translations = {
     total: "Total",
     validOneYear: "Válida durante 1 año",
     allBoats: "Canjeable en todos los barcos",
-    buy: "Comprar tarjeta regalo",
-    processing: "Procesando...",
-    purchaseSuccess: "¡Compra realizada!",
-    purchaseSuccessDesc: "La tarjeta regalo ha sido creada correctamente",
+    buy: "Solicitar tarjeta regalo",
+    processing: "Enviando solicitud...",
+    purchaseSuccess: "Solicitud recibida",
+    purchaseSuccessDesc:
+      "Te escribimos por email con los pasos para completar el pago. En cuanto quede confirmado, enviamos la tarjeta al destinatario. Sin pago online.",
     code: "Código de la tarjeta",
     forRecipient: "Para",
     backHome: "Volver al inicio",
-    buyAnother: "Comprar otra",
+    buyAnother: "Solicitar otra",
+    whyTitle: "¿Por qué regalar una experiencia en barco?",
+    whyP1:
+      "Un regalo original que no se olvida. Navegar por las calas de la Costa Brava, descubrir playas escondidas y disfrutar del Mediterráneo es una experiencia única que supera cualquier regalo material.",
+    whyP2:
+      "Nuestras tarjetas regalo son válidas para cualquiera de nuestros {count} barcos, tanto sin licencia como con licencia. El destinatario elige el barco, la fecha y la duración que prefiera durante toda la temporada (abril a octubre).",
+    whyP3:
+      "Perfecta para cumpleaños, aniversarios, despedidas de soltero/a o simplemente para sorprender a alguien especial. El mar siempre es el mejor regalo.",
+    viewFleet: "Ver la flota",
+    ctaTitle: "El mar siempre es el mejor regalo",
+    ctaSubtitle:
+      "Sorprende a alguien especial con una experiencia inolvidable navegando por las calas de la Costa Brava.",
   },
   boatDetail: {
     notFound: "Barco no encontrado",
@@ -1531,6 +1543,7 @@ export const es: Translations = {
     addPeople: "¿Cuántos sois?",
   },
   reviews: {
+    googleReviews: "en Google",
     opinions: "opiniones",
     title: "Miles de familias ya lo han vivido",
     subtitle: "Experiencias reales de clientes que repiten cada verano",
@@ -1557,7 +1570,7 @@ export const es: Translations = {
     licenseFreeDesc:
       "Embarcaciones hasta 15 CV que no requieren titulación náutica. Perfectos para principiantes y familias.",
     licenseFreeFeat1: "Hasta 15 CV",
-    licenseFreeFeat2: "4-7 personas",
+    licenseFreeFeat2: "4-5 personas",
     licenseFreeFeat3: "Fácil manejo",
   },
   homepageLocations: {
@@ -1795,7 +1808,7 @@ export const es: Translations = {
           "Desde el puerto de Blanes hasta la Playa de Fenals: 25 minutos de navegación, siete calas vírgenes de la Costa Brava, sin licencia ni curso previo.",
         badgeFrom: "Desde el puerto de Blanes (3 millas)",
         badgeTime: "25 min de navegación sin licencia",
-        badgeCapacity: "4-7 personas por barco",
+        badgeCapacity: "4-5 personas por barco",
       },
       sections: {
         whyLloretTitle: "¿Por qué visitar Lloret de Mar en barco?",
@@ -2431,7 +2444,7 @@ export const es: Translations = {
         destsIntro:
           "Desde el Puerto de Blanes puedes navegar hacia el norte por la espectacular costa de la Costa Brava. Descubre calas de aguas turquesas escondidas entre acantilados, playas solo accesibles por mar, y pueblos con encanto como Lloret de Mar y la histórica Tossa de Mar con su villa medieval amurallada.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1h",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Calas de Blanes",
         pricingTitle: "Precios de alquiler de barcos",
         pricingIntro:
@@ -2537,7 +2550,7 @@ export const es: Translations = {
         destsIntro:
           "Desde el Puerto de Blanes puedes navegar hacia el norte explorando la espectacular costa de la Costa Brava. Calas escondidas de aguas turquesas, acantilados cubiertos de pinos y la impresionante silueta de Tossa de Mar en el horizonte. Todo esto a tu alcance desde el barco.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1h",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Calas de Blanes",
         pricingTitle: "Precios de alquiler de barcos",
         pricingIntro:
@@ -2643,7 +2656,7 @@ export const es: Translations = {
         destsIntro:
           "Desde el Puerto de Blanes puedes navegar hacia el norte por la espectacular costa de la Costa Brava. Descubre calas escondidas, acantilados impresionantes y pueblos medievales como Tossa de Mar. Con un barco sin licencia puedes explorar hasta 2 millas de la costa, suficiente para llegar a las calas más bonitas de la zona.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1h",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Calas de Blanes",
         pricingTitle: "Precios de alquiler de barcos",
         pricingIntro:
@@ -2839,7 +2852,7 @@ export const es: Translations = {
     vsMarketplacesRow4Direct: "WhatsApp directo con el equipo en puerto",
     vsMarketplacesRow4Market: "Soporte por email del marketplace, no del armador",
     vsMarketplacesRow5Label: "Cancelación",
-    vsMarketplacesRow5Direct: "Flexible hasta 48h antes",
+    vsMarketplacesRow5Direct: "Cambio de fecha gratis hasta 7 días antes",
     vsMarketplacesRow5Market: "Política del marketplace + tarifa del armador",
     vsMarketplacesConclusion:
       "El precio final con marketplace suele ser un 20-35% mayor que el anunciado una vez sumas gasolina, comisión y extras. Nuestros 75€/h incluyen ya todo: gasolina, equipamiento, briefing, seguro de responsabilidad civil y soporte en puerto.",
@@ -3478,6 +3491,10 @@ export const es: Translations = {
   },
 
   boatDescriptions: {
+    "jetski-circuito":
+      "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes. Ideal para probar la adrenalina del jet ski sin necesidad de licencia: briefing de seguridad y chaleco incluidos.",
+    "jetski-excursion-monitor":
+      "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada por las calas entre Blanes y Lloret. Sin licencia, con briefing, chaleco y combustible del recorrido incluidos.",
     "solar-450":
       "El barco pensado para quienes quieren tomar el sol en el mar. Su solárium acolchado es el más amplio de toda la flota sin licencia: fondea en una cala de agua turquesa cerca de Blanes y relájate como en ningún otro sitio. Sin carnet necesario, te enseñamos a manejarla en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
     "remus-450":
@@ -5120,6 +5137,8 @@ export const es: Translations = {
     q3: "¿Necesito licencia para el {name}?",
     a3None:
       "No, el {name} no requiere licencia de navegación. Solo necesitas ser mayor de 18 años. Antes de zarpar recibirás una formación de 15 minutos sobre el manejo del barco.",
+    a3Captained:
+      "No necesitas licencia ni experiencia: el {name} va siempre con nuestro patrón profesional. Tú subes a bordo y disfrutas del viaje.",
     a3Licensed:
       "Sí, el {name} requiere {license}. Deberás presentar tu titulación en vigor antes de zarpar.",
     a3Fallback: "licencia náutica en vigor",
@@ -5160,6 +5179,91 @@ export const es: Translations = {
   },
 
   // Página /testimonios — contenido completo de la página de opiniones.
+  cookieBanner: {
+    ariaLabel: "Aviso de cookies",
+    message:
+      "Utilizamos cookies propias y de terceros (Google Analytics) para mejorar tu experiencia y analizar el tráfico web. Puedes aceptar todas las cookies o solo las esenciales.",
+    cookiesPolicy: "Política de Cookies",
+    privacyPolicy: "Política de Privacidad",
+    essentialOnly: "Solo esenciales",
+    acceptAll: "Aceptar todas",
+  },
+
+  relatedLocations: {
+    boatTitle: "Destinos por barco",
+    boatIntro: "Navega desde el Puerto de Blanes hacia el norte de la Costa Brava",
+    carTitle: "¿Te alojas cerca?",
+    carIntro: "Si estás en la costa del Maresme, el Puerto de Blanes queda a pocos minutos en coche.",
+    categoriesTitle: "Tipos de embarcación",
+    categoriesIntro: "Encuentra el barco perfecto según tu experiencia",
+    viewDetails: "Ver detalles",
+    viewBoats: "Ver barcos",
+    locations: {
+      costaBrava: {
+        name: "Alquiler de barcos en la Costa Brava",
+        description: "Descubre toda la costa en barco: rutas, calas y destinos desde el Puerto de Blanes.",
+        duration: "Región completa",
+      },
+      blanes: {
+        name: "Alquiler de barcos en Blanes",
+        description: "Puerto base de operaciones con parking gratuito cerca del amarre. Punto de partida de todas las salidas.",
+        duration: "Puerto base",
+      },
+      lloret: {
+        name: "Excursión a Lloret de Mar",
+        description: "Playas vibrantes y calas escondidas. Desde Blanes llegas a Fenals en 25 minutos navegando por la costa.",
+        duration: "25 min en barco",
+      },
+      tossa: {
+        name: "Visita Tossa de Mar",
+        description: "Villa medieval protegida por murallas, la joya histórica de la Costa Brava. Se llega con barco con licencia o excursión con patrón.",
+        duration: "30-45 min con licencia",
+      },
+      malgrat: {
+        name: "Malgrat de Mar",
+        description: "El punto de alquiler náutico más cercano para quien se aloja en Malgrat.",
+        duration: "10 min en coche",
+      },
+      santaSusanna: {
+        name: "Santa Susanna",
+        description: "Zona resort a un cuarto de hora del Puerto de Blanes.",
+        duration: "15 min en coche",
+      },
+      calella: {
+        name: "Calella",
+        description: "Playa Gran, casco antiguo y el puerto de Blanes a 20 minutos.",
+        duration: "20 min en coche",
+      },
+      pineda: {
+        name: "Pineda de Mar",
+        description: "Zona hotelera con acceso directo en tren R1 o coche.",
+        duration: "18 min en coche",
+      },
+      palafolls: {
+        name: "Palafolls",
+        description: "La excursión perfecta desde los campings de Palafolls.",
+        duration: "12 min en coche",
+      },
+      tordera: {
+        name: "Tordera",
+        description: "Puerta de entrada a la Costa Brava, con parking fácil en el puerto.",
+        duration: "15 min en coche",
+      },
+    },
+    categories: {
+      licenseFree: {
+        name: "Barcos sin licencia",
+        description: "Embarcaciones hasta 15 CV perfectas para principiantes y familias.",
+        features: ["Hasta 15 CV", "4-5 personas", "Fácil manejo"],
+      },
+      licensed: {
+        name: "Barcos con licencia",
+        description: "Embarcaciones potentes para navegación avanzada con titulación.",
+        features: ["40-115 CV", "Mayor velocidad", "Mayor autonomía"],
+      },
+    },
+  },
+
   testimonios: {
     hero: {
       title: "Lo que dicen quienes ya han navegado",
@@ -5337,6 +5441,7 @@ export const es: Translations = {
     ],
   },
   jetskiLanding: {
+    specCapacity: "1-2 personas",
     "fromLabel": "desde",
     "ctaRequest": "Reservar",
     "slotsTitle": "Franjas y precios",

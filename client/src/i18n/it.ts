@@ -660,14 +660,26 @@ export const it: Translations = {
     total: "Totale",
     validOneYear: "Valida per 1 anno",
     allBoats: "Utilizzabile su tutte le barche",
-    buy: "Acquista carta regalo",
-    processing: "Elaborazione...",
-    purchaseSuccess: "Acquisto completato!",
-    purchaseSuccessDesc: "La carta regalo è stata creata con successo",
+    buy: "Richiedi la carta regalo",
+    processing: "Invio della richiesta...",
+    purchaseSuccess: "Richiesta ricevuta",
+    purchaseSuccessDesc:
+      "Ti scriviamo via email con i passaggi per completare il pagamento. Appena confermato, inviamo la carta al destinatario. Nessun pagamento online.",
     code: "Codice della carta",
     forRecipient: "Per",
     backHome: "Torna alla home",
-    buyAnother: "Acquista un'altra",
+    buyAnother: "Richiedi un'altra",
+    whyTitle: "Perché regalare un'esperienza in barca?",
+    whyP1:
+      "Un regalo originale che non si dimentica. Navigare tra le calette della Costa Brava, scoprire spiagge nascoste e godersi il Mediterraneo è un'esperienza unica che supera qualsiasi regalo materiale.",
+    whyP2:
+      "Le nostre carte regalo sono valide per tutte le nostre {count} barche, sia senza patente che con patente. Il destinatario sceglie la barca, la data e la durata che preferisce durante tutta la stagione (da aprile a ottobre).",
+    whyP3:
+      "Perfetta per compleanni, anniversari, addii al celibato o al nubilato o semplicemente per sorprendere una persona speciale. Il mare è sempre il regalo migliore.",
+    viewFleet: "Vedi la flotta",
+    ctaTitle: "Il mare è sempre il regalo migliore",
+    ctaSubtitle:
+      "Sorprendi una persona speciale con un'esperienza indimenticabile navigando tra le calette della Costa Brava.",
   },
   boatDetail: {
     notFound: "Barca non trovata",
@@ -914,6 +926,7 @@ export const it: Translations = {
     addPeople: "Quanti siete?",
   },
   reviews: {
+    googleReviews: "su Google",
     opinions: "recensioni",
     title: "Migliaia di famiglie l'hanno già vissuto",
     subtitle: "Esperienze reali di clienti che tornano ogni estate",
@@ -939,7 +952,7 @@ export const it: Translations = {
     licenseFreeDesc:
       "Imbarcazioni fino a 15 CV che non richiedono patente nautica. Perfette per principianti e famiglie.",
     licenseFreeFeat1: "Fino a 15 CV",
-    licenseFreeFeat2: "4-7 persone",
+    licenseFreeFeat2: "4-5 persone",
     licenseFreeFeat3: "Facile da manovrare",
   },
   homepageLocations: {
@@ -1118,7 +1131,7 @@ export const it: Translations = {
     vsMarketplacesRow4Direct: "WhatsApp diretto con il team in porto",
     vsMarketplacesRow4Market: "Supporto email del marketplace, non dell'armatore",
     vsMarketplacesRow5Label: "Cancellazione",
-    vsMarketplacesRow5Direct: "Flessibile fino a 48h prima",
+    vsMarketplacesRow5Direct: "Cambio data gratuito fino a 7 giorni prima",
     vsMarketplacesRow5Market: "Politica del marketplace + tariffa dell'armatore",
     vsMarketplacesConclusion:
       "Il prezzo finale con marketplace è di solito del 20-35% superiore a quello pubblicizzato, una volta sommati carburante, commissione ed extra. I nostri 75€/h includono già tutto: carburante, attrezzatura, briefing, assicurazione RC e assistenza in porto.",
@@ -1571,6 +1584,10 @@ export const it: Translations = {
   },
 
   boatDescriptions: {
+    "jetski-circuito":
+      "Prendi i comandi di una moto d'acqua in un circuito delimitato da boe davanti a Blanes. Ideale per provare l'adrenalina del jet ski senza bisogno di patente: briefing di sicurezza e giubbotto inclusi.",
+    "jetski-excursion-monitor":
+      "Percorri la Costa Brava in moto d'acqua accompagnato da un istruttore qualificato, con rotta guidata tra le calette di Blanes e Lloret. Senza patente, con briefing, giubbotto e carburante del percorso inclusi.",
     "solar-450":
       "Pensata per chi ama prendere il sole in mare. Il suo solarium imbottito è il più ampio di tutta la flotta senza patente: ancorate in una cala dalle acque turchesi vicino a Blanes e rilassatevi come in nessun altro posto. Nessuna patente nautica necessaria, vi insegniamo a guidarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
     "remus-450":
@@ -1909,6 +1926,8 @@ export const it: Translations = {
     q3: "Ho bisogno della patente per il {name}?",
     a3None:
       "No, il {name} non richiede la patente nautica. Devi solo essere maggiorenne. Prima di salpare riceverai una formazione di 15 minuti sulla conduzione dell'imbarcazione.",
+    a3Captained:
+      "Non ti serve patente né esperienza: il {name} naviga sempre con il nostro skipper professionista. Tu sali a bordo e ti godi il viaggio.",
     a3Licensed:
       "Sì, il {name} richiede {license}. Dovrai presentare la tua patente in corso di validità prima di salpare.",
     a3Fallback: "patente nautica in corso di validità",
@@ -2722,7 +2741,7 @@ export const it: Translations = {
           "Scopri le famose spiagge di Lloret de Mar navigando dal Porto di Blanes. 25 minuti di navigazione verso una delle destinazioni più popolari della Costa Brava.",
         badgeFrom: "Dal Porto di Blanes",
         badgeTime: "25 min di navigazione",
-        badgeCapacity: "4-7 persone",
+        badgeCapacity: "4-5 persone",
       },
       sections: {
         whyLloretTitle: "Perché visitare Lloret de Mar in barca?",
@@ -3352,7 +3371,7 @@ export const it: Translations = {
         destsIntro:
           "Dal Porto di Blanes puoi navigare verso nord lungo la spettacolare costa della Costa Brava. Scopri calette di acque turchesi nascoste tra le scogliere, spiagge accessibili solo via mare, e borghi affascinanti come Lloret de Mar e la storica Tossa de Mar con la sua città medievale murata.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1h",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Calette di Blanes",
         pricingTitle: "Prezzi noleggio barche",
         pricingIntro:
@@ -3458,7 +3477,7 @@ export const it: Translations = {
         destsIntro:
           "Dal Porto di Blanes puoi navigare verso nord esplorando la spettacolare costa della Costa Brava. Calette nascoste di acque turchesi, scogliere ricoperte di pini e l'imponente profilo di Tossa de Mar all'orizzonte. Tutto questo a portata di mano dalla barca.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1h",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Calette di Blanes",
         pricingTitle: "Prezzi noleggio barche",
         pricingIntro:
@@ -3564,7 +3583,7 @@ export const it: Translations = {
         destsIntro:
           "Dal Porto di Blanes puoi navigare verso nord lungo la spettacolare costa della Costa Brava. Scopri calette nascoste, scogliere imponenti e borghi medievali come Tossa de Mar. Con una barca senza patente puoi esplorare fino a 2 miglia dalla costa, sufficiente per raggiungere le calette più belle della zona.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1h",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Calette di Blanes",
         pricingTitle: "Prezzi noleggio barche",
         pricingIntro:
@@ -4033,6 +4052,91 @@ export const it: Translations = {
     quickFactsTitle: "Dati rapidi",
   },
 
+  cookieBanner: {
+    ariaLabel: "Avviso sui cookie",
+    message:
+      "Utilizziamo cookie propri e di terze parti (Google Analytics) per migliorare la tua esperienza e analizzare il traffico web. Puoi accettare tutti i cookie o solo quelli essenziali.",
+    cookiesPolicy: "Politica dei Cookie",
+    privacyPolicy: "Informativa sulla Privacy",
+    essentialOnly: "Solo essenziali",
+    acceptAll: "Accetta tutti",
+  },
+
+  relatedLocations: {
+    boatTitle: "Destinazioni in barca",
+    boatIntro: "Naviga dal Porto di Blanes verso il nord della Costa Brava",
+    carTitle: "Soggiorni qui vicino?",
+    carIntro: "Se ti trovi sulla costa del Maresme, il Porto di Blanes è a pochi minuti d'auto.",
+    categoriesTitle: "Tipi di imbarcazione",
+    categoriesIntro: "Trova la barca perfetta in base alla tua esperienza",
+    viewDetails: "Vedi dettagli",
+    viewBoats: "Vedi barche",
+    locations: {
+      costaBrava: {
+        name: "Noleggio barche sulla Costa Brava",
+        description: "Scopri tutta la costa in barca: rotte, calette e destinazioni dal Porto di Blanes.",
+        duration: "Regione completa",
+      },
+      blanes: {
+        name: "Noleggio barche a Blanes",
+        description: "Porto base delle operazioni con parcheggio gratuito vicino all'ormeggio. Punto di partenza di tutte le uscite.",
+        duration: "Porto base",
+      },
+      lloret: {
+        name: "Escursione a Lloret de Mar",
+        description: "Spiagge vivaci e calette nascoste. Da Blanes arrivi a Fenals in 25 minuti navigando lungo la costa.",
+        duration: "25 min in barca",
+      },
+      tossa: {
+        name: "Visita Tossa de Mar",
+        description: "Borgo medievale protetto dalle mura, il gioiello storico della Costa Brava. Ci si arriva con una barca con patente o con l'escursione con skipper.",
+        duration: "30-45 min con patente",
+      },
+      malgrat: {
+        name: "Malgrat de Mar",
+        description: "Il punto di noleggio nautico più vicino per chi soggiorna a Malgrat.",
+        duration: "10 min in auto",
+      },
+      santaSusanna: {
+        name: "Santa Susanna",
+        description: "Zona resort a un quarto d'ora dal Porto di Blanes.",
+        duration: "15 min in auto",
+      },
+      calella: {
+        name: "Calella",
+        description: "Playa Gran, centro storico e il porto di Blanes a 20 minuti.",
+        duration: "20 min in auto",
+      },
+      pineda: {
+        name: "Pineda de Mar",
+        description: "Zona alberghiera con accesso diretto in treno R1 o in auto.",
+        duration: "18 min in auto",
+      },
+      palafolls: {
+        name: "Palafolls",
+        description: "La gita perfetta dai campeggi di Palafolls.",
+        duration: "12 min in auto",
+      },
+      tordera: {
+        name: "Tordera",
+        description: "Porta d'ingresso alla Costa Brava, con parcheggio facile al porto.",
+        duration: "15 min in auto",
+      },
+    },
+    categories: {
+      licenseFree: {
+        name: "Barche senza patente",
+        description: "Imbarcazioni fino a 15 CV perfette per principianti e famiglie.",
+        features: ["Fino a 15 CV", "4-5 persone", "Facile da manovrare"],
+      },
+      licensed: {
+        name: "Barche con patente",
+        description: "Imbarcazioni potenti per la navigazione avanzata con patente nautica.",
+        features: ["40-115 CV", "Maggiore velocità", "Maggiore autonomia"],
+      },
+    },
+  },
+
   testimonios: {
     hero: {
       title: "Cosa dice chi ha già navigato con noi",
@@ -4192,19 +4296,19 @@ export const it: Translations = {
       },
       lloret: {
         title: "Barche popolari per la tua rotta verso Lloret de Mar",
-        description: "Le barche senza patente che noleggiamo di più per la rotta fino alla spiaggia di Fenals (sud di Lloret). Tutte ci arrivano legalmente e sono ideali per 2-7 persone con o senza esperienza.",
+        description: "Le barche che noleggiamo di più per la rotta verso Lloret: quelle senza patente arrivano legalmente fino alla spiaggia di Fenals e, con patente, prosegui fino alla spiaggia di Lloret. Per 2-7 persone a seconda della barca.",
       },
       pineda: {
         title: "Barche popolari da noleggiare dal porto di Blanes",
-        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-7 persone.",
+        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-5 persone.",
       },
       palafolls: {
         title: "Barche popolari da noleggiare dal porto di Blanes",
-        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-7 persone.",
+        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-5 persone.",
       },
       tordera: {
         title: "Barche popolari da noleggiare dal porto di Blanes",
-        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-7 persone.",
+        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-5 persone.",
       },
       tossa: {
         title: "Barche per la tua rotta verso Tossa de Mar",
@@ -4245,7 +4349,7 @@ export const it: Translations = {
       locationCostaBrava: [
         { title: "Noleggio barche a Blanes", description: "Porto base con parcheggio gratuito e tutti i servizi" },
         { title: "Escursione a Lloret de Mar", description: "Spiagge e calette spettacolari a 25 min in barca" },
-        { title: "Naviga fino a Tossa de Mar", description: "Vila Vella medievale e calette cristalline a 1h" },
+        { title: "Naviga fino a Tossa de Mar", description: "Vila Vella medievale e calette cristalline a 30-45 min con patente" },
         { title: "Le migliori calette della Costa Brava in barca", description: "Le 10 calette più spettacolari tra Blanes e Tossa" },
       ],
       activitySnorkel: [
@@ -5168,6 +5272,7 @@ export const it: Translations = {
     ]
   },
   jetskiLanding: {
+    specCapacity: "1-2 persone",
     "fromLabel": "da",
     "ctaRequest": "Prenota",
     "slotsTitle": "Fasce orarie e prezzi",

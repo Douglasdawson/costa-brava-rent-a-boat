@@ -650,14 +650,26 @@ export const en: Translations = {
     total: "Total",
     validOneYear: "Valid for 1 year",
     allBoats: "Redeemable on all boats",
-    buy: "Buy gift card",
-    processing: "Processing...",
-    purchaseSuccess: "Purchase complete!",
-    purchaseSuccessDesc: "The gift card has been created successfully",
+    buy: "Request gift card",
+    processing: "Sending request...",
+    purchaseSuccess: "Request received",
+    purchaseSuccessDesc:
+      "We'll email you the steps to complete the payment. As soon as it's confirmed, we'll send the card to the recipient. No online payment.",
     code: "Card code",
     forRecipient: "For",
     backHome: "Back to home",
-    buyAnother: "Buy another",
+    buyAnother: "Request another",
+    whyTitle: "Why gift a boat experience?",
+    whyP1:
+      "An original gift no one forgets. Sailing the coves of the Costa Brava, discovering hidden beaches and enjoying the Mediterranean is a unique experience that beats any material gift.",
+    whyP2:
+      "Our gift cards are valid for any of our {count} boats, both license-free and licensed. The recipient chooses the boat, the date and the duration they prefer, throughout the whole season (April to October).",
+    whyP3:
+      "Perfect for birthdays, anniversaries, stag and hen parties, or simply to surprise someone special. The sea is always the best gift.",
+    viewFleet: "View the fleet",
+    ctaTitle: "The sea is always the best gift",
+    ctaSubtitle:
+      "Surprise someone special with an unforgettable experience sailing the coves of the Costa Brava.",
   },
   boatDetail: {
     notFound: "Boat not found",
@@ -901,6 +913,7 @@ export const en: Translations = {
     addPeople: "How many of you?",
   },
   reviews: {
+    googleReviews: "on Google",
     opinions: "reviews",
     title: "Thousands of families have already experienced it",
     subtitle: "Real experiences from customers who come back every summer",
@@ -927,7 +940,7 @@ export const en: Translations = {
     licenseFreeDesc:
       "Vessels up to 15 HP that do not require nautical licence. Perfect for beginners and families.",
     licenseFreeFeat1: "Up to 15 HP",
-    licenseFreeFeat2: "4-7 people",
+    licenseFreeFeat2: "4-5 people",
     licenseFreeFeat3: "Easy handling",
   },
   homepageLocations: {
@@ -1106,7 +1119,7 @@ export const en: Translations = {
     vsMarketplacesRow4Direct: "Direct WhatsApp with the team at the port",
     vsMarketplacesRow4Market: "Marketplace email support, not the operator",
     vsMarketplacesRow5Label: "Cancellation",
-    vsMarketplacesRow5Direct: "Flexible up to 48h before",
+    vsMarketplacesRow5Direct: "Free date change up to 7 days before",
     vsMarketplacesRow5Market: "Marketplace policy + operator's own fee",
     vsMarketplacesConclusion:
       "The final price with a marketplace is typically 20-35% higher than advertised once you add fuel, commission and extras. Our €75/h already includes everything: fuel, equipment, briefing, civil liability insurance and on-site support.",
@@ -1626,6 +1639,10 @@ export const en: Translations = {
   },
 
   boatDescriptions: {
+    "jetski-circuito":
+      "Take the controls of a jet ski on a buoy-marked circuit off Blanes. Ideal for a first taste of jet ski adrenaline with no license needed: safety briefing and life jacket included.",
+    "jetski-excursion-monitor":
+      "Ride along the Costa Brava on a jet ski accompanied by a qualified instructor, on a guided route through the coves between Blanes and Lloret. No license needed, with briefing, life jacket and fuel for the route included.",
     "solar-450":
       "Designed for sun lovers. Its cushioned solarium is the largest in the entire no-licence fleet: anchor in a turquoise cove near Blanes and relax like nowhere else. No licence needed, we teach you to drive in 15 minutes. Fuel, insurance and safety equipment included.",
     "remus-450":
@@ -1963,6 +1980,8 @@ export const en: Translations = {
     q3: "Do I need a licence for the {name}?",
     a3None:
       "No, the {name} does not require a boating licence. You only need to be over 18 years old. Before setting off you'll receive a 15-minute briefing on how to operate the boat.",
+    a3Captained:
+      "You don't need a licence or any experience: the {name} always sails with our professional captain. You just step aboard and enjoy the trip.",
     a3Licensed:
       "Yes, the {name} requires {license}. You must present your valid licence before setting off.",
     a3Fallback: "a valid boating licence",
@@ -2767,7 +2786,7 @@ export const en: Translations = {
           "Discover the famous beaches of Lloret de Mar sailing from Blanes Harbour. 25 minutes by sea to one of the most popular destinations on the Costa Brava.",
         badgeFrom: "From Blanes Harbour",
         badgeTime: "25 min sailing",
-        badgeCapacity: "4-7 people",
+        badgeCapacity: "4-5 people per boat",
       },
       sections: {
         whyLloretTitle: "Why Visit Lloret de Mar by Boat?",
@@ -3400,7 +3419,7 @@ export const en: Translations = {
         destsIntro:
           "From Blanes Port you can sail north along the spectacular Costa Brava coast. Discover turquoise coves hidden among cliffs, beaches only accessible by sea, and charming towns like Lloret de Mar and historic Tossa de Mar with its walled medieval old town.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1h",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Blanes Coves",
         pricingTitle: "Boat rental prices",
         pricingIntro:
@@ -3506,7 +3525,7 @@ export const en: Translations = {
         destsIntro:
           "From Blanes Port you can sail north exploring the spectacular Costa Brava coast. Hidden turquoise coves, pine-covered cliffs and the impressive silhouette of Tossa de Mar on the horizon. All this within reach from the boat.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1h",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Blanes Coves",
         pricingTitle: "Boat rental prices",
         pricingIntro:
@@ -3612,7 +3631,7 @@ export const en: Translations = {
         destsIntro:
           "From Blanes Port you can sail north along the spectacular Costa Brava coast. Discover hidden coves, impressive cliffs and medieval towns like Tossa de Mar. With a boat without license you can explore up to 2 miles from the coast, enough to reach the most beautiful coves in the area.",
         destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 1h",
+        destTossa: "Tossa de Mar - 30-45 min",
         destBlanes: "Blanes Coves",
         pricingTitle: "Boat rental prices",
         pricingIntro:
@@ -4080,6 +4099,91 @@ export const en: Translations = {
     quickFactsTitle: "Quick facts",
   },
 
+  cookieBanner: {
+    ariaLabel: "Cookie notice",
+    message:
+      "We use our own and third-party cookies (Google Analytics) to improve your experience and analyse website traffic. You can accept all cookies or essential ones only.",
+    cookiesPolicy: "Cookie Policy",
+    privacyPolicy: "Privacy Policy",
+    essentialOnly: "Essential only",
+    acceptAll: "Accept all",
+  },
+
+  relatedLocations: {
+    boatTitle: "Destinations by boat",
+    boatIntro: "Sail from Blanes Port towards the north of the Costa Brava",
+    carTitle: "Staying nearby?",
+    carIntro: "If you're on the Maresme coast, Blanes Port is just a few minutes away by car.",
+    categoriesTitle: "Boat types",
+    categoriesIntro: "Find the perfect boat for your experience level",
+    viewDetails: "View details",
+    viewBoats: "View boats",
+    locations: {
+      costaBrava: {
+        name: "Boat rental on the Costa Brava",
+        description: "Discover the whole coast by boat: routes, coves and destinations from Blanes Port.",
+        duration: "Whole region",
+      },
+      blanes: {
+        name: "Boat rental in Blanes",
+        description: "Our home port with free parking near the mooring. Starting point for every trip.",
+        duration: "Home port",
+      },
+      lloret: {
+        name: "Trip to Lloret de Mar",
+        description: "Vibrant beaches and hidden coves. From Blanes you reach Fenals in 25 minutes sailing along the coast.",
+        duration: "25 min by boat",
+      },
+      tossa: {
+        name: "Visit Tossa de Mar",
+        description: "A medieval town protected by walls, the historic jewel of the Costa Brava. Reachable with a licensed boat or a captained excursion.",
+        duration: "30-45 min with a license",
+      },
+      malgrat: {
+        name: "Malgrat de Mar",
+        description: "The closest boat rental point if you're staying in Malgrat.",
+        duration: "10 min by car",
+      },
+      santaSusanna: {
+        name: "Santa Susanna",
+        description: "Resort area a quarter of an hour from Blanes Port.",
+        duration: "15 min by car",
+      },
+      calella: {
+        name: "Calella",
+        description: "Playa Gran, the old town and Blanes Port 20 minutes away.",
+        duration: "20 min by car",
+      },
+      pineda: {
+        name: "Pineda de Mar",
+        description: "Hotel area with direct access by R1 train or car.",
+        duration: "18 min by car",
+      },
+      palafolls: {
+        name: "Palafolls",
+        description: "The perfect day trip from the Palafolls campsites.",
+        duration: "12 min by car",
+      },
+      tordera: {
+        name: "Tordera",
+        description: "Gateway to the Costa Brava, with easy parking at the port.",
+        duration: "15 min by car",
+      },
+    },
+    categories: {
+      licenseFree: {
+        name: "License-free boats",
+        description: "Vessels up to 15 HP, perfect for beginners and families.",
+        features: ["Up to 15 HP", "4-5 people", "Easy handling"],
+      },
+      licensed: {
+        name: "Licensed boats",
+        description: "Powerful vessels for advanced sailing with a license.",
+        features: ["40-115 HP", "More speed", "Greater range"],
+      },
+    },
+  },
+
   testimonios: {
     hero: {
       title: "What people who have already sailed with us say",
@@ -4239,19 +4343,19 @@ export const en: Translations = {
       },
       lloret: {
         title: "Popular boats for your route to Lloret de Mar",
-        description: "The license-free boats we rent most for the route to Fenals Beach (south Lloret). All of them get there legally and are ideal for 2-7 people, with or without experience.",
+        description: "The boats we rent most for the route to Lloret: the license-free ones legally reach Fenals Beach and, with a license, you carry on to Lloret's main beach. For 2-7 people depending on the boat.",
       },
       pineda: {
         title: "Popular boats to rent from Blanes Port",
-        description: "These are the license-free boats we rent most. All reach Fenals Beach (south Lloret) in 25 minutes and are ideal for 2-7 people.",
+        description: "These are the license-free boats we rent most. All reach Fenals Beach (south Lloret) in 25 minutes and are ideal for 2-5 people.",
       },
       palafolls: {
         title: "Popular boats to rent from Blanes Port",
-        description: "These are the license-free boats we rent most. All reach Fenals Beach (south Lloret) in 25 minutes and are ideal for 2-7 people.",
+        description: "These are the license-free boats we rent most. All reach Fenals Beach (south Lloret) in 25 minutes and are ideal for 2-5 people.",
       },
       tordera: {
         title: "Popular boats to rent from Blanes Port",
-        description: "These are the license-free boats we rent most. All reach Fenals Beach (south Lloret) in 25 minutes and are ideal for 2-7 people.",
+        description: "These are the license-free boats we rent most. All reach Fenals Beach (south Lloret) in 25 minutes and are ideal for 2-5 people.",
       },
       tossa: {
         title: "Boats for your route to Tossa de Mar",
@@ -4292,7 +4396,7 @@ export const en: Translations = {
       locationCostaBrava: [
         { title: "Boat rental in Blanes", description: "Home port with free parking and every service" },
         { title: "Trip to Lloret de Mar", description: "Spectacular beaches and coves 25 min away by boat" },
-        { title: "Sail to Tossa de Mar", description: "Medieval Vila Vella and crystal-clear coves 1h away" },
+        { title: "Sail to Tossa de Mar", description: "Medieval Vila Vella and crystal-clear coves 30-45 min away with a license" },
         { title: "Best Costa Brava coves by boat", description: "The 10 most spectacular coves between Blanes and Tossa" },
       ],
       activitySnorkel: [
@@ -5215,6 +5319,7 @@ export const en: Translations = {
     ]
   },
   jetskiLanding: {
+    specCapacity: "1-2 people",
     "fromLabel": "from",
     "ctaRequest": "Book now",
     "slotsTitle": "Time slots & prices",

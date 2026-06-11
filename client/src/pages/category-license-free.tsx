@@ -87,7 +87,7 @@ export default function CategoryLicenseFreePage() {
     const specs = (b.specifications ?? {}) as { engine?: string; capacity?: string };
     const isDbBoat = "isActive" in b;
     const capacity = isDbBoat
-      ? `${(b as Boat).capacity} personas`
+      ? `${(b as Boat).capacity} ${t.boats.people}`
       : (specs.capacity ?? "");
     const minPrice = minPriceAcrossBoats([b as { pricing?: unknown }], "1h", "BAJA");
     return {

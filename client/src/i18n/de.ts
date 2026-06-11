@@ -22,10 +22,10 @@ export const de: Translations = {
     subtitleLine2:
       "7 unberührte Buchten auf dem Weg: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Kraftstoff inklusive.",
     subtitleMobile: "Boote ohne Führerschein aus Blanes. 7 Buchten bis Playa de Fenals.",
-    priceBadge: "Ab 70€",
+    priceBadge: "Ab 75€",
     fuelBadge: "Benzin inklusive",
     pricePerPerson: "Ab 14€ pro Person/Stunde",
-    pricePerPersonDetail: "Ganzes Boot ab 70€/h für bis zu 5 Personen",
+    pricePerPersonDetail: "Ganzes Boot ab 75€/h für bis zu 5 Personen",
     bookNow: "Verfügbarkeit prüfen",
     findYourBoat: "Jetzt buchen",
     viewFleet: "Alle Boote ansehen",
@@ -39,12 +39,12 @@ export const de: Translations = {
     freeCancellation: "Kostenlose Umbuchung",
     instantConfirmation: "Sofortige Bestätigung",
     marqueeText:
-      "Bootsverleih in Blanes | Mit und Ohne Führerschein | Treibstoff Inklusive | Ab 70\u20AC/Std",
+      "Bootsverleih in Blanes | Mit und Ohne Führerschein | Treibstoff Inklusive | Ab 75\u20AC/Std",
     askWhatsApp: "Fragen Sie uns per WhatsApp",
     testimonialQuote: "Unglaubliche Erfahrung, wir kommen wieder",
     testimonialQuoteShort: "Wir kommen wieder",
     summaryGeo:
-      "Costa Brava Rent a Boat betreibt die größte Bootsverleihflotte im Hafen von Blanes mit 9 Booten: 5 ohne Führerschein mit Benzin inklusive ab 70€/h, 3 mit Führerschein und 1 Privatausflug mit Skipper. Beratung in 8 Sprachen. Saison April bis Oktober. 4,8★ bei Google mit über 300 Bewertungen.",
+      "Costa Brava Rent a Boat betreibt die größte Bootsverleihflotte im Hafen von Blanes mit 8 Booten: 4 ohne Führerschein mit Benzin inklusive ab 75€/h, 3 mit Führerschein und 1 Privatausflug mit Skipper. Beratung in 8 Sprachen. Saison April bis Oktober. 4,8★ bei Google mit über 300 Bewertungen.",
   },
 
   fleet: {
@@ -331,7 +331,7 @@ export const de: Translations = {
     selectYourBoat: "Wählen Sie Ihr Boot",
     continue: "Weiter",
     customerData: "Kundendaten",
-    continueToPayment: "Weiter zur Zahlung",
+    continueToPayment: "Anfrage prüfen",
     stripePaymentSecure:
       "Wir bestätigen die Verfügbarkeit per WhatsApp innerhalb von 2 Stunden. Keine Verpflichtung bis dahin.",
     firstName: "Vorname",
@@ -698,7 +698,7 @@ export const de: Translations = {
     heroChipDateChange: "Kostenlose Umbuchung ab 7 Tagen Vorlauf",
     heroChipWeather: "Bei schlechtem Seegang verschieben wir",
     recommendedBadge: "Empfohlen",
-    viewsToday: "Personen haben dieses Boot heute angesehen",
+    viewsToday: "Aufrufe dieses Boots heute",
     viewCustomerGallery: "Kundenfotogalerie ansehen",
     fuelIncludedShort: "Kraftstoff inklusive",
     mainFeatures: "Hauptmerkmale",
@@ -803,7 +803,7 @@ export const de: Translations = {
       pricesNextStep: "Im nächsten Schritt sehen Sie die aktuellen Preise für Ihr Datum.",
       boatNotAvailableForDate: "Keine Verfügbarkeit für {date}. Probieren Sie einen anderen Tag oder ein anderes Boot.",
       capacityExceeded: "Dieses Boot bietet Platz für maximal {max} Personen. Wechseln Sie das Boot oder verkleinern Sie die Gruppe.",
-      noOnlinePayment: "Keine Online-Zahlung, wir bestätigen per WhatsApp",
+      noOnlinePayment: "Keine Online-Zahlung: wir bestätigen per WhatsApp",
       submitReassurance: "Wir antworten innerhalb von 2 Stunden. Keine Online-Zahlung, unverbindlich.",
     },
     multiBoat: {
@@ -866,8 +866,8 @@ export const de: Translations = {
         probablyValid: "Bring das Original-ICC am Miettag mit. Wir prüfen es vor dem Auslaufen.",
         needsIcc: "Dein Land stellt das ICC aus. Beantrage es bei deinem Wassersportverband vor der Reise.",
         notRecognized: "Dein nationaler Schein wird in Spanien nicht direkt anerkannt. Schreib uns auf WhatsApp und wir prüfen die Optionen.",
-        insufficient: "Dein Schein entspricht einem niedrigeren Niveau als der spanische PNB. Unsere lizenzpflichtigen Boote erfordern PNB oder höher, überlege, einen PER oder ICC zu erwerben.",
-        inlandOnly: "Dein Schein berechtigt zu Flüssen und Seen, nicht zur Seefahrt. Gute Nachricht: Unsere führerscheinfreien Boote benötigen keinen Schein, sie sind perfekt für dich.",
+        insufficient: "Dein Schein liegt unterhalb der spanischen Licencia de Navegación (LN), dem Minimum für unsere Flotte mit Führerschein. Überlege, die LN oder einen höheren Schein zu erwerben.",
+        inlandOnly: "Dein Schein berechtigt zu Flüssen und Seen, nicht zur Seefahrt. Gute Nachricht: Unsere führerscheinfreien Boote benötigen keinen Schein: sie sind perfekt für dich.",
       },
       pill: {
         valid: "Gültig",
@@ -902,7 +902,7 @@ export const de: Translations = {
   },
   validation: {
     required: "Hier fehlt etwas",
-    invalidEmail: "Prüfe die E-Mail, @ oder .com fehlt",
+    invalidEmail: "Prüfe die E-Mail: @ oder .com fehlt",
     invalidPhone: "Nur Zahlen, ohne Leerzeichen oder Bindestriche",
     futureDate: "Wählen Sie ein zukünftiges Datum",
     minPeople: "Mindestens 1 Person",
@@ -951,13 +951,13 @@ export const de: Translations = {
     sailTo: "Ziele per Boot",
     nearbyTowns: "Nahegelegene Orte",
     blanes: "Boot mieten Blanes",
-    blanesDesc: "Heimathafen, alle Boote starten hier",
+    blanesDesc: "Heimathafen: alle Boote starten hier",
     costaBrava: "Boot mieten Costa Brava",
     costaBravaDesc: "Entdecken Sie die besten Buchten der Costa Brava",
     lloret: "Boot mieten Lloret de Mar",
-    lloretDesc: "25 Min. Fahrt, Strände und versteckte Buchten",
+    lloretDesc: "25 Min. Fahrt: Strände und versteckte Buchten",
     tossa: "Boot mieten Tossa de Mar",
-    tossaDesc: "1 Std. Fahrt, mittelalterliches Städtchen",
+    tossaDesc: "30-45 Min. Fahrt mit Führerschein: mittelalterliches Städtchen",
     malgrat: "Boote nahe Malgrat de Mar",
     malgratDesc: "10 Min. Fahrt zum Hafen Blanes",
     santaSusanna: "Boote nahe Santa Susanna",
@@ -965,20 +965,20 @@ export const de: Translations = {
     calella: "Boote nahe Calella",
     calellaDesc: "20 Min. Fahrt zum Hafen Blanes",
     pineda: "Boote nahe Pineda de Mar",
-    pinedaDesc: "18 Min. Fahrt, direkte Zugverbindung",
+    pinedaDesc: "18 Min. Fahrt: direkte Zugverbindung",
     palafolls: "Boote nahe Palafolls",
-    palafollsDesc: "12 Min. Fahrt, ideal von den Campingplätzen",
+    palafollsDesc: "12 Min. Fahrt: ideal von den Campingplätzen",
     tordera: "Boote nahe Tordera",
-    torderaDesc: "15 Min. Fahrt, Tor zur Costa Brava",
+    torderaDesc: "15 Min. Fahrt: Tor zur Costa Brava",
     barcelona: "Boot mieten nahe Barcelona",
-    barcelonaDesc: "1 Std. Fahrt, die nächste Costa Brava",
+    barcelonaDesc: "1 Std. Fahrt: die nächste Costa Brava",
   },
   categoryLicenseFree: {
     synonymsTitle: "Motorboot, Barke oder Wasserfahrzeug? Dasselbe",
-    synonymsBody: "Egal wie Sie suchen: Motorboot mieten an der Costa Brava, Wasserfahrzeug ohne Schein leihen oder eine Barke in Blanes mieten. Unsere 5 führerscheinfreien Boote sind Freizeit-Motorboote bis 5 Meter und 15 PS, die jeder Erwachsene ohne Bootsführerschein fahren darf. Gleiches Boot, gleicher Preis ab 70€/Std. inkl. Kraftstoff — wie auch immer Sie es nennen.",
+    synonymsBody: "Egal wie du suchst: Motorboot mieten an der Costa Brava, Wasserfahrzeug ohne Schein leihen oder eine Barke in Blanes mieten. Unsere 4 führerscheinfreien Boote sind Freizeit-Motorboote bis 5 Meter und 15 PS, die jeder Erwachsene ohne Bootsführerschein fahren darf. Gleiches Boot, gleicher Preis ab 75€/Std. inkl. Kraftstoff, wie auch immer du es nennst.",
     heroTitle: "Boote Ohne Führerschein in Blanes",
     heroDescription:
-      "5 führerscheinfreie Boote ab 70€/h im Hafen Blanes, Kraftstoff inklusive. Bis zu 7 Personen, ohne Führerschein oder Bootsschein, ohne Vorerfahrung. 15-minütige Sicherheitseinweisung und los geht's zu den Buchten der Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina und Sa Boadella bis zum Strand von Fenals (Lloret de Mar).",
+      "4 führerscheinfreie Boote ab 75€/h im Hafen Blanes, Kraftstoff inklusive. Bis zu 5 Personen, ohne Führerschein oder Bootsschein, ohne Vorerfahrung. 15-minütige Sicherheitseinweisung und los geht's zu den Buchten der Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina und Sa Boadella bis zum Strand von Fenals (Lloret de Mar).",
     badgeNoLicense: "Kein Führerschein Erforderlich",
     badgePower: "Bis 15 PS",
     badgeCapacity: "4-7 Personen",
@@ -1035,7 +1035,7 @@ export const de: Translations = {
       "Bei unseren Booten ohne Führerschein ist der Treibstoff im Mietpreis inbegriffen. Sie müssen sich keine Sorgen um das Tanken oder zusätzliche Treibstoffkosten machen. Der angezeigte Preis ist der Endpreis.",
     comparisonTitle: "Detaillierter Vergleich Unserer Boote ohne Führerschein",
     comparisonIntro:
-      "Wir haben 5 Boote ohne Führerschein im Hafen von Blanes, jedes mit eigenem Charakter. Schauen Sie in die Tabelle, um das Boot zu finden, das am besten zu Ihren Plänen passt.",
+      "Wir haben 4 Boote ohne Führerschein im Hafen von Blanes, jedes mit eigenem Charakter. Schau in die Tabelle, um das Boot zu finden, das am besten zu deinen Plänen passt.",
     comparisonBoatName: "Boot",
     comparisonCapacity: "Kapazitat",
     comparisonEngine: "Motor",
@@ -1074,25 +1074,25 @@ export const de: Translations = {
       "Die Vorschriften erlauben das Fahren bis zu 2 Seemeilen (3,7 km) von der Küste. Vom Hafen Blanes aus können Sie zahlreiche Buchten nordwärts (Richtung Lloret de Mar) und südwärts (Richtung Malgrat de Mar) erkunden. In 2-3 Stunden können Sie mehrere Buchten besuchen, zum Schnorcheln ankern und gemütlich zum Hafen zurückkehren.",
     faqCarnetQuestion: "Brauche ich einen Bootsführerschein zum Mieten?",
     faqCarnetAnswer:
-      "Nein, Sie brauchen keinerlei Führerschein oder nautisches Zeugnis für unsere führerscheinfreien Boote bis 15 PS. Sie müssen nur 18 Jahre alt sein, einen gültigen Ausweis dabei haben und an unserer 15-minütigen Sicherheitseinweisung vor dem Auslaufen teilnehmen. Kein Kurs, keine Prüfung, keine vorherigen Formalitäten. Viele Kunden suchen uns als \"Bootsverleih ohne Führerschein\" oder \"ohne Schein\", es ist das gleiche Produkt.",
+      "Nein, du brauchst keinerlei Führerschein oder nautisches Zeugnis für unsere führerscheinfreien Boote bis 15 PS. Du musst nur 18 Jahre alt sein, einen gültigen Ausweis dabei haben und an unserer 15-minütigen Sicherheitseinweisung vor dem Auslaufen teilnehmen. Kein Kurs, keine Prüfung, keine vorherigen Formalitäten. Viele Kunden suchen uns als \"Bootsverleih ohne Führerschein\" oder \"ohne Schein\": es ist das gleiche Produkt.",
     faqExperienceQuestion: "Und wenn ich noch nie ein Boot gefahren bin?",
     faqExperienceAnswer:
       "Das ist der häufigste Fall unter unseren Kunden. Führerscheinfreie Boote sind genau für Personen ohne Vorerfahrung gemacht: intuitive Bedienung, schwacher Motor (15 PS), Fahrt bei 5 Knoten (Schiebegeschwindigkeit) und geschütztes Küstengebiet. In der 15-minütigen Einweisung zeigen wir Ihnen, wie Sie im Hafen manövrieren, ankern, das UKW-Funkgerät nutzen und zur Anlegestelle zurückkehren. Bisher hat noch kein Kunde nach der Einweisung Probleme mit dem Boot gehabt.",
     faqGroupSizeQuestion: "Wie viele Personen passen in ein führerscheinfreies Boot?",
     faqGroupSizeAnswer:
-      "Unsere 5 führerscheinfreien Boote bieten Platz für 4 bis 5 Personen (Erwachsene und Kinder zählen gleich). Die Astec 400 ist ideal für Paare oder kleine Familien (4 Personen). Solar 450, Remus 450, Remus 450 II und Astec 480 sind die größten der führerscheinfreien Kategorie (5 Personen). Wenn Sie 6 oder 7 Plätze benötigen, schauen Sie sich die Boote mit Führerschein an (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) oder unseren Privaten Ausflug mit Skipper. Der Preis ist pro Boot, nicht pro Person, je mehr Personen, desto günstiger pro Kopf.",
+      "Unsere 4 führerscheinfreien Boote bieten Platz für 4 bis 5 Personen (Erwachsene und Kinder zählen gleich). Die Remus 450 ist ideal für Paare oder kleine Familien, und Solar 450, Remus 450 II und Astec 480 nehmen bis zu 5 Personen auf. Wenn du 6 oder 7 Plätze brauchst, schau dir die Boote mit Führerschein an (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) oder unseren Privaten Ausflug mit Skipper. Der Preis ist pro Boot, nicht pro Person, je mehr Personen, desto günstiger pro Kopf.",
     howToTitle: "Wie man in Blanes ein Boot ohne Führerschein mietet (5 Schritte)",
     howToIntro:
       "Ein Boot ohne Führerschein im Hafen von Blanes zu mieten ist einfacher als gedacht. Hier sind die 5 Schritte des Ablaufs – von der Buchung bis zur Rückgabe – damit Sie genau wissen, was Sie am Tag der Abfahrt erwartet.",
     howToStep1Title: "1. Boot und Uhrzeit wählen",
     howToStep1Text:
-      "Sehen Sie sich unsere führerscheinfreie Flotte an (Solar 450, Remus 450, Astec 400, Astec 480 und Mingolla Brava 19) und wählen Sie das Boot, das am besten zu Ihrer Gruppe passt. Buchen Sie per WhatsApp (+34 611 500 372) oder über die Website mit Angabe von Datum, Uhrzeit und Personenzahl. Wir bestätigen die Verfügbarkeit in wenigen Minuten.",
+      "Sieh dir unsere führerscheinfreie Flotte an (Solar 450, Remus 450, Remus 450 II und Astec 480) und wähle das Boot, das am besten zu deiner Gruppe passt. Buche per WhatsApp (+34 611 500 372) oder über die Website mit Angabe von Datum, Uhrzeit und Personenzahl. Wir bestätigen die Verfügbarkeit innerhalb von 2 Stunden.",
     howToStep2Title: "2. 30 Minuten vor Abfahrt im Hafen von Blanes eintreffen",
     howToStep2Text:
       "Unsere Basis befindet sich im Hafen von Blanes (Girona), erreichbar mit dem Auto aus Barcelona (1 Std.), Lloret de Mar (15 Min.) oder Tossa de Mar (30 Min.). Kostenlose Parkplätze im Hafengebiet. Bringen Sie den Ausweis oder Reisepass des Fahrers (mindestens 18 Jahre) und die Kaution von 300 € mit (Karte oder Bar, wird vollständig zurückgegeben).",
     howToStep3Title: "3. Sicherheitseinweisung (15 Minuten)",
     howToStep3Text:
-      "Vor dem Ablegen zeigt Ihnen unser Team vor Ort, wie man das Boot im Hafen handhabt: Motor starten und stoppen, langsam manövrieren, in einer Bucht ankern, das VHF-Funkgerät benutzen und zum Liegeplatz zurückkehren. Wir beantworten alle Ihre Fragen. Keine Vorerfahrung nötig – die Einweisung ist für Anfänger konzipiert.",
+      "Vor dem Ablegen zeigt dir unser Team vor Ort, wie man das Boot im Hafen handhabt: Motor starten und stoppen, langsam manövrieren, in einer Bucht ankern, das VHF-Funkgerät benutzen und zum Liegeplatz zurückkehren. Wir beantworten alle deine Fragen. Keine Vorerfahrung nötig: die Einweisung ist für Anfänger konzipiert.",
     howToStep4Title: "4. Die Buchten der Costa Brava erkunden",
     howToStep4Text:
       "Sie verlassen den Hafen von Blanes mit inkludiertem Benzin und freier Kurswahl innerhalb der 2-Seemeilen-Grenze. Die beliebtesten Buchten: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina und Sa Boadella, bis zum Playa de Fenals (Lloret de Mar). Ankern Sie, wo Sie möchten, schwimmen, schnorcheln und kehren Sie in Ihrem Tempo zurück.",
@@ -1102,7 +1102,7 @@ export const de: Translations = {
     howToDurationLabel: "Dauer des Vorgangs",
     howToDurationValue: "Buchung 5 Min. · Einweisung 15 Min. · freie Navigation",
     howToCostLabel: "Preis ab",
-    howToCostValue: "70 €/Std. mit inkludiertem Benzin",
+    howToCostValue: "75 €/Std. mit inkludiertem Benzin",
     vsMarketplacesTitle: "Warum direkt in Blanes buchen statt über einen Marktplatz",
     vsMarketplacesIntro:
       "Einige Marktplätze bewerben führerscheinfreie Boote an der Costa Brava ab 55 €/Tag. Das klingt günstig, aber der angezeigte Preis ist nicht der, den Sie zahlen. Das ändert sich, wenn Sie direkt bei uns statt über eine Vermittlungsplattform buchen.",
@@ -1112,7 +1112,7 @@ export const de: Translations = {
     vsMarketplacesRow1Direct: "Im Preis inbegriffen",
     vsMarketplacesRow1Market: "Separat (meist 25–50 € extra)",
     vsMarketplacesRow2Label: "Plattformgebühr",
-    vsMarketplacesRow2Direct: "0 € — Sie zahlen direkt an den Anbieter",
+    vsMarketplacesRow2Direct: "0 €: du zahlst direkt an den Anbieter",
     vsMarketplacesRow2Market: "5–15 % auf den Gesamtbetrag",
     vsMarketplacesRow3Label: "Sicherheitseinweisung",
     vsMarketplacesRow3Direct: "Lokales Team in 8 Sprachen (es/en/fr/de/ca/nl/it/ru)",
@@ -1124,19 +1124,19 @@ export const de: Translations = {
     vsMarketplacesRow5Direct: "Flexibel bis 48 Std. vorher",
     vsMarketplacesRow5Market: "Marktplatzrichtlinie + Anbietergebühr",
     vsMarketplacesConclusion:
-      "Der Endpreis über einen Marktplatz ist nach Addition von Benzin, Gebühr und Extras meist 20–35 % höher als angekündigt. Unsere 70 €/Std. sind bereits alles inklusive: Benzin, Ausrüstung, Einweisung, Haftpflichtversicherung und Unterstützung im Hafen.",
+      "Der Endpreis über einen Marktplatz ist nach Addition von Benzin, Gebühr und Extras meist 20–35 % höher als angekündigt. Unsere 75 €/Std. sind bereits alles inklusive: Benzin, Ausrüstung, Einweisung, Haftpflichtversicherung und Unterstützung im Hafen.",
   },
   categoryLicensed: {
     heroTitle: "Boote Mit Führerschein in Blanes",
     heroDescription:
-      "Mieten Sie leistungsstarke Boote mit Führerschein im Hafen von Blanes, Costa Brava. Maximale Freiheit für fortgeschrittene Navigation. Bootsführerschein PER, PNB oder höher erforderlich.",
+      "Miete leistungsstarke Boote mit Führerschein im Hafen von Blanes, Costa Brava. Maximale Freiheit für fortgeschrittene Navigation. Der spanische Bootsführerschein Licencia de Navegación (LN) oder jeder höhere Schein genügt.",
     badgeLicense: "Führerschein Erforderlich",
     badgePower: "40-115 PS",
     badgeCapacity: "6-7 Personen",
     whatAreTitle: "Was sind Boote Mit Führerschein?",
     advancedNavigation: "Fortgeschrittene Navigation",
     advancedNavigationDesc:
-      "Boote mit Führerschein sind Wasserfahrzeuge mit mehr als 15 PS Leistung, die einen offiziellen Bootsführerschein (PER, PNB oder höher) erfordern. Sie bieten mehr Leistung, Geschwindigkeit und Navigationskapazität.",
+      "Boote mit Führerschein sind Wasserfahrzeuge mit mehr als 15 PS Leistung, die einen offiziellen Bootsführerschein (Licencia de Navegación oder höher) erfordern. Sie bieten mehr Leistung, Geschwindigkeit und Navigationskapazität.",
     greaterFreedom: "Mehr Freiheit",
     greaterFreedomDesc:
       "Mit diesen Booten können Sie ohne Entfernungsbeschränkung von der Küste fahren (je nach Führerschein), entlegenere Buchten erreichen und ein sportlicheres und aufregenderes Navigationserlebnis genießen.",
@@ -1160,6 +1160,7 @@ export const de: Translations = {
     sportNavigation: "Sportliches Navigationserlebnis",
     requirementsTitle: "Anforderungen und Führerscheine",
     acceptedLicenses: "Akzeptierte Führerscheine",
+    licenciaNavegacion: "Licencia de Navegación (LN): die Mindestqualifikation, sie genügt für unsere gesamte Flotte",
     per: "PER (Patron de Embarcaciones de Recreo)",
     pnb: "PNB (Patron de Navegación Básica)",
     yachtCaptain: "Yachtkapitän",
@@ -1209,7 +1210,7 @@ export const de: Translations = {
     featuredArticle: "Empfohlen",
     readMore: "Artikel lesen",
     minRead: "Min. Lesezeit",
-    ctaBanner: "Wissen Sie schon welches Boot? Buchen Sie ab 70\u20AC/h",
+    ctaBanner: "Wei\u00DFt du schon, welches Boot? Buche ab 75\u20AC/h",
     ctaBannerButton: "Jetzt buchen",
   },
   exitIntent: {
@@ -1225,10 +1226,10 @@ export const de: Translations = {
     quizCta: "Mein Boot finden",
     abandonedTitle: "Ihr Boot wartet!",
     abandonedSubtitle: "Die {boat} ist bereit für Sie",
-    abandonedCta: "Buchung abschliessen, 10% Rabatt",
+    abandonedCta: "Buchung abschließen: 10% Rabatt",
     quizResultTitle: "Tolle Wahl!",
     quizResultSubtitle: "Buchen Sie die {boat} jetzt mit 10% Rabatt",
-    quizResultCta: "Jetzt buchen, 10% Rabatt",
+    quizResultCta: "Jetzt buchen: 10% Rabatt",
   },
 
   socialProof: {
@@ -1320,7 +1321,7 @@ export const de: Translations = {
     q2: "Wie lange möchtet ihr fahren?",
     q2options: ["1-2 Stunden", "3-4 Stunden (halber Tag)", "6-8 Stunden (ganzer Tag)"],
     q3: "Wie hoch ist euer Budget?",
-    q3options: ["Günstig (ab 70€)", "Mittel (100-200€)", "Kein Limit"],
+    q3options: ["Günstig (ab 75€)", "Mittel (100-200€)", "Kein Limit"],
     result: "Euer ideales Boot ist...",
     bestMatch: "Beste Wahl",
     alsoConsider: "Auch in Betracht ziehen",
@@ -1374,7 +1375,7 @@ export const de: Translations = {
         id: "precios",
         question: "Wie hoch sind die Mietpreise?",
         answer:
-          "Boote ohne Führerschein ab 70€ mit Treibstoff inklusive (1h, 2h, 3h, 4h, 6h oder ganzer Tag). Boote mit Führerschein ab 160€ ohne Treibstoff (2h, 4h, 8h). Die Preise variieren je nach Saison (Juli/August) und Boot.",
+          "Boote ohne Führerschein ab 75€ mit Treibstoff inklusive (1h, 2h, 3h, 4h, 6h oder ganzer Tag). Boote mit Führerschein ab 160€ ohne Treibstoff (2h, 4h, 8h). Die Preise variieren je nach Saison (Juli/August) und Boot.",
       },
       {
         id: "sin-licencia",
@@ -1586,11 +1587,11 @@ export const de: Translations = {
     "astec-480":
       "Das Premium-Erlebnis ohne Führerschein. Mit 4,80 m, Bluetooth-Lautsprechern, gepolstertem Solarium und doppeltem Kraftstofftank ist es das kompletteste führerscheinfreie Boot in Blanes. Segeln Sie mit Ihrer Lieblingsmusik zu den schönsten Buchten der Costa Brava. Treibstoff, Versicherung und Sicherheitsausrüstung inklusive.",
     "trimarchi-57s":
-      "110 PS italienisches Design für Gruppen bis 7 Personen, die gleichermaßen Adrenalin und Komfort suchen. Doppeltes Solarium an Bug und Heck zum Sonnenbaden, ein Tisch in der Mitte zum Mittagessen vor Anker in einer Bucht und die Power, jeden Winkel zwischen Blanes und Tossa de Mar in Minuten zu erreichen. Das Boot für alle, die Geschwindigkeit wollen, ohne auf etwas zu verzichten. Grundlizenz (LNB) erforderlich.",
+      "110 PS italienisches Design für Gruppen bis 7 Personen, die gleichermaßen Adrenalin und Komfort suchen. Doppeltes Solarium an Bug und Heck zum Sonnenbaden, ein Tisch in der Mitte zum Mittagessen vor Anker in einer Bucht und die Power, jeden Winkel zwischen Blanes und Tossa de Mar in Minuten zu erreichen. Das Boot für alle, die Geschwindigkeit wollen, ohne auf etwas zu verzichten. Licencia de Navegación (LN) oder höher erforderlich.",
     "mingolla-brava-19":
-      "Das ideale Motorboot, um die gesamte Küste zu erkunden: Lloret de Mar in 15 Minuten, Tossa de Mar in einer halben Stunde. Mit 80 PS, GPS und Echolot erreichen Sie Buchten, die andere Boote nicht erreichen. Süßwasserdusche, Bluetooth und Edelstahlbügel für Wassersport. Alles, um die Costa Brava in voller Freiheit zu erkunden. Grundlizenz (LNB) erforderlich.",
+      "Das ideale Motorboot, um die gesamte Küste zu erkunden: Lloret de Mar in 15 Minuten, Tossa de Mar in einer halben Stunde. Mit 80 PS, GPS und Echolot erreichen Sie Buchten, die andere Boote nicht erreichen. Süßwasserdusche, Bluetooth und Edelstahlbügel für Wassersport. Alles, um die Costa Brava in voller Freiheit zu erkunden. Licencia de Navegación (LN) oder höher erforderlich.",
     "pacific-craft-625":
-      "Das beste Mietboot in Blanes. 6,24 m, Yamaha 115 PS und luxuriöser Platz für 7. Doppeltes Solarium, Tisch für Mahlzeiten vor Anker, Süßwasserdusche und elektronische Steuerung. Für alle, die keine Kompromisse eingehen und das kompletteste Bootserlebnis an der Costa Brava suchen. Bootsführerschein erforderlich (SBF See).",
+      "Das beste Mietboot in Blanes. 6,24 m, Yamaha 115 PS und luxuriöser Platz für 7. Doppeltes Solarium, Tisch für Mahlzeiten vor Anker, Süßwasserdusche und elektronische Steuerung. Für alle, die keine Kompromisse eingehen und das kompletteste Bootserlebnis an der Costa Brava suchen. Licencia de Navegación (LN) oder höher erforderlich.",
     "excursion-privada":
       "Sie genießen einfach, unser professioneller Skipper bringt Sie zu geheimen Buchten, Meerhöhlen und zu Fuß unzugänglichen Orten zwischen Blanes und Tossa de Mar. Sie ankern in der perfekten Bucht des Tages, ausgewählt nach Wind und Strömungen. Ideal für Feiern, Jubiläen oder Familien, die einen exklusiven Privatausflug an der Costa Brava ganz ohne Sorgen erleben möchten.",
   },
@@ -1598,10 +1599,10 @@ export const de: Translations = {
   // TODO: pro-translate — nur funktionale Übersetzung, vor produktivem Einsatz lektorieren (DE ist ein wichtiger Markt)
   rangeFromBlanes: {
     eyebrowHome: "TATSÄCHLICHE NAVIGATIONSREICHWEITE",
-    headlineHome: "Wie weit Sie von Blanes aus fahren können, mit und ohne Führerschein",
+    headlineHome: "Wie weit du von Blanes aus kommst: mit und ohne Führerschein",
     introHome:
-      "Mit einem führerscheinfreien Boot dürfen Sie legal bis 2 Seemeilen von der Küste bei 5 Knoten fahren. Vom Hafen Blanes aus sind das 7 echte Costa-Brava-Buchten an einem Tag, mit Playa de Fenals (südlich von Lloret de Mar) als nördlicher Grenze. Mit PER-Führerschein erweitert sich die Route bis Tossa de Mar, Sant Feliu und Platja d'Aro.",
-    eyebrowLloret: "FÜHRERSCHEINFREIER ABSCHNITT, 25 MIN FAHRZEIT",
+      "Mit einem führerscheinfreien Boot fährst du legal bis 2 Seemeilen von der Küste bei 5 Knoten. Vom Hafen Blanes aus sind das 7 echte Costa-Brava-Buchten an einem Tag, mit Playa de Fenals (südlich von Lloret de Mar) als nördlicher Grenze. Mit dem spanischen Bootsführerschein Licencia de Navegación (LN) erweitert sich die Route bis Tossa de Mar, Sant Feliu und Platja d'Aro.",
+    eyebrowLloret: "FÜHRERSCHEINFREIER ABSCHNITT · 25 MIN FAHRZEIT",
     headlineLloret: "Die 7 Buchten zwischen Blanes und Playa de Fenals",
     introLloret:
       "In Reihenfolge ab Hafen Blanes. Kumulierte Entfernungen bei 5-Knoten-Marschfahrt.",
@@ -1611,19 +1612,19 @@ export const de: Translations = {
     limitBoxBody:
       "Ein führerscheinfreies Boot darf bis 2 Seemeilen Küstenabstand bei 5 Knoten und 15 PS fahren. Vom Hafen Blanes aus liegt Playa de Fenals genau an dieser Distanz entlang der Küste.",
     noteNorthOfFenals:
-      "Hinweis: Der Hauptstrand Lloret, Cala Banys und Cala Canyelles liegen nördlich von Fenals, außerhalb des führerscheinfreien Bereichs.",
-    conLicenciaTitle: "Erweiterung mit PER-Führerschein",
+      "Hinweis: Der Hauptstrand Lloret, Cala Banys und Cala Canyelles liegen nördlich von Fenals; sie bleiben außerhalb des führerscheinfreien Bereichs.",
+    conLicenciaTitle: "Erweiterung mit Licencia de Navegación (LN)",
     conLicenciaIntro:
-      "Mit PER-Führerschein oder inkludiertem Skipper geht die Route weiter nach Norden:",
+      "Mit der Licencia de Navegación (LN) oder inkludiertem Skipper geht die Route weiter nach Norden:",
     ext: {
       lloretCenter: "Lloret-Zentrum und Cala Banys (nach Fenals)",
-      canyelles: "Cala Canyelles, kleiner Yachthafen",
-      morisca: "Cala Morisca, nur vom Meer aus erreichbar",
-      tossa: "Tossa de Mar, mittelalterliche Vila Vella vom Meer (~30-45 min)",
+      canyelles: "Cala Canyelles: kleiner Yachthafen",
+      morisca: "Cala Morisca: nur vom Meer aus erreichbar",
+      tossa: "Tossa de Mar: mittelalterliche Vila Vella vom Meer (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (halb- / ganztägig)",
     },
     ctaFleet: "Führerscheinfreie Flotte ansehen",
-    ctaLicensed: "Boote mit PER-Schein",
+    ctaLicensed: "Boote mit Licencia de Navegación",
     internalLinks:
       'Möchten Sie alle Routen sehen? Schauen Sie sich <a href="/de/boot-mieten-blanes" class="underline text-primary hover:text-primary/80">Bootsverleih in Blanes</a> an, die Route <a href="/de/boot-mieten-lloret-de-mar" class="underline text-primary hover:text-primary/80">nach Lloret de Mar</a>, die lizenzierte Erweiterung <a href="/de/boot-mieten-tossa-de-mar" class="underline text-primary hover:text-primary/80">nach Tossa de Mar</a>, alle <a href="/de/boot-mieten-costa-brava" class="underline text-primary hover:text-primary/80">Routen entlang der Costa Brava</a> und <a href="/de/boot-mieten-nahe-barcelona" class="underline text-primary hover:text-primary/80">Bootsverleih nahe Barcelona</a>. Vollständige Preise in <a href="/de/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Was kostet es, ein Boot in Blanes zu mieten</a>.',
   },
@@ -1699,9 +1700,9 @@ export const de: Translations = {
     afternoonLine: "Morgen könnte das dein Sonnenuntergang sein",
     eveningLine: "Wache morgen auf dem Wasser auf",
     nightLine: "Morgen wartet das Meer auf dich",
-    seasonLow: "Ruhige Saison, Buchten nur für dich",
+    seasonLow: "Ruhige Saison: Buchten nur für dich",
     seasonMid: "Die beste Zeit des Sommers beginnt jetzt",
-    seasonHigh: "Letzte freie Plätze im August, warte nicht länger",
+    seasonHigh: "Letzte freie Plätze im August: warte nicht länger",
     seasonOff: "Die Saison beginnt im April",
   },
   pricingPage: {
@@ -1733,6 +1734,7 @@ export const de: Translations = {
       per: "PER erforderlich",
       patron_yate: "Patrón de Yate",
       capitan_yate: "Capitán de Yate",
+      captained: "Mit Skipper",
     },
     licenseFallback: "Mit Führerschein",
     table: {
@@ -1775,11 +1777,11 @@ export const de: Translations = {
       a3: "Ja. Die Nebensaison (April-Juni und September-Oktober) bietet die günstigsten Preise. Die Mittelsaison ist im Juli mit mittleren Preisen, und die Hochsaison im August mit den höchsten Tarifen. Wir empfehlen eine Buchung in der Nebensaison für das beste Preis-Leistungs-Verhältnis.",
       q4: "Was kostet es, ein Boot mit Führerschein zu mieten?",
       a4Template:
-        "Boote mit Führerscheinpflicht in Blanes kosten ab {licBaja2h} €/2 Std. in der Nebensaison. Sie erfordern einen PER oder gleichwertigen Bootsführerschein. Es sind leistungsstärkere Boote mit größerer Reichweite, um die Costa Brava zu erkunden.",
+        "Boote mit Führerscheinpflicht in Blanes kosten ab {licBaja2h} €/2 Std. in der Nebensaison. Die Licencia de Navegación (LN) oder ein höherer Schein genügt. Es sind leistungsstärkere Boote mit größerer Reichweite, um die Costa Brava zu erkunden.",
     },
     cta: {
       title: "Buchen Sie Ihr Boot zum besten Preis",
-      subtitle: "Wählen Sie Ihr Boot, Datum und Uhrzeit. Sofortige Bestätigung.",
+      subtitle: "Wähle dein Boot, Datum und Uhrzeit. Wir bestätigen innerhalb von 2 Stunden.",
       button: "Jetzt reservieren",
     },
   },
@@ -1826,12 +1828,12 @@ export const de: Translations = {
       title: "Unsere Boote",
       noLicenseTitle: "Boote ohne Führerschein",
       noLicenseBody:
-        "5 Boote für 4-5 Personen. Sie benötigen keine Vorkenntnisse oder Lizenz. Wir geben Ihnen eine 15-minütige Einweisung und schon kann es losgehen. Benzin im Preis inbegriffen.",
+        "4 Boote für 4-5 Personen. Du brauchst keine Vorkenntnisse oder Lizenz. Wir geben dir eine 15-minütige Einweisung und schon kann es losgehen. Benzin im Preis inbegriffen.",
       noLicenseBullet1: "Bis zu 5 Personen pro Boot",
       noLicenseBullet2: "Ab 1 Stunde Mietdauer",
       licensedTitle: "Boote mit Führerschein",
       licensedBody:
-        "2 leistungsstarke Boote für bis zu 7 Personen. Erfordern PER oder gleichwertigen Bootsführerschein. Größere Reichweite und Geschwindigkeit, um die gesamte Costa Brava zu erkunden.",
+        "3 leistungsstarke Boote für bis zu 7 Personen. Die Licencia de Navegación (LN) oder ein höherer Schein genügt. Größere Reichweite und Geschwindigkeit, um die gesamte Costa Brava zu erkunden.",
       licensedBullet1: "Bis zu 7 Personen pro Boot",
       licensedBullet2: "Ganztagesmiete verfügbar",
       viewAllCta: "Alle Boote ansehen",
@@ -1860,7 +1862,7 @@ export const de: Translations = {
   },
   seoSchemas: {
     seasonalEvent: {
-      name: "Saison {year}, Bootsverleih an der Costa Brava",
+      name: "Saison {year}: Bootsverleih an der Costa Brava",
       description:
         "Boote ohne Führerschein in Blanes, Costa Brava mieten. Saison von April bis Oktober.",
     },
@@ -1894,7 +1896,7 @@ export const de: Translations = {
   },
   licenseTypes: {
     none: "Kein Führerschein erforderlich",
-    navegacion: "Sportbootführerschein See (LNB)",
+    navegacion: "Licencia de Navegación (LN)",
     pnb: "Bootsführerschein für Küstengewässer (PNB)",
     per: "Sportbootführerschein für Freizeitboote (PER)",
     patron_yate: "Yachtführerschein",
@@ -1966,7 +1968,7 @@ export const de: Translations = {
         month: "Juni",
         time: "21:15 - 21:30",
         suggestion:
-          "Fahren Sie um 19:30 Uhr los, es sind die längsten Sonnenuntergänge des Jahres.",
+          "Fahr um 19:30 Uhr los. Es sind die längsten Sonnenuntergänge des Jahres.",
       },
       {
         month: "Juli",
@@ -2005,7 +2007,7 @@ export const de: Translations = {
       {
         name: "Küstenabschnitt zwischen Blanes und Lloret",
         description:
-          "Die Küste zwischen Blanes und Lloret de Mar bietet freien Blick nach Westen. Keine Gebäude, keine Menschenmassen, nur Sie, das Meer und ein fantastischer Sonnenuntergang.",
+          "Die Küste zwischen Blanes und Lloret de Mar bietet freien Blick nach Westen. Keine Gebäude, keine Menschenmassen: nur du, das Meer und ein fantastischer Sonnenuntergang.",
         distance: "25 Minuten vom Hafen",
       },
     ],
@@ -2033,7 +2035,7 @@ export const de: Translations = {
     ],
     heroTitle: "Bootsausflug bei Sonnenuntergang ab Blanes",
     heroDescription:
-      "Erleben Sie den Sonnenuntergang über der Costa Brava vom Deck Ihres eigenen Bootes aus. Fahren Sie vom Hafen Blanes ab, navigieren Sie zwischen versteckten Buchten und genießen Sie das magischste Licht des Tages über dem Mittelmeer. Kein Führerschein erforderlich. Ab 70 EUR/Stunde.",
+      "Erleben Sie den Sonnenuntergang über der Costa Brava vom Deck Ihres eigenen Bootes aus. Fahren Sie vom Hafen Blanes ab, navigieren Sie zwischen versteckten Buchten und genießen Sie das magischste Licht des Tages über dem Mittelmeer. Kein Führerschein erforderlich. Ab 75 €/Stunde.",
     badgeGoldenHour: "Aussicht zur goldenen Stunde",
     badgeDuration: "2 Stunden empfohlen",
     badgeCouples: "Perfekt für Paare",
@@ -2143,7 +2145,7 @@ export const de: Translations = {
       {
         name: "Boote ohne Führerschein (4-5 Personen)",
         duration: "2-3 Stunden empfohlen",
-        price: "Ab 70 EUR/Stunde",
+        price: "Ab 75 €/Stunde",
         description:
           "Perfekt zum Schnorcheln in nahen Buchten wie Cala Sant Francesc und Cala Bona. Benzin inklusive. Boot ankern und direkt ins Wasser springen.",
       },
@@ -2275,7 +2277,7 @@ export const de: Translations = {
         stops: ["Hafen von Blanes", "Cala Sant Francesc", "Rückfahrt"],
         description:
           "Ideal für Familien mit kleinen Kindern. Kurze Fahrt zu einer geschützten Bucht mit flachem, kristallklarem Wasser. Zeit zum Baden, sanftem Schnorcheln und Picknick an Bord.",
-        price: "Ab 140 EUR (70 EUR/Std.)",
+        price: "Ab 115 € (2 Std., Nebensaison)",
         tip: "Perfekt für die erste Bootserfahrung mit Kindern. Die Bucht hat einen Sandbereich und ruhiges Wasser.",
       },
       {
@@ -2289,13 +2291,13 @@ export const de: Translations = {
         ],
         description:
           "Das komplette Erlebnis für Familien. Drei Stopps mit ausreichend Zeit, um jede Bucht zu erkunden. Kombiniert Baden, Schnorcheln, Picknick und spektakuläre Ausblicke auf die Küste.",
-        price: "Ab 280 EUR (70 EUR/Std.)",
+        price: "Ab 150 € (4 Std., Nebensaison)",
         tip: "Empfohlen für Kinder ab 4 Jahren. Essen, Wasser, Sonnencreme und Mützen mitbringen.",
       },
     ],
     heroTitle: "Bootsverleih für Familien an der Costa Brava",
     heroDescription:
-      "Ein sicheres und spaßiges Abenteuer für die ganze Familie. Führerscheinfreie Boote vom Hafen von Blanes mit inkludiertem Benzin, Kinder-Schwimmwesten und geschützten Buchten, die perfekt für Kinder sind. Ab 70 EUR/Stunde.",
+      "Ein sicheres und spaßiges Abenteuer für die ganze Familie. Führerscheinfreie Boote vom Hafen von Blanes mit inkludiertem Benzin, Kinder-Schwimmwesten und geschützten Buchten, die perfekt für Kinder sind. Ab 75 €/Stunde.",
     badgeNoLicense: "Kein Führerschein erforderlich",
     badgeKidsVests: "Kinder-Schwimmwesten inklusive",
     badgeFuel: "Benzin inklusive",
@@ -2424,7 +2426,7 @@ export const de: Translations = {
         type: "Boote ohne Lizenz",
         capacity: "4-5 Personen",
         autonomy: "Küstenfischerei (bis 2 Meilen)",
-        price: "Ab 70 EUR/Stunde (Benzin inkludiert)",
+        price: "Ab 75 €/Stunde (Benzin inkludiert)",
         advantages: [
           "Kein Bootsführerschein erforderlich",
           "Benzin im Preis inbegriffen",
@@ -2537,7 +2539,7 @@ export const de: Translations = {
         {
           question: "Brauche ich einen Führerschein, um in Blanes ein Boot zu mieten?",
           answer:
-            "Nein. Wir haben 5 führerscheinfreie Boote für 4 oder 5 Personen. Sie müssen lediglich mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine 15-minütige Einweisung.",
+            "Nein. Wir haben 4 führerscheinfreie Boote für 4 oder 5 Personen. Du musst lediglich mindestens 18 Jahre alt sein. Wir geben dir vor der Abfahrt eine 15-minütige Einweisung.",
         },
         {
           question: "Wie viel kostet es, im Hafen von Blanes ein Boot zu mieten?",
@@ -2583,7 +2585,7 @@ export const de: Translations = {
       hero: {
         title: "Bootsverleih in Blanes",
         subtitle:
-          "Bootsverleih direkt am Hafen Blanes ab 70€/h, Kraftstoff inklusive. Ohne Führerschein bis 5 Personen, mit Führerschein bis 7. Kostenloser Parkplatz 100m vom Liegeplatz, 15-Minuten Sicherheitseinweisung. Von hier fahren Sie nach Sa Palomera (5 Min), Cala Sant Francesc (8 Min), Cala Treumal (15 Min) und Lloret de Mar (25 Min). Tossa de Mar 30-45 Min mit Führerschein.",
+          "Bootsverleih direkt am Hafen Blanes ab 75€/h, Kraftstoff inklusive. Ohne Führerschein bis 5 Personen, mit Führerschein bis 7. Kostenloser Parkplatz 100m vom Liegeplatz, 15-Minuten Sicherheitseinweisung. Von hier fährst du nach Sa Palomera (5 Min), Cala Sant Francesc (8 Min), Cala Treumal (15 Min) und Lloret de Mar (25 Min). Tossa de Mar 30-45 Min mit Führerschein.",
         badgePort: "Hafen Blanes",
         badgeCapacity: "4-7 Personen",
         badgeDuration: "1-8 Std.",
@@ -2631,9 +2633,9 @@ export const de: Translations = {
         mapTitle: "Standort - Hafen von Blanes",
         fleetTitle: "Unsere Flotte im Hafen von Blanes",
         fleetIntro:
-          "Wir verfuegen ueber 9 Boote im Hafen von Blanes, bereit zum Segeln von April bis Oktober. Unsere Flotte umfasst 5 fuehrerscheinfreie Boote, perfekt fuer Familien und Paare, die die nahegelegenen Buchten erkunden moechten, 3 Optionen mit Fuehrerschein fuer erfahrene Segler mit mehr Reichweite und Leistung, sowie einen Privaten Ausflug mit Skipper fuer Gruppen, die lieber fahren lassen statt selbst am Steuer zu stehen. Alle Boote werden taeglich inspiziert und sind vollkaskoversichert.",
-        fleetNoLicense: "Ohne Fuehrerschein",
-        fleetLicense: "Mit Fuehrerschein",
+          "Wir verfügen über 8 Boote im Hafen von Blanes, bereit zum Auslaufen von April bis Oktober. Unsere Flotte umfasst 4 führerscheinfreie Boote, perfekt für Familien und Paare, die die nahegelegenen Buchten erkunden möchten, 3 Optionen mit Führerschein für erfahrene Skipper mit mehr Reichweite und Leistung, sowie einen Privaten Ausflug mit Skipper für Gruppen, die lieber fahren lassen statt selbst am Steuer zu stehen. Alle Boote werden täglich inspiziert und sind vollkaskoversichert.",
+        fleetNoLicense: "Ohne Führerschein",
+        fleetLicense: "Mit Führerschein",
         fleetFrom: "Ab",
         fleetViewDetails: "Details ansehen",
         guideTitle: "Kompletter Leitfaden: Boot Mieten in Blanes",
@@ -2645,10 +2647,10 @@ export const de: Translations = {
           "Die Bootssaison in Blanes laeuft von April bis Oktober. Wir bieten drei Zeitfenster an: Vormittag (9:00-13:00), Nachmittag (14:00-18:00) und ganzer Tag (9:00-18:00). Juni und September sind ideal zum Segeln: angenehme Temperaturen, ruhige See und weniger Andrang.",
         guideIncludedTitle: "Was ist inbegriffen",
         guideIncludedText:
-          "Fuehrerscheinfreie Boote beinhalten Kraftstoff, Versicherung, zugelassene Sicherheitsausruestung, Sonnensegel und Badeleiter. Bei Booten mit Fuehrerschein und der privaten Ausflugsfahrt ist der Kraftstoff NICHT inbegriffen.",
+          "Führerscheinfreie Boote beinhalten Kraftstoff, Versicherung, zugelassene Sicherheitsausrüstung, Sonnensegel und Badeleiter. Bei Booten mit Führerschein und der privaten Ausflugsfahrt ist der Kraftstoff NICHT inbegriffen.",
         guideBookingTitle: "So buchen Sie",
         guideBookingText:
-          "Sie koennen ueber unsere Website mit sofortiger Bestaetigung buchen, per WhatsApp unter +34 611 500 372 oder direkt im Hafen von Blanes bei Verfuegbarkeit.",
+          "Du kannst über unsere Website buchen (wir bestätigen per WhatsApp innerhalb von 2 Stunden), per WhatsApp unter +34 611 500 372 oder direkt im Hafen von Blanes bei Verfügbarkeit.",
         pricingTitle: "Preise fuer Bootsverleih in Blanes 2026",
         pricingIntro:
           "Unsere Preise variieren je nach Saison und Mietdauer. Alle Preise verstehen sich inklusive MwSt., Liegeplatz und Reinigung.",
@@ -2659,7 +2661,7 @@ export const de: Translations = {
         pricingLowCol: "Nebensaison (2h)",
         pricingHighCol: "Hochsaison (2h)",
         pricingFuelNote:
-          "* Bei Booten mit Fuehrerschein und privaten Ausfluegen ist Kraftstoff NICHT inbegriffen.",
+          "* Bei Booten mit Führerschein und privaten Ausflügen ist Kraftstoff NICHT inbegriffen.",
         pricingFullDetails: "Alle Tarife und Zeiten anzeigen",
         experiencesTitle: "Beliebte Erlebnisse ab Blanes",
         expSnorkelTitle: "Schnorcheln in Cala Brava",
@@ -2708,7 +2710,7 @@ export const de: Translations = {
         {
           question: "Wie weit genau kann ich mit einem führerscheinfreien Boot fahren?",
           answer:
-            "Gesetzlich bis 2 Seemeilen vor der Küste, maximal 5 Knoten, mit 15 PS. Von Blanes aus sind das 25 Minuten Fahrt bis zum Playa de Fenals, vorbei an 7 Buchten. Der Playa de Lloret im Zentrum und Cala Canyelles liegen nördlich von Fenals – sie sind mit führerscheinfreien Booten nicht erreichbar.",
+            "Gesetzlich bis 2 Seemeilen vor der Küste, maximal 5 Knoten, mit 15 PS. Von Blanes aus sind das 25 Minuten Fahrt bis zum Playa de Fenals, vorbei an 7 Buchten. Der Playa de Lloret im Zentrum und Cala Canyelles liegen nördlich von Fenals; sie sind mit führerscheinfreien Booten nicht erreichbar.",
         },
         {
           question: "Wie viel kostet es, ein führerscheinfreies Boot nach Lloret zu mieten?",
@@ -2719,7 +2721,7 @@ export const de: Translations = {
           question:
             "Kann ich mit einem führerscheinfreien Boot von Lloret nach Tossa de Mar fahren?",
           answer:
-            "Nein. Tossa liegt 4–5 Meilen nördlich von Fenals, außerhalb der gesetzlichen Reichweite ohne Führerschein. Um von Blanes mit dem Boot nach Tossa zu fahren, benötigen Sie (a) ein Boot mit Grundlizenz (LNB) oder (b) eine private Exkursion mit Kapitän.",
+            "Nein. Tossa liegt 4–5 Meilen nördlich von Fenals, außerhalb der gesetzlichen Reichweite ohne Führerschein. Um von Blanes mit dem Boot nach Tossa zu fahren, brauchst du (a) ein Boot mit Licencia de Navegación (LN) oder (b) eine private Exkursion mit Kapitän.",
         },
         {
           question: "Was passiert bei schlechtem Wetter?",
@@ -2804,7 +2806,7 @@ export const de: Translations = {
           question:
             "Kann ich mit einem führerscheinfreien Boot von Blanes nach Tossa de Mar fahren?",
           answer:
-            "Nein. Führerscheinfreie Boote (2 Meilen Küstenentfernung, 5 Knoten, 15 PS) kommen bis zum Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um nach Tossa zu gelangen, benötigen Sie eine Grundlizenz (LNB) oder buchen die private Exkursion mit Kapitän.",
+            "Nein. Führerscheinfreie Boote (2 Meilen Küstenentfernung, 5 Knoten, 15 PS) kommen bis zum Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um nach Tossa zu gelangen, brauchst du die Licencia de Navegación (LN) oder buchst die private Exkursion mit Kapitän.",
         },
         {
           question: "Wie lange dauert die Fahrt mit dem Boot von Blanes nach Tossa?",
@@ -2817,7 +2819,7 @@ export const de: Translations = {
             "Pacific Craft 625 mit professionellem Skipper, max. 4 Std., bis zu 6 Personen (plus Skipper). Ab {excursionBaja4h} € Nebensaison (April–Juni, September–Saisonende). Inklusive MwSt., Skipper, Liegeplatz, Reinigung und Versicherung. Kraftstoff separat.",
         },
         {
-          question: "Wie viel kostet die Miete nach Tossa mit Grundlizenz (LNB)?",
+          question: "Wie viel kostet die Miete nach Tossa mit Licencia de Navegación (LN)?",
           answer:
             "Feste Pakete 2 Std. / 4 Std. / 8 Std., ohne Skipper. Ab {licBaja2h} € (2 Std. Nebensaison) für Boote mit Führerschein. 3 saisonale Preisstufen. Kaution 500 €. MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff separat.",
         },
@@ -2897,7 +2899,7 @@ export const de: Translations = {
         ctaButton: "Ausflug nach Tossa buchen",
         warningTitle: "Tossa ist mit einem Boot ohne Führerschein nicht erreichbar.",
         warningBody:
-          'Boote ohne Führerschein (2 Meilen, 5 Knoten, 15 PS) reichen bis Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um von Blanes nach Tossa zu gelangen, benötigen Sie (1) eine Selbstanmietung mit Sportbootführerschein (geschlossene Pakete 2 Std. / 4 Std. / 8 Std. ab {licBaja2h} € mit Mingolla Brava 19 oder Trimarchi 57S, MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff und Kaution 500 € extra), oder (2) die <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Private Bootsfahrt mit Kapitän</a> (Pacific Craft 625 + Kapitän, max. 4 Std., bis 6 Personen, ab {excursionBaja4h} € mit MwSt., Kapitän, Liegeplatz, Reinigung und Versicherung inklusive, Kraftstoff extra). Die dritte Alternative ist, mit dem Auto nach Tossa zu fahren (20 Min. von Lloret) und dort vor Ort ein Boot ohne Führerschein zu mieten.',
+          'Boote ohne Führerschein (2 Meilen, 5 Knoten, 15 PS) reichen bis Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um von Blanes nach Tossa zu gelangen, brauchst du (1) eine Selbstanmietung mit Licencia de Navegación (geschlossene Pakete 2 Std. / 4 Std. / 8 Std. ab {licBaja2h} € mit Mingolla Brava 19 oder Trimarchi 57S, MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff und Kaution 500 € extra), oder (2) die <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Private Bootsfahrt mit Kapitän</a> (Pacific Craft 625 + Kapitän, max. 4 Std., bis 6 Personen, ab {excursionBaja4h} € mit MwSt., Kapitän, Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff extra). Die dritte Alternative ist, mit dem Auto nach Tossa zu fahren (20 Min. von Lloret) und dort vor Ort ein Boot ohne Führerschein zu mieten.',
         crossLinkingText:
           'Wir bieten auch Service für Touristen, die in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> und <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a> untergebracht sind. Von diesen Küstenorten des Maresme erreicht man den Hafen von Blanes in 10-20 Minuten mit dem Auto.',
         relatedTitle: "Verwandte Dienstleistungen und Ziele",
@@ -2921,13 +2923,13 @@ export const de: Translations = {
         whyRentTitle: "Warum ein Boot ab Blanes mieten?",
         closestPort: "Der Nächste Hafen",
         closestPortDesc:
-          "Blanes ist der nächstgelegene Sportboothafen von Malgrat de Mar, nur 10 Minuten über die N-II. 7 Boote bereit zum Ablegen.",
-        varietyBoats: "7 Boote Verfügbar",
+          "Blanes ist der nächstgelegene Sportboothafen von Malgrat de Mar, nur 10 Minuten über die N-II. 8 Boote bereit zum Ablegen.",
+        varietyBoats: "8 Boote Verfügbar",
         varietyBoatsDesc:
           "Von führerscheinfreien Booten für Familien bis zu Booten mit Führerschein für erfahrene Skipper. 4 bis 7 Passagiere.",
         fuelIncluded: "Benzin Inklusive",
         fuelIncludedDesc:
-          "Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 70 EUR/Stunde.",
+          "Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 75 €/Stunde.",
         noExperience: "Ohne Erfahrung",
         noExperienceDesc:
           "Führerscheinfreie Boote mit 15 Minuten Einweisung inklusive. Ideal für Touristen.",
@@ -3050,13 +3052,13 @@ export const de: Translations = {
         whyRentTitle: "Warum ein Boot ab Blanes mieten?",
         closestPort: "Der Nächste Hafen",
         closestPortDesc:
-          "Blanes ist der nächstgelegene Sportboothafen von Santa Susanna, nur 15 Minuten über die N-II. 7 Boote bereit zum Ablegen.",
-        varietyBoats: "7 Boote Verfügbar",
+          "Blanes ist der nächstgelegene Sportboothafen von Santa Susanna, nur 15 Minuten über die N-II. 8 Boote bereit zum Ablegen.",
+        varietyBoats: "8 Boote Verfügbar",
         varietyBoatsDesc:
           "Von führerscheinfreien Booten für Familien bis zu Booten mit Führerschein für erfahrene Skipper. 4 bis 7 Passagiere.",
         fuelIncluded: "Benzin Inklusive",
         fuelIncludedDesc:
-          "Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 70 EUR/Stunde.",
+          "Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 75 €/Stunde.",
         noExperience: "Ohne Erfahrung",
         noExperienceDesc:
           "Führerscheinfreie Boote mit 15 Minuten Einweisung inklusive. Ideal für Touristen.",
@@ -3122,7 +3124,7 @@ export const de: Translations = {
         {
           question: "Kann ich von Calella aus eine Bootsexkursion nach Tossa de Mar machen?",
           answer:
-            "Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Grundlizenz (LNB) erreichen Sie Tossa in 45 Min. (ab {licBaja2h} EUR/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} EUR für bis zu 6 Personen, plus Skipper). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.",
+            "Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Licencia de Navegación (LN) erreichst du Tossa in 45 Min. (ab {licBaja2h} EUR/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} EUR für bis zu 6 Personen, plus Skipper). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.",
         },
         {
           question: "Wie viel kostet der Zug R1 von Calella nach Blanes?",
@@ -3142,13 +3144,13 @@ export const de: Translations = {
         whyRentTitle: "Warum ein Boot ab Blanes mieten?",
         closestPort: "Der Nächste Hafen",
         closestPortDesc:
-          "Blanes ist der nächstgelegene Sportboothafen von Calella, nur 20 Minuten über die N-II. 7 Boote bereit zum Ablegen.",
-        varietyBoats: "7 Boote Verfügbar",
+          "Blanes ist der nächstgelegene Sportboothafen von Calella, nur 20 Minuten über die N-II. 8 Boote bereit zum Ablegen.",
+        varietyBoats: "8 Boote Verfügbar",
         varietyBoatsDesc:
           "Von führerscheinfreien Booten für Familien bis zu Booten mit Führerschein für erfahrene Skipper. 4 bis 7 Passagiere.",
         fuelIncluded: "Benzin Inklusive",
         fuelIncludedDesc:
-          "Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 70 EUR/Stunde.",
+          "Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 75 €/Stunde.",
         noExperience: "Ohne Erfahrung",
         noExperienceDesc:
           "Führerscheinfreie Boote mit 15 Minuten Einweisung inklusive. Ideal für Touristen.",
@@ -3187,10 +3189,10 @@ export const de: Translations = {
       hero: {
         title: "Bootsverleih an der Costa Brava",
         subtitle:
-          "Entdecken Sie die schoensten Buchten und Straende der Costa Brava an Bord unserer Boote. Abfahrt vom Hafen von Blanes, im Herzen der katalanischen Kueste. Fuehrerscheinfreie Boote ab 70 EUR/Stunde inklusive Treibstoff und Versicherung.",
+          "Entdecke die schönsten Buchten und Strände der Costa Brava an Bord unserer Boote. Abfahrt vom Hafen von Blanes, im Herzen der katalanischen Küste. Führerscheinfreie Boote ab 75 €/Stunde inklusive Treibstoff und Versicherung.",
         badgePort: "Hafen von Blanes",
         badgeCapacity: "4-7 Personen",
-        badgeLicense: "Mit und ohne Fuehrerschein",
+        badgeLicense: "Mit und ohne Führerschein",
       },
       sections: {
         introP1:
@@ -3211,38 +3213,38 @@ export const de: Translations = {
           "Unser Heimathafen in Blanes liegt nur 70 Minuten von Barcelona und 35 Minuten von Girona ueber die Autobahn entfernt. Kostenlose Parkplaetze neben dem Hafen.",
         allLevelsTitle: "Fuer alle Erfahrungsstufen",
         allLevelsDesc:
-          "Ob Sie noch nie gesegelt sind oder ein erfahrener Skipper sind, wir haben das perfekte Boot fuer Sie. Training bei jeder Vermietung inklusive.",
+          "Ob du noch nie ein Boot gefahren bist oder ein erfahrener Skipper bist: wir haben das perfekte Boot für dich. 4 führerscheinfreie Boote für Anfänger und Boote mit starkem Motor für alle, die weiter hinaus wollen. Einweisung bei jeder Vermietung inklusive.",
         navigationGuideTitle: "Navigationsguide Costa Brava",
-        routeBlanesLloret: "Blanes - Lloret de Mar: 30 Min., leicht, ohne Fuehrerschein",
+        routeBlanesLloret: "Blanes - Lloret de Mar: 30 Min., leicht, ohne Führerschein",
         routeBlanesLloretDesc:
           "Eine der beliebtesten Routen an der Costa Brava. Perfekt fuer einen Halbtagesausflug mit Halt an der Cala Treumal.",
-        routeBlanesTossa: "Blanes - Tossa de Mar: 45 Min., mittel, Fuehrerschein empfohlen",
+        routeBlanesTossa: "Blanes - Tossa de Mar: 45 Min., mittel, Führerschein empfohlen",
         routeBlanesTossaDesc:
           "Die spektakulaerste Route der gesamten Kueste. Sie erreichen die ikonische Vila Vella von Tossa de Mar.",
         routeBlaneSantFeliu:
-          "Blanes - Sant Feliu de Guixols: 1,5 Std., fortgeschritten, Fuehrerschein erforderlich",
+          "Blanes - Sant Feliu de Guixols: 1,5 Std., fortgeschritten, Führerschein erforderlich",
         routeBlaneSantFeliuDesc:
           "Navigation auf offener See, die Planung und Aufmerksamkeit auf Wetterbedingungen erfordert.",
-        routeBlaneCalaBrava: "Blanes - Cala Brava: 15 Min., leicht, ohne Fuehrerschein",
+        routeBlaneCalaBrava: "Blanes - Cala Brava: 15 Min., leicht, ohne Führerschein",
         routeBlaneCalaBravaDesc:
           "Der perfekte Kurzausflug fuer Familien und Anfaenger. Nur 15 Minuten vom Hafen von Blanes zu dieser unberuehrten Bucht.",
         boatTypesTitle: "Bootstypen fuer die Costa Brava",
-        noLicenseTitle: "Boote ohne Fuehrerschein",
+        noLicenseTitle: "Boote ohne Führerschein",
         noLicensePower: "Bis 15 PS",
         noLicenseCapacity: "Maximal 5 Personen an Bord",
         noLicenseNavigation: "Kuestennavigation bis 2 Seemeilen",
         noLicenseFuel: "Treibstoff im Preis inbegriffen",
-        noLicensePrice: "Ab 70 EUR/Stunde",
+        noLicensePrice: "Ab 75 €/Stunde",
         noLicenseDesc:
           "Unsere fuehrerscheinfreien Boote sind ideal fuer Familien. Keine Qualifikation noetig: 15 Minuten Einweisung und los geht's. Alles inklusive: Treibstoff, Versicherung, Sicherheitsausruestung und Schnorchelausruestung.",
-        licensedTitle: "Boote mit Fuehrerschein",
-        licensedPower: "40 bis 150 PS",
-        licensedCapacity: "Bis zu 12 Personen an Bord",
+        licensedTitle: "Boote mit Führerschein",
+        licensedPower: "40 bis 115 PS",
+        licensedCapacity: "Bis zu 7 Personen an Bord",
         licensedNavigation: "Hochseenavigation ohne Einschraenkungen",
         licensedFuel: "Treibstoff NICHT inbegriffen (separate Kaution)",
         licensedPrice: "Ab 90 EUR/Stunde",
         licensedDesc:
-          "Fuer qualifizierte Segler, die ueber die unmittelbare Kueste hinaus erkunden moechten. Mehr Leistung, Reichweite und Kapazitaet. Treibstoff wird separat berechnet.",
+          "Für qualifizierte Skipper, die über die unmittelbare Küste hinaus erkunden möchten. Mehr Leistung, Reichweite und Kapazität. Der Treibstoff wird separat nach tatsächlichem Verbrauch berechnet. Die Licencia de Navegación (LN) genügt; auch PNB, PER oder europäische Äquivalente sind gültig.",
         bestCovesTitle: "Die besten Buchten der Costa Brava per Boot",
         calaBravaName: "Cala Brava",
         calaBravaDesc:
@@ -3262,7 +3264,7 @@ export const de: Translations = {
         pricingTitle: "Bootsverleih Preise Costa Brava 2026",
         ctaTitle: "Buchen Sie Ihr Boot an der Costa Brava",
         ctaDescription:
-          "Waehlen Sie Ihr Boot, Datum und Uhrzeit. Treibstoff, Versicherung und Einweisung bei fuehrerscheinfreien Booten inklusive.",
+          "Wähle dein Boot, Datum und Uhrzeit. Treibstoff, Versicherung und Einweisung bei führerscheinfreien Booten inklusive. Buche per WhatsApp: wir bestätigen innerhalb von 2 Stunden.",
         ctaButton: "Per WhatsApp buchen",
         crossLinkEnglish: "This page in English: Boat Rental Costa Brava",
       },
@@ -3270,7 +3272,7 @@ export const de: Translations = {
         experienceQ: "Brauche ich Vorerfahrung, um ein Boot an der Costa Brava zu mieten?",
         experienceA:
           "Nein, Sie brauchen keinerlei Vorerfahrung. Fuer unsere fuehrerscheinfreien Boote (bis 15 PS) muessen Sie nur ueber 18 Jahre alt sein. Wir bieten eine 15-minuetige praktische Einweisung vor der Abfahrt.",
-        distanceQ: "Wie weit kann ich ohne Fuehrerschein von Blanes aus fahren?",
+        distanceQ: "Wie weit kann ich ohne Führerschein von Blanes aus fahren?",
         distanceA:
           "Mit einem fuehrerscheinfreien Boot koennen Sie bis zu 2 Seemeilen von der Kueste navigieren. Das ermoeglicht Ihnen, Buchten wie Cala Brava (15 Min.), Cala Sant Francesc (20 Min.) und Lloret de Mar (30 Min.) zu erkunden.",
         weatherQ: "Was passiert bei schlechtem Wetter am Tag meiner Buchung?",
@@ -3307,17 +3309,17 @@ export const de: Translations = {
       ],
       seo: {
         title:
-          "Bootsvermietung Tordera | Hafen Blanes 15 Min | Ohne Führerschein 70€/Std | Delta del Tordera",
+          "Bootsvermietung Tordera | Hafen Blanes 15 Min | Ohne Führerschein 75€/Std | Delta del Tordera",
         description:
-          "Wohnen Sie in Tordera oder in der Nähe des Deltas? Hafen Blanes 15 Min mit dem Auto oder 8 Min mit dem Zug R1. Boot ohne Führerschein ab 70€/Std mit Benzin inklusive. Erkunden Sie das Delta del Tordera.",
+          "Wohnst du in Tordera oder in der Nähe des Deltas? Hafen Blanes 15 Min mit dem Auto oder 8 Min mit dem Zug R1. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Erkunde das Delta del Tordera.",
         ogTitle: "Bootsvermietung Tordera | Delta del Tordera mit dem Boot",
         ogDescription:
-          "Von Tordera zum Hafen Blanes in 15 Min. Boot ohne Führerschein ab 70€/Std. Delta del Tordera per Boot. 4.8★.",
+          "Von Tordera zum Hafen Blanes in 15 Min. Boot ohne Führerschein ab 75€/Std. Delta del Tordera per Boot. 4.8★.",
       },
       schema: {
         name: "Bootsvermietung in der Nähe von Tordera",
         description:
-          "Mieten Sie Boote ab dem Hafen von Blanes, nur 15 Autominuten von Tordera entfernt. Boote ohne Führerschein ab 70 EUR/Stunde mit Benzin inklusive.",
+          "Miete Boote ab dem Hafen von Blanes, nur 15 Autominuten von Tordera entfernt. Boote ohne Führerschein ab 75 €/Stunde mit Benzin inklusive.",
       },
       breadcrumbName: "Bootsvermietung Tordera",
       sections: {
@@ -3336,7 +3338,7 @@ export const de: Translations = {
           "Unsere Flotte umfasst {fleetCount} Boote: führerscheinfreie Boote, ideal für Familien und Anfänger, sowie Boote mit Führerschein für Erfahrenere. Von Booten für 4 Personen bis zu Booten für Gruppen mit bis zu 11 Personen.",
         whyCard3Title: "Benzin bei Booten ohne Führerschein inklusive",
         whyCard3Desc:
-          "Der Preis für Boote ohne Führerschein beinhaltet das Benzin. Ab 70 EUR pro Stunde mit der Astec 400 oder ab 75 EUR pro Stunde mit anderen Modellen. Keine versteckten Kosten oder Überraschungen beim Endpreis.",
+          "Der Preis für Boote ohne Führerschein beinhaltet das Benzin. Ab 75 € pro Stunde. Keine versteckten Kosten oder Überraschungen beim Endpreis.",
         whyCard4Title: "Keine Vorkenntnisse erforderlich",
         whyCard4Desc:
           "Vor dem Ablegen bieten wir Ihnen 15 Minuten praktische Einweisung, in der Sie lernen, wie man den Motor bedient, die Grundregeln der Navigation und die besten Ecken zum Erkunden. Jede Person über 18 Jahre kann unsere Boote ohne Führerschein steuern.",
@@ -3414,17 +3416,17 @@ export const de: Translations = {
         },
       ],
       seo: {
-        title: "Bootsvermietung Palafolls | Hafen Blanes 12 Min | Ohne Führerschein 70€/Std",
+        title: "Bootsvermietung Palafolls | Hafen Blanes 12 Min | Ohne Führerschein 75€/Std",
         description:
-          "Auf einem Campingplatz oder in einer Unterkunft in Palafolls? Hafen Blanes 12 Min mit dem Auto. Boot ohne Führerschein ab 70€/Std mit Benzin inklusive. Idealer Ausflug Costa Brava.",
+          "Auf einem Campingplatz oder in einer Unterkunft in Palafolls? Hafen Blanes 12 Min mit dem Auto. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Idealer Ausflug Costa Brava.",
         ogTitle: "Bootsvermietung Palafolls | 12 Min zum Hafen Blanes",
         ogDescription:
-          "Von Palafolls zum Hafen Blanes in 12 Min. Boot ohne Führerschein ab 70€/Std. Benzin inklusive. 4.8★.",
+          "Von Palafolls zum Hafen Blanes in 12 Min. Boot ohne Führerschein ab 75€/Std. Benzin inklusive. 4.8★.",
       },
       schema: {
         name: "Bootsvermietung in der Nähe von Palafolls",
         description:
-          "Mieten Sie Boote ab dem Hafen von Blanes, nur 12 Autominuten von Palafolls entfernt. Boote ohne Führerschein ab 70 EUR/Stunde mit Benzin inklusive.",
+          "Miete Boote ab dem Hafen von Blanes, nur 12 Autominuten von Palafolls entfernt. Boote ohne Führerschein ab 75 €/Stunde mit Benzin inklusive.",
       },
       breadcrumbName: "Bootsvermietung Palafolls",
       sections: {
@@ -3443,7 +3445,7 @@ export const de: Translations = {
           "Wenn Sie auf einem der Campingplätze in Palafolls wie La Masía, Neptuno oder den Bungalowanlagen der Gegend übernachten, ist das Mieten eines Bootes die Hauptattraktion, die Ihren Urlaub unvergesslich macht. Viele Familien von nahegelegenen Campingplätzen besuchen uns jede Saison.",
         whyCard3Title: "Benzin bei Booten ohne Führerschein inklusive",
         whyCard3Desc:
-          "Der Preis für Boote ohne Führerschein beinhaltet das Benzin. Ab 70 EUR pro Stunde mit der Astec 400 oder ab 75 EUR pro Stunde mit anderen größeren Modellen. Keine versteckten Kosten oder Treibstoffzuschläge.",
+          "Der Preis für Boote ohne Führerschein beinhaltet das Benzin. Ab 75 € pro Stunde. Keine versteckten Kosten oder Treibstoffzuschläge.",
         whyCard4Title: "Keine Vorkenntnisse erforderlich",
         whyCard4Desc:
           "Vor dem Ablegen gibt Ihnen unser Team 15 Minuten praktische Einweisung. Wir zeigen Ihnen, wie man den Motor bedient, die Grundregeln der Navigation und die besten Ecken zum Erkunden. Jede Person über 18 Jahre kann unsere Boote ohne Führerschein steuern.",
@@ -3522,17 +3524,17 @@ export const de: Translations = {
         },
       ],
       seo: {
-        title: "Bootsvermietung Pineda de Mar | Hafen Blanes 18 Min | Ohne Führerschein 70€/Std",
+        title: "Bootsvermietung Pineda de Mar | Hafen Blanes 18 Min | Ohne Führerschein 75€/Std",
         description:
-          "Unterkunft in Pineda de Mar? Hafen Blanes 18 Min mit dem Auto oder 12 Min mit dem Zug R1. Boot ohne Führerschein ab 70€/Std mit Benzin inklusive. Fahren Sie nach Blanes, Lloret oder Tossa.",
+          "Unterkunft in Pineda de Mar? Hafen Blanes 18 Min mit dem Auto oder 12 Min mit dem Zug R1. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Fahr nach Blanes, Lloret oder Tossa.",
         ogTitle: "Bootsvermietung Pineda de Mar | 18 Min zum Hafen Blanes",
         ogDescription:
-          "Von Pineda de Mar zum Hafen Blanes in 18 Min. Boot ohne Führerschein ab 70€/Std. 4.8★ Google.",
+          "Von Pineda de Mar zum Hafen Blanes in 18 Min. Boot ohne Führerschein ab 75€/Std. 4.8★ Google.",
       },
       schema: {
         name: "Bootsvermietung in der Nähe von Pineda de Mar",
         description:
-          "Mieten Sie Boote ab dem Hafen von Blanes, nur 18 Autominuten von Pineda de Mar entfernt. Boote ohne Führerschein ab 70 EUR/Stunde mit Benzin inklusive.",
+          "Miete Boote ab dem Hafen von Blanes, nur 18 Autominuten von Pineda de Mar entfernt. Boote ohne Führerschein ab 75 €/Stunde mit Benzin inklusive.",
       },
       breadcrumbName: "Bootsvermietung Pineda de Mar",
       sections: {
@@ -3551,7 +3553,7 @@ export const de: Translations = {
           "Wir verfügen über eine Flotte von {fleetCount} Booten, die führerscheinfreie Boote umfasst, ideal für Familien und Anfänger, sowie Boote mit Führerschein für erfahrene Skipper. Kapazität von 4 bis 11 Personen je nach gewähltem Modell.",
         whyCard3Title: "Benzin bei Booten ohne Führerschein inklusive",
         whyCard3Desc:
-          "Der Preis für Boote ohne Führerschein beinhaltet das Benzin, sodass es keine Überraschungen gibt. Ab 70 EUR pro Stunde mit der Astec 400 oder ab 75 EUR pro Stunde mit anderen größeren Modellen. Der Preis, den Sie sehen, ist der Endpreis.",
+          "Der Preis für Boote ohne Führerschein beinhaltet das Benzin, sodass es keine Überraschungen gibt. Ab 75 € pro Stunde. Der Preis, den du siehst, ist der Endpreis.",
         whyCard4Title: "Keine Vorkenntnisse erforderlich",
         whyCard4Desc:
           "Vor dem Ablegen gibt Ihnen unser Team 15 Minuten praktische Einweisung: Bedienung des Motors, Grundregeln der Navigation und Tipps zu den besten Buchten. Jede Person über 18 Jahre kann ein Boot ohne Führerschein steuern.",
@@ -3633,7 +3635,7 @@ export const de: Translations = {
       "Abfahrt vom Hafen von Blanes, Costa Brava. Gute Anbindung und Parkplätze vorhanden.",
     infoSeasonTitle: "Saison",
     infoSeasonDesc: "April - Oktober. Flexible Buchungen mit einer Dauer von 1-8 Stunden.",
-    infoFleetTitle: "9 Boote",
+    infoFleetTitle: "8 Boote",
     infoFleetDesc: "Flotte für 4-7 Personen. Mit und ohne Bootsführerschein, plus private Tour mit Skipper.",
     categories: {
       all: "Alle",
@@ -3867,12 +3869,12 @@ export const de: Translations = {
     newsletterError: "Fehler beim Senden. Bitte versuchen Sie es erneut.",
     tableOfContents: "Inhaltsverzeichnis",
     ctaTitle: "Bereit für Ihr Abenteuer?",
-    ctaSubtitle: "Mieten Sie ein Boot ab 70€/Stunde · Benzin inklusive",
+    ctaSubtitle: "Miete ein Boot ab 75€/Stunde · Benzin inklusive",
     ctaBookNow: "Jetzt buchen",
     ctaWhatsApp: "Auf WhatsApp fragen",
     relatedDestinationsTitle: "Verwandte Reiseziele",
     relatedBlanesName: "Blanes",
-    relatedBlanesDesc: "Heimathafen. Boote ohne Führerschein ab 70€/Std.",
+    relatedBlanesDesc: "Heimathafen. Boote ohne Führerschein ab 75€/Std.",
     relatedLloretName: "Lloret de Mar",
     relatedLloretDesc: "Buchten und Strände 20 Min. mit dem Boot von Blanes.",
     relatedTossaName: "Tossa de Mar",
@@ -3895,7 +3897,7 @@ export const de: Translations = {
         },
         {
           title: "3. Zweck der Verarbeitung und Rechtsgrundlage",
-          body: "Wir verarbeiten Ihre Daten zu folgenden Zwecken und auf folgender Rechtsgrundlage (DSGVO):\n\n- Verwaltung und Bestätigung von Bootsbuchungen, Art. 6 Abs. 1 lit. b, Vertragserfüllung\n- Versand von Erinnerungen und Mitteilungen zur Buchung, Art. 6 Abs. 1 lit. b, Vertragserfüllung\n- Kundenbetreuung und Bearbeitung von Vorfällen, Art. 6 Abs. 1 lit. b und lit. f, Vertragserfüllung / berechtigtes Interesse\n- Statistische Analyse des Web-Traffics (Google Analytics), Art. 6 Abs. 1 lit. a, Einwilligung (Cookie-Banner)\n- Erfüllung gesetzlicher und steuerlicher Pflichten, Art. 6 Abs. 1 lit. c, rechtliche Verpflichtung\n\nWir treffen keine automatisierten Einzelentscheidungen und erstellen keine Profile für Werbezwecke auf Grundlage Ihrer Buchungsdaten.",
+          body: "Wir verarbeiten deine Daten zu folgenden Zwecken und auf folgender Rechtsgrundlage (DSGVO):\n\n- Verwaltung und Bestätigung von Bootsbuchungen: Art. 6 Abs. 1 lit. b, Vertragserfüllung\n- Versand von Erinnerungen und Mitteilungen zur Buchung: Art. 6 Abs. 1 lit. b, Vertragserfüllung\n- Kundenbetreuung und Bearbeitung von Vorfällen: Art. 6 Abs. 1 lit. b und lit. f, Vertragserfüllung / berechtigtes Interesse\n- Statistische Analyse des Web-Traffics (Google Analytics): Art. 6 Abs. 1 lit. a, Einwilligung (Cookie-Banner)\n- Erfüllung gesetzlicher und steuerlicher Pflichten: Art. 6 Abs. 1 lit. c, rechtliche Verpflichtung\n\nWir treffen keine automatisierten Einzelentscheidungen und erstellen keine Profile für Werbezwecke auf Grundlage deiner Buchungsdaten.",
         },
         {
           title: "4. Speicherfristen",
@@ -3971,7 +3973,7 @@ export const de: Translations = {
         },
         {
           title: "4. Anforderungen an den Mieter",
-          body: "- Der Bootsführer muss mindestens 18 Jahre alt sein und einen gültigen Personalausweis oder Reisepass vorlegen.\n- Für zulassungspflichtige Boote muss der Bootsführer den Original-Bootsführerschein vorlegen (LNB, PER, PNB, Capitán de Yate oder europäisches Äquivalent).\n- Für Boote ohne Führerscheinpflicht ist keine Lizenz erforderlich, aber der Bootsführer erhält vor dem Ablegen eine 15-minütige Einweisung.\n- Minderjährige müssen von einem verantwortlichen Erwachsenen begleitet werden und während der Fahrt eine Schwimmweste tragen.",
+          body: "- Der Bootsführer muss mindestens 18 Jahre alt sein und einen gültigen Personalausweis oder Reisepass vorlegen.\n- Für zulassungspflichtige Boote muss der Bootsführer den Original-Bootsführerschein vorlegen (Licencia de Navegación, PER, PNB, Capitán de Yate oder europäisches Äquivalent).\n- Für Boote ohne Führerscheinpflicht ist keine Lizenz erforderlich, aber der Bootsführer erhält vor dem Ablegen eine 15-minütige Einweisung.\n- Minderjährige müssen von einem verantwortlichen Erwachsenen begleitet werden und während der Fahrt eine Schwimmweste tragen.",
         },
         {
           title: "5. Kaution und Zahlungsbedingungen",
@@ -4188,7 +4190,7 @@ export const de: Translations = {
     tossaTitle: 'Tossa de Mar per Boot',
     tossaDesc: 'Die mittelalterliche Vila Vella, beeindruckende Klippen und die unberuhrtesten Buchten der Costa Brava.',
     pricesTitle: 'Preise und Tarife',
-    pricesDesc: 'Saisonpreise für alle unsere Boote. Ab 70€/Stunde ohne Führerschein.',
+    pricesDesc: 'Saisonpreise für alle unsere Boote. Ab 75€/Stunde ohne Führerschein.',
     guide: {
       heading: 'Leitfaden zum Befahren der Costa Brava von Blanes aus',
       geographyTitle: 'Die Küste: von Blanes nach Tossa de Mar',
@@ -4196,7 +4198,7 @@ export const de: Translations = {
       seaTitle: 'Meeresbedingungen und Winde',
       seaBody: 'Der südliche Abschnitt der Costa Brava bietet im Sommer im Allgemeinen komfortables Fahren. Morgens ist das Meer meist ruhig; nachmittags kann der Garbí aufkommen, die Südwestbrise, die die Oberfläche leicht kräuselt. Der Wind, auf den man achten sollte, ist die Tramontana, ein starker Nordwind, der schnell aufziehen kann: Prüfen Sie immer den Seewetterbericht, bevor Sie ablegen. Boote ohne Führerschein fahren bis zu 2 Seemeilen von der Küste entfernt (3,7 km) und mit maximal 5 Knoten, ausreichend, um all diese Buchten sicher zu erkunden.',
       calasTitle: 'Buchten und Schnorcheln',
-      calasBody: 'Die Buchten zwischen Blanes und Tossa haben felsige Böden und kristallklares Wasser, ideal zum Ankern und Schnorcheln. Cala Bona, Cala Treumal und Santa Cristina bieten geschützte Gewässer; in Lloret die Cala Boadella; und in Richtung Tossa Cala Llevadó, Cala Giverola und Cala Pola, viele nur vom Meer aus erreichbar. Denken Sie daran, auf sandigem Grund zu ankern – niemals auf den geschützten Posidonia-Wiesen – und genügend Seil auszulegen, damit der Anker greift.',
+      calasBody: 'Die Buchten zwischen Blanes und Tossa haben felsige Böden und kristallklares Wasser, ideal zum Ankern und Schnorcheln. Cala Bona, Cala Treumal und Santa Cristina bieten geschützte Gewässer; in Lloret die Cala Boadella; und in Richtung Tossa Cala Llevadó, Cala Giverola und Cala Pola, viele nur vom Meer aus erreichbar. Denk daran, auf sandigem Grund zu ankern (niemals auf den geschützten Posidonia-Wiesen) und genügend Leine zu geben, damit der Anker greift.',
       seasonTitle: 'Beste Zeit zum Fahren',
       seasonBody: 'Die Fahrsaison läuft von April bis Oktober mit Abfahrtszeiten von 09:00 bis 20:00 Uhr. Juli und August bieten das wärmste und stabilste Meer, ideal zum Baden und Schnorcheln; Juni und September sind perfekt für alle, die weniger überfüllte Buchten und goldenes Licht suchen. Außerhalb der Saison sind wir nicht in Betrieb. In den Sommermonaten empfiehlt sich eine frühzeitige Reservierung: Die Verfügbarkeit von Booten und Zeitfenstern ist begrenzt.',
     },
@@ -4213,7 +4215,7 @@ export const de: Translations = {
     pages: {
       barcelona: {
         title: "Boote für Ihren Ausflug ab Barcelona",
-        description: "Nur 1 Std. mit dem Auto oder dem R1-Zug entfernt ist der Hafen von Blanes die nächstgelegene Option, um an der Costa Brava ein Boot zu mieten. Vom führerscheinfreien Boot (5 von 9 Booten) bis zum Premium-Charter mit Skipper.",
+        description: "Nur 1 Std. mit dem Auto oder dem R1-Zug entfernt ist der Hafen von Blanes die nächstgelegene Option, um an der Costa Brava ein Boot zu mieten. Vom führerscheinfreien Boot (4 von 8 Booten) bis zum Premium-Charter mit Skipper.",
       },
       lloret: {
         title: "Beliebte Boote für Ihre Route nach Lloret de Mar",
@@ -4257,7 +4259,7 @@ export const de: Translations = {
       locationLloret: [
         { title: "Die besten Buchten der Costa Brava mit dem Boot", description: "Die 10 spektakulärsten Buchten zwischen Blanes und Tossa" },
         { title: "Bootstour bei Sonnenuntergang", description: "Sonnenuntergangserlebnis auf dem Boot" },
-        { title: "Boote ohne Führerschein", description: "5 Boote ab 70€/Std., Kraftstoff inklusive" },
+        { title: "Boote ohne Führerschein", description: "4 Boote ab 75€/Std., Kraftstoff inklusive" },
         { title: "Rollerverleih in Lloret de Mar", description: "Erkunden Sie die Costa Brava auf der Straße, ab 8€/Std. mit Versicherung inklusive" },
       ],
       locationTossa: [
@@ -4287,12 +4289,12 @@ export const de: Translations = {
       activitySunset: [
         { title: "Bootsrouten ab Blanes", description: "5 Routen mit interaktiven Karten" },
         { title: "Die besten Buchten der Costa Brava mit dem Boot", description: "Die 10 spektakulärsten Buchten zwischen Blanes und Tossa" },
-        { title: "Boote ohne Führerschein", description: "Perfekt für Sonnenuntergangstouren, ab 70€/Std." },
+        { title: "Boote ohne Führerschein", description: "Perfekt für Sonnenuntergangstouren, ab 75€/Std." },
       ],
       activityFishing: [
         { title: "Boote mit Führerschein", description: "Leistungsstarke Boote für Angelgebiete" },
         { title: "Bootsrouten ab Blanes", description: "Entdecken Sie die besten Gebiete" },
-        { title: "Bootsverleih Costa Brava", description: "9 Boote in Blanes verfügbar" },
+        { title: "Bootsverleih Costa Brava", description: "8 Boote in Blanes verfügbar" },
         { title: "Jetski-Tour", description: "Geführte Jetski-Route von Blanes nach Tossa de Mar" },
       ],
       categoryLicenseFree: [
@@ -4309,13 +4311,13 @@ export const de: Translations = {
       jetskiHub: [
         { title: "Jetski-Rundkurs", description: "Fahren Sie einen Jetski ohne Führerschein auf einem überwachten Rundkurs vor Blanes" },
         { title: "Geführte Jetski-Tour nach Tossa", description: "Geführte Route von Blanes nach Tossa de Mar mit Betreuer" },
-        { title: "Boote ohne Führerschein", description: "5 Boote ab 70€/Std., Kraftstoff inklusive" },
+        { title: "Boote ohne Führerschein", description: "4 Boote ab 75€/Std., Kraftstoff inklusive" },
         { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
       ],
       jetskiCircuito: [
         { title: "Jetski-Verleih in Blanes", description: "Alle Jetski-Erlebnisse ohne Führerschein" },
         { title: "Geführte Jetski-Tour nach Tossa", description: "Geführte Route von Blanes nach Tossa de Mar mit Betreuer" },
-        { title: "Boote ohne Führerschein", description: "5 Boote ab 70€/Std., Kraftstoff inklusive" },
+        { title: "Boote ohne Führerschein", description: "4 Boote ab 75€/Std., Kraftstoff inklusive" },
         { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
       ],
       jetskiExcursion: [
@@ -4326,7 +4328,7 @@ export const de: Translations = {
       ],
       scooters: [
         { title: "Bootsverleih in Lloret de Mar", description: "Spektakuläre Strände und Buchten ab dem Hafen von Blanes" },
-        { title: "Boote ohne Führerschein", description: "5 Boote ab 70€/Std., Kraftstoff inklusive" },
+        { title: "Boote ohne Führerschein", description: "4 Boote ab 75€/Std., Kraftstoff inklusive" },
         { title: "Jetski-Verleih ohne Führerschein", description: "Rundkurs und geführte Jetski-Tour ab Blanes" },
         { title: "Ausflug nach Tossa de Mar", description: "Entdecken Sie die Vila Vella und ihre kristallklaren Buchten" },
       ],
@@ -4335,10 +4337,10 @@ export const de: Translations = {
   occasionMatrix: {
     pages: {
       snorkel__locationBlanes: {
-        seoTitle: 'Schnorcheln mit dem Boot ab Blanes — Beste Buchten | Costa Brava Rent a Boat',
+        seoTitle: 'Schnorcheln mit dem Boot ab Blanes: beste Buchten | Costa Brava Rent a Boat',
         seoDescription: 'Boot ohne Führerschein in Blanes mieten und schnorcheln in Cala Sant Francesc, Sa Forcanera oder Cala Treumal. Benzin inklusive, keine Vorkenntnisse nötig, Buchten unter 2 Seemeilen.',
         h1: 'Schnorcheln mit dem Boot ab Blanes',
-        intro: 'Vom Hafen Blanes aus erreichst du in wenigen Fahrminuten Buchten mit kristallklarem Wasser und felsigem Grund – perfekt zum Schnorcheln. Mit einem Boot ohne Führerschein – Benzin inklusive und keine Vorkenntnisse nötig – wählst du deine Bucht, wirfst Anker und gehst in deinem Tempo ins Wasser.',
+        intro: 'Vom Hafen Blanes aus erreichst du in wenigen Fahrminuten Buchten mit kristallklarem Wasser und felsigem Grund, perfekt zum Schnorcheln. Mit einem Boot ohne Führerschein (Benzin inklusive und keine Vorkenntnisse nötig) wählst du deine Bucht, wirfst Anker und gehst in deinem Tempo ins Wasser.',
         spotsTitle: 'Beste Buchten zum Schnorcheln in der Nähe von Blanes',
         spots: [
           {
@@ -4377,7 +4379,7 @@ export const de: Translations = {
         ctaText: 'Wähle Datum und Boot ohne Führerschein und erlebe den besten Schnorcheltag in den Buchten von Blanes.',
       },
       snorkel__locationLloret: {
-        seoTitle: 'Schnorcheln mit dem Boot in Lloret de Mar — Calas Boadella und Banys | Costa Brava Rent a Boat',
+        seoTitle: 'Schnorcheln mit dem Boot in Lloret de Mar: Calas Boadella und Banys | Costa Brava Rent a Boat',
         seoDescription: 'Entdecke die besten Schnorchelbuchten von Lloret de Mar mit dem Boot ab Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Boot mit Führerschein, ca. 20 Minuten Fahrt.',
         h1: 'Schnorcheln mit dem Boot in Lloret de Mar',
         intro: 'Lloret de Mar verbirgt einige der Buchten mit dem besten Wasser an der südlichen Costa Brava, viele nur vom Meer aus erreichbar. Von Blanes aus erreichst du in etwa 20 Fahrminuten diese felsigen Winkel und erkundest sie schnorchelnd ohne die Menschenmassen vom Strand.',
@@ -4419,7 +4421,7 @@ export const de: Translations = {
         ctaText: 'Wähle Datum und Boot mit Führerschein und entdecke die Schnorchelbuchten von Lloret ab Blanes.',
       },
       snorkel__locationTossa: {
-        seoTitle: 'Schnorcheln mit dem Boot in Tossa de Mar — Unberührte Buchten und geschützte Gewässer | Costa Brava Rent a Boat',
+        seoTitle: 'Schnorcheln mit dem Boot in Tossa de Mar: unberührte Buchten und geschützte Gewässer | Costa Brava Rent a Boat',
         seoDescription: 'Schnorchle im klaren Wasser von Tossa de Mar: La Mar Menuda, Cala Giverola, Cala Pola. Bootsfahrt mit Führerschein ab Blanes, 30-45 Minuten Fahrt.',
         h1: 'Schnorcheln mit dem Boot in Tossa de Mar',
         intro: 'Tossa de Mar ist eines der besten Schnorchelziele an der Costa Brava: Ein Teil seiner Küste ist geschützt, mit felsigem Grund und Wiesen voller Leben. Von Blanes sind es etwa 30-45 Fahrminuten mit einem Boot mit Führerschein zu seinen unberührtesten Buchten.',
@@ -4461,7 +4463,7 @@ export const de: Translations = {
         ctaText: 'Wähle Datum und Boot mit Führerschein und widme den Tag den geschützten Buchten von Tossa ab Blanes.',
       },
       snorkel__locationCostaBrava: {
-        seoTitle: 'Schnorcheln mit dem Boot entlang der Costa Brava — Die besten Buchten ab Blanes | Costa Brava Rent a Boat',
+        seoTitle: 'Schnorcheln mit dem Boot entlang der Costa Brava: die besten Buchten ab Blanes | Costa Brava Rent a Boat',
         seoDescription: 'Erkunde mit dem Boot die besten Schnorchelbuchten der südlichen Costa Brava, von Blanes bis Tossa de Mar. Boote ohne Führerschein für nahe Buchten und mit Führerschein für die gesamte Strecke.',
         h1: 'Schnorcheln mit dem Boot entlang der Costa Brava',
         intro: 'Der südliche Abschnitt der Costa Brava, von Blanes bis Tossa de Mar, vereint Dutzende von Buchten mit felsigem Grund und transparentem Wasser, ideal zum Schnorcheln. Vom Hafen Blanes aus kannst du zwischen einem kurzen Ausflug zu den nächstgelegenen Buchten oder einem ganzen Tag entlang der Küste wählen.',
@@ -4485,7 +4487,7 @@ export const de: Translations = {
           },
         ],
         boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
-        boatsIntro: 'Für die Buchten in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive und ohne Bootsführerschein. Um die gesamte Strecke bis Lloret und Tossa zurückzulegen – jenseits der 2 Seemeilen – benötigst du ein Boot mit Führerschein, mit Reichweite für mehrere Buchten am Tag.',
+        boatsIntro: 'Für die Buchten in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive und ohne Bootsführerschein. Um die gesamte Strecke bis Lloret und Tossa zurückzulegen (jenseits der 2 Seemeilen) benötigst du ein Boot mit Führerschein, mit Reichweite für mehrere Buchten am Tag.',
         practicalTitle: 'Praktische Informationen',
         practicalBody: 'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Boote ohne Führerschein fahren bis zu 2 Seemeilen; um Lloret (~20 Min.) oder Tossa (30-45 Min.) zu erreichen, wird ein Boot mit Führerschein verwendet. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Ankere immer über Sand, niemals über Seegras.',
         faqTitle: 'Häufig gestellte Fragen',
@@ -4517,7 +4519,7 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot für einen Familienausflug wählen',
         boatsIntro:
-          'Für Familien empfehlen wir geräumige und stabile Boote mit Sonnendeck und Schattenbereich. Mehrere sind ohne Führerschein – mit Benzin inklusive und ohne Bootsführerschein –, und für größere Gruppen haben wir Boote mit bis zu 7 Plätzen.',
+          'Für Familien empfehlen wir geräumige und stabile Boote mit Sonnendeck und Schattenbereich. Mehrere sind ohne Führerschein (mit Benzin inklusive und ohne Bootsführerschein), und für größere Gruppen haben wir Boote mit bis zu 7 Plätzen.',
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Wir stellen Rettungswesten in allen Größen, auch für Kinder. Bring Sonnenschutz, Mütze, Wasser und etwas zu essen mit. Die Buchten in der Nähe von Blanes liegen innerhalb der 2 Seemeilen und sind sogar mit einem Boot ohne Führerschein erreichbar.',
@@ -4544,7 +4546,7 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot wählen, um mit der Familie nach Lloret zu gelangen',
         boatsIntro:
-          'Lloret liegt jenseits der 2 Seemeilen, daher erreicht man es mit einem unserer Boote mit Führerschein. Sie sind geräumig und stabil – die Pacific Craft 625 fasst bis zu 7 Personen – und bewältigen die Strecke ab Blanes in etwa 20 Minuten.',
+          'Lloret liegt jenseits der 2 Seemeilen, daher erreicht man es mit einem unserer Boote mit Führerschein. Sie sind geräumig und stabil (die Pacific Craft 625 fasst bis zu 7 Personen) und bewältigen die Strecke ab Blanes in etwa 20 Minuten.',
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Die Strecke nach Lloret dauert etwa 20 Minuten. Wir stellen Rettungswesten in allen Größen; bring Sonnenschutz, Mütze, Wasser und etwas zu essen mit.',
@@ -4598,7 +4600,7 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
         boatsIntro:
-          'Für die Buchten in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive. Um den Abschnitt bis Lloret und Tossa – jenseits der 2 Seemeilen – zurückzulegen, benötigst du ein Boot mit Führerschein, geräumig und mit bis zu 7 Plätzen.',
+          'Für die Buchten in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive. Um den Abschnitt bis Lloret und Tossa (jenseits der 2 Seemeilen) zurückzulegen, benötigst du ein Boot mit Führerschein, geräumig und mit bis zu 7 Plätzen.',
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Boote ohne Führerschein fahren bis zu 2 Seemeilen; um Lloret (~20 Min.) oder Tossa (30-45 Min.) zu erreichen, wird ein Boot mit Führerschein verwendet. Wir stellen Rettungswesten in allen Größen.',
@@ -4625,7 +4627,7 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot für den Sonnenuntergang wählen',
         boatsIntro:
-          'Für einen Ausflug bei Sonnenuntergang empfehlen wir bequeme Boote mit gutem Sonnendeck. Mehrere sind ohne Führerschein – mit Benzin inklusive und ohne Bootsführerschein –, ideal für einen kurzen, entspannten Ausflug in der Nähe von Blanes.',
+          'Für einen Ausflug bei Sonnenuntergang empfehlen wir bequeme Boote mit gutem Sonnendeck. Mehrere sind ohne Führerschein (mit Benzin inklusive und ohne Bootsführerschein), ideal für einen kurzen, entspannten Ausflug in der Nähe von Blanes.',
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           'Saison von April bis Oktober, mit Abfahrten bis 20:00 Uhr ab Hafen Blanes; die Zeit am späten Nachmittag schenkt das beste Licht. An der Costa Brava geht die Sonne hinter der Küste unter, du genießt also eher das goldene Licht und die beleuchteten Klippen als den Sonnenuntergang über dem Wasser. Bring eine leichte Jacke mit: Am Abend wird es kühler.',
@@ -4706,7 +4708,7 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
         boatsIntro:
-          'Für einen Ausflug in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive. Um den Abschnitt bis Lloret und Tossa – jenseits der 2 Seemeilen – zurückzulegen, benötigst du ein Boot mit Führerschein, bequem und mit gutem Sonnendeck.',
+          'Für einen Ausflug in der Nähe von Blanes reicht ein Boot ohne Führerschein, mit Benzin inklusive. Um den Abschnitt bis Lloret und Tossa (jenseits der 2 Seemeilen) zurückzulegen, benötigst du ein Boot mit Führerschein, bequem und mit gutem Sonnendeck.',
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           'Saison von April bis Oktober, mit Abfahrten bis 20:00 Uhr ab Hafen Blanes. An dieser Küste geht die Sonne hinter dem Land unter: Du genießt das goldene Licht und die beleuchteten Orte und Klippen. Boote ohne Führerschein fahren bis zu 2 Seemeilen; für Lloret oder Tossa wird ein Boot mit Führerschein verwendet. Bring eine leichte Jacke mit.',
@@ -4830,7 +4832,7 @@ export const de: Translations = {
   },
   glossaryPage: {
     seo: {
-      title: 'Nautisches Glossar, Bootsverleih Costa Brava | Costa Brava Rent a Boat',
+      title: 'Nautisches Glossar · Bootsverleih Costa Brava | Costa Brava Rent a Boat',
       description: 'Glossar wichtiger nautischer Begriffe: LNB, PER, PNB, Knoten, Seemeilen, Länge, Ankern, Buchten und Bootsteile. Praktisches Wörterbuch für die Bootsmiete in Blanes.',
       keywords: 'nautisches glossar, was ist LNB, was ist PER, was ist PNB, seemeilen, knoten, bootslänge, ankern, boots glossar',
     },
@@ -4842,7 +4844,7 @@ export const de: Translations = {
     ctaDesc: 'Jetzt, da Sie die Terminologie beherrschen, wählen Sie Ihr Boot ohne oder mit Führerschein, um die Costa Brava zu erkunden.',
     ctaFleet: 'Zur Flotte',
     ctaFaq: 'Häufige Fragen',
-    schemaName: 'Nautisches Glossar, Bootsverleih Costa Brava',
+    schemaName: 'Nautisches Glossar · Bootsverleih Costa Brava',
     schemaDescription: 'Definitionen wichtiger nautischer Begriffe für die Bootsmiete an der Costa Brava: Befähigungsnachweise, Maßeinheiten, Bootsteile und maritime Terminologie.',
     categories: {
       titulacion: 'Befähigungsnachweise',

@@ -2552,6 +2552,7 @@ export interface Translations {
       per: string;
       patron_yate: string;
       capitan_yate: string;
+      captained?: string;
     };
     licenseFallback: string;
     table: {
@@ -2630,6 +2631,7 @@ export interface Translations {
     per: string;
     patron_yate: string;
     capitan_yate: string;
+    captained?: string;
   };
 
   legalPages?: {

@@ -22,10 +22,10 @@ export const ca: Translations = {
     subtitleLine2:
       "7 cales verges a la ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Gasolina inclosa.",
     subtitleMobile: "Vaixells sense llicència des de Blanes. 7 cales fins a la Platja de Fenals.",
-    priceBadge: "Des de 70€",
+    priceBadge: "Des de 75€",
     fuelBadge: "Gasolina inclosa",
     pricePerPerson: "Des de 14€ per persona/hora",
-    pricePerPersonDetail: "Vaixell complet des de 70€/h per a 5 persones",
+    pricePerPersonDetail: "Vaixell complet des de 75€/h per a 5 persones",
     bookNow: "Veure Disponibilitat",
     findYourBoat: "Reservar ara",
     viewFleet: "Veure tots els vaixells",
@@ -39,12 +39,12 @@ export const ca: Translations = {
     freeCancellation: "Canvi de data gratuït",
     instantConfirmation: "Confirmació immediata",
     marqueeText:
-      "Lloguer de Vaixells a Blanes | Amb i Sense Llicència | Gasolina Inclosa | Des de 70\u20AC/h",
+      "Lloguer de Vaixells a Blanes | Amb i Sense Llicència | Gasolina Inclosa | Des de 75\u20AC/h",
     askWhatsApp: "Pregunta'ns per WhatsApp",
     testimonialQuote: "Experi\u00E8ncia incre\u00EFble, repetirem segur",
     testimonialQuoteShort: "Repetirem segur",
     summaryGeo:
-      "Costa Brava Rent a Boat opera la flota de lloguer de vaixells més gran del Port de Blanes amb 9 embarcacions: 5 sense llicència amb gasolina inclosa des de 70€/h, 3 amb llicència i 1 excursió privada amb patró. Atenció en 8 idiomes. Temporada d'abril a octubre. 4,8★ a Google amb més de 300 ressenyes.",
+      "Costa Brava Rent a Boat opera la flota de lloguer de vaixells més gran del Port de Blanes amb 8 embarcacions: 4 sense llicència amb gasolina inclosa des de 75€/h, 3 amb llicència i 1 excursió privada amb patró. Atenció en 8 idiomes. Temporada d'abril a octubre. 4,8★ a Google amb més de 300 ressenyes.",
   },
 
   fleet: {
@@ -329,7 +329,7 @@ export const ca: Translations = {
     selectYourBoat: "Selecciona la teva embarcació",
     continue: "Continuar",
     customerData: "Dades del client",
-    continueToPayment: "Continuar al pagament",
+    continueToPayment: "Revisar la sol·licitud",
     stripePaymentSecure:
       "Et confirmarem la disponibilitat per WhatsApp en menys de 2 hores. Sense compromís fins aleshores.",
     firstName: "Nom",
@@ -696,7 +696,7 @@ export const ca: Translations = {
     heroChipDateChange: "Canvi de data gratuït amb 7+ dies",
     heroChipWeather: "Si el mar no acompanya, reprogramem",
     recommendedBadge: "Recomanat",
-    viewsToday: "persones han vist aquest vaixell avui",
+    viewsToday: "visites a aquesta barca avui",
     viewCustomerGallery: "Veure galeria de fotos de clients",
     fuelIncludedShort: "Gasolina inclosa",
     mainFeatures: "Característiques Principals",
@@ -863,7 +863,7 @@ export const ca: Translations = {
         probablyValid: "Porta l'ICC original el dia del lloguer. Te'l demanarem abans de salpar.",
         needsIcc: "El teu país emet ICC. Demana'l a la teva federació nàutica abans de viatjar.",
         notRecognized: "La teva llicència nacional no es reconeix directament a Espanya. Escriu-nos per WhatsApp i mirem amb tu quines opcions tens.",
-        insufficient: "La teva llicència equival a un nivell inferior al PNB espanyol. Les nostres embarcacions amb llicència exigeixen PNB o superior, considera obtenir PER o ICC.",
+        insufficient: "La teva llicència queda per sota de la Llicència de Navegació espanyola, el mínim per a la nostra flota amb llicència. Considera obtenir la LN o un títol superior.",
         inlandOnly: "La teva llicència autoritza rius i llacs, no navegació marítima. Bona notícia: els nostres vaixells sense llicència no necessiten cap títol, són perfectes per a tu.",
       },
       pill: {
@@ -954,7 +954,7 @@ export const ca: Translations = {
     lloret: "Lloguer vaixell Lloret de Mar",
     lloretDesc: "25 min navegant, platges i cales amagades",
     tossa: "Lloguer vaixell Tossa de Mar",
-    tossaDesc: "1h navegant, vila medieval emmurallada",
+    tossaDesc: "30-45 min navegant amb llicència: vila medieval emmurallada",
     malgrat: "Vaixells prop de Malgrat de Mar",
     malgratDesc: "10 min en cotxe fins al Port de Blanes",
     santaSusanna: "Vaixells prop de Santa Susanna",
@@ -972,10 +972,10 @@ export const ca: Translations = {
   },
   categoryLicenseFree: {
     synonymsTitle: "Llanxa, barca o embarcació? És el mateix",
-    synonymsBody: "Tant és com ho busquis: lloguer de llanxes a la Costa Brava, lloguer d'embarcacions sense titulació o llogar una barca a Blanes. Els nostres 5 vaixells sense llicència són llanxes d'esbarjo de fins a 5 metres i 15 CV que qualsevol adult pot pilotar sense carnet nàutic. Mateix vaixell i mateix preu des de 70€/h amb gasolina inclosa, ho diguis com ho diguis.",
+    synonymsBody: "Tant és com ho busquis: lloguer de llanxes a la Costa Brava, lloguer d'embarcacions sense titulació o llogar una barca a Blanes. Els nostres 4 vaixells sense llicència són llanxes d'esbarjo de fins a 5 metres i 15 CV que qualsevol adult pot pilotar sense carnet nàutic. Mateix vaixell i mateix preu des de 75€/h amb gasolina inclosa, ho diguis com ho diguis.",
     heroTitle: "Vaixells Sense Llicència a Blanes",
     heroDescription:
-      "5 barques sense llicència des de 70€/h al Port de Blanes, gasolina inclosa. Fins a 7 persones, sense carnet ni titulació, sense experiència prèvia. Briefing de seguretat de 15 minuts i a navegar per les cales de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina i Sa Boadella fins a la Platja de Fenals (Lloret de Mar).",
+      "4 barques sense llicència des de 75€/h al Port de Blanes, gasolina inclosa. Fins a 5 persones, sense carnet ni titulació, sense experiència prèvia. Briefing de seguretat de 15 minuts i a navegar per les cales de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina i Sa Boadella fins a la Platja de Fenals (Lloret de Mar).",
     badgeNoLicense: "Sense Llicència Necessària",
     badgePower: "Fins a 15 CV",
     badgeCapacity: "4-7 persones",
@@ -1032,7 +1032,7 @@ export const ca: Translations = {
       "Als nostres vaixells sense llicència, la gasolina està inclosa en el preu del lloguer. No haureu de preocupar-vos per repostar ni per costos addicionals de combustible. El preu que veieu és el preu final.",
     comparisonTitle: "Comparativa Detallada dels Nostres Vaixells sense Llicència",
     comparisonIntro:
-      "Disposem de 5 embarcacions sense llicència al Port de Blanes, cadascuna amb personalitat pròpia. Consulteu la taula per trobar la que millor s'adapta al vostre pla.",
+      "Disposem de 4 embarcacions sense llicència al Port de Blanes, cadascuna amb personalitat pròpia. Consulteu la taula per trobar la que millor s'adapta al vostre pla.",
     comparisonBoatName: "Vaixell",
     comparisonCapacity: "Capacitat",
     comparisonEngine: "Motor",
@@ -1077,19 +1077,19 @@ export const ca: Translations = {
       "És el cas més habitual entre els nostres clients. Les barques sense llicència estan dissenyades precisament per a persones sense experiència prèvia: controls intuïtius, motor de baixa potència (15 CV), navegació a 5 nusos (velocitat de passeig) i zona costanera protegida. En el briefing de 15 minuts t'ensenyem a maniobrar al port, fondejar, utilitzar la VHF i tornar a l'amarrador. Fins avui cap client ha tingut problemes per manejar la barca després del briefing.",
     faqGroupSizeQuestion: "Quanta gent cap en una barca sense llicència?",
     faqGroupSizeAnswer:
-      "Les nostres 5 barques sense llicència tenen capacitat entre 4 i 5 persones (adults i nens compten igual). L'Astec 400 és ideal per a parelles o famílies petites (4 persones). Solar 450, Remus 450, Remus 450 II i Astec 480 són les més grans de la categoria sense llicència (5 persones). Si necessites 6 o 7 places, mira les barques amb llicència (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o l'Excursió Privada amb patró. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap.",
+      "Les nostres 4 barques sense llicència tenen capacitat entre 4 i 5 persones (adults i nens compten igual). La Remus 450 és ideal per a parelles o famílies petites, i la Solar 450, la Remus 450 II i l'Astec 480 admeten fins a 5 persones. Si necessites 6 o 7 places, mira les barques amb llicència (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o l'Excursió Privada amb patró. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap.",
     howToTitle: "Com llogar un vaixell sense llicència a Blanes (5 passos)",
     howToIntro:
       "Llogar un vaixell sense llicència al Port de Blanes és més senzill del que sembla. Aquí tens els 5 passos del procés, des de la reserva fins a la devolució, perquè sàpigues exactament què esperar el dia de la teva sortida.",
     howToStep1Title: "1. Tria el teu vaixell i horari",
     howToStep1Text:
-      "Consulta la nostra flota sense llicència (Solar 450, Remus 450, Astec 400, Astec 480 i Mingolla Brava 19) i tria el vaixell que millor s'adapti al teu grup. Reserva per WhatsApp (+34 611 500 372) o des de la web indicant data, hora i nombre de persones. Confirmem disponibilitat en minuts.",
+      "Consulta la nostra flota sense llicència (Solar 450, Remus 450, Remus 450 II i Astec 480) i tria el vaixell que millor s'adapti al teu grup. Reserva per WhatsApp (+34 611 500 372) o des de la web indicant data, hora i nombre de persones. Confirmem disponibilitat en menys de 2 hores.",
     howToStep2Title: "2. Arriba al Port de Blanes 30 min abans",
     howToStep2Text:
       "La nostra base és al Port de Blanes (Girona), accessible en cotxe des de Barcelona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Aparcament gratuït a la zona portuària. Porta el DNI o passaport del conductor (major de 18 anys) i la fiança de 300€ (targeta o efectiu, es retorna íntegra).",
     howToStep3Title: "3. Briefing de seguretat (15 minuts)",
     howToStep3Text:
-      "Abans de salpar, el nostre equip local t'ensenya a manejar el vaixell al port: arrencar i parar el motor, maniobrar a baixa velocitat, fondejar a cala, usar la ràdio VHF i tornar a l'amarrador. Resolem tots els teus dubtes. No necessites experiència prèvia — el briefing està pensat per a principiants.",
+      "Abans de salpar, el nostre equip local t'ensenya a manejar el vaixell al port: arrencar i parar el motor, maniobrar a baixa velocitat, fondejar a cala, usar la ràdio VHF i tornar a l'amarrador. Resolem tots els teus dubtes. No necessites experiència prèvia: el briefing està pensat per a principiants.",
     howToStep4Title: "4. Navega per les cales de la Costa Brava",
     howToStep4Text:
       "Surts del Port de Blanes amb gasolina inclosa i rumb lliure dins del límit de 2 milles nàutiques. Les cales més populars: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina i Sa Boadella, fins a la Platja de Fenals (Lloret de Mar). Fondeja on vulguis, banya't, fes snorkel i torna al teu ritme.",
@@ -1099,7 +1099,7 @@ export const ca: Translations = {
     howToDurationLabel: "Durada del procés",
     howToDurationValue: "Reserva 5 min · briefing 15 min · navegació lliure",
     howToCostLabel: "Cost des de",
-    howToCostValue: "70€/h amb gasolina inclosa",
+    howToCostValue: "75€/h amb gasolina inclosa",
     vsMarketplacesTitle: "Per què llogar directe a Blanes en lloc d'un marketplace",
     vsMarketplacesIntro:
       "Alguns marketplaces anuncien vaixells sense llicència a la Costa Brava des de 55€/dia. Sona barat, però el preu que veus no és el preu que pagues. Això és el que canvia quan reserves directament amb nosaltres enfront d'una plataforma intermediària.",
@@ -1109,7 +1109,7 @@ export const ca: Translations = {
     vsMarketplacesRow1Direct: "Inclosa en el preu",
     vsMarketplacesRow1Market: "A part (sol afegir 25-50€)",
     vsMarketplacesRow2Label: "Comissió de plataforma",
-    vsMarketplacesRow2Direct: "0€ — pagues a l'armador",
+    vsMarketplacesRow2Direct: "0€: pagues a l'armador",
     vsMarketplacesRow2Market: "5-15% sobre el total",
     vsMarketplacesRow3Label: "Briefing de seguretat",
     vsMarketplacesRow3Direct: "Equip local en 8 idiomes (es/en/fr/de/ca/nl/it/ru)",
@@ -1121,19 +1121,19 @@ export const ca: Translations = {
     vsMarketplacesRow5Direct: "Flexible fins a 48h abans",
     vsMarketplacesRow5Market: "Política del marketplace + tarifa de l'armador",
     vsMarketplacesConclusion:
-      "El preu final amb marketplace sol ser un 20-35% major que l'anunciat un cop sumes gasolina, comissió i extres. Els nostres 70€/h ja ho inclouen tot: gasolina, equipament, briefing, assegurança de responsabilitat civil i suport al port.",
+      "El preu final amb marketplace sol ser un 20-35% major que l'anunciat un cop sumes gasolina, comissió i extres. Els nostres 75€/h ja ho inclouen tot: gasolina, equipament, briefing, assegurança de responsabilitat civil i suport al port.",
   },
   categoryLicensed: {
     heroTitle: "Vaixells Amb Llicència a Blanes",
     heroDescription:
-      "Lloga embarcacions potents amb llicència al Port de Blanes, Costa Brava. Màxima llibertat per a navegació avançada. Requereix titulació nàutica PER, PNB o superior.",
+      "Lloga embarcacions potents amb llicència al Port de Blanes, Costa Brava. Màxima llibertat per a navegació avançada. N'hi ha prou amb la Llicència de Navegació (LN) o qualsevol titulació superior.",
     badgeLicense: "Requereix Llicència",
     badgePower: "40-115 CV",
     badgeCapacity: "6-7 persones",
     whatAreTitle: "Què són els Vaixells Amb Llicència?",
     advancedNavigation: "Navegació Avançada",
     advancedNavigationDesc:
-      "Els vaixells amb llicència són embarcacions de més de 15 CV de potència que requereixen titulació nàutica oficial (PER, PNB o superior) per al seu maneig. Ofereixen major potència, velocitat i capacitat de navegació.",
+      "Els vaixells amb llicència són embarcacions de més de 15 CV de potència que requereixen titulació nàutica oficial (Llicència de Navegació o superior) per al seu maneig. Ofereixen major potència, velocitat i capacitat de navegació.",
     greaterFreedom: "Major Llibertat",
     greaterFreedomDesc:
       "Amb aquestes embarcacions pots navegar sense limitació de distància de la costa (segons la teva titulació), accedir a cales més llunyanes i gaudir d'una experiència de navegació més esportiva i emocionant.",
@@ -1157,6 +1157,7 @@ export const ca: Translations = {
     sportNavigation: "Experiència de navegació esportiva",
     requirementsTitle: "Requisits i Titulacions",
     acceptedLicenses: "Titulacions Acceptades",
+    licenciaNavegacion: "Llicència de Navegació (LN): la titulació mínima, suficient per a tota la nostra flota",
     per: "PER (Patró d'Embarcacions d'Esbarjo)",
     pnb: "PNB (Patró de Navegació Bàsica)",
     yachtCaptain: "Capità de Iot",
@@ -1206,7 +1207,7 @@ export const ca: Translations = {
     featuredArticle: "Destacat",
     readMore: "Llegir article",
     minRead: "min de lectura",
-    ctaBanner: "Ja saps quin vaixell vols? Reserva des de 70\u20AC/h",
+    ctaBanner: "Ja saps quin vaixell vols? Reserva des de 75\u20AC/h",
     ctaBannerButton: "Reservar ara",
   },
   exitIntent: {
@@ -1316,7 +1317,7 @@ export const ca: Translations = {
     q2: "Quant de temps vols navegar?",
     q2options: ["1-2 hores", "3-4 hores (mig dia)", "6-8 hores (dia complet)"],
     q3: "Quin és el teu pressupost?",
-    q3options: ["Econòmic (des de 70€)", "Mitjà (100-200€)", "Sense límit"],
+    q3options: ["Econòmic (des de 75€)", "Mitjà (100-200€)", "Sense límit"],
     result: "El teu vaixell ideal és...",
     bestMatch: "Millor opció",
     alsoConsider: "També pots considerar",
@@ -1369,7 +1370,7 @@ export const ca: Translations = {
         id: "precios",
         question: "Quins són els preus del lloguer?",
         answer:
-          "Vaixells sense llicència des de 70€ amb gasolina inclosa (1h, 2h, 3h, 4h, 6h o dia complet). Vaixells amb llicència des de 160€ sense gasolina (2h, 4h, 8h). Els preus varien segons la temporada (juliol/agost) i l'embarcació.",
+          "Vaixells sense llicència des de 75€ amb gasolina inclosa (1h, 2h, 3h, 4h, 6h o dia complet). Vaixells amb llicència des de 160€ sense gasolina (2h, 4h, 8h). Els preus varien segons la temporada (juliol/agost) i l'embarcació.",
       },
       {
         id: "sin-licencia",
@@ -1581,11 +1582,11 @@ export const ca: Translations = {
     "astec-480":
       "L'experiència premium sense necessitat de carnet nàutic. Amb 4,80 m d'eslora, equip de música bluetooth, solarium encoixinat i el doble de dipòsit de combustible, és l'embarcació sense llicència més completa de Blanes. Navega amb la teva música preferida cap a les cales més boniques de la Costa Brava. Gasolina, assegurança i equip de seguretat inclosos.",
     "trimarchi-57s":
-      "110 cv de disseny italià per a grups de fins a 7 persones que volen adrenalina i confort a parts iguals. Solarium doble a proa i popa per prendre el sol, taula central per dinar fondejats en una cala i la potència per arribar a qualsevol racó entre Blanes i Tossa de Mar en minuts. L'embarcació que tria qui vol sentir la velocitat sense renunciar a res. Requereix Llicència Bàsica de Navegació (LNB).",
+      "110 cv de disseny italià per a grups de fins a 7 persones que volen adrenalina i confort a parts iguals. Solarium doble a proa i popa per prendre el sol, taula central per dinar fondejats en una cala i la potència per arribar a qualsevol racó entre Blanes i Tossa de Mar en minuts. L'embarcació que tria qui vol sentir la velocitat sense renunciar a res. Requereix Llicència de Navegació (LN) o superior.",
     "mingolla-brava-19":
-      "La llanxa ideal per explorar tota la costa: Lloret de Mar en 15 minuts, Tossa de Mar en mitja hora. Amb 80 cv, GPS i sonda nàutica, arribes a cales que altres vaixells no assoleixen. Dutxa d'aigua dolça, bluetooth i arc d'acer inoxidable per a esports aquàtics. Tot l'equipament per recórrer la Costa Brava amb total autonomia. Requereix Llicència Bàsica de Navegació (LNB).",
+      "La llanxa ideal per explorar tota la costa: Lloret de Mar en 15 minuts, Tossa de Mar en mitja hora. Amb 80 cv, GPS i sonda nàutica, arribes a cales que altres vaixells no assoleixen. Dutxa d'aigua dolça, bluetooth i arc d'acer inoxidable per a esports aquàtics. Tot l'equipament per recórrer la Costa Brava amb total autonomia. Requereix Llicència de Navegació (LN) o superior.",
     "pacific-craft-625":
-      "El millor que pots llogar a Blanes. 6,24 metres d'eslora, motor Yamaha 115 cv i espai de luxe per a 7 persones. Solarium doble, taula per dinar fondejats davant d'una cala, dutxa d'aigua dolça i comandament electrònic. Per als qui no volen compromisos i busquen l'experiència nàutica més completa de la Costa Brava. Requereix llicència nàutica (PER/PNB).",
+      "El millor que pots llogar a Blanes. 6,24 metres d'eslora, motor Yamaha 115 cv i espai de luxe per a 7 persones. Solarium doble, taula per dinar fondejats davant d'una cala, dutxa d'aigua dolça i comandament electrònic. Per als qui no volen compromisos i busquen l'experiència nàutica més completa de la Costa Brava. Requereix Llicència de Navegació (LN) o superior.",
     "excursion-privada":
       "Tu només gaudeixes: el nostre patró professional et porta a cales secretes, coves marines i racons inaccessibles a peu entre Blanes i Tossa de Mar. Fondejareu a la cala perfecta del dia, escollida segons vent i corrents. Ideal per a celebracions, aniversaris o famílies que volen una excursió privada exclusiva per la Costa Brava sense preocupar-se de res.",
   },
@@ -1595,8 +1596,8 @@ export const ca: Translations = {
     eyebrowHome: "ABAST REAL DE NAVEGACIÓ",
     headlineHome: "Fins on arribes des de Blanes, amb i sense llicència",
     introHome:
-      "Amb una embarcació sense llicència navegues legalment fins a 2 milles de la costa a 5 nusos. Des del port de Blanes això són 7 cales autèntiques de la Costa Brava en una jornada, amb la Platja de Fenals (sud de Lloret de Mar) com a límit nord. Amb llicència PER pots estendre la ruta fins a Tossa de Mar, Sant Feliu i Platja d'Aro.",
-    eyebrowLloret: "TRAM SENSE LLICÈNCIA, 25 MIN DE NAVEGACIÓ",
+      "Amb una embarcació sense llicència navegues legalment fins a 2 milles de la costa a 5 nusos. Des del port de Blanes això són 7 cales autèntiques de la Costa Brava en una jornada, amb la Platja de Fenals (sud de Lloret de Mar) com a límit nord. Amb Llicència de Navegació (LN) pots estendre la ruta fins a Tossa de Mar, Sant Feliu i Platja d'Aro.",
+    eyebrowLloret: "TRAM SENSE LLICÈNCIA · 25 MIN DE NAVEGACIÓ",
     headlineLloret: "Les 7 cales entre Blanes i la Platja de Fenals",
     introLloret: "Per ordre des del port de Blanes. Distàncies acumulades a 5 nusos de creuer.",
     sinLicenciaTitle: "Ruta sense llicència (7 parades fins a la Platja de Fenals)",
@@ -1606,8 +1607,8 @@ export const ca: Translations = {
       "Una embarcació sense llicència pot navegar fins a 2 milles nàutiques de la costa a 5 nusos i 15 CV. Des del port de Blanes, la Platja de Fenals està just al llindar d'aquesta distància seguint la línia de costa.",
     noteNorthOfFenals:
       "Nota: la Platja de Lloret (centre), Cala Banys i Cala Canyelles queden al nord de Fenals, fora del rang sense llicència.",
-    conLicenciaTitle: "Extensió amb llicència PER",
-    conLicenciaIntro: "Amb llicència PER o patró inclòs, estens la ruta cap al nord:",
+    conLicenciaTitle: "Extensió amb Llicència de Navegació (LN)",
+    conLicenciaIntro: "Amb Llicència de Navegació (LN) o patró inclòs, estens la ruta cap al nord:",
     ext: {
       lloretCenter: "Lloret centre i Cala Banys (passada Fenals)",
       canyelles: "Cala Canyelles, petit port esportiu",
@@ -1616,7 +1617,7 @@ export const ca: Translations = {
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (mig dia / dia complet)",
     },
     ctaFleet: "Veure flota sense llicència",
-    ctaLicensed: "Vaixells amb llicència PER",
+    ctaLicensed: "Vaixells amb Llicència de Navegació",
     internalLinks:
       'Vols veure totes les rutes? Consulta el <a href="/ca/lloguer-vaixell-blanes" class="underline text-primary hover:text-primary/80">lloguer de barques a Blanes</a>, la ruta <a href="/ca/lloguer-vaixell-lloret-de-mar" class="underline text-primary hover:text-primary/80">fins a Lloret de Mar</a>, l\'extensió amb llicència <a href="/ca/lloguer-vaixell-tossa-de-mar" class="underline text-primary hover:text-primary/80">fins a Tossa de Mar</a>, totes les <a href="/ca/lloguer-vaixell-costa-brava" class="underline text-primary hover:text-primary/80">rutes per la Costa Brava</a> i el <a href="/ca/lloguer-vaixell-prop-barcelona" class="underline text-primary hover:text-primary/80">lloguer de barques prop de Barcelona</a>. Preus complets a <a href="/ca/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quant costa llogar un vaixell a Blanes</a>.',
   },
@@ -1726,6 +1727,7 @@ export const ca: Translations = {
       per: "PER requerit",
       patron_yate: "Patró d'Iot",
       capitan_yate: "Capità d'Iot",
+      captained: "Amb patró",
     },
     licenseFallback: "Amb llicència",
     table: {
@@ -1768,11 +1770,11 @@ export const ca: Translations = {
       a3: "Sí. La temporada baixa (abril-juny i setembre-octubre) té els millors preus. La temporada mitjana és juliol amb preus intermedis, i la temporada alta és agost amb les tarifes més altes. Recomanem reservar en temporada baixa per a la millor relació qualitat-preu.",
       q4: "Quan costa llogar una barca amb llicència?",
       a4Template:
-        "Les barques amb llicència a Blanes costen des de {licBaja2h} €/2h en temporada baixa. Requereixen PER o títol nàutic equivalent. Són barques més potents amb major autonomia per explorar la Costa Brava.",
+        "Les barques amb llicència a Blanes costen des de {licBaja2h} €/2h en temporada baixa. N'hi ha prou amb la Llicència de Navegació (LN) o un títol superior. Són barques més potents amb major autonomia per explorar la Costa Brava.",
     },
     cta: {
       title: "Reserva la teva barca al millor preu",
-      subtitle: "Tria la teva barca, data i horari. Confirmació immediata.",
+      subtitle: "Tria la teva barca, data i horari. Et confirmem en menys de 2 hores.",
       button: "Reservar ara",
     },
   },
@@ -1824,7 +1826,7 @@ export const ca: Translations = {
       noLicenseBullet2: "Des d'1 hora de lloguer",
       licensedTitle: "Barques amb llicència",
       licensedBody:
-        "2 embarcacions potents per a fins a 7 persones. Requereixen PER o títol nàutic equivalent. Major autonomia i velocitat per explorar tota la Costa Brava.",
+        "3 embarcacions potents per a fins a 7 persones. N'hi ha prou amb la Llicència de Navegació (LN) o un títol superior. Major autonomia i velocitat per explorar tota la Costa Brava.",
       licensedBullet1: "Fins a 7 persones per barca",
       licensedBullet2: "Jornada completa disponible",
       viewAllCta: "Veure totes les barques",
@@ -1887,7 +1889,7 @@ export const ca: Translations = {
   },
   licenseTypes: {
     none: "No requereix llicència",
-    navegacion: "Llicència Bàsica de Navegació (LNB)",
+    navegacion: "Llicència de Navegació (LN)",
     pnb: "Patró per a Navegació Bàsica (PNB)",
     per: "Patró d'Embarcacions d'Esbarjo (PER)",
     patron_yate: "Patró de Iot",
@@ -2022,7 +2024,7 @@ export const ca: Translations = {
     ],
     heroTitle: "Passeig en Vaixell a la Posta de Sol des de Blanes",
     heroDescription:
-      "Contempla la posta de sol sobre la Costa Brava des de la coberta del teu propi vaixell. Surt del port de Blanes, navega entre cales amagades i gaudeix de la llum més màgica del dia sobre la Mediterrània. Sense llicència de navegació. Des de 70 EUR/hora.",
+      "Contempla la posta de sol sobre la Costa Brava des de la coberta del teu propi vaixell. Surt del port de Blanes, navega entre cales amagades i gaudeix de la llum més màgica del dia sobre la Mediterrània. Sense llicència de navegació. Des de 75 €/hora.",
     badgeGoldenHour: "Vistes a l'hora daurada",
     badgeDuration: "2 hores recomanades",
     badgeCouples: "Perfecte per a parelles",
@@ -2130,7 +2132,7 @@ export const ca: Translations = {
       {
         name: "Barques sense llicència (4-5 persones)",
         duration: "2-3 hores recomanades",
-        price: "Des de 70 EUR/hora",
+        price: "Des de 75 €/hora",
         description:
           "Perfectes per a snorkel a cales properes com Cala Sant Francesc i Cala Bona. Gasolina inclosa. Fondeges el vaixell i et llences a l'aigua directament.",
       },
@@ -2262,7 +2264,7 @@ export const ca: Translations = {
         stops: ["Port de Blanes", "Cala Sant Francesc", "Retorn"],
         description:
           "Ideal per a famílies amb nens petits. Navegació curta fins a una cala protegida amb aigua poc profunda i cristal·lina. Temps per banyar-se, fer esnòrquel suau i pícnic a bord.",
-        price: "Des de 140 EUR (70 EUR/h)",
+        price: "Des de 115 € (2 h, temporada baixa)",
         tip: "Perfecta per a una primera experiència en vaixell amb nens. La cala té zona de sorra i aigua tranquil·la.",
       },
       {
@@ -2270,13 +2272,13 @@ export const ca: Translations = {
         stops: ["Port de Blanes", "Cala Bona", "Cala Sant Francesc", "Platja de Fenals", "Retorn"],
         description:
           "L'experiència completa per a famílies. Tres parades amb temps suficient per explorar cada cala. Combina bany, esnòrquel, pícnic i vistes espectaculars de la costa.",
-        price: "Des de 280 EUR (70 EUR/h)",
+        price: "Des de 150 € (4 h, temporada baixa)",
         tip: "Recomanada per a nens a partir de 4 anys. Porteu menjar, aigua, crema solar i gorres.",
       },
     ],
     heroTitle: "Lloguer de Vaixell per a Famílies a la Costa Brava",
     heroDescription:
-      "Una aventura segura i divertida per a tota la família. Vaixells sense llicència des del Port de Blanes amb gasolina inclosa, armilles infantils i cales protegides perfectes per a nens. Des de 70 EUR/hora.",
+      "Una aventura segura i divertida per a tota la família. Vaixells sense llicència des del Port de Blanes amb gasolina inclosa, armilles infantils i cales protegides perfectes per a nens. Des de 75 €/hora.",
     badgeNoLicense: "Sense llicència necessària",
     badgeKidsVests: "Armilles infantils incloses",
     badgeFuel: "Gasolina inclosa",
@@ -2406,7 +2408,7 @@ export const ca: Translations = {
         type: "Embarcacions sense llicència",
         capacity: "4-5 persones",
         autonomy: "Pesca costanera (fins a 2 milles)",
-        price: "Des de 70 EUR/hora (gasolina inclosa)",
+        price: "Des de 75 €/hora (gasolina inclosa)",
         advantages: [
           "Sense necessitat de títol nàutic",
           "Gasolina inclosa en el preu",
@@ -2519,7 +2521,7 @@ export const ca: Translations = {
         {
           question: "Necessito llicència per llogar un vaixell a Blanes?",
           answer:
-            "No. Tenim 5 vaixells sense llicència per a 4 o 5 persones. Només cal ser major de 18 anys. Et donem una formació de 15 minuts abans de sortir.",
+            "No. Tenim 4 vaixells sense llicència per a 4 o 5 persones. Només cal ser major de 18 anys. Et donem una formació de 15 minuts abans de sortir.",
         },
         {
           question: "Quan costa llogar un vaixell al Port de Blanes?",
@@ -2565,7 +2567,7 @@ export const ca: Translations = {
       hero: {
         title: "Lloguer de Barques a Blanes",
         subtitle:
-          "Lloguer de barques directe al Port de Blanes des de 70€/h, gasolina inclosa. Sense llicència fins a 5 persones, amb llicència fins a 7. Aparcament gratuït a 100m de l'amarrador, briefing de seguretat 15 minuts. Des d'aquí navegues fins a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) i Lloret de Mar (25 min). Tossa de Mar a 30-45 min amb llicència.",
+          "Lloguer de barques directe al Port de Blanes des de 75€/h, gasolina inclosa. Sense llicència fins a 5 persones, amb llicència fins a 7. Aparcament gratuït a 100m de l'amarrador, briefing de seguretat 15 minuts. Des d'aquí navegues fins a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) i Lloret de Mar (25 min). Tossa de Mar a 30-45 min amb llicència.",
         badgePort: "Port de Blanes",
         badgeCapacity: "4-7 persones",
         badgeDuration: "1h-8h durada",
@@ -2613,7 +2615,7 @@ export const ca: Translations = {
         mapTitle: "Ubicació - Port de Blanes",
         fleetTitle: "La Nostra Flota al Port de Blanes",
         fleetIntro:
-          "Disposem de 9 embarcacions amarrades al Port de Blanes, preparades per navegar d'abril a octubre. La nostra flota inclou 5 vaixells sense llicència perfectes per a famílies i parelles que volen explorar les cales properes, 3 opcions amb llicència per a navegants experimentats que busquen més autonomia i potència, i una Excursió Privada amb patró per a grups que prefereixen navegar sense haver de portar el timó. Totes les embarcacions es revisen diàriament i disposen d'assegurança a tot risc.",
+          "Disposem de 8 embarcacions amarrades al Port de Blanes, preparades per navegar d'abril a octubre. La nostra flota inclou 4 vaixells sense llicència perfectes per a famílies i parelles que volen explorar les cales properes, 3 opcions amb llicència per a navegants experimentats que busquen més autonomia i potència, i una Excursió Privada amb patró per a grups que prefereixen navegar sense haver de portar el timó. Totes les embarcacions es revisen diàriament i disposen d'assegurança a tot risc.",
         fleetNoLicense: "Sense llicència",
         fleetLicense: "Amb llicència",
         fleetFrom: "Des de",
@@ -2630,7 +2632,7 @@ export const ca: Translations = {
           "Els vaixells sense llicència inclouen combustible, assegurança, equip de seguretat, tendal i escala de bany. Per als vaixells amb llicència i l'excursió privada amb patró, el combustible NO està inclòs.",
         guideBookingTitle: "Com reservar",
         guideBookingText:
-          "Pots reservar a través del nostre web amb confirmació immediata, per WhatsApp al +34 611 500 372 en català, castellà i anglès, o directament al Port de Blanes si hi ha disponibilitat.",
+          "Pots reservar a través del nostre web (et confirmem per WhatsApp en menys de 2 hores), per WhatsApp al +34 611 500 372 en català, castellà i anglès, o directament al Port de Blanes si hi ha disponibilitat.",
         pricingTitle: "Preus del Lloguer de Vaixells a Blanes 2026",
         pricingIntro:
           "Les nostres tarifes varien segons la temporada i la durada del lloguer. Tots els preus inclouen IVA, amarrament i neteja.",
@@ -2699,7 +2701,7 @@ export const ca: Translations = {
         {
           question: "Puc arribar a Tossa de Mar des de Lloret amb vaixell sense llicència?",
           answer:
-            "No. Tossa està 4–5 milles al nord de Fenals, fora del rang legal sense llicència. Per anar a Tossa amb vaixell des de Blanes necessites (a) vaixell amb Llicència Bàsica de Navegació (LNB), o (b) Excursió Privada amb Capità.",
+            "No. Tossa està 4–5 milles al nord de Fenals, fora del rang legal sense llicència. Per anar a Tossa amb vaixell des de Blanes necessites (a) vaixell amb Llicència de Navegació (LN), o (b) Excursió Privada amb Capità.",
         },
         {
           question: "Què passa si la mar està dolenta?",
@@ -2784,7 +2786,7 @@ export const ca: Translations = {
         {
           question: "Puc arribar a Tossa de Mar amb vaixell sense llicència des de Blanes?",
           answer:
-            "No. Els vaixells sense llicència (2 milles de costa, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa necessites Llicència Bàsica de Navegació (LNB) o contractar l'Excursió Privada amb Capità.",
+            "No. Els vaixells sense llicència (2 milles de costa, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa necessites Llicència de Navegació (LN) o contractar l'Excursió Privada amb Capità.",
         },
         {
           question: "Quant es triga amb vaixell de Blanes a Tossa?",
@@ -2797,7 +2799,7 @@ export const ca: Translations = {
             "Pacific Craft 625 amb patró professional, 4 h màxim, fins a 6 persones (més el patró). Des de {excursionBaja4h} € temporada baixa (abril-juny, setembre-tancament). Inclou IVA, patró, amarratge, neteja i assegurança. Combustible a part.",
         },
         {
-          question: "Quan costa llogar a Tossa amb Llicència Bàsica (LNB)?",
+          question: "Quan costa llogar a Tossa amb Llicència de Navegació (LN)?",
           answer:
             "Packs tancats 2 h / 4 h / 8 h, sense patró. Des de {licBaja2h} € (2 h temporada baixa) amb els vaixells amb llicència. 3 tiers estacionals. Fiança 500 €. IVA, amarratge, neteja i assegurança inclosos; combustible a part.",
         },
@@ -2877,7 +2879,7 @@ export const ca: Translations = {
         ctaButton: "Reservar Excursió a Tossa",
         warningTitle: "Tossa no és accessible amb vaixell sense llicència.",
         warningBody:
-          'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència Bàsica de Navegació / LNB (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 6 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos, combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
+          'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència de Navegació (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 6 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos, combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
         crossLinkingText:
           'També oferim servei per a turistes allotjats a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> i <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Des d\'aquests pobles de la costa del Maresme s\'arriba al Port de Blanes en 10-20 minuts amb cotxe.',
         relatedTitle: "Serveis i destinacions relacionats",
@@ -2901,13 +2903,13 @@ export const ca: Translations = {
         whyRentTitle: "Per què llogar una barca des de Blanes?",
         closestPort: "El Port Més Proper",
         closestPortDesc:
-          "Blanes és el port nàutic més proper a Malgrat de Mar, a només 10 minuts per la N-II. Ofereix 7 embarcacions preparades per sortir a navegar amb totes les comoditats.",
-        varietyBoats: "7 Barques Disponibles",
+          "Blanes és el port nàutic més proper a Malgrat de Mar, a només 10 minuts per la N-II. Ofereix 8 embarcacions preparades per sortir a navegar amb totes les comoditats.",
+        varietyBoats: "8 Barques Disponibles",
         varietyBoatsDesc:
           "Des de barques sense llicència perfectes per a famílies fins a embarcacions amb llicència per a navegants experimentats. Per a 4 a 7 persones.",
         fuelIncluded: "Gasolina Inclosa",
         fuelIncludedDesc:
-          "Tots els nostres lloguers inclouen el combustible en el preu. Sense sorpreses ni costos ocults. Des de 70 EUR/hora.",
+          "Tots els nostres lloguers inclouen el combustible en el preu. Sense sorpreses ni costos ocults. Des de 75 €/hora.",
         noExperience: "Sense Experiència Necessària",
         noExperienceDesc:
           "Oferim barques sense llicència amb formació inclosa de 15 minuts. Ideal per a turistes que volen una experiència única.",
@@ -2972,7 +2974,7 @@ export const ca: Translations = {
           question:
             "Quines cales es poden arribar amb vaixell des de Blanes si estic allotjat a Malgrat?",
           answer:
-            "Amb un vaixell sense llicència des de Blanes arribes en 25 minuts a la Platja de Fenals (sud de Lloret), passant per 7 cales: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Platja de Santa Cristina, Cala Sa Boadella i Platja de Fenals. Amb vaixell amb Llicència Bàsica pots arribar a Tossa de Mar (45 min) i més enllà.",
+            "Amb un vaixell sense llicència des de Blanes arribes en 25 minuts a la Platja de Fenals (sud de Lloret), passant per 7 cales: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Platja de Santa Cristina, Cala Sa Boadella i Platja de Fenals. Amb vaixell amb Llicència de Navegació (LN) pots arribar a Tossa de Mar (45 min) i més enllà.",
         },
         {
           question: "Hi ha servei de transfer des d'hotels de Malgrat al Port de Blanes?",
@@ -3011,7 +3013,7 @@ export const ca: Translations = {
         {
           question: "Quina és la millor excursió amb vaixell si m'allotjo a Santa Susanna?",
           answer:
-            "Des de Blanes recomanem: (a) Ruta de cales 4h sense llicència fins a la Platja de Fenals fondeant en 2-3 cales cristal·lines (des de 135 EUR per a 5 persones); (b) Excursió privada amb patró 4h fins a Tossa i Cala Bona (des de {excursionBaja4h} EUR, ideal si no tens experiència nàutica); (c) Vaixell amb Llicència Bàsica si algú del grup té titulació (des de 240 EUR / 4h).",
+            "Des de Blanes recomanem: (a) Ruta de cales 4h sense llicència fins a la Platja de Fenals fondeant en 2-3 cales cristal·lines (des de 135 EUR per a 5 persones); (b) Excursió privada amb patró 4h fins a Tossa i Cala Bona (des de {excursionBaja4h} EUR, ideal si no tens experiència nàutica); (c) Vaixell amb Llicència de Navegació (LN) si algú del grup té titulació (des de 240 EUR / 4h).",
         },
         {
           question: "Puc fer una excursió amb vaixell a la posta de sol des de Santa Susanna?",
@@ -3031,13 +3033,13 @@ export const ca: Translations = {
         whyRentTitle: "Per què llogar una barca des de Blanes?",
         closestPort: "Port Proper i Accessible",
         closestPortDesc:
-          "El Port de Blanes és el punt de lloguer nàutic més proper a Santa Susanna. A només 15 minuts per carretera, amb 7 barques preparades per a la teva aventura.",
+          "El Port de Blanes és el punt de lloguer nàutic més proper a Santa Susanna. A només 15 minuts per carretera, amb 8 barques preparades per a la teva aventura.",
         varietyBoats: "Barques Per a Tothom",
         varietyBoatsDesc:
           "Sense llicència per a principiants i famílies, amb llicència per a navegants experimentats. Capacitat de 4 a 7 persones per embarcació.",
         fuelIncluded: "Tot Inclòs",
         fuelIncludedDesc:
-          "Preu amb gasolina inclosa des de 70 EUR/hora. Sense costos ocults. Formació, armilles salvavides i equip de seguretat inclosos.",
+          "Preu amb gasolina inclosa des de 75 €/hora. Sense costos ocults. Formació, armilles salvavides i equip de seguretat inclosos.",
         noExperience: "Primera Vegada? Cap Problema",
         noExperienceDesc:
           "La majoria dels nostres clients mai han navegat. Amb 15 minuts de formació estaràs preparat per sortir a navegar i gaudir.",
@@ -3069,7 +3071,7 @@ export const ca: Translations = {
           "Explora la costa nord cap a Lloret de Mar (25 min) i Tossa de Mar (30-45 min). Descobreix cales com Cala Sant Francesc, Cala Brava i les platges verges entre Blanes i Lloret.",
         ctaTitle: "Des de Santa Susanna? A 15 Minuts de la Teva Aventura",
         ctaDescription:
-          "El Port de Blanes t'espera amb 7 barques preparades. Reserva i descobreix la Costa Brava des del mar.",
+          "El Port de Blanes t'espera amb 8 barques preparades. Reserva i descobreix la Costa Brava des del mar.",
         ctaButton: "Reservar Barca des de Blanes",
       },
     },
@@ -3103,7 +3105,7 @@ export const ca: Translations = {
         {
           question: "Puc fer una excursió amb vaixell des de Calella a Tossa de Mar?",
           answer:
-            "No directament des de Calella (no hi ha lloguer). Des de Blanes sí: amb un vaixell amb Llicència Bàsica de Navegació (LNB) arribes a Tossa en 45 min (des de {licBaja2h} EUR/2h), o amb la nostra Excursió Privada amb Capità 4h fins a Tossa incloent Cala Bona i Vila Vella (des de {excursionBaja4h} EUR per a fins a 6 persones, més el patró). Els vaixells sense llicència no poden arribar a Tossa pel límit legal de 2 milles.",
+            "No directament des de Calella (no hi ha lloguer). Des de Blanes sí: amb un vaixell amb Llicència de Navegació (LN) arribes a Tossa en 45 min (des de {licBaja2h} EUR/2h), o amb la nostra Excursió Privada amb Capità 4h fins a Tossa incloent Cala Bona i Vila Vella (des de {excursionBaja4h} EUR per a fins a 6 persones, més el patró). Els vaixells sense llicència no poden arribar a Tossa pel límit legal de 2 milles.",
         },
         {
           question: "Quan costa el tren R1 de Calella a Blanes?",
@@ -3123,10 +3125,10 @@ export const ca: Translations = {
         whyRentTitle: "Per què llogar una barca des de Blanes?",
         closestPort: "El Teu Port a la Costa Brava",
         closestPortDesc:
-          "Blanes és el port nàutic més accessible des de Calella. A 20 minuts per la C-32 o N-II, amb 7 embarcacions i servei professional.",
+          "Blanes és el port nàutic més accessible des de Calella. A 20 minuts per la C-32 o N-II, amb 8 embarcacions i servei professional.",
         varietyBoats: "Flota Completa",
         varietyBoatsDesc:
-          "Barques sense llicència des de 70 EUR/h per a famílies i grups d'amics. Barques amb llicència per a navegants amb PER o patró privat.",
+          "Barques sense llicència des de 75 €/h per a famílies i grups d'amics. Barques amb llicència per a navegants titulats o patró privat.",
         fuelIncluded: "Preu Tot Inclòs",
         fuelIncludedDesc:
           "Gasolina, formació, armilles salvavides i equip de seguretat inclosos en el preu. Sense sorpreses.",
@@ -3161,7 +3163,7 @@ export const ca: Translations = {
           "Des de Blanes navega cap a Lloret de Mar (25 min) o Tossa de Mar (30-45 min). Cales verges, aigües cristal·lines i la costa més bonica del Mediterrani t'esperen.",
         ctaTitle: "Des de Calella? La Teva Aventura Comença a Blanes",
         ctaDescription:
-          "A 20 minuts en cotxe del Port de Blanes. 7 barques preparades per explorar la Costa Brava.",
+          "A 20 minuts en cotxe del Port de Blanes. 8 barques preparades per explorar la Costa Brava.",
         ctaButton: "Reservar Barca des de Blanes",
       },
     },
@@ -3169,7 +3171,7 @@ export const ca: Translations = {
       hero: {
         title: "Lloguer de Barques a la Costa Brava",
         subtitle:
-          "Descobreix les millors cales i platges de la Costa Brava a bord de les nostres barques. Sortides des del Port de Blanes, al cor de la costa catalana. Barques sense llicència des de 70 EUR/hora amb gasolina i assegurança inclosos.",
+          "Descobreix les millors cales i platges de la Costa Brava a bord de les nostres barques. Sortides des del Port de Blanes, al cor de la costa catalana. Barques sense llicència des de 75 €/hora amb gasolina i assegurança inclosos.",
         badgePort: "Port de Blanes",
         badgeCapacity: "4-7 persones",
         badgeLicense: "Amb i sense llicència",
@@ -3213,17 +3215,17 @@ export const ca: Translations = {
         noLicenseCapacity: "Màxim 5 persones a bord",
         noLicenseNavigation: "Navegació costanera fins a 2 milles",
         noLicenseFuel: "Gasolina inclosa en el preu",
-        noLicensePrice: "Des de 70 EUR/hora",
+        noLicensePrice: "Des de 75 €/hora",
         noLicenseDesc:
           "Les nostres barques sense llicència són l'opció ideal per a famílies. Cap titulació requerida: 15 minuts de formació i llest. Tot inclòs: gasolina, assegurança, equip de seguretat i material de snorkel.",
         licensedTitle: "Barques Amb Llicència",
-        licensedPower: "De 40 a 150 CV",
-        licensedCapacity: "Fins a 12 persones a bord",
+        licensedPower: "De 40 a 115 CV",
+        licensedCapacity: "Fins a 7 persones a bord",
         licensedNavigation: "Navegació en mar obert sense límits",
         licensedFuel: "Combustible NO inclòs (dipòsit a part)",
         licensedPrice: "Des de 90 EUR/hora",
         licensedDesc:
-          "Per a navegants amb titulació que busquen explorar més enllà de la costa immediata. Més potència, autonomia i capacitat. El combustible es paga per separat.",
+          "Per a navegants amb titulació que busquen explorar més enllà de la costa immediata. Més potència, autonomia i capacitat. El combustible es paga per separat. N'hi ha prou amb la Llicència de Navegació (LN); també valen PNB, PER o equivalents europeus.",
         bestCovesTitle: "Les Millors Cales de la Costa Brava en Barca",
         calaBravaName: "Cala Brava",
         calaBravaDesc:
@@ -3243,7 +3245,7 @@ export const ca: Translations = {
         pricingTitle: "Preus Lloguer Barca Costa Brava 2026",
         ctaTitle: "Reserva la Teva Barca a la Costa Brava",
         ctaDescription:
-          "Tria la teva barca, data i horari. Gasolina, assegurança i formació inclosos en barques sense llicència.",
+          "Tria la teva barca, data i horari. Gasolina, assegurança i formació inclosos en barques sense llicència. Reserva per WhatsApp: et confirmem en menys de 2 hores.",
         ctaButton: "Reservar per WhatsApp",
         crossLinkEnglish: "This page in English: Boat Rental Costa Brava",
       },
@@ -3287,17 +3289,17 @@ export const ca: Translations = {
       ],
       seo: {
         title:
-          "Lloguer Vaixell Tordera | Port Blanes 15 min | Sense Llicència 70€/h | Delta del Tordera",
+          "Lloguer Vaixell Tordera | Port Blanes 15 min | Sense Llicència 75€/h | Delta del Tordera",
         description:
-          "Vius a Tordera o prop del Delta? Port Blanes a 15 min amb cotxe o 8 min amb tren R1. Lloga vaixell sense llicència des de 70€/h amb gasolina inclosa. Navega el Delta del Tordera.",
+          "Vius a Tordera o prop del Delta? Port Blanes a 15 min amb cotxe o 8 min amb tren R1. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Navega el Delta del Tordera.",
         ogTitle: "Lloguer Vaixell Tordera | Delta del Tordera en Vaixell",
         ogDescription:
-          "Des de Tordera al Port Blanes en 15 min. Vaixell sense llicència des de 70€/h. Delta del Tordera en vaixell. 4.8★.",
+          "Des de Tordera al Port Blanes en 15 min. Vaixell sense llicència des de 75€/h. Delta del Tordera en vaixell. 4.8★.",
       },
       schema: {
         name: "Lloguer de Vaixells prop de Tordera",
         description:
-          "Lloga vaixells des del Port de Blanes, a només 15 minuts amb cotxe de Tordera. Vaixells sense llicència des de 70 EUR/hora amb gasolina inclosa.",
+          "Lloga vaixells des del Port de Blanes, a només 15 minuts amb cotxe de Tordera. Vaixells sense llicència des de 75 €/hora amb gasolina inclosa.",
       },
       breadcrumbName: "Lloguer Vaixells Tordera",
       sections: {
@@ -3316,7 +3318,7 @@ export const ca: Translations = {
           "La nostra flota inclou {fleetCount} vaixells: embarcacions sense llicència ideals per a famílies i principiants, i vaixells amb llicència per als més experimentats. Des de barques per a 4 persones fins a embarcacions per a grups de fins a 11 persones.",
         whyCard3Title: "Gasolina inclosa en vaixells sense llicència",
         whyCard3Desc:
-          "El preu dels vaixells sense llicència inclou la gasolina. Des de 70 EUR per hora amb l'Astec 400, o des de 75 EUR per hora amb altres models. Sense costos ocults ni sorpreses en el preu final.",
+          "El preu dels vaixells sense llicència inclou la gasolina. Des de 75 € per hora. Sense costos ocults ni sorpreses en el preu final.",
         whyCard4Title: "Sense experiència prèvia necessària",
         whyCard4Desc:
           "Abans de salpar t'oferim 15 minuts de formació pràctica on aprendràs a manejar el motor, les normes bàsiques de navegació i els millors racons per explorar. Qualsevol persona major de 18 anys pot pilotar els nostres vaixells sense llicència.",
@@ -3393,17 +3395,17 @@ export const ca: Translations = {
         },
       ],
       seo: {
-        title: "Lloguer Vaixell Palafolls | Port Blanes 12 min | Sense Llicència 70€/h",
+        title: "Lloguer Vaixell Palafolls | Port Blanes 12 min | Sense Llicència 75€/h",
         description:
-          "Al càmping o allotjament a Palafolls? Port Blanes a 12 min amb cotxe. Lloga vaixell sense llicència des de 70€/h amb gasolina inclosa. Excursió ideal Costa Brava.",
+          "Al càmping o allotjament a Palafolls? Port Blanes a 12 min amb cotxe. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Excursió ideal Costa Brava.",
         ogTitle: "Lloguer Vaixell Palafolls | 12 min al Port Blanes",
         ogDescription:
-          "Des de Palafolls al Port Blanes en 12 min. Vaixell sense llicència des de 70€/h. Gasolina inclosa. 4.8★.",
+          "Des de Palafolls al Port Blanes en 12 min. Vaixell sense llicència des de 75€/h. Gasolina inclosa. 4.8★.",
       },
       schema: {
         name: "Lloguer de Vaixells prop de Palafolls",
         description:
-          "Lloga vaixells des del Port de Blanes, a només 12 minuts amb cotxe de Palafolls. Vaixells sense llicència des de 70 EUR/hora amb gasolina inclosa.",
+          "Lloga vaixells des del Port de Blanes, a només 12 minuts amb cotxe de Palafolls. Vaixells sense llicència des de 75 €/hora amb gasolina inclosa.",
       },
       breadcrumbName: "Lloguer Vaixells Palafolls",
       sections: {
@@ -3422,7 +3424,7 @@ export const ca: Translations = {
           "Si t'allotges en un dels càmpings de Palafolls com La Masía, Neptuno, o els complexos de bungalows de la zona, llogar un vaixell és l'activitat estrella que farà úniques les teves vacances. Moltes famílies de càmpings propers ens visiten cada temporada.",
         whyCard3Title: "Gasolina inclosa en vaixells sense llicència",
         whyCard3Desc:
-          "El preu dels vaixells sense llicència inclou la gasolina. Des de 70 EUR per hora amb l'Astec 400, o des de 75 EUR per hora amb altres models de major eslora. Sense costos ocults ni suplements per combustible.",
+          "El preu dels vaixells sense llicència inclou la gasolina. Des de 75 € per hora. Sense costos ocults ni suplements per combustible.",
         whyCard4Title: "Sense experiència prèvia necessària",
         whyCard4Desc:
           "Abans de salpar, el nostre equip et dóna 15 minuts de formació pràctica. T'ensenyem a manejar el motor, les normes bàsiques de navegació i els millors racons per explorar. Qualsevol persona major de 18 anys pot pilotar els nostres vaixells sense llicència.",
@@ -3499,17 +3501,17 @@ export const ca: Translations = {
         },
       ],
       seo: {
-        title: "Lloguer Vaixell Pineda de Mar | Port Blanes 18 min | Sense Llicència 70€/h",
+        title: "Lloguer Vaixell Pineda de Mar | Port Blanes 18 min | Sense Llicència 75€/h",
         description:
-          "Allotjat a Pineda de Mar? Port Blanes a 18 min amb cotxe o 12 min amb tren R1. Lloga vaixell sense llicència des de 70€/h amb gasolina inclosa. Navega a Blanes, Lloret o Tossa.",
+          "Allotjat a Pineda de Mar? Port Blanes a 18 min amb cotxe o 12 min amb tren R1. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Navega a Blanes, Lloret o Tossa.",
         ogTitle: "Lloguer Vaixell Pineda de Mar | 18 min al Port Blanes",
         ogDescription:
-          "Des de Pineda de Mar al Port Blanes en 18 min. Vaixell sense llicència des de 70€/h. 4.8★ Google.",
+          "Des de Pineda de Mar al Port Blanes en 18 min. Vaixell sense llicència des de 75€/h. 4.8★ Google.",
       },
       schema: {
         name: "Lloguer de Vaixells prop de Pineda de Mar",
         description:
-          "Lloga vaixells des del Port de Blanes, a només 18 minuts amb cotxe de Pineda de Mar. Vaixells sense llicència des de 70 EUR/hora amb gasolina inclosa.",
+          "Lloga vaixells des del Port de Blanes, a només 18 minuts amb cotxe de Pineda de Mar. Vaixells sense llicència des de 75 €/hora amb gasolina inclosa.",
       },
       breadcrumbName: "Lloguer Vaixells Pineda de Mar",
       sections: {
@@ -3528,7 +3530,7 @@ export const ca: Translations = {
           "Disposem d'una flota de {fleetCount} vaixells que inclou embarcacions sense llicència ideals per a famílies i principiants, així com vaixells amb llicència per a navegants experimentats. Capacitat de 4 a 11 persones segons el model triat.",
         whyCard3Title: "Gasolina inclosa en vaixells sense llicència",
         whyCard3Desc:
-          "El preu dels vaixells sense llicència inclou la gasolina, així que no hi ha sorpreses. Des de 70 EUR per hora amb l'Astec 400, o des de 75 EUR per hora amb altres models de major eslora. El preu que veus és el preu final.",
+          "El preu dels vaixells sense llicència inclou la gasolina, així que no hi ha sorpreses. Des de 75 € per hora. El preu que veus és el preu final.",
         whyCard4Title: "Sense experiència prèvia necessària",
         whyCard4Desc:
           "Abans de salpar, el nostre equip et dóna 15 minuts de formació pràctica: maneig del motor, normes bàsiques de navegació i consells sobre les millors cales. Qualsevol persona major de 18 anys pot pilotar un vaixell sense llicència.",
@@ -3776,7 +3778,7 @@ export const ca: Translations = {
       diferenciaLicencia: {
         question: "Quina és la diferència entre barques sense llicència i amb llicència?",
         answer:
-          "Les barques sense llicència tenen fins a 15 CV, capacitat de 4-5 persones, benzina inclosa i costen des de {noLicBaja1h}€. Les barques amb llicència tenen motors de 40-150 CV, capacitat de fins a 7 persones, major autonomia i costen des de {licBaja2h}€ (benzina no inclosa). Les barques amb llicència permeten navegar més lluny, fins a Tossa de Mar i més enllà.",
+          "Les barques sense llicència tenen fins a 15 CV, capacitat de 4-5 persones, benzina inclosa i costen des de {noLicBaja1h}€. Les barques amb llicència tenen motors de 40-115 CV, capacitat de fins a 7 persones, major autonomia i costen des de {licBaja2h}€ (benzina no inclosa). Les barques amb llicència permeten navegar més lluny, fins a Tossa de Mar i més enllà.",
       },
       precioBlanesVsLloret: {
         question: "És més barat llogar una barca a Blanes o a Lloret de Mar?",
@@ -3843,12 +3845,12 @@ export const ca: Translations = {
     newsletterError: "Error en enviar. Torna-ho a provar.",
     tableOfContents: "Índex",
     ctaTitle: "Preparat per a la teva aventura?",
-    ctaSubtitle: "Lloga un vaixell des de 70€/hora · Benzina inclosa",
+    ctaSubtitle: "Lloga un vaixell des de 75€/hora · Benzina inclosa",
     ctaBookNow: "Reservar ara",
     ctaWhatsApp: "Preguntar per WhatsApp",
     relatedDestinationsTitle: "Destinacions relacionades",
     relatedBlanesName: "Blanes",
-    relatedBlanesDesc: "Port base. Barques sense llicència des de 70€/h.",
+    relatedBlanesDesc: "Port base. Barques sense llicència des de 75€/h.",
     relatedLloretName: "Lloret de Mar",
     relatedLloretDesc: "Cales i platges a 20 min amb vaixell des de Blanes.",
     relatedTossaName: "Tossa de Mar",
@@ -3947,7 +3949,7 @@ export const ca: Translations = {
         },
         {
           title: "4. Requisits per a l'arrendatari",
-          body: "- El patró ha de ser major de 18 anys i presentar DNI o passaport en vigor.\n- Per a embarcacions amb llicència, el patró ha de presentar la titulació nàutica original (LNB, PER, PNB, Capità de Iot o equivalent europea).\n- Per a embarcacions sense llicència, no es requereix titulació, però el patró rebrà una formació de 15 minuts abans de zarpar.\n- Els menors d'edat hauran d'anar acompanyats d'un adult responsable i portar armilla salvavides obligatòria durant la navegació.",
+          body: "- El patró ha de ser major de 18 anys i presentar DNI o passaport en vigor.\n- Per a embarcacions amb llicència, el patró ha de presentar la titulació nàutica original (Llicència de Navegació, PER, PNB, Capità de Iot o equivalent europea).\n- Per a embarcacions sense llicència, no es requereix titulació, però el patró rebrà una formació de 15 minuts abans de zarpar.\n- Els menors d'edat hauran d'anar acompanyats d'un adult responsable i portar armilla salvavides obligatòria durant la navegació.",
         },
         {
           title: "5. Fiança i condicions de pagament",
@@ -4161,7 +4163,7 @@ export const ca: Translations = {
     tossaTitle: 'Tossa de Mar en barca',
     tossaDesc: 'La Vila Vella medieval, penya-segats impressionants i les cales més verges de la Costa Brava.',
     pricesTitle: 'Preus i tarifes',
-    pricesDesc: 'Consulta els preus per temporada de totes les nostres embarcacions. Des de 70€/hora sense llicència.',
+    pricesDesc: 'Consulta els preus per temporada de totes les nostres embarcacions. Des de 75€/hora sense llicència.',
     guide: {
       heading: 'Guia per navegar la Costa Brava des de Blanes',
       geographyTitle: 'El litoral: de Blanes a Tossa de Mar',
@@ -4169,7 +4171,7 @@ export const ca: Translations = {
       seaTitle: 'Condicions de mar i vents',
       seaBody: 'El tram sud de la Costa Brava és, en general, de navegació còmoda a l\'estiu. Al matí el mar sol estar en calma; a la tarda pot entrar el garbí, la brisa del sud-oest que arrissa lleugerament la superfície. El vent a vigilar és la tramuntana, fort i del nord, que pot aixecar-se amb rapidesa: consulta sempre el part meteorològic marítim abans de sortir. Les embarcacions sense llicència naveguen fins a 2 milles nàutiques de la costa (3,7 km) i a un màxim de 5 nusos, suficient per recórrer totes aquestes cales amb seguretat.',
       calasTitle: 'Cales i snorkel',
-      calasBody: 'Les cales entre Blanes i Tossa tenen fons rocosos i aigües cristal·lines, ideals per fondejar i fer snorkel. Cala Bona, Cala Treumal i Santa Cristina ofereixen aigües resguardades; a Lloret, Cala Boadella; i cap a Tossa, Cala Llevadó, Cala Giverola i Cala Pola, moltes accessibles només per mar. Recorda fondejar sobre fons arenós —mai sobre les praderies de posidònia, protegides— i llançar cap suficient perquè l\'àncora agafi.',
+      calasBody: 'Les cales entre Blanes i Tossa tenen fons rocosos i aigües cristal·lines, ideals per fondejar i fer snorkel. Cala Bona, Cala Treumal i Santa Cristina ofereixen aigües resguardades; a Lloret, Cala Boadella; i cap a Tossa, Cala Llevadó, Cala Giverola i Cala Pola, moltes accessibles només per mar. Recorda fondejar sobre fons arenós (mai sobre les praderies de posidònia, protegides) i llançar cap suficient perquè l\'àncora agafi.',
       seasonTitle: 'Millor època per navegar',
       seasonBody: 'La temporada de navegació va d\'abril a octubre, amb horari de sortides de 09:00 a 20:00. Juliol i agost ofereixen el mar més càlid i estable, ideal per al bany i el snorkel; juny i setembre són perfectes per a qui busca cales menys concorregudes i llum daurada. Fora de temporada no operem. Als mesos d\'estiu convé reservar amb antelació: la disponibilitat de vaixell i franja horària és limitada.',
     },
@@ -4230,7 +4232,7 @@ export const ca: Translations = {
       locationLloret: [
         { title: "Millors cales de la Costa Brava en vaixell", description: "Les 10 cales més espectaculars entre Blanes i Tossa" },
         { title: "Sortida en vaixell a la posta de sol", description: "Experiència de posta de sol en vaixell" },
-        { title: "Vaixells sense llicència", description: "5 vaixells des de 70€/h, gasolina inclosa" },
+        { title: "Vaixells sense llicència", description: "4 vaixells des de 75€/h, gasolina inclosa" },
         { title: "Lloguer de scooters a Lloret de Mar", description: "Recorre la Costa Brava per carretera, des de 8€/h amb assegurança inclosa" },
       ],
       locationTossa: [
@@ -4260,7 +4262,7 @@ export const ca: Translations = {
       activitySunset: [
         { title: "Rutes en vaixell des de Blanes", description: "5 rutes amb mapes interactius" },
         { title: "Millors cales de la Costa Brava en vaixell", description: "Les 10 cales més espectaculars entre Blanes i Tossa" },
-        { title: "Vaixells sense llicència", description: "Perfectes per a sortides a la posta de sol, des de 70€/h" },
+        { title: "Vaixells sense llicència", description: "Perfectes per a sortides a la posta de sol, des de 75€/h" },
       ],
       activityFishing: [
         { title: "Vaixells amb llicència", description: "Vaixells potents per a zones de pesca" },
@@ -4282,13 +4284,13 @@ export const ca: Translations = {
       jetskiHub: [
         { title: "Circuit en moto d'aigua", description: "Pilota una moto d'aigua sense llicència en un circuit vigilat davant de Blanes" },
         { title: "Excursió guiada a Tossa en moto d'aigua", description: "Ruta guiada de Blanes a Tossa de Mar amb monitor" },
-        { title: "Vaixells sense llicència", description: "5 vaixells des de 70€/h, gasolina inclosa" },
+        { title: "Vaixells sense llicència", description: "4 vaixells des de 75€/h, gasolina inclosa" },
         { title: "Lloguer de vaixells Blanes", description: "Tot sobre llogar un vaixell al Port de Blanes" },
       ],
       jetskiCircuito: [
         { title: "Lloguer de moto d'aigua a Blanes", description: "Totes les experiències en moto d'aigua sense llicència" },
         { title: "Excursió guiada a Tossa en moto d'aigua", description: "Ruta guiada de Blanes a Tossa de Mar amb monitor" },
-        { title: "Vaixells sense llicència", description: "5 vaixells des de 70€/h, gasolina inclosa" },
+        { title: "Vaixells sense llicència", description: "4 vaixells des de 75€/h, gasolina inclosa" },
         { title: "Lloguer de vaixells Blanes", description: "Tot sobre llogar un vaixell al Port de Blanes" },
       ],
       jetskiExcursion: [
@@ -4299,7 +4301,7 @@ export const ca: Translations = {
       ],
       scooters: [
         { title: "Lloguer de vaixells a Lloret de Mar", description: "Platges i cales espectaculars des del port de Blanes" },
-        { title: "Vaixells sense llicència", description: "5 vaixells des de 70€/h, gasolina inclosa" },
+        { title: "Vaixells sense llicència", description: "4 vaixells des de 75€/h, gasolina inclosa" },
         { title: "Lloguer de moto d'aigua sense llicència", description: "Circuit i excursió guiada en moto d'aigua des de Blanes" },
         { title: "Excursió a Tossa de Mar", description: "Descobreix la Vila Vella i les seves cales cristal·lines" },
       ],
@@ -4308,10 +4310,10 @@ export const ca: Translations = {
   occasionMatrix: {
     pages: {
       snorkel__locationBlanes: {
-        seoTitle: 'Snorkel en vaixell des de Blanes — Millors cales | Costa Brava Rent a Boat',
+        seoTitle: 'Snorkel en vaixell des de Blanes: les millors cales | Costa Brava Rent a Boat',
         seoDescription: 'Lloga un vaixell sense llicència a Blanes i fes snorkel a Cala Sant Francesc, Sa Forcanera o Cala Treumal. Gasolina inclosa, sense experiència prèvia, cales a menys de 2 milles.',
         h1: 'Snorkel en vaixell des de Blanes',
-        intro: 'Des del Port de Blanes, en pocs minuts de navegació arribes a cales d\'aigües cristal·lines i fons rocosos perfectes per al snorkel. Amb un vaixell sense llicència —gasolina inclosa i sense necessitat d\'experiència— tries la teva cala, fondeges i et llences a l\'aigua al teu ritme.',
+        intro: 'Des del Port de Blanes, en pocs minuts de navegació arribes a cales d\'aigües cristal·lines i fons rocosos perfectes per al snorkel. Amb un vaixell sense llicència (gasolina inclosa i sense necessitat d\'experiència) tries la teva cala, fondeges i et llences a l\'aigua al teu ritme.',
         spotsTitle: 'Millors cales per fer snorkel a prop de Blanes',
         spots: [
           {
@@ -4350,7 +4352,7 @@ export const ca: Translations = {
         ctaText: 'Tria data i vaixell sense llicència, i prepara la millor jornada de snorkel per les cales de Blanes.',
       },
       snorkel__locationLloret: {
-        seoTitle: 'Snorkel en vaixell a Lloret de Mar — Cales Boadella i Banys | Costa Brava Rent a Boat',
+        seoTitle: 'Snorkel en vaixell a Lloret de Mar: cales Boadella i Banys | Costa Brava Rent a Boat',
         seoDescription: 'Descobreix les millors cales de snorkel de Lloret de Mar en vaixell des de Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Vaixell amb llicència, uns 20 minuts de navegació.',
         h1: 'Snorkel en vaixell a Lloret de Mar',
         intro: 'Lloret de Mar amaga algunes de les cales amb millor aigua de la Costa Brava sud, moltes accessibles només per mar. Sortint des de Blanes en uns 20 minuts de navegació arribes als seus racons rocosos i els recorres fent snorkel sense les multituds de la platja.',
@@ -4392,7 +4394,7 @@ export const ca: Translations = {
         ctaText: 'Tria data i vaixell amb llicència, i descobreix les cales de snorkel de Lloret sortint des de Blanes.',
       },
       snorkel__locationTossa: {
-        seoTitle: 'Snorkel en vaixell a Tossa de Mar — Cales verges i aigües protegides | Costa Brava Rent a Boat',
+        seoTitle: 'Snorkel en vaixell a Tossa de Mar: cales verges i aigües protegides | Costa Brava Rent a Boat',
         seoDescription: 'Fes snorkel a les aigües netes de Tossa de Mar: La Mar Menuda, Cala Giverola, Cala Pola. Sortida en vaixell amb llicència des de Blanes, 30-45 minuts de navegació.',
         h1: 'Snorkel en vaixell a Tossa de Mar',
         intro: 'Tossa de Mar és un dels millors destins de snorkel de la Costa Brava: part del seu litoral està protegit, amb fons rocosos i praderies plenes de vida. Des de Blanes són uns 30-45 minuts de navegació amb un vaixell amb llicència fins a les seves cales més verges.',
@@ -4434,7 +4436,7 @@ export const ca: Translations = {
         ctaText: 'Tria data i vaixell amb llicència, i dedica el dia a les cales protegides de Tossa sortint des de Blanes.',
       },
       snorkel__locationCostaBrava: {
-        seoTitle: 'Snorkel en vaixell per la Costa Brava — Les millors cales des de Blanes | Costa Brava Rent a Boat',
+        seoTitle: 'Snorkel en vaixell per la Costa Brava: les millors cales des de Blanes | Costa Brava Rent a Boat',
         seoDescription: 'Recorre en vaixell les millors cales de snorkel de la Costa Brava sud, de Blanes a Tossa de Mar. Vaixells sense llicència per a les cales properes i amb llicència per al tram complet.',
         h1: 'Snorkel en vaixell per la Costa Brava',
         intro: 'El tram sud de la Costa Brava, de Blanes a Tossa de Mar, concentra desenes de cales de fons rocós i aigua transparent ideals per al snorkel. Des del Port de Blanes pots triar entre una sortida curta a les cales més properes o una jornada completa recorrent la costa.',
@@ -4458,7 +4460,7 @@ export const ca: Translations = {
           },
         ],
         boatsTitle: 'Quin vaixell triar segons fins on vulguis arribar',
-        boatsIntro: 'Per a les cales més properes a Blanes n\'hi ha prou amb un vaixell sense llicència, amb gasolina inclosa i sense titulació. Per recórrer el tram complet fins a Lloret i Tossa —més enllà de les 2 milles— necessites un vaixell amb llicència, amb autonomia per encadenar diverses cales al dia.',
+        boatsIntro: 'Per a les cales més properes a Blanes n\'hi ha prou amb un vaixell sense llicència, amb gasolina inclosa i sense titulació. Per recórrer el tram complet fins a Lloret i Tossa (més enllà de les 2 milles) necessites un vaixell amb llicència, amb autonomia per encadenar diverses cales al dia.',
         practicalTitle: 'Informació pràctica',
         practicalBody: 'Temporada d\'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Els vaixells sense llicència naveguen fins a 2 milles; per arribar a Lloret (~20 min) o Tossa (30-45 min) s\'usa un vaixell amb llicència. Porta les teves ulleres i tub, protecció solar i aigua. Fondeja sempre sobre sorra, mai sobre posidònia.',
         faqTitle: 'Preguntes freqüents',
@@ -4490,7 +4492,7 @@ export const ca: Translations = {
         ],
         boatsTitle: "Quin vaixell triar per anar en família",
         boatsIntro:
-          "Per a famílies recomanem vaixells espaiosos i estables, amb solàrium i zona d'ombra. Diversos són sense llicència —amb gasolina inclosa i sense titulació—, i per a grups grans tenim embarcacions de fins a 7 places.",
+          "Per a famílies recomanem vaixells espaiosos i estables, amb solàrium i zona d'ombra. Diversos són sense llicència (amb gasolina inclosa i sense titulació), i per a grups grans tenim embarcacions de fins a 7 places.",
         practicalTitle: "Informació pràctica",
         practicalBody:
           "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Portem armilles salvavides de totes les talles, incloses infantils. Porta protecció solar, gorra, aigua i alguna cosa per picar. Les cales properes a Blanes estan dins de les 2 milles, assolibles fins i tot amb vaixell sense llicència.",
@@ -4517,7 +4519,7 @@ export const ca: Translations = {
         ],
         boatsTitle: "Quin vaixell triar per arribar a Lloret en família",
         boatsIntro:
-          "Lloret queda més enllà de les 2 milles, així que s'hi arriba amb un dels nostres vaixells amb llicència. Són espaiosos i estables —el Pacific Craft 625 admet fins a 7 persones— i cobreixen el trajecte des de Blanes en uns 20 minuts.",
+          "Lloret queda més enllà de les 2 milles, així que s'hi arriba amb un dels nostres vaixells amb llicència. Són espaiosos i estables (el Pacific Craft 625 admet fins a 7 persones) i cobreixen el trajecte des de Blanes en uns 20 minuts.",
         practicalTitle: "Informació pràctica",
         practicalBody:
           "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. El trajecte fins a Lloret són uns 20 minuts. Portem armilles de totes les talles; porta protecció solar, gorra, aigua i alguna cosa per picar.",
@@ -4571,7 +4573,7 @@ export const ca: Translations = {
         ],
         boatsTitle: "Quin vaixell triar segons fins on vulguis arribar",
         boatsIntro:
-          "Per a les cales properes a Blanes n'hi ha prou amb un vaixell sense llicència, amb gasolina inclosa. Per recórrer el tram fins a Lloret i Tossa —més enllà de les 2 milles— necessites un vaixell amb llicència, espaiós i de fins a 7 places.",
+          "Per a les cales properes a Blanes n'hi ha prou amb un vaixell sense llicència, amb gasolina inclosa. Per recórrer el tram fins a Lloret i Tossa (més enllà de les 2 milles) necessites un vaixell amb llicència, espaiós i de fins a 7 places.",
         practicalTitle: "Informació pràctica",
         practicalBody:
           "Temporada d'abril a octubre, sortides de 09:00 a 20:00 des del Port de Blanes. Els vaixells sense llicència naveguen fins a 2 milles; per arribar a Lloret (~20 min) o Tossa (30-45 min) s'usa un vaixell amb llicència. Portem armilles de totes les talles.",
@@ -4598,7 +4600,7 @@ export const ca: Translations = {
         ],
         boatsTitle: "Quin vaixell triar per al capvespre",
         boatsIntro:
-          "Per a un passeig al capvespre recomanem vaixells còmodes amb bon solàrium. Diversos són sense llicència —amb gasolina inclosa i sense titulació—, ideals per a una sortida curta i relaxada a prop de Blanes.",
+          "Per a un passeig al capvespre recomanem vaixells còmodes amb bon solàrium. Diversos són sense llicència (amb gasolina inclosa i sense titulació), ideals per a una sortida curta i relaxada a prop de Blanes.",
         practicalTitle: "Informació pràctica",
         practicalBody:
           "Temporada d'abril a octubre, amb sortides fins a les 20:00 des del Port de Blanes; la franja d'última hora de la tarda és la que regala la millor llum. A la Costa Brava el sol es pon darrere la costa, així que gaudiràs de la llum daurada i els penya-segats il·luminats més que de la posta sobre l'aigua. Porta una jaqueta lleugera: en caure la tarda refresca.",
@@ -4679,7 +4681,7 @@ export const ca: Translations = {
         ],
         boatsTitle: "Quin vaixell triar segons fins on vulguis arribar",
         boatsIntro:
-          "Per a un passeig a prop de Blanes n'hi ha prou amb un vaixell sense llicència, amb gasolina inclosa. Per recórrer el tram fins a Lloret i Tossa —més enllà de les 2 milles— necessites un vaixell amb llicència, còmode i amb bon solàrium.",
+          "Per a un passeig a prop de Blanes n'hi ha prou amb un vaixell sense llicència, amb gasolina inclosa. Per recórrer el tram fins a Lloret i Tossa (més enllà de les 2 milles) necessites un vaixell amb llicència, còmode i amb bon solàrium.",
         practicalTitle: "Informació pràctica",
         practicalBody:
           "Temporada d'abril a octubre, amb sortides fins a les 20:00 des del Port de Blanes. En aquesta costa el sol es pon darrere la terra: gaudiràs de la llum daurada i els pobles i penya-segats il·luminats. Els vaixells sense llicència arriben fins a 2 milles; per a Lloret o Tossa s'usa un vaixell amb llicència. Porta una jaqueta lleugera.",

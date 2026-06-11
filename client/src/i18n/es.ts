@@ -665,7 +665,7 @@ export const es: Translations = {
     pages: {
       barcelona: {
         title: "Barcos para tu escapada desde Barcelona",
-        description: "A 1h en coche o en tren R1, el Puerto de Blanes es la opción más cercana para alquilar barco en la Costa Brava. Desde sin licencia (5 de los 9 barcos) hasta charter premium con patrón.",
+        description: "A 1h en coche o en tren R1, el Puerto de Blanes es la opción más cercana para alquilar barco en la Costa Brava. Desde sin licencia (4 de los 8 barcos) hasta charter premium con patrón.",
       },
       lloret: {
         title: "Barcos populares para tu ruta a Lloret de Mar",
@@ -744,7 +744,7 @@ export const es: Translations = {
       activityFishing: [
         { title: "Barcos con licencia", description: "Barcos potentes para zonas de pesca" },
         { title: "Rutas en barco desde Blanes", description: "Descubre las mejores zonas" },
-        { title: "Alquiler barcos Costa Brava", description: "9 barcos disponibles en Blanes" },
+        { title: "Alquiler barcos Costa Brava", description: "8 barcos disponibles en Blanes" },
         { title: "Excursión en moto de agua", description: "Ruta guiada en moto de agua de Blanes a Tossa de Mar" },
       ],
       categoryLicenseFree: [
@@ -1505,7 +1505,7 @@ export const es: Translations = {
       },
       equivalentTo: "Equivale a {level} en el sistema español",
       meetsFleet: "Válida para nuestra flota con licencia.",
-      insufficientForFleet: "Insuficiente para nuestra flota. Necesitas PER o superior.",
+      insufficientForFleet: "Insuficiente para nuestra flota. Necesitas la Licencia de Navegación (LN) o un título superior.",
       ctaContinue: "Continuar",
       ctaContinueAnyway: "Continuar igualmente",
       ctaSwitchToUnlicensed: "Ver barcos sin licencia",
@@ -2054,7 +2054,7 @@ export const es: Translations = {
           question:
             "¿Qué calas se pueden alcanzar en barco desde Blanes si estoy alojado en Malgrat?",
           answer:
-            "Con un barco sin licencia desde Blanes llegas en 25 minutos a Playa de Fenals (sur de Lloret), pasando por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. Con barco con Licencia de Navegación Básica puedes llegar a Tossa de Mar (45 min) y más allá.",
+            "Con un barco sin licencia desde Blanes llegas en 25 minutos a Playa de Fenals (sur de Lloret), pasando por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. Con barco con Licencia de Navegación (LN) puedes llegar a Tossa de Mar (30-45 min) y más allá.",
         },
         {
           question: "¿Hay servicio de transfer desde hoteles de Malgrat al Puerto de Blanes?",
@@ -2093,7 +2093,7 @@ export const es: Translations = {
         {
           question: "¿Cuál es la mejor excursión en barco si me alojo en Santa Susanna?",
           answer:
-            "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 135 EUR para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} EUR, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación Básica si alguno del grupo tiene titulación (desde 240 EUR / 4h).",
+            "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 150 EUR para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} EUR, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación (LN) si alguno del grupo tiene titulación (desde 230 EUR / 4h).",
         },
         {
           question: "¿Puedo hacer una excursión en barco al atardecer desde Santa Susanna?",
@@ -3000,7 +3000,7 @@ export const es: Translations = {
     withoutLicenseDesc: "Te enseñamos en 15 minutos. Gasolina incluida. Perfecto para familias.",
     withLicenseDesc: "Más potencia, más velocidad, más lejos. Para navegantes con titulación.",
     noLicenseNeeded: "Sin titulación necesaria",
-    licenseRequired: "Requiere Licencia de Navegación Básica o superior",
+    licenseRequired: "Requiere Licencia de Navegación (LN) o superior",
     noLicenseFeature1: "Barcos de hasta 15CV, fáciles de manejar",
     noLicenseFeature2: "Perfectos para calas y playas cercanas",
     noLicenseFeature3: "Gasolina incluida en el precio",
@@ -4188,7 +4188,7 @@ export const es: Translations = {
       title: "Nuestros barcos",
       noLicenseTitle: "Barcos sin licencia",
       noLicenseBody:
-        "5 embarcaciones para 4-5 personas. No necesitas experiencia previa ni titulación. Te damos una formación de 15 minutos y listo para navegar. Gasolina incluida en el precio.",
+        "4 embarcaciones para 4-5 personas. No necesitas experiencia previa ni titulación. Te damos una formación de 15 minutos y listo para navegar. Gasolina incluida en el precio.",
       noLicenseBullet1: "Hasta 5 personas por barco",
       noLicenseBullet2: "Desde 1 hora de alquiler",
       licensedTitle: "Barcos con licencia",
@@ -4232,7 +4232,7 @@ export const es: Translations = {
     infoPortDesc: "Salida desde Puerto de Blanes, Costa Brava. Fácil acceso y parking disponible.",
     infoSeasonTitle: "Temporada",
     infoSeasonDesc: "Abril - Octubre. Reservas flexibles con duración de 1-8 horas.",
-    infoFleetTitle: "9 Embarcaciones",
+    infoFleetTitle: "8 Embarcaciones",
     infoFleetDesc: "Flota para 4-7 personas. Con y sin licencia náutica, y excursión privada con patrón.",
     categories: {
       all: "Todas",
@@ -4398,7 +4398,7 @@ export const es: Translations = {
       diferenciaLicencia: {
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde {noLicBaja1h}€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde {licBaja2h}€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
+          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde {noLicBaja1h}€. Los barcos con licencia tienen motores de 40-115 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde {licBaja2h}€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
       },
       precioBlanesVsLloret: {
         question: "¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?",
@@ -4472,6 +4472,7 @@ export const es: Translations = {
       per: "PER requerido",
       patron_yate: "Patrón de Yate",
       capitan_yate: "Capitán de Yate",
+      captained: "Con patrón",
     },
     licenseFallback: "Con licencia",
     table: {
@@ -4770,7 +4771,7 @@ export const es: Translations = {
       {
         term: "CV (caballos de vapor)",
         definition:
-          "Unidad de potencia del motor marino. Los barcos sin licencia en España están limitados a 15 CV. Los barcos con licencia típicamente tienen 40-150 CV, permitiendo navegación más rápida y alcance mayor.",
+          "Unidad de potencia del motor marino. Los barcos sin licencia en España están limitados a 15 CV. Nuestros barcos con licencia tienen de 40 a 115 CV, permitiendo navegación más rápida y alcance mayor.",
         category: "unidad",
       },
       {

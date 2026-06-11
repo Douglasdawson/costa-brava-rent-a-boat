@@ -22,10 +22,10 @@ export const nl: Translations = {
     subtitleLine2:
       "7 ongerepte baaien: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Brandstof inbegrepen.",
     subtitleMobile: "Boten zonder vaarbewijs vanuit Blanes. 7 baaien tot Playa de Fenals.",
-    priceBadge: "Vanaf €70",
+    priceBadge: "Vanaf €75",
     fuelBadge: "Brandstof inbegrepen",
     pricePerPerson: "Vanaf €14 per persoon/uur",
-    pricePerPersonDetail: "Complete boot vanaf €70/u voor max 5 personen",
+    pricePerPersonDetail: "Complete boot vanaf €75/u voor max 5 personen",
     bookNow: "Beschikbaarheid bekijken",
     findYourBoat: "Boek nu",
     viewFleet: "Bekijk alle boten",
@@ -39,12 +39,12 @@ export const nl: Translations = {
     freeCancellation: "Gratis datumwijziging",
     instantConfirmation: "Directe bevestiging",
     marqueeText:
-      "Bootverhuur in Blanes | Met en Zonder Vaarbewijs | Brandstof Inbegrepen | Vanaf \u20AC70/u",
+      "Bootverhuur in Blanes | Met en Zonder Vaarbewijs | Brandstof Inbegrepen | Vanaf \u20AC75/u",
     askWhatsApp: "Vraag ons via WhatsApp",
     testimonialQuote: "Ongelooflijke ervaring, we komen terug",
     testimonialQuoteShort: "We komen terug",
     summaryGeo:
-      "Costa Brava Rent a Boat beheert de grootste bootverhuurvloot van de haven van Blanes met 9 vaartuigen: 5 zonder vaarbewijs inclusief brandstof vanaf 70€/u, 3 met vaarbewijs en 1 privé-excursie met schipper. Service in 8 talen. Seizoen van april tot oktober. 4.8★ op Google met meer dan 300 beoordelingen.",
+      "Costa Brava Rent a Boat beheert de grootste bootverhuurvloot van de haven van Blanes met 8 vaartuigen: 4 zonder vaarbewijs inclusief brandstof vanaf 75€/u, 3 met vaarbewijs en 1 privé-excursie met schipper. Service in 8 talen. Seizoen van april tot oktober. 4.8★ op Google met meer dan 300 beoordelingen.",
   },
 
   fleet: {
@@ -328,7 +328,7 @@ export const nl: Translations = {
     selectYourBoat: "Selecteer uw boot",
     continue: "Doorgaan",
     customerData: "Klantgegevens",
-    continueToPayment: "Doorgaan naar betaling",
+    continueToPayment: "Aanvraag controleren",
     stripePaymentSecure:
       "We bevestigen de beschikbaarheid via WhatsApp binnen 2 uur. Geen verplichting tot dan.",
     firstName: "Voornaam",
@@ -696,7 +696,7 @@ export const nl: Translations = {
     heroChipDateChange: "Gratis datumwijziging met 7+ dagen",
     heroChipWeather: "Als de zee niet meewerkt, plannen we om",
     recommendedBadge: "Aanbevolen",
-    viewsToday: "personen hebben deze boot vandaag bekeken",
+    viewsToday: "weergaven van deze boot vandaag",
     viewCustomerGallery: "Bekijk klantenfotogalerij",
     fuelIncludedShort: "Brandstof inbegrepen",
     mainFeatures: "Belangrijkste Kenmerken",
@@ -863,7 +863,7 @@ export const nl: Translations = {
         probablyValid: "Breng het originele ICC mee op de huurdag. We vragen ernaar voordat je vertrekt.",
         needsIcc: "Jouw land geeft het ICC af. Vraag het aan bij je watersportbond voor je reis.",
         notRecognized: "Je nationale vaarbewijs wordt niet direct erkend in Spanje. Stuur ons een WhatsApp en we bekijken samen de opties.",
-        insufficient: "Je vaarbewijs komt overeen met een niveau onder de Spaanse PNB. Onze boten met vaarbewijs vereisen PNB of hoger, overweeg een PER of ICC te halen.",
+        insufficient: "Je vaarbewijs ligt onder het Spaanse vaarbewijs Licencia de Navegación (LN), het minimum voor onze vloot met vaarbewijs. Overweeg de LN of een hoger vaarbewijs te halen.",
         inlandOnly: "Je vaarbewijs is geldig voor rivieren en meren, niet voor zeevaart. Goed nieuws: onze boten zonder vaarbewijs vereisen geen titel, ze zijn perfect voor jou.",
       },
       pill: {
@@ -953,7 +953,7 @@ export const nl: Translations = {
     lloret: "Boot huren Lloret de Mar",
     lloretDesc: "25 min varen, stranden en verborgen baaien",
     tossa: "Boot huren Tossa de Mar",
-    tossaDesc: "1 uur varen, middeleeuws ommuurde stad",
+    tossaDesc: "30-45 min varen met vaarbewijs: middeleeuws ommuurde stad",
     malgrat: "Boten bij Malgrat de Mar",
     malgratDesc: "10 min rijden naar haven Blanes",
     santaSusanna: "Boten bij Santa Susanna",
@@ -971,10 +971,10 @@ export const nl: Translations = {
   },
   categoryLicenseFree: {
     synonymsTitle: "Motorboot, sloep of vaartuig? Hetzelfde",
-    synonymsBody: "Hoe je het ook zoekt: motorboot huren aan de Costa Brava, een vaartuig huren zonder vaarbewijs of een sloep huren in Blanes. Onze 5 boten zonder vaarbewijs zijn recreatieve motorboten tot 5 meter en 15 pk die elke volwassene zonder vaarbewijs mag besturen. Dezelfde boot en dezelfde prijs vanaf 70€/u inclusief brandstof, hoe je het ook noemt.",
+    synonymsBody: "Hoe je het ook zoekt: motorboot huren aan de Costa Brava, een vaartuig huren zonder vaarbewijs of een sloep huren in Blanes. Onze 4 boten zonder vaarbewijs zijn recreatieve motorboten tot 5 meter en 15 pk die elke volwassene zonder vaarbewijs mag besturen. Dezelfde boot en dezelfde prijs vanaf 75€/u inclusief brandstof, hoe je het ook noemt.",
     heroTitle: "Boten Zonder Vaarbewijs in Blanes",
     heroDescription:
-      "5 boten zonder vaarbewijs vanaf 70€/u in de Haven van Blanes, brandstof inbegrepen. Tot 7 personen, zonder vaarbewijs of certificaat, zonder eerdere ervaring. 15 minuten veiligheidsinstructie en u vaart naar de baaien van de Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina en Sa Boadella tot het strand van Fenals (Lloret de Mar).",
+      "4 boten zonder vaarbewijs vanaf 75€/u in de Haven van Blanes, brandstof inbegrepen. Tot 5 personen, zonder vaarbewijs of certificaat, zonder eerdere ervaring. 15 minuten veiligheidsinstructie en u vaart naar de baaien van de Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina en Sa Boadella tot het strand van Fenals (Lloret de Mar).",
     badgeNoLicense: "Geen Vaarbewijs Nodig",
     badgePower: "Tot 15 PK",
     badgeCapacity: "4-7 personen",
@@ -1031,7 +1031,7 @@ export const nl: Translations = {
       "Bij onze boten zonder vaarbewijs is de brandstof inbegrepen in de huurprijs. Je hoeft je geen zorgen te maken over tanken of extra brandstofkosten. De getoonde prijs is de eindprijs.",
     comparisonTitle: "Gedetailleerde Vergelijking van Onze Boten zonder Vaarbewijs",
     comparisonIntro:
-      "We hebben 5 boten zonder vaarbewijs in de Haven van Blanes, elk met een eigen karakter. Bekijk de tabel om de boot te vinden die het beste bij je plannen past.",
+      "We hebben 4 boten zonder vaarbewijs in de Haven van Blanes, elk met een eigen karakter. Bekijk de tabel om de boot te vinden die het beste bij je plannen past.",
     comparisonBoatName: "Boot",
     comparisonCapacity: "Capaciteit",
     comparisonEngine: "Motor",
@@ -1076,19 +1076,19 @@ export const nl: Translations = {
       "Dat is het meest voorkomende geval onder onze klanten. Boten zonder vaarbewijs zijn juist ontworpen voor mensen zonder eerdere ervaring: intuïtieve bediening, lichte motor (15 PK), varen op 5 knopen (cruisesnelheid) en beschermde kustzone. Tijdens de 15-minuten instructie leren we u manoeuvreren in de haven, voor anker gaan, de marifoon gebruiken en terugkeren naar de aanlegplek. Tot vandaag heeft geen enkele klant moeite gehad met de boot na de instructie.",
     faqGroupSizeQuestion: "Hoeveel mensen passen er in een boot zonder vaarbewijs?",
     faqGroupSizeAnswer:
-      "Onze 5 boten zonder vaarbewijs hebben een capaciteit van 4 tot 5 personen (volwassenen en kinderen tellen gelijk). De Astec 400 is ideaal voor stellen of kleine gezinnen (4 personen). Solar 450, Remus 450, Remus 450 II en Astec 480 zijn de grootste in de categorie zonder vaarbewijs (5 personen). Heb je 6 of 7 plaatsen nodig, kijk dan naar de boten met vaarbewijs (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) of onze Privé-excursie met schipper. De prijs is per boot, niet per persoon, hoe meer mensen, hoe goedkoper per hoofd.",
+      "Onze 4 boten zonder vaarbewijs hebben een capaciteit van 4 tot 5 personen (volwassenen en kinderen tellen gelijk). De Remus 450 is ideaal voor stellen of kleine gezinnen, en de Solar 450, Remus 450 II en Astec 480 bieden plaats aan maximaal 5 personen. Heb je 6 of 7 plaatsen nodig, kijk dan naar de boten met vaarbewijs (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) of onze Privé-excursie met schipper. De prijs is per boot, niet per persoon, hoe meer mensen, hoe goedkoper per hoofd.",
     howToTitle: "Een boot zonder vaarbewijs huren in Blanes (5 stappen)",
     howToIntro:
       "Een boot zonder vaarbewijs huren in de haven van Blanes is eenvoudiger dan het lijkt. Dit zijn de 5 stappen van het proces, van de reservering tot de teruggave, zodat je precies weet wat je kunt verwachten op de dag van vertrek.",
     howToStep1Title: "1. Kies je boot en tijdstip",
     howToStep1Text:
-      "Bekijk onze vloot zonder vaarbewijs (Solar 450, Remus 450, Astec 400, Astec 480 en Mingolla Brava 19) en kies de boot die het beste bij jouw groep past. Reserveer via WhatsApp (+34 611 500 372) of via de website met vermelding van datum, tijd en aantal personen. We bevestigen de beschikbaarheid in enkele minuten.",
+      "Bekijk onze vloot zonder vaarbewijs (Solar 450, Remus 450, Remus 450 II en Astec 480) en kies de boot die het beste bij jouw groep past. Reserveer via WhatsApp (+34 611 500 372) of via de website met vermelding van datum, tijd en aantal personen. We bevestigen de beschikbaarheid binnen 2 uur.",
     howToStep2Title: "2. Kom 30 minuten voor vertrek naar de haven van Blanes",
     howToStep2Text:
       "Onze basis is gevestigd in de haven van Blanes (Girona), bereikbaar per auto vanuit Barcelona (1u), Lloret de Mar (15 min) of Tossa de Mar (30 min). Gratis parkeren in de havenzone. Neem het identiteitsbewijs of paspoort van de bestuurder (18 jaar of ouder) en de borg van 300€ mee (pinpas of contant, wordt volledig terugbetaald).",
     howToStep3Title: "3. Veiligheidsinstructie (15 minuten)",
     howToStep3Text:
-      "Voordat je vertrekt, leert ons lokale team je de boot te besturen in de haven: motor starten en stoppen, langzaam manoeuvreren, voor anker gaan in een baai, de marifoon gebruiken en terugkeren naar de aanlegplaats. We beantwoorden al je vragen. Geen eerdere ervaring nodig — de instructie is ontworpen voor beginners.",
+      "Voordat je vertrekt, leert ons lokale team je de boot te besturen in de haven: motor starten en stoppen, langzaam manoeuvreren, voor anker gaan in een baai, de marifoon gebruiken en terugkeren naar de aanlegplaats. We beantwoorden al je vragen. Geen eerdere ervaring nodig: de instructie is ontworpen voor beginners.",
     howToStep4Title: "4. Vaar naar de baaien van de Costa Brava",
     howToStep4Text:
       "Je vertrekt vanuit de haven van Blanes met brandstof inbegrepen en vrije koers binnen de limiet van 2 zeemijl. De populairste baaien: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina en Sa Boadella, tot aan het strand van Fenals (Lloret de Mar). Anker waar je wilt, zwem, snorkel en keer op je eigen tempo terug.",
@@ -1098,7 +1098,7 @@ export const nl: Translations = {
     howToDurationLabel: "Duur van het proces",
     howToDurationValue: "Reservering 5 min · instructie 15 min · vrij varen",
     howToCostLabel: "Prijs vanaf",
-    howToCostValue: "70€/u inclusief brandstof",
+    howToCostValue: "75€/u inclusief brandstof",
     vsMarketplacesTitle: "Waarom direct huren in Blanes in plaats van via een marktplaats",
     vsMarketplacesIntro:
       "Sommige marktplaatsen adverteren boten zonder vaarbewijs aan de Costa Brava vanaf 55€/dag. Dat klinkt goedkoop, maar de prijs die je ziet is niet de prijs die je betaalt. Dit is wat er verandert als je direct bij ons reserveert tegenover een tussenpersoon.",
@@ -1108,7 +1108,7 @@ export const nl: Translations = {
     vsMarketplacesRow1Direct: "Inbegrepen in de prijs",
     vsMarketplacesRow1Market: "Apart (voegt vaak 25-50€ toe)",
     vsMarketplacesRow2Label: "Platformcommissie",
-    vsMarketplacesRow2Direct: "0€ — je betaalt de eigenaar",
+    vsMarketplacesRow2Direct: "0€: je betaalt de eigenaar",
     vsMarketplacesRow2Market: "5-15% over het totaal",
     vsMarketplacesRow3Label: "Veiligheidsinstructie",
     vsMarketplacesRow3Direct: "Lokaal team in 8 talen (es/en/fr/de/ca/nl/it/ru)",
@@ -1120,19 +1120,19 @@ export const nl: Translations = {
     vsMarketplacesRow5Direct: "Flexibel tot 48u van tevoren",
     vsMarketplacesRow5Market: "Beleid van de marktplaats + tarief van de eigenaar",
     vsMarketplacesConclusion:
-      "De uiteindelijke prijs via een marktplaats is doorgaans 20-35% hoger dan geadverteerd zodra je brandstof, commissie en extra's optelt. Onze 70€/u is al-inclusive: brandstof, uitrusting, instructie, aansprakelijkheidsverzekering en havensupport.",
+      "De uiteindelijke prijs via een marktplaats is doorgaans 20-35% hoger dan geadverteerd zodra je brandstof, commissie en extra's optelt. Onze 75€/u is al-inclusive: brandstof, uitrusting, instructie, aansprakelijkheidsverzekering en havensupport.",
   },
   categoryLicensed: {
     heroTitle: "Boten Met Vaarbewijs in Blanes",
     heroDescription:
-      "Huur krachtige boten met vaarbewijs in de haven van Blanes, Costa Brava. Maximale vrijheid voor gevorderd varen. Vaarbewijs PER, PNB of hoger vereist.",
+      "Huur krachtige boten met vaarbewijs in de haven van Blanes, Costa Brava. Maximale vrijheid voor gevorderd varen. Het Spaanse vaarbewijs Licencia de Navegación (LN) volstaat, net als elk hoger vaarbewijs.",
     badgeLicense: "Vaarbewijs Vereist",
     badgePower: "40-115 PK",
     badgeCapacity: "6-7 personen",
     whatAreTitle: "Wat zijn Boten Met Vaarbewijs?",
     advancedNavigation: "Gevorderd Varen",
     advancedNavigationDesc:
-      "Boten met vaarbewijs zijn vaartuigen van meer dan 15 PK vermogen die een officieel vaarbewijs (PER, PNB of hoger) vereisen. Ze bieden meer vermogen, snelheid en vaarcapaciteit.",
+      "Boten met vaarbewijs zijn vaartuigen van meer dan 15 PK vermogen die een officieel vaarbewijs (Licencia de Navegación of hoger) vereisen. Ze bieden meer vermogen, snelheid en vaarcapaciteit.",
     greaterFreedom: "Meer Vrijheid",
     greaterFreedomDesc:
       "Met deze vaartuigen kun je zonder afstandsbeperking van de kust varen (afhankelijk van je vaarbewijs), afgelegen baaien bereiken en genieten van een sportievere en spannendere vaarervaring.",
@@ -1156,6 +1156,7 @@ export const nl: Translations = {
     sportNavigation: "Sportieve vaarervaring",
     requirementsTitle: "Vereisten en Vaarbewijzen",
     acceptedLicenses: "Geaccepteerde Vaarbewijzen",
+    licenciaNavegacion: "Licencia de Navegación (LN): het minimale vaarbewijs, voldoende voor onze hele vloot",
     per: "PER (Patrón de Embarcaciones de Recreo)",
     pnb: "PNB (Patrón de Navegación Básica)",
     yachtCaptain: "Jachtkapitein",
@@ -1205,7 +1206,7 @@ export const nl: Translations = {
     featuredArticle: "Uitgelicht",
     readMore: "Lees artikel",
     minRead: "min leestijd",
-    ctaBanner: "Weet je al welke boot je wilt? Boek vanaf \u20AC70/u",
+    ctaBanner: "Weet je al welke boot je wilt? Boek vanaf \u20AC75/u",
     ctaBannerButton: "Nu boeken",
   },
   exitIntent: {
@@ -1315,7 +1316,7 @@ export const nl: Translations = {
     q2: "Hoe lang wil je varen?",
     q2options: ["1-2 uur", "3-4 uur (halve dag)", "6-8 uur (hele dag)"],
     q3: "Wat is je budget?",
-    q3options: ["Voordelig (vanaf 70€)", "Middel (100-200€)", "Geen limiet"],
+    q3options: ["Voordelig (vanaf 75€)", "Middel (100-200€)", "Geen limiet"],
     result: "Je ideale boot is...",
     bestMatch: "Beste keuze",
     alsoConsider: "Je kunt ook overwegen",
@@ -1368,7 +1369,7 @@ export const nl: Translations = {
         id: "precios",
         question: "Wat zijn de huurprijzen?",
         answer:
-          "Boten zonder vaarbewijs vanaf 70€ met brandstof inbegrepen (1u, 2u, 3u, 4u, 6u of hele dag). Boten met vaarbewijs vanaf 160€ zonder brandstof (2u, 4u, 8u). Prijzen variëren per seizoen (juli/augustus) en boot.",
+          "Boten zonder vaarbewijs vanaf 75€ met brandstof inbegrepen (1u, 2u, 3u, 4u, 6u of hele dag). Boten met vaarbewijs vanaf 160€ zonder brandstof (2u, 4u, 8u). Prijzen variëren per seizoen (juli/augustus) en boot.",
       },
       {
         id: "sin-licencia",
@@ -1580,11 +1581,11 @@ export const nl: Translations = {
     "astec-480":
       "De premium ervaring zonder vaarbewijs. Met 4,80 m, Bluetooth speakers, gewatteerd solarium en dubbele brandstoftank is het de meest complete vaarbewijsvrije boot in Blanes. Vaar met uw favoriete muziek naar de mooiste baaien van de Costa Brava. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "trimarchi-57s":
-      "110 pk Italiaans design voor groepen tot 7 personen die evenveel adrenaline als comfort willen. Dubbel solarium op voor- en achtersteven om te zonnen, een centrale tafel voor de lunch voor anker in een baai en het vermogen om elk plekje tussen Blanes en Tossa de Mar in minuten te bereiken. De boot voor wie snelheid wil zonder iets op te geven. Basisvaarbewijs (LNB) vereist.",
+      "110 pk Italiaans design voor groepen tot 7 personen die evenveel adrenaline als comfort willen. Dubbel solarium op voor- en achtersteven om te zonnen, een centrale tafel voor de lunch voor anker in een baai en het vermogen om elk plekje tussen Blanes en Tossa de Mar in minuten te bereiken. De boot voor wie snelheid wil zonder iets op te geven. Licencia de Navegación (LN) of hoger vereist.",
     "mingolla-brava-19":
-      "De ideale speedboot om de hele kust te verkennen: Lloret de Mar in 15 minuten, Tossa de Mar in een half uur. Met 80 pk, GPS en dieptemeter bereikt u baaien die andere boten niet halen. Zoetwaterdouche, Bluetooth en RVS beugel voor watersport. Alle uitrusting om de Costa Brava in totale vrijheid te verkennen. Basisvaarbewijs (LNB) vereist.",
+      "De ideale speedboot om de hele kust te verkennen: Lloret de Mar in 15 minuten, Tossa de Mar in een half uur. Met 80 pk, GPS en dieptemeter bereikt u baaien die andere boten niet halen. Zoetwaterdouche, Bluetooth en RVS beugel voor watersport. Alle uitrusting om de Costa Brava in totale vrijheid te verkennen. Licencia de Navegación (LN) of hoger vereist.",
     "pacific-craft-625":
-      "Het beste wat u in Blanes kunt huren. 6,24 m, Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Vaarbewijs vereist (ICC).",
+      "Het beste wat u in Blanes kunt huren. 6,24 m, Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Licencia de Navegación (LN) of hoger vereist.",
     "excursion-privada":
       "U geniet gewoon, onze professionele schipper brengt u naar geheime baaien, zeegrotten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
   },
@@ -1594,7 +1595,7 @@ export const nl: Translations = {
     eyebrowHome: "ECHT NAVIGATIEBEREIK",
     headlineHome: "Hoever je kunt varen vanaf Blanes, met en zonder vaarbewijs",
     introHome:
-      "Met een boot zonder vaarbewijs mag je legaal tot 2 zeemijlen uit de kust varen met 5 knopen. Vanuit de haven van Blanes zijn dat 7 authentieke Costa Brava-baaien op één dag, met Playa de Fenals (zuid van Lloret de Mar) als noordelijke grens. Met een PER-vaarbewijs verleng je de route tot Tossa de Mar, Sant Feliu en Platja d'Aro.",
+      "Met een boot zonder vaarbewijs mag je legaal tot 2 zeemijlen uit de kust varen met 5 knopen. Vanuit de haven van Blanes zijn dat 7 authentieke Costa Brava-baaien op één dag, met Playa de Fenals (zuid van Lloret de Mar) als noordelijke grens. Met de Licencia de Navegación (LN) verleng je de route tot Tossa de Mar, Sant Feliu en Platja d'Aro.",
     eyebrowLloret: "VAARBEWIJSVRIJ TRAJECT, 25 MIN VARENS",
     headlineLloret: "De 7 baaien tussen Blanes en Playa de Fenals",
     introLloret:
@@ -1606,9 +1607,9 @@ export const nl: Translations = {
       "Een boot zonder vaarbewijs mag tot 2 zeemijlen uit de kust varen met 5 knopen en 15 pk. Vanuit de haven van Blanes ligt Playa de Fenals precies op die afstand langs de kust.",
     noteNorthOfFenals:
       "Let op: Lloret centrum, Cala Banys en Cala Canyelles liggen ten noorden van Fenals, buiten het vaarbewijsvrije bereik.",
-    conLicenciaTitle: "Uitbreiding met PER-vaarbewijs",
+    conLicenciaTitle: "Uitbreiding met Licencia de Navegación (LN)",
     conLicenciaIntro:
-      "Met een PER-vaarbewijs of inclusive schipper breidt de route naar het noorden uit:",
+      "Met de Licencia de Navegación (LN) of een schipper inbegrepen breid je de route naar het noorden uit:",
     ext: {
       lloretCenter: "Lloret centrum en Cala Banys (voorbij Fenals)",
       canyelles: "Cala Canyelles, kleine jachthaven",
@@ -1617,7 +1618,7 @@ export const nl: Translations = {
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (halve / hele dag)",
     },
     ctaFleet: "Vaarbewijsvrije vloot bekijken",
-    ctaLicensed: "Boten met PER-vaarbewijs",
+    ctaLicensed: "Boten met Licencia de Navegación",
     internalLinks:
       'Wilt u alle routes zien? Bekijk <a href="/nl/boot-huren-blanes" class="underline text-primary hover:text-primary/80">bootverhuur in Blanes</a>, de route <a href="/nl/boot-huren-lloret-de-mar" class="underline text-primary hover:text-primary/80">naar Lloret de Mar</a>, de uitbreiding met vaarbewijs <a href="/nl/boot-huren-tossa-de-mar" class="underline text-primary hover:text-primary/80">naar Tossa de Mar</a>, alle <a href="/nl/boot-huren-costa-brava" class="underline text-primary hover:text-primary/80">routes langs de Costa Brava</a> en <a href="/nl/boot-huren-bij-barcelona" class="underline text-primary hover:text-primary/80">bootverhuur bij Barcelona</a>. Volledige prijzen in <a href="/nl/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Wat kost het om een boot te huren in Blanes</a>.',
   },
@@ -1727,6 +1728,7 @@ export const nl: Translations = {
       per: "PER vereist",
       patron_yate: "Patrón de Yate",
       capitan_yate: "Capitán de Yate",
+      captained: "Met schipper",
     },
     licenseFallback: "Met vergunning",
     table: {
@@ -1768,11 +1770,11 @@ export const nl: Translations = {
       a3: "Ja. Het laagseizoen (april-juni en september-oktober) heeft de beste prijzen. Het middenseizoen is juli met middenprijzen, en het hoogseizoen is augustus met de hoogste tarieven. Wij raden aan om in het laagseizoen te reserveren voor de beste prijs-kwaliteitverhouding.",
       q4: "Hoeveel kost het om een boot met vergunning te huren?",
       a4Template:
-        "Boten met vergunning in Blanes kosten vanaf {licBaja2h} €/2u in het laagseizoen. Hiervoor is een PER of gelijkwaardig vaarbewijs vereist. Dit zijn krachtigere boten met meer actieradius om de Costa Brava te verkennen.",
+        "Boten met vergunning in Blanes kosten vanaf {licBaja2h} €/2u in het laagseizoen. De Licencia de Navegación (LN) volstaat, net als een hoger vaarbewijs. Dit zijn krachtigere boten met meer actieradius om de Costa Brava te verkennen.",
     },
     cta: {
       title: "Reserveer je boot tegen de beste prijs",
-      subtitle: "Kies je boot, datum en tijdstip. Directe bevestiging.",
+      subtitle: "Kies je boot, datum en tijdstip. We bevestigen binnen 2 uur.",
       button: "Nu reserveren",
     },
   },
@@ -1819,12 +1821,12 @@ export const nl: Translations = {
       title: "Onze boten",
       noLicenseTitle: "Boten zonder vaarbewijs",
       noLicenseBody:
-        "5 boten voor 4-5 personen. Je hebt geen voorafgaande ervaring of vaarbewijs nodig. We geven je een instructie van 15 minuten en je kunt vertrekken. Brandstof inbegrepen in de prijs.",
+        "4 boten voor 4-5 personen. Je hebt geen voorafgaande ervaring of vaarbewijs nodig. We geven je een instructie van 15 minuten en je kunt vertrekken. Brandstof inbegrepen in de prijs.",
       noLicenseBullet1: "Tot 5 personen per boot",
       noLicenseBullet2: "Vanaf 1 uur verhuur",
       licensedTitle: "Boten met vaarbewijs",
       licensedBody:
-        "2 krachtige boten voor tot 7 personen. Vereisen PER of gelijkwaardig vaarbewijs. Meer actieradius en snelheid om de hele Costa Brava te verkennen.",
+        "3 krachtige boten voor tot 7 personen. De Licencia de Navegación (LN) volstaat, net als een hoger vaarbewijs. Meer actieradius en snelheid om de hele Costa Brava te verkennen.",
       licensedBullet1: "Tot 7 personen per boot",
       licensedBullet2: "Hele dag beschikbaar",
       viewAllCta: "Bekijk alle boten",
@@ -1887,7 +1889,7 @@ export const nl: Translations = {
   },
   licenseTypes: {
     none: "Geen vergunning vereist",
-    navegacion: "Basisvaarbewijs (LNB)",
+    navegacion: "Licencia de Navegación (LN)",
     pnb: "Schipper voor Basisnavigatie (PNB)",
     per: "Schipper Pleziervaartuigen (PER)",
     patron_yate: "Jachtschipper",
@@ -2023,7 +2025,7 @@ export const nl: Translations = {
     ],
     heroTitle: "Boottocht bij Zonsondergang vanuit Blanes",
     heroDescription:
-      "Aanschouw de zonsondergang boven de Costa Brava vanaf het dek van je eigen boot. Vertrek uit de haven van Blanes, vaar langs verborgen baaien en geniet van het meest magische licht van de dag boven de Middellandse Zee. Zonder vaarbewijs. Vanaf 70 EUR/uur.",
+      "Aanschouw de zonsondergang boven de Costa Brava vanaf het dek van je eigen boot. Vertrek uit de haven van Blanes, vaar langs verborgen baaien en geniet van het meest magische licht van de dag boven de Middellandse Zee. Zonder vaarbewijs. Vanaf 75 €/uur.",
     badgeGoldenHour: "Uitzicht tijdens gouden uur",
     badgeDuration: "2 uur aanbevolen",
     badgeCouples: "Perfect voor koppels",
@@ -2132,7 +2134,7 @@ export const nl: Translations = {
       {
         name: "Boten zonder vergunning (4-5 personen)",
         duration: "2-3 uur aanbevolen",
-        price: "Vanaf 70 EUR/uur",
+        price: "Vanaf 75 €/uur",
         description:
           "Perfect voor snorkelen in nabijgelegen baaien zoals Cala Sant Francesc en Cala Bona. Brandstof inbegrepen. Anker de boot en spring direct het water in.",
       },
@@ -2264,7 +2266,7 @@ export const nl: Translations = {
         stops: ["Haven van Blanes", "Cala Sant Francesc", "Terugkeer"],
         description:
           "Ideaal voor gezinnen met jonge kinderen. Korte vaartocht naar een beschermde baai met ondiep en kristalhelder water. Tijd om te zwemmen, rustig te snorkelen en te picknicken aan boord.",
-        price: "Vanaf 140 EUR (70 EUR/u)",
+        price: "Vanaf 115 € (2 u, laagseizoen)",
         tip: "Perfect voor een eerste bootervaring met kinderen. De baai heeft een zandstrand en rustig water.",
       },
       {
@@ -2278,13 +2280,13 @@ export const nl: Translations = {
         ],
         description:
           "De complete beleving voor gezinnen. Drie stops met voldoende tijd om elke baai te verkennen. Combineert zwemmen, snorkelen, picknicken en spectaculaire uitzichten op de kust.",
-        price: "Vanaf 280 EUR (70 EUR/u)",
+        price: "Vanaf 150 € (4 u, laagseizoen)",
         tip: "Aanbevolen voor kinderen vanaf 4 jaar. Neem eten, water, zonnebrand en petjes mee.",
       },
     ],
     heroTitle: "Boot Huren voor Gezinnen aan de Costa Brava",
     heroDescription:
-      "Een veilig en leuk avontuur voor het hele gezin. Boten zonder vaarbewijs vanuit de haven van Blanes met brandstof inbegrepen, kinderzwemvesten en beschermde baaien perfect voor kinderen. Vanaf 70 EUR/uur.",
+      "Een veilig en leuk avontuur voor het hele gezin. Boten zonder vaarbewijs vanuit de haven van Blanes met brandstof inbegrepen, kinderzwemvesten en beschermde baaien perfect voor kinderen. Vanaf 75 €/uur.",
     badgeNoLicense: "Geen vaarbewijs nodig",
     badgeKidsVests: "Kinderzwemvesten inbegrepen",
     badgeFuel: "Brandstof inbegrepen",
@@ -2413,7 +2415,7 @@ export const nl: Translations = {
         type: "Boten zonder vergunning",
         capacity: "4-5 personen",
         autonomy: "Kustvisserij (tot 2 mijl)",
-        price: "Vanaf 70 EUR/uur (brandstof inbegrepen)",
+        price: "Vanaf 75 €/uur (brandstof inbegrepen)",
         advantages: [
           "Geen vaarbewijs nodig",
           "Brandstof inbegrepen in de prijs",
@@ -2526,7 +2528,7 @@ export const nl: Translations = {
         {
           question: "Heb ik een vaarbewijs nodig om een boot te huren in Blanes?",
           answer:
-            "Nee. We hebben 5 boten zonder vaarbewijs voor 4 of 5 personen. Je hoeft alleen 18 jaar of ouder te zijn. We geven je een instructie van 15 minuten voordat je vertrekt.",
+            "Nee. We hebben 4 boten zonder vaarbewijs voor 4 of 5 personen. Je hoeft alleen 18 jaar of ouder te zijn. We geven je een instructie van 15 minuten voordat je vertrekt.",
         },
         {
           question: "Hoeveel kost het om een boot te huren in de haven van Blanes?",
@@ -2572,7 +2574,7 @@ export const nl: Translations = {
       hero: {
         title: "Bootverhuur in Blanes",
         subtitle:
-          "Bootverhuur direct vanuit Haven Blanes vanaf 70€/u, brandstof inbegrepen. Zonder vaarbewijs tot 5 personen, met vaarbewijs tot 7. Gratis parkeren op 100m van de aanlegplaats, 15 minuten veiligheidsinstructie. Vanaf hier vaart u naar Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) en Lloret de Mar (25 min). Tossa de Mar op 30-45 min met vaarbewijs.",
+          "Bootverhuur direct vanuit Haven Blanes vanaf 75€/u, brandstof inbegrepen. Zonder vaarbewijs tot 5 personen, met vaarbewijs tot 7. Gratis parkeren op 100m van de aanlegplaats, 15 minuten veiligheidsinstructie. Vanaf hier vaart u naar Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) en Lloret de Mar (25 min). Tossa de Mar op 30-45 min met vaarbewijs.",
         badgePort: "Haven van Blanes",
         badgeCapacity: "4-7 personen",
         badgeDuration: "1u-8u",
@@ -2619,7 +2621,7 @@ export const nl: Translations = {
         mapTitle: "Locatie - Haven van Blanes",
         fleetTitle: "Onze Vloot in de Haven van Blanes",
         fleetIntro:
-          "Wij beschikken over 9 boten in de haven van Blanes, klaar om te varen van april tot oktober. Onze vloot omvat 5 boten zonder vaarbewijs, perfect voor gezinnen en koppels die de nabijgelegen baaien willen verkennen, 3 opties met vaarbewijs voor ervaren zeilers die meer bereik en vermogen zoeken, en een Privé-excursie met schipper voor groepen die liever varen zonder zelf aan het roer te staan. Alle boten worden dagelijks geinspecteerd en zijn volledig verzekerd.",
+          "Wij beschikken over 8 boten in de haven van Blanes, klaar om te varen van april tot oktober. Onze vloot omvat 4 boten zonder vaarbewijs, perfect voor gezinnen en koppels die de nabijgelegen baaien willen verkennen, 3 opties met vaarbewijs voor ervaren zeilers die meer bereik en vermogen zoeken, en een Privé-excursie met schipper voor groepen die liever varen zonder zelf aan het roer te staan. Alle boten worden dagelijks geinspecteerd en zijn volledig verzekerd.",
         fleetNoLicense: "Zonder vaarbewijs",
         fleetLicense: "Met vaarbewijs",
         fleetFrom: "Vanaf",
@@ -2636,7 +2638,7 @@ export const nl: Translations = {
           "Boten zonder vaarbewijs bevatten brandstof, verzekering, veiligheidsuitrusting, zonnescherm en zwemtrap. Voor boten met vaarbewijs en de prive-excursie met schipper is brandstof NIET inbegrepen.",
         guideBookingTitle: "Hoe te reserveren",
         guideBookingText:
-          "U kunt reserveren via onze website met directe bevestiging, via WhatsApp op +34 611 500 372 in het Spaans, Engels en Catalaans, of direct in de haven van Blanes bij beschikbaarheid.",
+          "U kunt reserveren via onze website (we bevestigen via WhatsApp binnen 2 uur), via WhatsApp op +34 611 500 372 in het Spaans, Engels en Catalaans, of direct in de haven van Blanes bij beschikbaarheid.",
         pricingTitle: "Prijzen Boothuur in Blanes 2026",
         pricingIntro:
           "Onze tarieven varieren per seizoen en huurduur. Alle prijzen zijn inclusief BTW, ligplaats en reiniging.",
@@ -2705,7 +2707,7 @@ export const nl: Translations = {
         {
           question: "Kan ik met een boot zonder vaarbewijs van Lloret naar Tossa de Mar varen?",
           answer:
-            "Nee. Tossa ligt 4–5 mijl ten noorden van Fenals, buiten het wettelijke bereik zonder vaarbewijs. Om met een boot van Blanes naar Tossa te gaan heb je nodig: (a) een boot met een basisvaarbewijs (LNB), of (b) een privé-excursie met schipper.",
+            "Nee. Tossa ligt 4–5 mijl ten noorden van Fenals, buiten het wettelijke bereik zonder vaarbewijs. Om met een boot van Blanes naar Tossa te gaan heb je nodig: (a) een boot met Licencia de Navegación (LN), of (b) een privé-excursie met schipper.",
         },
         {
           question: "Wat gebeurt er als het slecht weer is?",
@@ -2790,7 +2792,7 @@ export const nl: Translations = {
         {
           question: "Kan ik Tossa de Mar bereiken met een boot zonder vaarbewijs vanuit Blanes?",
           answer:
-            "Nee. Boten zonder vaarbewijs (2 mijl van de kust, 5 knopen, 15 pk) bereiken tot Playa de Fenals (zuid-Lloret), 4 mijl vóór Tossa. Om Tossa te bereiken heb je een basisvaarbewijs (LNB) nodig of moet je de privé-excursie met schipper boeken.",
+            "Nee. Boten zonder vaarbewijs (2 mijl van de kust, 5 knopen, 15 pk) bereiken tot Playa de Fenals (zuid-Lloret), 4 mijl vóór Tossa. Om Tossa te bereiken heb je de Licencia de Navegación (LN) nodig of moet je de privé-excursie met schipper boeken.",
         },
         {
           question: "Hoe lang duurt het met de boot van Blanes naar Tossa?",
@@ -2803,7 +2805,7 @@ export const nl: Translations = {
             "Pacific Craft 625 met professionele schipper, maximaal 4 uur, tot 6 personen (plus de schipper). Vanaf {excursionBaja4h} € laagseizoen (april-juni, september-sluiting). Inclusief btw, schipper, aanlegplaats, reiniging en verzekering. Brandstof apart.",
         },
         {
-          question: "Hoeveel kost huren naar Tossa met een basisvaarbewijs (LNB)?",
+          question: "Hoeveel kost huren naar Tossa met de Licencia de Navegación (LN)?",
           answer:
             "Vaste pakketten 2 u / 4 u / 8 u, zonder schipper. Vanaf {licBaja2h} € (2 u laagseizoen) met de boten met vaarbewijs. 3 seizoenscategorieën. Borg 500 €. Btw, aanlegplaats, reiniging en verzekering inbegrepen; brandstof apart.",
         },
@@ -2882,7 +2884,7 @@ export const nl: Translations = {
         ctaButton: "Uitstapje naar Tossa Reserveren",
         warningTitle: "Tossa is niet bereikbaar met een boot zonder vaarbewijs.",
         warningBody:
-          'Boten zonder vaarbewijs (2 mijl, 5 knopen, 15 pk) komen tot Playa de Fenals (ten zuiden van Lloret), 4 mijl voor Tossa. Om Tossa te bereiken vanuit Blanes heb je (1) een zelfverhuur met Basisvaarbewijs / LNB nodig (gesloten pakketten 2 u / 4 u / 8 u vanaf {licBaja2h} € met Mingolla Brava 19 of Trimarchi 57S, btw, ligplaats, schoonmaak en verzekering inbegrepen; brandstof en borg 500 € niet inbegrepen), of (2) de <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Privé-excursie met Schipper</a> (Pacific Craft 625 + schipper, max. 4 u, tot 6 personen, vanaf {excursionBaja4h} € met btw, schipper, ligplaats, schoonmaak en verzekering inbegrepen, brandstof niet inbegrepen). Het derde alternatief is om met de auto naar Tossa te gaan (20 min vanuit Lloret) en daar ter plaatse een boot zonder vaarbewijs te huren.',
+          'Boten zonder vaarbewijs (2 mijl, 5 knopen, 15 pk) komen tot Playa de Fenals (ten zuiden van Lloret), 4 mijl voor Tossa. Om Tossa te bereiken vanuit Blanes heb je (1) een zelfverhuur met Licencia de Navegación nodig (gesloten pakketten 2 u / 4 u / 8 u vanaf {licBaja2h} € met Mingolla Brava 19 of Trimarchi 57S, btw, ligplaats, schoonmaak en verzekering inbegrepen; brandstof en borg 500 € niet inbegrepen), of (2) de <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Privé-excursie met Schipper</a> (Pacific Craft 625 + schipper, max. 4 u, tot 6 personen, vanaf {excursionBaja4h} € met btw, schipper, ligplaats, schoonmaak en verzekering inbegrepen, brandstof niet inbegrepen). Het derde alternatief is om met de auto naar Tossa te gaan (20 min vanuit Lloret) en daar ter plaatse een boot zonder vaarbewijs te huren.',
         crossLinkingText:
           'We bieden ook service voor toeristen die verblijven in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> en <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Vanuit deze plaatsen aan de kust van de Maresme bereik je de haven van Blanes in 10-20 minuten met de auto.',
         relatedTitle: "Gerelateerde services en bestemmingen",
@@ -2906,13 +2908,13 @@ export const nl: Translations = {
         whyRentTitle: "Waarom een boot huren vanuit Blanes?",
         closestPort: "De Dichtstbijzijnde Haven",
         closestPortDesc:
-          "Blanes is de dichtstbijzijnde jachthaven van Malgrat de Mar, slechts 10 minuten via de N-II. 7 boten klaar om te varen.",
-        varietyBoats: "7 Boten Beschikbaar",
+          "Blanes is de dichtstbijzijnde jachthaven van Malgrat de Mar, slechts 10 minuten via de N-II. 8 boten klaar om te varen.",
+        varietyBoats: "8 Boten Beschikbaar",
         varietyBoatsDesc:
           "Van boten zonder vaarbewijs voor gezinnen tot boten met vaarbewijs voor ervaren schippers. 4 tot 7 passagiers.",
         fuelIncluded: "Brandstof Inbegrepen",
         fuelIncludedDesc:
-          "Al onze verhuur is inclusief brandstof. Geen verrassingen. Vanaf 70 EUR/uur.",
+          "Al onze verhuur is inclusief brandstof. Geen verrassingen. Vanaf 75 €/uur.",
         noExperience: "Zonder Ervaring",
         noExperienceDesc:
           "Boten zonder vaarbewijs met 15 minuten instructie inbegrepen. Ideaal voor toeristen.",
@@ -3033,13 +3035,13 @@ export const nl: Translations = {
         whyRentTitle: "Waarom een boot huren vanuit Blanes?",
         closestPort: "De Dichtstbijzijnde Haven",
         closestPortDesc:
-          "Blanes is de dichtstbijzijnde jachthaven van Santa Susanna, slechts 15 minuten via de N-II. 7 boten klaar om te varen.",
-        varietyBoats: "7 Boten Beschikbaar",
+          "Blanes is de dichtstbijzijnde jachthaven van Santa Susanna, slechts 15 minuten via de N-II. 8 boten klaar om te varen.",
+        varietyBoats: "8 Boten Beschikbaar",
         varietyBoatsDesc:
           "Van boten zonder vaarbewijs voor gezinnen tot boten met vaarbewijs voor ervaren schippers. 4 tot 7 passagiers.",
         fuelIncluded: "Brandstof Inbegrepen",
         fuelIncludedDesc:
-          "Al onze verhuur is inclusief brandstof. Geen verrassingen. Vanaf 70 EUR/uur.",
+          "Al onze verhuur is inclusief brandstof. Geen verrassingen. Vanaf 75 €/uur.",
         noExperience: "Zonder Ervaring",
         noExperienceDesc:
           "Boten zonder vaarbewijs met 15 minuten instructie inbegrepen. Ideaal voor toeristen.",
@@ -3104,7 +3106,7 @@ export const nl: Translations = {
         {
           question: "Kan ik een bootexcursie maken van Calella naar Tossa de Mar?",
           answer:
-            "Niet direct vanuit Calella (geen verhuur). Vanuit Blanes wel: met een boot met basisvaarbewijs (LNB) bereik je Tossa in 45 min (vanaf {licBaja2h} EUR/2u), of met onze privé-excursie met schipper 4u naar Tossa inclusief Cala Bona en Vila Vella (vanaf {excursionBaja4h} EUR voor maximaal 6 personen, plus de schipper). Boten zonder vaarbewijs kunnen Tossa niet bereiken vanwege de wettelijke limiet van 2 mijl.",
+            "Niet direct vanuit Calella (geen verhuur). Vanuit Blanes wel: met een boot met Licencia de Navegación (LN) bereik je Tossa in 45 min (vanaf {licBaja2h} EUR/2u), of met onze privé-excursie met schipper 4u naar Tossa inclusief Cala Bona en Vila Vella (vanaf {excursionBaja4h} EUR voor maximaal 6 personen, plus de schipper). Boten zonder vaarbewijs kunnen Tossa niet bereiken vanwege de wettelijke limiet van 2 mijl.",
         },
         {
           question: "Hoeveel kost de trein R1 van Calella naar Blanes?",
@@ -3124,13 +3126,13 @@ export const nl: Translations = {
         whyRentTitle: "Waarom een boot huren vanuit Blanes?",
         closestPort: "De Dichtstbijzijnde Haven",
         closestPortDesc:
-          "Blanes is de dichtstbijzijnde jachthaven van Calella, slechts 20 minuten via de N-II. 7 boten klaar om te varen.",
-        varietyBoats: "7 Boten Beschikbaar",
+          "Blanes is de dichtstbijzijnde jachthaven van Calella, slechts 20 minuten via de N-II. 8 boten klaar om te varen.",
+        varietyBoats: "8 Boten Beschikbaar",
         varietyBoatsDesc:
           "Van boten zonder vaarbewijs voor gezinnen tot boten met vaarbewijs voor ervaren schippers. 4 tot 7 passagiers.",
         fuelIncluded: "Brandstof Inbegrepen",
         fuelIncludedDesc:
-          "Al onze verhuur is inclusief brandstof. Geen verrassingen. Vanaf 70 EUR/uur.",
+          "Al onze verhuur is inclusief brandstof. Geen verrassingen. Vanaf 75 €/uur.",
         noExperience: "Zonder Ervaring",
         noExperienceDesc:
           "Boten zonder vaarbewijs met 15 minuten instructie inbegrepen. Ideaal voor toeristen.",
@@ -3169,7 +3171,7 @@ export const nl: Translations = {
       hero: {
         title: "Bootverhuur aan de Costa Brava",
         subtitle:
-          "Ontdek de mooiste baaien en stranden van de Costa Brava aan boord van onze boten. Vertrek vanuit de haven van Blanes, in het hart van de Catalaanse kust. Boten zonder vaarbewijs vanaf 70 EUR/uur inclusief brandstof en verzekering.",
+          "Ontdek de mooiste baaien en stranden van de Costa Brava aan boord van onze boten. Vertrek vanuit de haven van Blanes, in het hart van de Catalaanse kust. Boten zonder vaarbewijs vanaf 75 €/uur inclusief brandstof en verzekering.",
         badgePort: "Haven van Blanes",
         badgeCapacity: "4-7 personen",
         badgeLicense: "Met en zonder vaarbewijs",
@@ -3214,17 +3216,17 @@ export const nl: Translations = {
         noLicenseCapacity: "Maximaal 5 personen aan boord",
         noLicenseNavigation: "Kustnavigatie tot 2 zeemijl",
         noLicenseFuel: "Brandstof inbegrepen in de prijs",
-        noLicensePrice: "Vanaf 70 EUR/uur",
+        noLicensePrice: "Vanaf 75 €/uur",
         noLicenseDesc:
           "Onze boten zonder vaarbewijs zijn ideaal voor families. Geen kwalificatie nodig: 15 minuten instructie en u kunt vertrekken. Alles inbegrepen: brandstof, verzekering, veiligheidsuitrusting en snorkelspullen.",
         licensedTitle: "Boten Met Vaarbewijs",
-        licensedPower: "40 tot 150 pk",
-        licensedCapacity: "Tot 12 personen aan boord",
+        licensedPower: "40 tot 115 pk",
+        licensedCapacity: "Tot 7 personen aan boord",
         licensedNavigation: "Navigatie op open zee zonder beperkingen",
         licensedFuel: "Brandstof NIET inbegrepen (aparte borg)",
         licensedPrice: "Vanaf 90 EUR/uur",
         licensedDesc:
-          "Voor gekwalificeerde zeilers die verder willen verkennen dan de directe kust. Meer vermogen, bereik en capaciteit. Brandstof wordt apart berekend.",
+          "Voor gekwalificeerde zeilers die verder willen verkennen dan de directe kust. Meer vermogen, bereik en capaciteit. Brandstof wordt apart berekend. De Licencia de Navegación (LN) volstaat; ook PNB, PER of Europese equivalenten zijn geldig.",
         bestCovesTitle: "De Mooiste Baaien van de Costa Brava per Boot",
         calaBravaName: "Cala Brava",
         calaBravaDesc:
@@ -3244,7 +3246,7 @@ export const nl: Translations = {
         pricingTitle: "Bootverhuurt Prijzen Costa Brava 2026",
         ctaTitle: "Boek Uw Boot aan de Costa Brava",
         ctaDescription:
-          "Kies uw boot, datum en tijd. Brandstof, verzekering en instructie inbegrepen bij boten zonder vaarbewijs.",
+          "Kies uw boot, datum en tijd. Brandstof, verzekering en instructie inbegrepen bij boten zonder vaarbewijs. Boek via WhatsApp: we bevestigen binnen 2 uur.",
         ctaButton: "Boek via WhatsApp",
         crossLinkEnglish: "This page in English: Boat Rental Costa Brava",
       },
@@ -3288,17 +3290,17 @@ export const nl: Translations = {
       ],
       seo: {
         title:
-          "Boot Huren Tordera | Haven Blanes 15 min | Zonder Vaarbewijs 70€/u | Delta del Tordera",
+          "Boot Huren Tordera | Haven Blanes 15 min | Zonder Vaarbewijs 75€/u | Delta del Tordera",
         description:
-          "Woon je in Tordera of bij de Delta? Haven Blanes op 15 min met de auto of 8 min met trein R1. Huur boot zonder vaarbewijs vanaf 70€/u met brandstof inbegrepen. Vaar door de Delta del Tordera.",
+          "Woon je in Tordera of bij de Delta? Haven Blanes op 15 min met de auto of 8 min met trein R1. Huur boot zonder vaarbewijs vanaf 75€/u met brandstof inbegrepen. Vaar door de Delta del Tordera.",
         ogTitle: "Boot Huren Tordera | Delta del Tordera per Boot",
         ogDescription:
-          "Van Tordera naar Haven Blanes in 15 min. Boot zonder vaarbewijs vanaf 70€/u. Delta del Tordera per boot. 4.8★.",
+          "Van Tordera naar Haven Blanes in 15 min. Boot zonder vaarbewijs vanaf 75€/u. Delta del Tordera per boot. 4.8★.",
       },
       schema: {
         name: "Bootverhuur bij Tordera",
         description:
-          "Huur boten vanuit de Haven van Blanes, op slechts 15 minuten rijden van Tordera. Boten zonder vaarbewijs vanaf 70 EUR/uur met brandstof inbegrepen.",
+          "Huur boten vanuit de Haven van Blanes, op slechts 15 minuten rijden van Tordera. Boten zonder vaarbewijs vanaf 75 €/uur met brandstof inbegrepen.",
       },
       breadcrumbName: "Bootverhuur Tordera",
       sections: {
@@ -3317,7 +3319,7 @@ export const nl: Translations = {
           "Onze vloot omvat {fleetCount} boten: vaartuigen zonder vaarbewijs ideaal voor gezinnen en beginners, en boten met vaarbewijs voor de meer ervaren vaarders. Van bootjes voor 4 personen tot vaartuigen voor groepen tot 11 personen.",
         whyCard3Title: "Brandstof inbegrepen bij boten zonder vaarbewijs",
         whyCard3Desc:
-          "De prijs van de boten zonder vaarbewijs is inclusief brandstof. Vanaf 70 EUR per uur met de Astec 400, of vanaf 75 EUR per uur met andere modellen. Geen verborgen kosten of verrassingen in de eindprijs.",
+          "De prijs van de boten zonder vaarbewijs is inclusief brandstof. Vanaf 75 € per uur. Geen verborgen kosten of verrassingen in de eindprijs.",
         whyCard4Title: "Geen voorafgaande ervaring nodig",
         whyCard4Desc:
           "Voor vertrek bieden we je 15 minuten praktische instructie waarin je leert hoe je de motor bedient, de basisregels van de navigatie en de mooiste plekjes om te verkennen. Iedereen van 18 jaar of ouder kan onze boten zonder vaarbewijs besturen.",
@@ -3394,17 +3396,17 @@ export const nl: Translations = {
         },
       ],
       seo: {
-        title: "Boot Huren Palafolls | Haven Blanes 12 min | Zonder Vaarbewijs 70€/u",
+        title: "Boot Huren Palafolls | Haven Blanes 12 min | Zonder Vaarbewijs 75€/u",
         description:
-          "Op de camping of logies in Palafolls? Haven Blanes op 12 min met de auto. Huur boot zonder vaarbewijs vanaf 70€/u met brandstof inbegrepen. Ideale excursie Costa Brava.",
+          "Op de camping of logies in Palafolls? Haven Blanes op 12 min met de auto. Huur boot zonder vaarbewijs vanaf 75€/u met brandstof inbegrepen. Ideale excursie Costa Brava.",
         ogTitle: "Boot Huren Palafolls | 12 min naar Haven Blanes",
         ogDescription:
-          "Van Palafolls naar Haven Blanes in 12 min. Boot zonder vaarbewijs vanaf 70€/u. Brandstof inbegrepen. 4.8★.",
+          "Van Palafolls naar Haven Blanes in 12 min. Boot zonder vaarbewijs vanaf 75€/u. Brandstof inbegrepen. 4.8★.",
       },
       schema: {
         name: "Bootverhuur bij Palafolls",
         description:
-          "Huur boten vanuit de Haven van Blanes, op slechts 12 minuten rijden van Palafolls. Boten zonder vaarbewijs vanaf 70 EUR/uur met brandstof inbegrepen.",
+          "Huur boten vanuit de Haven van Blanes, op slechts 12 minuten rijden van Palafolls. Boten zonder vaarbewijs vanaf 75 €/uur met brandstof inbegrepen.",
       },
       breadcrumbName: "Bootverhuur Palafolls",
       sections: {
@@ -3423,7 +3425,7 @@ export const nl: Translations = {
           "Als je verblijft op een van de campings in Palafolls zoals La Masía, Neptuno, of de bungalowcomplexen in de omgeving, is het huren van een boot de topactiviteit die je vakantie uniek maakt. Veel gezinnen van nabijgelegen campings bezoeken ons elk seizoen.",
         whyCard3Title: "Brandstof inbegrepen bij boten zonder vaarbewijs",
         whyCard3Desc:
-          "De prijs van de boten zonder vaarbewijs is inclusief brandstof. Vanaf 70 EUR per uur met de Astec 400, of vanaf 75 EUR per uur met andere modellen van grotere lengte. Geen verborgen kosten of toeslagen voor brandstof.",
+          "De prijs van de boten zonder vaarbewijs is inclusief brandstof. Vanaf 75 € per uur. Geen verborgen kosten of toeslagen voor brandstof.",
         whyCard4Title: "Geen voorafgaande ervaring nodig",
         whyCard4Desc:
           "Voor vertrek geeft ons team je 15 minuten praktische instructie. We leren je hoe je de motor bedient, de basisregels van de navigatie en de beste plekjes om te verkennen. Iedereen van 18 jaar of ouder kan onze boten zonder vaarbewijs besturen.",
@@ -3501,17 +3503,17 @@ export const nl: Translations = {
         },
       ],
       seo: {
-        title: "Boot Huren Pineda de Mar | Haven Blanes 18 min | Zonder Vaarbewijs 70€/u",
+        title: "Boot Huren Pineda de Mar | Haven Blanes 18 min | Zonder Vaarbewijs 75€/u",
         description:
-          "Verblijf je in Pineda de Mar? Haven Blanes op 18 min met de auto of 12 min met trein R1. Huur boot zonder vaarbewijs vanaf 70€/u met brandstof inbegrepen. Vaar naar Blanes, Lloret of Tossa.",
+          "Verblijf je in Pineda de Mar? Haven Blanes op 18 min met de auto of 12 min met trein R1. Huur boot zonder vaarbewijs vanaf 75€/u met brandstof inbegrepen. Vaar naar Blanes, Lloret of Tossa.",
         ogTitle: "Boot Huren Pineda de Mar | 18 min naar Haven Blanes",
         ogDescription:
-          "Van Pineda de Mar naar Haven Blanes in 18 min. Boot zonder vaarbewijs vanaf 70€/u. 4.8★ Google.",
+          "Van Pineda de Mar naar Haven Blanes in 18 min. Boot zonder vaarbewijs vanaf 75€/u. 4.8★ Google.",
       },
       schema: {
         name: "Bootverhuur bij Pineda de Mar",
         description:
-          "Huur boten vanuit de Haven van Blanes, op slechts 18 minuten rijden van Pineda de Mar. Boten zonder vaarbewijs vanaf 70 EUR/uur met brandstof inbegrepen.",
+          "Huur boten vanuit de Haven van Blanes, op slechts 18 minuten rijden van Pineda de Mar. Boten zonder vaarbewijs vanaf 75 €/uur met brandstof inbegrepen.",
       },
       breadcrumbName: "Bootverhuur Pineda de Mar",
       sections: {
@@ -3530,7 +3532,7 @@ export const nl: Translations = {
           "We hebben een vloot van {fleetCount} boten die vaartuigen zonder vaarbewijs omvat, ideaal voor gezinnen en beginners, evenals boten met vaarbewijs voor ervaren vaarders. Capaciteit van 4 tot 11 personen, afhankelijk van het gekozen model.",
         whyCard3Title: "Brandstof inbegrepen bij boten zonder vaarbewijs",
         whyCard3Desc:
-          "De prijs van de boten zonder vaarbewijs is inclusief brandstof, dus geen verrassingen. Vanaf 70 EUR per uur met de Astec 400, of vanaf 75 EUR per uur met andere modellen van grotere lengte. De prijs die je ziet is de eindprijs.",
+          "De prijs van de boten zonder vaarbewijs is inclusief brandstof, dus geen verrassingen. Vanaf 75 € per uur. De prijs die je ziet is de eindprijs.",
         whyCard4Title: "Geen voorafgaande ervaring nodig",
         whyCard4Desc:
           "Voor vertrek geeft ons team je 15 minuten praktische instructie: bediening van de motor, basisregels van de navigatie en tips over de beste baaien. Iedereen van 18 jaar of ouder kan een boot zonder vaarbewijs besturen.",
@@ -3777,7 +3779,7 @@ export const nl: Translations = {
       diferenciaLicencia: {
         question: "Wat is het verschil tussen boten zonder en met vaarbewijs?",
         answer:
-          "Boten zonder vaarbewijs hebben maximaal 15 PK, capaciteit van 4-5 personen, brandstof inbegrepen en kosten vanaf {noLicBaja1h}€. Boten met vaarbewijs hebben motoren van 40-150 PK, capaciteit van maximaal 7 personen, groter bereik en kosten vanaf {licBaja2h}€ (brandstof niet inbegrepen). Met boten met vaarbewijs kun je verder varen, tot Tossa de Mar en verder.",
+          "Boten zonder vaarbewijs hebben maximaal 15 PK, capaciteit van 4-5 personen, brandstof inbegrepen en kosten vanaf {noLicBaja1h}€. Boten met vaarbewijs hebben motoren van 40-115 PK, capaciteit van maximaal 7 personen, groter bereik en kosten vanaf {licBaja2h}€ (brandstof niet inbegrepen). Met boten met vaarbewijs kun je verder varen, tot Tossa de Mar en verder.",
       },
       precioBlanesVsLloret: {
         question: "Is het goedkoper om een boot te huren in Blanes of in Lloret de Mar?",
@@ -3844,12 +3846,12 @@ export const nl: Translations = {
     newsletterError: "Fout bij het verzenden. Probeer het opnieuw.",
     tableOfContents: "Inhoudsopgave",
     ctaTitle: "Klaar voor je avontuur?",
-    ctaSubtitle: "Huur een boot vanaf €70/uur · Brandstof inbegrepen",
+    ctaSubtitle: "Huur een boot vanaf €75/uur · Brandstof inbegrepen",
     ctaBookNow: "Nu boeken",
     ctaWhatsApp: "Vraag via WhatsApp",
     relatedDestinationsTitle: "Gerelateerde bestemmingen",
     relatedBlanesName: "Blanes",
-    relatedBlanesDesc: "Thuishaven. Boten zonder vaarbewijs vanaf €70/u.",
+    relatedBlanesDesc: "Thuishaven. Boten zonder vaarbewijs vanaf €75/u.",
     relatedLloretName: "Lloret de Mar",
     relatedLloretDesc: "Baaien en stranden op 20 min varen vanaf Blanes.",
     relatedTossaName: "Tossa de Mar",
@@ -3948,7 +3950,7 @@ export const nl: Translations = {
         },
         {
           title: "4. Vereisten voor de huurder",
-          body: "- De schipper moet 18 jaar of ouder zijn en een geldig identiteitsbewijs of paspoort tonen.\n- Voor boten waarvoor een vergunning vereist is, moet de schipper het originele vaarbewijs tonen (LNB, PER, PNB, Kapitein Jacht of Europees equivalent).\n- Voor boten zonder vergunning is geen vaarbewijs vereist, maar de schipper krijgt een training van 15 minuten voordat hij uitvaart.\n- Minderjarigen moeten vergezeld zijn van een verantwoordelijke volwassene en tijdens de vaart verplicht een reddingsvest dragen.",
+          body: "- De schipper moet 18 jaar of ouder zijn en een geldig identiteitsbewijs of paspoort tonen.\n- Voor boten waarvoor een vergunning vereist is, moet de schipper het originele vaarbewijs tonen (Licencia de Navegación, PER, PNB, Kapitein Jacht of Europees equivalent).\n- Voor boten zonder vergunning is geen vaarbewijs vereist, maar de schipper krijgt een training van 15 minuten voordat hij uitvaart.\n- Minderjarigen moeten vergezeld zijn van een verantwoordelijke volwassene en tijdens de vaart verplicht een reddingsvest dragen.",
         },
         {
           title: "5. Borg en betalingsvoorwaarden",
@@ -4165,7 +4167,7 @@ export const nl: Translations = {
     tossaTitle: 'Tossa de Mar per boot',
     tossaDesc: 'De middeleeuwse Vila Vella, indrukwekkende kliffen en de meest ongerepte baaien van de Costa Brava.',
     pricesTitle: 'Prijzen en tarieven',
-    pricesDesc: 'Bekijk de seizoensprijzen van al onze boten. Vanaf €70/uur zonder vaarbewijs.',
+    pricesDesc: 'Bekijk de seizoensprijzen van al onze boten. Vanaf €75/uur zonder vaarbewijs.',
     guide: {
       heading: 'Gids voor varen langs de Costa Brava vanuit Blanes',
       geographyTitle: 'De kustlijn: van Blanes naar Tossa de Mar',
@@ -4173,7 +4175,7 @@ export const nl: Translations = {
       seaTitle: 'Zeecondities en wind',
       seaBody: 'Het zuidelijke deel van de Costa Brava is over het algemeen comfortabel bevaarbaar in de zomer. \'s Ochtends is de zee meestal kalm; \'s middags kan de garbí opkomen, de zuidwestelijke bries die het wateroppervlak licht rimpelt. De wind om in de gaten te houden is de tramontana, een sterke noordenwind die snel kan opsteken: raadpleeg altijd het zeeweersbericht voordat je uitvaart. Boten zonder vaarbewijs mogen tot 2 zeemijl uit de kust (3,7 km) en maximaal 5 knopen varen, voldoende om al deze baaien veilig te verkennen.',
       calasTitle: 'Baaien en snorkelen',
-      calasBody: 'De baaien tussen Blanes en Tossa hebben rotsachtige bodems en kristalhelder water, ideaal om te ankeren en te snorkelen. Cala Bona, Cala Treumal en Santa Cristina bieden beschutte wateren; in Lloret vind je Cala Boadella; en richting Tossa liggen Cala Llevadó, Cala Giverola en Cala Pola, waarvan vele alleen per boot bereikbaar zijn. Denk eraan om op zandbodem te ankeren—nooit op de beschermde posidonia-weiden—en voldoende ankerlijn uit te geven zodat het anker goed grijpt.',
+      calasBody: 'De baaien tussen Blanes en Tossa hebben rotsachtige bodems en kristalhelder water, ideaal om te ankeren en te snorkelen. Cala Bona, Cala Treumal en Santa Cristina bieden beschutte wateren; in Lloret vind je Cala Boadella; en richting Tossa liggen Cala Llevadó, Cala Giverola en Cala Pola, waarvan vele alleen per boot bereikbaar zijn. Denk eraan om op zandbodem te ankeren (nooit op de beschermde posidonia-weiden) en voldoende ankerlijn uit te geven zodat het anker goed grijpt.',
       seasonTitle: 'Beste periode om te varen',
       seasonBody: 'Het vaarseizoen loopt van april tot oktober, met verhuurtijden van 09:00 tot 20:00 uur. Juli en augustus bieden de warmste en meest stabiele zee, ideaal voor zwemmen en snorkelen; juni en september zijn perfect voor wie rustigere baaien en gouden licht zoekt. Buiten het seizoen zijn we gesloten. In de zomermaanden is het aan te raden vooraf te reserveren: de beschikbaarheid van boten en tijdslots is beperkt.',
     },
@@ -4190,7 +4192,7 @@ export const nl: Translations = {
     pages: {
       barcelona: {
         title: "Boten voor je uitje vanuit Barcelona",
-        description: "Op 1 uur met de auto of de R1-trein is de haven van Blanes de dichtstbijzijnde optie om een boot te huren aan de Costa Brava. Van zonder vaarbewijs (5 van de 9 boten) tot premium charter met schipper.",
+        description: "Op 1 uur met de auto of de R1-trein is de haven van Blanes de dichtstbijzijnde optie om een boot te huren aan de Costa Brava. Van zonder vaarbewijs (4 van de 8 boten) tot premium charter met schipper.",
       },
       lloret: {
         title: "Populaire boten voor je route naar Lloret de Mar",
@@ -4234,7 +4236,7 @@ export const nl: Translations = {
       locationLloret: [
         { title: "Mooiste baaien van de Costa Brava per boot", description: "De 10 spectaculairste baaien tussen Blanes en Tossa" },
         { title: "Boottocht bij zonsondergang", description: "Zonsondergang beleven op een boot" },
-        { title: "Boten zonder vaarbewijs", description: "5 boten vanaf 70€/u, brandstof inbegrepen" },
+        { title: "Boten zonder vaarbewijs", description: "4 boten vanaf 75€/u, brandstof inbegrepen" },
         { title: "Scooterverhuur in Lloret de Mar", description: "Verken de Costa Brava over de weg, vanaf 8€/u met verzekering inbegrepen" },
       ],
       locationTossa: [
@@ -4264,12 +4266,12 @@ export const nl: Translations = {
       activitySunset: [
         { title: "Vaarroutes vanuit Blanes", description: "5 routes met interactieve kaarten" },
         { title: "Mooiste baaien van de Costa Brava per boot", description: "De 10 spectaculairste baaien tussen Blanes en Tossa" },
-        { title: "Boten zonder vaarbewijs", description: "Perfect voor tochten bij zonsondergang, vanaf 70€/u" },
+        { title: "Boten zonder vaarbewijs", description: "Perfect voor tochten bij zonsondergang, vanaf 75€/u" },
       ],
       activityFishing: [
         { title: "Boten met vaarbewijs", description: "Krachtige boten voor visgebieden" },
         { title: "Vaarroutes vanuit Blanes", description: "Ontdek de beste plekken" },
-        { title: "Botenverhuur Costa Brava", description: "9 boten beschikbaar in Blanes" },
+        { title: "Botenverhuur Costa Brava", description: "8 boten beschikbaar in Blanes" },
         { title: "Jetski-tocht", description: "Begeleide jetski-route van Blanes naar Tossa de Mar" },
       ],
       categoryLicenseFree: [
@@ -4286,13 +4288,13 @@ export const nl: Translations = {
       jetskiHub: [
         { title: "Jetski-circuit", description: "Bestuur een jetski zonder vaarbewijs op een bewaakt circuit voor Blanes" },
         { title: "Begeleide jetski-tocht naar Tossa", description: "Begeleide route van Blanes naar Tossa de Mar met instructeur" },
-        { title: "Boten zonder vaarbewijs", description: "5 boten vanaf 70€/u, brandstof inbegrepen" },
+        { title: "Boten zonder vaarbewijs", description: "4 boten vanaf 75€/u, brandstof inbegrepen" },
         { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
       ],
       jetskiCircuito: [
         { title: "Jetski huren in Blanes", description: "Alle jetski-ervaringen zonder vaarbewijs" },
         { title: "Begeleide jetski-tocht naar Tossa", description: "Begeleide route van Blanes naar Tossa de Mar met instructeur" },
-        { title: "Boten zonder vaarbewijs", description: "5 boten vanaf 70€/u, brandstof inbegrepen" },
+        { title: "Boten zonder vaarbewijs", description: "4 boten vanaf 75€/u, brandstof inbegrepen" },
         { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
       ],
       jetskiExcursion: [
@@ -4303,7 +4305,7 @@ export const nl: Translations = {
       ],
       scooters: [
         { title: "Boot huren in Lloret de Mar", description: "Spectaculaire stranden en baaien vanuit de haven van Blanes" },
-        { title: "Boten zonder vaarbewijs", description: "5 boten vanaf 70€/u, brandstof inbegrepen" },
+        { title: "Boten zonder vaarbewijs", description: "4 boten vanaf 75€/u, brandstof inbegrepen" },
         { title: "Jetski huren zonder vaarbewijs", description: "Circuit en begeleide jetski-tocht vanuit Blanes" },
         { title: "Tocht naar Tossa de Mar", description: "Ontdek de Vila Vella en haar kristalheldere baaien" },
       ],
@@ -4312,10 +4314,10 @@ export const nl: Translations = {
   occasionMatrix: {
     pages: {
       snorkel__locationBlanes: {
-        seoTitle: 'Snorkelen per boot vanuit Blanes — Beste baaien | Costa Brava Rent a Boat',
+        seoTitle: 'Snorkelen per boot vanuit Blanes: de beste baaien | Costa Brava Rent a Boat',
         seoDescription: 'Huur een boot zonder vaarbewijs in Blanes en ga snorkelen in Cala Sant Francesc, Sa Forcanera of Cala Treumal. Benzine inbegrepen, geen ervaring nodig, baaien binnen 2 mijl.',
         h1: 'Snorkelen per boot vanuit Blanes',
-        intro: 'Vanuit de haven van Blanes bereik je binnen enkele minuten varen baaien met kristalhelder water en rotsachtige bodems, perfect voor het snorkelen. Met een boot zonder vaarbewijs — benzine inbegrepen en zonder ervaring vereist — kies je je eigen baai, ankert en duikt op je eigen tempo het water in.',
+        intro: 'Vanuit de haven van Blanes bereik je binnen enkele minuten varen baaien met kristalhelder water en rotsachtige bodems, perfect voor het snorkelen. Met een boot zonder vaarbewijs (benzine inbegrepen en zonder ervaring vereist) kies je je eigen baai, ankert en duikt op je eigen tempo het water in.',
         spotsTitle: 'Beste baaien om te snorkelen bij Blanes',
         spots: [
           {
@@ -4354,7 +4356,7 @@ export const nl: Translations = {
         ctaText: 'Kies je datum en boot zonder vaarbewijs, en beleef de beste snorkeldag in de baaien van Blanes.',
       },
       snorkel__locationLloret: {
-        seoTitle: 'Snorkelen per boot in Lloret de Mar — Cala Boadella en Banys | Costa Brava Rent a Boat',
+        seoTitle: 'Snorkelen per boot in Lloret de Mar: Cala Boadella en Banys | Costa Brava Rent a Boat',
         seoDescription: 'Ontdek de beste snorkelbaaien van Lloret de Mar per boot vanuit Blanes: Cala Boadella, Cala Banys, Cala dels Frares. Boot met vaarbewijs, ongeveer 20 minuten varen.',
         h1: 'Snorkelen per boot in Lloret de Mar',
         intro: 'Lloret de Mar verbergt enkele van de baaien met het beste water van de zuidelijke Costa Brava, waarvan velen alleen over zee bereikbaar zijn. Als je vanuit Blanes vertrekt, bereik je in ongeveer 20 minuten varen de rotsachtige plekjes waar je kunt snorkelen zonder de massa\'s van het strand.',
@@ -4396,7 +4398,7 @@ export const nl: Translations = {
         ctaText: 'Kies je datum en boot met vaarbewijs, en ontdek de snorkelbaaien van Lloret met vertrek vanuit Blanes.',
       },
       snorkel__locationTossa: {
-        seoTitle: 'Snorkelen per boot in Tossa de Mar — Ongerepte baaien en beschermde wateren | Costa Brava Rent a Boat',
+        seoTitle: 'Snorkelen per boot in Tossa de Mar: ongerepte baaien en beschermde wateren | Costa Brava Rent a Boat',
         seoDescription: 'Snorkel in het heldere water van Tossa de Mar: La Mar Menuda, Cala Giverola, Cala Pola. Boottocht met vaarbewijs vanuit Blanes, 30-45 minuten varen.',
         h1: 'Snorkelen per boot in Tossa de Mar',
         intro: 'Tossa de Mar is een van de beste snorkelbestemmingen aan de Costa Brava: een deel van de kustlijn is beschermd, met rotsachtige bodems en weiden vol leven. Vanuit Blanes is het ongeveer 30-45 minuten varen met een boot met vaarbewijs naar de meest ongerepte baaien.',
@@ -4438,7 +4440,7 @@ export const nl: Translations = {
         ctaText: 'Kies je datum en boot met vaarbewijs, en besteed de dag aan de beschermde baaien van Tossa met vertrek vanuit Blanes.',
       },
       snorkel__locationCostaBrava: {
-        seoTitle: 'Snorkelen per boot langs de Costa Brava — De beste baaien vanuit Blanes | Costa Brava Rent a Boat',
+        seoTitle: 'Snorkelen per boot langs de Costa Brava: de beste baaien vanuit Blanes | Costa Brava Rent a Boat',
         seoDescription: 'Verken per boot de beste snorkelbaaien van de zuidelijke Costa Brava, van Blanes tot Tossa de Mar. Boten zonder vaarbewijs voor nabije baaien en met vaarbewijs voor het hele traject.',
         h1: 'Snorkelen per boot langs de Costa Brava',
         intro: 'Het zuidelijke deel van de Costa Brava, van Blanes tot Tossa de Mar, concentreert tientallen baaien met rotsachtige bodems en helder water, ideaal om te snorkelen. Vanuit de haven van Blanes kun je kiezen tussen een korte tocht naar de dichtstbijzijnde baaien of een hele dag de kust verkennen.',
@@ -4462,7 +4464,7 @@ export const nl: Translations = {
           },
         ],
         boatsTitle: 'Welke boot kiezen afhankelijk van hoe ver je wilt gaan',
-        boatsIntro: 'Voor de baaien het dichtst bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen en zonder vergunning. Om het hele traject naar Lloret en Tossa af te leggen — voorbij de 2 mijl — heb je een boot met vaarbewijs nodig, met autonomie om meerdere baaien op één dag te bezoeken.',
+        boatsIntro: 'Voor de baaien het dichtst bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen en zonder vergunning. Om het hele traject naar Lloret en Tossa af te leggen (voorbij de 2 mijl) heb je een boot met vaarbewijs nodig, met autonomie om meerdere baaien op één dag te bezoeken.',
         practicalTitle: 'Praktische informatie',
         practicalBody: 'Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Boten zonder vaarbewijs varen tot 2 mijl; om Lloret (~20 min) of Tossa (30-45 min) te bereiken gebruik je een boot met vaarbewijs. Neem je duikbril en snorkel mee, zonnebescherming en water. Anker altijd op zand, nooit op posidonia.',
         faqTitle: 'Veelgestelde vragen',
@@ -4494,7 +4496,7 @@ export const nl: Translations = {
         ],
         boatsTitle: "Welke boot kiezen voor een gezinsuitje",
         boatsIntro:
-          "Voor gezinnen raden we ruime en stabiele boten aan, met zonnedek en een schaduwzone. Meerdere zijn zonder vaarbewijs — met benzine inbegrepen en zonder vergunning —, en voor grote groepen hebben we boten tot 7 plaatsen.",
+          "Voor gezinnen raden we ruime en stabiele boten aan, met zonnedek en een schaduwzone. Meerdere zijn zonder vaarbewijs (met benzine inbegrepen en zonder vergunning), en voor grote groepen hebben we boten tot 7 plaatsen.",
         practicalTitle: "Praktische informatie",
         practicalBody:
           "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. We hebben reddingsvesten in alle maten aan boord, ook voor kinderen. Neem zonnebescherming, een pet, water en wat te eten mee. De baaien dicht bij Blanes liggen binnen de 2 zeemijl, bereikbaar zelfs met een boot zonder vaarbewijs.",
@@ -4521,7 +4523,7 @@ export const nl: Translations = {
         ],
         boatsTitle: "Welke boot kiezen om met het gezin naar Lloret te varen",
         boatsIntro:
-          "Lloret ligt voorbij de 2 zeemijl, dus je komt er met een van onze boten met vaarbewijs. Ze zijn ruim en stabiel — de Pacific Craft 625 biedt plaats aan tot 7 personen — en overbruggen het traject vanuit Blanes in zo'n 20 minuten.",
+          "Lloret ligt voorbij de 2 zeemijl, dus je komt er met een van onze boten met vaarbewijs. Ze zijn ruim en stabiel (de Pacific Craft 625 biedt plaats aan tot 7 personen) en overbruggen het traject vanuit Blanes in zo'n 20 minuten.",
         practicalTitle: "Praktische informatie",
         practicalBody:
           "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Het traject tot Lloret duurt zo'n 20 minuten. We hebben reddingsvesten in alle maten aan boord; neem zonnebescherming, een pet, water en wat te eten mee.",
@@ -4575,7 +4577,7 @@ export const nl: Translations = {
         ],
         boatsTitle: "Welke boot kiezen naar gelang hoe ver je wilt gaan",
         boatsIntro:
-          "Voor de baaien dicht bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen. Om het traject tot Lloret en Tossa af te leggen — voorbij de 2 zeemijl — heb je een boot met vaarbewijs nodig, ruim en tot 7 plaatsen.",
+          "Voor de baaien dicht bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen. Om het traject tot Lloret en Tossa af te leggen (voorbij de 2 zeemijl) heb je een boot met vaarbewijs nodig, ruim en tot 7 plaatsen.",
         practicalTitle: "Praktische informatie",
         practicalBody:
           "Seizoen van april tot oktober, vertrektijden van 09:00 tot 20:00 uur vanuit de haven van Blanes. Boten zonder vaarbewijs varen tot 2 zeemijl; om Lloret (~20 min) of Tossa (30-45 min) te bereiken gebruik je een boot met vaarbewijs. We hebben reddingsvesten in alle maten aan boord.",
@@ -4602,7 +4604,7 @@ export const nl: Translations = {
         ],
         boatsTitle: "Welke boot kiezen voor de zonsondergang",
         boatsIntro:
-          "Voor een tocht bij zonsondergang raden we comfortabele boten met een goed zonnedek aan. Meerdere zijn zonder vaarbewijs — met benzine inbegrepen en zonder vergunning —, ideaal voor een korte en ontspannen tocht dicht bij Blanes.",
+          "Voor een tocht bij zonsondergang raden we comfortabele boten met een goed zonnedek aan. Meerdere zijn zonder vaarbewijs (met benzine inbegrepen en zonder vergunning), ideaal voor een korte en ontspannen tocht dicht bij Blanes.",
         practicalTitle: "Praktische informatie",
         practicalBody:
           "Seizoen van april tot oktober, met vertrektijden tot 20:00 uur vanuit de haven van Blanes; de late namiddag is de tijdspanne met het mooiste licht. Aan de Costa Brava gaat de zon achter de kust onder, dus je geniet meer van het gouden licht en de verlichte kliffen dan van de zonsondergang boven het water. Neem een licht jasje mee: tegen het einde van de namiddag koelt het af.",
@@ -4683,7 +4685,7 @@ export const nl: Translations = {
         ],
         boatsTitle: "Welke boot kiezen naar gelang hoe ver je wilt gaan",
         boatsIntro:
-          "Voor een tocht dicht bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen. Om het traject tot Lloret en Tossa af te leggen — voorbij de 2 zeemijl — heb je een boot met vaarbewijs nodig, comfortabel en met een goed zonnedek.",
+          "Voor een tocht dicht bij Blanes volstaat een boot zonder vaarbewijs, met benzine inbegrepen. Om het traject tot Lloret en Tossa af te leggen (voorbij de 2 zeemijl) heb je een boot met vaarbewijs nodig, comfortabel en met een goed zonnedek.",
         practicalTitle: "Praktische informatie",
         practicalBody:
           "Seizoen van april tot oktober, met vertrektijden tot 20:00 uur vanuit de haven van Blanes. Aan deze kust gaat de zon achter het land onder: je geniet van het gouden licht en de verlichte dorpen en kliffen. Boten zonder vaarbewijs komen tot 2 zeemijl; voor Lloret of Tossa gebruik je een boot met vaarbewijs. Neem een licht jasje mee.",

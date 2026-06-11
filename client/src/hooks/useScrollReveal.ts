@@ -1,11 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export function useScrollReveal(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
+  // Callback ref instead of useRef: sections that render after a data fetch
+  // (ReviewsSection, JetSkiLanding testimonials) mount their node AFTER the
+  // first effect ran with ref.current = null, so a RefObject-based observer
+  // was never attached and the section stayed at opacity-0 forever.
+  const [node, setNode] = useState<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
+  const ref = useCallback((el: HTMLElement | null) => {
+    setNode(el);
+  }, []);
+
   useEffect(() => {
-    const node = ref.current;
     if (!node) return;
 
     // Fallback: if IntersectionObserver is not supported, show immediately
@@ -26,12 +33,8 @@ export function useScrollReveal(threshold = 0.1) {
 
     observer.observe(node);
 
-    // The IntersectionObserver callback fires asynchronously (no forced reflow).
-    // No need for a synchronous getBoundingClientRect safety net —
-    // the rootMargin: 100px already handles near-viewport elements.
-
     return () => observer.disconnect();
-  }, [threshold]);
+  }, [node, threshold]);
 
   return { ref, isVisible };
 }

@@ -27,6 +27,7 @@ import { trackPhoneClick } from "@/utils/analytics";
 import {
   BUSINESS_RATING_STR,
   BUSINESS_REVIEW_COUNT_STR,
+  GBP_PROFILE_URL,
 } from "@shared/businessProfile";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -99,22 +100,22 @@ const t: Record<Language, {
   es: {
     title: "Sobre Nosotros",
     metaTitle: "Sobre Nosotros - Costa Brava Rent a Boat | Alquiler de Barcos en Blanes",
-    metaDescription: "Costa Brava Rent a Boat es una empresa familiar de alquiler de barcos en el Puerto de Blanes, Girona. La flota m\u00e1s grande de Blanes con 9 barcos, 4.8 estrellas en Google Maps y m\u00e1s de 300 rese\u00f1as. Temporada de abril a octubre.",
+    metaDescription: "Costa Brava Rent a Boat es una empresa familiar de alquiler de barcos en el Puerto de Blanes, Girona. La flota m\u00e1s grande de Blanes con 8 barcos, 4.8 estrellas en Google Maps y m\u00e1s de 300 rese\u00f1as. Temporada de abril a octubre.",
     heroHeading: "Sobre Costa Brava Rent a Boat",
-    heroSubheading: "Empresa familiar de alquiler de barcos en el Puerto de Blanes, Costa Brava. La flota m\u00e1s grande de Blanes con 9 embarcaciones y m\u00e1s de 300 rese\u00f1as positivas en Google Maps.",
+    heroSubheading: "Empresa familiar de alquiler de barcos en el Puerto de Blanes, Costa Brava. La flota m\u00e1s grande de Blanes con 8 embarcaciones y m\u00e1s de 300 rese\u00f1as positivas en Google Maps.",
     badgeFamily: "Empresa familiar",
-    badgeFleet: "9 barcos - la flota m\u00e1s grande de Blanes",
-    badgeReviews: "4.8 estrellas - 300+ rese\u00f1as en Google",
+    badgeFleet: "8 barcos - la flota m\u00e1s grande de Blanes",
+    badgeReviews: `${BUSINESS_RATING_STR} estrellas - ${BUSINESS_REVIEW_COUNT_STR}+ rese\u00f1as en Google`,
     whoWeAreTitle: "Quienes somos",
-    whoWeAreP1: "Costa Brava Rent a Boat es una empresa familiar con base en el Puerto de Blanes, en la comarca de la Selva, provincia de Girona, Catalu\u00f1a, Espa\u00f1a. Operamos la flota de alquiler de barcos m\u00e1s grande de Blanes, con un total de 9 embarcaciones preparadas para que cualquier persona pueda disfrutar del mar Mediterr\u00e1neo en la Costa Brava.",
+    whoWeAreP1: "Costa Brava Rent a Boat es una empresa familiar con base en el Puerto de Blanes, en la comarca de la Selva, provincia de Girona, Catalu\u00f1a, Espa\u00f1a. Operamos la flota de alquiler de barcos m\u00e1s grande de Blanes, con un total de 8 embarcaciones preparadas para que cualquier persona pueda disfrutar del mar Mediterr\u00e1neo en la Costa Brava.",
     whoWeAreP2: "Nuestra misi\u00f3n es hacer accesible la experiencia de navegar por la Costa Brava a todo el mundo, sin necesidad de experiencia previa ni licencia n\u00e1utica. Creemos que descubrir calas escondidas, ba\u00f1arse en aguas cristalinas y explorar la costa desde el mar deber\u00eda ser algo al alcance de cualquier familia, pareja o grupo de amigos.",
     whoWeAreP3: "Cada temporada, de abril a octubre, recibimos clientes de toda Europa y del mundo. Nuestro equipo habla 8 idiomas (espa\u00f1ol, ingl\u00e9s, catal\u00e1n, franc\u00e9s, alem\u00e1n, holand\u00e9s, italiano y ruso), lo que nos permite ofrecer un servicio personalizado a cada cliente, empezando por la sesi\u00f3n de seguridad de 15 minutos en su idioma antes de cada salida.",
     fleetTitle: "Nuestra flota",
-    fleetIntro: "Con 9 barcos, somos la empresa de alquiler de embarcaciones m\u00e1s grande de Blanes. Nuestra flota est\u00e1 dise\u00f1ada para cubrir todas las necesidades: desde salidas familiares sin licencia hasta navegaci\u00f3n deportiva con barcos de hasta 150 CV.",
+    fleetIntro: "Con 8 barcos, somos la empresa de alquiler de embarcaciones m\u00e1s grande de Blanes. Nuestra flota est\u00e1 dise\u00f1ada para cubrir todas las necesidades: desde salidas familiares sin licencia hasta navegaci\u00f3n deportiva con barcos de hasta 115 CV.",
     fleetLicenseFree: "5 barcos sin licencia",
     fleetLicenseFreeDesc: "No necesitas ning\u00fan t\u00edtulo n\u00e1utico. Barcos de hasta 15 CV, f\u00e1ciles de manejar y seguros. Ideales para familias, parejas y principiantes. Todos los alquileres sin licencia incluyen gasolina, seguro, IVA, amarre, limpieza y equipo de seguridad. Antes de salir, te damos una sesi\u00f3n de formaci\u00f3n de 15 minutos en tu idioma.",
     fleetLicensed: "3 barcos con licencia",
-    fleetLicensedDesc: "Para navegantes con t\u00edtulo n\u00e1utico que buscan m\u00e1s potencia y autonom\u00eda. Barcos de hasta 150 CV para explorar la costa m\u00e1s all\u00e1 de las calas cercanas. Incluyen seguro, amarre y equipo de seguridad. El combustible no est\u00e1 incluido en los barcos con licencia.",
+    fleetLicensedDesc: "Para navegantes con t\u00edtulo n\u00e1utico que buscan m\u00e1s potencia y autonom\u00eda. Barcos de hasta 115 CV para explorar la costa m\u00e1s all\u00e1 de las calas cercanas. Incluyen seguro, amarre y equipo de seguridad. El combustible no est\u00e1 incluido en los barcos con licencia.",
     fleetExcursion: "1 excursi\u00f3n privada con capit\u00e1n",
     fleetExcursionDesc: "Para quienes prefieren relajarse y dejarse llevar. Un patr\u00f3n profesional os lleva por las mejores calas de la Costa Brava mientras vosotros disfrut\u00e1is del paseo, el ba\u00f1o y el sol. Ideal para celebraciones, parejas o grupos que quieren una experiencia sin preocupaciones.",
     fleetIncluded: "Incluido en barcos sin licencia: gasolina, seguro, IVA, amarre, limpieza, chalecos salvavidas y equipo de seguridad.",
@@ -154,22 +155,22 @@ const t: Record<Language, {
   en: {
     title: "About Us",
     metaTitle: "About Us - Costa Brava Rent a Boat | Boat Rental in Blanes",
-    metaDescription: "Costa Brava Rent a Boat is a family-run boat rental business in the Port of Blanes, Girona. The largest fleet in Blanes with 9 boats, 4.8 stars on Google Maps and 300+ reviews. Season from April to October.",
+    metaDescription: "Costa Brava Rent a Boat is a family-run boat rental business in the Port of Blanes, Girona. The largest fleet in Blanes with 8 boats, 4.8 stars on Google Maps and 300+ reviews. Season from April to October.",
     heroHeading: "About Costa Brava Rent a Boat",
-    heroSubheading: "Family-run boat rental business in the Port of Blanes, Costa Brava. The largest fleet in Blanes with 9 boats and over 300 positive reviews on Google Maps.",
+    heroSubheading: "Family-run boat rental business in the Port of Blanes, Costa Brava. The largest fleet in Blanes with 8 boats and over 300 positive reviews on Google Maps.",
     badgeFamily: "Family business",
-    badgeFleet: "9 boats - the largest fleet in Blanes",
-    badgeReviews: "4.8 stars - 300+ reviews on Google",
+    badgeFleet: "8 boats - the largest fleet in Blanes",
+    badgeReviews: `${BUSINESS_RATING_STR} stars - ${BUSINESS_REVIEW_COUNT_STR}+ reviews on Google`,
     whoWeAreTitle: "Who we are",
     whoWeAreP1: "Costa Brava Rent a Boat is a family-run business based in the Port of Blanes, in the Selva county, province of Girona, Catalonia, Spain. We operate the largest boat rental fleet in Blanes, with a total of 9 vessels ready for anyone to enjoy the Mediterranean Sea on the Costa Brava.",
     whoWeAreP2: "Our mission is to make the experience of sailing along the Costa Brava accessible to everyone, without prior experience or a boating licence. We believe that discovering hidden coves, swimming in crystal-clear waters and exploring the coastline from the sea should be within reach of any family, couple or group of friends.",
     whoWeAreP3: "Every season, from April to October, we welcome clients from all over Europe and beyond. Our team speaks 8 languages (Spanish, English, Catalan, French, German, Dutch, Italian and Russian), allowing us to provide personalised service to every client, starting with the 15-minute safety briefing in your language before every departure.",
     fleetTitle: "Our fleet",
-    fleetIntro: "With 9 boats, we are the largest boat rental company in Blanes. Our fleet is designed to cover every need: from family outings without a licence to sport boating with boats up to 150 HP.",
+    fleetIntro: "With 8 boats, we are the largest boat rental company in Blanes. Our fleet is designed to cover every need: from family outings without a licence to sport boating with boats up to 115 HP.",
     fleetLicenseFree: "5 licence-free boats",
     fleetLicenseFreeDesc: "No boating licence needed. Boats up to 15 HP, easy to handle and safe. Ideal for families, couples and beginners. All licence-free rentals include fuel, insurance, VAT, mooring, cleaning and safety equipment. Before departure, we provide a 15-minute training session in your language.",
     fleetLicensed: "3 licensed motorboats",
-    fleetLicensedDesc: "For experienced sailors with a boating licence who want more power and autonomy. Boats up to 150 HP to explore the coast beyond nearby coves. Includes insurance, mooring and safety equipment. Fuel is not included for licensed boats.",
+    fleetLicensedDesc: "For experienced sailors with a boating licence who want more power and autonomy. Boats up to 115 HP to explore the coast beyond nearby coves. Includes insurance, mooring and safety equipment. Fuel is not included for licensed boats.",
     fleetExcursion: "1 private excursion with captain",
     fleetExcursionDesc: "For those who prefer to sit back and relax. A professional skipper takes you to the best coves of the Costa Brava while you enjoy the ride, swim and sunshine. Perfect for celebrations, couples or groups who want a worry-free experience.",
     fleetIncluded: "Included with licence-free boats: fuel, insurance, VAT, mooring, cleaning, life jackets and safety equipment.",
@@ -211,12 +212,12 @@ const t: Record<Language, {
     metaTitle: "Sobre Nosaltres - Costa Brava Rent a Boat | Lloguer de Vaixells a Blanes",
     metaDescription: "Costa Brava Rent a Boat \u00e9s una empresa familiar de lloguer de vaixells al Port de Blanes, Girona. La flota m\u00e9s gran de Blanes amb 9 vaixells, 4.8 estrelles a Google Maps i m\u00e9s de 300 ressenyes.",
     heroHeading: "Sobre Costa Brava Rent a Boat",
-    heroSubheading: "Empresa familiar de lloguer de vaixells al Port de Blanes, Costa Brava. La flota m\u00e9s gran de Blanes amb 9 embarcacions i m\u00e9s de 300 ressenyes positives a Google Maps.",
+    heroSubheading: "Empresa familiar de lloguer de vaixells al Port de Blanes, Costa Brava. La flota m\u00e9s gran de Blanes amb 8 embarcacions i m\u00e9s de 300 ressenyes positives a Google Maps.",
     badgeFamily: "Empresa familiar",
     badgeFleet: "9 vaixells - la flota m\u00e9s gran de Blanes",
-    badgeReviews: "4.8 estrelles - 300+ ressenyes a Google",
+    badgeReviews: `${BUSINESS_RATING_STR} estrelles - ${BUSINESS_REVIEW_COUNT_STR}+ ressenyes a Google`,
     whoWeAreTitle: "Qui som",
-    whoWeAreP1: "Costa Brava Rent a Boat \u00e9s una empresa familiar amb base al Port de Blanes, a la comarca de la Selva, prov\u00edncia de Girona, Catalunya, Espanya. Operem la flota de lloguer de vaixells m\u00e9s gran de Blanes, amb un total de 9 embarcacions preparades perqu\u00e8 qualsevol persona pugui gaudir del mar Mediterrani a la Costa Brava.",
+    whoWeAreP1: "Costa Brava Rent a Boat \u00e9s una empresa familiar amb base al Port de Blanes, a la comarca de la Selva, prov\u00edncia de Girona, Catalunya, Espanya. Operem la flota de lloguer de vaixells m\u00e9s gran de Blanes, amb un total de 8 embarcacions preparades perqu\u00e8 qualsevol persona pugui gaudir del mar Mediterrani a la Costa Brava.",
     whoWeAreP2: "La nostra missi\u00f3 \u00e9s fer accessible l'experi\u00e8ncia de navegar per la Costa Brava a tothom, sense necessitat d'experi\u00e8ncia pr\u00e8via ni llic\u00e8ncia n\u00e0utica.",
     whoWeAreP3: "Cada temporada, d'abril a octubre, rebem clients de tota Europa i del m\u00f3n. El nostre equip parla 8 idiomes (castell\u00e0, angl\u00e8s, catal\u00e0, franc\u00e8s, alemany, holand\u00e8s, itali\u00e0 i rus).",
     fleetTitle: "La nostra flota",
@@ -224,7 +225,7 @@ const t: Record<Language, {
     fleetLicenseFree: "5 vaixells sense llic\u00e8ncia",
     fleetLicenseFreeDesc: "No necessites cap t\u00edtol n\u00e0utic. Vaixells de fins a 15 CV, f\u00e0cils de manejar i segurs. Tots els lloguers sense llic\u00e8ncia inclouen gasolina, asseguran\u00e7a, IVA, amarratge, neteja i equip de seguretat.",
     fleetLicensed: "3 vaixells amb llic\u00e8ncia",
-    fleetLicensedDesc: "Per a navegants amb t\u00edtol n\u00e0utic que busquen m\u00e9s pot\u00e8ncia i autonomia. Vaixells de fins a 150 CV. El combustible no est\u00e0 incl\u00f2s.",
+    fleetLicensedDesc: "Per a navegants amb t\u00edtol n\u00e0utic que busquen m\u00e9s pot\u00e8ncia i autonomia. Vaixells de fins a 115 CV. El combustible no est\u00e0 incl\u00f2s.",
     fleetExcursion: "1 excursi\u00f3 privada amb patr\u00f3",
     fleetExcursionDesc: "Un patr\u00f3 professional us porta per les millors cales de la Costa Brava mentre gaudiu del passeig.",
     fleetIncluded: "Incl\u00f2s en vaixells sense llic\u00e8ncia: gasolina, asseguran\u00e7a, IVA, amarratge, neteja, armilles salvavides i equip de seguretat.",
@@ -264,22 +265,22 @@ const t: Record<Language, {
   fr: {
     title: "\u00c0 propos de nous",
     metaTitle: "\u00c0 propos - Costa Brava Rent a Boat | Location de Bateaux \u00e0 Blanes",
-    metaDescription: "Costa Brava Rent a Boat est une entreprise familiale de location de bateaux au Port de Blanes, Girona. La plus grande flotte de Blanes avec 9 bateaux, 4.8 \u00e9toiles sur Google Maps et plus de 300 avis.",
+    metaDescription: "Costa Brava Rent a Boat est une entreprise familiale de location de bateaux au Port de Blanes, Girona. La plus grande flotte de Blanes avec 8 bateaux, 4.8 \u00e9toiles sur Google Maps et plus de 300 avis.",
     heroHeading: "\u00c0 propos de Costa Brava Rent a Boat",
-    heroSubheading: "Entreprise familiale de location de bateaux au Port de Blanes, Costa Brava. La plus grande flotte de Blanes avec 9 bateaux et plus de 300 avis positifs sur Google Maps.",
+    heroSubheading: "Entreprise familiale de location de bateaux au Port de Blanes, Costa Brava. La plus grande flotte de Blanes avec 8 bateaux et plus de 300 avis positifs sur Google Maps.",
     badgeFamily: "Entreprise familiale",
-    badgeFleet: "9 bateaux - la plus grande flotte de Blanes",
-    badgeReviews: "4.8 \u00e9toiles - 300+ avis sur Google",
+    badgeFleet: "8 bateaux - la plus grande flotte de Blanes",
+    badgeReviews: `${BUSINESS_RATING_STR} \u00e9toiles - ${BUSINESS_REVIEW_COUNT_STR}+ avis sur Google`,
     whoWeAreTitle: "Qui sommes-nous",
     whoWeAreP1: "Costa Brava Rent a Boat est une entreprise familiale bas\u00e9e au Port de Blanes, dans la province de Girona, Catalogne, Espagne. Nous exploitons la plus grande flotte de location de bateaux \u00e0 Blanes, avec 9 embarcations pr\u00eates \u00e0 vous faire d\u00e9couvrir la mer M\u00e9diterran\u00e9e sur la Costa Brava.",
     whoWeAreP2: "Notre mission est de rendre l'exp\u00e9rience de navigation sur la Costa Brava accessible \u00e0 tous, sans exp\u00e9rience pr\u00e9alable ni permis bateau.",
     whoWeAreP3: "Chaque saison, d'avril \u00e0 octobre, nous accueillons des clients de toute l'Europe. Notre \u00e9quipe parle 8 langues (espagnol, anglais, catalan, fran\u00e7ais, allemand, n\u00e9erlandais, italien et russe).",
     fleetTitle: "Notre flotte",
-    fleetIntro: "Avec 9 bateaux, nous sommes la plus grande entreprise de location de bateaux \u00e0 Blanes.",
+    fleetIntro: "Avec 8 bateaux, nous sommes la plus grande entreprise de location de bateaux \u00e0 Blanes.",
     fleetLicenseFree: "5 bateaux sans permis",
     fleetLicenseFreeDesc: "Aucun permis bateau n\u00e9cessaire. Bateaux jusqu'\u00e0 15 CV, faciles \u00e0 manier et s\u00fbrs. Toutes les locations sans permis incluent le carburant, l'assurance, la TVA, l'amarrage, le nettoyage et l'\u00e9quipement de s\u00e9curit\u00e9.",
     fleetLicensed: "3 bateaux avec permis",
-    fleetLicensedDesc: "Pour les navigateurs avec permis bateau qui souhaitent plus de puissance. Bateaux jusqu'\u00e0 150 CV. Le carburant n'est pas inclus.",
+    fleetLicensedDesc: "Pour les navigateurs avec permis bateau qui souhaitent plus de puissance. Bateaux jusqu'\u00e0 115 CV. Le carburant n'est pas inclus.",
     fleetExcursion: "1 excursion priv\u00e9e avec capitaine",
     fleetExcursionDesc: "Un skipper professionnel vous emm\u00e8ne dans les plus belles criques de la Costa Brava.",
     fleetIncluded: "Inclus avec les bateaux sans permis : carburant, assurance, TVA, amarrage, nettoyage, gilets de sauvetage et \u00e9quipement de s\u00e9curit\u00e9.",
@@ -319,22 +320,22 @@ const t: Record<Language, {
   de: {
     title: "\u00dcber uns",
     metaTitle: "\u00dcber uns - Costa Brava Rent a Boat | Bootsvermietung in Blanes",
-    metaDescription: "Costa Brava Rent a Boat ist ein familiengef\u00fchrtes Bootsvermietungsunternehmen im Hafen von Blanes, Girona. Die gr\u00f6\u00dfte Flotte in Blanes mit 9 Booten, 4.8 Sterne bei Google Maps und \u00fcber 300 Bewertungen.",
+    metaDescription: "Costa Brava Rent a Boat ist ein familiengef\u00fchrtes Bootsvermietungsunternehmen im Hafen von Blanes, Girona. Die gr\u00f6\u00dfte Flotte in Blanes mit 8 Booten, 4.8 Sterne bei Google Maps und \u00fcber 300 Bewertungen.",
     heroHeading: "\u00dcber Costa Brava Rent a Boat",
-    heroSubheading: "Familiengef\u00fchrte Bootsvermietung im Hafen von Blanes, Costa Brava. Die gr\u00f6\u00dfte Flotte in Blanes mit 9 Booten und \u00fcber 300 positiven Bewertungen bei Google Maps.",
+    heroSubheading: "Familiengef\u00fchrte Bootsvermietung im Hafen von Blanes, Costa Brava. Die gr\u00f6\u00dfte Flotte in Blanes mit 8 Booten und \u00fcber 300 positiven Bewertungen bei Google Maps.",
     badgeFamily: "Familienunternehmen",
-    badgeFleet: "9 Boote - die gr\u00f6\u00dfte Flotte in Blanes",
-    badgeReviews: "4.8 Sterne - 300+ Bewertungen bei Google",
+    badgeFleet: "8 Boote - die gr\u00f6\u00dfte Flotte in Blanes",
+    badgeReviews: `${BUSINESS_RATING_STR} Sterne - ${BUSINESS_REVIEW_COUNT_STR}+ Bewertungen bei Google`,
     whoWeAreTitle: "Wer wir sind",
-    whoWeAreP1: "Costa Brava Rent a Boat ist ein familiengef\u00fchrtes Unternehmen mit Sitz im Hafen von Blanes, in der Provinz Girona, Katalonien, Spanien. Wir betreiben die gr\u00f6\u00dfte Bootsvermietungsflotte in Blanes mit insgesamt 9 Booten.",
+    whoWeAreP1: "Costa Brava Rent a Boat ist ein familiengef\u00fchrtes Unternehmen mit Sitz im Hafen von Blanes, in der Provinz Girona, Katalonien, Spanien. Wir betreiben die gr\u00f6\u00dfte Bootsvermietungsflotte in Blanes mit insgesamt 8 Booten.",
     whoWeAreP2: "Unsere Mission ist es, das Segelerlebnis an der Costa Brava f\u00fcr jeden zug\u00e4nglich zu machen, ohne Vorkenntnisse oder Bootsf\u00fchrerschein.",
     whoWeAreP3: "Jede Saison, von April bis Oktober, begr\u00fc\u00dfen wir Kunden aus ganz Europa. Unser Team spricht 8 Sprachen (Spanisch, Englisch, Katalanisch, Franz\u00f6sisch, Deutsch, Niederl\u00e4ndisch, Italienisch und Russisch).",
     fleetTitle: "Unsere Flotte",
-    fleetIntro: "Mit 9 Booten sind wir die gr\u00f6\u00dfte Bootsvermietung in Blanes.",
+    fleetIntro: "Mit 8 Booten sind wir die gr\u00f6\u00dfte Bootsvermietung in Blanes.",
     fleetLicenseFree: "5 führerscheinfreie Boote",
     fleetLicenseFreeDesc: "Kein Bootsführerschein erforderlich. Boote bis 15 PS, einfach zu bedienen und sicher. Alle Mieten ohne Führerschein beinhalten Treibstoff, Versicherung, MwSt., Anlegegebühr, Reinigung und Sicherheitsausrüstung.",
     fleetLicensed: "3 Boote mit Führerschein",
-    fleetLicensedDesc: "Für erfahrene Segler mit Bootsführerschein. Boote bis 150 PS. Treibstoff ist nicht inbegriffen.",
+    fleetLicensedDesc: "Für erfahrene Segler mit Bootsführerschein. Boote bis 115 PS. Treibstoff ist nicht inbegriffen.",
     fleetExcursion: "1 Privatausflug mit Kapitän",
     fleetExcursionDesc: "Ein professioneller Skipper bringt Sie zu den schönsten Buchten der Costa Brava.",
     fleetIncluded: "Bei führerscheinfreien Booten inklusive: Treibstoff, Versicherung, MwSt., Anlegegebühr, Reinigung, Schwimmwesten und Sicherheitsausrüstung.",
@@ -374,18 +375,18 @@ const t: Record<Language, {
   nl: {
     title: "Over ons",
     metaTitle: "Over ons - Costa Brava Rent a Boat | Bootverhuur in Blanes",
-    metaDescription: "Costa Brava Rent a Boat is een familiebedrijf voor bootverhuur in de haven van Blanes, Girona. De grootste vloot van Blanes met 9 boten, 4.8 sterren op Google Maps en meer dan 300 beoordelingen.",
+    metaDescription: "Costa Brava Rent a Boat is een familiebedrijf voor bootverhuur in de haven van Blanes, Girona. De grootste vloot van Blanes met 8 boten, 4.8 sterren op Google Maps en meer dan 300 beoordelingen.",
     heroHeading: "Over Costa Brava Rent a Boat",
-    heroSubheading: "Familiebedrijf voor bootverhuur in de haven van Blanes, Costa Brava. De grootste vloot van Blanes met 9 boten en meer dan 300 positieve beoordelingen op Google Maps.",
+    heroSubheading: "Familiebedrijf voor bootverhuur in de haven van Blanes, Costa Brava. De grootste vloot van Blanes met 8 boten en meer dan 300 positieve beoordelingen op Google Maps.",
     badgeFamily: "Familiebedrijf",
-    badgeFleet: "9 boten - de grootste vloot van Blanes",
-    badgeReviews: "4.8 sterren - 300+ beoordelingen op Google",
+    badgeFleet: "8 boten - de grootste vloot van Blanes",
+    badgeReviews: `${BUSINESS_RATING_STR} sterren - ${BUSINESS_REVIEW_COUNT_STR}+ beoordelingen op Google`,
     whoWeAreTitle: "Wie zijn wij",
-    whoWeAreP1: "Costa Brava Rent a Boat is een familiebedrijf gevestigd in de haven van Blanes, in de provincie Girona, Cataloni\u00eb, Spanje. Wij beheren de grootste bootverhuurvloot van Blanes met 9 boten.",
+    whoWeAreP1: "Costa Brava Rent a Boat is een familiebedrijf gevestigd in de haven van Blanes, in de provincie Girona, Cataloni\u00eb, Spanje. Wij beheren de grootste bootverhuurvloot van Blanes met 8 boten.",
     whoWeAreP2: "Onze missie is om de ervaring van varen langs de Costa Brava toegankelijk te maken voor iedereen, zonder ervaring of vaarbewijs.",
     whoWeAreP3: "Elk seizoen, van april tot oktober, verwelkomen wij klanten uit heel Europa. Ons team spreekt 8 talen (Spaans, Engels, Catalaans, Frans, Duits, Nederlands, Italiaans en Russisch).",
     fleetTitle: "Onze vloot",
-    fleetIntro: "Met 9 boten zijn wij het grootste bootverhuurbedjrijf van Blanes.",
+    fleetIntro: "Met 8 boten zijn wij het grootste bootverhuurbedjrijf van Blanes.",
     fleetLicenseFree: "5 boten zonder vaarbewijs",
     fleetLicenseFreeDesc: "Geen vaarbewijs nodig. Boten tot 15 PK, makkelijk te besturen en veilig. Alle verhuur zonder vaarbewijs is inclusief brandstof, verzekering, BTW, aanlegkosten, reiniging en veiligheidsuitrusting.",
     fleetLicensed: "3 boten met vaarbewijs",
@@ -429,22 +430,22 @@ const t: Record<Language, {
   it: {
     title: "Chi siamo",
     metaTitle: "Chi siamo - Costa Brava Rent a Boat | Noleggio Barche a Blanes",
-    metaDescription: "Costa Brava Rent a Boat \u00e8 un'azienda familiare di noleggio barche nel Porto di Blanes, Girona. La flotta pi\u00f9 grande di Blanes con 9 barche, 4.8 stelle su Google Maps e oltre 300 recensioni.",
+    metaDescription: "Costa Brava Rent a Boat \u00e8 un'azienda familiare di noleggio barche nel Porto di Blanes, Girona. La flotta pi\u00f9 grande di Blanes con 8 barche, 4.8 stelle su Google Maps e oltre 300 recensioni.",
     heroHeading: "Chi \u00e8 Costa Brava Rent a Boat",
     heroSubheading: "Azienda familiare di noleggio barche nel Porto di Blanes, Costa Brava. La flotta pi\u00f9 grande di Blanes con 9 imbarcazioni e oltre 300 recensioni positive su Google Maps.",
     badgeFamily: "Azienda familiare",
-    badgeFleet: "9 barche - la flotta pi\u00f9 grande di Blanes",
-    badgeReviews: "4.8 stelle - 300+ recensioni su Google",
+    badgeFleet: "8 barche - la flotta pi\u00f9 grande di Blanes",
+    badgeReviews: `${BUSINESS_RATING_STR} stelle - ${BUSINESS_REVIEW_COUNT_STR}+ recensioni su Google`,
     whoWeAreTitle: "Chi siamo",
     whoWeAreP1: "Costa Brava Rent a Boat \u00e8 un'azienda familiare con sede nel Porto di Blanes, nella provincia di Girona, Catalogna, Spagna. Gestiamo la flotta di noleggio barche pi\u00f9 grande di Blanes con 9 imbarcazioni.",
     whoWeAreP2: "La nostra missione \u00e8 rendere l'esperienza di navigare lungo la Costa Brava accessibile a tutti, senza esperienza o patente nautica.",
     whoWeAreP3: "Ogni stagione, da aprile a ottobre, accogliamo clienti da tutta Europa. Il nostro team parla 8 lingue (spagnolo, inglese, catalano, francese, tedesco, olandese, italiano e russo).",
     fleetTitle: "La nostra flotta",
-    fleetIntro: "Con 9 barche, siamo la pi\u00f9 grande azienda di noleggio barche di Blanes.",
+    fleetIntro: "Con 8 barche, siamo la pi\u00f9 grande azienda di noleggio barche di Blanes.",
     fleetLicenseFree: "5 barche senza patente",
     fleetLicenseFreeDesc: "Nessuna patente nautica necessaria. Barche fino a 15 CV, facili da guidare e sicure. Tutti i noleggi senza patente includono carburante, assicurazione, IVA, ormeggio, pulizia e attrezzatura di sicurezza.",
     fleetLicensed: "3 barche con patente",
-    fleetLicensedDesc: "Per navigatori con patente nautica. Barche fino a 150 CV. Il carburante non \u00e8 incluso.",
+    fleetLicensedDesc: "Per navigatori con patente nautica. Barche fino a 115 CV. Il carburante non \u00e8 incluso.",
     fleetExcursion: "1 escursione privata con capitano",
     fleetExcursionDesc: "Uno skipper professionista vi porta nelle migliori calette della Costa Brava.",
     fleetIncluded: "Incluso nelle barche senza patente: carburante, assicurazione, IVA, ormeggio, pulizia, giubbotti di salvataggio e attrezzatura di sicurezza.",
@@ -489,7 +490,7 @@ const t: Record<Language, {
     heroSubheading: "Semejnaja kompanija po arende lodok v portu Blanesa, Kosta Brava. Samyj bol'shoj flot v Blanese - 9 lodok i bolee 300 polozhitel'nyh otzyvov na Google Maps.",
     badgeFamily: "Semejnyj biznes",
     badgeFleet: "9 lodok - samyj bol'shoj flot v Blanese",
-    badgeReviews: "4.8 zvezd - 300+ otzyvov na Google",
+    badgeReviews: `${BUSINESS_RATING_STR} zvezd - ${BUSINESS_REVIEW_COUNT_STR}+ otzyvov na Google`,
     whoWeAreTitle: "Kto my",
     whoWeAreP1: "Costa Brava Rent a Boat - semejnaja kompanija, raspolozhennaja v portu Blanesa, v provincii Zhirona, Katalonija, Ispanija. My upravljaem samym bol'shim flotom arendy lodok v Blanese - 9 lodok.",
     whoWeAreP2: "Nasha missija - sdelat' opyt plavanija po Kosta Brave dostupnym dlja vseh, bez opyta ili licenzii.",
@@ -597,7 +598,7 @@ export default function AboutPage() {
         "@id": "https://www.costabravarentaboat.com/#localbusiness",
         "name": "Costa Brava Rent a Boat",
         "alternateName": "CBRAB",
-        "description": "Family-run boat rental business in the Port of Blanes, Costa Brava, Spain. Largest fleet in Blanes with 9 boats including 5 licence-free, 3 licensed motorboats and 1 private excursion with captain.",
+        "description": "Family-run boat rental business in the Port of Blanes, Costa Brava, Spain. Largest fleet in Blanes with 8 boats including 5 licence-free, 3 licensed motorboats and 1 private excursion with captain.",
         "url": "https://www.costabravarentaboat.com",
         "telephone": "+34611500372",
         "email": "costabravarentaboat@gmail.com",
@@ -668,7 +669,7 @@ export default function AboutPage() {
               "itemOffered": {
                 "@type": "Service",
                 "name": "Licensed boat rental",
-                "description": "Rent a motorboat with boating licence. Boats up to 150 HP."
+                "description": "Rent a motorboat with boating licence. Boats up to 115 HP."
               }
             },
             {
@@ -748,10 +749,20 @@ export default function AboutPage() {
                 <Ship className="w-4 h-4 mr-2" />
                 {txt.badgeFleet}
               </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Star className="w-4 h-4 mr-2" />
-                {txt.badgeReviews}
-              </Badge>
+              <a
+                href={GBP_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex"
+              >
+                <Badge
+                  variant="outline"
+                  className="text-primary border-primary hover:bg-primary/5 transition-colors"
+                >
+                  <Star className="w-4 h-4 mr-2" />
+                  {txt.badgeReviews}
+                </Badge>
+              </a>
             </div>
           </div>
         </div>

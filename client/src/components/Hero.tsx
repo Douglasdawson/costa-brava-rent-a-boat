@@ -6,6 +6,7 @@ import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useBusinessStats } from "@/hooks/useBusinessStats";
 
 import BoatQuizModal from "./BoatQuizModal";
+import { GBP_PROFILE_URL } from "@shared/businessProfile";
 
 export default function Hero() {
   const t = useTranslations();
@@ -149,13 +150,18 @@ export default function Hero() {
             <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
             {authority.happyCustomers}
           </span>
-          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
+          <a
+            href={GBP_PROFILE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap hover:underline underline-offset-2"
+          >
             <Star
               className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 fill-amber-400 text-amber-400"
               aria-hidden="true"
             />
             {ratingDisplay}
-          </span>
+          </a>
         </div>
       </div>
 

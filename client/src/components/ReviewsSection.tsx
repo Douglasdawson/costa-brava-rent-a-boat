@@ -5,6 +5,7 @@ import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { trackReviewCarouselScroll } from "@/utils/analytics";
+import { GBP_PROFILE_URL } from "@shared/businessProfile";
 
 interface GoogleReview {
   rating: number;
@@ -261,16 +262,21 @@ function ReviewsSection() {
                   </>
                 )}
               </figcaption>
-              <p className="mt-3 inline-flex items-center gap-2 text-xs text-muted-foreground">
+              <a
+                href={GBP_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground hover:underline underline-offset-2 transition-colors"
+              >
                 <span className="inline-flex items-center gap-0.5" aria-hidden="true">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
                   ))}
                 </span>
                 <span>
-                  {averageRating} · {totalReviewCount} {t.reviews.opinions}
+                  {averageRating} · {totalReviewCount} {t.reviews.opinions} {t.reviews.googleReviews ?? ""}
                 </span>
-              </p>
+              </a>
             </figure>
           );
         })()}

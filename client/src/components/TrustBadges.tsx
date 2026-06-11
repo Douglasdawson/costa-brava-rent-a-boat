@@ -1,5 +1,6 @@
 import { Star, Shield, MapPin, Award } from "lucide-react";
 import type { Translations } from "@/lib/translations";
+import { GBP_PROFILE_URL } from "@shared/businessProfile";
 
 interface TrustBadgesProps {
   t: Translations;
@@ -8,10 +9,15 @@ interface TrustBadgesProps {
 export function TrustBadges({ t }: TrustBadgesProps) {
   return (
     <div className="flex flex-wrap gap-2">
-      <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted border border-border px-2 py-1 rounded-full">
+      <a
+        href={GBP_PROFILE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted border border-border px-2 py-1 rounded-full hover:border-foreground/40 transition-colors"
+      >
         <Star className="w-3 h-3 fill-amber-400 text-amber-400" aria-hidden="true" />
         {t.trustEscalation?.googleRating || "4.8 en Google"}
-      </span>
+      </a>
       <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted border border-border px-2 py-1 rounded-full">
         <MapPin className="w-3 h-3 text-cta" aria-hidden="true" />
         {t.trustEscalation?.officialPort || "Puerto oficial de Blanes"}

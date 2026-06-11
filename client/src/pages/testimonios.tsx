@@ -16,9 +16,9 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR } from "@shared/businessProfile";
+import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 
-const GOOGLE_REVIEWS_URL = "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5";
+const GOOGLE_REVIEWS_URL = GBP_PROFILE_URL;
 
 interface GoogleReview {
   author: string | null;
@@ -199,7 +199,12 @@ export default function TestimoniosPage() {
               {tt?.hero.subtitle ?? ""}
             </p>
 
-            <div className="bg-card rounded-2xl p-6 max-w-md mx-auto shadow-xs border border-border/40">
+            <a
+              href={GBP_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-card rounded-2xl p-6 max-w-md mx-auto shadow-xs border border-border/40 hover:border-foreground/30 transition-colors"
+            >
               <div className="flex items-center justify-center gap-3 mb-2">
                 <span className="text-4xl font-bold text-foreground tabular-nums">
                   {ratingDisplay}
@@ -211,7 +216,7 @@ export default function TestimoniosPage() {
               <p className="text-sm text-muted-foreground">
                 {ratingLabel} {t.reviews?.googleReviews ?? "en Google"}
               </p>
-            </div>
+            </a>
           </div>
         </div>
       </section>

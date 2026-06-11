@@ -1,7 +1,7 @@
 import { Star, Fuel, Shield, RotateCcw, Waves } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import type { Translations } from "@/lib/translations";
-import { BUSINESS_RATING, BUSINESS_REVIEW_COUNT } from "@shared/businessProfile";
+import { BUSINESS_RATING, BUSINESS_REVIEW_COUNT, GBP_PROFILE_URL } from "@shared/businessProfile";
 
 interface BoatHeroChipsProps {
   t: Translations;
@@ -73,18 +73,35 @@ export function BoatHeroChips({ t, fuelIncluded }: BoatHeroChipsProps) {
       className="mt-3 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap"
       aria-label={t.boatDetail.heroChipsLabel}
     >
-      {chips.map((chip, i) => (
-        <li
-          key={i}
-          className="inline-flex items-start gap-1.5 rounded-full border border-border/70 bg-muted/70 px-3 py-1.5 text-xs leading-snug text-foreground"
-        >
-          <chip.Icon
-            className={`mt-0.5 w-3.5 h-3.5 shrink-0 ${chip.iconClass}`}
-            aria-hidden="true"
-          />
-          <span className="text-balance">{chip.label}</span>
-        </li>
-      ))}
+      {chips.map((chip, i) => {
+        const content = (
+          <>
+            <chip.Icon
+              className={`mt-0.5 w-3.5 h-3.5 shrink-0 ${chip.iconClass}`}
+              aria-hidden="true"
+            />
+            <span className="text-balance">{chip.label}</span>
+          </>
+        );
+        return (
+          <li key={i} className="inline-flex">
+            {i === 0 ? (
+              <a
+                href={GBP_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-start gap-1.5 rounded-full border border-border/70 bg-muted/70 px-3 py-1.5 text-xs leading-snug text-foreground hover:border-foreground/40 transition-colors"
+              >
+                {content}
+              </a>
+            ) : (
+              <span className="inline-flex items-start gap-1.5 rounded-full border border-border/70 bg-muted/70 px-3 py-1.5 text-xs leading-snug text-foreground">
+                {content}
+              </span>
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 }

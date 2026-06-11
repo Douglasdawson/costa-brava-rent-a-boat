@@ -14,8 +14,8 @@
 // RULE: never hardcode rating/review count outside this file.
 
 export const BUSINESS_RATING = 4.8;
-export const BUSINESS_REVIEW_COUNT = 323;
-export const BUSINESS_RATING_LAST_UPDATED = "2026-05-21";
+export const BUSINESS_REVIEW_COUNT = 334;
+export const BUSINESS_RATING_LAST_UPDATED = "2026-06-11";
 
 // String variants for JSON-LD schemas that expect string values.
 export const BUSINESS_RATING_STR = BUSINESS_RATING.toFixed(1);
@@ -65,6 +65,13 @@ export const BUSINESS_OSM_ID = "";
 // Used to build the canonical "write review" URL that opens the correct GBP.
 export const BUSINESS_PLACE_ID = "ChIJb4WolCwXuxIRp-DybpP6LZo";
 export const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${BUSINESS_PLACE_ID}`;
+
+// Public Google Business Profile view (rating + all reviews). Built from the
+// Place ID via the official Maps URL API, so it never depends on a share
+// token. Every UI surface that shows the rating/review count links here.
+export const GBP_PROFILE_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  BUSINESS_DISPLAY_NAME,
+)}&query_place_id=${BUSINESS_PLACE_ID}`;
 
 // Política de cancelación canónica (texto único para toda la flota desde
 // 2026-05-26 — ver CLAUDE.md "Hechos canonicos"). Cualquier surface nueva

@@ -20,6 +20,7 @@ import CentresNLCatalunyaLogo from "@/components/icons/CentresNLCatalunyaLogo";
 import ClusterNauticLogo from "@/components/icons/ClusterNauticLogo";
 import DonQualitaLogo from "@/components/icons/DonQualitaLogo";
 import { trackPhoneClick, trackNewsletterSignup } from "@/utils/analytics";
+import { isValidEmail } from "@/utils/booking-validation";
 
 export default function Footer() {
   const t = useTranslations();
@@ -30,10 +31,16 @@ export default function Footer() {
     "idle"
   );
   const [website, setWebsite] = useState("");
+  const [newsletterEmailError, setNewsletterEmailError] = useState(false);
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newsletterEmail.trim()) return;
+    // Own validation (form is noValidate): empty or malformed email -> inline i18n error.
+    if (!newsletterEmail.trim() || !isValidEmail(newsletterEmail.trim())) {
+      setNewsletterEmailError(true);
+      return;
+    }
+    setNewsletterEmailError(false);
     setNewsletterState("loading");
     try {
       const res = await fetch("/api/newsletter/subscribe", {
@@ -148,7 +155,7 @@ export default function Footer() {
               {newsletterState === "success" ? (
                 <p className="text-xs text-green-400">{t.locationPages.newsletter.success}</p>
               ) : (
-                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                <form onSubmit={handleNewsletterSubmit} className="flex gap-2" noValidate>
                   <input
                     type="text"
                     name="website"
@@ -172,10 +179,15 @@ export default function Footer() {
                     id="footer-newsletter-email"
                     type="email"
                     value={newsletterEmail}
-                    onChange={e => setNewsletterEmail(e.target.value)}
+                    onChange={e => {
+                      setNewsletterEmail(e.target.value);
+                      if (newsletterEmailError) setNewsletterEmailError(false);
+                    }}
                     placeholder={t.locationPages.newsletter.placeholder}
                     required
-                    className="bg-white/10 border border-white/20 rounded-full px-4 py-3 min-h-11 text-base md:text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none focus:border-white/40 flex-1 min-w-0"
+                    aria-invalid={newsletterEmailError}
+                    aria-describedby={newsletterEmailError ? "footer-newsletter-email-error" : undefined}
+                    className={`bg-white/10 border rounded-full px-4 py-3 min-h-11 text-base md:text-sm text-primary-foreground placeholder:text-primary-foreground/60 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none focus:border-white/40 flex-1 min-w-0 ${newsletterEmailError ? "border-red-400" : "border-white/20"}`}
                   />
                   <button
                     type="submit"
@@ -185,6 +197,11 @@ export default function Footer() {
                     {newsletterState === "loading" ? "..." : t.locationPages.newsletter.button}
                   </button>
                 </form>
+              )}
+              {newsletterEmailError && (
+                <p id="footer-newsletter-email-error" role="alert" className="text-xs text-red-400 mt-1">
+                  {t.footer.newsletterEmailError}
+                </p>
               )}
               {newsletterState === "error" && (
                 <p className="text-xs text-red-400 mt-1">{t.locationPages.newsletter.error}</p>

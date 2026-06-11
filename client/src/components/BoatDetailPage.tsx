@@ -59,6 +59,7 @@ import { getBoatImage, getBoatImageSrcSet, getBoatAltText } from "@/utils/boatIm
 import { useResponsiveGallery } from "@/hooks/useResponsiveGallery";
 import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 import Navigation from "./Navigation";
+import LicenseVerifierInline from "@/components/booking/LicenseVerifierInline";
 import { ReadingProgressBar } from "./ReadingProgressBar";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
@@ -1621,6 +1622,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </p>
                 )}
               </div>
+              {requiresLicense && <LicenseVerifierInline className="mb-4" />}
               {/* What to bring section */}
               <div className="mt-4 pt-4 border-t border-border">
                 <h4 className="font-bold text-base text-foreground mb-3 flex items-center gap-2">
@@ -1775,7 +1777,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         className={`fixed bottom-0 left-0 right-0 z-40 md:hidden pb-safe transition-all duration-300 ${showStickyCTA && !isBookingModalOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full pointer-events-none"}`}
         aria-hidden={!showStickyCTA || isBookingModalOpen}
       >
-        <div className="flex gap-2 px-3 py-2 bg-background border-t border-border shadow-lg">
+        <div className="px-3 py-2 bg-background border-t border-border shadow-lg">
+          {!boatIncludesFuel(boatId, requiresLicense) && (
+            <p className="text-[11px] text-muted-foreground text-center mb-1.5">
+              {t.boatDetail.fuelNotIncludedNote}
+            </p>
+          )}
+          <div className="flex gap-2">
           <button
             onClick={() => handleReservation()}
             tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
@@ -1800,6 +1808,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <SiWhatsapp className="w-4 h-4" />
             <span>WhatsApp</span>
           </a>
+          </div>
         </div>
       </div>
 
@@ -1821,6 +1830,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <p className="text-xs text-muted-foreground flex items-center gap-1">
                 <Fuel className="w-3 h-3" />
                 {t.boatDetail.fuelIncludedShort}
+              </p>
+            )}
+            {!boatIncludesFuel(boatId, requiresLicense) && (
+              <p className="text-xs text-muted-foreground flex items-center gap-1">
+                <Fuel className="w-3 h-3" />
+                {t.boatDetail.fuelNotIncludedNote}
               </p>
             )}
             <Button

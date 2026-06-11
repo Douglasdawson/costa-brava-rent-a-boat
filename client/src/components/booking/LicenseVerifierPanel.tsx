@@ -334,7 +334,7 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
       )}
 
       {/* Actions — sticky on mobile so Verify never falls below the fold */}
-      <div className="sticky bottom-0 -mx-4 sm:-mx-5 px-4 sm:px-5 pb-safe pt-3 bg-card/85 backdrop-blur-sm flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 sm:bg-transparent sm:backdrop-blur-none sm:static sm:p-0 sm:mx-0 sm:pb-0">
+      <div className="sticky bottom-0 -mx-4 sm:-mx-5 px-4 sm:px-5 pb-safe pt-3 bg-background border-t border-border flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 sm:bg-transparent sm:border-0 sm:static sm:p-0 sm:mx-0 sm:pb-0">
         <button
           type="button"
           onClick={() => dismiss()}

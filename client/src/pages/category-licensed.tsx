@@ -17,6 +17,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import LicenseVerifierInline from "@/components/booking/LicenseVerifierInline";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import RelatedContent from "@/components/RelatedContent";
@@ -471,6 +472,7 @@ export default function CategoryLicensedPage() {
                   <span>{cl.euEquivalent}</span>
                 </li>
               </ul>
+              <LicenseVerifierInline className="mt-6" />
             </div>
             <div>
               <h3 className="font-heading font-semibold text-lg mb-4">

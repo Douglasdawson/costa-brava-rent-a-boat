@@ -302,6 +302,7 @@ export interface Translations {
     legal: string;
     call: string;
     cancelationPolicy: string;
+    newsletterEmailError: string;
     extrasSnorkel: string;
     extrasPaddle: string;
     extrasSeascooter: string;
@@ -865,6 +866,7 @@ export interface Translations {
     viewsToday: string;
     viewCustomerGallery: string;
     fuelIncludedShort: string;
+    fuelNotIncludedNote: string;
     mainFeatures: string;
     noFeatures: string;
     technicalSpecs: string;
@@ -1026,6 +1028,7 @@ export interface Translations {
       subtitle?: string;
       panelEyebrow?: string;
       panelHelper?: string;
+      discoverCta?: string;
       countryLabel?: string;
       countryPlaceholder?: string;
       countrySearchPlaceholder?: string;

@@ -82,6 +82,7 @@ export default function SharedSailingPage() {
   const [message, setMessage] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [fieldErrors, setFieldErrors] = useState<{ name?: boolean; phone?: boolean }>({});
 
   const pilotLabel: Record<typeof pilot, string> = {
     yes: s.form.pilotYes,
@@ -93,10 +94,20 @@ export default function SharedSailingPage() {
     e.preventDefault();
     if (status === "submitting") return;
 
-    if (!name.trim() || !phoneNumber.trim()) {
-      setStatus("error");
+    const errors = {
+      name: !name.trim(),
+      phone: !phoneNumber.trim(),
+    };
+    if (errors.name || errors.phone) {
+      setFieldErrors(errors);
+      // Scroll to (and focus) the first field with an error.
+      const firstErrorId = errors.name ? "ss-name" : "ss-phone";
+      const el = document.getElementById(firstErrorId);
+      el?.scrollIntoView({ behavior: "smooth", block: "center" });
+      el?.focus({ preventScroll: true });
       return;
     }
+    setFieldErrors({});
 
     // Split "Nombre Apellido" so the CRM keeps first/last separate.
     const parts = name.trim().split(/\s+/);
@@ -265,12 +276,22 @@ export default function SharedSailingPage() {
                   </label>
                   <input
                     id="ss-name"
-                    className={inputClass}
+                    className={`${inputClass} ${fieldErrors.name ? "border-destructive focus:border-destructive focus:ring-destructive" : ""}`}
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      if (fieldErrors.name) setFieldErrors((f) => ({ ...f, name: false }));
+                    }}
                     placeholder={s.form.namePlaceholder}
                     autoComplete="name"
+                    aria-invalid={!!fieldErrors.name}
+                    aria-describedby={fieldErrors.name ? "ss-name-error" : undefined}
                   />
+                  {fieldErrors.name && (
+                    <p id="ss-name-error" className="mt-1 text-sm text-destructive">
+                      {t.validation.addName}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -292,15 +313,25 @@ export default function SharedSailingPage() {
                     </select>
                     <input
                       id="ss-phone"
-                      className={inputClass}
+                      className={`${inputClass} ${fieldErrors.phone ? "border-destructive focus:border-destructive focus:ring-destructive" : ""}`}
                       type="tel"
                       inputMode="tel"
                       value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      onChange={(e) => {
+                        setPhoneNumber(e.target.value);
+                        if (fieldErrors.phone) setFieldErrors((f) => ({ ...f, phone: false }));
+                      }}
                       placeholder={s.form.phone}
                       autoComplete="tel-national"
+                      aria-invalid={!!fieldErrors.phone}
+                      aria-describedby={fieldErrors.phone ? "ss-phone-error" : undefined}
                     />
                   </div>
+                  {fieldErrors.phone && (
+                    <p id="ss-phone-error" className="mt-1 text-sm text-destructive">
+                      {t.validation.addPhone}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -401,9 +432,7 @@ export default function SharedSailingPage() {
 
                 {status === "error" && (
                   <p role="alert" className="text-sm text-destructive">
-                    {name.trim() && phoneNumber.trim()
-                      ? s.form.errorText
-                      : s.form.requiredError}
+                    {s.form.errorText}
                   </p>
                 )}
 

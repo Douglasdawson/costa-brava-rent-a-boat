@@ -82,8 +82,8 @@ import AvailabilityUrgency from "./AvailabilityUrgency";
 import { LiveInterestIndicator } from "./LiveInterestIndicator";
 import { TrustBadges } from "./TrustBadges";
 import { BoatHeroChips } from "./BoatHeroChips";
+import { boatIncludesFuel } from "@shared/boatData";
 import BoatReviewCarousel from "./BoatReviewCarousel";
-import { getBoatReviews, getBoatAverageRating } from "@/data/boatReviews";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { BookingPrefillData } from "@/hooks/bookingModalContext";
 import { trackGoogleAdsRemarketing } from "@/utils/google-ads";
@@ -1018,42 +1018,18 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   const baseProductSchema = generateEnhancedProductSchema(adaptedBoatData, language);
 
-  // Add all gallery images and review data to enhanced schema
-  const reviewData = getBoatReviews(boatId);
-  const ratingData = getBoatAverageRating(boatId);
-
   const enhancedProductSchema: Record<string, unknown> = {
     ...baseProductSchema,
     image: absoluteImages,
   };
 
-  // Always ensure aggregateRating is present (Google requires it for rich snippets)
-  // Use per-boat data if available, otherwise keep the global 4.8/307 from base schema
-  if (ratingData.count > 0) {
-    enhancedProductSchema.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: ratingData.average,
-      reviewCount: ratingData.count,
-      bestRating: 5,
-      worstRating: 1,
-    };
-    enhancedProductSchema.review = reviewData.map(r => ({
-      "@type": "Review",
-      author: { "@type": "Person", name: r.name },
-      datePublished: `${r.date}-01`,
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: r.rating,
-        bestRating: 5,
-        worstRating: 1,
-      },
-      reviewBody: r.text,
-    }));
-  }
-  // No fallback review when per-boat reviews are missing: a fabricated Review
-  // violates Google's review policies and risks AI engines quoting a fake
-  // person. The Product keeps the business AggregateRating from the base
-  // schema; that is enough structured data without inventing a reviewer.
+  // Never emit the per-boat reviews from client/src/data/* as schema.org
+  // Review/AggregateRating: that dataset is not made of verified customer
+  // reviews, and a fabricated Review violates Google's review policies and
+  // risks AI engines quoting a fake person. The Product keeps the
+  // business-wide AggregateRating (real Google Business Profile values) from
+  // the base schema; that is enough structured data without inventing
+  // reviewers.
 
   // Generate breadcrumb schema with localized names
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -1217,7 +1193,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           change, weather rescheduling. All claims backed by CondicionesGenerales
           and shared/businessProfile. */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
-        <BoatHeroChips t={t} requiresLicense={requiresLicense} />
+        <BoatHeroChips t={t} fuelIncluded={boatIncludesFuel(boatId, requiresLicense)} />
       </div>
 
       {/* View counter - only shown when views > 3 */}

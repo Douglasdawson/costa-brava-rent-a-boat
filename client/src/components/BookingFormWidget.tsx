@@ -829,6 +829,21 @@ export default function BookingFormWidget({ preSelectedBoatId: rawPreSelectedBoa
     enabled: !!selectedSecondaryBoat && !!selectedDate && !!selectedDuration,
   });
 
+  // Single source for the date-aware price of a duration. The duration grid
+  // and getBookingPrice (sticky bar + confirm step) MUST resolve through this
+  // same function: two parallel implementations let the grid and the total
+  // disagree transiently while /api/pricing/calendar loads (impeccable P1.15).
+  const resolvePriceForDuration = (durationKey: string): number | null => {
+    if (!selectedBoatInfo || !selectedBoatInfo.pricing) return null;
+    // Prefer the date-aware price (weekend surcharge + override) so every
+    // surface matches the public pricing calendar. Fall back to the static
+    // catalog price until the API response loads.
+    const dateAware = datePricing.prices[durationKey as Duration];
+    if (typeof dateAware === "number") return dateAware;
+    const season = getCurrentSeason();
+    return selectedBoatInfo.pricing[season]?.prices[durationKey] || null;
+  };
+
   // Map duration keys to i18n labels
   const durationLabelMap: Record<string, string> = {
     "1h": t.booking.oneHour || "1 hora",
@@ -851,19 +866,7 @@ export default function BookingFormWidget({ preSelectedBoatId: rawPreSelectedBoa
 
   // Duration options based on boat, license, date, and season restrictions
   const getDurationOptions = (): { value: string; label: string; price?: number; disabled?: boolean; disabledReason?: string }[] => {
-    const getPriceForDuration = (durationKey: string) => {
-      if (!selectedBoatInfo || !selectedBoatInfo.pricing) return null;
-
-      // Prefer the date-aware price (weekend surcharge + override) so the grid
-      // matches the public pricing calendar. Fall back to the static catalog
-      // price until the API response loads.
-      const dateAware = datePricing.prices[durationKey as Duration];
-      if (typeof dateAware === "number") return dateAware;
-
-      const season = getCurrentSeason();
-      const seasonPricing = selectedBoatInfo.pricing[season];
-      return seasonPricing?.prices[durationKey] || null;
-    };
+    const getPriceForDuration = resolvePriceForDuration;
 
     // Durations the admin has disabled (price 0 / null) for the current season must not be offered.
     const hasActivePriceForDuration = (durationKey: string) => {
@@ -1003,14 +1006,13 @@ export default function BookingFormWidget({ preSelectedBoatId: rawPreSelectedBoa
 
   // Helper function to get price (single or combined for multi-boat)
   const getBookingPrice = () => {
-    if (!selectedBoatInfo || !selectedDuration || !selectedBoatInfo.pricing) return null;
-    const season = getCurrentSeason();
-    // Date-aware price (weekend surcharge + override) with catalog fallback, to stay
-    // in sync with the public pricing calendar.
-    const catalogPrimary = selectedBoatInfo.pricing[season]?.prices[selectedDuration] ?? null;
-    const primary = datePricing.prices[selectedDuration as Duration] ?? catalogPrimary;
+    if (!selectedDuration) return null;
+    // Same resolver as the duration grid — sticky bar, confirm step and the
+    // step-3 options can never show different figures for one selection.
+    const primary = resolvePriceForDuration(selectedDuration);
     if (primary === null) return null;
     if (!isMultiBoat || !selectedSecondaryBoatInfo?.pricing) return primary;
+    const season = getCurrentSeason();
     const catalogSecondary = selectedSecondaryBoatInfo.pricing[season]?.prices[selectedDuration] || 0;
     const secondary = secondaryDatePricing.finalPrice ?? catalogSecondary;
     return primary + secondary;

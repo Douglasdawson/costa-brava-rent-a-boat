@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Users, Anchor, Fuel, ArrowRight } from "lucide-react";
+import { isCaptainedBoat, boatIncludesFuel } from "@shared/boatData";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
@@ -89,6 +90,11 @@ type PricingPageStrings = {
 };
 
 function getLicenseLabel(boat: Boat, strings: PricingPageStrings): string {
+  // Captained boats are not "sin licencia": the customer does not pilot, so
+  // neither the licence-free badge nor fuel-included claims apply to them.
+  if (isCaptainedBoat(boat.id)) {
+    return strings.licenseTypes.captained ?? strings.licenseFallback;
+  }
   const lt = (boat as Boat & { licenseType?: string }).licenseType;
   if (lt && lt !== "none") {
     return strings.licenseTypes[lt] ?? lt;
@@ -182,7 +188,7 @@ export default function PricingPage() {
               item: {
                 "@type": "Product",
                 name: `Alquiler ${boat.name} en Blanes`,
-                description: `Barco ${boat.name} para ${boat.capacity} personas${boat.requiresLicense ? " (requiere licencia)" : " (sin licencia)"}`,
+                description: `Barco ${boat.name} para ${boat.capacity} personas${isCaptainedBoat(boat.id) ? " (con patron incluido)" : boat.requiresLicense ? " (requiere licencia)" : " (sin licencia)"}`,
                 brand: { "@type": "Brand", name: "Costa Brava Rent a Boat" },
                 ...(lowPrice && highPrice
                   ? {
@@ -394,7 +400,7 @@ export default function PricingPage() {
                               />
                               {boat.name}
                             </a>
-                            {!boat.requiresLicense && (
+                            {boatIncludesFuel(boat.id, boat.requiresLicense) && (
                               <Badge
                                 variant="secondary"
                                 className="ml-2 text-xs bg-green-100 text-green-800"
@@ -502,7 +508,7 @@ export default function PricingPage() {
                           </Badge>
                         </div>
                       </div>
-                      {!boat.requiresLicense && (
+                      {boatIncludesFuel(boat.id, boat.requiresLicense) && (
                         <Badge
                           variant="secondary"
                           className="w-fit text-xs bg-green-100 text-green-800 mb-3"

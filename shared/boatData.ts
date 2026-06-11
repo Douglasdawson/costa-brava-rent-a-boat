@@ -382,7 +382,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Seguro embarcación y ocupantes"
     ],
     features: [
-      "Licencia Básica requerida",
+      "Licencia de Navegación (LN) requerida",
       "Hasta 6 personas",
       "GPS y sonda incluidos", 
       "Ducha agua dulce",
@@ -446,7 +446,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Seguro embarcación y ocupantes"
     ],
     features: [
-      "Licencia Básica requerida",
+      "Licencia de Navegación (LN) requerida",
       "Hasta 7 personas",
       "Ideal para velocidad", 
       "Ducha agua dulce",
@@ -514,7 +514,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Seguro embarcación y ocupantes"
     ],
     features: [
-      "Licencia Básica requerida",
+      "Licencia de Navegación (LN) requerida",
       "Hasta 7 personas",
       "Embarcación premium", 
       "Mesa para comidas",
@@ -611,6 +611,27 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     ]
   }
 };
+
+// Boats piloted by a professional captain: the customer needs no licence, but
+// unlike the self-drive licence-free fleet, fuel is NOT included. Surfaces that
+// branch on `!requiresLicense` alone mislabel these (impeccable sweep P1.2).
+export const CAPTAINED_BOAT_IDS: ReadonlySet<string> = new Set(["excursion-privada"]);
+
+export function isCaptainedBoat(boatId: string): boolean {
+  return CAPTAINED_BOAT_IDS.has(boatId);
+}
+
+/**
+ * Single source for the "fuel included" claim. Canon: only the self-drive
+ * licence-free boats include fuel; licensed boats, the captained excursion and
+ * jet skis do NOT (see CLAUDE.md "Hechos canonicos").
+ */
+export function boatIncludesFuel(boatId: string, requiresLicense: boolean | null | undefined): boolean {
+  if (requiresLicense) return false;
+  if (isCaptainedBoat(boatId)) return false;
+  if (boatId.startsWith("jetski")) return false;
+  return true;
+}
 
 export interface ExtraPack {
   id: string;

@@ -448,6 +448,10 @@ export default function CategoryLicensedPage() {
               <ul className="space-y-3">
                 <li className="flex items-center">
                   <CheckCircle className="w-4 h-4 text-primary mr-3" />
+                  <span className="font-medium">{cl.licenciaNavegacion}</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
                   <span>{cl.per}</span>
                 </li>
                 <li className="flex items-center">

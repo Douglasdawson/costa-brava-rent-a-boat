@@ -5,7 +5,12 @@ import { BUSINESS_RATING, BUSINESS_REVIEW_COUNT } from "@shared/businessProfile"
 
 interface BoatHeroChipsProps {
   t: Translations;
-  requiresLicense: boolean;
+  /**
+   * Whether THIS boat includes fuel (use `boatIncludesFuel` from
+   * shared/boatData). Captained boats have requiresLicense=false but do NOT
+   * include fuel, so the chip cannot branch on requiresLicense alone.
+   */
+  fuelIncluded: boolean;
 }
 
 /**
@@ -14,8 +19,9 @@ interface BoatHeroChipsProps {
  *
  * Four chips:
  *  1. Star rating + review count from `shared/businessProfile` (canonical source).
- *  2. Fuel + insurance OR insurance-only depending on `requiresLicense`
- *     (licensed boats do not include fuel — see memory feedback_fuel_licensed_boats).
+ *  2. Fuel + insurance OR insurance-only depending on `fuelIncluded`
+ *     (only self-drive licence-free boats include fuel; licensed boats and
+ *     the captained excursion do not — see shared/boatData.boatIncludesFuel).
  *  3. Free date change with 7+ days notice — per `CondicionesGenerales.tsx`.
  *  4. Weather rescheduling — wording stays neutral ("if the sea doesn't cooperate")
  *     to honor the policy that only Costa Brava's staff calls bad weather, not
@@ -25,7 +31,7 @@ interface BoatHeroChipsProps {
  * block on any phone width without overflow. Flex-wrap on sm+ so chips size to
  * content and breathe horizontally. No shadow at rest (DESIGN.md Earned Depth).
  */
-export function BoatHeroChips({ t, requiresLicense }: BoatHeroChipsProps) {
+export function BoatHeroChips({ t, fuelIncluded }: BoatHeroChipsProps) {
   const { language } = useLanguage();
   const rating = new Intl.NumberFormat(language, { minimumFractionDigits: 1 }).format(BUSINESS_RATING);
   const count = new Intl.NumberFormat(language).format(BUSINESS_REVIEW_COUNT);
@@ -39,15 +45,15 @@ export function BoatHeroChips({ t, requiresLicense }: BoatHeroChipsProps) {
       label: reviewsLabel,
       iconClass: "fill-amber-400 text-amber-400",
     },
-    requiresLicense
+    fuelIncluded
       ? {
-          Icon: Shield,
-          label: t.boatDetail.heroChipInsurance,
+          Icon: Fuel,
+          label: t.boatDetail.heroChipFuelInsurance,
           iconClass: "text-cta",
         }
       : {
-          Icon: Fuel,
-          label: t.boatDetail.heroChipFuelInsurance,
+          Icon: Shield,
+          label: t.boatDetail.heroChipInsurance,
           iconClass: "text-cta",
         },
     {

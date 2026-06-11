@@ -1765,6 +1765,7 @@ export interface Translations {
     sportNavigation: string;
     requirementsTitle: string;
     acceptedLicenses: string;
+    licenciaNavegacion?: string;
     per: string;
     pnb: string;
     yachtCaptain: string;

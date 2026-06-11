@@ -1,4 +1,4 @@
-import { CheckCircle, Star, MapPin, Users } from "lucide-react";
+import { CheckCircle, Star, MapPin } from "lucide-react";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import type { Translations } from "@/lib/translations";
 
@@ -7,17 +7,6 @@ type TrustStage = "browse" | "step1" | "step2" | "step3";
 interface BookingTrustBannerProps {
   t: Translations;
   stage?: TrustStage;
-}
-
-function getWeeklyBookingsEstimate(): number {
-  const now = new Date();
-  const month = now.getMonth();
-  // Seasonal estimate: Apr-Jun ~12, Jul ~18, Aug ~25, Sep-Oct ~10
-  if (month === 7) return 25; // August
-  if (month === 6) return 18; // July
-  if (month >= 3 && month <= 5) return 12; // Apr-Jun
-  if (month === 8 || month === 9) return 10; // Sep-Oct
-  return 5; // Off-season
 }
 
 export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerProps) {
@@ -38,8 +27,8 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
           {t.trustEscalation?.googleRating || "4.8 en Google"}
         </span>
         <span className="inline-flex items-center gap-1">
-          <Users className="w-3.5 h-3.5 flex-shrink-0" />
-          {t.trustEscalation?.familiesThisSeason || "100+ familias esta temporada"}
+          <SiWhatsapp className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+          {t.bookingTrust?.replyTime || "Reply in <2h on WhatsApp"}
         </span>
       </div>
     );
@@ -84,8 +73,8 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
             {t.bookingTrust?.insuranceIncluded || "Insurance included"}
           </span>
           <span className="inline-flex items-center gap-1">
-            <Users className="w-3.5 h-3.5 flex-shrink-0" />
-            {t.trustEscalation?.familiesThisSeason || "100+ familias esta temporada"}
+            <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
+            {t.bookingTrust?.securePayment || "Secure booking"}
           </span>
         </div>
         {Footnote}
@@ -93,10 +82,9 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
     );
   }
 
-  // stage === "step3" — maximum trust
-  const weeklyCount = getWeeklyBookingsEstimate();
-  const bookingsText = (t.trustEscalation?.bookingsThisWeek || "{count}+ reservas esta semana").replace("{count}", String(weeklyCount));
-
+  // stage === "step3" — maximum trust. Every claim here must be verifiable:
+  // no invented booking counters (the old seasonal "estimate" was fabricated
+  // urgency, removed in the impeccable sweep — P1.10).
   return (
     <>
       <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 bg-success/10 border border-success/20 rounded-lg px-4 py-2.5 text-xs sm:text-sm text-success font-medium mb-4">
@@ -113,8 +101,8 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
           {t.trustEscalation?.fullInsurance || "Seguro completo"}
         </span>
         <span className="inline-flex items-center gap-1">
-          <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
-          {bookingsText}
+          <Star className="w-3.5 h-3.5 flex-shrink-0 fill-popular text-popular" aria-hidden="true" />
+          {t.trustEscalation?.googleRating || "4.8 en Google"}
         </span>
         <span className="inline-flex items-center gap-1">
           <MapPin className="w-3.5 h-3.5 flex-shrink-0" />

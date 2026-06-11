@@ -88,7 +88,7 @@ export default function Footer() {
               {t.footer.description}
             </p>
             <div
-              className="inline-flex items-center gap-1.5 text-xs text-cta bg-cta/10 border border-cta/20 rounded-full px-3 py-1 mb-4"
+              className="inline-flex items-center gap-1.5 text-xs text-primary-foreground/90 bg-primary-foreground/10 border border-primary-foreground/20 rounded-full px-3 py-1 mb-4"
               data-testid="footer-independent-operator-badge"
             >
               <ShieldCheck className="w-3 h-3" aria-hidden="true" />

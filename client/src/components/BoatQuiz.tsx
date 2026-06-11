@@ -5,6 +5,8 @@ import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { trackBlogCtaClick, trackBoatQuizStart, trackBoatQuizComplete } from "@/utils/analytics";
 import { BOAT_DATA, type BoatData } from "@shared/boatData";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
 
 interface QuizAnswer {
   passengers: number | null;
@@ -93,6 +95,17 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswer>({ passengers: null, duration: null, budget: null });
 
+  // Live fleet guard: the catalog in BOAT_DATA includes boats the owner may
+  // have deactivated from the CRM (e.g. astec-400 since 2026-05-29).
+  // Recommending one of those is a dead-end — the booking wizard cannot
+  // preselect a boat that /api/boats does not return. Until the query
+  // resolves we recommend from the full catalog (graceful fallback).
+  const { data: liveBoats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const liveBoatIds = useMemo(
+    () => (liveBoats ? new Set(liveBoats.filter(b => b.isActive).map(b => b.id)) : null),
+    [liveBoats]
+  );
+
   const handleAnswer = (value: string | number) => {
     if (step === 0) {
       trackBoatQuizStart(source);
@@ -116,6 +129,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
   const recommendations: BoatRecommendation[] = useMemo(() => {
     return Object.values(BOAT_DATA)
       .filter(boat => QUIZ_SCORING_META[boat.id])
+      .filter(boat => !liveBoatIds || liveBoatIds.has(boat.id))
       .map(boat => ({
         id: boat.id,
         name: boat.name,
@@ -125,7 +139,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
       .filter(r => r.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 3);
-  }, [answers, t]);
+  }, [answers, t, liveBoatIds]);
 
   useEffect(() => {
     if (step === 3 && recommendations.length > 0) {

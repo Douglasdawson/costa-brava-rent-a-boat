@@ -4,6 +4,7 @@ import { Anchor, Fuel, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { getBoatAverageRating } from "@/data/boatRatings";
+import { boatIncludesFuel } from "@shared/boatData";
 
 interface BoatCardProps {
   id: string;
@@ -275,9 +276,7 @@ function BoatCard({
           )}
           <span aria-hidden="true">·</span>
           <span>{requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}</span>
-          {!isJetSki &&
-            !requiresLicense &&
-            !features.some(f => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) && (
+          {boatIncludesFuel(id, requiresLicense) && (
               <>
                 <span aria-hidden="true">·</span>
                 <span className="inline-flex items-center gap-1 text-success font-medium">

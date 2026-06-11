@@ -137,7 +137,9 @@ export default function ContactSection() {
           <Card className="overflow-hidden">
             <div
               ref={mapRef}
-              className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] bg-muted"
+              // Dark navy facade: the white heading/CTA must stay legible
+              // BEFORE the lazy iframe mounts (over bg-muted it was ~1.1:1).
+              className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] bg-foreground"
             >
               {/* Google Maps iframe — only mounted when wrapper enters viewport (saves ~400KB on initial mobile load) */}
               {mapInView && (

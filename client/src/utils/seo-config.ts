@@ -45,7 +45,7 @@ const LOCALE_MAP: Record<string, string> = {
 export const BUSINESS_INFO = {
   name: "Costa Brava Rent a Boat Blanes",
   legalName: "DAMAR COSTA BRAVA S.L.",
-  description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 9 embarcaciones para 4-7 personas.",
+  description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 8 embarcaciones para 4-7 personas.",
   phone: "+34611500372",
   email: "costabravarentaboat@gmail.com",
   url: getBaseUrl(),
@@ -64,7 +64,7 @@ export const BUSINESS_INFO = {
     "Mo-Su 09:00-20:00"  // April-October season
   ],
   seasonalHours: "April to October",
-  priceRange: "70€ - 400€",
+  priceRange: "75€ - 400€",
   servesCuisine: null,
   hasDeliveryService: false
 };
@@ -86,11 +86,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // brava" (pos 11.4 con la categoria dedicada existiendo) y Google alternaba
       // URLs. La home defiende el head term "alquiler barco costa brava"; el
       // cluster sin-licencia es integro de la categoria.
-      title: `Alquiler Barco Costa Brava \u00b7 desde 70\u20ac/h Gasolina Incluida \u00b7 \u2605${BUSINESS_RATING_STR} Blanes`,
-      description: `Alquiler de barcos en la Costa Brava desde el Puerto de Blanes: con y sin licencia desde 70\u20ac/h, gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). 7 calas v\u00edrgenes, snorkel + paddle. Reserva WhatsApp.`,
+      title: `Alquiler Barco Costa Brava \u00b7 desde 75\u20ac/h Gasolina Incluida \u00b7 \u2605${BUSINESS_RATING_STR} Blanes`,
+      description: `Alquiler de barcos en la Costa Brava desde el Puerto de Blanes: con y sin licencia desde 75\u20ac/h, gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). 7 calas v\u00edrgenes, snorkel + paddle. Reserva WhatsApp.`,
       keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquilar barco costa brava, alquiler barco blanes, alquiler embarcaciones costa brava, alquiler lancha costa brava, rent a boat costa brava",
       ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco Costa Brava \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 Blanes`,
-      ogDescription: `Alquiler de barcos en la Costa Brava desde Blanes. Desde 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). 7 calas, snorkel, paddle. Reserva WhatsApp.`
+      ogDescription: `Alquiler de barcos en la Costa Brava desde Blanes. Desde 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). 7 calas, snorkel, paddle. Reserva WhatsApp.`
     },
     booking: {
       title: "Solicitar Reserva de Barco en Blanes | Costa Brava",
@@ -109,11 +109,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // (135+60 imp, CTR 2.22%/1.67%). Diferenciamos con specificity hooks:
       // "Alquilar" lidera (captura variante), Puerto Blanes explicit, calas por nombre.
       // "alquilar barco blanes" detect\u00f3 pos 1.5 en \u00faltimas semanas \u2192 mantener se\u00f1al.
-      title: `Alquilar Barco en Blanes ${SEASON_YEAR} \u00b7 Puerto Blanes \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 70\u20ac/h`,
-      description: `Alquilar o alquiler de barco en el Puerto de Blanes. 70\u20ac/h gasolina incluida, amarre, snorkel + paddle. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Calas Sa Palomera y Sant Francesc a 10 min. Reserva WhatsApp.`,
+      title: `Alquilar Barco en Blanes ${SEASON_YEAR} \u00b7 Puerto Blanes \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 75\u20ac/h`,
+      description: `Alquilar o alquiler de barco en el Puerto de Blanes. 75\u20ac/h gasolina incluida, amarre, snorkel + paddle. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Calas Sa Palomera y Sant Francesc a 10 min. Reserva WhatsApp.`,
       keywords: "alquiler barco blanes, alquilar barco blanes, alquiler barcos blanes, alquiler barco puerto de blanes, alquiler barco muelle blanes, barco sa palomera blanes, calas blanes barco, sant francesc blanes barco, amarre blanes barco",
-      ogTitle: `Alquilar Barco en Blanes ${SEASON_YEAR} \u00b7 Puerto Blanes \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 70\u20ac/h`,
-      ogDescription: `Alquiler de barco en el Puerto de Blanes. 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Calas Sa Palomera y Sant Francesc a 10 min. Parking gratis 100m.`
+      ogTitle: `Alquilar Barco en Blanes ${SEASON_YEAR} \u00b7 Puerto Blanes \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 75\u20ac/h`,
+      ogDescription: `Alquiler de barco en el Puerto de Blanes. 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Calas Sa Palomera y Sant Francesc a 10 min. Parking gratis 100m.`
     },
     locationLloret: {
       // 2026-05: GSC \u2192 homepage cannibaliza "alquiler barco lloret de mar" (63 imp
@@ -121,10 +121,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // pos 6.8 CTR 0%). Fix: a\u00f1adir "Cala Banys" al t\u00edtulo (specificity hook
       // que homepage no puede igualar) + lead con "alquilar" variante + hora exacta.
       title: `Alquilar Barco Lloret de Mar Sin Licencia \u00b7 Cala Banys 25 min \u00b7 \u2605${BUSINESS_RATING_STR}`,
-      description: `Alquiler o alquilar barco a Lloret de Mar sin licencia desde Blanes. Cala Banys y Santa Cristina a 25 min. 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva WhatsApp.`,
+      description: `Alquiler o alquilar barco a Lloret de Mar sin licencia desde Blanes. Cala Banys y Santa Cristina a 25 min. 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva WhatsApp.`,
       keywords: "alquiler barco lloret de mar, alquiler barco sin licencia lloret de mar, alquilar barco lloret, cala banys lloret barco, santa cristina lloret barco, sa boadella barco, excursion barco lloret, barco lloret sin licencia",
       ogTitle: `Alquilar Barco Lloret de Mar Sin Licencia \u00b7 Cala Banys 25 min \u00b7 \u2605${BUSINESS_RATING_STR}`,
-      ogDescription: `Lloret de Mar en barco sin licencia desde Blanes (25 min). 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Cala Banys, Santa Cristina, Sa Boadella.`
+      ogDescription: `Lloret de Mar en barco sin licencia desde Blanes (25 min). 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Cala Banys, Santa Cristina, Sa Boadella.`
     },
     locationTossa: {
       // 2026-06-10: title rewrite. El anterior (90+ chars, jerga "LNB" delante,
@@ -138,25 +138,25 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con licencia desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. 4.8\u2605."
     },
     locationMalgrat: {
-      title: "Alquiler Barco Malgrat de Mar | Puerto Blanes a 10 min | Sin Licencia 70\u20ac/h",
-      description: "\u00bfEn Malgrat de Mar? Puerto Blanes est\u00e1 a solo 10 min en coche. Alquila un barco sin licencia desde 70\u20ac/h con gasolina incluida. Navega hasta Lloret o Tossa.",
+      title: "Alquiler Barco Malgrat de Mar | Puerto Blanes a 10 min | Sin Licencia 75\u20ac/h",
+      description: "\u00bfEn Malgrat de Mar? Puerto Blanes est\u00e1 a solo 10 min en coche. Alquila un barco sin licencia desde 75\u20ac/h con gasolina incluida. Navega hasta Lloret o Tossa.",
       keywords: "alquiler barco malgrat de mar, barco malgrat sin licencia, alquilar barco malgrat, barco desde malgrat, excursion barco malgrat, barco costa maresme malgrat",
       ogTitle: "Alquiler Barco Malgrat de Mar | Puerto Blanes 10 min",
-      ogDescription: "Desde Malgrat de Mar al Puerto de Blanes en 10 min. Barcos sin licencia desde 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "Desde Malgrat de Mar al Puerto de Blanes en 10 min. Barcos sin licencia desde 75\u20ac/h. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "Alquiler Barco Santa Susanna | Puerto Blanes a 15 min | Sin Licencia 70\u20ac/h",
-      description: "Turistas alojados en Santa Susanna: Puerto Blanes a 15 min en coche o tren R1. Alquila barco sin licencia desde 70\u20ac/h. Navega a Blanes, Lloret o Tossa.",
+      title: "Alquiler Barco Santa Susanna | Puerto Blanes a 15 min | Sin Licencia 75\u20ac/h",
+      description: "Turistas alojados en Santa Susanna: Puerto Blanes a 15 min en coche o tren R1. Alquila barco sin licencia desde 75\u20ac/h. Navega a Blanes, Lloret o Tossa.",
       keywords: "alquiler barco santa susanna, barco santa susanna sin licencia, alquilar barco santa susanna, barco desde santa susanna, excursion barco santa susanna, tren R1 barco blanes",
       ogTitle: "Alquiler Barco Santa Susanna | 15 min al Puerto Blanes",
-      ogDescription: "Desde Santa Susanna al Puerto Blanes en 15 min. Barco sin licencia desde 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "Desde Santa Susanna al Puerto Blanes en 15 min. Barco sin licencia desde 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Alquiler Barco Calella | Puerto Blanes a 20 min | Costa Maresme-Brava 70\u20ac/h",
-      description: "\u00bfAlojado en Calella (Maresme)? Puerto Blanes a 20 min. Alquila barco sin licencia desde 70\u20ac/h. Navega al norte a Tossa o al sur al Delta del Tordera.",
+      title: "Alquiler Barco Calella | Puerto Blanes a 20 min | Costa Maresme-Brava 75\u20ac/h",
+      description: "\u00bfAlojado en Calella (Maresme)? Puerto Blanes a 20 min. Alquila barco sin licencia desde 75\u20ac/h. Navega al norte a Tossa o al sur al Delta del Tordera.",
       keywords: "alquiler barco calella, barco calella maresme, barco calella sin licencia, excursion barco calella, barco desde calella, costa maresme calella barco",
       ogTitle: "Alquiler Barco Calella | 20 min al Puerto Blanes",
-      ogDescription: "Desde Calella al Puerto Blanes en 20 min. Barco sin licencia desde 70\u20ac/h. Descubre Costa Brava. 4.8\u2605."
+      ogDescription: "Desde Calella al Puerto Blanes en 20 min. Barco sin licencia desde 75\u20ac/h. Descubre Costa Brava. 4.8\u2605."
     },
     categoryLicenseFree: {
       // GSC 2026-04: "alquiler barco sin licencia" 65 imp pos 19.4, "alquiler
@@ -164,11 +164,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // p\u00e1gina 1, 0 clicks!), "barcos sin licencia" 20 imp pos 16.8 CTR 5%.
       // CTR rewrite con keyword exact-match + \u2605 rating + "sin experiencia
       // previa" como tranquilizador. Lengths optimizados para SERP.
-      title: `Alquiler Barco Sin Licencia Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 \u00b7 70\u20ac/h Blanes`,
-      description: `5 barcos sin licencia en Blanes desde 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Hasta 7 personas, briefing 15 min, sin experiencia.`,
+      title: `Alquiler Barco Sin Licencia Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 \u00b7 75\u20ac/h Blanes`,
+      description: `4 barcos sin licencia en Blanes desde 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Hasta 5 personas, briefing 15 min, sin experiencia.`,
       keywords: "alquiler barco sin licencia, alquiler barco sin licencia costa brava, alquiler barco blanes sin licencia, barcos sin licencia, barco sin licencia costa brava, barcos sin licencia costa brava, alquiler barco sin carnet costa brava, alquiler barcos sin licencia",
-      ogTitle: `Alquiler Barco Sin Licencia Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 \u00b7 70\u20ac/h`,
-      ogDescription: `5 barcos sin licencia en Blanes desde 70\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Hasta 7 personas, sin experiencia previa, briefing 15 min.`
+      ogTitle: `Alquiler Barco Sin Licencia Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 \u00b7 75\u20ac/h`,
+      ogDescription: `4 barcos sin licencia en Blanes desde 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Hasta 5 personas, sin experiencia previa, briefing 15 min.`
     },
     categoryLicensed: {
       title: "Barcos Con Licencia Costa Brava | 80-115CV Blanes",
@@ -248,18 +248,18 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Regala una experiencia náutica inolvidable. Tarjetas desde 50 € canjeables en todos nuestros barcos en Blanes."
     },
     pricing: {
-      title: `Precios Alquiler Barcos Costa Brava ${SEASON_YEAR} | Desde 70\u20ac/h Gasolina Incluida | Blanes`,
-      description: "Tarifas de alquiler de barcos en la Costa Brava desde el Puerto de Blanes. Sin licencia desde 70\u20ac/h, con licencia desde 160\u20ac/2h. Gasolina incluida. Temporada baja, media y alta.",
+      title: `Precios Alquiler Barcos Costa Brava ${SEASON_YEAR} | Desde 75\u20ac/h Gasolina Incluida | Blanes`,
+      description: "Tarifas de alquiler de barcos en la Costa Brava desde el Puerto de Blanes. Sin licencia desde 75\u20ac/h, con licencia desde 160\u20ac/2h. Gasolina incluida. Temporada baja, media y alta.",
       keywords: "precios alquiler barco costa brava, tarifas barco costa brava, cu\u00e1nto cuesta alquilar barco costa brava, precio barco sin licencia costa brava, tarifas barco blanes costa brava",
-      ogTitle: `Precios Alquiler Barcos Costa Brava ${SEASON_YEAR} | Desde 70\u20ac/h`,
-      ogDescription: "Tarifas completas de todos nuestros barcos en la Costa Brava. Sin licencia desde 70\u20ac/h. Gasolina incluida. 3 temporadas."
+      ogTitle: `Precios Alquiler Barcos Costa Brava ${SEASON_YEAR} | Desde 75\u20ac/h`,
+      ogDescription: "Tarifas completas de todos nuestros barcos en la Costa Brava. Sin licencia desde 75\u20ac/h. Gasolina incluida. 3 temporadas."
     },
     locationBarcelona: {
       title: `Alquiler Barco Barcelona | Escapada Costa Brava 70 min en Coche | Blanes ${SEASON_YEAR}`,
-      description: "Escapada perfecta desde Barcelona: Puerto Blanes a 70 min por la AP-7. Alquila barco sin licencia desde 70\u20ac/h con gasolina incluida. Aguas cristalinas sin tr\u00e1fico.",
+      description: "Escapada perfecta desde Barcelona: Puerto Blanes a 70 min por la AP-7. Alquila barco sin licencia desde 75\u20ac/h con gasolina incluida. Aguas cristalinas sin tr\u00e1fico.",
       keywords: "alquiler barco barcelona, alquiler barco sin licencia barcelona, escapada barcelona costa brava, barco cerca barcelona, costa brava desde barcelona coche, alquiler barcos cerca barcelona, barcelona barco escapada",
       ogTitle: "Alquiler Barco cerca de Barcelona | Costa Brava a 70 min",
-      ogDescription: "A 70 min de Barcelona en la AP-7. Barcos sin licencia desde 70\u20ac/h con gasolina. Costa Brava sin tr\u00e1fico. 4.8\u2605."
+      ogDescription: "A 70 min de Barcelona en la AP-7. Barcos sin licencia desde 75\u20ac/h con gasolina. Costa Brava sin tr\u00e1fico. 4.8\u2605."
     },
     locationCostaBrava: {
       // GSC 2026-05-18: descannibalizaci\u00f3n. Pos 74 con 62 imp, 0 clicks porque
@@ -271,11 +271,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "rutas barco costa brava, destinos barco costa brava, calas costa brava barco, navegar costa brava, excursion barco costa brava, costa brava en barco, rutas nauticas costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      title: `Boat Rental Costa Brava | No License from 75\u20ac/h — Blanes, Spain`,
       description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
       keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license",
       ogTitle: "Boat Rental Costa Brava — From Blanes Port",
-      ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour."
+      ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 75\u20ac/hour."
     },
     activitySnorkel: {
       title: "Excursion Snorkel en Barco Blanes | Mejores Calas Costa Brava",
@@ -285,18 +285,18 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Descubre las mejores calas para snorkel desde Blanes. Barcos sin licencia, equipo disponible. Reserva tu aventura submarina."
     },
     activityFamilies: {
-      title: "Alquiler Barco Familias Costa Brava | Desde 70 EUR/h Blanes",
-      description: "Alquiler barco para familias en Costa Brava desde 70 EUR/h. Sin licencia, gasolina incluida, chalecos infantiles. Calas tranquilas y seguras. Reserva online.",
+      title: "Alquiler Barco Familias Costa Brava | Desde 75 EUR/h Blanes",
+      description: "Alquiler barco para familias en Costa Brava desde 75 EUR/h. Sin licencia, gasolina incluida, chalecos infantiles. Calas tranquilas y seguras. Reserva online.",
       keywords: "barco familias costa brava, alquiler barco con ninos, excursion barco familiar, barco sin licencia familias",
       ogTitle: "Barco para Familias en Costa Brava | Desde Blanes",
-      ogDescription: "Barcos seguros para toda la familia. Sin licencia necesaria, chalecos infantiles incluidos. Desde 70 EUR/h con gasolina."
+      ogDescription: "Barcos seguros para toda la familia. Sin licencia necesaria, chalecos infantiles incluidos. Desde 75 EUR/h con gasolina."
     },
     activitySunset: {
       title: `Paseo en Barco al Atardecer Costa Brava | Sunset desde Blanes ${SEASON_YEAR}`,
-      description: "Vive un atardecer m\u00e1gico en barco desde el Puerto de Blanes. Sunset en Costa Brava sin licencia desde 70\u20ac/h, gasolina incluida. Perfecto para parejas y grupos.",
+      description: "Vive un atardecer m\u00e1gico en barco desde el Puerto de Blanes. Sunset en Costa Brava sin licencia desde 75\u20ac/h, gasolina incluida. Perfecto para parejas y grupos.",
       keywords: "paseo barco atardecer costa brava, sunset barco blanes, atardecer barco costa brava, paseo rom\u00e1ntico barco, barco puesta de sol blanes",
       ogTitle: "Paseo en Barco al Atardecer | Sunset Costa Brava desde Blanes",
-      ogDescription: "Atardecer m\u00e1gico desde el mar. Sin licencia, desde 70\u20ac/h con gasolina. Perfecto para parejas. 4.8\u2605 Google."
+      ogDescription: "Atardecer m\u00e1gico desde el mar. Sin licencia, desde 75\u20ac/h con gasolina. Perfecto para parejas. 4.8\u2605 Google."
     },
     activityFishing: {
       title: "Pesca desde Barco en Blanes | Alquiler Barco Pesca Costa Brava",
@@ -306,8 +306,8 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Alquila un barco para pescar en Blanes. Barcos con licencia para llegar a las mejores zonas de pesca."
     },
     boatRentalBlanes: {
-      title: "Boat Rental in Blanes | Costa Brava, Spain - No License from 70\u20ac/h",
-      description: "Rent a boat in Blanes, Costa Brava. No license needed from 70\u20ac/h, fuel included. 9 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
+      title: "Boat Rental in Blanes | Costa Brava, Spain - No License from 75\u20ac/h",
+      description: "Rent a boat in Blanes, Costa Brava. No license needed from 75\u20ac/h, fuel included. 9 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
       keywords: "boat rental blanes, rent boat blanes, blanes boat hire, costa brava boat rental, boat rental spain no license",
       ogTitle: "Boat Rental in Blanes | Costa Brava, Spain",
       ogDescription: "Rent boats in Blanes, gateway to Costa Brava. No license needed. Fuel included. 9 boats, 4-12 people. Book your adventure."
@@ -352,49 +352,49 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Boat rental directly at Blanes Port: free parking 100m from the mooring, snorkel and paddle board included. Sa Palomera and Sant Francesc coves 10 min away by boat.",
       keywords: "boat rental blanes port, blanes port boat hire, sa palomera boat blanes, blanes coves boat, sant francesc blanes boat, blanes mooring boat, blanes port route boat, cala bona blanes boat",
       ogTitle: `Boat Rental at Blanes Port | Local Coves & Mooring ${SEASON_YEAR}`,
-      ogDescription: "Rent your boat directly from Blanes Port pier. Free parking, snorkel included, local coves 10 min away. 9 boats from 70\u20ac/h."
+      ogDescription: "Rent your boat directly from Blanes Port pier. Free parking, snorkel included, local coves 10 min away. 9 boats from 75\u20ac/h."
     },
     locationLloret: {
       title: `Boat Rental Lloret de Mar | Cala Banys & Santa Cristina from Blanes ${SEASON_YEAR}`,
-      description: "Sail from Blanes to Lloret de Mar in 25 min. Discover Cala Banys, Santa Cristina and Sa Boadella coves by boat. License-free from 70\u20ac/h, fuel included.",
+      description: "Sail from Blanes to Lloret de Mar in 25 min. Discover Cala Banys, Santa Cristina and Sa Boadella coves by boat. License-free from 75\u20ac/h, fuel included.",
       keywords: "boat rental lloret de mar, cala banys lloret boat, santa cristina lloret boat, sa boadella boat, boat trip lloret, lloret no license boat, lloret by boat",
       ogTitle: "Boat Rental Lloret de Mar | Cala Banys & Santa Cristina by Boat",
-      ogDescription: "Lloret by boat from Blanes. Cala Banys, Santa Cristina and Sa Boadella 25 min away. No license from 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Lloret by boat from Blanes. Cala Banys, Santa Cristina and Sa Boadella 25 min away. No license from 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Boat Rental Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig from Blanes ${SEASON_YEAR}`,
       description: "Sail to Tossa's Vila Vella in 30-45 min from Blanes. With Basic Boating License (LNB) from 160\u20ac (2h pack) or Private Skippered Charter 4h from 380\u20ac. Fuel apart.",
       keywords: "boat rental tossa de mar, vila vella tossa boat, cala llevado tossa boat, mar d'en roig boat, giverola tossa boat, tossa excursion from blanes, tossa no license boat",
       ogTitle: "Boat Rental Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa by boat from Blanes. Vila Vella, Mar d'en Roig and Cala Llev\u00e1d\u00f3 1h away. No license from 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Tossa by boat from Blanes. Vila Vella, Mar d'en Roig and Cala Llev\u00e1d\u00f3 1h away. No license from 75\u20ac/h. 4.8\u2605."
     },
     locationMalgrat: {
-      title: "Boat Rental Malgrat de Mar | Blanes Port 10 min | No License 70\u20ac/h",
-      description: "Staying in Malgrat de Mar? Blanes Port is only 10 min by car. Rent a license-free boat from 70\u20ac/h with fuel included. Sail to Lloret or Tossa.",
+      title: "Boat Rental Malgrat de Mar | Blanes Port 10 min | No License 75\u20ac/h",
+      description: "Staying in Malgrat de Mar? Blanes Port is only 10 min by car. Rent a license-free boat from 75\u20ac/h with fuel included. Sail to Lloret or Tossa.",
       keywords: "boat rental malgrat de mar, malgrat boat no license, rent boat malgrat, boat from malgrat, boat trip malgrat, maresme coast malgrat boat",
       ogTitle: "Boat Rental Malgrat de Mar | Blanes Port 10 min",
-      ogDescription: "From Malgrat de Mar to Blanes Port in 10 min. License-free boats from 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "From Malgrat de Mar to Blanes Port in 10 min. License-free boats from 75\u20ac/h. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "Boat Rental Santa Susanna | Blanes Port 15 min | No License 70\u20ac/h",
-      description: "Tourists staying in Santa Susanna: Blanes Port is 15 min away by car or R1 train. Rent a license-free boat from 70\u20ac/h. Sail to Blanes, Lloret or Tossa.",
+      title: "Boat Rental Santa Susanna | Blanes Port 15 min | No License 75\u20ac/h",
+      description: "Tourists staying in Santa Susanna: Blanes Port is 15 min away by car or R1 train. Rent a license-free boat from 75\u20ac/h. Sail to Blanes, Lloret or Tossa.",
       keywords: "boat rental santa susanna, santa susanna boat no license, rent boat santa susanna, boat from santa susanna, boat trip santa susanna, R1 train blanes boat",
       ogTitle: "Boat Rental Santa Susanna | 15 min to Blanes Port",
-      ogDescription: "From Santa Susanna to Blanes Port in 15 min. No license boat from 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "From Santa Susanna to Blanes Port in 15 min. No license boat from 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Boat Rental Calella | Blanes Port 20 min | Maresme-Brava Coast 70\u20ac/h",
-      description: "Staying in Calella (Maresme)? Blanes Port is 20 min away. Rent a license-free boat from 70\u20ac/h. Sail north to Tossa or south to Tordera Delta.",
+      title: "Boat Rental Calella | Blanes Port 20 min | Maresme-Brava Coast 75\u20ac/h",
+      description: "Staying in Calella (Maresme)? Blanes Port is 20 min away. Rent a license-free boat from 75\u20ac/h. Sail north to Tossa or south to Tordera Delta.",
       keywords: "boat rental calella, calella maresme boat, calella no license boat, boat trip calella, boat from calella, maresme coast calella boat",
       ogTitle: "Boat Rental Calella | 20 min to Blanes Port",
-      ogDescription: "From Calella to Blanes Port in 20 min. No license boat from 70\u20ac/h. Discover Costa Brava. 4.8\u2605."
+      ogDescription: "From Calella to Blanes Port in 20 min. No license boat from 75\u20ac/h. Discover Costa Brava. 4.8\u2605."
     },
     categoryLicenseFree: {
-      title: "No License Boat Rental Costa Brava | 5 Boats from 70\u20ac/h Blanes",
-      description: "5 no-license boats in Blanes from 70\u20ac/h. Fuel included, 4-7 people. No experience needed, 15 min training. 4.8\u2605 Google (300+ reviews). Book online.",
+      title: "No License Boat Rental Costa Brava | 5 Boats from 75\u20ac/h Blanes",
+      description: "4 no-license boats in Blanes from 75\u20ac/h. Fuel included, 4-5 people. No experience needed, 15 min training. 4.8\u2605 Google (300+ reviews). Book online.",
       keywords: "license free boats blanes, boats without license, no license boat rental costa brava, 15hp boats blanes",
       ogTitle: "No License Boats in Blanes | Easy & Safe Costa Brava",
-      ogDescription: "Rent boats without license in Blanes. Up to 15 HP, 4-7 people. No qualification needed. Easy to drive. Book your adventure!"
+      ogDescription: "Rent boats without license in Blanes. Up to 15 HP, 4-5 people. No qualification needed. Easy to drive. Book your adventure!"
     },
     categoryLicensed: {
       title: "Licensed Boat Rental Costa Brava | Blanes from 160\u20ac/2h",
@@ -473,27 +473,27 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Boat Rental Prices Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 160\u20ac/2h. Fuel included. Low, mid and high season rates.",
+      description: "Check boat rental prices in Blanes. No license from 75\u20ac/h. Licensed from 160\u20ac/2h. Fuel included. Low, mid and high season rates.",
       keywords: "boat rental prices costa brava, how much boat rental blanes, boat hire rates blanes"
     },
     locationBarcelona: {
       title: `Boat Rental Barcelona | Costa Brava Day Trip 70 min Drive | Blanes ${SEASON_YEAR}`,
-      description: "Perfect day trip from Barcelona: Blanes Port is 70 min via AP-7. Rent a license-free boat from 70\u20ac/h with fuel included. Crystal clear water, no traffic.",
+      description: "Perfect day trip from Barcelona: Blanes Port is 70 min via AP-7. Rent a license-free boat from 75\u20ac/h with fuel included. Crystal clear water, no traffic.",
       keywords: "boat rental barcelona, boat near barcelona, barcelona day trip boat, costa brava from barcelona car, boats no license barcelona, barcelona costa brava boat",
       ogTitle: "Boat Rental Barcelona | Costa Brava 70 min away",
-      ogDescription: "Costa Brava 70 min from Barcelona via AP-7. No license boats from 70\u20ac/h with fuel included. No traffic. 4.8\u2605."
+      ogDescription: "Costa Brava 70 min from Barcelona via AP-7. No license boats from 75\u20ac/h with fuel included. No traffic. 4.8\u2605."
     },
     locationCostaBrava: {
-      title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Rent boats on the Costa Brava from Blanes Port. 5 no-license boats from 70\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online.",
+      title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 75\u20ac/h | Blanes, Lloret, Tossa`,
+      description: "Rent boats on the Costa Brava from Blanes Port. 4 no-license boats from 75\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online.",
       keywords: "boat rental costa brava, rent a boat costa brava, costa brava boat rental, no license boat costa brava, boat hire costa brava, costa brava boat trip"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      title: `Boat Rental Costa Brava | No License from 75\u20ac/h — Blanes, Spain`,
       description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
       keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license, costa brava boat excursion",
       ogTitle: "Boat Rental Costa Brava — From Blanes Port",
-      ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour."
+      ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 75\u20ac/hour."
     },
     activitySnorkel: {
       title: "Snorkeling Boat Trip Blanes | Best Coves Costa Brava",
@@ -503,15 +503,15 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Discover the best snorkeling coves from Blanes. No license boats, equipment available. Book your underwater adventure."
     },
     activityFamilies: {
-      title: "Family Boat Rental Costa Brava | From 70 EUR/h Blanes",
-      description: "Family boat rental in Costa Brava from 70 EUR/h. No license needed, fuel included, children life jackets. Safe coves for kids. Book online.",
+      title: "Family Boat Rental Costa Brava | From 75 EUR/h Blanes",
+      description: "Family boat rental in Costa Brava from 75 EUR/h. No license needed, fuel included, children life jackets. Safe coves for kids. Book online.",
       keywords: "family boat rental costa brava, boat with kids blanes, family boat trip, no license family boat",
       ogTitle: "Family Boat Rental in Costa Brava | From Blanes",
-      ogDescription: "Safe boats for the whole family. No license needed, children life jackets included. From 70 EUR/h with fuel."
+      ogDescription: "Safe boats for the whole family. No license needed, children life jackets included. From 75 EUR/h with fuel."
     },
     activitySunset: {
       title: "Sunset Boat Trip Blanes | Evening Boat Ride Costa Brava",
-      description: "Experience a magical sunset boat trip from Blanes, Costa Brava. No license needed, from 70 EUR/h. Perfect for couples and groups. Book your evening boat ride.",
+      description: "Experience a magical sunset boat trip from Blanes, Costa Brava. No license needed, from 75 EUR/h. Perfect for couples and groups. Book your evening boat ride.",
       keywords: "sunset boat trip blanes, evening boat ride costa brava, sunset cruise blanes, romantic boat trip",
       ogTitle: "Sunset Boat Trip from Blanes | Costa Brava",
       ogDescription: "Magical sunset views from the sea. No license needed. Perfect evening experience from Blanes port."
@@ -524,8 +524,8 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Rent a boat for fishing in Blanes. Licensed boats to reach the best fishing grounds in Costa Brava."
     },
     boatRentalBlanes: {
-      title: "Boat Rental in Blanes | Costa Brava, Spain - No License from 70\u20ac/h",
-      description: "Rent a boat in Blanes, Costa Brava. No license needed from 70\u20ac/h, fuel included. 9 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
+      title: "Boat Rental in Blanes | Costa Brava, Spain - No License from 75\u20ac/h",
+      description: "Rent a boat in Blanes, Costa Brava. No license needed from 75\u20ac/h, fuel included. 9 boats for 4-12 people. April to October. 4.8\u2605 Google. Book online.",
       keywords: "boat rental blanes, rent boat blanes, blanes boat hire, costa brava boat rental, boat rental spain no license",
       ogTitle: "Boat Rental in Blanes | Costa Brava, Spain",
       ogDescription: "Rent boats in Blanes, gateway to Costa Brava. No license needed. Fuel included. 9 boats, 4-12 people. Book your adventure."
@@ -544,11 +544,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     home: {
       // GSC 2026-05-09: CTR rewrite. CA brand-first → keyword-first. 137 imp, 0 clicks.
-      title: `Lloguer Barques Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Ressenyes \u00b7 Blanes 70\u20ac/h`,
-      description: `Lloguer barques Costa Brava des de Blanes \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Sense llic\u00e8ncia 70\u20ac/h gasolina inclosa, fins a 7 persones. Reserva WhatsApp.`,
+      title: `Lloguer Barques Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Ressenyes \u00b7 Blanes 75\u20ac/h`,
+      description: `Lloguer barques Costa Brava des de Blanes \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Sense llic\u00e8ncia 75\u20ac/h gasolina inclosa, fins a 7 persones. Reserva WhatsApp.`,
       keywords: "lloguer barques costa brava, lloguer embarcacions costa brava, barques sense llicència costa brava, lloguer barca costa brava, llogar barca costa brava, lloguer barques blanes, port blanes barques",
-      ogTitle: `Lloguer Barques Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes 70\u20ac/h`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer barques Costa Brava des del Port de Blanes. Sense llic\u00e8ncia des de 70\u20ac/h, gasolina inclosa.`
+      ogTitle: `Lloguer Barques Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes 75\u20ac/h`,
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer barques Costa Brava des del Port de Blanes. Sense llic\u00e8ncia des de 75\u20ac/h, gasolina inclosa.`
     },
     booking: {
       title: "Sol·licitar Reserva de Barca a Blanes | Costa Brava",
@@ -567,56 +567,56 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Lloguer de barques directament al Port de Blanes: parking gratis a 100m de l'amarratge, snorkel i paddle board inclosos. Cala Sa Palomera i Sant Francesc a 10 min navegant.",
       keywords: "lloguer barques port de blanes, lloguer barca moll blanes, barca sa palomera blanes, cales blanes barca, sant francesc blanes barca, amarratge blanes barca, ruta barca blanes cales, cala bona blanes barca",
       ogTitle: `Lloguer Barques Port de Blanes | Amarratge i Cales Locals ${SEASON_YEAR}`,
-      ogDescription: "Lloga la teva barca directament del moll del Port de Blanes. Parking gratis, snorkel incl\u00f2s, cales locals a 10 min. 9 barques des de 70\u20ac/h."
+      ogDescription: "Lloga la teva barca directament del moll del Port de Blanes. Parking gratis, snorkel incl\u00f2s, cales locals a 10 min. 9 barques des de 75\u20ac/h."
     },
     locationLloret: {
       title: `Lloguer Barca Lloret de Mar | Cala Banys i Santa Cristina des de Blanes ${SEASON_YEAR}`,
-      description: "Navega a Lloret de Mar des del Port de Blanes en 25 min. Descobreix Cala Banys, Santa Cristina i Sa Boadella en barca sense llic\u00e8ncia des de 70\u20ac/h, gasolina inclosa.",
+      description: "Navega a Lloret de Mar des del Port de Blanes en 25 min. Descobreix Cala Banys, Santa Cristina i Sa Boadella en barca sense llic\u00e8ncia des de 75\u20ac/h, gasolina inclosa.",
       keywords: "lloguer barca lloret de mar, cala banys lloret barca, santa cristina lloret barca, sa boadella barca, excursi\u00f3 barca lloret, barca lloret sense llic\u00e8ncia, lloret de mar barca",
       ogTitle: "Lloguer Barca Lloret de Mar | Cala Banys i Santa Cristina en Barca",
-      ogDescription: "Lloret en barca des de Blanes. Cala Banys, Santa Cristina i Sa Boadella a 25 min. Sense llic\u00e8ncia des de 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Lloret en barca des de Blanes. Cala Banys, Santa Cristina i Sa Boadella a 25 min. Sense llic\u00e8ncia des de 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Lloguer Barca Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 i Mar d'en Roig des de Blanes ${SEASON_YEAR}`,
       description: "Arriba a la Vila Vella de Tossa en 30-45 min des de Blanes. Amb Llic\u00e8ncia de Navegaci\u00f3 B\u00e0sica (LNB) des de 160\u20ac (pack 2h) o Excursi\u00f3 Privada amb Capit\u00e0 4h des de 380\u20ac. Combustible a part.",
       keywords: "lloguer barca tossa de mar, vila vella tossa barca, cala llevado tossa barca, mar d'en roig barca, giverola tossa barca, excursi\u00f3 tossa des de blanes, barca tossa sense llic\u00e8ncia",
       ogTitle: "Lloguer Barca Tossa de Mar | Vila Vella i Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa en barca des de Blanes. Vila Vella, Mar d'en Roig i Cala Llev\u00e1d\u00f3 a 1h. Sense llic\u00e8ncia des de 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Tossa en barca des de Blanes. Vila Vella, Mar d'en Roig i Cala Llev\u00e1d\u00f3 a 1h. Sense llic\u00e8ncia des de 75\u20ac/h. 4.8\u2605."
     },
     locationMalgrat: {
-      title: "Lloguer Barca Malgrat de Mar | Port Blanes a 10 min | Sense Llic\u00e8ncia 70\u20ac/h",
-      description: "\u00bfA Malgrat de Mar? Port de Blanes a nom\u00e9s 10 min en cotxe. Lloga una barca sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa. Navega fins a Lloret o Tossa.",
+      title: "Lloguer Barca Malgrat de Mar | Port Blanes a 10 min | Sense Llic\u00e8ncia 75\u20ac/h",
+      description: "\u00bfA Malgrat de Mar? Port de Blanes a nom\u00e9s 10 min en cotxe. Lloga una barca sense llic\u00e8ncia des de 75\u20ac/h amb gasolina inclosa. Navega fins a Lloret o Tossa.",
       keywords: "lloguer barca malgrat de mar, barca malgrat sense llic\u00e8ncia, llogar barca malgrat, barca des de malgrat, excursi\u00f3 barca malgrat, costa maresme malgrat barca",
       ogTitle: "Lloguer Barca Malgrat de Mar | Port Blanes 10 min",
-      ogDescription: "De Malgrat de Mar al Port de Blanes en 10 min. Barques sense llic\u00e8ncia des de 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "De Malgrat de Mar al Port de Blanes en 10 min. Barques sense llic\u00e8ncia des de 75\u20ac/h. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "Lloguer Barca Santa Susanna | Port Blanes a 15 min | Sense Llic\u00e8ncia 70\u20ac/h",
-      description: "Turistes allotjats a Santa Susanna: Port Blanes a 15 min en cotxe o tren R1. Lloga barca sense llic\u00e8ncia des de 70\u20ac/h. Navega a Blanes, Lloret o Tossa.",
+      title: "Lloguer Barca Santa Susanna | Port Blanes a 15 min | Sense Llic\u00e8ncia 75\u20ac/h",
+      description: "Turistes allotjats a Santa Susanna: Port Blanes a 15 min en cotxe o tren R1. Lloga barca sense llic\u00e8ncia des de 75\u20ac/h. Navega a Blanes, Lloret o Tossa.",
       keywords: "lloguer barca santa susanna, barca santa susanna sense llic\u00e8ncia, llogar barca santa susanna, barca des de santa susanna, excursi\u00f3 barca santa susanna, tren R1 barca blanes",
       ogTitle: "Lloguer Barca Santa Susanna | 15 min al Port Blanes",
-      ogDescription: "De Santa Susanna al Port Blanes en 15 min. Barca sense llic\u00e8ncia des de 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "De Santa Susanna al Port Blanes en 15 min. Barca sense llic\u00e8ncia des de 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Lloguer Barca Calella | Port Blanes a 20 min | Maresme-Brava 70\u20ac/h",
-      description: "\u00bfAllotjat a Calella (Maresme)? Port Blanes a 20 min. Lloga barca sense llic\u00e8ncia des de 70\u20ac/h. Navega al nord cap a Tossa o al sud al Delta de la Tordera.",
+      title: "Lloguer Barca Calella | Port Blanes a 20 min | Maresme-Brava 75\u20ac/h",
+      description: "\u00bfAllotjat a Calella (Maresme)? Port Blanes a 20 min. Lloga barca sense llic\u00e8ncia des de 75\u20ac/h. Navega al nord cap a Tossa o al sud al Delta de la Tordera.",
       keywords: "lloguer barca calella, barca calella maresme, barca calella sense llic\u00e8ncia, excursi\u00f3 barca calella, barca des de calella, costa maresme calella barca",
       ogTitle: "Lloguer Barca Calella | 20 min al Port Blanes",
-      ogDescription: "De Calella al Port Blanes en 20 min. Barca sense llic\u00e8ncia des de 70\u20ac/h. Descobreix Costa Brava. 4.8\u2605."
+      ogDescription: "De Calella al Port Blanes en 20 min. Barca sense llic\u00e8ncia des de 75\u20ac/h. Descobreix Costa Brava. 4.8\u2605."
     },
     categoryLicenseFree: {
-      title: "Lloguer Barques Sense Llicencia Costa Brava | 5 Barques des de 70\u20ac/h Blanes",
-      description: "5 barques sense llicencia a Blanes des de 70\u20ac/h. Gasolina inclosa, 4-7 persones. Sense experiencia, formacio 15 min. 4.8\u2605 Google (300+ opinions). Reserva online.",
+      title: "Lloguer Barques Sense Llicencia Costa Brava | 5 Barques des de 75\u20ac/h Blanes",
+      description: "4 barques sense llicencia a Blanes des de 75\u20ac/h. Gasolina inclosa, 4-5 persones. Sense experiencia, formacio 15 min. 4.8\u2605 Google (300+ opinions). Reserva online.",
       keywords: "barques sense llicència blanes, lloguer barques sense títol, embarcacions sense permís costa brava, barques 15cv blanes",
       ogTitle: "Barques Sense Llicència a Blanes | Fàcil i Segur Costa Brava",
-      ogDescription: "Lloga barques sense llicència a Blanes. Fins a 15 CV, 4-7 persones. No cal titulació. Fàcil de manejar. Reserva la teva aventura!"
+      ogDescription: "Lloga barques sense llicència a Blanes. Fins a 15 CV, 4-5 persones. No cal titulació. Fàcil de manejar. Reserva la teva aventura!"
     },
     categoryLicensed: {
       title: "Lloguer Barques Amb Llic\u00e8ncia Costa Brava | Blanes des de 160\u20ac/2h",
-      description: "Navega a Lloret (15 min) i Tossa (30 min) des de Blanes. 3 barques 80-115CV. Llic\u00e8ncia B\u00e0sica o amb patr\u00f3. 4.8\u2605 Google. Reserva online.",
+      description: "Navega a Lloret (15 min) i Tossa (30 min) des de Blanes. 3 barques 80-115CV. Llic\u00e8ncia de Navegaci\u00f3 o amb patr\u00f3. 4.8\u2605 Google. Reserva online.",
       keywords: "barques amb llic\u00e8ncia blanes, lloguer barques llic\u00e8ncia b\u00e0sica, embarcacions llic\u00e8ncia b\u00e0sica o ICC, barques potents costa brava",
       ogTitle: "Barques Amb Llic\u00e8ncia a Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 barques potents 80-115CV a Blanes. Amb la teva Llic\u00e8ncia B\u00e0sica o amb patr\u00f3. Reserva online."
+      ogDescription: "3 barques potents 80-115CV a Blanes. Amb la teva Llic\u00e8ncia de Navegaci\u00f3 o amb patr\u00f3. Reserva online."
     },
     testimonios: {
       title: "Opinions Clients Lloguer Barques Blanes",
@@ -672,23 +672,23 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Preus Lloguer Barques Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Consulta els preus de lloguer de barques a Blanes. Sense llicencia des de 70\u20ac/h. Gasolina inclosa. Temporada baixa, mitja i alta.",
+      description: "Consulta els preus de lloguer de barques a Blanes. Sense llicencia des de 75\u20ac/h. Gasolina inclosa. Temporada baixa, mitja i alta.",
       keywords: "preus lloguer barques costa brava, quant costa llogar barca blanes, tarifes barca sense llicencia"
     },
     locationBarcelona: {
       title: `Lloguer Barca Barcelona | Escapada Costa Brava 70 min en Cotxe | Blanes ${SEASON_YEAR}`,
-      description: "Escapada perfecta des de Barcelona: Port Blanes a 70 min per l'AP-7. Lloga barca sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa. Aig\u00fces cristal\u00b7lines sense tr\u00e0nsit.",
+      description: "Escapada perfecta des de Barcelona: Port Blanes a 70 min per l'AP-7. Lloga barca sense llic\u00e8ncia des de 75\u20ac/h amb gasolina inclosa. Aig\u00fces cristal\u00b7lines sense tr\u00e0nsit.",
       keywords: "lloguer barca barcelona, barca sense llic\u00e8ncia barcelona, escapada barcelona costa brava, barca prop barcelona, costa brava des de barcelona cotxe, lloguer barques prop barcelona",
       ogTitle: "Lloguer Barca prop de Barcelona | Costa Brava a 70 min",
-      ogDescription: "A 70 min de Barcelona per l'AP-7. Barques sense llic\u00e8ncia des de 70\u20ac/h amb gasolina. Costa Brava sense tr\u00e0nsit. 4.8\u2605."
+      ogDescription: "A 70 min de Barcelona per l'AP-7. Barques sense llic\u00e8ncia des de 75\u20ac/h amb gasolina. Costa Brava sense tr\u00e0nsit. 4.8\u2605."
     },
     locationCostaBrava: {
-      title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia des de 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Lloga barques a la Costa Brava des del Port de Blanes. 5 barques sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa. Navega a cales verges entre Blanes i Tossa de Mar. Reserva online \u00b7 Canvi de data gratu\u00eft.",
+      title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia des de 75\u20ac/h | Blanes, Lloret, Tossa`,
+      description: "Lloga barques a la Costa Brava des del Port de Blanes. 4 barques sense llic\u00e8ncia des de 75\u20ac/h amb gasolina inclosa. Navega a cales verges entre Blanes i Tossa de Mar. Reserva online \u00b7 Canvi de data gratu\u00eft.",
       keywords: "lloguer barques costa brava, llogar barques costa brava, barques sense llic\u00e8ncia costa brava, excursi\u00f3 barques costa brava, lloguer embarcacions costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      title: `Boat Rental Costa Brava | No License from 75\u20ac/h — Blanes, Spain`,
       description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
       keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
@@ -704,11 +704,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // 113 imp en 28d. Query #1 FR es "location bateau blanes" (104 imp pos
       // 9.11 CTR 0.96%) \u2014 Blanes al frente del title hace match exacto. Rating
       // + avis n\u00famero delante como CTR booster.
-      title: `Location Bateau Blanes \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Avis \u00b7 Costa Brava 70\u20ac/h`,
-      description: `Location bateau au Port de Blanes (Costa Brava) \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Sans permis 70\u20ac/h, carburant inclus, jusqu'\u00e0 7 personnes. R\u00e9servez WhatsApp.`,
+      title: `Location Bateau Blanes \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Avis \u00b7 Costa Brava 75\u20ac/h`,
+      description: `Location bateau au Port de Blanes (Costa Brava) \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Sans permis 75\u20ac/h, carburant inclus, jusqu'\u00e0 7 personnes. R\u00e9servez WhatsApp.`,
       keywords: "location bateau costa brava, location bateau sans permis costa brava, louer bateau costa brava, location bateaux costa brava, bateau sans permis costa brava, location bateau blanes, location bateau port blanes, location bateau journ\u00e9e blanes",
-      ogTitle: `Location Bateau Blanes ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Costa Brava 70\u20ac/h`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location bateau au Port de Blanes, Costa Brava. Sans permis d\u00e8s 70\u20ac/h, carburant inclus. R\u00e9servation WhatsApp.`
+      ogTitle: `Location Bateau Blanes ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Costa Brava 75\u20ac/h`,
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location bateau au Port de Blanes, Costa Brava. Sans permis d\u00e8s 75\u20ac/h, carburant inclus. R\u00e9servation WhatsApp.`
     },
     booking: {
       title: "Réserver Votre Bateau à Blanes | Costa Brava",
@@ -725,46 +725,46 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Location de bateaux directement au Port de Blanes: parking gratuit \u00e0 100m de l'amarrage, snorkel et paddle board inclus. Criques Sa Palomera et Sant Francesc \u00e0 10 min en bateau.",
       keywords: "location bateau port de blanes, location bateau quai blanes, bateau sa palomera blanes, criques blanes bateau, sant francesc blanes bateau, amarrage blanes bateau, route bateau blanes criques, cala bona blanes bateau",
       ogTitle: `Location Bateau Port de Blanes | Amarrage & Criques Locales ${SEASON_YEAR}`,
-      ogDescription: "Louez votre bateau directement depuis le quai du Port de Blanes. Parking gratuit, snorkel inclus, criques locales \u00e0 10 min. 9 bateaux d\u00e8s 70\u20ac/h."
+      ogDescription: "Louez votre bateau directement depuis le quai du Port de Blanes. Parking gratuit, snorkel inclus, criques locales \u00e0 10 min. 9 bateaux d\u00e8s 75\u20ac/h."
     },
     locationLloret: {
       title: `Location Bateau Lloret de Mar | Cala Banys et Santa Cristina depuis Blanes ${SEASON_YEAR}`,
-      description: "Naviguez vers Lloret de Mar depuis le Port de Blanes en 25 min. D\u00e9couvrez Cala Banys, Santa Cristina et Sa Boadella en bateau sans permis d\u00e8s 70\u20ac/h, carburant inclus.",
+      description: "Naviguez vers Lloret de Mar depuis le Port de Blanes en 25 min. D\u00e9couvrez Cala Banys, Santa Cristina et Sa Boadella en bateau sans permis d\u00e8s 75\u20ac/h, carburant inclus.",
       keywords: "location bateau lloret de mar, cala banys lloret bateau, santa cristina lloret bateau, sa boadella bateau, excursion bateau lloret, bateau lloret sans permis, lloret de mar bateau",
       ogTitle: "Location Bateau Lloret de Mar | Cala Banys et Santa Cristina",
-      ogDescription: "Lloret en bateau depuis Blanes. Cala Banys, Santa Cristina et Sa Boadella \u00e0 25 min. Sans permis d\u00e8s 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Lloret en bateau depuis Blanes. Cala Banys, Santa Cristina et Sa Boadella \u00e0 25 min. Sans permis d\u00e8s 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Location Bateau Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 et Mar d'en Roig depuis Blanes ${SEASON_YEAR}`,
       description: "Naviguez \u00e0 la Vila Vella de Tossa en 30-45 min depuis Blanes. Avec Permis de Navigation de Base (LNB) d\u00e8s 160\u20ac (pack 2h) ou Excursion Priv\u00e9e avec Capitaine 4h d\u00e8s 380\u20ac. Carburant en sus.",
       keywords: "location bateau tossa de mar, vila vella tossa bateau, cala llevado tossa bateau, mar d'en roig bateau, giverola tossa bateau, excursion tossa depuis blanes, bateau tossa sans permis",
       ogTitle: "Location Bateau Tossa de Mar | Vila Vella et Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa en bateau depuis Blanes. Vila Vella, Mar d'en Roig et Cala Llev\u00e1d\u00f3 \u00e0 1h. Sans permis d\u00e8s 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Tossa en bateau depuis Blanes. Vila Vella, Mar d'en Roig et Cala Llev\u00e1d\u00f3 \u00e0 1h. Sans permis d\u00e8s 75\u20ac/h. 4.8\u2605."
     },
     locationMalgrat: {
-      title: "Location Bateau Malgrat de Mar | Port Blanes \u00e0 10 min | Sans Permis 70\u20ac/h",
-      description: "En vacances \u00e0 Malgrat de Mar ? Port Blanes \u00e0 seulement 10 min en voiture. Louez un bateau sans permis d\u00e8s 70\u20ac/h carburant inclus. Naviguez vers Lloret ou Tossa.",
+      title: "Location Bateau Malgrat de Mar | Port Blanes \u00e0 10 min | Sans Permis 75\u20ac/h",
+      description: "En vacances \u00e0 Malgrat de Mar ? Port Blanes \u00e0 seulement 10 min en voiture. Louez un bateau sans permis d\u00e8s 75\u20ac/h carburant inclus. Naviguez vers Lloret ou Tossa.",
       keywords: "location bateau malgrat de mar, bateau malgrat sans permis, louer bateau malgrat, bateau depuis malgrat, excursion bateau malgrat, c\u00f4te maresme malgrat bateau",
       ogTitle: "Location Bateau Malgrat de Mar | Port Blanes 10 min",
-      ogDescription: "De Malgrat de Mar au Port de Blanes en 10 min. Bateaux sans permis d\u00e8s 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "De Malgrat de Mar au Port de Blanes en 10 min. Bateaux sans permis d\u00e8s 75\u20ac/h. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "Location Bateau Santa Susanna | Port Blanes \u00e0 15 min | Sans Permis 70\u20ac/h",
-      description: "Touristes s\u00e9journant \u00e0 Santa Susanna : Port Blanes \u00e0 15 min en voiture ou train R1. Louez un bateau sans permis d\u00e8s 70\u20ac/h. Naviguez vers Blanes, Lloret ou Tossa.",
+      title: "Location Bateau Santa Susanna | Port Blanes \u00e0 15 min | Sans Permis 75\u20ac/h",
+      description: "Touristes s\u00e9journant \u00e0 Santa Susanna : Port Blanes \u00e0 15 min en voiture ou train R1. Louez un bateau sans permis d\u00e8s 75\u20ac/h. Naviguez vers Blanes, Lloret ou Tossa.",
       keywords: "location bateau santa susanna, bateau santa susanna sans permis, louer bateau santa susanna, bateau depuis santa susanna, excursion bateau santa susanna, train R1 bateau blanes",
       ogTitle: "Location Bateau Santa Susanna | 15 min au Port Blanes",
-      ogDescription: "De Santa Susanna au Port Blanes en 15 min. Bateau sans permis d\u00e8s 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "De Santa Susanna au Port Blanes en 15 min. Bateau sans permis d\u00e8s 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Location Bateau Calella | Port Blanes \u00e0 20 min | Maresme-Brava 70\u20ac/h",
-      description: "En s\u00e9jour \u00e0 Calella (Maresme) ? Port Blanes \u00e0 20 min. Louez un bateau sans permis d\u00e8s 70\u20ac/h. Naviguez au nord vers Tossa ou au sud au Delta de la Tordera.",
+      title: "Location Bateau Calella | Port Blanes \u00e0 20 min | Maresme-Brava 75\u20ac/h",
+      description: "En s\u00e9jour \u00e0 Calella (Maresme) ? Port Blanes \u00e0 20 min. Louez un bateau sans permis d\u00e8s 75\u20ac/h. Naviguez au nord vers Tossa ou au sud au Delta de la Tordera.",
       keywords: "location bateau calella, bateau calella maresme, bateau calella sans permis, excursion bateau calella, bateau depuis calella, c\u00f4te maresme calella bateau",
       ogTitle: "Location Bateau Calella | 20 min au Port Blanes",
-      ogDescription: "De Calella au Port Blanes en 20 min. Bateau sans permis d\u00e8s 70\u20ac/h. D\u00e9couvrez Costa Brava. 4.8\u2605."
+      ogDescription: "De Calella au Port Blanes en 20 min. Bateau sans permis d\u00e8s 75\u20ac/h. D\u00e9couvrez Costa Brava. 4.8\u2605."
     },
     categoryLicenseFree: {
-      title: "Bateaux Sans Permis Costa Brava | 5 Bateaux des 70\u20ac/h Blanes",
-      description: "5 bateaux sans permis a Blanes des 70\u20ac/h. Carburant inclus, 4-7 personnes. Aucune experience, formation 15 min. 4.8\u2605 Google (300+ avis). Reservez en ligne.",
+      title: "Bateaux Sans Permis Costa Brava | 5 Bateaux des 75\u20ac/h Blanes",
+      description: "4 bateaux sans permis a Blanes des 75\u20ac/h. Carburant inclus, 4-5 personnes. Aucune experience, formation 15 min. 4.8\u2605 Google (300+ avis). Reservez en ligne.",
       keywords: "bateaux sans permis blanes, location bateaux sans license, embarcations sans permis costa brava, bateaux 15cv blanes"
     },
     categoryLicensed: {
@@ -828,23 +828,23 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Tarifs Location Bateaux Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Consultez les tarifs de location de bateaux a Blanes. Sans permis des 70\u20ac/h. Carburant inclus. Basse, moyenne et haute saison.",
+      description: "Consultez les tarifs de location de bateaux a Blanes. Sans permis des 75\u20ac/h. Carburant inclus. Basse, moyenne et haute saison.",
       keywords: "tarifs location bateaux costa brava, combien coute louer bateau blanes, prix bateau sans permis"
     },
     locationBarcelona: {
       title: `Location Bateau Barcelone | \u00c9chapp\u00e9e Costa Brava 70 min en Voiture | Blanes ${SEASON_YEAR}`,
-      description: "\u00c9chapp\u00e9e parfaite depuis Barcelone : Port Blanes \u00e0 70 min par l'AP-7. Louez un bateau sans permis d\u00e8s 70\u20ac/h avec carburant inclus. Eaux cristallines sans trafic.",
+      description: "\u00c9chapp\u00e9e parfaite depuis Barcelone : Port Blanes \u00e0 70 min par l'AP-7. Louez un bateau sans permis d\u00e8s 75\u20ac/h avec carburant inclus. Eaux cristallines sans trafic.",
       keywords: "location bateau barcelone, bateau sans permis barcelone, \u00e9chapp\u00e9e barcelone costa brava, bateau pr\u00e8s barcelone, costa brava depuis barcelone voiture, location bateaux pr\u00e8s barcelone",
       ogTitle: "Location Bateau pr\u00e8s de Barcelone | Costa Brava \u00e0 70 min",
-      ogDescription: "\u00c0 70 min de Barcelone par l'AP-7. Bateaux sans permis d\u00e8s 70\u20ac/h avec carburant. Costa Brava sans trafic. 4.8\u2605."
+      ogDescription: "\u00c0 70 min de Barcelone par l'AP-7. Bateaux sans permis d\u00e8s 75\u20ac/h avec carburant. Costa Brava sans trafic. 4.8\u2605."
     },
     locationCostaBrava: {
-      title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis d\u00e8s 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 5 bateaux sans permis d\u00e8s 70\u20ac/h, carburant inclus. Naviguez vers des criques vierges entre Blanes et Tossa de Mar. R\u00e9servez en ligne \u00b7 Changement de date gratuit.",
+      title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis d\u00e8s 75\u20ac/h | Blanes, Lloret, Tossa`,
+      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 4 bateaux sans permis d\u00e8s 75\u20ac/h, carburant inclus. Naviguez vers des criques vierges entre Blanes et Tossa de Mar. R\u00e9servez en ligne \u00b7 Changement de date gratuit.",
       keywords: "location bateaux costa brava, louer bateau costa brava, bateau sans permis costa brava, excursion bateau costa brava, location embarcations costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      title: `Boat Rental Costa Brava | No License from 75\u20ac/h — Blanes, Spain`,
       description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
       keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
@@ -857,11 +857,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     home: {
       // GSC 2026-05-09: CTR rewrite. DE brand-first → keyword-first.
-      title: `Bootsverleih Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Bewertungen \u00b7 Blanes 70\u20ac/h`,
-      description: `Bootsverleih Hafen Blanes (Costa Brava) \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Ohne F\u00fchrerschein 70\u20ac/h, Kraftstoff inkl., bis 7 Personen. WhatsApp Buchung.`,
+      title: `Bootsverleih Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Bewertungen \u00b7 Blanes 75\u20ac/h`,
+      description: `Bootsverleih Hafen Blanes (Costa Brava) \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Ohne F\u00fchrerschein 75\u20ac/h, Kraftstoff inkl., bis 7 Personen. WhatsApp Buchung.`,
       keywords: "bootsverleih costa brava, boot mieten costa brava, bootscharter costa brava, boot ohne führerschein costa brava, yacht mieten costa brava, bootsverleih blanes, hafen blanes bootsverleih",
-      ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes 70\u20ac/h`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Boot mieten an der Costa Brava ab Hafen Blanes. Ohne F\u00fchrerschein, Kraftstoff inkl., ab 70\u20ac/h.`
+      ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes 75\u20ac/h`,
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Boot mieten an der Costa Brava ab Hafen Blanes. Ohne F\u00fchrerschein, Kraftstoff inkl., ab 75\u20ac/h.`
     },
     booking: {
       title: "Ihr Boot in Blanes Buchen | Costa Brava",
@@ -878,46 +878,46 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Bootsverleih direkt am Hafen Blanes: kostenloser Parkplatz 100m vom Liegeplatz, Schnorchel und Paddleboard inklusive. Buchten Sa Palomera und Sant Francesc 10 Min mit dem Boot.",
       keywords: "bootsverleih hafen blanes, boot mieten hafen blanes, boot sa palomera blanes, buchten blanes boot, sant francesc blanes boot, liegeplatz blanes boot, route boot blanes buchten, cala bona blanes boot",
       ogTitle: `Bootsverleih Hafen Blanes | Liegeplatz & Lokale Buchten ${SEASON_YEAR}`,
-      ogDescription: "Mieten Sie Ihr Boot direkt am Pier des Hafens Blanes. Kostenloser Parkplatz, Schnorchel inklusive, lokale Buchten 10 Min entfernt. 9 Boote ab 70\u20ac/h."
+      ogDescription: "Mieten Sie Ihr Boot direkt am Pier des Hafens Blanes. Kostenloser Parkplatz, Schnorchel inklusive, lokale Buchten 10 Min entfernt. 9 Boote ab 75\u20ac/h."
     },
     locationLloret: {
       title: `Bootsverleih Lloret de Mar | Cala Banys & Santa Cristina ab Blanes ${SEASON_YEAR}`,
-      description: "Segeln Sie vom Hafen Blanes in 25 Min nach Lloret de Mar. Entdecken Sie Cala Banys, Santa Cristina und Sa Boadella mit dem Boot ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive.",
+      description: "Segeln Sie vom Hafen Blanes in 25 Min nach Lloret de Mar. Entdecken Sie Cala Banys, Santa Cristina und Sa Boadella mit dem Boot ohne F\u00fchrerschein ab 75\u20ac/h, Kraftstoff inklusive.",
       keywords: "bootsverleih lloret de mar, cala banys lloret boot, santa cristina lloret boot, sa boadella boot, bootsausflug lloret, boot lloret ohne f\u00fchrerschein, lloret de mar boot",
       ogTitle: "Bootsverleih Lloret de Mar | Cala Banys & Santa Cristina",
-      ogDescription: "Lloret mit dem Boot ab Blanes. Cala Banys, Santa Cristina und Sa Boadella in 25 Min. Ohne F\u00fchrerschein ab 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Lloret mit dem Boot ab Blanes. Cala Banys, Santa Cristina und Sa Boadella in 25 Min. Ohne F\u00fchrerschein ab 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Bootsverleih Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig ab Blanes ${SEASON_YEAR}`,
       description: "Segeln Sie in 30-45 min von Blanes zur Vila Vella von Tossa. Mit Bootsf\u00fchrerschein (LNB) ab 160\u20ac (2h-Paket) oder private Skipper-Tour 4h ab 380\u20ac. Kraftstoff separat.",
       keywords: "bootsverleih tossa de mar, vila vella tossa boot, cala llevado tossa boot, mar d'en roig boot, giverola tossa boot, tossa ausflug von blanes, boot tossa ohne f\u00fchrerschein",
       ogTitle: "Bootsverleih Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa mit dem Boot ab Blanes. Vila Vella, Mar d'en Roig und Cala Llev\u00e1d\u00f3 in 1h. Ohne F\u00fchrerschein ab 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Tossa mit dem Boot ab Blanes. Vila Vella, Mar d'en Roig und Cala Llev\u00e1d\u00f3 in 1h. Ohne F\u00fchrerschein ab 75\u20ac/h. 4.8\u2605."
     },
     locationMalgrat: {
-      title: "Bootsverleih Malgrat de Mar | Hafen Blanes 10 Min | Ohne F\u00fchrerschein 70\u20ac/h",
-      description: "Urlaub in Malgrat de Mar? Hafen Blanes nur 10 Min mit dem Auto. Mieten Sie ein Boot ohne F\u00fchrerschein ab 70\u20ac/h Kraftstoff inklusive. Segeln nach Lloret oder Tossa.",
+      title: "Bootsverleih Malgrat de Mar | Hafen Blanes 10 Min | Ohne F\u00fchrerschein 75\u20ac/h",
+      description: "Urlaub in Malgrat de Mar? Hafen Blanes nur 10 Min mit dem Auto. Mieten Sie ein Boot ohne F\u00fchrerschein ab 75\u20ac/h Kraftstoff inklusive. Segeln nach Lloret oder Tossa.",
       keywords: "bootsverleih malgrat de mar, boot malgrat ohne f\u00fchrerschein, boot mieten malgrat, boot von malgrat, bootsausflug malgrat, maresme k\u00fcste malgrat boot",
       ogTitle: "Bootsverleih Malgrat de Mar | Hafen Blanes 10 Min",
-      ogDescription: "Von Malgrat de Mar zum Hafen Blanes in 10 Min. Boote ohne F\u00fchrerschein ab 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "Von Malgrat de Mar zum Hafen Blanes in 10 Min. Boote ohne F\u00fchrerschein ab 75\u20ac/h. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "Bootsverleih Santa Susanna | Hafen Blanes 15 Min | Ohne F\u00fchrerschein 70\u20ac/h",
-      description: "Touristen in Santa Susanna: Hafen Blanes 15 Min mit Auto oder R1-Zug. Mieten Sie ein Boot ohne F\u00fchrerschein ab 70\u20ac/h. Segeln nach Blanes, Lloret oder Tossa.",
+      title: "Bootsverleih Santa Susanna | Hafen Blanes 15 Min | Ohne F\u00fchrerschein 75\u20ac/h",
+      description: "Touristen in Santa Susanna: Hafen Blanes 15 Min mit Auto oder R1-Zug. Mieten Sie ein Boot ohne F\u00fchrerschein ab 75\u20ac/h. Segeln nach Blanes, Lloret oder Tossa.",
       keywords: "bootsverleih santa susanna, boot santa susanna ohne f\u00fchrerschein, boot mieten santa susanna, boot von santa susanna, bootsausflug santa susanna, R1 zug boot blanes",
       ogTitle: "Bootsverleih Santa Susanna | 15 Min zum Hafen Blanes",
-      ogDescription: "Von Santa Susanna zum Hafen Blanes in 15 Min. Boot ohne F\u00fchrerschein ab 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "Von Santa Susanna zum Hafen Blanes in 15 Min. Boot ohne F\u00fchrerschein ab 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Bootsverleih Calella | Hafen Blanes 20 Min | Maresme-Brava 70\u20ac/h",
-      description: "Urlaub in Calella (Maresme)? Hafen Blanes 20 Min entfernt. Mieten Sie ein Boot ohne F\u00fchrerschein ab 70\u20ac/h. Segeln nach Norden nach Tossa oder s\u00fcd zum Tordera-Delta.",
+      title: "Bootsverleih Calella | Hafen Blanes 20 Min | Maresme-Brava 75\u20ac/h",
+      description: "Urlaub in Calella (Maresme)? Hafen Blanes 20 Min entfernt. Mieten Sie ein Boot ohne F\u00fchrerschein ab 75\u20ac/h. Segeln nach Norden nach Tossa oder s\u00fcd zum Tordera-Delta.",
       keywords: "bootsverleih calella, boot calella maresme, boot calella ohne f\u00fchrerschein, bootsausflug calella, boot von calella, maresme k\u00fcste calella boot",
       ogTitle: "Bootsverleih Calella | 20 Min zum Hafen Blanes",
-      ogDescription: "Von Calella zum Hafen Blanes in 20 Min. Boot ohne F\u00fchrerschein ab 70\u20ac/h. Entdecken Sie Costa Brava. 4.8\u2605."
+      ogDescription: "Von Calella zum Hafen Blanes in 20 Min. Boot ohne F\u00fchrerschein ab 75\u20ac/h. Entdecken Sie Costa Brava. 4.8\u2605."
     },
     categoryLicenseFree: {
-      title: "Boote Ohne Fuhrerschein Costa Brava | 5 Boote ab 70\u20ac/h Blanes",
-      description: "5 Boote ohne Fuhrerschein in Blanes ab 70\u20ac/h. Kraftstoff inklusive, 4-7 Personen. Keine Erfahrung notig, 15 Min Einweisung. 4.8\u2605 Google (300+ Bewertungen). Online buchen.",
+      title: "Boote Ohne F\u00fchrerschein Costa Brava | 4 Boote ab 75\u20ac/h Blanes",
+      description: "4 Boote ohne F\u00fchrerschein in Blanes ab 75\u20ac/h. Kraftstoff inklusive, 4-5 Personen. Keine Erfahrung notig, 15 Min Einweisung. 4.8\u2605 Google (300+ Bewertungen). Online buchen.",
       keywords: "boote ohne führerschein blanes, bootsverleih ohne lizenz, boote ohne erlaubnis costa brava, 15ps boote blanes"
     },
     categoryLicensed: {
@@ -981,23 +981,23 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Bootsverleih Preise Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Bootsverleih Preise in Blanes. Ohne Fuhrerschein ab 70\u20ac/h. Kraftstoff inklusive. Neben-, Mittel- und Hochsaison.",
+      description: "Bootsverleih Preise in Blanes. Ohne F\u00fchrerschein ab 75\u20ac/h. Kraftstoff inklusive. Neben-, Mittel- und Hochsaison.",
       keywords: "bootsverleih preise costa brava, was kostet boot mieten blanes, bootstarife ohne fuhrerschein"
     },
     locationBarcelona: {
       title: `Bootsverleih Barcelona | Costa Brava Tagesausflug 70 Min mit Auto | Blanes ${SEASON_YEAR}`,
-      description: "Perfekter Tagesausflug von Barcelona: Hafen Blanes in 70 Min \u00fcber die AP-7. Mieten Sie ein Boot ohne F\u00fchrerschein ab 70\u20ac/h mit Kraftstoff inklusive. Kristallklares Wasser, kein Verkehr.",
+      description: "Perfekter Tagesausflug von Barcelona: Hafen Blanes in 70 Min \u00fcber die AP-7. Mieten Sie ein Boot ohne F\u00fchrerschein ab 75\u20ac/h mit Kraftstoff inklusive. Kristallklares Wasser, kein Verkehr.",
       keywords: "bootsverleih barcelona, boot nahe barcelona, barcelona tagesausflug boot, costa brava von barcelona auto, boote ohne f\u00fchrerschein barcelona, barcelona costa brava boot",
       ogTitle: "Bootsverleih Barcelona | Costa Brava 70 Min entfernt",
-      ogDescription: "Costa Brava 70 Min von Barcelona \u00fcber AP-7. Boote ohne F\u00fchrerschein ab 70\u20ac/h mit Kraftstoff inklusive. Kein Verkehr. 4.8\u2605."
+      ogDescription: "Costa Brava 70 Min von Barcelona \u00fcber AP-7. Boote ohne F\u00fchrerschein ab 75\u20ac/h mit Kraftstoff inklusive. Kein Verkehr. 4.8\u2605."
     },
     locationCostaBrava: {
-      title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein ab 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 5 Boote ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. Segeln Sie zu versteckten Buchten zwischen Blanes und Tossa de Mar. Online buchen \u00b7 Kostenlose Umbuchung.",
+      title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein ab 75\u20ac/h | Blanes, Lloret, Tossa`,
+      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 4 Boote ohne F\u00fchrerschein ab 75\u20ac/h, Kraftstoff inklusive. Segeln Sie zu versteckten Buchten zwischen Blanes und Tossa de Mar. Online buchen \u00b7 Kostenlose Umbuchung.",
       keywords: "bootsverleih costa brava, boot mieten costa brava, boote ohne f\u00fchrerschein costa brava, bootsausflug costa brava, bootscharter costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      title: `Boat Rental Costa Brava | No License from 75\u20ac/h — Blanes, Spain`,
       description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
       keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
@@ -1013,11 +1013,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // 213 imp en 28d. Query top NL "boot huren blanes" (40 imp pos 19.73
       // CTR 2.5%). Mantenemos "Boot Huren Blanes Costa Brava" para captar las
       // dos variantes top. Rating + 310 reviews delante.
-      title: `Boot Huren Blanes Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Reviews \u00b7 70\u20ac/u`,
-      description: `Boot huren in Blanes (Costa Brava) \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Zonder vaarbewijs 70\u20ac/u, brandstof inbegrepen, tot 7 personen. WhatsApp boeking.`,
+      title: `Boot Huren Blanes Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Reviews \u00b7 75\u20ac/u`,
+      description: `Boot huren in Blanes (Costa Brava) \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Zonder vaarbewijs 75\u20ac/u, brandstof inbegrepen, tot 7 personen. WhatsApp boeking.`,
       keywords: "bootverhuur costa brava, boten huren costa brava, boot huren costa brava, boot huren blanes, boot zonder vaarbewijs costa brava, bootcharter costa brava, bootverhuur blanes, haven blanes bootverhuur",
-      ogTitle: `Boot Huren Blanes Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 70\u20ac/u`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren in Blanes aan de Costa Brava. Zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen.`
+      ogTitle: `Boot Huren Blanes Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 75\u20ac/u`,
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren in Blanes aan de Costa Brava. Zonder vaarbewijs vanaf 75\u20ac/u, brandstof inbegrepen.`
     },
     booking: {
       title: "Boot Reserveren Blanes | Costa Brava Rent a Boat",
@@ -1034,46 +1034,46 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Bootverhuur direct in Haven Blanes: gratis parking op 100m van de ligplaats, snorkel en paddleboard inbegrepen. Baaien Sa Palomera en Sant Francesc op 10 min varen.",
       keywords: "bootverhuur haven blanes, boot huren haven blanes, boot sa palomera blanes, baaien blanes boot, sant francesc blanes boot, ligplaats blanes boot, route boot blanes baaien, cala bona blanes boot",
       ogTitle: `Bootverhuur Haven Blanes | Ligplaats & Lokale Baaien ${SEASON_YEAR}`,
-      ogDescription: "Huur jouw boot direct vanaf de kade van Haven Blanes. Gratis parking, snorkel inbegrepen, lokale baaien op 10 min. 9 boten vanaf 70\u20ac/u."
+      ogDescription: "Huur jouw boot direct vanaf de kade van Haven Blanes. Gratis parking, snorkel inbegrepen, lokale baaien op 10 min. 9 boten vanaf 75\u20ac/u."
     },
     locationLloret: {
       title: `Bootverhuur Lloret de Mar | Cala Banys & Santa Cristina vanuit Blanes ${SEASON_YEAR}`,
-      description: "Vaar vanuit Haven Blanes in 25 min naar Lloret de Mar. Ontdek Cala Banys, Santa Cristina en Sa Boadella per boot zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen.",
+      description: "Vaar vanuit Haven Blanes in 25 min naar Lloret de Mar. Ontdek Cala Banys, Santa Cristina en Sa Boadella per boot zonder vaarbewijs vanaf 75\u20ac/u, brandstof inbegrepen.",
       keywords: "bootverhuur lloret de mar, cala banys lloret boot, santa cristina lloret boot, sa boadella boot, boottocht lloret, boot lloret zonder vaarbewijs, lloret de mar boot",
       ogTitle: "Bootverhuur Lloret de Mar | Cala Banys & Santa Cristina",
-      ogDescription: "Lloret per boot vanuit Blanes. Cala Banys, Santa Cristina en Sa Boadella op 25 min. Zonder vaarbewijs vanaf 70\u20ac/u. 4.8\u2605."
+      ogDescription: "Lloret per boot vanuit Blanes. Cala Banys, Santa Cristina en Sa Boadella op 25 min. Zonder vaarbewijs vanaf 75\u20ac/u. 4.8\u2605."
     },
     locationTossa: {
       title: `Bootverhuur Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig vanuit Blanes ${SEASON_YEAR}`,
       description: "Vaar in 30-45 min vanuit Blanes naar de Vila Vella van Tossa. Met Basis Vaarbewijs (LNB) vanaf 160\u20ac (pack 2u) of Priv\u00e9 Skipper-Charter 4u vanaf 380\u20ac. Brandstof apart.",
       keywords: "bootverhuur tossa de mar, vila vella tossa boot, cala llevado tossa boot, mar d'en roig boot, giverola tossa boot, tossa excursie vanuit blanes, boot tossa zonder vaarbewijs",
       ogTitle: "Bootverhuur Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa per boot vanuit Blanes. Vila Vella, Mar d'en Roig en Cala Llev\u00e1d\u00f3 op 1u. Zonder vaarbewijs vanaf 70\u20ac/u. 4.8\u2605."
+      ogDescription: "Tossa per boot vanuit Blanes. Vila Vella, Mar d'en Roig en Cala Llev\u00e1d\u00f3 op 1u. Zonder vaarbewijs vanaf 75\u20ac/u. 4.8\u2605."
     },
     locationMalgrat: {
-      title: "Bootverhuur Malgrat de Mar | Haven Blanes op 10 min | Zonder Vaarbewijs 70\u20ac/u",
-      description: "Op vakantie in Malgrat de Mar? Haven Blanes slechts 10 min met de auto. Huur een boot zonder vaarbewijs vanaf 70\u20ac/u met brandstof inbegrepen. Vaar naar Lloret of Tossa.",
+      title: "Bootverhuur Malgrat de Mar | Haven Blanes op 10 min | Zonder Vaarbewijs 75\u20ac/u",
+      description: "Op vakantie in Malgrat de Mar? Haven Blanes slechts 10 min met de auto. Huur een boot zonder vaarbewijs vanaf 75\u20ac/u met brandstof inbegrepen. Vaar naar Lloret of Tossa.",
       keywords: "bootverhuur malgrat de mar, boot malgrat zonder vaarbewijs, boot huren malgrat, boot vanuit malgrat, boottocht malgrat, maresme kust malgrat boot",
       ogTitle: "Bootverhuur Malgrat de Mar | Haven Blanes 10 min",
-      ogDescription: "Van Malgrat de Mar naar Haven Blanes in 10 min. Boten zonder vaarbewijs vanaf 70\u20ac/u. 4.8\u2605 Google."
+      ogDescription: "Van Malgrat de Mar naar Haven Blanes in 10 min. Boten zonder vaarbewijs vanaf 75\u20ac/u. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "Bootverhuur Santa Susanna | Haven Blanes op 15 min | Zonder Vaarbewijs 70\u20ac/u",
-      description: "Toeristen in Santa Susanna: Haven Blanes op 15 min met auto of R1-trein. Huur een boot zonder vaarbewijs vanaf 70\u20ac/u. Vaar naar Blanes, Lloret of Tossa.",
+      title: "Bootverhuur Santa Susanna | Haven Blanes op 15 min | Zonder Vaarbewijs 75\u20ac/u",
+      description: "Toeristen in Santa Susanna: Haven Blanes op 15 min met auto of R1-trein. Huur een boot zonder vaarbewijs vanaf 75\u20ac/u. Vaar naar Blanes, Lloret of Tossa.",
       keywords: "bootverhuur santa susanna, boot santa susanna zonder vaarbewijs, boot huren santa susanna, boot vanuit santa susanna, boottocht santa susanna, R1 trein boot blanes",
       ogTitle: "Bootverhuur Santa Susanna | 15 min naar Haven Blanes",
-      ogDescription: "Van Santa Susanna naar Haven Blanes in 15 min. Boot zonder vaarbewijs vanaf 70\u20ac/u. 4.8\u2605 Google."
+      ogDescription: "Van Santa Susanna naar Haven Blanes in 15 min. Boot zonder vaarbewijs vanaf 75\u20ac/u. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Bootverhuur Calella | Haven Blanes op 20 min | Maresme-Brava 70\u20ac/u",
-      description: "Op vakantie in Calella (Maresme)? Haven Blanes 20 min verderop. Huur een boot zonder vaarbewijs vanaf 70\u20ac/u. Vaar noord naar Tossa of zuid naar Tordera Delta.",
+      title: "Bootverhuur Calella | Haven Blanes op 20 min | Maresme-Brava 75\u20ac/u",
+      description: "Op vakantie in Calella (Maresme)? Haven Blanes 20 min verderop. Huur een boot zonder vaarbewijs vanaf 75\u20ac/u. Vaar noord naar Tossa of zuid naar Tordera Delta.",
       keywords: "bootverhuur calella, boot calella maresme, boot calella zonder vaarbewijs, boottocht calella, boot vanuit calella, maresme kust calella boot",
       ogTitle: "Bootverhuur Calella | 20 min naar Haven Blanes",
-      ogDescription: "Van Calella naar Haven Blanes in 20 min. Boot zonder vaarbewijs vanaf 70\u20ac/u. Ontdek Costa Brava. 4.8\u2605."
+      ogDescription: "Van Calella naar Haven Blanes in 20 min. Boot zonder vaarbewijs vanaf 75\u20ac/u. Ontdek Costa Brava. 4.8\u2605."
     },
     categoryLicenseFree: {
-      title: "Boten Zonder Vaarbewijs Costa Brava | 5 Boten vanaf 70\u20ac/u Blanes",
-      description: "5 boten zonder vaarbewijs in Blanes vanaf 70\u20ac/u. Brandstof inbegrepen, 4-7 personen. Geen ervaring nodig, 15 min instructie. 4.8\u2605 Google (300+ beoordelingen). Online boeken.",
+      title: "Boten Zonder Vaarbewijs Costa Brava | 5 Boten vanaf 75\u20ac/u Blanes",
+      description: "4 boten zonder vaarbewijs in Blanes vanaf 75\u20ac/u. Brandstof inbegrepen, 4-5 personen. Geen ervaring nodig, 15 min instructie. 4.8\u2605 Google (300+ beoordelingen). Online boeken.",
       keywords: "boten zonder vaarbewijs blanes, bootverhuur zonder licentie, boten zonder vergunning costa brava, 15pk boten blanes"
     },
     categoryLicensed: {
@@ -1137,23 +1137,23 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Bootverhuur Prijzen Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Bekijk bootverhuur prijzen in Blanes. Zonder vaarbewijs vanaf 70\u20ac/u. Brandstof inbegrepen. Laag-, midden- en hoogseizoen.",
+      description: "Bekijk bootverhuur prijzen in Blanes. Zonder vaarbewijs vanaf 75\u20ac/u. Brandstof inbegrepen. Laag-, midden- en hoogseizoen.",
       keywords: "bootverhuur prijzen costa brava, hoeveel kost boot huren blanes, boottarieven zonder vaarbewijs"
     },
     locationBarcelona: {
       title: `Bootverhuur Barcelona | Costa Brava Dagtrip 70 min Rijden | Blanes ${SEASON_YEAR}`,
-      description: "Perfecte dagtrip vanuit Barcelona: Haven Blanes op 70 min via de AP-7. Huur een boot zonder vaarbewijs vanaf 70\u20ac/u met brandstof inbegrepen. Kristalhelder water, geen verkeer.",
+      description: "Perfecte dagtrip vanuit Barcelona: Haven Blanes op 70 min via de AP-7. Huur een boot zonder vaarbewijs vanaf 75\u20ac/u met brandstof inbegrepen. Kristalhelder water, geen verkeer.",
       keywords: "bootverhuur barcelona, boot nabij barcelona, barcelona dagtrip boot, costa brava vanuit barcelona auto, boten zonder vaarbewijs barcelona, barcelona costa brava boot",
       ogTitle: "Bootverhuur Barcelona | Costa Brava op 70 min",
-      ogDescription: "Costa Brava 70 min vanuit Barcelona via AP-7. Boten zonder vaarbewijs vanaf 70\u20ac/u met brandstof. Geen verkeer. 4.8\u2605."
+      ogDescription: "Costa Brava 70 min vanuit Barcelona via AP-7. Boten zonder vaarbewijs vanaf 75\u20ac/u met brandstof. Geen verkeer. 4.8\u2605."
     },
     locationCostaBrava: {
-      title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 70\u20ac/u | Blanes, Lloret, Tossa`,
-      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 5 boten zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. Vaar naar verborgen baaien tussen Blanes en Tossa de Mar. Online boeken \u00b7 Gratis datumwijziging.",
+      title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 75\u20ac/u | Blanes, Lloret, Tossa`,
+      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 4 boten zonder vaarbewijs vanaf 75\u20ac/u, brandstof inbegrepen. Vaar naar verborgen baaien tussen Blanes en Tossa de Mar. Online boeken \u00b7 Gratis datumwijziging.",
       keywords: "bootverhuur costa brava, boot huren costa brava, boten zonder vaarbewijs costa brava, boottocht costa brava, bootexcursie costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      title: `Boat Rental Costa Brava | No License from 75\u20ac/h — Blanes, Spain`,
       description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
       keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
@@ -1166,11 +1166,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     home: {
       // GSC 2026-05-09: CTR rewrite. IT brand-first → keyword-first.
-      title: `Noleggio Barche Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Recensioni \u00b7 Blanes 70\u20ac/h`,
-      description: `Noleggio barche Costa Brava da Blanes \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Senza patente 70\u20ac/h, carburante incluso, fino a 7 persone. Prenota su WhatsApp.`,
+      title: `Noleggio Barche Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Recensioni \u00b7 Blanes 75\u20ac/h`,
+      description: `Noleggio barche Costa Brava da Blanes \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Senza patente 75\u20ac/h, carburante incluso, fino a 7 persone. Prenota su WhatsApp.`,
       keywords: "noleggio barche costa brava, noleggio barche blanes, affitto barche costa brava, barche senza patente costa brava, charter barche costa brava, noleggio porto blanes",
-      ogTitle: `Noleggio Barche Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes 70\u20ac/h`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio barche sulla Costa Brava dal Porto di Blanes. Senza patente da 70\u20ac/h, carburante incluso.`
+      ogTitle: `Noleggio Barche Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes 75\u20ac/h`,
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio barche sulla Costa Brava dal Porto di Blanes. Senza patente da 75\u20ac/h, carburante incluso.`
     },
     booking: {
       title: "Prenota la Tua Barca a Blanes | Costa Brava",
@@ -1187,46 +1187,46 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Noleggio barche direttamente al Porto di Blanes: parcheggio gratuito a 100m dall'ormeggio, snorkel e paddle board inclusi. Calette Sa Palomera e Sant Francesc a 10 min di navigazione.",
       keywords: "noleggio barche porto di blanes, noleggio barca molo blanes, barca sa palomera blanes, calette blanes barca, sant francesc blanes barca, ormeggio blanes barca, rotta barca blanes calette, cala bona blanes barca",
       ogTitle: `Noleggio Barche Porto di Blanes | Ormeggio & Calette Locali ${SEASON_YEAR}`,
-      ogDescription: "Noleggia la tua barca direttamente dal molo del Porto di Blanes. Parcheggio gratuito, snorkel incluso, calette locali a 10 min. 9 barche da 70\u20ac/h."
+      ogDescription: "Noleggia la tua barca direttamente dal molo del Porto di Blanes. Parcheggio gratuito, snorkel incluso, calette locali a 10 min. 9 barche da 75\u20ac/h."
     },
     locationLloret: {
       title: `Noleggio Barca Lloret de Mar | Cala Banys e Santa Cristina da Blanes ${SEASON_YEAR}`,
-      description: "Naviga dal Porto Blanes a Lloret de Mar in 25 min. Scopri Cala Banys, Santa Cristina e Sa Boadella in barca senza patente da 70\u20ac/h, carburante incluso.",
+      description: "Naviga dal Porto Blanes a Lloret de Mar in 25 min. Scopri Cala Banys, Santa Cristina e Sa Boadella in barca senza patente da 75\u20ac/h, carburante incluso.",
       keywords: "noleggio barca lloret de mar, cala banys lloret barca, santa cristina lloret barca, sa boadella barca, escursione barca lloret, barca lloret senza patente, lloret de mar barca",
       ogTitle: "Noleggio Barca Lloret de Mar | Cala Banys e Santa Cristina",
-      ogDescription: "Lloret in barca da Blanes. Cala Banys, Santa Cristina e Sa Boadella a 25 min. Senza patente da 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Lloret in barca da Blanes. Cala Banys, Santa Cristina e Sa Boadella a 25 min. Senza patente da 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Noleggio Barca Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 e Mar d'en Roig da Blanes ${SEASON_YEAR}`,
       description: "Naviga in 30-45 min da Blanes alla Vila Vella di Tossa. Con Patente Nautica Base (LNB) da 160\u20ac (pack 2h) o Escursione Privata con Capitano 4h da 380\u20ac. Carburante a parte.",
       keywords: "noleggio barca tossa de mar, vila vella tossa barca, cala llevado tossa barca, mar d'en roig barca, giverola tossa barca, escursione tossa da blanes, barca tossa senza patente",
       ogTitle: "Noleggio Barca Tossa de Mar | Vila Vella e Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa in barca da Blanes. Vila Vella, Mar d'en Roig e Cala Llev\u00e1d\u00f3 a 1h. Senza patente da 70\u20ac/h. 4.8\u2605."
+      ogDescription: "Tossa in barca da Blanes. Vila Vella, Mar d'en Roig e Cala Llev\u00e1d\u00f3 a 1h. Senza patente da 75\u20ac/h. 4.8\u2605."
     },
     locationMalgrat: {
-      title: "Noleggio Barca Malgrat de Mar | Porto Blanes a 10 min | Senza Patente 70\u20ac/h",
-      description: "In vacanza a Malgrat de Mar? Porto Blanes a soli 10 min in auto. Noleggia una barca senza patente da 70\u20ac/h con carburante incluso. Naviga verso Lloret o Tossa.",
+      title: "Noleggio Barca Malgrat de Mar | Porto Blanes a 10 min | Senza Patente 75\u20ac/h",
+      description: "In vacanza a Malgrat de Mar? Porto Blanes a soli 10 min in auto. Noleggia una barca senza patente da 75\u20ac/h con carburante incluso. Naviga verso Lloret o Tossa.",
       keywords: "noleggio barca malgrat de mar, barca malgrat senza patente, affittare barca malgrat, barca da malgrat, escursione barca malgrat, costa maresme malgrat barca",
       ogTitle: "Noleggio Barca Malgrat de Mar | Porto Blanes 10 min",
-      ogDescription: "Da Malgrat de Mar al Porto Blanes in 10 min. Barche senza patente da 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "Da Malgrat de Mar al Porto Blanes in 10 min. Barche senza patente da 75\u20ac/h. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "Noleggio Barca Santa Susanna | Porto Blanes a 15 min | Senza Patente 70\u20ac/h",
-      description: "Turisti a Santa Susanna: Porto Blanes a 15 min in auto o treno R1. Noleggia una barca senza patente da 70\u20ac/h. Naviga verso Blanes, Lloret o Tossa.",
+      title: "Noleggio Barca Santa Susanna | Porto Blanes a 15 min | Senza Patente 75\u20ac/h",
+      description: "Turisti a Santa Susanna: Porto Blanes a 15 min in auto o treno R1. Noleggia una barca senza patente da 75\u20ac/h. Naviga verso Blanes, Lloret o Tossa.",
       keywords: "noleggio barca santa susanna, barca santa susanna senza patente, affittare barca santa susanna, barca da santa susanna, escursione barca santa susanna, treno R1 barca blanes",
       ogTitle: "Noleggio Barca Santa Susanna | 15 min al Porto Blanes",
-      ogDescription: "Da Santa Susanna al Porto Blanes in 15 min. Barca senza patente da 70\u20ac/h. 4.8\u2605 Google."
+      ogDescription: "Da Santa Susanna al Porto Blanes in 15 min. Barca senza patente da 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Noleggio Barca Calella | Porto Blanes a 20 min | Maresme-Brava 70\u20ac/h",
-      description: "In vacanza a Calella (Maresme)? Porto Blanes a 20 min. Noleggia una barca senza patente da 70\u20ac/h. Naviga a nord verso Tossa o a sud al Delta del Tordera.",
+      title: "Noleggio Barca Calella | Porto Blanes a 20 min | Maresme-Brava 75\u20ac/h",
+      description: "In vacanza a Calella (Maresme)? Porto Blanes a 20 min. Noleggia una barca senza patente da 75\u20ac/h. Naviga a nord verso Tossa o a sud al Delta del Tordera.",
       keywords: "noleggio barca calella, barca calella maresme, barca calella senza patente, escursione barca calella, barca da calella, costa maresme calella barca",
       ogTitle: "Noleggio Barca Calella | 20 min al Porto Blanes",
-      ogDescription: "Da Calella al Porto Blanes in 20 min. Barca senza patente da 70\u20ac/h. Scopri Costa Brava. 4.8\u2605."
+      ogDescription: "Da Calella al Porto Blanes in 20 min. Barca senza patente da 75\u20ac/h. Scopri Costa Brava. 4.8\u2605."
     },
     categoryLicenseFree: {
-      title: "Barche Senza Patente Costa Brava | 5 Barche da 70\u20ac/h Blanes",
-      description: "5 barche senza patente a Blanes da 70\u20ac/h. Carburante incluso, 4-7 persone. Nessuna esperienza, formazione 15 min. 4.8\u2605 Google (300+ recensioni). Prenota online.",
+      title: "Barche Senza Patente Costa Brava | 5 Barche da 75\u20ac/h Blanes",
+      description: "4 barche senza patente a Blanes da 75\u20ac/h. Carburante incluso, 4-5 persone. Nessuna esperienza, formazione 15 min. 4.8\u2605 Google (300+ recensioni). Prenota online.",
       keywords: "barche senza patente blanes, noleggio barche senza licenza, imbarcazioni senza permesso costa brava, barche 15cv blanes"
     },
     categoryLicensed: {
@@ -1290,23 +1290,23 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Prezzi Noleggio Barche Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Consulta i prezzi di noleggio barche a Blanes. Senza patente da 70\u20ac/h. Carburante incluso. Bassa, media e alta stagione.",
+      description: "Consulta i prezzi di noleggio barche a Blanes. Senza patente da 75\u20ac/h. Carburante incluso. Bassa, media e alta stagione.",
       keywords: "prezzi noleggio barche costa brava, quanto costa noleggiare barca blanes, tariffe barca senza patente"
     },
     locationBarcelona: {
       title: `Noleggio Barca Barcellona | Gita Costa Brava 70 min in Auto | Blanes ${SEASON_YEAR}`,
-      description: "Gita perfetta da Barcellona: Porto Blanes a 70 min sulla AP-7. Noleggia una barca senza patente da 70\u20ac/h con carburante incluso. Acque cristalline, senza traffico.",
+      description: "Gita perfetta da Barcellona: Porto Blanes a 70 min sulla AP-7. Noleggia una barca senza patente da 75\u20ac/h con carburante incluso. Acque cristalline, senza traffico.",
       keywords: "noleggio barca barcellona, barca vicino barcellona, barcellona gita barca, costa brava da barcellona auto, barche senza patente barcellona, barcellona costa brava barca",
       ogTitle: "Noleggio Barca Barcellona | Costa Brava a 70 min",
-      ogDescription: "Costa Brava a 70 min da Barcellona sulla AP-7. Barche senza patente da 70\u20ac/h con carburante. Senza traffico. 4.8\u2605."
+      ogDescription: "Costa Brava a 70 min da Barcellona sulla AP-7. Barche senza patente da 75\u20ac/h con carburante. Senza traffico. 4.8\u2605."
     },
     locationCostaBrava: {
-      title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 5 barche senza patente da 70\u20ac/h, carburante incluso. Naviga verso calette nascoste tra Blanes e Tossa de Mar. Prenota online \u00b7 Cambio data gratuito.",
+      title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 75\u20ac/h | Blanes, Lloret, Tossa`,
+      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 4 barche senza patente da 75\u20ac/h, carburante incluso. Naviga verso calette nascoste tra Blanes e Tossa de Mar. Prenota online \u00b7 Cambio data gratuito.",
       keywords: "noleggio barche costa brava, affitto barche costa brava, barche senza patente costa brava, escursione barca costa brava, noleggio imbarcazioni costa brava"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      title: `Boat Rental Costa Brava | No License from 75\u20ac/h — Blanes, Spain`,
       description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
       keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
@@ -1319,11 +1319,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     home: {
       // GSC 2026-05-09: CTR rewrite. RU brand-first → keyword-first.
-      title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432 \u00b7 \u0411\u043b\u0430\u043d\u0435\u0441 70\u20ac/\u0447`,
-      description: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432). \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e, \u0434\u043e 7 \u0447\u0435\u043b\u043e\u0432\u0435\u043a. \u0411\u0440\u043e\u043d\u044c \u0432 WhatsApp.`,
+      title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432 \u00b7 \u0411\u043b\u0430\u043d\u0435\u0441 75\u20ac/\u0447`,
+      description: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432). \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 75\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e, \u0434\u043e 7 \u0447\u0435\u043b\u043e\u0432\u0435\u043a. \u0411\u0440\u043e\u043d\u044c \u0432 WhatsApp.`,
       keywords: "\u0430\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u043a\u043e\u0441\u0442\u0430-\u0431\u0440\u0430\u0432\u0430, \u0430\u0440\u0435\u043d\u0434\u0430 \u044f\u0445\u0442\u044b \u043a\u043e\u0441\u0442\u0430-\u0431\u0440\u0430\u0432\u0430, \u0430\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u0431\u043b\u0430\u043d\u0435\u0441, \u043b\u043e\u0434\u043a\u0438 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043a\u043e\u0441\u0442\u0430-\u0431\u0440\u0430\u0432\u0430",
-      ogTitle: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 \u0411\u043b\u0430\u043d\u0435\u0441 70\u20ac/\u0447`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432). \u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e.`
+      ogTitle: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 \u0411\u043b\u0430\u043d\u0435\u0441 75\u20ac/\u0447`,
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432). \u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e.`
     },
     booking: {
       title: "Забронировать Лодку в Бланесе | Коста-Брава",
@@ -1340,46 +1340,46 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u043f\u0440\u044f\u043c\u043e \u0432 \u041f\u043e\u0440\u0442\u0443 \u0411\u043b\u0430\u043d\u0435\u0441: \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u0430\u044f \u043f\u0430\u0440\u043a\u043e\u0432\u043a\u0430 \u0432 100\u043c \u043e\u0442 \u043f\u0440\u0438\u0447\u0430\u043b\u0430, \u0441\u043d\u043e\u0440\u043a\u043b\u0438\u043d\u0433 \u0438 \u0441\u0430\u043f-\u0431\u043e\u0440\u0434 \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u044b. \u0411\u0443\u0445\u0442\u044b \u0421\u0430-\u041f\u0430\u043b\u043e\u043c\u0435\u0440\u0430 \u0438 \u0421\u0430\u043d\u0442-\u0424\u0440\u0430\u043d\u0441\u0435\u0441\u043a \u0432 10 \u043c\u0438\u043d \u043d\u0430 \u043b\u043e\u0434\u043a\u0435.",
       keywords: "аренда лодок порт бланес, аренда лодки причал бланес, лодка сa палoмера бланес, бухты бланес лодка, сант франсеск бланес лодка, причал бланес лодка, маршрут лодка бланес бухты, кала бона бланес лодка",
       ogTitle: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 | \u041f\u0440\u0438\u0447\u0430\u043b \u0438 \u041b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0435 \u0431\u0443\u0445\u0442\u044b ${SEASON_YEAR}`,
-      ogDescription: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u043f\u0440\u044f\u043c\u043e \u0441 \u043f\u0440\u0438\u0447\u0430\u043b\u0430 \u041f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. \u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u0430\u044f \u043f\u0430\u0440\u043a\u043e\u0432\u043a\u0430, \u0441\u043d\u043e\u0440\u043a\u043b\u0438\u043d\u0433, \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0435 \u0431\u0443\u0445\u0442\u044b \u0432 10 \u043c\u0438\u043d. 8 \u043b\u043e\u0434\u043e\u043a \u043e\u0442 70\u20ac/\u0447."
+      ogDescription: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u043f\u0440\u044f\u043c\u043e \u0441 \u043f\u0440\u0438\u0447\u0430\u043b\u0430 \u041f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. \u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u0430\u044f \u043f\u0430\u0440\u043a\u043e\u0432\u043a\u0430, \u0441\u043d\u043e\u0440\u043a\u043b\u0438\u043d\u0433, \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0435 \u0431\u0443\u0445\u0442\u044b \u0432 10 \u043c\u0438\u043d. 8 \u043b\u043e\u0434\u043e\u043a \u043e\u0442 75\u20ac/\u0447."
     },
     locationLloret: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041b\u044c\u043e\u0440\u0435\u0442-\u0434\u0435-\u041c\u0430\u0440 | \u041a\u0430\u043b\u0430 \u0411\u0430\u043d\u044c\u0441 \u0438 \u0421\u0430\u043d\u0442\u0430-\u041a\u0440\u0438\u0441\u0442\u0438\u043d\u0430 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 ${SEASON_YEAR}`,
-      description: "\u0418\u0437 \u041f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 \u041b\u044c\u043e\u0440\u0435\u0442-\u0434\u0435-\u041c\u0430\u0440 \u0437\u0430 25 \u043c\u0438\u043d. \u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u041a\u0430\u043b\u0430 \u0411\u0430\u043d\u044c\u0441, \u0421\u0430\u043d\u0442\u0430-\u041a\u0440\u0438\u0441\u0442\u0438\u043d\u0430 \u0438 \u0421\u0430-\u0411\u043e\u0430\u0434\u0435\u043b\u044c\u044f \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e.",
+      description: "\u0418\u0437 \u041f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 \u041b\u044c\u043e\u0440\u0435\u0442-\u0434\u0435-\u041c\u0430\u0440 \u0437\u0430 25 \u043c\u0438\u043d. \u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u041a\u0430\u043b\u0430 \u0411\u0430\u043d\u044c\u0441, \u0421\u0430\u043d\u0442\u0430-\u041a\u0440\u0438\u0441\u0442\u0438\u043d\u0430 \u0438 \u0421\u0430-\u0411\u043e\u0430\u0434\u0435\u043b\u044c\u044f \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e.",
       keywords: "аренда лодки льорет де мар, кала баньс льорет лодка, санта кристина льорет лодка, са боадельа лодка, прогулка на лодке льорет, лодка льорет без лицензии, льорет де мар лодка",
       ogTitle: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041b\u044c\u043e\u0440\u0435\u0442-\u0434\u0435-\u041c\u0430\u0440 | \u041a\u0430\u043b\u0430 \u0411\u0430\u043d\u044c\u0441 \u0438 \u0421\u0430\u043d\u0442\u0430-\u041a\u0440\u0438\u0441\u0442\u0438\u043d\u0430",
-      ogDescription: "\u041b\u044c\u043e\u0440\u0435\u0442 \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430. \u041a\u0430\u043b\u0430 \u0411\u0430\u043d\u044c\u0441, \u0421\u0430\u043d\u0442\u0430-\u041a\u0440\u0438\u0441\u0442\u0438\u043d\u0430 \u0438 \u0421\u0430-\u0411\u043e\u0430\u0434\u0435\u043b\u044c\u044f \u0432 25 \u043c\u0438\u043d. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. 4.8\u2605."
+      ogDescription: "\u041b\u044c\u043e\u0440\u0435\u0442 \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430. \u041a\u0430\u043b\u0430 \u0411\u0430\u043d\u044c\u0441, \u0421\u0430\u043d\u0442\u0430-\u041a\u0440\u0438\u0441\u0442\u0438\u043d\u0430 \u0438 \u0421\u0430-\u0411\u043e\u0430\u0434\u0435\u043b\u044c\u044f \u0432 25 \u043c\u0438\u043d. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. 4.8\u2605."
     },
     locationTossa: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440 | \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f, \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e \u0438 \u041c\u0430\u0440-\u0434\u0435\u043d-\u0420\u043e\u0438\u0433 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 ${SEASON_YEAR}`,
       description: "\u0418\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 \u0432 \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f \u0422\u043e\u0441\u0441\u044b \u0437\u0430 30-45 \u043c\u0438\u043d. \u0421 \u0431\u0430\u0437\u043e\u0432\u043e\u0439 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 (LNB) \u043e\u0442 160\u20ac (\u043f\u0430\u043a\u0435\u0442 2\u0447) \u0438\u043b\u0438 \u0447\u0430\u0441\u0442\u043d\u0430\u044f \u044d\u043a\u0441\u043a\u0443\u0440\u0441\u0438\u044f \u0441 \u043a\u0430\u043f\u0438\u0442\u0430\u043d\u043e\u043c 4\u0447 \u043e\u0442 380\u20ac. \u0422\u043e\u043f\u043b\u0438\u0432\u043e \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e.",
       keywords: "аренда лодки тосса де мар, вила велла тосса лодка, кала льевадо тосса лодка, мар ден роиг лодка, дживерола тосса лодка, экскурсия тосса из бланеса, лодка тосса без лицензии",
       ogTitle: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440 | \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f \u0438 \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e",
-      ogDescription: "\u0422\u043e\u0441\u0441\u0430 \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430. \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f, \u041c\u0430\u0440-\u0434\u0435\u043d-\u0420\u043e\u0438\u0433 \u0438 \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e \u0437\u0430 1\u0447. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. 4.8\u2605."
+      ogDescription: "\u0422\u043e\u0441\u0441\u0430 \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430. \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f, \u041c\u0430\u0440-\u0434\u0435\u043d-\u0420\u043e\u0438\u0433 \u0438 \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e \u0437\u0430 1\u0447. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. 4.8\u2605."
     },
     locationMalgrat: {
-      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440 | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 10 \u043c\u0438\u043d | \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 70\u20ac/\u0447",
-      description: "\u041e\u0442\u0434\u044b\u0445\u0430\u0435\u0442\u0435 \u0432 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440? \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432\u0441\u0435\u0433\u043e \u0432 10 \u043c\u0438\u043d \u043d\u0430 \u043c\u0430\u0448\u0438\u043d\u0435. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447 \u0441 \u0442\u043e\u043f\u043b\u0438\u0432\u043e\u043c. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043a \u041b\u044c\u043e\u0440\u0435\u0442\u0443 \u0438\u043b\u0438 \u0422\u043e\u0441\u0441\u0435.",
+      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440 | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 10 \u043c\u0438\u043d | \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 75\u20ac/\u0447",
+      description: "\u041e\u0442\u0434\u044b\u0445\u0430\u0435\u0442\u0435 \u0432 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440? \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432\u0441\u0435\u0433\u043e \u0432 10 \u043c\u0438\u043d \u043d\u0430 \u043c\u0430\u0448\u0438\u043d\u0435. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447 \u0441 \u0442\u043e\u043f\u043b\u0438\u0432\u043e\u043c. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043a \u041b\u044c\u043e\u0440\u0435\u0442\u0443 \u0438\u043b\u0438 \u0422\u043e\u0441\u0441\u0435.",
       keywords: "аренда лодки малграт де мар, лодка малграт без лицензии, арендовать лодку малграт, лодка из малграт, прогулка лодка малграт, маресме малграт лодка",
       ogTitle: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440 | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 10 \u043c\u0438\u043d",
-      ogDescription: "\u0418\u0437 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440 \u0432 \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0437\u0430 10 \u043c\u0438\u043d. \u041b\u043e\u0434\u043a\u0438 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. 4.8\u2605 Google."
+      ogDescription: "\u0418\u0437 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440 \u0432 \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0437\u0430 10 \u043c\u0438\u043d. \u041b\u043e\u0434\u043a\u0438 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430 | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 15 \u043c\u0438\u043d | \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 70\u20ac/\u0447",
-      description: "\u0422\u0443\u0440\u0438\u0441\u0442\u044b \u0432 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430: \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 15 \u043c\u0438\u043d \u043d\u0430 \u043c\u0430\u0448\u0438\u043d\u0435 \u0438\u043b\u0438 \u043f\u043e\u0435\u0437\u0434\u0435 R1. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043a \u0411\u043b\u0430\u043d\u0435\u0441\u0443, \u041b\u044c\u043e\u0440\u0435\u0442\u0443 \u0438\u043b\u0438 \u0422\u043e\u0441\u0441\u0435.",
+      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430 | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 15 \u043c\u0438\u043d | \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 75\u20ac/\u0447",
+      description: "\u0422\u0443\u0440\u0438\u0441\u0442\u044b \u0432 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430: \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 15 \u043c\u0438\u043d \u043d\u0430 \u043c\u0430\u0448\u0438\u043d\u0435 \u0438\u043b\u0438 \u043f\u043e\u0435\u0437\u0434\u0435 R1. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043a \u0411\u043b\u0430\u043d\u0435\u0441\u0443, \u041b\u044c\u043e\u0440\u0435\u0442\u0443 \u0438\u043b\u0438 \u0422\u043e\u0441\u0441\u0435.",
       keywords: "аренда лодки санта сусанна, лодка санта сусанна без лицензии, арендовать лодку санта сусанна, лодка из санта сусанна, прогулка лодка санта сусанна, поезд R1 лодка бланес",
       ogTitle: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430 | 15 \u043c\u0438\u043d \u0434\u043e \u041f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441",
-      ogDescription: "\u0418\u0437 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430 \u0432 \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0437\u0430 15 \u043c\u0438\u043d. \u041b\u043e\u0434\u043a\u0430 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. 4.8\u2605 Google."
+      ogDescription: "\u0418\u0437 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430 \u0432 \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0437\u0430 15 \u043c\u0438\u043d. \u041b\u043e\u0434\u043a\u0430 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041a\u0430\u043b\u0435\u043b\u044c\u044f | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 20 \u043c\u0438\u043d | \u041c\u0430\u0440\u0435\u0441\u043c\u0435-\u0411\u0440\u0430\u0432\u0430 70\u20ac/\u0447",
-      description: "\u041e\u0442\u0434\u044b\u0445 \u0432 \u041a\u0430\u043b\u0435\u043b\u044c\u0435 (\u041c\u0430\u0440\u0435\u0441\u043c\u0435)? \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 20 \u043c\u0438\u043d. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043d\u0430 \u0441\u0435\u0432\u0435\u0440 \u043a \u0422\u043e\u0441\u0441\u0435 \u0438\u043b\u0438 \u043d\u0430 \u044e\u0433 \u043a \u0434\u0435\u043b\u044c\u0442\u0435 \u0422\u043e\u0440\u0434\u0435\u0440\u0430.",
+      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041a\u0430\u043b\u0435\u043b\u044c\u044f | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 20 \u043c\u0438\u043d | \u041c\u0430\u0440\u0435\u0441\u043c\u0435-\u0411\u0440\u0430\u0432\u0430 75\u20ac/\u0447",
+      description: "\u041e\u0442\u0434\u044b\u0445 \u0432 \u041a\u0430\u043b\u0435\u043b\u044c\u0435 (\u041c\u0430\u0440\u0435\u0441\u043c\u0435)? \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 20 \u043c\u0438\u043d. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043d\u0430 \u0441\u0435\u0432\u0435\u0440 \u043a \u0422\u043e\u0441\u0441\u0435 \u0438\u043b\u0438 \u043d\u0430 \u044e\u0433 \u043a \u0434\u0435\u043b\u044c\u0442\u0435 \u0422\u043e\u0440\u0434\u0435\u0440\u0430.",
       keywords: "аренда лодки калелья, лодка калелья маресме, лодка калелья без лицензии, прогулка лодка калелья, лодка из калелья, маресме калелья лодка",
       ogTitle: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041a\u0430\u043b\u0435\u043b\u044c\u044f | 20 \u043c\u0438\u043d \u0434\u043e \u041f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441",
-      ogDescription: "\u0418\u0437 \u041a\u0430\u043b\u0435\u043b\u044c\u0438 \u0432 \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0437\u0430 20 \u043c\u0438\u043d. \u041b\u043e\u0434\u043a\u0430 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. \u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0443. 4.8\u2605."
+      ogDescription: "\u0418\u0437 \u041a\u0430\u043b\u0435\u043b\u044c\u0438 \u0432 \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0437\u0430 20 \u043c\u0438\u043d. \u041b\u043e\u0434\u043a\u0430 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. \u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0443. 4.8\u2605."
     },
     categoryLicenseFree: {
-      title: "Лодки Без Лицензии Коста-Брава | 5 Лодок от 70\u20ac/ч Бланес",
-      description: "5 лодок без лицензии в Бланесе от 70\u20ac/ч. Топливо включено, 4-7 человек. Без опыта, обучение 15 мин. 4.8\u2605 Google (300+ отзывов). Бронируйте онлайн.",
+      title: "Лодки Без Лицензии Коста-Брава | 5 Лодок от 75\u20ac/ч Бланес",
+      description: "4 лодки без лицензии в Бланесе от 75\u20ac/ч. Топливо включено, 4-5 человек. Без опыта, обучение 15 мин. 4.8\u2605 Google (300+ отзывов). Бронируйте онлайн.",
       keywords: "лодки без лицензии бланес, аренда лодок без прав, лодки без разрешения коста брава, лодки 15лс бланес"
     },
     categoryLicensed: {
@@ -1443,23 +1443,23 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Цены Аренда Лодок Бланес ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Узнайте цены аренды лодок в Бланесе. Без лицензии от 70\u20ac/ч. Топливо включено. Низкий, средний и высокий сезон.",
+      description: "Узнайте цены аренды лодок в Бланесе. Без лицензии от 75\u20ac/ч. Топливо включено. Низкий, средний и высокий сезон.",
       keywords: "цены аренда лодок коста брава, сколько стоит арендовать лодку бланес, тарифы лодка без лицензии"
     },
     locationBarcelona: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u0430 | \u041f\u043e\u0435\u0437\u0434\u043a\u0430 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0443 70 \u043c\u0438\u043d \u043d\u0430 \u043c\u0430\u0448\u0438\u043d\u0435 | \u0411\u043b\u0430\u043d\u0435\u0441 ${SEASON_YEAR}`,
-      description: "\u0418\u0434\u0435\u0430\u043b\u044c\u043d\u0430\u044f \u043f\u043e\u0435\u0437\u0434\u043a\u0430 \u0438\u0437 \u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u044b: \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 70 \u043c\u0438\u043d \u043f\u043e AP-7. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447 \u0441 \u0442\u043e\u043f\u043b\u0438\u0432\u043e\u043c. \u041a\u0440\u0438\u0441\u0442\u0430\u043b\u044c\u043d\u043e \u0447\u0438\u0441\u0442\u0430\u044f \u0432\u043e\u0434\u0430, \u0431\u0435\u0437 \u043f\u0440\u043e\u0431\u043e\u043a.",
+      description: "\u0418\u0434\u0435\u0430\u043b\u044c\u043d\u0430\u044f \u043f\u043e\u0435\u0437\u0434\u043a\u0430 \u0438\u0437 \u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u044b: \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 70 \u043c\u0438\u043d \u043f\u043e AP-7. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447 \u0441 \u0442\u043e\u043f\u043b\u0438\u0432\u043e\u043c. \u041a\u0440\u0438\u0441\u0442\u0430\u043b\u044c\u043d\u043e \u0447\u0438\u0441\u0442\u0430\u044f \u0432\u043e\u0434\u0430, \u0431\u0435\u0437 \u043f\u0440\u043e\u0431\u043e\u043a.",
       keywords: "аренда лодки барселона, лодка возле барселоны, барселона поездка лодка, коста брава из барселоны машина, лодки без лицензии барселона, барселона коста брава лодка",
       ogTitle: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0432\u043e\u0437\u043b\u0435 \u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u044b | \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u0432 70 \u043c\u0438\u043d",
-      ogDescription: "\u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u0432 70 \u043c\u0438\u043d \u043e\u0442 \u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u044b \u043f\u043e AP-7. \u041b\u043e\u0434\u043a\u0438 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447 \u0441 \u0442\u043e\u043f\u043b\u0438\u0432\u043e\u043c. \u0411\u0435\u0437 \u043f\u0440\u043e\u0431\u043e\u043a. 4.8\u2605."
+      ogDescription: "\u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u0432 70 \u043c\u0438\u043d \u043e\u0442 \u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u044b \u043f\u043e AP-7. \u041b\u043e\u0434\u043a\u0438 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447 \u0441 \u0442\u043e\u043f\u043b\u0438\u0432\u043e\u043c. \u0411\u0435\u0437 \u043f\u0440\u043e\u0431\u043e\u043a. 4.8\u2605."
     },
     locationCostaBrava: {
-      title: `Аренда Лодок Коста-Брава ${SEASON_YEAR} | Без Лицензии от 70\u20ac/ч | Бланес, Льорет, Тосса`,
-      description: "Арендуйте лодки на Коста-Браве из порта Бланес. 5 лодок без лицензии от 70\u20ac/ч, топливо включено. Плавайте к скрытым бухтам между Бланесом и Тосса-де-Мар. Бронируйте онлайн \u00b7 Бесплатное изменение даты.",
+      title: `Аренда Лодок Коста-Брава ${SEASON_YEAR} | Без Лицензии от 75\u20ac/ч | Бланес, Льорет, Тосса`,
+      description: "Арендуйте лодки на Коста-Браве из порта Бланес. 4 лодки без лицензии от 75\u20ac/ч, топливо включено. Плавайте к скрытым бухтам между Бланесом и Тосса-де-Мар. Бронируйте онлайн \u00b7 Бесплатное изменение даты.",
       keywords: "аренда лодок коста брава, арендовать лодку коста брава, лодки без лицензии коста брава, экскурсия на лодке коста брава, прокат лодок коста брава"
     },
     boatRentalCostaBrava: {
-      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      title: `Boat Rental Costa Brava | No License from 75\u20ac/h — Blanes, Spain`,
       description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
       keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
@@ -2243,14 +2243,14 @@ export function generateHowToBookingSchema(language: Language = 'es') {
 
   const steps: Record<string, Array<{ name: string; text: string }>> = {
     es: [
-      { name: "Elige tu barco", text: "Selecciona entre nuestras embarcaciones sin licencia (desde 70 EUR/hora) o con licencia (desde 160 EUR/2 horas) en nuestra web o por WhatsApp." },
+      { name: "Elige tu barco", text: "Selecciona entre nuestras embarcaciones sin licencia (desde 75 EUR/hora) o con licencia (desde 160 EUR/2 horas) en nuestra web o por WhatsApp." },
       { name: "Selecciona fecha y horario", text: "Elige la fecha, hora de inicio y duración del alquiler. Disponible de abril a octubre, de 09:00 a 20:00." },
       { name: "Confirma tu reserva", text: "Reserva por WhatsApp (+34 611 500 372) o a través de la web. No se requiere depósito para barcos sin licencia." },
       { name: "Recibe tu briefing", text: "Al llegar al Puerto de Blanes, nuestro equipo te dará una formación de 15 minutos sobre el manejo del barco y las normas de seguridad." },
       { name: "Navega por la Costa Brava", text: "Explora calas, playas y destinos como Lloret de Mar y Tossa de Mar. Combustible, seguro y equipo de seguridad incluidos." }
     ],
     en: [
-      { name: "Choose your boat", text: "Select from our license-free boats (from 70 EUR/hour) or licensed boats (from 160 EUR/2 hours) on our website or via WhatsApp." },
+      { name: "Choose your boat", text: "Select from our license-free boats (from 75 EUR/hour) or licensed boats (from 160 EUR/2 hours) on our website or via WhatsApp." },
       { name: "Select date and time", text: "Choose your date, start time, and rental duration. Available April to October, 09:00 to 20:00." },
       { name: "Confirm your booking", text: "Book via WhatsApp (+34 611 500 372) or through the website. No deposit required for license-free boats." },
       { name: "Receive your briefing", text: "Upon arrival at Puerto de Blanes, our team will give you a 15-minute training on boat handling and safety rules." },

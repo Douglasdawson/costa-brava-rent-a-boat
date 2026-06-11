@@ -16,7 +16,6 @@ import {
   ChevronRight,
   FileText,
   ArrowLeftRight,
-  Quote,
   Fuel,
   ListChecks
 } from "lucide-react";
@@ -317,34 +316,6 @@ export default function CategoryLicenseFreePage() {
       ...(howToSchema ? [howToSchema] : [])
     ]
   };
-
-  // Testimonial data
-  const testimonials = [
-    {
-      name: clf.testimonial1Name,
-      text: clf.testimonial1Text,
-      context: clf.testimonial1Context,
-      rating: 5,
-    },
-    {
-      name: clf.testimonial2Name,
-      text: clf.testimonial2Text,
-      context: clf.testimonial2Context,
-      rating: 5,
-    },
-    {
-      name: clf.testimonial3Name,
-      text: clf.testimonial3Text,
-      context: clf.testimonial3Context,
-      rating: 5,
-    },
-    {
-      name: clf.testimonial4Name,
-      text: clf.testimonial4Text,
-      context: clf.testimonial4Context,
-      rating: 5,
-    },
-  ];
 
   return (
     <div className="min-h-screen">
@@ -688,39 +659,6 @@ export default function CategoryLicenseFreePage() {
                 </li>
               </ul>
             </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Section C: Testimonials */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
-            <Star className="w-6 h-6 text-primary" />
-            {clf.testimonialsTitle}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-background/80 rounded-2xl p-6 border">
-                <div className="flex items-start gap-3 mb-3">
-                  <Quote className="w-6 h-6 text-primary shrink-0 mt-1" />
-                  <p className="text-foreground italic leading-relaxed">
-                    {testimonial.text}
-                  </p>
-                </div>
-                <div className="flex items-center justify-between mt-4">
-                  <div>
-                    <p className="font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-muted-foreground">{testimonial.context}</p>
-                  </div>
-                  <div className="flex gap-0.5">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </RevealSection>

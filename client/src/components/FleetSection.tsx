@@ -20,10 +20,8 @@ import {
   Anchor,
   LayoutGrid,
   TableProperties,
-  Star,
 } from "lucide-react";
 import { useBookingModal } from "@/hooks/bookingModalContext";
-import { getBoatAverageRating } from "@/data/boatRatings";
 import { trackViewItemList, trackBoatClickedFromFleet, trackPhoneClick } from "@/utils/analytics";
 import {
   Table,
@@ -809,28 +807,6 @@ function FleetSection() {
                     return (
                       <TableCell key={boat.id} className="text-center text-sm">
                         {perPerson > 0 ? `${perPerson}\u20AC` : "-"}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-                {/* Rating */}
-                <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-background z-10">
-                    {t.comparison.tableRating}
-                  </TableCell>
-                  {sortedBoats.map(boat => {
-                    const ratingData = getBoatAverageRating(boat.id);
-                    return (
-                      <TableCell key={boat.id} className="text-center">
-                        {ratingData.count > 0 ? (
-                          <span className="inline-flex items-center gap-1 text-sm">
-                            <Star className="w-4 h-4 fill-popular text-popular" />
-                            {ratingData.average.toFixed(1)}
-                            <span className="text-muted-foreground">({ratingData.count})</span>
-                          </span>
-                        ) : (
-                          "-"
-                        )}
                       </TableCell>
                     );
                   })}

@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Anchor, Fuel, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
-import { getBoatAverageRating } from "@/data/boatRatings";
 import { boatIncludesFuel } from "@shared/boatData";
 
 interface BoatCardProps {
@@ -144,8 +143,6 @@ function BoatCard({
   const t = useTranslations();
   const { localizedPath } = useLanguage();
   const [imageError, setImageError] = useState(false);
-  const ratingData = useMemo(() => getBoatAverageRating(id), [id]);
-
   const handleDetails = useCallback(() => {
     onDetails(id);
     setTimeout(() => window.scrollTo(0, 0), 50);
@@ -234,24 +231,6 @@ function BoatCard({
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1 mr-2">
             <h3 className="font-heading font-medium text-lg text-foreground">{name}</h3>
-            {ratingData.count > 0 && (
-              <div className="flex items-center gap-1 mt-0.5">
-                <div className="flex">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-3 h-3 ${
-                        i < Math.round(ratingData.average)
-                          ? "text-popular fill-popular"
-                          : "text-muted-foreground/30"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <span className="text-xs font-medium text-foreground">{ratingData.average}</span>
-                <span className="text-xs text-muted-foreground">({ratingData.count})</span>
-              </div>
-            )}
           </div>
           <BoatCardPricing
             basePrice={basePrice}

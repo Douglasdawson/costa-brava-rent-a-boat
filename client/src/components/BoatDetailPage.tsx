@@ -83,7 +83,6 @@ import { LiveInterestIndicator } from "./LiveInterestIndicator";
 import { TrustBadges } from "./TrustBadges";
 import { BoatHeroChips } from "./BoatHeroChips";
 import { boatIncludesFuel } from "@shared/boatData";
-import BoatReviewCarousel from "./BoatReviewCarousel";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { BookingPrefillData } from "@/hooks/bookingModalContext";
 import { trackGoogleAdsRemarketing } from "@/utils/google-ads";
@@ -1398,9 +1397,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           }
           translate={(text) => translateBoatText(text, language)}
         />
-
-        {/* Customer Reviews Carousel */}
-        <BoatReviewCarousel boatId={boatId} />
 
         {/* Tabbed detail sections */}
         <Card className="mb-8">

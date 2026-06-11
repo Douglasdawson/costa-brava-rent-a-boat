@@ -66,6 +66,10 @@ describe("gbpAdapter", () => {
       accessToken: "google-token",
       accountIdentifier: "accounts/abc/locations/xyz",
       status: "active",
+      // Fresh token: keeps getFreshGbpConnection from attempting a refresh
+      // (Google tokens last 1h; the adapter now refreshes when <5min remain).
+      expiresAt: new Date(Date.now() + 60 * 60 * 1000),
+      refreshToken: null,
     });
 
     fetchMock.mockResolvedValue({
@@ -97,6 +101,10 @@ describe("gbpAdapter", () => {
       accessToken: "google-token",
       accountIdentifier: "accounts/abc/locations/xyz",
       status: "active",
+      // Fresh token: keeps getFreshGbpConnection from attempting a refresh
+      // (Google tokens last 1h; the adapter now refreshes when <5min remain).
+      expiresAt: new Date(Date.now() + 60 * 60 * 1000),
+      refreshToken: null,
     });
 
     fetchMock.mockResolvedValue({
@@ -110,5 +118,23 @@ describe("gbpAdapter", () => {
     expect(result.ok).toBe(false);
     expect(result.statusCode).toBe(401);
     expect(markOAuthErrorMock).toHaveBeenCalledWith(5, "Auth expired", "expired");
+  });
+
+  it("returns 503 when the stored token is stale and no refresh token exists", async () => {
+    getOAuthConnectionMock.mockResolvedValue({
+      id: 5,
+      provider: "gbp",
+      accessToken: "stale-token",
+      accountIdentifier: "accounts/abc/locations/xyz",
+      status: "active",
+      expiresAt: new Date(Date.now() - 1000),
+      refreshToken: null,
+    });
+
+    const result = await gbpAdapter.publish(baseItem);
+
+    expect(result.ok).toBe(false);
+    expect(result.statusCode).toBe(503);
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 });

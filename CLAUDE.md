@@ -96,6 +96,8 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | SEO de pagina | `client/src/utils/seo-config.ts` |
 | Slugs i18n de rutas | `shared/i18n-routes.ts` |
 | Traducciones UI | `client/src/i18n/<idioma>.ts` |
+| Carga lazy de idiomas (NO tocar a la ligera) | `client/src/i18n/loaders.ts` + `client/src/hooks/use-language.tsx` (seedInitialLanguage) + `client/src/main.tsx` (precarga el locale antes de montar React) + modulepreload por locale en `server/seoInjector.ts` |
+| Rendimiento de carga (estado + reglas) | `docs/perf/2026-06-11-load-audit.md` (manualChunks, guard de prerender stale, GTM en idle, caches) |
 | Traducciones a11y | `client/src/lib/translations.ts` |
 | Chatbot comportamiento | `server/whatsapp/aiService.ts` |
 | Chatbot functions | `server/whatsapp/functionCallingService.ts` |
@@ -253,7 +255,10 @@ Cuando añadas texto nuevo a cualquiera de los archivos pendientes, **aprovecha 
 - NO usar `any` en TypeScript
 - NO sugerir Stripe como solucion de pago -- la web captura solicitudes de reserva, el pago es manual
 - NO inventar variantes de la politica de cancelacion (ver "Hechos canonicos" abajo). Texto unico para toda la flota desde 2026-05-26
-- NO citar capacidades/eslora/motor sin leer `shared/boatData.ts` primero. Astec 400 es 4 pax, Pacific Craft 625 es 7 pax, Excursion Privada es 6 pax. La flota tiene 9 barcos (5 sin licencia + 3 con licencia + 1 excursion privada con patron)
+- NO citar capacidades/eslora/motor sin leer `shared/boatData.ts` primero. Astec 400 es 4 pax, Pacific Craft 625 es 7 pax, Excursion Privada es 6 pax. CATALOGO = 9 barcos en boatData; FLOTA VIVA = filas con `is_active` en DB (el owner desactivo el Astec 400 via CRM el 2026-05-29: hoy 8 vivos = 4 sin licencia + 3 con licencia + 1 excursion). El copy publico sigue la flota viva (8 / 4 / desde 75 EUR/h); si el owner reactiva el Astec, hay que revertir ese copy (grep "8 embarcaciones|4 barcos|75")
+- NO reintroducir resenas/testimonios fabricados en ninguna superficie ni JSON-LD. El dataset sintetico de ~2.370 resenas por barco se elimino el 2026-06-11 por decision del owner; la unica prueba social valida es la de Google Business Profile (`/api/business-stats` + `shared/businessProfile.ts`, perfil enlazado via `GBP_PROFILE_URL`)
+- NO importar bundles i18n estaticamente en codigo cliente (`import { es } from ...` prohibido): desde 2026-06-11 TODOS los locales son chunks lazy via `client/src/i18n/loaders.ts`; `main.tsx` precarga el del idioma activo antes de montar React y el fallback castellano se registra con `registerEsFallback`
+- NO usar em dashes en copy visible de UI/i18n (regla del design system): coma, dos puntos, punto y coma o parentesis
 - Tests con Vitest: `npm test` para correr, archivos `*.test.ts` junto al codigo que testean
 
 ## Hechos canonicos (fuentes de verdad)
@@ -266,7 +271,9 @@ Cuando un hecho aparece en varias capas (i18n, SEO, blog, JSX, emails, KB chatbo
 | Precios por temporada/duracion | `shared/pricing.ts` |
 | Overrides dinamicos de precio | tabla `pricing_overrides` + `selectApplicableOverride()` en `shared/pricing.ts` |
 | Reglas licencia nautica (thresholds eslora/CV, distancias legales) | `shared/nauticalLicenseRules.ts` + `shared/nauticalGlossary.ts` |
-| Rating + review count (Google Business Profile) | `shared/businessProfile.ts` -- usa `BUSINESS_RATING_STR` y `BUSINESS_REVIEW_COUNT_STR` en template literals |
+| Rating + review count (Google Business Profile) | `shared/businessProfile.ts` -- usa `BUSINESS_RATING_STR` y `BUSINESS_REVIEW_COUNT_STR` en template literals; los displays de rating enlazan al perfil con `GBP_PROFILE_URL` |
+| Gasolina incluida / barco con patron | `boatIncludesFuel()` / `isCaptainedBoat()` en `shared/boatData.ts` -- NUNCA derivar de `!requiresLicense` ni de regex sobre features (la excursion privada tiene requiresLicense=false y NO incluye gasolina) |
+| Flota viva (que barcos se venden hoy) | columna `is_active` de la tabla `boats` (se gestiona desde el CRM); el catalogo completo vive en `shared/boatData.ts` y `applyBoatsSeedEnsure` re-siembra filas BORRADAS pero jamas reactiva desactivadas |
 | Texto legal (condiciones de alquiler) | `client/src/components/CondicionesGenerales.tsx` |
 | Politica de cancelacion (texto unico multi-idioma) | `client/src/i18n/es.ts` -> propaga via `npm run i18n:translate` |
 | Datos de scooters Coast Rent (precios, vehiculos, condiciones) | Web en vivo `coastrent.es` (negocio externo) -> reflejado en `t.scootersPage`. Verificar contra su web antes de tocar; NO inventar precios por modelo |
@@ -298,7 +305,7 @@ Distancia maxima de navegacion sin licencia: **2 millas nauticas (3,7 km)** -- R
 - **PIN Admin CRM**: variable de entorno `ADMIN_PIN`
 - **JWT Secret**: variable de entorno `JWT_SECRET` (min 32 caracteres)
 - **Modelo**: Sin pagos online -- la web captura solicitudes de reserva, el pago se gestiona manualmente
-- **Flota**: 9 barcos (5 sin licencia + 3 con licencia + 1 excursion privada con patron). Capacidades exactas en `shared/boatData.ts`
+- **Flota**: catalogo de 9 barcos en `shared/boatData.ts`; flota VIVA = `is_active` en DB (2026-06: 8 activos, Astec 400 desactivado por el owner). Copy publico alineado a la flota viva
 - **Combustible**: Solo barcos sin-licencia incluyen gasolina; barcos con licencia y excursion privada NO
 - **Analytics**: GA4 server-side (Measurement Protocol) instrumentado para `generate_lead` (inquiries) y `booking_request_submitted` (bookings) -- requiere `GA4_MEASUREMENT_ID` + `GA4_API_SECRET` en env. Helper: `server/lib/analyticsServer.ts`
 

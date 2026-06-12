@@ -1,6 +1,6 @@
 # GA4 Export — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-06-11 10:26:22 UTC
+**Ultima actualizacion:** 2026-06-11 22:21:22 UTC
 
 ---
 
@@ -8,12 +8,12 @@
 
 | Metrica | Ultimas 24h | Ultimos 7 dias |
 |---------|-------------|----------------|
-| Sesiones | 75 | 535 |
-| Usuarios activos | 48 | 344 |
-| Nuevos usuarios | 35 | 320 |
-| Paginas vistas | 100 | 767 |
+| Sesiones | 82 | 542 |
+| Usuarios activos | 52 | 348 |
+| Nuevos usuarios | 39 | 324 |
+| Paginas vistas | 109 | 776 |
 | Tasa de rebote | 28.0% | 27.3% |
-| Duracion media sesion | 3m 14s | 6m 24s |
+| Duracion media sesion | 3m 17s | 6m 22s |
 
 ---
 
@@ -21,20 +21,20 @@
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Organic Search | 43 | 25 |
-| 2 | Direct | 27 | 20 |
-| 3 | Organic Social | 3 | 2 |
-| 4 | Referral | 1 | 1 |
-| 5 | Unassigned | 1 | 2 |
+| 1 | Organic Search | 44 | 26 |
+| 2 | Direct | 30 | 22 |
+| 3 | Organic Social | 4 | 3 |
+| 4 | Unassigned | 3 | 2 |
+| 5 | Referral | 1 | 1 |
 
 ## Trafico por Fuente (ultimos 7 dias)
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Organic Search | 282 | 172 |
-| 2 | Direct | 181 | 129 |
-| 3 | Organic Social | 36 | 31 |
-| 4 | Unassigned | 23 | 28 |
+| 1 | Organic Search | 283 | 173 |
+| 2 | Direct | 185 | 131 |
+| 3 | Organic Social | 37 | 32 |
+| 4 | Unassigned | 25 | 28 |
 | 5 | Referral | 14 | 7 |
 
 ---
@@ -43,9 +43,9 @@
 
 | # | Pagina | Visitas | Usuarios | Duracion media |
 |---|--------|---------|----------|----------------|
-| 1 | /es/ | 421 | 231 | 4m 20s |
-| 2 | /en/ | 84 | 53 | 13m 24s |
-| 3 | /de/ | 31 | 25 | 4m 38s |
+| 1 | /es/ | 426 | 233 | 4m 21s |
+| 2 | /en/ | 86 | 54 | 13m 15s |
+| 3 | /de/ | 32 | 26 | 4m 33s |
 | 4 | /es/barco/remus-450 | 18 | 13 | 3m 15s |
 | 5 | /es/circuito-jet-ski-blanes | 15 | 21 | 0m 10s |
 | 6 | /nl/ | 14 | 13 | 2m 20s |
@@ -65,7 +65,7 @@
 | booking_started | 2 |
 | booking_request_submitted | 0 |
 | purchase | 0 |
-| generate_lead | 4 |
+| generate_lead | 5 |
 
 ## Tasa de Conversion (ultimos 7 dias)
 

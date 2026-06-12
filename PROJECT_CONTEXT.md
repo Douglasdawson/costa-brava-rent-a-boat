@@ -104,7 +104,7 @@ costa-brava-rent-a-boat/
 └── shared/
     ├── schema.ts              # Drizzle schemas (67 tablas)
     ├── pricing.ts             # Calculos precios
-    └── boatData.ts            # Datos flota (9 barcos)
+    └── boatData.ts            # Catalogo flota (9 barcos; la flota VIVA la marca is_active en DB)
 ```
 
 ---
@@ -276,7 +276,7 @@ POST   /api/admin/mcp-tokens/:id/revoke
 | solar-450 | Solar 450 | 5 | 250€ | Incluido |
 | remus-450 | Remus 450 | 5 | 200€ | Incluido |
 | remus-450-ii | Remus 450 II | 5 | 200€ | Incluido |
-| astec-400 | Astec 400 | 4 | 200€ | Incluido |
+| astec-400 | Astec 400 | 4 | 200€ | Incluido | (DESACTIVADO en DB desde 2026-05-29; no se vende)
 | astec-480 | Astec 480 | 5 | 300€ | Incluido |
 
 ### 6.2 Con Licencia

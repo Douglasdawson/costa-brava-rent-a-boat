@@ -1,6 +1,6 @@
 # GSC Export — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-06-11 10:26:22 UTC
+**Ultima actualizacion:** 2026-06-11 22:21:22 UTC
 **Periodo:** 2026-05-11 a 2026-06-08 (28 dias)
 
 ---

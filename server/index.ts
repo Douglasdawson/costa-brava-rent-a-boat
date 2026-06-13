@@ -62,6 +62,21 @@ app.set('trust proxy', 2);
 // WITHOUT an Origin header. They must be reachable before any middleware runs.
 registerHealthRoutes(app);
 
+// ── Cloud Run startup probe intercept ─────────────────────────────────────────
+// Cloud Run (autoscale) sends a startup/liveness probe to GET / with user-agent
+// "GoogleHC/1.0" and requires HTTP 200 before promoting the revision.
+// Our real root handler (registered later) always issues a language redirect
+// (301/302) which Cloud Run treats as a probe failure and rolls back the deploy.
+// This intercept catches only Google's health checker and returns 200 immediately
+// without affecting SEO redirects, human browsers, or any other traffic.
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
+  if (req.headers["user-agent"]?.startsWith("GoogleHC/")) {
+    res.set("Cache-Control", "no-store");
+    return res.status(200).send("OK");
+  }
+  return next();
+});
+
 // Sentry error monitoring — only active when SENTRY_DSN is set
 if (config.SENTRY_DSN) {
   Sentry.init({

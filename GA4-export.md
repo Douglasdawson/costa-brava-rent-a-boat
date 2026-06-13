@@ -1,6 +1,6 @@
 # GA4 Export — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-06-11 22:21:22 UTC
+**Ultima actualizacion:** 2026-06-12 22:21:33 UTC
 
 ---
 
@@ -8,12 +8,12 @@
 
 | Metrica | Ultimas 24h | Ultimos 7 dias |
 |---------|-------------|----------------|
-| Sesiones | 82 | 542 |
-| Usuarios activos | 52 | 348 |
-| Nuevos usuarios | 39 | 324 |
-| Paginas vistas | 109 | 776 |
-| Tasa de rebote | 28.0% | 27.3% |
-| Duracion media sesion | 3m 17s | 6m 22s |
+| Sesiones | 141 | 586 |
+| Usuarios activos | 96 | 375 |
+| Nuevos usuarios | 83 | 350 |
+| Paginas vistas | 178 | 812 |
+| Tasa de rebote | 29.1% | 27.8% |
+| Duracion media sesion | 11m 48s | 6m 4s |
 
 ---
 
@@ -21,21 +21,22 @@
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Organic Search | 44 | 26 |
-| 2 | Direct | 30 | 22 |
-| 3 | Organic Social | 4 | 3 |
-| 4 | Unassigned | 3 | 2 |
-| 5 | Referral | 1 | 1 |
+| 1 | Direct | 58 | 46 |
+| 2 | Organic Search | 50 | 35 |
+| 3 | Unassigned | 16 | 12 |
+| 4 | AI Assistant | 12 | 11 |
+| 5 | Organic Social | 5 | 3 |
 
 ## Trafico por Fuente (ultimos 7 dias)
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Organic Search | 283 | 173 |
-| 2 | Direct | 185 | 131 |
-| 3 | Organic Social | 37 | 32 |
-| 4 | Unassigned | 25 | 28 |
-| 5 | Referral | 14 | 7 |
+| 1 | Organic Search | 287 | 178 |
+| 2 | Direct | 214 | 157 |
+| 3 | Unassigned | 36 | 34 |
+| 4 | Organic Social | 27 | 20 |
+| 5 | AI Assistant | 12 | 11 |
+| 6 | Referral | 12 | 7 |
 
 ---
 
@@ -43,16 +44,16 @@
 
 | # | Pagina | Visitas | Usuarios | Duracion media |
 |---|--------|---------|----------|----------------|
-| 1 | /es/ | 426 | 233 | 4m 21s |
-| 2 | /en/ | 86 | 54 | 13m 15s |
-| 3 | /de/ | 32 | 26 | 4m 33s |
-| 4 | /es/barco/remus-450 | 18 | 13 | 3m 15s |
-| 5 | /es/circuito-jet-ski-blanes | 15 | 21 | 0m 10s |
-| 6 | /nl/ | 14 | 13 | 2m 20s |
-| 7 | /fr/ | 13 | 12 | 1m 19s |
-| 8 | /ca/ | 11 | 8 | 1m 4s |
-| 9 | /es/alquiler-moto-de-agua-blanes | 10 | 12 | 5m 48s |
-| 10 | /es/barco/remus-450-ii | 10 | 13 | 3m 34s |
+| 1 | /es/ | 396 | 221 | 2m 45s |
+| 2 | /en/ | 131 | 75 | 7m 1s |
+| 3 | /de/ | 35 | 26 | 25m 34s |
+| 4 | /nl/ | 23 | 16 | 4m 11s |
+| 5 | /es/barco/remus-450 | 21 | 16 | 2m 40s |
+| 6 | /fr/ | 18 | 16 | 1m 17s |
+| 7 | /es/barco/solar-450 | 14 | 24 | 3m 49s |
+| 8 | /en/boat/astec-480 | 12 | 12 | 9m 5s |
+| 9 | /ca/ | 11 | 8 | 1m 4s |
+| 10 | /es/barco/pacific-craft-625 | 10 | 13 | 4m 22s |
 
 ---
 
@@ -60,18 +61,18 @@
 
 | Evento | Cantidad |
 |--------|----------|
-| whatsapp_click | 1 |
+| whatsapp_click | 15 |
 | phone_click | 0 |
-| booking_started | 2 |
+| booking_started | 11 |
 | booking_request_submitted | 0 |
 | purchase | 0 |
-| generate_lead | 5 |
+| generate_lead | 26 |
 
 ## Tasa de Conversion (ultimos 7 dias)
 
 | Metrica | Valor |
 |---------|-------|
-| Reservas iniciadas | 18 |
+| Reservas iniciadas | 27 |
 | Compras completadas | 0 |
 | Tasa de conversion | **0.0%** |
 

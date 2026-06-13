@@ -19,6 +19,7 @@ import {
   TenantAdminTab,
   GalleryManagement,
   GiftCardManagement,
+  ShopTab,
   DiscountManagement,
   PricingTab,
   MaintenanceTab,
@@ -44,7 +45,7 @@ interface CRMDashboardProps {
 const VALID_TABS = [
   "dashboard", "calendar", "bookings", "customers", "inquiries",
   "fleet", "maintenance", "inventory", "analytics", "gallery",
-  "giftcards", "discounts", "blog", "employees", "config",
+  "giftcards", "shop", "discounts", "blog", "employees", "config",
   "autopilot",
 ];
 
@@ -423,6 +424,9 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {selectedTab === "giftcards" && (
           <GiftCardManagement adminToken={adminToken} />
         )}
+
+        {/* Shop Tab — merch orders + stock */}
+        {selectedTab === "shop" && <ShopTab />}
 
         {/* Discounts Tab */}
         {selectedTab === "discounts" && (

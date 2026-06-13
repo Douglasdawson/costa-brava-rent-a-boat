@@ -11,6 +11,7 @@ export const nl: Translations = {
     viewComponents: "Componenten Bekijken",
     jetski: "Jetski's",
     scooters: "Scooters",
+    tienda: "Shop",
     bookNow: "Beschikbaarheid bekijken",
     myAccount: "Mijn Account",
   },
@@ -5401,6 +5402,109 @@ export const nl: Translations = {
       {
         q: "Kan ik de scooter combineren met een bootdag?",
         a: "Ja. Onze boten vertrekken vanuit de haven van Blanes, op zo'n 10 minuten van Lloret de Mar. Je kunt dus 's ochtends varen en 's middags de kust verkennen per scooter, of andersom.",
+      },
+    ],
+  },
+  shopPage: {
+    gate: {
+      title: 'Winkel in vroege toegang',
+      subtitle: 'We bereiden de lancering voor. Voer het wachtwoord in om een kijkje te nemen.',
+      placeholder: 'Wachtwoord',
+      button: 'Binnenkomen',
+      error: 'Onjuist wachtwoord',
+    },
+    seoTitle: "Shop: Costa Brava Culture T-shirts en tote bags | Costa Brava Rent a Boat",
+    seoDescription:
+      "T-shirts en tote bags uit de Costa Brava Culture collectie, ontworpen met Laura Cabanas (Lloret de Mar). Gelimiteerde editie, veilig betalen en gratis ophalen in de haven van Blanes of verzending door heel Spanje.",
+    navLabel: "Shop",
+    hero: {
+      collabBadge: "Samenwerking met Laura Cabanas",
+      title: "Costa Brava Culture",
+      subtitle:
+        "Een capsulecollectie ontworpen met Laura Cabanas, modeontwerpster uit Lloret de Mar: een oversized T-shirt in twee kleuren en een tote bag, met de illustratie van onze boot langs de kust.",
+      limitedNote: "Gelimiteerde editie: op is op.",
+    },
+    products: {
+      tee: {
+        name: "Costa Brava Culture T-shirt",
+        description:
+          "Oversized katoenen T-shirt met de logo's van Costa Brava Rent a Boat en Laura Cabanas op de borst en de grote illustratie op de rug.",
+      },
+      tote: {
+        name: "Costa Brava Culture tote bag",
+        description:
+          "Koningsblauwe stoffen tas met de Costa Brava Culture illustratie in het wit. Voor het strand, de boodschappen of je bootdag.",
+      },
+    },
+    colors: {
+      butter: "Botergeel",
+      navy: "Marineblauw",
+      royal: "Koningsblauw",
+    },
+    colorLabel: "Kleur",
+    sizeLabel: "Maat",
+    viewBack: "Achterkant bekijken",
+    viewFront: "Voorkant bekijken",
+    addToCart: "In winkelwagen",
+    outOfStock: "Uitverkocht",
+    lowStock: "Laatste stuks",
+    cart: {
+      title: "Je winkelwagen",
+      empty: "Je winkelwagen is leeg. Voeg een T-shirt of tote bag toe om te beginnen.",
+      quantity: "Aantal",
+      remove: "Verwijderen",
+      subtotal: "Subtotaal",
+      shippingNote: "Gratis ophalen in de haven van Blanes of verzending binnen Spanje (4,95 EUR). Je kiest bij het afrekenen.",
+      checkout: "Afrekenen",
+      checkoutLoading: "Betaling voorbereiden...",
+      securePayment: "Veilig betalen met kaart, Apple Pay of Google Pay",
+      itemUnavailable: "Sommige artikelen in je winkelwagen zijn uitverkocht en gemarkeerd. Verwijder ze om verder te gaan.",
+      genericError: "De betaling kon niet worden gestart. Probeer het over een paar seconden opnieuw.",
+    },
+    delivery: {
+      title: "Bezorging",
+      pickupTitle: "Ophalen in de haven van Blanes",
+      pickupText:
+        "Gratis. We nemen contact op om het ophalen af te spreken; heb je een boottocht geboekt, dan geven we het je diezelfde dag in de haven.",
+      pickupLauraTitle: 'Ophalen bij Laura Cabanas (Lloret de Mar)',
+      pickupLauraText:
+        'Gratis. Haal je bestelling op bij de Laura Cabanas-winkel in Carrer del Carme 5, Lloret de Mar. We bevestigen openingstijden en adres bij je bestelling.',
+      shippingTitle: "Thuisbezorging",
+      shippingText: "Verzending door heel Spanje voor 4,95 EUR. Je ontvangt het binnen 3 tot 7 werkdagen.",
+    },
+    designer: {
+      title: "Over Laura Cabanas",
+      text:
+        "Laura Cabanas is modeontwerpster uit Lloret de Mar. Deze capsule is ontstaan uit een gedeelde zomer aan de Costa Brava: haar lijnen en onze boten, in stukken gemaakt om de Middellandse Zee te dragen.",
+      cta: "Bezoek lauracabanas.com",
+    },
+    success: {
+      title: "Bestelling bevestigd",
+      text: "Bedankt voor je aankoop. We hebben je een e-mail met het overzicht gestuurd en nemen contact op over de bezorging.",
+      pending: "Je betaling wordt bevestigd...",
+      cta: "Verder winkelen",
+    },
+    cancelled: {
+      title: "Betaling geannuleerd",
+      text: "Er is niets afgeschreven. Je winkelwagen blijft bewaard voor als je de bestelling wilt afronden.",
+    },
+    faqTitle: "Veelgestelde vragen",
+    faq: [
+      {
+        q: "Hoe werkt het ophalen in de haven van Blanes?",
+        a: "Kies bij het afrekenen de ophaaloptie (gratis). We nemen contact op om een moment af te spreken; heb je een bootreservering, dan overhandigen we de bestelling op de dag van je tocht in dezelfde haven.",
+      },
+      {
+        q: "Verzenden jullie buiten Spanje?",
+        a: "Voorlopig verzenden we alleen binnen Spanje (4,95 EUR, levering in 3 tot 7 werkdagen). Ben je op vakantie in de buurt, dan is ophalen in de haven van Blanes gratis.",
+      },
+      {
+        q: "Hoe valt het T-shirt?",
+        a: "Het is een unisex oversized pasvorm. Wil je het strakker, dan raden we een maat kleiner dan normaal aan.",
+      },
+      {
+        q: "Wie zit er achter het ontwerp?",
+        a: "De Costa Brava Culture collectie is ontworpen met Laura Cabanas, modeontwerpster uit Lloret de Mar, in samenwerking met Costa Brava Rent a Boat (Blanes).",
       },
     ],
   },

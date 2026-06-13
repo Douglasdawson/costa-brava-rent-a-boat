@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, UserCircle, Calendar, Sun, Moon } from "lucide-react";
+import { Menu, X, UserCircle, Calendar, Sun, Moon, ShoppingBag } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import logoIcon from "@/assets/real-photos/logo-icon.png";
 import LogoCostaBravaSVG from "@/components/icons/LogoCostavaBravaSVG";
@@ -16,7 +16,13 @@ import { useTheme } from "@/hooks/use-theme";
 import { lockScroll, unlockScroll } from "@/utils/scroll-lock";
 import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 
-export default function Navigation() {
+interface NavigationProps {
+  /** Shop cart: when onCartClick is set, a cart icon with badge renders in the header (used by /tienda only). */
+  cartCount?: number;
+  onCartClick?: () => void;
+}
+
+export default function Navigation({ cartCount = 0, onCartClick }: NavigationProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentLocation, setLocation] = useLocation();
@@ -180,6 +186,7 @@ export default function Navigation() {
     { label: t.nav.fleet, href: "#fleet" },
     { label: t.nav.jetski, href: localizedPath("jetskiHub") },
     { label: t.nav.scooters, href: localizedPath("scooters") },
+    { label: t.nav.tienda, href: localizedPath("tienda") },
     { label: t.footer.destinations, href: localizedPath("routes") },
     { label: "Blog", href: localizedPath("blog") },
   ];
@@ -217,23 +224,24 @@ export default function Navigation() {
               e.preventDefault();
               handleLogoClick();
             }}
-            className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 z-10"
+            className="flex flex-shrink-0 items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 z-10"
             data-testid="brand-logo"
             aria-label={t.a11y.goToHomePage}
           >
             <LogoCostaBravaSVG className="h-8 lg:h-10" />
           </a>
 
-          {/* Desktop Navigation - Absolutely Centered */}
+          {/* Desktop Navigation - Centered in the free space (flex, so it can
+              never overlap the logo or the right-side buttons) */}
           <nav
             aria-label="Primary"
-            className="hidden lg:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2"
+            className="hidden lg:flex flex-1 min-w-0 items-center justify-center gap-x-3 xl:gap-x-6 px-4"
           >
             {navigationItems.map(item => {
               const activeClass = isNavItemActive(item.href)
                 ? "text-foreground font-semibold"
                 : "text-foreground/70 font-medium";
-              const baseClass = `hover:text-foreground transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:outline-none ${activeClass}`;
+              const baseClass = `text-sm xl:text-base hover:text-foreground transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:outline-none ${activeClass}`;
               // Page routes: render as <a> so Googlebot can crawl them
               if (!item.href.startsWith("#")) {
                 return (
@@ -267,7 +275,7 @@ export default function Navigation() {
           </nav>
 
           {/* Right side buttons */}
-          <div className="hidden lg:flex items-center space-x-4 z-10">
+          <div className="hidden lg:flex flex-shrink-0 items-center space-x-1.5 xl:space-x-3 z-10">
             <Button
               variant="ghost"
               size="icon"
@@ -281,6 +289,23 @@ export default function Navigation() {
               variant="minimal"
               className="text-foreground/70 hover:text-foreground hover:bg-muted"
             />
+            {onCartClick && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={onCartClick}
+                data-testid="desktop-button-cart"
+                aria-label={t.shopPage.cart.title}
+                className="relative text-foreground/70 hover:text-foreground hover:bg-muted"
+              >
+                <ShoppingBag className="h-5 w-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-cta px-1 text-[10px] font-bold text-cta-foreground">
+                    {cartCount}
+                  </span>
+                )}
+              </Button>
+            )}
             <Button
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
@@ -304,7 +329,24 @@ export default function Navigation() {
           </div>
 
           {/* Mobile/tablet menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-1">
+            {onCartClick && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={onCartClick}
+                data-testid="mobile-button-cart"
+                aria-label={t.shopPage.cart.title}
+                className="relative min-h-11 min-w-11"
+              >
+                <ShoppingBag className="w-5 h-5" />
+                {cartCount > 0 && (
+                  <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-cta px-1 text-[10px] font-bold text-cta-foreground">
+                    {cartCount}
+                  </span>
+                )}
+              </Button>
+            )}
             <Button
               variant="ghost"
               size="icon"

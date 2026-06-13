@@ -13,6 +13,7 @@ export { EmployeeManagement } from "./EmployeeManagement";
 export { TenantAdminTab } from "./TenantAdminTab";
 export { GalleryManagement } from "./GalleryManagement";
 export { GiftCardManagement } from "./GiftCardManagement";
+export { ShopTab } from "./ShopTab";
 export { DiscountManagement } from "./DiscountManagement";
 export { MaintenanceTab } from "./MaintenanceTab";
 export { InventoryTab } from "./InventoryTab";

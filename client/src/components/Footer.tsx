@@ -431,6 +431,14 @@ export default function Footer() {
                   {t.scootersPage?.hero?.title ?? t.nav.scooters}
                 </a>
               </li>
+              <li>
+                <a
+                  href={localizedPath("tienda")}
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 min-h-11 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                >
+                  {t.shopPage?.navLabel ?? t.nav.tienda}
+                </a>
+              </li>
             </ul>
           </div>
 

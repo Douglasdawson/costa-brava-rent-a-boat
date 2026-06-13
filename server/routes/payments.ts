@@ -591,6 +591,13 @@ export function registerPaymentRoutes(app: Express) {
           const session = event.data.object as Stripe.Checkout.Session;
           logger.info("Checkout session completed", { sessionId: session.id });
 
+          // Merch shop orders are finalized in their own module
+          if (session.metadata?.type === "shop_order") {
+            const { handleShopCheckoutCompleted } = await import("./shop");
+            await handleShopCheckoutCompleted(session);
+            break;
+          }
+
           const bookingId = session.metadata?.bookingId;
           if (!bookingId) {
             logger.debug("Checkout session has no bookingId metadata, skipping", { sessionId: session.id });
@@ -632,6 +639,15 @@ export function registerPaymentRoutes(app: Express) {
             storage.decrementExtrasStock(confirmedCsBooking.id).catch((err: unknown) => {
               logger.error(`[Payments] Failed to decrement extras stock for booking ${confirmedCsBooking.id}`, { error: err instanceof Error ? err.message : String(err) });
             });
+          }
+          break;
+        }
+
+        case "checkout.session.expired": {
+          const expiredSession = event.data.object as Stripe.Checkout.Session;
+          if (expiredSession.metadata?.type === "shop_order") {
+            const { handleShopCheckoutExpired } = await import("./shop");
+            await handleShopCheckoutExpired(expiredSession);
           }
           break;
         }

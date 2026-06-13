@@ -19,6 +19,8 @@ import { registerAvailabilityRoutes } from "./availability";
 import { registerEmployeeRoutes } from "./employees";
 import { registerGalleryRoutes } from "./gallery";
 import { registerGiftCardRoutes } from "./giftcards";
+import { registerShopRoutes } from "./shop";
+import { registerAdminShopRoutes } from "./admin-shop";
 import { registerDiscountRoutes } from "./discounts";
 import { registerImageResizeRoutes } from "./imageResize";
 import { registerTenantRoutes } from "./tenant";
@@ -81,6 +83,8 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   registerEmployeeRoutes(app);
   registerGalleryRoutes(app);
   registerGiftCardRoutes(app);
+  registerShopRoutes(app);
+  registerAdminShopRoutes(app);
   registerDiscountRoutes(app);
   registerImageResizeRoutes(app);
   registerTenantRoutes(app);

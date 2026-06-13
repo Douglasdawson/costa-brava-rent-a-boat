@@ -63,6 +63,11 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // Scooter rental bridge page (Coast Rent, Lloret) — t.scootersPage is
   // i18n-complete in all 8 locales; SSR meta via buildScootersStaticMeta.
   "/alquiler-motos-lloret": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Merch shop (Laura Cabanas collab) — t.shopPage is i18n-complete in all 8
+  // locales; SSR meta via buildTiendaStaticMeta. CURRENTLY CLOSED (early-access
+  // password gate): kept OUT of indexable locales so seoInjector serves noindex.
+  // To launch, restore: "/tienda": ["es","en","fr","de","ca","nl","it","ru"].
+  // "/tienda": [...],
   // Satellite location pages — i18n-complete (t.locationPages.<town>) + native SSR body.
   "/alquiler-barcos-tordera": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-palafolls": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],

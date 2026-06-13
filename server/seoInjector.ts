@@ -182,6 +182,17 @@ function buildScootersStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
   return out;
 }
 
+// Merch shop page (collaboration with Laura Cabanas). Copy lives in i18n
+// shopPage, so all 8 locales get a native title/description.
+function buildTiendaStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
+  const out: Partial<Record<LangCode, SEOMeta>> = {};
+  for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+    const sp = (I18N_BY_LANG[lang] ?? i18nEs).shopPage;
+    out[lang] = { title: sp.seoTitle, description: sp.seoDescription };
+  }
+  return out;
+}
+
 // Programmatic matrix pages (occasion × location). Copy lives in i18n
 // occasionMatrix.pages keyed by comboId; slugs are composite (occasionWord-place)
 // and live OUTSIDE ROUTE_SLUGS, so they get their own STATIC_META entries keyed
@@ -239,6 +250,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/excursion-jet-ski-blanes-tossa": buildJetskiStaticMeta("excursion", 190),
   "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
   "/alquiler-motos-lloret": buildScootersStaticMeta(),
+  "/tienda": buildTiendaStaticMeta(),
   // Social Boat (salidas compartidas) — ES-only launch (translatedStaticPaths
   // gates indexability); was served as raw index.html with no SSR meta at all.
   "/salidas-compartidas": {

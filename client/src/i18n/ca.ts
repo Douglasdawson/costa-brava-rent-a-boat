@@ -11,6 +11,7 @@ export const ca: Translations = {
     viewComponents: "Veure Components",
     jetski: "Motos aquàtiques",
     scooters: "Scooters",
+    tienda: "Botiga",
     bookNow: "Veure Disponibilitat",
     myAccount: "El Meu Compte",
   },
@@ -5397,6 +5398,109 @@ export const ca: Translations = {
       {
         q: "Puc combinar l'scooter amb un dia de vaixell?",
         a: "Sí. Els nostres vaixells surten del port de Blanes, a uns 10 minuts de Lloret de Mar, així que pots navegar al matí i recórrer la costa en scooter a la tarda, o a l'inrevés.",
+      },
+    ],
+  },
+  shopPage: {
+    gate: {
+      title: 'Botiga en accés anticipat',
+      subtitle: 'Estem preparant el llançament. Introdueix la contrasenya per fer un cop d\'ull.',
+      placeholder: 'Contrasenya',
+      button: 'Entrar',
+      error: 'Contrasenya incorrecta',
+    },
+    seoTitle: "Botiga: samarretes i tote bags Costa Brava Culture | Costa Brava Rent a Boat",
+    seoDescription:
+      "Samarretes i tote bags de la col·lecció Costa Brava Culture, dissenyades amb Laura Cabanas (Lloret de Mar). Edició limitada, pagament segur i recollida gratis al port de Blanes o enviament a tota Espanya.",
+    navLabel: "Botiga",
+    hero: {
+      collabBadge: "Col·laboració amb Laura Cabanas",
+      title: "Costa Brava Culture",
+      subtitle:
+        "Una col·lecció càpsula dissenyada amb Laura Cabanas, dissenyadora de Lloret de Mar: samarreta oversize en dos colors i tote bag, amb la il·lustració del nostre vaixell navegant la costa.",
+      limitedNote: "Edició limitada: quan s'acaba, s'acaba.",
+    },
+    products: {
+      tee: {
+        name: "Samarreta Costa Brava Culture",
+        description:
+          "Samarreta oversize de cotó amb els logos de Costa Brava Rent a Boat i Laura Cabanas al pit i la il·lustració gran a l'esquena.",
+      },
+      tote: {
+        name: "Tote bag Costa Brava Culture",
+        description:
+          "Bossa de tela blau royal amb la il·lustració Costa Brava Culture en blanc. Per a la platja, la compra o el dia de vaixell.",
+      },
+    },
+    colors: {
+      butter: "Groc mantega",
+      navy: "Blau marí",
+      royal: "Blau royal",
+    },
+    colorLabel: "Color",
+    sizeLabel: "Talla",
+    viewBack: "Veure esquena",
+    viewFront: "Veure davant",
+    addToCart: "Afegir al carretó",
+    outOfStock: "Esgotat",
+    lowStock: "Últimes unitats",
+    cart: {
+      title: "El teu carretó",
+      empty: "El teu carretó és buit. Afegeix una samarreta o un tote bag per començar.",
+      quantity: "Quantitat",
+      remove: "Treure",
+      subtotal: "Subtotal",
+      shippingNote: "Recollida gratis al port de Blanes o enviament a Espanya (4,95 EUR). Ho tries al pagament.",
+      checkout: "Tramitar comanda",
+      checkoutLoading: "Preparant el pagament...",
+      securePayment: "Pagament segur amb targeta, Apple Pay o Google Pay",
+      itemUnavailable: "Alguns articles del teu carretó s'han esgotat i s'han marcat. Treu-los per continuar.",
+      genericError: "No s'ha pogut iniciar el pagament. Torna-ho a provar en uns segons.",
+    },
+    delivery: {
+      title: "Lliurament",
+      pickupTitle: "Recollida al port de Blanes",
+      pickupText:
+        "Gratis. T'escrivim per coordinar la recollida; si tens una sortida en vaixell reservada, t'ho donem aquell mateix dia al port.",
+      pickupLauraTitle: 'Recollida a Laura Cabanas (Lloret de Mar)',
+      pickupLauraText:
+        'Gratis. Recull la teva comanda a la botiga de Laura Cabanas, a Carrer del Carme 5, Lloret de Mar. Et confirmem horari i adreca en fer la comanda.',
+      shippingTitle: "Enviament a domicili",
+      shippingText: "Enviament a tota Espanya per 4,95 EUR. El reps en 3 a 7 dies laborables.",
+    },
+    designer: {
+      title: "Sobre Laura Cabanas",
+      text:
+        "Laura Cabanas és dissenyadora de moda de Lloret de Mar. Aquesta càpsula neix d'un estiu compartit a la Costa Brava: el seu traç i els nostres vaixells, en peces pensades per portar el Mediterrani posat.",
+      cta: "Visitar lauracabanas.com",
+    },
+    success: {
+      title: "Comanda confirmada",
+      text: "Gràcies per la teva compra. T'hem enviat un email amb el resum i et contactarem per al lliurament.",
+      pending: "Confirmant el teu pagament...",
+      cta: "Seguir comprant",
+    },
+    cancelled: {
+      title: "Pagament cancel·lat",
+      text: "No s'ha fet cap càrrec. El teu carretó segueix guardat per si vols acabar la comanda.",
+    },
+    faqTitle: "Preguntes freqüents",
+    faq: [
+      {
+        q: "Com funciona la recollida al port de Blanes?",
+        a: "En pagar, tria l'opció de recollida (gratis). T'escriurem per coordinar el moment; si tens una reserva de vaixell, et lliurem la comanda el dia de la teva sortida al mateix port.",
+      },
+      {
+        q: "Feu enviaments fora d'Espanya?",
+        a: "De moment només enviem dins d'Espanya (4,95 EUR, lliurament en 3 a 7 dies laborables). Si estàs de vacances a la zona, la recollida al port de Blanes és gratuïta.",
+      },
+      {
+        q: "Com és el tall de la samarreta?",
+        a: "És un tall oversize unisex. Si la prefereixes més ajustada, et recomanem demanar una talla menys de l'habitual.",
+      },
+      {
+        q: "Qui hi ha darrere del disseny?",
+        a: "La col·lecció Costa Brava Culture està dissenyada amb Laura Cabanas, dissenyadora de moda de Lloret de Mar, en col·laboració amb Costa Brava Rent a Boat (Blanes).",
       },
     ],
   },

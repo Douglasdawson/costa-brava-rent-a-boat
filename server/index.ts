@@ -13,6 +13,7 @@ import { randomUUID } from "crypto";
 import { config, isDev } from "./config";
 import { SUPPORTED_LANGUAGES } from "../shared/seoConstants";
 import { isValidLang } from "../shared/i18n-routes";
+import { GOOGLE_REVIEW_URL } from "../shared/businessProfile";
 import { errorHandler, AppError } from "./middleware/errorHandler";
 import { csrfProtection } from "./middleware/csrf";
 import { aiBotLoggerMiddleware } from "./lib/aiBotLogger";
@@ -533,6 +534,24 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log(`[migrations] applyBoatsSeedEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
   }
 
+  // ── STEP 2.10: Idempotent merch shop schema + seed ──────────────────────────────
+  // Creates the shop_* tables if missing (Republish wipe pattern) and re-seeds
+  // catalogue rows from shared/shopData.ts. ON CONFLICT DO NOTHING — never
+  // overwrites CRM edits to price/stock/active.
+  try {
+    const { applyShopSeedEnsure } = await import("./migrations/applyShopSeedEnsure");
+    const result = await applyShopSeedEnsure(pool);
+    if (result.applied) {
+      log(`[migrations] shop seed ensure OK in ${result.durationMs}ms — inserted ${result.inserted} row(s)`);
+    } else if (result.error === "lock-held-by-other-instance") {
+      log(`[migrations] shop seed ensure skipped (another instance holds lock)`);
+    } else {
+      log(`[migrations] shop seed ensure FAILED: ${result.error}`);
+    }
+  } catch (err) {
+    log(`[migrations] applyShopSeedEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   // Auto-backfill analytics tables if empty (every Republish wipes them, see
   // project_seo_engine_schema_revert.md). Fire-and-forget — does not block
   // boot or registerRoutes. Single-instance via pg_advisory_lock so multiple
@@ -559,6 +578,16 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   // Dynamic 301 redirects (managed via DB, seeded after listen)
   const { redirectMiddleware, seedLegacyRedirects } = await import("./seo/redirects");
   app.use(redirectMiddleware());
+
+  // Vanity short link to leave a Google review. The CRM's "Pedir reseña" WhatsApp
+  // button sends customers to costabravarentaboat.com/resena so they see our own
+  // branded domain instead of a long Google URL. Redirects to GOOGLE_REVIEW_URL
+  // (built from the verified Place ID — single source of truth in businessProfile).
+  // 302, not 301: the external target can change without poisoning browser/CDN caches.
+  app.get(["/resena", "/resenas", "/review", "/reviews"], (_req, res) => {
+    res.set("Cache-Control", "private, no-store");
+    return res.redirect(302, GOOGLE_REVIEW_URL);
+  });
 
   // Root redirect — language-negotiated for humans, consolidated 301 for bots.
   //

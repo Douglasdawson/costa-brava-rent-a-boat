@@ -26,6 +26,7 @@ const envSchema = z.object({
   GOOGLE_ANALYTICS_PROPERTY_ID: z.string().optional(),
   GSC_SITE_URL: z.string().optional(),
   PAGESPEED_API_KEY: z.string().optional(),
+  SHOP_SHIPPING_FLAT_CENTS: z.coerce.number().int().nonnegative().optional(),
   META_PIXEL_ID: z.string().optional(),
   META_CAPI_ACCESS_TOKEN: z.string().optional(),
   BASE_URL: z.string().default("https://www.costabravarentaboat.com"),

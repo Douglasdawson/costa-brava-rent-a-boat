@@ -90,6 +90,7 @@ export interface Translations {
     viewComponents: string;
     jetski: string;
     scooters: string;
+    tienda: string;
     bookNow: string;
     myAccount: string;
   };
@@ -2912,6 +2913,58 @@ export interface Translations {
     combineText: string;
     cta: string;
     ctaNote: string;
+    faqTitle: string;
+    faq: { q: string; a: string }[];
+  };
+  shopPage: {
+    gate: {
+      title: string;
+      subtitle: string;
+      placeholder: string;
+      button: string;
+      error: string;
+    };
+    seoTitle: string;
+    seoDescription: string;
+    navLabel: string;
+    hero: { collabBadge: string; title: string; subtitle: string; limitedNote: string };
+    products: {
+      tee: { name: string; description: string };
+      tote: { name: string; description: string };
+    };
+    colors: Record<string, string>;
+    colorLabel: string;
+    sizeLabel: string;
+    viewBack: string;
+    viewFront: string;
+    addToCart: string;
+    outOfStock: string;
+    lowStock: string;
+    cart: {
+      title: string;
+      empty: string;
+      quantity: string;
+      remove: string;
+      subtotal: string;
+      shippingNote: string;
+      checkout: string;
+      checkoutLoading: string;
+      securePayment: string;
+      itemUnavailable: string;
+      genericError: string;
+    };
+    delivery: {
+      title: string;
+      pickupTitle: string;
+      pickupText: string;
+      pickupLauraTitle: string;
+      pickupLauraText: string;
+      shippingTitle: string;
+      shippingText: string;
+    };
+    designer: { title: string; text: string; cta: string };
+    success: { title: string; text: string; pending: string; cta: string };
+    cancelled: { title: string; text: string };
     faqTitle: string;
     faq: { q: string; a: string }[];
   };

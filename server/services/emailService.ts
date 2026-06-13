@@ -1,7 +1,8 @@
 import sgMail from "@sendgrid/mail";
-import type { Booking, Boat, BookingExtra, WhatsappInquiry } from "@shared/schema";
+import type { Booking, Boat, BookingExtra, WhatsappInquiry, ShopOrder, ShopOrderItem } from "@shared/schema";
 import { logger } from "../lib/logger";
 import { sendgridBreaker } from "../lib/circuitBreaker";
+import { getShopStrings, shopItemLabel, deliveryInstructions } from "../lib/shopStrings";
 import { generateOpaqueUnsubToken } from "../routes/newsletter";
 import { GOOGLE_REVIEW_URL } from "../../shared/businessProfile";
 
@@ -1825,6 +1826,133 @@ export async function sendInquiryAdminNotification(inquiry: WhatsappInquiry): Pr
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     logger.error("[Email] Error sending inquiry admin notification", { error: message });
+    return { success: false, error: message };
+  }
+}
+
+// ===== MERCH SHOP EMAILS (collaboration with Laura Cabanas) =====
+
+function formatEuros(cents: number): string {
+  return `${(cents / 100).toFixed(2).replace(".", ",")} EUR`;
+}
+
+function shopItemsTable(items: ShopOrderItem[], language: string): string {
+  const rows = items
+    .map(
+      (item) => `
+      <tr>
+        <td style="padding:8px 12px; border-bottom:1px solid #e2e8f0; color:#334155; font-size:14px;">${shopItemLabel(item.sku, language)}</td>
+        <td style="padding:8px 12px; border-bottom:1px solid #e2e8f0; color:#334155; font-size:14px; text-align:center;">x${item.quantity}</td>
+        <td style="padding:8px 12px; border-bottom:1px solid #e2e8f0; color:#334155; font-size:14px; text-align:right;">${formatEuros(item.unitPriceCents * item.quantity)}</td>
+      </tr>`,
+    )
+    .join("");
+  return `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; margin:16px 0;">
+      ${rows}
+    </table>`;
+}
+
+/**
+ * Customer confirmation for a paid shop order. Best-effort: callers must
+ * .catch() — never blocks the webhook response.
+ */
+export async function sendShopOrderConfirmation(
+  order: ShopOrder,
+  items: ShopOrderItem[],
+): Promise<EmailResult> {
+  if (!order.customerEmail) {
+    return { success: false, error: "No customer email" };
+  }
+  if (!initSendGrid()) {
+    logger.info("SendGrid not configured, skipping shop order confirmation");
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const strings = getShopStrings(order.language);
+  const deliveryBlock = deliveryInstructions(order.deliveryMethod, strings);
+  const shippingLine =
+    order.shippingCents > 0
+      ? `<p style="margin:4px 0; color:#475569; font-size:14px;">${strings.shippingCostLabel}: ${formatEuros(order.shippingCents)}</p>`
+      : "";
+
+  const content = `
+    <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:22px;">${strings.orderConfirmedTitle}</h2>
+    <p style="color:#475569; font-size:15px; margin:0 0 16px;">${strings.orderConfirmedIntro}</p>
+    <h3 style="margin:16px 0 4px; color:#1e3a5f; font-size:16px;">${strings.orderSummary}</h3>
+    ${shopItemsTable(items, order.language)}
+    ${shippingLine}
+    <p style="margin:4px 0 16px; color:#1e3a5f; font-size:16px; font-weight:bold;">${strings.totalLabel}: ${formatEuros(order.totalCents)}</p>
+    <div style="background:#f1f5f9; border-radius:8px; padding:16px; margin:16px 0; font-size:14px; color:#334155;">
+      <p style="margin:0 0 8px; font-weight:bold;">${strings.deliveryTitle}</p>
+      <p style="margin:0;">${deliveryBlock}</p>
+    </div>
+    <p style="color:#64748b; font-size:13px; margin-top:24px;">${strings.questions}</p>
+  `;
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: order.customerEmail!,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      subject: `${strings.orderConfirmedSubject} - Costa Brava Rent a Boat`,
+      html: emailWrapper(content, strings.orderConfirmedTitle),
+    }));
+    logger.info("[Email] Shop order confirmation sent", { to: order.customerEmail, orderId: order.id });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending shop order confirmation", { error: message, orderId: order.id });
+    return { success: false, error: message };
+  }
+}
+
+/** Owner notification for a new paid shop order (always in Spanish). */
+export async function sendShopOrderOwnerNotification(
+  order: ShopOrder,
+  items: ShopOrderItem[],
+  stockShortfall: string[] = [],
+): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    logger.info("SendGrid not configured, skipping shop owner notification");
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const ownerEmail = process.env.OWNER_EMAIL || "costabravarentaboat@gmail.com";
+  const address = order.shippingAddress as { address?: { line1?: string; line2?: string; postal_code?: string; city?: string } } | null;
+  const addressLine = address?.address
+    ? [address.address.line1, address.address.line2, address.address.postal_code, address.address.city].filter(Boolean).join(", ")
+    : "";
+
+  const shortfallBlock = stockShortfall.length
+    ? `<div style="background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:12px; margin:16px 0; color:#b91c1c; font-size:14px;">
+        <strong>Atencion:</strong> stock insuficiente al descontar estas referencias (pedido ya cobrado, resolver a mano): ${stockShortfall.join(", ")}
+      </div>`
+    : "";
+
+  const content = `
+    <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:22px;">Nuevo pedido de la tienda</h2>
+    <p style="margin:4px 0; color:#334155; font-size:14px;">Cliente: <strong>${order.customerName || "(sin nombre)"}</strong></p>
+    <p style="margin:4px 0; color:#334155; font-size:14px;">Email: ${order.customerEmail || "(sin email)"}</p>
+    <p style="margin:4px 0; color:#334155; font-size:14px;">Entrega: <strong>${order.deliveryMethod === "shipping" ? "Envio a domicilio" : order.deliveryMethod === "pickup_laura" ? "Recogida en Laura Cabanas (Lloret)" : "Recogida en el puerto"}</strong></p>
+    ${addressLine ? `<p style="margin:4px 0; color:#334155; font-size:14px;">Direccion: ${addressLine}</p>` : ""}
+    ${shopItemsTable(items, "es")}
+    <p style="margin:4px 0; color:#1e3a5f; font-size:16px; font-weight:bold;">Total: ${formatEuros(order.totalCents)}</p>
+    ${shortfallBlock}
+    <p style="margin:20px 0 0; color:#94a3b8; font-size:12px;">Pedido: <code>${order.id}</code></p>
+  `;
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: ownerEmail,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat - Tienda" },
+      subject: `[TIENDA] Nuevo pedido de ${order.customerName || "cliente"} - ${formatEuros(order.totalCents)}`,
+      html: emailWrapper(content),
+    }));
+    logger.info("[Email] Shop owner notification sent", { to: ownerEmail, orderId: order.id });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending shop owner notification", { error: message, orderId: order.id });
     return { success: false, error: message };
   }
 }

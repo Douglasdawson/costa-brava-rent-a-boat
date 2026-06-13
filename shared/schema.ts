@@ -2792,3 +2792,76 @@ export const aiSearchIndex = pgTable("ai_search_index", {
 
 export type AiSearchIndexRow = typeof aiSearchIndex.$inferSelect;
 export type InsertAiSearchIndex = typeof aiSearchIndex.$inferInsert;
+
+// ===== MERCH SHOP (collaboration with Laura Cabanas) =====
+// Static catalogue shape lives in shared/shopData.ts; these tables hold the
+// LIVE price/stock/active (CRM-editable) and the orders paid via Stripe
+// hosted Checkout. Seeded by server/migrations/applyShopSeedEnsure.ts.
+
+export const SHOP_ORDER_STATUSES = ["pending", "paid", "fulfilled", "cancelled"] as const;
+export type ShopOrderStatus = (typeof SHOP_ORDER_STATUSES)[number];
+
+export const SHOP_DELIVERY_METHODS = ["pickup_port", "pickup_laura", "shipping"] as const;
+export type ShopDeliveryMethod = (typeof SHOP_DELIVERY_METHODS)[number];
+
+export const shopProducts = pgTable("shop_products", {
+  id: varchar("id").primaryKey(), // static id from shared/shopData.ts
+  priceCents: integer("price_cents").notNull(),
+  active: boolean("active").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+});
+
+export const shopVariants = pgTable("shop_variants", {
+  sku: varchar("sku").primaryKey(), // static SKU from shared/shopData.ts
+  productId: varchar("product_id").notNull().references(() => shopProducts.id),
+  color: varchar("color", { length: 20 }),
+  size: varchar("size", { length: 5 }),
+  stock: integer("stock").notNull().default(0),
+  active: boolean("active").notNull().default(true),
+}, (table) => ({
+  productIdx: index("shop_variants_product_id_idx").on(table.productId),
+}));
+
+export const shopOrders = pgTable("shop_orders", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  stripeSessionId: varchar("stripe_session_id").notNull().unique(),
+  stripePaymentIntentId: varchar("stripe_payment_intent_id"),
+  customerName: text("customer_name"),
+  customerEmail: text("customer_email"),
+  deliveryMethod: varchar("delivery_method", { length: 20 }).notNull().default("pickup_port"), // pickup_port | pickup_laura | shipping
+  shippingAddress: jsonb("shipping_address"), // copy of Stripe shipping/customer details
+  subtotalCents: integer("subtotal_cents").notNull(),
+  shippingCents: integer("shipping_cents").notNull().default(0),
+  totalCents: integer("total_cents").notNull(),
+  status: varchar("status", { length: 12 }).notNull().default("pending"), // pending | paid | fulfilled | cancelled
+  language: varchar("language", { length: 5 }).notNull().default("es"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  paidAt: timestamp("paid_at", { withTimezone: true }),
+  fulfilledAt: timestamp("fulfilled_at", { withTimezone: true }),
+}, (table) => ({
+  statusIdx: index("shop_orders_status_idx").on(table.status),
+}));
+
+export const shopOrderItems = pgTable("shop_order_items", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  orderId: varchar("order_id").notNull().references(() => shopOrders.id),
+  sku: varchar("sku").notNull(),
+  productId: varchar("product_id").notNull(),
+  quantity: integer("quantity").notNull(),
+  unitPriceCents: integer("unit_price_cents").notNull(),
+}, (table) => ({
+  orderIdx: index("shop_order_items_order_id_idx").on(table.orderId),
+}));
+
+export const insertShopOrderSchema = createInsertSchema(shopOrders).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type ShopProductRow = typeof shopProducts.$inferSelect;
+export type ShopVariantRow = typeof shopVariants.$inferSelect;
+export type ShopOrder = typeof shopOrders.$inferSelect;
+export type InsertShopOrder = z.infer<typeof insertShopOrderSchema>;
+export type ShopOrderItem = typeof shopOrderItems.$inferSelect;
+export type InsertShopOrderItem = typeof shopOrderItems.$inferInsert;

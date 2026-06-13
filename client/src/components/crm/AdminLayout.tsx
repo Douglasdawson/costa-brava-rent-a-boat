@@ -23,6 +23,7 @@ import {
   Search,
   Menu,
   ChevronDown,
+  ShoppingBag,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -57,6 +58,7 @@ const OVERFLOW_TABS = [
   { id: "gallery", label: "Galeria", icon: Camera },
   { id: "blog", label: "Blog", icon: FileText },
   { id: "giftcards", label: "Regalos", icon: Gift },
+  { id: "shop", label: "Tienda", icon: ShoppingBag },
   { id: "discounts", label: "Descuentos", icon: Percent },
   { id: "pricing", label: "Precios", icon: TrendingUp },
 ];

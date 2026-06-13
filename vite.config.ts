@@ -73,6 +73,9 @@ export default defineConfig({
           /^\/robots\.txt$/,
           /^\/\.well-known\//,
           /^\/llms.*\.txt$/,
+          // Enlaces vanity que el servidor redirige (302) a Google Reviews. Sin esto,
+          // el SW serviría la SPA y mostraría su 404 en vez de dejar pasar al servidor.
+          /^\/(resena|resenas|review|reviews)\/?$/i,
         ],
         cleanupOutdatedCaches: true,
         skipWaiting: true,

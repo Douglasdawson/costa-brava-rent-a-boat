@@ -14,6 +14,11 @@ import { config, isDev } from "./config";
 import { SUPPORTED_LANGUAGES } from "../shared/seoConstants";
 import { isValidLang } from "../shared/i18n-routes";
 import { GOOGLE_REVIEW_URL } from "../shared/businessProfile";
+import { isCrawler } from "./seo/constants";
+import {
+  buildReviewShareHtml,
+  normalizeReviewShareLang,
+} from "./lib/reviewShareOg";
 import { errorHandler, AppError } from "./middleware/errorHandler";
 import { csrfProtection } from "./middleware/csrf";
 import { aiBotLoggerMiddleware } from "./lib/aiBotLogger";
@@ -584,7 +589,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   // branded domain instead of a long Google URL. Redirects to GOOGLE_REVIEW_URL
   // (built from the verified Place ID — single source of truth in businessProfile).
   // 302, not 301: the external target can change without poisoning browser/CDN caches.
-  app.get(["/resena", "/resenas", "/review", "/reviews"], (_req, res) => {
+  // Social unfurlers (WhatsApp, facebookexternalhit, ...) can't follow the bare
+  // 302 to Google for a link preview, so we serve them a tiny HTML doc with OG
+  // tags instead. The crawler doesn't know the customer's phone, so the preview
+  // language rides in ?l=es|en (the CRM builds that from the phone prefix).
+  // Humans keep the instant 302.
+  app.get(["/resena", "/resenas", "/review", "/reviews"], (req, res) => {
+    if (isCrawler(req.headers["user-agent"])) {
+      const lang = normalizeReviewShareLang(req.query.l);
+      res.set("Cache-Control", "public, max-age=3600");
+      res.type("html");
+      return res.send(buildReviewShareHtml(lang));
+    }
     res.set("Cache-Control", "private, no-store");
     return res.redirect(302, GOOGLE_REVIEW_URL);
   });
@@ -602,7 +618,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   // market). Fix: negotiate Accept-Language for real browsers only. Bots keep the
   // 301 -> /es/ so SEO consolidation is untouched; humans get a 302 to their
   // language home. Respects an explicit cookie preference first.
-  const { isCrawler } = await import("./seo/constants");
   app.get("/", (req, res) => {
     res.set("Vary", "Accept-Language, Cookie, User-Agent");
 

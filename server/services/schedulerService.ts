@@ -10,6 +10,7 @@ import { runAutopilotPipeline, publishNextDraft, getConfig, runBlogTranslationBa
 import { syncAllAnalytics } from "./googleAnalyticsService";
 import { syncReviewRequests, sendReferralCodes, sendEarlyBirdOffers } from "./flywheelService";
 import { renderThankYouWhatsApp } from "./whatsappTemplates";
+import { buildReviewShareUrl, reviewShareLangForPhone } from "../lib/reviewShareOg";
 import { generateWeeklyInsights } from "./chatbotInsightsService";
 import { processLeadNurturing } from "./leadNurturingService";
 import { notifyAllSitemapUrls } from "../seo/indexnow";
@@ -96,6 +97,9 @@ async function trySendWhatsAppThankYou(booking: Booking): Promise<boolean> {
     const message = renderThankYouWhatsApp({
       customerName: booking.customerName,
       language: booking.language,
+      reviewUrl: buildReviewShareUrl(
+        reviewShareLangForPhone(booking.customerPhone),
+      ),
     });
 
     await sendWhatsAppMessage(booking.customerPhone, message);

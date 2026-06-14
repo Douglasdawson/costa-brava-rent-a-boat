@@ -6,6 +6,10 @@ import { renderThankYouWhatsApp } from "../services/whatsappTemplates";
 import { sendThankYouEmail } from "../services/emailService";
 import { audit } from "../lib/audit";
 import { resolveEffectiveLanguage } from "@shared/languageInference";
+import {
+  buildReviewShareUrl,
+  reviewShareLangForPhone,
+} from "../lib/reviewShareOg";
 
 /**
  * Admin-only endpoints to manually trigger the post-rental flywheel for a
@@ -60,6 +64,9 @@ export function registerAdminFlywheelRoutes(app: Express) {
         const message = renderThankYouWhatsApp({
           customerName: booking.customerName,
           language: effectiveLanguage,
+          reviewUrl: buildReviewShareUrl(
+            reviewShareLangForPhone(booking.customerPhone),
+          ),
         });
 
         await sendWhatsAppMessage(booking.customerPhone, message);
@@ -129,6 +136,9 @@ export function registerAdminFlywheelRoutes(app: Express) {
         const message = renderThankYouWhatsApp({
           customerName: booking.customerName,
           language: effectiveLanguage,
+          reviewUrl: buildReviewShareUrl(
+            reviewShareLangForPhone(booking.customerPhone),
+          ),
         });
 
         // wa.me expects digits only — strip "+", spaces, dashes, parens.

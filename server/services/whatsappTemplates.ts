@@ -20,6 +20,12 @@ function normalizeLang(lang: string | null | undefined): SupportedLang {
 interface ThankYouInput {
   customerName: string;
   language: string | null | undefined;
+  /**
+   * Review link to embed in the message. Callers pass the branded
+   * /resena?l=es|en vanity link (built from the phone prefix) so WhatsApp can
+   * render a link preview. Defaults to the raw Google review URL.
+   */
+  reviewUrl?: string;
 }
 
 /**
@@ -31,6 +37,7 @@ export function renderThankYouWhatsApp(input: ThankYouInput): string {
   const lang = normalizeLang(input.language);
   const name = input.customerName.trim();
   const t = TEMPLATES[lang];
+  const reviewUrl = input.reviewUrl ?? GOOGLE_REVIEW_URL;
 
   return [
     t.greeting(name),
@@ -38,7 +45,7 @@ export function renderThankYouWhatsApp(input: ThankYouInput): string {
     t.hopeEnjoyed,
     ``,
     t.reviewAsk,
-    GOOGLE_REVIEW_URL,
+    reviewUrl,
     ``,
     t.nextBookingPerk,
     ``,

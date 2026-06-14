@@ -98,6 +98,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Traducciones UI | `client/src/i18n/<idioma>.ts` |
 | Carga lazy de idiomas (NO tocar a la ligera) | `client/src/i18n/loaders.ts` + `client/src/hooks/use-language.tsx` (seedInitialLanguage) + `client/src/main.tsx` (precarga el locale antes de montar React) + modulepreload por locale en `server/seoInjector.ts` |
 | Rendimiento de carga (estado + reglas) | `docs/perf/2026-06-11-load-audit.md` (manualChunks, guard de prerender stale, GTM en idle, caches) |
+| Service worker / PWA (config + denylist) | `vite.config.ts` (`VitePWA` workbox). REGLA: toda ruta que el SERVIDOR redirige (302/301) en vez de servir el SPA debe ir en `navigateFallbackDenylist`, si no el SW sirve el SPA y muestra su 404. Ej: enlaces vanity `/resena`,`/resenas`,`/review`,`/reviews` → Google Reviews (302 en `server/index.ts`). Detalle en `docs/perf/2026-06-11-load-audit.md` |
 | Traducciones a11y | `client/src/lib/translations.ts` |
 | Chatbot comportamiento | `server/whatsapp/aiService.ts` |
 | Chatbot functions | `server/whatsapp/functionCallingService.ts` |

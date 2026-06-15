@@ -91,7 +91,7 @@ import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
 const WhatsAppFloatingButton = lazy(() => import("./components/WhatsAppFloatingButton"));
 const CookieBanner = lazy(() => import("./components/CookieBanner"));
 const ReturnVisitorBanner = lazy(() => import("./components/ReturnVisitorBanner").then(m => ({ default: m.ReturnVisitorBanner })));
-const BoatClubModal = lazy(() => import("./components/BoatClubModal").then(m => ({ default: m.BoatClubModal })));
+// const BoatClubModal = lazy(() => import("./components/BoatClubModal").then(m => ({ default: m.BoatClubModal })));
 
 const HomePageSEO = lazy(() => import("@/components/HomePageSEO"));
 
@@ -614,7 +614,7 @@ function App() {
               <Router />
               <ScrollToTop />
               <Suspense fallback={null}>
-                <BoatClubModal />
+                {/* <BoatClubModal /> */}
                 <ReturnVisitorBanner />
                 <WhatsAppFloatingButton />
                 <CookieBanner />

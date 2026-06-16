@@ -59,7 +59,7 @@ server/routes/
 ## Decisión: catálogo curado vs equivalencias inventadas
 
 **Sólo se afirman equivalencias respaldadas**:
-- 8 países curados a mano (ES, FR, IT, DE, GB, PT, NL, BE) con sus títulos nacionales reales.
+- 9 países curados a mano (ES, FR, IT, DE, GB, PT, NL, BE, PL) con sus títulos nacionales reales.
 - ICC vía UN/ECE Res. 40 — equivalente a PER por reciprocidad.
 
 **Resto del mundo** (US, AU, JP, MX…): solo se ofrecen ICC + Otra. **No** se inventa "≈ PNB" para licencias que no conocemos. Si el cliente pulsa Otra + ICC=No, el resultado es `not_recognized` con CTA WhatsApp para escalamiento humano.
@@ -96,6 +96,9 @@ Decisión documentada el 2026-05-21 tras feedback explícito del usuario: *"no s
 | 🇧🇪 BE | Beperkt Stuurbrevet | PNB |
 | 🇧🇪 BE | Algemeen Stuurbrevet | PER |
 | 🇧🇪 BE | Yachtman Brevet | Patrón de Yate |
+| 🇵🇱 PL | Sternik motorowodny | PNB |
+| 🇵🇱 PL | Morski sternik motorowodny | PER |
+| 🇵🇱 PL | Kapitan motorowodny | Patrón de Yate |
 
 **Fleet min**: PNB (la flota actual va de LBN/PNB a PER/PNB, ver `shared/boatData.ts`). Cualquier equivalente ≥ PNB → válido para los barcos con licencia.
 

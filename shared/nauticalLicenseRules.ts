@@ -138,6 +138,14 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
     { code: "yachtman_brevet", label: "Yachtman Brevet", spanishEquivalent: "patron_yate" },
     { code: "yachtnavigator_brevet", label: "Yachtnavigator Brevet", spanishEquivalent: "capitan_yate" },
   ],
+  PL: [
+    // Patentes motonáuticas del Polski Związek Motorowodny i Narciarstwa Wodnego.
+    // Sternik motorowodny: aguas interiores + mar hasta 2 mn de costa, casco ≤12 m, diurno
+    // (≈ PNB en alcance costero). Cubre de sobra la flota con licencia (barcos ≤6,24 m, 2 mn).
+    { code: "sternik_motorowodny", label: "Sternik motorowodny", spanishEquivalent: "pnb" },
+    { code: "morski_sternik_motorowodny", label: "Morski sternik motorowodny", spanishEquivalent: "per" },
+    { code: "kapitan_motorowodny", label: "Kapitan motorowodny", spanishEquivalent: "patron_yate" },
+  ],
 };
 
 /**

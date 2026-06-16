@@ -167,6 +167,24 @@ describe("verifyLicense — EEE branch", () => {
     expect(r.spanishEquivalent).toBe("capitan_yate");
     expect(r.meetsFleetMinimum).toBe(true);
   });
+
+  it("Poland + Sternik motorowodny → valid, pnb, meets fleet min", () => {
+    const r = verifyLicense({ country: "PL", licenseCode: "sternik_motorowodny", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("pnb");
+    expect(r.meetsFleetMinimum).toBe(true);
+  });
+
+  it("Poland + Morski sternik motorowodny → valid, per", () => {
+    const r = verifyLicense({ country: "PL", licenseCode: "morski_sternik_motorowodny", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("per");
+  });
+
+  it("Poland + Kapitan motorowodny → valid, patron_yate", () => {
+    expect(verifyLicense({ country: "PL", licenseCode: "kapitan_motorowodny", hasIcc: null }).spanishEquivalent)
+      .toBe("patron_yate");
+  });
 });
 
 describe("verifyLicense — non-EEE branch", () => {

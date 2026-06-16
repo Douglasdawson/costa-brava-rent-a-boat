@@ -4,7 +4,12 @@
 
 ---
 
-## [Mayo 2026]
+## [Junio 2026]
+
+### Verificador de licencia — Polonia curada (fix falso-negativo) (2026-06-16)
+- `shared/nauticalLicenseRules.ts`: anadida Polonia (PL) a `COUNTRY_LICENSES` con sus 3 patentes motonauticas reales (Sternik motorowodny -> PNB, Morski sternik motorowodny -> PER, Kapitan motorowodny -> Patron de Yate). Antes PL caia en `GENERIC_LICENSES` (solo ICC + Otra) y devolvia `not_recognized` -> "ningun barco", un falso negativo: una licencia polaca valida si habilita la flota con licencia (Mingolla Brava 19 5,99m, etc.). No era un tema de potencia (el limite de 60 KW del carne aplica solo a menores de 16; ademas 80cv aprox 59 KW; y el verificador no compara potencia). 9 paises curados (antes 8). Tests PL anadidos (`nauticalLicenseRules.test.ts`, 57 pasan). Doc: `docs/features/2026-05-21-license-verifier.md`
+
+
 
 ### SEO/GEO — Auditoria profunda + schema TouristTrip + IndexNow (2026-05-29)
 - Auditoria de maxima exigencia de todo el sistema SEO/GEO: `docs/audits/2026-05-29-seo-geo-deep-audit.md`. Veredicto: infra A+, gap = activacion + contenido + batallas pendientes (no infraestructura). Scorecard por area, hallazgos por severidad, gap vs SEO Domination Program, roadmap en 6 fases

@@ -243,7 +243,7 @@ Los siguientes archivos **todavía tienen texto visible en español hardcoded** 
 - `location-barcelona.tsx` → `t.locationBarcelona` (41 claves)
 - `location-tossa-de-mar.tsx` warning + cross-links + related → `t.locationPages.tossa.sections` (9 claves nuevas)
 - `location-lloret-de-mar.tsx` cross-links + related → `t.locationPages.lloret.sections` (6 claves nuevas)
-- `location-malgrat-de-mar.tsx` / `santa-susanna.tsx` / `calella.tsx` → FAQ placeholders procesados por `LocationTemplate`
+- `location-malgrat-de-mar.tsx` / `santa-susanna.tsx` / `calella.tsx` → FAQ placeholders procesados por `LocationTemplate`. **Indexados en los 8 idiomas desde 2026-06-16**: añadidos a `server/seo/translatedStaticPaths.ts` y con cuerpo SSR nativo por idioma en `seoInjector.ts` (lee `t.locationPages.{malgrat|santaSusanna|calella}.hero/sections`), igual que tordera/palafolls/pineda. Antes solo indexaban ES (noindex + canonical→ES fuera de ES)
 - `location-tordera.tsx` / `location-palafolls.tsx` / `location-pineda-de-mar.tsx` → cuerpo completo vía `t.locationPages.<town>.sections` + `faqItems` (i18n-complete en los 8 idiomas, confirmado 2026-05-29; ver `server/seo/translatedStaticPaths.ts`). Pendiente solo las props de `PopularBoatsSection` (arriba)
 
 Cuando añadas texto nuevo a cualquiera de los archivos pendientes, **aprovecha para migrarlo al sistema i18n** en el mismo commit.

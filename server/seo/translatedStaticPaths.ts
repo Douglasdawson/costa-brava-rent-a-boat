@@ -72,6 +72,12 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   "/alquiler-barcos-tordera": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-palafolls": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   "/alquiler-barcos-pineda-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Malgrat / Santa Susanna / Calella — i18n-complete (t.locationPages.<town>) in all 8
+  // locales; seoInjector now SSRs a native per-locale body from hero + sections (2026-06-16),
+  // so they're indexable in all 8 locales instead of noindex'd outside ES.
+  "/alquiler-barcos-malgrat-de-mar": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/alquiler-barcos-santa-susanna": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  "/alquiler-barcos-calella": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   // FAQ — t.faqPage is i18n-complete (92 keys × 8 locales) and seoInjector now
   // SSRs the full FAQPage JSON-LD from it per language (2026-06-10), so non-ES
   // locales carry real native content instead of the old noindex default.

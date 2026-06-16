@@ -3000,13 +3000,19 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Malgrat de Mar" : "Barcos cerca de Malgrat de Mar", url: `${BASE_URL}/alquiler-barcos-malgrat-de-mar` }]);
+      const lpMalgrat = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.malgrat;
+      const secMalgrat = lpMalgrat?.sections;
       const bodyFallback = buildLocationBodyFallback(
-        destination.name,
-        destination.description,
-        isEn
-          ? ["License-free boats from 70€/h, fuel included", "8 km / 10 min by car from Blanes Port (RENFE R1: 5 min)", "No license needed — 15 min training before departure", "Open daily 09:00–20:00, April–October"]
-          : ["Barcos sin licencia desde 70€/h, gasolina incluida", "A 8 km / 10 min en coche del Puerto de Blanes (RENFE R1: 5 min)", "Sin licencia — 15 min de formación antes de zarpar", "Abierto cada día 09:00–20:00, abril–octubre"],
-        isEn ? "Book via WhatsApp" : "Reserva por WhatsApp",
+        lpMalgrat?.hero?.title ?? destination.name,
+        lpMalgrat?.hero?.subtitle ?? destination.description,
+        ([
+          [secMalgrat?.closestPort, secMalgrat?.closestPortDesc],
+          [secMalgrat?.varietyBoats, secMalgrat?.varietyBoatsDesc],
+          [secMalgrat?.fuelIncluded, secMalgrat?.fuelIncludedDesc],
+          [secMalgrat?.noExperience, secMalgrat?.noExperienceDesc],
+        ] as Array<[string | undefined, string | undefined]>)
+          .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`),
+        secMalgrat?.ctaButton ?? (isEn ? "Book via WhatsApp" : "Reserva por WhatsApp"),
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
     }
@@ -3063,13 +3069,19 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Santa Susanna" : "Barcos cerca de Santa Susanna", url: `${BASE_URL}/alquiler-barcos-santa-susanna` }]);
+      const lpSanta = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.santaSusanna;
+      const secSanta = lpSanta?.sections;
       const bodyFallback = buildLocationBodyFallback(
-        destination.name,
-        destination.description,
-        isEn
-          ? ["License-free boats from 70€/h, fuel included", "12 km / 15 min by car from Blanes Port (RENFE R1: 10 min)", "No license needed — 15 min training before departure", "Open daily 09:00–20:00, April–October"]
-          : ["Barcos sin licencia desde 70€/h, gasolina incluida", "A 12 km / 15 min en coche del Puerto de Blanes (RENFE R1: 10 min)", "Sin licencia — 15 min de formación antes de zarpar", "Abierto cada día 09:00–20:00, abril–octubre"],
-        isEn ? "Book via WhatsApp" : "Reserva por WhatsApp",
+        lpSanta?.hero?.title ?? destination.name,
+        lpSanta?.hero?.subtitle ?? destination.description,
+        ([
+          [secSanta?.closestPort, secSanta?.closestPortDesc],
+          [secSanta?.varietyBoats, secSanta?.varietyBoatsDesc],
+          [secSanta?.fuelIncluded, secSanta?.fuelIncludedDesc],
+          [secSanta?.noExperience, secSanta?.noExperienceDesc],
+        ] as Array<[string | undefined, string | undefined]>)
+          .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`),
+        secSanta?.ctaButton ?? (isEn ? "Book via WhatsApp" : "Reserva por WhatsApp"),
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
     }
@@ -3127,13 +3139,19 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Calella" : "Barcos cerca de Calella", url: `${BASE_URL}/alquiler-barcos-calella` }]);
+      const lpCalella = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.calella;
+      const secCalella = lpCalella?.sections;
       const bodyFallback = buildLocationBodyFallback(
-        destination.name,
-        destination.description,
-        isEn
-          ? ["License-free boats from 70€/h, fuel included", "17 km / 20 min by car from Blanes Port (RENFE R1: 15 min)", "No license needed — 15 min training before departure", "Open daily 09:00–20:00, April–October"]
-          : ["Barcos sin licencia desde 70€/h, gasolina incluida", "A 17 km / 20 min en coche del Puerto de Blanes (RENFE R1: 15 min)", "Sin licencia — 15 min de formación antes de zarpar", "Abierto cada día 09:00–20:00, abril–octubre"],
-        isEn ? "Book via WhatsApp" : "Reserva por WhatsApp",
+        lpCalella?.hero?.title ?? destination.name,
+        lpCalella?.hero?.subtitle ?? destination.description,
+        ([
+          [secCalella?.closestPort, secCalella?.closestPortDesc],
+          [secCalella?.varietyBoats, secCalella?.varietyBoatsDesc],
+          [secCalella?.fuelIncluded, secCalella?.fuelIncludedDesc],
+          [secCalella?.noExperience, secCalella?.noExperienceDesc],
+        ] as Array<[string | undefined, string | undefined]>)
+          .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`),
+        secCalella?.ctaButton ?? (isEn ? "Book via WhatsApp" : "Reserva por WhatsApp"),
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
     }

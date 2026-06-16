@@ -185,6 +185,41 @@ describe("verifyLicense — EEE branch", () => {
     expect(verifyLicense({ country: "PL", licenseCode: "kapitan_motorowodny", hasIcc: null }).spanishEquivalent)
       .toBe("patron_yate");
   });
+
+  it("EEE uncurated country + Otra → probably_valid (EEE reciprocity, manual check), not rejected", () => {
+    const r = verifyLicense({ country: "EE", licenseCode: "other", hasIcc: null });
+    expect(r.status).toBe("probably_valid");
+    expect(r.reasonKey).toBe("eee_other_manual_check");
+    expect(r.meetsFleetMinimum).toBe(true);
+  });
+
+  it("EEE uncurated country + ICC → valid, per", () => {
+    const r = verifyLicense({ country: "EE", licenseCode: "icc", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("per");
+  });
+
+  it("EEE country + truly unknown code (not 'other') → still not_recognized", () => {
+    expect(verifyLicense({ country: "FR", licenseCode: "made_up", hasIcc: null }).status)
+      .toBe("not_recognized");
+  });
+
+  it("Austria + FB1 → valid, pnb; FB2 → per; FB3 → patron_yate", () => {
+    expect(verifyLicense({ country: "AT", licenseCode: "fb1", hasIcc: null }).spanishEquivalent).toBe("pnb");
+    expect(verifyLicense({ country: "AT", licenseCode: "fb2", hasIcc: null }).spanishEquivalent).toBe("per");
+    const r = verifyLicense({ country: "AT", licenseCode: "fb3", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("patron_yate");
+    expect(r.meetsFleetMinimum).toBe(true);
+  });
+
+  it("Croatia + Voditelj brodice A → valid, pnb; B → per", () => {
+    expect(verifyLicense({ country: "HR", licenseCode: "voditelj_brodice_a", hasIcc: null }).spanishEquivalent).toBe("pnb");
+    const r = verifyLicense({ country: "HR", licenseCode: "voditelj_brodice_b", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("per");
+    expect(r.meetsFleetMinimum).toBe(true);
+  });
 });
 
 describe("verifyLicense — non-EEE branch", () => {

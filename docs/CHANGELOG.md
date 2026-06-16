@@ -9,6 +9,10 @@
 ### Verificador de licencia — Polonia curada (fix falso-negativo) (2026-06-16)
 - `shared/nauticalLicenseRules.ts`: anadida Polonia (PL) a `COUNTRY_LICENSES` con sus 3 patentes motonauticas reales (Sternik motorowodny -> PNB, Morski sternik motorowodny -> PER, Kapitan motorowodny -> Patron de Yate). Antes PL caia en `GENERIC_LICENSES` (solo ICC + Otra) y devolvia `not_recognized` -> "ningun barco", un falso negativo: una licencia polaca valida si habilita la flota con licencia (Mingolla Brava 19 5,99m, etc.). No era un tema de potencia (el limite de 60 KW del carne aplica solo a menores de 16; ademas 80cv aprox 59 KW; y el verificador no compara potencia). 9 paises curados (antes 8). Tests PL anadidos (`nauticalLicenseRules.test.ts`, 57 pasan). Doc: `docs/features/2026-05-21-license-verifier.md`
 
+### Verificador de licencia — Fallback EEE + Austria/Croacia curadas (2026-06-16)
+- Ablandado el fallback para ciudadanos del EEE: un pais EEE no curado + "Otra" ya NO devuelve `not_recognized` (falso negativo); ahora `probably_valid` (reasonKey `eee_other_manual_check`, `meetsFleetMinimum: true`), respaldado por la reciprocidad del EEE (Orden FOM/3200/2007 disp. final 3.a; RD 875/2014: ciudadano EEE autorizado hasta las atribuciones de su titulo nacional). Soluciona de golpe los 22 paises EEE no curados. Un codigo desconocido que no sea "other" sigue dando `not_recognized`. Sin cambios i18n (la UI usa solo `status`, ya traducido)
+- Curados Austria (FB1->PNB, FB2->PER, FB3->Patron de Yate) y Croacia (Voditelj brodice A->PNB, B->PER), verificados por fuentes web. Chequia descartada (VMP base es aguas interiores; cat. C solo 1 mn de mar -> cae en el fallback). 11 paises curados. 62 tests pasan. Atribuciones ES verificadas contra BOE Orden FOM/3200/2007
+
 
 
 ### SEO/GEO — Auditoria profunda + schema TouristTrip + IndexNow (2026-05-29)

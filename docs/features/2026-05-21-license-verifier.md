@@ -59,10 +59,12 @@ server/routes/
 ## Decisión: catálogo curado vs equivalencias inventadas
 
 **Sólo se afirman equivalencias respaldadas**:
-- 9 países curados a mano (ES, FR, IT, DE, GB, PT, NL, BE, PL) con sus títulos nacionales reales.
+- 11 países curados a mano (ES, FR, IT, DE, GB, PT, NL, BE, PL, AT, HR) con sus títulos nacionales reales.
 - ICC vía UN/ECE Res. 40 — equivalente a PER por reciprocidad.
 
-**Resto del mundo** (US, AU, JP, MX…): solo se ofrecen ICC + Otra. **No** se inventa "≈ PNB" para licencias que no conocemos. Si el cliente pulsa Otra + ICC=No, el resultado es `not_recognized` con CTA WhatsApp para escalamiento humano.
+**Resto del mundo** (US, AU, JP, MX…): solo se ofrecen ICC + Otra. **No** se inventa "≈ PNB" para licencias que no conocemos. Si el cliente NO-EEE pulsa Otra + ICC=No, el resultado es `not_recognized` con CTA WhatsApp para escalamiento humano.
+
+**Fallback EEE (2026-06-16)**: un ciudadano del EEE de un país NO curado que pulsa "Otra" ya NO recibe `not_recognized`. La reciprocidad del EEE (Orden FOM/3200/2007 disp. final 3.ª; hoy RD 875/2014) autoriza a gobernar barcos españoles **hasta las atribuciones de su título nacional**, y nuestra flota con licencia es pequeña y costera (≤6,24 m, 2 mn). Por eso `verifyLicense` devuelve `probably_valid` (reasonKey `eee_other_manual_check`, `meetsFleetMinimum: true`) → "probablemente válida", confirmación manual en la entrega. Un código desconocido que NO sea "other" sigue dando `not_recognized`.
 
 Decisión documentada el 2026-05-21 tras feedback explícito del usuario: *"no sabemos en Australia la licencia náutica de su país es igual al PNB español"*.
 
@@ -99,6 +101,11 @@ Decisión documentada el 2026-05-21 tras feedback explícito del usuario: *"no s
 | 🇵🇱 PL | Sternik motorowodny | PNB |
 | 🇵🇱 PL | Morski sternik motorowodny | PER |
 | 🇵🇱 PL | Kapitan motorowodny | Patrón de Yate |
+| 🇦🇹 AT | FB1 (Fahrtbereich 1, costa ≤3 mn) | PNB |
+| 🇦🇹 AT | FB2 (Fahrtbereich 2, ≤20 mn) | PER |
+| 🇦🇹 AT | FB3 (Fahrtbereich 3, alta mar) | Patrón de Yate |
+| 🇭🇷 HR | Voditelj brodice kat. A | PNB |
+| 🇭🇷 HR | Voditelj brodice kat. B (≤18 m, ≤12 mn) | PER |
 
 **Fleet min**: PNB (la flota actual va de LBN/PNB a PER/PNB, ver `shared/boatData.ts`). Cualquier equivalente ≥ PNB → válido para los barcos con licencia.
 

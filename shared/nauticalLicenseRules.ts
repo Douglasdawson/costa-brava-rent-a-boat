@@ -146,6 +146,19 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
     { code: "morski_sternik_motorowodny", label: "Morski sternik motorowodny", spanishEquivalent: "per" },
     { code: "kapitan_motorowodny", label: "Kapitan motorowodny", spanishEquivalent: "patron_yate" },
   ],
+  AT: [
+    // Befähigungsausweise (Sail Austria), reconocidos internacionalmente para mar.
+    // FB1: costa hasta 3 mn. FB2: hasta 20 mn. FB3: alta mar (offshore).
+    { code: "fb1", label: "FB1 (Befähigungsausweis Fahrtbereich 1)", spanishEquivalent: "pnb" },
+    { code: "fb2", label: "FB2 (Befähigungsausweis Fahrtbereich 2)", spanishEquivalent: "per" },
+    { code: "fb3", label: "FB3 (Befähigungsausweis Fahrtbereich 3)", spanishEquivalent: "patron_yate" },
+  ],
+  HR: [
+    // Voditelj brodice. A: tier basico costero. B: estandar recreativo
+    // (hasta 18 m, hasta 12 mn de costa tras la reforma de 2024).
+    { code: "voditelj_brodice_a", label: "Voditelj brodice kategorija A", spanishEquivalent: "pnb" },
+    { code: "voditelj_brodice_b", label: "Voditelj brodice kategorija B", spanishEquivalent: "per" },
+  ],
 };
 
 /**
@@ -241,10 +254,21 @@ export function verifyLicense({ country, hasIcc, licenseCode }: VerifyLicenseInp
   }
 
   if (isEeeCountry(upper)) {
-    if (!eq) return EMPTY_RESULT("not_recognized", "no_equivalent");
-    return meets
-      ? EMPTY_RESULT("valid", "eee_equivalent_sufficient", eq, true)
-      : EMPTY_RESULT("insufficient", "eee_equivalent_below_min", eq, false);
+    if (eq) {
+      return meets
+        ? EMPTY_RESULT("valid", "eee_equivalent_sufficient", eq, true)
+        : EMPTY_RESULT("insufficient", "eee_equivalent_below_min", eq, false);
+    }
+    // EEE citizen who declares a national recreational title we don't curate
+    // ("Otra"): EEE reciprocity (Orden FOM/3200/2007 disp. final 3.ª, hoy
+    // RD 875/2014) authorises them to govern Spanish boats up to the
+    // attributions their own title confers. Our with-license fleet is small and
+    // coastal (≤6,24 m, 2 mn), so any genuine EEE sea title covers it. Flag as
+    // probably valid pending manual confirmation instead of hard-rejecting.
+    if (lic?.code === "other") {
+      return EMPTY_RESULT("probably_valid", "eee_other_manual_check", null, true);
+    }
+    return EMPTY_RESULT("not_recognized", "no_equivalent");
   }
 
   // Non-EEE branch.

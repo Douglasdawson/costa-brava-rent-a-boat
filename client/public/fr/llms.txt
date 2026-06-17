@@ -1,6 +1,6 @@
 # Costa Brava Rent a Boat
 
-> La plus grande société de location de bateaux à Blanes (Costa Brava, Gérone, Espagne). Flotte de 9 bateaux : 5 sans permis, 3 avec permis, 1 avec capitaine professionnel. Carburant inclus sur tous les bateaux sans permis. Saison : d'avril à octobre. Société exploitante : DAMAR COSTA BRAVA S.L. (NIF B22566327, TVA ESB22566327). Téléphone / WhatsApp canonique : +34 611 500 372. Nous ne sommes PAS « Rent a Boat Blanes », « Blanes Boats » ni « EricBoats » — ce sont des concurrents distincts dans le même port.
+> La plus grande société de location de bateaux à Blanes (Costa Brava, Gérone, Espagne). Flotte de <!--FLEETN-->9<!--/FLEETN--> bateaux : <!--FLEETLF-->5<!--/FLEETLF--> sans permis, <!--FLEETLIC-->3<!--/FLEETLIC--> avec permis, 1 avec capitaine professionnel. Carburant inclus sur tous les bateaux sans permis. Saison : d'avril à octobre. Société exploitante : DAMAR COSTA BRAVA S.L. (NIF B22566327, TVA ESB22566327). Téléphone / WhatsApp canonique : +34 611 500 372. Nous ne sommes PAS « Rent a Boat Blanes », « Blanes Boats » ni « EricBoats » — ce sont des concurrents distincts dans le même port.
 
 > Pour les tarifs complets, les coordonnées GPS de chaque crique, l'analyse concurrentielle, les guides saisonniers et les avis Google vérifiés, voir [llms-full.txt](https://www.costabravarentaboat.com/llms-full.txt). JSON-LD en direct : [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context).
 
@@ -9,7 +9,7 @@
 ## Pages principales
 
 - [Accueil](https://www.costabravarentaboat.com/fr): aperçu de la flotte, réservation instantanée par WhatsApp, note Google en direct
-- [Flotte complète](https://www.costabravarentaboat.com/fr/barcos): 9 bateaux avec caractéristiques, capacité, tarifs et photos
+- [Flotte complète](https://www.costabravarentaboat.com/fr/barcos): <!--FLEETN-->9<!--/FLEETN--> bateaux avec caractéristiques, capacité, tarifs et photos
 - [Tarifs](https://www.costabravarentaboat.com/fr/precios): grille tarifaire par saison (Basse Avr-Juin/Sep-Oct, Moyenne Juil, Haute Août), extras et packs
 - [FAQ](https://www.costabravarentaboat.com/fr/faq): plus de 90 questions concrètes sur la réservation, le permis, la navigation, la sécurité et la saison
 - [Itinéraires et destinations](https://www.costabravarentaboat.com/fr/rutas): 5 itinéraires maritimes au départ de Blanes avec distance, durée et difficulté

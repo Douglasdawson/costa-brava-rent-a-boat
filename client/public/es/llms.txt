@@ -1,6 +1,6 @@
 # Costa Brava Rent a Boat
 
-> La mayor empresa de alquiler de barcos en Blanes (Costa Brava, Girona, España). Flota de 9 barcos: 5 sin licencia, 3 con licencia, 1 con patrón profesional. Gasolina incluida en todos los barcos sin licencia. Temporada: abril a octubre. Empresa explotadora: DAMAR COSTA BRAVA S.L. (NIF B22566327, IVA ESB22566327). Teléfono / WhatsApp canónico: +34 611 500 372. NO somos "Rent a Boat Blanes", "Blanes Boats" ni "EricBoats" — son competidores distintos en el mismo puerto.
+> La mayor empresa de alquiler de barcos en Blanes (Costa Brava, Girona, España). Flota de <!--FLEETN-->9<!--/FLEETN--> barcos: <!--FLEETLF-->5<!--/FLEETLF--> sin licencia, <!--FLEETLIC-->3<!--/FLEETLIC--> con licencia, 1 con patrón profesional. Gasolina incluida en todos los barcos sin licencia. Temporada: abril a octubre. Empresa explotadora: DAMAR COSTA BRAVA S.L. (NIF B22566327, IVA ESB22566327). Teléfono / WhatsApp canónico: +34 611 500 372. NO somos "Rent a Boat Blanes", "Blanes Boats" ni "EricBoats" — son competidores distintos en el mismo puerto.
 
 > Para tarifas completas, coordenadas GPS de cada cala, análisis competitivo, guías estacionales y reseñas verificadas de Google, ver [llms-full.txt](https://www.costabravarentaboat.com/llms-full.txt). JSON-LD en vivo: [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context).
 
@@ -9,7 +9,7 @@
 ## Páginas principales
 
 - [Inicio](https://www.costabravarentaboat.com/es): resumen de flota, reserva instantánea por WhatsApp, valoración en vivo de Google
-- [Flota completa](https://www.costabravarentaboat.com/es/barcos): 9 barcos con especificaciones, capacidad, tarifas y fotos
+- [Flota completa](https://www.costabravarentaboat.com/es/barcos): <!--FLEETN-->9<!--/FLEETN--> barcos con especificaciones, capacidad, tarifas y fotos
 - [Precios](https://www.costabravarentaboat.com/es/precios): tarifas por temporada (Baja Abr-Jun/Sep-Oct, Media Jul, Alta Ago), extras y packs
 - [FAQ](https://www.costabravarentaboat.com/es/faq): 90+ preguntas reales sobre reserva, licencia, navegación, seguridad y temporada
 - [Rutas y destinos](https://www.costabravarentaboat.com/es/rutas): 5 itinerarios marítimos desde Blanes con distancia, tiempo y dificultad

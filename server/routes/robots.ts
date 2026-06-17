@@ -10,6 +10,7 @@ import { JETSKI_PRODUCTS, type JetSkiProduct } from "../../shared/jetskiProducts
 import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
 import { getCurrentStats } from "../lib/businessStatsCache";
+import { getFleetStats } from "../lib/fleetStatsCache";
 import {
   BUSINESS_DISPLAY_NAME,
   BUSINESS_LEGAL_NAME,
@@ -191,6 +192,14 @@ function renderBoatPricingTable(boat: BoatData): string {
  * between the PRICING_TABLES_START / END markers in llms-full.txt.
  */
 function generatePricingTables(): string {
+  // Only price boats that are live in the fleet (a CRM-deactivated hull like the
+  // Astec 400 must not appear as bookable). Names come from getFleetStats().
+  const fleet = getFleetStats();
+  const liveNames = new Set([
+    ...fleet.licenseFreeNames,
+    ...fleet.licensedNames,
+    ...fleet.captainNames,
+  ]);
   const sections: string[] = [];
   for (const group of PRICING_GROUPS) {
     sections.push(group.heading);
@@ -198,6 +207,7 @@ function generatePricingTables(): string {
     for (const item of group.items) {
       const boat = pickBoat(item.ids);
       if (!boat) continue;
+      if (liveNames.size > 0 && !liveNames.has(boat.name)) continue;
       sections.push("");
       sections.push(item.title);
       sections.push("");
@@ -489,6 +499,50 @@ function injectDynamicLlmsData(raw: string): string {
     } else {
       content = content.replace(reviewsSectionRegex, "\n");
     }
+  }
+
+  // 5) Align the fleet to the LIVE fleet. Surgical edits only (never a blunt
+  // text sweep — that corrupts per-boat prices and misses each language's
+  // subset phrasing):
+  //   a) drop bullet links to boats not currently offered (deactivated hull)
+  //   b) replace live values inside markers — the wording around them stays in
+  //      the (translated) file, the code only injects the value:
+  //        <!--FLEETN-->    total boats
+  //        <!--FLEETLF-->   license-free boats
+  //        <!--FLEETLIC-->  licensed boats
+  //        <!--FLEETFLOOR-->hourly price floor (license-free starting price)
+  //        <!--FLEETCHEAP-->name of the boat that sets the floor
+  //   c) rewrite the price-range low bound (language-agnostic "NN-NNN EUR")
+  // The static number inside each marker is the build-time fallback; the file
+  // is re-read per request and markers are stripped from the output.
+  try {
+    const fleet = getFleetStats();
+    const liveNames = new Set([
+      ...fleet.licenseFreeNames,
+      ...fleet.licensedNames,
+      ...fleet.captainNames,
+    ]);
+    if (liveNames.size > 0) {
+      for (const boat of Object.values(BOAT_DATA)) {
+        if (liveNames.has(boat.name)) continue;
+        const bulletRe = new RegExp(
+          `^- \\[[^\\]]*\\]\\([^)]*\\/barco\\/${boat.id}\\)[^\\n]*\\n`,
+          "gm",
+        );
+        content = content.replace(bulletRe, "");
+      }
+    }
+    content = content
+      .replace(/<!--FLEETN-->\d+<!--\/FLEETN-->/g, String(fleet.fleetCount))
+      .replace(/<!--FLEETLF-->\d+<!--\/FLEETLF-->/g, String(fleet.licenseFreeCount))
+      .replace(/<!--FLEETLIC-->\d+<!--\/FLEETLIC-->/g, String(fleet.licensedCount))
+      .replace(/<!--FLEETFLOOR-->\d+<!--\/FLEETFLOOR-->/g, String(fleet.priceFloor))
+      .replace(/<!--FLEETCHEAP-->[^<]*<!--\/FLEETCHEAP-->/g, fleet.cheapestBoatName)
+      .replace(/\b70-(\d{2,4}) EUR\b/g, `${fleet.priceFloor}-$1 EUR`);
+  } catch (error) {
+    logger.warn("[llms] fleet alignment failed, keeping static fleet copy", {
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 
   return content;

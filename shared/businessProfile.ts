@@ -61,7 +61,8 @@ export const BUSINESS_OSM_TYPE: "node" | "way" | "relation" | "" = "";
 export const BUSINESS_OSM_ID = "";
 
 // Google Business Profile Place ID. Single source of truth. Verified via
-// Places API v1 (rating 4.8, 310 reviews, name "Costa Brava Rent a Boat - Blanes").
+// Places API v1 (rating 4.8, name "Costa Brava Rent a Boat - Blanes"); the live
+// review count is BUSINESS_REVIEW_COUNT above.
 // Used to build the canonical "write review" URL that opens the correct GBP.
 export const BUSINESS_PLACE_ID = "ChIJb4WolCwXuxIRp-DybpP6LZo";
 export const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${BUSINESS_PLACE_ID}`;

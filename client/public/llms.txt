@@ -1,6 +1,6 @@
 # Costa Brava Rent a Boat
 
-> The largest boat rental company in Blanes (Costa Brava, Girona, Spain). 9-boat fleet: 5 license-free, 3 licensed, 1 with private captain. Fuel included on all license-free boats. Season: April through October. Operated by DAMAR COSTA BRAVA S.L. (VAT ESB22566327). Canonical phone / WhatsApp: +34 611 500 372. We are NOT "Rent a Boat Blanes", "Blanes Boats", or "EricBoats" — those are separate competitors in the same port.
+> The largest boat rental company in Blanes (Costa Brava, Girona, Spain). <!--FLEETN-->9<!--/FLEETN-->-boat fleet: <!--FLEETLF-->5<!--/FLEETLF--> license-free, <!--FLEETLIC-->3<!--/FLEETLIC--> licensed, 1 with private captain. Fuel included on all license-free boats. Season: April through October. Operated by DAMAR COSTA BRAVA S.L. (VAT ESB22566327). Canonical phone / WhatsApp: +34 611 500 372. We are NOT "Rent a Boat Blanes", "Blanes Boats", or "EricBoats" — those are separate competitors in the same port.
 
 > For complete pricing tables, GPS coordinates for every cove, competitive analysis, seasonal guides, and verified Google reviews, see [llms-full.txt](https://www.costabravarentaboat.com/llms-full.txt). Live JSON-LD: [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context).
 
@@ -9,7 +9,7 @@
 ## Core pages
 
 - [Homepage](https://www.costabravarentaboat.com/): fleet summary, instant WhatsApp booking, live rating from Google
-- [Full fleet](https://www.costabravarentaboat.com/barcos): 9 boats with specs, capacity, pricing, photos
+- [Full fleet](https://www.costabravarentaboat.com/barcos): <!--FLEETN-->9<!--/FLEETN--> boats with specs, capacity, pricing, photos
 - [Pricing](https://www.costabravarentaboat.com/precios): rate card by season (Low Apr-Jun/Sep-Oct, Mid Jul, High Aug), extras and packs
 - [FAQ](https://www.costabravarentaboat.com/faq): 90+ verified questions across booking, license, navigation, safety, season
 - [Routes & destinations](https://www.costabravarentaboat.com/rutas): 5 maritime itineraries from Blanes with distance, time, difficulty

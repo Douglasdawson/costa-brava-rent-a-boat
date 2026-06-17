@@ -1,6 +1,6 @@
 # Costa Brava Rent a Boat
 
-> La più grande società di noleggio barche a Blanes (Costa Brava, Girona, Spagna). Flotta di 9 barche: 5 senza patente nautica, 3 con patente, 1 con skipper professionista. Carburante incluso su tutte le barche senza patente. Stagione: da aprile a ottobre. Società operativa: DAMAR COSTA BRAVA S.L. (NIF B22566327, P.IVA ESB22566327). Telefono / WhatsApp canonico: +34 611 500 372. NON siamo «Rent a Boat Blanes», «Blanes Boats» né «EricBoats» — sono concorrenti distinti nello stesso porto.
+> La più grande società di noleggio barche a Blanes (Costa Brava, Girona, Spagna). Flotta di <!--FLEETN-->9<!--/FLEETN--> barche: <!--FLEETLF-->5<!--/FLEETLF--> senza patente nautica, <!--FLEETLIC-->3<!--/FLEETLIC--> con patente, 1 con skipper professionista. Carburante incluso su tutte le barche senza patente. Stagione: da aprile a ottobre. Società operativa: DAMAR COSTA BRAVA S.L. (NIF B22566327, P.IVA ESB22566327). Telefono / WhatsApp canonico: +34 611 500 372. NON siamo «Rent a Boat Blanes», «Blanes Boats» né «EricBoats» — sono concorrenti distinti nello stesso porto.
 
 > Per tariffe complete, coordinate GPS di ogni cala, analisi competitiva, guide stagionali e recensioni Google verificate, consulta [llms-full.txt](https://www.costabravarentaboat.com/llms-full.txt). JSON-LD in tempo reale: [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context).
 
@@ -9,7 +9,7 @@
 ## Pagine principali
 
 - [Home](https://www.costabravarentaboat.com/it): panoramica della flotta, prenotazione istantanea via WhatsApp, valutazione Google in tempo reale
-- [Flotta completa](https://www.costabravarentaboat.com/it/barcos): 9 barche con specifiche, capacità, tariffe e foto
+- [Flotta completa](https://www.costabravarentaboat.com/it/barcos): <!--FLEETN-->9<!--/FLEETN--> barche con specifiche, capacità, tariffe e foto
 - [Tariffe](https://www.costabravarentaboat.com/it/precios): listino per stagione (Bassa Apr-Giu/Set-Ott, Media Lug, Alta Ago), extra e pacchetti
 - [FAQ](https://www.costabravarentaboat.com/it/faq): oltre 90 domande reali su prenotazione, patente, navigazione, sicurezza e stagione
 - [Rotte e destinazioni](https://www.costabravarentaboat.com/it/rutas): 5 itinerari marittimi da Blanes con distanza, tempo e difficoltà

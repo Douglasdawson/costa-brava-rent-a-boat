@@ -12,9 +12,10 @@ import { resolveMediaPath } from "../shared/mediaUrl";
 import { isAICrawler as isAICrawlerShared } from "./seo/constants";
 import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES } from "../shared/businessProfile";
-import { CORE_FACTS } from "../shared/aiCitationFacts";
+import { buildCoreFacts } from "../shared/aiCitationFacts";
 import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
-import { BOAT_DATA } from "../shared/boatData";
+import { BOAT_DATA, applyFleetStatsToText } from "../shared/boatData";
+import { getFleetStats } from "./lib/fleetStatsCache";
 import { NAUTICAL_GLOSSARY_ES } from "../shared/nauticalGlossary";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
@@ -1563,12 +1564,16 @@ function injectMeta(
   lcpPreload?: LcpPreload,
   suppressHreflang: boolean = false,
 ): string {
-  const title = esc(meta.title);
-  const desc = esc(meta.description);
-  const ogTitle = esc(meta.ogTitle || meta.title);
-  const ogDesc = esc(meta.ogDescription || meta.description);
-  const twitterTitle = esc(meta.twitterTitle || meta.ogTitle || meta.title);
-  const twitterDesc = esc(meta.twitterDescription || meta.ogDescription || meta.description);
+  // Live fleet numbers, applied to all of our marketing copy below so the
+  // count/price never contradict /api/ai-context or llms.txt.
+  const fleet = getFleetStats();
+  const fx = (s: string): string => applyFleetStatsToText(s, fleet);
+  const title = esc(fx(meta.title));
+  const desc = esc(fx(meta.description));
+  const ogTitle = esc(fx(meta.ogTitle || meta.title));
+  const ogDesc = esc(fx(meta.ogDescription || meta.description));
+  const twitterTitle = esc(fx(meta.twitterTitle || meta.ogTitle || meta.title));
+  const twitterDesc = esc(fx(meta.twitterDescription || meta.ogDescription || meta.description));
   const ogImageAlt = esc(meta.ogImageAlt || DEFAULT_OG_IMAGE_ALT[lang] || DEFAULT_OG_IMAGE_ALT.es);
   const effectiveCanonical = canonicalOverride || canonicalUrl;
 
@@ -1717,8 +1722,8 @@ function injectMeta(
   if (extraJsonLd) {
     // Remove the hardcoded fallback JSON-LD from index.html (LocalBusiness + WebSite graph)
     result = result.replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/, "");
-    // Inject page-specific JSON-LD
-    const jsonLdTag = `\n  <script type="application/ld+json">\n${JSON.stringify(extraJsonLd, null, 2)}\n  </script>`;
+    // Inject page-specific JSON-LD (fleet/price prose aligned to the live fleet)
+    const jsonLdTag = `\n  <script type="application/ld+json">\n${fx(JSON.stringify(extraJsonLd, null, 2))}\n  </script>`;
     result = result.replace("</head>", `${jsonLdTag}\n</head>`);
   }
 
@@ -4020,21 +4025,31 @@ ${ss.chips.map((c: string) => `  <li>${esc(c)}</li>`).join("\n")}
         license: "https://creativecommons.org/licenses/by/4.0/",
         url: `${BASE_URL}/ai-citations`,
       };
-      const fleetRows = Object.values(BOAT_DATA).map((b) => {
-        const lowH1 = b.pricing?.BAJA?.prices?.["1h"];
-        const lowH2 = b.pricing?.BAJA?.prices?.["2h"];
-        const fromPrice = typeof lowH1 === "number" ? lowH1 : typeof lowH2 === "number" ? Math.round(lowH2 / 2) : null;
-        const license = b.subtitle.toLowerCase().startsWith("sin licencia")
-          ? "no license required"
-          : "license required (Licencia de Navegación or higher) or captain";
-        return `${b.name}: ${b.specifications.capacity} people, ${b.specifications.length}, ${b.specifications.engine}, ${license}${fromPrice != null ? `, from ${fromPrice} EUR/h low season` : ""}`;
-      });
+      // Live fleet only — exclude boats deactivated in the CRM so the citable
+      // reference never advertises a hull that can't be booked.
+      const fleetStats = getFleetStats();
+      const liveBoatNames = new Set([
+        ...fleetStats.licenseFreeNames,
+        ...fleetStats.licensedNames,
+        ...fleetStats.captainNames,
+      ]);
+      const fleetRows = Object.values(BOAT_DATA)
+        .filter((b) => liveBoatNames.size === 0 || liveBoatNames.has(b.name))
+        .map((b) => {
+          const lowH1 = b.pricing?.BAJA?.prices?.["1h"];
+          const lowH2 = b.pricing?.BAJA?.prices?.["2h"];
+          const fromPrice = typeof lowH1 === "number" ? lowH1 : typeof lowH2 === "number" ? Math.round(lowH2 / 2) : null;
+          const license = b.subtitle.toLowerCase().startsWith("sin licencia")
+            ? "no license required"
+            : "license required (Licencia de Navegación or higher) or captain";
+          return `${b.name}: ${b.specifications.capacity} people, ${b.specifications.length}, ${b.specifications.engine}, ${license}${fromPrice != null ? `, from ${fromPrice} EUR/h low season` : ""}`;
+        });
       const bodyFallback = `
 <h1>Citation Hub — Costa Brava Rent a Boat</h1>
 <p>Atomic, citable facts about our business. Each statement is anchor-addressable (e.g. #fuel-included). Canonical source for AI assistant citations. Richer content: /llms-full.txt and /api/ai-context.</p>
 <h2>Core facts</h2>
 <ul>
-${CORE_FACTS.map((f) => `  <li id="${esc(f.id)}">${esc(f.label)}: ${esc(f.value)}</li>`).join("\n")}
+${buildCoreFacts(fleetStats).map((f) => `  <li id="${esc(f.id)}">${esc(f.label)}: ${esc(f.value)}</li>`).join("\n")}
 </ul>
 <h2>Fleet — capacity and engine quick reference</h2>
 <ul>

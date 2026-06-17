@@ -633,6 +633,158 @@ export function boatIncludesFuel(boatId: string, requiresLicense: boolean | null
   return true;
 }
 
+// ---------------------------------------------------------------------------
+// Live fleet statistics (single source for "N boats / from X€/h" copy)
+// ---------------------------------------------------------------------------
+//
+// The CATALOG is the 9 boats above. The LIVE fleet is the subset with
+// `is_active` in the DB (managed from the CRM). The owner deactivated the
+// Astec 400 on 2026-05-29, so today the live fleet is 8 (4 license-free + 3
+// licensed + 1 captained excursion) and the cheapest license-free boat is
+// 75 EUR/h. Machine-readable surfaces (meta, llms.txt, ai-citations) must
+// reflect the LIVE fleet, not the catalog — see CLAUDE.md "Flota viva".
+//
+// These helpers compute the stats from whatever active set they're given, so
+// the numbers track the CRM toggle automatically and never need hand-editing.
+
+// Boats currently deactivated in the live fleet. Used ONLY as the static
+// fallback when the DB isn't reachable (so the fallback still yields 8/75, not
+// the catalog's 9/70). The DB `is_active` column is the real source of truth;
+// update this list if the owner permanently changes which hull is offered.
+export const BASELINE_INACTIVE_BOAT_IDS: readonly string[] = ["astec-400"];
+
+export interface FleetStatBoat {
+  id: string;
+  name: string;
+  requiresLicense: boolean;
+  pricing?: { BAJA?: { prices?: { [key: string]: number } } } | null;
+}
+
+export interface FleetStats {
+  /** Total live boats across all categories (incl. captained excursion). */
+  fleetCount: number;
+  /** Self-drive license-free boats (no license, fuel included). */
+  licenseFreeCount: number;
+  /** Boats requiring a navigation license. */
+  licensedCount: number;
+  /** Captained excursion offerings (no license needed, fuel NOT included). */
+  captainCount: number;
+  /** Names of the live license-free boats, in catalog order. */
+  licenseFreeNames: string[];
+  /** Names of the live licensed boats, in catalog order. */
+  licensedNames: string[];
+  /** Names of the live captained excursion offerings. */
+  captainNames: string[];
+  /** Lowest advertised hourly rate (BAJA "1h") across the live fleet. */
+  priceFloor: number;
+  /** Name of the boat that sets the price floor (e.g. "Solar 450"). */
+  cheapestBoatName: string;
+}
+
+/**
+ * Compute fleet statistics from a set of boats. Pure and testable: pass the
+ * LIVE (active) set and you get the live numbers; pass the full catalog and you
+ * get the catalog numbers. Categorisation reuses {@link isCaptainedBoat} and
+ * the boat's own `requiresLicense` flag — never derived from a regex by callers.
+ */
+export function computeFleetStats(boats: FleetStatBoat[]): FleetStats {
+  const licenseFreeNames: string[] = [];
+  const licensedNames: string[] = [];
+  const captainNames: string[] = [];
+  let priceFloor = Infinity;
+  let cheapestBoatName = "";
+
+  for (const boat of boats) {
+    if (isCaptainedBoat(boat.id)) {
+      captainNames.push(boat.name);
+    } else if (boat.requiresLicense) {
+      licensedNames.push(boat.name);
+    } else {
+      licenseFreeNames.push(boat.name);
+    }
+
+    // Only self-drive boats advertise an hourly ("1h") rate; licensed boats and
+    // the captained excursion start at multi-hour blocks, so they naturally do
+    // not set the "from X€/h" floor.
+    const hourly = boat.pricing?.BAJA?.prices?.["1h"];
+    if (typeof hourly === "number" && hourly > 0 && hourly < priceFloor) {
+      priceFloor = hourly;
+      cheapestBoatName = boat.name;
+    }
+  }
+
+  return {
+    fleetCount: boats.length,
+    licenseFreeCount: licenseFreeNames.length,
+    licensedCount: licensedNames.length,
+    captainCount: captainNames.length,
+    licenseFreeNames,
+    licensedNames,
+    captainNames,
+    priceFloor: Number.isFinite(priceFloor) ? priceFloor : 0,
+    cheapestBoatName,
+  };
+}
+
+/**
+ * Whether a catalog boat requires a navigation license, derived from its
+ * features. Only used to normalise the static {@link BOAT_DATA} catalog into
+ * {@link FleetStatBoat}s for the fallback path; live DB rows carry their own
+ * `requiresLicense` boolean.
+ */
+export function boatDataRequiresLicense(boat: BoatData): boolean {
+  return boat.features.some((f) => /licencia de navegaci/i.test(f));
+}
+
+/**
+ * Fleet stats computed from the static catalog minus the given inactive ids
+ * (defaults to {@link BASELINE_INACTIVE_BOAT_IDS}). This is the offline
+ * fallback for the server cache and the default for client-side surfaces that
+ * can't await a DB lookup.
+ */
+export function catalogFleetStats(
+  excludeIds: readonly string[] = BASELINE_INACTIVE_BOAT_IDS,
+): FleetStats {
+  const exclude = new Set(excludeIds);
+  const boats: FleetStatBoat[] = Object.values(BOAT_DATA)
+    .filter((b) => !exclude.has(b.id))
+    .map((b) => ({
+      id: b.id,
+      name: b.name,
+      requiresLicense: boatDataRequiresLicense(b),
+      pricing: b.pricing,
+    }));
+  return computeFleetStats(boats);
+}
+
+/**
+ * Rewrite fleet-count and price-floor literals in our own marketing copy,
+ * JSON-LD prose and llms.txt to match the LIVE fleet. The catalog is "9 boats
+ * from 70€/h" but the live fleet (Astec 400 deactivated) is "8 from 75€/h", so
+ * static strings drift. Patterns are deliberately tight:
+ *   • the price floor only matches "70" immediately followed by a currency
+ *     token, so numeric JSON-LD fields ("price":"70") are never touched;
+ *   • fleet/subset counts require a boat noun (or "license-free"), so capacities
+ *     ("5 personas", "hasta 7 personas") are never touched.
+ * Keeping these accurate to the live fleet is correct on every surface, so it is
+ * safe to run over assembled JSON-LD (incl. boat/blog schemas) and llms.txt.
+ */
+export function applyFleetStatsToText(text: string, stats: FleetStats): string {
+  const floor = String(stats.priceFloor);
+  return text
+    .replace(/\b9-boat fleet\b/g, `${stats.fleetCount}-boat fleet`)
+    .replace(
+      /\b9 (boats|barcos|embarcaciones|vaixells|Boote|boten|barche)\b/g,
+      `${stats.fleetCount} $1`,
+    )
+    .replace(
+      /\b5 (license-free|barcos|boats|Boote|barche|boten|vaixells)\b/gi,
+      `${stats.licenseFreeCount} $1`,
+    )
+    .replace(/\b70-(\d{2,4}) EUR\b/g, `${floor}-$1 EUR`)
+    .replace(/\b70(?=\s?(?:€|EUR\b))/g, floor);
+}
+
 export interface ExtraPack {
   id: string;
   name: string;

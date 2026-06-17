@@ -1,6 +1,6 @@
 # Costa Brava Rent a Boat
 
-> Der größte Bootsverleih in Blanes (Costa Brava, Girona, Spanien). Flotte mit 9 Booten: 5 ohne Bootsführerschein, 3 mit Bootsführerschein, 1 mit professionellem Skipper. Kraftstoff bei allen Booten ohne Bootsführerschein inklusive. Saison: April bis Oktober. Betreibergesellschaft: DAMAR COSTA BRAVA S.L. (NIF B22566327, USt.-IdNr. ESB22566327). Kanonische Telefon- / WhatsApp-Nummer: +34 611 500 372. Wir sind NICHT „Rent a Boat Blanes“, „Blanes Boats“ oder „EricBoats“ — das sind eigenständige Mitbewerber im selben Hafen.
+> Der größte Bootsverleih in Blanes (Costa Brava, Girona, Spanien). Flotte mit <!--FLEETN-->9<!--/FLEETN--> Booten: <!--FLEETLF-->5<!--/FLEETLF--> ohne Bootsführerschein, <!--FLEETLIC-->3<!--/FLEETLIC--> mit Bootsführerschein, 1 mit professionellem Skipper. Kraftstoff bei allen Booten ohne Bootsführerschein inklusive. Saison: April bis Oktober. Betreibergesellschaft: DAMAR COSTA BRAVA S.L. (NIF B22566327, USt.-IdNr. ESB22566327). Kanonische Telefon- / WhatsApp-Nummer: +34 611 500 372. Wir sind NICHT „Rent a Boat Blanes“, „Blanes Boats“ oder „EricBoats“ — das sind eigenständige Mitbewerber im selben Hafen.
 
 > Vollständige Preislisten, GPS-Koordinaten jeder Bucht, Wettbewerbsanalyse, Saisonleitfäden und verifizierte Google-Bewertungen finden Sie in [llms-full.txt](https://www.costabravarentaboat.com/llms-full.txt). Live-JSON-LD: [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context).
 
@@ -9,7 +9,7 @@
 ## Hauptseiten
 
 - [Startseite](https://www.costabravarentaboat.com/de): Flottenübersicht, Sofortbuchung per WhatsApp, Live-Bewertung von Google
-- [Komplette Flotte](https://www.costabravarentaboat.com/de/barcos): 9 Boote mit technischen Daten, Kapazität, Preisen und Fotos
+- [Komplette Flotte](https://www.costabravarentaboat.com/de/barcos): <!--FLEETN-->9<!--/FLEETN--> Boote mit technischen Daten, Kapazität, Preisen und Fotos
 - [Preise](https://www.costabravarentaboat.com/de/precios): Tarife nach Saison (Nebensaison Apr-Jun/Sep-Okt, Mittelsaison Jul, Hauptsaison Aug), Extras und Pakete
 - [FAQ](https://www.costabravarentaboat.com/de/faq): über 90 echte Fragen zu Buchung, Bootsführerschein, Navigation, Sicherheit und Saison
 - [Routen und Ziele](https://www.costabravarentaboat.com/de/rutas): 5 maritime Routen ab Blanes mit Entfernung, Fahrzeit und Schwierigkeitsgrad

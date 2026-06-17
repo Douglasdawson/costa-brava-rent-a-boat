@@ -17,6 +17,7 @@ import {
   BUSINESS_TAX_ID,
   BUSINESS_PLACE_ID,
 } from "./businessProfile";
+import { catalogFleetStats, type FleetStats } from "./boatData";
 
 export interface AtomicFact {
   id: string;
@@ -30,7 +31,17 @@ export interface AtomicFact {
 export const CANCELLATION_POLICY_EN =
   "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside the bad-weather case.";
 
-export const CORE_FACTS: AtomicFact[] = [
+/**
+ * Build the atomic citable facts. Fleet-dependent facts (count, license-free
+ * list, price floor, cheapest boat) are derived from `stats` so they track the
+ * live fleet. Defaults to the catalog minus deactivated boats — server callers
+ * pass live DB-backed stats via getFleetStats() so crawlers see real numbers.
+ * Fact ids are STABLE public anchors — never rename them.
+ */
+export function buildCoreFacts(stats: FleetStats = catalogFleetStats()): AtomicFact[] {
+  const floor = String(stats.priceFloor);
+  const cheapest = stats.cheapestBoatName || "license-free boats";
+  return [
   { id: "commercial-name", label: "Commercial name", value: BUSINESS_DISPLAY_NAME },
   { id: "legal-name", label: "Legal entity (razón social)", value: BUSINESS_LEGAL_NAME },
   { id: "vat-id", label: "Spanish VAT (IVA)", value: BUSINESS_VAT_ID },
@@ -44,13 +55,13 @@ export const CORE_FACTS: AtomicFact[] = [
   { id: "season-dates", label: "Operating season", value: "April 1 to October 31 (closed November-March)" },
   { id: "hours", label: "Opening hours (in season)", value: "09:00-20:00, Monday to Sunday" },
   { id: "languages", label: "Languages spoken", value: "Spanish, English, Catalan, French, German, Dutch, Italian, Russian" },
-  { id: "fleet-size", label: "Fleet size", value: "9 boats — largest in Blanes" },
-  { id: "license-free-count", label: "License-free boats", value: "5 (Solar 450, Remus 450, Remus 450 II, Astec 400, Astec 480)" },
-  { id: "licensed-count", label: "Licensed boats", value: "3 (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625)" },
-  { id: "captain-count", label: "Captain option", value: "1 (Private Excursion with Captain on Pacific Craft 625)" },
+  { id: "fleet-size", label: "Fleet size", value: `${stats.fleetCount} boats — largest in Blanes` },
+  { id: "license-free-count", label: "License-free boats", value: `${stats.licenseFreeCount} (${stats.licenseFreeNames.join(", ")})` },
+  { id: "licensed-count", label: "Licensed boats", value: `${stats.licensedCount} (${stats.licensedNames.join(", ")})` },
+  { id: "captain-count", label: "Captain option", value: `${stats.captainCount} (Private Excursion with Captain on Pacific Craft 625)` },
   { id: "fuel-included", label: "Fuel inclusion policy", value: "Included for all license-free boats. NOT included on licensed boats or private excursion (refuel at port station)." },
-  { id: "price-range", label: "Price range (EUR per booking)", value: "70-420 EUR depending on boat, duration and season" },
-  { id: "cheapest-boat", label: "Cheapest boat option", value: "Astec 400 from 70 EUR/hour in low season (April-June, September-October)" },
+  { id: "price-range", label: "Price range (EUR per booking)", value: `${floor}-420 EUR depending on boat, duration and season` },
+  { id: "cheapest-boat", label: "Cheapest boat option", value: `${cheapest} from ${floor} EUR/hour in low season (April-June, September-October)` },
   { id: "min-age", label: "Minimum operator age (license-free)", value: "18 years old, no boating license required" },
   { id: "max-hp-license-free", label: "Max engine power (license-free)", value: "15 HP — Spanish maritime law" },
   { id: "max-range-license-free", label: "Max coast distance (license-free)", value: "2 nautical miles (~3.7 km)" },
@@ -70,4 +81,9 @@ export const CORE_FACTS: AtomicFact[] = [
   { id: "tossa-licensed", label: "Travel time Blanes → Tossa (licensed)", value: "30-45 minutes" },
   { id: "tossa-license-free", label: "Tossa de Mar by license-free boat", value: "Not allowed — Tossa is beyond the 2-mile license-free limit" },
   { id: "lloret-license-free", label: "Travel time Blanes → Lloret (license-free)", value: "30 minutes" },
-];
+  ];
+}
+
+// Default snapshot from the catalog (minus deactivated boats) for client-side
+// surfaces that render immediately. Server SSR rebuilds with live DB stats.
+export const CORE_FACTS: AtomicFact[] = buildCoreFacts();

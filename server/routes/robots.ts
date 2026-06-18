@@ -12,6 +12,7 @@ import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
 import { getCurrentStats } from "../lib/businessStatsCache";
 import { getFleetStats } from "../lib/fleetStatsCache";
 import {
+  BUSINESS_APPLE_MAPS_URL,
   BUSINESS_DISPLAY_NAME,
   BUSINESS_LEGAL_NAME,
   BUSINESS_OSM_ID,
@@ -913,6 +914,7 @@ export function registerRobotsRoutes(app: Express): void {
         "https://www.linkedin.com/company/costabravarentaboat",
         "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
         "https://coastrent.es",
+        ...(BUSINESS_APPLE_MAPS_URL ? [BUSINESS_APPLE_MAPS_URL] : []),
         ...(osmUri ? [osmUri] : []),
         ...(wikidataUri ? [wikidataUri] : []),
       ];

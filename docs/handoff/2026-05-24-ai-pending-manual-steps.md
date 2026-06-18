@@ -180,6 +180,71 @@ Publisher contact:
 
 ---
 
+## 4. Bing IndexNow — clave activada (2026-06-18)
+
+**Por qué importa**: ChatGPT Search se apoya en el índice de Bing. Toda la
+tubería IndexNow (notificación instantánea a Bing + Yandex al arrancar, por
+cron diario y al publicar blog) ya estaba construida en
+`server/seo/indexnow.ts`, pero hacía `return` en silencio porque faltaba la
+variable de entorno.
+
+### Estado
+
+- ✅ `INDEXNOW_KEY` añadida al `.env` local y a **Replit Secrets** (owner, 2026-06-18).
+- ✅ El fichero de verificación `/{KEY}.txt` se sirve dinámicamente
+  (`server/routes/sitemaps.ts`, handler `/:key.txt`) — no hay que subir nada.
+- ⏳ **Falta Replit Publish** para que el binario en prod lea la nueva env var
+  y empiece a notificar.
+
+No requiere cambios de código: solo el Publish.
+
+---
+
+## 5. Apple Business Connect — ficha reclamada y corregida (2026-06-18)
+
+**Por qué importa**: para un negocio local, las respuestas de Siri / Spotlight /
+Safari en iPhone salen de la ficha de Apple Maps (el equivalente Apple de Google
+Business Profile). Applebot además usa el cluster `sameAs` del JSON-LD para
+unificar la identidad del negocio.
+
+La ficha **ya existía**, auto-generada por Apple desde Tripadvisor (reseñas TA
+4,1 ★ / 10), en estado "Incompleto" y sin verificar. Gestionada en
+`business.apple.com` con el Apple ID de Ivan.
+
+URL pública de la ficha: `https://maps.apple.com/place?auid=15708885112757907259`
+
+### Hecho (vía navegador, Claude condujo + owner logueado)
+
+- **Código**: `BUSINESS_APPLE_MAPS_URL` en `shared/businessProfile.ts` apunta a
+  esa URL; entra en el `sameAs[]` del JSON-LD (`server/routes/robots.ts`,
+  endpoint `/api/ai-context`). Mismo patrón opcional que OSM/Wikidata (vacío =
+  se omite, sin link muerto).
+- **Ficha**: categoría Dive Charter → **Boat Rental** (location + brand);
+  horario 19:00 → **20:00** (canónico 09-20); descripción EN añadida; nombre de
+  marca capitalizado a "Costa Brava Rent a Boat - Blanes"; categoría adicional
+  de marca "Boat Charter" (correcta: excursión con patrón). Marca reenviada a
+  revisión de Apple (hasta 5 días laborables).
+
+### Pendiente del owner (no automatizable — requiere su identidad)
+
+1. **Verificar la ubicación** ("Verificar ahora" en la página de la ficha, o el
+   flujo "Verificar con la app Cartera" desde el iPhone). Hasta verificar, los
+   cambios de arriba quedan en cola y el teléfono/acciones siguen bloqueados.
+   El diálogo de métodos salió vacío en escritorio el 2026-06-18; probar desde
+   iPhone (Apple Wallet) o reintentar más tarde.
+2. **Teléfono**: la ficha tiene `+34 683 172 154` (heredado de Tripadvisor); el
+   canónico es **+34 611 500 372**. Editable solo tras verificar. ⚠️ Si Apple
+   ofrece verificación por teléfono, llamará al 683 (el de ficha), no al 611.
+3. **Fotos**: vacías, subir reales de la flota.
+
+### Tras el push
+
+`/api/ai-context` añade automáticamente `https://maps.apple.com/place?auid=...`
+al `sameAs[]` del nodo LocalBusiness. **Falta Replit Publish** para que llegue
+a prod (junto con la clave IndexNow de la sección 4).
+
+---
+
 ## Apéndice — Wikidata (NO recomendado para SMB, pero corregido por si acaso)
 
 Riesgo alto de borrado por política de notabilidad WD:N. Solo intentar si

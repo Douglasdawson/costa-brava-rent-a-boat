@@ -60,6 +60,14 @@ export const BUSINESS_WIKIDATA_QID = "";
 export const BUSINESS_OSM_TYPE: "node" | "way" | "relation" | "" = "";
 export const BUSINESS_OSM_ID = "";
 
+// Apple Maps place URL (maps.apple.com/place?...). Apple's Applebot reads the
+// sameAs cluster to unify the entity, and Siri / Spotlight / Safari local
+// answers for an iPhone user are driven by the Apple Maps listing — the Apple
+// equivalent of Google Business Profile. Claim the listing for free at
+// businessconnect.apple.com, then paste the canonical place URL here. Empty
+// value is omitted from JSON-LD sameAs[] downstream (no dead link).
+export const BUSINESS_APPLE_MAPS_URL = "https://maps.apple.com/place?auid=15708885112757907259";
+
 // Google Business Profile Place ID. Single source of truth. Verified via
 // Places API v1 (rating 4.8, name "Costa Brava Rent a Boat - Blanes"); the live
 // review count is BUSINESS_REVIEW_COUNT above.

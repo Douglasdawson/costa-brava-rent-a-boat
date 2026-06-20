@@ -209,6 +209,31 @@ export async function cancelBookingByToken(token: string): Promise<{ booking: Bo
   return { booking: updated, refundAmount: 0, refundPercentage: 0 };
 }
 
+/**
+ * Booking requests awaiting the team's action. A "requested" booking is a
+ * submitted reservation request that hasn't been confirmed or cancelled yet --
+ * exactly the warm lead that goes cold if nobody follows up. Surfaced in the
+ * CRM as a safety net that is independent of the email/WhatsApp notification
+ * channels (which can silently break when an env var is lost in prod).
+ */
+export async function getUnattendedBookingRequests(params: {
+  sinceDays?: number;
+  limit?: number;
+} = {}): Promise<Booking[]> {
+  const { sinceDays = 30, limit = 50 } = params;
+  return await db
+    .select()
+    .from(bookings)
+    .where(
+      and(
+        eq(bookings.bookingStatus, "requested"),
+        gte(bookings.createdAt, sql`NOW() - (${sinceDays} * INTERVAL '1 day')`)
+      )
+    )
+    .orderBy(desc(bookings.createdAt))
+    .limit(limit);
+}
+
 export async function getPaginatedBookings(params: {
   page: number;
   limit: number;

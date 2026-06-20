@@ -29,6 +29,7 @@ import { registerInquiryRoutes } from "./inquiries";
 import { registerJetskiRoutes } from "./jetski";
 import { registerMetaWebhookRoutes } from "./metaWebhook";
 import { registerHealthRoutes } from "./health";
+import { registerAdminIntegrationsRoutes, logIntegrationsHealthOnStartup } from "./admin-integrations";
 import { registerCompanyRoutes } from "./company";
 import { registerAnalyticsRoutes } from "./admin-analytics";
 import { registerMetaCAPIRoutes } from "./meta-capi";
@@ -93,6 +94,7 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   registerJetskiRoutes(app);
   registerMetaWebhookRoutes(app);
   registerHealthRoutes(app);
+  registerAdminIntegrationsRoutes(app);
   registerCompanyRoutes(app);
   registerAnalyticsRoutes(app);
   registerMetaCAPIRoutes(app);
@@ -185,6 +187,11 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
 
   // Start background scheduled services (email reminders, thank-you emails)
   startScheduledServices();
+
+  // Log a one-line verdict on revenue-critical integrations so a deploy that
+  // silently lost an env var (e.g. SENDGRID_API_KEY -> no lead notifications) is
+  // visible in the logs without anyone hitting the diagnostic endpoint.
+  logIntegrationsHealthOnStartup();
 
   // Return existing server if provided (pre-created in index.ts for early listening),
   // otherwise create a new one.

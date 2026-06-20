@@ -1,8 +1,31 @@
 import {
-  db, eq, and, or, sql,
+  db, eq, and, or, gte, sql, desc,
   whatsappInquiries,
   type WhatsappInquiry, type InsertWhatsappInquiry, type UpdateWhatsappInquiry,
 } from "./base";
+
+/**
+ * Inquiries still waiting for first contact (status 'pending'). These are warm
+ * leads that left their details but nobody has reached out to yet. Surfaced in
+ * the CRM as a safety net independent of email/WhatsApp notifications.
+ */
+export async function getPendingInquiries(params: {
+  sinceDays?: number;
+  limit?: number;
+} = {}): Promise<WhatsappInquiry[]> {
+  const { sinceDays = 30, limit = 50 } = params;
+  return await db
+    .select()
+    .from(whatsappInquiries)
+    .where(
+      and(
+        eq(whatsappInquiries.status, "pending"),
+        gte(whatsappInquiries.createdAt, sql`NOW() - (${sinceDays} * INTERVAL '1 day')`)
+      )
+    )
+    .orderBy(desc(whatsappInquiries.createdAt))
+    .limit(limit);
+}
 
 export async function getWhatsappInquiry(id: string, tenantId?: string): Promise<WhatsappInquiry | undefined> {
   const conditions = [eq(whatsappInquiries.id, id)];

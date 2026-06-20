@@ -31,6 +31,24 @@ interface PaginatedInquiries {
   totalPages: number;
 }
 
+interface UnattendedBookingRequest {
+  id: string;
+  customerName: string;
+  boatId: string;
+  bookingDate: string | null;
+  startTime: string | null;
+  totalAmount: string | null;
+  customerPhone: string | null;
+  language: string | null;
+  createdAt: string;
+}
+
+interface UnattendedLeads {
+  counts: { bookingRequests: number; pendingInquiries: number; total: number };
+  bookingRequests: UnattendedBookingRequest[];
+  pendingInquiries: unknown[];
+}
+
 // --- Helpers ---
 
 function timeUntil(date: Date): string {
@@ -144,6 +162,22 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
     },
   });
   const inquiries = inquiriesResponse?.data ?? [];
+
+  // Warm leads waiting for the team -- channel-independent safety net. Booking
+  // requests in "requested" status are the hottest leads (they completed the
+  // whole wizard) yet they only live in the bookings list; surface them here so
+  // they're impossible to miss even when email/WhatsApp notifications are down.
+  const { data: unattended } = useQuery<UnattendedLeads>({
+    queryKey: ["/api/admin/unattended-leads"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/unattended-leads", { credentials: "include" });
+      if (!res.ok) throw new Error("Error fetching unattended leads");
+      return res.json();
+    },
+    refetchInterval: 60_000,
+  });
+  const bookingRequests = unattended?.bookingRequests ?? [];
+  const pendingInquiriesCount = unattended?.counts.pendingInquiries ?? 0;
 
   const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
 
@@ -262,6 +296,61 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
 
   return (
     <div className="space-y-2">
+      {/* SOLICITUDES SIN ATENDER -- top priority. Safety net independent of the
+          email/WhatsApp notification channels: a request that completed the
+          wizard but isn't confirmed is a hot lead that goes cold if unseen. */}
+      {bookingRequests.length > 0 && (
+        <div className="rounded-lg border border-destructive/40 bg-destructive/10 p-3 space-y-2">
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4 text-destructive flex-shrink-0" />
+            <p className="text-sm font-semibold text-foreground">
+              {bookingRequests.length}{" "}
+              {bookingRequests.length === 1 ? "solicitud sin atender" : "solicitudes sin atender"}
+            </p>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Completaron la reserva pero falta confirmarla. Contacta cuanto antes para no perder al cliente.
+          </p>
+          <div className="space-y-1">
+            {bookingRequests.slice(0, 6).map((req) => (
+              <div
+                key={req.id}
+                className="flex items-center justify-between gap-3 px-2 py-2 rounded-md bg-background/60 cursor-pointer hover:bg-background transition-colors min-h-[44px]"
+                onClick={() => onViewBooking(req.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onViewBooking(req.id);
+                  }
+                }}
+              >
+                <span className="text-sm text-foreground truncate">
+                  {req.customerName || "Cliente"} &middot; {boatName(req.boatId)}
+                  {req.bookingDate && (
+                    <>
+                      {" · "}
+                      {format(new Date(req.bookingDate + "T00:00:00"), "d MMM", { locale: es })}
+                    </>
+                  )}
+                </span>
+                <span className="text-xs text-destructive whitespace-nowrap flex-shrink-0">
+                  hace {timeOverdue(new Date(req.createdAt))}
+                </span>
+              </div>
+            ))}
+          </div>
+          {pendingInquiriesCount > 0 && (
+            <p className="text-xs text-muted-foreground">
+              {"+ "}
+              {pendingInquiriesCount}{" "}
+              {pendingInquiriesCount === 1 ? "consulta sin contactar" : "consultas sin contactar"} (ver Peticiones)
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Status bar */}
       <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
         <span className="font-medium text-foreground">{enAgua.length} en agua</span>

@@ -109,6 +109,7 @@ export const storage = {
   getBookingByCancelationToken: bookingRepo.getBookingByCancelationToken,
   cancelBookingByToken: bookingRepo.cancelBookingByToken,
   getPaginatedBookings: bookingRepo.getPaginatedBookings,
+  getUnattendedBookingRequests: bookingRepo.getUnattendedBookingRequests,
   getBookingsForCalendar: bookingRepo.getBookingsForCalendar,
   createBookingExtra: bookingRepo.createBookingExtra,
   getBookingExtras: bookingRepo.getBookingExtras,
@@ -247,6 +248,7 @@ export const storage = {
   getWhatsappInquiry: inquiryRepo.getWhatsappInquiry,
   createWhatsappInquiry: inquiryRepo.createWhatsappInquiry,
   getPaginatedInquiries: inquiryRepo.getPaginatedInquiries,
+  getPendingInquiries: inquiryRepo.getPendingInquiries,
   updateWhatsappInquiry: inquiryRepo.updateWhatsappInquiry,
   deleteWhatsappInquiry: inquiryRepo.deleteWhatsappInquiry,
 

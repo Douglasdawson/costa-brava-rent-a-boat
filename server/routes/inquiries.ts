@@ -77,6 +77,53 @@ export function registerInquiryRoutes(app: Express) {
     }
   });
 
+  // Admin: warm leads still waiting for the team. Channel-independent safety net
+  // (works even if the SendGrid email + Twilio WhatsApp notifications are down):
+  // booking requests in "requested" status + inquiries in "pending" status.
+  app.get("/api/admin/unattended-leads", requireAdminSession, async (_req, res) => {
+    try {
+      const [bookingRequests, pendingInquiries] = await Promise.all([
+        storage.getUnattendedBookingRequests({ sinceDays: 30, limit: 50 }),
+        storage.getPendingInquiries({ sinceDays: 30, limit: 50 }),
+      ]);
+
+      res.set("Cache-Control", "no-store");
+      res.json({
+        counts: {
+          bookingRequests: bookingRequests.length,
+          pendingInquiries: pendingInquiries.length,
+          total: bookingRequests.length + pendingInquiries.length,
+        },
+        bookingRequests: bookingRequests.map((b) => ({
+          id: b.id,
+          customerName: [b.customerName, b.customerSurname].filter(Boolean).join(" ").trim(),
+          boatId: b.boatId,
+          bookingDate: b.bookingDate,
+          startTime: b.startTime,
+          totalAmount: b.totalAmount,
+          customerPhone: b.customerPhone,
+          customerEmail: b.customerEmail,
+          language: b.language,
+          createdAt: b.createdAt,
+        })),
+        pendingInquiries: pendingInquiries.map((i) => ({
+          id: i.id,
+          customerName: [i.firstName, i.lastName].filter(Boolean).join(" ").trim(),
+          boatName: i.boatName,
+          phone: `${i.phonePrefix ?? ""}${i.phoneNumber ?? ""}`.trim(),
+          email: i.email,
+          language: i.language,
+          createdAt: i.createdAt,
+        })),
+      });
+    } catch (error: unknown) {
+      logger.error("[Admin] Error fetching unattended leads", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
   // Admin: list inquiries (paginated)
   app.get("/api/admin/booking-inquiries", requireAdminSession, requireTabAccess("inquiries"), async (req, res) => {
     try {

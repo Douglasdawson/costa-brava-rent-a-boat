@@ -68,6 +68,7 @@ const LICENSE_BADGE_CONFIG: Record<LicenseVerificationStatus, { label: string; c
   needs_icc: { label: "Falta ICC", color: "bg-amber-100 text-amber-800 border-amber-200" },
   not_recognized: { label: "No reconocida", color: "bg-rose-100 text-rose-800 border-rose-200" },
   insufficient: { label: "Insuficiente", color: "bg-rose-100 text-rose-800 border-rose-200" },
+  inland_only: { label: "Solo aguas interiores", color: "bg-amber-100 text-amber-800 border-amber-200" },
   unknown: { label: "Sin verificar", color: "bg-muted text-muted-foreground border-border" },
 };
 
@@ -102,6 +103,21 @@ const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
 };
 
 const VALID_DURATIONS: Duration[] = ["1h", "2h", "3h", "4h", "6h", "8h"];
+
+// Inquiries don't capture nationality, but they do carry the customer's language.
+// Use it to pre-fill an editable, sensible default so converting an inquiry doesn't
+// dead-end on the required nationality field. Values match the canonical demonyms in
+// client/src/data/nationalities.ts; the admin can correct it in one click.
+const LANGUAGE_TO_NATIONALITY: Record<string, string> = {
+  es: "Española",
+  ca: "Española",
+  fr: "Francesa",
+  de: "Alemana",
+  nl: "Holandesa",
+  it: "Italiana",
+  ru: "Rusa",
+  en: "Británica",
+};
 
 // Builds the BookingDetailsModal prefill payload from a WhatsApp inquiry.
 // Parses text date/time into ISO timestamps and pre-calculates pricing via the
@@ -156,6 +172,7 @@ function buildPrefillFromInquiry(inq: WhatsappInquiry) {
     customerSurname: inq.lastName,
     customerPhone: `${inq.phonePrefix}${inq.phoneNumber}`.replace(/\s+/g, ""),
     customerEmail: inq.email ?? "",
+    customerNationality: LANGUAGE_TO_NATIONALITY[(inq.language || "").toLowerCase()] ?? "",
     numberOfPeople: inq.numberOfPeople,
     subtotal,
     extrasTotal,

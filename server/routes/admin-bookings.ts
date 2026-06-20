@@ -68,6 +68,22 @@ export function registerAdminBookingRoutes(app: Express) {
       });
     } catch (error: unknown) {
       logger.error("[Admin] Error creating booking", { error: error instanceof Error ? error.message : error });
+      // Turn the two common DB failures into actionable messages instead of a
+      // generic 500 (the CRM toast shows error.message verbatim). Postgres error
+      // codes via the @neondatabase/serverless driver.
+      const pgCode = (error as { code?: string })?.code;
+      if (pgCode === "23P01") {
+        // Exclusion constraint no_overlapping_bookings
+        return res.status(409).json({
+          message: "Ya hay una reserva que se solapa con ese horario para ese barco. Elige otra hora.",
+        });
+      }
+      if (pgCode === "23503") {
+        // Foreign key violation on boat_id (boat not in the active fleet)
+        return res.status(400).json({
+          message: "El barco de esta petición no está en la flota; selecciona otro barco.",
+        });
+      }
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

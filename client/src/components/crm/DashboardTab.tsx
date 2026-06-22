@@ -641,10 +641,9 @@ export function DashboardTab({
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                     <XAxis
                       dataKey="date"
-                      tickFormatter={(d: string) => {
-                        const date = new Date(d + "T00:00:00");
-                        return format(date, "d MMM", { locale: es });
-                      }}
+                      tickFormatter={(d: string) =>
+                        safeFormat(d + "T00:00:00", "d MMM", { locale: es }, "")
+                      }
                       tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
                       tickLine={false}
                       axisLine={{ stroke: "hsl(var(--border))" }}

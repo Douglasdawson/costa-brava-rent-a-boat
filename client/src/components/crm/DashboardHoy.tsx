@@ -2,8 +2,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Anchor, Loader2, AlertTriangle } from "lucide-react";
-import { format, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
+import { safeFormat, safeFormatDistanceToNow } from "@/lib/safeDate";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import type { Booking, Boat } from "@shared/schema";
@@ -331,7 +331,10 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
                   {req.bookingDate && (
                     <>
                       {" · "}
-                      {format(new Date(req.bookingDate + "T00:00:00"), "d MMM", { locale: es })}
+                      {/* bookings.bookingDate is a full timestamp (not a
+                          date-only string), so format it directly without
+                          appending a "T00:00:00" suffix. */}
+                      {safeFormat(req.bookingDate, "d MMM", { locale: es })}
                     </>
                   )}
                 </span>
@@ -360,7 +363,7 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
         <span>{totalReservasHoy} reservas hoy</span>
         {dataUpdatedAt > 0 && (
           <span className="text-xs text-muted-foreground ml-auto">
-            act. {formatDistanceToNow(new Date(dataUpdatedAt), { locale: es })}
+            act. {safeFormatDistanceToNow(dataUpdatedAt, { locale: es })}
           </span>
         )}
       </div>
@@ -406,7 +409,7 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
                   ) : (
                     <p className="text-xs text-muted-foreground">
                       vuelve{" "}
-                      {format(endTime, "HH:mm", { locale: es })} (en{" "}
+                      {safeFormat(endTime, "HH:mm", { locale: es })} (en{" "}
                       {timeUntil(endTime)})
                     </p>
                   )}
@@ -461,7 +464,7 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
             }}
           >
             <div className="text-sm font-medium text-foreground">
-              {format(new Date(siguiente.startTime), "HH:mm", { locale: es })}
+              {safeFormat(siguiente.startTime, "HH:mm", { locale: es })}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm text-foreground truncate">
@@ -495,7 +498,7 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
               }}
             >
               <span className="text-sm text-muted-foreground w-12">
-                {format(new Date(booking.startTime), "HH:mm", { locale: es })}
+                {safeFormat(booking.startTime, "HH:mm", { locale: es })}
               </span>
               <span className="text-sm text-foreground truncate">
                 {booking.customerName} &middot; {boatName(booking.boatId)} &middot; {booking.totalHours}h
@@ -522,7 +525,7 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
               <span className="text-muted-foreground" aria-hidden="true">&middot;</span>
               <span className="text-muted-foreground">
                 {inq.bookingDate
-                  ? format(new Date(inq.bookingDate + "T00:00:00"), "d MMM", { locale: es })
+                  ? safeFormat(inq.bookingDate + "T00:00:00", "d MMM", { locale: es }, "sin fecha")
                   : "sin fecha"}
               </span>
             </div>
@@ -540,7 +543,7 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
             {" \u00B7 "}
             {confirmedTomorrow
               .slice(0, 4)
-              .map((b) => format(new Date(b.startTime), "HH:mm", { locale: es }))
+              .map((b) => safeFormat(b.startTime, "HH:mm", { locale: es }))
               .join(" / ")}
           </p>
         </div>

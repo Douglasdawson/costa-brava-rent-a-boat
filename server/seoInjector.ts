@@ -680,39 +680,45 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
   },
   "/alquiler-barcos-lloret-de-mar": {
+    // SSR must mirror client/src/utils/seo-config.ts → locationLloret (the
+    // anti-cannibalization rewrite: "Santa Cristina 25 min · ★rating"). Keep them
+    // in sync — divergence here is what let the homepage outrank this page for
+    // "alquiler barco lloret de mar" (GSC 2026-06: pos 7.8, CTR 0%). Hook is
+    // Santa Cristina (license-free reachable), NOT Cala Banys — Cala Banys is
+    // north of Fenals, licensed-only (see rangeFromBlanes in es.ts).
     es: {
-      title: "Alquiler Barco Lloret de Mar Sin Licencia | Ruta 7 Calas",
-      description: "Navega sin licencia desde Blanes hasta Playa de Fenals (sur de Lloret). 7 calas vírgenes: Sa Forcanera, Santa Cristina, Cala Sa Boadella. Gasolina incluida.",
-      ogTitle: "Alquiler Barco Lloret de Mar Sin Licencia — Ruta 7 Calas",
-      ogDescription: "7 calas entre Blanes y Playa de Fenals con barco sin licencia. 25 min de navegación desde el puerto. Gasolina incluida.",
+      title: `Alquilar Barco Lloret de Mar Sin Licencia · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
+      description: `Alquiler o alquilar barco a Lloret de Mar sin licencia desde Blanes. Santa Cristina y Sa Boadella a 25 min. 75€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva WhatsApp.`,
+      ogTitle: `Alquilar Barco Lloret de Mar Sin Licencia · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
+      ogDescription: `Lloret de Mar en barco sin licencia desde Blanes (25 min). 75€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google. Santa Cristina, Sa Boadella, Cala Sant Francesc.`,
     },
     en: {
-      title: "Boat Trip to Lloret de Mar from Blanes",
-      description: "Sail from Blanes to Lloret de Mar. Boat rental with or without license. Discover the best beaches and coves.",
+      title: `Boat Rental Lloret de Mar Without License · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
+      description: `Boat rental to Lloret de Mar without a license, from Blanes. Santa Cristina and Sa Boadella in 25 min. From 75€/h, fuel included. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book on WhatsApp.`,
     },
     ca: {
-      title: "Excursió en Barca a Lloret de Mar des de Blanes",
-      description: "Navega de Blanes a Lloret de Mar. Lloguer de barques amb o sense llicència. Descobreix les millors platges i cales.",
+      title: `Lloguer de Vaixell a Lloret de Mar Sense Llicència · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
+      description: `Lloguer de vaixell a Lloret de Mar sense llicència des de Blanes. Santa Cristina i Sa Boadella a 25 min. Des de 75€/h, benzina inclosa. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Reserva per WhatsApp.`,
     },
     fr: {
-      title: "Excursion en Bateau à Lloret de Mar depuis Blanes",
-      description: "Naviguez de Blanes à Lloret de Mar. Location de bateaux avec ou sans permis. Découvrez les meilleures plages.",
+      title: `Location de Bateau à Lloret de Mar Sans Permis · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
+      description: `Location de bateau à Lloret de Mar sans permis depuis Blanes. Santa Cristina et Sa Boadella en 25 min. Dès 75€/h, carburant inclus. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Réservez sur WhatsApp.`,
     },
     de: {
-      title: "Bootsausflug nach Lloret de Mar von Blanes",
-      description: "Segeln Sie von Blanes nach Lloret de Mar. Bootsverleih mit oder ohne Führerschein. Entdecken Sie die besten Strände.",
+      title: `Boot Mieten Lloret de Mar Ohne Führerschein · Santa Cristina 25 Min · ★${BUSINESS_RATING_STR}`,
+      description: `Boot mieten nach Lloret de Mar ohne Führerschein, ab Blanes. Santa Cristina und Sa Boadella in 25 Min. Ab 75€/h, Kraftstoff inklusive. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Buchung per WhatsApp.`,
     },
     nl: {
-      title: "Boottocht naar Lloret de Mar vanuit Blanes",
-      description: `Vaar naar Lloret de Mar vanaf Blanes. 7 cala's op de route. Boot huren zonder vaarbewijs vanaf €70/u. Brandstof inbegrepen. 4.8★ · ${BUSINESS_REVIEW_COUNT_STR} reviews. Boek online.`,
+      title: `Boot Huren Lloret de Mar Zonder Vaarbewijs · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
+      description: `Boot huren naar Lloret de Mar zonder vaarbewijs, vanaf Blanes. Santa Cristina en Sa Boadella in 25 min. Vanaf 75€/u, brandstof inbegrepen. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Boek via WhatsApp.`,
     },
     it: {
-      title: "Escursione in Barca a Lloret de Mar da Blanes",
-      description: "Naviga da Blanes a Lloret de Mar. Noleggio barche con o senza patente. Scopri le migliori spiagge.",
+      title: `Noleggio Barca a Lloret de Mar Senza Patente · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
+      description: `Noleggio barca a Lloret de Mar senza patente, da Blanes. Santa Cristina e Sa Boadella in 25 min. Da 75€/h, carburante incluso. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Prenota su WhatsApp.`,
     },
     ru: {
-      title: "Экскурсия на Лодке в Льорет-де-Мар из Бланеса",
-      description: "Плывите из Бланеса в Льорет-де-Мар. Аренда лодок с лицензией или без. Откройте лучшие пляжи.",
+      title: `Аренда Лодки в Льорет-де-Мар Без Лицензии · Санта-Кристина 25 мин · ★${BUSINESS_RATING_STR}`,
+      description: `Аренда лодки в Льорет-де-Мар без лицензии, из Бланеса. Санта-Кристина и Са-Боаделья за 25 минут. От 75€/ч, топливо включено. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Бронь в WhatsApp.`,
     },
   },
   "/alquiler-barcos-tossa-de-mar": {
@@ -2793,15 +2799,15 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
             "@type": "Question",
             name: isEn ? "How long does it take to reach Lloret de Mar by boat from Blanes?" : "Cuanto se tarda en llegar a Lloret de Mar en barco desde Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "About 30-40 minutes from Blanes Port, depending on the boat and sea conditions. It's one of our most popular routes."
-              : "Aproximadamente 30-40 minutos desde el Puerto de Blanes, dependiendo del barco y las condiciones del mar. Es una de nuestras rutas mas populares." },
+              ? "About 25 minutes from Blanes Port to Fenals Beach (south Lloret) with a license-free boat. It's one of our most popular routes."
+              : "Unos 25 minutos desde el Puerto de Blanes hasta Playa de Fenals (sur de Lloret) con barco sin licencia. Es una de nuestras rutas mas populares." },
           },
           {
             "@type": "Question",
             name: isEn ? "Can I reach Lloret de Mar with a license-free boat?" : "Puedo llegar a Lloret de Mar con un barco sin licencia?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Yes! Lloret de Mar is within the 2-mile navigation zone for license-free boats. You can explore Fenals Beach, Cala Banys, and Santa Cristina Beach."
-              : "Si! Lloret de Mar esta dentro de la zona de 2 millas para barcos sin licencia. Puedes explorar Playa de Fenals, Cala Banys y Playa de Santa Cristina." },
+              ? "Yes! License-free boats reach the south Lloret coast within the 2-mile zone: Santa Cristina, Sa Boadella and Playa de Fenals. Cala Banys and Lloret town beach lie north of Fenals, licensed boats only."
+              : "Si! Los barcos sin licencia llegan a la costa sur de Lloret dentro de la zona de 2 millas: Santa Cristina, Sa Boadella y Playa de Fenals. Cala Banys y la playa de Lloret centro quedan al norte de Fenals, solo con licencia." },
           },
           {
             "@type": "Question",
@@ -2824,27 +2830,27 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         imageType: "image/avif",
       };
       const service = buildLandingService(
-        isEn ? "Boat Rental from Blanes to Lloret de Mar" : "Alquiler de Barcos de Blanes a Lloret de Mar",
+        isEn ? "Boat Rental in Lloret de Mar (license-free, from Blanes)" : "Alquiler de Barcos en Lloret de Mar (sin licencia, desde Blanes)",
         isEn
-          ? "Sail from Blanes to Lloret de Mar. License-free boats reach Fenals Beach in 25 min (2-mile zone). Licensed boats explore the full Lloret coastline. From 70 EUR/hour, up to 7 people."
-          : "Navega desde Blanes hasta Lloret de Mar. Los barcos sin licencia llegan a Playa de Fenals en 25 min (zona de 2 millas). Los barcos con licencia recorren toda la costa de Lloret. Desde 70€/hora, hasta 7 personas.",
-        { low: 70, high: 420 },
+          ? "Sail from Blanes to Lloret de Mar. License-free boats reach Fenals Beach in 25 min (2-mile zone). Licensed boats explore the full Lloret coastline. From 75 EUR/hour, up to 7 people."
+          : "Navega desde Blanes hasta Lloret de Mar. Los barcos sin licencia llegan a Playa de Fenals en 25 min (zona de 2 millas). Los barcos con licencia recorren toda la costa de Lloret. Desde 75€/hora, hasta 7 personas.",
+        { low: 75, high: 420 },
       );
       const lloretBodyFallback = buildLocationBodyFallback(
-        isEn ? "Boat Rental from Blanes to Lloret de Mar" : "Alquiler de Barcos de Blanes a Lloret de Mar",
+        isEn ? "Boat Rental in Lloret de Mar (license-free, from Blanes)" : "Alquiler de Barcos en Lloret de Mar (sin licencia, desde Blanes)",
         isEn
-          ? "Sail from Blanes to Lloret de Mar in 25 minutes with a license-free boat (2-mile zone reaches Fenals Beach). Licensed boats explore the full Lloret coastline including Cala Banys and Santa Cristina. Rentals from 70€/hour, up to 7 people, fuel included on license-free boats."
-          : "Navega desde Blanes a Lloret de Mar en 25 minutos con barco sin licencia (la zona de 2 millas llega a Playa de Fenals). Los barcos con licencia recorren toda la costa de Lloret incluyendo Cala Banys y Santa Cristina. Alquileres desde 70€/hora, hasta 7 personas, gasolina incluida en barcos sin licencia.",
+          ? "Sail from Blanes to Lloret de Mar in 25 minutes with a license-free boat (2-mile zone reaches Fenals Beach). Licensed boats explore the full Lloret coastline including Cala Banys and Santa Cristina. Rentals from 75€/hour, up to 7 people, fuel included on license-free boats."
+          : "Navega desde Blanes a Lloret de Mar en 25 minutos con barco sin licencia (la zona de 2 millas llega a Playa de Fenals). Los barcos con licencia recorren toda la costa de Lloret incluyendo Cala Banys y Santa Cristina. Alquileres desde 75€/hora, hasta 7 personas, gasolina incluida en barcos sin licencia.",
         isEn
           ? [
-              "Cala Banys — most photographed cove in Lloret",
+              "Cala Sant Francesc — golden-sand cove under Marimurtra gardens",
               "Cala Santa Cristina — family-friendly sandy beach",
               "Cala Sa Boadella — semi-virgin pine cove",
               "Playa de Fenals — northern legal limit for license-free boats",
               "Sa Forcanera cove — snorkel paradise on the way",
             ]
           : [
-              "Cala Banys — la cala más fotografiada de Lloret",
+              "Cala Sant Francesc — cala de arena dorada bajo los jardines de Marimurtra",
               "Cala Santa Cristina — playa de arena familiar",
               "Cala Sa Boadella — cala semi-virgen con pinos",
               "Playa de Fenals — límite norte legal para barcos sin licencia",
@@ -3668,8 +3674,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         tool: [{ "@type": "HowToTool", name: isEn ? "Smartphone with marine weather app (Windy/Windguru)" : "Móvil con app de meteo marina (Windy/Windguru)" }],
         step: [
           { "@type": "HowToStep", position: 1, name: isEn ? "Check the morning weather window" : "Comprueba la ventana de tiempo matinal", text: isEn ? "Mornings 09:00-12:00 are calmest. From midday the southerly Garbí thermal wind picks up — return to port by 15:00 if you want flat seas." : "Las mañanas 09:00-12:00 son las más tranquilas. A mediodía suele entrar el térmico sur (Garbí); regresa al puerto antes de las 15:00 para mantener mar plana." },
-          { "@type": "HowToStep", position: 2, name: isEn ? "Pick a route within your boat's range" : "Elige una ruta dentro del alcance del barco", text: isEn ? "License-free boats: stay within 2 nautical miles, top destination Lloret de Mar (30 min). Licensed boats: full coast up to Tossa de Mar (30 min) and beyond." : "Barco sin licencia: hasta 2 millas náuticas, destino top Lloret de Mar (30 min). Con licencia: costa completa hasta Tossa de Mar (30 min) y más allá." },
-          { "@type": "HowToStep", position: 3, name: isEn ? "Plan anchoring stops" : "Planifica las paradas de fondeo", text: isEn ? "Sa Palomera (5 min), Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina (25 min), Fenals (30 min). Anchor on sandy bottom only — Posidonia seagrass is protected." : "Sa Palomera (5 min), Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina (25 min), Fenals (30 min). Fondea solo en arena — la Posidonia está protegida." },
+          { "@type": "HowToStep", position: 2, name: isEn ? "Pick a route within your boat's range" : "Elige una ruta dentro del alcance del barco", text: isEn ? "License-free boats: stay within 2 nautical miles, top destination Playa de Fenals, south Lloret (25 min). Licensed boats: full coast up to Tossa de Mar (30-45 min) and beyond." : "Barco sin licencia: hasta 2 millas náuticas, destino top Playa de Fenals, sur de Lloret (25 min). Con licencia: costa completa hasta Tossa de Mar (30-45 min) y más allá." },
+          { "@type": "HowToStep", position: 3, name: isEn ? "Plan anchoring stops" : "Planifica las paradas de fondeo", text: isEn ? "Sa Palomera (5 min), Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina (22 min), Fenals (25 min). Anchor on sandy bottom only — Posidonia seagrass is protected." : "Sa Palomera (5 min), Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina (22 min), Fenals (25 min). Fondea solo en arena — la Posidonia está protegida." },
           { "@type": "HowToStep", position: 4, name: isEn ? "Plan fuel and return time" : "Planifica gasolina y hora de retorno", text: isEn ? "License-free boats consume ~2-3 L/h at cruising speed. 25-30 L tank lasts 8-10 h easily. Return 30 min before sunset for safe mooring." : "Barco sin licencia consume ~2-3 L/h a velocidad de crucero. Depósito 25-30 L da para 8-10 h sin problemas. Regresa 30 min antes del ocaso." },
           { "@type": "HowToStep", position: 5, name: isEn ? "Bring snorkel gear + water" : "Lleva snorkel + agua", text: isEn ? "Most coves have crystal-clear rocky seabeds (Cala Brava and Cala Sant Francesc especially). Rent snorkel kit on board for 7.50 EUR if you didn't bring." : "La mayoría de calas tiene fondos rocosos cristalinos (especialmente Cala Brava y Cala Sant Francesc). Alquila equipo de snorkel a bordo por 7,50 EUR si no llevas." },
         ],
@@ -3913,8 +3919,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
             "@type": "Question",
             name: isEn ? "Where can I navigate on the Costa Brava?" : "¿Dónde puedo navegar en la Costa Brava?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "License-free boats: Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min). Licensed boats: full Costa Brava up to Tossa de Mar (45 min) and Sant Feliu de Guíxols (90 min)."
-              : "Barcos sin licencia: Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min). Barcos con licencia: toda la Costa Brava hasta Tossa de Mar (45 min) y Sant Feliu de Guíxols (90 min)." },
+              ? "License-free boats: Cala Brava (15 min), Cala Sant Francesc (20 min), Playa de Fenals, south Lloret (25 min). Licensed boats: full Costa Brava up to Tossa de Mar (45 min) and Sant Feliu de Guíxols (90 min)."
+              : "Barcos sin licencia: Cala Brava (15 min), Cala Sant Francesc (20 min), Playa de Fenals, sur de Lloret (25 min). Barcos con licencia: toda la Costa Brava hasta Tossa de Mar (45 min) y Sant Feliu de Guíxols (90 min)." },
           },
           {
             "@type": "Question",

@@ -689,6 +689,24 @@ export function registerRobotsRoutes(app: Express): void {
         de: `${BASE_URL}/de/llms.txt`,
         it: `${BASE_URL}/it/llms.txt`,
       },
+      key_pages: [
+        {
+          url: `${BASE_URL}/es/alquiler-barcos-lloret-de-mar`,
+          topic: "Boat rental for Lloret de Mar — departs from the Port of Blanes (10 min by road from Lloret); license-free to Playa de Fenals in 25 min, licensed/captained beyond.",
+        },
+        {
+          url: `${BASE_URL}/es/alquiler-barcos-blanes`,
+          topic: "Boat rental in Blanes — home port, full fleet.",
+        },
+        {
+          url: `${BASE_URL}/es/alquiler-barcos-costa-brava`,
+          topic: "Boat rental Costa Brava — regional hub page.",
+        },
+        {
+          url: `${BASE_URL}/es/alquiler-barcos-tossa-de-mar`,
+          topic: "Boat trips to Tossa de Mar — licensed boat or captained excursion, 30-45 min from Blanes.",
+        },
+      ],
       business_hours: "Mo-Su 09:00-20:00",
       season: { start: "04-01", end: "10-31", note: "Closed November to March" },
       booking_model: "request-based (no online payment capture)",

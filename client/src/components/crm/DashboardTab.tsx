@@ -18,8 +18,8 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { format, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
+import { safeFormat, safeFormatDistanceToNow } from "@/lib/safeDate";
 import type { Booking, Boat } from "@shared/schema";
 import { getStatusColor, getStatusLabel } from "./constants";
 import { StatCard } from "./shared/StatCard";
@@ -197,7 +197,7 @@ function RevenueTooltip({ active, payload, label }: {
   label?: string;
 }) {
   if (!active || !payload || !payload.length) return null;
-  const dateStr = label ? format(new Date(label + "T00:00:00"), "d MMM yyyy", { locale: es }) : "";
+  const dateStr = label ? safeFormat(label + "T00:00:00", "d MMM yyyy", { locale: es }, "") : "";
   return (
     <div className="rounded-lg border bg-card px-3 py-2 shadow-md">
       <p className="text-xs font-medium text-muted-foreground mb-1">{dateStr}</p>
@@ -464,7 +464,7 @@ export function DashboardTab({
                       {booking.customerName} {booking.customerSurname}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {format(new Date(booking.startTime), "d MMM, HH:mm", { locale: es })}
+                      {safeFormat(booking.startTime, "d MMM, HH:mm", { locale: es })}
                       {" - "}
                       {booking.totalHours}h
                     </p>
@@ -600,7 +600,7 @@ export function DashboardTab({
                       </p>
                     </div>
                     <span className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0">
-                      {formatDistanceToNow(new Date(booking.createdAt), {
+                      {safeFormatDistanceToNow(booking.createdAt, {
                         addSuffix: true,
                         locale: es,
                       })}

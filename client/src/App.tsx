@@ -184,6 +184,9 @@ function HomePage() {
           <FAQPreview />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <HomepageLocationsSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ContactSection />
         </Suspense>
       </main>

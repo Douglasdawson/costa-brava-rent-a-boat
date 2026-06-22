@@ -118,13 +118,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     locationLloret: {
       // 2026-05: GSC \u2192 homepage cannibaliza "alquiler barco lloret de mar" (63 imp
       // pos 10.6 CTR 0%) y "alquiler barco sin licencia lloret de mar" (50 imp
-      // pos 6.8 CTR 0%). Fix: a\u00f1adir "Cala Banys" al t\u00edtulo (specificity hook
+      // pos 6.8 CTR 0%). Fix: hook de calas concretas en el t\u00edtulo (specificity
       // que homepage no puede igualar) + lead con "alquilar" variante + hora exacta.
-      title: `Alquilar Barco Lloret de Mar Sin Licencia \u00b7 Cala Banys 25 min \u00b7 \u2605${BUSINESS_RATING_STR}`,
-      description: `Alquiler o alquilar barco a Lloret de Mar sin licencia desde Blanes. Cala Banys y Santa Cristina a 25 min. 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva WhatsApp.`,
-      keywords: "alquiler barco lloret de mar, alquiler barco sin licencia lloret de mar, alquilar barco lloret, cala banys lloret barco, santa cristina lloret barco, sa boadella barco, excursion barco lloret, barco lloret sin licencia",
-      ogTitle: `Alquilar Barco Lloret de Mar Sin Licencia \u00b7 Cala Banys 25 min \u00b7 \u2605${BUSINESS_RATING_STR}`,
-      ogDescription: `Lloret de Mar en barco sin licencia desde Blanes (25 min). 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Cala Banys, Santa Cristina, Sa Boadella.`
+      // 2026-06-22: hook cambiado de "Cala Banys" a "Santa Cristina". Cala Banys
+      // est\u00e1 al norte de Fenals = solo con licencia (ver rangeFromBlanes en es.ts);
+      // Santa Cristina s\u00ed se alcanza sin licencia. Hook espec\u00edfico pero correcto.
+      title: `Alquilar Barco Lloret de Mar Sin Licencia \u00b7 Santa Cristina 25 min \u00b7 \u2605${BUSINESS_RATING_STR}`,
+      description: `Alquiler o alquilar barco a Lloret de Mar sin licencia desde Blanes. Santa Cristina y Sa Boadella a 25 min. 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva WhatsApp.`,
+      keywords: "alquiler barco lloret de mar, alquiler barco sin licencia lloret de mar, alquilar barco lloret, santa cristina lloret barco, sa boadella barco, cala sant francesc barco, excursion barco lloret, barco lloret sin licencia",
+      ogTitle: `Alquilar Barco Lloret de Mar Sin Licencia \u00b7 Santa Cristina 25 min \u00b7 \u2605${BUSINESS_RATING_STR}`,
+      ogDescription: `Lloret de Mar en barco sin licencia desde Blanes (25 min). 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Santa Cristina, Sa Boadella, Cala Sant Francesc.`
     },
     locationTossa: {
       // 2026-06-10: title rewrite. El anterior (90+ chars, jerga "LNB" delante,
@@ -355,11 +358,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Rent your boat directly from Blanes Port pier. Free parking, snorkel included, local coves 10 min away. 9 boats from 75\u20ac/h."
     },
     locationLloret: {
-      title: `Boat Rental Lloret de Mar | Cala Banys & Santa Cristina from Blanes ${SEASON_YEAR}`,
-      description: "Sail from Blanes to Lloret de Mar in 25 min. Discover Cala Banys, Santa Cristina and Sa Boadella coves by boat. License-free from 75\u20ac/h, fuel included.",
+      title: `Boat Rental Lloret de Mar | Santa Cristina & Sa Boadella from Blanes ${SEASON_YEAR}`,
+      description: "Sail from Blanes to Lloret de Mar in 25 min. Discover Santa Cristina, Sa Boadella and Cala Sant Francesc coves by boat. License-free from 75\u20ac/h, fuel included.",
       keywords: "boat rental lloret de mar, cala banys lloret boat, santa cristina lloret boat, sa boadella boat, boat trip lloret, lloret no license boat, lloret by boat",
-      ogTitle: "Boat Rental Lloret de Mar | Cala Banys & Santa Cristina by Boat",
-      ogDescription: "Lloret by boat from Blanes. Cala Banys, Santa Cristina and Sa Boadella 25 min away. No license from 75\u20ac/h. 4.8\u2605."
+      ogTitle: "Boat Rental Lloret de Mar | Santa Cristina & Sa Boadella by Boat",
+      ogDescription: "Lloret by boat from Blanes. Santa Cristina, Sa Boadella and Cala Sant Francesc 25 min away. No license from 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Boat Rental Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig from Blanes ${SEASON_YEAR}`,
@@ -570,11 +573,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Lloga la teva barca directament del moll del Port de Blanes. Parking gratis, snorkel incl\u00f2s, cales locals a 10 min. 9 barques des de 75\u20ac/h."
     },
     locationLloret: {
-      title: `Lloguer Barca Lloret de Mar | Cala Banys i Santa Cristina des de Blanes ${SEASON_YEAR}`,
-      description: "Navega a Lloret de Mar des del Port de Blanes en 25 min. Descobreix Cala Banys, Santa Cristina i Sa Boadella en barca sense llic\u00e8ncia des de 75\u20ac/h, gasolina inclosa.",
+      title: `Lloguer Barca Lloret de Mar | Santa Cristina i Sa Boadella des de Blanes ${SEASON_YEAR}`,
+      description: "Navega a Lloret de Mar des del Port de Blanes en 25 min. Descobreix Santa Cristina, Sa Boadella i Cala Sant Francesc en barca sense llic\u00e8ncia des de 75\u20ac/h, gasolina inclosa.",
       keywords: "lloguer barca lloret de mar, cala banys lloret barca, santa cristina lloret barca, sa boadella barca, excursi\u00f3 barca lloret, barca lloret sense llic\u00e8ncia, lloret de mar barca",
-      ogTitle: "Lloguer Barca Lloret de Mar | Cala Banys i Santa Cristina en Barca",
-      ogDescription: "Lloret en barca des de Blanes. Cala Banys, Santa Cristina i Sa Boadella a 25 min. Sense llic\u00e8ncia des de 75\u20ac/h. 4.8\u2605."
+      ogTitle: "Lloguer Barca Lloret de Mar | Santa Cristina i Sa Boadella en Barca",
+      ogDescription: "Lloret en barca des de Blanes. Santa Cristina, Sa Boadella i Cala Sant Francesc a 25 min. Sense llic\u00e8ncia des de 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Lloguer Barca Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 i Mar d'en Roig des de Blanes ${SEASON_YEAR}`,
@@ -728,11 +731,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Louez votre bateau directement depuis le quai du Port de Blanes. Parking gratuit, snorkel inclus, criques locales \u00e0 10 min. 9 bateaux d\u00e8s 75\u20ac/h."
     },
     locationLloret: {
-      title: `Location Bateau Lloret de Mar | Cala Banys et Santa Cristina depuis Blanes ${SEASON_YEAR}`,
-      description: "Naviguez vers Lloret de Mar depuis le Port de Blanes en 25 min. D\u00e9couvrez Cala Banys, Santa Cristina et Sa Boadella en bateau sans permis d\u00e8s 75\u20ac/h, carburant inclus.",
+      title: `Location Bateau Lloret de Mar | Santa Cristina et Sa Boadella depuis Blanes ${SEASON_YEAR}`,
+      description: "Naviguez vers Lloret de Mar depuis le Port de Blanes en 25 min. D\u00e9couvrez Santa Cristina, Sa Boadella et Cala Sant Francesc en bateau sans permis d\u00e8s 75\u20ac/h, carburant inclus.",
       keywords: "location bateau lloret de mar, cala banys lloret bateau, santa cristina lloret bateau, sa boadella bateau, excursion bateau lloret, bateau lloret sans permis, lloret de mar bateau",
-      ogTitle: "Location Bateau Lloret de Mar | Cala Banys et Santa Cristina",
-      ogDescription: "Lloret en bateau depuis Blanes. Cala Banys, Santa Cristina et Sa Boadella \u00e0 25 min. Sans permis d\u00e8s 75\u20ac/h. 4.8\u2605."
+      ogTitle: "Location Bateau Lloret de Mar | Santa Cristina et Sa Boadella",
+      ogDescription: "Lloret en bateau depuis Blanes. Santa Cristina, Sa Boadella et Cala Sant Francesc \u00e0 25 min. Sans permis d\u00e8s 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Location Bateau Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 et Mar d'en Roig depuis Blanes ${SEASON_YEAR}`,
@@ -881,11 +884,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Mieten Sie Ihr Boot direkt am Pier des Hafens Blanes. Kostenloser Parkplatz, Schnorchel inklusive, lokale Buchten 10 Min entfernt. 9 Boote ab 75\u20ac/h."
     },
     locationLloret: {
-      title: `Bootsverleih Lloret de Mar | Cala Banys & Santa Cristina ab Blanes ${SEASON_YEAR}`,
-      description: "Segeln Sie vom Hafen Blanes in 25 Min nach Lloret de Mar. Entdecken Sie Cala Banys, Santa Cristina und Sa Boadella mit dem Boot ohne F\u00fchrerschein ab 75\u20ac/h, Kraftstoff inklusive.",
+      title: `Bootsverleih Lloret de Mar | Santa Cristina & Sa Boadella ab Blanes ${SEASON_YEAR}`,
+      description: "Segeln Sie vom Hafen Blanes in 25 Min nach Lloret de Mar. Entdecken Sie Santa Cristina, Sa Boadella und Cala Sant Francesc mit dem Boot ohne F\u00fchrerschein ab 75\u20ac/h, Kraftstoff inklusive.",
       keywords: "bootsverleih lloret de mar, cala banys lloret boot, santa cristina lloret boot, sa boadella boot, bootsausflug lloret, boot lloret ohne f\u00fchrerschein, lloret de mar boot",
-      ogTitle: "Bootsverleih Lloret de Mar | Cala Banys & Santa Cristina",
-      ogDescription: "Lloret mit dem Boot ab Blanes. Cala Banys, Santa Cristina und Sa Boadella in 25 Min. Ohne F\u00fchrerschein ab 75\u20ac/h. 4.8\u2605."
+      ogTitle: "Bootsverleih Lloret de Mar | Santa Cristina & Sa Boadella",
+      ogDescription: "Lloret mit dem Boot ab Blanes. Santa Cristina, Sa Boadella und Cala Sant Francesc in 25 Min. Ohne F\u00fchrerschein ab 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Bootsverleih Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig ab Blanes ${SEASON_YEAR}`,
@@ -1037,11 +1040,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Huur jouw boot direct vanaf de kade van Haven Blanes. Gratis parking, snorkel inbegrepen, lokale baaien op 10 min. 9 boten vanaf 75\u20ac/u."
     },
     locationLloret: {
-      title: `Bootverhuur Lloret de Mar | Cala Banys & Santa Cristina vanuit Blanes ${SEASON_YEAR}`,
-      description: "Vaar vanuit Haven Blanes in 25 min naar Lloret de Mar. Ontdek Cala Banys, Santa Cristina en Sa Boadella per boot zonder vaarbewijs vanaf 75\u20ac/u, brandstof inbegrepen.",
+      title: `Bootverhuur Lloret de Mar | Santa Cristina & Sa Boadella vanuit Blanes ${SEASON_YEAR}`,
+      description: "Vaar vanuit Haven Blanes in 25 min naar Lloret de Mar. Ontdek Santa Cristina, Sa Boadella en Cala Sant Francesc per boot zonder vaarbewijs vanaf 75\u20ac/u, brandstof inbegrepen.",
       keywords: "bootverhuur lloret de mar, cala banys lloret boot, santa cristina lloret boot, sa boadella boot, boottocht lloret, boot lloret zonder vaarbewijs, lloret de mar boot",
-      ogTitle: "Bootverhuur Lloret de Mar | Cala Banys & Santa Cristina",
-      ogDescription: "Lloret per boot vanuit Blanes. Cala Banys, Santa Cristina en Sa Boadella op 25 min. Zonder vaarbewijs vanaf 75\u20ac/u. 4.8\u2605."
+      ogTitle: "Bootverhuur Lloret de Mar | Santa Cristina & Sa Boadella",
+      ogDescription: "Lloret per boot vanuit Blanes. Santa Cristina, Sa Boadella en Cala Sant Francesc op 25 min. Zonder vaarbewijs vanaf 75\u20ac/u. 4.8\u2605."
     },
     locationTossa: {
       title: `Bootverhuur Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig vanuit Blanes ${SEASON_YEAR}`,
@@ -1190,11 +1193,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Noleggia la tua barca direttamente dal molo del Porto di Blanes. Parcheggio gratuito, snorkel incluso, calette locali a 10 min. 9 barche da 75\u20ac/h."
     },
     locationLloret: {
-      title: `Noleggio Barca Lloret de Mar | Cala Banys e Santa Cristina da Blanes ${SEASON_YEAR}`,
-      description: "Naviga dal Porto Blanes a Lloret de Mar in 25 min. Scopri Cala Banys, Santa Cristina e Sa Boadella in barca senza patente da 75\u20ac/h, carburante incluso.",
+      title: `Noleggio Barca Lloret de Mar | Santa Cristina e Sa Boadella da Blanes ${SEASON_YEAR}`,
+      description: "Naviga dal Porto Blanes a Lloret de Mar in 25 min. Scopri Santa Cristina, Sa Boadella e Cala Sant Francesc in barca senza patente da 75\u20ac/h, carburante incluso.",
       keywords: "noleggio barca lloret de mar, cala banys lloret barca, santa cristina lloret barca, sa boadella barca, escursione barca lloret, barca lloret senza patente, lloret de mar barca",
-      ogTitle: "Noleggio Barca Lloret de Mar | Cala Banys e Santa Cristina",
-      ogDescription: "Lloret in barca da Blanes. Cala Banys, Santa Cristina e Sa Boadella a 25 min. Senza patente da 75\u20ac/h. 4.8\u2605."
+      ogTitle: "Noleggio Barca Lloret de Mar | Santa Cristina e Sa Boadella",
+      ogDescription: "Lloret in barca da Blanes. Santa Cristina, Sa Boadella e Cala Sant Francesc a 25 min. Senza patente da 75\u20ac/h. 4.8\u2605."
     },
     locationTossa: {
       title: `Noleggio Barca Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 e Mar d'en Roig da Blanes ${SEASON_YEAR}`,

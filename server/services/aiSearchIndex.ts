@@ -31,7 +31,7 @@ import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
-export type SourceType = "boat" | "jetski" | "route" | "faq" | "glossary" | "blog";
+export type SourceType = "boat" | "jetski" | "route" | "faq" | "glossary" | "blog" | "landing";
 
 export interface SearchHit {
   type: SourceType;
@@ -105,6 +105,91 @@ async function collectRoutes(): Promise<IndexItem[]> {
   return items;
 }
 
+// Destination landing pages indexed as first-class items so the hybrid search
+// ranks them directly (previously a town like Lloret only surfaced inside
+// "route" rows). Bodies are fact-dense and keyword-led for AI answer engines.
+async function collectLandings(): Promise<IndexItem[]> {
+  const defs: Array<{
+    pageKey: PageKey;
+    sourceId: string;
+    es: { title: string; body: string; snippet: string };
+    en: { title: string; body: string; snippet: string };
+  }> = [
+    {
+      pageKey: "locationLloret",
+      sourceId: "lloret-de-mar",
+      es: {
+        title: "Alquiler de barcos en Lloret de Mar (desde el Puerto de Blanes)",
+        body: "Alquiler de barcos para Lloret de Mar. Las salidas son desde el Puerto de Blanes, a 10 minutos por carretera de Lloret; no hay base de alquiler dentro de Lloret, se llega por mar. Sin licencia llegas a Playa de Fenals (sur de Lloret) en unos 25 minutos pasando por Cala Sant Francesc, Sa Forcanera, Santa Cristina y Cala Sa Boadella, desde 75€/h con gasolina incluida, mayores de 18 sin titulación. Lloret centro, Cala Banys y Cala Canyelles quedan al norte de Fenals, fuera del límite de 2 millas sin licencia: solo con barco con licencia o excursión privada con patrón.",
+        snippet: "Alquiler de barcos para Lloret de Mar saliendo del Puerto de Blanes: sin licencia hasta Playa de Fenals en 25 min, desde 75€/h gasolina incluida.",
+      },
+      en: {
+        title: "Boat rental in Lloret de Mar (from the Port of Blanes)",
+        body: "Boat rental for Lloret de Mar. Trips depart from the Port of Blanes, 10 minutes by road from Lloret; there is no rental base inside Lloret, you reach it by sea. License-free you reach Playa de Fenals (south Lloret) in about 25 minutes, passing Cala Sant Francesc, Sa Forcanera, Santa Cristina and Cala Sa Boadella, from 75€/h fuel included, 18+ no license. Lloret town, Cala Banys and Cala Canyelles are north of Fenals, beyond the 2-mile license-free limit: only with a licensed boat or the captained private excursion.",
+        snippet: "Boat rental for Lloret de Mar departing from the Port of Blanes: license-free to Playa de Fenals in 25 min, from 75€/h fuel included.",
+      },
+    },
+    {
+      pageKey: "locationBlanes",
+      sourceId: "blanes",
+      es: {
+        title: "Alquiler de barcos en Blanes (puerto base)",
+        body: "Alquiler de barcos en el Puerto de Blanes, puerto base de toda la flota. Sin licencia desde 75€/h con gasolina incluida y con licencia hasta 7 personas. Briefing de seguridad de 15 minutos, parking gratuito a 100 m. Desde aquí navegas a Sa Palomera, Cala Sant Francesc, Santa Cristina y hasta Playa de Fenals.",
+        snippet: "Alquiler de barcos en el Puerto de Blanes, puerto base de la flota. Sin licencia desde 75€/h gasolina incluida.",
+      },
+      en: {
+        title: "Boat rental in Blanes (home port)",
+        body: "Boat rental at the Port of Blanes, home port of the whole fleet. License-free from 75€/h fuel included, licensed boats up to 7 people. 15-minute safety briefing, free parking 100 m away. From here you sail to Sa Palomera, Cala Sant Francesc, Santa Cristina and up to Playa de Fenals.",
+        snippet: "Boat rental at the Port of Blanes, home port of the fleet. License-free from 75€/h fuel included.",
+      },
+    },
+    {
+      pageKey: "locationTossa",
+      sourceId: "tossa-de-mar",
+      es: {
+        title: "Excursiones en barco a Tossa de Mar (desde Blanes)",
+        body: "Excursiones en barco a Tossa de Mar desde el Puerto de Blanes, 30-45 minutos de navegación. Tossa está fuera del límite de 2 millas sin licencia: se llega con barco con Licencia de Navegación o con la excursión privada con patrón, para ver la Vila Vella medieval desde el mar.",
+        snippet: "Excursiones en barco a Tossa de Mar desde Blanes (30-45 min): con licencia o excursión con patrón, fuera del rango sin licencia.",
+      },
+      en: {
+        title: "Boat trips to Tossa de Mar (from Blanes)",
+        body: "Boat trips to Tossa de Mar from the Port of Blanes, 30-45 minutes of navigation. Tossa is beyond the 2-mile license-free limit: reached with a licensed boat (Licencia de Navegación) or the captained private excursion, to see the medieval Vila Vella from the sea.",
+        snippet: "Boat trips to Tossa de Mar from Blanes (30-45 min): licensed or captained, beyond the license-free range.",
+      },
+    },
+    {
+      pageKey: "locationCostaBrava",
+      sourceId: "costa-brava",
+      es: {
+        title: "Alquiler de barcos en la Costa Brava (desde Blanes)",
+        body: "Alquiler de barcos en la Costa Brava saliendo del Puerto de Blanes, puerta sur de la Costa Brava. Sin licencia desde 75€/h con gasolina incluida para recorrer calas como Sa Palomera, Cala Sant Francesc, Santa Cristina y Playa de Fenals; con licencia llegas hasta Tossa de Mar y más al norte.",
+        snippet: "Alquiler de barcos en la Costa Brava desde el Puerto de Blanes: calas de la costa sur, sin licencia desde 75€/h.",
+      },
+      en: {
+        title: "Boat rental on the Costa Brava (from Blanes)",
+        body: "Boat rental on the Costa Brava departing from the Port of Blanes, the southern gateway to the Costa Brava. License-free from 75€/h fuel included to explore coves like Sa Palomera, Cala Sant Francesc, Santa Cristina and Playa de Fenals; licensed boats reach Tossa de Mar and further north.",
+        snippet: "Boat rental on the Costa Brava from the Port of Blanes: southern-coast coves, license-free from 75€/h.",
+      },
+    },
+  ];
+  const items: IndexItem[] = [];
+  for (const d of defs) {
+    for (const lang of ["es", "en"] as const) {
+      const c = d[lang];
+      items.push({
+        sourceType: "landing",
+        sourceId: d.sourceId,
+        lang,
+        title: c.title,
+        body: c.body,
+        snippet: c.snippet,
+        url: `${BASE_URL}${getLocalizedPath(d.pageKey, lang)}`,
+      });
+    }
+  }
+  return items;
+}
+
 async function collectGlossary(): Promise<IndexItem[]> {
   return NAUTICAL_GLOSSARY_ES.map((t) => ({
     sourceType: "glossary",
@@ -168,14 +253,15 @@ export async function rebuildSearchIndex(opts: { force?: boolean } = {}): Promis
   durationMs: number;
 }> {
   const started = Date.now();
-  const [boats, routes, glossary, faqs, blogs] = await Promise.all([
+  const [boats, routes, landings, glossary, faqs, blogs] = await Promise.all([
     collectBoats(),
     collectRoutes(),
+    collectLandings(),
     collectGlossary(),
     collectFaqs(),
     collectBlogPosts(),
   ]);
-  const items: IndexItem[] = [...boats, ...collectJetSkiProducts(), ...routes, ...glossary, ...faqs, ...blogs];
+  const items: IndexItem[] = [...boats, ...collectJetSkiProducts(), ...routes, ...landings, ...glossary, ...faqs, ...blogs];
 
   // Snapshot of existing rows so we only regenerate embeddings when body
   // actually changed. Body→hash via SHA-256 stored as `embeddingModel`-suffix.

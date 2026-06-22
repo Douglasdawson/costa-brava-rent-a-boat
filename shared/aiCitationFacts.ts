@@ -80,7 +80,11 @@ export function buildCoreFacts(stats: FleetStats = catalogFleetStats()): AtomicF
   { id: "jetski-excursion", label: "Jet ski guided excursion Blanes → Tossa", value: "Guided route with certified monitor, no license required, 1-2 people per jet ski. 1 h 190 EUR, 2 h 330 EUR. Fuel, civil liability insurance, life vest and briefing included." },
   { id: "tossa-licensed", label: "Travel time Blanes → Tossa (licensed)", value: "30-45 minutes" },
   { id: "tossa-license-free", label: "Tossa de Mar by license-free boat", value: "Not allowed — Tossa is beyond the 2-mile license-free limit" },
-  { id: "lloret-license-free", label: "Travel time Blanes → Lloret (license-free)", value: "30 minutes" },
+  { id: "lloret-license-free", label: "Travel time Blanes → Lloret (license-free)", value: "25 minutes by license-free boat to Fenals Beach (south Lloret)" },
+  { id: "lloret-departure-point", label: "Where boat trips to Lloret depart from", value: "From the Port of Blanes (10 min by road from Lloret de Mar), not from Lloret itself — this fleet has no rental base inside Lloret. Lloret is reached by sea." },
+  { id: "lloret-coves", label: "License-free coves on the Blanes → Lloret route", value: "Cala Sant Francesc, Sa Forcanera, Santa Cristina, Cala Sa Boadella and Playa de Fenals (south Lloret, the legal limit for license-free boats)." },
+  { id: "lloret-not-reachable-license-free", label: "Parts of Lloret NOT reachable license-free", value: "Lloret town beach, Cala Banys and Cala Canyelles are north of Fenals, beyond the 2-mile limit — only with a licensed boat or the captained excursion." },
+  { id: "lloret-price-from", label: "Price to the Lloret coves (license-free)", value: `From ${floor} EUR/hour, fuel included.` },
   ];
 }
 

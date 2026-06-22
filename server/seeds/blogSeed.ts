@@ -3740,7 +3740,7 @@ A sunset boat trip in Blanes is more than just an activity. It is one of those r
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/alquiler-barco-lloret-de-mar-precios-guia.webp",
-    metaDescription: "Alquiler de barco en Lloret de Mar: precios desde 70 EUR/hora, como llegar desde Blanes, calas disponibles y barcos sin licencia y con licencia.",
+    metaDescription: "Alquiler de barco en Lloret de Mar: precios desde 75 EUR/hora, como llegar desde Blanes, calas disponibles y barcos sin licencia y con licencia.",
     tags: ["alquiler barco lloret de mar", "barco lloret precio", "lloret de mar en barco", "lloret blanes barco"],
     isPublished: true,
     _publishedAt: new Date("2026-03-28T10:00:00Z"),
@@ -3769,16 +3769,15 @@ Una vez en el puerto, nos encontraras en el pantalon principal. Te recomendamos 
 
 ## Precios de alquiler de barco para ir a Lloret
 
-### Barcos sin licencia (desde 70 EUR/hora)
+### Barcos sin licencia (desde 75 EUR/hora)
 
-No necesitas ningun titulo nautico. Te ensenamos a manejar el barco en un briefing de 10-15 minutos. **Gasolina, seguro y equipo de seguridad incluidos.**
+No necesitas ningun titulo nautico. Te ensenamos a manejar el barco en un briefing de 15 minutos. **Gasolina, seguro y equipo de seguridad incluidos.**
 
 | Barco | Capacidad | Precio desde (temporada baja) | Ideal para |
 |-------|-----------|-------------------------------|------------|
-| [Astec 400](/barco/astec-400) | 4 personas | 70 EUR/hora | Parejas, mejor precio |
-| [Solar 450](/barco/solar-450) | 5 personas | 75 EUR/hora | Tomar el sol, solarium amplio |
-| [Remus 450](/barco/remus-450) | 5 personas | 75 EUR/hora | Familias con ninos, estabilidad |
-| [Astec 480](/barco/astec-480) | 5 personas | 80 EUR/hora | Premium, musica bluetooth |
+| [Solar 450](/barco/solar-450) | 5 personas | 75 EUR/hora (115 EUR/2h) | Tomar el sol, solarium amplio |
+| [Remus 450](/barco/remus-450) | 5 personas | 75 EUR/hora (115 EUR/2h) | Familias con ninos, estabilidad |
+| [Astec 480](/barco/astec-480) | 5 personas | 80 EUR/hora (150 EUR/2h) | Premium, musica bluetooth |
 
 **Importante:** Los barcos sin licencia pueden navegar hasta **2 millas nauticas** de la costa (unos 3,7 km). Esto significa que desde Blanes puedes llegar comodamente hasta la **playa de Fenals**, que esta a unos 5 km del puerto. Fenals es la segunda playa de Lloret, mas tranquila y familiar que la playa principal.
 
@@ -3786,7 +3785,7 @@ Sin embargo, **para llegar a la playa principal de Lloret de Mar** (que esta a u
 
 ### Barcos con licencia (desde 160 EUR/2 horas)
 
-Requieren titulacion nautica PER o PNB. **El combustible NO esta incluido** (se paga aparte al repostar).
+Requieren **Licencia de Navegacion (LN) o superior** (PNB, PER...). El combustible NO esta incluido (se paga aparte al repostar).
 
 | Barco | Capacidad | Precio desde (temporada baja) | Motor |
 |-------|-----------|-------------------------------|-------|
@@ -3802,45 +3801,45 @@ Si no tienes licencia pero quieres un barco grande y llegar hasta Lloret o mas a
 
 ## Que puedes ver en barco de Blanes a Lloret
 
-La ruta costera de Blanes hacia Lloret es una de las mas bonitas de la Costa Brava. Estas son las paradas que puedes hacer:
+La ruta costera de Blanes hacia Playa de Fenals (sur de Lloret) es una de las mas bonitas de la Costa Brava. Estas son las paradas, en orden desde el puerto, todas accesibles con barco sin licencia:
 
-### 1. Cala Sant Francesc (5 min desde el puerto)
+### 1. Sa Forcanera (5 min desde el puerto)
 
-La primera parada y una de las mas impresionantes. Aguas turquesas, pinos hasta la orilla y un fondo marino espectacular para snorkel. Accesible con cualquier barco sin licencia.
+Una caleta de piedra rodeada de pinos y acantilados, sin acceso por tierra. Agua turquesa y un buen primer fondeo nada mas salir de Blanes.
 
-### 2. Cala Bona (7 min desde el puerto)
+### 2. Cala Sant Francesc (8 min desde el puerto)
 
-Justo al lado de Sant Francesc, mas pequena y tranquila. Ideal para fondear en soledad, especialmente entre semana o a primera hora de la manana.
+Arena dorada y aguas transparentes, con el Jardin Botanico Marimurtra colgado del acantilado. Una de las mejores paradas de snorkel de la ruta. En verano, llega antes de las 11:00.
 
-### 3. Cala Brava (10 min desde el puerto)
+### 3. Cala de s'Agulla (12 min desde el puerto)
 
-Una cala rocosa y salvaje con aguas cristalinas. Menos conocida que las anteriores, lo que la hace perfecta para quienes buscan tranquilidad absoluta. Excelente para snorkel.
+Un rincon rocoso entre Sant Francesc y Treumal, ideal para fondear con tranquilidad lejos de las calas mas concurridas.
 
-### 4. Cala Treumal (10 min desde el puerto)
+### 4. Cala Treumal (15 min desde el puerto)
 
-En el limite entre Blanes y Lloret, rodeada de vegetacion exuberante. Tiene un chiringuito con encanto accesible nadando desde el barco.
+En el limite entre Blanes y Lloret, rodeada de vegetacion. Tiene un chiringuito con encanto accesible nadando desde el barco.
 
-### 5. Playa de Santa Cristina (12 min desde el puerto)
+### 5. Playa de Santa Cristina (18 min desde el puerto)
 
-Una playa de postal con la ermita de Santa Cristina en lo alto del acantilado. Arena dorada, pinos y aguas de un azul intenso. Uno de los paisajes mas fotografiados de la costa.
+Una playa de postal con la ermita de Santa Cristina en lo alto del acantilado. Uno de los paisajes mas fotografiados de la costa.
 
-### 6. Playa de Fenals (15 min desde el puerto)
+### 6. Cala Sa Boadella (22 min desde el puerto)
 
-La playa familiar de Lloret. Mas tranquila que la playa principal, con aguas poco profundas y protegidas. **Este es el punto mas lejano al que puedes llegar comodamente con barco sin licencia.**
+Cala semivirgen rodeada de pinos, con uno de los mejores fondeos de la zona. El sitio perfecto para parar a comer a bordo antes de dar la vuelta.
 
-### 7. Playa de Lloret (20-25 min desde el puerto)
+### 7. Playa de Fenals (25 min desde el puerto)
 
-La gran playa de Lloret de Mar con el Castillo de Sa Caleta y la escultura de la Dona Marinera. Solo accesible con barco con licencia o excursion con capitan.
+La playa familiar al sur de Lloret y **el punto mas lejano al que puedes llegar con barco sin licencia** (limite legal de 2 millas nauticas). Mas al norte, la playa de Lloret centro (con el Castillo de Sa Caleta y la escultura de la Dona Marinera), Cala Banys y Cala Canyelles quedan fuera del rango sin licencia: solo se llega con barco con licencia o con la excursion con capitan.
 
 ## Tabla comparativa: sin licencia vs con licencia para ir a Lloret
 
 | | Sin licencia | Con licencia | Excursion con capitan |
 |---|---|---|---|
-| **Precio desde** | 70 EUR/h | 150 EUR/2h | 240 EUR/2h |
+| **Precio desde** | 75 EUR/h | 160 EUR/2h | 240 EUR/2h |
 | **Llegas a Fenals** | Si | Si | Si |
 | **Llegas a Lloret playa** | No | Si | Si |
 | **Combustible incluido** | Si | No | No |
-| **Necesitas titulo** | No | PER/PNB | No |
+| **Necesitas titulo** | No | Licencia de Navegacion (LN) | No |
 | **Duracion recomendada** | 3-4 horas | 4-6 horas | 2-4 horas |
 | **Capacidad maxima** | 5 personas | 7 personas | 7 personas |
 
@@ -3848,7 +3847,7 @@ La gran playa de Lloret de Mar con el Castillo de Sa Caleta y la escultura de la
 
 Si tu objetivo es **llegar hasta la zona de Lloret y disfrutar de las calas**, te recomendamos:
 
-- **Con barco sin licencia:** Minimo **3 horas**, idealmente **4 horas**. Esto te da tiempo para navegar hasta Fenals (15 min), fondear y banarte (1-1,5h), explorar alguna cala intermedia (30 min) y volver al puerto con calma.
+- **Con barco sin licencia:** Minimo **3 horas**, idealmente **4 horas**. Esto te da tiempo para navegar hasta Fenals (25 min), fondear y banarte (1-1,5h), explorar alguna cala intermedia y volver al puerto con calma.
 - **Con barco con licencia:** Minimo **4 horas** para llegar a Lloret playa, fondear, banarte y volver. Si quieres explorar varias calas, reserva **6-8 horas**.
 - **Excursion con capitan:** Con **2 horas** ya puedes hacer una ruta espectacular. El capitan conoce los mejores rincones y optimiza el tiempo.
 
@@ -3874,13 +3873,13 @@ Complementa tu experiencia con nuestros extras:
 1. **Elige tu barco** en nuestra [pagina de barcos](/barcos)
 2. **Selecciona fecha, hora y duracion** en el calendario
 3. **Anade extras** si quieres
-4. **Paga online** de forma segura con tarjeta
-5. **Recibe confirmacion** por email y WhatsApp
+4. **Envia tu solicitud** de reserva: no se cobra nada online
+5. **Confirmamos disponibilidad** por WhatsApp o email; el pago se hace en el Puerto de Blanes el dia de la salida
 6. **Ven al Puerto de Blanes** 15 minutos antes
 
 ---
 
-Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es tu puerta de entrada perfecta a toda la costa. Con barcos desde 70 EUR la hora y la posibilidad de llegar a Fenals sin licencia, no hay excusa para no descubrir Lloret desde el mar.
+Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es tu puerta de entrada perfecta a toda la costa. Con barcos desde 75 EUR la hora y la posibilidad de llegar a Fenals sin licencia, no hay excusa para no descubrir Lloret desde el mar.
 
 [Reserva tu barco ahora](/barcos) o escribenos por [WhatsApp](https://wa.me/34611500372) si tienes dudas sobre que barco elegir para tu excursion a Lloret.`,
   },
@@ -4418,7 +4417,7 @@ En el mar, la radiacion solar se multiplica por la reflexion del agua. Usad **fa
 
 1. **Elige barco y duracion** en nuestra [pagina de barcos](/barcos)
 2. **Anade extras** (Adventure Pack recomendado para grupos)
-3. **Paga online** con tarjeta de forma segura
+3. **Envia tu solicitud** de reserva: no se cobra nada online, el pago se hace en el puerto el dia de la salida
 4. **Escribenos por [WhatsApp](https://wa.me/34611500372)** si quieres planificar algo especial o tienes peticiones
 5. **Presentaos en el puerto** 15 minutos antes con todo lo necesario
 

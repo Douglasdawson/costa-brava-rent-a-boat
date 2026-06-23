@@ -1,7 +1,7 @@
 // Analytics event tracking utilities for Google Tag Manager + Meta Pixel + Google Ads
 import type { UtmParams } from '@/hooks/useUtmCapture';
 import { getStoredClickIds } from '@/hooks/useUtmCapture';
-import { trackMetaInitiateCheckout, trackMetaPurchase, trackMetaContact } from './meta-pixel';
+import { trackMetaInitiateCheckout, trackMetaPurchase, trackMetaContact, trackMetaLead } from './meta-pixel';
 import { trackGoogleAdsConversion, pushEnhancedConversionData, trackGoogleAdsRemarketing } from './google-ads';
 
 const ANALYTICS_DEBUG = typeof window !== 'undefined' &&
@@ -141,13 +141,28 @@ export function trackGenerateLead(boatId: string, boatName: string, value: numbe
   firstName?: string;
   lastName?: string;
 }) {
+  const eventId = generateEventId();
   if (userData) pushEnhancedConversionData(userData);
   trackEvent("generate_lead", {
     boat_id: boatId,
     boat_name: boatName,
     value: value,
     currency: "EUR",
+    event_id: eventId,
   });
+  // Meta Pixel Lead (browser) + Conversion API (server) sharing eventId for dedupe.
+  // This is the primary conversion in the request-based model; without it Meta cannot
+  // optimize for or exclude leads.
+  trackMetaLead(`boat:${boatId}`, eventId);
+  sendServerEvent(
+    "Lead",
+    eventId,
+    {
+      ...(userData?.email && { email: userData.email }),
+      ...(userData?.phone && { phone: userData.phone }),
+    },
+    { content_ids: [boatId], content_type: "product", value, currency: "EUR" },
+  );
   trackGoogleAdsConversion({ conversionLabel: 'generate_lead', value, currency: 'EUR' });
 }
 

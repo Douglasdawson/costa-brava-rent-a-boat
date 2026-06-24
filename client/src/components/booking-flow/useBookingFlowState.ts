@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getSeason } from "@shared/pricing";
+import { getSeason, getMaximumDuration } from "@shared/pricing";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslations } from "@/lib/translations";
@@ -214,28 +214,34 @@ export function useBookingFlowState(props: BookingFlowProps) {
       const boat = availableBoats.find((b: Boat) => b.id === selectedBoat);
       if (!boat) throw new Error(`Boat ${selectedBoat} not found`);
 
+      // Hide durations above the peak-season cap (licence-free boats, Jul/Aug).
+      const maxDuration = getMaximumDuration(selectedBoat, new Date(selectedDate));
+      const maxHours = maxDuration ? parseInt(maxDuration) : Infinity;
+      const capByMax = (list: Duration[]): Duration[] =>
+        list.filter((d) => parseInt(d.id) <= maxHours);
+
       if (boat.pricing) {
         const season = getSeason(new Date(selectedDate));
         const seasonPrices = boat.pricing[season]?.prices;
         if (!seasonPrices) throw new Error(`No pricing found for season ${season}`);
-        return [
+        return capByMax([
           { id: "1h", label: t.booking.oneHour, price: seasonPrices["1h"] || 70 },
           { id: "2h", label: t.booking.twoHours, price: seasonPrices["2h"] || 80 },
           { id: "3h", label: t.booking.threeHours, price: seasonPrices["3h"] || 90 },
           { id: "4h", label: t.booking.fourHours, price: seasonPrices["4h"] || 120 },
           { id: "6h", label: t.booking.sixHours, price: seasonPrices["6h"] || 150 },
           { id: "8h", label: t.booking.eightHours, price: seasonPrices["8h"] || 180 },
-        ];
+        ]);
       } else if (boat.pricePerHour) {
         const basePrice = parseFloat(boat.pricePerHour);
-        return [
+        return capByMax([
           { id: "1h", label: t.booking.oneHour, price: basePrice },
           { id: "2h", label: t.booking.twoHours, price: Math.round(basePrice * 1.8) },
           { id: "3h", label: t.booking.threeHours, price: Math.round(basePrice * 2.5) },
           { id: "4h", label: t.booking.fourHours, price: Math.round(basePrice * 3.2) },
           { id: "6h", label: t.booking.sixHours, price: Math.round(basePrice * 4.5) },
           { id: "8h", label: t.booking.eightHours, price: Math.round(basePrice * 5.8) },
-        ];
+        ]);
       } else {
         throw new Error(`Boat ${selectedBoat} has no pricing data`);
       }

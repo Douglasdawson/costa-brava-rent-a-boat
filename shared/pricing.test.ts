@@ -9,6 +9,9 @@ import {
   getDepositAmount,
   isValidDuration,
   getMinimumDuration,
+  getMinimumDurationForBoat,
+  getMaximumDuration,
+  getAvailableDurationsForDate,
   WEEKEND_SURCHARGE_FACTOR,
   getAvailableDurations,
   getAllBoatIds,
@@ -168,6 +171,72 @@ describe("getMinimumDuration", () => {
 
   it("returns 1h for weekday in September", () => {
     expect(getMinimumDuration(new Date("2026-09-15T12:00:00"))).toBe("1h");
+  });
+});
+
+describe("getMinimumDurationForBoat", () => {
+  it("keeps 1h minimum for a licence-free boat in August", () => {
+    expect(getMinimumDurationForBoat("solar-450", new Date("2026-08-15T12:00:00"))).toBe("1h");
+  });
+
+  it("keeps the date-based 2h minimum for a licensed boat in August", () => {
+    expect(getMinimumDurationForBoat("pacific-craft-625", new Date("2026-08-15T12:00:00"))).toBe("2h");
+  });
+
+  it("returns 1h for a licence-free boat outside August", () => {
+    expect(getMinimumDurationForBoat("solar-450", new Date("2026-07-15T12:00:00"))).toBe("1h");
+  });
+});
+
+describe("getMaximumDuration", () => {
+  it("caps licence-free boats at 4h in July", () => {
+    expect(getMaximumDuration("solar-450", new Date("2026-07-15T12:00:00"))).toBe("4h");
+  });
+
+  it("caps licence-free boats at 4h in August", () => {
+    expect(getMaximumDuration("solar-450", new Date("2026-08-15T12:00:00"))).toBe("4h");
+  });
+
+  it("does not cap licence-free boats outside July/August", () => {
+    expect(getMaximumDuration("solar-450", new Date("2026-05-15T12:00:00"))).toBeNull();
+    expect(getMaximumDuration("solar-450", new Date("2026-09-15T12:00:00"))).toBeNull();
+  });
+
+  it("never caps licensed boats", () => {
+    expect(getMaximumDuration("pacific-craft-625", new Date("2026-08-15T12:00:00"))).toBeNull();
+  });
+});
+
+describe("getAvailableDurationsForDate peak-season cap (licence-free boats)", () => {
+  const hidden = (boatId: string, date: Date) => {
+    const opts = getAvailableDurationsForDate(boatId, date);
+    return opts.map((o) => o.duration);
+  };
+
+  it("hides 6h and 8h for solar-450 in July, keeps 1h..4h available", () => {
+    const opts = getAvailableDurationsForDate("solar-450", new Date("2026-07-15T12:00:00"));
+    const durations = opts.map((o) => o.duration);
+    expect(durations).not.toContain("6h");
+    expect(durations).not.toContain("8h");
+    expect(durations).toContain("4h");
+    // 1h stays available (no peak-season minimum for licence-free boats)
+    expect(opts.find((o) => o.duration === "1h")?.available).toBe(true);
+  });
+
+  it("hides 6h and 8h for solar-450 in August and still allows 1h", () => {
+    const opts = getAvailableDurationsForDate("solar-450", new Date("2026-08-15T12:00:00"));
+    const durations = opts.map((o) => o.duration);
+    expect(durations).not.toContain("6h");
+    expect(durations).not.toContain("8h");
+    expect(opts.find((o) => o.duration === "1h")?.available).toBe(true);
+  });
+
+  it("still offers 8h for a licensed boat in August", () => {
+    expect(hidden("pacific-craft-625", new Date("2026-08-15T12:00:00"))).toContain("8h");
+  });
+
+  it("still offers 8h for solar-450 in low season (May)", () => {
+    expect(hidden("solar-450", new Date("2026-05-15T12:00:00"))).toContain("8h");
   });
 });
 

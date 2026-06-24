@@ -60,10 +60,13 @@ export function BookingStepExperience({
   const parsedDate = selectedDate ? new Date(selectedDate + "T12:00:00") : null;
   const isWeekendDay = parsedDate ? (parsedDate.getDay() === 0 || parsedDate.getDay() === 6) : false;
   const isAugust = parsedDate ? (parsedDate.getMonth() === 7) : false;
-  const minDuration2h = isWeekendDay || isAugust;
 
   const selectedBoatData = availableBoats.find(b => b.id === selectedBoat);
   const boatCapacity = selectedBoatData?.capacity || parseInt(selectedBoatData?.specifications?.capacity?.split(' ')[0] || '5');
+  // Licence-free boats keep a 1h minimum all season (owner rule 2026-06-24);
+  // the 2h floor only applies to licensed boats on weekends / August.
+  const selectedRequiresLicense = selectedBoatData?.requiresLicense ?? true;
+  const minDuration2h = (isWeekendDay || isAugust) && selectedRequiresLicense;
 
   const canContinue = !!(selectedDate && selectedBoat && selectedTime && duration);
   const continueHint = canContinue

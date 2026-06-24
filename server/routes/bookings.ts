@@ -475,7 +475,7 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      const { isOperationalSeason, calculatePricingBreakdown, getMinimumDuration } = await import("@shared/pricing");
+      const { isOperationalSeason, calculatePricingBreakdown, getMinimumDurationForBoat, getMaximumDuration } = await import("@shared/pricing");
       if (!isOperationalSeason(start) || !isOperationalSeason(end)) {
         return res.status(400).json({
           available: false,
@@ -484,9 +484,10 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      // Validate minimum duration (2h in Temporada Alta and weekends)
+      // Validate minimum duration (2h in Temporada Alta for licensed boats;
+      // licence-free boats keep a 1h minimum all season).
       const totalRequestedHours = (end.getTime() - start.getTime()) / (1000 * 60 * 60);
-      const minDuration = getMinimumDuration(start);
+      const minDuration = getMinimumDurationForBoat(boatId, start);
       const minHours = parseInt(minDuration);
       if (totalRequestedHours < minHours) {
         const isAugust = start.getMonth() + 1 === 8;
@@ -497,6 +498,20 @@ export function registerBookingRoutes(app: Express) {
           message: `La duración mínima en ${reason} es de ${minHours} horas`,
           minimumDuration: minDuration,
         });
+      }
+
+      // Cap licence-free boats at 4h in peak season (July/August)
+      const maxDuration = getMaximumDuration(boatId, start);
+      if (maxDuration) {
+        const maxHours = parseInt(maxDuration);
+        if (totalRequestedHours > maxHours) {
+          return res.status(400).json({
+            available: false,
+            reason: "above_maximum_duration",
+            message: `La duración máxima para barcos sin licencia en temporada alta es de ${maxHours} horas`,
+            maximumDuration: maxDuration,
+          });
+        }
       }
 
       const boat = await storage.getBoat(boatId);

@@ -1,5 +1,5 @@
 // Pricing utility for Costa Brava Rent a Boat seasonal pricing system
-import { BOAT_DATA, EXTRA_PACKS, type BoatData } from './boatData';
+import { BOAT_DATA, EXTRA_PACKS, boatDataRequiresLicense, type BoatData } from './boatData';
 import { SEASON_START_MONTH, SEASON_END_MONTH } from './constants';
 
 export type Season = 'BAJA' | 'MEDIA' | 'ALTA';
@@ -174,6 +174,33 @@ export function getMinimumDuration(date: Date): Duration {
   const month = date.getMonth() + 1;
   if (month === 8) return '2h';
   return '1h';
+}
+
+/**
+ * Boat-aware minimum duration. Licence-free boats keep a 1h minimum all
+ * season (owner rule 2026-06-24: short slots on the unlicensed fleet sell
+ * well and the team would rather not block them in August). Licensed boats
+ * follow the date-based minimum from {@link getMinimumDuration}.
+ */
+export function getMinimumDurationForBoat(boatId: string, date: Date): Duration {
+  const boat = BOAT_DATA[boatId];
+  if (boat && !boatDataRequiresLicense(boat)) return '1h';
+  return getMinimumDuration(date);
+}
+
+/**
+ * Maximum bookable duration. Licence-free boats are capped at 4h in peak
+ * season (July and August) so the team can fit more short rentals per boat
+ * per day (owner rule 2026-06-24). Returns null when no cap applies; licensed
+ * boats are never capped, and outside July/August there is no cap.
+ */
+export function getMaximumDuration(boatId: string, date: Date): Duration | null {
+  const boat = BOAT_DATA[boatId];
+  if (!boat) return null;
+  const month = date.getMonth() + 1; // 7 = July, 8 = August
+  if (month !== 7 && month !== 8) return null;
+  if (boatDataRequiresLicense(boat)) return null;
+  return '4h';
 }
 
 /**
@@ -515,8 +542,12 @@ export function getAvailableDurationsForDate(boatId: string, date: Date): Durati
   }
 
   const season = getSeason(date);
-  const boatDurations = Object.keys(boat.pricing[season].prices) as Duration[];
-  const minDuration = getMinimumDuration(date);
+  // Hide durations above the peak-season cap (licence-free boats, July/August).
+  const maxDuration = getMaximumDuration(boatId, date);
+  const maxHours = maxDuration ? durationToHours(maxDuration) : Infinity;
+  const boatDurations = (Object.keys(boat.pricing[season].prices) as Duration[])
+    .filter((d) => durationToHours(d) <= maxHours);
+  const minDuration = getMinimumDurationForBoat(boatId, date);
   const minHours = durationToHours(minDuration);
 
   const month = date.getMonth() + 1;

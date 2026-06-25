@@ -42,6 +42,6 @@
     "destinations": { "apiEndpoint": "/api/destinations?status=published", "pathTemplate": "/destinos/{slug}", "langs": ["es", "en"] }
   },
   "waitForSelector": "footer, nav, h1",
-  "networkIdleTimeout": 5000,
-  "concurrency": 3
+  "networkIdleTimeout": 3000,
+  "concurrency": 5
 }

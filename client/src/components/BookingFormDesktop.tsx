@@ -827,7 +827,16 @@ function Step2Details({
                     return durPH < bestPH ? dur : best;
                   }).value
                 : null;
-            return durationOptions.map(opt => {
+            // Durations that don't fit (too long for the start time / real
+            // availability) or are season-restricted are removed entirely —
+            // we never show them struck-through as "No disponible".
+            const bookableOptions = durationOptions.filter(opt => {
+              const durationHours = parseInt(opt.value.replace("h", ""));
+              const exceedsMax =
+                selectedTimeMaxDuration !== null && durationHours > selectedTimeMaxDuration;
+              return !exceedsMax && !opt.disabled;
+            });
+            return bookableOptions.map(opt => {
               const durationHours = parseInt(opt.value.replace("h", ""));
               const exceedsMax =
                 selectedTimeMaxDuration !== null && durationHours > selectedTimeMaxDuration;

@@ -7,6 +7,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
 import { SEASON_END_MONTH } from "@shared/constants";
+import { getMaximumDuration } from "@shared/pricing";
 import AvailabilityCalendar from "./AvailabilityCalendar";
 import type { Boat } from "@shared/schema";
 
@@ -249,8 +250,18 @@ function DayPricingMode({
         });
       });
     }
+    // Peak-season cap: licence-free boats are limited to 4h in July/August,
+    // so hide any slot above the maximum for the selected date (owner rule
+    // 2026-06-24, mirrors getAvailableDurationsForDate / the booking wizard).
+    const maxDuration = getMaximumDuration(boatId, selectedDate);
+    if (maxDuration) {
+      const maxHours = parseInt(maxDuration);
+      for (const d of Array.from(set)) {
+        if (parseInt(d) > maxHours) set.delete(d);
+      }
+    }
     return set;
-  }, [boatData.pricing]);
+  }, [boatData.pricing, boatId, selectedDate]);
 
   // One hook per possible duration. Hooks must be unconditional, but each one
   // gates its own fetch via `enabled` so we don't hit the API for slots the boat

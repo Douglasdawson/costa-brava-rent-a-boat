@@ -3,8 +3,8 @@
  * Used by BoatDetailPage, BookingFormDesktop, and BookingWizardMobile so
  * the same extras render consistently across the detail tab and the
  * booking modal. Exact-match lookup — names not listed fall through to
- * the original (intentional for international terms like "Snorkel",
- * "Paddle Surf", "Seascooter" that are the same in every supported lang).
+ * the original (intentional for international terms like "Snorkel" and
+ * "Paddle Surf" that are the same in every supported lang).
  */
 
 type LangCode = "es" | "en" | "ca" | "fr" | "de" | "nl" | "it" | "ru";
@@ -34,10 +34,6 @@ const EXTRA_NAME_TRANSLATIONS: Record<string, Partial<Record<LangCode, string>>>
   "Pack Basic": {
     en: "Basic Pack", fr: "Pack Basic", de: "Basic-Paket", nl: "Basic-pakket",
     it: "Pacchetto Basic", ru: "Пакет Basic", ca: "Pack Basic",
-  },
-  "Pack Aventura": {
-    en: "Adventure Pack", fr: "Pack Aventure", de: "Abenteuer-Paket", nl: "Avonturen-pakket",
-    it: "Pacchetto Avventura", ru: "Пакет Приключение", ca: "Pack Aventura",
   },
   "Pack Premium": {
     en: "Premium Pack", fr: "Pack Premium", de: "Premium-Paket", nl: "Premium-pakket",

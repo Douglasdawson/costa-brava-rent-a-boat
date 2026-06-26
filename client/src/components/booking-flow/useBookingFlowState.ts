@@ -127,12 +127,6 @@ export function useBookingFlowState(props: BookingFlowProps) {
       price: 25,
       description: t.booking?.extrasDetails?.paddle?.description || "Tabla de paddle surf",
     },
-    {
-      id: "seascooter",
-      name: t.booking?.extrasDetails?.seascooter?.name || "Seascooter",
-      price: 50,
-      description: t.booking?.extrasDetails?.seascooter?.description || "Scooter acuático",
-    },
   ];
 
   // Debounce search values so filtering only runs after 200ms of inactivity,

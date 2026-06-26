@@ -98,8 +98,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Nevera", price: "5€", icon: "Nevera" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Bebidas" },
       { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "50€", icon: "Seascooter" }
+      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" }
     ]
   },
 
@@ -159,8 +158,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Nevera", price: "5€", icon: "Nevera" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Bebidas" },
       { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "50€", icon: "Seascooter" }
+      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" }
     ]
   },
 
@@ -220,8 +218,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Nevera", price: "5€", icon: "Nevera" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Bebidas" },
       { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "50€", icon: "Seascooter" }
+      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" }
     ]
   },
 
@@ -281,8 +278,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Nevera", price: "5€", icon: "Nevera" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Bebidas" },
       { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "50€", icon: "Seascooter" }
+      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" }
     ]
   },
 
@@ -344,8 +340,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Nevera", price: "5€", icon: "Nevera" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Bebidas" },
       { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "50€", icon: "Seascooter" }
+      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" }
     ]
   },
 
@@ -408,8 +403,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Nevera", price: "5€", icon: "Nevera" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Bebidas" },
       { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "50€", icon: "Seascooter" }
+      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" }
     ]
   },
 
@@ -472,8 +466,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Nevera", price: "5€", icon: "Nevera" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Bebidas" },
       { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "50€", icon: "Seascooter" }
+      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" }
     ]
   },
 
@@ -540,8 +533,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Nevera", price: "5€", icon: "Nevera" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Bebidas" },
       { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "50€", icon: "Seascooter" }
+      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" }
     ]
   },
 
@@ -606,8 +598,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Nevera", price: "5€", icon: "Nevera" },
       { name: "Agua y refrescos", price: "2€/ud", icon: "Bebidas" },
       { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "60€", icon: "Seascooter" }
+      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" }
     ]
   }
 };
@@ -813,14 +804,5 @@ export const EXTRA_PACKS: ExtraPack[] = [
     price: 30,
     originalPrice: 37.5,
     icon: "Crown",
-  },
-  {
-    id: "pack-aventura",
-    name: "Pack Aventura",
-    nameEN: "Adventure Pack",
-    extras: ["Nevera", "Snorkel", "Paddle Surf", "Seascooter"],
-    price: 75,
-    originalPrice: 87.5,
-    icon: "Zap",
   },
 ];

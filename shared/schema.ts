@@ -1,3 +1,5 @@
+// Deploy nudge 2026-06-28: utm_*/fbclid columns on whatsapp_inquiries already
+// exist in the DB; this forces Replit to regenerate a clean (empty) migration.
 import { sql } from "drizzle-orm";
 import {
   pgTable,

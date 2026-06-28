@@ -31,6 +31,7 @@ const envSchema = z.object({
   META_CAPI_ACCESS_TOKEN: z.string().optional(),
   META_ADS_ACCESS_TOKEN: z.string().optional(),
   META_AD_ACCOUNT_ID: z.string().optional(),
+  CRMDAMAR_DATABASE_URL: z.string().optional(),
   BASE_URL: z.string().default("https://www.costabravarentaboat.com"),
 });
 

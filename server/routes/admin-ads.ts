@@ -21,6 +21,7 @@ import {
   fetchGA4MetaAttribution,
 } from "../services/googleAnalyticsService";
 import { getDashboardStatsEnhanced } from "../storage/analytics";
+import { getCrmDamarBookingStats } from "../lib/crmDamarStats";
 
 function parsePreset(value: unknown): DatePreset {
   return DATE_PRESETS.includes(value as DatePreset) ? (value as DatePreset) : "last_7d";
@@ -36,6 +37,28 @@ function dateRange(days: number) {
   const end = new Date();
   const start = new Date(end.getTime() - days * 24 * 60 * 60 * 1000);
   return { startDate: start.toISOString().split("T")[0], endDate: end.toISOString().split("T")[0] };
+}
+
+// Average ticket anchors the scale read (cost per lead vs ticket). The REAL
+// confirmed bookings live in crmdamar, not in this app's DB (which only stores
+// requests), so prefer crmdamar's value and fall back to the local 90-day stat.
+async function resolveAvgTicket(): Promise<number> {
+  try {
+    const damar = await getCrmDamarBookingStats();
+    if (damar && damar.avgTicket > 0) return damar.avgTicket;
+  } catch {
+    // fall through to local
+  }
+  try {
+    const { startDate, endDate } = dateRange(90);
+    const stats = await getDashboardStatsEnhanced(new Date(startDate), new Date(endDate));
+    return stats.averageTicket;
+  } catch (err) {
+    logger.warn("[Meta Ads] could not load average ticket", {
+      error: err instanceof Error ? err.message : String(err),
+    });
+    return 0;
+  }
 }
 
 // ==================== Expert reads (flags) ====================
@@ -198,17 +221,7 @@ export function registerAdsRoutes(app: Express) {
       return res.json({ configured: false });
     }
     try {
-      // Average ticket (last 90 days of confirmed bookings) anchors the scale read.
-      let avgTicket = 0;
-      try {
-        const { startDate, endDate } = dateRange(90);
-        const stats = await getDashboardStatsEnhanced(new Date(startDate), new Date(endDate));
-        avgTicket = stats.averageTicket;
-      } catch (err) {
-        logger.warn("[Meta Ads] could not load average ticket", {
-          error: err instanceof Error ? err.message : String(err),
-        });
-      }
+      const avgTicket = await resolveAvgTicket();
 
       const [account, accountInsight, campaigns, campaignInsights] = await Promise.all([
         fetchAccountInfo(),
@@ -263,18 +276,8 @@ export function registerAdsRoutes(app: Express) {
       const { startDate, endDate } = dateRange(presetToDays(preset));
       const attribution = await fetchGA4MetaAttribution(startDate, endDate);
 
-      // Average ticket for the scale verdict.
-      let avgTicket = 0;
-      try {
-        const ninety = dateRange(90);
-        const stats = await getDashboardStatsEnhanced(
-          new Date(ninety.startDate),
-          new Date(ninety.endDate)
-        );
-        avgTicket = stats.averageTicket;
-      } catch {
-        // non-fatal
-      }
+      // Average ticket for the scale verdict (real value from crmdamar, local fallback).
+      const avgTicket = await resolveAvgTicket();
 
       // Spend for the same window (if the Ads token works) → real cost per GA4 lead.
       let spend: number | null = null;

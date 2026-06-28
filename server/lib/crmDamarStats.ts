@@ -75,3 +75,45 @@ export async function getCrmDamarBookingStats(opts?: {
     return null;
   }
 }
+
+export interface MetaBookingMatch {
+  matchedBookings: number;
+  attributedRevenue: number;
+}
+
+// Close the loop: given the emails / last-9-digit phones of this app's
+// Meta-sourced inquiries, find how many became CONFIRMED bookings in crmdamar and
+// their revenue. Matches rentals_real -> clients_real (by dni) on email or phone.
+export async function matchMetaBookings(
+  emails: string[],
+  phones9: string[]
+): Promise<MetaBookingMatch> {
+  const url = process.env.CRMDAMAR_DATABASE_URL;
+  const empty: MetaBookingMatch = { matchedBookings: 0, attributedRevenue: 0 };
+  if (!url || (emails.length === 0 && phones9.length === 0)) return empty;
+
+  try {
+    const sql = neon(url);
+    const rows = await sql`
+      SELECT COUNT(*)::int AS n, COALESCE(SUM(r.total), 0) AS rev
+      FROM rentals_real r
+      JOIN clients_real c ON c.dni = r.client_dni AND c.dni <> ''
+      WHERE r.estado_reserva = 'reserva_pagada'
+        AND r.cancelled_rain = false AND r.cancelled_sea = false
+        AND r.cancelled_wind = false AND r.cancelled_breakdown = false
+        AND (
+          (c.email LIKE '%@%' AND lower(c.email) = ANY(${emails}))
+          OR right(regexp_replace(c.telefono, '[^0-9]', '', 'g'), 9) = ANY(${phones9})
+        )`;
+    const row = (rows as Array<Record<string, unknown>>)[0] || {};
+    return {
+      matchedBookings: Number(row.n) || 0,
+      attributedRevenue: Math.round((Number(row.rev) || 0) * 100) / 100,
+    };
+  } catch (error) {
+    logger.warn("[crmdamar] match query error", {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return empty;
+  }
+}

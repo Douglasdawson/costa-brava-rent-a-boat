@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
+import { getAttribution } from "@/utils/attribution";
 import {
   PHONE_PREFIXES,
   flagEmojiToIso2,
@@ -32,10 +33,7 @@ const CTA_CLASS =
 const inputClass =
   "w-full rounded-lg border border-border bg-background px-3 py-3 text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring";
 
-export default function JetSkiRequestModal({
-  product,
-  onClose,
-}: JetSkiRequestModalProps) {
+export default function JetSkiRequestModal({ product, onClose }: JetSkiRequestModalProps) {
   const { language } = useLanguage();
   const t = useTranslations();
   const m = t.jetski?.modal;
@@ -48,9 +46,7 @@ export default function JetSkiRequestModal({
   const [slotId, setSlotId] = useState<string>("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [phonePrefix, setPhonePrefix] = useState(
-    getDefaultPhonePrefixForLanguage(language),
-  );
+  const [phonePrefix, setPhonePrefix] = useState(getDefaultPhonePrefixForLanguage(language));
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [people, setPeople] = useState(1);
@@ -60,8 +56,7 @@ export default function JetSkiRequestModal({
 
   if (!product) return null;
 
-  const selectedSlot =
-    product.slots.find((s) => s.id === slotId) ?? product.slots[0];
+  const selectedSlot = product.slots.find(s => s.id === slotId) ?? product.slots[0];
 
   // Effective price for the chosen party size: some slots (the 15-min circuit)
   // are priced per person (65€ for 1, 80€ for 2). Per-craft slots ignore this.
@@ -112,7 +107,7 @@ export default function JetSkiRequestModal({
       ``,
       `¡Gracias!`,
     ]
-      .filter((line) => line !== null)
+      .filter(line => line !== null)
       .join("\n");
 
     // Fire WhatsApp open SYNCHRONOUSLY before any async work — required for
@@ -144,6 +139,7 @@ export default function JetSkiRequestModal({
             estimatedTotal: String(effectivePrice),
             source: "jetski",
             language,
+            ...getAttribution(),
             website, // honeypot — empty for real users
             notes: `[JET SKI – ${product.name}] Franja: ${selectedSlot.label} · ${people} pers. (${effectivePrice}€). Reventa partner Jet Ski Blanes.`,
           }),
@@ -194,7 +190,7 @@ export default function JetSkiRequestModal({
   };
 
   return (
-    <Dialog open={!!product} onOpenChange={(open) => !open && onClose()}>
+    <Dialog open={!!product} onOpenChange={open => !open && onClose()}>
       <DialogContent className="w-[calc(100%-2rem)] max-w-md max-h-[90vh] overflow-y-auto overflow-x-hidden">
         {status === "success" ? (
           <div role="status" className="py-6 text-center">
@@ -203,8 +199,7 @@ export default function JetSkiRequestModal({
               {m?.successTitle || "¡Solicitud enviada!"}
             </DialogTitle>
             <p className="text-muted-foreground">
-              {m?.successText ||
-                "Gracias. Te contactamos enseguida para confirmar tu jet ski."}
+              {m?.successText || "Gracias. Te contactamos enseguida para confirmar tu jet ski."}
             </p>
           </div>
         ) : (
@@ -230,7 +225,7 @@ export default function JetSkiRequestModal({
                   tabIndex={-1}
                   autoComplete="off"
                   value={website}
-                  onChange={(e) => setWebsite(e.target.value)}
+                  onChange={e => setWebsite(e.target.value)}
                 />
               </div>
 
@@ -240,15 +235,13 @@ export default function JetSkiRequestModal({
                   {m?.slot || "Franja"}
                 </legend>
                 <div className="space-y-2">
-                  {product.slots.map((slot) => {
+                  {product.slots.map(slot => {
                     const checked = slot.id === selectedSlot.id;
                     return (
                       <label
                         key={slot.id}
                         className={`flex cursor-pointer items-center justify-between gap-3 rounded-lg border px-3 py-2.5 transition-colors ${
-                          checked
-                            ? "border-cta bg-cta/5"
-                            : "border-border hover:border-cta/50"
+                          checked ? "border-cta bg-cta/5" : "border-border hover:border-cta/50"
                         }`}
                       >
                         <span className="flex items-center gap-2">
@@ -269,9 +262,7 @@ export default function JetSkiRequestModal({
                             )}
                           </span>
                         </span>
-                        <span className="text-sm font-semibold text-cta">
-                          {slot.price}&euro;
-                        </span>
+                        <span className="text-sm font-semibold text-cta">{slot.price}&euro;</span>
                       </label>
                     );
                   })}
@@ -292,7 +283,7 @@ export default function JetSkiRequestModal({
                     min={todayStr}
                     className={inputClass}
                     value={when}
-                    onChange={(e) => setWhen(e.target.value)}
+                    onChange={e => setWhen(e.target.value)}
                   />
                 </div>
                 <div>
@@ -306,15 +297,13 @@ export default function JetSkiRequestModal({
                     id="js-people"
                     className={inputClass}
                     value={people}
-                    onChange={(e) => setPeople(Number(e.target.value))}
+                    onChange={e => setPeople(Number(e.target.value))}
                   >
-                    {Array.from({ length: product.capacity }, (_, i) => i + 1).map(
-                      (n) => (
-                        <option key={n} value={n}>
-                          {n}
-                        </option>
-                      ),
-                    )}
+                    {Array.from({ length: product.capacity }, (_, i) => i + 1).map(n => (
+                      <option key={n} value={n}>
+                        {n}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -329,7 +318,7 @@ export default function JetSkiRequestModal({
                     name="given-name"
                     className={inputClass}
                     value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    onChange={e => setFirstName(e.target.value)}
                     placeholder={m?.firstNamePlaceholder || "Nombre"}
                     autoComplete="given-name"
                   />
@@ -343,7 +332,7 @@ export default function JetSkiRequestModal({
                     name="family-name"
                     className={inputClass}
                     value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    onChange={e => setLastName(e.target.value)}
                     placeholder={m?.lastNamePlaceholder || "Apellidos"}
                     autoComplete="family-name"
                   />
@@ -359,9 +348,9 @@ export default function JetSkiRequestModal({
                     aria-label={m?.phone || "Teléfono / WhatsApp"}
                     className="w-24 flex-shrink-0 rounded-lg border border-border bg-background px-2 py-3 text-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
                     value={phonePrefix}
-                    onChange={(e) => setPhonePrefix(e.target.value)}
+                    onChange={e => setPhonePrefix(e.target.value)}
                   >
-                    {PHONE_PREFIXES.map((p) => (
+                    {PHONE_PREFIXES.map(p => (
                       <option key={`${p.code}-${p.country}`} value={p.code}>
                         {p.code} {flagEmojiToIso2(p.flag)}
                       </option>
@@ -373,7 +362,7 @@ export default function JetSkiRequestModal({
                     type="tel"
                     inputMode="tel"
                     value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    onChange={e => setPhoneNumber(e.target.value)}
                     placeholder={m?.phone || "Teléfono / WhatsApp"}
                     autoComplete="tel-national"
                   />
@@ -389,7 +378,7 @@ export default function JetSkiRequestModal({
                   className={inputClass}
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                   placeholder={`${m?.email || "Email"} (${m?.emailHint || "Opcional"})`}
                   autoComplete="email"
                 />
@@ -398,10 +387,8 @@ export default function JetSkiRequestModal({
               {status === "error" && (
                 <p role="alert" className="text-sm text-destructive">
                   {firstName.trim() && phoneNumber.trim()
-                    ? m?.errorText ||
-                      "No hemos podido enviar tu solicitud. Inténtalo de nuevo."
-                    : m?.requiredError ||
-                      "Por favor, completa tu nombre y teléfono."}
+                    ? m?.errorText || "No hemos podido enviar tu solicitud. Inténtalo de nuevo."
+                    : m?.requiredError || "Por favor, completa tu nombre y teléfono."}
                 </p>
               )}
 

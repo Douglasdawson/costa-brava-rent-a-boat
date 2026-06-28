@@ -21,7 +21,12 @@ import {
   fetchGA4MetaAttribution,
 } from "../services/googleAnalyticsService";
 import { getDashboardStatsEnhanced } from "../storage/analytics";
-import { getCrmDamarBookingStats } from "../lib/crmDamarStats";
+import {
+  getCrmDamarBookingStats,
+  matchMetaBookings,
+  isCrmDamarConfigured,
+} from "../lib/crmDamarStats";
+import { pool } from "../db";
 
 function parsePreset(value: unknown): DatePreset {
   return DATE_PRESETS.includes(value as DatePreset) ? (value as DatePreset) : "last_7d";
@@ -332,6 +337,58 @@ export function registerAdsRoutes(app: Express) {
         error: error instanceof Error ? error.message : String(error),
       });
       res.status(502).json({ configured: true, error: "Error obteniendo atribucion de GA4" });
+    }
+  });
+
+  // ROAS: the closed loop. Match this app's Meta-sourced inquiries (captured utm/
+  // fbclid) against crmdamar's confirmed bookings to get attributed revenue, then
+  // compare with Meta spend. Forward-looking: only inquiries created after the
+  // attribution capture shipped carry utm, so this grows over time (starts at 0).
+  app.get("/api/admin/ads/roas", requireAdminSession, async (_req, res) => {
+    if (!isCrmDamarConfigured()) {
+      return res.json({ configured: false, reason: "crmdamar_not_configured" });
+    }
+    try {
+      const result = await pool.query(
+        `SELECT lower(email) AS email,
+                right(regexp_replace(coalesce(phone_prefix,'') || coalesce(phone_number,''), '[^0-9]', '', 'g'), 9) AS phone9
+         FROM whatsapp_inquiries
+         WHERE utm_source ILIKE '%meta%' OR utm_source ILIKE '%facebook%'
+            OR utm_source ILIKE '%instagram%' OR utm_source ILIKE '%fb%'
+            OR fbclid IS NOT NULL`
+      );
+      const rows = result.rows as Array<{ email: string | null; phone9: string | null }>;
+      const emails = [
+        ...new Set(rows.map(r => r.email).filter((e): e is string => !!e && e.includes("@"))),
+      ];
+      const phones9 = [
+        ...new Set(rows.map(r => r.phone9).filter((p): p is string => !!p && p.length >= 7)),
+      ];
+      const metaInquiries = rows.length;
+
+      const { matchedBookings, attributedRevenue } = await matchMetaBookings(emails, phones9);
+
+      let spend = 0;
+      try {
+        spend = (await fetchAccountInsights("maximum")).spend;
+      } catch {
+        // Meta token may be unavailable; ROAS just won't be computed.
+      }
+      const roas = spend > 0 ? Math.round((attributedRevenue / spend) * 100) / 100 : null;
+
+      res.json({
+        configured: true,
+        metaInquiries,
+        matchedBookings,
+        attributedRevenue,
+        spend,
+        roas,
+      });
+    } catch (error) {
+      logger.error("[Meta Ads] roas error", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.status(500).json({ configured: true, error: "Error calculando ROAS atribuido" });
     }
   });
 }

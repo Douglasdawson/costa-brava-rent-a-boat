@@ -8,15 +8,27 @@ import {
   deriveLicenseType,
 } from "@/utils/analytics";
 import { openWhatsApp } from "@/utils/whatsapp";
+import { getAttribution } from "@/utils/attribution";
 import type { BookingFlowStateReturn } from "./useBookingFlowState";
 
 export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: () => void) {
   const {
-    selectedDate, selectedBoat, selectedTime, duration, extras,
-    customerData, holdId, availableBoats,
-    setIsLoading, setQuote, setHoldId,
-    isProcessingPayment, setIsProcessingPayment,
-    toast, t, availableExtras,
+    selectedDate,
+    selectedBoat,
+    selectedTime,
+    duration,
+    extras,
+    customerData,
+    holdId,
+    availableBoats,
+    setIsLoading,
+    setQuote,
+    setHoldId,
+    isProcessingPayment,
+    setIsProcessingPayment,
+    toast,
+    t,
+    availableExtras,
   } = state;
 
   const createQuote = async (): Promise<boolean> => {
@@ -33,19 +45,19 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
 
     try {
       const startDateTime = new Date(`${selectedDate}T${selectedTime}:00`);
-      const durationHours = parseInt(duration.replace('h', ''));
+      const durationHours = parseInt(duration.replace("h", ""));
       const endDateTime = new Date(startDateTime.getTime() + durationHours * 60 * 60 * 1000);
 
       const selectedExtras = Object.entries(extras)
         .filter(([_, quantity]) => quantity > 0)
         .map(([id, _]) => id);
 
-      const quoteResponse = await apiRequest('POST', '/api/quote', {
+      const quoteResponse = await apiRequest("POST", "/api/quote", {
         boatId: selectedBoat,
         startTime: startDateTime.toISOString(),
         endTime: endDateTime.toISOString(),
         numberOfPeople: customerData.numberOfPeople,
-        extras: selectedExtras
+        extras: selectedExtras,
       });
 
       if (!quoteResponse.ok) {
@@ -65,10 +77,13 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
 
       return true;
     } catch (error: unknown) {
-      if (import.meta.env.DEV) console.error('Error creating quote:', error);
+      if (import.meta.env.DEV) console.error("Error creating quote:", error);
       toast({
         title: "Error al crear cotización",
-        description: error instanceof Error ? error.message : "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
         variant: "destructive",
       });
       return false;
@@ -82,7 +97,12 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
   // Customer fills the form → ve cotización → pulsa "Solicitar reserva" →
   // Ivan recibe email con datos → contacta al cliente para coordinar pago.
   const proceedWithPayment = async () => {
-    if (!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality) {
+    if (
+      !customerData.customerName ||
+      !customerData.customerSurname ||
+      !customerData.customerPhone ||
+      !customerData.customerNationality
+    ) {
       toast({
         title: t.booking.error,
         description: t.booking.missingPersonalData,
@@ -111,8 +131,13 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
     const peopleCount = customerData.numberOfPeople;
     const dateStr = (() => {
       try {
-        return new Date(`${selectedDate}T${selectedTime || "00:00"}:00`).toLocaleDateString("es-ES", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-      } catch { return selectedDate; }
+        return new Date(`${selectedDate}T${selectedTime || "00:00"}:00`).toLocaleDateString(
+          "es-ES",
+          { weekday: "long", year: "numeric", month: "long", day: "numeric" }
+        );
+      } catch {
+        return selectedDate;
+      }
     })();
     const selectedExtraNames = Object.entries(extras)
       .filter(([, qty]) => qty > 0)
@@ -139,7 +164,9 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
       `Nacionalidad: ${customerData.customerNationality}`,
       ``,
       `¡Gracias!`,
-    ].filter(Boolean).join("\n");
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     // Fire WhatsApp open SYNCHRONOUSLY before any async work — required for
     // popup-blocker-free behavior (must be inside the click handler stack).
@@ -150,29 +177,31 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
     setIsProcessingPayment(true);
 
     try {
-      const language = (typeof window !== "undefined")
-        ? (window.location.pathname.match(/^\/([a-z]{2})\//)?.[1] || "es")
-        : "es";
+      const language =
+        typeof window !== "undefined"
+          ? window.location.pathname.match(/^\/([a-z]{2})\//)?.[1] || "es"
+          : "es";
 
       // Persist the request server-side so it shows up in /crm/bookings AND
       // gets logged as an inquiry in /crm/inquiries (same as the homepage
       // widget). Both records help Iván track leads even if the customer
       // doesn't actually hit "Send" in WhatsApp.
       const [submitResponse] = await Promise.all([
-        apiRequest('POST', '/api/bookings/submit-request', {
+        apiRequest("POST", "/api/bookings/submit-request", {
           holdId,
           termsAccepted: true,
           customerName: customerData.customerName,
           customerSurname: customerData.customerSurname,
           customerEmail: customerData.customerEmail,
-          customerPhone: `${customerData.phonePrefix || ""}${customerData.customerPhone || ""}`.trim(),
+          customerPhone:
+            `${customerData.phonePrefix || ""}${customerData.customerPhone || ""}`.trim(),
           customerNationality: customerData.customerNationality,
           language,
         }),
         // Side-channel: log to inquiries table too. Best-effort, don't block.
-        fetch('/api/booking-inquiries', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        fetch("/api/booking-inquiries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             boatId: selectedBoat,
             boatName,
@@ -189,8 +218,11 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
             estimatedTotal: amount ? amount.toFixed(2) : null,
             language,
             source: "booking_wizard",
+            ...getAttribution(),
           }),
-        }).catch(() => { /* fire-and-forget */ }),
+        }).catch(() => {
+          /* fire-and-forget */
+        }),
       ]);
 
       if (!submitResponse.ok) {
@@ -202,10 +234,9 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
 
       // Track conversion event — boat/boatName/amount already computed above
       // for the WhatsApp message; reuse them here.
-      const durationHours = parseInt(duration.replace('h', ''), 10) || null;
-      const startTime = (selectedDate && selectedTime)
-        ? new Date(`${selectedDate}T${selectedTime}:00`)
-        : null;
+      const durationHours = parseInt(duration.replace("h", ""), 10) || null;
+      const startTime =
+        selectedDate && selectedTime ? new Date(`${selectedDate}T${selectedTime}:00`) : null;
       const timeSlot = deriveTimeSlot(startTime, durationHours);
       const boatLike = {
         id: selectedBoat,
@@ -226,25 +257,35 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
         numberOfPeople: customerData.numberOfPeople,
       };
       trackPurchaseEcommerce(result.bookingId, amount, boatLike, meta);
-      trackBookingWithUserData(result.bookingId, amount, selectedBoat, {
-        email: customerData.customerEmail,
-        phone: customerData.phonePrefix + customerData.customerPhone,
-        firstName: customerData.customerName,
-        lastName: customerData.customerSurname,
-      }, completedMeta);
+      trackBookingWithUserData(
+        result.bookingId,
+        amount,
+        selectedBoat,
+        {
+          email: customerData.customerEmail,
+          phone: customerData.phonePrefix + customerData.customerPhone,
+          firstName: customerData.customerName,
+          lastName: customerData.customerSurname,
+        },
+        completedMeta
+      );
 
       toast({
         title: "¡Pulsa enviar en WhatsApp!",
-        description: "Hemos abierto WhatsApp con tu solicitud pre-rellenada. Pulsa Enviar y te contactaremos para confirmar disponibilidad.",
+        description:
+          "Hemos abierto WhatsApp con tu solicitud pre-rellenada. Pulsa Enviar y te contactaremos para confirmar disponibilidad.",
         duration: 8000,
       });
 
       if (onClose) onClose();
     } catch (error: unknown) {
-      if (import.meta.env.DEV) console.error('Error submitting reservation request:', error);
+      if (import.meta.env.DEV) console.error("Error submitting reservation request:", error);
       toast({
         title: "Error al enviar la solicitud",
-        description: error instanceof Error ? error.message : "Inténtalo de nuevo o escríbenos por WhatsApp al +34 611 500 372",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Inténtalo de nuevo o escríbenos por WhatsApp al +34 611 500 372",
         variant: "destructive",
       });
     } finally {

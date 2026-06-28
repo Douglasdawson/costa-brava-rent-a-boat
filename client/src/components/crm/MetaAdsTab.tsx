@@ -120,6 +120,17 @@ interface AttributionResponse {
   error?: string;
 }
 
+interface RoasResponse {
+  configured: boolean;
+  reason?: string;
+  metaInquiries?: number;
+  matchedBookings?: number;
+  attributedRevenue?: number;
+  spend?: number;
+  roas?: number | null;
+  error?: string;
+}
+
 const PRESET_LABELS: Record<Preset, string> = {
   last_7d: "7 dias",
   last_30d: "30 dias",
@@ -177,6 +188,15 @@ export function MetaAdsTab({ adminToken: _adminToken }: MetaAdsTabProps) {
     queryKey: ["/api/admin/ads/attribution", preset],
     queryFn: async () => {
       const res = await fetch(`/api/admin/ads/attribution?preset=${preset}`, credentialOpts);
+      if (!res.ok) throw new Error("Error");
+      return res.json();
+    },
+  });
+
+  const { data: roas } = useQuery<RoasResponse>({
+    queryKey: ["/api/admin/ads/roas"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/ads/roas", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -447,6 +467,45 @@ export function MetaAdsTab({ adminToken: _adminToken }: MetaAdsTabProps) {
           )}
         </CardContent>
       </Card>
+
+      {/* Closed loop: Meta inquiries matched to real crmdamar bookings (ROAS) */}
+      {roas?.configured && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base flex items-center gap-2">
+              <Euro className="h-4 w-4" /> Retorno real (reservas de crmdamar)
+            </CardTitle>
+            <CardDescription>
+              Cruce de las solicitudes con origen Meta contra las reservas confirmadas reales. Se
+              instrumenta desde hoy, asi que crece a medida que entren solicitudes nuevas.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <StatCard title="Solicitudes Meta" value={roas.metaInquiries ?? 0} />
+              <StatCard title="Reservas atribuidas" value={roas.matchedBookings ?? 0} />
+              <StatCard
+                title="Ingresos atribuidos"
+                value={money(roas.attributedRevenue ?? 0, currency)}
+              />
+              <StatCard
+                title="ROAS"
+                value={roas.roas != null ? `${roas.roas.toFixed(2)}x` : "--"}
+                description={
+                  roas.spend != null ? `gasto total ${money(roas.spend, currency)}` : undefined
+                }
+                status={roas.roas != null ? (roas.roas >= 1 ? "good" : "warn") : "neutral"}
+              />
+            </div>
+            {(roas.metaInquiries ?? 0) === 0 && (
+              <p className="text-xs text-muted-foreground mt-3">
+                Aun no hay solicitudes con origen Meta etiquetado (la captura acaba de activarse).
+                Este panel se llenara segun lleguen.
+              </p>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       {(statusLoading || overviewLoading) && (
         <div className="flex items-center gap-2 text-sm text-muted-foreground">

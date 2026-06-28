@@ -5,16 +5,14 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
+import { getAttribution } from "@/utils/attribution";
 import {
   getSEOConfig,
   generateHreflangLinks,
   generateCanonicalUrl,
   BASE_DOMAIN,
 } from "@/utils/seo-config";
-import {
-  generateBreadcrumbSchema,
-  generateFAQSchema,
-} from "@/utils/seo-schemas";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
 import {
   PHONE_PREFIXES,
   flagEmojiToIso2,
@@ -65,16 +63,14 @@ export default function SharedSailingPage() {
         description: `${s.hero.priceHook} · ${s.hero.priceNote}`,
       },
     },
-    generateFAQSchema(s.faq.map((f) => ({ question: f.q, answer: f.a }))),
+    generateFAQSchema(s.faq.map(f => ({ question: f.q, answer: f.a }))),
   ];
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
   const [name, setName] = useState("");
-  const [phonePrefix, setPhonePrefix] = useState(
-    getDefaultPhonePrefixForLanguage(language),
-  );
+  const [phonePrefix, setPhonePrefix] = useState(getDefaultPhonePrefixForLanguage(language));
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [people, setPeople] = useState(1);
@@ -133,6 +129,7 @@ export default function SharedSailingPage() {
           email: email.trim() || undefined,
           source: "salida-compartida",
           language,
+          ...getAttribution(),
           website, // honeypot — empty for real users
           notes: `[SALIDA COMPARTIDA – lista de interés] Pilota: ${pilotLabel[pilot]}.${
             message.trim() ? ` Nota: ${message.trim()}` : ""
@@ -213,7 +210,7 @@ export default function SharedSailingPage() {
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {s.chips.map((chip) => (
+            {s.chips.map(chip => (
               <span
                 key={chip}
                 className="inline-flex items-center gap-1.5 rounded-full bg-black/25 px-3 py-1.5 text-sm text-white ring-1 ring-white/20"
@@ -227,16 +224,10 @@ export default function SharedSailingPage() {
       </section>
 
       {/* ═══ Sección formulario (lista de interés) ═══ */}
-      <section
-        id="interes"
-        className="scroll-mt-20 bg-muted/40 px-4 py-16 sm:px-6 lg:py-20"
-      >
+      <section id="interes" className="scroll-mt-20 bg-muted/40 px-4 py-16 sm:px-6 lg:py-20">
         <div className="mx-auto max-w-xl">
           {status === "success" ? (
-            <div
-              role="status"
-              className="rounded-2xl border border-border bg-card p-8 text-center"
-            >
+            <div role="status" className="rounded-2xl border border-border bg-card p-8 text-center">
               <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-[hsl(var(--ring))]" />
               <h2 className="mb-2 font-heading text-2xl font-bold text-foreground">
                 {s.form.successTitle}
@@ -267,7 +258,7 @@ export default function SharedSailingPage() {
                     tabIndex={-1}
                     autoComplete="off"
                     value={website}
-                    onChange={(e) => setWebsite(e.target.value)}
+                    onChange={e => setWebsite(e.target.value)}
                   />
                 </div>
 
@@ -279,9 +270,9 @@ export default function SharedSailingPage() {
                     id="ss-name"
                     className={`${inputClass} ${fieldErrors.name ? "border-destructive focus:border-destructive focus:ring-destructive" : ""}`}
                     value={name}
-                    onChange={(e) => {
+                    onChange={e => {
                       setName(e.target.value);
-                      if (fieldErrors.name) setFieldErrors((f) => ({ ...f, name: false }));
+                      if (fieldErrors.name) setFieldErrors(f => ({ ...f, name: false }));
                     }}
                     placeholder={s.form.namePlaceholder}
                     autoComplete="name"
@@ -304,9 +295,9 @@ export default function SharedSailingPage() {
                       aria-label={s.form.phone}
                       className="w-24 flex-shrink-0 rounded-lg border border-border bg-background px-2 py-3 text-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
                       value={phonePrefix}
-                      onChange={(e) => setPhonePrefix(e.target.value)}
+                      onChange={e => setPhonePrefix(e.target.value)}
                     >
-                      {PHONE_PREFIXES.map((p) => (
+                      {PHONE_PREFIXES.map(p => (
                         <option key={`${p.code}-${p.country}`} value={p.code}>
                           {p.code} {flagEmojiToIso2(p.flag)}
                         </option>
@@ -318,9 +309,9 @@ export default function SharedSailingPage() {
                       type="tel"
                       inputMode="tel"
                       value={phoneNumber}
-                      onChange={(e) => {
+                      onChange={e => {
                         setPhoneNumber(e.target.value);
-                        if (fieldErrors.phone) setFieldErrors((f) => ({ ...f, phone: false }));
+                        if (fieldErrors.phone) setFieldErrors(f => ({ ...f, phone: false }));
                       }}
                       placeholder={s.form.phone}
                       autoComplete="tel-national"
@@ -344,7 +335,7 @@ export default function SharedSailingPage() {
                     className={inputClass}
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
                     placeholder={`${s.form.email} (${s.form.emailHint})`}
                     autoComplete="email"
                   />
@@ -362,9 +353,9 @@ export default function SharedSailingPage() {
                       id="ss-people"
                       className={inputClass}
                       value={people}
-                      onChange={(e) => setPeople(Number(e.target.value))}
+                      onChange={e => setPeople(Number(e.target.value))}
                     >
-                      {[1, 2, 3, 4, 5].map((n) => (
+                      {[1, 2, 3, 4, 5].map(n => (
                         <option key={n} value={n}>
                           {n}
                         </option>
@@ -382,9 +373,9 @@ export default function SharedSailingPage() {
                       id="ss-when"
                       className={inputClass}
                       value={when}
-                      onChange={(e) => setWhen(e.target.value)}
+                      onChange={e => setWhen(e.target.value)}
                     >
-                      {s.form.whenOptions.map((opt) => (
+                      {s.form.whenOptions.map(opt => (
                         <option key={opt} value={opt}>
                           {opt}
                         </option>
@@ -404,15 +395,13 @@ export default function SharedSailingPage() {
                     id="ss-pilot"
                     className={inputClass}
                     value={pilot}
-                    onChange={(e) => setPilot(e.target.value as typeof pilot)}
+                    onChange={e => setPilot(e.target.value as typeof pilot)}
                   >
                     <option value="yes">{s.form.pilotYes}</option>
                     <option value="maybe">{s.form.pilotMaybe}</option>
                     <option value="no">{s.form.pilotNo}</option>
                   </select>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {s.form.pilotHint}
-                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">{s.form.pilotHint}</p>
                 </div>
 
                 <div>
@@ -426,7 +415,7 @@ export default function SharedSailingPage() {
                     id="ss-message"
                     className={`${inputClass} min-h-[88px]`}
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    onChange={e => setMessage(e.target.value)}
                     placeholder={s.form.messagePlaceholder}
                   />
                 </div>
@@ -446,9 +435,7 @@ export default function SharedSailingPage() {
                   {status !== "submitting" && <ArrowRight className="h-5 w-5" />}
                 </button>
 
-                <p className="text-center text-xs text-muted-foreground">
-                  {s.form.reassurance}
-                </p>
+                <p className="text-center text-xs text-muted-foreground">{s.form.reassurance}</p>
               </form>
             </>
           )}
@@ -462,11 +449,9 @@ export default function SharedSailingPage() {
             {s.faqTitle}
           </h2>
           <dl className="mt-8 divide-y divide-border">
-            {s.faq.map((f) => (
+            {s.faq.map(f => (
               <div key={f.q} className="py-5 first:pt-0 last:pb-0">
-                <dt className="font-heading font-semibold text-foreground">
-                  {f.q}
-                </dt>
+                <dt className="font-heading font-semibold text-foreground">{f.q}</dt>
                 <dd className="mt-1.5 text-muted-foreground">{f.a}</dd>
               </div>
             ))}
@@ -479,15 +464,10 @@ export default function SharedSailingPage() {
         <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-[0_-6px_24px_-8px_hsl(215_45%_20%/0.3)] backdrop-blur lg:hidden">
           <div className="mx-auto flex max-w-md items-center justify-between gap-3">
             <div className="leading-tight">
-              <p className="text-sm font-bold text-foreground">
-                {s.hero.priceHook}
-              </p>
+              <p className="text-sm font-bold text-foreground">{s.hero.priceHook}</p>
               <p className="text-xs text-muted-foreground">{s.hero.priceNote}</p>
             </div>
-            <a
-              href="#interes"
-              className={`${CTA_CLASS} min-h-11 flex-shrink-0 px-6 text-sm`}
-            >
+            <a href="#interes" className={`${CTA_CLASS} min-h-11 flex-shrink-0 px-6 text-sm`}>
               {s.hero.cta}
             </a>
           </div>

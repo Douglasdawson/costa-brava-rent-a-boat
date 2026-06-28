@@ -3,7 +3,12 @@ import App from "./App";
 import { ThemeProvider } from "./hooks/use-theme";
 import { detectInitialLanguage, seedInitialLanguage } from "./hooks/use-language";
 import { langLoaders } from "./i18n/loaders";
+import { captureAttribution } from "./utils/attribution";
 import "./index.css";
+
+// Capture marketing attribution (utm_*, fbclid) from the landing URL once, before
+// the SPA strips it through navigation. Rides along on booking-inquiry submits.
+captureAttribution();
 
 // Expose installed-PWA state via a data attribute so components and CSS can
 // hook into it without each one importing useStandaloneDisplay. Initial state
@@ -22,7 +27,9 @@ import "./index.css";
     return (window.navigator as Navigator & { standalone?: boolean }).standalone === true;
   };
   apply(detect());
-  window.matchMedia?.("(display-mode: standalone)").addEventListener("change", () => apply(detect()));
+  window
+    .matchMedia?.("(display-mode: standalone)")
+    .addEventListener("change", () => apply(detect()));
 })();
 
 // Locale bundles are lazy chunks since the 2026-06-11 load audit (A2): fetch

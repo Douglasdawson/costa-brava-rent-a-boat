@@ -24,6 +24,7 @@ import {
   Menu,
   ChevronDown,
   ShoppingBag,
+  Megaphone,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -61,6 +62,7 @@ const OVERFLOW_TABS = [
   { id: "shop", label: "Tienda", icon: ShoppingBag },
   { id: "discounts", label: "Descuentos", icon: Percent },
   { id: "pricing", label: "Precios", icon: TrendingUp },
+  { id: "ads", label: "Anuncios", icon: Megaphone },
 ];
 
 const OWNER_TABS = [

@@ -32,6 +32,7 @@ import { registerHealthRoutes } from "./health";
 import { registerAdminIntegrationsRoutes, logIntegrationsHealthOnStartup } from "./admin-integrations";
 import { registerCompanyRoutes } from "./company";
 import { registerAnalyticsRoutes } from "./admin-analytics";
+import { registerAdsRoutes } from "./admin-ads";
 import { registerMetaCAPIRoutes } from "./meta-capi";
 import { registerMembershipRoutes } from "./memberships";
 import { registerExperimentRoutes } from "./experiments";
@@ -97,6 +98,7 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   registerAdminIntegrationsRoutes(app);
   registerCompanyRoutes(app);
   registerAnalyticsRoutes(app);
+  registerAdsRoutes(app);
   registerMetaCAPIRoutes(app);
   registerMembershipRoutes(app);
   registerExperimentRoutes(app);

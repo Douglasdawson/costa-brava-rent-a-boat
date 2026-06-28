@@ -27,6 +27,7 @@ import {
   AnalyticsTab,
   SeoTab,
   AutopilotTab,
+  MetaAdsTab,
   BookingDetailsModal,
   getStatusLabel,
 } from "./crm";
@@ -46,7 +47,7 @@ const VALID_TABS = [
   "dashboard", "calendar", "bookings", "customers", "inquiries",
   "fleet", "maintenance", "inventory", "analytics", "gallery",
   "giftcards", "shop", "discounts", "blog", "employees", "config",
-  "autopilot",
+  "autopilot", "ads",
 ];
 
 const TAB_REDIRECTS: Record<string, string> = {
@@ -413,6 +414,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* SEO Autopilot Tab */}
         {selectedTab === "autopilot" && (
           <AutopilotTab adminToken={adminToken} />
+        )}
+
+        {/* Meta Ads Tab */}
+        {selectedTab === "ads" && (
+          <MetaAdsTab adminToken={adminToken} />
         )}
 
         {/* Gallery Tab */}

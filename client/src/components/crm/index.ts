@@ -21,6 +21,7 @@ export { ReportsTab } from "./ReportsTab";
 export { AnalyticsTab } from "./AnalyticsTab";
 export { SeoTab } from "./SeoTab";
 export { AutopilotTab } from "./AutopilotTab";
+export { MetaAdsTab } from "./MetaAdsTab";
 export { CompetitionTab } from "./CompetitionTab";
 export { BlogManagement } from "./BlogManagement";
 export { PricingTab } from "./PricingTab";

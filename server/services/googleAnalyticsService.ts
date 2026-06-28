@@ -273,6 +273,83 @@ export async function fetchGA4Conversions(startDate: string, endDate: string) {
   }));
 }
 
+// ==================== GA4 Meta-attributed traffic & conversions ====================
+
+// Downstream truth for the Ads tab: sessions and conversion events that GA4
+// attributes to Meta (paid social via utm_source=meta/cpc and fbclid-tagged
+// facebook/instagram traffic). This is the real outcome the Pixel can't prove
+// on its own — actual leads and booking requests, not just optimization events.
+const META_SOURCE_RE = /facebook|instagram|\bmeta\b|\bfb\b|\big\b|\ban\b/i;
+const META_CONVERSION_EVENTS = ["generate_lead", "booking_request_submitted", "purchase"];
+
+export async function fetchGA4MetaAttribution(startDate: string, endDate: string) {
+  const auth = getGoogleAuth();
+  if (!auth) throw new Error("Google API not configured");
+
+  const propertyId = config.GOOGLE_ANALYTICS_PROPERTY_ID;
+  if (!propertyId) throw new Error("GA4 property ID not configured");
+
+  const analyticsdata = google.analyticsdata({ version: "v1beta", auth });
+  const property = `properties/${propertyId}`;
+
+  // Sessions/users by source+medium (filter to Meta in JS to keep the query simple).
+  const sessionsResp = await analyticsdata.properties.runReport({
+    property,
+    requestBody: {
+      dateRanges: [{ startDate, endDate }],
+      dimensions: [{ name: "sessionSource" }, { name: "sessionMedium" }],
+      metrics: [{ name: "sessions" }, { name: "activeUsers" }],
+      orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+      limit: "100",
+    },
+  });
+
+  let sessions = 0;
+  let users = 0;
+  const bySource: Array<{ source: string; medium: string; sessions: number }> = [];
+  for (const row of sessionsResp.data.rows || []) {
+    const source = row.dimensionValues?.[0]?.value || "";
+    const medium = row.dimensionValues?.[1]?.value || "";
+    if (!META_SOURCE_RE.test(source)) continue;
+    const s = parseInt(row.metricValues?.[0]?.value || "0");
+    sessions += s;
+    users += parseInt(row.metricValues?.[1]?.value || "0");
+    bySource.push({ source, medium, sessions: s });
+  }
+
+  // Conversion events by source+eventName, filtered to our key events.
+  const eventsResp = await analyticsdata.properties.runReport({
+    property,
+    requestBody: {
+      dateRanges: [{ startDate, endDate }],
+      dimensions: [{ name: "sessionSource" }, { name: "eventName" }],
+      metrics: [{ name: "eventCount" }],
+      dimensionFilter: {
+        filter: {
+          fieldName: "eventName",
+          inListFilter: { values: META_CONVERSION_EVENTS },
+        },
+      },
+      limit: "200",
+    },
+  });
+
+  const events: Record<string, number> = {
+    generate_lead: 0,
+    booking_request_submitted: 0,
+    purchase: 0,
+  };
+  for (const row of eventsResp.data.rows || []) {
+    const source = row.dimensionValues?.[0]?.value || "";
+    const eventName = row.dimensionValues?.[1]?.value || "";
+    if (!META_SOURCE_RE.test(source)) continue;
+    const count = parseInt(row.metricValues?.[0]?.value || "0");
+    if (eventName in events) events[eventName] += count;
+  }
+
+  return { sessions, users, events, bySource };
+}
+
 // ==================== GA4 Top Pages ====================
 
 export async function fetchGA4TopPages(startDate: string, endDate: string, limit = 10) {

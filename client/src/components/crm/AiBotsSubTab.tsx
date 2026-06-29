@@ -92,6 +92,12 @@ function botBarColor(botName: string): string {
     "Amazonbot": "bg-amber-500",
     "Applebot-Extended": "bg-slate-500",
     "CCBot": "bg-indigo-500",
+    // Search-engine crawlers (added when the logger opened beyond AI bots).
+    "Googlebot": "bg-green-600",
+    "Bingbot": "bg-teal-500",
+    "Applebot": "bg-slate-400",
+    "DuckDuckBot": "bg-yellow-500",
+    "YandexBot": "bg-red-500",
   };
   return map[botName] ?? "bg-muted-foreground";
 }

@@ -2,9 +2,11 @@
  * AI Bot Visit Logger Middleware
  *
  * Records every HTTP request from a known LLM crawler (GPTBot, ClaudeBot,
- * PerplexityBot, etc.) to the ai_bot_visits table. Fire-and-forget — never
- * blocks the response. Used by /api/admin/seo/bot-visits to surface GEO
- * presence over time.
+ * PerplexityBot, etc.) AND search-engine indexing crawler (Googlebot, Bingbot,
+ * etc.) to the ai_bot_visits table. Fire-and-forget — never blocks the
+ * response. Used by /api/admin/seo/bot-visits to surface GEO + SEO crawl
+ * presence over time. Social-preview unfurlers and generic bots are NOT
+ * tracked (see SEARCH_ENGINE_BOT_NAMES in server/seo/constants).
  *
  * Reliability + status code (the design that lets us have both):
  *
@@ -27,7 +29,7 @@
  */
 
 import type { Request, Response, NextFunction } from "express";
-import { detectAIBotName, isAICrawler } from "../seo/constants";
+import { detectBotName } from "../seo/constants";
 import { recordAiBotVisit } from "../storage/aiBotVisits";
 import { logger } from "./logger";
 
@@ -66,12 +68,12 @@ export function aiBotLoggerMiddleware(
   next: NextFunction,
 ): void {
   const ua = req.get("user-agent");
-  if (!isAICrawler(ua) || shouldSkip(req.path)) {
+  const botName = detectBotName(ua);
+  if (!botName || shouldSkip(req.path)) {
     next();
     return;
   }
 
-  const botName = detectAIBotName(ua) ?? "unknown";
   const path = req.path;
   const method = req.method;
   const lang = detectLangFromPath(path);

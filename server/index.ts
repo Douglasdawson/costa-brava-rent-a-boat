@@ -534,6 +534,26 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log(`[boot] ai_bot_visits self-test loader threw: ${err instanceof Error ? err.message : String(err)}`);
   }
 
+  // ── STEP 2.8.2: Idempotent attribution columns schema sync ──────────────────────
+  // Re-applies migrations/0011_attribution_columns.sql on every boot. The utm_*/
+  // fbclid columns on whatsapp_inquiries were added via drizzle-kit push (never
+  // journaled), so Replit's Publish DB step keeps proposing to DROP them and a
+  // Republish occasionally wipes them — same pattern as 2.6/2.7/2.8. Without this
+  // the lead -> booking attribution capture silently breaks after a redeploy.
+  try {
+    const { applyAttributionColumnsEnsure } = await import("./migrations/applyAttributionColumnsEnsure");
+    const result = await applyAttributionColumnsEnsure(pool);
+    if (result.applied) {
+      log(`[migrations] attribution columns schema sync OK in ${result.durationMs}ms`);
+    } else if (result.error === "lock-held-by-other-instance") {
+      log(`[migrations] attribution columns schema sync skipped (another instance holds lock)`);
+    } else {
+      log(`[migrations] attribution columns schema sync FAILED: ${result.error}`);
+    }
+  } catch (err) {
+    log(`[migrations] applyAttributionColumnsEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   // ── STEP 2.9: Idempotent boats canonical row seed ───────────────────────────────
   // Re-seeds any missing boat row from shared/boatData.ts on every boot.
   // Same Replit Republish pattern as 2.6/2.7/2.8, but for DML rather than DDL:

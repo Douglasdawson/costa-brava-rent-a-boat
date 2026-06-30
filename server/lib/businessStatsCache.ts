@@ -134,8 +134,8 @@ async function syncIfEmpty(): Promise<void> {
   try {
     const existing = await storage.getBusinessStats();
     if (existing) return;
-    if (!process.env.GOOGLE_PLACES_API_KEY || !process.env.GOOGLE_PLACES_PLACE_ID) {
-      logger.warn("[businessStatsCache] DB empty but Places API env vars missing — keeping fallback");
+    if (!process.env.GOOGLE_PLACES_API_KEY) {
+      logger.warn("[businessStatsCache] DB empty but GOOGLE_PLACES_API_KEY missing — keeping fallback");
       return;
     }
     logger.info("[businessStatsCache] DB empty, running first-time sync");

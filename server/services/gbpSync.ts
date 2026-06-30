@@ -17,6 +17,7 @@ import {
   BUSINESS_RATING,
   BUSINESS_REVIEW_COUNT,
   BUSINESS_DISPLAY_NAME,
+  BUSINESS_PLACE_ID,
 } from "../../shared/businessProfile";
 
 const PLACES_API_BASE = "https://places.googleapis.com/v1/places";
@@ -66,10 +67,15 @@ export interface GbpSyncResult {
  */
 export async function syncGbpStats(): Promise<GbpSyncResult> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACES_PLACE_ID;
+  // Place ID comes from businessProfile.ts (single source of truth). It used to
+  // be read from GOOGLE_PLACES_PLACE_ID, but a corrupted env value (missing the
+  // leading "C": "hIJb..." instead of "ChIJb...") silently broke the sync for a
+  // month. The Place ID is public and canonical in code, so we no longer depend
+  // on the env var for it — only the API key (a secret) stays in env.
+  const placeId = BUSINESS_PLACE_ID;
 
-  if (!apiKey || !placeId) {
-    const msg = "GOOGLE_PLACES_API_KEY or GOOGLE_PLACES_PLACE_ID not configured";
+  if (!apiKey) {
+    const msg = "GOOGLE_PLACES_API_KEY not configured";
     logger.warn("[gbpSync] " + msg);
     return { success: false, error: msg };
   }

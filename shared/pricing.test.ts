@@ -272,6 +272,21 @@ describe("calculateBasePrice", () => {
     expect(WEEKEND_SURCHARGE_FACTOR).toBe(1.15);
   });
 
+  it("uses explicit weekend price for solar-450 July 4h (200 weekday / 220 weekend, bypasses +15%)", () => {
+    const weekday = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "4h"); // Monday
+    const weekend = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "4h"); // Saturday
+    expect(weekday).toBe(200); // MEDIA 4h weekday per boatData.ts
+    expect(weekend).toBe(220); // explicit weekendPrices, NOT 200 * 1.15 = 230
+  });
+
+  it("keeps the +15% weekend surcharge for July durations without an explicit weekend price", () => {
+    // MEDIA 3h = 160 weekday; weekend 160 * 1.15 = 184 → roundToNearestTen → 180
+    const weekday = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "3h");
+    const weekend = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "3h");
+    expect(weekday).toBe(160);
+    expect(weekend).toBe(180);
+  });
+
   it("throws for unknown boat", () => {
     expect(() => calculateBasePrice("nonexistent", new Date("2026-06-15"), "2h")).toThrow(
       'Boat with id "nonexistent" not found'

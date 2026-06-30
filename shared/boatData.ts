@@ -24,14 +24,23 @@ export interface BoatData {
     BAJA: {
       period: string;
       prices: { [key: string]: number };
+      /** Optional explicit weekend prices by duration. When set for a duration,
+       * it overrides the global +15% weekend surcharge for that slot (exact price). */
+      weekendPrices?: { [key: string]: number };
     };
     MEDIA: {
       period: string;
       prices: { [key: string]: number };
+      /** Optional explicit weekend prices by duration. When set for a duration,
+       * it overrides the global +15% weekend surcharge for that slot (exact price). */
+      weekendPrices?: { [key: string]: number };
     };
     ALTA: {
       period: string;
       prices: { [key: string]: number };
+      /** Optional explicit weekend prices by duration. When set for a duration,
+       * it overrides the global +15% weekend surcharge for that slot (exact price). */
+      weekendPrices?: { [key: string]: number };
     };
   };
   extras: Array<{
@@ -86,7 +95,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 135, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+        prices: { "1h": 85, "2h": 135, "3h": 160, "4h": 200, "6h": 230, "8h": 270 },
+        weekendPrices: { "4h": 220 }
       },
       ALTA: {
         period: "Agosto",

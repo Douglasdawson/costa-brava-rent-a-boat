@@ -253,7 +253,7 @@ describe("calculateBasePrice", () => {
 
   it("returns correct price for solar-450 in MEDIA 2h on weekday", () => {
     const price = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "2h");
-    expect(price).toBe(135); // MEDIA 2h = 135 per boatData.ts
+    expect(price).toBe(140); // MEDIA 2h = 140 per boatData.ts
   });
 
   it("returns correct price for solar-450 in ALTA 2h on weekday", () => {
@@ -272,19 +272,23 @@ describe("calculateBasePrice", () => {
     expect(WEEKEND_SURCHARGE_FACTOR).toBe(1.15);
   });
 
-  it("uses explicit weekend price for solar-450 July 4h (200 weekday / 220 weekend, bypasses +15%)", () => {
-    const weekday = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "4h"); // Monday
-    const weekend = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "4h"); // Saturday
-    expect(weekday).toBe(200); // MEDIA 4h weekday per boatData.ts
-    expect(weekend).toBe(220); // explicit weekendPrices, NOT 200 * 1.15 = 230
+  it("uses explicit weekend prices for solar-450 July (3h=190, 4h=220, bypassing +15%)", () => {
+    const wkday4 = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "4h"); // Monday
+    const wkend4 = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "4h"); // Saturday
+    const wkday3 = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "3h");
+    const wkend3 = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "3h");
+    expect(wkday4).toBe(200); // MEDIA 4h weekday per boatData.ts
+    expect(wkend4).toBe(220); // explicit weekendPrices, NOT 200 * 1.15 = 230
+    expect(wkday3).toBe(170); // MEDIA 3h weekday per boatData.ts
+    expect(wkend3).toBe(190); // explicit weekendPrices, NOT 170 * 1.15 → 200
   });
 
   it("keeps the +15% weekend surcharge for July durations without an explicit weekend price", () => {
-    // MEDIA 3h = 160 weekday; weekend 160 * 1.15 = 184 → roundToNearestTen → 180
-    const weekday = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "3h");
-    const weekend = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "3h");
-    expect(weekday).toBe(160);
-    expect(weekend).toBe(180);
+    // MEDIA 2h = 140 weekday; weekend 140 * 1.15 = 161 → roundToNearestTen → 160
+    const weekday = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "2h");
+    const weekend = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "2h");
+    expect(weekday).toBe(140);
+    expect(weekend).toBe(160);
   });
 
   it("throws for unknown boat", () => {

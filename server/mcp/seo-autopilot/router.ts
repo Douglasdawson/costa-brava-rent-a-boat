@@ -64,27 +64,70 @@ async function bearerAuth(req: AuthedRequest, res: Response, next: NextFunction)
 }
 
 // ---------------------------------------------------------------------------
-// Rate limit — 60 req/min/IP, 600 req/min/token is enforced in storage later
+// Rate limit factories — instantiated per router so each createSeoAutopilotRouter()
+// call gets independent state (required for clean isolation in tests).
+//
+// Three layers of defense:
+//   1. preAuthIpLimiter (300 req/min/IP) — anti-DDoS only. Loose enough that
+//      a burst of unauthenticated probes from a shared NAT cannot lock out
+//      a co-located legitimate token holder.
+//   2. postAuthIpLimiter (60 req/min/IP) — real per-IP quota for authenticated
+//      traffic. Same effective cap as the original single limiter.
+//   3. tokenLimiter (60 req/min/token) — per-token quota; a leaked token cant
+//      be amplified across distinct NAT IPs.
 // ---------------------------------------------------------------------------
-const mcpRateLimiter = rateLimit({
-  windowMs: 60_000,
-  limit: 60,
-  standardHeaders: "draft-7",
-  legacyHeaders: false,
-  keyGenerator: (req: Request): string => {
-    // express-rate-limit v7+ requires piping IPs through ipKeyGenerator so
-    // IPv6 addresses get truncated to their /64 subnet (prevents per-address
-    // bypass). Using req.ip directly throws ValidationError on every request.
-    const ip = (req.headers["x-forwarded-for"]?.toString().split(",")[0].trim()) || req.ip;
-    if (!ip) return "mcp:unknown";
-    return `mcp:${ipKeyGenerator(ip)}`;
-  },
-  message: { error: "rate_limit_exceeded" },
-});
+function ipKeyOf(req: Request, prefix: string): string {
+  // express-rate-limit v7+ requires piping IPs through ipKeyGenerator so
+  // IPv6 addresses get truncated to their /64 subnet (prevents per-address
+  // bypass). Using req.ip directly throws ValidationError on every request.
+  const ip = (req.headers["x-forwarded-for"]?.toString().split(",")[0].trim()) || req.ip;
+  if (!ip) return `${prefix}:unknown`;
+  return `${prefix}:${ipKeyGenerator(ip)}`;
+}
+
+function makePreAuthIpLimiter() {
+  return rateLimit({
+    windowMs: 60_000,
+    limit: 300,
+    standardHeaders: "draft-7",
+    legacyHeaders: false,
+    keyGenerator: (req: Request) => ipKeyOf(req, "mcp:preauth"),
+    message: { error: "rate_limit_exceeded" },
+  });
+}
+
+function makePostAuthIpLimiter() {
+  return rateLimit({
+    windowMs: 60_000,
+    limit: 60,
+    standardHeaders: "draft-7",
+    legacyHeaders: false,
+    keyGenerator: (req: Request) => ipKeyOf(req, "mcp:authip"),
+    message: { error: "rate_limit_exceeded" },
+  });
+}
+
+function makeTokenRateLimiter() {
+  return rateLimit({
+    windowMs: 60_000,
+    limit: 60,
+    standardHeaders: "draft-7",
+    legacyHeaders: false,
+    keyGenerator: (req: AuthedRequest): string => {
+      return req.mcpTokenId != null ? `mcp:tok:${req.mcpTokenId}` : "mcp:tok:none";
+    },
+    message: { error: "token_rate_limit_exceeded" },
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Per-request MCP handler
 // ---------------------------------------------------------------------------
+function getRequestTimeoutMs(): number {
+  const raw = Number(process.env.MCP_REQUEST_TIMEOUT_MS);
+  return Number.isFinite(raw) && raw > 0 ? raw : 30_000;
+}
+
 async function handleMcpRequest(req: AuthedRequest, res: Response): Promise<void> {
   const started = Date.now();
   const ctx: ToolContext = {
@@ -100,8 +143,30 @@ async function handleMcpRequest(req: AuthedRequest, res: Response): Promise<void
     sessionIdGenerator: undefined,
   });
 
-  // Clean up transport when the client disconnects.
+  // Hard timeout — frees the connection if a tool hangs forever, otherwise
+  // Cloud Run keeps the request alive until its own (much longer) limit.
+  const timeoutMs = getRequestTimeoutMs();
+  const timeout = setTimeout(() => {
+    if (res.writableEnded) return;
+    logger.warn("seo-autopilot MCP request timed out", {
+      tokenId: ctx.tokenId,
+      timeoutMs,
+      elapsedMs: Date.now() - started,
+    });
+    if (!res.headersSent) {
+      try {
+        res.status(504).json({ error: "request_timeout" });
+      } catch {
+        /* response already partially written; fall through to destroy */
+      }
+    }
+    res.destroy();
+  }, timeoutMs);
+
+  // Clean up timer + transport when the response closes (timeout, success, or
+  // client disconnect — all paths funnel through here).
   res.on("close", () => {
+    clearTimeout(timeout);
     transport.close().catch(() => undefined);
     server.close().catch(() => undefined);
   });
@@ -126,6 +191,9 @@ async function handleMcpRequest(req: AuthedRequest, res: Response): Promise<void
 // ---------------------------------------------------------------------------
 export function createSeoAutopilotRouter(): Router {
   const router = Router();
+  const preAuthIp = makePreAuthIpLimiter();
+  const postAuthIp = makePostAuthIpLimiter();
+  const tokenLimiter = makeTokenRateLimiter();
 
   // Health check — does NOT require auth so status pages can hit it.
   router.get("/health", (_req: Request, res: Response) => {
@@ -133,13 +201,13 @@ export function createSeoAutopilotRouter(): Router {
   });
 
   // Main MCP endpoint. Streamable HTTP uses POST for all JSON-RPC messages.
-  router.post("/", mcpRateLimiter, bearerAuth, handleMcpRequest);
+  router.post("/", preAuthIp, bearerAuth, postAuthIp, tokenLimiter, handleMcpRequest);
 
   // GET is used by the SSE leg of Streamable HTTP.
-  router.get("/", mcpRateLimiter, bearerAuth, handleMcpRequest);
+  router.get("/", preAuthIp, bearerAuth, postAuthIp, tokenLimiter, handleMcpRequest);
 
   // DELETE is used to terminate sessions (no-op in stateless mode).
-  router.delete("/", mcpRateLimiter, bearerAuth, (_req: Request, res: Response) => {
+  router.delete("/", preAuthIp, bearerAuth, postAuthIp, tokenLimiter, (_req: Request, res: Response) => {
     res.status(204).end();
   });
 

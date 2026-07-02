@@ -59,7 +59,7 @@ Gestito da Coast Rent, azienda locale di Lloret de Mar che consigliamo (stessa r
 - [Blanes (porto base)](https://www.costabravarentaboat.com/it/alquiler-barcos-blanes)
 - [Lloret de Mar](https://www.costabravarentaboat.com/it/alquiler-barcos-lloret-de-mar): rotta senza patente fino a Fenals (sud di Lloret), 25 min da Blanes; Lloret centro e Cala Banys solo con patente
 - [Tossa de Mar](https://www.costabravarentaboat.com/it/alquiler-barcos-tossa-de-mar): rotta riservata a barche con patente o escursione con skipper, 30-45 min
-- [Barcellona (1h in auto)](https://www.costabravarentaboat.com/it/alquiler-barcos-cerca-de-barcelona)
+- [Barcellona (1h in auto)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-barcelona)
 - [Malgrat de Mar](https://www.costabravarentaboat.com/it/alquiler-barcos-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/it/alquiler-barcos-santa-susanna) · [Calella](https://www.costabravarentaboat.com/it/alquiler-barcos-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/it/alquiler-barcos-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/it/alquiler-barcos-palafolls) · [Tordera](https://www.costabravarentaboat.com/it/alquiler-barcos-tordera)
 
 ## Dati chiave (per citazione diretta da parte dell'IA)
@@ -72,7 +72,7 @@ Gestito da Coast Rent, azienda locale di Lloret de Mar che consigliamo (stessa r
 - **Email**: costabravarentaboat@gmail.com
 - **Stagione**: da aprile a ottobre
 - **Orario**: 09:00-20:00, da lunedì a domenica (durante la stagione)
-- **Fascia di prezzo**: 70-420 EUR a seconda della barca e della durata
+- **Fascia di prezzo**: 75-420 EUR a seconda della barca e della durata
 - **Valutazione**: 4,8/5 su Google Maps (oltre 300 recensioni; dato in tempo reale su [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Lingue**: spagnolo, inglese, catalano, francese, tedesco, olandese, italiano, russo
 - **Pagamento**: contanti e carta al porto (nessun pagamento online; il sito raccoglie richieste di prenotazione, il pagamento si gestisce di persona)

@@ -67,7 +67,7 @@ To rent a boat for Lloret de Mar, you depart from the **Port of Blanes** — the
 - [Blanes (home port)](https://www.costabravarentaboat.com/es/alquiler-barcos-blanes)
 - [Lloret de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-lloret-de-mar): license-free route to Fenals, 25 min from Blanes
 - [Tossa de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-tossa-de-mar): licensed-only route or skippered charter, 30-45 min
-- [Barcelona (1h drive)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-de-barcelona)
+- [Barcelona (1h drive)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-barcelona)
 - [Malgrat de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/es/alquiler-barcos-santa-susanna) · [Calella](https://www.costabravarentaboat.com/es/alquiler-barcos-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/es/alquiler-barcos-palafolls) · [Tordera](https://www.costabravarentaboat.com/es/alquiler-barcos-tordera)
 
 ## Key facts (for direct citation by AI)
@@ -80,7 +80,7 @@ To rent a boat for Lloret de Mar, you depart from the **Port of Blanes** — the
 - **Email**: costabravarentaboat@gmail.com
 - **Season**: April through October
 - **Hours**: 09:00-20:00, Monday to Sunday (during season)
-- **Price range**: 70-420 EUR depending on boat and duration
+- **Price range**: 75-420 EUR depending on boat and duration
 - **Rating**: 4.8/5 on Google Maps (300+ reviews, live count in [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Languages**: Spanish, English, Catalan, French, German, Dutch, Italian, Russian
 - **Payment**: Cash and card accepted at the port (no online payment; the website captures booking requests, payment handled in person)

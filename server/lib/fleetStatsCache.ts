@@ -21,6 +21,7 @@ import {
   type FleetStats,
   type FleetStatBoat,
 } from "../../shared/boatData";
+import { isJetSkiProduct } from "../../shared/jetskiProducts";
 
 const FALLBACK: FleetStats = catalogFleetStats();
 
@@ -31,7 +32,10 @@ const REFRESH_INTERVAL_MS = 60 * 60 * 1000; // 1 hour
 async function loadFromDb(): Promise<void> {
   try {
     const boats = await storage.getAllBoats();
-    const active = boats.filter((b) => b.isActive);
+    // Jet skis live in the boats table (resale products) but are NOT part of
+    // the boat fleet: counting them inflated the public "X boats" copy to 10/6
+    // when the canonical live fleet is 8/4.
+    const active = boats.filter((b) => b.isActive && !isJetSkiProduct(b.id));
     if (active.length > 0) {
       const input: FleetStatBoat[] = active.map((b) => ({
         id: b.id,

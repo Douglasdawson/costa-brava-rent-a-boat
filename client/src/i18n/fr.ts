@@ -2746,6 +2746,17 @@ export const fr: Translations = {
           answer:
             "Si les prévisions indiquent >20 nœuds soutenus ou une alerte pour vagues >1,5 m, nous annulons sans frais. Le tronçon Blanes-Fenals est protégé de la Tramontane par la côte elle-même, ce qui en fait l'un des plus sûrs pour les débutants même avec du vent du nord.",
         },
+      
+        {
+          question: "Comment aller de Lloret de Mar au Port de Blanes ?",
+          answer:
+            "En voiture, 10 minutes par la GI-682 (parking gratuit à 100 m du port). En bus, la ligne Lloret-Blanes prend environ 20 minutes. En taxi, le trajet coûte environ 15-18 €. Il n'y a pas de base de location dans Lloret : tous les départs se font depuis le Port de Blanes.",
+        },
+        {
+          question: "Quelles criques verrai-je sur la route en bateau vers Lloret ?",
+          answer:
+            "En partant du Port de Blanes, vous passerez par Cala Sant Francesc, Sa Forcanera, la plage de Santa Cristina, Cala Treumal et Cala Sa Boadella avant d'arriver à la plage de Fenals. Ce sont les criques les plus photographiées de la Costa Brava sud et toutes sont dans le rayon légal sans permis.",
+        },
       ],
       hero: {
         title: "Excursions en Bateau à Lloret de Mar",
@@ -3056,6 +3067,12 @@ export const fr: Translations = {
             "Puis-je faire une excursion en bateau au coucher du soleil depuis Santa Susanna ?",
           answer:
             "Oui, c'est très populaire. Depuis Blanes, nous proposons des promenades au coucher du soleil (18h30-21h00 selon le mois) avec bateau sans permis à 115 € pour 2 heures. Vous naviguerez le long des 7 criques avec une lumière dorée. Depuis Santa Susanna, vous arrivez en 15 min en voiture ou 10 min en train. Réservez à l'avance en été.",
+        },
+      
+        {
+          question: "Puis-je faire une balade en bateau depuis Santa Susanna sans piloter moi-même ?",
+          answer:
+            "Oui. En plus de la location sans permis que vous pilotez vous-même, nous proposons l'excursion privée avec capitaine : une balade en bateau depuis le Port de Blanes de 2 à 8 heures pour 6 personnes maximum, avec des arrêts pour nager et faire du snorkeling. Idéal si vous voyagez en famille et préférez simplement profiter.",
         },
       ],
       hero: {
@@ -3534,6 +3551,22 @@ export const fr: Translations = {
           question: "Puis-je aller de Pineda de Mar à Blanes en transports en commun ?",
           answer:
             "Oui, la ligne R1 de RENFE relie Pineda de Mar à Blanes en 12 minutes. Les trains partent toutes les 30 minutes en saison. La gare de Blanes se trouve à environ 10 minutes à pied du port.",
+        },
+      
+        {
+          question: "Y a-t-il de la location de bateaux à Pineda de Mar même ?",
+          answer:
+            "Non, Pineda de Mar n'a pas de port de plaisance avec location de bateaux. Le port le plus proche pour tout l'Alt Maresme (Malgrat, Santa Susanna, Pineda et Calella) est le Port de Blanes, à 18 minutes en voiture ou 12 minutes en train R1.",
+        },
+        {
+          question: "Quelles criques puis-je visiter en partant de Blanes ?",
+          answer:
+            "Avec un bateau sans permis, vous atteignez Cala Sant Francesc, Sa Forcanera, la plage de Santa Cristina, Cala Sa Boadella et la plage de Fenals (sud de Lloret), toutes dans la limite légale de 2 milles. Avec permis ou avec l'excursion privée avec capitaine, vous pouvez continuer jusqu'à Tossa de Mar.",
+        },
+        {
+          question: "Puis-je faire une balade en bateau sans piloter moi-même ?",
+          answer:
+            "Oui. Si vous préférez ne pas conduire, réservez l'excursion privée avec capitaine : départs du Port de Blanes de 2 à 8 heures, jusqu'à 6 personnes, avec des arrêts pour nager et faire du snorkeling dans les criques. Aucun titre nautique n'est nécessaire.",
         },
       ],
       seo: {
@@ -4301,39 +4334,6 @@ export const fr: Translations = {
   },
   lastUpdated: {
     label: 'Dernière mise à jour',
-  },
-  popularBoatsSection: {
-    badges: {
-      captain: "Avec capitaine",
-      licensed: "Avec permis",
-      noLicense: "Sans permis",
-    },
-    pages: {
-      barcelona: {
-        title: "Bateaux pour votre escapade depuis Barcelone",
-        description: "À 1h en voiture ou en train R1, le port de Blanes est l'option la plus proche pour louer un bateau sur la Costa Brava. Du sans permis (4 des 8 bateaux) au charter premium avec capitaine.",
-      },
-      lloret: {
-        title: "Bateaux populaires pour votre itinéraire vers Lloret de Mar",
-        description: "Les bateaux que nous louons le plus pour l'itinéraire vers Lloret : les sans permis arrivent légalement jusqu'à la plage de Fenals et, avec permis, vous continuez jusqu'à la plage de Lloret. Pour 2 à 7 personnes selon le bateau.",
-      },
-      pineda: {
-        title: "Bateaux populaires à louer depuis le port de Blanes",
-        description: "Voici les bateaux sans permis que nous louons le plus. Tous atteignent la plage de Fenals (sud de Lloret) en 25 minutes et sont parfaits pour 2 à 5 personnes.",
-      },
-      palafolls: {
-        title: "Bateaux populaires à louer depuis le port de Blanes",
-        description: "Voici les bateaux sans permis que nous louons le plus. Tous atteignent la plage de Fenals (sud de Lloret) en 25 minutes et sont parfaits pour 2 à 5 personnes.",
-      },
-      tordera: {
-        title: "Bateaux populaires à louer depuis le port de Blanes",
-        description: "Voici les bateaux sans permis que nous louons le plus. Tous atteignent la plage de Fenals (sud de Lloret) en 25 minutes et sont parfaits pour 2 à 5 personnes.",
-      },
-      tossa: {
-        title: "Bateaux pour votre itinéraire vers Tossa de Mar",
-        description: "Tossa de Mar est hors du rayon légal sans permis. Voici les bateaux qui y arrivent : avec la Licencia de Navegación, ou notre excursion privée avec capitaine (aucun permis requis).",
-      },
-    },
   },
   relatedContent: {
     sectionTitle: "Cela peut aussi vous intéresser",
@@ -5518,5 +5518,54 @@ export const fr: Translations = {
         a: "La collection Costa Brava Culture est dessinée avec Laura Cabanas, créatrice de mode de Lloret de Mar, en collaboration avec Costa Brava Rent a Boat (Blanes).",
       },
     ],
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: 'Avec capitaine',
+      licensed: 'Avec permis',
+      noLicense: 'Sans permis',
+    },
+    pages: {
+      barcelona: {
+        title: 'Bateaux pour votre escapade depuis Barcelone',
+        description: 'À 1h en voiture ou en train R1, le port de Blanes est l\'option la plus proche pour louer un bateau sur la Costa Brava. Du sans permis (4 des 8 bateaux) au charter premium avec capitaine.',
+      },
+      lloret: {
+        title: 'Bateaux populaires pour votre itinéraire vers Lloret de Mar',
+        description: 'Les bateaux que nous louons le plus pour l\'itinéraire vers Lloret : les sans permis arrivent légalement jusqu\'à la plage de Fenals et, avec permis, vous continuez jusqu\'à la plage de Lloret. Pour 2 à 7 personnes selon le bateau.',
+      },
+      blanes: {
+        title: 'Bateaux populaires au Port de Blanes',
+        description: 'Toute la flotte part du même Port de Blanes : du bateau sans permis pour 2-5 personnes à la location avec skipper. Voici ceux qui sont les plus réservés.',
+      },
+      malgrat: {
+        title: 'Bateaux populaires à louer depuis le Port de Blanes',
+        description: 'À 10 minutes de Malgrat de Mar. Voici les bateaux sans permis que nous louons le plus : tous rejoignent la Plage de Fenals (sud de Lloret) en 25 minutes et sont idéaux pour 2-7 personnes.',
+      },
+      santaSusanna: {
+        title: 'Bateaux populaires à louer depuis le Port de Blanes',
+        description: 'À 15 minutes de Santa Susanna. Voici les bateaux sans permis que nous louons le plus : tous rejoignent la Plage de Fenals (sud de Lloret) en 25 minutes et sont idéaux pour 2-7 personnes.',
+      },
+      calella: {
+        title: 'Bateaux populaires à louer depuis le Port de Blanes',
+        description: 'À 20 minutes de Calella. Voici les bateaux sans permis que nous louons le plus : tous rejoignent la Plage de Fenals (sud de Lloret) en 25 minutes et sont idéaux pour 2-7 personnes.',
+      },
+      pineda: {
+        title: 'Bateaux populaires à louer depuis le port de Blanes',
+        description: 'Voici les bateaux sans permis que nous louons le plus. Tous atteignent la plage de Fenals (sud de Lloret) en 25 minutes et sont parfaits pour 2 à 5 personnes.',
+      },
+      palafolls: {
+        title: 'Bateaux populaires à louer depuis le port de Blanes',
+        description: 'Voici les bateaux sans permis que nous louons le plus. Tous atteignent la plage de Fenals (sud de Lloret) en 25 minutes et sont parfaits pour 2 à 5 personnes.',
+      },
+      tordera: {
+        title: 'Bateaux populaires à louer depuis le port de Blanes',
+        description: 'Voici les bateaux sans permis que nous louons le plus. Tous atteignent la plage de Fenals (sud de Lloret) en 25 minutes et sont parfaits pour 2 à 5 personnes.',
+      },
+      tossa: {
+        title: 'Bateaux pour votre itinéraire vers Tossa de Mar',
+        description: 'Tossa de Mar est hors du rayon légal sans permis. Voici les bateaux qui y arrivent : avec la Licencia de Navegación, ou notre excursion privée avec capitaine (aucun permis requis).',
+      },
+    },
   },
 };

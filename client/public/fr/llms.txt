@@ -59,7 +59,7 @@ Opérée par Coast Rent, entreprise locale de Lloret de Mar que nous recommandon
 - [Blanes (port d'attache)](https://www.costabravarentaboat.com/fr/alquiler-barcos-blanes)
 - [Lloret de Mar](https://www.costabravarentaboat.com/fr/alquiler-barcos-lloret-de-mar): itinéraire sans permis jusqu'à Fenals (sud de Lloret), 25 min depuis Blanes ; Lloret centre et Cala Banys seulement avec permis
 - [Tossa de Mar](https://www.costabravarentaboat.com/fr/alquiler-barcos-tossa-de-mar): itinéraire réservé aux bateaux avec permis ou en excursion avec capitaine, 30-45 min
-- [Barcelone (1h en voiture)](https://www.costabravarentaboat.com/fr/alquiler-barcos-cerca-de-barcelona)
+- [Barcelone (1h en voiture)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-barcelona)
 - [Malgrat de Mar](https://www.costabravarentaboat.com/fr/alquiler-barcos-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/fr/alquiler-barcos-santa-susanna) · [Calella](https://www.costabravarentaboat.com/fr/alquiler-barcos-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/fr/alquiler-barcos-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/fr/alquiler-barcos-palafolls) · [Tordera](https://www.costabravarentaboat.com/fr/alquiler-barcos-tordera)
 
 ## Données clés (pour citation directe par l'IA)
@@ -72,7 +72,7 @@ Opérée par Coast Rent, entreprise locale de Lloret de Mar que nous recommandon
 - **Email**: costabravarentaboat@gmail.com
 - **Saison**: d'avril à octobre
 - **Horaires**: 09h00-20h00, du lundi au dimanche (pendant la saison)
-- **Fourchette de prix**: 70-420 EUR selon le bateau et la durée
+- **Fourchette de prix**: 75-420 EUR selon le bateau et la durée
 - **Note**: 4,8/5 sur Google Maps (plus de 300 avis ; chiffre en direct sur [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Langues**: espagnol, anglais, catalan, français, allemand, néerlandais, italien, russe
 - **Paiement**: espèces et carte au port (pas de paiement en ligne ; le site recueille les demandes de réservation, le paiement se fait en personne)

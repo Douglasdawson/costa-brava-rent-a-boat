@@ -657,10 +657,20 @@ export default function LocationTemplate({
       )}
 
       {/* ═══ POPULAR BOATS (SEO crosslinking) ═══ */}
+      {/* Title/description come from i18n (t.popularBoatsSection.pages.<town>)
+          so non-Spanish visitors don't see the Spanish config fallback. */}
       {config.popularBoats && (
         <PopularBoatsSection
-          title={config.popularBoats.title}
-          description={config.popularBoats.description}
+          title={
+            (t.popularBoatsSection?.pages as Record<string, { title?: string; description?: string }> | undefined)?.[
+              config.translationKey
+            ]?.title ?? config.popularBoats.title
+          }
+          description={
+            (t.popularBoatsSection?.pages as Record<string, { title?: string; description?: string }> | undefined)?.[
+              config.translationKey
+            ]?.description ?? config.popularBoats.description
+          }
           boatIds={config.popularBoats.boatIds}
           badgeLabel={config.popularBoats.badgeLabel}
           badgeVariant={config.popularBoats.badgeVariant}

@@ -1,7 +1,7 @@
 import cron, { type ScheduledTask } from "node-cron";
 import { logger } from "../lib/logger";
 import { SEO_CONFIG, validateConfig } from "./config";
-import { seedCompetitors } from "./seed";
+import { seedCompetitors, seedTrackedKeywords } from "./seed";
 
 const scheduledTasks: ScheduledTask[] = [];
 
@@ -47,6 +47,10 @@ export function startSeoWorker(): void {
 
   // Seed competitor data on startup
   seedCompetitors().catch(err => logger.warn("[SEO] Failed to seed competitors", { error: String(err) }));
+
+  // Seed tracked target keywords (6 priority towns) so radar + SERP snapshots
+  // cover them even before they earn GSC impressions
+  seedTrackedKeywords().catch(err => logger.warn("[SEO] Failed to seed tracked keywords", { error: String(err) }));
 
   const { cron: schedules } = SEO_CONFIG;
 

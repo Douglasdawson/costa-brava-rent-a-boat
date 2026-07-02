@@ -759,146 +759,146 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-malgrat-de-mar": {
     es: {
-      title: "Alquiler Barco cerca Malgrat | Puerto Blanes 10 min",
-      description: "Alojado en Malgrat de Mar? Puerto de Blanes a 10 min en coche. Barcos sin licencia desde 70\u20ac/h con gasolina incluida.",
-      ogTitle: "Alquiler Barco cerca de Malgrat de Mar | Desde Blanes",
-      ogDescription: "Desde Malgrat al Puerto de Blanes en 10 min. Barcos sin licencia desde 70\u20ac con gasolina. Reserva ya.",
+      title: "Alquiler Barco Malgrat de Mar | Puerto Blanes a 10 min | Sin Licencia 75\u20ac/h",
+      description: "\u00bfEn Malgrat de Mar? Puerto Blanes est\u00e1 a solo 10 min en coche. Alquila un barco sin licencia desde 75\u20ac/h con gasolina incluida. Navega hasta Lloret o Tossa.",
+      ogTitle: "Alquiler Barco Malgrat de Mar | Puerto Blanes 10 min",
+      ogDescription: "Desde Malgrat de Mar al Puerto de Blanes en 10 min. Barcos sin licencia desde 75\u20ac/h. 4.8\u2605 Google.",
     },
     en: {
-      title: "Boat Rental near Malgrat de Mar | Blanes Port 10 min",
-      description: "Staying in Malgrat de Mar? Blanes Port is 10 min by car. License-free boats from \u20ac70/h, fuel included.",
+      title: "Boat Rental Malgrat de Mar | Blanes Port 10 min | No License 75\u20ac/h",
+      description: "Staying in Malgrat de Mar? Blanes Port is only 10 min by car. Rent a license-free boat from 75\u20ac/h with fuel included. Sail to Lloret or Tossa.",
     },
     ca: {
-      title: "Lloguer Barques a prop Malgrat | Port Blanes 10 min",
-      description: "Allotjat a Malgrat de Mar? Port de Blanes a 10 min en cotxe. Barques sense llicència des de 70\u20ac/h.",
+      title: "Lloguer Barca Malgrat de Mar | Port Blanes a 10 min | Sense Llic\u00e8ncia 75\u20ac/h",
+      description: "\u00bfA Malgrat de Mar? Port de Blanes a nom\u00e9s 10 min en cotxe. Lloga una barca sense llic\u00e8ncia des de 75\u20ac/h amb gasolina inclosa. Navega fins a Lloret o Tossa.",
     },
     fr: {
-      title: "Location Bateau près de Malgrat de Mar | Port Blanes 10 min",
-      description: "En vacances à Malgrat de Mar ? Port de Blanes à 10 min en voiture. Bateaux sans permis dès 70\u20ac/h.",
+      title: "Location Bateau Malgrat de Mar | Port Blanes \u00e0 10 min | Sans Permis 75\u20ac/h",
+      description: "En vacances \u00e0 Malgrat de Mar ? Port Blanes \u00e0 seulement 10 min en voiture. Louez un bateau sans permis d\u00e8s 75\u20ac/h carburant inclus. Naviguez vers Lloret ou Tossa.",
     },
     de: {
-      title: "Bootsverleih bei Malgrat de Mar | Hafen Blanes 10 Min",
-      description: "Urlaub in Malgrat de Mar? Hafen Blanes in 10 Min. Boote ohne Führerschein ab 70\u20ac/Std.",
+      title: "Bootsverleih Malgrat de Mar | Hafen Blanes 10 Min | Ohne F\u00fchrerschein 75\u20ac/h",
+      description: "Urlaub in Malgrat de Mar? Hafen Blanes nur 10 Min mit dem Auto. Mieten Sie ein Boot ohne F\u00fchrerschein ab 75\u20ac/h Kraftstoff inklusive. Segeln nach Lloret oder Tossa.",
     },
     nl: {
-      title: "Boothuur bij Malgrat de Mar | Haven Blanes 10 min",
-      description: "Op vakantie in Malgrat de Mar? Haven Blanes op 10 min. Boten zonder vaarbewijs vanaf \u20ac70/uur.",
+      title: "Bootverhuur Malgrat de Mar | Haven Blanes op 10 min | Zonder Vaarbewijs 75\u20ac/u",
+      description: "Op vakantie in Malgrat de Mar? Haven Blanes slechts 10 min met de auto. Huur een boot zonder vaarbewijs vanaf 75\u20ac/u met brandstof inbegrepen. Vaar naar Lloret of Tossa.",
     },
     it: {
-      title: "Noleggio Barche vicino Malgrat | Porto Blanes 10 min",
-      description: "In vacanza a Malgrat de Mar? Porto di Blanes a 10 min. Barche senza patente da 70\u20ac/ora.",
+      title: "Noleggio Barca Malgrat de Mar | Porto Blanes a 10 min | Senza Patente 75\u20ac/h",
+      description: "In vacanza a Malgrat de Mar? Porto Blanes a soli 10 min in auto. Noleggia una barca senza patente da 75\u20ac/h con carburante incluso. Naviga verso Lloret o Tossa.",
     },
     ru: {
-      title: "Аренда лодок рядом с Малграт-де-Мар | Порт Бланес 10 мин",
-      description: "Отдыхаете в Малграт-де-Мар? Порт Бланеса в 10 мин на машине. Лодки без прав от 70\u20ac/час.",
+      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440 | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 10 \u043c\u0438\u043d | \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 75\u20ac/\u0447",
+      description: "\u041e\u0442\u0434\u044b\u0445\u0430\u0435\u0442\u0435 \u0432 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440? \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432\u0441\u0435\u0433\u043e \u0432 10 \u043c\u0438\u043d \u043d\u0430 \u043c\u0430\u0448\u0438\u043d\u0435. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447 \u0441 \u0442\u043e\u043f\u043b\u0438\u0432\u043e\u043c. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043a \u041b\u044c\u043e\u0440\u0435\u0442\u0443 \u0438\u043b\u0438 \u0422\u043e\u0441\u0441\u0435.",
     },
   },
   "/alquiler-barcos-santa-susanna": {
     es: {
-      title: "Alquiler Barco cerca de Santa Susanna | Puerto Blanes 15 min",
-      description: "Vacaciones en Santa Susanna? Puerto de Blanes a 15 min. Barcos sin licencia desde 70\u20ac/h con gasolina incluida.",
-      ogTitle: "Alquiler Barco cerca de Santa Susanna | Desde Blanes",
-      ogDescription: "Desde Santa Susanna al Puerto de Blanes en 15 min. Barcos sin licencia desde 70\u20ac. Reserva tu aventura.",
+      title: "Alquiler Barco Santa Susanna | Puerto Blanes a 15 min | Sin Licencia 75\u20ac/h",
+      description: "Turistas alojados en Santa Susanna: Puerto Blanes a 15 min en coche o tren R1. Alquila barco sin licencia desde 75\u20ac/h. Navega a Blanes, Lloret o Tossa.",
+      ogTitle: "Alquiler Barco Santa Susanna | 15 min al Puerto Blanes",
+      ogDescription: "Desde Santa Susanna al Puerto Blanes en 15 min. Barco sin licencia desde 75\u20ac/h. 4.8\u2605 Google.",
     },
     en: {
-      title: "Boat Rental near Santa Susanna | Blanes Port 15 min",
-      description: "Holiday in Santa Susanna? Blanes Port is 15 min by car. License-free boats from \u20ac70/h, fuel included.",
+      title: "Boat Rental Santa Susanna | Blanes Port 15 min | No License 75\u20ac/h",
+      description: "Tourists staying in Santa Susanna: Blanes Port is 15 min away by car or R1 train. Rent a license-free boat from 75\u20ac/h. Sail to Blanes, Lloret or Tossa.",
     },
     ca: {
-      title: "Lloguer Barques a prop de Santa Susanna | Port Blanes 15 min",
-      description: "Vacances a Santa Susanna? Port de Blanes a 15 min en cotxe. Barques sense llicència des de 70\u20ac/h.",
+      title: "Lloguer Barca Santa Susanna | Port Blanes a 15 min | Sense Llic\u00e8ncia 75\u20ac/h",
+      description: "Turistes allotjats a Santa Susanna: Port Blanes a 15 min en cotxe o tren R1. Lloga barca sense llic\u00e8ncia des de 75\u20ac/h. Navega a Blanes, Lloret o Tossa.",
     },
     fr: {
-      title: "Location Bateau près de Santa Susanna | Port Blanes 15 min",
-      description: "Vacances à Santa Susanna ? Port de Blanes à 15 min. Bateaux sans permis dès 70\u20ac/h.",
+      title: "Location Bateau Santa Susanna | Port Blanes \u00e0 15 min | Sans Permis 75\u20ac/h",
+      description: "Touristes s\u00e9journant \u00e0 Santa Susanna : Port Blanes \u00e0 15 min en voiture ou train R1. Louez un bateau sans permis d\u00e8s 75\u20ac/h. Naviguez vers Blanes, Lloret ou Tossa.",
     },
     de: {
-      title: "Bootsverleih bei Santa Susanna | Hafen Blanes 15 Min",
-      description: "Urlaub in Santa Susanna? Hafen Blanes in 15 Min. Boote ohne Führerschein ab 70\u20ac/Std.",
+      title: "Bootsverleih Santa Susanna | Hafen Blanes 15 Min | Ohne F\u00fchrerschein 75\u20ac/h",
+      description: "Touristen in Santa Susanna: Hafen Blanes 15 Min mit Auto oder R1-Zug. Mieten Sie ein Boot ohne F\u00fchrerschein ab 75\u20ac/h. Segeln nach Blanes, Lloret oder Tossa.",
     },
     nl: {
-      title: "Boothuur bij Santa Susanna | Haven Blanes 15 min",
-      description: "Vakantie in Santa Susanna? Haven Blanes op 15 min. Boten zonder vaarbewijs vanaf \u20ac70/uur.",
+      title: "Boottocht & Bootverhuur Santa Susanna | Haven Blanes 15 min | 75\u20ac/u",
+      description: "Boottocht of boot huren vanuit Santa Susanna: Haven Blanes op 15 min met auto of R1-trein. Zonder vaarbewijs vanaf 75\u20ac/u, of privétocht met schipper. Vaar naar Blanes, Lloret of Tossa.",
     },
     it: {
-      title: "Noleggio Barche vicino a Santa Susanna | Porto Blanes 15 min",
-      description: "Vacanza a Santa Susanna? Porto di Blanes a 15 min. Barche senza patente da 70\u20ac/ora.",
+      title: "Noleggio Barca Santa Susanna | Porto Blanes a 15 min | Senza Patente 75\u20ac/h",
+      description: "Turisti a Santa Susanna: Porto Blanes a 15 min in auto o treno R1. Noleggia una barca senza patente da 75\u20ac/h. Naviga verso Blanes, Lloret o Tossa.",
     },
     ru: {
-      title: "Аренда лодок рядом с Санта-Сусанна | Порт Бланес 15 мин",
-      description: "Отпуск в Санта-Сусанне? Порт Бланеса в 15 мин. Лодки без прав от 70\u20ac/час.",
+      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430 | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 15 \u043c\u0438\u043d | \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 75\u20ac/\u0447",
+      description: "\u0422\u0443\u0440\u0438\u0441\u0442\u044b \u0432 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430: \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 15 \u043c\u0438\u043d \u043d\u0430 \u043c\u0430\u0448\u0438\u043d\u0435 \u0438\u043b\u0438 \u043f\u043e\u0435\u0437\u0434\u0435 R1. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043a \u0411\u043b\u0430\u043d\u0435\u0441\u0443, \u041b\u044c\u043e\u0440\u0435\u0442\u0443 \u0438\u043b\u0438 \u0422\u043e\u0441\u0441\u0435.",
     },
   },
   "/alquiler-barcos-calella": {
     es: {
-      title: "Alquiler Barco cerca de Calella | Puerto Blanes 20 min",
-      description: "En Calella? Puerto de Blanes a 20 min en coche. Barcos sin licencia desde 70\u20ac/h con gasolina incluida.",
-      ogTitle: "Alquiler Barco cerca de Calella | Desde Blanes Costa Brava",
-      ogDescription: "Desde Calella al Puerto de Blanes en 20 min. Barcos sin licencia desde 70\u20ac. Descubre la Costa Brava.",
+      title: "Alquiler Barco Calella (Barcelona) | Puerto Blanes 20 min | 75\u20ac/h",
+      description: "\u00bfAlojado en Calella (Maresme)? Puerto Blanes a 20 min. Alquila barco sin licencia desde 75\u20ac/h. Navega al norte a Tossa o al sur al Delta del Tordera.",
+      ogTitle: "Alquiler Barco Calella | 20 min al Puerto Blanes",
+      ogDescription: "Desde Calella al Puerto Blanes en 20 min. Barco sin licencia desde 75\u20ac/h. Descubre Costa Brava. 4.8\u2605.",
     },
     en: {
-      title: "Boat Rental near Calella | Blanes Port 20 min from \u20ac70",
-      description: "Staying in Calella? Blanes Port is 20 min by car. License-free boats from \u20ac70/h, fuel included.",
+      title: "Boat Rental Calella (Barcelona) | Blanes Port 20 min | 75\u20ac/h",
+      description: "Staying in Calella (Maresme)? Blanes Port is 20 min away. Rent a license-free boat from 75\u20ac/h. Sail north to Tossa or south to Tordera Delta.",
     },
     ca: {
-      title: "Lloguer Barques a prop de Calella | Port Blanes 20 min",
-      description: "A Calella? Port de Blanes a 20 min en cotxe. Barques sense llicència des de 70\u20ac/h. Gasolina inclosa.",
+      title: "Lloguer Barca Calella (Barcelona) | Port Blanes 20 min | 75\u20ac/h",
+      description: "\u00bfAllotjat a Calella (Maresme)? Port Blanes a 20 min. Lloga barca sense llic\u00e8ncia des de 75\u20ac/h. Navega al nord cap a Tossa o al sud al Delta de la Tordera.",
     },
     fr: {
-      title: "Location Bateau près de Calella | Port Blanes 20 min dès 70\u20ac",
-      description: "En séjour à Calella ? Port de Blanes à 20 min. Bateaux sans permis dès 70\u20ac/h. Essence incluse.",
+      title: "Location Bateau Calella (Barcelona) | Port Blanes 20 min | 75\u20ac/h",
+      description: "En s\u00e9jour \u00e0 Calella (Maresme) ? Port Blanes \u00e0 20 min. Louez un bateau sans permis d\u00e8s 75\u20ac/h. Naviguez au nord vers Tossa ou au sud au Delta de la Tordera.",
     },
     de: {
-      title: "Bootsverleih bei Calella | Hafen Blanes 20 Min ab 70\u20ac",
-      description: "In Calella? Hafen Blanes in 20 Min. Boote ohne Führerschein ab 70\u20ac/Std. Benzin inklusive.",
+      title: "Bootsverleih Calella (Barcelona) | Hafen Blanes 20 Min | 75\u20ac/h",
+      description: "Urlaub in Calella (Maresme)? Hafen Blanes 20 Min entfernt. Mieten Sie ein Boot ohne F\u00fchrerschein ab 75\u20ac/h. Segeln nach Norden nach Tossa oder s\u00fcd zum Tordera-Delta.",
     },
     nl: {
-      title: "Boothuur bij Calella | Haven Blanes 20 min vanaf \u20ac70",
-      description: "In Calella? Haven Blanes op 20 min. Boten zonder vaarbewijs vanaf \u20ac70/uur. Brandstof inbegrepen.",
+      title: "Bootverhuur Calella (Barcelona) | Haven Blanes 20 min | 75\u20ac/u",
+      description: "Op vakantie in Calella (Maresme)? Haven Blanes 20 min verderop. Huur een boot zonder vaarbewijs vanaf 75\u20ac/u. Vaar noord naar Tossa of zuid naar Tordera Delta.",
     },
     it: {
-      title: "Noleggio Barche vicino a Calella | Porto Blanes 20 min",
-      description: "A Calella? Porto di Blanes a 20 min. Barche senza patente da 70\u20ac/ora. Benzina inclusa.",
+      title: "Noleggio Barca Calella (Barcelona) | Porto Blanes 20 min | 75\u20ac/h",
+      description: "In vacanza a Calella (Maresme)? Porto Blanes a 20 min. Noleggia una barca senza patente da 75\u20ac/h. Naviga a nord verso Tossa o a sud al Delta del Tordera.",
     },
     ru: {
-      title: "Аренда лодок рядом с Калелья | Порт Бланес 20 мин от 70\u20ac",
-      description: "В Калелье? Порт Бланеса в 20 мин на машине. Лодки без прав от 70\u20ac/час.",
+      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041a\u0430\u043b\u0435\u043b\u044c\u044f (\u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u0430) | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 20 \u043c\u0438\u043d | 75\u20ac/\u0447",
+      description: "\u041e\u0442\u0434\u044b\u0445 \u0432 \u041a\u0430\u043b\u0435\u043b\u044c\u0435 (\u041c\u0430\u0440\u0435\u0441\u043c\u0435)? \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 20 \u043c\u0438\u043d. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043d\u0430 \u0441\u0435\u0432\u0435\u0440 \u043a \u0422\u043e\u0441\u0441\u0435 \u0438\u043b\u0438 \u043d\u0430 \u044e\u0433 \u043a \u0434\u0435\u043b\u044c\u0442\u0435 \u0422\u043e\u0440\u0434\u0435\u0440\u0430.",
     },
   },
   "/alquiler-barcos-pineda-de-mar": {
     es: {
-      title: "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min",
-      description: "\u00bfAlojado en Pineda de Mar? Puerto Blanes a 18 min en coche o 12 min en tren R1. Alquila barco sin licencia desde 70\u20ac/h con gasolina incluida.",
+      title: "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 75€/h",
+      description: "¿Alojado en Pineda de Mar? Puerto Blanes a 18 min por carretera o 12 min en tren R1. Alquila barco sin licencia desde 75€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa.",
       ogTitle: "Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes",
-      ogDescription: "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 70\u20ac/h. 4.8\u2605 Google.",
+      ogDescription: "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 75€/h. 4.8★ Google.",
     },
     en: {
-      title: "Boat Rental Pineda de Mar | Blanes Port 18 min",
-      description: "Staying in Pineda de Mar? Blanes Port is 18 min by car or 12 min by R1 train. Rent a license-free boat from 70\u20ac/h, fuel included.",
+      title: "Boat Rental Pineda de Mar | Blanes Port 18 min | No License 75€/h",
+      description: "Staying in Pineda de Mar? Blanes Port is 18 min by car or 12 min by R1 train. Rent a boat without a license from 75€/h with fuel included. Sail to Blanes, Lloret or Tossa.",
     },
     ca: {
-      title: "Lloguer Barca Pineda de Mar | Port Blanes 18 min",
-      description: "A Pineda de Mar? Port Blanes a 18 min en cotxe o 12 min en tren R1. Lloga barca sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa.",
+      title: "Lloguer Vaixell Pineda de Mar | Port Blanes 18 min | Sense Llicència 75€/h",
+      description: "Allotjat a Pineda de Mar? Port Blanes a 18 min amb cotxe o 12 min amb tren R1. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Navega a Blanes, Lloret o Tossa.",
     },
     fr: {
-      title: "Location Bateau Pineda de Mar | Port Blanes 18 min",
-      description: "En s\u00e9jour \u00e0 Pineda de Mar ? Port Blanes \u00e0 18 min en voiture ou 12 min en train R1. Louez un bateau sans permis d\u00e8s 70\u20ac/h avec carburant inclus.",
+      title: "Location Bateau Pineda de Mar | Port Blanes 18 min | Sans Permis 75€/h",
+      description: "Logé à Pineda de Mar ? Port de Blanes à 18 min en voiture ou 12 min en train R1. Louez un bateau sans permis dès 75€/h essence incluse. Naviguez vers Blanes, Lloret ou Tossa.",
     },
     de: {
-      title: "Bootsverleih Pineda de Mar | Hafen Blanes 18 Min",
-      description: "Urlaub in Pineda de Mar? Hafen Blanes in 18 Min mit Auto oder 12 Min mit R1-Zug. Boot ohne F\u00fchrerschein ab 70\u20ac/h mit Kraftstoff inklusive.",
+      title: "Bootsvermietung Pineda de Mar | Hafen Blanes 18 Min | Ohne Führerschein 75€/Std",
+      description: "Unterkunft in Pineda de Mar? Hafen Blanes 18 Min mit dem Auto oder 12 Min mit dem Zug R1. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Fahr nach Blanes, Lloret oder Tossa.",
     },
     nl: {
-      title: "Bootverhuur Pineda de Mar | Haven Blanes 18 min",
-      description: "Op vakantie in Pineda de Mar? Haven Blanes op 18 min met auto of 12 min met R1-trein. Boot zonder vaarbewijs vanaf 70\u20ac/u met brandstof inbegrepen.",
+      title: "Boot Huren Pineda de Mar | Haven Blanes 18 min | Zonder Vaarbewijs 75€/u",
+      description: "Verblijf je in Pineda de Mar? Haven Blanes op 18 min met de auto of 12 min met trein R1. Huur boot zonder vaarbewijs vanaf 75€/u met brandstof inbegrepen. Vaar naar Blanes, Lloret of Tossa.",
     },
     it: {
-      title: "Noleggio Barca Pineda de Mar | Porto Blanes 18 min",
-      description: "In vacanza a Pineda de Mar? Porto Blanes a 18 min in auto o 12 min in treno R1. Barca senza patente da 70\u20ac/h con carburante incluso.",
+      title: "Noleggio Barca Pineda de Mar | Porto Blanes 18 min | Senza Patente 75€/h",
+      description: "Alloggi a Pineda de Mar? Porto Blanes a 18 min in auto o 12 min in treno R1. Noleggia barca senza patente da 75€/h con carburante incluso. Naviga a Blanes, Lloret o Tossa.",
     },
     ru: {
-      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041f\u0438\u043d\u0435\u0434\u0430-\u0434\u0435-\u041c\u0430\u0440 | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 18 \u043c\u0438\u043d",
-      description: "\u0412 \u041f\u0438\u043d\u0435\u0434\u0430-\u0434\u0435-\u041c\u0430\u0440? \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 18 \u043c\u0438\u043d. \u041b\u043e\u0434\u043a\u0430 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447.",
+      title: "Аренда лодки Пинеда-де-Мар | Порт Бланес 18 мин | Без лицензии 75€/ч",
+      description: "Остановились в Пинеде-де-Мар? Порт Бланес в 18 мин на машине или 12 мин на поезде R1. Аренда лодки без лицензии от 75€/ч с бензином. Плывите в Бланес, Льорет или Тоссу.",
     },
   },
   "/alquiler-barcos-palafolls": {
@@ -2736,7 +2736,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         isEn
           ? "Rent license-free and licensed boats from Blanes Port. 9 boats available, up to 7 people, from 70 EUR/hour. Fuel included on license-free boats."
           : "Alquiler de barcos sin licencia y con licencia desde el Puerto de Blanes. 9 embarcaciones disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en los barcos sin licencia.",
-        { low: 70, high: 420 },
+        { low: getFleetStats().priceFloor, high: 420 },
       );
       const blanesBodyFallback = buildLocationBodyFallback(
         isEn ? "Boat Rental in Blanes, Costa Brava" : "Alquiler de Barcos en Blanes, Costa Brava",
@@ -2984,6 +2984,15 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           { "@type": "TouristAttraction", name: "Paseo Marítimo de Malgrat" },
         ],
       };
+      // Prose prices below say "70 EUR" on purpose: applyFleetStatsToText()
+      // rewrites the catalog baseline to the live fleet floor at serve time.
+      const service = buildLandingService(
+        isEn ? "Boat Rental for Malgrat de Mar (from Blanes Port)" : "Alquiler de Barcos para Malgrat de Mar (desde el Puerto de Blanes)",
+        isEn
+          ? "License-free and licensed boat rental for Malgrat de Mar visitors. Departures from Blanes Port, 8 km away (10 min by car, 5 min by R1 train). License-free boats from 70 EUR/hour with fuel included."
+          : "Alquiler de barcos sin licencia y con licencia para visitantes de Malgrat de Mar. Salidas desde el Puerto de Blanes, a 8 km (10 min en coche, 5 min en tren R1). Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+        { low: getFleetStats().priceFloor, high: 420 },
+      );
       const faq = {
         "@type": "FAQPage",
         mainEntity: [
@@ -3025,7 +3034,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`),
         secMalgrat?.ctaButton ?? (isEn ? "Book via WhatsApp" : "Reserva por WhatsApp"),
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
     }
 
     // /alquiler-barcos-santa-susanna - TouristDestination + FAQPage
@@ -3053,6 +3062,13 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           { "@type": "TouristAttraction", name: "Castell de Can Rates" },
         ],
       };
+      const service = buildLandingService(
+        isEn ? "Boat Rental and Boat Trips for Santa Susanna (from Blanes Port)" : "Alquiler de Barcos y Paseos en Barco para Santa Susanna (desde el Puerto de Blanes)",
+        isEn
+          ? "Rent a license-free boat and drive it yourself, or book the captained private excursion for a boat trip without driving. Departures from Blanes Port, 12 km from Santa Susanna (15 min by car, 10 min by R1 train). From 70 EUR/hour with fuel included."
+          : "Alquila un barco sin licencia y pilótalo tú, o reserva la excursión privada con patrón para un paseo en barco sin conducir. Salidas desde el Puerto de Blanes, a 12 km de Santa Susanna (15 min en coche, 10 min en tren R1). Desde 70 EUR/hora con gasolina incluida.",
+        { low: getFleetStats().priceFloor, high: 420 },
+      );
       const faq = {
         "@type": "FAQPage",
         mainEntity: [
@@ -3094,7 +3110,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`),
         secSanta?.ctaButton ?? (isEn ? "Book via WhatsApp" : "Reserva por WhatsApp"),
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
     }
 
     // /alquiler-barcos-calella - TouristDestination + FAQPage
@@ -3111,6 +3127,9 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           { "@type": "Audience", audienceType: isEn ? "Cultural tourists" : "Turistas culturales" },
         ],
         geo: { "@type": "GeoCoordinates", latitude: 41.6136, longitude: 2.6545 },
+        disambiguatingDescription: isEn
+          ? "Calella in the Maresme, Barcelona province (R1 train line) — not Calella de Palafrugell, a different village about 60 km further north on the Costa Brava."
+          : "Calella del Maresme, provincia de Barcelona (línea de tren R1), no Calella de Palafrugell, un pueblo distinto unos 60 km más al norte en la Costa Brava.",
         containedInPlace: {
           "@type": "Place",
           name: "Calella",
@@ -3123,6 +3142,13 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           { "@type": "TouristAttraction", name: "Parc Dalmau" },
         ],
       };
+      const service = buildLandingService(
+        isEn ? "Boat Rental for Calella, Maresme (from Blanes Port)" : "Alquiler de Barcos para Calella, Maresme (desde el Puerto de Blanes)",
+        isEn
+          ? "License-free and licensed boat rental for visitors staying in Calella (Maresme, Barcelona province). Departures from Blanes Port, 17 km away (20 min by car, 15 min by R1 train). License-free boats from 70 EUR/hour with fuel included."
+          : "Alquiler de barcos sin licencia y con licencia para visitantes alojados en Calella (Maresme, provincia de Barcelona). Salidas desde el Puerto de Blanes, a 17 km (20 min en coche, 15 min en tren R1). Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+        { low: getFleetStats().priceFloor, high: 420 },
+      );
       const faq = {
         "@type": "FAQPage",
         mainEntity: [
@@ -3147,6 +3173,13 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
               ? "No! We have license-free boats for anyone over 18. 15 minutes of training included before departure."
               : "No! Tenemos barcos sin licencia para cualquier mayor de 18 anos. 15 minutos de formacion incluidos antes de zarpar." },
           },
+          {
+            "@type": "Question",
+            name: isEn ? "Is this Calella de Palafrugell?" : "¿Es Calella de Palafrugell?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "No. We serve Calella in the Maresme (Barcelona province, on the R1 train line, next to Pineda de Mar and Santa Susanna). Calella de Palafrugell is a different village about 60 km further north on the Costa Brava."
+              : "No. Servimos a Calella del Maresme (provincia de Barcelona, en la línea de tren R1, junto a Pineda de Mar y Santa Susanna). Calella de Palafrugell es un pueblo distinto, unos 60 km más al norte en la Costa Brava." },
+          },
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Calella" : "Barcos cerca de Calella", url: `${BASE_URL}/alquiler-barcos-calella` }]);
@@ -3164,7 +3197,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`),
         secCalella?.ctaButton ?? (isEn ? "Book via WhatsApp" : "Reserva por WhatsApp"),
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, bodyFallback };
     }
 
     // /barcos-sin-licencia - ItemList of license-free boats (dynamic from DB)
@@ -3242,7 +3275,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         isEn
           ? "5 license-free boats (up to 15 HP) for rent in Blanes, Costa Brava. No qualification needed, anyone 18+ can drive. 15-minute safety briefing included. Fuel, insurance and safety equipment included in price."
           : "5 barcos sin licencia (hasta 15 CV) para alquilar en Blanes, Costa Brava. No se necesita titulación, cualquier persona mayor de 18 años puede conducir. Formación de seguridad de 15 minutos incluida. Gasolina, seguro y equipo de seguridad incluidos en el precio.",
-        { low: 70, high: 370 },
+        { low: getFleetStats().priceFloor, high: 370 },
       );
       // Native-language SSR body so non-ES locales carry unique content (not a
       // Spanish/English ternary) — prerequisite for indexing them. Sourced from
@@ -3363,7 +3396,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const su = (I18N_BY_LANG[lang] ?? i18nEs).activitySunset!;
       const heading = su.heroTitle ?? meta.title;
       const summary = su.heroDescription ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
       const faq = {
         "@type": "FAQPage",
         mainEntity: su.faqItems.map((item) => ({
@@ -3423,7 +3456,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const fa = (I18N_BY_LANG[lang] ?? i18nEs).activityFamilies!;
       const heading = fa.heroTitle ?? meta.title;
       const summary = fa.heroDescription ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
       const faq = {
         "@type": "FAQPage",
         mainEntity: (fa.faqItems ?? []).map((item) => ({
@@ -3453,7 +3486,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const sn = (I18N_BY_LANG[lang] ?? i18nEs).activitySnorkel!;
       const heading = sn.heroTitle ?? meta.title;
       const summary = sn.heroDescription ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
       const faq = {
         "@type": "FAQPage",
         mainEntity: (sn.faqItems ?? []).map((item) => ({
@@ -3598,7 +3631,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const sec = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.tordera?.sections;
       const heading = sec?.heroTitle ?? meta.title;
       const summary = sec?.heroSubtitle ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
       const bullets = ([
         [sec?.whyCard1Title, sec?.whyCard1Desc],
@@ -3614,7 +3647,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const sec = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.palafolls?.sections;
       const heading = sec?.heroTitle ?? meta.title;
       const summary = sec?.heroSubtitle ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
       const bullets = ([
         [sec?.whyCard1Title, sec?.whyCard1Desc],
@@ -3630,7 +3663,60 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const sec = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.pineda?.sections;
       const heading = sec?.heroTitle ?? meta.title;
       const summary = sec?.heroSubtitle ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: 70, high: 200 });
+      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 420 });
+      // TouristDestination + FAQPage for schema parity with the other Maresme
+      // town pages (Malgrat / Santa Susanna / Calella). Prose prices say
+      // "70 EUR" on purpose: applyFleetStatsToText() rewrites the catalog
+      // baseline to the live fleet floor at serve time.
+      const destination = {
+        "@type": "TouristDestination",
+        name: isEn ? "Boat Rental near Pineda de Mar" : "Alquiler de Barcos cerca de Pineda de Mar",
+        description: isEn
+          ? "Rent boats from Blanes Port, 18 minutes by car or 12 minutes by R1 train from Pineda de Mar. License-free boats from 70 EUR/hour with fuel included."
+          : "Alquila barcos desde el Puerto de Blanes, a 18 minutos en coche o 12 minutos en tren R1 desde Pineda de Mar. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+        url: `${BASE_URL}/alquiler-barcos-pineda-de-mar`,
+        touristType: [
+          { "@type": "Audience", audienceType: isEn ? "Beach tourists" : "Turistas de playa" },
+          { "@type": "Audience", audienceType: isEn ? "Families with children" : "Familias con ninos" },
+        ],
+        geo: { "@type": "GeoCoordinates", latitude: 41.6276, longitude: 2.6907 },
+        containedInPlace: {
+          "@type": "Place",
+          name: "Pineda de Mar",
+          sameAs: "https://en.wikipedia.org/wiki/Pineda_de_Mar",
+          containedInPlace: { "@type": "Place", name: "Maresme", containedInPlace: { "@type": "Place", name: "Catalonia, Spain" } },
+        },
+        includesAttraction: [
+          { "@type": "TouristAttraction", name: "Playa de Pineda de Mar" },
+          { "@type": "TouristAttraction", name: "Paseo Marítimo de Pineda" },
+        ],
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "How far is Pineda de Mar from Blanes Port?" : "¿A cuánta distancia está Pineda de Mar del Puerto de Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Blanes Port is about 18 minutes by car from Pineda de Mar, or 12 minutes on the RENFE R1 train. It is the nearest boat rental port for the whole Alt Maresme coast."
+              : "El Puerto de Blanes está a unos 18 minutos en coche de Pineda de Mar, o 12 minutos en tren RENFE R1. Es el puerto de alquiler de barcos más cercano para toda la costa del Alt Maresme." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "How much does it cost to rent a boat from Blanes?" : "¿Cuánto cuesta alquilar un barco desde Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Boat rental starts from 70 EUR per hour with fuel included. No license needed for boats up to 15 HP."
+              : "El alquiler de barco empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Do I need a boating license?" : "¿Necesito licencia de navegación?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "No! We offer license-free boats that anyone over 18 can operate. We provide 15 minutes of training before departure."
+              : "¡No! Ofrecemos barcos sin licencia que cualquier mayor de 18 años puede manejar. Damos 15 minutos de formación antes de zarpar." },
+          },
+        ],
+      };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
       const bullets = ([
         [sec?.whyCard1Title, sec?.whyCard1Desc],
@@ -3639,7 +3725,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       ] as Array<[string | undefined, string | undefined]>)
         .filter((p) => p[0] && p[1]).map((p) => `${p[0]} — ${p[1]}`);
       const body = buildLocationBodyFallback(heading, summary, bullets, sec?.ctaButton ?? heading);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, breadcrumb] }, availableLanguages, bodyFallback: body };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, bodyFallback: body };
     }
 
     // /rutas - ItemList of routes
@@ -3801,7 +3887,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         isEn
           ? "Transparent prices for all our boats in Blanes, Costa Brava. License-free boats from 70 EUR/hour (fuel included). Licensed boats from 160 EUR/2h. Private excursion with captain from 240 EUR/2h. Low, mid and high season pricing."
           : "Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Barcos sin licencia desde 70€/hora (gasolina incluida). Barcos con licencia desde 160€/2h. Excursión privada con patrón desde 240€/2h. Tarifas temporada baja, media y alta.",
-        { low: 70, high: 420 },
+        { low: getFleetStats().priceFloor, high: 420 },
       );
       const speakable = {
         "@type": "SpeakableSpecification",
@@ -3938,7 +4024,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const service = buildLandingService(
         `${heroTitle} ${SEASON_YEAR}`,
         intro,
-        { low: 70, high: 420 },
+        { low: getFleetStats().priceFloor, high: 420 },
       );
       const costaBravaBodyFallback = buildLocationBodyFallback(
         heroTitle,
@@ -3965,7 +4051,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const service = buildLandingService(
         `Boat Rental Costa Brava ${SEASON_YEAR}`,
         "Boat rental on the Costa Brava from Blanes port. License-free boats from 70 EUR/hour (fuel included). Licensed boats and private excursions with captain available. Up to 12 people. Hidden coves, snorkel spots and medieval coastal villages.",
-        { low: 70, high: 420 },
+        { low: getFleetStats().priceFloor, high: 420 },
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, breadcrumb] }, availableLanguages };
     }

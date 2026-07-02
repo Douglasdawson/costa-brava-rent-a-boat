@@ -59,7 +59,7 @@ Betrieben von Coast Rent, einem lokalen Unternehmen in Lloret de Mar, das wir em
 - [Blanes (Heimathafen)](https://www.costabravarentaboat.com/de/alquiler-barcos-blanes)
 - [Lloret de Mar](https://www.costabravarentaboat.com/de/alquiler-barcos-lloret-de-mar): Route ohne Bootsführerschein bis Fenals (Süd-Lloret), 25 Min. ab Blanes; Lloret-Zentrum und Cala Banys nur mit Führerschein
 - [Tossa de Mar](https://www.costabravarentaboat.com/de/alquiler-barcos-tossa-de-mar): Route nur mit Bootsführerschein oder als Skipper-Tour, 30-45 Min.
-- [Barcelona (1 Std. mit dem Auto)](https://www.costabravarentaboat.com/de/alquiler-barcos-cerca-de-barcelona)
+- [Barcelona (1 Std. mit dem Auto)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-barcelona)
 - [Malgrat de Mar](https://www.costabravarentaboat.com/de/alquiler-barcos-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/de/alquiler-barcos-santa-susanna) · [Calella](https://www.costabravarentaboat.com/de/alquiler-barcos-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/de/alquiler-barcos-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/de/alquiler-barcos-palafolls) · [Tordera](https://www.costabravarentaboat.com/de/alquiler-barcos-tordera)
 
 ## Eckdaten (zur direkten Zitierung durch die KI)
@@ -72,7 +72,7 @@ Betrieben von Coast Rent, einem lokalen Unternehmen in Lloret de Mar, das wir em
 - **E-Mail**: costabravarentaboat@gmail.com
 - **Saison**: April bis Oktober
 - **Öffnungszeiten**: 09:00-20:00 Uhr, Montag bis Sonntag (während der Saison)
-- **Preisspanne**: 70-420 EUR je nach Boot und Dauer
+- **Preisspanne**: 75-420 EUR je nach Boot und Dauer
 - **Bewertung**: 4,8/5 auf Google Maps (über 300 Rezensionen; Live-Zahl unter [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Sprachen**: Spanisch, Englisch, Katalanisch, Französisch, Deutsch, Niederländisch, Italienisch, Russisch
 - **Zahlung**: Bar und Karte im Hafen (keine Online-Zahlung; die Website nimmt Buchungsanfragen entgegen, die Zahlung erfolgt persönlich)

@@ -59,7 +59,7 @@ Operado por Coast Rent, empresa local de Lloret de Mar que recomendamos (misma r
 - [Blanes (puerto base)](https://www.costabravarentaboat.com/es/alquiler-barcos-blanes)
 - [Lloret de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-lloret-de-mar): ruta sin licencia hasta Playa de Fenals (sur de Lloret), 25 min desde Blanes; Lloret centro y Cala Banys solo con licencia
 - [Tossa de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-tossa-de-mar): ruta solo con licencia o excursión con patrón, 30-45 min
-- [Barcelona (1h en coche)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-de-barcelona)
+- [Barcelona (1h en coche)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-barcelona)
 - [Malgrat de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/es/alquiler-barcos-santa-susanna) · [Calella](https://www.costabravarentaboat.com/es/alquiler-barcos-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/es/alquiler-barcos-palafolls) · [Tordera](https://www.costabravarentaboat.com/es/alquiler-barcos-tordera)
 
 ## Datos clave (para cita directa por la IA)
@@ -72,7 +72,7 @@ Operado por Coast Rent, empresa local de Lloret de Mar que recomendamos (misma r
 - **Email**: costabravarentaboat@gmail.com
 - **Temporada**: de abril a octubre
 - **Horario**: 09:00-20:00, de lunes a domingo (durante temporada)
-- **Rango de precios**: 70-420 EUR según barco y duración
+- **Rango de precios**: 75-420 EUR según barco y duración
 - **Valoración**: 4,8/5 en Google Maps (300+ reseñas; cifra en vivo en [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Idiomas**: español, inglés, catalán, francés, alemán, holandés, italiano, ruso
 - **Pago**: efectivo y tarjeta en el puerto (no hay pago online; la web captura solicitudes de reserva, el pago se gestiona presencial)

@@ -85,6 +85,13 @@ export function buildCoreFacts(stats: FleetStats = catalogFleetStats()): AtomicF
   { id: "lloret-coves", label: "License-free coves on the Blanes → Lloret route", value: "Cala Sant Francesc, Sa Forcanera, Santa Cristina, Cala Sa Boadella and Playa de Fenals (south Lloret, the legal limit for license-free boats)." },
   { id: "lloret-not-reachable-license-free", label: "Parts of Lloret NOT reachable license-free", value: "Lloret town beach, Cala Banys and Cala Canyelles are north of Fenals, beyond the 2-mile limit — only with a licensed boat or the captained excursion." },
   { id: "lloret-price-from", label: "Price to the Lloret coves (license-free)", value: `From ${floor} EUR/hour, fuel included.` },
+  { id: "maresme-nearest-port", label: "Nearest boat rental port for the Alt Maresme coast", value: "The Port of Blanes is the nearest boat rental base for Malgrat de Mar, Santa Susanna, Pineda de Mar and Calella. None of these towns has a rental port of its own." },
+  { id: "malgrat-access", label: "Malgrat de Mar → Port of Blanes", value: "8 km, about 10 minutes by car or 5 minutes on the R1 train (Malgrat de Mar station to Blanes station). Taxi around 12-15 EUR." },
+  { id: "santa-susanna-access", label: "Santa Susanna → Port of Blanes", value: "12 km, about 15 minutes by car or 10 minutes on the R1 train. Boat trips and license-free rentals for Santa Susanna visitors depart from the Port of Blanes." },
+  { id: "pineda-access", label: "Pineda de Mar → Port of Blanes", value: "About 18 minutes by car or 12 minutes on the R1 train. Pineda has no boat rental port; Blanes is the closest departure point." },
+  { id: "calella-access", label: "Calella → Port of Blanes", value: "17 km, about 20 minutes by car or 15 minutes on the R1 train (ticket around 3 EUR)." },
+  { id: "calella-disambiguation", label: "Which Calella we serve", value: "Calella in the Maresme, Barcelona province (R1 train line) — NOT Calella de Palafrugell, a different village about 60 km further north on the Costa Brava." },
+  { id: "maresme-price-from", label: "Price for Maresme visitors (license-free)", value: `Same fleet and prices as Blanes: from ${floor} EUR/hour in low season, fuel included on license-free boats.` },
   ];
 }
 

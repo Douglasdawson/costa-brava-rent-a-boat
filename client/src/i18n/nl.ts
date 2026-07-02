@@ -2737,6 +2737,17 @@ export const nl: Translations = {
           answer:
             "Als de voorspelling >20 knopen aanhoudt of een waarschuwing geeft voor golven >1,5 m, annuleren we kosteloos. Het traject Blanes–Fenals is beschermd tegen de Tramuntana door de kust zelf, dus het is een van de veiligste voor beginners, zelfs bij noordenwind.",
         },
+      
+        {
+          question: "Hoe kom ik van Lloret de Mar naar de haven van Blanes?",
+          answer:
+            "Met de auto is het 10 minuten via de GI-682 (gratis parkeren op 100 m van de haven). Met de bus duurt de lijn Lloret-Blanes ongeveer 20 minuten. Een taxi kost ongeveer 15-18 euro. In Lloret zelf is geen verhuurbasis: alle afvaarten vertrekken vanuit de haven van Blanes.",
+        },
+        {
+          question: "Welke baaien zie ik op de bootroute naar Lloret?",
+          answer:
+            "Vanuit de haven van Blanes passeer je Cala Sant Francesc, Sa Forcanera, het strand van Santa Cristina, Cala Treumal en Cala Sa Boadella voordat je het strand van Fenals bereikt. Het zijn de meest gefotografeerde baaien van de zuidelijke Costa Brava en ze liggen allemaal binnen het legale bereik zonder vaarbewijs.",
+        },
       ],
       hero: {
         title: "Boottochten naar Lloret de Mar",
@@ -3044,6 +3055,12 @@ export const nl: Translations = {
           question: "Kan ik een bootexcursie bij zonsondergang maken vanuit Santa Susanna?",
           answer:
             "Ja, dat is erg populair. Vanuit Blanes bieden we zonsondergangstochten (18:30-21:00 afhankelijk van de maand) met een boot zonder vaarbewijs voor 115 € voor 2 uur. Je vaart langs de 7 baaien in goudkleurig licht. Vanuit Santa Susanna ben je er in 15 min met de auto of 10 min met de trein. Reserveer van tevoren in de zomer.",
+        },
+      
+        {
+          question: "Kan ik vanuit Santa Susanna een boottocht maken zonder zelf te varen?",
+          answer:
+            "Ja. Naast de verhuur zonder vaarbewijs waarbij je zelf vaart, bieden we de privétocht met schipper aan: een boottocht vanuit de haven van Blanes van 2 tot 8 uur voor maximaal 6 personen, met stops om te zwemmen en te snorkelen. Ideaal als je met het gezin reist en gewoon wilt genieten.",
         },
       ],
       hero: {
@@ -3523,6 +3540,22 @@ export const nl: Translations = {
           question: "Kan ik van Pineda de Mar naar Blanes met het openbaar vervoer?",
           answer:
             "Ja, de RENFE lijn R1 verbindt Pineda de Mar met Blanes in 12 minuten. De treinen rijden elke 30 minuten in het seizoen. Het station van Blanes ligt op ongeveer 10 minuten lopen van de haven.",
+        },
+      
+        {
+          question: "Is er bootverhuur in Pineda de Mar zelf?",
+          answer:
+            "Nee, Pineda de Mar heeft geen jachthaven met bootverhuur. De dichtstbijzijnde haven voor het hele Alt Maresme (Malgrat, Santa Susanna, Pineda en Calella) is de haven van Blanes, 18 minuten met de auto of 12 minuten met de R1-trein.",
+        },
+        {
+          question: "Welke baaien kan ik bezoeken vanuit Blanes?",
+          answer:
+            "Met een boot zonder vaarbewijs bereik je Cala Sant Francesc, Sa Forcanera, het strand van Santa Cristina, Cala Sa Boadella en het strand van Fenals (zuid-Lloret), allemaal binnen de legale 2-mijlsgrens. Met vaarbewijs of met de privétocht met schipper kun je doorvaren naar Tossa de Mar.",
+        },
+        {
+          question: "Kan ik een boottocht maken zonder zelf te varen?",
+          answer:
+            "Ja. Als je liever niet zelf vaart, boek dan de privétocht met schipper: een boottocht vanuit de haven van Blanes van 2 tot 8 uur, tot 6 personen, met stops om te zwemmen en te snorkelen in de baaien. Geen vaarbewijs nodig.",
         },
       ],
       seo: {
@@ -4290,39 +4323,6 @@ export const nl: Translations = {
   },
   lastUpdated: {
     label: 'Laatst bijgewerkt',
-  },
-  popularBoatsSection: {
-    badges: {
-      captain: "Met schipper",
-      licensed: "Met vaarbewijs",
-      noLicense: "Zonder vaarbewijs",
-    },
-    pages: {
-      barcelona: {
-        title: "Boten voor je uitje vanuit Barcelona",
-        description: "Op 1 uur met de auto of de R1-trein is de haven van Blanes de dichtstbijzijnde optie om een boot te huren aan de Costa Brava. Van zonder vaarbewijs (4 van de 8 boten) tot premium charter met schipper.",
-      },
-      lloret: {
-        title: "Populaire boten voor je route naar Lloret de Mar",
-        description: "De boten die we het meest verhuren voor de route richting Lloret: de boten zonder vaarbewijs bereiken legaal het strand van Fenals en met vaarbewijs vaar je door tot het strand van Lloret. Voor 2-7 personen, afhankelijk van de boot.",
-      },
-      pineda: {
-        title: "Populaire boten om te huren vanaf de haven van Blanes",
-        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-5 personen.",
-      },
-      palafolls: {
-        title: "Populaire boten om te huren vanaf de haven van Blanes",
-        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-5 personen.",
-      },
-      tordera: {
-        title: "Populaire boten om te huren vanaf de haven van Blanes",
-        description: "Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-5 personen.",
-      },
-      tossa: {
-        title: "Boten voor je route naar Tossa de Mar",
-        description: "Tossa de Mar ligt buiten het wettelijke bereik zonder vaarbewijs. Dit zijn de boten die er wél komen: met een Licencia de Navegación of onze privétocht met schipper (geen vaarbewijs nodig).",
-      },
-    },
   },
   relatedContent: {
     sectionTitle: "Misschien vind je dit ook interessant",
@@ -5507,5 +5507,54 @@ export const nl: Translations = {
         a: "De Costa Brava Culture collectie is ontworpen met Laura Cabanas, modeontwerpster uit Lloret de Mar, in samenwerking met Costa Brava Rent a Boat (Blanes).",
       },
     ],
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: 'Met schipper',
+      licensed: 'Met vaarbewijs',
+      noLicense: 'Zonder vaarbewijs',
+    },
+    pages: {
+      barcelona: {
+        title: 'Boten voor je uitje vanuit Barcelona',
+        description: 'Op 1 uur met de auto of de R1-trein is de haven van Blanes de dichtstbijzijnde optie om een boot te huren aan de Costa Brava. Van zonder vaarbewijs (4 van de 8 boten) tot premium charter met schipper.',
+      },
+      lloret: {
+        title: 'Populaire boten voor je route naar Lloret de Mar',
+        description: 'De boten die we het meest verhuren voor de route richting Lloret: de boten zonder vaarbewijs bereiken legaal het strand van Fenals en met vaarbewijs vaar je door tot het strand van Lloret. Voor 2-7 personen, afhankelijk van de boot.',
+      },
+      blanes: {
+        title: 'Populaire boten in de haven van Blanes',
+        description: 'De hele vloot vertrekt vanuit dezelfde haven van Blanes: van de boot zonder vergunning voor 2-5 personen tot charter met schipper. Dit zijn de meest geboekte boten.',
+      },
+      malgrat: {
+        title: 'Populaire boten om te huren vanuit de haven van Blanes',
+        description: 'Op 10 minuten van Malgrat de Mar. Dit zijn de boten zonder vergunning die we het meest verhuren: allemaal bereiken ze Playa de Fenals (zuid van Lloret) in 25 minuten en zijn ideaal voor 2-7 personen.',
+      },
+      santaSusanna: {
+        title: 'Populaire boten om te huren vanuit de haven van Blanes',
+        description: 'Op 15 minuten van Santa Susanna. Dit zijn de boten zonder vergunning die we het meest verhuren: allemaal bereiken ze Playa de Fenals (zuid van Lloret) in 25 minuten en zijn ideaal voor 2-7 personen.',
+      },
+      calella: {
+        title: 'Populaire boten om te huren vanuit de haven van Blanes',
+        description: 'Op 20 minuten van Calella. Dit zijn de boten zonder vergunning die we het meest verhuren: allemaal bereiken ze Playa de Fenals (zuid van Lloret) in 25 minuten en zijn ideaal voor 2-7 personen.',
+      },
+      pineda: {
+        title: 'Populaire boten om te huren vanaf de haven van Blanes',
+        description: 'Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-5 personen.',
+      },
+      palafolls: {
+        title: 'Populaire boten om te huren vanaf de haven van Blanes',
+        description: 'Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-5 personen.',
+      },
+      tordera: {
+        title: 'Populaire boten om te huren vanaf de haven van Blanes',
+        description: 'Dit zijn de boten zonder vaarbewijs die we het meest verhuren. Ze bereiken allemaal het strand van Fenals (zuid-Lloret) in 25 minuten en zijn ideaal voor 2-5 personen.',
+      },
+      tossa: {
+        title: 'Boten voor je route naar Tossa de Mar',
+        description: 'Tossa de Mar ligt buiten het wettelijke bereik zonder vaarbewijs. Dit zijn de boten die er wél komen: met een Licencia de Navegación of onze privétocht met schipper (geen vaarbewijs nodig).',
+      },
+    },
   },
 };

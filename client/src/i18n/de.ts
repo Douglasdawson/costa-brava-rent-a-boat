@@ -2751,6 +2751,17 @@ export const de: Translations = {
           answer:
             "Wenn die Vorhersage >20 Knoten anhaltenden Wind oder eine Warnung wegen Wellen >1,5 m anzeigt, stornieren wir kostenlos. Die Strecke Blanes–Fenals ist durch die Küste selbst vor der Tramuntana geschützt und daher auch bei Nordwind eine der sichersten für Anfänger.",
         },
+      
+        {
+          question: "Wie komme ich von Lloret de Mar zum Hafen von Blanes?",
+          answer:
+            "Mit dem Auto sind es 10 Minuten über die GI-682 (kostenloser Parkplatz 100 m vom Hafen). Mit dem Bus dauert die Linie Lloret-Blanes etwa 20 Minuten. Ein Taxi kostet etwa 15-18 €. In Lloret selbst gibt es keine Vermietstation: Alle Abfahrten erfolgen vom Hafen von Blanes.",
+        },
+        {
+          question: "Welche Buchten sehe ich auf der Bootsroute nach Lloret?",
+          answer:
+            "Vom Hafen von Blanes aus passieren Sie Cala Sant Francesc, Sa Forcanera, den Strand Santa Cristina, Cala Treumal und Cala Sa Boadella, bevor Sie den Strand von Fenals erreichen. Es sind die meistfotografierten Buchten der südlichen Costa Brava und alle liegen im legalen führerscheinfreien Bereich.",
+        },
       ],
       hero: {
         title: "Bootsausflüge nach Lloret de Mar",
@@ -3061,6 +3072,12 @@ export const de: Translations = {
           question: "Kann ich von Santa Susanna aus eine Bootsfahrt bei Sonnenuntergang machen?",
           answer:
             "Ja, sehr beliebt. Von Blanes aus bieten wir Sonnenuntergangsfahrten (18:30–21:00 Uhr je nach Monat) mit führerscheinfreiem Boot für 115 € für 2 Stunden an. Sie fahren bei goldenem Licht an 7 Buchten vorbei. Von Santa Susanna erreichen Sie uns in 15 Min. mit dem Auto oder 10 Min. mit dem Zug. Im Sommer bitte im Voraus buchen.",
+        },
+      
+        {
+          question: "Kann ich von Santa Susanna aus eine Bootstour machen, ohne selbst zu fahren?",
+          answer:
+            "Ja. Neben der führerscheinfreien Miete, bei der Sie selbst fahren, bieten wir die private Tour mit Skipper an: eine Bootstour ab dem Hafen von Blanes von 2 bis 8 Stunden für bis zu 6 Personen, mit Stopps zum Schwimmen und Schnorcheln. Ideal für Familien, die einfach nur genießen möchten.",
         },
       ],
       hero: {
@@ -3544,6 +3561,22 @@ export const de: Translations = {
             "Kann ich mit öffentlichen Verkehrsmitteln von Pineda de Mar nach Blanes fahren?",
           answer:
             "Ja, die RENFE-Linie R1 verbindet Pineda de Mar mit Blanes in 12 Minuten. Die Züge fahren in der Saison alle 30 Minuten. Der Bahnhof Blanes liegt etwa 10 Gehminuten vom Hafen entfernt.",
+        },
+      
+        {
+          question: "Gibt es Bootsverleih direkt in Pineda de Mar?",
+          answer:
+            "Nein, Pineda de Mar hat keinen Sporthafen mit Bootsverleih. Der nächstgelegene Hafen für das gesamte Alt Maresme (Malgrat, Santa Susanna, Pineda und Calella) ist der Hafen von Blanes, 18 Minuten mit dem Auto oder 12 Minuten mit dem R1-Zug.",
+        },
+        {
+          question: "Welche Buchten kann ich ab Blanes besuchen?",
+          answer:
+            "Mit einem führerscheinfreien Boot erreichen Sie Cala Sant Francesc, Sa Forcanera, den Strand Santa Cristina, Cala Sa Boadella und den Strand von Fenals (Süd-Lloret), alle innerhalb der legalen 2-Meilen-Grenze. Mit Führerschein oder mit der privaten Tour mit Skipper geht es weiter bis Tossa de Mar.",
+        },
+        {
+          question: "Kann ich eine Bootstour machen, ohne selbst zu fahren?",
+          answer:
+            "Ja. Wenn Sie lieber nicht selbst fahren, buchen Sie die private Tour mit Skipper: Abfahrten vom Hafen von Blanes von 2 bis 8 Stunden, bis zu 6 Personen, mit Stopps zum Schwimmen und Schnorcheln in den Buchten. Kein Bootsführerschein nötig.",
         },
       ],
       seo: {
@@ -4313,39 +4346,6 @@ export const de: Translations = {
   },
   lastUpdated: {
     label: 'Letzte Aktualisierung',
-  },
-  popularBoatsSection: {
-    badges: {
-      captain: "Mit Skipper",
-      licensed: "Mit Führerschein",
-      noLicense: "Ohne Führerschein",
-    },
-    pages: {
-      barcelona: {
-        title: "Boote für Ihren Ausflug ab Barcelona",
-        description: "Nur 1 Std. mit dem Auto oder dem R1-Zug entfernt ist der Hafen von Blanes die nächstgelegene Option, um an der Costa Brava ein Boot zu mieten. Vom führerscheinfreien Boot (4 von 8 Booten) bis zum Premium-Charter mit Skipper.",
-      },
-      lloret: {
-        title: "Beliebte Boote für Ihre Route nach Lloret de Mar",
-        description: "Die Boote, die wir am häufigsten für die Route Richtung Lloret vermieten: Die führerscheinfreien erreichen legal den Strand von Fenals, und mit Führerschein geht es weiter bis zum Strand von Lloret. Für 2-7 Personen je nach Boot.",
-      },
-      pineda: {
-        title: "Beliebte Boote zum Mieten ab dem Hafen von Blanes",
-        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-5 Personen.",
-      },
-      palafolls: {
-        title: "Beliebte Boote zum Mieten ab dem Hafen von Blanes",
-        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-5 Personen.",
-      },
-      tordera: {
-        title: "Beliebte Boote zum Mieten ab dem Hafen von Blanes",
-        description: "Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-5 Personen.",
-      },
-      tossa: {
-        title: "Boote für Ihre Route nach Tossa de Mar",
-        description: "Tossa de Mar liegt außerhalb der legalen führerscheinfreien Reichweite. Diese Boote kommen hin: mit der Licencia de Navegación oder unserer privaten Tour mit Skipper (kein Führerschein nötig).",
-      },
-    },
   },
   relatedContent: {
     sectionTitle: "Das könnte Sie auch interessieren",
@@ -5530,5 +5530,54 @@ export const de: Translations = {
         a: "Die Costa Brava Culture Kollektion wurde mit Laura Cabanas entworfen, Modedesignerin aus Lloret de Mar, in Kollaboration mit Costa Brava Rent a Boat (Blanes).",
       },
     ],
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: 'Mit Skipper',
+      licensed: 'Mit Führerschein',
+      noLicense: 'Ohne Führerschein',
+    },
+    pages: {
+      barcelona: {
+        title: 'Boote für Ihren Ausflug ab Barcelona',
+        description: 'Nur 1 Std. mit dem Auto oder dem R1-Zug entfernt ist der Hafen von Blanes die nächstgelegene Option, um an der Costa Brava ein Boot zu mieten. Vom führerscheinfreien Boot (4 von 8 Booten) bis zum Premium-Charter mit Skipper.',
+      },
+      lloret: {
+        title: 'Beliebte Boote für Ihre Route nach Lloret de Mar',
+        description: 'Die Boote, die wir am häufigsten für die Route Richtung Lloret vermieten: Die führerscheinfreien erreichen legal den Strand von Fenals, und mit Führerschein geht es weiter bis zum Strand von Lloret. Für 2-7 Personen je nach Boot.',
+      },
+      blanes: {
+        title: 'Beliebte Boote im Hafen von Blanes',
+        description: 'Die gesamte Flotte startet vom Hafen von Blanes: vom führerscheinfreien Boot für 2-5 Personen bis zur Charter mit Skipper. Das sind die am meisten gebuchten.',
+      },
+      malgrat: {
+        title: 'Beliebte Boote zur Miete ab Hafen von Blanes',
+        description: '10 Minuten von Malgrat de Mar entfernt. Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten: alle erreichen den Playa de Fenals (südlich von Lloret) in 25 Minuten und sind ideal für 2-7 Personen.',
+      },
+      santaSusanna: {
+        title: 'Beliebte Boote zur Miete ab Hafen von Blanes',
+        description: '15 Minuten von Santa Susanna entfernt. Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten: alle erreichen den Playa de Fenals (südlich von Lloret) in 25 Minuten und sind ideal für 2-7 Personen.',
+      },
+      calella: {
+        title: 'Beliebte Boote zur Miete ab Hafen von Blanes',
+        description: '20 Minuten von Calella entfernt. Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten: alle erreichen den Playa de Fenals (südlich von Lloret) in 25 Minuten und sind ideal für 2-7 Personen.',
+      },
+      pineda: {
+        title: 'Beliebte Boote zum Mieten ab dem Hafen von Blanes',
+        description: 'Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-5 Personen.',
+      },
+      palafolls: {
+        title: 'Beliebte Boote zum Mieten ab dem Hafen von Blanes',
+        description: 'Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-5 Personen.',
+      },
+      tordera: {
+        title: 'Beliebte Boote zum Mieten ab dem Hafen von Blanes',
+        description: 'Das sind die führerscheinfreien Boote, die wir am häufigsten vermieten. Alle erreichen den Strand von Fenals (Süd-Lloret) in 25 Minuten und sind ideal für 2-5 Personen.',
+      },
+      tossa: {
+        title: 'Boote für Ihre Route nach Tossa de Mar',
+        description: 'Tossa de Mar liegt außerhalb der legalen führerscheinfreien Reichweite. Diese Boote kommen hin: mit der Licencia de Navegación oder unserer privaten Tour mit Skipper (kein Führerschein nötig).',
+      },
+    },
   },
 };

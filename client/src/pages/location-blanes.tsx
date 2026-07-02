@@ -22,6 +22,7 @@ import {
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
+import PopularBoatsSection from "@/components/PopularBoatsSection";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import RelatedContent from "@/components/RelatedContent";
 import { FAQSection } from "@/components/FAQSection";
@@ -525,6 +526,12 @@ export default function LocationBlanesPage() {
           </div>
         </div>
       </RevealSection>
+
+      <PopularBoatsSection
+        title={t.popularBoatsSection?.pages?.blanes?.title ?? "Barcos populares en el Puerto de Blanes"}
+        description={t.popularBoatsSection?.pages?.blanes?.description}
+        boatIds={["remus-450", "solar-450", "astec-480", "pacific-craft-625"]}
+      />
 
       {/* FAQ */}
       <RevealSection className="py-16 sm:py-20 bg-muted">

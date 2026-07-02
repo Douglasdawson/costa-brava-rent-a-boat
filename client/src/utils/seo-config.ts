@@ -143,7 +143,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     locationMalgrat: {
       title: "Alquiler Barco Malgrat de Mar | Puerto Blanes a 10 min | Sin Licencia 75\u20ac/h",
       description: "\u00bfEn Malgrat de Mar? Puerto Blanes est\u00e1 a solo 10 min en coche. Alquila un barco sin licencia desde 75\u20ac/h con gasolina incluida. Navega hasta Lloret o Tossa.",
-      keywords: "alquiler barco malgrat de mar, barco malgrat sin licencia, alquilar barco malgrat, barco desde malgrat, excursion barco malgrat, barco costa maresme malgrat",
+      keywords: "alquiler barco malgrat de mar, barco malgrat sin licencia, alquilar barco malgrat, barco desde malgrat, excursion barco malgrat, barco costa maresme malgrat, alquiler barco maresme",
       ogTitle: "Alquiler Barco Malgrat de Mar | Puerto Blanes 10 min",
       ogDescription: "Desde Malgrat de Mar al Puerto de Blanes en 10 min. Barcos sin licencia desde 75\u20ac/h. 4.8\u2605 Google."
     },
@@ -155,9 +155,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Desde Santa Susanna al Puerto Blanes en 15 min. Barco sin licencia desde 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Alquiler Barco Calella | Puerto Blanes a 20 min | Costa Maresme-Brava 75\u20ac/h",
+      title: "Alquiler Barco Calella (Barcelona) | Puerto Blanes 20 min | 75\u20ac/h",
       description: "\u00bfAlojado en Calella (Maresme)? Puerto Blanes a 20 min. Alquila barco sin licencia desde 75\u20ac/h. Navega al norte a Tossa o al sur al Delta del Tordera.",
-      keywords: "alquiler barco calella, barco calella maresme, barco calella sin licencia, excursion barco calella, barco desde calella, costa maresme calella barco",
+      keywords: "alquiler barco calella, barco calella maresme, barco calella sin licencia, excursion barco calella, barco desde calella, costa maresme calella barco, alquiler barco maresme",
       ogTitle: "Alquiler Barco Calella | 20 min al Puerto Blanes",
       ogDescription: "Desde Calella al Puerto Blanes en 20 min. Barco sin licencia desde 75\u20ac/h. Descubre Costa Brava. 4.8\u2605."
     },
@@ -386,7 +386,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "From Santa Susanna to Blanes Port in 15 min. No license boat from 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Boat Rental Calella | Blanes Port 20 min | Maresme-Brava Coast 75\u20ac/h",
+      title: "Boat Rental Calella (Barcelona) | Blanes Port 20 min | 75\u20ac/h",
       description: "Staying in Calella (Maresme)? Blanes Port is 20 min away. Rent a license-free boat from 75\u20ac/h. Sail north to Tossa or south to Tordera Delta.",
       keywords: "boat rental calella, calella maresme boat, calella no license boat, boat trip calella, boat from calella, maresme coast calella boat",
       ogTitle: "Boat Rental Calella | 20 min to Blanes Port",
@@ -601,7 +601,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "De Santa Susanna al Port Blanes en 15 min. Barca sense llic\u00e8ncia des de 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Lloguer Barca Calella | Port Blanes a 20 min | Maresme-Brava 75\u20ac/h",
+      title: "Lloguer Barca Calella (Barcelona) | Port Blanes 20 min | 75\u20ac/h",
       description: "\u00bfAllotjat a Calella (Maresme)? Port Blanes a 20 min. Lloga barca sense llic\u00e8ncia des de 75\u20ac/h. Navega al nord cap a Tossa o al sud al Delta de la Tordera.",
       keywords: "lloguer barca calella, barca calella maresme, barca calella sense llic\u00e8ncia, excursi\u00f3 barca calella, barca des de calella, costa maresme calella barca",
       ogTitle: "Lloguer Barca Calella | 20 min al Port Blanes",
@@ -759,7 +759,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "De Santa Susanna au Port Blanes en 15 min. Bateau sans permis d\u00e8s 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Location Bateau Calella | Port Blanes \u00e0 20 min | Maresme-Brava 75\u20ac/h",
+      title: "Location Bateau Calella (Barcelona) | Port Blanes 20 min | 75\u20ac/h",
       description: "En s\u00e9jour \u00e0 Calella (Maresme) ? Port Blanes \u00e0 20 min. Louez un bateau sans permis d\u00e8s 75\u20ac/h. Naviguez au nord vers Tossa ou au sud au Delta de la Tordera.",
       keywords: "location bateau calella, bateau calella maresme, bateau calella sans permis, excursion bateau calella, bateau depuis calella, c\u00f4te maresme calella bateau",
       ogTitle: "Location Bateau Calella | 20 min au Port Blanes",
@@ -912,7 +912,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Von Santa Susanna zum Hafen Blanes in 15 Min. Boot ohne F\u00fchrerschein ab 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Bootsverleih Calella | Hafen Blanes 20 Min | Maresme-Brava 75\u20ac/h",
+      title: "Bootsverleih Calella (Barcelona) | Hafen Blanes 20 Min | 75\u20ac/h",
       description: "Urlaub in Calella (Maresme)? Hafen Blanes 20 Min entfernt. Mieten Sie ein Boot ohne F\u00fchrerschein ab 75\u20ac/h. Segeln nach Norden nach Tossa oder s\u00fcd zum Tordera-Delta.",
       keywords: "bootsverleih calella, boot calella maresme, boot calella ohne f\u00fchrerschein, bootsausflug calella, boot von calella, maresme k\u00fcste calella boot",
       ogTitle: "Bootsverleih Calella | 20 Min zum Hafen Blanes",
@@ -1061,14 +1061,14 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Van Malgrat de Mar naar Haven Blanes in 10 min. Boten zonder vaarbewijs vanaf 75\u20ac/u. 4.8\u2605 Google."
     },
     locationSantaSusanna: {
-      title: "Bootverhuur Santa Susanna | Haven Blanes op 15 min | Zonder Vaarbewijs 75\u20ac/u",
-      description: "Toeristen in Santa Susanna: Haven Blanes op 15 min met auto of R1-trein. Huur een boot zonder vaarbewijs vanaf 75\u20ac/u. Vaar naar Blanes, Lloret of Tossa.",
-      keywords: "bootverhuur santa susanna, boot santa susanna zonder vaarbewijs, boot huren santa susanna, boot vanuit santa susanna, boottocht santa susanna, R1 trein boot blanes",
+      title: "Boottocht & Bootverhuur Santa Susanna | Haven Blanes 15 min | 75\u20ac/u",
+      description: "Boottocht of boot huren vanuit Santa Susanna: Haven Blanes op 15 min met auto of R1-trein. Zonder vaarbewijs vanaf 75\u20ac/u, of privétocht met schipper. Vaar naar Blanes, Lloret of Tossa.",
+      keywords: "boottocht santa susanna, bootverhuur santa susanna, boot santa susanna zonder vaarbewijs, boot huren santa susanna, boot vanuit santa susanna, boottocht met schipper santa susanna, R1 trein boot blanes",
       ogTitle: "Bootverhuur Santa Susanna | 15 min naar Haven Blanes",
       ogDescription: "Van Santa Susanna naar Haven Blanes in 15 min. Boot zonder vaarbewijs vanaf 75\u20ac/u. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Bootverhuur Calella | Haven Blanes op 20 min | Maresme-Brava 75\u20ac/u",
+      title: "Bootverhuur Calella (Barcelona) | Haven Blanes 20 min | 75\u20ac/u",
       description: "Op vakantie in Calella (Maresme)? Haven Blanes 20 min verderop. Huur een boot zonder vaarbewijs vanaf 75\u20ac/u. Vaar noord naar Tossa of zuid naar Tordera Delta.",
       keywords: "bootverhuur calella, boot calella maresme, boot calella zonder vaarbewijs, boottocht calella, boot vanuit calella, maresme kust calella boot",
       ogTitle: "Bootverhuur Calella | 20 min naar Haven Blanes",
@@ -1221,7 +1221,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Da Santa Susanna al Porto Blanes in 15 min. Barca senza patente da 75\u20ac/h. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "Noleggio Barca Calella | Porto Blanes a 20 min | Maresme-Brava 75\u20ac/h",
+      title: "Noleggio Barca Calella (Barcelona) | Porto Blanes 20 min | 75\u20ac/h",
       description: "In vacanza a Calella (Maresme)? Porto Blanes a 20 min. Noleggia una barca senza patente da 75\u20ac/h. Naviga a nord verso Tossa o a sud al Delta del Tordera.",
       keywords: "noleggio barca calella, barca calella maresme, barca calella senza patente, escursione barca calella, barca da calella, costa maresme calella barca",
       ogTitle: "Noleggio Barca Calella | 20 min al Porto Blanes",
@@ -1374,7 +1374,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "\u0418\u0437 \u0421\u0430\u043d\u0442\u0430-\u0421\u0443\u0441\u0430\u043d\u043d\u0430 \u0432 \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0437\u0430 15 \u043c\u0438\u043d. \u041b\u043e\u0434\u043a\u0430 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. 4.8\u2605 Google."
     },
     locationCalella: {
-      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041a\u0430\u043b\u0435\u043b\u044c\u044f | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 20 \u043c\u0438\u043d | \u041c\u0430\u0440\u0435\u0441\u043c\u0435-\u0411\u0440\u0430\u0432\u0430 75\u20ac/\u0447",
+      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041a\u0430\u043b\u0435\u043b\u044c\u044f (\u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u0430) | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 20 \u043c\u0438\u043d | 75\u20ac/\u0447",
       description: "\u041e\u0442\u0434\u044b\u0445 \u0432 \u041a\u0430\u043b\u0435\u043b\u044c\u0435 (\u041c\u0430\u0440\u0435\u0441\u043c\u0435)? \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 20 \u043c\u0438\u043d. \u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0443 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447. \u041d\u0430\u0432\u0438\u0433\u0438\u0440\u0443\u0439\u0442\u0435 \u043d\u0430 \u0441\u0435\u0432\u0435\u0440 \u043a \u0422\u043e\u0441\u0441\u0435 \u0438\u043b\u0438 \u043d\u0430 \u044e\u0433 \u043a \u0434\u0435\u043b\u044c\u0442\u0435 \u0422\u043e\u0440\u0434\u0435\u0440\u0430.",
       keywords: "аренда лодки калелья, лодка калелья маресме, лодка калелья без лицензии, прогулка лодка калелья, лодка из калелья, маресме калелья лодка",
       ogTitle: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041a\u0430\u043b\u0435\u043b\u044c\u044f | 20 \u043c\u0438\u043d \u0434\u043e \u041f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441",

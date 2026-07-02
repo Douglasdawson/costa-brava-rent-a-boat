@@ -2731,6 +2731,17 @@ export const ca: Translations = {
           answer:
             "Si la previsió marca >20 nusos sostinguts o alerta per onades >1.5 m, cancel·lem sense cost. El tram Blanes–Fenals està protegit de la Tramuntana per la pròpia costa, així que és dels més segurs per a principiants fins i tot amb vent del nord.",
         },
+      
+        {
+          question: "Com arribo de Lloret de Mar al Port de Blanes?",
+          answer:
+            "En cotxe són 10 minuts per la GI-682 (hi ha pàrquing gratuït a 100 m del port). En bus, la línia Lloret-Blanes triga uns 20 minuts. En taxi, el trajecte costa uns 15-18 €. No hi ha base de lloguer dins de Lloret: totes les sortides són des del Port de Blanes.",
+        },
+        {
+          question: "Quines cales veuré a la ruta en barca cap a Lloret?",
+          answer:
+            "Sortint del Port de Blanes passaràs per Cala Sant Francesc, Sa Forcanera, la platja de Santa Cristina, Cala Treumal i Cala Sa Boadella abans d'arribar a la Platja de Fenals. Són les cales més fotografiades de la Costa Brava sud i totes són dins del rang legal sense llicència.",
+        },
       ],
       hero: {
         title: "Excursions en Vaixell a Lloret de Mar",
@@ -3042,6 +3053,12 @@ export const ca: Translations = {
           question: "Puc fer una excursió amb vaixell a la posta de sol des de Santa Susanna?",
           answer:
             "Sí, és molt popular. Des de Blanes oferim passejos a la posta de sol (18:30-21:00 segons mes) amb vaixell sense llicència a 115 € per 2 hores. Navegaràs per les 7 cales amb llum daurada. Des de Santa Susanna arribes en 15 min amb cotxe o 10 min amb tren. Reserva amb antelació a l'estiu.",
+        },
+      
+        {
+          question: "Puc fer un passeig en barca des de Santa Susanna sense pilotar jo?",
+          answer:
+            "Sí. A més del lloguer sense llicència que pilotes tu, oferim l'excursió privada amb patró: un passeig en barca des del Port de Blanes de 2 a 8 hores per a fins a 6 persones, amb parades per nedar i fer snorkel. Ideal si viatges en família i prefereixes només gaudir.",
         },
       ],
       hero: {
@@ -3521,6 +3538,22 @@ export const ca: Translations = {
           question: "Puc anar des de Pineda de Mar a Blanes amb transport públic?",
           answer:
             "Sí, la línia R1 de RENFE connecta Pineda de Mar amb Blanes en 12 minuts. Els trens surten cada 30 minuts en temporada. L'estació de Blanes està a uns 10 minuts caminant del port.",
+        },
+      
+        {
+          question: "Hi ha lloguer de barques a la mateixa Pineda de Mar?",
+          answer:
+            "No, Pineda de Mar no té port esportiu amb lloguer de barques. El port més proper per a tot l'Alt Maresme (Malgrat, Santa Susanna, Pineda i Calella) és el Port de Blanes, a 18 minuts en cotxe o 12 minuts en tren R1.",
+        },
+        {
+          question: "Quines cales puc visitar sortint des de Blanes?",
+          answer:
+            "Amb una barca sense llicència arribes a Cala Sant Francesc, Sa Forcanera, la platja de Santa Cristina, Cala Sa Boadella i la Platja de Fenals (sud de Lloret), totes dins del límit legal de 2 milles. Amb llicència o amb l'excursió privada amb patró pots continuar fins a Tossa de Mar.",
+        },
+        {
+          question: "Puc fer un passeig en barca sense pilotar jo?",
+          answer:
+            "Sí. Si prefereixes no portar la barca, reserva l'excursió privada amb patró: sortides des del Port de Blanes de 2 a 8 hores, fins a 6 persones, amb parades per nedar i fer snorkel a les cales. No necessites cap titulació.",
         },
       ],
       seo: {
@@ -4286,39 +4319,6 @@ export const ca: Translations = {
   },
   lastUpdated: {
     label: 'Última actualització',
-  },
-  popularBoatsSection: {
-    badges: {
-      captain: "Amb capità",
-      licensed: "Amb llicència",
-      noLicense: "Sense llicència",
-    },
-    pages: {
-      barcelona: {
-        title: "Vaixells per a la teva escapada des de Barcelona",
-        description: "A 1h en cotxe o amb el tren R1, el Port de Blanes és l'opció més propera per llogar un vaixell a la Costa Brava. Des de sense llicència (5 dels 9 vaixells) fins a xàrter premium amb patró.",
-      },
-      lloret: {
-        title: "Vaixells populars per a la teva ruta a Lloret de Mar",
-        description: "Els vaixells que més lloguem per a la ruta cap a Lloret: els sense llicència arriben legalment fins a la Platja de Fenals i, amb llicència, segueixes fins a la platja de Lloret. Per a 2-7 persones segons el vaixell.",
-      },
-      pineda: {
-        title: "Vaixells populars per llogar des del Port de Blanes",
-        description: "Aquests són els vaixells sense llicència que més lloguem. Tots arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-5 persones.",
-      },
-      palafolls: {
-        title: "Vaixells populars per llogar des del Port de Blanes",
-        description: "Aquests són els vaixells sense llicència que més lloguem. Tots arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-5 persones.",
-      },
-      tordera: {
-        title: "Vaixells populars per llogar des del Port de Blanes",
-        description: "Aquests són els vaixells sense llicència que més lloguem. Tots arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-5 persones.",
-      },
-      tossa: {
-        title: "Vaixells per a la teva ruta a Tossa de Mar",
-        description: "Tossa de Mar queda fora del rang legal sense llicència. Aquests són els vaixells que sí que hi arriben: amb Llicència de Navegació o la nostra Excursió Privada amb Capità (sense llicència requerida).",
-      },
-    },
   },
   relatedContent: {
     sectionTitle: "També et pot interessar",
@@ -5503,5 +5503,54 @@ export const ca: Translations = {
         a: "La col·lecció Costa Brava Culture està dissenyada amb Laura Cabanas, dissenyadora de moda de Lloret de Mar, en col·laboració amb Costa Brava Rent a Boat (Blanes).",
       },
     ],
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: 'Amb capità',
+      licensed: 'Amb llicència',
+      noLicense: 'Sense llicència',
+    },
+    pages: {
+      barcelona: {
+        title: 'Vaixells per a la teva escapada des de Barcelona',
+        description: 'A 1h en cotxe o amb el tren R1, el Port de Blanes és l\'opció més propera per llogar un vaixell a la Costa Brava. Des de sense llicència (5 dels 9 vaixells) fins a xàrter premium amb patró.',
+      },
+      lloret: {
+        title: 'Vaixells populars per a la teva ruta a Lloret de Mar',
+        description: 'Els vaixells que més lloguem per a la ruta cap a Lloret: els sense llicència arriben legalment fins a la Platja de Fenals i, amb llicència, segueixes fins a la platja de Lloret. Per a 2-7 persones segons el vaixell.',
+      },
+      blanes: {
+        title: 'Barques populars al Port de Blanes',
+        description: 'Tota la flota surt del mateix Port de Blanes: des de la barca sense llicència per a 2-5 persones fins al xàrter amb patró. Aquestes són les que més es reserven.',
+      },
+      malgrat: {
+        title: 'Barques populars per llogar des del Port de Blanes',
+        description: 'A 10 minuts de Malgrat de Mar. Aquestes són les barques sense llicència que més lloguem: totes arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-7 persones.',
+      },
+      santaSusanna: {
+        title: 'Barques populars per llogar des del Port de Blanes',
+        description: 'A 15 minuts de Santa Susanna. Aquestes són les barques sense llicència que més lloguem: totes arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-7 persones.',
+      },
+      calella: {
+        title: 'Barques populars per llogar des del Port de Blanes',
+        description: 'A 20 minuts de Calella. Aquestes són les barques sense llicència que més lloguem: totes arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-7 persones.',
+      },
+      pineda: {
+        title: 'Vaixells populars per llogar des del Port de Blanes',
+        description: 'Aquests són els vaixells sense llicència que més lloguem. Tots arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-5 persones.',
+      },
+      palafolls: {
+        title: 'Vaixells populars per llogar des del Port de Blanes',
+        description: 'Aquests són els vaixells sense llicència que més lloguem. Tots arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-5 persones.',
+      },
+      tordera: {
+        title: 'Vaixells populars per llogar des del Port de Blanes',
+        description: 'Aquests són els vaixells sense llicència que més lloguem. Tots arriben fins a la Platja de Fenals (sud de Lloret) en 25 minuts i són ideals per a 2-5 persones.',
+      },
+      tossa: {
+        title: 'Vaixells per a la teva ruta a Tossa de Mar',
+        description: 'Tossa de Mar queda fora del rang legal sense llicència. Aquests són els vaixells que sí que hi arriben: amb Llicència de Navegació o la nostra Excursió Privada amb Capità (sense llicència requerida).',
+      },
+    },
   },
 };

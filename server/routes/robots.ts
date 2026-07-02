@@ -6,7 +6,7 @@ import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { AI_CRAWLER_NAMES } from "../seo/constants";
 import { BOAT_DATA, type BoatData } from "../../shared/boatData";
-import { JETSKI_PRODUCTS, type JetSkiProduct } from "../../shared/jetskiProducts";
+import { JETSKI_PRODUCTS, isJetSkiProduct, type JetSkiProduct } from "../../shared/jetskiProducts";
 import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
 import { getCurrentStats } from "../lib/businessStatsCache";
@@ -378,7 +378,7 @@ function jetskiToServiceSchema(
  * LLMs answer "is the business open in February?" with grounded data instead
  * of guessing from prose. April 1 → October 31 of the current year.
  */
-function buildSeasonEvent(businessUrl: string) {
+function buildSeasonEvent(businessUrl: string, lowPrice: number) {
   const year = new Date().getFullYear();
   return {
     "@type": "Event",
@@ -406,7 +406,7 @@ function buildSeasonEvent(businessUrl: string) {
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "EUR",
-      lowPrice: 70,
+      lowPrice,
       highPrice: 420,
       availability: "https://schema.org/InStock",
       url: `${businessUrl}/precios`,
@@ -539,7 +539,7 @@ function injectDynamicLlmsData(raw: string): string {
       .replace(/<!--FLEETLIC-->\d+<!--\/FLEETLIC-->/g, String(fleet.licensedCount))
       .replace(/<!--FLEETFLOOR-->\d+<!--\/FLEETFLOOR-->/g, String(fleet.priceFloor))
       .replace(/<!--FLEETCHEAP-->[^<]*<!--\/FLEETCHEAP-->/g, fleet.cheapestBoatName)
-      .replace(/\b70-(\d{2,4}) EUR\b/g, `${fleet.priceFloor}-$1 EUR`);
+      .replace(/\b7[05]-(\d{3,4}) EUR\b/g, `${fleet.priceFloor}-$1 EUR`);
   } catch (error) {
     logger.warn("[llms] fleet alignment failed, keeping static fleet copy", {
       error: error instanceof Error ? error.message : String(error),
@@ -618,16 +618,17 @@ export function registerRobotsRoutes(app: Express): void {
       });
 
       const lastUpdated = new Date().toISOString().split("T")[0];
+      const fleet = getFleetStats();
       const fallback = `# Costa Brava Rent a Boat - Blanes, Costa Brava, Spain
 
 > Last updated: ${lastUpdated}
 
-> The largest boat rental company in Blanes with a fleet of 9 boats. License-free and licensed boats for 4-7 people. Fuel included on all license-free boats. Season: April to October. Based in Puerto de Blanes, Girona, Spain.
+> The largest boat rental company in Blanes with a fleet of ${fleet.fleetCount} boats. License-free and licensed boats for 4-7 people. Fuel included on all license-free boats. Season: April to October. Based in Puerto de Blanes, Girona, Spain.
 
 ## Key Facts
 
 - **Location**: ${BUSINESS_STREET}, 17300 Blanes, Girona, Catalonia, Spain (Puerto de Blanes)
-- **Price range**: 70-420 EUR
+- **Price range**: ${fleet.priceFloor}-420 EUR
 - **Phone / WhatsApp**: +34 611 500 372
 - **Website**: https://www.costabravarentaboat.com
 `;
@@ -705,6 +706,22 @@ export function registerRobotsRoutes(app: Express): void {
         {
           url: `${BASE_URL}/es/alquiler-barcos-tossa-de-mar`,
           topic: "Boat trips to Tossa de Mar — licensed boat or captained excursion, 30-45 min from Blanes.",
+        },
+        {
+          url: `${BASE_URL}/es/alquiler-barcos-malgrat-de-mar`,
+          topic: "Boat rental for Malgrat de Mar — no rental port in Malgrat itself; departures from the Port of Blanes, 8 km / 10 min by car or 5 min by R1 train.",
+        },
+        {
+          url: `${BASE_URL}/es/alquiler-barcos-santa-susanna`,
+          topic: "Boat rental and boat trips for Santa Susanna — departures from the Port of Blanes, 12 km / 15 min by car or 10 min by R1 train.",
+        },
+        {
+          url: `${BASE_URL}/es/alquiler-barcos-calella`,
+          topic: "Boat rental for Calella (Maresme, Barcelona province — NOT Calella de Palafrugell) — departures from the Port of Blanes, 17 km / 20 min by car or 15 min by R1 train.",
+        },
+        {
+          url: `${BASE_URL}/es/alquiler-barcos-pineda-de-mar`,
+          topic: "Boat rental for Pineda de Mar and the Alt Maresme — departures from the Port of Blanes, 18 min by car or 12 min by R1 train.",
         },
       ],
       business_hours: "Mo-Su 09:00-20:00",
@@ -830,8 +847,11 @@ export function registerRobotsRoutes(app: Express): void {
       let boats: AiContextBoat[] = [];
       try {
         const allBoats = await storage.getAllBoats();
+        // Jet skis are boats-table rows but not fleet members (they have their
+        // own Service nodes in the @graph); counting them here inflated
+        // fleet/fleetSize vs the canonical live fleet.
         boats = allBoats
-          .filter((b) => b.isActive)
+          .filter((b) => b.isActive && !isJetSkiProduct(b.id))
           .map((b) => {
             const canonical = findCanonicalBoatData(b.name);
             const engineDescription = b.specifications?.engine ?? canonical?.specifications?.engine;
@@ -871,19 +891,24 @@ export function registerRobotsRoutes(app: Express): void {
       }
 
       const gbpStats = getCurrentStats();
+      // Live fleet stats (count + price floor) so the localized prose never
+      // drifts from the canonical fleet the way hardcoded "9 boats / 70 EUR" did.
+      const fleet = getFleetStats();
+      const n = fleet.fleetCount;
+      const floor = fleet.priceFloor;
       const langRaw = typeof req.query.lang === "string" ? req.query.lang.toLowerCase() : "en";
       const lang = (["es", "en", "ca", "fr", "de", "nl", "it", "ru"].includes(langRaw) ? langRaw : "en") as
         | "es" | "en" | "ca" | "fr" | "de" | "nl" | "it" | "ru";
 
       const descByLang: Record<typeof lang, string> = {
-        es: "La mayor flota de alquiler de barcos en Blanes (Costa Brava). 9 barcos, sin licencia y con licencia. Gasolina incluida en los barcos sin licencia. Desde 70 EUR/hora.",
-        en: "Largest boat rental fleet in Blanes, Costa Brava, Spain. 9 boats, license-free and licensed. Fuel included. From 70 EUR/hour.",
-        ca: "La major flota de lloguer de barques a Blanes (Costa Brava). 9 vaixells, sense llicència i amb llicència. Gasolina inclosa en els vaixells sense llicència. Des de 70 EUR/hora.",
-        fr: "La plus grande flotte de location de bateaux à Blanes (Costa Brava). 9 bateaux, sans permis et avec permis. Carburant inclus sur les bateaux sans permis. À partir de 70 EUR/heure.",
-        de: "Die größte Bootsverleihflotte in Blanes (Costa Brava). 9 Boote, ohne Bootsführerschein und mit Bootsführerschein. Kraftstoff bei Booten ohne Bootsführerschein inklusive. Ab 70 EUR/Stunde.",
-        nl: "De grootste vloot bootverhuur in Blanes (Costa Brava). 9 boten, zonder vaarbewijs en met vaarbewijs. Brandstof inbegrepen bij boten zonder vaarbewijs. Vanaf 70 EUR/uur.",
-        it: "La più grande flotta di noleggio barche a Blanes (Costa Brava). 9 imbarcazioni, senza patente e con patente. Carburante incluso sulle barche senza patente. Da 70 EUR/ora.",
-        ru: "Крупнейший флот аренды лодок в Бланесе (Коста-Брава). 9 лодок без лицензии и с лицензией. Топливо включено для лодок без лицензии. От 70 евро/час.",
+        es: `La mayor flota de alquiler de barcos en Blanes (Costa Brava). ${n} barcos, sin licencia y con licencia. Gasolina incluida en los barcos sin licencia. Desde ${floor} EUR/hora.`,
+        en: `Largest boat rental fleet in Blanes, Costa Brava, Spain. ${n} boats, license-free and licensed. Fuel included. From ${floor} EUR/hour.`,
+        ca: `La major flota de lloguer de barques a Blanes (Costa Brava). ${n} vaixells, sense llicència i amb llicència. Gasolina inclosa en els vaixells sense llicència. Des de ${floor} EUR/hora.`,
+        fr: `La plus grande flotte de location de bateaux à Blanes (Costa Brava). ${n} bateaux, sans permis et avec permis. Carburant inclus sur les bateaux sans permis. À partir de ${floor} EUR/heure.`,
+        de: `Die größte Bootsverleihflotte in Blanes (Costa Brava). ${n} Boote, ohne Bootsführerschein und mit Bootsführerschein. Kraftstoff bei Booten ohne Bootsführerschein inklusive. Ab ${floor} EUR/Stunde.`,
+        nl: `De grootste vloot bootverhuur in Blanes (Costa Brava). ${n} boten, zonder vaarbewijs en met vaarbewijs. Brandstof inbegrepen bij boten zonder vaarbewijs. Vanaf ${floor} EUR/uur.`,
+        it: `La più grande flotta di noleggio barche a Blanes (Costa Brava). ${n} imbarcazioni, senza patente e con patente. Carburante incluso sulle barche senza patente. Da ${floor} EUR/ora.`,
+        ru: `Крупнейший флот аренды лодок в Бланесе (Коста-Брава). ${n} лодок без лицензии и с лицензией. Топливо включено для лодок без лицензии. От ${floor} евро/час.`,
       };
       const disambByLang: Record<typeof lang, string> = {
         es: "Operado por DAMAR COSTA BRAVA S.L. (IVA español ESB22566327). NO somos 'Rent a Boat Blanes', 'Blanes Boats' ni 'EricBoats' — son empresas diferentes y no relacionadas en el mismo puerto. Contacto canónico: WhatsApp +34 611 500 372.",
@@ -1008,7 +1033,7 @@ export function registerRobotsRoutes(app: Express): void {
         geo: { ...placeNode.geo },
         openingHours: "Mo-Su 09:00-20:00",
         openingSeason: "April-October",
-        priceRange: "70-420 EUR",
+        priceRange: `${floor}-420 EUR`,
         aggregateRating: { "@type": "AggregateRating", ratingValue: gbpStats.rating, reviewCount: gbpStats.userRatingCount, bestRating: 5 },
         sameAs: sameAsList,
         hasMerchantReturnPolicy: {
@@ -1023,6 +1048,7 @@ export function registerRobotsRoutes(app: Express): void {
         availableLanguage: ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
         knowsAbout: [
           "Costa Brava", "Blanes", "Lloret de Mar", "Tossa de Mar",
+          "Malgrat de Mar", "Santa Susanna", "Calella", "Pineda de Mar",
           "Playa de Fenals", "Port de Blanes", "Maresme",
           "Sa Palomera", "Sa Forcanera", "Cala Sant Francesc",
           "Cala de s'Agulla", "Cala Treumal", "Platja de Santa Cristina",
@@ -1054,6 +1080,7 @@ export function registerRobotsRoutes(app: Express): void {
         nearbyTowns: [
           { name: "Malgrat de Mar", distanceKm: 8, driveTime: "10 min", trainTime: "5 min", page: "/alquiler-barcos-malgrat-de-mar" },
           { name: "Santa Susanna", distanceKm: 12, driveTime: "15 min", trainTime: "10 min", page: "/alquiler-barcos-santa-susanna" },
+          { name: "Pineda de Mar", distanceKm: 14, driveTime: "18 min", trainTime: "12 min", page: "/alquiler-barcos-pineda-de-mar" },
           { name: "Calella", distanceKm: 17, driveTime: "20 min", trainTime: "15 min", page: "/alquiler-barcos-calella" },
         ],
       };
@@ -1069,7 +1096,7 @@ export function registerRobotsRoutes(app: Express): void {
           brandNode,
           placeNode,
           localBusinessNode,
-          buildSeasonEvent(BASE_URL),
+          buildSeasonEvent(BASE_URL, floor),
           ...Object.values(BOAT_DATA).map((b) =>
             boatToProductSchema(b, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
           ),

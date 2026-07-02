@@ -171,6 +171,62 @@ async function collectLandings(): Promise<IndexItem[]> {
         snippet: "Boat rental on the Costa Brava from the Port of Blanes: southern-coast coves, license-free from 75€/h.",
       },
     },
+    {
+      pageKey: "locationMalgrat",
+      sourceId: "malgrat-de-mar",
+      es: {
+        title: "Alquiler de barcos en Malgrat de Mar (desde el Puerto de Blanes)",
+        body: "Alquiler de barcos para Malgrat de Mar. Malgrat no tiene puerto de alquiler propio: el puerto más cercano es el Puerto de Blanes, a 8 km, unos 10 minutos en coche, 5 minutos en tren R1 (estación Malgrat de Mar a Blanes) o taxi por 12-15€. Sin licencia desde 75€/h con gasolina incluida, mayores de 18 sin titulación; con licencia hasta 7 personas. Navegas a Sa Palomera, Cala Sant Francesc, Santa Cristina y Playa de Fenals.",
+        snippet: "Alquiler de barcos para Malgrat de Mar: el puerto más cercano es Blanes (8 km, 10 min en coche, 5 min en R1). Sin licencia desde 75€/h.",
+      },
+      en: {
+        title: "Boat rental in Malgrat de Mar (from the Port of Blanes)",
+        body: "Boat rental for Malgrat de Mar. Malgrat has no rental port of its own: the nearest port is the Port of Blanes, 8 km away, about 10 minutes by car, 5 minutes on the R1 train (Malgrat de Mar station to Blanes) or a 12-15€ taxi. License-free from 75€/h fuel included, 18+ no license; licensed boats up to 7 people. You sail to Sa Palomera, Cala Sant Francesc, Santa Cristina and Playa de Fenals.",
+        snippet: "Boat rental for Malgrat de Mar: nearest port is Blanes (8 km, 10 min by car, 5 min on the R1 train). License-free from 75€/h.",
+      },
+    },
+    {
+      pageKey: "locationSantaSusanna",
+      sourceId: "santa-susanna",
+      es: {
+        title: "Alquiler de barcos y paseos en barco en Santa Susanna (desde Blanes)",
+        body: "Alquiler de barcos y paseos en barco para Santa Susanna. Santa Susanna no tiene puerto: las salidas son desde el Puerto de Blanes, a 12 km, unos 15 minutos en coche o 10 minutos en tren R1. Puedes alquilar un barco sin licencia desde 75€/h con gasolina incluida y pilotarlo tú, o reservar la excursión privada con patrón si prefieres un paseo en barco sin conducir. Calas: Sa Palomera, Cala Sant Francesc, Santa Cristina, Playa de Fenals.",
+        snippet: "Paseos en barco y alquiler para Santa Susanna: salidas desde el Puerto de Blanes (12 km, 15 min). Sin licencia desde 75€/h o excursión con patrón.",
+      },
+      en: {
+        title: "Boat rental and boat trips in Santa Susanna (from Blanes)",
+        body: "Boat rental and boat trips for Santa Susanna. Santa Susanna has no port: departures are from the Port of Blanes, 12 km away, about 15 minutes by car or 10 minutes on the R1 train. You can rent a license-free boat from 75€/h fuel included and drive it yourself, or book the captained private excursion if you prefer a boat trip without driving. Coves: Sa Palomera, Cala Sant Francesc, Santa Cristina, Playa de Fenals.",
+        snippet: "Boat trips and boat rental for Santa Susanna: departures from the Port of Blanes (12 km, 15 min). License-free from 75€/h or captained excursion.",
+      },
+    },
+    {
+      pageKey: "locationCalella",
+      sourceId: "calella",
+      es: {
+        title: "Alquiler de barcos en Calella, Maresme (desde el Puerto de Blanes)",
+        body: "Alquiler de barcos para Calella del Maresme (provincia de Barcelona, línea de tren R1), no confundir con Calella de Palafrugell, que está 60 km más al norte. Calella no tiene puerto de alquiler: el más cercano es el Puerto de Blanes, a 17 km, unos 20 minutos en coche o 15 minutos en tren R1 (billete ~3€). Sin licencia desde 75€/h con gasolina incluida; con licencia hasta 7 personas.",
+        snippet: "Alquiler de barcos para Calella (Maresme, Barcelona, no Calella de Palafrugell): puerto más cercano Blanes, 20 min en coche o 15 min en R1.",
+      },
+      en: {
+        title: "Boat rental in Calella, Maresme (from the Port of Blanes)",
+        body: "Boat rental for Calella in the Maresme (Barcelona province, R1 train line), not to be confused with Calella de Palafrugell, 60 km further north. Calella has no rental port: the nearest is the Port of Blanes, 17 km away, about 20 minutes by car or 15 minutes on the R1 train (ticket around 3€). License-free from 75€/h fuel included; licensed boats up to 7 people.",
+        snippet: "Boat rental for Calella (Maresme, Barcelona, not Calella de Palafrugell): nearest port is Blanes, 20 min by car or 15 min on the R1 train.",
+      },
+    },
+    {
+      pageKey: "locationPinedaDeMar",
+      sourceId: "pineda-de-mar",
+      es: {
+        title: "Alquiler de barcos en Pineda de Mar y el Alt Maresme (desde Blanes)",
+        body: "Alquiler de barcos para Pineda de Mar y el Alt Maresme. Pineda no tiene puerto de alquiler: el más cercano es el Puerto de Blanes, a unos 18 minutos en coche o 12 minutos en tren R1. Es el punto de salida de alquiler de barco más cercano para toda la costa del Alt Maresme (Malgrat, Santa Susanna, Pineda, Calella). Sin licencia desde 75€/h con gasolina incluida, mayores de 18 sin titulación.",
+        snippet: "Alquiler de barcos para Pineda de Mar y el Maresme: puerto más cercano Blanes (18 min coche, 12 min R1). Sin licencia desde 75€/h.",
+      },
+      en: {
+        title: "Boat rental in Pineda de Mar and the Alt Maresme (from Blanes)",
+        body: "Boat rental for Pineda de Mar and the Alt Maresme. Pineda has no rental port: the nearest is the Port of Blanes, about 18 minutes by car or 12 minutes on the R1 train. It is the closest boat rental departure point for the whole Alt Maresme coast (Malgrat, Santa Susanna, Pineda, Calella). License-free from 75€/h fuel included, 18+ no license.",
+        snippet: "Boat rental for Pineda de Mar and the Maresme: nearest port is Blanes (18 min by car, 12 min on the R1 train). License-free from 75€/h.",
+      },
+    },
   ];
   const items: IndexItem[] = [];
   for (const d of defs) {

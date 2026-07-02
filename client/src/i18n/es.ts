@@ -673,6 +673,22 @@ export const es: Translations = {
         title: "Barcos populares para tu ruta a Lloret de Mar",
         description: "Los barcos que más alquilamos para la ruta hacia Lloret: los sin licencia llegan legalmente hasta Playa de Fenals y, con licencia, sigues hasta la playa de Lloret. Para 2-7 personas según el barco.",
       },
+      blanes: {
+        title: "Barcos populares en el Puerto de Blanes",
+        description: "Toda la flota sale del mismo Puerto de Blanes: del barco sin licencia para 2-5 personas al charter con patrón. Estos son los que más se reservan.",
+      },
+      malgrat: {
+        title: "Barcos populares para alquilar desde el Puerto de Blanes",
+        description: "A 10 minutos de Malgrat de Mar. Estos son los barcos sin licencia que más alquilamos: todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+      },
+      santaSusanna: {
+        title: "Barcos populares para alquilar desde el Puerto de Blanes",
+        description: "A 15 minutos de Santa Susanna. Estos son los barcos sin licencia que más alquilamos: todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+      },
+      calella: {
+        title: "Barcos populares para alquilar desde el Puerto de Blanes",
+        description: "A 20 minutos de Calella. Estos son los barcos sin licencia que más alquilamos: todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
+      },
       pineda: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
         description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-5 personas.",
@@ -1805,6 +1821,16 @@ export const es: Translations = {
           answer:
             "Si la previsión marca >20 nudos sostenidos o alerta por olas >1.5 m, cancelamos sin coste. El tramo Blanes–Fenals está protegido de la Tramuntana por la propia costa, así que es de los más seguros para principiantes incluso con viento del norte.",
         },
+        {
+          question: "¿Cómo llego de Lloret de Mar al Puerto de Blanes?",
+          answer:
+            "En coche son 10 minutos por la GI-682 (hay parking gratuito a 100 m del puerto). En bus, la línea Lloret-Blanes tarda unos 20 minutos. En taxi, el trayecto cuesta unos 15-18 €. No hay base de alquiler dentro de Lloret: todas las salidas son desde el Puerto de Blanes.",
+        },
+        {
+          question: "¿Qué calas veré en la ruta en barco hacia Lloret?",
+          answer:
+            "Saliendo del Puerto de Blanes pasarás por Cala Sant Francesc, Sa Forcanera, la playa de Santa Cristina, Cala Treumal y Cala Sa Boadella antes de llegar a Playa de Fenals. Son las calas más fotografiadas de la Costa Brava sur y todas están dentro del rango legal sin licencia.",
+        },
       ],
       hero: {
         title: "Alquiler de Barcos en Lloret de Mar Sin Licencia: Ruta desde Blanes",
@@ -2116,6 +2142,11 @@ export const es: Translations = {
           question: "¿Puedo hacer una excursión en barco al atardecer desde Santa Susanna?",
           answer:
             "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 115 € por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min por carretera o 10 min en tren. Reserva con antelación en verano.",
+        },
+        {
+          question: "¿Puedo hacer un paseo en barco desde Santa Susanna sin pilotar yo?",
+          answer:
+            "Sí. Además del alquiler sin licencia que pilotas tú, ofrecemos la excursión privada con patrón: un paseo en barco desde el Puerto de Blanes de 2 a 8 horas para hasta 6 personas, con paradas para nadar y hacer snorkel. Ideal si viajas en familia y prefieres solo disfrutar.",
         },
       ],
       hero: {
@@ -2595,6 +2626,21 @@ export const es: Translations = {
           question: "¿Puedo ir desde Pineda de Mar a Blanes en transporte público?",
           answer:
             "Sí, la línea R1 de RENFE conecta Pineda de Mar con Blanes en 12 minutos. Los trenes salen cada 30 minutos en temporada. La estación de Blanes está a unos 10 minutos andando del puerto.",
+        },
+        {
+          question: "¿Hay alquiler de barcos en la propia Pineda de Mar?",
+          answer:
+            "No, Pineda de Mar no tiene puerto deportivo con alquiler de barcos. El puerto más cercano para todo el Alt Maresme (Malgrat, Santa Susanna, Pineda y Calella) es el Puerto de Blanes, a 18 minutos en coche o 12 minutos en tren R1.",
+        },
+        {
+          question: "¿Qué calas puedo visitar saliendo desde Blanes?",
+          answer:
+            "Con un barco sin licencia llegas a Cala Sant Francesc, Sa Forcanera, la playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals (sur de Lloret), todas dentro del límite legal de 2 millas. Con licencia o con la excursión privada con patrón puedes seguir hasta Tossa de Mar.",
+        },
+        {
+          question: "¿Puedo hacer un paseo en barco sin pilotar yo?",
+          answer:
+            "Sí. Si prefieres no llevar el barco, reserva la excursión privada con patrón: salidas desde el Puerto de Blanes de 2 a 8 horas, hasta 6 personas, con paradas para nadar y hacer snorkel en las calas. No necesitas ninguna titulación.",
         },
       ],
       seo: {

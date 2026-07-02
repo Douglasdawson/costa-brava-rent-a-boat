@@ -2738,6 +2738,17 @@ export const it: Translations = {
           answer:
             "Se le previsioni indicano >20 nodi sostenuti o allerta per onde >1,5 m, cancelliamo senza costi. Il tratto Blanes–Fenals è protetto dalla Tramontana dalla costa stessa, quindi è uno dei più sicuri per principianti anche con vento da nord.",
         },
+      
+        {
+          question: "Come arrivo da Lloret de Mar al porto di Blanes?",
+          answer:
+            "In auto sono 10 minuti sulla GI-682 (parcheggio gratuito a 100 m dal porto). In autobus, la linea Lloret-Blanes impiega circa 20 minuti. In taxi il tragitto costa circa 15-18 €. A Lloret non c'è una base di noleggio: tutte le partenze avvengono dal porto di Blanes.",
+        },
+        {
+          question: "Quali calette vedrò sulla rotta in barca verso Lloret?",
+          answer:
+            "Partendo dal porto di Blanes passerai per Cala Sant Francesc, Sa Forcanera, la spiaggia di Santa Cristina, Cala Treumal e Cala Sa Boadella prima di arrivare alla spiaggia di Fenals. Sono le calette più fotografate della Costa Brava sud e sono tutte entro il raggio legale senza patente.",
+        },
       ],
       hero: {
         title: "Escursioni in Barca a Lloret de Mar",
@@ -3045,6 +3056,12 @@ export const it: Translations = {
           question: "Posso fare un'escursione in barca al tramonto da Santa Susanna?",
           answer:
             "Sì, è molto popolare. Da Blanes offriamo giri al tramonto (18:30-21:00 secondo il mese) con barca senza patente a 115 € per 2 ore. Navigherai per le 7 calette con luce dorata. Da Santa Susanna arrivi in 15 min in auto o 10 min in treno. Prenota in anticipo in estate.",
+        },
+      
+        {
+          question: "Posso fare un giro in barca da Santa Susanna senza pilotare io?",
+          answer:
+            "Sì. Oltre al noleggio senza patente che piloti tu, offriamo l'escursione privata con skipper: un giro in barca dal porto di Blanes da 2 a 8 ore per un massimo di 6 persone, con soste per nuotare e fare snorkeling. Ideale se viaggi in famiglia e preferisci solo goderti la giornata.",
         },
       ],
       hero: {
@@ -3522,6 +3539,22 @@ export const it: Translations = {
           question: "Posso andare da Pineda de Mar a Blanes con i mezzi pubblici?",
           answer:
             "Sì, la linea R1 di RENFE collega Pineda de Mar con Blanes in 12 minuti. I treni partono ogni 30 minuti in stagione. La stazione di Blanes è a circa 10 minuti a piedi dal porto.",
+        },
+      
+        {
+          question: "C'è noleggio barche a Pineda de Mar stessa?",
+          answer:
+            "No, Pineda de Mar non ha un porto turistico con noleggio barche. Il porto più vicino per tutto l'Alt Maresme (Malgrat, Santa Susanna, Pineda e Calella) è il porto di Blanes, a 18 minuti in auto o 12 minuti con il treno R1.",
+        },
+        {
+          question: "Quali calette posso visitare partendo da Blanes?",
+          answer:
+            "Con una barca senza patente raggiungi Cala Sant Francesc, Sa Forcanera, la spiaggia di Santa Cristina, Cala Sa Boadella e la spiaggia di Fenals (sud di Lloret), tutte entro il limite legale di 2 miglia. Con patente o con l'escursione privata con skipper puoi proseguire fino a Tossa de Mar.",
+        },
+        {
+          question: "Posso fare un giro in barca senza pilotare io?",
+          answer:
+            "Sì. Se preferisci non guidare, prenota l'escursione privata con skipper: partenze dal porto di Blanes da 2 a 8 ore, fino a 6 persone, con soste per nuotare e fare snorkeling nelle calette. Non serve alcuna patente.",
         },
       ],
       seo: {
@@ -4286,39 +4319,6 @@ export const it: Translations = {
   },
   lastUpdated: {
     label: 'Ultimo aggiornamento',
-  },
-  popularBoatsSection: {
-    badges: {
-      captain: "Con skipper",
-      licensed: "Con patente",
-      noLicense: "Senza patente",
-    },
-    pages: {
-      barcelona: {
-        title: "Barche per la tua gita da Barcellona",
-        description: "A 1h in auto o con il treno R1, il porto di Blanes è l'opzione più vicina per noleggiare una barca sulla Costa Brava. Dal senza patente (5 delle 9 barche) al charter premium con skipper.",
-      },
-      lloret: {
-        title: "Barche popolari per la tua rotta verso Lloret de Mar",
-        description: "Le barche che noleggiamo di più per la rotta verso Lloret: quelle senza patente arrivano legalmente fino alla spiaggia di Fenals e, con patente, prosegui fino alla spiaggia di Lloret. Per 2-7 persone a seconda della barca.",
-      },
-      pineda: {
-        title: "Barche popolari da noleggiare dal porto di Blanes",
-        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-5 persone.",
-      },
-      palafolls: {
-        title: "Barche popolari da noleggiare dal porto di Blanes",
-        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-5 persone.",
-      },
-      tordera: {
-        title: "Barche popolari da noleggiare dal porto di Blanes",
-        description: "Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-5 persone.",
-      },
-      tossa: {
-        title: "Barche per la tua rotta verso Tossa de Mar",
-        description: "Tossa de Mar è oltre il raggio legale senza patente. Queste sono le barche che ci arrivano: con la Licencia de Navegación o la nostra escursione privata con skipper (nessuna patente richiesta).",
-      },
-    },
   },
   relatedContent: {
     sectionTitle: "Potrebbe interessarti anche",
@@ -5503,5 +5503,54 @@ export const it: Translations = {
         a: "La collezione Costa Brava Culture è disegnata con Laura Cabanas, designer di moda di Lloret de Mar, in collaborazione con Costa Brava Rent a Boat (Blanes).",
       },
     ],
+  },
+  popularBoatsSection: {
+    badges: {
+      captain: 'Con skipper',
+      licensed: 'Con patente',
+      noLicense: 'Senza patente',
+    },
+    pages: {
+      barcelona: {
+        title: 'Barche per la tua gita da Barcellona',
+        description: 'A 1h in auto o con il treno R1, il porto di Blanes è l\'opzione più vicina per noleggiare una barca sulla Costa Brava. Dal senza patente (5 delle 9 barche) al charter premium con skipper.',
+      },
+      lloret: {
+        title: 'Barche popolari per la tua rotta verso Lloret de Mar',
+        description: 'Le barche che noleggiamo di più per la rotta verso Lloret: quelle senza patente arrivano legalmente fino alla spiaggia di Fenals e, con patente, prosegui fino alla spiaggia di Lloret. Per 2-7 persone a seconda della barca.',
+      },
+      blanes: {
+        title: 'Barche popolari al Porto di Blanes',
+        description: 'Tutta la flotta parte dallo stesso Porto di Blanes: dalla barca senza patente per 2-5 persone al charter con skipper. Queste sono le più prenotate.',
+      },
+      malgrat: {
+        title: 'Barche popolari da noleggiare dal Porto di Blanes',
+        description: 'A 10 minuti da Malgrat de Mar. Queste sono le barche senza patente che noleggiamo di più: tutte raggiungono Playa de Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-7 persone.',
+      },
+      santaSusanna: {
+        title: 'Barche popolari da noleggiare dal Porto di Blanes',
+        description: 'A 15 minuti da Santa Susanna. Queste sono le barche senza patente che noleggiamo di più: tutte raggiungono Playa de Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-7 persone.',
+      },
+      calella: {
+        title: 'Barche popolari da noleggiare dal Porto di Blanes',
+        description: 'A 20 minuti da Calella. Queste sono le barche senza patente che noleggiamo di più: tutte raggiungono Playa de Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-7 persone.',
+      },
+      pineda: {
+        title: 'Barche popolari da noleggiare dal porto di Blanes',
+        description: 'Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-5 persone.',
+      },
+      palafolls: {
+        title: 'Barche popolari da noleggiare dal porto di Blanes',
+        description: 'Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-5 persone.',
+      },
+      tordera: {
+        title: 'Barche popolari da noleggiare dal porto di Blanes',
+        description: 'Queste sono le barche senza patente che noleggiamo di più. Tutte raggiungono la spiaggia di Fenals (sud di Lloret) in 25 minuti e sono ideali per 2-5 persone.',
+      },
+      tossa: {
+        title: 'Barche per la tua rotta verso Tossa de Mar',
+        description: 'Tossa de Mar è oltre il raggio legale senza patente. Queste sono le barche che ci arrivano: con la Licencia de Navegación o la nostra escursione privata con skipper (nessuna patente richiesta).',
+      },
+    },
   },
 };

@@ -57,7 +57,7 @@ Costa Brava Rent a Boat is a local family business based in Puerto de Blanes, Gi
 - **Business type**: Boat rental / Nautical tourism
 - **Location**: Puerto de Blanes, 17300 Blanes, Girona, Catalonia, Spain
 - **Service area**: Costa Brava coastline from Blanes to Tossa de Mar
-- **Price range**: 70-420 EUR depending on boat and duration
+- **Price range**: 75-420 EUR depending on boat and duration
 - **Rating**: 4.8/5 on Google Maps (300+ reviews)
 - **Languages**: Spanish, English, Catalan, French, German, Dutch, Italian, Russian
 - **Opening season**: April through October
@@ -779,7 +779,7 @@ nif: B22566327
 - **Business type**: Boat rental / Nautical tourism
 - **Location**: Puerto de Blanes, 17300 Blanes, Girona, Catalonia, Spain
 - **Service area**: Costa Brava coastline from Blanes to Tossa de Mar
-- **Price range**: 70-420 EUR depending on boat and duration
+- **Price range**: 75-420 EUR depending on boat and duration
 - **Rating**: 4.8/5 on Google Maps (300+ reviews)
 - **Languages**: es, en, ca, fr, de, nl, it, ru
 - **Opening season**: April through October

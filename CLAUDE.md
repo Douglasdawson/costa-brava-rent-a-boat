@@ -93,7 +93,10 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Precios/temporadas | `shared/pricing.ts` |
 | Precios dinámicos (overrides por fecha) | Tabla `pricing_overrides` (`shared/schema.ts`) + lógica en `shared/pricing.ts` (`selectApplicableOverride`) + storage `server/storage/pricingOverrides.ts` + admin API `server/routes/admin-pricing-overrides.ts` + endpoint público `server/routes/pricing.ts` (`/api/pricing/calendar`) + UI CRM `client/src/components/crm/PricingTab.tsx` (tab "Precios") |
 | Datos de barcos | `shared/boatData.ts` |
-| SEO de pagina | `client/src/utils/seo-config.ts` |
+| SEO de pagina | `client/src/utils/seo-config.ts`. REGLA (bug Lloret 2026-06 y Maresme 2026-07): el `STATIC_META` de `server/seoInjector.ts` DEBE espejar seo-config para cada página estática; si divergen, Google ve el title viejo del SSR mientras el cliente hidrata el bueno |
+| Publicar post de blog | Entrada en `server/seeds/blogSeed.ts` + `POST /api/admin/seed-blog` tras deploy (upsert por slug). OJO: `metaDescription` max 160 chars (`varchar(160)` en DB): si se pasa, el seed FALLA EN SILENCIO (created:0, error solo en logs). Alternativa sin redeploy: `POST /api/admin/blog` (login PIN + headers Origin/Referer por CSRF) |
+| Stats de flota viva (conteos/floor públicos) | `server/lib/fleetStatsCache.ts` (excluye jet skis vía `isJetSkiProduct`; jamás contar filas jetski de `boats` como flota) → consumido por seoInjector `applyFleetStatsToText`, llms.txt y `/api/ai-context`. Al escribir copy nuevo server-side usar "70 EUR" como baseline: el runtime lo reescribe al floor vivo |
+| Reindexación GSC automatizada | Claude-in-Chrome + `javascript_tool` (la UI de GSC nunca llega a document_idle: screenshots/read_page fallan siempre). Técnica completa en memoria `geo-audit-maresme-2026-07-02`. Propiedad `sc-domain:costabravarentaboat.com`, cuenta ivanramirezdawson@gmail.com |
 | Slugs i18n de rutas | `shared/i18n-routes.ts` |
 | Traducciones UI | `client/src/i18n/<idioma>.ts` |
 | Carga lazy de idiomas (NO tocar a la ligera) | `client/src/i18n/loaders.ts` + `client/src/hooks/use-language.tsx` (seedInitialLanguage) + `client/src/main.tsx` (precarga el locale antes de montar React) + modulepreload por locale en `server/seoInjector.ts` |
@@ -225,6 +228,8 @@ Fuente de verdad: `client/src/i18n/es.ts`. Los otros 7 idiomas (en, ca, fr, de, 
 `npm run check:all` incluye `i18n:validate` — CI falla si algún idioma queda desincronizado. Requiere `ANTHROPIC_API_KEY` en `.env`.
 
 **Regla**: nunca añadir texto visible al usuario directamente en JSX/JSON-LD; siempre meterlo primero en `es.ts` y luego ejecutar `i18n:translate`.
+
+**LIMITACIÓN (descubierta 2026-07-02)**: `i18n:translate` solo detecta claves hoja NUEVAS; los items añadidos a un array existente (p.ej. `faqItems`) NO se detectan y `i18n:validate` tampoco compara longitudes de arrays: pasa en verde con los idiomas desincronizados. Al añadir items a un array, tradúcelos a mano en los 7 locales en el mismo commit y verifica contando `question:` (o equivalente) por idioma.
 
 ### Deuda i18n pendiente
 

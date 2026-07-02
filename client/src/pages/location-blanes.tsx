@@ -32,6 +32,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
+import { HeroImage } from "./LocationTemplate";
+import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 import { BOAT_DATA } from "@shared/boatData";
 import { trackLocationPageView } from "@/utils/analytics";
 
@@ -131,41 +133,56 @@ export default function LocationBlanesPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <MapPin className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+      {/* Hero Section — photo-led (the flagship page had a gradient hero while
+          brand principle #1 is "the sea sells itself"; critique 2026-07) */}
+      <div className="relative pt-20 sm:pt-24">
+        <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
+          <HeroImage
+            basePath="/images/locations/hero-blanes"
+            alt={t.locationPages.blanes.hero.imageAlt ?? t.locationPages.blanes.hero.title}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
+          <div className="relative z-10 h-full flex items-end pb-12 sm:pb-16">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white drop-shadow-lg mb-3">
                 {t.locationPages.blanes.hero.title}
               </h1>
-            </div>
-            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              {t.locationPages.blanes.hero.subtitle}
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-primary border-primary">
-                <Anchor className="w-4 h-4 mr-2" />
-                {t.locationPages.blanes.hero.badgePort}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Users className="w-4 h-4 mr-2" />
-                {t.locationPages.blanes.hero.badgeCapacity}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Clock className="w-4 h-4 mr-2" />
-                {t.locationPages.blanes.hero.badgeDuration}
-              </Badge>
-            </div>
-            <div className="mt-6 text-center">
-              <Button
-                onClick={() => openBookingModal()}
-                className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
-                data-testid="button-location-hero-book"
-              >
-                {t.nav.bookNow}
-              </Button>
+              <p className="text-lg text-white/90 mb-6 max-w-2xl drop-shadow">
+                {t.locationPages.blanes.hero.subtitle}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Badge variant="outline" className="bg-white/15 text-white border-white/30 backdrop-blur-sm">
+                  <Anchor className="w-4 h-4 mr-2" />
+                  {t.locationPages.blanes.hero.badgePort}
+                </Badge>
+                <Badge variant="outline" className="bg-white/15 text-white border-white/30 backdrop-blur-sm">
+                  <Users className="w-4 h-4 mr-2" />
+                  {t.locationPages.blanes.hero.badgeCapacity}
+                </Badge>
+                <Badge variant="outline" className="bg-white/15 text-white border-white/30 backdrop-blur-sm">
+                  <Clock className="w-4 h-4 mr-2" />
+                  {t.locationPages.blanes.hero.badgeDuration}
+                </Badge>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <Button
+                  onClick={() => openBookingModal()}
+                  className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
+                  data-testid="button-location-hero-book"
+                >
+                  {t.nav.bookNow}
+                </Button>
+                <a
+                  href={GBP_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 min-h-11 text-sm font-medium text-white drop-shadow hover:underline underline-offset-2"
+                  data-testid="link-location-hero-rating"
+                >
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" aria-hidden="true" />
+                  {BUSINESS_RATING_STR}/5 · {BUSINESS_REVIEW_COUNT_STR}+ · Google
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -408,29 +425,29 @@ export default function LocationBlanesPage() {
             {s.destinationsTitle}
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Waves className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{s.calaBrava}</h3>
+            <div className="border-t border-border pt-5">
+              <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
+                <Waves className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
+                {s.calaBrava}
+              </h3>
               <p className="text-muted-foreground text-sm mb-2">{s.calaBravaTime}</p>
               <p className="text-muted-foreground leading-relaxed">{s.calaBravaDesc}</p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Camera className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{s.lloretDeMar}</h3>
+            <div className="border-t border-border pt-5">
+              <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
+                <Camera className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
+                {s.lloretDeMar}
+              </h3>
               <p className="text-muted-foreground text-sm mb-2">{s.lloretTime}</p>
               <p className="text-muted-foreground leading-relaxed">{s.lloretDesc}</p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Sun className="w-8 h-8 text-orange-600" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{s.calaSantFrancesc}</h3>
+            <div className="border-t border-border pt-5">
+              <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
+                <Sun className="w-5 h-5 shrink-0 text-orange-600" aria-hidden="true" />
+                {s.calaSantFrancesc}
+              </h3>
               <p className="text-muted-foreground text-sm mb-2">{s.calaSantFrancescTime}</p>
               <p className="text-muted-foreground leading-relaxed">{s.calaSantFrancescDesc}</p>
             </div>

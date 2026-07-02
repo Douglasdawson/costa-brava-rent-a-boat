@@ -4435,6 +4435,10 @@ Una celebracion en barco en la Costa Brava no es solo un plan original: es una e
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/mejores-calas-costa-brava-en-barco.webp",
+    featuredImageAltByLang: {
+      es: "Barco sin licencia navegando entre las calas de la Costa Brava sur, la ruta que se hace desde el Puerto de Blanes",
+      en: "License-free boat sailing between the coves of the southern Costa Brava, the route departing from the Port of Blanes",
+    },
     metaDescription: "Alquiler de barco para Malgrat de Mar: el puerto más cercano es Blanes, a 10 min en coche o 5 en tren R1. Sin licencia desde 75 EUR/hora, gasolina incluida.",
     tags: ["alquiler barco malgrat de mar", "barco malgrat sin licencia", "alquiler barco maresme", "malgrat de mar blanes"],
     isPublished: true,
@@ -4507,6 +4511,10 @@ Gasolina, seguro, equipo de seguridad y briefing. Solo dejas una fianza reembols
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/alquiler-barco-familias-costa-brava.webp",
+    featuredImageAltByLang: {
+      es: "Familia disfrutando de un paseo en barco por las calas de la Costa Brava cerca de Santa Susanna",
+      en: "Family enjoying a boat trip along the Costa Brava coves near Santa Susanna",
+    },
     metaDescription: "¿Paseo en barco en Santa Susanna? Las salidas parten del Puerto de Blanes, a 15 min. Barco sin licencia desde 75 EUR/hora o excursión privada con patrón.",
     tags: ["paseo en barco santa susanna", "boottocht santa susanna", "alquiler barco santa susanna", "excursion barco santa susanna"],
     isPublished: true,
@@ -4575,6 +4583,10 @@ Sí, aunque para llegar hasta Fenals y bañarte con calma recomendamos 2-3 horas
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/cala-sant-francesc-blanes-en-barco.webp",
+    featuredImageAltByLang: {
+      es: "Cala Sant Francesc vista desde un barco de alquiler saliendo del Puerto de Blanes, cerca de Calella",
+      en: "Cala Sant Francesc seen from a rental boat departing the Port of Blanes, near Calella",
+    },
     metaDescription: "Alquiler de barco para Calella del Maresme (Barcelona): puerto más cercano Blanes, a 20 min. Sin licencia desde 75 EUR/h. No es Calella de Palafrugell.",
     tags: ["alquiler barco calella", "barco calella maresme", "calella barcelona barco", "alquiler barco maresme"],
     isPublished: true,
@@ -4646,6 +4658,10 @@ No. Calella de Palafrugell está 60 km al norte; desde allí no somos su opción
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/playas-solo-accesibles-barco-costa-brava.webp",
+    featuredImageAltByLang: {
+      es: "Playa de la Costa Brava solo accesible en barco, a menos de 20 minutos de Pineda de Mar",
+      en: "Costa Brava beach only reachable by boat, less than 20 minutes from Pineda de Mar",
+    },
     metaDescription: "Alquiler de barco para Pineda de Mar y el Alt Maresme: puerto más cercano Blanes, a 18 min en coche o 12 en tren R1. Sin licencia desde 75 EUR/hora.",
     tags: ["alquiler barco pineda de mar", "alquiler barco maresme", "barco pineda sin licencia", "puerto blanes maresme"],
     isPublished: true,

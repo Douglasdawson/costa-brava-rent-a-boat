@@ -8,6 +8,10 @@ const config: LocationConfig = {
   breadcrumbKey: "locationCalella",
   breadcrumbUrl: "/alquiler-barcos-calella",
   gradient: "from-rose-50 to-blue-50",
+  heroImage: {
+    basePath: "/images/locations/hero-calella",
+    alt: "Cala escondida de la Costa Brava con agua transparente, en la ruta en barco desde Blanes",
+  },
   attractions: [
     { iconBg: "bg-rose-100", iconColor: "text-rose-600", Icon: Waves },
     { iconBg: "bg-amber-100", iconColor: "text-amber-600", Icon: Sun },
@@ -57,7 +61,7 @@ const config: LocationConfig = {
   popularBoats: {
     title: "Barcos populares para alquilar desde el Puerto de Blanes",
     description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
-    boatIds: ["remus-450", "solar-450", "astec-480", "astec-400"],
+    boatIds: ["remus-450", "solar-450", "astec-480", "pacific-craft-625"],
   },
 };
 

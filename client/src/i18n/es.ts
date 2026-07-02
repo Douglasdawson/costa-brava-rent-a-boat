@@ -658,6 +658,14 @@ export const es: Translations = {
   lastUpdated: {
     label: "Última actualización",
   },
+  locationTemplate: {
+    destCostaBrava: "Costa Brava",
+    destLloret: "Lloret de Mar - 25 min",
+    destTossa: "Tossa de Mar - 45 min",
+    destBlanesCoves: "Calas de Blanes",
+    whyRentImgAlt: "Amigos disfrutando de un día en barco con snorkel en la Costa Brava",
+    coastBreakImgAlt: "Barco fondeado en una cala de aguas cristalinas de la Costa Brava",
+  },
   popularBoatsSection: {
     badges: {
       captain: "Con capitán",
@@ -1679,6 +1687,7 @@ export const es: Translations = {
         badgePort: "Puerto de Blanes",
         badgeCapacity: "4-7 personas",
         badgeDuration: "1h-8h duración",
+        imageAlt: "Cala de aguas turquesas cerca del Puerto de Blanes, punto de salida de la flota",
       },
       sections: {
         whyBlanesTitle: "¿Por qué elegir Blanes para tu alquiler de barco?",
@@ -2021,6 +2030,7 @@ export const es: Translations = {
         badgeDistance: "8 km de Blanes",
         badgeTime: "10 min por carretera",
         badgeBeach: "Playa familiar",
+        imageAlt: "Cala de la Costa Brava con acantilados y pinos, a 25 minutos en barco del Puerto de Blanes",
       },
       sections: {
         whyRentTitle: "¿Por qué alquilar un barco desde Blanes?",
@@ -2156,6 +2166,7 @@ export const es: Translations = {
         badgeDistance: "12 km de Blanes",
         badgeTime: "15 min por carretera",
         badgeBeach: "Zona resort",
+        imageAlt: "Costa de acantilados y aguas turquesas de la Costa Brava, accesible en barco desde Blanes",
       },
       sections: {
         whyRentTitle: "¿Por qué alquilar un barco desde Blanes?",
@@ -2248,6 +2259,7 @@ export const es: Translations = {
         badgeDistance: "17 km de Blanes",
         badgeTime: "20 min por carretera",
         badgeBeach: "Playa Gran",
+        imageAlt: "Cala escondida de la Costa Brava con agua transparente, en la ruta en barco desde Blanes",
       },
       sections: {
         whyRentTitle: "¿Por qué alquilar un barco desde Blanes?",
@@ -2664,6 +2676,7 @@ export const es: Translations = {
         heroBadgeCar: "15 km / 18 min por carretera",
         heroBadgeTransport: "RENFE R1: 12 min",
         heroBadgeExtra: "Costa del Maresme",
+        heroImageAlt: "Aguas turquesas de la Costa Brava a 18 minutos de Pineda de Mar, saliendo del Puerto de Blanes",
         whyTitle: "¿Por qué alquilar un barco desde Blanes si estás en Pineda de Mar?",
         whyCard1Title: "El puerto más cercano con alquiler de barcos",
         whyCard1Desc:

@@ -8,6 +8,10 @@ const config: LocationConfig = {
   breadcrumbKey: "locationMalgrat",
   breadcrumbUrl: "/alquiler-barcos-malgrat-de-mar",
   gradient: "from-amber-50 to-blue-50",
+  heroImage: {
+    basePath: "/images/locations/hero-malgrat-de-mar",
+    alt: "Cala de la Costa Brava con acantilados y pinos, a 25 minutos en barco del Puerto de Blanes",
+  },
   attractions: [
     { iconBg: "bg-amber-100", iconColor: "text-amber-600", Icon: Waves },
     { iconBg: "bg-green-100", iconColor: "text-green-600", Icon: TreePine },
@@ -57,7 +61,7 @@ const config: LocationConfig = {
   popularBoats: {
     title: "Barcos populares para alquilar desde el Puerto de Blanes",
     description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
-    boatIds: ["remus-450", "solar-450", "astec-480", "astec-400"],
+    boatIds: ["remus-450", "solar-450", "astec-480", "pacific-craft-625"],
   },
 };
 

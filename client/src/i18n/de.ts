@@ -2556,1122 +2556,6 @@ export const de: Translations = {
     ctaViewBoats: "Boote mit Führerschein ansehen",
     faqTitle: "Häufig gestellte Fragen zum Angeln vom Boot",
   },
-  locationPages: {
-    blanes: {
-      faqItems: [
-        {
-          question: "Brauche ich einen Führerschein, um in Blanes ein Boot zu mieten?",
-          answer:
-            "Nein. Wir haben 4 führerscheinfreie Boote für 4 oder 5 Personen. Du musst lediglich mindestens 18 Jahre alt sein. Wir geben dir vor der Abfahrt eine 15-minütige Einweisung.",
-        },
-        {
-          question: "Wie viel kostet es, im Hafen von Blanes ein Boot zu mieten?",
-          answer:
-            "Führerscheinfreie Boote kosten ab {noLicBaja1h} €/Stunde in der Nebensaison (April–Juni, September–Oktober). In der Hochsaison (August) ab {noLicAlta1h} €/Stunde. Der Preis beinhaltet Kraftstoff, Versicherung und Sicherheitsausrüstung.",
-        },
-        {
-          question: "Wohin kann ich mit dem Boot von Blanes aus fahren?",
-          answer:
-            "Vom Hafen Blanes aus können Sie Cala Brava (15 Min.), Cala Sant Francesc (20 Min.), Lloret de Mar (30 Min.) und Tossa de Mar (45 Min.) besuchen. Boote mit Führerschein haben eine größere Reichweite für entferntere Ziele.",
-        },
-        {
-          question: "Gibt es Parkplätze in der Nähe des Hafens von Blanes?",
-          answer:
-            "Ja. Es gibt kostenlose Parkplätze direkt am Hafen von Blanes. Im Hafengebiet finden Sie auch Restaurants, Schiffsausrüster und eine Tankstelle.",
-        },
-        {
-          question: "Wann ist die beste Zeit, um in Blanes ein Boot zu mieten?",
-          answer:
-            "Die Saison läuft von April bis Oktober. Juni und September bieten die besten Preise und weniger Andrang. August ist Hochsaison mit den besten Meeresbedingungen, aber höheren Preisen.",
-        },
-        {
-          question: "Kann man in Blanes am selben Tag ein Boot mieten?",
-          answer:
-            "Ja, wir nehmen kurzfristige Buchungen an, sofern verfügbar. Kontaktieren Sie uns per WhatsApp unter +34 611 500 372, um die Verfügbarkeit am selben Tag zu prüfen.",
-        },
-        {
-          question: "Ist es sicher, ohne Führerschein von Blanes aus zu fahren?",
-          answer:
-            "Ja. Unsere führerscheinfreien Boote haben maximal 15 PS, erfordern keine Lizenz und fahren küstennah. Wir bieten eine 15-minütige Sicherheitseinweisung, Schwimmwesten und Notfallausrüstung.",
-        },
-        {
-          question: "Wie komme ich zum Hafen Blanes?",
-          answer:
-            "Der Hafen Blanes liegt 60 km von Barcelona (1h mit dem Auto über A-2/C-32/AP-7, Ausfahrt 9 Richtung Blanes), 35 km von Girona (40 Min über AP-7 Ausfahrt 9) und 100 km von der französischen Grenze entfernt. Mit dem Zug R1-Linie der Rodalies ab Barcelona-Sants (1h 30 Min bis Bahnhof Blanes, dann 10 Min mit Bus L2 oder Taxi zum Hafen). Nächster Flughafen: Girona-Costa Brava (35 km, 30 Min).",
-        },
-        {
-          question: "Gibt es Geschäfte oder Restaurants am Hafen Blanes?",
-          answer:
-            "Ja. Das Hafenareal von Blanes hat mehrere Restaurants mit Terrasse zum Meer (Spezialität Reisgerichte und frischer Fisch), einen kleinen Supermarkt, ein Bootszubehör-Geschäft, eine Tankstelle, öffentliche Toiletten und Duschen. Der Strand von Blanes-Stadt liegt direkt neben dem Hafen. Nach dem Bootsausflug können Sie im Hafen essen oder in die Altstadt von Blanes hochlaufen (10 Min zu Fuß).",
-        }
-      ],
-      hero: {
-        title: "Bootsverleih in Blanes",
-        subtitle:
-          "Bootsverleih direkt am Hafen Blanes ab 75€/h, Kraftstoff inklusive. Ohne Führerschein bis 5 Personen, mit Führerschein bis 7. Kostenloser Parkplatz 100m vom Liegeplatz, 15-Minuten Sicherheitseinweisung. Von hier fährst du nach Sa Palomera (5 Min), Cala Sant Francesc (8 Min), Cala Treumal (15 Min) und Lloret de Mar (25 Min). Tossa de Mar 30-45 Min mit Führerschein.",
-        badgePort: "Hafen Blanes",
-        badgeCapacity: "4-7 Personen",
-        badgeDuration: "1-8 Std.",
-      },
-      sections: {
-        whyBlanesTitle: "Warum Blanes für Ihren Bootsverleih wählen?",
-        strategicLocation: "Strategische Lage",
-        strategicLocationDesc:
-          "Blanes ist das südliche Tor zur Costa Brava mit direktem Zugang zu den spektakulärsten Buchten. Vom Hafen von Blanes aus können Sie nördlich nach Lloret de Mar oder südlich entlang der Küste bis Malgrat de Mar fahren.",
-        safePorts: "Sicherer und Vollständiger Hafen",
-        safePortsDesc:
-          "Der Hafen von Blanes bietet alle Annehmlichkeiten: Parkplätze, Restaurants, Nautik-Geschäfte, Treibstoff und Dienstleistungen. Ein perfekter Ausgangspunkt für Ihr maritimes Abenteuer.",
-        accessibleCoves: "Erreichbare Buchten",
-        accessibleCovesDesc:
-          "Von Blanes aus haben Sie einfachen Zugang zu Cala Brava, Cala Sant Francesc, den Stränden von Lloret und vielen unberührten Buchten. Kurze Entfernungen, mehr Zeit zum Genießen.",
-        allLevels: "Für Alle Erfahrungsstufen",
-        allLevelsDesc:
-          "Ob es Ihr erstes Mal ist oder Sie ein erfahrener Segler sind, Blanes bietet ruhiges Wasser für Anfänger und aufregende Routen für Abenteurer.",
-        destinationsTitle: "Hauptziele ab Blanes",
-        calaBrava: "Cala Brava",
-        calaBravaTime: "15 Minuten Fahrt",
-        calaBravaDesc:
-          "Unberührte Bucht mit kristallklarem Wasser. Perfekt zum Schnorcheln und Entspannen.",
-        lloretDeMar: "Lloret de Mar",
-        lloretTime: "25 Minuten Fahrt",
-        lloretDesc: "Lebhafte Strände mit Strandbars und Wassersportaktivitäten.",
-        calaSantFrancesc: "Cala Sant Francesc",
-        calaSantFrancescTime: "10 Minuten Fahrt",
-        calaSantFrancescDesc: "Geschützte Bucht, ideal für Familien mit kleinen Kindern.",
-        servicesTitle: "Services im Hafen von Blanes",
-        portAmenities: "Hafen-Annehmlichkeiten",
-        freeParking: "Kostenlose Parkplätze verfügbar",
-        fuelStation: "Marine-Tankstelle",
-        restaurants: "Restaurants und Cafés",
-        nauticalShops: "Nautik-Geschäfte",
-        howToGet: "Anreise",
-        fromBarcelona: "Von Barcelona: AP-7 Richtung Girona, Ausfahrt Blanes (60 Min.)",
-        fromGirona: "Von Girona: N-II Richtung Blanes (45 Min.)",
-        fromFrance: "Von Frankreich: AP-7 Richtung Barcelona, Ausfahrt Blanes",
-        publicTransport: "Öffentliche Verkehrsmittel: RENFE-Zug Linie R1 bis Blanes",
-        ctaTitle: "Bereit, von Blanes aus zu erkunden?",
-        ctaDescription:
-          "Buchen Sie Ihr Boot und entdecken Sie die schönsten Buchten der Costa Brava",
-        ctaButton: "Ab Blanes buchen",
-        mapTitle: "Standort - Hafen von Blanes",
-        fleetTitle: "Unsere Flotte im Hafen von Blanes",
-        fleetIntro:
-          "Wir verfügen über 8 Boote im Hafen von Blanes, bereit zum Auslaufen von April bis Oktober. Unsere Flotte umfasst 4 führerscheinfreie Boote, perfekt für Familien und Paare, die die nahegelegenen Buchten erkunden möchten, 3 Optionen mit Führerschein für erfahrene Skipper mit mehr Reichweite und Leistung, sowie einen Privaten Ausflug mit Skipper für Gruppen, die lieber fahren lassen statt selbst am Steuer zu stehen. Alle Boote werden täglich inspiziert und sind vollkaskoversichert.",
-        fleetNoLicense: "Ohne Führerschein",
-        fleetLicense: "Mit Führerschein",
-        fleetFrom: "Ab",
-        fleetViewDetails: "Details ansehen",
-        guideTitle: "Kompletter Leitfaden: Boot Mieten in Blanes",
-        guideRequirementsTitle: "Voraussetzungen fuer fuehrerscheinfreies Fahren",
-        guideRequirementsText:
-          "Um ein fuehrerscheinfreies Boot in Blanes zu mieten, muessen Sie mindestens 18 Jahre alt sein und einen Ausweis oder Reisepass vorlegen. Vor der Abfahrt erhalten Sie eine 15-minuetige praktische Einweisung in Motorsteuerung, Ankern und Sicherheitsregeln. Alle unsere fuehrerscheinfreien Boote haben maximal 15 PS.",
-        guideSeasonTitle: "Saison und Oeffnungszeiten",
-        guideSeasonText:
-          "Die Bootssaison in Blanes laeuft von April bis Oktober. Wir bieten drei Zeitfenster an: Vormittag (9:00-13:00), Nachmittag (14:00-18:00) und ganzer Tag (9:00-18:00). Juni und September sind ideal zum Segeln: angenehme Temperaturen, ruhige See und weniger Andrang.",
-        guideIncludedTitle: "Was ist inbegriffen",
-        guideIncludedText:
-          "Führerscheinfreie Boote beinhalten Kraftstoff, Versicherung, zugelassene Sicherheitsausrüstung, Sonnensegel und Badeleiter. Bei Booten mit Führerschein und der privaten Ausflugsfahrt ist der Kraftstoff NICHT inbegriffen.",
-        guideBookingTitle: "So buchen Sie",
-        guideBookingText:
-          "Du kannst über unsere Website buchen (wir bestätigen per WhatsApp innerhalb von 2 Stunden), per WhatsApp unter +34 611 500 372 oder direkt im Hafen von Blanes bei Verfügbarkeit.",
-        pricingTitle: "Preise fuer Bootsverleih in Blanes 2026",
-        pricingIntro:
-          "Unsere Preise variieren je nach Saison und Mietdauer. Alle Preise verstehen sich inklusive MwSt., Liegeplatz und Reinigung.",
-        pricingSeasons:
-          "Nebensaison: April-Juni und September-Oktober. Zwischensaison: Juli. Hochsaison: August. Am Wochenende gilt ein Zuschlag von 15%.",
-        pricingBoatCol: "Boot",
-        pricingCapacityCol: "Kapazitaet",
-        pricingLowCol: "Nebensaison (2h)",
-        pricingHighCol: "Hochsaison (2h)",
-        pricingFuelNote:
-          "* Bei Booten mit Führerschein und privaten Ausflügen ist Kraftstoff NICHT inbegriffen.",
-        pricingFullDetails: "Alle Tarife und Zeiten anzeigen",
-        experiencesTitle: "Beliebte Erlebnisse ab Blanes",
-        expSnorkelTitle: "Schnorcheln in Cala Brava",
-        expSnorkelDesc:
-          "Fahren Sie 15 Minuten zur Cala Brava und entdecken Sie ihre Unterwasserwelt. Kristallklares Wasser mit bis zu 15 Metern Sicht. Schnorchelausruestung fuer nur 7,50 €.",
-        expSunsetTitle: "Sonnenuntergangsfahrt",
-        expSunsetDesc:
-          "Buchen Sie den letzten Nachmittagsslot und geniessen Sie den Sonnenuntergang ueber dem Meer. Das goldene Licht auf den Klippen der Costa Brava ist unvergesslich.",
-        expTossaTitle: "Tagesausflug nach Tossa de Mar",
-        expTossaDesc:
-          "Mit einem fuehrerscheinpflichtigen Boot fahren Sie 30-45 Min. nach Norden zur Vila Vella von Tossa de Mar, vorbei an versteckten Buchten und spektakulaeren Klippen.",
-        expFishingTitle: "Sportfischen",
-        expFishingDesc:
-          "Die Gewaesser vor Blanes sind reich an Goldbrassen, Wolfsbarsch und Geissbrassen. Ankern Sie ueber den Felsgruenden zwischen Blanes und Lloret fuer einen Tag Angeln.",
-        nearbyTownsTitle: "Orte in der Nähe des Hafens von Blanes",
-        nearbyTownsIntro:
-          "Touristen, die an der Küste des Maresme untergebracht sind, erreichen den Hafen von Blanes bequem:",
-        nearbyTownsMalgratTime: "10 Min.",
-        nearbyTownsSantaSusannaTime: "15 Min.",
-        nearbyTownsCalellaTime: "20 Min. mit dem Auto",
-        nearbyTownsConjunction: "und",
-        nearbyTownsTransport: "Auch mit dem Zug RENFE Linie R1 erreichbar.",
-        crossLinksTitle: "Entdecken Sie unsere Dienstleistungen ab Blanes",
-        crossLinkCostaBrava: "Die gesamte Costa Brava mit dem Boot erkunden",
-        crossLinkLicenseFree: "Bootsverleih ohne Führerschein",
-        crossLinkLicensed: "Boote mit Führerschein in Blanes",
-        crossLinkPricing: "Preise und Tarife nach Saison",
-        crossLinkLloret: "Bootsausflug nach Lloret de Mar",
-        crossLinkTossa: "Fahrt nach Tossa de Mar",
-        mapIframeTitle: "Standortkarte - Hafen von Blanes",
-      },
-      schema: {
-        name: "Bootsverleih in Blanes, Costa Brava",
-        description:
-          "Bootsverleih ohne und mit Führerschein in Blanes. Hafen von Blanes, Costa Brava. Boote für 4-7 Personen.",
-      },
-    },
-    lloret: {
-      faqItems: [
-        {
-          question:
-            "Brauche ich einen Führerschein oder Erfahrung, um mit dem Boot nach Lloret zu fahren?",
-          answer:
-            "Nein. Unsere führerscheinfreien Boote erfüllen die gesetzlichen Voraussetzungen, um bis zum Playa de Fenals (südlich von Lloret) ohne Lizenz oder Vorkenntnisse zu fahren. Wir geben Ihnen vor der Abfahrt ein 15-minütiges Briefing. Die einzige Voraussetzung ist, mindestens 18 Jahre alt zu sein.",
-        },
-        {
-          question: "Wie weit genau kann ich mit einem führerscheinfreien Boot fahren?",
-          answer:
-            "Gesetzlich bis 2 Seemeilen vor der Küste, maximal 5 Knoten, mit 15 PS. Von Blanes aus sind das 25 Minuten Fahrt bis zum Playa de Fenals, vorbei an 7 Buchten. Der Playa de Lloret im Zentrum und Cala Canyelles liegen nördlich von Fenals; sie sind mit führerscheinfreien Booten nicht erreichbar.",
-        },
-        {
-          question: "Wie viel kostet es, ein führerscheinfreies Boot nach Lloret zu mieten?",
-          answer:
-            "Ab {noLicBaja1h} €/Stunde (Nebensaison) und {noLicAlta1h} €/Stunde (Hochsaison, Juli–August). Bei führerscheinfreien Booten ist Benzin inklusive.",
-        },
-        {
-          question:
-            "Kann ich mit einem führerscheinfreien Boot von Lloret nach Tossa de Mar fahren?",
-          answer:
-            "Nein. Tossa liegt 4–5 Meilen nördlich von Fenals, außerhalb der gesetzlichen Reichweite ohne Führerschein. Um von Blanes mit dem Boot nach Tossa zu fahren, brauchst du (a) ein Boot mit Licencia de Navegación (LN) oder (b) eine private Exkursion mit Kapitän.",
-        },
-        {
-          question: "Was passiert bei schlechtem Wetter?",
-          answer:
-            "Wenn die Vorhersage >20 Knoten anhaltenden Wind oder eine Warnung wegen Wellen >1,5 m anzeigt, stornieren wir kostenlos. Die Strecke Blanes–Fenals ist durch die Küste selbst vor der Tramuntana geschützt und daher auch bei Nordwind eine der sichersten für Anfänger.",
-        },
-      
-        {
-          question: "Wie komme ich von Lloret de Mar zum Hafen von Blanes?",
-          answer:
-            "Mit dem Auto sind es 10 Minuten über die GI-682 (kostenloser Parkplatz 100 m vom Hafen). Mit dem Bus dauert die Linie Lloret-Blanes etwa 20 Minuten. Ein Taxi kostet etwa 15-18 €. In Lloret selbst gibt es keine Vermietstation: Alle Abfahrten erfolgen vom Hafen von Blanes.",
-        },
-        {
-          question: "Welche Buchten sehe ich auf der Bootsroute nach Lloret?",
-          answer:
-            "Vom Hafen von Blanes aus passieren Sie Cala Sant Francesc, Sa Forcanera, den Strand Santa Cristina, Cala Treumal und Cala Sa Boadella, bevor Sie den Strand von Fenals erreichen. Es sind die meistfotografierten Buchten der südlichen Costa Brava und alle liegen im legalen führerscheinfreien Bereich.",
-        },
-      ],
-      hero: {
-        title: "Bootsausflüge nach Lloret de Mar",
-        subtitle:
-          "Entdecken Sie die berühmten Strände von Lloret de Mar vom Hafen Blanes aus. 25 Minuten Fahrt zu einem der beliebtesten Reiseziele der Costa Brava.",
-        badgeFrom: "Ab Hafen Blanes",
-        badgeTime: "25 Min. Fahrt",
-        badgeCapacity: "4-5 Personen pro Boot",
-      },
-      sections: {
-        whyLloretTitle: "Warum Lloret de Mar mit dem Boot besuchen?",
-        uniquePerspective: "Einzigartige Perspektive",
-        uniquePerspectiveDesc:
-          'Lloret de Mar vom Meer aus zu sehen, bietet Ihnen eine völlig neue Perspektive. Bewundern Sie die markanten Klippen, versteckten Buchten und die berühmte Skulptur "La Mujer Marinera" vom Wasser aus.',
-        spectacularBeaches: "Spektakuläre Strände",
-        spectacularBeachesDesc:
-          "Lloret besitzt einige der besten Strände der Costa Brava: Playa de Lloret, Cala Boadella, Santa Cristina und Cala Treumal. Jeder mit seinem besonderen Charme.",
-        vibrantAtmosphere: "Lebhafte Atmosphäre",
-        vibrantAtmosphereDesc:
-          "Lloret de Mar ist berühmt für seine lebhafte Atmosphäre, Strandbars, Restaurants mit Meerblick und ein breites Unterhaltungsangebot. Perfekt für verschiedene Besuchertypen.",
-        easyAccess: "Einfache Erreichbarkeit per Boot",
-        easyAccessDesc:
-          "Nur 25 Minuten Fahrt von Blanes nach Lloret. Sie können in der Nähe der Hauptstrände ankern oder die abgelegeneren Buchten erkunden, bevor Sie das Zentrum erreichen.",
-        beachesTitle: "Wichtigste Strände und Buchten von Lloret de Mar",
-        playaLloret: "Playa de Lloret",
-        playaLloretSub: "Hauptstrand - 1,5 km",
-        playaLloretDesc:
-          "Der Hauptstrand von Lloret mit allen Services, Restaurants und lebhafter Atmosphäre.",
-        calaBoadella: "Cala Boadella",
-        calaBoadellaSub: "FKK-Bucht",
-        calaBoadellaDesc: "Ruhige FKK-Bucht südlich von Lloret, ideal für alle, die Ruhe suchen.",
-        santaCristina: "Santa Cristina",
-        santaCristinaSub: "Familienstrand",
-        santaCristinaDesc:
-          "Schöner Familienstrand mit Kapellen und herrlicher Aussicht. Weniger überlaufen als der Hauptstrand.",
-        whatToDoTitle: "Aktivitäten in Lloret de Mar",
-        entertainment: "Unterhaltung und Freizeit",
-        nightlife: "Diskotheken und Nachtleben",
-        restaurantsSea: "Restaurants am Meer",
-        waterSports: "Wassersport",
-        santaClotildeMirador: "Aussichtspunkt Santa Clotilde",
-        pointsOfInterest: "Sehenswürdigkeiten",
-        mujerMarinera: 'Skulptur "La Mujer Marinera"',
-        castilloSantJoan: "Burg Sant Joan",
-        jardinesSantaClotilde: "Gärten von Santa Clotilde",
-        sportsMarina: "Sporthafen",
-        navigationTipsTitle: "Navigations-Tipps für Lloret",
-        recommendedRoute: "Empfohlene Route",
-        recommendedRouteDesc:
-          "Vom Hafen von Blanes steuern Sie nordwärts entlang der Küste. Sie passieren Cala Sant Francesc und S'Abanell, bevor Sie Lloret erreichen. Behalten Sie stets die Küste im Blick.",
-        bestTimes: "Beste Zeiten",
-        bestTimesDesc:
-          "Morgens (9:00-12:00 Uhr), um Menschenmassen zu vermeiden. Nachmittags (16:00-19:00 Uhr), um die lebhaftere Atmosphäre zu genießen. Meiden Sie Wochenenden in der Hochsaison, wenn Sie Ruhe suchen.",
-        whereToAnchor: "Wo Ankern",
-        whereToAnchorDesc:
-          "Playa de Lloret: ausgewiesene Zone für Freizeitboote (markiert). Cala Boadella: freies Ankern unter Rücksichtnahme auf Badegäste. Santa Cristina: Ankern im südlichen Strandbereich.",
-        safety: "Sicherheit",
-        safetyDesc:
-          "In Lloret kann es mehr Schiffsverkehr geben. Halten Sie Sicherheitsabstand zu anderen Booten. Respektieren Sie die Badezonen und Markierungsbojen.",
-        ctaTitle: "Bereit für Ihren Ausflug nach Lloret de Mar?",
-        ctaDescription:
-          "Buchen Sie Ihr Boot ab dem Hafen von Blanes und entdecken Sie die besten Strände von Lloret de Mar in völliger Freiheit und Komfort.",
-        ctaButton: "Ausflug nach Lloret buchen",
-        crossLinkingText:
-          'Wir bieten auch Service für Touristen, die in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> und <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a> untergebracht sind. Von diesen Küstenorten am Maresme erreicht man den Hafen von Blanes in 10-20 Minuten mit dem Auto.',
-        relatedTitle: "Verwandte Dienstleistungen und Reiseziele",
-        relatedLicenseFree: "Führerscheinfreie Boote in Blanes verfügbar",
-        relatedPricing: "Preise nach Saison ansehen",
-        relatedTossa: "Route fortsetzen bis Tossa de Mar",
-        relatedCostaBrava: "Bootsvermietung an der Costa Brava",
-      },
-    },
-    tossa: {
-      faqItems: [
-        {
-          question:
-            "Kann ich mit einem führerscheinfreien Boot von Blanes nach Tossa de Mar fahren?",
-          answer:
-            "Nein. Führerscheinfreie Boote (2 Meilen Küstenentfernung, 5 Knoten, 15 PS) kommen bis zum Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um nach Tossa zu gelangen, brauchst du die Licencia de Navegación (LN) oder buchst die private Exkursion mit Kapitän.",
-        },
-        {
-          question: "Wie lange dauert die Fahrt mit dem Boot von Blanes nach Tossa?",
-          answer:
-            "Zwischen 45 Minuten und 1 Stunde vom Hafen Blanes aus. 7 Meilen spektakuläre Küste mit Klippen und unberührten Buchten.",
-        },
-        {
-          question: "Wie viel kostet die private Exkursion mit Kapitän nach Tossa?",
-          answer:
-            "Pacific Craft 625 mit professionellem Skipper, max. 4 Std., bis zu 6 Personen (plus Skipper). Ab {excursionBaja4h} € Nebensaison (April–Juni, September–Saisonende). Inklusive MwSt., Skipper, Liegeplatz, Reinigung und Versicherung. Kraftstoff separat.",
-        },
-        {
-          question: "Wie viel kostet die Miete nach Tossa mit Licencia de Navegación (LN)?",
-          answer:
-            "Feste Pakete 2 Std. / 4 Std. / 8 Std., ohne Skipper. Ab {licBaja2h} € (2 Std. Nebensaison) für Boote mit Führerschein. 3 saisonale Preisstufen. Kaution 500 €. MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff separat.",
-        },
-        {
-          question: "Kann ich vom Boot aus im Ort Tossa anlegen?",
-          answer:
-            "Es gibt keinen öffentlichen Touristenliegeplatz in Tossa. Sie können in nahegelegenen Buchten wie Cala Llevadó, Mar d'en Roig oder Cala Pola ankern.",
-        },
-        {
-          question: "Lohnt es sich, ohne Führerschein mit dem Boot nach Tossa zu fahren?",
-          answer:
-            "Ja, mit der privaten Exkursion mit Kapitän (Pacific Craft 625, 4 Std., ab {excursionBaja4h} €). Die einzige Option ohne Führerschein.",
-        },
-      ],
-      hero: {
-        title: "Bootsausflüge nach Tossa de Mar",
-        subtitle:
-          "Entdecken Sie das schönste Mittelalter-Dorf der Costa Brava vom Hafen Blanes aus. 30-45 Min. Fahrt bis zur berühmten Vila Vella von Tossa de Mar.",
-        badgeFrom: "Ab Hafen Blanes",
-        badgeTime: "30-45 Min. Fahrt",
-        badgeCapacity: "4-7 Personen",
-      },
-      sections: {
-        whyTossaTitle: "Warum Tossa de Mar mit dem Boot besuchen?",
-        jewelCostaBrava: "Das Juwel der Costa Brava",
-        jewelCostaBravaDesc:
-          "Tossa de Mar gilt als eines der schönsten Dörfer Spaniens. Die berühmte Vila Vella (Altstadt), eine befestigte Anlage aus dem 12. Jahrhundert, ist einzigartig an der gesamten Costa Brava und bietet vom Meer aus spektakuläre Ausblicke.",
-        historicHeritage: "Historisches Erbe",
-        historicHeritageDesc:
-          "Die mittelalterlichen Mauern rund um die Vila Vella sind als Nationales Historisch-Künstlerisches Denkmal geschützt. Vom Meer aus haben Sie die beste Perspektive auf diese Festung aus dem 13. Jahrhundert, die die Küste vor Piraten und Eindringlingen schützte.",
-        paradisiacalCoves: "Paradiesische Buchten",
-        paradisiacalCovesDesc:
-          "Tossa besitzt einige der unberührtesten und kristallklarsten Buchten der Costa Brava: Cala Pola, Cala Bona, Cala d'es Codolar. Viele sind nur vom Meer aus erreichbar, perfekt zum Ankern und privaten Genießen.",
-        panoramicNavigation: "Panorama-Navigation",
-        panoramicNavigationDesc:
-          "30-45 Min. Fahrt entlang der Küste ermöglicht Ihnen den Blick auf Klippen, geheime Buchten und die Silhouette von Tossa, die am Horizont wächst, bis sie ihre ganze Majestät offenbart. Ein unvergessliches Erlebnis.",
-        attractionsTitle: "Hauptattraktionen von Tossa de Mar",
-        vilaVella: "Vila Vella",
-        vilaVellaSub: "12. Jahrhundert - Nationales Kulturerbe",
-        vilaVellaDesc:
-          "Befestigte mittelalterliche Stadt mit Mauern, Türmen und Kopfsteinpflasterstraßen. Spektakuläre Aussicht vom Meer.",
-        playaGrande: "Playa Grande",
-        playaGrandeSub: "Hauptstrand",
-        playaGrandeDesc:
-          "Großer Goldstrand, geschützt durch die mittelalterlichen Mauern. Perfekt zum Ankern in der Nähe.",
-        virginCoves: "Unberührte Buchten",
-        virginCovesSub: "Nur vom Meer aus erreichbar",
-        virginCovesDesc:
-          "Cala Pola, Cala Bona, Es Codolar. Kristallklares Wasser und absolute Ruhe.",
-        whatToDoTitle: "Aktivitäten in Tossa de Mar",
-        cultureHistory: "Kultur und Geschichte",
-        exploreVilaVella: "Die mittelalterliche Vila Vella erkunden",
-        climbWalls: "Auf die Mauern und Türme steigen",
-        municipalMuseum: "Stadtmuseum",
-        tossaLighthouse: "Leuchtturm von Tossa",
-        natureRelax: "Natur und Entspannung",
-        diveCrystalWaters: "In kristallklarem Wasser tauchen",
-        anchorSecretCoves: "In geheimen Buchten ankern",
-        coastalPaths: "Küstenwanderwege",
-        sunsetFromSea: "Sonnenuntergänge vom Meer aus",
-        navigationTipsTitle: "Navigations-Tipps für Tossa",
-        recommendedRoute: "Empfohlene Route",
-        recommendedRouteDesc:
-          "Vom Hafen von Blanes navigieren Sie nordwärts vorbei an Lloret de Mar. Fahren Sie weiter entlang der Küste, bis Sie die mittelalterlichen Türme von Tossa erblicken. Die Silhouette der Vila Vella ist schon von Weitem unverwechselbar.",
-        bestSeason: "Beste Reisezeit",
-        bestSeasonDesc:
-          "Mai bis Oktober. Die Monate Juni und September bieten das beste Gleichgewicht: schönes Wetter, ruhige See und weniger Gedränge. Meiden Sie August, wenn Sie Ruhe suchen.",
-        anchoringZones: "Ankerzonen",
-        anchoringZonesDesc:
-          "Playa Grande: ausgewiesene Zone für Freizeitboote. Cala Pola: freies Ankern in kristallklarem Wasser. Es Codolar: unberührte Bucht, ideal für einen Tagesaufenthalt. Halten Sie Abstand zu markierten Badezonen.",
-        safeNavigation: "Sichere Navigation",
-        safeNavigationDesc:
-          "1 Stunde Navigation erfordert gute Planung. Prüfen Sie das Wetter, nehmen Sie ausreichend Treibstoff und Wasser mit. Halten Sie sich an die Geschwindigkeitsbegrenzungen in Küstennähe und behalten Sie die Küste stets im Blick.",
-        ctaTitle: "Bereit, Tossa de Mar zu entdecken?",
-        ctaDescription:
-          "Buchen Sie Ihr Boot ab dem Hafen von Blanes und erleben Sie das einzigartige Erlebnis, auf dem Seeweg das schönste mittelalterliche Dorf der Costa Brava zu erreichen.",
-        ctaButton: "Ausflug nach Tossa buchen",
-        warningTitle: "Tossa ist mit einem Boot ohne Führerschein nicht erreichbar.",
-        warningBody:
-          'Boote ohne Führerschein (2 Meilen, 5 Knoten, 15 PS) reichen bis Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um von Blanes nach Tossa zu gelangen, brauchst du (1) eine Selbstanmietung mit Licencia de Navegación (geschlossene Pakete 2 Std. / 4 Std. / 8 Std. ab {licBaja2h} € mit Mingolla Brava 19 oder Trimarchi 57S, MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff und Kaution 500 € extra), oder (2) die <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Private Bootsfahrt mit Kapitän</a> (Pacific Craft 625 + Kapitän, max. 4 Std., bis 6 Personen, ab {excursionBaja4h} € mit MwSt., Kapitän, Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff extra). Die dritte Alternative ist, mit dem Auto nach Tossa zu fahren (20 Min. von Lloret) und dort vor Ort ein Boot ohne Führerschein zu mieten.',
-        crossLinkingText:
-          'Wir bieten auch Service für Touristen, die in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> und <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a> untergebracht sind. Von diesen Küstenorten des Maresme erreicht man den Hafen von Blanes in 10-20 Minuten mit dem Auto.',
-        relatedTitle: "Verwandte Dienstleistungen und Ziele",
-        relatedCostaBrava: "Weitere Ziele an der Costa Brava",
-        relatedLicensed: "Boote mit Führerschein, um Tossa zu erreichen",
-        relatedPricing: "Preise und Saisonen einsehen",
-        relatedLloret: "Zwischenziel: Lloret de Mar mit dem Boot",
-        relatedBlanes: "Abfahrtshafen: Blanes",
-      },
-    },
-    malgrat: {
-      hero: {
-        title: "Bootsverleih in der Nähe von Malgrat de Mar",
-        subtitle:
-          "Urlaub in Malgrat de Mar? Der Hafen von Blanes ist nur 10 Minuten mit dem Auto entfernt. Mieten Sie ein Boot und entdecken Sie die schönsten Buchten der Costa Brava.",
-        badgeDistance: "8 km von Blanes",
-        badgeTime: "10 min mit dem Auto",
-        badgeBeach: "Familienstrand",
-      },
-      sections: {
-        whyRentTitle: "Warum ein Boot ab Blanes mieten?",
-        closestPort: "Der Nächste Hafen",
-        closestPortDesc:
-          "Blanes ist der nächstgelegene Sportboothafen von Malgrat de Mar, nur 10 Minuten über die N-II. 8 Boote bereit zum Ablegen.",
-        varietyBoats: "8 Boote Verfügbar",
-        varietyBoatsDesc:
-          "Von führerscheinfreien Booten für Familien bis zu Booten mit Führerschein für erfahrene Skipper. 4 bis 7 Passagiere.",
-        fuelIncluded: "Benzin Inklusive",
-        fuelIncludedDesc:
-          "Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 75 €/Stunde.",
-        noExperience: "Ohne Erfahrung",
-        noExperienceDesc:
-          "Führerscheinfreie Boote mit 15 Minuten Einweisung inklusive. Ideal für Touristen.",
-        townAttractionsTitle: "Sehenswürdigkeiten in Malgrat de Mar",
-        attraction1: "Strand von Malgrat",
-        attraction1Desc:
-          "Großer Sandstrand mit goldfeinem Sand und allen Einrichtungen. Ideal für Familien.",
-        attraction2: "Parc Francesc Macià",
-        attraction2Desc:
-          "Großer Stadtpark mit Gärten und Spielplätzen. Perfekt für einen Spaziergang.",
-        attraction3: "Strandpromenade",
-        attraction3Desc: "Promenade am Meer mit Restaurants und Blick auf das Mittelmeer.",
-        howToGetTitle: "Anfahrt zum Hafen von Blanes",
-        byCar: "Mit dem Auto",
-        byCarDesc: "Von Malgrat nehmen Sie die N-II Richtung Blanes. 8 km, etwa 10 Minuten.",
-        byTaxi: "Mit dem Taxi",
-        byTaxiDesc: "Taxi von Malgrat zum Hafen von Blanes: ca. 12-15 €, 10 Minuten.",
-        byPublicTransport: "Öffentliche Verkehrsmittel",
-        byPublicTransportDesc:
-          "RENFE-Zug Linie R1 von Malgrat nach Blanes (5 Min., alle 30 Min.). Vom Bahnhof 15 Min. zu Fuß.",
-        parkingAtBlanes: "Parken in Blanes",
-        parkingAtBlanesDesc:
-          "Kostenlose Parkplätze in der Nähe des Hafens von Blanes verfügbar. Im Sommer früh anreisen.",
-        boatDestinationsTitle: "Mit dem Boot ab Blanes erkunden",
-        boatDestinationsDesc:
-          "Fahren Sie nach Lloret de Mar (25 Min.) und Tossa de Mar (30-45 Min.) und entdecken Sie Buchten wie Cala Sant Francesc und Cala Brava.",
-        ctaTitle: "Aus Malgrat? Ihr Boot wartet in Blanes",
-        ctaDescription:
-          "Nur 10 Minuten mit dem Auto. Buchen Sie und entdecken Sie die Costa Brava.",
-        ctaButton: "Boot ab Blanes buchen",
-      },
-      faqItems: [
-        {
-          question: "Wie weit ist Malgrat de Mar vom Hafen Blanes entfernt?",
-          answer:
-            "Malgrat de Mar liegt nur 8 km vom Hafen Blanes entfernt, etwa 10 Minuten mit dem Auto über die N-II. Sie können auch mit dem RENFE-Zug Linie R1 in nur 5 Minuten anreisen.",
-        },
-        {
-          question: "Wie viel kostet es, ein Boot von Blanes aus zu mieten?",
-          answer:
-            "Die Bootsvermietung beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
-        },
-        {
-          question: "Brauche ich einen Bootsführerschein?",
-          answer:
-            "Nicht unbedingt. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung. Wir haben auch Boote mit Führerschein.",
-        },
-        {
-          question: "Gibt es Parkplätze am Hafen von Blanes?",
-          answer:
-            "Ja, in der Nähe des Hafens von Blanes stehen kostenlose Parkplätze zur Verfügung. In der Hochsaison empfehlen wir, früh anzureisen, um einen Platz zu sichern, oder Zug/Taxi in Betracht zu ziehen.",
-        },
-        {
-          question: "Kann ich das Boot direkt von Malgrat de Mar aus mieten?",
-          answer:
-            "Nein. Malgrat de Mar hat weder einen Yachthafen noch eine Vermietstation für Motorboote. Der nächstgelegene Yachthafen zu Malgrat ist der Hafen von Blanes (8 km, 10 Min. mit dem Auto oder 5 Min. mit dem Zug R1). Alle unsere Boote legen im Hafen von Blanes ab und kehren dorthin zurück.",
-        },
-        {
-          question:
-            "Welche Buchten kann ich mit dem Boot von Blanes aus erreichen, wenn ich in Malgrat wohne?",
-          answer:
-            "Mit einem führerscheinfreien Boot von Blanes erreichen Sie in 25 Minuten den Playa de Fenals (südlich von Lloret), vorbei an 7 Buchten: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella und Playa de Fenals. Mit einem Boot mit Grundlizenz können Sie Tossa de Mar (45 Min.) und darüber hinaus erreichen.",
-        },
-        {
-          question: "Gibt es einen Transfer-Service von Hotels in Malgrat zum Hafen von Blanes?",
-          answer:
-            "Wir bieten keinen direkten Transfer an, aber die Strecke ist sehr kurz: 5 Minuten mit dem Zug R1 (Malgrat → Blanes) oder 10 Minuten mit dem Auto/Taxi (ca. 12–15 €). Der Bahnhof Blanes liegt 10 Gehminuten vom Hafen entfernt. Es gibt auch den lokalen Bus L23.",
-        },
-      ],
-    },
-    santaSusanna: {
-      faqItems: [
-        {
-          question: "Wie weit ist Santa Susanna vom Hafen Blanes entfernt?",
-          answer:
-            "Santa Susanna liegt 12 km vom Hafen Blanes entfernt, etwa 15 Minuten mit dem Auto über die N-II. Sie können auch mit dem RENFE-Zug Linie R1 in nur 10 Minuten anreisen.",
-        },
-        {
-          question:
-            "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Santa Susanna bin?",
-          answer:
-            "Die Bootsvermietung beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
-        },
-        {
-          question: "Brauche ich einen Bootsführerschein, um ein Boot zu mieten?",
-          answer:
-            "Nicht unbedingt. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung. Wir haben auch Boote mit Führerschein.",
-        },
-        {
-          question:
-            "Ist es einfach, mit öffentlichen Verkehrsmitteln von Santa Susanna anzureisen?",
-          answer:
-            "Ja, die RENFE-Linie R1 verbindet Santa Susanna mit Blanes in nur 10 Minuten. Die Züge fahren in der Hochsaison alle 30 Minuten. Der Bahnhof Blanes liegt 10 Gehminuten vom Hafen entfernt.",
-        },
-        {
-          question: "Gibt es Bootsvermietung in Santa Susanna selbst?",
-          answer:
-            "Nein. Santa Susanna hat einen breiten Strand, verfügt aber über keinen Yachthafen und keinen Motorbootverleih. Der nächstgelegene Yachthafen ist der Hafen von Blanes (12 km, 15 Min. mit dem Auto oder 10 Min. mit dem Zug R1). Es ist die praktischste Verleihstation, wenn Sie in Santa Susanna wohnen.",
-        },
-        {
-          question: "Was ist die beste Bootsexkursion, wenn ich in Santa Susanna wohne?",
-          answer:
-            "Von Blanes aus empfehlen wir: (a) 4-stündige Buchtentour ohne Führerschein bis Playa de Fenals mit Ankern in 2–3 kristallklaren Buchten (ab 135 € für 5 Personen); (b) 4-stündige private Exkursion mit Skipper bis Tossa und Cala Bona (ab {excursionBaja4h} €, ideal ohne nautische Erfahrung); (c) Boot mit Grundlizenz, wenn jemand in der Gruppe eine Lizenz hat (ab 240 € / 4 Std.).",
-        },
-        {
-          question: "Kann ich von Santa Susanna aus eine Bootsfahrt bei Sonnenuntergang machen?",
-          answer:
-            "Ja, sehr beliebt. Von Blanes aus bieten wir Sonnenuntergangsfahrten (18:30–21:00 Uhr je nach Monat) mit führerscheinfreiem Boot für 115 € für 2 Stunden an. Sie fahren bei goldenem Licht an 7 Buchten vorbei. Von Santa Susanna erreichen Sie uns in 15 Min. mit dem Auto oder 10 Min. mit dem Zug. Im Sommer bitte im Voraus buchen.",
-        },
-      
-        {
-          question: "Kann ich von Santa Susanna aus eine Bootstour machen, ohne selbst zu fahren?",
-          answer:
-            "Ja. Neben der führerscheinfreien Miete, bei der Sie selbst fahren, bieten wir die private Tour mit Skipper an: eine Bootstour ab dem Hafen von Blanes von 2 bis 8 Stunden für bis zu 6 Personen, mit Stopps zum Schwimmen und Schnorcheln. Ideal für Familien, die einfach nur genießen möchten.",
-        },
-      ],
-      hero: {
-        title: "Bootsverleih in der Nähe von Santa Susanna",
-        subtitle:
-          "Urlaub in Santa Susanna? Der Hafen von Blanes ist nur 15 Minuten mit dem Auto entfernt. Mieten Sie ein führerscheinfreies Boot und erkunden Sie die Costa Brava.",
-        badgeDistance: "12 km von Blanes",
-        badgeTime: "15 min mit dem Auto",
-        badgeBeach: "Resortzone",
-      },
-      sections: {
-        whyRentTitle: "Warum ein Boot ab Blanes mieten?",
-        closestPort: "Der Nächste Hafen",
-        closestPortDesc:
-          "Blanes ist der nächstgelegene Sportboothafen von Santa Susanna, nur 15 Minuten über die N-II. 8 Boote bereit zum Ablegen.",
-        varietyBoats: "8 Boote Verfügbar",
-        varietyBoatsDesc:
-          "Von führerscheinfreien Booten für Familien bis zu Booten mit Führerschein für erfahrene Skipper. 4 bis 7 Passagiere.",
-        fuelIncluded: "Benzin Inklusive",
-        fuelIncludedDesc:
-          "Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 75 €/Stunde.",
-        noExperience: "Ohne Erfahrung",
-        noExperienceDesc:
-          "Führerscheinfreie Boote mit 15 Minuten Einweisung inklusive. Ideal für Touristen.",
-        townAttractionsTitle: "Sehenswürdigkeiten in Santa Susanna",
-        attraction1: "Strand von Santa Susanna",
-        attraction1Desc:
-          "Langer Sandstrand mit ruhigem, flachem Wasser. Perfekt für Familien mit Kindern.",
-        attraction2: "Castell de Can Rates",
-        attraction2Desc:
-          "Historischer Wehrturm aus dem 16. Jahrhundert, heute Kulturzentrum mit Ausstellungen und Veranstaltungen.",
-        attraction3: "Resort- und Spa-Zone",
-        attraction3Desc:
-          "Santa Susanna ist bekannt für seine Hotelanlagen mit Spa, Pools und Unterhaltung für die ganze Familie.",
-        howToGetTitle: "Anfahrt zum Hafen von Blanes",
-        byCar: "Mit dem Auto",
-        byCarDesc:
-          "Von Santa Susanna nehmen Sie die N-II Richtung Norden nach Blanes. 12 km, etwa 15 Minuten.",
-        byTaxi: "Mit dem Taxi",
-        byTaxiDesc: "Taxi von Santa Susanna zum Hafen von Blanes: ca. 18-22 €, 15 Minuten.",
-        byPublicTransport: "Öffentliche Verkehrsmittel",
-        byPublicTransportDesc:
-          "RENFE-Zug Linie R1 von Santa Susanna nach Blanes (10 Min., alle 30 Min.). Vom Bahnhof 15 Min. zu Fuß.",
-        parkingAtBlanes: "Parken in Blanes",
-        parkingAtBlanesDesc:
-          "Kostenlose Parkplätze in der Nähe des Hafens von Blanes verfügbar. Im Sommer früh anreisen.",
-        boatDestinationsTitle: "Mit dem Boot ab Blanes erkunden",
-        boatDestinationsDesc:
-          "Fahren Sie nach Lloret de Mar (25 Min.) und Tossa de Mar (30-45 Min.) und entdecken Sie Buchten wie Cala Sant Francesc und Cala Brava.",
-        ctaTitle: "Aus Santa Susanna? Nur 15 Minuten bis zu Ihrem Abenteuer",
-        ctaDescription:
-          "Der Hafen von Blanes ist zum Greifen nah. Buchen Sie Ihr Boot und erleben Sie die Costa Brava anders.",
-        ctaButton: "Boot ab Blanes buchen",
-      },
-    },
-    calella: {
-      faqItems: [
-        {
-          question: "Wie weit ist Calella vom Hafen Blanes entfernt?",
-          answer:
-            "Calella liegt 17 km vom Hafen Blanes entfernt, etwa 20 Minuten mit dem Auto über die N-II. Sie können auch mit dem RENFE-Zug Linie R1 in nur 15 Minuten anreisen.",
-        },
-        {
-          question:
-            "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Calella bin?",
-          answer:
-            "Die Bootsvermietung beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
-        },
-        {
-          question: "Brauche ich Vorkenntnisse, um ein Boot zu mieten?",
-          answer:
-            "Sie brauchen keine Erfahrung. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung, einschließlich Navigationsregeln und Sicherheit.",
-        },
-        {
-          question: "Kann ich mit öffentlichen Verkehrsmitteln von Calella hin und zurück fahren?",
-          answer:
-            "Ja, die RENFE-Linie R1 verbindet Calella mit Blanes in 15 Minuten. Die Züge fahren in der Saison alle 30 Minuten. Der Bahnhof Blanes liegt etwa 10 Gehminuten vom Hafen entfernt.",
-        },
-        {
-          question: "Gibt es Bootsvermietung in Calella selbst?",
-          answer:
-            "Calella ist der größte Ort in diesem Abschnitt, verfügt aber über keinen Yachthafen mit Motorbootverleih. Die nächstgelegenen Yachthäfen sind Blanes (17 km nördlich, beste Flotte im Abschnitt) und Arenys de Mar (15 km südlich, höhere Preise). Wir empfehlen Blanes für das beste Preis-Leistungs-Verhältnis und direkte R1-Verbindung in 15 Minuten.",
-        },
-        {
-          question: "Kann ich von Calella aus eine Bootsexkursion nach Tossa de Mar machen?",
-          answer:
-            "Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Licencia de Navegación (LN) erreichst du Tossa in 45 Min. (ab {licBaja2h} €/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} € für bis zu 6 Personen, plus Skipper). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.",
-        },
-        {
-          question: "Wie viel kostet der Zug R1 von Calella nach Blanes?",
-          answer:
-            "Das Einzelticket R1 Calella → Blanes kostet etwa 3 € (ATM-Tarif Zone 4–5). Mit der T-Casual-Karte für 10 Fahrten ist es günstiger. Dauer: 15 Minuten. Frequenz: alle 30 Minuten in der Saison. Vom Bahnhof Blanes zum Hafen sind es 10 Gehminuten oder 3 Min. mit dem Taxi.",
-        },
-      ],
-      hero: {
-        title: "Bootsverleih in der Nähe von Calella",
-        subtitle:
-          "Aufenthalt in Calella? Nur 20 Minuten mit dem Auto zum Hafen von Blanes. Mieten Sie ein Boot für ein einzigartiges Erlebnis.",
-        badgeDistance: "17 km von Blanes",
-        badgeTime: "20 min mit dem Auto",
-        badgeBeach: "Playa Gran",
-      },
-      sections: {
-        whyRentTitle: "Warum ein Boot ab Blanes mieten?",
-        closestPort: "Der Nächste Hafen",
-        closestPortDesc:
-          "Blanes ist der nächstgelegene Sportboothafen von Calella, nur 20 Minuten über die N-II. 8 Boote bereit zum Ablegen.",
-        varietyBoats: "8 Boote Verfügbar",
-        varietyBoatsDesc:
-          "Von führerscheinfreien Booten für Familien bis zu Booten mit Führerschein für erfahrene Skipper. 4 bis 7 Passagiere.",
-        fuelIncluded: "Benzin Inklusive",
-        fuelIncludedDesc:
-          "Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 75 €/Stunde.",
-        noExperience: "Ohne Erfahrung",
-        noExperienceDesc:
-          "Führerscheinfreie Boote mit 15 Minuten Einweisung inklusive. Ideal für Touristen.",
-        townAttractionsTitle: "Sehenswürdigkeiten in Calella",
-        attraction1: "Playa Gran de Calella",
-        attraction1Desc:
-          "Der Hauptstrand von Calella: langer goldener Sandstrand mit Restaurants, Bars und allen Einrichtungen.",
-        attraction2: "Leuchtturm von Calella",
-        attraction2Desc:
-          "Historischer Leuchtturm auf einem Hügel mit spektakulärem Panoramablick auf das Mittelmeer.",
-        attraction3: "Parc Dalmau und Altstadt",
-        attraction3Desc:
-          "Wunderschöner bewaldeter Park mit schattigen Wegen und das charmante historische Zentrum von Calella mit mittelalterlichen Gassen.",
-        howToGetTitle: "Anfahrt zum Hafen von Blanes",
-        byCar: "Mit dem Auto",
-        byCarDesc:
-          "Von Calella nehmen Sie die N-II Richtung Norden nach Blanes. 17 km, etwa 20 Minuten.",
-        byTaxi: "Mit dem Taxi",
-        byTaxiDesc: "Taxi von Calella zum Hafen von Blanes: ca. 25-30 €, 20 Minuten.",
-        byPublicTransport: "Öffentliche Verkehrsmittel",
-        byPublicTransportDesc:
-          "RENFE-Zug Linie R1 von Calella nach Blanes (15 Min., alle 30 Min.). Vom Bahnhof 15 Min. zu Fuß.",
-        parkingAtBlanes: "Parken in Blanes",
-        parkingAtBlanesDesc:
-          "Kostenlose Parkplätze in der Nähe des Hafens von Blanes verfügbar. Im Sommer früh anreisen.",
-        boatDestinationsTitle: "Mit dem Boot ab Blanes erkunden",
-        boatDestinationsDesc:
-          "Fahren Sie nach Lloret de Mar (25 Min.) und Tossa de Mar (30-45 Min.) und entdecken Sie Buchten wie Cala Sant Francesc und Cala Brava.",
-        ctaTitle: "Aus Calella? Ihr Abenteuer beginnt in Blanes",
-        ctaDescription:
-          "20 Minuten mit dem Auto zum Hafen. Buchen Sie und entdecken Sie die geheimen Buchten der Costa Brava.",
-        ctaButton: "Boot ab Blanes buchen",
-      },
-    },
-    costaBrava: {
-      hero: {
-        title: "Bootsverleih an der Costa Brava",
-        subtitle:
-          "Entdecke die schönsten Buchten und Strände der Costa Brava an Bord unserer Boote. Abfahrt vom Hafen von Blanes, im Herzen der katalanischen Küste. Führerscheinfreie Boote ab 75 €/Stunde inklusive Treibstoff und Versicherung.",
-        badgePort: "Hafen von Blanes",
-        badgeCapacity: "4-7 Personen",
-        badgeLicense: "Mit und ohne Führerschein",
-      },
-      sections: {
-        introP1:
-          "Die Costa Brava ist eines der spektakulaersten nautischen Reiseziele im Mittelmeer. Mit ueber 200 Kilometern Kueste zwischen Blanes und der franzoesischen Grenze bietet sie eine einzigartige Kombination aus Klippen, Buchten mit kristallklarem Wasser, mittelalterlichen Doerfern und Natur, die nur vom Meer aus zu schaetzen ist.",
-        introP2:
-          "Bei Costa Brava Rent a Boat bieten wir Ihnen den einfachsten Weg, diese Kueste zu erkunden: Mieten Sie eines unserer Boote im Hafen von Blanes und segeln Sie in Ihrem eigenen Tempo. Keine Vorkenntnisse oder kein Bootsschein erforderlich fuer die meisten unserer Boote.",
-        introP3:
-          "Bei fuehrerscheinfreien Booten ist der Preis inklusive Treibstoff, Vollkaskoversicherung und Sicherheitsausruestung. Keine versteckten Kosten.",
-        whyChooseTitle: "Warum die Costa Brava fuer Bootsverleih waehlen",
-        covesTitle: "Buchten und Straende, die zu Fuss nicht erreichbar sind",
-        covesDesc:
-          "Die Costa Brava verbirgt Dutzende von Buchten, die nur per Boot erreichbar sind. Von Blanes aus erreichen Sie in nur 15-45 Minuten unberuehrte Straende mit tuerkisfarbenem Wasser.",
-        calmWatersTitle: "Ruhiges, geschuetztes Wasser",
-        calmWatersDesc:
-          "Die Ausrichtung der Kueste und ihre zahlreichen Buchten schaffen ideale Bedingungen zum Segeln, auch fuer Anfaenger.",
-        accessibleTitle: "Erreichbar von Barcelona und Girona",
-        accessibleDesc:
-          "Unser Heimathafen in Blanes liegt nur 70 Minuten von Barcelona und 35 Minuten von Girona ueber die Autobahn entfernt. Kostenlose Parkplaetze neben dem Hafen.",
-        allLevelsTitle: "Fuer alle Erfahrungsstufen",
-        allLevelsDesc:
-          "Ob du noch nie ein Boot gefahren bist oder ein erfahrener Skipper bist: wir haben das perfekte Boot für dich. 4 führerscheinfreie Boote für Anfänger und Boote mit starkem Motor für alle, die weiter hinaus wollen. Einweisung bei jeder Vermietung inklusive.",
-        navigationGuideTitle: "Navigationsguide Costa Brava",
-        routeBlanesLloret: "Blanes - Lloret de Mar: 30 Min., leicht, ohne Führerschein",
-        routeBlanesLloretDesc:
-          "Eine der beliebtesten Routen an der Costa Brava. Perfekt fuer einen Halbtagesausflug mit Halt an der Cala Treumal.",
-        routeBlanesTossa: "Blanes - Tossa de Mar: 45 Min., mittel, Führerschein empfohlen",
-        routeBlanesTossaDesc:
-          "Die spektakulaerste Route der gesamten Kueste. Sie erreichen die ikonische Vila Vella von Tossa de Mar.",
-        routeBlaneSantFeliu:
-          "Blanes - Sant Feliu de Guixols: 1,5 Std., fortgeschritten, Führerschein erforderlich",
-        routeBlaneSantFeliuDesc:
-          "Navigation auf offener See, die Planung und Aufmerksamkeit auf Wetterbedingungen erfordert.",
-        routeBlaneCalaBrava: "Blanes - Cala Brava: 15 Min., leicht, ohne Führerschein",
-        routeBlaneCalaBravaDesc:
-          "Der perfekte Kurzausflug fuer Familien und Anfaenger. Nur 15 Minuten vom Hafen von Blanes zu dieser unberuehrten Bucht.",
-        boatTypesTitle: "Bootstypen fuer die Costa Brava",
-        noLicenseTitle: "Boote ohne Führerschein",
-        noLicensePower: "Bis 15 PS",
-        noLicenseCapacity: "Maximal 5 Personen an Bord",
-        noLicenseNavigation: "Kuestennavigation bis 2 Seemeilen",
-        noLicenseFuel: "Treibstoff im Preis inbegriffen",
-        noLicensePrice: "Ab 75 €/Stunde",
-        noLicenseDesc:
-          "Unsere fuehrerscheinfreien Boote sind ideal fuer Familien. Keine Qualifikation noetig: 15 Minuten Einweisung und los geht's. Alles inklusive: Treibstoff, Versicherung, Sicherheitsausruestung und Schnorchelausruestung.",
-        licensedTitle: "Boote mit Führerschein",
-        licensedPower: "40 bis 115 PS",
-        licensedCapacity: "Bis zu 7 Personen an Bord",
-        licensedNavigation: "Hochseenavigation ohne Einschraenkungen",
-        licensedFuel: "Treibstoff NICHT inbegriffen (separate Kaution)",
-        licensedPrice: "Ab 90 €/Stunde",
-        licensedDesc:
-          "Für qualifizierte Skipper, die über die unmittelbare Küste hinaus erkunden möchten. Mehr Leistung, Reichweite und Kapazität. Der Treibstoff wird separat nach tatsächlichem Verbrauch berechnet. Die Licencia de Navegación (LN) genügt; auch PNB, PER oder europäische Äquivalente sind gültig.",
-        bestCovesTitle: "Die besten Buchten der Costa Brava per Boot",
-        calaBravaName: "Cala Brava",
-        calaBravaDesc:
-          "Ein verstecktes Juwel nur 15 Minuten mit dem Boot von Blanes. Tuerkisfarbenes Wasser und spektakulaerer Meeresboden zum Schnorcheln.",
-        calaSantFrancescName: "Cala Sant Francesc",
-        calaSantFrancescDesc:
-          "Zwischen Blanes und Lloret de Mar gelegen, perfekt fuer Familien mit feinem Sand und transparentem Wasser.",
-        calaTreumalName: "Cala Treumal",
-        calaTreumalDesc:
-          "An der Grenze zwischen Blanes und Lloret, mit subtropischer Vegetation und kristallklarem Mittelmerwasser.",
-        calaBBoadellaName: "Cala Boadella",
-        calaBBoadellaDesc:
-          "Gilt als die schoenste Bucht von Lloret de Mar. Goldener Sandstrand, geschuetzt von bewaldeten Klippen.",
-        platjaPalomeraName: "Platja de Sa Palomera",
-        platjaPalomeraDesc:
-          "Der ikonischste Strand von Blanes, der den offiziellen Beginn der Costa Brava markiert.",
-        pricingTitle: "Bootsverleih Preise Costa Brava 2026",
-        ctaTitle: "Buchen Sie Ihr Boot an der Costa Brava",
-        ctaDescription:
-          "Wähle dein Boot, Datum und Uhrzeit. Treibstoff, Versicherung und Einweisung bei führerscheinfreien Booten inklusive. Buche per WhatsApp: wir bestätigen innerhalb von 2 Stunden.",
-        ctaButton: "Per WhatsApp buchen",
-        crossLinkEnglish: "This page in English: Boat Rental Costa Brava",
-      },
-      faq: {
-        experienceQ: "Brauche ich Vorerfahrung, um ein Boot an der Costa Brava zu mieten?",
-        experienceA:
-          "Nein, Sie brauchen keinerlei Vorerfahrung. Fuer unsere fuehrerscheinfreien Boote (bis 15 PS) muessen Sie nur ueber 18 Jahre alt sein. Wir bieten eine 15-minuetige praktische Einweisung vor der Abfahrt.",
-        distanceQ: "Wie weit kann ich ohne Führerschein von Blanes aus fahren?",
-        distanceA:
-          "Mit einem fuehrerscheinfreien Boot koennen Sie bis zu 2 Seemeilen von der Kueste navigieren. Das ermoeglicht Ihnen, Buchten wie Cala Brava (15 Min.), Cala Sant Francesc (20 Min.) und Lloret de Mar (30 Min.) zu erkunden.",
-        weatherQ: "Was passiert bei schlechtem Wetter am Tag meiner Buchung?",
-        weatherA:
-          "Sicherheit hat bei uns oberste Prioritaet. Bei ungeeigneten Wetterbedingungen bieten wir einen kostenlosen Datumswechsel oder eine vollstaendige Rueckerstattung an.",
-        petsQ: "Kann ich Haustiere mit auf das Boot nehmen?",
-        petsA:
-          "Ja, Haustiere sind auf allen unseren Booten willkommen. Wir empfehlen, frisches Wasser, ein Handtuch und geeigneten Sonnenschutz fuer Ihr Tier mitzubringen.",
-      },
-    },
-    tordera: {
-      faqItems: [
-        {
-          question: "Wie weit ist Tordera vom Hafen Blanes entfernt?",
-          answer:
-            "Tordera liegt nur 10 km vom Hafen Blanes entfernt, etwa 15 Minuten mit dem Auto über die C-32 oder die Landstraße. Sie können auch mit dem RENFE-Zug Linie R1 in nur 8 Minuten vom Bahnhof Blanes anreisen.",
-        },
-        {
-          question:
-            "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Tordera wohne?",
-          answer:
-            "Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} € für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
-        },
-        {
-          question: "Brauche ich einen Bootsführerschein?",
-          answer:
-            "Nicht unbedingt. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung. Wir haben auch Boote mit Führerschein für erfahrene Skipper.",
-        },
-        {
-          question: "Gibt es Parkplätze am Hafen von Blanes?",
-          answer:
-            "Ja, in der Nähe des Hafens von Blanes stehen kostenlose Parkplätze zur Verfügung. Von Tordera aus können Sie bequem parken, da es in dieser weniger touristischen Zone als in anderen Küstenorten normalerweise auch in der Hochsaison verfügbar ist.",
-        },
-      ],
-      seo: {
-        title:
-          "Bootsvermietung Tordera | Hafen Blanes 15 Min | Ohne Führerschein 75€/Std | Delta del Tordera",
-        description:
-          "Wohnst du in Tordera oder in der Nähe des Deltas? Hafen Blanes 15 Min mit dem Auto oder 8 Min mit dem Zug R1. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Erkunde das Delta del Tordera.",
-        ogTitle: "Bootsvermietung Tordera | Delta del Tordera mit dem Boot",
-        ogDescription:
-          "Von Tordera zum Hafen Blanes in 15 Min. Boot ohne Führerschein ab 75€/Std. Delta del Tordera per Boot. 4.8★.",
-      },
-      schema: {
-        name: "Bootsvermietung in der Nähe von Tordera",
-        description:
-          "Miete Boote ab dem Hafen von Blanes, nur 15 Autominuten von Tordera entfernt. Boote ohne Führerschein ab 75 €/Stunde mit Benzin inklusive.",
-      },
-      breadcrumbName: "Bootsvermietung Tordera",
-      sections: {
-        heroTitle: "Bootsvermietung in der Nähe von Tordera",
-        heroSubtitle:
-          "Tordera ist eine Wohngemeinde im Landesinneren, die als Tor zur Costa Brava dient. Nur 15 Autominuten oder 8 Zugminuten vom Hafen Blanes entfernt, ist sie ein idealer Ausgangspunkt, um das Meer zu genießen. Mit einfachen Parkmöglichkeiten am Hafen und ohne die Menschenmassen der Küste ist das Bootfahren ab Blanes die beste Option für Bewohner und Besucher von Tordera.",
-        heroBadgeCar: "10 km / 15 Min mit dem Auto",
-        heroBadgeTransport: "RENFE R1: 8 Min",
-        heroBadgeExtra: "Einfaches Parken",
-        whyTitle: "Warum ein Boot ab Blanes mieten, wenn Sie in Tordera sind?",
-        whyCard1Title: "Ihr nächstgelegener Hafen",
-        whyCard1Desc:
-          "Der Hafen von Blanes ist nur 10 km von Tordera entfernt und damit der nächstgelegene und zugänglichste Bootsvermietungspunkt. Ob Sie Anwohner sind oder auf der Durchreise – in 15 Minuten können Sie bereits durch das kristallklare Wasser der Costa Brava fahren. Die Straßenverbindung ist direkt und unkompliziert.",
-        whyCard2Title: "{fleetCount} Boote verfügbar",
-        whyCard2Desc:
-          "Unsere Flotte umfasst {fleetCount} Boote: führerscheinfreie Boote, ideal für Familien und Anfänger, sowie Boote mit Führerschein für Erfahrenere. Von Booten für 4 Personen bis zu Booten für Gruppen mit bis zu 11 Personen.",
-        whyCard3Title: "Benzin bei Booten ohne Führerschein inklusive",
-        whyCard3Desc:
-          "Der Preis für Boote ohne Führerschein beinhaltet das Benzin. Ab 75 € pro Stunde. Keine versteckten Kosten oder Überraschungen beim Endpreis.",
-        whyCard4Title: "Keine Vorkenntnisse erforderlich",
-        whyCard4Desc:
-          "Vor dem Ablegen bieten wir Ihnen 15 Minuten praktische Einweisung, in der Sie lernen, wie man den Motor bedient, die Grundregeln der Navigation und die besten Ecken zum Erkunden. Jede Person über 18 Jahre kann unsere Boote ohne Führerschein steuern.",
-        townTitle: "Tordera: Tor zur Costa Brava",
-        townIntro:
-          "Tordera ist eine ruhige und gut angebundene Gemeinde im Tal des Flusses Tordera. Ihre strategische Lage zwischen Binnenland und Küste macht sie zu einem ausgezeichneten Ausgangspunkt für die Erkundung der Costa Brava. Viele Bewohner von Tordera nutzen die Nähe zum Hafen Blanes, um das Bootfahren ohne die Menschenmassen großer Küstenorte zu genießen.",
-        townCard1Title: "Binnenland und Natur",
-        townCard1Desc:
-          "Wohngemeinde umgeben von Natur, mit dem Montnegre und dem Corredor als nahegelegene Naturparks. Kombinieren Sie Wandern im Binnenland mit einem Tag Bootsfahrt an der Küste.",
-        townCard2Title: "Wenige Minuten von der Küste entfernt",
-        townCard2Desc:
-          "Obwohl Tordera im Binnenland liegt, hat es schnellen Zugang sowohl zum Maresme als auch zur Costa Brava. Der Hafen von Blanes ist Ihre direkte Verbindung zum Mittelmeer.",
-        townCard3Title: "Gut angebunden",
-        townCard3Desc:
-          "Mit RENFE-Bahnhof (Linie R1), Autobahn C-32 und guten Landstraßen ist die Fahrt vom Hafen Blanes nach Tordera schnell und bequem mit jedem Verkehrsmittel.",
-        howTitle: "Wie Sie von Tordera zum Hafen Blanes gelangen",
-        howCarTitle: "Mit dem Auto (15 Minuten)",
-        howCarDesc:
-          "Nehmen Sie von Tordera aus die Straße Richtung Blanes (GI-600 oder C-32). Es sind 10 km direkte Fahrt zum Hafen von Blanes. Das Parken im Hafenbereich ist kostenlos und in der Regel gut verfügbar, besonders wenn Sie morgens ankommen.",
-        howTaxiTitle: "Mit dem Taxi",
-        howTaxiDesc:
-          "Ein Taxi von Tordera zum Hafen Blanes kostet ca. 15-20 €. Es ist eine schnelle und bequeme Option für Hin- und Rückfahrt.",
-        howTransportTitle: "Mit dem RENFE-Zug (8 Minuten)",
-        howTransportDesc:
-          "Die R1-Linie der RENFE Rodalies verbindet Tordera mit Blanes in nur 8 Minuten. Es ist die schnellste und günstigste Option. Die Züge fahren in der Saison alle 30 Minuten. Vom Bahnhof Blanes aus ist der Hafen 10-15 Gehminuten über die Strandpromenade entfernt.",
-        howParkingTitle: "Parken in Blanes",
-        howParkingDesc:
-          "In der Nähe des Hafens von Blanes gibt es kostenlose Parkplätze. Bewohner von Tordera haben den Vorteil, früh aus dem Binnenland anzureisen, sodass es in der Regel einfacher ist, einen Parkplatz zu finden als für Besucher aus weiter entfernten Küstenorten.",
-        destsTitle: "Was können Sie mit dem Boot ab Blanes sehen?",
-        destsIntro:
-          "Vom Hafen Blanes aus können Sie nach Norden entlang der spektakulären Küste der Costa Brava fahren. Entdecken Sie türkisfarbene Buchten, die zwischen Klippen versteckt sind, Strände, die nur vom Meer aus zugänglich sind, und charmante Orte wie Lloret de Mar und das historische Tossa de Mar mit seiner ummauerten mittelalterlichen Altstadt.",
-        destLloret: "Lloret de Mar - 25 Min",
-        destTossa: "Tossa de Mar - 30-45 Min",
-        destBlanes: "Buchten von Blanes",
-        pricingTitle: "Preise für Bootsvermietung",
-        pricingIntro:
-          "Transparente Preise mit Benzin inklusive bei allen Booten ohne Führerschein. Keine Überraschungen oder zusätzlichen Kosten.",
-        pricingNoLicTitle: "Boote ohne Führerschein",
-        pricingNoLicFrom: "Ab {noLicBaja1h} €/Stunde (Benzin inklusive)",
-        pricingNoLicCapacity: "Kapazität: 4-7 Personen je nach Modell",
-        pricingLicTitle: "Boote mit Führerschein",
-        pricingLicFrom: "Ab {licBaja2h} € / 2 Stunden",
-        pricingLicEngines: "Motoren von 40 bis 115 PS",
-        pricingLicCapacity: "Kapazität: bis zu 11 Personen",
-        pricingButton: "Alle Preise und Boote ansehen",
-        ctaTitle: "Buchen Sie Ihr Boot ab Tordera",
-        ctaDesc:
-          "In 15 Minuten mit dem Auto oder 8 Minuten mit dem Zug sind Sie im Hafen Blanes und bereit zum Ablegen. Kontaktieren Sie uns per WhatsApp, um Ihr Boot zu buchen und die Costa Brava vom Wasser aus zu entdecken.",
-        ctaButton: "Per WhatsApp buchen",
-        faqTitle: "Häufig gestellte Fragen zur Bootsvermietung ab Tordera",
-      },
-    },
-    palafolls: {
-      faqItems: [
-        {
-          question: "Wie weit ist Palafolls vom Hafen Blanes entfernt?",
-          answer:
-            "Palafolls liegt nur 8 km vom Hafen Blanes entfernt, etwa 12 Minuten mit dem Auto. Es ist eine der nächstgelegenen Gemeinden zum Hafen und daher ein idealer Ausgangspunkt für eine Bootsfahrt an der Costa Brava.",
-        },
-        {
-          question:
-            "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Palafolls bin?",
-          answer:
-            "Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} € für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
-        },
-        {
-          question: "Kann ich vom Campingplatz in Palafolls zum Hafen von Blanes gelangen?",
-          answer:
-            "Ja, von den Campingplätzen im Gebiet Palafolls (wie La Masía oder Neptuno) erreichen Sie den Hafen von Blanes in etwa 10–15 Minuten mit dem Auto. Es gibt Busverbindungen zwischen beiden Orten, obwohl das Auto die bequemste Option ist.",
-        },
-        {
-          question: "Brauche ich Erfahrung, um ein Boot zu mieten?",
-          answer:
-            "Sie brauchen keine Erfahrung. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung, einschließlich Navigationsregeln und Sicherheitstipps.",
-        },
-      ],
-      seo: {
-        title: "Bootsvermietung Palafolls | Hafen Blanes 12 Min | Ohne Führerschein 75€/Std",
-        description:
-          "Auf einem Campingplatz oder in einer Unterkunft in Palafolls? Hafen Blanes 12 Min mit dem Auto. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Idealer Ausflug Costa Brava.",
-        ogTitle: "Bootsvermietung Palafolls | 12 Min zum Hafen Blanes",
-        ogDescription:
-          "Von Palafolls zum Hafen Blanes in 12 Min. Boot ohne Führerschein ab 75€/Std. Benzin inklusive. 4.8★.",
-      },
-      schema: {
-        name: "Bootsvermietung in der Nähe von Palafolls",
-        description:
-          "Miete Boote ab dem Hafen von Blanes, nur 12 Autominuten von Palafolls entfernt. Boote ohne Führerschein ab 75 €/Stunde mit Benzin inklusive.",
-      },
-      breadcrumbName: "Bootsvermietung Palafolls",
-      sections: {
-        heroTitle: "Bootsvermietung in der Nähe von Palafolls",
-        heroSubtitle:
-          "Palafolls ist eine Gemeinde im Binnenland des Maresme, bekannt für ihr großes Campingplatzgebiet und ihre naturnahen Ferienanlagen. Nur 12 Autominuten vom Hafen Blanes entfernt, ist sie der perfekte Ausgangspunkt für einen Bootsausflug an der Costa Brava. Unsere Boote ohne Führerschein sind ideal für Campingfamilien, die eine andere Aktivität suchen.",
-        heroBadgeCar: "8 km / 12 Min mit dem Auto",
-        heroBadgeTransport: "Ganz in der Nähe von Blanes",
-        heroBadgeExtra: "Campingplatzgebiet",
-        whyTitle: "Warum ein Boot ab Blanes mieten, wenn Sie in Palafolls sind?",
-        whyCard1Title: "12 Minuten vom Hafen entfernt",
-        whyCard1Desc:
-          "Palafolls ist eine der Gemeinden, die dem Hafen von Blanes am nächsten liegt. Mit nur 8 km Entfernung können Sie morgens vom Campingplatz aufbrechen, ein paar Stunden an der Costa Brava fahren und rechtzeitig zum Mittagessen zurück sein. Es ist der perfekte Ausflug für einen anderen Urlaubstag.",
-        whyCard2Title: "Ideal für Camper",
-        whyCard2Desc:
-          "Wenn Sie auf einem der Campingplätze in Palafolls wie La Masía, Neptuno oder den Bungalowanlagen der Gegend übernachten, ist das Mieten eines Bootes die Hauptattraktion, die Ihren Urlaub unvergesslich macht. Viele Familien von nahegelegenen Campingplätzen besuchen uns jede Saison.",
-        whyCard3Title: "Benzin bei Booten ohne Führerschein inklusive",
-        whyCard3Desc:
-          "Der Preis für Boote ohne Führerschein beinhaltet das Benzin. Ab 75 € pro Stunde. Keine versteckten Kosten oder Treibstoffzuschläge.",
-        whyCard4Title: "Keine Vorkenntnisse erforderlich",
-        whyCard4Desc:
-          "Vor dem Ablegen gibt Ihnen unser Team 15 Minuten praktische Einweisung. Wir zeigen Ihnen, wie man den Motor bedient, die Grundregeln der Navigation und die besten Ecken zum Erkunden. Jede Person über 18 Jahre kann unsere Boote ohne Führerschein steuern.",
-        townTitle: "Palafolls: Campingplätze, Natur und Meer",
-        townIntro:
-          "Palafolls verbindet die Ruhe eines Binnenlanddorfs mit der Nähe zum Meer. Sein breites Angebot an Campingplätzen und ländlichen Unterkünften zieht jeden Sommer Tausende europäischer Familien an. Ergänzen Sie Ihren Aufenthalt mit einem Tag auf dem Wasser in den schönsten Buchten der Costa Brava.",
-        townCard1Title: "Campingplatzgebiet",
-        townCard1Desc:
-          "Camping La Masía, Neptuno und andere touristische Anlagen der Gegend ziehen Familien aus ganz Europa an. Ein Bootsausflug ist die perfekte Aktivität, um den Urlaub abzurunden.",
-        townCard2Title: "Wenige Minuten vom Meer entfernt",
-        townCard2Desc:
-          "Obwohl Palafolls eine Binnengemeinde ist, sind die Strände von Blanes und Malgrat weniger als 10 Minuten entfernt. Der Hafen von Blanes ist Ihr Tor zur Costa Brava auf dem Seeweg.",
-        townCard3Title: "Natur und Schloss",
-        townCard3Desc:
-          "Das Schloss von Palafolls und die Wanderwege der Gegend bieten ruhige Spaziergänge. Kombinieren Sie Natur im Binnenland mit der Aufregung, durch kristallklares Wasser zu fahren.",
-        howTitle: "Wie Sie von Palafolls zum Hafen Blanes gelangen",
-        howCarTitle: "Mit dem Auto (12 Minuten)",
-        howCarDesc:
-          "Nehmen Sie von Palafolls aus die BV-6001 Richtung Blanes. Es sind nur 8 km zum Hafen von Blanes. Die Fahrt ist schnell und einfach, mit guter Beschilderung. Von den Campingplätzen der Gegend aus ist die Route noch direkter.",
-        howTaxiTitle: "Mit dem Taxi",
-        howTaxiDesc:
-          "Ein Taxi von Palafolls zum Hafen Blanes kostet ca. 12-18 €. Es ist eine bequeme Option, wenn Sie kein eigenes Auto haben.",
-        howTransportTitle: "Mit dem Bus",
-        howTransportDesc:
-          "Palafolls hat keinen Bahnhof, aber es gibt Buslinien, die mit Blanes verbinden. Die Fahrt dauert ca. 20 Minuten. Informieren Sie sich in der Hochsaison über die Fahrpläne der lokalen Linien, da die Frequenz im Sommer zunimmt.",
-        howParkingTitle: "Parken in Blanes",
-        howParkingDesc:
-          "In der Nähe des Hafens von Blanes gibt es kostenlose Parkplätze. In der Hochsaison (Juli-August) empfehlen wir, früh anzureisen, um einen Parkplatz zu sichern.",
-        destsTitle: "Was können Sie mit dem Boot ab Blanes sehen?",
-        destsIntro:
-          "Vom Hafen Blanes aus können Sie nach Norden fahren und die spektakuläre Küste der Costa Brava erkunden. Versteckte Buchten mit türkisfarbenem Wasser, mit Pinien bewachsene Klippen und die beeindruckende Silhouette von Tossa de Mar am Horizont. All das ist vom Boot aus für Sie erreichbar.",
-        destLloret: "Lloret de Mar - 25 Min",
-        destTossa: "Tossa de Mar - 30-45 Min",
-        destBlanes: "Buchten von Blanes",
-        pricingTitle: "Preise für Bootsvermietung",
-        pricingIntro:
-          "Transparente Preise mit Benzin inklusive bei allen Booten ohne Führerschein. Keine versteckten Kosten.",
-        pricingNoLicTitle: "Boote ohne Führerschein",
-        pricingNoLicFrom: "Ab {noLicBaja1h} €/Stunde (Benzin inklusive)",
-        pricingNoLicCapacity: "Kapazität: 4-7 Personen je nach Modell",
-        pricingLicTitle: "Boote mit Führerschein",
-        pricingLicFrom: "Ab {licBaja2h} € / 2 Stunden",
-        pricingLicEngines: "Motoren von 40 bis 115 PS",
-        pricingLicCapacity: "Kapazität: bis zu 11 Personen",
-        pricingButton: "Alle Preise und Boote ansehen",
-        ctaTitle: "Buchen Sie Ihr Boot ab Palafolls",
-        ctaDesc:
-          "In 12 Minuten sind Sie im Hafen Blanes und bereit zum Ablegen. Der perfekte Ausflug von Ihrem Campingplatz aus. Kontaktieren Sie uns per WhatsApp, um zu buchen.",
-        ctaButton: "Per WhatsApp buchen",
-        faqTitle: "Häufig gestellte Fragen zur Bootsvermietung ab Palafolls",
-      },
-    },
-    pineda: {
-      faqItems: [
-        {
-          question: "Wie weit ist Pineda de Mar vom Hafen Blanes entfernt?",
-          answer:
-            "Pineda de Mar liegt 15 km vom Hafen Blanes entfernt, etwa 18 Minuten mit dem Auto über die N-II. Sie können auch mit dem RENFE-Zug Linie R1 in nur 12 Minuten vom Bahnhof Blanes anreisen.",
-        },
-        {
-          question:
-            "Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Pineda de Mar bin?",
-          answer:
-            "Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} € für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.",
-        },
-        {
-          question: "Brauche ich einen Bootsführerschein, um ein Boot zu mieten?",
-          answer:
-            "Nicht unbedingt. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung. Wir haben auch Boote mit Führerschein für erfahrenere Skipper.",
-        },
-        {
-          question:
-            "Kann ich mit öffentlichen Verkehrsmitteln von Pineda de Mar nach Blanes fahren?",
-          answer:
-            "Ja, die RENFE-Linie R1 verbindet Pineda de Mar mit Blanes in 12 Minuten. Die Züge fahren in der Saison alle 30 Minuten. Der Bahnhof Blanes liegt etwa 10 Gehminuten vom Hafen entfernt.",
-        },
-      
-        {
-          question: "Gibt es Bootsverleih direkt in Pineda de Mar?",
-          answer:
-            "Nein, Pineda de Mar hat keinen Sporthafen mit Bootsverleih. Der nächstgelegene Hafen für das gesamte Alt Maresme (Malgrat, Santa Susanna, Pineda und Calella) ist der Hafen von Blanes, 18 Minuten mit dem Auto oder 12 Minuten mit dem R1-Zug.",
-        },
-        {
-          question: "Welche Buchten kann ich ab Blanes besuchen?",
-          answer:
-            "Mit einem führerscheinfreien Boot erreichen Sie Cala Sant Francesc, Sa Forcanera, den Strand Santa Cristina, Cala Sa Boadella und den Strand von Fenals (Süd-Lloret), alle innerhalb der legalen 2-Meilen-Grenze. Mit Führerschein oder mit der privaten Tour mit Skipper geht es weiter bis Tossa de Mar.",
-        },
-        {
-          question: "Kann ich eine Bootstour machen, ohne selbst zu fahren?",
-          answer:
-            "Ja. Wenn Sie lieber nicht selbst fahren, buchen Sie die private Tour mit Skipper: Abfahrten vom Hafen von Blanes von 2 bis 8 Stunden, bis zu 6 Personen, mit Stopps zum Schwimmen und Schnorcheln in den Buchten. Kein Bootsführerschein nötig.",
-        },
-      ],
-      seo: {
-        title: "Bootsvermietung Pineda de Mar | Hafen Blanes 18 Min | Ohne Führerschein 75€/Std",
-        description:
-          "Unterkunft in Pineda de Mar? Hafen Blanes 18 Min mit dem Auto oder 12 Min mit dem Zug R1. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Fahr nach Blanes, Lloret oder Tossa.",
-        ogTitle: "Bootsvermietung Pineda de Mar | 18 Min zum Hafen Blanes",
-        ogDescription:
-          "Von Pineda de Mar zum Hafen Blanes in 18 Min. Boot ohne Führerschein ab 75€/Std. 4.8★ Google.",
-      },
-      schema: {
-        name: "Bootsvermietung in der Nähe von Pineda de Mar",
-        description:
-          "Miete Boote ab dem Hafen von Blanes, nur 18 Autominuten von Pineda de Mar entfernt. Boote ohne Führerschein ab 75 €/Stunde mit Benzin inklusive.",
-      },
-      breadcrumbName: "Bootsvermietung Pineda de Mar",
-      sections: {
-        heroTitle: "Bootsvermietung in der Nähe von Pineda de Mar",
-        heroSubtitle:
-          "Pineda de Mar ist eines der wichtigsten Touristenziele an der Küste des Maresme, mit Dutzenden von Hotels und All-Inclusive-Resorts. Der Hafen von Blanes, nur 18 Autominuten oder 12 Zugminuten entfernt, ist der nächstgelegene Bootsvermietungspunkt. Genießen Sie die Costa Brava, ohne einen Bootsführerschein zu benötigen.",
-        heroBadgeCar: "15 km / 18 Min mit dem Auto",
-        heroBadgeTransport: "RENFE R1: 12 Min",
-        heroBadgeExtra: "Küste des Maresme",
-        whyTitle: "Warum ein Boot ab Blanes mieten, wenn Sie in Pineda de Mar sind?",
-        whyCard1Title: "Der nächstgelegene Hafen mit Bootsvermietung",
-        whyCard1Desc:
-          "Pineda de Mar hat keinen Yachthafen oder Bootsvermietungsservice. Der Hafen von Blanes ist der nächstgelegene Punkt, wo Sie ein Boot mieten können, nur 15 km über die N-II entfernt. Wenn Sie in einem der vielen Hotels von Pineda übernachten, fahren Sie in weniger als 20 Minuten bereits durch das kristallklare Wasser der Costa Brava.",
-        whyCard2Title: "{fleetCount} Boote zur Auswahl",
-        whyCard2Desc:
-          "Wir verfügen über eine Flotte von {fleetCount} Booten, die führerscheinfreie Boote umfasst, ideal für Familien und Anfänger, sowie Boote mit Führerschein für erfahrene Skipper. Kapazität von 4 bis 11 Personen je nach gewähltem Modell.",
-        whyCard3Title: "Benzin bei Booten ohne Führerschein inklusive",
-        whyCard3Desc:
-          "Der Preis für Boote ohne Führerschein beinhaltet das Benzin, sodass es keine Überraschungen gibt. Ab 75 € pro Stunde. Der Preis, den du siehst, ist der Endpreis.",
-        whyCard4Title: "Keine Vorkenntnisse erforderlich",
-        whyCard4Desc:
-          "Vor dem Ablegen gibt Ihnen unser Team 15 Minuten praktische Einweisung: Bedienung des Motors, Grundregeln der Navigation und Tipps zu den besten Buchten. Jede Person über 18 Jahre kann ein Boot ohne Führerschein steuern.",
-        townTitle: "Pineda de Mar: Aktivitäten für Hotelgäste",
-        townIntro:
-          "Pineda de Mar ist bekannt für sein breites Hotelangebot, mit zahlreichen Hotels und Resorts, die Familien aus ganz Europa anziehen. Wenn Sie während Ihres Urlaubs nach einer anderen Aktivität suchen, ist das Mieten eines Bootes und die Erkundung der Costa Brava vom Wasser aus ein unvergessliches Erlebnis, das Ihren Strandaufenthalt perfekt ergänzt.",
-        townCard1Title: "Hotelzone auf erstklassigem Niveau",
-        townCard1Desc:
-          "Dutzende Hotels und All-Inclusive-Resorts in erster Strandlinie. Entfliehen Sie für ein paar Stunden, um das nautische Erlebnis zu genießen, das Ihren Urlaub einzigartig macht.",
-        townCard2Title: "Strand von Pineda",
-        townCard2Desc:
-          "Über 1 km goldener Sandstrand mit allen Annehmlichkeiten. Kehren Sie nach dem Bootfahren zu Ihrem Hotel zurück und entspannen Sie am Meer.",
-        townCard3Title: "Perfekt für Familien",
-        townCard3Desc:
-          "Pineda ist ein Familienziel par excellence. Unsere Boote ohne Führerschein sind sicher und einfach zu bedienen, ideal für einen Familienausflug entlang der Küste.",
-        howTitle: "Wie Sie von Pineda de Mar zum Hafen Blanes gelangen",
-        howCarTitle: "Mit dem Auto (18 Minuten)",
-        howCarDesc:
-          "Nehmen Sie die N-II in nördlicher Richtung nach Blanes. Es sind 15 km bequeme und direkte Fahrt. Von den meisten Hotels in Pineda de Mar erreichen Sie den Hafen von Blanes in ca. 18 Minuten. Die Fahrt führt entlang der Küste und ist sehr angenehm.",
-        howTaxiTitle: "Mit dem Taxi",
-        howTaxiDesc:
-          "Ein Taxi von Pineda de Mar zum Hafen Blanes kostet ca. 20-25 €. Es ist eine gute Option, wenn Sie kein Auto haben oder sich nicht um das Parken kümmern möchten.",
-        howTransportTitle: "Mit dem RENFE-Zug (12 Minuten)",
-        howTransportDesc:
-          "Die R1-Linie der RENFE Rodalies verbindet Pineda de Mar mit Blanes in nur 12 Minuten. Die Züge fahren in der Hochsaison alle 30 Minuten. Vom Bahnhof Blanes aus ist der Hafen ca. 10-15 Gehminuten über die Strandpromenade entfernt.",
-        howParkingTitle: "Parken in Blanes",
-        howParkingDesc:
-          "In der Nähe des Hafens von Blanes gibt es kostenlose Parkplätze. In der Hochsaison (Juli-August) empfehlen wir, früh anzureisen oder den Zug als bequeme und schnelle Alternative in Betracht zu ziehen.",
-        destsTitle: "Was können Sie mit dem Boot ab Blanes sehen?",
-        destsIntro:
-          "Vom Hafen Blanes aus können Sie nach Norden entlang der spektakulären Küste der Costa Brava fahren. Entdecken Sie versteckte Buchten, beeindruckende Klippen und mittelalterliche Dörfer wie Tossa de Mar. Mit einem Boot ohne Führerschein können Sie bis zu 2 Meilen von der Küste entfernt erkunden, ausreichend, um die schönsten Buchten der Gegend zu erreichen.",
-        destLloret: "Lloret de Mar - 25 Min",
-        destTossa: "Tossa de Mar - 30-45 Min",
-        destBlanes: "Buchten von Blanes",
-        pricingTitle: "Preise für Bootsvermietung",
-        pricingIntro:
-          "Wir bieten wettbewerbsfähige Preise mit Benzin inklusive bei allen Booten ohne Führerschein. Keine versteckten Kosten oder Treibstoffzuschläge.",
-        pricingNoLicTitle: "Boote ohne Führerschein",
-        pricingNoLicFrom: "Ab {noLicBaja1h} €/Stunde (Benzin inklusive)",
-        pricingNoLicCapacity: "Kapazität: 4-7 Personen je nach Modell",
-        pricingLicTitle: "Boote mit Führerschein",
-        pricingLicFrom: "Ab {licBaja2h} € / 2 Stunden",
-        pricingLicEngines: "Motoren von 40 bis 115 PS",
-        pricingLicCapacity: "Kapazität: bis zu 11 Personen",
-        pricingButton: "Alle Preise und Boote ansehen",
-        ctaTitle: "Buchen Sie Ihr Boot ab Pineda de Mar",
-        ctaDesc:
-          "In 18 Minuten sind Sie im Hafen Blanes und bereit zum Ablegen. Kontaktieren Sie uns per WhatsApp, um Ihr Boot zu buchen und ein einzigartiges Erlebnis an der Costa Brava zu erleben.",
-        ctaButton: "Per WhatsApp buchen",
-        faqTitle: "Häufig gestellte Fragen zur Bootsvermietung ab Pineda de Mar",
-      },
-    },
-    newsletter: {
-      title: "Kostenloser Führer zu geheimen Buchten",
-      subtitle:
-        "Erhalten Sie unseren Führer mit den 10 besten Buchten der Costa Brava, die nur per Boot erreichbar sind",
-      placeholder: "Ihre E-Mail",
-      button: "Kostenlosen Führer senden",
-      success: "Führer gesendet! Prüfen Sie Ihre E-Mail.",
-      error: "Fehler beim Senden. Bitte erneut versuchen.",
-    },
-  },
   faqPage: {
     heroTitle: "Häufig gestellte Fragen",
     heroDescription:
@@ -5578,6 +4462,892 @@ export const de: Translations = {
         title: 'Boote für Ihre Route nach Tossa de Mar',
         description: 'Tossa de Mar liegt außerhalb der legalen führerscheinfreien Reichweite. Diese Boote kommen hin: mit der Licencia de Navegación oder unserer privaten Tour mit Skipper (kein Führerschein nötig).',
       },
+    },
+  },
+  locationTemplate: {
+    destCostaBrava: 'Costa Brava',
+    destLloret: 'Lloret de Mar - 25 Min.',
+    destTossa: 'Tossa de Mar - 45 Min.',
+    destBlanesCoves: 'Buchten von Blanes',
+    whyRentImgAlt: 'Freunde genießen einen Tag auf dem Boot mit Schnorcheln an der Costa Brava',
+    coastBreakImgAlt: 'Boot vor Anker in einer Bucht mit kristallklarem Wasser an der Costa Brava',
+  },
+  locationPages: {
+    blanes: {
+      faqItems: [
+        {
+          question: 'Brauche ich einen Führerschein, um in Blanes ein Boot zu mieten?',
+          answer: 'Nein. Wir haben 4 führerscheinfreie Boote für 4 oder 5 Personen. Du musst lediglich mindestens 18 Jahre alt sein. Wir geben dir vor der Abfahrt eine 15-minütige Einweisung.',
+        },
+        {
+          question: 'Wie viel kostet es, im Hafen von Blanes ein Boot zu mieten?',
+          answer: 'Führerscheinfreie Boote kosten ab {noLicBaja1h} €/Stunde in der Nebensaison (April–Juni, September–Oktober). In der Hochsaison (August) ab {noLicAlta1h} €/Stunde. Der Preis beinhaltet Kraftstoff, Versicherung und Sicherheitsausrüstung.',
+        },
+        {
+          question: 'Wohin kann ich mit dem Boot von Blanes aus fahren?',
+          answer: 'Vom Hafen Blanes aus können Sie Cala Brava (15 Min.), Cala Sant Francesc (20 Min.), Lloret de Mar (30 Min.) und Tossa de Mar (45 Min.) besuchen. Boote mit Führerschein haben eine größere Reichweite für entferntere Ziele.',
+        },
+        {
+          question: 'Gibt es Parkplätze in der Nähe des Hafens von Blanes?',
+          answer: 'Ja. Es gibt kostenlose Parkplätze direkt am Hafen von Blanes. Im Hafengebiet finden Sie auch Restaurants, Schiffsausrüster und eine Tankstelle.',
+        },
+        {
+          question: 'Wann ist die beste Zeit, um in Blanes ein Boot zu mieten?',
+          answer: 'Die Saison läuft von April bis Oktober. Juni und September bieten die besten Preise und weniger Andrang. August ist Hochsaison mit den besten Meeresbedingungen, aber höheren Preisen.',
+        },
+        {
+          question: 'Kann man in Blanes am selben Tag ein Boot mieten?',
+          answer: 'Ja, wir nehmen kurzfristige Buchungen an, sofern verfügbar. Kontaktieren Sie uns per WhatsApp unter +34 611 500 372, um die Verfügbarkeit am selben Tag zu prüfen.',
+        },
+        {
+          question: 'Ist es sicher, ohne Führerschein von Blanes aus zu fahren?',
+          answer: 'Ja. Unsere führerscheinfreien Boote haben maximal 15 PS, erfordern keine Lizenz und fahren küstennah. Wir bieten eine 15-minütige Sicherheitseinweisung, Schwimmwesten und Notfallausrüstung.',
+        },
+        {
+          question: 'Wie komme ich zum Hafen Blanes?',
+          answer: 'Der Hafen Blanes liegt 60 km von Barcelona (1h mit dem Auto über A-2/C-32/AP-7, Ausfahrt 9 Richtung Blanes), 35 km von Girona (40 Min über AP-7 Ausfahrt 9) und 100 km von der französischen Grenze entfernt. Mit dem Zug R1-Linie der Rodalies ab Barcelona-Sants (1h 30 Min bis Bahnhof Blanes, dann 10 Min mit Bus L2 oder Taxi zum Hafen). Nächster Flughafen: Girona-Costa Brava (35 km, 30 Min).',
+        },
+        {
+          question: 'Gibt es Geschäfte oder Restaurants am Hafen Blanes?',
+          answer: 'Ja. Das Hafenareal von Blanes hat mehrere Restaurants mit Terrasse zum Meer (Spezialität Reisgerichte und frischer Fisch), einen kleinen Supermarkt, ein Bootszubehör-Geschäft, eine Tankstelle, öffentliche Toiletten und Duschen. Der Strand von Blanes-Stadt liegt direkt neben dem Hafen. Nach dem Bootsausflug können Sie im Hafen essen oder in die Altstadt von Blanes hochlaufen (10 Min zu Fuß).',
+        },
+      ],
+      hero: {
+        title: 'Bootsverleih in Blanes',
+        subtitle: 'Bootsverleih direkt am Hafen Blanes ab 75€/h, Kraftstoff inklusive. Ohne Führerschein bis 5 Personen, mit Führerschein bis 7. Kostenloser Parkplatz 100m vom Liegeplatz, 15-Minuten Sicherheitseinweisung. Von hier fährst du nach Sa Palomera (5 Min), Cala Sant Francesc (8 Min), Cala Treumal (15 Min) und Lloret de Mar (25 Min). Tossa de Mar 30-45 Min mit Führerschein.',
+        badgePort: 'Hafen Blanes',
+        badgeCapacity: '4-7 Personen',
+        badgeDuration: '1-8 Std.',
+        imageAlt: 'Türkisfarbene Bucht in der Nähe des Hafens von Blanes, Ausgangspunkt unserer Flotte',
+      },
+      sections: {
+        whyBlanesTitle: 'Warum Blanes für Ihren Bootsverleih wählen?',
+        strategicLocation: 'Strategische Lage',
+        strategicLocationDesc: 'Blanes ist das südliche Tor zur Costa Brava mit direktem Zugang zu den spektakulärsten Buchten. Vom Hafen von Blanes aus können Sie nördlich nach Lloret de Mar oder südlich entlang der Küste bis Malgrat de Mar fahren.',
+        safePorts: 'Sicherer und Vollständiger Hafen',
+        safePortsDesc: 'Der Hafen von Blanes bietet alle Annehmlichkeiten: Parkplätze, Restaurants, Nautik-Geschäfte, Treibstoff und Dienstleistungen. Ein perfekter Ausgangspunkt für Ihr maritimes Abenteuer.',
+        accessibleCoves: 'Erreichbare Buchten',
+        accessibleCovesDesc: 'Von Blanes aus haben Sie einfachen Zugang zu Cala Brava, Cala Sant Francesc, den Stränden von Lloret und vielen unberührten Buchten. Kurze Entfernungen, mehr Zeit zum Genießen.',
+        allLevels: 'Für Alle Erfahrungsstufen',
+        allLevelsDesc: 'Ob es Ihr erstes Mal ist oder Sie ein erfahrener Segler sind, Blanes bietet ruhiges Wasser für Anfänger und aufregende Routen für Abenteurer.',
+        destinationsTitle: 'Hauptziele ab Blanes',
+        calaBrava: 'Cala Brava',
+        calaBravaTime: '15 Minuten Fahrt',
+        calaBravaDesc: 'Unberührte Bucht mit kristallklarem Wasser. Perfekt zum Schnorcheln und Entspannen.',
+        lloretDeMar: 'Lloret de Mar',
+        lloretTime: '25 Minuten Fahrt',
+        lloretDesc: 'Lebhafte Strände mit Strandbars und Wassersportaktivitäten.',
+        calaSantFrancesc: 'Cala Sant Francesc',
+        calaSantFrancescTime: '10 Minuten Fahrt',
+        calaSantFrancescDesc: 'Geschützte Bucht, ideal für Familien mit kleinen Kindern.',
+        servicesTitle: 'Services im Hafen von Blanes',
+        portAmenities: 'Hafen-Annehmlichkeiten',
+        freeParking: 'Kostenlose Parkplätze verfügbar',
+        fuelStation: 'Marine-Tankstelle',
+        restaurants: 'Restaurants und Cafés',
+        nauticalShops: 'Nautik-Geschäfte',
+        howToGet: 'Anreise',
+        fromBarcelona: 'Von Barcelona: AP-7 Richtung Girona, Ausfahrt Blanes (60 Min.)',
+        fromGirona: 'Von Girona: N-II Richtung Blanes (45 Min.)',
+        fromFrance: 'Von Frankreich: AP-7 Richtung Barcelona, Ausfahrt Blanes',
+        publicTransport: 'Öffentliche Verkehrsmittel: RENFE-Zug Linie R1 bis Blanes',
+        ctaTitle: 'Bereit, von Blanes aus zu erkunden?',
+        ctaDescription: 'Buchen Sie Ihr Boot und entdecken Sie die schönsten Buchten der Costa Brava',
+        ctaButton: 'Ab Blanes buchen',
+        mapTitle: 'Standort - Hafen von Blanes',
+        fleetTitle: 'Unsere Flotte im Hafen von Blanes',
+        fleetIntro: 'Wir verfügen über 8 Boote im Hafen von Blanes, bereit zum Auslaufen von April bis Oktober. Unsere Flotte umfasst 4 führerscheinfreie Boote, perfekt für Familien und Paare, die die nahegelegenen Buchten erkunden möchten, 3 Optionen mit Führerschein für erfahrene Skipper mit mehr Reichweite und Leistung, sowie einen Privaten Ausflug mit Skipper für Gruppen, die lieber fahren lassen statt selbst am Steuer zu stehen. Alle Boote werden täglich inspiziert und sind vollkaskoversichert.',
+        fleetNoLicense: 'Ohne Führerschein',
+        fleetLicense: 'Mit Führerschein',
+        fleetFrom: 'Ab',
+        fleetViewDetails: 'Details ansehen',
+        guideTitle: 'Kompletter Leitfaden: Boot Mieten in Blanes',
+        guideRequirementsTitle: 'Voraussetzungen fuer fuehrerscheinfreies Fahren',
+        guideRequirementsText: 'Um ein fuehrerscheinfreies Boot in Blanes zu mieten, muessen Sie mindestens 18 Jahre alt sein und einen Ausweis oder Reisepass vorlegen. Vor der Abfahrt erhalten Sie eine 15-minuetige praktische Einweisung in Motorsteuerung, Ankern und Sicherheitsregeln. Alle unsere fuehrerscheinfreien Boote haben maximal 15 PS.',
+        guideSeasonTitle: 'Saison und Oeffnungszeiten',
+        guideSeasonText: 'Die Bootssaison in Blanes laeuft von April bis Oktober. Wir bieten drei Zeitfenster an: Vormittag (9:00-13:00), Nachmittag (14:00-18:00) und ganzer Tag (9:00-18:00). Juni und September sind ideal zum Segeln: angenehme Temperaturen, ruhige See und weniger Andrang.',
+        guideIncludedTitle: 'Was ist inbegriffen',
+        guideIncludedText: 'Führerscheinfreie Boote beinhalten Kraftstoff, Versicherung, zugelassene Sicherheitsausrüstung, Sonnensegel und Badeleiter. Bei Booten mit Führerschein und der privaten Ausflugsfahrt ist der Kraftstoff NICHT inbegriffen.',
+        guideBookingTitle: 'So buchen Sie',
+        guideBookingText: 'Du kannst über unsere Website buchen (wir bestätigen per WhatsApp innerhalb von 2 Stunden), per WhatsApp unter +34 611 500 372 oder direkt im Hafen von Blanes bei Verfügbarkeit.',
+        pricingTitle: 'Preise fuer Bootsverleih in Blanes 2026',
+        pricingIntro: 'Unsere Preise variieren je nach Saison und Mietdauer. Alle Preise verstehen sich inklusive MwSt., Liegeplatz und Reinigung.',
+        pricingSeasons: 'Nebensaison: April-Juni und September-Oktober. Zwischensaison: Juli. Hochsaison: August. Am Wochenende gilt ein Zuschlag von 15%.',
+        pricingBoatCol: 'Boot',
+        pricingCapacityCol: 'Kapazitaet',
+        pricingLowCol: 'Nebensaison (2h)',
+        pricingHighCol: 'Hochsaison (2h)',
+        pricingFuelNote: '* Bei Booten mit Führerschein und privaten Ausflügen ist Kraftstoff NICHT inbegriffen.',
+        pricingFullDetails: 'Alle Tarife und Zeiten anzeigen',
+        experiencesTitle: 'Beliebte Erlebnisse ab Blanes',
+        expSnorkelTitle: 'Schnorcheln in Cala Brava',
+        expSnorkelDesc: 'Fahren Sie 15 Minuten zur Cala Brava und entdecken Sie ihre Unterwasserwelt. Kristallklares Wasser mit bis zu 15 Metern Sicht. Schnorchelausruestung fuer nur 7,50 €.',
+        expSunsetTitle: 'Sonnenuntergangsfahrt',
+        expSunsetDesc: 'Buchen Sie den letzten Nachmittagsslot und geniessen Sie den Sonnenuntergang ueber dem Meer. Das goldene Licht auf den Klippen der Costa Brava ist unvergesslich.',
+        expTossaTitle: 'Tagesausflug nach Tossa de Mar',
+        expTossaDesc: 'Mit einem fuehrerscheinpflichtigen Boot fahren Sie 30-45 Min. nach Norden zur Vila Vella von Tossa de Mar, vorbei an versteckten Buchten und spektakulaeren Klippen.',
+        expFishingTitle: 'Sportfischen',
+        expFishingDesc: 'Die Gewaesser vor Blanes sind reich an Goldbrassen, Wolfsbarsch und Geissbrassen. Ankern Sie ueber den Felsgruenden zwischen Blanes und Lloret fuer einen Tag Angeln.',
+        nearbyTownsTitle: 'Orte in der Nähe des Hafens von Blanes',
+        nearbyTownsIntro: 'Touristen, die an der Küste des Maresme untergebracht sind, erreichen den Hafen von Blanes bequem:',
+        nearbyTownsMalgratTime: '10 Min.',
+        nearbyTownsSantaSusannaTime: '15 Min.',
+        nearbyTownsCalellaTime: '20 Min. mit dem Auto',
+        nearbyTownsConjunction: 'und',
+        nearbyTownsTransport: 'Auch mit dem Zug RENFE Linie R1 erreichbar.',
+        crossLinksTitle: 'Entdecken Sie unsere Dienstleistungen ab Blanes',
+        crossLinkCostaBrava: 'Die gesamte Costa Brava mit dem Boot erkunden',
+        crossLinkLicenseFree: 'Bootsverleih ohne Führerschein',
+        crossLinkLicensed: 'Boote mit Führerschein in Blanes',
+        crossLinkPricing: 'Preise und Tarife nach Saison',
+        crossLinkLloret: 'Bootsausflug nach Lloret de Mar',
+        crossLinkTossa: 'Fahrt nach Tossa de Mar',
+        mapIframeTitle: 'Standortkarte - Hafen von Blanes',
+      },
+      schema: {
+        name: 'Bootsverleih in Blanes, Costa Brava',
+        description: 'Bootsverleih ohne und mit Führerschein in Blanes. Hafen von Blanes, Costa Brava. Boote für 4-7 Personen.',
+      },
+    },
+    lloret: {
+      faqItems: [
+        {
+          question: 'Brauche ich einen Führerschein oder Erfahrung, um mit dem Boot nach Lloret zu fahren?',
+          answer: 'Nein. Unsere führerscheinfreien Boote erfüllen die gesetzlichen Voraussetzungen, um bis zum Playa de Fenals (südlich von Lloret) ohne Lizenz oder Vorkenntnisse zu fahren. Wir geben Ihnen vor der Abfahrt ein 15-minütiges Briefing. Die einzige Voraussetzung ist, mindestens 18 Jahre alt zu sein.',
+        },
+        {
+          question: 'Wie weit genau kann ich mit einem führerscheinfreien Boot fahren?',
+          answer: 'Gesetzlich bis 2 Seemeilen vor der Küste, maximal 5 Knoten, mit 15 PS. Von Blanes aus sind das 25 Minuten Fahrt bis zum Playa de Fenals, vorbei an 7 Buchten. Der Playa de Lloret im Zentrum und Cala Canyelles liegen nördlich von Fenals; sie sind mit führerscheinfreien Booten nicht erreichbar.',
+        },
+        {
+          question: 'Wie viel kostet es, ein führerscheinfreies Boot nach Lloret zu mieten?',
+          answer: 'Ab {noLicBaja1h} €/Stunde (Nebensaison) und {noLicAlta1h} €/Stunde (Hochsaison, Juli–August). Bei führerscheinfreien Booten ist Benzin inklusive.',
+        },
+        {
+          question: 'Kann ich mit einem führerscheinfreien Boot von Lloret nach Tossa de Mar fahren?',
+          answer: 'Nein. Tossa liegt 4–5 Meilen nördlich von Fenals, außerhalb der gesetzlichen Reichweite ohne Führerschein. Um von Blanes mit dem Boot nach Tossa zu fahren, brauchst du (a) ein Boot mit Licencia de Navegación (LN) oder (b) eine private Exkursion mit Kapitän.',
+        },
+        {
+          question: 'Was passiert bei schlechtem Wetter?',
+          answer: 'Wenn die Vorhersage >20 Knoten anhaltenden Wind oder eine Warnung wegen Wellen >1,5 m anzeigt, stornieren wir kostenlos. Die Strecke Blanes–Fenals ist durch die Küste selbst vor der Tramuntana geschützt und daher auch bei Nordwind eine der sichersten für Anfänger.',
+        },
+        {
+          question: 'Wie komme ich von Lloret de Mar zum Hafen von Blanes?',
+          answer: 'Mit dem Auto sind es 10 Minuten über die GI-682 (kostenloser Parkplatz 100 m vom Hafen). Mit dem Bus dauert die Linie Lloret-Blanes etwa 20 Minuten. Ein Taxi kostet etwa 15-18 €. In Lloret selbst gibt es keine Vermietstation: Alle Abfahrten erfolgen vom Hafen von Blanes.',
+        },
+        {
+          question: 'Welche Buchten sehe ich auf der Bootsroute nach Lloret?',
+          answer: 'Vom Hafen von Blanes aus passieren Sie Cala Sant Francesc, Sa Forcanera, den Strand Santa Cristina, Cala Treumal und Cala Sa Boadella, bevor Sie den Strand von Fenals erreichen. Es sind die meistfotografierten Buchten der südlichen Costa Brava und alle liegen im legalen führerscheinfreien Bereich.',
+        },
+      ],
+      hero: {
+        title: 'Bootsausflüge nach Lloret de Mar',
+        subtitle: 'Entdecken Sie die berühmten Strände von Lloret de Mar vom Hafen Blanes aus. 25 Minuten Fahrt zu einem der beliebtesten Reiseziele der Costa Brava.',
+        badgeFrom: 'Ab Hafen Blanes',
+        badgeTime: '25 Min. Fahrt',
+        badgeCapacity: '4-5 Personen pro Boot',
+      },
+      sections: {
+        whyLloretTitle: 'Warum Lloret de Mar mit dem Boot besuchen?',
+        uniquePerspective: 'Einzigartige Perspektive',
+        uniquePerspectiveDesc: 'Lloret de Mar vom Meer aus zu sehen, bietet Ihnen eine völlig neue Perspektive. Bewundern Sie die markanten Klippen, versteckten Buchten und die berühmte Skulptur "La Mujer Marinera" vom Wasser aus.',
+        spectacularBeaches: 'Spektakuläre Strände',
+        spectacularBeachesDesc: 'Lloret besitzt einige der besten Strände der Costa Brava: Playa de Lloret, Cala Boadella, Santa Cristina und Cala Treumal. Jeder mit seinem besonderen Charme.',
+        vibrantAtmosphere: 'Lebhafte Atmosphäre',
+        vibrantAtmosphereDesc: 'Lloret de Mar ist berühmt für seine lebhafte Atmosphäre, Strandbars, Restaurants mit Meerblick und ein breites Unterhaltungsangebot. Perfekt für verschiedene Besuchertypen.',
+        easyAccess: 'Einfache Erreichbarkeit per Boot',
+        easyAccessDesc: 'Nur 25 Minuten Fahrt von Blanes nach Lloret. Sie können in der Nähe der Hauptstrände ankern oder die abgelegeneren Buchten erkunden, bevor Sie das Zentrum erreichen.',
+        beachesTitle: 'Wichtigste Strände und Buchten von Lloret de Mar',
+        playaLloret: 'Playa de Lloret',
+        playaLloretSub: 'Hauptstrand - 1,5 km',
+        playaLloretDesc: 'Der Hauptstrand von Lloret mit allen Services, Restaurants und lebhafter Atmosphäre.',
+        calaBoadella: 'Cala Boadella',
+        calaBoadellaSub: 'FKK-Bucht',
+        calaBoadellaDesc: 'Ruhige FKK-Bucht südlich von Lloret, ideal für alle, die Ruhe suchen.',
+        santaCristina: 'Santa Cristina',
+        santaCristinaSub: 'Familienstrand',
+        santaCristinaDesc: 'Schöner Familienstrand mit Kapellen und herrlicher Aussicht. Weniger überlaufen als der Hauptstrand.',
+        whatToDoTitle: 'Aktivitäten in Lloret de Mar',
+        entertainment: 'Unterhaltung und Freizeit',
+        nightlife: 'Diskotheken und Nachtleben',
+        restaurantsSea: 'Restaurants am Meer',
+        waterSports: 'Wassersport',
+        santaClotildeMirador: 'Aussichtspunkt Santa Clotilde',
+        pointsOfInterest: 'Sehenswürdigkeiten',
+        mujerMarinera: 'Skulptur "La Mujer Marinera"',
+        castilloSantJoan: 'Burg Sant Joan',
+        jardinesSantaClotilde: 'Gärten von Santa Clotilde',
+        sportsMarina: 'Sporthafen',
+        navigationTipsTitle: 'Navigations-Tipps für Lloret',
+        recommendedRoute: 'Empfohlene Route',
+        recommendedRouteDesc: 'Vom Hafen von Blanes steuern Sie nordwärts entlang der Küste. Sie passieren Cala Sant Francesc und S\'Abanell, bevor Sie Lloret erreichen. Behalten Sie stets die Küste im Blick.',
+        bestTimes: 'Beste Zeiten',
+        bestTimesDesc: 'Morgens (9:00-12:00 Uhr), um Menschenmassen zu vermeiden. Nachmittags (16:00-19:00 Uhr), um die lebhaftere Atmosphäre zu genießen. Meiden Sie Wochenenden in der Hochsaison, wenn Sie Ruhe suchen.',
+        whereToAnchor: 'Wo Ankern',
+        whereToAnchorDesc: 'Playa de Lloret: ausgewiesene Zone für Freizeitboote (markiert). Cala Boadella: freies Ankern unter Rücksichtnahme auf Badegäste. Santa Cristina: Ankern im südlichen Strandbereich.',
+        safety: 'Sicherheit',
+        safetyDesc: 'In Lloret kann es mehr Schiffsverkehr geben. Halten Sie Sicherheitsabstand zu anderen Booten. Respektieren Sie die Badezonen und Markierungsbojen.',
+        ctaTitle: 'Bereit für Ihren Ausflug nach Lloret de Mar?',
+        ctaDescription: 'Buchen Sie Ihr Boot ab dem Hafen von Blanes und entdecken Sie die besten Strände von Lloret de Mar in völliger Freiheit und Komfort.',
+        ctaButton: 'Ausflug nach Lloret buchen',
+        crossLinkingText: 'Wir bieten auch Service für Touristen, die in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> und <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a> untergebracht sind. Von diesen Küstenorten am Maresme erreicht man den Hafen von Blanes in 10-20 Minuten mit dem Auto.',
+        relatedTitle: 'Verwandte Dienstleistungen und Reiseziele',
+        relatedLicenseFree: 'Führerscheinfreie Boote in Blanes verfügbar',
+        relatedPricing: 'Preise nach Saison ansehen',
+        relatedTossa: 'Route fortsetzen bis Tossa de Mar',
+        relatedCostaBrava: 'Bootsvermietung an der Costa Brava',
+      },
+    },
+    tossa: {
+      faqItems: [
+        {
+          question: 'Kann ich mit einem führerscheinfreien Boot von Blanes nach Tossa de Mar fahren?',
+          answer: 'Nein. Führerscheinfreie Boote (2 Meilen Küstenentfernung, 5 Knoten, 15 PS) kommen bis zum Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um nach Tossa zu gelangen, brauchst du die Licencia de Navegación (LN) oder buchst die private Exkursion mit Kapitän.',
+        },
+        {
+          question: 'Wie lange dauert die Fahrt mit dem Boot von Blanes nach Tossa?',
+          answer: 'Zwischen 45 Minuten und 1 Stunde vom Hafen Blanes aus. 7 Meilen spektakuläre Küste mit Klippen und unberührten Buchten.',
+        },
+        {
+          question: 'Wie viel kostet die private Exkursion mit Kapitän nach Tossa?',
+          answer: 'Pacific Craft 625 mit professionellem Skipper, max. 4 Std., bis zu 6 Personen (plus Skipper). Ab {excursionBaja4h} € Nebensaison (April–Juni, September–Saisonende). Inklusive MwSt., Skipper, Liegeplatz, Reinigung und Versicherung. Kraftstoff separat.',
+        },
+        {
+          question: 'Wie viel kostet die Miete nach Tossa mit Licencia de Navegación (LN)?',
+          answer: 'Feste Pakete 2 Std. / 4 Std. / 8 Std., ohne Skipper. Ab {licBaja2h} € (2 Std. Nebensaison) für Boote mit Führerschein. 3 saisonale Preisstufen. Kaution 500 €. MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff separat.',
+        },
+        {
+          question: 'Kann ich vom Boot aus im Ort Tossa anlegen?',
+          answer: 'Es gibt keinen öffentlichen Touristenliegeplatz in Tossa. Sie können in nahegelegenen Buchten wie Cala Llevadó, Mar d\'en Roig oder Cala Pola ankern.',
+        },
+        {
+          question: 'Lohnt es sich, ohne Führerschein mit dem Boot nach Tossa zu fahren?',
+          answer: 'Ja, mit der privaten Exkursion mit Kapitän (Pacific Craft 625, 4 Std., ab {excursionBaja4h} €). Die einzige Option ohne Führerschein.',
+        },
+      ],
+      hero: {
+        title: 'Bootsausflüge nach Tossa de Mar',
+        subtitle: 'Entdecken Sie das schönste Mittelalter-Dorf der Costa Brava vom Hafen Blanes aus. 30-45 Min. Fahrt bis zur berühmten Vila Vella von Tossa de Mar.',
+        badgeFrom: 'Ab Hafen Blanes',
+        badgeTime: '30-45 Min. Fahrt',
+        badgeCapacity: '4-7 Personen',
+      },
+      sections: {
+        whyTossaTitle: 'Warum Tossa de Mar mit dem Boot besuchen?',
+        jewelCostaBrava: 'Das Juwel der Costa Brava',
+        jewelCostaBravaDesc: 'Tossa de Mar gilt als eines der schönsten Dörfer Spaniens. Die berühmte Vila Vella (Altstadt), eine befestigte Anlage aus dem 12. Jahrhundert, ist einzigartig an der gesamten Costa Brava und bietet vom Meer aus spektakuläre Ausblicke.',
+        historicHeritage: 'Historisches Erbe',
+        historicHeritageDesc: 'Die mittelalterlichen Mauern rund um die Vila Vella sind als Nationales Historisch-Künstlerisches Denkmal geschützt. Vom Meer aus haben Sie die beste Perspektive auf diese Festung aus dem 13. Jahrhundert, die die Küste vor Piraten und Eindringlingen schützte.',
+        paradisiacalCoves: 'Paradiesische Buchten',
+        paradisiacalCovesDesc: 'Tossa besitzt einige der unberührtesten und kristallklarsten Buchten der Costa Brava: Cala Pola, Cala Bona, Cala d\'es Codolar. Viele sind nur vom Meer aus erreichbar, perfekt zum Ankern und privaten Genießen.',
+        panoramicNavigation: 'Panorama-Navigation',
+        panoramicNavigationDesc: '30-45 Min. Fahrt entlang der Küste ermöglicht Ihnen den Blick auf Klippen, geheime Buchten und die Silhouette von Tossa, die am Horizont wächst, bis sie ihre ganze Majestät offenbart. Ein unvergessliches Erlebnis.',
+        attractionsTitle: 'Hauptattraktionen von Tossa de Mar',
+        vilaVella: 'Vila Vella',
+        vilaVellaSub: '12. Jahrhundert - Nationales Kulturerbe',
+        vilaVellaDesc: 'Befestigte mittelalterliche Stadt mit Mauern, Türmen und Kopfsteinpflasterstraßen. Spektakuläre Aussicht vom Meer.',
+        playaGrande: 'Playa Grande',
+        playaGrandeSub: 'Hauptstrand',
+        playaGrandeDesc: 'Großer Goldstrand, geschützt durch die mittelalterlichen Mauern. Perfekt zum Ankern in der Nähe.',
+        virginCoves: 'Unberührte Buchten',
+        virginCovesSub: 'Nur vom Meer aus erreichbar',
+        virginCovesDesc: 'Cala Pola, Cala Bona, Es Codolar. Kristallklares Wasser und absolute Ruhe.',
+        whatToDoTitle: 'Aktivitäten in Tossa de Mar',
+        cultureHistory: 'Kultur und Geschichte',
+        exploreVilaVella: 'Die mittelalterliche Vila Vella erkunden',
+        climbWalls: 'Auf die Mauern und Türme steigen',
+        municipalMuseum: 'Stadtmuseum',
+        tossaLighthouse: 'Leuchtturm von Tossa',
+        natureRelax: 'Natur und Entspannung',
+        diveCrystalWaters: 'In kristallklarem Wasser tauchen',
+        anchorSecretCoves: 'In geheimen Buchten ankern',
+        coastalPaths: 'Küstenwanderwege',
+        sunsetFromSea: 'Sonnenuntergänge vom Meer aus',
+        navigationTipsTitle: 'Navigations-Tipps für Tossa',
+        recommendedRoute: 'Empfohlene Route',
+        recommendedRouteDesc: 'Vom Hafen von Blanes navigieren Sie nordwärts vorbei an Lloret de Mar. Fahren Sie weiter entlang der Küste, bis Sie die mittelalterlichen Türme von Tossa erblicken. Die Silhouette der Vila Vella ist schon von Weitem unverwechselbar.',
+        bestSeason: 'Beste Reisezeit',
+        bestSeasonDesc: 'Mai bis Oktober. Die Monate Juni und September bieten das beste Gleichgewicht: schönes Wetter, ruhige See und weniger Gedränge. Meiden Sie August, wenn Sie Ruhe suchen.',
+        anchoringZones: 'Ankerzonen',
+        anchoringZonesDesc: 'Playa Grande: ausgewiesene Zone für Freizeitboote. Cala Pola: freies Ankern in kristallklarem Wasser. Es Codolar: unberührte Bucht, ideal für einen Tagesaufenthalt. Halten Sie Abstand zu markierten Badezonen.',
+        safeNavigation: 'Sichere Navigation',
+        safeNavigationDesc: '1 Stunde Navigation erfordert gute Planung. Prüfen Sie das Wetter, nehmen Sie ausreichend Treibstoff und Wasser mit. Halten Sie sich an die Geschwindigkeitsbegrenzungen in Küstennähe und behalten Sie die Küste stets im Blick.',
+        ctaTitle: 'Bereit, Tossa de Mar zu entdecken?',
+        ctaDescription: 'Buchen Sie Ihr Boot ab dem Hafen von Blanes und erleben Sie das einzigartige Erlebnis, auf dem Seeweg das schönste mittelalterliche Dorf der Costa Brava zu erreichen.',
+        ctaButton: 'Ausflug nach Tossa buchen',
+        warningTitle: 'Tossa ist mit einem Boot ohne Führerschein nicht erreichbar.',
+        warningBody: 'Boote ohne Führerschein (2 Meilen, 5 Knoten, 15 PS) reichen bis Playa de Fenals (südlich von Lloret), 4 Meilen vor Tossa. Um von Blanes nach Tossa zu gelangen, brauchst du (1) eine Selbstanmietung mit Licencia de Navegación (geschlossene Pakete 2 Std. / 4 Std. / 8 Std. ab {licBaja2h} € mit Mingolla Brava 19 oder Trimarchi 57S, MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff und Kaution 500 € extra), oder (2) die <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Private Bootsfahrt mit Kapitän</a> (Pacific Craft 625 + Kapitän, max. 4 Std., bis 6 Personen, ab {excursionBaja4h} € mit MwSt., Kapitän, Liegeplatz, Reinigung und Versicherung inklusive; Kraftstoff extra). Die dritte Alternative ist, mit dem Auto nach Tossa zu fahren (20 Min. von Lloret) und dort vor Ort ein Boot ohne Führerschein zu mieten.',
+        crossLinkingText: 'Wir bieten auch Service für Touristen, die in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> und <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a> untergebracht sind. Von diesen Küstenorten des Maresme erreicht man den Hafen von Blanes in 10-20 Minuten mit dem Auto.',
+        relatedTitle: 'Verwandte Dienstleistungen und Ziele',
+        relatedCostaBrava: 'Weitere Ziele an der Costa Brava',
+        relatedLicensed: 'Boote mit Führerschein, um Tossa zu erreichen',
+        relatedPricing: 'Preise und Saisonen einsehen',
+        relatedLloret: 'Zwischenziel: Lloret de Mar mit dem Boot',
+        relatedBlanes: 'Abfahrtshafen: Blanes',
+      },
+    },
+    malgrat: {
+      hero: {
+        title: 'Bootsverleih in der Nähe von Malgrat de Mar',
+        subtitle: 'Urlaub in Malgrat de Mar? Der Hafen von Blanes ist nur 10 Minuten mit dem Auto entfernt. Mieten Sie ein Boot und entdecken Sie die schönsten Buchten der Costa Brava.',
+        badgeDistance: '8 km von Blanes',
+        badgeTime: '10 min mit dem Auto',
+        badgeBeach: 'Familienstrand',
+        imageAlt: 'Bucht an der Costa Brava mit Klippen und Pinien, 25 Minuten mit dem Boot vom Hafen Blanes entfernt',
+      },
+      sections: {
+        whyRentTitle: 'Warum ein Boot ab Blanes mieten?',
+        closestPort: 'Der Nächste Hafen',
+        closestPortDesc: 'Blanes ist der nächstgelegene Sportboothafen von Malgrat de Mar, nur 10 Minuten über die N-II. 8 Boote bereit zum Ablegen.',
+        varietyBoats: '8 Boote Verfügbar',
+        varietyBoatsDesc: 'Von führerscheinfreien Booten für Familien bis zu Booten mit Führerschein für erfahrene Skipper. 4 bis 7 Passagiere.',
+        fuelIncluded: 'Benzin Inklusive',
+        fuelIncludedDesc: 'Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 75 €/Stunde.',
+        noExperience: 'Ohne Erfahrung',
+        noExperienceDesc: 'Führerscheinfreie Boote mit 15 Minuten Einweisung inklusive. Ideal für Touristen.',
+        townAttractionsTitle: 'Sehenswürdigkeiten in Malgrat de Mar',
+        attraction1: 'Strand von Malgrat',
+        attraction1Desc: 'Großer Sandstrand mit goldfeinem Sand und allen Einrichtungen. Ideal für Familien.',
+        attraction2: 'Parc Francesc Macià',
+        attraction2Desc: 'Großer Stadtpark mit Gärten und Spielplätzen. Perfekt für einen Spaziergang.',
+        attraction3: 'Strandpromenade',
+        attraction3Desc: 'Promenade am Meer mit Restaurants und Blick auf das Mittelmeer.',
+        howToGetTitle: 'Anfahrt zum Hafen von Blanes',
+        byCar: 'Mit dem Auto',
+        byCarDesc: 'Von Malgrat nehmen Sie die N-II Richtung Blanes. 8 km, etwa 10 Minuten.',
+        byTaxi: 'Mit dem Taxi',
+        byTaxiDesc: 'Taxi von Malgrat zum Hafen von Blanes: ca. 12-15 €, 10 Minuten.',
+        byPublicTransport: 'Öffentliche Verkehrsmittel',
+        byPublicTransportDesc: 'RENFE-Zug Linie R1 von Malgrat nach Blanes (5 Min., alle 30 Min.). Vom Bahnhof 15 Min. zu Fuß.',
+        parkingAtBlanes: 'Parken in Blanes',
+        parkingAtBlanesDesc: 'Kostenlose Parkplätze in der Nähe des Hafens von Blanes verfügbar. Im Sommer früh anreisen.',
+        boatDestinationsTitle: 'Mit dem Boot ab Blanes erkunden',
+        boatDestinationsDesc: 'Fahren Sie nach Lloret de Mar (25 Min.) und Tossa de Mar (30-45 Min.) und entdecken Sie Buchten wie Cala Sant Francesc und Cala Brava.',
+        ctaTitle: 'Aus Malgrat? Ihr Boot wartet in Blanes',
+        ctaDescription: 'Nur 10 Minuten mit dem Auto. Buchen Sie und entdecken Sie die Costa Brava.',
+        ctaButton: 'Boot ab Blanes buchen',
+      },
+      faqItems: [
+        {
+          question: 'Wie weit ist Malgrat de Mar vom Hafen Blanes entfernt?',
+          answer: 'Malgrat de Mar liegt nur 8 km vom Hafen Blanes entfernt, etwa 10 Minuten mit dem Auto über die N-II. Sie können auch mit dem RENFE-Zug Linie R1 in nur 5 Minuten anreisen.',
+        },
+        {
+          question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten?',
+          answer: 'Die Bootsvermietung beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.',
+        },
+        {
+          question: 'Brauche ich einen Bootsführerschein?',
+          answer: 'Nicht unbedingt. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung. Wir haben auch Boote mit Führerschein.',
+        },
+        {
+          question: 'Gibt es Parkplätze am Hafen von Blanes?',
+          answer: 'Ja, in der Nähe des Hafens von Blanes stehen kostenlose Parkplätze zur Verfügung. In der Hochsaison empfehlen wir, früh anzureisen, um einen Platz zu sichern, oder Zug/Taxi in Betracht zu ziehen.',
+        },
+        {
+          question: 'Kann ich das Boot direkt von Malgrat de Mar aus mieten?',
+          answer: 'Nein. Malgrat de Mar hat weder einen Yachthafen noch eine Vermietstation für Motorboote. Der nächstgelegene Yachthafen zu Malgrat ist der Hafen von Blanes (8 km, 10 Min. mit dem Auto oder 5 Min. mit dem Zug R1). Alle unsere Boote legen im Hafen von Blanes ab und kehren dorthin zurück.',
+        },
+        {
+          question: 'Welche Buchten kann ich mit dem Boot von Blanes aus erreichen, wenn ich in Malgrat wohne?',
+          answer: 'Mit einem führerscheinfreien Boot von Blanes erreichen Sie in 25 Minuten den Playa de Fenals (südlich von Lloret), vorbei an 7 Buchten: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella und Playa de Fenals. Mit einem Boot mit Grundlizenz können Sie Tossa de Mar (45 Min.) und darüber hinaus erreichen.',
+        },
+        {
+          question: 'Gibt es einen Transfer-Service von Hotels in Malgrat zum Hafen von Blanes?',
+          answer: 'Wir bieten keinen direkten Transfer an, aber die Strecke ist sehr kurz: 5 Minuten mit dem Zug R1 (Malgrat → Blanes) oder 10 Minuten mit dem Auto/Taxi (ca. 12–15 €). Der Bahnhof Blanes liegt 10 Gehminuten vom Hafen entfernt. Es gibt auch den lokalen Bus L23.',
+        },
+      ],
+    },
+    santaSusanna: {
+      faqItems: [
+        {
+          question: 'Wie weit ist Santa Susanna vom Hafen Blanes entfernt?',
+          answer: 'Santa Susanna liegt 12 km vom Hafen Blanes entfernt, etwa 15 Minuten mit dem Auto über die N-II. Sie können auch mit dem RENFE-Zug Linie R1 in nur 10 Minuten anreisen.',
+        },
+        {
+          question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Santa Susanna bin?',
+          answer: 'Die Bootsvermietung beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.',
+        },
+        {
+          question: 'Brauche ich einen Bootsführerschein, um ein Boot zu mieten?',
+          answer: 'Nicht unbedingt. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung. Wir haben auch Boote mit Führerschein.',
+        },
+        {
+          question: 'Ist es einfach, mit öffentlichen Verkehrsmitteln von Santa Susanna anzureisen?',
+          answer: 'Ja, die RENFE-Linie R1 verbindet Santa Susanna mit Blanes in nur 10 Minuten. Die Züge fahren in der Hochsaison alle 30 Minuten. Der Bahnhof Blanes liegt 10 Gehminuten vom Hafen entfernt.',
+        },
+        {
+          question: 'Gibt es Bootsvermietung in Santa Susanna selbst?',
+          answer: 'Nein. Santa Susanna hat einen breiten Strand, verfügt aber über keinen Yachthafen und keinen Motorbootverleih. Der nächstgelegene Yachthafen ist der Hafen von Blanes (12 km, 15 Min. mit dem Auto oder 10 Min. mit dem Zug R1). Es ist die praktischste Verleihstation, wenn Sie in Santa Susanna wohnen.',
+        },
+        {
+          question: 'Was ist die beste Bootsexkursion, wenn ich in Santa Susanna wohne?',
+          answer: 'Von Blanes aus empfehlen wir: (a) 4-stündige Buchtentour ohne Führerschein bis Playa de Fenals mit Ankern in 2–3 kristallklaren Buchten (ab 135 € für 5 Personen); (b) 4-stündige private Exkursion mit Skipper bis Tossa und Cala Bona (ab {excursionBaja4h} €, ideal ohne nautische Erfahrung); (c) Boot mit Grundlizenz, wenn jemand in der Gruppe eine Lizenz hat (ab 240 € / 4 Std.).',
+        },
+        {
+          question: 'Kann ich von Santa Susanna aus eine Bootsfahrt bei Sonnenuntergang machen?',
+          answer: 'Ja, sehr beliebt. Von Blanes aus bieten wir Sonnenuntergangsfahrten (18:30–21:00 Uhr je nach Monat) mit führerscheinfreiem Boot für 115 € für 2 Stunden an. Sie fahren bei goldenem Licht an 7 Buchten vorbei. Von Santa Susanna erreichen Sie uns in 15 Min. mit dem Auto oder 10 Min. mit dem Zug. Im Sommer bitte im Voraus buchen.',
+        },
+        {
+          question: 'Kann ich von Santa Susanna aus eine Bootstour machen, ohne selbst zu fahren?',
+          answer: 'Ja. Neben der führerscheinfreien Miete, bei der Sie selbst fahren, bieten wir die private Tour mit Skipper an: eine Bootstour ab dem Hafen von Blanes von 2 bis 8 Stunden für bis zu 6 Personen, mit Stopps zum Schwimmen und Schnorcheln. Ideal für Familien, die einfach nur genießen möchten.',
+        },
+      ],
+      hero: {
+        title: 'Bootsverleih in der Nähe von Santa Susanna',
+        subtitle: 'Urlaub in Santa Susanna? Der Hafen von Blanes ist nur 15 Minuten mit dem Auto entfernt. Mieten Sie ein führerscheinfreies Boot und erkunden Sie die Costa Brava.',
+        badgeDistance: '12 km von Blanes',
+        badgeTime: '15 min mit dem Auto',
+        badgeBeach: 'Resortzone',
+        imageAlt: 'Küste mit Klippen und türkisfarbenem Wasser der Costa Brava, mit dem Boot von Blanes aus erreichbar',
+      },
+      sections: {
+        whyRentTitle: 'Warum ein Boot ab Blanes mieten?',
+        closestPort: 'Der Nächste Hafen',
+        closestPortDesc: 'Blanes ist der nächstgelegene Sportboothafen von Santa Susanna, nur 15 Minuten über die N-II. 8 Boote bereit zum Ablegen.',
+        varietyBoats: '8 Boote Verfügbar',
+        varietyBoatsDesc: 'Von führerscheinfreien Booten für Familien bis zu Booten mit Führerschein für erfahrene Skipper. 4 bis 7 Passagiere.',
+        fuelIncluded: 'Benzin Inklusive',
+        fuelIncludedDesc: 'Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 75 €/Stunde.',
+        noExperience: 'Ohne Erfahrung',
+        noExperienceDesc: 'Führerscheinfreie Boote mit 15 Minuten Einweisung inklusive. Ideal für Touristen.',
+        townAttractionsTitle: 'Sehenswürdigkeiten in Santa Susanna',
+        attraction1: 'Strand von Santa Susanna',
+        attraction1Desc: 'Langer Sandstrand mit ruhigem, flachem Wasser. Perfekt für Familien mit Kindern.',
+        attraction2: 'Castell de Can Rates',
+        attraction2Desc: 'Historischer Wehrturm aus dem 16. Jahrhundert, heute Kulturzentrum mit Ausstellungen und Veranstaltungen.',
+        attraction3: 'Resort- und Spa-Zone',
+        attraction3Desc: 'Santa Susanna ist bekannt für seine Hotelanlagen mit Spa, Pools und Unterhaltung für die ganze Familie.',
+        howToGetTitle: 'Anfahrt zum Hafen von Blanes',
+        byCar: 'Mit dem Auto',
+        byCarDesc: 'Von Santa Susanna nehmen Sie die N-II Richtung Norden nach Blanes. 12 km, etwa 15 Minuten.',
+        byTaxi: 'Mit dem Taxi',
+        byTaxiDesc: 'Taxi von Santa Susanna zum Hafen von Blanes: ca. 18-22 €, 15 Minuten.',
+        byPublicTransport: 'Öffentliche Verkehrsmittel',
+        byPublicTransportDesc: 'RENFE-Zug Linie R1 von Santa Susanna nach Blanes (10 Min., alle 30 Min.). Vom Bahnhof 15 Min. zu Fuß.',
+        parkingAtBlanes: 'Parken in Blanes',
+        parkingAtBlanesDesc: 'Kostenlose Parkplätze in der Nähe des Hafens von Blanes verfügbar. Im Sommer früh anreisen.',
+        boatDestinationsTitle: 'Mit dem Boot ab Blanes erkunden',
+        boatDestinationsDesc: 'Fahren Sie nach Lloret de Mar (25 Min.) und Tossa de Mar (30-45 Min.) und entdecken Sie Buchten wie Cala Sant Francesc und Cala Brava.',
+        ctaTitle: 'Aus Santa Susanna? Nur 15 Minuten bis zu Ihrem Abenteuer',
+        ctaDescription: 'Der Hafen von Blanes ist zum Greifen nah. Buchen Sie Ihr Boot und erleben Sie die Costa Brava anders.',
+        ctaButton: 'Boot ab Blanes buchen',
+      },
+    },
+    calella: {
+      faqItems: [
+        {
+          question: 'Wie weit ist Calella vom Hafen Blanes entfernt?',
+          answer: 'Calella liegt 17 km vom Hafen Blanes entfernt, etwa 20 Minuten mit dem Auto über die N-II. Sie können auch mit dem RENFE-Zug Linie R1 in nur 15 Minuten anreisen.',
+        },
+        {
+          question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Calella bin?',
+          answer: 'Die Bootsvermietung beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Für Boote bis 15 PS ist kein Führerschein erforderlich. Wir verfügen über {fleetCount} Boote für 4–11 Personen.',
+        },
+        {
+          question: 'Brauche ich Vorkenntnisse, um ein Boot zu mieten?',
+          answer: 'Sie brauchen keine Erfahrung. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung, einschließlich Navigationsregeln und Sicherheit.',
+        },
+        {
+          question: 'Kann ich mit öffentlichen Verkehrsmitteln von Calella hin und zurück fahren?',
+          answer: 'Ja, die RENFE-Linie R1 verbindet Calella mit Blanes in 15 Minuten. Die Züge fahren in der Saison alle 30 Minuten. Der Bahnhof Blanes liegt etwa 10 Gehminuten vom Hafen entfernt.',
+        },
+        {
+          question: 'Gibt es Bootsvermietung in Calella selbst?',
+          answer: 'Calella ist der größte Ort in diesem Abschnitt, verfügt aber über keinen Yachthafen mit Motorbootverleih. Die nächstgelegenen Yachthäfen sind Blanes (17 km nördlich, beste Flotte im Abschnitt) und Arenys de Mar (15 km südlich, höhere Preise). Wir empfehlen Blanes für das beste Preis-Leistungs-Verhältnis und direkte R1-Verbindung in 15 Minuten.',
+        },
+        {
+          question: 'Kann ich von Calella aus eine Bootsexkursion nach Tossa de Mar machen?',
+          answer: 'Nicht direkt von Calella (keine Vermietung). Von Blanes aus ja: Mit einem Boot mit Licencia de Navegación (LN) erreichst du Tossa in 45 Min. (ab {licBaja2h} €/2 Std.), oder mit unserer privaten Exkursion mit Kapitän 4 Std. bis Tossa einschließlich Cala Bona und Vila Vella (ab {excursionBaja4h} € für bis zu 6 Personen, plus Skipper). Führerscheinfreie Boote können Tossa aufgrund der gesetzlichen 2-Meilen-Grenze nicht erreichen.',
+        },
+        {
+          question: 'Wie viel kostet der Zug R1 von Calella nach Blanes?',
+          answer: 'Das Einzelticket R1 Calella → Blanes kostet etwa 3 € (ATM-Tarif Zone 4–5). Mit der T-Casual-Karte für 10 Fahrten ist es günstiger. Dauer: 15 Minuten. Frequenz: alle 30 Minuten in der Saison. Vom Bahnhof Blanes zum Hafen sind es 10 Gehminuten oder 3 Min. mit dem Taxi.',
+        },
+      ],
+      hero: {
+        title: 'Bootsverleih in der Nähe von Calella',
+        subtitle: 'Aufenthalt in Calella? Nur 20 Minuten mit dem Auto zum Hafen von Blanes. Mieten Sie ein Boot für ein einzigartiges Erlebnis.',
+        badgeDistance: '17 km von Blanes',
+        badgeTime: '20 min mit dem Auto',
+        badgeBeach: 'Playa Gran',
+        imageAlt: 'Versteckte Bucht an der Costa Brava mit kristallklarem Wasser, auf der Bootsroute von Blanes aus',
+      },
+      sections: {
+        whyRentTitle: 'Warum ein Boot ab Blanes mieten?',
+        closestPort: 'Der Nächste Hafen',
+        closestPortDesc: 'Blanes ist der nächstgelegene Sportboothafen von Calella, nur 20 Minuten über die N-II. 8 Boote bereit zum Ablegen.',
+        varietyBoats: '8 Boote Verfügbar',
+        varietyBoatsDesc: 'Von führerscheinfreien Booten für Familien bis zu Booten mit Führerschein für erfahrene Skipper. 4 bis 7 Passagiere.',
+        fuelIncluded: 'Benzin Inklusive',
+        fuelIncludedDesc: 'Alle unsere Vermietungen beinhalten den Kraftstoff. Keine versteckten Kosten. Ab 75 €/Stunde.',
+        noExperience: 'Ohne Erfahrung',
+        noExperienceDesc: 'Führerscheinfreie Boote mit 15 Minuten Einweisung inklusive. Ideal für Touristen.',
+        townAttractionsTitle: 'Sehenswürdigkeiten in Calella',
+        attraction1: 'Playa Gran de Calella',
+        attraction1Desc: 'Der Hauptstrand von Calella: langer goldener Sandstrand mit Restaurants, Bars und allen Einrichtungen.',
+        attraction2: 'Leuchtturm von Calella',
+        attraction2Desc: 'Historischer Leuchtturm auf einem Hügel mit spektakulärem Panoramablick auf das Mittelmeer.',
+        attraction3: 'Parc Dalmau und Altstadt',
+        attraction3Desc: 'Wunderschöner bewaldeter Park mit schattigen Wegen und das charmante historische Zentrum von Calella mit mittelalterlichen Gassen.',
+        howToGetTitle: 'Anfahrt zum Hafen von Blanes',
+        byCar: 'Mit dem Auto',
+        byCarDesc: 'Von Calella nehmen Sie die N-II Richtung Norden nach Blanes. 17 km, etwa 20 Minuten.',
+        byTaxi: 'Mit dem Taxi',
+        byTaxiDesc: 'Taxi von Calella zum Hafen von Blanes: ca. 25-30 €, 20 Minuten.',
+        byPublicTransport: 'Öffentliche Verkehrsmittel',
+        byPublicTransportDesc: 'RENFE-Zug Linie R1 von Calella nach Blanes (15 Min., alle 30 Min.). Vom Bahnhof 15 Min. zu Fuß.',
+        parkingAtBlanes: 'Parken in Blanes',
+        parkingAtBlanesDesc: 'Kostenlose Parkplätze in der Nähe des Hafens von Blanes verfügbar. Im Sommer früh anreisen.',
+        boatDestinationsTitle: 'Mit dem Boot ab Blanes erkunden',
+        boatDestinationsDesc: 'Fahren Sie nach Lloret de Mar (25 Min.) und Tossa de Mar (30-45 Min.) und entdecken Sie Buchten wie Cala Sant Francesc und Cala Brava.',
+        ctaTitle: 'Aus Calella? Ihr Abenteuer beginnt in Blanes',
+        ctaDescription: '20 Minuten mit dem Auto zum Hafen. Buchen Sie und entdecken Sie die geheimen Buchten der Costa Brava.',
+        ctaButton: 'Boot ab Blanes buchen',
+      },
+    },
+    costaBrava: {
+      hero: {
+        title: 'Bootsverleih an der Costa Brava',
+        subtitle: 'Entdecke die schönsten Buchten und Strände der Costa Brava an Bord unserer Boote. Abfahrt vom Hafen von Blanes, im Herzen der katalanischen Küste. Führerscheinfreie Boote ab 75 €/Stunde inklusive Treibstoff und Versicherung.',
+        badgePort: 'Hafen von Blanes',
+        badgeCapacity: '4-7 Personen',
+        badgeLicense: 'Mit und ohne Führerschein',
+      },
+      sections: {
+        introP1: 'Die Costa Brava ist eines der spektakulaersten nautischen Reiseziele im Mittelmeer. Mit ueber 200 Kilometern Kueste zwischen Blanes und der franzoesischen Grenze bietet sie eine einzigartige Kombination aus Klippen, Buchten mit kristallklarem Wasser, mittelalterlichen Doerfern und Natur, die nur vom Meer aus zu schaetzen ist.',
+        introP2: 'Bei Costa Brava Rent a Boat bieten wir Ihnen den einfachsten Weg, diese Kueste zu erkunden: Mieten Sie eines unserer Boote im Hafen von Blanes und segeln Sie in Ihrem eigenen Tempo. Keine Vorkenntnisse oder kein Bootsschein erforderlich fuer die meisten unserer Boote.',
+        introP3: 'Bei fuehrerscheinfreien Booten ist der Preis inklusive Treibstoff, Vollkaskoversicherung und Sicherheitsausruestung. Keine versteckten Kosten.',
+        whyChooseTitle: 'Warum die Costa Brava fuer Bootsverleih waehlen',
+        covesTitle: 'Buchten und Straende, die zu Fuss nicht erreichbar sind',
+        covesDesc: 'Die Costa Brava verbirgt Dutzende von Buchten, die nur per Boot erreichbar sind. Von Blanes aus erreichen Sie in nur 15-45 Minuten unberuehrte Straende mit tuerkisfarbenem Wasser.',
+        calmWatersTitle: 'Ruhiges, geschuetztes Wasser',
+        calmWatersDesc: 'Die Ausrichtung der Kueste und ihre zahlreichen Buchten schaffen ideale Bedingungen zum Segeln, auch fuer Anfaenger.',
+        accessibleTitle: 'Erreichbar von Barcelona und Girona',
+        accessibleDesc: 'Unser Heimathafen in Blanes liegt nur 70 Minuten von Barcelona und 35 Minuten von Girona ueber die Autobahn entfernt. Kostenlose Parkplaetze neben dem Hafen.',
+        allLevelsTitle: 'Fuer alle Erfahrungsstufen',
+        allLevelsDesc: 'Ob du noch nie ein Boot gefahren bist oder ein erfahrener Skipper bist: wir haben das perfekte Boot für dich. 4 führerscheinfreie Boote für Anfänger und Boote mit starkem Motor für alle, die weiter hinaus wollen. Einweisung bei jeder Vermietung inklusive.',
+        navigationGuideTitle: 'Navigationsguide Costa Brava',
+        routeBlanesLloret: 'Blanes - Lloret de Mar: 30 Min., leicht, ohne Führerschein',
+        routeBlanesLloretDesc: 'Eine der beliebtesten Routen an der Costa Brava. Perfekt fuer einen Halbtagesausflug mit Halt an der Cala Treumal.',
+        routeBlanesTossa: 'Blanes - Tossa de Mar: 45 Min., mittel, Führerschein empfohlen',
+        routeBlanesTossaDesc: 'Die spektakulaerste Route der gesamten Kueste. Sie erreichen die ikonische Vila Vella von Tossa de Mar.',
+        routeBlaneSantFeliu: 'Blanes - Sant Feliu de Guixols: 1,5 Std., fortgeschritten, Führerschein erforderlich',
+        routeBlaneSantFeliuDesc: 'Navigation auf offener See, die Planung und Aufmerksamkeit auf Wetterbedingungen erfordert.',
+        routeBlaneCalaBrava: 'Blanes - Cala Brava: 15 Min., leicht, ohne Führerschein',
+        routeBlaneCalaBravaDesc: 'Der perfekte Kurzausflug fuer Familien und Anfaenger. Nur 15 Minuten vom Hafen von Blanes zu dieser unberuehrten Bucht.',
+        boatTypesTitle: 'Bootstypen fuer die Costa Brava',
+        noLicenseTitle: 'Boote ohne Führerschein',
+        noLicensePower: 'Bis 15 PS',
+        noLicenseCapacity: 'Maximal 5 Personen an Bord',
+        noLicenseNavigation: 'Kuestennavigation bis 2 Seemeilen',
+        noLicenseFuel: 'Treibstoff im Preis inbegriffen',
+        noLicensePrice: 'Ab 75 €/Stunde',
+        noLicenseDesc: 'Unsere fuehrerscheinfreien Boote sind ideal fuer Familien. Keine Qualifikation noetig: 15 Minuten Einweisung und los geht\'s. Alles inklusive: Treibstoff, Versicherung, Sicherheitsausruestung und Schnorchelausruestung.',
+        licensedTitle: 'Boote mit Führerschein',
+        licensedPower: '40 bis 115 PS',
+        licensedCapacity: 'Bis zu 7 Personen an Bord',
+        licensedNavigation: 'Hochseenavigation ohne Einschraenkungen',
+        licensedFuel: 'Treibstoff NICHT inbegriffen (separate Kaution)',
+        licensedPrice: 'Ab 90 €/Stunde',
+        licensedDesc: 'Für qualifizierte Skipper, die über die unmittelbare Küste hinaus erkunden möchten. Mehr Leistung, Reichweite und Kapazität. Der Treibstoff wird separat nach tatsächlichem Verbrauch berechnet. Die Licencia de Navegación (LN) genügt; auch PNB, PER oder europäische Äquivalente sind gültig.',
+        bestCovesTitle: 'Die besten Buchten der Costa Brava per Boot',
+        calaBravaName: 'Cala Brava',
+        calaBravaDesc: 'Ein verstecktes Juwel nur 15 Minuten mit dem Boot von Blanes. Tuerkisfarbenes Wasser und spektakulaerer Meeresboden zum Schnorcheln.',
+        calaSantFrancescName: 'Cala Sant Francesc',
+        calaSantFrancescDesc: 'Zwischen Blanes und Lloret de Mar gelegen, perfekt fuer Familien mit feinem Sand und transparentem Wasser.',
+        calaTreumalName: 'Cala Treumal',
+        calaTreumalDesc: 'An der Grenze zwischen Blanes und Lloret, mit subtropischer Vegetation und kristallklarem Mittelmerwasser.',
+        calaBBoadellaName: 'Cala Boadella',
+        calaBBoadellaDesc: 'Gilt als die schoenste Bucht von Lloret de Mar. Goldener Sandstrand, geschuetzt von bewaldeten Klippen.',
+        platjaPalomeraName: 'Platja de Sa Palomera',
+        platjaPalomeraDesc: 'Der ikonischste Strand von Blanes, der den offiziellen Beginn der Costa Brava markiert.',
+        pricingTitle: 'Bootsverleih Preise Costa Brava 2026',
+        ctaTitle: 'Buchen Sie Ihr Boot an der Costa Brava',
+        ctaDescription: 'Wähle dein Boot, Datum und Uhrzeit. Treibstoff, Versicherung und Einweisung bei führerscheinfreien Booten inklusive. Buche per WhatsApp: wir bestätigen innerhalb von 2 Stunden.',
+        ctaButton: 'Per WhatsApp buchen',
+        crossLinkEnglish: 'This page in English: Boat Rental Costa Brava',
+      },
+      faq: {
+        experienceQ: 'Brauche ich Vorerfahrung, um ein Boot an der Costa Brava zu mieten?',
+        experienceA: 'Nein, Sie brauchen keinerlei Vorerfahrung. Fuer unsere fuehrerscheinfreien Boote (bis 15 PS) muessen Sie nur ueber 18 Jahre alt sein. Wir bieten eine 15-minuetige praktische Einweisung vor der Abfahrt.',
+        distanceQ: 'Wie weit kann ich ohne Führerschein von Blanes aus fahren?',
+        distanceA: 'Mit einem fuehrerscheinfreien Boot koennen Sie bis zu 2 Seemeilen von der Kueste navigieren. Das ermoeglicht Ihnen, Buchten wie Cala Brava (15 Min.), Cala Sant Francesc (20 Min.) und Lloret de Mar (30 Min.) zu erkunden.',
+        weatherQ: 'Was passiert bei schlechtem Wetter am Tag meiner Buchung?',
+        weatherA: 'Sicherheit hat bei uns oberste Prioritaet. Bei ungeeigneten Wetterbedingungen bieten wir einen kostenlosen Datumswechsel oder eine vollstaendige Rueckerstattung an.',
+        petsQ: 'Kann ich Haustiere mit auf das Boot nehmen?',
+        petsA: 'Ja, Haustiere sind auf allen unseren Booten willkommen. Wir empfehlen, frisches Wasser, ein Handtuch und geeigneten Sonnenschutz fuer Ihr Tier mitzubringen.',
+      },
+    },
+    tordera: {
+      faqItems: [
+        {
+          question: 'Wie weit ist Tordera vom Hafen Blanes entfernt?',
+          answer: 'Tordera liegt nur 10 km vom Hafen Blanes entfernt, etwa 15 Minuten mit dem Auto über die C-32 oder die Landstraße. Sie können auch mit dem RENFE-Zug Linie R1 in nur 8 Minuten vom Bahnhof Blanes anreisen.',
+        },
+        {
+          question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Tordera wohne?',
+          answer: 'Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} € für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.',
+        },
+        {
+          question: 'Brauche ich einen Bootsführerschein?',
+          answer: 'Nicht unbedingt. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung. Wir haben auch Boote mit Führerschein für erfahrene Skipper.',
+        },
+        {
+          question: 'Gibt es Parkplätze am Hafen von Blanes?',
+          answer: 'Ja, in der Nähe des Hafens von Blanes stehen kostenlose Parkplätze zur Verfügung. Von Tordera aus können Sie bequem parken, da es in dieser weniger touristischen Zone als in anderen Küstenorten normalerweise auch in der Hochsaison verfügbar ist.',
+        },
+      ],
+      seo: {
+        title: 'Bootsvermietung Tordera | Hafen Blanes 15 Min | Ohne Führerschein 75€/Std | Delta del Tordera',
+        description: 'Wohnst du in Tordera oder in der Nähe des Deltas? Hafen Blanes 15 Min mit dem Auto oder 8 Min mit dem Zug R1. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Erkunde das Delta del Tordera.',
+        ogTitle: 'Bootsvermietung Tordera | Delta del Tordera mit dem Boot',
+        ogDescription: 'Von Tordera zum Hafen Blanes in 15 Min. Boot ohne Führerschein ab 75€/Std. Delta del Tordera per Boot. 4.8★.',
+      },
+      schema: {
+        name: 'Bootsvermietung in der Nähe von Tordera',
+        description: 'Miete Boote ab dem Hafen von Blanes, nur 15 Autominuten von Tordera entfernt. Boote ohne Führerschein ab 75 €/Stunde mit Benzin inklusive.',
+      },
+      breadcrumbName: 'Bootsvermietung Tordera',
+      sections: {
+        heroTitle: 'Bootsvermietung in der Nähe von Tordera',
+        heroSubtitle: 'Tordera ist eine Wohngemeinde im Landesinneren, die als Tor zur Costa Brava dient. Nur 15 Autominuten oder 8 Zugminuten vom Hafen Blanes entfernt, ist sie ein idealer Ausgangspunkt, um das Meer zu genießen. Mit einfachen Parkmöglichkeiten am Hafen und ohne die Menschenmassen der Küste ist das Bootfahren ab Blanes die beste Option für Bewohner und Besucher von Tordera.',
+        heroBadgeCar: '10 km / 15 Min mit dem Auto',
+        heroBadgeTransport: 'RENFE R1: 8 Min',
+        heroBadgeExtra: 'Einfaches Parken',
+        whyTitle: 'Warum ein Boot ab Blanes mieten, wenn Sie in Tordera sind?',
+        whyCard1Title: 'Ihr nächstgelegener Hafen',
+        whyCard1Desc: 'Der Hafen von Blanes ist nur 10 km von Tordera entfernt und damit der nächstgelegene und zugänglichste Bootsvermietungspunkt. Ob Sie Anwohner sind oder auf der Durchreise – in 15 Minuten können Sie bereits durch das kristallklare Wasser der Costa Brava fahren. Die Straßenverbindung ist direkt und unkompliziert.',
+        whyCard2Title: '{fleetCount} Boote verfügbar',
+        whyCard2Desc: 'Unsere Flotte umfasst {fleetCount} Boote: führerscheinfreie Boote, ideal für Familien und Anfänger, sowie Boote mit Führerschein für Erfahrenere. Von Booten für 4 Personen bis zu Booten für Gruppen mit bis zu 11 Personen.',
+        whyCard3Title: 'Benzin bei Booten ohne Führerschein inklusive',
+        whyCard3Desc: 'Der Preis für Boote ohne Führerschein beinhaltet das Benzin. Ab 75 € pro Stunde. Keine versteckten Kosten oder Überraschungen beim Endpreis.',
+        whyCard4Title: 'Keine Vorkenntnisse erforderlich',
+        whyCard4Desc: 'Vor dem Ablegen bieten wir Ihnen 15 Minuten praktische Einweisung, in der Sie lernen, wie man den Motor bedient, die Grundregeln der Navigation und die besten Ecken zum Erkunden. Jede Person über 18 Jahre kann unsere Boote ohne Führerschein steuern.',
+        townTitle: 'Tordera: Tor zur Costa Brava',
+        townIntro: 'Tordera ist eine ruhige und gut angebundene Gemeinde im Tal des Flusses Tordera. Ihre strategische Lage zwischen Binnenland und Küste macht sie zu einem ausgezeichneten Ausgangspunkt für die Erkundung der Costa Brava. Viele Bewohner von Tordera nutzen die Nähe zum Hafen Blanes, um das Bootfahren ohne die Menschenmassen großer Küstenorte zu genießen.',
+        townCard1Title: 'Binnenland und Natur',
+        townCard1Desc: 'Wohngemeinde umgeben von Natur, mit dem Montnegre und dem Corredor als nahegelegene Naturparks. Kombinieren Sie Wandern im Binnenland mit einem Tag Bootsfahrt an der Küste.',
+        townCard2Title: 'Wenige Minuten von der Küste entfernt',
+        townCard2Desc: 'Obwohl Tordera im Binnenland liegt, hat es schnellen Zugang sowohl zum Maresme als auch zur Costa Brava. Der Hafen von Blanes ist Ihre direkte Verbindung zum Mittelmeer.',
+        townCard3Title: 'Gut angebunden',
+        townCard3Desc: 'Mit RENFE-Bahnhof (Linie R1), Autobahn C-32 und guten Landstraßen ist die Fahrt vom Hafen Blanes nach Tordera schnell und bequem mit jedem Verkehrsmittel.',
+        howTitle: 'Wie Sie von Tordera zum Hafen Blanes gelangen',
+        howCarTitle: 'Mit dem Auto (15 Minuten)',
+        howCarDesc: 'Nehmen Sie von Tordera aus die Straße Richtung Blanes (GI-600 oder C-32). Es sind 10 km direkte Fahrt zum Hafen von Blanes. Das Parken im Hafenbereich ist kostenlos und in der Regel gut verfügbar, besonders wenn Sie morgens ankommen.',
+        howTaxiTitle: 'Mit dem Taxi',
+        howTaxiDesc: 'Ein Taxi von Tordera zum Hafen Blanes kostet ca. 15-20 €. Es ist eine schnelle und bequeme Option für Hin- und Rückfahrt.',
+        howTransportTitle: 'Mit dem RENFE-Zug (8 Minuten)',
+        howTransportDesc: 'Die R1-Linie der RENFE Rodalies verbindet Tordera mit Blanes in nur 8 Minuten. Es ist die schnellste und günstigste Option. Die Züge fahren in der Saison alle 30 Minuten. Vom Bahnhof Blanes aus ist der Hafen 10-15 Gehminuten über die Strandpromenade entfernt.',
+        howParkingTitle: 'Parken in Blanes',
+        howParkingDesc: 'In der Nähe des Hafens von Blanes gibt es kostenlose Parkplätze. Bewohner von Tordera haben den Vorteil, früh aus dem Binnenland anzureisen, sodass es in der Regel einfacher ist, einen Parkplatz zu finden als für Besucher aus weiter entfernten Küstenorten.',
+        destsTitle: 'Was können Sie mit dem Boot ab Blanes sehen?',
+        destsIntro: 'Vom Hafen Blanes aus können Sie nach Norden entlang der spektakulären Küste der Costa Brava fahren. Entdecken Sie türkisfarbene Buchten, die zwischen Klippen versteckt sind, Strände, die nur vom Meer aus zugänglich sind, und charmante Orte wie Lloret de Mar und das historische Tossa de Mar mit seiner ummauerten mittelalterlichen Altstadt.',
+        destLloret: 'Lloret de Mar - 25 Min',
+        destTossa: 'Tossa de Mar - 30-45 Min',
+        destBlanes: 'Buchten von Blanes',
+        pricingTitle: 'Preise für Bootsvermietung',
+        pricingIntro: 'Transparente Preise mit Benzin inklusive bei allen Booten ohne Führerschein. Keine Überraschungen oder zusätzlichen Kosten.',
+        pricingNoLicTitle: 'Boote ohne Führerschein',
+        pricingNoLicFrom: 'Ab {noLicBaja1h} €/Stunde (Benzin inklusive)',
+        pricingNoLicCapacity: 'Kapazität: 4-7 Personen je nach Modell',
+        pricingLicTitle: 'Boote mit Führerschein',
+        pricingLicFrom: 'Ab {licBaja2h} € / 2 Stunden',
+        pricingLicEngines: 'Motoren von 40 bis 115 PS',
+        pricingLicCapacity: 'Kapazität: bis zu 11 Personen',
+        pricingButton: 'Alle Preise und Boote ansehen',
+        ctaTitle: 'Buchen Sie Ihr Boot ab Tordera',
+        ctaDesc: 'In 15 Minuten mit dem Auto oder 8 Minuten mit dem Zug sind Sie im Hafen Blanes und bereit zum Ablegen. Kontaktieren Sie uns per WhatsApp, um Ihr Boot zu buchen und die Costa Brava vom Wasser aus zu entdecken.',
+        ctaButton: 'Per WhatsApp buchen',
+        faqTitle: 'Häufig gestellte Fragen zur Bootsvermietung ab Tordera',
+      },
+    },
+    palafolls: {
+      faqItems: [
+        {
+          question: 'Wie weit ist Palafolls vom Hafen Blanes entfernt?',
+          answer: 'Palafolls liegt nur 8 km vom Hafen Blanes entfernt, etwa 12 Minuten mit dem Auto. Es ist eine der nächstgelegenen Gemeinden zum Hafen und daher ein idealer Ausgangspunkt für eine Bootsfahrt an der Costa Brava.',
+        },
+        {
+          question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Palafolls bin?',
+          answer: 'Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} € für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.',
+        },
+        {
+          question: 'Kann ich vom Campingplatz in Palafolls zum Hafen von Blanes gelangen?',
+          answer: 'Ja, von den Campingplätzen im Gebiet Palafolls (wie La Masía oder Neptuno) erreichen Sie den Hafen von Blanes in etwa 10–15 Minuten mit dem Auto. Es gibt Busverbindungen zwischen beiden Orten, obwohl das Auto die bequemste Option ist.',
+        },
+        {
+          question: 'Brauche ich Erfahrung, um ein Boot zu mieten?',
+          answer: 'Sie brauchen keine Erfahrung. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung, einschließlich Navigationsregeln und Sicherheitstipps.',
+        },
+      ],
+      seo: {
+        title: 'Bootsvermietung Palafolls | Hafen Blanes 12 Min | Ohne Führerschein 75€/Std',
+        description: 'Auf einem Campingplatz oder in einer Unterkunft in Palafolls? Hafen Blanes 12 Min mit dem Auto. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Idealer Ausflug Costa Brava.',
+        ogTitle: 'Bootsvermietung Palafolls | 12 Min zum Hafen Blanes',
+        ogDescription: 'Von Palafolls zum Hafen Blanes in 12 Min. Boot ohne Führerschein ab 75€/Std. Benzin inklusive. 4.8★.',
+      },
+      schema: {
+        name: 'Bootsvermietung in der Nähe von Palafolls',
+        description: 'Miete Boote ab dem Hafen von Blanes, nur 12 Autominuten von Palafolls entfernt. Boote ohne Führerschein ab 75 €/Stunde mit Benzin inklusive.',
+      },
+      breadcrumbName: 'Bootsvermietung Palafolls',
+      sections: {
+        heroTitle: 'Bootsvermietung in der Nähe von Palafolls',
+        heroSubtitle: 'Palafolls ist eine Gemeinde im Binnenland des Maresme, bekannt für ihr großes Campingplatzgebiet und ihre naturnahen Ferienanlagen. Nur 12 Autominuten vom Hafen Blanes entfernt, ist sie der perfekte Ausgangspunkt für einen Bootsausflug an der Costa Brava. Unsere Boote ohne Führerschein sind ideal für Campingfamilien, die eine andere Aktivität suchen.',
+        heroBadgeCar: '8 km / 12 Min mit dem Auto',
+        heroBadgeTransport: 'Ganz in der Nähe von Blanes',
+        heroBadgeExtra: 'Campingplatzgebiet',
+        whyTitle: 'Warum ein Boot ab Blanes mieten, wenn Sie in Palafolls sind?',
+        whyCard1Title: '12 Minuten vom Hafen entfernt',
+        whyCard1Desc: 'Palafolls ist eine der Gemeinden, die dem Hafen von Blanes am nächsten liegt. Mit nur 8 km Entfernung können Sie morgens vom Campingplatz aufbrechen, ein paar Stunden an der Costa Brava fahren und rechtzeitig zum Mittagessen zurück sein. Es ist der perfekte Ausflug für einen anderen Urlaubstag.',
+        whyCard2Title: 'Ideal für Camper',
+        whyCard2Desc: 'Wenn Sie auf einem der Campingplätze in Palafolls wie La Masía, Neptuno oder den Bungalowanlagen der Gegend übernachten, ist das Mieten eines Bootes die Hauptattraktion, die Ihren Urlaub unvergesslich macht. Viele Familien von nahegelegenen Campingplätzen besuchen uns jede Saison.',
+        whyCard3Title: 'Benzin bei Booten ohne Führerschein inklusive',
+        whyCard3Desc: 'Der Preis für Boote ohne Führerschein beinhaltet das Benzin. Ab 75 € pro Stunde. Keine versteckten Kosten oder Treibstoffzuschläge.',
+        whyCard4Title: 'Keine Vorkenntnisse erforderlich',
+        whyCard4Desc: 'Vor dem Ablegen gibt Ihnen unser Team 15 Minuten praktische Einweisung. Wir zeigen Ihnen, wie man den Motor bedient, die Grundregeln der Navigation und die besten Ecken zum Erkunden. Jede Person über 18 Jahre kann unsere Boote ohne Führerschein steuern.',
+        townTitle: 'Palafolls: Campingplätze, Natur und Meer',
+        townIntro: 'Palafolls verbindet die Ruhe eines Binnenlanddorfs mit der Nähe zum Meer. Sein breites Angebot an Campingplätzen und ländlichen Unterkünften zieht jeden Sommer Tausende europäischer Familien an. Ergänzen Sie Ihren Aufenthalt mit einem Tag auf dem Wasser in den schönsten Buchten der Costa Brava.',
+        townCard1Title: 'Campingplatzgebiet',
+        townCard1Desc: 'Camping La Masía, Neptuno und andere touristische Anlagen der Gegend ziehen Familien aus ganz Europa an. Ein Bootsausflug ist die perfekte Aktivität, um den Urlaub abzurunden.',
+        townCard2Title: 'Wenige Minuten vom Meer entfernt',
+        townCard2Desc: 'Obwohl Palafolls eine Binnengemeinde ist, sind die Strände von Blanes und Malgrat weniger als 10 Minuten entfernt. Der Hafen von Blanes ist Ihr Tor zur Costa Brava auf dem Seeweg.',
+        townCard3Title: 'Natur und Schloss',
+        townCard3Desc: 'Das Schloss von Palafolls und die Wanderwege der Gegend bieten ruhige Spaziergänge. Kombinieren Sie Natur im Binnenland mit der Aufregung, durch kristallklares Wasser zu fahren.',
+        howTitle: 'Wie Sie von Palafolls zum Hafen Blanes gelangen',
+        howCarTitle: 'Mit dem Auto (12 Minuten)',
+        howCarDesc: 'Nehmen Sie von Palafolls aus die BV-6001 Richtung Blanes. Es sind nur 8 km zum Hafen von Blanes. Die Fahrt ist schnell und einfach, mit guter Beschilderung. Von den Campingplätzen der Gegend aus ist die Route noch direkter.',
+        howTaxiTitle: 'Mit dem Taxi',
+        howTaxiDesc: 'Ein Taxi von Palafolls zum Hafen Blanes kostet ca. 12-18 €. Es ist eine bequeme Option, wenn Sie kein eigenes Auto haben.',
+        howTransportTitle: 'Mit dem Bus',
+        howTransportDesc: 'Palafolls hat keinen Bahnhof, aber es gibt Buslinien, die mit Blanes verbinden. Die Fahrt dauert ca. 20 Minuten. Informieren Sie sich in der Hochsaison über die Fahrpläne der lokalen Linien, da die Frequenz im Sommer zunimmt.',
+        howParkingTitle: 'Parken in Blanes',
+        howParkingDesc: 'In der Nähe des Hafens von Blanes gibt es kostenlose Parkplätze. In der Hochsaison (Juli-August) empfehlen wir, früh anzureisen, um einen Parkplatz zu sichern.',
+        destsTitle: 'Was können Sie mit dem Boot ab Blanes sehen?',
+        destsIntro: 'Vom Hafen Blanes aus können Sie nach Norden fahren und die spektakuläre Küste der Costa Brava erkunden. Versteckte Buchten mit türkisfarbenem Wasser, mit Pinien bewachsene Klippen und die beeindruckende Silhouette von Tossa de Mar am Horizont. All das ist vom Boot aus für Sie erreichbar.',
+        destLloret: 'Lloret de Mar - 25 Min',
+        destTossa: 'Tossa de Mar - 30-45 Min',
+        destBlanes: 'Buchten von Blanes',
+        pricingTitle: 'Preise für Bootsvermietung',
+        pricingIntro: 'Transparente Preise mit Benzin inklusive bei allen Booten ohne Führerschein. Keine versteckten Kosten.',
+        pricingNoLicTitle: 'Boote ohne Führerschein',
+        pricingNoLicFrom: 'Ab {noLicBaja1h} €/Stunde (Benzin inklusive)',
+        pricingNoLicCapacity: 'Kapazität: 4-7 Personen je nach Modell',
+        pricingLicTitle: 'Boote mit Führerschein',
+        pricingLicFrom: 'Ab {licBaja2h} € / 2 Stunden',
+        pricingLicEngines: 'Motoren von 40 bis 115 PS',
+        pricingLicCapacity: 'Kapazität: bis zu 11 Personen',
+        pricingButton: 'Alle Preise und Boote ansehen',
+        ctaTitle: 'Buchen Sie Ihr Boot ab Palafolls',
+        ctaDesc: 'In 12 Minuten sind Sie im Hafen Blanes und bereit zum Ablegen. Der perfekte Ausflug von Ihrem Campingplatz aus. Kontaktieren Sie uns per WhatsApp, um zu buchen.',
+        ctaButton: 'Per WhatsApp buchen',
+        faqTitle: 'Häufig gestellte Fragen zur Bootsvermietung ab Palafolls',
+      },
+    },
+    pineda: {
+      faqItems: [
+        {
+          question: 'Wie weit ist Pineda de Mar vom Hafen Blanes entfernt?',
+          answer: 'Pineda de Mar liegt 15 km vom Hafen Blanes entfernt, etwa 18 Minuten mit dem Auto über die N-II. Sie können auch mit dem RENFE-Zug Linie R1 in nur 12 Minuten vom Bahnhof Blanes anreisen.',
+        },
+        {
+          question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Pineda de Mar bin?',
+          answer: 'Die Miete für führerscheinfreie Boote beginnt ab {noLicBaja1h} € pro Stunde inklusive Benzin. Boote mit Führerschein ab {licBaja2h} € für 2 Stunden. Wir verfügen über {fleetCount} Boote für 4–11 Personen.',
+        },
+        {
+          question: 'Brauche ich einen Bootsführerschein, um ein Boot zu mieten?',
+          answer: 'Nicht unbedingt. Wir bieten führerscheinfreie Boote an, die jeder ab 18 Jahren steuern kann. Wir geben Ihnen vor dem Ablegen eine 15-minütige Einweisung. Wir haben auch Boote mit Führerschein für erfahrenere Skipper.',
+        },
+        {
+          question: 'Kann ich mit öffentlichen Verkehrsmitteln von Pineda de Mar nach Blanes fahren?',
+          answer: 'Ja, die RENFE-Linie R1 verbindet Pineda de Mar mit Blanes in 12 Minuten. Die Züge fahren in der Saison alle 30 Minuten. Der Bahnhof Blanes liegt etwa 10 Gehminuten vom Hafen entfernt.',
+        },
+        {
+          question: 'Gibt es Bootsverleih direkt in Pineda de Mar?',
+          answer: 'Nein, Pineda de Mar hat keinen Sporthafen mit Bootsverleih. Der nächstgelegene Hafen für das gesamte Alt Maresme (Malgrat, Santa Susanna, Pineda und Calella) ist der Hafen von Blanes, 18 Minuten mit dem Auto oder 12 Minuten mit dem R1-Zug.',
+        },
+        {
+          question: 'Welche Buchten kann ich ab Blanes besuchen?',
+          answer: 'Mit einem führerscheinfreien Boot erreichen Sie Cala Sant Francesc, Sa Forcanera, den Strand Santa Cristina, Cala Sa Boadella und den Strand von Fenals (Süd-Lloret), alle innerhalb der legalen 2-Meilen-Grenze. Mit Führerschein oder mit der privaten Tour mit Skipper geht es weiter bis Tossa de Mar.',
+        },
+        {
+          question: 'Kann ich eine Bootstour machen, ohne selbst zu fahren?',
+          answer: 'Ja. Wenn Sie lieber nicht selbst fahren, buchen Sie die private Tour mit Skipper: Abfahrten vom Hafen von Blanes von 2 bis 8 Stunden, bis zu 6 Personen, mit Stopps zum Schwimmen und Schnorcheln in den Buchten. Kein Bootsführerschein nötig.',
+        },
+      ],
+      seo: {
+        title: 'Bootsvermietung Pineda de Mar | Hafen Blanes 18 Min | Ohne Führerschein 75€/Std',
+        description: 'Unterkunft in Pineda de Mar? Hafen Blanes 18 Min mit dem Auto oder 12 Min mit dem Zug R1. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Fahr nach Blanes, Lloret oder Tossa.',
+        ogTitle: 'Bootsvermietung Pineda de Mar | 18 Min zum Hafen Blanes',
+        ogDescription: 'Von Pineda de Mar zum Hafen Blanes in 18 Min. Boot ohne Führerschein ab 75€/Std. 4.8★ Google.',
+      },
+      schema: {
+        name: 'Bootsvermietung in der Nähe von Pineda de Mar',
+        description: 'Miete Boote ab dem Hafen von Blanes, nur 18 Autominuten von Pineda de Mar entfernt. Boote ohne Führerschein ab 75 €/Stunde mit Benzin inklusive.',
+      },
+      breadcrumbName: 'Bootsvermietung Pineda de Mar',
+      sections: {
+        heroTitle: 'Bootsvermietung in der Nähe von Pineda de Mar',
+        heroSubtitle: 'Pineda de Mar ist eines der wichtigsten Touristenziele an der Küste des Maresme, mit Dutzenden von Hotels und All-Inclusive-Resorts. Der Hafen von Blanes, nur 18 Autominuten oder 12 Zugminuten entfernt, ist der nächstgelegene Bootsvermietungspunkt. Genießen Sie die Costa Brava, ohne einen Bootsführerschein zu benötigen.',
+        heroBadgeCar: '15 km / 18 Min mit dem Auto',
+        heroBadgeTransport: 'RENFE R1: 12 Min',
+        heroBadgeExtra: 'Küste des Maresme',
+        heroImageAlt: 'Türkisfarbenes Wasser der Costa Brava, 18 Minuten von Pineda de Mar entfernt, ab Hafen von Blanes',
+        whyTitle: 'Warum ein Boot ab Blanes mieten, wenn Sie in Pineda de Mar sind?',
+        whyCard1Title: 'Der nächstgelegene Hafen mit Bootsvermietung',
+        whyCard1Desc: 'Pineda de Mar hat keinen Yachthafen oder Bootsvermietungsservice. Der Hafen von Blanes ist der nächstgelegene Punkt, wo Sie ein Boot mieten können, nur 15 km über die N-II entfernt. Wenn Sie in einem der vielen Hotels von Pineda übernachten, fahren Sie in weniger als 20 Minuten bereits durch das kristallklare Wasser der Costa Brava.',
+        whyCard2Title: '{fleetCount} Boote zur Auswahl',
+        whyCard2Desc: 'Wir verfügen über eine Flotte von {fleetCount} Booten, die führerscheinfreie Boote umfasst, ideal für Familien und Anfänger, sowie Boote mit Führerschein für erfahrene Skipper. Kapazität von 4 bis 11 Personen je nach gewähltem Modell.',
+        whyCard3Title: 'Benzin bei Booten ohne Führerschein inklusive',
+        whyCard3Desc: 'Der Preis für Boote ohne Führerschein beinhaltet das Benzin, sodass es keine Überraschungen gibt. Ab 75 € pro Stunde. Der Preis, den du siehst, ist der Endpreis.',
+        whyCard4Title: 'Keine Vorkenntnisse erforderlich',
+        whyCard4Desc: 'Vor dem Ablegen gibt Ihnen unser Team 15 Minuten praktische Einweisung: Bedienung des Motors, Grundregeln der Navigation und Tipps zu den besten Buchten. Jede Person über 18 Jahre kann ein Boot ohne Führerschein steuern.',
+        townTitle: 'Pineda de Mar: Aktivitäten für Hotelgäste',
+        townIntro: 'Pineda de Mar ist bekannt für sein breites Hotelangebot, mit zahlreichen Hotels und Resorts, die Familien aus ganz Europa anziehen. Wenn Sie während Ihres Urlaubs nach einer anderen Aktivität suchen, ist das Mieten eines Bootes und die Erkundung der Costa Brava vom Wasser aus ein unvergessliches Erlebnis, das Ihren Strandaufenthalt perfekt ergänzt.',
+        townCard1Title: 'Hotelzone auf erstklassigem Niveau',
+        townCard1Desc: 'Dutzende Hotels und All-Inclusive-Resorts in erster Strandlinie. Entfliehen Sie für ein paar Stunden, um das nautische Erlebnis zu genießen, das Ihren Urlaub einzigartig macht.',
+        townCard2Title: 'Strand von Pineda',
+        townCard2Desc: 'Über 1 km goldener Sandstrand mit allen Annehmlichkeiten. Kehren Sie nach dem Bootfahren zu Ihrem Hotel zurück und entspannen Sie am Meer.',
+        townCard3Title: 'Perfekt für Familien',
+        townCard3Desc: 'Pineda ist ein Familienziel par excellence. Unsere Boote ohne Führerschein sind sicher und einfach zu bedienen, ideal für einen Familienausflug entlang der Küste.',
+        howTitle: 'Wie Sie von Pineda de Mar zum Hafen Blanes gelangen',
+        howCarTitle: 'Mit dem Auto (18 Minuten)',
+        howCarDesc: 'Nehmen Sie die N-II in nördlicher Richtung nach Blanes. Es sind 15 km bequeme und direkte Fahrt. Von den meisten Hotels in Pineda de Mar erreichen Sie den Hafen von Blanes in ca. 18 Minuten. Die Fahrt führt entlang der Küste und ist sehr angenehm.',
+        howTaxiTitle: 'Mit dem Taxi',
+        howTaxiDesc: 'Ein Taxi von Pineda de Mar zum Hafen Blanes kostet ca. 20-25 €. Es ist eine gute Option, wenn Sie kein Auto haben oder sich nicht um das Parken kümmern möchten.',
+        howTransportTitle: 'Mit dem RENFE-Zug (12 Minuten)',
+        howTransportDesc: 'Die R1-Linie der RENFE Rodalies verbindet Pineda de Mar mit Blanes in nur 12 Minuten. Die Züge fahren in der Hochsaison alle 30 Minuten. Vom Bahnhof Blanes aus ist der Hafen ca. 10-15 Gehminuten über die Strandpromenade entfernt.',
+        howParkingTitle: 'Parken in Blanes',
+        howParkingDesc: 'In der Nähe des Hafens von Blanes gibt es kostenlose Parkplätze. In der Hochsaison (Juli-August) empfehlen wir, früh anzureisen oder den Zug als bequeme und schnelle Alternative in Betracht zu ziehen.',
+        destsTitle: 'Was können Sie mit dem Boot ab Blanes sehen?',
+        destsIntro: 'Vom Hafen Blanes aus können Sie nach Norden entlang der spektakulären Küste der Costa Brava fahren. Entdecken Sie versteckte Buchten, beeindruckende Klippen und mittelalterliche Dörfer wie Tossa de Mar. Mit einem Boot ohne Führerschein können Sie bis zu 2 Meilen von der Küste entfernt erkunden, ausreichend, um die schönsten Buchten der Gegend zu erreichen.',
+        destLloret: 'Lloret de Mar - 25 Min',
+        destTossa: 'Tossa de Mar - 30-45 Min',
+        destBlanes: 'Buchten von Blanes',
+        pricingTitle: 'Preise für Bootsvermietung',
+        pricingIntro: 'Wir bieten wettbewerbsfähige Preise mit Benzin inklusive bei allen Booten ohne Führerschein. Keine versteckten Kosten oder Treibstoffzuschläge.',
+        pricingNoLicTitle: 'Boote ohne Führerschein',
+        pricingNoLicFrom: 'Ab {noLicBaja1h} €/Stunde (Benzin inklusive)',
+        pricingNoLicCapacity: 'Kapazität: 4-7 Personen je nach Modell',
+        pricingLicTitle: 'Boote mit Führerschein',
+        pricingLicFrom: 'Ab {licBaja2h} € / 2 Stunden',
+        pricingLicEngines: 'Motoren von 40 bis 115 PS',
+        pricingLicCapacity: 'Kapazität: bis zu 11 Personen',
+        pricingButton: 'Alle Preise und Boote ansehen',
+        ctaTitle: 'Buchen Sie Ihr Boot ab Pineda de Mar',
+        ctaDesc: 'In 18 Minuten sind Sie im Hafen Blanes und bereit zum Ablegen. Kontaktieren Sie uns per WhatsApp, um Ihr Boot zu buchen und ein einzigartiges Erlebnis an der Costa Brava zu erleben.',
+        ctaButton: 'Per WhatsApp buchen',
+        faqTitle: 'Häufig gestellte Fragen zur Bootsvermietung ab Pineda de Mar',
+      },
+    },
+    newsletter: {
+      title: 'Kostenloser Führer zu geheimen Buchten',
+      subtitle: 'Erhalten Sie unseren Führer mit den 10 besten Buchten der Costa Brava, die nur per Boot erreichbar sind',
+      placeholder: 'Ihre E-Mail',
+      button: 'Kostenlosen Führer senden',
+      success: 'Führer gesendet! Prüfen Sie Ihre E-Mail.',
+      error: 'Fehler beim Senden. Bitte erneut versuchen.',
     },
   },
 };

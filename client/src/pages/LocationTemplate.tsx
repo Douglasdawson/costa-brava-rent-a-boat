@@ -37,6 +37,7 @@ import {
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
+import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 
 // ---------------------------------------------------------------------------
 // Sub-components
@@ -64,7 +65,7 @@ function RevealSection({
   );
 }
 
-function HeroImage({ basePath, alt }: { basePath: string; alt: string }) {
+export function HeroImage({ basePath, alt }: { basePath: string; alt: string }) {
   return (
     <picture>
       <source
@@ -228,6 +229,7 @@ export default function LocationTemplate({
           badgeDistance: string;
           badgeTime: string;
           badgeBeach: string;
+          imageAlt?: string;
         };
         sections: Record<string, string>;
       }
@@ -245,8 +247,16 @@ export default function LocationTemplate({
     openWhatsApp(message);
   };
 
-  const whyRentImg = config.images?.whyRent ?? DEFAULTS.whyRent;
-  const coastBreakImg = config.images?.coastBreak ?? DEFAULTS.coastBreak;
+  // Alt text localized via i18n; the config/DEFAULT strings are the fallback
+  // (they were hardcoded English and leaked into non-EN pages, critique 2026-07).
+  const whyRentImg = {
+    src: (config.images?.whyRent ?? DEFAULTS.whyRent).src,
+    alt: t.locationTemplate?.whyRentImgAlt ?? (config.images?.whyRent ?? DEFAULTS.whyRent).alt,
+  };
+  const coastBreakImg = {
+    src: (config.images?.coastBreak ?? DEFAULTS.coastBreak).src,
+    alt: t.locationTemplate?.coastBreakImgAlt ?? (config.images?.coastBreak ?? DEFAULTS.coastBreak).alt,
+  };
 
   const locationSchema = {
     "@type": "TouristDestination",
@@ -317,7 +327,7 @@ export default function LocationTemplate({
           <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
             <HeroImage
               basePath={config.heroImage.basePath}
-              alt={config.heroImage.alt}
+              alt={hero?.imageAlt ?? config.heroImage.alt}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
             <div className="relative z-10 h-full flex items-end pb-12 sm:pb-16">
@@ -350,7 +360,7 @@ export default function LocationTemplate({
                     {hero?.badgeBeach}
                   </Badge>
                 </div>
-                <div className="mt-6">
+                <div className="mt-6 flex flex-wrap items-center gap-4">
                   <Button
                     onClick={() => openBookingModal()}
                     className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
@@ -358,6 +368,16 @@ export default function LocationTemplate({
                   >
                     {t.nav.bookNow}
                   </Button>
+                  <a
+                    href={GBP_PROFILE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 min-h-11 text-sm font-medium text-white drop-shadow hover:underline underline-offset-2"
+                    data-testid="link-location-hero-rating"
+                  >
+                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" aria-hidden="true" />
+                    {BUSINESS_RATING_STR}/5 · {BUSINESS_REVIEW_COUNT_STR}+ · Google
+                  </a>
                 </div>
               </div>
             </div>
@@ -399,7 +419,7 @@ export default function LocationTemplate({
                   {hero?.badgeBeach}
                 </Badge>
               </div>
-              <div className="mt-6">
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
                 <Button
                   onClick={() => openBookingModal()}
                   className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
@@ -407,6 +427,16 @@ export default function LocationTemplate({
                 >
                   {t.nav.bookNow}
                 </Button>
+                <a
+                  href={GBP_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 min-h-11 text-sm font-medium text-foreground hover:underline underline-offset-2"
+                  data-testid="link-location-hero-rating"
+                >
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" aria-hidden="true" />
+                  {BUSINESS_RATING_STR}/5 · {BUSINESS_REVIEW_COUNT_STR}+ · Google
+                </a>
               </div>
             </div>
           </div>
@@ -492,17 +522,16 @@ export default function LocationTemplate({
               <Star className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
               {s.townAttractionsTitle}
             </h2>
-            <div className="grid md:grid-cols-3 gap-10">
+            {/* Inline icons instead of a third circle-chip grid: the hero badges
+                and how-to-get rows already carry that shape, and three identical
+                icon grids in a row flatten the page (critique 2026-07). */}
+            <div className="grid md:grid-cols-3 gap-x-10 gap-y-8">
               {config.attractions.map((attr, i) => {
                 const num = i + 1;
                 return (
-                  <div key={num} className="text-center">
-                    <div
-                      className={`w-16 h-16 ${attr.iconBg} rounded-full flex items-center justify-center mx-auto mb-5`}
-                    >
-                      <attr.Icon className={`w-8 h-8 ${attr.iconColor}`} />
-                    </div>
-                    <h3 className="font-heading font-semibold text-lg mb-3">
+                  <div key={num} className="border-t border-border pt-5">
+                    <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
+                      <attr.Icon className={`w-5 h-5 shrink-0 ${attr.iconColor}`} aria-hidden="true" />
                       {s[`attraction${num}`]}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
@@ -592,39 +621,23 @@ export default function LocationTemplate({
             <p className="text-muted-foreground mb-6 max-w-3xl">
               {s.boatDestinationsDesc}
             </p>
+            {/* 44px touch targets: these read as chips but ARE links; at py-1.5
+                they measured 34px and thumbs missed them (critique 2026-07). */}
             <div className="flex flex-wrap gap-3">
-              <Link href={localizedPath("locationCostaBrava")}>
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary/10 text-sm py-1.5 px-4"
+              {([
+                { key: "locationCostaBrava", label: t.locationTemplate?.destCostaBrava ?? "Costa Brava" },
+                { key: "locationLloret", label: t.locationTemplate?.destLloret ?? "Lloret de Mar - 25 min" },
+                { key: "locationTossa", label: t.locationTemplate?.destTossa ?? "Tossa de Mar - 45 min" },
+                { key: "locationBlanes", label: t.locationTemplate?.destBlanesCoves ?? "Calas de Blanes" },
+              ] as const).map(({ key, label }) => (
+                <Link
+                  key={key}
+                  href={localizedPath(key)}
+                  className="inline-flex items-center min-h-11 rounded-full border border-border bg-background px-5 text-sm font-medium hover:bg-primary/10 hover:border-primary transition-colors"
                 >
-                  Costa Brava
-                </Badge>
-              </Link>
-              <Link href={localizedPath("locationLloret")}>
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary/10 text-sm py-1.5 px-4"
-                >
-                  Lloret de Mar - 25 min
-                </Badge>
-              </Link>
-              <Link href={localizedPath("locationTossa")}>
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary/10 text-sm py-1.5 px-4"
-                >
-                  Tossa de Mar - 45 min
-                </Badge>
-              </Link>
-              <Link href={localizedPath("locationBlanes")}>
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary/10 text-sm py-1.5 px-4"
-                >
-                  Calas de Blanes
-                </Badge>
-              </Link>
+                  {label}
+                </Link>
+              ))}
             </div>
           </div>
         </RevealSection>

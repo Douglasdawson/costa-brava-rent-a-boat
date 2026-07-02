@@ -29,6 +29,8 @@ import { useLanguage } from "@/hooks/use-language";
 import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
+import { HeroImage } from "./LocationTemplate";
+import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 import { getCanonicalUrl } from "@/lib/domain";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
@@ -135,32 +137,56 @@ export default function LocationPinedaDeMarPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-sky-50 to-blue-50 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <MapPin className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+      {/* Hero Section — photo-led with CTA + social proof (was a gradient hero
+          with no CTA at all; critique 2026-07) */}
+      <div className="relative pt-20 sm:pt-24">
+        <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
+          <HeroImage
+            basePath="/images/locations/hero-pineda-de-mar"
+            alt={s?.heroImageAlt ?? s?.heroTitle ?? "Costa Brava"}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
+          <div className="relative z-10 h-full flex items-end pb-12 sm:pb-16">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white drop-shadow-lg mb-3">
                 {s?.heroTitle ?? "Alquiler de Barcos cerca de Pineda de Mar"}
               </h1>
-            </div>
-            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              {s?.heroSubtitle}
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-primary border-primary">
-                <Car className="w-4 h-4 mr-2" />
-                {s?.heroBadgeCar}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Train className="w-4 h-4 mr-2" />
-                {s?.heroBadgeTransport}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Waves className="w-4 h-4 mr-2" />
-                {s?.heroBadgeExtra}
-              </Badge>
+              <p className="text-lg text-white/90 mb-6 max-w-2xl drop-shadow">
+                {s?.heroSubtitle}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Badge variant="outline" className="bg-white/15 text-white border-white/30 backdrop-blur-sm">
+                  <Car className="w-4 h-4 mr-2" />
+                  {s?.heroBadgeCar}
+                </Badge>
+                <Badge variant="outline" className="bg-white/15 text-white border-white/30 backdrop-blur-sm">
+                  <Train className="w-4 h-4 mr-2" />
+                  {s?.heroBadgeTransport}
+                </Badge>
+                <Badge variant="outline" className="bg-white/15 text-white border-white/30 backdrop-blur-sm">
+                  <Waves className="w-4 h-4 mr-2" />
+                  {s?.heroBadgeExtra}
+                </Badge>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <Button
+                  onClick={handleBookingWhatsApp}
+                  className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
+                  data-testid="button-location-hero-book"
+                >
+                  {t.nav.bookNow}
+                </Button>
+                <a
+                  href={GBP_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 min-h-11 text-sm font-medium text-white drop-shadow hover:underline underline-offset-2"
+                  data-testid="link-location-hero-rating"
+                >
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" aria-hidden="true" />
+                  {BUSINESS_RATING_STR}/5 · {BUSINESS_REVIEW_COUNT_STR}+ · Google
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -225,25 +251,25 @@ export default function LocationPinedaDeMarPage() {
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-10">{s?.townIntro}</p>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Hotel className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{s?.townCard1Title}</h3>
+            <div className="border-t border-border pt-5">
+              <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
+                <Hotel className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
+                {s?.townCard1Title}
+              </h3>
               <p className="text-muted-foreground leading-relaxed">{s?.townCard1Desc}</p>
             </div>
-            <div className="text-center">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Sun className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{s?.townCard2Title}</h3>
+            <div className="border-t border-border pt-5">
+              <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
+                <Sun className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
+                {s?.townCard2Title}
+              </h3>
               <p className="text-muted-foreground leading-relaxed">{s?.townCard2Desc}</p>
             </div>
-            <div className="text-center">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Users className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{s?.townCard3Title}</h3>
+            <div className="border-t border-border pt-5">
+              <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
+                <Users className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
+                {s?.townCard3Title}
+              </h3>
               <p className="text-muted-foreground leading-relaxed">{s?.townCard3Desc}</p>
             </div>
           </div>
@@ -260,32 +286,24 @@ export default function LocationPinedaDeMarPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Car className="w-5 h-5 text-primary" />
-                </div>
+                <Car className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
                 {s?.howCarTitle}
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-4">{s?.howCarDesc}</p>
               <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Users className="w-5 h-5 text-primary" />
-                </div>
+                <Users className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
                 {s?.howTaxiTitle}
               </h3>
               <p className="text-muted-foreground leading-relaxed">{s?.howTaxiDesc}</p>
             </div>
             <div>
               <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Train className="w-5 h-5 text-primary" />
-                </div>
+                <Train className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
                 {s?.howTransportTitle}
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-4">{s?.howTransportDesc}</p>
               <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <ParkingCircle className="w-5 h-5 text-primary" />
-                </div>
+                <ParkingCircle className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
                 {s?.howParkingTitle}
               </h3>
               <p className="text-muted-foreground leading-relaxed">{s?.howParkingDesc}</p>

@@ -30,6 +30,7 @@ interface TownLocationPage {
     heroBadgeCar: string;
     heroBadgeTransport: string;
     heroBadgeExtra: string;
+    heroImageAlt?: string;
     whyTitle: string;
     whyCard1Title: string;
     whyCard1Desc: string;
@@ -733,6 +734,14 @@ export interface Translations {
   };
 
   // PopularBoatsSection props per location page (title/description/badges).
+  locationTemplate?: {
+    destCostaBrava: string;
+    destLloret: string;
+    destTossa: string;
+    destBlanesCoves: string;
+    whyRentImgAlt: string;
+    coastBreakImgAlt: string;
+  };
   popularBoatsSection?: {
     badges: { captain: string; licensed: string; noLicense: string };
     pages: Record<string, { title: string; description: string }>;
@@ -1185,6 +1194,7 @@ export interface Translations {
         badgePort: string;
         badgeCapacity: string;
         badgeDuration: string;
+        imageAlt?: string;
       };
       faqItems?: Array<{ question: string; answer: string }>;
       sections?: {
@@ -1414,6 +1424,7 @@ export interface Translations {
         badgeDistance: string;
         badgeTime: string;
         badgeBeach: string;
+        imageAlt?: string;
       };
       sections?: {
         whyRentTitle: string;
@@ -1456,6 +1467,7 @@ export interface Translations {
         badgeDistance: string;
         badgeTime: string;
         badgeBeach: string;
+        imageAlt?: string;
       };
       sections?: {
         whyRentTitle: string;
@@ -1498,6 +1510,7 @@ export interface Translations {
         badgeDistance: string;
         badgeTime: string;
         badgeBeach: string;
+        imageAlt?: string;
       };
       sections?: {
         whyRentTitle: string;

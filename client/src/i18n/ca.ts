@@ -2538,1117 +2538,6 @@ export const ca: Translations = {
     ctaViewBoats: "Veure vaixells amb llicència",
     faqTitle: "Preguntes freqüents sobre pesca des de vaixell",
   },
-  locationPages: {
-    blanes: {
-      faqItems: [
-        {
-          question: "Necessito llicència per llogar un vaixell a Blanes?",
-          answer:
-            "No. Tenim 4 vaixells sense llicència per a 4 o 5 persones. Només cal ser major de 18 anys. Et donem una formació de 15 minuts abans de sortir.",
-        },
-        {
-          question: "Quan costa llogar un vaixell al Port de Blanes?",
-          answer:
-            "Els vaixells sense llicència costen des de {noLicBaja1h} €/hora en temporada baixa (abril-juny, setembre-octubre). En temporada alta (agost) des de {noLicAlta1h} €/hora. El preu inclou combustible, assegurança i equip de seguretat.",
-        },
-        {
-          question: "On puc anar amb vaixell des de Blanes?",
-          answer:
-            "Des del Port de Blanes pots visitar Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) i Tossa de Mar (45 min). Els vaixells amb llicència tenen més autonomia per a destinacions més llunyanes.",
-        },
-        {
-          question: "Hi ha aparcament a prop del Port de Blanes?",
-          answer:
-            "Sí. Hi ha aparcament gratuït al costat del Port de Blanes. També hi ha restaurants, botigues nàutiques i benzinera a la zona portuària.",
-        },
-        {
-          question: "Quina és la millor època per llogar un vaixell a Blanes?",
-          answer:
-            "La temporada va d'abril a octubre. Juny i setembre ofereixen els millors preus i menys afluència. Agost és temporada alta amb les millors condicions de mar però preus més alts.",
-        },
-        {
-          question: "Es pot llogar un vaixell a Blanes el mateix dia?",
-          answer:
-            "Sí, acceptem reserves d'última hora si hi ha disponibilitat. Contacta per WhatsApp al +34 611 500 372 per comprovar disponibilitat el mateix dia.",
-        },
-        {
-          question: "És segur navegar sense llicència des de Blanes?",
-          answer:
-            "Sí. Els nostres vaixells sense llicència tenen un màxim de 15 CV, no requereixen titulació i naveguen a prop de la costa. Incloem formació de seguretat de 15 minuts, armilles salvavides i equip d'emergència.",
-        },
-        {
-          question: "Com arribo al Port de Blanes?",
-          answer:
-            "El Port de Blanes és a 60 km de Barcelona (1h amb cotxe per l'A-2/C-32/AP-7, sortida 9 direcció Blanes), 35 km de Girona (40 min per l'AP-7 sortida 9) i a 100 km de la frontera francesa. Amb tren amb la línia R1 de Rodalies des de Barcelona-Sants (1h 30 min fins a l'estació de Blanes, després 10 min amb autobús L2 o taxi al port). L'aeroport més proper és Girona-Costa Brava (35 km, 30 min).",
-        },
-        {
-          question: "Hi ha botigues o restaurants al Port de Blanes?",
-          answer:
-            "Sí. La zona portuària de Blanes té diversos restaurants amb terrassa davant del mar (especialitat en arrossos i peix fresc), un petit supermercat per a queviures, botiga nàutica, gasolinera, lavabos públics i dutxes. La platja de Blanes Centre està just al costat del port. Després de la sortida en barca pots menjar al port o pujar al casc antic de Blanes (10 min a peu).",
-        }
-      ],
-      hero: {
-        title: "Lloguer de Barques a Blanes",
-        subtitle:
-          "Lloguer de barques directe al Port de Blanes des de 75€/h, gasolina inclosa. Sense llicència fins a 5 persones, amb llicència fins a 7. Aparcament gratuït a 100m de l'amarrador, briefing de seguretat 15 minuts. Des d'aquí navegues fins a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) i Lloret de Mar (25 min). Tossa de Mar a 30-45 min amb llicència.",
-        badgePort: "Port de Blanes",
-        badgeCapacity: "4-7 persones",
-        badgeDuration: "1h-8h durada",
-      },
-      sections: {
-        whyBlanesTitle: "Per què triar Blanes per al teu lloguer de vaixell?",
-        strategicLocation: "Ubicació Estratègica",
-        strategicLocationDesc:
-          "Blanes és la porta sud de la Costa Brava, amb accés directe a les cales més espectaculars. Des del Port de Blanes pots navegar cap al nord fins a Lloret de Mar o cap al sud explorant la costa fins a Malgrat de Mar.",
-        safePorts: "Port Segur i Complet",
-        safePortsDesc:
-          "El Port de Blanes ofereix totes les comoditats: parking, restaurants, botigues nàutiques, combustible i serveis. Un punt de partida perfecte per a la teva aventura marítima.",
-        accessibleCoves: "Cales Accessibles",
-        accessibleCovesDesc:
-          "Des de Blanes tens accés fàcil a Cala Brava, Cala Sant Francesc, les platges de Lloret i moltes cales verges. Distàncies curtes, més temps per gaudir.",
-        allLevels: "Per a Tots els Nivells",
-        allLevelsDesc:
-          "Tant si és la teva primera vegada com si ets un navegant experimentat, Blanes ofereix aigües tranquil·les per a principiants i rutes emocionants per a aventurers.",
-        destinationsTitle: "Destinacions Principals des de Blanes",
-        calaBrava: "Cala Brava",
-        calaBravaTime: "15 minuts navegant",
-        calaBravaDesc:
-          "Cala verge amb aigües cristal·lines. Perfecta per fer snorkel i relaxar-se.",
-        lloretDeMar: "Lloret de Mar",
-        lloretTime: "25 minuts navegant",
-        lloretDesc: "Platges animades amb xiringuitos i activitats aquàtiques.",
-        calaSantFrancesc: "Cala Sant Francesc",
-        calaSantFrancescTime: "10 minuts navegant",
-        calaSantFrancescDesc: "Cala protegida ideal per a famílies amb nens petits.",
-        servicesTitle: "Serveis al Port de Blanes",
-        portAmenities: "Comoditats del Port",
-        freeParking: "Parking gratuït disponible",
-        fuelStation: "Estació de combustible marina",
-        restaurants: "Restaurants i cafeteries",
-        nauticalShops: "Botigues nàutiques",
-        howToGet: "Com Arribar-hi",
-        fromBarcelona: "Des de Barcelona: AP-7 direcció Girona, sortida Blanes (60 min)",
-        fromGirona: "Des de Girona: N-II direcció Blanes (45 min)",
-        fromFrance: "Des de França: AP-7 direcció Barcelona, sortida Blanes",
-        publicTransport: "Transport públic: Tren RENFE línia R1 fins a Blanes",
-        ctaTitle: "Preparat per explorar des de Blanes?",
-        ctaDescription:
-          "Reserva el teu vaixell i descobreix les cales més boniques de la Costa Brava",
-        ctaButton: "Reservar des de Blanes",
-        mapTitle: "Ubicació - Port de Blanes",
-        fleetTitle: "La Nostra Flota al Port de Blanes",
-        fleetIntro:
-          "Disposem de 8 embarcacions amarrades al Port de Blanes, preparades per navegar d'abril a octubre. La nostra flota inclou 4 vaixells sense llicència perfectes per a famílies i parelles que volen explorar les cales properes, 3 opcions amb llicència per a navegants experimentats que busquen més autonomia i potència, i una Excursió Privada amb patró per a grups que prefereixen navegar sense haver de portar el timó. Totes les embarcacions es revisen diàriament i disposen d'assegurança a tot risc.",
-        fleetNoLicense: "Sense llicència",
-        fleetLicense: "Amb llicència",
-        fleetFrom: "Des de",
-        fleetViewDetails: "Veure detalls",
-        guideTitle: "Guia Completa: Llogar un Vaixell a Blanes",
-        guideRequirementsTitle: "Requisits per navegar sense llicència",
-        guideRequirementsText:
-          "Per llogar un vaixell sense llicència a Blanes només cal ser major de 18 anys i presentar el DNI o passaport. No es requereix cap titulació nàutica. Abans de sortir, el nostre equip t'ofereix una formació pràctica de 15 minuts sobre motor, fondeig i seguretat marítima. Tots els nostres vaixells sense llicència tenen un màxim de 15 CV.",
-        guideSeasonTitle: "Temporada i horaris",
-        guideSeasonText:
-          "La temporada de navegació a Blanes va d'abril a octubre. Oferim tres franges: matí (9:00-13:00), tarda (14:00-18:00) i dia complet (9:00-18:00). El juny i el setembre són ideals: temperatures agradables, mar en calma i menys afluència.",
-        guideIncludedTitle: "Què inclou el lloguer",
-        guideIncludedText:
-          "Els vaixells sense llicència inclouen combustible, assegurança, equip de seguretat, tendal i escala de bany. Per als vaixells amb llicència i l'excursió privada amb patró, el combustible NO està inclòs.",
-        guideBookingTitle: "Com reservar",
-        guideBookingText:
-          "Pots reservar a través del nostre web (et confirmem per WhatsApp en menys de 2 hores), per WhatsApp al +34 611 500 372 en català, castellà i anglès, o directament al Port de Blanes si hi ha disponibilitat.",
-        pricingTitle: "Preus del Lloguer de Vaixells a Blanes 2026",
-        pricingIntro:
-          "Les nostres tarifes varien segons la temporada i la durada del lloguer. Tots els preus inclouen IVA, amarrament i neteja.",
-        pricingSeasons:
-          "Temporada baixa: abril-juny i setembre-octubre. Temporada mitjana: juliol. Temporada alta: agost. Els caps de setmana s'aplica un suplement del 15%.",
-        pricingBoatCol: "Vaixell",
-        pricingCapacityCol: "Capacitat",
-        pricingLowCol: "Temp. Baixa (2h)",
-        pricingHighCol: "Temp. Alta (2h)",
-        pricingFuelNote:
-          "* Per als vaixells amb llicència i les excursions privades, el combustible NO està inclòs.",
-        pricingFullDetails: "Veure totes les tarifes i durades",
-        experiencesTitle: "Experiències Populars des de Blanes",
-        expSnorkelTitle: "Snorkel a Cala Brava",
-        expSnorkelDesc:
-          "Navega 15 minuts fins a Cala Brava i descobreix els seus fons marins. Aigües cristal·lines amb visibilitat de fins a 15 metres. Lloguer d'equip de snorkel per només 7,50 €.",
-        expSunsetTitle: "Passeig a la posta de sol",
-        expSunsetDesc:
-          "Reserva l'última franja de la tarda i gaudeix de la posta de sol des del teu vaixell. La llum daurada sobre els penya-segats de la Costa Brava és un espectacle inoblidable.",
-        expTossaTitle: "Excursió a Tossa de Mar",
-        expTossaDesc:
-          "Amb un vaixell amb llicència, navega 30-45 min cap al nord fins a la Vila Vella de Tossa de Mar, passant per cales amagades i penya-segats espectaculars.",
-        expFishingTitle: "Pesca esportiva",
-        expFishingDesc:
-          "Les aigües davant de Blanes són riques en orades, llobarros i sargs. Surt d'hora, fondeja sobre els fons rocosos entre Blanes i Lloret i gaudeix d'una jornada de pesca.",
-        nearbyTownsTitle: "Pobles propers al Port de Blanes",
-        nearbyTownsIntro:
-          "Turistes allotjats a la costa del Maresme poden arribar fàcilment al Port de Blanes:",
-        nearbyTownsMalgratTime: "10 min",
-        nearbyTownsSantaSusannaTime: "15 min",
-        nearbyTownsCalellaTime: "20 min amb cotxe",
-        nearbyTownsConjunction: "i",
-        nearbyTownsTransport: "També accessible en tren RENFE línia R1.",
-        crossLinksTitle: "Explora els nostres serveis des de Blanes",
-        crossLinkCostaBrava: "Explorar tota la Costa Brava amb vaixell",
-        crossLinkLicenseFree: "Lloguer de barques sense llicència",
-        crossLinkLicensed: "Barques amb llicència a Blanes",
-        crossLinkPricing: "Preus i tarifes per temporada",
-        crossLinkLloret: "Excursió amb vaixell a Lloret de Mar",
-        crossLinkTossa: "Navega fins a Tossa de Mar",
-        mapIframeTitle: "Mapa d'ubicació - Port de Blanes",
-      },
-      schema: {
-        name: "Lloguer de Barques a Blanes, Costa Brava",
-        description:
-          "Lloguer de barques sense llicència i amb llicència a Blanes. Port de Blanes, Costa Brava. Embarcacions per a 4-7 persones.",
-      },
-    },
-    lloret: {
-      faqItems: [
-        {
-          question: "Necessito llicència o experiència per arribar a Lloret amb vaixell?",
-          answer:
-            "No. Els nostres vaixells sense llicència compleixen les condicions legals per navegar fins a la Platja de Fenals (sud de Lloret) sense titulació ni experiència prèvia. Et donem un briefing de 15 minuts abans de sortir. L'única restricció és ser major de 18 anys.",
-        },
-        {
-          question: "Fins on exactament puc arribar amb vaixell sense llicència?",
-          answer:
-            "Legalment, fins a 2 milles nàutiques de la costa, a màxim 5 nusos, amb 15 CV. Des de Blanes, això són 25 minuts de navegació fins a la Platja de Fenals, passant per 7 cales. La Platja de Lloret centre i Cala Canyelles queden al nord de Fenals, no són accessibles amb vaixell sense llicència.",
-        },
-        {
-          question: "Quan costa llogar un vaixell sense llicència per anar a Lloret?",
-          answer:
-            "Des de {noLicBaja1h} €/hora (temporada baixa) i {noLicAlta1h} €/hora (temporada alta, juliol–agost). Amb gasolina inclosa en vaixells sense llicència.",
-        },
-        {
-          question: "Puc arribar a Tossa de Mar des de Lloret amb vaixell sense llicència?",
-          answer:
-            "No. Tossa està 4–5 milles al nord de Fenals, fora del rang legal sense llicència. Per anar a Tossa amb vaixell des de Blanes necessites (a) vaixell amb Llicència de Navegació (LN), o (b) Excursió Privada amb Capità.",
-        },
-        {
-          question: "Què passa si la mar està dolenta?",
-          answer:
-            "Si la previsió marca >20 nusos sostinguts o alerta per onades >1.5 m, cancel·lem sense cost. El tram Blanes–Fenals està protegit de la Tramuntana per la pròpia costa, així que és dels més segurs per a principiants fins i tot amb vent del nord.",
-        },
-      
-        {
-          question: "Com arribo de Lloret de Mar al Port de Blanes?",
-          answer:
-            "En cotxe són 10 minuts per la GI-682 (hi ha pàrquing gratuït a 100 m del port). En bus, la línia Lloret-Blanes triga uns 20 minuts. En taxi, el trajecte costa uns 15-18 €. No hi ha base de lloguer dins de Lloret: totes les sortides són des del Port de Blanes.",
-        },
-        {
-          question: "Quines cales veuré a la ruta en barca cap a Lloret?",
-          answer:
-            "Sortint del Port de Blanes passaràs per Cala Sant Francesc, Sa Forcanera, la platja de Santa Cristina, Cala Treumal i Cala Sa Boadella abans d'arribar a la Platja de Fenals. Són les cales més fotografiades de la Costa Brava sud i totes són dins del rang legal sense llicència.",
-        },
-      ],
-      hero: {
-        title: "Excursions en Vaixell a Lloret de Mar",
-        subtitle:
-          "Descobreix les famoses platges de Lloret de Mar navegant des del Port de Blanes. 25 minuts de navegació fins a un dels destins més populars de la Costa Brava.",
-        badgeFrom: "Des del Port de Blanes",
-        badgeTime: "25 min navegant",
-        badgeCapacity: "4-5 persones",
-      },
-      sections: {
-        whyLloretTitle: "Per què visitar Lloret de Mar en vaixell?",
-        uniquePerspective: "Perspectiva Única",
-        uniquePerspectiveDesc:
-          "Veure Lloret de Mar des del mar t'ofereix una perspectiva completament diferent. Contempla els seus icònics penya-segats, cales amagades i la famosa escultura de \"La Dona Marinera\" des de l'aigua.",
-        spectacularBeaches: "Platges Espectaculars",
-        spectacularBeachesDesc:
-          "Lloret compta amb algunes de les millors platges de la Costa Brava: Platja de Lloret, Cala Boadella, Santa Cristina i Cala Treumal. Cadascuna amb el seu encant especial.",
-        vibrantAtmosphere: "Ambient Vibrant",
-        vibrantAtmosphereDesc:
-          "Lloret de Mar és famós pel seu ambient animat, xiringuitos a la platja, restaurants amb vistes al mar i una àmplia oferta d'entreteniment. Perfecte per a diferents tipus de visitants.",
-        easyAccess: "Fàcil Accés en Vaixell",
-        easyAccessDesc:
-          "Només 25 minuts navegant des de Blanes fins a Lloret. Pots fondejar a prop de les platges principals o explorar les cales més apartades abans d'arribar al centre.",
-        beachesTitle: "Principals Platges i Cales de Lloret de Mar",
-        playaLloret: "Platja de Lloret",
-        playaLloretSub: "Platja principal - 1,5 km",
-        playaLloretDesc:
-          "La platja principal de Lloret amb tots els serveis, restaurants i ambient animat.",
-        calaBoadella: "Cala Boadella",
-        calaBoadellaSub: "Cala naturista",
-        calaBoadellaDesc:
-          "Cala tranquil·la i naturista al sud de Lloret, ideal per a qui busca tranquil·litat.",
-        santaCristina: "Santa Cristina",
-        santaCristinaSub: "Platja familiar",
-        santaCristinaDesc:
-          "Bonica platja familiar amb ermites i excel·lents vistes. Menys massificada que la principal.",
-        whatToDoTitle: "Què Fer a Lloret de Mar",
-        entertainment: "Entreteniment i Oci",
-        nightlife: "Discoteques i vida nocturna",
-        restaurantsSea: "Restaurants davant del mar",
-        waterSports: "Esports aquàtics",
-        santaClotildeMirador: "Mirador de Santa Clotilde",
-        pointsOfInterest: "Punts d'Interès",
-        mujerMarinera: 'Escultura "La Dona Marinera"',
-        castilloSantJoan: "Castell de Sant Joan",
-        jardinesSantaClotilde: "Jardins de Santa Clotilde",
-        sportsMarina: "Port esportiu",
-        navigationTipsTitle: "Consells de Navegació a Lloret",
-        recommendedRoute: "Ruta Recomanada",
-        recommendedRouteDesc:
-          "Des del Port de Blanes, dirigeix-te cap al nord seguint la costa. Passaràs per Cala Sant Francesc i S'Abanell abans d'arribar a Lloret. Mantén-te sempre a la vista de la costa.",
-        bestTimes: "Millors Horaris",
-        bestTimesDesc:
-          "Al matí (9:00-12:00) per evitar aglomeracions. A la tarda (16:00-19:00) per gaudir de l'ambient més animat. Evita els caps de setmana en temporada alta si busques tranquil·litat.",
-        whereToAnchor: "On Fondejar",
-        whereToAnchorDesc:
-          "Platja de Lloret: zona habilitada per a embarcacions recreatives (senyalitzada). Cala Boadella: fondeig lliure però respectant els banyistes. Santa Cristina: fondeig a la zona sud de la platja.",
-        safety: "Seguretat",
-        safetyDesc:
-          "Lloret pot tenir més tràfic marítim. Mantén distància de seguretat amb altres embarcacions. Respecta les zones de bany i les boies de senyalització.",
-        ctaTitle: "Preparat per a la teva Excursió a Lloret de Mar?",
-        ctaDescription:
-          "Reserva el teu vaixell des del Port de Blanes i descobreix les millors platges de Lloret de Mar amb total llibertat i comoditat.",
-        ctaButton: "Reservar Excursió a Lloret",
-        crossLinkingText:
-          'També oferim servei per a turistes allotjats a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> i <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Des d\'aquests pobles de la costa del Maresme s\'arriba al Port de Blanes en 10-20 minuts amb cotxe.',
-        relatedTitle: "Serveis i destinacions relacionats",
-        relatedLicenseFree: "Barques sense llicència disponibles a Blanes",
-        relatedPricing: "Veure preus per temporada",
-        relatedTossa: "Continua la ruta fins a Tossa de Mar",
-        relatedCostaBrava: "Lloguer de barques a la Costa Brava",
-      },
-    },
-    tossa: {
-      faqItems: [
-        {
-          question: "Puc arribar a Tossa de Mar amb vaixell sense llicència des de Blanes?",
-          answer:
-            "No. Els vaixells sense llicència (2 milles de costa, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa necessites Llicència de Navegació (LN) o contractar l'Excursió Privada amb Capità.",
-        },
-        {
-          question: "Quant es triga amb vaixell de Blanes a Tossa?",
-          answer:
-            "Entre 45 minuts i 1 hora des del Port de Blanes. 7 milles de costa espectacular amb penya-segats i cales verges.",
-        },
-        {
-          question: "Quan costa l'Excursió Privada amb Capità a Tossa?",
-          answer:
-            "Pacific Craft 625 amb patró professional, 4 h màxim, fins a 6 persones (més el patró). Des de {excursionBaja4h} € temporada baixa (abril-juny, setembre-tancament). Inclou IVA, patró, amarratge, neteja i assegurança. Combustible a part.",
-        },
-        {
-          question: "Quan costa llogar a Tossa amb Llicència de Navegació (LN)?",
-          answer:
-            "Packs tancats 2 h / 4 h / 8 h, sense patró. Des de {licBaja2h} € (2 h temporada baixa) amb els vaixells amb llicència. 3 tiers estacionals. Fiança 500 €. IVA, amarratge, neteja i assegurança inclosos; combustible a part.",
-        },
-        {
-          question: "Puc desembarcar a Tossa poble des del vaixell?",
-          answer:
-            "No hi ha amarratge turístic públic a Tossa. Es pot fondejar a cales properes com Cala Llevadó, Mar d'en Roig o Cala Pola.",
-        },
-        {
-          question: "Val la pena anar a Tossa amb vaixell si no tinc llicència?",
-          answer:
-            "Sí, mitjançant l'Excursió Privada amb Capità (Pacific Craft 625, 4 h, des de {excursionBaja4h} €). Única opció sense necessitat de llicència.",
-        },
-      ],
-      hero: {
-        title: "Excursions en Vaixell a Tossa de Mar",
-        subtitle:
-          "Descobreix el poble medieval més bonic de la Costa Brava navegant des del Port de Blanes. 30-45 min de navegació fins a la famosa Vila Vella de Tossa de Mar.",
-        badgeFrom: "Des del Port de Blanes",
-        badgeTime: "30-45 min navegant",
-        badgeCapacity: "4-7 persones",
-      },
-      sections: {
-        whyTossaTitle: "Per què visitar Tossa de Mar en vaixell?",
-        jewelCostaBrava: "La Joia de la Costa Brava",
-        jewelCostaBravaDesc:
-          "Tossa de Mar és considerat un dels pobles més bonics d'Espanya. La seva famosa Vila Vella (ciutat vella) fortificada del segle XII és única a tota la Costa Brava i ofereix unes vistes espectaculars des del mar.",
-        historicHeritage: "Patrimoni Històric",
-        historicHeritageDesc:
-          "Les muralles medievals que envolten la Vila Vella són Monument Històric-Artístic Nacional. Des del mar tindràs la millor perspectiva d'aquesta fortalesa del segle XIII que protegia la costa de pirates i invasors.",
-        paradisiacalCoves: "Cales Paradisiaques",
-        paradisiacalCovesDesc:
-          "Tossa compta amb algunes de les cales més verges i cristal·lines de la Costa Brava: Cala Pola, Cala Bona, Cala d'es Codolar. Moltes només accessibles des del mar, perfectes per fondejar i gaudir en privat.",
-        panoramicNavigation: "Navegació Panoràmica",
-        panoramicNavigationDesc:
-          "30-45 min navegant per la costa et permetrà veure penya-segats, cales secretes, i la silueta de Tossa creixent a l'horitzó fins a revelar tota la seva majestuositat. Una experiència inoblidable.",
-        attractionsTitle: "Principals Atractius de Tossa de Mar",
-        vilaVella: "Vila Vella",
-        vilaVellaSub: "Segle XII - Patrimoni Nacional",
-        vilaVellaDesc:
-          "Ciutat medieval fortificada amb muralles, torres i carrers empedrats. Vista espectacular des del mar.",
-        playaGrande: "Platja Gran",
-        playaGrandeSub: "Platja principal",
-        playaGrandeDesc:
-          "Àmplia platja de sorra daurada protegida per les muralles medievals. Perfecta per fondejar a prop.",
-        virginCoves: "Cales Verges",
-        virginCovesSub: "Només accessibles per mar",
-        virginCovesDesc:
-          "Cala Pola, Cala Bona, Es Codolar. Aigües cristal·lines i tranquil·litat absoluta.",
-        whatToDoTitle: "Què Fer a Tossa de Mar",
-        cultureHistory: "Cultura i Història",
-        exploreVilaVella: "Recorrer la Vila Vella medieval",
-        climbWalls: "Pujar a les muralles i torres",
-        municipalMuseum: "Museu Municipal",
-        tossaLighthouse: "Far de Tossa",
-        natureRelax: "Natura i Relax",
-        diveCrystalWaters: "Bussejar en aigües cristal·lines",
-        anchorSecretCoves: "Fondejar a cales secretes",
-        coastalPaths: "Camins de ronda costaners",
-        sunsetFromSea: "Postes de sol des del mar",
-        navigationTipsTitle: "Consells de Navegació a Tossa",
-        recommendedRoute: "Ruta Recomanada",
-        recommendedRouteDesc:
-          "Des del Port de Blanes, navega cap al nord passant per Lloret de Mar. Continua vorejant la costa fins a albirar les torres medievals de Tossa. La silueta de la Vila Vella és inconfusible des de lluny.",
-        bestSeason: "Millor Època",
-        bestSeasonDesc:
-          "Maig a octubre. Els mesos de juny i setembre ofereixen el millor equilibri: bon temps, mar en calma i menys aglomeracions. Evita l'agost si busques tranquil·litat.",
-        anchoringZones: "Zones de Fondeig",
-        anchoringZonesDesc:
-          "Platja Gran: zona habilitada per a embarcacions recreatives. Cala Pola: fondeig lliure en aigües cristal·lines. Es Codolar: cala verge ideal per passar el dia. Mantén distància de les zones de bany senyalitzades.",
-        safeNavigation: "Navegació Segura",
-        safeNavigationDesc:
-          "1 hora de navegació requereix planificació. Consulta el temps, porta suficient combustible i aigua. Respecta les velocitats en zones costaneres i mantén la costa sempre a la vista.",
-        ctaTitle: "Preparat per Descobrir Tossa de Mar?",
-        ctaDescription:
-          "Reserva el teu vaixell des del Port de Blanes i viu l'experiència única d'arribar per mar al poble medieval més bonic de la Costa Brava.",
-        ctaButton: "Reservar Excursió a Tossa",
-        warningTitle: "Tossa no és accessible amb vaixell sense llicència.",
-        warningBody:
-          'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència de Navegació (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 6 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos, combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
-        crossLinkingText:
-          'També oferim servei per a turistes allotjats a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> i <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Des d\'aquests pobles de la costa del Maresme s\'arriba al Port de Blanes en 10-20 minuts amb cotxe.',
-        relatedTitle: "Serveis i destinacions relacionats",
-        relatedCostaBrava: "Més destinacions a la Costa Brava",
-        relatedLicensed: "Vaixells amb llicència per arribar a Tossa",
-        relatedPricing: "Consulta preus i temporades",
-        relatedLloret: "Ruta intermèdia: Lloret de Mar amb vaixell",
-        relatedBlanes: "Port de sortida: Blanes",
-      },
-    },
-    malgrat: {
-      hero: {
-        title: "Lloguer de Barques a prop de Malgrat de Mar",
-        subtitle:
-          "Allotjat a Malgrat de Mar? El Port de Blanes és a només 10 minuts en cotxe. Lloga una barca i descobreix les cales més boniques de la Costa Brava.",
-        badgeDistance: "8 km de Blanes",
-        badgeTime: "10 min en cotxe",
-        badgeBeach: "Platja familiar",
-      },
-      sections: {
-        whyRentTitle: "Per què llogar una barca des de Blanes?",
-        closestPort: "El Port Més Proper",
-        closestPortDesc:
-          "Blanes és el port nàutic més proper a Malgrat de Mar, a només 10 minuts per la N-II. Ofereix 8 embarcacions preparades per sortir a navegar amb totes les comoditats.",
-        varietyBoats: "8 Barques Disponibles",
-        varietyBoatsDesc:
-          "Des de barques sense llicència perfectes per a famílies fins a embarcacions amb llicència per a navegants experimentats. Per a 4 a 7 persones.",
-        fuelIncluded: "Gasolina Inclosa",
-        fuelIncludedDesc:
-          "Tots els nostres lloguers inclouen el combustible en el preu. Sense sorpreses ni costos ocults. Des de 75 €/hora.",
-        noExperience: "Sense Experiència Necessària",
-        noExperienceDesc:
-          "Oferim barques sense llicència amb formació inclosa de 15 minuts. Ideal per a turistes que volen una experiència única.",
-        townAttractionsTitle: "Què Veure a Malgrat de Mar",
-        attraction1: "Platja de Malgrat",
-        attraction1Desc:
-          "Àmplia platja de sorra daurada amb tots els serveis. Ideal per a famílies amb xiringuitos i zones esportives.",
-        attraction2: "Parc Francesc Macià",
-        attraction2Desc:
-          "Gran parc urbà amb jardins, àrees de joc i espais verds. Perfecte per passejar les tardes.",
-        attraction3: "Passeig Marítim",
-        attraction3Desc:
-          "Passeig vora el mar amb restaurants, gelateries i vistes al Mediterrani. Ambient relaxat i familiar.",
-        howToGetTitle: "Com Arribar al Port de Blanes",
-        byCar: "En Cotxe",
-        byCarDesc:
-          'Des de Malgrat de Mar, agafa la N-II direcció Blanes. 8 km, uns 10 minuts. Segueix les indicacions cap a "Port de Blanes".',
-        byTaxi: "En Taxi",
-        byTaxiDesc:
-          "Un taxi des de Malgrat de Mar al Port de Blanes costa aproximadament 12-15 € i tarda uns 10 minuts.",
-        byPublicTransport: "En Transport Públic",
-        byPublicTransportDesc:
-          "Tren RENFE línia R1 des de Malgrat de Mar a Blanes (5 minuts, cada 30 min). Des de l'estació de Blanes, 15 min caminant al port.",
-        parkingAtBlanes: "Aparcament a Blanes",
-        parkingAtBlanesDesc:
-          "Aparcament gratuït disponible a prop del Port de Blanes. A l'estiu recomanem arribar d'hora per assegurar plaça.",
-        boatDestinationsTitle: "Què Explorar en Barca des de Blanes",
-        boatDestinationsDesc:
-          "Des del Port de Blanes pots navegar cap al nord fins a Lloret de Mar (25 min) i Tossa de Mar (30-45 min), descobrint cales verges com Cala Sant Francesc i Cala Brava pel camí.",
-        ctaTitle: "Des de Malgrat de Mar? La Teva Barca T'Espera a Blanes",
-        ctaDescription:
-          "A només 10 minuts en cotxe. Reserva la teva barca i descobreix la Costa Brava des del mar.",
-        ctaButton: "Reservar Barca des de Blanes",
-      },
-      faqItems: [
-        {
-          question: "A quanta distància està Malgrat de Mar del Port de Blanes?",
-          answer:
-            "Malgrat de Mar està a només 8 km del Port de Blanes, uns 10 minuts amb cotxe per la N-II. També pots arribar-hi amb tren RENFE línia R1 en només 5 minuts.",
-        },
-        {
-          question: "Quan costa llogar un vaixell des de Blanes?",
-          answer:
-            "El lloguer de vaixell comença des de {noLicBaja1h} € per hora amb gasolina inclosa. No cal llicència per a vaixells de fins a 15 CV. Disposem de {fleetCount} vaixells per a 4-11 persones.",
-        },
-        {
-          question: "Necessito llicència de navegació?",
-          answer:
-            "No necessàriament. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir. També tenim vaixells amb llicència.",
-        },
-        {
-          question: "Hi ha pàrquing al Port de Blanes?",
-          answer:
-            "Sí, hi ha pàrquing gratuït disponible a prop del Port de Blanes. En temporada alta recomanem arribar d'hora per assegurar plaça, o considerar tren/taxi.",
-        },
-        {
-          question: "Puc llogar el vaixell directament des de Malgrat de Mar?",
-          answer:
-            "No. Malgrat de Mar no té port esportiu ni punt de lloguer de vaixells a motor. El port nàutic més proper a Malgrat és el Port de Blanes (8 km, 10 min amb cotxe o 5 min amb tren R1). Totes les nostres embarcacions surten i tornen al Port de Blanes.",
-        },
-        {
-          question:
-            "Quines cales es poden arribar amb vaixell des de Blanes si estic allotjat a Malgrat?",
-          answer:
-            "Amb un vaixell sense llicència des de Blanes arribes en 25 minuts a la Platja de Fenals (sud de Lloret), passant per 7 cales: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Platja de Santa Cristina, Cala Sa Boadella i Platja de Fenals. Amb vaixell amb Llicència de Navegació (LN) pots arribar a Tossa de Mar (45 min) i més enllà.",
-        },
-        {
-          question: "Hi ha servei de transfer des d'hotels de Malgrat al Port de Blanes?",
-          answer:
-            "No oferim transfer directe, però el trajecte és molt curt: 5 minuts amb tren R1 (Malgrat → Blanes) o 10 minuts amb cotxe/taxi (cost aproximat 12-15 €). L'estació de Blanes està a 10 minuts caminant del port. També hi ha bus local L23.",
-        },
-      ],
-    },
-    santaSusanna: {
-      faqItems: [
-        {
-          question: "A quanta distància està Santa Susanna del Port de Blanes?",
-          answer:
-            "Santa Susanna està a 12 km del Port de Blanes, uns 15 minuts amb cotxe per la N-II. També pots arribar-hi amb tren RENFE línia R1 en només 10 minuts.",
-        },
-        {
-          question: "Quan costa llogar un vaixell des de Blanes si soc a Santa Susanna?",
-          answer:
-            "El lloguer de vaixell comença des de {noLicBaja1h} € per hora amb gasolina inclosa. No cal llicència per a vaixells de fins a 15 CV. Disposem de {fleetCount} vaixells per a 4-11 persones.",
-        },
-        {
-          question: "Necessito llicència de navegació per llogar un vaixell?",
-          answer:
-            "No necessàriament. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir. També tenim vaixells amb llicència.",
-        },
-        {
-          question: "És fàcil arribar amb transport públic des de Santa Susanna?",
-          answer:
-            "Sí, la línia R1 de RENFE connecta Santa Susanna amb Blanes en només 10 minuts. Els trens surten cada 30 minuts en temporada alta. L'estació de Blanes està a 10 minuts caminant del port.",
-        },
-        {
-          question: "Hi ha lloguer de vaixells a la pròpia Santa Susanna?",
-          answer:
-            "No. Santa Susanna té platja àmplia però no disposa de port esportiu ni servei de lloguer de vaixells a motor. El port nàutic més proper és el Port de Blanes (12 km, 15 min amb cotxe o 10 min amb tren R1). És el punt de lloguer més pràctic si t'allotges a Santa Susanna.",
-        },
-        {
-          question: "Quina és la millor excursió amb vaixell si m'allotjo a Santa Susanna?",
-          answer:
-            "Des de Blanes recomanem: (a) Ruta de cales 4h sense llicència fins a la Platja de Fenals fondeant en 2-3 cales cristal·lines (des de 135 € per a 5 persones); (b) Excursió privada amb patró 4h fins a Tossa i Cala Bona (des de {excursionBaja4h} €, ideal si no tens experiència nàutica); (c) Vaixell amb Llicència de Navegació (LN) si algú del grup té titulació (des de 240 € / 4h).",
-        },
-        {
-          question: "Puc fer una excursió amb vaixell a la posta de sol des de Santa Susanna?",
-          answer:
-            "Sí, és molt popular. Des de Blanes oferim passejos a la posta de sol (18:30-21:00 segons mes) amb vaixell sense llicència a 115 € per 2 hores. Navegaràs per les 7 cales amb llum daurada. Des de Santa Susanna arribes en 15 min amb cotxe o 10 min amb tren. Reserva amb antelació a l'estiu.",
-        },
-      
-        {
-          question: "Puc fer un passeig en barca des de Santa Susanna sense pilotar jo?",
-          answer:
-            "Sí. A més del lloguer sense llicència que pilotes tu, oferim l'excursió privada amb patró: un passeig en barca des del Port de Blanes de 2 a 8 hores per a fins a 6 persones, amb parades per nedar i fer snorkel. Ideal si viatges en família i prefereixes només gaudir.",
-        },
-      ],
-      hero: {
-        title: "Lloguer de Barques a prop de Santa Susanna",
-        subtitle:
-          "Vacances a Santa Susanna? El Port de Blanes és a només 15 minuts en cotxe. Lloga una barca sense llicència i explora la Costa Brava.",
-        badgeDistance: "12 km de Blanes",
-        badgeTime: "15 min en cotxe",
-        badgeBeach: "Zona resort",
-      },
-      sections: {
-        whyRentTitle: "Per què llogar una barca des de Blanes?",
-        closestPort: "Port Proper i Accessible",
-        closestPortDesc:
-          "El Port de Blanes és el punt de lloguer nàutic més proper a Santa Susanna. A només 15 minuts per carretera, amb 8 barques preparades per a la teva aventura.",
-        varietyBoats: "Barques Per a Tothom",
-        varietyBoatsDesc:
-          "Sense llicència per a principiants i famílies, amb llicència per a navegants experimentats. Capacitat de 4 a 7 persones per embarcació.",
-        fuelIncluded: "Tot Inclòs",
-        fuelIncludedDesc:
-          "Preu amb gasolina inclosa des de 75 €/hora. Sense costos ocults. Formació, armilles salvavides i equip de seguretat inclosos.",
-        noExperience: "Primera Vegada? Cap Problema",
-        noExperienceDesc:
-          "La majoria dels nostres clients mai han navegat. Amb 15 minuts de formació estaràs preparat per sortir a navegar i gaudir.",
-        townAttractionsTitle: "Què Veure a Santa Susanna",
-        attraction1: "Platja de Santa Susanna",
-        attraction1Desc:
-          "Platja de sorra fina i aigües tranquil·les, perfecta per a famílies. Bandera blava i tots els serveis.",
-        attraction2: "Castell de Can Rates",
-        attraction2Desc:
-          "Torre de defensa medieval del segle XVI. Centre cultural amb exposicions i vistes panoràmiques al poble.",
-        attraction3: "Zona Resort i Spa",
-        attraction3Desc:
-          "Santa Susanna és famosa pels seus hotels amb spa i termes. Combina un dia de barca amb una tarda de relax.",
-        howToGetTitle: "Com Arribar al Port de Blanes",
-        byCar: "En Cotxe",
-        byCarDesc:
-          'Des de Santa Susanna, agafa la N-II o C-32 direcció Blanes. 12 km, uns 15 minuts. Indicacions cap a "Port de Blanes".',
-        byTaxi: "En Taxi",
-        byTaxiDesc:
-          "Taxi des de Santa Susanna al Port de Blanes: aproximadament 18-22 €, uns 15 minuts de trajecte.",
-        byPublicTransport: "En Transport Públic",
-        byPublicTransportDesc:
-          "Tren RENFE línia R1 des de Santa Susanna a Blanes (10 minuts, cada 30 min). Des de l'estació, 15 min caminant al port.",
-        parkingAtBlanes: "Aparcament a Blanes",
-        parkingAtBlanesDesc:
-          "Aparcament gratuït disponible al costat del Port de Blanes. En temporada alta, recomanem arribar abans de les 10:00.",
-        boatDestinationsTitle: "Destinacions en Barca des de Blanes",
-        boatDestinationsDesc:
-          "Explora la costa nord cap a Lloret de Mar (25 min) i Tossa de Mar (30-45 min). Descobreix cales com Cala Sant Francesc, Cala Brava i les platges verges entre Blanes i Lloret.",
-        ctaTitle: "Des de Santa Susanna? A 15 Minuts de la Teva Aventura",
-        ctaDescription:
-          "El Port de Blanes t'espera amb 8 barques preparades. Reserva i descobreix la Costa Brava des del mar.",
-        ctaButton: "Reservar Barca des de Blanes",
-      },
-    },
-    calella: {
-      faqItems: [
-        {
-          question: "A quanta distància està Calella del Port de Blanes?",
-          answer:
-            "Calella està a 17 km del Port de Blanes, uns 20 minuts amb cotxe per la N-II. També pots arribar-hi amb tren RENFE línia R1 en només 15 minuts.",
-        },
-        {
-          question: "Quan costa llogar un vaixell des de Blanes si soc a Calella?",
-          answer:
-            "El lloguer de vaixell comença des de {noLicBaja1h} € per hora amb gasolina inclosa. No cal llicència per a vaixells de fins a 15 CV. Disposem de {fleetCount} vaixells per a 4-11 persones.",
-        },
-        {
-          question: "Necessito experiència prèvia per llogar un vaixell?",
-          answer:
-            "No necessites experiència. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir, incloent normes de navegació i seguretat.",
-        },
-        {
-          question: "Puc anar i tornar des de Calella amb transport públic?",
-          answer:
-            "Sí, la línia R1 de RENFE connecta Calella amb Blanes en 15 minuts. Els trens surten cada 30 minuts en temporada. L'estació de Blanes està a uns 10 minuts caminant del port.",
-        },
-        {
-          question: "Hi ha lloguer de vaixells a la pròpia Calella?",
-          answer:
-            "Calella és la localitat més gran del tram però no disposa de port esportiu amb servei de lloguer a motor. Els ports nàutics més propers són Blanes (17 km al nord, millor flota del tram) i Arenys de Mar (15 km al sud, preus més alts). Recomanem Blanes per millor relació qualitat-preu i connexió directa per R1 en 15 minuts.",
-        },
-        {
-          question: "Puc fer una excursió amb vaixell des de Calella a Tossa de Mar?",
-          answer:
-            "No directament des de Calella (no hi ha lloguer). Des de Blanes sí: amb un vaixell amb Llicència de Navegació (LN) arribes a Tossa en 45 min (des de {licBaja2h} €/2h), o amb la nostra Excursió Privada amb Capità 4h fins a Tossa incloent Cala Bona i Vila Vella (des de {excursionBaja4h} € per a fins a 6 persones, més el patró). Els vaixells sense llicència no poden arribar a Tossa pel límit legal de 2 milles.",
-        },
-        {
-          question: "Quan costa el tren R1 de Calella a Blanes?",
-          answer:
-            "El bitllet senzill R1 Calella → Blanes costa aproximadament 3 € (tarifa ATM zona 4-5). Amb targeta T-Casual 10 viatges és més econòmic. Durada: 15 minuts. Freqüència: cada 30 minuts en temporada. Des de l'estació de Blanes al Port són 10 minuts caminant o 3 min amb taxi.",
-        },
-      ],
-      hero: {
-        title: "Lloguer de Barques a prop de Calella",
-        subtitle:
-          "Allotjat a Calella? A només 20 minuts en cotxe del Port de Blanes. Lloga una barca i viu una experiència única a la Costa Brava.",
-        badgeDistance: "17 km de Blanes",
-        badgeTime: "20 min en cotxe",
-        badgeBeach: "Platja Gran",
-      },
-      sections: {
-        whyRentTitle: "Per què llogar una barca des de Blanes?",
-        closestPort: "El Teu Port a la Costa Brava",
-        closestPortDesc:
-          "Blanes és el port nàutic més accessible des de Calella. A 20 minuts per la C-32 o N-II, amb 8 embarcacions i servei professional.",
-        varietyBoats: "Flota Completa",
-        varietyBoatsDesc:
-          "Barques sense llicència des de 75 €/h per a famílies i grups d'amics. Barques amb llicència per a navegants titulats o patró privat.",
-        fuelIncluded: "Preu Tot Inclòs",
-        fuelIncludedDesc:
-          "Gasolina, formació, armilles salvavides i equip de seguretat inclosos en el preu. Sense sorpreses.",
-        noExperience: "Per a Tots els Nivells",
-        noExperienceDesc:
-          "Mai has navegat? No importa. Les nostres barques sense llicència són fàcils de manejar i et donem formació abans de sortir a navegar.",
-        townAttractionsTitle: "Què Veure a Calella",
-        attraction1: "Platja Gran de Calella",
-        attraction1Desc:
-          "Platja urbana de 2 km amb bandera blava, xiringuitos, esports aquàtics i un animat passeig marítim.",
-        attraction2: "Far de Calella",
-        attraction2Desc:
-          "Far històric al cim del poble amb vistes panoràmiques espectaculars al Mediterrani i la costa del Maresme.",
-        attraction3: "Parc Dalmau i Casc Antic",
-        attraction3Desc:
-          "Parc centenari amb pins mediterranis i casc antic amb carrers empedrats, esglésies i places amb encant.",
-        howToGetTitle: "Com Arribar al Port de Blanes",
-        byCar: "En Cotxe",
-        byCarDesc:
-          'Des de Calella, agafa la C-32 direcció Blanes. 17 km, uns 20 minuts. Segueix les indicacions "Port de Blanes".',
-        byTaxi: "En Taxi",
-        byTaxiDesc:
-          "Taxi des de Calella al Port de Blanes: aproximadament 25-30 €, uns 20 minuts de trajecte.",
-        byPublicTransport: "En Transport Públic",
-        byPublicTransportDesc:
-          "Tren RENFE línia R1 des de Calella a Blanes (15 minuts, cada 30 min). Des de l'estació de Blanes, 15 min caminant al port.",
-        parkingAtBlanes: "Aparcament a Blanes",
-        parkingAtBlanesDesc:
-          "Aparcament gratuït a prop del Port de Blanes. A l'estiu recomanem arribar d'hora o considerar taxi/tren.",
-        boatDestinationsTitle: "Explora la Costa Brava en Barca",
-        boatDestinationsDesc:
-          "Des de Blanes navega cap a Lloret de Mar (25 min) o Tossa de Mar (30-45 min). Cales verges, aigües cristal·lines i la costa més bonica del Mediterrani t'esperen.",
-        ctaTitle: "Des de Calella? La Teva Aventura Comença a Blanes",
-        ctaDescription:
-          "A 20 minuts en cotxe del Port de Blanes. 8 barques preparades per explorar la Costa Brava.",
-        ctaButton: "Reservar Barca des de Blanes",
-      },
-    },
-    costaBrava: {
-      hero: {
-        title: "Lloguer de Barques a la Costa Brava",
-        subtitle:
-          "Descobreix les millors cales i platges de la Costa Brava a bord de les nostres barques. Sortides des del Port de Blanes, al cor de la costa catalana. Barques sense llicència des de 75 €/hora amb gasolina i assegurança inclosos.",
-        badgePort: "Port de Blanes",
-        badgeCapacity: "4-7 persones",
-        badgeLicense: "Amb i sense llicència",
-      },
-      sections: {
-        introP1:
-          "La Costa Brava és una de les destinacions nàutiques més espectaculars del Mediterrani. Amb més de 200 quilòmetres de litoral entre Blanes i la frontera francesa, ofereix una combinació única de penya-segats, cales d'aigües cristal·lines i pobles medievals.",
-        introP2:
-          "A Costa Brava Rent a Boat t'oferim la forma més fàcil d'explorar aquesta costa: lloga una de les nostres barques al Port de Blanes i navega al teu ritme. No necessites experiència prèvia ni llicència nàutica per a la majoria de les nostres embarcacions.",
-        introP3:
-          "En les barques sense llicència, el preu inclou gasolina, assegurança a tot risc i equip de seguretat. Sense costos ocults.",
-        whyChooseTitle: "Per què escollir la Costa Brava per llogar una barca",
-        covesTitle: "Cales i platges inaccessibles per terra",
-        covesDesc:
-          "La Costa Brava amaga desenes de cales que només es poden visitar en barca. Des de Blanes, en 15-45 minuts arribaràs a platges verges d'aigües turquesa.",
-        calmWatersTitle: "Aigües tranquil·les i protegides",
-        calmWatersDesc:
-          "L'orientació de la costa i les seves nombroses badies creen condicions ideals per a la navegació, fins i tot per a principiants.",
-        accessibleTitle: "Accessible des de Barcelona i Girona",
-        accessibleDesc:
-          "El nostre port base a Blanes està a 70 minuts de Barcelona i 35 minuts de Girona per autopista. Aparcament gratuït al costat del port.",
-        allLevelsTitle: "Per a tots els nivells",
-        allLevelsDesc:
-          "Tant si mai has navegat com si ets un patró experimentat, tenim la barca perfecta per a tu. Formació inclosa en tots els lloguers.",
-        navigationGuideTitle: "Guia de Navegació per la Costa Brava",
-        routeBlanesLloret: "Blanes - Lloret de Mar: 30 min, fàcil, sense llicència",
-        routeBlanesLloretDesc:
-          "Una de les rutes més populars de la Costa Brava. Perfecta per a una excursió de mig dia amb parada a Cala Treumal.",
-        routeBlanesTossa: "Blanes - Tossa de Mar: 45 min, mitjana, llicència recomanada",
-        routeBlanesTossaDesc:
-          "La ruta més espectacular de tota la costa. Arribaràs a la icònica Vila Vella de Tossa de Mar.",
-        routeBlaneSantFeliu: "Blanes - Sant Feliu de Guíxols: 1,5h, avançada, llicència requerida",
-        routeBlaneSantFeliuDesc:
-          "Navegació en mar obert que requereix planificació i atenció a les condicions meteorològiques.",
-        routeBlaneCalaBrava: "Blanes - Cala Brava: 15 min, fàcil, sense llicència",
-        routeBlaneCalaBravaDesc:
-          "L'escapada ràpida perfecta per a famílies i principiants. Només 15 minuts del Port de Blanes a aquesta cala verge.",
-        boatTypesTitle: "Tipus de Barques per a la Costa Brava",
-        noLicenseTitle: "Barques Sense Llicència",
-        noLicensePower: "Fins a 15 CV",
-        noLicenseCapacity: "Màxim 5 persones a bord",
-        noLicenseNavigation: "Navegació costanera fins a 2 milles",
-        noLicenseFuel: "Gasolina inclosa en el preu",
-        noLicensePrice: "Des de 75 €/hora",
-        noLicenseDesc:
-          "Les nostres barques sense llicència són l'opció ideal per a famílies. Cap titulació requerida: 15 minuts de formació i llest. Tot inclòs: gasolina, assegurança, equip de seguretat i material de snorkel.",
-        licensedTitle: "Barques Amb Llicència",
-        licensedPower: "De 40 a 115 CV",
-        licensedCapacity: "Fins a 7 persones a bord",
-        licensedNavigation: "Navegació en mar obert sense límits",
-        licensedFuel: "Combustible NO inclòs (dipòsit a part)",
-        licensedPrice: "Des de 90 €/hora",
-        licensedDesc:
-          "Per a navegants amb titulació que busquen explorar més enllà de la costa immediata. Més potència, autonomia i capacitat. El combustible es paga per separat. N'hi ha prou amb la Llicència de Navegació (LN); també valen PNB, PER o equivalents europeus.",
-        bestCovesTitle: "Les Millors Cales de la Costa Brava en Barca",
-        calaBravaName: "Cala Brava",
-        calaBravaDesc:
-          "Una joia amagada a només 15 minuts en barca des de Blanes. Aigües turquesa intenses i fons marí espectacular per fer snorkel.",
-        calaSantFrancescName: "Cala Sant Francesc",
-        calaSantFrancescDesc:
-          "Entre Blanes i Lloret de Mar, aquesta cala de sorra fina amb aigües transparents és perfecta per a famílies.",
-        calaTreumalName: "Cala Treumal",
-        calaTreumalDesc:
-          "A la frontera entre Blanes i Lloret, Cala Treumal combina vegetació subtropical amb aigües mediterrànies cristal·lines.",
-        calaBBoadellaName: "Cala Boadella",
-        calaBBoadellaDesc:
-          "Considerada la cala més bonica de Lloret de Mar. Platja de sorra daurada protegida per penya-segats boscosos.",
-        platjaPalomeraName: "Platja de Sa Palomera",
-        platjaPalomeraDesc:
-          "La platja més icònica de Blanes, que marca l'inici oficial de la Costa Brava.",
-        pricingTitle: "Preus Lloguer Barca Costa Brava 2026",
-        ctaTitle: "Reserva la Teva Barca a la Costa Brava",
-        ctaDescription:
-          "Tria la teva barca, data i horari. Gasolina, assegurança i formació inclosos en barques sense llicència. Reserva per WhatsApp: et confirmem en menys de 2 hores.",
-        ctaButton: "Reservar per WhatsApp",
-        crossLinkEnglish: "This page in English: Boat Rental Costa Brava",
-      },
-      faq: {
-        experienceQ: "Necessito experiència prèvia per llogar una barca a la Costa Brava?",
-        experienceA:
-          "No, no necessites cap experiència prèvia. Per a les nostres barques sense llicència (fins a 15 CV) només has de ser major de 18 anys. Oferim una formació pràctica de 15 minuts abans de sortir.",
-        distanceQ: "Fins on puc navegar sense llicència des de Blanes?",
-        distanceA:
-          "Amb una barca sense llicència pots navegar fins a 2 milles nàutiques de la costa. Això et permet explorar Cala Brava (15 min), Cala Sant Francesc (20 min) i Lloret de Mar (30 min).",
-        weatherQ: "Què passa si fa mal temps el dia de la meva reserva?",
-        weatherA:
-          "La seguretat és la nostra prioritat. Si les condicions meteorològiques no permeten navegar amb seguretat, t'oferim canvi de data gratuït o devolució completa.",
-        petsQ: "Puc portar mascotes a la barca?",
-        petsA:
-          "Sí, les mascotes són benvingudes a totes les nostres barques. Recomanem portar aigua fresca, una tovallola i protecció solar adequada per a la teva mascota.",
-      },
-    },
-    tordera: {
-      faqItems: [
-        {
-          question: "A quanta distància està Tordera del Port de Blanes?",
-          answer:
-            "Tordera està a només 10 km del Port de Blanes, uns 15 minuts amb cotxe per la C-32 o la carretera local. També pots arribar-hi amb tren RENFE línia R1 en només 8 minuts des de l'estació de Blanes.",
-        },
-        {
-          question: "Quan costa llogar un vaixell des de Blanes si visc a Tordera?",
-          answer:
-            "El lloguer de vaixell sense llicència comença des de {noLicBaja1h} € per hora amb gasolina inclosa. Vaixells amb llicència des de {licBaja2h} € per 2 hores. Disposem de {fleetCount} vaixells per a 4-11 persones.",
-        },
-        {
-          question: "Necessito llicència de navegació?",
-          answer:
-            "No necessàriament. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir. També tenim vaixells amb llicència per a navegants experimentats.",
-        },
-        {
-          question: "Hi ha pàrquing al Port de Blanes?",
-          answer:
-            "Sí, hi ha pàrquing gratuït disponible a prop del Port de Blanes. Des de Tordera pots aparcar còmodament ja que en ser una zona menys turística que altres punts de la costa, sol haver-hi disponibilitat fins i tot en temporada alta.",
-        },
-      ],
-      seo: {
-        title:
-          "Lloguer Vaixell Tordera | Port Blanes 15 min | Sense Llicència 75€/h | Delta del Tordera",
-        description:
-          "Vius a Tordera o prop del Delta? Port Blanes a 15 min amb cotxe o 8 min amb tren R1. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Navega el Delta del Tordera.",
-        ogTitle: "Lloguer Vaixell Tordera | Delta del Tordera en Vaixell",
-        ogDescription:
-          "Des de Tordera al Port Blanes en 15 min. Vaixell sense llicència des de 75€/h. Delta del Tordera en vaixell. 4.8★.",
-      },
-      schema: {
-        name: "Lloguer de Vaixells prop de Tordera",
-        description:
-          "Lloga vaixells des del Port de Blanes, a només 15 minuts amb cotxe de Tordera. Vaixells sense llicència des de 75 €/hora amb gasolina inclosa.",
-      },
-      breadcrumbName: "Lloguer Vaixells Tordera",
-      sections: {
-        heroTitle: "Lloguer de Vaixells prop de Tordera",
-        heroSubtitle:
-          "Tordera és un municipi residencial de l'interior que serveix com a porta d'entrada a la Costa Brava. A només 15 minuts amb cotxe del Port de Blanes, o 8 minuts amb tren, és un punt de sortida ideal per gaudir del mar. Amb aparcament fàcil al port i sense les aglomeracions de la costa, navegar des de Blanes és la millor opció per als residents i visitants de Tordera.",
-        heroBadgeCar: "10 km / 15 min amb cotxe",
-        heroBadgeTransport: "RENFE R1: 8 min",
-        heroBadgeExtra: "Pàrquing fàcil",
-        whyTitle: "Per què llogar un vaixell des de Blanes si ets a Tordera?",
-        whyCard1Title: "El teu port més proper",
-        whyCard1Desc:
-          "El Port de Blanes està a només 10 km de Tordera, cosa que el converteix en el punt de lloguer de vaixells més proper i accessible. Tant si ets resident com si ets de pas, en 15 minuts pots estar navegant per les aigües cristal·lines de la Costa Brava. La connexió per carretera és directa i sense complicacions.",
-        whyCard2Title: "{fleetCount} vaixells disponibles",
-        whyCard2Desc:
-          "La nostra flota inclou {fleetCount} vaixells: embarcacions sense llicència ideals per a famílies i principiants, i vaixells amb llicència per als més experimentats. Des de barques per a 4 persones fins a embarcacions per a grups de fins a 11 persones.",
-        whyCard3Title: "Gasolina inclosa en vaixells sense llicència",
-        whyCard3Desc:
-          "El preu dels vaixells sense llicència inclou la gasolina. Des de 75 € per hora. Sense costos ocults ni sorpreses en el preu final.",
-        whyCard4Title: "Sense experiència prèvia necessària",
-        whyCard4Desc:
-          "Abans de salpar t'oferim 15 minuts de formació pràctica on aprendràs a manejar el motor, les normes bàsiques de navegació i els millors racons per explorar. Qualsevol persona major de 18 anys pot pilotar els nostres vaixells sense llicència.",
-        townTitle: "Tordera: porta d'entrada a la Costa Brava",
-        townIntro:
-          "Tordera és un municipi tranquil i ben comunicat, situat a la vall del riu Tordera. La seva posició estratègica entre l'interior i la costa el converteix en una base excel·lent per explorar la Costa Brava. Molts residents de Tordera aprofiten la proximitat al Port de Blanes per gaudir de la nàutica sense les aglomeracions dels grans municipis costers.",
-        townCard1Title: "Interior i natura",
-        townCard1Desc:
-          "Municipi residencial envoltat de natura, amb el Montnegre i el Corredor com a parcs naturals propers. Combina senderisme d'interior amb una jornada de navegació costanera.",
-        townCard2Title: "A minuts de la costa",
-        townCard2Desc:
-          "Tot i que és a l'interior, Tordera té accés ràpid tant al Maresme com a la Costa Brava. El Port de Blanes és el teu enllaç directe amb el Mediterrani.",
-        townCard3Title: "Ben comunicat",
-        townCard3Desc:
-          "Amb estació de tren RENFE (línia R1), autopista C-32 i bones carreteres locals, arribar al Port de Blanes des de Tordera és ràpid i còmode amb qualsevol mitjà de transport.",
-        howTitle: "Com arribar de Tordera al Port de Blanes",
-        howCarTitle: "Amb cotxe (15 minuts)",
-        howCarDesc:
-          "Des de Tordera, agafa la carretera en direcció Blanes (GI-600 o C-32). Són 10 km de trajecte directe fins al Port de Blanes. L'aparcament a la zona del port és gratuït i generalment té bona disponibilitat, especialment si arribes al matí.",
-        howTaxiTitle: "Amb taxi",
-        howTaxiDesc:
-          "Un taxi des de Tordera al Port de Blanes costa aproximadament 15-20 €. És una opció ràpida i còmoda per anar i tornar.",
-        howTransportTitle: "Amb tren RENFE (8 minuts)",
-        howTransportDesc:
-          "La línia R1 de Rodalies de RENFE connecta Tordera amb Blanes en només 8 minuts. És l'opció més ràpida i econòmica. Els trens surten cada 30 minuts en temporada. Des de l'estació de Blanes, el port està a 10-15 minuts caminant pel passeig marítim.",
-        howParkingTitle: "Aparcament a Blanes",
-        howParkingDesc:
-          "Hi ha pàrquing gratuït a prop del Port de Blanes. Els residents de Tordera tenen l'avantatge d'arribar d'hora des de l'interior, per la qual cosa trobar plaça d'aparcament sol ser més fàcil que per als qui vénen de localitats costaneres més llunyanes.",
-        destsTitle: "Què pots veure en vaixell des de Blanes?",
-        destsIntro:
-          "Des del Port de Blanes pots navegar cap al nord per l'espectacular costa de la Costa Brava. Descobreix cales d'aigües turqueses amagades entre penya-segats, platges només accessibles per mar, i pobles amb encant com Lloret de Mar i la històrica Tossa de Mar amb la seva vila medieval emmurallada.",
-        destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 30-45 min",
-        destBlanes: "Cales de Blanes",
-        pricingTitle: "Preus de lloguer de vaixells",
-        pricingIntro:
-          "Preus transparents amb gasolina inclosa en tots els vaixells sense llicència. Sense sorpreses ni costos addicionals.",
-        pricingNoLicTitle: "Vaixells sense llicència",
-        pricingNoLicFrom: "Des de {noLicBaja1h} €/hora (gasolina inclosa)",
-        pricingNoLicCapacity: "Capacitat: 4-7 persones segons model",
-        pricingLicTitle: "Vaixells amb llicència",
-        pricingLicFrom: "Des de {licBaja2h} € / 2 hores",
-        pricingLicEngines: "Motors de 40 a 115 CV",
-        pricingLicCapacity: "Capacitat: fins a 11 persones",
-        pricingButton: "Veure tots els preus i vaixells",
-        ctaTitle: "Reserva el teu vaixell des de Tordera",
-        ctaDesc:
-          "En 15 minuts amb cotxe o 8 minuts amb tren estaràs al Port de Blanes a punt de salpar. Contacta'ns per WhatsApp per reservar el teu vaixell i descobrir la Costa Brava des de l'aigua.",
-        ctaButton: "Reservar per WhatsApp",
-        faqTitle: "Preguntes freqüents sobre llogar vaixell des de Tordera",
-      },
-    },
-    palafolls: {
-      faqItems: [
-        {
-          question: "A quanta distància està Palafolls del Port de Blanes?",
-          answer:
-            "Palafolls està a només 8 km del Port de Blanes, uns 12 minuts amb cotxe. És un dels municipis més propers al port, cosa que el converteix en un punt ideal per fer una excursió amb vaixell per la Costa Brava.",
-        },
-        {
-          question: "Quan costa llogar un vaixell des de Blanes si soc a Palafolls?",
-          answer:
-            "El lloguer de vaixell sense llicència comença des de {noLicBaja1h} € per hora amb gasolina inclosa. Vaixells amb llicència des de {licBaja2h} € per 2 hores. Disposem de {fleetCount} vaixells per a 4-11 persones.",
-        },
-        {
-          question: "Puc anar des del càmping de Palafolls al Port de Blanes fàcilment?",
-          answer:
-            "Sí, des dels càmpings de la zona de Palafolls (com La Masia o Neptú) arribes al Port de Blanes en uns 10-15 minuts amb cotxe. Hi ha línies d'autobús que connecten ambdues localitats, tot i que el cotxe és l'opció més còmoda.",
-        },
-        {
-          question: "Necessito experiència per llogar un vaixell?",
-          answer:
-            "No necessites experiència. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir, incloent normes de navegació i consells de seguretat.",
-        },
-      ],
-      seo: {
-        title: "Lloguer Vaixell Palafolls | Port Blanes 12 min | Sense Llicència 75€/h",
-        description:
-          "Al càmping o allotjament a Palafolls? Port Blanes a 12 min amb cotxe. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Excursió ideal Costa Brava.",
-        ogTitle: "Lloguer Vaixell Palafolls | 12 min al Port Blanes",
-        ogDescription:
-          "Des de Palafolls al Port Blanes en 12 min. Vaixell sense llicència des de 75€/h. Gasolina inclosa. 4.8★.",
-      },
-      schema: {
-        name: "Lloguer de Vaixells prop de Palafolls",
-        description:
-          "Lloga vaixells des del Port de Blanes, a només 12 minuts amb cotxe de Palafolls. Vaixells sense llicència des de 75 €/hora amb gasolina inclosa.",
-      },
-      breadcrumbName: "Lloguer Vaixells Palafolls",
-      sections: {
-        heroTitle: "Lloguer de Vaixells prop de Palafolls",
-        heroSubtitle:
-          "Palafolls és un municipi de l'interior del Maresme conegut per la seva àmplia zona de càmpings i resorts naturals. A només 12 minuts amb cotxe del Port de Blanes, és el punt de sortida perfecte per a una excursió amb vaixell per la Costa Brava. Els nostres vaixells sense llicència són ideals per a famílies de càmping que busquen una activitat diferent.",
-        heroBadgeCar: "8 km / 12 min amb cotxe",
-        heroBadgeTransport: "Molt a prop de Blanes",
-        heroBadgeExtra: "Zona de càmpings",
-        whyTitle: "Per què llogar un vaixell des de Blanes si ets a Palafolls?",
-        whyCard1Title: "A 12 minuts del port",
-        whyCard1Desc:
-          "Palafolls és un dels municipis més propers al Port de Blanes. Amb només 8 km de distància, pots sortir del càmping al matí, navegar durant unes hores per la Costa Brava i tornar a temps per al dinar. És l'excursió perfecta per a un dia de vacances diferent.",
-        whyCard2Title: "Ideal per a campistes",
-        whyCard2Desc:
-          "Si t'allotges en un dels càmpings de Palafolls com La Masía, Neptuno, o els complexos de bungalows de la zona, llogar un vaixell és l'activitat estrella que farà úniques les teves vacances. Moltes famílies de càmpings propers ens visiten cada temporada.",
-        whyCard3Title: "Gasolina inclosa en vaixells sense llicència",
-        whyCard3Desc:
-          "El preu dels vaixells sense llicència inclou la gasolina. Des de 75 € per hora. Sense costos ocults ni suplements per combustible.",
-        whyCard4Title: "Sense experiència prèvia necessària",
-        whyCard4Desc:
-          "Abans de salpar, el nostre equip et dóna 15 minuts de formació pràctica. T'ensenyem a manejar el motor, les normes bàsiques de navegació i els millors racons per explorar. Qualsevol persona major de 18 anys pot pilotar els nostres vaixells sense llicència.",
-        townTitle: "Palafolls: càmpings, natura i mar",
-        townIntro:
-          "Palafolls combina la tranquil·litat d'un poble d'interior amb la proximitat al mar. La seva àmplia oferta de càmpings i allotjaments rurals atreu milers de famílies europees cada estiu. Complementa la teva estada amb una jornada de navegació per les cales més boniques de la Costa Brava.",
-        townCard1Title: "Zona de càmpings",
-        townCard1Desc:
-          "Càmping La Masía, Neptuno i altres complexos turístics de la zona atrauen famílies de tota Europa. Una excursió amb vaixell és l'activitat perfecta per completar les vacances.",
-        townCard2Title: "A minuts del mar",
-        townCard2Desc:
-          "Tot i que Palafolls és un municipi d'interior, les platges de Blanes i Malgrat estan a menys de 10 minuts. El Port de Blanes és la teva porta d'entrada a la Costa Brava per mar.",
-        townCard3Title: "Natura i castell",
-        townCard3Desc:
-          "El Castell de Palafolls i els senders de la zona ofereixen passejos tranquils. Combina natura d'interior amb l'emoció de navegar per aigües cristal·lines.",
-        howTitle: "Com arribar de Palafolls al Port de Blanes",
-        howCarTitle: "Amb cotxe (12 minuts)",
-        howCarDesc:
-          "Des de Palafolls, agafa la BV-6001 en direcció a Blanes. Són només 8 km fins al Port de Blanes. El trajecte és ràpid i senzill, amb bona senyalització. Des dels càmpings de la zona, el recorregut és encara més directe.",
-        howTaxiTitle: "Amb taxi",
-        howTaxiDesc:
-          "Un taxi des de Palafolls al Port de Blanes costa aproximadament 12-18 €. És una opció còmoda si no disposes de cotxe propi.",
-        howTransportTitle: "Amb autobús",
-        howTransportDesc:
-          "Palafolls no té estació de tren, però hi ha línies d'autobús que connecten amb Blanes. El trajecte dura uns 20 minuts. Consulta els horaris de les línies locals en temporada alta, ja que la freqüència augmenta durant l'estiu.",
-        howParkingTitle: "Aparcament a Blanes",
-        howParkingDesc:
-          "Hi ha aparcament gratuït disponible a prop del Port de Blanes. En temporada alta (juliol-agost) recomanem arribar d'hora per assegurar plaça de pàrquing.",
-        destsTitle: "Què pots veure en vaixell des de Blanes?",
-        destsIntro:
-          "Des del Port de Blanes pots navegar cap al nord explorant l'espectacular costa de la Costa Brava. Cales amagades d'aigües turqueses, penya-segats coberts de pins i la impressionant silueta de Tossa de Mar a l'horitzó. Tot això al teu abast des del vaixell.",
-        destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 30-45 min",
-        destBlanes: "Cales de Blanes",
-        pricingTitle: "Preus de lloguer de vaixells",
-        pricingIntro:
-          "Preus transparents amb gasolina inclosa en tots els vaixells sense llicència. Sense costos ocults.",
-        pricingNoLicTitle: "Vaixells sense llicència",
-        pricingNoLicFrom: "Des de {noLicBaja1h} €/hora (gasolina inclosa)",
-        pricingNoLicCapacity: "Capacitat: 4-7 persones segons model",
-        pricingLicTitle: "Vaixells amb llicència",
-        pricingLicFrom: "Des de {licBaja2h} € / 2 hores",
-        pricingLicEngines: "Motors de 40 a 115 CV",
-        pricingLicCapacity: "Capacitat: fins a 11 persones",
-        pricingButton: "Veure tots els preus i vaixells",
-        ctaTitle: "Reserva el teu vaixell des de Palafolls",
-        ctaDesc:
-          "En 12 minuts estaràs al Port de Blanes a punt de salpar. L'excursió perfecta des del teu càmping. Contacta'ns per WhatsApp per reservar.",
-        ctaButton: "Reservar per WhatsApp",
-        faqTitle: "Preguntes freqüents sobre llogar vaixell des de Palafolls",
-      },
-    },
-    pineda: {
-      faqItems: [
-        {
-          question: "A quanta distància està Pineda de Mar del Port de Blanes?",
-          answer:
-            "Pineda de Mar està a 15 km del Port de Blanes, uns 18 minuts amb cotxe per la N-II. També pots arribar-hi amb tren RENFE línia R1 en només 12 minuts des de l'estació de Blanes.",
-        },
-        {
-          question: "Quan costa llogar un vaixell des de Blanes si soc a Pineda de Mar?",
-          answer:
-            "El lloguer de vaixell sense llicència comença des de {noLicBaja1h} € per hora amb gasolina inclosa. Vaixells amb llicència des de {licBaja2h} € per 2 hores. Disposem de {fleetCount} vaixells per a 4-11 persones.",
-        },
-        {
-          question: "Necessito llicència de navegació per llogar un vaixell?",
-          answer:
-            "No necessàriament. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir. També tenim vaixells amb llicència per a navegants més experimentats.",
-        },
-        {
-          question: "Puc anar des de Pineda de Mar a Blanes amb transport públic?",
-          answer:
-            "Sí, la línia R1 de RENFE connecta Pineda de Mar amb Blanes en 12 minuts. Els trens surten cada 30 minuts en temporada. L'estació de Blanes està a uns 10 minuts caminant del port.",
-        },
-      
-        {
-          question: "Hi ha lloguer de barques a la mateixa Pineda de Mar?",
-          answer:
-            "No, Pineda de Mar no té port esportiu amb lloguer de barques. El port més proper per a tot l'Alt Maresme (Malgrat, Santa Susanna, Pineda i Calella) és el Port de Blanes, a 18 minuts en cotxe o 12 minuts en tren R1.",
-        },
-        {
-          question: "Quines cales puc visitar sortint des de Blanes?",
-          answer:
-            "Amb una barca sense llicència arribes a Cala Sant Francesc, Sa Forcanera, la platja de Santa Cristina, Cala Sa Boadella i la Platja de Fenals (sud de Lloret), totes dins del límit legal de 2 milles. Amb llicència o amb l'excursió privada amb patró pots continuar fins a Tossa de Mar.",
-        },
-        {
-          question: "Puc fer un passeig en barca sense pilotar jo?",
-          answer:
-            "Sí. Si prefereixes no portar la barca, reserva l'excursió privada amb patró: sortides des del Port de Blanes de 2 a 8 hores, fins a 6 persones, amb parades per nedar i fer snorkel a les cales. No necessites cap titulació.",
-        },
-      ],
-      seo: {
-        title: "Lloguer Vaixell Pineda de Mar | Port Blanes 18 min | Sense Llicència 75€/h",
-        description:
-          "Allotjat a Pineda de Mar? Port Blanes a 18 min amb cotxe o 12 min amb tren R1. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Navega a Blanes, Lloret o Tossa.",
-        ogTitle: "Lloguer Vaixell Pineda de Mar | 18 min al Port Blanes",
-        ogDescription:
-          "Des de Pineda de Mar al Port Blanes en 18 min. Vaixell sense llicència des de 75€/h. 4.8★ Google.",
-      },
-      schema: {
-        name: "Lloguer de Vaixells prop de Pineda de Mar",
-        description:
-          "Lloga vaixells des del Port de Blanes, a només 18 minuts amb cotxe de Pineda de Mar. Vaixells sense llicència des de 75 €/hora amb gasolina inclosa.",
-      },
-      breadcrumbName: "Lloguer Vaixells Pineda de Mar",
-      sections: {
-        heroTitle: "Lloguer de Vaixells prop de Pineda de Mar",
-        heroSubtitle:
-          "Pineda de Mar és un dels destins turístics més importants de la costa del Maresme, amb desenes d'hotels i resorts all-inclusive. El Port de Blanes, a només 18 minuts amb cotxe o 12 minuts amb tren, és el punt de lloguer de vaixells més proper. Gaudeix de la Costa Brava sense necessitat de llicència de navegació.",
-        heroBadgeCar: "15 km / 18 min amb cotxe",
-        heroBadgeTransport: "RENFE R1: 12 min",
-        heroBadgeExtra: "Costa del Maresme",
-        whyTitle: "Per què llogar un vaixell des de Blanes si ets a Pineda de Mar?",
-        whyCard1Title: "El port més proper amb lloguer de vaixells",
-        whyCard1Desc:
-          "Pineda de Mar no disposa de port esportiu ni de servei de lloguer d'embarcacions. El Port de Blanes és el punt més proper on pots llogar un vaixell, a tan sols 15 km per la carretera N-II. Si estàs allotjat en un dels molts hotels de Pineda, en menys de 20 minuts estaràs navegant per les aigües cristal·lines de la Costa Brava.",
-        whyCard2Title: "{fleetCount} vaixells per triar",
-        whyCard2Desc:
-          "Disposem d'una flota de {fleetCount} vaixells que inclou embarcacions sense llicència ideals per a famílies i principiants, així com vaixells amb llicència per a navegants experimentats. Capacitat de 4 a 11 persones segons el model triat.",
-        whyCard3Title: "Gasolina inclosa en vaixells sense llicència",
-        whyCard3Desc:
-          "El preu dels vaixells sense llicència inclou la gasolina, així que no hi ha sorpreses. Des de 75 € per hora. El preu que veus és el preu final.",
-        whyCard4Title: "Sense experiència prèvia necessària",
-        whyCard4Desc:
-          "Abans de salpar, el nostre equip et dóna 15 minuts de formació pràctica: maneig del motor, normes bàsiques de navegació i consells sobre les millors cales. Qualsevol persona major de 18 anys pot pilotar un vaixell sense llicència.",
-        townTitle: "Pineda de Mar: activitats per a hostes d'hotel",
-        townIntro:
-          "Pineda de Mar és coneguda per la seva àmplia oferta hotelera, amb nombrosos hotels i resorts que atrauen famílies de tota Europa. Si busques una activitat diferent durant les teves vacances, llogar un vaixell i explorar la Costa Brava des de l'aigua és una experiència inoblidable que complementa perfectament la teva estada a la platja.",
-        townCard1Title: "Zona hotelera de primer nivell",
-        townCard1Desc:
-          "Desenes d'hotels i resorts all-inclusive en primera línia de platja. Escapa't unes hores per viure l'experiència nàutica que farà úniques les teves vacances.",
-        townCard2Title: "Platja de Pineda",
-        townCard2Desc:
-          "Més d'1 km de platja de sorra daurada amb tots els serveis. Després de navegar, torna al teu hotel a relaxar-te vora el mar.",
-        townCard3Title: "Perfecta per a famílies",
-        townCard3Desc:
-          "Pineda és un destí familiar per excel·lència. Els nostres vaixells sense llicència són segurs i fàcils de manejar, ideals per a una excursió en família per la costa.",
-        howTitle: "Com arribar de Pineda de Mar al Port de Blanes",
-        howCarTitle: "Amb cotxe (18 minuts)",
-        howCarDesc:
-          "Agafa la N-II en direcció nord cap a Blanes. Són 15 km de trajecte còmode i directe. Des de la majoria d'hotels de Pineda de Mar arribaràs al Port de Blanes en uns 18 minuts. El trajecte voreja la costa i és molt agradable.",
-        howTaxiTitle: "Amb taxi",
-        howTaxiDesc:
-          "Un taxi des de Pineda de Mar al Port de Blanes costa aproximadament 20-25 €. És una bona opció si no disposes de cotxe o prefereixes no preocupar-te per l'aparcament.",
-        howTransportTitle: "Amb tren RENFE (12 minuts)",
-        howTransportDesc:
-          "La línia R1 de Rodalies de RENFE connecta Pineda de Mar amb Blanes en només 12 minuts. Els trens surten cada 30 minuts en temporada alta. Des de l'estació de Blanes, el port està a uns 10-15 minuts caminant pel passeig marítim.",
-        howParkingTitle: "Aparcament a Blanes",
-        howParkingDesc:
-          "Hi ha aparcament gratuït disponible a prop del Port de Blanes. En temporada alta (juliol-agost) recomanem arribar d'hora o considerar el tren com a alternativa còmoda i ràpida.",
-        destsTitle: "Què pots veure en vaixell des de Blanes?",
-        destsIntro:
-          "Des del Port de Blanes pots navegar cap al nord per l'espectacular costa de la Costa Brava. Descobreix cales amagades, penya-segats impressionants i pobles medievals com Tossa de Mar. Amb un vaixell sense llicència pots explorar fins a 2 milles de la costa, suficient per arribar a les cales més boniques de la zona.",
-        destLloret: "Lloret de Mar - 25 min",
-        destTossa: "Tossa de Mar - 30-45 min",
-        destBlanes: "Cales de Blanes",
-        pricingTitle: "Preus de lloguer de vaixells",
-        pricingIntro:
-          "Oferim preus competitius amb gasolina inclosa en tots els vaixells sense llicència. No hi ha costos ocults ni suplements per combustible.",
-        pricingNoLicTitle: "Vaixells sense llicència",
-        pricingNoLicFrom: "Des de {noLicBaja1h} €/hora (gasolina inclosa)",
-        pricingNoLicCapacity: "Capacitat: 4-7 persones segons model",
-        pricingLicTitle: "Vaixells amb llicència",
-        pricingLicFrom: "Des de {licBaja2h} € / 2 hores",
-        pricingLicEngines: "Motors de 40 a 115 CV",
-        pricingLicCapacity: "Capacitat: fins a 11 persones",
-        pricingButton: "Veure tots els preus i vaixells",
-        ctaTitle: "Reserva el teu vaixell des de Pineda de Mar",
-        ctaDesc:
-          "En 18 minuts estaràs al Port de Blanes a punt de salpar. Contacta'ns per WhatsApp per reservar el teu vaixell i viure una experiència única a la Costa Brava.",
-        ctaButton: "Reservar per WhatsApp",
-        faqTitle: "Preguntes freqüents sobre llogar vaixell des de Pineda de Mar",
-      },
-    },
-    newsletter: {
-      title: "Guia gratuïta de cales secretes",
-      subtitle:
-        "Rep la nostra guia amb les 10 millors cales de la Costa Brava accessibles només en vaixell",
-      placeholder: "El teu email",
-      button: "Enviar guia gratis",
-      success: "Guia enviada. Revisa el teu email.",
-      error: "Error en enviar. Torna-ho a intentar.",
-    },
-  },
   faqPage: {
     heroTitle: "Preguntes Freqüents",
     heroDescription:
@@ -5551,6 +4440,892 @@ export const ca: Translations = {
         title: 'Vaixells per a la teva ruta a Tossa de Mar',
         description: 'Tossa de Mar queda fora del rang legal sense llicència. Aquests són els vaixells que sí que hi arriben: amb Llicència de Navegació o la nostra Excursió Privada amb Capità (sense llicència requerida).',
       },
+    },
+  },
+  locationTemplate: {
+    destCostaBrava: 'Costa Brava',
+    destLloret: 'Lloret de Mar - 25 min',
+    destTossa: 'Tossa de Mar - 45 min',
+    destBlanesCoves: 'Cales de Blanes',
+    whyRentImgAlt: 'Amics gaudint d\'un dia en vaixell amb esnòrquel a la Costa Brava',
+    coastBreakImgAlt: 'Vaixell ancorat en una cala d\'aigües cristal·lines de la Costa Brava',
+  },
+  locationPages: {
+    blanes: {
+      faqItems: [
+        {
+          question: 'Necessito llicència per llogar un vaixell a Blanes?',
+          answer: 'No. Tenim 4 vaixells sense llicència per a 4 o 5 persones. Només cal ser major de 18 anys. Et donem una formació de 15 minuts abans de sortir.',
+        },
+        {
+          question: 'Quan costa llogar un vaixell al Port de Blanes?',
+          answer: 'Els vaixells sense llicència costen des de {noLicBaja1h} €/hora en temporada baixa (abril-juny, setembre-octubre). En temporada alta (agost) des de {noLicAlta1h} €/hora. El preu inclou combustible, assegurança i equip de seguretat.',
+        },
+        {
+          question: 'On puc anar amb vaixell des de Blanes?',
+          answer: 'Des del Port de Blanes pots visitar Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) i Tossa de Mar (45 min). Els vaixells amb llicència tenen més autonomia per a destinacions més llunyanes.',
+        },
+        {
+          question: 'Hi ha aparcament a prop del Port de Blanes?',
+          answer: 'Sí. Hi ha aparcament gratuït al costat del Port de Blanes. També hi ha restaurants, botigues nàutiques i benzinera a la zona portuària.',
+        },
+        {
+          question: 'Quina és la millor època per llogar un vaixell a Blanes?',
+          answer: 'La temporada va d\'abril a octubre. Juny i setembre ofereixen els millors preus i menys afluència. Agost és temporada alta amb les millors condicions de mar però preus més alts.',
+        },
+        {
+          question: 'Es pot llogar un vaixell a Blanes el mateix dia?',
+          answer: 'Sí, acceptem reserves d\'última hora si hi ha disponibilitat. Contacta per WhatsApp al +34 611 500 372 per comprovar disponibilitat el mateix dia.',
+        },
+        {
+          question: 'És segur navegar sense llicència des de Blanes?',
+          answer: 'Sí. Els nostres vaixells sense llicència tenen un màxim de 15 CV, no requereixen titulació i naveguen a prop de la costa. Incloem formació de seguretat de 15 minuts, armilles salvavides i equip d\'emergència.',
+        },
+        {
+          question: 'Com arribo al Port de Blanes?',
+          answer: 'El Port de Blanes és a 60 km de Barcelona (1h amb cotxe per l\'A-2/C-32/AP-7, sortida 9 direcció Blanes), 35 km de Girona (40 min per l\'AP-7 sortida 9) i a 100 km de la frontera francesa. Amb tren amb la línia R1 de Rodalies des de Barcelona-Sants (1h 30 min fins a l\'estació de Blanes, després 10 min amb autobús L2 o taxi al port). L\'aeroport més proper és Girona-Costa Brava (35 km, 30 min).',
+        },
+        {
+          question: 'Hi ha botigues o restaurants al Port de Blanes?',
+          answer: 'Sí. La zona portuària de Blanes té diversos restaurants amb terrassa davant del mar (especialitat en arrossos i peix fresc), un petit supermercat per a queviures, botiga nàutica, gasolinera, lavabos públics i dutxes. La platja de Blanes Centre està just al costat del port. Després de la sortida en barca pots menjar al port o pujar al casc antic de Blanes (10 min a peu).',
+        },
+      ],
+      hero: {
+        title: 'Lloguer de Barques a Blanes',
+        subtitle: 'Lloguer de barques directe al Port de Blanes des de 75€/h, gasolina inclosa. Sense llicència fins a 5 persones, amb llicència fins a 7. Aparcament gratuït a 100m de l\'amarrador, briefing de seguretat 15 minuts. Des d\'aquí navegues fins a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) i Lloret de Mar (25 min). Tossa de Mar a 30-45 min amb llicència.',
+        badgePort: 'Port de Blanes',
+        badgeCapacity: '4-7 persones',
+        badgeDuration: '1h-8h durada',
+        imageAlt: 'Cala d\'aigües turqueses a prop del Port de Blanes, punt de sortida de la flota',
+      },
+      sections: {
+        whyBlanesTitle: 'Per què triar Blanes per al teu lloguer de vaixell?',
+        strategicLocation: 'Ubicació Estratègica',
+        strategicLocationDesc: 'Blanes és la porta sud de la Costa Brava, amb accés directe a les cales més espectaculars. Des del Port de Blanes pots navegar cap al nord fins a Lloret de Mar o cap al sud explorant la costa fins a Malgrat de Mar.',
+        safePorts: 'Port Segur i Complet',
+        safePortsDesc: 'El Port de Blanes ofereix totes les comoditats: parking, restaurants, botigues nàutiques, combustible i serveis. Un punt de partida perfecte per a la teva aventura marítima.',
+        accessibleCoves: 'Cales Accessibles',
+        accessibleCovesDesc: 'Des de Blanes tens accés fàcil a Cala Brava, Cala Sant Francesc, les platges de Lloret i moltes cales verges. Distàncies curtes, més temps per gaudir.',
+        allLevels: 'Per a Tots els Nivells',
+        allLevelsDesc: 'Tant si és la teva primera vegada com si ets un navegant experimentat, Blanes ofereix aigües tranquil·les per a principiants i rutes emocionants per a aventurers.',
+        destinationsTitle: 'Destinacions Principals des de Blanes',
+        calaBrava: 'Cala Brava',
+        calaBravaTime: '15 minuts navegant',
+        calaBravaDesc: 'Cala verge amb aigües cristal·lines. Perfecta per fer snorkel i relaxar-se.',
+        lloretDeMar: 'Lloret de Mar',
+        lloretTime: '25 minuts navegant',
+        lloretDesc: 'Platges animades amb xiringuitos i activitats aquàtiques.',
+        calaSantFrancesc: 'Cala Sant Francesc',
+        calaSantFrancescTime: '10 minuts navegant',
+        calaSantFrancescDesc: 'Cala protegida ideal per a famílies amb nens petits.',
+        servicesTitle: 'Serveis al Port de Blanes',
+        portAmenities: 'Comoditats del Port',
+        freeParking: 'Parking gratuït disponible',
+        fuelStation: 'Estació de combustible marina',
+        restaurants: 'Restaurants i cafeteries',
+        nauticalShops: 'Botigues nàutiques',
+        howToGet: 'Com Arribar-hi',
+        fromBarcelona: 'Des de Barcelona: AP-7 direcció Girona, sortida Blanes (60 min)',
+        fromGirona: 'Des de Girona: N-II direcció Blanes (45 min)',
+        fromFrance: 'Des de França: AP-7 direcció Barcelona, sortida Blanes',
+        publicTransport: 'Transport públic: Tren RENFE línia R1 fins a Blanes',
+        ctaTitle: 'Preparat per explorar des de Blanes?',
+        ctaDescription: 'Reserva el teu vaixell i descobreix les cales més boniques de la Costa Brava',
+        ctaButton: 'Reservar des de Blanes',
+        mapTitle: 'Ubicació - Port de Blanes',
+        fleetTitle: 'La Nostra Flota al Port de Blanes',
+        fleetIntro: 'Disposem de 8 embarcacions amarrades al Port de Blanes, preparades per navegar d\'abril a octubre. La nostra flota inclou 4 vaixells sense llicència perfectes per a famílies i parelles que volen explorar les cales properes, 3 opcions amb llicència per a navegants experimentats que busquen més autonomia i potència, i una Excursió Privada amb patró per a grups que prefereixen navegar sense haver de portar el timó. Totes les embarcacions es revisen diàriament i disposen d\'assegurança a tot risc.',
+        fleetNoLicense: 'Sense llicència',
+        fleetLicense: 'Amb llicència',
+        fleetFrom: 'Des de',
+        fleetViewDetails: 'Veure detalls',
+        guideTitle: 'Guia Completa: Llogar un Vaixell a Blanes',
+        guideRequirementsTitle: 'Requisits per navegar sense llicència',
+        guideRequirementsText: 'Per llogar un vaixell sense llicència a Blanes només cal ser major de 18 anys i presentar el DNI o passaport. No es requereix cap titulació nàutica. Abans de sortir, el nostre equip t\'ofereix una formació pràctica de 15 minuts sobre motor, fondeig i seguretat marítima. Tots els nostres vaixells sense llicència tenen un màxim de 15 CV.',
+        guideSeasonTitle: 'Temporada i horaris',
+        guideSeasonText: 'La temporada de navegació a Blanes va d\'abril a octubre. Oferim tres franges: matí (9:00-13:00), tarda (14:00-18:00) i dia complet (9:00-18:00). El juny i el setembre són ideals: temperatures agradables, mar en calma i menys afluència.',
+        guideIncludedTitle: 'Què inclou el lloguer',
+        guideIncludedText: 'Els vaixells sense llicència inclouen combustible, assegurança, equip de seguretat, tendal i escala de bany. Per als vaixells amb llicència i l\'excursió privada amb patró, el combustible NO està inclòs.',
+        guideBookingTitle: 'Com reservar',
+        guideBookingText: 'Pots reservar a través del nostre web (et confirmem per WhatsApp en menys de 2 hores), per WhatsApp al +34 611 500 372 en català, castellà i anglès, o directament al Port de Blanes si hi ha disponibilitat.',
+        pricingTitle: 'Preus del Lloguer de Vaixells a Blanes 2026',
+        pricingIntro: 'Les nostres tarifes varien segons la temporada i la durada del lloguer. Tots els preus inclouen IVA, amarrament i neteja.',
+        pricingSeasons: 'Temporada baixa: abril-juny i setembre-octubre. Temporada mitjana: juliol. Temporada alta: agost. Els caps de setmana s\'aplica un suplement del 15%.',
+        pricingBoatCol: 'Vaixell',
+        pricingCapacityCol: 'Capacitat',
+        pricingLowCol: 'Temp. Baixa (2h)',
+        pricingHighCol: 'Temp. Alta (2h)',
+        pricingFuelNote: '* Per als vaixells amb llicència i les excursions privades, el combustible NO està inclòs.',
+        pricingFullDetails: 'Veure totes les tarifes i durades',
+        experiencesTitle: 'Experiències Populars des de Blanes',
+        expSnorkelTitle: 'Snorkel a Cala Brava',
+        expSnorkelDesc: 'Navega 15 minuts fins a Cala Brava i descobreix els seus fons marins. Aigües cristal·lines amb visibilitat de fins a 15 metres. Lloguer d\'equip de snorkel per només 7,50 €.',
+        expSunsetTitle: 'Passeig a la posta de sol',
+        expSunsetDesc: 'Reserva l\'última franja de la tarda i gaudeix de la posta de sol des del teu vaixell. La llum daurada sobre els penya-segats de la Costa Brava és un espectacle inoblidable.',
+        expTossaTitle: 'Excursió a Tossa de Mar',
+        expTossaDesc: 'Amb un vaixell amb llicència, navega 30-45 min cap al nord fins a la Vila Vella de Tossa de Mar, passant per cales amagades i penya-segats espectaculars.',
+        expFishingTitle: 'Pesca esportiva',
+        expFishingDesc: 'Les aigües davant de Blanes són riques en orades, llobarros i sargs. Surt d\'hora, fondeja sobre els fons rocosos entre Blanes i Lloret i gaudeix d\'una jornada de pesca.',
+        nearbyTownsTitle: 'Pobles propers al Port de Blanes',
+        nearbyTownsIntro: 'Turistes allotjats a la costa del Maresme poden arribar fàcilment al Port de Blanes:',
+        nearbyTownsMalgratTime: '10 min',
+        nearbyTownsSantaSusannaTime: '15 min',
+        nearbyTownsCalellaTime: '20 min amb cotxe',
+        nearbyTownsConjunction: 'i',
+        nearbyTownsTransport: 'També accessible en tren RENFE línia R1.',
+        crossLinksTitle: 'Explora els nostres serveis des de Blanes',
+        crossLinkCostaBrava: 'Explorar tota la Costa Brava amb vaixell',
+        crossLinkLicenseFree: 'Lloguer de barques sense llicència',
+        crossLinkLicensed: 'Barques amb llicència a Blanes',
+        crossLinkPricing: 'Preus i tarifes per temporada',
+        crossLinkLloret: 'Excursió amb vaixell a Lloret de Mar',
+        crossLinkTossa: 'Navega fins a Tossa de Mar',
+        mapIframeTitle: 'Mapa d\'ubicació - Port de Blanes',
+      },
+      schema: {
+        name: 'Lloguer de Barques a Blanes, Costa Brava',
+        description: 'Lloguer de barques sense llicència i amb llicència a Blanes. Port de Blanes, Costa Brava. Embarcacions per a 4-7 persones.',
+      },
+    },
+    lloret: {
+      faqItems: [
+        {
+          question: 'Necessito llicència o experiència per arribar a Lloret amb vaixell?',
+          answer: 'No. Els nostres vaixells sense llicència compleixen les condicions legals per navegar fins a la Platja de Fenals (sud de Lloret) sense titulació ni experiència prèvia. Et donem un briefing de 15 minuts abans de sortir. L\'única restricció és ser major de 18 anys.',
+        },
+        {
+          question: 'Fins on exactament puc arribar amb vaixell sense llicència?',
+          answer: 'Legalment, fins a 2 milles nàutiques de la costa, a màxim 5 nusos, amb 15 CV. Des de Blanes, això són 25 minuts de navegació fins a la Platja de Fenals, passant per 7 cales. La Platja de Lloret centre i Cala Canyelles queden al nord de Fenals, no són accessibles amb vaixell sense llicència.',
+        },
+        {
+          question: 'Quan costa llogar un vaixell sense llicència per anar a Lloret?',
+          answer: 'Des de {noLicBaja1h} €/hora (temporada baixa) i {noLicAlta1h} €/hora (temporada alta, juliol–agost). Amb gasolina inclosa en vaixells sense llicència.',
+        },
+        {
+          question: 'Puc arribar a Tossa de Mar des de Lloret amb vaixell sense llicència?',
+          answer: 'No. Tossa està 4–5 milles al nord de Fenals, fora del rang legal sense llicència. Per anar a Tossa amb vaixell des de Blanes necessites (a) vaixell amb Llicència de Navegació (LN), o (b) Excursió Privada amb Capità.',
+        },
+        {
+          question: 'Què passa si la mar està dolenta?',
+          answer: 'Si la previsió marca >20 nusos sostinguts o alerta per onades >1.5 m, cancel·lem sense cost. El tram Blanes–Fenals està protegit de la Tramuntana per la pròpia costa, així que és dels més segurs per a principiants fins i tot amb vent del nord.',
+        },
+        {
+          question: 'Com arribo de Lloret de Mar al Port de Blanes?',
+          answer: 'En cotxe són 10 minuts per la GI-682 (hi ha pàrquing gratuït a 100 m del port). En bus, la línia Lloret-Blanes triga uns 20 minuts. En taxi, el trajecte costa uns 15-18 €. No hi ha base de lloguer dins de Lloret: totes les sortides són des del Port de Blanes.',
+        },
+        {
+          question: 'Quines cales veuré a la ruta en barca cap a Lloret?',
+          answer: 'Sortint del Port de Blanes passaràs per Cala Sant Francesc, Sa Forcanera, la platja de Santa Cristina, Cala Treumal i Cala Sa Boadella abans d\'arribar a la Platja de Fenals. Són les cales més fotografiades de la Costa Brava sud i totes són dins del rang legal sense llicència.',
+        },
+      ],
+      hero: {
+        title: 'Excursions en Vaixell a Lloret de Mar',
+        subtitle: 'Descobreix les famoses platges de Lloret de Mar navegant des del Port de Blanes. 25 minuts de navegació fins a un dels destins més populars de la Costa Brava.',
+        badgeFrom: 'Des del Port de Blanes',
+        badgeTime: '25 min navegant',
+        badgeCapacity: '4-5 persones',
+      },
+      sections: {
+        whyLloretTitle: 'Per què visitar Lloret de Mar en vaixell?',
+        uniquePerspective: 'Perspectiva Única',
+        uniquePerspectiveDesc: 'Veure Lloret de Mar des del mar t\'ofereix una perspectiva completament diferent. Contempla els seus icònics penya-segats, cales amagades i la famosa escultura de "La Dona Marinera" des de l\'aigua.',
+        spectacularBeaches: 'Platges Espectaculars',
+        spectacularBeachesDesc: 'Lloret compta amb algunes de les millors platges de la Costa Brava: Platja de Lloret, Cala Boadella, Santa Cristina i Cala Treumal. Cadascuna amb el seu encant especial.',
+        vibrantAtmosphere: 'Ambient Vibrant',
+        vibrantAtmosphereDesc: 'Lloret de Mar és famós pel seu ambient animat, xiringuitos a la platja, restaurants amb vistes al mar i una àmplia oferta d\'entreteniment. Perfecte per a diferents tipus de visitants.',
+        easyAccess: 'Fàcil Accés en Vaixell',
+        easyAccessDesc: 'Només 25 minuts navegant des de Blanes fins a Lloret. Pots fondejar a prop de les platges principals o explorar les cales més apartades abans d\'arribar al centre.',
+        beachesTitle: 'Principals Platges i Cales de Lloret de Mar',
+        playaLloret: 'Platja de Lloret',
+        playaLloretSub: 'Platja principal - 1,5 km',
+        playaLloretDesc: 'La platja principal de Lloret amb tots els serveis, restaurants i ambient animat.',
+        calaBoadella: 'Cala Boadella',
+        calaBoadellaSub: 'Cala naturista',
+        calaBoadellaDesc: 'Cala tranquil·la i naturista al sud de Lloret, ideal per a qui busca tranquil·litat.',
+        santaCristina: 'Santa Cristina',
+        santaCristinaSub: 'Platja familiar',
+        santaCristinaDesc: 'Bonica platja familiar amb ermites i excel·lents vistes. Menys massificada que la principal.',
+        whatToDoTitle: 'Què Fer a Lloret de Mar',
+        entertainment: 'Entreteniment i Oci',
+        nightlife: 'Discoteques i vida nocturna',
+        restaurantsSea: 'Restaurants davant del mar',
+        waterSports: 'Esports aquàtics',
+        santaClotildeMirador: 'Mirador de Santa Clotilde',
+        pointsOfInterest: 'Punts d\'Interès',
+        mujerMarinera: 'Escultura "La Dona Marinera"',
+        castilloSantJoan: 'Castell de Sant Joan',
+        jardinesSantaClotilde: 'Jardins de Santa Clotilde',
+        sportsMarina: 'Port esportiu',
+        navigationTipsTitle: 'Consells de Navegació a Lloret',
+        recommendedRoute: 'Ruta Recomanada',
+        recommendedRouteDesc: 'Des del Port de Blanes, dirigeix-te cap al nord seguint la costa. Passaràs per Cala Sant Francesc i S\'Abanell abans d\'arribar a Lloret. Mantén-te sempre a la vista de la costa.',
+        bestTimes: 'Millors Horaris',
+        bestTimesDesc: 'Al matí (9:00-12:00) per evitar aglomeracions. A la tarda (16:00-19:00) per gaudir de l\'ambient més animat. Evita els caps de setmana en temporada alta si busques tranquil·litat.',
+        whereToAnchor: 'On Fondejar',
+        whereToAnchorDesc: 'Platja de Lloret: zona habilitada per a embarcacions recreatives (senyalitzada). Cala Boadella: fondeig lliure però respectant els banyistes. Santa Cristina: fondeig a la zona sud de la platja.',
+        safety: 'Seguretat',
+        safetyDesc: 'Lloret pot tenir més tràfic marítim. Mantén distància de seguretat amb altres embarcacions. Respecta les zones de bany i les boies de senyalització.',
+        ctaTitle: 'Preparat per a la teva Excursió a Lloret de Mar?',
+        ctaDescription: 'Reserva el teu vaixell des del Port de Blanes i descobreix les millors platges de Lloret de Mar amb total llibertat i comoditat.',
+        ctaButton: 'Reservar Excursió a Lloret',
+        crossLinkingText: 'També oferim servei per a turistes allotjats a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> i <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Des d\'aquests pobles de la costa del Maresme s\'arriba al Port de Blanes en 10-20 minuts amb cotxe.',
+        relatedTitle: 'Serveis i destinacions relacionats',
+        relatedLicenseFree: 'Barques sense llicència disponibles a Blanes',
+        relatedPricing: 'Veure preus per temporada',
+        relatedTossa: 'Continua la ruta fins a Tossa de Mar',
+        relatedCostaBrava: 'Lloguer de barques a la Costa Brava',
+      },
+    },
+    tossa: {
+      faqItems: [
+        {
+          question: 'Puc arribar a Tossa de Mar amb vaixell sense llicència des de Blanes?',
+          answer: 'No. Els vaixells sense llicència (2 milles de costa, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa necessites Llicència de Navegació (LN) o contractar l\'Excursió Privada amb Capità.',
+        },
+        {
+          question: 'Quant es triga amb vaixell de Blanes a Tossa?',
+          answer: 'Entre 45 minuts i 1 hora des del Port de Blanes. 7 milles de costa espectacular amb penya-segats i cales verges.',
+        },
+        {
+          question: 'Quan costa l\'Excursió Privada amb Capità a Tossa?',
+          answer: 'Pacific Craft 625 amb patró professional, 4 h màxim, fins a 6 persones (més el patró). Des de {excursionBaja4h} € temporada baixa (abril-juny, setembre-tancament). Inclou IVA, patró, amarratge, neteja i assegurança. Combustible a part.',
+        },
+        {
+          question: 'Quan costa llogar a Tossa amb Llicència de Navegació (LN)?',
+          answer: 'Packs tancats 2 h / 4 h / 8 h, sense patró. Des de {licBaja2h} € (2 h temporada baixa) amb els vaixells amb llicència. 3 tiers estacionals. Fiança 500 €. IVA, amarratge, neteja i assegurança inclosos; combustible a part.',
+        },
+        {
+          question: 'Puc desembarcar a Tossa poble des del vaixell?',
+          answer: 'No hi ha amarratge turístic públic a Tossa. Es pot fondejar a cales properes com Cala Llevadó, Mar d\'en Roig o Cala Pola.',
+        },
+        {
+          question: 'Val la pena anar a Tossa amb vaixell si no tinc llicència?',
+          answer: 'Sí, mitjançant l\'Excursió Privada amb Capità (Pacific Craft 625, 4 h, des de {excursionBaja4h} €). Única opció sense necessitat de llicència.',
+        },
+      ],
+      hero: {
+        title: 'Excursions en Vaixell a Tossa de Mar',
+        subtitle: 'Descobreix el poble medieval més bonic de la Costa Brava navegant des del Port de Blanes. 30-45 min de navegació fins a la famosa Vila Vella de Tossa de Mar.',
+        badgeFrom: 'Des del Port de Blanes',
+        badgeTime: '30-45 min navegant',
+        badgeCapacity: '4-7 persones',
+      },
+      sections: {
+        whyTossaTitle: 'Per què visitar Tossa de Mar en vaixell?',
+        jewelCostaBrava: 'La Joia de la Costa Brava',
+        jewelCostaBravaDesc: 'Tossa de Mar és considerat un dels pobles més bonics d\'Espanya. La seva famosa Vila Vella (ciutat vella) fortificada del segle XII és única a tota la Costa Brava i ofereix unes vistes espectaculars des del mar.',
+        historicHeritage: 'Patrimoni Històric',
+        historicHeritageDesc: 'Les muralles medievals que envolten la Vila Vella són Monument Històric-Artístic Nacional. Des del mar tindràs la millor perspectiva d\'aquesta fortalesa del segle XIII que protegia la costa de pirates i invasors.',
+        paradisiacalCoves: 'Cales Paradisiaques',
+        paradisiacalCovesDesc: 'Tossa compta amb algunes de les cales més verges i cristal·lines de la Costa Brava: Cala Pola, Cala Bona, Cala d\'es Codolar. Moltes només accessibles des del mar, perfectes per fondejar i gaudir en privat.',
+        panoramicNavigation: 'Navegació Panoràmica',
+        panoramicNavigationDesc: '30-45 min navegant per la costa et permetrà veure penya-segats, cales secretes, i la silueta de Tossa creixent a l\'horitzó fins a revelar tota la seva majestuositat. Una experiència inoblidable.',
+        attractionsTitle: 'Principals Atractius de Tossa de Mar',
+        vilaVella: 'Vila Vella',
+        vilaVellaSub: 'Segle XII - Patrimoni Nacional',
+        vilaVellaDesc: 'Ciutat medieval fortificada amb muralles, torres i carrers empedrats. Vista espectacular des del mar.',
+        playaGrande: 'Platja Gran',
+        playaGrandeSub: 'Platja principal',
+        playaGrandeDesc: 'Àmplia platja de sorra daurada protegida per les muralles medievals. Perfecta per fondejar a prop.',
+        virginCoves: 'Cales Verges',
+        virginCovesSub: 'Només accessibles per mar',
+        virginCovesDesc: 'Cala Pola, Cala Bona, Es Codolar. Aigües cristal·lines i tranquil·litat absoluta.',
+        whatToDoTitle: 'Què Fer a Tossa de Mar',
+        cultureHistory: 'Cultura i Història',
+        exploreVilaVella: 'Recorrer la Vila Vella medieval',
+        climbWalls: 'Pujar a les muralles i torres',
+        municipalMuseum: 'Museu Municipal',
+        tossaLighthouse: 'Far de Tossa',
+        natureRelax: 'Natura i Relax',
+        diveCrystalWaters: 'Bussejar en aigües cristal·lines',
+        anchorSecretCoves: 'Fondejar a cales secretes',
+        coastalPaths: 'Camins de ronda costaners',
+        sunsetFromSea: 'Postes de sol des del mar',
+        navigationTipsTitle: 'Consells de Navegació a Tossa',
+        recommendedRoute: 'Ruta Recomanada',
+        recommendedRouteDesc: 'Des del Port de Blanes, navega cap al nord passant per Lloret de Mar. Continua vorejant la costa fins a albirar les torres medievals de Tossa. La silueta de la Vila Vella és inconfusible des de lluny.',
+        bestSeason: 'Millor Època',
+        bestSeasonDesc: 'Maig a octubre. Els mesos de juny i setembre ofereixen el millor equilibri: bon temps, mar en calma i menys aglomeracions. Evita l\'agost si busques tranquil·litat.',
+        anchoringZones: 'Zones de Fondeig',
+        anchoringZonesDesc: 'Platja Gran: zona habilitada per a embarcacions recreatives. Cala Pola: fondeig lliure en aigües cristal·lines. Es Codolar: cala verge ideal per passar el dia. Mantén distància de les zones de bany senyalitzades.',
+        safeNavigation: 'Navegació Segura',
+        safeNavigationDesc: '1 hora de navegació requereix planificació. Consulta el temps, porta suficient combustible i aigua. Respecta les velocitats en zones costaneres i mantén la costa sempre a la vista.',
+        ctaTitle: 'Preparat per Descobrir Tossa de Mar?',
+        ctaDescription: 'Reserva el teu vaixell des del Port de Blanes i viu l\'experiència única d\'arribar per mar al poble medieval més bonic de la Costa Brava.',
+        ctaButton: 'Reservar Excursió a Tossa',
+        warningTitle: 'Tossa no és accessible amb vaixell sense llicència.',
+        warningBody: 'Els vaixells sense llicència (2 milles, 5 nusos, 15 CV) arriben fins a la Platja de Fenals (sud de Lloret), 4 milles abans de Tossa. Per arribar a Tossa des de Blanes necessites (1) auto-lloguer amb Llicència de Navegació (packs tancats 2 h / 4 h / 8 h des de {licBaja2h} € amb Mingolla Brava 19 o Trimarchi 57S, IVA, amarratge, neteja i assegurança inclosos; combustible i fiança 500 € a part), o (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursió Privada amb Capità</a> (Pacific Craft 625 + patró, 4 h màxim, fins a 6 pax, des de {excursionBaja4h} € amb IVA, patró, amarratge, neteja i assegurança inclosos, combustible a part). La tercera alternativa és anar en cotxe a Tossa (20 min des de Lloret) i llogar vaixell sense llicència localment allà.',
+        crossLinkingText: 'També oferim servei per a turistes allotjats a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> i <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Des d\'aquests pobles de la costa del Maresme s\'arriba al Port de Blanes en 10-20 minuts amb cotxe.',
+        relatedTitle: 'Serveis i destinacions relacionats',
+        relatedCostaBrava: 'Més destinacions a la Costa Brava',
+        relatedLicensed: 'Vaixells amb llicència per arribar a Tossa',
+        relatedPricing: 'Consulta preus i temporades',
+        relatedLloret: 'Ruta intermèdia: Lloret de Mar amb vaixell',
+        relatedBlanes: 'Port de sortida: Blanes',
+      },
+    },
+    malgrat: {
+      hero: {
+        title: 'Lloguer de Barques a prop de Malgrat de Mar',
+        subtitle: 'Allotjat a Malgrat de Mar? El Port de Blanes és a només 10 minuts en cotxe. Lloga una barca i descobreix les cales més boniques de la Costa Brava.',
+        badgeDistance: '8 km de Blanes',
+        badgeTime: '10 min en cotxe',
+        badgeBeach: 'Platja familiar',
+        imageAlt: 'Cala de la Costa Brava amb penya-segats i pins, a 25 minuts amb vaixell del Port de Blanes',
+      },
+      sections: {
+        whyRentTitle: 'Per què llogar una barca des de Blanes?',
+        closestPort: 'El Port Més Proper',
+        closestPortDesc: 'Blanes és el port nàutic més proper a Malgrat de Mar, a només 10 minuts per la N-II. Ofereix 8 embarcacions preparades per sortir a navegar amb totes les comoditats.',
+        varietyBoats: '8 Barques Disponibles',
+        varietyBoatsDesc: 'Des de barques sense llicència perfectes per a famílies fins a embarcacions amb llicència per a navegants experimentats. Per a 4 a 7 persones.',
+        fuelIncluded: 'Gasolina Inclosa',
+        fuelIncludedDesc: 'Tots els nostres lloguers inclouen el combustible en el preu. Sense sorpreses ni costos ocults. Des de 75 €/hora.',
+        noExperience: 'Sense Experiència Necessària',
+        noExperienceDesc: 'Oferim barques sense llicència amb formació inclosa de 15 minuts. Ideal per a turistes que volen una experiència única.',
+        townAttractionsTitle: 'Què Veure a Malgrat de Mar',
+        attraction1: 'Platja de Malgrat',
+        attraction1Desc: 'Àmplia platja de sorra daurada amb tots els serveis. Ideal per a famílies amb xiringuitos i zones esportives.',
+        attraction2: 'Parc Francesc Macià',
+        attraction2Desc: 'Gran parc urbà amb jardins, àrees de joc i espais verds. Perfecte per passejar les tardes.',
+        attraction3: 'Passeig Marítim',
+        attraction3Desc: 'Passeig vora el mar amb restaurants, gelateries i vistes al Mediterrani. Ambient relaxat i familiar.',
+        howToGetTitle: 'Com Arribar al Port de Blanes',
+        byCar: 'En Cotxe',
+        byCarDesc: 'Des de Malgrat de Mar, agafa la N-II direcció Blanes. 8 km, uns 10 minuts. Segueix les indicacions cap a "Port de Blanes".',
+        byTaxi: 'En Taxi',
+        byTaxiDesc: 'Un taxi des de Malgrat de Mar al Port de Blanes costa aproximadament 12-15 € i tarda uns 10 minuts.',
+        byPublicTransport: 'En Transport Públic',
+        byPublicTransportDesc: 'Tren RENFE línia R1 des de Malgrat de Mar a Blanes (5 minuts, cada 30 min). Des de l\'estació de Blanes, 15 min caminant al port.',
+        parkingAtBlanes: 'Aparcament a Blanes',
+        parkingAtBlanesDesc: 'Aparcament gratuït disponible a prop del Port de Blanes. A l\'estiu recomanem arribar d\'hora per assegurar plaça.',
+        boatDestinationsTitle: 'Què Explorar en Barca des de Blanes',
+        boatDestinationsDesc: 'Des del Port de Blanes pots navegar cap al nord fins a Lloret de Mar (25 min) i Tossa de Mar (30-45 min), descobrint cales verges com Cala Sant Francesc i Cala Brava pel camí.',
+        ctaTitle: 'Des de Malgrat de Mar? La Teva Barca T\'Espera a Blanes',
+        ctaDescription: 'A només 10 minuts en cotxe. Reserva la teva barca i descobreix la Costa Brava des del mar.',
+        ctaButton: 'Reservar Barca des de Blanes',
+      },
+      faqItems: [
+        {
+          question: 'A quanta distància està Malgrat de Mar del Port de Blanes?',
+          answer: 'Malgrat de Mar està a només 8 km del Port de Blanes, uns 10 minuts amb cotxe per la N-II. També pots arribar-hi amb tren RENFE línia R1 en només 5 minuts.',
+        },
+        {
+          question: 'Quan costa llogar un vaixell des de Blanes?',
+          answer: 'El lloguer de vaixell comença des de {noLicBaja1h} € per hora amb gasolina inclosa. No cal llicència per a vaixells de fins a 15 CV. Disposem de {fleetCount} vaixells per a 4-11 persones.',
+        },
+        {
+          question: 'Necessito llicència de navegació?',
+          answer: 'No necessàriament. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir. També tenim vaixells amb llicència.',
+        },
+        {
+          question: 'Hi ha pàrquing al Port de Blanes?',
+          answer: 'Sí, hi ha pàrquing gratuït disponible a prop del Port de Blanes. En temporada alta recomanem arribar d\'hora per assegurar plaça, o considerar tren/taxi.',
+        },
+        {
+          question: 'Puc llogar el vaixell directament des de Malgrat de Mar?',
+          answer: 'No. Malgrat de Mar no té port esportiu ni punt de lloguer de vaixells a motor. El port nàutic més proper a Malgrat és el Port de Blanes (8 km, 10 min amb cotxe o 5 min amb tren R1). Totes les nostres embarcacions surten i tornen al Port de Blanes.',
+        },
+        {
+          question: 'Quines cales es poden arribar amb vaixell des de Blanes si estic allotjat a Malgrat?',
+          answer: 'Amb un vaixell sense llicència des de Blanes arribes en 25 minuts a la Platja de Fenals (sud de Lloret), passant per 7 cales: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Platja de Santa Cristina, Cala Sa Boadella i Platja de Fenals. Amb vaixell amb Llicència de Navegació (LN) pots arribar a Tossa de Mar (45 min) i més enllà.',
+        },
+        {
+          question: 'Hi ha servei de transfer des d\'hotels de Malgrat al Port de Blanes?',
+          answer: 'No oferim transfer directe, però el trajecte és molt curt: 5 minuts amb tren R1 (Malgrat → Blanes) o 10 minuts amb cotxe/taxi (cost aproximat 12-15 €). L\'estació de Blanes està a 10 minuts caminant del port. També hi ha bus local L23.',
+        },
+      ],
+    },
+    santaSusanna: {
+      faqItems: [
+        {
+          question: 'A quanta distància està Santa Susanna del Port de Blanes?',
+          answer: 'Santa Susanna està a 12 km del Port de Blanes, uns 15 minuts amb cotxe per la N-II. També pots arribar-hi amb tren RENFE línia R1 en només 10 minuts.',
+        },
+        {
+          question: 'Quan costa llogar un vaixell des de Blanes si soc a Santa Susanna?',
+          answer: 'El lloguer de vaixell comença des de {noLicBaja1h} € per hora amb gasolina inclosa. No cal llicència per a vaixells de fins a 15 CV. Disposem de {fleetCount} vaixells per a 4-11 persones.',
+        },
+        {
+          question: 'Necessito llicència de navegació per llogar un vaixell?',
+          answer: 'No necessàriament. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir. També tenim vaixells amb llicència.',
+        },
+        {
+          question: 'És fàcil arribar amb transport públic des de Santa Susanna?',
+          answer: 'Sí, la línia R1 de RENFE connecta Santa Susanna amb Blanes en només 10 minuts. Els trens surten cada 30 minuts en temporada alta. L\'estació de Blanes està a 10 minuts caminant del port.',
+        },
+        {
+          question: 'Hi ha lloguer de vaixells a la pròpia Santa Susanna?',
+          answer: 'No. Santa Susanna té platja àmplia però no disposa de port esportiu ni servei de lloguer de vaixells a motor. El port nàutic més proper és el Port de Blanes (12 km, 15 min amb cotxe o 10 min amb tren R1). És el punt de lloguer més pràctic si t\'allotges a Santa Susanna.',
+        },
+        {
+          question: 'Quina és la millor excursió amb vaixell si m\'allotjo a Santa Susanna?',
+          answer: 'Des de Blanes recomanem: (a) Ruta de cales 4h sense llicència fins a la Platja de Fenals fondeant en 2-3 cales cristal·lines (des de 135 € per a 5 persones); (b) Excursió privada amb patró 4h fins a Tossa i Cala Bona (des de {excursionBaja4h} €, ideal si no tens experiència nàutica); (c) Vaixell amb Llicència de Navegació (LN) si algú del grup té titulació (des de 240 € / 4h).',
+        },
+        {
+          question: 'Puc fer una excursió amb vaixell a la posta de sol des de Santa Susanna?',
+          answer: 'Sí, és molt popular. Des de Blanes oferim passejos a la posta de sol (18:30-21:00 segons mes) amb vaixell sense llicència a 115 € per 2 hores. Navegaràs per les 7 cales amb llum daurada. Des de Santa Susanna arribes en 15 min amb cotxe o 10 min amb tren. Reserva amb antelació a l\'estiu.',
+        },
+        {
+          question: 'Puc fer un passeig en barca des de Santa Susanna sense pilotar jo?',
+          answer: 'Sí. A més del lloguer sense llicència que pilotes tu, oferim l\'excursió privada amb patró: un passeig en barca des del Port de Blanes de 2 a 8 hores per a fins a 6 persones, amb parades per nedar i fer snorkel. Ideal si viatges en família i prefereixes només gaudir.',
+        },
+      ],
+      hero: {
+        title: 'Lloguer de Barques a prop de Santa Susanna',
+        subtitle: 'Vacances a Santa Susanna? El Port de Blanes és a només 15 minuts en cotxe. Lloga una barca sense llicència i explora la Costa Brava.',
+        badgeDistance: '12 km de Blanes',
+        badgeTime: '15 min en cotxe',
+        badgeBeach: 'Zona resort',
+        imageAlt: 'Costa de penya-segats i aigües turqueses de la Costa Brava, accessible amb vaixell des de Blanes',
+      },
+      sections: {
+        whyRentTitle: 'Per què llogar una barca des de Blanes?',
+        closestPort: 'Port Proper i Accessible',
+        closestPortDesc: 'El Port de Blanes és el punt de lloguer nàutic més proper a Santa Susanna. A només 15 minuts per carretera, amb 8 barques preparades per a la teva aventura.',
+        varietyBoats: 'Barques Per a Tothom',
+        varietyBoatsDesc: 'Sense llicència per a principiants i famílies, amb llicència per a navegants experimentats. Capacitat de 4 a 7 persones per embarcació.',
+        fuelIncluded: 'Tot Inclòs',
+        fuelIncludedDesc: 'Preu amb gasolina inclosa des de 75 €/hora. Sense costos ocults. Formació, armilles salvavides i equip de seguretat inclosos.',
+        noExperience: 'Primera Vegada? Cap Problema',
+        noExperienceDesc: 'La majoria dels nostres clients mai han navegat. Amb 15 minuts de formació estaràs preparat per sortir a navegar i gaudir.',
+        townAttractionsTitle: 'Què Veure a Santa Susanna',
+        attraction1: 'Platja de Santa Susanna',
+        attraction1Desc: 'Platja de sorra fina i aigües tranquil·les, perfecta per a famílies. Bandera blava i tots els serveis.',
+        attraction2: 'Castell de Can Rates',
+        attraction2Desc: 'Torre de defensa medieval del segle XVI. Centre cultural amb exposicions i vistes panoràmiques al poble.',
+        attraction3: 'Zona Resort i Spa',
+        attraction3Desc: 'Santa Susanna és famosa pels seus hotels amb spa i termes. Combina un dia de barca amb una tarda de relax.',
+        howToGetTitle: 'Com Arribar al Port de Blanes',
+        byCar: 'En Cotxe',
+        byCarDesc: 'Des de Santa Susanna, agafa la N-II o C-32 direcció Blanes. 12 km, uns 15 minuts. Indicacions cap a "Port de Blanes".',
+        byTaxi: 'En Taxi',
+        byTaxiDesc: 'Taxi des de Santa Susanna al Port de Blanes: aproximadament 18-22 €, uns 15 minuts de trajecte.',
+        byPublicTransport: 'En Transport Públic',
+        byPublicTransportDesc: 'Tren RENFE línia R1 des de Santa Susanna a Blanes (10 minuts, cada 30 min). Des de l\'estació, 15 min caminant al port.',
+        parkingAtBlanes: 'Aparcament a Blanes',
+        parkingAtBlanesDesc: 'Aparcament gratuït disponible al costat del Port de Blanes. En temporada alta, recomanem arribar abans de les 10:00.',
+        boatDestinationsTitle: 'Destinacions en Barca des de Blanes',
+        boatDestinationsDesc: 'Explora la costa nord cap a Lloret de Mar (25 min) i Tossa de Mar (30-45 min). Descobreix cales com Cala Sant Francesc, Cala Brava i les platges verges entre Blanes i Lloret.',
+        ctaTitle: 'Des de Santa Susanna? A 15 Minuts de la Teva Aventura',
+        ctaDescription: 'El Port de Blanes t\'espera amb 8 barques preparades. Reserva i descobreix la Costa Brava des del mar.',
+        ctaButton: 'Reservar Barca des de Blanes',
+      },
+    },
+    calella: {
+      faqItems: [
+        {
+          question: 'A quanta distància està Calella del Port de Blanes?',
+          answer: 'Calella està a 17 km del Port de Blanes, uns 20 minuts amb cotxe per la N-II. També pots arribar-hi amb tren RENFE línia R1 en només 15 minuts.',
+        },
+        {
+          question: 'Quan costa llogar un vaixell des de Blanes si soc a Calella?',
+          answer: 'El lloguer de vaixell comença des de {noLicBaja1h} € per hora amb gasolina inclosa. No cal llicència per a vaixells de fins a 15 CV. Disposem de {fleetCount} vaixells per a 4-11 persones.',
+        },
+        {
+          question: 'Necessito experiència prèvia per llogar un vaixell?',
+          answer: 'No necessites experiència. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir, incloent normes de navegació i seguretat.',
+        },
+        {
+          question: 'Puc anar i tornar des de Calella amb transport públic?',
+          answer: 'Sí, la línia R1 de RENFE connecta Calella amb Blanes en 15 minuts. Els trens surten cada 30 minuts en temporada. L\'estació de Blanes està a uns 10 minuts caminant del port.',
+        },
+        {
+          question: 'Hi ha lloguer de vaixells a la pròpia Calella?',
+          answer: 'Calella és la localitat més gran del tram però no disposa de port esportiu amb servei de lloguer a motor. Els ports nàutics més propers són Blanes (17 km al nord, millor flota del tram) i Arenys de Mar (15 km al sud, preus més alts). Recomanem Blanes per millor relació qualitat-preu i connexió directa per R1 en 15 minuts.',
+        },
+        {
+          question: 'Puc fer una excursió amb vaixell des de Calella a Tossa de Mar?',
+          answer: 'No directament des de Calella (no hi ha lloguer). Des de Blanes sí: amb un vaixell amb Llicència de Navegació (LN) arribes a Tossa en 45 min (des de {licBaja2h} €/2h), o amb la nostra Excursió Privada amb Capità 4h fins a Tossa incloent Cala Bona i Vila Vella (des de {excursionBaja4h} € per a fins a 6 persones, més el patró). Els vaixells sense llicència no poden arribar a Tossa pel límit legal de 2 milles.',
+        },
+        {
+          question: 'Quan costa el tren R1 de Calella a Blanes?',
+          answer: 'El bitllet senzill R1 Calella → Blanes costa aproximadament 3 € (tarifa ATM zona 4-5). Amb targeta T-Casual 10 viatges és més econòmic. Durada: 15 minuts. Freqüència: cada 30 minuts en temporada. Des de l\'estació de Blanes al Port són 10 minuts caminant o 3 min amb taxi.',
+        },
+      ],
+      hero: {
+        title: 'Lloguer de Barques a prop de Calella',
+        subtitle: 'Allotjat a Calella? A només 20 minuts en cotxe del Port de Blanes. Lloga una barca i viu una experiència única a la Costa Brava.',
+        badgeDistance: '17 km de Blanes',
+        badgeTime: '20 min en cotxe',
+        badgeBeach: 'Platja Gran',
+        imageAlt: 'Cala amagada de la Costa Brava amb aigua transparent, a la ruta amb vaixell des de Blanes',
+      },
+      sections: {
+        whyRentTitle: 'Per què llogar una barca des de Blanes?',
+        closestPort: 'El Teu Port a la Costa Brava',
+        closestPortDesc: 'Blanes és el port nàutic més accessible des de Calella. A 20 minuts per la C-32 o N-II, amb 8 embarcacions i servei professional.',
+        varietyBoats: 'Flota Completa',
+        varietyBoatsDesc: 'Barques sense llicència des de 75 €/h per a famílies i grups d\'amics. Barques amb llicència per a navegants titulats o patró privat.',
+        fuelIncluded: 'Preu Tot Inclòs',
+        fuelIncludedDesc: 'Gasolina, formació, armilles salvavides i equip de seguretat inclosos en el preu. Sense sorpreses.',
+        noExperience: 'Per a Tots els Nivells',
+        noExperienceDesc: 'Mai has navegat? No importa. Les nostres barques sense llicència són fàcils de manejar i et donem formació abans de sortir a navegar.',
+        townAttractionsTitle: 'Què Veure a Calella',
+        attraction1: 'Platja Gran de Calella',
+        attraction1Desc: 'Platja urbana de 2 km amb bandera blava, xiringuitos, esports aquàtics i un animat passeig marítim.',
+        attraction2: 'Far de Calella',
+        attraction2Desc: 'Far històric al cim del poble amb vistes panoràmiques espectaculars al Mediterrani i la costa del Maresme.',
+        attraction3: 'Parc Dalmau i Casc Antic',
+        attraction3Desc: 'Parc centenari amb pins mediterranis i casc antic amb carrers empedrats, esglésies i places amb encant.',
+        howToGetTitle: 'Com Arribar al Port de Blanes',
+        byCar: 'En Cotxe',
+        byCarDesc: 'Des de Calella, agafa la C-32 direcció Blanes. 17 km, uns 20 minuts. Segueix les indicacions "Port de Blanes".',
+        byTaxi: 'En Taxi',
+        byTaxiDesc: 'Taxi des de Calella al Port de Blanes: aproximadament 25-30 €, uns 20 minuts de trajecte.',
+        byPublicTransport: 'En Transport Públic',
+        byPublicTransportDesc: 'Tren RENFE línia R1 des de Calella a Blanes (15 minuts, cada 30 min). Des de l\'estació de Blanes, 15 min caminant al port.',
+        parkingAtBlanes: 'Aparcament a Blanes',
+        parkingAtBlanesDesc: 'Aparcament gratuït a prop del Port de Blanes. A l\'estiu recomanem arribar d\'hora o considerar taxi/tren.',
+        boatDestinationsTitle: 'Explora la Costa Brava en Barca',
+        boatDestinationsDesc: 'Des de Blanes navega cap a Lloret de Mar (25 min) o Tossa de Mar (30-45 min). Cales verges, aigües cristal·lines i la costa més bonica del Mediterrani t\'esperen.',
+        ctaTitle: 'Des de Calella? La Teva Aventura Comença a Blanes',
+        ctaDescription: 'A 20 minuts en cotxe del Port de Blanes. 8 barques preparades per explorar la Costa Brava.',
+        ctaButton: 'Reservar Barca des de Blanes',
+      },
+    },
+    costaBrava: {
+      hero: {
+        title: 'Lloguer de Barques a la Costa Brava',
+        subtitle: 'Descobreix les millors cales i platges de la Costa Brava a bord de les nostres barques. Sortides des del Port de Blanes, al cor de la costa catalana. Barques sense llicència des de 75 €/hora amb gasolina i assegurança inclosos.',
+        badgePort: 'Port de Blanes',
+        badgeCapacity: '4-7 persones',
+        badgeLicense: 'Amb i sense llicència',
+      },
+      sections: {
+        introP1: 'La Costa Brava és una de les destinacions nàutiques més espectaculars del Mediterrani. Amb més de 200 quilòmetres de litoral entre Blanes i la frontera francesa, ofereix una combinació única de penya-segats, cales d\'aigües cristal·lines i pobles medievals.',
+        introP2: 'A Costa Brava Rent a Boat t\'oferim la forma més fàcil d\'explorar aquesta costa: lloga una de les nostres barques al Port de Blanes i navega al teu ritme. No necessites experiència prèvia ni llicència nàutica per a la majoria de les nostres embarcacions.',
+        introP3: 'En les barques sense llicència, el preu inclou gasolina, assegurança a tot risc i equip de seguretat. Sense costos ocults.',
+        whyChooseTitle: 'Per què escollir la Costa Brava per llogar una barca',
+        covesTitle: 'Cales i platges inaccessibles per terra',
+        covesDesc: 'La Costa Brava amaga desenes de cales que només es poden visitar en barca. Des de Blanes, en 15-45 minuts arribaràs a platges verges d\'aigües turquesa.',
+        calmWatersTitle: 'Aigües tranquil·les i protegides',
+        calmWatersDesc: 'L\'orientació de la costa i les seves nombroses badies creen condicions ideals per a la navegació, fins i tot per a principiants.',
+        accessibleTitle: 'Accessible des de Barcelona i Girona',
+        accessibleDesc: 'El nostre port base a Blanes està a 70 minuts de Barcelona i 35 minuts de Girona per autopista. Aparcament gratuït al costat del port.',
+        allLevelsTitle: 'Per a tots els nivells',
+        allLevelsDesc: 'Tant si mai has navegat com si ets un patró experimentat, tenim la barca perfecta per a tu. Formació inclosa en tots els lloguers.',
+        navigationGuideTitle: 'Guia de Navegació per la Costa Brava',
+        routeBlanesLloret: 'Blanes - Lloret de Mar: 30 min, fàcil, sense llicència',
+        routeBlanesLloretDesc: 'Una de les rutes més populars de la Costa Brava. Perfecta per a una excursió de mig dia amb parada a Cala Treumal.',
+        routeBlanesTossa: 'Blanes - Tossa de Mar: 45 min, mitjana, llicència recomanada',
+        routeBlanesTossaDesc: 'La ruta més espectacular de tota la costa. Arribaràs a la icònica Vila Vella de Tossa de Mar.',
+        routeBlaneSantFeliu: 'Blanes - Sant Feliu de Guíxols: 1,5h, avançada, llicència requerida',
+        routeBlaneSantFeliuDesc: 'Navegació en mar obert que requereix planificació i atenció a les condicions meteorològiques.',
+        routeBlaneCalaBrava: 'Blanes - Cala Brava: 15 min, fàcil, sense llicència',
+        routeBlaneCalaBravaDesc: 'L\'escapada ràpida perfecta per a famílies i principiants. Només 15 minuts del Port de Blanes a aquesta cala verge.',
+        boatTypesTitle: 'Tipus de Barques per a la Costa Brava',
+        noLicenseTitle: 'Barques Sense Llicència',
+        noLicensePower: 'Fins a 15 CV',
+        noLicenseCapacity: 'Màxim 5 persones a bord',
+        noLicenseNavigation: 'Navegació costanera fins a 2 milles',
+        noLicenseFuel: 'Gasolina inclosa en el preu',
+        noLicensePrice: 'Des de 75 €/hora',
+        noLicenseDesc: 'Les nostres barques sense llicència són l\'opció ideal per a famílies. Cap titulació requerida: 15 minuts de formació i llest. Tot inclòs: gasolina, assegurança, equip de seguretat i material de snorkel.',
+        licensedTitle: 'Barques Amb Llicència',
+        licensedPower: 'De 40 a 115 CV',
+        licensedCapacity: 'Fins a 7 persones a bord',
+        licensedNavigation: 'Navegació en mar obert sense límits',
+        licensedFuel: 'Combustible NO inclòs (dipòsit a part)',
+        licensedPrice: 'Des de 90 €/hora',
+        licensedDesc: 'Per a navegants amb titulació que busquen explorar més enllà de la costa immediata. Més potència, autonomia i capacitat. El combustible es paga per separat. N\'hi ha prou amb la Llicència de Navegació (LN); també valen PNB, PER o equivalents europeus.',
+        bestCovesTitle: 'Les Millors Cales de la Costa Brava en Barca',
+        calaBravaName: 'Cala Brava',
+        calaBravaDesc: 'Una joia amagada a només 15 minuts en barca des de Blanes. Aigües turquesa intenses i fons marí espectacular per fer snorkel.',
+        calaSantFrancescName: 'Cala Sant Francesc',
+        calaSantFrancescDesc: 'Entre Blanes i Lloret de Mar, aquesta cala de sorra fina amb aigües transparents és perfecta per a famílies.',
+        calaTreumalName: 'Cala Treumal',
+        calaTreumalDesc: 'A la frontera entre Blanes i Lloret, Cala Treumal combina vegetació subtropical amb aigües mediterrànies cristal·lines.',
+        calaBBoadellaName: 'Cala Boadella',
+        calaBBoadellaDesc: 'Considerada la cala més bonica de Lloret de Mar. Platja de sorra daurada protegida per penya-segats boscosos.',
+        platjaPalomeraName: 'Platja de Sa Palomera',
+        platjaPalomeraDesc: 'La platja més icònica de Blanes, que marca l\'inici oficial de la Costa Brava.',
+        pricingTitle: 'Preus Lloguer Barca Costa Brava 2026',
+        ctaTitle: 'Reserva la Teva Barca a la Costa Brava',
+        ctaDescription: 'Tria la teva barca, data i horari. Gasolina, assegurança i formació inclosos en barques sense llicència. Reserva per WhatsApp: et confirmem en menys de 2 hores.',
+        ctaButton: 'Reservar per WhatsApp',
+        crossLinkEnglish: 'This page in English: Boat Rental Costa Brava',
+      },
+      faq: {
+        experienceQ: 'Necessito experiència prèvia per llogar una barca a la Costa Brava?',
+        experienceA: 'No, no necessites cap experiència prèvia. Per a les nostres barques sense llicència (fins a 15 CV) només has de ser major de 18 anys. Oferim una formació pràctica de 15 minuts abans de sortir.',
+        distanceQ: 'Fins on puc navegar sense llicència des de Blanes?',
+        distanceA: 'Amb una barca sense llicència pots navegar fins a 2 milles nàutiques de la costa. Això et permet explorar Cala Brava (15 min), Cala Sant Francesc (20 min) i Lloret de Mar (30 min).',
+        weatherQ: 'Què passa si fa mal temps el dia de la meva reserva?',
+        weatherA: 'La seguretat és la nostra prioritat. Si les condicions meteorològiques no permeten navegar amb seguretat, t\'oferim canvi de data gratuït o devolució completa.',
+        petsQ: 'Puc portar mascotes a la barca?',
+        petsA: 'Sí, les mascotes són benvingudes a totes les nostres barques. Recomanem portar aigua fresca, una tovallola i protecció solar adequada per a la teva mascota.',
+      },
+    },
+    tordera: {
+      faqItems: [
+        {
+          question: 'A quanta distància està Tordera del Port de Blanes?',
+          answer: 'Tordera està a només 10 km del Port de Blanes, uns 15 minuts amb cotxe per la C-32 o la carretera local. També pots arribar-hi amb tren RENFE línia R1 en només 8 minuts des de l\'estació de Blanes.',
+        },
+        {
+          question: 'Quan costa llogar un vaixell des de Blanes si visc a Tordera?',
+          answer: 'El lloguer de vaixell sense llicència comença des de {noLicBaja1h} € per hora amb gasolina inclosa. Vaixells amb llicència des de {licBaja2h} € per 2 hores. Disposem de {fleetCount} vaixells per a 4-11 persones.',
+        },
+        {
+          question: 'Necessito llicència de navegació?',
+          answer: 'No necessàriament. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir. També tenim vaixells amb llicència per a navegants experimentats.',
+        },
+        {
+          question: 'Hi ha pàrquing al Port de Blanes?',
+          answer: 'Sí, hi ha pàrquing gratuït disponible a prop del Port de Blanes. Des de Tordera pots aparcar còmodament ja que en ser una zona menys turística que altres punts de la costa, sol haver-hi disponibilitat fins i tot en temporada alta.',
+        },
+      ],
+      seo: {
+        title: 'Lloguer Vaixell Tordera | Port Blanes 15 min | Sense Llicència 75€/h | Delta del Tordera',
+        description: 'Vius a Tordera o prop del Delta? Port Blanes a 15 min amb cotxe o 8 min amb tren R1. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Navega el Delta del Tordera.',
+        ogTitle: 'Lloguer Vaixell Tordera | Delta del Tordera en Vaixell',
+        ogDescription: 'Des de Tordera al Port Blanes en 15 min. Vaixell sense llicència des de 75€/h. Delta del Tordera en vaixell. 4.8★.',
+      },
+      schema: {
+        name: 'Lloguer de Vaixells prop de Tordera',
+        description: 'Lloga vaixells des del Port de Blanes, a només 15 minuts amb cotxe de Tordera. Vaixells sense llicència des de 75 €/hora amb gasolina inclosa.',
+      },
+      breadcrumbName: 'Lloguer Vaixells Tordera',
+      sections: {
+        heroTitle: 'Lloguer de Vaixells prop de Tordera',
+        heroSubtitle: 'Tordera és un municipi residencial de l\'interior que serveix com a porta d\'entrada a la Costa Brava. A només 15 minuts amb cotxe del Port de Blanes, o 8 minuts amb tren, és un punt de sortida ideal per gaudir del mar. Amb aparcament fàcil al port i sense les aglomeracions de la costa, navegar des de Blanes és la millor opció per als residents i visitants de Tordera.',
+        heroBadgeCar: '10 km / 15 min amb cotxe',
+        heroBadgeTransport: 'RENFE R1: 8 min',
+        heroBadgeExtra: 'Pàrquing fàcil',
+        whyTitle: 'Per què llogar un vaixell des de Blanes si ets a Tordera?',
+        whyCard1Title: 'El teu port més proper',
+        whyCard1Desc: 'El Port de Blanes està a només 10 km de Tordera, cosa que el converteix en el punt de lloguer de vaixells més proper i accessible. Tant si ets resident com si ets de pas, en 15 minuts pots estar navegant per les aigües cristal·lines de la Costa Brava. La connexió per carretera és directa i sense complicacions.',
+        whyCard2Title: '{fleetCount} vaixells disponibles',
+        whyCard2Desc: 'La nostra flota inclou {fleetCount} vaixells: embarcacions sense llicència ideals per a famílies i principiants, i vaixells amb llicència per als més experimentats. Des de barques per a 4 persones fins a embarcacions per a grups de fins a 11 persones.',
+        whyCard3Title: 'Gasolina inclosa en vaixells sense llicència',
+        whyCard3Desc: 'El preu dels vaixells sense llicència inclou la gasolina. Des de 75 € per hora. Sense costos ocults ni sorpreses en el preu final.',
+        whyCard4Title: 'Sense experiència prèvia necessària',
+        whyCard4Desc: 'Abans de salpar t\'oferim 15 minuts de formació pràctica on aprendràs a manejar el motor, les normes bàsiques de navegació i els millors racons per explorar. Qualsevol persona major de 18 anys pot pilotar els nostres vaixells sense llicència.',
+        townTitle: 'Tordera: porta d\'entrada a la Costa Brava',
+        townIntro: 'Tordera és un municipi tranquil i ben comunicat, situat a la vall del riu Tordera. La seva posició estratègica entre l\'interior i la costa el converteix en una base excel·lent per explorar la Costa Brava. Molts residents de Tordera aprofiten la proximitat al Port de Blanes per gaudir de la nàutica sense les aglomeracions dels grans municipis costers.',
+        townCard1Title: 'Interior i natura',
+        townCard1Desc: 'Municipi residencial envoltat de natura, amb el Montnegre i el Corredor com a parcs naturals propers. Combina senderisme d\'interior amb una jornada de navegació costanera.',
+        townCard2Title: 'A minuts de la costa',
+        townCard2Desc: 'Tot i que és a l\'interior, Tordera té accés ràpid tant al Maresme com a la Costa Brava. El Port de Blanes és el teu enllaç directe amb el Mediterrani.',
+        townCard3Title: 'Ben comunicat',
+        townCard3Desc: 'Amb estació de tren RENFE (línia R1), autopista C-32 i bones carreteres locals, arribar al Port de Blanes des de Tordera és ràpid i còmode amb qualsevol mitjà de transport.',
+        howTitle: 'Com arribar de Tordera al Port de Blanes',
+        howCarTitle: 'Amb cotxe (15 minuts)',
+        howCarDesc: 'Des de Tordera, agafa la carretera en direcció Blanes (GI-600 o C-32). Són 10 km de trajecte directe fins al Port de Blanes. L\'aparcament a la zona del port és gratuït i generalment té bona disponibilitat, especialment si arribes al matí.',
+        howTaxiTitle: 'Amb taxi',
+        howTaxiDesc: 'Un taxi des de Tordera al Port de Blanes costa aproximadament 15-20 €. És una opció ràpida i còmoda per anar i tornar.',
+        howTransportTitle: 'Amb tren RENFE (8 minuts)',
+        howTransportDesc: 'La línia R1 de Rodalies de RENFE connecta Tordera amb Blanes en només 8 minuts. És l\'opció més ràpida i econòmica. Els trens surten cada 30 minuts en temporada. Des de l\'estació de Blanes, el port està a 10-15 minuts caminant pel passeig marítim.',
+        howParkingTitle: 'Aparcament a Blanes',
+        howParkingDesc: 'Hi ha pàrquing gratuït a prop del Port de Blanes. Els residents de Tordera tenen l\'avantatge d\'arribar d\'hora des de l\'interior, per la qual cosa trobar plaça d\'aparcament sol ser més fàcil que per als qui vénen de localitats costaneres més llunyanes.',
+        destsTitle: 'Què pots veure en vaixell des de Blanes?',
+        destsIntro: 'Des del Port de Blanes pots navegar cap al nord per l\'espectacular costa de la Costa Brava. Descobreix cales d\'aigües turqueses amagades entre penya-segats, platges només accessibles per mar, i pobles amb encant com Lloret de Mar i la històrica Tossa de Mar amb la seva vila medieval emmurallada.',
+        destLloret: 'Lloret de Mar - 25 min',
+        destTossa: 'Tossa de Mar - 30-45 min',
+        destBlanes: 'Cales de Blanes',
+        pricingTitle: 'Preus de lloguer de vaixells',
+        pricingIntro: 'Preus transparents amb gasolina inclosa en tots els vaixells sense llicència. Sense sorpreses ni costos addicionals.',
+        pricingNoLicTitle: 'Vaixells sense llicència',
+        pricingNoLicFrom: 'Des de {noLicBaja1h} €/hora (gasolina inclosa)',
+        pricingNoLicCapacity: 'Capacitat: 4-7 persones segons model',
+        pricingLicTitle: 'Vaixells amb llicència',
+        pricingLicFrom: 'Des de {licBaja2h} € / 2 hores',
+        pricingLicEngines: 'Motors de 40 a 115 CV',
+        pricingLicCapacity: 'Capacitat: fins a 11 persones',
+        pricingButton: 'Veure tots els preus i vaixells',
+        ctaTitle: 'Reserva el teu vaixell des de Tordera',
+        ctaDesc: 'En 15 minuts amb cotxe o 8 minuts amb tren estaràs al Port de Blanes a punt de salpar. Contacta\'ns per WhatsApp per reservar el teu vaixell i descobrir la Costa Brava des de l\'aigua.',
+        ctaButton: 'Reservar per WhatsApp',
+        faqTitle: 'Preguntes freqüents sobre llogar vaixell des de Tordera',
+      },
+    },
+    palafolls: {
+      faqItems: [
+        {
+          question: 'A quanta distància està Palafolls del Port de Blanes?',
+          answer: 'Palafolls està a només 8 km del Port de Blanes, uns 12 minuts amb cotxe. És un dels municipis més propers al port, cosa que el converteix en un punt ideal per fer una excursió amb vaixell per la Costa Brava.',
+        },
+        {
+          question: 'Quan costa llogar un vaixell des de Blanes si soc a Palafolls?',
+          answer: 'El lloguer de vaixell sense llicència comença des de {noLicBaja1h} € per hora amb gasolina inclosa. Vaixells amb llicència des de {licBaja2h} € per 2 hores. Disposem de {fleetCount} vaixells per a 4-11 persones.',
+        },
+        {
+          question: 'Puc anar des del càmping de Palafolls al Port de Blanes fàcilment?',
+          answer: 'Sí, des dels càmpings de la zona de Palafolls (com La Masia o Neptú) arribes al Port de Blanes en uns 10-15 minuts amb cotxe. Hi ha línies d\'autobús que connecten ambdues localitats, tot i que el cotxe és l\'opció més còmoda.',
+        },
+        {
+          question: 'Necessito experiència per llogar un vaixell?',
+          answer: 'No necessites experiència. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir, incloent normes de navegació i consells de seguretat.',
+        },
+      ],
+      seo: {
+        title: 'Lloguer Vaixell Palafolls | Port Blanes 12 min | Sense Llicència 75€/h',
+        description: 'Al càmping o allotjament a Palafolls? Port Blanes a 12 min amb cotxe. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Excursió ideal Costa Brava.',
+        ogTitle: 'Lloguer Vaixell Palafolls | 12 min al Port Blanes',
+        ogDescription: 'Des de Palafolls al Port Blanes en 12 min. Vaixell sense llicència des de 75€/h. Gasolina inclosa. 4.8★.',
+      },
+      schema: {
+        name: 'Lloguer de Vaixells prop de Palafolls',
+        description: 'Lloga vaixells des del Port de Blanes, a només 12 minuts amb cotxe de Palafolls. Vaixells sense llicència des de 75 €/hora amb gasolina inclosa.',
+      },
+      breadcrumbName: 'Lloguer Vaixells Palafolls',
+      sections: {
+        heroTitle: 'Lloguer de Vaixells prop de Palafolls',
+        heroSubtitle: 'Palafolls és un municipi de l\'interior del Maresme conegut per la seva àmplia zona de càmpings i resorts naturals. A només 12 minuts amb cotxe del Port de Blanes, és el punt de sortida perfecte per a una excursió amb vaixell per la Costa Brava. Els nostres vaixells sense llicència són ideals per a famílies de càmping que busquen una activitat diferent.',
+        heroBadgeCar: '8 km / 12 min amb cotxe',
+        heroBadgeTransport: 'Molt a prop de Blanes',
+        heroBadgeExtra: 'Zona de càmpings',
+        whyTitle: 'Per què llogar un vaixell des de Blanes si ets a Palafolls?',
+        whyCard1Title: 'A 12 minuts del port',
+        whyCard1Desc: 'Palafolls és un dels municipis més propers al Port de Blanes. Amb només 8 km de distància, pots sortir del càmping al matí, navegar durant unes hores per la Costa Brava i tornar a temps per al dinar. És l\'excursió perfecta per a un dia de vacances diferent.',
+        whyCard2Title: 'Ideal per a campistes',
+        whyCard2Desc: 'Si t\'allotges en un dels càmpings de Palafolls com La Masía, Neptuno, o els complexos de bungalows de la zona, llogar un vaixell és l\'activitat estrella que farà úniques les teves vacances. Moltes famílies de càmpings propers ens visiten cada temporada.',
+        whyCard3Title: 'Gasolina inclosa en vaixells sense llicència',
+        whyCard3Desc: 'El preu dels vaixells sense llicència inclou la gasolina. Des de 75 € per hora. Sense costos ocults ni suplements per combustible.',
+        whyCard4Title: 'Sense experiència prèvia necessària',
+        whyCard4Desc: 'Abans de salpar, el nostre equip et dóna 15 minuts de formació pràctica. T\'ensenyem a manejar el motor, les normes bàsiques de navegació i els millors racons per explorar. Qualsevol persona major de 18 anys pot pilotar els nostres vaixells sense llicència.',
+        townTitle: 'Palafolls: càmpings, natura i mar',
+        townIntro: 'Palafolls combina la tranquil·litat d\'un poble d\'interior amb la proximitat al mar. La seva àmplia oferta de càmpings i allotjaments rurals atreu milers de famílies europees cada estiu. Complementa la teva estada amb una jornada de navegació per les cales més boniques de la Costa Brava.',
+        townCard1Title: 'Zona de càmpings',
+        townCard1Desc: 'Càmping La Masía, Neptuno i altres complexos turístics de la zona atrauen famílies de tota Europa. Una excursió amb vaixell és l\'activitat perfecta per completar les vacances.',
+        townCard2Title: 'A minuts del mar',
+        townCard2Desc: 'Tot i que Palafolls és un municipi d\'interior, les platges de Blanes i Malgrat estan a menys de 10 minuts. El Port de Blanes és la teva porta d\'entrada a la Costa Brava per mar.',
+        townCard3Title: 'Natura i castell',
+        townCard3Desc: 'El Castell de Palafolls i els senders de la zona ofereixen passejos tranquils. Combina natura d\'interior amb l\'emoció de navegar per aigües cristal·lines.',
+        howTitle: 'Com arribar de Palafolls al Port de Blanes',
+        howCarTitle: 'Amb cotxe (12 minuts)',
+        howCarDesc: 'Des de Palafolls, agafa la BV-6001 en direcció a Blanes. Són només 8 km fins al Port de Blanes. El trajecte és ràpid i senzill, amb bona senyalització. Des dels càmpings de la zona, el recorregut és encara més directe.',
+        howTaxiTitle: 'Amb taxi',
+        howTaxiDesc: 'Un taxi des de Palafolls al Port de Blanes costa aproximadament 12-18 €. És una opció còmoda si no disposes de cotxe propi.',
+        howTransportTitle: 'Amb autobús',
+        howTransportDesc: 'Palafolls no té estació de tren, però hi ha línies d\'autobús que connecten amb Blanes. El trajecte dura uns 20 minuts. Consulta els horaris de les línies locals en temporada alta, ja que la freqüència augmenta durant l\'estiu.',
+        howParkingTitle: 'Aparcament a Blanes',
+        howParkingDesc: 'Hi ha aparcament gratuït disponible a prop del Port de Blanes. En temporada alta (juliol-agost) recomanem arribar d\'hora per assegurar plaça de pàrquing.',
+        destsTitle: 'Què pots veure en vaixell des de Blanes?',
+        destsIntro: 'Des del Port de Blanes pots navegar cap al nord explorant l\'espectacular costa de la Costa Brava. Cales amagades d\'aigües turqueses, penya-segats coberts de pins i la impressionant silueta de Tossa de Mar a l\'horitzó. Tot això al teu abast des del vaixell.',
+        destLloret: 'Lloret de Mar - 25 min',
+        destTossa: 'Tossa de Mar - 30-45 min',
+        destBlanes: 'Cales de Blanes',
+        pricingTitle: 'Preus de lloguer de vaixells',
+        pricingIntro: 'Preus transparents amb gasolina inclosa en tots els vaixells sense llicència. Sense costos ocults.',
+        pricingNoLicTitle: 'Vaixells sense llicència',
+        pricingNoLicFrom: 'Des de {noLicBaja1h} €/hora (gasolina inclosa)',
+        pricingNoLicCapacity: 'Capacitat: 4-7 persones segons model',
+        pricingLicTitle: 'Vaixells amb llicència',
+        pricingLicFrom: 'Des de {licBaja2h} € / 2 hores',
+        pricingLicEngines: 'Motors de 40 a 115 CV',
+        pricingLicCapacity: 'Capacitat: fins a 11 persones',
+        pricingButton: 'Veure tots els preus i vaixells',
+        ctaTitle: 'Reserva el teu vaixell des de Palafolls',
+        ctaDesc: 'En 12 minuts estaràs al Port de Blanes a punt de salpar. L\'excursió perfecta des del teu càmping. Contacta\'ns per WhatsApp per reservar.',
+        ctaButton: 'Reservar per WhatsApp',
+        faqTitle: 'Preguntes freqüents sobre llogar vaixell des de Palafolls',
+      },
+    },
+    pineda: {
+      faqItems: [
+        {
+          question: 'A quanta distància està Pineda de Mar del Port de Blanes?',
+          answer: 'Pineda de Mar està a 15 km del Port de Blanes, uns 18 minuts amb cotxe per la N-II. També pots arribar-hi amb tren RENFE línia R1 en només 12 minuts des de l\'estació de Blanes.',
+        },
+        {
+          question: 'Quan costa llogar un vaixell des de Blanes si soc a Pineda de Mar?',
+          answer: 'El lloguer de vaixell sense llicència comença des de {noLicBaja1h} € per hora amb gasolina inclosa. Vaixells amb llicència des de {licBaja2h} € per 2 hores. Disposem de {fleetCount} vaixells per a 4-11 persones.',
+        },
+        {
+          question: 'Necessito llicència de navegació per llogar un vaixell?',
+          answer: 'No necessàriament. Oferim vaixells sense llicència que qualsevol major de 18 anys pot manejar. Et donem 15 minuts de formació abans de sortir. També tenim vaixells amb llicència per a navegants més experimentats.',
+        },
+        {
+          question: 'Puc anar des de Pineda de Mar a Blanes amb transport públic?',
+          answer: 'Sí, la línia R1 de RENFE connecta Pineda de Mar amb Blanes en 12 minuts. Els trens surten cada 30 minuts en temporada. L\'estació de Blanes està a uns 10 minuts caminant del port.',
+        },
+        {
+          question: 'Hi ha lloguer de barques a la mateixa Pineda de Mar?',
+          answer: 'No, Pineda de Mar no té port esportiu amb lloguer de barques. El port més proper per a tot l\'Alt Maresme (Malgrat, Santa Susanna, Pineda i Calella) és el Port de Blanes, a 18 minuts en cotxe o 12 minuts en tren R1.',
+        },
+        {
+          question: 'Quines cales puc visitar sortint des de Blanes?',
+          answer: 'Amb una barca sense llicència arribes a Cala Sant Francesc, Sa Forcanera, la platja de Santa Cristina, Cala Sa Boadella i la Platja de Fenals (sud de Lloret), totes dins del límit legal de 2 milles. Amb llicència o amb l\'excursió privada amb patró pots continuar fins a Tossa de Mar.',
+        },
+        {
+          question: 'Puc fer un passeig en barca sense pilotar jo?',
+          answer: 'Sí. Si prefereixes no portar la barca, reserva l\'excursió privada amb patró: sortides des del Port de Blanes de 2 a 8 hores, fins a 6 persones, amb parades per nedar i fer snorkel a les cales. No necessites cap titulació.',
+        },
+      ],
+      seo: {
+        title: 'Lloguer Vaixell Pineda de Mar | Port Blanes 18 min | Sense Llicència 75€/h',
+        description: 'Allotjat a Pineda de Mar? Port Blanes a 18 min amb cotxe o 12 min amb tren R1. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Navega a Blanes, Lloret o Tossa.',
+        ogTitle: 'Lloguer Vaixell Pineda de Mar | 18 min al Port Blanes',
+        ogDescription: 'Des de Pineda de Mar al Port Blanes en 18 min. Vaixell sense llicència des de 75€/h. 4.8★ Google.',
+      },
+      schema: {
+        name: 'Lloguer de Vaixells prop de Pineda de Mar',
+        description: 'Lloga vaixells des del Port de Blanes, a només 18 minuts amb cotxe de Pineda de Mar. Vaixells sense llicència des de 75 €/hora amb gasolina inclosa.',
+      },
+      breadcrumbName: 'Lloguer Vaixells Pineda de Mar',
+      sections: {
+        heroTitle: 'Lloguer de Vaixells prop de Pineda de Mar',
+        heroSubtitle: 'Pineda de Mar és un dels destins turístics més importants de la costa del Maresme, amb desenes d\'hotels i resorts all-inclusive. El Port de Blanes, a només 18 minuts amb cotxe o 12 minuts amb tren, és el punt de lloguer de vaixells més proper. Gaudeix de la Costa Brava sense necessitat de llicència de navegació.',
+        heroBadgeCar: '15 km / 18 min amb cotxe',
+        heroBadgeTransport: 'RENFE R1: 12 min',
+        heroBadgeExtra: 'Costa del Maresme',
+        heroImageAlt: 'Aigües turqueses de la Costa Brava a 18 minuts de Pineda de Mar, sortint del Port de Blanes',
+        whyTitle: 'Per què llogar un vaixell des de Blanes si ets a Pineda de Mar?',
+        whyCard1Title: 'El port més proper amb lloguer de vaixells',
+        whyCard1Desc: 'Pineda de Mar no disposa de port esportiu ni de servei de lloguer d\'embarcacions. El Port de Blanes és el punt més proper on pots llogar un vaixell, a tan sols 15 km per la carretera N-II. Si estàs allotjat en un dels molts hotels de Pineda, en menys de 20 minuts estaràs navegant per les aigües cristal·lines de la Costa Brava.',
+        whyCard2Title: '{fleetCount} vaixells per triar',
+        whyCard2Desc: 'Disposem d\'una flota de {fleetCount} vaixells que inclou embarcacions sense llicència ideals per a famílies i principiants, així com vaixells amb llicència per a navegants experimentats. Capacitat de 4 a 11 persones segons el model triat.',
+        whyCard3Title: 'Gasolina inclosa en vaixells sense llicència',
+        whyCard3Desc: 'El preu dels vaixells sense llicència inclou la gasolina, així que no hi ha sorpreses. Des de 75 € per hora. El preu que veus és el preu final.',
+        whyCard4Title: 'Sense experiència prèvia necessària',
+        whyCard4Desc: 'Abans de salpar, el nostre equip et dóna 15 minuts de formació pràctica: maneig del motor, normes bàsiques de navegació i consells sobre les millors cales. Qualsevol persona major de 18 anys pot pilotar un vaixell sense llicència.',
+        townTitle: 'Pineda de Mar: activitats per a hostes d\'hotel',
+        townIntro: 'Pineda de Mar és coneguda per la seva àmplia oferta hotelera, amb nombrosos hotels i resorts que atrauen famílies de tota Europa. Si busques una activitat diferent durant les teves vacances, llogar un vaixell i explorar la Costa Brava des de l\'aigua és una experiència inoblidable que complementa perfectament la teva estada a la platja.',
+        townCard1Title: 'Zona hotelera de primer nivell',
+        townCard1Desc: 'Desenes d\'hotels i resorts all-inclusive en primera línia de platja. Escapa\'t unes hores per viure l\'experiència nàutica que farà úniques les teves vacances.',
+        townCard2Title: 'Platja de Pineda',
+        townCard2Desc: 'Més d\'1 km de platja de sorra daurada amb tots els serveis. Després de navegar, torna al teu hotel a relaxar-te vora el mar.',
+        townCard3Title: 'Perfecta per a famílies',
+        townCard3Desc: 'Pineda és un destí familiar per excel·lència. Els nostres vaixells sense llicència són segurs i fàcils de manejar, ideals per a una excursió en família per la costa.',
+        howTitle: 'Com arribar de Pineda de Mar al Port de Blanes',
+        howCarTitle: 'Amb cotxe (18 minuts)',
+        howCarDesc: 'Agafa la N-II en direcció nord cap a Blanes. Són 15 km de trajecte còmode i directe. Des de la majoria d\'hotels de Pineda de Mar arribaràs al Port de Blanes en uns 18 minuts. El trajecte voreja la costa i és molt agradable.',
+        howTaxiTitle: 'Amb taxi',
+        howTaxiDesc: 'Un taxi des de Pineda de Mar al Port de Blanes costa aproximadament 20-25 €. És una bona opció si no disposes de cotxe o prefereixes no preocupar-te per l\'aparcament.',
+        howTransportTitle: 'Amb tren RENFE (12 minuts)',
+        howTransportDesc: 'La línia R1 de Rodalies de RENFE connecta Pineda de Mar amb Blanes en només 12 minuts. Els trens surten cada 30 minuts en temporada alta. Des de l\'estació de Blanes, el port està a uns 10-15 minuts caminant pel passeig marítim.',
+        howParkingTitle: 'Aparcament a Blanes',
+        howParkingDesc: 'Hi ha aparcament gratuït disponible a prop del Port de Blanes. En temporada alta (juliol-agost) recomanem arribar d\'hora o considerar el tren com a alternativa còmoda i ràpida.',
+        destsTitle: 'Què pots veure en vaixell des de Blanes?',
+        destsIntro: 'Des del Port de Blanes pots navegar cap al nord per l\'espectacular costa de la Costa Brava. Descobreix cales amagades, penya-segats impressionants i pobles medievals com Tossa de Mar. Amb un vaixell sense llicència pots explorar fins a 2 milles de la costa, suficient per arribar a les cales més boniques de la zona.',
+        destLloret: 'Lloret de Mar - 25 min',
+        destTossa: 'Tossa de Mar - 30-45 min',
+        destBlanes: 'Cales de Blanes',
+        pricingTitle: 'Preus de lloguer de vaixells',
+        pricingIntro: 'Oferim preus competitius amb gasolina inclosa en tots els vaixells sense llicència. No hi ha costos ocults ni suplements per combustible.',
+        pricingNoLicTitle: 'Vaixells sense llicència',
+        pricingNoLicFrom: 'Des de {noLicBaja1h} €/hora (gasolina inclosa)',
+        pricingNoLicCapacity: 'Capacitat: 4-7 persones segons model',
+        pricingLicTitle: 'Vaixells amb llicència',
+        pricingLicFrom: 'Des de {licBaja2h} € / 2 hores',
+        pricingLicEngines: 'Motors de 40 a 115 CV',
+        pricingLicCapacity: 'Capacitat: fins a 11 persones',
+        pricingButton: 'Veure tots els preus i vaixells',
+        ctaTitle: 'Reserva el teu vaixell des de Pineda de Mar',
+        ctaDesc: 'En 18 minuts estaràs al Port de Blanes a punt de salpar. Contacta\'ns per WhatsApp per reservar el teu vaixell i viure una experiència única a la Costa Brava.',
+        ctaButton: 'Reservar per WhatsApp',
+        faqTitle: 'Preguntes freqüents sobre llogar vaixell des de Pineda de Mar',
+      },
+    },
+    newsletter: {
+      title: 'Guia gratuïta de cales secretes',
+      subtitle: 'Rep la nostra guia amb les 10 millors cales de la Costa Brava accessibles només en vaixell',
+      placeholder: 'El teu email',
+      button: 'Enviar guia gratis',
+      success: 'Guia enviada. Revisa el teu email.',
+      error: 'Error en enviar. Torna-ho a intentar.',
     },
   },
 };

@@ -288,11 +288,14 @@ export function calculateBasePrice(boatId: string, date: Date, duration: Duratio
   }
 
   const basePrice = seasonPricing.prices[duration];
-  if (!shouldApplyWeekendSurcharge(date)) return basePrice;
-  // Explicit weekend price wins over the global +15% surcharge when set for
-  // this season/duration (e.g. Solar 450 July 4h = 200 weekday / 220 weekend).
+  if (!isWeekend(date)) return basePrice;
+  // An explicit weekend price wins whenever it is set for this season/duration,
+  // even in August where the automatic +15% surcharge is intentionally skipped
+  // (e.g. Solar 450 July 4h = 200 weekday / 220 weekend). This lets the owner
+  // set deliberate weekend rates on any month, including August.
   const explicitWeekend = seasonPricing.weekendPrices?.[duration];
   if (explicitWeekend != null) return explicitWeekend;
+  if (!shouldApplyWeekendSurcharge(date)) return basePrice;
   return roundToNearestTen(basePrice * WEEKEND_SURCHARGE_FACTOR);
 }
 

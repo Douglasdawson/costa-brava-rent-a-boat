@@ -404,11 +404,13 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       },
       MEDIA: {
         period: "Julio",
-        prices: { "2h": 180, "4h": 260, "8h": 340 }
+        prices: { "2h": 180, "4h": 270, "8h": 360 },
+        weekendPrices: { "2h": 190, "4h": 300, "8h": 380 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "2h": 200, "4h": 280, "8h": 390 }
+        prices: { "2h": 190, "4h": 280, "8h": 380 },
+        weekendPrices: { "2h": 200, "4h": 320, "8h": 390 }
       }
     },
     extras: [
@@ -467,11 +469,13 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       },
       MEDIA: {
         period: "Julio",
-        prices: { "2h": 190, "4h": 260, "8h": 340 }
+        prices: { "2h": 190, "4h": 280, "8h": 380 },
+        weekendPrices: { "2h": 200, "4h": 320, "8h": 390 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "2h": 210, "4h": 290, "8h": 400 }
+        prices: { "2h": 200, "4h": 290, "8h": 390 },
+        weekendPrices: { "2h": 220, "4h": 340, "8h": 420 }
       }
     },
     extras: [

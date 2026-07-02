@@ -602,6 +602,52 @@ describe("Integration: Full booking flow", () => {
   });
 });
 
+describe("explicit weekend prices (licensed sport boats, July & August)", () => {
+  // 2026: Jul 1 = Wed (weekday), Jul 4 = Sat (weekend)
+  //       Aug 4 = Tue (weekday), Aug 1 = Sat (weekend)
+  const julWeekday = new Date("2026-07-01T10:00:00");
+  const julWeekend = new Date("2026-07-04T10:00:00");
+  const augWeekday = new Date("2026-08-04T10:00:00");
+  const augWeekend = new Date("2026-08-01T10:00:00");
+
+  it("Trimarchi 57S July: weekday base, explicit weekend prices", () => {
+    expect(calculateBasePrice("trimarchi-57s", julWeekday, "2h")).toBe(190);
+    expect(calculateBasePrice("trimarchi-57s", julWeekday, "4h")).toBe(280);
+    expect(calculateBasePrice("trimarchi-57s", julWeekday, "8h")).toBe(380);
+    expect(calculateBasePrice("trimarchi-57s", julWeekend, "2h")).toBe(200);
+    expect(calculateBasePrice("trimarchi-57s", julWeekend, "4h")).toBe(320);
+    expect(calculateBasePrice("trimarchi-57s", julWeekend, "8h")).toBe(390);
+  });
+
+  it("Trimarchi 57S August: explicit weekend prices win despite the August surcharge skip", () => {
+    expect(calculateBasePrice("trimarchi-57s", augWeekday, "2h")).toBe(200);
+    expect(calculateBasePrice("trimarchi-57s", augWeekday, "4h")).toBe(290);
+    expect(calculateBasePrice("trimarchi-57s", augWeekday, "8h")).toBe(390);
+    // August normally skips the weekend surcharge; explicit weekendPrices override that
+    expect(calculateBasePrice("trimarchi-57s", augWeekend, "2h")).toBe(220);
+    expect(calculateBasePrice("trimarchi-57s", augWeekend, "4h")).toBe(340);
+    expect(calculateBasePrice("trimarchi-57s", augWeekend, "8h")).toBe(420);
+  });
+
+  it("Mingolla Brava 19 July: weekday base, explicit weekend prices", () => {
+    expect(calculateBasePrice("mingolla-brava-19", julWeekday, "2h")).toBe(180);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekday, "4h")).toBe(270);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekday, "8h")).toBe(360);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekend, "2h")).toBe(190);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekend, "4h")).toBe(300);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekend, "8h")).toBe(380);
+  });
+
+  it("Mingolla Brava 19 August: explicit weekend prices win despite the August surcharge skip", () => {
+    expect(calculateBasePrice("mingolla-brava-19", augWeekday, "2h")).toBe(190);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekday, "4h")).toBe(280);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekday, "8h")).toBe(380);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekend, "2h")).toBe(200);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekend, "4h")).toBe(320);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekend, "8h")).toBe(390);
+  });
+});
+
 // ===== Pricing overrides (dynamic pricing by date block) =====
 
 const TUESDAY_AUG_5 = new Date("2026-08-05T10:00:00"); // Mar 5 ago 2026

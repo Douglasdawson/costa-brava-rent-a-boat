@@ -4,6 +4,7 @@ import { seoEngineRuns, seoAlerts } from "../../shared/schema";
 import { eq, and, gte, desc, lt } from "drizzle-orm";
 import { logger } from "../lib/logger";
 import { checkQuotaUsage } from "./quotas";
+import { SEO_CONFIG } from "./config";
 
 // Record job start
 export async function recordJobStart(jobName: string): Promise<number> {
@@ -60,6 +61,16 @@ export async function checkEngineHealth(): Promise<void> {
   };
 
   for (const [jobName, maxHours] of Object.entries(jobIntervals)) {
+    // ValueSERP-dependent jobs cannot produce results without the API key —
+    // skip their staleness alerts until the key is configured (they resume
+    // automatically once VALUESERP_API_KEY is set).
+    if (
+      !SEO_CONFIG.valueSerpApiKey &&
+      (jobName === "serp-tracking" || jobName === "competitor-check")
+    ) {
+      continue;
+    }
+
     const cutoff = new Date(now.getTime() - maxHours * 60 * 60 * 1000);
 
     const [lastRun] = await db

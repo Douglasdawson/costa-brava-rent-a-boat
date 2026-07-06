@@ -4,16 +4,21 @@ import { seoLinks } from "../../../shared/schema";
 import { logger } from "../../lib/logger";
 import { SEO_CONFIG } from "../config";
 
-// All known site pages (from sitemap + SPA routes)
+// Key pages that MUST be internally linked. Canonical /es/ paths (Spanish
+// slugs from shared/i18n-routes.ts) — the site serves every page under a
+// language prefix since the i18n migration, so bare paths never match the
+// real internal links and would flag everything as orphan.
 const KNOWN_PAGES = [
-  "/", "/precios", "/faq", "/galeria", "/rutas", "/blog",
-  "/testimonios", "/tarjetas-regalo", "/destinos",
-  "/barcos-sin-licencia", "/barcos-con-licencia",
-  "/alquiler-barcos-blanes", "/alquiler-barcos-lloret-de-mar",
-  "/alquiler-barcos-tossa-de-mar", "/alquiler-barcos-cerca-barcelona",
-  "/alquiler-barcos-costa-brava",
-  "/privacy-policy", "/terms-conditions", "/cookies-policy",
-  "/condiciones-generales", "/accesibilidad",
+  "/es/", "/es/precios", "/es/faq", "/es/galeria", "/es/rutas", "/es/blog",
+  "/es/testimonios", "/es/tarjetas-regalo", "/es/destinos",
+  "/es/barcos-sin-licencia", "/es/barcos-con-licencia",
+  "/es/alquiler-barcos-blanes", "/es/alquiler-barcos-lloret-de-mar",
+  "/es/alquiler-barcos-tossa-de-mar", "/es/alquiler-barcos-cerca-barcelona",
+  "/es/alquiler-barcos-costa-brava",
+  "/es/alquiler-barcos-malgrat-de-mar", "/es/alquiler-barcos-santa-susanna",
+  "/es/alquiler-barcos-calella", "/es/alquiler-barcos-pineda-de-mar",
+  "/es/politica-privacidad", "/es/terminos-condiciones", "/es/politica-cookies",
+  "/es/condiciones-generales", "/es/accesibilidad",
 ];
 
 export async function detectOrphanPages(): Promise<string[]> {

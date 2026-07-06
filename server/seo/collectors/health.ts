@@ -75,12 +75,13 @@ async function crawlUrl(url: string): Promise<HealthResult> {
   }
 }
 
-// Critical pages — kept as a fallback when sitemap discovery fails. Note these
-// are bare-path legacy URLs (no /es/ prefix) that 301-redirect to canonical
-// /es/... — the previous behaviour. Real check now uses the full sitemap.
+// Critical pages — kept as a fallback when sitemap discovery fails. Canonical
+// /es/ paths: bare legacy paths (301 redirects) must never be re-inserted into
+// seo_pages or they resurface as stale 404/500 rows in the strategist briefing.
 const CRITICAL_PAGES_FALLBACK = [
-  "/", "/precios", "/faq", "/galeria", "/rutas", "/tarjetas-regalo",
-  "/testimonios", "/blog", "/alquiler-barcos-costa-brava",
+  "/es/", "/es/precios", "/es/faq", "/es/galeria", "/es/rutas",
+  "/es/tarjetas-regalo", "/es/testimonios", "/es/blog",
+  "/es/alquiler-barcos-costa-brava",
 ];
 
 async function fetchSitemapPaths(): Promise<string[]> {

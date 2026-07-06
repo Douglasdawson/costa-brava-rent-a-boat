@@ -394,7 +394,7 @@ Para conocer las mejores calas, lee nuestro artículo sobre las [10 mejores cala
 
 ## 7. Probar el paddle surf
 
-El paddle surf se ha convertido en una de las actividades estrella del verano en Blanes. Las aguas tranquilas de las primeras horas de la mañana son ideales para practicarlo. Puedes [añadirlo como extra](/barcos) al alquilar tu barco por 25EUR y hacer paddle surf en una cala desierta.
+El paddle surf se ha convertido en una de las actividades estrella del verano en Blanes. Las aguas tranquilas de las primeras horas de la mañana son ideales para practicarlo. Puedes [añadirlo como extra](/barcos) al alquilar tu barco por 30EUR y hacer paddle surf en una cala desierta.
 
 ## 8. Recorrer el camino de ronda
 
@@ -567,7 +567,7 @@ Prices vary by season:
 Enhance your trip with these add-ons:
 
 - **Snorkeling gear:** 7.50EUR per set
-- **Paddle board (SUP):** 25EUR
+- **Paddle board (SUP):** 30EUR
 - **Seascooter (underwater scooter):** 50EUR
 - **Cooler box:** 5EUR
 - **Drinks:** 2.50EUR each
@@ -3864,7 +3864,7 @@ Complementa tu experiencia con nuestros extras:
 
 - **Nevera con hielo:** 5 EUR (imprescindible en verano)
 - **Equipo de snorkel:** 7,50 EUR (las calas entre Blanes y Lloret tienen un fondo marino increible)
-- **Paddle surf:** 25 EUR (perfecto para explorar cuevas y rincones)
+- **Paddle surf:** 30 EUR (perfecto para explorar cuevas y rincones)
 - **Seascooter:** 50 EUR (propulsion submarina para snorkel avanzado)
 - **Parking junto al barco:** 10 EUR/dia
 
@@ -4100,7 +4100,7 @@ No son playas propiamente dichas: son formaciones rocosas con pequenas piscinas 
 
 **Lo que hace este sitio especial** es que incluso en pleno agosto, cuando todas las calas conocidas estan llenas, estos rincones suelen estar vacios. La mayoria de barcos van directos a Cala Sant Francesc o Santa Cristina y se saltan este tramo.
 
-**Consejo:** Alquila un paddle surf (25 EUR) con nosotros. Es la mejor forma de explorar las cuevas desde dentro, ya que el barco no puede entrar.
+**Consejo:** Alquila un paddle surf (30 EUR) con nosotros. Es la mejor forma de explorar las cuevas desde dentro, ya que el barco no puede entrar.
 
 ## 3. La cara oculta de Cala Boadella
 
@@ -4194,7 +4194,7 @@ Lo mas interesante es que **el mejor sitio cambia cada dia**. Depende del viento
 Si tu plan es explorar calas escondidas, estos son los extras que recomendamos:
 
 - **Equipo de snorkel** (7,50 EUR): Absolutamente imprescindible. Estas calas tienen el mejor fondo marino de la Costa Brava.
-- **Paddle surf** (25 EUR): Para entrar en cuevas y explorar rincones donde el barco no llega.
+- **Paddle surf** (30 EUR): Para entrar en cuevas y explorar rincones donde el barco no llega.
 - **Seascooter** (50 EUR): Propulsion submarina para cubrir mas distancia haciendo snorkel. Espectacular en las micro-calas entre Lloret y Tossa.
 - **Nevera** (5 EUR): Imprescindible para mantener agua y bebidas frias todo el dia.
 - **Adventure Pack** (75 EUR): Incluye nevera + snorkel + paddle surf + seascooter. El pack completo para un dia de exploracion.
@@ -4318,7 +4318,7 @@ Los barcos con licencia y la excursion con capitan tienen **mesa** donde podeis 
 
 Anadid diversión con nuestros extras:
 
-- **Paddle surf** (25 EUR): Perfecto para competiciones amistosas o para explorar cuevas cercanas
+- **Paddle surf** (30 EUR): Perfecto para competiciones amistosas o para explorar cuevas cercanas
 - **Seascooter** (50-60 EUR): Propulsion submarina para snorkel. Diversion garantizada para todos
 - **Equipo de snorkel** (7,50 EUR): Las calas de la Costa Brava tienen un fondo marino espectacular
 - **GoPro** (30 EUR): Grabad toda la experiencia bajo el agua y sobre cubierta

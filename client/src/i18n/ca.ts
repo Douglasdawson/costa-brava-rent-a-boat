@@ -2623,7 +2623,7 @@ export const ca: Translations = {
       extras: {
         question: "Quins extres puc afegir?",
         answer:
-          "Extres disponibles: Paddle Surf (+25€), Ulleres de snorkel (+5€), Càmera aquàtica GoPro (+30€) i Patró professional (+100€).",
+          "Extres disponibles: Paddle Surf (+30€), Ulleres de snorkel (+5€), Càmera aquàtica GoPro (+30€) i Patró professional (+100€).",
       },
       queLlevar: {
         question: "Què haig de portar jo?",

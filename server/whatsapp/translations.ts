@@ -142,7 +142,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     bookingPeoplePrompt:
       "¿Cuántas personas seréis? _(máximo {max} para este barco)_",
     bookingExtrasPrompt:
-      "¿Quieres añadir algún extra?\n\n1️⃣ Parking (10€)\n2️⃣ Nevera (5€)\n3️⃣ Snorkel (7,50€)\n4️⃣ Paddle Surf (25€)\n5️⃣ Seascooter (50€)\n0️⃣ Sin extras\n\n_Puedes seleccionar varios separados por coma (ej: 1,3,4)_",
+      "¿Quieres añadir algún extra?\n\n1️⃣ Parking (10€)\n2️⃣ Nevera (5€)\n3️⃣ Snorkel (7,50€)\n4️⃣ Paddle Surf (30€)\n5️⃣ Seascooter (50€)\n0️⃣ Sin extras\n\n_Puedes seleccionar varios separados por coma (ej: 1,3,4)_",
     bookingContactNamePrompt: "¿Cuál es tu nombre completo?",
     bookingContactEmailPrompt:
       "¿Tu email? _(para enviarte la confirmación)_",
@@ -167,7 +167,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
       "🅿️ Parking dentro del puerto - 10€",
       "❄️ Nevera - 5€",
       "🤿 Equipo snorkel - 7,50€",
-      "🏄 Paddle Surf - 25€",
+      "🏄 Paddle Surf - 30€",
       "⚡ Seascooter - 50€",
     ],
     noExtras: "Sin extras",
@@ -375,7 +375,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     bookingPeoplePrompt:
       "Combien de personnes? _(maximum {max} pour ce bateau)_",
     bookingExtrasPrompt:
-      "Souhaitez-vous ajouter des extras?\n\n1️⃣ Parking (10€)\n2️⃣ Glacière (5€)\n3️⃣ Snorkel (7,50€)\n4️⃣ Paddle Surf (25€)\n5️⃣ Seascooter (50€)\n0️⃣ Sans extras\n\n_Vous pouvez en sélectionner plusieurs séparés par virgule (ex: 1,3,4)_",
+      "Souhaitez-vous ajouter des extras?\n\n1️⃣ Parking (10€)\n2️⃣ Glacière (5€)\n3️⃣ Snorkel (7,50€)\n4️⃣ Paddle Surf (30€)\n5️⃣ Seascooter (50€)\n0️⃣ Sans extras\n\n_Vous pouvez en sélectionner plusieurs séparés par virgule (ex: 1,3,4)_",
     bookingContactNamePrompt: "Quel est votre nom complet?",
     bookingContactEmailPrompt:
       "Votre email? _(pour la confirmation)_",
@@ -401,7 +401,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
       "🅿️ Parking au port - 10€",
       "❄️ Glacière - 5€",
       "🤿 Équipement snorkel - 7,50€",
-      "🏄 Paddle Surf - 25€",
+      "🏄 Paddle Surf - 30€",
       "⚡ Seascooter - 50€",
     ],
     noExtras: "Sans extras",
@@ -492,7 +492,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     bookingPeoplePrompt:
       "Quantes persones sereu? _(màxim {max} per aquest vaixell)_",
     bookingExtrasPrompt:
-      "Vols afegir algun extra?\n\n1️⃣ Parking (10€)\n2️⃣ Nevera (5€)\n3️⃣ Snorkel (7,50€)\n4️⃣ Paddle Surf (25€)\n5️⃣ Seascooter (50€)\n0️⃣ Sense extras\n\n_Pots seleccionar diversos separats per coma (ex: 1,3,4)_",
+      "Vols afegir algun extra?\n\n1️⃣ Parking (10€)\n2️⃣ Nevera (5€)\n3️⃣ Snorkel (7,50€)\n4️⃣ Paddle Surf (30€)\n5️⃣ Seascooter (50€)\n0️⃣ Sense extras\n\n_Pots seleccionar diversos separats per coma (ex: 1,3,4)_",
     bookingContactNamePrompt: "Quin és el teu nom complet?",
     bookingContactEmailPrompt:
       "El teu email? _(per enviar-te la confirmació)_",
@@ -518,7 +518,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
       "🅿️ Parking dins del port - 10€",
       "❄️ Nevera - 5€",
       "🤿 Equip snorkel - 7,50€",
-      "🏄 Paddle Surf - 25€",
+      "🏄 Paddle Surf - 30€",
       "⚡ Seascooter - 50€",
     ],
     noExtras: "Sense extras",
@@ -609,7 +609,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     bookingPeoplePrompt:
       "Wie viele Personen? _(maximal {max} für dieses Boot)_",
     bookingExtrasPrompt:
-      "Möchten Sie Extras hinzufügen?\n\n1️⃣ Parkplatz (10€)\n2️⃣ Kühlbox (5€)\n3️⃣ Schnorchel (7,50€)\n4️⃣ Paddle Surf (25€)\n5️⃣ Seascooter (50€)\n0️⃣ Keine Extras\n\n_Sie können mehrere durch Komma getrennt auswählen (z.B. 1,3,4)_",
+      "Möchten Sie Extras hinzufügen?\n\n1️⃣ Parkplatz (10€)\n2️⃣ Kühlbox (5€)\n3️⃣ Schnorchel (7,50€)\n4️⃣ Paddle Surf (30€)\n5️⃣ Seascooter (50€)\n0️⃣ Keine Extras\n\n_Sie können mehrere durch Komma getrennt auswählen (z.B. 1,3,4)_",
     bookingContactNamePrompt: "Wie ist Ihr vollständiger Name?",
     bookingContactEmailPrompt:
       "Ihre E-Mail? _(für die Bestätigung)_",
@@ -635,7 +635,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
       "🅿️ Parkplatz im Hafen - 10€",
       "❄️ Kühlbox - 5€",
       "🤿 Schnorchelausrüstung - 7,50€",
-      "🏄 Paddle Surf - 25€",
+      "🏄 Paddle Surf - 30€",
       "⚡ Seascooter - 50€",
     ],
     noExtras: "Keine Extras",
@@ -843,7 +843,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     bookingPeoplePrompt:
       "Quante persone sarete? _(massimo {max} per questa barca)_",
     bookingExtrasPrompt:
-      "Vuoi aggiungere degli extra?\n\n1️⃣ Parcheggio (10€)\n2️⃣ Borsa frigo (5€)\n3️⃣ Snorkel (7,50€)\n4️⃣ Paddle Surf (25€)\n5️⃣ Seascooter (50€)\n0️⃣ Nessun extra\n\n_Puoi selezionare più opzioni separate da virgola (es. 1,3,4)_",
+      "Vuoi aggiungere degli extra?\n\n1️⃣ Parcheggio (10€)\n2️⃣ Borsa frigo (5€)\n3️⃣ Snorkel (7,50€)\n4️⃣ Paddle Surf (30€)\n5️⃣ Seascooter (50€)\n0️⃣ Nessun extra\n\n_Puoi selezionare più opzioni separate da virgola (es. 1,3,4)_",
     bookingContactNamePrompt: "Qual è il tuo nome completo?",
     bookingContactEmailPrompt:
       "La tua email? _(per inviarti la conferma)_",
@@ -869,7 +869,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
       "🅿️ Parcheggio nel porto - 10€",
       "❄️ Borsa frigo - 5€",
       "🤿 Attrezzatura snorkel - 7,50€",
-      "🏄 Paddle Surf - 25€",
+      "🏄 Paddle Surf - 30€",
       "⚡ Seascooter - 50€",
     ],
     noExtras: "Nessun extra",
@@ -960,7 +960,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     bookingPeoplePrompt:
       "Сколько человек? _(максимум {max} для этой лодки)_",
     bookingExtrasPrompt:
-      "Хотите добавить дополнения?\n\n1️⃣ Парковка (10€)\n2️⃣ Сумка-холодильник (5€)\n3️⃣ Снорклинг (7,50€)\n4️⃣ Paddle Surf (25€)\n5️⃣ Seascooter (50€)\n0️⃣ Без дополнений\n\n_Можно выбрать несколько через запятую (напр. 1,3,4)_",
+      "Хотите добавить дополнения?\n\n1️⃣ Парковка (10€)\n2️⃣ Сумка-холодильник (5€)\n3️⃣ Снорклинг (7,50€)\n4️⃣ Paddle Surf (30€)\n5️⃣ Seascooter (50€)\n0️⃣ Без дополнений\n\n_Можно выбрать несколько через запятую (напр. 1,3,4)_",
     bookingContactNamePrompt: "Ваше полное имя?",
     bookingContactEmailPrompt:
       "Ваш email? _(для отправки подтверждения)_",
@@ -986,7 +986,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
       "🅿️ Парковка в порту - 10€",
       "❄️ Сумка-холодильник - 5€",
       "🤿 Снаряжение для снорклинга - 7,50€",
-      "🏄 Paddle Surf - 25€",
+      "🏄 Paddle Surf - 30€",
       "⚡ Seascooter - 50€",
     ],
     noExtras: "Без дополнений",

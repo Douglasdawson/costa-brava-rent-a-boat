@@ -2629,7 +2629,7 @@ export const nl: Translations = {
       extras: {
         question: "Welke extra's kan ik toevoegen?",
         answer:
-          "Beschikbare extra's: Paddleboard (+25€), Snorkelmasker (+5€), Waterbestendige GoPro-camera (+30€) en Professionele schipper (+100€).",
+          "Beschikbare extra's: Paddleboard (+30€), Snorkelmasker (+5€), Waterbestendige GoPro-camera (+30€) en Professionele schipper (+100€).",
       },
       queLlevar: {
         question: "Wat moet ik meenemen?",

@@ -4378,7 +4378,7 @@ export const es: Translations = {
       extras: {
         question: "¿Qué extras puedo añadir?",
         answer:
-          "Extras disponibles: Paddle Surf (+25€), Gafas de snorkel (+5€), Cámara acuática GoPro (+30€) y Patrón profesional (+100€).",
+          "Extras disponibles: Paddle Surf (+30€), Gafas de snorkel (+5€), Cámara acuática GoPro (+30€) y Patrón profesional (+100€).",
       },
       queLlevar: {
         question: "¿Qué debo llevar yo?",

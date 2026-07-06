@@ -101,7 +101,7 @@ A 60 km de Blanes (45 min en coche), Girona es una joya. Las casas de colores so
 
 ### 10. Deportes Acuaticos
 
-Ademas del barco, la Costa Brava ofrece paddle surf, kayak, snorkel y buceo. Desde nuestros barcos puedes anadir [paddle surf (25EUR)](/barcos) o [snorkel (7,50EUR)](/barcos) como extras. Para buceo, hay centros de submarinismo en Blanes y Lloret que organizan inmersiones guiadas.
+Ademas del barco, la Costa Brava ofrece paddle surf, kayak, snorkel y buceo. Desde nuestros barcos puedes anadir [paddle surf (30EUR)](/barcos) o [snorkel (7,50EUR)](/barcos) como extras. Para buceo, hay centros de submarinismo en Blanes y Lloret que organizan inmersiones guiadas.
 
 ### 11. Concurso Internacional de Fuegos Artificiales
 
@@ -223,7 +223,7 @@ The Camino de Ronda (GR-92) connects towns and coves along the entire Costa Brav
 
 ### 10. Water Sports
 
-Besides boating, the Costa Brava offers paddle surf, kayaking, snorkelling and diving. From our boats you can add [paddle surf (25EUR)](/boats) or [snorkel gear (7.50EUR)](/boats) as extras. For diving, there are dive centres in Blanes and Lloret that organise guided dives.
+Besides boating, the Costa Brava offers paddle surf, kayaking, snorkelling and diving. From our boats you can add [paddle surf (30EUR)](/boats) or [snorkel gear (7.50EUR)](/boats) as extras. For diving, there are dive centres in Blanes and Lloret that organise guided dives.
 
 ### 11. International Fireworks Competition
 
@@ -346,7 +346,7 @@ A 60 km de Blanes (45 min en coche), Girona es una joya. Las casas de colores so
 
 ### 10. Deportes Acuaticos
 
-Ademas del barco, la Costa Brava ofrece paddle surf, kayak, snorkel y buceo. Desde nuestros barcos puedes anadir [paddle surf (25EUR)](/barcos) o [snorkel (7,50EUR)](/barcos) como extras. Para buceo, hay centros de submarinismo en Blanes y Lloret que organizan inmersiones guiadas.
+Ademas del barco, la Costa Brava ofrece paddle surf, kayak, snorkel y buceo. Desde nuestros barcos puedes anadir [paddle surf (30EUR)](/barcos) o [snorkel (7,50EUR)](/barcos) como extras. Para buceo, hay centros de submarinismo en Blanes y Lloret que organizan inmersiones guiadas.
 
 ### 11. Concurso Internacional de Fuegos Artificiales
 

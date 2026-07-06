@@ -124,7 +124,7 @@ export function useBookingFlowState(props: BookingFlowProps) {
     {
       id: "paddle",
       name: t.booking?.extrasDetails?.paddle?.name || "Tabla de paddlesurf",
-      price: 25,
+      price: 30,
       description: t.booking?.extrasDetails?.paddle?.description || "Tabla de paddle surf",
     },
   ];

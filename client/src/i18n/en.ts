@@ -2677,7 +2677,7 @@ export const en: Translations = {
       extras: {
         question: "What extras can I add?",
         answer:
-          "Available extras: Paddle Board (+25€), Snorkel mask (+5€), GoPro waterproof camera (+30€) and Professional captain (+100€).",
+          "Available extras: Paddle Board (+30€), Snorkel mask (+5€), GoPro waterproof camera (+30€) and Professional captain (+100€).",
       },
       queLlevar: {
         question: "What should I bring?",

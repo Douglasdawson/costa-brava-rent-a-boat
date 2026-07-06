@@ -35,7 +35,7 @@ export default function FeaturesSection() {
 
   const extras = [
     { icon: SnorkelIcon, name: t.features.extras.snorkel.name, price: "7,50\u20AC" },
-    { icon: PaddleSurfIcon, name: t.features.extras.paddle.name, price: "25\u20AC" },
+    { icon: PaddleSurfIcon, name: t.features.extras.paddle.name, price: "30\u20AC" },
     { icon: NeveraIcon, name: t.features.extras.cooler.name, price: "10\u20AC" },
     { icon: Compass, name: t.features.extras.privateTour.name, price: privateTourPrice },
     { icon: ParkingIcon, name: t.features.extras.parking.name, price: t.features.extras.parking.price || "10\u20AC/d\u00EDa" },

@@ -2639,7 +2639,7 @@ export const fr: Translations = {
       extras: {
         question: "Quels extras puis-je ajouter ?",
         answer:
-          "Extras disponibles : Paddle Surf (+25€), Masque de snorkeling (+5€), Caméra aquatique GoPro (+30€) et Skipper professionnel (+100€).",
+          "Extras disponibles : Paddle Surf (+30€), Masque de snorkeling (+5€), Caméra aquatique GoPro (+30€) et Skipper professionnel (+100€).",
       },
       queLlevar: {
         question: "Que dois-je apporter ?",

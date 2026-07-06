@@ -23,14 +23,6 @@ const EXTRA_NAME_TRANSLATIONS: Record<string, Partial<Record<LangCode, string>>>
     en: "Cooler", fr: "Glacière", de: "Kühlbox", nl: "Koelbox",
     it: "Frigo portatile", ru: "Холодильник", ca: "Nevera",
   },
-  "Bebidas": {
-    en: "Drinks", fr: "Boissons", de: "Getränke", nl: "Drankjes",
-    it: "Bevande", ru: "Напитки", ca: "Begudes",
-  },
-  "Agua y refrescos": {
-    en: "Water & soft drinks", fr: "Eau et rafraîchissements", de: "Wasser & Erfrischungen",
-    nl: "Water & frisdrank", it: "Acqua e bibite", ru: "Вода и напитки", ca: "Aigua i refrescs",
-  },
   "Pack Basic": {
     en: "Basic Pack", fr: "Pack Basic", de: "Basic-Paket", nl: "Basic-pakket",
     it: "Pacchetto Basic", ru: "Пакет Basic", ca: "Pack Basic",

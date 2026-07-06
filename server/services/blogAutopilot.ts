@@ -230,7 +230,7 @@ INFORMACION DEL NEGOCIO (DATOS REALES - usar siempre estos datos, no inventar):
 - Barcos CON licencia incluyen: IVA, amarre, limpieza, seguro (gasolina NO incluida)
 - Deposito: entre 200 y 500 EUR segun barco (se devuelve integro)
 - Temporada: abril a octubre
-- Extras: snorkel (7,50EUR), paddle surf (30EUR), nevera (5EUR), bebidas (2,50EUR/ud), parking (10EUR)
+- Extras: snorkel (7,50EUR), paddle surf (30EUR), nevera (5EUR), parking (10EUR)
 - Packs: Basic (nevera+snorkel 10EUR), Premium (+paddle 30EUR)
 
 REGLA CRITICA: Usa SOLO los barcos listados abajo. NO inventes nombres de barcos. Las URLs de barcos son /barco/{id} (ej: /barco/solar-450).

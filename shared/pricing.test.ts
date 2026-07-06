@@ -329,9 +329,9 @@ describe("calculateExtrasPrice", () => {
     expect(price).toBe(17.5); // 10 + 7.5
   });
 
-  it("parses float prices correctly (e.g., Bebidas 2,5€/ud)", () => {
-    const price = calculateExtrasPrice("solar-450", ["Bebidas"]);
-    expect(price).toBe(2.5);
+  it("parses float prices with comma decimals correctly (e.g., Snorkel 7,5€)", () => {
+    const price = calculateExtrasPrice("solar-450", ["Snorkel"]);
+    expect(price).toBe(7.5);
   });
 
   it("throws for unknown boat", () => {

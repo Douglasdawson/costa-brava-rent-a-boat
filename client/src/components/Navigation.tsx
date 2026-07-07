@@ -216,7 +216,11 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
         Saltar al contenido
       </a>
       <div className="px-4 lg:px-6">
-        <div className="relative flex items-center justify-between h-12 lg:h-16">
+        {/* lg+: 1fr/auto/1fr grid so the nav links center on the BAR, not on
+            the leftover space between the (narrower) logo and the (wider)
+            right-side buttons. Tracks can't overlap, so the old flex safety
+            against collisions is preserved. */}
+        <div className="relative flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] h-12 lg:h-16">
           {/* Logo - Left */}
           <a
             href={localizedPath("home")}
@@ -224,18 +228,17 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
               e.preventDefault();
               handleLogoClick();
             }}
-            className="flex flex-shrink-0 items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 z-10"
+            className="flex flex-shrink-0 items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 z-10 lg:justify-self-start"
             data-testid="brand-logo"
             aria-label={t.a11y.goToHomePage}
           >
             <LogoCostaBravaSVG className="h-8 lg:h-10" />
           </a>
 
-          {/* Desktop Navigation - Centered in the free space (flex, so it can
-              never overlap the logo or the right-side buttons) */}
+          {/* Desktop Navigation - center track of the grid (true bar center) */}
           <nav
             aria-label="Primary"
-            className="hidden lg:flex flex-1 min-w-0 items-center justify-center gap-x-3 xl:gap-x-6 px-4"
+            className="hidden lg:flex min-w-0 items-center justify-center gap-x-3 xl:gap-x-6 px-4"
           >
             {navigationItems.map(item => {
               const activeClass = isNavItemActive(item.href)
@@ -275,7 +278,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
           </nav>
 
           {/* Right side buttons */}
-          <div className="hidden lg:flex flex-shrink-0 items-center space-x-1.5 xl:space-x-3 z-10">
+          <div className="hidden lg:flex flex-shrink-0 items-center space-x-1.5 xl:space-x-3 z-10 lg:justify-self-end">
             <Button
               variant="ghost"
               size="icon"

@@ -39,6 +39,12 @@ const slideVariants = {
   exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
 };
 
+// Pack savings label: whole euros as-is, fractions with one comma decimal
+// ("2,5"). Mirrors the identical helper in BookingWizardMobile.tsx.
+function formatPackSavingsAmount(amount: number): string {
+  return Number.isInteger(amount) ? String(amount) : amount.toFixed(1).replace(".", ",");
+}
+
 export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const {
     currentStep,
@@ -811,7 +817,7 @@ function Step2Details({
             {t.wizard.duration}
           </label>
         </div>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 gap-2">
           {(() => {
             const enabledWithPrice = durationOptions.filter(o => !o.disabled && o.price);
             // Best-value badge gated to true low season (Apr, May, Jun 1-15,
@@ -855,11 +861,11 @@ function Step2Details({
                   disabled={isDisabled}
                   onClick={() => !isDisabled && onDurationSelectFromUser(opt.value)}
                   title={isSeasonRestricted ? opt.disabledReason : undefined}
-                  className={`py-3 px-2 rounded-lg border-2 text-center transition-all ${
+                  className={`flex flex-col items-center justify-center py-3 px-2 rounded-xl border-2 text-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 ${
                     isDisabled
                       ? "border-border bg-muted opacity-50 cursor-not-allowed"
                       : selectedDuration === opt.value
-                        ? "border-foreground bg-foreground/5"
+                        ? "border-cta bg-cta/5"
                         : "border-cta/40 bg-background hover:border-cta"
                   }`}
                 >
@@ -1150,14 +1156,14 @@ function Step4ExtrasDesktop({
         )}
       </div>
 
-      {/* Packs — grid 3 columns */}
-      <div className="grid grid-cols-3 gap-2">
+      {/* Packs — grid 2 columns */}
+      <div className="grid grid-cols-2 gap-2">
         {availablePacks.map(pack => (
           <button
             key={pack.id}
             type="button"
             onClick={() => handlePackSelect(pack.id)}
-            className={`flex flex-col items-center gap-2 p-5 rounded-lg border-2 text-center transition-colors ${
+            className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 ${
               selectedPack === pack.id
                 ? "border-cta bg-cta/5"
                 : "border-cta/30 bg-card hover:border-cta hover:bg-cta/5"
@@ -1173,15 +1179,15 @@ function Step4ExtrasDesktop({
             </div>
             <p className="text-base font-bold text-foreground">{pack.price}€</p>
             <span className="inline-block px-2.5 py-0.5 rounded-full bg-popular text-popular-foreground text-xs font-semibold animate-savings-pulse">
-              -{calculatePackSavings(pack.id).toFixed(2)}€{" "}
+              -{formatPackSavingsAmount(calculatePackSavings(pack.id))}€{" "}
               {t.booking.extrasSection.savings.toLowerCase()}
             </span>
           </button>
         ))}
       </div>
 
-      {/* Individual extras — grid 3 columns */}
-      <div className="grid grid-cols-3 gap-2">
+      {/* Individual extras — grid 2 columns */}
+      <div className="grid grid-cols-2 gap-2">
         {boatExtras.map(extra => {
           const Icon = iconMap[extra.icon] || iconMap["Package"];
           const inPack = extrasInPack.has(extra.name);
@@ -1192,11 +1198,11 @@ function Step4ExtrasDesktop({
               type="button"
               onClick={() => handleExtraToggle(extra.name)}
               disabled={inPack}
-              className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border-2 text-center transition-all ${
+              className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border-2 text-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 ${
                 inPack
                   ? "border-foreground/20 bg-foreground/5 opacity-70 cursor-default"
                   : isSelected
-                    ? "border-foreground bg-foreground/5"
+                    ? "border-cta bg-cta/5"
                     : "border-cta/40 bg-background hover:border-cta"
               }`}
             >

@@ -816,7 +816,7 @@ function Step3Departure({
                   disabled={isDisabled}
                   onClick={() => !isDisabled && onDurationSelectFromUser(opt.value)}
                   title={isSeasonRestricted ? opt.disabledReason : undefined}
-                  className={`relative flex flex-col items-center justify-center p-3 rounded-xl border-2 text-center transition-all min-h-[88px] ${
+                  className={`relative flex flex-col items-center justify-center p-3 rounded-xl border-2 text-center transition-all min-h-[88px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 ${
                     isDisabled
                       ? "border-border bg-muted opacity-50 cursor-not-allowed"
                       : selectedDuration === opt.value
@@ -1035,6 +1035,13 @@ function PersonalDataSection({
 // reading naturally.
 const formatBookingDate = formatLocalisedDate;
 
+// Pack savings label: whole euros as-is, fractions with one comma decimal
+// ("2,5"). Mirrors the identical helper in BookingFormDesktop.tsx. Replaces
+// the old toFixed(0) which rounded 2.5 up to 3 and overstated the saving.
+function formatPackSavingsAmount(amount: number): string {
+  return Number.isInteger(amount) ? String(amount) : amount.toFixed(1).replace(".", ",");
+}
+
 /**
  * Step 4 of 5 — Extras & Packs ("Mejora tu día"). Always-expanded panel
  * with the same packs + individual extras grids that used to live inside
@@ -1079,7 +1086,7 @@ function Step4Extras(props: BookingWizardMobileProps) {
                   type="button"
                   onClick={() => handlePackSelect(pack.id)}
                   aria-pressed={isSelected}
-                  className={`relative flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 text-center transition-all min-h-[120px] ${isSelected ? 'border-primary bg-primary/5' : 'border-border bg-background'}`}
+                  className={`relative flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 text-center transition-all min-h-[120px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 ${isSelected ? 'border-primary bg-primary/5' : 'border-border bg-background'}`}
                 >
                   <IconComp className="w-5 h-5 text-primary" />
                   <span className="text-sm font-semibold leading-tight">{isSpanishLang ? pack.name : pack.nameEN}</span>
@@ -1089,7 +1096,7 @@ function Step4Extras(props: BookingWizardMobileProps) {
                   <span className="text-sm font-bold text-primary mt-0.5">{pack.price}€</span>
                   {savings > 0 && (
                     <span className="text-[11px] font-semibold text-success">
-                      −{savings.toFixed(0)}€ {t.booking.extrasSection.savings.toLowerCase()}
+                      −{formatPackSavingsAmount(savings)}€ {t.booking.extrasSection.savings.toLowerCase()}
                     </span>
                   )}
                 </button>
@@ -1101,7 +1108,7 @@ function Step4Extras(props: BookingWizardMobileProps) {
               type="button"
               onClick={() => handlePackSelect("")}
               aria-pressed={!selectedPack}
-              className={`flex items-center justify-center p-3 rounded-xl border-2 text-center text-sm transition-all min-h-[120px] ${!selectedPack ? 'border-primary bg-primary/5 text-foreground font-medium' : 'border-border text-muted-foreground'}`}
+              className={`flex items-center justify-center p-3 rounded-xl border-2 text-center text-sm transition-all min-h-[120px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 ${!selectedPack ? 'border-primary bg-primary/5 text-foreground font-medium' : 'border-border text-muted-foreground'}`}
             >
               {t.booking.extrasSection.noPack}
             </button>
@@ -1124,7 +1131,7 @@ function Step4Extras(props: BookingWizardMobileProps) {
                   onClick={() => handleExtraToggle(extra.name)}
                   disabled={isInPack}
                   aria-pressed={isChecked || isInPack}
-                  className={`relative flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 text-center transition-all min-h-[80px] ${
+                  className={`relative flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 text-center transition-all min-h-[80px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 ${
                     isInPack ? 'border-primary/40 bg-primary/10 opacity-75 cursor-not-allowed'
                     : isChecked ? 'border-primary bg-primary/5'
                     : 'border-border bg-background'

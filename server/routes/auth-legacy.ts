@@ -204,10 +204,13 @@ export function registerLegacyAuthRoutes(app: Express) {
         return res.status(503).json({ message: "Admin access not configured" });
       }
 
-      // 1. Check owner PIN (ADMIN_PIN env var) — timing-safe comparison
-      const pinBuffer = Buffer.from(String(pin || '').padEnd(64, '\0'));
-      const adminPinBuffer = Buffer.from(String(adminPin).padEnd(64, '\0'));
-      if (crypto.timingSafeEqual(pinBuffer, adminPinBuffer)) {
+      // 1. Check owner PIN (ADMIN_PIN env var) — timing-safe comparison.
+      // Hash both to a fixed 32 bytes first: padEnd(64) counts CHARACTERS, so a multibyte
+      // or >64-char PIN produced buffers of different BYTE length and timingSafeEqual threw
+      // (500 instead of 401). SHA-256 digests are always 32 bytes.
+      const pinHash = crypto.createHash("sha256").update(String(pin || ""), "utf8").digest();
+      const adminPinHash = crypto.createHash("sha256").update(String(adminPin), "utf8").digest();
+      if (crypto.timingSafeEqual(pinHash, adminPinHash)) {
         loginAttempts.delete(clientIp);
         const token = generateAdminToken("owner", "ivan", "owner");
         setAdminCookie(res, token);
@@ -288,7 +291,10 @@ export function registerLegacyAuthRoutes(app: Express) {
       await storage.updateAdminUser(user.id, { lastLoginAt: new Date() });
 
       loginAttempts.delete(clientIp);
-      const token = generateAdminToken(user.role, user.username, user.id);
+      // Pass allowedTabs into the token so requireTabAccess enforces the restriction.
+      // Omitting it made requireTabAccess fall through to next() and granted full CRM
+      // access to restricted employees who logged in with username+password.
+      const token = generateAdminToken(user.role, user.username, user.id, (user.allowedTabs as string[]) || []);
       setAdminCookie(res, token);
 
       res.json({

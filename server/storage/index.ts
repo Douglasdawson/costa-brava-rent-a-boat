@@ -100,6 +100,7 @@ export const storage = {
   getBookingsByBoatAndDateRange: bookingRepo.getBookingsByBoatAndDateRange,
   getOverlappingBookingsWithBuffer: bookingRepo.getOverlappingBookingsWithBuffer,
   updateBooking: bookingRepo.updateBooking,
+  promoteHoldToRequested: bookingRepo.promoteHoldToRequested,
   updateBookingPaymentStatus: bookingRepo.updateBookingPaymentStatus,
   updateBookingWhatsAppStatus: bookingRepo.updateBookingWhatsAppStatus,
   getAllBookings: bookingRepo.getAllBookings,

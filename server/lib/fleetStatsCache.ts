@@ -27,7 +27,20 @@ const FALLBACK: FleetStats = catalogFleetStats();
 
 let cached: FleetStats = FALLBACK;
 let lastLoadedAt = 0;
+let lastAttemptAt = 0;
+let loadingPromise: Promise<void> | null = null;
 const REFRESH_INTERVAL_MS = 60 * 60 * 1000; // 1 hour
+const RETRY_BACKOFF_MS = 30 * 1000;
+
+// At most one in-flight refresh, with a backoff after each attempt, so a failing DB
+// isn't hammered by every SSR render (see businessStatsCache for the same pattern).
+function triggerRefresh(): void {
+  if (loadingPromise) return;
+  lastAttemptAt = Date.now();
+  loadingPromise = loadFromDb().finally(() => {
+    loadingPromise = null;
+  });
+}
 
 async function loadFromDb(): Promise<void> {
   try {
@@ -67,9 +80,9 @@ async function loadFromDb(): Promise<void> {
  */
 export function getFleetStats(): FleetStats {
   const now = Date.now();
-  if (now - lastLoadedAt > REFRESH_INTERVAL_MS) {
+  if (now - lastLoadedAt > REFRESH_INTERVAL_MS && now - lastAttemptAt > RETRY_BACKOFF_MS) {
     // Fire and forget — current call returns stale value, next call gets fresh.
-    void loadFromDb();
+    triggerRefresh();
   }
   return cached;
 }

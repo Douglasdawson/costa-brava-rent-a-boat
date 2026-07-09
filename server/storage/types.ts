@@ -94,6 +94,7 @@ export interface IStorage {
   getBookingsByDate(date: Date): Promise<Booking[]>;
   getBookingsByBoatAndDateRange(boatId: string, startDate: Date, endDate: Date): Promise<Booking[]>;
   updateBooking(id: string, updates: Partial<InsertBooking>): Promise<Booking | undefined>;
+  promoteHoldToRequested(id: string, updates: Partial<InsertBooking>): Promise<Booking | undefined>;
   updateBookingPaymentStatus(id: string, status: string, stripePaymentIntentId?: string): Promise<Booking | undefined>;
   updateBookingWhatsAppStatus(id: string, confirmationSent?: boolean, reminderSent?: boolean): Promise<Booking | undefined>;
   getAllBookings(): Promise<Booking[]>;

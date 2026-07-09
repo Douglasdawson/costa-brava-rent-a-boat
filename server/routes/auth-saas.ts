@@ -320,8 +320,14 @@ export function registerSaasAuthRoutes(app: Express) {
         return res.status(401).json({ message: "Usuario no encontrado o inactivo" });
       }
 
-      // Delete old refresh token and create new one (token rotation)
-      await storage.deleteRefreshToken(refreshToken);
+      // Atomically consume the old token: the DELETE (which returns rowCount>0) is the
+      // single-winner gate. Two concurrent requests with the same token both pass the
+      // checks above, but only one DELETE affects a row; the loser gets 401 instead of a
+      // second valid 30-day token — preserving the single-use rotation invariant.
+      const consumed = await storage.deleteRefreshToken(refreshToken);
+      if (!consumed) {
+        return res.status(401).json({ message: "Refresh token invalido" });
+      }
       const newRefreshTokenStr = generateRefreshTokenString();
       const refreshExpiresAt = new Date();
       refreshExpiresAt.setDate(refreshExpiresAt.getDate() + 30);

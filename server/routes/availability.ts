@@ -18,6 +18,23 @@ function getMadridTime(date: Date): { hours: number; minutes: number } {
   return { hours, minutes };
 }
 
+/** Madrid-local calendar date (YYYY-MM-DD) + wall-clock hours/minutes for an instant. */
+function getMadridDateTime(date: Date): { dateStr: string; hours: number; minutes: number } {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Madrid",
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hour12: false,
+  }).formatToParts(date);
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "00";
+  const hourRaw = get("hour");
+  const hours = parseInt(hourRaw === "24" ? "00" : hourRaw, 10);
+  return {
+    dateStr: `${get("year")}-${get("month")}-${get("day")}`,
+    hours,
+    minutes: parseInt(get("minute"), 10),
+  };
+}
+
 // All possible half-hour start slots (matching the frontend TIME_SLOTS)
 // Last departure slot is 1 hour before closing (minimum rental = 1h)
 const ALL_START_SLOTS: string[] = [];
@@ -144,6 +161,23 @@ export function registerAvailabilityRoutes(app: Express) {
 
       const bookings = await storage.getMonthlyBookings(id, year, monthNum);
 
+      // Group booked intervals by their Madrid calendar date and express them as
+      // fractional Madrid hours [start, end). Comparing raw instants against slots built
+      // with new Date(y,m,d,hour) used the SERVER timezone (UTC on Replit), shifting the
+      // whole grid by the Madrid offset and mislabelling booked/free slots. This mirrors
+      // the daily endpoint's Madrid-wall-clock logic.
+      const bookedByDate = new Map<string, { start: number; end: number }[]>();
+      for (const b of bookings) {
+        const s = getMadridDateTime(new Date(b.startTime));
+        const e = getMadridDateTime(new Date(b.endTime));
+        // If the booking ends on a later Madrid day (crosses midnight, unusual for 09-20h),
+        // clamp the end to the close of the start day so it still blocks that day's slots.
+        const endHour = e.dateStr === s.dateStr ? e.hours + e.minutes / 60 : OPERATING_END_HOUR;
+        const arr = bookedByDate.get(s.dateStr) ?? [];
+        arr.push({ start: s.hours + s.minutes / 60, end: endHour });
+        bookedByDate.set(s.dateStr, arr);
+      }
+
       // Build day-by-day availability
       const daysInMonth = new Date(year, monthNum, 0).getDate();
       const days: Record<string, { status: string; slots: { time: string; available: boolean }[] }> = {};
@@ -169,16 +203,11 @@ export function registerAvailabilityRoutes(app: Express) {
         const slots: { time: string; available: boolean }[] = [];
         let bookedSlots = 0;
         const totalSlots = OPERATING_END_HOUR - OPERATING_START_HOUR; // one slot per hour
+        const dayIntervals = bookedByDate.get(dateStr) ?? [];
 
         for (let hour = OPERATING_START_HOUR; hour <= OPERATING_END_HOUR - 1; hour++) {
-          const slotStart = new Date(year, monthNum - 1, day, hour, 0, 0);
-          const slotEnd = new Date(year, monthNum - 1, day, hour + 1, 0, 0);
-
-          const isBooked = bookings.some((booking) => {
-            const bStart = new Date(booking.startTime);
-            const bEnd = new Date(booking.endTime);
-            return bStart < slotEnd && bEnd > slotStart;
-          });
+          // A slot [hour, hour+1) is booked if it overlaps any Madrid interval on this day.
+          const isBooked = dayIntervals.some((iv) => hour < iv.end && hour + 1 > iv.start);
 
           slots.push({
             time: `${String(hour).padStart(2, "0")}:00`,
@@ -378,7 +407,11 @@ export function registerAvailabilityRoutes(app: Express) {
       let ical = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Costa Brava Rent a Boat//Bookings//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\nX-WR-CALNAME:Costa Brava Rent a Boat - Reservas\r\nX-WR-TIMEZONE:Europe/Madrid\r\n`;
 
       for (const booking of confirmedBookings) {
-        const boatName = boatMap.get(booking.boatId) || booking.boatId;
+        // Escape all free-text (RFC 5545) so a name containing CRLF or ; , \ cannot
+        // inject extra iCal properties/VEVENTs into the owner's calendar.
+        const boatName = escapeICalText(boatMap.get(booking.boatId) || booking.boatId);
+        const customerName = escapeICalText(booking.customerName ?? "");
+        const customerSurname = escapeICalText(booking.customerSurname ?? "");
         const start = formatICalDate(new Date(booking.startTime));
         const end = formatICalDate(new Date(booking.endTime));
         const created = formatICalDate(new Date(booking.createdAt));
@@ -389,8 +422,8 @@ export function registerAvailabilityRoutes(app: Express) {
         ical += `DTSTART:${start}\r\n`;
         ical += `DTEND:${end}\r\n`;
         ical += `DTSTAMP:${created}\r\n`;
-        ical += `SUMMARY:${boatName} - ${booking.customerName} ${booking.customerSurname}\r\n`;
-        ical += `DESCRIPTION:Cliente: ${booking.customerName} ${booking.customerSurname}\\nPersonas: ${booking.numberOfPeople}\\nTotal: ${booking.totalAmount}€\r\n`;
+        ical += `SUMMARY:${boatName} - ${customerName} ${customerSurname}\r\n`;
+        ical += `DESCRIPTION:Cliente: ${customerName} ${customerSurname}\\nPersonas: ${booking.numberOfPeople}\\nTotal: ${booking.totalAmount}€\r\n`;
         ical += `LOCATION:Puerto de Blanes\\, Girona\\, Spain\r\n`;
         ical += `STATUS:CONFIRMED\r\n`;
         ical += `END:VEVENT\r\n`;
@@ -407,6 +440,15 @@ export function registerAvailabilityRoutes(app: Express) {
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
+}
+
+// RFC 5545 text escaping: backslash, semicolon, comma, and newlines.
+function escapeICalText(value: string): string {
+  return String(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/;/g, "\\;")
+    .replace(/,/g, "\\,")
+    .replace(/\r\n|\r|\n/g, "\\n");
 }
 
 function formatICalDate(date: Date): string {

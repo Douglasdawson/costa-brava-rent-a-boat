@@ -387,6 +387,41 @@ describe("Payment Routes", () => {
       expect(mockStorage.updateBooking).not.toHaveBeenCalled();
     });
 
+    it("retries a failed event: not marked processed until the handler succeeds (C1)", async () => {
+      const booking = makeHold({ id: "booking-c1" });
+      _webhooksConstruct.mockReturnValue({
+        id: "evt_c1_retry",
+        type: "payment_intent.succeeded",
+        data: { object: { id: "pi_c1", metadata: {} } },
+      });
+      _dbSelectLimit.mockResolvedValue([booking]);
+      mockStorage.getBoat.mockResolvedValue({ id: "solar-450", name: "Solar 450" } as never);
+      mockStorage.getBookingExtras.mockResolvedValue([] as never);
+
+      // First delivery: handler throws (e.g. Neon timeout) → 500, Stripe will retry.
+      mockStorage.updateBooking.mockRejectedValueOnce(new Error("db timeout") as never);
+      const res1 = await request(app)
+        .post("/api/stripe-webhook")
+        .set("stripe-signature", "sig")
+        .set("content-type", "application/json")
+        .send(JSON.stringify({}));
+      expect(res1.status).toBe(500);
+
+      // Retry of the SAME event id must re-run the handler (not be swallowed as
+      // already-processed) and now succeed.
+      mockStorage.updateBooking.mockResolvedValue(booking as never);
+      const res2 = await request(app)
+        .post("/api/stripe-webhook")
+        .set("stripe-signature", "sig")
+        .set("content-type", "application/json")
+        .send(JSON.stringify({}));
+      expect(res2.status).toBe(200);
+      expect(mockStorage.updateBooking).toHaveBeenCalledWith(
+        "booking-c1",
+        expect.objectContaining({ bookingStatus: "confirmed" }),
+      );
+    });
+
     it("handles unhandled event types gracefully", async () => {
       _webhooksConstruct.mockReturnValue({
         id: "evt_unknown_1",
@@ -429,11 +464,15 @@ describe("Payment Routes", () => {
       expect(res.body.refundId).toBe("re_123");
       expect(res.body.amount).toBe(100);
 
-      expect(_refundsCreate).toHaveBeenCalledWith({
-        payment_intent: "pi_confirmed",
-        amount: 10000,
-        reason: "requested_by_customer",
-      });
+      // Idempotency key ties the refund to the booking so retries can't double-refund.
+      expect(_refundsCreate).toHaveBeenCalledWith(
+        {
+          payment_intent: "pi_confirmed",
+          amount: 10000,
+          reason: "requested_by_customer",
+        },
+        { idempotencyKey: "refund-b-refund" },
+      );
     });
 
     it("returns 404 when booking does not exist", async () => {
@@ -468,6 +507,19 @@ describe("Payment Routes", () => {
         .send({ amount: 50 });
 
       expect(res.status).toBe(409);
+    });
+
+    it("returns 409 when a refund is already in progress (A10 double-refund guard)", async () => {
+      mockStorage.getBooking.mockResolvedValue(
+        makeHold({ stripePaymentIntentId: "pi_proc", refundStatus: "processing" }) as never,
+      );
+
+      const res = await request(app)
+        .post("/api/admin/bookings/hold-123/refund")
+        .send({ amount: 50 });
+
+      expect(res.status).toBe(409);
+      expect(_refundsCreate).not.toHaveBeenCalled();
     });
 
     it("returns 400 when refund amount exceeds max refundable", async () => {

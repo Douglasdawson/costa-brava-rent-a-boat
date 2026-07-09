@@ -319,7 +319,11 @@ async function finalizeShopOrderFromSession(
     });
   }
 
-  const orderForEmail = { ...result.order, deliveryMethod, shippingCents };
+  // result.order was read BEFORE updateShopOrderAmounts, so its totalCents is still the
+  // pre-shipping subtotal. Override both shippingCents AND totalCents so the customer
+  // email shows the real amount charged (subtotal + shipping), not the subtotal.
+  const emailTotalCents = session.amount_total ?? result.order.subtotalCents + shippingCents;
+  const orderForEmail = { ...result.order, deliveryMethod, shippingCents, totalCents: emailTotalCents };
   sendShopOrderConfirmation(orderForEmail, result.items).catch((err: unknown) =>
     logger.error("[Shop] Error sending order confirmation email", { error: err instanceof Error ? err.message : String(err) }),
   );

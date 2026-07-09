@@ -463,6 +463,9 @@ describe("SaaS Auth Routes", () => {
       mockStorage.getUserById.mockResolvedValue({
         id: "u1", tenantId: "t1", role: "owner", email: "e@e.com", isActive: true,
       } as never);
+      // deleteRefreshToken returns Promise<boolean>; a truthy result is the
+      // single-winner gate that lets rotation proceed.
+      mockStorage.deleteRefreshToken.mockResolvedValue(true as never);
 
       const res = await request(app).post("/api/auth/refresh-token").send({ refreshToken: "old-rt" });
 

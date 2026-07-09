@@ -257,6 +257,18 @@ export const requireAdminSession = async (req: Request, res: Response, next: Nex
       return next();
     }
 
+    // Legacy admin token. Revalidate against admin_users so a deactivated/deleted
+    // employee loses access immediately instead of keeping it until the 24h token
+    // expires. The owner token (userId "owner", issued from the ENV PIN) has no
+    // admin_users row and is always accepted.
+    const legacy = decoded as AdminJwtPayload;
+    if (legacy.userId && legacy.userId !== "owner") {
+      const adminUser = await storage.getAdminUser(legacy.userId);
+      if (!adminUser || adminUser.isActive === false) {
+        return res.status(401).json({ message: "Token invalido o expirado" });
+      }
+    }
+
     (req as AuthenticatedRequest).adminUser = decoded;
     return next();
   } catch (error) {
@@ -266,6 +278,27 @@ export const requireAdminSession = async (req: Request, res: Response, next: Nex
     }
     return res.status(401).json({ message: "Token invalido o expirado" });
   }
+};
+
+// Business-admin middleware for cross-customer / business-wide operations (e.g. GDPR
+// export & erasure). These endpoints query customer PII by email WITHOUT tenant
+// scoping, so they must be restricted to the real Costa Brava business admin — the
+// legacy PIN login / owner-ENV token, which carries NO tenantId. A self-registered
+// SaaS tenant "owner" (POST /api/auth/register is public) passes requireAdminSession
+// but must NOT reach these routes. requireAdminSession sets req.tenantId only for SaaS
+// tokens, so rejecting when tenantId is present closes the escalation path.
+export const requireBusinessAdmin = (req: Request, res: Response, next: NextFunction) => {
+  requireAdminSession(req, res, () => {
+    const authReq = req as AuthenticatedRequest;
+    if (authReq.tenantId) {
+      logger.warn("[Auth] SaaS tenant token blocked from business-admin route", {
+        tenantId: authReq.tenantId,
+        path: req.path,
+      });
+      return res.status(403).json({ message: "No autorizado" });
+    }
+    next();
+  });
 };
 
 // SaaS auth middleware - requires SaaS JWT with tenantId

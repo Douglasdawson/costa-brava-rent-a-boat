@@ -45,7 +45,24 @@ const FALLBACK: CachedStats = {
 
 let cached: CachedStats = FALLBACK;
 let lastLoadedAt = 0;
+let lastAttemptAt = 0;
+let loadingPromise: Promise<void> | null = null;
 const REFRESH_INTERVAL_MS = 60 * 60 * 1000; // 1 hour
+const RETRY_BACKOFF_MS = 30 * 1000; // don't re-hammer the DB after a failed load
+
+/**
+ * Trigger at most one in-flight background refresh, with a short backoff after any
+ * attempt (success or failure). Without this, a Neon cold-start error left
+ * lastLoadedAt at 0 and EVERY SSR render fired another loadFromDb() — a self-inflicted
+ * connection stampede that made the outage worse.
+ */
+function triggerRefresh(): void {
+  if (loadingPromise) return;
+  lastAttemptAt = Date.now();
+  loadingPromise = loadFromDb().finally(() => {
+    loadingPromise = null;
+  });
+}
 
 async function loadFromDb(): Promise<void> {
   try {
@@ -154,9 +171,10 @@ async function syncIfEmpty(): Promise<void> {
  */
 export function getCurrentStats(): CachedStats {
   const now = Date.now();
-  if (now - lastLoadedAt > REFRESH_INTERVAL_MS) {
-    // Fire and forget — current call returns stale value, next call gets fresh
-    void loadFromDb();
+  if (now - lastLoadedAt > REFRESH_INTERVAL_MS && now - lastAttemptAt > RETRY_BACKOFF_MS) {
+    // Fire and forget — current call returns stale value, next call gets fresh.
+    // Deduped + backed off so a failing DB is not hammered on every request.
+    triggerRefresh();
   }
   return cached;
 }

@@ -106,6 +106,25 @@ export async function updateBooking(id: string, updates: Partial<InsertBooking>)
   return updatedBooking || undefined;
 }
 
+/**
+ * Atomically promote a hold to "requested", stamping the real customer data.
+ * The conditional WHERE (only hold/pending_payment) means a concurrent admin
+ * confirmation is NOT clobbered back to "requested": if the row is no longer a
+ * hold, zero rows update and this returns undefined so the caller can re-read.
+ * Also clears expiresAt so a promoted booking is never treated as an expired quote.
+ */
+export async function promoteHoldToRequested(
+  id: string,
+  updates: Partial<InsertBooking>,
+): Promise<Booking | undefined> {
+  const [updated] = await db
+    .update(bookings)
+    .set({ ...updates, bookingStatus: "requested", paymentStatus: "pending", expiresAt: null })
+    .where(and(eq(bookings.id, id), inArray(bookings.bookingStatus, ["hold", "pending_payment"])))
+    .returning();
+  return updated || undefined;
+}
+
 export async function updateBookingPaymentStatus(id: string, status: string, stripePaymentIntentId?: string): Promise<Booking | undefined> {
   const updateData: Record<string, unknown> = { paymentStatus: status };
   if (stripePaymentIntentId) {
@@ -439,7 +458,10 @@ export async function checkAvailability(boatId: string, startTime: Date, endTime
     .from(maintenanceLogs)
     .where(
       and(
-        eq(maintenanceLogs.boatId, boatId),
+        // Check maintenance across every boat sharing the same physical hull, not just
+        // the requested boatId — otherwise the twin (e.g. excursion-privada vs
+        // pacific-craft-625) could be rented while the hull is in maintenance.
+        inArray(maintenanceLogs.boatId, boatIds),
         inArray(maintenanceLogs.status, ["scheduled", "in_progress"]),
         or(
           and(
@@ -488,7 +510,18 @@ export async function checkAvailabilityAndCreateBooking(
   const bufferEnd = new Date(endTime.getTime() + bufferMinutes * 60 * 1000);
   const boatIds = getBoatIdsToCheck(boatId);
 
-  return await db.transaction(async (tx) => {
+  // Stable key for the physical hull (all boatIds that share it), so two concurrent
+  // requests for different logical boats on the same hull serialize against each other.
+  const hullKey = [...boatIds].sort().join(",");
+
+  try {
+    return await db.transaction(async (tx) => {
+    // Serialize the whole check-then-insert per physical hull. SELECT ... FOR UPDATE
+    // cannot lock a not-yet-existing row, so under READ COMMITTED two first-inserts for
+    // the same hull could both pass the availability check; the advisory lock closes
+    // that gap (the DB EXCLUDE only compares equal boat_id, not shared hulls).
+    await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtext(${hullKey}))`);
+
     // Lock: SELECT FOR UPDATE on conflicting bookings to serialize concurrent requests
     const conflictingBookings = await tx
       .select({ id: bookings.id })
@@ -515,7 +548,9 @@ export async function checkAvailabilityAndCreateBooking(
       .from(maintenanceLogs)
       .where(
         and(
-          eq(maintenanceLogs.boatId, boatId),
+          // Same physical-hull scoping as the bookings check above (boatIds), so
+          // maintenance on one twin blocks renting the other.
+          inArray(maintenanceLogs.boatId, boatIds),
           inArray(maintenanceLogs.status, ["scheduled", "in_progress"]),
           or(
             and(
@@ -545,7 +580,17 @@ export async function checkAvailabilityAndCreateBooking(
       .returning();
 
     return { available: true as const, booking: newBooking };
-  });
+    });
+  } catch (error: unknown) {
+    // Postgres 23P01 = exclusion_violation from the no_overlapping_bookings GiST
+    // constraint (a same-boat race that slipped past the app-level check). Treat it as
+    // "not available" so the caller returns a clean 409, not a 500.
+    const code = (error as { code?: string } | null)?.code;
+    if (code === "23P01") {
+      return { available: false as const, booking: null };
+    }
+    throw error;
+  }
 }
 
 export async function cleanupExpiredHolds(): Promise<number> {

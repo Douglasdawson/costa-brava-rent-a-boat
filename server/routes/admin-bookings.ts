@@ -203,6 +203,15 @@ export function registerAdminBookingRoutes(app: Express) {
         message: "Reserva actualizada exitosamente",
       });
     } catch (error: unknown) {
+      // Map the DB constraint violations to actionable statuses instead of a blanket 500:
+      // 23P01 = the booking overlaps another (no_overlapping_bookings), 23503 = bad FK.
+      const code = (error as { code?: string } | null)?.code;
+      if (code === "23P01") {
+        return res.status(409).json({ message: "El horario seleccionado se solapa con otra reserva" });
+      }
+      if (code === "23503") {
+        return res.status(400).json({ message: "Referencia invalida (barco inexistente)" });
+      }
       logger.error("[Admin] Error updating booking", { error: error instanceof Error ? error.message : error });
       res.status(500).json({ message: "Error interno del servidor" });
     }

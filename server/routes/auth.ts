@@ -5,6 +5,7 @@ import { registerLegacyAuthRoutes } from "./auth-legacy";
 // Re-export everything consumers need from auth-middleware
 export {
   requireAdminSession,
+  requireBusinessAdmin,
   requireSaasAuth,
   requireAdminRole,
   requireOwner,

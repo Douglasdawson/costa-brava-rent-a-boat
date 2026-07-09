@@ -4,7 +4,7 @@ import { storage } from "../storage";
 import { db } from "../db";
 import { bookings } from "@shared/schema";
 import { eq, and, gte, sql, ne } from "drizzle-orm";
-import { requireAdminSession } from "./auth";
+import { requireAdminSession, requireTabAccess } from "./auth";
 import { sendCancelationEmail } from "../services";
 import { sendBookingRequestReceived, sendBookingRequestAdminNotification } from "../services/emailService";
 import { getStripe } from "./payments";
@@ -308,13 +308,24 @@ export function registerBookingRoutes(app: Express) {
         return res.status(404).json({ success: false, message: "Solicitud no encontrada" });
       }
 
-      // Allow re-submission if already requested (idempotent on client retries)
-      // but reject if already confirmed/cancelled — those are terminal states.
+      // Reject terminal states — those cannot be (re)submitted.
       if (["confirmed", "cancelled", "completed"].includes(hold.bookingStatus)) {
         return res.status(409).json({
           success: false,
           message: `La reserva ya está en estado "${hold.bookingStatus}"`,
           status: hold.bookingStatus,
+        });
+      }
+
+      // Idempotent short-circuit: a client retry of an already-promoted request must NOT
+      // re-fire GA4/emails, and must NOT hit the expiry 410 below (a promoted booking has
+      // expiresAt cleared, but guard here regardless).
+      if (hold.bookingStatus === "requested") {
+        return res.status(200).json({
+          success: true,
+          message: "Solicitud ya recibida",
+          bookingId: hold.id,
+          status: "requested",
         });
       }
 
@@ -325,11 +336,11 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      // Promote hold → requested AND persist real customer data (replacing
-      // the "Hold Temporal" placeholders that /api/quote stamped).
-      const updated = await storage.updateBooking(hold.id, {
-        bookingStatus: "requested",
-        paymentStatus: "pending",
+      // Promote hold → requested AND persist real customer data (replacing the
+      // "Hold Temporal" placeholders that /api/quote stamped). The conditional UPDATE
+      // (only from hold/pending_payment) prevents clobbering a concurrent admin
+      // confirmation and clears expiresAt.
+      const updated = await storage.promoteHoldToRequested(hold.id, {
         customerName: parsed.data.customerName,
         customerSurname: parsed.data.customerSurname,
         customerEmail: parsed.data.customerEmail,
@@ -339,7 +350,18 @@ export function registerBookingRoutes(app: Express) {
       });
 
       if (!updated) {
-        return res.status(500).json({ success: false, message: "No se pudo actualizar la reserva" });
+        // Zero rows updated: the hold changed state between our read and write (e.g. an
+        // admin confirmed it, or a concurrent submit already promoted it). Re-read and
+        // respond by the real current state instead of forcing it back to "requested".
+        const current = await storage.getBookingById(hold.id);
+        if (current && current.bookingStatus === "requested") {
+          return res.status(200).json({ success: true, message: "Solicitud ya recibida", bookingId: current.id, status: "requested" });
+        }
+        return res.status(409).json({
+          success: false,
+          message: current ? `La reserva ya está en estado "${current.bookingStatus}"` : "No se pudo actualizar la reserva",
+          status: current?.bookingStatus,
+        });
       }
 
       // Server-side GA4 conversion — fuente de verdad, independiente de cookie consent.
@@ -533,6 +555,17 @@ export function registerBookingRoutes(app: Express) {
 
       const totalHours = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60));
 
+      // The pricing matrix tops out at 8h. Without this guard a 9-11h window fell into
+      // the `else` branch below and was billed at the 8h rate while totalHours stored the
+      // real (longer) value — silent underpricing. The fleet has no >8h product, so reject.
+      if (totalHours > 8) {
+        return res.status(400).json({
+          available: false,
+          reason: "duration_exceeded",
+          message: "La duración máxima de alquiler es de 8 horas",
+        });
+      }
+
       let duration: "1h" | "2h" | "3h" | "4h" | "6h" | "8h";
       if (totalHours <= 1) duration = "1h";
       else if (totalHours <= 2) duration = "2h";
@@ -557,6 +590,15 @@ export function registerBookingRoutes(app: Express) {
       if (discountCode) {
         const promo = await validatePromoCode(discountCode);
         if (!promo.valid) {
+          // A DB failure during validation must not masquerade as "invalid code":
+          // return a retryable 503 so a valid code isn't rejected during a cold start.
+          if (promo.errorCode === "server_error") {
+            return res.status(503).json({
+              available: false,
+              reason: "discount_validation_unavailable",
+              message: promo.error || "No se pudo validar el codigo, intentalo de nuevo",
+            });
+          }
           return res.status(400).json({
             available: false,
             reason: "invalid_discount_code",
@@ -567,7 +609,9 @@ export function registerBookingRoutes(app: Express) {
         const discountAmount = calculateDiscountAmount(
           promo,
           pricingBreakdown.basePrice,
-          pricingBreakdown.total,
+          // Discountable amount = base + extras, WITHOUT the refundable deposit. Passing
+          // the full total let a gift card eat into the deposit.
+          pricingBreakdown.basePrice + pricingBreakdown.extrasPrice,
         );
 
         discountInfo = {
@@ -615,17 +659,17 @@ export function registerBookingRoutes(app: Express) {
       });
 
       if (!result.available) {
+        // Do NOT leak third-party booking ids or customer names here: the id enabled an
+        // IDOR against /api/bookings/submit-request, and the name is PII. Only expose the
+        // busy time ranges (using the shared-hull scope) so the UI can say "not available".
         const conflictingBookings = await storage.getOverlappingBookingsWithBuffer(boatId, start, end);
         return res.status(409).json({
           message: "El barco no está disponible en el horario seleccionado",
           available: false,
           reason: "booking_conflict",
           conflictingBookings: conflictingBookings.map(booking => ({
-            id: booking.id,
             startTime: booking.startTime,
             endTime: booking.endTime,
-            status: booking.bookingStatus,
-            customerName: `${booking.customerName} ${booking.customerSurname ? booking.customerSurname.charAt(0) : ""}.`,
           })),
         });
       }
@@ -687,7 +731,7 @@ export function registerBookingRoutes(app: Express) {
   });
 
   // Update booking payment status (admin only)
-  app.post("/api/bookings/:id/payment-status", requireAdminSession, async (req, res) => {
+  app.post("/api/bookings/:id/payment-status", requireAdminSession, requireTabAccess("bookings"), async (req, res) => {
     try {
       const parsed = paymentStatusSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -717,7 +761,7 @@ export function registerBookingRoutes(app: Express) {
   });
 
   // Update WhatsApp status (admin only)
-  app.post("/api/bookings/:id/whatsapp-status", requireAdminSession, async (req, res) => {
+  app.post("/api/bookings/:id/whatsapp-status", requireAdminSession, requireTabAccess("bookings"), async (req, res) => {
     try {
       const parsed = whatsappStatusSchema.safeParse(req.body);
       if (!parsed.success) {

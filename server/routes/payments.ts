@@ -524,12 +524,11 @@ export function registerPaymentRoutes(app: Express) {
       return res.status(400).json({ error: "Invalid webhook signature" });
     }
 
-    // Idempotency: skip already-processed events
+    // Idempotency: skip already-processed events. The event is only marked as
+    // processed AFTER the handler completes successfully (see below), so a handler
+    // that throws returns 500 and Stripe safely retries the same event.id.
     if (processedEvents.has(event.id)) {
       return res.json({ received: true });
-    }
-    if (processedEvents.size < 10000) {
-      processedEvents.set(event.id, Date.now());
     }
 
     try {
@@ -675,6 +674,12 @@ export function registerPaymentRoutes(app: Express) {
           logger.debug("Unhandled webhook event type", { eventType: event.type });
       }
 
+      // Only now, after the handler succeeded, mark the event as processed so a
+      // failed handler (500) is retried by Stripe instead of being swallowed.
+      if (processedEvents.size < 10000) {
+        processedEvents.set(event.id, Date.now());
+      }
+
       res.json({ received: true });
     } catch (error: unknown) {
       logger.error("Error processing webhook", { error: error instanceof Error ? error.message : String(error) });
@@ -713,7 +718,8 @@ export function registerPaymentRoutes(app: Express) {
       if (!booking.stripePaymentIntentId) {
         return res.status(400).json({ message: "Esta reserva no tiene pago Stripe asociado" });
       }
-      if (booking.refundStatus === "completed") {
+      // Guard against double refunds: reject if a refund is already completed or in flight.
+      if (booking.refundStatus === "completed" || booking.refundStatus === "processing") {
         return res.status(409).json({ message: "Esta reserva ya ha sido reembolsada" });
       }
 
@@ -727,11 +733,17 @@ export function registerPaymentRoutes(app: Express) {
 
       await db.update(bookings).set({ refundStatus: "processing" }).where(eq(bookings.id, booking.id));
 
-      const refund = await stripeInstance.refunds.create({
-        payment_intent: booking.stripePaymentIntentId,
-        amount: Math.round(amount * 100),
-        reason: reason || "requested_by_customer",
-      });
+      // Idempotency key ties the Stripe refund to this booking: even if the call is
+      // retried (network blip, redeploy, admin double-click), Stripe returns the same
+      // refund instead of creating a second one.
+      const refund = await stripeInstance.refunds.create(
+        {
+          payment_intent: booking.stripePaymentIntentId,
+          amount: Math.round(amount * 100),
+          reason: reason || "requested_by_customer",
+        },
+        { idempotencyKey: `refund-${booking.id}` }
+      );
 
       await db.update(bookings).set({
         refundStatus: "completed",
@@ -748,7 +760,13 @@ export function registerPaymentRoutes(app: Express) {
         bookingId: booking.id,
       });
     } catch (error: unknown) {
-      await db.update(bookings).set({ refundStatus: "requested" }).where(eq(bookings.id, req.params.id)).catch(() => {});
+      // Leave the booking in "processing" (not back to "requested"): if the Stripe
+      // refund already succeeded but the DB write failed, the guard above now blocks
+      // any retry, and the idempotencyKey prevents a second real refund either way.
+      await db.update(bookings)
+        .set({ refundStatus: "processing" })
+        .where(eq(bookings.id, req.params.id))
+        .catch(() => {});
       logger.error("[Payments] Refund error", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }

@@ -12,7 +12,8 @@ export type PromoValidationErrorCode =
   | "expired"           // existed but past its expiresAt
   | "consumed"          // existed but already redeemed (used / maxUses reached)
   | "cancelled"         // gift card explicitly cancelled
-  | "inactive";         // discount inactive / gift card payment not completed
+  | "inactive"          // discount inactive / gift card payment not completed
+  | "server_error";     // DB/infra error — the code may well be valid; retry
 
 /**
  * Result of validating a promo code (discount code or gift card).
@@ -36,7 +37,8 @@ export interface PromoValidationResult {
  * Calculates the discount amount in EUR for a validated promo code.
  *
  * - Discount codes: percentage applied to the base price (subtotal without extras).
- * - Gift cards: deducted from the full total (base + extras), capped at remaining balance.
+ * - Gift cards: deducted from base + extras (NOT the refundable deposit), capped at
+ *   remaining balance. Callers must pass `basePrice + extrasPrice` as the third arg.
  */
 export function calculateDiscountAmount(
   promo: PromoValidationResult,
@@ -70,6 +72,10 @@ export async function validatePromoCode(code: string): Promise<PromoValidationRe
     return { valid: false, errorCode: "missing", error: "Codigo requerido" };
   }
 
+  // Track infra failures so a DB error (e.g. Neon cold start) is NOT reported as
+  // "not_found" — which would reject a perfectly valid code with a 400.
+  let dbError = false;
+
   // 1. Try gift card first
   try {
     const giftCard = await storage.getGiftCardByCode(normalized);
@@ -95,6 +101,7 @@ export async function validatePromoCode(code: string): Promise<PromoValidationRe
       };
     }
   } catch (err: unknown) {
+    dbError = true;
     logger.error("[DiscountValidation] Error checking gift card", {
       code: normalized,
       error: err instanceof Error ? err.message : String(err),
@@ -127,10 +134,16 @@ export async function validatePromoCode(code: string): Promise<PromoValidationRe
       discountPercent: discountCode.discountPercent,
     };
   } catch (err: unknown) {
+    dbError = true;
     logger.error("[DiscountValidation] Error checking discount code", {
       code: normalized,
       error: err instanceof Error ? err.message : String(err),
     });
+  }
+
+  // If a lookup threw, don't claim the code is invalid — signal a retryable server error.
+  if (dbError) {
+    return { valid: false, errorCode: "server_error", error: "No se pudo validar el codigo, intentalo de nuevo" };
   }
 
   return { valid: false, errorCode: "not_found", error: "Codigo no valido" };

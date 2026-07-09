@@ -7,7 +7,7 @@ import {
   discountCodes, leadNurturingLog, testimonials, clientPhotos,
 } from "@shared/schema";
 import { eq, or, sql } from "drizzle-orm";
-import { requireAdminSession } from "./auth";
+import { requireBusinessAdmin } from "./auth";
 import { logger } from "../lib/logger";
 
 // ─── helpers ────────────────────────────────────────────────────────────────
@@ -35,7 +35,7 @@ export function registerGdprRoutes(app: Express): void {
   // ═══════════════════════════════════════════════════════════════════════════
   // GET /api/gdpr/customers/:email/export  — data portability (Art. 20 GDPR)
   // ═══════════════════════════════════════════════════════════════════════════
-  app.get("/api/gdpr/customers/:email/export", requireAdminSession, async (req, res) => {
+  app.get("/api/gdpr/customers/:email/export", requireBusinessAdmin, async (req, res) => {
     const email = decodeURIComponent(req.params.email).toLowerCase().trim();
 
     if (!email || !email.includes("@")) {
@@ -151,7 +151,7 @@ export function registerGdprRoutes(app: Express): void {
   // ═══════════════════════════════════════════════════════════════════════════
   // DELETE /api/gdpr/customers/:email  — right to erasure (Art. 17 GDPR)
   // ═══════════════════════════════════════════════════════════════════════════
-  app.delete("/api/gdpr/customers/:email", requireAdminSession, async (req, res) => {
+  app.delete("/api/gdpr/customers/:email", requireBusinessAdmin, async (req, res) => {
     const email = decodeURIComponent(req.params.email).toLowerCase().trim();
 
     if (!email || !email.includes("@")) {

@@ -48,7 +48,18 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
     return;
   }
 
-  const allowedOrigin = origin || (referer ? new URL(referer).origin : null);
+  // Parse the referer defensively: a malformed Referer must yield a 403, not a 500.
+  let allowedOrigin: string | null = origin || null;
+  if (!allowedOrigin && referer) {
+    try {
+      allowedOrigin = new URL(referer).origin;
+    } catch {
+      logger.warn("CSRF: malformed Referer", { path: req.path });
+      res.status(403).json({ message: "Forbidden: invalid origin" });
+      return;
+    }
+  }
+
   if (allowedOrigin && host) {
     const expectedOrigins = [
       `https://${host}`,
@@ -57,7 +68,9 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
       ...(process.env.NODE_ENV === "development" ? ["http://localhost:5173", "http://localhost:3000"] : []),
     ];
 
-    if (!expectedOrigins.some(expected => allowedOrigin.startsWith(expected))) {
+    // Exact origin match. `startsWith` accepted `https://host.evil.com` when host was
+    // `host`, letting an attacker-controlled prefix domain pass CSRF.
+    if (!expectedOrigins.includes(allowedOrigin)) {
       logger.warn("CSRF: origin mismatch", { origin: allowedOrigin, host });
       res.status(403).json({ message: "Forbidden: origin mismatch" });
       return;

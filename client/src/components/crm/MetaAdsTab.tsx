@@ -120,16 +120,48 @@ interface AttributionResponse {
   error?: string;
 }
 
+interface RoasChannel {
+  channel: string;
+  leads: number;
+  bookings: number;
+  revenue: number;
+  conversionRate: number;
+}
 interface RoasResponse {
   configured: boolean;
   reason?: string;
-  metaInquiries?: number;
-  matchedBookings?: number;
-  attributedRevenue?: number;
-  spend?: number;
-  roas?: number | null;
+  windowed?: boolean;
+  since?: string;
+  totalLeads?: number;
+  totalBookings?: number;
+  channels?: RoasChannel[];
+  meta?: {
+    leads: number;
+    bookings: number;
+    revenue: number;
+    spend: number;
+    roas: number | null;
+    costPerLead: number | null;
+    costPerBooking: number | null;
+  };
+  bookings?: Array<{
+    channel: string;
+    tripDate: string;
+    total: number;
+    boatType: string | null;
+  }>;
   error?: string;
 }
+
+const CHANNEL_LABELS: Record<string, string> = {
+  meta: "Meta (pago)",
+  instagram: "Instagram",
+  fbclid: "Facebook (fbclid)",
+  chatgpt: "ChatGPT",
+  ai_search: "IA / buscadores",
+  otros: "Otros",
+};
+const channelLabel = (c: string) => CHANNEL_LABELS[c] || c;
 
 const PRESET_LABELS: Record<Preset, string> = {
   last_7d: "7 dias",
@@ -468,39 +500,112 @@ export function MetaAdsTab({ adminToken: _adminToken }: MetaAdsTabProps) {
         </CardContent>
       </Card>
 
-      {/* Closed loop: Meta inquiries matched to real crmdamar bookings (ROAS) */}
+      {/* Closed loop: attributed leads matched to real crmdamar bookings, by channel */}
       {roas?.configured && (
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2">
-              <Euro className="h-4 w-4" /> Retorno real (reservas de crmdamar)
+              <Euro className="h-4 w-4" /> Retorno real por canal (reservas de crmdamar)
             </CardTitle>
             <CardDescription>
-              Cruce de las solicitudes con origen Meta contra las reservas confirmadas reales. Se
-              instrumenta desde hoy, asi que crece a medida que entren solicitudes nuevas.
+              Cada solicitud con origen etiquetado (utm o fbclid) cruzada por telefono o email contra
+              las reservas confirmadas reales, dentro de una ventana desde la fecha del lead. Solo
+              lectura. Datos desde {roas.since || "2026-06-28"}. El ROAS compara el gasto solo con la
+              campana de pago (utm=meta); Instagram y fbclid se muestran aparte porque suelen ser
+              trafico organico, no de anuncios.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <StatCard title="Solicitudes Meta" value={roas.metaInquiries ?? 0} />
-              <StatCard title="Reservas atribuidas" value={roas.matchedBookings ?? 0} />
-              <StatCard
-                title="Ingresos atribuidos"
-                value={money(roas.attributedRevenue ?? 0, currency)}
-              />
-              <StatCard
-                title="ROAS"
-                value={roas.roas != null ? `${roas.roas.toFixed(2)}x` : "--"}
-                description={
-                  roas.spend != null ? `gasto total ${money(roas.spend, currency)}` : undefined
-                }
-                status={roas.roas != null ? (roas.roas >= 1 ? "good" : "warn") : "neutral"}
-              />
-            </div>
-            {(roas.metaInquiries ?? 0) === 0 && (
-              <p className="text-xs text-muted-foreground mt-3">
-                Aun no hay solicitudes con origen Meta etiquetado (la captura acaba de activarse).
-                Este panel se llenara segun lleguen.
+          <CardContent className="space-y-5">
+            {/* Meta paid rollup vs spend */}
+            {roas.meta && (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <StatCard
+                  title="Gasto campana"
+                  value={money(roas.meta.spend ?? 0, currency)}
+                  description="anuncios de pago en la ventana"
+                />
+                <StatCard
+                  title="Reservas de pago"
+                  value={roas.meta.bookings ?? 0}
+                  description={`de ${roas.meta.leads} solicitudes utm=meta`}
+                />
+                <StatCard
+                  title="Coste / reserva"
+                  value={
+                    roas.meta.costPerBooking != null
+                      ? money(roas.meta.costPerBooking, currency)
+                      : "sin reservas aun"
+                  }
+                />
+                <StatCard
+                  title="ROAS de pago"
+                  value={roas.meta.roas != null ? `${roas.meta.roas.toFixed(2)}x` : "--"}
+                  description={`${money(roas.meta.revenue ?? 0, currency)} atribuidos`}
+                  status={
+                    roas.meta.roas != null ? (roas.meta.roas >= 1 ? "good" : "warn") : "neutral"
+                  }
+                />
+              </div>
+            )}
+
+            {/* Per-channel breakdown */}
+            {roas.channels && roas.channels.length > 0 && (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-muted-foreground border-b">
+                      <th className="py-2 pr-3 font-medium">Canal</th>
+                      <th className="py-2 px-3 font-medium text-right">Solicitudes</th>
+                      <th className="py-2 px-3 font-medium text-right">Reservas</th>
+                      <th className="py-2 px-3 font-medium text-right">Conversion</th>
+                      <th className="py-2 pl-3 font-medium text-right">Ingresos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {roas.channels.map(c => (
+                      <tr key={c.channel} className="border-b last:border-0">
+                        <td className="py-2 pr-3 font-medium">{channelLabel(c.channel)}</td>
+                        <td className="py-2 px-3 text-right tabular-nums">{c.leads}</td>
+                        <td className="py-2 px-3 text-right tabular-nums">{c.bookings}</td>
+                        <td className="py-2 px-3 text-right tabular-nums">
+                          {c.conversionRate.toFixed(0)}%
+                        </td>
+                        <td className="py-2 pl-3 text-right tabular-nums">
+                          {money(c.revenue, currency)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Transparent list of matched bookings */}
+            {roas.bookings && roas.bookings.length > 0 && (
+              <div>
+                <p className="text-xs font-medium text-muted-foreground mb-2">
+                  Reservas casadas ({roas.bookings.length})
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {roas.bookings.map((b, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs"
+                    >
+                      <span className="font-medium">{channelLabel(b.channel)}</span>
+                      <span className="text-muted-foreground">
+                        {b.tripDate.slice(0, 10)} · {money(b.total, currency)}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {(roas.totalBookings ?? 0) === 0 && (
+              <p className="text-xs text-muted-foreground">
+                Aun no hay reservas casadas con solicitudes etiquetadas. El panel se llena segun se
+                confirman reservas de leads con origen conocido.
               </p>
             )}
           </CardContent>

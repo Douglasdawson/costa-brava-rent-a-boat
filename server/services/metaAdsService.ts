@@ -293,6 +293,22 @@ export async function fetchAccountInsights(preset: DatePreset): Promise<AdInsigh
   return row ? normalizeInsightRow(row) : normalizeInsightRow({});
 }
 
+/**
+ * Account-level insights for an explicit date window (YYYY-MM-DD). Used to align
+ * ad spend with the attribution window when computing real ROAS, instead of the
+ * all-time "maximum" preset which spans years of unrelated campaigns.
+ */
+export async function fetchAccountInsightsSince(sinceDate: string): Promise<AdInsight> {
+  const until = new Date().toISOString().slice(0, 10);
+  const data = await graphGet<{ data?: RawInsightRow[] }>(`${getAdAccountId()}/insights`, {
+    level: "account",
+    time_range: JSON.stringify({ since: sinceDate, until }),
+    fields: INSIGHT_FIELDS,
+  });
+  const row = data.data?.[0];
+  return row ? normalizeInsightRow(row) : normalizeInsightRow({});
+}
+
 export interface AdCampaign {
   id: string;
   name: string;

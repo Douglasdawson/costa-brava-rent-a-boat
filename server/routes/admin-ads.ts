@@ -8,6 +8,7 @@ import {
   verifyToken,
   fetchAccountInfo,
   fetchAccountInsights,
+  fetchAccountInsightsSince,
   fetchCampaigns,
   fetchCampaignInsights,
   MetaAdsError,
@@ -23,10 +24,28 @@ import {
 import { getDashboardStatsEnhanced } from "../storage/analytics";
 import {
   getCrmDamarBookingStats,
-  matchMetaBookings,
+  matchAttributedBookings,
   isCrmDamarConfigured,
+  type LeadForMatch,
 } from "../lib/crmDamarStats";
 import { pool } from "../db";
+
+// Classify an inquiry's captured attribution into a marketing channel.
+function classifyChannel(utmSource: string | null, fbclid: string | null): string {
+  const s = (utmSource || "").toLowerCase();
+  if (s.includes("meta") || s.includes("facebook")) return "meta";
+  if (s === "ig" || s.includes("instagram")) return "instagram";
+  if (s.includes("chatgpt") || s.includes("openai")) return "chatgpt";
+  if (s.includes("google") || s.includes("gemini") || s.includes("perplexity")) return "ai_search";
+  if (!s && fbclid) return "fbclid";
+  return s || "otros";
+}
+// The paid campaign carries utm_source=meta (the LEADS LPV link is tagged that
+// way). Organic Instagram arrives as utm=ig and fbclid-only is ambiguous, so the
+// ROAS denominator (ad spend) is compared ONLY against utm=meta revenue —
+// crediting organic social to ad spend would inflate ROAS. The per-channel table
+// shows everything; the rollup isolates what the spend actually bought.
+const META_PAID = new Set(["meta"]);
 
 function parsePreset(value: unknown): DatePreset {
   return DATE_PRESETS.includes(value as DatePreset) ? (value as DatePreset) : "last_7d";
@@ -340,49 +359,132 @@ export function registerAdsRoutes(app: Express) {
     }
   });
 
-  // ROAS: the closed loop. Match this app's Meta-sourced inquiries (captured utm/
-  // fbclid) against crmdamar's confirmed bookings to get attributed revenue, then
-  // compare with Meta spend. Forward-looking: only inquiries created after the
-  // attribution capture shipped carry utm, so this grows over time (starts at 0).
+  // ROAS / closed loop, per channel. Take EVERY attributed inquiry (any utm or
+  // fbclid), contact-match it against crmdamar's confirmed bookings within a time
+  // window, and break down leads/bookings/revenue by marketing channel — so the
+  // real question ("which channel actually produces paid bookings?") is answered,
+  // not just Meta. Read-only; the loop-close is display-only (no writes).
+  // Forward-looking: only inquiries created after attribution capture shipped
+  // (2026-06-28) carry utm, so history before that is not counted.
+  const ATTRIBUTION_SINCE = "2026-06-28";
   app.get("/api/admin/ads/roas", requireAdminSession, async (_req, res) => {
     if (!isCrmDamarConfigured()) {
       return res.json({ configured: false, reason: "crmdamar_not_configured" });
     }
     try {
       const result = await pool.query(
-        `SELECT lower(email) AS email,
+        `SELECT id, created_at, utm_source, utm_campaign, fbclid, lower(email) AS email,
                 right(regexp_replace(coalesce(phone_prefix,'') || coalesce(phone_number,''), '[^0-9]', '', 'g'), 9) AS phone9
          FROM whatsapp_inquiries
-         WHERE utm_source ILIKE '%meta%' OR utm_source ILIKE '%facebook%'
-            OR utm_source ILIKE '%instagram%' OR utm_source ILIKE '%fb%'
-            OR fbclid IS NOT NULL`
+         WHERE created_at >= $1
+           AND (utm_source IS NOT NULL OR fbclid IS NOT NULL)
+         ORDER BY created_at ASC`,
+        [ATTRIBUTION_SINCE]
       );
-      const rows = result.rows as Array<{ email: string | null; phone9: string | null }>;
-      const emails = [
-        ...new Set(rows.map(r => r.email).filter((e): e is string => !!e && e.includes("@"))),
-      ];
-      const phones9 = [
-        ...new Set(rows.map(r => r.phone9).filter((p): p is string => !!p && p.length >= 7)),
-      ];
-      const metaInquiries = rows.length;
+      const rows = result.rows as Array<{
+        id: string;
+        created_at: Date;
+        utm_source: string | null;
+        utm_campaign: string | null;
+        fbclid: string | null;
+        email: string | null;
+        phone9: string | null;
+      }>;
 
-      const { matchedBookings, attributedRevenue } = await matchMetaBookings(emails, phones9);
+      // Channel per inquiry, keyed by id. First-touch order (ASC) means the
+      // earliest lead of a repeat contact wins the booking credit.
+      const channelById = new Map<string, string>();
+      const leads: LeadForMatch[] = rows.map(r => {
+        channelById.set(r.id, classifyChannel(r.utm_source, r.fbclid));
+        return {
+          inquiryId: r.id,
+          createdAt: new Date(r.created_at),
+          email: r.email,
+          phone9: r.phone9,
+        };
+      });
 
+      const matches = await matchAttributedBookings(leads);
+
+      // Aggregate per channel. Each channel: leads seen + unique bookings +
+      // revenue. `matches` is already deduped by booking across all leads.
+      type Agg = { leads: number; bookings: number; revenue: number };
+      const byChannel = new Map<string, Agg>();
+      const ensure = (ch: string): Agg => {
+        let a = byChannel.get(ch);
+        if (!a) {
+          a = { leads: 0, bookings: 0, revenue: 0 };
+          byChannel.set(ch, a);
+        }
+        return a;
+      };
+      for (const ch of channelById.values()) ensure(ch).leads += 1;
+      for (const m of matches) {
+        const ch = channelById.get(m.inquiryId) || "otros";
+        const a = ensure(ch);
+        a.bookings += 1;
+        a.revenue = Math.round((a.revenue + m.total) * 100) / 100;
+      }
+
+      const channels = [...byChannel.entries()]
+        .map(([channel, a]) => ({
+          channel,
+          leads: a.leads,
+          bookings: a.bookings,
+          revenue: a.revenue,
+          conversionRate: a.leads > 0 ? Math.round((a.bookings / a.leads) * 1000) / 10 : 0,
+        }))
+        .sort((x, y) => y.revenue - x.revenue || y.leads - x.leads);
+
+      // Meta-paid rollup (meta + instagram + fbclid) vs actual Meta spend.
+      const metaAgg = channels
+        .filter(c => META_PAID.has(c.channel))
+        .reduce(
+          (acc, c) => ({
+            leads: acc.leads + c.leads,
+            bookings: acc.bookings + c.bookings,
+            revenue: Math.round((acc.revenue + c.revenue) * 100) / 100,
+          }),
+          { leads: 0, bookings: 0, revenue: 0 }
+        );
+
+      // Spend must match the attribution window, NOT all-time. The "maximum"
+      // preset spans years/65 campaigns and would crush ROAS to a meaningless
+      // number. Align it with `since` so €spend and €revenue cover the same days.
       let spend = 0;
       try {
-        spend = (await fetchAccountInsights("maximum")).spend;
+        spend = (await fetchAccountInsightsSince(ATTRIBUTION_SINCE)).spend;
       } catch {
         // Meta token may be unavailable; ROAS just won't be computed.
       }
-      const roas = spend > 0 ? Math.round((attributedRevenue / spend) * 100) / 100 : null;
+      const meta = {
+        ...metaAgg,
+        spend,
+        roas: spend > 0 ? Math.round((metaAgg.revenue / spend) * 100) / 100 : null,
+        costPerLead: metaAgg.leads > 0 ? Math.round((spend / metaAgg.leads) * 100) / 100 : null,
+        costPerBooking:
+          metaAgg.bookings > 0 ? Math.round((spend / metaAgg.bookings) * 100) / 100 : null,
+      };
+
+      // Transparent list of the matched bookings (for the panel).
+      const bookings = matches
+        .map(m => ({
+          channel: channelById.get(m.inquiryId) || "otros",
+          tripDate: m.tripDate,
+          total: m.total,
+          boatType: m.boatType,
+        }))
+        .sort((a, b) => b.total - a.total);
 
       res.json({
         configured: true,
-        metaInquiries,
-        matchedBookings,
-        attributedRevenue,
-        spend,
-        roas,
+        windowed: true,
+        since: ATTRIBUTION_SINCE,
+        totalLeads: rows.length,
+        totalBookings: matches.length,
+        channels,
+        meta,
+        bookings,
       });
     } catch (error) {
       logger.error("[Meta Ads] roas error", {

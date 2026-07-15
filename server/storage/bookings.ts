@@ -19,6 +19,12 @@ export interface SocialProofBooking {
 }
 import { randomUUID } from "crypto";
 import { logger } from "../lib/logger";
+import { getCrmDamarBusyIntervals, CRM_BOAT_NAMES_BY_PUBLIC_ID } from "../lib/crmDamarAvailability";
+
+// Minimal shape the availability routes actually read off a "booking" — real rows
+// (Booking) satisfy this structurally, and it's all a CRM DAMAR-sourced busy interval
+// needs to carry, without having to fabricate a full fake Booking row.
+export type CalendarEntry = Pick<Booking, "boatId" | "startTime" | "endTime" | "bookingStatus">;
 
 // Boats that share the same physical vessel
 const sharedBoatIds: Record<string, string[]> = {
@@ -360,7 +366,21 @@ export async function getBookingExtras(bookingId: string): Promise<BookingExtra[
     .where(eq(bookingExtras.bookingId, bookingId));
 }
 
-export async function getDailyBookings(boatId: string, date: Date, tenantId?: string): Promise<Booking[]> {
+// CRM DAMAR busy intervals for a boat+range, shaped as CalendarEntry so callers can
+// merge them straight into a bookings array without caring where each row came from.
+async function crmDamarEntriesForBoat(boatId: string, rangeStart: Date, rangeEnd: Date): Promise<CalendarEntry[]> {
+  const crmNames = CRM_BOAT_NAMES_BY_PUBLIC_ID[boatId];
+  if (!crmNames || crmNames.length === 0) return [];
+  const busy = await getCrmDamarBusyIntervals(crmNames, rangeStart, rangeEnd);
+  return busy.map((iv) => ({
+    boatId,
+    startTime: iv.start,
+    endTime: iv.end,
+    bookingStatus: "confirmed",
+  }));
+}
+
+export async function getDailyBookings(boatId: string, date: Date, tenantId?: string): Promise<CalendarEntry[]> {
   const startOfDay = new Date(date);
   startOfDay.setHours(0, 0, 0, 0);
   const endOfDay = new Date(date);
@@ -375,13 +395,14 @@ export async function getDailyBookings(boatId: string, date: Date, tenantId?: st
   ];
   if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
 
-  return await db
-    .select()
-    .from(bookings)
-    .where(and(...conditions));
+  const [own, crm] = await Promise.all([
+    db.select().from(bookings).where(and(...conditions)),
+    crmDamarEntriesForBoat(boatId, startOfDay, endOfDay),
+  ]);
+  return [...own, ...crm];
 }
 
-export async function getMonthlyBookings(boatId: string, year: number, month: number, tenantId?: string): Promise<Booking[]> {
+export async function getMonthlyBookings(boatId: string, year: number, month: number, tenantId?: string): Promise<CalendarEntry[]> {
   const startDate = new Date(year, month - 1, 1);
   const endDate = new Date(year, month, 0, 23, 59, 59, 999);
   const boatIds = getBoatIdsToCheck(boatId);
@@ -394,10 +415,11 @@ export async function getMonthlyBookings(boatId: string, year: number, month: nu
   ];
   if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
 
-  return await db
-    .select()
-    .from(bookings)
-    .where(and(...conditions));
+  const [own, crm] = await Promise.all([
+    db.select().from(bookings).where(and(...conditions)),
+    crmDamarEntriesForBoat(boatId, startDate, endDate),
+  ]);
+  return [...own, ...crm];
 }
 
 export async function checkAvailability(boatId: string, startTime: Date, endTime: Date): Promise<boolean> {

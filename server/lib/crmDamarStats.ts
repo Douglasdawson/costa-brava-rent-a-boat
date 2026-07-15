@@ -101,7 +101,7 @@ export interface MatchedBooking {
 }
 
 // Parse rentals_real.date across its mixed shapes → a UTC Date (or null).
-function parseTripDate(raw: string | null): Date | null {
+export function parseTripDate(raw: string | null): Date | null {
   if (!raw) return null;
   const s = String(raw).trim();
   let m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})/); // DD/MM/YYYY

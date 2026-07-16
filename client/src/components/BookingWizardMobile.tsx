@@ -7,6 +7,9 @@ import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import type { Boat } from "@shared/schema";
 import { EXTRA_PACKS } from "@shared/boatData";
 import { getBoatCatalogMinPrice, isBestValueSeasonForLongDuration } from "@shared/pricing";
+import { useFleetAvailabilityForDate, type DayStatus } from "@/hooks/useFleetAvailabilityForDate";
+import { PARTIAL_TONE, BOOKED_TONE } from "@/components/AvailabilityCalendar";
+import { cn } from "@/lib/utils";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import { ValueStack } from "@/components/booking-flow/ValueStack";
@@ -388,6 +391,10 @@ function Step2Boat({
   const peopleNum = parseInt(numberOfPeople || '1');
   const maxSingleCapacity = filteredBoats.reduce((max, b) => Math.max(max, b.capacity), 0);
   const needsMultiBoat = peopleNum > maxSingleCapacity && filteredBoats.length >= 2;
+  // One request for the whole boat list — so a customer sees which boats are
+  // already busy for their chosen date BEFORE picking one, instead of only
+  // finding out two steps later that the hour picker is all "Reservado".
+  const { boats: fleetAvailability } = useFleetAvailabilityForDate(selectedDate || undefined);
 
   return (
     <div className="space-y-5">
@@ -485,6 +492,7 @@ function Step2Boat({
                 selected={selectedBoat === boat.id}
                 fitsCapacity={fitsCapacity}
                 selectedDate={selectedDate}
+                dayStatus={fleetAvailability?.[boat.id]?.status}
                 onSelect={() => fitsCapacity && handleBoatSelect(boat.id)}
                 t={t}
               />
@@ -629,6 +637,7 @@ function BoatCardMobile({
   selected,
   fitsCapacity,
   selectedDate,
+  dayStatus,
   onSelect,
   t,
 }: {
@@ -636,6 +645,7 @@ function BoatCardMobile({
   selected: boolean;
   fitsCapacity: boolean;
   selectedDate: string;
+  dayStatus?: DayStatus;
   onSelect: () => void;
   t: Translations;
 }) {
@@ -674,6 +684,18 @@ function BoatCardMobile({
           {t.boats.from} {displayPrice}€
         </p>
       )}
+      {dayStatus && dayStatus !== "available" && (
+        <span
+          className={cn(
+            "px-1.5 py-0.5 rounded text-[10px] font-medium border",
+            dayStatus === "partial" ? PARTIAL_TONE : BOOKED_TONE
+          )}
+        >
+          {dayStatus === "partial"
+            ? t.bookingWizard?.boatStatus?.partial ?? "Pocas horas libres"
+            : t.bookingWizard?.boatStatus?.booked ?? "Completo ese día"}
+        </span>
+      )}
       <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground mt-0.5">
         <Users className="w-3.5 h-3.5" aria-hidden="true" />
         {boat.capacity}
@@ -701,11 +723,18 @@ function Step3Departure({
   slotMaxDuration,
   selectedTimeMaxDuration,
   isAvailabilityLoading,
+  preSelectedBoatId,
+  onGoToStep,
+  language,
   showFieldError, getFieldError, handleBlur,
   t,
 }: BookingWizardMobileProps) {
   const durationOptions = getDurationOptions();
   const maxCapacity = getMaxCapacity();
+  const noSlotsAvailable =
+    !isAvailabilityLoading &&
+    timeSlots.length > 0 &&
+    timeSlots.every(time => unavailableTimeSlots.has(time) || tooShortTimeSlots.has(time));
 
   return (
     <div className="space-y-5">
@@ -719,6 +748,34 @@ function Step3Departure({
             : t.wizard.howLongHowMany}
         </p>
       </div>
+
+      {noSlotsAvailable && (
+        <div role="alert" className={cn("rounded-xl border p-3 text-sm", BOOKED_TONE)}>
+          <p className="font-medium">
+            {(t.bookingWizard?.hints?.boatNotAvailableForDate ?? "Sin disponibilidad para {date}. Mira otro día o cambia de barco.")
+              .replace("{date}", formatLocalisedDate(selectedDate, language))}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => onGoToStep(1)}
+              className="text-xs font-semibold underline underline-offset-2"
+            >
+              {t.bookingWizard?.boatStatus?.changeDate ?? "Cambiar fecha"}
+            </button>
+            {!preSelectedBoatId && (
+              <button
+                type="button"
+                onClick={() => onGoToStep(2)}
+                className="text-xs font-semibold underline underline-offset-2"
+              >
+                {t.bookingWizard?.boatStatus?.seeOtherBoat ?? "Ver otro barco"}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
       <div id="field-time">
         <label htmlFor="wizard-time" className="flex items-center gap-2 text-sm font-semibold text-muted-foreground mb-2">
           <span>{t.wizard.departureTime}</span>

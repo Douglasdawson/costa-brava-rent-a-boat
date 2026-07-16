@@ -1343,6 +1343,7 @@ export const es: Translations = {
     specialRateDiscount: "Descuento aplicado",
     loadingPrices: "Cargando precios…",
     noPricesForDate: "No hay tarifa configurada para esta fecha",
+    occupiedHoursForDay: "De {ranges} ya está reservada",
     checkAvailability: "Elige fecha y verás los precios",
     selectDateTitle: "Tu día, tu precio",
     selectDateBody: "Elige el día y te enseñamos los huecos libres y el precio real.",
@@ -1460,6 +1461,12 @@ export const es: Translations = {
       capacityExceeded: "Este barco admite hasta {max} personas. Cambia el barco o el grupo.",
       noOnlinePayment: "Sin pago online: te confirmamos por WhatsApp",
       submitReassurance: "Te respondemos en menos de 2 horas. Sin pago online, sin compromiso.",
+    },
+    boatStatus: {
+      partial: "Pocas horas libres",
+      booked: "Completo ese día",
+      changeDate: "Cambiar fecha",
+      seeOtherBoat: "Ver otro barco",
     },
     multiBoat: {
       title: "Vuestros barcos",

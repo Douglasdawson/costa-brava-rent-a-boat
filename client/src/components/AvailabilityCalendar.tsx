@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useMemo, useRef, type KeyboardEvent } from "react";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
 import { useLanguage, type Language } from "@/hooks/use-language";
+import { useBoatAvailability } from "@/hooks/useBoatAvailability";
 import { cn } from "@/lib/utils";
 import {
   isOperationalSeason,
@@ -13,20 +13,17 @@ import {
 import { BOAT_DATA } from "@shared/boatData";
 import { SEASON_START_MONTH, SEASON_END_MONTH } from "@shared/constants";
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
-
-interface AvailabilityDayData {
-  status: string; // "available" | "partial" | "booked" | "off_season" | "past"
-  slots: { time: string; available: boolean }[];
-}
-
-interface AvailabilityApiResponse {
-  boatId: string;
-  month: string;
-  days: Record<string, AvailabilityDayData>;
-}
+// Calendar day-status palette — deliberately its OWN tokens, not the shared
+// success/popular/destructive CSS vars (those are used site-wide for things
+// like "Most popular" boat badges and generic form errors; reusing them here
+// would ripple unrelated color changes across the site). A warm Mediterranean
+// gradient: sea green (free) -> terracotta (going fast, echoes the brand's own
+// dark-mode CTA hue) -> brick red (full) — three hues far enough apart on the
+// wheel to read clearly even as a light tint, unlike the green/amber pairing
+// this replaces (too close in lightness to tell apart at a glance).
+export const AVAILABLE_TONE = "bg-[hsl(150_40%_93%)] text-[hsl(150_65%_24%)] border-[hsl(150_45%_68%)] dark:bg-[hsl(150_35%_18%)] dark:text-[hsl(150_45%_75%)] dark:border-[hsl(150_35%_35%)]";
+export const PARTIAL_TONE = "bg-[hsl(20_75%_93%)] text-[hsl(16_70%_32%)] border-[hsl(20_60%_65%)] dark:bg-[hsl(18_45%_20%)] dark:text-[hsl(20_70%_78%)] dark:border-[hsl(18_45%_40%)]";
+export const BOOKED_TONE = "bg-[hsl(355_55%_94%)] text-[hsl(355_55%_35%)] border-[hsl(355_40%_72%)] dark:bg-[hsl(355_35%_20%)] dark:text-[hsl(355_55%_78%)] dark:border-[hsl(355_35%_38%)]";
 
 export interface AvailabilityCalendarProps {
   /** If set, shows this boat's availability. Otherwise shows fleet-wide status. */
@@ -165,35 +162,15 @@ export default function AvailabilityCalendar({
   const [internalSelected, setInternalSelected] = useState<Date | undefined>(selectedDate);
   const effectiveSelected = selectedDate ?? internalSelected;
 
-  // Cache of fetched months (keyed by "boatId|YYYY-MM")
-  const cacheRef = useRef<Map<string, AvailabilityApiResponse>>(new Map());
-
   const year = displayMonth.getFullYear();
   const month = displayMonth.getMonth() + 1; // 1-indexed
   const monthKey = toMonthKey(displayMonth);
-  const cacheKey = `${boatId || "fleet"}|${monthKey}`;
 
   // ---------------------------------------------------------------------------
   // Data fetching -- only fetch when a specific boat is selected
   // ---------------------------------------------------------------------------
   const shouldFetch = !!boatId;
-
-  const { data: availability, isLoading } = useQuery<AvailabilityApiResponse>({
-    queryKey: ["/api/boats", boatId, "availability", monthKey],
-    queryFn: async () => {
-      // Check cache first
-      const cached = cacheRef.current.get(cacheKey);
-      if (cached) return cached;
-
-      const response = await fetch(`/api/boats/${boatId}/availability?month=${monthKey}`);
-      if (!response.ok) throw new Error("Error fetching availability");
-      const data: AvailabilityApiResponse = await response.json();
-      cacheRef.current.set(cacheKey, data);
-      return data;
-    },
-    enabled: shouldFetch,
-    staleTime: 60_000, // 1 minute
-  });
+  const { days: availabilityDays, isLoading } = useBoatAvailability(boatId, monthKey);
 
   // ---------------------------------------------------------------------------
   // Navigation
@@ -273,8 +250,8 @@ export default function AvailabilityCalendar({
         }
 
         // If we have API data for this boat, use the real status
-        if (availability?.days[dateKey]) {
-          const dayData = availability.days[dateKey];
+        if (availabilityDays?.[dateKey]) {
+          const dayData = availabilityDays[dateKey];
           if (dayData.status === "booked") status = "booked";
           else if (dayData.status === "partial") status = "partial";
           else if (dayData.status === "available") status = "available";
@@ -295,20 +272,20 @@ export default function AvailabilityCalendar({
       map.set(d, { day: d, dateKey, date, isPast, isOffSeason: isOff, status, price, isSelected, isToday });
     }
     return map;
-  }, [year, month, today, isInSeason, boatId, availability, effectiveSelected]);
+  }, [year, month, today, isInSeason, boatId, availabilityDays, effectiveSelected]);
 
   // ---------------------------------------------------------------------------
   // Slot panel for selected day (legacy BoatDetailPage compat)
   // ---------------------------------------------------------------------------
   const selectedDaySlots = useMemo(() => {
-    if (!effectiveSelected || !availability) return [];
+    if (!effectiveSelected || !availabilityDays) return [];
     const key = toDateKey(
       effectiveSelected.getFullYear(),
       effectiveSelected.getMonth() + 1,
       effectiveSelected.getDate()
     );
-    return availability.days[key]?.slots || [];
-  }, [effectiveSelected, availability]);
+    return availabilityDays[key]?.slots || [];
+  }, [effectiveSelected, availabilityDays]);
 
   // ---------------------------------------------------------------------------
   // Click handler
@@ -432,14 +409,11 @@ export default function AvailabilityCalendar({
     switch (info.status) {
       case "available":
         // Tinted bg + border at rest; shadow only on hover per the Earned Depth Rule.
-        // Uses --success (brand sea green) instead of generic Tailwind emerald.
-        return cn(base, "bg-success/15 hover:bg-success/25 text-success border border-success/30 hover:border-success/50 cursor-pointer hover:shadow-sm");
+        return cn(base, AVAILABLE_TONE, "border hover:bg-[hsl(150_40%_87%)] hover:border-[hsl(150_45%_55%)] dark:hover:bg-[hsl(150_35%_23%)] cursor-pointer hover:shadow-sm");
       case "partial":
-        // --popular (brand amber). Text stays on --foreground because popular at low
-        // opacity over white needs more contrast than the success branch (amber lighter).
-        return cn(base, "bg-popular/15 hover:bg-popular/25 text-foreground border border-popular/40 hover:border-popular/60 cursor-pointer hover:shadow-sm");
+        return cn(base, PARTIAL_TONE, "border hover:bg-[hsl(20_70%_87%)] hover:border-[hsl(20_60%_52%)] dark:hover:bg-[hsl(18_45%_25%)] cursor-pointer hover:shadow-sm");
       case "booked":
-        return cn(base, "bg-destructive/10 text-destructive/70 border border-destructive/25 cursor-not-allowed");
+        return cn(base, BOOKED_TONE, "border cursor-not-allowed");
       case "off_season":
         return cn(base, "bg-muted text-muted-foreground/60 cursor-not-allowed");
       case "past":
@@ -572,7 +546,7 @@ export default function AvailabilityCalendar({
 
                 {/* Booked indicator */}
                 {info.status === "booked" && (
-                  <span className="text-[9px] leading-tight font-medium text-destructive/70">
+                  <span className="text-[9px] leading-tight font-medium text-[hsl(355_55%_35%)] dark:text-[hsl(355_55%_78%)]">
                     --
                   </span>
                 )}
@@ -593,15 +567,15 @@ export default function AvailabilityCalendar({
           true if the design system shifts a color. */}
       <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-4 px-1 text-xs text-muted-foreground">
         <div className="flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm bg-success/15 border border-success/40" />
+          <span className={cn("inline-block w-3 h-3 rounded-sm border", AVAILABLE_TONE)} />
           {legend.available}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm bg-popular/15 border border-popular/50" />
+          <span className={cn("inline-block w-3 h-3 rounded-sm border", PARTIAL_TONE)} />
           {legend.partial}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm bg-destructive/10 border border-destructive/30" />
+          <span className={cn("inline-block w-3 h-3 rounded-sm border", BOOKED_TONE)} />
           {legend.booked}
         </div>
         <div className="flex items-center gap-1.5">

@@ -870,6 +870,7 @@ export interface Translations {
     specialRateDiscount: string;
     loadingPrices: string;
     noPricesForDate: string;
+    occupiedHoursForDay: string;
     selectDateTitle: string;
     selectDateBody: string;
     heroChipsLabel: string;
@@ -995,6 +996,13 @@ export interface Translations {
       noOnlinePayment?: string;
       /** P0.4: step 4 reassurance above the submit button. */
       submitReassurance?: string;
+    };
+    /** Per-boat day-status badge (step 2) + the "no slots left" banner (step 3). */
+    boatStatus?: {
+      partial?: string;
+      booked?: string;
+      changeDate?: string;
+      seeOtherBoat?: string;
     };
     /** P0.5: explicit fuel inclusion signal. Only license-free boats include fuel. */
     fuel?: {

@@ -49,6 +49,28 @@ function slotToHours(slot: string): number {
   return h + m / 60;
 }
 
+/**
+ * Hourly-slot day status for one boat+day, given its booked intervals (fractional
+ * Madrid hours). Shared by /api/boats/:id/availability (one boat, whole month) and
+ * /api/fleet-availability (whole fleet, one day) so "available/partial/booked" means
+ * exactly the same thing in both — the calendar and the booking wizard's boat list.
+ */
+function computeDayStatus(bookedIntervals: { start: number; end: number }[]): {
+  status: "available" | "partial" | "booked";
+  availableSlots: number;
+  totalSlots: number;
+} {
+  const totalSlots = OPERATING_END_HOUR - OPERATING_START_HOUR;
+  let bookedSlots = 0;
+  for (let hour = OPERATING_START_HOUR; hour <= OPERATING_END_HOUR - 1; hour++) {
+    const isBooked = bookedIntervals.some((iv) => hour < iv.end && hour + 1 > iv.start);
+    if (isBooked) bookedSlots++;
+  }
+  const availableSlots = totalSlots - bookedSlots;
+  const status = bookedSlots === 0 ? "available" : bookedSlots >= totalSlots ? "booked" : "partial";
+  return { status, availableSlots, totalSlots };
+}
+
 export function registerAvailabilityRoutes(app: Express) {
   // Real-time slot availability for booking form
   app.get("/api/availability", async (req, res) => {
@@ -200,32 +222,17 @@ export function registerAvailabilityRoutes(app: Express) {
         }
 
         // Generate hourly slots from opening to 1 hour before closing
-        const slots: { time: string; available: boolean }[] = [];
-        let bookedSlots = 0;
-        const totalSlots = OPERATING_END_HOUR - OPERATING_START_HOUR; // one slot per hour
         const dayIntervals = bookedByDate.get(dateStr) ?? [];
-
+        const slots: { time: string; available: boolean }[] = [];
         for (let hour = OPERATING_START_HOUR; hour <= OPERATING_END_HOUR - 1; hour++) {
-          // A slot [hour, hour+1) is booked if it overlaps any Madrid interval on this day.
           const isBooked = dayIntervals.some((iv) => hour < iv.end && hour + 1 > iv.start);
-
           slots.push({
             time: `${String(hour).padStart(2, "0")}:00`,
             available: !isBooked,
           });
-
-          if (isBooked) bookedSlots++;
         }
 
-        let status: string;
-        if (bookedSlots === 0) {
-          status = "available";
-        } else if (bookedSlots >= totalSlots) {
-          status = "booked";
-        } else {
-          status = "partial";
-        }
-
+        const { status } = computeDayStatus(dayIntervals);
         days[dateStr] = { status, slots };
       }
 
@@ -242,21 +249,31 @@ export function registerAvailabilityRoutes(app: Express) {
     }
   });
 
-  // Fleet-wide scarcity data for the next Saturday (used by boat cards)
+  // Fleet-wide day status for every active boat — defaults to today (Spain timezone)
+  // if no ?date= is given. Used by the booking wizard's boat-selection step so the
+  // customer sees available/partial/booked BEFORE picking a boat, not after.
   app.get("/api/fleet-availability", async (req, res) => {
     try {
-      // Use today's date in Spain timezone
-      const now = new Date();
-      const madridDate = new Date(
-        now.toLocaleString("en-US", { timeZone: "Europe/Madrid" })
-      );
-      const today = new Date(madridDate);
-      today.setHours(0, 0, 0, 0);
+      const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Formato de fecha: YYYY-MM-DD").optional();
+      const parsed = dateSchema.safeParse(req.query.date);
+      if (!parsed.success) {
+        return res.status(400).json({ message: parsed.error.issues[0].message });
+      }
 
-      const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+      let requestDate: Date;
+      let dateStr: string;
+      if (parsed.data) {
+        const [y, m, d] = parsed.data.split("-").map(Number);
+        requestDate = new Date(y, m - 1, d);
+        dateStr = parsed.data;
+      } else {
+        const madridDate = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Madrid" }));
+        requestDate = new Date(madridDate.getFullYear(), madridDate.getMonth(), madridDate.getDate());
+        dateStr = `${requestDate.getFullYear()}-${String(requestDate.getMonth() + 1).padStart(2, "0")}-${String(requestDate.getDate()).padStart(2, "0")}`;
+      }
 
       // Off-season check
-      const month = today.getMonth() + 1;
+      const month = requestDate.getMonth() + 1;
       if (month < SEASON_START_MONTH || month > SEASON_END_MONTH) {
         return res.json({ date: dateStr, boats: {} });
       }
@@ -265,10 +282,10 @@ export function registerAvailabilityRoutes(app: Express) {
       const allBoats = await storage.getAllBoats();
       const activeBoats = allBoats.filter((b) => b.isActive);
 
-      const boatsAvailability: Record<string, { availableSlots: number; totalSlots: number }> = {};
+      const boatsAvailability: Record<string, { status: string; availableSlots: number; totalSlots: number }> = {};
 
       for (const boat of activeBoats) {
-        const dayBookings = await storage.getDailyBookings(boat.id, today);
+        const dayBookings = await storage.getDailyBookings(boat.id, requestDate);
 
         // Build booked intervals in Madrid timezone
         const bookedIntervals = dayBookings.map((b) => {
@@ -280,31 +297,7 @@ export function registerAvailabilityRoutes(app: Express) {
           };
         });
 
-        // Count available start slots (reuse same logic as /api/availability)
-        let availableCount = 0;
-        for (const slot of ALL_START_SLOTS) {
-          const slotHour = slotToHours(slot);
-          const isBooked = bookedIntervals.some(
-            (interval) => slotHour >= interval.start && slotHour < interval.end
-          );
-          if (!isBooked) {
-            // Check there's at least 1 hour of availability
-            let maxEnd = OPERATING_END_HOUR;
-            for (const interval of bookedIntervals) {
-              if (interval.start > slotHour && interval.start < maxEnd) {
-                maxEnd = interval.start;
-              }
-            }
-            if (Math.floor(maxEnd - slotHour) >= 1) {
-              availableCount++;
-            }
-          }
-        }
-
-        boatsAvailability[boat.id] = {
-          availableSlots: availableCount,
-          totalSlots: ALL_START_SLOTS.length,
-        };
+        boatsAvailability[boat.id] = computeDayStatus(bookedIntervals);
       }
 
       // Cache for 5 minutes

@@ -700,6 +700,7 @@ export const ca: Translations = {
     specialRateDiscount: "Descompte aplicat",
     loadingPrices: "Carregant preus…",
     noPricesForDate: "No hi ha tarifa configurada per a aquesta data",
+    occupiedHoursForDay: "De {ranges} ja està reservada",
     checkAvailability: "Tria una data i veuràs els preus",
     selectDateTitle: "El teu dia, el teu preu",
     selectDateBody: "Tria el dia i t'ensenyem els forats lliures i el preu real.",
@@ -817,6 +818,12 @@ export const ca: Translations = {
       capacityExceeded: "Aquest vaixell admet fins a {max} persones. Canvia el vaixell o el grup.",
       noOnlinePayment: "Sense pagament en línia, et confirmem per WhatsApp",
       submitReassurance: "Et responem en menys de 2 hores. Sense pagament en línia, sense compromís.",
+    },
+    boatStatus: {
+      partial: "Queden poques hores",
+      booked: "Complet aquell dia",
+      changeDate: "Canviar data",
+      seeOtherBoat: "Veure un altre vaixell",
     },
     multiBoat: {
       title: "Els vostres vaixells",

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, X, Calendar, ChevronDown } from "lucide-react";
@@ -6,10 +7,35 @@ import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useBoatPricingForDate } from "@/hooks/useBoatPricingForDate";
+import { useBoatAvailability } from "@/hooks/useBoatAvailability";
 import { SEASON_END_MONTH } from "@shared/constants";
 import { getMaximumDuration } from "@shared/pricing";
-import AvailabilityCalendar from "./AvailabilityCalendar";
+import AvailabilityCalendar, { PARTIAL_TONE } from "./AvailabilityCalendar";
 import type { Boat } from "@shared/schema";
+
+/** "10:00" -> "11:00" (wraps at 24h, not a real concern within opening hours) */
+function addHour(time: string): string {
+  const [h, m] = time.split(":").map(Number);
+  return `${String((h + 1) % 24).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+}
+
+/** Collapses consecutive unavailable hourly slots into readable ranges, e.g. ["10:00","11:00","12:00","13:00"] (all busy) -> ["10:00–14:00"]. */
+export function occupiedRanges(slots: { time: string; available: boolean }[]): string[] {
+  const ranges: string[] = [];
+  let rangeStart: string | null = null;
+  let lastTime: string | null = null;
+  for (const slot of slots) {
+    if (!slot.available) {
+      if (rangeStart === null) rangeStart = slot.time;
+      lastTime = slot.time;
+    } else if (rangeStart !== null) {
+      ranges.push(`${rangeStart}–${addHour(lastTime!)}`);
+      rangeStart = null;
+    }
+  }
+  if (rangeStart !== null) ranges.push(`${rangeStart}–${addHour(lastTime!)}`);
+  return ranges;
+}
 
 interface BoatPricingSectionProps {
   boatData: Boat;
@@ -239,6 +265,14 @@ function DayPricingMode({
   const t = useTranslations();
   const dateKey = toDateKey(selectedDate);
 
+  // Same queryKey as AvailabilityCalendar (mounted alongside, left column) —
+  // TanStack Query serves this from its cache, no extra request in practice.
+  const { days: availabilityDays } = useBoatAvailability(boatId, dateKey.slice(0, 7));
+  const occupied = useMemo(
+    () => occupiedRanges(availabilityDays?.[dateKey]?.slots ?? []),
+    [availabilityDays, dateKey]
+  );
+
   const activeDurations = useMemo(() => {
     const set = new Set<string>();
     if (boatData.pricing) {
@@ -307,6 +341,15 @@ function DayPricingMode({
           <span className="hidden sm:inline">{t.boatDetail.backToSeasonPrices}</span>
         </Button>
       </div>
+
+      {occupied.length > 0 && (
+        <p
+          className={cn("text-sm rounded-lg px-3 py-2 border", PARTIAL_TONE)}
+          data-testid="text-occupied-hours"
+        >
+          {t.boatDetail.occupiedHoursForDay.replace("{ranges}", occupied.join(", "))}
+        </p>
+      )}
 
       <div className="bg-muted rounded-lg p-4 md:p-6">
         {isLoading ? (

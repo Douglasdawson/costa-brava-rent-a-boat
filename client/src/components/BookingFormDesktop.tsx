@@ -11,6 +11,9 @@ import type { Boat } from "@shared/schema";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
 import { EXTRA_PACKS } from "@shared/boatData";
 import { getBoatCatalogMinPrice, isBestValueSeasonForLongDuration } from "@shared/pricing";
+import { useFleetAvailabilityForDate, type DayStatus } from "@/hooks/useFleetAvailabilityForDate";
+import { PARTIAL_TONE, BOOKED_TONE } from "@/components/AvailabilityCalendar";
+import { cn } from "@/lib/utils";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import { ValueStack } from "@/components/booking-flow/ValueStack";
@@ -314,6 +317,9 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 slotMaxDuration={props.slotMaxDuration}
                 selectedTimeMaxDuration={props.selectedTimeMaxDuration}
                 isAvailabilityLoading={isAvailabilityLoading}
+                preSelectedBoatId={preSelectedBoatId}
+                onGoToStep={onGoToStep}
+                language={language}
                 showFieldError={showFieldError}
                 getFieldError={getFieldError}
                 handleBlur={handleBlur}
@@ -516,6 +522,10 @@ function Step1BoatDate({
   const peopleNum = parseInt(numberOfPeople || '1');
   const maxSingleCapacity = filteredBoats.reduce((max, b) => Math.max(max, b.capacity), 0);
   const needsMultiBoat = peopleNum > maxSingleCapacity && filteredBoats.length >= 2;
+  // One request for the whole boat list — so a customer sees which boats are
+  // already busy for their chosen date BEFORE picking one, instead of only
+  // finding out two steps later that the hour picker is all "Reservado".
+  const { boats: fleetAvailability } = useFleetAvailabilityForDate(selectedDate || undefined);
   const handleComboSelect = (primary: string, secondary: string) => {
     setSelectedBoat(primary);
     setSelectedSecondaryBoat(secondary);
@@ -614,6 +624,7 @@ function Step1BoatDate({
                   selected={selectedBoat === boat.id}
                   fitsCapacity={boat.capacity >= peopleNum}
                   selectedDate={selectedDate}
+                  dayStatus={fleetAvailability?.[boat.id]?.status}
                   onSelect={() => setSelectedBoat(boat.id)}
                   t={t}
                 />
@@ -634,6 +645,7 @@ function BoatCardDesktop({
   selected,
   fitsCapacity,
   selectedDate,
+  dayStatus,
   onSelect,
   t,
 }: {
@@ -641,6 +653,7 @@ function BoatCardDesktop({
   selected: boolean;
   fitsCapacity: boolean;
   selectedDate: string;
+  dayStatus?: DayStatus;
   onSelect: () => void;
   t: Translations;
 }) {
@@ -677,6 +690,18 @@ function BoatCardDesktop({
           <p className="text-xs text-foreground font-medium">
             {t.boats.from} {displayPrice}€
           </p>
+        )}
+        {dayStatus && dayStatus !== "available" && (
+          <span
+            className={cn(
+              "inline-block mt-1 px-1.5 py-0.5 rounded text-[10px] font-medium border",
+              dayStatus === "partial" ? PARTIAL_TONE : BOOKED_TONE
+            )}
+          >
+            {dayStatus === "partial"
+              ? t.bookingWizard?.boatStatus?.partial ?? "Pocas horas libres"
+              : t.bookingWizard?.boatStatus?.booked ?? "Completo ese día"}
+          </span>
         )}
       </div>
       <span className="flex-shrink-0 inline-flex items-center gap-1 text-sm text-foreground">
@@ -715,6 +740,9 @@ interface Step2Props {
   slotMaxDuration: Map<string, number>;
   selectedTimeMaxDuration: number | null;
   isAvailabilityLoading: boolean;
+  preSelectedBoatId?: string;
+  onGoToStep: (step: number) => void;
+  language: string;
   showFieldError: (f: string) => boolean;
   getFieldError: (f: string) => string;
   handleBlur: (f: string) => void;
@@ -740,6 +768,9 @@ function Step2Details({
   slotMaxDuration,
   selectedTimeMaxDuration,
   isAvailabilityLoading,
+  preSelectedBoatId,
+  onGoToStep,
+  language,
   showFieldError,
   getFieldError,
   handleBlur,
@@ -748,6 +779,11 @@ function Step2Details({
   inputError,
   inputNormal,
 }: Step2Props) {
+  const noSlotsAvailable =
+    !isAvailabilityLoading &&
+    timeSlots.length > 0 &&
+    timeSlots.every(time => unavailableTimeSlots.has(time) || tooShortTimeSlots.has(time));
+
   return (
     <div className="space-y-5">
       <div>
@@ -760,6 +796,33 @@ function Step2Details({
             : t.wizard.howLongHowMany}
         </p>
       </div>
+
+      {noSlotsAvailable && (
+        <div role="alert" className={cn("rounded-lg border p-3 text-sm", BOOKED_TONE)}>
+          <p className="font-medium">
+            {(t.bookingWizard?.hints?.boatNotAvailableForDate ?? "Sin disponibilidad para {date}. Mira otro día o cambia de barco.")
+              .replace("{date}", formatBookingDateDesktop(selectedDate, language))}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => onGoToStep(1)}
+              className="text-xs font-semibold underline underline-offset-2"
+            >
+              {t.bookingWizard?.boatStatus?.changeDate ?? "Cambiar fecha"}
+            </button>
+            {!preSelectedBoatId && (
+              <button
+                type="button"
+                onClick={() => onGoToStep(2)}
+                className="text-xs font-semibold underline underline-offset-2"
+              >
+                {t.bookingWizard?.boatStatus?.seeOtherBoat ?? "Ver otro barco"}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Time — shown before duration so maxDuration can filter durations */}
       <div>

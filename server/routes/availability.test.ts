@@ -188,3 +188,86 @@ describe("GET /api/boats/:id/availability", () => {
     expect(Object.keys(res.body.days)).toHaveLength(31);
   });
 });
+
+describe("GET /api/fleet-availability", () => {
+  let app: ReturnType<typeof createTestApp>;
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    app = createTestApp();
+    registerAvailabilityRoutes(app);
+  });
+
+  it("returns 400 when date format is invalid", async () => {
+    const res = await request(app)
+      .get("/api/fleet-availability?date=15-07-2026")
+      .expect(400);
+    expect(res.body.message).toContain("YYYY-MM-DD");
+  });
+
+  it("returns the requested date and per-boat status for an in-season date", async () => {
+    mockedStorage.getAllBoats.mockResolvedValue([
+      { id: "boat-1", isActive: true },
+      { id: "boat-2", isActive: true },
+    ] as never);
+    mockedStorage.getDailyBookings.mockImplementation(async (boatId: string) =>
+      boatId === "boat-1"
+        ? [{ startTime: new Date(2026, 6, 25, 10, 0), endTime: new Date(2026, 6, 25, 14, 0) }]
+        : []
+    );
+
+    const res = await request(app)
+      .get("/api/fleet-availability?date=2026-07-25")
+      .expect(200);
+
+    expect(res.body.date).toBe("2026-07-25");
+    expect(res.body.boats["boat-1"].status).toBe("partial");
+    expect(res.body.boats["boat-2"].status).toBe("available");
+  });
+
+  it("reports a fully-booked boat as booked", async () => {
+    mockedStorage.getAllBoats.mockResolvedValue([{ id: "boat-1", isActive: true }] as never);
+    mockedStorage.getDailyBookings.mockResolvedValue([
+      { startTime: new Date(2026, 6, 25, 9, 0), endTime: new Date(2026, 6, 25, 20, 0) },
+    ] as never);
+
+    const res = await request(app)
+      .get("/api/fleet-availability?date=2026-07-25")
+      .expect(200);
+
+    expect(res.body.boats["boat-1"].status).toBe("booked");
+    expect(res.body.boats["boat-1"].availableSlots).toBe(0);
+  });
+
+  it("excludes inactive boats", async () => {
+    mockedStorage.getAllBoats.mockResolvedValue([
+      { id: "boat-1", isActive: true },
+      { id: "boat-2", isActive: false },
+    ] as never);
+    mockedStorage.getDailyBookings.mockResolvedValue([]);
+
+    const res = await request(app)
+      .get("/api/fleet-availability?date=2026-07-25")
+      .expect(200);
+
+    expect(res.body.boats).toHaveProperty("boat-1");
+    expect(res.body.boats).not.toHaveProperty("boat-2");
+  });
+
+  it("returns an empty boats map for off-season dates", async () => {
+    mockedStorage.getAllBoats.mockResolvedValue([{ id: "boat-1", isActive: true }] as never);
+
+    const res = await request(app)
+      .get("/api/fleet-availability?date=2026-01-15")
+      .expect(200);
+
+    expect(res.body.boats).toEqual({});
+  });
+
+  it("defaults to today when no date is given", async () => {
+    mockedStorage.getAllBoats.mockResolvedValue([]);
+
+    const res = await request(app).get("/api/fleet-availability").expect(200);
+    expect(res.body.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  });
+});

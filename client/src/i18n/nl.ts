@@ -700,6 +700,7 @@ export const nl: Translations = {
     specialRateDiscount: "Korting toegepast",
     loadingPrices: "Prijzen laden…",
     noPricesForDate: "Geen tarief geconfigureerd voor deze datum",
+    occupiedHoursForDay: "Van {ranges} al gereserveerd",
     checkAvailability: "Kies een datum en je ziet de prijzen",
     selectDateTitle: "Jouw dag, jouw prijs",
     selectDateBody: "Kies de dag en we laten je zien wat vrij is en de echte prijs.",
@@ -817,6 +818,12 @@ export const nl: Translations = {
       capacityExceeded: "Deze boot is geschikt voor maximaal {max} personen. Verander de boot of de groepsgrootte.",
       noOnlinePayment: "Geen online betaling, we bevestigen via WhatsApp",
       submitReassurance: "We reageren binnen 2 uur. Geen online betaling, vrijblijvend.",
+    },
+    boatStatus: {
+      partial: "Nog maar weinig uren vrij",
+      booked: "Die dag volgeboekt",
+      changeDate: "Datum wijzigen",
+      seeOtherBoat: "Andere boot bekijken",
     },
     multiBoat: {
       title: "Jullie boten",

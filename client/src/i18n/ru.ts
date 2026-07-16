@@ -698,6 +698,7 @@ export const ru: Translations = {
     specialRateDiscount: "Применена скидка",
     loadingPrices: "Загрузка цен…",
     noPricesForDate: "Тариф для этой даты не настроен",
+    occupiedHoursForDay: "С {ranges} уже забронировано",
     checkAvailability: "Выберите дату и увидите цены",
     selectDateTitle: "Ваш день, ваша цена",
     selectDateBody: "Выберите день. Покажем свободные слоты и реальную цену.",
@@ -815,6 +816,12 @@ export const ru: Translations = {
       capacityExceeded: "Эта лодка вмещает не более {max} человек. Выберите другую лодку или уменьшите группу.",
       noOnlinePayment: "Без онлайн-оплаты, подтвердим через WhatsApp",
       submitReassurance: "Ответим в течение 2 часов. Без онлайн-оплаты, без обязательств.",
+    },
+    boatStatus: {
+      partial: "Осталось мало часов",
+      booked: "Занято в этот день",
+      changeDate: "Изменить дату",
+      seeOtherBoat: "Посмотреть другую лодку",
     },
     multiBoat: {
       title: "Ваши лодки",

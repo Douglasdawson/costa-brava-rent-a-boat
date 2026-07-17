@@ -50,17 +50,55 @@ function yearsInRange(start: Date, end: Date): number[] {
 }
 
 /**
+ * Keeps only the stretches covered by at least `units` overlapping intervals.
+ *
+ * With units=1 (the default) every interval counts: the names are aliases of one hull, so
+ * one booking means the boat is out. With units=2 ("Solar 450" = two interchangeable
+ * hulls) a single booking leaves one free, and the product is only sold out while BOTH are
+ * busy — returning the plain union there would show "busy" with a boat still available and
+ * cost real bookings.
+ *
+ * Sweep line over the endpoints. Ties resolve ends before starts (`-1` sorts first), so
+ * back-to-back bookings (10-14 and 14-18) never count as an overlap at 14:00.
+ */
+export function intervalsCoveredAtLeast(intervals: CrmBusyInterval[], units: number): CrmBusyInterval[] {
+  if (units <= 1) return intervals;
+  const events: Array<[number, number]> = [];
+  for (const i of intervals) {
+    events.push([i.start.getTime(), 1]);
+    events.push([i.end.getTime(), -1]);
+  }
+  events.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+
+  const out: CrmBusyInterval[] = [];
+  let depth = 0;
+  let openedAt: number | null = null;
+  for (const [t, delta] of events) {
+    const before = depth;
+    depth += delta;
+    if (before < units && depth >= units) openedAt = t;
+    else if (before >= units && depth < units && openedAt !== null) {
+      if (t > openedAt) out.push({ start: new Date(openedAt), end: new Date(t) });
+      openedAt = null;
+    }
+  }
+  return out;
+}
+
+/**
  * Busy Madrid-local intervals for the given CRM boat names, overlapping [rangeStart, rangeEnd).
+ * `units` = how many interchangeable hulls the names stand for (see intervalsCoveredAtLeast).
  */
 export async function getCrmDamarBusyIntervals(
   crmBoatNames: string[],
   rangeStart: Date,
   rangeEnd: Date,
+  units = 1,
 ): Promise<CrmBusyInterval[]> {
   const url = process.env.CRMDAMAR_DATABASE_URL;
   if (!url || crmBoatNames.length === 0) return [];
 
-  const cacheKey = `${crmBoatNames.join("|")}::${rangeStart.getTime()}::${rangeEnd.getTime()}`;
+  const cacheKey = `${crmBoatNames.join("|")}::${units}::${rangeStart.getTime()}::${rangeEnd.getTime()}`;
   const hit = cache.get(cacheKey);
   if (hit && Date.now() - hit.at < TTL_MS) return hit.data;
 
@@ -104,8 +142,9 @@ export async function getCrmDamarBusyIntervals(
       intervals.push({ start: new Date(startMs), end: new Date(endMs) });
     }
 
-    cache.set(cacheKey, { at: Date.now(), data: intervals });
-    return intervals;
+    const result = intervalsCoveredAtLeast(intervals, units);
+    cache.set(cacheKey, { at: Date.now(), data: result });
+    return result;
   } catch (error) {
     logger.warn("[crmdamar] availability query error", {
       error: error instanceof Error ? error.message : String(error),
@@ -114,23 +153,43 @@ export async function getCrmDamarBusyIntervals(
   }
 }
 
-// Public boat catalog id -> CRM `barcos.nombre` value(s) that count as busy for that
-// page. Mirrors the existing `sharedBoatIds` pattern in server/storage/bookings.ts
-// (public boats that share one physical hull). Filled in by comparing `SELECT nombre
-// FROM barcos` (CRM) against shared/boatData.ts (this app) — confirmed 1:1 for these;
-// left out where the public page doesn't clearly map to one CRM boat name yet.
+// Public boat catalog id -> CRM `barcos.nombre` value(s) that count as busy for that page.
+//
+// ⚠️ These names MUST come from the CRM's PRODUCTION database (Neon). The first version of
+// this map was filled in against the CRM's DEV database, whose boats have different names
+// ("Remus Damar" vs "Remus 450", "Pacific Craft 625" vs "Pacific Craft 625 Open"…). Five of
+// eight entries matched nothing in production, and a name that matches nothing makes the
+// query return zero rows — which this calendar reads as "everything free". It failed
+// silently for months: the Remus page showed 15 free days with 12 bookings in the CRM.
+// To re-check: `SELECT nombre FROM barcos ORDER BY orden` against PRODUCTION, never dev.
+//
+// A slug maps to SEVERAL names in two very different cases, so mind which one you have:
+//   · Aliases of ONE hull (a rename, or a service sold on another boat) → busy if ANY is
+//     busy. That's the default, and it's what `sharedBoatIds` does for pacific/excursión.
+//   · SEVERAL interchangeable hulls sold as one product (see CRM_FLEET_UNITS) → busy only
+//     when ALL of them are.
 export const CRM_BOAT_NAMES_BY_PUBLIC_ID: Record<string, string[]> = {
   "astec-480": ["Astec 480"],
-  "astec-400": ["Astec 400"],
-  "mingolla-brava-19": ["Mingolla Brava 19"],
+  "mingolla-brava-19": ["Mingolla Brava"],
   "trimarchi-57s": ["Trimarchi 57S"],
-  "pacific-craft-625": ["Pacific Craft 625"],
+  // The Pacific Craft hull is sold under three CRM names: the boat itself, the private
+  // excursion and the Blanes-fireworks trip (all share casco_id in the CRM, 17 jul 2026).
+  // "Fuegos Blanes" has no public page here, but a fireworks booking still takes the hull,
+  // so it must block the Pacific and excursion pages — hence it rides on this entry.
+  // (excursion-privada also pulls the Pacific via sharedBoatIds in bookings.ts.)
+  "pacific-craft-625": ["Pacific Craft 625 Open", "Fuegos Blanes"],
   "excursion-privada": ["Excursión Privada"],
-  "solar-450": ["Solar 450 Blanca"],
-  "remus-450": ["Remus Damar"], // confirmado por el dueño
-  // TODO: remus-450-ii — no está claro a qué barco del CRM corresponde ("Remus",
-  // inactivo, es el único nombre restante y no se ha confirmado); dejarlo sin mapear
-  // hasta confirmarlo es más seguro que adivinar.
-  // TODO: jetski-circuito / jetski-excursion-monitor — no hay un "barco" equivalente
-  // obvio en el catálogo del CRM (posible actividad sin ficha de barco propia).
+  "remus-450": ["Remus 450"],
+  "remus-450-ii": ["REMUS (2) 450"],
+  // Two real hulls sold as one product: whichever is free goes out (owner, 17 jul 2026).
+  // Needs CRM_FLEET_UNITS below, or the page would show "busy" with a solar still free.
+  "solar-450": ["Solar Mercury", "Solar Yamaha"],
+  // jetski-circuito / jetski-excursion-monitor: no CRM boat — the owner books them outside
+  // the CRM (17 jul 2026), so there's nothing to read. Their calendar stays always-free.
+};
+
+// How many INTERCHANGEABLE hulls sit behind a public slug. Default 1 (the names above are
+// aliases of the same hull). With >1 the slug is only busy once ALL of them are.
+export const CRM_FLEET_UNITS: Record<string, number> = {
+  "solar-450": 2,
 };

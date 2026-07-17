@@ -19,7 +19,7 @@ export interface SocialProofBooking {
 }
 import { randomUUID } from "crypto";
 import { logger } from "../lib/logger";
-import { getCrmDamarBusyIntervals, CRM_BOAT_NAMES_BY_PUBLIC_ID } from "../lib/crmDamarAvailability";
+import { getCrmDamarBusyIntervals, CRM_BOAT_NAMES_BY_PUBLIC_ID, CRM_FLEET_UNITS } from "../lib/crmDamarAvailability";
 
 // Minimal shape the availability routes actually read off a "booking" — real rows
 // (Booking) satisfy this structurally, and it's all a CRM DAMAR-sourced busy interval
@@ -371,7 +371,7 @@ export async function getBookingExtras(bookingId: string): Promise<BookingExtra[
 async function crmDamarEntriesForBoat(boatId: string, rangeStart: Date, rangeEnd: Date): Promise<CalendarEntry[]> {
   const crmNames = CRM_BOAT_NAMES_BY_PUBLIC_ID[boatId];
   if (!crmNames || crmNames.length === 0) return [];
-  const busy = await getCrmDamarBusyIntervals(crmNames, rangeStart, rangeEnd);
+  const busy = await getCrmDamarBusyIntervals(crmNames, rangeStart, rangeEnd, CRM_FLEET_UNITS[boatId] ?? 1);
   return busy.map((iv) => ({
     boatId,
     startTime: iv.start,

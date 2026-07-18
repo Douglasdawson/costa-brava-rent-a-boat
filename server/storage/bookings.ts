@@ -369,8 +369,12 @@ export async function getBookingExtras(bookingId: string): Promise<BookingExtra[
 // CRM DAMAR busy intervals for a boat+range, shaped as CalendarEntry so callers can
 // merge them straight into a bookings array without caring where each row came from.
 async function crmDamarEntriesForBoat(boatId: string, rangeStart: Date, rangeEnd: Date): Promise<CalendarEntry[]> {
-  const crmNames = CRM_BOAT_NAMES_BY_PUBLIC_ID[boatId];
-  if (!crmNames || crmNames.length === 0) return [];
+  // Expand shared hulls, exactly as the own-bookings query does above (inArray boatIds):
+  // the Pacific page must also block on excursion/fireworks bookings in the CRM — same
+  // physical hull. Without this the CRM side ignored sharedBoatIds while the local side
+  // honoured it, so a CRM excursion left the Pacific bookable (double-booking of one boat).
+  const crmNames = [...new Set(getBoatIdsToCheck(boatId).flatMap((id) => CRM_BOAT_NAMES_BY_PUBLIC_ID[id] ?? []))];
+  if (crmNames.length === 0) return [];
   const busy = await getCrmDamarBusyIntervals(crmNames, rangeStart, rangeEnd, CRM_FLEET_UNITS[boatId] ?? 1);
   return busy.map((iv) => ({
     boatId,

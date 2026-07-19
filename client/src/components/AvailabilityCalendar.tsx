@@ -16,14 +16,21 @@ import { SEASON_START_MONTH, SEASON_END_MONTH } from "@shared/constants";
 // Calendar day-status palette — deliberately its OWN tokens, not the shared
 // success/popular/destructive CSS vars (those are used site-wide for things
 // like "Most popular" boat badges and generic form errors; reusing them here
-// would ripple unrelated color changes across the site). A warm Mediterranean
-// gradient: sea green (free) -> terracotta (going fast, echoes the brand's own
-// dark-mode CTA hue) -> brick red (full) — three hues far enough apart on the
-// wheel to read clearly even as a light tint, unlike the green/amber pairing
-// this replaces (too close in lightness to tell apart at a glance).
-export const AVAILABLE_TONE = "bg-[hsl(150_40%_93%)] text-[hsl(150_65%_24%)] border-[hsl(150_45%_68%)] dark:bg-[hsl(150_35%_18%)] dark:text-[hsl(150_45%_75%)] dark:border-[hsl(150_35%_35%)]";
-export const PARTIAL_TONE = "bg-[hsl(20_75%_93%)] text-[hsl(16_70%_32%)] border-[hsl(20_60%_65%)] dark:bg-[hsl(18_45%_20%)] dark:text-[hsl(20_70%_78%)] dark:border-[hsl(18_45%_40%)]";
-export const BOOKED_TONE = "bg-[hsl(355_55%_94%)] text-[hsl(355_55%_35%)] border-[hsl(355_40%_72%)] dark:bg-[hsl(355_35%_20%)] dark:text-[hsl(355_55%_78%)] dark:border-[hsl(355_35%_38%)]";
+// would ripple unrelated color changes across the site). A soft Mediterranean
+// traffic light chosen with the owner: sage green (free, #5B9E7E) -> honey
+// amber (few slots, #E0A458) -> terracotta (full, #C15F4A). The key move is
+// lifting "few slots" from terracotta up to a YELLOW amber: the previous
+// terracotta/brick-red pairing sat ~25° apart on the warm side of the wheel
+// and read as one blur — amber vs terracotta differ in hue AND lightness, so
+// the three states separate at a glance. Backgrounds carry a touch more color
+// than the old ~7% tints so the state reads without squinting.
+//
+// Green/amber/red is the hardest trio for red-green colour blindness, so colour
+// is never the only signal: "few slots" gets a dot and "full" strikes the day
+// number through (see the cell render) — a robust cue with no visible noise.
+export const AVAILABLE_TONE = "bg-[hsl(150_38%_90%)] text-[hsl(152_45%_27%)] border-[hsl(150_32%_62%)] dark:bg-[hsl(150_30%_17%)] dark:text-[hsl(150_42%_76%)] dark:border-[hsl(150_28%_34%)]";
+export const PARTIAL_TONE = "bg-[hsl(38_78%_88%)] text-[hsl(28_65%_32%)] border-[hsl(35_65%_58%)] dark:bg-[hsl(34_45%_20%)] dark:text-[hsl(38_78%_74%)] dark:border-[hsl(35_50%_40%)]";
+export const BOOKED_TONE = "bg-[hsl(11_58%_90%)] text-[hsl(8_55%_38%)] border-[hsl(11_45%_63%)] dark:bg-[hsl(10_40%_19%)] dark:text-[hsl(12_58%_74%)] dark:border-[hsl(11_40%_38%)]";
 
 export interface AvailabilityCalendarProps {
   /** If set, shows this boat's availability. Otherwise shows fleet-wide status. */
@@ -409,9 +416,9 @@ export default function AvailabilityCalendar({
     switch (info.status) {
       case "available":
         // Tinted bg + border at rest; shadow only on hover per the Earned Depth Rule.
-        return cn(base, AVAILABLE_TONE, "border hover:bg-[hsl(150_40%_87%)] hover:border-[hsl(150_45%_55%)] dark:hover:bg-[hsl(150_35%_23%)] cursor-pointer hover:shadow-sm");
+        return cn(base, AVAILABLE_TONE, "border hover:bg-[hsl(150_38%_84%)] hover:border-[hsl(150_34%_52%)] dark:hover:bg-[hsl(150_30%_22%)] cursor-pointer hover:shadow-sm");
       case "partial":
-        return cn(base, PARTIAL_TONE, "border hover:bg-[hsl(20_70%_87%)] hover:border-[hsl(20_60%_52%)] dark:hover:bg-[hsl(18_45%_25%)] cursor-pointer hover:shadow-sm");
+        return cn(base, PARTIAL_TONE, "border hover:bg-[hsl(38_78%_82%)] hover:border-[hsl(35_66%_50%)] dark:hover:bg-[hsl(34_45%_25%)] cursor-pointer hover:shadow-sm");
       case "booked":
         return cn(base, BOOKED_TONE, "border cursor-not-allowed");
       case "off_season":
@@ -537,18 +544,23 @@ export default function AvailabilityCalendar({
                 onClick={() => handleDayClick(info)}
               >
                 {/* Day number — when today coincides with the selected day, drop the
-                    underline so the selection ring carries the signal alone. */}
-                <span className={cn("leading-none", info.isToday && !info.isSelected && "font-bold underline underline-offset-2")}>
+                    underline so the selection ring carries the signal alone. A
+                    strike-through on "full" days is the colour-blind-safe cue that
+                    the day is taken, replacing an ambiguous "--". */}
+                <span className={cn(
+                  "leading-none",
+                  info.isToday && !info.isSelected && "font-bold underline underline-offset-2",
+                  info.status === "booked" && "line-through decoration-2 decoration-[hsl(8_55%_45%)]/70 dark:decoration-[hsl(12_58%_74%)]/70",
+                )}>
                   {day}
                 </span>
 
                 {/* Price badge removed — prices shown in pricing section instead */}
 
-                {/* Booked indicator */}
-                {info.status === "booked" && (
-                  <span className="text-[9px] leading-tight font-medium text-[hsl(355_55%_35%)] dark:text-[hsl(355_55%_78%)]">
-                    --
-                  </span>
+                {/* "Few slots" gets a dot — the second, colour-independent signal
+                    that this day sits between free and full. */}
+                {info.status === "partial" && (
+                  <span aria-hidden="true" className="mt-0.5 inline-block w-1 h-1 rounded-full bg-[hsl(28_60%_40%)] dark:bg-[hsl(38_72%_70%)]" />
                 )}
               </button>
             );

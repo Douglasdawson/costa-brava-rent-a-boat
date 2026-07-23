@@ -1500,6 +1500,17 @@ export const it: Translations = {
     title: "Richiesta di prenotazione inviata con successo",
     responseTime: "Rispondiamo entro 2 ore su WhatsApp",
     summary: "Riepilogo della richiesta",
+    labels: {
+      boat: "Barca",
+      date: "Data",
+      time: "Ora",
+      duration: "Durata",
+      people: "Persone",
+      price: "Prezzo",
+    },
+    copyError: "Errore durante la copia",
+    copyErrorDescription: "Impossibile copiare negli appunti.",
+    copyCode: "Copia il codice",
     checklist: "Cosa portare",
     checklistItems: [
       "Crema solare e cappello",

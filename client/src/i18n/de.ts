@@ -1505,6 +1505,17 @@ export const de: Translations = {
     title: "Buchungsanfrage erfolgreich gesendet",
     responseTime: "Wir antworten innerhalb von 2 Std. per WhatsApp",
     summary: "Übersicht Ihrer Anfrage",
+    labels: {
+      boat: "Boot",
+      date: "Datum",
+      time: "Uhrzeit",
+      duration: "Dauer",
+      people: "Personen",
+      price: "Preis",
+    },
+    copyError: "Fehler beim Kopieren",
+    copyErrorDescription: "Kopieren in die Zwischenablage nicht möglich.",
+    copyCode: "Code kopieren",
     checklist: "Was mitnehmen",
     checklistItems: [
       "Sonnenschutz und Mütze",

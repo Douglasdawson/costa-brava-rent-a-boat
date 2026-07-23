@@ -1509,6 +1509,17 @@ export const fr: Translations = {
     title: "Demande de réservation envoyée avec succès",
     responseTime: "Nous répondons en moins de 2 h sur WhatsApp",
     summary: "Résumé de votre demande",
+    labels: {
+      boat: "Bateau",
+      date: "Date",
+      time: "Heure",
+      duration: "Durée",
+      people: "Personnes",
+      price: "Prix",
+    },
+    copyError: "Erreur de copie",
+    copyErrorDescription: "Impossible de copier dans le presse-papiers.",
+    copyCode: "Copier le code",
     checklist: "Quoi apporter",
     checklistItems: [
       "Crème solaire et casquette",

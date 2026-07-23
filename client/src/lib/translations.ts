@@ -2146,6 +2146,17 @@ export interface Translations {
     /** P2.5: prominent SLA reassurance right under the success title. */
     responseTime?: string;
     summary: string;
+    labels?: {
+      boat: string;
+      date: string;
+      time: string;
+      duration: string;
+      people: string;
+      price: string;
+    };
+    copyError?: string;
+    copyErrorDescription?: string;
+    copyCode?: string;
     checklist: string;
     checklistItems: string[];
     whatsNext: string;

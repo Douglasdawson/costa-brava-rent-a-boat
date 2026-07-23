@@ -3393,6 +3393,17 @@ export const es: Translations = {
     title: "Solicitud de reserva enviada con éxito",
     responseTime: "Respondemos en menos de 2h por WhatsApp",
     summary: "Resumen de tu solicitud",
+    labels: {
+      boat: "Barco",
+      date: "Fecha",
+      time: "Hora",
+      duration: "Duración",
+      people: "Personas",
+      price: "Precio",
+    },
+    copyError: "Error al copiar",
+    copyErrorDescription: "No se pudo copiar al portapapeles.",
+    copyCode: "Copiar código",
     checklist: "Qué llevar",
     checklistItems: [
       "Protector solar y gorra",

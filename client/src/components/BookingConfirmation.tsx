@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { CheckCircle2, Copy, Share2, Gift, X, Clock, MapPin, MessageCircle } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
+import { formatBookingDate } from "@/utils/intl-helpers";
 import { useToast } from "@/hooks/use-toast";
 import { trackWhatsAppClick, trackBookingConfirmed } from "@/utils/analytics";
 
@@ -26,6 +28,7 @@ export function BookingConfirmation({
   onClose,
 }: BookingConfirmationProps) {
   const t = useTranslations();
+  const { language } = useLanguage();
   const { toast } = useToast();
   const [checkedItems, setCheckedItems] = useState<boolean[]>([]);
   const [showCheckAnimation, setShowCheckAnimation] = useState(false);
@@ -60,19 +63,13 @@ export function BookingConfirmation({
     });
   };
 
-  const formatDate = (dateStr: string): string => {
-    try {
-      const d = new Date(dateStr);
-      return d.toLocaleDateString("es-ES", {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      });
-    } catch {
-      return dateStr;
-    }
-  };
+  const formatDate = (dateStr: string): string =>
+    formatBookingDate(dateStr, language, {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
 
   const handleShareWhatsApp = () => {
     trackWhatsAppClick("booking_confirmation");
@@ -88,8 +85,8 @@ export function BookingConfirmation({
       });
     }).catch(() => {
       toast({
-        title: "Error al copiar",
-        description: "No se pudo copiar al portapapeles.",
+        title: ct.copyError || "Error al copiar",
+        description: ct.copyErrorDescription || "No se pudo copiar al portapapeles.",
         variant: "destructive",
       });
     });
@@ -145,28 +142,28 @@ export function BookingConfirmation({
           </h3>
           <div className="grid grid-cols-2 gap-2 text-sm">
             <div>
-              <span className="text-muted-foreground">Barco:</span>
+              <span className="text-muted-foreground">{ct.labels?.boat || "Barco"}:</span>
               <p className="font-medium text-foreground">{boatName}</p>
             </div>
             <div>
-              <span className="text-muted-foreground">Fecha:</span>
+              <span className="text-muted-foreground">{ct.labels?.date || "Fecha"}:</span>
               <p className="font-medium text-foreground">{formatDate(date)}</p>
             </div>
             <div>
-              <span className="text-muted-foreground">Hora:</span>
+              <span className="text-muted-foreground">{ct.labels?.time || "Hora"}:</span>
               <p className="font-medium text-foreground">{time}h</p>
             </div>
             <div>
-              <span className="text-muted-foreground">Duracion:</span>
+              <span className="text-muted-foreground">{ct.labels?.duration || "Duración"}:</span>
               <p className="font-medium text-foreground">{duration}</p>
             </div>
             <div>
-              <span className="text-muted-foreground">Personas:</span>
+              <span className="text-muted-foreground">{ct.labels?.people || "Personas"}:</span>
               <p className="font-medium text-foreground">{people}</p>
             </div>
             {price !== null && (
               <div>
-                <span className="text-muted-foreground">Precio:</span>
+                <span className="text-muted-foreground">{ct.labels?.price || "Precio"}:</span>
                 <p className="font-bold text-foreground">{price}€</p>
               </div>
             )}
@@ -264,14 +261,14 @@ export function BookingConfirmation({
                       toast({ title: ct.linkCopied });
                     }).catch(() => {
                       toast({
-                        title: "Error al copiar",
-                        description: "No se pudo copiar al portapapeles.",
+                        title: ct.copyError || "Error al copiar",
+                        description: ct.copyErrorDescription || "No se pudo copiar al portapapeles.",
                         variant: "destructive",
                       });
                     });
                   }}
                   className="ml-1 p-0.5 hover:bg-white/20 rounded transition-colors"
-                  aria-label="Copy code"
+                  aria-label={ct.copyCode || "Copiar código"}
                 >
                   <Copy className="h-3 w-3" />
                 </button>

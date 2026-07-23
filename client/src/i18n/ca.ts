@@ -1500,6 +1500,17 @@ export const ca: Translations = {
     title: "Sol·licitud de reserva enviada amb èxit",
     responseTime: "Responem en menys de 2h per WhatsApp",
     summary: "Resum de la teva sol·licitud",
+    labels: {
+      boat: "Vaixell",
+      date: "Data",
+      time: "Hora",
+      duration: "Durada",
+      people: "Persones",
+      price: "Preu",
+    },
+    copyError: "Error en copiar",
+    copyErrorDescription: "No s'ha pogut copiar al porta-retalls.",
+    copyCode: "Copiar el codi",
     checklist: "Què portar",
     checklistItems: [
       "Protector solar i gorra",

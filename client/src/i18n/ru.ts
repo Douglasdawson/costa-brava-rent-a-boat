@@ -1494,6 +1494,17 @@ export const ru: Translations = {
     title: "Запрос на бронирование успешно отправлен",
     responseTime: "Отвечаем в WhatsApp за 2 часа",
     summary: "Сводка вашего запроса",
+    labels: {
+      boat: "Лодка",
+      date: "Дата",
+      time: "Время",
+      duration: "Длительность",
+      people: "Человек",
+      price: "Цена",
+    },
+    copyError: "Ошибка копирования",
+    copyErrorDescription: "Не удалось скопировать в буфер обмена.",
+    copyCode: "Скопировать код",
     checklist: "Что взять с собой",
     checklistItems: [
       "Солнцезащитный крем и кепку",

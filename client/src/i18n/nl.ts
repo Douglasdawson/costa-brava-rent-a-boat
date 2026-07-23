@@ -1499,6 +1499,17 @@ export const nl: Translations = {
     title: "Boekingsverzoek succesvol verzonden",
     responseTime: "We reageren binnen 2 uur op WhatsApp",
     summary: "Overzicht van uw aanvraag",
+    labels: {
+      boat: "Boot",
+      date: "Datum",
+      time: "Tijd",
+      duration: "Duur",
+      people: "Personen",
+      price: "Prijs",
+    },
+    copyError: "Kopiëren mislukt",
+    copyErrorDescription: "Kon niet naar het klembord kopiëren.",
+    copyCode: "Code kopiëren",
     checklist: "Wat meenemen",
     checklistItems: [
       "Zonnebrandcrème en pet",

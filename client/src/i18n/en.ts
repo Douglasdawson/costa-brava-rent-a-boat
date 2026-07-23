@@ -1555,6 +1555,17 @@ export const en: Translations = {
     title: "Booking request sent successfully",
     responseTime: "We reply within 2 hours on WhatsApp",
     summary: "Your request summary",
+    labels: {
+      boat: "Boat",
+      date: "Date",
+      time: "Time",
+      duration: "Duration",
+      people: "People",
+      price: "Price",
+    },
+    copyError: "Copy failed",
+    copyErrorDescription: "Could not copy to the clipboard.",
+    copyCode: "Copy code",
     checklist: "What to bring",
     checklistItems: [
       "Sunscreen and a hat",

@@ -5576,6 +5576,72 @@ export const es: Translations = {
       ]
     }
   },
+  fuegosBlanesPage: {
+    seoTitle: "Fuegos de Blanes desde el barco · 25 y 26 de julio | Costa Brava Rent a Boat",
+    seoDescription:
+      "Vive el 54º Concurso de Fuegos de Blanes desde el mar: excursión en barco de 5 horas el sábado 25 y el domingo 26 de julio por 60€ por persona, con 3 copas de cava o refrescos, pan de coca y tapas. Plazas limitadas.",
+    navLabel: "Fuegos de Blanes",
+    hero: {
+      eyebrow: "Puerto de Blanes · 25 y 26 de julio",
+      title: "Los Fuegos de Blanes, desde el mar",
+      subtitle:
+        "El 54º Concurso Internacional de Fuegos de la Costa Brava, visto desde el barco: el castillo entero sobre Sa Palomera, reflejado en el agua y sin aglomeraciones.",
+    },
+    chips: ["Sábado 25 de julio", "Domingo 26 de julio", "60€ por persona", "Plazas limitadas"],
+    intro:
+      "Cada final de julio, Blanes lanza sus castillos de fuegos desde Sa Palomera a las 22:30 y entre 120.000 y 150.000 personas llenan la playa cada noche. Desde el barco lo vives fondeado frente a la roca, con música, ambiente de Fiesta Mayor y el espectáculo entero por delante.",
+    detailsTitle: "Cómo funciona",
+    details: [
+      {
+        name: "Salida del Puerto de Blanes",
+        description:
+          "Excursión de 5 horas: zarpamos por la tarde y volvemos después de los fuegos. La hora exacta de embarque se confirma al reservar.",
+      },
+      {
+        name: "Primera fila desde el agua",
+        description:
+          "Fondeamos frente a Sa Palomera, donde se lanzan los castillos a las 22:30. Sin colas, sin buscar sitio en la playa.",
+      },
+      {
+        name: "Reserva por WhatsApp",
+        description:
+          "Escríbenos, dinos qué noche y cuántas plazas, y te confirmamos al momento. El pago se gestiona al confirmar la reserva.",
+      },
+    ],
+    includesTitle: "Qué incluye el ticket",
+    includes: [
+      "3 copas de cava o refrescos",
+      "Pan de coca a bordo",
+      "Tapas de la tierra: jamón, fuet y quesos",
+      "Música y ambiente a bordo",
+    ],
+    programTitle: "Las dos noches",
+    program: [
+      { day: "Sábado 25 de julio", pyro: "Espectáculo a cargo de Pirotecnia Xaraiva (Ourense)" },
+      { day: "Domingo 26 de julio", pyro: "Espectáculo a cargo de Pirotecnia Valenciana (Valencia)" },
+    ],
+    priceLabel: "60€",
+    priceMeta: "por persona · excursión de 5 horas",
+    cta: "Reservar por WhatsApp",
+    ctaNote: "Respondemos al momento. Plazas limitadas por orden de reserva.",
+    whatsappMessage:
+      "Hola, quiero reservar plazas para la excursión de los Fuegos de Blanes (25 o 26 de julio).",
+    faqTitle: "Preguntas frecuentes",
+    faq: [
+      {
+        q: "¿A qué hora empiezan los fuegos?",
+        a: "Los castillos se lanzan a las 22:30 desde Sa Palomera cada noche del concurso. El barco ya está fondeado frente a la roca con antelación.",
+      },
+      {
+        q: "¿De dónde sale el barco?",
+        a: "Del Puerto de Blanes. Al reservar te confirmamos la hora exacta de embarque y el punto de encuentro en el puerto.",
+      },
+      {
+        q: "¿Qué pasa si hace mal tiempo?",
+        a: "Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro.",
+      },
+    ],
+  },
   scootersPage: {
     seoTitle: "Alquiler de motos y scooters en Lloret de Mar | Coast Rent",
     seoDescription:

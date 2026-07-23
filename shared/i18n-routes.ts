@@ -52,6 +52,9 @@ export const ROUTE_SLUGS = {
   // Merch shop (collaboration with Laura Cabanas)
   tienda: { es: "tienda", en: "shop", fr: "boutique", de: "shop", nl: "shop", it: "negozio", ca: "botiga", ru: "magazin" },
 
+  // Temporary landing: Blanes fireworks boat trip (July 25-26)
+  fuegosBlanes: { es: "fuegos-blanes", en: "blanes-fireworks-boat", fr: "feux-artifice-blanes-bateau", de: "feuerwerk-blanes-boot", nl: "vuurwerk-blanes-boot", it: "fuochi-artificio-blanes-barca", ca: "focs-blanes", ru: "feyerverk-blanes" },
+
   // Dynamic route prefixes
   boatDetail: { es: "barco", en: "boat", fr: "bateau", de: "boot", nl: "boot", it: "barca", ca: "vaixell", ru: "lodka" },
   blogDetail: { es: "blog", en: "blog", fr: "blog", de: "blog", nl: "blog", it: "blog", ca: "blog", ru: "blog" },

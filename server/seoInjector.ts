@@ -183,6 +183,17 @@ function buildScootersStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
   return out;
 }
 
+// Temporary landing: Blanes fireworks boat trip (July 25-26). Copy lives in
+// i18n fuegosBlanesPage, so all 8 locales get a native title/description.
+function buildFuegosBlanesStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
+  const out: Partial<Record<LangCode, SEOMeta>> = {};
+  for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+    const fp = (I18N_BY_LANG[lang] ?? i18nEs).fuegosBlanesPage;
+    out[lang] = { title: fp.seoTitle, description: fp.seoDescription };
+  }
+  return out;
+}
+
 // Merch shop page (collaboration with Laura Cabanas). Copy lives in i18n
 // shopPage, so all 8 locales get a native title/description.
 function buildTiendaStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
@@ -252,6 +263,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
   "/alquiler-motos-lloret": buildScootersStaticMeta(),
   "/tienda": buildTiendaStaticMeta(),
+  "/fuegos-blanes": buildFuegosBlanesStaticMeta(),
   // Social Boat (salidas compartidas) — ES-only launch (translatedStaticPaths
   // gates indexability); was served as raw index.html with no SSR meta at all.
   "/salidas-compartidas": {

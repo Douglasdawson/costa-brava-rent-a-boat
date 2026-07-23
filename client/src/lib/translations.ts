@@ -2919,6 +2919,27 @@ export interface Translations {
     faqTitle: string;
     faq: { q: string; a: string }[];
   };
+  fuegosBlanesPage: {
+    seoTitle: string;
+    seoDescription: string;
+    navLabel: string;
+    hero: { eyebrow: string; title: string; subtitle: string };
+    chips: string[];
+    intro: string;
+    detailsTitle: string;
+    details: { name: string; description: string }[];
+    includesTitle: string;
+    includes: string[];
+    programTitle: string;
+    program: { day: string; pyro: string }[];
+    priceLabel: string;
+    priceMeta: string;
+    cta: string;
+    ctaNote: string;
+    whatsappMessage: string;
+    faqTitle: string;
+    faq: { q: string; a: string }[];
+  };
   scootersPage: {
     seoTitle: string;
     seoDescription: string;

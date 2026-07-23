@@ -4291,6 +4291,72 @@ export const en: Translations = {
       ]
     }
   },
+  fuegosBlanesPage: {
+    seoTitle: "Blanes Fireworks by Boat · July 25 and 26 | Costa Brava Rent a Boat",
+    seoDescription:
+      "Experience the 54th Blanes fireworks competition from the sea: a 5-hour boat trip on Saturday July 25 and Sunday July 26 for 60€ per person, with 3 glasses of cava or soft drinks, coca bread and tapas. Limited places.",
+    navLabel: "Blanes Fireworks",
+    hero: {
+      eyebrow: "Blanes Harbour · July 25 and 26",
+      title: "The Blanes fireworks, from the sea",
+      subtitle:
+        "The 54th International Fireworks Competition of the Costa Brava, watched from the boat: the full display over Sa Palomera, mirrored on the water and away from the crowds.",
+    },
+    chips: ["Saturday July 25", "Sunday July 26", "60€ per person", "Limited places"],
+    intro:
+      "Every late July, Blanes launches its firework displays from Sa Palomera at 10:30 pm, and between 120,000 and 150,000 people fill the beach each night. From the boat you watch it all anchored in front of the rock, with music, festival atmosphere and the whole show right in front of you.",
+    detailsTitle: "How it works",
+    details: [
+      {
+        name: "Departure from Blanes harbour",
+        description:
+          "A 5-hour trip: we set off in the evening and return after the fireworks. The exact boarding time is confirmed when you book.",
+      },
+      {
+        name: "Front row from the water",
+        description:
+          "We anchor in front of Sa Palomera, where the displays are launched at 10:30 pm. No queues, no fighting for a spot on the beach.",
+      },
+      {
+        name: "Book via WhatsApp",
+        description:
+          "Message us with your night and number of places and we confirm right away. Payment is arranged once the booking is confirmed.",
+      },
+    ],
+    includesTitle: "What the ticket includes",
+    includes: [
+      "3 glasses of cava or soft drinks",
+      "Coca bread on board",
+      "Local tapas: cured ham, fuet and cheeses",
+      "Music and a great atmosphere on board",
+    ],
+    programTitle: "The two nights",
+    program: [
+      { day: "Saturday July 25", pyro: "Display by Pirotecnia Xaraiva (Ourense)" },
+      { day: "Sunday July 26", pyro: "Display by Pirotecnia Valenciana (Valencia)" },
+    ],
+    priceLabel: "60€",
+    priceMeta: "per person · 5-hour trip",
+    cta: "Book via WhatsApp",
+    ctaNote: "We reply right away. Limited places, first come first served.",
+    whatsappMessage:
+      "Hi, I would like to book places for the Blanes fireworks boat trip (July 25 or 26).",
+    faqTitle: "Frequently asked questions",
+    faq: [
+      {
+        q: "What time do the fireworks start?",
+        a: "The displays are launched at 10:30 pm from Sa Palomera every night of the competition. The boat is anchored in front of the rock well in advance.",
+      },
+      {
+        q: "Where does the boat leave from?",
+        a: "From Blanes harbour. When you book, we confirm the exact boarding time and the meeting point at the harbour.",
+      },
+      {
+        q: "What if the weather is bad?",
+        a: "Bad weather: we reschedule at no cost or refund your deposit in full.",
+      },
+    ],
+  },
   scootersPage: {
     seoTitle: "Scooter and motorbike rental in Lloret de Mar | Coast Rent",
     seoDescription:

@@ -4246,6 +4246,72 @@ export const nl: Translations = {
       ]
     }
   },
+  fuegosBlanesPage: {
+    seoTitle: "Vuurwerk van Blanes vanaf de boot · 25 en 26 juli | Costa Brava Rent a Boat",
+    seoDescription:
+      "Beleef de 54e vuurwerkwedstrijd van Blanes vanaf zee: boottocht van 5 uur op zaterdag 25 en zondag 26 juli voor 60€ per persoon, met 3 glazen cava of frisdrank, coca-brood en tapas. Beperkt aantal plaatsen.",
+    navLabel: "Vuurwerk Blanes",
+    hero: {
+      eyebrow: "Haven van Blanes · 25 en 26 juli",
+      title: "Het vuurwerk van Blanes, vanaf zee",
+      subtitle:
+        "De 54e Internationale Vuurwerkwedstrijd van de Costa Brava, gezien vanaf de boot: de hele show boven Sa Palomera, weerspiegeld in het water en ver van de drukte.",
+    },
+    chips: ["Zaterdag 25 juli", "Zondag 26 juli", "60€ per persoon", "Beperkt aantal plaatsen"],
+    intro:
+      "Elk jaar eind juli steekt Blanes zijn vuurwerkshows af vanaf Sa Palomera om 22:30 uur, en elke avond vullen 120.000 tot 150.000 mensen het strand. Vanaf de boot beleef je alles voor anker recht tegenover de rots, met muziek, feestsfeer en de hele show voor je.",
+    detailsTitle: "Hoe het werkt",
+    details: [
+      {
+        name: "Vertrek vanuit de haven van Blanes",
+        description:
+          "Tocht van 5 uur: we vertrekken in de namiddag en keren terug na het vuurwerk. De exacte inschepingstijd wordt bij de reservering bevestigd.",
+      },
+      {
+        name: "Eerste rij vanaf het water",
+        description:
+          "We ankeren tegenover Sa Palomera, waar het vuurwerk om 22:30 uur wordt afgestoken. Geen rijen, geen plek zoeken op het strand.",
+      },
+      {
+        name: "Reserveren via WhatsApp",
+        description:
+          "Stuur ons een bericht met de avond en het aantal plaatsen, en we bevestigen meteen. De betaling wordt geregeld zodra de reservering is bevestigd.",
+      },
+    ],
+    includesTitle: "Wat het ticket omvat",
+    includes: [
+      "3 glazen cava of frisdrank",
+      "Coca-brood aan boord",
+      "Tapas uit de streek: ham, fuet en kazen",
+      "Muziek en sfeer aan boord",
+    ],
+    programTitle: "De twee avonden",
+    program: [
+      { day: "Zaterdag 25 juli", pyro: "Show door Pirotecnia Xaraiva (Ourense)" },
+      { day: "Zondag 26 juli", pyro: "Show door Pirotecnia Valenciana (Valencia)" },
+    ],
+    priceLabel: "60€",
+    priceMeta: "per persoon · tocht van 5 uur",
+    cta: "Reserveren via WhatsApp",
+    ctaNote: "We antwoorden meteen. Beperkt aantal plaatsen, op volgorde van reservering.",
+    whatsappMessage:
+      "Hallo, ik wil graag plaatsen reserveren voor de boottocht naar het vuurwerk van Blanes (25 of 26 juli).",
+    faqTitle: "Veelgestelde vragen",
+    faq: [
+      {
+        q: "Hoe laat begint het vuurwerk?",
+        a: "Het vuurwerk wordt elke avond van de wedstrijd om 22:30 uur vanaf Sa Palomera afgestoken. De boot ligt ruim van tevoren voor anker tegenover de rots.",
+      },
+      {
+        q: "Waar vertrekt de boot?",
+        a: "Vanuit de haven van Blanes. Bij de reservering bevestigen we de exacte inschepingstijd en het verzamelpunt in de haven.",
+      },
+      {
+        q: "Wat gebeurt er bij slecht weer?",
+        a: "Slecht weer: we verzetten kosteloos of betalen de aanbetaling volledig terug.",
+      },
+    ],
+  },
   scootersPage: {
     seoTitle: "Scooter- en motorverhuur in Lloret de Mar | Coast Rent",
     seoDescription:

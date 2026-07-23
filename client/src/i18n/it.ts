@@ -4244,6 +4244,72 @@ export const it: Translations = {
       ]
     }
   },
+  fuegosBlanesPage: {
+    seoTitle: "Fuochi d'artificio di Blanes in barca · 25 e 26 luglio | Costa Brava Rent a Boat",
+    seoDescription:
+      "Vivi il 54º Concorso di fuochi d'artificio di Blanes dal mare: escursione in barca di 5 ore sabato 25 e domenica 26 luglio a 60€ a persona, con 3 calici di cava o bibite, pane di coca e tapas. Posti limitati.",
+    navLabel: "Fuochi di Blanes",
+    hero: {
+      eyebrow: "Porto di Blanes · 25 e 26 luglio",
+      title: "I fuochi di Blanes, dal mare",
+      subtitle:
+        "Il 54º Concorso Internazionale di Fuochi d'Artificio della Costa Brava, visto dalla barca: lo spettacolo intero sopra Sa Palomera, riflesso sull'acqua e lontano dalla folla.",
+    },
+    chips: ["Sabato 25 luglio", "Domenica 26 luglio", "60€ a persona", "Posti limitati"],
+    intro:
+      "Ogni fine luglio, Blanes lancia i suoi spettacoli pirotecnici da Sa Palomera alle 22:30 e tra 120.000 e 150.000 persone riempiono la spiaggia ogni sera. Dalla barca lo vivi all'ancora davanti alla roccia, con musica, atmosfera di festa e lo spettacolo intero davanti a te.",
+    detailsTitle: "Come funziona",
+    details: [
+      {
+        name: "Partenza dal porto di Blanes",
+        description:
+          "Escursione di 5 ore: salpiamo nel pomeriggio e rientriamo dopo i fuochi. L'orario esatto di imbarco viene confermato alla prenotazione.",
+      },
+      {
+        name: "Prima fila dall'acqua",
+        description:
+          "Gettiamo l'ancora davanti a Sa Palomera, da dove i fuochi vengono lanciati alle 22:30. Niente code, niente ricerca di un posto in spiaggia.",
+      },
+      {
+        name: "Prenota su WhatsApp",
+        description:
+          "Scrivici indicando la serata e il numero di posti e ti confermiamo subito. Il pagamento si gestisce alla conferma della prenotazione.",
+      },
+    ],
+    includesTitle: "Cosa include il biglietto",
+    includes: [
+      "3 calici di cava o bibite",
+      "Pane di coca a bordo",
+      "Tapas locali: prosciutto, fuet e formaggi",
+      "Musica e atmosfera a bordo",
+    ],
+    programTitle: "Le due serate",
+    program: [
+      { day: "Sabato 25 luglio", pyro: "Spettacolo di Pirotecnia Xaraiva (Ourense)" },
+      { day: "Domenica 26 luglio", pyro: "Spettacolo di Pirotecnia Valenciana (Valencia)" },
+    ],
+    priceLabel: "60€",
+    priceMeta: "a persona · escursione di 5 ore",
+    cta: "Prenota su WhatsApp",
+    ctaNote: "Rispondiamo subito. Posti limitati in ordine di prenotazione.",
+    whatsappMessage:
+      "Ciao, vorrei prenotare dei posti per l'escursione in barca ai fuochi di Blanes (25 o 26 luglio).",
+    faqTitle: "Domande frequenti",
+    faq: [
+      {
+        q: "A che ora iniziano i fuochi?",
+        a: "I fuochi vengono lanciati alle 22:30 da Sa Palomera ogni sera del concorso. La barca è all'ancora davanti alla roccia con largo anticipo.",
+      },
+      {
+        q: "Da dove parte la barca?",
+        a: "Dal porto di Blanes. Alla prenotazione ti confermiamo l'orario esatto di imbarco e il punto di ritrovo al porto.",
+      },
+      {
+        q: "Cosa succede in caso di maltempo?",
+        a: "Maltempo: riprogrammiamo senza costi o rimborsiamo integralmente l'acconto.",
+      },
+    ],
+  },
   scootersPage: {
     seoTitle: "Noleggio moto e scooter a Lloret de Mar | Coast Rent",
     seoDescription:

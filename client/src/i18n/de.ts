@@ -4259,6 +4259,72 @@ export const de: Translations = {
       ]
     }
   },
+  fuegosBlanesPage: {
+    seoTitle: "Feuerwerk von Blanes vom Boot aus · 25. und 26. Juli | Costa Brava Rent a Boat",
+    seoDescription:
+      "Erleben Sie den 54. Feuerwerkswettbewerb von Blanes vom Meer aus: 5-stündiger Bootsausflug am Samstag, 25. und Sonntag, 26. Juli für 60€ pro Person, mit 3 Gläsern Cava oder Softdrinks, Coca-Brot und Tapas. Begrenzte Plätze.",
+    navLabel: "Feuerwerk Blanes",
+    hero: {
+      eyebrow: "Hafen von Blanes · 25. und 26. Juli",
+      title: "Das Feuerwerk von Blanes, vom Meer aus",
+      subtitle:
+        "Der 54. Internationale Feuerwerkswettbewerb der Costa Brava, vom Boot aus gesehen: das gesamte Spektakel über Sa Palomera, gespiegelt im Wasser und fern der Menschenmassen.",
+    },
+    chips: ["Samstag, 25. Juli", "Sonntag, 26. Juli", "60€ pro Person", "Begrenzte Plätze"],
+    intro:
+      "Jedes Jahr Ende Juli zündet Blanes seine Feuerwerke um 22:30 Uhr von Sa Palomera, und jeden Abend füllen 120.000 bis 150.000 Menschen den Strand. Vom Boot aus erleben Sie alles vor Anker direkt gegenüber dem Felsen, mit Musik, Feststimmung und dem ganzen Spektakel vor sich.",
+    detailsTitle: "So funktioniert es",
+    details: [
+      {
+        name: "Abfahrt vom Hafen von Blanes",
+        description:
+          "5-stündiger Ausflug: Wir legen am Nachmittag ab und kehren nach dem Feuerwerk zurück. Die genaue Einschiffungszeit wird bei der Buchung bestätigt.",
+      },
+      {
+        name: "Erste Reihe vom Wasser aus",
+        description:
+          "Wir ankern gegenüber von Sa Palomera, wo die Feuerwerke um 22:30 Uhr gezündet werden. Ohne Schlangen und ohne Platzsuche am Strand.",
+      },
+      {
+        name: "Buchung per WhatsApp",
+        description:
+          "Schreiben Sie uns, welcher Abend und wie viele Plätze, und wir bestätigen sofort. Die Zahlung wird bei Bestätigung der Buchung geregelt.",
+      },
+    ],
+    includesTitle: "Was das Ticket beinhaltet",
+    includes: [
+      "3 Gläser Cava oder Softdrinks",
+      "Coca-Brot an Bord",
+      "Tapas aus der Region: Schinken, Fuet und Käse",
+      "Musik und Stimmung an Bord",
+    ],
+    programTitle: "Die zwei Abende",
+    program: [
+      { day: "Samstag, 25. Juli", pyro: "Show von Pirotecnia Xaraiva (Ourense)" },
+      { day: "Sonntag, 26. Juli", pyro: "Show von Pirotecnia Valenciana (Valencia)" },
+    ],
+    priceLabel: "60€",
+    priceMeta: "pro Person · 5-stündiger Ausflug",
+    cta: "Per WhatsApp reservieren",
+    ctaNote: "Wir antworten sofort. Begrenzte Plätze in Buchungsreihenfolge.",
+    whatsappMessage:
+      "Hallo, ich möchte Plätze für den Bootsausflug zum Feuerwerk von Blanes reservieren (25. oder 26. Juli).",
+    faqTitle: "Häufige Fragen",
+    faq: [
+      {
+        q: "Um wie viel Uhr beginnt das Feuerwerk?",
+        a: "Die Feuerwerke werden an jedem Abend des Wettbewerbs um 22:30 Uhr von Sa Palomera gezündet. Das Boot ankert schon vorher gegenüber dem Felsen.",
+      },
+      {
+        q: "Von wo legt das Boot ab?",
+        a: "Vom Hafen von Blanes. Bei der Buchung bestätigen wir die genaue Einschiffungszeit und den Treffpunkt im Hafen.",
+      },
+      {
+        q: "Was passiert bei schlechtem Wetter?",
+        a: "Schlechtes Wetter: Wir verschieben kostenlos oder erstatten die Anzahlung vollständig.",
+      },
+    ],
+  },
   scootersPage: {
     seoTitle: "Roller- und Motorradverleih in Lloret de Mar | Coast Rent",
     seoDescription:

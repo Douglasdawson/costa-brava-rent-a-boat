@@ -4237,6 +4237,72 @@ export const ca: Translations = {
       ]
     }
   },
+  fuegosBlanesPage: {
+    seoTitle: "Focs de Blanes des del vaixell · 25 i 26 de juliol | Costa Brava Rent a Boat",
+    seoDescription:
+      "Viu el 54è Concurs de Focs de Blanes des del mar: excursió en vaixell de 5 hores dissabte 25 i diumenge 26 de juliol per 60€ per persona, amb 3 copes de cava o refrescos, pa de coca i tapes. Places limitades.",
+    navLabel: "Focs de Blanes",
+    hero: {
+      eyebrow: "Port de Blanes · 25 i 26 de juliol",
+      title: "Els Focs de Blanes, des del mar",
+      subtitle:
+        "El 54è Concurs Internacional de Focs d'Artifici de la Costa Brava, vist des del vaixell: el castell sencer sobre Sa Palomera, reflectit a l'aigua i sense aglomeracions.",
+    },
+    chips: ["Dissabte 25 de juliol", "Diumenge 26 de juliol", "60€ per persona", "Places limitades"],
+    intro:
+      "Cada final de juliol, Blanes llança els seus castells de focs des de Sa Palomera a les 22:30 i entre 120.000 i 150.000 persones omplen la platja cada nit. Des del vaixell ho vius fondejat davant de la roca, amb música, ambient de Festa Major i l'espectacle sencer al davant.",
+    detailsTitle: "Com funciona",
+    details: [
+      {
+        name: "Sortida del Port de Blanes",
+        description:
+          "Excursió de 5 hores: salpem a la tarda i tornem després dels focs. L'hora exacta d'embarcament es confirma en reservar.",
+      },
+      {
+        name: "Primera fila des de l'aigua",
+        description:
+          "Fondegem davant de Sa Palomera, on es llancen els castells a les 22:30. Sense cues ni buscar lloc a la platja.",
+      },
+      {
+        name: "Reserva per WhatsApp",
+        description:
+          "Escriu-nos, digues quina nit i quantes places, i t'ho confirmem al moment. El pagament es gestiona en confirmar la reserva.",
+      },
+    ],
+    includesTitle: "Què inclou el tiquet",
+    includes: [
+      "3 copes de cava o refrescos",
+      "Pa de coca a bord",
+      "Tapes de la terra: pernil, fuet i formatges",
+      "Música i ambient a bord",
+    ],
+    programTitle: "Les dues nits",
+    program: [
+      { day: "Dissabte 25 de juliol", pyro: "Espectacle a càrrec de Pirotecnia Xaraiva (Ourense)" },
+      { day: "Diumenge 26 de juliol", pyro: "Espectacle a càrrec de Pirotecnia Valenciana (València)" },
+    ],
+    priceLabel: "60€",
+    priceMeta: "per persona · excursió de 5 hores",
+    cta: "Reservar per WhatsApp",
+    ctaNote: "Responem al moment. Places limitades per ordre de reserva.",
+    whatsappMessage:
+      "Hola, vull reservar places per a l'excursió dels Focs de Blanes (25 o 26 de juliol).",
+    faqTitle: "Preguntes freqüents",
+    faq: [
+      {
+        q: "A quina hora comencen els focs?",
+        a: "Els castells es llancen a les 22:30 des de Sa Palomera cada nit del concurs. El vaixell ja està fondejat davant de la roca amb antelació.",
+      },
+      {
+        q: "D'on surt el vaixell?",
+        a: "Del Port de Blanes. En reservar et confirmem l'hora exacta d'embarcament i el punt de trobada al port.",
+      },
+      {
+        q: "Què passa si fa mal temps?",
+        a: "Mal temps: reprogramem sense cost o retornem el dipòsit íntegre.",
+      },
+    ],
+  },
   scootersPage: {
     seoTitle: "Lloguer de motos i scooters a Lloret de Mar | Coast Rent",
     seoDescription:

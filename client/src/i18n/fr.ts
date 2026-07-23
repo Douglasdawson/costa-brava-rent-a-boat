@@ -4254,6 +4254,72 @@ export const fr: Translations = {
       ]
     }
   },
+  fuegosBlanesPage: {
+    seoTitle: "Feux d'artifice de Blanes en bateau · 25 et 26 juillet | Costa Brava Rent a Boat",
+    seoDescription:
+      "Vivez le 54e Concours de feux d'artifice de Blanes depuis la mer : sortie en bateau de 5 heures le samedi 25 et le dimanche 26 juillet pour 60€ par personne, avec 3 coupes de cava ou sodas, pain de coca et tapas. Places limitées.",
+    navLabel: "Feux de Blanes",
+    hero: {
+      eyebrow: "Port de Blanes · 25 et 26 juillet",
+      title: "Les feux de Blanes, depuis la mer",
+      subtitle:
+        "Le 54e Concours International de Feux d'Artifice de la Costa Brava, vu depuis le bateau : le spectacle entier au-dessus de Sa Palomera, reflété sur l'eau et loin de la foule.",
+    },
+    chips: ["Samedi 25 juillet", "Dimanche 26 juillet", "60€ par personne", "Places limitées"],
+    intro:
+      "Chaque fin juillet, Blanes tire ses feux d'artifice depuis Sa Palomera à 22h30, et entre 120 000 et 150 000 personnes remplissent la plage chaque soir. Depuis le bateau, vous vivez tout cela ancré face au rocher, avec musique, ambiance de fête et le spectacle entier devant vous.",
+    detailsTitle: "Comment ça marche",
+    details: [
+      {
+        name: "Départ du port de Blanes",
+        description:
+          "Sortie de 5 heures : nous partons en fin d'après-midi et rentrons après les feux. L'heure exacte d'embarquement est confirmée à la réservation.",
+      },
+      {
+        name: "Premier rang depuis l'eau",
+        description:
+          "Nous mouillons face à Sa Palomera, d'où les feux sont tirés à 22h30. Sans files d'attente ni recherche de place sur la plage.",
+      },
+      {
+        name: "Réservation par WhatsApp",
+        description:
+          "Écrivez-nous, indiquez la soirée et le nombre de places, et nous confirmons immédiatement. Le paiement est organisé à la confirmation de la réservation.",
+      },
+    ],
+    includesTitle: "Ce que comprend le billet",
+    includes: [
+      "3 coupes de cava ou sodas",
+      "Pain de coca à bord",
+      "Tapas du terroir : jambon, fuet et fromages",
+      "Musique et ambiance à bord",
+    ],
+    programTitle: "Les deux soirées",
+    program: [
+      { day: "Samedi 25 juillet", pyro: "Spectacle de Pirotecnia Xaraiva (Ourense)" },
+      { day: "Dimanche 26 juillet", pyro: "Spectacle de Pirotecnia Valenciana (Valence)" },
+    ],
+    priceLabel: "60€",
+    priceMeta: "par personne · sortie de 5 heures",
+    cta: "Réserver par WhatsApp",
+    ctaNote: "Nous répondons immédiatement. Places limitées, par ordre de réservation.",
+    whatsappMessage:
+      "Bonjour, je souhaite réserver des places pour la sortie en bateau des feux de Blanes (25 ou 26 juillet).",
+    faqTitle: "Questions fréquentes",
+    faq: [
+      {
+        q: "À quelle heure commencent les feux ?",
+        a: "Les feux sont tirés à 22h30 depuis Sa Palomera chaque soir du concours. Le bateau est ancré face au rocher bien à l'avance.",
+      },
+      {
+        q: "D'où part le bateau ?",
+        a: "Du port de Blanes. À la réservation, nous confirmons l'heure exacte d'embarquement et le point de rendez-vous au port.",
+      },
+      {
+        q: "Que se passe-t-il en cas de mauvais temps ?",
+        a: "Mauvais temps : nous reprogrammons sans frais ou remboursons l'acompte en intégralité.",
+      },
+    ],
+  },
   scootersPage: {
     seoTitle: "Location de motos et scooters à Lloret de Mar | Coast Rent",
     seoDescription:

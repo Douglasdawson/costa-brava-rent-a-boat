@@ -1504,7 +1504,7 @@ export const de: Translations = {
   confirmation: {
     title: "Buchungsanfrage erfolgreich gesendet",
     responseTime: "Wir antworten innerhalb von 2 Std. per WhatsApp",
-    summary: "Ihre Buchungsübersicht",
+    summary: "Übersicht Ihrer Anfrage",
     checklist: "Was mitnehmen",
     checklistItems: [
       "Sonnenschutz und Mütze",

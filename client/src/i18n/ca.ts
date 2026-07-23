@@ -1497,9 +1497,9 @@ export const ca: Translations = {
   },
 
   confirmation: {
-    title: "Reserva enviada amb èxit",
+    title: "Sol·licitud de reserva enviada amb èxit",
     responseTime: "Responem en menys de 2h per WhatsApp",
-    summary: "Resum de la teva reserva",
+    summary: "Resum de la teva sol·licitud",
     checklist: "Què portar",
     checklistItems: [
       "Protector solar i gorra",

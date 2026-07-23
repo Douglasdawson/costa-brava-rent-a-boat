@@ -1554,7 +1554,7 @@ export const en: Translations = {
   confirmation: {
     title: "Booking request sent successfully",
     responseTime: "We reply within 2 hours on WhatsApp",
-    summary: "Your booking summary",
+    summary: "Your request summary",
     checklist: "What to bring",
     checklistItems: [
       "Sunscreen and a hat",

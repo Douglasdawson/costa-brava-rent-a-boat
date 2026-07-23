@@ -3390,9 +3390,9 @@ export const es: Translations = {
   },
 
   confirmation: {
-    title: "Reserva enviada con éxito",
+    title: "Solicitud de reserva enviada con éxito",
     responseTime: "Respondemos en menos de 2h por WhatsApp",
-    summary: "Resumen de tu reserva",
+    summary: "Resumen de tu solicitud",
     checklist: "Qué llevar",
     checklistItems: [
       "Protector solar y gorra",

@@ -1499,7 +1499,7 @@ export const it: Translations = {
   confirmation: {
     title: "Richiesta di prenotazione inviata con successo",
     responseTime: "Rispondiamo entro 2 ore su WhatsApp",
-    summary: "Riepilogo della prenotazione",
+    summary: "Riepilogo della richiesta",
     checklist: "Cosa portare",
     checklistItems: [
       "Crema solare e cappello",

@@ -1498,7 +1498,7 @@ export const nl: Translations = {
   confirmation: {
     title: "Boekingsverzoek succesvol verzonden",
     responseTime: "We reageren binnen 2 uur op WhatsApp",
-    summary: "Uw boekingsoverzicht",
+    summary: "Overzicht van uw aanvraag",
     checklist: "Wat meenemen",
     checklistItems: [
       "Zonnebrandcrème en pet",

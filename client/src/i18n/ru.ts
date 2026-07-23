@@ -1493,7 +1493,7 @@ export const ru: Translations = {
   confirmation: {
     title: "Запрос на бронирование успешно отправлен",
     responseTime: "Отвечаем в WhatsApp за 2 часа",
-    summary: "Сводка бронирования",
+    summary: "Сводка вашего запроса",
     checklist: "Что взять с собой",
     checklistItems: [
       "Солнцезащитный крем и кепку",

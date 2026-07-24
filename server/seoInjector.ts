@@ -3255,31 +3255,28 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           },
         })),
       };
+      // FAQPage from i18n (mirrors the client's faqItems in category-license-free.tsx,
+      // same 9 Q&A in the same order) so SSR and client emit the identical schema in
+      // all 8 locales. Falls back to ES when the visitor's locale bundle is missing.
+      const cf = (I18N_BY_LANG[lang] ?? i18nEs).categoryLicenseFree!;
+      const clfFaqPairs: Array<[string, string]> = [
+        [cf.faqWhichBoatQuestion, cf.faqWhichBoatAnswer],
+        [cf.faqCarnetQuestion, cf.faqCarnetAnswer],
+        [cf.faqPriceQuestion, cf.faqPriceAnswer],
+        [cf.faqDistanceQuestion, cf.faqDistanceAnswer],
+        [cf.faqExperienceQuestion, cf.faqExperienceAnswer],
+        [cf.faqGroupSizeQuestion, cf.faqGroupSizeAnswer],
+        [cf.faqSpeedQuestion, cf.faqSpeedAnswer],
+        [cf.faqChildrenQuestion, cf.faqChildrenAnswer],
+        [cf.faqWeatherQuestion, cf.faqWeatherAnswer],
+      ];
       const faqNoLicense = {
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: isEn ? "Do I need a license to rent a boat in Blanes?" : "¿Necesito licencia para alquilar un barco sin licencia en Blanes?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "No. Our license-free boats (up to 15 HP) require no boating license. You must be 18+ and we provide a 15-minute safety briefing."
-              : "No. Nuestros barcos sin licencia (hasta 15 CV) no requieren ningun titulo nautico. Debes ser mayor de 18 anos y te damos una formacion de seguridad de 15 minutos." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "What is included in the license-free boat rental price?" : "Que incluye el precio del alquiler de barco sin licencia?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Fuel, civil liability insurance, safety equipment (life jackets, fire extinguisher, anchor), mooring, cleaning, and a 15-minute training."
-              : "Combustible, seguro de responsabilidad civil, equipo de seguridad (chalecos, extintor, ancla), amarre, limpieza y formacion de 15 minutos." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "How far can I go with a license-free boat?" : "Hasta donde puedo navegar con un barco sin licencia?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Up to 2 nautical miles from the coast. You can explore from Sa Palomera beach to Lloret de Mar, including beautiful coves like Cala Sant Francesc."
-              : "Hasta 2 millas nauticas de la costa. Puedes explorar desde la playa de Sa Palomera hasta Lloret de Mar, incluyendo calas como Cala Sant Francesc." },
-          },
-        ],
+        mainEntity: clfFaqPairs.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "No License Boats" : "Barcos Sin Licencia", url: `${BASE_URL}/barcos-sin-licencia` }]);
       const service = buildLandingService(
@@ -3293,7 +3290,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       // Spanish/English ternary) — prerequisite for indexing them. Sourced from
       // the CI-validated category i18n bundle. See translatedStaticPaths.ts.
       // Non-null assertion: CI (validate-translations) guarantees the key in all locales.
-      const cf = (I18N_BY_LANG[lang] ?? i18nEs).categoryLicenseFree!;
+      // `cf` is declared above (for faqNoLicense) and reused here.
       const noLicenseBodyFallback = buildLocationBodyFallback(
         cf.heroTitle,
         cf.heroDescription,

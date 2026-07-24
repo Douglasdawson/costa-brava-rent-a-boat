@@ -765,7 +765,7 @@ Elige la ruta que más te inspire y [reserva tu barco](/barcos). Si no estás se
     isPublished: true,
     _publishedAt: new Date("2026-04-20T10:00:00Z"),
     excerpt: "Todos los consejos que necesitas para tu primera experiencia alquilando un barco: desde qué esperar en el briefing hasta cómo fondear, nadar y gestionar el combustible.",
-    content: `Alquilar un barco por primera vez puede generar una mezcla de emoción y nervios. Es completamente normal. Pero te aseguramos que es mucho más sencillo de lo que parece. En Costa Brava Rent a Boat recibimos cada temporada a cientos de personas que nunca habían pisado un barco y todas terminan con una sonrisa enorme. Aquí van nuestros **mejores consejos para que tu primera experiencia sea perfecta**.
+    content: `Alquilar un barco por primera vez puede generar una mezcla de emoción y nervios. Es completamente normal. Pero te aseguramos que es mucho más sencillo de lo que parece. En Costa Brava Rent a Boat recibimos cada temporada a cientos de personas que nunca habían pisado un barco y todas terminan con una sonrisa enorme. Aquí van nuestros **mejores consejos para que tu primera experiencia sea perfecta**. Todos valen tanto si eliges uno de nuestros [barcos sin licencia en Blanes](/es/barcos-sin-licencia) como una salida con patrón.
 
 ## Antes de llegar: la preparación
 
@@ -1926,7 +1926,7 @@ La Costa Brava bajo el agua es tan espectacular como sobre ella. Con un barco de
     isPublished: true,
     _publishedAt: new Date("2026-04-01T10:00:00Z"),
     excerpt: "Te explicamos cuánto cuesta alquilar un barco sin licencia en Blanes en 2026. Precios por temporada, qué incluye y consejos para ahorrar en tu experiencia náutica.",
-    content: `Una de las preguntas más frecuentes que recibimos es: **"Cuánto cuesta alquilar un barco en Blanes?"** La respuesta depende de varios factores: la temporada, el barco que elijas y la duración del alquiler. En esta guía te damos toda la información de precios para 2026 para que puedas planificar tu día de navegación sin sorpresas.
+    content: `Una de las preguntas más frecuentes que recibimos es: **"Cuánto cuesta alquilar un barco en Blanes?"** La respuesta depende de varios factores: la temporada, el barco que elijas y la duración del alquiler. En esta guía te damos toda la información de precios para 2026 para que puedas planificar tu día de navegación sin sorpresas. Todos los precios corresponden a nuestros [barcos sin licencia en la Costa Brava](/es/barcos-sin-licencia), con la gasolina siempre incluida.
 
 ## Temporadas y precios: cómo funciona
 
@@ -2115,7 +2115,7 @@ Alquilar un barco sin licencia en Blanes es más asequible de lo que imaginas. D
     excerpt: "No sabes qué barco elegir? Comparamos todos los barcos sin licencia de nuestra flota en Blanes: Astec 400, Astec 480, Remus 450, Solar 450 y Remus 450 II. Encuentra el tuyo.",
     content: `Elegir el barco adecuado puede marcar la diferencia entre un buen día y un día perfecto en el mar. En Costa Brava Rent a Boat disponemos de 5 modelos de barcos sin licencia, cada uno con características distintas pensadas para diferentes tipos de navegantes y grupos.
 
-En esta guía comparamos todos nuestros barcos para que elijas el que mejor se adapta a tus necesidades: ya seas una pareja buscando intimidad, una familia con niños o un grupo de amigos que quiere vivir una aventura.
+En esta guía comparamos todos nuestros barcos para que elijas el que mejor se adapta a tus necesidades: ya seas una pareja buscando intimidad, una familia con niños o un grupo de amigos que quiere vivir una aventura. Puedes ver la flota completa y las condiciones en nuestra página de [alquiler de barcos sin licencia en Blanes](/es/barcos-sin-licencia).
 
 ## Tabla comparativa general
 
@@ -2466,7 +2466,7 @@ Septiembre es el secreto mejor guardado de la Costa Brava. Agua caliente, calas 
     isPublished: true,
     _publishedAt: new Date("2026-04-10T10:00:00Z"),
     excerpt: "Resolvemos las dudas más comunes sobre alquilar un barco sin licencia en Blanes: experiencia necesaria, precios, seguridad, capacidad y todo lo que necesitas saber.",
-    content: `Alquilar un barco sin licencia es una experiencia cada vez más popular en la Costa Brava, pero es normal tener dudas antes de la primera vez. En este artículo respondemos las 10 preguntas que más nos hacen nuestros clientes para que reserves con total tranquilidad.
+    content: `Alquilar un barco sin licencia es una experiencia cada vez más popular en la Costa Brava, pero es normal tener dudas antes de la primera vez. En este artículo respondemos las 10 preguntas que más nos hacen nuestros clientes para que reserves con total tranquilidad. Si prefieres verlo todo de un vistazo, tienes la información y la flota en nuestra guía de [alquiler de barco sin licencia en la Costa Brava](/es/barcos-sin-licencia).
 
 ## ¿Necesito licencia o carnet de navegación para alquilar un barco?
 

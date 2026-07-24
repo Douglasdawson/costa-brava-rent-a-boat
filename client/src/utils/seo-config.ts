@@ -87,7 +87,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // URLs. La home defiende el head term "alquiler barco costa brava"; el
       // cluster sin-licencia es integro de la categoria.
       title: `Alquiler Barco Costa Brava \u00b7 desde 75\u20ac/h Gasolina Incluida \u00b7 \u2605${BUSINESS_RATING_STR} Blanes`,
-      description: `Alquiler de barcos en la Costa Brava desde el Puerto de Blanes: con y sin licencia desde 75\u20ac/h, gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). 7 calas v\u00edrgenes, snorkel + paddle. Reserva WhatsApp.`,
+      description: `Alquila un barco en la Costa Brava desde el Puerto de Blanes: por horas, medio d\u00eda o d\u00eda completo. Con y sin licencia desde 75\u20ac/h, gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva hoy.`,
       keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquilar barco costa brava, alquiler barco blanes, alquiler embarcaciones costa brava, alquiler lancha costa brava, rent a boat costa brava",
       ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco Costa Brava \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 Blanes`,
       ogDescription: `Alquiler de barcos en la Costa Brava desde Blanes. Desde 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). 7 calas, snorkel, paddle. Reserva WhatsApp.`
@@ -251,7 +251,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Regala una experiencia náutica inolvidable. Tarjetas desde 50 € canjeables en todos nuestros barcos en Blanes."
     },
     pricing: {
-      title: `Precios Alquiler Barcos Costa Brava ${SEASON_YEAR} | Desde 75\u20ac/h Gasolina Incluida | Blanes`,
+      title: `Precios Alquiler Barcos por Horas Costa Brava ${SEASON_YEAR} | Blanes`,
       description: "Tarifas de alquiler de barcos en la Costa Brava desde el Puerto de Blanes. Sin licencia desde 75\u20ac/h, con licencia desde 160\u20ac/2h. Gasolina incluida. Temporada baja, media y alta.",
       keywords: "precios alquiler barco costa brava, tarifas barco costa brava, cu\u00e1nto cuesta alquilar barco costa brava, precio barco sin licencia costa brava, tarifas barco blanes costa brava",
       ogTitle: `Precios Alquiler Barcos Costa Brava ${SEASON_YEAR} | Desde 75\u20ac/h`,
@@ -333,7 +333,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // = match exacto a queries top "boat rental costa brava" 135 imp y
       // "rent boat costa brava" 181 imp). Rating + reviews delante.
       title: `Costa Brava Boat Rental \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Reviews \u00b7 Blanes \u20ac70/h`,
-      description: `Rent a boat on Costa Brava from Blanes \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). License-free \u20ac70/h, fuel included, up to 7 people. 15 min training. Book WhatsApp.`,
+      description: `Rent a boat on the Costa Brava from Blanes: by the hour, half day or full day. License-free from 75\u20ac/h, fuel included, up to 7 people. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book today.`,
       keywords: "costa brava boat rental, boat rental costa brava, rent boat costa brava, boat hire costa brava, costa brava boat hire no license, rent a boat costa brava, license free boat costa brava, boat rental blanes",
       ogTitle: `Costa Brava Boat Rental ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes \u20ac70/h`,
       ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Rent a boat on Costa Brava from Blanes port, license-free from \u20ac70/h, fuel included. Book on WhatsApp.`
@@ -475,7 +475,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Give an unforgettable nautical experience. Cards from 50 € redeemable on all our boats in Blanes."
     },
     pricing: {
-      title: `Boat Rental Prices Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      title: `Boat Rental Prices by the Hour Blanes ${SEASON_YEAR} | Costa Brava`,
       description: "Check boat rental prices in Blanes. No license from 75\u20ac/h. Licensed from 160\u20ac/2h. Fuel included. Low, mid and high season rates.",
       keywords: "boat rental prices costa brava, how much boat rental blanes, boat hire rates blanes"
     },
@@ -548,7 +548,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     home: {
       // GSC 2026-05-09: CTR rewrite. CA brand-first → keyword-first. 137 imp, 0 clicks.
       title: `Lloguer Barques Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Ressenyes \u00b7 Blanes 75\u20ac/h`,
-      description: `Lloguer barques Costa Brava des de Blanes \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Sense llic\u00e8ncia 75\u20ac/h gasolina inclosa, fins a 7 persones. Reserva WhatsApp.`,
+      description: `Lloga una barca a la Costa Brava des del Port de Blanes: per hores, mig dia o dia complet. Amb i sense llic\u00e8ncia des de 75\u20ac/h, gasolina inclosa. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Reserva avui.`,
       keywords: "lloguer barques costa brava, lloguer embarcacions costa brava, barques sense llicència costa brava, lloguer barca costa brava, llogar barca costa brava, lloguer barques blanes, port blanes barques",
       ogTitle: `Lloguer Barques Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes 75\u20ac/h`,
       ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer barques Costa Brava des del Port de Blanes. Sense llic\u00e8ncia des de 75\u20ac/h, gasolina inclosa.`
@@ -674,7 +674,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "targetes regal barques, regal lloguer barca blanes, experiencia nautica regal, costa brava regal"
     },
     pricing: {
-      title: `Preus Lloguer Barques Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      title: `Preus Lloguer Barques per Hores Blanes ${SEASON_YEAR} | Costa Brava`,
       description: "Consulta els preus de lloguer de barques a Blanes. Sense llicencia des de 75\u20ac/h. Gasolina inclosa. Temporada baixa, mitja i alta.",
       keywords: "preus lloguer barques costa brava, quant costa llogar barca blanes, tarifes barca sense llicencia"
     },
@@ -708,7 +708,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // 9.11 CTR 0.96%) \u2014 Blanes al frente del title hace match exacto. Rating
       // + avis n\u00famero delante como CTR booster.
       title: `Location Bateau Blanes \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Avis \u00b7 Costa Brava 75\u20ac/h`,
-      description: `Location bateau au Port de Blanes (Costa Brava) \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Sans permis 75\u20ac/h, carburant inclus, jusqu'\u00e0 7 personnes. R\u00e9servez WhatsApp.`,
+      description: `Louez un bateau sur la Costa Brava depuis Blanes : \u00e0 l'heure, en demi-journ\u00e9e ou \u00e0 la journ\u00e9e. Avec ou sans permis d\u00e8s 75\u20ac/h, carburant inclus. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). R\u00e9servez aujourd'hui.`,
       keywords: "location bateau costa brava, location bateau sans permis costa brava, louer bateau costa brava, location bateaux costa brava, bateau sans permis costa brava, location bateau blanes, location bateau port blanes, location bateau journ\u00e9e blanes",
       ogTitle: `Location Bateau Blanes ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Costa Brava 75\u20ac/h`,
       ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location bateau au Port de Blanes, Costa Brava. Sans permis d\u00e8s 75\u20ac/h, carburant inclus. R\u00e9servation WhatsApp.`
@@ -830,7 +830,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "cartes cadeaux bateaux, cadeau location bateau blanes, experience nautique cadeau, costa brava cadeau"
     },
     pricing: {
-      title: `Tarifs Location Bateaux Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      title: `Tarifs Location Bateaux à l'Heure Blanes ${SEASON_YEAR} | Costa Brava`,
       description: "Consultez les tarifs de location de bateaux a Blanes. Sans permis des 75\u20ac/h. Carburant inclus. Basse, moyenne et haute saison.",
       keywords: "tarifs location bateaux costa brava, combien coute louer bateau blanes, prix bateau sans permis"
     },
@@ -861,7 +861,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     home: {
       // GSC 2026-05-09: CTR rewrite. DE brand-first → keyword-first.
       title: `Bootsverleih Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Bewertungen \u00b7 Blanes 75\u20ac/h`,
-      description: `Bootsverleih Hafen Blanes (Costa Brava) \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Ohne F\u00fchrerschein 75\u20ac/h, Kraftstoff inkl., bis 7 Personen. WhatsApp Buchung.`,
+      description: `Boot mieten an der Costa Brava ab Blanes: stundenweise, halbtags oder ganzt\u00e4gig. Mit und ohne F\u00fchrerschein ab 75\u20ac/h, Kraftstoff inklusive. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Jetzt buchen.`,
       keywords: "bootsverleih costa brava, boot mieten costa brava, bootscharter costa brava, boot ohne führerschein costa brava, yacht mieten costa brava, bootsverleih blanes, hafen blanes bootsverleih",
       ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes 75\u20ac/h`,
       ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Boot mieten an der Costa Brava ab Hafen Blanes. Ohne F\u00fchrerschein, Kraftstoff inkl., ab 75\u20ac/h.`
@@ -983,7 +983,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "geschenkkarten boote, geschenk bootsverleih blanes, nautisches erlebnis geschenk, costa brava geschenk"
     },
     pricing: {
-      title: `Bootsverleih Preise Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      title: `Bootsverleih Preise pro Stunde Blanes ${SEASON_YEAR} | Costa Brava`,
       description: "Bootsverleih Preise in Blanes. Ohne F\u00fchrerschein ab 75\u20ac/h. Kraftstoff inklusive. Neben-, Mittel- und Hochsaison.",
       keywords: "bootsverleih preise costa brava, was kostet boot mieten blanes, bootstarife ohne fuhrerschein"
     },
@@ -1017,7 +1017,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // CTR 2.5%). Mantenemos "Boot Huren Blanes Costa Brava" para captar las
       // dos variantes top. Rating + 310 reviews delante.
       title: `Boot Huren Blanes Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Reviews \u00b7 75\u20ac/u`,
-      description: `Boot huren in Blanes (Costa Brava) \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Zonder vaarbewijs 75\u20ac/u, brandstof inbegrepen, tot 7 personen. WhatsApp boeking.`,
+      description: `Boot huren aan de Costa Brava vanuit Blanes: per uur, halve dag of hele dag. Met en zonder vaarbewijs vanaf 75\u20ac/u, brandstof inbegrepen. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boek vandaag.`,
       keywords: "bootverhuur costa brava, boten huren costa brava, boot huren costa brava, boot huren blanes, boot zonder vaarbewijs costa brava, bootcharter costa brava, bootverhuur blanes, haven blanes bootverhuur",
       ogTitle: `Boot Huren Blanes Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 75\u20ac/u`,
       ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren in Blanes aan de Costa Brava. Zonder vaarbewijs vanaf 75\u20ac/u, brandstof inbegrepen.`
@@ -1139,7 +1139,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "cadeaukaarten boten, cadeau bootverhuur blanes, nautische ervaring cadeau, costa brava cadeau"
     },
     pricing: {
-      title: `Bootverhuur Prijzen Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      title: `Bootverhuur Prijzen per Uur Blanes ${SEASON_YEAR} | Costa Brava`,
       description: "Bekijk bootverhuur prijzen in Blanes. Zonder vaarbewijs vanaf 75\u20ac/u. Brandstof inbegrepen. Laag-, midden- en hoogseizoen.",
       keywords: "bootverhuur prijzen costa brava, hoeveel kost boot huren blanes, boottarieven zonder vaarbewijs"
     },
@@ -1170,7 +1170,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     home: {
       // GSC 2026-05-09: CTR rewrite. IT brand-first → keyword-first.
       title: `Noleggio Barche Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Recensioni \u00b7 Blanes 75\u20ac/h`,
-      description: `Noleggio barche Costa Brava da Blanes \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Senza patente 75\u20ac/h, carburante incluso, fino a 7 persone. Prenota su WhatsApp.`,
+      description: `Noleggia una barca sulla Costa Brava da Blanes: a ore, mezza giornata o giornata intera. Con e senza patente da 75\u20ac/h, carburante incluso. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Prenota oggi.`,
       keywords: "noleggio barche costa brava, noleggio barche blanes, affitto barche costa brava, barche senza patente costa brava, charter barche costa brava, noleggio porto blanes",
       ogTitle: `Noleggio Barche Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes 75\u20ac/h`,
       ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio barche sulla Costa Brava dal Porto di Blanes. Senza patente da 75\u20ac/h, carburante incluso.`
@@ -1292,7 +1292,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "carte regalo barche, regalo noleggio barca blanes, esperienza nautica regalo, costa brava regalo"
     },
     pricing: {
-      title: `Prezzi Noleggio Barche Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      title: `Prezzi Noleggio Barche a Ore Blanes ${SEASON_YEAR} | Costa Brava`,
       description: "Consulta i prezzi di noleggio barche a Blanes. Senza patente da 75\u20ac/h. Carburante incluso. Bassa, media e alta stagione.",
       keywords: "prezzi noleggio barche costa brava, quanto costa noleggiare barca blanes, tariffe barca senza patente"
     },
@@ -1323,7 +1323,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     home: {
       // GSC 2026-05-09: CTR rewrite. RU brand-first → keyword-first.
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432 \u00b7 \u0411\u043b\u0430\u043d\u0435\u0441 75\u20ac/\u0447`,
-      description: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 \u00b7 \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432). \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 75\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e, \u0434\u043e 7 \u0447\u0435\u043b\u043e\u0432\u0435\u043a. \u0411\u0440\u043e\u043d\u044c \u0432 WhatsApp.`,
+      description: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430: \u043f\u043e\u0447\u0430\u0441\u043e\u0432\u043e, \u043d\u0430 \u043f\u043e\u043b\u0434\u043d\u044f \u0438\u043b\u0438 \u043d\u0430 \u0446\u0435\u043b\u044b\u0439 \u0434\u0435\u043d\u044c. \u0421 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u0438 \u0431\u0435\u0437 \u043e\u0442 75\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432). \u0417\u0430\u0431\u0440\u043e\u043d\u0438\u0440\u0443\u0439\u0442\u0435 \u0441\u0435\u0433\u043e\u0434\u043d\u044f.`,
       keywords: "\u0430\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u043a\u043e\u0441\u0442\u0430-\u0431\u0440\u0430\u0432\u0430, \u0430\u0440\u0435\u043d\u0434\u0430 \u044f\u0445\u0442\u044b \u043a\u043e\u0441\u0442\u0430-\u0431\u0440\u0430\u0432\u0430, \u0430\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u0431\u043b\u0430\u043d\u0435\u0441, \u043b\u043e\u0434\u043a\u0438 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043a\u043e\u0441\u0442\u0430-\u0431\u0440\u0430\u0432\u0430",
       ogTitle: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 \u0411\u043b\u0430\u043d\u0435\u0441 75\u20ac/\u0447`,
       ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432). \u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 75\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e.`
@@ -1445,7 +1445,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "подарочные карты лодки, подарок аренда лодки бланес, морской опыт подарок, коста брава подарок"
     },
     pricing: {
-      title: `Цены Аренда Лодок Бланес ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      title: `Цены Аренды Лодок Почасово Бланес ${SEASON_YEAR} | Costa Brava`,
       description: "Узнайте цены аренды лодок в Бланесе. Без лицензии от 75\u20ac/ч. Топливо включено. Низкий, средний и высокий сезон.",
       keywords: "цены аренда лодок коста брава, сколько стоит арендовать лодку бланес, тарифы лодка без лицензии"
     },

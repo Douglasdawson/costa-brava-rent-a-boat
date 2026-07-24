@@ -4309,6 +4309,8 @@ export const de: Translations = {
       "Tapas aus der Region: Schinken, Fuet und Käse",
       "Musik und Stimmung an Bord",
     ],
+    capacityNote:
+      "Boot mit einer maximalen Kapazität von 100 bis 120 Personen, für mehr Komfort bei diesen besonderen Events.",
     programTitle: "Die zwei Abende",
     program: [
       { day: "Samstag, 25. Juli", pyro: "Show von Pirotecnia Xaraiva (Ourense)" },

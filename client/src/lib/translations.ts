@@ -2941,6 +2941,7 @@ export interface Translations {
     details: { name: string; description: string }[];
     includesTitle: string;
     includes: string[];
+    capacityNote: string;
     programTitle: string;
     program: { day: string; pyro: string }[];
     priceLabel: string;

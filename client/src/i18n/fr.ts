@@ -4304,6 +4304,8 @@ export const fr: Translations = {
       "Tapas du terroir : jambon, fuet et fromages",
       "Musique et ambiance à bord",
     ],
+    capacityNote:
+      "Bateau d'une capacité maximale de 100 à 120 personnes, pour garantir plus de confort lors de ces événements spéciaux.",
     programTitle: "Les deux soirées",
     program: [
       { day: "Samedi 25 juillet", pyro: "Spectacle de Pirotecnia Xaraiva (Ourense)" },

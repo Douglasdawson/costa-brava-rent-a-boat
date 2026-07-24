@@ -5626,6 +5626,8 @@ export const es: Translations = {
       "Tapas de la tierra: jamón, fuet y quesos",
       "Música y ambiente a bordo",
     ],
+    capacityNote:
+      "Barco con capacidad máxima de entre 100 y 120 personas, para garantizar más confort durante estos eventos especiales.",
     programTitle: "Las dos noches",
     program: [
       { day: "Sábado 25 de julio", pyro: "Espectáculo a cargo de Pirotecnia Xaraiva (Ourense)" },

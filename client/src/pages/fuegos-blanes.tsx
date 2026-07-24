@@ -3,9 +3,10 @@ import {
   Anchor,
   CalendarCheck,
   CheckCircle2,
-  MessageCircle,
   Sparkles,
+  Users,
 } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -104,7 +105,7 @@ export default function FuegosBlanesPage() {
       <Navigation />
 
       {/* HERO */}
-      <section className="relative isolate flex min-h-[78vh] items-center overflow-hidden pb-16 pt-28">
+      <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden pb-16 pt-28">
         <img
           src={heroImage}
           alt={s?.hero?.title || "Fuegos de Blanes desde el mar"}
@@ -131,7 +132,7 @@ export default function FuegosBlanesPage() {
           <div className="mt-8">
             <a href={whatsappUrl} target="_blank" rel="noopener" className={`${NAVY_CTA} min-h-12 px-9 text-base`}>
               {s?.cta}
-              <MessageCircle className="h-5 w-5" />
+              <SiWhatsapp className="h-5 w-5" />
             </a>
             <p className="mt-2 text-xs text-white/70">{s?.ctaNote}</p>
           </div>
@@ -177,6 +178,12 @@ export default function FuegosBlanesPage() {
               </li>
             ))}
           </ul>
+          {s?.capacityNote && (
+            <p className="mx-auto mt-6 flex max-w-2xl items-start justify-center gap-2 text-center text-sm text-muted-foreground">
+              <Users className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+              {s.capacityNote}
+            </p>
+          )}
         </div>
       </section>
 
@@ -195,7 +202,7 @@ export default function FuegosBlanesPage() {
                   ) : i === 1 ? (
                     <Sparkles className="h-5 w-5 text-primary" />
                   ) : (
-                    <MessageCircle className="h-5 w-5 text-primary" />
+                    <SiWhatsapp className="h-5 w-5 text-primary" />
                   )}
                 </span>
                 <h3 className="mt-3 font-heading font-semibold text-foreground">{d.name}</h3>
@@ -223,7 +230,7 @@ export default function FuegosBlanesPage() {
           <div className="mt-8 text-center">
             <a href={whatsappUrl} target="_blank" rel="noopener" className={`${NAVY_CTA} min-h-12 px-8 text-base`}>
               {s?.cta}
-              <MessageCircle className="h-5 w-5" />
+              <SiWhatsapp className="h-5 w-5" />
             </a>
             <p className="mt-2 text-xs text-muted-foreground">{s?.ctaNote}</p>
           </div>
@@ -263,7 +270,7 @@ export default function FuegosBlanesPage() {
             className={`${NAVY_CTA} min-h-11 flex-shrink-0 px-6 text-sm`}
           >
             {s?.cta}
-            <MessageCircle className="h-4 w-4" />
+            <SiWhatsapp className="h-4 w-4" />
           </a>
         </div>
       </div>

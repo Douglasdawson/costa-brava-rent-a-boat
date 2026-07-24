@@ -4341,6 +4341,8 @@ export const en: Translations = {
       "Local tapas: cured ham, fuet and cheeses",
       "Music and a great atmosphere on board",
     ],
+    capacityNote:
+      "The boat has a maximum capacity of 100 to 120 people, to guarantee more comfort during these special events.",
     programTitle: "The two nights",
     program: [
       { day: "Saturday July 25", pyro: "Display by Pirotecnia Xaraiva (Ourense)" },

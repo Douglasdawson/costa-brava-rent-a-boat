@@ -4294,6 +4294,8 @@ export const it: Translations = {
       "Tapas locali: prosciutto, fuet e formaggi",
       "Musica e atmosfera a bordo",
     ],
+    capacityNote:
+      "Barca con una capacità massima di 100-120 persone, per garantire più comfort durante questi eventi speciali.",
     programTitle: "Le due serate",
     program: [
       { day: "Sabato 25 luglio", pyro: "Spettacolo di Pirotecnia Xaraiva (Ourense)" },

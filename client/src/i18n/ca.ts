@@ -4287,6 +4287,8 @@ export const ca: Translations = {
       "Tapes de la terra: pernil, fuet i formatges",
       "Música i ambient a bord",
     ],
+    capacityNote:
+      "Vaixell amb una capacitat màxima d'entre 100 i 120 persones, per garantir més confort durant aquests esdeveniments especials.",
     programTitle: "Les dues nits",
     program: [
       { day: "Dissabte 25 de juliol", pyro: "Espectacle a càrrec de Pirotecnia Xaraiva (Ourense)" },

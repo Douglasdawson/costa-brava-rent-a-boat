@@ -4296,6 +4296,8 @@ export const nl: Translations = {
       "Tapas uit de streek: ham, fuet en kazen",
       "Muziek en sfeer aan boord",
     ],
+    capacityNote:
+      "Boot met een maximale capaciteit van 100 tot 120 personen, voor meer comfort tijdens deze speciale evenementen.",
     programTitle: "De twee avonden",
     program: [
       { day: "Zaterdag 25 juli", pyro: "Show door Pirotecnia Xaraiva (Ourense)" },

@@ -4725,6 +4725,323 @@ Ninguna. El briefing de 15 minutos cubre todo lo necesario y la ruta Blanes-Fena
 
 [Consulta disponibilidad desde Pineda de Mar](/alquiler-barcos-pineda-de-mar) o escríbenos por [WhatsApp](https://wa.me/34611500372): te respondemos al momento.`,
   },
+  {
+    title: "Alquilar barco en la Costa Brava en agosto: guía 2026",
+    slug: "alquilar-barco-costa-brava-agosto",
+    category: "Guías",
+    author: "Iván Ramírez Dawson",
+    featuredImage: "/images/blog/mejores-calas-costa-brava-en-barco.webp",
+    metaDescription: "Alquilar barco en la Costa Brava en agosto: disponibilidad real, mejores horarios, precios de temporada alta y reserva por WhatsApp desde Blanes.",
+    tags: ["alquilar barco costa brava agosto", "alquiler barco agosto costa brava", "reservar barco verano costa brava", "barco sin licencia agosto blanes", "precios alquiler barco agosto", "disponibilidad barco temporada alta"],
+    isPublished: true,
+    _publishedAt: new Date("2026-06-30T10:00:00Z"),
+    titleByLang: { es: "Alquilar barco en la Costa Brava en agosto: guía 2026" },
+    excerpt: "Cómo alquilar un barco en la Costa Brava en agosto: disponibilidad de temporada alta, los mejores horarios para evitar aglomeraciones y precios reales desde el Puerto de Blanes.",
+    content: `Agosto es el mes en que más gente nos escribe y, también, en el que más rápido se nos llenan los barcos. Si tu plan es alquilar un barco en la Costa Brava en pleno verano, conviene saber cómo funciona la temporada alta antes de buscar fecha: qué disponibilidad real hay, a qué hora sale mejor navegar y cuánto cuesta de verdad. Te lo cuento como se lo explico cada mañana a quien se acerca al pantalán en Blanes.
+
+## Agosto en la Costa Brava: qué esperar de la temporada alta
+
+Agosto es nuestra temporada alta, el momento de mayor demanda del año. El mar suele amanecer plano y la temperatura del agua ronda los 24 a 26 grados, lo más cálido del verano. A cambio, las calas más conocidas (Sant Francesc, Treumal o las de Lloret) se llenan a media mañana y el puerto trabaja a tope.
+
+El patrón de viento es bastante fiable: mañanas de calma y, a partir de las dos o tres de la tarde, entra la brisa térmica del suroeste, el garbí, que sopla con unos 8 a 12 nudos. No es un viento peligroso, pero levanta algo de oleaje y hace la vuelta a puerto menos cómoda. Por eso, en agosto, la hora a la que sales importa tanto como el barco que eliges. Antes de cada salida puedes consultar la [predicción marítima de AEMET para la costa de Cataluña](https://www.aemet.es/es/eltiempo/prediccion/maritima) para ir sobre seguro.
+
+Una nota honesta: si buscas tranquilidad y aguas medio vacías, agosto no es tu mes. Junio y septiembre te dan mar más solitario y precios más bajos. Pero si tus vacaciones caen en agosto, hay maneras de aprovecharlo bien.
+
+## Reserva con antelación: en agosto la disponibilidad vuela
+
+La pregunta que más recibo en julio es "¿tenéis barco para la semana que viene en agosto?". La respuesta sincera: depende del día, y cuanto antes preguntes, mejor. Los fines de semana de agosto y la franja del 10 al 20 son los primeros en cerrarse, a veces con una o dos semanas de margen.
+
+Operamos la flota más grande del [alquiler de barcos en la Costa Brava](/es/alquiler-barcos-costa-brava) desde el puerto de Blanes, con ocho embarcaciones, así que casi siempre encontramos hueco moviendo horarios o barco. Pero en agosto no damos por sentada ninguna fecha. Mi consejo: si ya sabes el día, escríbenos por WhatsApp en cuanto tengas el viaje cerrado. Trabajamos sin pagos online: la web recoge tu solicitud de reserva y el pago se gestiona de forma manual, así que reservar es tan sencillo como confirmar fecha, barco y franja horaria.
+
+## Mejores horarios para navegar en agosto
+
+En verano la ventana operativa es de 09:00 a 20:00, once horas para repartir. En agosto hay dos franjas que recomiendo por encima del resto:
+
+- **Salida temprana (sobre las 9:00 a 9:30).** El mar está plano, todavía no aprieta el calor y llegas a las calas antes que las multitudes. Es la mejor opción para familias con niños y para quien sale por primera vez sin experiencia.
+- **Atardecer (última franja de la tarde).** El garbí ya ha aflojado, la luz es preciosa y las playas se vacían. Perfecto para parejas o para un baño largo fondeado sin nadie alrededor.
+
+La franja que evito recomendar en agosto es el mediodía cerrado: máximo calor, máxima gente en las calas y el garbí entrando justo cuando toca volver. Si solo puedes salir a esa hora, no pasa nada, pero ve con margen para regresar antes de que refresque la brisa.
+
+Recuerda que sin licencia puedes navegar hasta 2 millas náuticas de la costa (unos 3,7 km), suficiente para encadenar Sa Palomera, Cala Sant Francesc (a unos 8 minutos), Cala Treumal (15 minutos) y Lloret de Mar (25 minutos). Tossa de Mar queda algo más lejos, a 30 a 45 minutos, y se hace mejor con un barco con licencia.
+
+## Qué barco elegir y cuánto cuesta en agosto
+
+Aquí hay un detalle importante de agosto que mucha gente desconoce: los [barcos sin licencia desde el puerto de Blanes](/es/barcos-sin-licencia) se alquilan en julio y agosto en tramos de 1 a 4 horas, no por día completo. Es una decisión nuestra para que más gente pueda salir cada día en plena temporada. Tenemos cuatro barcos sin licencia (Solar 450, Remus 450, Remus 450 II y Astec 480), todos con gasolina incluida en el precio, para hasta 5 personas y sin necesidad de carnet: basta con ser mayor de 18 años y hacer el briefing de 15 minutos en el pantalán.
+
+Si quieres el día completo, o sois un grupo más grande, la opción son los [barcos con licencia para el día completo](/es/barcos-con-licencia): tres embarcaciones de hasta 7 personas (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625), que sí permiten jornadas largas. Y para quien prefiere no conducir, está la excursión privada con capitán, hasta 6 personas, con nosotros al timón.
+
+Sobre el precio, sé claro: agosto es el mes más caro del año porque es temporada alta. El resto de la temporada verás tarifas desde 75 euros la hora; en agosto el punto de partida sube y arranca en torno a los 95 euros la hora en los barcos sin licencia. La gasolina va incluida en los barcos sin licencia, así que no hay sorpresas de combustible al final del día. Tienes el desglose por barco y duración en la [tabla de precios por temporada](/es/precios).
+
+## Cómo reservar y preguntas frecuentes
+
+Reservar es directo: eliges fecha, barco y franja, nos lo cuentas por WhatsApp al **+34 611 500 372** o desde el formulario de la web, y confirmamos disponibilidad. Sin pasarela de pago online, sin comisiones de plataforma.
+
+**¿Cuándo debería reservar para agosto?** Cuanto antes. Los fines de semana y la franja central del mes se cierran con una o dos semanas de antelación.
+
+**¿Y si hace mal tiempo el día de mi reserva?** Reprogramamos sin coste o te devolvemos el depósito íntegro. El cambio de fecha también es gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.
+
+**¿Necesito experiencia?** No para los barcos sin licencia. Te explicamos cómo arrancar, virar, fondear y volver a puerto antes de salir.
+
+**¿Hay aparcamiento?** Sí, a unos 100 metros del amarre.
+
+Si tu objetivo es exprimir el verano en el agua, planifica con tiempo, sal pronto o al atardecer, y deja el mediodía para la sombra y el chiringuito. Para inspirarte con calas y rutas concretas puedes echar un vistazo a la guía oficial del [Patronat de Turisme Costa Brava Girona](https://es.costabrava.org/). Nos vemos en el pantalán.
+`,
+  },
+  {
+    title: "Alquilar barco con patrón o sin patrón en la Costa Brava",
+    slug: "alquilar-barco-con-patron-o-sin-patron-costa-brava",
+    category: "Guías",
+    author: "Iván Ramírez Dawson",
+    featuredImage: "/images/blog/comparativa-barcos-sin-licencia-blanes.webp",
+    metaDescription: "¿Barco con patrón o sin patrón en la Costa Brava? Te explico la diferencia, cuándo elegir cada uno y precios reales desde el puerto de Blanes.",
+    tags: ["alquiler barco con patrón costa brava", "barco sin patrón costa brava", "alquiler barco con patrón blanes", "excursión privada con capitán", "barco sin licencia blanes", "barco con capitán costa brava"],
+    isPublished: true,
+    _publishedAt: new Date("2026-07-07T10:00:00Z"),
+    titleByLang: { es: "Alquilar barco con patrón o sin patrón en la Costa Brava" },
+    excerpt: "\"Sin licencia\" y \"sin patrón\" no son lo mismo. Te explico la diferencia, cuándo elegir cada opción y los precios reales desde el puerto de Blanes.",
+    content: `Cada verano recibimos la misma llamada: "quiero un barco, pero no tengo licencia, ¿me tenéis que llevar vosotros?". La respuesta corta es no, no hace falta. Pero detrás de esa duda hay dos conceptos que la gente mezcla constantemente: "sin licencia" y "sin patrón". No significan lo mismo, y entender la diferencia es lo que decide qué día en el mar vas a tener.
+
+En esta guía te explico, desde el puerto de Blanes, qué es un barco con patrón y qué es uno sin patrón, cuándo conviene cada opción y cuánto cuesta de verdad en 2026.
+
+## "Sin licencia" y "sin patrón" no son lo mismo
+
+Son dos preguntas distintas:
+
+- **¿Necesito licencia?** Depende de la potencia y la eslora del barco. En España, la normativa permite gobernar embarcaciones de hasta 15 CV y menos de 5 metros sin ninguna titulación, siempre que no te alejes más de 2 millas náuticas de la costa (unos 3,7 km). Lo regula el [Real Decreto 875/2014](https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344).
+- **¿Quién conduce?** Aquí entra el patrón. "Sin patrón" quiere decir que conduces tú. "Con patrón" quiere decir que va a bordo un profesional que se encarga de todo.
+
+Por eso puedes tener un barco sin licencia que además es sin patrón (lo llevas tú, sin título), o un barco con patrón donde tampoco necesitas licencia porque conduce él. Son combinaciones diferentes, y cada una encaja con un tipo de plan.
+
+## Barco sin patrón: tú llevas el timón
+
+Un barco sin patrón es un alquiler en el que el capitán del día eres tú. Nadie de nuestro equipo sube contigo. Dentro de esta modalidad tenemos dos familias de barcos.
+
+**Sin licencia (y sin patrón).** Son nuestros barcos más alquilados: la Remus 450, la Solar 450, la Remus 450 II y la Astec 480, todos para hasta 5 personas. No necesitas ningún título. Antes de salir te damos una explicación de 15 minutos en el pantalán (arranque, gobierno, fondeo y las reglas básicas) y ya navegas por tu cuenta. Llevan motor de 15 CV, así que la velocidad es tranquila y el radio de acción son esas 2 millas de costa, de sobra para llegar a las calas de Blanes y Lloret. La **gasolina va incluida**, igual que el seguro y el equipo de seguridad. Tienes el detalle en la página de [barcos sin licencia](/es/barcos-sin-licencia).
+
+**Con licencia (y sin patrón).** Si tienes la Licencia de Navegación (LN) o superior, se abren los barcos grandes: la Mingolla Brava 19 (6 personas, 80 CV), la Trimarchi 57S (7 personas, 110 CV) y la Pacific Craft 625 (7 personas, 115 CV). Más potencia, más distancia de costa permitida y más capacidad. Aquí la **gasolina no está incluida**: pagas el combustible que gastes. Los tienes en [barcos con licencia](/es/barcos-con-licencia).
+
+Si dudas entre estas dos familias, escribimos una comparativa a fondo en [barco sin licencia vs con licencia](/es/blog/barco-sin-licencia-vs-con-licencia-guia).
+
+## Barco con patrón: te subes y solo disfrutas
+
+Un barco con patrón es lo contrario: nuestro patrón profesional conduce y tú no tocas el timón salvo que quieras. Para esto tenemos la [excursión privada con capitán](/es/barco/excursion-privada), en el Pacific Craft 625 para hasta 6 personas.
+
+No necesitas licencia ni experiencia. El patrón elige la cala del día según el viento y las corrientes, te lleva a rincones entre Blanes y Tossa de Mar a los que no se llega a pie, para a fondear donde el agua está más limpia y se ocupa de la seguridad de principio a fin. Aquí la gasolina no se incluye en la tarifa base.
+
+Es la opción honesta cuando nadie del grupo tiene título, cuando es una celebración y no quieres estar pendiente de conducir, o cuando simplemente prefieres que otro tome las decisiones y tú solo pongas la nevera y la música.
+
+## ¿Con patrón o sin patrón? Elige según tu caso
+
+Después de años haciendo esto, la recomendación se resume rápido:
+
+- **Primera vez, pareja o familia con niños, presupuesto ajustado:** sin licencia y sin patrón. Conduces tú, la gasolina va incluida y es la forma más económica de tener el barco todo el día para vosotros.
+- **Tienes la LN y quieres más barco:** con licencia y sin patrón. Ganas potencia, distancia y sitio para 6 o 7 personas.
+- **Nadie tiene licencia pero queréis un barco grande o ir más lejos:** con patrón. Es la única manera legal de llegar más allá de las 2 millas o de subir a 6 personas sin título.
+- **Celebración, aniversario o quieres desconectar del todo:** con patrón. Pagas más, pero no gestionas nada.
+
+No hay una respuesta mejor que otra: hay la que encaja con tu grupo y tu día.
+
+## Precios reales desde el puerto de Blanes
+
+Los precios cambian por temporada. Estos son los de referencia para 2026 (julio es temporada media, agosto la más alta):
+
+- **Sin licencia, sin patrón:** desde 75 EUR/hora en temporada baja. En julio, 2 horas 140 EUR, 4 horas 200 EUR y el día completo (8 horas) 270 EUR. Gasolina incluida.
+- **Con licencia, sin patrón:** desde 160 EUR las 2 horas en baja. En julio, la Mingolla Brava 19 son 180 EUR las 2 horas, 270 EUR las 4 horas y 360 EUR el día. Gasolina aparte.
+- **Con patrón (excursión privada):** desde 240 EUR las 2 horas en baja. En julio, 260 EUR las 2 horas, 340 EUR las 3 horas y 400 EUR las 4 horas. Patrón incluido, gasolina aparte.
+
+Tienes el desglose completo por barco y duración en la página de [precios](/es/precios). Un apunte honesto: si buscas un yate de lujo con tripulación y catering, no somos tu sitio. Somos un alquiler local y operativo del puerto de Blanes, pensado para pasar un buen día en el mar sin complicaciones.
+
+## Cómo reservar
+
+Salimos del puerto de Blanes, en horario de 09:00 a 20:00. Reservar es directo:
+
+1. Elige modalidad (con patrón o sin patrón) y barco.
+2. Escríbenos por WhatsApp al **+34 611 500 372** con la fecha, la franja horaria y cuántos sois.
+3. Te confirmamos disponibilidad y precio. La web recoge tu solicitud de reserva; el pago se gestiona de forma manual, sin pasarelas online.
+
+Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Si el día amanece con mal tiempo, reprogramamos sin coste o te devolvemos el depósito íntegro.
+
+¿Sigues sin tener claro si te conviene ir tú al timón o que te lleve un patrón? Cuéntanos tu plan por WhatsApp y te decimos de verdad qué opción encaja mejor, aunque sea la más barata.
+`,
+  },
+  {
+    title: "Alquilar barco medio día en la Costa Brava",
+    slug: "alquilar-barco-medio-dia-costa-brava",
+    category: "Guías",
+    author: "Iván Ramírez Dawson",
+    featuredImage: "/images/blog/calas-costa-brava.webp",
+    metaDescription: "Alquilar barco medio día en la Costa Brava desde Blanes: franja de 4 horas, mañana o tarde, qué calas ver y cuánto cuesta. Reserva por WhatsApp.",
+    tags: ["alquilar barco medio día costa brava", "alquiler barco 4 horas blanes", "barco medio día sin licencia", "medio día en barco costa brava", "mejor hora alquilar barco verano", "barco mañana o tarde"],
+    isPublished: true,
+    _publishedAt: new Date("2026-07-09T10:00:00Z"),
+    titleByLang: { es: "Alquilar barco medio día en la Costa Brava" },
+    excerpt: "Medio día de barco (cuatro horas) desde Blanes: fondeas en dos o tres calas sin prisa. Te cuento si te conviene mañana o tarde, qué calas ver y cuánto cuesta.",
+    content: `En pleno julio, la pregunta que más nos llega al puerto no es "cuánto cuesta un día entero", sino "¿me da tiempo a algo en media jornada?". La respuesta corta es sí: con cuatro horas bien organizadas fondeas en dos o tres calas, te bañas sin prisa y vuelves a tiempo para comer. La respuesta larga depende de una decisión que casi nadie se plantea al reservar: salir por la mañana o por la tarde.
+
+Escribo desde el Puerto de Blanes, donde tenemos la flota, así que todo lo que cuento aquí sale de lo que vemos cada temporada con quien alquila medio día.
+
+## Qué entra en "medio día" de alquiler
+
+Medio día para nosotros son cuatro horas de barco. No es un número al azar: nuestra ventana operativa va de 09:00 a 20:00 (hora de Madrid), once horas de luz que se parten de forma natural en dos franjas de mañana y de tarde con margen para el relevo y el repostaje entre una salida y otra.
+
+Cuatro horas suenan a poco cuando lo lees, pero en el mar cunden. Descontado el tiempo de salir y entrar al puerto, te quedan unas tres horas y media de navegación y fondeo reales. Es más que suficiente para una salida de baño y snorkel por las calas cercanas, y bastante más relajado que las clásicas dos horas, que se te van en un suspiro entre que sales y encuentras sitio para fondear.
+
+Si viajas con niños o es tu primera vez al timón, medio día es probablemente la mejor puerta de entrada: tiempo de sobra para coger confianza sin el compromiso (ni el precio) de la jornada completa.
+
+## Mañana o tarde: cuál te conviene
+
+Aquí está la decisión que de verdad cambia tu experiencia. No hay una opción mejor en abstracto, hay una mejor para tu plan.
+
+**La mañana (salida sobre las 09:00 o 10:00)** es la franja del mar en calma. En la Costa Brava el viento térmico suele entrar a mediodía, así que a primera hora el agua está más plana, se navega más cómodo y las calas todavía no se han llenado de barcos. Es la mejor opción si llevas niños pequeños, si te mareas con facilidad o si vas a hacer snorkel y quieres el agua transparente antes de que la remuevan las hélices. El contra: el agua está algo más fresca a primera hora y el sol aprieta menos para tumbarte.
+
+**La tarde (salida sobre las 15:00 o 16:00)** es la del agua caliente y la luz dorada. El mar puede estar un poco más movido si sopla la marinada, pero a cambio te llevas la mejor temperatura de baño del día y, si estiras la salida, el arranque del atardecer desde el agua. Es la franja que recomendamos a parejas y grupos de amigos que priorizan tomar el sol y el ambiente sobre la mar plana.
+
+Un consejo práctico que damos siempre: antes de decidir, mira el parte marítimo del día. La [predicción marítima de AEMET](https://www.aemet.es/es/eltiempo/prediccion/maritima) para el litoral de Girona te dice si va a entrar viento por la tarde, y con eso eliges franja con criterio en lugar de a ciegas.
+
+## Qué calas te da tiempo a ver en 4 horas
+
+Con medio día no vas a llegar a Tossa de Mar y volver con calma (eso es plan de jornada completa), pero tienes un abanico de calas estupendo a tiro de piedra de Blanes.
+
+Si alquilas un **barco sin licencia**, te mueves dentro de las 2 millas náuticas de costa (unos 3,7 km) que marca la ley para esta categoría, en horario diurno. Dentro de ese radio entran algunas de las mejores calas de la zona: Cala Sant Francesc, Sa Palomera, Cala Sa Forcanera y Cala Bona, todas a pocos minutos del puerto. Con cuatro horas encadenas dos o tres sin agobio.
+
+Si vas hacia el sur, [de Blanes a Lloret de Mar en barco](/es/alquiler-barcos-lloret-de-mar) es un salto corto y muy agradecido para media jornada, con calas como Boadella o Sa Boadella al alcance. Y si alquilas un **barco con licencia**, la cosa cambia: con más potencia llegas antes y más lejos, aunque para exprimir de verdad el tramo hasta Tossa sigo recomendando la jornada completa.
+
+La regla que le doy a todo el mundo: en medio día, menos es más. Elige dos calas y disfrútalas, en vez de correr para tachar cinco de una lista.
+
+## Cuánto cuesta medio día y qué incluye
+
+La franja de cuatro horas parte de unos 200 € en un barco sin licencia, con la gasolina incluida. Esto último importa más de lo que parece: en los barcos sin licencia el combustible entra en el precio, así que lo que ves es lo que pagas, sin sorpresas al devolver la llave.
+
+Dos matices honestos:
+
+- El precio varía según la temporada y el día. En temporada alta y los fines de semana la tarifa sube (aplicamos un recargo de fin de semana), así que un sábado de agosto no cuesta lo mismo que un martes de junio.
+- Los barcos con licencia se tarifan aparte y **no** llevan la gasolina incluida, porque consumen bastante más. Para esos conviene pedir el precio cerrado de tu franja concreta.
+
+Para no jugar a las adivinanzas, lo mejor es mirar la tarifa real de tu fecha en nuestra [página de precios](/es/precios) o pedirnos un presupuesto por WhatsApp con el día y la franja que quieres. Te decimos el total exacto, sin comisiones de plataforma de por medio. Si quieres comparar antes de decidir, tenemos toda la flota sin carnet detallada en [barcos sin licencia](/es/barcos-sin-licencia) y el resto de opciones en la página de [alquiler de barcos en la Costa Brava](/es/alquiler-barcos-costa-brava).
+
+Nuestra flota viva son ocho embarcaciones: cuatro sin licencia (para hasta cinco personas cada una) y el resto con licencia o con capitán. Todas salen del mismo Puerto de Blanes.
+
+## Cómo reservar tu medio día
+
+Reservar medio día es rápido y no requiere pagar nada online: la web recoge tu solicitud y cerramos los detalles contigo directamente.
+
+- **Elige franja**: mañana (mar en calma, ideal con niños y para snorkel) o tarde (agua caliente y luz de atardecer).
+- **Dinos la fecha y el número de personas**: te confirmamos disponibilidad y precio cerrado.
+- **Escríbenos por WhatsApp** al **+34 611 500 372** o envía tu solicitud desde la web. Atendemos en ocho idiomas.
+
+En temporada alta las franjas buenas vuelan, sobre todo las mañanas de fin de semana, así que si tienes una fecha en mente reserva con margen. Y si el día amanece con mal tiempo, reprogramamos sin coste o te devolvemos el depósito íntegro: nadie navega a disgusto.
+
+¿Dudas sobre si medio día se te queda corto? Cuéntanos tu plan y te decimos con sinceridad si te conviene la media jornada o el día completo. Preferimos que aciertes con la salida a venderte más horas de las que necesitas.
+`,
+  },
+  {
+    title: "Alquiler de barco para grupos en la Costa Brava: 4, 6 o 7",
+    slug: "alquiler-barco-grupos-costa-brava-capacidad",
+    category: "Guías",
+    author: "Iván Ramírez Dawson",
+    featuredImage: "/images/blog/excursiones-barco-grupos-eventos-blanes.webp",
+    metaDescription: "Alquiler de barco para grupos en la Costa Brava: capacidad real de cada barco, cuándo necesitas licencia y precio por persona. Reserva por WhatsApp.",
+    tags: ["alquiler barco grupos costa brava", "cuantas personas caben en un barco de alquiler", "alquiler barco 6 personas costa brava", "alquiler barco 7 personas blanes", "barco sin licencia capacidad", "precio por persona alquiler barco"],
+    isPublished: true,
+    _publishedAt: new Date("2026-07-14T10:00:00Z"),
+    titleByLang: { es: "Alquiler de barco para grupos en la Costa Brava: 4, 6 o 7" },
+    excerpt: "Cuántas personas caben de verdad en cada barco de Blanes: 5 sin licencia, 6 o 7 con licencia, y dos barcos si sois más de 8. Con precio por persona.",
+    content: `Cada julio nos pasa lo mismo. Llega un WhatsApp que dice "somos ocho, ¿nos cabe un barco?" y la respuesta honesta es no: os caben dos. La capacidad de una embarcación no es una recomendación flexible, es un número escrito en la hoja de registro, y de él dependen el seguro y la propia estabilidad del barco.
+
+Esta guía resuelve la pregunta antes de que reserves: cuántas personas caben de verdad en cada barco de la flota de Blanes, a partir de qué tamaño de grupo necesitas licencia náutica, y cuánto sale por cabeza según seáis cuatro, seis o siete.
+
+## Por qué la capacidad no se negocia
+
+La capacidad máxima de una embarcación de recreo está fijada por el fabricante y homologada en su documentación. No es un número que el alquilador pueda estirar "porque los niños son pequeños". Dos motivos:
+
+- **Seguro.** La póliza cubre a los ocupantes hasta el máximo homologado. Un pasajero de más deja al barco entero fuera de cobertura.
+- **Estabilidad.** En una embarcación de 4,5 metros, el peso extra de una persona se nota en cuanto todos se mueven al mismo lado para saltar al agua.
+
+Nota práctica que casi nadie tiene clara: en la mayoría de embarcaciones **los bebés y los niños cuentan como una persona**. Si sois dos adultos y tres niños, sois cinco.
+
+## Grupos de 2 a 5 personas: la flota sin licencia
+
+Aquí está el grueso de nuestras reservas, y es la única franja donde puedes navegar **sin ningún título náutico**. Los cuatro barcos sin licencia activos hoy en Blanes admiten **hasta 5 personas**:
+
+| Barco | Capacidad | Motor | Fianza |
+|---|---|---|---|
+| Solar 450 | 5 personas | Mercury 15 cv | 250 € |
+| Remus 450 | 5 personas | 15 cv | 200 € |
+| Remus 450 II | 5 personas | 15 cv | 200 € |
+| Astec 480 | 5 personas | 15 cv | 300 € |
+
+La gasolina está incluida en toda la flota sin licencia. Eso importa cuando comparas precios: en muchos sitios el depósito lo pagas aparte al volver.
+
+Un aviso sincero: cinco adultos en un barco de 4,5 metros caben, pero van justos si el plan es pasar ocho horas fondeados tomando el sol. Si sois cinco adultos y queréis espacio, plantéate el **Astec 480**, que es el más ancho de los cuatro, o directamente salta al bloque de abajo.
+
+El límite legal de navegación sin licencia es de **2 millas náuticas desde la costa** (unos 3,7 km) y motor de hasta 15 cv, según el [Real Decreto 875/2014](https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344). Suena poco y no lo es: desde Blanes te da de sobra para llegar a Lloret de Mar o a las calas de Sa Forcanera y Treumal. Los detalles del proceso están en la página de [barcos sin licencia](/es/barcos-sin-licencia).
+
+## Grupos de 6 y 7 personas: aquí ya necesitas licencia o patrón
+
+Este es el escalón que sorprende a la gente. **No existe barco sin licencia para seis personas.** La normativa que permite navegar sin título limita la potencia a 15 cv, y con 15 cv nadie fabrica una embarcación homologada para seis. Así que en cuanto sois seis, tenéis dos caminos y solo dos.
+
+### Camino 1: alguien del grupo tiene licencia
+
+Con una Licencia de Navegación (LN) o superior, se abre la flota grande:
+
+- **Mingolla Brava 19** (5,99 m, Mercury 80 cv): **6 personas**. Con GPS y sonda. Lloret en 15 minutos, Tossa en media hora.
+- **Trimarchi 57S** (5,7 m, 110 cv): **7 personas**. Solárium doble y mesa central para comer fondeados.
+- **Pacific Craft 625** (6,24 m, Yamaha 115 cv): **7 personas**. La más grande y equipada de la flota.
+
+Aquí el **combustible no está incluido** (se repone al devolver el barco) y la fianza sube a 500 €. Es el peaje por tener un barco que puede recorrer toda la costa entre Blanes y Tossa sin pensárselo. Toda la ficha técnica, en [barcos con licencia](/es/barcos-con-licencia).
+
+Y sí, sirven las licencias extranjeras equivalentes. Si tienes un título francés, italiano, alemán o británico, es muy probable que valga; el verificador de la web te lo confirma antes de reservar.
+
+### Camino 2: nadie tiene licencia (o nadie quiere conducir)
+
+La **Excursión Privada con Capitán** admite **6 personas** y no requiere ningún título: pones el grupo, nosotros ponemos el patrón. Él elige la cala del día según viento y corrientes, os lleva a cuevas y rincones a los que no se llega a pie, y vosotros no tocáis el timón.
+
+Es la opción que más recomendamos para cumpleaños, aniversarios y grupos donde nadie tiene experiencia en el mar. Precio en julio: **260 € (2 h), 340 € (3 h), 400 € (4 h)**. En agosto sube a 280 / 360 / 420 €. Combustible aparte.
+
+Si dudas entre conducir tú o que conduzca un profesional, en la guía de [rutas en barco desde Blanes](/es/blog/rutas-barco-desde-blanes) verás qué distancias son realistas en cada caso.
+
+## Grupos de 8 o más: dos barcos, no uno
+
+No tenemos un barco de 10 plazas y no vamos a fingir que sí. Lo que sí funciona, y lo hacemos muchos fines de semana de agosto, es **salir con dos barcos a la vez**.
+
+Dos Remus 450 (5 + 5 = 10 personas) navegan juntos, fondean en la misma cala y el grupo se junta en el agua. Coordinamos las salidas a la misma hora desde el mismo pantalán. En la práctica, es una excursión de grupo con más libertad: cada barco decide si se queda un rato más en una cala o se adelanta a la siguiente.
+
+Coste orientativo para 10 personas, 4 horas en julio: **2 x 200 € = 400 €**, gasolina incluida. Salen **40 € por persona**, que es menos de lo que cuesta la mayoría de excursiones colectivas con horario fijo y 60 desconocidos a bordo.
+
+Si el grupo pasa de 12, escríbenos con antelación: hay que bloquear varios barcos el mismo día y en agosto eso no se improvisa.
+
+## Cuánto sale por persona según el tamaño del grupo
+
+Los números de abajo son de **julio, 4 horas**, que es la reserva más común del verano. Precios reales de la flota, no estimaciones.
+
+| Grupo | Barco | Precio 4 h | Por persona |
+|---|---|---|---|
+| 4 personas | Remus 450 (sin licencia) | 200 € | 50 € |
+| 5 personas | Remus 450 (sin licencia) | 200 € | 40 € |
+| 5 personas | Astec 480 (más espacio) | 230 € | 46 € |
+| 6 personas | Mingolla Brava 19 (con licencia) | 270 € | 45 € |
+| 6 personas | Excursión con capitán | 400 € | 67 € |
+| 7 personas | Pacific Craft 625 (con licencia) | 280 € | 40 € |
+| 10 personas | 2 x Remus 450 | 400 € | 40 € |
+
+Lee la tabla al revés y verás el patrón: **cuanto más grande es el grupo, más barato sale por cabeza**. El barco cuesta lo mismo lo llenes o no. Cuatro personas en un barco de cinco plazas es la combinación que peor rinde económicamente.
+
+En los barcos con licencia hay que sumar el combustible, que en una salida de 4 horas por la costa suele moverse entre 30 y 60 € según lo rápido que navegues. En agosto, todos los precios suben. La tabla completa por temporada y duración está en [precios](/es/precios).
+
+## Cómo reservar (y qué preguntarnos antes)
+
+El proceso es directo: eliges barco y franja horaria en la web, mandas la solicitud y te confirmamos por WhatsApp. No hay pago online, el importe se gestiona al recoger el barco. Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Si hace mal tiempo, reprogramamos sin coste o devolvemos el depósito íntegro.
+
+Dos cosas que conviene decirnos al escribir:
+
+1. **El número exacto de personas, contando niños y bebés.** Es lo que determina qué barco podemos darte.
+2. **Si alguien del grupo tiene licencia náutica**, y de qué país. Cambia por completo las opciones disponibles.
+
+Estamos en el puerto de Blanes, de abril a octubre, de 09:00 a 20:00. WhatsApp: **+34 611 500 372**. Reserva online en [costabravarentaboat.com](/es/).
+
+Y si después de leer esto ves que tu plan es una fiesta de 20 personas con DJ a bordo, te lo decimos claro: no somos eso. Somos barcos pequeños, calas tranquilas y grupos que quieren el mar para ellos. Si eso es lo que buscáis, nos vemos en el pantalán.
+`,
+  },
 ];
 
 // Exported so ad-hoc scripts can create/update individual posts via the admin

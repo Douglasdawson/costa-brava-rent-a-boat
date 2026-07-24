@@ -281,7 +281,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     // por país, no traducción literal.
     es: {
       title: `Alquiler Barco Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} reseñas · Blanes 70€/h`,
-      description: `Alquila un barco en la Costa Brava desde el Puerto de Blanes: por horas, medio día o día completo. Con y sin licencia desde 70€/h, gasolina incluida. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva hoy.`,
+      description: `Alquila un barco en la Costa Brava desde el Puerto de Blanes: por horas, medio día o día completo. Sin licencia desde 70€/h con gasolina incluida, o con licencia hasta 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva hoy.`,
       ogTitle: `Alquiler Barco Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes 70€/h`,
       ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Alquiler barco Costa Brava sin licencia desde 70€/h, gasolina incluida. Reserva por WhatsApp.`,
     },
@@ -293,37 +293,37 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     fr: {
       title: `Location Bateau Blanes · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Avis · Sans Permis 70€/h`,
-      description: `Louez un bateau sur la Costa Brava depuis Blanes : à l'heure, en demi-journée ou à la journée. Avec ou sans permis dès 70€/h, carburant inclus. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Réservez aujourd'hui.`,
+      description: `Louez un bateau sur la Costa Brava depuis Blanes : à l'heure, en demi-journée ou à la journée. Sans permis dès 70€/h avec carburant inclus, ou avec permis jusqu'à 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Réservez aujourd'hui.`,
       ogTitle: `Location Bateau Blanes ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Sans Permis 70€/h`,
       ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location bateau au Port de Blanes, Costa Brava. Sans permis dès 70€/h, carburant inclus. Réservation WhatsApp.`,
     },
     de: {
       title: `Bootsverleih Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Bewertungen · Blanes 70€/h`,
-      description: `Boot mieten an der Costa Brava ab Blanes: stundenweise, halbtags oder ganztägig. Mit und ohne Führerschein ab 70€/h, Kraftstoff inklusive. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Jetzt buchen.`,
+      description: `Boot mieten an der Costa Brava ab Blanes: stundenweise, halbtags oder ganztägig. Ohne Führerschein ab 70€/h inklusive Kraftstoff, oder mit Führerschein bis 115PS. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Jetzt buchen.`,
       ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes 70€/h`,
       ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Boot mieten an der Costa Brava ab Hafen Blanes. Ohne Führerschein, Kraftstoff inkl., ab 70€/h.`,
     },
     ca: {
       title: `Lloguer Barques Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Ressenyes · Blanes 70€/h`,
-      description: `Lloga una barca a la Costa Brava des del Port de Blanes: per hores, mig dia o dia complet. Amb i sense llicència des de 70€/h, gasolina inclosa. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Reserva avui.`,
+      description: `Lloga una barca a la Costa Brava des del Port de Blanes: per hores, mig dia o dia complet. Sense llicència des de 70€/h amb gasolina inclosa, o amb llicència fins a 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Reserva avui.`,
       ogTitle: `Lloguer Barques Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes 70€/h`,
       ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer barques Costa Brava des del Port de Blanes. Sense llicència des de 70€/h, gasolina inclosa.`,
     },
     nl: {
       title: `Boot Huren Blanes Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Reviews · 70€/u`,
-      description: `Boot huren aan de Costa Brava vanuit Blanes: per uur, halve dag of hele dag. Met en zonder vaarbewijs vanaf 70€/u, brandstof inbegrepen. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boek vandaag.`,
+      description: `Boot huren aan de Costa Brava vanuit Blanes: per uur, halve dag of hele dag. Zonder vaarbewijs vanaf 70€/u inclusief brandstof, of met vaarbewijs tot 115pk. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boek vandaag.`,
       ogTitle: `Boot Huren Blanes Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · 70€/u`,
       ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren in Blanes aan de Costa Brava. Zonder vaarbewijs vanaf 70€/u, brandstof inbegrepen.`,
     },
     it: {
       title: `Noleggio Barche Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Recensioni · Blanes 70€/h`,
-      description: `Noleggia una barca sulla Costa Brava da Blanes: a ore, mezza giornata o giornata intera. Con e senza patente da 70€/h, carburante incluso. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Prenota oggi.`,
+      description: `Noleggia una barca sulla Costa Brava da Blanes: a ore, mezza giornata o giornata intera. Senza patente da 70€/h con carburante incluso, o con patente fino a 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Prenota oggi.`,
       ogTitle: `Noleggio Barche Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes 70€/h`,
       ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio barche sulla Costa Brava dal Porto di Blanes. Senza patente da 70€/h, carburante incluso.`,
     },
     ru: {
       title: `Аренда Лодок Коста-Брава · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} отзывов · Бланес 70€/ч`,
-      description: `Аренда лодок на Коста-Браве из Бланеса: почасово, на полдня или на целый день. С лицензией и без от 70€/ч, топливо включено. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Забронируйте сегодня.`,
+      description: `Аренда лодок на Коста-Браве из Бланеса: почасово, на полдня или на целый день. Без лицензии от 70€/ч с включённым топливом, или с лицензией до 115 л.с. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Забронируйте сегодня.`,
       ogTitle: `Аренда Лодок Коста-Брава ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Бланес 70€/ч`,
       ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Аренда лодок на Коста-Браве из порта Бланес. Без лицензии от 70€/ч, топливо включено.`,
     },

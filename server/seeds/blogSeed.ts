@@ -3227,7 +3227,7 @@ El barco con licencia es la mejor opcion si:
 
 ### Barcos con licencia recomendados
 
-- [Pacific Craft 625](/barco/pacific-craft-625): 150 CV, hasta 7 personas, ideal para rutas largas hasta Tossa de Mar.
+- [Pacific Craft 625](/barco/pacific-craft-625): 115 CV, hasta 7 personas, ideal para rutas largas hasta Tossa de Mar.
 - [Mingolla Brava 19](/barco/mingolla-brava-19): 100 CV, versatil y comoda, perfecta para grupos de 6 personas.
 
 ## Y si quiero un barco grande pero no tengo licencia?
@@ -4768,7 +4768,7 @@ Recuerda que sin licencia puedes navegar hasta 2 millas náuticas de la costa (u
 
 Aquí hay un detalle importante de agosto que mucha gente desconoce: los [barcos sin licencia desde el puerto de Blanes](/es/barcos-sin-licencia) se alquilan en julio y agosto en tramos de 1 a 4 horas, no por día completo. Es una decisión nuestra para que más gente pueda salir cada día en plena temporada. Tenemos cuatro barcos sin licencia (Solar 450, Remus 450, Remus 450 II y Astec 480), todos con gasolina incluida en el precio, para hasta 5 personas y sin necesidad de carnet: basta con ser mayor de 18 años y hacer el briefing de 15 minutos en el pantalán.
 
-Si quieres el día completo, o sois un grupo más grande, la opción son los [barcos con licencia para el día completo](/es/barcos-con-licencia): tres embarcaciones de hasta 7 personas (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625), que sí permiten jornadas largas. Y para quien prefiere no conducir, está la excursión privada con capitán, hasta 6 personas, con nosotros al timón.
+Si quieres el día completo, o sois un grupo más grande, la opción son los [barcos con licencia para el día completo](/es/barcos-con-licencia): tres embarcaciones de 6 y 7 plazas (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625), que sí permiten jornadas largas. Y para quien prefiere no conducir, está la excursión privada con capitán, hasta 6 personas, con nosotros al timón.
 
 Sobre el precio, sé claro: agosto es el mes más caro del año porque es temporada alta. El resto de la temporada verás tarifas desde 75 euros la hora; en agosto el punto de partida sube y arranca en torno a los 95 euros la hora en los barcos sin licencia. La gasolina va incluida en los barcos sin licencia, así que no hay sorpresas de combustible al final del día. Tienes el desglose por barco y duración en la [tabla de precios por temporada](/es/precios).
 
@@ -4910,7 +4910,7 @@ La regla que le doy a todo el mundo: en medio día, menos es más. Elige dos cal
 
 ## Cuánto cuesta medio día y qué incluye
 
-La franja de cuatro horas parte de unos 200 € en un barco sin licencia, con la gasolina incluida. Esto último importa más de lo que parece: en los barcos sin licencia el combustible entra en el precio, así que lo que ves es lo que pagas, sin sorpresas al devolver la llave.
+La franja de cuatro horas va desde 150 € en temporada baja (200 € en pleno julio) en un barco sin licencia, con la gasolina incluida. Esto último importa más de lo que parece: en los barcos sin licencia el combustible entra en el precio, así que lo que ves es lo que pagas, sin sorpresas al devolver la llave.
 
 Dos matices honestos:
 

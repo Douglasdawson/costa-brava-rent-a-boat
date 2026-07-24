@@ -242,18 +242,6 @@ export default function CategoryLicenseFreePage() {
           "bestRating": "5",
           "worstRating": "1"
         },
-        "review": {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Maria G." },
-          "datePublished": "2025-08-15",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
-          "reviewBody": "Experiencia increible navegando por la Costa Brava sin necesidad de licencia. El barco estaba en perfecto estado y la atencion fue excelente."
-        },
         "offers": {
           "@type": "Offer",
           "priceCurrency": "EUR",

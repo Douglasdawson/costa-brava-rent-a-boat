@@ -1109,6 +1109,15 @@ export const fr: Translations = {
     faqGroupSizeQuestion: "Combien de personnes tiennent dans un bateau sans permis ?",
     faqGroupSizeAnswer:
       "Nos 4 bateaux sans permis ont une capacité de 4 à 5 personnes (adultes et enfants comptent de la même façon). Le Remus 450 est idéal pour les couples ou petites familles, et le Solar 450, le Remus 450 II et l'Astec 480 accueillent jusqu'à 5 personnes. Si vous avez besoin de 6 ou 7 places, consultez les bateaux avec permis (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) ou notre Excursion Privée avec skipper. Le prix est par bateau, pas par personne, plus vous êtes, moins cela coûte par tête.",
+    faqWhichBoatQuestion: "Quel bateau puis-je conduire sans permis ?",
+    faqWhichBoatAnswer:
+      "En Espagne, vous pouvez piloter sans aucun titre un bateau de jusqu'à 5 mètres de long avec un moteur de jusqu'à 15 CV (11 kW), selon le Décret Royal 875/2014. Nos 4 bateaux sans permis (Solar 450, Remus 450, Remus 450 II et Astec 480) respectent cette limite : jusqu'à 5 personnes, carburant inclus et sans permis. Il suffit d'avoir plus de 18 ans et de suivre le briefing de 15 minutes avant le départ.",
+    faqPriceQuestion: "Combien coûte la location d'un bateau sans permis à l'heure ?",
+    faqPriceAnswer:
+      "Les prix commencent à 75€/h avec le carburant inclus. Nous travaillons par créneaux : 1 heure à partir de 75€, 2 heures à partir de 115€, une demi-journée (4 heures) à partir de 150€ et une journée complète (8 heures) à partir de 220€ en basse saison. Les tarifs augmentent en haute saison et le week-end. Pas de commission de plateforme ni de supplément carburant : le prix que vous réservez est le prix final.",
+    faqWeatherQuestion: "Que se passe-t-il en cas de mauvais temps ?",
+    faqWeatherAnswer:
+      "Si la journée commence avec du mauvais temps, nous reprogrammons la sortie sans frais ou nous vous remboursons l'intégralité de l'acompte. De plus, le changement de date est gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Les réservations confirmées avec acompte ne sont pas remboursables en dehors du cas de mauvais temps.",
     howToTitle: "Comment louer un bateau sans permis à Blanes (5 étapes)",
     howToIntro:
       "Louer un bateau sans permis au Port de Blanes est plus simple qu'il n'y paraît. Voici les 5 étapes du processus, de la réservation au retour, pour savoir exactement à quoi s'attendre le jour de votre sortie.",

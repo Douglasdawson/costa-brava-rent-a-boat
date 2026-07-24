@@ -2877,6 +2877,18 @@ export const es: Translations = {
     faqGroupSizeQuestion: "Cuánta gente cabe en un barco sin licencia?",
     faqGroupSizeAnswer:
       "Nuestros 4 barcos sin licencia tienen capacidad de 4 a 5 personas (adultos y niños cuentan igual). Remus 450 es ideal para parejas o familias pequeñas, y Solar 450, Remus 450 II y Astec 480 admiten hasta 5 personas. Si necesitas 6 o 7 plazas, mira los barcos con licencia (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o la Excursión Privada con patrón. El precio es por barco, no por persona, así que cuanta más gente, más económico sale por cabeza.",
+    // Fase 2 SEO 2026-07-24: 3 FAQ que espejan las queries exactas de búsqueda
+    // (qué barco / cuánto cuesta por horas / mal tiempo). Alimentan el
+    // FAQSection visible y el FAQPage JSON-LD (faqItems en la página).
+    faqWhichBoatQuestion: "¿Qué barco puedo llevar sin licencia?",
+    faqWhichBoatAnswer:
+      "En España puedes gobernar sin ninguna titulación una embarcación de hasta 5 metros de eslora y motor de hasta 15 CV (11 kW), según el Real Decreto 875/2014. Nuestros 4 barcos sin licencia (Solar 450, Remus 450, Remus 450 II y Astec 480) cumplen ese límite: hasta 5 personas, gasolina incluida y sin carnet. Solo necesitas ser mayor de 18 años y hacer el briefing de 15 minutos antes de zarpar.",
+    faqPriceQuestion: "¿Cuánto cuesta alquilar un barco sin licencia por horas?",
+    faqPriceAnswer:
+      "El precio arranca en 75€/h con la gasolina incluida. Trabajamos por franjas: 1 hora desde 75€, 2 horas desde 115€, medio día (4 horas) desde 150€ y día completo (8 horas) desde 220€ en temporada baja. La tarifa sube en temporada alta y los fines de semana. No hay comisiones de plataforma ni coste extra de combustible: el precio que reservas es el precio final.",
+    faqWeatherQuestion: "¿Qué pasa si hace mal tiempo?",
+    faqWeatherAnswer:
+      "Si el día amanece con mal tiempo, reprogramamos la salida sin coste o te devolvemos el depósito íntegro. Además, el cambio de fecha es gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
     // Section: HowTo (added 2026-05-21 to rescue ranking drop pos 13→18).
     // Long-tail "cómo alquilar barco sin licencia" + HowTo rich result.
     howToTitle: "Cómo alquilar un barco sin licencia en Blanes (5 pasos)",

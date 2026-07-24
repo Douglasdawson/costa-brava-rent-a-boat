@@ -1105,6 +1105,15 @@ export const de: Translations = {
     faqGroupSizeQuestion: "Wie viele Personen passen in ein führerscheinfreies Boot?",
     faqGroupSizeAnswer:
       "Unsere 4 führerscheinfreien Boote bieten Platz für 4 bis 5 Personen (Erwachsene und Kinder zählen gleich). Die Remus 450 ist ideal für Paare oder kleine Familien, und Solar 450, Remus 450 II und Astec 480 nehmen bis zu 5 Personen auf. Wenn du 6 oder 7 Plätze brauchst, schau dir die Boote mit Führerschein an (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) oder unseren Privaten Ausflug mit Skipper. Der Preis ist pro Boot, nicht pro Person, je mehr Personen, desto günstiger pro Kopf.",
+    faqWhichBoatQuestion: "Welches Boot darf ich ohne Führerschein fahren?",
+    faqWhichBoatAnswer:
+      "In Spanien darfst du ohne jede Qualifikation ein Boot von bis zu 5 Metern Länge mit einem Motor von bis zu 15 PS (11 kW) führen, gemäß dem Königlichen Dekret 875/2014. Unsere 4 führerscheinfreien Boote (Solar 450, Remus 450, Remus 450 II und Astec 480) halten dieses Limit ein: bis zu 5 Personen, Kraftstoff inklusive und ohne Führerschein. Du musst nur über 18 sein und vor dem Ablegen das 15-minütige Briefing absolvieren.",
+    faqPriceQuestion: "Wie viel kostet die stundenweise Miete eines Boots ohne Führerschein?",
+    faqPriceAnswer:
+      "Die Preise beginnen bei 75€/Std. inklusive Kraftstoff. Wir arbeiten mit Zeitfenstern: 1 Stunde ab 75€, 2 Stunden ab 115€, ein halber Tag (4 Stunden) ab 150€ und ein ganzer Tag (8 Stunden) ab 220€ in der Nebensaison. In der Hauptsaison und an Wochenenden steigen die Preise. Keine Plattformgebühren und keine zusätzlichen Kraftstoffkosten: Der gebuchte Preis ist der Endpreis.",
+    faqWeatherQuestion: "Was passiert bei schlechtem Wetter?",
+    faqWeatherAnswer:
+      "Wenn der Tag mit schlechtem Wetter beginnt, verschieben wir die Fahrt kostenlos oder erstatten dir die Anzahlung vollständig. Außerdem ist die Terminänderung bis 7 Tage vor der Abfahrt kostenlos (vorbehaltlich Verfügbarkeit). Bestätigte Buchungen mit Anzahlung sind außerhalb des Falls von schlechtem Wetter nicht erstattungsfähig.",
     howToTitle: "Wie man in Blanes ein Boot ohne Führerschein mietet (5 Schritte)",
     howToIntro:
       "Ein Boot ohne Führerschein im Hafen von Blanes zu mieten ist einfacher als gedacht. Hier sind die 5 Schritte des Ablaufs – von der Buchung bis zur Rückgabe – damit Sie genau wissen, was Sie am Tag der Abfahrt erwartet.",

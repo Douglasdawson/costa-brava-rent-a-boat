@@ -1101,6 +1101,15 @@ export const nl: Translations = {
     faqGroupSizeQuestion: "Hoeveel mensen passen er in een boot zonder vaarbewijs?",
     faqGroupSizeAnswer:
       "Onze 4 boten zonder vaarbewijs hebben een capaciteit van 4 tot 5 personen (volwassenen en kinderen tellen gelijk). De Remus 450 is ideaal voor stellen of kleine gezinnen, en de Solar 450, Remus 450 II en Astec 480 bieden plaats aan maximaal 5 personen. Heb je 6 of 7 plaatsen nodig, kijk dan naar de boten met vaarbewijs (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) of onze Privé-excursie met schipper. De prijs is per boot, niet per persoon, hoe meer mensen, hoe goedkoper per hoofd.",
+    faqWhichBoatQuestion: "Welke boot mag ik zonder vaarbewijs besturen?",
+    faqWhichBoatAnswer:
+      "In Spanje mag je zonder enig diploma een boot van maximaal 5 meter lang met een motor van maximaal 15 pk (11 kW) besturen, volgens Koninklijk Besluit 875/2014. Onze 4 boten zonder vaarbewijs (Solar 450, Remus 450, Remus 450 II en Astec 480) blijven binnen die grens: tot 5 personen, brandstof inbegrepen en zonder vaarbewijs. Je hoeft alleen ouder dan 18 te zijn en de briefing van 15 minuten te volgen voordat je vertrekt.",
+    faqPriceQuestion: "Hoeveel kost het huren van een boot zonder vaarbewijs per uur?",
+    faqPriceAnswer:
+      "De prijzen beginnen bij 75€/u inclusief brandstof. We werken met tijdvakken: 1 uur vanaf 75€, 2 uur vanaf 115€, een halve dag (4 uur) vanaf 150€ en een hele dag (8 uur) vanaf 220€ in het laagseizoen. In het hoogseizoen en in het weekend stijgen de tarieven. Geen platformkosten en geen extra brandstofkosten: de prijs die je boekt is de eindprijs.",
+    faqWeatherQuestion: "Wat gebeurt er bij slecht weer?",
+    faqWeatherAnswer:
+      "Als de dag met slecht weer begint, verplaatsen we de tocht kosteloos of betalen we je aanbetaling volledig terug. Bovendien is het wijzigen van de datum gratis tot 7 dagen voor vertrek (afhankelijk van beschikbaarheid). Bevestigde boekingen met aanbetaling zijn niet terugbetaalbaar behalve bij slecht weer.",
     howToTitle: "Een boot zonder vaarbewijs huren in Blanes (5 stappen)",
     howToIntro:
       "Een boot zonder vaarbewijs huren in de haven van Blanes is eenvoudiger dan het lijkt. Dit zijn de 5 stappen van het proces, van de reservering tot de teruggave, zodat je precies weet wat je kunt verwachten op de dag van vertrek.",

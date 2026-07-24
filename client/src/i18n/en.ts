@@ -1090,6 +1090,15 @@ export const en: Translations = {
     faqGroupSizeQuestion: "How many people fit in a license-free boat?",
     faqGroupSizeAnswer:
       "Our 4 license-free boats hold 4 to 5 people (adults and children count the same). Remus 450 is ideal for couples or small families, and Solar 450, Remus 450 II and Astec 480 take up to 5 people. If you need 6 or 7 seats, take a look at the licensed boats (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) or our Private Excursion with skipper. The price is per boat, not per person, so the more people you bring, the cheaper it gets per head.",
+    faqWhichBoatQuestion: "Which boat can I drive without a licence?",
+    faqWhichBoatAnswer:
+      "In Spain you can operate a boat of up to 5 metres in length with an engine of up to 15 HP (11 kW) without any qualification, under Royal Decree 875/2014. Our 4 licence-free boats (Solar 450, Remus 450, Remus 450 II and Astec 480) all fall within that limit: up to 5 people, fuel included and no licence. You only need to be over 18 and take the 15-minute safety briefing before setting off.",
+    faqPriceQuestion: "How much does it cost to hire a licence-free boat by the hour?",
+    faqPriceAnswer:
+      "Prices start at 75€/h with fuel included. We work in time slots: 1 hour from 75€, 2 hours from 115€, half a day (4 hours) from 150€ and a full day (8 hours) from 220€ in low season. Rates go up in high season and at weekends. There are no platform fees and no extra fuel charge: the price you book is the final price.",
+    faqWeatherQuestion: "What happens if the weather is bad?",
+    faqWeatherAnswer:
+      "If the day starts with bad weather, we reschedule the trip at no cost or refund your deposit in full. On top of that, changing the date is free up to 7 days before departure (subject to availability). Confirmed bookings with a deposit are non-refundable except in the case of bad weather.",
     howToTitle: "How to Hire a Licence-Free Boat in Blanes (5 Steps)",
     howToIntro:
       "Hiring a licence-free boat at the Port of Blanes is simpler than it sounds. Here are the 5 steps of the process, from booking to return, so you know exactly what to expect on the day.",

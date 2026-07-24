@@ -124,10 +124,24 @@ export default function CategoryLicenseFreePage() {
 
   // FAQ items for structured data and display
   // GSC 2026-05-18: added 3 long-tail FAQs (carnet, experiencia, group size)
+  // Fase 2 2026-07-24: added which-boat / price-per-hour / bad-weather FAQs
+  // (mirror exact search queries). Ordered by search intent.
   const faqItems = [
+    {
+      question: clf.faqWhichBoatQuestion,
+      answer: clf.faqWhichBoatAnswer,
+    },
     {
       question: clf.faqCarnetQuestion,
       answer: clf.faqCarnetAnswer,
+    },
+    {
+      question: clf.faqPriceQuestion,
+      answer: clf.faqPriceAnswer,
+    },
+    {
+      question: clf.faqDistanceQuestion,
+      answer: clf.faqDistanceAnswer,
     },
     {
       question: clf.faqExperienceQuestion,
@@ -146,8 +160,8 @@ export default function CategoryLicenseFreePage() {
       answer: clf.faqChildrenAnswer,
     },
     {
-      question: clf.faqDistanceQuestion,
-      answer: clf.faqDistanceAnswer,
+      question: clf.faqWeatherQuestion,
+      answer: clf.faqWeatherAnswer,
     },
   ];
 

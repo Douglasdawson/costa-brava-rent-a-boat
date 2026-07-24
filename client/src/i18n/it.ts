@@ -1102,6 +1102,15 @@ export const it: Translations = {
     faqGroupSizeQuestion: "Quante persone entrano in una barca senza patente?",
     faqGroupSizeAnswer:
       "Le nostre 4 barche senza patente hanno capacità tra 4 e 5 persone (adulti e bambini contano uguale). La Remus 450 è ideale per coppie o piccole famiglie, mentre Solar 450, Remus 450 II e Astec 480 ospitano fino a 5 persone. Se hai bisogno di 6 o 7 posti, dai un'occhiata alle barche con patente (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o alla nostra Escursione Privata con skipper. Il prezzo è per barca, non per persona, quindi più siete, meno costa a testa.",
+    faqWhichBoatQuestion: "Quale barca posso guidare senza patente?",
+    faqWhichBoatAnswer:
+      "In Spagna puoi condurre senza alcuna abilitazione un'imbarcazione fino a 5 metri di lunghezza con motore fino a 15 CV (11 kW), secondo il Regio Decreto 875/2014. Le nostre 4 barche senza patente (Solar 450, Remus 450, Remus 450 II e Astec 480) rispettano questo limite: fino a 5 persone, carburante incluso e senza patente. Devi solo avere più di 18 anni e seguire il briefing di 15 minuti prima di salpare.",
+    faqPriceQuestion: "Quanto costa noleggiare una barca senza patente a ore?",
+    faqPriceAnswer:
+      "I prezzi partono da 75€/h con il carburante incluso. Lavoriamo per fasce orarie: 1 ora da 75€, 2 ore da 115€, mezza giornata (4 ore) da 150€ e giornata intera (8 ore) da 220€ in bassa stagione. Le tariffe salgono in alta stagione e nei fine settimana. Nessuna commissione di piattaforma né costo extra per il carburante: il prezzo che prenoti è il prezzo finale.",
+    faqWeatherQuestion: "Cosa succede se il tempo è brutto?",
+    faqWeatherAnswer:
+      "Se la giornata inizia con brutto tempo, riprogrammiamo l'uscita senza costi o ti rimborsiamo l'intera caparra. Inoltre, il cambio di data è gratuito fino a 7 giorni prima della partenza (soggetto a disponibilità). Le prenotazioni confermate con caparra non sono rimborsabili al di fuori del caso di brutto tempo.",
     howToTitle: "Come noleggiare una barca senza patente a Blanes (5 passi)",
     howToIntro:
       "Noleggiare una barca senza patente al Porto di Blanes è più semplice di quanto sembri. Ecco i 5 passi del processo, dalla prenotazione alla riconsegna, per sapere esattamente cosa aspettarti il giorno della tua uscita.",

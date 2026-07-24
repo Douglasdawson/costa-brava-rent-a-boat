@@ -1102,6 +1102,15 @@ export const ca: Translations = {
     faqGroupSizeQuestion: "Quanta gent cap en una barca sense llicència?",
     faqGroupSizeAnswer:
       "Les nostres 4 barques sense llicència tenen capacitat entre 4 i 5 persones (adults i nens compten igual). La Remus 450 és ideal per a parelles o famílies petites, i la Solar 450, la Remus 450 II i l'Astec 480 admeten fins a 5 persones. Si necessites 6 o 7 places, mira les barques amb llicència (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) o l'Excursió Privada amb patró. El preu és per barca, no per persona, així com més gent, més econòmic surt per cap.",
+    faqWhichBoatQuestion: "Quin vaixell puc portar sense llicència?",
+    faqWhichBoatAnswer:
+      "A Espanya pots governar sense cap titulació una embarcació de fins a 5 metres d'eslora i motor de fins a 15 CV (11 kW), segons el Reial Decret 875/2014. Els nostres 4 vaixells sense llicència (Solar 450, Remus 450, Remus 450 II i Astec 480) compleixen aquest límit: fins a 5 persones, benzina inclosa i sense carnet. Només cal ser major de 18 anys i fer el briefing de 15 minuts abans de salpar.",
+    faqPriceQuestion: "Quant costa llogar un vaixell sense llicència per hores?",
+    faqPriceAnswer:
+      "El preu arrenca a 75€/h amb la benzina inclosa. Treballem per franges: 1 hora des de 75€, 2 hores des de 115€, mig dia (4 hores) des de 150€ i dia complet (8 hores) des de 220€ en temporada baixa. La tarifa puja en temporada alta i els caps de setmana. No hi ha comissions de plataforma ni cost extra de combustible: el preu que reserves és el preu final.",
+    faqWeatherQuestion: "Què passa si fa mal temps?",
+    faqWeatherAnswer:
+      "Si el dia amaneix amb mal temps, reprogramem la sortida sense cost o et tornem el dipòsit íntegre. A més, el canvi de data és gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
     howToTitle: "Com llogar un vaixell sense llicència a Blanes (5 passos)",
     howToIntro:
       "Llogar un vaixell sense llicència al Port de Blanes és més senzill del que sembla. Aquí tens els 5 passos del procés, des de la reserva fins a la devolució, perquè sàpigues exactament què esperar el dia de la teva sortida.",

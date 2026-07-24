@@ -1734,6 +1734,13 @@ export interface Translations {
     faqExperienceAnswer: string;
     faqGroupSizeQuestion: string;
     faqGroupSizeAnswer: string;
+    // Fase 2 SEO 2026-07-24: FAQ que espejan queries exactas (qué barco / precio por horas / mal tiempo)
+    faqWhichBoatQuestion: string;
+    faqWhichBoatAnswer: string;
+    faqPriceQuestion: string;
+    faqPriceAnswer: string;
+    faqWeatherQuestion: string;
+    faqWeatherAnswer: string;
     // GSC 2026-05-21: HowTo schema + sección "Cómo alquilar" (rescate pos 13→18)
     // Opcionales hasta que i18n:translate propague a los 7 idiomas (es queda 1º).
     howToTitle?: string;

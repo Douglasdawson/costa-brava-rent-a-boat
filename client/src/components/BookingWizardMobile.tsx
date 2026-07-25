@@ -114,6 +114,8 @@ export interface BookingWizardMobileProps {
   showExtras: boolean; setShowExtras: (v: boolean) => void;
   extrasInPack: Set<string>;
   totalExtrasPrice: number;
+  /** Part of totalExtrasPrice that comes from the step 5 coverages. */
+  coveragesPrice?: number;
   handlePackSelect: (packId: string) => void;
   handleExtraToggle: (extraName: string) => void;
   // Optional coverages (step 4), already resolved to the selected boat's tier
@@ -181,6 +183,13 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
   // leaves a stale literal behind.
   const totalSteps = props.totalSteps ?? 6;
   const isLastStep = currentStep === totalSteps;
+  // Coverages step with nothing ticked: say out loud that skipping is fine.
+  const onCoveragesStep = currentStep === totalSteps - 1;
+  const noCoveragePicked = !props.coverages?.some(c => c.on);
+  const nextLabel =
+    onCoveragesStep && noCoveragePicked && props.t.booking.coverages.noneCta
+      ? props.t.booking.coverages.noneCta
+      : props.t.booking.next;
   const { localizedPath } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [animating, setAnimating] = useState(false);
@@ -297,7 +306,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           {displayStep === 2 && <Step2Boat {...props} />}
           {displayStep === 3 && <Step3Departure {...props} />}
           {displayStep === 4 && <Step4Extras {...props} />}
-          {displayStep === 5 && <StepCoverages coverages={props.coverages} t={props.t} variant="mobile" />}
+          {displayStep === 5 && <StepCoverages coverages={props.coverages} weatherPrice={props.coverages.find(c => c.key === "weather")?.price} t={props.t} variant="mobile" />}
           {displayStep === 6 && <Step5Final {...props} />}
         </div>
       </div>
@@ -313,6 +322,8 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             duration={props.selectedDuration}
             basePrice={price}
             extrasPrice={props.totalExtrasPrice}
+            coveragesPrice={props.coveragesPrice}
+            coveragesLabel={props.t.booking.coverages.title}
             discount={discount}
             discountLabel={props.validatedCode?.percentage ? `${props.validatedCode.code} (${props.validatedCode.percentage}%)` : undefined}
             t={props.t}
@@ -320,7 +331,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           />
         );
       })()}
-      <div className="border-t border-border bg-background px-4 py-3">
+      <div className="border-t border-border bg-background px-4 py-2.5">
         {isLastStep && (
           <p className="text-[11px] text-muted-foreground text-center mb-1.5 px-2 leading-tight">
             {props.t.bookingWizard?.hints?.submitReassurance || 'Te respondemos en menos de 2 horas. Sin pago online, sin compromiso.'}
@@ -337,7 +348,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
               variant="outline"
               onClick={onBack}
               aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} ${totalSteps})`}
-              className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
+              className="flex-1 text-sm font-semibold active:scale-95 transition-transform"
             >
               <ChevronLeft className="w-4 h-4 mr-1" aria-hidden="true" />
               {props.t.booking.back}
@@ -348,9 +359,9 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
               type="button"
               onClick={onNext}
               aria-label={`${props.t.booking.next}: ${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} ${totalSteps})`}
-              className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
+              className="flex-1 text-sm font-semibold active:scale-95 transition-transform"
             >
-              {props.t.booking.next}
+              {nextLabel}
             </Button>
           ) : (
             <>
@@ -371,7 +382,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
                   setIsSubmitting(false);
                 }}
                 disabled={isSubmitting || props.isValidatingCode}
-                className="flex-1 py-5 text-sm font-semibold bg-whatsapp hover:bg-whatsapp-hover text-foreground border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 text-sm font-semibold bg-whatsapp hover:bg-whatsapp-hover text-foreground border-0 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting || props.isValidatingCode
                   ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />

@@ -1305,7 +1305,10 @@ export default function BookingFormWidget({
   // in here keeps every total consistent without touching each call site.
   const totalExtrasPrice = catalogExtrasPrice + coveragesPrice;
 
-  // Rendered identically by the mobile and desktop step 4.
+  // Rendered identically by the mobile and desktop step 5 (StepCoverages).
+  // Both toggles report to the funnel: without this the only visible signal was
+  // what the people who FINISHED the request had bought, so anyone who ticked a
+  // box and then abandoned was invisible — exactly the case worth studying.
   const coverageOptions = [
     {
       key: "weather",
@@ -1313,15 +1316,30 @@ export default function BookingFormWidget({
       desc: t.booking.coverages.weatherDesc,
       price: coveragePrices.weatherPrice,
       on: weatherGuarantee,
-      toggle: () => setWeatherGuarantee(v => !v),
+      toggle: () => {
+        const next = !weatherGuarantee;
+        trackExtrasChanged("coverage:weather", t.booking.coverages.weatherName, next);
+        setWeatherGuarantee(next);
+      },
     },
     {
       key: "deposit",
       name: t.booking.coverages.depositName,
-      desc: t.booking.coverages.depositDesc.replace("{amount}", String(depositTier.reducedTo)),
+      desc: t.booking.coverages.depositDesc
+        .replace("{amount}", String(depositTier.reducedTo))
+        .replace(
+          "{standard}",
+          depositTier.standard && t.booking.coverages.standardSuffix
+            ? t.booking.coverages.standardSuffix.replace("{std}", depositTier.standard)
+            : ""
+        ),
       price: depositTier.price,
       on: reducedDeposit,
-      toggle: () => setReducedDeposit(v => !v),
+      toggle: () => {
+        const next = !reducedDeposit;
+        trackExtrasChanged("coverage:deposit", t.booking.coverages.depositName, next);
+        setReducedDeposit(next);
+      },
     },
   ];
 
@@ -2070,6 +2088,7 @@ Looking forward to confirmation. Thanks!`;
     setShowExtras,
     extrasInPack,
     totalExtrasPrice,
+    coveragesPrice,
     handlePackSelect,
     handleExtraToggle,
     coverages: coverageOptions,

@@ -7,6 +7,10 @@ interface PriceSummaryBarProps {
   duration: string;
   basePrice: number;
   extrasPrice: number;
+  /** Coverages, already included in extrasPrice; listed apart so the customer
+      can see WHY the total moved when ticking them on step 5. */
+  coveragesPrice?: number;
+  coveragesLabel?: string;
   discount: number;
   discountLabel?: string;
   t: Translations;
@@ -24,6 +28,8 @@ export default function PriceSummaryBar({
   duration,
   basePrice,
   extrasPrice,
+  coveragesPrice = 0,
+  coveragesLabel,
   discount,
   discountLabel,
   t,
@@ -39,6 +45,7 @@ export default function PriceSummaryBar({
   const totalLabel = ps?.total || "Total";
   const seeDetailsLabel = ps?.seeDetails || "See details";
 
+  const catalogExtras = Math.max(0, extrasPrice - coveragesPrice);
   const hasBreakdown = extrasPrice > 0 || discount > 0;
 
   // --- DESKTOP: compact card with breakdown ---
@@ -56,10 +63,16 @@ export default function PriceSummaryBar({
             <span className="text-muted-foreground">{baseLabel}</span>
             <span className="text-foreground">{basePrice}€</span>
           </div>
-          {extrasPrice > 0 && (
+          {catalogExtras > 0 && (
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">{extrasLabel}</span>
-              <span className="text-foreground">+{extrasPrice}€</span>
+              <span className="text-foreground">+{catalogExtras}€</span>
+            </div>
+          )}
+          {coveragesPrice > 0 && (
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">{coveragesLabel || extrasLabel}</span>
+              <span className="text-foreground">+{coveragesPrice}€</span>
             </div>
           )}
           {discount > 0 && (
@@ -112,10 +125,16 @@ export default function PriceSummaryBar({
             <span className="opacity-70">{baseLabel}</span>
             <span>{basePrice}€</span>
           </div>
-          {extrasPrice > 0 && (
+          {catalogExtras > 0 && (
             <div className="flex justify-between">
               <span className="opacity-70">{extrasLabel}</span>
-              <span>+{extrasPrice}€</span>
+              <span>+{catalogExtras}€</span>
+            </div>
+          )}
+          {coveragesPrice > 0 && (
+            <div className="flex justify-between">
+              <span className="opacity-70">{coveragesLabel || extrasLabel}</span>
+              <span>+{coveragesPrice}€</span>
             </div>
           )}
           {discount > 0 && (

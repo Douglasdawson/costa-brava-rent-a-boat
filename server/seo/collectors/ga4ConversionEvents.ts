@@ -27,6 +27,15 @@ const TRACKED_EVENTS = [
   "whatsapp_click",
   "phone_click",
   "generate_lead",
+  // Wizard funnel: the client has been pushing these to the dataLayer for a
+  // while, but they only ever lived in GA4 (whose GTM config is outside this
+  // repo and can't be verified from here). Landing them in our own table is
+  // what lets us tell "step 5 loses people" from "step 5 is fine" without
+  // asking anyone for a GA4 export.
+  "booking_step_view",
+  "booking_step_complete",
+  "booking_abandoned",
+  "booking_extras_changed",
 ] as const;
 
 function getAuth() {

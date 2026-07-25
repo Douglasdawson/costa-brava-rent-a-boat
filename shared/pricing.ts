@@ -336,10 +336,14 @@ export const COVERAGE_PRICES_FALLBACK: CoveragePrices = {
 export function coverageDepositTier(
   prices: CoveragePrices,
   requiresLicense: boolean
-): { price: number; reducedTo: number } {
+): { price: number; reducedTo: number; standard?: string } {
+  // `standard` is the label the CRM reports for the fleet ("200€"), used to
+  // show what the customer is comparing against. Optional on purpose: when the
+  // CRM is unreachable we say nothing rather than quote the funnel's stale
+  // static catalog, which still carries deposits production replaced.
   return requiresLicense
-    ? { price: prices.depositPriceCL, reducedTo: prices.depositAmountCL }
-    : { price: prices.depositPriceSL, reducedTo: prices.depositAmountSL };
+    ? { price: prices.depositPriceCL, reducedTo: prices.depositAmountCL, standard: prices.depositStandardCL }
+    : { price: prices.depositPriceSL, reducedTo: prices.depositAmountSL, standard: prices.depositStandardSL };
 }
 
 /**

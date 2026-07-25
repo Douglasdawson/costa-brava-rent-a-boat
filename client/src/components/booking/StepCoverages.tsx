@@ -26,6 +26,8 @@ export interface CoverageOption {
 
 interface StepCoveragesProps {
   coverages: CoverageOption[];
+  /** Weather guarantee price, shown inside the "with guarantee" column. */
+  weatherPrice?: number;
   t: Translations;
   /** Accent token: the mobile wizard uses `primary`, the desktop one `cta`. */
   variant?: "mobile" | "desktop";
@@ -51,7 +53,7 @@ const ACCENT = {
   },
 } as const;
 
-export default function StepCoverages({ coverages, t, variant = "mobile" }: StepCoveragesProps) {
+export default function StepCoverages({ coverages, weatherPrice, t, variant = "mobile" }: StepCoveragesProps) {
   const { localizedPath } = useLanguage();
   const c = t.booking.coverages;
   const accent = ACCENT[variant];
@@ -73,9 +75,14 @@ export default function StepCoverages({ coverages, t, variant = "mobile" }: Step
           <p className="mt-2 text-[13px] leading-snug text-muted-foreground">{c.withoutBody}</p>
         </div>
         <div className={`${accent.tint} p-3.5`}>
-          <p className={`font-mono text-[10px] font-bold uppercase tracking-wider ${accent.text}`}>
-            {c.withLabel}
-          </p>
+          <div className="flex items-baseline justify-between gap-2">
+            <p className={`font-mono text-[10px] font-bold uppercase tracking-wider ${accent.text}`}>
+              {c.withLabel}
+            </p>
+            {weatherPrice != null && (
+              <span className={`shrink-0 text-sm font-bold ${accent.text}`}>{weatherPrice}€</span>
+            )}
+          </div>
           <p className="mt-2 text-[13px] font-medium leading-snug text-foreground">{c.withBody}</p>
         </div>
       </div>
@@ -108,30 +115,25 @@ export default function StepCoverages({ coverages, t, variant = "mobile" }: Step
         ))}
       </div>
 
-      {/* The objective threshold, in the page's own typographic signature. */}
-      <dl className="space-y-1.5 border-t border-border pt-4">
-        <div className="flex gap-3">
-          <dt className="font-mono text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-            {c.triggerAemetMark}
-          </dt>
-          <dd className="flex-1 text-xs text-muted-foreground">{c.triggerAemet}</dd>
-        </div>
-        <div className="flex gap-3">
-          <dt className="font-mono text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-            {c.triggerWindMark}
-          </dt>
-          <dd className="flex-1 text-xs text-muted-foreground">{c.triggerWind}</dd>
-        </div>
-      </dl>
+      {/* One line, not a table: at the moment of deciding the full rule ate a
+          third of the screen, and /garantias develops it in full. */}
+      <p className="border-t border-border pt-3 text-xs leading-snug text-muted-foreground">
+        {c.criteriaShort ?? `${c.triggerAemetMark} · ${c.triggerAemet}`}{" "}
+        <a
+          href={localizedPath("garantias")}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`font-medium underline ${accent.text}`}
+        >
+          {t.booking.coveragesMoreInfo}
+        </a>
+      </p>
 
-      <a
-        href={localizedPath("garantias")}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`inline-block text-xs font-medium ${accent.text} underline`}
-      >
-        {t.booking.coveragesMoreInfo}
-      </a>
+      {t.bookingWizard?.hints?.noOnlinePayment && (
+        <p className="text-center text-[11px] text-muted-foreground">
+          {t.bookingWizard.hints.noOnlinePayment}
+        </p>
+      )}
     </div>
   );
 }

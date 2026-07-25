@@ -177,6 +177,12 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   // isLastStep so inserting a step never leaves a stale literal behind.
   const totalSteps = props.totalSteps ?? 6;
   const isLastStep = currentStep === totalSteps;
+  const onCoveragesStep = currentStep === totalSteps - 1;
+  const noCoveragePicked = !props.coverages?.some(c => c.on);
+  const nextLabel =
+    onCoveragesStep && noCoveragePicked && t.booking.coverages.noneCta
+      ? t.booking.coverages.noneCta
+      : t.booking.next;
   // Step labels for the wizard (date first)
   const boatSelected = !!selectedBoatInfo;
   const stepLabels = [
@@ -354,7 +360,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               />
             )}
             {currentStep === 5 && (
-              <StepCoverages coverages={props.coverages} t={t} variant="desktop" />
+              <StepCoverages coverages={props.coverages} weatherPrice={props.coverages.find(c => c.key === "weather")?.price} t={t} variant="desktop" />
             )}
             {currentStep === 6 && (
               <Step5FinalDesktop
@@ -433,6 +439,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               duration={selectedDuration}
               basePrice={price}
               extrasPrice={totalExtrasPrice}
+              coveragesPrice={props.coveragesPrice}
+              coveragesLabel={t.booking.coverages.title}
               discount={discount}
               discountLabel={
                 validatedCode?.percentage
@@ -466,7 +474,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               onClick={onNext}
               className="bg-foreground text-white rounded-full px-8 min-h-11 font-medium text-sm hover:bg-foreground/90 transition-all btn-elevated"
             >
-              {t.booking.next}
+              {nextLabel}
             </button>
           ) : (
             <Button

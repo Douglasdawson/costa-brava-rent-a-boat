@@ -497,7 +497,10 @@ export interface Translations {
       weatherName: string;
       weatherDesc: string;
       depositName: string;
-      depositDesc: string; // supports {amount} placeholder for the reduced deposit
+      depositDesc: string; // {amount} = reduced deposit, {standard} = standardSuffix (or empty)
+      standardSuffix?: string; // " en vez de {std}" — only when the CRM reports the standard
+      noneCta?: string; // primary button label while nothing is ticked
+      criteriaShort?: string; // one-line version of the AEMET / 20 kn rule
       // Step 5 screen (own step since 2026-07-25)
       stepTitle?: string;
       stepSubtitle?: string;

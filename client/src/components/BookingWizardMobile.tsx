@@ -492,15 +492,18 @@ function Step2Boat({
         <label className="block text-sm font-semibold text-muted-foreground mb-2">
           {t.wizard.selectABoat}
         </label>
-        <div role="radiogroup" aria-label={t.wizard.selectABoat} className="grid grid-cols-2 gap-2">
+        <div role="radiogroup" aria-label={t.wizard.selectABoat} className="space-y-2">
           {isBoatsLoading && (
             // Skeleton loading while boats load from API
             <>
               {[1, 2, 3, 4].map(i => (
-                <div key={i} className="p-3 rounded-xl border-2 border-border animate-pulse min-h-[88px] flex flex-col items-center justify-center gap-1.5">
-                  <div className="h-4 bg-muted rounded w-3/4" />
-                  <div className="h-3 bg-muted rounded w-1/2" />
-                  <div className="h-3 bg-muted rounded w-8 mt-1" />
+                <div key={i} className="flex items-center gap-3 rounded-xl border-2 border-border px-3 py-2.5 animate-pulse">
+                  <div className="h-5 w-5 shrink-0 rounded-full bg-muted" />
+                  <div className="flex-1 space-y-1.5">
+                    <div className="h-4 w-2/5 rounded bg-muted" />
+                    <div className="h-3 w-16 rounded bg-muted" />
+                  </div>
+                  <div className="h-5 w-10 rounded bg-muted" />
                 </div>
               ))}
             </>
@@ -684,7 +687,7 @@ function BoatCardMobile({
       aria-checked={selected}
       onClick={onSelect}
       disabled={!fitsCapacity}
-      className={`relative flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 text-center transition-colors active:scale-[0.97] min-h-[96px] ${
+      className={`flex w-full items-center gap-3 rounded-xl border-2 px-3 py-2 text-left transition-colors active:scale-[0.99] ${
         !fitsCapacity
           ? "border-border bg-muted opacity-50 cursor-not-allowed"
           : selected
@@ -692,36 +695,47 @@ function BoatCardMobile({
           : "border-border bg-background"
       }`}
     >
-      {selected && (
-        <span
-          aria-hidden="true"
-          className="absolute top-1.5 right-1.5 inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary"
-        >
-          <Check className="w-2.5 h-2.5 text-white" />
-        </span>
-      )}
-      <p className="font-semibold text-foreground text-sm leading-tight">{boat.name}</p>
-      {displayPrice !== null && (
-        <p className="text-xs text-primary font-medium">
-          {t.boats.from} {displayPrice}€
-        </p>
-      )}
-      {dayStatus && dayStatus !== "available" && (
-        <span
-          className={cn(
-            "px-1.5 py-0.5 rounded text-[10px] font-medium border",
-            dayStatus === "partial" ? PARTIAL_TONE : BOOKED_TONE
-          )}
-        >
-          {dayStatus === "partial"
-            ? t.bookingWizard?.boatStatus?.partial ?? "Pocas horas libres"
-            : t.bookingWizard?.boatStatus?.booked ?? "Completo ese día"}
-        </span>
-      )}
-      <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground mt-0.5">
-        <Users className="w-3.5 h-3.5" aria-hidden="true" />
-        {boat.capacity}
+      {/* Selection mark holds its slot so names never shift when picking. */}
+      <span
+        aria-hidden="true"
+        className={`inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 ${
+          selected ? "border-primary bg-primary" : "border-border"
+        }`}
+      >
+        {selected && <Check className="h-3 w-3 text-white" />}
       </span>
+
+      <span className="min-w-0 flex-1">
+        <span className="block truncate text-sm font-semibold leading-tight text-foreground">
+          {boat.name}
+        </span>
+        <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-muted-foreground">
+          <span className="inline-flex items-center gap-1">
+            <Users className="h-3.5 w-3.5" aria-hidden="true" />
+            {boat.capacity}
+          </span>
+          {dayStatus && dayStatus !== "available" && (
+            <span
+              className={cn(
+                "rounded border px-1.5 py-0.5 text-[10px] font-medium",
+                dayStatus === "partial" ? PARTIAL_TONE : BOOKED_TONE
+              )}
+            >
+              {dayStatus === "partial"
+                ? t.bookingWizard?.boatStatus?.partial ?? "Pocas horas libres"
+                : t.bookingWizard?.boatStatus?.booked ?? "Completo ese día"}
+            </span>
+          )}
+        </span>
+      </span>
+
+      {/* Price right-aligned: the column is what makes them comparable. */}
+      {displayPrice !== null && (
+        <span className="shrink-0 whitespace-nowrap text-right text-sm">
+          <span className="text-[11px] text-muted-foreground">{t.boats.from} </span>
+          <span className="font-bold text-primary">{displayPrice}€</span>
+        </span>
+      )}
     </button>
   );
 }

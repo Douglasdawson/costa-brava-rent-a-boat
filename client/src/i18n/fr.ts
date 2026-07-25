@@ -4367,7 +4367,7 @@ export const fr: Translations = {
   garantiasPage: {
     navLabel: "Garanties",
     heroTitle: "Si la mer dit non, la réponse est déjà écrite",
-    heroSubtitle: "Nous publions le critère exact qui nous fait annuler une sortie et ce que vous recevez dans chaque cas. Deux couvertures optionnelles, sans petits caractères.",
+    heroSubtitle: "Nous changeons la date sans frais et vous ne perdez pas ce que vous avez payé. Avec la Garantie mauvais temps, vous choisissez : nouvelle date ou remboursement. Sans petits caractères.",
     weatherTitle: "Si le mauvais temps empêche la sortie",
     withoutLabel: "Sans la garantie",
     withoutBody: "Nous décalons la date sans frais. Si aucune date ne convient, vous recevez un bon du montant versé, valable 12 mois. Pas de remboursement en espèces.",

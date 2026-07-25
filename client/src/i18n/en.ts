@@ -4404,7 +4404,7 @@ export const en: Translations = {
   garantiasPage: {
     navLabel: "Guarantees",
     heroTitle: "If the sea says no, the answer is already written",
-    heroSubtitle: "We publish the exact criteria we use to call off a trip and what you get in each case. Two optional coverages, no small print.",
+    heroSubtitle: "We move your date free of charge and you don't lose what you paid. With the Weather guarantee you decide: a new date or your money back. No small print.",
     weatherTitle: "If bad weather stops the trip",
     withoutLabel: "Without the guarantee",
     withoutBody: "We move your date at no cost. If no date works, you get a voucher for the amount paid, valid for 12 months. No cash refund.",

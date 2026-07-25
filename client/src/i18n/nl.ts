@@ -4359,7 +4359,7 @@ export const nl: Translations = {
   garantiasPage: {
     navLabel: "Garanties",
     heroTitle: "Als de zee nee zegt, ligt het antwoord al vast",
-    heroSubtitle: "We publiceren het exacte criterium waarmee we een tocht afgelasten en wat je in elk geval krijgt. Twee optionele garanties, zonder kleine lettertjes.",
+    heroSubtitle: "We verzetten je datum kosteloos en je verliest niet wat je hebt betaald. Met de Slechtweergarantie kies jij: een nieuwe datum of je geld terug. Zonder kleine lettertjes.",
     weatherTitle: "Als slecht weer de tocht verhindert",
     withoutLabel: "Zonder garantie",
     withoutBody: "We verzetten je datum kosteloos. Lukt geen enkele datum, dan krijg je een tegoedbon voor het betaalde bedrag, 12 maanden geldig. Geen terugbetaling in geld.",

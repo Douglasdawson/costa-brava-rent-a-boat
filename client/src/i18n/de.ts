@@ -4372,7 +4372,7 @@ export const de: Translations = {
   garantiasPage: {
     navLabel: "Garantien",
     heroTitle: "Wenn das Meer nicht mitspielt, steht die Antwort schon fest",
-    heroSubtitle: "Wir veröffentlichen das genaue Kriterium, nach dem wir eine Ausfahrt absagen, und was du in jedem Fall bekommst. Zwei optionale Zusatzleistungen, ohne Kleingedrucktes.",
+    heroSubtitle: "Wir verschieben deinen Termin kostenlos und du verlierst nicht, was du bezahlt hast. Mit der Schlechtwetter-Garantie entscheidest du: neuer Termin oder Geld zurück. Ohne Kleingedrucktes.",
     weatherTitle: "Wenn schlechtes Wetter die Ausfahrt verhindert",
     withoutLabel: "Ohne Garantie",
     withoutBody: "Wir verschieben den Termin kostenlos. Passt kein Termin, bekommst du einen Gutschein über den gezahlten Betrag, 12 Monate gültig. Keine Rückerstattung in Geld.",

@@ -4357,7 +4357,7 @@ export const it: Translations = {
   garantiasPage: {
     navLabel: "Garanzie",
     heroTitle: "Se il mare dice no, la risposta è già scritta",
-    heroSubtitle: "Pubblichiamo il criterio esatto con cui annulliamo un'uscita e cosa ricevi in ogni caso. Due coperture opzionali, senza clausole nascoste.",
+    heroSubtitle: "Spostiamo la data senza costi e non perdi quanto hai pagato. Con la Garanzia maltempo scegli tu: nuova data o rimborso in denaro. Senza clausole nascoste.",
     weatherTitle: "Se il maltempo impedisce l'uscita",
     withoutLabel: "Senza la garanzia",
     withoutBody: "Spostiamo la data senza costi. Se non troviamo una data, ricevi un buono per l'importo versato, valido 12 mesi. Nessun rimborso in denaro.",

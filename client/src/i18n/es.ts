@@ -5692,7 +5692,7 @@ export const es: Translations = {
   garantiasPage: {
     navLabel: "Garantías",
     heroTitle: "Si el mar no acompaña, ya está decidido",
-    heroSubtitle: "Publicamos el criterio exacto con el que suspendemos una salida y lo que recibes en cada caso. Dos coberturas opcionales, sin letra pequeña.",
+    heroSubtitle: "Cambiamos la fecha sin coste y no pierdes lo pagado. Con la Garantía de mal tiempo decides tú: nueva fecha o el dinero de vuelta. Sin letra pequeña.",
     weatherTitle: "Si el mal tiempo impide salir",
     withoutLabel: "Sin la Garantía",
     withoutBody: "Cambiamos la fecha sin coste. Si no logramos acordar ninguna, recibes un bono por el importe abonado, válido 12 meses. No hay devolución en dinero.",

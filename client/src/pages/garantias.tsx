@@ -94,8 +94,12 @@ export default function GarantiasPage() {
       />
       <Navigation />
 
-      {/* HERO — the sea makes the argument; the page only publishes the rule. */}
-      <section className="relative isolate flex min-h-[72svh] items-center overflow-hidden pb-16 pt-28">
+      {/* HERO — the sea makes the argument; the page only publishes the rule.
+          Full viewport: the photo and its gradient are `inset-0` on this
+          section, so the section's height IS the overlay's height. `svh` (not
+          `vh`) so the mobile browser chrome doesn't push the bottom of the
+          gradient below the fold. */}
+      <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden pb-16 pt-28">
         <img
           src={HERO_IMAGE}
           alt=""
@@ -137,27 +141,37 @@ export default function GarantiasPage() {
         </div>
       </section>
 
-      {/* THE DECISION — same condition, two outcomes side by side. */}
+      {/* THE DECISION — same condition, two outcomes.
+          One frame with a divider, not two cards: the subject is the comparison,
+          and two separate cards (one of them outlined) read as a pricing table
+          with a "recommended" plan. The price leads each column in the page's
+          mono figure voice — the same device as the threshold rows below — so
+          0€ and 10€ line up as two costs of two outcomes instead of a number
+          stuck in a corner. `grid-rows-subgrid` keeps the label / price / body
+          rows aligned across columns however the labels wrap in each language. */}
       <Reveal className="px-4 py-14 sm:px-6 lg:py-20">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
             {g.weatherTitle}
           </h2>
-          <div className="mt-7 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <p className="font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground">
+          <div className="mt-7 grid grid-cols-2 grid-rows-[auto_auto_1fr] overflow-hidden rounded-xl border border-border bg-card">
+            <div className="row-span-3 grid grid-rows-subgrid p-4 sm:p-6">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">
                 {g.withoutLabel}
               </p>
-              <p className="mt-3 text-foreground">{g.withoutBody}</p>
+              <p className="mt-2 font-mono text-xl font-bold tabular-nums text-muted-foreground sm:text-2xl">
+                0€
+              </p>
+              <p className="mt-2.5 text-[11px] leading-snug text-foreground">{g.withoutBody}</p>
             </div>
-            <div className="rounded-2xl border-2 border-cta bg-cta/5 p-6">
-              <div className="flex items-baseline justify-between gap-3">
-                <p className="font-mono text-xs font-bold uppercase tracking-wider text-cta">
-                  {g.withLabel}
-                </p>
-                <span className="shrink-0 text-lg font-bold text-cta">{prices.weatherPrice}€</span>
-              </div>
-              <p className="mt-3 text-foreground">{g.withBody}</p>
+            <div className="row-span-3 grid grid-rows-subgrid border-l border-border bg-cta/5 p-4 sm:p-6">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-cta sm:text-xs">
+                {g.withLabel}
+              </p>
+              <p className="mt-2 font-mono text-xl font-bold tabular-nums text-cta sm:text-2xl">
+                {prices.weatherPrice}€
+              </p>
+              <p className="mt-2.5 text-[11px] leading-snug text-foreground">{g.withBody}</p>
             </div>
           </div>
         </div>
@@ -178,7 +192,7 @@ export default function GarantiasPage() {
                 <dt className="shrink-0 font-mono text-sm font-bold uppercase tracking-wider text-cta sm:w-28 sm:pt-0.5">
                   {g.criteriaMarks[i]}
                 </dt>
-                <dd className="text-foreground">{text}</dd>
+                <dd className="text-sm leading-relaxed text-foreground">{text}</dd>
               </div>
             ))}
           </dl>

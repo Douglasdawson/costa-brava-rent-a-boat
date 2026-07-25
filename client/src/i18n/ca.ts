@@ -4350,7 +4350,7 @@ export const ca: Translations = {
   garantiasPage: {
     navLabel: "Garanties",
     heroTitle: "Si el mar no acompanya, ja està decidit",
-    heroSubtitle: "Publiquem el criteri exacte amb què suspenem una sortida i què reps en cada cas. Dues cobertures opcionals, sense lletra petita.",
+    heroSubtitle: "Canviem la data sense cost i no perds el que has pagat. Amb la Garantia de mal temps decideixes tu: nova data o els diners de tornada. Sense lletra petita.",
     weatherTitle: "Si el mal temps impedeix sortir",
     withoutLabel: "Sense la Garantia",
     withoutBody: "Canviem la data sense cost. Si no aconseguim acordar-ne cap, reps un val per l'import abonat, vàlid 12 mesos. No hi ha devolució en diners.",

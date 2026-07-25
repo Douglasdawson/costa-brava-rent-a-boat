@@ -31,6 +31,7 @@ import { getCurrentStats } from "./lib/businessStatsCache";
 // scripts/validate-translations.ts (lines 11-18). esbuild bundles these
 // statically (each ~200KB; only the keys actually accessed survive
 // dead-code elimination on a small subset of branches).
+import { SEO_CONFIGS } from "../client/src/utils/seo-config";
 import { es as i18nEs } from "../client/src/i18n/es";
 import { en as i18nEn } from "../client/src/i18n/en";
 import { ca as i18nCa } from "../client/src/i18n/ca";
@@ -194,6 +195,19 @@ function buildFuegosBlanesStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
   return out;
 }
 
+// Optional coverages page (weather guarantee + reduced deposit). Its titles
+// already live in SEO_CONFIGS for the client <SEO>, so read them instead of
+// writing them twice: without an entry here the bot-facing injector fell back
+// to the home meta and every share of /garantias showed the generic card.
+function buildGarantiasStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
+  const out: Partial<Record<LangCode, SEOMeta>> = {};
+  for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+    const cfg = SEO_CONFIGS[lang]?.garantias ?? SEO_CONFIGS.es.garantias;
+    if (cfg) out[lang] = { title: cfg.title, description: cfg.description };
+  }
+  return out;
+}
+
 // Merch shop page (collaboration with Laura Cabanas). Copy lives in i18n
 // shopPage, so all 8 locales get a native title/description.
 function buildTiendaStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
@@ -264,6 +278,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/alquiler-motos-lloret": buildScootersStaticMeta(),
   "/tienda": buildTiendaStaticMeta(),
   "/fuegos-blanes": buildFuegosBlanesStaticMeta(),
+  "/garantias": buildGarantiasStaticMeta(),
   // Social Boat (salidas compartidas) — ES-only launch (translatedStaticPaths
   // gates indexability); was served as raw index.html with no SSR meta at all.
   "/salidas-compartidas": {

@@ -440,6 +440,24 @@ export const es: Translations = {
       selected: "seleccionados",
       packSelected: "Pack seleccionado",
     },
+    coveragesMoreInfo: "Ver cómo funcionan",
+    coverages: {
+      title: "Coberturas opcionales",
+      weatherName: "Garantía de mal tiempo",
+      weatherDesc: "Si el mal tiempo impide salir, te devolvemos la señal en dinero.",
+      depositName: "Fianza reducida",
+      depositDesc: "Tu fianza baja a {amount}€ el día de la salida.",
+      stepTitle: "Si el mar no acompaña",
+      stepSubtitle: "Tú decides cómo quieres estar cubierto.",
+      withoutLabel: "Sin garantía",
+      withoutBody: "Cambiamos la fecha sin coste. Si no logramos acordar ninguna, recibes un bono válido 12 meses. No hay devolución en dinero.",
+      withLabel: "Con garantía",
+      withBody: "Eliges tú: nueva fecha o el dinero de vuelta, íntegro.",
+      triggerAemetMark: "AEMET",
+      triggerAemet: "Aviso costero oficial para la zona en tu franja horaria.",
+      triggerWindMark: "20 nudos",
+      triggerWind: "Viento sostenido o rachas por encima, o decisión del patrón por seguridad.",
+    },
     confirmTitle: "Confirmar reserva",
     confirmSubtitle: "Revisa los detalles. Te confirmamos por WhatsApp en menos de 2 horas.",
     summaryClient: "Cliente",
@@ -1453,6 +1471,7 @@ export const es: Translations = {
       yourBoat: "Tu barco",
       departureDuration: "Hora y duración",
       upgradeYourDay: "Mejora tu día",
+      coverages: "Garantías",
       yourDetails: "Confirmar",
     },
     hints: {
@@ -2888,7 +2907,7 @@ export const es: Translations = {
       "El precio arranca en 75€/h con la gasolina incluida. Trabajamos por franjas: 1 hora desde 75€, 2 horas desde 115€, medio día (4 horas) desde 150€ y día completo (8 horas) desde 220€ en temporada baja. La tarifa sube en temporada alta y los fines de semana. No hay comisiones de plataforma ni coste extra de combustible: el precio que reservas es el precio final.",
     faqWeatherQuestion: "¿Qué pasa si hace mal tiempo?",
     faqWeatherAnswer:
-      "Si el día amanece con mal tiempo, reprogramamos la salida sin coste o te devolvemos el depósito íntegro. Además, el cambio de fecha es gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
+      "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad.",
     // Section: HowTo (added 2026-05-21 to rescue ranking drop pos 13→18).
     // Long-tail "cómo alquilar barco sin licencia" + HowTo rich result.
     howToTitle: "Cómo alquilar un barco sin licencia en Blanes (5 pasos)",
@@ -3260,13 +3279,13 @@ export const es: Translations = {
         id: "cancelacion",
         question: "¿Cuál es la política de cancelación?",
         answer:
-          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
+          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
       },
       {
         id: "mal-tiempo",
         question: "¿Qué pasa si hace mal tiempo?",
         answer:
-          "Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o devolución íntegra del depósito. Consultamos la previsión 24h antes y te avisamos.",
+          "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad.",
       },
       {
         id: "experiencia",
@@ -4373,7 +4392,7 @@ export const es: Translations = {
       cancelacion: {
         question: "¿Cuál es la política de cancelación?",
         answer:
-          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
+          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
       },
       sinLicencia: {
         question: "¿Puedo alquilar sin tener licencia náutica?",
@@ -4428,7 +4447,7 @@ export const es: Translations = {
       malTiempo: {
         question: "¿Qué pasa si hace mal tiempo?",
         answer:
-          "Viento fuerte: no salimos con viento superior a fuerza 4. Lluvia intensa: reprogramamos sin coste. Tormenta: suspensión automática. Cambio durante navegación: regreso guiado al puerto. Siempre priorizamos la seguridad con reprogramación gratuita o devolución íntegra del depósito.",
+          "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad.",
       },
       emergencia: {
         question: "¿Qué hago en caso de emergencia?",
@@ -4746,7 +4765,7 @@ export const es: Translations = {
         },
         {
           title: "7. Política de cancelación",
-          body: "- Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación.\n- Mal tiempo verificado por nuestro equipo: reprogramación sin coste o devolución íntegra del depósito.\n- Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.\n\nLa decisión sobre suspensión por condiciones meteorológicas corresponde al prestador y se toma con criterios de seguridad. Comunicación por escrito a costabravarentaboat@gmail.com o WhatsApp +34 611 500 372.",
+          body: "- Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación.\n- Mal tiempo sin Garantía contratada: reprogramación sin coste o, si no se acuerda nueva fecha, bono por el importe abonado con validez de 12 meses. No procede la devolución en dinero.\n- Mal tiempo con la Garantía de mal tiempo contratada: el cliente elige entre una nueva fecha o la devolución íntegra en dinero de las cantidades abonadas por el alquiler, excluido el importe de la propia garantía, que no es reembolsable.\n- Criterio objetivo de mal tiempo: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.\n- Si la salida no puede realizarse por causa imputable a la empresa (avería u otra), se devuelven las cantidades abonadas.\n- Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.\n\nLa Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde al prestador y se toma con criterios de seguridad. Comunicación por escrito a costabravarentaboat@gmail.com o WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obligaciones del cliente",
@@ -5242,7 +5261,7 @@ export const es: Translations = {
     a4FuelNotIncluded: "El combustible no está incluido (se paga aparte según consumo).",
     q5: "¿Cuál es la política de cancelación?",
     // TODO Fase B — migrar a site_content editable desde admin (tabla site_content + endpoint + tab CRM)
-    a5: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
+    a5: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
   },
 
   // Visible byline rendered at the top of every blog post — boosts E-E-A-T
@@ -5663,9 +5682,33 @@ export const es: Translations = {
       },
       {
         q: "¿Qué pasa si hace mal tiempo?",
-        a: "Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro.",
+        a: "Si el mal tiempo impide salir, cambiamos la fecha sin coste o te damos un bono válido 12 meses. Con la Garantía de mal tiempo contratada, te devolvemos el dinero.",
       },
     ],
+  },
+  garantiasPage: {
+    navLabel: "Garantías",
+    heroTitle: "Si el mar no acompaña, ya está decidido",
+    heroSubtitle: "Publicamos el criterio exacto con el que suspendemos una salida y lo que recibes en cada caso. Dos coberturas opcionales, sin letra pequeña.",
+    weatherTitle: "Si el mal tiempo impide salir",
+    withoutLabel: "Sin la Garantía",
+    withoutBody: "Cambiamos la fecha sin coste. Si no logramos acordar ninguna, recibes un bono por el importe abonado, válido 12 meses. No hay devolución en dinero.",
+    withLabel: "Con la Garantía de mal tiempo",
+    withBody: "Eliges: nueva fecha o el dinero de vuelta, íntegro, excluido el precio de la propia garantía.",
+    criteriaTitle: "Cuándo se considera mal tiempo",
+    criteriaMarks: ["AEMET", "20 kn", "Patrón"],
+    criteria: [
+      "Aviso costero oficial de AEMET para nuestra zona de navegación en la franja horaria de tu alquiler.",
+      "Viento sostenido o rachas por encima de 20 nudos.",
+      "Decisión de nuestro personal por motivos de seguridad, aunque no se den los dos casos anteriores.",
+    ],
+    depositTitle: "Fianza reducida",
+    depositBody: "La fianza se entrega antes de zarpar y se devuelve íntegra al volver si el barco vuelve como salió. Con esta cobertura dejas menos dinero retenido.",
+    colStandard: "Fianza estándar",
+    colReduced: "Con la cobertura",
+    notInsurance: "La Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro.",
+    ctaTitle: "Elige tus coberturas al reservar",
+    ctaLabel: "Reservar y añadir coberturas",
   },
   scootersPage: {
     seoTitle: "Alquiler de motos y scooters en Lloret de Mar | Coast Rent",

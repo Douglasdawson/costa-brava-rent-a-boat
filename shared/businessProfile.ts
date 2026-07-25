@@ -87,4 +87,4 @@ export const GBP_PROFILE_URL = `https://www.google.com/maps/search/?api=1&query=
 // (schema.org, llms.txt, FAQ, emails) debe referenciar esta constante en vez
 // de duplicar el texto. La versión i18n vive en client/src/i18n/<lang>.ts.
 export const CANCELLATION_POLICY_ES =
-  "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.";
+  "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.";

@@ -20,6 +20,7 @@ import SlotConflictBanner from "@/components/SlotConflictBanner";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
+import StepCoverages from "@/components/booking/StepCoverages";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
 import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
@@ -115,6 +116,20 @@ export interface BookingWizardMobileProps {
   totalExtrasPrice: number;
   handlePackSelect: (packId: string) => void;
   handleExtraToggle: (extraName: string) => void;
+  // Optional coverages (step 4), already resolved to the selected boat's tier
+  // and translated, so mobile and desktop render identical copy and prices.
+  coverages: Array<{
+    key: string;
+    name: string;
+    desc: string;
+    price: number;
+    on: boolean;
+    toggle: () => void;
+  }>;
+  weatherGuarantee: boolean;
+  reducedDeposit: boolean;
+  /** Deposit left once the reduced-deposit cover is contracted. */
+  reducedDepositAmount: number;
   // Discount code (step 4)
   showCodeSection: boolean; setShowCodeSection: (v: boolean) => void;
   codeInput: string; setCodeInput: (v: string) => void;
@@ -161,6 +176,11 @@ export interface BookingWizardMobileProps {
 
 export default function BookingWizardMobile(props: BookingWizardMobileProps) {
   const { currentStep, onNext, onBack, handleBookingSearch } = props;
+  // Number of steps comes from the widget (single source of truth). Anything that
+  // used to hardcode 5 ("last step") now reads this, so inserting a step never
+  // leaves a stale literal behind.
+  const totalSteps = props.totalSteps ?? 6;
+  const isLastStep = currentStep === totalSteps;
   const { localizedPath } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [animating, setAnimating] = useState(false);
@@ -214,12 +234,13 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         <div className={`px-6 pb-1.5 ${props.onClose ? '' : 'pt-1.5'}`}>
           <BookingProgressBar
             currentStep={currentStep}
-            totalSteps={5}
+            totalSteps={totalSteps}
             stepLabels={[
               props.t.bookingWizard?.steps?.whenWhoShort || props.t.bookingWizard?.steps?.whenWho || 'Cuándo',
               props.t.bookingWizard?.steps?.yourBoat || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepBoat) : props.t.wizard.stepBoat),
               props.t.bookingWizard?.steps?.departureDuration || (props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepTrip) : props.t.wizard.stepTrip),
               props.t.bookingWizard?.steps?.upgradeYourDay || 'Mejora tu día',
+              props.t.bookingWizard?.steps?.coverages || 'Garantías',
               props.t.bookingWizard?.steps?.yourDetails || (props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepConfirm) : props.t.wizard.stepConfirm),
             ]}
           />
@@ -249,7 +270,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         </div>
       )}
       {/* Hold countdown timer — only visible on final step */}
-      {props.holdExpiresAt && currentStep === 5 && (
+      {props.holdExpiresAt && isLastStep && (
         <div className="px-4 pt-2">
           <HoldCountdown
             expiresAt={props.holdExpiresAt}
@@ -276,12 +297,13 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           {displayStep === 2 && <Step2Boat {...props} />}
           {displayStep === 3 && <Step3Departure {...props} />}
           {displayStep === 4 && <Step4Extras {...props} />}
-          {displayStep === 5 && <Step5Final {...props} />}
+          {displayStep === 5 && <StepCoverages coverages={props.coverages} t={props.t} variant="mobile" />}
+          {displayStep === 6 && <Step5Final {...props} />}
         </div>
       </div>
       {/* P1.1 (2026-05-20): price summary bar stays sticky through steps 2-5
           so the total is visible at the exact moment the user hits submit. */}
-      {currentStep >= 2 && currentStep <= 5 && (() => {
+      {currentStep >= 2 && currentStep <= totalSteps && (() => {
         const price = props.getBookingPrice();
         if (!price || !props.selectedBoatInfo || !props.selectedDuration) return null;
         const discount = props.getCodeDiscount();
@@ -299,7 +321,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         );
       })()}
       <div className="border-t border-border bg-background px-4 py-3">
-        {currentStep === 5 && (
+        {isLastStep && (
           <p className="text-[11px] text-muted-foreground text-center mb-1.5 px-2 leading-tight">
             {props.t.bookingWizard?.hints?.submitReassurance || 'Te respondemos en menos de 2 horas. Sin pago online, sin compromiso.'}
           </p>
@@ -309,23 +331,23 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
               via WhatsApp) carries the row. Back becomes an icon-only ghost
               so the One Action Rule is honoured. Steps 1-4 keep the
               balanced Back + Next pair since the user is mid-navigation. */}
-          {currentStep === 5 ? null : currentStep > 1 && (
+          {isLastStep ? null : currentStep > 1 && (
             <Button
               type="button"
               variant="outline"
               onClick={onBack}
-              aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 5)`}
+              aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} ${totalSteps})`}
               className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
             >
               <ChevronLeft className="w-4 h-4 mr-1" aria-hidden="true" />
               {props.t.booking.back}
             </Button>
           )}
-          {currentStep < 5 ? (
+          {!isLastStep ? (
             <Button
               type="button"
               onClick={onNext}
-              aria-label={`${props.t.booking.next}: ${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} 5)`}
+              aria-label={`${props.t.booking.next}: ${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} ${totalSteps})`}
               className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
             >
               {props.t.booking.next}
@@ -336,7 +358,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
                 type="button"
                 variant="ghost"
                 onClick={onBack}
-                aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 5)`}
+                aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} ${totalSteps})`}
                 className="flex-shrink-0 px-3 min-h-11 text-muted-foreground hover:text-foreground"
               >
                 <ChevronLeft className="w-5 h-5" aria-hidden="true" />
@@ -1109,9 +1131,10 @@ function Step4Extras(props: BookingWizardMobileProps) {
   const {
     boatExtras, selectedExtras, selectedPack,
     extrasInPack, totalExtrasPrice, handlePackSelect, handleExtraToggle,
-    calculatePackSavings, iconMap,
+    calculatePackSavings, iconMap, coverages,
     t, isSpanishLang, language,
   } = props;
+  const { localizedPath } = useLanguage();
   const boatExtraNames = new Set(boatExtras.map(e => e.name));
   const availablePacks = EXTRA_PACKS.filter(pack =>
     pack.extras.every(name => boatExtraNames.has(name))
@@ -1227,6 +1250,7 @@ function Step5Final(props: BookingWizardMobileProps) {
     firstName, lastName, onGoToStep,
     boatExtras, selectedExtras, selectedPack, showExtras, setShowExtras,
     extrasInPack, totalExtrasPrice, handlePackSelect, handleExtraToggle,
+    weatherGuarantee, reducedDeposit, reducedDepositAmount,
     showCodeSection, setShowCodeSection, codeInput, setCodeInput,
     isValidatingCode, validatedCode, codeError, handleValidateCode, handleRemoveCode,
     getCodeDiscount, getBookingPrice,
@@ -1273,6 +1297,9 @@ function Step5Final(props: BookingWizardMobileProps) {
     }
     const nonPackExtras = selectedExtras.filter(e => !extrasInPack.has(e));
     parts.push(...nonPackExtras);
+    // Coverages are part of the total, so they must be named in the summary too.
+    if (weatherGuarantee) parts.push(t.booking.coverages.weatherName);
+    if (reducedDeposit) parts.push(t.booking.coverages.depositName);
     return parts;
   })();
 
@@ -1470,7 +1497,9 @@ function Step5Final(props: BookingWizardMobileProps) {
       {/* Total price card */}
       {total !== null && (() => {
         const depositStr = selectedBoatInfo?.specifications?.deposit;
-        const depositAmount = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, '')) : null;
+        const standardDeposit = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, '')) : null;
+        // With the cover contracted, show the deposit actually taken.
+        const depositAmount = reducedDeposit ? reducedDepositAmount : standardDeposit;
         return (
           <div className="bg-primary rounded-xl p-4 text-white">
             <div className="flex justify-between items-center">

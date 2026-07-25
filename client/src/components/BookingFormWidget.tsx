@@ -40,6 +40,11 @@ import {
   calculatePackSavings,
   getAvailableDurationsForDate,
   filterActivePrices,
+  buildCoverageLines,
+  coverageDepositTier,
+  COVERAGE_INQUIRY_NAMES,
+  COVERAGE_PRICES_FALLBACK,
+  type CoveragePrices,
   type DurationOption,
   type Duration,
 } from "@shared/pricing";
@@ -139,7 +144,8 @@ const STEP_NAMES: Record<number, string> = {
   2: "boat",
   3: "departure_duration",
   4: "extras",
-  5: "your_details",
+  5: "coverages",
+  6: "your_details",
 };
 
 export default function BookingFormWidget({
@@ -211,6 +217,12 @@ export default function BookingFormWidget({
   const [selectedPack, setSelectedPack] = useState<string | null>(null);
   const [showExtras, setShowExtras] = useState(false);
 
+  // Optional coverages (step 4). Priced outside the extras catalog; the reduced
+  // deposit is a tier that depends on the boat, so it is derived on the fly and
+  // never frozen into state.
+  const [weatherGuarantee, setWeatherGuarantee] = useState(false);
+  const [reducedDeposit, setReducedDeposit] = useState(false);
+
   // RGPD consent
   const [privacyConsent, setPrivacyConsent] = useState(false);
 
@@ -229,13 +241,17 @@ export default function BookingFormWidget({
   // Track which fields the user has interacted with (blurred)
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  // Wizard step navigation (5 steps, reordered so date is first):
+  // Wizard step navigation (6 steps, reordered so date is first):
   //   1. When + Who    → date + people
   //   2. Boat          → boat selection (with real prices for the chosen date)
   //   3. Departure     → preferred time + duration (with pricing override delta visible)
   //   4. Extras        → packs + individual extras ("Mejora tu día")
-  //   5. Personal data → contact form + summary + RGPD + WhatsApp submit
-  const TOTAL_STEPS = 5;
+  //   5. Coverages     → weather guarantee + reduced deposit (own screen since
+  //                      2026-07-25: buried at the foot of step 4 nobody saw them)
+  //   6. Personal data → contact form + summary + RGPD + WhatsApp submit
+  // GA4 note: renumbering moved "your_details" from 5 to 6, so the numeric
+  // funnel series is not comparable across that date. Report on step_name.
+  const TOTAL_STEPS = 6;
   const [currentStep, setCurrentStep] = useState(1);
   const prevSeasonRef = useRef<string>("");
 
@@ -329,6 +345,8 @@ export default function BookingFormWidget({
         currentStep: number;
         selectedExtras: string[];
         selectedPack: string | null;
+        weatherGuarantee?: boolean;
+        reducedDeposit?: boolean;
         firstName: string;
         lastName: string;
         phonePrefix: string;
@@ -357,6 +375,8 @@ export default function BookingFormWidget({
       if (saved.selectedDuration && !prefillDuration) setSelectedDuration(saved.selectedDuration);
       if (saved.selectedExtras?.length) setSelectedExtras(saved.selectedExtras);
       if (saved.selectedPack) setSelectedPack(saved.selectedPack);
+      if (saved.weatherGuarantee) setWeatherGuarantee(true);
+      if (saved.reducedDeposit) setReducedDeposit(true);
       if (saved.firstName) setFirstName(saved.firstName);
       if (saved.lastName) setLastName(saved.lastName);
       if (saved.phonePrefix) setPhonePrefix(saved.phonePrefix);
@@ -371,7 +391,7 @@ export default function BookingFormWidget({
       }
       // Restore step, capped to the wizard's total step count
       if (saved.currentStep > 1) {
-        setCurrentStep(Math.min(saved.currentStep, 5));
+        setCurrentStep(Math.min(saved.currentStep, TOTAL_STEPS));
         // P1.10: only surface the banner when the user already advanced past
         // step 1 — restoring just a date on step 1 is silent and not disruptive.
         setRestoredFromStorage(true);
@@ -397,6 +417,8 @@ export default function BookingFormWidget({
         currentStep,
         selectedExtras,
         selectedPack,
+        weatherGuarantee,
+        reducedDeposit,
         firstName,
         lastName,
         phonePrefix,
@@ -419,6 +441,8 @@ export default function BookingFormWidget({
     currentStep,
     selectedExtras,
     selectedPack,
+    weatherGuarantee,
+    reducedDeposit,
     firstName,
     lastName,
     phonePrefix,
@@ -469,6 +493,8 @@ export default function BookingFormWidget({
       setPhoneNumber("");
       setSelectedExtras([]);
       setSelectedPack(null);
+      setWeatherGuarantee(false);
+      setReducedDeposit(false);
       setShowExtras(false);
       setValidatedCode(null);
       setCodeInput("");
@@ -682,6 +708,11 @@ export default function BookingFormWidget({
     queryKey: ["/api/boats"],
   });
 
+  // Coverage prices live in the CRM; the constants are the fallback if it's down.
+  const { data: coveragePrices = COVERAGE_PRICES_FALLBACK } = useQuery<CoveragePrices>({
+    queryKey: ["/api/coverage-prices"],
+  });
+
   // Fetch real-time slot availability when boat + date are selected
   const { data: slotAvailability, isLoading: isAvailabilityLoading } = useQuery<SlotAvailability>({
     queryKey: ["/api/availability", selectedBoat, selectedDate],
@@ -739,6 +770,8 @@ export default function BookingFormWidget({
   // editing the time (steps 1-3). On step 4 we surface a SlotConflictBanner
   // with alternatives instead of silently wiping the selection (P1.9).
   useEffect(() => {
+    // El umbral es 4 (extras) por SEMÁNTICA, no por ser penúltimo: a partir de
+    // ahí el usuario ya no edita la hora y el banner de conflicto se encarga.
     if (preferredTime && unavailableTimeSlots.has(preferredTime) && currentStep < 4) {
       setPreferredTime("");
     }
@@ -756,23 +789,23 @@ export default function BookingFormWidget({
     }
   }, [selectedTimeMaxDuration, selectedDuration, currentStep]);
 
-  // P1.9: force a fresh availability fetch when the user lands on step 5 so
+  // P1.9: force a fresh availability fetch when the user lands on the final step so
   // the conflict-detection effect below works against the latest data, not
   // a 60s-stale cache.
   useEffect(() => {
-    if (currentStep === 5 && selectedBoat && selectedDate) {
+    if (currentStep === TOTAL_STEPS && selectedBoat && selectedDate) {
       void queryClient.invalidateQueries({
         queryKey: ["/api/availability", selectedBoat, selectedDate],
       });
     }
   }, [currentStep, selectedBoat, selectedDate, queryClient]);
 
-  // P1.9: detect a slot conflict on step 5. Triggers whenever
+  // P1.9: detect a slot conflict on the final step. Triggers whenever
   // slotAvailability changes (cache refresh, refetchOnWindowFocus,
   // queryClient.invalidate above). Clears itself when the user picks a
   // valid alternative.
   useEffect(() => {
-    if (currentStep !== 5) {
+    if (currentStep !== TOTAL_STEPS) {
       if (slotConflict) setSlotConflict(null);
       slotConflictTrackedRef.current = false;
       return;
@@ -1253,11 +1286,44 @@ export default function BookingFormWidget({
   };
 
   // Calculate total extras price (packs + individual)
-  const totalExtrasPrice = useMemo(() => {
+  const catalogExtrasPrice = useMemo(() => {
     if (!selectedBoat || !BOAT_DATA[selectedBoat]) return 0;
     const packs = selectedPack ? [selectedPack] : [];
     return calculateExtrasPrice(selectedBoat, selectedExtras, packs);
   }, [selectedBoat, selectedExtras, selectedPack]);
+
+  // Reduced-deposit tier for the selected boat (licence-free vs licensed).
+  const depositTier = useMemo(
+    () => coverageDepositTier(coveragePrices, !!selectedBoatInfo?.requiresLicense),
+    [coveragePrices, selectedBoatInfo?.requiresLicense]
+  );
+  const coveragesPrice =
+    (weatherGuarantee ? coveragePrices.weatherPrice : 0) + (reducedDeposit ? depositTier.price : 0);
+
+  // Everything downstream (summaries, coupon cap, estimated total, the WhatsApp
+  // message) treats the coverages as part of the extras block, so folding them
+  // in here keeps every total consistent without touching each call site.
+  const totalExtrasPrice = catalogExtrasPrice + coveragesPrice;
+
+  // Rendered identically by the mobile and desktop step 4.
+  const coverageOptions = [
+    {
+      key: "weather",
+      name: t.booking.coverages.weatherName,
+      desc: t.booking.coverages.weatherDesc,
+      price: coveragePrices.weatherPrice,
+      on: weatherGuarantee,
+      toggle: () => setWeatherGuarantee(v => !v),
+    },
+    {
+      key: "deposit",
+      name: t.booking.coverages.depositName,
+      desc: t.booking.coverages.depositDesc.replace("{amount}", String(depositTier.reducedTo)),
+      price: depositTier.price,
+      on: reducedDeposit,
+      toggle: () => setReducedDeposit(v => !v),
+    },
+  ];
 
   // Inline validation (using shared validators from booking-validation.ts)
   const getFieldError = (field: string): string => {
@@ -1482,6 +1548,13 @@ export default function BookingFormWidget({
       });
     }
 
+    parts.push(
+      ...buildCoverageLines(isSpanish, {
+        weatherPrice: weatherGuarantee ? coveragePrices.weatherPrice : undefined,
+        depositPrice: reducedDeposit ? depositTier.price : undefined,
+      })
+    );
+
     if (parts.length === 0) return "";
     return parts.join("\n");
   };
@@ -1499,7 +1572,12 @@ export default function BookingFormWidget({
       ? formatDateSpanish(selectedDate)
       : formatDateEnglish(selectedDate);
     const capacity = selectedBoatInfo?.capacity || "?";
-    const deposit = selectedBoatInfo?.specifications?.deposit || "?";
+    const standardDeposit = selectedBoatInfo?.specifications?.deposit || "?";
+    // With the cover contracted the team needs the deposit they will actually
+    // take, with the standard one alongside so the discount is auditable.
+    const deposit = reducedDeposit
+      ? `${depositTier.reducedTo}€ (${isSpanish ? "reducida, estándar" : "reduced, standard"} ${standardDeposit})`
+      : standardDeposit;
 
     const durationOption = getDurationOptions().find(opt => opt.value === selectedDuration);
     const durationText = durationOption?.label.split(" - ")[0] || selectedDuration;
@@ -1726,10 +1804,10 @@ Looking forward to confirmation. Thanks!`;
         boat: 2,
         time: 3,
         duration: 3,
-        // step 4 (extras) has no validated fields
-        firstName: 5,
-        phone: 5,
-        email: 5,
+        // steps 4 (extras) and 5 (coverages) have no validated fields
+        firstName: 6,
+        phone: 6,
+        email: 6,
       };
 
       // Funnel: report each unique (step, field) failure once per session.
@@ -1832,7 +1910,13 @@ Looking forward to confirmation. Thanks!`;
         phonePrefix,
         phoneNumber: phoneNumber.trim(),
         email: email.trim() || null,
-        extras: selectedExtras.length > 0 ? selectedExtras : [],
+        // Coverages travel with their CANONICAL Spanish name whatever the
+        // visitor's language: /CRM/peticiones matches them by these labels.
+        extras: [
+          ...selectedExtras,
+          ...(weatherGuarantee ? [COVERAGE_INQUIRY_NAMES.weather] : []),
+          ...(reducedDeposit ? [COVERAGE_INQUIRY_NAMES.deposit] : []),
+        ],
         packId: selectedPack || null,
         couponCode: validatedCode?.code || null,
         estimatedTotal: total ? total.toFixed(2) : null,
@@ -1988,6 +2072,10 @@ Looking forward to confirmation. Thanks!`;
     totalExtrasPrice,
     handlePackSelect,
     handleExtraToggle,
+    coverages: coverageOptions,
+    weatherGuarantee,
+    reducedDeposit,
+    reducedDepositAmount: depositTier.reducedTo,
     showCodeSection,
     setShowCodeSection,
     codeInput,

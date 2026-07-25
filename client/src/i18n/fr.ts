@@ -429,6 +429,24 @@ export const fr: Translations = {
       selected: "sélectionnés",
       packSelected: "Pack sélectionné",
     },
+    coveragesMoreInfo: "Voir comment ça marche",
+    coverages: {
+      title: "Couvertures optionnelles",
+      weatherName: "Garantie mauvais temps",
+      weatherDesc: "Si le mauvais temps empêche la sortie, nous vous remboursons l'acompte en espèces.",
+      depositName: "Caution réduite",
+      depositDesc: "Votre caution descend à {amount}€ le jour de la sortie.",
+      stepTitle: "Si la mer n'est pas d'accord",
+      stepSubtitle: "C'est vous qui décidez comment être couvert.",
+      withoutLabel: "Sans garantie",
+      withoutBody: "Nous changeons la date sans frais. Si aucune date ne convient, vous recevez un bon valable 12 mois. Pas de remboursement en espèces.",
+      withLabel: "Avec garantie",
+      withBody: "À vous de choisir : nouvelle date ou remboursement intégral.",
+      triggerAemetMark: "AEMET",
+      triggerAemet: "Avis côtier officiel pour la zone pendant votre créneau.",
+      triggerWindMark: "20 nœuds",
+      triggerWind: "Vent soutenu ou rafales au-dessus, ou décision du skipper pour la sécurité.",
+    },
     confirmTitle: "Confirmer la réservation",
     confirmSubtitle: "Vérifiez les détails. Confirmation par WhatsApp en moins de 2 heures.",
     summaryClient: "Client",
@@ -816,6 +834,7 @@ export const fr: Translations = {
       yourBoat: "Ton bateau",
       departureDuration: "Heure et durée",
       upgradeYourDay: "Améliore ta journée",
+      coverages: "Garanties",
       yourDetails: "Confirmer",
     },
     hints: {
@@ -1117,7 +1136,7 @@ export const fr: Translations = {
       "Les prix commencent à 75€/h avec le carburant inclus. Nous travaillons par créneaux : 1 heure à partir de 75€, 2 heures à partir de 115€, une demi-journée (4 heures) à partir de 150€ et une journée complète (8 heures) à partir de 220€ en basse saison. Les tarifs augmentent en haute saison et le week-end. Pas de commission de plateforme ni de supplément carburant : le prix que vous réservez est le prix final.",
     faqWeatherQuestion: "Que se passe-t-il en cas de mauvais temps ?",
     faqWeatherAnswer:
-      "Si la journée commence avec du mauvais temps, nous reprogrammons la sortie sans frais ou nous vous remboursons l'intégralité de l'acompte. De plus, le changement de date est gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Les réservations confirmées avec acompte ne sont pas remboursables en dehors du cas de mauvais temps.",
+      "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ; si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Si vous avez souscrit la Garantie mauvais temps, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant le créneau de votre location, vent soutenu ou rafales supérieures à 20 nœuds, ou la décision de notre personnel pour des raisons de sécurité.",
     howToTitle: "Comment louer un bateau sans permis à Blanes (5 étapes)",
     howToIntro:
       "Louer un bateau sans permis au Port de Blanes est plus simple qu'il n'y paraît. Voici les 5 étapes du processus, de la réservation au retour, pour savoir exactement à quoi s'attendre le jour de votre sortie.",
@@ -1430,13 +1449,13 @@ export const fr: Translations = {
         id: "cancelacion",
         question: "Quelle est la politique d'annulation ?",
         answer:
-          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Mauvais temps : nous reprogrammons sans frais ou remboursons l'acompte intégral. Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.",
+          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
       },
       {
         id: "mal-tiempo",
         question: "Que se passe-t-il en cas de mauvais temps ?",
         answer:
-          "Si les conditions météo ne sont pas sûres, nous vous offrons un changement de date gratuit ou un remboursement intégral de l'acompte. Nous consultons les prévisions 24h avant et vous prévenons.",
+          "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ; si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Si vous avez souscrit la Garantie mauvais temps, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant le créneau de votre location, vent soutenu ou rafales supérieures à 20 nœuds, ou la décision de notre personnel pour des raisons de sécurité.",
       },
       {
         id: "experiencia",
@@ -1978,7 +1997,7 @@ export const fr: Translations = {
     a4FuelIncluded: "Le carburant est inclus.",
     a4FuelNotIncluded: "Le carburant n'est pas inclus (à régler séparément selon la consommation).",
     q5: "Quelle est la politique d'annulation ?",
-    a5: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Mauvais temps : reprogrammation sans frais ou remboursement intégral de l'acompte. Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.",
+    a5: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
   },
   activitySunset: {
     faqItems: [
@@ -2631,7 +2650,7 @@ export const fr: Translations = {
       cancelacion: {
         question: "Quelle est la politique d'annulation ?",
         answer:
-          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Mauvais temps : nous reprogrammons sans frais ou remboursons l'acompte intégral. Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.",
+          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
       },
       sinLicencia: {
         question: "Puis-je louer sans avoir de permis bateau ?",
@@ -2686,7 +2705,7 @@ export const fr: Translations = {
       malTiempo: {
         question: "Que se passe-t-il s'il fait mauvais temps ?",
         answer:
-          "Vent fort : nous ne sortons pas avec un vent supérieur à force 4. Pluie intense : nous reprogrammons sans frais. Orage : suspension automatique. Changement pendant la navigation : retour guidé au port. Nous privilégions toujours la sécurité avec reprogrammation gratuite ou remboursement intégral de l'acompte.",
+          "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ; si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Si vous avez souscrit la Garantie mauvais temps, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant le créneau de votre location, vent soutenu ou rafales supérieures à 20 nœuds, ou la décision de notre personnel pour des raisons de sécurité.",
       },
       emergencia: {
         question: "Que faire en cas d'urgence ?",
@@ -2950,7 +2969,7 @@ export const fr: Translations = {
         },
         {
           title: "7. Politique d'annulation",
-          body: "- Changement de date gratuit jusqu'à 7 jours avant le départ, sous réserve de disponibilité de l'embarcation.\n- Mauvais temps vérifié par notre équipe : reprogrammation sans frais ou remboursement intégral de l'acompte.\n- Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.\n\nLa décision de suspension pour conditions météorologiques relève du prestataire et est prise selon des critères de sécurité. Communication par écrit à costabravarentaboat@gmail.com ou WhatsApp +34 611 500 372.",
+          body: "- Changement de date gratuit jusqu'à 7 jours avant le départ, sous réserve de disponibilité du bateau.\n- Mauvais temps sans garantie souscrite : report sans frais ou, si aucune nouvelle date n'est convenue, bon du montant versé valable 12 mois. Aucun remboursement en espèces.\n- Mauvais temps avec la Garantie mauvais temps souscrite : le client choisit entre une nouvelle date ou le remboursement intégral en espèces des sommes versées pour la location, hors montant de la garantie elle-même, non remboursable.\n- Critère objectif de mauvais temps : avis côtier officiel de l'AEMET pour la zone de navigation pendant le créneau horaire de la location, vent soutenu ou rafales supérieures à vingt nœuds, ou décision du personnel de l'entreprise pour des raisons de sécurité.\n- Si la sortie ne peut avoir lieu pour une cause imputable à l'entreprise (panne ou autre), les sommes versées sont remboursées.\n- En dehors des cas ci-dessus, les réservations confirmées avec acompte ne sont pas remboursables en espèces.\n\nLa Garantie mauvais temps et la Caution réduite sont des garanties commerciales propres à Costa Brava Rent a Boat et ne constituent pas un contrat d'assurance. La décision de suspension pour conditions météorologiques appartient au prestataire et est prise pour des raisons de sécurité. Communication par écrit à costabravarentaboat@gmail.com ou WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obligations du client",
@@ -4338,9 +4357,33 @@ export const fr: Translations = {
       },
       {
         q: "Que se passe-t-il en cas de mauvais temps ?",
-        a: "Mauvais temps : nous reprogrammons sans frais ou remboursons l'acompte en intégralité.",
+        a: "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou vous remettons un bon valable 12 mois. Avec la Garantie mauvais temps souscrite, nous vous remboursons en espèces.",
       },
     ],
+  },
+  garantiasPage: {
+    navLabel: "Garanties",
+    heroTitle: "Si la mer dit non, la réponse est déjà écrite",
+    heroSubtitle: "Nous publions le critère exact qui nous fait annuler une sortie et ce que vous recevez dans chaque cas. Deux couvertures optionnelles, sans petits caractères.",
+    weatherTitle: "Si le mauvais temps empêche la sortie",
+    withoutLabel: "Sans la garantie",
+    withoutBody: "Nous décalons la date sans frais. Si aucune date ne convient, vous recevez un bon du montant versé, valable 12 mois. Pas de remboursement en espèces.",
+    withLabel: "Avec la Garantie mauvais temps",
+    withBody: "Vous choisissez : une nouvelle date ou votre argent intégralement, hors prix de la garantie elle-même.",
+    criteriaTitle: "Ce qui compte comme mauvais temps",
+    criteriaMarks: ["AEMET", "20 kn", "Skipper"],
+    criteria: [
+      "Avis côtier officiel de l'AEMET pour notre zone de navigation pendant le créneau de votre location.",
+      "Vent soutenu ou rafales supérieures à 20 nœuds.",
+      "La décision de notre personnel pour des raisons de sécurité, même si les deux cas ci-dessus ne s'appliquent pas.",
+    ],
+    depositTitle: "Caution réduite",
+    depositBody: "La caution est remise avant le départ et rendue intégralement au retour si le bateau revient comme il est parti. Avec cette couverture, vous immobilisez moins d'argent.",
+    colStandard: "Caution standard",
+    colReduced: "Avec la couverture",
+    notInsurance: "La Garantie mauvais temps et la Caution réduite sont des garanties commerciales propres à Costa Brava Rent a Boat et ne constituent pas un contrat d'assurance.",
+    ctaTitle: "Choisissez vos couvertures au moment de réserver",
+    ctaLabel: "Réserver et ajouter les couvertures",
   },
   scootersPage: {
     seoTitle: "Location de motos et scooters à Lloret de Mar | Coast Rent",

@@ -24,6 +24,7 @@ import SlotConflictBanner from "@/components/SlotConflictBanner";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
+import StepCoverages from "@/components/booking/StepCoverages";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
 import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
@@ -172,13 +173,18 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const inputError = "border-destructive";
   const inputNormal = "border-cta/40";
 
-  // Step labels for the 5-step wizard (date first)
+  // Step count comes from the widget; everything that means "last step" reads
+  // isLastStep so inserting a step never leaves a stale literal behind.
+  const totalSteps = props.totalSteps ?? 6;
+  const isLastStep = currentStep === totalSteps;
+  // Step labels for the wizard (date first)
   const boatSelected = !!selectedBoatInfo;
   const stepLabels = [
     t.bookingWizard?.steps?.whenWho || 'Cuándo',
     t.bookingWizard?.steps?.yourBoat || t.wizard.stepBoat,
     t.bookingWizard?.steps?.departureDuration || (boatSelected ? (t.endowment?.yourTrip || t.wizard.stepTrip) : t.wizard.stepTrip),
     t.bookingWizard?.steps?.upgradeYourDay || 'Mejora tu día',
+    t.bookingWizard?.steps?.coverages || 'Garantías',
     t.bookingWizard?.steps?.yourDetails || (boatSelected ? (t.endowment?.confirmStep || t.wizard.stepYourData) : t.wizard.stepYourData),
   ];
 
@@ -187,7 +193,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
       {/* Step progress bar */}
       <div className="flex-shrink-0 px-8 pt-3 pb-2 border-b border-cta/20 flex items-center gap-3">
         <div className="flex-1 min-w-0 px-4">
-          <BookingProgressBar currentStep={currentStep} totalSteps={5} stepLabels={stepLabels} />
+          <BookingProgressBar currentStep={currentStep} totalSteps={totalSteps} stepLabels={stepLabels} />
         </div>
         {props.onClose && (
           <button
@@ -202,7 +208,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
       </div>
 
       {/* Hold countdown timer — only visible on final step */}
-      {holdExpiresAt && currentStep === 5 && (
+      {holdExpiresAt && isLastStep && (
         <div className="flex-shrink-0 px-6 pt-3">
           <HoldCountdown
             expiresAt={holdExpiresAt}
@@ -340,6 +346,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 boatExtras={boatExtras}
                 handlePackSelect={handlePackSelect}
                 handleExtraToggle={handleExtraToggle}
+                coverages={props.coverages}
                 availablePacks={availablePacks}
                 iconMap={iconMap}
                 calculatePackSavings={calculatePackSavings}
@@ -347,6 +354,9 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               />
             )}
             {currentStep === 5 && (
+              <StepCoverages coverages={props.coverages} t={t} variant="desktop" />
+            )}
+            {currentStep === 6 && (
               <Step5FinalDesktop
                 slotConflict={slotConflict}
                 onPickAlternativeSlot={onPickAlternativeSlot}
@@ -390,6 +400,9 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 selectedExtras={selectedExtras}
                 selectedPack={selectedPack}
                 extrasInPack={extrasInPack}
+                weatherGuarantee={props.weatherGuarantee}
+                reducedDeposit={props.reducedDeposit}
+                reducedDepositAmount={props.reducedDepositAmount}
                 language={props.language}
                 onGoToStep={onGoToStep}
                 showFieldError={showFieldError}
@@ -410,7 +423,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
       {/* P1.1 (2026-05-20): price bar visible from step 2 through step 5
           so the total stays on screen when the user hits submit. */}
       {currentStep >= 2 &&
-        currentStep <= 5 &&
+        currentStep <= totalSteps &&
         price !== null &&
         selectedBoatInfo &&
         selectedDuration && (
@@ -434,7 +447,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
       {/* Navigation footer */}
       <div className="flex-shrink-0 border-t border-cta/20 px-6 py-3">
-        {currentStep === 5 && (
+        {isLastStep && (
           <p className="text-xs text-muted-foreground text-center mb-2">
             {t.bookingWizard?.hints?.submitReassurance || 'Te respondemos en menos de 2 horas. Sin pago online, sin compromiso.'}
           </p>
@@ -448,7 +461,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               {t.booking.back}
             </button>
           )}
-          {currentStep < 5 ? (
+          {!isLastStep ? (
             <button
               onClick={onNext}
               className="bg-foreground text-white rounded-full px-8 min-h-11 font-medium text-sm hover:bg-foreground/90 transition-all btn-elevated"
@@ -1176,6 +1189,7 @@ interface Step4ExtrasProps {
   totalExtrasPrice: number;
   handlePackSelect: (packId: string) => void;
   handleExtraToggle: (extraName: string) => void;
+  coverages: BookingWizardMobileProps["coverages"];
   availablePacks: typeof EXTRA_PACKS;
   iconMap: BookingWizardMobileProps["iconMap"];
   calculatePackSavings: (packId: string) => number;
@@ -1192,6 +1206,7 @@ function Step4ExtrasDesktop({
   totalExtrasPrice,
   handlePackSelect,
   handleExtraToggle,
+  coverages,
   availablePacks,
   iconMap,
   calculatePackSavings,
@@ -1284,6 +1299,7 @@ function Step4ExtrasDesktop({
           );
         })}
       </div>
+
     </div>
   );
 }
@@ -1323,6 +1339,9 @@ interface Step5Props {
   price: number | null;
   totalExtrasPrice: number;
   discount: number;
+  weatherGuarantee: boolean;
+  reducedDeposit: boolean;
+  reducedDepositAmount: number;
   selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
   selectedDate: string;
   selectedDuration: string;
@@ -1385,6 +1404,9 @@ function Step5Contact({
   selectedExtras,
   selectedPack,
   extrasInPack,
+  weatherGuarantee,
+  reducedDeposit,
+  reducedDepositAmount,
   language,
   onGoToStep,
   showFieldError,
@@ -1397,7 +1419,9 @@ function Step5Contact({
 }: Step5Props) {
   const { localizedPath } = useLanguage();
   const depositStr = selectedBoatInfo?.specifications?.deposit;
-  const depositAmount = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, "")) : null;
+  const standardDeposit = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, "")) : null;
+  // With the cover contracted, show the deposit actually taken.
+  const depositAmount = reducedDeposit ? reducedDepositAmount : standardDeposit;
 
   // Build extras display text for review card
   const extrasDisplay = (() => {
@@ -1408,6 +1432,9 @@ function Step5Contact({
     }
     const nonPackExtras = selectedExtras.filter(e => !extrasInPack.has(e));
     parts.push(...nonPackExtras);
+    // Coverages are part of the total, so they must be named in the summary too.
+    if (weatherGuarantee) parts.push(t.booking.coverages.weatherName);
+    if (reducedDeposit) parts.push(t.booking.coverages.depositName);
     return parts;
   })();
 

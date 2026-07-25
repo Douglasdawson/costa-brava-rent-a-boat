@@ -5,6 +5,10 @@ import {
   isOperationalSeason,
   calculateBasePrice,
   calculateExtrasPrice,
+  buildCoverageLines,
+  catalogDepositRange,
+  coverageDepositTier,
+  COVERAGE_PRICES_FALLBACK,
   calculatePricingBreakdown,
   getDepositAmount,
   isValidDuration,
@@ -861,5 +865,58 @@ describe("calculatePricingBreakdown with overrides", () => {
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
     expect(breakdown.basePrice).toBe(150); // ALTA base, unchanged
     expect(breakdown.appliedOverride).toBeUndefined();
+  });
+});
+
+describe("optional coverages", () => {
+  it("resolves the deposit tier from the boat's licence requirement", () => {
+    expect(coverageDepositTier(COVERAGE_PRICES_FALLBACK, false)).toEqual({
+      price: 20,
+      reducedTo: 100,
+    });
+    expect(coverageDepositTier(COVERAGE_PRICES_FALLBACK, true)).toEqual({
+      price: 30,
+      reducedTo: 300,
+    });
+  });
+
+  it("builds the exact bullet labels the CRM parser matches", () => {
+    // These strings are a contract with crmdamar's lib/parse-peticion.ts.
+    expect(buildCoverageLines(true, { weatherPrice: 10, depositPrice: 20 })).toEqual([
+      "· Garantía de mal tiempo (10€)",
+      "· Fianza reducida (20€)",
+    ]);
+    expect(buildCoverageLines(false, { weatherPrice: 10, depositPrice: 30 })).toEqual([
+      "· Weather guarantee (10€)",
+      "· Reduced deposit (30€)",
+    ]);
+  });
+
+  it("emits only the selected coverages", () => {
+    expect(buildCoverageLines(true, { depositPrice: 20 })).toEqual(["· Fianza reducida (20€)"]);
+    expect(buildCoverageLines(true, {})).toEqual([]);
+  });
+
+  it("never words the weather cover as insurance", () => {
+    const all = [
+      ...buildCoverageLines(true, { weatherPrice: 10 }),
+      ...buildCoverageLines(false, { weatherPrice: 10 }),
+    ].join(" ");
+    expect(all).not.toMatch(/seguro|insurance/i);
+  });
+});
+
+describe("catalogDepositRange", () => {
+  it("reads the standard deposit range from the catalog, per tier", () => {
+    // The guarantees page publishes these numbers, so they must track the boats:
+    // licence-free hulls run 200-300€, licensed ones are all 500€.
+    expect(catalogDepositRange(false)).toBe("200-300€");
+    expect(catalogDepositRange(true)).toBe("500€");
+  });
+
+  it("keeps the captained excursion out of the licence-free range", () => {
+    // It needs no licence but carries the 500€ licensed deposit; counting it
+    // would advertise "200-500€" to customers booking a licence-free boat.
+    expect(catalogDepositRange(false)).not.toContain("500");
   });
 });

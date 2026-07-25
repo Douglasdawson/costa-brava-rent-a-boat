@@ -29,7 +29,7 @@ export interface AtomicFact {
 // whole fleet since 2026-05-26; Spanish canonical lives in CANCELLATION_POLICY_ES
 // in shared/businessProfile.ts and client/src/i18n/es.ts).
 export const CANCELLATION_POLICY_EN =
-  "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside the bad-weather case.";
+  "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.";
 
 /**
  * Build the atomic citable facts. Fleet-dependent facts (count, license-free
@@ -75,7 +75,7 @@ export function buildCoreFacts(stats: FleetStats = catalogFleetStats()): AtomicF
   { id: "sister-brand", label: "Sister brand (same owner)", value: "Coast Rent — scooter rental in Lloret de Mar (coastrent.es)" },
   { id: "payment", label: "Payment methods", value: "Cash and card at the port. The website captures booking requests; payment is handled in person — no online card capture." },
   { id: "cancellation-policy", label: "Cancellation policy (whole fleet)", value: CANCELLATION_POLICY_EN },
-  { id: "bad-weather", label: "Bad weather policy", value: "Free rescheduling to any available date, or full deposit refund, if conditions are unsafe" },
+  { id: "bad-weather", label: "Bad weather policy", value: "Free rescheduling to any available date, or a voucher for the amount paid valid 12 months, if conditions are unsafe; a full cash refund only with the Weather guarantee contracted" },
   { id: "jetski-circuit", label: "Jet ski circuit (no license)", value: "Buoyed circuit off Blanes on Yamaha VX, 1-2 people per jet ski. 15 min 65 EUR (80 EUR for 2 riders), 30 min 110 EUR, 60 min 190 EUR. Fuel, life vest and safety briefing included." },
   { id: "jetski-excursion", label: "Jet ski guided excursion Blanes → Tossa", value: "Guided route with certified monitor, no license required, 1-2 people per jet ski. 1 h 190 EUR, 2 h 330 EUR. Fuel, civil liability insurance, life vest and briefing included." },
   { id: "tossa-licensed", label: "Travel time Blanes → Tossa (licensed)", value: "30-45 minutes" },

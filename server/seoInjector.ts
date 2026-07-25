@@ -2527,7 +2527,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Qué pasa si hace mal tiempo?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o devolución íntegra del depósito. Consultamos la previsión 24h antes y te avisamos."
+              text: "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad."
             }
           },
           {

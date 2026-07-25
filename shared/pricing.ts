@@ -1,5 +1,5 @@
 // Pricing utility for Costa Brava Rent a Boat seasonal pricing system
-import { BOAT_DATA, EXTRA_PACKS, boatDataRequiresLicense, type BoatData } from './boatData';
+import { BOAT_DATA, EXTRA_PACKS, boatDataRequiresLicense, isCaptainedBoat, type BoatData } from './boatData';
 import { SEASON_START_MONTH, SEASON_END_MONTH } from './constants';
 
 export type Season = 'BAJA' | 'MEDIA' | 'ALTA';
@@ -299,6 +299,82 @@ export function calculateBasePrice(boatId: string, date: Date, duration: Duratio
   return roundToNearestTen(basePrice * WEEKEND_SURCHARGE_FACTOR);
 }
 
+// ── Coberturas opcionales ────────────────────────────────────────────────────
+// Two optional covers sold in step 4, priced OUTSIDE the boat extras catalog.
+// The owner edits the prices in the CRM (configuracion_general); the funnel
+// reads them through GET /api/coverage-prices and falls back to these numbers.
+// The deposit cover has two tiers because the standard deposit differs between
+// licence-free boats and boats requiring a navigation licence.
+
+export interface CoveragePrices {
+  weatherPrice: number;
+  /** SL = sin licencia (licence-free boats). */
+  depositPriceSL: number;
+  depositAmountSL: number;
+  /** CL = con licencia (boats requiring a navigation licence). */
+  depositPriceCL: number;
+  depositAmountCL: number;
+  /**
+   * Standard deposit as a display label ("200€", "500€"), read from the CRM
+   * fleet. Absent when the CRM is unreachable — show nothing rather than the
+   * funnel's static catalog, which still carries deposits production no longer
+   * uses and would quote the customer a figure their contract contradicts.
+   */
+  depositStandardSL?: string;
+  depositStandardCL?: string;
+}
+
+export const COVERAGE_PRICES_FALLBACK: CoveragePrices = {
+  weatherPrice: 10,
+  depositPriceSL: 20,
+  depositAmountSL: 100,
+  depositPriceCL: 30,
+  depositAmountCL: 300,
+};
+
+/** What the reduced-deposit cover costs, and the deposit it leaves, for a boat. */
+export function coverageDepositTier(
+  prices: CoveragePrices,
+  requiresLicense: boolean
+): { price: number; reducedTo: number } {
+  return requiresLicense
+    ? { price: prices.depositPriceCL, reducedTo: prices.depositAmountCL }
+    : { price: prices.depositPriceSL, reducedTo: prices.depositAmountSL };
+}
+
+/**
+ * Canonical Spanish names for the inquiry `extras` array, sent whatever the
+ * visitor's language: /CRM/peticiones matches the coverages by these labels.
+ */
+export const COVERAGE_INQUIRY_NAMES = {
+  weather: "Garantía de mal tiempo",
+  deposit: "Fianza reducida",
+} as const;
+
+/**
+ * Bullet lines for the extras block of the WhatsApp message. The CRM parser
+ * (client/src/lib/parse-peticion.ts) reads "· <rótulo> (<precio>€)" and only
+ * knows the ES and EN wordings below — keep them verbatim.
+ *
+ * Never word the weather cover as "seguro" / "insurance" in any language: it is
+ * a commercial guarantee, not an insurance product.
+ */
+export function buildCoverageLines(
+  isSpanish: boolean,
+  selected: { weatherPrice?: number; depositPrice?: number }
+): string[] {
+  const lines: string[] = [];
+  if (selected.weatherPrice != null) {
+    lines.push(
+      `· ${isSpanish ? "Garantía de mal tiempo" : "Weather guarantee"} (${selected.weatherPrice}€)`
+    );
+  }
+  if (selected.depositPrice != null) {
+    lines.push(`· ${isSpanish ? "Fianza reducida" : "Reduced deposit"} (${selected.depositPrice}€)`);
+  }
+  return lines;
+}
+
 /**
  * Calculate total price for extras, with optional pack support.
  * When a pack is selected, its price is added and individual extras
@@ -357,6 +433,22 @@ export function getDepositAmount(boatId: string): number {
   }
 
   return parseDeposit(boat.specifications.deposit);
+}
+
+/**
+ * Standard deposit range for a boat tier, e.g. "200-300€" / "500€". Read from
+ * the catalog so the guarantees page never drifts from the boats. The captained
+ * excursion needs no licence but carries the licensed deposit, so it is left
+ * out of the licence-free range.
+ */
+export function catalogDepositRange(requiresLicense: boolean): string {
+  const amounts = Object.values(BOAT_DATA)
+    .filter(b => !isCaptainedBoat(b.id) && boatDataRequiresLicense(b) === requiresLicense)
+    .map(b => getDepositAmount(b.id));
+  if (amounts.length === 0) return "";
+  const min = Math.min(...amounts);
+  const max = Math.max(...amounts);
+  return min === max ? `${min}€` : `${min}-${max}€`;
 }
 
 /**

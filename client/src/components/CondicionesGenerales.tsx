@@ -87,9 +87,12 @@ export default function CondicionesGenerales() {
                 <h3 className="text-lg font-semibold text-foreground mb-3">CANCELACIONES Y CAMBIOS:</h3>
                 <div className="space-y-3 text-foreground">
                   <p>• Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación. Comunícalo por escrito a <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">costabravarentaboat@gmail.com</a> o por WhatsApp al +34 611 500 372.</p>
-                  <p>• Mal tiempo verificado por nuestro equipo: reprogramación sin coste o devolución íntegra del depósito.</p>
-                  <p>• Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.</p>
-                  <p>La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.</p>
+                  <p>• Mal tiempo verificado por nuestro equipo, sin Garantía contratada: reprogramación sin coste o, si no se acuerda nueva fecha, bono por el importe abonado con validez de 12 meses. No procede la devolución en dinero.</p>
+                  <p>• Mal tiempo con la Garantía de mal tiempo contratada: el cliente elige entre una nueva fecha o la devolución íntegra en dinero de las cantidades abonadas por el alquiler, excluido el importe de la propia garantía, que no es reembolsable.</p>
+                  <p>• Criterio objetivo de mal tiempo: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.</p>
+                  <p>• Si la salida no puede realizarse por causa imputable a la empresa (avería u otra), se devuelven las cantidades abonadas.</p>
+                  <p>• Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.</p>
+                  <p>La Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.</p>
                 </div>
               </div>
 
@@ -172,9 +175,12 @@ export default function CondicionesGenerales() {
                 <h3 className="text-lg font-semibold text-foreground mb-3">CANCELACIONES Y CAMBIOS:</h3>
                 <div className="space-y-3 text-foreground">
                   <p>• Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación. Comunícalo por escrito a <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">costabravarentaboat@gmail.com</a> o por WhatsApp al +34 611 500 372.</p>
-                  <p>• Mal tiempo verificado por nuestro equipo: reprogramación sin coste o devolución íntegra del depósito.</p>
-                  <p>• Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.</p>
-                  <p>La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.</p>
+                  <p>• Mal tiempo verificado por nuestro equipo, sin Garantía contratada: reprogramación sin coste o, si no se acuerda nueva fecha, bono por el importe abonado con validez de 12 meses. No procede la devolución en dinero.</p>
+                  <p>• Mal tiempo con la Garantía de mal tiempo contratada: el cliente elige entre una nueva fecha o la devolución íntegra en dinero de las cantidades abonadas por el alquiler, excluido el importe de la propia garantía, que no es reembolsable.</p>
+                  <p>• Criterio objetivo de mal tiempo: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.</p>
+                  <p>• Si la salida no puede realizarse por causa imputable a la empresa (avería u otra), se devuelven las cantidades abonadas.</p>
+                  <p>• Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.</p>
+                  <p>La Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.</p>
                 </div>
               </div>
 

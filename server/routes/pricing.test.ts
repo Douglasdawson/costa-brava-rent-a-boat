@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import request from "supertest";
 import { createTestApp } from "../test/setup";
-import type { PricingOverrideRule } from "@shared/pricing";
+import { COVERAGE_PRICES_FALLBACK, type PricingOverrideRule } from "@shared/pricing";
 
 vi.mock("../storage", () => ({
   storage: {
@@ -109,5 +109,31 @@ describe("GET /api/pricing/calendar", () => {
       .query({ from: "2026-08-04", to: "2026-08-04", boatId: "solar-450", duration: "2h" })
       .expect(200);
     expect(res.headers["cache-control"]).toContain("max-age=300");
+  });
+});
+
+describe("GET /api/coverage-prices", () => {
+  let app: ReturnType<typeof createTestApp>;
+  const OLD_URL = process.env.CRMDAMAR_DATABASE_URL;
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    app = createTestApp();
+    registerPricingRoutes(app);
+  });
+
+  afterEach(() => {
+    if (OLD_URL === undefined) delete process.env.CRMDAMAR_DATABASE_URL;
+    else process.env.CRMDAMAR_DATABASE_URL = OLD_URL;
+  });
+
+  it("serves the fallback prices when the CRM connection isn't configured", async () => {
+    delete process.env.CRMDAMAR_DATABASE_URL;
+
+    const res = await request(app).get("/api/coverage-prices").expect(200);
+
+    // The wizard prices the coverages off this payload: a missing field would
+    // silently charge 0€.
+    expect(res.body).toEqual(COVERAGE_PRICES_FALLBACK);
   });
 });

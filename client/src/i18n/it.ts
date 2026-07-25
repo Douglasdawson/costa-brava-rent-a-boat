@@ -426,6 +426,24 @@ export const it: Translations = {
       selected: "selezionati",
       packSelected: "Pacchetto selezionato",
     },
+    coveragesMoreInfo: "Scopri come funzionano",
+    coverages: {
+      title: "Coperture opzionali",
+      weatherName: "Garanzia maltempo",
+      weatherDesc: "Se il maltempo impedisce l'uscita, ti restituiamo la caparra in denaro.",
+      depositName: "Cauzione ridotta",
+      depositDesc: "La tua cauzione scende a {amount}€ il giorno dell'uscita.",
+      stepTitle: "Se il mare non collabora",
+      stepSubtitle: "Decidi tu come vuoi essere coperto.",
+      withoutLabel: "Senza garanzia",
+      withoutBody: "Spostiamo la data senza costi. Se non riusciamo a concordarne una, ricevi un buono valido 12 mesi. Nessun rimborso in denaro.",
+      withLabel: "Con garanzia",
+      withBody: "Scegli tu: nuova data o il denaro indietro, per intero.",
+      triggerAemetMark: "AEMET",
+      triggerAemet: "Avviso costiero ufficiale per la zona nella tua fascia oraria.",
+      triggerWindMark: "20 nodi",
+      triggerWind: "Vento sostenuto o raffiche superiori, o decisione dello skipper per sicurezza.",
+    },
     confirmTitle: "Conferma prenotazione",
     confirmSubtitle: "Verifica i dettagli. Conferma via WhatsApp in meno di 2 ore.",
     summaryClient: "Cliente",
@@ -812,6 +830,7 @@ export const it: Translations = {
       yourBoat: "La tua barca",
       departureDuration: "Ora e durata",
       upgradeYourDay: "Migliora la tua giornata",
+      coverages: "Garanzie",
       yourDetails: "Conferma",
     },
     hints: {
@@ -1110,7 +1129,7 @@ export const it: Translations = {
       "I prezzi partono da 75€/h con il carburante incluso. Lavoriamo per fasce orarie: 1 ora da 75€, 2 ore da 115€, mezza giornata (4 ore) da 150€ e giornata intera (8 ore) da 220€ in bassa stagione. Le tariffe salgono in alta stagione e nei fine settimana. Nessuna commissione di piattaforma né costo extra per il carburante: il prezzo che prenoti è il prezzo finale.",
     faqWeatherQuestion: "Cosa succede se il tempo è brutto?",
     faqWeatherAnswer:
-      "Se la giornata inizia con brutto tempo, riprogrammiamo l'uscita senza costi o ti rimborsiamo l'intera caparra. Inoltre, il cambio di data è gratuito fino a 7 giorni prima della partenza (soggetto a disponibilità). Le prenotazioni confermate con caparra non sono rimborsabili al di fuori del caso di brutto tempo.",
+      "Se il maltempo impedisce l'uscita spostiamo la data senza costi; se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Se hai sottoscritto la Garanzia maltempo, scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a 20 nodi, o la decisione del nostro personale per motivi di sicurezza.",
     howToTitle: "Come noleggiare una barca senza patente a Blanes (5 passi)",
     howToIntro:
       "Noleggiare una barca senza patente al Porto di Blanes è più semplice di quanto sembri. Ecco i 5 passi del processo, dalla prenotazione alla riconsegna, per sapere esattamente cosa aspettarti il giorno della tua uscita.",
@@ -1420,13 +1439,13 @@ export const it: Translations = {
         id: "cancelacion",
         question: "Qual è la politica di cancellazione?",
         answer:
-          "Cambio data gratuito fino a 7 giorni prima della partenza (in base alla disponibilità). Maltempo: riprogrammiamo senza costi o rimborsiamo la caparra per intero. Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.",
+          "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se il maltempo impedisce l'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Al di fuori di questi casi, le prenotazioni confermate con caparra non vengono rimborsate in denaro.",
       },
       {
         id: "mal-tiempo",
         question: "Cosa succede se c'è brutto tempo?",
         answer:
-          "Se le condizioni meteo non sono sicure, offriamo cambio data gratuito o rimborso integrale della caparra. Controlliamo le previsioni 24h prima e ti avvisiamo.",
+          "Se il maltempo impedisce l'uscita spostiamo la data senza costi; se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Se hai sottoscritto la Garanzia maltempo, scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a 20 nodi, o la decisione del nostro personale per motivi di sicurezza.",
       },
       {
         id: "experiencia",
@@ -1968,7 +1987,7 @@ export const it: Translations = {
     a4FuelIncluded: "Il carburante è incluso.",
     a4FuelNotIncluded: "Il carburante non è incluso (si paga a parte in base al consumo).",
     q5: "Qual è la politica di cancellazione?",
-    a5: "Cambio data gratuito fino a 7 giorni prima della partenza (in base alla disponibilità). Maltempo: riprogrammiamo senza costi o rimborsiamo integralmente la caparra. Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.",
+    a5: "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se il maltempo impedisce l'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Al di fuori di questi casi, le prenotazioni confermate con caparra non vengono rimborsate in denaro.",
   },
   activitySunset: {
     faqItems: [
@@ -2622,7 +2641,7 @@ export const it: Translations = {
       cancelacion: {
         question: "Qual è la politica di cancellazione?",
         answer:
-          "Cambio data gratuito fino a 7 giorni prima della partenza (in base alla disponibilità). Maltempo: riprogrammiamo senza costi o rimborsiamo la caparra per intero. Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.",
+          "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se il maltempo impedisce l'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Al di fuori di questi casi, le prenotazioni confermate con caparra non vengono rimborsate in denaro.",
       },
       sinLicencia: {
         question: "Posso noleggiare senza avere la patente nautica?",
@@ -2677,7 +2696,7 @@ export const it: Translations = {
       malTiempo: {
         question: "Cosa succede se c'è maltempo?",
         answer:
-          "Vento forte: non usciamo con vento superiore a forza 4. Pioggia intensa: riprogrammiamo senza costi. Temporale: sospensione automatica. Cambiamento durante la navigazione: rientro guidato al porto. Diamo sempre priorità alla sicurezza con riprogrammazione gratuita o rimborso integrale della caparra.",
+          "Se il maltempo impedisce l'uscita spostiamo la data senza costi; se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Se hai sottoscritto la Garanzia maltempo, scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a 20 nodi, o la decisione del nostro personale per motivi di sicurezza.",
       },
       emergencia: {
         question: "Cosa faccio in caso di emergenza?",
@@ -2940,7 +2959,7 @@ export const it: Translations = {
         },
         {
           title: "7. Politica di cancellazione",
-          body: "- Cambio data gratuito fino a 7 giorni prima della partenza, in base alla disponibilità dell'imbarcazione.\n- Maltempo verificato dal nostro team: riprogrammazione senza costi o rimborso integrale della caparra.\n- Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.\n\nLa decisione sulla sospensione per condizioni meteorologiche spetta al prestatore ed è presa con criteri di sicurezza. Comunicazione scritta a costabravarentaboat@gmail.com o WhatsApp +34 611 500 372.",
+          body: "- Cambio data gratuito fino a 7 giorni prima dell'uscita, soggetto a disponibilità dell'imbarcazione.\n- Maltempo senza garanzia sottoscritta: riprogrammazione senza costi o, se non si concorda una nuova data, buono per l'importo versato valido 12 mesi. Non è previsto il rimborso in denaro.\n- Maltempo con la Garanzia maltempo sottoscritta: il cliente sceglie tra una nuova data o il rimborso integrale in denaro delle somme versate per il noleggio, escluso l'importo della garanzia stessa, che non è rimborsabile.\n- Criterio oggettivo di maltempo: avviso costiero ufficiale AEMET per la zona di navigazione nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a venti nodi, o la decisione del personale dell'azienda per motivi di sicurezza.\n- Se l'uscita non può svolgersi per causa imputabile all'azienda (guasto o altro), le somme versate vengono restituite.\n- Al di fuori dei casi precedenti, le prenotazioni confermate con caparra non sono rimborsabili in denaro.\n\nLa Garanzia maltempo e la Cauzione ridotta sono garanzie commerciali proprie di Costa Brava Rent a Boat e non costituiscono un contratto di assicurazione. La decisione sulla sospensione per condizioni meteorologiche spetta al prestatore ed è presa con criteri di sicurezza. Comunicazione per iscritto a costabravarentaboat@gmail.com o WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obblighi del cliente",
@@ -4328,9 +4347,33 @@ export const it: Translations = {
       },
       {
         q: "Cosa succede in caso di maltempo?",
-        a: "Maltempo: riprogrammiamo senza costi o rimborsiamo integralmente l'acconto.",
+        a: "Se il maltempo impedisce l'uscita spostiamo la data senza costi o ti diamo un buono valido 12 mesi. Con la Garanzia maltempo sottoscritta, ti rimborsiamo in denaro.",
       },
     ],
+  },
+  garantiasPage: {
+    navLabel: "Garanzie",
+    heroTitle: "Se il mare dice no, la risposta è già scritta",
+    heroSubtitle: "Pubblichiamo il criterio esatto con cui annulliamo un'uscita e cosa ricevi in ogni caso. Due coperture opzionali, senza clausole nascoste.",
+    weatherTitle: "Se il maltempo impedisce l'uscita",
+    withoutLabel: "Senza la garanzia",
+    withoutBody: "Spostiamo la data senza costi. Se non troviamo una data, ricevi un buono per l'importo versato, valido 12 mesi. Nessun rimborso in denaro.",
+    withLabel: "Con la Garanzia maltempo",
+    withBody: "Scegli tu: nuova data o il denaro indietro per intero, escluso il prezzo della garanzia stessa.",
+    criteriaTitle: "Quando si considera maltempo",
+    criteriaMarks: ["AEMET", "20 kn", "Skipper"],
+    criteria: [
+      "Avviso costiero ufficiale AEMET per la nostra zona di navigazione nella fascia oraria del tuo noleggio.",
+      "Vento sostenuto o raffiche superiori a 20 nodi.",
+      "La decisione del nostro personale per motivi di sicurezza, anche se i due casi sopra non ricorrono.",
+    ],
+    depositTitle: "Cauzione ridotta",
+    depositBody: "La cauzione si versa prima di salpare e si restituisce per intero al rientro se la barca torna come è partita. Con questa copertura lasci bloccato meno denaro.",
+    colStandard: "Cauzione standard",
+    colReduced: "Con la copertura",
+    notInsurance: "La Garanzia maltempo e la Cauzione ridotta sono garanzie commerciali proprie di Costa Brava Rent a Boat e non costituiscono un contratto di assicurazione.",
+    ctaTitle: "Scegli le tue coperture al momento di prenotare",
+    ctaLabel: "Prenota e aggiungi le coperture",
   },
   scootersPage: {
     seoTitle: "Noleggio moto e scooter a Lloret de Mar | Coast Rent",

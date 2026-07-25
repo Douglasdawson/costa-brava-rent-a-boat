@@ -1025,7 +1025,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   const policyBlock = `
     <div style="background:#f1f5f9; border-radius:8px; padding:16px; margin:16px 0; font-size:14px; color:#334155;">
       <p style="margin:0 0 8px; font-weight:bold;">Política de cancelación</p>
-      <p style="margin:0;">Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.</p>
+      <p style="margin:0;">Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.</p>
     </div>
   `;
 

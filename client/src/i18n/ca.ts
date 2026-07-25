@@ -425,6 +425,24 @@ export const ca: Translations = {
       selected: "seleccionats",
       packSelected: "Pack seleccionat",
     },
+    coveragesMoreInfo: "Veure com funcionen",
+    coverages: {
+      title: "Cobertures opcionals",
+      weatherName: "Garantia de mal temps",
+      weatherDesc: "Si el mal temps impedeix sortir, et retornem la paga i senyal en diners.",
+      depositName: "Fiança reduïda",
+      depositDesc: "La teva fiança baixa a {amount}€ el dia de la sortida.",
+      stepTitle: "Si el mar no acompanya",
+      stepSubtitle: "Tu decideixes com vols estar cobert.",
+      withoutLabel: "Sense garantia",
+      withoutBody: "Canviem la data sense cost. Si no aconseguim acordar-ne cap, reps un val vàlid 12 mesos. No hi ha devolució en diners.",
+      withLabel: "Amb garantia",
+      withBody: "Tries tu: nova data o els diners de tornada, íntegres.",
+      triggerAemetMark: "AEMET",
+      triggerAemet: "Avís costaner oficial per a la zona en la teva franja horària.",
+      triggerWindMark: "20 nusos",
+      triggerWind: "Vent sostingut o ratxes per damunt, o decisió del patró per seguretat.",
+    },
     confirmTitle: "Confirmar reserva",
     confirmSubtitle: "Revisa els detalls. Confirmem per WhatsApp en menys de 2 hores.",
     summaryClient: "Client",
@@ -810,6 +828,7 @@ export const ca: Translations = {
       yourBoat: "El teu barco",
       departureDuration: "Hora i durada",
       upgradeYourDay: "Millora el teu dia",
+      coverages: "Garanties",
       yourDetails: "Confirmar",
     },
     hints: {
@@ -1110,7 +1129,7 @@ export const ca: Translations = {
       "El preu arrenca a 75€/h amb la benzina inclosa. Treballem per franges: 1 hora des de 75€, 2 hores des de 115€, mig dia (4 hores) des de 150€ i dia complet (8 hores) des de 220€ en temporada baixa. La tarifa puja en temporada alta i els caps de setmana. No hi ha comissions de plataforma ni cost extra de combustible: el preu que reserves és el preu final.",
     faqWeatherQuestion: "Què passa si fa mal temps?",
     faqWeatherAnswer:
-      "Si el dia amaneix amb mal temps, reprogramem la sortida sense cost o et tornem el dipòsit íntegre. A més, el canvi de data és gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
+      "Si el mal temps impedeix la sortida, canviem la data sense cost; si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Si vas contractar la Garantia de mal temps, tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja horària del teu lloguer, vent sostingut o ratxes superiors a 20 nusos, o la decisió del nostre personal per motius de seguretat.",
     howToTitle: "Com llogar un vaixell sense llicència a Blanes (5 passos)",
     howToIntro:
       "Llogar un vaixell sense llicència al Port de Blanes és més senzill del que sembla. Aquí tens els 5 passos del procés, des de la reserva fins a la devolució, perquè sàpigues exactament què esperar el dia de la teva sortida.",
@@ -1421,13 +1440,13 @@ export const ca: Translations = {
         id: "cancelacion",
         question: "Quina és la política de cancel·lació?",
         answer:
-          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Mal temps: reprogramem sense cost o retornem el dipòsit íntegre. Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
+          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
       },
       {
         id: "mal-tiempo",
         question: "Què passa si fa mal temps?",
         answer:
-          "Si les condicions meteorològiques no són segures, t'oferim canvi de data gratuït o devolució íntegra del dipòsit. Consultem la previsió 24h abans i t'avisem.",
+          "Si el mal temps impedeix la sortida, canviem la data sense cost; si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Si vas contractar la Garantia de mal temps, tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja horària del teu lloguer, vent sostingut o ratxes superiors a 20 nusos, o la decisió del nostre personal per motius de seguretat.",
       },
       {
         id: "experiencia",
@@ -1968,7 +1987,7 @@ export const ca: Translations = {
     a4FuelIncluded: "El combustible està inclòs.",
     a4FuelNotIncluded: "El combustible no està inclòs (es paga a part segons consum).",
     q5: "Quina és la política de cancel·lació?",
-    a5: "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Mal temps: reprogramem sense cost o tornem el dipòsit íntegre. Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
+    a5: "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
   },
   activitySunset: {
     faqItems: [
@@ -2615,7 +2634,7 @@ export const ca: Translations = {
       cancelacion: {
         question: "Quina és la política de cancel·lació?",
         answer:
-          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Mal temps: reprogramem sense cost o retornem el dipòsit íntegre. Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
+          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
       },
       sinLicencia: {
         question: "Puc llogar sense tenir llicència nàutica?",
@@ -2670,7 +2689,7 @@ export const ca: Translations = {
       malTiempo: {
         question: "Què passa si fa mal temps?",
         answer:
-          "Vent fort: no sortim amb vent superior a força 4. Pluja intensa: reprogramem sense cost. Tempesta: suspensió automàtica. Canvi durant navegació: retorn guiat al port. Sempre prioritzem la seguretat amb reprogramació gratuïta o devolució íntegra del dipòsit.",
+          "Si el mal temps impedeix la sortida, canviem la data sense cost; si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Si vas contractar la Garantia de mal temps, tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja horària del teu lloguer, vent sostingut o ratxes superiors a 20 nusos, o la decisió del nostre personal per motius de seguretat.",
       },
       emergencia: {
         question: "Què faig en cas d'emergència?",
@@ -2933,7 +2952,7 @@ export const ca: Translations = {
         },
         {
           title: "7. Política de cancel·lació",
-          body: "- Canvi de data gratuït fins a 7 dies abans de la sortida, subjecte a disponibilitat de l'embarcació.\n- Mal temps verificat pel nostre equip: reprogramació sense cost o devolució íntegra del dipòsit.\n- Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.\n\nLa decisió sobre suspensió per condicions meteorològiques correspon al prestador i es pren amb criteris de seguretat. Comunicació per escrit a costabravarentaboat@gmail.com o WhatsApp +34 611 500 372.",
+          body: "- Canvi de data gratuït fins a 7 dies abans de la sortida, subjecte a disponibilitat de l'embarcació.\n- Mal temps sense Garantia contractada: reprogramació sense cost o, si no s'acorda nova data, val per l'import abonat amb validesa de 12 mesos. No escau la devolució en diners.\n- Mal temps amb la Garantia de mal temps contractada: el client tria entre una nova data o la devolució íntegra en diners de les quantitats abonades pel lloguer, exclòs l'import de la mateixa garantia, que no és reemborsable.\n- Criteri objectiu de mal temps: avís costaner oficial de l'AEMET per a la zona de navegació en la franja horària del lloguer, vent sostingut o ratxes superiors a vint nusos, o la decisió del personal de l'empresa per motius de seguretat.\n- Si la sortida no es pot fer per causa imputable a l'empresa (avaria o altra), es retornen les quantitats abonades.\n- Fora dels supòsits anteriors, les reserves confirmades amb dipòsit no són reemborsables en diners.\n\nLa Garantia de mal temps i la Fiança reduïda són garanties comercials pròpies de Costa Brava Rent a Boat i no constitueixen un contracte d'assegurança. La decisió sobre suspensió per condicions meteorològiques correspon al prestador i es pren amb criteris de seguretat. Comunicació per escrit a costabravarentaboat@gmail.com o WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obligacions del client",
@@ -4321,9 +4340,33 @@ export const ca: Translations = {
       },
       {
         q: "Què passa si fa mal temps?",
-        a: "Mal temps: reprogramem sense cost o retornem el dipòsit íntegre.",
+        a: "Si el mal temps impedeix sortir, canviem la data sense cost o et donem un val vàlid 12 mesos. Amb la Garantia de mal temps contractada, et retornem els diners.",
       },
     ],
+  },
+  garantiasPage: {
+    navLabel: "Garanties",
+    heroTitle: "Si el mar no acompanya, ja està decidit",
+    heroSubtitle: "Publiquem el criteri exacte amb què suspenem una sortida i què reps en cada cas. Dues cobertures opcionals, sense lletra petita.",
+    weatherTitle: "Si el mal temps impedeix sortir",
+    withoutLabel: "Sense la Garantia",
+    withoutBody: "Canviem la data sense cost. Si no aconseguim acordar-ne cap, reps un val per l'import abonat, vàlid 12 mesos. No hi ha devolució en diners.",
+    withLabel: "Amb la Garantia de mal temps",
+    withBody: "Tries: nova data o els diners de tornada, íntegres, exclòs el preu de la mateixa garantia.",
+    criteriaTitle: "Quan es considera mal temps",
+    criteriaMarks: ["AEMET", "20 kn", "Patró"],
+    criteria: [
+      "Avís costaner oficial de l'AEMET per a la nostra zona de navegació en la franja horària del teu lloguer.",
+      "Vent sostingut o ratxes per sobre de 20 nusos.",
+      "Decisió del nostre personal per motius de seguretat, encara que no es donin els dos casos anteriors.",
+    ],
+    depositTitle: "Fiança reduïda",
+    depositBody: "La fiança es lliura abans de salpar i es retorna íntegra en tornar si el vaixell torna com va sortir. Amb aquesta cobertura deixes menys diners retinguts.",
+    colStandard: "Fiança estàndard",
+    colReduced: "Amb la cobertura",
+    notInsurance: "La Garantia de mal temps i la Fiança reduïda són garanties comercials pròpies de Costa Brava Rent a Boat i no constitueixen un contracte d'assegurança.",
+    ctaTitle: "Tria les teves cobertures en reservar",
+    ctaLabel: "Reservar i afegir cobertures",
   },
   scootersPage: {
     seoTitle: "Lloguer de motos i scooters a Lloret de Mar | Coast Rent",

@@ -75,6 +75,10 @@ export const BASE_DOMAIN = getBaseUrl();
 // Language-specific SEO configurations
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
+    garantias: {
+      title: "Garantía de mal tiempo y fianza reducida | Costa Brava Rent a Boat",
+      description: "Criterio objetivo de mal tiempo (aviso AEMET, 20 nudos o decisión del patrón) y qué recibes con y sin la garantía. Fianza reducida desde 20€."
+    },
     sharedSailing: {
       title: "Barco Compartido Costa Brava · Social Boat | Conoce Gente",
       description: "Navega y conoce gente nueva desde Blanes. Comparte un barco sin licencia, reparte el coste y disfruta de 4 horas de calas. Apúntate a la lista de interés.",
@@ -322,6 +326,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   en: {
+    garantias: {
+      title: "Weather guarantee and reduced deposit | Costa Brava Rent a Boat",
+      description: "Objective bad-weather criteria (AEMET warning, 20 knots or skipper's call) and what you get with and without the guarantee. Reduced deposit from 20€."
+    },
     sharedSailing: {
       title: "Shared Boat Trips Costa Brava · Social Boat | Meet People",
       description: "Sail from Blanes and meet new people. Share a licence-free boat, split the cost and enjoy 4 hours of coves. Join the interest list.",
@@ -540,6 +548,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   ca: {
+    garantias: {
+      title: "Garantia de mal temps i fiança reduïda | Costa Brava Rent a Boat",
+      description: "Criteri objectiu de mal temps (avís AEMET, 20 nusos o decisió del patró) i què reps amb i sense la garantia. Fiança reduïda des de 20€."
+    },
     sharedSailing: {
       title: "Vaixell Compartit Costa Brava · Social Boat | Coneix Gent",
       description: "Navega i coneix gent nova des de Blanes. Comparteix un vaixell sense llicència, reparteix el cost i gaudeix de 4 hores de cales. Apunta't a la llista.",
@@ -697,6 +709,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   fr: {
+    garantias: {
+      title: "Garantie mauvais temps et caution réduite | Costa Brava Rent a Boat",
+      description: "Critère objectif de mauvais temps (avis AEMET, 20 nœuds ou décision du skipper) et ce que vous recevez avec et sans la garantie. Caution réduite dès 20€."
+    },
     sharedSailing: {
       title: "Bateau Partagé Costa Brava · Social Boat | Rencontres",
       description: "Naviguez depuis Blanes et rencontrez de nouvelles personnes. Partagez un bateau sans permis, divisez le coût et profitez des criques. Inscrivez-vous.",
@@ -853,6 +869,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   de: {
+    garantias: {
+      title: "Schlechtwetter-Garantie und reduzierte Kaution | Costa Brava Rent a Boat",
+      description: "Objektives Schlechtwetter-Kriterium (AEMET-Warnung, 20 Knoten oder Entscheidung des Skippers) und was du mit und ohne Garantie bekommst. Kaution ab 20€ reduziert."
+    },
     sharedSailing: {
       title: "Geteilte Bootsfahrten Costa Brava · Social Boat",
       description: "Fahren Sie ab Blanes und lernen Sie neue Leute kennen. Teilen Sie ein führerscheinfreies Boot, teilen Sie die Kosten und genießen Sie die Buchten.",
@@ -1006,6 +1026,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   nl: {
+    garantias: {
+      title: "Slechtweergarantie en verlaagde borg | Costa Brava Rent a Boat",
+      description: "Objectief slechtweercriterium (AEMET-waarschuwing, 20 knopen of beslissing van de schipper) en wat je met en zonder garantie krijgt. Verlaagde borg vanaf 20€."
+    },
     sharedSailing: {
       title: "Gedeelde Boottochten Costa Brava · Social Boat | Ontmoeten",
       description: "Vaar vanuit Blanes en ontmoet nieuwe mensen. Deel een boot zonder vaarbewijs, deel de kosten en geniet van de baaien. Schrijf je in op de lijst.",
@@ -1162,6 +1186,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   it: {
+    garantias: {
+      title: "Garanzia maltempo e cauzione ridotta | Costa Brava Rent a Boat",
+      description: "Criterio oggettivo di maltempo (avviso AEMET, 20 nodi o decisione dello skipper) e cosa ricevi con e senza la garanzia. Cauzione ridotta da 20€."
+    },
     sharedSailing: {
       title: "Barca Condivisa Costa Brava · Social Boat | Conosci Gente",
       description: "Naviga da Blanes e conosci gente nuova. Condividi una barca senza patente, dividi il costo e goditi 4 ore tra le cale. Iscriviti alla lista.",
@@ -1315,6 +1343,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     }
   },
   ru: {
+    garantias: {
+      title: "Гарантия на случай непогоды и сниженный залог | Costa Brava Rent a Boat",
+      description: "Объективный критерий непогоды (предупреждение AEMET, 20 узлов или решение шкипера) и что вы получаете с гарантией и без неё. Сниженный залог от 20€."
+    },
     sharedSailing: {
       title: "Лодка компанией Коста-Брава · Social Boat | Знакомства",
       description: "Отправляйтесь из Бланеса и знакомьтесь с новыми людьми. Разделите лодку без лицензии и расходы, наслаждайтесь бухтами. Запишитесь в список.",
@@ -1736,7 +1768,7 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
       "refundType": "https://schema.org/NoReturnRefund",
       "additionalType": "https://www.costabravarentaboat.com/terms-conditions",
-      "description": "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo. / Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases."
+      "description": "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero. / Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash."
     }
   };
 

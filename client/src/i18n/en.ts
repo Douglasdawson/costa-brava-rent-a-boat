@@ -416,6 +416,24 @@ export const en: Translations = {
       selected: "selected",
       packSelected: "Pack selected",
     },
+    coveragesMoreInfo: "See how they work",
+    coverages: {
+      title: "Optional coverages",
+      weatherName: "Weather guarantee",
+      weatherDesc: "If bad weather stops you sailing, we refund your booking deposit in cash.",
+      depositName: "Reduced deposit",
+      depositDesc: "Your security deposit drops to {amount}€ on the day.",
+      stepTitle: "If the sea says no",
+      stepSubtitle: "You decide how you want to be covered.",
+      withoutLabel: "Without guarantee",
+      withoutBody: "We move your date at no cost. If no date works, you get a voucher valid for 12 months. No cash refund.",
+      withLabel: "With guarantee",
+      withBody: "Your call: a new date or your money back in full.",
+      triggerAemetMark: "AEMET",
+      triggerAemet: "Official coastal warning for the area during your time slot.",
+      triggerWindMark: "20 knots",
+      triggerWind: "Sustained wind or gusts above it, or the skipper's call on safety.",
+    },
     confirmTitle: "Confirm booking",
     confirmSubtitle: "Review the details. We confirm via WhatsApp within 2 hours.",
     summaryClient: "Customer",
@@ -799,6 +817,7 @@ export const en: Translations = {
       yourBoat: "Your boat",
       departureDuration: "Time and length",
       upgradeYourDay: "Upgrade your day",
+      coverages: "Guarantees",
       yourDetails: "Confirm",
     },
     hints: {
@@ -1098,7 +1117,7 @@ export const en: Translations = {
       "Prices start at 75€/h with fuel included. We work in time slots: 1 hour from 75€, 2 hours from 115€, half a day (4 hours) from 150€ and a full day (8 hours) from 220€ in low season. Rates go up in high season and at weekends. There are no platform fees and no extra fuel charge: the price you book is the final price.",
     faqWeatherQuestion: "What happens if the weather is bad?",
     faqWeatherAnswer:
-      "If the day starts with bad weather, we reschedule the trip at no cost or refund your deposit in full. On top of that, changing the date is free up to 7 days before departure (subject to availability). Confirmed bookings with a deposit are non-refundable except in the case of bad weather.",
+      "If bad weather prevents the trip we move your date at no cost; if no date works, we issue a voucher for the amount paid valid for 12 months. If you contracted the Weather guarantee, you choose between a new date or a full cash refund, excluding the price of the guarantee itself. The criteria are objective: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds.",
     howToTitle: "How to Hire a Licence-Free Boat in Blanes (5 Steps)",
     howToIntro:
       "Hiring a licence-free boat at the Port of Blanes is simpler than it sounds. Here are the 5 steps of the process, from booking to return, so you know exactly what to expect on the day.",
@@ -1419,13 +1438,13 @@ export const en: Translations = {
         id: "cancelacion",
         question: "What is the cancellation policy?",
         answer:
-          "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases.",
+          "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
       },
       {
         id: "mal-tiempo",
         question: "What happens if the weather is bad?",
         answer:
-          "If weather conditions are unsafe, we offer a free date change or full deposit refund. We check the forecast 24h in advance and notify you.",
+          "If bad weather prevents the trip we move your date at no cost; if no date works, we issue a voucher for the amount paid valid for 12 months. If you contracted the Weather guarantee, you choose between a new date or a full cash refund, excluding the price of the guarantee itself. The criteria are objective: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds.",
       },
       {
         id: "experiencia",
@@ -2022,7 +2041,7 @@ export const en: Translations = {
     a4FuelIncluded: "Fuel is included.",
     a4FuelNotIncluded: "Fuel is not included (paid separately based on consumption).",
     q5: "What is the cancellation policy?",
-    a5: "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases.",
+    a5: "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
   },
   activitySunset: {
     faqItems: [
@@ -2669,7 +2688,7 @@ export const en: Translations = {
       cancelacion: {
         question: "What is the cancellation policy?",
         answer:
-          "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases.",
+          "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
       },
       sinLicencia: {
         question: "Can I rent without a boat license?",
@@ -2724,7 +2743,7 @@ export const en: Translations = {
       malTiempo: {
         question: "What happens if the weather is bad?",
         answer:
-          "Strong wind: we don't go out in winds above force 4. Heavy rain: we reschedule at no cost. Storm: automatic suspension. Change during navigation: guided return to port. We always prioritize safety with free rescheduling or full deposit refund.",
+          "If bad weather prevents the trip we move your date at no cost; if no date works, we issue a voucher for the amount paid valid for 12 months. If you contracted the Weather guarantee, you choose between a new date or a full cash refund, excluding the price of the guarantee itself. The criteria are objective: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds.",
       },
       emergencia: {
         question: "What do I do in case of emergency?",
@@ -2987,7 +3006,7 @@ export const en: Translations = {
         },
         {
           title: "7. Cancellation Policy",
-          body: "- Free date change up to 7 days before departure, subject to boat availability.\n- Bad weather verified by our team: rescheduling at no cost or full deposit refund.\n- Confirmed bookings with deposit are non-refundable outside of bad weather cases.\n\nThe decision on suspension due to weather conditions rests with the provider and is made on safety grounds. Written communication to costabravarentaboat@gmail.com or WhatsApp +34 611 500 372.",
+          body: "- Free date change up to 7 days before departure, subject to boat availability.\n- Bad weather without the guarantee contracted: rescheduling at no cost or, if no new date is agreed, a voucher for the amount paid valid for 12 months. No cash refund applies.\n- Bad weather with the Weather guarantee contracted: the customer chooses between a new date or a full cash refund of the amounts paid for the rental, excluding the price of the guarantee itself, which is non-refundable.\n- Objective bad-weather criteria: an official AEMET coastal warning for the navigation area during the rental time slot, sustained wind or gusts above twenty knots, or the company staff's decision on safety grounds.\n- If the trip cannot go ahead for reasons attributable to the company (breakdown or other), the amounts paid are refunded.\n- Outside the cases above, confirmed bookings with a deposit are not refundable in cash.\n\nThe Weather guarantee and the Reduced deposit are commercial guarantees of Costa Brava Rent a Boat and do not constitute an insurance contract. The decision to suspend for weather conditions rests with the provider and is taken on safety grounds. Written notice to costabravarentaboat@gmail.com or WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Customer Obligations",
@@ -4375,9 +4394,33 @@ export const en: Translations = {
       },
       {
         q: "What if the weather is bad?",
-        a: "Bad weather: we reschedule at no cost or refund your deposit in full.",
+        a: "If bad weather stops the trip we move the date at no cost or give you a voucher valid for 12 months. With the Weather guarantee contracted, we refund your money.",
       },
     ],
+  },
+  garantiasPage: {
+    navLabel: "Guarantees",
+    heroTitle: "If the sea says no, the answer is already written",
+    heroSubtitle: "We publish the exact criteria we use to call off a trip and what you get in each case. Two optional coverages, no small print.",
+    weatherTitle: "If bad weather stops the trip",
+    withoutLabel: "Without the guarantee",
+    withoutBody: "We move your date at no cost. If no date works, you get a voucher for the amount paid, valid for 12 months. No cash refund.",
+    withLabel: "With the Weather guarantee",
+    withBody: "You choose: a new date or your money back in full, excluding the price of the guarantee itself.",
+    criteriaTitle: "What counts as bad weather",
+    criteriaMarks: ["AEMET", "20 kn", "Skipper"],
+    criteria: [
+      "An official AEMET coastal warning for our navigation area during your rental slot.",
+      "Sustained wind or gusts above 20 knots.",
+      "Our staff calling it off on safety grounds, even if neither of the above applies.",
+    ],
+    depositTitle: "Reduced deposit",
+    depositBody: "The deposit is handed over before departure and returned in full if the boat comes back as it left. This coverage leaves less of your money on hold.",
+    colStandard: "Standard deposit",
+    colReduced: "With the coverage",
+    notInsurance: "The Weather guarantee and the Reduced deposit are commercial guarantees of Costa Brava Rent a Boat and do not constitute an insurance contract.",
+    ctaTitle: "Choose your coverages when you book",
+    ctaLabel: "Book and add coverages",
   },
   scootersPage: {
     seoTitle: "Scooter and motorbike rental in Lloret de Mar | Coast Rent",

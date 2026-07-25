@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRoute } from "wouter";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CANCELLATION_POLICY_ES } from "@shared/businessProfile";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 
@@ -137,9 +138,7 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
         {/* Cancellation policy */}
         <div className="rounded-xl p-4 mb-6 text-sm border bg-muted/40 border-border">
           <p className="font-semibold mb-2">Política de cancelación</p>
-          <p className="text-foreground">
-            Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.
-          </p>
+          <p className="text-foreground">{CANCELLATION_POLICY_ES}</p>
         </div>
 
         {/* Confirm button */}

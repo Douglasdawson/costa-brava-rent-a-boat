@@ -48,7 +48,7 @@ const FAQS_ES = [
   },
   {
     title: "Política de cancelación",
-    content: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el depósito íntegro. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.",
+    content: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
     category: "policy",
     keywords: ["cancelación", "anular", "reembolso", "devolución"],
     priority: 9,
@@ -165,7 +165,7 @@ const FAQS_CA = [
   },
   {
     title: "Política de cancel·lació",
-    content: "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Mal temps: reprogramem sense cost o tornem el dipòsit íntegre. Les reserves confirmades amb dipòsit no són reemborsables fora del supòsit de mal temps.",
+    content: "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
     category: "policy",
     keywords: ["cancel·lació", "anul·lar", "reemborsament", "devolució"],
     priority: 9,
@@ -282,7 +282,7 @@ const FAQS_EN = [
   },
   {
     title: "Cancellation policy",
-    content: "Free date change up to 7 days before departure (subject to availability). Bad weather: we reschedule at no cost or refund the full deposit. Confirmed bookings with deposit are non-refundable outside of bad weather cases.",
+    content: "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
     category: "policy",
     keywords: ["cancellation", "cancel", "refund", "reschedule"],
     priority: 9,

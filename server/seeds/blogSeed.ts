@@ -2069,7 +2069,7 @@ El pago se realiza de forma segura mediante Stripe. Aceptamos todas las tarjetas
 Una sola política, igual para todos los barcos:
 
 - **Cambio de fecha gratuito** hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación.
-- **Mal tiempo** verificado por nuestro equipo: reprogramación sin coste o devolución íntegra del depósito.
+- **Mal tiempo** verificado por nuestro equipo: reprogramación sin coste o bono por el importe abonado válido 12 meses; con la Garantía de mal tiempo contratada, devolución en dinero.
 - **Las reservas confirmadas con depósito no son reembolsables** fuera del supuesto de mal tiempo.
 
 ### El día del alquiler
@@ -4778,7 +4778,7 @@ Reservar es directo: eliges fecha, barco y franja, nos lo cuentas por WhatsApp a
 
 **¿Cuándo debería reservar para agosto?** Cuanto antes. Los fines de semana y la franja central del mes se cierran con una o dos semanas de antelación.
 
-**¿Y si hace mal tiempo el día de mi reserva?** Reprogramamos sin coste o te devolvemos el depósito íntegro. El cambio de fecha también es gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Las reservas confirmadas con depósito no son reembolsables fuera del supuesto de mal tiempo.
+**¿Y si hace mal tiempo el día de mi reserva?** Reprogramamos sin coste o te damos un bono válido 12 meses; con la Garantía de mal tiempo contratada, te devolvemos el dinero. El cambio de fecha también es gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Las reservas confirmadas con depósito no se devuelven en dinero fuera de ese supuesto.
 
 **¿Necesito experiencia?** No para los barcos sin licencia. Te explicamos cómo arrancar, virar, fondear y volver a puerto antes de salir.
 
@@ -4859,7 +4859,7 @@ Salimos del puerto de Blanes, en horario de 09:00 a 20:00. Reservar es directo:
 2. Escríbenos por WhatsApp al **+34 611 500 372** con la fecha, la franja horaria y cuántos sois.
 3. Te confirmamos disponibilidad y precio. La web recoge tu solicitud de reserva; el pago se gestiona de forma manual, sin pasarelas online.
 
-Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Si el día amanece con mal tiempo, reprogramamos sin coste o te devolvemos el depósito íntegro.
+Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Si el día amanece con mal tiempo, reprogramamos sin coste o te damos un bono válido 12 meses; con la Garantía de mal tiempo contratada, te devolvemos el dinero.
 
 ¿Sigues sin tener claro si te conviene ir tú al timón o que te lleve un patrón? Cuéntanos tu plan por WhatsApp y te decimos de verdad qué opción encaja mejor, aunque sea la más barata.
 `,
@@ -4929,7 +4929,7 @@ Reservar medio día es rápido y no requiere pagar nada online: la web recoge tu
 - **Dinos la fecha y el número de personas**: te confirmamos disponibilidad y precio cerrado.
 - **Escríbenos por WhatsApp** al **+34 611 500 372** o envía tu solicitud desde la web. Atendemos en ocho idiomas.
 
-En temporada alta las franjas buenas vuelan, sobre todo las mañanas de fin de semana, así que si tienes una fecha en mente reserva con margen. Y si el día amanece con mal tiempo, reprogramamos sin coste o te devolvemos el depósito íntegro: nadie navega a disgusto.
+En temporada alta las franjas buenas vuelan, sobre todo las mañanas de fin de semana, así que si tienes una fecha en mente reserva con margen. Y si el día amanece con mal tiempo, reprogramamos sin coste o te damos un bono válido 12 meses; con la Garantía de mal tiempo contratada, te devolvemos el dinero: nadie navega a disgusto.
 
 ¿Dudas sobre si medio día se te queda corto? Cuéntanos tu plan y te decimos con sinceridad si te conviene la media jornada o el día completo. Preferimos que aciertes con la salida a venderte más horas de las que necesitas.
 `,
@@ -5030,7 +5030,7 @@ En los barcos con licencia hay que sumar el combustible, que en una salida de 4 
 
 ## Cómo reservar (y qué preguntarnos antes)
 
-El proceso es directo: eliges barco y franja horaria en la web, mandas la solicitud y te confirmamos por WhatsApp. No hay pago online, el importe se gestiona al recoger el barco. Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Si hace mal tiempo, reprogramamos sin coste o devolvemos el depósito íntegro.
+El proceso es directo: eliges barco y franja horaria en la web, mandas la solicitud y te confirmamos por WhatsApp. No hay pago online, el importe se gestiona al recoger el barco. Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Si hace mal tiempo, reprogramamos sin coste o te damos un bono válido 12 meses; con la Garantía de mal tiempo contratada, te devolvemos el dinero.
 
 Dos cosas que conviene decirnos al escribir:
 

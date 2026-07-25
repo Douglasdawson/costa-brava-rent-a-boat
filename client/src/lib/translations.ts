@@ -489,6 +489,27 @@ export interface Translations {
       selected: string;
       packSelected: string;
     };
+    // Optional coverages (step 4). NEVER word these as insurance ("seguro",
+    // "insurance", "Versicherung"…): they are commercial guarantees.
+    coveragesMoreInfo: string;
+    coverages: {
+      title: string;
+      weatherName: string;
+      weatherDesc: string;
+      depositName: string;
+      depositDesc: string; // supports {amount} placeholder for the reduced deposit
+      // Step 5 screen (own step since 2026-07-25)
+      stepTitle?: string;
+      stepSubtitle?: string;
+      withoutLabel?: string;
+      withoutBody?: string;
+      withLabel?: string;
+      withBody?: string;
+      triggerAemetMark?: string;
+      triggerAemet?: string;
+      triggerWindMark?: string;
+      triggerWind?: string;
+    };
     // Step 4 wizard
     confirmTitle: string;
     confirmSubtitle: string;
@@ -986,6 +1007,7 @@ export interface Translations {
       departureDuration?: string;
       /** Step 4 of 5 — extras & packs. Shown in the progress bar. */
       upgradeYourDay?: string;
+      coverages?: string; // Step 5 label
       yourDetails?: string;
     };
     hints?: {
@@ -2958,6 +2980,29 @@ export interface Translations {
     whatsappMessage: string;
     faqTitle: string;
     faq: { q: string; a: string }[];
+  };
+  // Página /garantias: explica las dos coberturas opcionales, el criterio
+  // objetivo de mal tiempo y qué recibe el cliente con y sin garantía.
+  garantiasPage: {
+    navLabel: string;
+    heroTitle: string;
+    heroSubtitle: string;
+    weatherTitle: string;
+    withoutLabel: string;
+    withoutBody: string;
+    withLabel: string;
+    withBody: string;
+    criteriaTitle: string;
+    /** Short label that leads each criterion: the value we actually measure. */
+    criteriaMarks: string[];
+    criteria: string[];
+    depositTitle: string;
+    depositBody: string;
+    colStandard: string;
+    colReduced: string;
+    notInsurance: string;
+    ctaTitle: string;
+    ctaLabel: string;
   };
   scootersPage: {
     seoTitle: string;

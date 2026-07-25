@@ -38,6 +38,7 @@ export const ROUTE_SLUGS = {
   testimonials: { es: "testimonios", en: "testimonials", fr: "temoignages", de: "bewertungen", nl: "beoordelingen", it: "recensioni", ca: "testimonis", ru: "otzyvy" },
   giftCards: { es: "tarjetas-regalo", en: "gift-cards", fr: "cartes-cadeaux", de: "geschenkkarten", nl: "cadeaukaarten", it: "buoni-regalo", ca: "targetes-regal", ru: "podarochnye-karty" },
   about: { es: "sobre-nosotros", en: "about", fr: "a-propos", de: "ueber-uns", nl: "over-ons", it: "chi-siamo", ca: "sobre-nosaltres", ru: "o-nas" },
+  garantias: { es: "garantias", en: "guarantees", fr: "garanties-meteo", de: "garantien", nl: "garanties", it: "garanzie", ca: "garanties-meteo", ru: "garantii" },
   destinations: { es: "destinos", en: "destinations", fr: "destinations", de: "reiseziele", nl: "bestemmingen", it: "destinazioni", ca: "destinacions", ru: "napravleniya" },
   sharedSailing: { es: "salidas-compartidas", en: "shared-boat-trips", fr: "sorties-bateau-partagees", de: "geteilte-bootsfahrten", nl: "gedeelde-boottochten", it: "gite-barca-condivise", ca: "sortides-compartides", ru: "sovmestnye-progulki" },
 

@@ -268,6 +268,15 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href={localizedPath("garantias")}
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 min-h-11 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  data-testid="footer-garantias-link"
+                >
+                  {t.garantiasPage?.navLabel || "Garantías"}
+                </a>
+              </li>
+              <li>
+                <a
                   href={localizedPath("giftCards")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 min-h-11 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >

@@ -5256,7 +5256,7 @@ export const it: Translations = {
         distanceQ: 'Fino a dove posso navigare senza patente da Blanes?',
         distanceA: 'Con una barca senza patente puoi navigare fino a 2 miglia nautiche dalla costa. Questo ti permette di esplorare Cala Brava (15 min), Cala Sant Francesc (20 min) e Lloret de Mar (30 min).',
         weatherQ: 'Cosa succede se c\'e maltempo il giorno della mia prenotazione?',
-        weatherA: 'La sicurezza è la nostra priorità. Se le condizioni meteo non permettono una navigazione sicura, offriamo un cambio data gratuito o un rimborso completo.',
+        weatherA: 'La sicurezza è la nostra priorità. Se il maltempo impedisce l\'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l\'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa.',
         petsQ: 'Posso portare animali domestici sulla barca?',
         petsA: 'Sì, gli animali domestici sono benvenuti su tutte le nostre barche. Consigliamo di portare acqua fresca, un asciugamano e una protezione solare adeguata per il vostro animale.',
       },

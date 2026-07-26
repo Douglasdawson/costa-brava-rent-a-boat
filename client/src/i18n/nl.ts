@@ -5258,7 +5258,7 @@ export const nl: Translations = {
         distanceQ: 'Hoe ver kan ik zonder vaarbewijs varen vanuit Blanes?',
         distanceA: 'Met een boot zonder vaarbewijs kunt u tot 2 zeemijl van de kust varen. Hiermee kunt u Cala Brava (15 min), Cala Sant Francesc (20 min) en Lloret de Mar (30 min) verkennen.',
         weatherQ: 'Wat gebeurt er bij slecht weer op de dag van mijn boeking?',
-        weatherA: 'Veiligheid is onze prioriteit. Bij ongeschikte weersomstandigheden bieden wij een gratis datumwijziging of volledige terugbetaling.',
+        weatherA: 'Veiligheid is onze prioriteit. Als slecht weer de vaart verhindert, verzetten wij de datum kosteloos of geven wij, als geen nieuwe datum lukt, een voucher voor het betaalde bedrag, 12 maanden geldig. Met de Slechtweergarantie kiest u tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf.',
         petsQ: 'Mag ik huisdieren meenemen op de boot?',
         petsA: 'Ja, huisdieren zijn welkom op al onze boten. Wij raden aan om vers water, een handdoek en geschikte zonnebescherming voor uw dier mee te nemen.',
       },

@@ -5303,7 +5303,7 @@ export const en: Translations = {
         distanceQ: 'How far can I sail without a licence from Blanes?',
         distanceA: 'With a licence-free boat you can sail up to 2 nautical miles from the coast (approximately 3.7 km). This allows you to explore coves such as Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) and Cala Treumal. For more distant destinations like Tossa de Mar or Sant Feliu de Guixols you will need a licensed boat.',
         weatherQ: 'What happens if the weather is bad on the day of my booking?',
-        weatherA: 'Safety is our priority. If weather conditions do not permit safe navigation, we offer you a free date change or a full refund. We check the professional maritime forecast daily and notify you in advance if there is a risk of cancellation. Winds above 20 knots or a maritime alert mean automatic cancellation.',
+        weatherA: 'Safety is our priority. If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. We check the professional maritime forecast daily and notify you in advance; an official AEMET coastal warning or winds above 20 knots mean cancellation.',
         petsQ: 'Can I bring pets on the boat?',
         petsA: 'Yes, pets are welcome on all our boats. We recommend bringing fresh water for your pet, a towel and suitable sun protection. For large dogs, licensed boats offer more space. We ask that you keep your pet in a canine life jacket if it will be near the water. We can provide one upon request.',
       },

@@ -147,7 +147,7 @@ export default function LocationCostaBravaPage() {
         "name": faqT?.weatherQ || "Que pasa si hace mal tiempo el dia de mi reserva?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": faqT?.weatherA || "La seguridad es nuestra prioridad. Si las condiciones no permiten navegar, te ofrecemos cambio de fecha sin coste o devolucion completa."
+          "text": faqT?.weatherA || "La seguridad es nuestra prioridad. Si el mal tiempo impide salir, cambiamos la fecha sin coste o emitimos un bono de 12 meses; con la Garantia de mal tiempo contratada eliges entre nueva fecha o devolucion integra en dinero."
         }
       },
       {

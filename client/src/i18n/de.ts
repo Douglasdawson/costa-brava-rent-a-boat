@@ -5271,7 +5271,7 @@ export const de: Translations = {
         distanceQ: 'Wie weit kann ich ohne Führerschein von Blanes aus fahren?',
         distanceA: 'Mit einem fuehrerscheinfreien Boot koennen Sie bis zu 2 Seemeilen von der Kueste navigieren. Das ermoeglicht Ihnen, Buchten wie Cala Brava (15 Min.), Cala Sant Francesc (20 Min.) und Lloret de Mar (30 Min.) zu erkunden.',
         weatherQ: 'Was passiert bei schlechtem Wetter am Tag meiner Buchung?',
-        weatherA: 'Sicherheit hat bei uns oberste Prioritaet. Bei ungeeigneten Wetterbedingungen bieten wir einen kostenlosen Datumswechsel oder eine vollstaendige Rueckerstattung an.',
+        weatherA: 'Sicherheit hat bei uns oberste Prioritaet. Wenn schlechtes Wetter die Ausfahrt verhindert, verschieben wir den Termin kostenlos oder stellen, falls kein neuer Termin passt, einen 12 Monate gueltigen Gutschein ueber den gezahlten Betrag aus. Mit der Schlechtwetter-Garantie waehlst du zwischen einem neuen Termin oder der vollstaendigen Rueckerstattung in Geld, ausgenommen der Preis der Garantie selbst.',
         petsQ: 'Kann ich Haustiere mit auf das Boot nehmen?',
         petsA: 'Ja, Haustiere sind auf allen unseren Booten willkommen. Wir empfehlen, frisches Wasser, ein Handtuch und geeigneten Sonnenschutz fuer Ihr Tier mitzubringen.',
       },

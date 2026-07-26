@@ -5266,7 +5266,7 @@ export const fr: Translations = {
         distanceQ: 'Jusqu\'où puis-je naviguer sans permis depuis Blanes ?',
         distanceA: 'Avec un bateau sans permis, vous pouvez naviguer jusqu\'à 2 milles nautiques de la côte. Cela vous permet d\'explorer Cala Brava (15 min), Cala Sant Francesc (20 min) et Lloret de Mar (30 min).',
         weatherQ: 'Que se passe-t-il en cas de mauvais temps le jour de ma réservation ?',
-        weatherA: 'La sécurité est notre priorité. Si les conditions météo ne permettent pas de naviguer en sécurité, nous vous proposons un changement de date gratuit ou un remboursement complet.',
+        weatherA: 'La sécurité est notre priorité. Si le mauvais temps empêche la sortie, nous changeons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant payé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en argent, hors prix de la garantie elle-même.',
         petsQ: 'Puis-je amener mon animal de compagnie sur le bateau ?',
         petsA: 'Oui, les animaux sont les bienvenus sur tous nos bateaux. Nous recommandons d\'apporter de l\'eau fraîche, une serviette et une protection solaire pour votre animal.',
       },

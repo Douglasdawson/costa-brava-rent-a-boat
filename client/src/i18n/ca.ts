@@ -5249,7 +5249,7 @@ export const ca: Translations = {
         distanceQ: 'Fins on puc navegar sense llicència des de Blanes?',
         distanceA: 'Amb una barca sense llicència pots navegar fins a 2 milles nàutiques de la costa. Això et permet explorar Cala Brava (15 min), Cala Sant Francesc (20 min) i Lloret de Mar (30 min).',
         weatherQ: 'Què passa si fa mal temps el dia de la meva reserva?',
-        weatherA: 'La seguretat és la nostra prioritat. Si les condicions meteorològiques no permeten navegar amb seguretat, t\'oferim canvi de data gratuït o devolució completa.',
+        weatherA: 'La seguretat és la nostra prioritat. Si el mal temps impedeix sortir, canviem la data sense cost o, si no n\'acordem cap de nova, t\'emetem un bo per l\'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre una nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia.',
         petsQ: 'Puc portar mascotes a la barca?',
         petsA: 'Sí, les mascotes són benvingudes a totes les nostres barques. Recomanem portar aigua fresca, una tovallola i protecció solar adequada per a la teva mascota.',
       },

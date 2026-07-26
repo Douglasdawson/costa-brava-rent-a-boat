@@ -56,7 +56,7 @@ export const SHOP_PRODUCTS: ShopProductDef[] = [
   {
     id: "camiseta-costa-brava-culture",
     i18nKey: "tee",
-    defaultPriceCents: 2000,
+    defaultPriceCents: 2500,
     hasSizes: true,
     colors: ["butter", "navy"],
     images: {

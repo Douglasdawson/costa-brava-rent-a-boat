@@ -2981,7 +2981,7 @@ export const en: Translations = {
     },
     terms: {
       heroTitle: "Terms and Conditions",
-      lastUpdated: "Last updated: February 2026",
+      lastUpdated: "Last updated: July 2026",
       sections: [
         {
           title: "1. Owner Identification",
@@ -3030,6 +3030,22 @@ export const en: Translations = {
         {
           title: "12. Modifications",
           body: "Costa Brava Rent a Boat reserves the right to modify these conditions at any time by publishing the new version on the website. The applicable version is the one in force at the time of booking.",
+        },
+        {
+          title: "13. Online shop: seller identification",
+          body: "Sections 13 to 16 exclusively govern the purchase of the physical products in the Shop section of this website (the Costa Brava Culture collection, in collaboration with Laura Cabanas). The seller of these products is Ivan Ramirez Dawson, tax ID (NIF) 45965848A, with address for notifications at the Port of Blanes, Girona, Spain, phone +34 611 500 372 and email costabravarentaboat@gmail.com (hereinafter, the seller). Sections 1 to 12 refer to the boat rental service and do not apply to shop purchases.",
+        },
+        {
+          title: "14. Online shop: prices, payment and delivery",
+          body: "All shop prices are shown in euros and include VAT. Payment is made in advance through Stripe's secure payment gateway; the seller does not access or store card details.\n\nDelivery options:\n- Free pickup at the Port of Blanes, arranging the time via WhatsApp.\n- Free pickup at Laura Cabanas' store, Carrer del Carme 5, Lloret de Mar.\n- Home delivery in mainland Spain for 4.95 EUR, with estimated delivery of 3 to 7 working days from payment confirmation.\n\nIf a product turns out to be unavailable after payment, the seller will inform the customer as soon as possible and refund the corresponding amount.",
+        },
+        {
+          title: "15. Online shop: right of withdrawal",
+          body: "The customer has the right to withdraw from the purchase, without giving any reason, within 14 calendar days from receiving or picking up the product. To exercise it, an unequivocal statement within that period is enough, by email to costabravarentaboat@gmail.com or by WhatsApp to +34 611 500 372, stating the order number. This model may be used, although it is not mandatory: I hereby give notice that I withdraw from my contract of sale of the following product [product], ordered on [date] and received on [date]; name, address and date.\n\nThe product must be returned unused and in its original condition within a maximum of 14 calendar days from the notice, delivering it to either of the two pickup points or sending it to the address provided by the seller; the direct cost of returning it by post is borne by the customer. The seller will refund all payments received, including the initial delivery costs if any, within 14 calendar days from the withdrawal notice and using the same payment method as the purchase; the refund may be withheld until the product or proof of its return is received.",
+        },
+        {
+          title: "16. Online shop: legal guarantee and complaints",
+          body: "All shop products carry the 3-year legal guarantee of conformity from delivery, in accordance with Spanish Royal Legislative Decree 1/2007. If the product shows a lack of conformity (a manufacturing defect, transport damage or any other discrepancy with what was purchased), the customer may demand its repair or replacement free of charge and, if these are not possible or are disproportionate, a price reduction or the termination of the purchase; in these cases the return costs are borne by the seller.\n\nFor any complaint related to the shop, the customer may contact the seller through the channels indicated in section 13. Complaint forms are available to consumers.",
         },
       ],
     },
@@ -4533,7 +4549,7 @@ export const en: Translations = {
     },
     seoTitle: "Shop: Costa Brava Culture t-shirts and tote bags | Costa Brava Rent a Boat",
     seoDescription:
-      "T-shirts and tote bags from the Costa Brava Culture collection, designed with Laura Cabanas (Lloret de Mar). Limited edition, secure payment and free pickup at the port of Blanes or shipping across Spain.",
+      "T-shirts and tote bags from the Costa Brava Culture collection, designed with Laura Cabanas (Lloret de Mar). Limited edition, secure payment and free pickup at the port of Blanes or shipping across mainland Spain.",
     navLabel: "Shop",
     hero: {
       collabBadge: "Collaboration with Laura Cabanas",
@@ -4572,12 +4588,14 @@ export const en: Translations = {
       quantity: "Quantity",
       remove: "Remove",
       subtotal: "Subtotal",
-      shippingNote: "Free pickup at the port of Blanes or shipping within Spain (4.95 EUR). You choose at checkout.",
+      shippingNote: "Free pickup at the port of Blanes or shipping to mainland Spain (4.95 EUR). You choose at checkout.",
       checkout: "Checkout",
       checkoutLoading: "Preparing payment...",
       securePayment: "Secure payment with card, Apple Pay or Google Pay",
       itemUnavailable: "Some items in your cart have sold out and are marked. Remove them to continue.",
       genericError: "We could not start the payment. Please try again in a few seconds.",
+      legalNote: "By paying you accept the {enlace}.",
+      legalNoteLink: "shop terms of sale",
     },
     delivery: {
       title: "Delivery",
@@ -4588,7 +4606,7 @@ export const en: Translations = {
       pickupLauraText:
         'Free. Collect your order at the Laura Cabanas store in Carrer del Carme 5, Lloret de Mar. We confirm opening hours and the address when you order.',
       shippingTitle: "Home delivery",
-      shippingText: "Shipping across Spain for 4.95 EUR. Delivered in 3 to 7 business days.",
+      shippingText: "Shipping across mainland Spain for 4.95 EUR. Delivered in 3 to 7 business days.",
     },
     designer: {
       title: "About Laura Cabanas",
@@ -4614,7 +4632,7 @@ export const en: Translations = {
       },
       {
         q: "Do you ship outside Spain?",
-        a: "For now we only ship within Spain (4.95 EUR, delivery in 3 to 7 business days). If you are on holiday in the area, pickup at the port of Blanes is free.",
+        a: "For now we only ship to mainland Spain (4.95 EUR, delivery in 3 to 7 business days). If you are on holiday in the area, pickup at the port of Blanes is free.",
       },
       {
         q: "What is the fit of the t-shirt like?",

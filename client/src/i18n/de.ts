@@ -2946,7 +2946,7 @@ export const de: Translations = {
     },
     terms: {
       heroTitle: "Allgemeine Geschäftsbedingungen",
-      lastUpdated: "Letzte Aktualisierung: Februar 2026",
+      lastUpdated: "Letzte Aktualisierung: Juli 2026",
       sections: [
         {
           title: "1. Angaben zum Betreiber",
@@ -2995,6 +2995,22 @@ export const de: Translations = {
         {
           title: "12. Änderungen",
           body: "Costa Brava Rent a Boat behält sich das Recht vor, diese Bedingungen jederzeit zu ändern und die neue Version auf der Website zu veröffentlichen. Die anwendbare Version ist die zum Zeitpunkt der Buchung gültige.",
+        },
+        {
+          title: "13. Online-Shop: Identifikation des Verkäufers",
+          body: "Die Abschnitte 13 bis 16 regeln ausschließlich den Kauf der physischen Produkte im Shop-Bereich dieser Website (Kollektion Costa Brava Culture, in Zusammenarbeit mit Laura Cabanas). Verkäufer dieser Produkte ist Ivan Ramirez Dawson, Steuernummer (NIF) 45965848A, mit Zustellanschrift am Hafen von Blanes, Girona, Spanien, Telefon +34 611 500 372 und E-Mail costabravarentaboat@gmail.com (im Folgenden der Verkäufer). Die Abschnitte 1 bis 12 betreffen den Bootsverleih und gelten nicht für Käufe im Shop.",
+        },
+        {
+          title: "14. Online-Shop: Preise, Zahlung und Lieferung",
+          body: "Alle Preise im Shop sind in Euro und inklusive Mehrwertsteuer angegeben. Die Zahlung erfolgt im Voraus über das sichere Zahlungsportal Stripe; der Verkäufer hat keinen Zugriff auf die Kartendaten und speichert sie nicht.\n\nLieferoptionen:\n- Kostenlose Abholung am Hafen von Blanes, Terminabsprache per WhatsApp.\n- Kostenlose Abholung im Geschäft von Laura Cabanas, Carrer del Carme 5, Lloret de Mar.\n- Lieferung nach Hause auf das spanische Festland für 4,95 EUR, mit einer geschätzten Lieferzeit von 3 bis 7 Werktagen ab Zahlungsbestätigung.\n\nSollte ein Produkt nach der Zahlung nicht verfügbar sein, informiert der Verkäufer den Kunden so schnell wie möglich und erstattet den entsprechenden Betrag.",
+        },
+        {
+          title: "15. Online-Shop: Widerrufsrecht",
+          body: "Der Kunde hat das Recht, den Kauf ohne Angabe von Gründen innerhalb von 14 Kalendertagen ab Erhalt oder Abholung des Produkts zu widerrufen. Dazu genügt eine eindeutige Erklärung innerhalb dieser Frist per E-Mail an costabravarentaboat@gmail.com oder per WhatsApp an +34 611 500 372 unter Angabe der Bestellnummer. Dieses Muster kann verwendet werden, ist aber nicht verpflichtend: Hiermit widerrufe ich meinen Kaufvertrag über das folgende Produkt [Produkt], bestellt am [Datum] und erhalten am [Datum]; Name, Anschrift und Datum.\n\nDas Produkt muss unbenutzt und im Originalzustand innerhalb von höchstens 14 Kalendertagen ab der Mitteilung zurückgegeben werden, entweder an einem der beiden Abholpunkte oder per Versand an die vom Verkäufer angegebene Adresse; die unmittelbaren Kosten der Rücksendung trägt der Kunde. Der Verkäufer erstattet alle erhaltenen Zahlungen, einschließlich etwaiger ursprünglicher Lieferkosten, innerhalb von 14 Kalendertagen ab der Widerrufserklärung und über dasselbe Zahlungsmittel wie beim Kauf; die Erstattung kann zurückgehalten werden, bis das Produkt oder ein Nachweis der Rücksendung eingegangen ist.",
+        },
+        {
+          title: "16. Online-Shop: gesetzliche Gewährleistung und Beschwerden",
+          body: "Alle Produkte des Shops haben die gesetzliche Gewährleistung von 3 Jahren ab Lieferung gemäß dem spanischen Königlichen Gesetzesdekret 1/2007. Weist das Produkt einen Mangel auf (Herstellungsfehler, Transportschaden oder eine andere Abweichung vom Gekauften), kann der Kunde kostenlos Reparatur oder Ersatz verlangen und, falls dies nicht möglich oder unverhältnismäßig ist, eine Preisminderung oder die Auflösung des Kaufs; in diesen Fällen trägt der Verkäufer die Rücksendekosten.\n\nFür Beschwerden im Zusammenhang mit dem Shop kann sich der Kunde über die in Abschnitt 13 genannten Kanäle an den Verkäufer wenden. Beschwerdeformulare stehen den Verbrauchern zur Verfügung.",
         },
       ],
     },
@@ -4501,7 +4517,7 @@ export const de: Translations = {
     },
     seoTitle: "Shop: Costa Brava Culture T-Shirts und Tote Bags | Costa Brava Rent a Boat",
     seoDescription:
-      "T-Shirts und Tote Bags der Costa Brava Culture Kollektion, entworfen mit Laura Cabanas (Lloret de Mar). Limitierte Auflage, sichere Zahlung und kostenlose Abholung im Hafen von Blanes oder Versand in ganz Spanien.",
+      "T-Shirts und Tote Bags der Costa Brava Culture Kollektion, entworfen mit Laura Cabanas (Lloret de Mar). Limitierte Auflage, sichere Zahlung und kostenlose Abholung im Hafen von Blanes oder Versand auf das spanische Festland.",
     navLabel: "Shop",
     hero: {
       collabBadge: "Kollaboration mit Laura Cabanas",
@@ -4540,12 +4556,14 @@ export const de: Translations = {
       quantity: "Menge",
       remove: "Entfernen",
       subtotal: "Zwischensumme",
-      shippingNote: "Kostenlose Abholung im Hafen von Blanes oder Versand innerhalb Spaniens (4,95 EUR). Du waehlst beim Bezahlen.",
+      shippingNote: "Kostenlose Abholung im Hafen von Blanes oder Versand auf das spanische Festland (4,95 EUR). Du waehlst beim Bezahlen.",
       checkout: "Zur Kasse",
       checkoutLoading: "Zahlung wird vorbereitet...",
       securePayment: "Sichere Zahlung mit Karte, Apple Pay oder Google Pay",
       itemUnavailable: "Einige Artikel in deinem Warenkorb sind ausverkauft und markiert. Entferne sie, um fortzufahren.",
       genericError: "Die Zahlung konnte nicht gestartet werden. Versuche es in ein paar Sekunden erneut.",
+      legalNote: "Mit der Zahlung akzeptierst du die {enlace}.",
+      legalNoteLink: "Verkaufsbedingungen des Shops",
     },
     delivery: {
       title: "Lieferung",
@@ -4556,7 +4574,7 @@ export const de: Translations = {
       pickupLauraText:
         'Kostenlos. Hol deine Bestellung im Laura-Cabanas-Store in Carrer del Carme 5, Lloret de Mar ab. Oeffnungszeiten und Adresse bestaetigen wir bei der Bestellung.',
       shippingTitle: "Lieferung nach Hause",
-      shippingText: "Versand in ganz Spanien fuer 4,95 EUR. Lieferung in 3 bis 7 Werktagen.",
+      shippingText: "Versand auf das spanische Festland fuer 4,95 EUR. Lieferung in 3 bis 7 Werktagen.",
     },
     designer: {
       title: "Ueber Laura Cabanas",
@@ -4582,7 +4600,7 @@ export const de: Translations = {
       },
       {
         q: "Versendet ihr auch ausserhalb Spaniens?",
-        a: "Derzeit versenden wir nur innerhalb Spaniens (4,95 EUR, Lieferung in 3 bis 7 Werktagen). Wenn du in der Gegend Urlaub machst, ist die Abholung im Hafen von Blanes kostenlos.",
+        a: "Derzeit versenden wir nur auf das spanische Festland (4,95 EUR, Lieferung in 3 bis 7 Werktagen). Wenn du in der Gegend Urlaub machst, ist die Abholung im Hafen von Blanes kostenlos.",
       },
       {
         q: "Wie faellt das T-Shirt aus?",

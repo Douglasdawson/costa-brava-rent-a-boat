@@ -2934,7 +2934,7 @@ export const it: Translations = {
     },
     terms: {
       heroTitle: "Termini e Condizioni",
-      lastUpdated: "Ultimo aggiornamento: febbraio 2026",
+      lastUpdated: "Ultimo aggiornamento: luglio 2026",
       sections: [
         {
           title: "1. Identificazione del titolare",
@@ -2983,6 +2983,22 @@ export const it: Translations = {
         {
           title: "12. Modifiche",
           body: "Costa Brava Rent a Boat si riserva il diritto di modificare queste condizioni in qualsiasi momento, pubblicando la nuova versione sul sito web. La versione applicabile è quella vigente al momento della prenotazione.",
+        },
+        {
+          title: "13. Negozio online: identificazione del venditore",
+          body: "Le sezioni da 13 a 16 disciplinano esclusivamente l'acquisto dei prodotti fisici della sezione Negozio di questo sito web (collezione Costa Brava Culture, in collaborazione con Laura Cabanas). Il venditore di questi prodotti è Ivan Ramirez Dawson, codice fiscale (NIF) 45965848A, con domicilio ai fini delle notifiche presso il Porto di Blanes, Girona, Spagna, telefono +34 611 500 372 e email costabravarentaboat@gmail.com (di seguito, il venditore). Le sezioni da 1 a 12 riguardano il servizio di noleggio imbarcazioni e non si applicano agli acquisti del negozio.",
+        },
+        {
+          title: "14. Negozio online: prezzi, pagamento e consegna",
+          body: "Tutti i prezzi del negozio sono indicati in euro, IVA inclusa. Il pagamento avviene in anticipo tramite il gateway di pagamento sicuro Stripe; il venditore non accede ai dati della carta né li conserva.\n\nOpzioni di consegna:\n- Ritiro gratuito al Porto di Blanes, concordando l'orario via WhatsApp.\n- Ritiro gratuito presso il negozio di Laura Cabanas, Carrer del Carme 5, Lloret de Mar.\n- Consegna a domicilio nella Spagna peninsulare per 4,95 EUR, con consegna stimata da 3 a 7 giorni lavorativi dalla conferma del pagamento.\n\nSe dopo il pagamento un prodotto non fosse disponibile, il venditore lo comunicherà al cliente il prima possibile e rimborserà l'importo corrispondente.",
+        },
+        {
+          title: "15. Negozio online: diritto di recesso",
+          body: "Il cliente ha il diritto di recedere dall'acquisto, senza indicarne il motivo, entro 14 giorni di calendario dal ricevimento o dal ritiro del prodotto. Per esercitarlo è sufficiente una dichiarazione inequivocabile entro tale termine, via email a costabravarentaboat@gmail.com o via WhatsApp al +34 611 500 372, indicando il numero dell'ordine. Si può utilizzare questo modello, anche se non è obbligatorio: comunico di recedere dal mio contratto di vendita del seguente prodotto [prodotto], ordinato il [data] e ricevuto il [data]; nome, indirizzo e data.\n\nIl prodotto deve essere restituito non utilizzato e nel suo stato originale entro un massimo di 14 giorni di calendario dalla comunicazione, consegnandolo in uno dei due punti di ritiro o spedendolo all'indirizzo indicato dal venditore; i costi diretti della restituzione per spedizione sono a carico del cliente. Il venditore rimborserà tutti i pagamenti ricevuti, comprese le eventuali spese di consegna iniziali, entro 14 giorni di calendario dalla comunicazione del recesso e con lo stesso mezzo di pagamento dell'acquisto; il rimborso può essere trattenuto fino al ricevimento del prodotto o di una prova della sua restituzione.",
+        },
+        {
+          title: "16. Negozio online: garanzia legale e reclami",
+          body: "Tutti i prodotti del negozio godono della garanzia legale di conformità di 3 anni dalla consegna, ai sensi del Regio Decreto Legislativo spagnolo 1/2007. Se il prodotto presenta un difetto di conformità (difetto di fabbricazione, danno nel trasporto o altra discrepanza rispetto a quanto acquistato), il cliente può esigerne la riparazione o la sostituzione senza alcun costo e, se non fossero possibili o risultassero sproporzionate, la riduzione del prezzo o la risoluzione dell'acquisto; in questi casi le spese di restituzione sono a carico del venditore.\n\nPer qualsiasi reclamo relativo al negozio, il cliente può rivolgersi al venditore attraverso i canali indicati nella sezione 13. Sono disponibili moduli di reclamo per i consumatori.",
         },
       ],
     },
@@ -4486,7 +4502,7 @@ export const it: Translations = {
     },
     seoTitle: "Negozio: t-shirt e tote bag Costa Brava Culture | Costa Brava Rent a Boat",
     seoDescription:
-      "T-shirt e tote bag della collezione Costa Brava Culture, disegnate con Laura Cabanas (Lloret de Mar). Edizione limitata, pagamento sicuro e ritiro gratuito al porto di Blanes o spedizione in tutta la Spagna.",
+      "T-shirt e tote bag della collezione Costa Brava Culture, disegnate con Laura Cabanas (Lloret de Mar). Edizione limitata, pagamento sicuro e ritiro gratuito al porto di Blanes o spedizione nella Spagna peninsulare.",
     navLabel: "Negozio",
     hero: {
       collabBadge: "Collaborazione con Laura Cabanas",
@@ -4525,12 +4541,14 @@ export const it: Translations = {
       quantity: "Quantità",
       remove: "Rimuovi",
       subtotal: "Subtotale",
-      shippingNote: "Ritiro gratuito al porto di Blanes o spedizione in Spagna (4,95 EUR). Scegli al momento del pagamento.",
+      shippingNote: "Ritiro gratuito al porto di Blanes o spedizione nella Spagna peninsulare (4,95 EUR). Scegli al momento del pagamento.",
       checkout: "Procedi all'ordine",
       checkoutLoading: "Preparazione del pagamento...",
       securePayment: "Pagamento sicuro con carta, Apple Pay o Google Pay",
       itemUnavailable: "Alcuni articoli del tuo carrello si sono esauriti e sono stati contrassegnati. Rimuovili per continuare.",
       genericError: "Non è stato possibile avviare il pagamento. Riprova tra qualche secondo.",
+      legalNote: "Pagando accetti le {enlace}.",
+      legalNoteLink: "condizioni di vendita del negozio",
     },
     delivery: {
       title: "Consegna",
@@ -4541,7 +4559,7 @@ export const it: Translations = {
       pickupLauraText:
         'Gratuito. Ritira il tuo ordine presso il negozio Laura Cabanas, a Carrer del Carme 5, Lloret de Mar. Confermiamo orari e indirizzo al momento dell\'ordine.',
       shippingTitle: "Consegna a domicilio",
-      shippingText: "Spedizione in tutta la Spagna per 4,95 EUR. Lo ricevi in 3-7 giorni lavorativi.",
+      shippingText: "Spedizione nella Spagna peninsulare per 4,95 EUR. Lo ricevi in 3-7 giorni lavorativi.",
     },
     designer: {
       title: "Su Laura Cabanas",
@@ -4567,7 +4585,7 @@ export const it: Translations = {
       },
       {
         q: "Spedite fuori dalla Spagna?",
-        a: "Per ora spediamo solo in Spagna (4,95 EUR, consegna in 3-7 giorni lavorativi). Se sei in vacanza in zona, il ritiro al porto di Blanes è gratuito.",
+        a: "Per ora spediamo solo nella Spagna peninsulare (4,95 EUR, consegna in 3-7 giorni lavorativi). Se sei in vacanza in zona, il ritiro al porto di Blanes è gratuito.",
       },
       {
         q: "Com'è la vestibilità della t-shirt?",

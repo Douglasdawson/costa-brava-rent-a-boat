@@ -746,6 +746,7 @@ function CartPanel({
 }: CartPanelProps) {
   const t = useTranslations();
   const s = t.shopPage;
+  const { localizedPath } = useLanguage();
 
   if (cart.items.length === 0) {
     return <p className="text-sm leading-relaxed text-muted-foreground">{s.cart.empty}</p>;
@@ -845,6 +846,18 @@ function CartPanel({
           )}
         </button>
         <p className="mt-2 text-center text-xs text-muted-foreground">{s.cart.securePayment}</p>
+        <p className="mt-1 text-center text-xs text-muted-foreground">
+          {s.cart.legalNote.split("{enlace}")[0]}
+          <a
+            href={localizedPath("termsConditions")}
+            target="_blank"
+            rel="noopener"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            {s.cart.legalNoteLink}
+          </a>
+          {s.cart.legalNote.split("{enlace}")[1]}
+        </p>
       </div>
     </div>
   );

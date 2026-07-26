@@ -28,16 +28,20 @@ export function LegalPageLayout({ heroTitle, lastUpdated, sections }: LegalPageL
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-muted to-background pt-20 sm:pt-24 pb-8">
+      {/* Hero — a defined band, not a floating title: the old to-background
+          gradient was imperceptible on wide screens, so the header read as
+          text lost in white space with no bottom edge. Solid muted tint +
+          border give it shape at any width; the date at full muted-foreground
+          (the /60 opacity was below AA on small text). */}
+      <div className="border-b border-border bg-muted/50 pt-28 pb-10 sm:pt-32 sm:pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-4">
-            <Shield className="w-8 h-8 text-primary mr-4" aria-hidden="true" />
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <Shield className="w-7 h-7 text-primary" aria-hidden="true" />
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
               {heroTitle}
             </h1>
           </div>
-          <p className="text-sm text-muted-foreground/60">{lastUpdated}</p>
+          <p className="text-sm text-muted-foreground">{lastUpdated}</p>
         </div>
       </div>
 

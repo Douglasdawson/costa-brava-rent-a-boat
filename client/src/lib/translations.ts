@@ -3064,6 +3064,9 @@ export interface Translations {
       securePayment: string;
       itemUnavailable: string;
       genericError: string;
+      /** Sentence with a {enlace} placeholder for the terms-of-sale link. */
+      legalNote: string;
+      legalNoteLink: string;
     };
     delivery: {
       title: string;

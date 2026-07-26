@@ -711,6 +711,71 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
     ru: "Rekomendovano",
     ca: "Recomanat",
   },
+  // Wording the CRM uses that had no entry at all (added 2026-07-26). The
+  // accent/case variants are handled by normalizeBoatTextKey, not by keys here.
+  "Solárium proa y popa": {
+    en: "Sundeck at bow & stern",
+    fr: "Solarium proue et poupe",
+    de: "Sonnendeck Bug & Heck",
+    nl: "Zonnedek voor & achter",
+    it: "Solarium a prua e poppa",
+    ru: "Solyarij na nosu i korme",
+    ca: "Solarium a proa i popa",
+  },
+  "Licencia de Navegación (LN) requerida": {
+    en: "Navigation licence (LN) required",
+    fr: "Permis de navigation (LN) requis",
+    de: "Navigationsschein (LN) erforderlich",
+    nl: "Vaarbewijs (LN) vereist",
+    it: "Patente di navigazione (LN) richiesta",
+    ru: "Trebuetsya licenziya (LN)",
+    ca: "Llicència de Navegació (LN) requerida",
+  },
+  "Equipo de navegación": {
+    en: "Navigation equipment",
+    fr: "Équipement de navigation",
+    de: "Navigationsausrüstung",
+    nl: "Navigatie-uitrusting",
+    it: "Strumentazione di navigazione",
+    ru: "Navigatsionnoe oborudovanie",
+    ca: "Equip de navegació",
+  },
+  "1-2 personas por moto": {
+    en: "1-2 people per jet ski",
+    fr: "1-2 personnes par jet ski",
+    de: "1-2 Personen pro Jetski",
+    nl: "1-2 personen per jetski",
+    it: "1-2 persone per moto d'acqua",
+    ru: "1-2 cheloveka na gidrotsikl",
+    ca: "1-2 persones per moto",
+  },
+  "Desde 15 minutos": {
+    en: "From 15 minutes",
+    fr: "À partir de 15 minutes",
+    de: "Ab 15 Minuten",
+    nl: "Vanaf 15 minuten",
+    it: "Da 15 minuti",
+    ru: "Ot 15 minut",
+    ca: "Des de 15 minuts",
+  },
+  "Monitor incluido": {
+    en: "Instructor included",
+    fr: "Moniteur inclus",
+    de: "Guide inklusive",
+    nl: "Instructeur inbegrepen",
+    it: "Istruttore incluso",
+    ru: "Instruktor vklyuchen",
+    ca: "Monitor inclòs",
+  },
+  "Ruta guiada a Tossa de Mar": {
+    en: "Guided route to Tossa de Mar",
+    fr: "Itinéraire guidé vers Tossa de Mar",
+    de: "Geführte Route nach Tossa de Mar",
+    nl: "Begeleide route naar Tossa de Mar",
+    it: "Percorso guidato a Tossa de Mar",
+    ru: "Marshrut s gidom v Tossa-de-Mar",
+    ca: "Ruta guiada a Tossa de Mar",
+  },
   "personas han visto este barco hoy": {
     en: "people viewed this boat today",
     fr: "personnes ont vu ce bateau aujourd'hui",
@@ -722,10 +787,33 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
   },
 };
 
+/**
+ * Lookup key: lowercased, unaccented, whitespace collapsed.
+ *
+ * These strings are NOT in the code — they are rows in `boats`, typed from the
+ * CRM, so the same item arrives spelled several ways across the fleet ("Toldo
+ * bimini", "Toldo Bimini", "Toldo Bi Mini"). Matching the literal key meant one
+ * capital letter or one accent was enough to ship Spanish to the other seven
+ * languages, with no error anywhere. Five of the eleven strings that were
+ * reaching customers untranslated on 2026-07-26 were exactly this: the entry
+ * existed, spelled slightly differently.
+ */
+const normalizeBoatTextKey = (text: string) =>
+  text
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/\s+/g, " ");
+
+const boatTextIndex = new Map(
+  Object.entries(boatTextTranslations).map(([key, value]) => [normalizeBoatTextKey(key), value])
+);
+
 /** Translate a Spanish boat text to the current language. Falls back to Spanish original. */
 function translateBoatText(text: string, lang: string): string {
   if (lang === "es") return text;
-  return boatTextTranslations[text]?.[lang] ?? text;
+  return boatTextIndex.get(normalizeBoatTextKey(text))?.[lang] ?? text;
 }
 
 /**

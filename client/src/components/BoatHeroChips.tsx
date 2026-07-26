@@ -1,4 +1,4 @@
-import { Star, Fuel, Shield, RotateCcw, Waves } from "lucide-react";
+import { Star, Fuel, Shield, Waves } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import type { Translations } from "@/lib/translations";
 import { BUSINESS_RATING, BUSINESS_REVIEW_COUNT, GBP_PROFILE_URL } from "@shared/businessProfile";
@@ -17,19 +17,23 @@ interface BoatHeroChipsProps {
  * Trust + risk-reversal strip rendered right under the hero, above the fold on
  * every supported viewport (verified on iPhone SE 320px through desktop 1920px).
  *
- * Four chips:
+ * Three chips:
  *  1. Star rating + review count from `shared/businessProfile` (canonical source).
  *  2. Fuel + insurance OR insurance-only depending on `fuelIncluded`
  *     (only self-drive licence-free boats include fuel; licensed boats and
  *     the captained excursion do not — see shared/boatData.boatIncludesFuel).
- *  3. Free date change with 7+ days notice — per `CondicionesGenerales.tsx`.
- *  4. Weather rescheduling — wording stays neutral ("if the sea doesn't cooperate")
+ *  3. Weather rescheduling — wording stays neutral ("if the sea doesn't cooperate")
  *     to honor the policy that only Costa Brava's staff calls bad weather, not
  *     the customer.
  *
- * Layout: grid-cols-2 on mobile (≤640px) so the four chips render as a tidy 2×2
- * block on any phone width without overflow. Flex-wrap on sm+ so chips size to
- * content and breathe horizontally. No shadow at rest (DESIGN.md Earned Depth).
+ * The free-date-change chip was dropped on 2026-07-26 by the owner. The policy
+ * itself stands (see `CondicionesGenerales.tsx`); it just no longer rides in the
+ * hero, so `t.boatDetail.heroChipDateChange` is unused here on purpose.
+ *
+ * Layout: centred flex-wrap at every width. It was a 2-column grid while there
+ * were four chips (a tidy 2x2 on phones); with three, the grid left an orphan
+ * in the bottom-left cell. Verified from 320px up. No shadow at rest
+ * (DESIGN.md Earned Depth).
  */
 export function BoatHeroChips({ t, fuelIncluded }: BoatHeroChipsProps) {
   const { language } = useLanguage();
@@ -57,11 +61,6 @@ export function BoatHeroChips({ t, fuelIncluded }: BoatHeroChipsProps) {
           iconClass: "text-cta",
         },
     {
-      Icon: RotateCcw,
-      label: t.boatDetail.heroChipDateChange,
-      iconClass: "text-cta",
-    },
-    {
       Icon: Waves,
       label: t.boatDetail.heroChipWeather,
       iconClass: "text-cta",
@@ -70,7 +69,7 @@ export function BoatHeroChips({ t, fuelIncluded }: BoatHeroChipsProps) {
 
   return (
     <ul
-      className="mt-3 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap"
+      className="mt-3 flex flex-wrap justify-center gap-2"
       aria-label={t.boatDetail.heroChipsLabel}
     >
       {chips.map((chip, i) => {

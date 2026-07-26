@@ -27,8 +27,8 @@ const RangeFromBlanesSection = lazy(() => import("@/components/RangeFromBlanesSe
 const GiftCardBanner = lazy(() => import("@/components/GiftCardBanner"));
 const LicenseComparisonSection = lazy(() => import("@/components/LicenseComparisonSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
-const EditorialMomentSection = lazy(() => import("@/components/EditorialMomentSection"));
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
+const GuaranteesSection = lazy(() => import("@/components/GuaranteesSection"));
 const HomepageLocationsSection = lazy(() => import("@/components/HomepageLocationsSection"));
 const FAQPreview = lazy(() => import("@/components/FAQPreview"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
@@ -167,17 +167,22 @@ function HomePage() {
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FleetSection />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[60vh] below-fold" />}>
-          <EditorialMomentSection />
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <LicenseComparisonSection />
         </Suspense>
+        {/* Right after the licence comparison: by here the visitor has picked a
+            boat and the next thing in the way is "and if the weather turns?".
+            The band answers it before the reasons-to-choose-us block. */}
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <GuaranteesSection />
+        </Suspense>
+        {/* The reviews land right after the guarantees: the promise is made and
+            then other customers vouch for it. */}
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ReviewsSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <RangeFromBlanesSection variant="home" />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <LicenseComparisonSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FeaturesSection />

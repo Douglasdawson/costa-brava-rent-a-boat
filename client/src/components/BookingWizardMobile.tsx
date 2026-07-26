@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, ClipboardList, Clock, Fuel, Gift, Loader2, Package, Pencil, Ship, Sparkles, Star, Tag, User, Users, X } from "lucide-react";
+import { ArrowRight, CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, ClipboardList, Clock, Fuel, Gift, Loader2, Package, Pencil, Ship, Sparkles, Star, Tag, User, Users, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
@@ -1525,6 +1525,7 @@ function Step5Final(props: BookingWizardMobileProps) {
         const standardDeposit = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, '')) : null;
         // With the cover contracted, show the deposit actually taken.
         const depositAmount = reducedDeposit ? reducedDepositAmount : standardDeposit;
+        const depositCover = props.coverages?.find(c => c.key === "deposit");
         return (
           <div className="bg-primary rounded-xl p-4 text-white">
             <div className="flex justify-between items-center">
@@ -1541,6 +1542,25 @@ function Step5Final(props: BookingWizardMobileProps) {
                 </span>
                 <span className="text-sm font-semibold opacity-80">{depositAmount}€</span>
               </div>
+            )}
+            {/* Last chance at the cover, offered where the deposit stops being
+                an abstraction. Only the label is translated: the two figures
+                say the rest in any language. */}
+            {!reducedDeposit && depositCover && reducedDepositAmount > 0 && (
+              <button
+                type="button"
+                onClick={() => onGoToStep((props.totalSteps ?? 6) - 1)}
+                data-testid="final-reduce-deposit"
+                className="mt-2 flex w-full items-center justify-between gap-3 rounded-lg bg-white/10 px-3 py-2 text-left transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+              >
+                <span className="text-xs font-medium">
+                  {t.booking.coverages.depositName}: {reducedDepositAmount}€
+                </span>
+                <span className="flex items-center gap-1 text-xs font-bold whitespace-nowrap">
+                  +{depositCover.price}€
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+              </button>
             )}
             <p className="text-sm opacity-80 mt-2">{t.booking.priceConfirmedWhatsApp}</p>
           </div>

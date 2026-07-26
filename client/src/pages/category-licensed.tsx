@@ -23,6 +23,7 @@ import Footer from "@/components/Footer";
 import RelatedContent from "@/components/RelatedContent";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
+import { ReducedDepositLink } from "@/components/ReducedDepositLink";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   getSEOConfig,
@@ -491,9 +492,14 @@ export default function CategoryLicensedPage() {
                   <CheckCircle className="w-4 h-4 text-primary mr-3" />
                   <span>{cl.validLicense}</span>
                 </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.deposit}</span>
+                <li className="flex items-start">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <span>
+                    {cl.deposit}
+                    <span className="mt-1 block">
+                      <ReducedDepositLink requiresLicense />
+                    </span>
+                  </span>
                 </li>
                 <li className="flex items-center">
                   <CheckCircle className="w-4 h-4 text-primary mr-3" />

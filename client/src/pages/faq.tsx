@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   Anchor,
+  ArrowRight,
   Clock,
   MapPin,
   Shield,
@@ -153,8 +154,16 @@ const CATEGORIES: CategoryDef[] = [
   },
 ];
 
+/**
+ * The two answers that describe a guarantee get a link to /garantias. It is a
+ * separate element and never markup inside the answer string: these answers
+ * feed the FAQPage JSON-LD verbatim, so an inline <a> would ship as literal
+ * tags in the structured data.
+ */
+const GUARANTEE_FAQ_VALUES = new Set(["tiempo", "fianza"]);
+
 export default function FAQPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig("faq", language);
   const hreflangLinks = generateHreflangLinks("faq");
@@ -306,6 +315,16 @@ export default function FAQPage() {
                           <p className="whitespace-pre-line text-muted-foreground leading-relaxed max-w-prose">
                             {sub(item.answer)}
                           </p>
+                          {GUARANTEE_FAQ_VALUES.has(value) && (
+                            <a
+                              href={localizedPath("garantias")}
+                              data-testid={`faq-garantias-link-${value}`}
+                              className="mt-3 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-cta transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+                            >
+                              {t.garantiasPage.navLabel}
+                              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                            </a>
+                          )}
                         </AccordionContent>
                       </AccordionItem>
                     );

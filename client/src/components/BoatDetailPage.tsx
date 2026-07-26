@@ -78,6 +78,7 @@ import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "@shared/
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 import BoatPricingSection from "./BoatPricingSection";
+import BoatGuarantees from "./BoatGuarantees";
 import { useBoatLowestPriceForDate } from "@/hooks/useBoatLowestPriceForDate";
 import AvailabilityUrgency from "./AvailabilityUrgency";
 import { LiveInterestIndicator } from "./LiveInterestIndicator";
@@ -1401,6 +1402,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           translate={(text) => translateBoatText(text, language)}
         />
 
+        {/* Optional guarantees, priced for this boat. Placed right after the
+            calendar: the day is chosen, so "and if the weather turns?" is the
+            next thought, and the deposit stops being an abstraction. */}
+        <BoatGuarantees
+          requiresLicense={!!requiresLicense}
+          boatDeposit={boatData.specifications?.deposit}
+        />
+
         {/* Tabbed detail sections */}
         <Card className="mb-8">
           <Tabs defaultValue="caracteristicas">
@@ -1819,51 +1828,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         </div>
       </div>
 
-      {/* Sticky pricing sidebar for desktop — always mounted, visibility via CSS */}
-      {dynamicLowest.price > 0 && (
-        <div
-          className={`hidden lg:block fixed right-6 top-24 w-64 z-30 transition-all duration-300 ${showStickyCTA && !isBookingModalOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8 pointer-events-none"}`}
-          aria-hidden={!showStickyCTA || isBookingModalOpen}
-        >
-          <div className="bg-background rounded-2xl shadow-xl border border-border p-4 space-y-3">
-            <p className="font-bold text-foreground line-clamp-2">{boatData.name}</p>
-            <div className="flex items-baseline gap-2">
-              {!dynamicLowest.isForDate && (
-                <span className="text-sm text-muted-foreground">{t.boats.from}</span>
-              )}
-              <span className="text-2xl font-bold text-primary">{dynamicLowest.price}€</span>
-            </div>
-            {fuelIncluded && (
-              <p className="text-xs text-muted-foreground flex items-center gap-1">
-                <Fuel className="w-3 h-3" />
-                {t.boatDetail.fuelIncludedShort}
-              </p>
-            )}
-            {!boatIncludesFuel(boatId, requiresLicense) && (
-              <p className="text-xs text-muted-foreground flex items-center gap-1">
-                <Fuel className="w-3 h-3" />
-                {t.boatDetail.fuelNotIncludedNote}
-              </p>
-            )}
-            <Button
-              onClick={() => handleReservation()}
-              tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-              className="w-full bg-primary text-white py-2 text-sm font-semibold"
-            >
-              <Calendar className="w-4 h-4 mr-1.5" />
-              {t.hero.bookNow}
-            </Button>
-            <button
-              onClick={handleWhatsApp}
-              tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-              className="w-full text-xs text-primary hover:text-primary/80 flex items-center justify-center gap-1.5 py-1 transition-colors"
-            >
-              <SiWhatsapp className="w-3.5 h-3.5 text-whatsapp" />
-              {t.contact?.whatsapp || "Consultar por WhatsApp"}
-            </button>
-          </div>
-        </div>
-      )}
+      {/* The floating desktop pricing card that used to live here (fixed, right-6,
+          top-24) was removed on 2026-07-26 by the owner: it overlapped the page
+          content. The mobile sticky CTA bar above stays. */}
 
       {/* Lightbox for gallery images */}
       <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>

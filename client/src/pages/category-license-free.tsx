@@ -27,6 +27,7 @@ import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { FAQSection } from "@/components/FAQSection";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useLanguage } from "@/hooks/use-language";
+import { ReducedDepositLink } from "@/components/ReducedDepositLink";
 import {
   getSEOConfig,
   generateHreflangLinks,
@@ -687,9 +688,14 @@ export default function CategoryLicenseFreePage() {
                   <CheckCircle className="w-4 h-4 text-primary mr-2" />
                   <span>{clf.validId}</span>
                 </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                  <span>{clf.deposit}</span>
+                <li className="flex items-start">
+                  <CheckCircle className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                  <span>
+                    {clf.deposit}
+                    <span className="mt-1 block">
+                      <ReducedDepositLink requiresLicense={false} />
+                    </span>
+                  </span>
                 </li>
                 <li className="flex items-center">
                   <CheckCircle className="w-4 h-4 text-primary mr-2" />

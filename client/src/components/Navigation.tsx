@@ -188,6 +188,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
     { label: t.nav.scooters, href: localizedPath("scooters") },
     { label: t.nav.tienda, href: localizedPath("tienda") },
     { label: t.footer.destinations, href: localizedPath("routes") },
+    { label: t.garantiasPage.navLabel, href: localizedPath("garantias") },
     { label: "Blog", href: localizedPath("blog") },
   ];
 

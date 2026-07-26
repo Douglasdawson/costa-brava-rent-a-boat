@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
-import { CalendarIcon, Check, ClipboardList, Clock, Fuel, Loader2, Pencil, Ship, Sparkles, Star, Users, X } from "lucide-react";
+import { ArrowRight, CalendarIcon, Check, ClipboardList, Clock, Fuel, Loader2, Pencil, Ship, Sparkles, Star, Users, X } from "lucide-react";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -409,6 +409,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 weatherGuarantee={props.weatherGuarantee}
                 reducedDeposit={props.reducedDeposit}
                 reducedDepositAmount={props.reducedDepositAmount}
+                coverages={props.coverages}
+                coveragesStep={totalSteps - 1}
                 language={props.language}
                 onGoToStep={onGoToStep}
                 showFieldError={showFieldError}
@@ -1350,6 +1352,9 @@ interface Step5Props {
   weatherGuarantee: boolean;
   reducedDeposit: boolean;
   reducedDepositAmount: number;
+  /** For the second-chance offer on the deposit cover in the total card. */
+  coverages: BookingWizardMobileProps["coverages"];
+  coveragesStep: number;
   selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
   selectedDate: string;
   selectedDuration: string;
@@ -1415,6 +1420,8 @@ function Step5Contact({
   weatherGuarantee,
   reducedDeposit,
   reducedDepositAmount,
+  coverages,
+  coveragesStep,
   language,
   onGoToStep,
   showFieldError,
@@ -1430,6 +1437,7 @@ function Step5Contact({
   const standardDeposit = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, "")) : null;
   // With the cover contracted, show the deposit actually taken.
   const depositAmount = reducedDeposit ? reducedDepositAmount : standardDeposit;
+  const depositCover = coverages?.find(c => c.key === "deposit");
 
   // Build extras display text for review card
   const extrasDisplay = (() => {
@@ -1783,6 +1791,25 @@ function Step5Contact({
                 </span>
                 <span className="font-medium text-muted-foreground">{depositAmount}€</span>
               </div>
+            )}
+            {/* Last chance at the cover, offered where the deposit stops being
+                an abstraction. Only the label is translated: the two figures
+                say the rest in any language. */}
+            {!reducedDeposit && depositCover && reducedDepositAmount > 0 && (
+              <button
+                type="button"
+                onClick={() => onGoToStep(coveragesStep)}
+                data-testid="final-reduce-deposit"
+                className="mt-2 flex w-full items-center justify-between gap-3 rounded-lg bg-cta/10 px-3 py-2 text-left transition-colors hover:bg-cta/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-1"
+              >
+                <span className="text-xs font-medium text-foreground">
+                  {t.booking.coverages.depositName}: {reducedDepositAmount}€
+                </span>
+                <span className="flex items-center gap-1 whitespace-nowrap text-xs font-bold text-cta">
+                  +{depositCover.price}€
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+              </button>
             )}
           </div>
           <p className="text-xs text-muted-foreground mt-2">

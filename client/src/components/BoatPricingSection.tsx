@@ -325,8 +325,12 @@ function DayPricingMode({
 
   return (
     <div className="space-y-4">
+      {/* The label only appears from lg. The two column layout starts at md,
+          where the price column is about 250px wide: with the label showing
+          from sm, the heading was left with a sliver and broke into three
+          lines. Below lg the button is the X alone, named by its aria-label. */}
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-base font-semibold font-heading">
+        <h3 className="min-w-0 text-balance text-base font-semibold font-heading">
           {t.boatDetail.pricesForDay.replace("{day}", dayLabel)}
         </h3>
         <Button
@@ -334,11 +338,12 @@ function DayPricingMode({
           size="sm"
           onClick={onDateClear}
           aria-label={t.boatDetail.backToSeasonPrices}
+          title={t.boatDetail.backToSeasonPrices}
           className="text-xs h-7 shrink-0 text-muted-foreground hover:text-foreground -mt-1"
           data-testid="button-back-to-season-prices"
         >
-          <X className="w-3 h-3 sm:mr-1" />
-          <span className="hidden sm:inline">{t.boatDetail.backToSeasonPrices}</span>
+          <X className="w-3 h-3 lg:mr-1" />
+          <span className="hidden lg:inline">{t.boatDetail.backToSeasonPrices}</span>
         </Button>
       </div>
 

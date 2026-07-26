@@ -1,4 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -39,10 +40,41 @@ function Reveal({ className = "", children }: { className?: string; children: Re
 }
 
 /**
+ * Header of a guarantee record: the name, and its price in the page's mono
+ * figure voice. Repeated once per guarantee, it is the device that tells the
+ * reader "this is one of two things", which the page used to leave implicit.
+ */
+function RecordHeader({ name, price }: { name: string; price: string }) {
+  return (
+    <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b-2 border-foreground pb-4">
+      <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{name}</h2>
+      <p className="font-mono text-3xl font-bold tabular-nums leading-none text-cta sm:text-4xl">
+        {price}
+      </p>
+    </div>
+  );
+}
+
+/** Sub-heading inside a record. Deliberately an h3: it belongs to the record. */
+function RecordBlockTitle({ children }: { children: ReactNode }) {
+  return (
+    <h3 className="font-heading text-lg font-semibold text-foreground">{children}</h3>
+  );
+}
+
+/**
  * /garantias — the two optional coverages, the objective bad-weather threshold
  * and what the customer gets with and without the guarantee. It is the page
  * step 5 of the booking wizard links to, so it has to carry the same weight as
  * the rest of the site, not read like a terms annex.
+ *
+ * Structure (rebuilt 2026-07-26, the previous one was reported as unclear): the
+ * body is TWO records, one per guarantee, not four peer sections. It used to
+ * run "what you get" / "when it applies" / "reduced deposit" / CTA as four h2s
+ * of equal rank, so the first two — both about the weather guarantee — looked
+ * unrelated, and the third switched product with no signal. The alternating
+ * background now encodes that boundary instead of an arbitrary rhythm: one
+ * guarantee per band.
  */
 export default function GarantiasPage() {
   const { language } = useLanguage();
@@ -141,106 +173,132 @@ export default function GarantiasPage() {
         </div>
       </section>
 
-      {/* THE DECISION — same condition, two outcomes.
-          One frame with a divider, not two cards: the subject is the comparison,
-          and two separate cards (one of them outlined) read as a pricing table
-          with a "recommended" plan. The price leads each column in the page's
-          mono figure voice — the same device as the threshold rows below — so
-          0€ and 10€ line up as two costs of two outcomes instead of a number
-          stuck in a corner. `grid-rows-subgrid` keeps the label / price / body
-          rows aligned across columns however the labels wrap in each language. */}
+      {/* RECORD 1 — Garantía de mal tiempo. */}
       <Reveal className="px-4 py-14 sm:px-6 lg:py-20">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
-            {g.weatherTitle}
-          </h2>
-          <div className="mt-7 grid grid-cols-2 grid-rows-[auto_auto_1fr] overflow-hidden rounded-xl border border-border bg-card">
-            <div className="row-span-3 grid grid-rows-subgrid p-4 sm:p-6">
-              <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">
-                {g.withoutLabel}
-              </p>
-              <p className="mt-2 font-mono text-xl font-bold tabular-nums text-muted-foreground sm:text-2xl">
-                0€
-              </p>
-              <p className="mt-2.5 text-[11px] leading-snug text-foreground">{g.withoutBody}</p>
+          <RecordHeader name={t.booking.coverages.weatherName} price={`${prices.weatherPrice}€`} />
+
+          {/* Same condition, two outcomes. One frame with a divider, not two
+              cards: the subject IS the comparison. No figures inside the
+              columns — the old layout put a made-up 0€ opposite the 10€, in the
+              same slot and the same mono voice, which turned an outcome
+              comparison into a two-plan pricing table with a free tier. The
+              price is stated once, in the record header. */}
+          <div className="mt-8">
+            <RecordBlockTitle>{g.weatherTitle}</RecordBlockTitle>
+            <div className="mt-4 grid grid-cols-1 overflow-hidden rounded-xl border border-border bg-card sm:grid-cols-2 sm:grid-rows-[auto_1fr]">
+              <div className="border-b border-border p-4 sm:row-span-2 sm:grid sm:grid-rows-subgrid sm:border-b-0 sm:p-6">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                  {g.withoutLabel}
+                </p>
+                <p className="mt-2.5 text-[13px] leading-relaxed text-foreground">
+                  {g.withoutBody}
+                </p>
+              </div>
+              <div className="bg-cta/5 p-4 sm:row-span-2 sm:grid sm:grid-rows-subgrid sm:border-l sm:border-border sm:p-6">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-cta">
+                  {g.withLabel}
+                </p>
+                <p className="mt-2.5 text-[13px] font-medium leading-relaxed text-foreground">
+                  {g.withBody}
+                </p>
+              </div>
             </div>
-            <div className="row-span-3 grid grid-rows-subgrid border-l border-border bg-cta/5 p-4 sm:p-6">
-              <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-cta sm:text-xs">
-                {g.withLabel}
-              </p>
-              <p className="mt-2 font-mono text-xl font-bold tabular-nums text-cta sm:text-2xl">
-                {prices.weatherPrice}€
-              </p>
-              <p className="mt-2.5 text-[11px] leading-snug text-foreground">{g.withBody}</p>
-            </div>
+          </div>
+
+          {/* The threshold, nested in the record it belongs to. It used to be a
+              full-bleed band, which made a supporting detail of guarantee #1
+              look like a topic of its own rank. The signature stays: the
+              measured value leads each row. */}
+          <div className="mt-10">
+            <RecordBlockTitle>{g.criteriaTitle}</RecordBlockTitle>
+            <dl className="mt-4">
+              {g.criteria.map((text, i) => (
+                <div
+                  key={text}
+                  className="flex flex-col gap-1.5 border-t border-border py-4 sm:flex-row sm:gap-8"
+                >
+                  <dt className="shrink-0 font-mono text-sm font-bold uppercase tracking-wider text-cta sm:w-36 sm:pt-0.5">
+                    {g.criteriaMarks[i]}
+                  </dt>
+                  <dd className="text-sm leading-relaxed text-foreground">{text}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </Reveal>
 
-      {/* THE THRESHOLD — the signature: the measured value leads each row. */}
+      {/* RECORD 2 — Fianza reducida. Its own band: from here on the background
+          change means "other guarantee", not just "other section". */}
       <Reveal className="border-y border-border bg-muted/40 px-4 py-14 sm:px-6 lg:py-20">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
-            {g.criteriaTitle}
-          </h2>
-          <dl className="mt-7">
-            {g.criteria.map((text, i) => (
+          <RecordHeader
+            name={g.depositTitle}
+            price={
+              prices.depositPriceSL === prices.depositPriceCL
+                ? `${prices.depositPriceSL}€`
+                : `${prices.depositPriceSL}-${prices.depositPriceCL}€`
+            }
+          />
+          <p className="mt-6 max-w-2xl text-muted-foreground">{g.depositBody}</p>
+
+          {/* Two rows, not a table: a <table> with two data rows is heavy
+              furniture, and its "Barco" header held "Sin licencia" / "Con
+              licencia", which are categories and not boats. Each row shows the
+              same transform the boat pages use, so the reader meets one device
+              twice instead of two spellings of one idea. */}
+          {/* Legend for the transform, directly above the figures it explains:
+              below the rows it was too far from them to do its job. */}
+          <p className="mt-8 flex flex-wrap gap-x-4 text-xs text-muted-foreground sm:pl-40">
+            <span>
+              {g.colStandard} → {g.colReduced}
+            </span>
+          </p>
+          <dl className="mt-2">
+            {depositRows.map(row => (
               <div
-                key={text}
-                className="flex flex-col gap-2 border-t border-border py-5 sm:flex-row sm:gap-8"
+                key={row.label}
+                className="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-t border-border py-5"
               >
-                <dt className="shrink-0 font-mono text-sm font-bold uppercase tracking-wider text-cta sm:w-28 sm:pt-0.5">
-                  {g.criteriaMarks[i]}
-                </dt>
-                <dd className="text-sm leading-relaxed text-foreground">{text}</dd>
+                <dt className="w-full font-medium text-foreground sm:w-40">{row.label}</dt>
+                <dd className="flex flex-1 flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+                  <span className="flex items-baseline gap-2.5">
+                    {row.standard && (
+                      <>
+                        <span className="font-mono text-lg font-bold tabular-nums text-muted-foreground">
+                          {row.standard}
+                        </span>
+                        <ArrowRight
+                          className="h-3.5 w-3.5 shrink-0 self-center text-muted-foreground"
+                          aria-hidden="true"
+                        />
+                      </>
+                    )}
+                    <span className="font-mono text-lg font-bold tabular-nums text-foreground">
+                      {row.reduced}
+                    </span>
+                  </span>
+                  <span className="font-mono text-sm font-bold tabular-nums text-cta">
+                    {row.price}€
+                  </span>
+                </dd>
               </div>
             ))}
           </dl>
         </div>
       </Reveal>
 
-      {/* REDUCED DEPOSIT — real numbers, per boat tier. */}
-      <Reveal className="px-4 py-14 sm:px-6 lg:py-20">
+      {/* Page-level footnote: the disclaimer covers BOTH guarantees, so it sits
+          outside either record rather than at the tail of the second one. */}
+      <div className="px-4 py-8 sm:px-6">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
-            {g.depositTitle}
-          </h2>
-          <p className="mt-4 max-w-2xl text-muted-foreground">{g.depositBody}</p>
-          <div className="mt-7 overflow-x-auto">
-            <table className="w-full min-w-[420px] border-collapse text-left">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="py-3 pr-4 text-sm font-semibold text-muted-foreground">
-                    {t.booking.boat}
-                  </th>
-                  <th className="py-3 pr-4 text-sm font-semibold text-muted-foreground">
-                    {g.colStandard}
-                  </th>
-                  <th className="py-3 text-sm font-semibold text-muted-foreground">
-                    {g.colReduced}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {depositRows.map(row => (
-                  <tr key={row.label} className="border-b border-border">
-                    <td className="py-4 pr-4 font-medium text-foreground">{row.label}</td>
-                    <td className="py-4 pr-4 text-muted-foreground">{row.standard ?? "—"}</td>
-                    <td className="py-4">
-                      <span className="font-bold text-foreground">{row.reduced}</span>
-                      <span className="ml-2 text-sm text-muted-foreground">+{row.price}€</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-6 text-sm text-muted-foreground">{g.notInsurance}</p>
-          <div className="mt-8">
+          <p className="text-sm leading-relaxed text-muted-foreground">{g.notInsurance}</p>
+          <div className="mt-5">
             <LastUpdated date="2026-07-25" />
           </div>
         </div>
-      </Reveal>
+      </div>
 
       {/* CLOSE — the decision belongs in the booking flow, so send them there. */}
       <Reveal className="bg-primary px-4 py-16 sm:px-6">

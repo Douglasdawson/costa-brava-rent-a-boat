@@ -48,11 +48,21 @@ export default function JetSkiBlanesHub() {
   const heroAlt = excursion?.altText ?? "Moto de agua al atardecer en la Costa Brava";
 
   // Experience cards from the canonical catalogue + translated copy.
+  //
+  // The copy key is looked up, not inferred. It used to be
+  // `pageKey === "jetskiCircuito" ? "circuito" : "excursion"`, a binary over an
+  // open set: the e-foil product added on 2026-07-26 fell into the else branch
+  // and shipped with the jet ski excursion's title and description over its own
+  // photo and price. An unknown product now falls back to its own catalogue
+  // name instead of borrowing a sibling's.
+  const COPY_KEY_BY_PAGE: Record<string, "circuito" | "excursion" | "efoil"> = {
+    jetskiCircuito: "circuito",
+    jetskiExcursion: "excursion",
+    efoilBlanes: "efoil",
+  };
   const cards = JETSKI_PRODUCTS.map((p) => {
-    const copyKey = (p.pageKey === "jetskiCircuito" ? "circuito" : "excursion") as
-      | "circuito"
-      | "excursion";
-    const copy = t.jetskiLanding?.[copyKey];
+    const copyKey = COPY_KEY_BY_PAGE[p.pageKey];
+    const copy = copyKey ? t.jetskiLanding?.[copyKey] : undefined;
     return {
       id: p.id,
       href: localizedPath(p.pageKey),
@@ -101,8 +111,12 @@ export default function JetSkiBlanesHub() {
       />
       <Navigation />
 
-      {/* HERO — full-bleed coastal photography, the Salt Memory entry */}
-      <section className="relative isolate flex min-h-[80vh] items-center overflow-hidden pb-20 pt-28">
+      {/* HERO — full-bleed coastal photography, the Salt Memory entry.
+          Full viewport: the photo and its gradient are `inset-0` on this
+          section, so the section's height IS the overlay's height — at 80vh the
+          gradient stopped short of the fold. `svh` (not `vh`) so the mobile
+          browser chrome doesn't push the bottom of the gradient off screen. */}
+      <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden pb-20 pt-28">
         <picture>
           <source type="image/avif" srcSet={heroSrcSetAvif} sizes="100vw" />
           <img

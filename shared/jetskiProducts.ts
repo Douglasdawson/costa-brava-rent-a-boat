@@ -141,6 +141,51 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
       { id: "2h", label: "2 h", minutes: 120, price: 330, price2: 355 },
     ],
   },
+  {
+    // Not a jet ski, but the same resale arrangement and the same booking flow,
+    // so it lives in this module rather than duplicating the machinery. The
+    // partner also sells 5- and 10-hour voucher packs; those are a multi-session
+    // purchase that the single-slot request modal cannot express, so they are
+    // named in the FAQ instead of faked as a bookable slot.
+    id: "efoil-blanes",
+    name: "E-Foil en Blanes",
+    pageKey: "efoilBlanes",
+    subtitle: "Sin licencia · 1 persona · Vuela sobre el agua con instructor",
+    description:
+      "Aprende a volar sobre el agua con una tabla eléctrica de hidrofoil. La mayoría de la gente despega en su primera sesión: el instructor va contigo desde la playa y el curso incluye seguro y material de seguridad. Sin licencia y sin experiencia previa.",
+    image: "/images/boats/efoil-blanes/efoil-blanes-costa-brava.webp",
+    altText: "Rider volando sobre el agua con una tabla de e-foil frente a Blanes, Costa Brava",
+    capacity: 1,
+    specifications: {
+      model: "Tabla eléctrica de hidrofoil (e-foil)",
+      length: "—",
+      beam: "—",
+      engine: "Motor eléctrico",
+      fuel: "Batería incluida",
+      capacity: "1 persona",
+      deposit: "20€",
+    },
+    included: [
+      "Instructor",
+      "Seguro de responsabilidad civil",
+      "Material de seguridad",
+      "Batería",
+    ],
+    features: [
+      "Sin licencia requerida",
+      "Sin experiencia previa",
+      "Instructor incluido",
+      "Salida desde la playa",
+    ],
+    slots: [
+      { id: "express30", label: "30 min", minutes: 30, price: 95 },
+      { id: "express60", label: "60 min", minutes: 60, price: 165 },
+      // Slot labels are rendered raw, with no translation path, so they have to
+      // read the same in the 8 locales: "Tandem" without the Spanish accent
+      // works in all of them, "Tándem 60 min" would have shipped Spanish.
+      { id: "tandem60", label: "Tandem 60 min", minutes: 60, price: 200 },
+    ],
+  },
 ];
 
 /** Set of jet ski boat ids — used to branch UI and exclude from hourly flows. */

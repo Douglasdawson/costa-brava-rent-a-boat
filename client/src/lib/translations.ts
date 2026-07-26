@@ -2954,6 +2954,7 @@ export interface Translations {
     reassurance: string;
     circuito: JetskiLandingCopy;
     excursion: JetskiLandingCopy;
+    efoil?: JetskiLandingCopy;
   };
   jetskiHub: {
     seoTitle: string;

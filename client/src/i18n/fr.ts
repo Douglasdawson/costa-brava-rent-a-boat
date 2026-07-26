@@ -4231,6 +4231,43 @@ export const fr: Translations = {
     ]
   },
   jetskiLanding: {
+    efoil: {
+      "navLabel": "E-Foil à Blanes",
+      "seoTitle": "Cours d'e-foil à Blanes · Volez au-dessus de l'eau sans permis",
+      "hero": {
+        "title": "E-Foil à Blanes",
+        "subtitle": "Volez au-dessus de l'eau sur une planche à hydrofoil électrique. Avec moniteur, sans permis et sans expérience."
+      },
+      "chips": [
+        "Sans permis",
+        "Moniteur inclus",
+        "Dès 30 minutes",
+        "1 personne"
+      ],
+      "intro": "L'e-foil est une planche avec une aile immergée et un moteur électrique : dès qu'elle prend de la vitesse, elle se soulève et vous naviguez au-dessus de l'eau, en silence. Le moniteur part avec vous depuis la plage et vous apprend de zéro, aucun cours préalable n'est nécessaire. Il existe aussi des packs de 5 et 10 heures pour progresser ; demandez-nous par WhatsApp.",
+      "faq": [
+        {
+          "q": "Faut-il un permis ou de l'expérience ?",
+          "a": "Non. Aucun titre ni séance préalable n'est requis : le moniteur vous apprend de zéro pendant la séance."
+        },
+        {
+          "q": "Y a-t-il un âge minimum ?",
+          "a": "Il n'y a pas de limite d'âge. Les mineurs ont besoin du consentement d'un parent ou tuteur légal."
+        },
+        {
+          "q": "Que dois-je apporter ?",
+          "a": "Un maillot de bain. En saison froide, un haut thermique ou une combinaison. Le gilet et le matériel de sécurité sont fournis."
+        },
+        {
+          "q": "Y a-t-il une caution ?",
+          "a": "Oui, 20€ par e-foil le jour de l'activité, restitués à la fin par le même moyen de paiement."
+        },
+        {
+          "q": "Et si le temps se gâte ?",
+          "a": "L'activité peut être reportée pour raisons météo et nous fixons une autre date sans frais."
+        }
+      ]
+    },
     pricePerTwo: "1 personne · {price}€ pour 2",
     specCapacity: "1-2 personnes",
     "fromLabel": "dès",

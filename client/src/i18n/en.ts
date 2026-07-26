@@ -4268,6 +4268,43 @@ export const en: Translations = {
     ]
   },
   jetskiLanding: {
+    efoil: {
+      "navLabel": "E-Foil in Blanes",
+      "seoTitle": "E-foil lessons in Blanes · Fly above the water, no licence",
+      "hero": {
+        "title": "E-Foil in Blanes",
+        "subtitle": "Fly above the water on an electric hydrofoil board. With an instructor, no licence and no experience needed."
+      },
+      "chips": [
+        "No licence",
+        "Instructor included",
+        "From 30 minutes",
+        "1 person"
+      ],
+      "intro": "An e-foil is a board with a submerged wing and an electric motor: once it picks up speed it lifts and you ride above the water, in silence. The instructor goes out with you from the beach and teaches you from scratch, so no previous course is needed. There are also 5- and 10-hour packs if you want to keep progressing; ask us on WhatsApp.",
+      "faq": [
+        {
+          "q": "Do I need a licence or experience?",
+          "a": "No. No qualification and no previous session are required: the instructor teaches you from scratch during the lesson."
+        },
+        {
+          "q": "Is there a minimum age?",
+          "a": "There is no age limit. Minors need the consent of a parent or legal guardian."
+        },
+        {
+          "q": "What should I bring?",
+          "a": "Just swimwear. In colder months, a thermal top or wetsuit. We provide the vest and all safety gear."
+        },
+        {
+          "q": "Is there a deposit?",
+          "a": "Yes, 20€ per e-foil on the day of the activity, returned when you finish through the same payment method."
+        },
+        {
+          "q": "What if the weather turns?",
+          "a": "The activity can be postponed for weather reasons and we arrange another date at no cost."
+        }
+      ]
+    },
     pricePerTwo: "1 person · {price}€ for 2",
     specCapacity: "1-2 people",
     "fromLabel": "from",

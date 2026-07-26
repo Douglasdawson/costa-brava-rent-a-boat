@@ -4236,6 +4236,43 @@ export const de: Translations = {
     ]
   },
   jetskiLanding: {
+    efoil: {
+      "navLabel": "E-Foil in Blanes",
+      "seoTitle": "E-Foil-Kurse in Blanes · Über dem Wasser fliegen, ohne Führerschein",
+      "hero": {
+        "title": "E-Foil in Blanes",
+        "subtitle": "Fliege über dem Wasser auf einem elektrischen Hydrofoil-Board. Mit Guide, ohne Führerschein und ohne Vorkenntnisse."
+      },
+      "chips": [
+        "Ohne Führerschein",
+        "Guide inklusive",
+        "Ab 30 Minuten",
+        "1 Person"
+      ],
+      "intro": "Ein E-Foil ist ein Board mit einem Unterwasserflügel und Elektromotor: Sobald es Fahrt aufnimmt, hebt es ab und du gleitest lautlos über dem Wasser. Der Guide fährt vom Strand aus mit dir hinaus und bringt dir alles von Grund auf bei, ein Vorkurs ist nicht nötig. Es gibt auch 5er- und 10er-Stundenpakete zum Weiterlernen; frag uns per WhatsApp.",
+      "faq": [
+        {
+          "q": "Brauche ich einen Führerschein oder Erfahrung?",
+          "a": "Nein. Weder ein Schein noch eine frühere Einheit sind nötig: Der Guide bringt es dir während der Stunde von Grund auf bei."
+        },
+        {
+          "q": "Gibt es ein Mindestalter?",
+          "a": "Es gibt keine Altersgrenze. Minderjährige brauchen die Zustimmung eines Elternteils oder Erziehungsberechtigten."
+        },
+        {
+          "q": "Was soll ich mitbringen?",
+          "a": "Nur Badekleidung. In der kalten Jahreszeit ein Thermoshirt oder einen Neoprenanzug. Weste und Sicherheitsausrüstung stellen wir."
+        },
+        {
+          "q": "Gibt es eine Kaution?",
+          "a": "Ja, 20€ pro E-Foil am Tag der Aktivität, die am Ende über dasselbe Zahlungsmittel zurückgehen."
+        },
+        {
+          "q": "Was passiert bei schlechtem Wetter?",
+          "a": "Die Aktivität kann aus Wettergründen verschoben werden und wir finden kostenlos einen neuen Termin."
+        }
+      ]
+    },
     pricePerTwo: "1 Person · {price}€ für 2",
     specCapacity: "1-2 Personen",
     "fromLabel": "ab",

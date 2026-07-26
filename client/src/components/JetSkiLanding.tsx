@@ -28,7 +28,7 @@ interface JetSkiLandingProps {
   productId: string;
   pageKey: PageKey;
   /** Key inside t.jetskiLanding for this product's copy (e.g. "circuito"). */
-  copyKey: "circuito" | "excursion";
+  copyKey: "circuito" | "excursion" | "efoil";
 }
 
 export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLandingProps) {

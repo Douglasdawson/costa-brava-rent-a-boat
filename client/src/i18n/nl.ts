@@ -4223,6 +4223,43 @@ export const nl: Translations = {
     ]
   },
   jetskiLanding: {
+    efoil: {
+      "navLabel": "E-Foil in Blanes",
+      "seoTitle": "E-foil lessen in Blanes · Vlieg boven het water, zonder vaarbewijs",
+      "hero": {
+        "title": "E-Foil in Blanes",
+        "subtitle": "Vlieg boven het water op een elektrisch hydrofoilboard. Met instructeur, zonder vaarbewijs en zonder ervaring."
+      },
+      "chips": [
+        "Zonder vaarbewijs",
+        "Instructeur inbegrepen",
+        "Vanaf 30 minuten",
+        "1 persoon"
+      ],
+      "intro": "Een e-foil is een board met een vleugel onder water en een elektromotor: zodra het vaart maakt komt het omhoog en zweef je geruisloos boven het water. De instructeur gaat met je mee vanaf het strand en leert het je vanaf nul, een voorafgaande cursus is niet nodig. Er zijn ook packs van 5 en 10 uur om verder te komen; vraag het ons via WhatsApp.",
+      "faq": [
+        {
+          "q": "Heb ik een vaarbewijs of ervaring nodig?",
+          "a": "Nee. Geen diploma en geen eerdere sessie nodig: de instructeur leert het je tijdens de les vanaf nul."
+        },
+        {
+          "q": "Is er een minimumleeftijd?",
+          "a": "Er is geen leeftijdsgrens. Minderjarigen hebben toestemming nodig van een ouder of wettelijke voogd."
+        },
+        {
+          "q": "Wat moet ik meenemen?",
+          "a": "Alleen zwemkleding. In koude maanden een thermoshirt of wetsuit. Vest en veiligheidsmateriaal krijg je van ons."
+        },
+        {
+          "q": "Is er een borg?",
+          "a": "Ja, 20€ per e-foil op de dag zelf, die je bij het afronden via dezelfde betaalwijze terugkrijgt."
+        },
+        {
+          "q": "En als het weer omslaat?",
+          "a": "De activiteit kan om weersredenen worden uitgesteld en we plannen kosteloos een andere datum."
+        }
+      ]
+    },
     pricePerTwo: "1 persoon · {price}€ voor 2",
     specCapacity: "1-2 personen",
     "fromLabel": "vanaf",

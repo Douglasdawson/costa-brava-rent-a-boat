@@ -4214,6 +4214,43 @@ export const ca: Translations = {
     ]
   },
   jetskiLanding: {
+    efoil: {
+      "navLabel": "E-Foil a Blanes",
+      "seoTitle": "Cursos d'e-foil a Blanes · Vola sobre l'aigua sense llicència",
+      "hero": {
+        "title": "E-Foil a Blanes",
+        "subtitle": "Vola sobre l'aigua amb una taula elèctrica d'hidrofoil. Amb monitor, sense llicència i sense experiència prèvia."
+      },
+      "chips": [
+        "Sense llicència",
+        "Monitor inclòs",
+        "Des de 30 minuts",
+        "1 persona"
+      ],
+      "intro": "L'e-foil és una taula amb una ala submergida i motor elèctric: en agafar velocitat s'eleva i navegues per sobre de l'aigua, en silenci. El monitor surt amb tu des de la platja i t'ensenya de zero, així que no necessites cap curs previ. També hi ha packs de 5 i 10 hores per continuar progressant; pregunta'ns per WhatsApp.",
+      "faq": [
+        {
+          "q": "Necessito llicència o experiència?",
+          "a": "No. No cal cap titulació ni haver-hi pujat abans: el monitor t'ensenya de zero durant la sessió."
+        },
+        {
+          "q": "Hi ha edat mínima?",
+          "a": "No hi ha límit d'edat. Els menors necessiten el consentiment d'un pare, mare o tutor legal."
+        },
+        {
+          "q": "Què he de portar?",
+          "a": "Només banyador. A l'hivern, tèrmica o neoprè. L'armilla i el material de seguretat els posem nosaltres."
+        },
+        {
+          "q": "Hi ha fiança?",
+          "a": "Sí, 20€ per e-foil el mateix dia de l'activitat, que es tornen en acabar pel mateix mitjà de pagament."
+        },
+        {
+          "q": "Què passa si fa mal temps?",
+          "a": "L'activitat es pot ajornar per motius meteorològics i busquem una altra data sense cost."
+        }
+      ]
+    },
     pricePerTwo: "1 persona · {price}€ els 2",
     specCapacity: "1-2 persones",
     "fromLabel": "des de",

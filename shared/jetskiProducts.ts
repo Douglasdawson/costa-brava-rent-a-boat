@@ -154,7 +154,13 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
     description:
       "Aprende a volar sobre el agua con una tabla eléctrica de hidrofoil. La mayoría de la gente despega en su primera sesión: el instructor va contigo desde la playa y el curso incluye seguro y material de seguridad. Sin licencia y sin experiencia previa.",
     image: "/images/boats/efoil-blanes/efoil-blanes-costa-brava.webp",
-    altText: "Rider volando sobre el agua con una tabla de e-foil frente a Blanes, Costa Brava",
+    // Illustration generated with AI (Higgsfield, 2026-07-26) from the partner's
+    // own photo, at the owner's request. The partner's original showed an expert
+    // mid-aerial on a foil with no motor in shot, which is not what a customer
+    // does in a lesson; this one shows the ride itself, with the mast, the wing,
+    // the electric motor pod and the handheld throttle visible. Swap it for a
+    // real photo of a lesson as soon as the partner sends one.
+    altText: "Persona navegando sobre el agua con una tabla de e-foil eléctrica frente a la costa de Blanes, Costa Brava",
     capacity: 1,
     specifications: {
       model: "Tabla eléctrica de hidrofoil (e-foil)",

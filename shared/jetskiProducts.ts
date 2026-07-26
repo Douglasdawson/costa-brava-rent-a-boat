@@ -23,10 +23,13 @@ export interface JetSkiSlot {
   price: number;
   /** Price for 2 people, when the slot is priced per person (e.g. the 15-min
    * circuit: 65€ for 1, 80€ for 2). Omitted when the slot price already covers
-   * 1-2 people on the same craft. */
+   * 1-2 people on the same craft.
+   *
+   * The sentence that explains it ("1 persona · 80€ los 2") is NOT stored here:
+   * it used to be a `priceNote` string in Spanish, rendered raw, so every other
+   * language got Spanish. It is now derived from this number through the
+   * `jetskiLanding.pricePerTwo` template, which exists in the 8 locales. */
   price2?: number;
-  /** Optional clarification shown next to the slot (e.g. per-person split). */
-  priceNote?: string;
 }
 
 /** A jet ski product resold from the partner, modelled as a fleet item. */
@@ -89,10 +92,14 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
       "Circuito balizado",
       "1-2 personas por moto",
     ],
+    // Partner price x1.1, rounded up to 5€ (see the module header). The partner
+    // publishes a price for 1 and for 2 people on every slot; only the 15-minute
+    // one carried it here, so the rest made the customer ask.
     slots: [
-      { id: "15min", label: "15 min", minutes: 15, price: 65, price2: 80, priceNote: "1 persona · 80€ los 2" },
-      { id: "30min", label: "30 min", minutes: 30, price: 110 },
-      { id: "60min", label: "60 min", minutes: 60, price: 190 },
+      { id: "15min", label: "15 min", minutes: 15, price: 65, price2: 80 },
+      { id: "30min", label: "30 min", minutes: 30, price: 110, price2: 135 },
+      { id: "45min", label: "45 min", minutes: 45, price: 155, price2: 180 },
+      { id: "60min", label: "60 min", minutes: 60, price: 190, price2: 210 },
     ],
   },
   {
@@ -130,8 +137,8 @@ export const JETSKI_PRODUCTS: JetSkiProduct[] = [
       "1-2 personas por moto",
     ],
     slots: [
-      { id: "1h", label: "1 h", minutes: 60, price: 190 },
-      { id: "2h", label: "2 h", minutes: 120, price: 330 },
+      { id: "1h", label: "1 h", minutes: 60, price: 190, price2: 210 },
+      { id: "2h", label: "2 h", minutes: 120, price: 330, price2: 355 },
     ],
   },
 ];

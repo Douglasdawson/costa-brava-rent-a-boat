@@ -5556,6 +5556,7 @@ export const es: Translations = {
     ],
   },
   jetskiLanding: {
+    pricePerTwo: "1 persona · {price}€ los 2",
     specCapacity: "1-2 personas",
     "fromLabel": "desde",
     "ctaRequest": "Reservar",

@@ -181,8 +181,10 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
                 <span className="flex items-center gap-2 text-foreground">
                   <Clock className="h-4 w-4 text-muted-foreground" />
                   <span className="font-medium">{slot.label}</span>
-                  {slot.priceNote && (
-                    <span className="text-xs text-muted-foreground">({slot.priceNote})</span>
+                  {slot.price2 && g?.pricePerTwo && (
+                    <span className="text-xs text-muted-foreground">
+                      ({g.pricePerTwo.replace("{price}", String(slot.price2))})
+                    </span>
                   )}
                 </span>
                 <span className="font-heading text-lg font-bold text-cta">{slot.price}€</span>

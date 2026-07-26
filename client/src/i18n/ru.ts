@@ -4205,6 +4205,7 @@ export const ru: Translations = {
     ]
   },
   jetskiLanding: {
+    pricePerTwo: "1 человек · {price}€ за двоих",
     specCapacity: "1-2 человека",
     "fromLabel": "от",
     "ctaRequest": "Забронировать",

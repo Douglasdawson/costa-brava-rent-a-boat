@@ -4221,6 +4221,7 @@ export const it: Translations = {
     ]
   },
   jetskiLanding: {
+    pricePerTwo: "1 persona · {price}€ per 2",
     specCapacity: "1-2 persone",
     "fromLabel": "da",
     "ctaRequest": "Prenota",

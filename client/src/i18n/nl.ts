@@ -4223,6 +4223,7 @@ export const nl: Translations = {
     ]
   },
   jetskiLanding: {
+    pricePerTwo: "1 persoon · {price}€ voor 2",
     specCapacity: "1-2 personen",
     "fromLabel": "vanaf",
     "ctaRequest": "Boeken",

@@ -2944,6 +2944,8 @@ export interface Translations {
   };
   jetskiLanding: {
     specCapacity?: string;
+    /** "1 persona · {price}€ los 2" — derived from the slot's price2. */
+    pricePerTwo?: string;
     fromLabel: string;
     ctaRequest: string;
     slotsTitle: string;

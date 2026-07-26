@@ -255,9 +255,9 @@ export default function JetSkiRequestModal({ product, onClose }: JetSkiRequestMo
                           />
                           <span className="text-sm font-medium text-foreground">
                             {slot.label}
-                            {slot.priceNote && (
+                            {slot.price2 && t.jetskiLanding?.pricePerTwo && (
                               <span className="ml-1 text-xs font-normal text-muted-foreground">
-                                ({slot.priceNote})
+                                ({t.jetskiLanding.pricePerTwo.replace("{price}", String(slot.price2))})
                               </span>
                             )}
                           </span>

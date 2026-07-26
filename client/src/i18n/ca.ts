@@ -1054,7 +1054,7 @@ export const ca: Translations = {
     minRequirements: "Requisits Mínims",
     minAge: "Edat mínima: 18 anys (conductor)",
     validId: "Document d'identitat vàlid",
-    deposit: "Fiança: 300\u20AC (es retorna)",
+    deposit: "Fiança: 200\u20AC (es retorna)",
     safetyBriefing: "Briefing de seguretat (15 min)",
     safetyIncluded: "Seguretat Inclosa",
     lifeJackets: "Armilles salvavides per a tothom",
@@ -1141,7 +1141,7 @@ export const ca: Translations = {
       "Consulta la nostra flota sense llicència (Solar 450, Remus 450, Remus 450 II i Astec 480) i tria el vaixell que millor s'adapti al teu grup. Reserva per WhatsApp (+34 611 500 372) o des de la web indicant data, hora i nombre de persones. Confirmem disponibilitat en menys de 2 hores.",
     howToStep2Title: "2. Arriba al Port de Blanes 30 min abans",
     howToStep2Text:
-      "La nostra base és al Port de Blanes (Girona), accessible en cotxe des de Barcelona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Aparcament gratuït a la zona portuària. Porta el DNI o passaport del conductor (major de 18 anys) i la fiança de 300€ (targeta o efectiu, es retorna íntegra).",
+      "La nostra base és al Port de Blanes (Girona), accessible en cotxe des de Barcelona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Aparcament gratuït a la zona portuària. Porta el DNI o passaport del conductor (major de 18 anys) i la fiança de 200€ (targeta o efectiu, es retorna íntegra).",
     howToStep3Title: "3. Briefing de seguretat (15 minuts)",
     howToStep3Text:
       "Abans de salpar, el nostre equip local t'ensenya a manejar el vaixell al port: arrencar i parar el motor, maniobrar a baixa velocitat, fondejar a cala, usar la ràdio VHF i tornar a l'amarrador. Resolem tots els teus dubtes. No necessites experiència prèvia: el briefing està pensat per a principiants.",
@@ -1150,7 +1150,7 @@ export const ca: Translations = {
       "Surts del Port de Blanes amb gasolina inclosa i rumb lliure dins del límit de 2 milles nàutiques. Les cales més populars: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina i Sa Boadella, fins a la Platja de Fenals (Lloret de Mar). Fondeja on vulguis, banya't, fes snorkel i torna al teu ritme.",
     howToStep5Title: "5. Retorna el vaixell i recull la teva fiança",
     howToStep5Text:
-      "Torna al Port de Blanes a l'hora acordada. El nostre equip revisa el vaixell (5 min) i, si tot és correcte, et retornem la fiança de 300€ a l'instant. Sense tràmits, sense comissions extra. El preu que vas reservar és el preu final.",
+      "Torna al Port de Blanes a l'hora acordada. El nostre equip revisa el vaixell (5 min) i, si tot és correcte, et retornem la fiança de 200€ a l'instant. Sense tràmits, sense comissions extra. El preu que vas reservar és el preu final.",
     howToDurationLabel: "Durada del procés",
     howToDurationValue: "Reserva 5 min · briefing 15 min · navegació lliure",
     howToCostLabel: "Cost des de",

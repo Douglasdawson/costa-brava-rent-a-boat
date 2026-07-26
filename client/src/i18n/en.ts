@@ -1042,7 +1042,7 @@ export const en: Translations = {
     minRequirements: "Minimum Requirements",
     minAge: "Minimum age: 18 (driver)",
     validId: "Valid ID document",
-    deposit: "Deposit: \u20AC300 (refundable)",
+    deposit: "Deposit: \u20AC200 (refundable)",
     safetyBriefing: "Safety briefing (15 min)",
     safetyIncluded: "Safety Included",
     lifeJackets: "Life jackets for everyone",
@@ -1129,7 +1129,7 @@ export const en: Translations = {
       "Browse our licence-free fleet (Solar 450, Remus 450, Remus 450 II and Astec 480) and pick the boat that best suits your group. Book via WhatsApp (+34 611 500 372) or through the website with your date, time and number of people. We confirm availability within 2 hours.",
     howToStep2Title: "2. Arrive at the Port of Blanes 30 Min Before",
     howToStep2Text:
-      "Our base is at the Port of Blanes (Girona), easily reachable by car from Barcelona (1h), Lloret de Mar (15 min) or Tossa de Mar (30 min). Free parking in the port area. Bring the driver's ID or passport (must be over 18) and the €300 deposit (card or cash, fully refunded on return).",
+      "Our base is at the Port of Blanes (Girona), easily reachable by car from Barcelona (1h), Lloret de Mar (15 min) or Tossa de Mar (30 min). Free parking in the port area. Bring the driver's ID or passport (must be over 18) and the €200 deposit (card or cash, fully refunded on return).",
     howToStep3Title: "3. Safety Briefing (15 Minutes)",
     howToStep3Text:
       "Before departure, our local team teaches you how to handle the boat in the harbour: starting and stopping the engine, low-speed manoeuvring, anchoring in a cove, using the VHF radio and returning to the mooring. We answer all your questions. No prior experience needed: the briefing is designed for beginners.",
@@ -1138,7 +1138,7 @@ export const en: Translations = {
       "You leave the Port of Blanes with fuel included and free navigation within the 2 nautical mile limit. The most popular coves: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina and Sa Boadella, up to Fenals Beach (Lloret de Mar). Anchor wherever you like, swim, snorkel and return at your own pace.",
     howToStep5Title: "5. Return the Boat and Collect Your Deposit",
     howToStep5Text:
-      "Return to the Port of Blanes at the agreed time. Our team inspects the boat (5 min) and, if everything is in order, returns your €300 deposit immediately. No paperwork, no extra fees. The price you booked is the final price.",
+      "Return to the Port of Blanes at the agreed time. Our team inspects the boat (5 min) and, if everything is in order, returns your €200 deposit immediately. No paperwork, no extra fees. The price you booked is the final price.",
     howToDurationLabel: "Process duration",
     howToDurationValue: "Booking 5 min · briefing 15 min · free sailing",
     howToCostLabel: "From",

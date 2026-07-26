@@ -2822,7 +2822,7 @@ export const es: Translations = {
     minRequirements: "Requisitos Mínimos",
     minAge: "Edad mínima: 18 años (conductor)",
     validId: "Documento de identidad válido",
-    deposit: "Fianza: 300€ (se devuelve)",
+    deposit: "Fianza: 200€ (se devuelve)",
     safetyBriefing: "Briefing de seguridad (15 min)",
     safetyIncluded: "Seguridad Incluida",
     lifeJackets: "Chalecos salvavidas para todos",
@@ -2921,7 +2921,7 @@ export const es: Translations = {
       "Consulta nuestra flota sin licencia (Solar 450, Remus 450, Remus 450 II y Astec 480) y elige el barco que mejor encaja con tu grupo. Reserva por WhatsApp (+34 611 500 372) o desde la web indicando fecha, hora y número de personas. Confirmamos disponibilidad en menos de 2 horas.",
     howToStep2Title: "2. Llega al Puerto de Blanes 30 min antes",
     howToStep2Text:
-      "Nuestra base está en el Puerto de Blanes (Girona), accesible en coche desde Barcelona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Parking gratuito en la zona portuaria. Trae el DNI o pasaporte del conductor (mayor de 18 años) y la fianza de 300€ (tarjeta o efectivo, se devuelve íntegra).",
+      "Nuestra base está en el Puerto de Blanes (Girona), accesible en coche desde Barcelona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Parking gratuito en la zona portuaria. Trae el DNI o pasaporte del conductor (mayor de 18 años) y la fianza de 200€ (tarjeta o efectivo, se devuelve íntegra).",
     howToStep3Title: "3. Briefing de seguridad (15 minutos)",
     howToStep3Text:
       "Antes de zarpar, nuestro equipo local te enseña a manejar el barco en el puerto: arrancar y parar el motor, maniobrar a baja velocidad, fondear en cala, usar la radio VHF y volver al amarre. Resolvemos todas tus dudas. No necesitas experiencia previa: el briefing está pensado para principiantes.",
@@ -2930,7 +2930,7 @@ export const es: Translations = {
       "Sales del Puerto de Blanes con gasolina incluida y rumbo libre dentro del límite de 2 millas náuticas. Las calas más populares: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina y Sa Boadella, hasta Playa de Fenals (Lloret de Mar). Fondea donde quieras, baña, haz snorkel y vuelve a tu ritmo.",
     howToStep5Title: "5. Devuelve el barco y recoge tu fianza",
     howToStep5Text:
-      "Regresa al Puerto de Blanes a la hora pactada. Nuestro equipo revisa el barco (5 min) y, si todo está correcto, te devolvemos la fianza de 300€ al instante. Sin trámites, sin comisiones extra. El precio que reservaste es el precio final.",
+      "Regresa al Puerto de Blanes a la hora pactada. Nuestro equipo revisa el barco (5 min) y, si todo está correcto, te devolvemos la fianza de 200€ al instante. Sin trámites, sin comisiones extra. El precio que reservaste es el precio final.",
     howToDurationLabel: "Duración del proceso",
     howToDurationValue: "Reserva 5 min · briefing 15 min · navegación libre",
     howToCostLabel: "Coste desde",

@@ -225,7 +225,7 @@ Los requisitos para alquilar son muy sencillos:
 
 - **Edad mínima:** 18 años (el patrón debe ser mayor de edad)
 - **Documento de identidad:** DNI, pasaporte o documento equivalente
-- **Depósito de fianza:** Entre 200EUR y 300EUR según el barco (se devuelve al finalizar)
+- **Depósito de fianza:** 200EUR sin licencia y 500EUR con licencia (se devuelve al finalizar)
 - **No se requiere:** Licencia, título, carnet, ni experiencia previa
 
 Los menores pueden ir como pasajeros sin problema, siempre acompañados de un adulto responsable.

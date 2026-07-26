@@ -1057,7 +1057,7 @@ export const de: Translations = {
     minRequirements: "Mindestanforderungen",
     minAge: "Mindestalter: 18 Jahre (Fahrer)",
     validId: "Gültiger Personalausweis",
-    deposit: "Kaution: 300 € (wird erstattet)",
+    deposit: "Kaution: 200 € (wird erstattet)",
     safetyBriefing: "Sicherheitseinweisung (15 Min.)",
     safetyIncluded: "Sicherheit Inklusive",
     lifeJackets: "Rettungswesten für alle",
@@ -1144,7 +1144,7 @@ export const de: Translations = {
       "Sieh dir unsere führerscheinfreie Flotte an (Solar 450, Remus 450, Remus 450 II und Astec 480) und wähle das Boot, das am besten zu deiner Gruppe passt. Buche per WhatsApp (+34 611 500 372) oder über die Website mit Angabe von Datum, Uhrzeit und Personenzahl. Wir bestätigen die Verfügbarkeit innerhalb von 2 Stunden.",
     howToStep2Title: "2. 30 Minuten vor Abfahrt im Hafen von Blanes eintreffen",
     howToStep2Text:
-      "Unsere Basis befindet sich im Hafen von Blanes (Girona), erreichbar mit dem Auto aus Barcelona (1 Std.), Lloret de Mar (15 Min.) oder Tossa de Mar (30 Min.). Kostenlose Parkplätze im Hafengebiet. Bringen Sie den Ausweis oder Reisepass des Fahrers (mindestens 18 Jahre) und die Kaution von 300 € mit (Karte oder Bar, wird vollständig zurückgegeben).",
+      "Unsere Basis befindet sich im Hafen von Blanes (Girona), erreichbar mit dem Auto aus Barcelona (1 Std.), Lloret de Mar (15 Min.) oder Tossa de Mar (30 Min.). Kostenlose Parkplätze im Hafengebiet. Bringen Sie den Ausweis oder Reisepass des Fahrers (mindestens 18 Jahre) und die Kaution von 200 € mit (Karte oder Bar, wird vollständig zurückgegeben).",
     howToStep3Title: "3. Sicherheitseinweisung (15 Minuten)",
     howToStep3Text:
       "Vor dem Ablegen zeigt dir unser Team vor Ort, wie man das Boot im Hafen handhabt: Motor starten und stoppen, langsam manövrieren, in einer Bucht ankern, das VHF-Funkgerät benutzen und zum Liegeplatz zurückkehren. Wir beantworten alle deine Fragen. Keine Vorerfahrung nötig: die Einweisung ist für Anfänger konzipiert.",
@@ -1153,7 +1153,7 @@ export const de: Translations = {
       "Sie verlassen den Hafen von Blanes mit inkludiertem Benzin und freier Kurswahl innerhalb der 2-Seemeilen-Grenze. Die beliebtesten Buchten: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina und Sa Boadella, bis zum Playa de Fenals (Lloret de Mar). Ankern Sie, wo Sie möchten, schwimmen, schnorcheln und kehren Sie in Ihrem Tempo zurück.",
     howToStep5Title: "5. Boot zurückgeben und Kaution erhalten",
     howToStep5Text:
-      "Kehren Sie zur vereinbarten Zeit in den Hafen von Blanes zurück. Unser Team überprüft das Boot (5 Min.) und wenn alles in Ordnung ist, erstatten wir Ihnen die Kaution von 300 € sofort zurück. Keine Formalitäten, keine zusätzlichen Gebühren. Der Preis, zu dem Sie gebucht haben, ist der Endpreis.",
+      "Kehren Sie zur vereinbarten Zeit in den Hafen von Blanes zurück. Unser Team überprüft das Boot (5 Min.) und wenn alles in Ordnung ist, erstatten wir Ihnen die Kaution von 200 € sofort zurück. Keine Formalitäten, keine zusätzlichen Gebühren. Der Preis, zu dem Sie gebucht haben, ist der Endpreis.",
     howToDurationLabel: "Dauer des Vorgangs",
     howToDurationValue: "Buchung 5 Min. · Einweisung 15 Min. · freie Navigation",
     howToCostLabel: "Preis ab",

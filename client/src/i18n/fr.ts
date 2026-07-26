@@ -1061,7 +1061,7 @@ export const fr: Translations = {
     minRequirements: "Conditions Minimales",
     minAge: "Âge minimum : 18 ans (conducteur)",
     validId: "Pièce d'identité valide",
-    deposit: "Caution : 300 € (remboursable)",
+    deposit: "Caution : 200 € (remboursable)",
     safetyBriefing: "Briefing de sécurité (15 min)",
     safetyIncluded: "Sécurité Incluse",
     lifeJackets: "Gilets de sauvetage pour tous",
@@ -1148,7 +1148,7 @@ export const fr: Translations = {
       "Consultez notre flotte sans permis (Solar 450, Remus 450, Remus 450 II et Astec 480) et choisissez le bateau qui convient le mieux à votre groupe. Réservez par WhatsApp (+34 611 500 372) ou depuis le site en indiquant la date, l'heure et le nombre de personnes. Nous confirmons la disponibilité en moins de 2 heures.",
     howToStep2Title: "2. Arrivez au Port de Blanes 30 min à l'avance",
     howToStep2Text:
-      "Notre base se trouve au Port de Blanes (Gérone), accessible en voiture depuis Barcelone (1h), Lloret de Mar (15 min) ou Tossa de Mar (30 min). Parking gratuit dans la zone portuaire. Apportez la pièce d'identité ou le passeport du conducteur (plus de 18 ans) et la caution de 300 € (carte ou espèces, intégralement restituée).",
+      "Notre base se trouve au Port de Blanes (Gérone), accessible en voiture depuis Barcelone (1h), Lloret de Mar (15 min) ou Tossa de Mar (30 min). Parking gratuit dans la zone portuaire. Apportez la pièce d'identité ou le passeport du conducteur (plus de 18 ans) et la caution de 200 € (carte ou espèces, intégralement restituée).",
     howToStep3Title: "3. Formation à la sécurité (15 minutes)",
     howToStep3Text:
       "Avant d'appareiller, notre équipe local vous apprend à manœuvrer le bateau dans le port : démarrer et arrêter le moteur, manœuvrer à basse vitesse, mouiller dans une crique, utiliser la radio VHF et revenir à l'amarrage. Nous répondons à toutes vos questions. Aucune expérience préalable n'est nécessaire : la formation est conçue pour les débutants.",
@@ -1157,7 +1157,7 @@ export const fr: Translations = {
       "Vous quittez le Port de Blanes avec le carburant inclus et cap libre dans la limite de 2 milles nautiques. Les criques les plus populaires : Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina et Sa Boadella, jusqu'à Playa de Fenals (Lloret de Mar). Mouilllez où vous voulez, baignez-vous, faites du snorkeling et revenez à votre rythme.",
     howToStep5Title: "5. Retournez le bateau et récupérez votre caution",
     howToStep5Text:
-      "Rentrez au Port de Blanes à l'heure convenue. Notre équipe inspecte le bateau (5 min) et, si tout est en ordre, vous restituons la caution de 300 € immédiatement. Sans démarches, sans frais supplémentaires. Le prix que vous avez réservé est le prix final.",
+      "Rentrez au Port de Blanes à l'heure convenue. Notre équipe inspecte le bateau (5 min) et, si tout est en ordre, vous restituons la caution de 200 € immédiatement. Sans démarches, sans frais supplémentaires. Le prix que vous avez réservé est le prix final.",
     howToDurationLabel: "Durée du processus",
     howToDurationValue: "Réservation 5 min · formation 15 min · navigation libre",
     howToCostLabel: "Tarif à partir de",

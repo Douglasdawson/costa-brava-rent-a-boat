@@ -1054,7 +1054,7 @@ export const it: Translations = {
     minRequirements: "Requisiti Minimi",
     minAge: "Età minima: 18 anni (conducente)",
     validId: "Documento di identità valido",
-    deposit: "Cauzione: 300€ (rimborsabile)",
+    deposit: "Cauzione: 200€ (rimborsabile)",
     safetyBriefing: "Briefing di sicurezza (15 min)",
     safetyIncluded: "Sicurezza Inclusa",
     lifeJackets: "Giubbotti salvagente per tutti",
@@ -1141,7 +1141,7 @@ export const it: Translations = {
       "Consulta la nostra flotta senza patente (Solar 450, Remus 450, Remus 450 II e Astec 480) e scegli la barca più adatta al tuo gruppo. Prenota via WhatsApp (+34 611 500 372) o dal sito indicando data, ora e numero di persone. Confermiamo la disponibilità in meno di 2 ore.",
     howToStep2Title: "2. Arriva al Porto di Blanes 30 min prima",
     howToStep2Text:
-      "La nostra base si trova al Porto di Blanes (Girona), raggiungibile in auto da Barcellona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Parcheggio gratuito nella zona portuale. Porta il documento d'identità o passaporto del conducente (maggiorenne) e la cauzione di 300€ (carta o contanti, restituita integralmente).",
+      "La nostra base si trova al Porto di Blanes (Girona), raggiungibile in auto da Barcellona (1h), Lloret de Mar (15 min) o Tossa de Mar (30 min). Parcheggio gratuito nella zona portuale. Porta il documento d'identità o passaporto del conducente (maggiorenne) e la cauzione di 200€ (carta o contanti, restituita integralmente).",
     howToStep3Title: "3. Briefing di sicurezza (15 minuti)",
     howToStep3Text:
       "Prima di salpare, il nostro team locale ti insegna a manovrare la barca nel porto: avviare e spegnere il motore, manovrare a bassa velocità, ancorare in caletta, usare la radio VHF e tornare all'ormeggio. Risolviamo tutti i tuoi dubbi. Non è richiesta esperienza precedente: il briefing è pensato per i principianti.",
@@ -1150,7 +1150,7 @@ export const it: Translations = {
       "Esci dal Porto di Blanes con il carburante incluso e rotta libera entro il limite di 2 miglia nautiche. Le calette più popolari: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina e Sa Boadella, fino a Playa de Fenals (Lloret de Mar). Ancórati dove vuoi, fai il bagno, fai snorkeling e torna al tuo ritmo.",
     howToStep5Title: "5. Riconsegna la barca e ritira la cauzione",
     howToStep5Text:
-      "Torna al Porto di Blanes all'ora concordata. Il nostro team controlla la barca (5 min) e, se tutto è a posto, ti restituiamo subito la cauzione di 300€. Senza pratiche burocratiche, senza commissioni extra. Il prezzo che hai prenotato è il prezzo finale.",
+      "Torna al Porto di Blanes all'ora concordata. Il nostro team controlla la barca (5 min) e, se tutto è a posto, ti restituiamo subito la cauzione di 200€. Senza pratiche burocratiche, senza commissioni extra. Il prezzo che hai prenotato è il prezzo finale.",
     howToDurationLabel: "Durata del processo",
     howToDurationValue: "Prenotazione 5 min · briefing 15 min · navigazione libera",
     howToCostLabel: "Costo a partire da",

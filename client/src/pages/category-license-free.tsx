@@ -294,7 +294,7 @@ export default function CategoryLicenseFreePage() {
         },
         "supply": [
           { "@type": "HowToSupply", "name": "DNI o pasaporte (mayor de 18 años)" },
-          { "@type": "HowToSupply", "name": "Fianza 300€ (tarjeta o efectivo, reembolsable)" }
+          { "@type": "HowToSupply", "name": "Fianza 200€ (tarjeta o efectivo, reembolsable)" }
         ],
         "step": howToSteps.map((s, i) => ({
           "@type": "HowToStep",

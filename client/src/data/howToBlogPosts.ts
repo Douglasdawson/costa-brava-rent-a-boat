@@ -56,7 +56,7 @@ export const HOW_TO_BLOG_POSTS: Record<string, HowToBlogEntry> = {
       },
       {
         name: "Deposita la fianza y firma el contrato",
-        text: "Paga la fianza (200-300€ según barco) con tarjeta. Firmas el contrato simplificado. La fianza se devuelve íntegra al regresar si el barco vuelve en buen estado.",
+        text: "Paga la fianza (200-500€ según barco) con tarjeta. Firmas el contrato simplificado. La fianza se devuelve íntegra al regresar si el barco vuelve en buen estado.",
       },
       {
         name: "Recibe el briefing de seguridad (15 min)",

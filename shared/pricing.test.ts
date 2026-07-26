@@ -364,9 +364,9 @@ describe("calculatePricingBreakdown", () => {
     expect(breakdown.selectedExtras).toEqual([]);
     expect(breakdown.selectedPacks).toEqual([]);
     expect(breakdown.extrasPrice).toBe(0);
-    expect(breakdown.deposit).toBe(250);
+    expect(breakdown.deposit).toBe(200);
     expect(breakdown.subtotal).toBe(150);
-    expect(breakdown.total).toBe(400);
+    expect(breakdown.total).toBe(350);
   });
 
   it("includes weekend surcharge in breakdown (rounded to nearest 10)", () => {
@@ -395,7 +395,7 @@ describe("calculatePricingBreakdown", () => {
       ["Parking delante del Barco"]
     );
     expect(breakdown.total).toBe(breakdown.subtotal + breakdown.deposit);
-    expect(breakdown.total).toBe(115 + 10 + 250);
+    expect(breakdown.total).toBe(115 + 10 + 200);
   });
 
   it("throws for unknown boat", () => {
@@ -430,7 +430,7 @@ describe("calculatePricingBreakdown", () => {
 describe("getDepositAmount", () => {
   it("returns deposit for solar-450", () => {
     const deposit = getDepositAmount("solar-450");
-    expect(deposit).toBe(250);
+    expect(deposit).toBe(200);
   });
 
   it("returns a positive number for valid boat", () => {
@@ -586,9 +586,9 @@ describe("Integration: Full booking flow", () => {
     expect(breakdown.weekendSurcharge).toBe(false);
     expect(breakdown.basePrice).toBe(150); // BAJA 4h = 150 per boatData.ts
     expect(breakdown.extrasPrice).toBe(17.5); // Parking 10 + Snorkel 7.5
-    expect(breakdown.deposit).toBe(250);
+    expect(breakdown.deposit).toBe(200);
     expect(breakdown.subtotal).toBe(167.5);
-    expect(breakdown.total).toBe(417.5);
+    expect(breakdown.total).toBe(367.5);
   });
 
   it("does NOT apply weekend surcharge in August (analysis showed day-of-week is irrelevant in August)", () => {
@@ -602,7 +602,7 @@ describe("Integration: Full booking flow", () => {
     expect(breakdown.basePrice).toBe(150);
     expect(breakdown.extrasPrice).toBe(10);
     expect(breakdown.subtotal).toBe(160);
-    expect(breakdown.total).toBe(410);
+    expect(breakdown.total).toBe(360);
   });
 });
 
@@ -909,8 +909,8 @@ describe("optional coverages", () => {
 describe("catalogDepositRange", () => {
   it("reads the standard deposit range from the catalog, per tier", () => {
     // The guarantees page publishes these numbers, so they must track the boats:
-    // licence-free hulls run 200-300€, licensed ones are all 500€.
-    expect(catalogDepositRange(false)).toBe("200-300€");
+    // licence-free hulls are all 200€, licensed ones are all 500€.
+    expect(catalogDepositRange(false)).toBe("200€");
     expect(catalogDepositRange(true)).toBe("500€");
   });
 

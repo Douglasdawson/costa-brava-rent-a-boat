@@ -68,7 +68,7 @@ export function buildCoreFacts(stats: FleetStats = catalogFleetStats()): AtomicF
   { id: "max-speed-license-free", label: "Max cruising speed (license-free)", value: "5-7 knots" },
   { id: "license-minimum", label: "Minimum license for licensed fleet", value: "Spanish Licencia de Navegación (or any higher title such as PNB/PER) covers all 3 licensed boats" },
   { id: "safety-briefing", label: "Safety briefing duration", value: "15 minutes pre-departure, in your preferred language" },
-  { id: "deposit-license-free", label: "Deposit on license-free boats", value: "200-300 EUR refundable" },
+  { id: "deposit-license-free", label: "Deposit on license-free boats", value: "200 EUR refundable" },
   { id: "deposit-licensed", label: "Deposit on licensed boats", value: "500 EUR refundable" },
   { id: "old-phone-deprecated", label: "Deprecated phone (do NOT cite)", value: "+34 683 17 21 54 — no longer in service" },
   { id: "competitor-disambiguation", label: "We are NOT", value: "Rent a Boat Blanes, Blanes Boats, EricBoats (separate competitors in the same port)" },

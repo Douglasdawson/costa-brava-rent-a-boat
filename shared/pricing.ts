@@ -441,9 +441,9 @@ export function getDepositAmount(boatId: string): number {
 
 /**
  * Standard deposit range for a boat tier, e.g. "200-300€" / "500€". Read from
- * the catalog so the guarantees page never drifts from the boats. The captained
- * excursion needs no licence but carries the licensed deposit, so it is left
- * out of the licence-free range.
+ * the catalog so the guarantees page never drifts from the boats. La excursión
+ * con patrón queda fuera del rango sin licencia: no es un alquiler y su fianza la
+ * fija el CRM aparte (200 €, como el resto de la flota sin licencia).
  */
 export function catalogDepositRange(requiresLicense: boolean): string {
   const amounts = Object.values(BOAT_DATA)

@@ -65,7 +65,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       engine: "Mercury 15cv 4t",
       fuel: "Gasolina 30L",
       capacity: "5 Personas",
-      deposit: "250€"
+      deposit: "200€"
     },
     equipment: [
       "Toldo",
@@ -305,7 +305,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       engine: "Parsun 40/15cv",
       fuel: "Gasolina 50L",
       capacity: "5 Personas",
-      deposit: "300€"
+      deposit: "200€"
     },
     equipment: [
       "Toldo Bi Mini",
@@ -560,7 +560,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       engine: "Yamaha 115cv 4T",
       fuel: "Gasolina 127L",
       capacity: "6 Personas",
-      deposit: "500€"
+      deposit: "200€"
     },
     equipment: [
       "Patrón profesional",

@@ -1053,7 +1053,7 @@ export const nl: Translations = {
     minRequirements: "Minimale Vereisten",
     minAge: "Minimumleeftijd: 18 jaar (bestuurder)",
     validId: "Geldig identiteitsbewijs",
-    deposit: "Borg: 300€ (wordt terugbetaald)",
+    deposit: "Borg: 200€ (wordt terugbetaald)",
     safetyBriefing: "Veiligheidsinstructie (15 min)",
     safetyIncluded: "Veiligheid Inbegrepen",
     lifeJackets: "Reddingsvesten voor iedereen",
@@ -1140,7 +1140,7 @@ export const nl: Translations = {
       "Bekijk onze vloot zonder vaarbewijs (Solar 450, Remus 450, Remus 450 II en Astec 480) en kies de boot die het beste bij jouw groep past. Reserveer via WhatsApp (+34 611 500 372) of via de website met vermelding van datum, tijd en aantal personen. We bevestigen de beschikbaarheid binnen 2 uur.",
     howToStep2Title: "2. Kom 30 minuten voor vertrek naar de haven van Blanes",
     howToStep2Text:
-      "Onze basis is gevestigd in de haven van Blanes (Girona), bereikbaar per auto vanuit Barcelona (1u), Lloret de Mar (15 min) of Tossa de Mar (30 min). Gratis parkeren in de havenzone. Neem het identiteitsbewijs of paspoort van de bestuurder (18 jaar of ouder) en de borg van 300€ mee (pinpas of contant, wordt volledig terugbetaald).",
+      "Onze basis is gevestigd in de haven van Blanes (Girona), bereikbaar per auto vanuit Barcelona (1u), Lloret de Mar (15 min) of Tossa de Mar (30 min). Gratis parkeren in de havenzone. Neem het identiteitsbewijs of paspoort van de bestuurder (18 jaar of ouder) en de borg van 200€ mee (pinpas of contant, wordt volledig terugbetaald).",
     howToStep3Title: "3. Veiligheidsinstructie (15 minuten)",
     howToStep3Text:
       "Voordat je vertrekt, leert ons lokale team je de boot te besturen in de haven: motor starten en stoppen, langzaam manoeuvreren, voor anker gaan in een baai, de marifoon gebruiken en terugkeren naar de aanlegplaats. We beantwoorden al je vragen. Geen eerdere ervaring nodig: de instructie is ontworpen voor beginners.",
@@ -1149,7 +1149,7 @@ export const nl: Translations = {
       "Je vertrekt vanuit de haven van Blanes met brandstof inbegrepen en vrije koers binnen de limiet van 2 zeemijl. De populairste baaien: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina en Sa Boadella, tot aan het strand van Fenals (Lloret de Mar). Anker waar je wilt, zwem, snorkel en keer op je eigen tempo terug.",
     howToStep5Title: "5. Lever de boot in en haal je borg op",
     howToStep5Text:
-      "Keer terug naar de haven van Blanes op het afgesproken tijdstip. Ons team inspecteert de boot (5 min) en als alles in orde is, ontvang je onmiddellijk je borg van 300€ terug. Geen gedoe, geen extra kosten. De prijs die je hebt gereserveerd is de eindprijs.",
+      "Keer terug naar de haven van Blanes op het afgesproken tijdstip. Ons team inspecteert de boot (5 min) en als alles in orde is, ontvang je onmiddellijk je borg van 200€ terug. Geen gedoe, geen extra kosten. De prijs die je hebt gereserveerd is de eindprijs.",
     howToDurationLabel: "Duur van het proces",
     howToDurationValue: "Reservering 5 min · instructie 15 min · vrij varen",
     howToCostLabel: "Prijs vanaf",

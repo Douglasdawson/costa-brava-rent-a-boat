@@ -4792,7 +4792,7 @@ export const es: Translations = {
         },
         {
           title: "13. Tienda online: identificación del vendedor",
-          body: "Las secciones 13 a 16 regulan exclusivamente la compra de los productos físicos de la sección Tienda de este sitio web (colección Costa Brava Culture, en colaboración con Laura Cabanas). El vendedor de estos productos es Ivan Ramirez Dawson, NIF 45965848A, con domicilio a efectos de notificaciones en el Puerto de Blanes, Girona, España, teléfono +34 611 500 372 y correo electrónico costabravarentaboat@gmail.com (en adelante, el vendedor). Las secciones 1 a 12 se refieren al servicio de alquiler de embarcaciones y no son de aplicación a las compras de la tienda.",
+          body: "Las secciones 13 a 16 regulan exclusivamente la compra de los productos físicos de la sección Tienda de este sitio web (colección Costa Brava Culture, en colaboración con Laura Cabanas). El vendedor de estos productos es DAMAR COSTA BRAVA S.L., CIF B22566327, con domicilio a efectos de notificaciones en Carrer Esplanada del Port, 17300 Blanes, Girona, España, teléfono +34 611 500 372 y correo electrónico costabravarentaboat@gmail.com (en adelante, el vendedor). Las secciones 1 a 12 se refieren al servicio de alquiler de embarcaciones y no son de aplicación a las compras de la tienda.",
         },
         {
           title: "14. Tienda online: precios, pago y entrega",

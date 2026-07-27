@@ -2979,7 +2979,7 @@ export const ca: Translations = {
         },
         {
           title: "13. Botiga en línia: identificació del venedor",
-          body: "Les seccions 13 a 16 regulen exclusivament la compra dels productes físics de la secció Botiga d'aquest lloc web (col·lecció Costa Brava Culture, en col·laboració amb Laura Cabanas). El venedor d'aquests productes és Ivan Ramirez Dawson, NIF 45965848A, amb domicili a efectes de notificacions al Port de Blanes, Girona, Espanya, telèfon +34 611 500 372 i correu electrònic costabravarentaboat@gmail.com (d'ara endavant, el venedor). Les seccions 1 a 12 es refereixen al servei de lloguer d'embarcacions i no són aplicables a les compres de la botiga.",
+          body: "Les seccions 13 a 16 regulen exclusivament la compra dels productes físics de la secció Botiga d'aquest lloc web (col·lecció Costa Brava Culture, en col·laboració amb Laura Cabanas). El venedor d'aquests productes és DAMAR COSTA BRAVA S.L., CIF B22566327, amb domicili a efectes de notificacions a Carrer Esplanada del Port, 17300 Blanes, Girona, Espanya, telèfon +34 611 500 372 i correu electrònic costabravarentaboat@gmail.com (d'ara endavant, el venedor). Les seccions 1 a 12 es refereixen al servei de lloguer d'embarcacions i no són aplicables a les compres de la botiga.",
         },
         {
           title: "14. Botiga en línia: preus, pagament i lliurament",

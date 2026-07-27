@@ -2985,7 +2985,7 @@ export const nl: Translations = {
         },
         {
           title: "13. Onlineshop: identificatie van de verkoper",
-          body: "De secties 13 tot en met 16 regelen uitsluitend de aankoop van de fysieke producten in de sectie Shop van deze website (collectie Costa Brava Culture, in samenwerking met Laura Cabanas). De verkoper van deze producten is Ivan Ramirez Dawson, fiscaal nummer (NIF) 45965848A, met adres voor kennisgevingen in de haven van Blanes, Girona, Spanje, telefoon +34 611 500 372 en e-mail costabravarentaboat@gmail.com (hierna: de verkoper). De secties 1 tot en met 12 betreffen de bootverhuurdienst en zijn niet van toepassing op aankopen in de shop.",
+          body: "De secties 13 tot en met 16 regelen uitsluitend de aankoop van de fysieke producten in de sectie Shop van deze website (collectie Costa Brava Culture, in samenwerking met Laura Cabanas). De verkoper van deze producten is DAMAR COSTA BRAVA S.L., fiscaal nummer (CIF) B22566327, met adres voor kennisgevingen aan Carrer Esplanada del Port, 17300 Blanes, Girona, Spanje, telefoon +34 611 500 372 en e-mail costabravarentaboat@gmail.com (hierna: de verkoper). De secties 1 tot en met 12 betreffen de bootverhuurdienst en zijn niet van toepassing op aankopen in de shop.",
         },
         {
           title: "14. Onlineshop: prijzen, betaling en levering",

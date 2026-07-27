@@ -110,8 +110,11 @@ export const getStripe = () => {
     if (!secretKey) {
       throw new Error("Missing STRIPE_SECRET_KEY environment variable");
     }
-    if (!secretKey.startsWith("sk_")) {
-      throw new Error("Invalid Stripe secret key: must start with sk_");
+    // Accepts standard secret keys (sk_) and restricted keys (rk_). Restricted
+    // keys are what Stripe recommends for server integrations, and the shop only
+    // needs Checkout scopes. Still rejects a pasted publishable key (pk_).
+    if (!secretKey.startsWith("sk_") && !secretKey.startsWith("rk_")) {
+      throw new Error("Invalid Stripe secret key: must start with sk_ or rk_");
     }
     stripe = new Stripe(secretKey, {
       apiVersion: "2025-08-27.basil",

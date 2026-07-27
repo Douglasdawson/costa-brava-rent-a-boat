@@ -13,6 +13,7 @@ import { renderThankYouWhatsApp } from "./whatsappTemplates";
 import { buildReviewShareUrl, reviewShareLangForPhone } from "../lib/reviewShareOg";
 import { generateWeeklyInsights } from "./chatbotInsightsService";
 import { processLeadNurturing } from "./leadNurturingService";
+import { notifyPricingReview } from "./pricingReviewNotifier";
 import { notifyAllSitemapUrls } from "../seo/indexnow";
 import type { Booking, Boat, BlogPost } from "@shared/schema";
 import { logger } from "../lib/logger";
@@ -455,6 +456,18 @@ export function startScheduler(): void {
       logger.error("[Scheduler] Analytics sync failed", { error: error instanceof Error ? error.message : String(error) });
     }
   }));
+
+  // Click&Boat pricing review: runs daily at 9am Madrid but only sends 7 days
+  // before a season month starts (see buildPricingReminder). Silent otherwise.
+  // Timezone is explicit because the container runs UTC.
+  scheduledTasks.push(cron.schedule("0 9 * * *", async () => {
+    try {
+      await notifyPricingReview();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] Pricing review reminder error", { error: msg });
+    }
+  }, { timezone: "Europe/Madrid" }));
 
   // Newsletter: send monthly digest on 1st of each month at 10am
   scheduledTasks.push(cron.schedule("0 10 1 * *", async () => {

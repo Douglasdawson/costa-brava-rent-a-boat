@@ -160,6 +160,10 @@ export default function TiendaPage() {
       return;
     }
 
+    // Only a redirect straight from Stripe proves the payment went through. On a
+    // later reload (session_id alone in the URL) we trust nothing but the status
+    // the API reports, or we would greet an expired order with "Order confirmed".
+    const cameFromStripe = status === "success";
     setBanner("pending");
     let attempts = 0;
     const poll = async () => {
@@ -173,6 +177,10 @@ export default function TiendaPage() {
             setBanner("success");
             return;
           }
+          if (data.status === "cancelled") {
+            setBanner("cancelled");
+            return;
+          }
         }
       } catch {
         // network hiccup: keep polling
@@ -180,7 +188,9 @@ export default function TiendaPage() {
       if (attempts < 8) {
         setTimeout(poll, 1500);
       } else {
-        setBanner("success"); // payment went through on Stripe; order finalizes async
+        // Still pending: from Stripe it means the order finalizes async, so keep
+        // the confirmation. Reached any other way, say nothing rather than lie.
+        setBanner(cameFromStripe ? "success" : null);
       }
     };
     void poll();

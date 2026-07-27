@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   ExternalLink,
   Loader2,
-  Lock,
   Minus,
   Package,
   Plus,
@@ -38,12 +37,6 @@ const NAVY_CTA =
   "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
 
 const LAURA_CABANAS_URL = "https://www.lauracabanas.com/";
-
-// Soft access gate while the shop is not open to the public. This is NOT real
-// security (the code ships in the client bundle); it only keeps the page out of
-// sight during early access. Remove the gate (and re-add SEO indexing) to launch.
-const SHOP_GATE_PASSWORD = "0760";
-const SHOP_GATE_KEY = "cbrb_shop_unlocked";
 
 // Real garment colors for the swatch dot next to the color name. OKLCH so the
 // physical fabric reads true; these are product attributes, not design tokens.
@@ -87,14 +80,6 @@ export default function TiendaPage() {
 
   const hreflangLinks = generateHreflangLinks("tienda");
   const canonical = generateCanonicalUrl("tienda", language);
-
-  const [unlocked, setUnlocked] = useState<boolean>(() => {
-    try {
-      return sessionStorage.getItem(SHOP_GATE_KEY) === "1";
-    } catch {
-      return false;
-    }
-  });
 
   const cart = useShopCart();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
@@ -273,21 +258,6 @@ export default function TiendaPage() {
     />
   );
 
-  if (!unlocked) {
-    return (
-      <ShopGate
-        onUnlock={() => {
-          try {
-            sessionStorage.setItem(SHOP_GATE_KEY, "1");
-          } catch {
-            /* private mode: unlock holds for this render only */
-          }
-          setUnlocked(true);
-        }}
-      />
-    );
-  }
-
   return (
     <div className="min-h-screen bg-background">
       <SEO
@@ -295,7 +265,6 @@ export default function TiendaPage() {
         description={s.seoDescription}
         keywords={s.navLabel}
         canonical={canonical}
-        robots="noindex, nofollow"
         ogImage={`${BASE_DOMAIN}/images/shop/camiseta-costa-brava-culture-butter-back.webp`}
         hreflang={hreflangLinks}
         jsonLd={jsonLd}
@@ -494,78 +463,6 @@ export default function TiendaPage() {
       <div className="h-20 lg:hidden" />
 
       <Footer />
-    </div>
-  );
-}
-
-/** Early-access gate: blurred editorial backdrop + password card. */
-function ShopGate({ onUnlock }: { onUnlock: () => void }) {
-  const t = useTranslations();
-  const { localizedPath } = useLanguage();
-  const g = t.shopPage.gate;
-  const [value, setValue] = useState("");
-  const [error, setError] = useState(false);
-
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (value.trim() === SHOP_GATE_PASSWORD) {
-      onUnlock();
-    } else {
-      setError(true);
-    }
-  };
-
-  return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4">
-      {/* Blurred on-brand backdrop */}
-      <picture>
-        <source type="image/avif" srcSet="/images/shop/tienda-hero-duo.avif" />
-        <img
-          src="/images/shop/tienda-hero-duo.webp"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover blur-2xl"
-        />
-      </picture>
-      <div className="absolute inset-0 bg-background/70" aria-hidden="true" />
-
-      <div className="relative w-full max-w-sm rounded-2xl border border-border bg-card/95 p-7 text-center shadow-xl backdrop-blur sm:p-8">
-        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-          <Lock className="h-6 w-6 text-primary" />
-        </span>
-        <h1 className="mt-5 font-heading text-2xl font-bold text-foreground">{g.title}</h1>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{g.subtitle}</p>
-        <form onSubmit={submit} className="mt-6">
-          <input
-            type="password"
-            inputMode="numeric"
-            autoFocus
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-              setError(false);
-            }}
-            placeholder={g.placeholder}
-            aria-label={g.placeholder}
-            aria-invalid={error}
-            className="w-full rounded-xl border border-border bg-background px-4 py-3 text-center text-base text-foreground focus:border-cta focus:outline-none focus:ring-2 focus:ring-cta"
-          />
-          {error && (
-            <p className="mt-2 text-sm font-medium text-destructive" role="alert">
-              {g.error}
-            </p>
-          )}
-          <button type="submit" className={`${NAVY_CTA} mt-4 min-h-12 w-full px-6 text-base`}>
-            {g.button}
-          </button>
-        </form>
-        <a
-          href={localizedPath("home")}
-          className="mt-5 inline-block text-sm text-muted-foreground hover:text-foreground hover:underline"
-        >
-          Costa Brava Rent a Boat
-        </a>
-      </div>
     </div>
   );
 }

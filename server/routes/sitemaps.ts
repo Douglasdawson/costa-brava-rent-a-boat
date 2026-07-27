@@ -340,9 +340,7 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "jetskiCircuito", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "jetskiExcursion", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "scooters", "0.6", null, "monthly");
-      // Tienda en acceso anticipado (cerrada al publico): fuera del sitemap +
-      // noindex hasta el lanzamiento. Re-anadir esta linea y "/tienda" en
-      // translatedStaticPaths.ts para abrirla.
+      sitemap += generateUrlEntry(baseUrl, "tienda", "0.6", null, "weekly");
 
       // Category pages
       sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly");

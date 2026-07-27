@@ -4579,9 +4579,11 @@ export const fr: Translations = {
     },
     success: {
       title: "Commande confirmée",
-      text: "Merci pour votre achat. Nous vous avons envoyé un email avec le récapitulatif et nous vous contacterons pour la livraison.",
+      text: "Merci pour votre achat. Nous vous avons envoyé le reçu de paiement par email et nous vous écrirons pour organiser la livraison.",
       pending: "Confirmation de votre paiement...",
       cta: "Continuer les achats",
+      orderLabel: "Commande",
+      total: "Total payé",
     },
     cancelled: {
       title: "Paiement annulé",

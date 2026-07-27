@@ -3078,7 +3078,14 @@ export interface Translations {
       shippingText: string;
     };
     designer: { title: string; text: string; cta: string };
-    success: { title: string; text: string; pending: string; cta: string };
+    success: {
+      title: string;
+      text: string;
+      pending: string;
+      cta: string;
+      orderLabel: string;
+      total: string;
+    };
     cancelled: { title: string; text: string };
     faqTitle: string;
     faq: { q: string; a: string }[];

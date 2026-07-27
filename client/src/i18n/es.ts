@@ -5904,9 +5904,11 @@ export const es: Translations = {
     },
     success: {
       title: "Pedido confirmado",
-      text: "Gracias por tu compra. Te hemos enviado un email con el resumen y te contactaremos para la entrega.",
+      text: "Gracias por tu compra. Te hemos enviado el justificante de pago por email y te escribimos para coordinar la entrega.",
       pending: "Confirmando tu pago...",
       cta: "Seguir comprando",
+      orderLabel: "Pedido",
+      total: "Total pagado",
     },
     cancelled: {
       title: "Pago cancelado",

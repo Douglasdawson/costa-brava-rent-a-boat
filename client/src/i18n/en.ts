@@ -4616,9 +4616,11 @@ export const en: Translations = {
     },
     success: {
       title: "Order confirmed",
-      text: "Thank you for your purchase. We have sent you an email with the summary and we will contact you about delivery.",
+      text: "Thank you for your purchase. We have emailed you the payment receipt and we will write to arrange delivery.",
       pending: "Confirming your payment...",
       cta: "Keep shopping",
+      orderLabel: "Order",
+      total: "Total paid",
     },
     cancelled: {
       title: "Payment cancelled",

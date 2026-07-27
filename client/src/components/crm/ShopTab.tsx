@@ -12,7 +12,7 @@ import { Check, Loader2, Package, ShoppingBag, Truck, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import { format } from "date-fns";
-import { getShopVariant } from "@shared/shopData";
+import { getShopVariant, formatOrderNumber } from "@shared/shopData";
 
 interface ShopOrderItem {
   id: string;
@@ -24,6 +24,7 @@ interface ShopOrderItem {
 
 interface ShopOrder {
   id: string;
+  orderNumber: number;
   stripeSessionId: string;
   customerName: string | null;
   customerEmail: string | null;
@@ -216,6 +217,9 @@ function OrdersView() {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-mono text-xs text-muted-foreground">
+                        {formatOrderNumber(order.orderNumber)}
+                      </span>
                       <span className="font-semibold">{order.customerName || "(sin nombre)"}</span>
                       <Badge className={ORDER_STATUS_COLORS[order.status] || "bg-muted text-muted-foreground"}>
                         {ORDER_STATUS_LABELS[order.status] || order.status}

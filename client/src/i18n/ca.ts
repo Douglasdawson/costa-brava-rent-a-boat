@@ -4562,9 +4562,11 @@ export const ca: Translations = {
     },
     success: {
       title: "Comanda confirmada",
-      text: "Gràcies per la teva compra. T'hem enviat un email amb el resum i et contactarem per al lliurament.",
+      text: "Gràcies per la teva compra. T'hem enviat el justificant de pagament per email i t'escriurem per coordinar el lliurament.",
       pending: "Confirmant el teu pagament...",
       cta: "Seguir comprant",
+      orderLabel: "Comanda",
+      total: "Total pagat",
     },
     cancelled: {
       title: "Pagament cancel·lat",

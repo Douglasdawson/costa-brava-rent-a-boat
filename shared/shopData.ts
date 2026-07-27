@@ -122,3 +122,12 @@ export function getShopVariant(
   if (!sku) return null;
   return VARIANT_INDEX.get(sku) ?? null;
 }
+
+/**
+ * Customer-facing order reference ("CB-0007"). The DB id is a UUID, which is
+ * unreadable over WhatsApp; this is the number the customer quotes and the one
+ * shown on the success screen, in emails and in the CRM.
+ */
+export function formatOrderNumber(orderNumber: number): string {
+  return `CB-${String(orderNumber).padStart(4, "0")}`;
+}

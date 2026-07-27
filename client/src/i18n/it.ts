@@ -4569,9 +4569,11 @@ export const it: Translations = {
     },
     success: {
       title: "Ordine confermato",
-      text: "Grazie per il tuo acquisto. Ti abbiamo inviato un'email con il riepilogo e ti contatteremo per la consegna.",
+      text: "Grazie per il tuo acquisto. Ti abbiamo inviato la ricevuta di pagamento via email e ti scriveremo per organizzare la consegna.",
       pending: "Conferma del pagamento in corso...",
       cta: "Continua lo shopping",
+      orderLabel: "Ordine",
+      total: "Totale pagato",
     },
     cancelled: {
       title: "Pagamento annullato",

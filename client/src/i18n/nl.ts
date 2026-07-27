@@ -4571,9 +4571,11 @@ export const nl: Translations = {
     },
     success: {
       title: "Bestelling bevestigd",
-      text: "Bedankt voor je aankoop. We hebben je een e-mail met het overzicht gestuurd en nemen contact op over de bezorging.",
+      text: "Bedankt voor je aankoop. We hebben je het betaalbewijs per e-mail gestuurd en nemen contact op om de bezorging af te spreken.",
       pending: "Je betaling wordt bevestigd...",
       cta: "Verder winkelen",
+      orderLabel: "Bestelling",
+      total: "Totaal betaald",
     },
     cancelled: {
       title: "Betaling geannuleerd",

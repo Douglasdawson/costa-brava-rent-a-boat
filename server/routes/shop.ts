@@ -5,7 +5,12 @@ import rateLimit from "express-rate-limit";
 import { z } from "zod";
 import { shopRepo } from "../storage";
 import { getStripe } from "./payments";
-import { getShopVariant, SHOP_MAX_QTY_PER_ITEM, DEFAULT_SHIPPING_FLAT_CENTS } from "@shared/shopData";
+import {
+  getShopVariant,
+  formatOrderNumber,
+  SHOP_MAX_QTY_PER_ITEM,
+  DEFAULT_SHIPPING_FLAT_CENTS,
+} from "@shared/shopData";
 import { getLocalizedPath } from "@shared/i18n-routes";
 import type { LangCode } from "@shared/seoConstants";
 import { SUPPORTED_LANGUAGES } from "@shared/seoConstants";
@@ -231,14 +236,14 @@ export function registerShopRoutes(app: Express) {
           if (session.payment_status === "paid") {
             await finalizeShopOrderFromSession(order.id, session, "order-status-fallback");
             const refreshed = await shopRepo.getShopOrderBySessionId(sessionId);
-            return res.json({ status: refreshed?.status ?? "paid" });
+            return res.json(await buildOrderSummary(refreshed ?? order));
           }
         } catch (error: unknown) {
           logger.warn("[Shop] order-status fallback check failed", { error: error instanceof Error ? error.message : String(error) });
         }
       }
 
-      res.json({ status: order.status });
+      res.json(await buildOrderSummary(order));
     } catch (error: unknown) {
       logger.error("[Shop] Error fetching order status", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error al consultar el pedido" });
@@ -246,6 +251,37 @@ export function registerShopRoutes(app: Express) {
   });
 
   logger.info("[Routes] Shop routes registered");
+}
+
+/**
+ * What the success screen is allowed to see. Keyed only by the Stripe session id,
+ * which lives in the buyer's own URL, so it deliberately leaves out everything
+ * personal (name, email, shipping address) and carries only what the buyer
+ * already knows: their reference, what they bought and what they paid.
+ */
+async function buildOrderSummary(order: {
+  id: string;
+  orderNumber: number;
+  status: string;
+  subtotalCents: number;
+  shippingCents: number;
+  totalCents: number;
+  deliveryMethod: string;
+}) {
+  const items = await shopRepo.getShopOrderItems(order.id);
+  return {
+    status: order.status,
+    orderNumber: formatOrderNumber(order.orderNumber),
+    items: items.map((i) => ({
+      sku: i.sku,
+      quantity: i.quantity,
+      unitPriceCents: i.unitPriceCents,
+    })),
+    subtotalCents: order.subtotalCents,
+    shippingCents: order.shippingCents,
+    totalCents: order.totalCents,
+    deliveryMethod: order.deliveryMethod,
+  };
 }
 
 /**

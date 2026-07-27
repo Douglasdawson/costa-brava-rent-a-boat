@@ -3640,6 +3640,9 @@ export const shopOrders = pgTable(
     id: varchar("id")
       .primaryKey()
       .default(sql`gen_random_uuid()`),
+    // Human-readable reference the customer can quote ("CB-0007"). The id is a
+    // UUID, useless to read out over WhatsApp. Formatted by formatOrderNumber().
+    orderNumber: serial("order_number").notNull(),
     stripeSessionId: varchar("stripe_session_id").notNull().unique(),
     stripePaymentIntentId: varchar("stripe_payment_intent_id"),
     customerName: text("customer_name"),

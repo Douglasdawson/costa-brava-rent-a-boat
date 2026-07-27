@@ -4584,9 +4584,11 @@ export const de: Translations = {
     },
     success: {
       title: "Bestellung bestaetigt",
-      text: "Danke fuer deinen Einkauf. Wir haben dir eine E-Mail mit der Uebersicht geschickt und melden uns wegen der Lieferung.",
+      text: "Danke fuer deinen Einkauf. Wir haben dir den Zahlungsbeleg per E-Mail geschickt und melden uns wegen der Lieferung.",
       pending: "Deine Zahlung wird bestaetigt...",
       cta: "Weiter einkaufen",
+      orderLabel: "Bestellung",
+      total: "Bezahlt insgesamt",
     },
     cancelled: {
       title: "Zahlung abgebrochen",

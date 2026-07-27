@@ -68,6 +68,17 @@ interface CatalogResponse {
 
 type OrderBanner = "success" | "pending" | "cancelled" | null;
 
+/** What /api/shop/order-status returns: reference, lines and amounts, no personal data. */
+interface OrderSummary {
+  status: string;
+  orderNumber: string;
+  items: { sku: string; quantity: number; unitPriceCents: number }[];
+  subtotalCents: number;
+  shippingCents: number;
+  totalCents: number;
+  deliveryMethod: string;
+}
+
 function formatPrice(cents: number): string {
   const euros = cents / 100;
   return Number.isInteger(euros) ? `${euros} EUR` : `${euros.toFixed(2).replace(".", ",")} EUR`;
@@ -86,6 +97,7 @@ export default function TiendaPage() {
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [unavailableSkus, setUnavailableSkus] = useState<string[]>([]);
   const [banner, setBanner] = useState<OrderBanner>(null);
+  const [summary, setSummary] = useState<OrderSummary | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
   const isMobile = useIsMobile();
 
@@ -125,49 +137,78 @@ export default function TiendaPage() {
     [liveBySku],
   );
 
-  // Handle ?status=success|cancel back from Stripe Checkout
+  // Handle ?status=success|cancel back from Stripe Checkout. The session id is
+  // kept in the URL afterwards (only ?status is dropped) so refreshing the page
+  // still shows the order instead of wiping the only proof the buyer has.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const status = params.get("status");
-    if (!status) return;
+    const sessionId = params.get("session_id");
+    if (!status && !sessionId) return;
 
     if (status === "cancel") {
       setBanner("cancelled");
-    } else if (status === "success") {
-      const sessionId = params.get("session_id");
-      cart.clear();
-      if (sessionId) {
-        setBanner("pending");
-        let attempts = 0;
-        const poll = async () => {
-          attempts++;
-          try {
-            const res = await fetch(`/api/shop/order-status?session_id=${encodeURIComponent(sessionId)}`);
-            if (res.ok) {
-              const data: { status: string } = await res.json();
-              if (data.status === "paid" || data.status === "fulfilled") {
-                setBanner("success");
-                return;
-              }
-            }
-          } catch {
-            // network hiccup: keep polling
-          }
-          if (attempts < 8) {
-            setTimeout(poll, 1500);
-          } else {
-            setBanner("success"); // payment went through on Stripe; order finalizes async
-          }
-        };
-        void poll();
-      } else {
-        setBanner("success");
-      }
+      window.history.replaceState({}, "", window.location.pathname);
+      return;
     }
 
-    window.history.replaceState({}, "", window.location.pathname);
+    if (status === "success") cart.clear();
+
+    if (!sessionId) {
+      setBanner("success");
+      window.history.replaceState({}, "", window.location.pathname);
+      return;
+    }
+
+    setBanner("pending");
+    let attempts = 0;
+    const poll = async () => {
+      attempts++;
+      try {
+        const res = await fetch(`/api/shop/order-status?session_id=${encodeURIComponent(sessionId)}`);
+        if (res.ok) {
+          const data: OrderSummary = await res.json();
+          if (data.status === "paid" || data.status === "fulfilled") {
+            setSummary(data);
+            setBanner("success");
+            return;
+          }
+        }
+      } catch {
+        // network hiccup: keep polling
+      }
+      if (attempts < 8) {
+        setTimeout(poll, 1500);
+      } else {
+        setBanner("success"); // payment went through on Stripe; order finalizes async
+      }
+    };
+    void poll();
+
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}?session_id=${encodeURIComponent(sessionId)}`,
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // "Camiseta Costa Brava Culture · Azul marino · M" from a bare SKU.
+  const itemLabel = (sku: string): string => {
+    const entry = getShopVariant(sku);
+    if (!entry) return sku;
+    const name = entry.product.i18nKey === "tee" ? s.products.tee.name : s.products.tote.name;
+    const colors = s.colors as Record<string, string>;
+    const color = colors[entry.variant.color] ?? entry.variant.color;
+    return [name, color, entry.variant.size].filter(Boolean).join(" · ");
+  };
+
+  const deliveryLabel = (method: string): string =>
+    method === "shipping"
+      ? s.delivery.shippingTitle
+      : method === "pickup_laura"
+        ? s.delivery.pickupLauraTitle
+        : s.delivery.pickupTitle;
 
   const subtotalCents = cart.items.reduce((sum, item) => {
     const entry = getShopVariant(item.sku);
@@ -297,6 +338,39 @@ export default function TiendaPage() {
                 <p className="mt-1 text-sm text-muted-foreground">
                   {banner === "cancelled" ? s.cancelled.text : s.success.text}
                 </p>
+              )}
+              {banner === "success" && summary && (
+                <div className="mt-3 rounded-lg border border-border bg-background/60 p-3 text-sm">
+                  <p className="font-semibold text-foreground">
+                    {s.success.orderLabel} {summary.orderNumber}
+                  </p>
+                  <ul className="mt-2 space-y-1 text-muted-foreground">
+                    {summary.items.map((item) => (
+                      <li key={item.sku} className="flex justify-between gap-3">
+                        <span>
+                          {itemLabel(item.sku)}
+                          {item.quantity > 1 ? ` x${item.quantity}` : ""}
+                        </span>
+                        <span className="whitespace-nowrap">
+                          {formatPrice(item.unitPriceCents * item.quantity)}
+                        </span>
+                      </li>
+                    ))}
+                    {summary.shippingCents > 0 && (
+                      <li className="flex justify-between gap-3">
+                        <span>{s.delivery.shippingTitle}</span>
+                        <span className="whitespace-nowrap">{formatPrice(summary.shippingCents)}</span>
+                      </li>
+                    )}
+                  </ul>
+                  <p className="mt-2 flex justify-between gap-3 border-t border-border pt-2 font-semibold text-foreground">
+                    <span>{s.success.total}</span>
+                    <span className="whitespace-nowrap">{formatPrice(summary.totalCents)}</span>
+                  </p>
+                  {summary.shippingCents === 0 && (
+                    <p className="mt-2 text-muted-foreground">{deliveryLabel(summary.deliveryMethod)}</p>
+                  )}
+                </div>
               )}
             </div>
           </div>

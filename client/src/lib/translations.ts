@@ -94,6 +94,17 @@ export interface Translations {
     tienda: string;
     bookNow: string;
     myAccount: string;
+    skipToContent: string;
+    changeLanguage: string;
+  };
+
+  // Photo lightbox (screen-reader labels)
+  photoLightbox: {
+    title: string;
+    close: string;
+    previous: string;
+    next: string;
+    altFallback: string;
   };
 
   // Hero Section

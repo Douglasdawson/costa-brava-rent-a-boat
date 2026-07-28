@@ -14,6 +14,15 @@ export const es: Translations = {
     tienda: "Tienda",
     bookNow: "Reservar",
     myAccount: "Mi Cuenta",
+    skipToContent: "Saltar al contenido",
+    changeLanguage: "Cambiar idioma",
+  },
+  photoLightbox: {
+    title: "Visor de imágenes",
+    close: "Cerrar visor",
+    previous: "Foto anterior",
+    next: "Foto siguiente",
+    altFallback: "Foto de experiencia náutica en la Costa Brava de {name}",
   },
   hero: {
     title: "Alquiler de Barcos Sin Licencia en Blanes: 7 Calas de la Costa Brava",

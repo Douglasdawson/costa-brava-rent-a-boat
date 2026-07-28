@@ -9,6 +9,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Globe, Check } from 'lucide-react';
 import { useLanguage, Language } from '@/hooks/use-language';
+import { useTranslations } from '@/lib/translations';
 import CountryFlag from '@/components/booking/CountryFlag';
 
 // iso2 drives the SVG flag (country-flag-icons). Catalonia has no ISO 3166-1
@@ -46,6 +47,7 @@ interface LanguageSelectorProps {
 
 export default function LanguageSelector({ variant = 'button', className = '' }: LanguageSelectorProps) {
   const { language, setLanguage, isLoading } = useLanguage();
+  const t = useTranslations();
   const [isOpen, setIsOpen] = useState(false);
 
   const currentLanguage = languages.find(lang => lang.code === language);
@@ -74,7 +76,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
             data-testid="button-language-selector"
           >
             <Globe className="w-4 h-4" />
-            <span className="sr-only">Cambiar idioma</span>
+            <span className="sr-only">{t.nav.changeLanguage}</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
@@ -125,7 +127,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
         <div className="p-2 border-b">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Globe className="w-4 h-4" />
-            <span>Idioma / Language</span>
+            <span>{t.nav.changeLanguage}</span>
           </div>
         </div>
         {languages.map((lang) => (

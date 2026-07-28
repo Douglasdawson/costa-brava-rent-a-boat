@@ -14,6 +14,15 @@ export const de: Translations = {
     tienda: "Shop",
     bookNow: "Verfügbarkeit prüfen",
     myAccount: "Mein Konto",
+    skipToContent: "Zum Inhalt springen",
+    changeLanguage: "Sprache wechseln",
+  },
+  photoLightbox: {
+    title: "Bildbetrachter",
+    close: "Betrachter schließen",
+    previous: "Vorheriges Foto",
+    next: "Nächstes Foto",
+    altFallback: "Foto eines Bootserlebnisses an der Costa Brava von {name}",
   },
   hero: {
     title: "Bootsverleih ohne Führerschein in Blanes, 7 Costa-Brava-Buchten",

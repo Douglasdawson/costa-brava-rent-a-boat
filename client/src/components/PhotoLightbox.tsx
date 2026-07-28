@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { trackGalleryViewed } from "@/utils/analytics";
+import { useTranslations } from "@/lib/translations";
 
 interface Photo {
   id: string;
@@ -20,6 +21,7 @@ interface PhotoLightboxProps {
 }
 
 export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange }: PhotoLightboxProps) {
+  const t = useTranslations();
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const dialogRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -66,9 +68,9 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
       <DialogContent
         ref={dialogRef}
         className="max-w-4xl w-[95vw] p-0 gap-0 bg-slate-950/95 border-none [&>button]:hidden"
-        aria-label="Visor de imagenes"
+        aria-label={t.photoLightbox.title}
       >
-        <DialogTitle className="sr-only">Visor de imagenes</DialogTitle>
+        <DialogTitle className="sr-only">{t.photoLightbox.title}</DialogTitle>
         <div className="relative">
           {/* Close button */}
           <Button
@@ -76,7 +78,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
             size="icon"
             className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
             onClick={() => onOpenChange(false)}
-            aria-label="Cerrar visor"
+            aria-label={t.photoLightbox.close}
           >
             <X className="w-5 h-5" />
           </Button>
@@ -86,7 +88,11 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
             <img
               key={currentIndex}
               src={photo.imageUrl}
-              alt={photo.caption || `Foto de experiencia nautica en Costa Brava por ${photo.customerName}${photo.boatName ? ` en ${photo.boatName}` : ""}`}
+              alt={
+                photo.caption ||
+                t.photoLightbox.altFallback.replace("{name}", photo.customerName) +
+                  (photo.boatName ? ` - ${photo.boatName}` : "")
+              }
               decoding="async"
               className="max-w-full max-h-[80vh] object-contain animate-in fade-in duration-200"
             />
@@ -100,7 +106,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
                 size="icon"
                 className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 active:bg-white/20"
                 onClick={goPrev}
-                aria-label="Foto anterior"
+                aria-label={t.photoLightbox.previous}
               >
                 <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
               </Button>
@@ -109,7 +115,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
                 size="icon"
                 className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 active:bg-white/20"
                 onClick={goNext}
-                aria-label="Foto siguiente"
+                aria-label={t.photoLightbox.next}
               >
                 <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
               </Button>

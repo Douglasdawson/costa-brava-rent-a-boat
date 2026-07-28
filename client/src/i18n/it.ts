@@ -14,6 +14,15 @@ export const it: Translations = {
     tienda: "Negozio",
     bookNow: "Verifica Disponibilità",
     myAccount: "Il Mio Account",
+    skipToContent: "Vai al contenuto",
+    changeLanguage: "Cambia lingua",
+  },
+  photoLightbox: {
+    title: "Visualizzatore immagini",
+    close: "Chiudi visualizzatore",
+    previous: "Foto precedente",
+    next: "Foto successiva",
+    altFallback: "Foto di un'esperienza in barca sulla Costa Brava di {name}",
   },
   hero: {
     title: "Noleggio Barche Senza Patente a Blanes, 7 Cale della Costa Brava",

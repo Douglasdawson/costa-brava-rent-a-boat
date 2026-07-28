@@ -14,6 +14,15 @@ export const en: Translations = {
     tienda: "Shop",
     bookNow: "Check Availability",
     myAccount: "My Account",
+    skipToContent: "Skip to content",
+    changeLanguage: "Change language",
+  },
+  photoLightbox: {
+    title: "Image viewer",
+    close: "Close viewer",
+    previous: "Previous photo",
+    next: "Next photo",
+    altFallback: "Boating experience photo on the Costa Brava by {name}",
   },
   hero: {
     title: "Licence-Free Boat Rental in Blanes, 7 Costa Brava Coves",

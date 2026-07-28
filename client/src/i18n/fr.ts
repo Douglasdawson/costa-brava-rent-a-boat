@@ -14,6 +14,15 @@ export const fr: Translations = {
     tienda: "Boutique",
     bookNow: "Voir Disponibilités",
     myAccount: "Mon Compte",
+    skipToContent: "Aller au contenu",
+    changeLanguage: "Changer de langue",
+  },
+  photoLightbox: {
+    title: "Visionneuse d'images",
+    close: "Fermer la visionneuse",
+    previous: "Photo précédente",
+    next: "Photo suivante",
+    altFallback: "Photo d'expérience nautique sur la Costa Brava par {name}",
   },
   hero: {
     title: "Location de Bateaux Sans Permis à Blanes, 7 Criques Costa Brava",

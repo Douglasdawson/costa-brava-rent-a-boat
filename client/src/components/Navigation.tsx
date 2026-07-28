@@ -214,7 +214,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:outline-none"
       >
-        Saltar al contenido
+        {t.nav.skipToContent}
       </a>
       <div className="px-4 lg:px-6">
         {/* lg+: 1fr/auto/1fr grid so the nav links center on the BAR, not on

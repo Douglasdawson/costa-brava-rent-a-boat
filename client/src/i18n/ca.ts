@@ -14,6 +14,15 @@ export const ca: Translations = {
     tienda: "Botiga",
     bookNow: "Veure Disponibilitat",
     myAccount: "El Meu Compte",
+    skipToContent: "Salta al contingut",
+    changeLanguage: "Canvia d'idioma",
+  },
+  photoLightbox: {
+    title: "Visor d'imatges",
+    close: "Tanca el visor",
+    previous: "Foto anterior",
+    next: "Foto següent",
+    altFallback: "Foto d'experiència nàutica a la Costa Brava de {name}",
   },
   hero: {
     title: "Lloguer de Vaixells sense Llicència a Blanes, 7 Cales de la Costa Brava",

@@ -14,6 +14,15 @@ export const nl: Translations = {
     tienda: "Shop",
     bookNow: "Beschikbaarheid bekijken",
     myAccount: "Mijn Account",
+    skipToContent: "Naar inhoud gaan",
+    changeLanguage: "Taal wijzigen",
+  },
+  photoLightbox: {
+    title: "Afbeeldingsviewer",
+    close: "Viewer sluiten",
+    previous: "Vorige foto",
+    next: "Volgende foto",
+    altFallback: "Foto van een vaarervaring aan de Costa Brava door {name}",
   },
   hero: {
     title: "Boot Huren zonder Vaarbewijs in Blanes, 7 Costa Brava-baaien",

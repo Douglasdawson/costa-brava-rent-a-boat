@@ -14,6 +14,15 @@ export const ru: Translations = {
     tienda: "Магазин",
     bookNow: "Проверить наличие",
     myAccount: "Мой Аккаунт",
+    skipToContent: "Перейти к содержимому",
+    changeLanguage: "Сменить язык",
+  },
+  photoLightbox: {
+    title: "Просмотр изображений",
+    close: "Закрыть просмотр",
+    previous: "Предыдущее фото",
+    next: "Следующее фото",
+    altFallback: "Фото морской прогулки на Коста-Брава от {name}",
   },
   hero: {
     title: "Аренда лодок без лицензии в Бланесе, 7 бухт Коста-Бравы",

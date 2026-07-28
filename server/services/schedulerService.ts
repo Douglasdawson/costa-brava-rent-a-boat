@@ -11,8 +11,6 @@ import { syncAllAnalytics } from "./googleAnalyticsService";
 import { syncReviewRequests, sendReferralCodes, sendEarlyBirdOffers } from "./flywheelService";
 import { renderThankYouWhatsApp } from "./whatsappTemplates";
 import { buildReviewShareUrl, reviewShareLangForPhone } from "../lib/reviewShareOg";
-import { generateWeeklyInsights } from "./chatbotInsightsService";
-import { processLeadNurturing } from "./leadNurturingService";
 import { notifyPricingReview } from "./pricingReviewNotifier";
 import { notifyAllSitemapUrls } from "../seo/indexnow";
 import type { Booking, Boat, BlogPost } from "@shared/schema";
@@ -27,7 +25,7 @@ const scheduledTasks: ScheduledTask[] = [];
 async function trySendWhatsAppReminder(booking: Booking, boat: Boat): Promise<boolean> {
   try {
     // Dynamic import to avoid crashes when Twilio is not configured
-    const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
+    const { isTwilioConfigured, sendWhatsAppMessage } = await import("../messaging/twilioClient");
 
     if (!isTwilioConfigured()) {
       logger.info("Twilio not configured, skipping WhatsApp reminder");
@@ -83,7 +81,7 @@ async function trySendWhatsAppReminder(booking: Booking, boat: Boat): Promise<bo
  */
 async function trySendWhatsAppThankYou(booking: Booking): Promise<boolean> {
   try {
-    const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
+    const { isTwilioConfigured, sendWhatsAppMessage } = await import("../messaging/twilioClient");
 
     if (!isTwilioConfigured()) {
       logger.info("Twilio not configured, skipping WhatsApp thank-you");
@@ -513,18 +511,6 @@ export function startScheduler(): void {
     }
   }));
 
-  // ===== CHATBOT SELF-IMPROVEMENT =====
-  // Weekly insights report: every Monday at 06:00
-  scheduledTasks.push(cron.schedule("0 6 * * 1", async () => {
-    try {
-      logger.info("[Scheduler] Running chatbot weekly insights");
-      await generateWeeklyInsights();
-    } catch (error: unknown) {
-      const msg = error instanceof Error ? error.message : "Unknown error";
-      logger.error("[Scheduler] Chatbot insights error", { error: msg });
-    }
-  }));
-
   // ===== GOOGLE BUSINESS PROFILE SYNC =====
   // Sync rating + review count + recent reviews from Google Places API.
   // Sundays at 03:00 UTC. Cost: ~$0.005/run × 52 runs/year ≈ $0.26/year.
@@ -544,18 +530,6 @@ export function startScheduler(): void {
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : "Unknown error";
       logger.error("[Scheduler] GBP sync crash", { error: msg });
-    }
-  }));
-
-  // ===== LEAD NURTURING =====
-  // Process chatbot leads every 2 hours at :20 (avoids overlap with other jobs)
-  scheduledTasks.push(cron.schedule("20 */2 * * *", async () => {
-    try {
-      logger.info("[Scheduler] Running lead nurturing");
-      await processLeadNurturing();
-    } catch (error: unknown) {
-      const msg = error instanceof Error ? error.message : "Unknown error";
-      logger.error("[Scheduler] Lead nurturing error", { error: msg });
     }
   }));
 
@@ -673,7 +647,7 @@ export function startScheduler(): void {
     }
   }));
 
-  logger.info("Scheduled services started: reminders (:00), flywheel (:10), thank-you (:30), hold cleanup (every 5min), abandoned recovery (:15/:45), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am), chatbot insights (Mon 6am), lead nurturing (every 2h at :20), GSC queries ETL (02:30/14:30), GA4 daily ETL (03:45), PSI collector (04:15), SERP snapshots (05:30), AI mentions probe (02:15)");
+  logger.info("Scheduled services started: reminders (:00), flywheel (:10), thank-you (:30), hold cleanup (every 5min), abandoned recovery (:15/:45), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am), GSC queries ETL (02:30/14:30), GA4 daily ETL (03:45), PSI collector (04:15), SERP snapshots (05:30), AI mentions probe (02:15)");
 }
 
 /**

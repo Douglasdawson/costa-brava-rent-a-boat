@@ -10,7 +10,6 @@ import type {
   Testimonial, InsertTestimonial,
   BlogPost, InsertBlogPost,
   Destination, InsertDestination,
-  ChatbotConversation, InsertChatbotConversation, UpdateChatbotConversation,
   ClientPhoto, InsertClientPhoto,
   GiftCard, InsertGiftCard,
   DiscountCode, InsertDiscountCode,
@@ -186,13 +185,6 @@ export interface IStorage {
 
   // Social proof
   getRecentSocialProofBookings(): Promise<SocialProofBooking[]>;
-
-  // Chatbot
-  getChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined>;
-  createChatbotConversation(conversation: InsertChatbotConversation): Promise<ChatbotConversation>;
-  updateChatbotConversation(phoneNumber: string, updates: UpdateChatbotConversation): Promise<ChatbotConversation | undefined>;
-  resetChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined>;
-  getOrCreateChatbotConversation(phoneNumber: string, language?: string): Promise<ChatbotConversation>;
 
   // CRM Customers
   upsertCrmCustomer(booking: Booking): Promise<CrmCustomer>;

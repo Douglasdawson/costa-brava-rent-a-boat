@@ -86,8 +86,7 @@ async function migrateDataToTenant(tenantId: string): Promise<void> {
     "admin_users", "customers", "boats", "bookings", "booking_extras",
     "page_visits", "testimonials", "blog_posts", "destinations",
     "client_photos", "gift_cards", "discount_codes",
-    "chatbot_conversations", "ai_chat_sessions", "ai_chat_messages",
-    "knowledge_base", "crm_customers", "checkins",
+    "crm_customers", "checkins",
     "maintenance_logs", "boat_documents", "inventory_items", "inventory_movements",
   ]);
 

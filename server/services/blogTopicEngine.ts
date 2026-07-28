@@ -37,90 +37,6 @@ interface TopicSuggestion {
 // ---------------------------------------------------------------------------
 // Internal helper: WhatsApp conversation insights
 // ---------------------------------------------------------------------------
-
-async function getWhatsappInsights(): Promise<string> {
-  try {
-    const ninetyDaysAgo = new Date();
-    ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
-
-    // Get conversation state distribution
-    const stateDistribution = await db
-      .select({
-        state: schema.chatbotConversations.currentState,
-        total: count(),
-      })
-      .from(schema.chatbotConversations)
-      .where(gte(schema.chatbotConversations.lastMessageAt, ninetyDaysAgo))
-      .groupBy(schema.chatbotConversations.currentState)
-      .orderBy(desc(count()));
-
-    // Get total conversations and average messages
-    const totals = await db
-      .select({
-        totalConversations: count(),
-        avgMessages: sql<number>`ROUND(AVG(${schema.chatbotConversations.messagesCount}), 1)`,
-      })
-      .from(schema.chatbotConversations)
-      .where(gte(schema.chatbotConversations.lastMessageAt, ninetyDaysAgo));
-
-    // Get language distribution
-    const langDistribution = await db
-      .select({
-        language: schema.chatbotConversations.language,
-        total: count(),
-      })
-      .from(schema.chatbotConversations)
-      .where(gte(schema.chatbotConversations.lastMessageAt, ninetyDaysAgo))
-      .groupBy(schema.chatbotConversations.language)
-      .orderBy(desc(count()));
-
-    // Get boats most asked about
-    const boatInterest = await db
-      .select({
-        boatId: schema.chatbotConversations.selectedBoatId,
-        total: count(),
-      })
-      .from(schema.chatbotConversations)
-      .where(
-        and(
-          gte(schema.chatbotConversations.lastMessageAt, ninetyDaysAgo),
-          sql`${schema.chatbotConversations.selectedBoatId} IS NOT NULL`
-        )
-      )
-      .groupBy(schema.chatbotConversations.selectedBoatId)
-      .orderBy(desc(count()));
-
-    const stats = totals[0];
-    const statesStr = stateDistribution
-      .map((s) => `  - ${s.state}: ${s.total}`)
-      .join("\n");
-    const langsStr = langDistribution
-      .map((l) => `  - ${l.language}: ${l.total}`)
-      .join("\n");
-    const boatsStr = boatInterest
-      .map((b) => `  - Boat ${b.boatId}: ${b.total} inquiries`)
-      .join("\n");
-
-    return [
-      `WhatsApp Chatbot Insights (last 90 days):`,
-      `Total conversations: ${stats?.totalConversations ?? 0}`,
-      `Average messages per conversation: ${stats?.avgMessages ?? 0}`,
-      ``,
-      `Conversation states (what users ask about):`,
-      statesStr || "  No data",
-      ``,
-      `Languages:`,
-      langsStr || "  No data",
-      ``,
-      `Boat interest:`,
-      boatsStr || "  No data",
-    ].join("\n");
-  } catch (error) {
-    return "WhatsApp insights: unavailable (table may be empty or not yet created)";
-  }
-}
-
-// ---------------------------------------------------------------------------
 // Internal helper: Page visit insights
 // ---------------------------------------------------------------------------
 
@@ -351,14 +267,12 @@ async function getQueuedTopics(): Promise<string> {
 async function gatherAllContext(): Promise<string> {
   // Run all data gathering in parallel for performance
   const [
-    whatsappInsights,
     pageVisitsInsights,
     existingPosts,
     clustersSummary,
     businessContext,
     queuedTopics,
   ] = await Promise.all([
-    getWhatsappInsights(),
     getPageVisitsInsights(),
     getExistingPostsSummary(),
     getClustersSummary(),
@@ -367,10 +281,6 @@ async function gatherAllContext(): Promise<string> {
   ]);
 
   return [
-    whatsappInsights,
-    "",
-    "---",
-    "",
     pageVisitsInsights,
     "",
     "---",

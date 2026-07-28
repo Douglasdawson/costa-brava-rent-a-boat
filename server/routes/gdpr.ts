@@ -2,9 +2,9 @@ import type { Express } from "express";
 import { db } from "../db";
 import {
   customers, customerUsers, bookings, crmCustomers,
-  chatbotConversations, whatsappInquiries, giftCards,
+  whatsappInquiries, giftCards,
   memberships, newsletterSubscribers, checkins,
-  discountCodes, leadNurturingLog, testimonials, clientPhotos,
+  discountCodes, testimonials, clientPhotos,
 } from "@shared/schema";
 import { eq, or, sql } from "drizzle-orm";
 import { requireBusinessAdmin } from "./auth";
@@ -74,11 +74,6 @@ export function registerGdprRoutes(app: Express): void {
         .select().from(crmCustomers)
         .where(eq(crmCustomers.email, email));
 
-      // --- chatbot_conversations ---
-      const chatbotRows = await db
-        .select().from(chatbotConversations)
-        .where(eq(chatbotConversations.customerEmail, email));
-
       // --- whatsapp_inquiries ---
       const inquiryRows = await db
         .select().from(whatsappInquiries)
@@ -104,15 +99,6 @@ export function registerGdprRoutes(app: Express): void {
         .select().from(discountCodes)
         .where(eq(discountCodes.customerEmail, email));
 
-      // --- lead_nurturing_log (phone match via bookings) ---
-      let nurturingRows: (typeof leadNurturingLog.$inferSelect)[] = [];
-      const phones = [...new Set(bookingRows.map(b => b.customerPhone).filter(Boolean))];
-      if (phones.length > 0) {
-        nurturingRows = await db
-          .select().from(leadNurturingLog)
-          .where(sql`${leadNurturingLog.phoneNumber} IN ${phones}`);
-      }
-
       const payload = {
         exportDate: new Date().toISOString(),
         email,
@@ -121,13 +107,11 @@ export function registerGdprRoutes(app: Express): void {
         bookings: bookingRows.map(r => stripInternal(r)),
         checkins: checkinRows.map(r => stripInternal(r)),
         crm_customers: crmRows.map(r => stripInternal(r)),
-        chatbot_conversations: chatbotRows.map(r => stripInternal(r)),
         whatsapp_inquiries: inquiryRows.map(r => stripInternal(r)),
         gift_cards: giftCardRows.map(r => stripInternal(r)),
         memberships: membershipRows.map(r => stripInternal(r)),
         newsletter_subscribers: newsletterRows.map(r => stripInternal(r)),
         discount_codes: discountRows.map(r => stripInternal(r)),
-        lead_nurturing_log: nurturingRows.map(r => stripInternal(r)),
       };
 
       const date = new Date().toISOString().slice(0, 10);
@@ -164,35 +148,13 @@ export function registerGdprRoutes(app: Express): void {
       const summary: Record<string, number> = {};
 
       await db.transaction(async (tx) => {
-        // 1. Collect booking IDs + phones for dependent tables
+        // 1. Collect booking IDs for dependent tables
         const customerBookings = await tx
           .select({ id: bookings.id, phone: bookings.customerPhone })
           .from(bookings)
           .where(eq(bookings.customerEmail, email));
 
         const bookingIds = customerBookings.map(b => b.id);
-        const phones = [...new Set(customerBookings.map(b => b.phone).filter(Boolean))];
-
-        // 2. lead_nurturing_log (phone match)
-        if (phones.length > 0) {
-          const result = await tx
-            .delete(leadNurturingLog)
-            .where(sql`${leadNurturingLog.phoneNumber} IN ${phones}`);
-          summary.lead_nurturing_log = result.rowCount ?? 0;
-        }
-
-        // 3. chatbot_conversations (by email + by bookingId)
-        const chatResult = await tx
-          .delete(chatbotConversations)
-          .where(eq(chatbotConversations.customerEmail, email));
-        let chatCount = chatResult.rowCount ?? 0;
-        if (bookingIds.length > 0) {
-          const chatByBooking = await tx
-            .delete(chatbotConversations)
-            .where(sql`${chatbotConversations.createdBookingId} IN ${bookingIds}`);
-          chatCount += chatByBooking.rowCount ?? 0;
-        }
-        summary.chatbot_conversations = chatCount;
 
         // 4. checkins (via bookingId)
         if (bookingIds.length > 0) {

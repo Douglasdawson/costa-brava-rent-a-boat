@@ -15,7 +15,6 @@ import * as contentRepo from "./content";
 import * as galleryRepo from "./gallery";
 import * as promotionsRepo from "./promotions";
 import * as customerRepo from "./customers";
-import * as chatbotRepo from "./chatbot";
 import * as inventoryRepo from "./inventory";
 import * as inquiryRepo from "./inquiries";
 import * as companyRepo from "./company";
@@ -23,7 +22,6 @@ import * as auditRepo from "./audit";
 import * as membershipRepo from "./memberships";
 import * as experimentsRepo from "./experiments";
 import * as featureFlagsRepo from "./featureFlags";
-import * as leadNurturingRepo from "./leadNurturing";
 import * as mcpTokensRepo from "./mcpTokens";
 import * as seoAutopilotRepo from "./seoAutopilot";
 import * as businessStatsRepo from "./businessStats";
@@ -213,11 +211,6 @@ export const storage = {
   syncAllCustomersFromBookings: customerRepo.syncAllCustomersFromBookings,
 
   // ===== Chatbot =====
-  getChatbotConversation: chatbotRepo.getChatbotConversation,
-  createChatbotConversation: chatbotRepo.createChatbotConversation,
-  updateChatbotConversation: chatbotRepo.updateChatbotConversation,
-  resetChatbotConversation: chatbotRepo.resetChatbotConversation,
-  getOrCreateChatbotConversation: chatbotRepo.getOrCreateChatbotConversation,
 
   // ===== Inventory (Checkins, Maintenance, Documents, Stock) =====
   createCheckin: inventoryRepo.createCheckin,
@@ -296,11 +289,6 @@ export const storage = {
   deleteGlobalFlag: featureFlagsRepo.deleteGlobalFlag,
 
   // ===== Lead Nurturing =====
-  getLeadsForNurturing: leadNurturingRepo.getLeadsForNurturing,
-  markLeadNurtured: leadNurturingRepo.markLeadNurtured,
-  wasNurturedRecently: leadNurturingRepo.wasNurturedRecently,
-  isAlreadySubscribed: leadNurturingRepo.isAlreadySubscribed,
-  getNurturingStats: leadNurturingRepo.getNurturingStats,
 
   // ===== MCP Tokens (seo-autopilot) =====
   createMcpToken: mcpTokensRepo.createMcpToken,

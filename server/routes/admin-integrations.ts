@@ -1,8 +1,8 @@
 import type { Express } from "express";
 import { requireAdminSession } from "./auth";
 import { logger } from "../lib/logger";
-import { getWhatsAppFromNumber, isTwilioConfigured } from "../whatsapp/twilioClient";
-import { isMetaWhatsAppConfigured } from "../whatsapp/metaClient";
+import { getWhatsAppFromNumber, isTwilioConfigured } from "../messaging/twilioClient";
+import { isMetaWhatsAppConfigured } from "../messaging/metaClient";
 
 const SANDBOX_WHATSAPP_FROM = "whatsapp:+14155238886";
 

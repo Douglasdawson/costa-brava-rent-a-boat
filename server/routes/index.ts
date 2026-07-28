@@ -14,7 +14,6 @@ import { registerGeoRoutes } from "./geo";
 import { registerBlogRoutes } from "./blog";
 import { registerDestinationRoutes } from "./destinations";
 import { registerTestimonialRoutes } from "./testimonials";
-import { registerWhatsAppRoutes } from "./whatsapp";
 import { registerAvailabilityRoutes } from "./availability";
 import { registerEmployeeRoutes } from "./employees";
 import { registerGalleryRoutes } from "./gallery";
@@ -155,13 +154,6 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
   // and use the read-mostly tools (search_boats, check_availability,
   // get_pricing_calendar, etc.). Rate-limited to 60 req/min/IP.
   app.use("/api/mcp/public", createPublicMcpRouter());
-
-  // WhatsApp routes — fire-and-forget: dynamic AI imports can be slow.
-  // The webhook endpoints will be available once the import resolves (<5s typically).
-  registerWhatsAppRoutes(app).catch((err: unknown) => {
-    const msg = err instanceof Error ? err.message : String(err);
-    console.warn(`[Startup] WhatsApp routes init error: ${msg}`);
-  });
 
   // Social proof / FOMO notifications (lightweight, public, cached)
   app.get("/api/social-proof", async (_req, res) => {

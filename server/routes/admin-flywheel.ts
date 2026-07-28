@@ -48,7 +48,7 @@ export function registerAdminFlywheelRoutes(app: Express) {
         }
 
         const { isTwilioConfigured, sendWhatsAppMessage } = await import(
-          "../whatsapp/twilioClient"
+          "../messaging/twilioClient"
         );
         if (!isTwilioConfigured()) {
           return res.status(503).json({

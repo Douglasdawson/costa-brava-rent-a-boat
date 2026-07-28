@@ -30,7 +30,7 @@ const WA_CONFIRMATION: Record<WaLang, {
 
 async function trySendWhatsAppConfirmation(booking: Booking, boat: Boat): Promise<void> {
   try {
-    const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
+    const { isTwilioConfigured, sendWhatsAppMessage } = await import("../messaging/twilioClient");
     if (!isTwilioConfigured() || !booking.customerPhone) return;
 
     const lang = (booking.language || "es") as WaLang;

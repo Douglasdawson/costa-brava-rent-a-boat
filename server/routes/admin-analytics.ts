@@ -73,7 +73,7 @@ export function registerAnalyticsRoutes(app: Express) {
       };
       let waTest: { ok: boolean; error?: string; sid?: string } = { ok: false };
       try {
-        const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
+        const { isTwilioConfigured, sendWhatsAppMessage } = await import("../messaging/twilioClient");
         if (isTwilioConfigured()) {
           const adminPhone = process.env.ADMIN_NOTIFICATION_PHONE || "+34611500372";
           const sid = await sendWhatsAppMessage(adminPhone, `🔧 Diag CBRB: prueba WhatsApp ${new Date().toISOString()}`);

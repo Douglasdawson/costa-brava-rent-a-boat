@@ -4,7 +4,7 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { insertWhatsappInquirySchema, updateWhatsappInquirySchema } from "@shared/schema";
 import { requireAdminSession, requireTabAccess } from "./auth";
-import { sendMetaWhatsAppMessage, isMetaWhatsAppConfigured } from "../whatsapp/metaClient";
+import { sendMetaWhatsAppMessage, isMetaWhatsAppConfigured } from "../messaging/metaClient";
 import { logger } from "../lib/logger";
 import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
 import { sendMetaConversion, getMetaBrowserIds } from "../lib/metaConversions";

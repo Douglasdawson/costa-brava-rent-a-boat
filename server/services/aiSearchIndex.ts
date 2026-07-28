@@ -22,7 +22,7 @@ import { db } from "../db";
 import { aiSearchIndex } from "../../shared/schema";
 import { eq, sql, desc, inArray } from "drizzle-orm";
 import { logger } from "../lib/logger";
-import { generateEmbedding } from "../whatsapp/ragService";
+import { generateEmbedding } from "../messaging/embeddings";
 import { BOAT_DATA } from "../../shared/boatData";
 import { JETSKI_PRODUCTS } from "../../shared/jetskiProducts";
 import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";

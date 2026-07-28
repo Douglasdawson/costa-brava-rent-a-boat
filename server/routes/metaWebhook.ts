@@ -2,7 +2,7 @@ import express from "express";
 import crypto from "crypto";
 import type { Express, Request, Response } from "express";
 import { storage } from "../storage";
-import { markMessageAsRead } from "../whatsapp/metaClient";
+import { markMessageAsRead } from "../messaging/metaClient";
 import { logger } from "../lib/logger";
 
 /**

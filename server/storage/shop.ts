@@ -5,6 +5,8 @@ import {
   type ShopOrder, type InsertShopOrder,
   type ShopOrderItem, type InsertShopOrderItem,
 } from "./base";
+import { fetchCrmMerchStock } from "../lib/crmDamarMerch";
+import { logger } from "../lib/logger";
 
 export interface ShopCatalogProduct extends ShopProductRow {
   variants: ShopVariantRow[];
@@ -14,7 +16,40 @@ export interface ShopOrderWithItems extends ShopOrder {
   items: ShopOrderItem[];
 }
 
+// Stock lives in the CRM (crmdamar merchandising), this table only mirrors it.
+// Pulled on read behind a TTL instead of a cron: the catalogue is the single
+// funnel every stock reader goes through, so one query every few minutes keeps
+// the shop honest with no extra moving part.
+const CRM_STOCK_TTL_MS = 2 * 60 * 1000;
+let lastCrmStockSync = 0;
+
+/**
+ * Mirror the CRM's counted stock into `shop_variants`. SKUs the CRM does not
+ * know about are left untouched (a renamed article must never empty the shop).
+ * Best effort: on any failure the shop keeps serving its last known numbers.
+ */
+async function syncStockFromCrm(): Promise<void> {
+  if (Date.now() - lastCrmStockSync < CRM_STOCK_TTL_MS) return;
+  lastCrmStockSync = Date.now(); // stamp first: a failing CRM must not be retried per request
+
+  const crmStock = await fetchCrmMerchStock();
+  if (!crmStock) return;
+
+  const current = await db.select().from(shopVariants);
+  for (const variant of current) {
+    const stock = crmStock.get(variant.sku);
+    if (stock === undefined || stock === variant.stock) continue;
+    await db.update(shopVariants).set({ stock }).where(eq(shopVariants.sku, variant.sku));
+    logger.info("[Shop] Stock synced from CRM", { sku: variant.sku, from: variant.stock, to: stock });
+  }
+}
+
 export async function getShopCatalog(): Promise<ShopCatalogProduct[]> {
+  await syncStockFromCrm().catch((error: unknown) =>
+    logger.warn("[Shop] CRM stock sync failed", {
+      error: error instanceof Error ? error.message : String(error),
+    }),
+  );
   const products = await db.select().from(shopProducts);
   const variants = await db.select().from(shopVariants);
   return products.map((p) => ({

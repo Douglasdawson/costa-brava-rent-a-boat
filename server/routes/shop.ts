@@ -19,6 +19,7 @@ import type { LangCode } from "@shared/seoConstants";
 import { SUPPORTED_LANGUAGES } from "@shared/seoConstants";
 import type { ShopOrder, ShopOrderItem } from "@shared/schema";
 import { logger } from "../lib/logger";
+import { pushCrmMerchSale } from "../lib/crmDamarMerch";
 import { getShopStrings, shopItemLabel } from "../lib/shopStrings";
 import { sendTelegramMessage } from "../seo/alerts/telegram";
 import {
@@ -443,6 +444,16 @@ async function finalizeShopOrderFromSession(
   // email shows the real amount charged (subtotal + shipping), not the subtotal.
   const emailTotalCents = session.amount_total ?? result.order.subtotalCents + shippingCents;
   const orderForEmail = { ...result.order, deliveryMethod, shippingCents, totalCents: emailTotalCents };
+  // The CRM owns the physical inventory: write the sale into its ledger so the
+  // counter stock and the shop stay on the same number (and Laura's profit
+  // split counts the online sales too). Runs once per order: markOrderPaid's
+  // pending -> paid guard already returned above on a redelivered webhook.
+  pushCrmMerchSale(
+    result.items.map((i) => ({ sku: i.sku, quantity: i.quantity, unitPriceCents: i.unitPriceCents })),
+    formatOrderNumber(result.order.orderNumber),
+  ).catch((err: unknown) =>
+    logger.error("[Shop] Error recording sale in the CRM ledger", { error: err instanceof Error ? err.message : String(err) }),
+  );
   notifyOwnerOnTelegram(orderForEmail, result.items, result.stockShortfall).catch((err: unknown) =>
     logger.error("[Shop] Error sending Telegram sale notification", { error: err instanceof Error ? err.message : String(err) }),
   );

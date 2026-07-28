@@ -370,6 +370,11 @@ function StockView() {
 
   return (
     <div className="space-y-6">
+      <p className="text-sm text-muted-foreground">
+        El stock se sincroniza cada pocos minutos desde Merchandising del CRM DAMAR, que es
+        donde se cuenta el inventario. Edítalo allí: lo que cambies aquí se sobrescribirá en
+        la siguiente sincronización.
+      </p>
       {products.map((product) => {
         const priceDraft = priceDrafts[product.id] ?? (product.priceCents / 100).toFixed(2);
         return (

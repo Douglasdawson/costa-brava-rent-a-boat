@@ -17,8 +17,10 @@ import {
 import { getLocalizedPath } from "@shared/i18n-routes";
 import type { LangCode } from "@shared/seoConstants";
 import { SUPPORTED_LANGUAGES } from "@shared/seoConstants";
+import type { ShopOrder, ShopOrderItem } from "@shared/schema";
 import { logger } from "../lib/logger";
 import { getShopStrings, shopItemLabel } from "../lib/shopStrings";
+import { sendTelegramMessage } from "../seo/alerts/telegram";
 import {
   sendShopOrderConfirmation,
   sendShopOrderOwnerNotification,
@@ -441,11 +443,94 @@ async function finalizeShopOrderFromSession(
   // email shows the real amount charged (subtotal + shipping), not the subtotal.
   const emailTotalCents = session.amount_total ?? result.order.subtotalCents + shippingCents;
   const orderForEmail = { ...result.order, deliveryMethod, shippingCents, totalCents: emailTotalCents };
+  notifyOwnerOnTelegram(orderForEmail, result.items, result.stockShortfall).catch((err: unknown) =>
+    logger.error("[Shop] Error sending Telegram sale notification", { error: err instanceof Error ? err.message : String(err) }),
+  );
   sendShopOrderConfirmation(orderForEmail, result.items).catch((err: unknown) =>
     logger.error("[Shop] Error sending order confirmation email", { error: err instanceof Error ? err.message : String(err) }),
   );
   sendShopOrderOwnerNotification(orderForEmail, result.items, result.stockShortfall).catch((err: unknown) =>
     logger.error("[Shop] Error sending owner notification email", { error: err instanceof Error ? err.message : String(err) }),
+  );
+}
+
+/** Owner-facing delivery label, always Spanish (same wording as the owner email). */
+function deliveryLabelEs(method: string): string {
+  if (method === "shipping") return "Envio a domicilio";
+  if (method === "pickup_laura") return "Recogida en Laura Cabanas (Lloret)";
+  return "Recogida en el puerto de Blanes";
+}
+
+const eur = (cents: number): string => `${(cents / 100).toFixed(2).replace(".", ",")} EUR`;
+
+/**
+ * Body of the owner's sale notification. Pure so it can be asserted without a
+ * network call; the sending wrapper is right below.
+ */
+export function buildSaleNotification(
+  order: Pick<
+    ShopOrder,
+    | "orderNumber"
+    | "totalCents"
+    | "discountCents"
+    | "shippingCents"
+    | "deliveryMethod"
+    | "customerName"
+    | "customerEmail"
+    | "shippingAddress"
+  >,
+  items: Pick<ShopOrderItem, "sku" | "quantity" | "unitPriceCents">[],
+  stockShortfall: string[],
+): string {
+  const lines = items.map(
+    (item) =>
+      `- ${shopItemLabel(item.sku, "es")} x${item.quantity}  ${eur(item.unitPriceCents * item.quantity)}`,
+  );
+
+  const address = order.shippingAddress as {
+    address?: { line1?: string; line2?: string; postal_code?: string; city?: string };
+  } | null;
+  const addressLine = address?.address
+    ? [address.address.line1, address.address.line2, address.address.postal_code, address.address.city]
+        .filter(Boolean)
+        .join(", ")
+    : "";
+
+  const parts = [
+    `Pedido ${formatOrderNumber(order.orderNumber)}  ${eur(order.totalCents)}`,
+    "",
+    ...lines,
+  ];
+  if (order.discountCents > 0) parts.push(`- Descuento pack  -${eur(order.discountCents)}`);
+  if (order.shippingCents > 0) parts.push(`- Envio  ${eur(order.shippingCents)}`);
+  parts.push("", `Entrega: ${deliveryLabelEs(order.deliveryMethod)}`);
+  if (addressLine) parts.push(addressLine);
+  parts.push(`Cliente: ${order.customerName || "(sin nombre)"}`);
+  if (order.customerEmail) parts.push(order.customerEmail);
+  if (stockShortfall.length > 0) {
+    parts.push("", `ATENCION: stock insuficiente en ${stockShortfall.join(", ")}. Ya cobrado, resolver a mano.`);
+  }
+
+  return parts.join("\n");
+}
+
+/**
+ * Telegram ping to the owner when an order is paid.
+ *
+ * The two emails below are the designed notification path, but SENDGRID_API_KEY
+ * is not set in production, so today they send nothing and a sale reaches nobody
+ * until someone opens the CRM. Telegram IS configured, so this is the channel
+ * that actually fires. Best-effort by design: it is called fire-and-forget and a
+ * failed ping must never touch an order that is already paid.
+ */
+async function notifyOwnerOnTelegram(
+  order: ShopOrder,
+  items: ShopOrderItem[],
+  stockShortfall: string[],
+): Promise<void> {
+  await sendTelegramMessage(
+    "Nueva venta en la tienda",
+    buildSaleNotification(order, items, stockShortfall),
   );
 }
 

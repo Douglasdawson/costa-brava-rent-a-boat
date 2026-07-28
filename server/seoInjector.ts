@@ -20,7 +20,6 @@ import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { SHOP_PRODUCTS } from "../shared/shopData";
 import { NAUTICAL_GLOSSARY_ES } from "../shared/nauticalGlossary";
-import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
 import { hasStaticTranslation } from "./seo/translatedStaticPaths";
 import { shouldNoindexThinContent } from "./seo/thinContentGuard";
@@ -1892,13 +1891,20 @@ function buildLandingService(
 }
 
 // Build Product JSON-LD for a boat detail page
-// NOTE: Google shows star snippets for Product schemas (NOT for self-reviewed LocalBusiness).
-// AggregateRating + Review here is the primary path to getting stars in SERP.
+// NO aggregateRating, NO review. Until 2026-07-28 this schema carried five
+// invented reviews per boat and a made-up per-boat rating (server/data/
+// boatReviewStats.ts, deleted): fake review rich results, against Google's
+// review policy and against the owner's 2026-06-11 decision to drop the
+// synthetic dataset. That purge missed this file because an April audit had
+// mislabelled it as real per-product data.
+//
+// The business rating is not a substitute either: 4.8/400 are reviews of the
+// company, not of this boat, and borrowing them for a Product is the same
+// rich-result invalidation the jet ski Service schemas already opt out of.
+// Stars come back here only with genuine per-boat reviews.
 function buildBoatProductSchema(
   boat: { id: string; name: string; requiresLicense: boolean; capacity: number; deposit: string; imageUrl: string | null; imageGallery: string[] | null },
   fromPrice: number | null,
-  aggregateRating?: object,
-  reviews?: Array<{ name: string; rating: number; text: string; date: string }>,
 ): object {
   const licenseText = boat.requiresLicense ? "con licencia náutica" : "sin licencia náutica";
   // Offer.price is REQUIRED by Google merchant listings rich-result spec.
@@ -1968,28 +1974,6 @@ function buildBoatProductSchema(
       }
     }
     schema.image = allImages;
-  }
-
-  // AggregateRating — required for star snippets in Google SERP
-  if (aggregateRating) {
-    schema.aggregateRating = aggregateRating;
-  }
-
-  // Individual reviews — strengthens the AggregateRating signal for Google
-  if (reviews && reviews.length > 0) {
-    schema.review = reviews.slice(0, 5).map(r => ({
-      "@type": "Review",
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: String(r.rating),
-        bestRating: "5",
-        worstRating: "1",
-      },
-      author: { "@type": "Person", name: r.name },
-      reviewBody: r.text,
-      datePublished: r.date.length === 7 ? `${r.date}-15` : r.date,
-      itemReviewed: { "@type": "Product", name: boat.name },
-    }));
   }
 
   return schema;
@@ -4417,16 +4401,7 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
               ogImageHeight: boatOgImageHeight,
               ogType: "product",
             };
-        // Build Product schema with AggregateRating + Reviews for star snippets
-        const reviewStats = getBoatReviewStats(boat.id);
-        const boatAggregateRating = reviewStats ? {
-          "@type": "AggregateRating",
-          ratingValue: String(reviewStats.average),
-          reviewCount: String(reviewStats.count),
-          bestRating: "5",
-          worstRating: "1",
-        } : buildAggregateRating();
-        const jsonLd = buildBoatProductSchema(boat, fromPrice, boatAggregateRating, reviewStats?.reviews);
+        const jsonLd = buildBoatProductSchema(boat, fromPrice);
         // Preload the same webp the BoatDetailPage mini-hero renders
         // (client/src/components/BoatDetailPage.tsx:840 — loading="eager"
         // fetchPriority="high"). Without this preload the LCP image is only

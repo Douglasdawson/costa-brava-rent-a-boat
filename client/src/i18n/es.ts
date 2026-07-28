@@ -3085,25 +3085,13 @@ export const es: Translations = {
     relatedTossaName: "Tossa de Mar",
     relatedTossaDesc: "Vila Vella medieval y las mejores calas de la Costa Brava.",
   },
-  exitIntent: {
-    title: "10% de descuento en tu primera reserva",
-    subtitle:
-      "Reserva ahora y obtén un 10% de descuento en tu primera experiencia náutica en la Costa Brava",
-    useCode: "Usa el código",
-    validFirstBooking: "Válido para tu primera reserva",
-    bookNow: "Reservar con descuento",
-    noThanks: "Prefiero pagar precio completo",
-    quizTitle: "No sabes que barco elegir?",
-    quizSubtitle: "Nuestro quiz de 30 segundos te ayuda a encontrar el barco perfecto",
-    quizCta: "Encontrar mi barco",
-    abandonedTitle: "Tu barco te espera",
-    abandonedSubtitle: "El {boat} esta listo para ti",
-    abandonedCta: "Completar reserva: 10% dto.",
-    quizResultTitle: "Gran eleccion!",
-    quizResultSubtitle: "Reserva el {boat} ahora con 10% de descuento",
-    quizResultCta: "Reservar ahora: 10% dto.",
-  },
 
+  // Único superviviente del popup de salida, borrado en jul-2026 junto con el
+  // código de descuento que anunciaba y que no existía en la base de datos:
+  // este texto lo usa el botón del quiz de FleetSection.
+  exitIntent: {
+    quizCta: "Encontrar mi barco",
+  },
   socialProof: {
     googleReviews: "en Google",
     happyCustomers: "clientes satisfechos",
@@ -3321,7 +3309,7 @@ export const es: Translations = {
         id: "descuentos",
         question: "¿Hay descuentos para grupos o reservas anticipadas?",
         answer:
-          "Sí, ofrecemos el código BIENVENIDO10 para un 10% de descuento en tu primera reserva. También tenemos tarifas especiales para reservas de día completo.",
+          "El precio que ves ya es el final: no trabajamos con códigos de descuento. Las salidas de día completo salen mejor de precio por hora que las de medio día, y para grupos grandes te preparamos un presupuesto por WhatsApp.",
       },
       {
         id: "hasta-donde",
@@ -3412,19 +3400,6 @@ export const es: Translations = {
     availableToday: "Disponible hoy",
   },
 
-  seasonBanner: {
-    earlyBird: "Temporada {year} abre en {days} días - Reserva anticipada con los mejores precios",
-    springPrices: "Precios de primavera disponibles - Reserva antes del 1 de junio",
-    bookBefore: "Reserva antes del {date}",
-    daysLeft: "Solo quedan {n} días de temporada - Las fechas más populares se agotan rápido",
-    lastDays: "Últimos días de temporada",
-    dontMissIt: "No te lo pierdas",
-    viewBoats: "Ver barcos",
-    bookNow: "Reservar",
-    noThanks: "Ahora no, gracias",
-    limitedSpots: "Plazas limitadas para esta temporada",
-    discountWithCode: "10% de descuento con el código:",
-  },
 
   confirmation: {
     title: "Solicitud de reserva enviada con éxito",
@@ -4513,7 +4488,7 @@ export const es: Translations = {
       descuentos: {
         question: "¿Hay descuentos para grupos o reservas anticipadas?",
         answer:
-          "Sí, ofrecemos el código BIENVENIDO10 para un 10% de descuento en tu primera reserva. También tenemos tarifas especiales para reservas de día completo.",
+          "El precio que ves ya es el final: no trabajamos con códigos de descuento. Las salidas de día completo salen mejor de precio por hora que las de medio día, y para grupos grandes te preparamos un presupuesto por WhatsApp.",
       },
       hastaDondeNavegar: {
         question: "¿Hasta dónde puedo navegar desde Blanes?",

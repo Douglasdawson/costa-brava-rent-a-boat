@@ -1268,25 +1268,13 @@ export const ca: Translations = {
     ctaBanner: "Ja saps quin vaixell vols? Reserva des de 75\u20AC/h",
     ctaBannerButton: "Reservar ara",
   },
-  exitIntent: {
-    title: "10% de descompte a la teva primera reserva",
-    subtitle:
-      "Reserva ara i obt\u00e9 un 10% de descompte en la teva primera experi\u00e8ncia n\u00e0utica a la Costa Brava",
-    useCode: "Utilitza el codi",
-    validFirstBooking: "V\u00e0lid per a la teva primera reserva",
-    bookNow: "Reservar amb descompte",
-    noThanks: "Prefereixo pagar el preu complet",
-    quizTitle: "No saps quin vaixell triar?",
-    quizSubtitle: "El nostre quiz de 30 segons et ajuda a trobar el vaixell perfecte",
-    quizCta: "Trobar el meu vaixell",
-    abandonedTitle: "El teu vaixell t'espera!",
-    abandonedSubtitle: "El {boat} està llest per a tu",
-    abandonedCta: "Completar reserva, 10% dte.",
-    quizResultTitle: "Gran eleccio!",
-    quizResultSubtitle: "Reserva el {boat} ara amb un 10% de descompte",
-    quizResultCta: "Reservar ara, 10% dte.",
-  },
 
+  // Único superviviente del popup de salida, borrado en jul-2026 junto con el
+  // código de descuento que anunciaba y que no existía en la base de datos:
+  // este texto lo usa el botón del quiz de FleetSection.
+  exitIntent: {
+    quizCta: "Trobar el meu vaixell",
+  },
   socialProof: {
     googleReviews: "a Google",
     happyCustomers: "clients satisfets",
@@ -1482,7 +1470,7 @@ export const ca: Translations = {
         id: "descuentos",
         question: "Hi ha descomptes per a grups o reserves anticipades?",
         answer:
-          "Sí, oferim el codi BIENVENIDO10 per a un 10% de descompte en la teva primera reserva. També tenim tarifes especials per a lloguers de dia complet.",
+          "El preu que veus ja és el final: no treballem amb codis de descompte. Les sortides de dia complet surten més bé de preu per hora que les de mig dia, i per a grups grans et preparem un pressupost per WhatsApp.",
       },
       {
         id: "hasta-donde",
@@ -1516,19 +1504,6 @@ export const ca: Translations = {
     availableToday: "Disponible avui",
   },
 
-  seasonBanner: {
-    earlyBird: "Temporada {year} obre en {days} dies - Reserva anticipada amb els millors preus",
-    springPrices: "Preus de primavera disponibles - Reserva abans de l'1 de juny",
-    bookBefore: "Reserva abans del {date}",
-    daysLeft: "Només queden {n} dies de temporada - Les dates més populars s'esgoten ràpid",
-    lastDays: "Últims dies de temporada",
-    dontMissIt: "No t'ho perdis",
-    viewBoats: "Veure vaixells",
-    bookNow: "Reservar",
-    noThanks: "Ara no, gràcies",
-    limitedSpots: "Places limitades per aquesta temporada",
-    discountWithCode: "10% de descompte amb el codi:",
-  },
 
   confirmation: {
     title: "Sol·licitud de reserva enviada amb èxit",
@@ -2755,7 +2730,7 @@ export const ca: Translations = {
       descuentos: {
         question: "Hi ha descomptes per a grups o reserves anticipades?",
         answer:
-          "Sí, oferim el codi BIENVENIDO10 per a un 10% de descompte a la teva primera reserva. També tenim tarifes especials per a reserves de dia complet.",
+          "El preu que veus ja és el final: no treballem amb codis de descompte. Les sortides de dia complet surten més bé de preu per hora que les de mig dia, i per a grups grans et preparem un pressupost per WhatsApp.",
       },
       hastaDondeNavegar: {
         question: "Fins on puc navegar des de Blanes?",

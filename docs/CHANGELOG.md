@@ -4,6 +4,17 @@
 
 ---
 
+## [Julio 2026]
+
+### Retirado el codigo de descuento BIENVENIDO10 y el popup que lo anunciaba (2026-07-28)
+- El cupon NUNCA existio en la tabla `discount_codes`: quien lo introducia recibia "este codigo no existe". Se retira de raiz en vez de crearlo
+- Borrados `client/src/components/ExitIntentModal.tsx` y `client/src/components/SeasonBanner.tsx`: eran los unicos que lo anunciaban y **no los importaba nadie** (codigo muerto). Del bloque i18n `exitIntent` solo sobrevive `quizCta`, que usa `FleetSection`; `seasonBanner` desaparece de los 8 idiomas y del tipo
+- FAQ "hay descuentos?" reescrita en los 8 idiomas: el precio que se ve es el final, sin codigos; el dia completo sale mejor por hora y los grupos grandes van por presupuesto
+- Eliminado el prefill de cupon del formulario (`prefillCoupon` y `BookingPrefillData.coupon`): su unico emisor era el popup borrado
+- Quitados de los prompts de auditoria el TEST 10 y el BUG-019, que mandaban probar un popup inexistente
+
+---
+
 ## [Junio 2026]
 
 ### Verificador de licencia — Polonia curada (fix falso-negativo) (2026-06-16)

@@ -133,7 +133,6 @@ interface BookingFormWidgetProps {
   prefillDate?: string;
   prefillTime?: string;
   prefillDuration?: string;
-  prefillCoupon?: string;
   onClose?: () => void;
   hideHeader?: boolean;
 }
@@ -153,7 +152,6 @@ export default function BookingFormWidget({
   prefillDate,
   prefillTime,
   prefillDuration,
-  prefillCoupon,
   onClose,
 }: BookingFormWidgetProps) {
   // Safety net: jet skis use their own request modal (JetSkiRequestModal), never
@@ -644,47 +642,6 @@ export default function BookingFormWidget({
       setSelectedBoat(preSelectedBoatId);
     }
   }, [preSelectedBoatId]);
-
-  // Auto-apply prefilled coupon code (from exit intent modal)
-  useEffect(() => {
-    if (prefillCoupon && !validatedCode) {
-      setCodeInput(prefillCoupon);
-      setShowCodeSection(true);
-      // Auto-validate after a short delay to let the form render
-      const timer = setTimeout(() => {
-        const code = prefillCoupon.trim().toUpperCase();
-        fetch("/api/discounts/validate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ code }),
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.valid) {
-              setValidatedCode({
-                type: data.type === "referral" ? "referral" : "discount",
-                code,
-                percentage: data.discountPercent,
-              });
-            }
-          })
-          .catch(() => {
-            toast({
-              title: t.booking.errors?.codeValidation.title ?? "Error al validar código",
-              description:
-                t.booking.errors?.codeValidation.description ??
-                "No se pudo verificar el código de descuento. Inténtalo de nuevo.",
-              variant: "destructive",
-            });
-          });
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-    // The toast / validatedCode references inside the setTimeout closure are
-    // intentionally outside the deps array — we only want this effect to
-    // re-run when the prefill coupon arrives, not on every render.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [prefillCoupon]);
 
   // Close prefix dropdown on outside click
   useEffect(() => {

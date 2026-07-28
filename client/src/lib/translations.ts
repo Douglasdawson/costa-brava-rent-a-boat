@@ -1975,23 +1975,10 @@ export interface Translations {
   };
 
   // Exit Intent Modal
+  // Lo que queda del popup de salida, borrado en jul-2026 junto con el código de
+  // descuento que anunciaba y que no existía en la base de datos: el botón del quiz.
   exitIntent?: {
-    title: string;
-    subtitle: string;
-    useCode: string;
-    validFirstBooking: string;
-    bookNow: string;
-    noThanks: string;
-    // Session-aware variant keys
-    quizTitle: string;
-    quizSubtitle: string;
     quizCta: string;
-    abandonedTitle: string;
-    abandonedSubtitle: string;
-    abandonedCta: string;
-    quizResultTitle: string;
-    quizResultSubtitle: string;
-    quizResultCta: string;
   };
 
   // Price Anchoring
@@ -2149,20 +2136,6 @@ export interface Translations {
   };
 
   // Season Urgency Banner
-  seasonBanner?: {
-    earlyBird: string;
-    springPrices: string;
-    bookBefore: string;
-    daysLeft: string;
-    lastDays: string;
-    dontMissIt: string;
-    viewBoats: string;
-    bookNow: string;
-    noThanks: string;
-    limitedSpots: string;
-    discountWithCode: string;
-  };
-
   // Authority Badges & Trust Credentials
   authority?: {
     yearsExperience: string;

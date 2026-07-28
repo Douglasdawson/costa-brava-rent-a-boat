@@ -1264,24 +1264,13 @@ export const ru: Translations = {
     ctaBanner: "Уже знаете какую лодку хотите? Бронируйте от 75\u20AC/ч",
     ctaBannerButton: "Забронировать",
   },
-  exitIntent: {
-    title: "10% скидка на первое бронирование",
-    subtitle: "Забронируйте сейчас и получите скидку 10% на ваш первый морской опыт на Коста-Брава",
-    useCode: "Используйте код",
-    validFirstBooking: "Действителен для первого бронирования",
-    bookNow: "Забронировать со скидкой",
-    noThanks: "Предпочитаю полную цену",
-    quizTitle: "Не знаете какую лодку выбрать?",
-    quizSubtitle: "Наш 30-секундный тест поможет найти идеальную лодку",
-    quizCta: "Найти мою лодку",
-    abandonedTitle: "Ваша лодка ждет!",
-    abandonedSubtitle: "{boat} готова для вас",
-    abandonedCta: "Завершить бронирование, скидка 10%",
-    quizResultTitle: "Отличный выбор!",
-    quizResultSubtitle: "Забронируйте {boat} сейчас со скидкой 10%",
-    quizResultCta: "Забронировать, скидка 10%",
-  },
 
+  // Único superviviente del popup de salida, borrado en jul-2026 junto con el
+  // código de descuento que anunciaba y que no existía en la base de datos:
+  // este texto lo usa el botón del quiz de FleetSection.
+  exitIntent: {
+    quizCta: "Найти мою лодку",
+  },
   socialProof: {
     googleReviews: "в Google",
     happyCustomers: "довольных клиентов",
@@ -1476,7 +1465,7 @@ export const ru: Translations = {
         id: "descuentos",
         question: "Есть ли скидки для групп или раннего бронирования?",
         answer:
-          "Да, мы предлагаем код BIENVENIDO10 для скидки 10% на первое бронирование. Также у нас есть специальные тарифы для аренды на целый день.",
+          "Цена, которую вы видите, окончательная: мы не используем промокоды. Аренда на целый день выходит дешевле в пересчёте на час, чем на полдня, а для больших групп мы подготовим расчёт в WhatsApp.",
       },
       {
         id: "hasta-donde",
@@ -1510,19 +1499,6 @@ export const ru: Translations = {
     availableToday: "Доступно сегодня",
   },
 
-  seasonBanner: {
-    earlyBird: "Сезон {year} открывается через {days} дней - Бронируйте заранее по лучшим ценам",
-    springPrices: "Весенние цены доступны - Бронируйте до 1 июня",
-    bookBefore: "Бронируйте до {date}",
-    daysLeft: "Осталось всего {n} дней сезона - Популярные даты быстро заканчиваются",
-    lastDays: "Последние дни сезона",
-    dontMissIt: "Не пропустите",
-    viewBoats: "Смотреть лодки",
-    bookNow: "Забронировать",
-    noThanks: "Не сейчас, спасибо",
-    limitedSpots: "Ограниченное количество мест на этот сезон",
-    discountWithCode: "Скидка 10% с кодом:",
-  },
 
   confirmation: {
     title: "Запрос на бронирование успешно отправлен",
@@ -2746,7 +2722,7 @@ export const ru: Translations = {
       descuentos: {
         question: "Есть ли скидки для групп или при раннем бронировании?",
         answer:
-          "Да, мы предлагаем код BIENVENIDO10 для скидки 10% на первое бронирование. Также у нас есть специальные тарифы при аренде на полный день.",
+          "Цена, которую вы видите, окончательная: мы не используем промокоды. Аренда на целый день выходит дешевле в пересчёте на час, чем на полдня, а для больших групп мы подготовим расчёт в WhatsApp.",
       },
       hastaDondeNavegar: {
         question: "Как далеко я могу уплыть от Бланеса?",

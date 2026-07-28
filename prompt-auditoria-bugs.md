@@ -115,11 +115,6 @@ A continuación se listan todos los bugs encontrados organizados por prioridad. 
 - **Dónde mirar**: `shared/boatData.ts` o la base de datos (campo de features incluidas)
 - **Fix**: Verificar si son dos conceptos distintos o un duplicado. Si es duplicado, eliminar uno.
 
-### BUG-019: Popup de descuento se superpone con menú
-- **Problema**: El popup de descuento BIENVENIDO10 aparece al mismo tiempo que el menú abierto, creando una superposición caótica de 3 capas (menú + popup + contenido).
-- **Dónde mirar**: Componente de popup de descuento
-- **Fix**: No mostrar el popup si hay otros overlays activos, o retrasar su aparición. Se resuelve parcialmente al arreglar BUG-005.
-
 ---
 
 ## BAJOS (3) — Detalles menores

@@ -84,7 +84,6 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
               prefillDate={prefillData?.date}
               prefillTime={prefillData?.time}
               prefillDuration={prefillData?.duration}
-              prefillCoupon={prefillData?.coupon}
               onClose={closeBookingModal}
             />
           </Suspense>

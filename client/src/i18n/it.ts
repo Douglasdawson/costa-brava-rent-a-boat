@@ -1268,25 +1268,13 @@ export const it: Translations = {
     ctaBanner: "Sai gi\u00E0 quale barca vuoi? Prenota da 75\u20AC/h",
     ctaBannerButton: "Prenota ora",
   },
-  exitIntent: {
-    title: "10% di sconto sulla tua prima prenotazione",
-    subtitle:
-      "Prenota ora e ottieni il 10% di sconto sulla tua prima esperienza nautica sulla Costa Brava",
-    useCode: "Usa il codice",
-    validFirstBooking: "Valido per la tua prima prenotazione",
-    bookNow: "Prenota con sconto",
-    noThanks: "Preferisco pagare il prezzo intero",
-    quizTitle: "Non sai quale barca scegliere?",
-    quizSubtitle: "Il nostro quiz di 30 secondi ti aiuta a trovare la barca perfetta",
-    quizCta: "Trova la mia barca",
-    abandonedTitle: "La tua barca ti aspetta!",
-    abandonedSubtitle: "La {boat} e pronta per te",
-    abandonedCta: "Completa prenotazione, 10% di sconto",
-    quizResultTitle: "Ottima scelta!",
-    quizResultSubtitle: "Prenota la {boat} ora con il 10% di sconto",
-    quizResultCta: "Prenota ora, 10% di sconto",
-  },
 
+  // Único superviviente del popup de salida, borrado en jul-2026 junto con el
+  // código de descuento que anunciaba y que no existía en la base de datos:
+  // este texto lo usa el botón del quiz de FleetSection.
+  exitIntent: {
+    quizCta: "Trova la mia barca",
+  },
   socialProof: {
     googleReviews: "su Google",
     happyCustomers: "clienti soddisfatti",
@@ -1481,7 +1469,7 @@ export const it: Translations = {
         id: "descuentos",
         question: "Ci sono sconti per gruppi o prenotazioni anticipate?",
         answer:
-          "Sì, offriamo il codice BIENVENIDO10 per uno sconto del 10% sulla prima prenotazione. Abbiamo anche tariffe speciali per i noleggi di giornata intera.",
+          "Il prezzo che vedi è quello finale: non usiamo codici sconto. Le uscite di giornata intera costano meno all'ora rispetto alla mezza giornata, e per i gruppi numerosi prepariamo un preventivo su WhatsApp.",
       },
       {
         id: "hasta-donde",
@@ -1515,20 +1503,6 @@ export const it: Translations = {
     availableToday: "Disponibile oggi",
   },
 
-  seasonBanner: {
-    earlyBird:
-      "La stagione {year} apre tra {days} giorni - Prenota in anticipo per i migliori prezzi",
-    springPrices: "Prezzi primaverili disponibili - Prenota prima del 1 giugno",
-    bookBefore: "Prenota prima del {date}",
-    daysLeft: "Solo {n} giorni rimasti questa stagione - Le date più richieste vanno a ruba",
-    lastDays: "Ultimi giorni della stagione",
-    dontMissIt: "Non perderlo",
-    viewBoats: "Vedi barche",
-    bookNow: "Prenota ora",
-    noThanks: "Non ora, grazie",
-    limitedSpots: "Posti limitati per questa stagione",
-    discountWithCode: "10% di sconto con il codice:",
-  },
 
   confirmation: {
     title: "Richiesta di prenotazione inviata con successo",
@@ -2762,7 +2736,7 @@ export const it: Translations = {
       descuentos: {
         question: "Ci sono sconti per gruppi o prenotazioni anticipate?",
         answer:
-          "Sì, offriamo il codice BIENVENIDO10 per uno sconto del 10% sulla tua prima prenotazione. Abbiamo anche tariffe speciali per prenotazioni di giornata intera.",
+          "Il prezzo che vedi è quello finale: non usiamo codici sconto. Le uscite di giornata intera costano meno all'ora rispetto alla mezza giornata, e per i gruppi numerosi prepariamo un preventivo su WhatsApp.",
       },
       hastaDondeNavegar: {
         question: "Fino a dove posso navigare da Blanes?",

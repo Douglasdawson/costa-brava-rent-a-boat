@@ -131,28 +131,6 @@ Auditar visualmente 10 tecnicas de neuro-CRO implementadas en https://www.costab
 
 ---
 
-## TEST 10: Exit Intent Contextual
-**Que buscar:** El modal que aparece al intentar salir de la pagina tiene 4 variantes segun el contexto:
-
-**Variante "quiz"** (si no has visto barcos): Titulo "No sabes que barco elegir?" + CTA "Encontrar mi barco"
-**Variante "abandoned"** (si empezaste a reservar): Titulo "Tu barco te espera" + nombre del barco + CTA con 10% descuento
-**Variante "quiz-result"** (si completaste el quiz): Titulo "Gran eleccion!" + barco recomendado + 10% descuento
-**Variante "default"** (fallback): Titulo generico con cupon BIENVENIDO10
-
-**Accion para probar variante "abandoned":**
-1. Abre el booking flow para un barco especifico
-2. Cierra el booking sin completar
-3. Mueve el raton hacia la barra de direcciones del navegador (simula salir)
-4. Deberia aparecer el modal con "Tu barco te espera" y el nombre del barco
-
-**Accion para probar variante "quiz":**
-1. Abre una ventana de incognito
-2. Ve a la homepage sin interactuar con ningun barco
-3. Mueve el raton hacia arriba para disparar el exit intent
-4. Deberia aparecer "No sabes que barco elegir?"
-
----
-
 ## Formato del reporte
 Para cada test, documenta:
 1. **Estado:** PASS / FAIL / PARCIAL

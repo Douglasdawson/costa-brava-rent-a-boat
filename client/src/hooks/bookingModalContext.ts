@@ -4,7 +4,6 @@ export interface BookingPrefillData {
   date?: string;
   time?: string;
   duration?: string;
-  coupon?: string;
 }
 
 export interface BookingModalContextType {

@@ -1271,25 +1271,13 @@ export const de: Translations = {
     ctaBanner: "Wei\u00DFt du schon, welches Boot? Buche ab 75\u20AC/h",
     ctaBannerButton: "Jetzt buchen",
   },
-  exitIntent: {
-    title: "10% Rabatt auf Ihre erste Buchung",
-    subtitle:
-      "Buchen Sie jetzt und erhalten Sie 10% Rabatt auf Ihr erstes nautisches Erlebnis an der Costa Brava",
-    useCode: "Code verwenden",
-    validFirstBooking: "G\u00fcltig f\u00fcr Ihre erste Buchung",
-    bookNow: "Mit Rabatt buchen",
-    noThanks: "Ich zahle lieber den vollen Preis",
-    quizTitle: "Nicht sicher welches Boot?",
-    quizSubtitle: "Unser 30-Sekunden-Quiz hilft Ihnen das perfekte Boot zu finden",
-    quizCta: "Mein Boot finden",
-    abandonedTitle: "Ihr Boot wartet!",
-    abandonedSubtitle: "Die {boat} ist bereit für Sie",
-    abandonedCta: "Buchung abschließen: 10% Rabatt",
-    quizResultTitle: "Tolle Wahl!",
-    quizResultSubtitle: "Buchen Sie die {boat} jetzt mit 10% Rabatt",
-    quizResultCta: "Jetzt buchen: 10% Rabatt",
-  },
 
+  // Único superviviente del popup de salida, borrado en jul-2026 junto con el
+  // código de descuento que anunciaba y que no existía en la base de datos:
+  // este texto lo usa el botón del quiz de FleetSection.
+  exitIntent: {
+    quizCta: "Mein Boot finden",
+  },
   socialProof: {
     googleReviews: "auf Google",
     happyCustomers: "zufriedene Kunden",
@@ -1487,7 +1475,7 @@ export const de: Translations = {
         id: "descuentos",
         question: "Gibt es Rabatte für Gruppen oder Frühbucher?",
         answer:
-          "Ja, wir bieten den Code BIENVENIDO10 für 10% Rabatt auf Ihre erste Buchung an. Wir haben auch Sondertarife für Ganztagesmieten.",
+          "Der angezeigte Preis ist der Endpreis: Wir arbeiten nicht mit Rabattcodes. Ganztagesfahrten sind pro Stunde günstiger als halbe Tage, und für große Gruppen erstellen wir ein Angebot per WhatsApp.",
       },
       {
         id: "hasta-donde",
@@ -1521,19 +1509,6 @@ export const de: Translations = {
     availableToday: "Heute verfügbar",
   },
 
-  seasonBanner: {
-    earlyBird: "Saison {year} startet in {days} Tagen - Frühbucher erhalten die besten Preise",
-    springPrices: "Frühlingspreise verfügbar - Buchen Sie vor dem 1. Juni",
-    bookBefore: "Buchen Sie vor dem {date}",
-    daysLeft: "Nur noch {n} Tage in dieser Saison - Beliebte Termine sind schnell vergriffen",
-    lastDays: "Letzte Tage der Saison",
-    dontMissIt: "Nicht verpassen",
-    viewBoats: "Boote ansehen",
-    bookNow: "Jetzt buchen",
-    noThanks: "Jetzt nicht, danke",
-    limitedSpots: "Begrenzte Plätze für diese Saison",
-    discountWithCode: "10% Rabatt mit dem Code:",
-  },
 
   confirmation: {
     title: "Buchungsanfrage erfolgreich gesendet",
@@ -2773,7 +2748,7 @@ export const de: Translations = {
       descuentos: {
         question: "Gibt es Rabatte für Gruppen oder Frühbucher?",
         answer:
-          "Ja, wir bieten den Code BIENVENIDO10 für 10% Rabatt auf Ihre erste Buchung. Wir haben auch Sonderpreise für ganztägige Buchungen.",
+          "Der angezeigte Preis ist der Endpreis: Wir arbeiten nicht mit Rabattcodes. Ganztagesfahrten sind pro Stunde günstiger als halbe Tage, und für große Gruppen erstellen wir ein Angebot per WhatsApp.",
       },
       hastaDondeNavegar: {
         question: "Wie weit kann ich von Blanes aus fahren?",

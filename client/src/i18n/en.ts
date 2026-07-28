@@ -1255,24 +1255,13 @@ export const en: Translations = {
     ctaBanner: "Know which boat you want? Book from \u20AC75/h",
     ctaBannerButton: "Book now",
   },
-  exitIntent: {
-    title: "10% off your first booking",
-    subtitle: "Book now and get 10% off your first nautical experience on the Costa Brava",
-    useCode: "Use code",
-    validFirstBooking: "Valid for your first booking",
-    bookNow: "Book with discount",
-    noThanks: "I prefer to pay full price",
-    quizTitle: "Not sure which boat?",
-    quizSubtitle: "Take our 30-second quiz to find your perfect boat",
-    quizCta: "Find my boat",
-    abandonedTitle: "Your boat is waiting!",
-    abandonedSubtitle: "{boat} is ready for you",
-    abandonedCta: "Complete booking, 10% off",
-    quizResultTitle: "Great choice!",
-    quizResultSubtitle: "Book {boat} now with 10% off",
-    quizResultCta: "Book now, 10% off",
-  },
 
+  // Único superviviente del popup de salida, borrado en jul-2026 junto con el
+  // código de descuento que anunciaba y que no existía en la base de datos:
+  // este texto lo usa el botón del quiz de FleetSection.
+  exitIntent: {
+    quizCta: "Find my boat",
+  },
   socialProof: {
     googleReviews: "on Google",
     happyCustomers: "happy customers",
@@ -1480,7 +1469,7 @@ export const en: Translations = {
         id: "descuentos",
         question: "Are there discounts for groups or early bookings?",
         answer:
-          "Yes, we offer the code BIENVENIDO10 for a 10% discount on your first booking. We also have special rates for full-day rentals.",
+          "The price you see is the final one: we don't use discount codes. Full-day trips work out cheaper per hour than half-day ones, and for large groups we'll put together a quote over WhatsApp.",
       },
       {
         id: "hasta-donde",
@@ -1571,19 +1560,6 @@ export const en: Translations = {
     availableToday: "Available today",
   },
 
-  seasonBanner: {
-    earlyBird: "{year} season opens in {days} days - Book early for the best prices",
-    springPrices: "Spring prices available - Book before June 1st",
-    bookBefore: "Book before {date}",
-    daysLeft: "Only {n} days left this season - Popular dates sell out fast",
-    lastDays: "Last days of the season",
-    dontMissIt: "Don't miss out",
-    viewBoats: "View boats",
-    bookNow: "Book now",
-    noThanks: "Not now, thanks",
-    limitedSpots: "Limited spots for this season",
-    discountWithCode: "10% discount with code:",
-  },
 
   confirmation: {
     title: "Booking request sent successfully",
@@ -2809,7 +2785,7 @@ export const en: Translations = {
       descuentos: {
         question: "Are there discounts for groups or advance bookings?",
         answer:
-          "Yes, we offer the code BIENVENIDO10 for a 10% discount on your first booking. We also have special rates for full-day bookings.",
+          "The price you see is the final one: we don't use discount codes. Full-day trips work out cheaper per hour than half-day ones, and for large groups we'll put together a quote over WhatsApp.",
       },
       hastaDondeNavegar: {
         question: "How far can I navigate from Blanes?",

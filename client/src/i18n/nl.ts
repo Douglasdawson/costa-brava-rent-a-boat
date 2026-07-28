@@ -1267,24 +1267,13 @@ export const nl: Translations = {
     ctaBanner: "Weet je al welke boot je wilt? Boek vanaf \u20AC75/u",
     ctaBannerButton: "Nu boeken",
   },
-  exitIntent: {
-    title: "10% korting op je eerste boeking",
-    subtitle: "Boek nu en krijg 10% korting op je eerste nautische ervaring aan de Costa Brava",
-    useCode: "Gebruik code",
-    validFirstBooking: "Geldig voor je eerste boeking",
-    bookNow: "Boek met korting",
-    noThanks: "Ik betaal liever de volle prijs",
-    quizTitle: "Niet zeker welke boot?",
-    quizSubtitle: "Onze 30-seconden quiz helpt je de perfecte boot te vinden",
-    quizCta: "Vind mijn boot",
-    abandonedTitle: "Je boot wacht!",
-    abandonedSubtitle: "De {boat} is klaar voor je",
-    abandonedCta: "Boeking voltooien, 10% korting",
-    quizResultTitle: "Geweldige keuze!",
-    quizResultSubtitle: "Boek de {boat} nu met 10% korting",
-    quizResultCta: "Nu boeken, 10% korting",
-  },
 
+  // Único superviviente del popup de salida, borrado en jul-2026 junto con el
+  // código de descuento que anunciaba y que no existía en la base de datos:
+  // este texto lo usa el botón del quiz de FleetSection.
+  exitIntent: {
+    quizCta: "Vind mijn boot",
+  },
   socialProof: {
     googleReviews: "op Google",
     happyCustomers: "tevreden klanten",
@@ -1481,7 +1470,7 @@ export const nl: Translations = {
         id: "descuentos",
         question: "Zijn er kortingen voor groepen of vroegboeken?",
         answer:
-          "Ja, we bieden de code BIENVENIDO10 voor 10% korting op je eerste boeking. We hebben ook speciale tarieven voor daghuur.",
+          "De prijs die je ziet is de eindprijs: we werken niet met kortingscodes. Hele dagen zijn per uur voordeliger dan halve dagen, en voor grote groepen maken we een offerte via WhatsApp.",
       },
       {
         id: "hasta-donde",
@@ -1515,19 +1504,6 @@ export const nl: Translations = {
     availableToday: "Vandaag beschikbaar",
   },
 
-  seasonBanner: {
-    earlyBird: "Seizoen {year} opent over {days} dagen - Boek vroeg voor de beste prijzen",
-    springPrices: "Lenteprijzen beschikbaar - Boek voor 1 juni",
-    bookBefore: "Boek voor {date}",
-    daysLeft: "Nog maar {n} dagen dit seizoen - Populaire data zijn snel volgeboekt",
-    lastDays: "Laatste dagen van het seizoen",
-    dontMissIt: "Mis het niet",
-    viewBoats: "Boten bekijken",
-    bookNow: "Nu boeken",
-    noThanks: "Nu niet, bedankt",
-    limitedSpots: "Beperkte plaatsen voor dit seizoen",
-    discountWithCode: "10% korting met de code:",
-  },
 
   confirmation: {
     title: "Boekingsverzoek succesvol verzonden",
@@ -2761,7 +2737,7 @@ export const nl: Translations = {
       descuentos: {
         question: "Zijn er kortingen voor groepen of vroegboekingen?",
         answer:
-          "Ja, we bieden de code BIENVENIDO10 voor 10% korting op je eerste reservering. Ook hebben we speciale tarieven voor reserveringen van een hele dag.",
+          "De prijs die je ziet is de eindprijs: we werken niet met kortingscodes. Hele dagen zijn per uur voordeliger dan halve dagen, en voor grote groepen maken we een offerte via WhatsApp.",
       },
       hastaDondeNavegar: {
         question: "Hoe ver kan ik varen vanaf Blanes?",

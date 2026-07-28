@@ -37,7 +37,6 @@ export const de: Translations = {
     clients: "+5000 Kunden",
     insured: "Versichert",
     experience: "+5 Jahre Erfahrung",
-    freeCancellation: "Kostenlose Umbuchung",
     instantConfirmation: "Sofortige Bestätigung",
     marqueeText:
       "Bootsverleih in Blanes | Mit und Ohne Führerschein | Treibstoff Inklusive | Ab 75\u20AC/Std",
@@ -734,7 +733,6 @@ export const de: Translations = {
     heroChipReviews: "{rating} · {count} Google-Bewertungen",
     heroChipFuelInsurance: "Treibstoff und Versicherung inklusive",
     heroChipInsurance: "Vollkaskoversicherung inklusive",
-    heroChipDateChange: "Kostenlose Umbuchung ab 7 Tagen Vorlauf",
     heroChipWeather: "Bei schlechtem Seegang verschieben wir",
     recommendedBadge: "Empfohlen",
     viewsToday: "Aufrufe dieses Boots heute",
@@ -1282,7 +1280,6 @@ export const de: Translations = {
     googleReviews: "auf Google",
     happyCustomers: "zufriedene Kunden",
     since2020: "Seit 2020 in Blanes",
-    freeCancellation: "Kostenlose Umbuchung",
   },
 
   comparison: {
@@ -1486,12 +1483,6 @@ export const de: Translations = {
     ],
   },
 
-  finalCta: {
-    title: "Noch am Uberlegen?",
-    subtitle: "Jetzt buchen mit kostenloser Umbuchung",
-    cta: "Jetzt buchen",
-    trust: "Kostenlose Umbuchung · Sichere Zahlung · Versicherung inklusive",
-  },
 
   holdCountdown: {
     reserved: "Ihr Boot ist reserviert für",
@@ -1697,8 +1688,6 @@ export const de: Translations = {
     customers: "5000+ Kunden",
     rating: "4.8 Google",
     confirmation: "Antwort in weniger als 2 Stunden",
-    freeCancellation: "Kostenlose Umbuchung*",
-    freeCancellationFootnote: "* Nach Verfügbarkeit",
     securePayment: "Sichere Buchung",
     insuranceIncluded: "Versicherung inklusive",
     replyTime: "Antwort innerhalb von 2 Std. per WhatsApp",
@@ -4403,7 +4392,8 @@ export const de: Translations = {
   garantiasPage: {
     navLabel: "Garantien",
     heroTitle: "Wenn das Meer nicht mitspielt, steht die Antwort schon fest",
-    heroSubtitle: "Wir verschieben deinen Termin kostenlos und du verlierst nicht, was du bezahlt hast. Mit der Schlechtwetter-Garantie entscheidest du: neuer Termin oder Geld zurück. Ohne Kleingedrucktes.",
+    heroSubtitle:
+      "Wenn schlechtes Wetter die Ausfahrt verhindert, verschieben wir deinen Termin kostenlos; finden wir keinen neuen, bekommst du einen Gutschein über 12 Monate. Mit der Schlechtwetter-Garantie entscheidest du: neuer Termin oder Geld zurück. Ohne Kleingedrucktes.",
     weatherTitle: "Wenn schlechtes Wetter die Ausfahrt verhindert",
     withoutLabel: "Ohne Garantie",
     withoutBody: "Wir verschieben den Termin kostenlos. Passt kein Termin, bekommst du einen Gutschein über den gezahlten Betrag, 12 Monate gültig. Keine Rückerstattung in Geld.",

@@ -699,7 +699,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia des de 75\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Lloga barques a la Costa Brava des del Port de Blanes. 4 barques sense llic\u00e8ncia des de 75\u20ac/h amb gasolina inclosa. Navega a cales verges entre Blanes i Tossa de Mar. Reserva online \u00b7 Canvi de data gratu\u00eft.",
+      description: "Lloga barques a la Costa Brava des del Port de Blanes. 4 barques sense llic\u00e8ncia des de 75\u20ac/h amb gasolina inclosa. Navega a cales verges entre Blanes i Tossa de Mar. Reserva online.",
       keywords: "lloguer barques costa brava, llogar barques costa brava, barques sense llic\u00e8ncia costa brava, excursi\u00f3 barques costa brava, lloguer embarcacions costa brava"
     },
     boatRentalCostaBrava: {
@@ -859,7 +859,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis d\u00e8s 75\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 4 bateaux sans permis d\u00e8s 75\u20ac/h, carburant inclus. Naviguez vers des criques vierges entre Blanes et Tossa de Mar. R\u00e9servez en ligne \u00b7 Changement de date gratuit.",
+      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 4 bateaux sans permis d\u00e8s 75\u20ac/h, carburant inclus. Naviguez vers des criques vierges entre Blanes et Tossa de Mar. R\u00e9servez en ligne.",
       keywords: "location bateaux costa brava, louer bateau costa brava, bateau sans permis costa brava, excursion bateau costa brava, location embarcations costa brava"
     },
     boatRentalCostaBrava: {
@@ -1016,7 +1016,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein ab 75\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 4 Boote ohne F\u00fchrerschein ab 75\u20ac/h, Kraftstoff inklusive. Segeln Sie zu versteckten Buchten zwischen Blanes und Tossa de Mar. Online buchen \u00b7 Kostenlose Umbuchung.",
+      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 4 Boote ohne F\u00fchrerschein ab 75\u20ac/h, Kraftstoff inklusive. Segeln Sie zu versteckten Buchten zwischen Blanes und Tossa de Mar. Online buchen.",
       keywords: "bootsverleih costa brava, boot mieten costa brava, boote ohne f\u00fchrerschein costa brava, bootsausflug costa brava, bootscharter costa brava"
     },
     boatRentalCostaBrava: {
@@ -1176,7 +1176,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 75\u20ac/u | Blanes, Lloret, Tossa`,
-      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 4 boten zonder vaarbewijs vanaf 75\u20ac/u, brandstof inbegrepen. Vaar naar verborgen baaien tussen Blanes en Tossa de Mar. Online boeken \u00b7 Gratis datumwijziging.",
+      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 4 boten zonder vaarbewijs vanaf 75\u20ac/u, brandstof inbegrepen. Vaar naar verborgen baaien tussen Blanes en Tossa de Mar. Online boeken.",
       keywords: "bootverhuur costa brava, boot huren costa brava, boten zonder vaarbewijs costa brava, boottocht costa brava, bootexcursie costa brava"
     },
     boatRentalCostaBrava: {
@@ -1333,7 +1333,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 75\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 4 barche senza patente da 75\u20ac/h, carburante incluso. Naviga verso calette nascoste tra Blanes e Tossa de Mar. Prenota online \u00b7 Cambio data gratuito.",
+      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 4 barche senza patente da 75\u20ac/h, carburante incluso. Naviga verso calette nascoste tra Blanes e Tossa de Mar. Prenota online.",
       keywords: "noleggio barche costa brava, affitto barche costa brava, barche senza patente costa brava, escursione barca costa brava, noleggio imbarcazioni costa brava"
     },
     boatRentalCostaBrava: {
@@ -1490,7 +1490,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Аренда Лодок Коста-Брава ${SEASON_YEAR} | Без Лицензии от 75\u20ac/ч | Бланес, Льорет, Тосса`,
-      description: "Арендуйте лодки на Коста-Браве из порта Бланес. 4 лодки без лицензии от 75\u20ac/ч, топливо включено. Плавайте к скрытым бухтам между Бланесом и Тосса-де-Мар. Бронируйте онлайн \u00b7 Бесплатное изменение даты.",
+      description: "Арендуйте лодки на Коста-Браве из порта Бланес. 4 лодки без лицензии от 75\u20ac/ч, топливо включено. Плавайте к скрытым бухтам между Бланесом и Тосса-де-Мар. Бронируйте онлайн.",
       keywords: "аренда лодок коста брава, арендовать лодку коста брава, лодки без лицензии коста брава, экскурсия на лодке коста брава, прокат лодок коста брава"
     },
     boatRentalCostaBrava: {

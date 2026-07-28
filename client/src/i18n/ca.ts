@@ -37,7 +37,6 @@ export const ca: Translations = {
     clients: "+5000 clients",
     insured: "Assegurat",
     experience: "+5 anys exp.",
-    freeCancellation: "Canvi de data gratuït",
     instantConfirmation: "Confirmació immediata",
     marqueeText:
       "Lloguer de Vaixells a Blanes | Amb i Sense Llicència | Gasolina Inclosa | Des de 75\u20AC/h",
@@ -732,7 +731,6 @@ export const ca: Translations = {
     heroChipReviews: "{rating} · {count} ressenyes a Google",
     heroChipFuelInsurance: "Carburant i assegurança inclosos",
     heroChipInsurance: "Assegurança completa inclosa",
-    heroChipDateChange: "Canvi de data gratuït amb 7+ dies",
     heroChipWeather: "Si el mar no acompanya, reprogramem",
     recommendedBadge: "Recomanat",
     viewsToday: "visites a aquesta barca avui",
@@ -1279,7 +1277,6 @@ export const ca: Translations = {
     googleReviews: "a Google",
     happyCustomers: "clients satisfets",
     since2020: "Des de 2020 a Blanes",
-    freeCancellation: "Canvi de data gratuït",
   },
 
   comparison: {
@@ -1481,12 +1478,6 @@ export const ca: Translations = {
     ],
   },
 
-  finalCta: {
-    title: "Encara hi estas pensant?",
-    subtitle: "Reserva ara amb canvi de data gratuït",
-    cta: "Reservar ara",
-    trust: "Canvi de data gratuït · Pagament segur · Assegurança inclosa",
-  },
 
   holdCountdown: {
     reserved: "El teu vaixell està reservat durant",
@@ -1690,8 +1681,6 @@ export const ca: Translations = {
     customers: "Més de 5000 clients",
     rating: "4.8 Google",
     confirmation: "Resposta en menys de 2 hores",
-    freeCancellation: "Canvi de data gratuït*",
-    freeCancellationFootnote: "* Subjecte a disponibilitat",
     securePayment: "Reserva segura",
     insuranceIncluded: "Assegurança inclosa",
     replyTime: "Responem en <2h per WhatsApp",
@@ -4381,7 +4370,8 @@ export const ca: Translations = {
   garantiasPage: {
     navLabel: "Garanties",
     heroTitle: "Si el mar no acompanya, ja està decidit",
-    heroSubtitle: "Canviem la data sense cost i no perds el que has pagat. Amb la Garantia de mal temps decideixes tu: nova data o els diners de tornada. Sense lletra petita.",
+    heroSubtitle:
+      "Si el mal temps impedeix sortir, et canviem la data sense cost; si no en trobem una altra, reps un val de 12 mesos. Amb la Garantia de mal temps tries tu: nova data o els diners de tornada. Sense lletra petita.",
     weatherTitle: "Si el mal temps impedeix sortir",
     withoutLabel: "Sense la Garantia",
     withoutBody: "Canviem la data sense cost. Si no aconseguim acordar-ne cap, reps un val per l'import abonat, vàlid 12 mesos. No hi ha devolució en diners.",

@@ -37,7 +37,6 @@ export const es: Translations = {
     clients: "+5000 clientes",
     insured: "Seguro incluido",
     experience: "+5 años exp.",
-    freeCancellation: "Cambio de fecha gratis",
     instantConfirmation: "Confirmación inmediata",
     marqueeText:
       "Alquiler de Barcos en Blanes | Con y Sin Licencia | Gasolina Incluida | Desde 75\u20AC/h",
@@ -1375,7 +1374,6 @@ export const es: Translations = {
     heroChipReviews: "{rating} · {count} reseñas en Google",
     heroChipFuelInsurance: "Gasolina y seguro incluidos",
     heroChipInsurance: "Seguro completo incluido",
-    heroChipDateChange: "Cambio de fecha gratis con 7+ días",
     heroChipWeather: "Si el mar no acompaña, reprogramamos",
     recommendedBadge: "Recomendado",
     viewsToday: "visitas a este barco hoy",
@@ -3096,7 +3094,6 @@ export const es: Translations = {
     googleReviews: "en Google",
     happyCustomers: "clientes satisfechos",
     since2020: "Desde 2020 en Blanes",
-    freeCancellation: "Cambio de fecha gratis",
   },
 
   comparison: {
@@ -3227,8 +3224,6 @@ export const es: Translations = {
     customers: "5000+ clientes",
     rating: "4.8 Google",
     confirmation: "Respuesta en menos de 2 horas",
-    freeCancellation: "Cambio de fecha gratis*",
-    freeCancellationFootnote: "* Sujeto a disponibilidad",
     securePayment: "Reserva segura",
     insuranceIncluded: "Seguro incluido",
     replyTime: "Respondemos en <2h por WhatsApp",
@@ -3377,12 +3372,6 @@ export const es: Translations = {
     ],
   },
 
-  finalCta: {
-    title: "¿Todavía pensándolo?",
-    subtitle: "Reserva ahora con cambio de fecha gratuito",
-    cta: "Reservar ahora",
-    trust: "Cambio de fecha gratis · Pago seguro · Seguro incluido",
-  },
 
   holdCountdown: {
     reserved: "Tu barco está reservado durante",
@@ -5723,7 +5712,8 @@ export const es: Translations = {
   garantiasPage: {
     navLabel: "Garantías",
     heroTitle: "Si el mar no acompaña, ya está decidido",
-    heroSubtitle: "Cambiamos la fecha sin coste y no pierdes lo pagado. Con la Garantía de mal tiempo decides tú: nueva fecha o el dinero de vuelta. Sin letra pequeña.",
+    heroSubtitle:
+      "Si el mal tiempo impide salir, te cambiamos la fecha sin coste; si no encontramos otra, recibes un bono de 12 meses. Con la Garantía de mal tiempo eliges tú: nueva fecha o el dinero de vuelta. Sin letra pequeña.",
     weatherTitle: "Si el mal tiempo impide salir",
     withoutLabel: "Sin la Garantía",
     withoutBody: "Cambiamos la fecha sin coste. Si no logramos acordar ninguna, recibes un bono por el importe abonado, válido 12 meses. No hay devolución en dinero.",

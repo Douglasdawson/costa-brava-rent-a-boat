@@ -37,7 +37,6 @@ export const nl: Translations = {
     clients: "+5000 klanten",
     insured: "Verzekerd",
     experience: "+5 jaar ervaring",
-    freeCancellation: "Gratis datumwijziging",
     instantConfirmation: "Directe bevestiging",
     marqueeText:
       "Bootverhuur in Blanes | Met en Zonder Vaarbewijs | Brandstof Inbegrepen | Vanaf \u20AC75/u",
@@ -732,7 +731,6 @@ export const nl: Translations = {
     heroChipReviews: "{rating} · {count} Google-reviews",
     heroChipFuelInsurance: "Brandstof en verzekering inbegrepen",
     heroChipInsurance: "Volledige verzekering inbegrepen",
-    heroChipDateChange: "Gratis datumwijziging met 7+ dagen",
     heroChipWeather: "Als de zee niet meewerkt, plannen we om",
     recommendedBadge: "Aanbevolen",
     viewsToday: "weergaven van deze boot vandaag",
@@ -1278,7 +1276,6 @@ export const nl: Translations = {
     googleReviews: "op Google",
     happyCustomers: "tevreden klanten",
     since2020: "Sinds 2020 in Blanes",
-    freeCancellation: "Gratis datumwijziging",
   },
 
   comparison: {
@@ -1481,12 +1478,6 @@ export const nl: Translations = {
     ],
   },
 
-  finalCta: {
-    title: "Nog aan het twijfelen?",
-    subtitle: "Boek nu met gratis datumwijziging",
-    cta: "Boek nu",
-    trust: "Gratis datumwijziging · Veilige betaling · Verzekering inbegrepen",
-  },
 
   holdCountdown: {
     reserved: "Uw boot is gereserveerd voor",
@@ -1692,8 +1683,6 @@ export const nl: Translations = {
     customers: "5000+ klanten",
     rating: "4.8 Google",
     confirmation: "Reactie binnen 2 uur",
-    freeCancellation: "Gratis datumwijziging*",
-    freeCancellationFootnote: "* Op basis van beschikbaarheid",
     securePayment: "Veilige boeking",
     insuranceIncluded: "Verzekering inbegrepen",
     replyTime: "We reageren binnen 2 uur op WhatsApp",
@@ -4391,7 +4380,8 @@ export const nl: Translations = {
   garantiasPage: {
     navLabel: "Garanties",
     heroTitle: "Als de zee nee zegt, ligt het antwoord al vast",
-    heroSubtitle: "We verzetten je datum kosteloos en je verliest niet wat je hebt betaald. Met de Slechtweergarantie kies jij: een nieuwe datum of je geld terug. Zonder kleine lettertjes.",
+    heroSubtitle:
+      "Als slecht weer het uitvaren belet, verzetten we je datum kosteloos; vinden we geen andere, dan krijg je een waardebon van 12 maanden. Met de Slechtweergarantie kies jij: een nieuwe datum of je geld terug. Zonder kleine lettertjes.",
     weatherTitle: "Als slecht weer de tocht verhindert",
     withoutLabel: "Zonder garantie",
     withoutBody: "We verzetten je datum kosteloos. Lukt geen enkele datum, dan krijg je een tegoedbon voor het betaalde bedrag, 12 maanden geldig. Geen terugbetaling in geld.",

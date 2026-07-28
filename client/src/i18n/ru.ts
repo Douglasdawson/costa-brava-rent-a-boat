@@ -37,7 +37,6 @@ export const ru: Translations = {
     clients: "+5000 клиентов",
     insured: "Застраховано",
     experience: "+5 лет опыта",
-    freeCancellation: "Бесплатное изменение даты",
     instantConfirmation: "Мгновенное подтверждение",
     marqueeText: "Аренда лодок в Бланесе | С лицензией и без | Топливо включено | От 75\u20AC/ч",
     askWhatsApp: "Спросите нас в WhatsApp",
@@ -730,7 +729,6 @@ export const ru: Translations = {
     heroChipReviews: "{rating} · {count} отзывов в Google",
     heroChipFuelInsurance: "Топливо и страховка включены",
     heroChipInsurance: "Полная страховка включена",
-    heroChipDateChange: "Бесплатная смена даты при сроке от 7 дней",
     heroChipWeather: "Если море неспокойное, перенесём",
     recommendedBadge: "Рекомендовано",
     viewsToday: "просмотров этой лодки сегодня",
@@ -1275,7 +1273,6 @@ export const ru: Translations = {
     googleReviews: "в Google",
     happyCustomers: "довольных клиентов",
     since2020: "С 2020 года в Бланесе",
-    freeCancellation: "Бесплатное изменение даты",
   },
 
   comparison: {
@@ -1476,12 +1473,6 @@ export const ru: Translations = {
     ],
   },
 
-  finalCta: {
-    title: "Все ещё думаете?",
-    subtitle: "Бронируйте сейчас, бесплатное изменение даты",
-    cta: "Забронировать сейчас",
-    trust: "Бесплатное изменение даты · Безопасная оплата · Страховка включена",
-  },
 
   holdCountdown: {
     reserved: "Ваша лодка забронирована на",
@@ -1686,8 +1677,6 @@ export const ru: Translations = {
     customers: "5000+ клиентов",
     rating: "4.8 Google",
     confirmation: "Ответ в течение 2 часов",
-    freeCancellation: "Бесплатное изменение даты*",
-    freeCancellationFootnote: "* В зависимости от доступности",
     securePayment: "Безопасное бронирование",
     insuranceIncluded: "Страховка включена",
     replyTime: "Отвечаем в WhatsApp за 2 часа",
@@ -4373,7 +4362,8 @@ export const ru: Translations = {
   garantiasPage: {
     navLabel: "Гарантии",
     heroTitle: "Если море против, ответ уже известен",
-    heroSubtitle: "Мы переносим дату бесплатно, и вы не теряете уплаченное. С Гарантией на случай непогоды выбираете вы: новая дата или возврат денег. Без мелкого шрифта.",
+    heroSubtitle:
+      "Если непогода не даёт выйти в море, мы бесплатно перенесём дату; если другую подобрать не удастся, вы получите ваучер на 12 месяцев. С Гарантией на случай непогоды вы выбираете сами: новая дата или возврат денег. Без мелкого шрифта.",
     weatherTitle: "Если непогода не даёт выйти в море",
     withoutLabel: "Без гарантии",
     withoutBody: "Переносим дату бесплатно. Если дату согласовать не удалось, вы получаете ваучер на уплаченную сумму сроком на 12 месяцев. Возврата деньгами нет.",

@@ -23,6 +23,7 @@ import {
   BUSINESS_WIKIDATA_QID,
   BUSINESS_STREET,
   BUSINESS_ADDRESS_FORMATTED,
+  CANCELLATION_POLICY_ES,
 } from "../../shared/businessProfile";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
@@ -1043,7 +1044,9 @@ export function registerRobotsRoutes(app: Express): void {
           returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
           refundType: "https://schema.org/NoReturnRefund",
           additionalType: `${BASE_URL}/terms-conditions`,
-          description: "Las cancelaciones no son reembolsables. Cambio de fecha gratuito con 7 días de antelación sujeto a disponibilidad. Mal tiempo: reprogramación completa sin coste.",
+          // Redacción propia NO: este JSON lo leen los agentes de IA y prometía
+          // "reprogramación completa sin coste" omitiendo el bono y la Garantía.
+          description: CANCELLATION_POLICY_ES,
         },
         availableLanguage: ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
         knowsAbout: [

@@ -117,7 +117,6 @@ export interface Translations {
     clients: string;
     insured: string;
     experience: string;
-    freeCancellation: string;
     instantConfirmation: string;
     marqueeText: string;
     askWhatsApp: string;
@@ -906,7 +905,6 @@ export interface Translations {
     heroChipReviews: string;
     heroChipFuelInsurance: string;
     heroChipInsurance: string;
-    heroChipDateChange: string;
     heroChipWeather: string;
     checkAvailability: string;
     recommendedBadge: string;
@@ -1936,7 +1934,6 @@ export interface Translations {
     googleReviews: string;
     happyCustomers: string;
     since2020: string;
-    freeCancellation: string;
   };
 
   // License Comparison Section (homepage)
@@ -2083,12 +2080,6 @@ export interface Translations {
   };
 
   // Final CTA (peak-end conversion section)
-  finalCta?: {
-    title: string;
-    subtitle: string;
-    cta: string;
-    trust: string;
-  };
 
   // FAQ Preview (homepage accordion — 12 items)
   faqPreview?: {
@@ -2107,11 +2098,9 @@ export interface Translations {
     customers: string;
     rating: string;
     confirmation: string;
-    freeCancellation: string;
     /** Honest footnote for the `freeCancellation` pill — the real policy
      *  is "subject to availability of the new date", reflected by the `*`
      *  in the pill copy. Rendered as small italic text below the banner. */
-    freeCancellationFootnote?: string;
     securePayment: string;
     insuranceIncluded: string;
     /** P2.1: SLA reassurance pill shown across the wizard stages. */

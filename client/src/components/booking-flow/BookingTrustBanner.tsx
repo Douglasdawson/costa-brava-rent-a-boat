@@ -10,14 +10,11 @@ interface BookingTrustBannerProps {
 }
 
 export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerProps) {
-  // Honest disclosure for the "Cambio de fecha gratis*" pill — appears
-  // under the banner whenever that pill is shown (steps 1-3).
-  const cancellationNote = t.bookingTrust?.freeCancellationFootnote;
-  const Footnote = cancellationNote ? (
-    <p className="text-[10px] text-muted-foreground italic text-center -mt-2 mb-3">
-      {cancellationNote}
-    </p>
-  ) : null;
+  // El pilar "Cambio de fecha gratis*" se retiró en jul-2026: anunciarlo aquí
+  // regalaba lo que la Garantía de mal tiempo (10€) vende tres pasos después, y
+  // el cliente llegaba al upsell creyendo que ya lo tenía. La política sigue
+  // vigente y explicada en /garantias, la FAQ y condiciones generales.
+  const Footnote = null;
 
   if (stage === "browse") {
     return (
@@ -40,7 +37,7 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 bg-success/10 border border-success/20 rounded-lg px-4 py-2.5 text-xs sm:text-sm text-success font-medium mb-4">
           <span className="inline-flex items-center gap-1">
             <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
-            {t.bookingTrust?.freeCancellation || "Free date change*"}
+            {t.bookingTrust?.insuranceIncluded || "Insurance included"}
           </span>
           <span className="inline-flex items-center gap-1">
             <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
@@ -60,10 +57,6 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
     return (
       <>
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 bg-success/10 border border-success/20 rounded-lg px-4 py-2.5 text-xs sm:text-sm text-success font-medium mb-4">
-          <span className="inline-flex items-center gap-1">
-            <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
-            {t.bookingTrust?.freeCancellation || "Free date change*"}
-          </span>
           <span className="inline-flex items-center gap-1">
             <SiWhatsapp className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
             {t.bookingTrust?.replyTime || "Reply in <2h on WhatsApp"}
@@ -88,10 +81,6 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
   return (
     <>
       <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 bg-success/10 border border-success/20 rounded-lg px-4 py-2.5 text-xs sm:text-sm text-success font-medium mb-4">
-        <span className="inline-flex items-center gap-1">
-          <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
-          {t.bookingTrust?.freeCancellation || "Free date change*"}
-        </span>
         <span className="inline-flex items-center gap-1">
           <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
           {t.bookingTrust?.securePayment || "Secure booking"}

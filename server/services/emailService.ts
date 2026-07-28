@@ -81,7 +81,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hora", colHours: "horas",
     phone: "Teléfono",
     emergencyCall: "En caso de incidencia, llámanos al",
-    cancelTitle: "Cambio de fecha gratis hasta 7 días antes. Reservas con depósito no reembolsables (excepto mal tiempo).",
+    cancelTitle: "Cambio de fecha gratuito hasta 7 días antes (sujeto a disponibilidad). Si el mal tiempo impide salir: nueva fecha sin coste o bono de 12 meses; devolución en dinero solo con la Garantía de mal tiempo contratada.",
     cancelLink: "Cancelar mi reserva",
   },
   en: {
@@ -117,7 +117,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hour", colHours: "hours",
     phone: "Phone",
     emergencyCall: "In case of emergency, call us at",
-    cancelTitle: "Free date change up to 7 days before. Deposit bookings are non-refundable (except in bad weather).",
+    cancelTitle: "Free date change up to 7 days before departure (subject to availability). If bad weather stops the trip: a new date at no cost or a 12-month voucher; cash refund only with the Weather guarantee.",
     cancelLink: "Cancel my booking",
   },
   fr: {
@@ -323,7 +323,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hora", colHours: "hores",
     phone: "Telèfon",
     emergencyCall: "En cas d'incidència, truca'ns al",
-    cancelTitle: "Canvi de data gratuït fins a 7 dies abans. Reserves amb dipòsit no reemborsables (excepte mal temps).",
+    cancelTitle: "Canvi de data gratuït fins a 7 dies abans (subjecte a disponibilitat). Si el mal temps impedeix sortir: nova data sense cost o val de 12 mesos; devolució en diners només amb la Garantia de mal temps contractada.",
     cancelLink: "Cancel·lar la meva reserva",
   },
 };

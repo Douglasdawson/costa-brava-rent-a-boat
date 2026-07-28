@@ -37,7 +37,6 @@ export const en: Translations = {
     clients: "+5000 clients",
     insured: "Insured",
     experience: "+5 years exp.",
-    freeCancellation: "Free date change",
     instantConfirmation: "Instant confirmation",
     marqueeText:
       "Boat Rental in Blanes | With and Without License | Fuel Included | From \u20AC75/h",
@@ -722,7 +721,6 @@ export const en: Translations = {
     heroChipReviews: "{rating} · {count} reviews on Google",
     heroChipFuelInsurance: "Fuel and insurance included",
     heroChipInsurance: "Full insurance included",
-    heroChipDateChange: "Free date change with 7+ days notice",
     heroChipWeather: "If the sea isn't right, we reschedule",
     recommendedBadge: "Recommended",
     viewsToday: "visits to this boat today",
@@ -1266,7 +1264,6 @@ export const en: Translations = {
     googleReviews: "on Google",
     happyCustomers: "happy customers",
     since2020: "Since 2020 in Blanes",
-    freeCancellation: "Free date change",
   },
 
   comparison: {
@@ -1537,12 +1534,6 @@ export const en: Translations = {
     ],
   },
 
-  finalCta: {
-    title: "Still thinking about it?",
-    subtitle: "Book now with free date changes",
-    cta: "Book now",
-    trust: "Free date change · Secure payment · Insurance included",
-  },
 
   holdCountdown: {
     reserved: "Your boat is reserved for",
@@ -1746,8 +1737,6 @@ export const en: Translations = {
     customers: "5000+ customers",
     rating: "4.8 Google",
     confirmation: "Reply within 2 hours",
-    freeCancellation: "Free date change*",
-    freeCancellationFootnote: "* Subject to availability",
     securePayment: "Secure booking",
     insuranceIncluded: "Insurance included",
     replyTime: "We reply within 2h on WhatsApp",
@@ -4436,7 +4425,8 @@ export const en: Translations = {
   garantiasPage: {
     navLabel: "Guarantees",
     heroTitle: "If the sea says no, the answer is already written",
-    heroSubtitle: "We move your date free of charge and you don't lose what you paid. With the Weather guarantee you decide: a new date or your money back. No small print.",
+    heroSubtitle:
+      "If bad weather stops the trip we move your date free of charge; if we can't find another one, you get a 12-month voucher. With the Weather guarantee you choose: a new date or your money back. No small print.",
     weatherTitle: "If bad weather stops the trip",
     withoutLabel: "Without the guarantee",
     withoutBody: "We move your date at no cost. If no date works, you get a voucher for the amount paid, valid for 12 months. No cash refund.",

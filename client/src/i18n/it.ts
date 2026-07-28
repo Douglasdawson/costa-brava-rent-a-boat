@@ -37,7 +37,6 @@ export const it: Translations = {
     clients: "+5000 clienti",
     insured: "Assicurato",
     experience: "+5 anni di esp.",
-    freeCancellation: "Cambio data gratuito",
     instantConfirmation: "Conferma immediata",
     marqueeText:
       "Noleggio Barche a Blanes | Con e Senza Patente | Carburante Incluso | Da 75\u20AC/ora",
@@ -733,7 +732,6 @@ export const it: Translations = {
     heroChipReviews: "{rating} · {count} recensioni su Google",
     heroChipFuelInsurance: "Carburante e assicurazione inclusi",
     heroChipInsurance: "Assicurazione completa inclusa",
-    heroChipDateChange: "Cambio data gratuito con 7+ giorni",
     heroChipWeather: "Se il mare non aiuta, riprogrammiamo",
     recommendedBadge: "Consigliato",
     viewsToday: "visite a questa barca oggi",
@@ -1279,7 +1277,6 @@ export const it: Translations = {
     googleReviews: "su Google",
     happyCustomers: "clienti soddisfatti",
     since2020: "Dal 2020 a Blanes",
-    freeCancellation: "Cambio data gratuito",
   },
 
   comparison: {
@@ -1480,12 +1477,6 @@ export const it: Translations = {
     ],
   },
 
-  finalCta: {
-    title: "Ci stai ancora pensando?",
-    subtitle: "Prenota ora con cambio data gratuito",
-    cta: "Prenota ora",
-    trust: "Cambio data gratuito · Pagamento sicuro · Assicurazione inclusa",
-  },
 
   holdCountdown: {
     reserved: "La tua barca è riservata per",
@@ -1689,8 +1680,6 @@ export const it: Translations = {
     customers: "Più di 5000 clienti",
     rating: "4.8 Google",
     confirmation: "Risposta in meno di 2 ore",
-    freeCancellation: "Cambio data gratuito*",
-    freeCancellationFootnote: "* In base alla disponibilità",
     securePayment: "Prenotazione sicura",
     insuranceIncluded: "Assicurazione inclusa",
     replyTime: "Rispondiamo entro 2h su WhatsApp",
@@ -4387,7 +4376,8 @@ export const it: Translations = {
   garantiasPage: {
     navLabel: "Garanzie",
     heroTitle: "Se il mare dice no, la risposta è già scritta",
-    heroSubtitle: "Spostiamo la data senza costi e non perdi quanto hai pagato. Con la Garanzia maltempo scegli tu: nuova data o rimborso in denaro. Senza clausole nascoste.",
+    heroSubtitle:
+      "Se il maltempo impedisce l'uscita spostiamo la data senza costi; se non ne troviamo un'altra, ricevi un buono valido 12 mesi. Con la Garanzia maltempo scegli tu: nuova data o rimborso in denaro. Senza clausole nascoste.",
     weatherTitle: "Se il maltempo impedisce l'uscita",
     withoutLabel: "Senza la garanzia",
     withoutBody: "Spostiamo la data senza costi. Se non troviamo una data, ricevi un buono per l'importo versato, valido 12 mesi. Nessun rimborso in denaro.",

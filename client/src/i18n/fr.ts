@@ -37,7 +37,6 @@ export const fr: Translations = {
     clients: "+5000 clients",
     insured: "Assuré",
     experience: "+5 ans exp.",
-    freeCancellation: "Changement de date gratuit",
     instantConfirmation: "Confirmation immédiate",
     marqueeText:
       "Location de Bateaux à Blanes | Avec et Sans Permis | Carburant Inclus | Dès 75\u20AC/h",
@@ -737,7 +736,6 @@ export const fr: Translations = {
     heroChipReviews: "{rating} · {count} avis sur Google",
     heroChipFuelInsurance: "Carburant et assurance inclus",
     heroChipInsurance: "Assurance complète incluse",
-    heroChipDateChange: "Changement de date gratuit avec 7+ jours",
     heroChipWeather: "Si la mer ne se prête pas, on reprogramme",
     recommendedBadge: "Recommandé",
     viewsToday: "visites de ce bateau aujourd'hui",
@@ -1286,7 +1284,6 @@ export const fr: Translations = {
     googleReviews: "sur Google",
     happyCustomers: "clients satisfaits",
     since2020: "Depuis 2020 à Blanes",
-    freeCancellation: "Changement de date gratuit",
   },
 
   comparison: {
@@ -1490,12 +1487,6 @@ export const fr: Translations = {
     ],
   },
 
-  finalCta: {
-    title: "Vous hesitez encore ?",
-    subtitle: "Reservez maintenant avec changement de date gratuit",
-    cta: "Réserver maintenant",
-    trust: "Changement de date gratuit · Paiement sécurisé · Assurance incluse",
-  },
 
   holdCountdown: {
     reserved: "Votre bateau est réservé pendant",
@@ -1700,8 +1691,6 @@ export const fr: Translations = {
     customers: "Plus de 5000 clients",
     rating: "4.8 Google",
     confirmation: "Réponse en moins de 2 heures",
-    freeCancellation: "Changement de date gratuit*",
-    freeCancellationFootnote: "* Sous réserve de disponibilité",
     securePayment: "Réservation sécurisée",
     insuranceIncluded: "Assurance incluse",
     replyTime: "Réponse en moins de 2 h sur WhatsApp",
@@ -4398,7 +4387,8 @@ export const fr: Translations = {
   garantiasPage: {
     navLabel: "Garanties",
     heroTitle: "Si la mer dit non, la réponse est déjà écrite",
-    heroSubtitle: "Nous changeons la date sans frais et vous ne perdez pas ce que vous avez payé. Avec la Garantie mauvais temps, vous choisissez : nouvelle date ou remboursement. Sans petits caractères.",
+    heroSubtitle:
+      "Si le mauvais temps empêche la sortie, nous changeons la date sans frais ; si nous n'en trouvons pas d'autre, vous recevez un bon valable 12 mois. Avec la Garantie mauvais temps, vous choisissez : nouvelle date ou remboursement. Sans petits caractères.",
     weatherTitle: "Si le mauvais temps empêche la sortie",
     withoutLabel: "Sans la garantie",
     withoutBody: "Nous décalons la date sans frais. Si aucune date ne convient, vous recevez un bon du montant versé, valable 12 mois. Pas de remboursement en espèces.",

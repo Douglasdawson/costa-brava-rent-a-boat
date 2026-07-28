@@ -1,10 +1,23 @@
 // Resend-backed drop-in for @sendgrid/mail (the SendGrid account cannot send:
 // trial credits have been 0 since 2026-06). Same call shape, so nothing below changes.
 import sgMail from "../lib/mailTransport";
+import {
+  wrapper,
+  button as emailButton,
+  callout as emailCallout,
+  heading as emailHeading,
+  paragraph as emailParagraph,
+  dataRows as emailDataRows,
+  esc as emailEsc,
+  COLORS as EC,
+  FONT_STACK as EF,
+} from "../lib/emailDesign";
 import type { Booking, Boat, BookingExtra, WhatsappInquiry, ShopOrder, ShopOrderItem } from "@shared/schema";
 import { logger } from "../lib/logger";
 import { sendgridBreaker } from "../lib/circuitBreaker";
 import { getShopStrings, shopItemLabel, deliveryInstructions } from "../lib/shopStrings";
+import { formatOrderNumber } from "@shared/shopData";
+import { calculateBasePrice, type Duration } from "@shared/pricing";
 import { generateOpaqueUnsubToken } from "../routes/newsletter";
 import { GOOGLE_REVIEW_URL } from "../../shared/businessProfile";
 
@@ -373,72 +386,29 @@ interface BookingEmailData {
 
 // ===== HTML EMAIL TEMPLATE HELPERS =====
 
-function emailWrapper(content: string, preheader?: string): string {
-  const preheaderBlock = preheader
-    ? `<div style="display:none; font-size:1px; color:#f4f7fa; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">${preheader}</div>`
-    : "";
-  return `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body style="margin:0; padding:0; background-color:#f4f7fa; font-family:Arial, Helvetica, sans-serif;">
-  ${preheaderBlock}
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f7fa;">
-    <tr>
-      <td align="center" style="padding:24px 16px;">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; background-color:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-          <!-- Header -->
-          <tr>
-            <td style="background: linear-gradient(135deg, #0d1a2d 0%, #1a2a4a 100%); padding:28px 32px; text-align:center; border-bottom:3px solid #A8C4DD;">
-              <img src="https://www.costabravarentaboat.com/assets/logo-email-white.svg" alt="Costa Brava Rent a Boat" width="280" height="130" style="display:block; margin:0 auto; width:280px; height:auto;">
-            </td>
-          </tr>
-          <!-- Body -->
-          <tr>
-            <td style="padding:32px;">
-              ${content}
-            </td>
-          </tr>
-          <!-- Footer: Social Media -->
-          <tr>
-            <td style="background-color:#0d1a2d; padding:20px 32px 0; text-align:center;">
-              <a href="https://www.instagram.com/costabravarentaboat/" target="_blank" style="display:inline-block; background-color:#E4405F; padding:6px 14px; border-radius:50px; color:#ffffff; font-size:11px; font-weight:600; text-decoration:none; margin:0 3px;">Instagram</a>
-              <a href="https://www.facebook.com/costabravarentaboat" target="_blank" style="display:inline-block; background-color:#1877F2; padding:6px 14px; border-radius:50px; color:#ffffff; font-size:11px; font-weight:600; text-decoration:none; margin:0 3px;">Facebook</a>
-              <a href="https://www.tiktok.com/@costabravarentaboat" target="_blank" style="display:inline-block; background-color:#000000; border:1px solid #333333; padding:6px 14px; border-radius:50px; color:#ffffff; font-size:11px; font-weight:600; text-decoration:none; margin:0 3px;">TikTok</a>
-              <a href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5" target="_blank" style="display:inline-block; background-color:#4285F4; padding:6px 14px; border-radius:50px; color:#ffffff; font-size:11px; font-weight:600; text-decoration:none; margin:0 3px;">Ubicacion</a>
-            </td>
-          </tr>
-          <!-- Footer: Contact -->
-          <tr>
-            <td style="background-color:#0d1a2d; border-top:1px solid #1a2a4a; padding:16px 32px 24px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="text-align:center;">
-                    <img src="https://www.costabravarentaboat.com/assets/logo-email-white.svg" alt="Costa Brava Rent a Boat" width="160" height="74" style="display:block; margin:0 auto 8px; width:160px; height:auto;">
-                    <p style="margin:0 0 4px; color:#A8C4DD; font-size:12px;">&#9875; Puerto de Blanes, Girona, Costa Brava</p>
-                    <p style="margin:0 0 4px; color:#A8C4DD; font-size:12px;">Tel: <a href="tel:+34611500372" style="color:#A8C4DD; text-decoration:none;">+34 611 500 372</a> &middot; <a href="mailto:costabravarentaboat@gmail.com" style="color:#A8C4DD; text-decoration:none;">costabravarentaboat@gmail.com</a></p>
-                    <p style="margin:0; color:#A8C4DD; font-size:11px; opacity:0.7;">www.costabravarentaboat.com</p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>`;
+/**
+ * Kept as a thin adapter so the 16 existing call sites read unchanged; the
+ * shell itself lives in emailDesign.ts. The old one shipped an SVG logo (which
+ * Gmail and Outlook drop) and white text over a linear-gradient (which Outlook
+ * renders as white on white), so both bugs are fixed for every template at once.
+ */
+function emailWrapper(content: string, preheader?: string, lang?: string): string {
+  return wrapper(content, { preheader, lang });
 }
 
-function formatDate(date: Date): string {
-  return date.toLocaleDateString("es-ES", {
+/**
+ * Locale-aware and pinned to Madrid: without a timeZone the server's own zone
+ * decides, so a UTC process could print the day before for anything scheduled
+ * in the evening.
+ */
+function formatDate(date: Date, language?: string | null): string {
+  const locale = language ? `${language}-${language.toUpperCase()}` : "es-ES";
+  return date.toLocaleDateString(locale, {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "Europe/Madrid",
   });
 }
 
@@ -558,6 +528,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: `${strings.bookingConfirmed} - ${data.boat.name} - ${formatDate(booking.startTime)}`,
       html: emailWrapper(content + cancelBlock),
     }));
@@ -629,6 +600,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: `${strings.reminderTitle} - ${data.boat.name}`,
       html: emailWrapper(content),
     }));
@@ -707,6 +679,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: `${strings.thankYouTitle}, ${booking.customerName}!`,
       html: emailWrapper(content, strings.thankYouPreheader),
     }));
@@ -764,6 +737,7 @@ export async function sendPreSeasonEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: customerEmail,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: "La temporada empieza pronto - 10% descuento para ti",
       html: emailWrapper(content),
     }));
@@ -821,6 +795,7 @@ export async function sendWelcomeEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: `Bienvenido/a a Costa Brava Rent a Boat — Tu prueba gratuita ha comenzado`,
       html: emailWrapper(content),
     }));
@@ -877,6 +852,7 @@ export async function sendPasswordResetEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: "Restablece tu contrasena",
       html: emailWrapper(content),
     }));
@@ -1000,6 +976,7 @@ export async function sendNewsletterEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: strings.subject,
       html: emailWrapper(content),
     }));
@@ -1058,6 +1035,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: `Cancelación confirmada — ${booking.customerName}`,
       html: emailWrapper(customerContent),
     }));
@@ -1083,6 +1061,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   sendgridBreaker.call(() => sgMail.send({
     to: ownerEmail,
     from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
     subject: `[CANCELACIÓN] ${booking.customerName} — ${new Date(booking.startTime).toLocaleDateString("es-ES")}`,
     html: emailWrapper(ownerContent),
   })).catch((err: unknown) => {
@@ -1147,6 +1126,7 @@ export async function sendReferralEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: strings.subject.replace("{name}", booking.customerName),
       html: emailWrapper(content),
     }));
@@ -1212,6 +1192,7 @@ export async function sendEarlyBirdEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: strings.subject.replace("{name}", booking.customerName),
       html: emailWrapper(content),
     }));
@@ -1683,7 +1664,7 @@ export async function sendBookingRequestReceived(data: BookingEmailData): Promis
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: ADMIN_NOTIFICATION_EMAIL, name: "Iv&aacute;n - Costa Brava Rent a Boat" },
+      replyTo: { email: ADMIN_NOTIFICATION_EMAIL, name: "Ivan - Costa Brava Rent a Boat" },
       subject: `Hemos recibido tu solicitud - ${data.boat.name} - ${formatDate(booking.startTime)}`,
       html: emailWrapper(content),
     }));
@@ -1784,6 +1765,42 @@ export async function sendBookingRequestAdminNotification(data: BookingEmailData
  * This is the safety net. Best-effort: no-ops gracefully when SendGrid is not
  * configured (same as every other email in the app).
  */
+/**
+ * Price to show on the owner's lead notification.
+ *
+ * `estimatedTotal` is nullable and arrives empty from three form paths (the
+ * shared-sailing page never sends the field at all), which is why this email
+ * used to say "(estimado no disponible)" and forced a trip to the CRM before
+ * answering. When the client did not send a figure we recompute it here from
+ * the same pricing rules the site quotes with. Extras, packs and coupons are
+ * NOT included, so it is labelled as a base price and never presented as the
+ * final quote.
+ */
+function resolveInquiryEstimate(inquiry: WhatsappInquiry): { label: string; value: string } {
+  if (inquiry.estimatedTotal) {
+    const parsed = parseFloat(inquiry.estimatedTotal);
+    if (Number.isFinite(parsed)) {
+      return { label: "Estimado", value: `${parsed.toFixed(2).replace(".", ",")} EUR` };
+    }
+  }
+  try {
+    const date = new Date(`${inquiry.bookingDate}T12:00:00`);
+    if (Number.isNaN(date.getTime())) throw new Error("bad date");
+    const price = calculateBasePrice(inquiry.boatId, date, inquiry.duration as Duration);
+    if (Number.isFinite(price) && price > 0) {
+      return { label: "Precio base", value: `${price.toFixed(2).replace(".", ",")} EUR` };
+    }
+  } catch (error: unknown) {
+    logger.warn("[Email] Could not compute inquiry estimate", {
+      inquiryId: inquiry.id,
+      boatId: inquiry.boatId,
+      duration: inquiry.duration,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+  return { label: "Estimado", value: "a confirmar" };
+}
+
 export async function sendInquiryAdminNotification(inquiry: WhatsappInquiry): Promise<EmailResult> {
   if (!initSendGrid()) {
     logger.info("SendGrid not configured, skipping inquiry admin notification");
@@ -1795,43 +1812,44 @@ export async function sendInquiryAdminNotification(inquiry: WhatsappInquiry): Pr
   const phoneFull = `${inquiry.phonePrefix || ""}${inquiry.phoneNumber || ""}`.trim();
   const whatsappLink = phoneFull ? `https://wa.me/${phoneFull.replace(/\D/g, "")}` : null;
   const customerName = `${inquiry.firstName} ${inquiry.lastName || ""}`.trim();
-  const total = inquiry.estimatedTotal ? `${parseFloat(inquiry.estimatedTotal).toFixed(2)} EUR` : "(estimado no disponible)";
+  const estimate = resolveInquiryEstimate(inquiry);
 
+  // The job this email triggers is a phone call, so the contact details and the
+  // WhatsApp button come first and everything else supports them.
   const content = `
-    <h2 style="margin:0 0 8px; color:#dc2626; font-size:22px;">📩 Nueva solicitud (web)</h2>
-    <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.5;">
-      Te ha llegado una solicitud por el formulario de la web. Cont&aacute;ctale por WhatsApp
-      o tel&eacute;fono para confirmar disponibilidad y coordinar el pago.
-    </p>
-
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8fafc; border-radius:8px; overflow:hidden; margin:16px 0;">
-      <tr>
-        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff;">Cliente</td>
-        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff; text-align:right;">${customerName}</td>
-      </tr>
-      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Email</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.email ? `<a href="mailto:${inquiry.email}" style="color:#2563eb;">${inquiry.email}</a>` : "(no proporcionado)"}</td></tr>
-      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Tel&eacute;fono</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${phoneFull || "(no proporcionado)"} ${whatsappLink ? `&middot; <a href="${whatsappLink}" style="color:#22c55e;">WhatsApp</a>` : ""}</td></tr>
-      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Idioma</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.language || "es"}</td></tr>
-      <tr>
-        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff;">Barco</td>
-        <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; background-color:#eff6ff; text-align:right;">${inquiry.boatName}</td>
-      </tr>
-      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Fecha</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.bookingDate}${inquiry.preferredTime ? ` &middot; ${inquiry.preferredTime}` : ""}</td></tr>
-      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Duraci&oacute;n</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.duration}</td></tr>
-      <tr><td style="padding:6px 12px; color:#475569; font-size:14px;">Personas</td><td style="padding:6px 12px; color:#475569; font-size:14px; text-align:right;">${inquiry.numberOfPeople}</td></tr>
-      <tr>
-        <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:600; background-color:#eff6ff; border-top:2px solid #cbd5e1;">Estimado</td>
-        <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:600; background-color:#eff6ff; border-top:2px solid #cbd5e1; text-align:right;">${total}</td>
-      </tr>
-    </table>
-
-    <div style="text-align:center; margin:24px 0;">
-      ${whatsappLink ? `<a href="${whatsappLink}" style="display:inline-block; background-color:#22c55e; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600; font-size:14px; margin:0 6px;">Contactar por WhatsApp</a>` : ""}
-      <a href="${adminUrl}" style="display:inline-block; background-color:#1e3a5f; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600; font-size:14px; margin:0 6px;">Ver en panel admin</a>
-    </div>
-
-    <p style="margin:20px 0 0; color:#94a3b8; font-size:12px; line-height:1.5;">
-      Inquiry ID: <code>${inquiry.id}</code> &middot; Origen: <code>${inquiry.source || "web"}</code>
+    ${emailHeading("Nueva solicitud", 1)}
+    ${emailParagraph("Contactale para confirmar disponibilidad y coordinar el pago.")}
+    ${emailDataRows([
+      { label: "Cliente", value: emailEsc(customerName), strong: true },
+      {
+        label: "Telefono",
+        value: phoneFull
+          ? `<a href="tel:${emailEsc(phoneFull)}" style="color:${EC.ink}; text-decoration:none;">${emailEsc(phoneFull)}</a>`
+          : "(no proporcionado)",
+      },
+      {
+        label: "Email",
+        value: inquiry.email
+          ? `<a href="mailto:${emailEsc(inquiry.email)}" style="color:${EC.ink}; text-decoration:none;">${emailEsc(inquiry.email)}</a>`
+          : "(no proporcionado)",
+      },
+      { label: "Idioma", value: emailEsc(inquiry.language || "es") },
+    ])}
+    ${whatsappLink ? emailButton({ href: whatsappLink, label: "Escribir por WhatsApp" }) : ""}
+    ${emailHeading("La salida")}
+    ${emailDataRows([
+      { label: "Barco", value: emailEsc(inquiry.boatName), strong: true },
+      {
+        label: "Fecha",
+        value: `${emailEsc(inquiry.bookingDate)}${inquiry.preferredTime ? ` &middot; ${emailEsc(inquiry.preferredTime)}` : ""}`,
+      },
+      { label: "Duracion", value: emailEsc(inquiry.duration) },
+      { label: "Personas", value: String(inquiry.numberOfPeople) },
+      { label: estimate.label, value: estimate.value, strong: true },
+    ])}
+    <p style="margin:22px 0 0; font-family:${EF}; font-size:12px; line-height:1.6; color:${EC.border};">
+      <a href="${adminUrl}" style="color:${EC.inkSoft};">Ver en el panel</a>
+      &nbsp;&middot;&nbsp; ${emailEsc(inquiry.id)} &nbsp;&middot;&nbsp; origen ${emailEsc(inquiry.source || "web")}
     </p>
   `;
 
@@ -1842,8 +1860,16 @@ export async function sendInquiryAdminNotification(inquiry: WhatsappInquiry): Pr
       replyTo: inquiry.email
         ? { email: inquiry.email, name: customerName }
         : undefined,
-      subject: `🆕 Solicitud web: ${inquiry.boatName} - ${inquiry.bookingDate} - ${customerName}`,
+      subject: `🆕 ${customerName} · ${inquiry.boatName} · ${inquiry.bookingDate}${inquiry.preferredTime ? ` ${inquiry.preferredTime}` : ""} · ${inquiry.numberOfPeople}p`,
       html: emailWrapper(content),
+      text: [
+        `Nueva solicitud web`,
+        `${customerName} - ${phoneFull || "sin telefono"} - ${inquiry.email || "sin email"} (${inquiry.language || "es"})`,
+        `${inquiry.boatName} - ${inquiry.bookingDate}${inquiry.preferredTime ? ` ${inquiry.preferredTime}` : ""} - ${inquiry.duration} - ${inquiry.numberOfPeople} personas`,
+        `${estimate.label}: ${estimate.value}`,
+        whatsappLink ? `WhatsApp: ${whatsappLink}` : "",
+        `Panel: ${adminUrl}`,
+      ].filter(Boolean).join("\n"),
     }));
     logger.info("[Email] Inquiry admin notification sent", { to: ADMIN_NOTIFICATION_EMAIL, inquiryId: inquiry.id });
     return { success: true };
@@ -1860,22 +1886,6 @@ function formatEuros(cents: number): string {
   return `${(cents / 100).toFixed(2).replace(".", ",")} EUR`;
 }
 
-function shopItemsTable(items: ShopOrderItem[], language: string): string {
-  const rows = items
-    .map(
-      (item) => `
-      <tr>
-        <td style="padding:8px 12px; border-bottom:1px solid #e2e8f0; color:#334155; font-size:14px;">${shopItemLabel(item.sku, language)}</td>
-        <td style="padding:8px 12px; border-bottom:1px solid #e2e8f0; color:#334155; font-size:14px; text-align:center;">x${item.quantity}</td>
-        <td style="padding:8px 12px; border-bottom:1px solid #e2e8f0; color:#334155; font-size:14px; text-align:right;">${formatEuros(item.unitPriceCents * item.quantity)}</td>
-      </tr>`,
-    )
-    .join("");
-  return `
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; margin:16px 0;">
-      ${rows}
-    </table>`;
-}
 
 /**
  * Customer confirmation for a paid shop order. Best-effort: callers must
@@ -1895,31 +1905,47 @@ export async function sendShopOrderConfirmation(
 
   const strings = getShopStrings(order.language);
   const deliveryBlock = deliveryInstructions(order.deliveryMethod, strings);
-  const shippingLine =
-    order.shippingCents > 0
-      ? `<p style="margin:4px 0; color:#475569; font-size:14px;">${strings.shippingCostLabel}: ${formatEuros(order.shippingCents)}</p>`
-      : "";
-  // Line items are billed at full price, so without this line the total does
-  // not add up for anyone who bought the bundle.
-  const discountLine =
-    order.discountCents > 0
-      ? `<p style="margin:4px 0; color:#15803d; font-size:14px;">${strings.packDiscount}: -${formatEuros(order.discountCents)}</p>`
-      : "";
+
+  // The buyer's two questions are "did it go through" and "how do I get it".
+  // Reference and total answer the first; the delivery panel answers the second,
+  // so it is the loudest block on the page rather than a footnote.
+  const summaryRows = [
+    ...items.map((item) => ({
+      label: `${emailEsc(shopItemLabel(item.sku, order.language))}${item.quantity > 1 ? ` &times;${item.quantity}` : ""}`,
+      value: formatEuros(item.unitPriceCents * item.quantity),
+    })),
+    // Lines are billed at full price, so without this the total does not add up
+    // for anyone who bought the bundle.
+    ...(order.discountCents > 0
+      ? [{ label: emailEsc(strings.packDiscount), value: `-${formatEuros(order.discountCents)}` }]
+      : []),
+    ...(order.shippingCents > 0
+      ? [{ label: emailEsc(strings.shippingCostLabel), value: formatEuros(order.shippingCents) }]
+      : []),
+    { label: emailEsc(strings.totalLabel), value: formatEuros(order.totalCents), strong: true },
+  ];
 
   const content = `
-    <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:22px;">${strings.orderConfirmedTitle}</h2>
-    <p style="color:#475569; font-size:15px; margin:0 0 16px;">${strings.orderConfirmedIntro}</p>
-    <h3 style="margin:16px 0 4px; color:#1e3a5f; font-size:16px;">${strings.orderSummary}</h3>
-    ${shopItemsTable(items, order.language)}
-    ${discountLine}
-    ${shippingLine}
-    <p style="margin:4px 0 16px; color:#1e3a5f; font-size:16px; font-weight:bold;">${strings.totalLabel}: ${formatEuros(order.totalCents)}</p>
-    <div style="background:#f1f5f9; border-radius:8px; padding:16px; margin:16px 0; font-size:14px; color:#334155;">
-      <p style="margin:0 0 8px; font-weight:bold;">${strings.deliveryTitle}</p>
-      <p style="margin:0;">${deliveryBlock}</p>
-    </div>
-    <p style="color:#64748b; font-size:13px; margin-top:24px;">${strings.questions}</p>
+    ${emailHeading(emailEsc(strings.orderConfirmedTitle), 1)}
+    ${emailParagraph(emailEsc(strings.orderConfirmedIntro))}
+    <p style="margin:0 0 4px; font-family:${EF}; font-size:13px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:${EC.inkSoft};">${emailEsc(strings.orderSummary)}</p>
+    <p style="margin:0 0 10px; font-family:${EF}; font-size:24px; font-weight:700; color:${EC.ink};">${formatOrderNumber(order.orderNumber)}</p>
+    ${emailDataRows(summaryRows)}
+    ${emailCallout({ tone: "neutral", title: emailEsc(strings.deliveryTitle), body: emailEsc(deliveryBlock) })}
+    ${emailParagraph(emailEsc(strings.questions))}
+    ${emailButton({ href: "https://wa.me/34611500372", label: "WhatsApp" })}
   `;
+
+  const text = [
+    strings.orderConfirmedTitle,
+    "",
+    `${strings.orderSummary}: ${formatOrderNumber(order.orderNumber)}`,
+    ...summaryRows.map((r) => `- ${r.label.replace(/&times;/g, "x").replace(/&amp;/g, "&")}: ${r.value}`),
+    "",
+    `${strings.deliveryTitle}: ${deliveryBlock}`,
+    "",
+    strings.questions,
+  ].join("\n");
 
   try {
     await sendgridBreaker.call(() => sgMail.send({
@@ -1929,8 +1955,9 @@ export async function sendShopOrderConfirmation(
       // goes nowhere. Every delivery detail of this shop gets settled by
       // conversation, so the reply has to land in a mailbox someone reads.
       replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
-      subject: `${strings.orderConfirmedSubject} - Costa Brava Rent a Boat`,
-      html: emailWrapper(content, strings.orderConfirmedTitle),
+      subject: `${strings.orderConfirmedSubject} ${formatOrderNumber(order.orderNumber)}`,
+      html: emailWrapper(content, strings.orderConfirmedIntro, order.language),
+      text,
     }));
     logger.info("[Email] Shop order confirmation sent", { to: order.customerEmail, orderId: order.id });
     return { success: true };
@@ -1958,24 +1985,54 @@ export async function sendShopOrderOwnerNotification(
     ? [address.address.line1, address.address.line2, address.address.postal_code, address.address.city].filter(Boolean).join(", ")
     : "";
 
+  const deliveryLabel =
+    order.deliveryMethod === "shipping"
+      ? "Envio a domicilio"
+      : order.deliveryMethod === "pickup_laura"
+        ? "Recogida en Laura Cabanas (Lloret)"
+        : "Recogida en el puerto de Blanes";
+
+  // Read on a phone at the port: what to prepare and how it leaves go first,
+  // money and identifiers after. A stock shortfall outranks everything because
+  // the order is already paid.
   const shortfallBlock = stockShortfall.length
-    ? `<div style="background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:12px; margin:16px 0; color:#b91c1c; font-size:14px;">
-        <strong>Atencion:</strong> stock insuficiente al descontar estas referencias (pedido ya cobrado, resolver a mano): ${stockShortfall.join(", ")}
-      </div>`
+    ? emailCallout({
+        tone: "danger",
+        title: "Stock insuficiente",
+        body: `No se ha podido descontar ${emailEsc(stockShortfall.join(", "))}. El pedido ya esta cobrado, hay que resolverlo a mano.`,
+      })
     : "";
 
   const content = `
-    <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:22px;">Nuevo pedido de la tienda</h2>
-    <p style="margin:4px 0; color:#334155; font-size:14px;">Cliente: <strong>${order.customerName || "(sin nombre)"}</strong></p>
-    <p style="margin:4px 0; color:#334155; font-size:14px;">Email: ${order.customerEmail || "(sin email)"}</p>
-    <p style="margin:4px 0; color:#334155; font-size:14px;">Entrega: <strong>${order.deliveryMethod === "shipping" ? "Envio a domicilio" : order.deliveryMethod === "pickup_laura" ? "Recogida en Laura Cabanas (Lloret)" : "Recogida en el puerto"}</strong></p>
-    ${addressLine ? `<p style="margin:4px 0; color:#334155; font-size:14px;">Direccion: ${addressLine}</p>` : ""}
-    ${shopItemsTable(items, "es")}
-    ${order.discountCents > 0 ? `<p style="margin:4px 0; color:#15803d; font-size:14px;">Descuento pack: -${formatEuros(order.discountCents)}</p>` : ""}
-    ${order.shippingCents > 0 ? `<p style="margin:4px 0; color:#475569; font-size:14px;">Envio: ${formatEuros(order.shippingCents)}</p>` : ""}
-    <p style="margin:4px 0; color:#1e3a5f; font-size:16px; font-weight:bold;">Total: ${formatEuros(order.totalCents)}</p>
     ${shortfallBlock}
-    <p style="margin:20px 0 0; color:#94a3b8; font-size:12px;">Pedido: <code>${order.id}</code></p>
+    ${emailHeading("Nuevo pedido", 1)}
+    ${emailDataRows([
+      ...items.map((item) => ({
+        label: `${emailEsc(shopItemLabel(item.sku, "es"))}${item.quantity > 1 ? ` &times;${item.quantity}` : ""}`,
+        value: formatEuros(item.unitPriceCents * item.quantity),
+      })),
+      ...(order.discountCents > 0
+        ? [{ label: "Descuento pack", value: `-${formatEuros(order.discountCents)}` }]
+        : []),
+      ...(order.shippingCents > 0
+        ? [{ label: "Envio", value: formatEuros(order.shippingCents) }]
+        : []),
+      { label: "Total cobrado", value: formatEuros(order.totalCents), strong: true },
+    ])}
+    ${emailCallout({
+      tone: "neutral",
+      title: deliveryLabel,
+      body: addressLine
+        ? emailEsc(addressLine)
+        : "Escribele para acordar el momento de la recogida.",
+    })}
+    ${emailDataRows([
+      { label: "Cliente", value: emailEsc(order.customerName || "(sin nombre)") },
+      { label: "Email", value: emailEsc(order.customerEmail || "(sin email)") },
+      { label: "Referencia", value: formatOrderNumber(order.orderNumber) },
+    ])}
+    ${order.customerEmail ? emailButton({ href: `mailto:${order.customerEmail}`, label: "Responder al cliente" }) : ""}
+    <p style="margin:22px 0 0; font-family:${EF}; font-size:12px; color:${EC.border};">Pedido ${emailEsc(order.id)}</p>
   `;
 
   try {
@@ -1987,8 +2044,15 @@ export async function sendShopOrderOwnerNotification(
       ...(order.customerEmail
         ? { replyTo: { email: order.customerEmail, name: order.customerName || "Cliente" } }
         : {}),
-      subject: `[TIENDA] Nuevo pedido de ${order.customerName || "cliente"} - ${formatEuros(order.totalCents)}`,
+      subject: `[TIENDA] ${formatOrderNumber(order.orderNumber)} · ${order.customerName || "cliente"} · ${formatEuros(order.totalCents)} · ${deliveryLabel}`,
       html: emailWrapper(content),
+      text: [
+        `Nuevo pedido ${formatOrderNumber(order.orderNumber)} - ${formatEuros(order.totalCents)}`,
+        `Entrega: ${deliveryLabel}${addressLine ? ` (${addressLine})` : ""}`,
+        `Cliente: ${order.customerName || "(sin nombre)"} - ${order.customerEmail || "(sin email)"}`,
+        ...items.map((i) => `- ${shopItemLabel(i.sku, "es")} x${i.quantity}: ${formatEuros(i.unitPriceCents * i.quantity)}`),
+        ...(stockShortfall.length ? ["", `ATENCION: stock insuficiente en ${stockShortfall.join(", ")}`] : []),
+      ].join("\n"),
     }));
     logger.info("[Email] Shop owner notification sent", { to: ownerEmail, orderId: order.id });
     return { success: true };

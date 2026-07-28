@@ -2570,7 +2570,7 @@ Con un alquiler de medio día (4 horas) puedes visitar 2-3 calas cómodamente. C
 Tu seguridad es nuestra prioridad. **Revisamos las previsiones meteorológicas cada mañana** y si las condiciones no son adecuadas para navegar (viento fuerte, oleaje, tormentas), te contactaremos para ofrecer estas opciones:
 
 - **Cambio de fecha** sin coste adicional (sujeto a disponibilidad)
-- **Reembolso completo** si no es posible encontrar otra fecha
+- **Bono por el importe abonado**, válido 12 meses, si no es posible encontrar otra fecha
 
 No saldrás a navegar si no es seguro. Preferimos que aplaces a que tengas una experiencia incómoda o arriesgada.
 
@@ -3139,7 +3139,7 @@ Puedes fondear frente a la **Playa Grande** (Platja Gran), justo debajo de las m
 2. **Lleva combustible de más.** Los barcos con licencia no incluyen gasolina. Mejor repostar de más que quedarse corto.
 3. **Planifica el regreso.** Calcula 1 hora de vuelta + tiempo para devolver el barco. No apures.
 4. **Lleva comida y agua.** En Tossa puedes bajar a comer, pero tener provisiones a bordo da más libertad.
-5. **Consulta el tiempo.** Si el parte anuncia viento norte (Tramontana) o marejada, es mejor posponer. Te ofrecemos cambio de fecha gratuito.
+5. **Consulta el tiempo.** Si el parte anuncia viento norte (Tramontana) o marejada, es mejor posponer. Te ofrecemos cambio de fecha gratuito hasta 7 días antes, sujeto a disponibilidad.
 
 ## ¿Vienes desde Malgrat de Mar, Santa Susanna o Calella?
 

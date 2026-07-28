@@ -47,8 +47,9 @@ export function registerDiscountRoutes(app: Express) {
 
       const result = await validatePromoCode(parsed.data.code);
 
-      // Only return discount code results from this endpoint (not gift cards)
-      if (!result.valid || result.type !== "discount") {
+      // Only return discount and friend-code results here (not gift cards, which
+      // have their own endpoint). A friend code carries no discountPercent.
+      if (!result.valid || (result.type !== "discount" && result.type !== "referral")) {
         // Delay response to slow brute-force enumeration
         await new Promise(resolve => setTimeout(resolve, 300));
         return res.json({
@@ -63,6 +64,7 @@ export function registerDiscountRoutes(app: Express) {
 
       return res.json({
         valid: true,
+        type: result.type,
         discountPercent: result.discountPercent,
       });
     } catch (error: unknown) {

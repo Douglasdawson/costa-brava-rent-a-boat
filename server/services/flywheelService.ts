@@ -3,7 +3,8 @@
  *
  * Automated email sequences after each completed booking:
  * 1. Review request (+24h) — synced with existing thank-you flow
- * 2. Referral codes (+3 days) — friend gets 15%, referrer gets 10%
+ * 2. Referral code (+3 days) — the customer's own CRM code (friend gets a free
+ *    Premium Pack, referrer gets 20€ or 10%+extra). No codes are minted here.
  * 3. Early bird offer (+7 days) — 20% off next season
  *
  * All three functions are idempotent and safe to run hourly.
@@ -11,6 +12,7 @@
 
 import { storage } from "../storage";
 import { sendReferralEmail, sendEarlyBirdEmail } from "./emailService";
+import { fetchCrmReferralCode } from "../lib/crmDamarStats";
 import { logger } from "../lib/logger";
 import { GOOGLE_REVIEW_URL } from "../../shared/businessProfile";
 
@@ -64,8 +66,18 @@ export async function syncReviewRequests(): Promise<void> {
 }
 
 /**
- * Step 2: Send referral codes ~3 days after the trip.
- * Creates two discount codes: one for the friend (15%) and one for the referrer (10%).
+ * Step 2: Send the customer their referral code ~3 days after the trip.
+ *
+ * The referral programme lives in the CRM (one permanent personal code per
+ * customer: friend gets a free Premium Pack, referrer gets 20€ or 10%+extra).
+ * This job used to mint its OWN codes here (REF- 15% / THX- 10%), which meant
+ * two competing offers for the same customers — so now it just asks the CRM for
+ * the customer's code and emails that. Codes issued by the old scheme stay
+ * valid until they expire; we simply stop creating new ones.
+ *
+ * `referralCodeSent` means SENT, not "attempted": if the CRM is unreachable the
+ * booking is left unmarked and the next hourly run retries it (the eligibility
+ * window is 70-74h, so ~4 attempts) instead of silently swallowing the email.
  */
 export async function sendReferralCodes(): Promise<void> {
   try {
@@ -77,66 +89,35 @@ export async function sendReferralCodes(): Promise<void> {
 
     for (const booking of eligible) {
       try {
-        if (!booking.customerEmail) {
-          await storage.markFlywheelStepSent(booking.id, "referralCodeSent");
+        const referralCode = await fetchCrmReferralCode(
+          booking.customerEmail,
+          booking.customerPhone,
+        );
+
+        if (referralCode === null) {
+          // Infra failure (CRM down, timeout, missing config) — retry next hour.
+          logger.warn("[Flywheel] Referral code unavailable, will retry", { bookingId: booking.id });
           continue;
         }
 
-        const namePrefix = booking.customerName
-          .replace(/[^a-zA-Z]/g, "")
-          .slice(0, 3)
-          .toUpperCase()
-          .padEnd(3, "X");
+        if (referralCode === "not_found") {
+          // No CRM record: there is no code to hand out and nothing to retry.
+          logger.info("[Flywheel] No CRM client for booking, skipping referral email", { bookingId: booking.id });
+          continue;
+        }
 
-        // Friend code: 15% off, single use, valid 6 months
-        const friendCode = `REF-${namePrefix}-${randomChars(5)}`;
-        const friendExpires = new Date();
-        friendExpires.setMonth(friendExpires.getMonth() + 6);
+        const result = await sendReferralEmail(booking, referralCode);
+        if (!result.success) {
+          logger.warn("[Flywheel] Referral email not sent, will retry", { bookingId: booking.id });
+          continue;
+        }
 
-        await storage.createDiscountCode({
-          code: friendCode,
-          discountPercent: 15,
-          maxUses: 1,
-          isActive: true,
-          expiresAt: friendExpires,
-          customerEmail: null, // Anyone can use it (it's a gift)
-        });
-
-        // Referrer code: 10% off, single use, valid 1 year
-        const referrerCode = `THX-${namePrefix}-${randomChars(5)}`;
-        const referrerExpires = new Date();
-        referrerExpires.setFullYear(referrerExpires.getFullYear() + 1);
-
-        await storage.createDiscountCode({
-          code: referrerCode,
-          discountPercent: 10,
-          maxUses: 1,
-          isActive: true,
-          expiresAt: referrerExpires,
-          customerEmail: booking.customerEmail.toLowerCase().trim(),
-        });
-
-        // Send email
-        const result = await sendReferralEmail(booking, friendCode, referrerCode);
-
-        // Mark as sent regardless of email outcome to prevent retries
         await storage.markFlywheelStepSent(booking.id, "referralCodeSent");
-
-        logger.info("[Flywheel] Referral codes sent", {
-          bookingId: booking.id,
-          emailSent: result.success,
-          friendCode,
-          referrerCode,
-        });
+        logger.info("[Flywheel] Referral code sent", { bookingId: booking.id, referralCode });
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";
         logger.error("[Flywheel] Error sending referral code", { bookingId: booking.id, error: msg });
-        // Mark as sent to avoid infinite retry on persistent errors
-        try {
-          await storage.markFlywheelStepSent(booking.id, "referralCodeSent");
-        } catch {
-          // Best effort
-        }
+        // No marcamos: la ventana de elegibilidad (70-74h) acota los reintentos sola.
       }
     }
   } catch (error: unknown) {

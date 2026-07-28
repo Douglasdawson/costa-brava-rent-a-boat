@@ -1705,7 +1705,10 @@ function Step5Contact({
                   <p className="text-xs text-foreground">
                     {validatedCode.type === "gift_card"
                       ? `-${discount}\u20AC`
-                      : `-${validatedCode.percentage}% (-${discount}\u20AC)`}
+                      : validatedCode.type === "referral"
+                        // Un c\u00F3digo de amigo no descuenta dinero: regala el Pack Premium.
+                        ? (t.codeValidation.referralPerk ?? t.codeValidation.validDiscount)
+                        : `-${validatedCode.percentage}% (-${discount}\u20AC)`}
                   </p>
                 </div>
                 <button

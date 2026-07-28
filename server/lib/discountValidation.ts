@@ -1,5 +1,6 @@
 import { storage } from "../storage";
 import { logger } from "./logger";
+import { isCrmReferralCode } from "./crmDamarStats";
 
 /**
  * Discriminator for the *kind* of validation failure. The frontend uses this
@@ -23,8 +24,12 @@ export interface PromoValidationResult {
   error?: string;
   /** Machine-readable error discriminator. Always set when `valid === false`. */
   errorCode?: PromoValidationErrorCode;
-  /** "discount" = percentage-based code, "gift_card" = balance-based card */
-  type?: "discount" | "gift_card";
+  /**
+   * "discount" = percentage-based code, "gift_card" = balance-based card,
+   * "referral" = CRM friend code (no money off: it grants a free Premium Pack,
+   * applied by the CRM on the rental, so the quoted total does not change).
+   */
+  type?: "discount" | "gift_card" | "referral";
   /** The normalized (uppercased, trimmed) code */
   code?: string;
   /** Discount percentage (only for type "discount") */
@@ -70,6 +75,21 @@ export async function validatePromoCode(code: string): Promise<PromoValidationRe
 
   if (!normalized) {
     return { valid: false, errorCode: "missing", error: "Codigo requerido" };
+  }
+
+  // 0. Friend code from the CRM referral programme (CBRB-…, legacy DAMAR-…).
+  // Prefix-guarded so a plain typo never costs a round trip to the CRM. It is not
+  // a discount: calculateDiscountAmount returns 0 for this type, so nothing in the
+  // quote, the hold or the payment total moves.
+  if (/^(CBRB|DAMAR)-/.test(normalized)) {
+    const exists = await isCrmReferralCode(normalized);
+    if (exists === null) {
+      return { valid: false, errorCode: "server_error", error: "No se pudo validar el codigo, intentalo de nuevo" };
+    }
+    if (!exists) {
+      return { valid: false, errorCode: "not_found", error: "Codigo no valido" };
+    }
+    return { valid: true, type: "referral", code: normalized };
   }
 
   // Track infra failures so a DB error (e.g. Neon cold start) is NOT reported as

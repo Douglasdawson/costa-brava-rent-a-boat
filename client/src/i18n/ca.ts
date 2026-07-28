@@ -647,7 +647,7 @@ export const ca: Translations = {
     dismiss: "Ara no",
   },
   codeValidation: {
-    haveCode: "Tens un codi de regal o descompte?",
+    haveCode: "Tens un codi de regal, descompte o d'amic?",
     enterCode: "Introdueix el teu codi",
     validate: "Validar",
     validGiftCard: "Targeta regal vàlida",
@@ -662,6 +662,9 @@ export const ca: Translations = {
     consumed: "Aquest codi ja s'ha utilitzat",
     cancelled: "Aquest codi va ser cancel·lat",
     inactive: "Aquest codi encara no està actiu",
+    serverError: "Ara mateix no hem pogut comprovar el codi: torna-ho a provar",
+    validReferral: "Codi d'amic vàlid",
+    referralPerk: "T'emportes el Pack Premium gratis (30€). T'ho confirmem per WhatsApp.",
   },
   giftCards: {
     title: "Targetes Regal",

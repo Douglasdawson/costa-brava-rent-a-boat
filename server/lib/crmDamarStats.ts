@@ -78,6 +78,81 @@ export async function getCrmDamarBookingStats(opts?: {
   }
 }
 
+// ── Referral codes (CRM "trae a un amigo") ───────────────────────────────────
+// The CRM issues one personal code per customer (CBRB-NAME99; older DAMAR- ones
+// are still valid). A friend can type it in the booking form: it is NOT a
+// discount, it grants a free Premium Pack that the CRM applies on the rental.
+// Read-only existence check, cached (negatives too, so a typo retyped ten times
+// hits the cache, not the CRM).
+
+const REFERRAL_TTL_MS = 10 * 60 * 1000;
+const referralCache = new Map<string, { at: number; valid: boolean }>();
+
+/** true/false = the code exists or not. null = infra failure (NOT "not found"). */
+export async function isCrmReferralCode(code: string): Promise<boolean | null> {
+  const url = process.env.CRMDAMAR_DATABASE_URL;
+  if (!url) return null;
+  const normalized = code.trim().toUpperCase();
+
+  const hit = referralCache.get(normalized);
+  if (hit && Date.now() - hit.at < REFERRAL_TTL_MS) return hit.valid;
+
+  try {
+    const sql = neon(url);
+    // referral_code has a unique index in the CRM, so this is an indexed lookup.
+    const rows = await sql`SELECT 1 FROM clients_real WHERE referral_code = ${normalized} LIMIT 1`;
+    const valid = (rows as unknown[]).length > 0;
+    // ponytail: dumb purge instead of an LRU; the key space is tiny.
+    if (referralCache.size > 500) referralCache.clear();
+    referralCache.set(normalized, { at: Date.now(), valid });
+    return valid;
+  } catch (error) {
+    logger.warn("[crmdamar] referral code lookup error", {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return null;
+  }
+}
+
+/**
+ * Ask the CRM for a customer's own referral code (creating it lazily there) so
+ * the post-trip email can hand out the SAME programme the CRM runs. Goes over
+ * HTTP on purpose: the code is written by the CRM, this app never writes to its
+ * database.
+ *
+ * "not_found" = the customer has no CRM record (final). null = infra failure
+ * (missing config, CRM down, timeout) → the caller should retry later.
+ */
+export async function fetchCrmReferralCode(
+  email: string | null,
+  phone: string | null,
+): Promise<string | "not_found" | null> {
+  const base = process.env.CRM_API_URL;
+  const key = process.env.CRM_API_KEY;
+  if (!base || !key) return null;
+
+  try {
+    const res = await fetch(`${base.replace(/\/$/, "")}/api/referral-code/lookup`, {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-api-key": key },
+      body: JSON.stringify({ email: email || undefined, telefono: phone || undefined }),
+      signal: AbortSignal.timeout(5000),
+    });
+    if (res.status === 404) return "not_found";
+    if (!res.ok) {
+      logger.warn("[crmdamar] referral code lookup failed", { status: res.status });
+      return null;
+    }
+    const data = (await res.json()) as { referralCode?: string };
+    return data.referralCode || null;
+  } catch (error) {
+    logger.warn("[crmdamar] referral code lookup error", {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return null;
+  }
+}
+
 // ── Attributed bookings, per-lead with a time window ─────────────────────────
 // A lead (this app's inquiry, carrying utm/fbclid) is contact-matched against
 // crmdamar's confirmed bookings by email or last-9-digit phone. Because

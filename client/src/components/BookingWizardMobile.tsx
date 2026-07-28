@@ -37,7 +37,8 @@ interface PhonePrefix {
 }
 
 interface ValidatedCode {
-  type: "gift_card" | "discount";
+  // "referral" = código de amigo del CRM: no descuenta, regala el Pack Premium.
+  type: "gift_card" | "discount" | "referral";
   code: string;
   value?: number;
   percentage?: number;
@@ -1501,14 +1502,24 @@ function Step5Final(props: BookingWizardMobileProps) {
                     <p className="text-xs font-semibold text-success">
                       {validatedCode.type === "gift_card"
                         ? t.codeValidation.validGiftCard
-                        : t.codeValidation.validDiscount}
+                        : validatedCode.type === "referral"
+                          ? (t.codeValidation.validReferral ?? t.codeValidation.validDiscount)
+                          : t.codeValidation.validDiscount}
                     </p>
                     <p className="text-xs text-muted-foreground font-mono">{validatedCode.code}</p>
+                    {/* Un código de amigo no descuenta dinero: se explica qué gana. */}
+                    {validatedCode.type === "referral" && t.codeValidation.referralPerk && (
+                      <p className="text-xs text-muted-foreground">{t.codeValidation.referralPerk}</p>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-bold text-success">
-                    {validatedCode.type === "gift_card" ? `-${discount}€` : `-${validatedCode.percentage}%`}
+                    {validatedCode.type === "gift_card"
+                      ? `-${discount}€`
+                      : validatedCode.percentage
+                        ? `-${validatedCode.percentage}%`
+                        : ""}
                   </span>
                   <button type="button" onClick={handleRemoveCode} className="text-muted-foreground p-2 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center">
                     <X className="w-4 h-4" />

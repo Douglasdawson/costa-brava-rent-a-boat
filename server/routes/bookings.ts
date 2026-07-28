@@ -580,7 +580,9 @@ export function registerBookingRoutes(app: Express) {
 
       // Server-side discount/gift card validation
       let discountInfo: {
-        type: "discount" | "gift_card";
+        // "referral" carries no money off (calculateDiscountAmount returns 0): it is
+        // recorded so the CRM knows which friend code the customer used.
+        type: "discount" | "gift_card" | "referral";
         code: string;
         discountPercent?: number;
         giftCardAmount?: number;

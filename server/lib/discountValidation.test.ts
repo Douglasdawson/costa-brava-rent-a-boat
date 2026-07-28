@@ -17,6 +17,17 @@ describe("calculateDiscountAmount", () => {
     expect(calculateDiscountAmount(promo, 100, 120)).toBe(0);
   });
 
+  it("returns 0 for a friend code (referral): it gifts a Premium Pack, not money", () => {
+    const promo: PromoValidationResult = {
+      valid: true,
+      type: "referral",
+      code: "CBRB-VICT99",
+    };
+    // Si esto deja de ser 0, un código de amigo empezaría a descontar dinero
+    // del total presupuestado y del cobro: el regalo lo aplica el CRM, no el precio.
+    expect(calculateDiscountAmount(promo, 200, 250)).toBe(0);
+  });
+
   it("calculates percentage discount on base price", () => {
     const promo: PromoValidationResult = {
       valid: true,

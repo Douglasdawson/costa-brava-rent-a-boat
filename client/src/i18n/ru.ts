@@ -644,7 +644,7 @@ export const ru: Translations = {
     dismiss: "Не сейчас",
   },
   codeValidation: {
-    haveCode: "Есть подарочная карта или код скидки?",
+    haveCode: "Есть подарочная карта, код скидки или код друга?",
     enterCode: "Введите ваш код",
     validate: "Проверить",
     validGiftCard: "Действительная подарочная карта",
@@ -659,6 +659,9 @@ export const ru: Translations = {
     consumed: "Этот код уже использован",
     cancelled: "Этот код отменён",
     inactive: "Этот код пока не активен",
+    serverError: "Сейчас не удалось проверить код: попробуйте ещё раз",
+    validReferral: "Код друга принят",
+    referralPerk: "Вы получаете Premium Pack бесплатно (30€). Подтвердим в WhatsApp.",
   },
   giftCards: {
     title: "Подарочные карты",

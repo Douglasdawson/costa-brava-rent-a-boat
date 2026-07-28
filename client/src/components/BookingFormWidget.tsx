@@ -230,8 +230,10 @@ export default function BookingFormWidget({
   const [showCodeSection, setShowCodeSection] = useState(false);
   const [codeInput, setCodeInput] = useState("");
   const [isValidatingCode, setIsValidatingCode] = useState(false);
+  // "referral" = friend code from the CRM's referral programme: no money off, it
+  // grants a free Premium Pack that the CRM applies on the rental.
   const [validatedCode, setValidatedCode] = useState<{
-    type: "gift_card" | "discount";
+    type: "gift_card" | "discount" | "referral";
     code: string;
     value?: number;
     percentage?: number;
@@ -660,7 +662,7 @@ export default function BookingFormWidget({
           .then(data => {
             if (data.valid) {
               setValidatedCode({
-                type: "discount",
+                type: data.type === "referral" ? "referral" : "discount",
                 code,
                 percentage: data.discountPercent,
               });
@@ -1620,6 +1622,12 @@ export default function BookingFormWidget({
         codeBlock = isSpanish
           ? `\n\n🏷️ *Descuento*\n${separator}\nCodigo: ${validatedCode.code}\nDescuento: ${validatedCode.percentage}% (-${codeDiscount}€)`
           : `\n\n🏷️ *Discount*\n${separator}\nCode: ${validatedCode.code}\nDiscount: ${validatedCode.percentage}% (-${codeDiscount}€)`;
+      } else if (validatedCode.type === "referral") {
+        // Sin importe: el regalo es un Pack Premium, no dinero. El CRM lo aplica
+        // al crear la reserva con este código.
+        codeBlock = isSpanish
+          ? `\n\n🤝 *Codigo de amigo*\n${separator}\nCodigo: ${validatedCode.code}\nRegalo: Pack Premium gratis (30€)`
+          : `\n\n🤝 *Friend code*\n${separator}\nCode: ${validatedCode.code}\nGift: free Premium Pack (30€)`;
       }
     }
 
@@ -1696,6 +1704,9 @@ Looking forward to confirmation. Thanks!`;
           return cv.cancelled ?? cv.invalidCode;
         case "inactive":
           return cv.inactive ?? cv.invalidCode;
+        case "server_error":
+          // The code may be perfectly valid: saying "invalid" here would be a lie.
+          return cv.serverError ?? cv.invalidCode;
         default:
           return cv.invalidCode;
       }
@@ -1749,7 +1760,7 @@ Looking forward to confirmation. Thanks!`;
         const data = await discountRes.json();
         if (data.valid) {
           setValidatedCode({
-            type: "discount",
+            type: data.type === "referral" ? "referral" : "discount",
             code,
             percentage: data.discountPercent,
           });

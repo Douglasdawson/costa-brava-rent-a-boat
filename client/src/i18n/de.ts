@@ -648,7 +648,7 @@ export const de: Translations = {
     dismiss: "Jetzt nicht",
   },
   codeValidation: {
-    haveCode: "Haben Sie einen Geschenk- oder Rabattcode?",
+    haveCode: "Haben Sie einen Geschenk-, Rabatt- oder Freundescode?",
     enterCode: "Code eingeben",
     validate: "Prüfen",
     validGiftCard: "Gültige Geschenkkarte",
@@ -663,6 +663,9 @@ export const de: Translations = {
     consumed: "Dieser Code wurde bereits eingelöst",
     cancelled: "Dieser Code wurde storniert",
     inactive: "Dieser Code ist noch nicht aktiv",
+    serverError: "Wir konnten den Code gerade nicht prüfen: bitte versuche es erneut",
+    validReferral: "Gültiger Freundescode",
+    referralPerk: "Du bekommst das Premium-Paket gratis (30€). Wir bestätigen es per WhatsApp.",
   },
   giftCards: {
     title: "Geschenkkarten",

@@ -646,7 +646,7 @@ export const nl: Translations = {
     dismiss: "Niet nu",
   },
   codeValidation: {
-    haveCode: "Heb je een cadeaukaart of kortingscode?",
+    haveCode: "Heb je een cadeaukaart, kortingscode of vriendencode?",
     enterCode: "Voer je code in",
     validate: "Valideren",
     validGiftCard: "Geldige cadeaukaart",
@@ -661,6 +661,9 @@ export const nl: Translations = {
     consumed: "Deze code is al gebruikt",
     cancelled: "Deze code is geannuleerd",
     inactive: "Deze code is nog niet actief",
+    serverError: "We konden de code nu niet controleren: probeer het opnieuw",
+    validReferral: "Geldige vriendencode",
+    referralPerk: "Je krijgt het Premium Pack gratis (30€). We bevestigen het via WhatsApp.",
   },
   giftCards: {
     title: "Cadeaukaarten",

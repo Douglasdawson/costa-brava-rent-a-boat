@@ -836,6 +836,11 @@ export interface Translations {
     consumed?: string;
     cancelled?: string;
     inactive?: string;
+    /** Infra failure: the code may well be valid, so we must not call it invalid. */
+    serverError?: string;
+    /** Friend code from the CRM referral programme (no money off: free Premium Pack). */
+    validReferral?: string;
+    referralPerk?: string;
   };
 
   // Gift Cards

@@ -1083,12 +1083,15 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
 
 /**
  * Send referral code email (~3 days after trip).
- * Includes a friend code (15% off) and a personal code (10% off).
+ *
+ * Hands out the customer's OWN referral code from the CRM (permanent, reusable):
+ * whoever books with it gets a free Premium Pack, and the customer gets 20€ or
+ * 10%+extra depending on how soon the friend books. Single source of the offer —
+ * this app no longer mints its own referral discounts.
  */
 export async function sendReferralEmail(
   booking: Booking,
-  friendCode: string,
-  referrerCode: string,
+  referralCode: string,
 ): Promise<EmailResult> {
   if (!initSendGrid()) {
     return { success: false, error: "SendGrid not configured" };
@@ -1106,22 +1109,20 @@ export async function sendReferralEmail(
       ${booking.customerName}, ${strings.intro}
     </p>
 
-    <!-- Friend code -->
+    <!-- The customer's own code: one code, always the same, reusable -->
     <div style="background-color:#eff6ff; border-radius:8px; padding:24px; margin:20px 0; text-align:center;">
       <p style="margin:0 0 4px; color:#1e3a5f; font-size:16px; font-weight:600;">${strings.friendTitle}</p>
       <p style="margin:0 0 16px; color:#475569; font-size:14px;">${strings.friendDesc}</p>
       <div style="background-color:#ffffff; border:2px dashed #2563eb; border-radius:6px; padding:12px; display:inline-block;">
-        <span style="color:#2563eb; font-size:22px; font-weight:700; letter-spacing:2px;">${friendCode}</span>
+        <span style="color:#2563eb; font-size:22px; font-weight:700;">${referralCode}</span>
       </div>
+      <p style="margin:16px 0 0; color:#64748b; font-size:13px;">${strings.codeReusable}</p>
     </div>
 
-    <!-- Referrer reward -->
+    <!-- What the customer gets -->
     <div style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); border-radius:8px; padding:24px; margin:20px 0; text-align:center;">
       <p style="margin:0 0 4px; color:#93c5fd; font-size:13px; text-transform:uppercase; letter-spacing:1px;">${strings.yourReward}</p>
-      <p style="margin:0 0 12px; color:#ffffff; font-size:18px; font-weight:700;">${strings.yourRewardDesc}</p>
-      <div style="background-color:rgba(255,255,255,0.15); border:2px dashed rgba(255,255,255,0.4); border-radius:6px; padding:12px; display:inline-block;">
-        <span style="color:#ffffff; font-size:20px; font-weight:700; letter-spacing:2px;">${referrerCode}</span>
-      </div>
+      <p style="margin:0; color:#ffffff; font-size:18px; font-weight:700;">${strings.yourRewardDesc}</p>
     </div>
 
     <div style="text-align:center; margin:24px 0;">
@@ -1137,7 +1138,7 @@ export async function sendReferralEmail(
       html: emailWrapper(content),
     }));
 
-    logger.info("Referral email sent", { to: booking.customerEmail, bookingId: booking.id, friendCode, referrerCode });
+    logger.info("Referral email sent", { to: booking.customerEmail, bookingId: booking.id, referralCode });
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -1219,6 +1220,8 @@ interface ReferralStrings {
   intro: string;
   friendTitle: string;
   friendDesc: string;
+  /** The CRM code is permanent and reusable — the old REF- ones were single-use. */
+  codeReusable: string;
   yourReward: string;
   yourRewardDesc: string;
   bookNow: string;
@@ -1229,80 +1232,88 @@ const REFERRAL_STRINGS: Record<EmailLang, ReferralStrings> = {
     subject: "{name}, comparte el mar con tus amigos",
     title: "Comparte el mar",
     intro: "nos encanta que hayas disfrutado de tu experiencia en la Costa Brava. Ahora puedes regalar esa experiencia a tus amigos.",
-    friendTitle: "15% de descuento para tu amigo",
-    friendDesc: "Comparte este codigo con alguien especial",
+    friendTitle: "Pack Premium gratis para tu amigo",
+    friendDesc: "Comparte tu codigo personal: quien reserve con el se lleva el Pack Premium (valor 30 EUR)",
+    codeReusable: "Es tu codigo de siempre: puedes compartirlo con todos los amigos que quieras.",
     yourReward: "Tu recompensa",
-    yourRewardDesc: "10% en tu proxima reserva",
+    yourRewardDesc: "20 EUR o un extra premium si reserva en 14 dias; 10% + extra gratis si viene mas adelante",
     bookNow: "Reservar ahora",
   },
   en: {
     subject: "{name}, share the sea with your friends",
     title: "Share the sea",
     intro: "we loved having you on the Costa Brava waters. Now you can give your friends the same experience.",
-    friendTitle: "15% off for your friend",
-    friendDesc: "Share this code with someone special",
+    friendTitle: "Free Premium Pack for your friend",
+    friendDesc: "Share your personal code: whoever books with it gets the Premium Pack (worth 30 EUR)",
+    codeReusable: "This is your permanent code: share it with as many friends as you like.",
     yourReward: "Your reward",
-    yourRewardDesc: "10% off your next trip",
+    yourRewardDesc: "20 EUR or a premium extra if they book within 14 days; 10% + a free extra if they come later",
     bookNow: "Book now",
   },
   fr: {
     subject: "{name}, partagez la mer avec vos amis",
     title: "Partagez la mer",
     intro: "nous sommes ravis que vous ayez profite de votre experience sur la Costa Brava. Offrez la meme experience a vos amis.",
-    friendTitle: "15% de reduction pour votre ami",
-    friendDesc: "Partagez ce code avec quelqu'un de special",
+    friendTitle: "Pack Premium offert a votre ami",
+    friendDesc: "Partagez votre code personnel : celui qui reserve avec recoit le Pack Premium (valeur 30 EUR)",
+    codeReusable: "C'est votre code permanent : partagez-le avec autant d'amis que vous voulez.",
     yourReward: "Votre recompense",
-    yourRewardDesc: "10% sur votre prochaine reservation",
+    yourRewardDesc: "20 EUR ou un extra premium s'il reserve sous 14 jours ; 10% + un extra offert s'il vient plus tard",
     bookNow: "Reservez maintenant",
   },
   de: {
     subject: "{name}, teilen Sie das Meer mit Ihren Freunden",
     title: "Teilen Sie das Meer",
     intro: "wir freuen uns, dass Sie Ihr Erlebnis an der Costa Brava genossen haben. Schenken Sie Ihren Freunden dasselbe Erlebnis.",
-    friendTitle: "15% Rabatt fur Ihren Freund",
-    friendDesc: "Teilen Sie diesen Code mit jemandem Besonderem",
+    friendTitle: "Gratis Premium-Paket fur Ihren Freund",
+    friendDesc: "Teilen Sie Ihren personlichen Code: wer damit bucht, bekommt das Premium-Paket (Wert 30 EUR)",
+    codeReusable: "Das ist Ihr fester Code: Sie konnen ihn mit beliebig vielen Freunden teilen.",
     yourReward: "Ihre Belohnung",
-    yourRewardDesc: "10% auf Ihre nachste Buchung",
+    yourRewardDesc: "20 EUR oder ein Premium-Extra bei Buchung innerhalb von 14 Tagen; 10% + Gratis-Extra, wenn sie spater kommen",
     bookNow: "Jetzt buchen",
   },
   nl: {
     subject: "{name}, deel de zee met je vrienden",
     title: "Deel de zee",
     intro: "we vonden het geweldig dat je van je ervaring aan de Costa Brava hebt genoten. Geef je vrienden dezelfde ervaring.",
-    friendTitle: "15% korting voor je vriend",
-    friendDesc: "Deel deze code met iemand speciaal",
+    friendTitle: "Gratis Premium Pack voor je vriend",
+    friendDesc: "Deel je persoonlijke code: wie ermee boekt krijgt het Premium Pack (waarde 30 EUR)",
+    codeReusable: "Dit is je vaste code: deel hem met zoveel vrienden als je wilt.",
     yourReward: "Jouw beloning",
-    yourRewardDesc: "10% korting op je volgende boeking",
+    yourRewardDesc: "20 EUR of een premium extra als hij binnen 14 dagen boekt; 10% + gratis extra als hij later komt",
     bookNow: "Nu boeken",
   },
   it: {
     subject: "{name}, condividi il mare con i tuoi amici",
     title: "Condividi il mare",
     intro: "siamo felici che tu abbia apprezzato la tua esperienza sulla Costa Brava. Ora puoi regalare la stessa esperienza ai tuoi amici.",
-    friendTitle: "15% di sconto per il tuo amico",
-    friendDesc: "Condividi questo codice con qualcuno di speciale",
+    friendTitle: "Pack Premium gratis per il tuo amico",
+    friendDesc: "Condividi il tuo codice personale: chi prenota con quello riceve il Pack Premium (valore 30 EUR)",
+    codeReusable: "E il tuo codice di sempre: condividilo con tutti gli amici che vuoi.",
     yourReward: "La tua ricompensa",
-    yourRewardDesc: "10% sulla tua prossima prenotazione",
+    yourRewardDesc: "20 EUR o un extra premium se prenota entro 14 giorni; 10% + extra gratis se viene piu avanti",
     bookNow: "Prenota ora",
   },
   ru: {
     subject: "{name}, podelites morem s druzyami",
     title: "Podelites morem",
     intro: "nam priyatno, chto vam ponravilos na Kosta Brave. Teper vy mozhete podarit eto zhe vpechatlenie svoim druzyam.",
-    friendTitle: "Skidka 15% dlya vashego druga",
-    friendDesc: "Podelites etim kodom s kem-to osobennym",
+    friendTitle: "Pack Premium besplatno dlya vashego druga",
+    friendDesc: "Podelites svoim kodom: tot, kto zabroniruet s nim, poluchit Pack Premium (30 EUR)",
+    codeReusable: "Eto vash postoyannyy kod: delites im so vsemi druzyami.",
     yourReward: "Vasha nagrada",
-    yourRewardDesc: "Skidka 10% na sleduyushchuyu bronirovaniyu",
+    yourRewardDesc: "20 EUR ili premium-ekstra pri bronirovanii v techenie 14 dney; 10% + besplatnyy ekstra pozzhe",
     bookNow: "Zabronirovat",
   },
   ca: {
     subject: "{name}, comparteix el mar amb els teus amics",
     title: "Comparteix el mar",
     intro: "ens encanta que hagis gaudit de la teva experiència a la Costa Brava. Ara pots regalar aquesta experiència als teus amics.",
-    friendTitle: "15% de descompte per al teu amic",
-    friendDesc: "Comparteix aquest codi amb algú especial",
+    friendTitle: "Pack Premium gratis per al teu amic",
+    friendDesc: "Comparteix el teu codi personal: qui reservi amb ell s'emporta el Pack Premium (valor 30 EUR)",
+    codeReusable: "Es el teu codi de sempre: comparteix-lo amb tots els amics que vulguis.",
     yourReward: "La teva recompensa",
-    yourRewardDesc: "10% en la teva propera reserva",
+    yourRewardDesc: "20 EUR o un extra premium si reserva en 14 dies; 10% + extra gratis si ve mes endavant",
     bookNow: "Reservar ara",
   },
 };

@@ -171,7 +171,7 @@ No. Solo ser mayor de 18 anos. Antes de zarpar te damos un briefing practico de 
 Depende de la temporada. En temporada baja (abril, mayo, junio, septiembre, octubre) si suele haber huecos. En julio y agosto recomendamos reservar con 5-10 dias de antelacion, especialmente para duraciones de 6-8 horas.
 
 **Que pasa si hace mal tiempo?**
-Si las autoridades decretan aviso o las condiciones no son seguras (viento superior a fuerza 4, mar rizada), cambiamos la reserva a otra fecha sin coste o devolvemos el importe. La seguridad manda.
+Si las autoridades decretan aviso o las condiciones no son seguras (viento superior a fuerza 4, mar rizada), cambiamos la reserva a otra fecha sin coste o te damos un bono válido 12 meses (devolución en dinero solo con la Garantía de mal tiempo contratada). La seguridad manda.
 
 **Se puede ir con ninos?**
 Si. Los barcos sin licencia son perfectos para familias. Llevamos chalecos de talla infantil. Para bebes y ninos muy pequenos, recomendamos rutas cortas y cerca de costa.

@@ -175,7 +175,7 @@ Hay tres formas de reservar:
 
 **¿Hasta dónde puedo llegar?** El rango está marcado en el contrato y suele cubrir desde Lloret de Mar al norte hasta Malgrat al sur, dentro de las 2 millas. Cala Sant Francesc, Cala Treumal, Lloret centro, Cala Boadella y Cala Banys son los destinos más habituales en una salida de 3-4 horas.
 
-**¿Y si hace mal tiempo?** Cancelamos por viento >18 nudos o mar gruesa, sin coste. Reprogramamos la fecha o devolvemos el importe íntegro.
+**¿Y si hace mal tiempo?** Cancelamos por viento >18 nudos o mar gruesa, sin coste. Reprogramamos la fecha o te damos un bono válido 12 meses.
 
 **¿Por qué Blanes y no otro puerto?** Es el más cercano si vienes de Barcelona (45 minutos en coche, 1h en tren), tiene parking fácil y tarda 10 minutos en abrirte el acceso a las primeras calas turquesas. Si te queda más cómodo Lloret o Tossa, también podemos recogerte allí desde el barco con un suplemento.
 

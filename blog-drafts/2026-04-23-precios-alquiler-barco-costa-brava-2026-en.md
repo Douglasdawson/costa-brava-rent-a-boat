@@ -197,7 +197,7 @@ Between 1 and 3 business days, depending on your bank. The hold is done on the c
 Yes, +15% on the base price on Saturdays and Sundays. It is a general practice in Costa Brava boat rental.
 
 **Can I cancel if something comes up?**  
-If you cancel more than 7 days in advance, full refund minus admin fees. Less than 7 days, 50% of the amount is retained. We recommend cancellation insurance if you are booking far in advance.
+Free date change up to 7 days before departure, subject to availability. Confirmed bookings with a deposit are not refunded in cash: if bad weather stops the trip we offer a new date at no cost or a 12-month voucher, and a cash refund only with the Weather guarantee.
 
 **Is there a discount for multi-day bookings?**  
 Yes, ask on WhatsApp for 3 or more days on the same boat. Outside August we usually close special rates.

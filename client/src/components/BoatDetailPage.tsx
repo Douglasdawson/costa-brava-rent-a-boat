@@ -812,10 +812,158 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
     ru: "chelovek smotreli ehtu lodku segodnya",
     ca: "persones han vist aquest vaixell avui",
   },
+
+  // === Live-fleet sweep 2026-07-28: strings the CRM serves through /api/boats
+  // that had no entry at all (jet ski / e-foil subtitles, shared extras and
+  // included items). They were reaching every non-Spanish visitor verbatim. ===
+  "Sin licencia · 1-2 personas · Aprende a pilotar en circuito vigilado": {
+    en: "No licence required · 1-2 people · Learn to ride on a supervised circuit",
+    fr: "Sans permis · 1-2 personnes · Apprenez a piloter sur un circuit surveille",
+    de: "Ohne Fuehrerschein · 1-2 Personen · Fahren lernen auf ueberwachtem Parcours",
+    nl: "Geen vaarbewijs · 1-2 personen · Leer varen op een bewaakt parcours",
+    it: "Senza patente · 1-2 persone · Impara a guidare in un circuito sorvegliato",
+    ru: "Bez licenzii · 1-2 cheloveka · Uchites' upravlyat' na ohranyaemoj trasse",
+    ca: "Sense llicencia · 1-2 persones · Apren a pilotar en circuit vigilat",
+  },
+  "Sin licencia · 1-2 personas · Ruta guiada Blanes → Tossa de Mar": {
+    en: "No licence required · 1-2 people · Guided route Blanes → Tossa de Mar",
+    fr: "Sans permis · 1-2 personnes · Itineraire guide Blanes → Tossa de Mar",
+    de: "Ohne Fuehrerschein · 1-2 Personen · Gefuehrte Route Blanes → Tossa de Mar",
+    nl: "Geen vaarbewijs · 1-2 personen · Begeleide route Blanes → Tossa de Mar",
+    it: "Senza patente · 1-2 persone · Itinerario guidato Blanes → Tossa de Mar",
+    ru: "Bez licenzii · 1-2 cheloveka · Ehkskursiya Blanes → Tossa de Mar",
+    ca: "Sense llicencia · 1-2 persones · Ruta guiada Blanes → Tossa de Mar",
+  },
+  "Sin licencia · 1 persona · Vuela sobre el agua con instructor": {
+    en: "No licence required · 1 person · Fly above the water with an instructor",
+    fr: "Sans permis · 1 personne · Volez au-dessus de l'eau avec un moniteur",
+    de: "Ohne Fuehrerschein · 1 Person · Ueber dem Wasser fliegen mit Ausbilder",
+    nl: "Geen vaarbewijs · 1 persoon · Vlieg boven het water met een instructeur",
+    it: "Senza patente · 1 persona · Vola sull'acqua con istruttore",
+    ru: "Bez licenzii · 1 chelovek · Poletajte nad vodoj s instruktorom",
+    ca: "Sense llicencia · 1 persona · Vola sobre l'aigua amb instructor",
+  },
+  Seguro: {
+    en: "Insurance",
+    fr: "Assurance",
+    de: "Versicherung",
+    nl: "Verzekering",
+    it: "Assicurazione",
+    ru: "Strahovanie",
+    ca: "Assegurança",
+  },
+  "Seguro de responsabilidad civil": {
+    en: "Third-party liability insurance",
+    fr: "Assurance responsabilite civile",
+    de: "Haftpflichtversicherung",
+    nl: "Aansprakelijkheidsverzekering",
+    it: "Assicurazione di responsabilita civile",
+    ru: "Strahovanie grazhdanskoj otvetstvennosti",
+    ca: "Assegurança de responsabilitat civil",
+  },
+  Combustible: {
+    en: "Fuel",
+    fr: "Carburant",
+    de: "Kraftstoff",
+    nl: "Brandstof",
+    it: "Carburante",
+    ru: "Toplivo",
+    ca: "Combustible",
+  },
+  "Batería": {
+    en: "Battery",
+    fr: "Batterie",
+    de: "Batterie",
+    nl: "Accu",
+    it: "Batteria",
+    ru: "Akkumulyator",
+    ca: "Bateria",
+  },
+  "Briefing de seguridad": {
+    en: "Safety briefing",
+    fr: "Briefing de securite",
+    de: "Sicherheitseinweisung",
+    nl: "Veiligheidsbriefing",
+    it: "Briefing di sicurezza",
+    ru: "Instruktazh po bezopasnosti",
+    ca: "Briefing de seguretat",
+  },
+  "Chaleco salvavidas": {
+    en: "Life jacket",
+    fr: "Gilet de sauvetage",
+    de: "Rettungsweste",
+    nl: "Reddingsvest",
+    it: "Giubbotto di salvataggio",
+    ru: "Spasatel'nyj zhilet",
+    ca: "Armilla salvavides",
+  },
+  "Material de seguridad": {
+    en: "Safety equipment",
+    fr: "Equipement de securite",
+    de: "Sicherheitsausruestung",
+    nl: "Veiligheidsuitrusting",
+    it: "Attrezzatura di sicurezza",
+    ru: "Snaryazhenie bezopasnosti",
+    ca: "Material de seguretat",
+  },
+  Instructor: {
+    en: "Instructor",
+    fr: "Moniteur",
+    de: "Ausbilder",
+    nl: "Instructeur",
+    it: "Istruttore",
+    ru: "Instruktor",
+    ca: "Instructor",
+  },
+  "Monitor titulado / guía": {
+    en: "Certified instructor / guide",
+    fr: "Moniteur diplome / guide",
+    de: "Zertifizierter Ausbilder / Guide",
+    nl: "Gediplomeerde instructeur / gids",
+    it: "Istruttore qualificato / guida",
+    ru: "Sertificirovannyj instruktor / gid",
+    ca: "Monitor titulat / guia",
+  },
+  "Monitor y vigilancia": {
+    en: "Instructor and supervision",
+    fr: "Moniteur et surveillance",
+    de: "Betreuung und Aufsicht",
+    nl: "Instructeur en toezicht",
+    it: "Istruttore e sorveglianza",
+    ru: "Instruktor i nablyudenie",
+    ca: "Monitor i vigilància",
+  },
+  "Paddle Surf": {
+    en: "Paddleboard (SUP)",
+    fr: "Paddle (SUP)",
+    de: "SUP-Board",
+    nl: "Suppen (SUP)",
+    it: "SUP",
+    ru: "SUP-doska",
+    ca: "Paddle surf",
+  },
+  Snorkel: {
+    en: "Snorkelling gear",
+    fr: "Materiel de snorkeling",
+    de: "Schnorchelset",
+    nl: "Snorkelset",
+    it: "Attrezzatura da snorkeling",
+    ru: "Komplekt dlya snorklinga",
+    ca: "Snorkel",
+  },
+  "Parking delante del Barco": {
+    en: "Parking next to the boat",
+    fr: "Parking devant le bateau",
+    de: "Parkplatz direkt am Boot",
+    nl: "Parkeerplaats naast de boot",
+    it: "Parcheggio davanti alla barca",
+    ru: "Parkovka ryadom s lodkoj",
+    ca: "Pàrquing davant del vaixell",
+  },
 };
 
 /**
- * Lookup key: lowercased, unaccented, whitespace collapsed.
+ * Lookup key: lowercased, unaccented, whitespace collapsed, digits wildcarded.
  *
  * These strings are NOT in the code — they are rows in `boats`, typed from the
  * CRM, so the same item arrives spelled several ways across the fleet ("Toldo
@@ -824,6 +972,12 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
  * languages, with no error anywhere. Five of the eleven strings that were
  * reaching customers untranslated on 2026-07-26 were exactly this: the entry
  * existed, spelled slightly differently.
+ *
+ * Numbers are the same trap with a slower fuse: the entry for the private
+ * excursion said "7 personas" while the fleet row says 6, so every non-Spanish
+ * visitor read the subtitle in Spanish. Digits are wildcarded here and
+ * re-stamped from the live text in translateBoatText, so a capacity change in
+ * the CRM can neither break the translation nor publish a stale figure.
  */
 const normalizeBoatTextKey = (text: string) =>
   text
@@ -831,16 +985,23 @@ const normalizeBoatTextKey = (text: string) =>
     .toLowerCase()
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
-    .replace(/\s+/g, " ");
+    .replace(/\s+/g, " ")
+    .replace(/\d+/g, "#");
 
 const boatTextIndex = new Map(
   Object.entries(boatTextTranslations).map(([key, value]) => [normalizeBoatTextKey(key), value])
 );
 
 /** Translate a Spanish boat text to the current language. Falls back to Spanish original. */
-function translateBoatText(text: string, lang: string): string {
+export function translateBoatText(text: string, lang: string): string {
   if (lang === "es") return text;
-  return boatTextIndex.get(normalizeBoatTextKey(text))?.[lang] ?? text;
+  const hit = boatTextIndex.get(normalizeBoatTextKey(text))?.[lang];
+  if (!hit) return text;
+  const source = text.match(/\d+/g) ?? [];
+  const entry = hit.match(/\d+/g) ?? [];
+  if (source.length !== entry.length) return hit;
+  let i = 0;
+  return hit.replace(/\d+/g, () => source[i++]);
 }
 
 /**

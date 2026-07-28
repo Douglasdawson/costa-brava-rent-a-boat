@@ -32,8 +32,9 @@ export function registerAnalyticsRoutes(app: Express) {
   // can see why booking-request emails are not arriving in production.
   app.get("/api/admin/_diag/email-state", requireAdminSession, async (_req, res) => {
     try {
-      const hasKey = !!process.env.SENDGRID_API_KEY;
-      const keyPrefix = process.env.SENDGRID_API_KEY ? process.env.SENDGRID_API_KEY.slice(0, 6) : null;
+      const hasKey = !!process.env.RESEND_API_KEY;
+      const mailKey = process.env.RESEND_API_KEY;
+      const keyPrefix = mailKey ? mailKey.slice(0, 6) : null;
       const fromEmail = process.env.SENDGRID_FROM_EMAIL || "costabravarentaboat@gmail.com";
       const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "costabravarentaboat@gmail.com";
 
@@ -41,8 +42,8 @@ export function registerAnalyticsRoutes(app: Express) {
       let testSendResult: { ok: boolean; error?: string; response?: number } = { ok: false };
       if (hasKey) {
         try {
-          const sgMail = (await import("@sendgrid/mail")).default;
-          sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+          const sgMail = (await import("../lib/mailTransport")).default;
+          sgMail.setApiKey(process.env.RESEND_API_KEY!);
           const [response] = await sgMail.send({
             to: adminEmail,
             from: { email: fromEmail, name: "Costa Brava Rent a Boat - Diagnostic" },

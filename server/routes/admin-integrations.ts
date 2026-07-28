@@ -32,7 +32,7 @@ function maskFrom(from: string): string {
  * Never returns secret values: only booleans and safe derived facts.
  */
 function buildIntegrationsReport() {
-  const sendgridConfigured = !!process.env.SENDGRID_API_KEY;
+  const sendgridConfigured = !!process.env.RESEND_API_KEY;
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "costabravarentaboat@gmail.com";
 
   const twilioConfigured = isTwilioConfigured();
@@ -58,7 +58,7 @@ function buildIntegrationsReport() {
       configured: sendgridConfigured,
       detail: sendgridConfigured
         ? `Avisos de leads se envían a ${adminEmail}`
-        : "SENDGRID_API_KEY ausente: el equipo NO recibe email de nuevas solicitudes",
+        : "Sin clave de email (RESEND_API_KEY): el equipo NO recibe email de nuevas solicitudes",
     },
     twilioWhatsApp: {
       configured: twilioConfigured && !twilioIsSandbox,

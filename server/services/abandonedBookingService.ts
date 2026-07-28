@@ -153,16 +153,19 @@ async function sendRecoveryEmail(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     // Dynamic import to avoid issues when SendGrid is not configured
-    const sgMail = (await import("@sendgrid/mail")).default;
+    const sgMail = (await import("../lib/mailTransport")).default;
     const { sendgridBreaker } = await import("../lib/circuitBreaker");
 
-    const apiKey = process.env.SENDGRID_API_KEY;
+    const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
-      return { success: false, error: "SendGrid not configured" };
+      return { success: false, error: "Mail transport not configured" };
     }
     sgMail.setApiKey(apiKey);
 
-    const fromEmail = process.env.SENDGRID_FROM_EMAIL || "costabravarentaboat@gmail.com";
+    const fromEmail =
+      process.env.MAIL_FROM_EMAIL ||
+      process.env.SENDGRID_FROM_EMAIL ||
+      "pedidos@costabravarentaboat.com";
 
     const dateStr = booking.startTime.toLocaleDateString("es-ES", {
       weekday: "long",

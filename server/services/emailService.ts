@@ -1,4 +1,6 @@
-import sgMail from "@sendgrid/mail";
+// Resend-backed drop-in for @sendgrid/mail (the SendGrid account cannot send:
+// trial credits have been 0 since 2026-06). Same call shape, so nothing below changes.
+import sgMail from "../lib/mailTransport";
 import type { Booking, Boat, BookingExtra, WhatsappInquiry, ShopOrder, ShopOrderItem } from "@shared/schema";
 import { logger } from "../lib/logger";
 import { sendgridBreaker } from "../lib/circuitBreaker";
@@ -331,19 +333,30 @@ function getEmailStrings(language?: string | null): EmailStrings {
   return EMAIL_STRINGS[lang] || EMAIL_STRINGS.es;
 }
 
-// Lazy initialization for SendGrid
+// Lazy initialization of the mail transport.
 let initialized = false;
 
+/** Kept the SendGrid-era name so the 17 call sites read unchanged. */
 function initSendGrid(): boolean {
-  if (!initialized && process.env.SENDGRID_API_KEY) {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  if (initialized) return true;
+  // Resend only: feeding a leftover SendGrid key to the Resend API would fail
+  // every send with a confusing 401 instead of skipping cleanly.
+  const key = process.env.RESEND_API_KEY;
+  if (key) {
+    sgMail.setApiKey(key);
     initialized = true;
   }
   return initialized;
 }
 
 function getFromEmail(): string {
-  return process.env.SENDGRID_FROM_EMAIL || "costabravarentaboat@gmail.com";
+  // The sending domain has no MX record, so this address only ever sends;
+  // every template sets an explicit replyTo to a mailbox that is actually read.
+  return (
+    process.env.MAIL_FROM_EMAIL ||
+    process.env.SENDGRID_FROM_EMAIL ||
+    "pedidos@costabravarentaboat.com"
+  );
 }
 
 interface EmailResult {

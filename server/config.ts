@@ -12,6 +12,8 @@ const envSchema = z.object({
   STRIPE_SECRET_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().min(1, "STRIPE_WEBHOOK_SECRET is required for payment security").optional(),
   SENDGRID_API_KEY: z.string().optional(),
+  RESEND_API_KEY: z.string().optional(),
+  MAIL_FROM_EMAIL: z.string().optional(),
   META_WHATSAPP_TOKEN: z.string().optional(),
   META_WHATSAPP_PHONE_ID: z.string().optional(),
   META_VERIFY_TOKEN: z.string().optional(),

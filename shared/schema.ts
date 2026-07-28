@@ -3649,7 +3649,11 @@ export const shopOrders = pgTable(
     customerEmail: text("customer_email"),
     deliveryMethod: varchar("delivery_method", { length: 20 }).notNull().default("pickup_port"), // pickup_port | pickup_laura | shipping
     shippingAddress: jsonb("shipping_address"), // copy of Stripe shipping/customer details
+    // Sum of the order lines at full price. The pack discount is NOT folded in
+    // here so that subtotal always equals sum(items); it is subtracted on its
+    // own line, the way the customer sees it on the Stripe receipt.
     subtotalCents: integer("subtotal_cents").notNull(),
+    discountCents: integer("discount_cents").notNull().default(0),
     shippingCents: integer("shipping_cents").notNull().default(0),
     totalCents: integer("total_cents").notNull(),
     status: varchar("status", { length: 12 }).notNull().default("pending"), // pending | paid | fulfilled | cancelled

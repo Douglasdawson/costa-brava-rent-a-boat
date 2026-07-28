@@ -1832,7 +1832,7 @@ export const de: Translations = {
       deposit:
         "Es wird eine <strong>Kaution</strong> verlangt, die bei problemloser Rückgabe des Bootes erstattet wird.",
       freeCancellation:
-        "<strong>Kostenlose Datumsänderung</strong> bei Stornierung mindestens 7 Tage im Voraus.",
+        "<strong>Kostenlose Datumsänderung</strong> bei einer Änderung mindestens 7 Tage im Voraus.",
       licenseRequired:
         "Boote mit Führerschein erfordern eine gültige <strong>Licencia de Navegación oder einen höheren Schein</strong> (PNB/PER). Die spanische Licencia de Navegación genügt für unsere gesamte Flotte mit Führerschein.",
     },
@@ -4525,6 +4525,9 @@ export const de: Translations = {
       subtitle:
         "Eine Capsule Collection, entworfen mit Laura Cabanas, Modedesignerin aus Lloret de Mar: Oversize-Shirt in zwei Farben und Tote Bag, mit der Illustration unseres Bootes vor der Küste.",
       limitedNote: "Limitierte Auflage: weg ist weg.",
+      credit: "Illustration von Laura Cabanas. Fotografiert im Hafen von Blanes.",
+      meta: "3 Teile",
+      cta: "Zu den Teilen",
     },
     products: {
       tee: {
@@ -4547,15 +4550,41 @@ export const de: Translations = {
     sizeLabel: "Groesse",
     viewBack: "Rueckseite ansehen",
     viewFront: "Vorderseite ansehen",
+    viewEditorial: "Auf der Straße",
     addToCart: "In den Warenkorb",
     outOfStock: "Ausverkauft",
     lowStock: "Letzte Stuecke",
+    unitsLeft: "Nur noch {n}",
+    alsoIn: "Auch in {color}",
+    selectSizeFirst: "Wähle deine Größe, um fortzufahren",
+    fitNote: "Unisex Oversize-Schnitt. Wer es enger mag, bestellt eine Größe kleiner.",
+    trust: {
+      pickup: "Kostenlose Abholung im Hafen von Blanes",
+      shipping: "Lieferung aufs spanische Festland in 3 bis 7 Tagen",
+      payment: "Sichere Zahlung per Karte, Apple Pay oder Google Pay",
+    },
+    pack: {
+      title: "Nimm beide",
+      text: "T-Shirt und Tote Bag in einer Bestellung: Das Set ziehen wir beim Bezahlen ab und die Lieferung nach Hause geht auf uns.",
+      saving: "Du sparst",
+      instead: "statt",
+      cta: "T-Shirt wählen",
+    },
+    boatCta: {
+      title: "Das Boot passt nicht in die Tasche",
+      text: "Die Illustration stammt von einem unserer Boote. Das Original wird im Hafen von Blanes stundenweise vermietet, mit oder ohne Führerschein.",
+      cta: "Boote und Preise ansehen",
+    },
     cart: {
       title: "Dein Warenkorb",
       empty: "Dein Warenkorb ist leer. Lege ein Shirt oder eine Tote Bag hinein, um zu starten.",
       quantity: "Menge",
       remove: "Entfernen",
       subtotal: "Zwischensumme",
+      added: "In den Warenkorb gelegt",
+      discount: "Set T-Shirt + Tote",
+      freeShippingReached: "Kostenlose Lieferung nach Hause inklusive",
+      toFreeShipping: "Dir fehlen noch {importe} bis zur kostenlosen Lieferung",
       shippingNote: "Kostenlose Abholung im Hafen von Blanes oder Versand auf das spanische Festland (4,95 EUR). Du waehlst beim Bezahlen.",
       checkout: "Zur Kasse",
       checkoutLoading: "Zahlung wird vorbereitet...",
@@ -4589,6 +4618,7 @@ export const de: Translations = {
       cta: "Weiter einkaufen",
       orderLabel: "Bestellung",
       total: "Bezahlt insgesamt",
+      discount: "Set-Rabatt",
     },
     cancelled: {
       title: "Zahlung abgebrochen",

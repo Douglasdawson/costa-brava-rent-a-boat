@@ -8,8 +8,11 @@ import { getStripe } from "./payments";
 import {
   getShopVariant,
   formatOrderNumber,
+  computeCartTotals,
   SHOP_MAX_QTY_PER_ITEM,
   DEFAULT_SHIPPING_FLAT_CENTS,
+  DEFAULT_PACK_DISCOUNT_CENTS,
+  DEFAULT_FREE_SHIPPING_MIN_CENTS,
 } from "@shared/shopData";
 import { getLocalizedPath } from "@shared/i18n-routes";
 import type { LangCode } from "@shared/seoConstants";
@@ -31,11 +34,30 @@ function isLangCode(value: string): value is LangCode {
   return (SUPPORTED_LANGUAGES as readonly string[]).includes(value);
 }
 
-function shippingFlatCents(): number {
-  const raw = process.env.SHOP_SHIPPING_FLAT_CENTS;
-  if (!raw) return DEFAULT_SHIPPING_FLAT_CENTS;
+function envCents(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
   const parsed = parseInt(raw, 10);
-  return Number.isFinite(parsed) && parsed >= 0 ? parsed : DEFAULT_SHIPPING_FLAT_CENTS;
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
+}
+
+const shippingFlatCents = () => envCents("SHOP_SHIPPING_FLAT_CENTS", DEFAULT_SHIPPING_FLAT_CENTS);
+const packDiscountCents = () => envCents("SHOP_PACK_DISCOUNT_CENTS", DEFAULT_PACK_DISCOUNT_CENTS);
+const freeShippingMinCents = () =>
+  envCents("SHOP_FREE_SHIPPING_MIN_CENTS", DEFAULT_FREE_SHIPPING_MIN_CENTS);
+
+/**
+ * The two commercial levers, resolved server-side and echoed to the client in
+ * /api/shop/catalog. The page previews the same numbers it will be charged, so
+ * changing an env var can never leave the cart promising a discount checkout
+ * does not apply.
+ */
+export function shopOfferConfig() {
+  return {
+    shippingFlatCents: shippingFlatCents(),
+    packDiscountCents: packDiscountCents(),
+    freeShippingMinCents: freeShippingMinCents(),
+  };
 }
 
 const checkoutSchema = z.object({
@@ -64,7 +86,7 @@ export function registerShopRoutes(app: Express) {
   app.get("/api/shop/catalog", async (_req, res) => {
     try {
       const products = await shopRepo.getShopCatalog();
-      res.json({ products });
+      res.json({ products, offers: shopOfferConfig() });
     } catch (error: unknown) {
       logger.error("[Shop] Error fetching catalog", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error al cargar el catalogo" });
@@ -138,14 +160,18 @@ export function registerShopRoutes(app: Express) {
           unitPriceCents: product?.priceCents ?? 0,
         };
       });
-      const subtotalCents = orderItems.reduce((sum, i) => sum + i.unitPriceCents * i.quantity, 0);
+      // Pack and free-shipping thresholds are decided here, never by the client,
+      // with the same function the page used to preview them.
+      const { subtotalCents, packs, discountCents, payableCents, shippingCents } =
+        computeCartTotals(orderItems, shopOfferConfig());
 
       const order = await shopRepo.createShopOrder(
         {
           stripeSessionId: `pending-${randomUUID()}`,
           subtotalCents,
+          discountCents,
           shippingCents: 0,
-          totalCents: subtotalCents,
+          totalCents: payableCents,
           status: "pending",
           language: lang,
         },
@@ -155,6 +181,40 @@ export function registerShopRoutes(app: Express) {
       const baseUrl = process.env.APP_URL || "https://www.costabravarentaboat.com";
       const tiendaPath = getLocalizedPath("tienda", lang);
       const strings = getShopStrings(lang);
+
+      // Checkout has no inline discount: the reduction has to be a coupon object.
+      // A single-use one per session keeps the line items at their real price, so
+      // the receipt reads "camiseta 25, tote 10, pack -5" instead of quietly
+      // selling the tote at 5.
+      let packCoupon: string | undefined;
+      if (discountCents > 0) {
+        try {
+          const coupon = await stripeInstance.coupons.create({
+            amount_off: discountCents,
+            currency: "eur",
+            duration: "once",
+            name: strings.packDiscount,
+            max_redemptions: 1,
+            metadata: { type: "shop_pack", orderId: order.id, packs: String(packs) },
+          });
+          packCoupon = coupon.id;
+        } catch (error: unknown) {
+          // Never block a sale over the discount: charge full price rather than fail.
+          logger.error("[Shop] Could not create pack coupon, charging full price", {
+            orderId: order.id,
+            error: error instanceof Error ? error.message : String(error),
+          });
+        }
+      }
+      if (!packCoupon && discountCents > 0) {
+        await shopRepo.updateShopOrderAmounts(order.id, {
+          shippingCents: 0,
+          totalCents: subtotalCents,
+        });
+      }
+
+      const shippingLabel =
+        shippingCents === 0 ? strings.shippingFree : strings.shipping;
 
       const session = await stripeInstance.checkout.sessions.create({
         mode: "payment",
@@ -167,6 +227,7 @@ export function registerShopRoutes(app: Express) {
           },
           quantity: item.quantity,
         })),
+        ...(packCoupon ? { discounts: [{ coupon: packCoupon }] } : {}),
         shipping_address_collection: { allowed_countries: ["ES"] },
         shipping_options: [
           {
@@ -188,8 +249,8 @@ export function registerShopRoutes(app: Express) {
           {
             shipping_rate_data: {
               type: "fixed_amount",
-              display_name: strings.shipping,
-              fixed_amount: { amount: shippingFlatCents(), currency: "eur" },
+              display_name: shippingLabel,
+              fixed_amount: { amount: shippingCents, currency: "eur" },
               delivery_estimate: {
                 minimum: { unit: "business_day", value: 3 },
                 maximum: { unit: "business_day", value: 7 },
@@ -201,7 +262,13 @@ export function registerShopRoutes(app: Express) {
         expires_at: Math.floor(Date.now() / 1000) + 30 * 60,
         success_url: `${baseUrl}${tiendaPath}?status=success&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${baseUrl}${tiendaPath}?status=cancel`,
-        metadata: { type: "shop_order", orderId: order.id },
+        metadata: {
+          type: "shop_order",
+          orderId: order.id,
+          // With free shipping every rate costs 0, so the amount alone stops
+          // telling pickup and delivery apart. finalize() needs to know.
+          freeShipping: shippingCents === 0 ? "1" : "0",
+        },
       });
 
       await shopRepo.updateShopOrderSessionId(order.id, session.id);
@@ -264,6 +331,7 @@ async function buildOrderSummary(order: {
   orderNumber: number;
   status: string;
   subtotalCents: number;
+  discountCents: number;
   shippingCents: number;
   totalCents: number;
   deliveryMethod: string;
@@ -278,6 +346,7 @@ async function buildOrderSummary(order: {
       unitPriceCents: i.unitPriceCents,
     })),
     subtotalCents: order.subtotalCents,
+    discountCents: order.discountCents,
     shippingCents: order.shippingCents,
     totalCents: order.totalCents,
     deliveryMethod: order.deliveryMethod,
@@ -301,10 +370,13 @@ async function finalizeShopOrderFromSession(
   const shippingDetails = session.collected_information?.shipping_details ?? null;
   const shippingCents = session.shipping_cost?.amount_total ?? 0;
 
-  // Both pickup options are 0 EUR, so the amount alone cannot tell them apart.
-  // Read the chosen shipping rate's metadata.method (set at checkout creation),
-  // re-retrieving the session with the rate expanded. Fall back to the amount.
+  // Both pickup options are 0 EUR, and once the order clears the free-shipping
+  // threshold home delivery is 0 too, so the amount cannot tell them apart at
+  // all. The chosen rate's metadata.method (set at checkout creation) is the
+  // only reliable signal; the amount is a last resort.
+  const freeShipping = session.metadata?.freeShipping === "1";
   let deliveryMethod: string = shippingCents > 0 ? "shipping" : "pickup_port";
+  let methodResolved = false;
   try {
     const full = await getStripe().checkout.sessions.retrieve(session.id, {
       expand: ["shipping_cost.shipping_rate"],
@@ -314,11 +386,20 @@ async function finalizeShopOrderFromSession(
       rate && typeof rate !== "string" ? rate.metadata?.method : undefined;
     if (method === "pickup_port" || method === "pickup_laura" || method === "shipping") {
       deliveryMethod = method;
+      methodResolved = true;
     }
   } catch (err: unknown) {
     logger.warn("[Shop] Could not resolve shipping method from rate metadata", {
       orderId,
       error: err instanceof Error ? err.message : String(err),
+    });
+  }
+  if (!methodResolved && freeShipping) {
+    // Unresolvable: guess "shipping", because forgetting to post a parcel is a
+    // worse failure than expecting a pickup that turns out to be a delivery.
+    deliveryMethod = "shipping";
+    logger.error("[Shop] Delivery method unresolved on a free-shipping order, assuming shipping", {
+      orderId,
     });
   }
 

@@ -12,6 +12,8 @@ export interface ShopLangStrings {
   pickup: string;
   pickupLaura: string;
   shipping: string;
+  shippingFree: string;
+  packDiscount: string;
   orderConfirmedSubject: string;
   orderConfirmedTitle: string;
   orderConfirmedIntro: string;
@@ -40,6 +42,8 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     pickup: "Recogida en el Puerto de Blanes (gratis)",
     pickupLaura: "Recogida en Laura Cabanas, Lloret de Mar (gratis)",
     shipping: "Envio a domicilio (Espana peninsular)",
+    shippingFree: "Envio a domicilio GRATIS (Espana peninsular)",
+    packDiscount: "Pack camiseta + tote bag",
     orderConfirmedSubject: "Pedido confirmado",
     orderConfirmedTitle: "Tu pedido esta confirmado",
     orderConfirmedIntro: "Gracias por tu compra. Aqui tienes el resumen:",
@@ -59,6 +63,8 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     pickup: "Pickup at the Port of Blanes (free)",
     pickupLaura: "Pickup at Laura Cabanas store, Lloret de Mar (free)",
     shipping: "Home delivery (mainland Spain)",
+    shippingFree: "FREE home delivery (mainland Spain)",
+    packDiscount: "T-shirt + tote bag bundle",
     orderConfirmedSubject: "Order confirmed",
     orderConfirmedTitle: "Your order is confirmed",
     orderConfirmedIntro: "Thank you for your purchase. Here is your summary:",
@@ -78,6 +84,8 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     pickup: "Recollida al Port de Blanes (gratis)",
     pickupLaura: "Recollida a Laura Cabanas, Lloret de Mar (gratis)",
     shipping: "Enviament a domicili (Espanya peninsular)",
+    shippingFree: "Enviament a domicili GRATIS (Espanya peninsular)",
+    packDiscount: "Pack samarreta + tote bag",
     orderConfirmedSubject: "Comanda confirmada",
     orderConfirmedTitle: "La teva comanda esta confirmada",
     orderConfirmedIntro: "Gracies per la teva compra. Aqui tens el resum:",
@@ -97,6 +105,8 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     pickup: "Retrait au Port de Blanes (gratuit)",
     pickupLaura: "Retrait chez Laura Cabanas, Lloret de Mar (gratuit)",
     shipping: "Livraison a domicile (Espagne peninsulaire)",
+    shippingFree: "Livraison a domicile GRATUITE (Espagne peninsulaire)",
+    packDiscount: "Pack t-shirt + tote bag",
     orderConfirmedSubject: "Commande confirmee",
     orderConfirmedTitle: "Votre commande est confirmee",
     orderConfirmedIntro: "Merci pour votre achat. Voici le recapitulatif :",
@@ -116,6 +126,8 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     pickup: "Abholung im Hafen von Blanes (kostenlos)",
     pickupLaura: "Abholung im Laura-Cabanas-Store, Lloret de Mar (kostenlos)",
     shipping: "Lieferung nach Hause (spanisches Festland)",
+    shippingFree: "KOSTENLOSE Lieferung nach Hause (spanisches Festland)",
+    packDiscount: "Set T-Shirt + Tote Bag",
     orderConfirmedSubject: "Bestellung bestaetigt",
     orderConfirmedTitle: "Ihre Bestellung ist bestaetigt",
     orderConfirmedIntro: "Vielen Dank fuer Ihren Einkauf. Hier ist Ihre Uebersicht:",
@@ -135,6 +147,8 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     pickup: "Ophalen in de haven van Blanes (gratis)",
     pickupLaura: "Ophalen bij Laura Cabanas, Lloret de Mar (gratis)",
     shipping: "Thuisbezorging (Spaans vasteland)",
+    shippingFree: "GRATIS thuisbezorging (Spaans vasteland)",
+    packDiscount: "Pakket T-shirt + tote bag",
     orderConfirmedSubject: "Bestelling bevestigd",
     orderConfirmedTitle: "Je bestelling is bevestigd",
     orderConfirmedIntro: "Bedankt voor je aankoop. Hier is je overzicht:",
@@ -154,6 +168,8 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     pickup: "Ritiro al Porto di Blanes (gratuito)",
     pickupLaura: "Ritiro da Laura Cabanas, Lloret de Mar (gratuito)",
     shipping: "Consegna a domicilio (Spagna peninsulare)",
+    shippingFree: "Consegna a domicilio GRATUITA (Spagna peninsulare)",
+    packDiscount: "Pacchetto t-shirt + tote bag",
     orderConfirmedSubject: "Ordine confermato",
     orderConfirmedTitle: "Il tuo ordine e confermato",
     orderConfirmedIntro: "Grazie per il tuo acquisto. Ecco il riepilogo:",
@@ -173,6 +189,8 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     pickup: "Samovyvoz iz porta Blanes (besplatno)",
     pickupLaura: "Samovyvoz v magazine Laura Cabanas, Lloret de Mar (besplatno)",
     shipping: "Dostavka na dom (materikovaya Ispaniya)",
+    shippingFree: "BESPLATNAYA dostavka na dom (materikovaya Ispaniya)",
+    packDiscount: "Nabor: futbolka + sumka-shopper",
     orderConfirmedSubject: "Zakaz podtverzhden",
     orderConfirmedTitle: "Vash zakaz podtverzhden",
     orderConfirmedIntro: "Spasibo za pokupku. Vot svodka zakaza:",

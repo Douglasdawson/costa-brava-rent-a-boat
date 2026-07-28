@@ -4557,6 +4557,9 @@ export const en: Translations = {
       subtitle:
         "A capsule collection designed with Laura Cabanas, a fashion designer from Lloret de Mar: an oversize tee in two colors and a tote bag, featuring the illustration of our boat sailing the coast.",
       limitedNote: "Limited edition: once it is gone, it is gone.",
+      credit: "Illustration by Laura Cabanas. Shot at the port of Blanes.",
+      meta: "3 pieces",
+      cta: "See the pieces",
     },
     products: {
       tee: {
@@ -4579,15 +4582,41 @@ export const en: Translations = {
     sizeLabel: "Size",
     viewBack: "View back",
     viewFront: "View front",
+    viewEditorial: "On the street",
     addToCart: "Add to cart",
     outOfStock: "Sold out",
     lowStock: "Last units",
+    unitsLeft: "Only {n} left",
+    alsoIn: "Also in {color}",
+    selectSizeFirst: "Pick your size to continue",
+    fitNote: "Unisex oversized fit. If you want it closer to the body, order one size down.",
+    trust: {
+      pickup: "Free pickup at the port of Blanes",
+      shipping: "Delivery across mainland Spain in 3 to 7 days",
+      payment: "Secure payment by card, Apple Pay or Google Pay",
+    },
+    pack: {
+      title: "Take both",
+      text: "T-shirt and tote bag in the same order: we take the bundle off at checkout and home delivery is on us.",
+      saving: "You save",
+      instead: "instead of",
+      cta: "Choose a t-shirt",
+    },
+    boatCta: {
+      title: "The boat will not fit in the bag",
+      text: "The illustration comes from one of our boats. The original rents by the hour at the port of Blanes, with or without a licence.",
+      cta: "See boats and prices",
+    },
     cart: {
       title: "Your cart",
       empty: "Your cart is empty. Add a tee or a tote bag to get started.",
       quantity: "Quantity",
       remove: "Remove",
       subtotal: "Subtotal",
+      added: "Added to your cart",
+      discount: "T-shirt + tote bundle",
+      freeShippingReached: "Free home delivery included",
+      toFreeShipping: "You are {importe} away from free delivery",
       shippingNote: "Free pickup at the port of Blanes or shipping to mainland Spain (4.95 EUR). You choose at checkout.",
       checkout: "Checkout",
       checkoutLoading: "Preparing payment...",
@@ -4621,6 +4650,7 @@ export const en: Translations = {
       cta: "Keep shopping",
       orderLabel: "Order",
       total: "Total paid",
+      discount: "Bundle discount",
     },
     cancelled: {
       title: "Payment cancelled",
@@ -4860,7 +4890,7 @@ export const en: Translations = {
         },
         {
           question: 'What happens if the sea is rough?',
-          answer: 'If the forecast shows >20 sustained knots or a warning for waves >1.5 m, we cancel at no cost. The Blanes–Fenals stretch is protected from the Tramuntana by the coast itself, so it\'s one of the safest for beginners even with northerly winds.',
+          answer: 'If the forecast shows >20 sustained knots or a warning for waves >1.5 m, we do not sail and move your date at no cost; if no date works, you get a voucher valid for 12 months. The Blanes–Fenals stretch is protected from the Tramuntana by the coast itself, so it\'s one of the safest for beginners even with northerly winds.',
         },
         {
           question: 'How do I get from Lloret de Mar to the Port of Blanes?',

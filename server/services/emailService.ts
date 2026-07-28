@@ -1875,12 +1875,19 @@ export async function sendShopOrderConfirmation(
     order.shippingCents > 0
       ? `<p style="margin:4px 0; color:#475569; font-size:14px;">${strings.shippingCostLabel}: ${formatEuros(order.shippingCents)}</p>`
       : "";
+  // Line items are billed at full price, so without this line the total does
+  // not add up for anyone who bought the bundle.
+  const discountLine =
+    order.discountCents > 0
+      ? `<p style="margin:4px 0; color:#15803d; font-size:14px;">${strings.packDiscount}: -${formatEuros(order.discountCents)}</p>`
+      : "";
 
   const content = `
     <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:22px;">${strings.orderConfirmedTitle}</h2>
     <p style="color:#475569; font-size:15px; margin:0 0 16px;">${strings.orderConfirmedIntro}</p>
     <h3 style="margin:16px 0 4px; color:#1e3a5f; font-size:16px;">${strings.orderSummary}</h3>
     ${shopItemsTable(items, order.language)}
+    ${discountLine}
     ${shippingLine}
     <p style="margin:4px 0 16px; color:#1e3a5f; font-size:16px; font-weight:bold;">${strings.totalLabel}: ${formatEuros(order.totalCents)}</p>
     <div style="background:#f1f5f9; border-radius:8px; padding:16px; margin:16px 0; font-size:14px; color:#334155;">
@@ -1936,6 +1943,8 @@ export async function sendShopOrderOwnerNotification(
     <p style="margin:4px 0; color:#334155; font-size:14px;">Entrega: <strong>${order.deliveryMethod === "shipping" ? "Envio a domicilio" : order.deliveryMethod === "pickup_laura" ? "Recogida en Laura Cabanas (Lloret)" : "Recogida en el puerto"}</strong></p>
     ${addressLine ? `<p style="margin:4px 0; color:#334155; font-size:14px;">Direccion: ${addressLine}</p>` : ""}
     ${shopItemsTable(items, "es")}
+    ${order.discountCents > 0 ? `<p style="margin:4px 0; color:#15803d; font-size:14px;">Descuento pack: -${formatEuros(order.discountCents)}</p>` : ""}
+    ${order.shippingCents > 0 ? `<p style="margin:4px 0; color:#475569; font-size:14px;">Envio: ${formatEuros(order.shippingCents)}</p>` : ""}
     <p style="margin:4px 0; color:#1e3a5f; font-size:16px; font-weight:bold;">Total: ${formatEuros(order.totalCents)}</p>
     ${shortfallBlock}
     <p style="margin:20px 0 0; color:#94a3b8; font-size:12px;">Pedido: <code>${order.id}</code></p>

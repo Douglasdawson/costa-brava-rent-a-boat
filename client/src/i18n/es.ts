@@ -1857,7 +1857,7 @@ export const es: Translations = {
         {
           question: "¿Qué pasa si el mar está malo?",
           answer:
-            "Si la previsión marca >20 nudos sostenidos o alerta por olas >1.5 m, cancelamos sin coste. El tramo Blanes–Fenals está protegido de la Tramuntana por la propia costa, así que es de los más seguros para principiantes incluso con viento del norte.",
+            "Si la previsión marca >20 nudos sostenidos o alerta por olas >1.5 m, no salimos y te cambiamos la fecha sin coste; si no logramos acordar ninguna, recibes un bono válido 12 meses. El tramo Blanes–Fenals está protegido de la Tramuntana por la propia costa, así que es de los más seguros para principiantes incluso con viento del norte.",
         },
         {
           question: "¿Cómo llego de Lloret de Mar al Puerto de Blanes?",
@@ -5845,6 +5845,9 @@ export const es: Translations = {
       subtitle:
         "Una colección cápsula diseñada junto a Laura Cabanas, diseñadora de Lloret de Mar: camiseta oversize en dos colores y tote bag, con la ilustración de nuestro barco navegando la costa.",
       limitedNote: "Edición limitada: cuando se acaba, se acaba.",
+      credit: "Ilustración de Laura Cabanas. Fotografiado en el puerto de Blanes.",
+      meta: "3 piezas",
+      cta: "Ver las piezas",
     },
     products: {
       tee: {
@@ -5867,15 +5870,43 @@ export const es: Translations = {
     sizeLabel: "Talla",
     viewBack: "Ver espalda",
     viewFront: "Ver delante",
+    viewEditorial: "En la calle",
     addToCart: "Añadir al carrito",
     outOfStock: "Agotado",
     lowStock: "Últimas unidades",
+    unitsLeft: "Quedan {n}",
+    alsoIn: "También en {color}",
+    selectSizeFirst: "Elige tu talla para continuar",
+    fitNote: "Corte oversize unisex. Si la quieres más ajustada, pide una talla menos.",
+    trust: {
+      pickup: "Recogida gratis en el puerto de Blanes",
+      shipping: "Envío a la España peninsular en 3 a 7 días",
+      payment: "Pago seguro con tarjeta, Apple Pay o Google Pay",
+    },
+    pack: {
+      title: "Llévate las dos",
+      text:
+        "Camiseta y tote bag en el mismo pedido: te descontamos el pack en el pago y el envío a domicilio te sale gratis.",
+      saving: "Ahorras",
+      instead: "en vez de",
+      cta: "Elegir camiseta",
+    },
+    boatCta: {
+      title: "El barco no cabe en la bolsa",
+      text:
+        "La ilustración sale de uno de nuestros barcos. El original se alquila por horas en el puerto de Blanes, con o sin licencia.",
+      cta: "Ver barcos y precios",
+    },
     cart: {
       title: "Tu carrito",
       empty: "Tu carrito está vacío. Añade una camiseta o un tote bag para empezar.",
       quantity: "Cantidad",
       remove: "Quitar",
       subtotal: "Subtotal",
+      added: "Añadido al carrito",
+      discount: "Pack camiseta + tote",
+      freeShippingReached: "Envío a domicilio gratis incluido",
+      toFreeShipping: "Te faltan {importe} para el envío gratis",
       shippingNote: "Recogida gratis (puerto de Blanes o tienda de Laura Cabanas en Lloret) o envío a la España peninsular (4,95 EUR). Lo eliges en el pago.",
       checkout: "Tramitar pedido",
       checkoutLoading: "Preparando el pago...",
@@ -5909,6 +5940,7 @@ export const es: Translations = {
       cta: "Seguir comprando",
       orderLabel: "Pedido",
       total: "Total pagado",
+      discount: "Descuento pack",
     },
     cancelled: {
       title: "Pago cancelado",

@@ -3039,7 +3039,15 @@ export interface Translations {
     seoTitle: string;
     seoDescription: string;
     navLabel: string;
-    hero: { collabBadge: string; title: string; subtitle: string; limitedNote: string };
+    hero: {
+      collabBadge: string;
+      title: string;
+      subtitle: string;
+      limitedNote: string;
+      credit: string;
+      meta: string;
+      cta: string;
+    };
     products: {
       tee: { name: string; description: string };
       tote: { name: string; description: string };
@@ -3049,15 +3057,36 @@ export interface Translations {
     sizeLabel: string;
     viewBack: string;
     viewFront: string;
+    viewEditorial: string;
     addToCart: string;
     outOfStock: string;
     lowStock: string;
+    /** Sentence with a {n} placeholder for the remaining unit count. */
+    unitsLeft: string;
+    /** Sentence with a {color} placeholder for the other colourway. */
+    alsoIn: string;
+    selectSizeFirst: string;
+    fitNote: string;
+    trust: { pickup: string; shipping: string; payment: string };
+    pack: {
+      title: string;
+      text: string;
+      saving: string;
+      instead: string;
+      cta: string;
+    };
+    boatCta: { title: string; text: string; cta: string };
     cart: {
       title: string;
       empty: string;
       quantity: string;
       remove: string;
       subtotal: string;
+      added: string;
+      discount: string;
+      freeShippingReached: string;
+      /** Sentence with a {importe} placeholder for the missing amount. */
+      toFreeShipping: string;
       shippingNote: string;
       checkout: string;
       checkoutLoading: string;
@@ -3085,6 +3114,7 @@ export interface Translations {
       cta: string;
       orderLabel: string;
       total: string;
+      discount: string;
     };
     cancelled: { title: string; text: string };
     faqTitle: string;

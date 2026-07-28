@@ -24,13 +24,17 @@ export interface ShopVariantDef {
   size?: ShopSize;
 }
 
+/** How a gallery frame should be labelled in the thumbnail strip. */
+export type ShopShotKind = "editorial" | "front" | "back";
+
+export interface ShopShot {
+  src: string;
+  kind: ShopShotKind;
+}
+
 export interface ShopProductImage {
-  /** Main card image (editorial photo). */
-  main: string;
-  /** Optional alternate view (flat mockup of the other side). */
-  alt?: string;
-  /** True when the ALTERNATE image shows the back of the garment. */
-  altShowsBack?: boolean;
+  /** Gallery for this colour, first frame leads. */
+  shots: ShopShot[];
 }
 
 export interface ShopProductDef {
@@ -61,14 +65,18 @@ export const SHOP_PRODUCTS: ShopProductDef[] = [
     colors: ["butter", "navy"],
     images: {
       butter: {
-        main: "/images/shop/camiseta-costa-brava-culture-butter-editorial.webp",
-        alt: "/images/shop/camiseta-costa-brava-culture-butter-back.webp",
-        altShowsBack: true,
+        shots: [
+          { src: "/images/shop/camiseta-costa-brava-culture-butter-editorial.webp", kind: "editorial" },
+          { src: "/images/shop/camiseta-costa-brava-culture-butter-front.webp", kind: "front" },
+          { src: "/images/shop/camiseta-costa-brava-culture-butter-back.webp", kind: "back" },
+        ],
       },
       navy: {
-        main: "/images/shop/camiseta-costa-brava-culture-navy-editorial.webp",
-        alt: "/images/shop/camiseta-costa-brava-culture-navy-front.webp",
-        altShowsBack: false,
+        shots: [
+          { src: "/images/shop/camiseta-costa-brava-culture-navy-editorial.webp", kind: "editorial" },
+          { src: "/images/shop/camiseta-costa-brava-culture-navy-front.webp", kind: "front" },
+          { src: "/images/shop/camiseta-costa-brava-culture-navy-back.webp", kind: "back" },
+        ],
       },
     },
     variants: TEE_VARIANTS,
@@ -81,12 +89,104 @@ export const SHOP_PRODUCTS: ShopProductDef[] = [
     colors: ["royal"],
     images: {
       royal: {
-        main: "/images/shop/tote-bag-costa-brava-editorial.webp",
+        shots: [
+          { src: "/images/shop/tote-bag-costa-brava-editorial.webp", kind: "editorial" },
+          { src: "/images/shop/tote-bag-costa-brava-royal.webp", kind: "front" },
+        ],
       },
     },
     variants: [{ sku: "tote-royal", color: "royal" }],
   },
 ];
+
+/** Product ids the "tee + tote" bundle is built from. */
+export const PACK_TEE_PRODUCT_ID = "camiseta-costa-brava-culture";
+export const PACK_TOTE_PRODUCT_ID = "tote-bag-costa-brava";
+
+/** Flat shipping rate for Spain in euro cents (overridable via env). */
+export const DEFAULT_SHIPPING_FLAT_CENTS = 495;
+
+/** Discount in euro cents applied per tee+tote pair in the cart. */
+export const DEFAULT_PACK_DISCOUNT_CENTS = 500;
+
+/**
+ * Cart subtotal (after the pack discount) from which home delivery is free.
+ * Set below the discounted pack price on purpose: one tee plus one tote lands
+ * exactly on free shipping, which is what makes the bundle worth building.
+ */
+export const DEFAULT_FREE_SHIPPING_MIN_CENTS = 3000;
+
+/**
+ * How many tee+tote pairs a cart contains. The discount is per pair, so two
+ * tees and one tote is one pack, not two.
+ */
+export function countPacks(
+  items: { sku: string; quantity: number }[],
+): number {
+  let tees = 0;
+  let totes = 0;
+  for (const item of items) {
+    const entry = getShopVariant(item.sku);
+    if (!entry) continue;
+    if (entry.product.id === PACK_TEE_PRODUCT_ID) tees += item.quantity;
+    else if (entry.product.id === PACK_TOTE_PRODUCT_ID) totes += item.quantity;
+  }
+  return Math.min(tees, totes);
+}
+
+/** The two offer levers, resolved server-side and echoed in /api/shop/catalog. */
+export interface ShopOffers {
+  shippingFlatCents: number;
+  packDiscountCents: number;
+  freeShippingMinCents: number;
+}
+
+export const DEFAULT_SHOP_OFFERS: ShopOffers = {
+  shippingFlatCents: DEFAULT_SHIPPING_FLAT_CENTS,
+  packDiscountCents: DEFAULT_PACK_DISCOUNT_CENTS,
+  freeShippingMinCents: DEFAULT_FREE_SHIPPING_MIN_CENTS,
+};
+
+export interface CartTotals {
+  /** Sum of the lines at full price. */
+  subtotalCents: number;
+  packs: number;
+  discountCents: number;
+  /** What the goods cost after the pack discount, before delivery. */
+  payableCents: number;
+  /** Home delivery cost for this cart (0 once the threshold is cleared). */
+  shippingCents: number;
+  /** Cents still missing for free delivery, 0 when already free. */
+  toFreeShippingCents: number;
+}
+
+/**
+ * Single source of truth for cart money. The page previews exactly what the
+ * checkout endpoint will charge, so the two can never disagree.
+ */
+export function computeCartTotals(
+  items: { sku: string; quantity: number; unitPriceCents: number }[],
+  offers: ShopOffers = DEFAULT_SHOP_OFFERS,
+): CartTotals {
+  const subtotalCents = items.reduce(
+    (sum, item) => sum + item.unitPriceCents * item.quantity,
+    0,
+  );
+  const packs = countPacks(items);
+  const discountCents = Math.min(packs * offers.packDiscountCents, subtotalCents);
+  const payableCents = subtotalCents - discountCents;
+  const free = payableCents >= offers.freeShippingMinCents;
+  return {
+    subtotalCents,
+    packs,
+    discountCents,
+    payableCents,
+    shippingCents: free ? 0 : offers.shippingFlatCents,
+    // An empty cart is not "5 EUR away from free shipping", it is just empty.
+    toFreeShippingCents:
+      free || subtotalCents === 0 ? 0 : offers.freeShippingMinCents - payableCents,
+  };
+}
 
 /** Seed stock per SKU — only used when the variant row is missing in DB. */
 export const DEFAULT_INITIAL_STOCK: Record<string, number> = {
@@ -100,9 +200,6 @@ export const DEFAULT_INITIAL_STOCK: Record<string, number> = {
   "tee-navy-XL": 5,
   "tote-royal": 20,
 };
-
-/** Flat shipping rate for Spain in euro cents (overridable via env). */
-export const DEFAULT_SHIPPING_FLAT_CENTS = 495;
 
 /** Max units of a single SKU per order. */
 export const SHOP_MAX_QTY_PER_ITEM = 10;

@@ -16,6 +16,8 @@ import { buildCoreFacts } from "../shared/aiCitationFacts";
 import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
 import { BOAT_DATA, applyFleetStatsToText } from "../shared/boatData";
 import { getFleetStats } from "./lib/fleetStatsCache";
+import { getShopStats } from "./lib/shopStatsCache";
+import { SHOP_PRODUCTS } from "../shared/shopData";
 import { NAUTICAL_GLOSSARY_ES } from "../shared/nauticalGlossary";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
@@ -2619,6 +2621,61 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
 </p>
       `.trim();
       return { meta, jsonLd, availableLanguages, bodyFallback };
+    }
+
+    // /tienda - Product schema per colourway + FAQPage.
+    // These schemas used to be emitted only by the client SEO component, which
+    // self-disables whenever a non-client ld+json tag is already in the document
+    // — and index.html ships one (LocalBusiness + WebSite) on every page. Net
+    // effect: the shop's price and availability markup never reached the DOM at
+    // all. Mirroring it here is the same contract STATIC_META already follows
+    // for titles (see the seo-config mirror rule in CLAUDE.md).
+    else if (metaKey === "/tienda") {
+      const sp = (I18N_BY_LANG[lang] ?? i18nEs).shopPage;
+      const stats = getShopStats();
+      const products = SHOP_PRODUCTS.flatMap((product) =>
+        product.colors.map((color) => {
+          const info = product.i18nKey === "tee" ? sp.products.tee : sp.products.tote;
+          const live = stats.find((p) => p.productId === product.id);
+          const colorLabel = sp.colors[color] ?? color;
+          return {
+            "@type": "Product",
+            "@id": `${BASE_URL}${metaKey}#${product.id}-${color}`,
+            name: product.colors.length > 1 ? `${info.name} (${colorLabel})` : info.name,
+            description: info.description,
+            image: (product.images[color]?.shots ?? []).map((shot) => `${BASE_URL}${shot.src}`),
+            color: colorLabel,
+            brand: { "@type": "Brand", name: "Costa Brava Rent a Boat x Laura Cabanas" },
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "EUR",
+              price: ((live?.priceCents ?? product.defaultPriceCents) / 100).toFixed(2),
+              availability: live?.inStockByColor[color] !== false
+                ? "https://schema.org/InStock"
+                : "https://schema.org/OutOfStock",
+              url: `${BASE_URL}${getLocalizedPath("tienda", lang)}`,
+            },
+          };
+        }),
+      );
+      const shopFaq = {
+        "@type": "FAQPage",
+        "@id": `${BASE_URL}${metaKey}#faq`,
+        mainEntity: sp.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([
+        homeCrumb,
+        { name: sp.navLabel, url: `${BASE_URL}${getLocalizedPath("tienda", lang)}` },
+      ]);
+      return {
+        meta,
+        jsonLd: { "@context": "https://schema.org", "@graph": [...products, shopFaq, breadcrumb] },
+        availableLanguages,
+      };
     }
 
     // /faq - FAQPage schema (critical for AI search extraction)

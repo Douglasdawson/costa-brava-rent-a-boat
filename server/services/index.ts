@@ -9,6 +9,7 @@ export {
 import { startScheduler } from "./schedulerService";
 import { initBusinessStatsCache } from "../lib/businessStatsCache";
 import { initFleetStatsCache } from "../lib/fleetStatsCache";
+import { initShopStatsCache } from "../lib/shopStatsCache";
 import { logger } from "../lib/logger";
 import { BUSINESS_OSM_ID, BUSINESS_WIKIDATA_QID } from "../../shared/businessProfile";
 
@@ -22,6 +23,7 @@ export function startScheduledServices(): void {
   void initBusinessStatsCache();
   // Warm up the live fleet stats cache (active boat count + price floor) for SSR
   void initFleetStatsCache();
+  void initShopStatsCache();
   // GEO entity-resolution reminder: ChatGPT/Claude/Perplexity read OpenStreetMap
   // (and Wikidata) to resolve physical businesses. While these IDs are empty the
   // JSON-LD sameAs[] omits them. Manual step: docs/handoff/2026-05-24-ai-pending-manual-steps.md

@@ -1723,7 +1723,6 @@ export const fr: Translations = {
     insurance: "Assurance bateau et passagers",
     safetyEquipment: "Équipement de sécurité complet",
     briefing: "Formation de 15 min incluse",
-    freeCancellation: "Changement de date gratuit",
     securePayment: "Réservation sécurisée",
     gpsAndSonar: "GPS et sondeur inclus",
     professionalSkipper: "Skipper professionnel inclus",

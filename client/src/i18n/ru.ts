@@ -1709,7 +1709,6 @@ export const ru: Translations = {
     insurance: "Страхование судна и пассажиров",
     safetyEquipment: "Полный комплект оборудования безопасности",
     briefing: "15-минутный инструктаж включён",
-    freeCancellation: "Бесплатный перенос даты",
     securePayment: "Безопасное бронирование",
     gpsAndSonar: "GPS и эхолот включены",
     professionalSkipper: "Профессиональный шкипер включён",

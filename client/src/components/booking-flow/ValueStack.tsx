@@ -12,29 +12,31 @@ export function ValueStack({ requiresLicense, isExcursion, t }: ValueStackProps)
   if (!vs) return null;
 
   // Build item list based on boat type
-  // Sin licencia: fuel, insurance, safety, briefing, cancellation, secure payment
-  // Con licencia: insurance, safety, GPS & sonar, cancellation, secure payment
-  // Excursion privada: skipper, insurance, safety, cancellation, secure payment
+  // Sin licencia: fuel, insurance, safety, briefing, secure payment
+  // Con licencia: insurance, safety, GPS & sonar, secure payment
+  // Excursion privada: skipper, insurance, safety, secure payment
+  //
+  // El cambio de fecha gratis NO se lista aquí a propósito (jul-2026): anunciarlo
+  // como incluido regala lo que la garantía de mal tiempo (10€) intenta vender, y
+  // el cliente leía que ya lo tenía. La política sigue vigente y se explica en
+  // /garantias y en condiciones generales.
   const items: string[] = [];
 
   if (isExcursion) {
     items.push(vs.professionalSkipper);
     items.push(vs.insurance);
     items.push(vs.safetyEquipment);
-    items.push(vs.freeCancellation);
     items.push(vs.securePayment);
   } else if (requiresLicense) {
     items.push(vs.insurance);
     items.push(vs.safetyEquipment);
     items.push(vs.gpsAndSonar);
-    items.push(vs.freeCancellation);
     items.push(vs.securePayment);
   } else {
     items.push(vs.fuelIncluded);
     items.push(vs.insurance);
     items.push(vs.safetyEquipment);
     items.push(vs.briefing);
-    items.push(vs.freeCancellation);
     items.push(vs.securePayment);
   }
 

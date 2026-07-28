@@ -1715,7 +1715,6 @@ export const nl: Translations = {
     insurance: "Verzekering voor boot en inzittenden",
     safetyEquipment: "Volledige veiligheidsuitrusting",
     briefing: "Instructie van 15 min inbegrepen",
-    freeCancellation: "Gratis datum wijzigen",
     securePayment: "Veilige boeking",
     gpsAndSonar: "GPS en dieptemeter inbegrepen",
     professionalSkipper: "Professionele schipper inbegrepen",

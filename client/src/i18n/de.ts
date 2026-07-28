@@ -1720,7 +1720,6 @@ export const de: Translations = {
     insurance: "Versicherung für Boot und Insassen",
     safetyEquipment: "Komplette Sicherheitsausrüstung",
     briefing: "15-minütige Einweisung inklusive",
-    freeCancellation: "Kostenlose Terminänderung",
     securePayment: "Sichere Buchung",
     gpsAndSonar: "GPS und Echolot inklusive",
     professionalSkipper: "Professioneller Skipper inklusive",

@@ -1713,7 +1713,6 @@ export const ca: Translations = {
     insurance: "Assegurança de l'embarcació i ocupants",
     safetyEquipment: "Equip de seguretat complet",
     briefing: "Formació de 15 min inclosa",
-    freeCancellation: "Canvi de data gratuït",
     securePayment: "Reserva segura",
     gpsAndSonar: "GPS i sonda inclosos",
     professionalSkipper: "Patró professional inclòs",

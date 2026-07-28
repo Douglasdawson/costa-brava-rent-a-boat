@@ -2269,7 +2269,6 @@ export interface Translations {
     insurance: string;
     safetyEquipment: string;
     briefing: string;
-    freeCancellation: string;
     securePayment: string;
     gpsAndSonar: string;
     professionalSkipper: string;

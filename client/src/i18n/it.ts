@@ -1712,7 +1712,6 @@ export const it: Translations = {
     insurance: "Assicurazione imbarcazione e occupanti",
     safetyEquipment: "Equipaggiamento di sicurezza completo",
     briefing: "Briefing di 15 min incluso",
-    freeCancellation: "Cambio data gratuito",
     securePayment: "Prenotazione sicura",
     gpsAndSonar: "GPS e ecoscandaglio inclusi",
     professionalSkipper: "Skipper professionista incluso",

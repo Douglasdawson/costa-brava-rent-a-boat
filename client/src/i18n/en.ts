@@ -1769,7 +1769,6 @@ export const en: Translations = {
     insurance: "Boat and passenger insurance",
     safetyEquipment: "Complete safety equipment",
     briefing: "15-min training included",
-    freeCancellation: "Free date change",
     securePayment: "Secure booking",
     gpsAndSonar: "GPS and sonar included",
     professionalSkipper: "Professional skipper included",

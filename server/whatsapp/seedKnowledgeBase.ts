@@ -399,7 +399,7 @@ const FAQS_FR = [
   },
   {
     title: "Politique d'annulation",
-    content: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Mauvais temps : reprogrammation sans frais ou remboursement intégral de l'acompte. Les réservations confirmées avec acompte ne sont pas remboursables hors cas de mauvais temps.",
+    content: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
     category: "policy",
     keywords: ["annulation", "annuler", "remboursement", "reprogrammer"],
     priority: 9,
@@ -516,7 +516,7 @@ const FAQS_DE = [
   },
   {
     title: "Stornierungsbedingungen",
-    content: "Kostenlose Terminänderung bis 7 Tage vor Abfahrt (vorbehaltlich der Verfügbarkeit). Schlechtes Wetter: kostenlose Umbuchung oder vollständige Rückerstattung der Anzahlung. Bestätigte Buchungen mit Anzahlung sind außerhalb von Schlechtwetterfällen nicht erstattungsfähig.",
+    content: "Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt (nach Verfügbarkeit). Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos oder stellen, wenn kein Termin passt, einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Außerhalb dieser Fälle werden bestätigte Buchungen mit Anzahlung nicht in Geld erstattet.",
     category: "policy",
     keywords: ["stornierung", "stornieren", "erstattung", "umbuchung"],
     priority: 9,
@@ -633,7 +633,7 @@ const FAQS_NL = [
   },
   {
     title: "Annuleringsbeleid",
-    content: "Gratis datumwijziging tot 7 dagen voor vertrek (afhankelijk van beschikbaarheid). Slecht weer: we plannen kosteloos om of restitueren de volledige aanbetaling. Bevestigde boekingen met aanbetaling zijn buiten gevallen van slecht weer niet restitueerbaar.",
+    content: "Gratis datumwijziging tot 7 dagen voor vertrek (op basis van beschikbaarheid). Als slecht weer de tocht verhindert, verzetten we de datum kosteloos of geven we, als geen datum lukt, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Met de afgesloten Slechtweergarantie kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Buiten die gevallen worden bevestigde boekingen met aanbetaling niet in geld terugbetaald.",
     category: "policy",
     keywords: ["annulering", "annuleren", "terugbetaling", "verplaatsen"],
     priority: 9,
@@ -750,7 +750,7 @@ const FAQS_IT = [
   },
   {
     title: "Politica di cancellazione",
-    content: "Cambio data gratuito fino a 7 giorni prima della partenza (in base alla disponibilità). Maltempo: riprogrammiamo senza costi o rimborsiamo integralmente la caparra. Le prenotazioni confermate con caparra non sono rimborsabili al di fuori dei casi di maltempo.",
+    content: "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se il maltempo impedisce l'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Al di fuori di questi casi, le prenotazioni confermate con caparra non vengono rimborsate in denaro.",
     category: "policy",
     keywords: ["cancellazione", "annullare", "rimborso", "riprogrammare"],
     priority: 9,

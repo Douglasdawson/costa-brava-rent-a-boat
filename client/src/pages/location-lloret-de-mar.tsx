@@ -130,7 +130,7 @@ export default function LocationLloretPage() {
     },
     {
       question: "¿Qué pasa si el mar está malo?",
-      answer: "Si la previsión marca >20 nudos sostenidos o alerta por olas >1.5 m, cancelamos sin coste. El tramo Blanes–Fenals está protegido de la Tramuntana por la propia costa, así que es de los más seguros para principiantes incluso con viento del norte."
+      answer: "Si la previsión marca >20 nudos sostenidos o alerta por olas >1.5 m, no salimos y te cambiamos la fecha sin coste; si no logramos acordar ninguna, recibes un bono válido 12 meses. El tramo Blanes–Fenals está protegido de la Tramuntana por la propia costa, así que es de los más seguros para principiantes incluso con viento del norte."
     }
   ];
 

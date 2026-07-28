@@ -8,10 +8,15 @@ function hasTimeOverlap(
   return startA < endB && endA > startB;
 }
 
-// Cancellation refund tier logic (extracted from server/routes/bookings.ts lines 77-80)
-function calculateRefundTier(hoursUntilStart: number): { refundPercentage: number } {
-  if (hoursUntilStart >= 48) return { refundPercentage: 100 };
-  if (hoursUntilStart >= 24) return { refundPercentage: 50 };
+// Cancellation refund policy, mirroring server/storage/bookings.ts
+// (cancelBookingByToken) and server/routes/bookings.ts (cancel-info).
+//
+// Since the single fleet-wide policy of 2026-05-26 there are no notice-based
+// refund tiers: a confirmed booking with a deposit is never refunded in cash.
+// Bad weather is settled off this path (new date, or a 12-month voucher, or a
+// cash refund only when the paid Garantia de mal tiempo was contracted), so a
+// tier here that pays out for enough notice would silently undercut it.
+function calculateRefundTier(_hoursUntilStart: number): { refundPercentage: number } {
   return { refundPercentage: 0 };
 }
 
@@ -114,33 +119,16 @@ describe("Status transitions", () => {
   });
 });
 
-describe("Cancellation refund tiers", () => {
-  it("gives 100% refund for 48+ hours before start", () => {
-    expect(calculateRefundTier(48).refundPercentage).toBe(100);
-    expect(calculateRefundTier(72).refundPercentage).toBe(100);
-    expect(calculateRefundTier(168).refundPercentage).toBe(100);
+describe("Cancellation refund policy", () => {
+  it("never refunds cash, however much notice is given", () => {
+    for (const hours of [0, 1, 12, 23, 24, 36, 47, 48, 72, 168, 720]) {
+      expect(calculateRefundTier(hours).refundPercentage).toBe(0);
+    }
   });
 
-  it("gives 50% refund for 24-47 hours before start", () => {
-    expect(calculateRefundTier(24).refundPercentage).toBe(50);
-    expect(calculateRefundTier(36).refundPercentage).toBe(50);
-    expect(calculateRefundTier(47).refundPercentage).toBe(50);
-    expect(calculateRefundTier(47.99).refundPercentage).toBe(50);
-  });
-
-  it("gives 0% refund for less than 24 hours before start", () => {
-    expect(calculateRefundTier(23).refundPercentage).toBe(0);
-    expect(calculateRefundTier(12).refundPercentage).toBe(0);
-    expect(calculateRefundTier(1).refundPercentage).toBe(0);
-    expect(calculateRefundTier(0).refundPercentage).toBe(0);
-  });
-
-  it("gives 100% at exactly 48 hours", () => {
-    expect(calculateRefundTier(48).refundPercentage).toBe(100);
-  });
-
-  it("gives 50% at exactly 24 hours", () => {
-    expect(calculateRefundTier(24).refundPercentage).toBe(50);
+  it("has no free-cancellation window that would undercut the weather guarantee", () => {
+    // 7 days' notice buys a free DATE CHANGE, never a refund.
+    expect(calculateRefundTier(24 * 7).refundPercentage).toBe(0);
   });
 });
 

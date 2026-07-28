@@ -72,6 +72,12 @@ const PARES_LANG = [
    "- **Bon valable 12 mois** s'il n'est pas possible de trouver une autre date"],
   ["- **Volledige terugbetaling** als het niet mogelijk is om een andere datum te vinden",
    "- **Waardebon van 12 maanden** als het niet mogelijk is om een andere datum te vinden"],
+  // El jsonb de traducciones incluye TAMBIÉN una copia en castellano con su propia
+  // redacción: buscar solo por los idiomas extranjeros dejaba estas dos vivas.
+  ["te ofrecemos cambio de fecha sin coste o reembolso completo.",
+   "te ofrecemos cambio de fecha sin coste o un bono válido 12 meses (devolución en dinero solo con la Garantía de mal tiempo contratada)."],
+  ["- **Reembolso completo** si no es posible encontrar otra fecha",
+   "- **Bono por el importe abonado**, válido 12 meses, si no es posible encontrar otra fecha"],
 ];
 
 const esc = (s) => s.replace(/'/g, "''");

@@ -80,7 +80,7 @@ No hace falta experiencia previa para los barcos sin licencia: te explicamos el 
 
 Reservar un día completo es sencillo. Puedes mandar tu solicitud desde la web en [alquiler de barcos en la Costa Brava](/es/alquiler-barcos-costa-brava) eligiendo barco y fecha, o escribirnos directamente por WhatsApp al **+34 611 500 372** y te confirmamos disponibilidad y presupuesto del día.
 
-Trabajamos sin pagos online: la web recoge tu solicitud y el pago se gestiona de forma manual cuando confirmamos la reserva. La política es clara: cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad); si hace mal tiempo, reprogramamos sin coste o devolvemos el depósito íntegro.
+Trabajamos sin pagos online: la web recoge tu solicitud y el pago se gestiona de forma manual cuando confirmamos la reserva. La política es clara: cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad); si hace mal tiempo, reprogramamos sin coste o, si no logramos acordar fecha, te damos un bono por el importe abonado válido 12 meses (con la Garantía de mal tiempo contratada, devolución en dinero).
 
 Si tienes dudas sobre qué barco encaja con tu grupo y tu ruta, cuéntanoslo y te orientamos sin compromiso. La temporada va de abril a octubre y junio es de los mejores meses para salir un día entero: precio de temporada baja, mar tranquilo y calas con sitio.
 

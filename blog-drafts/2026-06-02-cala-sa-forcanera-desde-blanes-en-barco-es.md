@@ -92,7 +92,7 @@ Preguntas que nos hacen siempre sobre esta ruta:
 - **¿Hace falta licencia?** No. Sa Forcanera está a 1,2 millas de Blanes, dentro del rango legal sin titulación. Os enseñamos a manejar el barco en 15 minutos antes de salir.
 - **¿Es buena cala para snorkel?** Sí, es de las mejores del tramo Blanes-Lloret por visibilidad y vida en las paredes.
 - **¿Hay restaurante?** No en la cala. El más cercano está en Cala Sant Francesc (Hotel Sant Francesc) y se puede ir andando por el Camí de Ronda si fondeáis allí.
-- **¿Qué pasa si llueve o hay temporal?** Reprogramamos la salida o devolvemos el depósito íntegro. La política de cancelación está explicada en la web.
+- **¿Qué pasa si llueve o hay temporal?** Reprogramamos la salida sin coste o, si no logramos acordar fecha, te damos un bono por el importe abonado válido 12 meses. La política de cancelación está explicada en la web.
 
 Si la duda es elegir entre Sant Francesc, Forcanera o Treumal: las tres son buenas, son vecinas, y con 4 horas de barco se ven dos sin problema. Si tenéis que elegir solo una, Sant Francesc es la más fácil y completa; Forcanera es la más íntima; Treumal es la mejor para combinar con una caminata por el Camí de Ronda.
 

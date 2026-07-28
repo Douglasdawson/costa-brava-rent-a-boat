@@ -84,7 +84,7 @@ Mayo y junio son los mejores meses para Treumal: mar más calmado, menos barcos 
 
 Para reservar, podéis hacerlo directamente desde la web, escribirnos por WhatsApp al **+34 611 500 372** o enviar un email a **costabravarentaboat@gmail.com**. Os contestamos el mismo día, en español, inglés, francés, alemán o catalán.
 
-Una nota final: si el parte del Servei Meteorològic de Catalunya marca viento de componente norte por encima de 15 nudos, llamadnos antes de venir. Reprogramamos sin coste o devolvemos el depósito íntegro si el día no es seguro. Preferimos cancelar una salida que veros volver pasándolo mal.
+Una nota final: si el parte del Servei Meteorològic de Catalunya marca viento de componente norte por encima de 15 nudos, llamadnos antes de venir. Si el día no es seguro reprogramamos sin coste o, si no logramos acordar fecha, te damos un bono por el importe abonado válido 12 meses. Preferimos cancelar una salida que veros volver pasándolo mal.
 
 Cala Treumal lleva ahí desde mucho antes que nosotros y seguirá ahí después. Pero un día de junio con calma chicha, agua a 20 grados y el barco para vosotros solos no se repite cada semana. Si os encaja, escribidnos.
 

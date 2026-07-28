@@ -197,7 +197,7 @@ Entre 1 y 3 dias habiles, dependiendo de tu banco. La retencion se hace en el TP
 Si, +15% sobre el precio base los sabados y domingos. Es una practica general en alquiler nautico de la Costa Brava.
 
 **¿Puedo cancelar si surge algo?**  
-Si cancelas con mas de 7 dias de antelacion, reembolso completo menos gastos de gestion. Con menos de 7 dias, se retiene el 50% del importe. Recomendamos contratar seguro de cancelacion si reservas con mucha antelacion.
+Cambio de fecha gratuito hasta 7 dias antes de la salida, sujeto a disponibilidad. Si el mal tiempo impide salir, reprogramamos sin coste o, si no logramos acordar fecha, emitimos un bono por el importe abonado valido 12 meses; con la Garantia de mal tiempo contratada eliges entre nueva fecha o devolucion en dinero. Fuera de esos supuestos, las reservas confirmadas con deposito no se devuelven en dinero.
 
 **¿Hay descuento por reservar varios dias?**  
 Si, consulta por WhatsApp para 3 o mas dias del mismo barco. Fuera de agosto solemos cerrar precios especiales.

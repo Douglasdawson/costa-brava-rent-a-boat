@@ -441,8 +441,16 @@ export default function TiendaPage() {
       {/* HERO: the capsule's own colour carries the fold, the photograph does
           the selling. No crop: the source frames are square and stay square. */}
       <section className={`bg-[var(--shop-butter)] ${banner ? "pt-8" : "pt-24 lg:pt-28"}`}>
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 pb-12 sm:px-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-24">
-          <div className="order-1 -mx-5 sm:mx-0 lg:order-2">
+        {/* One fold, one idea: on lg the hero owns the whole viewport. min-height
+            is border-box, so it already contains this element's own pb-8 and the
+            budget subtracts only the section's pt-28: 112 + (100svh - 112) =
+            100svh exactly. Subtracting the bottom padding too left a 32px gap. */}
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 pb-12 sm:px-8 lg:grid lg:min-h-[calc(100svh-7rem)] lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-8">
+          {/* Same square-frame rule as the product rows: capping the width caps
+              the height with no crop, so a short window shrinks the photograph
+              instead of pushing the hero past the fold. No `mx-auto` here: auto
+              margins would turn this grid cell shrink-to-fit. */}
+          <div className="order-1 -mx-5 sm:mx-0 lg:order-2 lg:max-w-[calc(100svh-9rem)] lg:justify-self-end">
             <picture>
               <source type="image/avif" srcSet="/images/shop/tienda-hero-duo.avif" />
               <img

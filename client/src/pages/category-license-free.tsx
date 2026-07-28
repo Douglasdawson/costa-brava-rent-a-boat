@@ -41,6 +41,7 @@ import type { Boat } from "@shared/schema";
 import { minPriceAcrossBoats } from "@shared/pricing";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { useQuery } from "@tanstack/react-query";
+import { translateBoatText } from "@shared/boatTextTranslations";
 import {
   BUSINESS_RATING_STR,
   BUSINESS_REVIEW_COUNT_STR,
@@ -93,7 +94,7 @@ export default function CategoryLicenseFreePage() {
     const minPrice = minPriceAcrossBoats([b as { pricing?: unknown }], "1h", "BAJA");
     return {
       id: b.id,
-      name: b.name,
+      name: translateBoatText(b.name, language),
       capacity,
       engine: specs.engine ?? "",
       features: (b.features ?? []).slice(0, 3),

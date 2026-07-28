@@ -41,6 +41,7 @@ import {
 } from "@shared/jetskiProducts";
 import type { PageKey } from "@shared/i18n-routes";
 import JetSkiRequestModal from "./JetSkiRequestModal";
+import { translateBoatText } from "@shared/boatTextTranslations";
 
 /** Skeleton that mirrors BoatCard layout: image 4/3 + content + buttons */
 function BoatCardSkeleton() {
@@ -239,7 +240,7 @@ const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
 
 function FleetSection() {
   const t = useTranslations();
-  const { localizedPath } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const [, setLocation] = useLocation();
   const { openBookingModal } = useBookingModal();
   const { ref: revealRef, isVisible } = useScrollReveal();
@@ -324,7 +325,7 @@ function FleetSection() {
 
           return {
             id: boat.id,
-            name: boat.name,
+            name: translateBoatText(boat.name, language),
             image: jsk
               ? getBoatImage(jsk.image)
               : boat.imageGallery?.[0]?.trim()
@@ -354,10 +355,10 @@ function FleetSection() {
                   : undefined,
             imageAlt:
               (boat.requiresLicense ? t.boats.imageAltWithLicense : t.boats.imageAltNoLicense)
-                ?.replace("{name}", boat.name)
+                ?.replace("{name}", translateBoatText(boat.name, language))
                 .replace("{capacity}", String(boat.capacity))
                 .replace("{price}", String(basePrice)) ||
-              `${boat.name} - ${boat.capacity} pax - Blanes, Costa Brava`,
+              `${translateBoatText(boat.name, language)} - ${boat.capacity} pax - Blanes, Costa Brava`,
             capacity: boat.capacity,
             requiresLicense: boat.requiresLicense,
             description: (() => {
@@ -374,7 +375,7 @@ function FleetSection() {
               : undefined,
           };
         }),
-    [boatsData, currentSeason, t]
+    [boatsData, currentSeason, t, language]
   );
 
   // Dynamic group size options based on max boat capacity
@@ -699,7 +700,7 @@ function FleetSection() {
                   </TableHead>
                   {sortedBoats.map(boat => (
                     <TableHead key={boat.id} className="min-w-[160px] text-center">
-                      {boat.name}
+                      {translateBoatText(boat.name, language)}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -714,7 +715,7 @@ function FleetSection() {
                     <TableCell key={boat.id} className="text-center">
                       <img
                         src={boat.image}
-                        alt={boat.name}
+                        alt={translateBoatText(boat.name, language)}
                         className="w-32 h-20 object-cover rounded-lg mx-auto"
                         loading="lazy"
                         decoding="async"

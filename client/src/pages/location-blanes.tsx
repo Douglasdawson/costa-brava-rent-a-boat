@@ -36,6 +36,7 @@ import { HeroImage } from "./LocationTemplate";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 import { BOAT_DATA } from "@shared/boatData";
 import { trackLocationPageView } from "@/utils/analytics";
+import { translateBoatText } from "@shared/boatTextTranslations";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -261,7 +262,7 @@ export default function LocationBlanesPage() {
                   className="block border rounded-lg p-4 hover:shadow-md transition-shadow bg-background"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-heading font-semibold text-lg">{boat.name}</h3>
+                    <h3 className="font-heading font-semibold text-lg">{translateBoatText(boat.name, language)}</h3>
                     <Badge
                       variant={isNoLicense ? "secondary" : "outline"}
                       className="text-xs"
@@ -338,7 +339,7 @@ export default function LocationBlanesPage() {
                   <tr key={boat.id} className="border-b hover:bg-muted/30">
                     <td className="p-3">
                       <a href={localizedPath("boatDetail", boat.id)} className="text-primary hover:underline font-medium">
-                        {boat.name}
+                        {translateBoatText(boat.name, language)}
                       </a>
                     </td>
                     <td className="p-3 text-center">{boat.specifications.capacity}</td>

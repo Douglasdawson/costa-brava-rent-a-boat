@@ -9,6 +9,7 @@ import { generateBreadcrumbSchema, BASE_DOMAIN } from "@/utils/seo-config";
 import { HREFLANG_CODES, SUPPORTED_LANGUAGES } from "@shared/seoConstants";
 import { resolveMatrixCombo, matrixPath } from "@shared/occasionMatrixPage";
 import type { MatrixCombo } from "@shared/occasionMatrix";
+import { translateBoatText } from "@shared/boatTextTranslations";
 
 const Footer = lazy(() => import("@/components/Footer"));
 
@@ -118,7 +119,7 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
                 <li key={b.id} className="flex items-center gap-3 p-4 rounded-xl bg-muted/40">
                   <Anchor className="w-5 h-5 text-primary flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-foreground">{b.name}</p>
+                    <p className="font-medium text-foreground">{translateBoatText(b.name, language)}</p>
                     <p className="text-sm text-muted-foreground">{b.capacity}</p>
                   </div>
                 </li>

@@ -41,6 +41,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { BOAT_DATA, type BoatData } from "@shared/boatData";
 import { minPriceAcrossBoats } from "@shared/pricing";
+import { translateBoatText } from "@shared/boatTextTranslations";
 
 function RevealSection({
   children,
@@ -153,7 +154,7 @@ export default function CategoryLicensedPage() {
     );
     return {
       id: b.id,
-      name: b.name,
+      name: translateBoatText(b.name, language),
       capacity,
       engine: specs.engine ?? "",
       features: (b.features ?? []).slice(0, 4),

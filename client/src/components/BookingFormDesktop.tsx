@@ -33,6 +33,7 @@ import { flagEmojiToIso2 } from "@/utils/phone-prefixes";
 
 const LicenseVerifierPanel = lazy(() => import("@/components/booking/LicenseVerifierPanel"));
 import { formatBookingDate as formatBookingDateDesktop, getLocaleForLanguage } from "@/utils/intl-helpers";
+import { translateBoatText } from "@shared/boatTextTranslations";
 
 // Slide animation variants — transform + opacity only. P1.17 (2026-05-20)
 // removed `filter: blur(...)` because it's compositor-dependent in Safari and
@@ -293,6 +294,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             )}
             {currentStep === 2 && (
               <Step1BoatDate
+                language={language}
                 licenseFilter={licenseFilter}
                 setLicenseFilter={setLicenseFilter}
                 licenseVerifier={props.licenseVerifier}
@@ -437,7 +439,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
         selectedDuration && (
           <div className="flex-shrink-0 px-6 pb-1">
             <PriceSummaryBar
-              boatName={selectedBoatInfo.name}
+              boatName={translateBoatText(selectedBoatInfo.name, language)}
               duration={selectedDuration}
               basePrice={price}
               extrasPrice={totalExtrasPrice}
@@ -523,6 +525,7 @@ interface Step1Props {
   showFieldError: (f: string) => boolean;
   getFieldError: (f: string) => string;
   t: BookingWizardMobileProps["t"];
+  language: BookingWizardMobileProps["language"];
 }
 
 function Step1BoatDate({
@@ -541,6 +544,7 @@ function Step1BoatDate({
   showFieldError,
   getFieldError,
   t,
+  language,
 }: Step1Props) {
   const peopleNum = parseInt(numberOfPeople || '1');
   const maxSingleCapacity = filteredBoats.reduce((max, b) => Math.max(max, b.capacity), 0);
@@ -650,6 +654,7 @@ function Step1BoatDate({
                   dayStatus={fleetAvailability?.[boat.id]?.status}
                   onSelect={() => setSelectedBoat(boat.id)}
                   t={t}
+                  language={language}
                 />
               ))}
             </div>
@@ -671,6 +676,7 @@ function BoatCardDesktop({
   dayStatus,
   onSelect,
   t,
+  language,
 }: {
   boat: Boat;
   selected: boolean;
@@ -679,6 +685,7 @@ function BoatCardDesktop({
   dayStatus?: DayStatus;
   onSelect: () => void;
   t: Translations;
+  language: string;
 }) {
   // "desde X€" is the catalog floor — cheapest active price across every
   // season + duration combo the admin has configured for this boat. Not
@@ -708,7 +715,7 @@ function BoatCardDesktop({
         {selected && <Check className="w-2.5 h-2.5 text-background" aria-hidden="true" />}
       </div>
       <div className="flex-1 min-w-0">
-        <p className="font-semibold text-foreground text-sm truncate">{boat.name}</p>
+        <p className="font-semibold text-foreground text-sm truncate">{translateBoatText(boat.name, language)}</p>
         {displayPrice !== null && (
           <p className="text-xs text-foreground font-medium">
             {t.boats.from} {displayPrice}€
@@ -815,7 +822,7 @@ function Step2Details({
         </h2>
         <p className="text-xs text-muted-foreground">
           {selectedBoatInfo
-            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', selectedBoatInfo.name)
+            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', translateBoatText(selectedBoatInfo.name, language))
             : t.wizard.howLongHowMany}
         </p>
       </div>

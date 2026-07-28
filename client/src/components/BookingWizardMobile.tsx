@@ -29,6 +29,7 @@ import { flagEmojiToIso2 } from "@/utils/phone-prefixes";
 
 const LicenseVerifierPanel = lazy(() => import("@/components/booking/LicenseVerifierPanel"));
 import { formatBookingDate as formatLocalisedDate, getLocaleForLanguage } from "@/utils/intl-helpers";
+import { translateBoatText } from "@shared/boatTextTranslations";
 
 interface PhonePrefix {
   code: string;
@@ -191,7 +192,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
     onCoveragesStep && noCoveragePicked && props.t.booking.coverages.noneCta
       ? props.t.booking.coverages.noneCta
       : props.t.booking.next;
-  const { localizedPath } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [animating, setAnimating] = useState(false);
   const [displayStep, setDisplayStep] = useState(currentStep);
@@ -319,7 +320,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         const discount = props.getCodeDiscount();
         return (
           <PriceSummaryBar
-            boatName={props.selectedBoatInfo.name}
+            boatName={translateBoatText(props.selectedBoatInfo.name, language)}
             duration={props.selectedDuration}
             basePrice={price}
             extrasPrice={props.totalExtrasPrice}
@@ -414,6 +415,7 @@ function Step2Boat({
   numberOfPeople,
   showFieldError, getFieldError,
   t,
+  language,
 }: BookingWizardMobileProps) {
   function handleBoatSelect(boatId: string) {
     setSelectedBoat(boatId);
@@ -532,6 +534,7 @@ function Step2Boat({
                 dayStatus={fleetAvailability?.[boat.id]?.status}
                 onSelect={() => fitsCapacity && handleBoatSelect(boat.id)}
                 t={t}
+                language={language}
               />
             );
           })}
@@ -677,6 +680,7 @@ function BoatCardMobile({
   dayStatus,
   onSelect,
   t,
+  language,
 }: {
   boat: Boat;
   selected: boolean;
@@ -685,6 +689,7 @@ function BoatCardMobile({
   dayStatus?: DayStatus;
   onSelect: () => void;
   t: Translations;
+  language: string;
 }) {
   // "desde X€" is the catalog floor — cheapest active price across every
   // season + duration combination the admin has configured. Independent
@@ -719,7 +724,7 @@ function BoatCardMobile({
 
       <span className="min-w-0 flex-1">
         <span className="block truncate text-sm font-semibold leading-tight text-foreground">
-          {boat.name}
+          {translateBoatText(boat.name, language)}
         </span>
         <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-muted-foreground">
           <span className="inline-flex items-center gap-1">
@@ -792,7 +797,7 @@ function Step3Departure({
         </h2>
         <p className="text-sm text-muted-foreground">
           {selectedBoatInfo
-            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', selectedBoatInfo.name)
+            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', translateBoatText(selectedBoatInfo.name, language))
             : t.wizard.howLongHowMany}
         </p>
       </div>

@@ -32,6 +32,7 @@ import { getMinActivePrice, minPriceAcrossBoats } from "@shared/pricing";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { substituteFaqVars, computeFaqVars } from "@/utils/faqVars";
 import { getBoatImage } from "@/utils/boatImages";
+import { translateBoatText } from "@shared/boatTextTranslations";
 
 type SeasonKey = "BAJA" | "MEDIA" | "ALTA";
 
@@ -183,12 +184,12 @@ export default function PricingPage() {
             return {
               "@type": "ListItem",
               position: index + 1,
-              name: boat.name,
+              name: translateBoatText(boat.name, language),
               url: `https://www.costabravarentaboat.com/barco/${boat.id}`,
               item: {
                 "@type": "Product",
-                name: `Alquiler ${boat.name} en Blanes`,
-                description: `Barco ${boat.name} para ${boat.capacity} personas${isCaptainedBoat(boat.id) ? " (con patron incluido)" : boat.requiresLicense ? " (requiere licencia)" : " (sin licencia)"}`,
+                name: `Alquiler ${translateBoatText(boat.name, language)} en Blanes`,
+                description: `Barco ${translateBoatText(boat.name, language)} para ${boat.capacity} personas${isCaptainedBoat(boat.id) ? " (con patron incluido)" : boat.requiresLicense ? " (requiere licencia)" : " (sin licencia)"}`,
                 brand: { "@type": "Brand", name: "Costa Brava Rent a Boat" },
                 ...(lowPrice && highPrice
                   ? {
@@ -392,13 +393,13 @@ export default function PricingPage() {
                             >
                               <img
                                 src={getBoatImage(boat.imageUrl || "")}
-                                alt={boat.name}
+                                alt={translateBoatText(boat.name, language)}
                                 className="w-12 h-9 rounded object-cover flex-shrink-0"
                                 loading="lazy"
                                 width={48}
                                 height={36}
                               />
-                              {boat.name}
+                              {translateBoatText(boat.name, language)}
                             </a>
                             {boatIncludesFuel(boat.id, boat.requiresLicense) && (
                               <Badge
@@ -445,7 +446,7 @@ export default function PricingPage() {
                               size="sm"
                               variant="outline"
                               onClick={() => openBookingModal(boat.id)}
-                              aria-label={`${pp.reserveButton}: ${boat.name}`}
+                              aria-label={`${pp.reserveButton}: ${translateBoatText(boat.name, language)}`}
                             >
                               {pp.reserveButton}
                               <ArrowRight className="w-4 h-4 ml-1" />
@@ -474,7 +475,7 @@ export default function PricingPage() {
                         <a href={localizedPath("boatDetail", boat.id)} className="flex-shrink-0">
                           <img
                             src={getBoatImage(boat.imageUrl || "")}
-                            alt={boat.name}
+                            alt={translateBoatText(boat.name, language)}
                             className="w-16 h-12 rounded-lg object-cover"
                             loading="lazy"
                             width={64}
@@ -487,7 +488,7 @@ export default function PricingPage() {
                               href={localizedPath("boatDetail", boat.id)}
                               className="text-lg font-semibold hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
                             >
-                              {boat.name}
+                              {translateBoatText(boat.name, language)}
                             </a>
                             <div className="flex items-center gap-3 mt-1 text-sm text-muted-foreground">
                               <span className="flex items-center gap-1">
@@ -552,9 +553,9 @@ export default function PricingPage() {
                         variant="outline"
                         className="w-full"
                         onClick={() => openBookingModal(boat.id)}
-                        aria-label={pp.reserveSpecificButton.replace("{name}", boat.name)}
+                        aria-label={pp.reserveSpecificButton.replace("{name}", translateBoatText(boat.name, language))}
                       >
-                        {pp.reserveSpecificButton.replace("{name}", boat.name)}
+                        {pp.reserveSpecificButton.replace("{name}", translateBoatText(boat.name, language))}
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </div>

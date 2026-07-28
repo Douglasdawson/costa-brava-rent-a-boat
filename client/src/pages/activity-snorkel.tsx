@@ -25,6 +25,7 @@ import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { FAQSection } from "@/components/FAQSection";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import React from "react";
+import { translateBoatText } from "@shared/boatTextTranslations";
 
 // Icons paired by position to the `spots` array in t.activitySnorkel.
 const SPOT_ICONS = [Star, Eye, Fish];
@@ -294,7 +295,7 @@ export default function ActivitySnorkelPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {recommendedBoats.map((boat) => (
               <div key={boat.name} className="border rounded-lg p-6">
-                <h3 className="font-heading font-semibold text-lg mb-2">{boat.name}</h3>
+                <h3 className="font-heading font-semibold text-lg mb-2">{translateBoatText(boat.name, language)}</h3>
                 <div className="flex gap-3 mb-3">
                   <Badge variant="outline">
                     <Clock className="w-3 h-3 mr-1" />

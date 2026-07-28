@@ -7,6 +7,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BOAT_DATA, boatDataRequiresLicense } from "@shared/boatData";
 import { getBoatImage } from "@/utils/boatImages";
 import type { Boat } from "@shared/schema";
+import { translateBoatText } from "@shared/boatTextTranslations";
 
 interface PopularBoatsSectionProps {
   /** Section title (already localized by caller). */
@@ -54,7 +55,7 @@ export default function PopularBoatsSection({
   ctaLabel,
   bgClass = "bg-muted",
 }: PopularBoatsSectionProps) {
-  const { localizedPath } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   // Localized defaults so a non-Spanish visitor never sees Spanish badges/CTA
   // mixed into an otherwise translated page. Callers can still override.
@@ -95,7 +96,7 @@ export default function PopularBoatsSection({
                 >
                   <img
                     src={getBoatImage(boat.image)}
-                    alt={boat.name}
+                    alt={translateBoatText(boat.name, language)}
                     className="w-full aspect-[3/2] object-cover"
                     loading="lazy"
                     width={600}
@@ -103,7 +104,7 @@ export default function PopularBoatsSection({
                   />
                   <div className="p-4">
                     <div className="flex items-center justify-between mb-2 gap-2">
-                      <h3 className="font-heading font-semibold text-lg">{boat.name}</h3>
+                      <h3 className="font-heading font-semibold text-lg">{translateBoatText(boat.name, language)}</h3>
                       <Badge variant={variant} className="text-xs shrink-0">
                         {label}
                       </Badge>

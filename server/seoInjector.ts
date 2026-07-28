@@ -9,6 +9,7 @@ import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/se
 import { isValidLang, resolveSlug, getSlugForPage, getLocalizedPath, switchLanguagePath, type PageKey } from "../shared/i18n-routes";
 import { resolveBoatImagePath, BOAT_IMAGE_WIDTH, BOAT_IMAGE_HEIGHT } from "../shared/boatImages";
 import { resolveMediaPath } from "../shared/mediaUrl";
+import { translateBoatText } from "../shared/boatTextTranslations";
 import { isAICrawler as isAICrawlerShared } from "./seo/constants";
 import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES } from "../shared/businessProfile";
@@ -4338,6 +4339,10 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
         // asset paths so social crawlers get a 200 instead of a 404.
         const resolvedBoatImage = resolveBoatImagePath(boat.imageUrl) || resolveBoatImagePath(boat.id);
         const boatOgImage = resolvedBoatImage ?? undefined;
+        // The descriptive products ("Excursión Privada con Capitán") are the
+        // name Google reads on the translated URLs; the model names come back
+        // from the dictionary unchanged.
+        const boatName = translateBoatText(boat.name, lang);
         const isExcursion = boat.id === "excursion-privada";
         const excursionMeta: Record<string, { title: string; description: string }> = {
           es: {
@@ -4389,14 +4394,14 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
         // verb + boat name keeps the alt consistent with the title and avoids
         // Spanish leaking into FB/WhatsApp/Twitter previews of /en/, /fr/, etc.
         const ogImageAltByLang: Record<string, string> = {
-          es: `${boat.name} - Alquiler de barcos en Puerto de Blanes, Costa Brava`,
-          en: `${boat.name} - Boat rental at Blanes Port, Costa Brava`,
-          ca: `${boat.name} - Lloguer de vaixells al Port de Blanes, Costa Brava`,
-          fr: `${boat.name} - Location de bateaux au Port de Blanes, Costa Brava`,
-          de: `${boat.name} - Bootsverleih im Hafen von Blanes, Costa Brava`,
-          nl: `${boat.name} - Botenverhuur in de haven van Blanes, Costa Brava`,
-          it: `${boat.name} - Noleggio barche al Porto di Blanes, Costa Brava`,
-          ru: `${boat.name} - Аренда лодок в порту Бланес, Коста-Брава`,
+          es: `${boatName} - Alquiler de barcos en Puerto de Blanes, Costa Brava`,
+          en: `${boatName} - Boat rental at Blanes Port, Costa Brava`,
+          ca: `${boatName} - Lloguer de vaixells al Port de Blanes, Costa Brava`,
+          fr: `${boatName} - Location de bateaux au Port de Blanes, Costa Brava`,
+          de: `${boatName} - Bootsverleih im Hafen von Blanes, Costa Brava`,
+          nl: `${boatName} - Botenverhuur in de haven van Blanes, Costa Brava`,
+          it: `${boatName} - Noleggio barche al Porto di Blanes, Costa Brava`,
+          ru: `${boatName} - Аренда лодок в порту Бланес, Коста-Брава`,
         };
         const boatOgImageAlt = ogImageAltByLang[lang] || ogImageAltByLang.es;
         const boatOgImageWidth = boatOgImage ? BOAT_IMAGE_WIDTH : undefined;
@@ -4404,8 +4409,8 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
         const meta: SEOMeta = isExcursion
           ? { title: exc.title, description: exc.description, ogImage: boatOgImage, ogImageAlt: boatOgImageAlt, ogImageWidth: boatOgImageWidth, ogImageHeight: boatOgImageHeight, ogType: "product" }
           : {
-              title: `${r.verb} ${boat.name} ${r.prep} Blanes${priceStr}`,
-              description: `${r.bookVerb} ${boat.name} ${r.prep} Blanes, Costa Brava. ${r.upTo} ${boat.capacity} ${r.people}, ${licenseText}. WhatsApp.`,
+              title: `${r.verb} ${boatName} ${r.prep} Blanes${priceStr}`,
+              description: `${r.bookVerb} ${boatName} ${r.prep} Blanes, Costa Brava. ${r.upTo} ${boat.capacity} ${r.people}, ${licenseText}. WhatsApp.`,
               ogImage: boatOgImage,
               ogImageAlt: boatOgImageAlt,
               ogImageWidth: boatOgImageWidth,
@@ -4439,7 +4444,7 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
         // SSR body fallback. Without this, GSC URL Inspection live-test rejects
         // the page because the body is empty (everything renders client-side).
         // Removed by main.tsx before React hydrates (data-cowork-seo-fallback).
-        const fallbackBoatName = esc(boat.name);
+        const fallbackBoatName = esc(boatName);
         const fallbackTitle = esc(meta.title);
         const fallbackDesc = esc(meta.description);
         const capacityLabels: Record<string, string> = {

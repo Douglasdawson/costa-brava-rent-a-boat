@@ -1912,6 +1912,10 @@ export async function sendShopOrderConfirmation(
     await sendgridBreaker.call(() => sgMail.send({
       to: order.customerEmail!,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      // The sending domain has no MX records, so a reply to the From address
+      // goes nowhere. Every delivery detail of this shop gets settled by
+      // conversation, so the reply has to land in a mailbox someone reads.
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
       subject: `${strings.orderConfirmedSubject} - Costa Brava Rent a Boat`,
       html: emailWrapper(content, strings.orderConfirmedTitle),
     }));
@@ -1965,6 +1969,11 @@ export async function sendShopOrderOwnerNotification(
     await sendgridBreaker.call(() => sgMail.send({
       to: ownerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat - Tienda" },
+      // Replying to this notification should reach the buyer, which is the whole
+      // point of getting it: coordinating pickup or delivery.
+      ...(order.customerEmail
+        ? { replyTo: { email: order.customerEmail, name: order.customerName || "Cliente" } }
+        : {}),
       subject: `[TIENDA] Nuevo pedido de ${order.customerName || "cliente"} - ${formatEuros(order.totalCents)}`,
       html: emailWrapper(content),
     }));

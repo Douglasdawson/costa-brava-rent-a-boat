@@ -41,9 +41,17 @@ captureAttribution();
 const initialLang = detectInitialLanguage();
 const loadBundle = langLoaders[initialLang] ?? langLoaders.es;
 loadBundle()
-  .catch(() => langLoaders.es())
-  .then(bundle => {
-    seedInitialLanguage(initialLang, bundle);
+  .then(bundle => [initialLang, bundle] as const)
+  // If the locale chunk fails to load (a stale service-worker precache after a
+  // deploy still points at the previous hashed file), fall back to Spanish AND
+  // seed it AS SPANISH. Seeding the Spanish bundle under `initialLang` filled
+  // the provider's cache with a lie: it then considered the locale loaded and
+  // never retried, so the page stayed on Spanish copy with English dates
+  // ("Precios para Wed, Jul 29") until the user cleared the cache. Seeded as
+  // "es", the provider sees the requested locale missing and re-fetches it.
+  .catch(() => langLoaders.es().then(bundle => ["es", bundle] as const))
+  .then(([seededLang, bundle]) => {
+    seedInitialLanguage(seededLang, bundle);
     const seoFallback = document.getElementById("seo-fallback");
     if (seoFallback) seoFallback.remove();
     createRoot(document.getElementById("root")!).render(

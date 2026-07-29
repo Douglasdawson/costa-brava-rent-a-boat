@@ -81,7 +81,7 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">PROHIBICIONES:</h3>
                 <p className="text-foreground">
-                  Queda prohibido sobrepasar los límites de navegación autorizados por la titulación náutica del patrón y la zona de navegación indicada en la sección «ZONA DE NAVEGACIÓN», sobrepasar el número de plazas máximo permitido según el modelo de la embarcación alquilada, varar la embarcación en la playa o acceder a ella. Entrar, permanecer o salir del agua con el motor en funcionamiento y dejar la embarcación amarrada o anclada sin ninguna persona a bordo.
+                  Queda prohibido sobrepasar la distancia de una milla desde la costa (1,8 km), los límites de navegación autorizados por la titulación náutica del patrón y la zona de navegación indicada en la sección «ZONA DE NAVEGACIÓN», sobrepasar el número de plazas máximo permitido según el modelo de la embarcación alquilada, varar la embarcación en la playa o acceder a ella. Entrar, permanecer o salir del agua con el motor en funcionamiento y dejar la embarcación amarrada o anclada sin ninguna persona a bordo.
                 </p>
               </div>
 
@@ -159,7 +159,7 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">PROHIBICIONES:</h3>
                 <p className="text-foreground">
-                  Queda prohibido sobrepasar la distancia de dos millas náuticas desde la costa (3,7 km), sobrepasar el número de plazas máximo permitido según el modelo de la embarcación alquilada, varar la embarcación en la playa o acceder a ella, entrar permanecer o salir del agua con el motor en funcionamiento y dejar la embarcación amarrada o anclada sin ninguna persona a bordo.
+                  Queda prohibido sobrepasar la distancia de una milla desde la costa (1,8 km), sobrepasar el número de plazas máximo permitido según el modelo de la embarcación alquilada, varar la embarcación en la playa o acceder a ella, entrar permanecer o salir del agua con el motor en funcionamiento y dejar la embarcación amarrada o anclada sin ninguna persona a bordo.
                 </p>
               </div>
 

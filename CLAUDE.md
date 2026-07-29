@@ -290,7 +290,13 @@ Cuando un hecho aparece en varias capas (i18n, SEO, blog, JSX, emails, KB chatbo
 Politica de cancelacion (texto literal a usar en cualquier surface nueva):
 > Cambio de fecha gratuito hasta 7 dias antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el deposito integro. Las reservas confirmadas con deposito no son reembolsables fuera del supuesto de mal tiempo.
 
-Distancia maxima de navegacion sin licencia: **2 millas nauticas (3,7 km)** -- RD 875/2014 art. 6.2. No reintroducir "1 milla".
+Distancia de navegacion sin licencia: hay DOS limites y son ejes distintos, no se contradicen.
+
+- **Limite legal, mar adentro: 2 millas nauticas (3,7 km)** -- RD 875/2014 art. 6.2. Es lo que se cita en copy comercial, FAQ, blog y `aiCitationFacts.ts` cuando se explica que permite la ley.
+- **Limite propio de la casa, mar adentro: 1 milla (1,8 km)** -- es lo que PROHIBE el contrato que el cliente firma en el puerto (`DAMAR Contrato Clientes SL/CL`), y por decision del dueno (2026-07-29) prevalece sobre el maximo legal. Es el que debe aparecer en `CondicionesGenerales.tsx`, que es el espejo del contrato.
+- **Limite a lo largo de la costa: del rio Tordera (sur) al final de la playa de Fenals (norte)**. Es otro eje: los argumentos de tipo "Tossa queda fuera de las 2 millas" hablan de alcance costero, no de distancia mar adentro, y por eso NO hay que convertirlos a 1 milla.
+
+Antes de tocar cualquiera de las tres cifras, lee el PDF del contrato: la web es su espejo, no al reves.
 
 ## Flujo de Trabajo Recomendado
 

@@ -2836,7 +2836,7 @@ export const ca: Translations = {
       sections: [
         {
           title: "1. Responsable del tractament",
-          body: "Identitat: DAMAR COSTA BRAVA S.L. (marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicili: Carrer Esplanada del Port, 17300 Blanes, Girona, Espanya\nTelèfon: +34 611 500 372\nCorreu de contacte: costabravarentaboat@gmail.com",
+          body: "Identitat: DAMAR COSTA BRAVA S.L. (marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicili: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Espanya\nTelèfon: +34 611 500 372\nCorreu de contacte: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Dades personals que recopilem",
@@ -2908,7 +2908,7 @@ export const ca: Translations = {
       sections: [
         {
           title: "1. Identificació del titular",
-          body: "Raó social: DAMAR COSTA BRAVA S.L. (que opera sota la marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicili social: Carrer Esplanada del Port, 17300 Blanes, Girona, Espanya\nTelèfon de contacte: +34 611 500 372\nCorreu electrònic: costabravarentaboat@gmail.com\nActivitat: lloguer d'embarcacions d'esbarjo (amb i sense titulació nàutica) al Port de Blanes, Costa Brava.",
+          body: "Raó social: DAMAR COSTA BRAVA S.L. (que opera sota la marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicili social: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Espanya\nTelèfon de contacte: +34 611 500 372\nCorreu electrònic: costabravarentaboat@gmail.com\nActivitat: lloguer d'embarcacions d'esbarjo (amb i sense titulació nàutica) al Port de Blanes, Costa Brava.",
         },
         {
           title: "2. Objecte",
@@ -2948,7 +2948,7 @@ export const ca: Translations = {
         },
         {
           title: "11. Legislació aplicable i jurisdicció",
-          body: "Aquestes condicions es regeixen per la legislació espanyola. Per a qualsevol controvèrsia, les parts se sotmeten als Jutjats i Tribunals de Girona, amb renúncia expressa a qualsevol altre fur que els pogués correspondre.\n\nEl client consumidor podrà acudir a la Plataforma de Resolució de Litigis en Línia de la Comissió Europea (https://ec.europa.eu/consumers/odr) per a la resolució extrajudicial de conflictes.",
+          body: "Aquestes condicions es regeixen per la legislació espanyola. Per a qualsevol controvèrsia són competents els Jutjats i Tribunals de Blanes, sense perjudici del fur que legalment correspongui al client consumidor, que en cap cas renuncia al del seu domicili.\n\nEl client consumidor podrà acudir a la Plataforma de Resolució de Litigis en Línia de la Comissió Europea (https://ec.europa.eu/consumers/odr) per a la resolució extrajudicial de conflictes. Hi ha fulls oficials de reclamació a la seva disposició.",
         },
         {
           title: "12. Modificacions",
@@ -3008,7 +3008,7 @@ export const ca: Translations = {
         },
         {
           title: "5. Legislació aplicable i resolució de conflictes",
-          body: "Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol controvèrsia són competents els Jutjats i Tribunals de Girona, sense perjudici del fur que legalment correspongui al client consumidor.\n\nEl consumidor pot acudir així mateix a la Plataforma de Resolució de Litigis en Línia de la Comissió Europea (https://ec.europa.eu/consumers/odr). Hi ha fulls oficials de reclamació a disposició del client.",
+          body: "Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol controvèrsia són competents els Jutjats i Tribunals de Blanes, sense perjudici del fur que legalment correspongui al client consumidor.\n\nEl consumidor pot acudir així mateix a la Plataforma de Resolució de Litigis en Línia de la Comissió Europea (https://ec.europa.eu/consumers/odr). Hi ha fulls oficials de reclamació a disposició del client.",
         },
       ],
     },

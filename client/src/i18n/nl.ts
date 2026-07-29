@@ -2843,7 +2843,7 @@ export const nl: Translations = {
       sections: [
         {
           title: "1. Verwerkingsverantwoordelijke",
-          body: "Identiteit: DAMAR COSTA BRAVA S.L. (merknaam Costa Brava Rent a Boat)\nFiscaal nummer (CIF): B22566327\nAdres: Carrer Esplanada del Port, 17300 Blanes, Girona, Spanje\nTelefoon: +34 611 500 372\nContact-e-mail: costabravarentaboat@gmail.com",
+          body: "Identiteit: DAMAR COSTA BRAVA S.L. (merknaam Costa Brava Rent a Boat)\nFiscaal nummer (CIF): B22566327\nAdres: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spanje\nTelefoon: +34 611 500 372\nContact-e-mail: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Persoonsgegevens die we verzamelen",
@@ -2915,7 +2915,7 @@ export const nl: Translations = {
       sections: [
         {
           title: "1. Identificatie van de eigenaar",
-          body: "Statutaire naam: DAMAR COSTA BRAVA S.L. (handelend onder de merknaam Costa Brava Rent a Boat)\nFiscaal nummer (CIF): B22566327\nStatutaire zetel: Carrer Esplanada del Port, 17300 Blanes, Girona, Spanje\nContacttelefoon: +34 611 500 372\nE-mail: costabravarentaboat@gmail.com\nActiviteit: verhuur van pleziervaartuigen (met en zonder vaarbewijs) in de haven van Blanes, Costa Brava.",
+          body: "Statutaire naam: DAMAR COSTA BRAVA S.L. (handelend onder de merknaam Costa Brava Rent a Boat)\nFiscaal nummer (CIF): B22566327\nStatutaire zetel: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spanje\nContacttelefoon: +34 611 500 372\nE-mail: costabravarentaboat@gmail.com\nActiviteit: verhuur van pleziervaartuigen (met en zonder vaarbewijs) in de haven van Blanes, Costa Brava.",
         },
         {
           title: "2. Doel",
@@ -2955,7 +2955,7 @@ export const nl: Translations = {
         },
         {
           title: "11. Toepasselijk recht en jurisdictie",
-          body: "Deze voorwaarden worden beheerst door de Spaanse wetgeving. Voor elk geschil onderwerpen de partijen zich aan de rechtbanken van Girona, met uitdrukkelijke afstand van enig ander forum dat hun zou kunnen toekomen.\n\nDe consument kan een beroep doen op het platform voor onlinegeschillenbeslechting van de Europese Commissie (https://ec.europa.eu/consumers/odr) voor buitengerechtelijke geschillenbeslechting.",
+          body: "Deze voorwaarden worden beheerst door het Spaanse recht. Voor elk geschil zijn de rechtbanken van Blanes bevoegd, onverminderd het forum dat de consument wettelijk toekomt en waarvan hij in geen geval afstand doet.\n\nDe consument kan zich voor buitengerechtelijke beslechting wenden tot het platform voor onlinegeschillenbeslechting van de Europese Commissie (https://ec.europa.eu/consumers/odr). Officiële klachtenformulieren staan te zijner beschikking.",
         },
         {
           title: "12. Wijzigingen",
@@ -3015,7 +3015,7 @@ export const nl: Translations = {
         },
         {
           title: "5. Toepasselijk recht en geschillenbeslechting",
-          body: "Deze juridische mededeling wordt beheerst door het Spaanse recht. Voor elk geschil zijn de rechtbanken van Girona bevoegd, onverminderd het forum dat de consument wettelijk toekomt.\n\nDe consument kan zich eveneens wenden tot het platform voor onlinegeschillenbeslechting van de Europese Commissie (https://ec.europa.eu/consumers/odr). Officiële klachtenformulieren zijn beschikbaar voor de klant.",
+          body: "Deze juridische mededeling wordt beheerst door het Spaanse recht. Voor elk geschil zijn de rechtbanken van Blanes bevoegd, onverminderd het forum dat de consument wettelijk toekomt.\n\nDe consument kan zich eveneens wenden tot het platform voor onlinegeschillenbeslechting van de Europese Commissie (https://ec.europa.eu/consumers/odr). Officiële klachtenformulieren zijn beschikbaar voor de klant.",
         },
       ],
     },

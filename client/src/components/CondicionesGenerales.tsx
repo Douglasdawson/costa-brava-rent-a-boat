@@ -6,7 +6,8 @@ import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import { useCoveragePrices } from "@/hooks/useCoveragePrices";
 import {
-  BUSINESS_ADDRESS_FORMATTED,
+  BUSINESS_JURISDICTION,
+  BUSINESS_REGISTERED_ADDRESS_FORMATTED,
   BUSINESS_EMAIL,
   BUSINESS_LEGAL_NAME,
   BUSINESS_PHONE,
@@ -137,7 +138,7 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">LEGISLACIÓN:</h3>
                 <p className="text-foreground">
-                  Este contrato se rige por la legislación española. Para cuanta controversia pudiera surgir de su contenido o interpretación son competentes los Juzgados y Tribunales de Girona, sin perjuicio del fuero que legalmente corresponda al cliente consumidor, que en ningún caso renuncia al de su domicilio. El cliente consumidor puede acudir además a la Plataforma de Resolución de Litigios en Línea de la Comisión Europea (<a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-primary underline">ec.europa.eu/consumers/odr</a>).
+                  Este contrato se rige por la legislación española. Para cuanta controversia pudiera surgir de su contenido o interpretación son competentes los Juzgados y Tribunales de {BUSINESS_JURISDICTION}, sin perjuicio del fuero que legalmente corresponda al cliente consumidor, que en ningún caso renuncia al de su domicilio. El cliente consumidor puede acudir además a la Plataforma de Resolución de Litigios en Línea de la Comisión Europea (<a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-primary underline">ec.europa.eu/consumers/odr</a>).
                 </p>
               </div>
             </CardContent>
@@ -243,7 +244,7 @@ export default function CondicionesGenerales() {
 
           {/* Identificación del arrendador — sin esto el contrato no dice con quién se firma */}
           <p className="text-sm text-muted-foreground text-center mt-8">
-            Arrendador: {BUSINESS_LEGAL_NAME}, CIF {BUSINESS_TAX_ID}, con domicilio en {BUSINESS_ADDRESS_FORMATTED} (España).
+            Arrendador: {BUSINESS_LEGAL_NAME}, CIF {BUSINESS_TAX_ID}, con domicilio social en {BUSINESS_REGISTERED_ADDRESS_FORMATTED} (España).
             Teléfono {BUSINESS_PHONE}, correo electrónico {BUSINESS_EMAIL}.
           </p>
         </div>

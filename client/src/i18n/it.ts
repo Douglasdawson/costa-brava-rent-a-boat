@@ -2842,7 +2842,7 @@ export const it: Translations = {
       sections: [
         {
           title: "1. Titolare del trattamento",
-          body: "Identità: DAMAR COSTA BRAVA S.L. (marchio commerciale Costa Brava Rent a Boat)\nCodice fiscale (CIF): B22566327\nDomicilio: Carrer Esplanada del Port, 17300 Blanes, Girona, Spagna\nTelefono: +34 611 500 372\nEmail di contatto: costabravarentaboat@gmail.com",
+          body: "Identità: DAMAR COSTA BRAVA S.L. (marchio commerciale Costa Brava Rent a Boat)\nCodice fiscale (CIF): B22566327\nDomicilio: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spagna\nTelefono: +34 611 500 372\nEmail di contatto: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Dati personali che raccogliamo",
@@ -2914,7 +2914,7 @@ export const it: Translations = {
       sections: [
         {
           title: "1. Identificazione del titolare",
-          body: "Ragione sociale: DAMAR COSTA BRAVA S.L. (che opera con il marchio commerciale Costa Brava Rent a Boat)\nCodice fiscale (CIF): B22566327\nSede legale: Carrer Esplanada del Port, 17300 Blanes, Girona, Spagna\nTelefono di contatto: +34 611 500 372\nPosta elettronica: costabravarentaboat@gmail.com\nAttività: noleggio di imbarcazioni da diporto (con e senza patente nautica) nel Porto di Blanes, Costa Brava.",
+          body: "Ragione sociale: DAMAR COSTA BRAVA S.L. (che opera con il marchio commerciale Costa Brava Rent a Boat)\nCodice fiscale (CIF): B22566327\nSede legale: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spagna\nTelefono di contatto: +34 611 500 372\nPosta elettronica: costabravarentaboat@gmail.com\nAttività: noleggio di imbarcazioni da diporto (con e senza patente nautica) nel Porto di Blanes, Costa Brava.",
         },
         {
           title: "2. Oggetto",
@@ -2954,7 +2954,7 @@ export const it: Translations = {
         },
         {
           title: "11. Legislazione applicabile e giurisdizione",
-          body: "Queste condizioni sono disciplinate dalla legislazione spagnola. Per qualsiasi controversia, le parti si sottomettono ai Tribunali di Girona, con rinuncia espressa a qualsiasi altro foro che potrebbe spettare loro.\n\nIl cliente consumatore potrà rivolgersi alla Piattaforma di Risoluzione delle Controversie Online della Commissione Europea (https://ec.europa.eu/consumers/odr) per la risoluzione extragiudiziale delle controversie.",
+          body: "Le presenti condizioni sono rette dalla legge spagnola. Per qualsiasi controversia sono competenti i Tribunali di Blanes, fatto salvo il foro spettante per legge al cliente consumatore, al quale in nessun caso rinuncia.\n\nIl consumatore può rivolgersi alla Piattaforma di Risoluzione delle Controversie Online della Commissione europea (https://ec.europa.eu/consumers/odr) per la composizione stragiudiziale. Sono a sua disposizione i moduli ufficiali di reclamo.",
         },
         {
           title: "12. Modifiche",
@@ -3014,7 +3014,7 @@ export const it: Translations = {
         },
         {
           title: "5. Legge applicabile e risoluzione delle controversie",
-          body: "Le presenti note legali sono rette dalla legge spagnola. Per qualsiasi controversia sono competenti i Tribunali di Girona, fatto salvo il foro spettante per legge al cliente consumatore.\n\nIl consumatore può inoltre rivolgersi alla Piattaforma di Risoluzione delle Controversie Online della Commissione europea (https://ec.europa.eu/consumers/odr). Sono a disposizione del cliente i moduli ufficiali di reclamo.",
+          body: "Le presenti note legali sono rette dalla legge spagnola. Per qualsiasi controversia sono competenti i Tribunali di Blanes, fatto salvo il foro spettante per legge al cliente consumatore.\n\nIl consumatore può inoltre rivolgersi alla Piattaforma di Risoluzione delle Controversie Online della Commissione europea (https://ec.europa.eu/consumers/odr). Sono a disposizione del cliente i moduli ufficiali di reclamo.",
         },
       ],
     },

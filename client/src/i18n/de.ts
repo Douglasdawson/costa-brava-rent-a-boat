@@ -2855,7 +2855,7 @@ export const de: Translations = {
       sections: [
         {
           title: "1. Verantwortlicher für die Datenverarbeitung",
-          body: "Identität: DAMAR COSTA BRAVA S.L. (Handelsmarke Costa Brava Rent a Boat)\nSteuernummer (CIF): B22566327\nAnschrift: Carrer Esplanada del Port, 17300 Blanes, Girona, Spanien\nTelefon: +34 611 500 372\nKontakt-E-Mail: costabravarentaboat@gmail.com",
+          body: "Identität: DAMAR COSTA BRAVA S.L. (Handelsmarke Costa Brava Rent a Boat)\nSteuernummer (CIF): B22566327\nAnschrift: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spanien\nTelefon: +34 611 500 372\nKontakt-E-Mail: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Personenbezogene Daten, die wir erheben",
@@ -2927,7 +2927,7 @@ export const de: Translations = {
       sections: [
         {
           title: "1. Angaben zum Betreiber",
-          body: "Firmenname: DAMAR COSTA BRAVA S.L. (tätig unter der Handelsmarke Costa Brava Rent a Boat)\nSteuernummer (CIF): B22566327\nGeschäftssitz: Carrer Esplanada del Port, 17300 Blanes, Girona, Spanien\nKontakttelefon: +34 611 500 372\nE-Mail: costabravarentaboat@gmail.com\nTätigkeit: Vermietung von Freizeitbooten (mit und ohne Bootsführerschein) im Hafen von Blanes, Costa Brava.",
+          body: "Firmenname: DAMAR COSTA BRAVA S.L. (tätig unter der Handelsmarke Costa Brava Rent a Boat)\nSteuernummer (CIF): B22566327\nGeschäftssitz: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spanien\nKontakttelefon: +34 611 500 372\nE-Mail: costabravarentaboat@gmail.com\nTätigkeit: Vermietung von Freizeitbooten (mit und ohne Bootsführerschein) im Hafen von Blanes, Costa Brava.",
         },
         {
           title: "2. Gegenstand",
@@ -2967,7 +2967,7 @@ export const de: Translations = {
         },
         {
           title: "11. Anwendbares Recht und Gerichtsstand",
-          body: "Diese Bedingungen unterliegen dem spanischen Recht. Für jede Streitigkeit unterwerfen sich die Parteien den Gerichten von Girona unter ausdrücklichem Verzicht auf jeden anderen ihnen zustehenden Gerichtsstand.\n\nVerbraucher können sich an die Online-Streitbeilegungsplattform der Europäischen Kommission wenden (https://ec.europa.eu/consumers/odr) zur außergerichtlichen Beilegung von Streitigkeiten.",
+          body: "Diese Bedingungen unterliegen spanischem Recht. Für Streitigkeiten sind die Gerichte von Blanes zuständig, unbeschadet des dem Verbraucher gesetzlich zustehenden Gerichtsstands, auf den er in keinem Fall verzichtet.\n\nVerbraucher können sich zur außergerichtlichen Beilegung an die Plattform zur Online-Streitbeilegung der Europäischen Kommission wenden (https://ec.europa.eu/consumers/odr). Amtliche Beschwerdeformulare stehen ihnen zur Verfügung.",
         },
         {
           title: "12. Änderungen",
@@ -3027,7 +3027,7 @@ export const de: Translations = {
         },
         {
           title: "5. Anwendbares Recht und Streitbeilegung",
-          body: "Dieses Impressum unterliegt spanischem Recht. Für Streitigkeiten sind die Gerichte von Girona zuständig, unbeschadet des dem Verbraucher gesetzlich zustehenden Gerichtsstands.\n\nVerbraucher können sich zudem an die Plattform zur Online-Streitbeilegung der Europäischen Kommission wenden (https://ec.europa.eu/consumers/odr). Amtliche Beschwerdeformulare stehen den Kunden zur Verfügung.",
+          body: "Dieses Impressum unterliegt spanischem Recht. Für Streitigkeiten sind die Gerichte von Blanes zuständig, unbeschadet des dem Verbraucher gesetzlich zustehenden Gerichtsstands.\n\nVerbraucher können sich zudem an die Plattform zur Online-Streitbeilegung der Europäischen Kommission wenden (https://ec.europa.eu/consumers/odr). Amtliche Beschwerdeformulare stehen den Kunden zur Verfügung.",
         },
       ],
     },

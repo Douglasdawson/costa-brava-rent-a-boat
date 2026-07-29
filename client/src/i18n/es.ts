@@ -4647,7 +4647,7 @@ export const es: Translations = {
       sections: [
         {
           title: "1. Responsable del tratamiento",
-          body: "Identidad: DAMAR COSTA BRAVA S.L. (marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicilio: Carrer Esplanada del Port, 17300 Blanes, Girona, España\nTeléfono: +34 611 500 372\nEmail de contacto: costabravarentaboat@gmail.com",
+          body: "Identidad: DAMAR COSTA BRAVA S.L. (marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicilio: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, España\nTeléfono: +34 611 500 372\nEmail de contacto: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Datos personales que recopilamos",
@@ -4721,7 +4721,7 @@ export const es: Translations = {
       sections: [
         {
           title: "1. Identificación del titular",
-          body: "Razón social: DAMAR COSTA BRAVA S.L. (que opera bajo la marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicilio social: Carrer Esplanada del Port, 17300 Blanes, Girona, España\nTeléfono de contacto: +34 611 500 372\nCorreo electrónico: costabravarentaboat@gmail.com\nActividad: alquiler de embarcaciones de recreo (con y sin titulación náutica) en el Puerto de Blanes, Costa Brava.",
+          body: "Razón social: DAMAR COSTA BRAVA S.L. (que opera bajo la marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicilio social: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, España\nTeléfono de contacto: +34 611 500 372\nCorreo electrónico: costabravarentaboat@gmail.com\nActividad: alquiler de embarcaciones de recreo (con y sin titulación náutica) en el Puerto de Blanes, Costa Brava.",
         },
         {
           title: "2. Objeto",
@@ -4761,7 +4761,7 @@ export const es: Translations = {
         },
         {
           title: "11. Legislación aplicable y jurisdicción",
-          body: "Estas condiciones se rigen por la legislación española. Para cualquier controversia, las partes se someten a los Juzgados y Tribunales de Girona, con renuncia expresa a cualquier otro fuero que pudiera corresponderles.\n\nEl cliente consumidor podrá acudir a la Plataforma de Resolución de Litigios en Línea de la Comisión Europea (https://ec.europa.eu/consumers/odr) para la resolución extrajudicial de conflictos.",
+          body: "Estas condiciones se rigen por la legislación española. Para cualquier controversia son competentes los Juzgados y Tribunales de Blanes, sin perjuicio del fuero que legalmente corresponda al cliente consumidor, que en ningún caso renuncia al de su domicilio.\n\nEl cliente consumidor podrá acudir a la Plataforma de Resolución de Litigios en Línea de la Comisión Europea (https://ec.europa.eu/consumers/odr) para la resolución extrajudicial de conflictos. Hay hojas oficiales de reclamación a su disposición.",
         },
         {
           title: "12. Modificaciones",
@@ -4822,7 +4822,7 @@ export const es: Translations = {
         },
         {
           title: "5. Legislación aplicable y resolución de conflictos",
-          body: "Este aviso legal se rige por la legislación española. Para cualquier controversia son competentes los Juzgados y Tribunales de Girona, sin perjuicio del fuero que legalmente corresponda al cliente consumidor.\n\nEl consumidor puede acudir asimismo a la Plataforma de Resolución de Litigios en Línea de la Comisión Europea (https://ec.europa.eu/consumers/odr). Hay hojas oficiales de reclamación a disposición del cliente.",
+          body: "Este aviso legal se rige por la legislación española. Para cualquier controversia son competentes los Juzgados y Tribunales de Blanes, sin perjuicio del fuero que legalmente corresponda al cliente consumidor.\n\nEl consumidor puede acudir asimismo a la Plataforma de Resolución de Litigios en Línea de la Comisión Europea (https://ec.europa.eu/consumers/odr). Hay hojas oficiales de reclamación a disposición del cliente.",
         },
       ],
     },

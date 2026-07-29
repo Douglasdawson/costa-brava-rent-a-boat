@@ -5,7 +5,7 @@ import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBrea
 import { useLanguage } from "@/hooks/use-language";
 import { LegalPageLayout } from "@/components/LegalPageLayout";
 import {
-  BUSINESS_ADDRESS_FORMATTED,
+  BUSINESS_REGISTERED_ADDRESS_FORMATTED,
   BUSINESS_EMAIL,
   BUSINESS_LEGAL_NAME,
   BUSINESS_PHONE,
@@ -40,7 +40,7 @@ export default function LegalNotice() {
         body: [
           `${page.labels.legalName}: ${BUSINESS_LEGAL_NAME}`,
           `${page.labels.taxId}: ${BUSINESS_TAX_ID}`,
-          `${page.labels.address}: ${BUSINESS_ADDRESS_FORMATTED}, España`,
+          `${page.labels.address}: ${BUSINESS_REGISTERED_ADDRESS_FORMATTED}, España`,
           `${page.labels.phone}: ${BUSINESS_PHONE}`,
           `${page.labels.email}: ${BUSINESS_EMAIL}`,
           `${page.labels.activity}: ${page.activityValue}`,

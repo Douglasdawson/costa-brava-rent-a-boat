@@ -44,6 +44,26 @@ export const BUSINESS_POSTAL_CODE = "17300";
 export const BUSINESS_COUNTRY = "ES";
 export const BUSINESS_ADDRESS_FORMATTED = `${BUSINESS_STREET}, ${BUSINESS_POSTAL_CODE} ${BUSINESS_LOCALITY}, ${BUSINESS_REGION}`;
 
+// DOMICILIO SOCIAL — no confundir con la dirección de arriba. La de arriba es
+// donde se opera (Puerto de Blanes) y es la que debe casar con Google Business
+// Profile para el SEO local; ésta es la que consta en el contrato que firma el
+// cliente, en el Modelo 036 y como tomador en las pólizas de Allianz, y es la
+// que exige el art. 10 LSSI-CE en el aviso legal. Se separaron el 2026-07-29:
+// hasta entonces las páginas legales publicaban la operativa como domicilio
+// social, primero "Puerto de Blanes" (un landmark) y luego la calle del puerto.
+export const BUSINESS_REGISTERED_STREET = "Carrer Delícia, 1";
+export const BUSINESS_REGISTERED_LOCALITY = "Lloret de Mar";
+export const BUSINESS_REGISTERED_POSTAL_CODE = "17310";
+export const BUSINESS_REGISTERED_ADDRESS_FORMATTED = `${BUSINESS_REGISTERED_STREET}, ${BUSINESS_REGISTERED_POSTAL_CODE} ${BUSINESS_REGISTERED_LOCALITY}, ${BUSINESS_REGION}`;
+
+// Fuero. Blanes ES partido judicial (6 juzgados de primera instancia e
+// instrucción) y es el que pactan los contratos en papel. Se corrigió el
+// 2026-07-29: se había cambiado a Girona dando por hecho que Blanes no existía
+// como partido judicial, lo cual es falso. Frente a un consumidor la sumisión
+// expresa es nula igualmente (art. 90.2 RDL 1/2007), así que el texto nombra
+// Blanes pero NO renuncia al fuero del cliente.
+export const BUSINESS_JURISDICTION = "Blanes";
+
 // Contacto público. Vivía sólo en client/src/utils/seo-config.ts, que es config
 // de cliente: las superficies legales (aviso legal, condiciones, términos) son
 // shared y necesitan la misma fuente que la razón social y el domicilio.

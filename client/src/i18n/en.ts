@@ -2891,7 +2891,7 @@ export const en: Translations = {
       sections: [
         {
           title: "1. Data Controller",
-          body: "Identity: DAMAR COSTA BRAVA S.L. (trading as Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nAddress: Carrer Esplanada del Port, 17300 Blanes, Girona, Spain\nPhone: +34 611 500 372\nContact email: costabravarentaboat@gmail.com",
+          body: "Identity: DAMAR COSTA BRAVA S.L. (trading as Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nAddress: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spain\nPhone: +34 611 500 372\nContact email: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Personal Data We Collect",
@@ -2963,7 +2963,7 @@ export const en: Translations = {
       sections: [
         {
           title: "1. Owner Identification",
-          body: "Registered name: DAMAR COSTA BRAVA S.L. (trading under the brand Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nRegistered office: Carrer Esplanada del Port, 17300 Blanes, Girona, Spain\nContact phone: +34 611 500 372\nEmail: costabravarentaboat@gmail.com\nActivity: rental of recreational boats (with and without a nautical licence) at the Port of Blanes, Costa Brava.",
+          body: "Registered name: DAMAR COSTA BRAVA S.L. (trading under the brand Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nRegistered office: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spain\nContact phone: +34 611 500 372\nEmail: costabravarentaboat@gmail.com\nActivity: rental of recreational boats (with and without a nautical licence) at the Port of Blanes, Costa Brava.",
         },
         {
           title: "2. Purpose",
@@ -3003,7 +3003,7 @@ export const en: Translations = {
         },
         {
           title: "11. Applicable Law and Jurisdiction",
-          body: "These conditions are governed by Spanish law. For any dispute, the parties submit to the Courts and Tribunals of Girona, with express waiver of any other jurisdiction that might correspond to them.\n\nConsumer customers may use the European Commission's Online Dispute Resolution Platform (https://ec.europa.eu/consumers/odr) for the out-of-court resolution of disputes.",
+          body: "These conditions are governed by Spanish law. The Courts of Blanes have jurisdiction over any dispute, without prejudice to the forum legally available to the consumer client, who in no case waives the forum of their own domicile.\n\nConsumers may use the European Commission's Online Dispute Resolution Platform (https://ec.europa.eu/consumers/odr) for out-of-court settlement. Official complaint forms are available to them.",
         },
         {
           title: "12. Modifications",
@@ -3063,7 +3063,7 @@ export const en: Translations = {
         },
         {
           title: "5. Applicable law and dispute resolution",
-          body: "This legal notice is governed by Spanish law. The Courts of Girona have jurisdiction over any dispute, without prejudice to the forum legally available to the consumer client.\n\nConsumers may also use the European Commission's Online Dispute Resolution Platform (https://ec.europa.eu/consumers/odr). Official complaint forms are available to customers.",
+          body: "This legal notice is governed by Spanish law. The Courts of Blanes have jurisdiction over any dispute, without prejudice to the forum legally available to the consumer client.\n\nConsumers may also use the European Commission's Online Dispute Resolution Platform (https://ec.europa.eu/consumers/odr). Official complaint forms are available to customers.",
         },
       ],
     },

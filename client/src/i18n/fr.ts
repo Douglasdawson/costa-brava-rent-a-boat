@@ -2853,7 +2853,7 @@ export const fr: Translations = {
       sections: [
         {
           title: "1. Responsable du traitement",
-          body: "Identité : DAMAR COSTA BRAVA S.L. (marque commerciale Costa Brava Rent a Boat)\nNuméro fiscal (CIF) : B22566327\nAdresse : Carrer Esplanada del Port, 17300 Blanes, Gérone, Espagne\nTéléphone : +34 611 500 372\nCourriel de contact : costabravarentaboat@gmail.com",
+          body: "Identité : DAMAR COSTA BRAVA S.L. (marque commerciale Costa Brava Rent a Boat)\nNuméro fiscal (CIF) : B22566327\nAdresse : Carrer Delícia, 1, 17310 Lloret de Mar, Gérone, Espagne\nTéléphone : +34 611 500 372\nCourriel de contact : costabravarentaboat@gmail.com",
         },
         {
           title: "2. Données personnelles que nous collectons",
@@ -2925,7 +2925,7 @@ export const fr: Translations = {
       sections: [
         {
           title: "1. Identification du titulaire",
-          body: "Raison sociale : DAMAR COSTA BRAVA S.L. (exploitant sous la marque commerciale Costa Brava Rent a Boat)\nNuméro fiscal (CIF) : B22566327\nSiège social : Carrer Esplanada del Port, 17300 Blanes, Gérone, Espagne\nTéléphone de contact : +34 611 500 372\nCourrier électronique : costabravarentaboat@gmail.com\nActivité : location de bateaux de plaisance (avec et sans permis nautique) au Port de Blanes, Costa Brava.",
+          body: "Raison sociale : DAMAR COSTA BRAVA S.L. (exploitant sous la marque commerciale Costa Brava Rent a Boat)\nNuméro fiscal (CIF) : B22566327\nSiège social : Carrer Delícia, 1, 17310 Lloret de Mar, Gérone, Espagne\nTéléphone de contact : +34 611 500 372\nCourrier électronique : costabravarentaboat@gmail.com\nActivité : location de bateaux de plaisance (avec et sans permis nautique) au Port de Blanes, Costa Brava.",
         },
         {
           title: "2. Objet",
@@ -2965,7 +2965,7 @@ export const fr: Translations = {
         },
         {
           title: "11. Législation applicable et juridiction",
-          body: "Ces conditions sont régies par la législation espagnole. Pour tout litige, les parties se soumettent aux Tribunaux de Gérone, avec renonciation expresse à tout autre for qui pourrait leur correspondre.\n\nLe client consommateur pourra recourir à la Plateforme de Règlement en Ligne des Litiges de la Commission Européenne (https://ec.europa.eu/consumers/odr) pour la résolution extrajudiciaire des conflits.",
+          body: "Les présentes conditions sont régies par la loi espagnole. Les Tribunaux de Blanes sont compétents pour tout litige, sans préjudice du for légalement ouvert au client consommateur, qui ne renonce en aucun cas à celui de son domicile.\n\nLe consommateur peut saisir la Plateforme de Règlement en Ligne des Litiges de la Commission européenne (https://ec.europa.eu/consumers/odr) pour un règlement extrajudiciaire. Des feuilles officielles de réclamation sont à sa disposition.",
         },
         {
           title: "12. Modifications",
@@ -3025,7 +3025,7 @@ export const fr: Translations = {
         },
         {
           title: "5. Loi applicable et résolution des litiges",
-          body: "Les présentes mentions légales sont régies par la loi espagnole. Les Tribunaux de Gérone sont compétents pour tout litige, sans préjudice du for légalement ouvert au client consommateur.\n\nLe consommateur peut également saisir la Plateforme de Règlement en Ligne des Litiges de la Commission européenne (https://ec.europa.eu/consumers/odr). Des feuilles officielles de réclamation sont à la disposition du client.",
+          body: "Les présentes mentions légales sont régies par la loi espagnole. Les Tribunaux de Blanes sont compétents pour tout litige, sans préjudice du for légalement ouvert au client consommateur.\n\nLe consommateur peut également saisir la Plateforme de Règlement en Ligne des Litiges de la Commission européenne (https://ec.europa.eu/consumers/odr). Des feuilles officielles de réclamation sont à la disposition du client.",
         },
       ],
     },

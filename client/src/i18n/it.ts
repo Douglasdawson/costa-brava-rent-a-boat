@@ -268,6 +268,8 @@ export const it: Translations = {
     faqLabel: "Domande Frequenti",
     customerReviews: "Recensioni Clienti",
     cookiesPolicy: "Politica dei Cookie",
+    legalNotice: "Note Legali",
+    rentalConditions: "Condizioni di Noleggio",
     destinations: "Destinazioni",
     gallery: "Galleria",
     accessibility: "Accessibilità",
@@ -2840,7 +2842,7 @@ export const it: Translations = {
       sections: [
         {
           title: "1. Titolare del trattamento",
-          body: "Identità: Costa Brava Rent a Boat\nPartita IVA: B22566327\nSede: Porto di Blanes, Girona, Spagna\nTelefono: +34 611 500 372\nEmail di contatto: costabravarentaboat@gmail.com",
+          body: "Identità: DAMAR COSTA BRAVA S.L. (marchio commerciale Costa Brava Rent a Boat)\nCodice fiscale (CIF): B22566327\nDomicilio: Carrer Esplanada del Port, 17300 Blanes, Girona, Spagna\nTelefono: +34 611 500 372\nEmail di contatto: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Dati personali che raccogliamo",
@@ -2912,7 +2914,7 @@ export const it: Translations = {
       sections: [
         {
           title: "1. Identificazione del titolare",
-          body: "Costa Brava Rent a Boat\nPartita IVA: B22566327\nSede legale: Porto di Blanes, Girona, Spagna\nTelefono di contatto: +34 611 500 372\nEmail: costabravarentaboat@gmail.com\nAttività: noleggio di imbarcazioni da diporto (con e senza patente nautica) nel Porto di Blanes, Costa Brava.",
+          body: "Ragione sociale: DAMAR COSTA BRAVA S.L. (che opera con il marchio commerciale Costa Brava Rent a Boat)\nCodice fiscale (CIF): B22566327\nSede legale: Carrer Esplanada del Port, 17300 Blanes, Girona, Spagna\nTelefono di contatto: +34 611 500 372\nPosta elettronica: costabravarentaboat@gmail.com\nAttività: noleggio di imbarcazioni da diporto (con e senza patente nautica) nel Porto di Blanes, Costa Brava.",
         },
         {
           title: "2. Oggetto",
@@ -2920,7 +2922,7 @@ export const it: Translations = {
         },
         {
           title: "3. Processo di prenotazione",
-          body: "Il sito web raccoglie richieste di prenotazione. Il cliente compila un modulo con data, barca, durata e dati di contatto. Il prestatore confermerà manualmente la disponibilità e invierà un messaggio di conferma tramite WhatsApp o email.\n\nIl pagamento viene gestito manualmente di persona presso il Porto di Blanes, al momento dell'imbarco. Non vengono effettuati addebiti automatici online.\n\nLa prenotazione diventa definitiva solo dopo la conferma esplicita del prestatore.",
+          body: "Il sito raccoglie richieste di prenotazione. Il cliente compila un modulo con data, imbarcazione, durata e dati di contatto. Il prestatore conferma manualmente la disponibilità e invia un messaggio di conferma via WhatsApp o posta elettronica.\n\nNel noleggio di imbarcazioni il pagamento avviene di persona nel Porto di Blanes, al momento dell'imbarco: il sito non addebita automaticamente l'importo del noleggio. I prodotti del negozio e le carte regalo si pagano invece online con carta al momento dell'acquisto, secondo le sezioni da 13 a 17.\n\nLa prenotazione è definitiva solo dopo la conferma esplicita del prestatore.",
         },
         {
           title: "4. Requisiti per il noleggiante",
@@ -2928,11 +2930,11 @@ export const it: Translations = {
         },
         {
           title: "5. Deposito cauzionale e condizioni di pagamento",
-          body: "Prima della partenza viene versato un deposito cauzionale (200-500 € a seconda dell'imbarcazione) che viene restituito interamente al rientro se l'imbarcazione viene riconsegnata nelle stesse condizioni in cui è stata ritirata.\n\nIn caso di danni, perdita di materiale o mancato rispetto della zona di navigazione autorizzata, il prestatore potrà trattenere in tutto o in parte il deposito per coprire i costi.",
+          body: "Prima di salpare si versa una cauzione (200 € per le imbarcazioni senza patente e 500 € per quelle che la richiedono), restituita integralmente al rientro se l'imbarcazione viene riconsegnata nelle stesse condizioni in cui è stata ricevuta. L'importo vigente è sempre quello indicato al momento della prenotazione e nel contratto firmato in porto.\n\nIl cliente può sottoscrivere volontariamente la Cauzione ridotta, che abbassa l'importo trattenuto a fronte di un prezzo fisso. È una garanzia commerciale propria e non un contratto di assicurazione; il suo prezzo non è rimborsabile.\n\nIn caso di danni, perdita di materiale o mancato rispetto della zona di navigazione autorizzata, il prestatore potrà trattenere in tutto o in parte la cauzione per coprire i costi.",
         },
         {
           title: "6. Zona di navigazione e durata",
-          body: "Zone autorizzate: nord fino a Playa de Fenals (senza patente) o Sant Feliu de Guíxols (con patente); sud fino alla fine della spiaggia di Blanes (senza patente) o senza limite (con patente). Massimo 2 miglia nautiche dalla costa per barche senza patente, a velocità massima di 5 nodi.\n\nLe imbarcazioni devono rientrare al Porto di Blanes prima della fine della fascia oraria prenotata. Ritardi non giustificati comportano un addebito di 50 €/ora extra.",
+          body: "Zone autorizzate: a nord fino alla spiaggia di Fenals (senza patente) o Sant Feliu de Guíxols (con patente); a sud fino alla foce del fiume Tordera, al termine della spiaggia di Blanes (senza patente), o senza limite (con patente). Massimo 2 miglia nautiche dalla costa per le imbarcazioni senza patente.\n\nLa velocità massima nei porti e nei canali segnalati delle spiagge è di 3 nodi. Occorre rispettare la zona dei bagnanti, ancorare fuori dalle boe gialle, navigare a più di 200 m da spiagge e scogliere e mantenere 100 m di distanza dalle boe dei subacquei.\n\nLe imbarcazioni dovranno rientrare nel Porto di Blanes prima del termine della fascia oraria prenotata. Se il check-out avviene oltre l'orario stabilito senza preavviso, verrà addebitato un importo di 150 € per ogni 30 minuti di ritardo o la relativa parte proporzionale.",
         },
         {
           title: "7. Politica di cancellazione",
@@ -2944,7 +2946,7 @@ export const it: Translations = {
         },
         {
           title: "9. Responsabilità e assicurazione",
-          body: "Tutte le imbarcazioni sono dotate di assicurazione casco completo per imbarcazione e occupanti, conforme alla normativa spagnola sulle imbarcazioni da diporto. L'assicurazione copre i danni accidentali durante la navigazione all'interno della zona autorizzata.\n\nNon sono coperti i danni derivanti da uso negligente, stato di ebbrezza, navigazione fuori dalla zona consentita, condizioni meteorologiche avverse ignorate dopo avviso, o mancato rispetto delle istruzioni di sicurezza.",
+          body: "Tutte le imbarcazioni dispongono dell'assicurazione di Responsabilità Civile obbligatoria per le unità da diporto e della copertura per danni fisici agli occupanti, conformemente alla normativa spagnola. La copertura si applica durante la navigazione all'interno della zona autorizzata.\n\nSono escluse le attività che comportano il traino di attrezzi (banane, ciambelle gonfiabili, sci e simili), delle quali risponde il conduttore. Non sono coperti nemmeno i danni derivanti da uso negligente, stato di ebbrezza, navigazione fuori dalla zona consentita, condizioni meteorologiche avverse ignorate dopo l'avviso, o mancato rispetto delle istruzioni di sicurezza.\n\nPrima di salpare il cliente viene informato dell'esatta portata della polizza; ogni danno che ecceda la copertura o la cauzione è a carico del conduttore.",
         },
         {
           title: "10. Proprietà intellettuale",
@@ -2960,7 +2962,7 @@ export const it: Translations = {
         },
         {
           title: "13. Negozio online: identificazione del venditore",
-          body: "Le sezioni da 13 a 16 disciplinano esclusivamente l'acquisto dei prodotti fisici della sezione Negozio di questo sito web (collezione Costa Brava Culture, in collaborazione con Laura Cabanas). Il venditore di questi prodotti è DAMAR COSTA BRAVA S.L., codice fiscale (CIF) B22566327, con domicilio ai fini delle notifiche presso Carrer Esplanada del Port, 17300 Blanes, Girona, Spagna, telefono +34 611 500 372 e email costabravarentaboat@gmail.com (di seguito, il venditore). Le sezioni da 1 a 12 riguardano il servizio di noleggio imbarcazioni e non si applicano agli acquisti del negozio.",
+          body: "Le sezioni da 13 a 16 disciplinano esclusivamente l'acquisto dei prodotti fisici della sezione Negozio di questo sito web (le carte regalo e le attività di moto d'acqua sono rette dalle sezioni 17 e 18) (collezione Costa Brava Culture, in collaborazione con Laura Cabanas). Il venditore di questi prodotti è DAMAR COSTA BRAVA S.L., codice fiscale (CIF) B22566327, con domicilio ai fini delle notifiche presso Carrer Esplanada del Port, 17300 Blanes, Girona, Spagna, telefono +34 611 500 372 e email costabravarentaboat@gmail.com (di seguito, il venditore). Le sezioni da 1 a 12 riguardano il servizio di noleggio imbarcazioni e non si applicano agli acquisti del negozio.",
         },
         {
           title: "14. Negozio online: prezzi, pagamento e consegna",
@@ -2974,8 +2976,49 @@ export const it: Translations = {
           title: "16. Negozio online: garanzia legale e reclami",
           body: "Tutti i prodotti del negozio godono della garanzia legale di conformità di 3 anni dalla consegna, ai sensi del Regio Decreto Legislativo spagnolo 1/2007. Se il prodotto presenta un difetto di conformità (difetto di fabbricazione, danno nel trasporto o altra discrepanza rispetto a quanto acquistato), il cliente può esigerne la riparazione o la sostituzione senza alcun costo e, se non fossero possibili o risultassero sproporzionate, la riduzione del prezzo o la risoluzione dell'acquisto; in questi casi le spese di restituzione sono a carico del venditore.\n\nPer qualsiasi reclamo relativo al negozio, il cliente può rivolgersi al venditore attraverso i canali indicati nella sezione 13. Sono disponibili moduli di reclamo per i consumatori.",
         },
+        {
+          title: "17. Carte regalo",
+          body: "Le carte regalo si acquistano online con carta bancaria e vengono consegnate via posta elettronica con un codice univoco. Sono valide per 12 mesi dall'emissione, utilizzabili per qualsiasi servizio di noleggio soggetto a disponibilità, e non sono frazionabili su più prenotazioni né convertibili in denaro.\n\nTrattandosi di contenuto digitale fornito in modo immediato, il diritto di recesso non si applica una volta inviato il codice, ai sensi dell'articolo 103.m del Regio Decreto Legislativo spagnolo 1/2007. Se la carta non viene utilizzata entro il periodo di validità, l'importo non viene rimborsato.",
+        },
+        {
+          title: "18. Moto d'acqua e altre attività nautiche",
+          body: "Le moto d'acqua e l'eFoil offerti su questo sito funzionano su richiesta: il sito raccoglie la richiesta e il servizio viene confermato, contrattato e pagato direttamente al punto di partenza. Non richiedono patente nautica e si svolgono sempre in circuito delimitato o in escursione accompagnata da una guida.\n\nIl partecipante deve avere più di 18 anni (o essere minorenne accompagnato da un adulto responsabile nelle modalità che lo consentono), seguire in ogni momento le istruzioni della guida e indossare il giubbotto salvagente per tutta la durata dell'attività. Le condizioni economiche concrete, l'eventuale cauzione e la politica di cancellazione applicabili a queste attività sono quelle comunicate al cliente al momento della conferma della richiesta.",
+        },
       ],
     },
+    legalNotice: {
+      heroTitle: "Note Legali",
+      lastUpdated: "Ultimo aggiornamento: luglio 2026",
+      identificationTitle: "1. Dati identificativi del titolare",
+      labels: {
+        legalName: "Ragione sociale",
+        taxId: "Codice fiscale (CIF)",
+        address: "Sede legale",
+        phone: "Telefono",
+        email: "Posta elettronica",
+        activity: "Attività",
+      },
+      activityValue: "Noleggio di imbarcazioni da diporto con e senza patente nautica nel Porto di Blanes (Girona) e vendita di prodotti della collezione propria tramite il negozio online.",
+      sections: [
+        {
+          title: "2. Oggetto e ambito di applicazione",
+          body: "Le presenti note legali raccolgono le informazioni che l'articolo 10 della legge spagnola 34/2002 sui servizi della società dell'informazione e sul commercio elettronico (LSSI-CE) impone di mettere a disposizione degli utenti del sito costabravarentaboat.com.\n\nL'accesso al sito attribuisce la qualifica di utente e comporta l'accettazione delle condizioni qui riportate. Le condizioni contrattuali del noleggio e del negozio sono dettagliate nei Termini e Condizioni e nelle Condizioni Generali di Noleggio, che prevalgono sulle presenti note per quanto attiene alla contrattazione.",
+        },
+        {
+          title: "3. Proprietà intellettuale e industriale",
+          body: "I contenuti di questo sito (testi, fotografie, illustrazioni, loghi, marchi, design e codice) sono di titolarità del prestatore o di terzi che ne hanno autorizzato l'uso. Ne sono vietate la riproduzione, la distribuzione, la comunicazione al pubblico o la trasformazione senza autorizzazione espressa e scritta.\n\nI marchi e i nomi commerciali di terzi che possono comparire sul sito appartengono ai rispettivi titolari e la loro menzione non implica sponsorizzazione né raccomandazione.",
+        },
+        {
+          title: "4. Responsabilità e collegamenti a terzi",
+          body: "Il prestatore non risponde dell'uso che gli utenti facciano dei contenuti del sito né dei danni derivanti da interruzioni del servizio estranee al suo controllo.\n\nIl sito può contenere collegamenti a siti di terzi (ad esempio imprese collaboratrici o gateway di pagamento). Il prestatore non ne controlla i contenuti e non si assume alcuna responsabilità al riguardo; il collegamento non implica rapporto, approvazione né supervisione.",
+        },
+        {
+          title: "5. Legge applicabile e risoluzione delle controversie",
+          body: "Le presenti note legali sono rette dalla legge spagnola. Per qualsiasi controversia sono competenti i Tribunali di Girona, fatto salvo il foro spettante per legge al cliente consumatore.\n\nIl consumatore può inoltre rivolgersi alla Piattaforma di Risoluzione delle Controversie Online della Commissione europea (https://ec.europa.eu/consumers/odr). Sono a disposizione del cliente i moduli ufficiali di reclamo.",
+        },
+      ],
+    },
+
     accessibility: {
       heroTitle: "Dichiarazione di Accessibilità",
       lastUpdated: "Conforme al Regio Decreto 1112/2018, del 7 settembre",
@@ -4406,6 +4449,7 @@ export const it: Translations = {
     notInsurance: "La Garanzia maltempo e la Cauzione ridotta sono garanzie commerciali proprie di Costa Brava Rent a Boat e non costituiscono un contratto di assicurazione.",
     ctaTitle: "Scegli le tue coperture al momento di prenotare",
     ctaLabel: "Prenota e aggiungi le coperture",
+    conditionsLink: "Leggi le condizioni generali di noleggio",
   },
   scootersPage: {
     seoTitle: "Noleggio moto e scooter a Lloret de Mar | Coast Rent",

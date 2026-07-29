@@ -564,6 +564,28 @@ export default function Footer() {
               >
                 {t.footer.accessibility}
               </a>
+              <span className="text-primary-foreground/30" aria-hidden="true">
+                |
+              </span>
+              {/* El contrato de alquiler solo se alcanzaba desde el checkout: es
+                  el documento con la zona de navegacion, la fianza y el recargo. */}
+              <a
+                href={localizedPath("condicionesGenerales")}
+                className="hover:text-primary-foreground transition-colors min-h-11 inline-flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                data-testid="footer-rental-conditions-link"
+              >
+                {t.footer.rentalConditions}
+              </a>
+              <span className="text-primary-foreground/30" aria-hidden="true">
+                |
+              </span>
+              <a
+                href={localizedPath("legalNotice")}
+                className="hover:text-primary-foreground transition-colors min-h-11 inline-flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                data-testid="footer-legal-notice-link"
+              >
+                {t.footer.legalNotice}
+              </a>
             </div>
             <p className="text-primary-foreground/50 text-xs text-center text-balance">
               &copy; {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}

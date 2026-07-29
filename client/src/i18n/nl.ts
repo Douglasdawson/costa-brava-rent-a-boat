@@ -268,6 +268,8 @@ export const nl: Translations = {
     faqLabel: "Veelgestelde Vragen",
     customerReviews: "Klantbeoordelingen",
     cookiesPolicy: "Cookiebeleid",
+    legalNotice: "Juridische Mededeling",
+    rentalConditions: "Huurvoorwaarden",
     destinations: "Bestemmingen",
     gallery: "Galerij",
     accessibility: "Toegankelijkheid",
@@ -2841,7 +2843,7 @@ export const nl: Translations = {
       sections: [
         {
           title: "1. Verwerkingsverantwoordelijke",
-          body: "Identiteit: Costa Brava Rent a Boat\nNIF: B22566327\nAdres: Haven van Blanes, Girona, Spanje\nTelefoon: +34 611 500 372\nContacte-mail: costabravarentaboat@gmail.com",
+          body: "Identiteit: DAMAR COSTA BRAVA S.L. (merknaam Costa Brava Rent a Boat)\nFiscaal nummer (CIF): B22566327\nAdres: Carrer Esplanada del Port, 17300 Blanes, Girona, Spanje\nTelefoon: +34 611 500 372\nContact-e-mail: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Persoonsgegevens die we verzamelen",
@@ -2913,7 +2915,7 @@ export const nl: Translations = {
       sections: [
         {
           title: "1. Identificatie van de eigenaar",
-          body: "Costa Brava Rent a Boat\nNIF: B22566327\nMaatschappelijke zetel: Haven van Blanes, Girona, Spanje\nContacttelefoon: +34 611 500 372\nE-mail: costabravarentaboat@gmail.com\nActiviteit: verhuur van recreatieboten (met en zonder vaarbewijs) in de haven van Blanes, Costa Brava.",
+          body: "Statutaire naam: DAMAR COSTA BRAVA S.L. (handelend onder de merknaam Costa Brava Rent a Boat)\nFiscaal nummer (CIF): B22566327\nStatutaire zetel: Carrer Esplanada del Port, 17300 Blanes, Girona, Spanje\nContacttelefoon: +34 611 500 372\nE-mail: costabravarentaboat@gmail.com\nActiviteit: verhuur van pleziervaartuigen (met en zonder vaarbewijs) in de haven van Blanes, Costa Brava.",
         },
         {
           title: "2. Doel",
@@ -2921,7 +2923,7 @@ export const nl: Translations = {
         },
         {
           title: "3. Reserveringsproces",
-          body: "De website registreert reserveringsaanvragen. De klant vult een formulier in met datum, boot, duur en contactgegevens. De aanbieder zal handmatig de beschikbaarheid bevestigen en een bevestigingsbericht sturen via WhatsApp of e-mail.\n\nDe betaling wordt handmatig ter plaatse in de haven van Blanes geregeld op het moment van inscheping. Er worden geen automatische online betalingen verricht.\n\nDe reservering is pas definitief na uitdrukkelijke bevestiging door de aanbieder.",
+          body: "De website verzamelt boekingsaanvragen. De klant vult een formulier in met datum, boot, duur en contactgegevens. De aanbieder bevestigt de beschikbaarheid handmatig en stuurt een bevestiging via WhatsApp of e-mail.\n\nBij bootverhuur wordt de betaling ter plaatse in de haven van Blanes afgehandeld op het moment van inschepen: de website incasseert het huurbedrag niet automatisch. Producten uit de webshop en cadeaubonnen worden wel online met kaart betaald op het moment van aankoop, volgens de secties 13 tot en met 17.\n\nDe boeking is pas definitief na uitdrukkelijke bevestiging door de aanbieder.",
         },
         {
           title: "4. Vereisten voor de huurder",
@@ -2929,11 +2931,11 @@ export const nl: Translations = {
         },
         {
           title: "5. Borg en betalingsvoorwaarden",
-          body: "Voor vertrek wordt een borg betaald (200-500 € afhankelijk van de boot) die volledig wordt terugbetaald bij terugkeer als de boot in dezelfde staat wordt ingeleverd als waarin deze werd ontvangen.\n\nBij schade, verlies van materiaal of niet-naleving van de toegestane vaarzone, kan de aanbieder de borg geheel of gedeeltelijk inhouden om de kosten te dekken.",
+          body: "Voor vertrek wordt een waarborgsom betaald (200 € voor boten zonder vaarbewijs en 500 € voor boten die er een vereisen), die bij terugkomst volledig wordt terugbetaald als de boot in dezelfde staat wordt ingeleverd. Het geldende bedrag is altijd het bedrag dat bij de boeking wordt vermeld en in het contract dat in de haven wordt ondertekend.\n\nDe klant kan vrijwillig de Verlaagde waarborgsom afsluiten, die het ingehouden bedrag verlaagt tegen een vaste prijs. Het is een eigen commerciële garantie en geen verzekeringsovereenkomst; de prijs ervan wordt niet terugbetaald.\n\nBij schade, verlies van materiaal of overtreding van het toegestane vaargebied kan de aanbieder de waarborgsom geheel of gedeeltelijk inhouden om de kosten te dekken.",
         },
         {
           title: "6. Vaargebied en duur",
-          body: "Toegestane zones: noord tot Playa de Fenals (zonder vergunning) of Sant Feliu de Guíxols (met vergunning); zuid tot het einde van het strand van Blanes (zonder vergunning) of zonder limiet (met vergunning). Maximaal 2 zeemijl van de kust voor boten zonder vergunning, met maximaal 5 knopen.\n\nDe boten moeten vóór het einde van de gecontracteerde tijdsperiode terugkeren naar de haven van Blanes. Ongerechtvaardigde vertragingen worden gefactureerd tegen 50 €/extra uur.",
+          body: "Toegestane gebieden: noordwaarts tot het strand van Fenals (zonder vaarbewijs) of Sant Feliu de Guíxols (met vaarbewijs); zuidwaarts tot de monding van de rivier Tordera, aan het einde van het strand van Blanes (zonder vaarbewijs), of onbeperkt (met vaarbewijs). Maximaal 2 zeemijl uit de kust voor boten zonder vaarbewijs.\n\nDe maximumsnelheid in havens en in de betonde vaargeulen bij de stranden bedraagt 3 knopen. De zwemzone moet worden gerespecteerd, er moet buiten de gele boeien worden geankerd, op meer dan 200 m van stranden en kliffen worden gevaren en 100 m afstand worden gehouden tot duikersboeien.\n\nDe boten moeten vóór het einde van het geboekte tijdslot terug zijn in de haven van Blanes. Vindt de check-out zonder bericht later plaats dan afgesproken, dan wordt 150 € per 30 minuten vertraging of het evenredige deel daarvan in rekening gebracht.",
         },
         {
           title: "7. Annuleringsbeleid",
@@ -2945,7 +2947,7 @@ export const nl: Translations = {
         },
         {
           title: "9. Aansprakelijkheid en verzekering",
-          body: "Alle boten hebben een allrisk verzekering voor boot en inzittenden, in overeenstemming met de Spaanse regelgeving voor recreatieboten. De verzekering dekt accidentele schade tijdens het varen binnen de toegestane zone.\n\nNiet gedekt zijn schade als gevolg van nalatig gebruik, dronkenschap, varen buiten de toegestane zone, genegeerde weersomstandigheden na waarschuwing, of niet-naleving van de veiligheidsinstructies.",
+          body: "Alle boten beschikken over de verplichte WA-verzekering voor pleziervaartuigen en over dekking voor lichamelijk letsel van de opvarenden, conform de Spaanse regelgeving. De dekking geldt tijdens het varen binnen het toegestane gebied.\n\nUitgesloten zijn activiteiten waarbij voorwerpen worden gesleept (bananen, opblaasbanden, ski's en dergelijke), waarvoor de huurder aansprakelijk is. Evenmin gedekt is schade door nalatig gebruik, dronkenschap, varen buiten het toegestane gebied, ongunstige weersomstandigheden die na waarschuwing zijn genegeerd, of het niet opvolgen van de veiligheidsinstructies.\n\nVóór vertrek wordt de klant geïnformeerd over de precieze reikwijdte van de polis; schade die de dekking of de waarborgsom overstijgt, komt voor rekening van de huurder.",
         },
         {
           title: "10. Intellectueel eigendom",
@@ -2961,7 +2963,7 @@ export const nl: Translations = {
         },
         {
           title: "13. Onlineshop: identificatie van de verkoper",
-          body: "De secties 13 tot en met 16 regelen uitsluitend de aankoop van de fysieke producten in de sectie Shop van deze website (collectie Costa Brava Culture, in samenwerking met Laura Cabanas). De verkoper van deze producten is DAMAR COSTA BRAVA S.L., fiscaal nummer (CIF) B22566327, met adres voor kennisgevingen aan Carrer Esplanada del Port, 17300 Blanes, Girona, Spanje, telefoon +34 611 500 372 en e-mail costabravarentaboat@gmail.com (hierna: de verkoper). De secties 1 tot en met 12 betreffen de bootverhuurdienst en zijn niet van toepassing op aankopen in de shop.",
+          body: "De secties 13 tot en met 16 regelen uitsluitend de aankoop van de fysieke producten in de sectie Shop van deze website (cadeaubonnen en waterscooteractiviteiten vallen onder de secties 17 en 18) (collectie Costa Brava Culture, in samenwerking met Laura Cabanas). De verkoper van deze producten is DAMAR COSTA BRAVA S.L., fiscaal nummer (CIF) B22566327, met adres voor kennisgevingen aan Carrer Esplanada del Port, 17300 Blanes, Girona, Spanje, telefoon +34 611 500 372 en e-mail costabravarentaboat@gmail.com (hierna: de verkoper). De secties 1 tot en met 12 betreffen de bootverhuurdienst en zijn niet van toepassing op aankopen in de shop.",
         },
         {
           title: "14. Onlineshop: prijzen, betaling en levering",
@@ -2975,8 +2977,49 @@ export const nl: Translations = {
           title: "16. Onlineshop: wettelijke garantie en klachten",
           body: "Alle producten van de shop hebben de wettelijke conformiteitsgarantie van 3 jaar vanaf de levering, overeenkomstig het Spaanse Koninklijk Wetgevend Besluit 1/2007. Vertoont het product een gebrek aan overeenstemming (een fabricagefout, transportschade of een andere afwijking van wat is gekocht), dan kan de klant kosteloos reparatie of vervanging eisen en, als dat niet mogelijk of onevenredig is, een prijsverlaging of ontbinding van de koop; in die gevallen zijn de retourkosten voor rekening van de verkoper.\n\nVoor elke klacht over de shop kan de klant zich tot de verkoper wenden via de kanalen vermeld in sectie 13. Er zijn klachtenformulieren beschikbaar voor consumenten.",
         },
+        {
+          title: "17. Cadeaubonnen",
+          body: "Cadeaubonnen worden online met bankkaart gekocht en per e-mail geleverd met een unieke code. Ze zijn 12 maanden geldig vanaf uitgifte, inwisselbaar voor elke verhuurdienst onder voorbehoud van beschikbaarheid, en niet te splitsen over meerdere boekingen of in te wisselen voor geld.\n\nOmdat het gaat om digitale inhoud die onmiddellijk wordt geleverd, is het herroepingsrecht niet van toepassing zodra de code is verzonden, conform artikel 103.m van het Spaanse Koninklijk Wetsbesluit 1/2007. Wordt de bon niet binnen de geldigheidstermijn gebruikt, dan wordt het bedrag niet terugbetaald.",
+        },
+        {
+          title: "18. Waterscooters en andere wateractiviteiten",
+          body: "De waterscooters en de eFoil die op deze website worden aangeboden, werken op aanvraag: de website verzamelt het verzoek en de dienst wordt rechtstreeks op het vertrekpunt bevestigd, afgesloten en betaald. Er is geen vaarbewijs vereist en de activiteit vindt altijd plaats op een afgebakend circuit of tijdens een begeleide excursie.\n\nDe deelnemer moet ouder zijn dan 18 jaar (of als minderjarige vergezeld worden door een verantwoordelijke volwassene bij de formules die dit toestaan), te allen tijde de instructies van de gids opvolgen en gedurende de hele activiteit een reddingsvest dragen. De concrete financiële voorwaarden, de eventuele waarborgsom en het annuleringsbeleid voor deze activiteiten zijn die welke bij bevestiging van de aanvraag aan de klant worden meegedeeld.",
+        },
       ],
     },
+    legalNotice: {
+      heroTitle: "Juridische Mededeling",
+      lastUpdated: "Laatst bijgewerkt: juli 2026",
+      identificationTitle: "1. Identificatiegegevens van de aanbieder",
+      labels: {
+        legalName: "Statutaire naam",
+        taxId: "Fiscaal nummer (CIF)",
+        address: "Statutaire zetel",
+        phone: "Telefoon",
+        email: "E-mail",
+        activity: "Activiteit",
+      },
+      activityValue: "Verhuur van pleziervaartuigen met en zonder vaarbewijs in de haven van Blanes (Girona), en verkoop van producten uit de eigen collectie via de webshop.",
+      sections: [
+        {
+          title: "2. Voorwerp en toepassingsgebied",
+          body: "Deze juridische mededeling bevat de informatie die artikel 10 van de Spaanse wet 34/2002 inzake diensten van de informatiemaatschappij en elektronische handel (LSSI-CE) verplicht ter beschikking te stellen van de gebruikers van de website costabravarentaboat.com.\n\nToegang tot de website verleent de hoedanigheid van gebruiker en houdt aanvaarding in van de hier opgenomen voorwaarden. De contractuele voorwaarden van de verhuur en van de webshop staan in de Algemene Voorwaarden en in de Algemene Huurvoorwaarden, die voorrang hebben op deze mededeling voor alles wat de contractsluiting betreft.",
+        },
+        {
+          title: "3. Intellectuele en industriële eigendom",
+          body: "De inhoud van deze website (teksten, foto's, illustraties, logo's, merken, ontwerp en code) is eigendom van de aanbieder of van derden die het gebruik ervan hebben toegestaan. Reproductie, verspreiding, openbaarmaking of bewerking zonder uitdrukkelijke schriftelijke toestemming is verboden.\n\nMerken en handelsnamen van derden die op de site kunnen verschijnen, behoren toe aan hun respectieve houders; vermelding ervan impliceert geen sponsoring of aanbeveling.",
+        },
+        {
+          title: "4. Aansprakelijkheid en links naar derden",
+          body: "De aanbieder is niet aansprakelijk voor het gebruik dat gebruikers maken van de inhoud van de website, noch voor schade door serviceonderbrekingen buiten zijn controle.\n\nDe site kan links bevatten naar websites van derden (bijvoorbeeld partnerbedrijven of betaalproviders). De aanbieder controleert de inhoud daarvan niet en aanvaardt er geen aansprakelijkheid voor; een link impliceert geen relatie, goedkeuring of toezicht.",
+        },
+        {
+          title: "5. Toepasselijk recht en geschillenbeslechting",
+          body: "Deze juridische mededeling wordt beheerst door het Spaanse recht. Voor elk geschil zijn de rechtbanken van Girona bevoegd, onverminderd het forum dat de consument wettelijk toekomt.\n\nDe consument kan zich eveneens wenden tot het platform voor onlinegeschillenbeslechting van de Europese Commissie (https://ec.europa.eu/consumers/odr). Officiële klachtenformulieren zijn beschikbaar voor de klant.",
+        },
+      ],
+    },
+
     accessibility: {
       heroTitle: "Toegankelijkheidsverklaring",
       lastUpdated: "Conform Koninklijk Besluit 1112/2018 van 7 september",
@@ -4410,6 +4453,7 @@ export const nl: Translations = {
     notInsurance: "De Slechtweergarantie en de Verlaagde borg zijn eigen commerciële garanties van Costa Brava Rent a Boat en vormen geen verzekeringsovereenkomst.",
     ctaTitle: "Kies je garanties bij het boeken",
     ctaLabel: "Boeken en garanties toevoegen",
+    conditionsLink: "Lees de algemene huurvoorwaarden",
   },
   scootersPage: {
     seoTitle: "Scooter- en motorverhuur in Lloret de Mar | Coast Rent",

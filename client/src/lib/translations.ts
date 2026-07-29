@@ -333,6 +333,8 @@ export interface Translations {
     faqLabel: string;
     customerReviews: string;
     cookiesPolicy: string;
+    legalNotice: string;
+    rentalConditions: string;
     destinations: string;
     gallery: string;
     accessibility: string;
@@ -2717,6 +2719,26 @@ export interface Translations {
       lastUpdated: string;
       sections: Array<{ title: string; body: string }>;
     };
+    // Aviso legal (LSSI-CE art. 10). La sección de identificación NO lleva los
+    // datos en el texto: los rotula y el componente los rellena desde
+    // shared/businessProfile.ts, que es la fuente de la razón social y el
+    // domicilio. Traducir aquí un CIF o una calle es cómo se generó el drift
+    // que tenían privacidad y términos.
+    legalNotice: {
+      heroTitle: string;
+      lastUpdated: string;
+      identificationTitle: string;
+      labels: {
+        legalName: string;
+        taxId: string;
+        address: string;
+        phone: string;
+        email: string;
+        activity: string;
+      };
+      activityValue: string;
+      sections: Array<{ title: string; body: string }>;
+    };
   };
 
   glossaryPage?: {
@@ -2986,6 +3008,7 @@ export interface Translations {
     notInsurance: string;
     ctaTitle: string;
     ctaLabel: string;
+    conditionsLink: string;
   };
   scootersPage: {
     seoTitle: string;

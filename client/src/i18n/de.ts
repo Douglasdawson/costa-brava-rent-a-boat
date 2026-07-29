@@ -270,6 +270,8 @@ export const de: Translations = {
     faqLabel: "Häufige Fragen",
     customerReviews: "Kundenbewertungen",
     cookiesPolicy: "Cookie-Richtlinie",
+    legalNotice: "Impressum",
+    rentalConditions: "Mietbedingungen",
     destinations: "Reiseziele",
     gallery: "Galerie",
     accessibility: "Barrierefreiheit",
@@ -2853,7 +2855,7 @@ export const de: Translations = {
       sections: [
         {
           title: "1. Verantwortlicher für die Datenverarbeitung",
-          body: "Identität: Costa Brava Rent a Boat\nSteuer-ID: B22566327\nAnschrift: Puerto de Blanes, Girona, Spanien\nTelefon: +34 611 500 372\nKontakt-E-Mail: costabravarentaboat@gmail.com",
+          body: "Identität: DAMAR COSTA BRAVA S.L. (Handelsmarke Costa Brava Rent a Boat)\nSteuernummer (CIF): B22566327\nAnschrift: Carrer Esplanada del Port, 17300 Blanes, Girona, Spanien\nTelefon: +34 611 500 372\nKontakt-E-Mail: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Personenbezogene Daten, die wir erheben",
@@ -2925,7 +2927,7 @@ export const de: Translations = {
       sections: [
         {
           title: "1. Angaben zum Betreiber",
-          body: "Costa Brava Rent a Boat\nSteuer-ID: B22566327\nGeschäftssitz: Puerto de Blanes, Girona, Spanien\nKontakttelefon: +34 611 500 372\nE-Mail: costabravarentaboat@gmail.com\nTätigkeit: Vermietung von Freizeitbooten (mit und ohne Bootsführerschein) im Hafen von Blanes, Costa Brava.",
+          body: "Firmenname: DAMAR COSTA BRAVA S.L. (tätig unter der Handelsmarke Costa Brava Rent a Boat)\nSteuernummer (CIF): B22566327\nGeschäftssitz: Carrer Esplanada del Port, 17300 Blanes, Girona, Spanien\nKontakttelefon: +34 611 500 372\nE-Mail: costabravarentaboat@gmail.com\nTätigkeit: Vermietung von Freizeitbooten (mit und ohne Bootsführerschein) im Hafen von Blanes, Costa Brava.",
         },
         {
           title: "2. Gegenstand",
@@ -2933,7 +2935,7 @@ export const de: Translations = {
         },
         {
           title: "3. Buchungsablauf",
-          body: "Die Website erfasst Buchungsanfragen. Der Kunde füllt ein Formular mit Datum, Boot, Dauer und Kontaktdaten aus. Der Anbieter bestätigt manuell die Verfügbarkeit und sendet eine Bestätigungsnachricht per WhatsApp oder E-Mail.\n\nDie Zahlung erfolgt manuell vor Ort im Hafen von Blanes beim Boarding. Es werden keine automatischen Online-Zahlungen vorgenommen.\n\nDie Buchung ist erst nach ausdrücklicher Bestätigung durch den Anbieter verbindlich.",
+          body: "Die Website nimmt Buchungsanfragen entgegen. Der Kunde füllt ein Formular mit Datum, Boot, Dauer und Kontaktdaten aus. Der Anbieter bestätigt die Verfügbarkeit manuell und sendet eine Bestätigung per WhatsApp oder E-Mail.\n\nBei der Bootsvermietung erfolgt die Zahlung vor Ort im Hafen von Blanes beim Einschiffen: Die Website bucht den Mietbetrag nicht automatisch ab. Shop-Produkte und Geschenkgutscheine werden dagegen beim Kauf online per Karte bezahlt, gemäß den Abschnitten 13 bis 17.\n\nDie Buchung ist erst nach ausdrücklicher Bestätigung des Anbieters verbindlich.",
         },
         {
           title: "4. Anforderungen an den Mieter",
@@ -2941,11 +2943,11 @@ export const de: Translations = {
         },
         {
           title: "5. Kaution und Zahlungsbedingungen",
-          body: "Vor dem Ablegen wird eine Kaution (200–500 € je nach Boot) hinterlegt, die bei Rückgabe vollständig zurückerstattet wird, wenn das Boot im gleichen Zustand wie bei der Übernahme zurückgegeben wird.\n\nBei Schäden, Materialverlust oder Nichteinhaltung des zugelassenen Fahrtgebiets kann der Anbieter die Kaution ganz oder teilweise zur Deckung der Kosten einbehalten.",
+          body: "Vor dem Auslaufen wird eine Kaution hinterlegt (200 € bei Booten ohne Führerschein und 500 € bei führerscheinpflichtigen Booten), die bei der Rückkehr vollständig erstattet wird, sofern das Boot im selben Zustand zurückgegeben wird. Maßgeblich ist stets der Betrag, der zum Zeitpunkt der Buchung angegeben wird und im Vertrag steht, der im Hafen unterschrieben wird.\n\nDer Kunde kann freiwillig die Reduzierte Kaution buchen, die den einbehaltenen Betrag gegen einen Festpreis senkt. Es handelt sich um eine eigene kommerzielle Garantie und nicht um einen Versicherungsvertrag; ihr Preis ist nicht erstattungsfähig.\n\nBei Schäden, Verlust von Ausrüstung oder Verletzung des zugelassenen Fahrtgebiets kann der Anbieter die Kaution ganz oder teilweise zur Deckung der Kosten einbehalten.",
         },
         {
           title: "6. Fahrtgebiet und Dauer",
-          body: "Zugelassene Gebiete: im Norden bis Playa de Fenals (ohne Führerschein) oder Sant Feliu de Guíxols (mit Führerschein); im Süden bis Ende Playa de Blanes (ohne Führerschein) oder ohne Begrenzung (mit Führerschein). Maximal 2 Seemeilen von der Küste entfernt für Boote ohne Führerschein, bei maximal 5 Knoten.\n\nDie Boote müssen vor Ende des gebuchten Zeitfensters in den Hafen von Blanes zurückkehren. Nicht gerechtfertigte Verspätungen werden mit 50 €/Stunde zusätzlich berechnet.",
+          body: "Zugelassene Gebiete: nördlich bis zum Strand von Fenals (ohne Führerschein) bzw. Sant Feliu de Guíxols (mit Führerschein); südlich bis zur Mündung des Flusses Tordera am Ende des Strandes von Blanes (ohne Führerschein) oder unbegrenzt (mit Führerschein). Höchstens 2 Seemeilen von der Küste für Boote ohne Führerschein.\n\nDie Höchstgeschwindigkeit in Häfen und in den betonnten Fahrrinnen der Strände beträgt 3 Knoten. Die Badezone ist zu respektieren, außerhalb der gelben Bojen zu ankern, mehr als 200 m von Stränden und Klippen entfernt zu fahren und 100 m Abstand zu Taucherbojen zu halten.\n\nDie Boote müssen vor Ablauf des gebuchten Zeitfensters in den Hafen von Blanes zurückkehren. Erfolgt der Check-out ohne Ankündigung später als vereinbart, werden 150 € je 30 Minuten Verspätung oder der entsprechende Anteil berechnet.",
         },
         {
           title: "7. Stornierungsbedingungen",
@@ -2957,7 +2959,7 @@ export const de: Translations = {
         },
         {
           title: "9. Haftung und Versicherung",
-          body: "Alle Boote verfügen über eine Vollkaskoversicherung für Boot und Insassen gemäß den spanischen Vorschriften für Freizeitboote. Die Versicherung deckt Unfallschäden während der Fahrt innerhalb des zugelassenen Gebiets ab.\n\nNicht abgedeckt sind Schäden durch fahrlässige Nutzung, Trunkenheit, Fahrt außerhalb des zulässigen Gebiets, missachtete widrige Wetterbedingungen nach Warnung oder Nichtbeachtung der Sicherheitsanweisungen.",
+          body: "Alle Boote verfügen über die gesetzlich vorgeschriebene Haftpflichtversicherung für Freizeitboote sowie über eine Deckung für Personenschäden der Insassen gemäß spanischem Recht. Der Versicherungsschutz gilt während der Fahrt innerhalb des zugelassenen Gebiets.\n\nAusgeschlossen sind Aktivitäten mit dem Schleppen von Geräten (Bananenboote, Reifen, Wasserski und Ähnliches), für die der Mieter haftet. Ebenfalls nicht gedeckt sind Schäden durch fahrlässigen Gebrauch, Trunkenheit, Fahrt außerhalb des erlaubten Gebiets, trotz Warnung missachtete ungünstige Wetterbedingungen oder Nichtbeachtung der Sicherheitsanweisungen.\n\nVor dem Auslaufen wird der Kunde über den genauen Umfang der Police informiert; Schäden, die die Deckung oder die Kaution übersteigen, trägt der Mieter.",
         },
         {
           title: "10. Geistiges Eigentum",
@@ -2973,7 +2975,7 @@ export const de: Translations = {
         },
         {
           title: "13. Online-Shop: Identifikation des Verkäufers",
-          body: "Die Abschnitte 13 bis 16 regeln ausschließlich den Kauf der physischen Produkte im Shop-Bereich dieser Website (Kollektion Costa Brava Culture, in Zusammenarbeit mit Laura Cabanas). Verkäufer dieser Produkte ist DAMAR COSTA BRAVA S.L., Steuernummer (CIF) B22566327, mit Zustellanschrift in Carrer Esplanada del Port, 17300 Blanes, Girona, Spanien, Telefon +34 611 500 372 und E-Mail costabravarentaboat@gmail.com (im Folgenden der Verkäufer). Die Abschnitte 1 bis 12 betreffen den Bootsverleih und gelten nicht für Käufe im Shop.",
+          body: "Die Abschnitte 13 bis 16 regeln ausschließlich den Kauf der physischen Produkte im Shop-Bereich dieser Website (Geschenkgutscheine und Jetski-Aktivitäten richten sich nach den Abschnitten 17 und 18) (Kollektion Costa Brava Culture, in Zusammenarbeit mit Laura Cabanas). Verkäufer dieser Produkte ist DAMAR COSTA BRAVA S.L., Steuernummer (CIF) B22566327, mit Zustellanschrift in Carrer Esplanada del Port, 17300 Blanes, Girona, Spanien, Telefon +34 611 500 372 und E-Mail costabravarentaboat@gmail.com (im Folgenden der Verkäufer). Die Abschnitte 1 bis 12 betreffen den Bootsverleih und gelten nicht für Käufe im Shop.",
         },
         {
           title: "14. Online-Shop: Preise, Zahlung und Lieferung",
@@ -2987,8 +2989,49 @@ export const de: Translations = {
           title: "16. Online-Shop: gesetzliche Gewährleistung und Beschwerden",
           body: "Alle Produkte des Shops haben die gesetzliche Gewährleistung von 3 Jahren ab Lieferung gemäß dem spanischen Königlichen Gesetzesdekret 1/2007. Weist das Produkt einen Mangel auf (Herstellungsfehler, Transportschaden oder eine andere Abweichung vom Gekauften), kann der Kunde kostenlos Reparatur oder Ersatz verlangen und, falls dies nicht möglich oder unverhältnismäßig ist, eine Preisminderung oder die Auflösung des Kaufs; in diesen Fällen trägt der Verkäufer die Rücksendekosten.\n\nFür Beschwerden im Zusammenhang mit dem Shop kann sich der Kunde über die in Abschnitt 13 genannten Kanäle an den Verkäufer wenden. Beschwerdeformulare stehen den Verbrauchern zur Verfügung.",
         },
+        {
+          title: "17. Geschenkgutscheine",
+          body: "Geschenkgutscheine werden online per Bankkarte gekauft und per E-Mail mit einem eindeutigen Code zugestellt. Sie sind ab Ausstellung 12 Monate gültig, gegen jede Mietleistung nach Verfügbarkeit einlösbar und weder auf mehrere Buchungen aufteilbar noch in Geld umtauschbar.\n\nDa es sich um sofort geliefeten digitalen Inhalt handelt, gilt das Widerrufsrecht nach Versand des Codes nicht, gemäß Artikel 103.m des spanischen Königlichen Gesetzesdekrets 1/2007. Wird der Gutschein innerhalb der Gültigkeitsdauer nicht eingelöst, wird der Betrag nicht erstattet.",
+        },
+        {
+          title: "18. Jetskis und weitere Wasseraktivitäten",
+          body: "Die auf dieser Website angebotenen Jetskis und das eFoil werden auf Anfrage vermittelt: Die Website nimmt die Anfrage entgegen, und die Leistung wird direkt am Startpunkt bestätigt, gebucht und bezahlt. Sie erfordern keinen Bootsführerschein und finden stets in einem abgegrenzten Parcours oder auf einer geführten Ausfahrt statt.\n\nTeilnehmende müssen über 18 Jahre alt sein (oder in den Formaten, die dies zulassen, als Minderjährige von einem verantwortlichen Erwachsenen begleitet werden), jederzeit den Anweisungen des Guides folgen und während der gesamten Aktivität eine Rettungsweste tragen. Die konkreten wirtschaftlichen Bedingungen, eine etwaige Kaution und die für diese Aktivitäten geltenden Stornierungsbedingungen sind diejenigen, die dem Kunden bei Bestätigung der Anfrage mitgeteilt werden.",
+        },
       ],
     },
+    legalNotice: {
+      heroTitle: "Impressum",
+      lastUpdated: "Letzte Aktualisierung: Juli 2026",
+      identificationTitle: "1. Angaben zum Anbieter",
+      labels: {
+        legalName: "Firmenname",
+        taxId: "Steuernummer (CIF)",
+        address: "Geschäftssitz",
+        phone: "Telefon",
+        email: "E-Mail",
+        activity: "Tätigkeit",
+      },
+      activityValue: "Vermietung von Freizeitbooten mit und ohne Bootsführerschein im Hafen von Blanes (Girona) sowie Verkauf von Produkten der eigenen Kollektion über den Online-Shop.",
+      sections: [
+        {
+          title: "2. Gegenstand und Geltungsbereich",
+          body: "Dieses Impressum enthält die Angaben, die Artikel 10 des spanischen Gesetzes 34/2002 über Dienste der Informationsgesellschaft und elektronischen Geschäftsverkehr (LSSI-CE) den Nutzern der Website costabravarentaboat.com zugänglich zu machen vorschreibt.\n\nDer Zugriff auf die Website begründet die Nutzereigenschaft und bedeutet die Annahme der hier genannten Bedingungen. Die vertraglichen Bedingungen der Vermietung und des Shops sind in den Allgemeinen Geschäftsbedingungen und in den Allgemeinen Mietbedingungen geregelt, die diesem Impressum in allen Vertragsfragen vorgehen.",
+        },
+        {
+          title: "3. Geistiges und gewerbliches Eigentum",
+          body: "Die Inhalte dieser Website (Texte, Fotografien, Illustrationen, Logos, Marken, Gestaltung und Code) stehen im Eigentum des Anbieters oder Dritter, die deren Nutzung genehmigt haben. Vervielfältigung, Verbreitung, öffentliche Wiedergabe oder Bearbeitung ohne ausdrückliche schriftliche Genehmigung sind untersagt.\n\nMarken und Handelsnamen Dritter, die auf der Website erscheinen können, gehören ihren jeweiligen Inhabern; ihre Nennung bedeutet weder Sponsoring noch Empfehlung.",
+        },
+        {
+          title: "4. Haftung und Links zu Dritten",
+          body: "Der Anbieter haftet weder für die Nutzung der Website-Inhalte durch die Nutzer noch für Schäden aus Betriebsunterbrechungen, die außerhalb seines Einflussbereichs liegen.\n\nDie Website kann Links zu Websites Dritter enthalten (etwa Partnerunternehmen oder Zahlungsdienstleister). Der Anbieter kontrolliert deren Inhalte nicht und übernimmt dafür keine Haftung; ein Link begründet weder Beziehung noch Billigung oder Aufsicht.",
+        },
+        {
+          title: "5. Anwendbares Recht und Streitbeilegung",
+          body: "Dieses Impressum unterliegt spanischem Recht. Für Streitigkeiten sind die Gerichte von Girona zuständig, unbeschadet des dem Verbraucher gesetzlich zustehenden Gerichtsstands.\n\nVerbraucher können sich zudem an die Plattform zur Online-Streitbeilegung der Europäischen Kommission wenden (https://ec.europa.eu/consumers/odr). Amtliche Beschwerdeformulare stehen den Kunden zur Verfügung.",
+        },
+      ],
+    },
+
     accessibility: {
       heroTitle: "Barrierefreiheitserklärung",
       lastUpdated: "Gemäß Real Decreto 1112/2018 vom 7. September",
@@ -4422,6 +4465,7 @@ export const de: Translations = {
     notInsurance: "Die Schlechtwetter-Garantie und die Reduzierte Kaution sind eigene kommerzielle Garantien von Costa Brava Rent a Boat und stellen keinen Versicherungsvertrag dar.",
     ctaTitle: "Wähle deine Zusatzleistungen bei der Buchung",
     ctaLabel: "Buchen und Zusatzleistungen wählen",
+    conditionsLink: "Allgemeine Mietbedingungen lesen",
   },
   scootersPage: {
     seoTitle: "Roller- und Motorradverleih in Lloret de Mar | Coast Rent",

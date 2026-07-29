@@ -72,7 +72,14 @@ export const ROUTE_SLUGS = {
   privacyPolicy: { es: "politica-privacidad", en: "privacy-policy", fr: "politique-confidentialite", de: "datenschutz", nl: "privacybeleid", it: "informativa-privacy", ca: "politica-privacitat", ru: "politika-konfidentsialnosti" },
   termsConditions: { es: "terminos-condiciones", en: "terms-conditions", fr: "conditions-generales", de: "agb", nl: "algemene-voorwaarden", it: "termini-condizioni", ca: "termes-condicions", ru: "usloviya-ispolzovaniya" },
   cookiesPolicy: { es: "politica-cookies", en: "cookies-policy", fr: "politique-cookies", de: "cookie-richtlinie", nl: "cookiebeleid", it: "informativa-cookie", ca: "politica-cookies", ru: "politika-cookie" },
-  condicionesGenerales: { es: "condiciones-generales", en: "general-conditions", fr: "conditions-de-reservation", de: "allgemeine-bedingungen", nl: "algemene-voorwaarden", it: "termini-condizioni", ca: "condicions-generals", ru: "obshchie-usloviya" },
+  legalNotice: { es: "aviso-legal", en: "legal-notice", fr: "mentions-legales", de: "impressum", nl: "juridische-mededeling", it: "note-legali", ca: "avis-legal", ru: "pravovaya-informatsiya" },
+  // OJO nl/it: hasta 2026-07-29 estas dos entradas repetían el slug de
+  // `termsConditions` ("algemene-voorwaarden" / "termini-condizioni").
+  // resolveSlug() devuelve entries[0] y el mapa inverso se construye en orden de
+  // declaración, así que ganaba termsConditions: el enlace de consentimiento del
+  // checkout mostraba OTRO contrato en neerlandés e italiano. Los slugs viejos
+  // redirigen desde server/seo/redirects.ts. Lo vigila i18n-routes.test.ts.
+  condicionesGenerales: { es: "condiciones-generales", en: "general-conditions", fr: "conditions-de-reservation", de: "allgemeine-bedingungen", nl: "huurvoorwaarden", it: "condizioni-noleggio", ca: "condicions-generals", ru: "obshchie-usloviya" },
   accessibility: { es: "accesibilidad", en: "accessibility", fr: "accessibilite", de: "barrierefreiheit", nl: "toegankelijkheid", it: "accessibilita", ca: "accessibilitat", ru: "dostupnost" },
 
   // App pages

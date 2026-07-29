@@ -268,6 +268,8 @@ export const ca: Translations = {
     faqLabel: "Preguntes Freqüents",
     customerReviews: "Opinions de Clients",
     cookiesPolicy: "Política de Cookies",
+    legalNotice: "Avís Legal",
+    rentalConditions: "Condicions del Lloguer",
     destinations: "Destinacions",
     gallery: "Galeria",
     accessibility: "Accessibilitat",
@@ -2834,7 +2836,7 @@ export const ca: Translations = {
       sections: [
         {
           title: "1. Responsable del tractament",
-          body: "Identitat: Costa Brava Rent a Boat\nNIF: B22566327\nDomicili: Port de Blanes, Girona, Espanya\nTelèfon: +34 611 500 372\nEmail de contacte: costabravarentaboat@gmail.com",
+          body: "Identitat: DAMAR COSTA BRAVA S.L. (marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicili: Carrer Esplanada del Port, 17300 Blanes, Girona, Espanya\nTelèfon: +34 611 500 372\nCorreu de contacte: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Dades personals que recopilem",
@@ -2906,7 +2908,7 @@ export const ca: Translations = {
       sections: [
         {
           title: "1. Identificació del titular",
-          body: "Costa Brava Rent a Boat\nNIF: B22566327\nDomicili social: Port de Blanes, Girona, Espanya\nTelèfon de contacte: +34 611 500 372\nCorreu electrònic: costabravarentaboat@gmail.com\nActivitat: lloguer d'embarcacions de recreació (amb i sense titulació nàutica) al Port de Blanes, Costa Brava.",
+          body: "Raó social: DAMAR COSTA BRAVA S.L. (que opera sota la marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicili social: Carrer Esplanada del Port, 17300 Blanes, Girona, Espanya\nTelèfon de contacte: +34 611 500 372\nCorreu electrònic: costabravarentaboat@gmail.com\nActivitat: lloguer d'embarcacions d'esbarjo (amb i sense titulació nàutica) al Port de Blanes, Costa Brava.",
         },
         {
           title: "2. Objecte",
@@ -2914,7 +2916,7 @@ export const ca: Translations = {
         },
         {
           title: "3. Procés de reserva",
-          body: "El web captura sol·licituds de reserva. El client completa un formulari amb data, vaixell, durada i dades de contacte. El prestador confirmarà manualment la disponibilitat i enviarà un missatge de confirmació per WhatsApp o correu electrònic.\n\nEl pagament es gestiona manualment de forma presencial al Port de Blanes, en el moment d'embarcar. No es fan cobraments automàtics en línia.\n\nLa reserva queda ferma només després de la confirmació explícita del prestador.",
+          body: "El web recull sol·licituds de reserva. El client emplena un formulari amb data, vaixell, durada i dades de contacte. El prestador confirmarà manualment la disponibilitat i enviarà un missatge de confirmació per WhatsApp o correu electrònic.\n\nEn el lloguer d'embarcacions el pagament es gestiona presencialment al Port de Blanes, en el moment d'embarcar: el web no cobra automàticament l'import del lloguer. Els productes de la botiga i les targetes regal sí que es paguen en línia amb targeta en el moment de la compra, segons les seccions 13 a 17.\n\nLa reserva queda ferma només després de la confirmació explícita del prestador.",
         },
         {
           title: "4. Requisits per a l'arrendatari",
@@ -2922,11 +2924,11 @@ export const ca: Translations = {
         },
         {
           title: "5. Fiança i condicions de pagament",
-          body: "Abans de zarpar s'abona una fiança (200-500 € segons embarcació) que es retorna íntegrament al retorn si l'embarcació és lliurada en el mateix estat en què es va rebre.\n\nEn cas de danys, pèrdua de material o incompliment de la zona de navegació autoritzada, el prestador podrà retenir totalment o parcialment la fiança per cobrir els costos.",
+          body: "Abans de salpar s'abona una fiança (200 € a les embarcacions sense titulació i 500 € a les que requereixen titulació) que es retorna íntegrament al retorn si l'embarcació es lliura en el mateix estat en què es va rebre. L'import vigent és sempre el que figura en el moment de la reserva i al contracte que se signa al port.\n\nEl client pot contractar de manera voluntària la Fiança reduïda, que rebaixa l'import retingut a canvi d'un preu tancat. És una garantia comercial pròpia i no un contracte d'assegurança; el seu preu no és reemborsable.\n\nEn cas de danys, pèrdua de material o incompliment de la zona de navegació autoritzada, el prestador podrà retenir totalment o parcialment la fiança per cobrir els costos.",
         },
         {
           title: "6. Zona de navegació i durada",
-          body: "Zones autoritzades: nord fins a Platja de Fenals (sense llicència) o Sant Feliu de Guíxols (amb llicència); sud fins a final platja de Blanes (sense llicència) o sense límit (amb llicència). Màxim 2 milles nàutiques de la costa per a vaixells sense llicència, a 5 nusos màxim.\n\nLes embarcacions hauran de retornar al Port de Blanes abans que acabi la franja horària contractada. Els retards no justificats facturen 50 €/hora extra.",
+          body: "Zones autoritzades: nord fins a la Platja de Fenals (sense titulació) o Sant Feliu de Guíxols (amb titulació); sud fins a la desembocadura del riu Tordera, al final de la platja de Blanes (sense titulació), o sense límit (amb titulació). Màxim 2 milles nàutiques de la costa per als vaixells sense titulació.\n\nLa velocitat màxima als ports i als canals abalisats de les platges és de 3 nusos. Cal respectar la zona de banyistes, fondejar fora de les boies grogues, navegar a més de 200 m de platges i penya-segats i mantenir 100 m de distància amb les boies de submarinistes.\n\nLes embarcacions hauran de tornar al Port de Blanes abans del final de la franja horària contractada. Si el check-out es fa més tard de l'hora estipulada sense avís, es cobrarà un import de 150 € per cada 30 minuts de retard o la seva part proporcional.",
         },
         {
           title: "7. Política de cancel·lació",
@@ -2938,7 +2940,7 @@ export const ca: Translations = {
         },
         {
           title: "9. Responsabilitat i assegurança",
-          body: "Totes les embarcacions compten amb assegurança a tot risc per a embarcació i ocupants, d'acord amb la normativa espanyola d'embarcacions de recreació. L'assegurança cobreix danys accidentals durant la navegació dins de la zona autoritzada.\n\nNo es cobreixen danys derivats d'ús negligent, embriaguesa, navegació fora de la zona permesa, condicions meteorològiques adverses ignorades després d'avís, o incompliment de les instruccions de seguretat.",
+          body: "Totes les embarcacions compten amb l'assegurança de Responsabilitat Civil obligatòria per a embarcacions d'esbarjo i amb cobertura de danys físics als ocupants, d'acord amb la normativa espanyola. La cobertura s'aplica durant la navegació dins de la zona autoritzada.\n\nQueden excloses les activitats que comportin l'arrossegament d'artefactes (bananes, rodes pneumàtiques, esquís i similars), de les quals respon l'arrendatari. Tampoc es cobreixen els danys derivats d'ús negligent, embriaguesa, navegació fora de la zona permesa, condicions meteorològiques adverses ignorades després d'avís, o incompliment de les instruccions de seguretat.\n\nAbans de salpar s'informa el client de l'abast exacte de la pòlissa; qualsevol dany que excedeixi la cobertura o la fiança va a càrrec de l'arrendatari.",
         },
         {
           title: "10. Propietat intel·lectual",
@@ -2954,7 +2956,7 @@ export const ca: Translations = {
         },
         {
           title: "13. Botiga en línia: identificació del venedor",
-          body: "Les seccions 13 a 16 regulen exclusivament la compra dels productes físics de la secció Botiga d'aquest lloc web (col·lecció Costa Brava Culture, en col·laboració amb Laura Cabanas). El venedor d'aquests productes és DAMAR COSTA BRAVA S.L., CIF B22566327, amb domicili a efectes de notificacions a Carrer Esplanada del Port, 17300 Blanes, Girona, Espanya, telèfon +34 611 500 372 i correu electrònic costabravarentaboat@gmail.com (d'ara endavant, el venedor). Les seccions 1 a 12 es refereixen al servei de lloguer d'embarcacions i no són aplicables a les compres de la botiga.",
+          body: "Les seccions 13 a 16 regulen exclusivament la compra dels productes físics de la secció Botiga d'aquest lloc web (les targetes regal i les activitats de motos d'aigua es regeixen per les seccions 17 i 18) (col·lecció Costa Brava Culture, en col·laboració amb Laura Cabanas). El venedor d'aquests productes és DAMAR COSTA BRAVA S.L., CIF B22566327, amb domicili a efectes de notificacions a Carrer Esplanada del Port, 17300 Blanes, Girona, Espanya, telèfon +34 611 500 372 i correu electrònic costabravarentaboat@gmail.com (d'ara endavant, el venedor). Les seccions 1 a 12 es refereixen al servei de lloguer d'embarcacions i no són aplicables a les compres de la botiga.",
         },
         {
           title: "14. Botiga en línia: preus, pagament i lliurament",
@@ -2968,8 +2970,49 @@ export const ca: Translations = {
           title: "16. Botiga en línia: garantia legal i reclamacions",
           body: "Tots els productes de la botiga tenen la garantia legal de conformitat de 3 anys des del lliurament, d'acord amb el Reial Decret Legislatiu 1/2007. Si el producte presenta una manca de conformitat (defecte de fabricació, dany en el transport o una altra discrepància amb allò comprat), el client pot exigir-ne la reparació o la substitució sense cap cost i, si no fossin possibles o resultessin desproporcionades, la reducció del preu o la resolució de la compra; en aquests casos les despeses de devolució van a càrrec del venedor.\n\nPer a qualsevol reclamació relacionada amb la botiga, el client es pot adreçar al venedor pels canals indicats a la secció 13. Hi ha fulls de reclamacions a disposició del consumidor.",
         },
+        {
+          title: "17. Targetes regal",
+          body: "Les targetes regal es compren en línia amb targeta bancària i es lliuren per correu electrònic amb un codi únic. Són vàlides durant 12 mesos des de la seva emissió, bescanviables per qualsevol servei de lloguer subjecte a disponibilitat, i no són fraccionables en diverses reserves ni bescanviables per diners.\n\nEn tractar-se d'un contingut digital lliurat de manera immediata, el dret de desistiment no resulta aplicable un cop enviat el codi, d'acord amb l'article 103.m del Reial decret legislatiu 1/2007. Si la targeta no s'arriba a utilitzar dins del termini de validesa, l'import no es reemborsa.",
+        },
+        {
+          title: "18. Motos d'aigua i altres activitats nàutiques",
+          body: "Les motos d'aigua i l'eFoil que s'ofereixen en aquest lloc web es presten en la modalitat de sol·licitud: el web recull la petició i el servei es confirma, contracta i abona directament al punt de sortida. No requereixen titulació nàutica i es fan sempre en circuit delimitat o en excursió acompanyada per un guia.\n\nEl participant ha de ser major de 18 anys (o menor acompanyat d'un adult responsable en les modalitats que ho permetin), seguir en tot moment les instruccions del guia i utilitzar l'armilla salvavides durant tota l'activitat. Les condicions econòmiques concretes, la fiança si n'hi hagués i la política de cancel·lació aplicables a aquestes activitats són les que es comuniquen al client en el moment de confirmar la sol·licitud.",
+        },
       ],
     },
+    legalNotice: {
+      heroTitle: "Avís Legal",
+      lastUpdated: "Última actualització: juliol de 2026",
+      identificationTitle: "1. Dades identificatives del titular",
+      labels: {
+        legalName: "Raó social",
+        taxId: "CIF",
+        address: "Domicili social",
+        phone: "Telèfon",
+        email: "Correu electrònic",
+        activity: "Activitat",
+      },
+      activityValue: "Lloguer d'embarcacions d'esbarjo amb i sense titulació nàutica al Port de Blanes (Girona), i venda de productes de la col·lecció pròpia a través de la botiga en línia.",
+      sections: [
+        {
+          title: "2. Objecte i àmbit d'aplicació",
+          body: "Aquest avís legal recull la informació que l'article 10 de la Llei 34/2002, de serveis de la societat de la informació i de comerç electrònic (LSSI-CE), obliga a posar a disposició dels usuaris del lloc web costabravarentaboat.com.\n\nL'accés al lloc web atribueix la condició d'usuari i implica l'acceptació de les condicions aquí recollides. Les condicions contractuals del lloguer i de la botiga es detallen als Termes i Condicions i a les Condicions Generals del Lloguer, que prevalen sobre aquest avís en tot allò relatiu a la contractació.",
+        },
+        {
+          title: "3. Propietat intel·lectual i industrial",
+          body: "Els continguts d'aquest lloc web (textos, fotografies, il·lustracions, logotips, marques, disseny i codi) són titularitat del prestador o de tercers que n'han autoritzat l'ús. Queda prohibida la seva reproducció, distribució, comunicació pública o transformació sense autorització expressa i per escrit.\n\nLes marques i noms comercials de tercers que puguin aparèixer al lloc pertanyen als seus titulars respectius i la seva menció no implica patrocini ni recomanació.",
+        },
+        {
+          title: "4. Responsabilitat i enllaços a tercers",
+          body: "El prestador no es responsabilitza de l'ús que els usuaris facin dels continguts del lloc web ni dels danys derivats d'interrupcions del servei alienes al seu control.\n\nEl lloc pot contenir enllaços a webs de tercers (per exemple, empreses col·laboradores o passarel·les de pagament). El prestador no en controla els continguts ni n'assumeix cap responsabilitat; l'enllaç no implica relació, aprovació ni supervisió.",
+        },
+        {
+          title: "5. Legislació aplicable i resolució de conflictes",
+          body: "Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol controvèrsia són competents els Jutjats i Tribunals de Girona, sense perjudici del fur que legalment correspongui al client consumidor.\n\nEl consumidor pot acudir així mateix a la Plataforma de Resolució de Litigis en Línia de la Comissió Europea (https://ec.europa.eu/consumers/odr). Hi ha fulls oficials de reclamació a disposició del client.",
+        },
+      ],
+    },
+
     accessibility: {
       heroTitle: "Declaració d'Accessibilitat",
       lastUpdated: "Conforme al Reial Decret 1112/2018, de 7 de setembre",
@@ -4400,6 +4443,7 @@ export const ca: Translations = {
     notInsurance: "La Garantia de mal temps i la Fiança reduïda són garanties comercials pròpies de Costa Brava Rent a Boat i no constitueixen un contracte d'assegurança.",
     ctaTitle: "Tria les teves cobertures en reservar",
     ctaLabel: "Reservar i afegir cobertures",
+    conditionsLink: "Llegir les condicions generals del lloguer",
   },
   scootersPage: {
     seoTitle: "Lloguer de motos i scooters a Lloret de Mar | Coast Rent",

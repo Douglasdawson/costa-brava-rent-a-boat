@@ -4,12 +4,47 @@ import { SEO } from "./SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
+import { useCoveragePrices } from "@/hooks/useCoveragePrices";
+import {
+  BUSINESS_ADDRESS_FORMATTED,
+  BUSINESS_EMAIL,
+  BUSINESS_LEGAL_NAME,
+  BUSINESS_PHONE,
+  BUSINESS_TAX_ID,
+  CANCELLATION_TERMS_BULLETS_ES,
+  COMMERCIAL_GUARANTEE_DISCLAIMER_ES,
+} from "@shared/businessProfile";
+
+// Las cancelaciones son idénticas para barcos con y sin titulación, así que el
+// bloque se renderiza dos veces desde la misma fuente en vez de estar copiado.
+function CancellationTerms() {
+  return (
+    <div>
+      <h3 className="text-lg font-semibold text-foreground mb-3">CANCELACIONES Y CAMBIOS:</h3>
+      <div className="space-y-3 text-foreground">
+        <p>
+          • Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación. Comunícalo por escrito a{" "}
+          <a href={`mailto:${BUSINESS_EMAIL}`} className="text-primary underline">{BUSINESS_EMAIL}</a>
+          {" "}o por WhatsApp al {BUSINESS_PHONE}.
+        </p>
+        {CANCELLATION_TERMS_BULLETS_ES.map((bullet) => (
+          <p key={bullet}>• {bullet}</p>
+        ))}
+        <p>{COMMERCIAL_GUARANTEE_DISCLAIMER_ES}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function CondicionesGenerales() {
   const { language } = useLanguage();
   const seoConfig = getSEOConfig('condicionesGenerales', language);
   const hreflangLinks = generateHreflangLinks('condicionesGenerales');
   const canonical = generateCanonicalUrl('condicionesGenerales', language);
+  // Las fianzas las edita el dueño en el CRM. Si no responde, el hook deja
+  // depositStandardSL/CL sin definir y no se imprime cifra: mejor callar que
+  // anunciar una fianza que el contrato en papel contradiga.
+  const { depositStandardSL, depositStandardCL } = useCoveragePrices();
 
   return (
     <div className="min-h-screen bg-muted">
@@ -27,7 +62,7 @@ export default function CondicionesGenerales() {
             Condiciones Generales del Alquiler
           </h1>
           <p className="text-sm text-muted-foreground/60 text-center mb-8">
-            Última actualización: junio de 2026
+            Última actualización: julio de 2026
           </p>
 
           {/* Embarcaciones CON Titulación */}
@@ -39,7 +74,7 @@ export default function CondicionesGenerales() {
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-foreground">
-                Las embarcaciones con titulación sólo podrán ser arrendadas por la persona designada en el contrato y que debe poseer la correspondiente titulación en vigor.
+                Las embarcaciones con titulación sólo podrán ser arrendadas por la persona designada en el contrato, que debe ser mayor de 18 años y poseer la correspondiente titulación en vigor.
               </p>
 
               <div>
@@ -77,24 +112,13 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">SEGURO:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>Las tarifas incluyen un seguro de Responsabilidad Civil Obligatoria. También disponen de seguro para daños físicos para la tripulación. El cliente deberá depositar una fianza de 500,00€ o 1.000,00€ dependiendo de la embarcación alquilada para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
+                  <p>Las tarifas incluyen un seguro de Responsabilidad Civil Obligatoria. También disponen de seguro para daños físicos a los ocupantes. El cliente deberá depositar una fianza{depositStandardCL ? ` de ${depositStandardCL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
                   <p>Quedan excluidas de la cobertura del seguro las actividades realizadas por la embarcación asegurada que conlleven el arrastre de artefactos como bananas, ruedas neumáticas, esquís, etc. El arrendatario de la embarcación se responsabilizará de la utilización de los mismos y de las consecuencias que de ello pudieran derivarse.</p>
                   <p>La empresa no asume responsabilidad alguna por pérdidas o daños en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, así como por retrasos por consecuencia de avería de la embarcación e incluso el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">CANCELACIONES Y CAMBIOS:</h3>
-                <div className="space-y-3 text-foreground">
-                  <p>• Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación. Comunícalo por escrito a <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">costabravarentaboat@gmail.com</a> o por WhatsApp al +34 611 500 372.</p>
-                  <p>• Mal tiempo verificado por nuestro equipo, sin Garantía contratada: reprogramación sin coste o, si no se acuerda nueva fecha, bono por el importe abonado con validez de 12 meses. No procede la devolución en dinero.</p>
-                  <p>• Mal tiempo con la Garantía de mal tiempo contratada: el cliente elige entre una nueva fecha o la devolución íntegra en dinero de las cantidades abonadas por el alquiler, excluido el importe de la propia garantía, que no es reembolsable.</p>
-                  <p>• Criterio objetivo de mal tiempo: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.</p>
-                  <p>• Si la salida no puede realizarse por causa imputable a la empresa (avería u otra), se devuelven las cantidades abonadas.</p>
-                  <p>• Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.</p>
-                  <p>La Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.</p>
-                </div>
-              </div>
+              <CancellationTerms />
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ZONA DE NAVEGACIÓN:</h3>
@@ -113,7 +137,7 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">LEGISLACIÓN:</h3>
                 <p className="text-foreground">
-                  Para cuanta controversia pudiera surgir del contenido o interpretación del presente documento, ambas partes, con expresa renuncia al fuero propio o aquel al que pudiera acceder, se compromete de mutuo acuerdo a los jueces y tribunales de Blanes y superiores jerarquías correspondientes.
+                  Este contrato se rige por la legislación española. Para cuanta controversia pudiera surgir de su contenido o interpretación son competentes los Juzgados y Tribunales de Girona, sin perjuicio del fuero que legalmente corresponda al cliente consumidor, que en ningún caso renuncia al de su domicilio. El cliente consumidor puede acudir además a la Plataforma de Resolución de Litigios en Línea de la Comisión Europea (<a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-primary underline">ec.europa.eu/consumers/odr</a>).
                 </p>
               </div>
             </CardContent>
@@ -159,30 +183,19 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">CARBURANTE:</h3>
                 <p className="text-foreground">
-                  La gasolina está incluida en el precio. Las embarcaciones disponen de un depósito de 25 litros incluido en el precio del alquiler.
+                  La gasolina está incluida en el precio. El depósito de la embarcación, cuya capacidad varía según el modelo, va incluido en el precio del alquiler.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">SEGURO:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>Las tarifas incluyen un seguro de Responsabilidad Civil Obligatoria. También disponen de seguro para daños físicos para la tripulación. El cliente deberá depositar una fianza de 200€ para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
+                  <p>Las tarifas incluyen un seguro de Responsabilidad Civil Obligatoria. También disponen de seguro para daños físicos a los ocupantes. El cliente deberá depositar una fianza{depositStandardSL ? ` de ${depositStandardSL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
                   <p>La empresa no asume responsabilidad alguna por daños o pérdidas en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación, durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, por demora o retraso como consecuencia de avería de la embarcación e incluso el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">CANCELACIONES Y CAMBIOS:</h3>
-                <div className="space-y-3 text-foreground">
-                  <p>• Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación. Comunícalo por escrito a <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">costabravarentaboat@gmail.com</a> o por WhatsApp al +34 611 500 372.</p>
-                  <p>• Mal tiempo verificado por nuestro equipo, sin Garantía contratada: reprogramación sin coste o, si no se acuerda nueva fecha, bono por el importe abonado con validez de 12 meses. No procede la devolución en dinero.</p>
-                  <p>• Mal tiempo con la Garantía de mal tiempo contratada: el cliente elige entre una nueva fecha o la devolución íntegra en dinero de las cantidades abonadas por el alquiler, excluido el importe de la propia garantía, que no es reembolsable.</p>
-                  <p>• Criterio objetivo de mal tiempo: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.</p>
-                  <p>• Si la salida no puede realizarse por causa imputable a la empresa (avería u otra), se devuelven las cantidades abonadas.</p>
-                  <p>• Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.</p>
-                  <p>La Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.</p>
-                </div>
-              </div>
+              <CancellationTerms />
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ZONA DE NAVEGACIÓN:</h3>
@@ -227,9 +240,15 @@ export default function CondicionesGenerales() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Identificación del arrendador — sin esto el contrato no dice con quién se firma */}
+          <p className="text-sm text-muted-foreground text-center mt-8">
+            Arrendador: {BUSINESS_LEGAL_NAME}, CIF {BUSINESS_TAX_ID}, con domicilio en {BUSINESS_ADDRESS_FORMATTED} (España).
+            Teléfono {BUSINESS_PHONE}, correo electrónico {BUSINESS_EMAIL}.
+          </p>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );

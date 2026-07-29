@@ -44,6 +44,13 @@ export const BUSINESS_POSTAL_CODE = "17300";
 export const BUSINESS_COUNTRY = "ES";
 export const BUSINESS_ADDRESS_FORMATTED = `${BUSINESS_STREET}, ${BUSINESS_POSTAL_CODE} ${BUSINESS_LOCALITY}, ${BUSINESS_REGION}`;
 
+// Contacto público. Vivía sólo en client/src/utils/seo-config.ts, que es config
+// de cliente: las superficies legales (aviso legal, condiciones, términos) son
+// shared y necesitan la misma fuente que la razón social y el domicilio.
+export const BUSINESS_PHONE = "+34 611 500 372";
+export const BUSINESS_PHONE_E164 = "+34611500372";
+export const BUSINESS_EMAIL = "costabravarentaboat@gmail.com";
+
 // Wikidata entity ID (Q-prefixed). Wikidata's notability policy makes it
 // risky for a local SMB; we deprioritised this in favour of OpenStreetMap
 // (see below). Kept as an optional slot — if a Wikidata item is eventually
@@ -91,3 +98,20 @@ export const GBP_PROFILE_URL = `https://www.google.com/maps/search/?api=1&query=
 // de duplicar el texto. La versión i18n vive en client/src/i18n/<lang>.ts.
 export const CANCELLATION_POLICY_ES =
   "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.";
+
+// Redacción contractual de lo mismo, en viñetas. La página de condiciones
+// generales la imprime dos veces (bloque con titulación y bloque sin), así que
+// vive aquí y no duplicada en el JSX: el cambio de julio de 2026 obligó a tocar
+// cinco superficies porque el texto estaba copiado en cada una.
+// La primera viñeta lleva los datos de contacto como enlaces y por eso la
+// renderiza el componente; estas son las que van tal cual.
+export const CANCELLATION_TERMS_BULLETS_ES: readonly string[] = [
+  "Mal tiempo verificado por nuestro equipo, sin Garantía contratada: reprogramación sin coste o, si no se acuerda nueva fecha, bono por el importe abonado con validez de 12 meses. No procede la devolución en dinero.",
+  "Mal tiempo con la Garantía de mal tiempo contratada: el cliente elige entre una nueva fecha o la devolución íntegra en dinero de las cantidades abonadas por el alquiler, excluido el importe de la propia garantía, que no es reembolsable.",
+  "Criterio objetivo de mal tiempo: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.",
+  "Si la salida no puede realizarse por causa imputable a la empresa (avería u otra), se devuelven las cantidades abonadas.",
+  "Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.",
+];
+
+export const COMMERCIAL_GUARANTEE_DISCLAIMER_ES =
+  "La Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.";

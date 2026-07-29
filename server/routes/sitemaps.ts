@@ -385,6 +385,7 @@ ${hreflangLinks}  </url>\n`;
       sitemap += generateUrlEntry(baseUrl, "termsConditions", "0.3", null, "yearly");
       sitemap += generateUrlEntry(baseUrl, "condicionesGenerales", "0.3", null, "yearly");
       sitemap += generateUrlEntry(baseUrl, "cookiesPolicy", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "legalNotice", "0.3", null, "yearly");
       sitemap += generateUrlEntry(baseUrl, "accessibility", "0.3", null, "yearly");
 
       sitemap += `</urlset>`;

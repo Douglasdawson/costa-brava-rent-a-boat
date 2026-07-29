@@ -211,6 +211,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Información sobre el uso de cookies en Costa Brava Rent a Boat. Aprende cómo utilizamos cookies para mejorar tu experiencia.",
       keywords: "política cookies, cookies costa brava rent boat, uso cookies, privacidad navegación"
     },
+    legalNotice: {
+      title: "Aviso Legal | Costa Brava Rent a Boat",
+      description: "Datos identificativos de DAMAR COSTA BRAVA S.L., titular de costabravarentaboat.com, conforme al articulo 10 de la LSSI-CE.",
+      keywords: "aviso legal, datos identificativos, LSSI, costa brava rent a boat"
+    },
     accesibilidad: {
       title: "Declaracion de Accesibilidad | Costa Brava Rent a Boat",
       description: "Declaracion de accesibilidad web de Costa Brava Rent a Boat. Cumplimiento WCAG 2.1.",
@@ -439,6 +444,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Information about cookie usage on Costa Brava Rent a Boat website.",
       keywords: "cookie policy, cookies costa brava rent boat, cookie usage, browsing privacy"
     },
+    legalNotice: {
+      title: "Legal Notice | Costa Brava Rent a Boat",
+      description: "Company details for DAMAR COSTA BRAVA S.L., owner of costabravarentaboat.com, under Spanish LSSI-CE law.",
+      keywords: "legal notice, company details, imprint, costa brava rent a boat"
+    },
     accesibilidad: {
       title: "Accessibility Statement | Costa Brava Rent a Boat",
       description: "Web accessibility statement of Costa Brava Rent a Boat. WCAG 2.1 compliance.",
@@ -658,6 +668,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Informacio sobre l'us de cookies a Costa Brava Rent a Boat.",
       keywords: "politica cookies, cookies costa brava rent boat, us cookies, privacitat navegacio"
     },
+    legalNotice: {
+      title: "Avis Legal | Costa Brava Rent a Boat",
+      description: "Dades identificatives de DAMAR COSTA BRAVA S.L., titular de costabravarentaboat.com, segons l'article 10 de la LSSI-CE.",
+      keywords: "avis legal, dades identificatives, LSSI, costa brava rent a boat"
+    },
     accesibilidad: {
       title: "Declaracio d'Accessibilitat | Costa Brava Rent a Boat",
       description: "Declaracio d'accessibilitat web de Costa Brava Rent a Boat. Compliment WCAG 2.1.",
@@ -818,6 +833,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Informations sur l'utilisation des cookies sur Costa Brava Rent a Boat.",
       keywords: "politique cookies, cookies costa brava rent boat, utilisation cookies, confidentialite navigation"
     },
+    legalNotice: {
+      title: "Mentions Legales | Costa Brava Rent a Boat",
+      description: "Informations legales de DAMAR COSTA BRAVA S.L., editeur de costabravarentaboat.com, selon la loi espagnole LSSI-CE.",
+      keywords: "mentions legales, informations legales, editeur, costa brava rent a boat"
+    },
     accesibilidad: {
       title: "Declaration d'Accessibilite | Costa Brava Rent a Boat",
       description: "Declaration d'accessibilite web de Costa Brava Rent a Boat. Conformite WCAG 2.1.",
@@ -974,6 +994,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Cookie-Richtlinie | Costa Brava Rent a Boat",
       description: "Informationen zur Cookie-Nutzung auf Costa Brava Rent a Boat.",
       keywords: "cookie-richtlinie, cookies costa brava rent boat, cookie-nutzung, datenschutz navigation"
+    },
+    legalNotice: {
+      title: "Impressum | Costa Brava Rent a Boat",
+      description: "Anbieterkennzeichnung der DAMAR COSTA BRAVA S.L., Betreiberin von costabravarentaboat.com, gemass dem spanischen LSSI-CE.",
+      keywords: "impressum, anbieterkennzeichnung, costa brava rent a boat"
     },
     accesibilidad: {
       title: "Barrierefreiheitserklarung | Costa Brava Rent a Boat",
@@ -1135,6 +1160,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Informatie over het gebruik van cookies op Costa Brava Rent a Boat.",
       keywords: "cookiebeleid, cookies costa brava rent boat, cookie gebruik, privacy navigatie"
     },
+    legalNotice: {
+      title: "Juridische Mededeling | Costa Brava Rent a Boat",
+      description: "Bedrijfsgegevens van DAMAR COSTA BRAVA S.L., eigenaar van costabravarentaboat.com, volgens de Spaanse LSSI-CE.",
+      keywords: "juridische mededeling, bedrijfsgegevens, costa brava rent a boat"
+    },
     accesibilidad: {
       title: "Toegankelijkheidsverklaring | Costa Brava Rent a Boat",
       description: "Webtoegankelijkheidsverklaring van Costa Brava Rent a Boat. WCAG 2.1 conformiteit.",
@@ -1292,6 +1322,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Informazioni sull'uso dei cookie su Costa Brava Rent a Boat.",
       keywords: "politica cookie, cookies costa brava rent boat, uso cookie, privacy navigazione"
     },
+    legalNotice: {
+      title: "Note Legali | Costa Brava Rent a Boat",
+      description: "Dati identificativi di DAMAR COSTA BRAVA S.L., titolare di costabravarentaboat.com, ai sensi della LSSI-CE spagnola.",
+      keywords: "note legali, dati identificativi, costa brava rent a boat"
+    },
     accesibilidad: {
       title: "Dichiarazione di Accessibilita | Costa Brava Rent a Boat",
       description: "Dichiarazione di accessibilita web di Costa Brava Rent a Boat. Conformita WCAG 2.1.",
@@ -1448,6 +1483,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Политика Cookies | Costa Brava Rent a Boat",
       description: "Информация об использовании cookies на Costa Brava Rent a Boat.",
       keywords: "политика cookies, cookies costa brava rent boat, использование cookies, конфиденциальность"
+    },
+    legalNotice: {
+      title: "Pravovaya informatsiya | Costa Brava Rent a Boat",
+      description: "Svedeniya o kompanii DAMAR COSTA BRAVA S.L., vladeltse sayta costabravarentaboat.com, soglasno ispanskomu zakonu LSSI-CE.",
+      keywords: "pravovaya informatsiya, svedeniya o kompanii, costa brava rent a boat"
     },
     accesibilidad: {
       title: "Заявление о Доступности | Costa Brava Rent a Boat",

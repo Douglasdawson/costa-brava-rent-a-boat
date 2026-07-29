@@ -260,6 +260,8 @@ export const en: Translations = {
     faqLabel: "FAQ",
     customerReviews: "Customer Reviews",
     cookiesPolicy: "Cookie Policy",
+    legalNotice: "Legal Notice",
+    rentalConditions: "Rental Conditions",
     destinations: "Destinations",
     gallery: "Gallery",
     accessibility: "Accessibility",
@@ -2889,7 +2891,7 @@ export const en: Translations = {
       sections: [
         {
           title: "1. Data Controller",
-          body: "Identity: Costa Brava Rent a Boat\nTax ID: B22566327\nAddress: Port of Blanes, Girona, Spain\nTelephone: +34 611 500 372\nContact email: costabravarentaboat@gmail.com",
+          body: "Identity: DAMAR COSTA BRAVA S.L. (trading as Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nAddress: Carrer Esplanada del Port, 17300 Blanes, Girona, Spain\nPhone: +34 611 500 372\nContact email: costabravarentaboat@gmail.com",
         },
         {
           title: "2. Personal Data We Collect",
@@ -2961,7 +2963,7 @@ export const en: Translations = {
       sections: [
         {
           title: "1. Owner Identification",
-          body: "Costa Brava Rent a Boat\nTax ID: B22566327\nRegistered address: Port of Blanes, Girona, Spain\nContact telephone: +34 611 500 372\nEmail: costabravarentaboat@gmail.com\nActivity: recreational boat hire (with and without nautical licence) at the Port of Blanes, Costa Brava.",
+          body: "Registered name: DAMAR COSTA BRAVA S.L. (trading under the brand Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nRegistered office: Carrer Esplanada del Port, 17300 Blanes, Girona, Spain\nContact phone: +34 611 500 372\nEmail: costabravarentaboat@gmail.com\nActivity: rental of recreational boats (with and without a nautical licence) at the Port of Blanes, Costa Brava.",
         },
         {
           title: "2. Purpose",
@@ -2969,7 +2971,7 @@ export const en: Translations = {
         },
         {
           title: "3. Booking Process",
-          body: "The website captures booking requests. The customer completes a form with date, boat, duration and contact details. The provider will manually confirm availability and send a confirmation message via WhatsApp or email.\n\nPayment is handled manually in person at the Port of Blanes at the time of boarding. No automatic online charges are made.\n\nThe booking is only confirmed upon explicit confirmation from the provider.",
+          body: "The website captures booking requests. The customer fills in a form with date, boat, duration and contact details. The provider manually confirms availability and sends a confirmation message by WhatsApp or email.\n\nFor boat rentals, payment is handled in person at the Port of Blanes when boarding: the website does not automatically charge the rental amount. Shop products and gift cards are paid online by card at the time of purchase, as set out in sections 13 to 17.\n\nThe booking is firm only after the provider's explicit confirmation.",
         },
         {
           title: "4. Requirements for the Hirer",
@@ -2977,11 +2979,11 @@ export const en: Translations = {
         },
         {
           title: "5. Deposit and Payment Conditions",
-          body: "Before setting sail, a deposit (€200–500 depending on boat) is paid, which is refunded in full on return if the boat is returned in the same condition as it was received.\n\nIn case of damage, loss of equipment or failure to comply with the authorised navigation area, the provider may retain all or part of the deposit to cover costs.",
+          body: "Before departure a deposit is paid (200 € for boats without a licence and 500 € for those requiring one), returned in full on return if the boat is handed back in the same condition it was received. The applicable amount is always the one shown at the time of booking and in the contract signed at the port.\n\nCustomers may optionally take out the Reduced Deposit, which lowers the amount withheld for a fixed price. It is an in-house commercial guarantee and not an insurance contract; its price is non-refundable.\n\nIn the event of damage, loss of equipment or breach of the authorised navigation area, the provider may withhold all or part of the deposit to cover the costs.",
         },
         {
           title: "6. Navigation Area and Duration",
-          body: "Authorised areas: north to Fenals Beach (without licence) or Sant Feliu de Guíxols (with licence); south to the end of Blanes beach (without licence) or no limit (with licence). Maximum 2 nautical miles from the coast for boats without a licence, at a maximum of 5 knots.\n\nBoats must return to the Port of Blanes before the end of the hired time slot. Unjustified delays incur a charge of €50/hour extra.",
+          body: "Authorised areas: north as far as Fenals Beach (without licence) or Sant Feliu de Guíxols (with licence); south as far as the mouth of the river Tordera, at the end of Blanes beach (without licence), or unlimited (with licence). Maximum 2 nautical miles from the coast for boats without a licence.\n\nThe maximum speed in ports and in the marked channels off the beaches is 3 knots. Swimmer areas must be respected, anchoring outside the yellow buoys, navigating more than 200 m from beaches and cliffs and keeping 100 m from divers' buoys.\n\nBoats must return to the Port of Blanes before the end of the booked time slot. If check-out takes place later than the agreed time without notice, a charge of 150 € for every 30 minutes of delay, or the proportional part thereof, will apply.",
         },
         {
           title: "7. Cancellation Policy",
@@ -2993,7 +2995,7 @@ export const en: Translations = {
         },
         {
           title: "9. Liability and Insurance",
-          body: "All boats are covered by comprehensive insurance for boat and occupants, in accordance with Spanish regulations for recreational boats. The insurance covers accidental damage during navigation within the authorised area.\n\nDamage resulting from negligent use, intoxication, navigation outside the permitted area, adverse weather conditions ignored after warning, or failure to comply with safety instructions is not covered.",
+          body: "All boats carry the compulsory Third-Party Liability insurance for recreational craft and cover for physical injury to occupants, in accordance with Spanish regulations. Cover applies while navigating within the authorised area.\n\nExcluded are activities involving the towing of devices (bananas, inflatable rings, skis and similar), for which the hirer is liable. Also excluded is damage arising from negligent use, intoxication, navigation outside the permitted area, adverse weather conditions ignored after a warning, or failure to follow safety instructions.\n\nBefore departure the customer is informed of the exact scope of the policy; any damage exceeding the cover or the deposit is borne by the hirer.",
         },
         {
           title: "10. Intellectual Property",
@@ -3009,7 +3011,7 @@ export const en: Translations = {
         },
         {
           title: "13. Online shop: seller identification",
-          body: "Sections 13 to 16 exclusively govern the purchase of the physical products in the Shop section of this website (the Costa Brava Culture collection, in collaboration with Laura Cabanas). The seller of these products is DAMAR COSTA BRAVA S.L., tax ID (CIF) B22566327, with address for notifications at Carrer Esplanada del Port, 17300 Blanes, Girona, Spain, phone +34 611 500 372 and email costabravarentaboat@gmail.com (hereinafter, the seller). Sections 1 to 12 refer to the boat rental service and do not apply to shop purchases.",
+          body: "Sections 13 to 16 exclusively govern the purchase of the physical products in the Shop section of this website (gift cards and jet ski activities are governed by sections 17 and 18) (the Costa Brava Culture collection, in collaboration with Laura Cabanas). The seller of these products is DAMAR COSTA BRAVA S.L., tax ID (CIF) B22566327, with address for notifications at Carrer Esplanada del Port, 17300 Blanes, Girona, Spain, phone +34 611 500 372 and email costabravarentaboat@gmail.com (hereinafter, the seller). Sections 1 to 12 refer to the boat rental service and do not apply to shop purchases.",
         },
         {
           title: "14. Online shop: prices, payment and delivery",
@@ -3023,8 +3025,49 @@ export const en: Translations = {
           title: "16. Online shop: legal guarantee and complaints",
           body: "All shop products carry the 3-year legal guarantee of conformity from delivery, in accordance with Spanish Royal Legislative Decree 1/2007. If the product shows a lack of conformity (a manufacturing defect, transport damage or any other discrepancy with what was purchased), the customer may demand its repair or replacement free of charge and, if these are not possible or are disproportionate, a price reduction or the termination of the purchase; in these cases the return costs are borne by the seller.\n\nFor any complaint related to the shop, the customer may contact the seller through the channels indicated in section 13. Complaint forms are available to consumers.",
         },
+        {
+          title: "17. Gift cards",
+          body: "Gift cards are purchased online by bank card and delivered by email with a unique code. They are valid for 12 months from issue, redeemable against any rental service subject to availability, and cannot be split across several bookings or exchanged for cash.\n\nAs digital content delivered immediately, the right of withdrawal does not apply once the code has been sent, in accordance with article 103.m of Spanish Royal Legislative Decree 1/2007. If the card is not used within its validity period, the amount is not refunded.",
+        },
+        {
+          title: "18. Jet skis and other water activities",
+          body: "The jet skis and the eFoil offered on this website work on a request basis: the website collects the request and the service is confirmed, contracted and paid for directly at the departure point. They require no nautical licence and always take place in a marked circuit or on a guided excursion.\n\nParticipants must be over 18 (or minors accompanied by a responsible adult in the formats that allow it), follow the guide's instructions at all times and wear a life jacket throughout the activity. The specific financial conditions, the deposit if any, and the cancellation policy applicable to these activities are those communicated to the customer when the request is confirmed.",
+        },
       ],
     },
+    legalNotice: {
+      heroTitle: "Legal Notice",
+      lastUpdated: "Last updated: July 2026",
+      identificationTitle: "1. Owner identification details",
+      labels: {
+        legalName: "Registered name",
+        taxId: "Tax ID (CIF)",
+        address: "Registered office",
+        phone: "Phone",
+        email: "Email",
+        activity: "Activity",
+      },
+      activityValue: "Rental of recreational boats with and without a nautical licence at the Port of Blanes (Girona), and sale of own-collection products through the online shop.",
+      sections: [
+        {
+          title: "2. Purpose and scope",
+          body: "This legal notice sets out the information that article 10 of Spanish Law 34/2002 on information society services and electronic commerce (LSSI-CE) requires to be made available to users of the website costabravarentaboat.com.\n\nAccessing the website confers the status of user and implies acceptance of the conditions set out here. The contractual conditions of the rental and of the shop are detailed in the Terms and Conditions and in the General Rental Conditions, which prevail over this notice in all contractual matters.",
+        },
+        {
+          title: "3. Intellectual and industrial property",
+          body: "The contents of this website (texts, photographs, illustrations, logos, trademarks, design and code) belong to the provider or to third parties who have authorised their use. Their reproduction, distribution, public communication or transformation without express written authorisation is prohibited.\n\nThird-party trademarks and trade names that may appear on the site belong to their respective owners and their mention implies neither sponsorship nor endorsement.",
+        },
+        {
+          title: "4. Liability and third-party links",
+          body: "The provider is not responsible for the use users make of the website's contents, nor for damage arising from service interruptions beyond its control.\n\nThe site may contain links to third-party websites (for example, partner companies or payment gateways). The provider does not control their contents and assumes no responsibility for them; a link implies no relationship, approval or supervision.",
+        },
+        {
+          title: "5. Applicable law and dispute resolution",
+          body: "This legal notice is governed by Spanish law. The Courts of Girona have jurisdiction over any dispute, without prejudice to the forum legally available to the consumer client.\n\nConsumers may also use the European Commission's Online Dispute Resolution Platform (https://ec.europa.eu/consumers/odr). Official complaint forms are available to customers.",
+        },
+      ],
+    },
+
     accessibility: {
       heroTitle: "Accessibility Statement",
       lastUpdated: "In accordance with Royal Decree 1112/2018, of 7 September",
@@ -4455,6 +4498,7 @@ export const en: Translations = {
     notInsurance: "The Weather guarantee and the Reduced deposit are commercial guarantees of Costa Brava Rent a Boat and do not constitute an insurance contract.",
     ctaTitle: "Choose your coverages when you book",
     ctaLabel: "Book and add coverages",
+    conditionsLink: "Read the general rental conditions",
   },
   scootersPage: {
     seoTitle: "Scooter and motorbike rental in Lloret de Mar | Coast Rent",

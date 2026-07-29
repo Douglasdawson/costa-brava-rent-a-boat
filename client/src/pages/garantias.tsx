@@ -77,7 +77,7 @@ function RecordBlockTitle({ children }: { children: ReactNode }) {
  * guarantee per band.
  */
 export default function GarantiasPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const g = t.garantiasPage;
   const { openBookingModal } = useBookingModal();
@@ -319,6 +319,17 @@ export default function GarantiasPage() {
       <div className="px-4 py-10 sm:px-6">
         <div className="mx-auto max-w-3xl">
           <TrustBadges t={t} />
+          {/* Una garantia comercial que se vende debe poder leerse: el texto que
+              la define vive en las condiciones generales, no en esta pagina. */}
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            <a
+              href={localizedPath("condicionesGenerales")}
+              className="underline underline-offset-4 hover:text-foreground"
+              data-testid="garantias-conditions-link"
+            >
+              {g.conditionsLink}
+            </a>
+          </p>
         </div>
       </div>
 

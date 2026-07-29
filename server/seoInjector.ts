@@ -1002,7 +1002,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "\u0412 \u0422\u043e\u0440\u0434\u0435\u0440\u0435? \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 15 \u043c\u0438\u043d. \u041b\u043e\u0434\u043a\u0430 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. \u0414\u0435\u043b\u044c\u0442\u0430 \u0422\u043e\u0440\u0434\u0435\u0440\u0430.",
     },
   },
-  "/privacy-policy": {
+  "/politica-privacidad": {
     es: {
       title: "Política de Privacidad | Costa Brava Rent a Boat",
       description: "Política de privacidad y protección de datos de Costa Brava Rent a Boat.",
@@ -1036,7 +1036,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Политика конфиденциальности и защита данных Costa Brava Rent a Boat.",
     },
   },
-  "/terms-conditions": {
+  "/terminos-condiciones": {
     es: {
       title: "Términos y Condiciones | Costa Brava Rent a Boat",
       description: "Términos y condiciones del servicio de alquiler de barcos en Blanes, Costa Brava.",
@@ -1104,7 +1104,41 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Общие условия аренды лодок в Бланесе, Коста-Брава.",
     },
   },
-  "/cookies-policy": {
+  "/aviso-legal": {
+    es: {
+      title: "Aviso Legal | Costa Brava Rent a Boat",
+      description: "Datos identificativos de DAMAR COSTA BRAVA S.L., titular de costabravarentaboat.com, conforme al articulo 10 de la LSSI-CE.",
+    },
+    en: {
+      title: "Legal Notice | Costa Brava Rent a Boat",
+      description: "Company details for DAMAR COSTA BRAVA S.L., owner of costabravarentaboat.com, under Spanish LSSI-CE law.",
+    },
+    ca: {
+      title: "Avis Legal | Costa Brava Rent a Boat",
+      description: "Dades identificatives de DAMAR COSTA BRAVA S.L., titular de costabravarentaboat.com, segons l'article 10 de la LSSI-CE.",
+    },
+    fr: {
+      title: "Mentions Legales | Costa Brava Rent a Boat",
+      description: "Informations legales de DAMAR COSTA BRAVA S.L., editeur de costabravarentaboat.com, selon la loi espagnole LSSI-CE.",
+    },
+    de: {
+      title: "Impressum | Costa Brava Rent a Boat",
+      description: "Anbieterkennzeichnung der DAMAR COSTA BRAVA S.L., Betreiberin von costabravarentaboat.com, gemass dem spanischen LSSI-CE.",
+    },
+    nl: {
+      title: "Juridische Mededeling | Costa Brava Rent a Boat",
+      description: "Bedrijfsgegevens van DAMAR COSTA BRAVA S.L., eigenaar van costabravarentaboat.com, volgens de Spaanse LSSI-CE.",
+    },
+    it: {
+      title: "Note Legali | Costa Brava Rent a Boat",
+      description: "Dati identificativi di DAMAR COSTA BRAVA S.L., titolare di costabravarentaboat.com, ai sensi della LSSI-CE spagnola.",
+    },
+    ru: {
+      title: "Pravovaya informatsiya | Costa Brava Rent a Boat",
+      description: "Svedeniya o kompanii DAMAR COSTA BRAVA S.L., vladeltse sayta costabravarentaboat.com, soglasno ispanskomu zakonu LSSI-CE.",
+    },
+  },
+  "/politica-cookies": {
     es: {
       title: "Política de Cookies | Costa Brava Rent a Boat",
       description: "Información sobre el uso de cookies en Costa Brava Rent a Boat.",
@@ -4660,6 +4694,7 @@ const LEGACY_SPA_ROUTES = new Set([
   "/terms-conditions",
   "/cookies-policy",
   "/condiciones-generales",
+  "/aviso-legal",
   "/accesibilidad",
   "/alquiler-barcos-blanes",
   "/alquiler-barcos-lloret-de-mar",

@@ -43,6 +43,7 @@ const GlosarioPage = lazy(() => import("@/pages/glosario"));
 const PrivacyPolicyPage = lazy(() => import("@/pages/privacy-policy"));
 const TermsConditionsPage = lazy(() => import("@/pages/terms-conditions"));
 const CookiesPolicyPage = lazy(() => import("@/pages/cookies-policy"));
+const LegalNoticePage = lazy(() => import("@/pages/legal-notice"));
 const LocationBlanesPage = lazy(() => import("@/pages/location-blanes"));
 const LocationLloretPage = lazy(() => import("@/pages/location-lloret-de-mar"));
 const LocationTossaPage = lazy(() => import("@/pages/location-tossa-de-mar"));
@@ -358,6 +359,7 @@ const PAGE_COMPONENTS: Record<string, React.LazyExoticComponent<any> | React.Com
   privacyPolicy: PrivacyPolicyPage,
   termsConditions: TermsConditionsPage,
   cookiesPolicy: CookiesPolicyPage,
+  legalNotice: LegalNoticePage,
   condicionesGenerales: CondicionesGenerales,
   accessibility: AccessibilityDeclarationPage,
   login: LoginPage,
@@ -375,7 +377,7 @@ const MAIN_ROUTE_KEYS = new Set<string>([
 
 const MINIMAL_ROUTE_KEYS = new Set<string>([
   "login", "onboarding", "myAccount", "clientDashboard",
-  "privacyPolicy", "termsConditions", "cookiesPolicy",
+  "privacyPolicy", "termsConditions", "cookiesPolicy", "legalNotice",
   "condicionesGenerales", "accessibility", "crm",
 ]);
 

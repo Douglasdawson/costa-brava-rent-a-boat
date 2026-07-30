@@ -456,6 +456,11 @@ export const de: Translations = {
       standardSuffix: " statt {std}",
       noneCta: "Ohne Zusatzleistungen fortfahren",
       criteriaShort: "Schlechtes Wetter = AEMET-Warnung, Wind über 20 Knoten oder Entscheidung des Unternehmens.",
+      warnTitle: "Ohne Schlechtwetter-Garantie fortfahren?",
+      warnBody:
+        "Wenn schlechtes Wetter die Ausfahrt verhindert, verschieben wir den Termin kostenlos. Passt kein Termin, bekommst du einen Gutschein über den gezahlten Betrag, 12 Monate gültig. Keine Rückerstattung in Geld.",
+      warnAdd: "Für {price}€ hinzufügen",
+      warnContinue: "Ohne Garantie fortfahren",
     },
     confirmTitle: "Buchung bestätigen",
     confirmSubtitle: "Überprüfe die Details. Bestätigung per WhatsApp in weniger als 2 Stunden.",

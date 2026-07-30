@@ -456,6 +456,11 @@ export const it: Translations = {
       standardSuffix: " invece di {std}",
       noneCta: "Continua senza coperture",
       criteriaShort: "Maltempo = avviso AEMET, vento oltre 20 nodi o decisione dell'azienda.",
+      warnTitle: "Continuare senza la garanzia maltempo?",
+      warnBody:
+        "Se il maltempo impedisce l'uscita, spostiamo la data senza costi. Se non riusciamo a concordarne una, ricevi un buono per l'importo versato, valido 12 mesi. Nessun rimborso in denaro.",
+      warnAdd: "Aggiungi per {price}€",
+      warnContinue: "Continua senza garanzia",
     },
     confirmTitle: "Conferma prenotazione",
     confirmSubtitle: "Verifica i dettagli. Conferma via WhatsApp in meno di 2 ore.",

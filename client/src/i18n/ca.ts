@@ -455,6 +455,11 @@ export const ca: Translations = {
       standardSuffix: " en lloc de {std}",
       noneCta: "Continuar sense cobertures",
       criteriaShort: "Mal temps = avís d'AEMET, vent per sobre de 20 nusos o decisió de l'empresa.",
+      warnTitle: "Seguir sense la garantia de mal temps?",
+      warnBody:
+        "Si el mal temps impedeix sortir, canviem la data sense cost. Si no aconseguim acordar-ne cap, reps un val per l'import abonat, vàlid 12 mesos. No hi ha devolució en diners.",
+      warnAdd: "Afegir per {price}€",
+      warnContinue: "Continuar sense garantia",
     },
     confirmTitle: "Confirmar reserva",
     confirmSubtitle: "Revisa els detalls. Confirmem per WhatsApp en menys de 2 hores.",

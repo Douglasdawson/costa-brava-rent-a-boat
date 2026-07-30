@@ -446,6 +446,11 @@ export const en: Translations = {
       standardSuffix: " instead of {std}",
       noneCta: "Continue without coverages",
       criteriaShort: "Bad weather = AEMET warning, wind above 20 knots or the company's decision.",
+      warnTitle: "Continue without the bad weather guarantee?",
+      warnBody:
+        "If bad weather stops the trip, we move your date at no cost. If no date works, you get a voucher for the amount paid, valid for 12 months. No cash refund.",
+      warnAdd: "Add for {price}€",
+      warnContinue: "Continue without it",
     },
     confirmTitle: "Confirm booking",
     confirmSubtitle: "Review the details. We confirm via WhatsApp within 2 hours.",

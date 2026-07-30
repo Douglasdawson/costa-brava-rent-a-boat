@@ -455,6 +455,11 @@ export const nl: Translations = {
       standardSuffix: " in plaats van {std}",
       noneCta: "Doorgaan zonder garanties",
       criteriaShort: "Slecht weer = AEMET-waarschuwing, wind boven 20 knopen of beslissing van het bedrijf.",
+      warnTitle: "Doorgaan zonder de slechtweergarantie?",
+      warnBody:
+        "Als slecht weer het uitvaren verhindert, verzetten we je datum kosteloos. Lukt geen enkele datum, dan krijg je een tegoedbon voor het betaalde bedrag, 12 maanden geldig. Geen terugbetaling in geld.",
+      warnAdd: "Toevoegen voor {price}€",
+      warnContinue: "Doorgaan zonder garantie",
     },
     confirmTitle: "Boeking bevestigen",
     confirmSubtitle: "Controleer de details. Bevestiging via WhatsApp binnen 2 uur.",

@@ -287,8 +287,11 @@ Cuando un hecho aparece en varias capas (i18n, SEO, blog, JSX, emails, KB chatbo
 | Politica de cancelacion (texto unico multi-idioma) | `client/src/i18n/es.ts` -> propaga via `npm run i18n:translate` |
 | Datos de scooters Coast Rent (precios, vehiculos, condiciones) | Web en vivo `coastrent.es` (negocio externo) -> reflejado en `t.scootersPage`. Verificar contra su web antes de tocar; NO inventar precios por modelo |
 
-Politica de cancelacion (texto literal a usar en cualquier surface nueva):
-> Cambio de fecha gratuito hasta 7 dias antes de la salida (sujeto a disponibilidad). Mal tiempo: reprogramamos sin coste o devolvemos el deposito integro. Las reservas confirmadas con deposito no son reembolsables fuera del supuesto de mal tiempo.
+Politica de cancelacion: desde 2026-07 el mal tiempo tiene DOS niveles segun se haya contratado o no la Garantia de mal tiempo (cobertura opcional de 10 EUR del paso 5 del wizard). El texto vigente es la clausula 7 de las condiciones generales (`client/src/i18n/es.ts` -> `t.termsPage`, "7. Politica de cancelacion") y su desarrollo publico esta en `t.garantiasPage` (pagina `/garantias`). Texto literal a usar en cualquier surface nueva:
+
+> Cambio de fecha gratuito hasta 7 dias antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantia de mal tiempo contratada eliges entre nueva fecha o la devolucion integra en dinero, excluido el precio de la propia garantia. Fuera de esos supuestos, las reservas confirmadas con deposito no se devuelven en dinero.
+
+Mal tiempo = aviso costero oficial de AEMET para la zona en la franja horaria del alquiler, viento sostenido o rachas por encima de 20 nudos, o decision del personal por seguridad. NO escribir una version mas dura que la clausula 7 (el bono de 12 meses existe: omitirlo es una promesa a la baja y un problema en consumo), ni volver a la version anterior de "devolvemos el deposito integro" sin condicion, que vaciaba de sentido la garantia de pago. La Garantia de mal tiempo y la Fianza reducida son garantias comerciales, NUNCA un seguro, en ningun idioma.
 
 Distancia de navegacion sin licencia: hay DOS limites y son ejes distintos, no se contradicen.
 

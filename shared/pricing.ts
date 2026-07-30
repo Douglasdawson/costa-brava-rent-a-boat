@@ -349,16 +349,25 @@ export function coverageDepositTier(
 /**
  * Canonical Spanish names for the inquiry `extras` array, sent whatever the
  * visitor's language: /CRM/peticiones matches the coverages by these labels.
+ *
+ * `weatherDeclined` is not a purchase: it records that the customer was shown
+ * the step-5 warning and chose to continue without the weather guarantee, so a
+ * later "nobody told me" claim can be answered from the inquiry itself. Wording
+ * mirrors clause 7 of the rental terms (reschedule, else a 12-month voucher, no
+ * cash refund) and must never read as harsher than that clause.
  */
 export const COVERAGE_INQUIRY_NAMES = {
   weather: "Garantía de mal tiempo",
   deposit: "Fianza reducida",
+  weatherDeclined: "Avisado: sin garantía de mal tiempo (acepta bono, sin devolución)",
 } as const;
 
 /**
- * Bullet lines for the extras block of the WhatsApp message. The CRM parser
- * (client/src/lib/parse-peticion.ts) reads "· <rótulo> (<precio>€)" and only
- * knows the ES and EN wordings below — keep them verbatim.
+ * Bullet lines for the extras block of the WhatsApp message, formatted as
+ * "· <rótulo> (<precio>€)". Only the ES and EN wordings below are produced, so
+ * keep them verbatim for anything that reads the message back.
+ * (Historical note: this used to name client/src/lib/parse-peticion.ts as the
+ * consumer; that file no longer exists.)
  *
  * Never word the weather cover as "seguro" / "insurance" in any language: it is
  * a commercial guarantee, not an insurance product.

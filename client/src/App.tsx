@@ -34,7 +34,7 @@ const FAQPreview = lazy(() => import("@/components/FAQPreview"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 
 // Lazy load non-critical components
-const BookingFlow = lazy(() => import("./components/BookingFlow"));
+const BookingFormWidget = lazy(() => import("./components/BookingFormWidget"));
 const CRMDashboard = lazy(() => import("./components/CRMDashboard"));
 const BoatDetailPage = lazy(() => import("./components/BoatDetailPage"));
 const CondicionesGenerales = lazy(() => import("./components/CondicionesGenerales"));
@@ -204,33 +204,26 @@ function HomePage() {
   );
 }
 
+// Full-page host for the same 6-step wizard the Hero modal opens. Until
+// 2026-07-30 this route rendered a separate 3-step flow (components/booking-flow)
+// that never produced a single request in production while the modal produced
+// 562 — so the duplicate died and the route now mounts the wizard that converts.
 function BookingFlowPage() {
   const search = useSearch();
+  const [, setLocation] = useLocation();
+  const { localizedPath } = useLanguage();
   const params = new URLSearchParams(search);
-  const boatId = params.get('boat') || 'astec-480';
-  const date = params.get('date') || '';
-  const duration = params.get('duration') || '';
-  const time = params.get('time') || '';
-  const firstName = params.get('firstName') || '';
-  const lastName = params.get('lastName') || '';
-  const phonePrefix = params.get('phonePrefix') || '';
-  const phoneNumber = params.get('phoneNumber') || '';
-  const email = params.get('email') || '';
 
   return (
-    <BookingFlow
-      boatId={boatId}
-      initialDate={date}
-      initialDuration={duration}
-      initialTime={time}
-      initialCustomerData={{
-        firstName,
-        lastName,
-        phonePrefix,
-        phoneNumber,
-        email
-      }}
-    />
+    <div className="h-[100dvh] flex flex-col bg-background pt-safe pb-safe">
+      <BookingFormWidget
+        preSelectedBoatId={params.get("boat") || undefined}
+        prefillDate={params.get("date") || undefined}
+        prefillTime={params.get("time") || undefined}
+        prefillDuration={params.get("duration") || undefined}
+        onClose={() => setLocation(localizedPath("home"))}
+      />
+    </div>
   );
 }
 

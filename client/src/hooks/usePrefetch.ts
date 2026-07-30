@@ -27,11 +27,14 @@ export function usePrefetchCriticalRoutes() {
       return;
     }
 
-    // Prefetch only BookingFlow (most likely next interaction) during idle time.
-    // Don't prefetch BoatDetailPage, category, or pricing — they load fast via
-    // code-splitting and prefetching them adds to Lighthouse "unused JS" score.
+    // Prefetch only the booking wizard (most likely next interaction) during
+    // idle time. Don't prefetch BoatDetailPage, category, or pricing — they load
+    // fast via code-splitting and prefetching them adds to Lighthouse
+    // "unused JS" score.
+    // 2026-07-30: this pointed at the retired 3-step BookingFlow, so it warmed a
+    // chunk the Hero CTA never requested. Now it warms the chunk it does open.
     const prefetch = () => {
-      import('../components/BookingFlow');
+      import('../components/BookingFormWidget');
     };
 
     if ('requestIdleCallback' in window) {

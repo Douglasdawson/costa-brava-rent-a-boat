@@ -459,6 +459,11 @@ export const fr: Translations = {
       standardSuffix: " au lieu de {std}",
       noneCta: "Continuer sans couvertures",
       criteriaShort: "Mauvais temps = avis AEMET, vent au-dessus de 20 nœuds ou décision de l'entreprise.",
+      warnTitle: "Continuer sans la garantie mauvais temps ?",
+      warnBody:
+        "Si le mauvais temps empêche la sortie, nous décalons la date sans frais. Si aucune date ne convient, vous recevez un bon du montant versé, valable 12 mois. Pas de remboursement en espèces.",
+      warnAdd: "Ajouter pour {price}€",
+      warnContinue: "Continuer sans garantie",
     },
     confirmTitle: "Confirmer la réservation",
     confirmSubtitle: "Vérifiez les détails. Confirmation par WhatsApp en moins de 2 heures.",

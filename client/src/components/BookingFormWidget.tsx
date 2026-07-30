@@ -31,7 +31,18 @@ import {
   trackCouponApplied,
   trackExitIntentShown,
   trackExitIntentCtaClick,
+  trackEvent,
 } from "@/utils/analytics";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { useLicenseVerifier } from "@/hooks/useLicenseVerifier";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
@@ -220,6 +231,13 @@ export default function BookingFormWidget({
   // never frozen into state.
   const [weatherGuarantee, setWeatherGuarantee] = useState(false);
   const [reducedDeposit, setReducedDeposit] = useState(false);
+
+  // Leaving step 5 without the weather guarantee opens a confirmation once, so a
+  // customer who declines it has read what that means (clause 7 of the terms:
+  // reschedule, else a 12-month voucher, never cash). Deliberately NOT persisted
+  // in sessionStorage: a reload should show the warning again.
+  const [showWeatherWarning, setShowWeatherWarning] = useState(false);
+  const [weatherWarningAck, setWeatherWarningAck] = useState(false);
 
   // RGPD consent
   const [privacyConsent, setPrivacyConsent] = useState(false);
@@ -1440,7 +1458,18 @@ export default function BookingFormWidget({
     // Step 4 (extras) has no validation — the user can pass freely.
     // The personal-data validation moved to step 5 and is enforced by
     // handleBookingSearch (submit) so we don't gate the Next button here.
+    if (currentStep === 5 && !weatherGuarantee && !weatherWarningAck) {
+      setShowWeatherWarning(true);
+      return;
+    }
     // All step guards passed — emit step_complete and advance.
+    advanceStep();
+  };
+
+  // The bare advance, split out of handleNextStep so the step-5 warning dialog
+  // can move on after the user decides: calling handleNextStep again would read
+  // the pre-update value of weatherWarningAck from this closure and re-open it.
+  const advanceStep = () => {
     trackBookingStepComplete(
       currentStep,
       STEP_NAMES[currentStep] || `step_${currentStep}`,
@@ -1448,6 +1477,23 @@ export default function BookingFormWidget({
       selectedBoat || undefined
     );
     setCurrentStep(prev => Math.min(prev + 1, TOTAL_STEPS));
+  };
+
+  // "Añadir por Xe": take the guarantee and move on. No ack needed — the warning
+  // only ever fires while the guarantee is off.
+  const handleWeatherWarningAdd = () => {
+    setWeatherGuarantee(true);
+    setShowWeatherWarning(false);
+    advanceStep();
+  };
+
+  // "Continuar sin garantía": remember the acknowledgement (it also becomes the
+  // canonical label on the inquiry) and move on.
+  const handleWeatherWarningContinue = () => {
+    setWeatherWarningAck(true);
+    setShowWeatherWarning(false);
+    trackEvent("coverage_declined", { coverage: "weather", step: 5 });
+    advanceStep();
   };
 
   const handlePrevStep = () => {
@@ -1898,10 +1944,15 @@ Looking forward to confirmation. Thanks!`;
         email: email.trim() || null,
         // Coverages travel with their CANONICAL Spanish name whatever the
         // visitor's language: /CRM/peticiones matches them by these labels.
+        // The last one is not a purchase but a record that the step-5 warning was
+        // shown and declined, so the inquiry itself answers a later dispute.
         extras: [
           ...selectedExtras,
           ...(weatherGuarantee ? [COVERAGE_INQUIRY_NAMES.weather] : []),
           ...(reducedDeposit ? [COVERAGE_INQUIRY_NAMES.deposit] : []),
+          ...(weatherWarningAck && !weatherGuarantee
+            ? [COVERAGE_INQUIRY_NAMES.weatherDeclined]
+            : []),
         ],
         packId: selectedPack || null,
         couponCode: validatedCode?.code || null,
@@ -2120,6 +2171,34 @@ Looking forward to confirmation. Thanks!`;
       ) : (
         <BookingFormDesktop {...sharedProps} />
       )}
+      {/* Step 5 gate. Rendered here, not inside the wizards, because both share
+          handleNextStep — and it has to work in the two hosts the wizard has: the
+          Hero's Radix Dialog and the standalone /booking page. Dismissing with Esc
+          or the overlay stays on step 5: only an explicit choice moves on. */}
+      <AlertDialog
+        open={showWeatherWarning}
+        onOpenChange={open => {
+          if (!open) setShowWeatherWarning(false);
+        }}
+      >
+        <AlertDialogContent className="max-w-md">
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t.booking.coverages.warnTitle}</AlertDialogTitle>
+            <AlertDialogDescription>{t.booking.coverages.warnBody}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={handleWeatherWarningContinue}>
+              {t.booking.coverages.warnContinue}
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={handleWeatherWarningAdd} data-testid="button-weather-warning-add">
+              {(t.booking.coverages.warnAdd ?? "").replace(
+                "{price}",
+                String(coveragePrices.weatherPrice)
+              )}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       {showConfirmation && confirmationData && (
         <BookingConfirmation
           boatName={confirmationData.boatName}

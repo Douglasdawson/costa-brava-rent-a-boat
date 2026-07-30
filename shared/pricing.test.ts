@@ -28,6 +28,7 @@ import {
   getWeekdayInMadrid,
   getDateStringInMadrid,
   type PricingOverrideRule,
+  shouldApplyWeekendSurcharge,
 } from "./pricing";
 
 describe("getSeason", () => {
@@ -597,12 +598,16 @@ describe("Integration: Full booking flow", () => {
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", ["Parking delante del Barco"]);
 
     expect(breakdown.season).toBe("ALTA");
+    // La regla en si, sin pasar por el catalogo: en agosto nunca hay recargo automatico.
+    expect(shouldApplyWeekendSurcharge(date)).toBe(false);
     expect(breakdown.weekendSurcharge).toBe(false);
-    // ALTA 2h = 150, no weekend surcharge in August
-    expect(breakdown.basePrice).toBe(150);
+    // 160 NO es un recargo: es el weekendPrice explicito que el Solar 450 tiene en
+    // ALTA desde 2026-07-30 (el sabado de agosto no puede costar menos que el de
+    // julio). El +15% automatico sigue sin aplicarse, como asierta la linea de arriba.
+    expect(breakdown.basePrice).toBe(160);
     expect(breakdown.extrasPrice).toBe(10);
-    expect(breakdown.subtotal).toBe(160);
-    expect(breakdown.total).toBe(360);
+    expect(breakdown.subtotal).toBe(170);
+    expect(breakdown.total).toBe(370);
   });
 });
 
@@ -828,8 +833,10 @@ describe("calculatePricingBreakdown with overrides", () => {
     const date = SATURDAY_AUG_8;
     const overrides = [makeRule({ adjustmentValue: 0.10 })];
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
-    expect(breakdown.basePriceBeforeOverride).toBe(150); // ALTA 2h, no weekend in Aug
-    expect(breakdown.basePrice).toBe(170); // 150 * 1.10 = 165 → roundToNearestTen → 170
+    // 160 = weekendPrice explicito del Solar 450 en ALTA (no recargo: ver
+    // shouldApplyWeekendSurcharge, que sigue devolviendo false en agosto).
+    expect(breakdown.basePriceBeforeOverride).toBe(160);
+    expect(breakdown.basePrice).toBe(180); // 160 * 1.10 = 176 → roundToNearestTen → 180
     expect(breakdown.weekendSurcharge).toBe(false);
   });
 

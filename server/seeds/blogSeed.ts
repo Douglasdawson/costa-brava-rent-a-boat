@@ -264,7 +264,7 @@ Todos nuestros barcos sin licencia incluyen:
 
 - **Gasolina:** El combustible está incluido en el precio. No pagas ni un euro más por el consumo de gasolina.
 - **IVA:** El precio que ves es el precio final con impuestos incluidos.
-- **Seguro:** Seguro de responsabilidad civil obligatorio para embarcaciones de recreo.
+- **Seguro:** Responsabilidad civil obligatoria (RD 607/1999) y seguro de accidentes para los ocupantes.
 - **Amarre:** El uso del amarre en el puerto de Blanes.
 - **Limpieza:** No tienes que preocuparte de lavar el barco al volver.
 - **Equipo de seguridad:** Chalecos salvavidas, extintor y todo el equipo reglamentario.

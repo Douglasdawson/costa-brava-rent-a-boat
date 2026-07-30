@@ -1716,7 +1716,7 @@ export const ca: Translations = {
   valueStack: {
     title: "Inclòs en el preu:",
     fuelIncluded: "Combustible inclòs",
-    insurance: "Assegurança de responsabilitat civil inclosa",
+    insurance: "Assegurança de responsabilitat civil i accidents",
     safetyEquipment: "Equip de seguretat complet",
     briefing: "Formació de 15 min inclosa",
     securePayment: "Reserva segura",
@@ -2952,7 +2952,7 @@ export const ca: Translations = {
         },
         {
           title: "9. Responsabilitat i assegurança",
-          body: "Totes les embarcacions compten amb l'assegurança de Responsabilitat Civil de subscripció obligatòria per a embarcacions d'esbarjo (RD 607/1999), ampliada amb una Responsabilitat Civil voluntària. Respon dels danys corporals i materials causats a tercers quan siguin imputables a la responsabilitat civil coberta per la pòlissa, durant la navegació dins la zona autoritzada. No és una assegurança d'accidents: els danys que pateixi l'arrendatari o qualsevol ocupant sense que hi concorri responsabilitat civil de l'assegurat no estan coberts, per això recomanem comptar amb una assegurança pròpia d'accidents o de viatge.\n\nQueden excloses les activitats que comportin l'arrossegament d'artefactes (bananes, rodes pneumàtiques, esquís i similars), de les quals respon l'arrendatari. Tampoc es cobreixen els danys derivats d'ús negligent, embriaguesa, navegació fora de la zona permesa, condicions meteorològiques adverses ignorades després d'avís, o incompliment de les instruccions de seguretat.\n\nAbans de salpar s'informa el client de l'abast exacte de la pòlissa; qualsevol dany que excedeixi la cobertura o la fiança va a càrrec de l'arrendatari.",
+          body: "Totes les embarcacions compten amb l'assegurança de Responsabilitat Civil de subscripció obligatòria per a embarcacions d'esbarjo (RD 607/1999), ampliada amb una Responsabilitat Civil voluntària, que respon dels danys causats a tercers. Compten a més amb cobertura d'accidents per als ocupants, amb assistència mèdica i indemnització per mort o invalidesa segons els capitals de la pòlissa de cada embarcació. La cobertura s'aplica durant la navegació dins la zona autoritzada i al nombre de places homologat de cada embarcació: sobrepassar-lo deixa la sortida sencera fora de cobertura.\n\nQueden excloses les activitats que comportin l'arrossegament d'artefactes (bananes, rodes pneumàtiques, esquís i similars), de les quals respon l'arrendatari. Tampoc es cobreixen els danys derivats d'ús negligent, embriaguesa, navegació fora de la zona permesa, condicions meteorològiques adverses ignorades després d'avís, o incompliment de les instruccions de seguretat.\n\nAbans de salpar s'informa el client de l'abast exacte de la pòlissa; qualsevol dany que excedeixi la cobertura o la fiança va a càrrec de l'arrendatari.",
         },
         {
           title: "10. Propietat intel·lectual",

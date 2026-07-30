@@ -16,7 +16,7 @@ import {
   CANCELLATION_TERMS_BULLETS_ES,
   COMMERCIAL_GUARANTEE_DISCLAIMER_ES,
   INSURANCE_SCOPE_ES,
-  INSURANCE_NOT_ACCIDENT_ES,
+  INSURANCE_SEATS_LIMIT_ES,
 } from "@shared/businessProfile";
 
 // Las cancelaciones son idénticas para barcos con y sin titulación, así que el
@@ -145,7 +145,7 @@ export default function CondicionesGenerales() {
                 <h3 className="text-lg font-semibold text-foreground mb-3">SEGURO:</h3>
                 <div className="space-y-3 text-foreground">
                   <p>{INSURANCE_SCOPE_ES}</p>
-                  <p>{INSURANCE_NOT_ACCIDENT_ES}</p>
+                  <p>{INSURANCE_SEATS_LIMIT_ES}</p>
                   <p>El cliente deberá depositar una fianza{depositStandardCL ? ` de ${depositStandardCL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
                   <p>Quedan excluidas de la cobertura del seguro las actividades realizadas por la embarcación asegurada que conlleven el arrastre de artefactos como bananas, ruedas neumáticas, esquís, etc. El arrendatario de la embarcación se responsabilizará de la utilización de los mismos y de las consecuencias que de ello pudieran derivarse.</p>
                   <p>La empresa no asume responsabilidad alguna por pérdidas o daños en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, así como por retrasos por consecuencia de avería de la embarcación e incluso el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
@@ -225,7 +225,7 @@ export default function CondicionesGenerales() {
                 <h3 className="text-lg font-semibold text-foreground mb-3">SEGURO:</h3>
                 <div className="space-y-3 text-foreground">
                   <p>{INSURANCE_SCOPE_ES}</p>
-                  <p>{INSURANCE_NOT_ACCIDENT_ES}</p>
+                  <p>{INSURANCE_SEATS_LIMIT_ES}</p>
                   <p>El cliente deberá depositar una fianza{depositStandardSL ? ` de ${depositStandardSL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
                   <p>La empresa no asume responsabilidad alguna por daños o pérdidas en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación, durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, por demora o retraso como consecuencia de avería de la embarcación e incluso el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
                 </div>

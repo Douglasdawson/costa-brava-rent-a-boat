@@ -1796,7 +1796,7 @@ export const es: Translations = {
           "La temporada de navegación en Blanes va de abril a octubre. Ofrecemos tres franjas horarias: mañana (de 9:00 a 13:00), tarde (de 14:00 a 18:00) y día completo (de 9:00 a 18:00). Los meses de junio y septiembre son ideales para navegar: temperaturas agradables, mar en calma y menos afluencia. Julio y agosto son temporada alta con las mejores condiciones para el baño pero mayor demanda, por lo que recomendamos reservar con antelación.",
         guideIncludedTitle: "Qué incluye el alquiler",
         guideIncludedText:
-          "En los barcos sin licencia el alquiler incluye combustible, seguro de responsabilidad civil, equipo de seguridad homologado (chalecos salvavidas, extintor, bengalas), toldo para protección solar y escalera de baño. Algunos modelos incluyen también equipo de música Bluetooth. En los barcos con licencia y la excursión privada con capitán, el combustible NO está incluido y se paga aparte en la gasolinera del puerto.",
+          "En los barcos sin licencia el alquiler incluye combustible, seguro de responsabilidad civil y accidentes, equipo de seguridad homologado (chalecos salvavidas, extintor, bengalas), toldo para protección solar y escalera de baño. Algunos modelos incluyen también equipo de música Bluetooth. En los barcos con licencia y la excursión privada con capitán, el combustible NO está incluido y se paga aparte en la gasolinera del puerto.",
         guideBookingTitle: "Cómo reservar",
         guideBookingText:
           "Puedes reservar tu barco de tres formas: a través de nuestra web (te confirmamos por WhatsApp en menos de 2 horas), por WhatsApp al +34 611 500 372 donde te atendemos en español, inglés y catalán, o directamente en el Puerto de Blanes si hay disponibilidad el mismo día. Aceptamos reservas de último momento siempre que haya embarcaciones libres.",
@@ -3551,7 +3551,7 @@ export const es: Translations = {
   valueStack: {
     title: "Incluido en el precio:",
     fuelIncluded: "Combustible incluido",
-    insurance: "Seguro de responsabilidad civil incluido",
+    insurance: "Seguro de responsabilidad civil y accidentes",
     safetyEquipment: "Equipo de seguridad completo",
     briefing: "Formación de 15 min incluida",
     securePayment: "Reserva segura",
@@ -4773,7 +4773,7 @@ export const es: Translations = {
         },
         {
           title: "9. Responsabilidad y seguro",
-          body: "Todas las embarcaciones cuentan con el seguro de Responsabilidad Civil de suscripción obligatoria para embarcaciones de recreo (RD 607/1999), ampliado con una Responsabilidad Civil voluntaria. Responde de los daños corporales y materiales causados a terceros cuando resulten imputables a la responsabilidad civil cubierta por la póliza, durante la navegación dentro de la zona autorizada. No es un seguro de accidentes: los daños que sufra el arrendatario o cualquier ocupante sin que concurra responsabilidad civil del asegurado no están cubiertos, por lo que recomendamos contar con un seguro propio de accidentes o de viaje.\n\nQuedan excluidas las actividades que conlleven el arrastre de artefactos (bananas, ruedas neumáticas, esquís y similares), de las que responde el arrendatario. Tampoco se cubren los daños derivados de uso negligente, embriaguez, navegación fuera de la zona permitida, condiciones meteorológicas adversas ignoradas tras aviso, o incumplimiento de las instrucciones de seguridad.\n\nAntes de zarpar se informa al cliente del alcance exacto de la póliza; cualquier daño que exceda la cobertura o la fianza corre a cargo del arrendatario.",
+          body: "Todas las embarcaciones cuentan con el seguro de Responsabilidad Civil de suscripción obligatoria para embarcaciones de recreo (RD 607/1999), ampliado con una Responsabilidad Civil voluntaria, que responde de los daños causados a terceros. Cuentan además con cobertura de accidentes para los ocupantes, con asistencia médica e indemnización por fallecimiento o invalidez conforme a los capitales de la póliza de cada embarcación. La cobertura se aplica durante la navegación dentro de la zona autorizada y al número de plazas homologado de cada embarcación: sobrepasarlo deja la salida entera fuera de cobertura.\n\nQuedan excluidas las actividades que conlleven el arrastre de artefactos (bananas, ruedas neumáticas, esquís y similares), de las que responde el arrendatario. Tampoco se cubren los daños derivados de uso negligente, embriaguez, navegación fuera de la zona permitida, condiciones meteorológicas adversas ignoradas tras aviso, o incumplimiento de las instrucciones de seguridad.\n\nAntes de zarpar se informa al cliente del alcance exacto de la póliza; cualquier daño que exceda la cobertura o la fianza corre a cargo del arrendatario.",
         },
         {
           title: "10. Propiedad intelectual",

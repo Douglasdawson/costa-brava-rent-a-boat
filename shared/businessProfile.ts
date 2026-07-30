@@ -133,21 +133,30 @@ export const CANCELLATION_TERMS_BULLETS_ES: readonly string[] = [
   "Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.",
 ];
 
-// Alcance real del seguro. Hasta 2026-07-30 el contrato y las condiciones decían
-// "también disponen de seguro para daños físicos a los ocupantes", que describe un
-// seguro de accidentes (Ley 50/1980 arts. 100-104) que la póliza de Allianz NO
-// tiene: lo que hay es Responsabilidad Civil (art. 73), que solo responde cuando
-// el daño es imputable a responsabilidad del asegurado. La diferencia no es
-// semántica: por el art. 61.2 TRLGDCU la publicidad es exigible por el
-// consumidor, así que prometer ese ramo convierte a la empresa en su aseguradora
-// de facto. Redactado para ser correcto tanto si los ocupantes cuentan como
-// terceros en la RC obligatoria del RD 607/1999 como si no.
-// NO reintroducir "todo riesgo" ni "seguro de ocupantes" en ninguna superficie.
+// Alcance real del seguro, verificado leyendo las polizas el 2026-07-30. Cada
+// casco lleva una poliza Allianz Embarcaciones con DOS bloques distintos:
+//   1. RC obligatoria (RD 607/1999: 96.162 materiales / 240.406 personales) mas
+//      RC voluntaria: responde de los danos a TERCEROS.
+//   2. "Accidentes Personales Ocupantes": fallecimiento e IPA, IP parcial por
+//      baremo y gastos medico-farmaceuticos, con el numero de ocupantes declarado
+//      barco por barco. Paga por el accidente, sin discutir responsabilidad.
+// Cuatro cascos (238-20-21, 233-15-20, 230-41-22, 272-88-21) tienen ADEMAS el
+// Seguro Obligatorio de Viajeros de FIATC (0030-01107539, grupo SOVI, RD
+// 1575/1989) con capitales mayores y asistencia sanitaria ilimitada. Por eso el
+// texto habla de "seguro de accidentes" en generico: citar el SOV como si fuera
+// universal seria falso para los otros cascos.
+// Sin cifras de capitales a proposito: varian entre polizas (12.000 en Allianz,
+// 36.060 en FIATC), se renuevan por periodos, y un importe viejo vuelve a ser una
+// promesa exigible por el art. 61.2 TRLGDCU.
+// NUNCA escribir "todo riesgo": eso si era invencion, retirada el 2026-07-29.
 export const INSURANCE_SCOPE_ES =
-  "Las tarifas incluyen el seguro de Responsabilidad Civil de suscripción obligatoria para embarcaciones de recreo (RD 607/1999), ampliado con una Responsabilidad Civil voluntaria. Esta cobertura responde de los daños corporales y materiales causados a terceros en la medida en que resulten imputables a la responsabilidad civil cubierta por la póliza.";
+  "Las tarifas incluyen el seguro de Responsabilidad Civil de suscripción obligatoria para embarcaciones de recreo (RD 607/1999), ampliado con una Responsabilidad Civil voluntaria, que responde de los daños corporales y materiales causados a terceros. Las embarcaciones cuentan además con cobertura de accidentes para los ocupantes, que incluye asistencia médica e indemnización por fallecimiento o invalidez conforme a los capitales de la póliza de cada embarcación.";
 
-export const INSURANCE_NOT_ACCIDENT_ES =
-  "No se trata de un seguro de accidentes: los daños que sufra el arrendatario o cualquier ocupante sin que concurra responsabilidad civil del asegurado no están cubiertos. Recomendamos al cliente contar con un seguro propio de accidentes o de viaje.";
+// El SOV se contrata por numero de plazas homologadas de cada casco (la poliza las
+// declara barco por barco), asi que embarcar a una persona de mas no es solo una
+// infraccion: deja la salida entera sin cobertura de accidentes.
+export const INSURANCE_SEATS_LIMIT_ES =
+  "La cobertura de accidentes se aplica al número de plazas homologado de cada embarcación: sobrepasarlo deja la salida entera fuera de cobertura. No cubre los daños derivados de uso negligente, navegación fuera de la zona autorizada o gobierno de la embarcación bajo los efectos del alcohol o de otras sustancias.";
 
 export const COMMERCIAL_GUARANTEE_DISCLAIMER_ES =
   "La Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.";

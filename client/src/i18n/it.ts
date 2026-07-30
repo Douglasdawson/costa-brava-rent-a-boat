@@ -1715,7 +1715,7 @@ export const it: Translations = {
   valueStack: {
     title: "Incluso nel prezzo:",
     fuelIncluded: "Carburante incluso",
-    insurance: "Assicurazione di responsabilità civile inclusa",
+    insurance: "Assicurazione RC e infortuni",
     safetyEquipment: "Equipaggiamento di sicurezza completo",
     briefing: "Briefing di 15 min incluso",
     securePayment: "Prenotazione sicura",
@@ -2958,7 +2958,7 @@ export const it: Translations = {
         },
         {
           title: "9. Responsabilità e assicurazione",
-          body: "Tutte le imbarcazioni dispongono dell'assicurazione di Responsabilità Civile obbligatoria per le unità da diporto (RD 607/1999), integrata da una Responsabilità Civile volontaria. Risponde dei danni corporali e materiali causati a terzi quando siano imputabili alla responsabilità civile coperta dalla polizza, durante la navigazione nella zona autorizzata. Non è un'assicurazione infortuni: i danni subiti dal noleggiatore o da qualsiasi occupante senza che sussista responsabilità civile dell'assicurato non sono coperti, pertanto consigliamo di dotarsi di una propria assicurazione infortuni o viaggio.\n\nSono escluse le attività che comportano il traino di attrezzi (banane, ciambelle gonfiabili, sci e simili), delle quali risponde il conduttore. Non sono coperti nemmeno i danni derivanti da uso negligente, stato di ebbrezza, navigazione fuori dalla zona consentita, condizioni meteorologiche avverse ignorate dopo l'avviso, o mancato rispetto delle istruzioni di sicurezza.\n\nPrima di salpare il cliente viene informato dell'esatta portata della polizza; ogni danno che ecceda la copertura o la cauzione è a carico del conduttore.",
+          body: "Tutte le imbarcazioni dispongono dell'assicurazione di Responsabilità Civile obbligatoria per le unità da diporto (RD 607/1999), integrata da una Responsabilità Civile volontaria, che risponde dei danni causati a terzi. Dispongono inoltre di una copertura infortuni per gli occupanti, con assistenza medica e indennizzo per decesso o invalidità secondo i capitali della polizza di ogni imbarcazione. La copertura si applica durante la navigazione nella zona autorizzata e fino al numero di posti omologato di ogni imbarcazione: superarlo lascia l'intera uscita senza copertura.\n\nSono escluse le attività che comportano il traino di attrezzi (banane, ciambelle gonfiabili, sci e simili), delle quali risponde il conduttore. Non sono coperti nemmeno i danni derivanti da uso negligente, stato di ebbrezza, navigazione fuori dalla zona consentita, condizioni meteorologiche avverse ignorate dopo l'avviso, o mancato rispetto delle istruzioni di sicurezza.\n\nPrima di salpare il cliente viene informato dell'esatta portata della polizza; ogni danno che ecceda la copertura o la cauzione è a carico del conduttore.",
         },
         {
           title: "10. Proprietà intellettuale",

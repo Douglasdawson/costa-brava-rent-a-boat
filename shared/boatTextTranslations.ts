@@ -767,6 +767,18 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
     ru: "Strahovanie",
     ca: "Assegurança",
   },
+  // Las dos coberturas reales de cada casco: RC de barcos (Allianz, RD 607/1999)
+  // y accidentes de ocupantes vía Seguro Obligatorio de Viajeros (FIATC, grupo
+  // SOVI, RD 1575/1989). Ver INSURANCE_SCOPE_ES en shared/businessProfile.ts.
+  "Seguro de responsabilidad civil y accidentes": {
+    en: "Liability and passenger accident insurance",
+    fr: "Assurance responsabilite civile et accidents",
+    de: "Haftpflicht- und Unfallversicherung",
+    nl: "WA- en ongevallenverzekering",
+    it: "Assicurazione RC e infortuni",
+    ru: "Strahovanie otvetstvennosti i ot neschastnyh sluchaev",
+    ca: "Assegurança de responsabilitat civil i accidents",
+  },
   "Seguro de responsabilidad civil": {
     en: "Third-party liability insurance",
     fr: "Assurance responsabilite civile",

@@ -1723,7 +1723,7 @@ export const de: Translations = {
   valueStack: {
     title: "Im Preis enthalten:",
     fuelIncluded: "Kraftstoff inklusive",
-    insurance: "Haftpflichtversicherung inklusive",
+    insurance: "Haftpflicht- und Unfallversicherung",
     safetyEquipment: "Komplette Sicherheitsausrüstung",
     briefing: "15-minütige Einweisung inklusive",
     securePayment: "Sichere Buchung",
@@ -2971,7 +2971,7 @@ export const de: Translations = {
         },
         {
           title: "9. Haftung und Versicherung",
-          body: "Alle Boote verfügen über die gesetzlich vorgeschriebene Haftpflichtversicherung für Freizeitboote (Königliches Dekret 607/1999), erweitert durch eine freiwillige Haftpflichtdeckung. Sie kommt für Personen- und Sachschäden Dritter auf, soweit diese der von der Police gedeckten Haftpflicht zuzurechnen sind, während der Fahrt innerhalb des zugelassenen Gebiets. Es handelt sich nicht um eine Unfallversicherung: Schäden, die der Mieter oder ein Insasse ohne Haftpflicht des Versicherten erleidet, sind nicht gedeckt. Wir empfehlen daher eine eigene Unfall- oder Reiseversicherung.\n\nAusgeschlossen sind Aktivitäten mit dem Schleppen von Geräten (Bananenboote, Reifen, Wasserski und Ähnliches), für die der Mieter haftet. Ebenfalls nicht gedeckt sind Schäden durch fahrlässigen Gebrauch, Trunkenheit, Fahrt außerhalb des erlaubten Gebiets, trotz Warnung missachtete ungünstige Wetterbedingungen oder Nichtbeachtung der Sicherheitsanweisungen.\n\nVor dem Auslaufen wird der Kunde über den genauen Umfang der Police informiert; Schäden, die die Deckung oder die Kaution übersteigen, trägt der Mieter.",
+          body: "Alle Boote verfügen über die gesetzlich vorgeschriebene Haftpflichtversicherung für Freizeitboote (Königliches Dekret 607/1999), erweitert durch eine freiwillige Haftpflichtdeckung, die für Schäden an Dritten aufkommt. Zusätzlich besteht ein Unfallschutz für die Insassen mit medizinischer Versorgung und Leistungen bei Tod oder Invalidität gemäß den Kapitalien der Police des jeweiligen Bootes. Der Schutz gilt während der Fahrt im zugelassenen Gebiet und bis zur zugelassenen Personenzahl des Bootes: wird sie überschritten, entfällt der Schutz für die gesamte Ausfahrt.\n\nAusgeschlossen sind Aktivitäten mit dem Schleppen von Geräten (Bananenboote, Reifen, Wasserski und Ähnliches), für die der Mieter haftet. Ebenfalls nicht gedeckt sind Schäden durch fahrlässigen Gebrauch, Trunkenheit, Fahrt außerhalb des erlaubten Gebiets, trotz Warnung missachtete ungünstige Wetterbedingungen oder Nichtbeachtung der Sicherheitsanweisungen.\n\nVor dem Auslaufen wird der Kunde über den genauen Umfang der Police informiert; Schäden, die die Deckung oder die Kaution übersteigen, trägt der Mieter.",
         },
         {
           title: "10. Geistiges Eigentum",

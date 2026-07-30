@@ -1718,7 +1718,7 @@ export const nl: Translations = {
   valueStack: {
     title: "Inbegrepen in de prijs:",
     fuelIncluded: "Brandstof inbegrepen",
-    insurance: "WA-verzekering inbegrepen",
+    insurance: "WA- en ongevallenverzekering",
     safetyEquipment: "Volledige veiligheidsuitrusting",
     briefing: "Instructie van 15 min inbegrepen",
     securePayment: "Veilige boeking",
@@ -2959,7 +2959,7 @@ export const nl: Translations = {
         },
         {
           title: "9. Aansprakelijkheid en verzekering",
-          body: "Alle boten beschikken over de verplichte WA-verzekering voor pleziervaartuigen (Koninklijk Besluit 607/1999), uitgebreid met een vrijwillige aansprakelijkheidsdekking. Deze dekt lichamelijk letsel en materiële schade aan derden voor zover die toerekenbaar is aan de door de polis gedekte aansprakelijkheid, tijdens het varen binnen het toegestane gebied. Het is geen ongevallenverzekering: schade die de huurder of een inzittende oploopt zonder aansprakelijkheid van de verzekerde is niet gedekt. Wij raden daarom een eigen ongevallen- of reisverzekering aan.\n\nUitgesloten zijn activiteiten waarbij voorwerpen worden gesleept (bananen, opblaasbanden, ski's en dergelijke), waarvoor de huurder aansprakelijk is. Evenmin gedekt is schade door nalatig gebruik, dronkenschap, varen buiten het toegestane gebied, ongunstige weersomstandigheden die na waarschuwing zijn genegeerd, of het niet opvolgen van de veiligheidsinstructies.\n\nVóór vertrek wordt de klant geïnformeerd over de precieze reikwijdte van de polis; schade die de dekking of de waarborgsom overstijgt, komt voor rekening van de huurder.",
+          body: "Alle boten beschikken over de verplichte WA-verzekering voor pleziervaartuigen (Koninklijk Besluit 607/1999), uitgebreid met een vrijwillige aansprakelijkheidsdekking, die schade aan derden dekt. Daarnaast is er een ongevallendekking voor de opvarenden, met medische hulp en een uitkering bij overlijden of invaliditeit volgens de kapitalen van de polis van elke boot. De dekking geldt tijdens het varen binnen het toegestane gebied en tot het toegelaten aantal plaatsen van elke boot: bij overschrijding vervalt de dekking voor de hele tocht.\n\nUitgesloten zijn activiteiten waarbij voorwerpen worden gesleept (bananen, opblaasbanden, ski's en dergelijke), waarvoor de huurder aansprakelijk is. Evenmin gedekt is schade door nalatig gebruik, dronkenschap, varen buiten het toegestane gebied, ongunstige weersomstandigheden die na waarschuwing zijn genegeerd, of het niet opvolgen van de veiligheidsinstructies.\n\nVóór vertrek wordt de klant geïnformeerd over de precieze reikwijdte van de polis; schade die de dekking of de waarborgsom overstijgt, komt voor rekening van de huurder.",
         },
         {
           title: "10. Intellectueel eigendom",

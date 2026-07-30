@@ -471,7 +471,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 #### Que incluye el barco
 
 - Gasolina (incluida en barcos sin licencia)
-- Seguro de responsabilidad civil
+- Seguro de responsabilidad civil y accidentes
 - Equipo de seguridad
 - Briefing personalizado
 
@@ -822,7 +822,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 #### Que incluye el barco
 
 - Gasolina (incluida en barcos sin licencia)
-- Seguro de responsabilidad civil
+- Seguro de responsabilidad civil y accidentes
 - Equipo de seguridad
 - Briefing personalizado
 

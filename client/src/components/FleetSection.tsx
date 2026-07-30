@@ -463,10 +463,14 @@ function FleetSection() {
 
         {/* Mobile + Tablet: native OS selects */}
         <div
-          className="flex lg:hidden items-center justify-center gap-3 mb-6 sticky z-30 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 md:static md:bg-transparent md:backdrop-blur-none md:py-0 md:mx-0 md:px-0"
+          /* El sangrado negativo DEBE igualar el padding del contenedor padre
+             (`container px-3 sm:px-4`). Con `-mx-4` fijo se pasaba 4px por lado
+             por debajo de sm y la home arrastraba 4px en horizontal en todos los
+             moviles; no se veia porque body lleva overflow-x:hidden y lo recorta. */
+          className="flex lg:hidden items-center justify-center gap-3 mb-6 sticky z-30 bg-background/95 backdrop-blur-sm py-2 -mx-3 px-3 sm:-mx-4 sm:px-4 md:static md:bg-transparent md:backdrop-blur-none md:py-0 md:mx-0 md:px-0"
           style={{ top: "calc(var(--nav-height) + 8px)" }}
         >
-          <div className="relative">
+          <div className="relative flex-1 min-w-0 md:flex-none">
             <Anchor className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             <label htmlFor="fleet-license-filter" className="sr-only">
               {t.recommendation?.withoutLicense || "License filter"}
@@ -475,7 +479,7 @@ function FleetSection() {
               id="fleet-license-filter"
               value={licenseFilter}
               onChange={e => setLicenseFilter(e.target.value as "all" | "no" | "yes")}
-              className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 min-h-11 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+              className="appearance-none w-full md:w-auto bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 min-h-11 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <option value="all">{t.recommendation?.all}</option>
               <option value="no">{t.recommendation?.withoutLicense}</option>
@@ -483,7 +487,7 @@ function FleetSection() {
             </select>
             <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
           </div>
-          <div className="relative">
+          <div className="relative flex-1 min-w-0 md:flex-none">
             <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             <label htmlFor="fleet-group-size" className="sr-only">
               {t.boats?.people || "Group size"}
@@ -492,7 +496,7 @@ function FleetSection() {
               id="fleet-group-size"
               value={selectedGroupSize ?? ""}
               onChange={e => setSelectedGroupSize(e.target.value || null)}
-              className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 min-h-11 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+              className="appearance-none w-full md:w-auto bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 min-h-11 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <option value="">{t.recommendation?.all}</option>
               {groupSizeOptions.map(option => (

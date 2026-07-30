@@ -115,7 +115,7 @@ export default function Footer() {
                 href="https://www.instagram.com/costabravarentaboat/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-foreground/70 hover:text-primary-foreground transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="text-primary-foreground/70 hover:text-primary-foreground transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none inline-flex items-center justify-center -m-2 p-2 min-w-11 min-h-11"
                 data-testid="social-instagram"
                 aria-label="Instagram"
               >
@@ -125,7 +125,7 @@ export default function Footer() {
                 href="https://www.facebook.com/costabravarentaboat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-foreground/70 hover:text-primary-foreground transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="text-primary-foreground/70 hover:text-primary-foreground transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none inline-flex items-center justify-center -m-2 p-2 min-w-11 min-h-11"
                 data-testid="social-facebook"
                 aria-label="Facebook"
               >
@@ -135,7 +135,7 @@ export default function Footer() {
                 href="https://www.tiktok.com/@costabravarentaboat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-foreground/70 hover:text-primary-foreground transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="text-primary-foreground/70 hover:text-primary-foreground transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none inline-flex items-center justify-center -m-2 p-2 min-w-11 min-h-11"
                 data-testid="social-tiktok"
                 aria-label="TikTok"
               >
@@ -460,7 +460,7 @@ export default function Footer() {
                 <div>
                   <a
                     href="tel:+34611500372"
-                    className="text-sm hover:text-primary-foreground transition-colors block"
+                    className="text-sm hover:text-primary-foreground transition-colors flex items-center min-h-11"
                     data-testid="phone-call-link"
                     aria-label={`${t.a11y.callPhone} +34 611 500 372`}
                     onClick={() => trackPhoneClick()}
@@ -478,7 +478,7 @@ export default function Footer() {
                 <div>
                   <a
                     href="mailto:costabravarentaboat@gmail.com"
-                    className="text-sm hover:text-primary-foreground transition-colors block break-all"
+                    className="text-sm hover:text-primary-foreground transition-colors flex items-center min-h-11 break-all"
                     data-testid="email-link"
                     aria-label={`${t.a11y.sendEmail} costabravarentaboat@gmail.com`}
                   >
@@ -497,7 +497,7 @@ export default function Footer() {
                     href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm hover:text-primary-foreground transition-colors block"
+                    className="text-sm hover:text-primary-foreground transition-colors flex items-center min-h-11"
                     data-testid="maps-link"
                     aria-label={`${t.a11y.viewOnMap}: Puerto de Blanes`}
                   >

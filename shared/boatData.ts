@@ -100,7 +100,12 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 95, "2h": 150, "3h": 180, "4h": 210, "6h": 260, "8h": 300 }
+        prices: { "1h": 95, "2h": 150, "3h": 180, "4h": 210, "6h": 260, "8h": 300 },
+        // Agosto salta el +15% de finde a proposito (ver shouldApplyWeekendSurcharge),
+        // asi que sin precio explicito el sabado de agosto se quedaba en 210 y el de
+        // julio, con recargo, subia a 220: agosto salia MAS BARATO que julio en su
+        // propio pico. Decision del dueno 2026-07-30: 210 L-V / 230 S-D.
+        weekendPrices: { "4h": 230 }
       }
     },
     extras: [
@@ -160,7 +165,10 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 210, "6h": 250, "8h": 290 }
+        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 210, "6h": 250, "8h": 290 },
+        // Mismo caso que el Solar 450: sin precio explicito el sabado de agosto (210)
+        // quedaba por debajo del de julio (220). Decision del dueno 2026-07-30.
+        weekendPrices: { "4h": 230 }
       }
     },
     extras: [

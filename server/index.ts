@@ -113,8 +113,18 @@ if (!isDev) {
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
         imgSrc: ["'self'", "data:", "https:", "blob:"],
-        connectSrc: ["'self'", "https://storage.googleapis.com", "https://www.google-analytics.com", "https://region1.google-analytics.com", "https://www.googletagmanager.com", "https://api.stripe.com", "https://www.facebook.com", "https://connect.facebook.net", "https://www.googleadservices.com", "https://googleads.g.doubleclick.net", "https://www.google.com", "https://pagead2.googlesyndication.com", "wss:"],
+        // GA4 posts its hits to <region>.analytics.google.com — a different host
+        // from the region1.google-analytics.com that used to be listed here, so
+        // every client-side gtag event (booking_step_complete, coverage_declined…)
+        // was being refused by CSP in production. The wildcard covers whichever
+        // region a visitor resolves to; keep the bare host too, some hits skip the
+        // region prefix.
+        connectSrc: ["'self'", "https://storage.googleapis.com", "https://www.google-analytics.com", "https://region1.google-analytics.com", "https://analytics.google.com", "https://*.analytics.google.com", "https://www.googletagmanager.com", "https://api.stripe.com", "https://www.facebook.com", "https://connect.facebook.net", "https://www.googleadservices.com", "https://googleads.g.doubleclick.net", "https://www.google.com", "https://pagead2.googlesyndication.com", "wss:"],
         frameSrc: ["'self'", "https://js.stripe.com", "https://www.googletagmanager.com", "https://www.facebook.com", "https://www.google.com"],
+        // helmet's default is form-action 'self', which blocks the Meta pixel's
+        // form-based fallback to facebook.com/tr/. Only that host is added: the
+        // point of the directive is to stop forms POSTing to arbitrary origins.
+        formAction: ["'self'", "https://www.facebook.com"],
       }
     },
     referrerPolicy: { policy: "strict-origin-when-cross-origin" },

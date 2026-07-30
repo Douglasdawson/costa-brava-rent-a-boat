@@ -166,7 +166,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 210, "6h": 250, "8h": 290 },
+        prices: { "1h": 95, "2h": 150, "3h": 180, "4h": 210, "6h": 260, "8h": 300 },
         // Mismo caso que el Solar 450: sin precio explicito el sabado de agosto (210)
         // quedaba por debajo del de julio. Decision del dueno 2026-07-30: el sabado de
         // agosto iguala al de julio en todas las duraciones, y la de 4h sube a 230.
@@ -230,7 +230,11 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 210, "6h": 250, "8h": 290 }
+        prices: { "1h": 95, "2h": 150, "3h": 180, "4h": 210, "6h": 260, "8h": 300 },
+        // Solar 450, Remus 450 y Remus 450 II son el MISMO modelo y llevan el mismo
+        // precio todo el ano (decision del dueno 2026-07-30). En BAJA y MEDIA ya
+        // coincidian; agosto se iguala al del Solar, que era el mas alto.
+        weekendPrices: { "1h": 100, "2h": 160, "3h": 190, "4h": 230, "6h": 260, "8h": 310 }
       }
     },
     extras: [

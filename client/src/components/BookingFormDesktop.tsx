@@ -25,6 +25,7 @@ import { trackWhatsAppClick } from "@/utils/analytics";
 import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
 import StepCoverages from "@/components/booking/StepCoverages";
+import GdprConsentText from "@/components/booking/GdprConsentText";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
 import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
 import LicenseStatusPill from "@/components/booking/LicenseStatusPill";
@@ -1439,7 +1440,6 @@ function Step5Contact({
   inputError,
   inputNormal,
 }: Step5Props) {
-  const { localizedPath } = useLanguage();
   const depositStr = selectedBoatInfo?.specifications?.deposit;
   const standardDeposit = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, "")) : null;
   // With the cover contracted, show the deposit actually taken.
@@ -1841,34 +1841,7 @@ function Step5Contact({
       />
 
       {/* RGPD passive consent notice */}
-      <p className="text-xs text-muted-foreground leading-relaxed text-center">
-        {t.booking.gdprPassive?.split("{privacyPolicy}")[0] ||
-          "Al enviar esta solicitud, aceptas nuestra "}
-        <a
-          href={localizedPath("privacyPolicy")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-foreground underline hover:text-foreground/80"
-        >
-          {t.booking.gdprPrivacyLink}
-        </a>
-        {
-          (t.booking.gdprPassive?.split("{privacyPolicy}")[1] || " y ").split(
-            "{termsAndConditions}"
-          )[0]
-        }
-        <a
-          href={localizedPath("condicionesGenerales")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-foreground underline hover:text-foreground/80"
-        >
-          {t.booking.gdprTermsLink}
-        </a>
-        {(t.booking.gdprPassive?.split("{privacyPolicy}")[1] || "").split(
-          "{termsAndConditions}"
-        )[1] || "."}
-      </p>
+      <GdprConsentText t={t} variant="desktop" />
     </div>
   );
 }

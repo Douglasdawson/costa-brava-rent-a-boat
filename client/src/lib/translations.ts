@@ -543,6 +543,9 @@ export interface Translations {
     gdprConsent: string;
     gdprPrivacyLink: string;
     gdprTermsLink: string;
+    /** Label of the third consent link: the site's terms, the only legal page
+     *  translated into all 8 locales. See GdprConsentText. */
+    gdprSiteTermsLink?: string;
     gdprPassive: string;
     errorGeneric: string;
     errorPayment: string;
@@ -2715,6 +2718,13 @@ export interface Translations {
       heroTitle: string;
       lastUpdated: string;
       sections: Array<{ title: string; body: string }>;
+    };
+    /** Shown only outside Spanish on /condiciones-generales: the clause text is
+     *  the Spanish contract and stays untranslated, so the notice points at the
+     *  equivalent clauses in `terms`, which is localised. */
+    condicionesGeneralesPage?: {
+      langNoticeBody: string; // {termsLink} = link to the site terms page
+      langNoticeLink: string;
     };
     terms: {
       heroTitle: string;

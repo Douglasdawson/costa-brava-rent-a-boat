@@ -749,7 +749,7 @@ export const de: Translations = {
     heroChipsLabel: "Vertrauen und Garantien",
     heroChipReviews: "{rating} · {count} Google-Bewertungen",
     heroChipFuelInsurance: "Treibstoff und Versicherung inklusive",
-    heroChipInsurance: "Vollkaskoversicherung inklusive",
+    heroChipInsurance: "Versicherung inklusive",
     heroChipWeather: "Bei schlechtem Seegang verschieben wir",
     recommendedBadge: "Empfohlen",
     viewsToday: "Aufrufe dieses Boots heute",
@@ -1559,7 +1559,7 @@ export const de: Translations = {
   },
   authority: {
     yearsExperience: "6+ Jahre Erfahrung",
-    fullInsurance: "Vollversichert",
+    fullInsurance: "Versicherung inklusive",
     happyCustomers: "5000+ zufriedene Kunden",
     fleetInsured: "Flotte 100% versichert",
     zeroIncidents: "0 Sicherheitsvorfälle",
@@ -1745,7 +1745,7 @@ export const de: Translations = {
     bookingsThisWeek: "{count}+ Buchungen diese Woche",
     officialPort: "Offizieller Hafen von Blanes",
     googleRating: "4,8 bei Google",
-    fullInsurance: "Vollkaskoversicherung",
+    fullInsurance: "Versicherung inklusive",
     yearsExperience: "5 Jahre Erfahrung",
   },
   sensoryHero: {
@@ -1806,7 +1806,7 @@ export const de: Translations = {
     info: {
       whatIncludesTitle: "Was ist im Preis enthalten?",
       fuelIncludedItem: "<strong>Benzin inklusive</strong> bei Booten ohne Führerschein",
-      insurance: "Vollkaskoversicherung und Sicherheitsausrüstung",
+      insurance: "Haftpflicht- und Unfallversicherung",
       briefing: "15-minütige Einweisung vor dem Ablegen",
       equipment: "Schnorchel- und Paddle-Surf-Ausrüstung (nach Verfügbarkeit)",
       importantTitle: "Wichtige Informationen",
@@ -4817,7 +4817,7 @@ export const de: Translations = {
         ctaButton: 'Ab Blanes buchen',
         mapTitle: 'Standort - Hafen von Blanes',
         fleetTitle: 'Unsere Flotte im Hafen von Blanes',
-        fleetIntro: 'Wir verfügen über 8 Boote im Hafen von Blanes, bereit zum Auslaufen von April bis Oktober. Unsere Flotte umfasst 4 führerscheinfreie Boote, perfekt für Familien und Paare, die die nahegelegenen Buchten erkunden möchten, 3 Optionen mit Führerschein für erfahrene Skipper mit mehr Reichweite und Leistung, sowie einen Privaten Ausflug mit Skipper für Gruppen, die lieber fahren lassen statt selbst am Steuer zu stehen. Alle Boote werden täglich inspiziert und sind vollkaskoversichert.',
+        fleetIntro: 'Wir verfügen über 8 Boote im Hafen von Blanes, bereit zum Auslaufen von April bis Oktober. Unsere Flotte umfasst 4 führerscheinfreie Boote, perfekt für Familien und Paare, die die nahegelegenen Buchten erkunden möchten, 3 Optionen mit Führerschein für erfahrene Skipper mit mehr Reichweite und Leistung, sowie einen Privaten Ausflug mit Skipper für Gruppen, die lieber fahren lassen statt selbst am Steuer zu stehen. Alle Boote werden täglich inspiziert und haben Haftpflicht- und Unfallversicherung.',
         fleetNoLicense: 'Ohne Führerschein',
         fleetLicense: 'Mit Führerschein',
         fleetFrom: 'Ab',
@@ -5278,7 +5278,7 @@ export const de: Translations = {
       sections: {
         introP1: 'Die Costa Brava ist eines der spektakulaersten nautischen Reiseziele im Mittelmeer. Mit ueber 200 Kilometern Kueste zwischen Blanes und der franzoesischen Grenze bietet sie eine einzigartige Kombination aus Klippen, Buchten mit kristallklarem Wasser, mittelalterlichen Doerfern und Natur, die nur vom Meer aus zu schaetzen ist.',
         introP2: 'Bei Costa Brava Rent a Boat bieten wir Ihnen den einfachsten Weg, diese Kueste zu erkunden: Mieten Sie eines unserer Boote im Hafen von Blanes und segeln Sie in Ihrem eigenen Tempo. Keine Vorkenntnisse oder kein Bootsschein erforderlich fuer die meisten unserer Boote.',
-        introP3: 'Bei fuehrerscheinfreien Booten ist der Preis inklusive Treibstoff, Vollkaskoversicherung und Sicherheitsausruestung. Keine versteckten Kosten.',
+        introP3: 'Bei fuehrerscheinfreien Booten ist der Preis inklusive Treibstoff, Haftpflicht- und Unfallversicherung und Sicherheitsausruestung. Keine versteckten Kosten.',
         whyChooseTitle: 'Warum die Costa Brava fuer Bootsverleih waehlen',
         covesTitle: 'Buchten und Straende, die zu Fuss nicht erreichbar sind',
         covesDesc: 'Die Costa Brava verbirgt Dutzende von Buchten, die nur per Boot erreichbar sind. Von Blanes aus erreichen Sie in nur 15-45 Minuten unberuehrte Straende mit tuerkisfarbenem Wasser.',

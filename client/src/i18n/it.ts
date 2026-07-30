@@ -748,7 +748,7 @@ export const it: Translations = {
     heroChipsLabel: "Fiducia e garanzie",
     heroChipReviews: "{rating} · {count} recensioni su Google",
     heroChipFuelInsurance: "Carburante e assicurazione inclusi",
-    heroChipInsurance: "Assicurazione completa inclusa",
+    heroChipInsurance: "Assicurazione inclusa",
     heroChipWeather: "Se il mare non aiuta, riprogrammiamo",
     recommendedBadge: "Consigliato",
     viewsToday: "visite a questa barca oggi",
@@ -1553,7 +1553,7 @@ export const it: Translations = {
   },
   authority: {
     yearsExperience: "6+ anni di esperienza",
-    fullInsurance: "Completamente assicurato",
+    fullInsurance: "Assicurazione inclusa",
     happyCustomers: "5000+ clienti soddisfatti",
     fleetInsured: "Flotta assicurata al 100%",
     zeroIncidents: "0 incidenti di sicurezza",
@@ -1737,7 +1737,7 @@ export const it: Translations = {
     bookingsThisWeek: "{count}+ prenotazioni questa settimana",
     officialPort: "Porto ufficiale di Blanes",
     googleRating: "4.8 su Google",
-    fullInsurance: "Assicurazione completa",
+    fullInsurance: "Assicurazione inclusa",
     yearsExperience: "5 anni di esperienza",
   },
   sensoryHero: {

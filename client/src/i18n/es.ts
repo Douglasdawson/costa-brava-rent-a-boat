@@ -1393,7 +1393,7 @@ export const es: Translations = {
     heroChipsLabel: "Confianza y garantías",
     heroChipReviews: "{rating} · {count} reseñas en Google",
     heroChipFuelInsurance: "Gasolina y seguro incluidos",
-    heroChipInsurance: "Seguro completo incluido",
+    heroChipInsurance: "Seguro incluido",
     heroChipWeather: "Si el mar no acompaña, reprogramamos",
     recommendedBadge: "Recomendado",
     viewsToday: "visitas a este barco hoy",
@@ -1781,7 +1781,7 @@ export const es: Translations = {
         // Section A: Fleet
         fleetTitle: "Nuestra Flota en el Puerto de Blanes",
         fleetIntro:
-          "Disponemos de 8 embarcaciones amarradas en el Puerto de Blanes, listas para navegar de abril a octubre. Nuestra flota incluye 4 barcos sin licencia perfectos para familias y parejas que quieren explorar las calas cercanas, 3 opciones con licencia para navegantes experimentados que buscan mayor autonomía y potencia, y una Excursión Privada con patrón para grupos que prefieren navegar sin tener que llevar el timón. Todas las embarcaciones se revisan diariamente y cuentan con seguro a todo riesgo.",
+          "Disponemos de 8 embarcaciones amarradas en el Puerto de Blanes, listas para navegar de abril a octubre. Nuestra flota incluye 4 barcos sin licencia perfectos para familias y parejas que quieren explorar las calas cercanas, 3 opciones con licencia para navegantes experimentados que buscan mayor autonomía y potencia, y una Excursión Privada con patrón para grupos que prefieren navegar sin tener que llevar el timón. Todas las embarcaciones se revisan diariamente y cuentan con seguro de responsabilidad civil y accidentes.",
         fleetNoLicense: "Sin licencia",
         fleetLicense: "Con licencia",
         fleetFrom: "Desde",
@@ -2372,7 +2372,7 @@ export const es: Translations = {
         introP2:
           "En Costa Brava Rent a Boat te ofrecemos el alquiler de barcos en la Costa Brava más sencillo: elige tu embarcación en el Puerto de Blanes y navega a tu ritmo. No necesitas experiencia previa ni licencia náutica para la mayoría de nuestros barcos. Te proporcionamos 15 minutos de formación y todo lo necesario para un día perfecto en el mar.",
         introP3:
-          "En los barcos sin licencia el precio incluye gasolina, seguro a todo riesgo y equipo de seguridad. Sin costes ocultos. Reserva hoy y descubre por qué miles de familias eligen la Costa Brava cada verano para sus aventuras náuticas.",
+          "En los barcos sin licencia el precio incluye gasolina, seguro de responsabilidad civil y accidentes y equipo de seguridad. Sin costes ocultos. Reserva hoy y descubre por qué miles de familias eligen la Costa Brava cada verano para sus aventuras náuticas.",
         whyChooseTitle: "Por qué elegir la Costa Brava para alquilar un barco",
         covesTitle: "Calas y playas inaccesibles por tierra",
         covesDesc:
@@ -2407,7 +2407,7 @@ export const es: Translations = {
         noLicenseFuel: "Gasolina incluida en el precio",
         noLicensePrice: "Desde 75 €/hora",
         noLicenseDesc:
-          "El alquiler de barcos sin licencia en la Costa Brava es la opción ideal para familias y grupos que quieren descubrir las calas sin complicaciones. No necesitas ninguna titulación náutica: con una breve formación de 15 minutos estarás listo para zarpar. Todos incluyen gasolina, seguro a todo riesgo, equipo de seguridad y material de snorkel. Perfectos para rutas costeras de 1 a 8 horas desde el Puerto de Blanes.",
+          "El alquiler de barcos sin licencia en la Costa Brava es la opción ideal para familias y grupos que quieren descubrir las calas sin complicaciones. No necesitas ninguna titulación náutica: con una breve formación de 15 minutos estarás listo para zarpar. Todos incluyen gasolina, seguro de responsabilidad civil y accidentes, equipo de seguridad y material de snorkel. Perfectos para rutas costeras de 1 a 8 horas desde el Puerto de Blanes.",
         licensedTitle: "Barcos Con Licencia",
         licensedPower: "De 40 CV a 115 CV",
         licensedCapacity: "Hasta 7 personas a bordo",
@@ -3467,7 +3467,7 @@ export const es: Translations = {
   },
   authority: {
     yearsExperience: "6+ años de experiencia",
-    fullInsurance: "Seguro a todo riesgo",
+    fullInsurance: "Seguro incluido",
     happyCustomers: "5000+ clientes satisfechos",
     fleetInsured: "Flota asegurada al 100%",
     zeroIncidents: "0 incidentes de seguridad",
@@ -3576,7 +3576,7 @@ export const es: Translations = {
     bookingsThisWeek: "{count}+ reservas esta semana",
     officialPort: "Puerto oficial de Blanes",
     googleRating: "4.8 en Google",
-    fullInsurance: "Seguro completo",
+    fullInsurance: "Seguro incluido",
     yearsExperience: "5 años de experiencia",
   },
 
@@ -4609,7 +4609,7 @@ export const es: Translations = {
     info: {
       whatIncludesTitle: "¿Qué incluye el precio?",
       fuelIncludedItem: "<strong>Gasolina incluida</strong> en barcos sin licencia",
-      insurance: "Seguro a todo riesgo y equipo de seguridad",
+      insurance: "Seguro de responsabilidad civil y accidentes",
       briefing: "Formación de 15 minutos antes de zarpar",
       equipment: "Equipo de snorkel y paddle surf (según disponibilidad)",
       importantTitle: "Información importante",

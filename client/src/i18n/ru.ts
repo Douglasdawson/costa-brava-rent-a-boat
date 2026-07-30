@@ -745,7 +745,7 @@ export const ru: Translations = {
     heroChipsLabel: "Доверие и гарантии",
     heroChipReviews: "{rating} · {count} отзывов в Google",
     heroChipFuelInsurance: "Топливо и страховка включены",
-    heroChipInsurance: "Полная страховка включена",
+    heroChipInsurance: "Страховка включена",
     heroChipWeather: "Если море неспокойное, перенесём",
     recommendedBadge: "Рекомендовано",
     viewsToday: "просмотров этой лодки сегодня",
@@ -1549,7 +1549,7 @@ export const ru: Translations = {
   },
   authority: {
     yearsExperience: "6+ лет опыта",
-    fullInsurance: "Полная страховка",
+    fullInsurance: "Страховка включена",
     happyCustomers: "5000+ довольных клиентов",
     fleetInsured: "Флот застрахован на 100%",
     zeroIncidents: "0 инцидентов безопасности",
@@ -1734,7 +1734,7 @@ export const ru: Translations = {
     bookingsThisWeek: "{count}+ бронирований на этой неделе",
     officialPort: "Официальный порт Бланеса",
     googleRating: "4.8 на Google",
-    fullInsurance: "Полная страховка",
+    fullInsurance: "Страховка включена",
     yearsExperience: "5 лет опыта",
   },
   sensoryHero: {
@@ -1795,7 +1795,7 @@ export const ru: Translations = {
     info: {
       whatIncludesTitle: "Что входит в цену?",
       fuelIncludedItem: "<strong>Топливо включено</strong> для лодок без лицензии",
-      insurance: "Полная страховка и оборудование безопасности",
+      insurance: "Страхование ответственности и от несчастных случаев",
       briefing: "15-минутный инструктаж перед отплытием",
       equipment: "Снаряжение для снорклинга и SUP-доска (при наличии)",
       importantTitle: "Важная информация",

@@ -123,7 +123,7 @@ export default function LocationCostaBravaPage() {
         "name": "Esta incluida la gasolina en el precio?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "En barcos sin licencia, si: gasolina, seguro a todo riesgo y equipo de seguridad estan incluidos. En barcos con licencia el combustible se paga aparte segun consumo real."
+          "text": "En barcos sin licencia, si: gasolina, seguro de responsabilidad civil y accidentes y equipo de seguridad estan incluidos. En barcos con licencia el combustible se paga aparte segun consumo real."
         }
       },
       {
@@ -343,7 +343,7 @@ export default function LocationCostaBravaPage() {
                 {s?.introP2 || "En Costa Brava Rent a Boat te ofrecemos la forma mas facil de explorar esta costa."}
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                {s?.introP3 || "En los barcos sin licencia el precio incluye gasolina, seguro a todo riesgo y equipo de seguridad."}
+                {s?.introP3 || "En los barcos sin licencia el precio incluye gasolina, seguro de responsabilidad civil y accidentes y equipo de seguridad."}
               </p>
             </div>
             <div className="lg:col-span-2">

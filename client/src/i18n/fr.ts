@@ -752,7 +752,7 @@ export const fr: Translations = {
     heroChipsLabel: "Confiance et garanties",
     heroChipReviews: "{rating} · {count} avis sur Google",
     heroChipFuelInsurance: "Carburant et assurance inclus",
-    heroChipInsurance: "Assurance complète incluse",
+    heroChipInsurance: "Assurance incluse",
     heroChipWeather: "Si la mer ne se prête pas, on reprogramme",
     recommendedBadge: "Recommandé",
     viewsToday: "visites de ce bateau aujourd'hui",
@@ -1563,7 +1563,7 @@ export const fr: Translations = {
   },
   authority: {
     yearsExperience: "6+ ans d'expérience",
-    fullInsurance: "Assurance tous risques",
+    fullInsurance: "Assurance incluse",
     happyCustomers: "5000+ clients satisfaits",
     fleetInsured: "Flotte assurée à 100%",
     zeroIncidents: "0 incidents de sécurité",
@@ -1748,7 +1748,7 @@ export const fr: Translations = {
     bookingsThisWeek: "{count}+ réservations cette semaine",
     officialPort: "Port officiel de Blanes",
     googleRating: "4.8 sur Google",
-    fullInsurance: "Assurance complète",
+    fullInsurance: "Assurance incluse",
     yearsExperience: "5 ans d'expérience",
   },
   sensoryHero: {
@@ -1809,7 +1809,7 @@ export const fr: Translations = {
     info: {
       whatIncludesTitle: "Qu'est-ce qui est inclus dans le tarif ?",
       fuelIncludedItem: "<strong>Carburant inclus</strong> pour les bateaux sans permis",
-      insurance: "Assurance tous risques et équipement de sécurité",
+      insurance: "Assurance responsabilité civile et accidents",
       briefing: "Formation de 15 minutes avant le départ",
       equipment: "Équipement de snorkeling et paddle (selon disponibilité)",
       importantTitle: "Informations importantes",
@@ -4812,7 +4812,7 @@ export const fr: Translations = {
         ctaButton: 'Réserver depuis Blanes',
         mapTitle: 'Emplacement - Port de Blanes',
         fleetTitle: 'Notre Flotte au Port de Blanes',
-        fleetIntro: 'Nous disposons de 8 bateaux amarrés au Port de Blanes, prêts à naviguer d\'avril à octobre. Notre flotte comprend 4 bateaux sans permis parfaits pour les familles et les couples souhaitant explorer les criques proches, 3 options avec permis pour les navigateurs expérimentés recherchant plus d\'autonomie et de puissance, et une Excursion Privée avec skipper pour les groupes qui préfèrent naviguer sans tenir la barre. Tous les bateaux sont inspectés quotidiennement et disposent d\'une assurance tous risques.',
+        fleetIntro: 'Nous disposons de 8 bateaux amarrés au Port de Blanes, prêts à naviguer d\'avril à octobre. Notre flotte comprend 4 bateaux sans permis parfaits pour les familles et les couples souhaitant explorer les criques proches, 3 options avec permis pour les navigateurs expérimentés recherchant plus d\'autonomie et de puissance, et une Excursion Privée avec skipper pour les groupes qui préfèrent naviguer sans tenir la barre. Tous les bateaux sont inspectés quotidiennement et disposent d\'une assurance responsabilité civile et accidents.',
         fleetNoLicense: 'Sans permis',
         fleetLicense: 'Avec permis',
         fleetFrom: 'A partir de',
@@ -5273,7 +5273,7 @@ export const fr: Translations = {
       sections: {
         introP1: 'La Costa Brava est l\'une des destinations nautiques les plus spectaculaires de la Méditerranée. Avec plus de 200 kilomètres de littoral entre Blanes et la frontière française, elle offre une combinaison unique de falaises, criques aux eaux cristallines, villages médiévaux et une nature que l\'on ne peut apprécier que depuis la mer.',
         introP2: 'Chez Costa Brava Rent a Boat, nous vous proposons la manière la plus simple d\'explorer cette côte : louez l\'un de nos bateaux au Port de Blanes et naviguez à votre rythme. Aucune expérience ni permis nautique requis pour la plupart de nos embarcations. Nous vous offrons 15 minutes de formation et tout le nécessaire pour une journée parfaite en mer.',
-        introP3: 'Pour les bateaux sans permis, le prix comprend le carburant, l\'assurance tous risques et l\'équipement de sécurité. Sans frais cachés. Réservez aujourd\'hui et découvrez pourquoi des milliers de familles choisissent la Costa Brava chaque été.',
+        introP3: 'Pour les bateaux sans permis, le prix comprend le carburant, l\'assurance responsabilité civile et accidents et l\'équipement de sécurité. Sans frais cachés. Réservez aujourd\'hui et découvrez pourquoi des milliers de familles choisissent la Costa Brava chaque été.',
         whyChooseTitle: 'Pourquoi choisir la Costa Brava pour louer un bateau',
         covesTitle: 'Criques et plages inaccessibles par voie terrestre',
         covesDesc: 'La Costa Brava cache des dizaines de criques accessibles uniquement en bateau. Depuis Blanes, en seulement 15 à 45 minutes, vous atteindrez des plages vierges aux eaux turquoise loin de la foule.',

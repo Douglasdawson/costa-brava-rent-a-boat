@@ -1498,7 +1498,7 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
         <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Gasolina incluida en barcos sin licencia (desde 70 EUR/h)</td></tr>
         <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Excursiones a calas, Lloret de Mar, Tossa de Mar</td></tr>
         <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Reserva online inmediata o por WhatsApp</td></tr>
-        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Seguro a todo riesgo incluido</td></tr>
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Seguro de responsabilidad civil y accidentes</td></tr>
         <tr><td style="padding:0 8px 0 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0; color:#334155; font-size:14px; line-height:1.6;">Una experiencia n&aacute;utica premium para tus hu&eacute;spedes</td></tr>
       </table>
     </div>

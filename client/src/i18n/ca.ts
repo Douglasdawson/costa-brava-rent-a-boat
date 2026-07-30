@@ -747,7 +747,7 @@ export const ca: Translations = {
     heroChipsLabel: "Confiança i garanties",
     heroChipReviews: "{rating} · {count} ressenyes a Google",
     heroChipFuelInsurance: "Carburant i assegurança inclosos",
-    heroChipInsurance: "Assegurança completa inclosa",
+    heroChipInsurance: "Assegurança inclosa",
     heroChipWeather: "Si el mar no acompanya, reprogramem",
     recommendedBadge: "Recomanat",
     viewsToday: "visites a aquesta barca avui",
@@ -1554,7 +1554,7 @@ export const ca: Translations = {
   },
   authority: {
     yearsExperience: "6+ anys d'experiència",
-    fullInsurance: "Assegurança a tot risc",
+    fullInsurance: "Assegurança inclosa",
     happyCustomers: "5000+ clients satisfets",
     fleetInsured: "Flota assegurada al 100%",
     zeroIncidents: "0 incidents de seguretat",
@@ -1738,7 +1738,7 @@ export const ca: Translations = {
     bookingsThisWeek: "Més de {count} reserves aquesta setmana",
     officialPort: "Port oficial de Blanes",
     googleRating: "4,8 a Google",
-    fullInsurance: "Assegurança completa",
+    fullInsurance: "Assegurança inclosa",
     yearsExperience: "5 anys d'experiència",
   },
   sensoryHero: {
@@ -1799,7 +1799,7 @@ export const ca: Translations = {
     info: {
       whatIncludesTitle: "Què inclou el preu?",
       fuelIncludedItem: "<strong>Gasolina inclosa</strong> en barques sense llicència",
-      insurance: "Assegurança a tot risc i equip de seguretat",
+      insurance: "Assegurança de responsabilitat civil i accidents",
       briefing: "Formació de 15 minuts abans de sortir",
       equipment: "Equip d'esnòrquel i pàdel surf (segons disponibilitat)",
       importantTitle: "Informació important",
@@ -4795,7 +4795,7 @@ export const ca: Translations = {
         ctaButton: 'Reservar des de Blanes',
         mapTitle: 'Ubicació - Port de Blanes',
         fleetTitle: 'La Nostra Flota al Port de Blanes',
-        fleetIntro: 'Disposem de 8 embarcacions amarrades al Port de Blanes, preparades per navegar d\'abril a octubre. La nostra flota inclou 4 vaixells sense llicència perfectes per a famílies i parelles que volen explorar les cales properes, 3 opcions amb llicència per a navegants experimentats que busquen més autonomia i potència, i una Excursió Privada amb patró per a grups que prefereixen navegar sense haver de portar el timó. Totes les embarcacions es revisen diàriament i disposen d\'assegurança a tot risc.',
+        fleetIntro: 'Disposem de 8 embarcacions amarrades al Port de Blanes, preparades per navegar d\'abril a octubre. La nostra flota inclou 4 vaixells sense llicència perfectes per a famílies i parelles que volen explorar les cales properes, 3 opcions amb llicència per a navegants experimentats que busquen més autonomia i potència, i una Excursió Privada amb patró per a grups que prefereixen navegar sense haver de portar el timó. Totes les embarcacions es revisen diàriament i disposen d\'assegurança de responsabilitat civil i accidents.',
         fleetNoLicense: 'Sense llicència',
         fleetLicense: 'Amb llicència',
         fleetFrom: 'Des de',
@@ -5256,7 +5256,7 @@ export const ca: Translations = {
       sections: {
         introP1: 'La Costa Brava és una de les destinacions nàutiques més espectaculars del Mediterrani. Amb més de 200 quilòmetres de litoral entre Blanes i la frontera francesa, ofereix una combinació única de penya-segats, cales d\'aigües cristal·lines i pobles medievals.',
         introP2: 'A Costa Brava Rent a Boat t\'oferim la forma més fàcil d\'explorar aquesta costa: lloga una de les nostres barques al Port de Blanes i navega al teu ritme. No necessites experiència prèvia ni llicència nàutica per a la majoria de les nostres embarcacions.',
-        introP3: 'En les barques sense llicència, el preu inclou gasolina, assegurança a tot risc i equip de seguretat. Sense costos ocults.',
+        introP3: 'En les barques sense llicència, el preu inclou gasolina, assegurança de responsabilitat civil i accidents i equip de seguretat. Sense costos ocults.',
         whyChooseTitle: 'Per què escollir la Costa Brava per llogar una barca',
         covesTitle: 'Cales i platges inaccessibles per terra',
         covesDesc: 'La Costa Brava amaga desenes de cales que només es poden visitar en barca. Des de Blanes, en 15-45 minuts arribaràs a platges verges d\'aigües turquesa.',

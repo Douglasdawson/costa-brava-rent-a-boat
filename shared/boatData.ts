@@ -79,7 +79,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Carburante",
       "Amarre", 
       "Limpieza",
-      "Seguro embarcación y ocupantes"
+      "Seguro de responsabilidad civil"
     ],
     features: [
       "Sin licencia requerida",
@@ -139,7 +139,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Carburante",
       "Amarre",
       "Limpieza",
-      "Seguro embarcación y ocupantes"
+      "Seguro de responsabilidad civil"
     ],
     features: [
       "Sin licencia requerida",
@@ -199,7 +199,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Carburante",
       "Amarre",
       "Limpieza",
-      "Seguro embarcación y ocupantes"
+      "Seguro de responsabilidad civil"
     ],
     features: [
       "Sin licencia requerida",
@@ -259,7 +259,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Carburante",
       "Amarre", 
       "Limpieza",
-      "Seguro embarcación y ocupantes"
+      "Seguro de responsabilidad civil"
     ],
     features: [
       "Sin licencia requerida",
@@ -320,7 +320,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Carburante",
       "Amarre", 
       "Limpieza",
-      "Seguro embarcación y ocupantes"
+      "Seguro de responsabilidad civil"
     ],
     features: [
       "Sin licencia requerida",
@@ -382,7 +382,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "IVA",
       "Amarre", 
       "Limpieza",
-      "Seguro embarcación y ocupantes"
+      "Seguro de responsabilidad civil"
     ],
     features: [
       "Licencia de Navegación (LN) requerida",
@@ -446,7 +446,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "IVA",
       "Amarre", 
       "Limpieza",
-      "Seguro embarcación y ocupantes"
+      "Seguro de responsabilidad civil"
     ],
     features: [
       "Licencia de Navegación (LN) requerida",
@@ -514,7 +514,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "IVA",
       "Amarre", 
       "Limpieza",
-      "Seguro embarcación y ocupantes"
+      "Seguro de responsabilidad civil"
     ],
     features: [
       "Licencia de Navegación (LN) requerida",
@@ -578,7 +578,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Patrón profesional",
       "Amarre",
       "Limpieza",
-      "Seguro embarcación y ocupantes"
+      "Seguro de responsabilidad civil"
     ],
     features: [
       "No requiere licencia",

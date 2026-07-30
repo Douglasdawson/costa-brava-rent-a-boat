@@ -264,7 +264,7 @@ Todos nuestros barcos sin licencia incluyen:
 
 - **Gasolina:** El combustible está incluido en el precio. No pagas ni un euro más por el consumo de gasolina.
 - **IVA:** El precio que ves es el precio final con impuestos incluidos.
-- **Seguro:** Seguro de embarcación y de todos los ocupantes.
+- **Seguro:** Seguro de responsabilidad civil obligatorio para embarcaciones de recreo.
 - **Amarre:** El uso del amarre en el puerto de Blanes.
 - **Limpieza:** No tienes que preocuparte de lavar el barco al volver.
 - **Equipo de seguridad:** Chalecos salvavidas, extintor y todo el equipo reglamentario.
@@ -4954,7 +4954,7 @@ Esta guía resuelve la pregunta antes de que reserves: cuántas personas caben d
 
 La capacidad máxima de una embarcación de recreo está fijada por el fabricante y homologada en su documentación. No es un número que el alquilador pueda estirar "porque los niños son pequeños". Dos motivos:
 
-- **Seguro.** La póliza cubre a los ocupantes hasta el máximo homologado. Un pasajero de más deja al barco entero fuera de cobertura.
+- **Seguro.** La póliza de responsabilidad civil cubre la navegación con el número de plazas homologado. Un pasajero de más deja al barco entero fuera de cobertura.
 - **Estabilidad.** En una embarcación de 4,5 metros, el peso extra de una persona se nota en cuanto todos se mueven al mismo lado para saltar al agua.
 
 Nota práctica que casi nadie tiene clara: en la mayoría de embarcaciones **los bebés y los niños cuentan como una persona**. Si sois dos adultos y tres niños, sois cinco.

@@ -488,12 +488,13 @@ export const nl: Translations = {
     gdprConsent:
       "Ik heb het {privacyPolicy} en de {termsAndConditions} gelezen en accepteer deze. Mijn gegevens worden verwerkt om mijn boeking te beheren (AVG Art. 6.1.b).",
     gdprPassive:
-      "Door dit verzoek te verzenden, accepteert u ons {privacyPolicy} en de {termsAndConditions}.",
+      "Door dit verzoek te verzenden, accepteert u ons {privacyPolicy}, de {termsAndConditions} en de {siteTerms}.",
     errorGeneric: "Er is een onverwachte fout opgetreden",
     errorPayment: "Fout bij het verzenden van het verzoek",
     backToHome: "Terug naar home",
     gdprPrivacyLink: "Privacybeleid",
-    gdprTermsLink: "Algemene Voorwaarden",
+    gdprTermsLink: "Algemene Huurvoorwaarden",
+    gdprSiteTermsLink: "Algemene Voorwaarden",
     stepExperience: "Ervaring",
     stepPersonalize: "Personaliseer",
     stepPay: "Bevestiging",
@@ -1717,7 +1718,7 @@ export const nl: Translations = {
   valueStack: {
     title: "Inbegrepen in de prijs:",
     fuelIncluded: "Brandstof inbegrepen",
-    insurance: "Verzekering voor boot en inzittenden",
+    insurance: "WA-verzekering inbegrepen",
     safetyEquipment: "Volledige veiligheidsuitrusting",
     briefing: "Instructie van 15 min inbegrepen",
     securePayment: "Veilige boeking",
@@ -2914,6 +2915,12 @@ export const nl: Translations = {
         },
       ],
     },
+    condicionesGeneralesPage: {
+      langNoticeBody:
+        "De huurovereenkomst is in het Spaans opgesteld en die versie prevaleert. De overeenkomstige clausules in uw taal vindt u in de {termsLink}.",
+      langNoticeLink: "Algemene Voorwaarden",
+    },
+
     terms: {
       heroTitle: "Algemene Voorwaarden",
       lastUpdated: "Laatste update: juli 2026",
@@ -2952,7 +2959,7 @@ export const nl: Translations = {
         },
         {
           title: "9. Aansprakelijkheid en verzekering",
-          body: "Alle boten beschikken over de verplichte WA-verzekering voor pleziervaartuigen en over dekking voor lichamelijk letsel van de opvarenden, conform de Spaanse regelgeving. De dekking geldt tijdens het varen binnen het toegestane gebied.\n\nUitgesloten zijn activiteiten waarbij voorwerpen worden gesleept (bananen, opblaasbanden, ski's en dergelijke), waarvoor de huurder aansprakelijk is. Evenmin gedekt is schade door nalatig gebruik, dronkenschap, varen buiten het toegestane gebied, ongunstige weersomstandigheden die na waarschuwing zijn genegeerd, of het niet opvolgen van de veiligheidsinstructies.\n\nVóór vertrek wordt de klant geïnformeerd over de precieze reikwijdte van de polis; schade die de dekking of de waarborgsom overstijgt, komt voor rekening van de huurder.",
+          body: "Alle boten beschikken over de verplichte WA-verzekering voor pleziervaartuigen (Koninklijk Besluit 607/1999), uitgebreid met een vrijwillige aansprakelijkheidsdekking. Deze dekt lichamelijk letsel en materiële schade aan derden voor zover die toerekenbaar is aan de door de polis gedekte aansprakelijkheid, tijdens het varen binnen het toegestane gebied. Het is geen ongevallenverzekering: schade die de huurder of een inzittende oploopt zonder aansprakelijkheid van de verzekerde is niet gedekt. Wij raden daarom een eigen ongevallen- of reisverzekering aan.\n\nUitgesloten zijn activiteiten waarbij voorwerpen worden gesleept (bananen, opblaasbanden, ski's en dergelijke), waarvoor de huurder aansprakelijk is. Evenmin gedekt is schade door nalatig gebruik, dronkenschap, varen buiten het toegestane gebied, ongunstige weersomstandigheden die na waarschuwing zijn genegeerd, of het niet opvolgen van de veiligheidsinstructies.\n\nVóór vertrek wordt de klant geïnformeerd over de precieze reikwijdte van de polis; schade die de dekking of de waarborgsom overstijgt, komt voor rekening van de huurder.",
         },
         {
           title: "10. Intellectueel eigendom",

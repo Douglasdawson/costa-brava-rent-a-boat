@@ -127,14 +127,18 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
     ru: "Uborka",
     ca: "Neteja",
   },
+  // Retirado el 2026-07-30: prometía un seguro de accidentes de ocupantes que la
+  // póliza no tiene. Si el CRM vuelve a escribir este rótulo en un barco, se
+  // traduce al alcance real en vez de reproducir la promesa (art. 61.2 TRLGDCU:
+  // lo publicado es exigible por el consumidor). Ver INSURANCE_SCOPE_ES.
   "Seguro embarcación y ocupantes": {
-    en: "Boat & passenger insurance",
-    fr: "Assurance bateau et passagers",
-    de: "Boot- & Insassenversicherung",
-    nl: "Boot- & passagiersverzekering",
-    it: "Assicurazione barca e passeggeri",
-    ru: "Strakhovka lodki i passazhirov",
-    ca: "Asseguranca embarcacio i ocupants",
+    en: "Third-party liability insurance",
+    fr: "Assurance responsabilite civile",
+    de: "Haftpflichtversicherung",
+    nl: "Aansprakelijkheidsverzekering",
+    it: "Assicurazione di responsabilita civile",
+    ru: "Strahovanie grazhdanskoj otvetstvennosti",
+    ca: "Assegurança de responsabilitat civil",
   },
   "Patron profesional": {
     en: "Professional skipper",

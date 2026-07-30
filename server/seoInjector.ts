@@ -2444,7 +2444,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "Alquiler de barcos sin licencia", "Alquiler de barcos con licencia",
           "Excursión privada con capitán", "Snorkel Costa Brava",
           "Pesca recreativa marítima", "Fondeo en calas",
-          "Tarifas estacionales náuticas", "Seguro embarcaciones ocupantes",
+          "Tarifas estacionales náuticas", "Seguro responsabilidad civil náutica",
           // Ecosistema marino y turismo
           "Mediterranean Sea", "Nautical Tourism", "Water Sports",
           "Maritime Safety", "Cabo de Santa Anna", "Botánico Marimurtra",
@@ -4494,7 +4494,7 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
   <li>${esc(licenseText)}, ${esc(fuelText)}</li>
   ${priceFromLabel ? `<li>${esc(priceFromLabel)}</li>` : ""}
 </ul>
-<p>${incLabel}: IVA, amarre, limpieza, seguro embarcación y ocupantes.</p>
+<p>${incLabel}: IVA, amarre, limpieza, seguro de responsabilidad civil.</p>
 <p>${ctaLabel}: <a href="https://wa.me/34611500372">+34 611 500 372</a></p>
         `.trim();
 

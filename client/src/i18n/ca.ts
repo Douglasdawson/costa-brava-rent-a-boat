@@ -488,9 +488,10 @@ export const ca: Translations = {
     gdprConsent:
       "He llegit i accepto la {privacyPolicy} i les {termsAndConditions}. Les meves dades seran tractades per gestionar la meva reserva (RGPD Art. 6.1.b).",
     gdprPassive:
-      "En enviar aquesta sol·licitud, acceptes la nostra {privacyPolicy} i les {termsAndConditions}.",
+      "En enviar aquesta sol·licitud, acceptes la nostra {privacyPolicy}, les {termsAndConditions} i els {siteTerms}.",
     gdprPrivacyLink: "Política de Privacitat",
-    gdprTermsLink: "Condicions Generals",
+    gdprTermsLink: "Condicions Generals de Lloguer",
+    gdprSiteTermsLink: "Termes i Condicions",
     errorGeneric: "S'ha produït un error inesperat",
     errorPayment: "Error en enviar la sol·licitud",
     backToHome: "Tornar a l'inici",
@@ -1715,7 +1716,7 @@ export const ca: Translations = {
   valueStack: {
     title: "Inclòs en el preu:",
     fuelIncluded: "Combustible inclòs",
-    insurance: "Assegurança de l'embarcació i ocupants",
+    insurance: "Assegurança de responsabilitat civil inclosa",
     safetyEquipment: "Equip de seguretat complet",
     briefing: "Formació de 15 min inclosa",
     securePayment: "Reserva segura",
@@ -2907,6 +2908,12 @@ export const ca: Translations = {
         },
       ],
     },
+    condicionesGeneralesPage: {
+      langNoticeBody:
+        "El text del contracte de lloguer està redactat en castellà, que és la versió que preval. Pots llegir el clausulat equivalent traduït al teu idioma als {termsLink}.",
+      langNoticeLink: "Termes i Condicions",
+    },
+
     terms: {
       heroTitle: "Termes i Condicions",
       lastUpdated: "Darrera actualització: juliol de 2026",
@@ -2945,7 +2952,7 @@ export const ca: Translations = {
         },
         {
           title: "9. Responsabilitat i assegurança",
-          body: "Totes les embarcacions compten amb l'assegurança de Responsabilitat Civil obligatòria per a embarcacions d'esbarjo i amb cobertura de danys físics als ocupants, d'acord amb la normativa espanyola. La cobertura s'aplica durant la navegació dins de la zona autoritzada.\n\nQueden excloses les activitats que comportin l'arrossegament d'artefactes (bananes, rodes pneumàtiques, esquís i similars), de les quals respon l'arrendatari. Tampoc es cobreixen els danys derivats d'ús negligent, embriaguesa, navegació fora de la zona permesa, condicions meteorològiques adverses ignorades després d'avís, o incompliment de les instruccions de seguretat.\n\nAbans de salpar s'informa el client de l'abast exacte de la pòlissa; qualsevol dany que excedeixi la cobertura o la fiança va a càrrec de l'arrendatari.",
+          body: "Totes les embarcacions compten amb l'assegurança de Responsabilitat Civil de subscripció obligatòria per a embarcacions d'esbarjo (RD 607/1999), ampliada amb una Responsabilitat Civil voluntària. Respon dels danys corporals i materials causats a tercers quan siguin imputables a la responsabilitat civil coberta per la pòlissa, durant la navegació dins la zona autoritzada. No és una assegurança d'accidents: els danys que pateixi l'arrendatari o qualsevol ocupant sense que hi concorri responsabilitat civil de l'assegurat no estan coberts, per això recomanem comptar amb una assegurança pròpia d'accidents o de viatge.\n\nQueden excloses les activitats que comportin l'arrossegament d'artefactes (bananes, rodes pneumàtiques, esquís i similars), de les quals respon l'arrendatari. Tampoc es cobreixen els danys derivats d'ús negligent, embriaguesa, navegació fora de la zona permesa, condicions meteorològiques adverses ignorades després d'avís, o incompliment de les instruccions de seguretat.\n\nAbans de salpar s'informa el client de l'abast exacte de la pòlissa; qualsevol dany que excedeixi la cobertura o la fiança va a càrrec de l'arrendatari.",
         },
         {
           title: "10. Propietat intel·lectual",

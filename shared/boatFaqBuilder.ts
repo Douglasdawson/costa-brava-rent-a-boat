@@ -151,7 +151,7 @@ const FUEL_ITEM_PATTERN = /\b(carburante|gasolina|combustible|fuel|brandstof|kra
 function buildIncludedAnswer(boat: BoatFaqInput, text: BoatFaqText): string {
   const raw = (boat.included ?? []).filter((s) => typeof s === "string" && s.trim().length > 0);
   // Dedupe preserving first occurrence (admin data sometimes has "Seguro" and
-  // "Seguro embarcación y ocupantes" as separate entries — we collapse exact
+  // "Seguro de responsabilidad civil" as separate entries — we collapse exact
   // case-insensitive duplicates at minimum).
   const seen = new Set<string>();
   const items: string[] = [];

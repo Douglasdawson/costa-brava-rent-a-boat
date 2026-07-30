@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import { SEO } from "./SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import { useCoveragePrices } from "@/hooks/useCoveragePrices";
 import {
@@ -14,6 +15,8 @@ import {
   BUSINESS_TAX_ID,
   CANCELLATION_TERMS_BULLETS_ES,
   COMMERCIAL_GUARANTEE_DISCLAIMER_ES,
+  INSURANCE_SCOPE_ES,
+  INSURANCE_NOT_ACCIDENT_ES,
 } from "@shared/businessProfile";
 
 // Las cancelaciones son idénticas para barcos con y sin titulación, así que el
@@ -38,7 +41,9 @@ function CancellationTerms() {
 }
 
 export default function CondicionesGenerales() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
+  const t = useTranslations();
+  const langNotice = t.legalPages?.condicionesGeneralesPage;
   const seoConfig = getSEOConfig('condicionesGenerales', language);
   const hreflangLinks = generateHreflangLinks('condicionesGenerales');
   const canonical = generateCanonicalUrl('condicionesGenerales', language);
@@ -65,6 +70,32 @@ export default function CondicionesGenerales() {
           <p className="text-sm text-muted-foreground/60 text-center mb-8">
             Última actualización: julio de 2026
           </p>
+
+          {/* El clausulado es el espejo del contrato que el cliente firma en el CRM
+              y vive en castellano. Traducirlo sería redactar texto contractual sin
+              validar, así que fuera del castellano se avisa y se remite al
+              clausulado equivalente de Términos y Condiciones, que sí está en los
+              8 idiomas. El consentimiento del wizard enlaza ambos documentos. */}
+          {language !== "es" && langNotice && (
+            <div
+              className="mb-8 rounded-xl border border-border bg-muted/40 p-4 text-sm text-muted-foreground"
+              data-testid="notice-contract-language"
+            >
+              {langNotice.langNoticeBody.split("{termsLink}").map((chunk: string, i: number, all: string[]) => (
+                <span key={i}>
+                  {chunk}
+                  {i < all.length - 1 && (
+                    <a
+                      href={localizedPath("termsConditions")}
+                      className="font-medium text-primary underline"
+                    >
+                      {langNotice.langNoticeLink}
+                    </a>
+                  )}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Embarcaciones CON Titulación */}
           <Card className="mb-8">
@@ -113,7 +144,9 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">SEGURO:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>Las tarifas incluyen un seguro de Responsabilidad Civil Obligatoria. También disponen de seguro para daños físicos a los ocupantes. El cliente deberá depositar una fianza{depositStandardCL ? ` de ${depositStandardCL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
+                  <p>{INSURANCE_SCOPE_ES}</p>
+                  <p>{INSURANCE_NOT_ACCIDENT_ES}</p>
+                  <p>El cliente deberá depositar una fianza{depositStandardCL ? ` de ${depositStandardCL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
                   <p>Quedan excluidas de la cobertura del seguro las actividades realizadas por la embarcación asegurada que conlleven el arrastre de artefactos como bananas, ruedas neumáticas, esquís, etc. El arrendatario de la embarcación se responsabilizará de la utilización de los mismos y de las consecuencias que de ello pudieran derivarse.</p>
                   <p>La empresa no asume responsabilidad alguna por pérdidas o daños en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, así como por retrasos por consecuencia de avería de la embarcación e incluso el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
                 </div>
@@ -191,7 +224,9 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">SEGURO:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>Las tarifas incluyen un seguro de Responsabilidad Civil Obligatoria. También disponen de seguro para daños físicos a los ocupantes. El cliente deberá depositar una fianza{depositStandardSL ? ` de ${depositStandardSL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
+                  <p>{INSURANCE_SCOPE_ES}</p>
+                  <p>{INSURANCE_NOT_ACCIDENT_ES}</p>
+                  <p>El cliente deberá depositar una fianza{depositStandardSL ? ` de ${depositStandardSL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
                   <p>La empresa no asume responsabilidad alguna por daños o pérdidas en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación, durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, por demora o retraso como consecuencia de avería de la embarcación e incluso el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
                 </div>
               </div>

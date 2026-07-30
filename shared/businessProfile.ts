@@ -133,5 +133,21 @@ export const CANCELLATION_TERMS_BULLETS_ES: readonly string[] = [
   "Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.",
 ];
 
+// Alcance real del seguro. Hasta 2026-07-30 el contrato y las condiciones decían
+// "también disponen de seguro para daños físicos a los ocupantes", que describe un
+// seguro de accidentes (Ley 50/1980 arts. 100-104) que la póliza de Allianz NO
+// tiene: lo que hay es Responsabilidad Civil (art. 73), que solo responde cuando
+// el daño es imputable a responsabilidad del asegurado. La diferencia no es
+// semántica: por el art. 61.2 TRLGDCU la publicidad es exigible por el
+// consumidor, así que prometer ese ramo convierte a la empresa en su aseguradora
+// de facto. Redactado para ser correcto tanto si los ocupantes cuentan como
+// terceros en la RC obligatoria del RD 607/1999 como si no.
+// NO reintroducir "todo riesgo" ni "seguro de ocupantes" en ninguna superficie.
+export const INSURANCE_SCOPE_ES =
+  "Las tarifas incluyen el seguro de Responsabilidad Civil de suscripción obligatoria para embarcaciones de recreo (RD 607/1999), ampliado con una Responsabilidad Civil voluntaria. Esta cobertura responde de los daños corporales y materiales causados a terceros en la medida en que resulten imputables a la responsabilidad civil cubierta por la póliza.";
+
+export const INSURANCE_NOT_ACCIDENT_ES =
+  "No se trata de un seguro de accidentes: los daños que sufra el arrendatario o cualquier ocupante sin que concurra responsabilidad civil del asegurado no están cubiertos. Recomendamos al cliente contar con un seguro propio de accidentes o de viaje.";
+
 export const COMMERCIAL_GUARANTEE_DISCLAIMER_ES =
   "La Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde a Costa Brava Rent a Boat y se toma con criterios de seguridad.";

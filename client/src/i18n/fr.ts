@@ -492,12 +492,13 @@ export const fr: Translations = {
     gdprConsent:
       "J'ai lu et j'accepte la {privacyPolicy} et les {termsAndConditions}. Mes données seront traitées pour gérer ma réservation (RGPD Art. 6.1.b).",
     gdprPassive:
-      "En envoyant cette demande, vous acceptez notre {privacyPolicy} et les {termsAndConditions}.",
+      "En envoyant cette demande, vous acceptez notre {privacyPolicy}, les {termsAndConditions} et les {siteTerms}.",
     errorGeneric: "Une erreur inattendue s'est produite",
     errorPayment: "Erreur lors de l'envoi de la demande",
     backToHome: "Retour à l'accueil",
     gdprPrivacyLink: "Politique de Confidentialité",
-    gdprTermsLink: "Conditions Générales",
+    gdprTermsLink: "Conditions Générales de Location",
+    gdprSiteTermsLink: "Conditions Générales du site",
     stepExperience: "Experience",
     stepPersonalize: "Personnaliser",
     stepPay: "Confirmation",
@@ -1725,7 +1726,7 @@ export const fr: Translations = {
   valueStack: {
     title: "Inclus dans le prix :",
     fuelIncluded: "Carburant inclus",
-    insurance: "Assurance bateau et passagers",
+    insurance: "Assurance responsabilité civile incluse",
     safetyEquipment: "Équipement de sécurité complet",
     briefing: "Formation de 15 min incluse",
     securePayment: "Réservation sécurisée",
@@ -2924,6 +2925,12 @@ export const fr: Translations = {
         },
       ],
     },
+    condicionesGeneralesPage: {
+      langNoticeBody:
+        "Le contrat de location est rédigé en espagnol, qui est la version qui prévaut. Vous pouvez lire les clauses équivalentes traduites dans votre langue dans les {termsLink}.",
+      langNoticeLink: "Conditions Générales du site",
+    },
+
     terms: {
       heroTitle: "Conditions Générales",
       lastUpdated: "Dernière mise à jour : juillet 2026",
@@ -2962,7 +2969,7 @@ export const fr: Translations = {
         },
         {
           title: "9. Responsabilité et assurance",
-          body: "Tous les bateaux disposent de l'assurance de Responsabilité Civile obligatoire pour les navires de plaisance ainsi que d'une couverture des dommages corporels aux occupants, conformément à la réglementation espagnole. La couverture s'applique pendant la navigation à l'intérieur de la zone autorisée.\n\nSont exclues les activités impliquant le remorquage d'engins (bouées banane, bouées gonflables, skis et similaires), dont répond le locataire. Ne sont pas non plus couverts les dommages résultant d'un usage négligent, de l'état d'ébriété, d'une navigation hors de la zone autorisée, de conditions météorologiques défavorables ignorées après avertissement, ou du non-respect des consignes de sécurité.\n\nAvant l'appareillage, le client est informé de la portée exacte de la police ; tout dommage excédant la couverture ou la caution reste à la charge du locataire.",
+          body: "Tous les bateaux disposent de l'assurance de Responsabilité Civile obligatoire pour les navires de plaisance (décret royal 607/1999), complétée par une Responsabilité Civile volontaire. Elle couvre les dommages corporels et matériels causés à des tiers lorsqu'ils sont imputables à la responsabilité civile garantie par la police, pendant la navigation dans la zone autorisée. Il ne s'agit pas d'une assurance accidents : les dommages subis par le locataire ou tout occupant sans qu'une responsabilité civile de l'assuré soit engagée ne sont pas couverts, c'est pourquoi nous recommandons de disposer de votre propre assurance accidents ou voyage.\n\nSont exclues les activités impliquant le remorquage d'engins (bouées banane, bouées gonflables, skis et similaires), dont répond le locataire. Ne sont pas non plus couverts les dommages résultant d'un usage négligent, de l'état d'ébriété, d'une navigation hors de la zone autorisée, de conditions météorologiques défavorables ignorées après avertissement, ou du non-respect des consignes de sécurité.\n\nAvant l'appareillage, le client est informé de la portée exacte de la police ; tout dommage excédant la couverture ou la caution reste à la charge du locataire.",
         },
         {
           title: "10. Propriété intellectuelle",
@@ -4816,7 +4823,7 @@ export const fr: Translations = {
         guideSeasonTitle: 'Saison et horaires',
         guideSeasonText: 'La saison de navigation à Blanes s\'étend d\'avril à octobre. Nous proposons trois créneaux : matin (9h-13h), après-midi (14h-18h) et journée complète (9h-18h). Juin et septembre sont idéaux : températures agréables, mer calme et moins de monde. Juillet et août sont en haute saison avec les meilleures conditions de baignade mais une demande plus forte.',
         guideIncludedTitle: 'Ce qui est inclus',
-        guideIncludedText: 'Les bateaux sans permis incluent le carburant, l\'assurance bateau et passagers, l\'équipement de sécurité homologué, le bimini et l\'échelle de bain. Certains modèles incluent une enceinte Bluetooth. Pour les bateaux avec permis et l\'excursion privée avec capitaine, le carburant N\'EST PAS inclus.',
+        guideIncludedText: 'Les bateaux sans permis incluent le carburant, l\'assurance responsabilité civile, l\'équipement de sécurité homologué, le bimini et l\'échelle de bain. Certains modèles incluent une enceinte Bluetooth. Pour les bateaux avec permis et l\'excursion privée avec capitaine, le carburant N\'EST PAS inclus.',
         guideBookingTitle: 'Comment réserver',
         guideBookingText: 'Vous pouvez réserver de trois manières : sur notre site (nous confirmons par WhatsApp en moins de 2 heures), par WhatsApp au +34 611 500 372 en espagnol, anglais et catalan, ou directement au Port de Blanes sous réserve de disponibilité.',
         pricingTitle: 'Prix de Location de Bateaux à Blanes 2026',

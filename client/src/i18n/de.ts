@@ -489,12 +489,13 @@ export const de: Translations = {
     gdprConsent:
       "Ich habe die {privacyPolicy} und die {termsAndConditions} gelesen und akzeptiere sie. Meine Daten werden zur Verwaltung meiner Buchung verarbeitet (DSGVO Art. 6.1.b).",
     gdprPassive:
-      "Mit dem Absenden dieser Anfrage akzeptieren Sie unsere {privacyPolicy} und die {termsAndConditions}.",
+      "Mit dem Absenden dieser Anfrage akzeptieren Sie unsere {privacyPolicy}, die {termsAndConditions} und die {siteTerms}.",
     errorGeneric: "Ein unerwarteter Fehler ist aufgetreten",
     errorPayment: "Fehler beim Senden der Anfrage",
     backToHome: "Zurück zur Startseite",
     gdprPrivacyLink: "Datenschutzrichtlinie",
-    gdprTermsLink: "Allgemeine Geschäftsbedingungen",
+    gdprTermsLink: "Allgemeinen Mietbedingungen",
+    gdprSiteTermsLink: "Allgemeinen Geschäftsbedingungen",
     stepExperience: "Erlebnis",
     stepPersonalize: "Personalisieren",
     stepPay: "Bestätigung",
@@ -1722,7 +1723,7 @@ export const de: Translations = {
   valueStack: {
     title: "Im Preis enthalten:",
     fuelIncluded: "Kraftstoff inklusive",
-    insurance: "Versicherung für Boot und Insassen",
+    insurance: "Haftpflichtversicherung inklusive",
     safetyEquipment: "Komplette Sicherheitsausrüstung",
     briefing: "15-minütige Einweisung inklusive",
     securePayment: "Sichere Buchung",
@@ -2926,6 +2927,12 @@ export const de: Translations = {
         },
       ],
     },
+    condicionesGeneralesPage: {
+      langNoticeBody:
+        "Der Mietvertrag ist auf Spanisch verfasst, und diese Fassung ist maßgeblich. Die entsprechenden Klauseln in Ihrer Sprache finden Sie in den {termsLink}.",
+      langNoticeLink: "Allgemeinen Geschäftsbedingungen",
+    },
+
     terms: {
       heroTitle: "Allgemeine Geschäftsbedingungen",
       lastUpdated: "Letzte Aktualisierung: Juli 2026",
@@ -2964,7 +2971,7 @@ export const de: Translations = {
         },
         {
           title: "9. Haftung und Versicherung",
-          body: "Alle Boote verfügen über die gesetzlich vorgeschriebene Haftpflichtversicherung für Freizeitboote sowie über eine Deckung für Personenschäden der Insassen gemäß spanischem Recht. Der Versicherungsschutz gilt während der Fahrt innerhalb des zugelassenen Gebiets.\n\nAusgeschlossen sind Aktivitäten mit dem Schleppen von Geräten (Bananenboote, Reifen, Wasserski und Ähnliches), für die der Mieter haftet. Ebenfalls nicht gedeckt sind Schäden durch fahrlässigen Gebrauch, Trunkenheit, Fahrt außerhalb des erlaubten Gebiets, trotz Warnung missachtete ungünstige Wetterbedingungen oder Nichtbeachtung der Sicherheitsanweisungen.\n\nVor dem Auslaufen wird der Kunde über den genauen Umfang der Police informiert; Schäden, die die Deckung oder die Kaution übersteigen, trägt der Mieter.",
+          body: "Alle Boote verfügen über die gesetzlich vorgeschriebene Haftpflichtversicherung für Freizeitboote (Königliches Dekret 607/1999), erweitert durch eine freiwillige Haftpflichtdeckung. Sie kommt für Personen- und Sachschäden Dritter auf, soweit diese der von der Police gedeckten Haftpflicht zuzurechnen sind, während der Fahrt innerhalb des zugelassenen Gebiets. Es handelt sich nicht um eine Unfallversicherung: Schäden, die der Mieter oder ein Insasse ohne Haftpflicht des Versicherten erleidet, sind nicht gedeckt. Wir empfehlen daher eine eigene Unfall- oder Reiseversicherung.\n\nAusgeschlossen sind Aktivitäten mit dem Schleppen von Geräten (Bananenboote, Reifen, Wasserski und Ähnliches), für die der Mieter haftet. Ebenfalls nicht gedeckt sind Schäden durch fahrlässigen Gebrauch, Trunkenheit, Fahrt außerhalb des erlaubten Gebiets, trotz Warnung missachtete ungünstige Wetterbedingungen oder Nichtbeachtung der Sicherheitsanweisungen.\n\nVor dem Auslaufen wird der Kunde über den genauen Umfang der Police informiert; Schäden, die die Deckung oder die Kaution übersteigen, trägt der Mieter.",
         },
         {
           title: "10. Geistiges Eigentum",

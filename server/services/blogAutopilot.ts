@@ -226,7 +226,10 @@ INFORMACION DEL NEGOCIO (DATOS REALES - usar siempre estos datos, no inventar):
 - Duraciones de alquiler SIN licencia: 1h, 2h, 3h, 4h, 6h, 8h
 - Duraciones de alquiler CON licencia: 2h, 4h, 8h
 - 3 temporadas: baja (abril-junio, septiembre), media (julio), alta (agosto)
-- Barcos SIN licencia incluyen: IVA, gasolina, amarre, limpieza, seguro embarcacion y ocupantes
+- Barcos SIN licencia incluyen: IVA, gasolina, amarre, limpieza, seguro de responsabilidad civil
+- El seguro es de RESPONSABILIDAD CIVIL (RD 607/1999), NO de accidentes: nunca escribir que
+  cubre "a los ocupantes" ni "danos fisicos a la tripulacion" (art. 61.2 TRLGDCU: lo que se
+  publica es exigible, y esa cobertura no existe en la poliza)
 - Barcos CON licencia incluyen: IVA, amarre, limpieza, seguro (gasolina NO incluida)
 - Deposito: entre 200 y 500 EUR segun barco (se devuelve integro)
 - Temporada: abril a octubre

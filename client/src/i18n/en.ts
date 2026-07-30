@@ -479,9 +479,10 @@ export const en: Translations = {
     gdprConsent:
       "I have read and accept the {privacyPolicy} and the {termsAndConditions}. My data will be processed to manage my booking (GDPR Art. 6.1.b).",
     gdprPassive:
-      "By sending this request, you accept our {privacyPolicy} and {termsAndConditions}.",
+      "By sending this request, you accept our {privacyPolicy}, the {termsAndConditions} and the {siteTerms}.",
     gdprPrivacyLink: "Privacy Policy",
-    gdprTermsLink: "General Conditions",
+    gdprTermsLink: "General Rental Conditions",
+    gdprSiteTermsLink: "Terms and Conditions",
     errorGeneric: "An unexpected error occurred",
     errorPayment: "Error sending your request",
     backToHome: "Back to home",
@@ -1771,7 +1772,7 @@ export const en: Translations = {
   valueStack: {
     title: "Included in the price:",
     fuelIncluded: "Fuel included",
-    insurance: "Boat and passenger insurance",
+    insurance: "Third-party liability insurance included",
     safetyEquipment: "Complete safety equipment",
     briefing: "15-min training included",
     securePayment: "Secure booking",
@@ -2962,6 +2963,12 @@ export const en: Translations = {
         },
       ],
     },
+    condicionesGeneralesPage: {
+      langNoticeBody:
+        "The rental contract is written in Spanish, which is the prevailing version. You can read the equivalent clauses translated into your language in the {termsLink}.",
+      langNoticeLink: "Terms and Conditions",
+    },
+
     terms: {
       heroTitle: "Terms and Conditions",
       lastUpdated: "Last updated: July 2026",
@@ -3000,7 +3007,7 @@ export const en: Translations = {
         },
         {
           title: "9. Liability and Insurance",
-          body: "All boats carry the compulsory Third-Party Liability insurance for recreational craft and cover for physical injury to occupants, in accordance with Spanish regulations. Cover applies while navigating within the authorised area.\n\nExcluded are activities involving the towing of devices (bananas, inflatable rings, skis and similar), for which the hirer is liable. Also excluded is damage arising from negligent use, intoxication, navigation outside the permitted area, adverse weather conditions ignored after a warning, or failure to follow safety instructions.\n\nBefore departure the customer is informed of the exact scope of the policy; any damage exceeding the cover or the deposit is borne by the hirer.",
+          body: "All boats carry the compulsory Third-Party Liability insurance for recreational craft (Royal Decree 607/1999), extended by a voluntary third-party liability cover. It responds for bodily injury and property damage caused to third parties where these are attributable to the civil liability covered by the policy, while sailing within the authorised area. It is not an accident insurance: injuries sustained by the renter or any occupant where no civil liability of the insured party arises are not covered, so we recommend holding your own accident or travel insurance.\n\nExcluded are activities involving the towing of devices (bananas, inflatable rings, skis and similar), for which the hirer is liable. Also excluded is damage arising from negligent use, intoxication, navigation outside the permitted area, adverse weather conditions ignored after a warning, or failure to follow safety instructions.\n\nBefore departure the customer is informed of the exact scope of the policy; any damage exceeding the cover or the deposit is borne by the hirer.",
         },
         {
           title: "10. Intellectual Property",
@@ -4854,7 +4861,7 @@ export const en: Translations = {
         guideSeasonTitle: 'Season and timetables',
         guideSeasonText: 'The boating season in Blanes runs from April to October. We offer three time slots: morning (9:00-13:00), afternoon (14:00-18:00) and full day (9:00-18:00). June and September are ideal for sailing: pleasant temperatures, calm seas and fewer crowds. July and August are peak season with the best swimming conditions but higher demand, so we recommend booking in advance.',
         guideIncludedTitle: 'What is included',
-        guideIncludedText: 'No-licence boat rentals include fuel, boat and occupant insurance, approved safety equipment (life jackets, fire extinguisher, flares), sun canopy and bathing ladder. Some models also include a Bluetooth speaker. For licensed boats and the private skippered excursion, fuel is NOT included and is paid separately at the port fuel station.',
+        guideIncludedText: 'No-licence boat rentals include fuel, third-party liability insurance, approved safety equipment (life jackets, fire extinguisher, flares), sun canopy and bathing ladder. Some models also include a Bluetooth speaker. For licensed boats and the private skippered excursion, fuel is NOT included and is paid separately at the port fuel station.',
         guideBookingTitle: 'How to book',
         guideBookingText: 'You can book your boat in three ways: through our website (we confirm via WhatsApp within 2 hours), via WhatsApp on +34 611 500 372 where we assist in Spanish, English and Catalan, or directly at the Port of Blanes if same-day availability exists. We accept last-minute bookings whenever boats are free.',
         pricingTitle: 'Boat Rental Prices in Blanes 2026',

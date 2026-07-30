@@ -54,7 +54,7 @@ function toDateKey(d: Date): string {
 
 /**
  * Catalog items can drift to overlapping variants ("Seguro" vs.
- * "Seguro embarcación y ocupantes"). Prefer the most specific phrasing:
+ * "Seguro de responsabilidad civil"). Prefer the most specific phrasing:
  * drop anything that is a strict substring of another item, then collapse
  * exact normalized duplicates.
  */

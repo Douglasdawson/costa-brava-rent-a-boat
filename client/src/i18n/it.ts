@@ -489,12 +489,13 @@ export const it: Translations = {
     gdprConsent:
       "Ho letto e accetto la {privacyPolicy} e le {termsAndConditions}. I miei dati saranno trattati per gestire la mia prenotazione (GDPR Art. 6.1.b).",
     gdprPassive:
-      "Inviando questa richiesta, accetti la nostra {privacyPolicy} e le {termsAndConditions}.",
+      "Inviando questa richiesta, accetti la nostra {privacyPolicy}, le {termsAndConditions} e i {siteTerms}.",
     errorGeneric: "Si è verificato un errore imprevisto",
     errorPayment: "Errore nell'invio della richiesta",
     backToHome: "Torna alla home",
     gdprPrivacyLink: "Informativa sulla Privacy",
-    gdprTermsLink: "Condizioni Generali",
+    gdprTermsLink: "Condizioni Generali di Noleggio",
+    gdprSiteTermsLink: "Termini e Condizioni",
     stepExperience: "Esperienza",
     stepPersonalize: "Personalizza",
     stepPay: "Conferma",
@@ -1714,7 +1715,7 @@ export const it: Translations = {
   valueStack: {
     title: "Incluso nel prezzo:",
     fuelIncluded: "Carburante incluso",
-    insurance: "Assicurazione imbarcazione e occupanti",
+    insurance: "Assicurazione di responsabilità civile inclusa",
     safetyEquipment: "Equipaggiamento di sicurezza completo",
     briefing: "Briefing di 15 min incluso",
     securePayment: "Prenotazione sicura",
@@ -2913,6 +2914,12 @@ export const it: Translations = {
         },
       ],
     },
+    condicionesGeneralesPage: {
+      langNoticeBody:
+        "Il contratto di noleggio è redatto in spagnolo, che è la versione che prevale. Puoi leggere le clausole equivalenti tradotte nella tua lingua nei {termsLink}.",
+      langNoticeLink: "Termini e Condizioni",
+    },
+
     terms: {
       heroTitle: "Termini e Condizioni",
       lastUpdated: "Ultimo aggiornamento: luglio 2026",
@@ -2951,7 +2958,7 @@ export const it: Translations = {
         },
         {
           title: "9. Responsabilità e assicurazione",
-          body: "Tutte le imbarcazioni dispongono dell'assicurazione di Responsabilità Civile obbligatoria per le unità da diporto e della copertura per danni fisici agli occupanti, conformemente alla normativa spagnola. La copertura si applica durante la navigazione all'interno della zona autorizzata.\n\nSono escluse le attività che comportano il traino di attrezzi (banane, ciambelle gonfiabili, sci e simili), delle quali risponde il conduttore. Non sono coperti nemmeno i danni derivanti da uso negligente, stato di ebbrezza, navigazione fuori dalla zona consentita, condizioni meteorologiche avverse ignorate dopo l'avviso, o mancato rispetto delle istruzioni di sicurezza.\n\nPrima di salpare il cliente viene informato dell'esatta portata della polizza; ogni danno che ecceda la copertura o la cauzione è a carico del conduttore.",
+          body: "Tutte le imbarcazioni dispongono dell'assicurazione di Responsabilità Civile obbligatoria per le unità da diporto (RD 607/1999), integrata da una Responsabilità Civile volontaria. Risponde dei danni corporali e materiali causati a terzi quando siano imputabili alla responsabilità civile coperta dalla polizza, durante la navigazione nella zona autorizzata. Non è un'assicurazione infortuni: i danni subiti dal noleggiatore o da qualsiasi occupante senza che sussista responsabilità civile dell'assicurato non sono coperti, pertanto consigliamo di dotarsi di una propria assicurazione infortuni o viaggio.\n\nSono escluse le attività che comportano il traino di attrezzi (banane, ciambelle gonfiabili, sci e simili), delle quali risponde il conduttore. Non sono coperti nemmeno i danni derivanti da uso negligente, stato di ebbrezza, navigazione fuori dalla zona consentita, condizioni meteorologiche avverse ignorate dopo l'avviso, o mancato rispetto delle istruzioni di sicurezza.\n\nPrima di salpare il cliente viene informato dell'esatta portata della polizza; ogni danno che ecceda la copertura o la cauzione è a carico del conduttore.",
         },
         {
           title: "10. Proprietà intellettuale",

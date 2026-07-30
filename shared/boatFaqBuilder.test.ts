@@ -39,7 +39,7 @@ const mingolla: BoatFaqInput = {
   requiresLicense: true,
   licenseType: "navegacion",
   pricing: { BAJA: { prices: { "2h": 160, "4h": 230, "8h": 280 } } },
-  included: ["IVA", "Amarre", "Limpieza", "Seguro embarcación y ocupantes"],
+  included: ["IVA", "Amarre", "Limpieza", "Seguro de responsabilidad civil"],
 };
 
 const pacificCraft: BoatFaqInput = {
@@ -48,7 +48,7 @@ const pacificCraft: BoatFaqInput = {
   requiresLicense: true,
   licenseType: "per",
   pricing: { BAJA: { prices: { "2h": 200, "4h": 280, "8h": 380 } } },
-  included: ["IVA", "Amarre", "Limpieza", "Seguro embarcación y ocupantes"],
+  included: ["IVA", "Amarre", "Limpieza", "Seguro de responsabilidad civil"],
 };
 
 const solar450: BoatFaqInput = {
@@ -57,7 +57,7 @@ const solar450: BoatFaqInput = {
   requiresLicense: false,
   licenseType: "none",
   pricing: { BAJA: { prices: { "1h": 70, "2h": 130, "4h": 220 } } },
-  included: ["Gasolina", "IVA", "Amarre", "Limpieza", "Seguro embarcación y ocupantes"],
+  included: ["Gasolina", "IVA", "Amarre", "Limpieza", "Seguro de responsabilidad civil"],
 };
 
 describe("buildBoatFaqItems", () => {
@@ -160,7 +160,7 @@ describe("buildBoatFaqItems", () => {
   describe("Q4 includes", () => {
     it("joins the included array for licensed Mingolla and appends fuel-not-included", () => {
       const items = buildBoatFaqItems(mingolla, esText);
-      expect(items[3].answer).toContain("IVA, Amarre, Limpieza, Seguro embarcación y ocupantes");
+      expect(items[3].answer).toContain("IVA, Amarre, Limpieza, Seguro de responsabilidad civil");
       expect(items[3].answer).toContain("combustible no está incluido");
     });
 
@@ -203,7 +203,7 @@ describe("buildBoatFaqItems", () => {
       // the authoritative a4FuelNotIncluded sentence.
       const withFuelEntry: BoatFaqInput = {
         ...mingolla,
-        included: ["IVA", "Carburante", "Amarre", "Limpieza", "Seguro embarcación y ocupantes"],
+        included: ["IVA", "Carburante", "Amarre", "Limpieza", "Seguro de responsabilidad civil"],
       };
       const items = buildBoatFaqItems(withFuelEntry, esText);
       expect(items[3].answer).not.toContain("Carburante");

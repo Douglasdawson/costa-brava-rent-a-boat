@@ -157,9 +157,9 @@ describe("calculateDynamicPrice", () => {
       // August weekday 2h = 150
       const augustDate = new Date("2026-08-06T12:00:00");
       const result = calculateDynamicPrice(BOAT_ID, augustDate, DURATION, 1.0);
-      // 150 * 1.25 = 187.5 -> 188
-      expect(result.basePrice).toBe(150);
-      expect(result.adjustedPrice).toBe(188);
+      // 160 * 1.25 = 200
+      expect(result.basePrice).toBe(160);
+      expect(result.adjustedPrice).toBe(200);
     });
 
     it("throws for invalid boat ID", () => {

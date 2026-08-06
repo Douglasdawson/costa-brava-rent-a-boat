@@ -64,12 +64,12 @@ export default function ContactSection() {
                     {t.contact.emailLabel}
                   </h3>
                   <a
-                    href="mailto:costabravarentaboat@gmail.com"
+                    href="mailto:info@costabravarentaboat.com"
                     className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-xs sm:text-sm break-all"
                     data-testid="email-link"
-                    aria-label={`${t.a11y.sendEmail} costabravarentaboat@gmail.com`}
+                    aria-label={`${t.a11y.sendEmail} info@costabravarentaboat.com`}
                   >
-                    costabravarentaboat@gmail.com
+                    info@costabravarentaboat.com
                   </a>
                   <p className="text-xs text-muted-foreground">{t.contact.emailResponse}</p>
                 </div>

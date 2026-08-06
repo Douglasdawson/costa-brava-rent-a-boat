@@ -54,7 +54,7 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     shippingInstructions: "Enviaremos tu pedido a la direccion indicada en unos 3-7 dias laborables.",
     totalLabel: "Total",
     shippingCostLabel: "Envio",
-    questions: "Si tienes cualquier duda, escribenos a costabravarentaboat@gmail.com o al +34 611 500 372.",
+    questions: "Si tienes cualquier duda, escribenos a info@costabravarentaboat.com o al +34 611 500 372.",
   },
   en: {
     tee: "Costa Brava Culture T-shirt",
@@ -75,7 +75,7 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     shippingInstructions: "We will ship your order to the address provided within 3-7 business days.",
     totalLabel: "Total",
     shippingCostLabel: "Shipping",
-    questions: "If you have any questions, write to costabravarentaboat@gmail.com or call +34 611 500 372.",
+    questions: "If you have any questions, write to info@costabravarentaboat.com or call +34 611 500 372.",
   },
   ca: {
     tee: "Samarreta Costa Brava Culture",
@@ -96,7 +96,7 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     shippingInstructions: "Enviarem la comanda a l'adreca indicada en uns 3-7 dies laborables.",
     totalLabel: "Total",
     shippingCostLabel: "Enviament",
-    questions: "Si tens qualsevol dubte, escriu-nos a costabravarentaboat@gmail.com o truca al +34 611 500 372.",
+    questions: "Si tens qualsevol dubte, escriu-nos a info@costabravarentaboat.com o truca al +34 611 500 372.",
   },
   fr: {
     tee: "T-shirt Costa Brava Culture",
@@ -117,7 +117,7 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     shippingInstructions: "Nous expedierons votre commande a l'adresse indiquee sous 3 a 7 jours ouvrables.",
     totalLabel: "Total",
     shippingCostLabel: "Livraison",
-    questions: "Pour toute question, ecrivez-nous a costabravarentaboat@gmail.com ou appelez le +34 611 500 372.",
+    questions: "Pour toute question, ecrivez-nous a info@costabravarentaboat.com ou appelez le +34 611 500 372.",
   },
   de: {
     tee: "Costa Brava Culture T-Shirt",
@@ -138,7 +138,7 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     shippingInstructions: "Wir versenden Ihre Bestellung innerhalb von 3-7 Werktagen an die angegebene Adresse.",
     totalLabel: "Gesamt",
     shippingCostLabel: "Versand",
-    questions: "Bei Fragen schreiben Sie an costabravarentaboat@gmail.com oder rufen Sie +34 611 500 372 an.",
+    questions: "Bei Fragen schreiben Sie an info@costabravarentaboat.com oder rufen Sie +34 611 500 372 an.",
   },
   nl: {
     tee: "Costa Brava Culture T-shirt",
@@ -159,7 +159,7 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     shippingInstructions: "We versturen je bestelling binnen 3-7 werkdagen naar het opgegeven adres.",
     totalLabel: "Totaal",
     shippingCostLabel: "Verzending",
-    questions: "Heb je vragen? Mail naar costabravarentaboat@gmail.com of bel +34 611 500 372.",
+    questions: "Heb je vragen? Mail naar info@costabravarentaboat.com of bel +34 611 500 372.",
   },
   it: {
     tee: "T-shirt Costa Brava Culture",
@@ -180,7 +180,7 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     shippingInstructions: "Spediremo il tuo ordine all'indirizzo indicato entro 3-7 giorni lavorativi.",
     totalLabel: "Totale",
     shippingCostLabel: "Spedizione",
-    questions: "Per qualsiasi domanda, scrivici a costabravarentaboat@gmail.com o chiama il +34 611 500 372.",
+    questions: "Per qualsiasi domanda, scrivici a info@costabravarentaboat.com o chiama il +34 611 500 372.",
   },
   ru: {
     tee: "Futbolka Costa Brava Culture",
@@ -201,7 +201,7 @@ export const SHOP_STRINGS: Record<LangCode, ShopLangStrings> = {
     shippingInstructions: "My otpravim zakaz po ukazannomu adresu v techenie 3-7 rabochikh dney.",
     totalLabel: "Itogo",
     shippingCostLabel: "Dostavka",
-    questions: "Esli u vas est voprosy, napishite na costabravarentaboat@gmail.com ili pozvonite +34 611 500 372.",
+    questions: "Esli u vas est voprosy, napishite na info@costabravarentaboat.com ili pozvonite +34 611 500 372.",
   },
 };
 

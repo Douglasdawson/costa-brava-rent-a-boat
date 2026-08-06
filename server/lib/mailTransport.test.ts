@@ -34,11 +34,11 @@ describe("mailTransport", () => {
     const spy = mockFetch(200, { id: "1" });
     await send({
       to: "buyer@example.com",
-      from: { email: "pedidos@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
+      from: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: "Pedido",
       html: "<p>hola</p>",
     });
-    expect(payloadOf(spy).from).toBe("Costa Brava Rent a Boat <pedidos@costabravarentaboat.com>");
+    expect(payloadOf(spy).from).toBe("Costa Brava Rent a Boat <info@costabravarentaboat.com>");
   });
 
   it("strips characters that would break the From header into two recipients", async () => {
@@ -57,13 +57,13 @@ describe("mailTransport", () => {
     await send({
       to: "buyer@example.com",
       from: "p@d.com",
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava" },
       subject: "s",
       html: "<p/>",
     });
     const p = payloadOf(spy);
     expect(p.to).toEqual(["buyer@example.com"]);
-    expect(p.reply_to).toBe("Costa Brava <costabravarentaboat@gmail.com>");
+    expect(p.reply_to).toBe("Costa Brava <info@costabravarentaboat.com>");
   });
 
   it("omits reply_to and text when not provided", async () => {

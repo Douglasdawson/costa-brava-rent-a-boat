@@ -220,7 +220,7 @@ async function generateArticle(
 INFORMACION DEL NEGOCIO (DATOS REALES - usar siempre estos datos, no inventar):
 - Ubicacion: Puerto de Blanes, Costa Brava, Girona, Espana
 - Telefono/WhatsApp: +34 611 500 372
-- Email: costabravarentaboat@gmail.com
+- Email: info@costabravarentaboat.com
 - Barcos sin licencia: para mayores de 18 anos, sin titulacion nautica, briefing de 15 min incluido
 - Barcos con licencia: requieren PER o PNB vigente
 - Duraciones de alquiler SIN licencia: 1h, 2h, 3h, 4h, 6h, 8h

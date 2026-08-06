@@ -165,7 +165,7 @@ async function sendRecoveryEmail(
     const fromEmail =
       process.env.MAIL_FROM_EMAIL ||
       process.env.SENDGRID_FROM_EMAIL ||
-      "pedidos@costabravarentaboat.com";
+      "info@costabravarentaboat.com";
 
     const dateStr = booking.startTime.toLocaleDateString("es-ES", {
       weekday: "long",

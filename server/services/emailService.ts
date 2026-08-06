@@ -368,7 +368,7 @@ function getFromEmail(): string {
   return (
     process.env.MAIL_FROM_EMAIL ||
     process.env.SENDGRID_FROM_EMAIL ||
-    "pedidos@costabravarentaboat.com"
+    "info@costabravarentaboat.com"
   );
 }
 
@@ -504,7 +504,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     <div style="background-color:#f0fdf4; border-left:4px solid #22c55e; border-radius:4px; padding:16px; margin:20px 0;">
       <p style="margin:0 0 6px; color:#166534; font-size:14px; font-weight:600;">${strings.contact}</p>
       <p style="margin:0; color:#475569; font-size:14px;">${strings.phone}: <a href="tel:+34611500372" style="color:#2563eb;">+34 611 500 372</a></p>
-      <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a></p>
+      <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:info@costabravarentaboat.com" style="color:#2563eb;">info@costabravarentaboat.com</a></p>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5;">
@@ -528,7 +528,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: `${strings.bookingConfirmed} - ${data.boat.name} - ${formatDate(booking.startTime)}`,
       html: emailWrapper(content + cancelBlock),
     }));
@@ -600,7 +600,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: `${strings.reminderTitle} - ${data.boat.name}`,
       html: emailWrapper(content),
     }));
@@ -679,7 +679,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: `${strings.thankYouTitle}, ${booking.customerName}!`,
       html: emailWrapper(content, strings.thankYouPreheader),
     }));
@@ -737,7 +737,7 @@ export async function sendPreSeasonEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: customerEmail,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: "La temporada empieza pronto - 10% descuento para ti",
       html: emailWrapper(content),
     }));
@@ -795,7 +795,7 @@ export async function sendWelcomeEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: `Bienvenido/a a Costa Brava Rent a Boat — Tu prueba gratuita ha comenzado`,
       html: emailWrapper(content),
     }));
@@ -852,7 +852,7 @@ export async function sendPasswordResetEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: "Restablece tu contrasena",
       html: emailWrapper(content),
     }));
@@ -976,7 +976,7 @@ export async function sendNewsletterEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: strings.subject,
       html: emailWrapper(content),
     }));
@@ -1026,7 +1026,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     </p>
     ${policyBlock}
     <p style="color:#64748b; font-size:13px; margin-top:24px;">
-      Si tienes dudas, contactanos en <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a> o al +34 611 500 372.
+      Si tienes dudas, contactanos en <a href="mailto:info@costabravarentaboat.com" style="color:#2563eb;">info@costabravarentaboat.com</a> o al +34 611 500 372.
     </p>
     <p style="margin-top:16px;"><a href="${appUrl}" style="color:#2563eb; text-decoration:none;">Volver a costabravarentaboat.com</a></p>
   `;
@@ -1035,7 +1035,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: `Cancelación confirmada — ${booking.customerName}`,
       html: emailWrapper(customerContent),
     }));
@@ -1048,7 +1048,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   }
 
   // Owner notification (fire-and-forget)
-  const ownerEmail = process.env.OWNER_EMAIL || "costabravarentaboat@gmail.com";
+  const ownerEmail = process.env.OWNER_EMAIL || "info@costabravarentaboat.com";
   const ownerContent = `
     <h2 style="color:#dc2626;">Cancelación de reserva</h2>
     <p>Cliente: <strong>${booking.customerName} ${booking.customerSurname}</strong></p>
@@ -1061,7 +1061,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   sendgridBreaker.call(() => sgMail.send({
     to: ownerEmail,
     from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
     subject: `[CANCELACIÓN] ${booking.customerName} — ${new Date(booking.startTime).toLocaleDateString("es-ES")}`,
     html: emailWrapper(ownerContent),
   })).catch((err: unknown) => {
@@ -1126,7 +1126,7 @@ export async function sendReferralEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: strings.subject.replace("{name}", booking.customerName),
       html: emailWrapper(content),
     }));
@@ -1192,7 +1192,7 @@ export async function sendEarlyBirdEmail(
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: strings.subject.replace("{name}", booking.customerName),
       html: emailWrapper(content),
     }));
@@ -1530,7 +1530,7 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
 
     <!-- 11. CTAs secundarios: Email + Llamar -->
     <div style="text-align:center; margin:0 0 12px;">
-      <a href="mailto:costabravarentaboat@gmail.com"
+      <a href="mailto:info@costabravarentaboat.com"
          style="display:inline-block; background-color:#A8C4DD; color:#0d1a2d; text-decoration:none; padding:12px 28px; border-radius:50px; font-size:14px; font-weight:700;">
         Escr&iacute;benos por email
       </a>
@@ -1567,7 +1567,7 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
     await sendgridBreaker.call(() => sgMail.send({
       to: data.email,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Ivan - Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Ivan - Costa Brava Rent a Boat" },
       subject: `${data.hotelName} x Costa Brava Rent a Boat — 10% comisión por reserva`,
       html: emailWrapper(content),
     }));
@@ -1595,7 +1595,7 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
 // Copy is intentionally hardcoded in Spanish for v1. i18n added in next pass
 // once the flow is validated in production.
 
-const ADMIN_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "costabravarentaboat@gmail.com";
+const ADMIN_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "info@costabravarentaboat.com";
 
 /**
  * Customer-facing email after submitting a booking request.
@@ -1651,7 +1651,7 @@ export async function sendBookingRequestReceived(data: BookingEmailData): Promis
       <p style="margin:0 0 4px; color:#166534; font-size:14px; font-weight:600;">&iquest;Tienes prisa?</p>
       <p style="margin:0; color:#475569; font-size:14px;">Escr&iacute;benos directamente:</p>
       <p style="margin:6px 0 0; color:#475569; font-size:14px;">WhatsApp: <a href="https://wa.me/34611500372" style="color:#2563eb;">+34 611 500 372</a></p>
-      <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a></p>
+      <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:info@costabravarentaboat.com" style="color:#2563eb;">info@costabravarentaboat.com</a></p>
     </div>
 
     <p style="margin:24px 0 0; color:#475569; font-size:14px; line-height:1.5;">
@@ -1954,7 +1954,7 @@ export async function sendShopOrderConfirmation(
       // The sending domain has no MX records, so a reply to the From address
       // goes nowhere. Every delivery detail of this shop gets settled by
       // conversation, so the reply has to land in a mailbox someone reads.
-      replyTo: { email: "costabravarentaboat@gmail.com", name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
       subject: `${strings.orderConfirmedSubject} ${formatOrderNumber(order.orderNumber)}`,
       html: emailWrapper(content, strings.orderConfirmedIntro, order.language),
       text,
@@ -1979,7 +1979,7 @@ export async function sendShopOrderOwnerNotification(
     return { success: false, error: "SendGrid not configured" };
   }
 
-  const ownerEmail = process.env.OWNER_EMAIL || "costabravarentaboat@gmail.com";
+  const ownerEmail = process.env.OWNER_EMAIL || "info@costabravarentaboat.com";
   const address = order.shippingAddress as { address?: { line1?: string; line2?: string; postal_code?: string; city?: string } } | null;
   const addressLine = address?.address
     ? [address.address.line1, address.address.line2, address.address.postal_code, address.address.city].filter(Boolean).join(", ")

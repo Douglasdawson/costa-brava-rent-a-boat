@@ -49,7 +49,7 @@ function buildOpenApiDoc() {
       termsOfService: `${BASE_URL}/terminos-condiciones`,
       contact: {
         name: "Costa Brava Rent a Boat",
-        email: "costabravarentaboat@gmail.com",
+        email: "info@costabravarentaboat.com",
         url: BASE_URL,
       },
       license: { name: "Proprietary", url: `${BASE_URL}/terminos-condiciones` },

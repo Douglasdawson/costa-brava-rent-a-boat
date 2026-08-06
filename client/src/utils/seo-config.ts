@@ -47,7 +47,7 @@ export const BUSINESS_INFO = {
   legalName: "DAMAR COSTA BRAVA S.L.",
   description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 8 embarcaciones para 4-7 personas.",
   phone: "+34611500372",
-  email: "costabravarentaboat@gmail.com",
+  email: "info@costabravarentaboat.com",
   url: getBaseUrl(),
   address: {
     streetAddress: BUSINESS_STREET,

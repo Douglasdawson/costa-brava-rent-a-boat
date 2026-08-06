@@ -487,12 +487,12 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-primary-foreground/50 flex-shrink-0 mt-0.5" />
                 <div>
                   <a
-                    href="mailto:costabravarentaboat@gmail.com"
+                    href="mailto:info@costabravarentaboat.com"
                     className="text-sm hover:text-primary-foreground transition-colors flex items-center min-h-11 break-all"
                     data-testid="email-link"
-                    aria-label={`${t.a11y.sendEmail} costabravarentaboat@gmail.com`}
+                    aria-label={`${t.a11y.sendEmail} info@costabravarentaboat.com`}
                   >
-                    costabravarentaboat@gmail.com
+                    info@costabravarentaboat.com
                   </a>
                   <p className="text-xs text-primary-foreground/60 mt-0.5">
                     {t.footer.responseTime}

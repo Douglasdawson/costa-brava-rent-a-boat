@@ -255,7 +255,7 @@ export function wrapper(content: string, options: WrapperOptions = {}): string {
               <p style="margin:0 0 12px; font-family:${FONT_STACK}; font-size:13px; line-height:1.6; color:${COLORS.onInk};">
                 <a href="tel:+34611500372" style="color:${COLORS.onInk}; text-decoration:none;">+34 611 500 372</a>
                 &nbsp;&middot;&nbsp;
-                <a href="mailto:costabravarentaboat@gmail.com" style="color:${COLORS.onInk}; text-decoration:none;">costabravarentaboat@gmail.com</a>
+                <a href="mailto:info@costabravarentaboat.com" style="color:${COLORS.onInk}; text-decoration:none;">info@costabravarentaboat.com</a>
               </p>
               <p style="margin:0; font-family:${FONT_STACK}; font-size:12px; line-height:1.6; color:${COLORS.border};">
                 <a href="${SITE_URL}" style="color:${COLORS.border}; text-decoration:underline;">${footer.site}</a>

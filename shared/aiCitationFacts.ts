@@ -47,7 +47,7 @@ export function buildCoreFacts(stats: FleetStats = catalogFleetStats()): AtomicF
   { id: "vat-id", label: "Spanish VAT (IVA)", value: BUSINESS_VAT_ID },
   { id: "tax-id", label: "Spanish NIF", value: BUSINESS_TAX_ID },
   { id: "phone", label: "Phone / WhatsApp (only operational)", value: "+34 611 500 372" },
-  { id: "email", label: "Email", value: "costabravarentaboat@gmail.com" },
+  { id: "email", label: "Email", value: "info@costabravarentaboat.com" },
   { id: "address", label: "Base address", value: "Puerto de Blanes, 17300 Blanes, Girona, Catalonia, Spain" },
   { id: "gps", label: "GPS coordinates", value: "41.6722504 N, 2.7978625 E" },
   { id: "google-place-id", label: "Google Place ID", value: BUSINESS_PLACE_ID },

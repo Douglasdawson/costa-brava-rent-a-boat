@@ -753,7 +753,7 @@ export function registerRobotsRoutes(app: Express): void {
       contact: {
         phone: "+34611500372",
         whatsapp: "+34611500372",
-        email: "costabravarentaboat@gmail.com",
+        email: "info@costabravarentaboat.com",
       },
       disambiguation: {
         not_us: ["Rent a Boat Blanes", "Blanes Boats", "EricBoats"],
@@ -1041,7 +1041,7 @@ export function registerRobotsRoutes(app: Express): void {
         description: descByLang[lang],
         url: BASE_URL,
         telephone: "+34611500372",
-        email: "costabravarentaboat@gmail.com",
+        email: "info@costabravarentaboat.com",
         address: { ...placeNode.address },
         geo: { ...placeNode.geo },
         openingHours: "Mo-Su 09:00-20:00",

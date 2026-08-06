@@ -2978,7 +2978,7 @@ export const en: Translations = {
       sections: [
         {
           title: "1. Data Controller",
-          body: "Identity: DAMAR COSTA BRAVA S.L. (trading as Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nAddress: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spain\nPhone: +34 611 500 372\nContact email: costabravarentaboat@gmail.com",
+          body: "Identity: DAMAR COSTA BRAVA S.L. (trading as Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nAddress: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spain\nPhone: +34 611 500 372\nContact email: info@costabravarentaboat.com",
         },
         {
           title: "2. Personal Data We Collect",
@@ -2998,7 +2998,7 @@ export const en: Translations = {
         },
         {
           title: "6. Your Rights (ARCO+)",
-          body: "Under Articles 15 to 22 of the GDPR and the LOPD-GDD, you have the right to:\n\n- Access: obtain confirmation as to whether we process your data and, if so, a copy.\n- Rectification: request the correction of inaccurate data.\n- Erasure ('right to be forgotten'): request the deletion of your data when it is no longer necessary for the purposes for which it was collected, unless there is a legal obligation to retain it.\n- Objection: object to processing based on legitimate interest.\n- Restriction of processing: request that we suspend processing while a claim is resolved.\n- Data portability: receive your data in a structured, machine-readable format.\n- Withdrawal of consent: you may withdraw your consent at any time (e.g., for analytics cookies) without affecting the lawfulness of prior processing.\n\nHow to exercise your rights: send an email to costabravarentaboat@gmail.com stating the right you wish to exercise and attaching a copy of your ID or other identification document. We will respond within a maximum of 1 month.\n\nIf you believe the processing does not comply with the GDPR, you have the right to lodge a complaint with the Spanish Data Protection Agency (AEPD): www.aepd.es",
+          body: "Under Articles 15 to 22 of the GDPR and the LOPD-GDD, you have the right to:\n\n- Access: obtain confirmation as to whether we process your data and, if so, a copy.\n- Rectification: request the correction of inaccurate data.\n- Erasure ('right to be forgotten'): request the deletion of your data when it is no longer necessary for the purposes for which it was collected, unless there is a legal obligation to retain it.\n- Objection: object to processing based on legitimate interest.\n- Restriction of processing: request that we suspend processing while a claim is resolved.\n- Data portability: receive your data in a structured, machine-readable format.\n- Withdrawal of consent: you may withdraw your consent at any time (e.g., for analytics cookies) without affecting the lawfulness of prior processing.\n\nHow to exercise your rights: send an email to info@costabravarentaboat.com stating the right you wish to exercise and attaching a copy of your ID or other identification document. We will respond within a maximum of 1 month.\n\nIf you believe the processing does not comply with the GDPR, you have the right to lodge a complaint with the Spanish Data Protection Agency (AEPD): www.aepd.es",
         },
         {
           title: "7. Security Measures",
@@ -3056,7 +3056,7 @@ export const en: Translations = {
       sections: [
         {
           title: "1. Owner Identification",
-          body: "Registered name: DAMAR COSTA BRAVA S.L. (trading under the brand Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nRegistered office: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spain\nContact phone: +34 611 500 372\nEmail: costabravarentaboat@gmail.com\nActivity: rental of recreational boats (with and without a nautical licence) at the Port of Blanes, Costa Brava.",
+          body: "Registered name: DAMAR COSTA BRAVA S.L. (trading under the brand Costa Brava Rent a Boat)\nTax ID (CIF): B22566327\nRegistered office: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spain\nContact phone: +34 611 500 372\nEmail: info@costabravarentaboat.com\nActivity: rental of recreational boats (with and without a nautical licence) at the Port of Blanes, Costa Brava.",
         },
         {
           title: "2. Purpose",
@@ -3080,7 +3080,7 @@ export const en: Translations = {
         },
         {
           title: "7. Cancellation Policy",
-          body: "- Free date change up to 7 days before departure, subject to boat availability.\n- Bad weather without the guarantee contracted: rescheduling at no cost or, if no new date is agreed, a voucher for the amount paid valid for 12 months. No cash refund applies.\n- Bad weather with the Weather guarantee contracted: the customer chooses between a new date or a full cash refund of the amounts paid for the rental, excluding the price of the guarantee itself, which is non-refundable.\n- Objective bad-weather criteria: an official AEMET coastal warning for the navigation area during the rental time slot, sustained wind or gusts above twenty knots, or the company staff's decision on safety grounds.\n- If the trip cannot go ahead for reasons attributable to the company (breakdown or other), the amounts paid are refunded.\n- Outside the cases above, confirmed bookings with a deposit are not refundable in cash.\n\nThe Weather guarantee and the Reduced deposit are commercial guarantees of Costa Brava Rent a Boat and do not constitute an insurance contract. The decision to suspend for weather conditions rests with the provider and is taken on safety grounds. Written notice to costabravarentaboat@gmail.com or WhatsApp +34 611 500 372.",
+          body: "- Free date change up to 7 days before departure, subject to boat availability.\n- Bad weather without the guarantee contracted: rescheduling at no cost or, if no new date is agreed, a voucher for the amount paid valid for 12 months. No cash refund applies.\n- Bad weather with the Weather guarantee contracted: the customer chooses between a new date or a full cash refund of the amounts paid for the rental, excluding the price of the guarantee itself, which is non-refundable.\n- Objective bad-weather criteria: an official AEMET coastal warning for the navigation area during the rental time slot, sustained wind or gusts above twenty knots, or the company staff's decision on safety grounds.\n- If the trip cannot go ahead for reasons attributable to the company (breakdown or other), the amounts paid are refunded.\n- Outside the cases above, confirmed bookings with a deposit are not refundable in cash.\n\nThe Weather guarantee and the Reduced deposit are commercial guarantees of Costa Brava Rent a Boat and do not constitute an insurance contract. The decision to suspend for weather conditions rests with the provider and is taken on safety grounds. Written notice to info@costabravarentaboat.com or WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Customer Obligations",
@@ -3104,7 +3104,7 @@ export const en: Translations = {
         },
         {
           title: "13. Online shop: seller identification",
-          body: "Sections 13 to 16 exclusively govern the purchase of the physical products in the Shop section of this website (gift cards and jet ski activities are governed by sections 17 and 18) (the Costa Brava Culture collection, in collaboration with Laura Cabanas). The seller of these products is DAMAR COSTA BRAVA S.L., tax ID (CIF) B22566327, with address for notifications at Carrer Esplanada del Port, 17300 Blanes, Girona, Spain, phone +34 611 500 372 and email costabravarentaboat@gmail.com (hereinafter, the seller). Sections 1 to 12 refer to the boat rental service and do not apply to shop purchases.",
+          body: "Sections 13 to 16 exclusively govern the purchase of the physical products in the Shop section of this website (gift cards and jet ski activities are governed by sections 17 and 18) (the Costa Brava Culture collection, in collaboration with Laura Cabanas). The seller of these products is DAMAR COSTA BRAVA S.L., tax ID (CIF) B22566327, with address for notifications at Carrer Esplanada del Port, 17300 Blanes, Girona, Spain, phone +34 611 500 372 and email info@costabravarentaboat.com (hereinafter, the seller). Sections 1 to 12 refer to the boat rental service and do not apply to shop purchases.",
         },
         {
           title: "14. Online shop: prices, payment and delivery",
@@ -3112,7 +3112,7 @@ export const en: Translations = {
         },
         {
           title: "15. Online shop: right of withdrawal",
-          body: "The customer has the right to withdraw from the purchase, without giving any reason, within 14 calendar days from receiving or picking up the product. To exercise it, an unequivocal statement within that period is enough, by email to costabravarentaboat@gmail.com or by WhatsApp to +34 611 500 372, stating the order number. This model may be used, although it is not mandatory: I hereby give notice that I withdraw from my contract of sale of the following product [product], ordered on [date] and received on [date]; name, address and date.\n\nThe product must be returned unused and in its original condition within a maximum of 14 calendar days from the notice, delivering it to either of the two pickup points or sending it to the address provided by the seller; the direct cost of returning it by post is borne by the customer. The seller will refund all payments received, including the initial delivery costs if any, within 14 calendar days from the withdrawal notice and using the same payment method as the purchase; the refund may be withheld until the product or proof of its return is received.",
+          body: "The customer has the right to withdraw from the purchase, without giving any reason, within 14 calendar days from receiving or picking up the product. To exercise it, an unequivocal statement within that period is enough, by email to info@costabravarentaboat.com or by WhatsApp to +34 611 500 372, stating the order number. This model may be used, although it is not mandatory: I hereby give notice that I withdraw from my contract of sale of the following product [product], ordered on [date] and received on [date]; name, address and date.\n\nThe product must be returned unused and in its original condition within a maximum of 14 calendar days from the notice, delivering it to either of the two pickup points or sending it to the address provided by the seller; the direct cost of returning it by post is borne by the customer. The seller will refund all payments received, including the initial delivery costs if any, within 14 calendar days from the withdrawal notice and using the same payment method as the purchase; the refund may be withheld until the product or proof of its return is received.",
         },
         {
           title: "16. Online shop: legal guarantee and complaints",
@@ -3179,7 +3179,7 @@ export const en: Translations = {
         },
         {
           title: "Contact and Complaints",
-          body: "If you detect any accessibility barrier on our website or need to access content in an alternative format, you can contact us:\n- Email: costabravarentaboat@gmail.com\n- Telephone: +34 611 500 372\n\nWe undertake to respond within a maximum of 5 working days.\n\nIf you do not receive a satisfactory response, you can submit a complaint through the General State Administration Portal (https://administracion.gob.es).",
+          body: "If you detect any accessibility barrier on our website or need to access content in an alternative format, you can contact us:\n- Email: info@costabravarentaboat.com\n- Telephone: +34 611 500 372\n\nWe undertake to respond within a maximum of 5 working days.\n\nIf you do not receive a satisfactory response, you can submit a complaint through the General State Administration Portal (https://administracion.gob.es).",
         },
         {
           title: "Update Date",

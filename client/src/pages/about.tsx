@@ -601,7 +601,7 @@ export default function AboutPage() {
         "description": "Family-run boat rental business in the Port of Blanes, Costa Brava, Spain. Largest fleet in Blanes with 8 boats including 5 licence-free, 3 licensed motorboats and 1 private excursion with captain.",
         "url": "https://www.costabravarentaboat.com",
         "telephone": "+34611500372",
-        "email": "costabravarentaboat@gmail.com",
+        "email": "info@costabravarentaboat.com",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Carrer Esplanada del Port",
@@ -931,8 +931,8 @@ export default function AboutPage() {
               <Mail className="w-5 h-5 text-primary flex-shrink-0" />
               <div>
                 <p className="text-sm text-muted-foreground">Email</p>
-                <a href="mailto:costabravarentaboat@gmail.com" className="font-medium text-foreground hover:text-primary transition-colors text-sm">
-                  costabravarentaboat@gmail.com
+                <a href="mailto:info@costabravarentaboat.com" className="font-medium text-foreground hover:text-primary transition-colors text-sm">
+                  info@costabravarentaboat.com
                 </a>
               </div>
             </div>

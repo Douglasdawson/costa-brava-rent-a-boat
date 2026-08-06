@@ -4,7 +4,7 @@ import { eq, sql } from "drizzle-orm";
 
 const DEFAULTS = {
   name: "Costa Brava Rent a Boat",
-  email: "costabravarentaboat@gmail.com",
+  email: "info@costabravarentaboat.com",
   phone: "+34 611 500 372",
   address: "Carrer Esplanada del Port, 17300 Blanes, Girona",
   primaryColor: "#2B3E50",

@@ -69,7 +69,7 @@ export const BUSINESS_JURISDICTION = "Blanes";
 // shared y necesitan la misma fuente que la razón social y el domicilio.
 export const BUSINESS_PHONE = "+34 611 500 372";
 export const BUSINESS_PHONE_E164 = "+34611500372";
-export const BUSINESS_EMAIL = "costabravarentaboat@gmail.com";
+export const BUSINESS_EMAIL = "info@costabravarentaboat.com";
 
 // Wikidata entity ID (Q-prefixed). Wikidata's notability policy makes it
 // risky for a local SMB; we deprioritised this in favour of OpenStreetMap

@@ -53,7 +53,7 @@ export async function seedDefaultTenant(): Promise<Tenant> {
     .values({
       name: "Costa Brava Rent a Boat",
       slug,
-      email: "costabravarentaboat@gmail.com",
+      email: "info@costabravarentaboat.com",
       phone: "+34 611 500 372",
       address: "Puerto de Blanes, Girona, España",
       primaryColor: "#0077B6",

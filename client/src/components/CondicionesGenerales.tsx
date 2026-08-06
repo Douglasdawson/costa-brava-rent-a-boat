@@ -261,7 +261,7 @@ export default function CondicionesGenerales() {
                 <p className="text-foreground mb-4">Contacta con nosotros para resolver cualquier consulta</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
-                    href="mailto:costabravarentaboat@gmail.com"
+                    href="mailto:info@costabravarentaboat.com"
                     className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                   >
                     Enviar email

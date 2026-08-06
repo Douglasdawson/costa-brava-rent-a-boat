@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Users, Anchor, Fuel, ArrowRight } from "lucide-react";
+import { Users, Anchor, Fuel, ArrowRight, ChevronRight } from "lucide-react";
 import { isCaptainedBoat, boatIncludesFuel } from "@shared/boatData";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
@@ -553,9 +553,15 @@ export default function PricingPage() {
                         variant="outline"
                         className="w-full"
                         onClick={() => openBookingModal(boat.id)}
-                        aria-label={pp.reserveSpecificButton.replace("{name}", translateBoatText(boat.name, language))}
+                        aria-label={pp.reserveSpecificButton.replace(
+                          "{name}",
+                          translateBoatText(boat.name, language)
+                        )}
                       >
-                        {pp.reserveSpecificButton.replace("{name}", translateBoatText(boat.name, language))}
+                        {pp.reserveSpecificButton.replace(
+                          "{name}",
+                          translateBoatText(boat.name, language)
+                        )}
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </div>
@@ -611,6 +617,30 @@ export default function PricingPage() {
           />
         </div>
       </RevealSection>
+
+      {/* ═══ CATEGORY LINKS ═══ price pages should route authority to both categories */}
+      <div className="py-8 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap gap-x-6 gap-y-3 justify-center">
+            <a
+              href={localizedPath("categoryLicenseFree")}
+              className="text-primary hover:underline flex items-center gap-1"
+              data-testid="pricing-link-license-free"
+            >
+              <ChevronRight className="w-4 h-4" />
+              {t.breadcrumbs.categoryLicenseFree}
+            </a>
+            <a
+              href={localizedPath("categoryLicensed")}
+              className="text-primary hover:underline flex items-center gap-1"
+              data-testid="pricing-link-licensed"
+            >
+              <ChevronRight className="w-4 h-4" />
+              {t.categoryLicensed!.crossLinkFromFree}
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* ═══ CTA ═══ full-width */}
       <div className="py-16 sm:py-20 bg-primary">

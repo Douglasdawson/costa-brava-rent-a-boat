@@ -227,6 +227,36 @@ async function collectLandings(): Promise<IndexItem[]> {
         snippet: "Boat rental for Pineda de Mar and the Maresme: nearest port is Blanes (18 min by car, 12 min on the R1 train). License-free from 75€/h.",
       },
     },
+    // Category pages (added 2026-08-06: they were the only money pages missing
+    // from the AI layer while all 8 location landings were indexed).
+    {
+      pageKey: "categoryLicensed",
+      sourceId: "barcos-con-licencia",
+      es: {
+        title: "Alquiler de lanchas sin patrón en Blanes (barcos con licencia)",
+        body: "Alquiler de lanchas sin patrón en el Puerto de Blanes: 3 lanchas de 80 a 115 CV (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625) para 6-7 personas, desde 160€ las 2 horas. Basta la Licencia de Navegación española o un título extranjero equivalente (ICC, Permis Cotier, SBF See), verificable online antes de reservar. Pilotando tú llegas a Lloret en 15 minutos y a Tossa de Mar en 30-45. Gasolina aparte según consumo, fianza de 500€.",
+        snippet: "3 lanchas sin patrón de 80-115 CV en Blanes desde 160€/2h. Basta la Licencia de Navegación; Tossa de Mar a 30-45 min pilotando tú.",
+      },
+      en: {
+        title: "Self-drive powerboat rental in Blanes (licensed boats)",
+        body: "Self-drive powerboat rental at the Port of Blanes: 3 powerboats from 80 to 115 HP (Mingolla Brava 19, Trimarchi 57S and Pacific Craft 625) for 6-7 people, from 160€ per 2 hours. The basic Spanish Navigation Licence or an equivalent foreign licence (ICC, Permis Cotier, SBF See) is enough, verifiable online before booking. Skippering yourself you reach Lloret in 15 minutes and Tossa de Mar in 30-45. Fuel charged separately, 500€ deposit.",
+        snippet: "3 self-drive powerboats 80-115 HP in Blanes from 160€/2h. A basic boating licence is enough; Tossa de Mar in 30-45 min at your own helm.",
+      },
+    },
+    {
+      pageKey: "categoryLicenseFree",
+      sourceId: "barcos-sin-licencia",
+      es: {
+        title: "Alquiler de barcos sin licencia en Blanes",
+        body: "Alquiler de barcos sin licencia en el Puerto de Blanes desde 75€/h con gasolina incluida. Hasta 5 personas por barco, mayores de 18 años sin titulación, briefing de 15 minutos antes de salir. Navegas por la costa de Blanes hasta Playa de Fenals dentro del límite de 2 millas.",
+        snippet: "Barcos sin licencia en Blanes desde 75€/h con gasolina incluida. Sin titulación, briefing de 15 min, hasta 5 personas.",
+      },
+      en: {
+        title: "License-free boat rental in Blanes",
+        body: "License-free boat rental at the Port of Blanes from 75€/h with fuel included. Up to 5 people per boat, 18+ with no licence needed, 15-minute briefing before departure. You cruise the Blanes coast up to Playa de Fenals within the 2-mile limit.",
+        snippet: "License-free boats in Blanes from 75€/h, fuel included. No licence needed, 15-min briefing, up to 5 people.",
+      },
+    },
   ];
   const items: IndexItem[] = [];
   for (const d of defs) {

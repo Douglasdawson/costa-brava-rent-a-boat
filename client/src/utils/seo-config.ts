@@ -178,11 +178,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: `4 barcos sin licencia en Blanes desde 75\u20ac/h gasolina incluida. \u2605${BUSINESS_RATING_STR} Google. Hasta 5 personas, sin experiencia previa, briefing 15 min.`
     },
     categoryLicensed: {
-      title: "Barcos Con Licencia Costa Brava | 80-115CV Blanes",
-      description: "3 barcos potentes de 80 a 115CV en Blanes. Lloret en 15 min, Tossa en 30 min. Con tu Licencia de Navegaci\u00f3n B\u00e1sica (LNB) o patr\u00f3n incluido. Reserva online.",
-      keywords: "alquiler barco costa brava con licencia, barcos con licencia blanes, alquiler barcos LNB costa brava, barcos potentes costa brava",
-      ogTitle: "Barcos Con Licencia en Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 barcos potentes 80-115CV en Blanes. Con tu LNB (Licencia de Navegaci\u00f3n B\u00e1sica) o con patr\u00f3n. Reserva online."
+      // GSC 2026-08-06 (espejo Neon, 90d): "con licencia" es cluster muerto (225
+      // imp, 1 clic, pos 39). El comprador real busca "lancha" (636 imp pos 9.6),
+      // "sin patr\u00f3n" (808 imp pos 9.8) y Tossa (1,844 imp). Retarget completo;
+      // "con licencia" queda como cualificador de body. MUST mirror STATIC_META
+      // de server/seoInjector.ts (regla del bug Lloret/Maresme).
+      title: "Alquiler Lancha Costa Brava Sin Patr\u00f3n | Blanes desde 160\u20ac",
+      description: `3 lanchas de 80 a 115 CV para pilotar t\u00fa mismo desde Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Basta la Licencia de Navegaci\u00f3n. ${BUSINESS_RATING_STR}\u2605 Google.`,
+      keywords: "alquiler lancha costa brava, alquiler lancha blanes, alquiler barco sin patron costa brava, alquiler lanchas costa brava, alquiler motora costa brava, barcos con licencia blanes, alquiler barco con licencia, lancha sin patron blanes",
+      ogTitle: "Alquiler de Lanchas Sin Patr\u00f3n en Blanes | Tossa en 30-45 min",
+      ogDescription: `3 lanchas 80-115 CV. T\u00fa al tim\u00f3n con tu Licencia de Navegaci\u00f3n. Verificamos t\u00edtulos extranjeros online. ${BUSINESS_RATING_STR}\u2605 Google.`
     },
     testimonios: {
       title: "Opiniones Clientes Alquiler Barcos Costa Brava | 4.8\u2605 · 300+ Reviews Google | Blanes",
@@ -413,11 +418,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Rent boats without license in Blanes. Up to 15 HP, 4-5 people. No qualification needed. Easy to drive. Book your adventure!"
     },
     categoryLicensed: {
-      title: "Licensed Boat Rental Costa Brava | Blanes from 160\u20ac/2h",
-      description: "Sail to Lloret (15 min) and Tossa (30 min) from Blanes. 3 boats 80-115HP. Basic License or with skipper. 4.8\u2605 Google. Book online.",
-      keywords: "licensed boats blanes, boats with license, basic license boat rental, powerful boats costa brava",
-      ogTitle: "Licensed Boats in Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 powerful boats 80-115HP in Blanes. With your Basic License or with skipper. Book online."
+      title: "Self-Drive Boat Rental Costa Brava | Blanes from 160\u20ac/2h",
+      description: `3 powerboats 80-115 HP you skipper yourself from Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Navigation Licence, ICC or EU equivalents. ${BUSINESS_RATING_STR}\u2605 Google.`,
+      keywords: "self drive boat rental costa brava, powerboat hire blanes, boat rental without skipper costa brava, speedboat rental blanes, licensed boats blanes, boat hire tossa de mar",
+      ogTitle: "Self-Drive Powerboats in Blanes | Tossa de Mar in 30-45 min",
+      ogDescription: `3 powerboats 80-115 HP. You at the helm with your boating licence, verified online before your trip. ${BUSINESS_RATING_STR}\u2605 Google.`
     },
     testimonios: {
       title: "Customer Reviews Boat Rental Blanes",
@@ -637,11 +642,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Lloga barques sense llicència a Blanes. Fins a 15 CV, 4-5 persones. No cal titulació. Fàcil de manejar. Reserva la teva aventura!"
     },
     categoryLicensed: {
-      title: "Lloguer Barques Amb Llic\u00e8ncia Costa Brava | Blanes des de 160\u20ac/2h",
-      description: "Navega a Lloret (15 min) i Tossa (30 min) des de Blanes. 3 barques 80-115CV. Llic\u00e8ncia de Navegaci\u00f3 o amb patr\u00f3. 4.8\u2605 Google. Reserva online.",
-      keywords: "barques amb llic\u00e8ncia blanes, lloguer barques llic\u00e8ncia b\u00e0sica, embarcacions llic\u00e8ncia b\u00e0sica o ICC, barques potents costa brava",
-      ogTitle: "Barques Amb Llic\u00e8ncia a Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 barques potents 80-115CV a Blanes. Amb la teva Llic\u00e8ncia de Navegaci\u00f3 o amb patr\u00f3. Reserva online."
+      title: "Lloguer Llanxa Costa Brava Sense Patr\u00f3 | Blanes des de 160\u20ac",
+      description: `3 llanxes de 80 a 115 CV per pilotar tu mateix des de Blanes: Lloret 15 min, Tossa de Mar 30-45 min. N'hi ha prou amb la Llic\u00e8ncia de Navegaci\u00f3. ${BUSINESS_RATING_STR}\u2605 Google.`,
+      keywords: "lloguer llanxa costa brava, lloguer llanxa blanes, lloguer vaixell sense patr\u00f3, llanxes amb llic\u00e8ncia blanes, lloguer motora costa brava",
+      ogTitle: "Lloguer de Llanxes Sense Patr\u00f3 a Blanes | Tossa en 30-45 min",
+      ogDescription: `3 llanxes 80-115 CV. Tu al tim\u00f3 amb la teva Llic\u00e8ncia de Navegaci\u00f3. Verifiquem t\u00edtols estrangers online. ${BUSINESS_RATING_STR}\u2605 Google.`
     },
     testimonios: {
       title: "Opinions Clients Lloguer Barques Blanes",
@@ -802,11 +807,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "bateaux sans permis blanes, location bateaux sans license, embarcations sans permis costa brava, bateaux 15cv blanes"
     },
     categoryLicensed: {
-      title: "Location Bateaux Avec Permis Costa Brava | Blanes d\u00e8s 160\u20ac/2h",
-      description: "Naviguez \u00e0 Lloret (15 min) et Tossa (30 min) depuis Blanes. 3 bateaux 80-115CV. Permis c\u00f4tier ou avec skipper. 4.8\u2605 Google. R\u00e9servez en ligne.",
-      keywords: "bateaux avec permis blanes, location bateaux permis c\u00f4tier, embarcations permis bateau, bateaux puissants costa brava",
-      ogTitle: "Bateaux Avec Permis \u00e0 Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 bateaux puissants 80-115CV \u00e0 Blanes. Avec votre permis c\u00f4tier ou avec skipper. R\u00e9servez en ligne."
+      title: "Location Bateau Moteur Sans Skipper | Blanes d\u00e8s 160\u20ac/2h",
+      description: `3 bateaux \u00e0 moteur de 80 \u00e0 115 CV \u00e0 piloter vous-m\u00eame depuis Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Permis C\u00f4tier et ICC accept\u00e9s. ${BUSINESS_RATING_STR}\u2605 Google.`,
+      keywords: "location bateau moteur costa brava, location bateau sans skipper, location hors-bord blanes, bateaux avec permis blanes, permis c\u00f4tier costa brava",
+      ogTitle: "Location de Bateaux \u00e0 Moteur Sans Skipper \u00e0 Blanes | Tossa en 30-45 min",
+      ogDescription: `3 bateaux \u00e0 moteur 80-115 CV. Vous \u00e0 la barre avec votre Permis C\u00f4tier, v\u00e9rifi\u00e9 en ligne avant votre venue. ${BUSINESS_RATING_STR}\u2605 Google.`
     },
     testimonios: {
       title: "Avis Clients Location Bateaux Blanes",
@@ -964,11 +969,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "boote ohne führerschein blanes, bootsverleih ohne lizenz, boote ohne erlaubnis costa brava, 15ps boote blanes"
     },
     categoryLicensed: {
-      title: "Bootsverleih Mit F\u00fchrerschein Costa Brava | Blanes ab 160\u20ac/2h",
-      description: "Segeln Sie nach Lloret (15 Min) und Tossa (30 Min) ab Blanes. 3 Boote 80-115PS. Bootsf\u00fchrerschein oder mit Skipper. 4.8\u2605 Google. Online buchen.",
-      keywords: "boote mit f\u00fchrerschein blanes, bootsverleih bootsf\u00fchrerschein, boote mit lizenz costa brava, starke boote costa brava",
-      ogTitle: "Boote Mit F\u00fchrerschein in Blanes | Lloret 15 Min, Tossa 30 Min",
-      ogDescription: "3 leistungsstarke Boote 80-115PS in Blanes. Mit Bootsf\u00fchrerschein oder mit Skipper. Online buchen."
+      title: "Motorboot Mieten Costa Brava Ohne Skipper | Blanes ab 160\u20ac/2h",
+      description: `3 Motorboote mit 80-115 PS zum Selbstfahren ab Blanes: Lloret 15 Min, Tossa de Mar 30-45 Min. SBF See und ICC anerkannt. ${BUSINESS_RATING_STR}\u2605 Google.`,
+      keywords: "motorboot mieten costa brava, motorboot mieten blanes, boot mieten ohne skipper, boote mit f\u00fchrerschein blanes, sbf see costa brava",
+      ogTitle: "Motorboote Ohne Skipper in Blanes | Tossa in 30-45 Min",
+      ogDescription: `3 Motorboote 80-115 PS. Sie am Steuer mit Ihrem Bootsf\u00fchrerschein, vorab online gepr\u00fcft. ${BUSINESS_RATING_STR}\u2605 Google.`
     },
     testimonios: {
       title: "Kundenbewertungen Bootsverleih Blanes",
@@ -1129,11 +1134,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "boten zonder vaarbewijs blanes, bootverhuur zonder licentie, boten zonder vergunning costa brava, 15pk boten blanes"
     },
     categoryLicensed: {
-      title: "Boten Met Vaarbewijs Costa Brava | Blanes vanaf 160\u20ac/2u",
-      description: "Vaar naar Lloret (15 min) en Tossa (30 min) vanuit Blanes. 3 boten 80-115PK. Vaarbewijs of met schipper. 4.8\u2605 Google. Boek online.",
-      keywords: "boten met vaarbewijs blanes, bootverhuur vaarbewijs, boten met licentie costa brava, krachtige boten costa brava",
-      ogTitle: "Boten Met Vaarbewijs in Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 krachtige boten 80-115PK in Blanes. Met vaarbewijs of met schipper. Boek online."
+      title: "Motorboot Huren Costa Brava Zonder Schipper | Blanes va 160\u20ac/2u",
+      description: `3 motorboten van 80-115 pk om zelf te varen vanuit Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Vaarbewijs en ICC geaccepteerd. ${BUSINESS_RATING_STR}\u2605 Google.`,
+      keywords: "motorboot huren costa brava, motorboot huren blanes, boot huren zonder schipper, boten met vaarbewijs blanes, speedboot huren costa brava",
+      ogTitle: "Motorboten Zonder Schipper in Blanes | Tossa in 30-45 min",
+      ogDescription: `3 motorboten 80-115 pk. Jij aan het roer met je vaarbewijs, vooraf online gecontroleerd. ${BUSINESS_RATING_STR}\u2605 Google.`
     },
     testimonios: {
       title: "Klantenbeoordelingen Bootverhuur Blanes",
@@ -1291,11 +1296,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "barche senza patente blanes, noleggio barche senza licenza, imbarcazioni senza permesso costa brava, barche 15cv blanes"
     },
     categoryLicensed: {
-      title: "Barche Con Patente Costa Brava | Blanes da 160\u20ac/2h",
-      description: "Naviga a Lloret (15 min) e Tossa (30 min) da Blanes. 3 barche 80-115CV. Patente nautica o con skipper. 4.8\u2605 Google. Prenota online.",
-      keywords: "barche con patente blanes, noleggio barche patente nautica, imbarcazioni con licenza costa brava, barche potenti costa brava",
-      ogTitle: "Barche Con Patente a Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 barche potenti 80-115CV a Blanes. Con patente nautica o con skipper. Prenota online."
+      title: "Noleggio Motoscafo Costa Brava Senza Skipper | Blanes da 160\u20ac",
+      description: `3 motoscafi da 80 a 115 CV da pilotare tu stesso da Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Patente nautica e ICC accettate. ${BUSINESS_RATING_STR}\u2605 Google.`,
+      keywords: "noleggio motoscafo costa brava, noleggio motoscafo blanes, noleggio barca senza skipper, barche con patente blanes, noleggio barca a motore costa brava",
+      ogTitle: "Motoscafi Senza Skipper a Blanes | Tossa in 30-45 min",
+      ogDescription: `3 motoscafi 80-115 CV. Tu al timone con la tua patente nautica, verificata online prima del viaggio. ${BUSINESS_RATING_STR}\u2605 Google.`
     },
     testimonios: {
       title: "Recensioni Clienti Noleggio Barche Blanes",
@@ -1453,11 +1458,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "лодки без лицензии бланес, аренда лодок без прав, лодки без разрешения коста брава, лодки 15лс бланес"
     },
     categoryLicensed: {
-      title: "\u041b\u043e\u0434\u043a\u0438 \u0421 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 | \u0411\u043b\u0430\u043d\u0435\u0441 \u043e\u0442 160\u20ac/2\u0447",
-      description: "\u041f\u043b\u0430\u0432\u0430\u0439\u0442\u0435 \u0432 \u041b\u044c\u043e\u0440\u0435\u0442 (15 \u043c\u0438\u043d) \u0438 \u0422\u043e\u0441\u0441\u0430 (30 \u043c\u0438\u043d) \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430. 3 \u043b\u043e\u0434\u043a\u0438 80-115 \u043b.\u0441. \u0421 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u0438\u043b\u0438 \u0448\u043a\u0438\u043f\u0435\u0440\u043e\u043c. 4.8\u2605 Google. \u0411\u0440\u043e\u043d\u0438\u0440\u0443\u0439\u0442\u0435 \u043e\u043d\u043b\u0430\u0439\u043d.",
-      keywords: "\u043b\u043e\u0434\u043a\u0438 \u0441 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u0431\u043b\u0430\u043d\u0435\u0441, \u0430\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u0441 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439, \u043c\u043e\u0449\u043d\u044b\u0435 \u043b\u043e\u0434\u043a\u0438 \u043a\u043e\u0441\u0442\u0430 \u0431\u0440\u0430\u0432\u0430",
-      ogTitle: "\u041b\u043e\u0434\u043a\u0438 \u0421 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u0432 \u0411\u043b\u0430\u043d\u0435\u0441\u0435 | \u041b\u044c\u043e\u0440\u0435\u0442 15 \u043c\u0438\u043d, \u0422\u043e\u0441\u0441\u0430 30 \u043c\u0438\u043d",
-      ogDescription: "3 \u043c\u043e\u0449\u043d\u044b\u0435 \u043b\u043e\u0434\u043a\u0438 80-115 \u043b.\u0441. \u0432 \u0411\u043b\u0430\u043d\u0435\u0441\u0435. \u0421 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u0438\u043b\u0438 \u0448\u043a\u0438\u043f\u0435\u0440\u043e\u043c. \u0411\u0440\u043e\u043d\u0438\u0440\u0443\u0439\u0442\u0435 \u043e\u043d\u043b\u0430\u0439\u043d."
+      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u041a\u0430\u0442\u0435\u0440\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u0411\u0435\u0437 \u0428\u043a\u0438\u043f\u0435\u0440\u0430 | \u0411\u043b\u0430\u043d\u0435\u0441 \u043e\u0442 160\u20ac/2\u0447",
+      description: `3 \u043a\u0430\u0442\u0435\u0440\u0430 80-115 \u043b.\u0441., \u0437\u0430 \u0448\u0442\u0443\u0440\u0432\u0430\u043b\u043e\u043c \u0432\u044b \u0441\u0430\u043c\u0438: \u041b\u044c\u043e\u0440\u0435\u0442 15 \u043c\u0438\u043d, \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440 30-45 \u043c\u0438\u043d \u043e\u0442 \u0411\u043b\u0430\u043d\u0435\u0441\u0430. \u041f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c ICC \u0438 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u0415\u0421. ${BUSINESS_RATING_STR}\u2605 Google.`,
+      keywords: "\u0430\u0440\u0435\u043d\u0434\u0430 \u043a\u0430\u0442\u0435\u0440\u0430 \u043a\u043e\u0441\u0442\u0430 \u0431\u0440\u0430\u0432\u0430, \u0430\u0440\u0435\u043d\u0434\u0430 \u043a\u0430\u0442\u0435\u0440\u0430 \u0431\u043b\u0430\u043d\u0435\u0441, \u043b\u043e\u0434\u043a\u0430 \u0431\u0435\u0437 \u0448\u043a\u0438\u043f\u0435\u0440\u0430, \u043b\u043e\u0434\u043a\u0438 \u0441 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u0431\u043b\u0430\u043d\u0435\u0441",
+      ogTitle: "\u041a\u0430\u0442\u0435\u0440\u0430 \u0411\u0435\u0437 \u0428\u043a\u0438\u043f\u0435\u0440\u0430 \u0432 \u0411\u043b\u0430\u043d\u0435\u0441\u0435 | \u0422\u043e\u0441\u0441\u0430 \u0437\u0430 30-45 \u043c\u0438\u043d",
+      ogDescription: `3 \u043a\u0430\u0442\u0435\u0440\u0430 80-115 \u043b.\u0441. \u0412\u044b \u0437\u0430 \u0448\u0442\u0443\u0440\u0432\u0430\u043b\u043e\u043c \u0441\u043e \u0441\u0432\u043e\u0435\u0439 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439, \u043f\u0440\u043e\u0432\u0435\u0440\u0438\u043c \u0435\u0451 \u043e\u043d\u043b\u0430\u0439\u043d \u0437\u0430\u0440\u0430\u043d\u0435\u0435. ${BUSINESS_RATING_STR}\u2605 Google.`
     },
     testimonios: {
       title: "Отзывы Клиентов Аренда Лодок Бланес",

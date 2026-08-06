@@ -230,9 +230,9 @@ export const es: Translations = {
     navTossaTag3: "Pueblo pintoresco",
     navLicensedTitle: "Barcos Con Licencia",
     navLicensedDesc: "Embarcaciones potentes para navegación avanzada con titulación.",
-    navLicensedTag1: "40-115 CV",
+    navLicensedTag1: "80-115 CV",
     navLicensedTag2: "Mayor velocidad",
-    navLicensedTag3: "Sin límite distancia",
+    navLicensedTag3: "Hasta Tossa de Mar",
     mapTitle: "Nos encontramos en el Puerto de Blanes",
     mapSubtitle: "Fácil acceso y parking disponible cerca del puerto deportivo.",
     viewMap: "Ver en Google Maps",
@@ -2551,7 +2551,7 @@ export const es: Translations = {
         pricingNoLicCapacity: "Capacidad: 4-7 personas según modelo",
         pricingLicTitle: "Barcos con licencia",
         pricingLicFrom: "Desde {licBaja2h} € / 2 horas",
-        pricingLicEngines: "Motores de 40 a 115 CV",
+        pricingLicEngines: "Motores de 80 a 115 CV",
         pricingLicCapacity: "Capacidad: hasta 11 personas",
         pricingButton: "Ver todos los precios y barcos",
         ctaTitle: "Reserva tu barco desde Tordera",
@@ -2657,7 +2657,7 @@ export const es: Translations = {
         pricingNoLicCapacity: "Capacidad: 4-7 personas según modelo",
         pricingLicTitle: "Barcos con licencia",
         pricingLicFrom: "Desde {licBaja2h} € / 2 horas",
-        pricingLicEngines: "Motores de 40 a 115 CV",
+        pricingLicEngines: "Motores de 80 a 115 CV",
         pricingLicCapacity: "Capacidad: hasta 11 personas",
         pricingButton: "Ver todos los precios y barcos",
         ctaTitle: "Reserva tu barco desde Palafolls",
@@ -2779,7 +2779,7 @@ export const es: Translations = {
         pricingNoLicCapacity: "Capacidad: 4-7 personas según modelo",
         pricingLicTitle: "Barcos con licencia",
         pricingLicFrom: "Desde {licBaja2h} € / 2 horas",
-        pricingLicEngines: "Motores de 40 a 115 CV",
+        pricingLicEngines: "Motores de 80 a 115 CV",
         pricingLicCapacity: "Capacidad: hasta 11 personas",
         pricingButton: "Ver todos los precios y barcos",
         ctaTitle: "Reserva tu barco desde Pineda de Mar",
@@ -2983,37 +2983,35 @@ export const es: Translations = {
       "El precio final con marketplace suele ser un 20-35% mayor que el anunciado una vez sumas gasolina, comisión y extras. Nuestros 75€/h incluyen ya todo: gasolina, equipamiento, briefing, seguro de responsabilidad civil y soporte en puerto.",
   },
   categoryLicensed: {
-    heroTitle: "Barcos Con Licencia en Blanes",
+    heroTitle: "Alquiler de lanchas sin patrón en Blanes: llega pilotando hasta Tossa de Mar",
     heroDescription:
-      "Alquila embarcaciones potentes con licencia en Puerto de Blanes, Costa Brava. Máxima libertad para navegación avanzada. Basta la Licencia de Navegación (LN) o cualquier titulación superior.",
-    badgeLicense: "Requiere Licencia",
-    badgePower: "40-115 CV",
+      "Tres lanchas con licencia de 80 a 115 CV en el Puerto de Blanes. Tú al timón con tu Licencia de Navegación o título extranjero equivalente, que verificamos online antes de tu viaje. Desde 160 EUR las 2 horas.",
+    badgeLicense: "Basta la Licencia de Navegación",
+    badgePower: "80-115 CV",
     badgeCapacity: "6-7 personas",
-    whatAreTitle: "¿Qué son los Barcos Con Licencia?",
-    advancedNavigation: "Navegación Avanzada",
+    whatAreTitle: "¿Qué es una lancha con licencia?",
+    advancedNavigation: "Más potencia, más radio",
     advancedNavigationDesc:
-      "Los barcos con licencia son embarcaciones de más de 15 CV de potencia que requieren titulación náutica oficial (Licencia de Navegación o superior) para su manejo. Ofrecen mayor potencia, velocidad y capacidad de navegación.",
-    greaterFreedom: "Mayor Libertad",
+      "Nuestras lanchas montan motores de 80 a 115 CV, frente a los 15 CV de los barcos sin licencia. Eso se traduce en velocidad de crucero real y en llegar a calas que quedan fuera del alcance de un barco de iniciación.",
+    greaterFreedom: "Tú decides el rumbo",
     greaterFreedomDesc:
-      "Con estas embarcaciones puedes navegar sin limitación de distancia de la costa (según tu titulación), acceder a calas más lejanas y disfrutar de una experiencia de navegación más deportiva y emocionante.",
-    professionalEquipment: "Equipamiento Profesional",
+      "Sin patrón a bordo, el plan lo marcas tú dentro de la zona que permite tu titulación: madrugar para fondear casi en solitario en Santa Cristina, comer frente a Fenals o plantarte en Tossa a media mañana.",
+    professionalEquipment: "Equipamiento completo",
     professionalEquipmentDesc:
-      "Nuestros barcos con licencia incluyen equipamiento avanzado: GPS, sonda, radio VHF, mayor capacidad de combustible, mejores asientos y sistemas de navegación profesional.",
-    superiorPerformance: "Rendimiento Superior",
+      "Equipo de seguridad homologado, toldo para la sombra, ducha y escalera de baño. Cada lancha se revisa entre salida y salida, y antes de zarpar repasamos contigo el manejo en el briefing técnico.",
+    superiorPerformance: "Pensadas para la jornada entera",
     superiorPerformanceDesc:
-      "Mayor velocidad de crucero, mejor estabilidad en mar abierto, capacidad para transportar más personas cómodamente y autonomía para excursiones de día completo.",
-    fleetTitle: "Nuestra Flota Con Licencia",
-    advantagesTitle: "Ventajas de los Barcos Con Licencia",
-    superiorPerformanceAdv: "Rendimiento Superior",
-    greaterSpeedPower: "Mayor velocidad y potencia",
-    unlimitedDistance: "Navegación sin límite de distancia",
-    remoteCoves: "Acceso a calas más remotas",
-    betterOpenSea: "Mejor comportamiento en mar abierto",
-    premiumExperience: "Experiencia Premium",
-    advancedNavEquipment: "Equipamiento de navegación avanzado",
-    greaterComfort: "Mayor comodidad y espacio",
-    greaterFuelAutonomy: "Mayor autonomía de combustible",
-    sportNavigation: "Experiencia de navegación deportiva",
+      "Con 6 y 7 plazas y autonomía para el día completo, son la opción de grupos y familias que quieren ruta de verdad: por horas, medio día o jornada completa.",
+    synonymsTitle: "¿Lancha, motora o barco con licencia? Es lo mismo",
+    synonymsBody:
+      "En la Costa Brava se les llama de las tres formas: lancha, motora o barco con licencia. Son embarcaciones de motor de más de 15 CV que exigen titulación náutica. Y alquilar sin patrón significa exactamente eso: que no llevas patrón contratado porque el patrón eres tú.",
+    routeTitle: "De Blanes a Tossa pilotando tú: la ruta",
+    routeIntro:
+      "Sales del Puerto de Blanes y en un cuarto de hora estás frente a Lloret de Mar. Desde ahí la costa se abre en calas hasta la bahía de Tossa de Mar, con su castillo sobre el mar: 30-45 minutos de trayecto con cualquiera de nuestras lanchas.",
+    routeStopLloret: "Lloret de Mar y la playa de Fenals: a 15 minutos del puerto",
+    routeStopSantaCristina: "Cala Santa Cristina y Cala Treumal: fondeo tranquilo entre Blanes y Lloret",
+    routeStopCanyelles: "Cala Canyelles: la última parada antes del tramo de acantilados hacia Tossa",
+    routeStopTossa: "Tossa de Mar: bahía con castillo medieval, a 30-45 minutos pilotando",
     requirementsTitle: "Requisitos y Titulaciones",
     acceptedLicenses: "Titulaciones Aceptadas",
     licenciaNavegacion: "Licencia de Navegación (LN): la titulación mínima, basta para toda nuestra flota",
@@ -3022,27 +3020,110 @@ export const es: Translations = {
     yachtCaptain: "Capitán de Yate",
     icc: "ICC (Certificado Internacional)",
     euEquivalent: "Licencias equivalentes UE",
+    verifierLead: "¿Título de otro país? Compruébalo aquí en 30 segundos:",
     additionalRequirements: "Requisitos Adicionales",
     minAge: "Edad mínima: 18 años",
     validId: "Documento de identidad válido",
-    validLicense: "Titulación náutica en vigor",
+    validLicense: "Titulación náutica en vigor (trae el original)",
     deposit: "Fianza: 500€ (se devuelve)",
     technicalBriefing: "Briefing técnico incluido",
-    whatCanDoTitle: "Qué Puedes Hacer con Licencia",
-    expandedDestinations: "Destinos Ampliados",
-    islasMedas: "Islas Medas (navegación avanzada)",
-    begurCoves: "Calas remotas de Begur",
-    cadaques: "Cadaqués y Cap de Creus",
-    nightNavigation: "Navegación nocturna (con PER)",
-    specialActivities: "Actividades Especiales",
-    sportFishing: "Pesca deportiva en mar abierto",
-    fullDayTrips: "Excursiones de día completo",
-    sportNav: "Navegación deportiva",
-    portToPort: "Travesías entre puertos",
-    ctaTitle: "¿Tienes Licencia y Buscas Aventura?",
+    fleetTitle: "Nuestra Flota Con Licencia",
+    comparisonTitle: "¿Qué lancha elijo? Comparativa rápida",
+    comparisonIntro:
+      "Las tres salen del Puerto de Blanes y se manejan con la Licencia de Navegación. Cambian la potencia, las plazas y el carácter: esta tabla lo resume con el precio de 2 horas por temporada.",
+    comparisonBoatName: "Lancha",
+    comparisonCapacity: "Plazas",
+    comparisonEngine: "Motor",
+    comparisonBestFor: "Ideal para",
+    comparisonPriceLow: "2h temporada baja",
+    comparisonPriceHigh: "2h agosto",
+    comparisonMingolla: "Estrenarse con lancha: ágil, fácil y la más económica",
+    comparisonTrimarchi: "Carácter deportivo italiano para rutas con ritmo",
+    comparisonPacific: "Grupos de 7: la más grande y estable de las tres",
+    regulationTitle: "Lo que dice la normativa",
+    regulationIntro:
+      "Desde el RD 875/2014, manejar una embarcación de recreo de más de 15 CV exige titulación náutica oficial. Nuestras tres lanchas superan ese umbral, así que para alquilarlas sin patrón necesitas tu título en vigor: con la Licencia de Navegación ya puedes llevar toda nuestra flota.",
+    regulationForeign:
+      "Si tu título es de otro país del EEE se aplica la reciprocidad europea, y también aceptamos el ICC internacional. Tráelo en original el día de la salida junto con tu documento de identidad.",
+    regulationFuelDeposit:
+      "A diferencia de nuestros barcos sin licencia, aquí la gasolina no está incluida: se paga aparte según el consumo real. La fianza es de 500 EUR y se devuelve al finalizar si el barco vuelve como salió.",
+    howToTitle: "Cómo alquilar una lancha sin patrón en Blanes",
+    howToIntro:
+      "Del primer mensaje a estar navegando hay cinco pasos y ninguno requiere pago online: reservas, verificas tu título y pagas en el puerto el día de la salida.",
+    howToStep1Title: "Elige lancha y franja",
+    howToStep1Text:
+      "Compara las tres lanchas de la tabla y decide cuántas horas quieres: 2 horas, medio día o jornada completa. Escríbenos por WhatsApp o reserva desde la web.",
+    howToStep2Title: "Verifica tu titulación",
+    howToStep2Text:
+      "Usa el verificador online de esta página: seleccionas tu país y tu título y sabes al momento si vale. La Licencia de Navegación española ya cubre toda la flota.",
+    howToStep3Title: "Ven al Puerto de Blanes",
+    howToStep3Text:
+      "El día de la salida trae el título original, tu documento de identidad y la fianza de 500 EUR. El pago del alquiler se hace en el puerto, sin pasarelas online.",
+    howToStep4Title: "Briefing y rumbo a Tossa",
+    howToStep4Text:
+      "Repasamos contigo el barco y la zona de navegación en unos minutos y sales pilotando: Lloret queda a 15 minutos y Tossa de Mar a 30-45.",
+    howToStep5Title: "Devuelve y recupera la fianza",
+    howToStep5Text:
+      "Vuelve a la hora acordada, ajustamos la gasolina según el consumo real y te devolvemos la fianza en el momento si todo está en orden.",
+    vsMarketplacesTitle: "Reservar directo o por plataforma",
+    vsMarketplacesIntro:
+      "Nuestras lanchas también aparecen en portales de alquiler. El barco y el puerto son los mismos; lo que cambia es con quién tratas antes y durante tu salida.",
+    vsMarketplacesCol1: "Directo con nosotros",
+    vsMarketplacesCol2: "A través de plataforma",
+    vsMarketplacesRow1Label: "Con quién hablas",
+    vsMarketplacesRow1Direct: "Con los armadores por WhatsApp, del primer mensaje a la entrega",
+    vsMarketplacesRow1Market: "Con la mensajería del portal y sus tiempos de respuesta",
+    vsMarketplacesRow2Label: "Tu titulación extranjera",
+    vsMarketplacesRow2Direct: "La verificamos online antes de reservar",
+    vsMarketplacesRow2Market: "Se comprueba el día de la salida en el puerto",
+    vsMarketplacesRow3Label: "Garantía de mal tiempo",
+    vsMarketplacesRow3Direct: "Opcional al reservar: nueva fecha o devolución en dinero",
+    vsMarketplacesRow3Market: "Según las condiciones de cada portal",
+    vsMarketplacesRow4Label: "Cambios de fecha",
+    vsMarketplacesRow4Direct: "Gratis hasta 7 días antes, hablando directamente con nosotros",
+    vsMarketplacesRow4Market: "Gestionados a través del intermediario",
+    vsMarketplacesConclusion:
+      "Mismo barco y mismo puerto: reservando directo hablas con quien te entrega la lancha, dejas tu titulación verificada antes de venir y puedes añadir la Garantía de mal tiempo.",
+    faqSinPatronQuestion: "¿Puedo alquilar un barco sin patrón en la Costa Brava?",
+    faqSinPatronAnswer:
+      "Sí. Nuestras tres lanchas se alquilan sin patrón: el patrón eres tú con tu Licencia de Navegación o cualquier título superior en vigor. Y si prefieres no pilotar, tenemos una excursión privada con patrón profesional.",
+    faqTossaQuestion: "¿Puedo llegar a Tossa de Mar pilotando yo desde Blanes?",
+    faqTossaAnswer:
+      "Sí. Desde el Puerto de Blanes se llega a la bahía de Tossa de Mar en 30-45 minutos con cualquiera de nuestras lanchas con licencia. Es un trayecto que los barcos sin licencia no alcanzan: su zona se queda en Blanes y Lloret.",
+    faqLanchaQuestion: "¿Qué lanchas puedo alquilar en Blanes y para cuántas personas?",
+    faqLanchaAnswer:
+      "Tres lanchas de 80 a 115 CV: la Mingolla Brava 19 para 6 personas, la Trimarchi 57S para 7 y la Pacific Craft 625 para 7. Todas salen del Puerto de Blanes por horas, medio día o día completo.",
+    faqTitulacionQuestion: "¿Qué titulación mínima necesito? ¿Basta la Licencia de Navegación?",
+    faqTitulacionAnswer:
+      "Sí, la Licencia de Navegación (el titulín) basta para toda nuestra flota con licencia. También valen el PNB, el PER y cualquier título superior, además de los equivalentes de la UE.",
+    faqForeignLicenseQuestion: "¿Vale mi licencia extranjera (Permis Cotier, SBF See, ICC)?",
+    faqForeignLicenseAnswer:
+      "Sí, aceptamos títulos extranjeros equivalentes: el Permis Cotier francés, el SBF See alemán, el ICC internacional y los equivalentes de países del EEE. Compruébalo en el verificador online de esta página y trae el título original el día de la salida.",
+    faqPriceQuestion: "¿Cuánto cuesta alquilar una lancha por horas en Blanes?",
+    faqPriceAnswer:
+      "Desde 160 EUR las 2 horas en temporada baja, y desde 190 EUR en agosto según la lancha. El medio día y el día completo tienen tarifas propias por temporada: la tabla comparativa de esta página y la página de precios muestran el detalle. La gasolina se paga aparte.",
+    faqFuelQuestion: "¿La gasolina está incluida en los barcos con licencia?",
+    faqFuelAnswer:
+      "No. En las lanchas con licencia la gasolina se paga aparte según el consumo real de la salida. El seguro y el equipo de seguridad sí están incluidos siempre.",
+    faqDepositQuestion: "¿Cómo funciona la fianza de 500 euros?",
+    faqDepositAnswer:
+      "Se deposita el día de la salida y se devuelve íntegra al devolver la lancha en el mismo estado en que salió. Existe también una cobertura opcional de fianza reducida si prefieres bloquear menos importe.",
+    faqWeatherQuestion: "¿Qué pasa si hace mal tiempo el día del alquiler?",
+    faqWeatherAnswer:
+      "Puedes cambiar la fecha gratis hasta 7 días antes de la salida. Si el mal tiempo impide salir, cambiamos la fecha sin coste o te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero.",
+    faqCrossLinkLabel: "Ver las lanchas con licencia",
+    crossLinkFromFree: "¿Tienes titulación? Lanchas de 80 a 115 CV hasta Tossa",
+    linksTitle: "Sigue explorando",
+    linksBlanes: "Puerto de Blanes: el punto de salida",
+    linksTossa: "Alquiler de barco en Tossa de Mar",
+    linksBlogTossa: "La ruta Blanes a Tossa paso a paso",
+    linksPricing: "Precios por temporada y duración",
+    linksNoLicense: "¿Sin titulación? Mira los barcos sin licencia",
+    linksSkipper: "¿Prefieres patrón? Excursión privada con capitán",
+    ctaTitle: "¿Tienes el título? La lancha te espera en Blanes",
     ctaDescription:
-      "Alquila un barco con licencia y experimenta la verdadera libertad de navegación. Potencia, velocidad y acceso ilimitado a toda la Costa Brava.",
-    ctaButton: "Reservar Barco Con Licencia",
+      "Cuéntanos día, horas y cuántos sois y te confirmamos disponibilidad al momento. Sin pago online: reservas por WhatsApp y pagas en el puerto.",
+    ctaButton: "Reservar mi lancha",
   },
   blogPage: {
     title: "Blog de Navegación",
@@ -3337,7 +3418,7 @@ export const es: Translations = {
         id: "diferencia-licencia",
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 75€. Los barcos con licencia tienen motores de 40-115 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde 160€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
+          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 75€. Los barcos con licencia tienen motores de 80-115 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde 160€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
       },
       {
         id: "precio-blanes-vs-lloret",
@@ -4391,7 +4472,7 @@ export const es: Translations = {
       licenciasAceptadas: {
         question: "¿Qué licencias aceptan para barcos grandes?",
         answer:
-          "Para barcos con licencia aceptamos: PER (Patrón de Embarcaciones de Recreo), PNB (Patrón de Navegación Básica), Capitán de Yate, licencias europeas equivalentes y licencias internacionales homologadas. Debes presentar la licencia original el día del alquiler.",
+          "Para barcos con licencia basta la Licencia de Navegación (LN), la titulación mínima: cubre toda nuestra flota. También aceptamos PNB (Patrón de Navegación Básica), PER (Patrón de Embarcaciones de Recreo), Capitán de Yate, licencias europeas equivalentes y licencias internacionales homologadas como el ICC. Debes presentar la licencia original el día del alquiler.",
       },
       edadMinima: {
         question: "¿Cuál es la edad mínima para alquilar?",
@@ -4516,7 +4597,7 @@ export const es: Translations = {
       diferenciaLicencia: {
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde {noLicBaja1h}€. Los barcos con licencia tienen motores de 40-115 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde {licBaja2h}€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
+          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde {noLicBaja1h}€. Los barcos con licencia tienen motores de 80-115 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde {licBaja2h}€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
       },
       precioBlanesVsLloret: {
         question: "¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?",
@@ -4957,7 +5038,7 @@ export const es: Translations = {
       {
         term: "CV (caballos de vapor)",
         definition:
-          "Unidad de potencia del motor marino. Los barcos sin licencia en España están limitados a 15 CV. Nuestros barcos con licencia tienen de 40 a 115 CV, permitiendo navegación más rápida y alcance mayor.",
+          "Unidad de potencia del motor marino. Los barcos sin licencia en España están limitados a 15 CV. Nuestros barcos con licencia tienen de 80 a 115 CV, permitiendo navegación más rápida y alcance mayor.",
         category: "unidad",
       },
       {
@@ -5428,7 +5509,7 @@ export const es: Translations = {
       licensed: {
         name: "Barcos con licencia",
         description: "Embarcaciones potentes para navegación avanzada con titulación.",
-        features: ["40-115 CV", "Mayor velocidad", "Mayor autonomía"],
+        features: ["80-115 CV", "Mayor velocidad", "Mayor autonomía"],
       },
     },
   },

@@ -24,7 +24,21 @@ const envSchema = z.object({
   GCS_BUCKET_NAME: z.string().optional(),
   ANTHROPIC_API_KEY: z.string().optional(),
   GOOGLE_SERVICE_ACCOUNT_EMAIL: z.string().optional(),
-  GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: z.string().optional(),
+  // Normalize the PEM at the source so every consumer gets a parseable key.
+  // Hosting panels (Coolify) may store the value wrapped in quotes or with
+  // literal \n escapes; either variant breaks crypto with
+  // "DECODER routines::unsupported" (gsc-sync outage 2026-07-29..08-06).
+  GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: z
+    .string()
+    .optional()
+    .transform((raw) => {
+      if (!raw) return raw;
+      let key = raw.trim();
+      if ((key.startsWith('"') && key.endsWith('"')) || (key.startsWith("'") && key.endsWith("'"))) {
+        key = key.slice(1, -1);
+      }
+      return key.replace(/\\n/g, "\n");
+    }),
   GOOGLE_ANALYTICS_PROPERTY_ID: z.string().optional(),
   GSC_SITE_URL: z.string().optional(),
   PAGESPEED_API_KEY: z.string().optional(),

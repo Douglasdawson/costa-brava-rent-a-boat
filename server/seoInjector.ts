@@ -15,7 +15,7 @@ import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES } from "../shared/businessProfile";
 import { buildCoreFacts } from "../shared/aiCitationFacts";
 import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
-import { BOAT_DATA, applyFleetStatsToText } from "../shared/boatData";
+import { BOAT_DATA, applyFleetStatsToText, isCaptainedBoat } from "../shared/boatData";
 import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { SHOP_PRODUCTS } from "../shared/shopData";
@@ -601,9 +601,12 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
   },
   "/barcos-sin-licencia": {
+    // Mirrors client seo-config categoryLicenseFree (Lloret/Maresme rule).
+    // Baselines "5 barcos"/"70€" on purpose: applyFleetStatsToText() rewrites
+    // them to the live fleet count/floor (4/75 today), matching the client copy.
     es: {
-      title: "Barcos Sin Licencia en Blanes | 5 Barcos desde 70€/h",
-      description: "5 barcos sin licencia en Blanes con gasolina incluida. Astec 400, Solar 450, Remus 450 y Astec 480. Formación 15 min. 4.8★ Google. Reserva online.",
+      title: `Alquiler Barco Sin Licencia Costa Brava · ${BUSINESS_RATING_STR}★ · 70€/h Blanes`,
+      description: `5 barcos sin licencia en Blanes desde 70€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Hasta 5 personas, briefing 15 min, sin experiencia.`,
       ogTitle: "Barcos Sin Licencia en Blanes | Fácil y Seguro Costa Brava",
       ogDescription: "Alquila barcos sin licencia en Blanes. Hasta 15 CV, 4-7 personas. No necesitas titulación.",
     },
@@ -636,40 +639,43 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "5 лодок без лицензии в Бланесе от 70€/ч. Топливо включено, 4-7 человек. Без опыта, обучение 15 мин. 4.8★ Google. Бронируйте онлайн.",
     },
   },
+  // Retargeted 2026-08-06: GSC shows zero demand for "con licencia" (225 imp/90d)
+  // while "lancha" (636), "sin patrón" (808) and Tossa (1,844) carry the segment.
+  // MUST mirror client seo-config.ts categoryLicensed exactly (Lloret/Maresme rule).
   "/barcos-con-licencia": {
     es: {
-      title: "Barcos Con Licencia Blanes Costa Brava | desde 160€/2h",
-      description: "Navega a Lloret (15 min) y Tossa (30 min) desde Blanes. 3 barcos 80-115CV. Licencia Básica o con patrón incluido. 4.8★ Google. Reserva online.",
-      ogTitle: "Barcos Con Licencia en Blanes | Lloret 15 min, Tossa 30 min",
-      ogDescription: "3 barcos potentes 80-115CV en Blanes. Con tu Licencia Básica o con patrón. Reserva online.",
+      title: "Alquiler Lancha Costa Brava Sin Patrón | Blanes desde 160€",
+      description: `3 lanchas de 80 a 115 CV para pilotar tú mismo desde Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Basta la Licencia de Navegación. ${BUSINESS_RATING_STR}★ Google.`,
+      ogTitle: "Alquiler de Lanchas Sin Patrón en Blanes | Tossa en 30-45 min",
+      ogDescription: `3 lanchas 80-115 CV. Tú al timón con tu Licencia de Navegación. Verificamos títulos extranjeros online. ${BUSINESS_RATING_STR}★ Google.`,
     },
     en: {
-      title: "Licensed Boat Rental Costa Brava | Blanes from 160€/2h",
-      description: "Sail to Lloret (15 min) and Tossa (30 min) from Blanes. 3 boats 80-115HP. Basic License or with skipper. 4.8★ Google. Book online.",
+      title: "Self-Drive Boat Rental Costa Brava | Blanes from 160€/2h",
+      description: `3 powerboats 80-115 HP you skipper yourself from Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Navigation Licence, ICC or EU equivalents. ${BUSINESS_RATING_STR}★ Google.`,
     },
     ca: {
-      title: "Barques Amb Llicència Blanes | Costa Brava des de 160€/2h",
-      description: "Navega a Lloret (15 min) i Tossa (30 min) des de Blanes. 3 barques 80-115CV. Llicència Bàsica o amb patró. 4.8★ Google. Reserva online.",
+      title: "Lloguer Llanxa Costa Brava Sense Patró | Blanes des de 160€",
+      description: `3 llanxes de 80 a 115 CV per pilotar tu mateix des de Blanes: Lloret 15 min, Tossa de Mar 30-45 min. N'hi ha prou amb la Llicència de Navegació. ${BUSINESS_RATING_STR}★ Google.`,
     },
     fr: {
-      title: "Bateaux Avec Permis Blanes | Costa Brava dès 160€/2h",
-      description: "Naviguez à Lloret (15 min) et Tossa (30 min) depuis Blanes. 3 bateaux 80-115CV. Permis côtier ou avec skipper. 4.8★ Google. Réservez en ligne.",
+      title: "Location Bateau Moteur Sans Skipper | Blanes dès 160€/2h",
+      description: `3 bateaux à moteur de 80 à 115 CV à piloter vous-même depuis Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Permis Côtier et ICC acceptés. ${BUSINESS_RATING_STR}★ Google.`,
     },
     de: {
-      title: "Boote Mit Führerschein Blanes | Costa Brava ab 160€/2h",
-      description: "Segeln Sie nach Lloret (15 Min) und Tossa (30 Min) ab Blanes. 3 Boote 80-115PS. Bootsführerschein oder mit Skipper. 4.8★ Google. Online buchen.",
+      title: "Motorboot Mieten Costa Brava Ohne Skipper | Blanes ab 160€/2h",
+      description: `3 Motorboote mit 80-115 PS zum Selbstfahren ab Blanes: Lloret 15 Min, Tossa de Mar 30-45 Min. SBF See und ICC anerkannt. ${BUSINESS_RATING_STR}★ Google.`,
     },
     nl: {
-      title: "Boten Met Vaarbewijs Costa Brava | Blanes vanaf 160€/2u",
-      description: "Vaar naar Lloret (15 min) en Tossa (30 min) vanuit Blanes. 3 boten 80-115PK. Vaarbewijs of met schipper. 4.8★ Google. Boek online.",
+      title: "Motorboot Huren Costa Brava Zonder Schipper | Blanes va 160€/2u",
+      description: `3 motorboten van 80-115 pk om zelf te varen vanuit Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Vaarbewijs en ICC geaccepteerd. ${BUSINESS_RATING_STR}★ Google.`,
     },
     it: {
-      title: "Barche Con Patente Costa Brava | Blanes da 160€/2h",
-      description: "Naviga a Lloret (15 min) e Tossa (30 min) da Blanes. 3 barche 80-115CV. Patente nautica o con skipper. 4.8★ Google. Prenota online.",
+      title: "Noleggio Motoscafo Costa Brava Senza Skipper | Blanes da 160€",
+      description: `3 motoscafi da 80 a 115 CV da pilotare tu stesso da Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Patente nautica e ICC accettate. ${BUSINESS_RATING_STR}★ Google.`,
     },
     ru: {
-      title: "Лодки С Лицензией Коста-Брава | Бланес от 160€/2ч",
-      description: "Плавайте в Льорет (15 мин) и Тосса (30 мин) из Бланеса. 3 лодки 80-115 л.с. С лицензией или шкипером. 4.8★ Google. Бронируйте онлайн.",
+      title: "Аренда Катера Коста-Брава Без Шкипера | Бланес от 160€/2ч",
+      description: `3 катера 80-115 л.с., за штурвалом вы сами: Льорет 15 мин, Тосса-де-Мар 30-45 мин от Бланеса. Принимаем ICC и лицензии ЕС. ${BUSINESS_RATING_STR}★ Google.`,
     },
   },
   "/alquiler-barcos-blanes": {
@@ -3396,11 +3402,16 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqNoLicense, breadcrumb] }, availableLanguages, bodyFallback: noLicenseBodyFallback };
     }
 
-    // /barcos-con-licencia - ItemList of licensed boats (dynamic from DB)
+    // /barcos-con-licencia - self-drive powerboats. Retargeted 2026-08-06 to the
+    // vocabulary buyers actually search (lancha / sin patrón / Tossa); FAQPage and
+    // HowTo are built FROM the same i18n keys the page renders, so schema and
+    // visible content cannot drift.
     else if (metaKey === "/barcos-con-licencia") {
       const allBoatsLic = await storage.getAllBoats();
+      // The captained excursion also stores requiresLicense (the captain's, not
+      // the client's) — keep it out of the self-drive list.
       const licensedBoats = allBoatsLic
-        .filter(b => b.isActive && b.requiresLicense)
+        .filter(b => b.isActive && b.requiresLicense && !isCaptainedBoat(b.id))
         .map(b => {
           const seasons = b.pricing ? Object.values(b.pricing) as Array<{ prices?: Record<string, number> }> : [];
           const prices = seasons.flatMap(s => s?.prices ? Object.values(s.prices) : []);
@@ -3410,10 +3421,10 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const itemList = {
         "@type": "ItemList",
         "@id": `${BASE_URL}/barcos-con-licencia#itemlist`,
-        name: isEn ? "Licensed Boats in Blanes" : "Barcos Con Licencia en Blanes",
+        name: isEn ? "Self-Drive Powerboats in Blanes" : "Lanchas Sin Patrón en Blanes",
         description: isEn
-          ? "4 licensed boats available for rent in Blanes, Costa Brava. Powerful engines for longer routes to Tossa de Mar."
-          : "4 barcos con licencia disponibles para alquilar en Blanes, Costa Brava. Motores potentes para rutas mas largas hasta Tossa de Mar.",
+          ? `${licensedBoats.length} self-drive powerboats (80-115 HP) for rent in Blanes, Costa Brava. Skipper yourself to Lloret and Tossa de Mar.`
+          : `${licensedBoats.length} lanchas sin patrón (80-115 CV) para alquilar en Blanes, Costa Brava. Pilota tú mismo hasta Lloret y Tossa de Mar.`,
         numberOfItems: licensedBoats.length,
         itemListElement: licensedBoats.map((boat, i) => ({
           "@type": "ListItem",
@@ -3424,8 +3435,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
             "@type": "Product",
             name: boat.name,
             description: isEn
-              ? `Licensed boat for up to ${boat.capacity} people in Blanes`
-              : `Barco con licencia para hasta ${boat.capacity} personas en Blanes`,
+              ? `Licensed powerboat for up to ${boat.capacity} people in Blanes`
+              : `Lancha con licencia para hasta ${boat.capacity} personas en Blanes`,
             offers: {
               "@type": "Offer",
               priceCurrency: "EUR",
@@ -3439,54 +3450,90 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
           },
         })),
       };
+      // Non-null assertion: CI (validate-translations) guarantees the key in all locales.
+      const cl = (I18N_BY_LANG[lang] ?? i18nEs).categoryLicensed!;
+      // FAQPage mirrors the 9 questions the page renders visibly (FAQSection),
+      // in the visitor's language. Never emit schema without visible content.
       const faqLicense = {
         "@type": "FAQPage",
         mainEntity: [
-          {
-            "@type": "Question",
-            name: isEn ? "What license do I need to rent a licensed boat in Blanes?" : "Que licencia necesito para alquilar un barco con licencia en Blanes?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "You need a valid Spanish PER (Patron de Embarcaciones de Recreo) or equivalent international boating license."
-              : "Necesitas un PER (Patron de Embarcaciones de Recreo) valido o licencia nautica internacional equivalente." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "Is fuel included with licensed boats?" : "El combustible esta incluido en los barcos con licencia?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "No. Fuel is charged separately based on actual consumption. Insurance and safety equipment are always included."
-              : "No. El combustible se cobra aparte segun el consumo real. El seguro y el equipo de seguridad siempre estan incluidos." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "How far can I go with a licensed boat from Blanes?" : "Hasta donde puedo navegar con un barco con licencia desde Blanes?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Much further than license-free boats. You can reach Tossa de Mar, explore hidden coves, and navigate up to the limits of your license."
-              : "Mucho mas lejos que los barcos sin licencia. Puedes llegar hasta Tossa de Mar, explorar calas escondidas y navegar hasta los limites de tu titulo." },
-          },
-        ],
+          [cl.faqSinPatronQuestion, cl.faqSinPatronAnswer],
+          [cl.faqTossaQuestion, cl.faqTossaAnswer],
+          [cl.faqLanchaQuestion, cl.faqLanchaAnswer],
+          [cl.faqTitulacionQuestion, cl.faqTitulacionAnswer],
+          [cl.faqForeignLicenseQuestion, cl.faqForeignLicenseAnswer],
+          [cl.faqPriceQuestion, cl.faqPriceAnswer],
+          [cl.faqFuelQuestion, cl.faqFuelAnswer],
+          [cl.faqDepositQuestion, cl.faqDepositAnswer],
+          [cl.faqWeatherQuestion, cl.faqWeatherAnswer],
+        ].map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
       };
-      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Licensed Boats" : "Barcos Con Licencia", url: `${BASE_URL}/barcos-con-licencia` }]);
+      const howToSteps = [
+        [cl.howToStep1Title, cl.howToStep1Text],
+        [cl.howToStep2Title, cl.howToStep2Text],
+        [cl.howToStep3Title, cl.howToStep3Text],
+        [cl.howToStep4Title, cl.howToStep4Text],
+        [cl.howToStep5Title, cl.howToStep5Text],
+      ];
+      const howTo = {
+        "@type": "HowTo",
+        name: cl.howToTitle,
+        description: cl.howToIntro,
+        totalTime: "PT30M",
+        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "160" },
+        supply: [
+          { "@type": "HowToSupply", name: isEn ? "Valid boating licence (original document)" : "Titulación náutica en vigor (documento original)" },
+          { "@type": "HowToSupply", name: isEn ? "ID and 500€ refundable deposit" : "Documento de identidad y fianza reembolsable de 500€" },
+        ],
+        step: howToSteps.map(([title, text], i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: title,
+          text,
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Self-Drive Powerboats" : "Lanchas Sin Patrón", url: `${BASE_URL}/barcos-con-licencia` }]);
       const service = buildLandingService(
-        isEn ? "Licensed Boat Rental in Blanes" : "Alquiler de Barcos Con Licencia en Blanes",
+        isEn ? "Self-Drive Powerboat Rental in Blanes" : "Alquiler de Lanchas Sin Patrón en Blanes",
         isEn
-          ? "3 licensed boats (70-115 HP, Yamaha engines) for rent in Blanes, Costa Brava. Requires valid boating license (PER, PNB or equivalent). Greater range: reach Tossa de Mar, Cala Giverola and beyond. Fuel charged separately."
-          : "3 barcos con licencia (70-115 CV, motores Yamaha) para alquilar en Blanes, Costa Brava. Requiere titulación náutica (PER, PNB o equivalente). Mayor autonomía: llega a Tossa de Mar, Cala Giverola y más allá. Combustible aparte.",
+          ? "3 self-drive powerboats (80-115 HP) for rent in Blanes, Costa Brava. The Spanish Navigation Licence or an equivalent foreign licence (ICC, EU) is enough. Skipper yourself to Lloret (15 min) and Tossa de Mar (30-45 min). Fuel charged separately."
+          : "3 lanchas sin patrón (80-115 CV) para alquilar en Blanes, Costa Brava. Basta la Licencia de Navegación o un título extranjero equivalente (ICC, UE). Pilota tú mismo hasta Lloret (15 min) y Tossa de Mar (30-45 min). Gasolina aparte.",
         { low: 160, high: 420 },
       );
-      // Non-null assertion: CI (validate-translations) guarantees the key in all locales.
-      const cl = (I18N_BY_LANG[lang] ?? i18nEs).categoryLicensed!;
       const licensedBodyFallback = buildLocationBodyFallback(
         cl.heroTitle,
         cl.heroDescription,
         [
-          `${cl.advancedNavigation} — ${cl.advancedNavigationDesc}`,
-          `${cl.greaterFreedom} — ${cl.greaterFreedomDesc}`,
-          `${cl.professionalEquipment} — ${cl.professionalEquipmentDesc}`,
-          `${cl.superiorPerformance} — ${cl.superiorPerformanceDesc}`,
+          `${cl.advancedNavigation}: ${cl.advancedNavigationDesc}`,
+          `${cl.greaterFreedom}: ${cl.greaterFreedomDesc}`,
+          `${cl.professionalEquipment}: ${cl.professionalEquipmentDesc}`,
+          `${cl.superiorPerformance}: ${cl.superiorPerformanceDesc}`,
+          cl.synonymsBody,
+          `${cl.routeTitle}: ${cl.routeIntro}`,
+          cl.routeStopLloret,
+          cl.routeStopSantaCristina,
+          cl.routeStopCanyelles,
+          cl.routeStopTossa,
+          cl.regulationIntro,
+          cl.regulationForeign,
+          cl.regulationFuelDeposit,
+          `${cl.faqSinPatronQuestion} ${cl.faqSinPatronAnswer}`,
+          `${cl.faqTossaQuestion} ${cl.faqTossaAnswer}`,
+          `${cl.faqLanchaQuestion} ${cl.faqLanchaAnswer}`,
+          `${cl.faqTitulacionQuestion} ${cl.faqTitulacionAnswer}`,
+          `${cl.faqForeignLicenseQuestion} ${cl.faqForeignLicenseAnswer}`,
+          `${cl.faqPriceQuestion} ${cl.faqPriceAnswer}`,
+          `${cl.faqFuelQuestion} ${cl.faqFuelAnswer}`,
+          `${cl.faqDepositQuestion} ${cl.faqDepositAnswer}`,
+          `${cl.faqWeatherQuestion} ${cl.faqWeatherAnswer}`,
         ],
         cl.ctaButton,
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqLicense, breadcrumb] }, availableLanguages, bodyFallback: licensedBodyFallback };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqLicense, howTo, breadcrumb] }, availableLanguages, bodyFallback: licensedBodyFallback };
     }
 
     // /paseo-atardecer-barco-blanes - Sunset activity. Fase 2 (2026-05-28):

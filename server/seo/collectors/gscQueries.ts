@@ -104,6 +104,8 @@ export async function collectGscQueries(options?: { daysBack?: number }): Promis
 
   let totalFetched = 0;
   let totalWritten = 0;
+  let failedDays = 0;
+  let lastError: string | null = null;
 
   for (let offset = 0; offset < daysBack; offset++) {
     const date = isoDate(subDays(latestAvailable, offset));
@@ -164,11 +166,18 @@ export async function collectGscQueries(options?: { daysBack?: number }): Promis
       totalWritten += values.length;
       logger.info(`[SEO:GSCQueries] ${date}: ${values.length} rows upserted`);
     } catch (error) {
-      logger.error(`[SEO:GSCQueries] ${date}: failed`, {
-        error: error instanceof Error ? error.message : String(error),
-      });
+      failedDays++;
+      lastError = error instanceof Error ? error.message : String(error);
+      logger.error(`[SEO:GSCQueries] ${date}: failed`, { error: lastError });
       // Keep going with the other days
     }
+  }
+
+  // Every single day failed: this run did nothing. Surface it as a failed run
+  // so the engine records an error instead of a green "success" with 0 rows
+  // (that silent-green pattern hid the 2026-07-29 credential outage for 8 days).
+  if (failedDays === daysBack && daysBack > 0) {
+    throw new Error(`[SEO:GSCQueries] all ${daysBack} days failed; last error: ${lastError}`);
   }
 
   logger.info(

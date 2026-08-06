@@ -1,5 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   Anchor,
   ArrowRight,
@@ -47,9 +52,7 @@ function RevealSection({
     <div
       ref={ref}
       className={`transition-[opacity,transform,filter] duration-700 ${
-        isVisible
-          ? "opacity-100 translate-y-0 blur-none"
-          : "opacity-0 translate-y-6 blur-[2px]"
+        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"
       } ${className}`}
     >
       {children}
@@ -162,6 +165,13 @@ const CATEGORIES: CategoryDef[] = [
  */
 const GUARANTEE_FAQ_VALUES = new Set(["tiempo", "fianza"]);
 
+/**
+ * Same pattern for the licensed-fleet answers: a separate link element to the
+ * licensed category page (never markup inside the answer string, it feeds the
+ * FAQPage JSON-LD verbatim).
+ */
+const LICENSED_FAQ_VALUES = new Set(["con-licencia", "diferencia-licencia", "blanes-tossa-barco"]);
+
 export default function FAQPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
@@ -192,14 +202,14 @@ export default function FAQPage() {
   const faqSchemaFromI18n = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "name": fp.schemaName,
-    "description": fp.schemaDescription,
-    "mainEntity": Object.values(fp.items).map((item) => ({
+    name: fp.schemaName,
+    description: fp.schemaDescription,
+    mainEntity: Object.values(fp.items).map(item => ({
       "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
+      name: item.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": substituteFaqVars(item.answer, faqVars),
+        text: substituteFaqVars(item.answer, faqVars),
       },
     })),
   };
@@ -216,7 +226,11 @@ export default function FAQPage() {
 
   const filterButtons = [
     { id: "all", name: fp.categories.all, icon: FileText },
-    ...CATEGORIES.map((cat) => ({ id: cat.id, name: fp.categories[cat.id] ?? cat.id, icon: cat.icon })),
+    ...CATEGORIES.map(cat => ({
+      id: cat.id,
+      name: fp.categories[cat.id] ?? cat.id,
+      icon: cat.icon,
+    })),
   ];
 
   const shouldShowCategory = (categoryId: string) =>
@@ -296,7 +310,7 @@ export default function FAQPage() {
       {/* ═══ FAQ ACCORDIONS ═══ */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {CATEGORIES.filter((cat) => shouldShowCategory(cat.id)).map((cat) => {
+          {CATEGORIES.filter(cat => shouldShowCategory(cat.id)).map(cat => {
             const Icon = cat.icon;
             return (
               <div key={cat.id} className="mb-10">
@@ -306,7 +320,9 @@ export default function FAQPage() {
                 </h2>
                 <Accordion type="single" collapsible>
                   {cat.items.map(({ value, fpKey }) => {
-                    const item = (fp.items as Record<string, { question: string; answer: string } | undefined>)[fpKey];
+                    const item = (
+                      fp.items as Record<string, { question: string; answer: string } | undefined>
+                    )[fpKey];
                     if (!item) return null;
                     return (
                       <AccordionItem key={value} value={value} data-testid={`faq-${value}`}>
@@ -322,6 +338,16 @@ export default function FAQPage() {
                               className="mt-3 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-cta transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
                             >
                               {t.garantiasPage.navLabel}
+                              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                            </a>
+                          )}
+                          {LICENSED_FAQ_VALUES.has(value) && (
+                            <a
+                              href={localizedPath("categoryLicensed")}
+                              data-testid={`faq-licensed-link-${value}`}
+                              className="mt-3 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-cta transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+                            >
+                              {t.categoryLicensed!.faqCrossLinkLabel}
                               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                             </a>
                           )}

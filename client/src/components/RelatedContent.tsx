@@ -283,9 +283,16 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     },
     {
       title: "Excursion a Tossa de Mar",
-      description: "Llega en 30 min con barco con licencia",
+      description: "Llega en 30-45 min pilotando tu propia lancha",
       pageKey: "locationTossa",
       type: "ubicacion",
+    },
+    {
+      title: "La ruta Blanes a Tossa en barco",
+      description: "Tiempos, calas y consejos para hacerla pilotando tu",
+      pageKey: "blogDetail",
+      param: "alquiler-barco-tossa-de-mar-desde-blanes",
+      type: "blog",
     },
   ],
   jetskiHub: [

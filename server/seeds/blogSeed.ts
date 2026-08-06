@@ -47,7 +47,7 @@ Probablemente la cala más recóndita de toda la Costa Brava. Con más de 15 hec
 
 **Consejo:** Llega antes de las 11:00 en temporada alta. El fondeo es fácil sobre arena a 3-4 metros de profundidad. Lleva snorkel: la vida marina en las rocas laterales es espectacular.
 
-**Barco recomendado:** Cualquiera de nuestros [barcos sin licencia](/barcos) es perfecto para esta escapada rápida.
+**Barco recomendado:** Cualquiera de nuestros [barcos sin licencia](/es/barcos) es perfecto para esta escapada rápida.
 
 ### 2. Cala Sant Francesc (Blanes)
 
@@ -65,7 +65,7 @@ Aunque técnicamente se puede llegar andando por un sendero desde el Jardín Bot
 
 Una cala pequeña pero muy bonita, con un islote rocoso que la protege del oleaje. Fondo arenoso ideal para niños. Desde aquí se ven los jardines de Santa Clotilde arriba.
 
-**Barco recomendado:** El [Astec 400](/barco/astec-400) es ideal para parejas que buscan intimidad.
+**Barco recomendado:** El [Astec 400](/es/barco/astec-400) es ideal para parejas que buscan intimidad.
 
 ### 4. Cala Treumal (Lloret de Mar)
 
@@ -74,7 +74,7 @@ Una cala pequeña pero muy bonita, con un islote rocoso que la protege del oleaj
 
 Dividida en dos por una formación rocosa, Treumal combina arena y roca con un agua excepcionalmente limpia. La parte sur es más tranquila y perfecta para anclar.
 
-**Barco recomendado:** El [Astec 480](/barco/astec-480) con su equipo de música bluetooth es genial para pasar una mañana relajada aquí.
+**Barco recomendado:** El [Astec 480](/es/barco/astec-480) con su equipo de música bluetooth es genial para pasar una mañana relajada aquí.
 
 ### 5. Cala Boadella (Lloret de Mar)
 
@@ -124,7 +124,7 @@ Una de las calas más salvajes y vírgenes de la Costa Brava. Rodeada de bosque 
 
 **Consejo:** Mar expuesta al sur. Consulta la previsión antes de ir. Si hay oleaje, es mejor evitarla.
 
-**Barco recomendado:** Para llegar cómodamente, te recomendamos el [Pacific Craft 625](/barco/pacific-craft-625) o la [Mingolla Brava 19](/barco/mingolla-brava-19) si tienes licencia.
+**Barco recomendado:** Para llegar cómodamente, te recomendamos el [Pacific Craft 625](/es/barco/pacific-craft-625) o la [Mingolla Brava 19](/es/barco/mingolla-brava-19) si tienes licencia.
 
 ### 11. Cala Canyet (Tossa de Mar)
 
@@ -168,7 +168,7 @@ Completamente salvaje y sin ningún tipo de servicio ni acceso terrestre practic
 ## Consejos para visitar las calas en barco
 
 - **Llega temprano:** Las calas más populares se llenan a partir de las 11:00 en verano.
-- **Lleva snorkel:** Muchas de estas calas tienen fondos marinos espectaculares. Puedes [alquilar equipo de snorkel](/barcos) con nosotros.
+- **Lleva snorkel:** Muchas de estas calas tienen fondos marinos espectaculares. Puedes [alquilar equipo de snorkel](/es/barcos) con nosotros.
 - **Guarda las coordenadas GPS:** Descarga un mapa offline en tu móvil antes de salir. Te servirán para encontrar las calas más escondidas.
 - **Respeta el entorno:** No tires basura al mar y respeta las zonas de fondeo marcadas.
 - **Consulta el tiempo:** Antes de planificar tu ruta, consulta la previsión meteorológica. Nosotros te asesoraremos en el briefing de seguridad.
@@ -184,14 +184,14 @@ Completamente salvaje y sin ningún tipo de servicio ni acceso terrestre practic
 
 | | Precio desde | Capacidad |
 |---|---|---|
-| [Astec 400](/barco/astec-400) | 70 EUR/hora | 4 personas |
-| [Solar 450](/barco/solar-450) | 75 EUR/hora | 5 personas |
-| [Remus 450](/barco/remus-450) | 75 EUR/hora | 5 personas |
-| [Astec 480](/barco/astec-480) | 80 EUR/hora | 5 personas |
+| [Astec 400](/es/barco/astec-400) | 70 EUR/hora | 4 personas |
+| [Solar 450](/es/barco/solar-450) | 75 EUR/hora | 5 personas |
+| [Remus 450](/es/barco/remus-450) | 75 EUR/hora | 5 personas |
+| [Astec 480](/es/barco/astec-480) | 80 EUR/hora | 5 personas |
 
 ## Reserva tu barco y descubre estas calas
 
-Con más de **307 reseñas en Google y una puntuación de 4,8 estrellas**, en Costa Brava Rent a Boat nos apasiona ayudarte a descubrir los mejores rincones de la costa. [Reserva tu barco ahora](/barcos) y vive una experiencia inolvidable este verano en la Costa Brava.`,
+Con más de **307 reseñas en Google y una puntuación de 4,8 estrellas**, en Costa Brava Rent a Boat nos apasiona ayudarte a descubrir los mejores rincones de la costa. [Reserva tu barco ahora](/es/barcos) y vive una experiencia inolvidable este verano en la Costa Brava.`,
   },
 
   // ===== POST 2: Alquiler sin licencia =====
@@ -234,25 +234,25 @@ Los menores pueden ir como pasajeros sin problema, siempre acompañados de un ad
 
 En Costa Brava Rent a Boat disponemos de **5 barcos sin licencia** adaptados a diferentes necesidades:
 
-### [Astec 400](/barco/astec-400) - Ideal para parejas
+### [Astec 400](/es/barco/astec-400) - Ideal para parejas
 - Capacidad: 4 personas
 - Motor: Suzuki 15hp
 - Lo mejor: Compacto y fácil de manejar, perfecto para parejas
 - **Desde 70EUR/hora** en temporada baja
 
-### [Solar 450](/barco/solar-450) - El más popular
+### [Solar 450](/es/barco/solar-450) - El más popular
 - Capacidad: 5 personas
 - Motor: Mercury 15cv
 - Lo mejor: Gran solarium, escalera de baño, muy estable
 - **Desde 75EUR/hora** en temporada baja
 
-### [Remus 450](/barco/remus-450) y [Remus 450 II](/barco/remus-450-ii) - Familiares
+### [Remus 450](/es/barco/remus-450) y [Remus 450 II](/es/barco/remus-450-ii) - Familiares
 - Capacidad: 5 personas
 - Motor: Suzuki 15cv
 - Lo mejor: Toldo Bi Mini amplio, perfectos para familias
 - **Desde 75EUR/hora** en temporada baja
 
-### [Astec 480](/barco/astec-480) - El más espacioso
+### [Astec 480](/es/barco/astec-480) - El más espacioso
 - Capacidad: 5 personas
 - Motor: Parsun 40/15cv
 - Lo mejor: Equipo de música bluetooth, más espacio a bordo
@@ -288,7 +288,7 @@ Los precios aumentan entre un 10% y un 20% respecto a temporada baja.
 ### Temporada alta (agosto)
 Los precios aumentan entre un 20% y un 30% respecto a temporada baja.
 
-Consulta los precios actualizados de cada barco en nuestra [página de barcos](/barcos).
+Consulta los precios actualizados de cada barco en nuestra [página de barcos](/es/barcos).
 
 ## El briefing de seguridad
 
@@ -326,7 +326,7 @@ Te recomendamos llevar:
 
 Reservar es muy sencillo:
 
-1. **Elige tu barco** en nuestra [página de barcos](/barcos)
+1. **Elige tu barco** en nuestra [página de barcos](/es/barcos)
 2. **Selecciona fecha y hora** en el calendario
 3. **Añade extras** si quieres (snorkel, paddle surf, seascooter, nevera...)
 4. **Completa el pago** online de forma segura con tarjeta
@@ -343,7 +343,7 @@ Con más de **307 reseñas en Google y una puntuación media de 4,8 estrellas**,
 - Que la gasolina está incluida (sin sorpresas)
 - La flexibilidad y atención personalizada
 
-[Reserva tu barco sin licencia](/barcos) y descubre por qué somos la empresa de alquiler de barcos mejor valorada de Blanes.`,
+[Reserva tu barco sin licencia](/es/barcos) y descubre por qué somos la empresa de alquiler de barcos mejor valorada de Blanes.`,
   },
 
   // ===== POST 3: Que hacer en Blanes =====
@@ -362,9 +362,9 @@ Con más de **307 reseñas en Google y una puntuación media de 4,8 estrellas**,
 
 ## 1. Alquilar un barco y explorar la costa
 
-Sin duda, la mejor forma de conocer la Costa Brava es desde el mar. Desde el puerto de Blanes puedes [alquilar un barco sin licencia](/barcos) y navegar hasta calas escondidas, cuevas y playas inaccesibles por tierra. Es una experiencia que transforma completamente tu forma de ver la costa.
+Sin duda, la mejor forma de conocer la Costa Brava es desde el mar. Desde el puerto de Blanes puedes [alquilar un barco sin licencia](/es/barcos) y navegar hasta calas escondidas, cuevas y playas inaccesibles por tierra. Es una experiencia que transforma completamente tu forma de ver la costa.
 
-**Nuestro consejo:** El [Astec 480](/barco/astec-480) con equipo de música bluetooth es perfecto para pasar una mañana inolvidable. Y si es tu primera vez, no te preocupes: te explicamos todo en un briefing de seguridad antes de salir. Lee nuestra [guía de alquiler sin licencia](/blog/alquiler-barco-sin-licencia-blanes-guia) para más detalles.
+**Nuestro consejo:** El [Astec 480](/es/barco/astec-480) con equipo de música bluetooth es perfecto para pasar una mañana inolvidable. Y si es tu primera vez, no te preocupes: te explicamos todo en un briefing de seguridad antes de salir. Lee nuestra [guía de alquiler sin licencia](/es/blog/alquiler-barco-sin-licencia-blanes-guia) para más detalles.
 
 ## 2. Visitar el Jardí Botànic Marimurtra
 
@@ -388,13 +388,13 @@ La playa principal de Blanes (Platja de Blanes) es una amplia franja de arena do
 
 ## 6. Hacer snorkel en las calas
 
-Las calas entre Blanes y Lloret tienen fondos marinos espectaculares. Cala Sant Francesc y Cala Bona son dos de los mejores puntos para hacer snorkel en la zona. Puedes [alquilar equipo de snorkel](/barcos) con nosotros por 7,50EUR cuando reserves tu barco.
+Las calas entre Blanes y Lloret tienen fondos marinos espectaculares. Cala Sant Francesc y Cala Bona son dos de los mejores puntos para hacer snorkel en la zona. Puedes [alquilar equipo de snorkel](/es/barcos) con nosotros por 7,50EUR cuando reserves tu barco.
 
-Para conocer las mejores calas, lee nuestro artículo sobre las [10 mejores calas de la Costa Brava en barco](/blog/mejores-calas-costa-brava-en-barco).
+Para conocer las mejores calas, lee nuestro artículo sobre las [10 mejores calas de la Costa Brava en barco](/es/blog/mejores-calas-costa-brava-en-barco).
 
 ## 7. Probar el paddle surf
 
-El paddle surf se ha convertido en una de las actividades estrella del verano en Blanes. Las aguas tranquilas de las primeras horas de la mañana son ideales para practicarlo. Puedes [añadirlo como extra](/barcos) al alquilar tu barco por 30EUR y hacer paddle surf en una cala desierta.
+El paddle surf se ha convertido en una de las actividades estrella del verano en Blanes. Las aguas tranquilas de las primeras horas de la mañana son ideales para practicarlo. Puedes [añadirlo como extra](/es/barcos) al alquilar tu barco por 30EUR y hacer paddle surf en una cala desierta.
 
 ## 8. Recorrer el camino de ronda
 
@@ -417,15 +417,15 @@ Lloret de Mar está a solo 10 minutos en coche (o 15 minutos en barco) desde Bla
 
 ## 11. Visitar el casco antiguo de Tossa de Mar
 
-Tossa de Mar, a unos 30 minutos en coche, tiene uno de los cascos históricos más bonitos de la Costa Brava: la Vila Vella, una ciudadela medieval amurallada con torres y callejuelas empedradas. Es una excursión de medio día perfecta. Y si tienes licencia de navegación, puedes [llegar en barco](/blog/rutas-barco-desde-blanes) para una experiencia todavía más especial.
+Tossa de Mar, a unos 30 minutos en coche, tiene uno de los cascos históricos más bonitos de la Costa Brava: la Vila Vella, una ciudadela medieval amurallada con torres y callejuelas empedradas. Es una excursión de medio día perfecta. Y si tienes licencia de navegación, puedes [llegar en barco](/es/blog/rutas-barco-desde-blanes) para una experiencia todavía más especial.
 
 ## 12. Disfrutar de un atardecer en barco
 
-Hay pocas experiencias más románticas que ver el atardecer desde el mar en la Costa Brava. Reserva tu barco para las últimas horas de la tarde y disfruta de los colores del cielo reflejándose en el agua mientras navegas por la costa. Nuestra [excursión privada con capitán](/barco/excursion-privada) es perfecta para ocasiones especiales.
+Hay pocas experiencias más románticas que ver el atardecer desde el mar en la Costa Brava. Reserva tu barco para las últimas horas de la tarde y disfruta de los colores del cielo reflejándose en el agua mientras navegas por la costa. Nuestra [excursión privada con capitán](/es/barco/excursion-privada) es perfecta para ocasiones especiales.
 
 ## 13. Probar el seascooter
 
-El seascooter es una moto acuática submarina que te permite explorar bajo el agua sin esfuerzo. Es una actividad emocionante y diferente que puedes [añadir a tu alquiler de barco](/barcos) por 50EUR. Ideal para los más aventureros del grupo.
+El seascooter es una moto acuática submarina que te permite explorar bajo el agua sin esfuerzo. Es una actividad emocionante y diferente que puedes [añadir a tu alquiler de barco](/es/barcos) por 50EUR. Ideal para los más aventureros del grupo.
 
 ## 14. Ver el concurso de fuegos artificiales
 
@@ -439,7 +439,7 @@ Para terminar el día, nada mejor que un paseo por el Paseo Marítimo de Blanes.
 
 ## Planifica tu verano en Blanes
 
-Blanes tiene actividades para todos los gustos: aventura, cultura, gastronomía y relax. Si tuvieras que elegir una sola experiencia, te recomendamos sin duda [alquilar un barco](/barcos) y descubrir la costa desde el mar. Con más de **307 reseñas en Google y 4,8 estrellas**, estamos preparados para hacerte vivir un día inolvidable.
+Blanes tiene actividades para todos los gustos: aventura, cultura, gastronomía y relax. Si tuvieras que elegir una sola experiencia, te recomendamos sin duda [alquilar un barco](/es/barcos) y descubrir la costa desde el mar. Con más de **307 reseñas en Google y 4,8 estrellas**, estamos preparados para hacerte vivir un día inolvidable.
 
 Contáctanos por [WhatsApp](https://wa.me/34611500372) o reserva directamente en nuestra web.`,
   },
@@ -487,11 +487,11 @@ If you **do** have a Spanish or international boating license, you can rent our 
 
 | Boat | Capacity | Best For | Price From |
 |------|----------|----------|------------|
-| [Astec 400](/barco/astec-400) | 4 people | Couples | 70EUR/hour |
-| [Solar 450](/barco/solar-450) | 5 people | Families | 75EUR/hour |
-| [Remus 450](/barco/remus-450) | 5 people | Families | 75EUR/hour |
-| [Remus 450 II](/barco/remus-450-ii) | 5 people | Groups | 75EUR/hour |
-| [Astec 480](/barco/astec-480) | 5 people | Groups (Bluetooth) | 80EUR/hour |
+| [Astec 400](/es/barco/astec-400) | 4 people | Couples | 70EUR/hour |
+| [Solar 450](/es/barco/solar-450) | 5 people | Families | 75EUR/hour |
+| [Remus 450](/es/barco/remus-450) | 5 people | Families | 75EUR/hour |
+| [Remus 450 II](/es/barco/remus-450-ii) | 5 people | Groups | 75EUR/hour |
+| [Astec 480](/es/barco/astec-480) | 5 people | Groups (Bluetooth) | 80EUR/hour |
 
 **All no-license boats include:** Fuel, insurance, mooring, cleaning, safety equipment, and a personal safety briefing.
 
@@ -499,21 +499,21 @@ If you **do** have a Spanish or international boating license, you can rent our 
 
 | Boat | Capacity | Engine | Price From |
 |------|----------|--------|------------|
-| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 people | Mercury 80hp | 160EUR/2h |
-| [Trimarchi 57S](/barco/trimarchi-57s) | 7 people | Selva 110hp | 160EUR/2h |
-| [Pacific Craft 625](/barco/pacific-craft-625) | 7 people | Yamaha 115hp | 180EUR/2h |
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 people | Mercury 80hp | 160EUR/2h |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 people | Selva 110hp | 160EUR/2h |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 people | Yamaha 115hp | 180EUR/2h |
 
 **Licensed boats include:** Insurance, mooring, cleaning, and safety equipment. **Fuel is NOT included** for licensed boats.
 
 ### Private Excursion with Captain
 
-Do not have a license but want a bigger boat? Our [Private Excursion with Captain](/barco/excursion-privada) includes a professional skipper who takes you to the best coves and hidden spots along the coast. Perfect for special occasions, groups up to 7 people, from 240EUR for 2 hours.
+Do not have a license but want a bigger boat? Our [Private Excursion with Captain](/es/barco/excursion-privada) includes a professional skipper who takes you to the best coves and hidden spots along the coast. Perfect for special occasions, groups up to 7 people, from 240EUR for 2 hours.
 
 ## What to Expect on Your Day
 
 ### Before You Go
 
-1. **Book online** through our [boats page](/barcos) -- select your date, time, and duration
+1. **Book online** through our [boats page](/es/barcos) -- select your date, time, and duration
 2. **Receive confirmation** via email and WhatsApp
 3. **Arrive 15 minutes early** at the Port of Blanes
 
@@ -539,7 +539,7 @@ Once you are out on the water, the Costa Brava coastline unfolds before you. Dep
 - **3-4 hours:** Explore the coast towards Lloret de Mar, including Santa Cristina beach and Fenals
 - **6-8 hours:** Full day trip reaching Tossa de Mar and its medieval walled town
 
-Read our detailed [routes from Blanes](/blog/rutas-barco-desde-blanes) for inspiration.
+Read our detailed [routes from Blanes](/es/blog/rutas-barco-desde-blanes) for inspiration.
 
 ## Best Routes from Blanes
 
@@ -594,7 +594,7 @@ Prices are in Euros. We accept all major credit and debit cards for online booki
 
 With over **307 Google reviews and a 4.8-star rating**, we are the top-rated boat rental company in Blanes. Our team speaks English, Spanish, French, and Catalan, so language is never a barrier.
 
-[Book your boat now](/barcos) or contact us on [WhatsApp](https://wa.me/34611500372) for any questions. We look forward to helping you discover the magic of Costa Brava from the sea.`,
+[Book your boat now](/es/barcos) or contact us on [WhatsApp](https://wa.me/34611500372) for any questions. We look forward to helping you discover the magic of Costa Brava from the sea.`,
   },
 
   // ===== POST 5: Rutas en barco =====
@@ -631,7 +631,7 @@ Esta es la ruta perfecta para quien alquila un barco por primera vez o tiene poc
 - Posiblemente peces y medusas (inofensivas) nadando bajo el barco
 
 ### Barco recomendado
-Cualquier [barco sin licencia](/barcos). El [Astec 400](/barco/astec-400) es ideal para parejas, y el [Solar 450](/barco/solar-450) para familias.
+Cualquier [barco sin licencia](/es/barcos). El [Astec 400](/es/barco/astec-400) es ideal para parejas, y el [Solar 450](/es/barco/solar-450) para familias.
 
 ---
 
@@ -655,7 +655,7 @@ Con una hora más, puedes explorar dos de las mejores calas de Blanes y disfruta
 - Flora y fauna marina variada en las zonas rocosas entre calas
 
 ### Barco recomendado
-[Solar 450](/barco/solar-450) o [Remus 450](/barco/remus-450). Ambos tienen escalera de baño que facilita entrar y salir del agua. No olvides añadir **snorkel** (7,50EUR) al reservar.
+[Solar 450](/es/barco/solar-450) o [Remus 450](/es/barco/remus-450). Ambos tienen escalera de baño que facilita entrar y salir del agua. No olvides añadir **snorkel** (7,50EUR) al reservar.
 
 ---
 
@@ -682,7 +682,7 @@ Esta ruta te lleva más allá de Blanes, recorriendo la impresionante costa hast
 - Acantilados cubiertos de vegetación mediterránea
 
 ### Barco recomendado
-El [Astec 480](/barco/astec-480) con su mayor autonomía y equipo bluetooth para poner música durante la travesía. Si tienes licencia, la [Mingolla Brava 19](/barco/mingolla-brava-19) te permite cubrir la distancia más rápidamente.
+El [Astec 480](/es/barco/astec-480) con su mayor autonomía y equipo bluetooth para poner música durante la travesía. Si tienes licencia, la [Mingolla Brava 19](/es/barco/mingolla-brava-19) te permite cubrir la distancia más rápidamente.
 
 ---
 
@@ -714,7 +714,7 @@ La ruta estrella. Navegar de Blanes a Tossa de Mar es una experiencia que record
 - Fondos marinos espectaculares en Cala Giverola
 
 ### Barco recomendado
-[Pacific Craft 625](/barco/pacific-craft-625) para la máxima comodidad, o la [Trimarchi 57S](/barco/trimarchi-57s) para una experiencia más deportiva. La opción más cómoda es contratar nuestra [excursión privada con capitán](/barco/excursion-privada): el capitán conoce la costa a la perfección y te llevará a los mejores rincones según las condiciones del día.
+[Pacific Craft 625](/es/barco/pacific-craft-625) para la máxima comodidad, o la [Trimarchi 57S](/es/barco/trimarchi-57s) para una experiencia más deportiva. La opción más cómoda es contratar nuestra [excursión privada con capitán](/es/barco/excursion-privada): el capitán conoce la costa a la perfección y te llevará a los mejores rincones según las condiciones del día.
 
 ---
 
@@ -736,7 +736,7 @@ Para navegantes experimentados con licencia que quieren exprimir al máximo un d
 8. **Regreso** - Navegación de vuelta con el sol de la tarde
 
 ### Barco recomendado
-Exclusivamente [Pacific Craft 625](/barco/pacific-craft-625) por su autonomía, potencia y comodidad. Con tanque de 127 litros y motor Yamaha de 115cv, tienes capacidad de sobra para un día completo.
+Exclusivamente [Pacific Craft 625](/es/barco/pacific-craft-625) por su autonomía, potencia y comodidad. Con tanque de 127 litros y motor Yamaha de 115cv, tienes capacidad de sobra para un día completo.
 
 ---
 
@@ -750,7 +750,7 @@ Exclusivamente [Pacific Craft 625](/barco/pacific-craft-625) por su autonomía, 
 
 ## Reserva tu ruta
 
-Elige la ruta que más te inspire y [reserva tu barco](/barcos). Si no estás seguro de qué ruta elegir, [contáctanos por WhatsApp](https://wa.me/34611500372) y te asesoraremos encantados según la duración que quieras, el tipo de barco y las condiciones del día.`,
+Elige la ruta que más te inspire y [reserva tu barco](/es/barcos). Si no estás seguro de qué ruta elegir, [contáctanos por WhatsApp](https://wa.me/34611500372) y te asesoraremos encantados según la duración que quieras, el tipo de barco y las condiciones del día.`,
   },
 
   // ===== POST 6: Consejos primera vez =====
@@ -847,7 +847,7 @@ Una de las mejores partes de ir en barco es poder bañarte en calas de aguas cri
 - **Usa la escalera de baño** para entrar y salir del agua. Todos nuestros barcos la tienen.
 - **Comprueba que el motor está apagado** antes de que nadie se meta al agua. Esto es fundamental.
 - **No te alejes demasiado** del barco. Las corrientes pueden ser engañosas.
-- **Lleva snorkel** -- el fondo marino de las calas de la Costa Brava es espectacular. Puedes [alquilarlo](/barcos) por solo 7,50EUR.
+- **Lleva snorkel** -- el fondo marino de las calas de la Costa Brava es espectacular. Puedes [alquilarlo](/es/barcos) por solo 7,50EUR.
 - **Sube por la popa** (parte trasera) usando la escalera, nunca por los laterales.
 
 ## Gestión del combustible
@@ -906,7 +906,7 @@ En Costa Brava Rent a Boat llevamos años haciendo que la primera experiencia n�
 
 No hace falta experiencia. No hace falta licencia. Solo hace falta ganas de pasar un día increíble en el mar.
 
-[Reserva tu barco ahora](/barcos) o pregúntanos por [WhatsApp](https://wa.me/34611500372). Estamos deseando recibirte en el puerto de Blanes.`,
+[Reserva tu barco ahora](/es/barcos) o pregúntanos por [WhatsApp](https://wa.me/34611500372). Estamos deseando recibirte en el puerto de Blanes.`,
   },
   // ===== POST 7: Navegar con Niños =====
   {
@@ -940,7 +940,7 @@ No todos los barcos son iguales cuando navegas con niños. Lo más importante es
 
 ### Astec 480 -- Nuestra recomendación para familias
 
-El [Astec 480](/barco/astec-480) es, sin duda, el barco más familiar de nuestra flota. Con **4,80 metros de eslora**, ofrece espacio de sobra para una familia de 4-5 personas. Su casco ancho proporciona una estabilidad excelente, lo que reduce el balanceo y hace que los niños se sientan más seguros.
+El [Astec 480](/es/barco/astec-480) es, sin duda, el barco más familiar de nuestra flota. Con **4,80 metros de eslora**, ofrece espacio de sobra para una familia de 4-5 personas. Su casco ancho proporciona una estabilidad excelente, lo que reduce el balanceo y hace que los niños se sientan más seguros.
 
 **Por qué es ideal para niños:**
 - Casco amplio y estable que minimiza el balanceo
@@ -951,7 +951,7 @@ El [Astec 480](/barco/astec-480) es, sin duda, el barco más familiar de nuestra
 
 ### Solar 450 -- La opción cómoda
 
-El [Solar 450](/barco/solar-450) es otra opción excelente para familias. Con su diseño moderno y cómodo, ofrece una experiencia de navegación suave. Cuenta con asientos amplios donde los niños pueden ir sentados cómodamente durante la navegación.
+El [Solar 450](/es/barco/solar-450) es otra opción excelente para familias. Con su diseño moderno y cómodo, ofrece una experiencia de navegación suave. Cuenta con asientos amplios donde los niños pueden ir sentados cómodamente durante la navegación.
 
 **Ventajas para familias:**
 - Asientos ergonómicos y cómodos
@@ -961,9 +961,9 @@ El [Solar 450](/barco/solar-450) es otra opción excelente para familias. Con su
 
 ### Otros barcos de la flota
 
-El [Remus 450](/barco/remus-450) y el [Astec 400](/barco/astec-400) también son aptos para familias, aunque son algo más compactos. El [Remus 450 II](/barco/remus-450-ii) es perfecto para parejas con un solo niño.
+El [Remus 450](/es/barco/remus-450) y el [Astec 400](/es/barco/astec-400) también son aptos para familias, aunque son algo más compactos. El [Remus 450 II](/es/barco/remus-450-ii) es perfecto para parejas con un solo niño.
 
-Consulta todos nuestros [barcos disponibles](/barcos) y elige el que mejor se adapte a tu familia.
+Consulta todos nuestros [barcos disponibles](/es/barcos) y elige el que mejor se adapte a tu familia.
 
 ## Seguridad al navegar con niños: lo esencial
 
@@ -1030,7 +1030,7 @@ Dividida entre Blanes y Lloret, esta cala combina arena y rocas con zonas perfec
 - Ropa de cambio para los niños
 
 ### Muy recomendables
-- Gafas de snorkel para niños (puedes [alquilarlas con nosotros](/barcos) por 7,50 EUR)
+- Gafas de snorkel para niños (puedes [alquilarlas con nosotros](/es/barcos) por 7,50 EUR)
 - Juguetes de agua: cubos, palas, flotadores pequeños
 - Cámara acuática o funda impermeable para el móvil
 - Un pequeño botiquín: tiritas, after sun, ibuprofeno infantil
@@ -1071,7 +1071,7 @@ Extras recomendados para familias:
 - **Kit de snorkel:** 7,50 EUR por persona
 - **Altavoz Bluetooth:** para poner música durante la navegación
 
-Consulta los [precios actualizados de todos nuestros barcos](/barcos) y reserva directamente online.
+Consulta los [precios actualizados de todos nuestros barcos](/es/barcos) y reserva directamente online.
 
 ## Consejos finales de padres que ya han navegado con nosotros
 
@@ -1087,7 +1087,7 @@ Después de cientos de familias que han navegado con nosotros, estos son los con
 
 Navegar con niños en la Costa Brava es una de esas experiencias que se quedan grabadas para siempre. En Costa Brava Rent a Boat nos encanta recibir familias y hacemos todo lo posible para que vuestra experiencia sea segura, fácil y memorable.
 
-[Reserva tu barco familiar ahora](/barcos) o escríbenos por [WhatsApp](https://wa.me/34611500372) para que te aconsejemos el barco perfecto para tu familia.`,
+[Reserva tu barco familiar ahora](/es/barcos) o escríbenos por [WhatsApp](https://wa.me/34611500372) para que te aconsejemos el barco perfecto para tu familia.`,
   },
   // ===== POST 8: Seguridad en el Mar =====
   {
@@ -1281,7 +1281,7 @@ En Costa Brava Rent a Boat, la seguridad es nuestra prioridad absoluta:
 
 La seguridad en el mar es cuestión de sentido común, preparación y prudencia. Con las indicaciones de esta guía y el briefing que te daremos antes de salir, estarás perfectamente preparado para disfrutar de una navegación segura y relajada por la Costa Brava.
 
-[Reserva tu barco](/barcos) con total confianza o contacta con nosotros por [WhatsApp](https://wa.me/34611500372) si tienes cualquier duda sobre seguridad.`,
+[Reserva tu barco](/es/barcos) con total confianza o contacta con nosotros por [WhatsApp](https://wa.me/34611500372) si tienes cualquier duda sobre seguridad.`,
   },
   // ===== POST 9: Gastronomía Marinera =====
   {
@@ -1404,7 +1404,7 @@ La Costa Brava tiene una tradición vinícola notable. Si te gusta el vino, esto
 Si quieres combinar navegación y gastronomía en un día perfecto en Blanes, te proponemos este plan:
 
 1. **9:30** -- Paseo por el mercado municipal. Compra algo de fruta y agua para el barco.
-2. **10:00** -- Recoge tu [barco en el puerto](/barcos). Nuestro equipo te hará el briefing de seguridad.
+2. **10:00** -- Recoge tu [barco en el puerto](/es/barcos). Nuestro equipo te hará el briefing de seguridad.
 3. **10:30-13:30** -- Navega hacia Cala Sant Francesc, Cala Bona y Santa Cristina. Baño y snorkel.
 4. **13:30** -- Picnic a bordo fondeado en una cala o parada en el chiringuito de Santa Cristina.
 5. **14:00-17:00** -- Sigue explorando calas hacia Lloret o descansa fondeado en tu cala favorita.
@@ -1416,9 +1416,9 @@ Es un plan que combina lo mejor del mar y la mesa, y que te dejará recuerdos im
 
 ---
 
-Blanes es un destino donde la navegación y la gastronomía se complementan de forma natural. Después de descubrir las calas más bonitas de la Costa Brava desde tu [barco de alquiler](/barcos), la mesa te espera con los sabores más auténticos del Mediterráneo.
+Blanes es un destino donde la navegación y la gastronomía se complementan de forma natural. Después de descubrir las calas más bonitas de la Costa Brava desde tu [barco de alquiler](/es/barcos), la mesa te espera con los sabores más auténticos del Mediterráneo.
 
-[Reserva tu barco](/barcos) y prepárate para un día redondo: mar, sol y buena mesa.`,
+[Reserva tu barco](/es/barcos) y prepárate para un día redondo: mar, sol y buena mesa.`,
   },
   // ===== POST 10: Fauna Marina =====
   {
@@ -1537,7 +1537,7 @@ Entre Blanes y Lloret, esta zona de fondos rocosos con grandes bloques sumergido
 
 ### Cala Canyelles (25 minutos desde el puerto)
 
-Si reservas un día completo y navegas con el [Astec 480](/barco/astec-480) o el [Remus 450](/barco/remus-450) hasta Canyelles, encontrarás uno de los fondos marinos más espectaculares de la zona. Grandes rocas sumergidas cubiertas de esponjas y gorgonias, con una biodiversidad impresionante.
+Si reservas un día completo y navegas con el [Astec 480](/es/barco/astec-480) o el [Remus 450](/es/barco/remus-450) hasta Canyelles, encontrarás uno de los fondos marinos más espectaculares de la zona. Grandes rocas sumergidas cubiertas de esponjas y gorgonias, con una biodiversidad impresionante.
 
 **Nivel:** Intermedio-Avanzado
 **Profundidad:** 3-10 metros
@@ -1547,7 +1547,7 @@ Si reservas un día completo y navegas con el [Astec 480](/barco/astec-480) o el
 
 ### Equipo necesario
 
-- **Gafas de snorkel y tubo:** Puedes [alquilar un kit de snorkel con nosotros](/barcos) por solo 7,50 EUR. También puedes traer el tuyo.
+- **Gafas de snorkel y tubo:** Puedes [alquilar un kit de snorkel con nosotros](/es/barcos) por solo 7,50 EUR. También puedes traer el tuyo.
 - **Aletas:** No son imprescindibles pero ayudan mucho para desplazarte sin esfuerzo.
 - **Camiseta de neopreno o lycra UV:** Protege del sol y del frío en inmersiones largas.
 - **Crema solar biodegradable:** Aplícala 30 minutos antes de meterte al agua.
@@ -1583,7 +1583,7 @@ La riqueza marina de la Costa Brava es un tesoro frágil. Como navegantes y aman
 
 La Costa Brava es un paraíso para los amantes de la naturaleza marina. Desde la cubierta de tu barco o con las gafas de snorkel puestas, descubrirás un mundo de colores, formas y vida que te dejará sin palabras.
 
-[Alquila tu barco](/barcos) y ven a explorar el Mediterráneo más vivo. No olvides pedir tu kit de snorkel al hacer la reserva.`,
+[Alquila tu barco](/es/barcos) y ven a explorar el Mediterráneo más vivo. No olvides pedir tu kit de snorkel al hacer la reserva.`,
   },
   // ===== POST 11: Historia Marítima de Blanes =====
   {
@@ -1611,7 +1611,7 @@ La ubicación de Blanes, protegida del viento de tramontana por las montañas y 
 
 Dominando Blanes desde lo alto de una colina, las ruinas del **Castillo de Sant Joan** (siglo XIII) son testimonio de la importancia estratégica del puerto. Esta fortaleza medieval servía como punto de vigía contra piratas y como defensa del litoral.
 
-Desde el castillo, las vistas de la costa son espectaculares. Es posible ver desde el cabo de Tossa de Mar hasta el golfo de Roses en días claros. Si navegas con alguno de nuestros [barcos](/barcos), verás el castillo desde el mar, una perspectiva que pocos turistas conocen.
+Desde el castillo, las vistas de la costa son espectaculares. Es posible ver desde el cabo de Tossa de Mar hasta el golfo de Roses en días claros. Si navegas con alguno de nuestros [barcos](/es/barcos), verás el castillo desde el mar, una perspectiva que pocos turistas conocen.
 
 ## El puerto pesquero: corazón vivo de Blanes
 
@@ -1629,7 +1629,7 @@ Hoy, Blanes sigue siendo uno de los **puertos pesqueros más activos de la Costa
 
 Cada tarde, sobre las 17:00, la **lonja de Blanes** cobra vida. Los barcos descargan su captura y se celebra la subasta, donde los restaurantes locales y los mayoristas pujan por el mejor pescado. Es un espectáculo fascinante y abierto al público que pocos turistas conocen.
 
-Si tu [día de navegación](/barcos) termina por la tarde, acércate a la lonja antes de ir a cenar. Verás cómo se subasta el mismo pescado que posiblemente comerás en el restaurante esa noche.
+Si tu [día de navegación](/es/barcos) termina por la tarde, acércate a la lonja antes de ir a cenar. Verás cómo se subasta el mismo pescado que posiblemente comerás en el restaurante esa noche.
 
 ### La gamba de Blanes
 
@@ -1657,7 +1657,7 @@ Marimurtra está considerado uno de los **jardines botánicos más importantes d
 
 Si combinas un día de navegación con una visita a Marimurtra, tendrás una experiencia completa de Blanes. El jardín abre de 10:00 a 18:00 (horario variable según temporada) y la entrada cuesta aproximadamente 8 EUR para adultos.
 
-**Plan sugerido:** Visita Marimurtra por la mañana (1-2 horas) y después recoge tu [barco de alquiler](/barcos) para explorar las calas de la zona por la tarde.
+**Plan sugerido:** Visita Marimurtra por la mañana (1-2 horas) y después recoge tu [barco de alquiler](/es/barcos) para explorar las calas de la zona por la tarde.
 
 ## El Jardín Botánico Pinya de Rosa
 
@@ -1717,7 +1717,7 @@ Este recorrido se puede hacer en 3-4 horas a pie, y es un complemento perfecto p
 
 Blanes no es solo un sitio bonito donde alquilar un barco. Es una villa con alma marinera, con siglos de historia escrita por el mar. Cuando navegas desde su puerto, formas parte de una tradición que se remonta a los romanos, que pasa por pescadores y botánicos, y que hoy se reinventa con el turismo náutico.
 
-[Descubre Blanes desde el mar](/barcos) y vive una experiencia que conecta pasado y presente. Te esperamos en el puerto.`,
+[Descubre Blanes desde el mar](/es/barcos) y vive una experiencia que conecta pasado y presente. Te esperamos en el puerto.`,
   },
   // ===== POST 12: Snorkel y Buceo =====
   {
@@ -1793,7 +1793,7 @@ Entre Blanes y Lloret, la Punta de Santa Anna ofrece fondos más profundos y esp
 - Bancos de sargos de gran tamaño
 - Gorgonias rojas en las paredes verticales (a partir de 5-6 metros)
 
-**Consejo:** Fondea el barco sobre arena cerca de las rocas. El [Astec 480](/barco/astec-480) tiene capacidad y estabilidad de sobra para una jornada de snorkel con todo el equipo.
+**Consejo:** Fondea el barco sobre arena cerca de las rocas. El [Astec 480](/es/barco/astec-480) tiene capacidad y estabilidad de sobra para una jornada de snorkel con todo el equipo.
 
 ### 4. Sa Caleta -- La joya escondida
 
@@ -1826,7 +1826,7 @@ Canyelles es el punto de snorkel más lejano accesible cómodamente desde Blanes
 - Bancos de barracudas mediterráneas (inofensivas)
 - El fondo marino más diverso de la zona
 
-**Consejo:** Reserva un día completo (8 horas) con el [Remus 450](/barco/remus-450) o el [Astec 480](/barco/astec-480) para llegar hasta Canyelles con tiempo de sobra para disfrutar.
+**Consejo:** Reserva un día completo (8 horas) con el [Remus 450](/es/barco/remus-450) o el [Astec 480](/es/barco/astec-480) para llegar hasta Canyelles con tiempo de sobra para disfrutar.
 
 ### 6. Ses Torretes (Lloret de Mar) -- Cuevas y arcos
 
@@ -1862,7 +1862,7 @@ La más conocida de la zona. Una cueva de buen tamaño accesible nadando. En su 
 
 ### Para snorkel básico
 
-- **Gafas de snorkel + tubo:** Disponibles para [alquilar con nosotros](/barcos) por 7,50 EUR. Si prefieres traer las tuyas, asegúrate de que las gafas sean de cristal templado y que el tubo tenga válvula de purga.
+- **Gafas de snorkel + tubo:** Disponibles para [alquilar con nosotros](/es/barcos) por 7,50 EUR. Si prefieres traer las tuyas, asegúrate de que las gafas sean de cristal templado y que el tubo tenga válvula de purga.
 - **Aletas cortas:** No son imprescindibles pero marcan una gran diferencia. Te permiten desplazarte sin esfuerzo y explorar zonas más amplias.
 - **Camiseta UV o de neopreno fino:** Protege del sol, del frío y de posibles rozaduras con las rocas.
 
@@ -1887,7 +1887,7 @@ Aunque nuestros barcos están diseñados para navegación recreativa, si eres bu
 
 Si reservas un día completo y quieres maximizar tu experiencia de snorkel, te proponemos esta ruta:
 
-1. **10:00** -- Salida del puerto de Blanes con el [Astec 480](/barco/astec-480) o el [Solar 450](/barco/solar-450)
+1. **10:00** -- Salida del puerto de Blanes con el [Astec 480](/es/barco/astec-480) o el [Solar 450](/es/barco/solar-450)
 2. **10:10** -- Primera parada: **Cala Sant Francesc**. Snorkel suave para calentar (45 min)
 3. **11:15** -- Segunda parada: **Punta de Santa Anna**. Fondos más profundos y espectaculares (1 hora)
 4. **12:30** -- Descanso y picnic a bordo fondeados en una cala tranquila
@@ -1912,7 +1912,7 @@ Esta ruta cubre unos 16 km de costa y ofrece una variedad increíble de paisajes
 
 La Costa Brava bajo el agua es tan espectacular como sobre ella. Con un barco de alquiler y unas gafas de snorkel, tienes acceso a un mundo submarino que la mayoría de turistas nunca ve.
 
-[Reserva tu barco de snorkel](/barcos) y no olvides pedir tu kit de snorkel al hacer la reserva. Las calas más bonitas y los fondos más ricos te esperan.`,
+[Reserva tu barco de snorkel](/es/barcos) y no olvides pedir tu kit de snorkel al hacer la reserva. Las calas más bonitas y los fondos más ricos te esperan.`,
   },
   // ===== POST 13: Cuánto Cuesta Alquilar un Barco =====
   {
@@ -1969,23 +1969,23 @@ A continuación te mostramos los precios orientativos para cada barco de nuestra
 
 | Barco | Personas | T. Baja | T. Media | T. Alta |
 |-------|----------|---------|----------|---------|
-| [Astec 400](/barco/astec-400) | Hasta 4 | Desde 90 EUR | Desde 120 EUR | Desde 160 EUR |
-| [Solar 450](/barco/solar-450) | Hasta 5 | Desde 100 EUR | Desde 140 EUR | Desde 180 EUR |
-| [Remus 450](/barco/remus-450) | Hasta 5 | Desde 100 EUR | Desde 140 EUR | Desde 180 EUR |
-| [Astec 480](/barco/astec-480) | Hasta 6 | Desde 110 EUR | Desde 150 EUR | Desde 200 EUR |
-| [Remus 450 II](/barco/remus-450-ii) | Hasta 5 | Desde 120 EUR | Desde 160 EUR | Desde 210 EUR |
+| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 90 EUR | Desde 120 EUR | Desde 160 EUR |
+| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 100 EUR | Desde 140 EUR | Desde 180 EUR |
+| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 100 EUR | Desde 140 EUR | Desde 180 EUR |
+| [Astec 480](/es/barco/astec-480) | Hasta 6 | Desde 110 EUR | Desde 150 EUR | Desde 200 EUR |
+| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 120 EUR | Desde 160 EUR | Desde 210 EUR |
 
 ### Alquiler de día completo (8 horas)
 
 | Barco | Personas | T. Baja | T. Media | T. Alta |
 |-------|----------|---------|----------|---------|
-| [Astec 400](/barco/astec-400) | Hasta 4 | Desde 130 EUR | Desde 180 EUR | Desde 250 EUR |
-| [Solar 450](/barco/solar-450) | Hasta 5 | Desde 150 EUR | Desde 200 EUR | Desde 270 EUR |
-| [Remus 450](/barco/remus-450) | Hasta 5 | Desde 150 EUR | Desde 200 EUR | Desde 270 EUR |
-| [Astec 480](/barco/astec-480) | Hasta 6 | Desde 170 EUR | Desde 220 EUR | Desde 295 EUR |
-| [Remus 450 II](/barco/remus-450-ii) | Hasta 5 | Desde 180 EUR | Desde 230 EUR | Desde 300 EUR |
+| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 130 EUR | Desde 180 EUR | Desde 250 EUR |
+| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 150 EUR | Desde 200 EUR | Desde 270 EUR |
+| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 150 EUR | Desde 200 EUR | Desde 270 EUR |
+| [Astec 480](/es/barco/astec-480) | Hasta 6 | Desde 170 EUR | Desde 220 EUR | Desde 295 EUR |
+| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 180 EUR | Desde 230 EUR | Desde 300 EUR |
 
-**Nota:** Los precios son orientativos y pueden variar. Consulta los [precios exactos y disponibilidad en tiempo real](/barcos) en nuestra web.
+**Nota:** Los precios son orientativos y pueden variar. Consulta los [precios exactos y disponibilidad en tiempo real](/es/barcos) en nuestra web.
 
 ## Qué incluye el precio
 
@@ -2032,11 +2032,11 @@ Si es tu primera vez o no estás seguro de cuántas horas quieres navegar, el al
 
 ### 4. Divide el coste entre el grupo
 
-El precio del barco es por embarcación, no por persona. Un barco como el [Astec 480](/barco/astec-480) para 5 personas en temporada baja puede salir a menos de **22 EUR por persona** para un día completo. Difícilmente encontrarás una actividad con mejor relación calidad-precio en la Costa Brava.
+El precio del barco es por embarcación, no por persona. Un barco como el [Astec 480](/es/barco/astec-480) para 5 personas en temporada baja puede salir a menos de **22 EUR por persona** para un día completo. Difícilmente encontrarás una actividad con mejor relación calidad-precio en la Costa Brava.
 
 ### 5. Elige el barco adecuado
 
-No necesitas el barco más grande o más caro si sois pocos. Para una pareja, el [Astec 400](/barco/astec-400) es perfecto y es la opción más económica. Para un grupo de 4-5 personas, el [Astec 480](/barco/astec-480) ofrece la mejor relación espacio-precio.
+No necesitas el barco más grande o más caro si sois pocos. Para una pareja, el [Astec 400](/es/barco/astec-400) es perfecto y es la opción más económica. Para un grupo de 4-5 personas, el [Astec 480](/es/barco/astec-480) ofrece la mejor relación espacio-precio.
 
 ## Comparativa: alquiler de barco vs. otras actividades
 
@@ -2057,7 +2057,7 @@ Como ves, el alquiler de barco sin licencia es una de las actividades con mejor 
 
 ### Cómo reservar
 
-1. **Entra en nuestra web** y selecciona tu [barco preferido](/barcos)
+1. **Entra en nuestra web** y selecciona tu [barco preferido](/es/barcos)
 2. **Elige la fecha y el horario** (mañana, tarde o día completo)
 3. **Selecciona los extras** que quieras (snorkel, toldo, altavoz...)
 4. **Completa la reserva** con pago online seguro
@@ -2099,7 +2099,7 @@ Consulta con nosotros directamente. Ofrecemos condiciones especiales para client
 
 Alquilar un barco sin licencia en Blanes es más asequible de lo que imaginas. Desde 90 EUR para un grupo, tienes acceso a las calas más bonitas de la Costa Brava, con gasolina y seguridad incluidas.
 
-[Consulta precios y disponibilidad](/barcos) en tiempo real y reserva tu día perfecto en el mar.`,
+[Consulta precios y disponibilidad](/es/barcos) en tiempo real y reserva tu día perfecto en el mar.`,
   },
   // ===== POST 14: Comparativa de Barcos =====
   {
@@ -2119,7 +2119,7 @@ En esta guía comparamos todos nuestros barcos para que elijas el que mejor se a
 
 ## Tabla comparativa general
 
-| Característica | [Astec 400](/barco/astec-400) | [Astec 480](/barco/astec-480) | [Remus 450](/barco/remus-450) | [Solar 450](/barco/solar-450) | [Remus 450 II](/barco/remus-450-ii) |
+| Característica | [Astec 400](/es/barco/astec-400) | [Astec 480](/es/barco/astec-480) | [Remus 450](/es/barco/remus-450) | [Solar 450](/es/barco/solar-450) | [Remus 450 II](/es/barco/remus-450-ii) |
 |---------------|------------|------------|-------------|-------------|-----------|
 | **Eslora** | 4,00 m | 4,80 m | 4,50 m | 4,50 m | 4,25 m |
 | **Capacidad** | 4 personas | 5 personas | 5 personas | 5 personas | 5 personas |
@@ -2130,7 +2130,7 @@ En esta guía comparamos todos nuestros barcos para que elijas el que mejor se a
 
 ## Astec 400: El compacto para parejas
 
-El [Astec 400](/barco/astec-400) es nuestra embarcación más compacta y la opción más económica de la flota. Con sus 4 metros de eslora, es ágil, fácil de manejar y perfecto para quienes buscan una experiencia íntima en el mar.
+El [Astec 400](/es/barco/astec-400) es nuestra embarcación más compacta y la opción más económica de la flota. Con sus 4 metros de eslora, es ágil, fácil de manejar y perfecto para quienes buscan una experiencia íntima en el mar.
 
 ### Puntos fuertes
 
@@ -2153,7 +2153,7 @@ El [Astec 400](/barco/astec-400) es nuestra embarcación más compacta y la opci
 
 ## Astec 480: El favorito de las familias
 
-El [Astec 480](/barco/astec-480) es, con diferencia, nuestro barco más demandado. Con 4,80 metros es la embarcación más grande de la flota, y su eslora extra se nota en estabilidad, espacio y confort.
+El [Astec 480](/es/barco/astec-480) es, con diferencia, nuestro barco más demandado. Con 4,80 metros es la embarcación más grande de la flota, y su eslora extra se nota en estabilidad, espacio y confort.
 
 ### Puntos fuertes
 
@@ -2175,7 +2175,7 @@ El [Astec 480](/barco/astec-480) es, con diferencia, nuestro barco más demandad
 
 ## Remus 450: El polivalente
 
-El [Remus 450](/barco/remus-450) es un barco equilibrado que ofrece un buen compromiso entre espacio, maniobrabilidad y precio. Es la opción polivalente por excelencia.
+El [Remus 450](/es/barco/remus-450) es un barco equilibrado que ofrece un buen compromiso entre espacio, maniobrabilidad y precio. Es la opción polivalente por excelencia.
 
 ### Puntos fuertes
 
@@ -2197,7 +2197,7 @@ El [Remus 450](/barco/remus-450) es un barco equilibrado que ofrece un buen comp
 
 ## Solar 450: El cómodo
 
-El [Solar 450](/barco/solar-450) destaca por su diseño orientado al confort. Es un barco pensado para quienes valoran la comodidad y la experiencia de navegación por encima de todo.
+El [Solar 450](/es/barco/solar-450) destaca por su diseño orientado al confort. Es un barco pensado para quienes valoran la comodidad y la experiencia de navegación por encima de todo.
 
 ### Puntos fuertes
 
@@ -2219,7 +2219,7 @@ El [Solar 450](/barco/solar-450) destaca por su diseño orientado al confort. Es
 
 ## Remus 450 II: El deportivo
 
-El [Remus 450 II](/barco/remus-450-ii) es el barco con carácter más deportivo de nuestra flota. Su diseño ofrece sensaciones de navegación más dinámicas.
+El [Remus 450 II](/es/barco/remus-450-ii) es el barco con carácter más deportivo de nuestra flota. Su diseño ofrece sensaciones de navegación más dinámicas.
 
 ### Puntos fuertes
 
@@ -2242,31 +2242,31 @@ El [Remus 450 II](/barco/remus-450-ii) es el barco con carácter más deportivo 
 ## Guía rápida: qué barco elegir según tu situación
 
 ### Sois una pareja
-**Recomendación:** [Astec 400](/barco/astec-400)
-Es el más económico y su tamaño compacto es perfecto para dos personas. Tendréis intimidad y espacio de sobra. Si queréis más confort, el [Solar 450](/barco/solar-450) es un paso arriba.
+**Recomendación:** [Astec 400](/es/barco/astec-400)
+Es el más económico y su tamaño compacto es perfecto para dos personas. Tendréis intimidad y espacio de sobra. Si queréis más confort, el [Solar 450](/es/barco/solar-450) es un paso arriba.
 
 ### Sois una familia con niños pequeños (3-8 años)
-**Recomendación:** [Astec 480](/barco/astec-480)
+**Recomendación:** [Astec 480](/es/barco/astec-480)
 Sin duda. Su estabilidad y espacio son ideales para navegar con niños. Los pequeños pueden moverse a bordo con seguridad y hay sitio para todo el equipamiento familiar.
 
 ### Sois una familia con niños mayores (9-16 años)
-**Recomendación:** [Astec 480](/barco/astec-480) o [Remus 450](/barco/remus-450)
+**Recomendación:** [Astec 480](/es/barco/astec-480) o [Remus 450](/es/barco/remus-450)
 Depende del número de personas. Si sois 5-6, el Astec 480 es la opción. Si sois 4, el Remus 450 ofrece un buen espacio a mejor precio.
 
 ### Sois un grupo de amigos (3-4 personas)
-**Recomendación:** [Remus 450 II](/barco/remus-450-ii) o [Solar 450](/barco/solar-450)
+**Recomendación:** [Remus 450 II](/es/barco/remus-450-ii) o [Solar 450](/es/barco/solar-450)
 El Remus 450 II para quienes buscan dinamismo, el Solar 450 para quienes priorizan comodidad.
 
 ### Sois un grupo grande (4-5 personas)
-**Recomendación:** [Astec 480](/barco/astec-480)
+**Recomendación:** [Astec 480](/es/barco/astec-480)
 Es el barco sin licencia más espacioso, con capacidad para 5 personas. Para 4 personas con mucho equipaje, también es la mejor opción.
 
 ### Es tu primera vez en un barco
-**Recomendación:** [Astec 400](/barco/astec-400) o [Astec 480](/barco/astec-480)
+**Recomendación:** [Astec 400](/es/barco/astec-400) o [Astec 480](/es/barco/astec-480)
 El Astec 400 por su sencillez y maniobrabilidad. El Astec 480 por su estabilidad que transmite seguridad. Ambos son perfectos para principiantes.
 
 ### Quieres el mejor barco posible (sin importar precio)
-**Recomendación:** [Astec 480](/barco/astec-480)
+**Recomendación:** [Astec 480](/es/barco/astec-480)
 El más grande, el más estable, el más espacioso. Es nuestro barco insignia por algo.
 
 ## Extras disponibles para todos los barcos
@@ -2284,13 +2284,13 @@ Los extras se seleccionan durante el proceso de reserva.
 
 Todos nuestros barcos están disponibles de **abril a octubre**. En temporada alta (julio-agosto), los barcos se agotan con rapidez, especialmente los fines de semana. Recomendamos reservar con la mayor antelación posible.
 
-Consulta la [disponibilidad en tiempo real de todos nuestros barcos](/barcos) y reserva directamente online.
+Consulta la [disponibilidad en tiempo real de todos nuestros barcos](/es/barcos) y reserva directamente online.
 
 ---
 
 Cada barco de nuestra flota tiene su personalidad y sus puntos fuertes. Lo importante es elegir el que se adapte a tu grupo, tu experiencia y tus expectativas. Y si tienes dudas, escríbenos por [WhatsApp](https://wa.me/34611500372) y te ayudaremos a decidir.
 
-[Ver todos los barcos](/barcos) y reservar online.`,
+[Ver todos los barcos](/es/barcos) y reservar online.`,
   },
   // ===== POST 15: Costa Brava en Septiembre =====
   {
@@ -2345,8 +2345,8 @@ La luz de septiembre es especial. El sol está más bajo que en pleno verano, cr
 
 Septiembre es **temporada media** en Costa Brava Rent a Boat, lo que significa precios significativamente más bajos que en julio y agosto:
 
-- Un día completo en el [Astec 480](/barco/astec-480) que en agosto cuesta desde 295 EUR, en septiembre baja a desde 220 EUR
-- Un medio día en el [Astec 400](/barco/astec-400) pasa de 160 EUR en temporada alta a 120 EUR en septiembre
+- Un día completo en el [Astec 480](/es/barco/astec-480) que en agosto cuesta desde 295 EUR, en septiembre baja a desde 220 EUR
+- Un medio día en el [Astec 400](/es/barco/astec-400) pasa de 160 EUR en temporada alta a 120 EUR en septiembre
 - Los extras mantienen el mismo precio todo el año
 
 **Ahorro aproximado: un 25-30% respecto a temporada alta.**
@@ -2384,7 +2384,7 @@ Aprovechando que las calas están vacías, esta ruta te lleva a los rincones má
 5. **Regreso al puerto**
 
 **Duración:** 4 horas
-**Barco recomendado:** [Remus 450](/barco/remus-450) o [Solar 450](/barco/solar-450)
+**Barco recomendado:** [Remus 450](/es/barco/remus-450) o [Solar 450](/es/barco/solar-450)
 
 ### Ruta 2: La gran travesía hasta Tossa (día completo)
 
@@ -2398,7 +2398,7 @@ En septiembre, con el mar calmado, es el momento perfecto para la ruta larga has
 6. **Regreso con paradas libres**
 
 **Duración:** 8 horas
-**Barco recomendado:** [Astec 480](/barco/astec-480)
+**Barco recomendado:** [Astec 480](/es/barco/astec-480)
 
 ### Ruta 3: Atardecer en el mar (tarde)
 
@@ -2411,7 +2411,7 @@ La luz de septiembre por la tarde es mágica. Una salida de 16:00 a 20:00 te per
 5. **Regreso al puerto** con el sol cayendo sobre Blanes
 
 **Duración:** 4 horas
-**Barco recomendado:** Cualquier barco de la [flota](/barcos)
+**Barco recomendado:** Cualquier barco de la [flota](/es/barcos)
 
 ## Septiembre para familias
 
@@ -2452,7 +2452,7 @@ La buena noticia es que en septiembre la disponibilidad de barcos es mucho mayor
 
 Septiembre es el secreto mejor guardado de la Costa Brava. Agua caliente, calas vacías, precios moderados y una luz que convierte cada momento en una postal. Si buscas la experiencia de navegación perfecta, septiembre es tu mes.
 
-[Reserva tu barco para septiembre](/barcos) antes de que los mejores días se llenen. Tu futuro yo te lo agradecerá.`,
+[Reserva tu barco para septiembre](/es/barcos) antes de que los mejores días se llenen. Tu futuro yo te lo agradecerá.`,
   },
   // ===== POST 16: Preguntas Frecuentes =====
   {
@@ -2499,11 +2499,11 @@ La capacidad depende del modelo de barco que elijas:
 
 | Barco | Capacidad máxima | Ideal para |
 |-------|-----------------|------------|
-| [Astec 400](/barco/astec-400) | 4 personas | Parejas o grupos pequeños |
-| [Solar 450](/barco/solar-450) | 5 personas | Familias o grupos medianos |
-| [Remus 450](/barco/remus-450) | 5 personas | Familias o grupos medianos |
-| [Remus 450 II](/barco/remus-450-ii) | 5 personas | Grupos de amigos |
-| [Astec 480](/barco/astec-480) | 5 personas | Familias o grupos |
+| [Astec 400](/es/barco/astec-400) | 4 personas | Parejas o grupos pequeños |
+| [Solar 450](/es/barco/solar-450) | 5 personas | Familias o grupos medianos |
+| [Remus 450](/es/barco/remus-450) | 5 personas | Familias o grupos medianos |
+| [Remus 450 II](/es/barco/remus-450-ii) | 5 personas | Grupos de amigos |
+| [Astec 480](/es/barco/astec-480) | 5 personas | Familias o grupos |
 
 La capacidad máxima incluye adultos y niños, incluidos bebés. Nuestra recomendación es que, para mayor comodidad, navegues con **una persona menos** de la capacidad máxima. Por ejemplo, en un barco de 5 plazas, 4 personas irán muy cómodas.
 
@@ -2609,7 +2609,7 @@ Si durante la navegación las condiciones empeoran inesperadamente, **llámanos*
 | Junio y Septiembre | 1 semana |
 | Abril, Mayo, Octubre | 2-3 días |
 
-La reserva se hace **100% online** a través de nuestra [web](/barcos). El proceso es rápido: eliges barco, fecha, horario y extras, y pagas de forma segura con tarjeta.
+La reserva se hace **100% online** a través de nuestra [web](/es/barcos). El proceso es rápido: eliges barco, fecha, horario y extras, y pagas de forma segura con tarjeta.
 
 ## ¿Puedo llevar a mi perro en el barco?
 
@@ -2629,7 +2629,7 @@ Avísanos al hacer la reserva si llevarás mascota para que podamos aconsejarte 
 
 Esperamos haber resuelto tus dudas. Si tienes alguna pregunta que no hemos cubierto, estamos a un mensaje de distancia. Escríbenos por [WhatsApp](https://wa.me/34611500372) o llámanos al [+34 611 500 372](tel:+34611500372).
 
-[Reserva tu barco](/barcos) y vive la experiencia de navegar por la Costa Brava sin licencia, sin experiencia y sin preocupaciones.`,
+[Reserva tu barco](/es/barcos) y vive la experiencia de navegar por la Costa Brava sin licencia, sin experiencia y sin preocupaciones.`,
   },
   // ===== POST 17: Excursiones para Grupos =====
   {
@@ -2709,17 +2709,17 @@ Abuelos, padres, hijos, primos... Una excursión familiar en barco es una forma 
 
 ### Grupos de 2-4 personas
 
-Un solo barco es suficiente. El [Astec 400](/barco/astec-400) para parejas o el [Remus 450](/barco/remus-450) para 3-4 personas.
+Un solo barco es suficiente. El [Astec 400](/es/barco/astec-400) para parejas o el [Remus 450](/es/barco/remus-450) para 3-4 personas.
 
 ### Grupos de 4-5 personas
 
-El [Astec 480](/barco/astec-480) con capacidad para 5 personas es la opción ideal. Es el barco sin licencia más espacioso y estable, perfecto para que el grupo vaya cómodo.
+El [Astec 480](/es/barco/astec-480) con capacidad para 5 personas es la opción ideal. Es el barco sin licencia más espacioso y estable, perfecto para que el grupo vaya cómodo.
 
 ### Grupos de 7-12 personas
 
 **Dos barcos** navegando juntos. La configuración más popular:
-- 2 x [Astec 480](/barco/astec-480) para hasta 12 personas
-- 1 x [Astec 480](/barco/astec-480) + 1 x [Solar 450](/barco/solar-450) para hasta 11 personas
+- 2 x [Astec 480](/es/barco/astec-480) para hasta 12 personas
+- 1 x [Astec 480](/es/barco/astec-480) + 1 x [Solar 450](/es/barco/solar-450) para hasta 11 personas
 
 Navegar en dos barcos es en realidad más divertido que ir todos juntos: puedes hacer carreras suaves hasta las calas, reuniros al fondear y disfrutar de más espacio.
 
@@ -2732,7 +2732,7 @@ Para grupos grandes, la opción es **3 o más barcos**. Contáctanos directament
 ### Paso 1: Define el grupo
 
 - **Cuántas personas:** Determina el número exacto para saber cuántos barcos necesitas
-- **Edades:** Si hay niños pequeños o personas mayores, prioriza barcos estables como el [Astec 480](/barco/astec-480)
+- **Edades:** Si hay niños pequeños o personas mayores, prioriza barcos estables como el [Astec 480](/es/barco/astec-480)
 - **Nivel de aventura:** No todos los grupos buscan lo mismo. Algunos quieren navegar y explorar, otros prefieren fondear en una cala y pasar el día tranquilamente
 
 ### Paso 2: Elige fecha y horario
@@ -2809,20 +2809,20 @@ La ventaja del alquiler de barco para grupos es que **el coste se divide entre t
 
 ### Despedida de 8 personas (2 barcos, medio día, temporada media)
 
-- 2 x [Solar 450](/barco/solar-450) medio día: aprox. 280 EUR total
+- 2 x [Solar 450](/es/barco/solar-450) medio día: aprox. 280 EUR total
 - Kit snorkel x 8: 60 EUR
 - Altavoz Bluetooth x 2: incluido como extra
 - **Total por persona: aprox. 42 EUR**
 
 ### Cumpleaños de 5 personas (1 barco, día completo, temporada media)
 
-- 1 x [Astec 480](/barco/astec-480) día completo: aprox. 220 EUR
+- 1 x [Astec 480](/es/barco/astec-480) día completo: aprox. 220 EUR
 - Kit snorkel x 6: 45 EUR
 - **Total por persona: aprox. 44 EUR**
 
 ### Team building de 12 personas (2 barcos, día completo, temporada media)
 
-- 2 x [Astec 480](/barco/astec-480) día completo: aprox. 440 EUR
+- 2 x [Astec 480](/es/barco/astec-480) día completo: aprox. 440 EUR
 - Kit snorkel x 12: 90 EUR
 - **Total por persona: aprox. 44 EUR**
 
@@ -2832,7 +2832,7 @@ Difícilmente encontrarás una actividad de grupo tan memorable por menos de 45 
 
 Un día en barco con tu grupo es una experiencia que no se compara con nada. El mar, las calas, la libertad de navegar a vuestro aire y la complicidad de compartir aventuras crean recuerdos que duran para siempre.
 
-[Reserva tus barcos](/barcos) y empieza a planificar la excursión perfecta. Si necesitas ayuda para coordinar varios barcos o tienes dudas, escríbenos por [WhatsApp](https://wa.me/34611500372) y te asesoraremos encantados.`,
+[Reserva tus barcos](/es/barcos) y empieza a planificar la excursión perfecta. Si necesitas ayuda para coordinar varios barcos o tienes dudas, escríbenos por [WhatsApp](https://wa.me/34611500372) y te asesoraremos encantados.`,
   },
   // ===== POST 18: Atardeceres desde el Mar =====
   {
@@ -2902,7 +2902,7 @@ La hora dorada (golden hour) es el período de aproximadamente una hora antes de
 
 **Duración:** 2-3 horas
 **Dificultad:** Fácil
-**Mejor barco:** Cualquiera de la [flota](/barcos)
+**Mejor barco:** Cualquiera de la [flota](/es/barcos)
 
 La ruta más sencilla y una de las más gratificantes. Sales del puerto, navegas suavemente hacia el sur y te posicionas frente a la roca de Sa Palomera para ver cómo el sol se pone sobre Blanes.
 
@@ -2919,7 +2919,7 @@ La ruta más sencilla y una de las más gratificantes. Sales del puerto, navegas
 
 **Duración:** 3-4 horas
 **Dificultad:** Media
-**Mejor barco:** [Astec 480](/barco/astec-480) o [Remus 450](/barco/remus-450)
+**Mejor barco:** [Astec 480](/es/barco/astec-480) o [Remus 450](/es/barco/remus-450)
 
 Los acantilados entre Blanes y Lloret son espectaculares al atardecer. Las paredes de roca se tiñen de dorado y naranja, y los pinos que crecen en lo alto crean siluetas dramáticas.
 
@@ -2937,7 +2937,7 @@ Los acantilados entre Blanes y Lloret son espectaculares al atardecer. Las pared
 
 **Duración:** 6-8 horas (ruta completa)
 **Dificultad:** Avanzada (por distancia)
-**Mejor barco:** [Astec 480](/barco/astec-480)
+**Mejor barco:** [Astec 480](/es/barco/astec-480)
 
 Para los más aventureros, navegar hasta Tossa de Mar y ver el atardecer con el faro y las murallas medievales como fondo es la experiencia definitiva.
 
@@ -2957,7 +2957,7 @@ Para los más aventureros, navegar hasta Tossa de Mar y ver el atardecer con el 
 
 **Duración:** 2 horas
 **Dificultad:** Muy fácil
-**Mejor barco:** [Astec 400](/barco/astec-400) (perfecto para parejas)
+**Mejor barco:** [Astec 400](/es/barco/astec-400) (perfecto para parejas)
 
 La ruta más sencilla y romántica. No necesitas ir lejos. Simplemente sal del puerto, fondea en la bahía de Blanes a unos 200 metros de la playa y disfruta del atardecer con una botella de cava y tu mejor compañía.
 
@@ -3006,7 +3006,7 @@ Si quieres organizar una experiencia romántica para tu pareja, aquí tienes nue
 - Lleva una manta ligera para la brisa del anochecer
 
 **La experiencia:**
-1. **17:30** -- Recogéis el barco ([Astec 400](/barco/astec-400) es perfecto para dos)
+1. **17:30** -- Recogéis el barco ([Astec 400](/es/barco/astec-400) es perfecto para dos)
 2. **17:45** -- Navegación hasta Cala Sant Francesc. Último baño del día con la luz dorada.
 3. **18:45** -- Regreso lento bordeando la costa. Paráis el motor y os dejáis mecer por el mar.
 4. **19:15** -- Fondeo en la bahía de Blanes. Aperitivos y cava con vistas al atardecer.
@@ -3034,7 +3034,7 @@ Es una experiencia que cuesta menos de lo que imaginas y que deja un recuerdo im
 
 Un atardecer desde el mar es uno de esos regalos que la Costa Brava te hace sin pedir nada a cambio. Solo necesitas un barco, el horizonte y las ganas de detenerte un momento a contemplar algo extraordinario.
 
-[Reserva tu barco de atardecer](/barcos) y descubre por qué nuestros clientes repiten año tras año. El Mediterráneo al sunset te espera.`,
+[Reserva tu barco de atardecer](/es/barcos) y descubre por qué nuestros clientes repiten año tras año. El Mediterráneo al sunset te espera.`,
   },
 
   // ===== POST 19: Excursión Barco Tossa de Mar =====
@@ -3068,7 +3068,7 @@ En esta guía te contamos **todo lo que necesitas saber** para hacer la excursi�
 
 **Sí.** Tossa de Mar está más allá del límite de 2 millas náuticas que permite la navegación sin licencia en España. Para llegar necesitas:
 
-1. **Un barco con licencia** (PER o PNB) — Traes tu propia titulación y alquilas uno de nuestros barcos: [Mingolla Brava 19](/barco/mingolla-brava-19) (80 CV), [Trimarchi 57S](/barco/trimarchi-57s) (110 CV) o [Pacific Craft 625](/barco/pacific-craft-625) (115 CV).
+1. **Un barco con licencia** (PER o PNB) — Traes tu propia titulación y alquilas uno de nuestros barcos: [Mingolla Brava 19](/es/barco/mingolla-brava-19) (80 CV), [Trimarchi 57S](/es/barco/trimarchi-57s) (110 CV) o [Pacific Craft 625](/es/barco/pacific-craft-625) (115 CV).
 2. **Excursión privada con patrón** — Nuestro capitán profesional te lleva. Tú solo disfrutas. Ideal para quien no tiene licencia pero quiere vivir la experiencia.
 
 ## Precios para ir en barco a Tossa de Mar
@@ -3084,7 +3084,7 @@ Para una excursión a Tossa recomendamos **mínimo 4 horas** (ida + exploración
 
 **Nota:** Los barcos con licencia NO incluyen combustible. Calcula unos 40-60 EUR adicionales de gasolina para la ida y vuelta a Tossa.
 
-En temporada alta (agosto), los precios suben un 15-25%. Consulta nuestra [página de precios](/precios) para las tarifas actualizadas.
+En temporada alta (agosto), los precios suben un 15-25%. Consulta nuestra [página de precios](/es/precios) para las tarifas actualizadas.
 
 ## La ruta: de Blanes a Tossa paso a paso
 
@@ -3145,9 +3145,9 @@ Puedes fondear frente a la **Playa Grande** (Platja Gran), justo debajo de las m
 
 Si estás alojado en alguno de estos pueblos de la costa del Maresme, puedes llegar fácilmente al Puerto de Blanes:
 
-- [Malgrat de Mar](/alquiler-barcos-malgrat-de-mar): 10 minutos en coche
-- [Santa Susanna](/alquiler-barcos-santa-susanna): 15 minutos en coche
-- [Calella](/alquiler-barcos-calella): 20 minutos en coche
+- [Malgrat de Mar](/es/alquiler-barcos-malgrat-de-mar): 10 minutos en coche
+- [Santa Susanna](/es/alquiler-barcos-santa-susanna): 15 minutos en coche
+- [Calella](/es/alquiler-barcos-calella): 20 minutos en coche
 
 Hay parking gratuito junto al puerto. También puedes venir en tren RENFE (línea R1).
 
@@ -3155,7 +3155,7 @@ Hay parking gratuito junto al puerto. También puedes venir en tren RENFE (líne
 
 La excursión en barco a Tossa de Mar es una de las experiencias más memorables que puedes vivir en la Costa Brava. La combinación de navegación costera, calas vírgenes y la llegada a un pueblo medieval desde el mar es sencillamente inigualable.
 
-[Consulta disponibilidad y reserva tu barco](/barcos) o escríbenos por [WhatsApp](https://wa.me/34611500372) para que te ayudemos a planificar tu excursión perfecta a Tossa.`,
+[Consulta disponibilidad y reserva tu barco](/es/barcos) o escríbenos por [WhatsApp](https://wa.me/34611500372) para que te ayudemos a planificar tu excursión perfecta a Tossa.`,
   },
 
   // ===== POST: Barco sin licencia vs con licencia =====
@@ -3176,13 +3176,13 @@ La excursión en barco a Tossa de Mar es una de las experiencias más memorables
 
 Un barco sin licencia es una embarcacion de hasta 5 metros de eslora y un motor de hasta 15 CV que, segun la legislacion espanola, cualquier persona mayor de 18 anos puede pilotar sin necesitar titulo nautico. Solo necesitas tu DNI o pasaporte y prestar atencion al briefing de seguridad que te damos antes de salir.
 
-En [Costa Brava Rent a Boat](/barcos-sin-licencia) disponemos de varios modelos sin licencia: el [Solar 450](/barco/solar-450), el [Astec 480](/barco/astec-480), el [Astec 400](/barco/astec-400) y el [Remus 450](/barco/remus-450). Todos incluyen combustible, equipo de seguridad y un briefing completo.
+En [Costa Brava Rent a Boat](/es/barcos-sin-licencia) disponemos de varios modelos sin licencia: el [Solar 450](/es/barco/solar-450), el [Astec 480](/es/barco/astec-480), el [Astec 400](/es/barco/astec-400) y el [Remus 450](/es/barco/remus-450). Todos incluyen combustible, equipo de seguridad y un briefing completo.
 
 ## Que es un barco con licencia
 
 Un barco con licencia requiere que el patron (la persona que conduce) tenga una titulacion nautica oficial. Para nuestra flota basta la LN (Licencia de Navegacion) o superior — LNB, PER, PNB o Capitan de Yate. Estos barcos son mas grandes, mas potentes y te permiten navegar a mayor distancia de la costa.
 
-Nuestros [barcos con licencia](/barcos-con-licencia) incluyen el [Pacific Craft 625](/barco/pacific-craft-625) y la [Mingolla Brava 19](/barco/mingolla-brava-19). Tambien ofrecemos la [excursion privada con capitan](/barco/excursion-privada) para quienes quieran un barco grande sin tener licencia.
+Nuestros [barcos con licencia](/es/barcos-con-licencia) incluyen el [Pacific Craft 625](/es/barco/pacific-craft-625) y la [Mingolla Brava 19](/es/barco/mingolla-brava-19). Tambien ofrecemos la [excursion privada con capitan](/es/barco/excursion-privada) para quienes quieran un barco grande sin tener licencia.
 
 ## Tabla comparativa: sin licencia vs con licencia
 
@@ -3204,41 +3204,41 @@ El barco sin licencia es perfecto si:
 
 - **Nunca has navegado antes.** No necesitas experiencia previa. Te ensenamos todo en un briefing de 10 minutos.
 - **Vienes con familia.** Los barcos son estables, seguros y faciles de manejar. Los ninos disfrutan muchisimo.
-- **Quieres visitar calas cercanas.** Desde el puerto de Blanes, tienes [Cala Sant Francesc](/rutas), Cala Bona, Cala Treumal y la playa de Santa Cristina a menos de 15 minutos.
+- **Quieres visitar calas cercanas.** Desde el puerto de Blanes, tienes [Cala Sant Francesc](/es/rutas), Cala Bona, Cala Treumal y la playa de Santa Cristina a menos de 15 minutos.
 - **Buscas la opcion mas economica.** Desde 70 EUR la hora con combustible incluido, es la forma mas accesible de disfrutar del mar.
 - **Prefieres tranquilidad.** Navegar a ritmo lento, fondear en una cala, banarte y hacer snorkel sin prisas.
 
 ### Barcos sin licencia recomendados
 
-- [Solar 450](/barco/solar-450): Compacto y agil, ideal para parejas.
-- [Astec 480](/barco/astec-480): El mas espacioso sin licencia, perfecto para familias de 4-5 personas.
-- [Astec 400](/barco/astec-400): Maniobrable y comodo, buena relacion calidad-precio.
-- [Remus 450](/barco/remus-450): Robusto y estable, ideal para principiantes.
+- [Solar 450](/es/barco/solar-450): Compacto y agil, ideal para parejas.
+- [Astec 480](/es/barco/astec-480): El mas espacioso sin licencia, perfecto para familias de 4-5 personas.
+- [Astec 400](/es/barco/astec-400): Maniobrable y comodo, buena relacion calidad-precio.
+- [Remus 450](/es/barco/remus-450): Robusto y estable, ideal para principiantes.
 
 ## Quien deberia elegir un barco con licencia
 
 El barco con licencia es la mejor opcion si:
 
 - **Tienes experiencia nautica.** Ya sabes navegar y quieres un barco con mas prestaciones.
-- **Quieres llegar mas lejos.** Puedes hacer la [ruta Blanes - Tossa de Mar](/rutas) ida y vuelta en un solo dia con tiempo de sobra.
+- **Quieres llegar mas lejos.** Puedes hacer la [ruta Blanes - Tossa de Mar](/es/rutas) ida y vuelta en un solo dia con tiempo de sobra.
 - **Venís en un grupo grande.** Capacidad para 6-7 personas con espacio para moverse comodamente.
 - **Buscas velocidad.** Los barcos con licencia alcanzan 20-30 nudos, lo que te permite cubrir mas terreno y visitar mas calas.
 - **Quieres pescar o hacer deportes nauticos.** La potencia extra permite actividades que no son posibles con barcos mas pequenos.
 
 ### Barcos con licencia recomendados
 
-- [Pacific Craft 625](/barco/pacific-craft-625): 115 CV, hasta 7 personas, ideal para rutas largas hasta Tossa de Mar.
-- [Mingolla Brava 19](/barco/mingolla-brava-19): 100 CV, versatil y comoda, perfecta para grupos de 6 personas.
+- [Pacific Craft 625](/es/barco/pacific-craft-625): 115 CV, hasta 7 personas, ideal para rutas largas hasta Tossa de Mar.
+- [Mingolla Brava 19](/es/barco/mingolla-brava-19): 100 CV, versatil y comoda, perfecta para grupos de 6 personas.
 
 ## Y si quiero un barco grande pero no tengo licencia?
 
-Tenemos la solucion perfecta: nuestra [excursion privada con capitan](/barco/excursion-privada). Un patron profesional te lleva en un barco de 19 pies por las mejores calas y rutas de la Costa Brava. Tu solo te preocupas de disfrutar.
+Tenemos la solucion perfecta: nuestra [excursion privada con capitan](/es/barco/excursion-privada). Un patron profesional te lleva en un barco de 19 pies por las mejores calas y rutas de la Costa Brava. Tu solo te preocupas de disfrutar.
 
 Esta opcion es ideal para celebraciones, despedidas, aniversarios o simplemente para quienes quieren la experiencia de un barco grande sin necesitar licencia.
 
 ## Precios y duraciones
 
-Tanto los barcos sin licencia como con licencia se pueden alquilar por horas. Las duraciones mas populares son 2 horas y 4 horas. Consulta todos los [precios actualizados en nuestra web](/precios).
+Tanto los barcos sin licencia como con licencia se pueden alquilar por horas. Las duraciones mas populares son 2 horas y 4 horas. Consulta todos los [precios actualizados en nuestra web](/es/precios).
 
 En temporada alta (julio-agosto), recomendamos reservar con al menos una semana de antelacion, especialmente para fines de semana.
 
@@ -3246,7 +3246,7 @@ En temporada alta (julio-agosto), recomendamos reservar con al menos una semana 
 
 Elegir entre barco sin licencia o con licencia depende de tu experiencia, el tamano de tu grupo y lo lejos que quieras llegar. En cualquier caso, la Costa Brava te ofrece una experiencia de navegacion inolvidable.
 
-[Explora todos nuestros barcos](/barcos) y reserva online en menos de 2 minutos. Si tienes dudas, escribenos por [WhatsApp](https://wa.me/34611500372) y te asesoramos encantados.`,
+[Explora todos nuestros barcos](/es/barcos) y reserva online en menos de 2 minutos. Si tienes dudas, escribenos por [WhatsApp](https://wa.me/34611500372) y te asesoramos encantados.`,
   },
 
   // ===== POST: Que llevar en un barco de alquiler =====
@@ -3265,10 +3265,10 @@ Elegir entre barco sin licencia o con licencia depende de tu experiencia, el tam
 
 ## Lo que ya incluye tu alquiler
 
-Antes de preparar tu mochila, ten en cuenta que cuando [alquilas un barco con nosotros](/barcos) ya te proporcionamos:
+Antes de preparar tu mochila, ten en cuenta que cuando [alquilas un barco con nosotros](/es/barcos) ya te proporcionamos:
 
 - **Equipo de seguridad completo:** chalecos salvavidas para todos los pasajeros (incluidos ninos), bengalas, extintor y botiquin basico.
-- **Combustible incluido** en todos los [barcos sin licencia](/barcos-sin-licencia) (los barcos con licencia no incluyen combustible).
+- **Combustible incluido** en todos los [barcos sin licencia](/es/barcos-sin-licencia) (los barcos con licencia no incluyen combustible).
 - **Briefing de seguridad y navegacion:** te explicamos como manejar el barco, las zonas recomendadas y consejos practicos.
 - **Mapa de rutas y calas:** para que sepas exactamente donde ir.
 - **Ancla y cabo de fondeo:** para que puedas parar en cualquier cala.
@@ -3312,9 +3312,9 @@ Lleva mas agua de la que crees necesaria. Los ninos se deshidratan rapido, espec
 
 ## Entretenimiento y actividades
 
-- **Equipo de snorkel:** Si no lo has anadido como extra en tu reserva, puedes traer el tuyo. Las calas cerca de [Blanes](/alquiler-barcos-blanes) tienen fondos marinos espectaculares.
+- **Equipo de snorkel:** Si no lo has anadido como extra en tu reserva, puedes traer el tuyo. Las calas cerca de [Blanes](/es/alquiler-barcos-blanes) tienen fondos marinos espectaculares.
 - **Camara acuatica o funda sumergible para el movil:** Las fotos desde el agua y bajo el agua son las mejores del viaje.
-- **Altavoz bluetooth portatil:** Musica suave mientras fondeas en una cala. Nuestros barcos [Astec 480](/barco/astec-480) ya incluyen altavoz bluetooth.
+- **Altavoz bluetooth portatil:** Musica suave mientras fondeas en una cala. Nuestros barcos [Astec 480](/es/barco/astec-480) ya incluyen altavoz bluetooth.
 - **Juegos de agua:** Para los ninos: pistolas de agua, hinchables pequenos.
 - **Libro o revista:** Para los ratos de fondeo mientras los demas se banan.
 
@@ -3355,7 +3355,7 @@ Lleva mas agua de la que crees necesaria. Los ninos se deshidratan rapido, espec
 
 Un dia en el mar es una de las mejores experiencias que puedes vivir en la Costa Brava. Con esta checklist, solo te queda elegir tu barco y disfrutar.
 
-[Reserva tu barco ahora](/barcos) y empieza a preparar tu aventura. Consulta nuestros [precios](/precios) o escribenos por [WhatsApp](https://wa.me/34611500372) si tienes cualquier duda.`,
+[Reserva tu barco ahora](/es/barcos) y empieza a preparar tu aventura. Consulta nuestros [precios](/es/precios) o escribenos por [WhatsApp](https://wa.me/34611500372) si tienes cualquier duda.`,
   },
 
   // ===== POST: Alquiler barco familias Costa Brava =====
@@ -3372,7 +3372,7 @@ Un dia en el mar es una de las mejores experiencias que puedes vivir en la Costa
     excerpt: "Descubre por que alquilar un barco sin licencia en Blanes es la actividad perfecta para familias con ninos: seguro, facil, asequible y con calas espectaculares a pocos minutos.",
     content: `Si hay una actividad que transforma unas vacaciones familiares en la Costa Brava en algo verdaderamente especial, es alquilar un barco. No hace falta tener experiencia, ni licencia, ni ser un lobo de mar. Solo hacen falta ganas de vivir una aventura juntos en el Mediterraneo.
 
-En [Costa Brava Rent a Boat](/alquiler-barcos-blanes) llevamos anos ayudando a familias a crear recuerdos inolvidables en el mar. En esta guia te contamos todo lo que necesitas saber para planificar la excursion familiar perfecta.
+En [Costa Brava Rent a Boat](/es/alquiler-barcos-blanes) llevamos anos ayudando a familias a crear recuerdos inolvidables en el mar. En esta guia te contamos todo lo que necesitas saber para planificar la excursion familiar perfecta.
 
 ## Por que un barco es la actividad ideal para familias
 
@@ -3388,7 +3388,7 @@ Alquilar un barco ofrece algo que pocas actividades pueden igualar: combina aven
 
 ## Barcos sin licencia: seguros y faciles para familias
 
-Todos nuestros [barcos sin licencia](/barcos-sin-licencia) estan pensados para que cualquier persona pueda pilotarlos con seguridad, incluso sin experiencia previa. Antes de salir, te damos un briefing completo de 10-15 minutos donde te explicamos:
+Todos nuestros [barcos sin licencia](/es/barcos-sin-licencia) estan pensados para que cualquier persona pueda pilotarlos con seguridad, incluso sin experiencia previa. Antes de salir, te damos un briefing completo de 10-15 minutos donde te explicamos:
 
 - Como arrancar, acelerar y frenar el motor.
 - Como maniobrar y fondear (anclar) en una cala.
@@ -3410,15 +3410,15 @@ La seguridad de los mas pequenos es nuestra prioridad:
 
 ### Familias de 3-4 personas
 
-El [Astec 480](/barco/astec-480) es nuestro barco estrella para familias. Con casi 5 metros de eslora, ofrece el maximo espacio posible sin necesitar licencia. Tiene espacio para moverse comodamente, guardar mochilas y nevera, y cuenta con altavoz bluetooth integrado. Capacidad maxima: 5 personas.
+El [Astec 480](/es/barco/astec-480) es nuestro barco estrella para familias. Con casi 5 metros de eslora, ofrece el maximo espacio posible sin necesitar licencia. Tiene espacio para moverse comodamente, guardar mochilas y nevera, y cuenta con altavoz bluetooth integrado. Capacidad maxima: 5 personas.
 
 ### Parejas con 1-2 ninos
 
-El [Solar 450](/barco/solar-450) es compacto, agil y muy facil de manejar. Perfecto si sois 3-4 personas y buscais una experiencia mas deportiva. Es el barco ideal para primera vez.
+El [Solar 450](/es/barco/solar-450) es compacto, agil y muy facil de manejar. Perfecto si sois 3-4 personas y buscais una experiencia mas deportiva. Es el barco ideal para primera vez.
 
 ### Familias grandes (6+ personas)
 
-Si sois mas de 5, necesitareis un [barco con licencia](/barcos-con-licencia) como el [Pacific Craft 625](/barco/pacific-craft-625) (hasta 7 personas) o contratar nuestra [excursion privada con capitan](/barco/excursion-privada), donde un patron profesional os lleva por las mejores calas sin que necesiteis ningun titulo.
+Si sois mas de 5, necesitareis un [barco con licencia](/es/barcos-con-licencia) como el [Pacific Craft 625](/es/barco/pacific-craft-625) (hasta 7 personas) o contratar nuestra [excursion privada con capitan](/es/barco/excursion-privada), donde un patron profesional os lleva por las mejores calas sin que necesiteis ningun titulo.
 
 ## Itinerario familiar recomendado: 2 horas
 
@@ -3454,7 +3454,7 @@ Si teneis toda la manana, el alquiler de 4 horas os permite llegar mas lejos:
 
 ## Precios para familias
 
-Los [precios](/precios) de nuestros barcos sin licencia empiezan desde 70 EUR la hora, con combustible incluido. Las duraciones mas populares para familias son:
+Los [precios](/es/precios) de nuestros barcos sin licencia empiezan desde 70 EUR la hora, con combustible incluido. Las duraciones mas populares para familias son:
 
 - **2 horas:** Suficiente para visitar 2-3 calas cercanas. Ideal con ninos pequenos.
 - **4 horas:** La experiencia completa. Tiempo para explorar, nadar, hacer snorkel y comer a bordo.
@@ -3481,7 +3481,7 @@ Reservar online tiene un **5% de descuento**. Puedes hacerlo directamente desde 
 
 Alquilar un barco en familia es una de esas experiencias que los ninos recordaran para siempre. La combinacion de aventura, naturaleza y tiempo juntos en un entorno tan espectacular como la Costa Brava es dificil de superar.
 
-[Reserva ahora tu barco familiar](/barcos) y crea recuerdos que duraran toda la vida. Si tienes dudas, escribenos por [WhatsApp](https://wa.me/34611500372) y te ayudamos a planificar vuestra excursion perfecta.`,
+[Reserva ahora tu barco familiar](/es/barcos) y crea recuerdos que duraran toda la vida. Si tienes dudas, escribenos por [WhatsApp](https://wa.me/34611500372) y te ayudamos a planificar vuestra excursion perfecta.`,
   },
 
   // ===== POST: Las 10 mejores calas de Blanes accesibles en barco =====
@@ -3496,7 +3496,7 @@ Alquilar un barco en familia es una de esas experiencias que los ninos recordara
     isPublished: true,
     _publishedAt: new Date("2026-04-04T10:00:00Z"),
     excerpt: "Descubre las 10 mejores calas cerca de Blanes que puedes visitar en barco: desde Cala Sant Francesc hasta rincones secretos a menos de 30 minutos del puerto.",
-    content: `Blanes es el punto de partida perfecto para explorar algunas de las calas mas bonitas del Mediterraneo. Mientras que nuestra guia de [las mejores calas de la Costa Brava](/blog/mejores-calas-costa-brava-en-barco) cubre toda la costa desde Blanes hasta Tossa de Mar, en este articulo nos centramos exclusivamente en las calas cercanas al puerto de Blanes, esas que puedes visitar incluso con un alquiler de solo 2 horas en un [barco sin licencia](/barcos-sin-licencia).
+    content: `Blanes es el punto de partida perfecto para explorar algunas de las calas mas bonitas del Mediterraneo. Mientras que nuestra guia de [las mejores calas de la Costa Brava](/es/blog/mejores-calas-costa-brava-en-barco) cubre toda la costa desde Blanes hasta Tossa de Mar, en este articulo nos centramos exclusivamente en las calas cercanas al puerto de Blanes, esas que puedes visitar incluso con un alquiler de solo 2 horas en un [barco sin licencia](/es/barcos-sin-licencia).
 
 ## 1. Cala Sant Francesc
 
@@ -3550,7 +3550,7 @@ Desde el barco, la perspectiva de toda la bahia de Blanes con el Jardi Botanic M
 
 **Tiempo desde el puerto:** 10 minutos | **Distancia:** 3 km | **Snorkel:** Bueno
 
-Cala Treumal marca la frontera entre Blanes y [Lloret de Mar](/alquiler-barcos-lloret-de-mar). Es una playa rodeada de vegetacion subtropical gracias al cercano Jardin Botanico Pinya de Rosa. Las aguas son tranquilas y poco profundas, ideales para familias con ninos pequenos.
+Cala Treumal marca la frontera entre Blanes y [Lloret de Mar](/es/alquiler-barcos-lloret-de-mar). Es una playa rodeada de vegetacion subtropical gracias al cercano Jardin Botanico Pinya de Rosa. Las aguas son tranquilas y poco profundas, ideales para familias con ninos pequenos.
 
 Tiene un chiringuito al que puedes acercarte nadando desde el barco fondeado. La combinacion de bano, snorkel y vermut es dificil de superar.
 
@@ -3600,22 +3600,22 @@ No tiene acceso a pie (los acantilados la rodean por completo) y solo se puede l
 
 ## Que barco elegir para explorar las calas de Blanes
 
-Todas estas calas estan a menos de 15 minutos del puerto, lo que las hace perfectas para un alquiler corto de 2 horas en un [barco sin licencia](/barcos-sin-licencia):
+Todas estas calas estan a menos de 15 minutos del puerto, lo que las hace perfectas para un alquiler corto de 2 horas en un [barco sin licencia](/es/barcos-sin-licencia):
 
-- [Astec 480](/barco/astec-480): El mas espacioso. Ideal para familias que quieren visitar 3-4 calas comodamente.
-- [Solar 450](/barco/solar-450): Agil y maniobrable. Perfecto para parejas que quieren explorar los rincones mas estrechos.
-- [Remus 450](/barco/remus-450): Estable y robusto. La mejor opcion para principiantes absolutos.
+- [Astec 480](/es/barco/astec-480): El mas espacioso. Ideal para familias que quieren visitar 3-4 calas comodamente.
+- [Solar 450](/es/barco/solar-450): Agil y maniobrable. Perfecto para parejas que quieren explorar los rincones mas estrechos.
+- [Remus 450](/es/barco/remus-450): Estable y robusto. La mejor opcion para principiantes absolutos.
 
-Si tienes licencia y quieres combinar calas cercanas con una escapada mas lejana a [Tossa de Mar](/alquiler-barcos-tossa-de-mar), el [Pacific Craft 625](/barco/pacific-craft-625) te permite hacerlo comodamente en una jornada de 4 horas.
+Si tienes licencia y quieres combinar calas cercanas con una escapada mas lejana a [Tossa de Mar](/es/alquiler-barcos-tossa-de-mar), el [Pacific Craft 625](/es/barco/pacific-craft-625) te permite hacerlo comodamente en una jornada de 4 horas.
 
 ## Consejos para visitar estas calas
 
 - **Llega antes de las 11:00.** Las calas mas populares (Sant Francesc, Treumal) se llenan rapido en verano.
-- **Lleva equipo de snorkel.** Puedes [anadirlo a tu reserva](/barcos) por solo 7,50 EUR.
+- **Lleva equipo de snorkel.** Puedes [anadirlo a tu reserva](/es/barcos) por solo 7,50 EUR.
 - **Respeta el fondeo.** Evita anclar sobre praderas de posidonia. Busca fondos de arena para soltar el ancla.
-- **Consulta nuestras [rutas recomendadas](/rutas)** para optimizar tu recorrido segun la duracion del alquiler.
+- **Consulta nuestras [rutas recomendadas](/es/rutas)** para optimizar tu recorrido segun la duracion del alquiler.
 
-[Reserva tu barco ahora](/barcos) y descubre estas calas por ti mismo. El Mediterraneo te espera a solo 5 minutos del puerto de Blanes.`,
+[Reserva tu barco ahora](/es/barcos) y descubre estas calas por ti mismo. El Mediterraneo te espera a solo 5 minutos del puerto de Blanes.`,
   },
 
   // ===== POST: Sunset boat trip in Blanes =====
@@ -3640,9 +3640,9 @@ From the port of Blanes, you are just minutes away from some of the most beautif
 
 ## No license needed
 
-One of the best things about renting a boat in Blanes is that you do not need a boating license. Spanish law allows anyone over 18 to pilot boats under 5 meters with engines up to 15 HP. Our [boats without license](/barcos-sin-licencia) are easy to drive and we give you a full safety briefing before departure. Even if you have never been on a boat before, you will feel confident within minutes.
+One of the best things about renting a boat in Blanes is that you do not need a boating license. Spanish law allows anyone over 18 to pilot boats under 5 meters with engines up to 15 HP. Our [boats without license](/es/barcos-sin-licencia) are easy to drive and we give you a full safety briefing before departure. Even if you have never been on a boat before, you will feel confident within minutes.
 
-If you prefer to sit back and enjoy without worrying about navigation, our [private excursion with a captain](/barco/excursion-privada) is the perfect option. A professional skipper takes you on a curated route while you relax with drinks and watch the show.
+If you prefer to sit back and enjoy without worrying about navigation, our [private excursion with a captain](/es/barco/excursion-privada) is the perfect option. A professional skipper takes you on a curated route while you relax with drinks and watch the show.
 
 ## Best time of year for sunset trips
 
@@ -3669,21 +3669,21 @@ For a sunset boat trip, we recommend booking a **2-hour slot** that starts appro
 3. **Position your boat for the sunset** and enjoy the golden hour (30 minutes)
 4. **Return to port** as twilight settles over the coast (15-20 minutes)
 
-Check sunset times for your travel dates and book your time slot accordingly. You can make your reservation directly on our [boats page](/barcos).
+Check sunset times for your travel dates and book your time slot accordingly. You can make your reservation directly on our [boats page](/es/barcos).
 
 ## The best sunset routes from Blanes
 
 ### Route 1: Cala Sant Francesc (for couples)
 
-Head south from the port to Cala Sant Francesc, just 5 minutes away. This stunning cove surrounded by pine-covered cliffs catches the last light of the day beautifully. Drop anchor, swim in the turquoise water, and watch the sun dip below the horizon from the most beautiful cove in [Blanes](/alquiler-barcos-blanes).
+Head south from the port to Cala Sant Francesc, just 5 minutes away. This stunning cove surrounded by pine-covered cliffs catches the last light of the day beautifully. Drop anchor, swim in the turquoise water, and watch the sun dip below the horizon from the most beautiful cove in [Blanes](/es/alquiler-barcos-blanes).
 
-**Best boat:** [Solar 450](/barco/solar-450) or [Astec 400](/barco/astec-400) for an intimate experience.
+**Best boat:** [Solar 450](/es/barco/solar-450) or [Astec 400](/es/barco/astec-400) for an intimate experience.
 
 ### Route 2: Coastal cruise to Santa Cristina (for groups)
 
 Navigate south past Cala Sant Francesc, Cala Bona, and Cala Treumal to reach the beach of Santa Cristina. The hermitage perched on the cliff above the beach is breathtaking in the sunset light. On the way back, hug the coastline and watch the cliffs change color as the light fades.
 
-**Best boat:** [Astec 480](/barco/astec-480) for families, or [Pacific Craft 625](/barco/pacific-craft-625) for larger groups with a license.
+**Best boat:** [Astec 480](/es/barco/astec-480) for families, or [Pacific Craft 625](/es/barco/pacific-craft-625) for larger groups with a license.
 
 ### Route 3: Sa Palomera panoramic (quick and stunning)
 
@@ -3716,7 +3716,7 @@ A sunset boat trip is one of the most romantic activities on the Costa Brava. Im
 
 For the ultimate romantic experience, we recommend:
 
-- The [Solar 450](/barco/solar-450) for its intimate size and easy handling.
+- The [Solar 450](/es/barco/solar-450) for its intimate size and easy handling.
 - A 2-hour booking starting 90 minutes before sunset.
 - Cala Sant Francesc as your destination.
 - A bottle of something sparkling and some local cheese and fuet.
@@ -3724,13 +3724,13 @@ For the ultimate romantic experience, we recommend:
 
 ## Pricing
 
-Our [boats without license](/barcos-sin-licencia) start from 70 EUR per hour, with fuel included. A 2-hour sunset trip for two to four people is one of the best value experiences on the Costa Brava. Check our current [prices](/precios) for all options and seasonal rates.
+Our [boats without license](/es/barcos-sin-licencia) start from 70 EUR per hour, with fuel included. A 2-hour sunset trip for two to four people is one of the best value experiences on the Costa Brava. Check our current [prices](/es/precios) for all options and seasonal rates.
 
 ---
 
 A sunset boat trip in Blanes is more than just an activity. It is one of those rare moments where everything comes together: the light, the water, the coastline, and the feeling of complete freedom on the Mediterranean. It is the kind of experience you will remember long after your holiday is over.
 
-[Book your sunset boat trip now](/barcos) and discover why the Costa Brava earned its name. If you have questions or want help choosing the perfect time slot, message us on [WhatsApp](https://wa.me/34611500372) and we will help you plan the perfect evening on the water.`,
+[Book your sunset boat trip now](/es/barcos) and discover why the Costa Brava earned its name. If you have questions or want help choosing the perfect time slot, message us on [WhatsApp](https://wa.me/34611500372) and we will help you plan the perfect evening on the water.`,
   },
 
   // ===== POST: Alquiler barco Lloret de Mar precios guia =====
@@ -3775,9 +3775,9 @@ No necesitas ningun titulo nautico. Te ensenamos a manejar el barco en un briefi
 
 | Barco | Capacidad | Precio desde (temporada baja) | Ideal para |
 |-------|-----------|-------------------------------|------------|
-| [Solar 450](/barco/solar-450) | 5 personas | 75 EUR/hora (115 EUR/2h) | Tomar el sol, solarium amplio |
-| [Remus 450](/barco/remus-450) | 5 personas | 75 EUR/hora (115 EUR/2h) | Familias con ninos, estabilidad |
-| [Astec 480](/barco/astec-480) | 5 personas | 80 EUR/hora (150 EUR/2h) | Premium, musica bluetooth |
+| [Solar 450](/es/barco/solar-450) | 5 personas | 75 EUR/hora (115 EUR/2h) | Tomar el sol, solarium amplio |
+| [Remus 450](/es/barco/remus-450) | 5 personas | 75 EUR/hora (115 EUR/2h) | Familias con ninos, estabilidad |
+| [Astec 480](/es/barco/astec-480) | 5 personas | 80 EUR/hora (150 EUR/2h) | Premium, musica bluetooth |
 
 **Importante:** Los barcos sin licencia pueden navegar hasta **2 millas nauticas** de la costa (unos 3,7 km). Esto significa que desde Blanes puedes llegar comodamente hasta la **playa de Fenals**, que esta a unos 5 km del puerto. Fenals es la segunda playa de Lloret, mas tranquila y familiar que la playa principal.
 
@@ -3789,15 +3789,15 @@ Requieren **Licencia de Navegacion (LN) o superior** (PNB, PER...). El combustib
 
 | Barco | Capacidad | Precio desde (temporada baja) | Motor |
 |-------|-----------|-------------------------------|-------|
-| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 personas | 160 EUR/2h | Mercury 80cv |
-| [Trimarchi 57S](/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | Selva 110cv |
-| [Pacific Craft 625](/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | Yamaha 115cv |
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 personas | 160 EUR/2h | Mercury 80cv |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | Selva 110cv |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | Yamaha 115cv |
 
 Con un barco con licencia llegas a la playa de Lloret en **15 minutos** y puedes continuar hasta Tossa de Mar si quieres.
 
 ### Excursion privada con capitan (desde 240 EUR/2 horas)
 
-Si no tienes licencia pero quieres un barco grande y llegar hasta Lloret o mas alla, nuestra [excursion privada con capitan](/barco/excursion-privada) es la solucion perfecta. Un patron profesional te lleva en el Pacific Craft 625 por las mejores calas. Tu solo te preocupas de disfrutar.
+Si no tienes licencia pero quieres un barco grande y llegar hasta Lloret o mas alla, nuestra [excursion privada con capitan](/es/barco/excursion-privada) es la solucion perfecta. Un patron profesional te lleva en el Pacific Craft 625 por las mejores calas. Tu solo te preocupas de disfrutar.
 
 ## Que puedes ver en barco de Blanes a Lloret
 
@@ -3870,7 +3870,7 @@ Complementa tu experiencia con nuestros extras:
 
 ## Como reservar
 
-1. **Elige tu barco** en nuestra [pagina de barcos](/barcos)
+1. **Elige tu barco** en nuestra [pagina de barcos](/es/barcos)
 2. **Selecciona fecha, hora y duracion** en el calendario
 3. **Anade extras** si quieres
 4. **Envia tu solicitud** de reserva: no se cobra nada online
@@ -3881,7 +3881,7 @@ Complementa tu experiencia con nuestros extras:
 
 Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es tu puerta de entrada perfecta a toda la costa. Con barcos desde 75 EUR la hora y la posibilidad de llegar a Fenals sin licencia, no hay excusa para no descubrir Lloret desde el mar.
 
-[Reserva tu barco ahora](/barcos) o escribenos por [WhatsApp](https://wa.me/34611500372) si tienes dudas sobre que barco elegir para tu excursion a Lloret.`,
+[Reserva tu barco ahora](/es/barcos) o escribenos por [WhatsApp](https://wa.me/34611500372) si tienes dudas sobre que barco elegir para tu excursion a Lloret.`,
   },
 
   // ===== POST: Barco Tossa de Mar desde Blanes =====
@@ -3916,10 +3916,10 @@ Para llegar a Tossa necesitas un **barco con licencia** (PER o PNB) o nuestra **
 
 | Barco | Motor | Tiempo aprox. |
 |-------|-------|---------------|
-| [Mingolla Brava 19](/barco/mingolla-brava-19) | Mercury 80cv | 25-30 min |
-| [Trimarchi 57S](/barco/trimarchi-57s) | Selva 110cv | 20-25 min |
-| [Pacific Craft 625](/barco/pacific-craft-625) | Yamaha 115cv | 20-25 min |
-| [Excursion con capitan](/barco/excursion-privada) | Yamaha 115cv | 20-25 min |
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | Mercury 80cv | 25-30 min |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | Selva 110cv | 20-25 min |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | Yamaha 115cv | 20-25 min |
+| [Excursion con capitan](/es/barco/excursion-privada) | Yamaha 115cv | 20-25 min |
 
 Con un barco con licencia, la travesia es rapida y comoda. En 25 minutos estas fondeando frente a las murallas de la Vila Vella, una imagen que no olvidaras.
 
@@ -3931,15 +3931,15 @@ Requieren titulacion nautica PER o PNB. **El combustible NO esta incluido** y se
 
 | Barco | Capacidad | Precio desde (temporada baja) | Duracion recomendada |
 |-------|-----------|-------------------------------|----------------------|
-| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 personas | 160 EUR/2h | 6-8 horas |
-| [Trimarchi 57S](/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | 6-8 horas |
-| [Pacific Craft 625](/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | 6-8 horas |
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 personas | 160 EUR/2h | 6-8 horas |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | 6-8 horas |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | 6-8 horas |
 
 **Nuestra recomendacion:** Para una excursion a Tossa en condiciones, reserva **minimo 6 horas**, idealmente **8 horas** (dia completo). Dos horas son insuficientes: solo tendrias tiempo para ir y volver sin parar. Con 6-8 horas puedes navegar con calma, parar en varias calas por el camino, fondear frente a Tossa, banarte, comer a bordo y volver disfrutando de cada rincon.
 
 ### Excursion privada con capitan
 
-Si no tienes licencia, nuestra [excursion privada con capitan](/barco/excursion-privada) es la mejor forma de llegar a Tossa. El capitan conoce cada cala, cada cueva y cada rincon secreto de la ruta.
+Si no tienes licencia, nuestra [excursion privada con capitan](/es/barco/excursion-privada) es la mejor forma de llegar a Tossa. El capitan conoce cada cala, cada cueva y cada rincon secreto de la ruta.
 
 | Duracion | Precio desde (temporada baja) |
 |----------|-------------------------------|
@@ -4047,7 +4047,7 @@ El consumo varia segun la velocidad. Navegar a velocidad de crucero (no a maxima
 
 La ruta de Blanes a Tossa de Mar en barco es una de las experiencias imprescindibles de la Costa Brava. Las murallas medievales de la Vila Vella vistas desde el mar, las calas virgenes por el camino y la libertad de fondear donde quieras hacen de esta excursion algo unico.
 
-[Reserva tu barco con licencia](/barcos-con-licencia) o nuestra [excursion privada con capitan](/barco/excursion-privada) y descubre Tossa de Mar como nunca antes la habias visto. Si tienes dudas sobre la ruta o las condiciones del mar, escribenos por [WhatsApp](https://wa.me/34611500372).`,
+[Reserva tu barco con licencia](/es/barcos-con-licencia) o nuestra [excursion privada con capitan](/es/barco/excursion-privada) y descubre Tossa de Mar como nunca antes la habias visto. Si tienes dudas sobre la ruta o las condiciones del mar, escribenos por [WhatsApp](https://wa.me/34611500372).`,
   },
 
   // ===== POST: Playas solo accesibles en barco Costa Brava =====
@@ -4085,7 +4085,7 @@ Cala Brava es una de las joyas mas desconocidas de Blanes. Se encuentra entre Ca
 
 Desde el barco, simplemente fondeas sobre la arena y te tiras al agua. El fondo marino aqui es excepcional: posidonia oceanica, bancos de sargos y obladas, y rocas cubiertas de gorgonias a poca profundidad. Si solo puedes hacer snorkel en un sitio de toda la Costa Brava, que sea aqui.
 
-**Barco recomendado:** El [Astec 400](/barco/astec-400) (desde 70 EUR/hora) es perfecto para parejas que quieran esta cala en exclusiva. Si vais 4-5 personas, el [Remus 450](/barco/remus-450) o el [Solar 450](/barco/solar-450) (desde 75 EUR/hora) os daran mas espacio.
+**Barco recomendado:** El [Astec 400](/es/barco/astec-400) (desde 70 EUR/hora) es perfecto para parejas que quieran esta cala en exclusiva. Si vais 4-5 personas, el [Remus 450](/es/barco/remus-450) o el [Solar 450](/es/barco/solar-450) (desde 75 EUR/hora) os daran mas espacio.
 
 ## 2. Las cuevas entre Cala Sant Francesc y Santa Cristina
 
@@ -4115,7 +4115,7 @@ Desde el barco, simplemente fondeas frente a esta seccion y tienes tu propia pla
 
 **Dato curioso:** En los anos 70 y 80, esta seccion de la playa era una zona naturista. Hoy en dia es mixta, pero sigue manteniendo un ambiente mucho mas tranquilo y natural que el resto de Boadella.
 
-**Barco recomendado:** El [Astec 480](/barco/astec-480) (desde 80 EUR/hora) con su equipo de musica bluetooth convierte esta parada en una experiencia premium.
+**Barco recomendado:** El [Astec 480](/es/barco/astec-480) (desde 80 EUR/hora) con su equipo de musica bluetooth convierte esta parada en una experiencia premium.
 
 ## 4. Micro-calas entre Lloret y Tossa
 
@@ -4128,9 +4128,9 @@ El tramo de costa entre la playa de Lloret y Cala Canyelles es uno de los mas sa
 
 Hablamos de rincones de 10-20 metros de ancho, con paredes rocosas verticales cubiertas de vegetacion, aguas tan cristalinas que ves el fondo a 8-10 metros y una vida marina excepcional. Algunos tienen pequenas cuevas submarinas que puedes explorar con snorkel.
 
-**Por que necesitas barco con licencia:** No es solo por la distancia. Estas micro-calas requieren un motor con potencia suficiente para maniobrar cerca de las rocas con seguridad. Los barcos con licencia, como la [Mingolla Brava 19](/barco/mingolla-brava-19) (desde 160 EUR/2h), tienen la maniobrabilidad necesaria.
+**Por que necesitas barco con licencia:** No es solo por la distancia. Estas micro-calas requieren un motor con potencia suficiente para maniobrar cerca de las rocas con seguridad. Los barcos con licencia, como la [Mingolla Brava 19](/es/barco/mingolla-brava-19) (desde 160 EUR/2h), tienen la maniobrabilidad necesaria.
 
-**Consejo del capitan:** Si contratas nuestra [excursion privada con capitan](/barco/excursion-privada) (desde 240 EUR/2h), el patron conoce exactamente donde estan las mejores micro-calas de este tramo. Es conocimiento que no sale en ningun mapa.
+**Consejo del capitan:** Si contratas nuestra [excursion privada con capitan](/es/barco/excursion-privada) (desde 240 EUR/2h), el patron conoce exactamente donde estan las mejores micro-calas de este tramo. Es conocimiento que no sale en ningun mapa.
 
 ## 5. Cala Pola
 
@@ -4145,7 +4145,7 @@ La cala en si es un anfiteatro natural de rocas y pinos que llegan hasta el agua
 
 **Lo que la hace unica:** Al estar lejos de cualquier nucleo urbano y con acceso terrestre dificil, Cala Pola mantiene un ambiente de cala virgen incluso en pleno agosto. Es uno de esos sitios donde sientes que has descubierto algo que nadie mas conoce.
 
-**Barco recomendado:** El [Trimarchi 57S](/barco/trimarchi-57s) (desde 160 EUR/2h) combina velocidad para llegar rapido con espacio y confort para hasta 7 personas.
+**Barco recomendado:** El [Trimarchi 57S](/es/barco/trimarchi-57s) (desde 160 EUR/2h) combina velocidad para llegar rapido con espacio y confort para hasta 7 personas.
 
 ## 6. Calas al norte de Tossa (zona Cala Giverola)
 
@@ -4160,7 +4160,7 @@ Hay al menos 4-5 rincones rocosos sin nombre entre Cala Giverola y la Platja de 
 
 **Snorkel de nivel mundial:** Las rocas submarinas al norte de Tossa estan cubiertas de gorgonias rojas y amarillas. Es uno de los mejores puntos de snorkel de toda la Costa Brava. Si te gusta la biologia marina, este tramo es imprescindible.
 
-**Barco recomendado:** El [Pacific Craft 625](/barco/pacific-craft-625) (desde 180 EUR/2h) es nuestra mejor embarcacion y la mas comoda para un dia completo explorando esta zona. Con solárium doble, mesa para comer a bordo y ducha de agua dulce, es como tener tu propio yate privado.
+**Barco recomendado:** El [Pacific Craft 625](/es/barco/pacific-craft-625) (desde 180 EUR/2h) es nuestra mejor embarcacion y la mas comoda para un dia completo explorando esta zona. Con solárium doble, mesa para comer a bordo y ducha de agua dulce, es como tener tu propio yate privado.
 
 ## 7. Los rincones secretos del capitan
 
@@ -4173,7 +4173,7 @@ Esta ultima entrada no es un lugar concreto, sino una experiencia. Nuestro patro
 
 Lo mas interesante es que **el mejor sitio cambia cada dia**. Depende del viento, la corriente, la hora y la epoca del ano. El capitan lee las condiciones del dia y te lleva al rincon que estara perfecto en ese momento.
 
-**Que incluye la excursion:** El [capitan te lleva en el Pacific Craft 625](/barco/excursion-privada), un barco de 6,24 metros con capacidad para 7 personas. Desde 240 EUR por 2 horas. El capitan adapta la ruta a tus preferencias: snorkel, calas virgenes, vistas de Vila Vella o un mix de todo.
+**Que incluye la excursion:** El [capitan te lleva en el Pacific Craft 625](/es/barco/excursion-privada), un barco de 6,24 metros con capacidad para 7 personas. Desde 240 EUR por 2 horas. El capitan adapta la ruta a tus preferencias: snorkel, calas virgenes, vistas de Vila Vella o un mix de todo.
 
 **Para quien es ideal:** Familias con ninos (el capitan se encarga de todo), celebraciones (cumpleanos, aniversarios), y cualquiera que quiera la experiencia mas exclusiva y personalizada de la costa.
 
@@ -4211,7 +4211,7 @@ Si tu plan es explorar calas escondidas, estos son los extras que recomendamos:
 
 La Costa Brava tiene cientos de calas, pero las que solo puedes visitar en barco son las que realmente merecen ese nombre de "brava". Salvajes, cristalinas y con la sensacion de ser el unico ser humano en kilometros.
 
-[Reserva tu barco](/barcos) y descubre las calas que ningun turista a pie podra visitar jamas. O dejate llevar por nuestro [capitan experto](/barco/excursion-privada) y conoce rincones que no salen en ninguna guia.`,
+[Reserva tu barco](/es/barcos) y descubre las calas que ningun turista a pie podra visitar jamas. O dejate llevar por nuestro [capitan experto](/es/barco/excursion-privada) y conoce rincones que no salen en ninguna guia.`,
   },
 
   // ===== POST: Alquiler barco cumpleanos despedida Costa Brava =====
@@ -4242,7 +4242,7 @@ En esta guia te explicamos como organizar tu celebracion perfecta en barco desde
 
 ### Para grupos grandes (6-7 personas): Pacific Craft 625
 
-El [Pacific Craft 625](/barco/pacific-craft-625) es nuestra embarcacion estrella para celebraciones. Con **6,24 metros de eslora** y capacidad para **7 personas**, ofrece todo lo que necesitas para un evento en el mar:
+El [Pacific Craft 625](/es/barco/pacific-craft-625) es nuestra embarcacion estrella para celebraciones. Con **6,24 metros de eslora** y capacidad para **7 personas**, ofrece todo lo que necesitas para un evento en el mar:
 
 - **Solarium doble** (proa y popa) para tomar el sol todo el grupo
 - **Mesa central** para poner comida, bebida o la tarta de cumpleanos
@@ -4261,7 +4261,7 @@ El [Pacific Craft 625](/barco/pacific-craft-625) es nuestra embarcacion estrella
 
 ### Para grupos grandes sin licencia: Excursion con capitan
 
-La [excursion privada con capitan](/barco/excursion-privada) es la opcion perfecta para celebraciones donde **nadie tiene licencia nautica**. Un patron profesional os lleva en el Pacific Craft 625 por las mejores calas mientras vosotros solo os preocupais de pasarlo bien.
+La [excursion privada con capitan](/es/barco/excursion-privada) es la opcion perfecta para celebraciones donde **nadie tiene licencia nautica**. Un patron profesional os lleva en el Pacific Craft 625 por las mejores calas mientras vosotros solo os preocupais de pasarlo bien.
 
 **Precios desde:**
 | Duracion | Temporada baja | Temporada media (julio) | Temporada alta (agosto) |
@@ -4278,7 +4278,7 @@ La [excursion privada con capitan](/barco/excursion-privada) es la opcion perfec
 
 ### Para grupos medianos (5 personas): Astec 480
 
-Si sois un grupo de hasta 5 personas, el [Astec 480](/barco/astec-480) es una excelente opcion **sin necesidad de licencia**:
+Si sois un grupo de hasta 5 personas, el [Astec 480](/es/barco/astec-480) es una excelente opcion **sin necesidad de licencia**:
 
 - **Musica bluetooth** integrada
 - **Solarium acolchado** amplio
@@ -4289,7 +4289,7 @@ El Astec 480 es especialmente popular para cumpleanos intimos y aniversarios de 
 
 ### Para parejas o grupos de 4: Astec 400
 
-El [Astec 400](/barco/astec-400) es la opcion mas economica, perfecta para un aniversario romantico o un cumpleanos intimo:
+El [Astec 400](/es/barco/astec-400) es la opcion mas economica, perfecta para un aniversario romantico o un cumpleanos intimo:
 
 - Capacidad para 4 personas
 - **Sin licencia** necesaria
@@ -4306,7 +4306,7 @@ Fondeais el barco, os tirais al agua, nadais, haceis snorkel y disfrutais de la 
 
 ### Musica y ambiente
 
-Los barcos [Astec 480](/barco/astec-480), [Mingolla Brava 19](/barco/mingolla-brava-19), [Trimarchi 57S](/barco/trimarchi-57s) y [Pacific Craft 625](/barco/pacific-craft-625) tienen **equipo de musica bluetooth**. Conectais vuestro movil y poneis vuestra playlist favorita. Musica sonando mientras fondeais en una cala de agua turquesa: asi se celebra en la Costa Brava.
+Los barcos [Astec 480](/es/barco/astec-480), [Mingolla Brava 19](/es/barco/mingolla-brava-19), [Trimarchi 57S](/es/barco/trimarchi-57s) y [Pacific Craft 625](/es/barco/pacific-craft-625) tienen **equipo de musica bluetooth**. Conectais vuestro movil y poneis vuestra playlist favorita. Musica sonando mientras fondeais en una cala de agua turquesa: asi se celebra en la Costa Brava.
 
 ### Picnic a bordo
 
@@ -4337,28 +4337,28 @@ Es el complemento perfecto para un dia completo de celebracion en el mar.
 
 ### Cumpleanos
 
-- **Barco recomendado:** [Pacific Craft 625](/barco/pacific-craft-625) o [excursion con capitan](/barco/excursion-privada)
+- **Barco recomendado:** [Pacific Craft 625](/es/barco/pacific-craft-625) o [excursion con capitan](/es/barco/excursion-privada)
 - **Duracion:** 4 horas minimo
 - **Ruta:** Salida del puerto, cala para bano y picnic, vuelta con musica
 - **Toque especial:** Llevad la tarta en un tupper rigido, cuchillo de plastico y platos. Cantad el cumpleanos feliz fondeados en una cala. Momento inolvidable.
 
 ### Despedida de soltera o soltero
 
-- **Barco recomendado:** [Excursion con capitan](/barco/excursion-privada) (nadie se preocupa de conducir)
+- **Barco recomendado:** [Excursion con capitan](/es/barco/excursion-privada) (nadie se preocupa de conducir)
 - **Duracion:** 3-4 horas
 - **Ruta:** El capitan os lleva a las calas mas espectaculares
 - **Toque especial:** Decorad el barco con globos y carteles (nada que pueda salir volando al mar). Musica, banos y mucho paddle surf.
 
 ### Aniversario romantico
 
-- **Barco recomendado:** [Astec 400](/barco/astec-400) o [Solar 450](/barco/solar-450)
+- **Barco recomendado:** [Astec 400](/es/barco/astec-400) o [Solar 450](/es/barco/solar-450)
 - **Duracion:** 2-3 horas, idealmente al atardecer
 - **Ruta:** Cala Sant Francesc, fondear y disfrutar de la tranquilidad
 - **Toque especial:** Llevad una botella de cava y algo para picar. El atardecer desde una cala sin nadie alrededor es puro romanticismo.
 
 ### Reunion familiar
 
-- **Barco recomendado:** [Astec 480](/barco/astec-480) o [Remus 450](/barco/remus-450) (sin licencia, facil para todos)
+- **Barco recomendado:** [Astec 480](/es/barco/astec-480) o [Remus 450](/es/barco/remus-450) (sin licencia, facil para todos)
 - **Duracion:** 3-4 horas
 - **Ruta:** Calas cercanas con aguas poco profundas, perfectas para ninos
 - **Toque especial:** El paddle surf es un exito total con ninos y adolescentes. La nevera con bebidas frias mantiene a todos contentos.
@@ -4390,7 +4390,7 @@ Si prefieres **atardecer**, reserva el ultimo slot del dia. Los atardeceres desd
 
 ### Designa un patron sobrio
 
-Si alquilais un barco con licencia y planeais beber alcohol, **la persona que conduce el barco NO puede beber**. Es la ley, es sentido comun y es por vuestra seguridad. Si todos quereis disfrutar sin restricciones, la [excursion con capitan](/barco/excursion-privada) es la opcion: el patron profesional conduce y vosotros celebrais.
+Si alquilais un barco con licencia y planeais beber alcohol, **la persona que conduce el barco NO puede beber**. Es la ley, es sentido comun y es por vuestra seguridad. Si todos quereis disfrutar sin restricciones, la [excursion con capitan](/es/barco/excursion-privada) es la opcion: el patron profesional conduce y vosotros celebrais.
 
 ### Proteccion solar
 
@@ -4415,7 +4415,7 @@ En el mar, la radiacion solar se multiplica por la reflexion del agua. Usad **fa
 
 ## Como reservar tu celebracion
 
-1. **Elige barco y duracion** en nuestra [pagina de barcos](/barcos)
+1. **Elige barco y duracion** en nuestra [pagina de barcos](/es/barcos)
 2. **Anade extras** (Adventure Pack recomendado para grupos)
 3. **Envia tu solicitud** de reserva: no se cobra nada online, el pago se hace en el puerto el dia de la salida
 4. **Escribenos por [WhatsApp](https://wa.me/34611500372)** si quieres planificar algo especial o tienes peticiones
@@ -4425,7 +4425,7 @@ En el mar, la radiacion solar se multiplica por la reflexion del agua. Usad **fa
 
 Una celebracion en barco en la Costa Brava no es solo un plan original: es una experiencia que vuestro grupo recordara durante anos. El mar, las calas, la musica, los banos y esa sensacion de libertad total hacen que cualquier evento sea infinitamente mejor sobre el agua.
 
-[Reserva tu barco para la proxima celebracion](/barcos) o contactanos por [WhatsApp](https://wa.me/34611500372) para que te ayudemos a planificar el evento perfecto.`,
+[Reserva tu barco para la proxima celebracion](/es/barcos) o contactanos por [WhatsApp](https://wa.me/34611500372) para que te ayudemos a planificar el evento perfecto.`,
   },
 
   // ===== POST 29: Alquiler barco Malgrat de Mar =====
@@ -4472,9 +4472,9 @@ Cualquier persona mayor de 18 años puede pilotar nuestros barcos sin licencia: 
 
 | Barco | Capacidad | Ideal para |
 |-------|-----------|------------|
-| [Solar 450](/barco/solar-450) | 5 personas | Tomar el sol, solárium amplio |
-| [Remus 450](/barco/remus-450) | 5 personas | Familias con niños |
-| [Astec 480](/barco/astec-480) | 5 personas | Extra de confort, música bluetooth |
+| [Solar 450](/es/barco/solar-450) | 5 personas | Tomar el sol, solárium amplio |
+| [Remus 450](/es/barco/remus-450) | 5 personas | Familias con niños |
+| [Astec 480](/es/barco/astec-480) | 5 personas | Extra de confort, música bluetooth |
 
 Con un barco sin licencia puedes navegar hasta **2 millas náuticas** de la costa: llegas a Cala Sant Francesc, Santa Cristina, Cala Sa Boadella y hasta la **Playa de Fenals** (sur de Lloret de Mar).
 
@@ -4484,7 +4484,7 @@ Si tienes la Licencia de Navegación, el PNB o el PER, puedes alquilar barcos m�
 
 ### Excursión privada con patrón
 
-¿Prefieres no pilotar? Nuestra [excursión privada con capitán](/barco/excursion-privada) te lleva por las mejores calas sin que tengas que preocuparte de nada. Sin titulación y hasta 6 personas.
+¿Prefieres no pilotar? Nuestra [excursión privada con capitán](/es/barco/excursion-privada) te lleva por las mejores calas sin que tengas que preocuparte de nada. Sin titulación y hasta 6 personas.
 
 ## La ruta de calas desde Blanes
 
@@ -4501,7 +4501,7 @@ Mínimo 2 horas; lo ideal son 3-4 horas para llegar hasta Fenals, fondear en un 
 **¿Qué incluye el precio sin licencia?**
 Gasolina, seguro, equipo de seguridad y briefing. Solo dejas una fianza reembolsable el día de la salida.
 
-[Consulta disponibilidad para tu fecha](/alquiler-barcos-malgrat-de-mar) o escríbenos por [WhatsApp](https://wa.me/34611500372): respondemos en 8 idiomas.`,
+[Consulta disponibilidad para tu fecha](/es/alquiler-barcos-malgrat-de-mar) o escríbenos por [WhatsApp](https://wa.me/34611500372): respondemos en 8 idiomas.`,
   },
 
   // ===== POST 30: Paseo en barco Santa Susanna =====
@@ -4544,7 +4544,7 @@ Es la opción favorita de parejas y familias con niños mayores: tú decides dó
 
 ## Opción 2: paseo en barco con patrón (tú solo disfrutas)
 
-Si viajas con niños pequeños, con abuelos, o simplemente no quieres pilotar, reserva la [excursión privada con capitán](/barco/excursion-privada): un patrón profesional te lleva en un barco de 7 plazas por las mejores calas de la Costa Brava sur, con paradas para nadar y hacer snorkel.
+Si viajas con niños pequeños, con abuelos, o simplemente no quieres pilotar, reserva la [excursión privada con capitán](/es/barco/excursion-privada): un patrón profesional te lleva en un barco de 7 plazas por las mejores calas de la Costa Brava sur, con paradas para nadar y hacer snorkel.
 
 - Salidas de 2 a 8 horas desde el Puerto de Blanes.
 - Hasta 6 pasajeros, ideal para una familia completa.
@@ -4554,7 +4554,7 @@ Si viajas con niños pequeños, con abuelos, o simplemente no quieres pilotar, r
 
 La ruta clásica desde Blanes recorre **Sa Palomera**, **Cala Sant Francesc**, **Sa Forcanera**, la ermita de **Santa Cristina**, **Cala Treumal**, **Cala Sa Boadella** y la **Playa de Fenals**. Aguas turquesas, acantilados con pinos y fondos llenos de peces: el tramo más fotogénico de la Costa Brava sur.
 
-Si te apetece el plan al final del día, pregunta por la [salida al atardecer](/paseo-atardecer-barco-blanes): la luz dorada sobre los acantilados es otro nivel.
+Si te apetece el plan al final del día, pregunta por la [salida al atardecer](/es/paseo-atardecer-barco-blanes): la luz dorada sobre los acantilados es otro nivel.
 
 ## Cómo llegar de Santa Susanna al Puerto de Blanes
 
@@ -4573,7 +4573,7 @@ Con barco sin licencia, desde 75 EUR/hora (el precio es por barco, no por person
 **¿Puedo reservar solo 1 hora?**
 Sí, aunque para llegar hasta Fenals y bañarte con calma recomendamos 2-3 horas como mínimo.
 
-[Mira todas las opciones para Santa Susanna](/alquiler-barcos-santa-susanna) o escríbenos por [WhatsApp](https://wa.me/34611500372) y te ayudamos a elegir barco.`,
+[Mira todas las opciones para Santa Susanna](/es/alquiler-barcos-santa-susanna) o escríbenos por [WhatsApp](https://wa.me/34611500372) y te ayudamos a elegir barco.`,
   },
 
   // ===== POST 31: Alquiler barco Calella (desambiguación) =====
@@ -4621,9 +4621,9 @@ Mayores de 18 años, sin titulación: por ley, las embarcaciones de hasta 15 CV 
 
 | Barco | Capacidad | Punto fuerte |
 |-------|-----------|--------------|
-| [Solar 450](/barco/solar-450) | 5 personas | Solárium para tomar el sol |
-| [Remus 450](/barco/remus-450) | 5 personas | Estable, perfecto con niños |
-| [Astec 480](/barco/astec-480) | 5 personas | Confort y música bluetooth |
+| [Solar 450](/es/barco/solar-450) | 5 personas | Solárium para tomar el sol |
+| [Remus 450](/es/barco/remus-450) | 5 personas | Estable, perfecto con niños |
+| [Astec 480](/es/barco/astec-480) | 5 personas | Confort y música bluetooth |
 
 ### Con licencia, hasta 7 personas
 
@@ -4631,7 +4631,7 @@ Con la Licencia de Navegación o superior accedes a barcos de 80 a 115 CV que ll
 
 ### Con patrón
 
-La [excursión privada con capitán](/barco/excursion-privada) es la alternativa si nadie del grupo quiere pilotar: rutas de 2 a 8 horas con paradas para nadar.
+La [excursión privada con capitán](/es/barco/excursion-privada) es la alternativa si nadie del grupo quiere pilotar: rutas de 2 a 8 horas con paradas para nadar.
 
 ## La ruta que te espera
 
@@ -4648,7 +4648,7 @@ No. Calella de Palafrugell está 60 km al norte; desde allí no somos su opción
 **¿Cuántas horas reservo?**
 3-4 horas es lo ideal para la ruta completa de calas con baños incluidos. Con 2 horas llegas a Santa Cristina y vuelves.
 
-[Reserva tu barco desde Calella](/alquiler-barcos-calella) o consúltanos por [WhatsApp](https://wa.me/34611500372).`,
+[Reserva tu barco desde Calella](/es/alquiler-barcos-calella) o consúltanos por [WhatsApp](https://wa.me/34611500372).`,
   },
 
   // ===== POST 32: Alquiler barco Pineda de Mar / Alt Maresme =====
@@ -4699,7 +4699,7 @@ Con ellos navegas legalmente hasta **2 millas náuticas** de la costa: suficient
 
 ### Excursión privada con patrón
 
-Para grupos y familias que prefieren no pilotar: un patrón profesional os lleva por las calas en salidas de 2 a 8 horas. [Más información aquí](/barco/excursion-privada).
+Para grupos y familias que prefieren no pilotar: un patrón profesional os lleva por las calas en salidas de 2 a 8 horas. [Más información aquí](/es/barco/excursion-privada).
 
 ## Por qué merece la pena salir desde Blanes
 
@@ -4723,7 +4723,7 @@ Un barco sin licencia de 5 plazas cuesta desde 75 EUR/hora en temporada baja: el
 **¿Necesito experiencia?**
 Ninguna. El briefing de 15 minutos cubre todo lo necesario y la ruta Blanes-Fenals está protegida y es ideal para principiantes.
 
-[Consulta disponibilidad desde Pineda de Mar](/alquiler-barcos-pineda-de-mar) o escríbenos por [WhatsApp](https://wa.me/34611500372): te respondemos al momento.`,
+[Consulta disponibilidad desde Pineda de Mar](/es/alquiler-barcos-pineda-de-mar) o escríbenos por [WhatsApp](https://wa.me/34611500372): te respondemos al momento.`,
   },
   {
     title: "Alquilar barco en la Costa Brava en agosto: guía 2026",
@@ -5040,6 +5040,65 @@ Dos cosas que conviene decirnos al escribir:
 Estamos en el puerto de Blanes, de abril a octubre, de 09:00 a 20:00. WhatsApp: **+34 611 500 372**. Reserva online en [costabravarentaboat.com](/es/).
 
 Y si después de leer esto ves que tu plan es una fiesta de 20 personas con DJ a bordo, te lo decimos claro: no somos eso. Somos barcos pequeños, calas tranquilas y grupos que quieren el mar para ellos. Si eso es lo que buscáis, nos vemos en el pantalán.
+`,
+  },
+  {
+    title: "Alquiler de barco a Tossa de Mar desde Blanes",
+    slug: "alquiler-barco-tossa-de-mar-desde-blanes",
+    category: "Rutas",
+    author: "Iván Ramírez Dawson",
+    featuredImage: "/images/blog/ruta-barco-blanes-tossa-mar.webp",
+    metaDescription: "Alquiler de barco a Tossa de Mar desde Blanes: la ruta real por mar, las calas que verás y qué barco elegir. Reserva por WhatsApp, gasolina incluida.",
+    tags: ["alquiler barco tossa de mar", "alquiler barco tossa de mar sin licencia", "de blanes a tossa de mar en barco", "barco tossa de mar desde blanes", "ruta barco costa brava tossa", "excursion barco tossa de mar"],
+    isPublished: true,
+    _publishedAt: new Date("2026-07-26T10:00:00Z"),
+    titleByLang: { es: "Alquiler de barco a Tossa de Mar desde Blanes" },
+    excerpt: "No operamos en Tossa, pero se llega por mar desde Blanes. La ruta real, las calas que verás y qué barco elegir para media jornada o el día completo.",
+    content: `Mucha gente busca "alquiler de barco en Tossa de Mar" pensando que alquilará la embarcación en el propio puerto de Tossa. Nosotros no operamos allí: nuestra base está en el Puerto de Blanes, unos kilómetros al sur. La buena noticia es que Tossa se puede alcanzar por mar, y el trayecto es de los más bonitos del tramo sur de la Costa Brava. La menos buena: no todo barco ni todo alquiler dan para llegar hasta allí y volver con tiempo de disfrutar. En esta guía te contamos la ruta real, qué verás y qué barco tiene sentido según lo que busques.
+
+## Cuánto hay de Blanes a Tossa de Mar por mar
+
+Por la costa, de Blanes a Tossa hay alrededor de 12 a 13 kilómetros en línea de navegación, pasando primero por Lloret de Mar. El primer tramo, de Blanes a Lloret, son unos 4 kilómetros cómodos. De Lloret a Tossa hay otros 8 a 9 kilómetros de acantilados, pinos hasta el agua y calas escondidas; los barcos comerciales que hacen ese salto en verano tardan unos 45 minutos.
+
+Aquí es donde conviene ser honesto con los números. Las embarcaciones **sin licencia** navegan a unos **5 nudos (unos 9,3 km/h)** y por ley no pueden alejarse más de **2 millas náuticas de la costa (3,7 km)**. A esa velocidad, recorrer 12-13 km solo de ida ya son cerca de 1 hora y 20 minutos, y otro tanto de vuelta. En un alquiler sin licencia de 2 o 4 horas, casi todo el tiempo se te iría navegando, sin margen para fondear, bañarte o comer algo.
+
+Por eso, si tu plan es de verdad llegar hasta Tossa, hay dos caminos sensatos: reservar la **jornada completa (8 horas)** en un barco sin licencia, o elegir una **lancha con licencia**, que navega más rápido y hace el trayecto de Blanes a Tossa en 30-45 minutos, con el día entero por delante.
+
+## Qué verás en la ruta hacia Tossa
+
+Es una de las postales clásicas de la Costa Brava sur. Saliendo del Puerto de Blanes dejas atrás la silueta de Sa Palomera, la roca que marca el inicio de la Costa Brava, y pones rumbo norte. Antes de Lloret pasas por Cala Sant Francesc, una de las más abrigadas de la zona.
+
+Ya en aguas de Lloret aparece **Cala Boadella**, con su pinar bajando hasta la orilla, y poco después la ensenada de **Santa Cristina**, una de las playas con más encanto del municipio. Siguiendo hacia el norte encontrarás calas más recogidas como **Cala Canyelles**, con su pequeño puerto deportivo, y ya en término de Tossa el litoral se vuelve más agreste, con rincones como **Cala Llevadó**.
+
+El premio final es la llegada a Tossa de Mar desde el agua: la **Vila Vella**, el único recinto medieval amurallado que se conserva habitado en toda la costa catalana, con sus torres asomadas al mar y el **faro de Tossa** coronando el promontorio. Verla surgir desde el barco, en lugar de desde el aparcamiento, es un plan distinto.
+
+## Qué barco elegir según tu plan
+
+No hay un barco "mejor", hay uno que encaja con tu día. Estas son las opciones reales de nuestra flota, que puedes ver en detalle en [barcos sin licencia](/es/barcos-sin-licencia) y [lanchas con licencia](/es/barcos-con-licencia):
+
+**Si quieres llegar a Tossa sí o sí.** Ve a por una lancha con licencia (nuestra flota con titulación son el [Mingolla Brava 19](/es/barco/mingolla-brava-19), el [Trimarchi 57S](/es/barco/trimarchi-57s) y el [Pacific Craft 625](/es/barco/pacific-craft-625), de 6 a 7 personas) o reserva la jornada de 8 horas en uno sin licencia. Con licencia navegas más rápido, el trayecto cunde y te queda tarde para fondear en una cala de Tossa antes de volver. Basta la Licencia de Navegación, y si tu título es extranjero puedes comprobarlo online en la página de la flota.
+
+**Si es tu primera vez y no tienes titulación.** Los barcos sin licencia (Solar 450, Remus 450, Remus 450 II y Astec 480, hasta 5 personas, con **gasolina incluida**) se gobiernan sin carné y son perfectos para un día de calas. Para ellos, nuestro consejo sincero es no forzar la ruta hasta Tossa en media jornada: disfruta Lloret, Santa Cristina y las calas intermedias, que están más cerca y las harás sin agobios. Tossa, para la jornada completa.
+
+**Si prefieres no conducir tú.** La [Excursión Privada con Capitán](/es/barco/excursion-privada) (hasta 6 personas) es la opción cómoda: patrón local a bordo, tú solo disfrutas. Ideal si quieres una ruta larga hacia el norte sin preocuparte de la navegación.
+
+Recuerda que los barcos sin licencia incluyen el combustible; las lanchas con licencia y la excursión con capitán no lo incluyen, se calcula según el consumo real de la salida.
+
+## Cuándo ir y qué tener en cuenta
+
+Trabajamos de **abril a octubre**, con salidas de **09:00 a 20:00** desde el Puerto de Blanes. Julio y agosto son los meses de más demanda: si quieres la jornada completa un fin de semana de agosto, reserva con margen porque los barcos vuelan.
+
+El tramo sur de la Costa Brava es, en general, de navegación cómoda en verano. Por la mañana el mar suele estar en calma; por la tarde puede entrar el garbí, la brisa del suroeste. El viento a vigilar es la tramontana, fuerte y del norte. Consulta siempre el parte marítimo antes de salir; puedes hacerlo en la [previsión marítima de AEMET](https://www.aemet.es/es/eltiempo/prediccion/maritima). Y una norma de oro para fondear: hazlo sobre arena, nunca sobre las praderas de posidonia.
+
+Para hacerte una idea de precios, el alquiler sin licencia arranca **desde 75 € la hora**; las lanchas con licencia salen **desde 160 € las 2 horas** en temporada baja. La jornada completa y las rutas largas las presupuestamos según el barco y la fecha, porque cambian entre temporada media (julio) y alta (agosto).
+
+## Cómo reservar tu barco a Tossa de Mar
+
+Lo más rápido es escribirnos por **WhatsApp al +34 611 500 372**: nos cuentas cuántos sois, qué día y si quieres media jornada por Lloret o el día completo hasta Tossa, y te decimos qué barco encaja y el precio cerrado. También puedes ver toda la flota y pedir tu fecha en [alquiler de barcos en la Costa Brava](/es/barcos).
+
+Si tu punto de partida real es Tossa y prefieres información de la zona, echa un vistazo a nuestra página de [alquiler de barcos en Tossa de Mar](/es/alquiler-barcos-tossa-de-mar). Y si buscas una primera salida más corta y cercana, Lloret está a un paso.
+
+Sin pagos online ni comisiones de plataforma: la web recoge tu solicitud y cerramos los detalles contigo directamente. Nos vemos en el puerto.
 `,
   },
 ];

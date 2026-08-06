@@ -1733,3 +1733,5 @@ client/src/i18n/ru.ts|emdash:fbe38296c14d
 client/src/i18n/ru.ts|emdash:fe6b4ed38dc5
 client/src/i18n/ru.ts|emdash:fed80ba68d37
 client/src/i18n/ru.ts|emdash:ff3402a90a7e
+client/src/components/RelatedContent.tsx|ed2d2bbf49b5
+client/src/components/RelatedContent.tsx|6c2ae6f4c85a

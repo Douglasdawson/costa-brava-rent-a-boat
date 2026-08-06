@@ -724,6 +724,14 @@ export function registerRobotsRoutes(app: Express): void {
           url: `${BASE_URL}/es/alquiler-barcos-pineda-de-mar`,
           topic: "Boat rental for Pineda de Mar and the Alt Maresme — departures from the Port of Blanes, 18 min by car or 12 min by R1 train.",
         },
+        {
+          url: `${BASE_URL}/es/barcos-con-licencia`,
+          topic: "Self-drive powerboats (80-115 HP) — skipper yourself to Lloret and Tossa de Mar; the basic Spanish Navigation Licence or a foreign equivalent (ICC) is enough, verifiable online; from 160 EUR/2h, fuel charged separately.",
+        },
+        {
+          url: `${BASE_URL}/es/barcos-sin-licencia`,
+          topic: "License-free boats — no boating licence needed, from 75 EUR/h fuel included, up to 5 people, 15-min briefing.",
+        },
       ],
       business_hours: "Mo-Su 09:00-20:00",
       season: { start: "04-01", end: "10-31", note: "Closed November to March" },

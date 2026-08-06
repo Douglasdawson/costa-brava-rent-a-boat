@@ -87,11 +87,11 @@ El [alquiler de motos en Lloret de Mar](https://coastrent.es) es una opcion perf
 
 ### 7. Tossa de Mar: La Vila Vella
 
-A 25 km de Blanes, Tossa de Mar es uno de los pueblos mas fotografiados de la Costa Brava. Su recinto amurallado medieval (la Vila Vella) es el unico de toda la costa catalana que se conserva intacto. Puedes llegar en barco con nosotros (30-45 min con [barco con licencia](/barcos-con-licencia)), en coche o en scooter por la carretera costera.
+A 25 km de Blanes, Tossa de Mar es uno de los pueblos mas fotografiados de la Costa Brava. Su recinto amurallado medieval (la Vila Vella) es el unico de toda la costa catalana que se conserva intacto. Puedes llegar en barco con nosotros (30-45 min con [barco con licencia](/es/barcos-con-licencia)), en coche o en scooter por la carretera costera.
 
 ### 8. Las Calas Secretas del Camino de Ronda
 
-El Camino de Ronda (GR-92) conecta pueblos y calas a lo largo de toda la Costa Brava. Desde Blanes puedes caminar hacia el norte (direccion Lloret) y descubrir calas como Sa Forcanera, Cala Sant Francesc o Cala Bona, muchas de ellas accesibles a pie o en [barco sin licencia](/barcos-sin-licencia).
+El Camino de Ronda (GR-92) conecta pueblos y calas a lo largo de toda la Costa Brava. Desde Blanes puedes caminar hacia el norte (direccion Lloret) y descubrir calas como Sa Forcanera, Cala Sant Francesc o Cala Bona, muchas de ellas accesibles a pie o en [barco sin licencia](/es/barcos-sin-licencia).
 
 **Consejo:** Combina manana en barco + tarde a pie por el Camino de Ronda. Asi descubres las mismas calas desde dos perspectivas completamente distintas.
 
@@ -101,7 +101,7 @@ A 60 km de Blanes (45 min en coche), Girona es una joya. Las casas de colores so
 
 ### 10. Deportes Acuaticos
 
-Ademas del barco, la Costa Brava ofrece paddle surf, kayak, snorkel y buceo. Desde nuestros barcos puedes anadir [paddle surf (30EUR)](/barcos) o [snorkel (7,50EUR)](/barcos) como extras. Para buceo, hay centros de submarinismo en Blanes y Lloret que organizan inmersiones guiadas.
+Ademas del barco, la Costa Brava ofrece paddle surf, kayak, snorkel y buceo. Desde nuestros barcos puedes anadir [paddle surf (30EUR)](/es/barcos) o [snorkel (7,50EUR)](/es/barcos) como extras. Para buceo, hay centros de submarinismo en Blanes y Lloret que organizan inmersiones guiadas.
 
 ### 11. Concurso Internacional de Fuegos Artificiales
 
@@ -122,7 +122,7 @@ Si visitas Blanes entre el 21 y el 27 de julio, no te puedes perder el concurso 
 
 La combinacion ideal para una escapada de 2-3 dias en la Costa Brava:
 
-**Dia 1 - Mar:** Alquila un [barco sin licencia](/barcos-sin-licencia) por la manana (desde 70EUR/h) y explora las calas entre Blanes y Lloret. Por la tarde, paseo por el casco antiguo y cena de pescado en el puerto.
+**Dia 1 - Mar:** Alquila un [barco sin licencia](/es/barcos-sin-licencia) por la manana (desde 70EUR/h) y explora las calas entre Blanes y Lloret. Por la tarde, paseo por el casco antiguo y cena de pescado en el puerto.
 
 **Dia 2 - Tierra:** [Alquila un scooter en Coast Rent en Lloret](https://coastrent.es) y recorre la carretera costera hasta Tossa de Mar. Comida en Tossa, paseo por la Vila Vella y vuelta por la carretera interior.
 
@@ -134,15 +134,15 @@ La combinacion ideal para una escapada de 2-3 dias en la Costa Brava:
 
 ### Es necesario licencia para alquilar un barco en Blanes?
 
-No. Tenemos [barcos sin licencia](/barcos-sin-licencia) para hasta 5 personas con un briefing de seguridad de 10 minutos. No necesitas experiencia previa.
+No. Tenemos [barcos sin licencia](/es/barcos-sin-licencia) para hasta 5 personas con un briefing de seguridad de 10 minutos. No necesitas experiencia previa.
 
 ### Cuanto cuesta alquilar un barco en Blanes?
 
-Los [barcos sin licencia](/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/barcos-con-licencia) desde 160EUR por 2 horas. Gasolina incluida en barcos sin licencia.
+Los [barcos sin licencia](/es/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/es/barcos-con-licencia) desde 160EUR por 2 horas. Gasolina incluida en barcos sin licencia.
 
 ### Se puede ir de Blanes a Tossa de Mar en barco?
 
-Si, con un [barco con licencia](/barcos-con-licencia). El trayecto es de unos 75 minutos costeando. Es una de las rutas mas bonitas de la Costa Brava.
+Si, con un [barco con licencia](/es/barcos-con-licencia). El trayecto es de unos 30-45 minutos. Es una de las rutas mas bonitas de la Costa Brava.
 
 ### Que distancia hay entre Blanes y Lloret de Mar?
 
@@ -154,7 +154,7 @@ Si. [Coast Rent](https://coastrent.es) en Lloret de Mar ofrece alquiler de scoot
 
 ---
 
-Blanes es el punto de partida perfecto para descubrir la Costa Brava por mar y por tierra. [Reserva tu barco](/barcos) para la experiencia maritima y complementa con los planes de esta guia para una escapada redonda. Si necesitas consejo personalizado, [escribenos por WhatsApp](https://wa.me/34611500372) y te ayudamos a planificar tu viaje.`,
+Blanes es el punto de partida perfecto para descubrir la Costa Brava por mar y por tierra. [Reserva tu barco](/es/barcos) para la experiencia maritima y complementa con los planes de esta guia para una escapada redonda. Si necesitas consejo personalizado, [escribenos por WhatsApp](https://wa.me/34611500372) y te ayudamos a planificar tu viaje.`,
       en: `Blanes is the gateway to the Costa Brava. Every summer, thousands of visitors discover its crystal-clear waters by renting a boat from the harbour, but the experience doesn't end there. If you have one or several days in the area, Blanes and its surroundings hide plans that turn a day at sea into a complete, unforgettable getaway.
 
 In this guide we've compiled **12 must-do activities** for before, after, or instead of your sailing day. From jaw-dropping gardens to cinematic coastal roads you can ride on a scooter.
@@ -209,11 +209,11 @@ One of the best ways to discover the Costa Brava by land is on two wheels. From 
 
 ### 7. Tossa de Mar: The Vila Vella
 
-25 km from Blanes, Tossa de Mar is one of the most photographed towns on the Costa Brava. Its medieval walled enclosure (the Vila Vella) is the only one along the entire Catalan coast that remains intact. You can get there by boat with us (30-45 min with a [licensed boat](/boats-with-license)), by car, or by scooter along the coastal road.
+25 km from Blanes, Tossa de Mar is one of the most photographed towns on the Costa Brava. Its medieval walled enclosure (the Vila Vella) is the only one along the entire Catalan coast that remains intact. You can get there by boat with us (30-45 min with a [licensed boat](/en/boats-with-license)), by car, or by scooter along the coastal road.
 
 ### 8. The Secret Coves of the Camino de Ronda
 
-The Camino de Ronda (GR-92) connects towns and coves along the entire Costa Brava. From Blanes you can walk north (towards Lloret) and discover coves like Sa Forcanera, Cala Sant Francesc, or Cala Bona, many of them accessible on foot or by [boat without licence](/boats-without-license).
+The Camino de Ronda (GR-92) connects towns and coves along the entire Costa Brava. From Blanes you can walk north (towards Lloret) and discover coves like Sa Forcanera, Cala Sant Francesc, or Cala Bona, many of them accessible on foot or by [boat without licence](/en/boats-without-license).
 
 **Tip:** Combine a morning by boat + afternoon walking the Camino de Ronda. You'll discover the same coves from two completely different perspectives.
 
@@ -223,7 +223,7 @@ The Camino de Ronda (GR-92) connects towns and coves along the entire Costa Brav
 
 ### 10. Water Sports
 
-Besides boating, the Costa Brava offers paddle surf, kayaking, snorkelling and diving. From our boats you can add [paddle surf (30EUR)](/boats) or [snorkel gear (7.50EUR)](/boats) as extras. For diving, there are dive centres in Blanes and Lloret that organise guided dives.
+Besides boating, the Costa Brava offers paddle surf, kayaking, snorkelling and diving. From our boats you can add [paddle surf (30EUR)](/en/boats) or [snorkel gear (7.50EUR)](/en/boats) as extras. For diving, there are dive centres in Blanes and Lloret that organise guided dives.
 
 ### 11. International Fireworks Competition
 
@@ -244,7 +244,7 @@ If you visit Blanes between July 21st and 27th, you can't miss the international
 
 The ideal combination for a 2-3 day Costa Brava getaway:
 
-**Day 1 - Sea:** Rent a [boat without licence](/boats-without-license) in the morning (from 70EUR/h) and explore the coves between Blanes and Lloret. In the afternoon, stroll through the old town and have a seafood dinner at the harbour.
+**Day 1 - Sea:** Rent a [boat without licence](/en/boats-without-license) in the morning (from 70EUR/h) and explore the coves between Blanes and Lloret. In the afternoon, stroll through the old town and have a seafood dinner at the harbour.
 
 **Day 2 - Land:** [Rent a scooter from Coast Rent in Lloret](https://coastrent.es) and ride the coastal road to Tossa de Mar. Lunch in Tossa, walk through the Vila Vella and return via the inland road.
 
@@ -256,15 +256,15 @@ The ideal combination for a 2-3 day Costa Brava getaway:
 
 ### Do I need a licence to rent a boat in Blanes?
 
-No. We have [boats without licence](/boats-without-license) for up to 5 people with a 10-minute safety briefing. No prior experience needed.
+No. We have [boats without licence](/en/boats-without-license) for up to 5 people with a 10-minute safety briefing. No prior experience needed.
 
 ### How much does it cost to rent a boat in Blanes?
 
-[Boats without licence](/boats-without-license) start from 70EUR/hour in low season. [Licensed boats](/boats-with-license) from 160EUR for 2 hours. Fuel included on boats without licence.
+[Boats without licence](/en/boats-without-license) start from 70EUR/hour in low season. [Licensed boats](/en/boats-with-license) from 160EUR for 2 hours. Fuel included on boats without licence.
 
 ### Can you go from Blanes to Tossa de Mar by boat?
 
-Yes, with a [licensed boat](/boats-with-license). The journey takes about 75 minutes along the coast. It's one of the most beautiful routes on the Costa Brava.
+Yes, with a [licensed boat](/en/boats-with-license). The journey takes about 30-45 minutes along the coast. It's one of the most beautiful routes on the Costa Brava.
 
 ### What is the distance between Blanes and Lloret de Mar?
 
@@ -276,7 +276,7 @@ Yes. [Coast Rent](https://coastrent.es) in Lloret de Mar offers scooter rental f
 
 ---
 
-Blanes is the perfect starting point to discover the Costa Brava by sea and by land. [Book your boat](/boats) for the maritime experience and complement it with the plans in this guide for a well-rounded getaway. If you need personalised advice, [write to us on WhatsApp](https://wa.me/34611500372) and we'll help you plan your trip.`,
+Blanes is the perfect starting point to discover the Costa Brava by sea and by land. [Book your boat](/en/boats) for the maritime experience and complement it with the plans in this guide for a well-rounded getaway. If you need personalised advice, [write to us on WhatsApp](https://wa.me/34611500372) and we'll help you plan your trip.`,
     },
     content: `Blanes es la puerta de la Costa Brava. Cada verano, miles de visitantes descubren sus aguas cristalinas alquilando un barco desde el puerto, pero la experiencia no termina ahi. Si tienes uno o varios dias por la zona, Blanes y sus alrededores esconden planes que convierten una jornada en el mar en una escapada completa e inolvidable.
 
@@ -332,11 +332,11 @@ El [alquiler de motos en Lloret de Mar](https://coastrent.es) es una opcion perf
 
 ### 7. Tossa de Mar: La Vila Vella
 
-A 25 km de Blanes, Tossa de Mar es uno de los pueblos mas fotografiados de la Costa Brava. Su recinto amurallado medieval (la Vila Vella) es el unico de toda la costa catalana que se conserva intacto. Puedes llegar en barco con nosotros (30-45 min con [barco con licencia](/barcos-con-licencia)), en coche o en scooter por la carretera costera.
+A 25 km de Blanes, Tossa de Mar es uno de los pueblos mas fotografiados de la Costa Brava. Su recinto amurallado medieval (la Vila Vella) es el unico de toda la costa catalana que se conserva intacto. Puedes llegar en barco con nosotros (30-45 min con [barco con licencia](/es/barcos-con-licencia)), en coche o en scooter por la carretera costera.
 
 ### 8. Las Calas Secretas del Camino de Ronda
 
-El Camino de Ronda (GR-92) conecta pueblos y calas a lo largo de toda la Costa Brava. Desde Blanes puedes caminar hacia el norte (direccion Lloret) y descubrir calas como Sa Forcanera, Cala Sant Francesc o Cala Bona, muchas de ellas accesibles a pie o en [barco sin licencia](/barcos-sin-licencia).
+El Camino de Ronda (GR-92) conecta pueblos y calas a lo largo de toda la Costa Brava. Desde Blanes puedes caminar hacia el norte (direccion Lloret) y descubrir calas como Sa Forcanera, Cala Sant Francesc o Cala Bona, muchas de ellas accesibles a pie o en [barco sin licencia](/es/barcos-sin-licencia).
 
 **Consejo:** Combina manana en barco + tarde a pie por el Camino de Ronda. Asi descubres las mismas calas desde dos perspectivas completamente distintas.
 
@@ -346,7 +346,7 @@ A 60 km de Blanes (45 min en coche), Girona es una joya. Las casas de colores so
 
 ### 10. Deportes Acuaticos
 
-Ademas del barco, la Costa Brava ofrece paddle surf, kayak, snorkel y buceo. Desde nuestros barcos puedes anadir [paddle surf (30EUR)](/barcos) o [snorkel (7,50EUR)](/barcos) como extras. Para buceo, hay centros de submarinismo en Blanes y Lloret que organizan inmersiones guiadas.
+Ademas del barco, la Costa Brava ofrece paddle surf, kayak, snorkel y buceo. Desde nuestros barcos puedes anadir [paddle surf (30EUR)](/es/barcos) o [snorkel (7,50EUR)](/es/barcos) como extras. Para buceo, hay centros de submarinismo en Blanes y Lloret que organizan inmersiones guiadas.
 
 ### 11. Concurso Internacional de Fuegos Artificiales
 
@@ -367,7 +367,7 @@ Si visitas Blanes entre el 21 y el 27 de julio, no te puedes perder el concurso 
 
 La combinacion ideal para una escapada de 2-3 dias en la Costa Brava:
 
-**Dia 1 - Mar:** Alquila un [barco sin licencia](/barcos-sin-licencia) por la manana (desde 70EUR/h) y explora las calas entre Blanes y Lloret. Por la tarde, paseo por el casco antiguo y cena de pescado en el puerto.
+**Dia 1 - Mar:** Alquila un [barco sin licencia](/es/barcos-sin-licencia) por la manana (desde 70EUR/h) y explora las calas entre Blanes y Lloret. Por la tarde, paseo por el casco antiguo y cena de pescado en el puerto.
 
 **Dia 2 - Tierra:** [Alquila un scooter en Coast Rent en Lloret](https://coastrent.es) y recorre la carretera costera hasta Tossa de Mar. Comida en Tossa, paseo por la Vila Vella y vuelta por la carretera interior.
 
@@ -379,15 +379,15 @@ La combinacion ideal para una escapada de 2-3 dias en la Costa Brava:
 
 ### Es necesario licencia para alquilar un barco en Blanes?
 
-No. Tenemos [barcos sin licencia](/barcos-sin-licencia) para hasta 5 personas con un briefing de seguridad de 10 minutos. No necesitas experiencia previa.
+No. Tenemos [barcos sin licencia](/es/barcos-sin-licencia) para hasta 5 personas con un briefing de seguridad de 10 minutos. No necesitas experiencia previa.
 
 ### Cuanto cuesta alquilar un barco en Blanes?
 
-Los [barcos sin licencia](/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/barcos-con-licencia) desde 160EUR por 2 horas. Gasolina incluida en barcos sin licencia.
+Los [barcos sin licencia](/es/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/es/barcos-con-licencia) desde 160EUR por 2 horas. Gasolina incluida en barcos sin licencia.
 
 ### Se puede ir de Blanes a Tossa de Mar en barco?
 
-Si, con un [barco con licencia](/barcos-con-licencia). El trayecto es de unos 75 minutos costeando. Es una de las rutas mas bonitas de la Costa Brava.
+Si, con un [barco con licencia](/es/barcos-con-licencia). El trayecto es de unos 30-45 minutos. Es una de las rutas mas bonitas de la Costa Brava.
 
 ### Que distancia hay entre Blanes y Lloret de Mar?
 
@@ -399,7 +399,7 @@ Si. [Coast Rent](https://coastrent.es) en Lloret de Mar ofrece alquiler de scoot
 
 ---
 
-Blanes es el punto de partida perfecto para descubrir la Costa Brava por mar y por tierra. [Reserva tu barco](/barcos) para la experiencia maritima y complementa con los planes de esta guia para una escapada redonda. Si necesitas consejo personalizado, [escribenos por WhatsApp](https://wa.me/34611500372) y te ayudamos a planificar tu viaje.`,
+Blanes es el punto de partida perfecto para descubrir la Costa Brava por mar y por tierra. [Reserva tu barco](/es/barcos) para la experiencia maritima y complementa con los planes de esta guia para una escapada redonda. Si necesitas consejo personalizado, [escribenos por WhatsApp](https://wa.me/34611500372) y te ayudamos a planificar tu viaje.`,
   },
 
   // ===== ARTÍCULO B: Costa Brava por mar y tierra =====
@@ -444,7 +444,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 ### Manana: Blanes en Barco (9:00 - 13:00)
 
 **Punto de partida:** Puerto de Blanes
-**Barco recomendado:** [Remus 450](/barco/remus-450) (sin licencia, hasta 5 personas) o [Astec 480 Premium](/barco/astec-480) si quieres musica bluetooth a bordo
+**Barco recomendado:** [Remus 450](/es/barco/remus-450) (sin licencia, hasta 5 personas) o [Astec 480 Premium](/es/barco/astec-480) si quieres musica bluetooth a bordo
 **Duracion:** 4 horas
 **Precio:** Desde 150EUR (Remus 450, temporada baja) a 270EUR (Astec 480, temporada alta)
 
@@ -475,7 +475,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 - Equipo de seguridad
 - Briefing personalizado
 
-**Extras recomendados:** Pack Basic (nevera + snorkel, 10EUR) o Pack Premium (nevera + snorkel + paddle surf, 30EUR). [Ver todos los extras](/barcos).
+**Extras recomendados:** Pack Basic (nevera + snorkel, 10EUR) o Pack Premium (nevera + snorkel + paddle surf, 30EUR). [Ver todos los extras](/es/barcos).
 
 ### Transicion: De Blanes a Lloret (13:00 - 14:30)
 
@@ -543,11 +543,11 @@ Si prefieres no meter todo en un dia, puedes repartirlo:
 
 ## Variante: Grupo Grande (6-7 personas)
 
-Para grupos mas grandes, recomendamos un [barco con licencia](/barcos-con-licencia) que admite hasta 7 personas:
+Para grupos mas grandes, recomendamos un [barco con licencia](/es/barcos-con-licencia) que admite hasta 7 personas:
 
-- **[Trimarchi 57S](/barco/trimarchi-57s):** 7 personas, 110cv, desde 160EUR/2h
-- **[Pacific Craft 625](/barco/pacific-craft-625):** 7 personas, 115cv, desde 180EUR/2h
-- **[Excursion privada con capitan](/barco/excursion-privada):** 7 personas, desde 240EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
+- **[Trimarchi 57S](/es/barco/trimarchi-57s):** 7 personas, 110cv, desde 160EUR/2h
+- **[Pacific Craft 625](/es/barco/pacific-craft-625):** 7 personas, 115cv, desde 180EUR/2h
+- **[Excursion privada con capitan](/es/barco/excursion-privada):** 7 personas, desde 240EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
 
 **Nota:** Los barcos con licencia no incluyen gasolina. Presupuestar unos 40-80EUR adicionales segun la ruta.
 
@@ -555,7 +555,7 @@ Para grupos mas grandes, recomendamos un [barco con licencia](/barcos-con-licenc
 
 ### Para la parte de barco
 
-- **Reserva con antelacion** en temporada alta (julio-agosto). Los barcos se agotan rapido. [Reserva aqui](/barcos) o por [WhatsApp](https://wa.me/34611500372).
+- **Reserva con antelacion** en temporada alta (julio-agosto). Los barcos se agotan rapido. [Reserva aqui](/es/barcos) o por [WhatsApp](https://wa.me/34611500372).
 - **Llega 15 minutos antes** de tu hora al Puerto de Blanes para el briefing de seguridad.
 - **Proteccion solar factor 50+.** En el mar, el sol quema el doble por el reflejo del agua.
 - **Agua y snacks.** Lleva al menos 1,5L de agua por persona.
@@ -585,7 +585,7 @@ Si, es perfectamente viable. Barco por la manana (4 horas), comida en Lloret y s
 
 ### Necesito experiencia previa para el barco?
 
-No. Nuestros [barcos sin licencia](/barcos-sin-licencia) no requieren ninguna experiencia. Te damos un briefing de 10 minutos y listo. Es mas facil de lo que piensas.
+No. Nuestros [barcos sin licencia](/es/barcos-sin-licencia) no requieren ninguna experiencia. Te damos un briefing de 10 minutos y listo. Es mas facil de lo que piensas.
 
 ### Necesito carnet de moto para el scooter?
 
@@ -601,7 +601,7 @@ Los scooters de Coast Rent son para 2 personas (conductor + acompanante). Si vai
 
 ---
 
-La Costa Brava merece ser descubierta a fondo, y la mejor forma es combinar mar y tierra. [Reserva tu barco](/barcos) en Costa Brava Rent a Boat y completa la experiencia con un [scooter de Coast Rent en Lloret](https://coastrent.es). Dos perspectivas, una costa inolvidable.`,
+La Costa Brava merece ser descubierta a fondo, y la mejor forma es combinar mar y tierra. [Reserva tu barco](/es/barcos) en Costa Brava Rent a Boat y completa la experiencia con un [scooter de Coast Rent en Lloret](https://coastrent.es). Dos perspectivas, una costa inolvidable.`,
       en: `There are two ways to experience the Costa Brava: from the water and from the road. Each reveals a completely different side of this spectacular stretch of coastline. But the truly complete experience is combining both in a single trip.
 
 In this article we propose a tried-and-tested itinerary that brings together the best of both worlds: **morning sailing through the coves between Blanes and Lloret, afternoon riding a scooter along the coastal road between Lloret and Tossa de Mar**. Two experiences that complement each other perfectly and that you can do in a single day or spread over two.
@@ -619,7 +619,7 @@ Combining both experiences is like watching a film in 3D after seeing it in 2D: 
 ### Morning: Blanes by Boat (9:00 - 13:00)
 
 **Starting point:** Blanes Harbour
-**Recommended boat:** [Remus 450](/boat/remus-450) (no licence needed, up to 5 people) or [Astec 480 Premium](/boat/astec-480) if you want Bluetooth music on board
+**Recommended boat:** [Remus 450](/en/boat/remus-450) (no licence needed, up to 5 people) or [Astec 480 Premium](/en/boat/astec-480) if you want Bluetooth music on board
 **Duration:** 4 hours
 **Price:** From 150EUR (Remus 450, low season) to 270EUR (Astec 480, high season)
 
@@ -650,7 +650,7 @@ Combining both experiences is like watching a film in 3D after seeing it in 2D: 
 - Safety equipment
 - Personalised briefing
 
-**Recommended extras:** Basic Pack (cooler + snorkel, 10EUR) or Premium Pack (cooler + snorkel + paddle surf, 30EUR). [See all extras](/boats).
+**Recommended extras:** Basic Pack (cooler + snorkel, 10EUR) or Premium Pack (cooler + snorkel + paddle surf, 30EUR). [See all extras](/en/boats).
 
 ### Transition: From Blanes to Lloret (13:00 - 14:30)
 
@@ -718,11 +718,11 @@ If you prefer not to pack everything into one day, you can spread it out:
 
 ## Variant: Large Group (6-7 people)
 
-For larger groups, we recommend a [licensed boat](/boats-with-license) that takes up to 7 people:
+For larger groups, we recommend a [licensed boat](/en/boats-with-license) that takes up to 7 people:
 
-- **[Trimarchi 57S](/boat/trimarchi-57s):** 7 people, 110hp, from 160EUR/2h
-- **[Pacific Craft 625](/boat/pacific-craft-625):** 7 people, 115hp, from 180EUR/2h
-- **[Private excursion with captain](/boat/excursion-privada):** 7 people, from 240EUR/2h -- the captain takes you to the best coves and all you have to do is enjoy
+- **[Trimarchi 57S](/en/boat/trimarchi-57s):** 7 people, 110hp, from 160EUR/2h
+- **[Pacific Craft 625](/en/boat/pacific-craft-625):** 7 people, 115hp, from 180EUR/2h
+- **[Private excursion with captain](/en/boat/excursion-privada):** 7 people, from 240EUR/2h -- the captain takes you to the best coves and all you have to do is enjoy
 
 **Note:** Licensed boats do not include fuel. Budget an additional 40-80EUR depending on the route.
 
@@ -730,7 +730,7 @@ For larger groups, we recommend a [licensed boat](/boats-with-license) that take
 
 ### For the boat part
 
-- **Book in advance** during high season (July-August). Boats sell out fast. [Book here](/boats) or via [WhatsApp](https://wa.me/34611500372).
+- **Book in advance** during high season (July-August). Boats sell out fast. [Book here](/en/boats) or via [WhatsApp](https://wa.me/34611500372).
 - **Arrive 15 minutes early** to Blanes Harbour for the safety briefing.
 - **SPF 50+ sun protection.** At sea, the sun burns twice as much due to water reflection.
 - **Water and snacks.** Bring at least 1.5L of water per person.
@@ -760,7 +760,7 @@ Yes, it's perfectly doable. Boat in the morning (4 hours), lunch in Lloret, and 
 
 ### Do I need prior experience for the boat?
 
-No. Our [boats without licence](/boats-without-license) don't require any experience. We give you a 10-minute briefing and you're good to go. It's easier than you think.
+No. Our [boats without licence](/en/boats-without-license) don't require any experience. We give you a 10-minute briefing and you're good to go. It's easier than you think.
 
 ### Do I need a motorcycle licence for the scooter?
 
@@ -776,7 +776,7 @@ Coast Rent scooters seat 2 people (rider + passenger). If you're a large group, 
 
 ---
 
-The Costa Brava deserves to be discovered in depth, and the best way is to combine sea and land. [Book your boat](/boats) at Costa Brava Rent a Boat and complete the experience with a [scooter from Coast Rent in Lloret](https://coastrent.es). Two perspectives, one unforgettable coast.`,
+The Costa Brava deserves to be discovered in depth, and the best way is to combine sea and land. [Book your boat](/en/boats) at Costa Brava Rent a Boat and complete the experience with a [scooter from Coast Rent in Lloret](https://coastrent.es). Two perspectives, one unforgettable coast.`,
     },
     content: `Hay dos formas de conocer la Costa Brava: desde el agua y desde la carretera. Cada una revela una cara completamente distinta de este tramo de costa espectacular. Pero la experiencia verdaderamente completa es combinar las dos en un mismo viaje.
 
@@ -795,7 +795,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 ### Manana: Blanes en Barco (9:00 - 13:00)
 
 **Punto de partida:** Puerto de Blanes
-**Barco recomendado:** [Remus 450](/barco/remus-450) (sin licencia, hasta 5 personas) o [Astec 480 Premium](/barco/astec-480) si quieres musica bluetooth a bordo
+**Barco recomendado:** [Remus 450](/es/barco/remus-450) (sin licencia, hasta 5 personas) o [Astec 480 Premium](/es/barco/astec-480) si quieres musica bluetooth a bordo
 **Duracion:** 4 horas
 **Precio:** Desde 150EUR (Remus 450, temporada baja) a 270EUR (Astec 480, temporada alta)
 
@@ -826,7 +826,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 - Equipo de seguridad
 - Briefing personalizado
 
-**Extras recomendados:** Pack Basic (nevera + snorkel, 10EUR) o Pack Premium (nevera + snorkel + paddle surf, 30EUR). [Ver todos los extras](/barcos).
+**Extras recomendados:** Pack Basic (nevera + snorkel, 10EUR) o Pack Premium (nevera + snorkel + paddle surf, 30EUR). [Ver todos los extras](/es/barcos).
 
 ### Transicion: De Blanes a Lloret (13:00 - 14:30)
 
@@ -894,11 +894,11 @@ Si prefieres no meter todo en un dia, puedes repartirlo:
 
 ## Variante: Grupo Grande (6-7 personas)
 
-Para grupos mas grandes, recomendamos un [barco con licencia](/barcos-con-licencia) que admite hasta 7 personas:
+Para grupos mas grandes, recomendamos un [barco con licencia](/es/barcos-con-licencia) que admite hasta 7 personas:
 
-- **[Trimarchi 57S](/barco/trimarchi-57s):** 7 personas, 110cv, desde 160EUR/2h
-- **[Pacific Craft 625](/barco/pacific-craft-625):** 7 personas, 115cv, desde 180EUR/2h
-- **[Excursion privada con capitan](/barco/excursion-privada):** 7 personas, desde 240EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
+- **[Trimarchi 57S](/es/barco/trimarchi-57s):** 7 personas, 110cv, desde 160EUR/2h
+- **[Pacific Craft 625](/es/barco/pacific-craft-625):** 7 personas, 115cv, desde 180EUR/2h
+- **[Excursion privada con capitan](/es/barco/excursion-privada):** 7 personas, desde 240EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
 
 **Nota:** Los barcos con licencia no incluyen gasolina. Presupuestar unos 40-80EUR adicionales segun la ruta.
 
@@ -906,7 +906,7 @@ Para grupos mas grandes, recomendamos un [barco con licencia](/barcos-con-licenc
 
 ### Para la parte de barco
 
-- **Reserva con antelacion** en temporada alta (julio-agosto). Los barcos se agotan rapido. [Reserva aqui](/barcos) o por [WhatsApp](https://wa.me/34611500372).
+- **Reserva con antelacion** en temporada alta (julio-agosto). Los barcos se agotan rapido. [Reserva aqui](/es/barcos) o por [WhatsApp](https://wa.me/34611500372).
 - **Llega 15 minutos antes** de tu hora al Puerto de Blanes para el briefing de seguridad.
 - **Proteccion solar factor 50+.** En el mar, el sol quema el doble por el reflejo del agua.
 - **Agua y snacks.** Lleva al menos 1,5L de agua por persona.
@@ -936,7 +936,7 @@ Si, es perfectamente viable. Barco por la manana (4 horas), comida en Lloret y s
 
 ### Necesito experiencia previa para el barco?
 
-No. Nuestros [barcos sin licencia](/barcos-sin-licencia) no requieren ninguna experiencia. Te damos un briefing de 10 minutos y listo. Es mas facil de lo que piensas.
+No. Nuestros [barcos sin licencia](/es/barcos-sin-licencia) no requieren ninguna experiencia. Te damos un briefing de 10 minutos y listo. Es mas facil de lo que piensas.
 
 ### Necesito carnet de moto para el scooter?
 
@@ -952,7 +952,7 @@ Los scooters de Coast Rent son para 2 personas (conductor + acompanante). Si vai
 
 ---
 
-La Costa Brava merece ser descubierta a fondo, y la mejor forma es combinar mar y tierra. [Reserva tu barco](/barcos) en Costa Brava Rent a Boat y completa la experiencia con un [scooter de Coast Rent en Lloret](https://coastrent.es). Dos perspectivas, una costa inolvidable.`,
+La Costa Brava merece ser descubierta a fondo, y la mejor forma es combinar mar y tierra. [Reserva tu barco](/es/barcos) en Costa Brava Rent a Boat y completa la experiencia con un [scooter de Coast Rent en Lloret](https://coastrent.es). Dos perspectivas, una costa inolvidable.`,
   },
 ];
 

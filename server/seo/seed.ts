@@ -56,6 +56,18 @@ const TRACKED_KEYWORDS: Array<{
   { keyword: "boat rental lloret de mar", language: "en", cluster: "local", intent: "transactional" },
   { keyword: "rent a boat lloret de mar", language: "en", cluster: "local", intent: "transactional" },
   { keyword: "location bateau lloret de mar", language: "fr", cluster: "local", intent: "transactional" },
+  // Licensed-segment retarget 2026-08-06: the buyers of the 80-115 CV fleet
+  // search "lancha", "sin patrón" and Tossa, almost never "con licencia"
+  // (225 imp/90d). These head terms measure the /es/barcos-con-licencia rebuild.
+  { keyword: "alquiler lancha costa brava", language: "es", cluster: "con-licencia", intent: "transactional" },
+  { keyword: "alquiler lancha blanes", language: "es", cluster: "con-licencia", intent: "transactional" },
+  { keyword: "alquiler barco costa brava sin patron", language: "es", cluster: "con-licencia", intent: "transactional" },
+  { keyword: "alquiler barco sin patron costa brava", language: "es", cluster: "con-licencia", intent: "transactional" },
+  { keyword: "alquiler barco tossa de mar", language: "es", cluster: "local", intent: "transactional" },
+  { keyword: "alquiler barcos tossa de mar", language: "es", cluster: "local", intent: "transactional" },
+  { keyword: "alquiler de barcos privados tossa de mar", language: "es", cluster: "local", intent: "transactional" },
+  { keyword: "alquiler barco con licencia", language: "es", cluster: "con-licencia", intent: "transactional" },
+  { keyword: "alquiler barco costa brava con licencia", language: "es", cluster: "con-licencia", intent: "transactional" },
 ];
 
 export async function seedTrackedKeywords(): Promise<void> {

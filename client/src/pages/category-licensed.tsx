@@ -2,18 +2,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Users,
-  Clock,
   CheckCircle,
   Anchor,
-  Star,
   Gauge,
   Award,
-  Heart,
-  Zap,
-  Navigation as NavigationIcon,
-  Waves,
-  Compass,
-  Target,
+  MapPin,
+  ArrowLeftRight,
+  ListChecks,
+  FileText,
+  Scale,
+  Fuel,
   ChevronRight,
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -21,25 +19,17 @@ import LicenseVerifierInline from "@/components/booking/LicenseVerifierInline";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import RelatedContent from "@/components/RelatedContent";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { ReducedDepositLink } from "@/components/ReducedDepositLink";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import {
-  getSEOConfig,
-  generateHreflangLinks,
-  generateCanonicalUrl,
-  generateBreadcrumbSchema,
-} from "@/utils/seo-config";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
-import {
-  BUSINESS_RATING_STR,
-  BUSINESS_REVIEW_COUNT_STR,
-} from "@shared/businessProfile";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
-import { BOAT_DATA, type BoatData } from "@shared/boatData";
+import { BOAT_DATA, isCaptainedBoat, type BoatData } from "@shared/boatData";
 import { minPriceAcrossBoats } from "@shared/pricing";
 import { translateBoatText } from "@shared/boatTextTranslations";
 
@@ -55,9 +45,7 @@ function RevealSection({
     <div
       ref={ref}
       className={`transition-[opacity,transform,filter] duration-700 ${
-        isVisible
-          ? "opacity-100 translate-y-0 blur-none"
-          : "opacity-0 translate-y-6 blur-[2px]"
+        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"
       } ${className}`}
     >
       {children}
@@ -65,6 +53,10 @@ function RevealSection({
   );
 }
 
+// The server injects the canonical JSON-LD graph for this route (Service +
+// ItemList + FAQPage + HowTo + Breadcrumb, built from the same i18n keys the
+// page renders). SEO.tsx skips client-side JSON-LD when a server block exists,
+// so this component intentionally ships none: one schema source, zero drift.
 export default function CategoryLicensedPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
@@ -75,70 +67,22 @@ export default function CategoryLicensedPage() {
   const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage(
-      undefined,
-      undefined,
-      t.whatsappMessages,
-    );
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 
-  const serviceSchema = {
-    "@type": "Service",
-    name: "Alquiler de Barcos Con Licencia en Blanes",
-    description:
-      "Alquiler de embarcaciones con licencia, potentes y avanzadas en Puerto de Blanes, Costa Brava. Requiere titulación náutica PER, PNB o superior.",
-    provider: {
-      "@type": "LocalBusiness",
-      name: "Costa Brava Rent a Boat Blanes",
-      telephone: "+34611500372",
-      url: "https://www.costabravarentaboat.com/",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Carrer Esplanada del Port",
-        addressLocality: "Blanes",
-        addressRegion: "Girona",
-        postalCode: "17300",
-        addressCountry: "ES",
-      },
-    },
-    serviceType: "Boat Rental",
-    areaServed: {
-      "@type": "Place",
-      name: "Costa Brava, Cataluña, Mediterráneo",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: BUSINESS_RATING_STR,
-      reviewCount: BUSINESS_REVIEW_COUNT_STR,
-      bestRating: "5",
-      worstRating: "1",
-    },
-    offers: {
-      "@type": "AggregateOffer",
-      lowPrice: "160",
-      highPrice: "350",
-      priceCurrency: "EUR",
-      offerCount: "4",
-      availability: "https://schema.org/InStock",
-    },
-  };
-
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: t.breadcrumbs.home, url: "/" },
-    { name: t.breadcrumbs.categoryLicensed, url: "/barcos-con-licencia" },
-  ]);
-
+  // Captained excursion also carries requiresLicense in the DB (the captain's
+  // license, not the client's) — keep it out of the self-drive category.
   const liveLicensed = (boats ?? []).filter(
-    (b) => b.isActive && b.requiresLicense,
+    b => b.isActive && b.requiresLicense && !isCaptainedBoat(b.id)
   );
-  const fallbackLicensed = Object.values(BOAT_DATA).filter((b) =>
-    b.subtitle.startsWith("Con licencia"),
+  const fallbackLicensed = Object.values(BOAT_DATA).filter(
+    b => b.subtitle.startsWith("Con licencia") && !isCaptainedBoat(b.id)
   );
   const sourceLicensed: Array<Boat | BoatData> =
     liveLicensed.length > 0 ? liveLicensed : fallbackLicensed;
 
-  const licensedBoats = sourceLicensed.map((b) => {
+  const licensedBoats = sourceLicensed.map(b => {
     const specs = (b.specifications ?? {}) as {
       engine?: string;
       capacity?: string;
@@ -147,75 +91,58 @@ export default function CategoryLicensedPage() {
     const capacity = isDbBoat
       ? `${(b as Boat).capacity} ${t.boats.people}`
       : (specs.capacity ?? "");
-    const minPrice = minPriceAcrossBoats(
-      [b as { pricing?: unknown }],
-      "2h",
-      "BAJA",
-    );
+    const minPrice = minPriceAcrossBoats([b as { pricing?: unknown }], "2h", "BAJA");
     return {
       id: b.id,
       name: translateBoatText(b.name, language),
       capacity,
       engine: specs.engine ?? "",
       features: (b.features ?? []).slice(0, 4),
-      price: minPrice ? `Desde ${minPrice}\u20AC` : "",
+      price: minPrice ? `Desde ${minPrice}€` : "",
     };
   });
 
-  const itemListSchema = {
-    "@type": "ItemList",
-    name: "Barcos Con Licencia en Blanes",
-    numberOfItems: licensedBoats.length,
-    itemListElement: licensedBoats.map((boat, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: boat.name,
-      url: "https://www.costabravarentaboat.com/barcos-con-licencia",
-      item: {
-        "@type": "Product",
-        name: boat.name,
-        description: `Barco con licencia ${boat.name}, ${boat.capacity}, motor ${boat.engine}`,
-        brand: { "@type": "Brand", name: "Costa Brava Rent a Boat" },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: BUSINESS_RATING_STR,
-          reviewCount: BUSINESS_REVIEW_COUNT_STR,
-          bestRating: "5",
-          worstRating: "1",
-        },
-        review: {
-          "@type": "Review",
-          author: { "@type": "Person", name: "Carlos R." },
-          datePublished: "2025-09-10",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "5",
-            bestRating: "5",
-            worstRating: "1",
-          },
-          reviewBody:
-            "Barco potente y bien mantenido. Navegamos hasta Tossa de Mar y la experiencia fue fantastica. Muy recomendable.",
-        },
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "EUR",
-          price: boat.price.replace(/[^\d]/g, ""),
-          availability: "https://schema.org/InStock",
-          seller: {
-            "@type": "Organization",
-            name: "Costa Brava Rent a Boat Blanes",
-          },
-        },
-      },
-    })),
-  };
-
-  const combinedJsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [serviceSchema, itemListSchema, breadcrumbSchema],
-  };
-
   const cl = t.categoryLicensed!;
+
+  // Comparison table straight from the static catalog (specs and prices are
+  // never hardcoded in copy; boatData.ts is the single source of truth).
+  const comparisonBoats = [
+    { id: "mingolla-brava-19", data: BOAT_DATA["mingolla-brava-19"] },
+    { id: "trimarchi-57s", data: BOAT_DATA["trimarchi-57s"] },
+    { id: "pacific-craft-625", data: BOAT_DATA["pacific-craft-625"] },
+  ];
+  const bestForMap: Record<string, string> = {
+    "mingolla-brava-19": cl.comparisonMingolla,
+    "trimarchi-57s": cl.comparisonTrimarchi,
+    "pacific-craft-625": cl.comparisonPacific,
+  };
+
+  const faqItems = [
+    { question: cl.faqSinPatronQuestion, answer: cl.faqSinPatronAnswer },
+    { question: cl.faqTossaQuestion, answer: cl.faqTossaAnswer },
+    { question: cl.faqLanchaQuestion, answer: cl.faqLanchaAnswer },
+    { question: cl.faqTitulacionQuestion, answer: cl.faqTitulacionAnswer },
+    { question: cl.faqForeignLicenseQuestion, answer: cl.faqForeignLicenseAnswer },
+    { question: cl.faqPriceQuestion, answer: cl.faqPriceAnswer },
+    { question: cl.faqFuelQuestion, answer: cl.faqFuelAnswer },
+    { question: cl.faqDepositQuestion, answer: cl.faqDepositAnswer },
+    { question: cl.faqWeatherQuestion, answer: cl.faqWeatherAnswer },
+  ];
+
+  const howToSteps = [
+    { title: cl.howToStep1Title, text: cl.howToStep1Text },
+    { title: cl.howToStep2Title, text: cl.howToStep2Text },
+    { title: cl.howToStep3Title, text: cl.howToStep3Text },
+    { title: cl.howToStep4Title, text: cl.howToStep4Text },
+    { title: cl.howToStep5Title, text: cl.howToStep5Text },
+  ];
+
+  const routeStops = [
+    cl.routeStopLloret,
+    cl.routeStopSantaCristina,
+    cl.routeStopCanyelles,
+    cl.routeStopTossa,
+  ];
 
   return (
     <div className="min-h-screen">
@@ -227,7 +154,6 @@ export default function CategoryLicensedPage() {
         ogImage={seoConfig.image}
         canonical={canonical}
         hreflang={hreflangLinks}
-        jsonLd={combinedJsonLd}
       />
       <Navigation />
       <ReadingProgressBar />
@@ -237,7 +163,7 @@ export default function CategoryLicensedPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <Award className="w-8 h-8 text-primary mr-4" />
+              <Award className="w-8 h-8 text-primary mr-4 shrink-0" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
                 {cl.heroTitle}
               </h1>
@@ -263,7 +189,7 @@ export default function CategoryLicensedPage() {
         </div>
       </div>
 
-      {/* ═══ WHAT ARE LICENSED BOATS ═══ text + image */}
+      {/* ═══ WHAT IS A LICENSED POWERBOAT ═══ text + image */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
@@ -284,9 +210,7 @@ export default function CategoryLicensedPage() {
                   <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
                     {cl.greaterFreedom}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {cl.greaterFreedomDesc}
-                  </p>
+                  <p className="text-muted-foreground leading-relaxed">{cl.greaterFreedomDesc}</p>
                 </div>
                 <div>
                   <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
@@ -305,11 +229,17 @@ export default function CategoryLicensedPage() {
                   </p>
                 </div>
               </div>
+              <div className="mt-8 bg-muted rounded-xl p-5">
+                <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
+                  {cl.synonymsTitle}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">{cl.synonymsBody}</p>
+              </div>
             </div>
             <div className="lg:col-span-2">
               <img
                 src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-agua-cristalina.webp"
-                alt="Licensed boat in the crystal-clear waters of a Costa Brava cove"
+                alt="Licensed powerboat in the crystal-clear waters of a Costa Brava cove"
                 className="w-full rounded-2xl object-cover aspect-[4/5]"
                 loading="lazy"
                 width={640}
@@ -324,7 +254,7 @@ export default function CategoryLicensedPage() {
       <div className="w-full overflow-hidden">
         <img
           src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-costa-brava.webp"
-          alt="Licensed boat navigating along the Costa Brava coastline"
+          alt="Licensed powerboat navigating along the Costa Brava coastline"
           className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
           loading="lazy"
           width={1920}
@@ -332,20 +262,131 @@ export default function CategoryLicensedPage() {
         />
       </div>
 
-      {/* ═══ OUR LICENSED FLEET ═══ */}
+      {/* ═══ ROUTE: BLANES TO TOSSA ═══ */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+            <MapPin className="w-6 h-6 text-primary shrink-0" />
+            {cl.routeTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-8">{cl.routeIntro}</p>
+          <ol className="relative border-l-2 border-primary/30 ml-3 space-y-6">
+            {routeStops.map((stop, idx) => (
+              <li key={idx} className="pl-6 relative">
+                <span className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-primary" />
+                <p className="text-foreground leading-relaxed">{stop}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+            <a
+              href={localizedPath("locationTossa")}
+              className="text-primary hover:underline flex items-center gap-1"
+            >
+              <ChevronRight className="w-4 h-4" />
+              {cl.linksTossa}
+            </a>
+            <a
+              href={localizedPath("blogDetail", "alquiler-barco-tossa-de-mar-desde-blanes")}
+              className="text-primary hover:underline flex items-center gap-1"
+            >
+              <ChevronRight className="w-4 h-4" />
+              {cl.linksBlogTossa}
+            </a>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* ═══ REQUIREMENTS + LICENSE VERIFIER ═══ */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+            <Award className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
+            {cl.requirementsTitle}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-10">
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-4">{cl.acceptedLicenses}</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span className="font-medium">{cl.licenciaNavegacion}</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span>{cl.per}</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span>{cl.pnb}</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span>{cl.yachtCaptain}</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span>{cl.icc}</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span>{cl.euEquivalent}</span>
+                </li>
+              </ul>
+              <p className="mt-6 mb-2 text-sm font-medium text-foreground">{cl.verifierLead}</p>
+              <LicenseVerifierInline />
+            </div>
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-4">
+                {cl.additionalRequirements}
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span>{cl.minAge}</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span>{cl.validId}</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span>{cl.validLicense}</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <span>
+                    {cl.deposit}
+                    <span className="mt-1 block">
+                      <ReducedDepositLink requiresLicense />
+                    </span>
+                  </span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
+                  <span>{cl.technicalBriefing}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* ═══ OUR LICENSED FLEET ═══ cards link to each boat page */}
+      <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-12">
             <Anchor className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
             {cl.fleetTitle}
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {licensedBoats.map((boat, index) => (
-              <div
-                key={index}
-                className="bg-background rounded-2xl p-6 border border-border"
+            {licensedBoats.map(boat => (
+              <a
+                key={boat.id}
+                href={localizedPath("boatDetail", boat.id)}
+                className="block bg-background rounded-2xl p-6 border border-border transition-colors hover:border-primary"
               >
-                <h3 className="font-heading font-semibold text-xl mb-3">
+                <h3 className="font-heading font-semibold text-xl mb-3 text-primary">
                   {boat.name}
                 </h3>
                 <div className="space-y-3 mb-4">
@@ -359,251 +400,245 @@ export default function CategoryLicensedPage() {
                   </div>
                   <div className="space-y-1">
                     {boat.features.map((feature, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center text-muted-foreground"
-                      >
-                        <CheckCircle className="w-4 h-4 mr-2 text-primary" />
+                      <div key={idx} className="flex items-center text-muted-foreground">
+                        <CheckCircle className="w-4 h-4 mr-2 text-primary shrink-0" />
                         <span className="text-sm">{feature}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="text-lg font-heading font-semibold text-primary">
-                  {boat.price}
-                </div>
-              </div>
+                <div className="text-lg font-heading font-semibold text-primary">{boat.price}</div>
+              </a>
             ))}
           </div>
         </div>
       </RevealSection>
 
-      {/* ═══ ADVANTAGES ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
-            <Heart className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {cl.advantagesTitle}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-10">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">
-                {cl.superiorPerformanceAdv}
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <Zap className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.greaterSpeedPower}</span>
-                </li>
-                <li className="flex items-center">
-                  <Compass className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.unlimitedDistance}</span>
-                </li>
-                <li className="flex items-center">
-                  <Target className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.remoteCoves}</span>
-                </li>
-                <li className="flex items-center">
-                  <Waves className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.betterOpenSea}</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">
-                {cl.premiumExperience}
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <NavigationIcon className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.advancedNavEquipment}</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.greaterComfort}</span>
-                </li>
-                <li className="flex items-center">
-                  <Clock className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.greaterFuelAutonomy}</span>
-                </li>
-                <li className="flex items-center">
-                  <Award className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.sportNavigation}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* ═══ REQUIREMENTS ═══ */}
+      {/* ═══ COMPARISON TABLE ═══ */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
-            <Award className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {cl.requirementsTitle}
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+            <ArrowLeftRight className="w-6 h-6 text-primary shrink-0" />
+            {cl.comparisonTitle}
           </h2>
-          <div className="grid md:grid-cols-2 gap-10">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">
-                {cl.acceptedLicenses}
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span className="font-medium">{cl.licenciaNavegacion}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.per}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.pnb}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.yachtCaptain}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.icc}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.euEquivalent}</span>
-                </li>
-              </ul>
-              <LicenseVerifierInline className="mt-6" />
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">
-                {cl.additionalRequirements}
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.minAge}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.validId}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.validLicense}</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 mt-1 flex-shrink-0" />
-                  <span>
-                    {cl.deposit}
-                    <span className="mt-1 block">
-                      <ReducedDepositLink requiresLicense />
-                    </span>
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.technicalBriefing}</span>
-                </li>
-              </ul>
+          <p className="text-muted-foreground mb-6 leading-relaxed">{cl.comparisonIntro}</p>
+          <div className="rounded-2xl bg-background overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b bg-muted/50">
+                    <th className="text-left p-3 font-semibold">{cl.comparisonBoatName}</th>
+                    <th className="text-left p-3 font-semibold">{cl.comparisonCapacity}</th>
+                    <th className="text-left p-3 font-semibold">{cl.comparisonEngine}</th>
+                    <th className="text-left p-3 font-semibold">{cl.comparisonBestFor}</th>
+                    <th className="text-right p-3 font-semibold">{cl.comparisonPriceLow}</th>
+                    <th className="text-right p-3 font-semibold">{cl.comparisonPriceHigh}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonBoats.map(boat => (
+                    <tr key={boat.id} className="border-b last:border-b-0 hover:bg-muted/30">
+                      <td className="p-3 font-medium">
+                        <a
+                          href={localizedPath("boatDetail", boat.id)}
+                          className="text-primary hover:underline"
+                        >
+                          {boat.data.name}
+                        </a>
+                      </td>
+                      <td className="p-3 text-muted-foreground">
+                        {boat.data.specifications.capacity}
+                      </td>
+                      <td className="p-3 text-muted-foreground">
+                        {boat.data.specifications.engine}
+                      </td>
+                      <td className="p-3 text-muted-foreground">{bestForMap[boat.id]}</td>
+                      <td className="p-3 text-right font-semibold text-primary">
+                        {boat.data.pricing.BAJA.prices["2h"]}
+                        {"€"}
+                      </td>
+                      <td className="p-3 text-right font-semibold text-primary">
+                        {boat.data.pricing.ALTA.prices["2h"]}
+                        {"€"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </RevealSection>
 
-      {/* ═══ WHAT YOU CAN DO ═══ */}
+      {/* ═══ REGULATION ═══ */}
       <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
-            <Compass className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {cl.whatCanDoTitle}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+            <Scale className="w-6 h-6 text-primary shrink-0" />
+            {cl.regulationTitle}
           </h2>
-          <div className="grid md:grid-cols-2 gap-10">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">
-                {cl.expandedDestinations}
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <Target className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.islasMedas}</span>
-                </li>
-                <li className="flex items-center">
-                  <Target className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.begurCoves}</span>
-                </li>
-                <li className="flex items-center">
-                  <Target className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.cadaques}</span>
-                </li>
-                <li className="flex items-center">
-                  <Target className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.nightNavigation}</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">
-                {cl.specialActivities}
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <Waves className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.sportFishing}</span>
-                </li>
-                <li className="flex items-center">
-                  <NavigationIcon className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.fullDayTrips}</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.sportNav}</span>
-                </li>
-                <li className="flex items-center">
-                  <Compass className="w-4 h-4 text-primary mr-3" />
-                  <span>{cl.portToPort}</span>
-                </li>
-              </ul>
+          <p className="text-muted-foreground leading-relaxed mb-4">{cl.regulationIntro}</p>
+          <p className="text-muted-foreground leading-relaxed mb-6">{cl.regulationForeign}</p>
+          <p className="text-foreground leading-relaxed bg-amber-50 border border-amber-200 rounded-lg p-4">
+            <Fuel className="w-5 h-5 text-amber-600 inline mr-2 -mt-1" />
+            {cl.regulationFuelDeposit}
+          </p>
+        </div>
+      </RevealSection>
+
+      {/* ═══ HOW TO: 5 STEPS ═══ */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+            <ListChecks className="w-6 h-6 text-primary shrink-0" />
+            {cl.howToTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-8">{cl.howToIntro}</p>
+          <ol className="space-y-6">
+            {howToSteps.map((step, idx) => (
+              <li key={idx} className="flex gap-4">
+                <div className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-heading font-bold">
+                  {idx + 1}
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading font-semibold text-lg mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </RevealSection>
+
+      {/* ═══ DIRECT VS MARKETPLACES ═══ */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+            <ArrowLeftRight className="w-6 h-6 text-primary shrink-0" />
+            {cl.vsMarketplacesTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">{cl.vsMarketplacesIntro}</p>
+          <div className="rounded-2xl bg-background border overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b bg-muted/50">
+                    <th className="text-left p-3 font-semibold w-1/4"></th>
+                    <th className="text-left p-3 font-semibold text-primary">
+                      <CheckCircle className="w-4 h-4 inline mr-1.5" />
+                      {cl.vsMarketplacesCol1}
+                    </th>
+                    <th className="text-left p-3 font-semibold text-muted-foreground">
+                      {cl.vsMarketplacesCol2}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(
+                    [
+                      [
+                        cl.vsMarketplacesRow1Label,
+                        cl.vsMarketplacesRow1Direct,
+                        cl.vsMarketplacesRow1Market,
+                      ],
+                      [
+                        cl.vsMarketplacesRow2Label,
+                        cl.vsMarketplacesRow2Direct,
+                        cl.vsMarketplacesRow2Market,
+                      ],
+                      [
+                        cl.vsMarketplacesRow3Label,
+                        cl.vsMarketplacesRow3Direct,
+                        cl.vsMarketplacesRow3Market,
+                      ],
+                      [
+                        cl.vsMarketplacesRow4Label,
+                        cl.vsMarketplacesRow4Direct,
+                        cl.vsMarketplacesRow4Market,
+                      ],
+                    ] as const
+                  ).map(([label, direct, market], idx) => (
+                    <tr key={idx} className="border-b last:border-b-0">
+                      <td className="p-3 font-medium">{label}</td>
+                      <td className="p-3 text-foreground">{direct}</td>
+                      <td className="p-3 text-muted-foreground">{market}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
+          <p className="text-foreground leading-relaxed mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+            <CheckCircle className="w-5 h-5 text-green-600 inline mr-2 -mt-1" />
+            {cl.vsMarketplacesConclusion}
+          </p>
+        </div>
+      </RevealSection>
+
+      {/* ═══ FAQ ═══ mirrored 1:1 by the server-side FAQPage schema */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+            <FileText className="w-6 h-6 text-primary shrink-0" />
+            {language === "es"
+              ? "Preguntas Frecuentes"
+              : language === "en"
+                ? "Frequently Asked Questions"
+                : language === "ca"
+                  ? "Preguntes Frequents"
+                  : language === "fr"
+                    ? "Questions Frequentes"
+                    : language === "de"
+                      ? "Haufig Gestellte Fragen"
+                      : language === "nl"
+                        ? "Veelgestelde Vragen"
+                        : language === "it"
+                          ? "Domande Frequenti"
+                          : "Часто задаваемые вопросы"}
+          </h2>
+          <FAQSection items={faqItems} />
         </div>
       </RevealSection>
 
       {/* ═══ INTERNAL LINKS ═══ */}
-      <div className="py-8 bg-muted">
+      <div className="py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading font-semibold text-lg mb-4">
-            Destinos con barco con licencia desde Blanes
-          </h3>
+          <h3 className="font-heading font-semibold text-lg mb-4">{cl.linksTitle}</h3>
           <div className="flex flex-wrap gap-x-6 gap-y-3">
             <a
               href={localizedPath("locationBlanes")}
               className="text-primary hover:underline flex items-center gap-1"
             >
               <ChevronRight className="w-4 h-4" />
-              Puerto de Blanes: punto de salida
+              {cl.linksBlanes}
             </a>
             <a
               href={localizedPath("locationTossa")}
               className="text-primary hover:underline flex items-center gap-1"
             >
               <ChevronRight className="w-4 h-4" />
-              Navega hasta Tossa de Mar
-            </a>
-            <a
-              href={localizedPath("locationCostaBrava")}
-              className="text-primary hover:underline flex items-center gap-1"
-            >
-              <ChevronRight className="w-4 h-4" />
-              Explora toda la Costa Brava en barco
+              {cl.linksTossa}
             </a>
             <a
               href={localizedPath("pricing")}
               className="text-primary hover:underline flex items-center gap-1"
             >
               <ChevronRight className="w-4 h-4" />
-              Tarifas de barcos con licencia
+              {cl.linksPricing}
+            </a>
+            <a
+              href={localizedPath("categoryLicenseFree")}
+              className="text-primary hover:underline flex items-center gap-1"
+            >
+              <ChevronRight className="w-4 h-4" />
+              {cl.linksNoLicense}
+            </a>
+            <a
+              href={localizedPath("boatDetail", "excursion-privada")}
+              className="text-primary hover:underline flex items-center gap-1"
+            >
+              <ChevronRight className="w-4 h-4" />
+              {cl.linksSkipper}
             </a>
           </div>
         </div>
@@ -615,9 +650,7 @@ export default function CategoryLicensedPage() {
           <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
             {cl.ctaTitle}
           </h2>
-          <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">
-            {cl.ctaDescription}
-          </p>
+          <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{cl.ctaDescription}</p>
           <Button
             onClick={handleBookingWhatsApp}
             size="lg"

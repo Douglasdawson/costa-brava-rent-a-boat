@@ -491,9 +491,13 @@ export default function CategoryLicenseFreePage() {
             {clf.fleetTitle}
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {licenseFreeBoats.map((boat, index) => (
-              <div key={index} className="bg-background rounded-2xl p-6 shadow-sm border">
-                <h3 className="font-heading font-semibold text-xl mb-3">{boat.name}</h3>
+            {licenseFreeBoats.map((boat) => (
+              <a
+                key={boat.id}
+                href={localizedPath("boatDetail", boat.id)}
+                className="block bg-background rounded-2xl p-6 shadow-sm border transition-colors hover:border-primary"
+              >
+                <h3 className="font-heading font-semibold text-xl mb-3 text-primary">{boat.name}</h3>
                 <div className="space-y-3 mb-4">
                   <div className="flex items-center text-muted-foreground">
                     <Users className="w-4 h-4 mr-2" />
@@ -506,7 +510,7 @@ export default function CategoryLicenseFreePage() {
                   <div className="space-y-1">
                     {boat.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center text-muted-foreground">
-                        <CheckCircle className="w-4 h-4 mr-2 text-primary" />
+                        <CheckCircle className="w-4 h-4 mr-2 text-primary shrink-0" />
                         <span className="text-sm">{feature}</span>
                       </div>
                     ))}
@@ -515,7 +519,7 @@ export default function CategoryLicenseFreePage() {
                 <div className="text-lg font-semibold text-primary mb-3">
                   {boat.price}
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -804,6 +808,14 @@ export default function CategoryLicenseFreePage() {
             <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
               <ChevronRight className="w-4 h-4" />
               Consulta precios por temporada
+            </a>
+            <a
+              href={localizedPath("categoryLicensed")}
+              className="text-primary hover:underline flex items-center gap-1"
+              data-testid="link-cross-licensed"
+            >
+              <ChevronRight className="w-4 h-4" />
+              {t.categoryLicensed!.crossLinkFromFree}
             </a>
           </div>
         </div>

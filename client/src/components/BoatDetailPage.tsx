@@ -209,8 +209,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     return pool
       .slice()
       .sort(
-        (a, b) =>
-          Math.abs(a.capacity - currentCapacity) - Math.abs(b.capacity - currentCapacity)
+        (a, b) => Math.abs(a.capacity - currentCapacity) - Math.abs(b.capacity - currentCapacity)
       )
       .slice(0, 3);
   }, [boats, boatData, boatId]);
@@ -483,9 +482,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <div className="mb-2">
             <span
               className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${
-                requiresLicense
-                  ? "bg-primary text-white"
-                  : "bg-white/95 text-primary"
+                requiresLicense ? "bg-primary text-white" : "bg-white/95 text-primary"
               }`}
             >
               {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
@@ -727,10 +724,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           selectedDate={selectedDate}
           onDateSelect={setSelectedDate}
           onDateClear={() => setSelectedDate(undefined)}
-          onDurationSelect={(duration, dateKey) =>
-            handleReservation({ date: dateKey, duration })
-          }
-          translate={(text) => translateBoatText(text, language)}
+          onDurationSelect={(duration, dateKey) => handleReservation({ date: dateKey, duration })}
+          translate={text => translateBoatText(text, language)}
         />
 
         {/* Optional guarantees, priced for this boat. Placed right after the
@@ -746,43 +741,43 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <Tabs defaultValue="caracteristicas">
             <div className="relative border-b border-border">
               <div className="px-4 pt-4 overflow-x-auto">
-              <TabsList className="h-auto bg-transparent p-0 gap-1 w-max">
-                <TabsTrigger
-                  value="caracteristicas"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                >
-                  <Star className="w-4 h-4 mr-1.5" />
-                  {t.boatDetail.mainFeatures}
-                </TabsTrigger>
-                <TabsTrigger
-                  value="tecnico"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                >
-                  <NavigationIcon className="w-4 h-4 mr-1.5" />
-                  {t.boatDetail.technicalSpecs}
-                </TabsTrigger>
-                <TabsTrigger
-                  value="equipamiento"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                >
-                  <Settings className="w-4 h-4 mr-1.5" />
-                  {t.boatDetail.equipmentIncluded}
-                </TabsTrigger>
-                <TabsTrigger
-                  value="extras"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                >
-                  <Zap className="w-4 h-4 mr-1.5" />
-                  {t.boatDetail.availableExtras}
-                </TabsTrigger>
-                <TabsTrigger
-                  value="info"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                >
-                  <Shield className="w-4 h-4 mr-1.5" />
-                  {t.boatDetail.importantInfo}
-                </TabsTrigger>
-              </TabsList>
+                <TabsList className="h-auto bg-transparent p-0 gap-1 w-max">
+                  <TabsTrigger
+                    value="caracteristicas"
+                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                  >
+                    <Star className="w-4 h-4 mr-1.5" />
+                    {t.boatDetail.mainFeatures}
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="tecnico"
+                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                  >
+                    <NavigationIcon className="w-4 h-4 mr-1.5" />
+                    {t.boatDetail.technicalSpecs}
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="equipamiento"
+                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                  >
+                    <Settings className="w-4 h-4 mr-1.5" />
+                    {t.boatDetail.equipmentIncluded}
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="extras"
+                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                  >
+                    <Zap className="w-4 h-4 mr-1.5" />
+                    {t.boatDetail.availableExtras}
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="info"
+                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                  >
+                    <Shield className="w-4 h-4 mr-1.5" />
+                    {t.boatDetail.importantInfo}
+                  </TabsTrigger>
+                </TabsList>
               </div>
               {/* Mobile scroll hint: fade-out over the right edge of the tab strip */}
               <div
@@ -923,10 +918,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 {boatData.extras?.map((extra, index) => {
                   const IconComponent = EXTRA_ICONS[extra.icon] || Star;
                   return (
-                    <li
-                      key={index}
-                      className="flex items-center gap-4 px-4 py-3"
-                    >
+                    <li key={index} className="flex items-center gap-4 px-4 py-3">
                       <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
                         <IconComponent className="w-5 h-5 text-primary" />
                       </div>
@@ -1083,7 +1075,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                         </span>
                         {relPrice > 0 && (
                           <div className="text-sm">
-                            <span className="text-muted-foreground text-xs">{t.relatedBoats.from} </span>
+                            <span className="text-muted-foreground text-xs">
+                              {t.relatedBoats.from}{" "}
+                            </span>
                             <span className="font-bold text-primary">{relPrice}€</span>
                           </div>
                         )}
@@ -1093,20 +1087,34 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 );
               })}
             </div>
+            {/* Back-link to the boat's category page (skipped for the captained
+                excursion, which belongs to neither self-drive category). */}
+            {!isCaptainedBoat(boatData.id) && (
+              <div className="text-center mt-2 px-4">
+                <a
+                  href={localizedPath(requiresLicense ? "categoryLicensed" : "categoryLicenseFree")}
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                  data-testid="link-boat-category"
+                >
+                  {requiresLicense
+                    ? t.breadcrumbs.categoryLicensed
+                    : t.breadcrumbs.categoryLicenseFree}
+                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                </a>
+              </div>
+            )}
           </div>
         </section>
       )}
 
       {/* FAQ Section — items come from shared/boatFaqBuilder, derived from admin data */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <h2 className="text-2xl font-heading font-bold text-foreground mb-6 text-center">{boatFaqTitle}</h2>
+        <h2 className="text-2xl font-heading font-bold text-foreground mb-6 text-center">
+          {boatFaqTitle}
+        </h2>
         <div className="space-y-4 max-w-3xl mx-auto">
           {boatFaqItems.map((item, idx) => (
-            <details
-              key={idx}
-              className="group border border-border rounded-lg"
-              open={idx < 2}
-            >
+            <details key={idx} className="group border border-border rounded-lg" open={idx < 2}>
               <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
                 {item.question}
                 <ChevronRight className="w-4 h-4 transition-transform duration-200 group-open:rotate-90" />
@@ -1131,30 +1139,30 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </p>
           )}
           <div className="flex gap-2">
-          <button
-            onClick={() => handleReservation()}
-            tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-            className="flex-1 bg-primary text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
-          >
-            <Calendar className="w-4 h-4" />
-            <span>
-              {t.hero.bookNow}
-              {dynamicLowest.price > 0 &&
-                (dynamicLowest.isForDate
-                  ? ` · ${dynamicLowest.price}€`
-                  : ` · ${t.boats.from} ${dynamicLowest.price}€`)}
-            </span>
-          </button>
-          <a
-            href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(t.boatDetail.whatsappPrefill.replace("{boatName}", boatName))}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-            className="flex-1 bg-whatsapp text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2"
-          >
-            <SiWhatsapp className="w-4 h-4" />
-            <span>WhatsApp</span>
-          </a>
+            <button
+              onClick={() => handleReservation()}
+              tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
+              className="flex-1 bg-primary text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>
+                {t.hero.bookNow}
+                {dynamicLowest.price > 0 &&
+                  (dynamicLowest.isForDate
+                    ? ` · ${dynamicLowest.price}€`
+                    : ` · ${t.boats.from} ${dynamicLowest.price}€`)}
+              </span>
+            </button>
+            <a
+              href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(t.boatDetail.whatsappPrefill.replace("{boatName}", boatName))}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
+              className="flex-1 bg-whatsapp text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2"
+            >
+              <SiWhatsapp className="w-4 h-4" />
+              <span>WhatsApp</span>
+            </a>
           </div>
         </div>
       </div>

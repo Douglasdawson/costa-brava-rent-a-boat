@@ -7,7 +7,9 @@ export interface CRMDashboardProps {
 // Validation schema for editing booking
 export const editBookingSchema = z.object({
   customerName: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
-  customerSurname: z.string().min(2, "Los apellidos deben tener al menos 2 caracteres"),
+  // Ver insertBookingSchema: las peticiones del funnel pueden llegar sin
+  // apellidos y aun asi tienen que poder convertirse en reserva.
+  customerSurname: z.string(),
   customerPhone: z.string().min(9, "El teléfono debe tener al menos 9 dígitos"),
   customerEmail: z.string().email("Email inválido").optional().or(z.literal("")),
   customerNationality: z.string().min(1, "La nacionalidad es requerida"),

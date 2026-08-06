@@ -8,6 +8,7 @@ import NeveraIcon from "@/components/icons/NeveraIcon";
 import BebidasIcon from "@/components/icons/BebidasIcon";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getAttribution } from "@/utils/attribution";
+import { splitFullName } from "@/lib/fullName";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
@@ -1213,16 +1214,13 @@ export default function BookingFormWidget({
   // state fields. Backend still receives firstName + lastName (DB columns are
   // NOT NULL but accept empty strings, so a one-word name lands as
   // firstName="Iván", lastName="" without breaking validation).
+  // El corte vive en lib/fullName.ts junto a su inversa (joinFullName), que es
+  // la que pinta el input: cortar aqui y reconstruir de otra forma alli fue el
+  // bug que se comia el espacio al teclear (ver fullName.test.ts).
   const onFullNameChange = useCallback((value: string) => {
-    const trimmed = value.trimStart();
-    const firstSpace = trimmed.search(/\s/);
-    if (firstSpace === -1) {
-      setFirstName(trimmed);
-      setLastName("");
-    } else {
-      setFirstName(trimmed.slice(0, firstSpace));
-      setLastName(trimmed.slice(firstSpace + 1));
-    }
+    const { firstName: nombre, lastName: apellidos } = splitFullName(value);
+    setFirstName(nombre);
+    setLastName(apellidos);
   }, []);
 
   // Tracked setters: wrap state setters so user-initiated changes emit GA4

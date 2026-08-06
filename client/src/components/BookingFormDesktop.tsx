@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { joinFullName } from "@/lib/fullName";
 import { ArrowRight, CalendarIcon, Check, ClipboardList, Clock, Fuel, Loader2, Pencil, Ship, Sparkles, Star, Users, X } from "lucide-react";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -1567,7 +1568,7 @@ function Step5Contact({
           <div>
             <input
               type="text"
-              value={firstName + (lastName ? ` ${lastName}` : "")}
+              value={joinFullName(firstName, lastName)}
               onChange={e => onFullNameChange(e.target.value)}
               onBlur={() => handleBlur("firstName")}
               placeholder={t.wizard.fullName}

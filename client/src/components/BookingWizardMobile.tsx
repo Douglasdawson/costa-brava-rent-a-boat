@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { joinFullName } from "@/lib/fullName";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, ClipboardList, Clock, Fuel, Gift, Loader2, Package, Pencil, Ship, Sparkles, Star, Tag, User, Users, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -1003,7 +1004,7 @@ function PersonalDataSection({
   showFieldError, getFieldError, handleBlur,
   t,
 }: BookingWizardMobileProps) {
-  const fullNameValue = firstName + (lastName ? ` ${lastName}` : "");
+  const fullNameValue = joinFullName(firstName, lastName);
   return (
     <div className="space-y-3">
       <div>

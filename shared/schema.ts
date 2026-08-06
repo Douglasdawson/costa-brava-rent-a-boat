@@ -640,7 +640,11 @@ export const insertBookingSchema = createInsertSchema(bookings)
     startTime: z.coerce.date(),
     endTime: z.coerce.date(),
     customerName: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
-    customerSurname: z.string().min(2, "Los apellidos deben tener al menos 2 caracteres"),
+    // Sin minimo A PROPOSITO: el funnel captura el nombre en un solo campo y un
+    // nombre de una palabra ("Vlady") deja los apellidos vacios, que es un dato
+    // legitimo. Exigir 2 caracteres aqui hacia que el CRM no pudiera convertir
+    // en reserva el 43% de las peticiones (2026-08-05).
+    customerSurname: z.string(),
     customerPhone: z.string().min(9, "El teléfono debe tener al menos 9 dígitos"),
     customerEmail: z.string().email("Email inválido").optional().or(z.literal("")),
     customerNationality: z.string().min(1, "La nacionalidad es requerida"),

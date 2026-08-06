@@ -4620,6 +4620,178 @@ export const de: Translations = {
       },
     ],
   },
+  captainedPage: {
+    seoTitle: "Bootsverleih mit Skipper Costa Brava | Ab Blanes",
+    seoDescription:
+      "Private Bootstour mit Skipper ab Blanes: Buchten und Meereshöhlen bis Tossa de Mar, Badestopp inklusive. Bis zu 6 Personen, ab 240€/2 Std. {rating}★ bei Google.",
+    heroTitle: "Bootsverleih mit Skipper an der Costa Brava: Ihre private Bootstour ab Blanes",
+    heroDescription:
+      "Sie genießen einfach nur: Unser professioneller Skipper bringt Sie zu Buchten mit klarem Wasser und zu Meereshöhlen zwischen Blanes und Tossa de Mar und ankert an der schönsten Stelle des Tages, damit Sie baden können. Ohne Bootsführerschein, ohne Erfahrung und ohne sich um irgendetwas kümmern zu müssen.",
+    badgeSkipper: "Professioneller Skipper inklusive",
+    badgeCapacity: "Bis zu 6 Personen",
+    badgeNoLicense: "Ohne Bootsführerschein und ohne Erfahrung",
+    whatIsTitle: "Was die private Bootstour mit Skipper ist",
+    whatIsIntro:
+      "Es ist eine Bootsvermietung, bei der der Skipper inklusive ist: Sie buchen das gesamte Boot für Ihre Gruppe und ein Profi übernimmt das Steuern, die Route und das Ankern. Niemand an Bord braucht einen Bootsführerschein, und der Plan richtet sich nach Ihnen, nicht nach dem Fahrplan einer Gruppentour.",
+    cardSkipperTitle: "Der Skipper kennt jede Bucht",
+    cardSkipperDesc:
+      "Er wählt Strecke und Ankerplatz des Tages je nach Wind und Seegang und erzählt Ihnen unterwegs, was Sie gerade sehen.",
+    cardCovesTitle: "Buchten und Höhlen, die zu Fuß unerreichbar sind",
+    cardCovesDesc:
+      "Küstenwinkel zwischen Blanes und Tossa de Mar, die nur vom Meer aus zugänglich sind, weit weg von den vollen Stränden.",
+    cardSwimTitle: "Badestopp",
+    cardSwimDesc:
+      "Ankern in einer Bucht mit klarem Wasser und genug Zeit zum Baden. Schnorchelausrüstung oder ein Stand-up-Paddle-Board können Sie als Extra dazubuchen.",
+    cardComfortTitle: "Ein Boot, das zum Plan passt",
+    cardComfortDesc:
+      "Sonnendeck am Bug und am Heck, Bimini-Sonnendach, Süßwasserdusche, Tisch und Bluetooth-Lautsprecher für Ihre Musik.",
+    synonymsTitle: "Boot mit Skipper, private Bootstour oder Bootsausflug: alles dasselbe",
+    synonymsBody:
+      "Bootsverleih mit Skipper, privater Bootsausflug, private Bootstour oder Boat Tour sind verschiedene Namen für denselben Plan: ein Boot nur für Ihre Gruppe, mit einem Profi am Steuer. Das Gegenteil ist die Miete ohne Skipper (Sie steuern selbst).",
+    routeTitle: "Die Route: von Blanes nach Tossa de Mar entlang der Buchten",
+    routeIntro:
+      "Es gibt keine feste Strecke: Der Skipper entscheidet über Route und Ankerplatz je nach Seegang des Tages. Das ist der übliche Verlauf, wenn das Wetter mitspielt.",
+    routeStops: [
+      "Hafen von Blanes: Einschiffen und Ablegen mit Ihrem Skipper. Ein Parkplatz direkt am Boot ist als Extra buchbar.",
+      "Cala Sant Francesc und Santa Cristina: die ersten Buchten mit klarem Wasser, nur wenige Minuten vom Hafen entfernt.",
+      "Lloret de Mar und Fenals: Strände und Steilküste vom Meer aus gesehen, ein beliebtes Gebiet zum Ankern und Baden.",
+      "Tossa de Mar und seine Meereshöhlen: der wildeste Abschnitt, mit Blick vom Wasser auf die mittelalterliche Stadtmauer (30-45 Min Fahrt ab Blanes).",
+    ],
+    routeNote:
+      "Wenn es eine Bucht gibt, auf die Sie Lust haben, sagen Sie es dem Skipper beim Einschiffen: Wenn das Meer es zulässt, nimmt er sie in die Route auf.",
+    includedTitle: "Was im Preis enthalten ist",
+    includedItems: [
+      "Professioneller Skipper",
+      "Liegeplatz im Hafen von Blanes",
+      "Reinigung des Bootes",
+      "Haftpflichtversicherung mit Unfallschutz für die Insassen",
+      "Mehrwertsteuer",
+    ],
+    notIncludedTitle: "Was nicht enthalten ist",
+    notIncludedItems: [
+      "Kraftstoff: wird am Ende nach dem tatsächlichen Verbrauch der Ausfahrt abgerechnet",
+      "Optionale Extras: Kühlbox, Schnorchelausrüstung, Stand-up-Paddle-Board oder Parkplatz direkt am Boot",
+    ],
+    fuelNote:
+      "Der Kraftstoff ist nicht im Preis enthalten. Bei der Rückkehr in den Hafen wird das Verbrauchte aufgefüllt und nach dem tatsächlichen Verbrauch Ihrer Ausfahrt bezahlt.",
+    boatTitle: "Das Boot: Pacific Craft 625 Open",
+    boatIntro:
+      "Die Tour findet an Bord unseres größten Bootes statt, einer Pacific Craft 625 Open mit einem Yamaha-Motor mit 115 PS: stabil, schnell und gemacht für einen Tag in der Sonne zwischen den Buchten.",
+    boatCta: "Zum Datenblatt der privaten Bootstour",
+    specCapacityLabel: "Plätze",
+    specEngineLabel: "Motor",
+    specLengthLabel: "Länge",
+    specDepositLabel: "Kaution",
+    pricingTitle: "Preise der privaten Bootstour mit Skipper",
+    pricingIntro:
+      "Der Preis gilt pro Boot, nicht pro Person: zu sechst sind das ab 40€ pro Kopf für die 2 Stunden. Saison von April bis Oktober, Ausfahrten zwischen 9:00 und 20:00 Uhr.",
+    pricingColDuration: "Dauer",
+    pricingDurations: ["2 Stunden", "3 Stunden", "4 Stunden"],
+    seasonLow: "April bis Juni und September",
+    seasonMid: "Juli",
+    seasonHigh: "August",
+    pricingNote:
+      "Kaution von 200€, die nach der Ausfahrt zurückerstattet wird. Der Kraftstoff wird separat nach Verbrauch bezahlt.",
+    forWhomTitle: "Für wen diese Bootstour ist",
+    forWhomItems: [
+      {
+        title: "Feiern und Jahrestage",
+        text: "Ein Geburtstag, ein Heiratsantrag oder ein Jahrestag mit dem ganzen Boot nur für Sie. Sagen Sie uns bei der Buchung, was Sie feiern, und buchen Sie die Kühlbox als Extra dazu, um alles gekühlt mitzunehmen, worauf Sie Lust haben.",
+      },
+      {
+        title: "Familien mit Kindern",
+        text: "Der Skipper kümmert sich um das Boot und Sie sich um Ihre Familie. Rettungswesten und Sicherheitsausrüstung sind an Bord, gebadet wird in ruhigen, flachen Buchten.",
+      },
+      {
+        title: "Freundesgruppen",
+        text: "Bis zu 6 Personen mit Musik über Bluetooth, zwei Sonnendecks und Stopps zum Sprung ins Wasser. Der perfekte Tag auf dem Wasser, ohne dass jemand am Steuer nüchtern bleiben muss.",
+      },
+      {
+        title: "Paare",
+        text: "Zwei Stunden bei Sonnenuntergang vor der Küste vor Anker, ohne weitere Gäste an Bord. Die private Version einer Bootsfahrt an der Costa Brava.",
+      },
+    ],
+    howToTitle: "So buchen Sie Ihre Bootstour mit Skipper",
+    howToIntro: "Von der Anfrage bis zum Bad in der ersten Bucht in fünf Schritten.",
+    howToSteps: [
+      {
+        title: "Tag und Dauer wählen",
+        text: "Ausfahrten von 2, 3 oder 4 Stunden, von April bis Oktober, zwischen 9:00 und 20:00 Uhr. Wenn Sie unschlüssig sind: Mit 3 Stunden erreichen Sie in Ruhe die Gegend von Tossa, Badestopp inklusive.",
+      },
+      {
+        title: "Anfrage senden",
+        text: "Buchen Sie über die Website oder per WhatsApp. Wir bestätigen Ihnen Verfügbarkeit und Treffpunkt, und bezahlt wird persönlich am Tag der Ausfahrt.",
+      },
+      {
+        title: "Am Hafen von Blanes ankommen",
+        text: "Seien Sie etwa 15 Minuten vorher da, mit Personalausweis oder Reisepass. Die Kaution von 200€ wird im Hafen hinterlegt und am Ende zurückerstattet.",
+      },
+      {
+        title: "Fahren, ankern und baden",
+        text: "Der Skipper passt die Route dem Meer des Tages an: Buchten, Höhlen und ein Stopp vor Anker zum Schwimmen dort, wo das Wasser am schönsten ist.",
+      },
+      {
+        title: "Zurück in den Hafen",
+        text: "Bei der Rückkehr wird der Kraftstoff nach dem tatsächlichen Verbrauch bezahlt und Sie bekommen die Kaution zurück. Bleibt nur noch, das Datum für das nächste Mal auszusuchen.",
+      },
+    ],
+    vsTitle: "Mit Skipper oder selbst steuern?",
+    vsIntro:
+      "Beide Möglichkeiten gibt es in unserer Flotte. Der Unterschied liegt darin, wer das Boot führt: Bei der privaten Bootstour fährt unser Skipper und niemand braucht einen Bootsführerschein, bei der Miete ohne Skipper sind Sie der Skipper.",
+    vsCaptainedTitle: "Mit Skipper: diese Bootstour",
+    vsCaptainedText:
+      "Für alle, die komplett abschalten wollen, etwas zu feiern haben oder keinen Bootsführerschein besitzen und trotzdem ohne Leistungsgrenze bis zu den Höhlen von Tossa fahren möchten.",
+    vsSelfDriveTitle: "Ohne Skipper: Sie steuern selbst",
+    vsSelfDriveText:
+      "Mit Bootsführerschein können Sie unsere Boote mit 80-115 PS mieten und Ihre eigene Route festlegen. Und ohne Bootsführerschein bringen Sie die führerscheinfreien Boote zu den nahe gelegenen Buchten.",
+    vsLinkLicensed: "Boote ohne Skipper (mit Bootsführerschein)",
+    vsLinkFree: "Führerscheinfreie Boote",
+    faq: [
+      {
+        q: "Brauche ich einen Bootsführerschein oder Erfahrung für diese Bootstour?",
+        a: "Nein. Der professionelle Skipper ist inklusive und übernimmt das Steuern des Bootes, die Route und das Ankern. Sie müssen nur an Bord kommen und genießen.",
+      },
+      {
+        q: "Wie viele Personen dürfen mitfahren?",
+        a: "Bis zu 6 Personen, und der Skipper belegt keinen Ihrer Plätze. Die Grenze ist verbindlich: Die Versicherungspolice führt die Insassen des Bootes namentlich auf und wir dürfen niemanden zusätzlich mitnehmen.",
+      },
+      {
+        q: "Was ist im Preis enthalten?",
+        a: "Professioneller Skipper, Liegeplatz, Reinigung, Mehrwertsteuer und Haftpflichtversicherung mit Unfallschutz für die Insassen. Der Kraftstoff ist nicht enthalten: Er wird am Ende nach dem tatsächlichen Verbrauch der Ausfahrt abgerechnet.",
+      },
+      {
+        q: "Was kostet die private Bootstour?",
+        a: "Ab 240€ für 2 Stunden von April bis Juni und im September, 260€ im Juli und 280€ im August. Es gibt auch Ausfahrten von 3 Stunden (ab 320€) und 4 Stunden (ab 380€). Der Preis gilt pro Boot, für bis zu 6 Personen.",
+      },
+      {
+        q: "Welche Route fahren wir und wer entscheidet sie?",
+        a: "Die übliche Route führt an den Buchten zwischen Blanes und Tossa de Mar entlang: Cala Sant Francesc, Santa Cristina, Fenals, Lloret und die Höhlen in der Gegend von Tossa. Der Skipper wählt Strecke und Ankerplatz je nach Wind und Seegang und kann die Bucht einbauen, um die Sie ihn bitten, wenn die Bedingungen es zulassen.",
+      },
+      {
+        q: "Können wir baden und schnorcheln?",
+        a: "Ja. Die Tour beinhaltet einen Stopp vor Anker in einer Bucht zum Schwimmen. Wenn Sie schnorcheln oder Stand-up-Paddle fahren möchten, buchen Sie das bei der Reservierung als Extra dazu.",
+      },
+      {
+        q: "Was passiert bei schlechtem Wetter?",
+        a: "Wenn schlechtes Wetter die Ausfahrt unmöglich macht, verschieben wir den Termin kostenlos oder stellen Ihnen, falls wir uns auf keinen neuen Termin einigen können, einen Gutschein über den gezahlten Betrag aus, der 12 Monate gültig ist. Mit der gebuchten Schlechtwetter-Garantie wählen Sie zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld.",
+      },
+      {
+        q: "Worin unterscheidet sie sich von einer Bootsmiete ohne Skipper?",
+        a: "Bei der Miete ohne Skipper steuern Sie selbst, und für die großen Boote brauchen Sie einen Bootsführerschein. Bei der privaten Bootstour führt unser Skipper das Boot: Niemand in der Gruppe braucht einen Bootsführerschein und alle fahren als Passagiere mit. Das ist die Option, um komplett abzuschalten, oder für Gruppen ohne Bootsführerschein.",
+      },
+    ],
+    linksTitle: "Weiter entdecken",
+    linksBlanes: "Bootsverleih in Blanes",
+    linksTossa: "Bootsverleih in Tossa de Mar",
+    linksPricing: "Alle Preise der Flotte",
+    linksGarantias: "Schlechtwetter-Garantie und reduzierte Kaution",
+    linksBlogTossa: "Die Route Blanes-Tossa mit dem Boot, Schritt für Schritt",
+    crossLinkLabel: "Private Bootstour mit Skipper",
+    ctaTitle: "Buchen Sie Ihre private Bootstour mit Skipper",
+    ctaDescription:
+      "Sagen Sie uns, an welchem Tag Sie rausfahren möchten und wie viele Sie sind. Wir bestätigen die Verfügbarkeit sofort und bezahlt wird persönlich, ohne Online-Zahlung.",
+    ctaButton: "Per WhatsApp buchen",
+  },
   shopPage: {
     gate: {
       title: 'Shop im Vorabzugang',

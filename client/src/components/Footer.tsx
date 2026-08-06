@@ -424,6 +424,16 @@ export default function Footer() {
                   {t.boats.withLicense}
                 </a>
               </li>
+              {t.captainedPage?.crossLinkLabel && (
+                <li>
+                  <a
+                    href={localizedPath("categoryCaptained")}
+                    className="text-primary-foreground hover:text-primary-foreground transition-colors py-1.5 min-h-11 lg:min-h-0 lg:py-0.5 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  >
+                    {t.captainedPage.crossLinkLabel}
+                  </a>
+                </li>
+              )}
               <li>
                 <a
                   href={localizedPath("locationBarcelona")}

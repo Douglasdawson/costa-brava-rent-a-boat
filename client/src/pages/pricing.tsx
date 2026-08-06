@@ -638,6 +638,14 @@ export default function PricingPage() {
               <ChevronRight className="w-4 h-4" />
               {t.categoryLicensed!.crossLinkFromFree}
             </a>
+            <a
+              href={localizedPath("categoryCaptained")}
+              className="text-primary hover:underline flex items-center gap-1"
+              data-testid="pricing-link-captained"
+            >
+              <ChevronRight className="w-4 h-4" />
+              {t.captainedPage!.crossLinkLabel}
+            </a>
           </div>
         </div>
       </div>

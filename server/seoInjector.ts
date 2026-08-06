@@ -186,6 +186,21 @@ function buildScootersStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
   return out;
 }
 
+// Captained private excursion landing ("alquiler de barco con patrón"). Meta
+// comes from the same i18n keys the page renders (captainedPage), so SSR and
+// client can never drift; {rating} resolves to the live GBP rating constant.
+function buildCaptainedStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
+  const out: Partial<Record<LangCode, SEOMeta>> = {};
+  for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+    const cap = (I18N_BY_LANG[lang] ?? i18nEs).captainedPage ?? i18nEs.captainedPage!;
+    out[lang] = {
+      title: cap.seoTitle,
+      description: cap.seoDescription.replace("{rating}", BUSINESS_RATING_STR),
+    };
+  }
+  return out;
+}
+
 // Temporary landing: Blanes fireworks boat trip (July 25-26). Copy lives in
 // i18n fuegosBlanesPage, so all 8 locales get a native title/description.
 function buildFuegosBlanesStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
@@ -278,6 +293,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/excursion-jet-ski-blanes-tossa": buildJetskiStaticMeta("excursion", 190),
   "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
   "/alquiler-motos-lloret": buildScootersStaticMeta(),
+  "/alquiler-barco-con-patron": buildCaptainedStaticMeta(),
   "/tienda": buildTiendaStaticMeta(),
   "/fuegos-blanes": buildFuegosBlanesStaticMeta(),
   "/garantias": buildGarantiasStaticMeta(),
@@ -3534,6 +3550,71 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         cl.ctaButton,
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqLicense, howTo, breadcrumb] }, availableLanguages, bodyFallback: licensedBodyFallback };
+    }
+
+    // /alquiler-barco-con-patron - captained private excursion landing. Owner
+    // of the "con patrón" query cluster (opposite intent to the self-drive
+    // categories). FAQPage and HowTo are built FROM the same i18n keys
+    // (captainedPage) the page renders, so schema and visible content cannot
+    // drift. Prices in copy come from boatData (excursion-privada: 240-420€).
+    else if (metaKey === "/alquiler-barco-con-patron") {
+      // Non-null assertion: CI (validate-translations) guarantees the key in all locales.
+      const cap = ((I18N_BY_LANG[lang] ?? i18nEs).captainedPage ?? i18nEs.captainedPage)!;
+      const faqCaptained = {
+        "@type": "FAQPage",
+        mainEntity: cap.faq.map(f => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      };
+      const howToCaptained = {
+        "@type": "HowTo",
+        name: cap.howToTitle,
+        description: cap.howToIntro,
+        totalTime: "PT30M",
+        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "240" },
+        supply: [
+          { "@type": "HowToSupply", name: isEn ? "ID or passport" : "Documento de identidad o pasaporte" },
+          { "@type": "HowToSupply", name: isEn ? "200€ refundable deposit" : "Fianza reembolsable de 200€" },
+        ],
+        step: cap.howToSteps.map((s, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: s.title,
+          text: s.text,
+        })),
+      };
+      const breadcrumbCaptained = buildBreadcrumb([homeCrumb, { name: isEn ? "Boat Rental with Skipper" : "Alquiler de Barco con Patrón", url: `${BASE_URL}/alquiler-barco-con-patron` }]);
+      const serviceCaptained = buildLandingService(
+        isEn ? "Private Captained Boat Excursion in Blanes" : "Excursión Privada en Barco con Patrón en Blanes",
+        isEn
+          ? "Private boat excursion with a professional skipper from Blanes, Costa Brava: coves and sea caves between Blanes and Tossa de Mar, swim stop included. Up to 6 people aboard a Pacific Craft 625, from 240€/2h. No licence needed; fuel charged separately."
+          : "Excursión privada en barco con patrón profesional desde Blanes, Costa Brava: calas y cuevas marinas entre Blanes y Tossa de Mar con parada para nadar. Hasta 6 personas a bordo de una Pacific Craft 625, desde 240€/2h. Sin licencia; combustible aparte.",
+        { low: 240, high: 420 },
+      );
+      const captainedBodyFallback = buildLocationBodyFallback(
+        cap.heroTitle,
+        cap.heroDescription,
+        [
+          cap.whatIsIntro,
+          `${cap.cardSkipperTitle}: ${cap.cardSkipperDesc}`,
+          `${cap.cardCovesTitle}: ${cap.cardCovesDesc}`,
+          `${cap.cardSwimTitle}: ${cap.cardSwimDesc}`,
+          `${cap.cardComfortTitle}: ${cap.cardComfortDesc}`,
+          cap.synonymsBody,
+          `${cap.routeTitle}: ${cap.routeIntro}`,
+          ...cap.routeStops,
+          `${cap.includedTitle}: ${cap.includedItems.join(". ")}`,
+          cap.fuelNote,
+          `${cap.boatTitle}: ${cap.boatIntro}`,
+          `${cap.pricingTitle}: ${cap.pricingIntro} ${cap.pricingNote}`,
+          cap.vsIntro,
+          ...cap.faq.map(f => `${f.q} ${f.a}`),
+        ],
+        cap.ctaButton,
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [serviceCaptained, faqCaptained, howToCaptained, breadcrumbCaptained] }, availableLanguages, bodyFallback: captainedBodyFallback };
     }
 
     // /paseo-atardecer-barco-blanes - Sunset activity. Fase 2 (2026-05-28):

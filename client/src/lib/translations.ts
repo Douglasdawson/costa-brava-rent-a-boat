@@ -3106,6 +3106,78 @@ export interface Translations {
     faqTitle: string;
     faq: { q: string; a: string }[];
   };
+  // Captained private excursion landing (/alquiler-barco-con-patron). The
+  // server-side Service/FAQPage/HowTo schemas in seoInjector.ts are built from
+  // these same keys — renaming one changes the emitted JSON-LD.
+  captainedPage?: {
+    seoTitle: string;
+    seoDescription: string;
+    heroTitle: string;
+    heroDescription: string;
+    badgeSkipper: string;
+    badgeCapacity: string;
+    badgeNoLicense: string;
+    whatIsTitle: string;
+    whatIsIntro: string;
+    cardSkipperTitle: string;
+    cardSkipperDesc: string;
+    cardCovesTitle: string;
+    cardCovesDesc: string;
+    cardSwimTitle: string;
+    cardSwimDesc: string;
+    cardComfortTitle: string;
+    cardComfortDesc: string;
+    synonymsTitle: string;
+    synonymsBody: string;
+    routeTitle: string;
+    routeIntro: string;
+    routeStops: string[];
+    routeNote: string;
+    includedTitle: string;
+    includedItems: string[];
+    notIncludedTitle: string;
+    notIncludedItems: string[];
+    fuelNote: string;
+    boatTitle: string;
+    boatIntro: string;
+    boatCta: string;
+    specCapacityLabel: string;
+    specEngineLabel: string;
+    specLengthLabel: string;
+    specDepositLabel: string;
+    pricingTitle: string;
+    pricingIntro: string;
+    pricingColDuration: string;
+    pricingDurations: string[];
+    seasonLow: string;
+    seasonMid: string;
+    seasonHigh: string;
+    pricingNote: string;
+    forWhomTitle: string;
+    forWhomItems: { title: string; text: string }[];
+    howToTitle: string;
+    howToIntro: string;
+    howToSteps: { title: string; text: string }[];
+    vsTitle: string;
+    vsIntro: string;
+    vsCaptainedTitle: string;
+    vsCaptainedText: string;
+    vsSelfDriveTitle: string;
+    vsSelfDriveText: string;
+    vsLinkLicensed: string;
+    vsLinkFree: string;
+    faq: { q: string; a: string }[];
+    linksTitle: string;
+    linksBlanes: string;
+    linksTossa: string;
+    linksPricing: string;
+    linksGarantias: string;
+    linksBlogTossa: string;
+    crossLinkLabel: string;
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaButton: string;
+  };
   shopPage: {
     gate: {
       title: string;

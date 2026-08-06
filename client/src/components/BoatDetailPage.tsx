@@ -1087,22 +1087,28 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 );
               })}
             </div>
-            {/* Back-link to the boat's category page (skipped for the captained
-                excursion, which belongs to neither self-drive category). */}
-            {!isCaptainedBoat(boatData.id) && (
-              <div className="text-center mt-2 px-4">
-                <a
-                  href={localizedPath(requiresLicense ? "categoryLicensed" : "categoryLicenseFree")}
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-                  data-testid="link-boat-category"
-                >
-                  {requiresLicense
+            {/* Back-link to the boat's category page (the captained excursion
+                links to its own landing instead of a self-drive category). */}
+            <div className="text-center mt-2 px-4">
+              <a
+                href={localizedPath(
+                  isCaptainedBoat(boatData.id)
+                    ? "categoryCaptained"
+                    : requiresLicense
+                      ? "categoryLicensed"
+                      : "categoryLicenseFree",
+                )}
+                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                data-testid="link-boat-category"
+              >
+                {isCaptainedBoat(boatData.id)
+                  ? (t.captainedPage?.crossLinkLabel ?? t.breadcrumbs.categoryLicenseFree)
+                  : requiresLicense
                     ? t.breadcrumbs.categoryLicensed
                     : t.breadcrumbs.categoryLicenseFree}
-                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
-                </a>
-              </div>
-            )}
+                <ChevronRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </section>
       )}

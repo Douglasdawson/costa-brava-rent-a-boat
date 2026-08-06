@@ -4653,6 +4653,178 @@ export const en: Translations = {
       },
     ],
   },
+  captainedPage: {
+    seoTitle: "Boat Rental with Skipper Costa Brava | From Blanes",
+    seoDescription:
+      "Private boat trip with skipper from Blanes: coves and sea caves up to Tossa de Mar, with a swim stop. Up to 6 people, from 240€/2h. {rating}★ on Google.",
+    heroTitle: "Boat rental with skipper on the Costa Brava: your private trip from Blanes",
+    heroDescription:
+      "All you do is enjoy it. Our professional skipper takes you to clear-water coves and sea caves between Blanes and Tossa de Mar, and anchors in the best spot of the day so you can swim. No licence, no experience and nothing to worry about.",
+    badgeSkipper: "Professional skipper included",
+    badgeCapacity: "Up to 6 people",
+    badgeNoLicense: "No licence or experience",
+    whatIsTitle: "What the private boat trip with skipper is",
+    whatIsIntro:
+      "It is a boat rental with the skipper included: you book the whole boat for your group and a professional handles the helm, the route and the anchoring. Nobody on board needs a boating licence, and the day is built around you, not around a shared tour timetable.",
+    cardSkipperTitle: "The skipper knows every cove",
+    cardSkipperDesc:
+      "Picks the route and the anchoring spot of the day based on the wind and the state of the sea, and tells you about everything you pass along the way.",
+    cardCovesTitle: "Coves and caves you cannot reach on foot",
+    cardCovesDesc:
+      "Corners of the coast between Blanes and Tossa de Mar that can only be reached from the water, far from the crowded beaches.",
+    cardSwimTitle: "A stop for a swim",
+    cardSwimDesc:
+      "Anchoring in a clear-water cove with time in the water. You can add snorkel gear or a paddleboard as an extra.",
+    cardComfortTitle: "A boat set up for the day",
+    cardComfortDesc:
+      "Bow and stern solariums, bimini top, freshwater shower, table and Bluetooth speakers for your own music.",
+    synonymsTitle: "Boat with skipper, private excursion or boat trip: same plan",
+    synonymsBody:
+      "Boat rental with skipper, private boat excursion, private boat trip and private boat tour are different names for the same thing: a boat just for your group with a professional at the helm. The opposite is self-drive rental, where you take the helm yourself.",
+    routeTitle: "The route: Blanes to Tossa de Mar along the coves",
+    routeIntro:
+      "There is no fixed itinerary: the skipper chooses the route and the anchoring spot according to the sea that day. This is the usual run when the weather plays along.",
+    routeStops: [
+      "Blanes harbour: boarding and departure with your skipper. Parking next to the boat is available as an extra.",
+      "Cala Sant Francesc and Santa Cristina: the first clear-water coves, a few minutes from the harbour.",
+      "Lloret de Mar and Fenals: beaches and cliffs seen from the water, a regular spot for anchoring and swimming.",
+      "Tossa de Mar and its sea caves: the wildest stretch, with the medieval walls seen from the sea (30-45 min sailing from Blanes).",
+    ],
+    routeNote:
+      "If there is a cove you have set your heart on, tell the skipper as you board: if the sea allows it, it goes into the route.",
+    includedTitle: "What the price includes",
+    includedItems: [
+      "Professional skipper",
+      "Mooring at Blanes harbour",
+      "Boat cleaning",
+      "Third-party liability insurance with accident cover for occupants",
+      "VAT",
+    ],
+    notIncludedTitle: "What is not included",
+    notIncludedItems: [
+      "Fuel: paid at the end according to what your trip actually uses",
+      "Optional extras: cooler, snorkel gear, paddleboard or parking next to the boat",
+    ],
+    fuelNote:
+      "Fuel is not included in the price. Back at the harbour we top up what was used and you pay for the actual consumption of your trip.",
+    boatTitle: "The boat: Pacific Craft 625 Open",
+    boatIntro:
+      "The trip runs on our largest boat, a Pacific Craft 625 Open with a 115 hp Yamaha engine: stable, fast and built for spending the day in the sun between coves.",
+    boatCta: "See the private excursion details",
+    specCapacityLabel: "Seats",
+    specEngineLabel: "Engine",
+    specLengthLabel: "Length",
+    specDepositLabel: "Deposit",
+    pricingTitle: "Private excursion with skipper: prices",
+    pricingIntro:
+      "The price is per boat, not per person: between 6 of you it works out from 40€ each for the 2 hours. Season from April to October, departures between 9:00 and 20:00.",
+    pricingColDuration: "Duration",
+    pricingDurations: ["2 hours", "3 hours", "4 hours"],
+    seasonLow: "April-June and September",
+    seasonMid: "July",
+    seasonHigh: "August",
+    pricingNote:
+      "200€ deposit, returned at the end of the trip. Fuel is paid separately according to consumption.",
+    forWhomTitle: "Who this trip is for",
+    forWhomItems: [
+      {
+        title: "Celebrations and anniversaries",
+        text: "A birthday, a proposal or an anniversary with the whole boat to yourselves. Tell us what you are celebrating when you book and add the cooler as an extra to bring whatever you fancy chilled.",
+      },
+      {
+        title: "Families with children",
+        text: "The skipper takes care of the boat and you take care of your family. Life jackets and safety gear on board, and swimming in calm, shallow coves.",
+      },
+      {
+        title: "Groups of friends",
+        text: "Up to 6 people with Bluetooth music, two solariums and stops to jump straight into the water. The perfect day out, and nobody has to stay sober at the helm.",
+      },
+      {
+        title: "Couples",
+        text: "Two hours at sunset anchored off the coast, with nobody else on board. The private version of a boat trip along the Costa Brava.",
+      },
+    ],
+    howToTitle: "How to book your trip with skipper",
+    howToIntro: "From request to your first swim in five steps.",
+    howToSteps: [
+      {
+        title: "Choose the day and the duration",
+        text: "Trips of 2, 3 or 4 hours, from April to October, between 9:00 and 20:00. If you are unsure, 3 hours gives you time to reach the Tossa area at an easy pace with a swim along the way.",
+      },
+      {
+        title: "Send your request",
+        text: "Book on the website or by WhatsApp. We confirm availability and the meeting point, and payment is made in person on the day of the trip.",
+      },
+      {
+        title: "Arrive at Blanes harbour",
+        text: "Turn up about 15 minutes early with your ID or passport. The 200€ deposit is left at the harbour and returned when you get back.",
+      },
+      {
+        title: "Sail, anchor and swim",
+        text: "The skipper adapts the route to the sea that day: coves, caves and a stop at anchor to swim wherever the water is best.",
+      },
+      {
+        title: "Back to harbour",
+        text: "On your return you pay for the fuel actually used and get your deposit back. All that is left is picking the date of the next one.",
+      },
+    ],
+    vsTitle: "With a skipper, or at the helm yourself?",
+    vsIntro:
+      "Both options exist in our fleet. The difference is who drives the boat: on the private excursion our skipper drives it and nobody needs a licence; when you rent self-drive, the skipper is you.",
+    vsCaptainedTitle: "With a skipper: this trip",
+    vsCaptainedText:
+      "For anyone who wants to switch off completely, has something to celebrate, or has no boating licence and still wants to reach the Tossa caves with no limits on engine power.",
+    vsSelfDriveTitle: "Self-drive: you take the helm",
+    vsSelfDriveText:
+      "With a boating licence you can rent our 80-115 hp powerboats and set your own route. And without one, the licence-free boats take you around the nearby coves.",
+    vsLinkLicensed: "Self-drive powerboats (licence required)",
+    vsLinkFree: "Licence-free boats",
+    faq: [
+      {
+        q: "Do I need a licence or experience for this trip?",
+        a: "No. The professional skipper is included and takes care of driving the boat, the route and the anchoring. All you have to do is come on board and enjoy it.",
+      },
+      {
+        q: "How many people can come on board?",
+        a: "Up to 6 people, and the skipper does not take up any of your seats. The limit is firm: the insurance policy declares the boat's occupants and we cannot take anyone extra on board.",
+      },
+      {
+        q: "What does the price include?",
+        a: "Professional skipper, mooring, cleaning, VAT and third-party liability insurance with accident cover for occupants. Fuel is not included: it is paid at the end according to what your trip actually uses.",
+      },
+      {
+        q: "How much does the private boat trip cost?",
+        a: "From 240€ for 2 hours from April to June and in September, 260€ in July and 280€ in August. There are also 3 hour trips (from 320€) and 4 hour trips (from 380€). The price is per boat, for up to 6 people.",
+      },
+      {
+        q: "What route do we take, and who decides it?",
+        a: "The usual route runs along the coves between Blanes and Tossa de Mar: Cala Sant Francesc, Santa Cristina, Fenals, Lloret and the caves around Tossa. The skipper chooses the route and the anchoring spot according to the wind and the state of the sea, and can include the cove you ask for if conditions allow.",
+      },
+      {
+        q: "Can we swim and snorkel?",
+        a: "Yes. The trip includes a stop at anchor in a cove for a swim. If you want snorkel gear or a paddleboard, they are added as an extra when you book.",
+      },
+      {
+        q: "What happens if the weather is bad?",
+        a: "If bad weather stops the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid, valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund.",
+      },
+      {
+        q: "How is it different from renting a boat without a skipper?",
+        a: "When you rent self-drive you take the helm, and the larger powerboats require a boating licence. On the private excursion our skipper drives the boat: nobody in the group needs a licence and you all travel as passengers. It is the option for switching off completely, or for groups where nobody holds a licence.",
+      },
+    ],
+    linksTitle: "Keep exploring",
+    linksBlanes: "Boat rental in Blanes",
+    linksTossa: "Boat rental in Tossa de Mar",
+    linksPricing: "All fleet prices",
+    linksGarantias: "Weather guarantee and reduced deposit",
+    linksBlogTossa: "The Blanes to Tossa route by boat, step by step",
+    crossLinkLabel: "Private boat excursion with skipper",
+    ctaTitle: "Book your private trip with skipper",
+    ctaDescription:
+      "Tell us which day you want to go out and how many of you there are. We confirm availability right away and payment is made in person, with no online charges.",
+    ctaButton: "Book on WhatsApp",
+  },
   shopPage: {
     gate: {
       title: 'Shop in early access',

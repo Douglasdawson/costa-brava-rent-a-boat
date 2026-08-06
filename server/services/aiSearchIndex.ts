@@ -257,6 +257,20 @@ async function collectLandings(): Promise<IndexItem[]> {
         snippet: "License-free boats in Blanes from 75€/h, fuel included. No licence needed, 15-min briefing, up to 5 people.",
       },
     },
+    {
+      pageKey: "categoryCaptained",
+      sourceId: "alquiler-barco-con-patron",
+      es: {
+        title: "Alquiler de barco con patrón en Blanes (excursión privada)",
+        body: "Excursión privada en barco con patrón profesional desde el Puerto de Blanes: calas y cuevas marinas entre Blanes y Tossa de Mar con parada fondeados para nadar. Hasta 6 personas a bordo de una Pacific Craft 625 Open de 115 CV, salidas de 2, 3 o 4 horas desde 240€ por barco (2h en temporada baja). Nadie a bordo necesita titulación. Incluye patrón, amarre, limpieza, IVA y seguro; el combustible se abona aparte según consumo. Fianza de 200€.",
+        snippet: "Excursión privada con patrón desde Blanes: calas y cuevas hasta Tossa de Mar, hasta 6 personas, desde 240€/2h. Sin licencia; combustible aparte.",
+      },
+      en: {
+        title: "Boat rental with skipper in Blanes (private captained excursion)",
+        body: "Private boat excursion with a professional skipper from the Port of Blanes: coves and sea caves between Blanes and Tossa de Mar with an anchored swim stop. Up to 6 people aboard a 115 HP Pacific Craft 625 Open, 2, 3 or 4 hour trips from 240€ per boat (2h in low season). Nobody aboard needs a licence. Skipper, mooring, cleaning, VAT and insurance included; fuel is paid separately based on consumption. 200€ deposit.",
+        snippet: "Private captained boat excursion from Blanes: coves and caves to Tossa de Mar, up to 6 people, from 240€/2h. No licence needed; fuel charged separately.",
+      },
+    },
   ];
   const items: IndexItem[] = [];
   for (const d of defs) {

@@ -68,6 +68,14 @@ const TRACKED_KEYWORDS: Array<{
   { keyword: "alquiler de barcos privados tossa de mar", language: "es", cluster: "local", intent: "transactional" },
   { keyword: "alquiler barco con licencia", language: "es", cluster: "con-licencia", intent: "transactional" },
   { keyword: "alquiler barco costa brava con licencia", language: "es", cluster: "con-licencia", intent: "transactional" },
+  // Captained cluster 2026-08-06: ~1,000 imp/90d landing on the generic home
+  // (pos 9.6-13). These measure the /es/alquiler-barco-con-patron landing.
+  { keyword: "alquiler barco con patron costa brava", language: "es", cluster: "con-patron", intent: "transactional" },
+  { keyword: "alquiler barco costa brava con patron", language: "es", cluster: "con-patron", intent: "transactional" },
+  { keyword: "barco con patron costa brava", language: "es", cluster: "con-patron", intent: "transactional" },
+  { keyword: "excursiones en barco blanes", language: "es", cluster: "con-patron", intent: "transactional" },
+  { keyword: "paseo en barco blanes", language: "es", cluster: "con-patron", intent: "transactional" },
+  { keyword: "excursion privada en barco costa brava", language: "es", cluster: "con-patron", intent: "transactional" },
 ];
 
 export async function seedTrackedKeywords(): Promise<void> {

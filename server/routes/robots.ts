@@ -732,6 +732,10 @@ export function registerRobotsRoutes(app: Express): void {
           url: `${BASE_URL}/es/barcos-sin-licencia`,
           topic: "License-free boats — no boating licence needed, from 75 EUR/h fuel included, up to 5 people, 15-min briefing.",
         },
+        {
+          url: `${BASE_URL}/es/alquiler-barco-con-patron`,
+          topic: "Boat rental with skipper — private captained excursion from Blanes: coves and sea caves to Tossa de Mar with swim stop, up to 6 people, from 240 EUR/2h, no licence needed, fuel charged separately.",
+        },
       ],
       business_hours: "Mo-Su 09:00-20:00",
       season: { start: "04-01", end: "10-31", note: "Closed November to March" },

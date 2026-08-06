@@ -5948,6 +5948,178 @@ export const es: Translations = {
       },
     ],
   },
+  captainedPage: {
+    seoTitle: "Alquiler de Barco con Patrón Costa Brava | Desde Blanes",
+    seoDescription:
+      "Excursión privada en barco con patrón desde Blanes: calas y cuevas hasta Tossa de Mar, parada para nadar. Hasta 6 personas, desde 240€/2h. {rating}★ en Google.",
+    heroTitle: "Alquiler de barco con patrón en la Costa Brava: tu excursión privada desde Blanes",
+    heroDescription:
+      "Tú solo disfrutas: nuestro patrón profesional os lleva a calas de aguas claras y cuevas marinas entre Blanes y Tossa de Mar, y fondea en el rincón perfecto del día para que os bañéis. Sin licencia, sin experiencia y sin preocuparte de nada.",
+    badgeSkipper: "Patrón profesional incluido",
+    badgeCapacity: "Hasta 6 personas",
+    badgeNoLicense: "Sin licencia ni experiencia",
+    whatIsTitle: "Qué es la excursión privada en barco con patrón",
+    whatIsIntro:
+      "Es un alquiler de barco en el que el patrón va incluido: reservas el barco entero para tu grupo y un profesional se encarga del gobierno, la ruta y el fondeo. Nadie a bordo necesita titulación náutica y el plan se adapta a vosotros, no a un horario de tour compartido.",
+    cardSkipperTitle: "El patrón conoce cada cala",
+    cardSkipperDesc:
+      "Elige el recorrido y el fondeo del día según el viento y el estado del mar, y os cuenta lo que vais viendo por el camino.",
+    cardCovesTitle: "Calas y cuevas inaccesibles a pie",
+    cardCovesDesc:
+      "Rincones de la costa entre Blanes y Tossa de Mar a los que solo se llega por mar, lejos de las playas llenas.",
+    cardSwimTitle: "Parada para nadar",
+    cardSwimDesc:
+      "Fondeo en una cala de aguas claras con tiempo para bañaros. Podéis añadir equipo de snorkel o una tabla de paddle surf como extra.",
+    cardComfortTitle: "Barco equipado para el plan",
+    cardComfortDesc:
+      "Solárium en proa y popa, toldo bimini, ducha de agua dulce, mesa y altavoces bluetooth para vuestra música.",
+    synonymsTitle: "Barco con patrón, excursión privada o paseo en barco: es lo mismo",
+    synonymsBody:
+      "Alquiler de barco con patrón, excursión privada en barco, paseo en barco privado o boat tour privado son nombres distintos del mismo plan: un barco solo para tu grupo con un profesional al timón. Lo contrario es el alquiler sin patrón, en el que pilotas tú.",
+    routeTitle: "La ruta: de Blanes a Tossa de Mar por las calas",
+    routeIntro:
+      "No hay un recorrido cerrado: el patrón decide la ruta y el fondeo según el mar del día. Este es el itinerario habitual cuando el tiempo acompaña.",
+    routeStops: [
+      "Puerto de Blanes: embarque y salida con vuestro patrón. Hay parking junto al barco como extra.",
+      "Cala Sant Francesc y Santa Cristina: las primeras calas de aguas claras, a pocos minutos del puerto.",
+      "Lloret de Mar y Fenals: playas y acantilados vistos desde el mar, zona habitual de fondeo y baño.",
+      "Tossa de Mar y sus cuevas marinas: el tramo más salvaje, con la muralla medieval vista desde el agua (30-45 min de navegación desde Blanes).",
+    ],
+    routeNote:
+      "Si hay una cala que os hace ilusión, decídselo al patrón al embarcar: si el mar lo permite, se incluye en la ruta.",
+    includedTitle: "Qué incluye el precio",
+    includedItems: [
+      "Patrón profesional",
+      "Amarre en el puerto de Blanes",
+      "Limpieza del barco",
+      "Seguro de responsabilidad civil con cobertura de accidentes para los ocupantes",
+      "IVA",
+    ],
+    notIncludedTitle: "Qué no incluye",
+    notIncludedItems: [
+      "Combustible: se abona al final según el consumo real de la salida",
+      "Extras opcionales: nevera, equipo de snorkel, paddle surf o parking junto al barco",
+    ],
+    fuelNote:
+      "El combustible no está incluido en el precio. Al volver a puerto se repone lo consumido y se paga según el consumo real de vuestra salida.",
+    boatTitle: "El barco: Pacific Craft 625 Open",
+    boatIntro:
+      "La excursión se hace a bordo de nuestra lancha más grande, una Pacific Craft 625 Open con motor Yamaha de 115 cv: estable, rápida y pensada para pasar el día al sol entre calas.",
+    boatCta: "Ver la ficha de la excursión privada",
+    specCapacityLabel: "Plazas",
+    specEngineLabel: "Motor",
+    specLengthLabel: "Eslora",
+    specDepositLabel: "Fianza",
+    pricingTitle: "Precios de la excursión privada con patrón",
+    pricingIntro:
+      "El precio es por barco, no por persona: entre 6 sale desde 40€ por cabeza las 2 horas. Temporada de abril a octubre, salidas entre las 9:00 y las 20:00.",
+    pricingColDuration: "Duración",
+    pricingDurations: ["2 horas", "3 horas", "4 horas"],
+    seasonLow: "Abril-junio y septiembre",
+    seasonMid: "Julio",
+    seasonHigh: "Agosto",
+    pricingNote:
+      "Fianza de 200€ que se devuelve al terminar la salida. El combustible se paga aparte según consumo.",
+    forWhomTitle: "Para quién es esta excursión",
+    forWhomItems: [
+      {
+        title: "Celebraciones y aniversarios",
+        text: "Un cumpleaños, una pedida o un aniversario con el barco entero para vosotros. Dinos qué celebráis al reservar y añade la nevera como extra para llevar lo que os apetezca fresco.",
+      },
+      {
+        title: "Familias con niños",
+        text: "El patrón se ocupa del barco y tú de los tuyos. Chalecos y equipo de seguridad a bordo, y baño en calas tranquilas y poco profundas.",
+      },
+      {
+        title: "Grupos de amigos",
+        text: "Hasta 6 personas con música por bluetooth, solárium doble y paradas para saltar al agua. El plan de día perfecto sin que nadie tenga que quedarse sobrio al timón.",
+      },
+      {
+        title: "Parejas",
+        text: "Dos horas al atardecer fondeados frente a la costa, sin más gente a bordo. La versión privada de un paseo en barco por la Costa Brava.",
+      },
+    ],
+    howToTitle: "Cómo reservar tu excursión con patrón",
+    howToIntro: "De la solicitud al baño en la primera cala en cinco pasos.",
+    howToSteps: [
+      {
+        title: "Elige día y duración",
+        text: "Salidas de 2, 3 o 4 horas, de abril a octubre, entre las 9:00 y las 20:00. Si dudáis, las 3 horas dan para llegar tranquilos a la zona de Tossa con baño incluido.",
+      },
+      {
+        title: "Envía tu solicitud",
+        text: "Reserva desde la web o por WhatsApp. Te confirmamos disponibilidad y punto de encuentro, y el pago se hace en persona el día de la salida.",
+      },
+      {
+        title: "Llega al puerto de Blanes",
+        text: "Presentaos unos 15 minutos antes con el DNI o pasaporte. La fianza de 200€ se deposita en el puerto y se devuelve al terminar.",
+      },
+      {
+        title: "Navega, fondea y báñate",
+        text: "El patrón adapta la ruta al mar del día: calas, cuevas y una parada fondeados para nadar donde el agua esté mejor.",
+      },
+      {
+        title: "Vuelta a puerto",
+        text: "De regreso se abona el combustible según el consumo real y se os devuelve la fianza. Solo queda elegir la fecha de la próxima.",
+      },
+    ],
+    vsTitle: "¿Con patrón o pilotando tú?",
+    vsIntro:
+      "Las dos opciones existen en nuestra flota. La diferencia es quién lleva el barco: en la excursión privada lo lleva nuestro patrón y nadie necesita titulación; al alquilar sin patrón, el patrón eres tú.",
+    vsCaptainedTitle: "Con patrón: esta excursión",
+    vsCaptainedText:
+      "Para quien quiere desconectar del todo, celebra algo o no tiene titulación y quiere llegar hasta las cuevas de Tossa sin límites de potencia.",
+    vsSelfDriveTitle: "Sin patrón: pilotas tú",
+    vsSelfDriveText:
+      "Con titulación náutica puedes alquilar nuestras lanchas de 80-115 cv y marcar tu propia ruta. Y sin titulación, los barcos sin licencia te llevan por las calas cercanas.",
+    vsLinkLicensed: "Lanchas sin patrón (con titulación)",
+    vsLinkFree: "Barcos sin licencia",
+    faq: [
+      {
+        q: "¿Necesito licencia o experiencia para esta excursión?",
+        a: "No. El patrón profesional va incluido y se encarga del gobierno del barco, la ruta y el fondeo. Vosotros solo tenéis que subir a bordo y disfrutar.",
+      },
+      {
+        q: "¿Cuántas personas pueden subir?",
+        a: "Hasta 6 personas, y el patrón no ocupa ninguna de vuestras plazas. El límite es firme: la póliza del seguro declara los ocupantes del barco y no podemos embarcar a nadie de más.",
+      },
+      {
+        q: "¿Qué incluye el precio?",
+        a: "Patrón profesional, amarre, limpieza, IVA y seguro de responsabilidad civil con cobertura de accidentes para los ocupantes. El combustible no está incluido: se abona al final según el consumo real de la salida.",
+      },
+      {
+        q: "¿Cuánto cuesta la excursión privada en barco?",
+        a: "Desde 240€ las 2 horas de abril a junio y en septiembre, 260€ en julio y 280€ en agosto. También hay salidas de 3 horas (desde 320€) y 4 horas (desde 380€). El precio es por barco, para hasta 6 personas.",
+      },
+      {
+        q: "¿Qué ruta hacemos y quién la decide?",
+        a: "La ruta habitual recorre las calas entre Blanes y Tossa de Mar: Cala Sant Francesc, Santa Cristina, Fenals, Lloret y las cuevas de la zona de Tossa. El patrón elige el recorrido y el fondeo según el viento y el estado del mar, y puede incluir la cala que le pidáis si las condiciones lo permiten.",
+      },
+      {
+        q: "¿Podemos bañarnos y hacer snorkel?",
+        a: "Sí. La excursión incluye parada fondeados en una cala para nadar. Si queréis snorkel o paddle surf, se añaden como extra al reservar.",
+      },
+      {
+        q: "¿Qué pasa si hace mal tiempo?",
+        a: "Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero.",
+      },
+      {
+        q: "¿En qué se diferencia de alquilar un barco sin patrón?",
+        a: "Al alquilar sin patrón pilotas tú, y para las lanchas grandes necesitas titulación náutica. En la excursión privada el barco lo lleva nuestro patrón: nadie del grupo necesita licencia y todos vais de pasajeros. Es la opción para desconectar del todo o para grupos sin titulación.",
+      },
+    ],
+    linksTitle: "Sigue explorando",
+    linksBlanes: "Alquiler de barcos en Blanes",
+    linksTossa: "Alquiler de barcos en Tossa de Mar",
+    linksPricing: "Todos los precios de la flota",
+    linksGarantias: "Garantía de mal tiempo y fianza reducida",
+    linksBlogTossa: "La ruta Blanes-Tossa en barco, paso a paso",
+    crossLinkLabel: "Excursión privada en barco con patrón",
+    ctaTitle: "Reserva tu excursión privada con patrón",
+    ctaDescription:
+      "Cuéntanos qué día queréis salir y cuántos sois. Te confirmamos disponibilidad enseguida y el pago se hace en persona, sin cobros online.",
+    ctaButton: "Reservar por WhatsApp",
+  },
   shopPage: {
     gate: {
       title: "Tienda en acceso anticipado",

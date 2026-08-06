@@ -4615,6 +4615,178 @@ export const fr: Translations = {
       },
     ],
   },
+  captainedPage: {
+    seoTitle: "Location Bateau avec Skipper Costa Brava | Blanes",
+    seoDescription:
+      "Excursion privée en bateau avec skipper depuis Blanes : criques, grottes et arrêt baignade vers Tossa de Mar. Jusqu'à 6 personnes, dès 240€/2h. {rating}★ sur Google.",
+    heroTitle: "Location de bateau avec skipper sur la Costa Brava : votre excursion privée au départ de Blanes",
+    heroDescription:
+      "Vous n'avez qu'à profiter : notre skipper professionnel vous emmène vers des criques aux eaux claires et des grottes marines entre Blanes et Tossa de Mar, et mouille dans le meilleur recoin du jour pour que vous puissiez vous baigner. Sans permis, sans expérience et sans vous soucier de rien.",
+    badgeSkipper: "Skipper professionnel inclus",
+    badgeCapacity: "Jusqu'à 6 personnes",
+    badgeNoLicense: "Sans permis ni expérience",
+    whatIsTitle: "Qu'est-ce que l'excursion privée en bateau avec skipper",
+    whatIsIntro:
+      "C'est une location de bateau avec le skipper inclus : vous réservez le bateau entier pour votre groupe et un professionnel se charge de la conduite, de l'itinéraire et du mouillage. Personne à bord n'a besoin de permis bateau et le programme s'adapte à vous, pas à l'horaire d'une sortie collective.",
+    cardSkipperTitle: "Le skipper connaît chaque crique",
+    cardSkipperDesc:
+      "Il choisit le parcours et le mouillage du jour selon le vent et l'état de la mer, et vous raconte ce que vous voyez en chemin.",
+    cardCovesTitle: "Criques et grottes inaccessibles à pied",
+    cardCovesDesc:
+      "Des recoins de la côte entre Blanes et Tossa de Mar où l'on n'arrive que par la mer, loin des plages bondées.",
+    cardSwimTitle: "Arrêt baignade",
+    cardSwimDesc:
+      "Mouillage dans une crique aux eaux claires avec le temps de vous baigner. Vous pouvez ajouter l'équipement de snorkeling ou une planche de paddle surf en option.",
+    cardComfortTitle: "Un bateau équipé pour la sortie",
+    cardComfortDesc:
+      "Solarium à l'avant et à l'arrière, bimini pour l'ombre, douche d'eau douce, table et enceintes Bluetooth pour votre musique.",
+    synonymsTitle: "Bateau avec skipper, excursion privée ou balade en bateau : c'est la même chose",
+    synonymsBody:
+      "Location de bateau avec skipper, excursion privée en bateau, balade privée en bateau ou boat tour privé sont autant de noms pour le même programme : un bateau rien que pour votre groupe avec un professionnel à la barre. Le contraire, c'est la location sans skipper, où c'est vous qui pilotez.",
+    routeTitle: "L'itinéraire : de Blanes à Tossa de Mar par les criques",
+    routeIntro:
+      "Il n'y a pas de parcours figé : le skipper décide de la route et du mouillage selon la mer du jour. Voici l'itinéraire habituel quand le temps le permet.",
+    routeStops: [
+      "Port de Blanes : embarquement et départ avec votre skipper. Un parking à côté du bateau est disponible en option.",
+      "Cala Sant Francesc et Santa Cristina : les premières criques aux eaux claires, à quelques minutes du port.",
+      "Lloret de Mar et Fenals : plages et falaises vues depuis la mer, zone habituelle de mouillage et de baignade.",
+      "Tossa de Mar et ses grottes marines : la partie la plus sauvage, avec les remparts médiévaux vus depuis l'eau (30-45 min de navigation depuis Blanes).",
+    ],
+    routeNote:
+      "Si une crique vous fait envie, dites-le au skipper à l'embarquement : si la mer le permet, elle est intégrée à l'itinéraire.",
+    includedTitle: "Ce que le prix comprend",
+    includedItems: [
+      "Skipper professionnel",
+      "Amarrage au port de Blanes",
+      "Nettoyage du bateau",
+      "Assurance responsabilité civile avec couverture accidents pour les occupants",
+      "TVA",
+    ],
+    notIncludedTitle: "Ce qui n'est pas compris",
+    notIncludedItems: [
+      "Le carburant : il se règle à la fin, selon la consommation réelle de la sortie",
+      "Les options : glacière, équipement de snorkeling, paddle surf ou parking à côté du bateau",
+    ],
+    fuelNote:
+      "Le carburant n'est pas compris dans le prix. Au retour au port, on refait le plein de ce qui a été consommé et vous le réglez selon la consommation réelle de votre sortie.",
+    boatTitle: "Le bateau : Pacific Craft 625 Open",
+    boatIntro:
+      "L'excursion se fait à bord de notre plus grand bateau, un Pacific Craft 625 Open avec moteur Yamaha de 115 CV : stable, rapide et pensé pour passer la journée au soleil entre les criques.",
+    boatCta: "Voir la fiche de l'excursion privée",
+    specCapacityLabel: "Places",
+    specEngineLabel: "Moteur",
+    specLengthLabel: "Longueur",
+    specDepositLabel: "Caution",
+    pricingTitle: "Prix de l'excursion privée avec skipper",
+    pricingIntro:
+      "Le prix est par bateau, pas par personne : à 6, cela revient à 40€ par tête pour les 2 heures. Saison d'avril à octobre, départs entre 9h00 et 20h00.",
+    pricingColDuration: "Durée",
+    pricingDurations: ["2 heures", "3 heures", "4 heures"],
+    seasonLow: "Avril-juin et septembre",
+    seasonMid: "Juillet",
+    seasonHigh: "Août",
+    pricingNote:
+      "Caution de 200€ restituée à la fin de la sortie. Le carburant se règle à part, selon la consommation.",
+    forWhomTitle: "À qui s'adresse cette excursion",
+    forWhomItems: [
+      {
+        title: "Célébrations et anniversaires",
+        text: "Un anniversaire, une demande en mariage ou un anniversaire de mariage avec le bateau entier rien que pour vous. Dites-nous ce que vous célébrez en réservant et ajoutez la glacière en option pour emporter au frais ce qui vous fait plaisir.",
+      },
+      {
+        title: "Familles avec enfants",
+        text: "Le skipper s'occupe du bateau et vous des vôtres. Gilets et équipement de sécurité à bord, et baignade dans des criques calmes et peu profondes.",
+      },
+      {
+        title: "Groupes d'amis",
+        text: "Jusqu'à 6 personnes avec la musique en Bluetooth, double solarium et arrêts pour sauter à l'eau. La journée parfaite sans que personne ait à rester sobre à la barre.",
+      },
+      {
+        title: "Couples",
+        text: "Deux heures au coucher du soleil, mouillés face à la côte, sans personne d'autre à bord. La version privée d'une balade en bateau sur la Costa Brava.",
+      },
+    ],
+    howToTitle: "Comment réserver votre excursion avec skipper",
+    howToIntro: "De la demande à la baignade dans la première crique en cinq étapes.",
+    howToSteps: [
+      {
+        title: "Choisissez le jour et la durée",
+        text: "Sorties de 2, 3 ou 4 heures, d'avril à octobre, entre 9h00 et 20h00. En cas de doute, les 3 heures laissent le temps d'arriver tranquillement vers Tossa, baignade comprise.",
+      },
+      {
+        title: "Envoyez votre demande",
+        text: "Réservez depuis le site ou par WhatsApp. Nous vous confirmons la disponibilité et le point de rendez-vous, et le paiement se fait en personne le jour du départ.",
+      },
+      {
+        title: "Venez au port de Blanes",
+        text: "Présentez-vous une quinzaine de minutes avant avec votre pièce d'identité ou votre passeport. La caution de 200€ se dépose au port et vous est restituée à la fin.",
+      },
+      {
+        title: "Naviguez, mouillez et baignez-vous",
+        text: "Le skipper adapte l'itinéraire à la mer du jour : criques, grottes et un arrêt au mouillage pour nager là où l'eau est la meilleure.",
+      },
+      {
+        title: "Retour au port",
+        text: "Au retour, vous réglez le carburant selon la consommation réelle et nous vous rendons la caution. Il ne reste plus qu'à choisir la date de la prochaine sortie.",
+      },
+    ],
+    vsTitle: "Avec skipper ou à la barre vous-même ?",
+    vsIntro:
+      "Les deux options existent dans notre flotte. La différence, c'est qui mène le bateau : dans l'excursion privée, c'est notre skipper et personne n'a besoin de titre nautique ; en louant sans skipper, le skipper, c'est vous.",
+    vsCaptainedTitle: "Avec skipper : cette excursion",
+    vsCaptainedText:
+      "Pour qui veut déconnecter complètement, fête quelque chose ou n'a pas de titre nautique et veut arriver jusqu'aux grottes de Tossa sans limite de puissance.",
+    vsSelfDriveTitle: "Sans skipper : vous pilotez",
+    vsSelfDriveText:
+      "Avec un titre nautique, vous pouvez louer nos bateaux à moteur de 80-115 CV et tracer votre propre route. Et sans titre, les bateaux sans permis vous emmènent dans les criques proches.",
+    vsLinkLicensed: "Bateaux à moteur sans skipper (avec titre nautique)",
+    vsLinkFree: "Bateaux sans permis",
+    faq: [
+      {
+        q: "Faut-il un permis ou de l'expérience pour cette excursion ?",
+        a: "Non. Le skipper professionnel est inclus et se charge de la conduite du bateau, de l'itinéraire et du mouillage. Vous n'avez qu'à monter à bord et profiter.",
+      },
+      {
+        q: "Combien de personnes peuvent embarquer ?",
+        a: "Jusqu'à 6 personnes, et le skipper ne prend aucune de vos places. La limite est stricte : la police d'assurance déclare les occupants du bateau et nous ne pouvons embarquer personne de plus.",
+      },
+      {
+        q: "Qu'est-ce que le prix comprend ?",
+        a: "Skipper professionnel, amarrage, nettoyage, TVA et assurance responsabilité civile avec couverture accidents pour les occupants. Le carburant n'est pas compris : il se règle à la fin, selon la consommation réelle de la sortie.",
+      },
+      {
+        q: "Combien coûte l'excursion privée en bateau ?",
+        a: "Dès 240€ les 2 heures d'avril à juin et en septembre, 260€ en juillet et 280€ en août. Il existe aussi des sorties de 3 heures (dès 320€) et de 4 heures (dès 380€). Le prix est par bateau, pour 6 personnes maximum.",
+      },
+      {
+        q: "Quel itinéraire fait-on et qui le décide ?",
+        a: "L'itinéraire habituel parcourt les criques entre Blanes et Tossa de Mar : Cala Sant Francesc, Santa Cristina, Fenals, Lloret et les grottes de la zone de Tossa. Le skipper choisit le parcours et le mouillage selon le vent et l'état de la mer, et il peut inclure la crique que vous lui demandez si les conditions le permettent.",
+      },
+      {
+        q: "Peut-on se baigner et faire du snorkeling ?",
+        a: "Oui. L'excursion comprend un arrêt au mouillage dans une crique pour nager. Si vous voulez du snorkeling ou du paddle surf, cela s'ajoute en option au moment de réserver.",
+      },
+      {
+        q: "Que se passe-t-il en cas de mauvais temps ?",
+        a: "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous vous émettons un bon du montant versé, valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date et le remboursement intégral en espèces.",
+      },
+      {
+        q: "Quelle est la différence avec une location de bateau sans skipper ?",
+        a: "En louant sans skipper, c'est vous qui pilotez, et pour les grands bateaux à moteur il faut un titre nautique. Dans l'excursion privée, le bateau est mené par notre skipper : personne du groupe n'a besoin de permis et vous êtes tous passagers. C'est l'option pour déconnecter complètement ou pour les groupes sans titre nautique.",
+      },
+    ],
+    linksTitle: "Continuez à explorer",
+    linksBlanes: "Location de bateaux à Blanes",
+    linksTossa: "Location de bateaux à Tossa de Mar",
+    linksPricing: "Tous les prix de la flotte",
+    linksGarantias: "Garantie mauvais temps et caution réduite",
+    linksBlogTossa: "L'itinéraire Blanes-Tossa en bateau, pas à pas",
+    crossLinkLabel: "Excursion privée en bateau avec skipper",
+    ctaTitle: "Réservez votre excursion privée avec skipper",
+    ctaDescription:
+      "Dites-nous quel jour vous voulez partir et combien vous êtes. Nous vous confirmons la disponibilité tout de suite et le paiement se fait en personne, sans encaissement en ligne.",
+    ctaButton: "Réserver par WhatsApp",
+  },
   shopPage: {
     gate: {
       title: 'Boutique en accès anticipé',

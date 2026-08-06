@@ -4604,6 +4604,178 @@ export const it: Translations = {
       },
     ],
   },
+  captainedPage: {
+    seoTitle: "Noleggio Barca con Skipper Costa Brava | Da Blanes",
+    seoDescription:
+      "Escursione privata in barca con skipper da Blanes: cale e grotte fino a Tossa de Mar, sosta bagno. Fino a 6 persone, da 240€/2h. {rating}★ su Google.",
+    heroTitle: "Noleggio barca con skipper sulla Costa Brava: la tua escursione privata da Blanes",
+    heroDescription:
+      "Voi vi godete la giornata: il nostro skipper professionista vi porta tra cale dalle acque cristalline e grotte marine da Blanes a Tossa de Mar, e getta l'ancora nell'angolo perfetto della giornata per il vostro bagno. Senza patente, senza esperienza e senza pensieri.",
+    badgeSkipper: "Skipper professionista incluso",
+    badgeCapacity: "Fino a 6 persone",
+    badgeNoLicense: "Senza patente né esperienza",
+    whatIsTitle: "Cos'è l'escursione privata in barca con skipper",
+    whatIsIntro:
+      "È un noleggio di barca con skipper incluso: prenoti l'intera barca per il tuo gruppo e un professionista si occupa della conduzione, dell'itinerario e dell'ancoraggio. Nessuno a bordo ha bisogno della patente nautica e il programma si adatta a voi, non all'orario di un tour condiviso.",
+    cardSkipperTitle: "Lo skipper conosce ogni cala",
+    cardSkipperDesc:
+      "Sceglie il percorso e l'ancoraggio della giornata in base al vento e allo stato del mare, e vi racconta quello che vedete lungo la rotta.",
+    cardCovesTitle: "Cale e grotte irraggiungibili a piedi",
+    cardCovesDesc:
+      "Angoli di costa tra Blanes e Tossa de Mar che si raggiungono solo via mare, lontano dalle spiagge affollate.",
+    cardSwimTitle: "Sosta bagno",
+    cardSwimDesc:
+      "Ancoraggio in una cala dalle acque limpide con tutto il tempo per fare il bagno. Potete aggiungere l'attrezzatura da snorkeling o una tavola da paddle surf come extra.",
+    cardComfortTitle: "Barca attrezzata per la giornata",
+    cardComfortDesc:
+      "Prendisole a prua e a poppa, tendalino bimini, doccia con acqua dolce, tavolo e casse bluetooth per la vostra musica.",
+    synonymsTitle: "Barca con skipper, escursione privata o giro in barca: è la stessa cosa",
+    synonymsBody:
+      "Noleggio barca con skipper, escursione privata in barca, giro in barca privato o boat tour privato sono nomi diversi dello stesso programma: una barca solo per il tuo gruppo con un professionista al timone. Il contrario è il noleggio senza skipper (al timone ci sei tu).",
+    routeTitle: "L'itinerario: da Blanes a Tossa de Mar tra le cale",
+    routeIntro:
+      "Non c'è un percorso fisso: lo skipper decide la rotta e l'ancoraggio in base al mare della giornata. Questo è l'itinerario abituale quando il tempo lo permette.",
+    routeStops: [
+      "Porto di Blanes: imbarco e partenza con il vostro skipper. C'è il parcheggio accanto alla barca come extra.",
+      "Cala Sant Francesc e Santa Cristina: le prime cale dalle acque cristalline, a pochi minuti dal porto.",
+      "Lloret de Mar e Fenals: spiagge e scogliere viste dal mare, zona abituale di ancoraggio e bagno.",
+      "Tossa de Mar e le sue grotte marine: il tratto più selvaggio, con le mura medievali viste dall'acqua (30-45 min di navigazione da Blanes).",
+    ],
+    routeNote:
+      "Se c'è una cala a cui tenete particolarmente, ditelo allo skipper al momento dell'imbarco: se il mare lo consente, la inseriamo nell'itinerario.",
+    includedTitle: "Cosa include il prezzo",
+    includedItems: [
+      "Skipper professionista",
+      "Ormeggio nel porto di Blanes",
+      "Pulizia della barca",
+      "Assicurazione di responsabilità civile con copertura infortuni per gli occupanti",
+      "IVA",
+    ],
+    notIncludedTitle: "Cosa non include",
+    notIncludedItems: [
+      "Carburante: si paga alla fine in base al consumo reale dell'uscita",
+      "Extra opzionali: frigo portatile, attrezzatura da snorkeling, paddle surf o parcheggio accanto alla barca",
+    ],
+    fuelNote:
+      "Il carburante non è incluso nel prezzo. Al rientro in porto si rifornisce quanto consumato e si paga in base al consumo reale della vostra uscita.",
+    boatTitle: "La barca: Pacific Craft 625 Open",
+    boatIntro:
+      "L'escursione si svolge a bordo della nostra imbarcazione più grande, una Pacific Craft 625 Open con motore Yamaha da 115 cv: stabile, veloce e pensata per passare la giornata al sole tra le cale.",
+    boatCta: "Vedi la scheda dell'escursione privata",
+    specCapacityLabel: "Posti",
+    specEngineLabel: "Motore",
+    specLengthLabel: "Lunghezza",
+    specDepositLabel: "Cauzione",
+    pricingTitle: "Prezzi dell'escursione privata con skipper",
+    pricingIntro:
+      "Il prezzo è per barca, non a persona: in 6 vengono da 40€ a testa per le 2 ore. Stagione da aprile a ottobre, uscite tra le 9:00 e le 20:00.",
+    pricingColDuration: "Durata",
+    pricingDurations: ["2 ore", "3 ore", "4 ore"],
+    seasonLow: "Aprile-giugno e settembre",
+    seasonMid: "Luglio",
+    seasonHigh: "Agosto",
+    pricingNote:
+      "Cauzione di 200€ che viene restituita al termine dell'uscita. Il carburante si paga a parte in base al consumo.",
+    forWhomTitle: "Per chi è questa escursione",
+    forWhomItems: [
+      {
+        title: "Feste e anniversari",
+        text: "Un compleanno, una proposta di matrimonio o un anniversario con la barca tutta per voi. Diteci cosa festeggiate al momento della prenotazione e aggiungete il frigo portatile come extra per portare al fresco quello che volete.",
+      },
+      {
+        title: "Famiglie con bambini",
+        text: "Lo skipper si occupa della barca e voi dei vostri. Giubbotti e attrezzatura di sicurezza a bordo, e bagno in cale tranquille e poco profonde.",
+      },
+      {
+        title: "Gruppi di amici",
+        text: "Fino a 6 persone con musica via bluetooth, doppio prendisole e soste per tuffarsi in acqua. La giornata perfetta senza che nessuno debba restare sobrio al timone.",
+      },
+      {
+        title: "Coppie",
+        text: "Due ore al tramonto all'ancora davanti alla costa, senza altre persone a bordo. La versione privata di un giro in barca sulla Costa Brava.",
+      },
+    ],
+    howToTitle: "Come prenotare la tua escursione con skipper",
+    howToIntro: "Dalla richiesta al bagno nella prima cala in cinque passi.",
+    howToSteps: [
+      {
+        title: "Scegli giorno e durata",
+        text: "Uscite di 2, 3 o 4 ore, da aprile a ottobre, tra le 9:00 e le 20:00. Se avete dubbi, le 3 ore bastano per arrivare con calma nella zona di Tossa con il bagno incluso.",
+      },
+      {
+        title: "Invia la tua richiesta",
+        text: "Prenota dal sito o via WhatsApp. Ti confermiamo la disponibilità e il punto d'incontro, e il pagamento si effettua di persona il giorno dell'uscita.",
+      },
+      {
+        title: "Arriva al porto di Blanes",
+        text: "Presentatevi una quindicina di minuti prima con carta d'identità o passaporto. La cauzione di 200€ si lascia in porto e viene restituita alla fine.",
+      },
+      {
+        title: "Naviga, getta l'ancora e fai il bagno",
+        text: "Lo skipper adatta la rotta al mare della giornata: cale, grotte e una sosta all'ancora per nuotare dove l'acqua è migliore.",
+      },
+      {
+        title: "Rientro in porto",
+        text: "Al ritorno si paga il carburante in base al consumo reale e vi viene restituita la cauzione. Resta solo da scegliere la data della prossima uscita.",
+      },
+    ],
+    vsTitle: "Con skipper o al timone tu?",
+    vsIntro:
+      "Nella nostra flotta esistono entrambe le opzioni. La differenza è chi conduce la barca: nell'escursione privata la conduce il nostro skipper e nessuno ha bisogno della patente nautica; noleggiando senza skipper, al timone ci sei tu.",
+    vsCaptainedTitle: "Con skipper: questa escursione",
+    vsCaptainedText:
+      "Per chi vuole staccare del tutto, festeggia qualcosa o non ha la patente nautica e vuole arrivare fino alle grotte di Tossa senza limiti di potenza.",
+    vsSelfDriveTitle: "Senza skipper: al timone ci sei tu",
+    vsSelfDriveText:
+      "Con la patente nautica puoi noleggiare le nostre imbarcazioni da 80-115 cv e tracciare la tua rotta. E senza patente, le barche senza patente ti portano per le cale vicine.",
+    vsLinkLicensed: "Barche senza skipper (con patente nautica)",
+    vsLinkFree: "Barche senza patente",
+    faq: [
+      {
+        q: "Serve la patente o esperienza per questa escursione?",
+        a: "No. Lo skipper professionista è incluso e si occupa della conduzione della barca, dell'itinerario e dell'ancoraggio. Voi dovete solo salire a bordo e godervela.",
+      },
+      {
+        q: "Quante persone possono salire?",
+        a: "Fino a 6 persone, e lo skipper non occupa nessuno dei vostri posti. Il limite è tassativo: la polizza assicurativa dichiara gli occupanti della barca e non possiamo imbarcare nessuno in più.",
+      },
+      {
+        q: "Cosa include il prezzo?",
+        a: "Skipper professionista, ormeggio, pulizia, IVA e assicurazione di responsabilità civile con copertura infortuni per gli occupanti. Il carburante non è incluso: si paga alla fine in base al consumo reale dell'uscita.",
+      },
+      {
+        q: "Quanto costa l'escursione privata in barca?",
+        a: "Da 240€ per le 2 ore da aprile a giugno e a settembre, 260€ a luglio e 280€ ad agosto. Ci sono anche uscite di 3 ore (da 320€) e di 4 ore (da 380€). Il prezzo è per barca, per un massimo di 6 persone.",
+      },
+      {
+        q: "Che itinerario si fa e chi lo decide?",
+        a: "L'itinerario abituale percorre le cale tra Blanes e Tossa de Mar: Cala Sant Francesc, Santa Cristina, Fenals, Lloret e le grotte della zona di Tossa. Lo skipper sceglie il percorso e l'ancoraggio in base al vento e allo stato del mare, e può includere la cala che gli chiedete se le condizioni lo permettono.",
+      },
+      {
+        q: "Possiamo fare il bagno e lo snorkeling?",
+        a: "Sì. L'escursione include una sosta all'ancora in una cala per nuotare. Se volete lo snorkeling o il paddle surf, si aggiungono come extra al momento della prenotazione.",
+      },
+      {
+        q: "Cosa succede se c'è maltempo?",
+        a: "Se il maltempo impedisce di uscire, spostiamo la data senza costi o, se non riusciamo a concordarne una, ti emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro.",
+      },
+      {
+        q: "In cosa si differenzia dal noleggiare una barca senza skipper?",
+        a: "Noleggiando senza skipper al timone ci sei tu, e per le imbarcazioni grandi serve la patente nautica. Nell'escursione privata la barca la conduce il nostro skipper: nessuno del gruppo ha bisogno della patente e siete tutti passeggeri. È l'opzione per staccare del tutto o per gruppi senza patente nautica.",
+      },
+    ],
+    linksTitle: "Continua a esplorare",
+    linksBlanes: "Noleggio barche a Blanes",
+    linksTossa: "Noleggio barche a Tossa de Mar",
+    linksPricing: "Tutti i prezzi della flotta",
+    linksGarantias: "Garanzia maltempo e cauzione ridotta",
+    linksBlogTossa: "L'itinerario Blanes-Tossa in barca, passo dopo passo",
+    crossLinkLabel: "Escursione privata in barca con skipper",
+    ctaTitle: "Prenota la tua escursione privata con skipper",
+    ctaDescription:
+      "Raccontaci che giorno volete uscire e in quanti siete. Ti confermiamo subito la disponibilità e il pagamento si effettua di persona, senza addebiti online.",
+    ctaButton: "Prenota su WhatsApp",
+  },
   shopPage: {
     gate: {
       title: 'Negozio in accesso anticipato',

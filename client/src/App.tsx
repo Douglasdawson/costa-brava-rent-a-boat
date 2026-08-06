@@ -80,6 +80,7 @@ const JetSkiExcursionPage = lazy(() => import("@/pages/jet-ski-excursion"));
 const EfoilBlanesPage = lazy(() => import("@/pages/efoil-blanes"));
 const JetSkiBlanesHubPage = lazy(() => import("@/pages/jet-ski-blanes"));
 const ScootersPage = lazy(() => import("@/pages/scooters"));
+const CategoryCaptainedPage = lazy(() => import("@/pages/category-captained"));
 const GarantiasPage = lazy(() => import("@/pages/garantias"));
 const TiendaPage = lazy(() => import("@/pages/tienda"));
 const FuegosBlanesPage = lazy(() => import("@/pages/fuegos-blanes"));
@@ -343,6 +344,7 @@ const PAGE_COMPONENTS: Record<string, React.LazyExoticComponent<any> | React.Com
   efoilBlanes: EfoilBlanesPage,
   jetskiHub: JetSkiBlanesHubPage,
   scooters: ScootersPage,
+  categoryCaptained: CategoryCaptainedPage,
   tienda: TiendaPage,
   fuegosBlanes: FuegosBlanesPage,
   activitySnorkel: ActivitySnorkelPage,

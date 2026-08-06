@@ -340,6 +340,7 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "jetskiCircuito", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "jetskiExcursion", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "scooters", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "categoryCaptained", "0.8", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "tienda", "0.6", null, "weekly");
 
       // Category pages

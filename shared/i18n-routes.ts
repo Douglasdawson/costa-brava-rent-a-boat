@@ -27,6 +27,8 @@ export const ROUTE_SLUGS = {
   // Category pages
   categoryLicenseFree: { es: "barcos-sin-licencia", en: "boats-without-license", fr: "bateau-sans-permis", de: "boote-ohne-fuehrerschein", nl: "boot-zonder-vaarbewijs", it: "barca-senza-patente", ca: "vaixell-sense-llicencia", ru: "lodka-bez-litsenzii" },
   categoryLicensed: { es: "barcos-con-licencia", en: "boats-with-license", fr: "bateau-avec-permis", de: "boote-mit-fuehrerschein", nl: "boot-met-vaarbewijs", it: "barca-con-patente", ca: "vaixell-amb-llicencia", ru: "lodka-s-litsenziei" },
+  // Captained private excursion landing (skipper included, Pacific Craft 625)
+  categoryCaptained: { es: "alquiler-barco-con-patron", en: "boat-rental-with-skipper", fr: "location-bateau-avec-skipper", de: "bootsverleih-mit-skipper", nl: "bootverhuur-met-schipper", it: "noleggio-barca-con-skipper", ca: "lloguer-barca-amb-patro", ru: "arenda-lodki-s-kapitanom" },
 
   // Content pages
   blog: { es: "blog", en: "blog", fr: "blog", de: "blog", nl: "blog", it: "blog", ca: "blog", ru: "blog" },

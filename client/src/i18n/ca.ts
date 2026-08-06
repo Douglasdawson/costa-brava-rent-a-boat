@@ -4598,6 +4598,178 @@ export const ca: Translations = {
       },
     ],
   },
+  captainedPage: {
+    seoTitle: "Lloguer de Barca amb Patró Costa Brava | Des de Blanes",
+    seoDescription:
+      "Excursió privada en vaixell amb patró des de Blanes: cales i coves fins a Tossa de Mar, parada per nedar. Fins a 6 persones, des de 240€/2h. {rating}★ a Google.",
+    heroTitle: "Lloguer de barca amb patró a la Costa Brava: la teva excursió privada des de Blanes",
+    heroDescription:
+      "Tu només gaudeixes: el nostre patró professional us porta a cales d'aigües clares i coves marines entre Blanes i Tossa de Mar, i fondeja al racó perfecte del dia perquè us hi banyeu. Sense llicència, sense experiència i sense preocupar-te de res.",
+    badgeSkipper: "Patró professional inclòs",
+    badgeCapacity: "Fins a 6 persones",
+    badgeNoLicense: "Sense llicència ni experiència",
+    whatIsTitle: "Què és l'excursió privada en vaixell amb patró",
+    whatIsIntro:
+      "És un lloguer de vaixell en què el patró va inclòs: reserves el vaixell sencer per al teu grup i un professional s'encarrega del govern, la ruta i el fondeig. Ningú a bord necessita titulació nàutica i el pla s'adapta a vosaltres, no a l'horari d'un tour compartit.",
+    cardSkipperTitle: "El patró coneix cada cala",
+    cardSkipperDesc:
+      "Tria el recorregut i el fondeig del dia segons el vent i l'estat de la mar, i us explica el que aneu veient pel camí.",
+    cardCovesTitle: "Cales i coves inaccessibles a peu",
+    cardCovesDesc:
+      "Racons de la costa entre Blanes i Tossa de Mar als quals només s'arriba per mar, lluny de les platges plenes.",
+    cardSwimTitle: "Parada per nedar",
+    cardSwimDesc:
+      "Fondeig en una cala d'aigües clares amb temps per banyar-vos. Podeu afegir equip de snorkel o una taula de paddle surf com a extra.",
+    cardComfortTitle: "Vaixell equipat per al pla",
+    cardComfortDesc:
+      "Solàrium a proa i a popa, tendal bimini, dutxa d'aigua dolça, taula i altaveus bluetooth per a la vostra música.",
+    synonymsTitle: "Vaixell amb patró, excursió privada o passeig en vaixell: és el mateix",
+    synonymsBody:
+      "Lloguer de barca amb patró, excursió privada en vaixell, passeig en vaixell privat o boat tour privat són noms diferents del mateix pla: un vaixell només per al teu grup amb un professional al timó. El contrari és el lloguer sense patró, en què pilotes tu.",
+    routeTitle: "La ruta: de Blanes a Tossa de Mar per les cales",
+    routeIntro:
+      "No hi ha un recorregut tancat: el patró decideix la ruta i el fondeig segons la mar del dia. Aquest és l'itinerari habitual quan el temps acompanya.",
+    routeStops: [
+      "Port de Blanes: embarcament i sortida amb el vostre patró. Hi ha pàrquing al costat del vaixell com a extra.",
+      "Cala Sant Francesc i Santa Cristina: les primeres cales d'aigües clares, a pocs minuts del port.",
+      "Lloret de Mar i Fenals: platges i penya-segats vistos des del mar, zona habitual de fondeig i bany.",
+      "Tossa de Mar i les seves coves marines: el tram més salvatge, amb la muralla medieval vista des de l'aigua (30-45 min de navegació des de Blanes).",
+    ],
+    routeNote:
+      "Si hi ha una cala que us fa il·lusió, digueu-ho al patró en embarcar: si la mar ho permet, s'inclou a la ruta.",
+    includedTitle: "Què inclou el preu",
+    includedItems: [
+      "Patró professional",
+      "Amarratge al port de Blanes",
+      "Neteja del vaixell",
+      "Assegurança de responsabilitat civil amb cobertura d'accidents per als ocupants",
+      "IVA",
+    ],
+    notIncludedTitle: "Què no inclou",
+    notIncludedItems: [
+      "Combustible: s'abona al final segons el consum real de la sortida",
+      "Extres opcionals: nevera, equip de snorkel, paddle surf o pàrquing al costat del vaixell",
+    ],
+    fuelNote:
+      "El combustible no està inclòs en el preu. En tornar a port es reposa el que s'ha consumit i es paga segons el consum real de la vostra sortida.",
+    boatTitle: "El vaixell: Pacific Craft 625 Open",
+    boatIntro:
+      "L'excursió es fa a bord de la nostra llanxa més gran, una Pacific Craft 625 Open amb motor Yamaha de 115 cv: estable, ràpida i pensada per passar el dia al sol entre cales.",
+    boatCta: "Veure la fitxa de l'excursió privada",
+    specCapacityLabel: "Places",
+    specEngineLabel: "Motor",
+    specLengthLabel: "Eslora",
+    specDepositLabel: "Fiança",
+    pricingTitle: "Preus de l'excursió privada amb patró",
+    pricingIntro:
+      "El preu és per vaixell, no per persona: entre 6 surt des de 40€ per cap les 2 hores. Temporada d'abril a octubre, sortides entre les 9:00 i les 20:00.",
+    pricingColDuration: "Durada",
+    pricingDurations: ["2 hores", "3 hores", "4 hores"],
+    seasonLow: "Abril-juny i setembre",
+    seasonMid: "Juliol",
+    seasonHigh: "Agost",
+    pricingNote:
+      "Fiança de 200€ que es retorna en acabar la sortida. El combustible es paga a part segons consum.",
+    forWhomTitle: "Per a qui és aquesta excursió",
+    forWhomItems: [
+      {
+        title: "Celebracions i aniversaris",
+        text: "Un aniversari, una petició de mà o un aniversari de casament amb el vaixell sencer per a vosaltres. Digueu-nos què celebreu en reservar i afegiu la nevera com a extra per portar fresc el que us vingui de gust.",
+      },
+      {
+        title: "Famílies amb nens",
+        text: "El patró s'ocupa del vaixell i tu dels teus. Armilles i equip de seguretat a bord, i bany en cales tranquil·les i poc profundes.",
+      },
+      {
+        title: "Grups d'amics",
+        text: "Fins a 6 persones amb música per bluetooth, solàrium doble i parades per saltar a l'aigua. El pla de dia perfecte sense que ningú s'hagi de quedar sobri al timó.",
+      },
+      {
+        title: "Parelles",
+        text: "Dues hores al capvespre fondejats davant de la costa, sense més gent a bord. La versió privada d'un passeig en vaixell per la Costa Brava.",
+      },
+    ],
+    howToTitle: "Com reservar la teva excursió amb patró",
+    howToIntro: "De la sol·licitud al bany a la primera cala en cinc passos.",
+    howToSteps: [
+      {
+        title: "Tria dia i durada",
+        text: "Sortides de 2, 3 o 4 hores, d'abril a octubre, entre les 9:00 i les 20:00. Si dubteu, les 3 hores donen per arribar tranquils a la zona de Tossa amb bany inclòs.",
+      },
+      {
+        title: "Envia la teva sol·licitud",
+        text: "Reserva des del web o per WhatsApp. Et confirmem disponibilitat i punt de trobada, i el pagament es fa en persona el dia de la sortida.",
+      },
+      {
+        title: "Arriba al port de Blanes",
+        text: "Presenteu-vos uns 15 minuts abans amb el DNI o el passaport. La fiança de 200€ es diposita al port i es retorna en acabar.",
+      },
+      {
+        title: "Navega, fondeja i banya't",
+        text: "El patró adapta la ruta a la mar del dia: cales, coves i una parada fondejats per nedar allà on l'aigua estigui millor.",
+      },
+      {
+        title: "Tornada a port",
+        text: "En tornar s'abona el combustible segons el consum real i se us retorna la fiança. Només queda triar la data de la propera.",
+      },
+    ],
+    vsTitle: "Amb patró o pilotant tu?",
+    vsIntro:
+      "Totes dues opcions existeixen a la nostra flota. La diferència és qui porta el vaixell: a l'excursió privada el porta el nostre patró i ningú necessita titulació; en llogar sense patró, el patró ets tu.",
+    vsCaptainedTitle: "Amb patró: aquesta excursió",
+    vsCaptainedText:
+      "Per a qui vol desconnectar del tot, celebra alguna cosa o no té titulació i vol arribar fins a les coves de Tossa sense límits de potència.",
+    vsSelfDriveTitle: "Sense patró: pilotes tu",
+    vsSelfDriveText:
+      "Amb titulació nàutica pots llogar les nostres llanxes de 80-115 cv i marcar la teva pròpia ruta. I sense titulació, els vaixells sense llicència et porten per les cales properes.",
+    vsLinkLicensed: "Llanxes sense patró (amb titulació)",
+    vsLinkFree: "Vaixells sense llicència",
+    faq: [
+      {
+        q: "Necessito llicència o experiència per a aquesta excursió?",
+        a: "No. El patró professional va inclòs i s'encarrega del govern del vaixell, la ruta i el fondeig. Vosaltres només heu de pujar a bord i gaudir.",
+      },
+      {
+        q: "Quantes persones hi poden pujar?",
+        a: "Fins a 6 persones, i el patró no ocupa cap de les vostres places. El límit és ferm: la pòlissa de l'assegurança declara els ocupants del vaixell i no podem embarcar ningú de més.",
+      },
+      {
+        q: "Què inclou el preu?",
+        a: "Patró professional, amarratge, neteja, IVA i assegurança de responsabilitat civil amb cobertura d'accidents per als ocupants. El combustible no està inclòs: s'abona al final segons el consum real de la sortida.",
+      },
+      {
+        q: "Quant costa l'excursió privada en vaixell?",
+        a: "Des de 240€ les 2 hores d'abril a juny i al setembre, 260€ al juliol i 280€ a l'agost. També hi ha sortides de 3 hores (des de 320€) i 4 hores (des de 380€). El preu és per vaixell, per a un màxim de 6 persones.",
+      },
+      {
+        q: "Quina ruta fem i qui la decideix?",
+        a: "La ruta habitual recorre les cales entre Blanes i Tossa de Mar: Cala Sant Francesc, Santa Cristina, Fenals, Lloret i les coves de la zona de Tossa. El patró tria el recorregut i el fondeig segons el vent i l'estat de la mar, i pot incloure la cala que li demaneu si les condicions ho permeten.",
+      },
+      {
+        q: "Ens podem banyar i fer snorkel?",
+        a: "Sí. L'excursió inclou parada fondejats en una cala per nedar. Si voleu snorkel o paddle surf, s'afegeixen com a extra en reservar.",
+      },
+      {
+        q: "Què passa si fa mal temps?",
+        a: "Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un bo per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners.",
+      },
+      {
+        q: "En què es diferencia de llogar un vaixell sense patró?",
+        a: "En llogar sense patró pilotes tu, i per a les llanxes grans necessites titulació nàutica. A l'excursió privada el vaixell el porta el nostre patró: ningú del grup necessita llicència i tots aneu de passatgers. És l'opció per desconnectar del tot o per a grups sense titulació.",
+      },
+    ],
+    linksTitle: "Continua explorant",
+    linksBlanes: "Lloguer de vaixells a Blanes",
+    linksTossa: "Lloguer de vaixells a Tossa de Mar",
+    linksPricing: "Tots els preus de la flota",
+    linksGarantias: "Garantia de mal temps i fiança reduïda",
+    linksBlogTossa: "La ruta Blanes-Tossa en vaixell, pas a pas",
+    crossLinkLabel: "Excursió privada en vaixell amb patró",
+    ctaTitle: "Reserva la teva excursió privada amb patró",
+    ctaDescription:
+      "Explica'ns quin dia voleu sortir i quants sou. Et confirmem disponibilitat de seguida i el pagament es fa en persona, sense cobraments en línia.",
+    ctaButton: "Reservar per WhatsApp",
+  },
   shopPage: {
     gate: {
       title: 'Botiga en accés anticipat',

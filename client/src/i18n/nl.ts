@@ -4614,6 +4614,178 @@ export const nl: Translations = {
       },
     ],
   },
+  captainedPage: {
+    seoTitle: "Bootverhuur met Schipper Costa Brava | Vanuit Blanes",
+    seoDescription:
+      "Privé boottocht met schipper vanuit Blanes: baaien en grotten tot Tossa de Mar, zwemstop inbegrepen. Tot 6 personen, vanaf 240€ voor 2 uur. {rating}★ op Google.",
+    heroTitle: "Bootverhuur met schipper aan de Costa Brava: jouw privé boottocht vanuit Blanes",
+    heroDescription:
+      "Jij hoeft alleen te genieten: onze professionele schipper brengt jullie naar baaien met helder water en zeegrotten tussen Blanes en Tossa de Mar, en gaat voor anker op het mooiste plekje van de dag zodat jullie kunnen zwemmen. Zonder vaarbewijs, zonder ervaring en zonder je ergens zorgen over te maken.",
+    badgeSkipper: "Professionele schipper inbegrepen",
+    badgeCapacity: "Tot 6 personen",
+    badgeNoLicense: "Geen vaarbewijs of ervaring nodig",
+    whatIsTitle: "Wat is de privé boottocht met schipper",
+    whatIsIntro:
+      "Het is een bootverhuur waarbij de schipper inbegrepen is: je reserveert de hele boot voor je groep en een professional zorgt voor het varen, de route en het ankeren. Niemand aan boord heeft een vaarbewijs nodig en het plan past zich aan jullie aan, niet aan het schema van een gedeelde tour.",
+    cardSkipperTitle: "De schipper kent elke baai",
+    cardSkipperDesc:
+      "De schipper kiest de route en de ankerplek van de dag op basis van de wind en de staat van de zee, en vertelt jullie onderweg wat jullie zien.",
+    cardCovesTitle: "Baaien en grotten die je te voet niet bereikt",
+    cardCovesDesc:
+      "Plekjes aan de kust tussen Blanes en Tossa de Mar die alleen over zee bereikbaar zijn, ver van de volle stranden.",
+    cardSwimTitle: "Zwemstop",
+    cardSwimDesc:
+      "Voor anker in een baai met helder water en tijd om te zwemmen. Jullie kunnen snorkeluitrusting of een suppboard als extra toevoegen.",
+    cardComfortTitle: "Boot uitgerust voor de dag",
+    cardComfortDesc:
+      "Zonnedek voor en achter, biminitop, zoetwaterdouche, tafel en bluetoothspeakers voor jullie muziek.",
+    synonymsTitle: "Boot met schipper, privé excursie of boottocht: het is hetzelfde",
+    synonymsBody:
+      "Bootverhuur met schipper, privé boottocht, privé rondvaart of private boat tour zijn verschillende namen voor hetzelfde plan: een boot alleen voor jouw groep met een professional aan het roer. Het tegenovergestelde is huren zonder schipper (je vaart zelf).",
+    routeTitle: "De route: van Blanes naar Tossa de Mar langs de baaien",
+    routeIntro:
+      "Er is geen vast parcours: de schipper bepaalt de route en de ankerplek op basis van de zee van die dag. Dit is de gebruikelijke route als het weer meezit.",
+    routeStops: [
+      "Haven van Blanes: inschepen en vertrekken met jullie schipper. Er is parkeren naast de boot als extra.",
+      "Cala Sant Francesc en Santa Cristina: de eerste baaien met helder water, op een paar minuten van de haven.",
+      "Lloret de Mar en Fenals: stranden en kliffen gezien vanaf zee, de gebruikelijke zone om te ankeren en te zwemmen.",
+      "Tossa de Mar en de zeegrotten: het wildste stuk, met de middeleeuwse vestingmuur gezien vanaf het water (30-45 min varen vanuit Blanes).",
+    ],
+    routeNote:
+      "Is er een baai waar jullie graag naartoe willen? Zeg het bij het inschepen tegen de schipper: als de zee het toelaat, wordt die in de route opgenomen.",
+    includedTitle: "Wat de prijs omvat",
+    includedItems: [
+      "Professionele schipper",
+      "Ligplaats in de haven van Blanes",
+      "Schoonmaak van de boot",
+      "Aansprakelijkheidsverzekering met ongevallendekking voor de opvarenden",
+      "Btw",
+    ],
+    notIncludedTitle: "Wat niet inbegrepen is",
+    notIncludedItems: [
+      "Brandstof: die wordt aan het einde afgerekend op basis van het werkelijke verbruik van de tocht",
+      "Optionele extra's: koelbox, snorkeluitrusting, suppboard of parkeren naast de boot",
+    ],
+    fuelNote:
+      "Brandstof is niet bij de prijs inbegrepen. Bij terugkomst in de haven wordt bijgetankt wat verbruikt is en betaal je op basis van het werkelijke verbruik van jullie tocht.",
+    boatTitle: "De boot: Pacific Craft 625 Open",
+    boatIntro:
+      "De tocht wordt gemaakt aan boord van onze grootste boot, een Pacific Craft 625 Open met een Yamaha-motor van 115 pk: stabiel, snel en gemaakt om de dag in de zon tussen de baaien door te brengen.",
+    boatCta: "Bekijk de details van de privé boottocht",
+    specCapacityLabel: "Plaatsen",
+    specEngineLabel: "Motor",
+    specLengthLabel: "Lengte",
+    specDepositLabel: "Borg",
+    pricingTitle: "Prijzen van de privé boottocht met schipper",
+    pricingIntro:
+      "De prijs is per boot, niet per persoon: met zes komt dat neer op vanaf 40€ per persoon voor 2 uur. Seizoen van april tot oktober, vertrek tussen 9:00 en 20:00.",
+    pricingColDuration: "Duur",
+    pricingDurations: ["2 uur", "3 uur", "4 uur"],
+    seasonLow: "April-juni en september",
+    seasonMid: "Juli",
+    seasonHigh: "Augustus",
+    pricingNote:
+      "Borg van 200€ die na afloop van de tocht wordt teruggegeven. De brandstof wordt apart betaald op basis van het verbruik.",
+    forWhomTitle: "Voor wie is deze tocht",
+    forWhomItems: [
+      {
+        title: "Vieringen en jubilea",
+        text: "Een verjaardag, een huwelijksaanzoek of een jubileum met de hele boot voor jullie alleen. Vertel ons bij het reserveren wat jullie vieren en voeg de koelbox als extra toe om koel mee te nemen wat jullie willen.",
+      },
+      {
+        title: "Gezinnen met kinderen",
+        text: "De schipper zorgt voor de boot en jij voor je gezin. Zwemvesten en veiligheidsuitrusting aan boord, en zwemmen in rustige, ondiepe baaien.",
+      },
+      {
+        title: "Vriendengroepen",
+        text: "Tot 6 personen met muziek via bluetooth, dubbel zonnedek en stops om het water in te springen. Het perfecte dagplan zonder dat iemand nuchter aan het roer hoeft te blijven.",
+      },
+      {
+        title: "Koppels",
+        text: "Twee uur bij zonsondergang voor anker tegenover de kust, zonder andere mensen aan boord. De privéversie van een boottocht langs de Costa Brava.",
+      },
+    ],
+    howToTitle: "Hoe je jouw tocht met schipper reserveert",
+    howToIntro: "Van de aanvraag tot de duik in de eerste baai in vijf stappen.",
+    howToSteps: [
+      {
+        title: "Kies dag en duur",
+        text: "Tochten van 2, 3 of 4 uur, van april tot oktober, tussen 9:00 en 20:00. Twijfelen jullie? Met 3 uur kom je rustig tot de omgeving van Tossa, zwemstop inbegrepen.",
+      },
+      {
+        title: "Stuur je aanvraag",
+        text: "Reserveer via de website of via WhatsApp. Wij bevestigen de beschikbaarheid en het ontmoetingspunt, en de betaling gebeurt persoonlijk op de dag van vertrek.",
+      },
+      {
+        title: "Kom naar de haven van Blanes",
+        text: "Meld je zo'n 15 minuten van tevoren met identiteitskaart of paspoort. De borg van 200€ wordt in de haven afgegeven en na afloop teruggegeven.",
+      },
+      {
+        title: "Varen, ankeren en zwemmen",
+        text: "De schipper past de route aan de zee van die dag aan: baaien, grotten en een stop voor anker om te zwemmen waar het water het mooist is.",
+      },
+      {
+        title: "Terug naar de haven",
+        text: "Bij terugkomst betaal je de brandstof op basis van het werkelijke verbruik en krijg je de borg terug. Dan hoef je alleen nog de datum van de volgende keer te kiezen.",
+      },
+    ],
+    vsTitle: "Met schipper of zelf varen?",
+    vsIntro:
+      "Beide opties bestaan in onze vloot. Het verschil is wie de boot bestuurt: op de privé boottocht doet onze schipper dat en heeft niemand een vaarbewijs nodig; huur je zonder schipper (je vaart zelf), dan ben jij de schipper.",
+    vsCaptainedTitle: "Met schipper: deze boottocht",
+    vsCaptainedText:
+      "Voor wie helemaal wil ontspannen, iets te vieren heeft of geen vaarbewijs heeft en toch tot de grotten van Tossa wil komen zonder beperking in vermogen.",
+    vsSelfDriveTitle: "Zonder schipper: je vaart zelf",
+    vsSelfDriveText:
+      "Met een vaarbewijs kun je onze speedboten van 80-115 pk huren en je eigen route bepalen. En zonder vaarbewijs brengen de boten zonder vaarbewijs je langs de baaien in de buurt.",
+    vsLinkLicensed: "Speedboten zonder schipper (met vaarbewijs)",
+    vsLinkFree: "Boten zonder vaarbewijs",
+    faq: [
+      {
+        q: "Heb ik een vaarbewijs of ervaring nodig voor deze tocht?",
+        a: "Nee. De professionele schipper is inbegrepen en zorgt voor het varen, de route en het ankeren. Jullie hoeven alleen maar aan boord te stappen en te genieten.",
+      },
+      {
+        q: "Hoeveel mensen kunnen er mee?",
+        a: "Tot 6 personen, en de schipper neemt geen van jullie plaatsen in. De limiet is strikt: de verzekeringspolis vermeldt de opvarenden van de boot en we kunnen niemand extra meenemen.",
+      },
+      {
+        q: "Wat is bij de prijs inbegrepen?",
+        a: "Professionele schipper, ligplaats, schoonmaak, btw en een aansprakelijkheidsverzekering met ongevallendekking voor de opvarenden. De brandstof is niet inbegrepen: die wordt aan het einde afgerekend op basis van het werkelijke verbruik van de tocht.",
+      },
+      {
+        q: "Wat kost de privé boottocht?",
+        a: "Vanaf 240€ voor 2 uur van april tot juni en in september, 260€ in juli en 280€ in augustus. Er zijn ook tochten van 3 uur (vanaf 320€) en 4 uur (vanaf 380€). De prijs is per boot, voor maximaal 6 personen.",
+      },
+      {
+        q: "Welke route varen we en wie bepaalt die?",
+        a: "De gebruikelijke route gaat langs de baaien tussen Blanes en Tossa de Mar: Cala Sant Francesc, Santa Cristina, Fenals, Lloret en de grotten in de omgeving van Tossa. De schipper kiest de route en de ankerplek op basis van de wind en de staat van de zee, en kan de baai die jullie vragen opnemen als de omstandigheden het toelaten.",
+      },
+      {
+        q: "Kunnen we zwemmen en snorkelen?",
+        a: "Ja. De tocht bevat een stop voor anker in een baai om te zwemmen. Willen jullie snorkelen of suppen, dan voeg je dat bij het reserveren toe als extra.",
+      },
+      {
+        q: "Wat gebeurt er bij slecht weer?",
+        a: "Als slecht weer het uitvaren verhindert, verzetten we de datum kosteloos of geven we, als we samen geen nieuwe datum vinden, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Heb je de Slechtweergarantie afgesloten, dan kies je tussen een nieuwe datum of volledige terugbetaling in geld.",
+      },
+      {
+        q: "Wat is het verschil met een boot huren zonder schipper?",
+        a: "Als je zonder schipper huurt, vaar je zelf, en voor de grote speedboten heb je een vaarbewijs nodig. Op de privé boottocht wordt de boot gevaren door onze schipper: niemand van de groep heeft een vaarbewijs nodig en jullie gaan allemaal als passagier mee. Het is de optie om helemaal te ontspannen of voor groepen zonder vaarbewijs.",
+      },
+    ],
+    linksTitle: "Blijf ontdekken",
+    linksBlanes: "Bootverhuur in Blanes",
+    linksTossa: "Bootverhuur in Tossa de Mar",
+    linksPricing: "Alle prijzen van de vloot",
+    linksGarantias: "Slechtweergarantie en verlaagde borg",
+    linksBlogTossa: "De route Blanes-Tossa per boot, stap voor stap",
+    crossLinkLabel: "Privé boottocht met schipper",
+    ctaTitle: "Reserveer jouw privé boottocht met schipper",
+    ctaDescription:
+      "Vertel ons welke dag jullie willen uitvaren en met hoeveel jullie zijn. Wij bevestigen de beschikbaarheid meteen en de betaling gebeurt persoonlijk, zonder online afrekenen.",
+    ctaButton: "Reserveren via WhatsApp",
+  },
   shopPage: {
     gate: {
       title: 'Winkel in vroege toegang',

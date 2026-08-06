@@ -294,6 +294,45 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       param: "alquiler-barco-tossa-de-mar-desde-blanes",
       type: "blog",
     },
+    {
+      title: "Excursion privada con patron",
+      description: "Sin licencia y sin pilotar: el patron os lleva hasta Tossa",
+      pageKey: "categoryCaptained",
+      type: "actividad",
+    },
+  ],
+  categoryCaptained: [
+    {
+      title: "Excursion a Tossa de Mar",
+      description: "El destino estrella de la ruta con patron",
+      pageKey: "locationTossa",
+      type: "ubicacion",
+    },
+    {
+      title: "Mejores calas Costa Brava en barco",
+      description: "Las 10 calas mas espectaculares entre Blanes y Tossa",
+      pageKey: "blogDetail",
+      param: "mejores-calas-costa-brava-en-barco",
+      type: "blog",
+    },
+    {
+      title: "Lanchas sin patron",
+      description: "Con titulacion nautica, pilota tu mismo hasta Tossa",
+      pageKey: "categoryLicensed",
+      type: "guia",
+    },
+    {
+      title: "Barcos sin licencia",
+      description: "5 barcos desde 70EUR/h, gasolina incluida",
+      pageKey: "categoryLicenseFree",
+      type: "guia",
+    },
+    {
+      title: "Paseo al atardecer en barco",
+      description: "La salida de ultima hora del dia desde Blanes",
+      pageKey: "activitySunset",
+      type: "actividad",
+    },
   ],
   jetskiHub: [
     {

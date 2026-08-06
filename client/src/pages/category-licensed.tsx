@@ -634,7 +634,7 @@ export default function CategoryLicensedPage() {
               {cl.linksNoLicense}
             </a>
             <a
-              href={localizedPath("boatDetail", "excursion-privada")}
+              href={localizedPath("categoryCaptained")}
               className="text-primary hover:underline flex items-center gap-1"
             >
               <ChevronRight className="w-4 h-4" />

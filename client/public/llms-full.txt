@@ -160,10 +160,11 @@ Category page: https://www.costabravarentaboat.com/es/barcos-con-licencia (self-
 
 ### Private Excursion with Captain
 - **Boat**: Pacific Craft 625 Open (6.24m, Yamaha 115hp)
-- **Capacity**: 7 people
+- **Capacity**: 6 people (the skipper does not take one of your seats)
 - **No license needed**: Professional captain drives for you
 - **Fuel NOT included**
-- **Deposit**: 500 EUR (refundable)
+- **Deposit**: 200 EUR (refundable)
+- **Category page**: https://www.costabravarentaboat.com/es/alquiler-barco-con-patron (private captained excursion landing with route, prices by season and FAQ)
 - **What is included**: Professional captain, VAT, mooring, cleaning, insurance
 - **Experience**: Captain takes you to the best coves, caves, and hidden spots between Blanes and Tossa de Mar. Anchoring in the perfect cove of the day chosen based on sea conditions. Swimming stops included.
 - **Best for**: Celebrations, couples, families who want a luxury hands-free experience, people without a boating license who want to reach distant coves
@@ -278,7 +279,7 @@ All prices in EUR. VAT included. Weekend surcharge: +15% on Saturdays and Sunday
 | 4 hours  | 250 EUR                       | 280 EUR            | 300 EUR               |
 | 8 hours  | 300 EUR                       | 360 EUR            | 420 EUR               |
 
-### Private Excursion with Captain (7 people, no license needed)
+### Private Excursion with Captain (6 people, no license needed)
 
 | Duration | Low Season (Apr-Jun, Sep-Oct) | Mid Season (July) | High Season (August) |
 |----------|-------------------------------|--------------------|-----------------------|

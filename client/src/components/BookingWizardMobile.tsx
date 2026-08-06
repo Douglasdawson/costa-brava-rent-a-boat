@@ -374,7 +374,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
                 variant="ghost"
                 onClick={onBack}
                 aria-label={`${props.t.booking.back}: ${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} ${totalSteps})`}
-                className="flex-shrink-0 px-3 min-h-11 text-muted-foreground hover:text-foreground"
+                className="flex-shrink-0 px-3 min-h-11 min-w-11 text-muted-foreground hover:text-foreground"
               >
                 <ChevronLeft className="w-5 h-5" aria-hidden="true" />
               </Button>
@@ -1387,7 +1387,7 @@ function Step5Final(props: BookingWizardMobileProps) {
           <button
             type="button"
             onClick={() => onGoToStep(1)}
-            className="inline-flex items-center gap-1 px-2.5 py-1 border border-primary/30 rounded-full text-xs font-medium text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors"
+            className="inline-flex items-center gap-1 px-2.5 py-1 pointer-coarse:min-h-11 pointer-coarse:px-4 border border-primary/30 rounded-full text-xs font-medium text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors"
           >
             <Pencil className="w-3 h-3" aria-hidden="true" />
             {t.reviewSummary?.modifyShort || 'Editar'}
@@ -1568,7 +1568,7 @@ function Step5Final(props: BookingWizardMobileProps) {
                 type="button"
                 onClick={() => onGoToStep((props.totalSteps ?? 6) - 1)}
                 data-testid="final-reduce-deposit"
-                className="mt-2 flex w-full items-center justify-between gap-3 rounded-lg bg-white/10 px-3 py-2 text-left transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                className="mt-2 flex w-full min-h-11 items-center justify-between gap-3 rounded-lg bg-white/10 px-3 py-2 text-left transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
               >
                 <span className="text-xs font-medium">
                   {t.booking.coverages.depositName}: {reducedDepositAmount}€

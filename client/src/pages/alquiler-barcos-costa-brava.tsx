@@ -582,19 +582,19 @@ export default function LocationCostaBravaPage() {
       <div className="py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-3">
-            <Link href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
+            <Link href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s?.crossLinkEnglish || "This page in English: Boat Rental Costa Brava"}
             </Link>
-            <Link href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
+            <Link href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               Alquiler de barcos sin licencia en la Costa Brava
             </Link>
-            <Link href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
+            <Link href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               Barcos con licencia
             </Link>
-            <Link href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
+            <Link href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               Precios y tarifas
             </Link>

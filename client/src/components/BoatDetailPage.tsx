@@ -1098,7 +1098,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       ? "categoryLicensed"
                       : "categoryLicenseFree",
                 )}
-                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline pointer-coarse:py-3 pointer-coarse:-my-3"
                 data-testid="link-boat-category"
               >
                 {isCaptainedBoat(boatData.id)

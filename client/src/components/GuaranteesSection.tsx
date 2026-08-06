@@ -103,7 +103,7 @@ export default function GuaranteesSection() {
           <a
             href={localizedPath("garantias")}
             data-testid="home-garantias-link"
-            className="mt-5 inline-flex items-center gap-2 rounded text-sm font-semibold text-cta transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+            className="mt-5 inline-flex items-center gap-2 rounded text-sm font-semibold text-cta transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 pointer-coarse:py-3 pointer-coarse:-my-3"
           >
             {t.booking.coveragesMoreInfo}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

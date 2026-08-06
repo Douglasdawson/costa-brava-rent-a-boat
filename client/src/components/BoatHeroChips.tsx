@@ -89,7 +89,7 @@ export function BoatHeroChips({ t, fuelIncluded }: BoatHeroChipsProps) {
                 href={GBP_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-start gap-1.5 rounded-full border border-border/70 bg-muted/70 px-3 py-1.5 text-xs leading-snug text-foreground hover:border-foreground/40 transition-colors"
+                className="inline-flex items-start gap-1.5 rounded-full border border-border/70 bg-muted/70 px-3 py-1.5 pointer-coarse:min-h-11 pointer-coarse:items-center text-xs leading-snug text-foreground hover:border-foreground/40 transition-colors"
               >
                 {content}
               </a>

@@ -420,7 +420,7 @@ export function CalendarTab({
                       <button
                         key={status}
                         onClick={() => toggleStatus(status)}
-                        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border transition-colors ${
+                        className={`flex items-center gap-1.5 px-2.5 py-1 pointer-coarse:min-h-11 rounded-full text-xs font-medium border transition-colors ${
                           isActive
                             ? "bg-card border-border text-foreground"
                             : "bg-muted border-border text-muted-foreground line-through"

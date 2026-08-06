@@ -223,7 +223,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                 placeholder="Buscar por nombre, email, teléfono, barco..."
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
-                className="pl-9 h-10"
+                className="pl-9 h-10 pointer-coarse:min-h-11"
               />
             </div>
             <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v); setCurrentPage(1); }}>
@@ -315,8 +315,8 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                         )}
                       </TableCell>
                       <TableCell className="text-xs">
-                        <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors"><Phone className="w-3 h-3" />{inq.phonePrefix} {inq.phoneNumber}</a>
-                        {inq.email && <a href={`mailto:${inq.email}`} className="flex items-center gap-1 text-muted-foreground hover:text-blue-600 transition-colors"><Mail className="w-3 h-3" />{inq.email}</a>}
+                        <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="flex items-center gap-1 pointer-coarse:py-3.5 hover:text-blue-600 transition-colors"><Phone className="w-3 h-3" />{inq.phonePrefix} {inq.phoneNumber}</a>
+                        {inq.email && <a href={`mailto:${inq.email}`} className="flex items-center gap-1 pointer-coarse:py-3.5 text-muted-foreground hover:text-blue-600 transition-colors"><Mail className="w-3 h-3" />{inq.email}</a>}
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-1 text-sm"><Ship className="w-3 h-3" />{inq.boatName}</div>
@@ -469,8 +469,8 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                     <div><Users className="w-3 h-3 inline mr-1" />{inq.numberOfPeople} pers.</div>
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="block hover:text-blue-600 transition-colors"><Phone className="w-3 h-3 inline mr-1" />{inq.phonePrefix} {inq.phoneNumber}</a>
-                    {inq.email && <a href={`mailto:${inq.email}`} className="block hover:text-blue-600 transition-colors"><Mail className="w-3 h-3 inline mr-1" />{inq.email}</a>}
+                    <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="block pointer-coarse:py-3.5 hover:text-blue-600 transition-colors"><Phone className="w-3 h-3 inline mr-1" />{inq.phonePrefix} {inq.phoneNumber}</a>
+                    {inq.email && <a href={`mailto:${inq.email}`} className="block pointer-coarse:py-3.5 hover:text-blue-600 transition-colors"><Mail className="w-3 h-3 inline mr-1" />{inq.email}</a>}
                   </div>
                   {inq.estimatedTotal && (
                     <div className="text-sm font-semibold">{"\u20AC"}{inq.estimatedTotal}</div>
@@ -524,7 +524,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                           setNotesValue(inq.notes || "");
                         }
                       }}
-                      className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-xs text-muted-foreground hover:text-foreground transition-colors pointer-coarse:inline-flex pointer-coarse:items-center pointer-coarse:min-h-11"
                     >
                       {editingNotes === inq.id ? "Guardar notas" : inq.notes ? "Editar notas" : "Agregar notas"}
                     </button>
@@ -576,7 +576,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                     <div className="grid grid-cols-2 gap-2 text-sm">
                       <div><span className="text-muted-foreground">Nombre:</span> {inq.firstName} {inq.lastName}</div>
                       <div className="flex items-center gap-1"><Globe className="w-3 h-3 text-muted-foreground/70" />{inq.language?.toUpperCase()}</div>
-                      <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors"><Phone className="w-3 h-3 text-muted-foreground/70" />{inq.phonePrefix} {inq.phoneNumber}</a>
+                      <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="flex items-center gap-1 pointer-coarse:py-3.5 hover:text-blue-600 transition-colors"><Phone className="w-3 h-3 text-muted-foreground/70" />{inq.phonePrefix} {inq.phoneNumber}</a>
                       {inq.email ? <a href={`mailto:${inq.email}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors"><Mail className="w-3 h-3 text-muted-foreground/70" />{inq.email}</a> : <div className="flex items-center gap-1"><Mail className="w-3 h-3 text-muted-foreground/70" />-</div>}
                     </div>
                   </div>

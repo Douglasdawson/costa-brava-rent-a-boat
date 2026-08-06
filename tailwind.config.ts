@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import plugin from "tailwindcss/plugin";
 import typography from "@tailwindcss/typography";
 
 export default {
@@ -142,5 +143,13 @@ export default {
       },
     },
   },
-  plugins: [tailwindcssAnimate, typography],
+  plugins: [
+    tailwindcssAnimate,
+    typography,
+    // pointer-coarse: targets tactiles (iPhone Y iPad, que a 820/1024 recibe el
+    // layout de escritorio pero sigue siendo un dedo). No cambia nada con raton.
+    plugin(({ addVariant }) => {
+      addVariant("pointer-coarse", "@media (pointer: coarse)");
+    }),
+  ],
 } satisfies Config;

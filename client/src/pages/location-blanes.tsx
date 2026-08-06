@@ -517,27 +517,27 @@ export default function LocationBlanesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading font-semibold text-lg mb-4">{s.crossLinksTitle}</h3>
           <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s.crossLinkCostaBrava}
             </a>
-            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s.crossLinkLicenseFree}
             </a>
-            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s.crossLinkLicensed}
             </a>
-            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s.crossLinkPricing}
             </a>
-            <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s.crossLinkLloret}
             </a>
-            <a href={localizedPath("locationTossa")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("locationTossa")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s.crossLinkTossa}
             </a>

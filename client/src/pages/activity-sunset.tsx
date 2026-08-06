@@ -428,35 +428,35 @@ export default function ActivitySunsetPage() {
           <div className="flex flex-wrap gap-x-6 gap-y-3">
             <a
               href={localizedPath("categoryLicenseFree")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {s.linkNoLicense}
             </a>
             <a
               href={localizedPath("activitySnorkel")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {s.linkSnorkel}
             </a>
             <a
               href={localizedPath("pricing")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {s.linkPrices}
             </a>
             <a
               href={localizedPath("locationBlanes")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {s.linkBlanes}
             </a>
             <a
               href={localizedPath("routes")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {s.linkRoutes}

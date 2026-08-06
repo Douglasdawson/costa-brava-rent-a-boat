@@ -319,23 +319,23 @@ export default function ActivityFamiliesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading font-semibold text-lg mb-4">{f?.exploreTitle ?? "Descubre más sobre nuestros servicios"}</h3>
           <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {f?.linkNoLicense ?? "Barcos sin licencia"}
             </a>
-            <a href={localizedPath("activitySnorkel")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("activitySnorkel")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {f?.linkSnorkel ?? "Excursión de snorkel"}
             </a>
-            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {f?.linkPrices ?? "Precios y tarifas"}
             </a>
-            <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {f?.linkBlanes ?? "Puerto de Blanes"}
             </a>
-            <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {f?.linkRoutes ?? "Rutas marítimas"}
             </a>

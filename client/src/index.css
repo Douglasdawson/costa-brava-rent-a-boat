@@ -206,9 +206,11 @@ body { overflow-x: hidden; }
 /* iOS hace zoom a TODA la pagina al enfocar un campo con font-size < 16px, y al
    salir no lo deshace: el usuario se queda con la web ampliada y desplazada.
    Va fuera de @layer base a proposito y con !important porque base es la capa de
-   menor precedencia y cualquier `text-sm` de utilidad la gana. Solo por debajo de
-   md: en escritorio no existe el problema y 14px es deliberado. */
-@media (max-width: 767px) {
+   menor precedencia y cualquier `text-sm` de utilidad la gana. Por debajo de md
+   Y en cualquier tactil (un iPad a 820/1024 recibe el layout de escritorio pero
+   Safari iPad hace el mismo zoom): con raton el problema no existe y 14px es
+   deliberado. */
+@media (max-width: 767px), (pointer: coarse) {
   input:not([type="checkbox"]):not([type="radio"]),
   select,
   textarea {

@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Cookie } from "lucide-react";
 import { trackCookieConsent } from "@/utils/analytics";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
+import { ROUTE_SLUGS } from "@shared/i18n-routes";
+
+// On the booking wizard the bottom edge belongs to the "Next" CTA: a bottom
+// banner sits on top of it and swallows the tap of anyone who ignores the
+// notice. There the banner docks to the TOP edge (over the progress bar,
+// which is informational) so the flow is never blocked.
+const BOOKING_SLUGS = new Set<string>(Object.values(ROUTE_SLUGS.booking));
 
 function updateGTMConsent(granted: boolean) {
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
@@ -20,8 +28,13 @@ function updateGTMConsent(granted: boolean) {
 }
 
 export default function CookieBanner() {
+  const [location] = useLocation();
   const { localizedPath } = useLanguage();
   const t = useTranslations();
+  const dockTop = location
+    .split("/")
+    .filter(Boolean)
+    .some((segment) => BOOKING_SLUGS.has(segment));
   const cb = t.cookieBanner;
   const [visible, setVisible] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
@@ -65,9 +78,9 @@ export default function CookieBanner() {
     <div
       role="region"
       aria-label={cb?.ariaLabel ?? "Aviso de cookies"}
-      className={`fixed bottom-0 left-0 right-0 z-[300] bg-background border-t border-border shadow-lg pb-safe transition-transform duration-200 ease-out ${
-        animateIn ? "translate-y-0" : "translate-y-full"
-      }`}
+      className={`fixed left-0 right-0 z-[300] bg-background shadow-lg transition-transform duration-200 ease-out ${
+        dockTop ? "top-0 border-b border-border pt-safe" : "bottom-0 border-t border-border pb-safe"
+      } ${animateIn ? "translate-y-0" : dockTop ? "-translate-y-full" : "translate-y-full"}`}
     >
       <div className="container mx-auto px-4 py-4 max-w-6xl">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">

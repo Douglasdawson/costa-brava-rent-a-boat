@@ -266,7 +266,7 @@ function ReviewsSection() {
                 href={GBP_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground hover:underline underline-offset-2 transition-colors"
+                className="mt-3 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground hover:underline underline-offset-2 transition-colors pointer-coarse:py-3.5 pointer-coarse:-my-3.5"
               >
                 <span className="inline-flex items-center gap-0.5" aria-hidden="true">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -340,7 +340,7 @@ function ReviewsSection() {
         <div className="text-center">
           <a
             href={localizedPath("testimonials")}
-            className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1 transition-colors"
+            className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1 transition-colors pointer-coarse:py-3 pointer-coarse:-my-3"
           >
             {t.reviews.viewAll}
             <ArrowRight className="w-4 h-4" />

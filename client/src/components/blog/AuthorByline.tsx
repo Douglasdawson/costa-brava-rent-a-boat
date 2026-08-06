@@ -107,7 +107,7 @@ export function AuthorByline({ authorName, publishedAt, updatedAt, language = "e
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer me"
-                  className="hover:text-foreground transition-colors capitalize"
+                  className="inline-block hover:text-foreground transition-colors capitalize"
                 >
                   {i > 0 && <span className="mx-1.5">·</span>}
                   {label}

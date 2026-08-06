@@ -347,7 +347,7 @@ function OverviewPanel({ adminToken }: { adminToken: string }) {
         </Card>
       </div>
       <p className="text-xs text-muted-foreground">
-        Generado: {formatDate(data.generatedAt)} · <button className="underline" onClick={() => refetch()}>Actualizar</button>
+        Generado: {formatDate(data.generatedAt)} · <button className="underline pointer-coarse:inline-flex pointer-coarse:items-center pointer-coarse:py-3.5 pointer-coarse:-my-3.5 pointer-coarse:px-2 pointer-coarse:-mx-2" onClick={() => refetch()}>Actualizar</button>
       </p>
     </div>
   );

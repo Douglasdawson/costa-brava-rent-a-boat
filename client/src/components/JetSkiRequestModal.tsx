@@ -240,7 +240,7 @@ export default function JetSkiRequestModal({ product, onClose }: JetSkiRequestMo
                     return (
                       <label
                         key={slot.id}
-                        className={`flex cursor-pointer items-center justify-between gap-3 rounded-lg border px-3 py-2.5 transition-colors ${
+                        className={`flex cursor-pointer items-center justify-between gap-3 rounded-lg border px-3 py-2.5 pointer-coarse:min-h-11 transition-colors ${
                           checked ? "border-cta bg-cta/5" : "border-border hover:border-cta/50"
                         }`}
                       >
@@ -406,7 +406,7 @@ export default function JetSkiRequestModal({ product, onClose }: JetSkiRequestMo
               <button
                 type="button"
                 onClick={handleWhatsAppDirect}
-                className="w-full text-center text-sm font-medium text-cta underline underline-offset-4 hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 rounded"
+                className="w-full py-3 text-center text-sm font-medium text-cta underline underline-offset-4 hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 rounded"
               >
                 {m?.whatsappDirect || "Prefiero escribir por WhatsApp"}
               </button>

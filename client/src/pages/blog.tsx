@@ -580,7 +580,7 @@ function BlogPage() {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex justify-center items-center gap-2 mt-12 pt-8 border-t border-border/50">
+                <div className="flex flex-wrap justify-center items-center gap-2 mt-12 pt-8 border-t border-border/50">
                   <Button
                     variant="outline"
                     size="icon"
@@ -606,7 +606,7 @@ function BlogPage() {
                         data-testid={`button-pagination-${page}`}
                         aria-label={`${bp.goToPage} ${page}`}
                         aria-current={currentPage === page ? "page" : undefined}
-                        className={`rounded-full w-10 h-10 ${currentPage === page ? '' : 'text-muted-foreground'}`}
+                        className={`rounded-full w-10 h-10 pointer-coarse:w-11 pointer-coarse:h-11 ${currentPage === page ? '' : 'text-muted-foreground'}`}
                       >
                         {page}
                       </Button>

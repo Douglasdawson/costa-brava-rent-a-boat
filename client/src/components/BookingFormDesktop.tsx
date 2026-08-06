@@ -1496,7 +1496,7 @@ function Step5Contact({
           <button
             type="button"
             onClick={() => onGoToStep(1)}
-            className="inline-flex items-center gap-1 px-2.5 py-1 border border-primary/30 rounded-full text-xs font-medium text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors"
+            className="inline-flex items-center gap-1 px-2.5 py-1 pointer-coarse:min-h-11 pointer-coarse:px-4 border border-primary/30 rounded-full text-xs font-medium text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors"
           >
             <Pencil className="w-3 h-3" aria-hidden="true" />
             {t.reviewSummary?.modifyShort || "Editar"}

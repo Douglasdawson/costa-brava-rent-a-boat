@@ -357,7 +357,7 @@ export function CustomersTab({
             <button
               key={field}
               onClick={() => handleSort(field)}
-              className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border whitespace-nowrap transition-colors ${
+              className={`flex items-center gap-1 px-2.5 py-1 pointer-coarse:min-h-11 rounded-full text-xs font-medium border whitespace-nowrap transition-colors ${
                 sortBy === field
                   ? "bg-primary text-white border-primary"
                   : "bg-card border-border text-muted-foreground"

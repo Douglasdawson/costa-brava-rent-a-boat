@@ -229,7 +229,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
               e.preventDefault();
               handleLogoClick();
             }}
-            className="flex flex-shrink-0 items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 z-10 lg:justify-self-start"
+            className="flex flex-shrink-0 items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 pointer-coarse:p-1.5 pointer-coarse:-m-1.5 z-10 lg:justify-self-start"
             data-testid="brand-logo"
             aria-label={t.a11y.goToHomePage}
           >
@@ -245,7 +245,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
               const activeClass = isNavItemActive(item.href)
                 ? "text-foreground font-semibold"
                 : "text-foreground/70 font-medium";
-              const baseClass = `text-sm xl:text-base hover:text-foreground transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:outline-none ${activeClass}`;
+              const baseClass = `text-sm xl:text-base pointer-coarse:py-3 hover:text-foreground transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:outline-none ${activeClass}`;
               // Page routes: render as <a> so Googlebot can crawl them
               if (!item.href.startsWith("#")) {
                 return (

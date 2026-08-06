@@ -103,7 +103,7 @@ export default function PriceSummaryBar({
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between px-4 py-2 text-sm"
+        className="w-full flex items-center justify-between px-4 py-2 pointer-coarse:min-h-11 text-sm"
         aria-expanded={expanded}
         aria-label={seeDetailsLabel}
       >

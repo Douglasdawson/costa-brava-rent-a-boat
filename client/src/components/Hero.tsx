@@ -154,7 +154,7 @@ export default function Hero() {
             href={GBP_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap hover:underline underline-offset-2"
+            className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap hover:underline underline-offset-2 pointer-coarse:py-3.5 pointer-coarse:-my-3.5"
           >
             <Star
               className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 fill-amber-400 text-amber-400"

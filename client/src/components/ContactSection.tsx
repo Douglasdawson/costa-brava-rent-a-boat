@@ -46,7 +46,7 @@ export default function ContactSection() {
                   </h3>
                   <a
                     href="tel:+34611500372"
-                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-sm"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-sm pointer-coarse:py-3"
                     data-testid="phone-link"
                     aria-label={`${t.a11y.callPhone} +34 611 500 372`}
                     onClick={() => trackPhoneClick()}
@@ -65,7 +65,7 @@ export default function ContactSection() {
                   </h3>
                   <a
                     href="mailto:info@costabravarentaboat.com"
-                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-xs sm:text-sm break-all"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-xs sm:text-sm break-all pointer-coarse:py-3.5"
                     data-testid="email-link"
                     aria-label={`${t.a11y.sendEmail} info@costabravarentaboat.com`}
                   >

@@ -952,23 +952,23 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading font-semibold text-lg mb-4">{txt.linksTitle}</h3>
           <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {txt.linkFleet}
             </a>
-            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {txt.linkPricing}
             </a>
-            <a href={localizedPath("faq")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("faq")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {txt.linkFaq}
             </a>
-            <a href={localizedPath("testimonials")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("testimonials")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {txt.linkTestimonials}
             </a>
-            <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {txt.linkRoutes}
             </a>

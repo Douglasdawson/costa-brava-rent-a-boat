@@ -208,14 +208,14 @@ export default function CategoryCaptainedPage() {
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
             <a
               href={localizedPath("locationTossa")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {cp.linksTossa}
             </a>
             <a
               href={localizedPath("blogDetail", "alquiler-barco-tossa-de-mar-desde-blanes")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {cp.linksBlogTossa}
@@ -393,14 +393,14 @@ export default function CategoryCaptainedPage() {
               <div className="flex flex-col gap-2">
                 <a
                   href={localizedPath("categoryLicensed")}
-                  className="text-primary hover:underline flex items-center gap-1"
+                  className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
                 >
                   <ChevronRight className="w-4 h-4" />
                   {cp.vsLinkLicensed}
                 </a>
                 <a
                   href={localizedPath("categoryLicenseFree")}
-                  className="text-primary hover:underline flex items-center gap-1"
+                  className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
                 >
                   <ChevronRight className="w-4 h-4" />
                   {cp.vsLinkFree}
@@ -443,28 +443,28 @@ export default function CategoryCaptainedPage() {
           <div className="flex flex-wrap gap-x-6 gap-y-3">
             <a
               href={localizedPath("locationBlanes")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {cp.linksBlanes}
             </a>
             <a
               href={localizedPath("locationTossa")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {cp.linksTossa}
             </a>
             <a
               href={localizedPath("pricing")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {cp.linksPricing}
             </a>
             <a
               href={localizedPath("garantias")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
               {cp.linksGarantias}

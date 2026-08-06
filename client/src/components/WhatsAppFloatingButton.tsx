@@ -9,6 +9,10 @@ import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 // Boat detail slugs across all 8 languages (/es/barco/, /en/boat/, ...)
 const BOAT_DETAIL_SLUGS = new Set<string>(Object.values(ROUTE_SLUGS.boatDetail));
 
+// Booking wizard slugs: the wizard's summary bar and final WhatsApp CTA live
+// exactly where the FAB floats, so the FAB both duplicates and covers them.
+const BOOKING_SLUGS = new Set<string>(Object.values(ROUTE_SLUGS.booking));
+
 // BoatDetailPage shows its mobile sticky bottom CTA after 300px of scroll.
 const STICKY_CTA_SCROLL_THRESHOLD = 300;
 
@@ -23,15 +27,18 @@ export default function WhatsAppFloatingButton() {
   );
   useThrottledScroll(handleScroll);
 
-  // Hide on admin/CRM pages
-  if (location.startsWith("/admin") || location.startsWith("/crm")) {
+  const segments = location.split("/").filter(Boolean);
+
+  // Hide on admin/CRM pages and on the booking wizard
+  if (
+    location.startsWith("/admin") ||
+    location.startsWith("/crm") ||
+    segments.some((segment) => BOOKING_SLUGS.has(segment))
+  ) {
     return null;
   }
 
-  const isBoatDetailPage = location
-    .split("/")
-    .filter(Boolean)
-    .some((segment) => BOAT_DETAIL_SLUGS.has(segment));
+  const isBoatDetailPage = segments.some((segment) => BOAT_DETAIL_SLUGS.has(segment));
 
   // On boat detail pages the mobile sticky CTA already includes a WhatsApp
   // button, so hide the FAB on mobile while that bar is visible.

@@ -85,3 +85,31 @@
 - **Bug real de accesibilidad (arreglado)**: el botón de avance móvil llevaba `aria-label="Siguiente: …"` fijo aunque el texto visible fuera "Continuar sin coberturas" (`BookingWizardMobile.tsx:365`) — incumplía WCAG 2.5.3 (label in name: control por voz roto) y hacía que cualquier walker por rol accesible clicara "Siguiente" sin saber que abría el diálogo. Fix: el aria-label ahora empieza por `nextLabel`. El árbol desktop no tenía aria-label (nombre = texto visible), estaba bien.
 
 Resultado del paso 6 (390 táctil y 1280): campos `fullname/phone/email` a 46px de alto y 16px de fuente (sin zoom iOS), sin desbordes. Menores nuevos para la lista P2/P3: botón "Editar" del resumen 71×26, chip "Fianza reducida" 326×32, flecha "Atrás" 42×44 (borderline), y el FAB de WhatsApp vuelve a tapar la barra de total (mismo P2 #8). El diálogo de aviso de garantía en sí está limpio (solo la barra-resumen de 36px ya conocida). El CTA final es "Pedir por WhatsApp" (no se pulsó: freno anti-submit).
+
+## Addendum 2 (2026-08-06, noche): P2 aplicados y re-verificados
+
+Los 8 P2 (más los menores del paso 6) están aplicados y re-medidos con el mismo detector. Base de todo: variante `pointer-coarse:` nueva en `tailwind.config.ts` (`@media (pointer: coarse)`).
+
+- **#4 recortes a 360**: paginación del blog con `flex-wrap`; badges de la card de snorkel con `flex-wrap`; el "breadcrumb" era en realidad la tira de perfiles del autor (`AuthorByline`, anchors adyacentes sin espacio = tira inrompible) → `inline-block`. Re-medido: 0 desbordes de página en las 3 plantillas.
+- **#5 nav iPad**: enlaces del nav de escritorio a 44px con `pointer-coarse:py-3`; logo con `pointer-coarse:p-1.5 -m-1.5`. Re-medido @1024: los 8 enlaces a 44.
+- **#6 zoom iPad**: la media query de los 16px pasa de `max-width: 767px` a `..., (pointer: coarse)`. Re-medido @820: 0 campos < 16px.
+- **#7 familia de CTAs de texto**: ~85 anchors en 20 archivos (cross-links de categoría/ubicación/actividad, explore-links del home — que eran el "TOC en DE" —, rating del Hero, "Ver todas las opiniones/preguntas", "Ver cómo funcionan" ×2, ReducedDepositLink, teléfono y email de ContactSection, logo y email del footer) con `pointer-coarse:py-3`/`py-3.5` (según line-height; py-2.5 se queda en 40px y NO pasa el umbral de 43.5). Re-medido: home ES/DE, precios, barcos-sin-licencia LIMPIOS (solo skip-link, por diseño).
+- **#8 FAB**: oculto en la ruta booking (`ROUTE_SLUGS.booking`, mismo patrón que boat-detail); el wizard ya tiene su propio CTA de WhatsApp.
+- **#9 + menores paso 6**: "Prefiero escribir por WhatsApp" del modal jetski a 44 (`py-3`); "Editar" con `pointer-coarse:min-h-11`; upsell de fianza con `min-h-11`; flecha Atrás con `min-w-11`. Paso 6 re-medido: solo queda la barra-resumen 390×36 (P3 borderline).
+- **#10 CRM**: `ui/tabs.tsx` con `pointer-coarse:min-h-11` en TabsTrigger (arregla autopilot/shop/mantenimiento de una vez); chips de calendario/reservas/clientes con `pointer-coarse:min-h-11`; selector de idioma por fila de reservas (`SelectTrigger h-8`) con `pointer-coarse:h-11`; tel/mailto y "Agregar notas" de Peticiones a ≥44. Re-medido: lo que queda son los 36-41px ya catalogados P3 (Select triggers de filtro, paginación, input de búsqueda 40px).
+- **#11 cookies**: en la ruta booking el banner se ancla ARRIBA (`top-0 border-b pt-safe`, tapa la barra de progreso informativa) en vez de abajo (donde robaba el tap del "Siguiente"). Verificado: con el banner vivo, "Siguiente" avanza.
+
+**Hallazgo latente nuevo (preexistente, NO de esta tanda)**: el nav flotante (`nav.fixed top-3 left-3 right-3`) se ensancha a ~482px a 390 de forma intermitente (min-content interno), arrastrando el `scrollWidth` del documento a +116. Verificado idéntico en producción sin los P2. Sin impacto visual: es `fixed` (no genera scroll real) y va recortado por el `overflow-x: hidden`. Si algún día se quita ese clip global, mirar aquí primero.
+
+tsc tras los P2: los mismos 4 errores preexistentes (LicenseStatusPill, admin-analytics, enqueueBlogPost, schedulerService), cero nuevos.
+
+## Addendum 3 (2026-08-06, noche): P3 aplicados — el detector queda a CERO
+
+- **X del toast**: `pointer-coarse:opacity-100` + `p-3.5` (44×44) — en iOS no hay hover, ahora es visible y pulsable. Desactivada la bomba de relojería documentada.
+- **Borderline 36-42 → 44 en táctil**: barra-resumen del wizard (`PriceSummaryBar`), radios del modal jetski, `AccordionTrigger` y `nav_button` del calendario (fix global en `ui/accordion.tsx` y `ui/calendar.tsx`), `SelectTrigger` de `ui/select.tsx` (h-9 → min-h-11 táctil, cubre CRM y pública), `PaginationControls` del CRM, paginación del blog, input de búsqueda de Peticiones. Los dos rezagados de la ficha de barco (chip de rating de `BoatHeroChips`, cross-link de categoría) también.
+- **CTA "Reservar" +4..8px: FALSO POSITIVO confirmado con medida.** El texto mide 58px y el hueco interior es exactamente 24+58+24 = 106; el `scrollWidth` de 109-114 es un artefacto de redondeo de Chromium en inline-flex. Sin desborde real, nada que arreglar. No perseguir en próximas pasadas.
+- **TOC del blog**: `100vh` → `100dvh`.
+- **Hueco de tarjetas-regalo CERRADO**: el input de importe personalizado aparece a 44px/16px y el resto del formulario a 44-50px/16px. Sin hallazgos.
+- **Verificación final** (pintado afirmado por celda tras un falso-limpio por dev server caído — regla de la skill: un 0 sin `els` contados no vale): ficha de barco, home ES/DE, precios, barcos-sin-licencia, tarjetas-regalo, wizard paso 6, CRM bookings/inquiries/discounts → **0 touch-targets, 0 desbordes** (solo skip-link y los FP de vh catalogados). tsc: los mismos 4 preexistentes.
+
+**Quedan sin auditar (bloqueados por datos, no por método)**: lightbox de galería (`/api/gallery` vacío) y `/es/destinos/:slug` (sin seed). Auditarlos cuando haya contenido.

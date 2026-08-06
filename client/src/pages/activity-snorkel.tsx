@@ -296,7 +296,7 @@ export default function ActivitySnorkelPage() {
             {recommendedBoats.map((boat) => (
               <div key={boat.name} className="border rounded-lg p-6">
                 <h3 className="font-heading font-semibold text-lg mb-2">{translateBoatText(boat.name, language)}</h3>
-                <div className="flex gap-3 mb-3">
+                <div className="flex flex-wrap gap-3 mb-3">
                   <Badge variant="outline">
                     <Clock className="w-3 h-3 mr-1" />
                     {boat.duration}
@@ -341,23 +341,23 @@ export default function ActivitySnorkelPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading font-semibold text-lg mb-4">{s?.exploreTitle ?? "Explora más actividades y servicios"}</h3>
           <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s?.linkNoLicense ?? "Barcos sin licencia"}
             </a>
-            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s?.linkLicensed ?? "Barcos con licencia"}
             </a>
-            <a href={localizedPath("activityFamilies")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("activityFamilies")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s?.linkFamilies ?? "Barcos para familias"}
             </a>
-            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s?.linkPrices ?? "Precios y tarifas"}
             </a>
-            <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
+            <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {s?.linkRoutes ?? "Rutas marítimas"}
             </a>

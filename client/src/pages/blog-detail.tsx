@@ -156,7 +156,7 @@ function TableOfContents({ items, title }: { items: TocItem[]; title: string }) 
 
       {/* Desktop: sticky sidebar */}
       <aside className="hidden lg:block w-64 shrink-0">
-        <nav className="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto">
+        <nav className="sticky top-28 max-h-[calc(100dvh-8rem)] overflow-y-auto">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
             <List className="w-3.5 h-3.5" />
             {title}

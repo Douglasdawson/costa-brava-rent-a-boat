@@ -624,7 +624,7 @@ export default function PricingPage() {
           <div className="flex flex-wrap gap-x-6 gap-y-3 justify-center">
             <a
               href={localizedPath("categoryLicenseFree")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
               data-testid="pricing-link-license-free"
             >
               <ChevronRight className="w-4 h-4" />
@@ -632,7 +632,7 @@ export default function PricingPage() {
             </a>
             <a
               href={localizedPath("categoryLicensed")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
               data-testid="pricing-link-licensed"
             >
               <ChevronRight className="w-4 h-4" />
@@ -640,7 +640,7 @@ export default function PricingPage() {
             </a>
             <a
               href={localizedPath("categoryCaptained")}
-              className="text-primary hover:underline flex items-center gap-1"
+              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
               data-testid="pricing-link-captained"
             >
               <ChevronRight className="w-4 h-4" />

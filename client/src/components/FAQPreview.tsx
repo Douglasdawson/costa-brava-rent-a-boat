@@ -87,7 +87,7 @@ export default function FAQPreview() {
         <div className="text-center mt-8">
           <a
             href={localizedPath("faq")}
-            className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline"
+            className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline pointer-coarse:py-3 pointer-coarse:-my-3"
           >
             {viewAll}
             <ArrowRight className="w-4 h-4" />

@@ -85,7 +85,7 @@ export default function Footer() {
                 e.preventDefault();
                 handleLogoClick();
               }}
-              className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+              className="flex items-center space-x-2 mb-4 pointer-coarse:py-1 hover:opacity-80 transition-opacity rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
               data-testid="footer-logo-button"
               aria-label={t.a11y.goToHomePage}
             >

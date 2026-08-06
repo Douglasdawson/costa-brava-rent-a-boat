@@ -362,7 +362,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             <Button
               type="button"
               onClick={onNext}
-              aria-label={`${props.t.booking.next}: ${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} ${totalSteps})`}
+              aria-label={`${nextLabel}: ${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} ${totalSteps})`}
               className="flex-1 text-sm font-semibold active:scale-95 transition-transform"
             >
               {nextLabel}

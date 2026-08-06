@@ -329,7 +329,7 @@ export function AdminLayout({
         </aside>
       </div>
 
-      <div className="flex h-[calc(100vh-var(--trial-banner-h,0px))]">
+      <div className="flex h-[calc(100dvh-var(--trial-banner-h,0px))]">
         {/* Desktop sidebar */}
         <aside className="hidden md:flex md:flex-col md:w-56 bg-card border-r border-border h-full sticky top-0 flex-shrink-0">
           {/* Sidebar header */}

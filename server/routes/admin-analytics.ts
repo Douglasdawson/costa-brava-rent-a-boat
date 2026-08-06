@@ -36,7 +36,7 @@ export function registerAnalyticsRoutes(app: Express) {
       const mailKey = process.env.RESEND_API_KEY;
       const keyPrefix = mailKey ? mailKey.slice(0, 6) : null;
       const fromEmail = process.env.SENDGRID_FROM_EMAIL || "info@costabravarentaboat.com";
-      const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "info@costabravarentaboat.com";
+      const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "costabravarentaboat@gmail.com";
 
       // Attempt a real send and capture the actual error (instead of fire-and-forget swallow)
       let testSendResult: { ok: boolean; error?: string; response?: number } = { ok: false };

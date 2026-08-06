@@ -1048,7 +1048,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   }
 
   // Owner notification (fire-and-forget)
-  const ownerEmail = process.env.OWNER_EMAIL || "info@costabravarentaboat.com";
+  const ownerEmail = process.env.OWNER_EMAIL || "costabravarentaboat@gmail.com";
   const ownerContent = `
     <h2 style="color:#dc2626;">Cancelación de reserva</h2>
     <p>Cliente: <strong>${booking.customerName} ${booking.customerSurname}</strong></p>
@@ -1595,7 +1595,13 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
 // Copy is intentionally hardcoded in Spanish for v1. i18n added in next pass
 // once the flow is validated in production.
 
-const ADMIN_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "info@costabravarentaboat.com";
+// ⚠ El buzón interno NO puede estar en costabravarentaboat.com. Cloudflare Email
+// Routing DESCARTA en silencio el correo cuyo remitente pertenece al dominio que
+// enruta (anti-bucle), y estos avisos salen desde info@: irían de info@ a info@ y
+// se perderían sin dejar rastro — Resend los acepta, el log dice "sent" y nunca
+// llegan. Comprobado el 2026-08-06 con dos envíos idénticos: desde otro dominio
+// llega, desde el propio no. Aquí va una dirección FUERA del dominio.
+const ADMIN_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "costabravarentaboat@gmail.com";
 
 /**
  * Customer-facing email after submitting a booking request.
@@ -1664,7 +1670,11 @@ export async function sendBookingRequestReceived(data: BookingEmailData): Promis
     await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Iván — Costa Brava Rent a Boat" },
-      replyTo: { email: ADMIN_NOTIFICATION_EMAIL, name: "Ivan - Costa Brava Rent a Boat" },
+      // Este email lo recibe el CLIENTE: aquí sí va la dirección de marca. Un
+      // cliente que responde es remitente externo, así que el reenvío de
+      // Cloudflare lo entrega — al revés que los avisos internos, que salen de
+      // info@ y por eso no pueden ir dirigidos al propio dominio.
+      replyTo: { email: "info@costabravarentaboat.com", name: "Ivan - Costa Brava Rent a Boat" },
       subject: `Hemos recibido tu solicitud - ${data.boat.name} - ${formatDate(booking.startTime)}`,
       html: emailWrapper(content),
     }));
@@ -1979,7 +1989,7 @@ export async function sendShopOrderOwnerNotification(
     return { success: false, error: "SendGrid not configured" };
   }
 
-  const ownerEmail = process.env.OWNER_EMAIL || "info@costabravarentaboat.com";
+  const ownerEmail = process.env.OWNER_EMAIL || "costabravarentaboat@gmail.com";
   const address = order.shippingAddress as { address?: { line1?: string; line2?: string; postal_code?: string; city?: string } } | null;
   const addressLine = address?.address
     ? [address.address.line1, address.address.line2, address.address.postal_code, address.address.city].filter(Boolean).join(", ")

@@ -33,7 +33,7 @@ function maskFrom(from: string): string {
  */
 function buildIntegrationsReport() {
   const sendgridConfigured = !!process.env.RESEND_API_KEY;
-  const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "info@costabravarentaboat.com";
+  const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "costabravarentaboat@gmail.com";
 
   const twilioConfigured = isTwilioConfigured();
   const whatsappFrom = getWhatsAppFromNumber();

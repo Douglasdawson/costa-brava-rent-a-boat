@@ -1595,12 +1595,15 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
 // Copy is intentionally hardcoded in Spanish for v1. i18n added in next pass
 // once the flow is validated in production.
 
-// ⚠ El buzón interno NO puede estar en costabravarentaboat.com. Cloudflare Email
-// Routing DESCARTA en silencio el correo cuyo remitente pertenece al dominio que
-// enruta (anti-bucle), y estos avisos salen desde info@: irían de info@ a info@ y
-// se perderían sin dejar rastro — Resend los acepta, el log dice "sent" y nunca
-// llegan. Comprobado el 2026-08-06 con dos envíos idénticos: desde otro dominio
-// llega, desde el propio no. Aquí va una dirección FUERA del dominio.
+// ⚠ El buzón interno NO va en costabravarentaboat.com, porque ese dominio tiene
+// el correo REENVIADO (Cloudflare Email Routing) y el reenvío pierde mensajes.
+// El 2026-08-06 estos avisos se dirigieron a info@ y no llegó NINGUNO en media
+// hora — solicitudes de clientes perdidas, con Resend aceptando y el log
+// diciendo "sent". Al apuntar aquí una dirección directa, empezaron a llegar
+// todos. Se intentó acotar la causa (¿mismo dominio? ¿misma dirección?) y
+// ninguna hipótesis se sostuvo: el mismo patrón entregaba unas veces sí y otras
+// no. Así que la regla no es teórica sino práctica: lo que solo llega una vez
+// —un lead— no pasa por el reenvío. Una dirección FUERA del dominio, directa.
 const ADMIN_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "costabravarentaboat@gmail.com";
 
 /**

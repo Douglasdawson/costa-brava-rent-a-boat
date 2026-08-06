@@ -53,12 +53,9 @@ import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import type { WhatsappInquiry, Booking } from "@shared/schema";
+import type { WhatsappInquiry } from "@shared/schema";
 import { PaginationControls } from "./shared/PaginationControls";
 import type { PaginatedResponse } from "./types";
-import { BookingDetailsModal } from "./BookingDetailsModal";
-import { calculatePricingBreakdown, type Duration } from "@shared/pricing";
-import { parseMadridLocal } from "@/lib/madridTz";
 import { findLicense, type LicenseVerificationStatus, type SpanishLicenseLevel } from "@shared/nauticalLicenseRules";
 import { getCountryDisplayName } from "@/utils/license-countries";
 
@@ -102,85 +99,10 @@ const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
   lost: { label: "Perdido", color: "bg-red-100 text-red-800" },
 };
 
-const VALID_DURATIONS: Duration[] = ["1h", "2h", "3h", "4h", "6h", "8h"];
-
-// Inquiries don't capture nationality, but they do carry the customer's language.
-// Use it to pre-fill an editable, sensible default so converting an inquiry doesn't
-// dead-end on the required nationality field. Values match the canonical demonyms in
-// client/src/data/nationalities.ts; the admin can correct it in one click.
-const LANGUAGE_TO_NATIONALITY: Record<string, string> = {
-  es: "Española",
-  ca: "Española",
-  fr: "Francesa",
-  de: "Alemana",
-  nl: "Holandesa",
-  it: "Italiana",
-  ru: "Rusa",
-  en: "Británica",
-};
-
-// Builds the BookingDetailsModal prefill payload from a WhatsApp inquiry.
-// Parses text date/time into ISO timestamps and pre-calculates pricing via the
-// shared pricing helper so the admin only has to fill the customer nationality.
-function buildPrefillFromInquiry(inq: WhatsappInquiry) {
-  // Parse bookingDate (YYYY-MM-DD) + preferredTime (HH:MM, defaults to 10:00)
-  const timeStr = (inq.preferredTime && /^\d{1,2}:\d{2}$/.test(inq.preferredTime))
-    ? inq.preferredTime.padStart(5, "0")
-    : "10:00";
-  const startDate = parseMadridLocal(`${inq.bookingDate}T${timeStr}:00`);
-  // If date parsing failed (invalid format), fall back to today at 10:00 Madrid
-  const safeStart = isNaN(startDate.getTime())
-    ? parseMadridLocal(new Date().toISOString().slice(0, 10) + "T10:00:00")
-    : startDate;
-
-  // Parse duration ("4h" → "4h" Duration; fallback to "2h")
-  const rawDuration = (inq.duration || "").toLowerCase().trim();
-  const duration: Duration = VALID_DURATIONS.includes(rawDuration as Duration)
-    ? (rawDuration as Duration)
-    : "2h";
-  const totalHours = parseInt(duration.replace("h", ""), 10);
-  const endDate = new Date(safeStart.getTime() + totalHours * 60 * 60 * 1000);
-
-  // Pre-calculate pricing (may throw if boat id is unknown — fall back to zeros)
-  let subtotal = "0";
-  let extrasTotal = "0";
-  let deposit = "0";
-  let totalAmount = "0";
-  try {
-    const extras = Array.isArray(inq.extras) ? (inq.extras as string[]) : [];
-    const packs = inq.packId ? [inq.packId] : [];
-    const pricing = calculatePricingBreakdown(inq.boatId, safeStart, duration, extras, packs);
-    subtotal = String(pricing.basePrice);
-    extrasTotal = String(pricing.extrasPrice);
-    deposit = String(pricing.deposit);
-    totalAmount = String(pricing.subtotal); // base + extras (no deposit) as the charge
-  } catch {
-    // Unknown boat or pricing error — admin will enter manually
-  }
-
-  const receivedDate = inq.createdAt
-    ? new Date(inq.createdAt).toLocaleDateString("es-ES")
-    : "";
-  const notes = `Convertido desde petición WhatsApp #${inq.id}${receivedDate ? ` recibida el ${receivedDate}` : ""}.`;
-
-  return {
-    boatId: inq.boatId,
-    startTime: safeStart.toISOString(),
-    endTime: endDate.toISOString(),
-    totalHours,
-    customerName: inq.firstName,
-    customerSurname: inq.lastName,
-    customerPhone: `${inq.phonePrefix}${inq.phoneNumber}`.replace(/\s+/g, ""),
-    customerEmail: inq.email ?? "",
-    customerNationality: LANGUAGE_TO_NATIONALITY[(inq.language || "").toLowerCase()] ?? "",
-    numberOfPeople: inq.numberOfPeople,
-    subtotal,
-    extrasTotal,
-    deposit,
-    totalAmount,
-    notes,
-  };
-}
+// La conversion en reserva vive en el CRM DAMAR (pagina "Peticiones"), que crea
+// el alquiler REAL en rentals_real y marca la peticion como convertida aqui via
+// funnel-inquiries. Este panel solo refleja el estado: crear reservas desde aqui
+// llenaba la tabla `bookings` de filas que nadie mira (2026-08-06).
 
 interface InquiriesTabProps {
   adminToken: string;
@@ -196,7 +118,6 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [detailInquiry, setDetailInquiry] = useState<WhatsappInquiry | null>(null);
   const [deleteInquiryId, setDeleteInquiryId] = useState<string | null>(null);
-  const [convertingInquiry, setConvertingInquiry] = useState<WhatsappInquiry | null>(null);
 
   const queryClient = useQueryClient();
 
@@ -242,15 +163,8 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
     }
   }, [adminToken, queryClient]);
 
-  // Intercept status changes: if the new status is "converted", open the booking
-  // creation modal prefilled from the inquiry instead of PATCHing immediately.
-  // The PATCH only fires after the booking is successfully created.
   const handleStatusChange = useCallback((inq: WhatsappInquiry, newStatus: string) => {
-    if (newStatus === "converted") {
-      if (inq.status === "converted") return; // no-op if already converted
-      setConvertingInquiry(inq);
-      return;
-    }
+    if (newStatus === inq.status) return;
     updateInquiry(inq.id, { status: newStatus });
   }, [updateInquiry]);
 
@@ -773,9 +687,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                       value={inq.status}
                       onValueChange={(v) => {
                         handleStatusChange(inq, v);
-                        if (v !== "converted") {
-                          setDetailInquiry({ ...inq, status: v });
-                        }
+                        setDetailInquiry({ ...inq, status: v });
                       }}
                     >
                       <SelectTrigger className="flex-1">
@@ -822,31 +734,6 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* Booking creation modal — opened when admin marks an inquiry as "convertido" */}
-      {convertingInquiry && (
-        <BookingDetailsModal
-          open={!!convertingInquiry}
-          onOpenChange={(open) => { if (!open) setConvertingInquiry(null); }}
-          booking={null}
-          isEditing={false}
-          isCreating={true}
-          prefillData={buildPrefillFromInquiry(convertingInquiry)}
-          adminToken={adminToken}
-          onEditStart={() => {}}
-          onEditCancel={() => setConvertingInquiry(null)}
-          onOpenWhatsApp={onOpenWhatsApp}
-          onCreateSuccess={(_createdBooking: Booking) => {
-            const inq = convertingInquiry;
-            if (inq) {
-              updateInquiry(inq.id, { status: "converted" });
-              if (detailInquiry?.id === inq.id) {
-                setDetailInquiry({ ...inq, status: "converted" });
-              }
-            }
-            setConvertingInquiry(null);
-          }}
-        />
-      )}
     </div>
   );
 }

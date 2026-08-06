@@ -20,7 +20,12 @@ const LEAD_DAYS = 7;
 
 // Both fleets are priced on Click&Boat and both need the weekday split.
 const LICENSED = ["Mingolla Brava 19", "Trimarchi 57S", "Pacific Craft 625"];
-const UNLICENSED = ["Solar 450", "Remus 450", "Astec 480", "Astec 400"];
+const UNLICENSED = [
+  "Solar 450",
+  "Remus 450",
+  "Astec 480",
+  "Astec 400 (oculto en C&B desde 08-2026; si se reactiva, crearle antes periodos de temporada)",
+];
 
 /** Civil date in Madrid, so the season and the day-of-month are the local ones. */
 function madridDateParts(date: Date): { year: number; month: number; day: number } {
@@ -71,7 +76,13 @@ export function buildPricingReminder(date: Date): PricingReminder | null {
     ? "AVISO IMPORTANTE: arranca la temporada. Los periodos de Click&Boat se guardan sin año, " +
       "así que el troceado entre semana / fin de semana de la temporada pasada ha quedado desplazado: " +
       "los bloques que eran de lunes a viernes ahora caen en fines de semana y se cobraría el precio " +
-      "equivocado. Hay que recalcularlo entero antes de aceptar reservas.\n\n"
+      "equivocado. Hay que recalcularlo entero antes de aceptar reservas.\n\n" +
+      "Cómo: fija primero los precios de la temporada en la web y luego pídele a Claude " +
+      "\"regenera el troceo de Click&Boat con paridad web\" (skill precios-clickandboat). " +
+      "Reconstruye los bloques L-V/finde con el calendario del año nuevo a precio web exacto " +
+      "(el contrato prohíbe cobrar más caro en la plataforma) y verifica al releer que no " +
+      "queden huecos ni solapes. Revisa también si la promoción de último minuto configurada " +
+      "el año pasado sigue teniendo sentido.\n\n"
     : "";
 
   return {

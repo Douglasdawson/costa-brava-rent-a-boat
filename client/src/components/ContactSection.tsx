@@ -7,7 +7,6 @@ import { MapPin, Phone, Mail, Clock, Camera, Star, ExternalLink, Waves } from "l
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Link } from "wouter";
 import { trackPhoneClick, trackWhatsAppClick } from "@/utils/analytics";
-import { BUSINESS_ADDRESS_FORMATTED } from "@shared/businessProfile";
 
 export default function ContactSection() {
   const t = useTranslations();
@@ -46,7 +45,7 @@ export default function ContactSection() {
                   </h3>
                   <a
                     href="tel:+34611500372"
-                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-sm pointer-coarse:py-3"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-sm"
                     data-testid="phone-link"
                     aria-label={`${t.a11y.callPhone} +34 611 500 372`}
                     onClick={() => trackPhoneClick()}
@@ -65,13 +64,12 @@ export default function ContactSection() {
                   </h3>
                   <a
                     href="mailto:info@costabravarentaboat.com"
-                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-xs sm:text-sm break-all pointer-coarse:py-3.5"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-xs break-all"
                     data-testid="email-link"
                     aria-label={`${t.a11y.sendEmail} info@costabravarentaboat.com`}
                   >
                     info@costabravarentaboat.com
                   </a>
-                  <p className="text-xs text-muted-foreground">{t.contact.emailResponse}</p>
                 </div>
 
                 {/* Location */}
@@ -90,13 +88,7 @@ export default function ContactSection() {
                     data-testid="location-link"
                     aria-label={`${t.a11y.viewOnMap}: Puerto de Blanes`}
                   >
-                    <span className="block mb-1 text-sm">Puerto de Blanes</span>
-                    <span className="block text-xs text-muted-foreground hover:text-primary/80">
-                      {BUSINESS_ADDRESS_FORMATTED}
-                    </span>
-                    <span className="block text-xs text-muted-foreground hover:text-primary/80">
-                      {t.contact.locationCity}
-                    </span>
+                    <span className="block text-sm">Puerto de Blanes</span>
                   </a>
                 </div>
 
@@ -108,8 +100,7 @@ export default function ContactSection() {
                   <h3 className="font-medium text-foreground mb-2 text-sm">
                     {t.contact.seasonLabel}
                   </h3>
-                  <p className="text-muted-foreground mb-2 text-sm">{t.contact.seasonMonths}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{t.contact.flexibleHours}</p>
+                  <p className="text-muted-foreground text-sm">{t.contact.seasonMonths}</p>
                 </div>
               </div>
 

@@ -102,23 +102,23 @@ export default function FeaturesSection() {
             {t.features.exploreMore || 'Explora nuestros servicios'}
           </h3>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
-            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base pointer-coarse:py-3">
+            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base whitespace-nowrap pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {t.features.exploreLinks?.licenseFree || 'Barcos sin licencia'}
             </a>
-            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base pointer-coarse:py-3">
+            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base whitespace-nowrap pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {t.features.exploreLinks?.licensed || 'Barcos con licencia'}
             </a>
-            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base pointer-coarse:py-3">
+            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base whitespace-nowrap pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {t.features.exploreLinks?.pricing || 'Precios y tarifas'}
             </a>
-            <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base pointer-coarse:py-3">
+            <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base whitespace-nowrap pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {t.features.exploreLinks?.costaBrava || 'Alquiler barcos Costa Brava'}
             </a>
-            <a href={localizedPath("blog")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base pointer-coarse:py-3">
+            <a href={localizedPath("blog")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base whitespace-nowrap pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {t.features.exploreLinks?.blog || 'Blog de navegación'}
             </a>

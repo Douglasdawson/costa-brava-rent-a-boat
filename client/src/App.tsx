@@ -26,7 +26,6 @@ const NeverSailedSection = lazy(() => import("@/components/NeverSailedSection"))
 const RangeFromBlanesSection = lazy(() => import("@/components/RangeFromBlanesSection"));
 const GiftCardBanner = lazy(() => import("@/components/GiftCardBanner"));
 const LicenseComparisonSection = lazy(() => import("@/components/LicenseComparisonSection"));
-const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const GuaranteesSection = lazy(() => import("@/components/GuaranteesSection"));
 const HomepageLocationsSection = lazy(() => import("@/components/HomepageLocationsSection"));
@@ -178,11 +177,6 @@ function HomePage() {
             The band answers it before the reasons-to-choose-us block. */}
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <GuaranteesSection />
-        </Suspense>
-        {/* The reviews land right after the guarantees: the promise is made and
-            then other customers vouch for it. */}
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <ReviewsSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <RangeFromBlanesSection variant="home" />

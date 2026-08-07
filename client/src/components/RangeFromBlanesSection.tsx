@@ -66,7 +66,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
 
         {/* Sin licencia — timeline */}
         <div className="mb-12">
-          <h3 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+          <h3 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-6 flex items-center justify-center gap-2">
             <Anchor className="w-5 h-5 text-green-600" />
             {r?.sinLicenciaTitle}
           </h3>
@@ -108,14 +108,14 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
 
         {/* Con licencia — extension */}
         <div className="mb-10">
-          <h3 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3 flex items-center gap-2">
+          <h3 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3 flex items-center justify-center gap-2">
             <Compass className="w-5 h-5 text-primary" />
             {r?.conLicenciaTitle}
           </h3>
           <p className="text-muted-foreground text-sm sm:text-base mb-4 leading-relaxed">
             {r?.conLicenciaIntro}
           </p>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-3xl">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-3xl mx-auto">
             {[
               r?.ext?.lloretCenter,
               r?.ext?.canyelles,

@@ -6,6 +6,7 @@ import { getStripe } from "./payments";
 import { z } from "zod";
 import { logger } from "../lib/logger";
 import { validatePromoCode } from "../lib/discountValidation";
+import { formatPersonName } from "@shared/constants";
 
 const validateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -26,9 +27,9 @@ function generateGiftCardCode(): string {
 
 const purchaseSchema = z.object({
   amount: z.number().min(10).max(1000),
-  purchaserName: z.string().min(1).max(100),
+  purchaserName: z.string().min(1).max(100).transform(formatPersonName),
   purchaserEmail: z.string().email(),
-  recipientName: z.string().min(1).max(100),
+  recipientName: z.string().min(1).max(100).transform(formatPersonName),
   recipientEmail: z.string().email(),
   personalMessage: z.string().max(500).optional(),
 });

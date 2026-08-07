@@ -11,7 +11,7 @@ import { getStripe } from "./payments";
 import { logger } from "../lib/logger";
 import { validatePromoCode, calculateDiscountAmount } from "../lib/discountValidation";
 import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
-import { OPERATING_START_HOUR, OPERATING_END_HOUR } from "@shared/constants";
+import { OPERATING_START_HOUR, OPERATING_END_HOUR, formatPersonName } from "@shared/constants";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
 
 const isoDateString = z
@@ -286,8 +286,8 @@ export function registerBookingRoutes(app: Express) {
         // ("Hold Temporal"/"Sistema"/"N/A") because /api/quote doesn't accept
         // customer info. Fill in the real values now so the email and admin
         // notification have proper data.
-        customerName: z.string().min(1, "Nombre requerido").max(80),
-        customerSurname: z.string().min(1, "Apellidos requeridos").max(80),
+        customerName: z.string().min(1, "Nombre requerido").max(80).transform(formatPersonName),
+        customerSurname: z.string().min(1, "Apellidos requeridos").max(80).transform(formatPersonName),
         customerEmail: z.string().email("Email inválido").max(160),
         customerPhone: z.string().min(4).max(40),
         customerNationality: z.string().min(1).max(40),

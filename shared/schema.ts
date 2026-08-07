@@ -20,6 +20,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
+import { formatPersonName } from "./constants";
 
 // ===== TENANTS (Multi-tenant SaaS) =====
 
@@ -1733,6 +1734,9 @@ export const insertWhatsappInquirySchema = createInsertSchema(whatsappInquiries)
     createdAt: true,
   })
   .extend({
+    // Customers type names in any casing ("Raul RIVELLES GARCIA"); store them normalized.
+    firstName: z.string().min(1).max(120).transform(formatPersonName),
+    lastName: z.string().min(1).max(120).transform(formatPersonName),
     notes: z.string().max(5000).optional().or(z.null()),
     // Accept boatIds explicitly (1..2). When omitted, the storage layer derives [boatId].
     boatIds: z.array(z.string().min(1)).min(1).max(2).optional(),

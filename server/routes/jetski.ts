@@ -4,6 +4,7 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { isJetSkiProduct, getJetSkiProduct } from "@shared/jetskiProducts";
 import type { InsertBooking } from "@shared/schema";
+import { formatPersonName } from "@shared/constants";
 import { logger } from "../lib/logger";
 
 // Jet ski requests are resold partner leads. They are logged as inquiries via
@@ -26,8 +27,8 @@ const schema = z.object({
   slotId: z.string().min(1).max(32),
   bookingDate: z.string().max(40).optional().nullable(), // YYYY-MM-DD, "" or "Flexible"
   numberOfPeople: z.coerce.number().int().min(1).max(2),
-  firstName: z.string().min(1).max(120),
-  lastName: z.string().max(120).optional().nullable(),
+  firstName: z.string().min(1).max(120).transform(formatPersonName),
+  lastName: z.string().max(120).transform(formatPersonName).optional().nullable(),
   phonePrefix: z.string().max(8),
   phoneNumber: z.string().min(3).max(32),
   email: z.string().max(160).optional().nullable(),

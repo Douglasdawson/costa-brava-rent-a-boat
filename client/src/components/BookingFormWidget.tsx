@@ -1632,6 +1632,16 @@ export default function BookingFormWidget({
       }
     }
 
+    // Mirrors clause 7 of the rental terms (reschedule, else 12-month voucher,
+    // no cash refund) and must never read as harsher than that clause. The
+    // step-5 gate guarantees the warning dialog was acknowledged before this
+    // message can exist without the guarantee.
+    const weatherDeclinedBlock = !weatherGuarantee
+      ? isSpanish
+        ? `\n\n✋ *Sin garantía de mal tiempo*\n${separator}\nAcepto que la paga y señal no se devuelve en dinero: si el mal tiempo impide salir, se cambia la fecha sin coste o, si no acordamos una, recibo un bono válido 12 meses.`
+        : `\n\n✋ *No weather guarantee*\n${separator}\nI accept that the advance payment is not refunded in cash: if bad weather prevents sailing, the date is changed free of charge or, if we cannot agree on one, I receive a voucher valid for 12 months.`
+      : "";
+
     if (isSpanish) {
       return `⛵ *NUEVA PETICIÓN DE RESERVA*
 
@@ -1651,7 +1661,7 @@ Nº de Personas: ${numberOfPeople}
 Temporada: ${getSeasonLabel()}
 Precio base: ${price ? price + "€" : "Consultar"}${extrasBlock ? `\n\n🎒 *Extras*\n${separator}` + extrasBlock : ""}${codeBlock}
 ${totalPrice ? `\n💰 *TOTAL: ${totalPrice}€*` : ""}
-Fianza: ${deposit}
+Fianza: ${deposit}${weatherDeclinedBlock}
 
 Quedo a la espera de confirmacion. ¡Gracias!`;
     } else {
@@ -1673,7 +1683,7 @@ Nº of People: ${numberOfPeople}
 Season: ${getSeasonLabel()}
 Base price: ${price ? price + "€" : "Ask"}${extrasBlock ? `\n\n🎒 *Extras*\n${separator}` + extrasBlock : ""}${codeBlock}
 ${totalPrice ? `\n💰 *TOTAL: ${totalPrice}€*` : ""}
-Deposit: ${deposit}
+Deposit: ${deposit}${weatherDeclinedBlock}
 
 Looking forward to confirmation. Thanks!`;
     }

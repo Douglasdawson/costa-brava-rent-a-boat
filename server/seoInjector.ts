@@ -312,11 +312,15 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     // delante (★ + 310) como CTR booster, capacidad real 7 personas (max
     // flota), Año en ogTitle solo (freshness signal en redes). Idioma natural
     // por país, no traducción literal.
+    // es re-espejado 2026-08-07: seo-config llevaba la des-canibalización del
+    // 2026-06-10 ("Sin Licencia" fuera del title) y este bloque seguía en la
+    // versión CTR de mayo — el title del SSR y el del cliente divergían al
+    // hidratar. Regla: STATIC_META espeja seo-config (70€ = baseline runtime).
     es: {
-      title: `Alquiler Barco Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} reseñas · Blanes 70€/h`,
+      title: `Alquiler Barco Costa Brava · desde 70€/h Gasolina Incluida · ★${BUSINESS_RATING_STR} Blanes`,
       description: `Alquila un barco en la Costa Brava desde el Puerto de Blanes: por horas, medio día o día completo. Sin licencia desde 70€/h con gasolina incluida, o con licencia hasta 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva hoy.`,
-      ogTitle: `Alquiler Barco Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes 70€/h`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Alquiler barco Costa Brava sin licencia desde 70€/h, gasolina incluida. Reserva por WhatsApp.`,
+      ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco Costa Brava · ★${BUSINESS_RATING_STR} · Blanes`,
+      ogDescription: `Alquiler de barcos en la Costa Brava desde Blanes. Desde 70€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). 7 calas, snorkel, paddle. Reserva WhatsApp.`,
     },
     en: {
       title: `Costa Brava Boat Rental · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Reviews · Blanes 70€/h`,

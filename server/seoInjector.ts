@@ -331,9 +331,11 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       ogDescription: `Boat rental on the Costa Brava from Blanes. From 70€/h fuel included. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). 7 coves, snorkel, paddle. Book on WhatsApp.`,
     },
     fr: {
-      title: `Location Bateau Blanes · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Avis · Sans Permis 70€/h`,
+      // fr re-espejado 2026-08-07: seo-config decía "Costa Brava" en la cola
+      // (des-canibalización) y aquí seguía "Sans Permis" — el title cambiaba al hidratar.
+      title: `Location Bateau Blanes · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Avis · Costa Brava 70€/h`,
       description: `Louez un bateau sur la Costa Brava depuis Blanes : à l'heure, en demi-journée ou à la journée. Sans permis dès 70€/h avec carburant inclus, ou avec permis jusqu'à 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Réservez aujourd'hui.`,
-      ogTitle: `Location Bateau Blanes ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Sans Permis 70€/h`,
+      ogTitle: `Location Bateau Blanes ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Costa Brava 70€/h`,
       ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location bateau au Port de Blanes, Costa Brava. Sans permis dès 70€/h, carburant inclus. Réservation WhatsApp.`,
     },
     de: {

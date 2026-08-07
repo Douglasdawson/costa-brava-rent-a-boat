@@ -350,11 +350,15 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // 28d con 142 imp. Cambiamos a keyword-first ("Costa Brava Boat Rental"
       // = match exacto a queries top "boat rental costa brava" 135 imp y
       // "rent boat costa brava" 181 imp). Rating + reviews delante.
-      title: `Costa Brava Boat Rental \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Reviews \u00b7 Blanes \u20ac70/h`,
+      // 2026-08-07: armonizado al patr\u00f3n ES de la des-canibalizaci\u00f3n
+      // (2026-06-10) y precio corregido: el \u20ac70/h hardcoded degradaba el
+      // title al hidratar (el SSR reescribe al floor vivo, 75). USP de
+      // gasolina en el title, sin el contador de reviews que caduca.
+      title: `Costa Brava Boat Rental \u00b7 from 75\u20ac/h Fuel Included \u00b7 \u2605${BUSINESS_RATING_STR} Blanes`,
       description: `Rent a boat on the Costa Brava from Blanes: by the hour, half day or full day. License-free from 75\u20ac/h, fuel included, up to 7 people. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book today.`,
       keywords: "costa brava boat rental, boat rental costa brava, rent boat costa brava, boat hire costa brava, costa brava boat hire no license, rent a boat costa brava, license free boat costa brava, boat rental blanes",
-      ogTitle: `Costa Brava Boat Rental ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes \u20ac70/h`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Rent a boat on Costa Brava from Blanes port, license-free from \u20ac70/h, fuel included. Book on WhatsApp.`
+      ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Costa Brava Boat Rental \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 Blanes`,
+      ogDescription: `Boat rental on the Costa Brava from Blanes. From 75\u20ac/h fuel included. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). 7 coves, snorkel, paddle. Book on WhatsApp.`
     },
     booking: {
       title: "Book Your Boat in Blanes | Costa Brava",

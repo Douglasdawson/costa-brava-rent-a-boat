@@ -322,11 +322,13 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco Costa Brava · ★${BUSINESS_RATING_STR} · Blanes`,
       ogDescription: `Alquiler de barcos en la Costa Brava desde Blanes. Desde 70€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). 7 calas, snorkel, paddle. Reserva WhatsApp.`,
     },
+    // en re-espejado 2026-08-07 junto al armonizado de seo-config: el cliente
+    // llevaba €70/h hardcoded (precio muerto) y otro patrón de title.
     en: {
-      title: `Costa Brava Boat Rental · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Reviews · Blanes 70€/h`,
+      title: `Costa Brava Boat Rental · from 70€/h Fuel Included · ★${BUSINESS_RATING_STR} Blanes`,
       description: `Rent a boat on the Costa Brava from Blanes: by the hour, half day or full day. License-free from 70€/h, fuel included, up to 7 people. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book today.`,
-      ogTitle: `Costa Brava Boat Rental ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes 70€/h`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Rent a boat on Costa Brava from Blanes, license-free from 70€/h, fuel included. Book on WhatsApp.`,
+      ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Costa Brava Boat Rental · ★${BUSINESS_RATING_STR} · Blanes`,
+      ogDescription: `Boat rental on the Costa Brava from Blanes. From 70€/h fuel included. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). 7 coves, snorkel, paddle. Book on WhatsApp.`,
     },
     fr: {
       title: `Location Bateau Blanes · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Avis · Sans Permis 70€/h`,

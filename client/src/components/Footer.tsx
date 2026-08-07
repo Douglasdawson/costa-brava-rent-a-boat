@@ -520,9 +520,6 @@ export default function Footer() {
                 <Clock className="w-4 h-4 text-primary-foreground/50 flex-shrink-0 mt-0.5" strokeWidth={2.5} />
                 <div>
                   <p className="text-sm">{t.footer.businessHours}</p>
-                  <p className="text-xs text-primary-foreground/60 mt-0.5">
-                    {t.footer.flexibleHours}
-                  </p>
                 </div>
               </div>
             </div>

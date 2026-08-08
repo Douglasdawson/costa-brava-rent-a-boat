@@ -5,6 +5,7 @@ import { sendTelegramMessage } from "../seo/alerts/telegram";
 import {
   sendCrmSenalClientConfirmation,
   sendCrmSenalOwnerNotification,
+  sendCrmSenalRefundNotification,
 } from "../services/emailService";
 
 // Deposit ("paga y señal") collection bridge for the operational CRM (crmdamar).
@@ -33,6 +34,48 @@ export interface SenalLinkInput {
   clientName: string;
   clientEmail?: string;
   previousLinkId?: string;
+  /** Link rival del mismo alquiler (primero que paga gana): al pagarse uno, el otro se
+      anula y sus sesiones abiertas se expiran. No confundir con previousLinkId, que es
+      una REGENERACIÓN (el anterior muere ya). */
+  siblingLinkId?: string;
+}
+
+/**
+ * Kill switch de un link de señal: lo desactiva Y expira sus checkout sessions abiertas.
+ * Desactivar solo impide crear sesiones nuevas; una pestaña de pago ya abierta seguiría
+ * viva hasta 24h y su cobro costaría la comisión de Stripe del reembolso. Best-effort
+ * por sesión: nunca lanza.
+ */
+export async function deactivateSenalLink(stripe: Stripe, linkId: string): Promise<void> {
+  try {
+    await stripe.paymentLinks.update(linkId, { active: false });
+  } catch (error) {
+    logger.warn("[CrmSenal] Could not deactivate payment link", {
+      linkId,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+  try {
+    const sessions = await stripe.checkout.sessions.list({ payment_link: linkId, status: "open", limit: 100 });
+    for (const session of sessions.data) {
+      try {
+        await stripe.checkout.sessions.expire(session.id);
+      } catch (error) {
+        // Una sesión que justo está completando el pago no se puede expirar: ese caso
+        // lo recoge el auto-reembolso del webhook, aquí solo se registra.
+        logger.warn("[CrmSenal] Could not expire open session", {
+          linkId,
+          sessionId: session.id,
+          error: error instanceof Error ? error.message : String(error),
+        });
+      }
+    }
+  } catch (error) {
+    logger.warn("[CrmSenal] Could not list open sessions for link", {
+      linkId,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
 }
 
 const euros = (cents: number) => `${(cents / 100).toFixed(2).replace(".", ",")} EUR`;
@@ -57,14 +100,7 @@ export async function createSenalPaymentLink(
   input: SenalLinkInput,
 ): Promise<{ linkId: string; url: string }> {
   if (input.previousLinkId) {
-    try {
-      await stripe.paymentLinks.update(input.previousLinkId, { active: false });
-    } catch (error) {
-      logger.warn("[CrmSenal] Could not deactivate previous payment link", {
-        previousLinkId: input.previousLinkId,
-        error: error instanceof Error ? error.message : String(error),
-      });
-    }
+    await deactivateSenalLink(stripe, input.previousLinkId);
   }
 
   const price = await stripe.prices.create({
@@ -88,6 +124,7 @@ export async function createSenalPaymentLink(
       clientEmail: input.clientEmail ?? "",
       boatName: input.boatName,
       dateLabel: input.dateLabel,
+      ...(input.siblingLinkId ? { siblingLinkId: input.siblingLinkId } : {}),
     },
     after_completion: {
       type: "hosted_confirmation",
@@ -95,10 +132,25 @@ export async function createSenalPaymentLink(
     },
   });
 
+  // Rival: el link hermano tiene que conocer a ESTE (Stripe fusiona metadata por clave),
+  // para que gane quien gane, el webhook sepa a quién anular. Best-effort: si falla, el
+  // auto-reembolso del webhook sigue cubriendo al perdedor.
+  if (input.siblingLinkId) {
+    try {
+      await stripe.paymentLinks.update(input.siblingLinkId, { metadata: { siblingLinkId: link.id } });
+    } catch (error) {
+      logger.warn("[CrmSenal] Could not stamp siblingLinkId on rival link", {
+        siblingLinkId: input.siblingLinkId,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
+
   logger.info("[CrmSenal] Payment link created", {
     rentalId: input.rentalId,
     linkId: link.id,
     amountCents: input.amountCents,
+    sibling: input.siblingLinkId ?? null,
   });
   return { linkId: link.id, url: link.url };
 }
@@ -172,14 +224,13 @@ export async function handleCrmSenalPaid(
   if (updated.length === 1) {
     const linkId = typeof session.payment_link === "string" ? session.payment_link : session.payment_link?.id;
     if (linkId) {
-      try {
-        await stripe.paymentLinks.update(linkId, { active: false });
-      } catch (error) {
-        logger.warn("[CrmSenal] Could not deactivate paid payment link", {
-          linkId,
-          error: error instanceof Error ? error.message : String(error),
-        });
-      }
+      await deactivateSenalLink(stripe, linkId);
+    }
+    // Primero que paga gana: el link rival se anula y sus sesiones abiertas se expiran
+    // AHORA, para que el perdedor ni siquiera pueda completar el pago (un cobro
+    // reembolsado pierde la comisión de Stripe).
+    if (meta.siblingLinkId) {
+      await deactivateSenalLink(stripe, meta.siblingLinkId);
     }
 
     const clientEmail = session.customer_details?.email || meta.clientEmail || "";
@@ -218,22 +269,77 @@ export async function handleCrmSenalPaid(
     return;
   }
 
-  // 0 rows: the money moved but the CRM row did not. Diagnose and alert, never throw
-  // (a retry cannot change the outcome) and never touch the row.
+  // 0 rows: the money moved but the CRM row did not. Diagnose; never throw (a retry
+  // cannot change the outcome) and never touch the row.
   const rows = (await sql`
     SELECT senal_pagada_at, estado_reserva FROM rentals_real WHERE id = ${rentalId}`) as Array<
     Record<string, unknown>
   >;
-  const reason =
-    rows.length === 0
-      ? "la reserva ya no existe en el CRM"
-      : rows[0].senal_pagada_at
-        ? "la señal ya estaba registrada (posible pago duplicado)"
-        : `la reserva está en estado "${String(rows[0].estado_reserva)}"`;
+  const gone = rows.length === 0;
+  const alreadySealed = !gone && !!rows[0].senal_pagada_at;
 
+  // Auto-reembolso SOLO cuando el dinero es redundante con certeza: la reserva ya no
+  // existe, o ya hay OTRO pago Stripe sellado (senal_pagada_at lo escribe únicamente
+  // este webhook, así que si está puesto, este cobro es el perdedor de la carrera o un
+  // duplicado). Un estado cambiado SIN sello puede ser el operador apuntando ESTE mismo
+  // pago a mano: ahí jamás se devuelve solo, se avisa y decide un humano.
+  if (gone || alreadySealed) {
+    const paymentIntentId =
+      typeof session.payment_intent === "string" ? session.payment_intent : session.payment_intent?.id;
+    let refunded = false;
+    if (paymentIntentId) {
+      try {
+        await stripe.refunds.create(
+          { payment_intent: paymentIntentId },
+          { idempotencyKey: `senal-refund-${session.id}` },
+        );
+        refunded = true;
+      } catch (error) {
+        logger.error("[CrmSenal] Auto-refund failed", {
+          rentalId,
+          sessionId: session.id,
+          error: error instanceof Error ? error.message : String(error),
+        });
+      }
+    }
+
+    // El link que cobró de más se apaga también, gane quien gane.
+    const linkId = typeof session.payment_link === "string" ? session.payment_link : session.payment_link?.id;
+    if (linkId) {
+      await deactivateSenalLink(stripe, linkId);
+    }
+
+    const clientEmail = session.customer_details?.email || meta.clientEmail || "";
+    if (refunded && clientEmail) {
+      sendCrmSenalRefundNotification({
+        to: clientEmail,
+        lang: meta.lang === "en" ? "en" : "es",
+        clientName: meta.clientName || "",
+        boatName: meta.boatName ?? "",
+        dateLabel: meta.dateLabel ?? "",
+        amountCents,
+      }).catch((error: unknown) => {
+        logger.error("[CrmSenal] Refund email failed", { rentalId, error: error instanceof Error ? error.message : String(error) });
+      });
+    }
+
+    const reason = gone
+      ? "la reserva ya no existe en el CRM"
+      : "la señal ya estaba pagada (ha ganado otro pago o es un duplicado)";
+    logger.warn("[CrmSenal] Redundant señal payment", { rentalId, sessionId: session.id, reason, refunded });
+    await sendTelegramMessage(
+      refunded ? "Señal duplicada reembolsada" : "Señal duplicada SIN reembolsar",
+      refunded
+        ? `${meta.clientName || "Un cliente"} pagó ${euros(amountCents)} (${label}, reserva #${rentalId}), pero ${reason}.\nReembolsado automáticamente y link anulado; el cliente recibe email. Nada que hacer.`
+        : `${meta.clientName || "Un cliente"} pagó ${euros(amountCents)} (${label}, reserva #${rentalId}), pero ${reason}.\nEL REEMBOLSO AUTOMÁTICO FALLÓ: devuélvelo a mano en Stripe (sesión ${session.id}).`,
+    );
+    return;
+  }
+
+  const reason = `la reserva está en estado "${String(rows[0].estado_reserva)}" sin sello de pago Stripe`;
   logger.warn("[CrmSenal] Paid señal not recorded", { rentalId, sessionId: session.id, reason });
   await sendTelegramMessage(
     "Señal cobrada SIN registrar",
-    `Stripe ha cobrado ${euros(amountCents)} de señal para la reserva #${rentalId} (${label}), pero ${reason}.\nRevisa el CRM y, si procede, reembolsa el pago en Stripe (sesión ${session.id}).`,
+    `Stripe ha cobrado ${euros(amountCents)} de señal para la reserva #${rentalId} (${label}), pero ${reason}.\nPuede que la hayas apuntado a mano: revisa el CRM y, SOLO si sobra, reembolsa en Stripe (sesión ${session.id}). No se devuelve nada automáticamente en este caso.`,
   );
 }

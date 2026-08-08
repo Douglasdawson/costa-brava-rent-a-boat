@@ -106,6 +106,11 @@ const crmSenalLinkSchema = z.object({
   clientName: z.string().min(1).max(80),
   clientEmail: z.string().email().max(120).optional().or(z.literal("")),
   previousLinkId: z.string().regex(/^plink_/).max(80).optional(),
+  siblingLinkId: z.string().regex(/^plink_/).max(80).optional(),
+});
+
+const crmSenalDeactivateSchema = z.object({
+  linkIds: z.array(z.string().regex(/^plink_/).max(80)).min(1).max(4),
 });
 
 const crmSenalLimiter = rateLimit({
@@ -565,6 +570,36 @@ export function registerPaymentRoutes(app: Express) {
       });
       res.status(502).json({ message: "No se pudo crear el link de pago en Stripe" });
     }
+  });
+
+  // CRM DAMAR: kill switch de links de señal (al borrar una pre-reserva o vencer el
+  // plazo). Anula el link Y expira sus sesiones de pago abiertas, para que nadie pueda
+  // pagar una franja que ya no se vende (un cobro reembolsado pierde la comisión).
+  app.post("/api/crm/senal-link/deactivate", crmSenalLimiter, async (req, res) => {
+    const configuredKey = process.env.CRM_API_KEY;
+    const providedKey = req.headers["x-api-key"];
+    if (!configuredKey || typeof providedKey !== "string" || !safeKeyEquals(providedKey, configuredKey)) {
+      return res.status(401).json({ message: "No autorizado" });
+    }
+
+    let stripeInstance: Stripe;
+    try {
+      stripeInstance = getStripe();
+    } catch (error: unknown) {
+      logger.error("[CrmSenal] Stripe not configured", { error: error instanceof Error ? error.message : String(error) });
+      return res.status(503).json({ message: "Servicio de pagos no disponible" });
+    }
+
+    const parsed = crmSenalDeactivateSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
+    }
+
+    const { deactivateSenalLink } = await import("../lib/crmSenal");
+    for (const linkId of parsed.data.linkIds) {
+      await deactivateSenalLink(stripeInstance, linkId);
+    }
+    res.json({ success: true, deactivated: parsed.data.linkIds.length });
   });
 
   // Stripe webhook

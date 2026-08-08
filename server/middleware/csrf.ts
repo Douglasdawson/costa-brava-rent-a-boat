@@ -18,9 +18,9 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
     return next();
   }
 
-  // Skip for the CRM DAMAR bridge: server-to-server fetch authenticated with
-  // x-api-key (CRM_API_KEY), so it carries no cookie and sends no Origin.
-  if (req.path === "/api/crm/senal-link") {
+  // Skip for the CRM DAMAR bridge (senal-link and its /deactivate): server-to-server
+  // fetch authenticated with x-api-key (CRM_API_KEY), so no cookie and no Origin.
+  if (req.path.startsWith("/api/crm/senal-link")) {
     return next();
   }
 

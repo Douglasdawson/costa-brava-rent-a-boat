@@ -2177,6 +2177,93 @@ const SENAL_CLIENT_STRINGS: Record<"es" | "en", {
   },
 };
 
+// El perdedor de una carrera de links rivales (o un pago duplicado) recibe su dinero de
+// vuelta automáticamente; este email se lo cuenta antes de que pregunte. Sin promesas
+// extra: importe íntegro devuelto y un canal para buscar otra fecha.
+const SENAL_REFUND_STRINGS: Record<"es" | "en", {
+  subject: string; title: string; intro: (name: string) => string;
+  refunded: string; timing: string; questions: string;
+}> = {
+  es: {
+    subject: "Te hemos devuelto tu pago: la fecha ya no estaba disponible",
+    title: "Pago devuelto",
+    intro: (name) => `Hola ${name}, justo antes de completarse tu pago la fecha quedó confirmada por otra reserva, así que no hemos podido asignártela.`,
+    refunded: "Importe devuelto",
+    timing: "La devolución es íntegra y automática; según tu banco puede tardar de 1 a 5 días laborables en reflejarse.",
+    questions: "Si quieres, escríbenos por WhatsApp y te buscamos otra fecha u otro barco.",
+  },
+  en: {
+    subject: "Your payment has been refunded: the date was no longer available",
+    title: "Payment refunded",
+    intro: (name) => `Hello ${name}, right before your payment completed the date was confirmed by another booking, so we could not assign it to you.`,
+    refunded: "Amount refunded",
+    timing: "The refund is full and automatic; depending on your bank it may take 1 to 5 business days to show up.",
+    questions: "Message us on WhatsApp and we will find you another date or boat.",
+  },
+};
+
+export interface CrmSenalRefundEmailInput {
+  to: string;
+  lang: "es" | "en";
+  clientName: string;
+  boatName: string;
+  dateLabel: string;
+  amountCents: number;
+}
+
+/** Tells the payer their redundant señal was auto-refunded. Best-effort: callers must .catch(). */
+export async function sendCrmSenalRefundNotification(
+  input: CrmSenalRefundEmailInput,
+): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    logger.info("SendGrid not configured, skipping señal refund notification");
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const s = SENAL_REFUND_STRINGS[input.lang] ?? SENAL_REFUND_STRINGS.es;
+  const amount = formatEuros(input.amountCents);
+
+  const content = `
+    ${emailHeading(emailEsc(s.title), 1)}
+    ${emailParagraph(emailEsc(s.intro(input.clientName || "")))}
+    ${emailDataRows([
+      ...(input.boatName ? [{ label: input.lang === "en" ? "Boat" : "Barco", value: emailEsc(input.boatName) }] : []),
+      ...(input.dateLabel ? [{ label: input.lang === "en" ? "Date" : "Fecha", value: emailEsc(input.dateLabel) }] : []),
+      { label: emailEsc(s.refunded), value: amount, strong: true },
+    ])}
+    ${emailParagraph(emailEsc(s.timing))}
+    ${emailParagraph(emailEsc(s.questions))}
+    ${emailButton({ href: "https://wa.me/34611500372", label: "WhatsApp" })}
+  `;
+
+  const text = [
+    s.title,
+    "",
+    s.intro(input.clientName || ""),
+    `${s.refunded}: ${amount}`,
+    "",
+    s.timing,
+    s.questions,
+  ].join("\n");
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: input.to,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
+      subject: s.subject,
+      html: emailWrapper(content, s.intro(input.clientName || ""), input.lang),
+      text,
+    }));
+    logger.info("[Email] Señal refund notification sent", { to: input.to });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending señal refund notification", { error: message });
+    return { success: false, error: message };
+  }
+}
+
 /** Customer confirmation for a señal paid via Stripe. Best-effort: callers must .catch(). */
 export async function sendCrmSenalClientConfirmation(
   input: CrmSenalClientEmailInput,

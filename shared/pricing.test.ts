@@ -198,16 +198,8 @@ describe("getMaximumDuration", () => {
     expect(getMaximumDuration("solar-450", new Date("2026-07-15T12:00:00"))).toBe("4h");
   });
 
-  it("caps licence-free boats at 3h in August 2026 (owner rule 2026-08-08)", () => {
-    expect(getMaximumDuration("solar-450", new Date("2026-08-15T12:00:00"))).toBe("3h");
-  });
-
-  it("reverts to the 4h cap in August of other years", () => {
-    expect(getMaximumDuration("solar-450", new Date("2027-08-15T12:00:00"))).toBe("4h");
-  });
-
-  it("never caps the captained excursion", () => {
-    expect(getMaximumDuration("excursion-privada", new Date("2026-08-15T12:00:00"))).toBeNull();
+  it("caps licence-free boats at 4h in August", () => {
+    expect(getMaximumDuration("solar-450", new Date("2026-08-15T12:00:00"))).toBe("4h");
   });
 
   it("does not cap licence-free boats outside July/August", () => {

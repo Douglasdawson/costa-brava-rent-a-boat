@@ -191,15 +191,18 @@ export function getMinimumDurationForBoat(boatId: string, date: Date): Duration 
 /**
  * Maximum bookable duration. Licence-free boats are capped at 4h in peak
  * season (July and August) so the team can fit more short rentals per boat
- * per day (owner rule 2026-06-24). Returns null when no cap applies; licensed
- * boats are never capped, and outside July/August there is no cap.
+ * per day (owner rule 2026-06-24). For August 2026 the cap tightens to 3h
+ * (owner rule 2026-08-08); the year gate makes that rule expire on its own.
+ * Returns null when no cap applies; licensed boats and the captained
+ * excursion are never capped, and outside July/August there is no cap.
  */
 export function getMaximumDuration(boatId: string, date: Date): Duration | null {
   const boat = BOAT_DATA[boatId];
   if (!boat) return null;
   const month = date.getMonth() + 1; // 7 = July, 8 = August
   if (month !== 7 && month !== 8) return null;
-  if (boatDataRequiresLicense(boat)) return null;
+  if (boatDataRequiresLicense(boat) || isCaptainedBoat(boatId)) return null;
+  if (month === 8 && date.getFullYear() === 2026) return '3h';
   return '4h';
 }
 

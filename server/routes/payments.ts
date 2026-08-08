@@ -1,6 +1,8 @@
 import type { Express } from "express";
 import express from "express";
 import Stripe from "stripe";
+import rateLimit from "express-rate-limit";
+import { createHash, timingSafeEqual } from "crypto";
 import { z } from "zod";
 import { storage } from "../storage";
 import { db } from "../db";
@@ -92,6 +94,31 @@ const mockPaymentIntentSchema = z.object({
 const simulatePaymentSchema = z.object({
   paymentIntentId: z.string().min(1, "PaymentIntent ID requerido"),
 });
+
+// CRM DAMAR asks for a señal payment link with this contract (see lib/crmSenal.ts).
+// dateLabel is the CRM's canonical DD/MM/YYYY, passed through as display text.
+const crmSenalLinkSchema = z.object({
+  rentalId: z.number().int().positive(),
+  amountCents: z.number().int().min(100).max(500000),
+  boatName: z.string().min(1).max(80),
+  dateLabel: z.string().min(1).max(20),
+  lang: z.enum(["es", "en"]),
+  clientName: z.string().min(1).max(80),
+  clientEmail: z.string().email().max(120).optional().or(z.literal("")),
+  previousLinkId: z.string().regex(/^plink_/).max(80).optional(),
+});
+
+const crmSenalLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiados intentos. Intenta de nuevo en unos minutos." },
+});
+
+// Constant-time comparison over digests so length differences leak nothing.
+const sha256 = (value: string) => createHash("sha256").update(value).digest();
+const safeKeyEquals = (a: string, b: string) => timingSafeEqual(sha256(a), sha256(b));
 
 // Deduplicate webhook events — track processed event IDs for 24h
 const processedEvents = new Map<string, number>();
@@ -497,6 +524,49 @@ export function registerPaymentRoutes(app: Express) {
     }
   });
 
+  // CRM DAMAR: mint a single-use señal payment link for a rental. Server-to-server
+  // only, authenticated with the CRM_API_KEY the two apps already share (the CRM
+  // resolves it via getCrmApiKey). Listed in the CSRF skip-list: no browser cookie
+  // is involved, so Origin/Referer checks do not apply.
+  app.post("/api/crm/senal-link", crmSenalLimiter, async (req, res) => {
+    const configuredKey = process.env.CRM_API_KEY;
+    const providedKey = req.headers["x-api-key"];
+    if (!configuredKey || typeof providedKey !== "string" || !safeKeyEquals(providedKey, configuredKey)) {
+      return res.status(401).json({ message: "No autorizado" });
+    }
+
+    let stripeInstance: Stripe;
+    try {
+      stripeInstance = getStripe();
+    } catch (error: unknown) {
+      logger.error("[CrmSenal] Stripe not configured", { error: error instanceof Error ? error.message : String(error) });
+      return res.status(503).json({ message: "Servicio de pagos no disponible" });
+    }
+
+    const parsed = crmSenalLinkSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({
+        message: "Datos invalidos",
+        errors: parsed.error.flatten().fieldErrors,
+      });
+    }
+
+    try {
+      const { createSenalPaymentLink } = await import("../lib/crmSenal");
+      const { linkId, url } = await createSenalPaymentLink(stripeInstance, {
+        ...parsed.data,
+        clientEmail: parsed.data.clientEmail || undefined,
+      });
+      res.json({ linkId, url });
+    } catch (error: unknown) {
+      logger.error("[CrmSenal] Error creating payment link", {
+        rentalId: parsed.data.rentalId,
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.status(502).json({ message: "No se pudo crear el link de pago en Stripe" });
+    }
+  });
+
   // Stripe webhook
   app.post("/api/stripe-webhook", express.raw({ type: "application/json" }), async (req, res) => {
     const sig = req.headers["stripe-signature"] as string;
@@ -600,6 +670,13 @@ export function registerPaymentRoutes(app: Express) {
             break;
           }
 
+          // Señal cobrada desde el CRM DAMAR (payment link): records into rentals_real
+          if (session.metadata?.type === "crm_senal") {
+            const { handleCrmSenalPaid } = await import("../lib/crmSenal");
+            await handleCrmSenalPaid(session, stripeInstance);
+            break;
+          }
+
           const bookingId = session.metadata?.bookingId;
           if (!bookingId) {
             logger.debug("Checkout session has no bookingId metadata, skipping", { sessionId: session.id });
@@ -650,6 +727,18 @@ export function registerPaymentRoutes(app: Express) {
           if (expiredSession.metadata?.type === "shop_order") {
             const { handleShopCheckoutExpired } = await import("./shop");
             await handleShopCheckoutExpired(expiredSession);
+          }
+          break;
+        }
+
+        // Async payment methods (e.g. bank debits) complete the session before the
+        // money exists; handleCrmSenalPaid ignores unpaid sessions, and this event
+        // routes the confirmation back once payment_status is "paid".
+        case "checkout.session.async_payment_succeeded": {
+          const asyncSession = event.data.object as Stripe.Checkout.Session;
+          if (asyncSession.metadata?.type === "crm_senal") {
+            const { handleCrmSenalPaid } = await import("../lib/crmSenal");
+            await handleCrmSenalPaid(asyncSession, stripeInstance);
           }
           break;
         }

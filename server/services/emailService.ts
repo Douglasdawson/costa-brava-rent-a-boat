@@ -2075,3 +2075,159 @@ export async function sendShopOrderOwnerNotification(
     return { success: false, error: message };
   }
 }
+
+// ===== CRM SENAL EMAILS (paga y señal cobrada por Stripe desde el CRM DAMAR) =====
+
+export interface CrmSenalOwnerEmailInput {
+  rentalId: number;
+  clientName: string;
+  boatName: string;
+  dateLabel: string;
+  amountCents: number;
+  clientEmail?: string;
+}
+
+export interface CrmSenalClientEmailInput {
+  to: string;
+  lang: "es" | "en";
+  clientName: string;
+  boatName: string;
+  dateLabel: string;
+  amountCents: number;
+}
+
+/** Owner notification for a señal collected via Stripe (always in Spanish). */
+export async function sendCrmSenalOwnerNotification(
+  input: CrmSenalOwnerEmailInput,
+): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    logger.info("SendGrid not configured, skipping señal owner notification");
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const ownerEmail = process.env.OWNER_EMAIL || "costabravarentaboat@gmail.com";
+  const amount = formatEuros(input.amountCents);
+
+  const content = `
+    ${emailHeading("Señal cobrada por Stripe", 1)}
+    ${emailParagraph("La reserva ya está marcada como prereserva con señal en el CRM. No hay nada que comprobar en el banco.")}
+    ${emailDataRows([
+      { label: "Cliente", value: emailEsc(input.clientName || "(sin nombre)") },
+      { label: "Barco", value: emailEsc(input.boatName || "(sin barco)") },
+      { label: "Fecha", value: emailEsc(input.dateLabel || "(sin fecha)") },
+      { label: "Reserva", value: `#${input.rentalId}` },
+      { label: "Señal cobrada", value: amount, strong: true },
+    ])}
+    ${input.clientEmail ? emailButton({ href: `mailto:${input.clientEmail}`, label: "Responder al cliente" }) : ""}
+  `;
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: ownerEmail,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat - CRM" },
+      ...(input.clientEmail
+        ? { replyTo: { email: input.clientEmail, name: input.clientName || "Cliente" } }
+        : {}),
+      subject: `[SEÑAL] ${input.clientName || "Cliente"} · ${amount} · ${input.boatName} ${input.dateLabel}`,
+      html: emailWrapper(content),
+      text: [
+        `Señal cobrada por Stripe: ${amount}`,
+        `Cliente: ${input.clientName || "(sin nombre)"}`,
+        `Barco: ${input.boatName} - ${input.dateLabel}`,
+        `Reserva #${input.rentalId} marcada como prereserva con señal en el CRM.`,
+      ].join("\n"),
+    }));
+    logger.info("[Email] Señal owner notification sent", { to: ownerEmail, rentalId: input.rentalId });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending señal owner notification", { error: message, rentalId: input.rentalId });
+    return { success: false, error: message };
+  }
+}
+
+// The CRM derives the customer language from the phone prefix as es/en only
+// (phoneLang), so this template deliberately covers just those two. The copy
+// promises nothing beyond the payment itself: the rest plus the security
+// deposit are settled at the port, per the canonical booking model.
+const SENAL_CLIENT_STRINGS: Record<"es" | "en", {
+  subject: string; title: string; intro: (name: string) => string;
+  boat: string; date: string; paid: string;
+  rest: string; questions: string;
+}> = {
+  es: {
+    subject: "Señal recibida: tu reserva está confirmada",
+    title: "Reserva confirmada",
+    intro: (name) => `Hola ${name}, hemos recibido tu señal y tu reserva queda confirmada.`,
+    boat: "Barco",
+    date: "Fecha",
+    paid: "Señal pagada",
+    rest: "El resto del alquiler y la fianza se abonan el día de la salida en el puerto de Blanes.",
+    questions: "Si tienes cualquier duda, escríbenos por WhatsApp.",
+  },
+  en: {
+    subject: "Deposit received: your booking is confirmed",
+    title: "Booking confirmed",
+    intro: (name) => `Hello ${name}, we have received your deposit and your booking is confirmed.`,
+    boat: "Boat",
+    date: "Date",
+    paid: "Deposit paid",
+    rest: "The remaining balance and the security deposit are settled on departure day at the port of Blanes.",
+    questions: "If you have any questions, message us on WhatsApp.",
+  },
+};
+
+/** Customer confirmation for a señal paid via Stripe. Best-effort: callers must .catch(). */
+export async function sendCrmSenalClientConfirmation(
+  input: CrmSenalClientEmailInput,
+): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    logger.info("SendGrid not configured, skipping señal client confirmation");
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const s = SENAL_CLIENT_STRINGS[input.lang] ?? SENAL_CLIENT_STRINGS.es;
+  const amount = formatEuros(input.amountCents);
+
+  const content = `
+    ${emailHeading(emailEsc(s.title), 1)}
+    ${emailParagraph(emailEsc(s.intro(input.clientName || "")))}
+    ${emailDataRows([
+      { label: emailEsc(s.boat), value: emailEsc(input.boatName) },
+      { label: emailEsc(s.date), value: emailEsc(input.dateLabel) },
+      { label: emailEsc(s.paid), value: amount, strong: true },
+    ])}
+    ${emailCallout({ tone: "neutral", title: "", body: emailEsc(s.rest) })}
+    ${emailParagraph(emailEsc(s.questions))}
+    ${emailButton({ href: "https://wa.me/34611500372", label: "WhatsApp" })}
+  `;
+
+  const text = [
+    s.title,
+    "",
+    s.intro(input.clientName || ""),
+    `${s.boat}: ${input.boatName}`,
+    `${s.date}: ${input.dateLabel}`,
+    `${s.paid}: ${amount}`,
+    "",
+    s.rest,
+    s.questions,
+  ].join("\n");
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: input.to,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "info@costabravarentaboat.com", name: "Costa Brava Rent a Boat" },
+      subject: s.subject,
+      html: emailWrapper(content, s.intro(input.clientName || ""), input.lang),
+      text,
+    }));
+    logger.info("[Email] Señal client confirmation sent", { to: input.to });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending señal client confirmation", { error: message });
+    return { success: false, error: message };
+  }
+}

@@ -18,6 +18,12 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
     return next();
   }
 
+  // Skip for the CRM DAMAR bridge: server-to-server fetch authenticated with
+  // x-api-key (CRM_API_KEY), so it carries no cookie and sends no Origin.
+  if (req.path === "/api/crm/senal-link") {
+    return next();
+  }
+
   // Skip for the public MCP server — clients are Claude Desktop / Cursor /
   // LangGraph / etc., which do not send Origin headers on JSON-RPC POSTs.
   // CSRF protection is unnecessary here because:

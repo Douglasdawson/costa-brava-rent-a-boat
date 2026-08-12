@@ -213,6 +213,20 @@ describe("verifyLicense — EEE branch", () => {
     expect(r.meetsFleetMinimum).toBe(true);
   });
 
+  it("Norway + Båtførerbevis → valid, navegacion, meets fleet min", () => {
+    const r = verifyLicense({ country: "NO", licenseCode: "batforerbevis", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("navegacion");
+    expect(r.meetsFleetMinimum).toBe(true);
+  });
+
+  it("Norway + Fritidsskipper → valid, per; + ICC → valid, per", () => {
+    expect(verifyLicense({ country: "NO", licenseCode: "fritidsskipper", hasIcc: null }).spanishEquivalent).toBe("per");
+    const r = verifyLicense({ country: "NO", licenseCode: "icc", hasIcc: null });
+    expect(r.status).toBe("valid");
+    expect(r.spanishEquivalent).toBe("per");
+  });
+
   it("Croatia + Voditelj brodice A → valid, pnb; B → per", () => {
     expect(verifyLicense({ country: "HR", licenseCode: "voditelj_brodice_a", hasIcc: null }).spanishEquivalent).toBe("pnb");
     const r = verifyLicense({ country: "HR", licenseCode: "voditelj_brodice_b", hasIcc: null });

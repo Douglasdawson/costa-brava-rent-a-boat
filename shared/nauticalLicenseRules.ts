@@ -159,6 +159,26 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
     { code: "voditelj_brodice_a", label: "Voditelj brodice kategorija A", spanishEquivalent: "pnb" },
     { code: "voditelj_brodice_b", label: "Voditelj brodice kategorija B", spanishEquivalent: "per" },
   ],
+  NO: [
+    // Noruega es EEE (no UE), asi que entra por la via de reciprocidad de la
+    // disposicion adicional 4.a del RD 875/2014, no por el anexo IX.
+    //
+    // Batforerbevis: titulo estandar del Sjofartsdirektoratet, obligatorio para
+    // nacidos desde 1980. Atribuciones impresas en la tarjeta: casco <15 m y
+    // <50 nudos. En eslora supera de sobra a la LN espanola, pero es un examen
+    // solo teorico (sin prueba practica) y el propio Sjofartsdirektoratet avisa
+    // de que "no siempre basta en el extranjero" y recomienda el ICC. Por eso lo
+    // anclamos al minimo defendible (LN) en vez de inflarlo a PNB o PER: cubre
+    // nuestra flota con licencia (<=6,24 m, 2 mn) y nada mas.
+    { code: "batforerbevis", label: "Båtførerbevis", spanishEquivalent: "navegacion" },
+    // Fritidsskippersertifikat (D5L): recreo de 15 a 24 m. La eslora daria
+    // patron de yate, pero no exige navegacion de altura como el PY espanol,
+    // asi que lo dejamos en PER.
+    { code: "fritidsskipper", label: "Fritidsskippersertifikat (D5L)", spanishEquivalent: "per" },
+    // El ICC noruego lo emite el propio Sjofartsdirektoratet sobre el
+    // batforerbevis, y es la via limpia cuando hay dudas en Capitania.
+    { code: "icc", label: "ICC (Internasjonalt båtførerbevis)", spanishEquivalent: "per" },
+  ],
 };
 
 /**

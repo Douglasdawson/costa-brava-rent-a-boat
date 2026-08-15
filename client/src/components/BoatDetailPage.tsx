@@ -393,6 +393,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     a4Empty: t.boatFaq!.a4Empty,
     a4FuelIncluded: t.boatFaq!.a4FuelIncluded,
     a4FuelNotIncluded: t.boatFaq!.a4FuelNotIncluded,
+    qFuel: t.boatFaq!.qFuel,
+    aFuel: t.boatFaq!.aFuel,
     q5: t.boatFaq!.q5,
     a5: t.boatFaq!.a5,
     licenseTypes: t.licenseTypes!,

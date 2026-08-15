@@ -2063,6 +2063,9 @@ export const fr: Translations = {
     a4Empty: "La location comprend les services de base du bateau.",
     a4FuelIncluded: "Le carburant est inclus.",
     a4FuelNotIncluded: "Le carburant n'est pas inclus (à régler séparément selon la consommation).",
+    qFuel: "Le carburant peut-il être inclus dans la location du {name} ?",
+    aFuel:
+      "Oui, mais uniquement si cela est convenu avant de formaliser la location : comme c'est notre skipper qui effectue l'itinéraire préétabli, nous pouvons fixer la consommation à l'avance et vous proposer un prix carburant inclus. Dans ce cas, le prix de la location est supérieur à celui des packs standard. Sans accord préalable, le carburant se règle séparément selon la consommation.",
     q5: "Quelle est la politique d'annulation ?",
     a5: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
   },

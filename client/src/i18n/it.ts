@@ -2052,6 +2052,9 @@ export const it: Translations = {
     a4Empty: "Il noleggio include i servizi base dell'imbarcazione.",
     a4FuelIncluded: "Il carburante è incluso.",
     a4FuelNotIncluded: "Il carburante non è incluso (si paga a parte in base al consumo).",
+    qFuel: "Il carburante può essere incluso nel noleggio del {name}?",
+    aFuel:
+      "Sì, ma solo se concordato prima di formalizzare il noleggio: poiché è il nostro skipper a seguire la rotta prestabilita, possiamo definire il consumo in anticipo e offrirti un prezzo con carburante incluso. In tal caso il prezzo del noleggio è superiore a quello dei pacchetti standard. Se non viene concordato in anticipo, il carburante si paga a parte in base al consumo.",
     q5: "Qual è la politica di cancellazione?",
     a5: "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se il maltempo impedisce l'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Al di fuori di questi casi, le prenotazioni confermate con caparra non vengono rimborsate in denaro.",
   },

@@ -21,6 +21,8 @@ const esText: BoatFaqText = {
   a4Empty: "El alquiler incluye los servicios básicos.",
   a4FuelIncluded: "El combustible está incluido.",
   a4FuelNotIncluded: "El combustible no está incluido (se paga aparte).",
+  qFuel: "¿Puede incluirse el combustible en el alquiler del {name}?",
+  aFuel: "Sí, pero únicamente si se acuerda antes de formalizar el alquiler.",
   q5: "¿Cuál es la política de cancelación?",
   a5: "Puedes cambiar la fecha sin coste con 7 días de antelación.",
   licenseTypes: {
@@ -220,6 +222,40 @@ describe("buildBoatFaqItems", () => {
       const items = buildBoatFaqItems(unlicensedWithFuel, esText);
       expect(items[3].answer).toContain("Gasolina");
       expect(items[3].answer).toContain("combustible está incluido");
+    });
+  });
+
+  describe("captained fuel-agreement item", () => {
+    const excursion: BoatFaqInput = {
+      name: "Excursión Privada con Capitán",
+      capacity: 6,
+      requiresLicense: false,
+      captained: true,
+      licenseType: "none",
+      pricing: { BAJA: { prices: { "2h": 240, "3h": 320, "4h": 380 } } },
+      included: ["IVA", "Patrón profesional", "Amarre", "Limpieza"],
+    };
+
+    it("inserts a 6th item between includes and cancellation, with name interpolated", () => {
+      const items = buildBoatFaqItems(excursion, esText);
+      expect(items).toHaveLength(6);
+      expect(items[4].question).toBe(
+        "¿Puede incluirse el combustible en el alquiler del Excursión Privada con Capitán?",
+      );
+      expect(items[4].answer).toBe(esText.aFuel);
+      expect(items[5].question).toBe(esText.q5);
+    });
+
+    it("does not add the item for non-captained boats", () => {
+      expect(buildBoatFaqItems(mingolla, esText)).toHaveLength(5);
+      expect(buildBoatFaqItems(solar450, esText)).toHaveLength(5);
+    });
+
+    it("degrades to 5 items when qFuel/aFuel texts are missing", () => {
+      const { qFuel: _q, aFuel: _a, ...rest } = esText;
+      const items = buildBoatFaqItems(excursion, rest as BoatFaqText);
+      expect(items).toHaveLength(5);
+      expect(items[4].question).toBe(esText.q5);
     });
   });
 

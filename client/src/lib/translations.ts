@@ -2753,6 +2753,8 @@ export interface Translations {
     a4Empty: string;
     a4FuelIncluded: string;
     a4FuelNotIncluded: string;
+    qFuel: string;
+    aFuel: string;
     q5: string;
     a5: string;
   };

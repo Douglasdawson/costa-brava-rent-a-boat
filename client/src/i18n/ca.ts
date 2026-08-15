@@ -2053,6 +2053,9 @@ export const ca: Translations = {
     a4Empty: "El lloguer inclou els serveis bàsics de l'embarcació.",
     a4FuelIncluded: "El combustible està inclòs.",
     a4FuelNotIncluded: "El combustible no està inclòs (es paga a part segons consum).",
+    qFuel: "Es pot incloure el combustible en el lloguer del {name}?",
+    aFuel:
+      "Sí, però únicament si s'acorda abans de formalitzar el lloguer: com que és el nostre patró qui fa la ruta preestablerta, podem tancar el consum per endavant i oferir-te un preu amb combustible inclòs. En aquest cas el preu del lloguer és superior al dels packs estàndard. Si no es pacta prèviament, el combustible es paga a part segons consum.",
     q5: "Quina és la política de cancel·lació?",
     a5: "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
   },

@@ -2060,6 +2060,9 @@ export const nl: Translations = {
     a4Empty: "De huur omvat de basisdiensten van de boot.",
     a4FuelIncluded: "Brandstof is inbegrepen.",
     a4FuelNotIncluded: "Brandstof is niet inbegrepen (wordt apart betaald op basis van verbruik).",
+    qFuel: "Kan brandstof worden inbegrepen bij de huur van de {name}?",
+    aFuel:
+      "Ja, maar alleen als dit vóór het afronden van de huur wordt afgesproken: omdat onze schipper een vooraf vastgestelde route vaart, kunnen we het verbruik vooraf vastleggen en je een prijs inclusief brandstof aanbieden. In dat geval ligt de huurprijs hoger dan die van de standaardpakketten. Zonder voorafgaande afspraak wordt brandstof apart betaald op basis van verbruik.",
     q5: "Wat is het annuleringsbeleid?",
     a5: "Gratis datumwijziging tot 7 dagen voor vertrek (op basis van beschikbaarheid). Als slecht weer de tocht verhindert, verzetten we de datum kosteloos of geven we, als geen datum lukt, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Met de afgesloten Slechtweergarantie kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Buiten die gevallen worden bevestigde boekingen met aanbetaling niet in geld terugbetaald.",
   },

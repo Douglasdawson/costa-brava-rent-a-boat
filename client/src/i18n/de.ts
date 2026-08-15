@@ -2061,6 +2061,9 @@ export const de: Translations = {
     a4FuelIncluded: "Der Kraftstoff ist im Preis enthalten.",
     a4FuelNotIncluded:
       "Der Kraftstoff ist nicht im Preis enthalten (wird separat je nach Verbrauch berechnet).",
+    qFuel: "Kann der Kraftstoff in der Miete der {name} enthalten sein?",
+    aFuel:
+      "Ja, aber nur wenn dies vor Abschluss der Miete vereinbart wird: Da unser Skipper eine festgelegte Route fährt, können wir den Verbrauch im Voraus festlegen und dir einen Preis inklusive Kraftstoff anbieten. In diesem Fall liegt der Mietpreis über dem der Standard-Pakete. Ohne vorherige Vereinbarung wird der Kraftstoff separat je nach Verbrauch berechnet.",
     q5: "Wie lautet die Stornierungsbedingung?",
     a5: "Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt (nach Verfügbarkeit). Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos oder stellen, wenn kein Termin passt, einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Außerhalb dieser Fälle werden bestätigte Buchungen mit Anzahlung nicht in Geld erstattet.",
   },

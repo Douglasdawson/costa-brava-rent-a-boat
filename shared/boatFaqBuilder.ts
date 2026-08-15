@@ -55,6 +55,8 @@ export type BoatFaqText = {
   a4Empty: string;
   a4FuelIncluded: string;
   a4FuelNotIncluded: string;
+  qFuel?: string;
+  aFuel?: string;
   q5: string;
   a5: string;
   licenseTypes: Partial<Record<BoatLicenseType, string>> & Record<string, string>;
@@ -66,13 +68,19 @@ export function buildBoatFaqItems(
   boat: BoatFaqInput,
   text: BoatFaqText,
 ): BoatFaqItem[] {
-  return [
+  const items: BoatFaqItem[] = [
     { question: interpolate(text.q1, { name: boat.name }), answer: buildPriceAnswer(boat, text) },
     { question: interpolate(text.q2, { name: boat.name }), answer: buildCapacityAnswer(boat, text) },
     { question: interpolate(text.q3, { name: boat.name }), answer: buildLicenseAnswer(boat, text) },
     { question: interpolate(text.q4, { name: boat.name }), answer: buildIncludedAnswer(boat, text) },
-    { question: text.q5, answer: text.a5 },
   ];
+  // Captained boats can close a fuel-included price upfront (the skipper runs
+  // a preset route), so they get an extra Q&A right after "what's included".
+  if (boat.captained && text.qFuel && text.aFuel) {
+    items.push({ question: interpolate(text.qFuel, { name: boat.name }), answer: text.aFuel });
+  }
+  items.push({ question: text.q5, answer: text.a5 });
+  return items;
 }
 
 export function buildBoatFaqTitle(boat: Pick<BoatFaqInput, "name">, text: BoatFaqText): string {

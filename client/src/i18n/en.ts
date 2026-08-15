@@ -2108,6 +2108,9 @@ export const en: Translations = {
     a4Empty: "The rental includes the boat's basic services.",
     a4FuelIncluded: "Fuel is included.",
     a4FuelNotIncluded: "Fuel is not included (paid separately based on consumption).",
+    qFuel: "Can fuel be included in the {name} rental?",
+    aFuel:
+      "Yes, but only if it is agreed before finalising the rental: since our skipper sails a preset route, we can fix the fuel consumption in advance and offer you a price with fuel included. In that case the rental price is higher than the standard packs. Without a prior agreement, fuel is paid separately based on consumption.",
     q5: "What is the cancellation policy?",
     a5: "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
   },

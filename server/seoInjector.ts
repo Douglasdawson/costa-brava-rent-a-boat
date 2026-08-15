@@ -15,7 +15,7 @@ import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES } from "../shared/businessProfile";
 import { buildCoreFacts } from "../shared/aiCitationFacts";
 import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
-import { BOAT_DATA, applyFleetStatsToText, isCaptainedBoat } from "../shared/boatData";
+import { BOAT_DATA, applyFleetStatsToText, boatIncludesFuel, isCaptainedBoat } from "../shared/boatData";
 import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { SHOP_PRODUCTS } from "../shared/shopData";
@@ -4613,7 +4613,7 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
           ru: ["топливо отдельно", "топливо включено"],
         };
         const [fuelApart, fuelInc] = fuelLabels[lang] || fuelLabels.es;
-        const fuelText = boat.requiresLicense ? fuelApart : fuelInc;
+        const fuelText = boatIncludesFuel(boat.id, boat.requiresLicense) ? fuelInc : fuelApart;
         const priceFromLabel = fromPrice ? `${fromLabels[lang] || "Desde"} ${fromPrice}€` : "";
         const reservaLabel: Record<string, string> = {
           es: "Reserva por WhatsApp", en: "Book via WhatsApp", ca: "Reserva per WhatsApp",

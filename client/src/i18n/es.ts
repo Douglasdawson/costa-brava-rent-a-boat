@@ -5397,6 +5397,9 @@ export const es: Translations = {
     a4Empty: "El alquiler incluye los servicios básicos del barco.",
     a4FuelIncluded: "El combustible está incluido.",
     a4FuelNotIncluded: "El combustible no está incluido (se paga aparte según consumo).",
+    qFuel: "¿Puede incluirse el combustible en el alquiler del {name}?",
+    aFuel:
+      "Sí, pero únicamente si se acuerda antes de formalizar el alquiler: como es nuestro patrón quien realiza la ruta preestablecida, podemos cerrar el consumo de antemano y ofrecerte un precio con combustible incluido. En ese caso el precio del alquiler es superior al de los packs estándar. Si no se pacta previamente, el combustible se paga aparte según consumo.",
     q5: "¿Cuál es la política de cancelación?",
     // TODO Fase B — migrar a site_content editable desde admin (tabla site_content + endpoint + tab CRM)
     a5: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",

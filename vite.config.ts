@@ -33,7 +33,10 @@ export default defineConfig({
     // precios/disponibilidad no deben servirse stale.
     VitePWA({
       registerType: "autoUpdate",
-      injectRegister: "auto",
+      // "auto" injects a classic, parser-blocking <script src="/registerSW.js">
+      // in <head>, and that file is served no-cache (server/vite.ts) so it costs a
+      // full round-trip before the parser can move on. Defer it.
+      injectRegister: "script-defer",
       // Don't touch our manifest at /manifest.json — we maintain it manually.
       manifest: false,
       // Honor existing index.html link rel="manifest".

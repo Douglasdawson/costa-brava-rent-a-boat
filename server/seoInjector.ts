@@ -1624,22 +1624,13 @@ async function getBaseHtml(distPath: string): Promise<string> {
       path.resolve(distPath, "index.html"),
       "utf-8"
     );
-    // Make the main CSS non-render-blocking: load async via media swap.
-    // Uses a <script> tag instead of inline onload= to comply with CSP script-src-attr 'none'.
-    const cssMatch = html.match(/<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/);
-    if (cssMatch) {
-      const cssHref = cssMatch[1];
-      html = html.replace(
-        cssMatch[0],
-        `<link rel="stylesheet" crossorigin href="${cssHref}" media="print" id="main-css">` +
-        `<noscript><link rel="stylesheet" crossorigin href="${cssHref}"></noscript>`
-      );
-      // Add a small script before </body> to swap media once loaded (CSP-compliant)
-      html = html.replace(
-        "</body>",
-        `<script>document.getElementById("main-css").addEventListener("load",function(){this.media="all"});</script>\n</body>`
-      );
-    }
+    // The main CSS stays render-blocking on purpose (2026-08-16). It used to be
+    // deferred with the media="print" + swap-on-load trick, but the listener was
+    // registered at the end of <body>: whenever the sheet finished loading before
+    // the parser got there (cached CSS — it ships immutable for a year — while
+    // the blocking registerSW.js stalled the parser), the load event fired with no
+    // listener attached and media stayed "print" FOREVER, serving the whole site
+    // unstyled. Never re-defer this without a `if (link.sheet) swap()` guard.
 
     // Preload only the main entry JS in <head> to break the critical chain.
     // Do NOT preload vendor chunks (vendor-ui 255KB, vendor-charts 396KB, etc.)

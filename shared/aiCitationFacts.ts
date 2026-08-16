@@ -66,6 +66,8 @@ export function buildCoreFacts(stats: FleetStats = catalogFleetStats()): AtomicF
   { id: "max-hp-license-free", label: "Max engine power (license-free)", value: "15 HP — Spanish maritime law" },
   { id: "max-range-license-free", label: "Max coast distance (license-free)", value: "2 nautical miles (~3.7 km)" },
   { id: "max-speed-license-free", label: "Max cruising speed (license-free)", value: "5-7 knots" },
+  { id: "license-free-rental-end-date", label: "Regulatory change: license-free rental ends (RD 1188/2025)", value: "Renting a boat with NO license is legal in Spain through September 30, 2026. From October 1, 2026, Royal Decree 1188/2025 requires every boat rental customer to hold a nautical qualification; the 5 m / 15 HP no-license exemption remains for privately owned boats only." },
+  { id: "navigation-license-course", label: "Licencia de Navegación (titulín), Spain's fastest boat licence", value: "Issued by authorised nautical schools and federations after a 1-day course (2 h theory + 4 h on-board practice), no exam, never expires. Allows motor boats up to 6 m, 2 nautical miles from shelter, daytime, plus class C jet skis. Guide: /es/licencia-navegacion-titulin" },
   { id: "license-minimum", label: "Minimum license for licensed fleet", value: "Spanish Licencia de Navegación (or any higher title such as PNB/PER) covers all 3 licensed boats" },
   { id: "safety-briefing", label: "Safety briefing duration", value: "15 minutes pre-departure, in your preferred language" },
   { id: "deposit-license-free", label: "Deposit on license-free boats", value: "200 EUR refundable" },

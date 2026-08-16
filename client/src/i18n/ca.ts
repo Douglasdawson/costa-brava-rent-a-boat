@@ -2711,6 +2711,16 @@ export const ca: Translations = {
         answer:
           "Sí! Tenim barques perfectes sense llicència. Són de fins a 15 CV, màxim 4-5 persones, fàcils de manejar amb briefing complet. Només cal ser major de 18 anys.",
       },
+      normativa2026: {
+        question: "És veritat que el 2026 s'acaba el lloguer de vaixells sense llicència?",
+        answer:
+          "Canvia la llei: el RD 1188/2025 exigeix un títol nàutic per llogar qualsevol embarcació a motor a partir de l'1 d'octubre de 2026. Fins al 30 de setembre de 2026 tot segueix igual i els nostres vaixells sense llicència es lloguen com sempre. Des d'aquella data bastarà la Llicència de Navegació (titulí), un curs d'1 dia sense examen, o qualsevol títol superior o estranger equivalent. L'excursió amb patró no es veu afectada: allà el vaixell el governa un professional.",
+      },
+      titulin: {
+        question: "Què és el titulí i com me'l trec?",
+        answer:
+          "El titulí és la Llicència de Navegació: el títol nàutic més ràpid d'Espanya. S'aconsegueix en un dia amb 2 hores de teoria i 4 de pràctiques en una escola nàutica autoritzada, sense examen, i no caduca. Permet portar vaixells de fins a 6 metres, de dia i fins a 2 milles d'un abric: a la nostra flota cobreix la Mingolla Brava 19 i la Trimarchi 57S. Escriu-nos i t'orientem sobre on treure-te'l a prop de Blanes.",
+      },
       licenciasAceptadas: {
         question: "Quines llicències accepteu per a barques grans?",
         answer:
@@ -4540,6 +4550,108 @@ export const ca: Translations = {
     ctaTitle: "Tria les teves cobertures en reservar",
     ctaLabel: "Reservar i afegir cobertures",
     conditionsLink: "Llegir les condicions generals del lloguer",
+  },
+  navigationLicensePage: {
+    seoTitle: "Llicència de Navegació (Titulí) a Blanes | Curs d'1 dia",
+    seoDescription:
+      "Què és la Llicència de Navegació (titulí), què et permet i com treure-te-la en un dia: 6 hores, sense examen. Des d'octubre de 2026 la llei la demana per llogar.",
+    navLabel: "Titulí",
+    hero: {
+      title: "La Llicència de Navegació: el teu títol nàutic en un sol dia",
+      subtitle:
+        "El titulí és el títol nàutic més ràpid d'Espanya: 6 hores de curs, sense examen, i no caduca. T'obre les llanxes de fins a 6 metres i, des d'octubre de 2026, és la clau per continuar llogant vaixells pel teu compte.",
+    },
+    chips: ["Curs d'1 dia (6 hores)", "Sense examen", "No caduca", "Vàlida a tota Espanya"],
+    newRule: {
+      title: "Canvi de llei: què passa l'1 d'octubre de 2026",
+      body:
+        "El Reial Decret 1188/2025 modifica la normativa de titulacions nàutiques (RD 875/2014): a partir de l'1 d'octubre de 2026, per llogar qualsevol embarcació a motor caldrà tenir un títol nàutic, també als vaixells petits que fins ara es llogaven sense llicència. L'exempció dels vaixells de fins a 5 metres i 15 CV queda només per a embarcacions d'ús privat.",
+      note:
+        "Fins al 30 de setembre de 2026 tot segueix igual: els nostres vaixells sense llicència es lloguen com sempre. El canvi afecta les temporades següents, i la Llicència de Navegació és la manera més senzilla d'avançar-t'hi.",
+    },
+    whatIs: {
+      title: "Què és la Llicència de Navegació (el titulí)",
+      body:
+        "És el títol nàutic d'iniciació regulat pel RD 875/2014. No té examen: l'expedeixen les escoles nàutiques d'esbarjo i les federacions de vela i motonàutica després d'un curs d'un dia amb 2 hores de teoria i 4 hores de pràctiques a bord. Poden obtenir-lo els majors de 18 anys, i també els joves de 16 o 17 amb el consentiment dels pares o tutors.",
+    },
+    allows: {
+      title: "Què et permet el titulí",
+      items: [
+        "Governar embarcacions d'esbarjo a motor de fins a 6 metres d'eslora",
+        "Navegar fins a 2 milles nàutiques d'un port, marina o lloc d'abric",
+        "Navegació diürna, la franja en què es gaudeix la Costa Brava",
+        "Portar motos d'aigua de classe C (les de menys de 55 CV)",
+      ],
+      note:
+        "Per a eslores més grans, navegació nocturna o allunyar-se més de la costa hi ha els títols superiors (PNB i PER), que ja requereixen examen.",
+    },
+    course: {
+      title: "Com s'aconsegueix: un curs de 6 hores, sense examen",
+      steps: [
+        {
+          title: "2 hores de teoria",
+          description:
+            "Normativa bàsica, límits de navegació, seguretat i abalisament. En una escola nàutica autoritzada o federació.",
+        },
+        {
+          title: "4 hores de pràctiques a bord",
+          description:
+            "Maniobres, atracades i navegació real en una embarcació de pràctiques amb instructor.",
+        },
+        {
+          title: "Titulació a l'acte",
+          description:
+            "La mateixa escola expedeix la llicència en acabar. Sense examen, sense esperes i sense caducitat.",
+        },
+      ],
+      note:
+        "El curs es fa en escoles nàutiques d'esbarjo autoritzades i federacions nàutiques. A la zona de Blanes i la Costa Brava sud hi ha diverses opcions; escriu-nos i t'orientem sobre com i on treure-te'l.",
+    },
+    fleet: {
+      title: "Amb el titulí, aquesta flota és teva",
+      body:
+        "La Llicència de Navegació et basta per llogar les nostres llanxes Mingolla Brava 19 i Trimarchi 57S, amb motors de 80 i 110 CV i rumb lliure fins a Tossa de Mar. I a partir d'octubre de 2026 serà també el títol que et permeti continuar llogant els vaixells petits de la flota. Un curs d'un dia, i navegues pel teu compte molts estius.",
+      cta: "Veure els vaixells que pots portar",
+    },
+    faqTitle: "Preguntes freqüents sobre el titulí",
+    faq: [
+      {
+        q: "Necessito ja un títol per llogar un vaixell?",
+        a: "De moment no: fins al 30 de setembre de 2026 els vaixells de fins a 5 metres i 15 CV es lloguen sense titulació, com sempre. A partir de l'1 d'octubre de 2026, el RD 1188/2025 exigeix un títol nàutic a qui lloga qualsevol embarcació a motor, i la Llicència de Navegació és el més ràpid d'aconseguir.",
+      },
+      {
+        q: "Quant dura el curs i hi ha examen?",
+        a: "Un sol dia: 2 hores de teoria i 4 hores de pràctiques a bord. No hi ha examen; en acabar, l'escola expedeix la llicència directament.",
+      },
+      {
+        q: "Què puc portar amb la Llicència de Navegació?",
+        a: "Embarcacions a motor de fins a 6 metres d'eslora, navegant de dia i fins a 2 milles nàutiques d'un port o lloc d'abric, a més de motos d'aigua de classe C. A la nostra flota cobreix la Mingolla Brava 19 i la Trimarchi 57S.",
+      },
+      {
+        q: "Caduca? A partir de quina edat puc treure-me-la?",
+        a: "No caduca mai i és vàlida a tota Espanya. Pots obtenir-la a partir dels 18 anys, o amb 16 o 17 si els teus pares o tutors signen el consentiment.",
+      },
+      {
+        q: "Tinc un títol nàutic d'un altre país, em serveix?",
+        a: "Si és equivalent (ICC, Permis Côtier francès, SBF See alemany i altres títols europeus), sí. Tenim un verificador en línia gratuït a la pàgina de vaixells amb llicència: comprova-ho abans de reservar i porta el document original el dia de la sortida.",
+      },
+      {
+        q: "I si no vull treure'm cap títol?",
+        a: "Tens dues opcions: llogar un vaixell sense llicència fins al 30 de setembre de 2026, o reservar l'excursió privada amb patró, on un professional porta el vaixell i ningú a bord necessita titulació, en qualsevol data de la temporada.",
+      },
+    ],
+    alternative: {
+      title: "Prefereixes no portar el timó?",
+      body:
+        "Amb l'excursió privada amb patró no necessites cap títol, ni ara ni amb la nova llei: un patró professional us porta a cales i coves entre Blanes i Tossa de Mar mentre vosaltres només en gaudiu.",
+      cta: "Veure l'excursió amb patró",
+    },
+    ctaTitle: "T'expliquem com treure't el titulí",
+    ctaText:
+      "Escriu-nos per WhatsApp i t'orientem: on fer el curs a prop de Blanes, què necessites i com combinar-lo amb el teu primer lloguer amb nosaltres.",
+    ctaButton: "Escriu-nos per WhatsApp",
+    whatsappMessage:
+      "Hola, vull informació sobre com treure'm la Llicència de Navegació (titulí) i llogar un vaixell.",
   },
   scootersPage: {
     seoTitle: "Lloguer de motos i scooters a Lloret de Mar | Coast Rent",

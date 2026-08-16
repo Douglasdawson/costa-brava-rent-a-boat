@@ -66,6 +66,9 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // Captained private excursion landing — t.captainedPage is i18n-complete in
   // all 8 locales; SSR meta via buildCaptainedStaticMeta.
   "/alquiler-barco-con-patron": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Navigation licence (titulín) pillar — t.navigationLicensePage is
+  // i18n-complete in all 8 locales; SSR meta via buildNavigationLicenseStaticMeta.
+  "/licencia-navegacion-titulin": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   // Merch shop (Laura Cabanas collab) — t.shopPage is i18n-complete in all 8
   // locales; SSR meta via buildTiendaStaticMeta.
   "/tienda": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],

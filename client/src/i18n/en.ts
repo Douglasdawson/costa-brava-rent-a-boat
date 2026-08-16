@@ -2766,6 +2766,16 @@ export const en: Translations = {
         answer:
           "Yes! We have perfect boats without license. They're up to 15 HP, maximum 4-5 people, easy to handle with a complete briefing. You only need to be over 18 years old.",
       },
+      normativa2026: {
+        question: "Is it true that licence-free boat rental ends in 2026?",
+        answer:
+          "The law is changing: Royal Decree 1188/2025 requires a nautical qualification to rent any motor boat from 1 October 2026. Until 30 September 2026 nothing changes and our licence-free boats can be rented as always. From that date the Licencia de Navegación (titulín), a 1-day course with no exam, is enough, as is any higher or equivalent foreign title. The captained excursion is not affected: a professional skipper drives the boat there.",
+      },
+      titulin: {
+        question: "What is the titulín and how do I get it?",
+        answer:
+          "The titulín is the Licencia de Navegación: Spain's fastest boat licence. You get it in one day with 2 hours of theory and 4 hours of practice at an authorised nautical school, with no exam, and it never expires. It allows boats of up to 6 metres, in daytime and up to 2 miles from shelter: in our fleet it covers the Mingolla Brava 19 and the Trimarchi 57S. Message us and we will point you to where to get it near Blanes.",
+      },
       licenciasAceptadas: {
         question: "What licenses do you accept for larger boats?",
         answer:
@@ -4595,6 +4605,108 @@ export const en: Translations = {
     ctaTitle: "Choose your coverages when you book",
     ctaLabel: "Book and add coverages",
     conditionsLink: "Read the general rental conditions",
+  },
+  navigationLicensePage: {
+    seoTitle: "Spanish Boat Licence (Titulín) in Blanes | 1-Day Course",
+    seoDescription:
+      "What the Licencia de Navegación (titulín) is, what it allows and how to get it in one day: 6 hours, no exam. From October 2026 Spanish law requires it to rent.",
+    navLabel: "Boat licence",
+    hero: {
+      title: "The Licencia de Navegación: your boat licence in a single day",
+      subtitle:
+        "The titulín is Spain's fastest boat licence: a 6-hour course, no exam, and it never expires. It opens up powerboats of up to 6 metres and, from October 2026, it is the key to keep renting boats on your own.",
+    },
+    chips: ["1-day course (6 hours)", "No exam", "Never expires", "Valid across Spain"],
+    newRule: {
+      title: "Law change: what happens on 1 October 2026",
+      body:
+        "Royal Decree 1188/2025 amends Spain's nautical qualification rules (RD 875/2014): from 1 October 2026, renting any motor boat requires a nautical qualification, including the small boats that until now could be rented without a licence. The exemption for boats up to 5 metres and 15 HP remains for privately owned boats only.",
+      note:
+        "Until 30 September 2026 nothing changes: our licence-free boats can be rented as always. The new rule affects the seasons ahead, and the Licencia de Navegación is the easiest way to get ahead of it.",
+    },
+    whatIs: {
+      title: "What the Licencia de Navegación (titulín) is",
+      body:
+        "It is Spain's entry-level boat licence, regulated by RD 875/2014. There is no exam: authorised recreational nautical schools and the sailing and motorboat federations issue it after a one-day course with 2 hours of theory and 4 hours of on-board practice. You can get it from age 18, or at 16 or 17 with parental consent.",
+    },
+    allows: {
+      title: "What the titulín allows",
+      items: [
+        "Skipper recreational motor boats of up to 6 metres in length",
+        "Navigate up to 2 nautical miles from a port, marina or shelter",
+        "Daytime navigation, when the Costa Brava is at its best",
+        "Ride class C jet skis (under 55 HP)",
+      ],
+      note:
+        "For longer boats, night navigation or going further offshore there are the higher Spanish titles (PNB and PER), which do require an exam.",
+    },
+    course: {
+      title: "How to get it: a 6-hour course, no exam",
+      steps: [
+        {
+          title: "2 hours of theory",
+          description:
+            "Basic rules, navigation limits, safety and buoyage. At an authorised nautical school or federation.",
+        },
+        {
+          title: "4 hours of practice on board",
+          description:
+            "Manoeuvres, docking and real navigation on a training boat with an instructor.",
+        },
+        {
+          title: "Licence issued on the spot",
+          description:
+            "The school itself issues the licence when you finish. No exam, no waiting and no expiry date.",
+        },
+      ],
+      note:
+        "The course is run by authorised recreational nautical schools and federations. There are several options around Blanes and the southern Costa Brava; message us and we will point you in the right direction.",
+    },
+    fleet: {
+      title: "With the titulín, this fleet is yours",
+      body:
+        "The Licencia de Navegación is all you need to rent our Mingolla Brava 19 and Trimarchi 57S powerboats, with 80 and 110 HP engines and Tossa de Mar within reach. And from October 2026 it will also be the qualification that lets you keep renting the smaller boats in the fleet. One day of course, many summers of skippering yourself.",
+      cta: "See the boats you can skipper",
+    },
+    faqTitle: "Titulín frequently asked questions",
+    faq: [
+      {
+        q: "Do I already need a licence to rent a boat?",
+        a: "Not yet: until 30 September 2026, boats up to 5 metres and 15 HP can be rented without any licence, as always. From 1 October 2026, RD 1188/2025 requires anyone renting a motor boat to hold a nautical qualification, and the Licencia de Navegación is the fastest one to get.",
+      },
+      {
+        q: "How long is the course and is there an exam?",
+        a: "A single day: 2 hours of theory and 4 hours of practice on board. There is no exam; the school issues the licence directly when you finish.",
+      },
+      {
+        q: "What can I skipper with the Licencia de Navegación?",
+        a: "Motor boats of up to 6 metres in length, in daytime and up to 2 nautical miles from a port or shelter, plus class C jet skis. In our fleet it covers the Mingolla Brava 19 and the Trimarchi 57S.",
+      },
+      {
+        q: "Does it expire? From what age can I get it?",
+        a: "It never expires and is valid across Spain. You can get it from age 18, or at 16 or 17 with signed parental consent.",
+      },
+      {
+        q: "I hold a boat licence from another country, is it valid?",
+        a: "If it is equivalent (ICC, the French Permis Côtier, the German SBF See and other European titles), yes. We have a free online checker on our licensed boats page: verify it before booking and bring the original document on the day.",
+      },
+      {
+        q: "What if I don't want any licence at all?",
+        a: "You have two options: rent a licence-free boat until 30 September 2026, or book the private captained excursion, where a professional skipper drives and nobody on board needs a qualification, on any date of the season.",
+      },
+    ],
+    alternative: {
+      title: "Rather not take the helm?",
+      body:
+        "With the private captained excursion you need no qualification at all, now or under the new law: a professional skipper takes you to coves and sea caves between Blanes and Tossa de Mar while you simply enjoy the ride.",
+      cta: "See the captained excursion",
+    },
+    ctaTitle: "We'll help you get your titulín",
+    ctaText:
+      "Message us on WhatsApp and we will point you in the right direction: where to take the course near Blanes, what you need and how to combine it with your first rental with us.",
+    ctaButton: "Message us on WhatsApp",
+    whatsappMessage:
+      "Hi, I would like information about getting the Licencia de Navegación (titulín) and renting a boat.",
   },
   scootersPage: {
     seoTitle: "Scooter and motorbike rental in Lloret de Mar | Coast Rent",

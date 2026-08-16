@@ -4469,6 +4469,16 @@ export const es: Translations = {
         answer:
           "¡Sí! Tenemos barcos perfectos sin licencia. Son de hasta 15 CV, máximo 4-5 personas, fáciles de manejar con briefing completo. Solo necesitas ser mayor de 18 años.",
       },
+      normativa2026: {
+        question: "¿Es verdad que en 2026 se acaba el alquiler de barcos sin licencia?",
+        answer:
+          "Cambia la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor a partir del 1 de octubre de 2026. Hasta el 30 de septiembre de 2026 todo sigue igual y nuestros barcos sin licencia se alquilan como siempre. Desde esa fecha bastará la Licencia de Navegación (titulín), un curso de 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
+      },
+      titulin: {
+        question: "¿Qué es el titulín y cómo me lo saco?",
+        answer:
+          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas en una escuela náutica autorizada, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19 y la Trimarchi 57S. Escríbenos y te orientamos sobre dónde sacártelo cerca de Blanes.",
+      },
       licenciasAceptadas: {
         question: "¿Qué licencias aceptan para barcos grandes?",
         answer:
@@ -5890,6 +5900,108 @@ export const es: Translations = {
     ctaTitle: "Elige tus coberturas al reservar",
     ctaLabel: "Reservar y añadir coberturas",
     conditionsLink: "Leer las condiciones generales del alquiler",
+  },
+  navigationLicensePage: {
+    seoTitle: "Licencia de Navegación (Titulín) en Blanes | Curso de 1 día",
+    seoDescription:
+      "Qué es la Licencia de Navegación (titulín), qué te permite y cómo sacártela en un día: 6 horas, sin examen. Desde octubre de 2026 la ley la pide para alquilar.",
+    navLabel: "Titulín",
+    hero: {
+      title: "La Licencia de Navegación: tu título náutico en un solo día",
+      subtitle:
+        "El titulín es el título náutico más rápido de España: 6 horas de curso, sin examen, y no caduca. Te abre las lanchas de hasta 6 metros y, desde octubre de 2026, es la llave para seguir alquilando barcos por tu cuenta.",
+    },
+    chips: ["Curso de 1 día (6 horas)", "Sin examen", "No caduca", "Válida en toda España"],
+    newRule: {
+      title: "Cambio de ley: qué pasa el 1 de octubre de 2026",
+      body:
+        "El Real Decreto 1188/2025 modifica la normativa de titulaciones náuticas (RD 875/2014): a partir del 1 de octubre de 2026, para alquilar cualquier embarcación a motor hará falta estar en posesión de un título náutico, también en los barcos pequeños que hasta ahora se alquilaban sin licencia. La exención de los barcos de hasta 5 metros y 15 CV queda solo para embarcaciones de uso privado.",
+      note:
+        "Hasta el 30 de septiembre de 2026 todo sigue igual: nuestros barcos sin licencia se alquilan como siempre. El cambio afecta a las temporadas siguientes, y la Licencia de Navegación es la forma más sencilla de adelantarte.",
+    },
+    whatIs: {
+      title: "Qué es la Licencia de Navegación (el titulín)",
+      body:
+        "Es el título náutico de iniciación regulado por el RD 875/2014. No tiene examen: lo expiden las escuelas náuticas de recreo y las federaciones de vela y motonáutica tras un curso de un día con 2 horas de teoría y 4 horas de prácticas a bordo. Pueden obtenerlo los mayores de 18 años, y también los jóvenes de 16 o 17 con el consentimiento de sus padres o tutores.",
+    },
+    allows: {
+      title: "Qué te permite el titulín",
+      items: [
+        "Gobernar embarcaciones de recreo a motor de hasta 6 metros de eslora",
+        "Navegar hasta 2 millas náuticas de un puerto, marina o lugar de abrigo",
+        "Navegación diurna, la franja en la que se disfruta la Costa Brava",
+        "Llevar motos de agua de clase C (las de menos de 55 CV)",
+      ],
+      note:
+        "Para esloras mayores, navegación nocturna o alejarse más de la costa existen los títulos superiores (PNB y PER), que ya requieren examen.",
+    },
+    course: {
+      title: "Cómo se consigue: un curso de 6 horas, sin examen",
+      steps: [
+        {
+          title: "2 horas de teoría",
+          description:
+            "Normativa básica, límites de navegación, seguridad y balizamiento. En una escuela náutica autorizada o federación.",
+        },
+        {
+          title: "4 horas de prácticas a bordo",
+          description:
+            "Maniobras, atraques y navegación real en una embarcación de prácticas con instructor.",
+        },
+        {
+          title: "Titulación en el acto",
+          description:
+            "La propia escuela expide la licencia al terminar. Sin examen, sin esperas y sin caducidad.",
+        },
+      ],
+      note:
+        "El curso se hace en escuelas náuticas de recreo autorizadas y federaciones náuticas. En la zona de Blanes y la Costa Brava sur hay varias opciones; escríbenos y te orientamos sobre cómo y dónde sacártelo.",
+    },
+    fleet: {
+      title: "Con el titulín, esta flota es tuya",
+      body:
+        "La Licencia de Navegación te basta para alquilar nuestras lanchas Mingolla Brava 19 y Trimarchi 57S, con motores de 80 y 110 CV y rumbo libre hasta Tossa de Mar. Y a partir de octubre de 2026 será también el título que te permita seguir alquilando los barcos pequeños de la flota. Un curso de un día, y navegas por tu cuenta muchos veranos.",
+      cta: "Ver los barcos que puedes llevar",
+    },
+    faqTitle: "Preguntas frecuentes sobre el titulín",
+    faq: [
+      {
+        q: "¿Necesito ya un título para alquilar un barco?",
+        a: "De momento no: hasta el 30 de septiembre de 2026 los barcos de hasta 5 metros y 15 CV se alquilan sin titulación, como siempre. A partir del 1 de octubre de 2026, el RD 1188/2025 exige un título náutico a quien alquila cualquier embarcación a motor, y la Licencia de Navegación es el más rápido de conseguir.",
+      },
+      {
+        q: "¿Cuánto dura el curso y hay examen?",
+        a: "Un solo día: 2 horas de teoría y 4 horas de prácticas a bordo. No hay examen; al terminar, la escuela expide la licencia directamente.",
+      },
+      {
+        q: "¿Qué puedo llevar con la Licencia de Navegación?",
+        a: "Embarcaciones a motor de hasta 6 metros de eslora, navegando de día y hasta 2 millas náuticas de un puerto o lugar de abrigo, además de motos de agua de clase C. En nuestra flota cubre la Mingolla Brava 19 y la Trimarchi 57S.",
+      },
+      {
+        q: "¿Caduca? ¿Desde qué edad puedo sacármela?",
+        a: "No caduca nunca y es válida en toda España. Puedes obtenerla a partir de los 18 años, o con 16 o 17 si tus padres o tutores firman el consentimiento.",
+      },
+      {
+        q: "Tengo un título náutico de otro país, ¿me sirve?",
+        a: "Si es equivalente (ICC, Permis Côtier francés, SBF See alemán y otros títulos europeos), sí. Tenemos un verificador online gratuito en la página de barcos con licencia: compruébalo antes de reservar y trae el documento original el día de la salida.",
+      },
+      {
+        q: "¿Y si no quiero sacarme ningún título?",
+        a: "Tienes dos opciones: alquilar un barco sin licencia hasta el 30 de septiembre de 2026, o reservar la excursión privada con patrón, donde un profesional lleva el barco y nadie a bordo necesita titulación, en cualquier fecha de la temporada.",
+      },
+    ],
+    alternative: {
+      title: "¿Prefieres no llevar el timón?",
+      body:
+        "Con la excursión privada con patrón no necesitas ningún título, ni ahora ni con la nueva ley: un patrón profesional os lleva a calas y cuevas entre Blanes y Tossa de Mar mientras vosotros solo disfrutáis.",
+      cta: "Ver la excursión con patrón",
+    },
+    ctaTitle: "Te contamos cómo sacarte el titulín",
+    ctaText:
+      "Escríbenos por WhatsApp y te orientamos: dónde hacer el curso cerca de Blanes, qué necesitas y cómo combinarlo con tu primer alquiler con nosotros.",
+    ctaButton: "Escríbenos por WhatsApp",
+    whatsappMessage:
+      "Hola, quiero información sobre cómo sacarme la Licencia de Navegación (titulín) y alquilar un barco.",
   },
   scootersPage: {
     seoTitle: "Alquiler de motos y scooters en Lloret de Mar | Coast Rent",

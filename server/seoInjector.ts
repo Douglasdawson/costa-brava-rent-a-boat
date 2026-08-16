@@ -201,6 +201,17 @@ function buildCaptainedStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
   return out;
 }
 
+// Navigation licence (titulín) pillar page. Copy lives in i18n
+// navigationLicensePage, so all 8 locales get a native title/description.
+function buildNavigationLicenseStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
+  const out: Partial<Record<LangCode, SEOMeta>> = {};
+  for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+    const nl = (I18N_BY_LANG[lang] ?? i18nEs).navigationLicensePage ?? i18nEs.navigationLicensePage!;
+    out[lang] = { title: nl.seoTitle, description: nl.seoDescription };
+  }
+  return out;
+}
+
 // Temporary landing: Blanes fireworks boat trip (July 25-26). Copy lives in
 // i18n fuegosBlanesPage, so all 8 locales get a native title/description.
 function buildFuegosBlanesStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
@@ -294,6 +305,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
   "/alquiler-motos-lloret": buildScootersStaticMeta(),
   "/alquiler-barco-con-patron": buildCaptainedStaticMeta(),
+  "/licencia-navegacion-titulin": buildNavigationLicenseStaticMeta(),
   "/tienda": buildTiendaStaticMeta(),
   "/fuegos-blanes": buildFuegosBlanesStaticMeta(),
   "/garantias": buildGarantiasStaticMeta(),

@@ -303,6 +303,8 @@ Distancia de navegacion sin licencia: hay DOS limites y son ejes distintos, no s
 
 Antes de tocar cualquiera de las tres cifras, lee el PDF del contrato: la web es su espejo, no al reves.
 
+**RD 1188/2025 (BOE 30-dic-2025): fin del alquiler sin titulacion.** Desde el **1-oct-2026** el arrendatario de cualquier embarcacion a motor debe tener titulo nautico: la exencion 5m/15CV del RD 875/2014 queda restringida al uso privado. Hasta el 30-sep-2026 la oferta "sin licencia" es legal y NO se toca (temporada alta). Reglas para copy nuevo: (1) cualquier texto que prometa "alquiler sin licencia" lleva marco temporal ("hasta el 30-sep-2026") o el framing nuevo "titulin en 1 dia"; (2) la promesa "con el titulin llevas la flota" se limita a barcos de hasta 6 m (el Pacific Craft 625 mide 6,24 m: discrepancia pendiente de arbitrar con el owner); (3) pagina pilar `/es/licencia-navegacion-titulin` (clave i18n `navigationLicensePage`, 8 idiomas) + post `fin-alquiler-barcos-sin-licencia-2026` + FAQ `normativa2026`/`titulin` + facts `license-free-rental-end-date`/`navigation-license-course`. El switch del copy comercial (retarget del cluster "sin licencia") esta planificado para ~1-oct-2026, no antes.
+
 ## Flujo de Trabajo Recomendado
 
 1. **Antes de modificar**: Leer el archivo completo con `Read`

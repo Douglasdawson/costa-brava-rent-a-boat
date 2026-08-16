@@ -107,6 +107,8 @@ const CATEGORIES: CategoryDef[] = [
     icon: Shield,
     items: [
       { value: "sin-licencia", fpKey: "sinLicencia" },
+      { value: "normativa-2026", fpKey: "normativa2026" },
+      { value: "titulin", fpKey: "titulin" },
       { value: "con-licencia", fpKey: "licenciasAceptadas" },
       { value: "edad", fpKey: "edadMinima" },
       { value: "experiencia", fpKey: "experiencia" },

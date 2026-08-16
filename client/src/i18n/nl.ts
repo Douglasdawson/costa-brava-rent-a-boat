@@ -2724,6 +2724,16 @@ export const nl: Translations = {
         answer:
           "Ja! We hebben perfecte boten zonder vaarbewijs. Ze hebben maximaal 15 PK, plek voor maximaal 4-5 personen en zijn makkelijk te besturen met volledige instructie. Je hoeft alleen 18 jaar of ouder te zijn.",
       },
+      normativa2026: {
+        question: "Klopt het dat het huren van boten zonder vaarbewijs in 2026 stopt?",
+        answer:
+          "De wet verandert: Koninklijk Besluit 1188/2025 eist vanaf 1 oktober 2026 een vaarbewijs voor het huren van elke motorboot. Tot en met 30 september 2026 verandert er niets en huur je onze boten zonder vaarbewijs zoals altijd. Vanaf die datum volstaat de Licencia de Navegación (titulín), een cursus van 1 dag zonder examen, net als elk hoger of gelijkwaardig buitenlands vaarbewijs. De excursie met schipper verandert niet: daar vaart een professional de boot.",
+      },
+      titulin: {
+        question: "Wat is de titulín en hoe haal ik hem?",
+        answer:
+          "De titulín is de Licencia de Navegación: het snelste vaarbewijs van Spanje. Je haalt hem in één dag met 2 uur theorie en 4 uur praktijk bij een erkende watersportschool, zonder examen, en hij verloopt nooit. Hij staat boten tot 6 meter toe, overdag en tot 2 mijl van een schuilplaats: in onze vloot dekt hij de Mingolla Brava 19 en de Trimarchi 57S. Stuur ons een bericht en we wijzen je waar je hem in de buurt van Blanes kunt halen.",
+      },
       licenciasAceptadas: {
         question: "Welke vaarbewijzen accepteren jullie voor grote boten?",
         answer:
@@ -4556,6 +4566,108 @@ export const nl: Translations = {
     ctaTitle: "Kies je garanties bij het boeken",
     ctaLabel: "Boeken en garanties toevoegen",
     conditionsLink: "Lees de algemene huurvoorwaarden",
+  },
+  navigationLicensePage: {
+    seoTitle: "Spaans vaarbewijs (Titulín) in Blanes | Cursus van 1 dag",
+    seoDescription:
+      "Wat de Licencia de Navegación (titulín) is, wat ermee mag en hoe je hem in één dag haalt: 6 uur, zonder examen. Vanaf oktober 2026 verplicht om te huren.",
+    navLabel: "Vaarbewijs",
+    hero: {
+      title: "De Licencia de Navegación: je vaarbewijs in één enkele dag",
+      subtitle:
+        "De titulín is het snelste vaarbewijs van Spanje: 6 uur cursus, geen examen, en hij verloopt nooit. Hij opent motorboten tot 6 meter en is vanaf oktober 2026 de sleutel om zelf boten te blijven huren.",
+    },
+    chips: ["Cursus van 1 dag (6 uur)", "Geen examen", "Verloopt nooit", "Geldig in heel Spanje"],
+    newRule: {
+      title: "Wetswijziging: wat er op 1 oktober 2026 gebeurt",
+      body:
+        "Koninklijk Besluit 1188/2025 wijzigt de Spaanse regels voor vaarbewijzen (RD 875/2014): vanaf 1 oktober 2026 is voor het huren van elke motorboot een vaarbewijs nodig, ook voor de kleine boten die tot nu toe zonder vaarbewijs werden verhuurd. De vrijstelling voor boten tot 5 meter en 15 pk geldt alleen nog voor boten voor privégebruik.",
+      note:
+        "Tot en met 30 september 2026 verandert er niets: onze boten zonder vaarbewijs huur je zoals altijd. De wijziging raakt de komende seizoenen, en de Licencia de Navegación is de eenvoudigste manier om erop vooruit te lopen.",
+    },
+    whatIs: {
+      title: "Wat de Licencia de Navegación (de titulín) is",
+      body:
+        "Het is het Spaanse instapvaarbewijs, geregeld in RD 875/2014. Er is geen examen: erkende watersportscholen en de zeil- en motorbootfederaties geven hem af na een cursus van één dag met 2 uur theorie en 4 uur praktijk aan boord. Te halen vanaf 18 jaar, of met 16 of 17 met toestemming van ouders of voogd.",
+    },
+    allows: {
+      title: "Wat mag je met de titulín",
+      items: [
+        "Recreatieve motorboten tot 6 meter lengte besturen",
+        "Tot 2 zeemijl van een haven, jachthaven of schuilplaats varen",
+        "Varen bij daglicht, wanneer de Costa Brava op zijn mooist is",
+        "Waterscooters van klasse C rijden (minder dan 55 pk)",
+      ],
+      note:
+        "Voor grotere boten, nachtvaart of verder uit de kust bestaan de hogere Spaanse vaarbewijzen (PNB en PER), waarvoor wel een examen nodig is.",
+    },
+    course: {
+      title: "Zo haal je hem: een cursus van 6 uur, zonder examen",
+      steps: [
+        {
+          title: "2 uur theorie",
+          description:
+            "Basisregels, vaargrenzen, veiligheid en betonning. Bij een erkende watersportschool of federatie.",
+        },
+        {
+          title: "4 uur praktijk aan boord",
+          description:
+            "Manoeuvres, aanleggen en echt varen op een lesboot met instructeur.",
+        },
+        {
+          title: "Vaarbewijs direct uitgereikt",
+          description:
+            "De school geeft het vaarbewijs meteen na afloop af. Zonder examen, zonder wachttijd en zonder vervaldatum.",
+        },
+      ],
+      note:
+        "De cursus volg je bij erkende watersportscholen en federaties. Rond Blanes en de zuidelijke Costa Brava zijn er meerdere opties; stuur ons een bericht en we wijzen je de weg.",
+    },
+    fleet: {
+      title: "Met de titulín is deze vloot van jou",
+      body:
+        "De Licencia de Navegación is genoeg om onze speedboten Mingolla Brava 19 en Trimarchi 57S te huren, met motoren van 80 en 110 pk en Tossa de Mar binnen bereik. En vanaf oktober 2026 is het ook het vaarbewijs waarmee je de kleinere boten van de vloot kunt blijven huren. Eén cursusdag, vele zomers zelf aan het roer.",
+      cta: "Bekijk de boten die je mag besturen",
+    },
+    faqTitle: "Veelgestelde vragen over de titulín",
+    faq: [
+      {
+        q: "Heb ik nu al een vaarbewijs nodig om een boot te huren?",
+        a: "Nog niet: tot en met 30 september 2026 huur je boten tot 5 meter en 15 pk zoals altijd zonder vaarbewijs. Vanaf 1 oktober 2026 eist RD 1188/2025 een vaarbewijs van iedereen die een motorboot huurt, en de Licencia de Navegación is het snelst te halen.",
+      },
+      {
+        q: "Hoe lang duurt de cursus en is er een examen?",
+        a: "Eén dag: 2 uur theorie en 4 uur praktijk aan boord. Er is geen examen; na afloop reikt de school het vaarbewijs direct uit.",
+      },
+      {
+        q: "Wat mag ik besturen met de Licencia de Navegación?",
+        a: "Motorboten tot 6 meter lengte, overdag en tot 2 zeemijl van een haven of schuilplaats, plus waterscooters van klasse C. In onze vloot dekt hij de Mingolla Brava 19 en de Trimarchi 57S.",
+      },
+      {
+        q: "Verloopt hij? Vanaf welke leeftijd kan ik hem halen?",
+        a: "Hij verloopt nooit en is geldig in heel Spanje. Je kunt hem halen vanaf 18 jaar, of met 16 of 17 als je ouders of voogd toestemming tekenen.",
+      },
+      {
+        q: "Ik heb een vaarbewijs uit een ander land, is dat geldig?",
+        a: "Als het gelijkwaardig is (ICC, het Franse Permis Côtier, het Duitse SBF See en andere Europese vaarbewijzen), ja. Op onze pagina met boten met vaarbewijs staat een gratis online check: controleer het vóór je boekt en neem het originele document mee op de dag zelf.",
+      },
+      {
+        q: "En als ik helemaal geen vaarbewijs wil halen?",
+        a: "Je hebt twee opties: tot en met 30 september 2026 een boot zonder vaarbewijs huren, of de privé-excursie met schipper boeken, waarbij een professional de boot vaart en niemand aan boord een vaarbewijs nodig heeft, op elke datum van het seizoen.",
+      },
+    ],
+    alternative: {
+      title: "Liever niet zelf aan het roer?",
+      body:
+        "Bij de privé-excursie met schipper heb je geen enkel vaarbewijs nodig, nu niet en ook niet onder de nieuwe wet: een professionele schipper brengt jullie naar baaien en zeegrotten tussen Blanes en Tossa de Mar terwijl jullie er alleen maar van genieten.",
+      cta: "Bekijk de excursie met schipper",
+    },
+    ctaTitle: "We leggen je uit hoe je de titulín haalt",
+    ctaText:
+      "Stuur ons een WhatsApp-bericht en we wijzen je de weg: waar je de cursus in de buurt van Blanes volgt, wat je nodig hebt en hoe je hem combineert met je eerste huur bij ons.",
+    ctaButton: "Stuur ons een WhatsApp",
+    whatsappMessage:
+      "Hallo, ik wil graag informatie over het halen van de Licencia de Navegación (titulín) en het huren van een boot.",
   },
   scootersPage: {
     seoTitle: "Scooter- en motorverhuur in Lloret de Mar | Coast Rent",

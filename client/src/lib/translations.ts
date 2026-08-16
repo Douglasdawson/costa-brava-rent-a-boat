@@ -3090,6 +3090,28 @@ export interface Translations {
     ctaLabel: string;
     conditionsLink: string;
   };
+  // Navigation licence (titulín) pillar page (/licencia-navegacion-titulin).
+  // The server-side meta in seoInjector.ts reads seoTitle/seoDescription from
+  // these same keys — renaming one desyncs the SSR head.
+  navigationLicensePage?: {
+    seoTitle: string;
+    seoDescription: string;
+    navLabel: string;
+    hero: { title: string; subtitle: string };
+    chips: string[];
+    newRule: { title: string; body: string; note: string };
+    whatIs: { title: string; body: string };
+    allows: { title: string; items: string[]; note: string };
+    course: { title: string; steps: { title: string; description: string }[]; note: string };
+    fleet: { title: string; body: string; cta: string };
+    faqTitle: string;
+    faq: { q: string; a: string }[];
+    alternative: { title: string; body: string; cta: string };
+    ctaTitle: string;
+    ctaText: string;
+    ctaButton: string;
+    whatsappMessage: string;
+  };
   scootersPage: {
     seoTitle: string;
     seoDescription: string;

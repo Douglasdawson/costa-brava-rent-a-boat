@@ -2727,6 +2727,16 @@ export const fr: Translations = {
         answer:
           "Oui ! Nous avons des bateaux parfaits sans permis. Ils font jusqu'à 15 CV, maximum 4-5 personnes, faciles à manœuvrer avec briefing complet. Il suffit d'avoir 18 ans ou plus.",
       },
+      normativa2026: {
+        question: "Est-il vrai que la location de bateaux sans permis se termine en 2026 ?",
+        answer:
+          "La loi change : le décret royal 1188/2025 exige un titre nautique pour louer tout bateau à moteur à partir du 1er octobre 2026. Jusqu'au 30 septembre 2026, rien ne change et nos bateaux sans permis se louent comme toujours. À partir de cette date, la Licencia de Navegación (titulín), un cours d'1 jour sans examen, suffit, tout comme un titre supérieur ou étranger équivalent. L'excursion avec skipper n'est pas concernée : là, c'est un professionnel qui pilote.",
+      },
+      titulin: {
+        question: "Qu'est-ce que le titulín et comment l'obtenir ?",
+        answer:
+          "Le titulín est la Licencia de Navegación : le permis bateau le plus rapide d'Espagne. Il s'obtient en une journée avec 2 heures de théorie et 4 heures de pratique dans une école nautique agréée, sans examen, et il n'expire jamais. Il permet de piloter des bateaux jusqu'à 6 mètres, de jour et jusqu'à 2 milles d'un abri : dans notre flotte, il couvre la Mingolla Brava 19 et la Trimarchi 57S. Écrivez-nous et nous vous indiquerons où le passer près de Blanes.",
+      },
       licenciasAceptadas: {
         question: "Quels permis acceptez-vous pour les grands bateaux ?",
         answer:
@@ -4557,6 +4567,108 @@ export const fr: Translations = {
     ctaTitle: "Choisissez vos couvertures au moment de réserver",
     ctaLabel: "Réserver et ajouter les couvertures",
     conditionsLink: "Lire les conditions générales de location",
+  },
+  navigationLicensePage: {
+    seoTitle: "Permis bateau espagnol (Titulín) à Blanes | Cours d'1 jour",
+    seoDescription:
+      "La Licencia de Navegación (titulín) : ce qu'elle permet et comment l'obtenir en un jour, 6 heures sans examen. Dès octobre 2026, la loi l'exige pour louer.",
+    navLabel: "Permis bateau",
+    hero: {
+      title: "La Licencia de Navegación : votre permis bateau en une seule journée",
+      subtitle:
+        "Le titulín est le permis bateau le plus rapide d'Espagne : 6 heures de cours, sans examen, et il n'expire jamais. Il ouvre les bateaux à moteur jusqu'à 6 mètres et, dès octobre 2026, c'est la clé pour continuer à louer un bateau par vous-même.",
+    },
+    chips: ["Cours d'1 jour (6 heures)", "Sans examen", "N'expire jamais", "Valable dans toute l'Espagne"],
+    newRule: {
+      title: "Changement de loi : ce qui se passe le 1er octobre 2026",
+      body:
+        "Le décret royal 1188/2025 modifie la réglementation espagnole des titres nautiques (RD 875/2014) : à partir du 1er octobre 2026, il faudra un titre nautique pour louer tout bateau à moteur, y compris les petits bateaux qui se louaient jusqu'ici sans permis. L'exemption des bateaux jusqu'à 5 mètres et 15 CV ne vaut plus que pour les bateaux à usage privé.",
+      note:
+        "Jusqu'au 30 septembre 2026, rien ne change : nos bateaux sans permis se louent comme toujours. Le changement concerne les saisons suivantes, et la Licencia de Navegación est la façon la plus simple de prendre de l'avance.",
+    },
+    whatIs: {
+      title: "Qu'est-ce que la Licencia de Navegación (le titulín)",
+      body:
+        "C'est le titre nautique d'initiation espagnol, régi par le RD 875/2014. Il n'y a pas d'examen : les écoles nautiques de plaisance agréées et les fédérations de voile et de motonautisme le délivrent après un cours d'une journée avec 2 heures de théorie et 4 heures de pratique à bord. Accessible dès 18 ans, ou à 16-17 ans avec le consentement des parents ou tuteurs.",
+    },
+    allows: {
+      title: "Ce que permet le titulín",
+      items: [
+        "Piloter des bateaux de plaisance à moteur jusqu'à 6 mètres de longueur",
+        "Naviguer jusqu'à 2 milles nautiques d'un port, d'une marina ou d'un abri",
+        "Navigation de jour, le meilleur moment pour profiter de la Costa Brava",
+        "Conduire des motos aquatiques de classe C (moins de 55 CV)",
+      ],
+      note:
+        "Pour des bateaux plus grands, la navigation de nuit ou s'éloigner davantage de la côte, il existe les titres supérieurs (PNB et PER), qui exigent un examen.",
+    },
+    course: {
+      title: "Comment l'obtenir : un cours de 6 heures, sans examen",
+      steps: [
+        {
+          title: "2 heures de théorie",
+          description:
+            "Réglementation de base, limites de navigation, sécurité et balisage. Dans une école nautique agréée ou une fédération.",
+        },
+        {
+          title: "4 heures de pratique à bord",
+          description:
+            "Manœuvres, accostages et navigation réelle sur un bateau-école avec instructeur.",
+        },
+        {
+          title: "Titre délivré sur place",
+          description:
+            "L'école délivre elle-même le permis à la fin du cours. Sans examen, sans attente et sans date d'expiration.",
+        },
+      ],
+      note:
+        "Le cours se fait dans des écoles nautiques de plaisance agréées et des fédérations nautiques. Il existe plusieurs options autour de Blanes et de la Costa Brava sud ; écrivez-nous et nous vous orienterons.",
+    },
+    fleet: {
+      title: "Avec le titulín, cette flotte est à vous",
+      body:
+        "La Licencia de Navegación suffit pour louer nos vedettes Mingolla Brava 19 et Trimarchi 57S, avec des moteurs de 80 et 110 CV et Tossa de Mar à portée. Et à partir d'octobre 2026, ce sera aussi le titre qui vous permettra de continuer à louer les petits bateaux de la flotte. Un jour de cours, et vous naviguez par vous-même pendant de nombreux étés.",
+      cta: "Voir les bateaux que vous pouvez piloter",
+    },
+    faqTitle: "Questions fréquentes sur le titulín",
+    faq: [
+      {
+        q: "Ai-je déjà besoin d'un permis pour louer un bateau ?",
+        a: "Pas encore : jusqu'au 30 septembre 2026, les bateaux jusqu'à 5 mètres et 15 CV se louent sans permis, comme toujours. À partir du 1er octobre 2026, le RD 1188/2025 exige un titre nautique pour louer tout bateau à moteur, et la Licencia de Navegación est le plus rapide à obtenir.",
+      },
+      {
+        q: "Combien dure le cours et y a-t-il un examen ?",
+        a: "Une seule journée : 2 heures de théorie et 4 heures de pratique à bord. Il n'y a pas d'examen ; à la fin, l'école délivre directement le permis.",
+      },
+      {
+        q: "Que puis-je piloter avec la Licencia de Navegación ?",
+        a: "Des bateaux à moteur jusqu'à 6 mètres de longueur, de jour et jusqu'à 2 milles nautiques d'un port ou d'un abri, ainsi que des motos aquatiques de classe C. Dans notre flotte, elle couvre la Mingolla Brava 19 et la Trimarchi 57S.",
+      },
+      {
+        q: "Expire-t-il ? À partir de quel âge puis-je l'obtenir ?",
+        a: "Il n'expire jamais et il est valable dans toute l'Espagne. Vous pouvez l'obtenir dès 18 ans, ou à 16-17 ans si vos parents ou tuteurs signent le consentement.",
+      },
+      {
+        q: "J'ai un permis bateau d'un autre pays, est-il valable ?",
+        a: "S'il est équivalent (ICC, Permis Côtier français, SBF See allemand et autres titres européens), oui. Nous avons un vérificateur en ligne gratuit sur la page des bateaux avec permis : vérifiez avant de réserver et apportez le document original le jour de la sortie.",
+      },
+      {
+        q: "Et si je ne veux passer aucun permis ?",
+        a: "Vous avez deux options : louer un bateau sans permis jusqu'au 30 septembre 2026, ou réserver l'excursion privée avec skipper, où un professionnel pilote le bateau et personne à bord n'a besoin de titre, à n'importe quelle date de la saison.",
+      },
+    ],
+    alternative: {
+      title: "Vous préférez ne pas prendre la barre ?",
+      body:
+        "Avec l'excursion privée avec skipper, aucun titre n'est nécessaire, ni maintenant ni avec la nouvelle loi : un skipper professionnel vous emmène dans les criques et grottes marines entre Blanes et Tossa de Mar pendant que vous profitez simplement.",
+      cta: "Voir l'excursion avec skipper",
+    },
+    ctaTitle: "On vous explique comment obtenir votre titulín",
+    ctaText:
+      "Écrivez-nous sur WhatsApp et nous vous orienterons : où faire le cours près de Blanes, ce qu'il vous faut et comment le combiner avec votre première location chez nous.",
+    ctaButton: "Écrivez-nous sur WhatsApp",
+    whatsappMessage:
+      "Bonjour, je voudrais des informations pour obtenir la Licencia de Navegación (titulín) et louer un bateau.",
   },
   scootersPage: {
     seoTitle: "Location de motos et scooters à Lloret de Mar | Coast Rent",

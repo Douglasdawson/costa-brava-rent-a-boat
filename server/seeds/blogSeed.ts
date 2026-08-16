@@ -5101,6 +5101,78 @@ Si tu punto de partida real es Tossa y prefieres información de la zona, echa u
 Sin pagos online ni comisiones de plataforma: la web recoge tu solicitud y cerramos los detalles contigo directamente. Nos vemos en el puerto.
 `,
   },
+  {
+    title: "Fin del alquiler de barcos sin licencia en 2026: qué dice la nueva ley y cómo seguir navegando",
+    slug: "fin-alquiler-barcos-sin-licencia-2026",
+    category: "Guías",
+    author: "Iván Ramírez Dawson",
+    featuredImage: "/images/blog/comparativa-barcos-con-sin-licencia-blanes.webp",
+    metaDescription: "El RD 1188/2025 exige título náutico para alquilar cualquier barco a motor desde el 1 de octubre de 2026. Qué cambia, a quién afecta y cómo seguir navegando.",
+    tags: ["barcos sin licencia 2026", "nueva normativa barcos sin licencia", "rd 1188/2025", "fin alquiler barco sin licencia", "licencia de navegacion titulin", "titulacion nautica alquiler"],
+    isPublished: true,
+    _publishedAt: new Date("2026-08-16T10:00:00Z"),
+    titleByLang: { es: "Fin del alquiler de barcos sin licencia en 2026: qué dice la nueva ley y cómo seguir navegando" },
+    excerpt: "El RD 1188/2025 pone fecha final al alquiler de barcos sin titulación: 1 de octubre de 2026. Te lo contamos desde dentro, como empresa afectada: qué cambia exactamente, qué no cambia y las tres formas de seguir saliendo al mar.",
+    content: `Vamos a contarte esto desde dentro. Somos una empresa de alquiler de barcos en el Puerto de Blanes y una parte importante de nuestra flota son embarcaciones **sin licencia**: barcos pequeños que cualquier adulto podía alquilar y gobernar sin titulación. Una nueva ley pone fecha final a ese modelo en toda España, y preferimos que lo leas aquí, con las fechas exactas y sin alarmismo, antes que en un titular a medias.
+
+## Qué dice exactamente la nueva ley
+
+El **Real Decreto 1188/2025, de 26 de diciembre** ([publicado en el BOE el 30 de diciembre de 2025](https://www.boe.es/buscar/doc.php?id=BOE-A-2025-27010)) modifica el RD 875/2014, la norma que regula las titulaciones náuticas de recreo.
+
+Hasta ahora, esa norma tenía una exención muy conocida: las embarcaciones a motor de **hasta 5 metros de eslora y 15 CV de potencia** podían gobernarse **sin ningún título**, de día y hasta 2 millas náuticas de un abrigo. Sobre esa exención se construyó todo el sector del "alquiler de barcos sin licencia", el nuestro incluido.
+
+El cambio es quirúrgico: la exención **se mantiene, pero solo para uso privado**. El texto nuevo lo dice sin rodeos: en los casos de **arrendamiento** de estas embarcaciones, **el arrendatario deberá estar en posesión del título correspondiente**. Traducido: si el barco es tuyo, todo sigue igual; si lo alquilas, necesitarás un título náutico.
+
+El motivo que da el propio decreto es el elevado número de incidentes y accidentes en estas actividades. Y siendo honestos, desde dentro del sector: que se pida una formación mínima de un día para llevar un barco no nos parece una mala noticia para la seguridad de nadie.
+
+## Las fechas que importan
+
+- **Hasta el 30 de septiembre de 2026**: no cambia absolutamente nada. Los barcos sin licencia se alquilan como siempre, esta temporada incluida.
+- **Desde el 1 de octubre de 2026**: entra en vigor la modificación. Para alquilar cualquier embarcación a motor, también las de menos de 5 metros y 15 CV, el cliente deberá tener un título náutico.
+
+Es decir: la temporada 2026 se completa con las reglas de siempre, y el cambio real se nota a partir de la **temporada 2027**.
+
+## A quién afecta y a quién no
+
+**Te afecta si:** tu plan era alquilar un barco sin titulación a partir de octubre de 2026, aquí o en cualquier puerto de España. La norma es estatal y afecta a todas las empresas de alquiler por igual.
+
+**No te afecta si:**
+
+- **Tienes barco propio** de hasta 5 metros y 15 CV: el uso privado conserva la exención.
+- **Ya tienes un título náutico**, español o extranjero equivalente (ICC, Permis Côtier, SBF See y otros europeos). Puedes comprobar el tuyo en el verificador gratuito de nuestra página de [barcos con licencia](/es/barcos-con-licencia).
+- **Sales con patrón**: en la [excursión privada con patrón](/es/alquiler-barco-con-patron) el barco lo gobierna un profesional y nadie a bordo necesita titulación. Eso no cambia ni ahora ni después.
+
+## La solución más sencilla: la Licencia de Navegación (el titulín)
+
+Aquí viene la parte que casi nadie cuenta: el título que pide la ley para estos barcos es el más fácil de obtener de toda la escala náutica española. La **Licencia de Navegación**, el famoso **titulín**, se consigue en **un solo día**: 2 horas de teoría y 4 horas de prácticas a bordo en una escuela náutica autorizada o federación. **Sin examen**. Y no caduca nunca.
+
+Y hay un giro que convierte la obligación en oportunidad: el titulín no te habilita solo para los barcos pequeños. Te permite gobernar embarcaciones **de hasta 6 metros de eslora**, siempre de día y hasta 2 millas de un abrigo. En nuestra flota, eso significa que con un día de curso puedes alquilar lanchas como la **Mingolla Brava 19** o la **Trimarchi 57S**, con motores de 80 y 110 CV, con las que sí se llega a Tossa de Mar. Más barco del que podías llevar sin título.
+
+Hemos preparado una guía completa del titulín, con lo que permite, cómo se consigue y sus preguntas frecuentes: [Licencia de Navegación (titulín) en Blanes](/es/licencia-navegacion-titulin).
+
+## Qué vamos a hacer nosotros
+
+Nuestra flota no se va a ninguna parte. Los mismos barcos que hoy se alquilan sin licencia seguirán en el agua en 2027; lo que cambia es el requisito de quien los alquila. Estamos trabajando para que el salto sea lo más corto posible: orientarte sobre dónde sacarte el titulín cerca de Blanes, verificar títulos extranjeros antes de la reserva y, para quien no quiera saber nada de cursos, la excursión con patrón de siempre.
+
+Si tienes dudas sobre tu caso concreto, escríbenos por **WhatsApp al +34 611 500 372** y te lo aclaramos en dos mensajes.
+
+## Preguntas rápidas
+
+**¿Puedo alquilar sin título este verano y en septiembre?**
+Sí. Hasta el 30 de septiembre de 2026 todo funciona como siempre.
+
+**¿La norma es solo de Cataluña?**
+No, es un Real Decreto estatal: aplica en toda España por igual.
+
+**¿Qué título me pedirán para alquilar un barco pequeño en 2027?**
+Como mínimo la Licencia de Navegación (titulín), que se obtiene en un día y sin examen. Cualquier título superior (PNB, PER) o extranjero equivalente también sirve.
+
+**¿Y si no quiero sacarme ningún título?**
+Tienes la excursión privada con patrón: un profesional lleva el barco y tú solo disfrutas. Disponible toda la temporada, con la ley nueva y con la vieja.
+
+El mar no cierra el 1 de octubre de 2026: solo cambia la llave para entrar. Y la llave, de verdad, se saca en un día.
+`,
+  },
 ];
 
 // Exported so ad-hoc scripts can create/update individual posts via the admin

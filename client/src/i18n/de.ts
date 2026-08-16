@@ -2729,6 +2729,16 @@ export const de: Translations = {
         answer:
           "Ja! Wir haben perfekte Boote ohne Führerschein. Sie haben bis zu 15 PS, maximal 4-5 Personen, sind einfach zu bedienen mit vollständiger Einweisung. Sie müssen nur mindestens 18 Jahre alt sein.",
       },
+      normativa2026: {
+        question: "Stimmt es, dass 2026 das führerscheinfreie Bootmieten endet?",
+        answer:
+          "Das Gesetz ändert sich: Das Königliche Dekret 1188/2025 verlangt ab dem 1. Oktober 2026 einen Bootsführerschein zum Mieten jedes Motorboots. Bis zum 30. September 2026 ändert sich nichts, und unsere führerscheinfreien Boote können wie immer gemietet werden. Ab diesem Datum genügt die Licencia de Navegación (Titulín), ein 1-Tages-Kurs ohne Prüfung, ebenso jeder höhere oder gleichwertige ausländische Schein. Der Ausflug mit Skipper ist nicht betroffen: Dort steuert ein Profi das Boot.",
+      },
+      titulin: {
+        question: "Was ist der Titulín und wie bekomme ich ihn?",
+        answer:
+          "Der Titulín ist die Licencia de Navegación: Spaniens schnellster Bootsführerschein. Sie erhalten ihn an einem Tag mit 2 Stunden Theorie und 4 Stunden Praxis in einer zugelassenen Wassersportschule, ohne Prüfung, und er läuft nie ab. Er erlaubt Boote bis 6 Meter, bei Tag und bis zu 2 Meilen von einem Schutzort: In unserer Flotte deckt er die Mingolla Brava 19 und die Trimarchi 57S ab. Schreiben Sie uns und wir sagen Ihnen, wo Sie ihn in der Nähe von Blanes machen können.",
+      },
       licenciasAceptadas: {
         question: "Welche Lizenzen akzeptieren Sie für größere Boote?",
         answer:
@@ -4562,6 +4572,108 @@ export const de: Translations = {
     ctaTitle: "Wähle deine Zusatzleistungen bei der Buchung",
     ctaLabel: "Buchen und Zusatzleistungen wählen",
     conditionsLink: "Allgemeine Mietbedingungen lesen",
+  },
+  navigationLicensePage: {
+    seoTitle: "Spanischer Bootsführerschein (Titulín) in Blanes | 1-Tages-Kurs",
+    seoDescription:
+      "Was die Licencia de Navegación (Titulín) ist, was sie erlaubt und wie Sie sie an einem Tag bekommen: 6 Stunden, ohne Prüfung. Ab Oktober 2026 fürs Mieten Pflicht.",
+    navLabel: "Bootsführerschein",
+    hero: {
+      title: "Die Licencia de Navegación: Ihr Bootsführerschein an einem einzigen Tag",
+      subtitle:
+        "Der Titulín ist Spaniens schnellster Bootsführerschein: 6 Stunden Kurs, keine Prüfung, und er läuft nie ab. Er öffnet Ihnen Motorboote bis 6 Meter und ist ab Oktober 2026 der Schlüssel, um weiterhin selbst Boote zu mieten.",
+    },
+    chips: ["1-Tages-Kurs (6 Stunden)", "Keine Prüfung", "Läuft nie ab", "Gültig in ganz Spanien"],
+    newRule: {
+      title: "Gesetzesänderung: was am 1. Oktober 2026 passiert",
+      body:
+        "Das Königliche Dekret 1188/2025 ändert die spanischen Regeln für Sportbootführerscheine (RD 875/2014): Ab dem 1. Oktober 2026 ist zum Mieten jedes Motorboots ein Bootsführerschein erforderlich, auch bei den kleinen Booten, die bisher führerscheinfrei vermietet wurden. Die Ausnahme für Boote bis 5 Meter und 15 PS gilt nur noch für privat genutzte Boote.",
+      note:
+        "Bis zum 30. September 2026 bleibt alles wie gehabt: Unsere führerscheinfreien Boote können wie immer gemietet werden. Die Änderung betrifft die kommenden Saisons, und die Licencia de Navegación ist der einfachste Weg, ihr zuvorzukommen.",
+    },
+    whatIs: {
+      title: "Was die Licencia de Navegación (der Titulín) ist",
+      body:
+        "Es ist Spaniens Einsteiger-Bootsführerschein, geregelt im RD 875/2014. Es gibt keine Prüfung: Zugelassene Wassersportschulen und die Segel- und Motorbootverbände stellen ihn nach einem eintägigen Kurs mit 2 Stunden Theorie und 4 Stunden Praxis an Bord aus. Erhältlich ab 18 Jahren, oder mit 16 oder 17 mit Einverständnis der Eltern.",
+    },
+    allows: {
+      title: "Was der Titulín erlaubt",
+      items: [
+        "Sportmotorboote bis 6 Meter Länge führen",
+        "Bis zu 2 Seemeilen von einem Hafen, einer Marina oder einem Schutzort entfernt fahren",
+        "Fahrten bei Tag, wenn die Costa Brava am schönsten ist",
+        "Jetskis der Klasse C fahren (unter 55 PS)",
+      ],
+      note:
+        "Für größere Boote, Nachtfahrten oder größere Entfernungen von der Küste gibt es die höheren spanischen Scheine (PNB und PER), die eine Prüfung erfordern.",
+    },
+    course: {
+      title: "So bekommen Sie ihn: ein 6-Stunden-Kurs ohne Prüfung",
+      steps: [
+        {
+          title: "2 Stunden Theorie",
+          description:
+            "Grundregeln, Fahrgrenzen, Sicherheit und Betonnung. In einer zugelassenen Wassersportschule oder einem Verband.",
+        },
+        {
+          title: "4 Stunden Praxis an Bord",
+          description:
+            "Manöver, Anlegen und echtes Fahren auf einem Schulungsboot mit Ausbilder.",
+        },
+        {
+          title: "Schein sofort ausgestellt",
+          description:
+            "Die Schule stellt den Führerschein direkt nach dem Kurs aus. Ohne Prüfung, ohne Wartezeit und ohne Ablaufdatum.",
+        },
+      ],
+      note:
+        "Der Kurs findet in zugelassenen Wassersportschulen und Verbänden statt. Rund um Blanes und die südliche Costa Brava gibt es mehrere Optionen; schreiben Sie uns und wir helfen Ihnen weiter.",
+    },
+    fleet: {
+      title: "Mit dem Titulín gehört diese Flotte Ihnen",
+      body:
+        "Die Licencia de Navegación genügt, um unsere Motorboote Mingolla Brava 19 und Trimarchi 57S zu mieten, mit 80 und 110 PS und Tossa de Mar in Reichweite. Und ab Oktober 2026 ist sie auch der Schein, mit dem Sie weiterhin die kleineren Boote der Flotte mieten können. Ein Kurstag, viele Sommer am eigenen Steuer.",
+      cta: "Boote ansehen, die Sie führen dürfen",
+    },
+    faqTitle: "Häufige Fragen zum Titulín",
+    faq: [
+      {
+        q: "Brauche ich jetzt schon einen Führerschein, um ein Boot zu mieten?",
+        a: "Noch nicht: Bis zum 30. September 2026 können Boote bis 5 Meter und 15 PS wie immer führerscheinfrei gemietet werden. Ab dem 1. Oktober 2026 verlangt das RD 1188/2025 von jedem Mieter eines Motorboots einen Bootsführerschein, und die Licencia de Navegación ist am schnellsten zu bekommen.",
+      },
+      {
+        q: "Wie lange dauert der Kurs und gibt es eine Prüfung?",
+        a: "Ein einziger Tag: 2 Stunden Theorie und 4 Stunden Praxis an Bord. Es gibt keine Prüfung; am Ende stellt die Schule den Schein direkt aus.",
+      },
+      {
+        q: "Was darf ich mit der Licencia de Navegación führen?",
+        a: "Motorboote bis 6 Meter Länge, bei Tag und bis zu 2 Seemeilen von einem Hafen oder Schutzort entfernt, außerdem Jetskis der Klasse C. In unserer Flotte deckt sie die Mingolla Brava 19 und die Trimarchi 57S ab.",
+      },
+      {
+        q: "Läuft er ab? Ab welchem Alter kann ich ihn machen?",
+        a: "Er läuft nie ab und gilt in ganz Spanien. Sie können ihn ab 18 Jahren machen, oder mit 16 oder 17 mit unterschriebenem Einverständnis der Eltern.",
+      },
+      {
+        q: "Ich habe einen Bootsführerschein aus einem anderen Land, gilt er?",
+        a: "Wenn er gleichwertig ist (ICC, der deutsche SBF See, der französische Permis Côtier und andere europäische Scheine), ja. Auf unserer Seite der führerscheinpflichtigen Boote gibt es einen kostenlosen Online-Check: Prüfen Sie ihn vor der Buchung und bringen Sie das Originaldokument mit.",
+      },
+      {
+        q: "Und wenn ich gar keinen Führerschein machen möchte?",
+        a: "Sie haben zwei Möglichkeiten: bis zum 30. September 2026 ein führerscheinfreies Boot mieten, oder den privaten Ausflug mit Skipper buchen, bei dem ein Profi das Boot fährt und niemand an Bord einen Schein braucht, an jedem Termin der Saison.",
+      },
+    ],
+    alternative: {
+      title: "Lieber nicht selbst ans Steuer?",
+      body:
+        "Beim privaten Ausflug mit Skipper brauchen Sie keinerlei Schein, weder jetzt noch mit dem neuen Gesetz: Ein professioneller Skipper bringt Sie zu Buchten und Meereshöhlen zwischen Blanes und Tossa de Mar, während Sie einfach nur genießen.",
+      cta: "Ausflug mit Skipper ansehen",
+    },
+    ctaTitle: "Wir erklären Ihnen den Weg zum Titulín",
+    ctaText:
+      "Schreiben Sie uns per WhatsApp und wir helfen Ihnen weiter: wo Sie den Kurs in der Nähe von Blanes machen, was Sie brauchen und wie Sie ihn mit Ihrer ersten Miete bei uns kombinieren.",
+    ctaButton: "Schreiben Sie uns per WhatsApp",
+    whatsappMessage:
+      "Hallo, ich möchte Informationen zur Licencia de Navegación (Titulín) und zum Mieten eines Boots.",
   },
   scootersPage: {
     seoTitle: "Roller- und Motorradverleih in Lloret de Mar | Coast Rent",

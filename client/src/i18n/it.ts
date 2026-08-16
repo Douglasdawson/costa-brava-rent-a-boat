@@ -2717,6 +2717,16 @@ export const it: Translations = {
         answer:
           "Sì! Abbiamo barche perfette senza patente. Sono fino a 15 CV, massimo 4-5 persone, facili da manovrare con briefing completo. Basta essere maggiorenni.",
       },
+      normativa2026: {
+        question: "È vero che nel 2026 finisce il noleggio di barche senza patente?",
+        answer:
+          "La legge cambia: il Regio Decreto 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1º ottobre 2026. Fino al 30 settembre 2026 non cambia nulla e le nostre barche senza patente si noleggiano come sempre. Da quella data basterà la Licencia de Navegación (titulín), un corso di 1 giorno senza esame, oppure qualsiasi titolo superiore o straniero equivalente. L'escursione con skipper non è interessata: lì la barca la conduce un professionista.",
+      },
+      titulin: {
+        question: "Cos'è il titulín e come lo ottengo?",
+        answer:
+          "Il titulín è la Licencia de Navegación: la patente nautica più rapida di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica in una scuola nautica autorizzata, senza esame, e non scade mai. Permette barche fino a 6 metri, di giorno e fino a 2 miglia da un rifugio: nella nostra flotta copre la Mingolla Brava 19 e la Trimarchi 57S. Scrivici e ti indichiamo dove ottenerlo vicino a Blanes.",
+      },
       licenciasAceptadas: {
         question: "Quali patenti accettate per le barche grandi?",
         answer:
@@ -4546,6 +4556,108 @@ export const it: Translations = {
     ctaTitle: "Scegli le tue coperture al momento di prenotare",
     ctaLabel: "Prenota e aggiungi le coperture",
     conditionsLink: "Leggi le condizioni generali di noleggio",
+  },
+  navigationLicensePage: {
+    seoTitle: "Patente nautica spagnola (Titulín) a Blanes | Corso di 1 giorno",
+    seoDescription:
+      "Cos'è la Licencia de Navegación (titulín), cosa permette e come ottenerla in un giorno: 6 ore, senza esame. Da ottobre 2026 la legge la richiede per noleggiare.",
+    navLabel: "Patente nautica",
+    hero: {
+      title: "La Licencia de Navegación: la tua patente nautica in un solo giorno",
+      subtitle:
+        "Il titulín è la patente nautica più rapida di Spagna: 6 ore di corso, senza esame, e non scade mai. Ti apre le barche a motore fino a 6 metri e, da ottobre 2026, è la chiave per continuare a noleggiare barche in autonomia.",
+    },
+    chips: ["Corso di 1 giorno (6 ore)", "Senza esame", "Non scade mai", "Valida in tutta la Spagna"],
+    newRule: {
+      title: "Cambio di legge: cosa succede il 1º ottobre 2026",
+      body:
+        "Il Regio Decreto 1188/2025 modifica la normativa spagnola sui titoli nautici (RD 875/2014): dal 1º ottobre 2026, per noleggiare qualsiasi imbarcazione a motore servirà un titolo nautico, anche per le barche piccole che finora si noleggiavano senza patente. L'esenzione per le barche fino a 5 metri e 15 CV resta solo per le imbarcazioni a uso privato.",
+      note:
+        "Fino al 30 settembre 2026 non cambia nulla: le nostre barche senza patente si noleggiano come sempre. Il cambio riguarda le prossime stagioni, e la Licencia de Navegación è il modo più semplice per giocare d'anticipo.",
+    },
+    whatIs: {
+      title: "Cos'è la Licencia de Navegación (il titulín)",
+      body:
+        "È il titolo nautico di base spagnolo, regolato dal RD 875/2014. Non c'è esame: la rilasciano le scuole nautiche da diporto autorizzate e le federazioni di vela e motonautica dopo un corso di un giorno con 2 ore di teoria e 4 ore di pratica a bordo. Si può ottenere dai 18 anni, o a 16-17 anni con il consenso dei genitori o tutori.",
+    },
+    allows: {
+      title: "Cosa ti permette il titulín",
+      items: [
+        "Condurre imbarcazioni da diporto a motore fino a 6 metri di lunghezza",
+        "Navigare fino a 2 miglia nautiche da un porto, un marina o un rifugio",
+        "Navigazione diurna, la fascia in cui la Costa Brava dà il meglio",
+        "Guidare moto d'acqua di classe C (meno di 55 CV)",
+      ],
+      note:
+        "Per barche più grandi, navigazione notturna o allontanarsi di più dalla costa esistono i titoli superiori (PNB e PER), che richiedono un esame.",
+    },
+    course: {
+      title: "Come si ottiene: un corso di 6 ore, senza esame",
+      steps: [
+        {
+          title: "2 ore di teoria",
+          description:
+            "Normativa di base, limiti di navigazione, sicurezza e segnalamento. In una scuola nautica autorizzata o federazione.",
+        },
+        {
+          title: "4 ore di pratica a bordo",
+          description:
+            "Manovre, ormeggi e navigazione reale su una barca scuola con istruttore.",
+        },
+        {
+          title: "Titolo rilasciato subito",
+          description:
+            "La scuola stessa rilascia la patente al termine del corso. Senza esame, senza attese e senza scadenza.",
+        },
+      ],
+      note:
+        "Il corso si svolge in scuole nautiche da diporto autorizzate e federazioni nautiche. Nella zona di Blanes e della Costa Brava sud ci sono varie opzioni; scrivici e ti orientiamo su come e dove ottenerlo.",
+    },
+    fleet: {
+      title: "Con il titulín, questa flotta è tua",
+      body:
+        "La Licencia de Navegación ti basta per noleggiare i nostri motoscafi Mingolla Brava 19 e Trimarchi 57S, con motori da 80 e 110 CV e Tossa de Mar a portata di rotta. E da ottobre 2026 sarà anche il titolo che ti permetterà di continuare a noleggiare le barche piccole della flotta. Un giorno di corso, tante estati al timone.",
+      cta: "Vedi le barche che puoi condurre",
+    },
+    faqTitle: "Domande frequenti sul titulín",
+    faq: [
+      {
+        q: "Mi serve già una patente per noleggiare una barca?",
+        a: "Per ora no: fino al 30 settembre 2026 le barche fino a 5 metri e 15 CV si noleggiano senza patente, come sempre. Dal 1º ottobre 2026, il RD 1188/2025 richiede un titolo nautico a chi noleggia qualsiasi imbarcazione a motore, e la Licencia de Navegación è il più rapido da ottenere.",
+      },
+      {
+        q: "Quanto dura il corso e c'è un esame?",
+        a: "Un solo giorno: 2 ore di teoria e 4 ore di pratica a bordo. Non c'è esame; alla fine, la scuola rilascia direttamente la patente.",
+      },
+      {
+        q: "Cosa posso condurre con la Licencia de Navegación?",
+        a: "Imbarcazioni a motore fino a 6 metri di lunghezza, di giorno e fino a 2 miglia nautiche da un porto o rifugio, oltre alle moto d'acqua di classe C. Nella nostra flotta copre la Mingolla Brava 19 e la Trimarchi 57S.",
+      },
+      {
+        q: "Scade? Da che età posso ottenerla?",
+        a: "Non scade mai ed è valida in tutta la Spagna. Puoi ottenerla dai 18 anni, o a 16-17 anni se i tuoi genitori o tutori firmano il consenso.",
+      },
+      {
+        q: "Ho una patente nautica di un altro paese, è valida?",
+        a: "Se è equivalente (ICC, il Permis Côtier francese, l'SBF See tedesco e altri titoli europei), sì. Sulla pagina delle barche con patente c'è un verificatore online gratuito: controlla prima di prenotare e porta il documento originale il giorno dell'uscita.",
+      },
+      {
+        q: "E se non voglio prendere nessuna patente?",
+        a: "Hai due opzioni: noleggiare una barca senza patente fino al 30 settembre 2026, oppure prenotare l'escursione privata con skipper, dove un professionista conduce la barca e nessuno a bordo ha bisogno di titoli, in qualsiasi data della stagione.",
+      },
+    ],
+    alternative: {
+      title: "Preferisci non stare al timone?",
+      body:
+        "Con l'escursione privata con skipper non serve nessun titolo, né ora né con la nuova legge: uno skipper professionista vi porta a calette e grotte marine tra Blanes e Tossa de Mar mentre voi vi godete solo il viaggio.",
+      cta: "Vedi l'escursione con skipper",
+    },
+    ctaTitle: "Ti spieghiamo come ottenere il titulín",
+    ctaText:
+      "Scrivici su WhatsApp e ti orientiamo: dove fare il corso vicino a Blanes, cosa ti serve e come combinarlo con il tuo primo noleggio con noi.",
+    ctaButton: "Scrivici su WhatsApp",
+    whatsappMessage:
+      "Ciao, vorrei informazioni su come ottenere la Licencia de Navegación (titulín) e noleggiare una barca.",
   },
   scootersPage: {
     seoTitle: "Noleggio moto e scooter a Lloret de Mar | Coast Rent",

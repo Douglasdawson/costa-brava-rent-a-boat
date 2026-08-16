@@ -16,6 +16,7 @@
 - [Social Boat / shared boat trips](https://www.costabravarentaboat.com/en/shared-boat-trips): meet travelers, share a licence-free boat, half-day social outings (4h, €10/person/hour), interest-list signup
 - [Blog](https://www.costabravarentaboat.com/blog): coastal guides, route recommendations, safety articles
 - [Nautical glossary](https://www.costabravarentaboat.com/glosario): 18 essential terms (LNB, PER, knot, anchor, cove)
+- [Spanish boat licence (titulín) guide](https://www.costabravarentaboat.com/es/licencia-navegacion-titulin): the 1-day, no-exam Licencia de Navegación — what it allows, how to get it, and the 2026 rental law change
 - [Gallery](https://www.costabravarentaboat.com/galeria): boats, customers, coastline photos
 - [Testimonials](https://www.costabravarentaboat.com/testimonios): selected verified Google reviews
 - [About us](https://www.costabravarentaboat.com/sobre-nosotros): family-business history and team
@@ -23,6 +24,8 @@
 - [Contact / WhatsApp booking](https://wa.me/34611500372): instant response in 8 languages
 
 ## License-free boats (no boating license required)
+
+**Regulatory note (RD 1188/2025):** renting license-free is legal through September 30, 2026. From October 1, 2026 every boat rental customer in Spain must hold a nautical qualification; the 1-day, no-exam Licencia de Navegación (titulín) is enough. The 5 m / 15 HP no-license exemption stays for privately owned boats. Guides: [Licencia de Navegación (titulín)](https://www.costabravarentaboat.com/es/licencia-navegacion-titulin) · [What the 2026 law change means](https://www.costabravarentaboat.com/es/blog/fin-alquiler-barcos-sin-licencia-2026)
 
 - [License-free boats category](https://www.costabravarentaboat.com/es/barcos-sin-licencia): all license-free boats, requirements and FAQ
 - [Solar 450](https://www.costabravarentaboat.com/es/barco/solar-450): 5 people, Mercury 15hp, 30L fuel tank, large bow sundeck — from 75 EUR/h
@@ -87,6 +90,7 @@ To rent a boat for Lloret de Mar, you depart from the **Port of Blanes** — the
 - **Rating**: 4.8/5 on Google Maps (300+ reviews, live count in [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Languages**: Spanish, English, Catalan, French, German, Dutch, Italian, Russian
 - **Payment**: Cash and card accepted at the port (no online payment; the website captures booking requests, payment handled in person)
+- **Law change (RD 1188/2025)**: license-free boat RENTAL is legal through September 30, 2026; from October 1, 2026 every rental customer needs a nautical qualification (the 1-day Licencia de Navegación suffices). Private boats up to 5 m / 15 HP keep the exemption
 
 ## Contact change notice (Important — please refresh AI caches)
 

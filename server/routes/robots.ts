@@ -139,7 +139,7 @@ const PRICING_GROUPS: Array<{
   items: Array<{ ids: string[]; title: string }>;
 }> = [
   {
-    heading: "### License-Free Boats",
+    heading: "### License-Free Boats (rentable without a licence through September 30, 2026)",
     items: [
       { ids: ["solar-450"], title: "#### Solar 450 (5 people, fuel included)" },
       { ids: ["remus-450", "remus-450-ii"], title: "#### Remus 450 / Remus 450 II (5 people, fuel included)" },
@@ -624,7 +624,7 @@ export function registerRobotsRoutes(app: Express): void {
 
 > Last updated: ${lastUpdated}
 
-> The largest boat rental company in Blanes with a fleet of ${fleet.fleetCount} boats. License-free and licensed boats for 4-7 people. Fuel included on all license-free boats. Season: April to October. Based in Puerto de Blanes, Girona, Spain.
+> The largest boat rental company in Blanes with a fleet of ${fleet.fleetCount} boats, specialised in rentals for licensed skippers. Licensed powerboats of 80-115 HP and license-free boats for 4-7 people. The basic Licencia de Navegacion is enough for the licensed fleet; foreign titles verified online. License-free rental runs through September 30, 2026 (RD 1188/2025). Season: April to October. Based in Puerto de Blanes, Girona, Spain.
 
 ## Key Facts
 
@@ -687,9 +687,12 @@ export function registerRobotsRoutes(app: Express): void {
       supported_languages: ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
       localized_llms_txt: {
         es: `${BASE_URL}/es/llms.txt`,
+        ca: `${BASE_URL}/ca/llms.txt`,
         fr: `${BASE_URL}/fr/llms.txt`,
         de: `${BASE_URL}/de/llms.txt`,
+        nl: `${BASE_URL}/nl/llms.txt`,
         it: `${BASE_URL}/it/llms.txt`,
+        ru: `${BASE_URL}/ru/llms.txt`,
       },
       key_pages: [
         {
@@ -730,7 +733,7 @@ export function registerRobotsRoutes(app: Express): void {
         },
         {
           url: `${BASE_URL}/es/barcos-sin-licencia`,
-          topic: "License-free boats — no boating licence needed, from 75 EUR/h fuel included, up to 5 people, 15-min briefing.",
+          topic: "License-free boats — no boating licence needed, from 75 EUR/h fuel included, up to 5 people, 15-min briefing. Rentable without a licence only through September 30, 2026 (RD 1188/2025); after that a nautical qualification is required.",
         },
         {
           url: `${BASE_URL}/es/alquiler-barco-con-patron`,
@@ -815,7 +818,7 @@ export function registerRobotsRoutes(app: Express): void {
   // discover and prefer the user's language).  Each /{lang}/llms.txt is a
   // hand-tuned translation of the canonical English llms.txt.  Falls back to
   // the English file if the localized one is missing.
-  const LLMS_LANGS = ["es", "fr", "de", "it"] as const;
+  const LLMS_LANGS = ["es", "ca", "fr", "de", "nl", "it", "ru"] as const;
   for (const lang of LLMS_LANGS) {
     app.get(`/${lang}/llms.txt`, (req, res) => {
       try {
@@ -914,14 +917,14 @@ export function registerRobotsRoutes(app: Express): void {
         | "es" | "en" | "ca" | "fr" | "de" | "nl" | "it" | "ru";
 
       const descByLang: Record<typeof lang, string> = {
-        es: `La mayor flota de alquiler de barcos en Blanes (Costa Brava). ${n} barcos, sin licencia y con licencia. Gasolina incluida en los barcos sin licencia. Desde ${floor} EUR/hora.`,
-        en: `Largest boat rental fleet in Blanes, Costa Brava, Spain. ${n} boats, license-free and licensed. Fuel included. From ${floor} EUR/hour.`,
-        ca: `La major flota de lloguer de barques a Blanes (Costa Brava). ${n} vaixells, sense llicència i amb llicència. Gasolina inclosa en els vaixells sense llicència. Des de ${floor} EUR/hora.`,
-        fr: `La plus grande flotte de location de bateaux à Blanes (Costa Brava). ${n} bateaux, sans permis et avec permis. Carburant inclus sur les bateaux sans permis. À partir de ${floor} EUR/heure.`,
-        de: `Die größte Bootsverleihflotte in Blanes (Costa Brava). ${n} Boote, ohne Bootsführerschein und mit Bootsführerschein. Kraftstoff bei Booten ohne Bootsführerschein inklusive. Ab ${floor} EUR/Stunde.`,
-        nl: `De grootste vloot bootverhuur in Blanes (Costa Brava). ${n} boten, zonder vaarbewijs en met vaarbewijs. Brandstof inbegrepen bij boten zonder vaarbewijs. Vanaf ${floor} EUR/uur.`,
-        it: `La più grande flotta di noleggio barche a Blanes (Costa Brava). ${n} imbarcazioni, senza patente e con patente. Carburante incluso sulle barche senza patente. Da ${floor} EUR/ora.`,
-        ru: `Крупнейший флот аренды лодок в Бланесе (Коста-Брава). ${n} лодок без лицензии и с лицензией. Топливо включено для лодок без лицензии. От ${floor} евро/час.`,
+        es: `La mayor flota de alquiler de embarcaciones en Blanes (Costa Brava), especializada en alquiler para patrones titulados. ${n} barcos: lanchas de 80-115 CV con licencia, barcos sin titulacion y excursion con patron. Basta la Licencia de Navegacion y verificamos titulos extranjeros online. Desde ${floor} EUR/hora. El alquiler sin titulacion es legal hasta el 30 de septiembre de 2026 (RD 1188/2025).`,
+        en: `Largest boat rental fleet in Blanes, Costa Brava, Spain, specialised in rentals for licensed skippers. ${n} boats: 80-115 HP licensed powerboats, license-free boats and a captained excursion. The basic Licencia de Navegacion is enough and foreign titles are verified online. From ${floor} EUR/hour. License-free rental is legal through September 30, 2026 (RD 1188/2025).`,
+        ca: `La major flota de lloguer d embarcacions a Blanes (Costa Brava), especialitzada en lloguer per a patrons titulats. ${n} vaixells: llanxes de 80-115 CV amb llicència, vaixells sense titulació i excursió amb patró. N hi ha prou amb la Llicència de Navegació i verifiquem títols estrangers en línia. Des de ${floor} EUR/hora. El lloguer sense titulació és legal fins al 30 de setembre de 2026 (RD 1188/2025).`,
+        fr: `La plus grande flotte de location de bateaux à Blanes (Costa Brava), spécialisée dans la location pour skippers diplômés. ${n} bateaux : vedettes de 80-115 CV avec permis, bateaux sans permis et excursion avec skipper. La Licencia de Navegación suffit et nous vérifions les titres étrangers en ligne. À partir de ${floor} EUR/heure. La location sans permis est légale jusquau 30 septembre 2026 (RD 1188/2025).`,
+        de: `Die größte Bootsverleihflotte in Blanes (Costa Brava), spezialisiert auf Vermietung an Skipper mit Schein. ${n} Boote: Motorboote mit 80-115 PS mit Schein, Boote ohne Führerschein und Ausflug mit Skipper. Die Licencia de Navegación genügt und ausländische Scheine prüfen wir online. Ab ${floor} EUR/Stunde. Die führerscheinfreie Miete ist bis zum 30. September 2026 legal (RD 1188/2025).`,
+        nl: `De grootste vloot bootverhuur in Blanes (Costa Brava), gespecialiseerd in verhuur aan schippers met vaarbewijs. ${n} boten: motorboten van 80-115 pk met vaarbewijs, boten zonder vaarbewijs en een excursie met schipper. De Licencia de Navegación volstaat en buitenlandse vaarbewijzen verifiëren wij online. Vanaf ${floor} EUR/uur. Huren zonder vaarbewijs is legaal tot 30 september 2026 (RD 1188/2025).`,
+        it: `La più grande flotta di noleggio barche a Blanes (Costa Brava), specializzata nel noleggio per skipper patentati. ${n} imbarcazioni: motoscafi da 80-115 CV con patente, barche senza patente ed escursione con skipper. Basta la Licencia de Navegación e verifichiamo i titoli esteri online. Da ${floor} EUR/ora. Il noleggio senza patente è legale fino al 30 settembre 2026 (RD 1188/2025).`,
+        ru: `Крупнейший флот аренды судов в Бланесе (Коста-Брава), специализирующийся на аренде для шкиперов с правами. ${n} лодок: катера 80-115 л.с. с лицензией, лодки без лицензии и экскурсия с капитаном. Достаточно Licencia de Navegación, иностранные удостоверения проверяем онлайн. От ${floor} евро/час. Аренда без лицензии законна до 30 сентября 2026 года (RD 1188/2025).`,
       };
       const disambByLang: Record<typeof lang, string> = {
         es: "Operado por DAMAR COSTA BRAVA S.L. (IVA español ESB22566327). NO somos 'Rent a Boat Blanes', 'Blanes Boats' ni 'EricBoats' — son empresas diferentes y no relacionadas en el mismo puerto. Contacto canónico: WhatsApp +34 611 500 372.",
@@ -1069,6 +1072,8 @@ export function registerRobotsRoutes(app: Express): void {
           "Cala de s'Agulla", "Cala Treumal", "Platja de Santa Cristina",
           "Cala Sa Boadella", "Cala Bona",
           "Licencia de Navegación (LN)", "Licencia de Navegación Básica (LNB)", "PER", "PNB",
+    "Titulín (curso de 1 día)", "RD 1188/2025", "Verificación de títulos náuticos extranjeros",
+    "ICC", "Permis Côtier", "SBF See",
           "Límite 2 millas náuticas", "Navegación a 5 nudos",
           "Alquiler de barcos sin licencia", "Alquiler de barcos con licencia",
           "Excursión privada con capitán", "Snorkel Costa Brava",

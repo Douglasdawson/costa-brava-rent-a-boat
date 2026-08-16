@@ -328,57 +328,56 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     // 2026-06-10 ("Sin Licencia" fuera del title) y este bloque seguía en la
     // versión CTR de mayo — el title del SSR y el del cliente divergían al
     // hidratar. Regla: STATIC_META espeja seo-config (70€ = baseline runtime).
+    // Pivote 2026-08-16 (RD 1188/2025): la description lidera con titulación y
+    // data la oferta sin licencia. El title conserva la keyword principal y el
+    // baseline 70€ (applyFleetStatsToText lo reescribe al floor vivo).
     es: {
-      title: `Alquiler Barco Costa Brava · desde 70€/h Gasolina Incluida · ★${BUSINESS_RATING_STR} Blanes`,
-      description: `Alquila un barco en la Costa Brava desde el Puerto de Blanes: por horas, medio día o día completo. Sin licencia desde 70€/h con gasolina incluida, o con licencia hasta 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva hoy.`,
-      ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco Costa Brava · ★${BUSINESS_RATING_STR} · Blanes`,
-      ogDescription: `Alquiler de barcos en la Costa Brava desde Blanes. Desde 70€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). 7 calas, snorkel, paddle. Reserva WhatsApp.`,
+      title: `Alquiler Barco Costa Brava · Lanchas con Titulación · ★${BUSINESS_RATING_STR} Blanes`,
+      description: `Alquila una lancha en la Costa Brava desde el Puerto de Blanes: hasta 115CV, 7 plazas y rumbo libre hasta Tossa de Mar. Basta la Licencia de Navegación y verificamos títulos extranjeros online. ¿Sin título? Te lo sacamos en 1 día o sales con patrón. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas).`,
+      ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco con Titulación · ★${BUSINESS_RATING_STR} · Blanes`,
+      ogDescription: `Alquiler de embarcaciones con titulación en la Costa Brava desde Blanes. Hasta 115CV y 7 plazas. Titulín en 1 día o salida con patrón. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva WhatsApp.`,
     },
-    // en re-espejado 2026-08-07 junto al armonizado de seo-config: el cliente
-    // llevaba €70/h hardcoded (precio muerto) y otro patrón de title.
     en: {
-      title: `Costa Brava Boat Rental · from 70€/h Fuel Included · ★${BUSINESS_RATING_STR} Blanes`,
-      description: `Rent a boat on the Costa Brava from Blanes: by the hour, half day or full day. License-free from 70€/h, fuel included, up to 7 people. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book today.`,
-      ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Costa Brava Boat Rental · ★${BUSINESS_RATING_STR} · Blanes`,
-      ogDescription: `Boat rental on the Costa Brava from Blanes. From 70€/h fuel included. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). 7 coves, snorkel, paddle. Book on WhatsApp.`,
+      title: `Costa Brava Boat Rental · Licensed Powerboats · ★${BUSINESS_RATING_STR} Blanes`,
+      description: `Rent a powerboat on the Costa Brava from Blanes: up to 115HP, 7 seats and free rein to Tossa de Mar. The basic Navigation Licence is enough and we verify foreign titles online. No licence? We get you one in a day, or you sail with a skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews).`,
+      ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Licensed Boat Rental · ★${BUSINESS_RATING_STR} · Blanes`,
+      ogDescription: `Boat rental with a licence on the Costa Brava from Blanes. Up to 115HP and 7 seats. Licence in 1 day, or sail with a skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book on WhatsApp.`,
     },
     fr: {
-      // fr re-espejado 2026-08-07: seo-config decía "Costa Brava" en la cola
-      // (des-canibalización) y aquí seguía "Sans Permis" — el title cambiaba al hidratar.
-      title: `Location Bateau Blanes · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Avis · Costa Brava 70€/h`,
-      description: `Louez un bateau sur la Costa Brava depuis Blanes : à l'heure, en demi-journée ou à la journée. Sans permis dès 70€/h avec carburant inclus, ou avec permis jusqu'à 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Réservez aujourd'hui.`,
-      ogTitle: `Location Bateau Blanes ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Costa Brava 70€/h`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location bateau au Port de Blanes, Costa Brava. Sans permis dès 70€/h, carburant inclus. Réservation WhatsApp.`,
+      title: `Location Bateau Blanes · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Avis · Costa Brava avec Permis`,
+      description: `Louez un bateau sur la Costa Brava depuis Blanes : jusqu'à 115CV, 7 places et cap libre jusqu'à Tossa de Mar. La Licencia de Navegación suffit et nous vérifions les titres étrangers en ligne. Pas de permis ? Nous l'obtenons en 1 jour, ou vous partez avec un skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis).`,
+      ogTitle: `Location Bateau Blanes ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Costa Brava avec Permis`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location de bateaux avec permis au Port de Blanes, Costa Brava. Jusqu'à 115CV. Permis en 1 jour ou skipper à bord. Réservation WhatsApp.`,
     },
     de: {
-      title: `Bootsverleih Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Bewertungen · Blanes 70€/h`,
-      description: `Boot mieten an der Costa Brava ab Blanes: stundenweise, halbtags oder ganztägig. Ohne Führerschein ab 70€/h inklusive Kraftstoff, oder mit Führerschein bis 115PS. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Jetzt buchen.`,
-      ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes 70€/h`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Boot mieten an der Costa Brava ab Hafen Blanes. Ohne Führerschein, Kraftstoff inkl., ab 70€/h.`,
+      title: `Bootsverleih Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Bewertungen · Blanes mit Schein`,
+      description: `Boot mieten an der Costa Brava ab Blanes: bis 115PS, 7 Plätze und freie Fahrt bis Tossa de Mar. Die Licencia de Navegación genügt, ausländische Scheine prüfen wir online. Keinen Schein? Wir besorgen ihn an einem Tag, oder Sie fahren mit Skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen).`,
+      ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes mit Schein`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Bootsverleih mit Bootsführerschein ab Hafen Blanes, Costa Brava. Bis 115PS. Schein an 1 Tag oder Skipper an Bord.`,
     },
     ca: {
-      title: `Lloguer Barques Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Ressenyes · Blanes 70€/h`,
-      description: `Lloga una barca a la Costa Brava des del Port de Blanes: per hores, mig dia o dia complet. Sense llicència des de 70€/h amb gasolina inclosa, o amb llicència fins a 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Reserva avui.`,
-      ogTitle: `Lloguer Barques Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes 70€/h`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer barques Costa Brava des del Port de Blanes. Sense llicència des de 70€/h, gasolina inclosa.`,
+      title: `Lloguer Barques Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Ressenyes · Blanes amb Titulació`,
+      description: `Lloga una llanxa a la Costa Brava des del Port de Blanes: fins a 115CV, 7 places i rumb lliure fins a Tossa de Mar. N'hi ha prou amb la Llicència de Navegació i verifiquem títols estrangers en línia. Sense títol? Te'l traiem en 1 dia o surts amb patró. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes).`,
+      ogTitle: `Lloguer Barques Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes amb Titulació`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer d'embarcacions amb titulació des del Port de Blanes. Fins a 115CV. Titulín en 1 dia o patró a bord.`,
     },
     nl: {
-      title: `Boot Huren Blanes Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Reviews · 70€/u`,
-      description: `Boot huren aan de Costa Brava vanuit Blanes: per uur, halve dag of hele dag. Zonder vaarbewijs vanaf 70€/u inclusief brandstof, of met vaarbewijs tot 115pk. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boek vandaag.`,
-      ogTitle: `Boot Huren Blanes Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · 70€/u`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren in Blanes aan de Costa Brava. Zonder vaarbewijs vanaf 70€/u, brandstof inbegrepen.`,
+      title: `Boot Huren Blanes Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Reviews · met Vaarbewijs`,
+      description: `Boot huren aan de Costa Brava vanuit Blanes: tot 115pk, 7 plaatsen en vrije vaart tot Tossa de Mar. De Licencia de Navegación volstaat en buitenlandse vaarbewijzen verifiëren wij online. Geen vaarbewijs? Wij regelen het in 1 dag, of je vaart met een schipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen).`,
+      ogTitle: `Boot Huren Blanes Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · met Vaarbewijs`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren met vaarbewijs in Blanes aan de Costa Brava. Tot 115pk. Vaarbewijs in 1 dag of schipper aan boord.`,
     },
     it: {
-      title: `Noleggio Barche Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Recensioni · Blanes 70€/h`,
-      description: `Noleggia una barca sulla Costa Brava da Blanes: a ore, mezza giornata o giornata intera. Senza patente da 70€/h con carburante incluso, o con patente fino a 115CV. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Prenota oggi.`,
-      ogTitle: `Noleggio Barche Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes 70€/h`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio barche sulla Costa Brava dal Porto di Blanes. Senza patente da 70€/h, carburante incluso.`,
+      title: `Noleggio Barche Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Recensioni · Blanes con Patente`,
+      description: `Noleggia un motoscafo sulla Costa Brava da Blanes: fino a 115CV, 7 posti e rotta libera fino a Tossa de Mar. Basta la Licencia de Navegación e verifichiamo i titoli esteri online. Senza patente? Te la facciamo prendere in 1 giorno, o esci con uno skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni).`,
+      ogTitle: `Noleggio Barche Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes con Patente`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio imbarcazioni con patente dal Porto di Blanes, Costa Brava. Fino a 115CV. Patente in 1 giorno o skipper a bordo.`,
     },
     ru: {
-      title: `Аренда Лодок Коста-Брава · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} отзывов · Бланес 70€/ч`,
-      description: `Аренда лодок на Коста-Браве из Бланеса: почасово, на полдня или на целый день. Без лицензии от 70€/ч с включённым топливом, или с лицензией до 115 л.с. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Забронируйте сегодня.`,
-      ogTitle: `Аренда Лодок Коста-Брава ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Бланес 70€/ч`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Аренда лодок на Коста-Браве из порта Бланес. Без лицензии от 70€/ч, топливо включено.`,
+      title: `Аренда Лодок Коста-Брава · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} отзывов · Бланес с правами`,
+      description: `Аренда катера на Коста-Браве из Бланеса: до 115 л.с., 7 мест и свободный курс до Тосса-де-Мар. Достаточно Licencia de Navegación, иностранные удостоверения проверяем онлайн. Нет прав? Получим их за 1 день, или вы выходите в море с капитаном. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов).`,
+      ogTitle: `Аренда Лодок Коста-Брава ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Бланес с правами`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Аренда судов с правами из порта Бланес, Коста-Брава. До 115 л.с. Права за 1 день или капитан на борту.`,
     },
   },
   "/ai-citations": {
@@ -1863,12 +1862,18 @@ function injectMeta(
  * structured data. Removed by client/src/main.tsx before React hydrates.
  *
  * Subset semantic of the React-rendered content — no cloaking risk.
+ *
+ * Fleet numbers go through applyFleetStatsToText, same as the meta tags and the
+ * JSON-LD: the fallback carries "9 boats / 5 license-free" baselines (from the
+ * i18n summaryGeo and the hardcoded facts) and without this the crawler-facing
+ * body advertised a fleet size the JSON-LD right above it already contradicted.
  */
 function injectBodyFallback(html: string, fallbackHtml: string): string {
   if (!fallbackHtml) return html;
+  const withLiveStats = applyFleetStatsToText(fallbackHtml, getFleetStats());
   return html.replace(
     '<div id="root"></div>',
-    `<div id="root"><div id="seo-fallback" data-cowork-seo-fallback>${fallbackHtml}</div></div>`
+    `<div id="root"><div id="seo-fallback" data-cowork-seo-fallback>${withLiveStats}</div></div>`
   );
 }
 
@@ -2426,7 +2431,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "Alquiler de Barcos Costa Brava",
           "CBRaB",
         ],
-        description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Puerto de Blanes. 9 embarcaciones para 4-7 personas.",
+        description: "Alquiler de embarcaciones con titulación en Blanes, Costa Brava. Puerto de Blanes. 9 embarcaciones para 4-7 personas. Basta la Licencia de Navegación y verificamos títulos extranjeros online; también barco con patrón, sin titulación. El alquiler sin título es legal hasta el 30 de septiembre de 2026 (RD 1188/2025).",
         url: BASE_URL,
         telephone: "+34611500372",
         email: "info@costabravarentaboat.com",
@@ -2483,7 +2488,9 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "PNB (Patrón de Navegación Básica)", "Límite 2 millas náuticas",
           "Navegación a 5 nudos", "Matrícula lista 6ª", "Título náutico",
           // Actividades / servicios
-          "Alquiler de barcos sin licencia", "Alquiler de barcos con licencia",
+          "Alquiler de barcos con licencia", "Alquiler de barcos sin licencia",
+          "Licencia de Navegación (titulín)", "RD 1188/2025",
+          "Verificación de títulos náuticos extranjeros",
           "Excursión privada con capitán", "Snorkel Costa Brava",
           "Pesca recreativa marítima", "Fondeo en calas",
           "Tarifas estacionales náuticas", "Seguro responsabilidad civil y accidentes",
@@ -2538,22 +2545,22 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
         "@type": "HowTo",
         name: lang === "en" ? "How to Rent a Boat in Blanes, Costa Brava" : "Como alquilar un barco en Blanes, Costa Brava",
         description: lang === "en"
-          ? "Step-by-step guide to renting a boat in Blanes without a license."
-          : "Guia paso a paso para alquilar un barco en Blanes sin licencia.",
+          ? "Step-by-step guide to renting a boat in Blanes: check your licence, pick the boat and book."
+          : "Guia paso a paso para alquilar un barco en Blanes: comprueba tu titulacion, elige barco y reserva.",
         totalTime: "PT5M",
         estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "70" },
         step: lang === "en" ? [
-          { "@type": "HowToStep", position: 1, name: "Choose your boat", text: "Select from license-free boats (from 70 EUR/hour) or licensed boats (from 160 EUR/2 hours)." },
-          { "@type": "HowToStep", position: 2, name: "Select date and time", text: "Choose date, start time, and duration. Available April to October, 09:00-20:00." },
-          { "@type": "HowToStep", position: 3, name: "Confirm booking", text: "Book via WhatsApp (+34 611 500 372) or website. No deposit for license-free boats." },
-          { "@type": "HowToStep", position: 4, name: "Receive briefing", text: "15-minute training on boat handling and safety at Puerto de Blanes." },
-          { "@type": "HowToStep", position: 5, name: "Explore Costa Brava", text: "Discover coves and beaches. Fuel, insurance and safety equipment included." },
+          { "@type": "HowToStep", position: 1, name: "Check your licence", text: "The basic Licencia de Navegacion covers the whole licensed fleet, and equivalent foreign titles (ICC, Permis Cotier, SBF See) are verified free online before you book. No licence? We arrange the 1-day course, or you sail with a professional skipper." },
+          { "@type": "HowToStep", position: 2, name: "Choose your boat", text: "Licensed powerboats of 80-115 HP from 160 EUR/2 hours, or a private captained excursion from 240 EUR/2 hours. Boats without a licence remain available through September 30, 2026." },
+          { "@type": "HowToStep", position: 3, name: "Select date and time", text: "Choose date, start time, and duration. Available April to October, 09:00-20:00." },
+          { "@type": "HowToStep", position: 4, name: "Confirm booking", text: "Book via WhatsApp (+34 611 500 372) or website. Bring the original licence on the day of departure." },
+          { "@type": "HowToStep", position: 5, name: "Receive briefing and sail", text: "Safety briefing at Puerto de Blanes, then free rein to the coves and up to Tossa de Mar." },
         ] : [
-          { "@type": "HowToStep", position: 1, name: "Elige tu barco", text: "Selecciona entre barcos sin licencia (desde 70 EUR/hora) o con licencia (desde 160 EUR/2 horas)." },
-          { "@type": "HowToStep", position: 2, name: "Selecciona fecha y horario", text: "Elige fecha, hora de inicio y duracion. Disponible de abril a octubre, 09:00-20:00." },
-          { "@type": "HowToStep", position: 3, name: "Confirma tu reserva", text: "Reserva por WhatsApp (+34 611 500 372) o web. No se requiere deposito para barcos sin licencia." },
-          { "@type": "HowToStep", position: 4, name: "Recibe tu briefing", text: "Formacion de 15 minutos sobre manejo del barco y seguridad en Puerto de Blanes." },
-          { "@type": "HowToStep", position: 5, name: "Navega por la Costa Brava", text: "Explora calas y playas. Combustible, seguro y equipo de seguridad incluidos." },
+          { "@type": "HowToStep", position: 1, name: "Comprueba tu titulacion", text: "La Licencia de Navegacion basta para toda la flota con licencia, y los titulos extranjeros equivalentes (ICC, Permis Cotier, SBF See) se verifican gratis online antes de reservar. Sin titulo, te organizamos el curso de 1 dia o sales con patron profesional." },
+          { "@type": "HowToStep", position: 2, name: "Elige tu barco", text: "Lanchas con licencia de 80-115 CV desde 160 EUR/2 horas, o excursion privada con patron desde 240 EUR/2 horas. Los barcos sin titulacion siguen disponibles hasta el 30 de septiembre de 2026." },
+          { "@type": "HowToStep", position: 3, name: "Selecciona fecha y horario", text: "Elige fecha, hora de inicio y duracion. Disponible de abril a octubre, 09:00-20:00." },
+          { "@type": "HowToStep", position: 4, name: "Confirma tu reserva", text: "Reserva por WhatsApp (+34 611 500 372) o web. Trae el titulo original el dia de la salida." },
+          { "@type": "HowToStep", position: 5, name: "Briefing y a navegar", text: "Briefing de seguridad en el Puerto de Blanes y rumbo libre a las calas y hasta Tossa de Mar." },
         ]
       };
       const faq = {
@@ -2570,10 +2577,26 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           },
           {
             "@type": "Question",
+            name: "¿Qué titulación necesito para alquilar un barco?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Para nuestras lanchas de 80 a 115 CV basta la Licencia de Navegación (LN), la titulación mínima, o cualquier título superior (PNB, PER, Capitán de Yate) o extranjero equivalente como el ICC, el Permis Côtier francés o el SBF See alemán; lo verificamos gratis online antes de que reserves y debes traer el original el día de la salida."
+            }
+          },
+          {
+            "@type": "Question",
             name: "¿Puedo alquilar un barco sin tener licencia náutica?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "¡Sí! Tenemos varios barcos perfectos sin licencia de hasta 15 CV. Solo necesitas ser mayor de 18 años. Antes de salir te damos un briefing completo para que navegues con total seguridad."
+              text: "Hasta el 30 de septiembre de 2026, sí: tenemos barcos sin licencia de hasta 15 CV y solo necesitas ser mayor de 18 años, con briefing completo antes de salir. A partir del 1 de octubre de 2026 el RD 1188/2025 exige título náutico a todo arrendatario de una embarcación a motor; la Licencia de Navegación (titulín) se saca en un día, sin examen, y te organizamos el curso. La excursión privada con patrón no requiere titulación en ninguna fecha."
+            }
+          },
+          {
+            "@type": "Question",
+            name: "¿Qué es el titulín y cómo me lo saco?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "El titulín es la Licencia de Navegación, el título náutico más rápido de España: un día de curso con 2 horas de teoría y 4 de prácticas a bordo, sin examen, y no caduca. Permite gobernar embarcaciones a motor de hasta 6 metros, de día y hasta 2 millas náuticas de un abrigo. Te organizamos el curso y lo combinamos con tu primer alquiler."
             }
           },
           {
@@ -2597,7 +2620,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Por dónde puedo navegar?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Barcos sin licencia: desde Blanes hasta Playa de Fenals al norte y el final de la playa de Blanes al sur, siempre a menos de 2 millas de la costa. Barcos con licencia: mayor radio de navegación, hasta Sant Feliu de Guíxols y más allá."
+              text: "Con Licencia de Navegación o título superior tienes rumbo libre por la Costa Brava: Lloret en 15 minutos, Cala Canyelles, Tossa de Mar en 30-45 minutos y, en jornada completa, Sant Feliu de Guíxols y Platja d'Aro. Los barcos sin titulación quedan entre Playa de Fenals al norte y el final de la playa de Blanes al sur, siempre a menos de 2 millas de la costa."
             }
           },
           {
@@ -2613,7 +2636,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Necesito experiencia previa?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "No, ninguna. Antes de zarpar te damos una explicación completa del barco (10-15 min). Nuestros barcos sin licencia son muy fáciles de manejar."
+              text: "Experiencia previa no: lo que hace falta es la titulación. Antes de zarpar te damos una explicación completa del barco (10-15 min), y si es tu primera vez al timón con la Licencia de Navegación recién sacada, te acompañamos en la maniobra de salida del puerto."
             }
           },
           {
@@ -2647,20 +2670,24 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
         ?? (isEn ? `Costa Brava Rent a Boat — Blanes, Spain` : `Costa Brava Rent a Boat — Blanes, Costa Brava`);
       const homeSummary = heroT?.summaryGeo ?? heroT?.subtitle
         ?? (isEn
-          ? `Largest boat rental fleet in the Port of Blanes (9 boats). License-free boats from 70€/h with fuel included. Licensed boats and private excursions with captain available. Season April–October. ${stats.rating.toFixed(1)}★ on Google with ${stats.userRatingCount}+ reviews.`
-          : `Mayor flota de alquiler de barcos del Puerto de Blanes (9 barcos). Sin licencia desde 70€/h con gasolina incluida. Barcos con licencia y excursión privada con capitán disponibles. Temporada abril–octubre. ${stats.rating.toFixed(1)}★ en Google con ${stats.userRatingCount}+ reseñas.`);
+          ? `Largest boat rental fleet in the Port of Blanes (9 boats): 3 licensed powerboats of 80-115 HP, 5 boats without a licence and 1 private excursion with captain. The basic Licencia de Navegación is enough; foreign titles verified online. Licence-free rental runs through September 30, 2026 (RD 1188/2025). Season April–October. ${stats.rating.toFixed(1)}★ on Google with ${stats.userRatingCount}+ reviews.`
+          : `Mayor flota de alquiler de embarcaciones del Puerto de Blanes (9 barcos): 3 lanchas con licencia de 80-115 CV, 5 barcos sin titulación y 1 excursión privada con capitán. Basta la Licencia de Navegación; verificamos títulos extranjeros online. El alquiler sin titulación llega hasta el 30 de septiembre de 2026 (RD 1188/2025). Temporada abril–octubre. ${stats.rating.toFixed(1)}★ en Google con ${stats.userRatingCount}+ reseñas.`);
+      // Counts use the "9 boats" / "5 boats" baselines: applyFleetStatsToText()
+      // rewrites them to the live fleet before the HTML is sent.
       const facts = isEn
         ? [
-            "9 boats: 5 license-free, 3 licensed, 1 private excursion with captain",
-            "Fuel included on all license-free boats",
+            "9 boats: 3 licensed powerboats (80-115 HP), 5 boats without a licence, 1 private excursion with captain",
+            "The basic Licencia de Navegación is enough for the whole licensed fleet; foreign titles verified online before booking",
+            "Licence-free rental is legal through September 30, 2026 — from October 1 RD 1188/2025 requires a nautical qualification from every renter",
             "8 languages: Spanish, English, Catalan, French, German, Dutch, Italian, Russian",
             "Coves accessible: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella, Fenals",
             "Open daily 09:00–20:00 from April to October",
             "Hours response time on WhatsApp +34 611 500 372",
           ]
         : [
-            "9 barcos: 5 sin licencia, 3 con licencia, 1 excursión privada con capitán",
-            "Gasolina incluida en todos los barcos sin licencia",
+            "9 barcos: 3 lanchas con licencia (80-115 CV), 5 barcos sin titulación, 1 excursión privada con capitán",
+            "Basta la Licencia de Navegación para toda la flota con licencia; verificamos títulos extranjeros online antes de reservar",
+            "El alquiler sin titulación es legal hasta el 30 de septiembre de 2026 — desde el 1 de octubre el RD 1188/2025 exige título náutico a todo arrendatario",
             "8 idiomas: español, inglés, catalán, francés, alemán, neerlandés, italiano, ruso",
             "Calas accesibles: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella, Fenals",
             "Abierto todos los días 09:00–20:00 de abril a octubre",

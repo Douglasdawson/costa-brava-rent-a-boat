@@ -25,38 +25,48 @@ export const es: Translations = {
     altFallback: "Foto de experiencia náutica en la Costa Brava de {name}",
   },
   hero: {
-    title: "Alquiler de Barcos Sin Licencia en Blanes: 7 Calas de la Costa Brava",
+    title: "Alquiler de embarcaciones con titulación en Blanes, Costa Brava",
+    // Also the SSR/GEO fallback paragraph for locales without summaryGeo
+    // (server/seoInjector.ts reads summaryGeo ?? subtitle for the home body).
     subtitle:
-      "Navega sin licencia ni experiencia previa desde el puerto de Blanes hasta la Playa de Fenals (Lloret). Siete calas vírgenes en tu ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella y más. Gasolina incluida.",
-    subtitleLine1: "Navega sin licencia desde Blanes hasta Playa de Fenals (Lloret).",
-    subtitleLine2:
-      "7 calas vírgenes en ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Gasolina incluida.",
-    subtitleMobile: "Barcos sin licencia desde Blanes. 7 calas hasta Playa de Fenals.",
-    priceBadge: "Desde 75€",
-    fuelBadge: "Gasolina incluida",
-    pricePerPerson: "Desde 14€ por persona/hora",
-    pricePerPersonDetail: "Barco completo desde 75€/h para hasta 5 personas",
+      "Alquila una lancha en el puerto de Blanes y pilótala tú mismo: hasta 115 CV, 7 plazas y rumbo libre hasta Tossa de Mar. Basta la Licencia de Navegación o un título extranjero equivalente, que verificamos online antes de que reserves. Si aún no tienes título, te organizamos el curso de un día o sales con patrón profesional.",
+    subtitleLine1:
+      "Lanchas de hasta 115 CV para patrones titulados, rumbo libre hasta Tossa de Mar.",
+    subtitleLine2: "¿Aún sin título? Te lo sacamos en un día, o sales con patrón profesional.",
+    subtitleMobile: "Lanchas con titulación en Blanes. Rumbo libre hasta Tossa de Mar.",
+    specsLine: "Hasta 115 CV · 7 plazas · Rumbo libre hasta Tossa de Mar",
+    licenseNote:
+      "Basta la Licencia de Navegación. Verificamos títulos extranjeros online antes de reservar.",
     bookNow: "Reservar",
     findYourBoat: "Reservar ahora",
+    ctaTitulin: "Sácate el título en 1 día",
+    // Shown only while isLicenseFreeEraActive() (RD 1188/2025, until 2026-09-30).
+    licenseFreeUntil: "¿Aún sin título? Hasta el 30 de septiembre puedes alquilar sin titulación.",
+    licenseFreeUntilCta: "Ver barcos sin licencia",
+    imageAlt:
+      "Lancha de alquiler navegando por aguas turquesa cerca de las calas de Blanes, Costa Brava",
     viewFleet: "Ver todos los barcos",
     trustText: "Sin compromiso • Precios transparentes",
     whatsappContact: "WhatsApp +34 611 500 372",
     location: "Ubicación",
     googleRating: "4.8/5 en Google",
+    reviewsLabel: "reseñas",
     clients: "+5000 clientes",
     insured: "Seguro incluido",
     experience: "+5 años exp.",
     instantConfirmation: "Confirmación inmediata",
     marqueeText:
-      "Alquiler de Barcos en Blanes | Con y Sin Licencia | Gasolina Incluida | Desde 75\u20AC/h",
+      "Alquiler de Embarcaciones en Blanes | Con Titulaci\u00F3n | Titul\u00EDn en 1 D\u00EDa | Con Patr\u00F3n",
     askWhatsApp: "Preg\u00FAntanos por WhatsApp",
     testimonialQuote: "Experiencia incre\u00EDble, repetiremos seguro",
     testimonialQuoteShort: "Repetiremos seguro",
     // GEO summary \u2014 declarative factual paragraph rendered as sr-only at the
     // top of the hero. Citable by LLMs answering "what is Costa Brava Rent a
     // Boat" without affecting visual hierarchy.
+    // Fleet numbers use the "9 embarcaciones" / "5 barcos" baselines on purpose:
+    // applyFleetStatsToText() rewrites them to the live counts at request time.
     summaryGeo:
-      "Costa Brava Rent a Boat opera la mayor flota de alquiler de barcos del Puerto de Blanes con 8 embarcaciones: 4 sin licencia con gasolina incluida desde 75\u20AC/h, 3 con licencia y 1 excursi\u00F3n privada con capit\u00E1n. Atenci\u00F3n en 8 idiomas. Temporada de abril a octubre. 4.8\u2605 en Google con m\u00E1s de 300 rese\u00F1as.",
+      "Costa Brava Rent a Boat opera la mayor flota de alquiler de embarcaciones del Puerto de Blanes con 9 embarcaciones: 3 lanchas de 80 a 115 CV para patrones titulados, 5 barcos sin titulaci\u00F3n (alquilables hasta el 30 de septiembre de 2026, cuando el RD 1188/2025 pasa a exigir t\u00EDtulo n\u00E1utico a todo arrendatario) y 1 excursi\u00F3n privada con capit\u00E1n. Basta la Licencia de Navegaci\u00F3n, el titul\u00EDn de un d\u00EDa sin examen, o un t\u00EDtulo extranjero equivalente que verificamos online. Atenci\u00F3n en 8 idiomas. Temporada de abril a octubre. 4.8\u2605 en Google con m\u00E1s de 300 rese\u00F1as.",
   },
 
   fleet: {
@@ -102,16 +112,16 @@ export const es: Translations = {
     title: "Por qué elegir Costa Brava Rent a Boat",
     subtitle: "Todo lo que necesitas para una experiencia perfecta en el mar",
     withoutLicense: {
-      title: "Sin Carnet, Sin Problema",
-      description: "Llega a calas imposibles sin titulación. Te enseñamos en 15 minutos.",
+      title: "El Título en un Solo Día",
+      description: "Curso de 6 horas, sin examen y no caduca. Te lo organizamos nosotros.",
     },
     withLicense: {
-      title: "Barcos con Licencia",
+      title: "Lanchas para Patrones Titulados",
       description: "Más potencia, más autonomía. Explora toda la Costa Brava sin límites.",
     },
     includes: {
       title: "Sin Sorpresas de Precio",
-      description: "Gasolina incluida en barcos sin licencia. El precio que ves es el que pagas.",
+      description: "El precio que ves es el que pagas. Sin cargos ocultos al llegar al puerto.",
     },
     security: {
       title: "Máxima Seguridad",
@@ -167,6 +177,7 @@ export const es: Translations = {
       // GSC 2026-05-21: anchor diversificado a long-tail "sin carnet" + "Blanes"
       licenseFree: "Barcos sin licencia ni carnet en Blanes",
       licensed: "Barcos con licencia",
+      navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Precios y tarifas",
       costaBrava: "Alquiler barcos Costa Brava",
       blog: "Blog de navegación",
@@ -3198,23 +3209,42 @@ export const es: Translations = {
   },
 
   comparison: {
-    title: "¿Con o sin licencia?",
+    title: "¿Tienes titulación náutica?",
     subtitle:
-      "No necesitas carnet para disfrutar del mar. Pero si lo tienes, tenemos barcos más potentes.",
-    withoutLicense: "Sin necesidad de licencia",
-    withLicense: "Con licencia",
-    withoutLicenseDesc: "Te enseñamos en 15 minutos. Gasolina incluida. Perfecto para familias.",
-    withLicenseDesc: "Más potencia, más velocidad, más lejos. Para navegantes con titulación.",
-    noLicenseNeeded: "Sin titulación necesaria",
-    licenseRequired: "Requiere Licencia de Navegación (LN) o superior",
-    noLicenseFeature1: "Barcos de hasta 15CV, fáciles de manejar",
-    noLicenseFeature2: "Perfectos para calas y playas cercanas",
-    noLicenseFeature3: "Gasolina incluida en el precio",
-    noLicenseFeature4: "Briefing de seguridad incluido",
-    licenseFeature1: "Barcos potentes de hasta {maxHP}CV",
-    licenseFeature2: "Mayor autonomía y alcance de navegación",
-    licenseFeature3: "Acceso a calas remotas de la Costa Brava",
-    licenseFeature4: "Gasolina no incluida en el precio",
+      "Tres formas de salir a navegar desde el puerto de Blanes, tengas título o no.",
+    // Card 1 — the licensed fleet (leads the block since the 2026 pivot)
+    withLicense: "Sí, tengo título",
+    withLicenseDesc: "Pilotas tú. Más potencia, más alcance y rumbo libre hasta Tossa de Mar.",
+    licenseRequired: "Basta la Licencia de Navegación",
+    licenseFeature1: "Lanchas potentes de hasta {maxHP}CV",
+    licenseFeature2: "Hasta 7 plazas y mayor autonomía",
+    licenseFeature3: "Tossa de Mar en 30-45 minutos",
+    licenseFeature4: "Verificamos títulos extranjeros online",
+    // Card 2 — the titulín pack (course + rental)
+    titulin: "Aún no, quiero sacármelo",
+    titulinDesc:
+      "Te organizamos el curso y sales con nuestra flota. Un día, y navegas por tu cuenta muchos veranos.",
+    titulinBadge: "Curso de 1 día, sin examen",
+    titulinFeature1: "2 horas de teoría y 4 de prácticas a bordo",
+    titulinFeature2: "Titulación en el acto, sin examen",
+    titulinFeature3: "No caduca y es válida en toda España",
+    titulinFeature4: "Te la combinamos con tu primer alquiler",
+    titulinCta: "Cómo funciona",
+    // Card 3 — captained excursion (no title needed, ever)
+    captained: "No, y prefiero no llevar el timón",
+    captainedDesc:
+      "Un patrón profesional os lleva a calas y cuevas entre Blanes y Tossa mientras vosotros disfrutáis.",
+    captainedBadge: "Sin título ni experiencia",
+    captainedFeature1: "Patrón profesional a bordo",
+    captainedFeature2: "Nadie a bordo necesita titulación",
+    captainedFeature3: "Hasta 6 personas, con parada de baño",
+    captainedFeature4: "La nueva ley no le afecta",
+    captainedCta: "Ver la excursión",
+    // Temporary banner — self-retires on 2026-10-01 (RD 1188/2025)
+    licenseFreeBannerTitle: "¿Aún sin título? Hasta el 30 de septiembre de 2026",
+    licenseFreeBannerBody:
+      "El RD 1188/2025 exige título náutico a todo arrendatario a partir del 1 de octubre de 2026. Hasta entonces, nuestros barcos sin titulación se alquilan como siempre, con gasolina incluida.",
+    licenseFreeBannerCta: "Ver barcos sin licencia",
     fromPrice: "Desde",
     compare: "Comparar barcos",
     tableCapacity: "Capacidad",
@@ -3336,16 +3366,16 @@ export const es: Translations = {
     viewAll: "Ver todas las preguntas frecuentes",
     items: [
       {
-        id: "rango-sin-licencia",
-        question: "¿Hasta dónde puedo llegar con un barco sin licencia desde Blanes?",
+        id: "normativa2026",
+        question: "¿Es verdad que en 2026 se acaba el alquiler de barcos sin licencia?",
         answer:
-          "Con un barco sin licencia (2 millas de costa, 5 nudos, 15 CV) llegas hasta la Playa de Fenals, en el extremo sur de Lloret de Mar. En el trayecto pasas por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. La Playa de Lloret (centro) y Cala Canyelles quedan al norte de Fenals, fuera del rango sin licencia; requieren barco con Licencia de Navegación (LN) o Excursión Privada con Capitán.",
+          "Cambia la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor a partir del 1 de octubre de 2026. Hasta el 30 de septiembre de 2026 todo sigue igual y nuestros barcos sin licencia se alquilan como siempre. Desde esa fecha bastará la Licencia de Navegación (titulín), un curso de 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
       },
       {
-        id: "tossa-sin-licencia",
-        question: "¿Puedo llegar a Tossa de Mar sin licencia?",
+        id: "titulin",
+        question: "¿Qué es el titulín y cómo me lo saco?",
         answer:
-          "No. Tossa de Mar está fuera del rango legal de un barco sin licencia. Para llegar a Tossa desde Blanes necesitas (1) un barco con Licencia de Navegación (LN), o (2) la Excursión Privada con Capitán. La otra opción es ir por carretera a Tossa (20 minutos desde Lloret) y alquilar un barco sin licencia localmente allí.",
+          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas a bordo, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19 y la Trimarchi 57S. Te organizamos el curso y lo combinamos con tu primer alquiler; escríbenos y te contamos cómo.",
       },
       {
         id: "precios",
@@ -3357,7 +3387,7 @@ export const es: Translations = {
         id: "sin-licencia",
         question: "¿Puedo alquilar un barco sin tener licencia náutica?",
         answer:
-          "¡Sí! Tenemos varios barcos perfectos sin licencia de hasta 15 CV. Solo necesitas ser mayor de 18 años. Antes de salir te damos un briefing completo para que navegues con total seguridad.",
+          "Hasta el 30 de septiembre de 2026, sí: tenemos barcos sin licencia de hasta 15 CV y solo necesitas ser mayor de 18 años, con un briefing completo antes de salir. A partir del 1 de octubre de 2026 el RD 1188/2025 exige título a todo arrendatario; la Licencia de Navegación (titulín) se saca en un día y te la organizamos nosotros. Si prefieres no titularte, la excursión con patrón no requiere título en ninguna fecha.",
       },
       {
         id: "incluye",
@@ -3549,6 +3579,7 @@ export const es: Translations = {
   authority: {
     yearsExperience: "6+ años de experiencia",
     fullInsurance: "Seguro incluido",
+    foreignLicenseVerified: "Verificamos tu título extranjero",
     happyCustomers: "5000+ clientes satisfechos",
     fleetInsured: "Flota asegurada al 100%",
     zeroIncidents: "0 incidentes de seguridad",
@@ -3699,23 +3730,23 @@ export const es: Translations = {
 
   rangeFromBlanes: {
     eyebrowHome: "RANGO REAL DE NAVEGACIÓN",
-    headlineHome: "Hasta dónde llegas desde Blanes: sin licencia y con licencia",
+    headlineHome: "Hasta dónde llegas desde Blanes con tu titulación",
     introHome:
-      "Con un barco sin licencia navegas legalmente hasta 2 millas de la costa a 5 nudos. Desde el puerto de Blanes eso son 7 calas de Costa Brava auténtica en una sola jornada, con Playa de Fenals (sur de Lloret de Mar) como límite norte. Con Licencia de Navegación (LN) puedes extender la ruta hasta Tossa de Mar, Sant Feliu y Platja d'Aro.",
+      "Con la Licencia de Navegación (LN) o un título superior pilotas nuestras lanchas de 80 a 115 CV y la costa se abre: Lloret en 15 minutos, Cala Canyelles, Tossa de Mar en 30-45 minutos y, en jornada completa, Sant Feliu y Platja d'Aro. Sin titulación el alcance queda en 2 millas de la costa a 5 nudos, con Playa de Fenals (sur de Lloret) como límite norte, y solo hasta el 30 de septiembre de 2026.",
     eyebrowLloret: "TRAMO SIN LICENCIA · 25 MIN DE NAVEGACIÓN",
     headlineLloret: "Las 7 calas entre Blanes y Playa de Fenals",
     introLloret:
       "En orden desde el puerto de Blanes. Distancias acumuladas aproximadas a 5 nudos de crucero.",
-    sinLicenciaTitle: "Ruta sin licencia (7 paradas hasta Playa de Fenals)",
+    sinLicenciaTitle: "Ruta sin titulación, hasta el 30 de septiembre de 2026 (7 paradas)",
     limitLabel: "LÍMITE",
     limitBoxTitle: "¿Por qué Fenals es el límite?",
     limitBoxBody:
       "Un barco sin licencia puede navegar hasta 2 millas náuticas de la costa a 5 nudos y 15 CV. Desde el puerto de Blanes, Playa de Fenals está exactamente en el borde de esa distancia siguiendo la línea de costa.",
     noteNorthOfFenals:
       "Nota: la Playa de Lloret (centro), Cala Banys y Cala Canyelles están al norte de Fenals; quedan fuera del rango sin licencia.",
-    conLicenciaTitle: "Extensión con Licencia de Navegación (LN)",
+    conLicenciaTitle: "Con Licencia de Navegación (LN): la costa entera",
     conLicenciaIntro:
-      "Con Licencia de Navegación (LN) o patrón incluido, extiendes la ruta al norte:",
+      "Con Licencia de Navegación (LN) o patrón incluido, la ruta sigue al norte:",
     ext: {
       lloretCenter: "Lloret centro y Cala Banys (pasado Fenals)",
       canyelles: "Cala Canyelles: pequeño puerto náutico",
@@ -3723,7 +3754,7 @@ export const es: Translations = {
       tossa: "Tossa de Mar: Vila Vella medieval desde el mar (30-45 min aprox.)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (medio día / día completo)",
     },
-    ctaFleet: "Ver flota sin licencia",
+    ctaFleet: "Sácate el titulín en 1 día",
     ctaLicensed: "Barcos con Licencia de Navegación",
     internalLinks:
       '¿Quieres ver todas las rutas? Consulta <a href="/es/alquiler-barcos-blanes" class="underline text-primary hover:text-primary/80">Alquiler de barcos en Blanes</a>, la página de <a href="/es/alquiler-barcos-lloret-de-mar" class="underline text-primary hover:text-primary/80">alquiler de barcos en Lloret de Mar</a>, la extensión con licencia <a href="/es/alquiler-barcos-tossa-de-mar" class="underline text-primary hover:text-primary/80">a Tossa de Mar</a>, todas las <a href="/es/alquiler-barcos-costa-brava" class="underline text-primary hover:text-primary/80">rutas por la Costa Brava</a> y <a href="/es/alquiler-barcos-cerca-barcelona" class="underline text-primary hover:text-primary/80">alquiler de barcos cerca de Barcelona</a>. Precios completos en <a href="/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Cuánto cuesta alquilar un barco en Blanes</a>.',
@@ -5955,7 +5986,7 @@ export const es: Translations = {
         },
       ],
       note:
-        "El curso se hace en escuelas náuticas de recreo autorizadas y federaciones náuticas. En la zona de Blanes y la Costa Brava sur hay varias opciones; escríbenos y te orientamos sobre cómo y dónde sacártelo.",
+        "El curso se hace en escuelas náuticas de recreo autorizadas y federaciones náuticas. Nosotros te lo organizamos cerca de Blanes y lo combinamos con tu primer alquiler: sales titulado y con la lancha reservada el mismo viaje. Escríbenos y te damos fechas y precio.",
     },
     fleet: {
       title: "Con el titulín, esta flota es tuya",
@@ -5996,9 +6027,9 @@ export const es: Translations = {
         "Con la excursión privada con patrón no necesitas ningún título, ni ahora ni con la nueva ley: un patrón profesional os lleva a calas y cuevas entre Blanes y Tossa de Mar mientras vosotros solo disfrutáis.",
       cta: "Ver la excursión con patrón",
     },
-    ctaTitle: "Te contamos cómo sacarte el titulín",
+    ctaTitle: "Te organizamos el titulín y tu primera salida",
     ctaText:
-      "Escríbenos por WhatsApp y te orientamos: dónde hacer el curso cerca de Blanes, qué necesitas y cómo combinarlo con tu primer alquiler con nosotros.",
+      "Escríbenos por WhatsApp y montamos el pack: curso de un día cerca de Blanes, fechas disponibles, precio y la lancha reservada para cuando lo tengas en la mano.",
     ctaButton: "Escríbenos por WhatsApp",
     whatsappMessage:
       "Hola, quiero información sobre cómo sacarme la Licencia de Navegación (titulín) y alquilar un barco.",

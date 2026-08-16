@@ -110,6 +110,10 @@ export default function FeaturesSection() {
               <ChevronRight className="w-4 h-4" />
               {t.features.exploreLinks?.licensed || 'Barcos con licencia'}
             </a>
+            <a href={localizedPath("navigationLicense")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base whitespace-nowrap pointer-coarse:py-3">
+              <ChevronRight className="w-4 h-4" />
+              {t.features.exploreLinks?.navigationLicense || 'Licencia de Navegación (titulín)'}
+            </a>
             <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base whitespace-nowrap pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {t.features.exploreLinks?.pricing || 'Precios y tarifas'}

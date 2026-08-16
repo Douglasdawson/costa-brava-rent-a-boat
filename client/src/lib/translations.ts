@@ -114,17 +114,20 @@ export interface Translations {
     subtitleLine1: string;
     subtitleLine2: string;
     subtitleMobile: string;
-    priceBadge: string;
-    fuelBadge: string;
-    pricePerPerson: string;
-    pricePerPersonDetail: string;
+    specsLine: string;
+    licenseNote: string;
     bookNow: string;
     findYourBoat: string;
+    ctaTitulin: string;
+    licenseFreeUntil: string;
+    licenseFreeUntilCta: string;
+    imageAlt: string;
     viewFleet: string;
     trustText: string;
     whatsappContact: string;
     location: string;
     googleRating: string;
+    reviewsLabel: string;
     clients: string;
     insured: string;
     experience: string;
@@ -226,6 +229,7 @@ export interface Translations {
     exploreLinks?: {
       licenseFree: string;
       licensed: string;
+      navigationLicense: string;
       pricing: string;
       costaBrava: string;
       blog: string;
@@ -2024,20 +2028,32 @@ export interface Translations {
   comparison: {
     title: string;
     subtitle: string;
-    withoutLicense: string;
     withLicense: string;
-    withoutLicenseDesc: string;
     withLicenseDesc: string;
-    noLicenseNeeded: string;
     licenseRequired: string;
-    noLicenseFeature1: string;
-    noLicenseFeature2: string;
-    noLicenseFeature3: string;
-    noLicenseFeature4: string;
     licenseFeature1: string;
     licenseFeature2: string;
     licenseFeature3: string;
     licenseFeature4: string;
+    titulin: string;
+    titulinDesc: string;
+    titulinBadge: string;
+    titulinFeature1: string;
+    titulinFeature2: string;
+    titulinFeature3: string;
+    titulinFeature4: string;
+    titulinCta: string;
+    captained: string;
+    captainedDesc: string;
+    captainedBadge: string;
+    captainedFeature1: string;
+    captainedFeature2: string;
+    captainedFeature3: string;
+    captainedFeature4: string;
+    captainedCta: string;
+    licenseFreeBannerTitle: string;
+    licenseFreeBannerBody: string;
+    licenseFreeBannerCta: string;
     fromPrice: string;
     // Fleet comparison table
     compare: string;
@@ -2213,6 +2229,7 @@ export interface Translations {
   authority?: {
     yearsExperience: string;
     fullInsurance: string;
+    foreignLicenseVerified: string;
     happyCustomers: string;
     fleetInsured: string;
     zeroIncidents: string;

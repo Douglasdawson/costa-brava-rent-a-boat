@@ -25,35 +25,40 @@ export const ca: Translations = {
     altFallback: "Foto d'experiència nàutica a la Costa Brava de {name}",
   },
   hero: {
-    title: "Lloguer de Vaixells sense Llicència a Blanes, 7 Cales de la Costa Brava",
+    title: "Lloguer d'embarcacions amb titulaci\u00F3 a Blanes, Costa Brava",
     subtitle:
-      "Navega sense llicència ni experiència des del port de Blanes fins a la Platja de Fenals (Lloret). Set cales verges a la ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella i més. Gasolina inclosa.",
-    subtitleLine1: "Navega sense llicència des de Blanes fins a la Platja de Fenals.",
-    subtitleLine2:
-      "7 cales verges a la ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Gasolina inclosa.",
-    subtitleMobile: "Vaixells sense llicència des de Blanes. 7 cales fins a la Platja de Fenals.",
-    priceBadge: "Des de 75€",
-    fuelBadge: "Gasolina inclosa",
-    pricePerPerson: "Des de 14€ per persona/hora",
-    pricePerPersonDetail: "Vaixell complet des de 75€/h per a 5 persones",
+      "Lloga una llanxa al port de Blanes i pilota-la tu mateix: fins a 115 CV, 7 places i rumb lliure fins a Tossa de Mar. N'hi ha prou amb la Llic\u00E8ncia de Navegaci\u00F3 o un t\u00EDtol estranger equivalent, que verifiquem en l\u00EDnia abans que reservis. Encara no tens t\u00EDtol? T'organitzem el curs d'un dia o surts amb patr\u00F3 professional.",
+    subtitleLine1:
+      "Llanxes de fins a 115 CV per a patrons titulats, rumb lliure fins a Tossa de Mar.",
+    subtitleLine2: "Encara sense t\u00EDtol? Te'l traiem en un dia, o surts amb patr\u00F3 professional.",
+    subtitleMobile: "Llanxes amb titulaci\u00F3 des de Blanes. Rumb lliure fins a Tossa de Mar.",
+    specsLine: "Fins a 115 CV \u00B7 7 places \u00B7 Rumb lliure fins a Tossa de Mar",
+    licenseNote:
+      "N'hi ha prou amb la Llic\u00E8ncia de Navegaci\u00F3. Verifiquem t\u00EDtols estrangers en l\u00EDnia abans de reservar.",
     bookNow: "Veure Disponibilitat",
     findYourBoat: "Reservar ara",
+    ctaTitulin: "Treu-te el t\u00EDtol en 1 dia",
+    licenseFreeUntil: "Encara sense t\u00EDtol? Fins al 30 de setembre pots llogar sense titulaci\u00F3.",
+    licenseFreeUntilCta: "Veure vaixells sense llic\u00E8ncia",
+    imageAlt:
+      "Llanxa de lloguer navegant per aig\u00FCes turqueses prop de les cales de Blanes, Costa Brava",
     viewFleet: "Veure tots els vaixells",
-    trustText: "Sense compromís • Confirmació immediata • Preus transparents",
+    trustText: "Sense comprom\u00EDs \u2022 Confirmaci\u00F3 immediata \u2022 Preus transparents",
     whatsappContact: "WhatsApp +34 611 500 372",
-    location: "Ubicació",
+    location: "Ubicaci\u00F3",
     googleRating: "4.8/5 a Google",
+    reviewsLabel: "ressenyes",
     clients: "+5000 clients",
     insured: "Assegurat",
     experience: "+5 anys exp.",
-    instantConfirmation: "Confirmació immediata",
+    instantConfirmation: "Confirmaci\u00F3 immediata",
     marqueeText:
-      "Lloguer de Vaixells a Blanes | Amb i Sense Llicència | Gasolina Inclosa | Des de 75\u20AC/h",
+      "Lloguer d'Embarcacions a Blanes | Amb Titulaci\u00F3 | Titul\u00EDn en 1 Dia | Amb Patr\u00F3",
     askWhatsApp: "Pregunta'ns per WhatsApp",
     testimonialQuote: "Experi\u00E8ncia incre\u00EFble, repetirem segur",
     testimonialQuoteShort: "Repetirem segur",
     summaryGeo:
-      "Costa Brava Rent a Boat opera la flota de lloguer de vaixells més gran del Port de Blanes amb 8 embarcacions: 4 sense llicència amb gasolina inclosa des de 75€/h, 3 amb llicència i 1 excursió privada amb patró. Atenció en 8 idiomes. Temporada d'abril a octubre. 4,8★ a Google amb més de 300 ressenyes.",
+      "Costa Brava Rent a Boat opera la flota de lloguer d'embarcacions m\u00E9s gran del Port de Blanes amb 9 vaixells: 3 llanxes de 80 a 115 CV per a patrons titulats, 5 vaixells sense titulaci\u00F3 (llogables fins al 30 de setembre de 2026, quan el RD 1188/2025 passa a exigir t\u00EDtol n\u00E0utic a tot arrendatari) i 1 excursi\u00F3 privada amb patr\u00F3. N'hi ha prou amb la Llic\u00E8ncia de Navegaci\u00F3, el titul\u00EDn d'un dia sense examen, o un t\u00EDtol estranger equivalent que verifiquem en l\u00EDnia. Atenci\u00F3 en 8 idiomes. Temporada d'abril a octubre. 4,8\u2605 a Google amb m\u00E9s de 300 ressenyes.",
   },
 
   fleet: {
@@ -99,17 +104,16 @@ export const ca: Translations = {
     title: "Per què triar Costa Brava Rent a Boat",
     subtitle: "Tot el que necessites per a una experiència perfecta al mar",
     withoutLicense: {
-      title: "Sense Llicència, Cap Problema",
-      description: "Arriba a cales impossibles sense titulació. T'ensenyem en 15 minuts.",
+      title: "El T\u00EDtol en un Sol Dia",
+      description: "Curs de 6 hores, sense examen i no caduca. Te l'organitzem nosaltres.",
     },
     withLicense: {
-      title: "Barques amb Llicència",
-      description: "Més potència, més autonomia. Explora tota la Costa Brava sense límits.",
+      title: "Llanxes per a Patrons Titulats",
+      description: "M\u00E9s pot\u00E8ncia, m\u00E9s autonomia. Explora tota la Costa Brava sense l\u00EDmits.",
     },
     includes: {
       title: "Sense Sorpreses de Preu",
-      description:
-        "Gasolina inclosa en vaixells sense llicència. El preu que veus és el que pagues.",
+      description: "El preu que veus \u00E9s el que pagues. Sense c\u00E0rrecs ocults en arribar al port.",
     },
     security: {
       title: "Màxima Seguretat",
@@ -164,6 +168,7 @@ export const ca: Translations = {
     exploreLinks: {
       licenseFree: "Vaixells sense llicència",
       licensed: "Vaixells amb llicència",
+      navigationLicense: "Llic\u00E8ncia de Navegaci\u00F3 (titul\u00EDn)",
       pricing: "Preus i tarifes",
       costaBrava: "Lloguer vaixells Costa Brava",
       blog: "Blog de navegació",
@@ -1378,24 +1383,37 @@ export const ca: Translations = {
   },
 
   comparison: {
-    title: "Amb o sense llic\u00e8ncia?",
-    subtitle:
-      "No necessites llic\u00e8ncia per gaudir del mar. Per\u00f2 si en tens, tenim vaixells m\u00e9s potents.",
-    withoutLicense: "Sense llic\u00e8ncia",
-    withLicense: "Amb llic\u00e8ncia",
-    withoutLicenseDesc: "T'ensenyem en 15 minuts. Gasolina inclosa. Perfecte per a fam\u00edlies.",
-    withLicenseDesc:
-      "M\u00e9s pot\u00e8ncia, m\u00e9s velocitat, m\u00e9s lluny. Per a navegants amb titulaci\u00f3.",
-    noLicenseNeeded: "Sense titulaci\u00f3 necess\u00e0ria",
-    licenseRequired: "Requereix PNB o superior",
-    noLicenseFeature1: "Barques de fins a 15CV, f\u00e0cils de manejar",
-    noLicenseFeature2: "Perfectes per a cales i platges properes",
-    noLicenseFeature3: "Gasolina inclosa en el preu",
-    noLicenseFeature4: "Briefing de seguretat incl\u00f2s",
-    licenseFeature1: "Barques potents de fins a {maxHP}CV",
-    licenseFeature2: "Major autonomia i abast de navegaci\u00f3",
-    licenseFeature3: "Acc\u00e9s a cales remotes de la Costa Brava",
-    licenseFeature4: "Gasolina no inclosa en el preu",
+    title: "Tens titulaci\u00F3 n\u00E0utica?",
+    subtitle: "Tres maneres de sortir a navegar des del port de Blanes, tinguis t\u00EDtol o no.",
+    withLicense: "S\u00ED, tinc t\u00EDtol",
+    withLicenseDesc: "Pilotes tu. M\u00E9s pot\u00E8ncia, m\u00E9s abast i rumb lliure fins a Tossa de Mar.",
+    licenseRequired: "N'hi ha prou amb la Llic\u00E8ncia de Navegaci\u00F3",
+    licenseFeature1: "Llanxes potents de fins a {maxHP}CV",
+    licenseFeature2: "Fins a 7 places i m\u00E9s autonomia",
+    licenseFeature3: "Tossa de Mar en 30-45 minuts",
+    licenseFeature4: "Verifiquem t\u00EDtols estrangers en l\u00EDnia",
+    titulin: "Encara no, me'l vull treure",
+    titulinDesc:
+      "T'organitzem el curs i surts amb la nostra flota. Un dia, i navegues pel teu compte molts estius.",
+    titulinBadge: "Curs d'1 dia, sense examen",
+    titulinFeature1: "2 hores de teoria i 4 de pr\u00E0ctiques a bord",
+    titulinFeature2: "Titulaci\u00F3 a l'acte, sense examen",
+    titulinFeature3: "No caduca i \u00E9s v\u00E0lida a tot Espanya",
+    titulinFeature4: "Te la combinem amb el primer lloguer",
+    titulinCta: "Com funciona",
+    captained: "No, i prefereixo no portar el tim\u00F3",
+    captainedDesc:
+      "Un patr\u00F3 professional us porta a cales i coves entre Blanes i Tossa mentre vosaltres gaudiu.",
+    captainedBadge: "Sense t\u00EDtol ni experi\u00E8ncia",
+    captainedFeature1: "Patr\u00F3 professional a bord",
+    captainedFeature2: "Ning\u00FA a bord necessita titulaci\u00F3",
+    captainedFeature3: "Fins a 6 persones, amb parada de bany",
+    captainedFeature4: "La nova llei no l'afecta",
+    captainedCta: "Veure l'excursi\u00F3",
+    licenseFreeBannerTitle: "Encara sense t\u00EDtol? Fins al 30 de setembre de 2026",
+    licenseFreeBannerBody:
+      "El RD 1188/2025 exigeix t\u00EDtol n\u00E0utic a tot arrendatari a partir de l'1 d'octubre de 2026. Fins llavors, els nostres vaixells sense titulaci\u00F3 es lloguen com sempre, amb gasolina inclosa.",
+    licenseFreeBannerCta: "Veure vaixells sense llic\u00E8ncia",
     fromPrice: "Des de",
     compare: "Comparar barcos",
     tableCapacity: "Capacitat",
@@ -1508,6 +1526,18 @@ export const ca: Translations = {
     viewAll: "Veure totes les preguntes freqüents",
     items: [
       {
+        id: "normativa2026",
+        question: "\u00C9s veritat que el 2026 s'acaba el lloguer de vaixells sense llic\u00E8ncia?",
+        answer:
+          "Canvia la llei: el RD 1188/2025 exigeix un t\u00EDtol n\u00E0utic per llogar qualsevol embarcaci\u00F3 a motor a partir de l'1 d'octubre de 2026. Fins al 30 de setembre de 2026 tot segueix igual i els nostres vaixells sense llic\u00E8ncia es lloguen com sempre. Des d'aquella data n'hi haur\u00E0 prou amb la Llic\u00E8ncia de Navegaci\u00F3 (titul\u00EDn), un curs d'1 dia sense examen, o qualsevol t\u00EDtol superior o estranger equivalent. L'excursi\u00F3 amb patr\u00F3 no es veu afectada: all\u00E0 el vaixell el governa un professional.",
+      },
+      {
+        id: "titulin",
+        question: "Qu\u00E8 \u00E9s el titul\u00EDn i com me'l trec?",
+        answer:
+          "El titul\u00EDn \u00E9s la Llic\u00E8ncia de Navegaci\u00F3: el t\u00EDtol n\u00E0utic m\u00E9s r\u00E0pid d'Espanya. S'aconsegueix en un dia amb 2 hores de teoria i 4 de pr\u00E0ctiques a bord, sense examen, i no caduca. Permet portar vaixells de fins a 6 metres, de dia i fins a 2 milles d'un abric: a la nostra flota cobreix la Mingolla Brava 19 i la Trimarchi 57S. T'organitzem el curs i el combinem amb el teu primer lloguer; escriu-nos i t'expliquem com.",
+      },
+      {
         id: "precios",
         question: "Quins són els preus del lloguer?",
         answer:
@@ -1515,9 +1545,9 @@ export const ca: Translations = {
       },
       {
         id: "sin-licencia",
-        question: "Puc llogar un vaixell sense llicència nàutica?",
+        question: "Puc llogar un vaixell sense tenir llic\u00E8ncia n\u00E0utica?",
         answer:
-          "Sí! Tenim diversos vaixells perfectes sense llicència de fins a 15 CV. Només cal ser major de 18 anys. Abans de sortir et donem un briefing complet perquè naveguis amb total seguretat.",
+          "Fins al 30 de setembre de 2026, s\u00ED: tenim vaixells sense llic\u00E8ncia de fins a 15 CV i nom\u00E9s cal ser major de 18 anys, amb un briefing complet abans de sortir. A partir de l'1 d'octubre de 2026 el RD 1188/2025 exigeix t\u00EDtol a tot arrendatari; la Llic\u00E8ncia de Navegaci\u00F3 (titul\u00EDn) es treu en un dia i te l'organitzem nosaltres. Si prefereixes no titular-te, l'excursi\u00F3 amb patr\u00F3 no requereix t\u00EDtol en cap data.",
       },
       {
         id: "incluye",
@@ -1634,6 +1664,7 @@ export const ca: Translations = {
     close: "Tancar",
   },
   authority: {
+    foreignLicenseVerified: "Verifiquem el teu t\u00EDtol estranger",
     yearsExperience: "6+ anys d'experiència",
     fullInsurance: "Assegurança inclosa",
     happyCustomers: "5000+ clients satisfets",
@@ -1731,21 +1762,25 @@ export const ca: Translations = {
   // TODO: pro-translate — traducció funcional, revisar abans de publicar a mercats CA-heavy
   rangeFromBlanes: {
     eyebrowHome: "ABAST REAL DE NAVEGACIÓ",
-    headlineHome: "Fins on arribes des de Blanes, amb i sense llicència",
+    headlineHome:
+      "Fins on arribes des de Blanes amb la teva titulaci\u00F3",
     introHome:
-      "Amb una embarcació sense llicència navegues legalment fins a 2 milles de la costa a 5 nusos. Des del port de Blanes això són 7 cales autèntiques de la Costa Brava en una jornada, amb la Platja de Fenals (sud de Lloret de Mar) com a límit nord. Amb Llicència de Navegació (LN) pots estendre la ruta fins a Tossa de Mar, Sant Feliu i Platja d'Aro.",
+      "Amb la Llic\u00E8ncia de Navegaci\u00F3 (LN) o un t\u00EDtol superior pilotes les nostres llanxes de 80 a 115 CV i la costa s'obre: Lloret en 15 minuts, Cala Canyelles, Tossa de Mar en 30-45 minuts i, en jornada completa, Sant Feliu i Platja d'Aro. Sense titulaci\u00F3 l'abast queda en 2 milles de la costa a 5 nusos, amb la Platja de Fenals (sud de Lloret) com a l\u00EDmit nord, i nom\u00E9s fins al 30 de setembre de 2026.",
     eyebrowLloret: "TRAM SENSE LLICÈNCIA · 25 MIN DE NAVEGACIÓ",
     headlineLloret: "Les 7 cales entre Blanes i la Platja de Fenals",
     introLloret: "Per ordre des del port de Blanes. Distàncies acumulades a 5 nusos de creuer.",
-    sinLicenciaTitle: "Ruta sense llicència (7 parades fins a la Platja de Fenals)",
+    sinLicenciaTitle:
+      "Ruta sense titulaci\u00F3, fins al 30 de setembre de 2026 (7 parades)",
     limitLabel: "LÍMIT",
     limitBoxTitle: "Per què Fenals és el límit?",
     limitBoxBody:
       "Una embarcació sense llicència pot navegar fins a 2 milles nàutiques de la costa a 5 nusos i 15 CV. Des del port de Blanes, la Platja de Fenals està just al llindar d'aquesta distància seguint la línia de costa.",
     noteNorthOfFenals:
       "Nota: la Platja de Lloret (centre), Cala Banys i Cala Canyelles queden al nord de Fenals, fora del rang sense llicència.",
-    conLicenciaTitle: "Extensió amb Llicència de Navegació (LN)",
-    conLicenciaIntro: "Amb Llicència de Navegació (LN) o patró inclòs, estens la ruta cap al nord:",
+    conLicenciaTitle:
+      "Amb Llic\u00E8ncia de Navegaci\u00F3 (LN): tota la costa",
+    conLicenciaIntro:
+      "Amb Llic\u00E8ncia de Navegaci\u00F3 (LN) o patr\u00F3 incl\u00F2s, la ruta continua cap al nord:",
     ext: {
       lloretCenter: "Lloret centre i Cala Banys (passada Fenals)",
       canyelles: "Cala Canyelles, petit port esportiu",
@@ -1753,7 +1788,8 @@ export const ca: Translations = {
       tossa: "Tossa de Mar, Vila Vella medieval des del mar (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (mig dia / dia complet)",
     },
-    ctaFleet: "Veure flota sense llicència",
+    ctaFleet:
+      "Treu-te el titul\u00EDn en 1 dia",
     ctaLicensed: "Vaixells amb Llicència de Navegació",
     internalLinks:
       'Vols veure totes les rutes? Consulta el <a href="/ca/lloguer-vaixell-blanes" class="underline text-primary hover:text-primary/80">lloguer de barques a Blanes</a>, el <a href="/ca/lloguer-vaixell-lloret-de-mar" class="underline text-primary hover:text-primary/80">lloguer de barques a Lloret de Mar</a>, l\'extensió amb llicència <a href="/ca/lloguer-vaixell-tossa-de-mar" class="underline text-primary hover:text-primary/80">fins a Tossa de Mar</a>, totes les <a href="/ca/lloguer-vaixell-costa-brava" class="underline text-primary hover:text-primary/80">rutes per la Costa Brava</a> i el <a href="/ca/lloguer-vaixell-prop-barcelona" class="underline text-primary hover:text-primary/80">lloguer de barques prop de Barcelona</a>. Preus complets a <a href="/ca/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quant costa llogar un vaixell a Blanes</a>.',
@@ -2707,9 +2743,9 @@ export const ca: Translations = {
           "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
       },
       sinLicencia: {
-        question: "Puc llogar sense tenir llicència nàutica?",
+        question: "Puc llogar un vaixell sense tenir llic\u00E8ncia n\u00E0utica?",
         answer:
-          "Sí! Tenim barques perfectes sense llicència. Són de fins a 15 CV, màxim 4-5 persones, fàcils de manejar amb briefing complet. Només cal ser major de 18 anys.",
+          "Fins al 30 de setembre de 2026, s\u00ED: tenim vaixells sense llic\u00E8ncia de fins a 15 CV i nom\u00E9s cal ser major de 18 anys, amb un briefing complet abans de sortir. A partir de l'1 d'octubre de 2026 el RD 1188/2025 exigeix t\u00EDtol a tot arrendatari; la Llic\u00E8ncia de Navegaci\u00F3 (titul\u00EDn) es treu en un dia i te l'organitzem nosaltres. Si prefereixes no titular-te, l'excursi\u00F3 amb patr\u00F3 no requereix t\u00EDtol en cap data.",
       },
       normativa2026: {
         question: "És veritat que el 2026 s'acaba el lloguer de vaixells sense llicència?",
@@ -4605,7 +4641,7 @@ export const ca: Translations = {
         },
       ],
       note:
-        "El curs es fa en escoles nàutiques d'esbarjo autoritzades i federacions nàutiques. A la zona de Blanes i la Costa Brava sud hi ha diverses opcions; escriu-nos i t'orientem sobre com i on treure-te'l.",
+        "El curs es fa en escoles nàutiques d esbarjo autoritzades i federacions nàutiques. Nosaltres te l organitzem prop de Blanes i el combinem amb el teu primer lloguer: surts titulat i amb la llanxa reservada el mateix viatge. Escriu-nos i et donem dates i preu.",
     },
     fleet: {
       title: "Amb el titulí, aquesta flota és teva",
@@ -4646,9 +4682,9 @@ export const ca: Translations = {
         "Amb l'excursió privada amb patró no necessites cap títol, ni ara ni amb la nova llei: un patró professional us porta a cales i coves entre Blanes i Tossa de Mar mentre vosaltres només en gaudiu.",
       cta: "Veure l'excursió amb patró",
     },
-    ctaTitle: "T'expliquem com treure't el titulí",
+    ctaTitle: "T organitzem el titulín i la teva primera sortida",
     ctaText:
-      "Escriu-nos per WhatsApp i t'orientem: on fer el curs a prop de Blanes, què necessites i com combinar-lo amb el teu primer lloguer amb nosaltres.",
+      "Escriu-nos per WhatsApp i muntem el pack: curs d un dia prop de Blanes, dates disponibles, preu i la llanxa reservada per quan el tinguis a la mà.",
     ctaButton: "Escriu-nos per WhatsApp",
     whatsappMessage:
       "Hola, vull informació sobre com treure'm la Llicència de Navegació (titulí) i llogar un vaixell.",

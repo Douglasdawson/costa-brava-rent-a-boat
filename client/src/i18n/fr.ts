@@ -25,35 +25,42 @@ export const fr: Translations = {
     altFallback: "Photo d'expérience nautique sur la Costa Brava par {name}",
   },
   hero: {
-    title: "Location de Bateaux Sans Permis à Blanes, 7 Criques Costa Brava",
+    title: "Location de bateaux avec permis \u00E0 Blanes, Costa Brava",
     subtitle:
-      "Naviguez sans permis ni expérience depuis le port de Blanes jusqu'à Playa de Fenals (Lloret). Sept criques vierges sur votre route : Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella et plus. Carburant inclus.",
-    subtitleLine1: "Naviguez sans permis de Blanes à Playa de Fenals (Lloret).",
+      "Louez un bateau \u00E0 moteur au port de Blanes et pilotez-le vous-m\u00EAme : jusqu'\u00E0 115 CV, 7 places et cap libre jusqu'\u00E0 Tossa de Mar. La Licencia de Navegaci\u00F3n de base ou un titre \u00E9tranger \u00E9quivalent suffit, et nous le v\u00E9rifions en ligne avant votre r\u00E9servation. Pas encore de permis ? Nous organisons le cours d'une journ\u00E9e, ou vous partez avec un skipper professionnel.",
+    subtitleLine1:
+      "Bateaux jusqu'\u00E0 115 CV pour skippers dipl\u00F4m\u00E9s, cap libre jusqu'\u00E0 Tossa de Mar.",
     subtitleLine2:
-      "7 criques vierges : Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Carburant inclus.",
-    subtitleMobile: "Bateaux sans permis depuis Blanes. 7 criques jusqu'à Playa de Fenals.",
-    priceBadge: "Dès 75€",
-    fuelBadge: "Carburant inclus",
-    pricePerPerson: "Dès 14€ par personne/heure",
-    pricePerPersonDetail: "Bateau complet dès 75€/h pour 5 personnes",
-    bookNow: "Voir Disponibilités",
-    findYourBoat: "Réserver maintenant",
+      "Pas encore de permis ? Nous vous l'obtenons en un jour, ou vous partez avec un skipper.",
+    subtitleMobile: "Bateaux avec permis depuis Blanes. Cap libre jusqu'\u00E0 Tossa de Mar.",
+    specsLine: "Jusqu'\u00E0 115 CV \u00B7 7 places \u00B7 Cap libre jusqu'\u00E0 Tossa de Mar",
+    licenseNote:
+      "La Licencia de Navegaci\u00F3n de base suffit. Nous v\u00E9rifions les titres \u00E9trangers en ligne avant la r\u00E9servation.",
+    bookNow: "Voir Disponibilit\u00E9s",
+    findYourBoat: "R\u00E9server maintenant",
+    ctaTitulin: "Obtenez votre permis en 1 jour",
+    licenseFreeUntil:
+      "Pas encore de permis ? Jusqu'au 30 septembre, vous pouvez encore louer sans titre.",
+    licenseFreeUntilCta: "Voir les bateaux sans permis",
+    imageAlt:
+      "Bateau de location naviguant sur des eaux turquoise pr\u00E8s des criques de Blanes, Costa Brava",
     viewFleet: "Voir tous les bateaux",
-    trustText: "Sans engagement • Confirmation immédiate • Prix transparents",
+    trustText: "Sans engagement \u2022 Confirmation imm\u00E9diate \u2022 Prix transparents",
     whatsappContact: "WhatsApp +34 611 500 372",
     location: "Emplacement",
     googleRating: "4.8/5 sur Google",
+    reviewsLabel: "avis",
     clients: "+5000 clients",
-    insured: "Assuré",
+    insured: "Assur\u00E9",
     experience: "+5 ans exp.",
-    instantConfirmation: "Confirmation immédiate",
+    instantConfirmation: "Confirmation imm\u00E9diate",
     marqueeText:
-      "Location de Bateaux à Blanes | Avec et Sans Permis | Carburant Inclus | Dès 75\u20AC/h",
+      "Location de Bateaux \u00E0 Blanes | Avec Permis | Permis en 1 Jour | Avec Skipper",
     askWhatsApp: "Demandez-nous sur WhatsApp",
     testimonialQuote: "Exp\u00E9rience incroyable, nous reviendrons",
     testimonialQuoteShort: "Nous reviendrons",
     summaryGeo:
-      "Costa Brava Rent a Boat exploite la plus grande flotte de location de bateaux du Port de Blanes avec 8 embarcations : 4 sans permis avec carburant inclus dès 75€/h, 3 avec permis et 1 excursion privée avec capitaine. Service en 8 langues. Saison d'avril à octobre. 4,8★ sur Google avec plus de 300 avis.",
+      "Costa Brava Rent a Boat exploite la plus grande flotte de location de bateaux du Port de Blanes avec 9 bateaux : 3 bateaux \u00E0 moteur de 80 \u00E0 115 CV pour skippers dipl\u00F4m\u00E9s, 5 bateaux sans permis (louables jusqu'au 30 septembre 2026, date \u00E0 laquelle le RD 1188/2025 exige un titre nautique de tout locataire) et 1 excursion priv\u00E9e avec capitaine. La Licencia de Navegaci\u00F3n, le titul\u00EDn d'une journ\u00E9e sans examen, ou un titre \u00E9tranger \u00E9quivalent que nous v\u00E9rifions en ligne. Service en 8 langues. Saison d'avril \u00E0 octobre. 4,8\u2605 sur Google avec plus de 300 avis.",
   },
 
   fleet: {
@@ -99,19 +106,16 @@ export const fr: Translations = {
     title: "Pourquoi Choisir Costa Brava Rent a Boat",
     subtitle: "Tout ce dont vous avez besoin pour une expérience parfaite en mer",
     withoutLicense: {
-      title: "Sans Permis, Sans Souci",
-      description:
-        "Accédez à des criques cachées sans permis bateau. On vous apprend en 15 minutes.",
+      title: "Le Permis en une Seule Journ\u00E9e",
+      description: "Cours de 6 heures, sans examen et sans expiration. Nous l'organisons pour vous.",
     },
     withLicense: {
-      title: "Bateaux avec Permis",
-      description:
-        "Plus de puissance, plus d'autonomie. Explorez toute la Costa Brava sans limites.",
+      title: "Bateaux pour Skippers Dipl\u00F4m\u00E9s",
+      description: "Plus de puissance, plus d'autonomie. Explorez toute la Costa Brava sans limites.",
     },
     includes: {
       title: "Pas de Surprises",
-      description:
-        "Essence incluse sur les bateaux sans permis. Le prix affiché est le prix final.",
+      description: "Le prix affich\u00E9 est le prix final. Aucun frais cach\u00E9 \u00E0 l'arriv\u00E9e au port.",
     },
     security: {
       title: "Sécurité Maximale",
@@ -168,6 +172,7 @@ export const fr: Translations = {
     exploreLinks: {
       licenseFree: "Bateaux sans permis",
       licensed: "Bateaux avec permis",
+      navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Prix et tarifs",
       costaBrava: "Location bateau Costa Brava",
       blog: "Blog de navigation",
@@ -1385,25 +1390,37 @@ export const fr: Translations = {
   },
 
   comparison: {
-    title: "Avec ou sans permis ?",
-    subtitle:
-      "Pas besoin de permis pour profiter de la mer. Mais si vous en avez un, nous avons des bateaux plus puissants.",
-    withoutLicense: "Aucun permis nécessaire",
-    withLicense: "Avec permis",
-    withoutLicenseDesc:
-      "On vous apprend en 15 minutes. Essence incluse. Parfait pour les familles.",
-    withLicenseDesc:
-      "Plus de puissance, plus de vitesse, plus loin. Pour les navigateurs avec permis.",
-    noLicenseNeeded: "Aucun permis nécessaire",
-    licenseRequired: "Permis bateau requis",
-    noLicenseFeature1: "Bateaux jusqu'à 15CV, faciles à manoeuvrer",
-    noLicenseFeature2: "Parfaits pour les criques et plages proches",
-    noLicenseFeature3: "Essence incluse dans le prix",
-    noLicenseFeature4: "Briefing de sécurité inclus",
-    licenseFeature1: "Bateaux puissants jusqu'à {maxHP}CV",
-    licenseFeature2: "Plus grande autonomie et rayon de navigation",
-    licenseFeature3: "Accès aux criques isolées de la Costa Brava",
-    licenseFeature4: "Essence non incluse dans le prix",
+    title: "Avez-vous un permis bateau ?",
+    subtitle: "Trois fa\u00E7ons de prendre la mer depuis le port de Blanes, avec ou sans permis.",
+    withLicense: "Oui, j'ai un permis",
+    withLicenseDesc: "Vous pilotez. Plus de puissance, plus de rayon d'action et cap libre jusqu'\u00E0 Tossa de Mar.",
+    licenseRequired: "La Licencia de Navegaci\u00F3n de base suffit",
+    licenseFeature1: "Bateaux puissants jusqu'\u00E0 {maxHP} CV",
+    licenseFeature2: "Jusqu'\u00E0 7 places et plus d'autonomie",
+    licenseFeature3: "Tossa de Mar en 30-45 minutes",
+    licenseFeature4: "Nous v\u00E9rifions les titres \u00E9trangers en ligne",
+    titulin: "Pas encore, je veux le passer",
+    titulinDesc:
+      "Nous organisons le cours et vous partez avec notre flotte. Une journ\u00E9e, et vous naviguez seul pendant des \u00E9t\u00E9s.",
+    titulinBadge: "Cours d'1 jour, sans examen",
+    titulinFeature1: "2 heures de th\u00E9orie et 4 de pratique \u00E0 bord",
+    titulinFeature2: "Titre d\u00E9livr\u00E9 sur place, sans examen",
+    titulinFeature3: "N'expire jamais, valable dans toute l'Espagne",
+    titulinFeature4: "Nous le combinons \u00E0 votre premi\u00E8re location",
+    titulinCta: "Comment \u00E7a marche",
+    captained: "Non, et je pr\u00E9f\u00E8re ne pas barrer",
+    captainedDesc:
+      "Un skipper professionnel vous emm\u00E8ne dans les criques et grottes marines entre Blanes et Tossa pendant que vous profitez.",
+    captainedBadge: "Sans permis ni exp\u00E9rience",
+    captainedFeature1: "Skipper professionnel \u00E0 bord",
+    captainedFeature2: "Personne \u00E0 bord n'a besoin de permis",
+    captainedFeature3: "Jusqu'\u00E0 6 personnes, avec arr\u00EAt baignade",
+    captainedFeature4: "Non concern\u00E9e par la nouvelle loi",
+    captainedCta: "Voir l'excursion",
+    licenseFreeBannerTitle: "Pas encore de permis ? Jusqu'au 30 septembre 2026",
+    licenseFreeBannerBody:
+      "Le RD 1188/2025 exige un titre nautique de tout locataire \u00E0 partir du 1er octobre 2026. D'ici l\u00E0, nos bateaux sans permis se louent comme toujours, carburant inclus.",
+    licenseFreeBannerCta: "Voir les bateaux sans permis",
     fromPrice: "À partir de",
     compare: "Comparer les bateaux",
     tableCapacity: "Capacité",
@@ -1517,6 +1534,18 @@ export const fr: Translations = {
     viewAll: "Voir toutes les questions fréquentes",
     items: [
       {
+        id: "normativa2026",
+        question: "Est-il vrai qu'en 2026 la location de bateaux sans permis prend fin ?",
+        answer:
+          "La loi change : le RD 1188/2025 exige un titre nautique pour louer tout bateau \u00E0 moteur \u00E0 partir du 1er octobre 2026. Jusqu'au 30 septembre 2026 rien ne change et nos bateaux sans permis se louent comme toujours. \u00C0 partir de cette date, la Licencia de Navegaci\u00F3n (titul\u00EDn) suffira, un cours d'1 jour sans examen, ou tout titre sup\u00E9rieur ou \u00E9tranger \u00E9quivalent. L'excursion avec skipper n'est pas concern\u00E9e : l\u00E0, un professionnel barre le bateau.",
+      },
+      {
+        id: "titulin",
+        question: "Qu'est-ce que le titul\u00EDn et comment l'obtenir ?",
+        answer:
+          "Le titul\u00EDn est la Licencia de Navegaci\u00F3n : le titre nautique le plus rapide d'Espagne. On l'obtient en un jour avec 2 heures de th\u00E9orie et 4 de pratique \u00E0 bord, sans examen, et il n'expire jamais. Il permet de mener des bateaux jusqu'\u00E0 6 m\u00E8tres, de jour et jusqu'\u00E0 2 milles d'un abri : dans notre flotte, le Mingolla Brava 19 et le Trimarchi 57S. Nous organisons le cours et le combinons \u00E0 votre premi\u00E8re location ; \u00E9crivez-nous et nous vous expliquons.",
+      },
+      {
         id: "precios",
         question: "Quels sont les tarifs de location ?",
         answer:
@@ -1524,9 +1553,9 @@ export const fr: Translations = {
       },
       {
         id: "sin-licencia",
-        question: "Puis-je louer un bateau sans permis bateau ?",
+        question: "Puis-je louer un bateau sans permis nautique ?",
         answer:
-          "Oui ! Nous avons plusieurs bateaux parfaits sans permis jusqu'à 15 CV. Il suffit d'avoir plus de 18 ans. Avant le départ, nous vous donnons un briefing complet pour naviguer en toute sécurité.",
+          "Jusqu'au 30 septembre 2026, oui : nous avons des bateaux sans permis jusqu'\u00E0 15 CV et il suffit d'avoir plus de 18 ans, avec un briefing complet avant le d\u00E9part. \u00C0 partir du 1er octobre 2026, le RD 1188/2025 exige un titre de tout locataire ; la Licencia de Navegaci\u00F3n (titul\u00EDn) s'obtient en une journ\u00E9e et nous l'organisons pour vous. Si vous pr\u00E9f\u00E9rez ne pas passer de titre, l'excursion avec skipper n'en exige aucun, \u00E0 aucune date.",
       },
       {
         id: "incluye",
@@ -1643,6 +1672,7 @@ export const fr: Translations = {
     close: "Fermer",
   },
   authority: {
+    foreignLicenseVerified: "Nous v\u00E9rifions votre titre \u00E9tranger",
     yearsExperience: "6+ ans d'expérience",
     fullInsurance: "Assurance incluse",
     happyCustomers: "5000+ clients satisfaits",
@@ -1740,22 +1770,26 @@ export const fr: Translations = {
   // TODO: pro-translate — traduction fonctionnelle, à faire relire avant usage marketing FR
   rangeFromBlanes: {
     eyebrowHome: "PORTÉE DE NAVIGATION RÉELLE",
-    headlineHome: "Jusqu'où naviguer depuis Blanes, avec et sans permis",
+    headlineHome:
+      "Jusqu'o\u00F9 vous allez depuis Blanes avec votre permis",
     introHome:
-      "Avec un bateau sans permis, vous pouvez naviguer légalement jusqu'à 2 milles nautiques de la côte à 5 nœuds. Depuis le port de Blanes, cela représente 7 criques authentiques de la Costa Brava en une journée, avec Playa de Fenals (sud de Lloret de Mar) comme limite nord. Avec la Licencia de Navegación (LN), la route s'étend jusqu'à Tossa de Mar, Sant Feliu et Platja d'Aro.",
+      "Avec la Licencia de Navegaci\u00F3n (LN) ou un titre sup\u00E9rieur, vous pilotez nos bateaux de 80 \u00E0 115 CV et la c\u00F4te s'ouvre : Lloret en 15 minutes, Cala Canyelles, Tossa de Mar en 30-45 minutes et, sur une journ\u00E9e compl\u00E8te, Sant Feliu et Platja d'Aro. Sans permis, le rayon d'action s'arr\u00EAte \u00E0 2 milles de la c\u00F4te \u00E0 5 n\u0153uds, avec Playa de Fenals (sud de Lloret) comme limite nord, et seulement jusqu'au 30 septembre 2026.",
     eyebrowLloret: "TRONÇON SANS PERMIS · 25 MIN DE NAVIGATION",
     headlineLloret: "Les 7 criques entre Blanes et Playa de Fenals",
     introLloret:
       "Dans l'ordre depuis le port de Blanes. Distances cumulées à 5 nœuds de croisière.",
-    sinLicenciaTitle: "Itinéraire sans permis (7 arrêts jusqu'à Playa de Fenals)",
+    sinLicenciaTitle:
+      "Itin\u00E9raire sans permis, jusqu'au 30 septembre 2026 (7 arr\u00EAts)",
     limitLabel: "LIMITE",
     limitBoxTitle: "Pourquoi Fenals est-elle la limite ?",
     limitBoxBody:
       "Un bateau sans permis peut naviguer jusqu'à 2 milles nautiques de la côte à 5 nœuds et 15 CV. Depuis le port de Blanes, Playa de Fenals se trouve exactement à cette distance en suivant la côte.",
     noteNorthOfFenals:
       "Note : la plage de Lloret (centre), Cala Banys et Cala Canyelles sont au nord de Fenals, hors de la portée sans permis.",
-    conLicenciaTitle: "Extension avec la Licencia de Navegación (LN)",
-    conLicenciaIntro: "Avec la Licencia de Navegación (LN) ou un skipper inclus, la route s'étend vers le nord :",
+    conLicenciaTitle:
+      "Avec la Licencia de Navegaci\u00F3n (LN) : toute la c\u00F4te",
+    conLicenciaIntro:
+      "Avec une Licencia de Navegaci\u00F3n (LN) ou un skipper \u00E0 bord, la route continue vers le nord :",
     ext: {
       lloretCenter: "Lloret centre et Cala Banys (après Fenals)",
       canyelles: "Cala Canyelles, petit port de plaisance",
@@ -1763,7 +1797,8 @@ export const fr: Translations = {
       tossa: "Tossa de Mar, Vila Vella médiévale depuis la mer (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (demi-journée / journée complète)",
     },
-    ctaFleet: "Voir la flotte sans permis",
+    ctaFleet:
+      "Obtenez votre permis en 1 jour",
     ctaLicensed: "Bateaux avec Licencia de Navegación",
     internalLinks:
       'Vous voulez voir toutes les routes ? Consultez la <a href="/fr/location-bateau-blanes" class="underline text-primary hover:text-primary/80">location de bateaux à Blanes</a>, la <a href="/fr/location-bateau-lloret-de-mar" class="underline text-primary hover:text-primary/80">location de bateau à Lloret de Mar</a>, l\'extension avec permis <a href="/fr/location-bateau-tossa-de-mar" class="underline text-primary hover:text-primary/80">jusqu\'à Tossa de Mar</a>, toutes les <a href="/fr/location-bateau-costa-brava" class="underline text-primary hover:text-primary/80">routes sur la Costa Brava</a> et la <a href="/fr/location-bateau-pres-barcelone" class="underline text-primary hover:text-primary/80">location de bateau près de Barcelone</a>. Tarifs complets dans <a href="/fr/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Combien coûte la location d\'un bateau à Blanes</a>.',
@@ -2723,9 +2758,9 @@ export const fr: Translations = {
           "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
       },
       sinLicencia: {
-        question: "Puis-je louer sans avoir de permis bateau ?",
+        question: "Puis-je louer un bateau sans permis nautique ?",
         answer:
-          "Oui ! Nous avons des bateaux parfaits sans permis. Ils font jusqu'à 15 CV, maximum 4-5 personnes, faciles à manœuvrer avec briefing complet. Il suffit d'avoir 18 ans ou plus.",
+          "Jusqu'au 30 septembre 2026, oui : nous avons des bateaux sans permis jusqu'\u00E0 15 CV et il suffit d'avoir plus de 18 ans, avec un briefing complet avant le d\u00E9part. \u00C0 partir du 1er octobre 2026, le RD 1188/2025 exige un titre de tout locataire ; la Licencia de Navegaci\u00F3n (titul\u00EDn) s'obtient en une journ\u00E9e et nous l'organisons pour vous. Si vous pr\u00E9f\u00E9rez ne pas passer de titre, l'excursion avec skipper n'en exige aucun, \u00E0 aucune date.",
       },
       normativa2026: {
         question: "Est-il vrai que la location de bateaux sans permis se termine en 2026 ?",
@@ -4622,7 +4657,7 @@ export const fr: Translations = {
         },
       ],
       note:
-        "Le cours se fait dans des écoles nautiques de plaisance agréées et des fédérations nautiques. Il existe plusieurs options autour de Blanes et de la Costa Brava sud ; écrivez-nous et nous vous orienterons.",
+        "Le cours est assuré par des écoles nautiques de plaisance agréées et des fédérations. Nous l organisons pour vous près de Blanes et le combinons à votre première location : vous repartez diplômé et avec le bateau déjà réservé pour le même séjour. Écrivez-nous pour les dates et le prix.",
     },
     fleet: {
       title: "Avec le titulín, cette flotte est à vous",
@@ -4663,9 +4698,9 @@ export const fr: Translations = {
         "Avec l'excursion privée avec skipper, aucun titre n'est nécessaire, ni maintenant ni avec la nouvelle loi : un skipper professionnel vous emmène dans les criques et grottes marines entre Blanes et Tossa de Mar pendant que vous profitez simplement.",
       cta: "Voir l'excursion avec skipper",
     },
-    ctaTitle: "On vous explique comment obtenir votre titulín",
+    ctaTitle: "Nous organisons votre titulín et votre première sortie",
     ctaText:
-      "Écrivez-nous sur WhatsApp et nous vous orienterons : où faire le cours près de Blanes, ce qu'il vous faut et comment le combiner avec votre première location chez nous.",
+      "Écrivez-nous sur WhatsApp et nous montons le pack : cours d une journée près de Blanes, dates disponibles, prix et le bateau réservé pour le moment où vous aurez le permis en main.",
     ctaButton: "Écrivez-nous sur WhatsApp",
     whatsappMessage:
       "Bonjour, je voudrais des informations pour obtenir la Licencia de Navegación (titulín) et louer un bateau.",

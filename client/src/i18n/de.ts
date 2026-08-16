@@ -25,35 +25,42 @@ export const de: Translations = {
     altFallback: "Foto eines Bootserlebnisses an der Costa Brava von {name}",
   },
   hero: {
-    title: "Bootsverleih ohne Führerschein in Blanes, 7 Costa-Brava-Buchten",
+    title: "Bootsverleih mit Bootsf\u00FChrerschein in Blanes, Costa Brava",
     subtitle:
-      "Fahren Sie ohne Führerschein oder Erfahrung vom Hafen Blanes bis Playa de Fenals (Lloret). Sieben unberührte Buchten auf Ihrer Route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella und weitere. Kraftstoff inklusive.",
-    subtitleLine1: "Ohne Führerschein von Blanes bis Playa de Fenals (Lloret).",
+      "Mieten Sie ein Motorboot im Hafen von Blanes und steuern Sie es selbst: bis zu 115 PS, 7 Pl\u00E4tze und freie Fahrt bis Tossa de Mar. Die einfache Licencia de Navegaci\u00F3n oder ein gleichwertiger ausl\u00E4ndischer Schein gen\u00FCgt, und wir pr\u00FCfen ihn online vor Ihrer Buchung. Noch keinen Schein? Wir organisieren den Eintageskurs, oder Sie fahren mit einem professionellen Skipper.",
+    subtitleLine1:
+      "Motorboote bis 115 PS f\u00FCr Skipper mit Schein, freie Fahrt bis Tossa de Mar.",
     subtitleLine2:
-      "7 unberührte Buchten auf dem Weg: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Kraftstoff inklusive.",
-    subtitleMobile: "Boote ohne Führerschein aus Blanes. 7 Buchten bis Playa de Fenals.",
-    priceBadge: "Ab 75€",
-    fuelBadge: "Benzin inklusive",
-    pricePerPerson: "Ab 14€ pro Person/Stunde",
-    pricePerPersonDetail: "Ganzes Boot ab 75€/h für bis zu 5 Personen",
-    bookNow: "Verfügbarkeit prüfen",
+      "Noch keinen Schein? Wir besorgen ihn an einem Tag, oder Sie fahren mit Skipper.",
+    subtitleMobile: "Motorboote mit Schein ab Blanes. Freie Fahrt bis Tossa de Mar.",
+    specsLine: "Bis 115 PS \u00B7 7 Pl\u00E4tze \u00B7 Freie Fahrt bis Tossa de Mar",
+    licenseNote:
+      "Die einfache Licencia de Navegaci\u00F3n gen\u00FCgt. Ausl\u00E4ndische Scheine pr\u00FCfen wir online vor der Buchung.",
+    bookNow: "Verf\u00FCgbarkeit pr\u00FCfen",
     findYourBoat: "Jetzt buchen",
+    ctaTitulin: "Bootsschein an 1 Tag",
+    licenseFreeUntil:
+      "Noch keinen Schein? Bis zum 30. September k\u00F6nnen Sie noch ohne mieten.",
+    licenseFreeUntilCta: "Boote ohne F\u00FChrerschein ansehen",
+    imageAlt:
+      "Mietboot auf t\u00FCrkisfarbenem Wasser nahe den Buchten von Blanes, Costa Brava",
     viewFleet: "Alle Boote ansehen",
-    trustText: "Ohne Verpflichtung • Transparente Preise",
+    trustText: "Ohne Verpflichtung \u2022 Transparente Preise",
     whatsappContact: "WhatsApp +34 611 500 372",
     location: "Standort",
     googleRating: "4.8/5 auf Google",
+    reviewsLabel: "Bewertungen",
     clients: "+5000 Kunden",
     insured: "Versichert",
     experience: "+5 Jahre Erfahrung",
-    instantConfirmation: "Sofortige Bestätigung",
+    instantConfirmation: "Sofortige Best\u00E4tigung",
     marqueeText:
-      "Bootsverleih in Blanes | Mit und Ohne Führerschein | Treibstoff Inklusive | Ab 75\u20AC/Std",
+      "Bootsverleih in Blanes | Mit F\u00FChrerschein | Schein an 1 Tag | Mit Skipper",
     askWhatsApp: "Fragen Sie uns per WhatsApp",
     testimonialQuote: "Unglaubliche Erfahrung, wir kommen wieder",
     testimonialQuoteShort: "Wir kommen wieder",
     summaryGeo:
-      "Costa Brava Rent a Boat betreibt die größte Bootsverleihflotte im Hafen von Blanes mit 8 Booten: 4 ohne Führerschein mit Benzin inklusive ab 75€/h, 3 mit Führerschein und 1 Privatausflug mit Skipper. Beratung in 8 Sprachen. Saison April bis Oktober. 4,8★ bei Google mit über 300 Bewertungen.",
+      "Costa Brava Rent a Boat betreibt die gr\u00F6\u00DFte Bootsverleihflotte im Hafen von Blanes mit 9 Boote: 3 Motorboote von 80 bis 115 PS f\u00FCr Skipper mit Schein, 5 Boote ohne F\u00FChrerschein (mietbar bis zum 30. September 2026, wenn das RD 1188/2025 von jedem Mieter einen Bootsf\u00FChrerschein verlangt) und 1 Privatausflug mit Skipper. Die Licencia de Navegaci\u00F3n, der eint\u00E4gige Titul\u00EDn ohne Pr\u00FCfung, oder ein gleichwertiger ausl\u00E4ndischer Schein, den wir online pr\u00FCfen. Beratung in 8 Sprachen. Saison April bis Oktober. 4,8\u2605 bei Google mit \u00FCber 300 Bewertungen.",
   },
 
   fleet: {
@@ -99,18 +106,16 @@ export const de: Translations = {
     title: "Warum Costa Brava Rent a Boat Wählen",
     subtitle: "Alles was Sie für ein perfektes Seeerlebnis brauchen",
     withoutLicense: {
-      title: "Ohne Führerschein, Kein Problem",
-      description:
-        "Erreiche versteckte Buchten ohne Bootsführerschein. Wir zeigen dir alles in 15 Minuten.",
+      title: "Der Schein an einem Tag",
+      description: "6-Stunden-Kurs, ohne Pr\u00FCfung und ohne Ablaufdatum. Wir organisieren ihn f\u00FCr Sie.",
     },
     withLicense: {
-      title: "Boote mit Führerschein",
-      description: "Mehr Leistung, mehr Reichweite. Erkunde die gesamte Costa Brava ohne Grenzen.",
+      title: "Motorboote f\u00FCr Skipper mit Schein",
+      description: "Mehr Leistung, mehr Reichweite. Erkunden Sie die ganze Costa Brava ohne Grenzen.",
     },
     includes: {
-      title: "Keine Preisüberraschungen",
-      description:
-        "Benzin bei führerscheinfreien Booten inklusive. Der angezeigte Preis ist der Endpreis.",
+      title: "Keine Preis\u00FCberraschungen",
+      description: "Der angezeigte Preis ist der Endpreis. Keine versteckten Kosten im Hafen.",
     },
     security: {
       title: "Maximale Sicherheit",
@@ -166,6 +171,7 @@ export const de: Translations = {
     exploreLinks: {
       licenseFree: "Boote ohne Führerschein",
       licensed: "Boote mit Führerschein",
+      navigationLicense: "Licencia de Navegaci\u00F3n (Titul\u00EDn)",
       pricing: "Preise und Tarife",
       costaBrava: "Bootsverleih Costa Brava",
       blog: "Navigations-Blog",
@@ -1381,25 +1387,37 @@ export const de: Translations = {
   },
 
   comparison: {
-    title: "Mit oder ohne Bootsschein?",
-    subtitle:
-      "Du brauchst keinen Führerschein, um das Meer zu genießen. Aber wenn du einen hast, haben wir stärkere Boote.",
-    withoutLicense: "Ohne Bootsschein",
-    withLicense: "Mit Bootsschein",
-    withoutLicenseDesc:
-      "Wir zeigen dir alles in 15 Minuten. Benzin inklusive. Perfekt für Familien.",
-    withLicenseDesc:
-      "Mehr Leistung, mehr Geschwindigkeit, größere Reichweite. Für Bootsführerschein-Besitzer.",
-    noLicenseNeeded: "Kein Bootsschein erforderlich",
-    licenseRequired: "Bootsschein erforderlich",
-    noLicenseFeature1: "Boote bis 15PS, leicht zu steuern",
-    noLicenseFeature2: "Perfekt für nahegelegene Buchten und Strände",
-    noLicenseFeature3: "Benzin im Preis inbegriffen",
-    noLicenseFeature4: "Sicherheitsbriefing inklusive",
-    licenseFeature1: "Leistungsstarke Boote bis {maxHP}PS",
-    licenseFeature2: "Größere Autonomie und Navigationsreichweite",
-    licenseFeature3: "Zugang zu abgelegenen Buchten der Costa Brava",
-    licenseFeature4: "Benzin nicht im Preis inbegriffen",
+    title: "Haben Sie einen Bootsf\u00FChrerschein?",
+    subtitle: "Drei Wege, vom Hafen Blanes aufs Wasser zu kommen, mit oder ohne Schein.",
+    withLicense: "Ja, ich habe einen",
+    withLicenseDesc: "Sie steuern selbst. Mehr Leistung, mehr Reichweite und freie Fahrt bis Tossa de Mar.",
+    licenseRequired: "Die einfache Licencia de Navegaci\u00F3n gen\u00FCgt",
+    licenseFeature1: "Starke Motorboote bis {maxHP} PS",
+    licenseFeature2: "Bis zu 7 Pl\u00E4tze und mehr Reichweite",
+    licenseFeature3: "Tossa de Mar in 30-45 Minuten",
+    licenseFeature4: "Ausl\u00E4ndische Scheine pr\u00FCfen wir online",
+    titulin: "Noch nicht, ich will einen machen",
+    titulinDesc:
+      "Wir organisieren den Kurs und Sie fahren mit unserer Flotte. Ein Tag, und Sie steuern viele Sommer lang selbst.",
+    titulinBadge: "Eintageskurs, ohne Pr\u00FCfung",
+    titulinFeature1: "2 Stunden Theorie und 4 an Bord",
+    titulinFeature2: "Schein sofort ausgestellt, ohne Pr\u00FCfung",
+    titulinFeature3: "L\u00E4uft nie ab, gilt in ganz Spanien",
+    titulinFeature4: "Wir kombinieren ihn mit Ihrer ersten Miete",
+    titulinCta: "So funktioniert es",
+    captained: "Nein, und ich m\u00F6chte nicht steuern",
+    captainedDesc:
+      "Ein professioneller Skipper bringt Sie zu Buchten und Meeresh\u00F6hlen zwischen Blanes und Tossa, w\u00E4hrend Sie einfach genie\u00DFen.",
+    captainedBadge: "Ohne Schein und Erfahrung",
+    captainedFeature1: "Professioneller Skipper an Bord",
+    captainedFeature2: "Niemand an Bord braucht einen Schein",
+    captainedFeature3: "Bis zu 6 Personen, mit Badestopp",
+    captainedFeature4: "Vom neuen Gesetz nicht betroffen",
+    captainedCta: "Ausflug ansehen",
+    licenseFreeBannerTitle: "Noch keinen Schein? Bis zum 30. September 2026",
+    licenseFreeBannerBody:
+      "Das RD 1188/2025 verlangt ab dem 1. Oktober 2026 von jedem Mieter einen Bootsf\u00FChrerschein. Bis dahin vermieten wir unsere f\u00FChrerscheinfreien Boote wie immer, Benzin inklusive.",
+    licenseFreeBannerCta: "Boote ohne F\u00FChrerschein ansehen",
     fromPrice: "Ab",
     compare: "Boote vergleichen",
     tableCapacity: "Kapazität",
@@ -1513,6 +1531,18 @@ export const de: Translations = {
     viewAll: "Alle häufig gestellten Fragen ansehen",
     items: [
       {
+        id: "normativa2026",
+        question: "Stimmt es, dass 2026 die f\u00FChrerscheinfreie Bootsmiete endet?",
+        answer:
+          "Das Gesetz \u00E4ndert sich: Das RD 1188/2025 verlangt ab dem 1. Oktober 2026 einen Bootsf\u00FChrerschein f\u00FCr die Miete jedes Motorboots. Bis zum 30. September 2026 bleibt alles gleich und unsere f\u00FChrerscheinfreien Boote werden wie immer vermietet. Ab diesem Datum gen\u00FCgt die Licencia de Navegaci\u00F3n (Titul\u00EDn), ein Eintageskurs ohne Pr\u00FCfung, oder jeder h\u00F6here oder gleichwertige ausl\u00E4ndische Schein. Der Ausflug mit Skipper ist nicht betroffen: Dort f\u00FChrt ein Profi das Boot.",
+      },
+      {
+        id: "titulin",
+        question: "Was ist der Titul\u00EDn und wie bekomme ich ihn?",
+        answer:
+          "Der Titul\u00EDn ist die Licencia de Navegaci\u00F3n: der schnellste Bootsschein Spaniens. Man erh\u00E4lt ihn an einem Tag mit 2 Stunden Theorie und 4 Stunden Praxis an Bord, ohne Pr\u00FCfung, und er l\u00E4uft nie ab. Er erlaubt Boote bis 6 Meter, tags\u00FCber und bis 2 Seemeilen von einem Schutzhafen: in unserer Flotte die Mingolla Brava 19 und die Trimarchi 57S. Wir organisieren den Kurs und kombinieren ihn mit Ihrer ersten Miete; schreiben Sie uns und wir erkl\u00E4ren es Ihnen.",
+      },
+      {
         id: "precios",
         question: "Wie hoch sind die Mietpreise?",
         answer:
@@ -1520,9 +1550,9 @@ export const de: Translations = {
       },
       {
         id: "sin-licencia",
-        question: "Kann ich ein Boot ohne Bootsführerschein mieten?",
+        question: "Kann ich ein Boot ohne Bootsf\u00FChrerschein mieten?",
         answer:
-          "Ja! Wir haben mehrere perfekte führerscheinfreie Boote bis 15 PS. Sie müssen nur über 18 Jahre alt sein. Vor der Abfahrt geben wir Ihnen ein vollständiges Briefing für sicheres Navigieren.",
+          "Bis zum 30. September 2026 ja: Wir haben f\u00FChrerscheinfreie Boote bis 15 PS und Sie m\u00FCssen nur \u00FCber 18 sein, mit ausf\u00FChrlichem Briefing vor der Abfahrt. Ab dem 1. Oktober 2026 verlangt das RD 1188/2025 von jedem Mieter einen Schein; die Licencia de Navegaci\u00F3n (Titul\u00EDn) macht man an einem Tag und wir organisieren sie f\u00FCr Sie. Wenn Sie lieber keinen Schein machen: Der Ausflug mit Skipper braucht zu keinem Zeitpunkt einen.",
       },
       {
         id: "incluye",
@@ -1639,6 +1669,7 @@ export const de: Translations = {
     close: "Schließen",
   },
   authority: {
+    foreignLicenseVerified: "Wir pr\u00FCfen Ihren ausl\u00E4ndischen Schein",
     yearsExperience: "6+ Jahre Erfahrung",
     fullInsurance: "Versicherung inklusive",
     happyCustomers: "5000+ zufriedene Kunden",
@@ -1736,23 +1767,26 @@ export const de: Translations = {
   // TODO: pro-translate — nur funktionale Übersetzung, vor produktivem Einsatz lektorieren (DE ist ein wichtiger Markt)
   rangeFromBlanes: {
     eyebrowHome: "TATSÄCHLICHE NAVIGATIONSREICHWEITE",
-    headlineHome: "Wie weit du von Blanes aus kommst: mit und ohne Führerschein",
+    headlineHome:
+      "Wie weit Sie von Blanes aus mit Ihrem Schein kommen",
     introHome:
-      "Mit einem führerscheinfreien Boot fährst du legal bis 2 Seemeilen von der Küste bei 5 Knoten. Vom Hafen Blanes aus sind das 7 echte Costa-Brava-Buchten an einem Tag, mit Playa de Fenals (südlich von Lloret de Mar) als nördlicher Grenze. Mit dem spanischen Bootsführerschein Licencia de Navegación (LN) erweitert sich die Route bis Tossa de Mar, Sant Feliu und Platja d'Aro.",
+      "Mit der Licencia de Navegaci\u00F3n (LN) oder einem h\u00F6heren Schein steuern Sie unsere Boote mit 80 bis 115 PS und die K\u00FCste \u00F6ffnet sich: Lloret in 15 Minuten, Cala Canyelles, Tossa de Mar in 30-45 Minuten und, an einem ganzen Tag, Sant Feliu und Platja d'Aro. Ohne Schein endet die Reichweite bei 2 Seemeilen vor der K\u00FCste mit 5 Knoten, mit Playa de Fenals (s\u00FCdliches Lloret) als Nordgrenze, und nur bis zum 30. September 2026.",
     eyebrowLloret: "FÜHRERSCHEINFREIER ABSCHNITT · 25 MIN FAHRZEIT",
     headlineLloret: "Die 7 Buchten zwischen Blanes und Playa de Fenals",
     introLloret:
       "In Reihenfolge ab Hafen Blanes. Kumulierte Entfernungen bei 5-Knoten-Marschfahrt.",
-    sinLicenciaTitle: "Führerscheinfreie Route (7 Stopps bis Playa de Fenals)",
+    sinLicenciaTitle:
+      "Route ohne Schein, bis zum 30. September 2026 (7 Stopps)",
     limitLabel: "LIMIT",
     limitBoxTitle: "Warum ist Fenals das Limit?",
     limitBoxBody:
       "Ein führerscheinfreies Boot darf bis 2 Seemeilen Küstenabstand bei 5 Knoten und 15 PS fahren. Vom Hafen Blanes aus liegt Playa de Fenals genau an dieser Distanz entlang der Küste.",
     noteNorthOfFenals:
       "Hinweis: Der Hauptstrand Lloret, Cala Banys und Cala Canyelles liegen nördlich von Fenals; sie bleiben außerhalb des führerscheinfreien Bereichs.",
-    conLicenciaTitle: "Erweiterung mit Licencia de Navegación (LN)",
+    conLicenciaTitle:
+      "Mit der Licencia de Navegaci\u00F3n (LN): die ganze K\u00FCste",
     conLicenciaIntro:
-      "Mit der Licencia de Navegación (LN) oder inkludiertem Skipper geht die Route weiter nach Norden:",
+      "Mit einer Licencia de Navegaci\u00F3n (LN) oder Skipper an Bord geht die Route weiter nach Norden:",
     ext: {
       lloretCenter: "Lloret-Zentrum und Cala Banys (nach Fenals)",
       canyelles: "Cala Canyelles: kleiner Yachthafen",
@@ -1760,7 +1794,8 @@ export const de: Translations = {
       tossa: "Tossa de Mar: mittelalterliche Vila Vella vom Meer (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (halb- / ganztägig)",
     },
-    ctaFleet: "Führerscheinfreie Flotte ansehen",
+    ctaFleet:
+      "Bootsschein an 1 Tag",
     ctaLicensed: "Boote mit Licencia de Navegación",
     internalLinks:
       'Möchten Sie alle Routen sehen? Schauen Sie sich <a href="/de/boot-mieten-blanes" class="underline text-primary hover:text-primary/80">Bootsverleih in Blanes</a> an, <a href="/de/boot-mieten-lloret-de-mar" class="underline text-primary hover:text-primary/80">Boot mieten in Lloret de Mar</a>, die lizenzierte Erweiterung <a href="/de/boot-mieten-tossa-de-mar" class="underline text-primary hover:text-primary/80">nach Tossa de Mar</a>, alle <a href="/de/boot-mieten-costa-brava" class="underline text-primary hover:text-primary/80">Routen entlang der Costa Brava</a> und <a href="/de/boot-mieten-nahe-barcelona" class="underline text-primary hover:text-primary/80">Bootsverleih nahe Barcelona</a>. Vollständige Preise in <a href="/de/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Was kostet es, ein Boot in Blanes zu mieten</a>.',
@@ -2725,9 +2760,9 @@ export const de: Translations = {
           "Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt (nach Verfügbarkeit). Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos oder stellen, wenn kein Termin passt, einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Außerhalb dieser Fälle werden bestätigte Buchungen mit Anzahlung nicht in Geld erstattet.",
       },
       sinLicencia: {
-        question: "Kann ich ein Boot ohne Bootsführerschein mieten?",
+        question: "Kann ich ein Boot ohne Bootsf\u00FChrerschein mieten?",
         answer:
-          "Ja! Wir haben perfekte Boote ohne Führerschein. Sie haben bis zu 15 PS, maximal 4-5 Personen, sind einfach zu bedienen mit vollständiger Einweisung. Sie müssen nur mindestens 18 Jahre alt sein.",
+          "Bis zum 30. September 2026 ja: Wir haben f\u00FChrerscheinfreie Boote bis 15 PS und Sie m\u00FCssen nur \u00FCber 18 sein, mit ausf\u00FChrlichem Briefing vor der Abfahrt. Ab dem 1. Oktober 2026 verlangt das RD 1188/2025 von jedem Mieter einen Schein; die Licencia de Navegaci\u00F3n (Titul\u00EDn) macht man an einem Tag und wir organisieren sie f\u00FCr Sie. Wenn Sie lieber keinen Schein machen: Der Ausflug mit Skipper braucht zu keinem Zeitpunkt einen.",
       },
       normativa2026: {
         question: "Stimmt es, dass 2026 das führerscheinfreie Bootmieten endet?",
@@ -4627,7 +4662,7 @@ export const de: Translations = {
         },
       ],
       note:
-        "Der Kurs findet in zugelassenen Wassersportschulen und Verbänden statt. Rund um Blanes und die südliche Costa Brava gibt es mehrere Optionen; schreiben Sie uns und wir helfen Ihnen weiter.",
+        "Der Kurs findet an autorisierten Wassersportschulen und Verbänden statt. Wir organisieren ihn für Sie in der Nähe von Blanes und kombinieren ihn mit Ihrer ersten Miete: Sie gehen mit Schein und bereits gebuchtem Boot aus derselben Reise. Schreiben Sie uns für Termine und Preis.",
     },
     fleet: {
       title: "Mit dem Titulín gehört diese Flotte Ihnen",
@@ -4668,9 +4703,9 @@ export const de: Translations = {
         "Beim privaten Ausflug mit Skipper brauchen Sie keinerlei Schein, weder jetzt noch mit dem neuen Gesetz: Ein professioneller Skipper bringt Sie zu Buchten und Meereshöhlen zwischen Blanes und Tossa de Mar, während Sie einfach nur genießen.",
       cta: "Ausflug mit Skipper ansehen",
     },
-    ctaTitle: "Wir erklären Ihnen den Weg zum Titulín",
+    ctaTitle: "Wir organisieren Ihren Titulín und Ihre erste Ausfahrt",
     ctaText:
-      "Schreiben Sie uns per WhatsApp und wir helfen Ihnen weiter: wo Sie den Kurs in der Nähe von Blanes machen, was Sie brauchen und wie Sie ihn mit Ihrer ersten Miete bei uns kombinieren.",
+      "Schreiben Sie uns per WhatsApp und wir stellen das Paket zusammen: Eintageskurs in der Nähe von Blanes, freie Termine, Preis und das Boot gebucht für den Moment, in dem Sie den Schein in der Hand halten.",
     ctaButton: "Schreiben Sie uns per WhatsApp",
     whatsappMessage:
       "Hallo, ich möchte Informationen zur Licencia de Navegación (Titulín) und zum Mieten eines Boots.",

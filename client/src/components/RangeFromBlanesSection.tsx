@@ -131,25 +131,21 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
           </ul>
         </div>
 
-        {/* CTAs */}
+        {/* CTAs — licensed fleet leads since the 2026 pivot (RD 1188/2025) */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8">
-          <button
-            type="button"
-            onClick={() => {
-              const fleet = document.getElementById("fleet");
-              if (fleet) fleet.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cta hover:bg-cta/90 text-primary-foreground font-semibold text-sm transition-colors"
-          >
-            <Anchor className="w-4 h-4" />
-            {r?.ctaFleet}
-          </button>
           <Link
             href={localizedPath("categoryLicensed")}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:border-primary/40 text-foreground font-semibold text-sm transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cta hover:bg-cta/90 text-primary-foreground font-semibold text-sm transition-colors"
           >
             <Compass className="w-4 h-4" />
             {r?.ctaLicensed}
+          </Link>
+          <Link
+            href={localizedPath("navigationLicense")}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:border-primary/40 text-foreground font-semibold text-sm transition-colors"
+          >
+            <Anchor className="w-4 h-4" />
+            {r?.ctaFleet}
           </Link>
         </div>
 

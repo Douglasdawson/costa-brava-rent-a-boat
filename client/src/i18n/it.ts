@@ -25,35 +25,42 @@ export const it: Translations = {
     altFallback: "Foto di un'esperienza in barca sulla Costa Brava di {name}",
   },
   hero: {
-    title: "Noleggio Barche Senza Patente a Blanes, 7 Cale della Costa Brava",
+    title: "Noleggio imbarcazioni con patente a Blanes, Costa Brava",
     subtitle:
-      "Naviga senza patente o esperienza dal porto di Blanes fino a Playa de Fenals (Lloret). Sette cale vergini sulla rotta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella e altre. Carburante incluso.",
-    subtitleLine1: "Naviga senza patente da Blanes a Playa de Fenals (Lloret).",
+      "Noleggia un motoscafo nel porto di Blanes e pilotalo tu stesso: fino a 115 CV, 7 posti e rotta libera fino a Tossa de Mar. Basta la Licencia de Navegaci\u00F3n di base o un titolo estero equivalente, che verifichiamo online prima che tu prenoti. Non hai ancora la patente? Ti organizziamo il corso di un giorno, oppure esci con uno skipper professionista.",
+    subtitleLine1:
+      "Motoscafi fino a 115 CV per skipper patentati, rotta libera fino a Tossa de Mar.",
     subtitleLine2:
-      "7 cale vergini sulla rotta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Carburante incluso.",
-    subtitleMobile: "Barche senza patente da Blanes. 7 cale fino a Playa de Fenals.",
-    priceBadge: "Da 75€",
-    fuelBadge: "Carburante incluso",
-    pricePerPerson: "Da 14€ a persona/ora",
-    pricePerPersonDetail: "Barca completa da 75€/h per max 5 persone",
-    bookNow: "Verifica Disponibilità",
+      "Non hai la patente? Te la facciamo prendere in un giorno, o esci con uno skipper.",
+    subtitleMobile: "Motoscafi con patente da Blanes. Rotta libera fino a Tossa de Mar.",
+    specsLine: "Fino a 115 CV \u00B7 7 posti \u00B7 Rotta libera fino a Tossa de Mar",
+    licenseNote:
+      "Basta la Licencia de Navegaci\u00F3n di base. Verifichiamo i titoli esteri online prima della prenotazione.",
+    bookNow: "Verifica Disponibilit\u00E0",
     findYourBoat: "Prenota ora",
+    ctaTitulin: "Prendi la patente in 1 giorno",
+    licenseFreeUntil:
+      "Non hai la patente? Fino al 30 settembre puoi ancora noleggiare senza.",
+    licenseFreeUntilCta: "Vedi le barche senza patente",
+    imageAlt:
+      "Barca a noleggio che naviga su acque turchesi vicino alle cale di Blanes, Costa Brava",
     viewFleet: "Vedi tutte le barche",
-    trustText: "Senza impegno • Prezzi trasparenti",
+    trustText: "Senza impegno \u2022 Prezzi trasparenti",
     whatsappContact: "WhatsApp +34 611 500 372",
     location: "Posizione",
     googleRating: "4.8/5 su Google",
+    reviewsLabel: "recensioni",
     clients: "+5000 clienti",
     insured: "Assicurato",
     experience: "+5 anni di esp.",
     instantConfirmation: "Conferma immediata",
     marqueeText:
-      "Noleggio Barche a Blanes | Con e Senza Patente | Carburante Incluso | Da 75\u20AC/ora",
+      "Noleggio Imbarcazioni a Blanes | Con Patente | Patente in 1 Giorno | Con Skipper",
     askWhatsApp: "Chiedici su WhatsApp",
     testimonialQuote: "Esperienza incredibile, torneremo sicuramente",
     testimonialQuoteShort: "Torneremo sicuramente",
     summaryGeo:
-      "Costa Brava Rent a Boat gestisce la flotta di noleggio barche più grande del Porto di Blanes con 8 imbarcazioni: 4 senza patente con carburante incluso da 75€/h, 3 con patente e 1 escursione privata con skipper. Assistenza in 8 lingue. Stagione da aprile a ottobre. 4.8★ su Google con oltre 300 recensioni.",
+      "Costa Brava Rent a Boat gestisce la flotta di noleggio imbarcazioni pi\u00F9 grande del Porto di Blanes con 9 barche: 3 motoscafi da 80 a 115 CV per skipper patentati, 5 barche senza patente (noleggiabili fino al 30 settembre 2026, quando il RD 1188/2025 inizia a richiedere un titolo nautico a ogni noleggiatore) e 1 escursione privata con skipper. Basta la Licencia de Navegaci\u00F3n, il titul\u00EDn di un giorno senza esame, o un titolo estero equivalente che verifichiamo online. Assistenza in 8 lingue. Stagione da aprile a ottobre. 4.8\u2605 su Google con oltre 300 recensioni.",
   },
 
   fleet: {
@@ -99,17 +106,16 @@ export const it: Translations = {
     title: "Perché Scegliere Costa Brava Rent a Boat",
     subtitle: "Tutto ciò di cui hai bisogno per un'esperienza perfetta in mare",
     withoutLicense: {
-      title: "Senza Patente, Nessun Problema",
-      description: "Raggiungi calette nascoste senza patente nautica. Ti insegniamo in 15 minuti.",
+      title: "La Patente in un Solo Giorno",
+      description: "Corso di 6 ore, senza esame e non scade. Te lo organizziamo noi.",
     },
     withLicense: {
-      title: "Barche con Patente",
-      description: "Più potenza, più autonomia. Esplora tutta la Costa Brava senza limiti.",
+      title: "Motoscafi per Skipper Patentati",
+      description: "Pi\u00F9 potenza, pi\u00F9 autonomia. Esplora tutta la Costa Brava senza limiti.",
     },
     includes: {
       title: "Nessuna Sorpresa sul Prezzo",
-      description:
-        "Carburante incluso sulle barche senza patente. Il prezzo che vedi è quello che paghi.",
+      description: "Il prezzo che vedi \u00E8 quello che paghi. Nessun costo nascosto al porto.",
     },
     security: {
       title: "Massima Sicurezza",
@@ -164,6 +170,7 @@ export const it: Translations = {
     exploreLinks: {
       licenseFree: "Barche senza patente",
       licensed: "Barche con patente",
+      navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Prezzi e tariffe",
       costaBrava: "Noleggio barche Costa Brava",
       blog: "Blog di navigazione",
@@ -1378,23 +1385,37 @@ export const it: Translations = {
   },
 
   comparison: {
-    title: "Con o senza patente?",
-    subtitle:
-      "Non serve la patente per godersi il mare. Ma se ce l'hai, abbiamo barche più potenti.",
-    withoutLicense: "Nessuna patente necessaria",
-    withLicense: "Con patente",
-    withoutLicenseDesc: "Ti insegniamo in 15 minuti. Carburante incluso. Perfetto per famiglie.",
-    withLicenseDesc: "Più potenza, più velocità, più lontano. Per navigatori con patente.",
-    noLicenseNeeded: "Nessuna patente necessaria",
-    licenseRequired: "Patente nautica richiesta",
-    noLicenseFeature1: "Barche fino a 15CV, facili da guidare",
-    noLicenseFeature2: "Perfette per calette e spiagge vicine",
-    noLicenseFeature3: "Benzina inclusa nel prezzo",
-    noLicenseFeature4: "Briefing di sicurezza incluso",
-    licenseFeature1: "Barche potenti fino a {maxHP}CV",
-    licenseFeature2: "Maggiore autonomia e raggio di navigazione",
-    licenseFeature3: "Accesso a calette remote della Costa Brava",
-    licenseFeature4: "Benzina non inclusa nel prezzo",
+    title: "Hai la patente nautica?",
+    subtitle: "Tre modi per uscire in mare dal porto di Blanes, con o senza patente.",
+    withLicense: "S\u00EC, ce l'ho",
+    withLicenseDesc: "Piloti tu. Pi\u00F9 potenza, pi\u00F9 autonomia e rotta libera fino a Tossa de Mar.",
+    licenseRequired: "Basta la Licencia de Navegaci\u00F3n di base",
+    licenseFeature1: "Motoscafi potenti fino a {maxHP} CV",
+    licenseFeature2: "Fino a 7 posti e maggiore autonomia",
+    licenseFeature3: "Tossa de Mar in 30-45 minuti",
+    licenseFeature4: "Verifichiamo i titoli esteri online",
+    titulin: "Non ancora, voglio prenderla",
+    titulinDesc:
+      "Ti organizziamo il corso ed esci con la nostra flotta. Un giorno, e navighi da solo per molte estati.",
+    titulinBadge: "Corso di 1 giorno, senza esame",
+    titulinFeature1: "2 ore di teoria e 4 di pratica a bordo",
+    titulinFeature2: "Titolo rilasciato subito, senza esame",
+    titulinFeature3: "Non scade ed \u00E8 valida in tutta la Spagna",
+    titulinFeature4: "La combiniamo con il tuo primo noleggio",
+    titulinCta: "Come funziona",
+    captained: "No, preferisco non stare al timone",
+    captainedDesc:
+      "Uno skipper professionista vi porta tra cale e grotte marine da Blanes a Tossa mentre voi vi godete il mare.",
+    captainedBadge: "Senza patente n\u00E9 esperienza",
+    captainedFeature1: "Skipper professionista a bordo",
+    captainedFeature2: "Nessuno a bordo ha bisogno della patente",
+    captainedFeature3: "Fino a 6 persone, con sosta bagno",
+    captainedFeature4: "Non toccata dalla nuova legge",
+    captainedCta: "Vedi l'escursione",
+    licenseFreeBannerTitle: "Non hai la patente? Fino al 30 settembre 2026",
+    licenseFreeBannerBody:
+      "Il RD 1188/2025 richiede un titolo nautico a ogni noleggiatore dal 1\u00BA ottobre 2026. Fino ad allora le nostre barche senza patente si noleggiano come sempre, carburante incluso.",
+    licenseFreeBannerCta: "Vedi le barche senza patente",
     fromPrice: "Da",
     compare: "Confronta barche",
     tableCapacity: "Capacità",
@@ -1507,6 +1528,18 @@ export const it: Translations = {
     viewAll: "Vedi tutte le domande frequenti",
     items: [
       {
+        id: "normativa2026",
+        question: "\u00C8 vero che nel 2026 finisce il noleggio di barche senza patente?",
+        answer:
+          "Cambia la legge: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1\u00BA ottobre 2026. Fino al 30 settembre 2026 non cambia nulla e le nostre barche senza patente si noleggiano come sempre. Da quella data baster\u00E0 la Licencia de Navegaci\u00F3n (titul\u00EDn), un corso di 1 giorno senza esame, o qualsiasi titolo superiore o estero equivalente. L'escursione con skipper non \u00E8 toccata: l\u00EC la barca la conduce un professionista.",
+      },
+      {
+        id: "titulin",
+        question: "Che cos'\u00E8 il titul\u00EDn e come si prende?",
+        answer:
+          "Il titul\u00EDn \u00E8 la Licencia de Navegaci\u00F3n: il titolo nautico pi\u00F9 rapido di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica a bordo, senza esame, e non scade. Consente barche fino a 6 metri, di giorno e fino a 2 miglia da un riparo: nella nostra flotta la Mingolla Brava 19 e la Trimarchi 57S. Ti organizziamo il corso e lo combiniamo con il tuo primo noleggio; scrivici e ti spieghiamo come.",
+      },
+      {
         id: "precios",
         question: "Quali sono i prezzi del noleggio?",
         answer:
@@ -1516,7 +1549,7 @@ export const it: Translations = {
         id: "sin-licencia",
         question: "Posso noleggiare una barca senza patente nautica?",
         answer:
-          "Sì! Abbiamo diverse barche perfette senza patente fino a 15 CV. Basta avere più di 18 anni. Prima della partenza ti diamo un briefing completo per navigare in totale sicurezza.",
+          "Fino al 30 settembre 2026 s\u00EC: abbiamo barche senza patente fino a 15 CV e basta avere pi\u00F9 di 18 anni, con un briefing completo prima di partire. Dal 1\u00BA ottobre 2026 il RD 1188/2025 richiede un titolo a ogni noleggiatore; la Licencia de Navegaci\u00F3n (titul\u00EDn) si prende in un giorno e te la organizziamo noi. Se preferisci non prendere alcun titolo, l'escursione con skipper non ne richiede in nessuna data.",
       },
       {
         id: "incluye",
@@ -1633,6 +1666,7 @@ export const it: Translations = {
     close: "Chiudi",
   },
   authority: {
+    foreignLicenseVerified: "Verifichiamo il tuo titolo estero",
     yearsExperience: "6+ anni di esperienza",
     fullInsurance: "Assicurazione inclusa",
     happyCustomers: "5000+ clienti soddisfatti",
@@ -1730,21 +1764,25 @@ export const it: Translations = {
   // TODO: pro-translate — traduzione funzionale, revisionare prima dell'uso in mercati IT-heavy
   rangeFromBlanes: {
     eyebrowHome: "PORTATA DI NAVIGAZIONE REALE",
-    headlineHome: "Fin dove puoi arrivare da Blanes, con e senza patente",
+    headlineHome:
+      "Fin dove arrivi da Blanes con la tua patente",
     introHome:
-      "Con una barca senza patente navighi legalmente fino a 2 miglia nautiche dalla costa a 5 nodi. Dal porto di Blanes sono 7 cale autentiche della Costa Brava in una sola giornata, con Playa de Fenals (sud di Lloret de Mar) come limite nord. Con la patente spagnola Licencia de Navegación (LN) estendi la rotta fino a Tossa de Mar, Sant Feliu e Platja d'Aro.",
+      "Con la Licencia de Navegaci\u00F3n (LN) o un titolo superiore piloti i nostri motoscafi da 80 a 115 CV e la costa si apre: Lloret in 15 minuti, Cala Canyelles, Tossa de Mar in 30-45 minuti e, in giornata intera, Sant Feliu e Platja d'Aro. Senza patente l'autonomia si ferma a 2 miglia dalla costa a 5 nodi, con Playa de Fenals (sud di Lloret) come limite nord, e solo fino al 30 settembre 2026.",
     eyebrowLloret: "TRATTO SENZA PATENTE, 25 MIN DI NAVIGAZIONE",
     headlineLloret: "Le 7 cale tra Blanes e Playa de Fenals",
     introLloret: "In ordine dal porto di Blanes. Distanze cumulative a 5 nodi di crociera.",
-    sinLicenciaTitle: "Rotta senza patente (7 soste fino a Playa de Fenals)",
+    sinLicenciaTitle:
+      "Rotta senza patente, fino al 30 settembre 2026 (7 tappe)",
     limitLabel: "LIMITE",
     limitBoxTitle: "Perché Fenals è il limite?",
     limitBoxBody:
       "Una barca senza patente può navigare fino a 2 miglia nautiche dalla costa a 5 nodi e 15 CV. Dal porto di Blanes, Playa de Fenals si trova esattamente a quella distanza seguendo la linea di costa.",
     noteNorthOfFenals:
       "Nota: la spiaggia di Lloret (centro), Cala Banys e Cala Canyelles sono a nord di Fenals, fuori dal raggio senza patente.",
-    conLicenciaTitle: "Estensione con Licencia de Navegación (LN)",
-    conLicenciaIntro: "Con la Licencia de Navegación (LN) o skipper incluso, la rotta si estende verso nord:",
+    conLicenciaTitle:
+      "Con la Licencia de Navegaci\u00F3n (LN): tutta la costa",
+    conLicenciaIntro:
+      "Con una Licencia de Navegaci\u00F3n (LN) o skipper a bordo, la rotta prosegue verso nord:",
     ext: {
       lloretCenter: "Lloret centro e Cala Banys (oltre Fenals)",
       canyelles: "Cala Canyelles, piccolo porto turistico",
@@ -1752,7 +1790,8 @@ export const it: Translations = {
       tossa: "Tossa de Mar, Vila Vella medievale dal mare (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (mezza giornata / giornata intera)",
     },
-    ctaFleet: "Vedi flotta senza patente",
+    ctaFleet:
+      "Prendi la patente in 1 giorno",
     ctaLicensed: "Barche con Licencia de Navegación",
     internalLinks:
       'Vuoi vedere tutte le rotte? Consulta il <a href="/it/noleggio-barca-blanes" class="underline text-primary hover:text-primary/80">noleggio barche a Blanes</a>, il <a href="/it/noleggio-barca-lloret-de-mar" class="underline text-primary hover:text-primary/80">noleggio barca a Lloret de Mar</a>, l\'estensione con patente <a href="/it/noleggio-barca-tossa-de-mar" class="underline text-primary hover:text-primary/80">fino a Tossa de Mar</a>, tutte le <a href="/it/noleggio-barca-costa-brava" class="underline text-primary hover:text-primary/80">rotte sulla Costa Brava</a> e il <a href="/it/noleggio-barca-vicino-barcellona" class="underline text-primary hover:text-primary/80">noleggio barche vicino a Barcellona</a>. Prezzi completi in <a href="/it/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quanto costa noleggiare una barca a Blanes</a>.',
@@ -2713,9 +2752,9 @@ export const it: Translations = {
           "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se il maltempo impedisce l'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Al di fuori di questi casi, le prenotazioni confermate con caparra non vengono rimborsate in denaro.",
       },
       sinLicencia: {
-        question: "Posso noleggiare senza avere la patente nautica?",
+        question: "Posso noleggiare una barca senza patente nautica?",
         answer:
-          "Sì! Abbiamo barche perfette senza patente. Sono fino a 15 CV, massimo 4-5 persone, facili da manovrare con briefing completo. Basta essere maggiorenni.",
+          "Fino al 30 settembre 2026 s\u00EC: abbiamo barche senza patente fino a 15 CV e basta avere pi\u00F9 di 18 anni, con un briefing completo prima di partire. Dal 1\u00BA ottobre 2026 il RD 1188/2025 richiede un titolo a ogni noleggiatore; la Licencia de Navegaci\u00F3n (titul\u00EDn) si prende in un giorno e te la organizziamo noi. Se preferisci non prendere alcun titolo, l'escursione con skipper non ne richiede in nessuna data.",
       },
       normativa2026: {
         question: "È vero che nel 2026 finisce il noleggio di barche senza patente?",
@@ -4611,7 +4650,7 @@ export const it: Translations = {
         },
       ],
       note:
-        "Il corso si svolge in scuole nautiche da diporto autorizzate e federazioni nautiche. Nella zona di Blanes e della Costa Brava sud ci sono varie opzioni; scrivici e ti orientiamo su come e dove ottenerlo.",
+        "Il corso si svolge presso scuole nautiche da diporto autorizzate e federazioni. Noi te lo organizziamo vicino a Blanes e lo combiniamo con il tuo primo noleggio: esci patentato e con il motoscafo già prenotato nello stesso viaggio. Scrivici per date e prezzo.",
     },
     fleet: {
       title: "Con il titulín, questa flotta è tua",
@@ -4652,9 +4691,9 @@ export const it: Translations = {
         "Con l'escursione privata con skipper non serve nessun titolo, né ora né con la nuova legge: uno skipper professionista vi porta a calette e grotte marine tra Blanes e Tossa de Mar mentre voi vi godete solo il viaggio.",
       cta: "Vedi l'escursione con skipper",
     },
-    ctaTitle: "Ti spieghiamo come ottenere il titulín",
+    ctaTitle: "Ti organizziamo il titulín e la tua prima uscita",
     ctaText:
-      "Scrivici su WhatsApp e ti orientiamo: dove fare il corso vicino a Blanes, cosa ti serve e come combinarlo con il tuo primo noleggio con noi.",
+      "Scrivici su WhatsApp e montiamo il pacchetto: corso di un giorno vicino a Blanes, date disponibili, prezzo e il motoscafo prenotato per quando avrai la patente in mano.",
     ctaButton: "Scrivici su WhatsApp",
     whatsappMessage:
       "Ciao, vorrei informazioni su come ottenere la Licencia de Navegación (titulín) e noleggiare una barca.",

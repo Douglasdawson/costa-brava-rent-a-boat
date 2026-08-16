@@ -184,6 +184,8 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
   const navigationItems = [
     { label: t.nav.home, href: localizedPath("home") },
     { label: t.nav.fleet, href: "#fleet" },
+    // Pivote 2026 (RD 1188/2025): el pilar del titulín entra en el menú principal.
+    { label: t.navigationLicensePage?.navLabel ?? "Titulín", href: localizedPath("navigationLicense") },
     { label: t.nav.jetski, href: localizedPath("jetskiHub") },
     { label: t.nav.scooters, href: localizedPath("scooters") },
     { label: t.nav.tienda, href: localizedPath("tienda") },

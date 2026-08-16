@@ -794,11 +794,11 @@ export function applyFleetStatsToText(text: string, stats: FleetStats): string {
   return text
     .replace(/\b9-boat fleet\b/g, `${stats.fleetCount}-boat fleet`)
     .replace(
-      /\b9 (boats|barcos|embarcaciones|vaixells|Boote|boten|barche)\b/g,
+      /\b9 (boats|barcos|embarcaciones|embarcacions|vaixells|bateaux|Boote|boten|barche|лодок)\b/g,
       `${stats.fleetCount} $1`,
     )
     .replace(
-      /\b5 (license-free|barcos|boats|Boote|barche|boten|vaixells)\b/gi,
+      /\b5 (license-free|barcos|boats|Boote|barche|boten|vaixells|embarcacions|bateaux|лодок)\b/gi,
       `${stats.licenseFreeCount} $1`,
     )
     .replace(/\b70-(\d{2,4}) EUR\b/g, `${floor}-$1 EUR`)

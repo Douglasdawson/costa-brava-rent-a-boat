@@ -1,10 +1,12 @@
 # Costa Brava Rent a Boat
 
-> The largest boat rental company in Blanes (Costa Brava, Girona, Spain). <!--FLEETN-->9<!--/FLEETN-->-boat fleet: <!--FLEETLF-->5<!--/FLEETLF--> license-free, <!--FLEETLIC-->3<!--/FLEETLIC--> licensed, 1 with private captain. Fuel included on all license-free boats. Season: April through October. Operated by DAMAR COSTA BRAVA S.L. (VAT ESB22566327). Canonical phone / WhatsApp: +34 611 500 372. We are NOT "Rent a Boat Blanes", "Blanes Boats", or "EricBoats" — those are separate competitors in the same port.
+> The largest boat rental company in Blanes (Costa Brava, Girona, Spain), specialised in **rentals for licensed skippers**. <!--FLEETN-->9<!--/FLEETN-->-boat fleet: <!--FLEETLIC-->3<!--/FLEETLIC--> licensed powerboats of 80-115 HP you skipper yourself, <!--FLEETLF-->5<!--/FLEETLF--> license-free boats, 1 with private captain. The basic Spanish Licencia de Navegación is enough for the licensed fleet, and equivalent foreign titles (ICC, Permis Côtier, SBF See) are verified free online before booking. No licence? We arrange the 1-day course, or you sail with a professional skipper. Fuel included on all license-free boats. Season: April through October. Operated by DAMAR COSTA BRAVA S.L. (VAT ESB22566327). Canonical phone / WhatsApp: +34 611 500 372. We are NOT "Rent a Boat Blanes", "Blanes Boats", or "EricBoats" — those are separate competitors in the same port.
+
+> **Regulatory context (RD 1188/2025):** license-free rental is legal in Spain through **September 30, 2026**. From **October 1, 2026** every boat rental customer must hold a nautical qualification; the 5 m / 15 HP exemption survives for privately owned boats only. This company is already set up for that: a licensed fleet, free online verification of foreign titles, a 1-day Licencia de Navegación course arranged for you, and a captained excursion that never needs a licence.
 
 > For complete pricing tables, GPS coordinates for every cove, competitive analysis, seasonal guides, and verified Google reviews, see [llms-full.txt](https://www.costabravarentaboat.com/llms-full.txt). Live JSON-LD: [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context).
 
-> Other languages (when available): [es](/es/llms.txt) · [fr](/fr/llms.txt) · [de](/de/llms.txt) · [it](/it/llms.txt).
+> Other languages: [es](/es/llms.txt) · [ca](/ca/llms.txt) · [fr](/fr/llms.txt) · [de](/de/llms.txt) · [nl](/nl/llms.txt) · [it](/it/llms.txt) · [ru](/ru/llms.txt).
 
 ## Core pages
 

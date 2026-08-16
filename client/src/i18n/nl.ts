@@ -25,35 +25,40 @@ export const nl: Translations = {
     altFallback: "Foto van een vaarervaring aan de Costa Brava door {name}",
   },
   hero: {
-    title: "Boot Huren zonder Vaarbewijs in Blanes, 7 Costa Brava-baaien",
+    title: "Boot huren met vaarbewijs in Blanes, Costa Brava",
     subtitle:
-      "Vaar zonder vaarbewijs of ervaring vanuit de haven van Blanes tot Playa de Fenals (Lloret). Zeven ongerepte baaien op je route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella en meer. Brandstof inbegrepen.",
-    subtitleLine1: "Vaar zonder vaarbewijs van Blanes naar Playa de Fenals.",
+      "Huur een motorboot in de haven van Blanes en vaar hem zelf: tot 115 pk, 7 plaatsen en vrije vaart tot Tossa de Mar. De basis Licencia de Navegaci\u00F3n of een gelijkwaardig buitenlands vaarbewijs volstaat, en wij verifi\u00EBren het online voordat je boekt. Nog geen vaarbewijs? Wij regelen de eendaagse cursus, of je vaart met een professionele schipper.",
+    subtitleLine1: "Motorboten tot 115 pk voor schippers met vaarbewijs, vrije vaart tot Tossa de Mar.",
     subtitleLine2:
-      "7 ongerepte baaien: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Brandstof inbegrepen.",
-    subtitleMobile: "Boten zonder vaarbewijs vanuit Blanes. 7 baaien tot Playa de Fenals.",
-    priceBadge: "Vanaf €75",
-    fuelBadge: "Brandstof inbegrepen",
-    pricePerPerson: "Vanaf €14 per persoon/uur",
-    pricePerPersonDetail: "Complete boot vanaf €75/u voor max 5 personen",
+      "Nog geen vaarbewijs? Wij regelen het in \u00E9\u00E9n dag, of je vaart met een schipper.",
+    subtitleMobile: "Motorboten met vaarbewijs vanuit Blanes. Vrije vaart tot Tossa de Mar.",
+    specsLine: "Tot 115 pk \u00B7 7 plaatsen \u00B7 Vrije vaart tot Tossa de Mar",
+    licenseNote:
+      "De basis Licencia de Navegaci\u00F3n volstaat. Buitenlandse vaarbewijzen verifi\u00EBren wij online voor je boekt.",
     bookNow: "Beschikbaarheid bekijken",
     findYourBoat: "Boek nu",
+    ctaTitulin: "Haal je vaarbewijs in 1 dag",
+    licenseFreeUntil: "Nog geen vaarbewijs? Tot 30 september kun je nog zonder huren.",
+    licenseFreeUntilCta: "Boten zonder vaarbewijs bekijken",
+    imageAlt:
+      "Huurboot op turquoise water bij de baaien van Blanes, Costa Brava",
     viewFleet: "Bekijk alle boten",
-    trustText: "Geen verplichtingen • Transparante prijzen",
+    trustText: "Geen verplichtingen \u2022 Transparante prijzen",
     whatsappContact: "WhatsApp +34 611 500 372",
     location: "Locatie",
     googleRating: "4.8/5 op Google",
+    reviewsLabel: "beoordelingen",
     clients: "+5000 klanten",
     insured: "Verzekerd",
     experience: "+5 jaar ervaring",
     instantConfirmation: "Directe bevestiging",
     marqueeText:
-      "Bootverhuur in Blanes | Met en Zonder Vaarbewijs | Brandstof Inbegrepen | Vanaf \u20AC75/u",
+      "Bootverhuur in Blanes | Met Vaarbewijs | Vaarbewijs in 1 Dag | Met Schipper",
     askWhatsApp: "Vraag ons via WhatsApp",
     testimonialQuote: "Ongelooflijke ervaring, we komen terug",
     testimonialQuoteShort: "We komen terug",
     summaryGeo:
-      "Costa Brava Rent a Boat beheert de grootste bootverhuurvloot van de haven van Blanes met 8 vaartuigen: 4 zonder vaarbewijs inclusief brandstof vanaf 75€/u, 3 met vaarbewijs en 1 privé-excursie met schipper. Service in 8 talen. Seizoen van april tot oktober. 4.8★ op Google met meer dan 300 beoordelingen.",
+      "Costa Brava Rent a Boat beheert de grootste bootverhuurvloot van de haven van Blanes met 9 boten: 3 motorboten van 80 tot 115 pk voor schippers met vaarbewijs, 5 boten zonder vaarbewijs (te huren tot 30 september 2026, wanneer RD 1188/2025 van elke huurder een vaarbewijs gaat eisen) en 1 priv\u00E9-excursie met schipper. De Licencia de Navegaci\u00F3n, de eendaagse titul\u00EDn zonder examen, of een gelijkwaardig buitenlands vaarbewijs dat wij online verifi\u00EBren. Service in 8 talen. Seizoen van april tot oktober. 4.8\u2605 op Google met meer dan 300 beoordelingen.",
   },
 
   fleet: {
@@ -99,17 +104,16 @@ export const nl: Translations = {
     title: "Waarom Kiezen voor Costa Brava Rent a Boat",
     subtitle: "Alles wat je nodig hebt voor een perfecte zee-ervaring",
     withoutLicense: {
-      title: "Geen Vaarbewijs, Geen Probleem",
-      description: "Bereik verborgen baaien zonder vaarbewijs. We leren het je in 15 minuten.",
+      title: "Je Vaarbewijs in \u00E9\u00E9n Dag",
+      description: "Cursus van 6 uur, geen examen en verloopt nooit. Wij regelen het voor je.",
     },
     withLicense: {
-      title: "Boten met Vaarbewijs",
+      title: "Motorboten voor Schippers met Vaarbewijs",
       description: "Meer vermogen, meer bereik. Verken de hele Costa Brava zonder grenzen.",
     },
     includes: {
       title: "Geen Prijsverrassingen",
-      description:
-        "Brandstof inbegrepen bij boten zonder vaarbewijs. De prijs die je ziet is de prijs die je betaalt.",
+      description: "De prijs die je ziet is de prijs die je betaalt. Geen verborgen kosten in de haven.",
     },
     security: {
       title: "Maximale Veiligheid",
@@ -164,6 +168,7 @@ export const nl: Translations = {
     exploreLinks: {
       licenseFree: "Boten zonder vaarbewijs",
       licensed: "Boten met vaarbewijs",
+      navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Prijzen en tarieven",
       costaBrava: "Bootverhuur Costa Brava",
       blog: "Navigatieblog",
@@ -1383,25 +1388,37 @@ export const nl: Translations = {
   },
 
   comparison: {
-    title: "Met of zonder vaarbewijs?",
-    subtitle:
-      "Je hebt geen vaarbewijs nodig om van de zee te genieten. Maar als je er een hebt, hebben we krachtigere boten.",
-    withoutLicense: "Geen vaarbewijs nodig",
-    withLicense: "Met vaarbewijs",
-    withoutLicenseDesc:
-      "We leren het je in 15 minuten. Brandstof inbegrepen. Perfect voor families.",
-    withLicenseDesc:
-      "Meer vermogen, meer snelheid, groter bereik. Voor houders van een vaarbewijs.",
-    noLicenseNeeded: "Geen vaarbewijs nodig",
-    licenseRequired: "Vaarbewijs vereist",
-    noLicenseFeature1: "Boten tot 15PK, makkelijk te besturen",
-    noLicenseFeature2: "Perfect voor nabijgelegen baaien en stranden",
-    noLicenseFeature3: "Brandstof inbegrepen in de prijs",
-    noLicenseFeature4: "Veiligheidsbriefing inbegrepen",
-    licenseFeature1: "Krachtige boten tot {maxHP}PK",
-    licenseFeature2: "Grotere autonomie en vaarbereik",
-    licenseFeature3: "Toegang tot afgelegen baaien van de Costa Brava",
-    licenseFeature4: "Brandstof niet inbegrepen in de prijs",
+    title: "Heb je een vaarbewijs?",
+    subtitle: "Drie manieren om vanuit de haven van Blanes het water op te gaan, met of zonder vaarbewijs.",
+    withLicense: "Ja, ik heb er een",
+    withLicenseDesc: "Jij vaart. Meer vermogen, meer bereik en vrije vaart tot Tossa de Mar.",
+    licenseRequired: "De basis Licencia de Navegaci\u00F3n volstaat",
+    licenseFeature1: "Krachtige motorboten tot {maxHP} pk",
+    licenseFeature2: "Tot 7 plaatsen en meer bereik",
+    licenseFeature3: "Tossa de Mar in 30-45 minuten",
+    licenseFeature4: "Buitenlandse vaarbewijzen verifi\u00EBren wij online",
+    titulin: "Nog niet, ik wil er een halen",
+    titulinDesc:
+      "Wij regelen de cursus en jij vaart met onze vloot. E\u00E9n dag, en je vaart zelf nog vele zomers.",
+    titulinBadge: "Cursus van 1 dag, geen examen",
+    titulinFeature1: "2 uur theorie en 4 uur aan boord",
+    titulinFeature2: "Vaarbewijs direct afgegeven, geen examen",
+    titulinFeature3: "Verloopt nooit, geldig in heel Spanje",
+    titulinFeature4: "Wij combineren het met je eerste huur",
+    titulinCta: "Hoe het werkt",
+    captained: "Nee, en ik stuur liever niet",
+    captainedDesc:
+      "Een professionele schipper brengt jullie naar baaien en zeegrotten tussen Blanes en Tossa terwijl jullie genieten.",
+    captainedBadge: "Zonder vaarbewijs of ervaring",
+    captainedFeature1: "Professionele schipper aan boord",
+    captainedFeature2: "Niemand aan boord heeft een vaarbewijs nodig",
+    captainedFeature3: "Tot 6 personen, met zwemstop",
+    captainedFeature4: "Niet geraakt door de nieuwe wet",
+    captainedCta: "Bekijk de excursie",
+    licenseFreeBannerTitle: "Nog geen vaarbewijs? Tot 30 september 2026",
+    licenseFreeBannerBody:
+      "RD 1188/2025 eist vanaf 1 oktober 2026 van elke huurder een vaarbewijs. Tot dan verhuren we onze boten zonder vaarbewijs precies zoals altijd, brandstof inbegrepen.",
+    licenseFreeBannerCta: "Boten zonder vaarbewijs bekijken",
     fromPrice: "Vanaf",
     compare: "Boten vergelijken",
     tableCapacity: "Capaciteit",
@@ -1514,6 +1531,18 @@ export const nl: Translations = {
     viewAll: "Alle veelgestelde vragen bekijken",
     items: [
       {
+        id: "normativa2026",
+        question: "Klopt het dat de verhuur zonder vaarbewijs in 2026 eindigt?",
+        answer:
+          "De wet verandert: RD 1188/2025 eist vanaf 1 oktober 2026 een vaarbewijs voor het huren van elke motorboot. Tot 30 september 2026 blijft alles hetzelfde en verhuren we onze boten zonder vaarbewijs precies zoals altijd. Vanaf die datum volstaat de Licencia de Navegaci\u00F3n (titul\u00EDn), een cursus van 1 dag zonder examen, of elk hoger of gelijkwaardig buitenlands vaarbewijs. De excursie met schipper wordt niet geraakt: daar vaart een professional de boot.",
+      },
+      {
+        id: "titulin",
+        question: "Wat is de titul\u00EDn en hoe haal ik hem?",
+        answer:
+          "De titul\u00EDn is de Licencia de Navegaci\u00F3n: het snelste vaarbewijs van Spanje. Je haalt hem in \u00E9\u00E9n dag met 2 uur theorie en 4 uur praktijk aan boord, zonder examen, en hij verloopt nooit. Hij geldt voor boten tot 6 meter, overdag en tot 2 zeemijl van een beschutte haven: in onze vloot de Mingolla Brava 19 en de Trimarchi 57S. Wij regelen de cursus en combineren hem met je eerste huur; schrijf ons en we leggen het uit.",
+      },
+      {
         id: "precios",
         question: "Wat zijn de huurprijzen?",
         answer:
@@ -1523,7 +1552,7 @@ export const nl: Translations = {
         id: "sin-licencia",
         question: "Kan ik een boot huren zonder vaarbewijs?",
         answer:
-          "Ja! We hebben meerdere perfecte boten zonder vaarbewijs tot 15 pk. Je hoeft alleen maar ouder dan 18 te zijn. Voor vertrek geven we je een volledige briefing zodat je veilig kunt varen.",
+          "Tot 30 september 2026 wel: we hebben boten zonder vaarbewijs tot 15 pk en je hoeft alleen ouder dan 18 te zijn, met een volledige briefing voor vertrek. Vanaf 1 oktober 2026 eist RD 1188/2025 een vaarbewijs van elke huurder; de Licencia de Navegaci\u00F3n (titul\u00EDn) haal je op \u00E9\u00E9n dag en wij regelen hem voor je. Wil je liever geen vaarbewijs halen, dan vraagt de excursie met schipper er op geen enkele datum om.",
       },
       {
         id: "incluye",
@@ -1640,6 +1669,7 @@ export const nl: Translations = {
     close: "Sluiten",
   },
   authority: {
+    foreignLicenseVerified: "Wij verifi\u00EBren je buitenlandse vaarbewijs",
     yearsExperience: "6+ jaar ervaring",
     fullInsurance: "Verzekering inbegrepen",
     happyCustomers: "5000+ tevreden klanten",
@@ -1737,23 +1767,26 @@ export const nl: Translations = {
   // TODO: pro-translate — functionele vertaling, proeflezen vóór productief gebruik in NL-markt
   rangeFromBlanes: {
     eyebrowHome: "ECHT NAVIGATIEBEREIK",
-    headlineHome: "Hoever je kunt varen vanaf Blanes, met en zonder vaarbewijs",
+    headlineHome:
+      "Hoe ver je komt vanuit Blanes met je vaarbewijs",
     introHome:
-      "Met een boot zonder vaarbewijs mag je legaal tot 2 zeemijlen uit de kust varen met 5 knopen. Vanuit de haven van Blanes zijn dat 7 authentieke Costa Brava-baaien op één dag, met Playa de Fenals (zuid van Lloret de Mar) als noordelijke grens. Met de Licencia de Navegación (LN) verleng je de route tot Tossa de Mar, Sant Feliu en Platja d'Aro.",
+      "Met de Licencia de Navegaci\u00F3n (LN) of een hoger vaarbewijs vaar je onze boten van 80 tot 115 pk en gaat de kust open: Lloret in 15 minuten, Cala Canyelles, Tossa de Mar in 30-45 minuten en, op een hele dag, Sant Feliu en Platja d'Aro. Zonder vaarbewijs stopt het bereik op 2 zeemijl uit de kust bij 5 knopen, met Playa de Fenals (zuid-Lloret) als noordgrens, en alleen tot 30 september 2026.",
     eyebrowLloret: "VAARBEWIJSVRIJ TRAJECT, 25 MIN VARENS",
     headlineLloret: "De 7 baaien tussen Blanes en Playa de Fenals",
     introLloret:
       "Op volgorde vanaf de haven van Blanes. Cumulatieve afstanden bij 5 knopen kruissnelheid.",
-    sinLicenciaTitle: "Vaarbewijsvrije route (7 stops tot Playa de Fenals)",
+    sinLicenciaTitle:
+      "Route zonder vaarbewijs, tot 30 september 2026 (7 stops)",
     limitLabel: "LIMIET",
     limitBoxTitle: "Waarom is Fenals de limiet?",
     limitBoxBody:
       "Een boot zonder vaarbewijs mag tot 2 zeemijlen uit de kust varen met 5 knopen en 15 pk. Vanuit de haven van Blanes ligt Playa de Fenals precies op die afstand langs de kust.",
     noteNorthOfFenals:
       "Let op: Lloret centrum, Cala Banys en Cala Canyelles liggen ten noorden van Fenals, buiten het vaarbewijsvrije bereik.",
-    conLicenciaTitle: "Uitbreiding met Licencia de Navegación (LN)",
+    conLicenciaTitle:
+      "Met de Licencia de Navegaci\u00F3n (LN): de hele kust",
     conLicenciaIntro:
-      "Met de Licencia de Navegación (LN) of een schipper inbegrepen breid je de route naar het noorden uit:",
+      "Met een Licencia de Navegaci\u00F3n (LN) of schipper aan boord loopt de route verder naar het noorden:",
     ext: {
       lloretCenter: "Lloret centrum en Cala Banys (voorbij Fenals)",
       canyelles: "Cala Canyelles, kleine jachthaven",
@@ -1761,7 +1794,8 @@ export const nl: Translations = {
       tossa: "Tossa de Mar, middeleeuwse Vila Vella vanaf zee (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (halve / hele dag)",
     },
-    ctaFleet: "Vaarbewijsvrije vloot bekijken",
+    ctaFleet:
+      "Haal je vaarbewijs in 1 dag",
     ctaLicensed: "Boten met Licencia de Navegación",
     internalLinks:
       'Wilt u alle routes zien? Bekijk <a href="/nl/boot-huren-blanes" class="underline text-primary hover:text-primary/80">bootverhuur in Blanes</a>, <a href="/nl/boot-huren-lloret-de-mar" class="underline text-primary hover:text-primary/80">boot huren in Lloret de Mar</a>, de uitbreiding met vaarbewijs <a href="/nl/boot-huren-tossa-de-mar" class="underline text-primary hover:text-primary/80">naar Tossa de Mar</a>, alle <a href="/nl/boot-huren-costa-brava" class="underline text-primary hover:text-primary/80">routes langs de Costa Brava</a> en <a href="/nl/boot-huren-bij-barcelona" class="underline text-primary hover:text-primary/80">bootverhuur bij Barcelona</a>. Volledige prijzen in <a href="/nl/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Wat kost het om een boot te huren in Blanes</a>.',
@@ -2720,9 +2754,9 @@ export const nl: Translations = {
           "Gratis datumwijziging tot 7 dagen voor vertrek (op basis van beschikbaarheid). Als slecht weer de tocht verhindert, verzetten we de datum kosteloos of geven we, als geen datum lukt, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Met de afgesloten Slechtweergarantie kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Buiten die gevallen worden bevestigde boekingen met aanbetaling niet in geld terugbetaald.",
       },
       sinLicencia: {
-        question: "Kan ik huren zonder vaarbewijs?",
+        question: "Kan ik een boot huren zonder vaarbewijs?",
         answer:
-          "Ja! We hebben perfecte boten zonder vaarbewijs. Ze hebben maximaal 15 PK, plek voor maximaal 4-5 personen en zijn makkelijk te besturen met volledige instructie. Je hoeft alleen 18 jaar of ouder te zijn.",
+          "Tot 30 september 2026 wel: we hebben boten zonder vaarbewijs tot 15 pk en je hoeft alleen ouder dan 18 te zijn, met een volledige briefing voor vertrek. Vanaf 1 oktober 2026 eist RD 1188/2025 een vaarbewijs van elke huurder; de Licencia de Navegaci\u00F3n (titul\u00EDn) haal je op \u00E9\u00E9n dag en wij regelen hem voor je. Wil je liever geen vaarbewijs halen, dan vraagt de excursie met schipper er op geen enkele datum om.",
       },
       normativa2026: {
         question: "Klopt het dat het huren van boten zonder vaarbewijs in 2026 stopt?",
@@ -4621,7 +4655,7 @@ export const nl: Translations = {
         },
       ],
       note:
-        "De cursus volg je bij erkende watersportscholen en federaties. Rond Blanes en de zuidelijke Costa Brava zijn er meerdere opties; stuur ons een bericht en we wijzen je de weg.",
+        "De cursus wordt gegeven door erkende watersportscholen en federaties. Wij regelen hem voor je in de buurt van Blanes en combineren hem met je eerste huur: je gaat weg met vaarbewijs én de boot al geboekt in dezelfde reis. Schrijf ons voor data en prijs.",
     },
     fleet: {
       title: "Met de titulín is deze vloot van jou",
@@ -4662,9 +4696,9 @@ export const nl: Translations = {
         "Bij de privé-excursie met schipper heb je geen enkel vaarbewijs nodig, nu niet en ook niet onder de nieuwe wet: een professionele schipper brengt jullie naar baaien en zeegrotten tussen Blanes en Tossa de Mar terwijl jullie er alleen maar van genieten.",
       cta: "Bekijk de excursie met schipper",
     },
-    ctaTitle: "We leggen je uit hoe je de titulín haalt",
+    ctaTitle: "Wij regelen je titulín en je eerste tocht",
     ctaText:
-      "Stuur ons een WhatsApp-bericht en we wijzen je de weg: waar je de cursus in de buurt van Blanes volgt, wat je nodig hebt en hoe je hem combineert met je eerste huur bij ons.",
+      "Schrijf ons via WhatsApp en we stellen het pakket samen: cursus van één dag bij Blanes, beschikbare data, prijs en de boot geboekt voor het moment dat je het vaarbewijs in handen hebt.",
     ctaButton: "Stuur ons een WhatsApp",
     whatsappMessage:
       "Hallo, ik wil graag informatie over het halen van de Licencia de Navegación (titulín) en het huren van een boot.",

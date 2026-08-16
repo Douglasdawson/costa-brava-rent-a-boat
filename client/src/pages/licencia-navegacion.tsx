@@ -32,8 +32,12 @@ const WHATSAPP_NUMBER = "34611500372";
 /**
  * Pillar page for the Licencia de Navegación (titulín): what it is, what it
  * allows, how to get it, and why it matters from 2026-10-01 (RD 1188/2025
- * requires every rental customer to hold a nautical title). Informational
- * only — the course is not (yet) sold by us; the CTA routes to WhatsApp.
+ * requires every rental customer to hold a nautical title).
+ *
+ * Since the 2026-08 pivot this page sells the titulín + rental pack: we arrange
+ * the course and combine it with the first rental. No price is published yet
+ * (the nautical school side is still pre-launch), so every CTA routes to
+ * WhatsApp for a quote. Add the price here when it is closed.
  */
 export default function NavigationLicensePage() {
   const { language } = useLanguage();

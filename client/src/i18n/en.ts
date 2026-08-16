@@ -25,35 +25,43 @@ export const en: Translations = {
     altFallback: "Boating experience photo on the Costa Brava by {name}",
   },
   hero: {
-    title: "Licence-Free Boat Rental in Blanes, 7 Costa Brava Coves",
+    title: "Boat Rental with a Licence in Blanes, Costa Brava",
+    // Also the SSR/GEO fallback paragraph for locales without summaryGeo
+    // (server/seoInjector.ts reads summaryGeo ?? subtitle for the home body).
     subtitle:
-      "Sail without a licence or prior experience from Blanes port to Playa de Fenals (Lloret). Seven untouched coves on your route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella and more. Fuel included.",
-    subtitleLine1: "Sail licence-free from Blanes to Playa de Fenals (Lloret).",
+      "Rent a powerboat at the Port of Blanes and skipper it yourself: up to 115 HP, 7 seats and free rein all the way to Tossa de Mar. The basic Spanish Navigation Licence or an equivalent foreign title is enough, and we verify it online before you book. No licence yet? We arrange the one-day course, or you sail with a professional skipper.",
+    subtitleLine1: "Powerboats up to 115 HP for licensed skippers, free rein to Tossa de Mar.",
     subtitleLine2:
-      "7 untouched coves en route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Fuel included.",
-    subtitleMobile: "Licence-free boats from Blanes. 7 coves to Playa de Fenals.",
-    priceBadge: "From €75",
-    fuelBadge: "Fuel included",
-    pricePerPerson: "From €14 per person/hour",
-    pricePerPersonDetail: "Full boat from €75/h for up to 5 people",
+      "No licence yet? We get you one in a day, or you sail with a professional skipper.",
+    subtitleMobile: "Licensed powerboats from Blanes. Free rein to Tossa de Mar.",
+    specsLine: "Up to 115 HP \u00B7 7 seats \u00B7 Free rein to Tossa de Mar",
+    licenseNote:
+      "The basic Navigation Licence is enough. We verify foreign titles online before you book.",
     bookNow: "Check Availability",
     findYourBoat: "Book now",
+    ctaTitulin: "Get your licence in 1 day",
+    // Shown only while isLicenseFreeEraActive() (RD 1188/2025, until 2026-09-30).
+    licenseFreeUntil: "No licence yet? Until September 30 you can still rent without one.",
+    licenseFreeUntilCta: "See licence-free boats",
+    imageAlt:
+      "Rental powerboat cruising turquoise water near the coves of Blanes, Costa Brava",
     viewFleet: "See all boats",
-    trustText: "No commitment • Instant confirmation • Transparent prices",
+    trustText: "No commitment \u2022 Instant confirmation \u2022 Transparent prices",
     whatsappContact: "WhatsApp +34 611 500 372",
     location: "Location",
     googleRating: "4.8/5 on Google",
+    reviewsLabel: "reviews",
     clients: "+5000 clients",
     insured: "Insured",
     experience: "+5 years exp.",
     instantConfirmation: "Instant confirmation",
     marqueeText:
-      "Boat Rental in Blanes | With and Without License | Fuel Included | From \u20AC75/h",
+      "Boat Rental in Blanes | Licensed Powerboats | Licence in 1 Day | With Skipper",
     askWhatsApp: "Ask us on WhatsApp",
     testimonialQuote: "Amazing experience, we will definitely come back",
     testimonialQuoteShort: "We will be back",
     summaryGeo:
-      "Costa Brava Rent a Boat operates the largest boat rental fleet in the Port of Blanes with 8 vessels: 4 licence-free with fuel included from €75/h, 3 licensed and 1 private excursion with skipper. Assistance in 8 languages. Season from April to October. 4.8★ on Google with over 300 reviews.",
+      "Costa Brava Rent a Boat operates the largest boat rental fleet in the Port of Blanes with 9 boats: 3 powerboats of 80 to 115 HP for licensed skippers, 5 boats without a licence (rentable through September 30, 2026, when Royal Decree 1188/2025 starts requiring a nautical qualification from every renter) and 1 private excursion with skipper. The basic Navigation Licence, the one-day no-exam titul\u00EDn, or an equivalent foreign title we verify online. Assistance in 8 languages. Season from April to October. 4.8\u2605 on Google with over 300 reviews.",
   },
 
   fleet: {
@@ -99,16 +107,16 @@ export const en: Translations = {
     title: "Why Choose Costa Brava Rent a Boat",
     subtitle: "Everything you need for a perfect sea experience",
     withoutLicense: {
-      title: "No Licence, No Problem",
-      description: "Reach hidden coves with no boating licence. We teach you in 15 minutes.",
+      title: "Your Licence in a Single Day",
+      description: "A 6-hour course, no exam, never expires. We arrange it for you.",
     },
     withLicense: {
-      title: "Licensed Boats",
-      description: "More power, more range. Explore the entire Costa Brava without limits.",
+      title: "Powerboats for Licensed Skippers",
+      description: "More power, more range. Explore the whole Costa Brava without limits.",
     },
     includes: {
       title: "No Price Surprises",
-      description: "Fuel included on licence-free boats. The price you see is the price you pay.",
+      description: "The price you see is the price you pay. No hidden charges at the port.",
     },
     security: {
       title: "Maximum Safety",
@@ -156,6 +164,7 @@ export const en: Translations = {
     exploreLinks: {
       licenseFree: "License-free boats",
       licensed: "Licensed boats",
+      navigationLicense: "Navigation Licence (titul\u00EDn)",
       pricing: "Prices and rates",
       costaBrava: "Costa Brava boat rental",
       blog: "Sailing blog",
@@ -1365,23 +1374,37 @@ export const en: Translations = {
   },
 
   comparison: {
-    title: "With or without a licence?",
-    subtitle:
-      "You don't need a licence to enjoy the sea. But if you have one, we have more powerful boats.",
-    withoutLicense: "No licence needed",
-    withLicense: "Licence required",
-    withoutLicenseDesc: "We teach you in 15 minutes. Fuel included. Perfect for families.",
-    withLicenseDesc: "More power, more speed, further range. For licensed sailors.",
-    noLicenseNeeded: "No licence needed",
-    licenseRequired: "Requires boating licence",
-    noLicenseFeature1: "Boats up to 15HP, easy to handle",
-    noLicenseFeature2: "Perfect for nearby coves and beaches",
-    noLicenseFeature3: "Fuel included in the price",
-    noLicenseFeature4: "Safety briefing included",
-    licenseFeature1: "Powerful boats up to {maxHP}HP",
-    licenseFeature2: "Greater autonomy and navigation range",
-    licenseFeature3: "Access to remote Costa Brava coves",
-    licenseFeature4: "Fuel not included in the price",
+    title: "Do you hold a boating licence?",
+    subtitle: "Three ways to get out on the water from the Port of Blanes, licence or not.",
+    withLicense: "Yes, I have one",
+    withLicenseDesc: "You skipper. More power, more range and free rein to Tossa de Mar.",
+    licenseRequired: "The basic Navigation Licence is enough",
+    licenseFeature1: "Powerboats up to {maxHP} HP",
+    licenseFeature2: "Up to 7 seats and longer range",
+    licenseFeature3: "Tossa de Mar in 30-45 minutes",
+    licenseFeature4: "We verify foreign licences online",
+    titulin: "Not yet, I want to get one",
+    titulinDesc:
+      "We arrange the course and you sail our fleet. One day, and you skipper on your own for many summers.",
+    titulinBadge: "1-day course, no exam",
+    titulinFeature1: "2 hours of theory and 4 on board",
+    titulinFeature2: "Licence issued on the spot, no exam",
+    titulinFeature3: "Never expires, valid across Spain",
+    titulinFeature4: "We combine it with your first rental",
+    titulinCta: "How it works",
+    captained: "No, and I would rather not steer",
+    captainedDesc:
+      "A professional skipper takes you to coves and sea caves between Blanes and Tossa while you just enjoy.",
+    captainedBadge: "No licence, no experience",
+    captainedFeature1: "Professional skipper on board",
+    captainedFeature2: "Nobody on board needs a licence",
+    captainedFeature3: "Up to 6 people, with a swim stop",
+    captainedFeature4: "Unaffected by the new law",
+    captainedCta: "See the excursion",
+    licenseFreeBannerTitle: "No licence yet? Until September 30, 2026",
+    licenseFreeBannerBody:
+      "Royal Decree 1188/2025 requires a nautical qualification from every renter as of October 1, 2026. Until then our licence-free boats rent exactly as always, fuel included.",
+    licenseFreeBannerCta: "See licence-free boats",
     fromPrice: "From",
     compare: "Compare boats",
     tableCapacity: "Capacity",
@@ -1495,16 +1518,16 @@ export const en: Translations = {
     viewAll: "View all frequently asked questions",
     items: [
       {
-        id: "rango-sin-licencia",
-        question: "How far can I go with a licence-free boat from Blanes?",
+        id: "normativa2026",
+        question: "Is it true that license-free boat rental ends in 2026?",
         answer:
-          "With a licence-free boat (2 nautical miles offshore, 5 knots, 15 HP) you can sail as far as Playa de Fenals, at the southern edge of Lloret de Mar. Along the way you pass 7 coves: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella and Playa de Fenals. Lloret main beach and Cala Canyelles are north of Fenals, outside the licence-free range; they require a boat with the Licencia de Navegación (LN) or the Private Excursion with Captain.",
+          "The law changes: Royal Decree 1188/2025 requires a nautical qualification to rent any motorboat from October 1, 2026. Through September 30, 2026 nothing changes and our licence-free boats rent exactly as always. From that date the Licencia de Navegaci\u00F3n (titul\u00EDn) is enough, a 1-day course with no exam, or any higher or equivalent foreign title. The captained excursion is unaffected: there a professional skippers the boat.",
       },
       {
-        id: "tossa-sin-licencia",
-        question: "Can I reach Tossa de Mar without a licence?",
+        id: "titulin",
+        question: "What is the titul\u00EDn and how do I get one?",
         answer:
-          "No. Tossa de Mar is outside the legal range of a licence-free boat. To reach Tossa from Blanes you need (1) a boat with the Licencia de Navegación (LN), or (2) the Private Excursion with Captain. The other option is to drive to Tossa (20 min from Lloret) and rent a licence-free boat locally there.",
+          "The titul\u00EDn is the Licencia de Navegaci\u00F3n, Spain's fastest boating licence. You get it in one day with 2 hours of theory and 4 of on-board practice, no exam, and it never expires. It covers boats up to 6 metres, daytime, up to 2 nautical miles from shelter: in our fleet the Mingolla Brava 19 and the Trimarchi 57S. We arrange the course and combine it with your first rental; write to us and we will explain how.",
       },
       {
         id: "precios",
@@ -1516,7 +1539,7 @@ export const en: Translations = {
         id: "sin-licencia",
         question: "Can I rent a boat without a boating licence?",
         answer:
-          "Yes! We have several perfect licence-free boats up to 15 HP. You only need to be over 18. Before departure we give you a full briefing so you can navigate safely.",
+          "Through September 30, 2026, yes: we have licence-free boats up to 15 HP and you only need to be over 18, with a full briefing before departure. From October 1, 2026 Royal Decree 1188/2025 requires a qualification from every renter; the Licencia de Navegaci\u00F3n (titul\u00EDn) takes a single day and we arrange it for you. If you would rather not get qualified, the captained excursion needs no licence on any date.",
       },
       {
         id: "incluye",
@@ -1690,6 +1713,7 @@ export const en: Translations = {
     close: "Close",
   },
   authority: {
+    foreignLicenseVerified: "We verify your foreign licence",
     yearsExperience: "6+ years of experience",
     fullInsurance: "Insurance included",
     happyCustomers: "5000+ happy customers",
@@ -1787,21 +1811,25 @@ export const en: Translations = {
   // TODO: pro-translate — functional translation only, proofread before prod use in EN-heavy markets
   rangeFromBlanes: {
     eyebrowHome: "REAL NAVIGATION RANGE",
-    headlineHome: "How far you can sail from Blanes, with and without a licence",
+    headlineHome:
+      "How far you get from Blanes with your licence",
     introHome:
-      "With a licence-free boat you can legally navigate up to 2 nautical miles from the coast at 5 knots. From Blanes port that means 7 authentic Costa Brava coves in a single day, with Playa de Fenals (south of Lloret de Mar) as the northern limit. With the Licencia de Navegación (LN) you can extend the route to Tossa de Mar, Sant Feliu and Platja d'Aro.",
+      "With the Licencia de Navegaci\u00F3n (LN) or a higher title you skipper our 80 to 115 HP powerboats and the coast opens up: Lloret in 15 minutes, Cala Canyelles, Tossa de Mar in 30-45 minutes and, on a full day, Sant Feliu and Platja d'Aro. Without a licence the range stops at 2 nautical miles from shore at 5 knots, with Playa de Fenals (south Lloret) as the northern limit, and only through September 30, 2026.",
     eyebrowLloret: "LICENCE-FREE SECTION · 25 MIN CRUISING",
     headlineLloret: "The 7 coves between Blanes and Playa de Fenals",
     introLloret: "In order from Blanes port. Accumulated distances at 5-knot cruising speed.",
-    sinLicenciaTitle: "Licence-free route (7 stops to Playa de Fenals)",
+    sinLicenciaTitle:
+      "Licence-free route, through September 30, 2026 (7 stops)",
     limitLabel: "LIMIT",
     limitBoxTitle: "Why is Fenals the limit?",
     limitBoxBody:
       "A licence-free boat can sail up to 2 nautical miles from the coast at 5 knots and 15 HP. From Blanes port, Playa de Fenals is exactly at that distance following the coastline.",
     noteNorthOfFenals:
       "Note: Lloret main beach, Cala Banys and Cala Canyelles are north of Fenals, outside the licence-free range.",
-    conLicenciaTitle: "Extension with the Licencia de Navegación (LN)",
-    conLicenciaIntro: "With the Licencia de Navegación (LN) or included skipper, the route extends northward:",
+    conLicenciaTitle:
+      "With the Licencia de Navegaci\u00F3n (LN): the whole coast",
+    conLicenciaIntro:
+      "With a Licencia de Navegaci\u00F3n (LN) or a skipper on board, the route carries on north:",
     ext: {
       lloretCenter: "Lloret centre and Cala Banys (past Fenals)",
       canyelles: "Cala Canyelles, small marina",
@@ -1809,7 +1837,8 @@ export const en: Translations = {
       tossa: "Tossa de Mar, medieval Vila Vella from the sea (~30-45 min)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (half-day / full-day)",
     },
-    ctaFleet: "View licence-free fleet",
+    ctaFleet:
+      "Get your licence in 1 day",
     ctaLicensed: "Boats with the Licencia de Navegación",
     internalLinks:
       'Want to see all routes? Check out <a href="/en/boat-rental-blanes" class="underline text-primary hover:text-primary/80">Boat rental in Blanes</a>, <a href="/en/boat-rental-lloret-de-mar" class="underline text-primary hover:text-primary/80">boat rental in Lloret de Mar</a>, the licensed extension <a href="/en/boat-rental-tossa-de-mar" class="underline text-primary hover:text-primary/80">to Tossa de Mar</a>, all the <a href="/en/boat-rental-costa-brava" class="underline text-primary hover:text-primary/80">routes along the Costa Brava</a> and <a href="/en/boat-rental-near-barcelona" class="underline text-primary hover:text-primary/80">boat rental near Barcelona</a>. Full pricing in <a href="/en/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">How much does it cost to rent a boat in Blanes</a>.',
@@ -2762,9 +2791,9 @@ export const en: Translations = {
           "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
       },
       sinLicencia: {
-        question: "Can I rent without a boat license?",
+        question: "Can I rent a boat without a boating licence?",
         answer:
-          "Yes! We have perfect boats without license. They're up to 15 HP, maximum 4-5 people, easy to handle with a complete briefing. You only need to be over 18 years old.",
+          "Through September 30, 2026, yes: we have licence-free boats up to 15 HP and you only need to be over 18, with a full briefing before departure. From October 1, 2026 Royal Decree 1188/2025 requires a qualification from every renter; the Licencia de Navegaci\u00F3n (titul\u00EDn) takes a single day and we arrange it for you. If you would rather not get qualified, the captained excursion needs no licence on any date.",
       },
       normativa2026: {
         question: "Is it true that licence-free boat rental ends in 2026?",
@@ -4660,7 +4689,7 @@ export const en: Translations = {
         },
       ],
       note:
-        "The course is run by authorised recreational nautical schools and federations. There are several options around Blanes and the southern Costa Brava; message us and we will point you in the right direction.",
+        "The course is run by authorised recreational nautical schools and federations. We arrange it for you near Blanes and combine it with your first rental: you finish qualified with the boat already booked for the same trip. Write to us for dates and price.",
     },
     fleet: {
       title: "With the titulín, this fleet is yours",
@@ -4701,9 +4730,9 @@ export const en: Translations = {
         "With the private captained excursion you need no qualification at all, now or under the new law: a professional skipper takes you to coves and sea caves between Blanes and Tossa de Mar while you simply enjoy the ride.",
       cta: "See the captained excursion",
     },
-    ctaTitle: "We'll help you get your titulín",
+    ctaTitle: "We arrange your titulín and your first trip",
     ctaText:
-      "Message us on WhatsApp and we will point you in the right direction: where to take the course near Blanes, what you need and how to combine it with your first rental with us.",
+      "Write to us on WhatsApp and we put the pack together: a one-day course near Blanes, available dates, price, and the powerboat booked for the moment you hold the licence.",
     ctaButton: "Message us on WhatsApp",
     whatsappMessage:
       "Hi, I would like information about getting the Licencia de Navegación (titulín) and renting a boat.",

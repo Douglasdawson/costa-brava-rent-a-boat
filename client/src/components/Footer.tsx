@@ -434,6 +434,16 @@ export default function Footer() {
                   </a>
                 </li>
               )}
+              {t.navigationLicensePage?.navLabel && (
+                <li>
+                  <a
+                    href={localizedPath("navigationLicense")}
+                    className="text-primary-foreground hover:text-primary-foreground transition-colors py-0.5 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  >
+                    {t.navigationLicensePage.navLabel}
+                  </a>
+                </li>
+              )}
               <li>
                 <a
                   href={localizedPath("locationBarcelona")}

@@ -1,22 +1,27 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { Shield, Award, Users, Star } from "lucide-react";
+import { Shield, Award, BadgeCheck, Star } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useBusinessStats } from "@/hooks/useBusinessStats";
+import { isLicenseFreeEraActive } from "@shared/constants";
 
 import BoatQuizModal from "./BoatQuizModal";
 import { GBP_PROFILE_URL } from "@shared/businessProfile";
 
 export default function Hero() {
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
   const { openBookingModal } = useBookingModal();
   const { data: businessStats } = useBusinessStats();
   const [quizOpen, setQuizOpen] = useState(false);
   const authority = t.authority!;
   const ratingDisplay = businessStats
-    ? `${businessStats.rating.toFixed(1)}/5 · ${businessStats.userRatingCount}+ reseñas`
+    ? `${businessStats.rating.toFixed(1)}/5 · ${businessStats.userRatingCount}+ ${t.hero.reviewsLabel}`
     : t.hero.googleRating;
+  // RD 1188/2025: the license-free escape hatch retires itself on 2026-10-01.
+  const licenseFreeEra = isLicenseFreeEraActive();
 
   // Listen for exit intent quiz trigger
   useEffect(() => {
@@ -51,7 +56,7 @@ export default function Hero() {
         />
         <img
           src="/images/hero/hero-dive-mobile.webp"
-          alt="Barco de alquiler sin licencia navegando por aguas turquesa cerca de las calas de Blanes, Costa Brava"
+          alt={t.hero.imageAlt}
           className="absolute inset-0 w-full h-full object-cover saturate-[1.05]"
           width={1920}
           height={1080}
@@ -100,13 +105,13 @@ export default function Hero() {
 
           {/* CTA group — bottom on mobile, flows after text on tablet+ */}
           <div className="text-center flex flex-col items-center">
-            {/* Price callout — single DOM instance, positioned above CTAs for all viewports */}
+            {/* Specs callout — single DOM instance, positioned above CTAs for all viewports */}
             <div className="mb-3 lg:mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
               <p data-speakable className="font-bold text-primary-foreground text-base sm:text-lg lg:text-xl lg:font-semibold">
-                {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
+                {t.hero.specsLine}
               </p>
               <p className="mt-1.5 inline-block rounded-full bg-black/35 px-3 py-1 text-sm text-primary-foreground/90 backdrop-blur-sm">
-                {t.hero.pricePerPersonDetail}
+                {t.hero.licenseNote}
               </p>
             </div>
 
@@ -120,17 +125,28 @@ export default function Hero() {
                 {t.hero.findYourBoat}
               </Button>
               <Button
+                asChild
                 size="lg"
-                onClick={() => {
-                  const fleet = document.getElementById("fleet");
-                  if (fleet) fleet.scrollIntoView({ behavior: "smooth", block: "start" });
-                }}
                 className="bg-white/10 hover:bg-white/20 border-2 border-white/70 text-white px-6 py-2.5 text-sm sm:py-3.5 sm:text-base lg:px-10 lg:py-3.5 lg:text-lg rounded-full font-medium w-full sm:w-auto"
-                data-testid="button-hero-explore"
+                data-testid="button-hero-titulin"
               >
-                {t.hero.viewFleet}
+                <a href={localizedPath("navigationLicense")}>{t.hero.ctaTitulin}</a>
               </Button>
             </div>
+
+            {/* License-free escape hatch — self-retires on 2026-10-01 (RD 1188/2025) */}
+            {licenseFreeEra && (
+              <p className="mt-3 text-xs sm:text-sm text-primary-foreground/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)] max-w-md">
+                {t.hero.licenseFreeUntil}{" "}
+                <a
+                  href={localizedPath("categoryLicenseFree")}
+                  className="underline underline-offset-2 font-medium hover:text-primary-foreground"
+                  data-testid="link-hero-license-free"
+                >
+                  {t.hero.licenseFreeUntilCta}
+                </a>
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -147,8 +163,8 @@ export default function Hero() {
             {authority.fullInsurance}
           </span>
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
-            <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
-            {authority.happyCustomers}
+            <BadgeCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
+            {authority.foreignLicenseVerified}
           </span>
           <a
             href={GBP_PROFILE_URL}

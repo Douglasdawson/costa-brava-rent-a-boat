@@ -10,10 +10,10 @@ import {
   ChevronRight,
   Star,
   Anchor,
-  MessageCircle,
   Calendar,
   Users,
 } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { FAQSection } from "@/components/FAQSection";
@@ -480,7 +480,7 @@ export default function ActivitySunsetPage() {
               variant="secondary"
               onClick={handleBookingWhatsApp}
             >
-              <MessageCircle className="w-5 h-5 mr-2" />
+              <SiWhatsapp className="w-5 h-5 mr-2" aria-hidden="true" />
               {s.ctaWhatsApp}
             </Button>
             <a href={localizedPath("categoryLicenseFree")}>

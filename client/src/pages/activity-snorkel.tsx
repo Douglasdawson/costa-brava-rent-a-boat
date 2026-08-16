@@ -10,9 +10,9 @@ import {
   Eye,
   Fish,
   Sun,
-  ChevronRight,
-  MessageCircle
+  ChevronRight
 } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RelatedContent from "@/components/RelatedContent";
@@ -378,7 +378,7 @@ export default function ActivitySnorkelPage() {
               variant="secondary"
               onClick={handleBookingWhatsApp}
             >
-              <MessageCircle className="w-5 h-5 mr-2" />
+              <SiWhatsapp className="w-5 h-5 mr-2" aria-hidden="true" />
               {s?.ctaWhatsApp ?? "Reservar por WhatsApp"}
             </Button>
             <a href={localizedPath("categoryLicenseFree")}>

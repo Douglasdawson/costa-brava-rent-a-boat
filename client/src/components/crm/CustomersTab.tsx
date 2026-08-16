@@ -21,12 +21,12 @@ import {
   Users,
   Euro,
   TrendingUp,
-  MessageCircle,
   Download,
   RefreshCw,
   ArrowUp,
   ArrowDown,
 } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -317,7 +317,7 @@ export function CustomersTab({
                             }
                             title="WhatsApp"
                           >
-                            <MessageCircle className="w-4 h-4 text-green-600" />
+                            <SiWhatsapp className="w-4 h-4 text-green-600" aria-hidden="true" />
                           </Button>
                         </div>
                       </TableCell>
@@ -421,7 +421,7 @@ export function CustomersTab({
                         }
                         title="WhatsApp"
                       >
-                        <MessageCircle className="w-4 h-4 text-green-600" />
+                        <SiWhatsapp className="w-4 h-4 text-green-600" aria-hidden="true" />
                       </Button>
                     </div>
                   </div>

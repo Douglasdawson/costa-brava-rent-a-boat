@@ -46,12 +46,12 @@ import {
   X,
   Check,
   Save,
-  MessageCircle,
   ClipboardCheck,
   ClipboardList,
   Loader2,
   ChevronsUpDown,
 } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -683,7 +683,7 @@ export function BookingDetailsModal({
                   onClick={() => onOpenWhatsApp(booking.customerPhone, booking.customerName)}
                   data-testid="button-whatsapp-booking"
                 >
-                  <MessageCircle className="w-4 h-4 mr-2" />
+                  <SiWhatsapp className="w-4 h-4 mr-2" aria-hidden="true" />
                   WhatsApp
                 </Button>
                 {booking.bookingStatus === "pending_payment" && (

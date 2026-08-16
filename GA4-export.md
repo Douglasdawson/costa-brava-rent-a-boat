@@ -1,6 +1,6 @@
 # GA4 Export — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-06-12 22:21:33 UTC
+**Ultima actualizacion:** 2026-08-15 16:23:45 UTC
 
 ---
 
@@ -8,12 +8,12 @@
 
 | Metrica | Ultimas 24h | Ultimos 7 dias |
 |---------|-------------|----------------|
-| Sesiones | 141 | 586 |
-| Usuarios activos | 96 | 375 |
-| Nuevos usuarios | 83 | 350 |
-| Paginas vistas | 178 | 812 |
-| Tasa de rebote | 29.1% | 27.8% |
-| Duracion media sesion | 11m 48s | 6m 4s |
+| Sesiones | 419 | 1921 |
+| Usuarios activos | 333 | 1426 |
+| Nuevos usuarios | 291 | 1334 |
+| Paginas vistas | 674 | 3041 |
+| Tasa de rebote | 24.1% | 21.1% |
+| Duracion media sesion | 5m 14s | 5m 3s |
 
 ---
 
@@ -21,22 +21,25 @@
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Direct | 58 | 46 |
-| 2 | Organic Search | 50 | 35 |
-| 3 | Unassigned | 16 | 12 |
-| 4 | AI Assistant | 12 | 11 |
-| 5 | Organic Social | 5 | 3 |
+| 1 | Organic Search | 136 | 95 |
+| 2 | Direct | 126 | 90 |
+| 3 | Paid Social | 96 | 94 |
+| 4 | AI Assistant | 34 | 32 |
+| 5 | Organic Social | 22 | 19 |
+| 6 | Unassigned | 4 | 4 |
+| 7 | Referral | 3 | 3 |
 
 ## Trafico por Fuente (ultimos 7 dias)
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Organic Search | 287 | 178 |
-| 2 | Direct | 214 | 157 |
-| 3 | Unassigned | 36 | 34 |
-| 4 | Organic Social | 27 | 20 |
-| 5 | AI Assistant | 12 | 11 |
-| 6 | Referral | 12 | 7 |
+| 1 | Organic Search | 639 | 450 |
+| 2 | Direct | 551 | 386 |
+| 3 | Paid Social | 353 | 321 |
+| 4 | AI Assistant | 209 | 172 |
+| 5 | Organic Social | 119 | 94 |
+| 6 | Unassigned | 38 | 20 |
+| 7 | Referral | 13 | 8 |
 
 ---
 
@@ -44,16 +47,16 @@
 
 | # | Pagina | Visitas | Usuarios | Duracion media |
 |---|--------|---------|----------|----------------|
-| 1 | /es/ | 396 | 221 | 2m 45s |
-| 2 | /en/ | 131 | 75 | 7m 1s |
-| 3 | /de/ | 35 | 26 | 25m 34s |
-| 4 | /nl/ | 23 | 16 | 4m 11s |
-| 5 | /es/barco/remus-450 | 21 | 16 | 2m 40s |
-| 6 | /fr/ | 18 | 16 | 1m 17s |
-| 7 | /es/barco/solar-450 | 14 | 24 | 3m 49s |
-| 8 | /en/boat/astec-480 | 12 | 12 | 9m 5s |
-| 9 | /ca/ | 11 | 8 | 1m 4s |
-| 10 | /es/barco/pacific-craft-625 | 10 | 13 | 4m 22s |
+| 1 | /es/ | 1054 | 715 | 2m 47s |
+| 2 | /fr/ | 353 | 203 | 4m 58s |
+| 3 | /en/ | 332 | 181 | 6m 8s |
+| 4 | /nl/ | 143 | 81 | 6m 23s |
+| 5 | /de/ | 125 | 69 | 3m 23s |
+| 6 | /ca/ | 64 | 42 | 3m 4s |
+| 7 | /es/barco/solar-450 | 43 | 59 | 6m 43s |
+| 8 | /es/barco/remus-450 | 41 | 55 | 2m 2s |
+| 9 | /es/barco/mingolla-brava-19 | 36 | 28 | 3m 7s |
+| 10 | /es/barco/remus-450-ii | 36 | 50 | 3m 37s |
 
 ---
 
@@ -61,18 +64,18 @@
 
 | Evento | Cantidad |
 |--------|----------|
-| whatsapp_click | 15 |
-| phone_click | 0 |
-| booking_started | 11 |
+| whatsapp_click | 36 |
+| phone_click | 1 |
+| booking_started | 24 |
 | booking_request_submitted | 0 |
 | purchase | 0 |
-| generate_lead | 26 |
+| generate_lead | 24 |
 
 ## Tasa de Conversion (ultimos 7 dias)
 
 | Metrica | Valor |
 |---------|-------|
-| Reservas iniciadas | 27 |
+| Reservas iniciadas | 88 |
 | Compras completadas | 0 |
 | Tasa de conversion | **0.0%** |
 

@@ -1,7 +1,7 @@
 # Competitors Check — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-05-31 05:00:19 UTC
-**Periodo comparado:** 2026-05-24 vs 2026-05-31
+**Ultima actualizacion:** 2026-08-16 05:00:20 UTC
+**Periodo comparado:** 2026-08-09 vs 2026-08-16
 
 ---
 
@@ -15,7 +15,9 @@
 
 ### "barco sin licencia blanes"
 
-*Keyword no trackeada en la base de datos.*
+**Nuestra posicion:** -
+
+*Ningun competidor trackeado por encima de nosotros.*
 
 ### "alquiler barco costa brava"
 

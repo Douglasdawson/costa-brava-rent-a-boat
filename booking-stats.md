@@ -1,45 +1,45 @@
 # Booking Stats — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-05-31 04:00:01 UTC
+**Ultima actualizacion:** 2026-08-13 04:00:01 UTC
 
 ---
 
-## Reservas de Ayer (2026-05-30)
+## Reservas de Ayer (2026-08-12)
 
-| # | Barco | Duracion | Personas | Total |
-|---|-------|----------|----------|-------|
-| 1 | astec-400 | 2h | 3 | 130,00 EUR |
+*No hubo reservas confirmadas ayer.*
 
-**Total ayer:** 130,00 EUR (1 reservas)
 
 ---
 
 ## Revenue Mensual
 
-| Metrica | Mayo | Abril | Cambio |
-|---------|------|-------|--------|
-| Revenue | 2950,00 EUR | 0,00 EUR | +0.0% |
-| Reservas | 18 | 0 | +18 |
+| Metrica | Agosto | Julio | Cambio |
+|---------|--------|-------|--------|
+| Revenue | 220,00 EUR | 880,00 EUR | -75.0% |
+| Reservas | 1 | 4 | -3 |
 
-*Nota: Mayo incluye datos hasta hoy (dia 31 de 31).*
+*Nota: Agosto incluye datos hasta hoy (dia 13 de 31).*
 
 ---
 
-## Ocupacion por Barco (Mayo, hasta hoy)
+## Ocupacion por Barco (Agosto, hasta hoy)
 
 | Barco | Reservas | Horas | Ocupacion | Revenue |
 |-------|----------|-------|-----------|---------|
-| Remus 450 | 4 | 16h | 5.2%  | 655,00 EUR |
-| Solar 450 | 3 | 10h | 3.2%  | 430,00 EUR |
-| Pacific Craft 625 | 1 | 8h | 2.6%  | 350,00 EUR |
-| Astec 480 | 2 | 8h | 2.6%  | 365,00 EUR |
-| Excursión Privada con Capitán | 1 | 2h | 0.6%  | 270,00 EUR |
-| Trimarchi 57S | 0 | 0h | 0.0%  | 0,00 EUR |
-| Mingolla Brava 19 | 0 | 0h | 0.0%  | 0,00 EUR |
+| Remus 450 | 1 | 4h | 3.1%  | 220,00 EUR |
 | Remus 450 II | 0 | 0h | 0.0%  | 0,00 EUR |
+| Excursión Privada con Capitán | 0 | 0h | 0.0%  | 0,00 EUR |
+| Pacific Craft 625 | 0 | 0h | 0.0%  | 0,00 EUR |
+| Trimarchi 57S | 0 | 0h | 0.0%  | 0,00 EUR |
+| Circuito en Jet Ski | 0 | 0h | 0.0%  | 0,00 EUR |
+| Excursión en Jet Ski con Monitor | 0 | 0h | 0.0%  | 0,00 EUR |
+| Solar 450 | 0 | 0h | 0.0%  | 0,00 EUR |
+| E-Foil en Blanes | 0 | 0h | 0.0%  | 0,00 EUR |
+| Astec 480 | 0 | 0h | 0.0%  | 0,00 EUR |
+| Mingolla Brava 19 | 0 | 0h | 0.0%  | 0,00 EUR |
 
-**Mas demandado:** Remus 450 (16h, 5.2%)
-**Menos demandado:** Remus 450 II (0h, 0.0%)
+**Mas demandado:** Remus 450 (4h, 3.1%)
+**Menos demandado:** Mingolla Brava 19 (0h, 0.0%)
 
 ---
 

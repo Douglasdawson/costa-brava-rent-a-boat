@@ -10,10 +10,10 @@ import {
   Clock,
   Users,
   Ship,
-  MessageCircle,
   ChevronRight,
   Globe,
 } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
@@ -987,7 +987,7 @@ export default function AboutPage() {
               variant="secondary"
               onClick={handleBookingWhatsApp}
             >
-              <MessageCircle className="w-5 h-5 mr-2" />
+              <SiWhatsapp className="w-5 h-5 mr-2" aria-hidden="true" />
               {txt.ctaWhatsApp}
             </Button>
             <a href={localizedPath("home") + "#fleet"}>

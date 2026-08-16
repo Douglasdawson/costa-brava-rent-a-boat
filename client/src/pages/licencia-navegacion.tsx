@@ -6,8 +6,8 @@ import {
   CheckCircle2,
   GraduationCap,
   LifeBuoy,
-  MessageCircle,
 } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -49,8 +49,8 @@ export default function NavigationLicensePage() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const heroImage = "/images/hero/hero-blanes.webp";
-  const heroImageMobile = "/images/hero/hero-blanes-mobile.webp";
+  const heroImage =
+    "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-pareja-navegando.webp";
   const fleetImage =
     "/images/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-amigos-snorkel.webp";
 
@@ -77,24 +77,15 @@ export default function NavigationLicensePage() {
 
       {/* HERO */}
       <section className="relative isolate flex min-h-[70vh] items-center overflow-hidden pb-16 pt-28">
-        <picture>
-          <source
-            media="(max-width: 640px)"
-            type="image/avif"
-            srcSet="/images/hero/hero-blanes-mobile.avif"
-          />
-          <source media="(max-width: 640px)" srcSet={heroImageMobile} />
-          <source type="image/avif" srcSet="/images/hero/hero-blanes.avif" />
-          <img
-            src={heroImage}
-            alt={p?.hero?.title || "Licencia de Navegación en Blanes"}
-            width={1920}
-            height={1072}
-            decoding="async"
-            draggable={false}
-            className={`absolute inset-0 -z-10 h-full w-full object-cover will-change-transform transition-transform duration-[1200ms] ease-out ${mounted ? "scale-100" : "scale-[1.06]"}`}
-          />
-        </picture>
+        <img
+          src={heroImage}
+          alt={p?.hero?.title || "Licencia de Navegación en Blanes"}
+          width={1180}
+          height={750}
+          decoding="async"
+          draggable={false}
+          className={`absolute inset-0 -z-10 h-full w-full object-cover will-change-transform transition-transform duration-[1200ms] ease-out ${mounted ? "scale-100" : "scale-[1.06]"}`}
+        />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-black/65" />
 
         <div
@@ -109,7 +100,7 @@ export default function NavigationLicensePage() {
           <div className="mt-8">
             <a href={whatsappUrl} target="_blank" rel="noopener" className={`${NAVY_CTA} min-h-12 px-9 text-base`}>
               {p?.ctaButton}
-              <MessageCircle className="h-5 w-5" />
+              <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
             </a>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -279,7 +270,7 @@ export default function NavigationLicensePage() {
             className={`${NAVY_CTA} mt-6 min-h-12 px-9 text-base`}
           >
             {p?.ctaButton}
-            <MessageCircle className="h-5 w-5" />
+            <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
           </a>
         </div>
       </section>
@@ -298,7 +289,7 @@ export default function NavigationLicensePage() {
             className={`${NAVY_CTA} min-h-11 flex-shrink-0 px-6 text-sm`}
           >
             {p?.navLabel}
-            <MessageCircle className="h-4 w-4" />
+            <SiWhatsapp className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
       </div>

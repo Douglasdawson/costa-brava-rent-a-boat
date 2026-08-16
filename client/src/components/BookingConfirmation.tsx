@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { CheckCircle2, Copy, Share2, Gift, X, Clock, MapPin, MessageCircle } from "lucide-react";
+import { CheckCircle2, Copy, Share2, Gift, X, Clock, MapPin } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { formatBookingDate } from "@/utils/intl-helpers";
@@ -93,7 +94,7 @@ export function BookingConfirmation({
   };
 
   // Timeline step icons
-  const timelineIcons = [MessageCircle, Clock, MapPin];
+  const timelineIcons = [SiWhatsapp, Clock, MapPin];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/50 p-4" onClick={onClose}>
@@ -232,7 +233,7 @@ export function BookingConfirmation({
               onClick={handleShareWhatsApp}
               className="flex-1 inline-flex items-center justify-center gap-1.5 bg-success hover:bg-success/90 text-success-foreground text-sm font-medium py-2 px-3 rounded-lg transition-colors"
             >
-              <MessageCircle className="h-4 w-4" />
+              <SiWhatsapp className="h-4 w-4" aria-hidden="true" />
               {ct.shareWhatsApp}
             </button>
             <button

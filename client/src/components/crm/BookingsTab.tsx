@@ -19,13 +19,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import {
   Search,
   Eye,
-  MessageCircle,
   Calendar,
   ArrowUp,
   ArrowDown,
   Star,
   Check,
 } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import type { Booking, Boat } from "@shared/schema";
@@ -368,7 +368,7 @@ export function BookingsTab({
                             onClick={() => onOpenWhatsApp(booking.customerPhone, booking.customerName)}
                             title="WhatsApp"
                           >
-                            <MessageCircle className="w-4 h-4 text-green-600" />
+                            <SiWhatsapp className="w-4 h-4 text-green-600" aria-hidden="true" />
                           </Button>
                           <Button
                             variant="ghost"
@@ -476,7 +476,7 @@ export function BookingsTab({
                         size="sm"
                         onClick={(e) => { e.stopPropagation(); onOpenWhatsApp(booking.customerPhone, booking.customerName); }}
                       >
-                        <MessageCircle className="w-4 h-4 text-green-600" />
+                        <SiWhatsapp className="w-4 h-4 text-green-600" aria-hidden="true" />
                       </Button>
                       <Button
                         variant="ghost"

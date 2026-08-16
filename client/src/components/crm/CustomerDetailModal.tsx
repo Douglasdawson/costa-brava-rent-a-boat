@@ -23,13 +23,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Save,
-  MessageCircle,
   Calendar,
   Euro,
   TrendingUp,
   Clock,
   Loader2,
 } from "lucide-react";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -211,7 +211,7 @@ export function CustomerDetailModal({
                   className="bg-green-50 border-green-300 text-green-700 hover:bg-green-100"
                   onClick={() => onOpenWhatsApp(customer.phone, customer.name)}
                 >
-                  <MessageCircle className="w-4 h-4 mr-2" />
+                  <SiWhatsapp className="w-4 h-4 mr-2" aria-hidden="true" />
                   WhatsApp
                 </Button>
               </div>

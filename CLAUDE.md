@@ -305,7 +305,15 @@ Antes de tocar cualquiera de las tres cifras, lee el PDF del contrato: la web es
 
 **RD 1188/2025 (BOE 30-dic-2025): fin del alquiler sin titulacion.** Desde el **1-oct-2026** el arrendatario de cualquier embarcacion a motor debe tener titulo nautico: la exencion 5m/15CV del RD 875/2014 queda restringida al uso privado. Hasta el 30-sep-2026 la oferta "sin licencia" es legal y NO se toca (temporada alta). Reglas para copy nuevo: (1) cualquier texto que prometa "alquiler sin licencia" lleva marco temporal ("hasta el 30-sep-2026") o el framing nuevo "titulin en 1 dia"; (2) la promesa "con el titulin llevas la flota" se limita a barcos de hasta 6 m (el Pacific Craft 625 mide 6,24 m: discrepancia pendiente de arbitrar con el owner); (3) pagina pilar `/es/licencia-navegacion-titulin` (clave i18n `navigationLicensePage`, 8 idiomas) + post `fin-alquiler-barcos-sin-licencia-2026` + FAQ `normativa2026`/`titulin` + facts `license-free-rental-end-date`/`navigation-license-course`. **Pivote de posicionamiento hecho el 2026-08-16** (adelantado a peticion del owner, no en octubre): la home, su SEO y toda la capa GEO ya lideran con titulacion. El copy dual (titulacion primero + oferta sin licencia datada) NO se gobierna con un feature flag sino con `isLicenseFreeEraActive()` de `shared/constants.ts`, funcion pura sobre `LICENSE_FREE_LAST_DAY = "2026-09-30"` en zona Europe/Madrid: el 1-oct el mensaje se apaga solo. Lo consumen `Hero.tsx` (franja bajo los CTA) y `LicenseComparisonSection.tsx` (banda bajo las 3 cards).
 
-⚠️ **El 1-oct-2026 hay que REDESPLEGAR aunque no cambie ni una linea de codigo**: los snapshots de `dist/prerendered` congelan el HTML del build, asi que la home prerenderizada seguiria diciendo "hasta el 30 de septiembre" hasta el siguiente `build:full`.
+⚠️ **El 1-oct-2026 hay que REDESPLEGAR aunque no cambie ni una linea de codigo** para que el copy datado se regenere.
+
+## Prerender: NO corre en produccion, y es a proposito (verificado 2026-08-16)
+
+Coolify tiene `build_command = "npm run build"`, que **arranca borrando `dist/prerendered`** y nunca llama al prerender. Es decir: **produccion no tiene snapshots y sirve siempre el shell SSR de `seoInjector`** con su `bodyFallback`. Toda la maquinaria de prerender (`scripts/prerender.ts`, `prerenderedMiddleware`, el guard de frescura) esta montada pero inactiva.
+
+**No lo "arregles" cambiando el build command a `build:deploy`.** `scripts/prerender.ts` levanta el servidor real (`node dist/index.js`) para rastrearlo, y `server/config.ts` valida con Zod que existan `DATABASE_URL`, `JWT_SECRET` y `ADMIN_PIN`. En Coolify hay **0 variables marcadas como build-time**, asi que el prerender siempre fallaria al arrancar; activarlo obligaria a exponer la connection string de Neon PROD y el JWT secret en la capa de build de la imagen. No compensa.
+
+**Consecuencia practica:** el `bodyFallback` de `resolveMeta` NO es una red de seguridad, es **lo unico que ven los crawlers sin JS** (GPTBot, ClaudeBot, PerplexityBot y buena parte de los bots sociales). Al tocar el copy de una pagina, el bodyFallback es tan importante como el JSX: si un enlace o un hecho solo existe tras hidratar, para esos bots no existe. Por eso el de la home enlaza explicitamente a barcos-con-licencia, al titulin y a la excursion con patron.
 
 ## Flujo de Trabajo Recomendado
 

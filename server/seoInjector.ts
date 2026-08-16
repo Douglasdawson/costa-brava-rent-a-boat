@@ -2696,12 +2696,32 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       const ctaLabel = isEn ? "Book via WhatsApp" : "Reserva por WhatsApp";
       const fleetLabel = isEn ? "View fleet" : "Ver flota";
       const faqLabel = isEn ? "FAQ" : "Preguntas frecuentes";
+      // The three money pages of the 2026 pivot. Without these the JS-less crawler
+      // reads about the licence requirement and has no route to act on it: the menu
+      // and hero links only exist after hydration.
+      // Labels come from the locale bundle, not an es/en ternary: this fallback is
+      // the ONLY thing GPTBot/ClaudeBot read, so the other six languages must not
+      // get Spanish anchor text.
+      const tHome = I18N_BY_LANG[lang] ?? i18nEs;
+      const licensedLabel = tHome.boats?.withLicense ?? (isEn ? "Licensed boats" : "Barcos con licencia");
+      const licensedHref = `${BASE_URL}/${lang}/${getSlugForPage("categoryLicensed", lang)}`;
+      const titulinLabel = tHome.navigationLicensePage?.navLabel
+        ?? (isEn ? "Get your licence in 1 day" : "Sácate el titulín en 1 día");
+      const titulinHref = `${BASE_URL}/${lang}/${getSlugForPage("navigationLicense", lang)}`;
+      const captainedLabel = tHome.captainedPage?.crossLinkLabel
+        ?? (isEn ? "Boat with skipper" : "Barco con patrón");
+      const captainedHref = `${BASE_URL}/${lang}/${getSlugForPage("categoryCaptained", lang)}`;
       const bodyFallback = `
 <h1>${esc(homeH1)}</h1>
 <p>${esc(homeSummary)}</p>
 <ul>
 ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
 </ul>
+<p>
+  <a href="${licensedHref}">${esc(licensedLabel)}</a> ·
+  <a href="${titulinHref}">${esc(titulinLabel)}</a> ·
+  <a href="${captainedHref}">${esc(captainedLabel)}</a>
+</p>
 <p>
   <a href="https://wa.me/34611500372">${esc(ctaLabel)}</a> ·
   <a href="${BASE_URL}/barcos">${esc(fleetLabel)}</a> ·

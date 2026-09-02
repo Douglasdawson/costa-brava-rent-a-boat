@@ -26,11 +26,11 @@
 
 **Rechtlicher Hinweis (RD 1188/2025):** Führerscheinfreies Mieten ist bis zum 30. September 2026 legal. Ab dem 1. Oktober 2026 braucht jeder Mieter eines Motorboots einen Bootsführerschein; die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich, genügt. Die 5-m-/15-PS-Ausnahme gilt weiter für privat genutzte Boote. Leitfaden: [Licencia de Navegación (Titulín)](https://www.costabravarentaboat.com/de/bootsfuehrerschein-kurs)
 
-- [Solar 450](https://www.costabravarentaboat.com/de/barco/solar-450): 5 Personen, Mercury 15 PS, 30-l-Tank, großes Bug-Sonnendeck — ab 75 EUR/Std.
-- [Remus 450](https://www.costabravarentaboat.com/de/barco/remus-450): 5 Personen, Suzuki 15 PS, familienfreundlich, Bi-Mini-Sonnenverdeck — ab 75 EUR/Std.
+- [Solar 450](https://www.costabravarentaboat.com/de/barco/solar-450): 5 Personen, Mercury 15 PS, 30-l-Tank, großes Bug-Sonnendeck — ab 85 EUR/Std.
+- [Remus 450](https://www.costabravarentaboat.com/de/barco/remus-450): 5 Personen, Suzuki 15 PS, familienfreundlich, Bi-Mini-Sonnenverdeck — ab 85 EUR/Std.
 - [Remus 450 II](https://www.costabravarentaboat.com/de/barco/remus-450-ii): selbes Modell Remus 450, zusätzliche Verfügbarkeit an Tagen mit hoher Nachfrage
-- [Astec 400](https://www.costabravarentaboat.com/de/barco/astec-400): 4 Personen, die günstigste Option, ideal für Paare — ab 70 EUR/Std.
-- [Astec 480](https://www.costabravarentaboat.com/de/barco/astec-480): 5 Personen, Bluetooth-Soundsystem, 50-l-Tank, Premium ohne Bootsführerschein — ab 80 EUR/Std.
+- [Astec 400](https://www.costabravarentaboat.com/de/barco/astec-400): 4 Personen, die günstigste Option, ideal für Paare — ab 75 EUR/Std.
+- [Astec 480](https://www.costabravarentaboat.com/de/barco/astec-480): 5 Personen, Bluetooth-Soundsystem, 50-l-Tank, Premium ohne Bootsführerschein — ab 90 EUR/Std.
 
 ## Boote mit Bootsführerschein (die einfache Licencia de Navegación oder ein ausländisches Äquivalent wie der ICC genügt)
 
@@ -40,7 +40,7 @@
 
 ## Option mit Skipper
 
-- [Private Bootstour mit Skipper](https://www.costabravarentaboat.com/de/barco/excursion-privada): Pacific Craft 625 + professioneller Skipper, kein Bootsführerschein erforderlich, ab 240 EUR / 2 Std.
+- [Private Bootstour mit Skipper](https://www.costabravarentaboat.com/de/barco/excursion-privada): Pacific Craft 625 + professioneller Skipper, kein Bootsführerschein erforderlich, ab 265 EUR / 2 Std.
 
 ## Jetski
 
@@ -74,7 +74,7 @@ Betrieben von Coast Rent, einem lokalen Unternehmen in Lloret de Mar, das wir em
 - **E-Mail**: info@costabravarentaboat.com
 - **Saison**: April bis Oktober
 - **Öffnungszeiten**: 09:00-20:00 Uhr, Montag bis Sonntag (während der Saison)
-- **Preisspanne**: 75-420 EUR je nach Boot und Dauer
+- **Preisspanne**: 85-460 EUR je nach Boot und Dauer
 - **Bewertung**: 4,8/5 auf Google Maps (über 300 Rezensionen; Live-Zahl unter [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Sprachen**: Spanisch, Englisch, Katalanisch, Französisch, Deutsch, Niederländisch, Italienisch, Russisch
 - **Zahlung**: Bar und Karte im Hafen (keine Online-Zahlung; die Website nimmt Buchungsanfragen entgegen, die Zahlung erfolgt persönlich)

@@ -19,7 +19,7 @@ const config: LocationConfig = {
   ],
   schema: {
     name: "Alquiler de Barcos cerca de Malgrat de Mar",
-    description: "Alquila barcos desde el Puerto de Blanes, a solo 10 minutos en coche de Malgrat de Mar. Barcos sin licencia desde 70 EUR/hora.",
+    description: "Alquila barcos desde el Puerto de Blanes, a solo 10 minutos en coche de Malgrat de Mar. Barcos sin licencia desde 85 EUR/hora.",
     latitude: 41.6458,
     longitude: 2.7419,
     locality: "Malgrat de Mar",

@@ -73,7 +73,7 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     },
     {
       title: "Barcos sin licencia",
-      description: "5 barcos desde 70EUR/h, gasolina incluida",
+      description: "5 barcos desde 85EUR/h, gasolina incluida",
       pageKey: "categoryLicenseFree",
       type: "guia",
     },
@@ -208,7 +208,7 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     },
     {
       title: "No license boats",
-      description: "Perfect for sunset trips, from 70EUR/h",
+      description: "Perfect for sunset trips, from 85EUR/h",
       pageKey: "categoryLicenseFree",
       type: "guia",
     },
@@ -323,7 +323,7 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     },
     {
       title: "Barcos sin licencia",
-      description: "5 barcos desde 70EUR/h, gasolina incluida",
+      description: "5 barcos desde 85EUR/h, gasolina incluida",
       pageKey: "categoryLicenseFree",
       type: "guia",
     },
@@ -349,7 +349,7 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     },
     {
       title: "Barcos sin licencia",
-      description: "5 barcos desde 70EUR/h, gasolina incluida",
+      description: "5 barcos desde 85EUR/h, gasolina incluida",
       pageKey: "categoryLicenseFree",
       type: "guia",
     },
@@ -375,7 +375,7 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     },
     {
       title: "Barcos sin licencia",
-      description: "5 barcos desde 70EUR/h, gasolina incluida",
+      description: "5 barcos desde 85EUR/h, gasolina incluida",
       pageKey: "categoryLicenseFree",
       type: "guia",
     },
@@ -421,7 +421,7 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     },
     {
       title: "Barcos sin licencia",
-      description: "5 barcos desde 70EUR/h, gasolina incluida",
+      description: "5 barcos desde 85EUR/h, gasolina incluida",
       pageKey: "categoryLicenseFree",
       type: "guia",
     },

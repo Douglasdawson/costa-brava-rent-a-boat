@@ -44,7 +44,7 @@ export const HOW_TO_BLOG_POSTS: Record<string, HowToBlogEntry> = {
     steps: [
       {
         name: "Elige el barco y la duración",
-        text: "Entra en costabravarentaboat.com, selecciona un barco sin licencia (Solar 450, Remus 450, Astec 400 o 480) y elige duración: 1h, 2h, 4h, 6h o día completo. Desde 70€/hora con gasolina incluida.",
+        text: "Entra en costabravarentaboat.com, selecciona un barco sin licencia (Solar 450, Remus 450, Astec 400 o 480) y elige duración: 1h, 2h, 4h, 6h o día completo. Desde 85€/hora con gasolina incluida.",
       },
       {
         name: "Reserva con fecha y hora",

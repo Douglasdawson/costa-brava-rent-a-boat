@@ -65,7 +65,7 @@ export default function LocationPinedaDeMarPage() {
   const locationSchema = {
     "@type": "TouristDestination",
     "name": page?.schema?.name ?? "Alquiler de Barcos cerca de Pineda de Mar",
-    "description": page?.schema?.description ?? "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos en coche de Pineda de Mar. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+    "description": page?.schema?.description ?? "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos en coche de Pineda de Mar. Barcos sin licencia desde 85 EUR/hora con gasolina incluida.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.6281,
@@ -127,10 +127,10 @@ export default function LocationPinedaDeMarPage() {
   return (
     <div className="min-h-screen">
       <SEO
-        title={page?.seo?.title ?? "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 70€/h"}
-        description={page?.seo?.description ?? "¿Alojado en Pineda de Mar? Puerto Blanes a 18 min en coche o 12 min en tren R1. Alquila barco sin licencia desde 70€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa."}
+        title={page?.seo?.title ?? "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 85€/h"}
+        description={page?.seo?.description ?? "¿Alojado en Pineda de Mar? Puerto Blanes a 18 min en coche o 12 min en tren R1. Alquila barco sin licencia desde 85€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa."}
         ogTitle={page?.seo?.ogTitle ?? "Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes"}
-        ogDescription={page?.seo?.ogDescription ?? "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 70€/h. 4.8★ Google."}
+        ogDescription={page?.seo?.ogDescription ?? "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 85€/h. 4.8★ Google."}
         canonical={getCanonicalUrl("/alquiler-barcos-pineda-de-mar")}
         jsonLd={combinedJsonLd}
       />

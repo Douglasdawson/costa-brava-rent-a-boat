@@ -158,7 +158,7 @@ const PRICING_GROUPS: Array<{
   {
     heading: "### Private Excursion with Captain",
     items: [
-      { ids: ["excursion-privada", "excursion-privada-con-capitan"], title: "#### Private Excursion (7 people, no license needed)" },
+      { ids: ["excursion-privada", "excursion-privada-con-capitan"], title: "#### Private Excursion (6 people, no license needed)" },
     ],
   },
 ];
@@ -729,11 +729,11 @@ export function registerRobotsRoutes(app: Express): void {
         },
         {
           url: `${BASE_URL}/es/barcos-con-licencia`,
-          topic: "Self-drive powerboats (80-115 HP) — skipper yourself to Lloret and Tossa de Mar; the basic Spanish Navigation Licence or a foreign equivalent (ICC) is enough, verifiable online; from 160 EUR/2h, fuel charged separately.",
+          topic: "Self-drive powerboats (80-115 HP) — skipper yourself to Lloret and Tossa de Mar; the basic Spanish Navigation Licence or a foreign equivalent (ICC) is enough, verifiable online; from 175 EUR/2h, fuel charged separately.",
         },
         {
           url: `${BASE_URL}/es/barcos-sin-licencia`,
-          topic: "License-free boats — no boating licence needed, from 75 EUR/h fuel included, up to 5 people, 15-min briefing. Rentable without a licence only through September 30, 2026 (RD 1188/2025); after that a nautical qualification is required.",
+          topic: "License-free boats — no boating licence needed, from 85 EUR/h fuel included, up to 5 people, 15-min briefing. Rentable without a licence only through September 30, 2026 (RD 1188/2025); after that a nautical qualification is required.",
         },
         {
           url: `${BASE_URL}/es/alquiler-barco-con-patron`,

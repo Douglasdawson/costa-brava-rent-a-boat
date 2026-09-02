@@ -9,7 +9,7 @@ import {
 const BOAT_ID = "solar-450";
 const WEEKDAY_BAJA = new Date("2026-04-06T12:00:00"); // Monday in April
 const DURATION = "2h" as const;
-const BASE_PRICE = 115;
+const BASE_PRICE = 125;
 
 describe("calculateDynamicPrice", () => {
   describe("normal demand (between thresholds)", () => {
@@ -44,7 +44,7 @@ describe("calculateDynamicPrice", () => {
     it("applies full maxSurcharge at 100% occupancy", () => {
       const result = calculateDynamicPrice(BOAT_ID, WEEKDAY_BAJA, DURATION, 1.0);
       // 115 * 1.25 = 143.75 -> 144
-      expect(result.adjustedPrice).toBe(144);
+      expect(result.adjustedPrice).toBe(156);
       expect(result.adjustmentFactor).toBe(1.25);
       expect(result.reason).toBe("high_demand");
     });
@@ -55,7 +55,7 @@ describe("calculateDynamicPrice", () => {
       // factor = 1 + 0.25 * 0.5 = 1.125
       // 115 * 1.125 = 129.375 -> 129
       expect(result.adjustmentFactor).toBeCloseTo(1.125, 5);
-      expect(result.adjustedPrice).toBe(129);
+      expect(result.adjustedPrice).toBe(141);
       expect(result.reason).toBe("high_demand");
     });
 
@@ -65,7 +65,7 @@ describe("calculateDynamicPrice", () => {
       // factor = 1 + 0.25 * 0.6 = 1.15
       // 115 * 1.15 = 132.25 -> 132
       expect(result.adjustmentFactor).toBeCloseTo(1.15, 5);
-      expect(result.adjustedPrice).toBe(132);
+      expect(result.adjustedPrice).toBe(144);
       expect(result.reason).toBe("high_demand");
     });
   });
@@ -81,7 +81,7 @@ describe("calculateDynamicPrice", () => {
     it("applies full maxDiscount at 0% occupancy", () => {
       const result = calculateDynamicPrice(BOAT_ID, WEEKDAY_BAJA, DURATION, 0.0);
       // 115 * 0.75 = 86.25 -> 86
-      expect(result.adjustedPrice).toBe(86);
+      expect(result.adjustedPrice).toBe(94);
       expect(result.adjustmentFactor).toBe(0.75);
       expect(result.reason).toBe("low_demand");
     });
@@ -92,7 +92,7 @@ describe("calculateDynamicPrice", () => {
       // factor = 1 - 0.25 * 0.5 = 0.875
       // 115 * 0.875 = 100.625 -> 101
       expect(result.adjustmentFactor).toBeCloseTo(0.875, 5);
-      expect(result.adjustedPrice).toBe(101);
+      expect(result.adjustedPrice).toBe(109);
       expect(result.reason).toBe("low_demand");
     });
 
@@ -102,7 +102,7 @@ describe("calculateDynamicPrice", () => {
       // factor = 1 - 0.25 * 0.6667 = 0.8333
       // 115 * 0.8333 = 95.83 -> 96
       expect(result.adjustmentFactor).toBeCloseTo(0.8333, 3);
-      expect(result.adjustedPrice).toBe(96);
+      expect(result.adjustedPrice).toBe(104);
       expect(result.reason).toBe("low_demand");
     });
   });
@@ -132,14 +132,14 @@ describe("calculateDynamicPrice", () => {
     it("clamps occupancy above 1 to 1", () => {
       const result = calculateDynamicPrice(BOAT_ID, WEEKDAY_BAJA, DURATION, 1.5);
       expect(result.occupancyRate).toBe(1);
-      expect(result.adjustedPrice).toBe(144); // same as 100%
+      expect(result.adjustedPrice).toBe(156); // same as 100%
       expect(result.reason).toBe("high_demand");
     });
 
     it("clamps occupancy below 0 to 0", () => {
       const result = calculateDynamicPrice(BOAT_ID, WEEKDAY_BAJA, DURATION, -0.5);
       expect(result.occupancyRate).toBe(0);
-      expect(result.adjustedPrice).toBe(86); // same as 0%
+      expect(result.adjustedPrice).toBe(94); // same as 0%
       expect(result.reason).toBe("low_demand");
     });
 
@@ -148,8 +148,8 @@ describe("calculateDynamicPrice", () => {
       const saturday = new Date("2026-04-04T12:00:00");
       const result = calculateDynamicPrice(BOAT_ID, saturday, DURATION, 1.0);
       // 130 * 1.25 = 162.5 → Math.round → 163 (calculateDynamicPrice uses plain rounding)
-      expect(result.basePrice).toBe(130);
-      expect(result.adjustedPrice).toBe(163);
+      expect(result.basePrice).toBe(140);
+      expect(result.adjustedPrice).toBe(175);
       expect(result.reason).toBe("high_demand");
     });
 
@@ -158,8 +158,8 @@ describe("calculateDynamicPrice", () => {
       const augustDate = new Date("2026-08-06T12:00:00");
       const result = calculateDynamicPrice(BOAT_ID, augustDate, DURATION, 1.0);
       // 160 * 1.25 = 200
-      expect(result.basePrice).toBe(160);
-      expect(result.adjustedPrice).toBe(200);
+      expect(result.basePrice).toBe(175);
+      expect(result.adjustedPrice).toBe(219);
     });
 
     it("throws for invalid boat ID", () => {
@@ -191,11 +191,11 @@ describe("calculateDynamicPrice", () => {
 
       // 80% -> high demand, progress = (0.80 - 0.60) / (1 - 0.60) = 0.5
       // factor = 1 + 0.10 * 0.5 = 1.05
-      // 115 * 1.05 = 120.75 -> 121
+      // 125 * 1.05 = 131.25 -> 131
       const highResult = calculateDynamicPrice(BOAT_ID, WEEKDAY_BAJA, DURATION, 0.80, config);
       expect(highResult.reason).toBe("high_demand");
       expect(highResult.adjustmentFactor).toBeCloseTo(1.05, 5);
-      expect(highResult.adjustedPrice).toBe(121);
+      expect(highResult.adjustedPrice).toBe(131);
     });
 
     it("handles zero-width high demand range (threshold = 1)", () => {

@@ -178,16 +178,16 @@ Completamente salvaje y sin ningún tipo de servicio ni acceso terrestre practic
 
 **Calas 1-11 (Blanes-Lloret) — barcos sin licencia:** Todas estas calas están dentro del límite legal de 2 millas náuticas para barcos sin licencia. Nuestros barcos alcanzan las calas más cercanas (Sa Forcanera, Sant Francesc) en menos de 10 minutos, y las más lejanas del tramo sin licencia (hasta Cala de los Frares, Lloret) en unos 30 minutos. No necesitas ninguna titulación náutica — antes de salir te damos una **formación práctica de 15 minutos** sobre el manejo del barco, las normas básicas de navegación y te indicamos las mejores calas según las condiciones del día. Gasolina incluida en el precio.
 
-**Calas 12-15 (Tossa de Mar) — requieren LN o superior, o Excursión Privada con Capitán:** Las calas de Giverola, Pola, Llevadó y Morisca están fuera del alcance legal de los barcos sin licencia. Para llegar a ellas necesitas barco con **Licencia de Navegación (LN)** o superior desde 160 € (pack 2h) o nuestra **Excursión Privada con Capitán** 4h desde 380 €. El trayecto desde Blanes es de **30-45 min** hasta la zona de Tossa. Importante: los barcos con licencia **no incluyen gasolina** (calcula 30-50 € adicionales para ida y vuelta).
+**Calas 12-15 (Tossa de Mar) — requieren LN o superior, o Excursión Privada con Capitán:** Las calas de Giverola, Pola, Llevadó y Morisca están fuera del alcance legal de los barcos sin licencia. Para llegar a ellas necesitas barco con **Licencia de Navegación (LN)** o superior desde 175 € (pack 2h) o nuestra **Excursión Privada con Capitán** 4h desde 420 €. El trayecto desde Blanes es de **30-45 min** hasta la zona de Tossa. Importante: los barcos con licencia **no incluyen gasolina** (calcula 30-50 € adicionales para ida y vuelta).
 
 ### Barcos sin licencia recomendados (calas 1-11)
 
 | | Precio desde | Capacidad |
 |---|---|---|
-| [Astec 400](/es/barco/astec-400) | 70 EUR/hora | 4 personas |
-| [Solar 450](/es/barco/solar-450) | 75 EUR/hora | 5 personas |
-| [Remus 450](/es/barco/remus-450) | 75 EUR/hora | 5 personas |
-| [Astec 480](/es/barco/astec-480) | 80 EUR/hora | 5 personas |
+| [Astec 400](/es/barco/astec-400) | 75 EUR/hora | 4 personas |
+| [Solar 450](/es/barco/solar-450) | 85 EUR/hora | 5 personas |
+| [Remus 450](/es/barco/remus-450) | 85 EUR/hora | 5 personas |
+| [Astec 480](/es/barco/astec-480) | 90 EUR/hora | 5 personas |
 
 ## Reserva tu barco y descubre estas calas
 
@@ -205,7 +205,7 @@ Con más de **307 reseñas en Google y una puntuación de 4,8 estrellas**, en Co
     tags: ["alquiler barco sin licencia", "barco sin licencia blanes", "alquilar barco costa brava", "barco sin carnet blanes", "alquiler embarcacion blanes"],
     isPublished: true,
     _publishedAt: new Date("2026-03-23T10:00:00Z"),
-    excerpt: "Todo lo que necesitas saber para alquilar un barco sin licencia en Blanes: requisitos, precios desde 70EUR/hora, qué incluye el alquiler y consejos para tu primera experiencia náutica.",
+    excerpt: "Todo lo que necesitas saber para alquilar un barco sin licencia en Blanes: requisitos, precios desde 85EUR/hora, qué incluye el alquiler y consejos para tu primera experiencia náutica.",
     content: `Alquilar un barco sin licencia es una de las mejores experiencias que puedes vivir en la Costa Brava. No necesitas experiencia previa, ni título náutico, ni conocimientos especiales. En esta guía completa te explicamos absolutamente todo lo que necesitas saber para alquilar un barco sin licencia en Blanes durante la temporada 2026.
 
 ## Qué significa "barco sin licencia"
@@ -238,25 +238,25 @@ En Costa Brava Rent a Boat disponemos de **5 barcos sin licencia** adaptados a d
 - Capacidad: 4 personas
 - Motor: Suzuki 15hp
 - Lo mejor: Compacto y fácil de manejar, perfecto para parejas
-- **Desde 70EUR/hora** en temporada baja
+- **Desde 75EUR/hora** en temporada baja
 
 ### [Solar 450](/es/barco/solar-450) - El más popular
 - Capacidad: 5 personas
 - Motor: Mercury 15cv
 - Lo mejor: Gran solarium, escalera de baño, muy estable
-- **Desde 75EUR/hora** en temporada baja
+- **Desde 85EUR/hora** en temporada baja
 
 ### [Remus 450](/es/barco/remus-450) y [Remus 450 II](/es/barco/remus-450-ii) - Familiares
 - Capacidad: 5 personas
 - Motor: Suzuki 15cv
 - Lo mejor: Toldo Bi Mini amplio, perfectos para familias
-- **Desde 75EUR/hora** en temporada baja
+- **Desde 85EUR/hora** en temporada baja
 
 ### [Astec 480](/es/barco/astec-480) - El más espacioso
 - Capacidad: 5 personas
 - Motor: Parsun 40/15cv
 - Lo mejor: Equipo de música bluetooth, más espacio a bordo
-- **Desde 80EUR/hora** en temporada baja
+- **Desde 90EUR/hora** en temporada baja
 
 ## Qué incluye el alquiler
 
@@ -277,10 +277,10 @@ Los precios varían según la temporada:
 ### Temporada baja (abril - junio, septiembre - cierre)
 | Duración | Astec 400 | Solar 450 / Remus 450 | Astec 480 |
 |----------|-----------|------------------------|-----------|
-| 1 hora   | 70EUR       | 75EUR                    | 80EUR       |
-| 2 horas  | 105EUR      | 115EUR                   | 130EUR      |
-| 4 horas  | 135EUR      | 150EUR                   | 180EUR      |
-| 8 horas  | 200EUR      | 220EUR                   | 270EUR      |
+| 1 hora   | 75EUR       | 85EUR                    | 90EUR       |
+| 2 horas  | 110EUR      | 125EUR                   | 165EUR      |
+| 4 horas  | 155EUR      | 165EUR                   | 220EUR      |
+| 8 horas  | 240EUR      | 220EUR                   | 295EUR      |
 
 ### Temporada media (julio)
 Los precios aumentan entre un 10% y un 20% respecto a temporada baja.
@@ -451,11 +451,11 @@ Contáctanos por [WhatsApp](https://wa.me/34611500372) o reserva directamente en
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/boat-rental-costa-brava-english-guide.webp",
-    metaDescription: "Complete English guide to renting a boat in Costa Brava, Spain. No license needed, prices from 70EUR/h, beautiful coves near Blanes.",
+    metaDescription: "Complete English guide to renting a boat in Costa Brava, Spain. No license needed, prices from 85EUR/h, beautiful coves near Blanes.",
     tags: ["boat rental costa brava", "rent boat blanes", "costa brava boat hire", "no license boat spain", "boat rental spain"],
     isPublished: true,
     _publishedAt: new Date("2026-04-06T10:00:00Z"),
-    excerpt: "Everything English-speaking visitors need to know about renting a boat in Costa Brava. No license required, prices from 70EUR per hour, and stunning Mediterranean coves.",
+    excerpt: "Everything English-speaking visitors need to know about renting a boat in Costa Brava. No license required, prices from 85EUR per hour, and stunning Mediterranean coves.",
     content: `Planning a trip to Costa Brava and dreaming of exploring the coastline from the water? Renting a boat is one of the best experiences you can have in this stunning part of Spain. This complete guide covers everything English-speaking visitors need to know about boat rental in Blanes, the gateway to Costa Brava.
 
 ## Getting to Blanes
@@ -487,11 +487,11 @@ If you **do** have a Spanish or international boating license, you can rent our 
 
 | Boat | Capacity | Best For | Price From |
 |------|----------|----------|------------|
-| [Astec 400](/es/barco/astec-400) | 4 people | Couples | 70EUR/hour |
-| [Solar 450](/es/barco/solar-450) | 5 people | Families | 75EUR/hour |
-| [Remus 450](/es/barco/remus-450) | 5 people | Families | 75EUR/hour |
-| [Remus 450 II](/es/barco/remus-450-ii) | 5 people | Groups | 75EUR/hour |
-| [Astec 480](/es/barco/astec-480) | 5 people | Groups (Bluetooth) | 80EUR/hour |
+| [Astec 400](/es/barco/astec-400) | 4 people | Couples | 75EUR/hour |
+| [Solar 450](/es/barco/solar-450) | 5 people | Families | 85EUR/hour |
+| [Remus 450](/es/barco/remus-450) | 5 people | Families | 85EUR/hour |
+| [Remus 450 II](/es/barco/remus-450-ii) | 5 people | Groups | 85EUR/hour |
+| [Astec 480](/es/barco/astec-480) | 5 people | Groups (Bluetooth) | 90EUR/hour |
 
 **All no-license boats include:** Fuel, insurance, mooring, cleaning, safety equipment, and a personal safety briefing.
 
@@ -499,9 +499,9 @@ If you **do** have a Spanish or international boating license, you can rent our 
 
 | Boat | Capacity | Engine | Price From |
 |------|----------|--------|------------|
-| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 people | Mercury 80hp | 160EUR/2h |
-| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 people | Selva 110hp | 160EUR/2h |
-| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 people | Yamaha 115hp | 180EUR/2h |
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 people | Mercury 80hp | 175EUR/2h |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 people | Selva 110hp | 175EUR/2h |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 people | Yamaha 115hp | 200EUR/2h |
 
 **Licensed boats include:** Insurance, mooring, cleaning, and safety equipment. **Fuel is NOT included** for licensed boats.
 
@@ -1064,7 +1064,7 @@ Para niños más mayores (7-12 años), un **día completo (8 horas)** permite ex
 
 ## Precios y cómo reservar
 
-Alquilar un barco para un día en familia tiene un coste desde **130 EUR en temporada baja** hasta **295 EUR en agosto** para un día completo, dependiendo del barco elegido. La gasolina está incluida en todos los precios, así como los chalecos salvavidas para adultos y niños.
+Alquilar un barco para un día en familia tiene un coste desde **220 EUR en temporada baja** hasta **405 EUR en agosto** para un día completo, dependiendo del barco elegido. La gasolina está incluida en todos los precios, así como los chalecos salvavidas para adultos y niños.
 
 Extras recomendados para familias:
 - **Toldo de sol:** imprescindible en verano
@@ -1969,21 +1969,21 @@ A continuación te mostramos los precios orientativos para cada barco de nuestra
 
 | Barco | Personas | T. Baja | T. Media | T. Alta |
 |-------|----------|---------|----------|---------|
-| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 90 EUR | Desde 120 EUR | Desde 160 EUR |
-| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 100 EUR | Desde 140 EUR | Desde 180 EUR |
-| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 100 EUR | Desde 140 EUR | Desde 180 EUR |
-| [Astec 480](/es/barco/astec-480) | Hasta 6 | Desde 110 EUR | Desde 150 EUR | Desde 200 EUR |
-| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 120 EUR | Desde 160 EUR | Desde 210 EUR |
+| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 155 EUR | Desde 185 EUR | Desde 210 EUR |
+| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 165 EUR | Desde 220 EUR | Desde 240 EUR |
+| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 165 EUR | Desde 220 EUR | Desde 240 EUR |
+| [Astec 480](/es/barco/astec-480) | Hasta 6 | Desde 220 EUR | Desde 255 EUR | Desde 275 EUR |
+| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 165 EUR | Desde 220 EUR | Desde 240 EUR |
 
 ### Alquiler de día completo (8 horas)
 
 | Barco | Personas | T. Baja | T. Media | T. Alta |
 |-------|----------|---------|----------|---------|
-| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 130 EUR | Desde 180 EUR | Desde 250 EUR |
-| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 150 EUR | Desde 200 EUR | Desde 270 EUR |
-| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 150 EUR | Desde 200 EUR | Desde 270 EUR |
-| [Astec 480](/es/barco/astec-480) | Hasta 6 | Desde 170 EUR | Desde 220 EUR | Desde 295 EUR |
-| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 180 EUR | Desde 230 EUR | Desde 300 EUR |
+| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 220 EUR | Desde 275 EUR | Desde 310 EUR |
+| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 240 EUR | Desde 295 EUR | Desde 350 EUR |
+| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 240 EUR | Desde 295 EUR | Desde 350 EUR |
+| [Astec 480](/es/barco/astec-480) | Hasta 6 | Desde 405 EUR | Desde 375 EUR | Desde 295 EUR |
+| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 240 EUR | Desde 295 EUR | Desde 350 EUR |
 
 **Nota:** Los precios son orientativos y pueden variar. Consulta los [precios exactos y disponibilidad en tiempo real](/es/barcos) en nuestra web.
 
@@ -2345,8 +2345,8 @@ La luz de septiembre es especial. El sol está más bajo que en pleno verano, cr
 
 Septiembre es **temporada media** en Costa Brava Rent a Boat, lo que significa precios significativamente más bajos que en julio y agosto:
 
-- Un día completo en el [Astec 480](/es/barco/astec-480) que en agosto cuesta desde 295 EUR, en septiembre baja a desde 220 EUR
-- Un medio día en el [Astec 400](/es/barco/astec-400) pasa de 160 EUR en temporada alta a 120 EUR en septiembre
+- Un día completo en el [Astec 480](/es/barco/astec-480) que en agosto cuesta desde 405 EUR, en septiembre baja a desde 295 EUR
+- Un medio día en el [Astec 400](/es/barco/astec-400) pasa de 210 EUR en temporada alta a 155 EUR en septiembre
 - Los extras mantienen el mismo precio todo el año
 
 **Ahorro aproximado: un 25-30% respecto a temporada alta.**
@@ -2809,24 +2809,24 @@ La ventaja del alquiler de barco para grupos es que **el coste se divide entre t
 
 ### Despedida de 8 personas (2 barcos, medio día, temporada media)
 
-- 2 x [Solar 450](/es/barco/solar-450) medio día: aprox. 280 EUR total
+- 2 x [Solar 450](/es/barco/solar-450) medio día: aprox. 440 EUR total
 - Kit snorkel x 8: 60 EUR
 - Altavoz Bluetooth x 2: incluido como extra
-- **Total por persona: aprox. 42 EUR**
+- **Total por persona: aprox. 63 EUR**
 
 ### Cumpleaños de 5 personas (1 barco, día completo, temporada media)
 
-- 1 x [Astec 480](/es/barco/astec-480) día completo: aprox. 220 EUR
+- 1 x [Astec 480](/es/barco/astec-480) día completo: aprox. 375 EUR
 - Kit snorkel x 6: 45 EUR
-- **Total por persona: aprox. 44 EUR**
+- **Total por persona: aprox. 84 EUR**
 
 ### Team building de 12 personas (2 barcos, día completo, temporada media)
 
-- 2 x [Astec 480](/es/barco/astec-480) día completo: aprox. 440 EUR
+- 2 x [Astec 480](/es/barco/astec-480) día completo: aprox. 750 EUR
 - Kit snorkel x 12: 90 EUR
-- **Total por persona: aprox. 44 EUR**
+- **Total por persona: aprox. 70 EUR**
 
-Difícilmente encontrarás una actividad de grupo tan memorable por menos de 45 EUR por persona.
+Difícilmente encontrarás una actividad de grupo tan memorable por menos de 70 EUR por persona.
 
 ---
 
@@ -3044,7 +3044,7 @@ Un atardecer desde el mar es uno de esos regalos que la Costa Brava te hace sin 
     category: "Destinos",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/excursion-barco-tossa-de-mar-desde-blanes.webp",
-    metaDescription: "Guía completa para ir en barco de Blanes a Tossa de Mar. Precios desde 160 EUR, rutas, calas, Vila Vella y consejos. Todo lo que necesitas saber.",
+    metaDescription: "Guía completa para ir en barco de Blanes a Tossa de Mar. Precios desde 175 EUR, rutas, calas, Vila Vella y consejos. Todo lo que necesitas saber.",
     tags: ["excursion barco tossa de mar", "alquiler barco tossa de mar", "tossa de mar en barco", "vila vella tossa barco", "cuanto cuesta barco tossa", "blanes a tossa en barco"],
     isPublished: true,
     _publishedAt: new Date("2026-03-18T10:00:00Z"),
@@ -3059,7 +3059,7 @@ En esta guía te contamos **todo lo que necesitas saber** para hacer la excursi�
 |----------|---------|
 | **Distancia** | ~15 km por mar desde Puerto de Blanes |
 | **Tiempo** | 45 min - 1 hora (según barco y mar) |
-| **Precio desde** | 160 EUR / 2 horas (barco con licencia) |
+| **Precio desde** | 175 EUR / 2 horas (barco con licencia) |
 | **Licencia necesaria** | Sí (PER/PNB) o excursión con patrón |
 | **Mejor época** | Junio y septiembre |
 | **Dificultad** | Fácil con licencia, no apto sin licencia |
@@ -3077,10 +3077,10 @@ Para una excursión a Tossa recomendamos **mínimo 4 horas** (ida + exploración
 
 | Barco | Capacidad | Precio 4h | Precio 8h |
 |-------|-----------|-----------|-----------|
-| Mingolla Brava 19 (80 CV) | 6 personas | 230 EUR | 280 EUR |
-| Trimarchi 57S (110 CV) | 7 personas | 240 EUR | 290 EUR |
-| Pacific Craft 625 (115 CV) | 7 personas | 250 EUR | 300 EUR |
-| Excursión con patrón | 7 personas | 380 EUR (4h) | — |
+| Mingolla Brava 19 (80 CV) | 6 personas | 255 EUR | 310 EUR |
+| Trimarchi 57S (110 CV) | 7 personas | 265 EUR | 320 EUR |
+| Pacific Craft 625 (115 CV) | 7 personas | 275 EUR | 330 EUR |
+| Excursión con patrón | 7 personas | 420 EUR (4h) | — |
 
 **Nota:** Los barcos con licencia NO incluyen combustible. Calcula unos 40-60 EUR adicionales de gasolina para la ida y vuelta a Tossa.
 
@@ -3195,7 +3195,7 @@ Nuestros [barcos con licencia](/es/barcos-con-licencia) incluyen el [Pacific Cra
 | **Distancia de costa** | 2 millas nauticas | Sin limite practico |
 | **Capacidad** | 4-5 personas | 6-7 personas |
 | **Combustible incluido** | Si | No (se paga aparte) |
-| **Precio desde** | 70 EUR/hora | 150 EUR/hora |
+| **Precio desde** | 85 EUR/hora | 150 EUR/hora |
 | **Ideal para** | Familias, principiantes, calas cercanas | Grupos grandes, rutas largas, experiencias deportivas |
 
 ## Quien deberia elegir un barco sin licencia
@@ -3205,7 +3205,7 @@ El barco sin licencia es perfecto si:
 - **Nunca has navegado antes.** No necesitas experiencia previa. Te ensenamos todo en un briefing de 10 minutos.
 - **Vienes con familia.** Los barcos son estables, seguros y faciles de manejar. Los ninos disfrutan muchisimo.
 - **Quieres visitar calas cercanas.** Desde el puerto de Blanes, tienes [Cala Sant Francesc](/es/rutas), Cala Bona, Cala Treumal y la playa de Santa Cristina a menos de 15 minutos.
-- **Buscas la opcion mas economica.** Desde 70 EUR la hora con combustible incluido, es la forma mas accesible de disfrutar del mar.
+- **Buscas la opcion mas economica.** Desde 85 EUR la hora con combustible incluido, es la forma mas accesible de disfrutar del mar.
 - **Prefieres tranquilidad.** Navegar a ritmo lento, fondear en una cala, banarte y hacer snorkel sin prisas.
 
 ### Barcos sin licencia recomendados
@@ -3454,7 +3454,7 @@ Si teneis toda la manana, el alquiler de 4 horas os permite llegar mas lejos:
 
 ## Precios para familias
 
-Los [precios](/es/precios) de nuestros barcos sin licencia empiezan desde 70 EUR la hora, con combustible incluido. Las duraciones mas populares para familias son:
+Los [precios](/es/precios) de nuestros barcos sin licencia empiezan desde 85 EUR la hora, con combustible incluido. Las duraciones mas populares para familias son:
 
 - **2 horas:** Suficiente para visitar 2-3 calas cercanas. Ideal con ninos pequenos.
 - **4 horas:** La experiencia completa. Tiempo para explorar, nadar, hacer snorkel y comer a bordo.
@@ -3724,7 +3724,7 @@ For the ultimate romantic experience, we recommend:
 
 ## Pricing
 
-Our [boats without license](/es/barcos-sin-licencia) start from 70 EUR per hour, with fuel included. A 2-hour sunset trip for two to four people is one of the best value experiences on the Costa Brava. Check our current [prices](/es/precios) for all options and seasonal rates.
+Our [boats without license](/es/barcos-sin-licencia) start from 85 EUR per hour, with fuel included. A 2-hour sunset trip for two to four people is one of the best value experiences on the Costa Brava. Check our current [prices](/es/precios) for all options and seasonal rates.
 
 ---
 
@@ -3740,7 +3740,7 @@ A sunset boat trip in Blanes is more than just an activity. It is one of those r
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/alquiler-barco-lloret-de-mar-precios-guia.webp",
-    metaDescription: "Alquiler de barco en Lloret de Mar: precios desde 75 EUR/hora, como llegar desde Blanes, calas disponibles y barcos sin licencia y con licencia.",
+    metaDescription: "Alquiler de barco en Lloret de Mar: precios desde 85 EUR/hora, como llegar desde Blanes, calas disponibles y barcos sin licencia y con licencia.",
     tags: ["alquiler barco lloret de mar", "barco lloret precio", "lloret de mar en barco", "lloret blanes barco"],
     isPublished: true,
     _publishedAt: new Date("2026-03-28T10:00:00Z"),
@@ -3769,33 +3769,33 @@ Una vez en el puerto, nos encontraras en el pantalon principal. Te recomendamos 
 
 ## Precios de alquiler de barco para ir a Lloret
 
-### Barcos sin licencia (desde 75 EUR/hora)
+### Barcos sin licencia (desde 85 EUR/hora)
 
 No necesitas ningun titulo nautico. Te ensenamos a manejar el barco en un briefing de 15 minutos. **Gasolina, seguro y equipo de seguridad incluidos.**
 
 | Barco | Capacidad | Precio desde (temporada baja) | Ideal para |
 |-------|-----------|-------------------------------|------------|
-| [Solar 450](/es/barco/solar-450) | 5 personas | 75 EUR/hora (115 EUR/2h) | Tomar el sol, solarium amplio |
-| [Remus 450](/es/barco/remus-450) | 5 personas | 75 EUR/hora (115 EUR/2h) | Familias con ninos, estabilidad |
-| [Astec 480](/es/barco/astec-480) | 5 personas | 80 EUR/hora (150 EUR/2h) | Premium, musica bluetooth |
+| [Solar 450](/es/barco/solar-450) | 5 personas | 85 EUR/hora (125 EUR/2h) | Tomar el sol, solarium amplio |
+| [Remus 450](/es/barco/remus-450) | 5 personas | 85 EUR/hora (125 EUR/2h) | Familias con ninos, estabilidad |
+| [Astec 480](/es/barco/astec-480) | 5 personas | 90 EUR/hora (165 EUR/2h) | Premium, musica bluetooth |
 
 **Importante:** Los barcos sin licencia pueden navegar hasta **2 millas nauticas** de la costa (unos 3,7 km). Esto significa que desde Blanes puedes llegar comodamente hasta la **playa de Fenals**, que esta a unos 5 km del puerto. Fenals es la segunda playa de Lloret, mas tranquila y familiar que la playa principal.
 
 Sin embargo, **para llegar a la playa principal de Lloret de Mar** (que esta a unos 6 km del puerto de Blanes), la ruta costera supera el limite de 2 millas en algunos tramos. Para esa ruta necesitas un barco con licencia o nuestra excursion con capitan.
 
-### Barcos con licencia (desde 160 EUR/2 horas)
+### Barcos con licencia (desde 175 EUR/2 horas)
 
 Requieren **Licencia de Navegacion (LN) o superior** (PNB, PER...). El combustible NO esta incluido (se paga aparte al repostar).
 
 | Barco | Capacidad | Precio desde (temporada baja) | Motor |
 |-------|-----------|-------------------------------|-------|
-| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 personas | 160 EUR/2h | Mercury 80cv |
-| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | Selva 110cv |
-| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | Yamaha 115cv |
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 personas | 175 EUR/2h | Mercury 80cv |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 personas | 175 EUR/2h | Selva 110cv |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 personas | 200 EUR/2h | Yamaha 115cv |
 
 Con un barco con licencia llegas a la playa de Lloret en **15 minutos** y puedes continuar hasta Tossa de Mar si quieres.
 
-### Excursion privada con capitan (desde 240 EUR/2 horas)
+### Excursion privada con capitan (desde 265 EUR/2 horas)
 
 Si no tienes licencia pero quieres un barco grande y llegar hasta Lloret o mas alla, nuestra [excursion privada con capitan](/es/barco/excursion-privada) es la solucion perfecta. Un patron profesional te lleva en el Pacific Craft 625 por las mejores calas. Tu solo te preocupas de disfrutar.
 
@@ -3835,7 +3835,7 @@ La playa familiar al sur de Lloret y **el punto mas lejano al que puedes llegar 
 
 | | Sin licencia | Con licencia | Excursion con capitan |
 |---|---|---|---|
-| **Precio desde** | 75 EUR/h | 160 EUR/2h | 240 EUR/2h |
+| **Precio desde** | 85 EUR/h | 175 EUR/2h | 265 EUR/2h |
 | **Llegas a Fenals** | Si | Si | Si |
 | **Llegas a Lloret playa** | No | Si | Si |
 | **Combustible incluido** | Si | No | No |
@@ -3879,7 +3879,7 @@ Complementa tu experiencia con nuestros extras:
 
 ---
 
-Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es tu puerta de entrada perfecta a toda la costa. Con barcos desde 75 EUR la hora y la posibilidad de llegar a Fenals sin licencia, no hay excusa para no descubrir Lloret desde el mar.
+Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es tu puerta de entrada perfecta a toda la costa. Con barcos desde 85 EUR la hora y la posibilidad de llegar a Fenals sin licencia, no hay excusa para no descubrir Lloret desde el mar.
 
 [Reserva tu barco ahora](/es/barcos) o escribenos por [WhatsApp](https://wa.me/34611500372) si tienes dudas sobre que barco elegir para tu excursion a Lloret.`,
   },
@@ -3891,7 +3891,7 @@ Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es 
     category: "Destinos",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/barco-tossa-de-mar-desde-blanes.webp",
-    metaDescription: "Llega a Tossa de Mar en barco desde Blanes: Vila Vella desde el mar, calas virgenes, precios desde 160 EUR y excursion con capitan desde 240 EUR.",
+    metaDescription: "Llega a Tossa de Mar en barco desde Blanes: Vila Vella desde el mar, calas virgenes, precios desde 175 EUR y excursion con capitan desde 265 EUR.",
     tags: ["tossa de mar barco", "barco blanes tossa", "vila vella barco", "excursion tossa de mar"],
     isPublished: true,
     _publishedAt: new Date("2026-03-30T10:00:00Z"),
@@ -3931,9 +3931,9 @@ Requieren titulacion nautica PER o PNB. **El combustible NO esta incluido** y se
 
 | Barco | Capacidad | Precio desde (temporada baja) | Duracion recomendada |
 |-------|-----------|-------------------------------|----------------------|
-| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 personas | 160 EUR/2h | 6-8 horas |
-| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | 6-8 horas |
-| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | 6-8 horas |
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 personas | 175 EUR/2h | 6-8 horas |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 personas | 175 EUR/2h | 6-8 horas |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 personas | 200 EUR/2h | 6-8 horas |
 
 **Nuestra recomendacion:** Para una excursion a Tossa en condiciones, reserva **minimo 6 horas**, idealmente **8 horas** (dia completo). Dos horas son insuficientes: solo tendrias tiempo para ir y volver sin parar. Con 6-8 horas puedes navegar con calma, parar en varias calas por el camino, fondear frente a Tossa, banarte, comer a bordo y volver disfrutando de cada rincon.
 
@@ -3943,9 +3943,9 @@ Si no tienes licencia, nuestra [excursion privada con capitan](/es/barco/excursi
 
 | Duracion | Precio desde (temporada baja) |
 |----------|-------------------------------|
-| 2 horas | 240 EUR |
-| 3 horas | 320 EUR |
-| 4 horas | 380 EUR |
+| 2 horas | 265 EUR |
+| 3 horas | 350 EUR |
+| 4 horas | 420 EUR |
 
 **Nota:** Con la excursion de 2 horas, el capitan adaptara la ruta para mostrarte lo maximo posible, pero probablemente no llegara hasta Tossa. Para llegar a Tossa y disfrutar de fondeo y bano, recomendamos **3-4 horas minimo**.
 
@@ -4037,7 +4037,7 @@ El consumo varia segun la velocidad. Navegar a velocidad de crucero (no a maxima
 
 | | Barco con licencia | Excursion con capitan |
 |---|---|---|
-| **Precio desde** | 150 EUR/2h + combustible | 240 EUR/2h (combustible no incluido) |
+| **Precio desde** | 175 EUR/2h + combustible | 265 EUR/2h (combustible no incluido) |
 | **Necesitas licencia** | Si (PER/PNB) | No |
 | **Libertad de ruta** | Total | El capitan adapta a tus preferencias |
 | **Conocimiento local** | Depende de ti | El capitan conoce cada rincon |
@@ -4085,7 +4085,7 @@ Cala Brava es una de las joyas mas desconocidas de Blanes. Se encuentra entre Ca
 
 Desde el barco, simplemente fondeas sobre la arena y te tiras al agua. El fondo marino aqui es excepcional: posidonia oceanica, bancos de sargos y obladas, y rocas cubiertas de gorgonias a poca profundidad. Si solo puedes hacer snorkel en un sitio de toda la Costa Brava, que sea aqui.
 
-**Barco recomendado:** El [Astec 400](/es/barco/astec-400) (desde 70 EUR/hora) es perfecto para parejas que quieran esta cala en exclusiva. Si vais 4-5 personas, el [Remus 450](/es/barco/remus-450) o el [Solar 450](/es/barco/solar-450) (desde 75 EUR/hora) os daran mas espacio.
+**Barco recomendado:** El [Astec 400](/es/barco/astec-400) (desde 75 EUR/hora) es perfecto para parejas que quieran esta cala en exclusiva. Si vais 4-5 personas, el [Remus 450](/es/barco/remus-450) o el [Solar 450](/es/barco/solar-450) (desde 85 EUR/hora) os daran mas espacio.
 
 ## 2. Las cuevas entre Cala Sant Francesc y Santa Cristina
 
@@ -4115,7 +4115,7 @@ Desde el barco, simplemente fondeas frente a esta seccion y tienes tu propia pla
 
 **Dato curioso:** En los anos 70 y 80, esta seccion de la playa era una zona naturista. Hoy en dia es mixta, pero sigue manteniendo un ambiente mucho mas tranquilo y natural que el resto de Boadella.
 
-**Barco recomendado:** El [Astec 480](/es/barco/astec-480) (desde 80 EUR/hora) con su equipo de musica bluetooth convierte esta parada en una experiencia premium.
+**Barco recomendado:** El [Astec 480](/es/barco/astec-480) (desde 90 EUR/hora) con su equipo de musica bluetooth convierte esta parada en una experiencia premium.
 
 ## 4. Micro-calas entre Lloret y Tossa
 
@@ -4128,9 +4128,9 @@ El tramo de costa entre la playa de Lloret y Cala Canyelles es uno de los mas sa
 
 Hablamos de rincones de 10-20 metros de ancho, con paredes rocosas verticales cubiertas de vegetacion, aguas tan cristalinas que ves el fondo a 8-10 metros y una vida marina excepcional. Algunos tienen pequenas cuevas submarinas que puedes explorar con snorkel.
 
-**Por que necesitas barco con licencia:** No es solo por la distancia. Estas micro-calas requieren un motor con potencia suficiente para maniobrar cerca de las rocas con seguridad. Los barcos con licencia, como la [Mingolla Brava 19](/es/barco/mingolla-brava-19) (desde 160 EUR/2h), tienen la maniobrabilidad necesaria.
+**Por que necesitas barco con licencia:** No es solo por la distancia. Estas micro-calas requieren un motor con potencia suficiente para maniobrar cerca de las rocas con seguridad. Los barcos con licencia, como la [Mingolla Brava 19](/es/barco/mingolla-brava-19) (desde 175 EUR/2h), tienen la maniobrabilidad necesaria.
 
-**Consejo del capitan:** Si contratas nuestra [excursion privada con capitan](/es/barco/excursion-privada) (desde 240 EUR/2h), el patron conoce exactamente donde estan las mejores micro-calas de este tramo. Es conocimiento que no sale en ningun mapa.
+**Consejo del capitan:** Si contratas nuestra [excursion privada con capitan](/es/barco/excursion-privada) (desde 265 EUR/2h), el patron conoce exactamente donde estan las mejores micro-calas de este tramo. Es conocimiento que no sale en ningun mapa.
 
 ## 5. Cala Pola
 
@@ -4145,7 +4145,7 @@ La cala en si es un anfiteatro natural de rocas y pinos que llegan hasta el agua
 
 **Lo que la hace unica:** Al estar lejos de cualquier nucleo urbano y con acceso terrestre dificil, Cala Pola mantiene un ambiente de cala virgen incluso en pleno agosto. Es uno de esos sitios donde sientes que has descubierto algo que nadie mas conoce.
 
-**Barco recomendado:** El [Trimarchi 57S](/es/barco/trimarchi-57s) (desde 160 EUR/2h) combina velocidad para llegar rapido con espacio y confort para hasta 7 personas.
+**Barco recomendado:** El [Trimarchi 57S](/es/barco/trimarchi-57s) (desde 175 EUR/2h) combina velocidad para llegar rapido con espacio y confort para hasta 7 personas.
 
 ## 6. Calas al norte de Tossa (zona Cala Giverola)
 
@@ -4160,7 +4160,7 @@ Hay al menos 4-5 rincones rocosos sin nombre entre Cala Giverola y la Platja de 
 
 **Snorkel de nivel mundial:** Las rocas submarinas al norte de Tossa estan cubiertas de gorgonias rojas y amarillas. Es uno de los mejores puntos de snorkel de toda la Costa Brava. Si te gusta la biologia marina, este tramo es imprescindible.
 
-**Barco recomendado:** El [Pacific Craft 625](/es/barco/pacific-craft-625) (desde 180 EUR/2h) es nuestra mejor embarcacion y la mas comoda para un dia completo explorando esta zona. Con solárium doble, mesa para comer a bordo y ducha de agua dulce, es como tener tu propio yate privado.
+**Barco recomendado:** El [Pacific Craft 625](/es/barco/pacific-craft-625) (desde 200 EUR/2h) es nuestra mejor embarcacion y la mas comoda para un dia completo explorando esta zona. Con solárium doble, mesa para comer a bordo y ducha de agua dulce, es como tener tu propio yate privado.
 
 ## 7. Los rincones secretos del capitan
 
@@ -4173,7 +4173,7 @@ Esta ultima entrada no es un lugar concreto, sino una experiencia. Nuestro patro
 
 Lo mas interesante es que **el mejor sitio cambia cada dia**. Depende del viento, la corriente, la hora y la epoca del ano. El capitan lee las condiciones del dia y te lleva al rincon que estara perfecto en ese momento.
 
-**Que incluye la excursion:** El [capitan te lleva en el Pacific Craft 625](/es/barco/excursion-privada), un barco de 6,24 metros con capacidad para 7 personas. Desde 240 EUR por 2 horas. El capitan adapta la ruta a tus preferencias: snorkel, calas virgenes, vistas de Vila Vella o un mix de todo.
+**Que incluye la excursion:** El [capitan te lleva en el Pacific Craft 625](/es/barco/excursion-privada), un barco de 6,24 metros con capacidad para 7 personas. Desde 265 EUR por 2 horas. El capitan adapta la ruta a tus preferencias: snorkel, calas virgenes, vistas de Vila Vella o un mix de todo.
 
 **Para quien es ideal:** Familias con ninos (el capitan se encarga de todo), celebraciones (cumpleanos, aniversarios), y cualquiera que quiera la experiencia mas exclusiva y personalizada de la costa.
 
@@ -4253,9 +4253,9 @@ El [Pacific Craft 625](/es/barco/pacific-craft-625) es nuestra embarcacion estre
 **Precios desde:**
 | Duracion | Temporada baja | Temporada media (julio) | Temporada alta (agosto) |
 |----------|---------------|------------------------|------------------------|
-| 2 horas | 180 EUR | 200 EUR | 220 EUR |
-| 4 horas | 250 EUR | 280 EUR | 320 EUR |
-| 8 horas | 300 EUR | 360 EUR | 420 EUR |
+| 2 horas | 200 EUR | 220 EUR | 240 EUR |
+| 4 horas | 275 EUR | 310 EUR | 330 EUR |
+| 8 horas | 330 EUR | 395 EUR | 460 EUR |
 
 **Requiere licencia nautica** (PER o PNB). Si nadie del grupo tiene licencia, la excursion con capitan es vuestra opcion.
 
@@ -4266,9 +4266,9 @@ La [excursion privada con capitan](/es/barco/excursion-privada) es la opcion per
 **Precios desde:**
 | Duracion | Temporada baja | Temporada media (julio) | Temporada alta (agosto) |
 |----------|---------------|------------------------|------------------------|
-| 2 horas | 240 EUR | 260 EUR | 280 EUR |
-| 3 horas | 320 EUR | 340 EUR | 360 EUR |
-| 4 horas | 380 EUR | 400 EUR | 420 EUR |
+| 2 horas | 265 EUR | 285 EUR | 310 EUR |
+| 3 horas | 350 EUR | 375 EUR | 395 EUR |
+| 4 horas | 420 EUR | 440 EUR | 460 EUR |
 
 **Ventajas para celebraciones:**
 - No necesitais licencia
@@ -4283,7 +4283,7 @@ Si sois un grupo de hasta 5 personas, el [Astec 480](/es/barco/astec-480) es una
 - **Musica bluetooth** integrada
 - **Solarium acolchado** amplio
 - **Gasolina incluida** (sin sorpresas al final)
-- Desde **80 EUR/hora** en temporada baja
+- Desde **90 EUR/hora** en temporada baja
 
 El Astec 480 es especialmente popular para cumpleanos intimos y aniversarios de pareja o grupos pequenos.
 
@@ -4293,7 +4293,7 @@ El [Astec 400](/es/barco/astec-400) es la opcion mas economica, perfecta para un
 
 - Capacidad para 4 personas
 - **Sin licencia** necesaria
-- Desde **70 EUR/hora** en temporada baja
+- Desde **75 EUR/hora** en temporada baja
 - Gasolina, seguro y equipo incluidos
 
 ## Que se puede hacer en una celebracion en barco
@@ -4439,7 +4439,7 @@ Una celebracion en barco en la Costa Brava no es solo un plan original: es una e
       es: "Barco sin licencia navegando entre las calas de la Costa Brava sur, la ruta que se hace desde el Puerto de Blanes",
       en: "License-free boat sailing between the coves of the southern Costa Brava, the route departing from the Port of Blanes",
     },
-    metaDescription: "Alquiler de barco para Malgrat de Mar: el puerto más cercano es Blanes, a 10 min en coche o 5 en tren R1. Sin licencia desde 75 EUR/hora, gasolina incluida.",
+    metaDescription: "Alquiler de barco para Malgrat de Mar: el puerto más cercano es Blanes, a 10 min en coche o 5 en tren R1. Sin licencia desde 85 EUR/hora, gasolina incluida.",
     tags: ["alquiler barco malgrat de mar", "barco malgrat sin licencia", "alquiler barco maresme", "malgrat de mar blanes"],
     isPublished: true,
     _publishedAt: new Date("2026-06-20T10:00:00Z"),
@@ -4466,7 +4466,7 @@ Te recomendamos llegar **15 minutos antes** de tu hora de reserva para el briefi
 
 ## Qué barco puedes alquilar si estás en Malgrat
 
-### Sin licencia (desde 75 EUR/hora, gasolina incluida)
+### Sin licencia (desde 85 EUR/hora, gasolina incluida)
 
 Cualquier persona mayor de 18 años puede pilotar nuestros barcos sin licencia: son embarcaciones de hasta 15 CV que por ley no requieren titulación. Antes de salir te enseñamos el manejo en 15 minutos.
 
@@ -4478,7 +4478,7 @@ Cualquier persona mayor de 18 años puede pilotar nuestros barcos sin licencia: 
 
 Con un barco sin licencia puedes navegar hasta **2 millas náuticas** de la costa: llegas a Cala Sant Francesc, Santa Cristina, Cala Sa Boadella y hasta la **Playa de Fenals** (sur de Lloret de Mar).
 
-### Con licencia (desde 160 EUR/2 horas)
+### Con licencia (desde 175 EUR/2 horas)
 
 Si tienes la Licencia de Navegación, el PNB o el PER, puedes alquilar barcos más potentes de hasta 7 plazas y llegar hasta **Tossa de Mar** en 30-45 minutos. En estos barcos el combustible no está incluido.
 
@@ -4515,7 +4515,7 @@ Gasolina, seguro, equipo de seguridad y briefing. Solo dejas una fianza reembols
       es: "Familia disfrutando de un paseo en barco por las calas de la Costa Brava cerca de Santa Susanna",
       en: "Family enjoying a boat trip along the Costa Brava coves near Santa Susanna",
     },
-    metaDescription: "¿Paseo en barco en Santa Susanna? Las salidas parten del Puerto de Blanes, a 15 min. Barco sin licencia desde 75 EUR/hora o excursión privada con patrón.",
+    metaDescription: "¿Paseo en barco en Santa Susanna? Las salidas parten del Puerto de Blanes, a 15 min. Barco sin licencia desde 85 EUR/hora o excursión privada con patrón.",
     tags: ["paseo en barco santa susanna", "boottocht santa susanna", "alquiler barco santa susanna", "excursion barco santa susanna"],
     isPublished: true,
     _publishedAt: new Date("2026-06-24T10:00:00Z"),
@@ -4534,7 +4534,7 @@ Y aquí viene lo importante: tienes dos maneras muy distintas de vivir el mar, s
 
 ## Opción 1: alquila un barco sin licencia y pilótalo tú
 
-Desde **75 EUR/hora con la gasolina incluida**, cualquier mayor de 18 años puede llevar uno de nuestros barcos sin licencia (hasta 15 CV, no requieren titulación por ley). Te damos un briefing de 15 minutos y sales a navegar por tu cuenta.
+Desde **85 EUR/hora con la gasolina incluida**, cualquier mayor de 18 años puede llevar uno de nuestros barcos sin licencia (hasta 15 CV, no requieren titulación por ley). Te damos un briefing de 15 minutos y sales a navegar por tu cuenta.
 
 - Capacidad: hasta 5 personas por barco.
 - Alcance legal: 2 millas náuticas de la costa, suficiente para toda la ruta de calas Blanes-Fenals.
@@ -4568,7 +4568,7 @@ Si te apetece el plan al final del día, pregunta por la [salida al atardecer](/
 No hay puerto en Santa Susanna, así que ninguna embarcación de recreo sale desde allí. El punto de salida real más cercano es el Puerto de Blanes.
 
 **¿Cuánto cuesta un paseo en barco para una familia de 4?**
-Con barco sin licencia, desde 75 EUR/hora (el precio es por barco, no por persona). La excursión con patrón se cotiza por salida completa: pide precio por WhatsApp según horas y fecha.
+Con barco sin licencia, desde 85 EUR/hora (el precio es por barco, no por persona). La excursión con patrón se cotiza por salida completa: pide precio por WhatsApp según horas y fecha.
 
 **¿Puedo reservar solo 1 hora?**
 Sí, aunque para llegar hasta Fenals y bañarte con calma recomendamos 2-3 horas como mínimo.
@@ -4587,7 +4587,7 @@ Sí, aunque para llegar hasta Fenals y bañarte con calma recomendamos 2-3 horas
       es: "Cala Sant Francesc vista desde un barco de alquiler saliendo del Puerto de Blanes, cerca de Calella",
       en: "Cala Sant Francesc seen from a rental boat departing the Port of Blanes, near Calella",
     },
-    metaDescription: "Alquiler de barco para Calella del Maresme (Barcelona): puerto más cercano Blanes, a 20 min. Sin licencia desde 75 EUR/h. No es Calella de Palafrugell.",
+    metaDescription: "Alquiler de barco para Calella del Maresme (Barcelona): puerto más cercano Blanes, a 20 min. Sin licencia desde 85 EUR/h. No es Calella de Palafrugell.",
     tags: ["alquiler barco calella", "barco calella maresme", "calella barcelona barco", "alquiler barco maresme"],
     isPublished: true,
     _publishedAt: new Date("2026-06-27T10:00:00Z"),
@@ -4615,7 +4615,7 @@ Si estás alojado en Calella del Maresme y quieres alquilar un barco, tu punto d
 
 ## Barcos disponibles y precios
 
-### Sin licencia, desde 75 EUR/hora
+### Sin licencia, desde 85 EUR/hora
 
 Mayores de 18 años, sin titulación: por ley, las embarcaciones de hasta 15 CV no la requieren. Briefing de 15 minutos incluido, igual que la **gasolina, el seguro y el equipo de seguridad**.
 
@@ -4662,7 +4662,7 @@ No. Calella de Palafrugell está 60 km al norte; desde allí no somos su opción
       es: "Playa de la Costa Brava solo accesible en barco, a menos de 20 minutos de Pineda de Mar",
       en: "Costa Brava beach only reachable by boat, less than 20 minutes from Pineda de Mar",
     },
-    metaDescription: "Alquiler de barco para Pineda de Mar y el Alt Maresme: puerto más cercano Blanes, a 18 min en coche o 12 en tren R1. Sin licencia desde 75 EUR/hora.",
+    metaDescription: "Alquiler de barco para Pineda de Mar y el Alt Maresme: puerto más cercano Blanes, a 18 min en coche o 12 en tren R1. Sin licencia desde 85 EUR/hora.",
     tags: ["alquiler barco pineda de mar", "alquiler barco maresme", "barco pineda sin licencia", "puerto blanes maresme"],
     isPublished: true,
     _publishedAt: new Date("2026-07-01T10:00:00Z"),
@@ -4687,7 +4687,7 @@ Desde Pineda estás especialmente bien situado: **18 minutos en coche o 12 minut
 
 ## Qué puedes alquilar en el Puerto de Blanes
 
-### Barcos sin licencia, desde 75 EUR/hora
+### Barcos sin licencia, desde 85 EUR/hora
 
 La opción estrella para quien nunca ha llevado un barco: embarcaciones de hasta 15 CV que **no requieren titulación** (mayores de 18 años). Incluyen **gasolina, seguro y equipo de seguridad**, más un briefing de 15 minutos en tu idioma antes de zarpar.
 
@@ -4718,7 +4718,7 @@ La costa del Maresme es una playa continua de arena; bonita, pero lineal. En cua
 No para alquiler de embarcaciones de recreo. Blanes es el primer puerto deportivo al norte del Maresme y concentra la oferta de alquiler de la zona.
 
 **¿Cuánto cuesta para un grupo de 5?**
-Un barco sin licencia de 5 plazas cuesta desde 75 EUR/hora en temporada baja: el precio es por barco, así que entre 5 sale muy a cuenta.
+Un barco sin licencia de 5 plazas cuesta desde 85 EUR/hora en temporada baja: el precio es por barco, así que entre 5 sale muy a cuenta.
 
 **¿Necesito experiencia?**
 Ninguna. El briefing de 15 minutos cubre todo lo necesario y la ruta Blanes-Fenals está protegida y es ideal para principiantes.
@@ -4845,9 +4845,9 @@ No hay una respuesta mejor que otra: hay la que encaja con tu grupo y tu día.
 
 Los precios cambian por temporada. Estos son los de referencia para 2026 (julio es temporada media, agosto la más alta):
 
-- **Sin licencia, sin patrón:** desde 75 EUR/hora en temporada baja. En julio, 2 horas 140 EUR, 4 horas 200 EUR y el día completo (8 horas) 270 EUR. Gasolina incluida.
-- **Con licencia, sin patrón:** desde 160 EUR las 2 horas en baja. En julio, la Mingolla Brava 19 son 180 EUR las 2 horas, 270 EUR las 4 horas y 360 EUR el día. Gasolina aparte.
-- **Con patrón (excursión privada):** desde 240 EUR las 2 horas en baja. En julio, 260 EUR las 2 horas, 340 EUR las 3 horas y 400 EUR las 4 horas. Patrón incluido, gasolina aparte.
+- **Sin licencia, sin patrón:** desde 85 EUR/hora en temporada baja. En julio, 2 horas 155 EUR, 4 horas 220 EUR y el día completo (8 horas) 295 EUR. Gasolina incluida.
+- **Con licencia, sin patrón:** desde 175 EUR las 2 horas en baja. En julio, la Mingolla Brava 19 son 200 EUR las 2 horas, 295 EUR las 4 horas y 395 EUR el día. Gasolina aparte.
+- **Con patrón (excursión privada):** desde 265 EUR las 2 horas en baja. En julio, 285 EUR las 2 horas, 375 EUR las 3 horas y 440 EUR las 4 horas. Patrón incluido, gasolina aparte.
 
 Tienes el desglose completo por barco y duración en la página de [precios](/es/precios). Un apunte honesto: si buscas un yate de lujo con tripulación y catering, no somos tu sitio. Somos un alquiler local y operativo del puerto de Blanes, pensado para pasar un buen día en el mar sin complicaciones.
 
@@ -4910,7 +4910,7 @@ La regla que le doy a todo el mundo: en medio día, menos es más. Elige dos cal
 
 ## Cuánto cuesta medio día y qué incluye
 
-La franja de cuatro horas va desde 150 € en temporada baja (200 € en pleno julio) en un barco sin licencia, con la gasolina incluida. Esto último importa más de lo que parece: en los barcos sin licencia el combustible entra en el precio, así que lo que ves es lo que pagas, sin sorpresas al devolver la llave.
+La franja de cuatro horas va desde 165 € en temporada baja (220 € en pleno julio) en un barco sin licencia, con la gasolina incluida. Esto último importa más de lo que parece: en los barcos sin licencia el combustible entra en el precio, así que lo que ves es lo que pagas, sin sorpresas al devolver la llave.
 
 Dos matices honestos:
 
@@ -4996,7 +4996,7 @@ Y sí, sirven las licencias extranjeras equivalentes. Si tienes un título franc
 
 La **Excursión Privada con Capitán** admite **6 personas** y no requiere ningún título: pones el grupo, nosotros ponemos el patrón. Él elige la cala del día según viento y corrientes, os lleva a cuevas y rincones a los que no se llega a pie, y vosotros no tocáis el timón.
 
-Es la opción que más recomendamos para cumpleaños, aniversarios y grupos donde nadie tiene experiencia en el mar. Precio en julio: **260 € (2 h), 340 € (3 h), 400 € (4 h)**. En agosto sube a 280 / 360 / 420 €. Combustible aparte.
+Es la opción que más recomendamos para cumpleaños, aniversarios y grupos donde nadie tiene experiencia en el mar. Precio en julio: **285 € (2 h), 375 € (3 h), 440 € (4 h)**. En agosto sube a 310 / 395 / 460 €. Combustible aparte.
 
 Si dudas entre conducir tú o que conduzca un profesional, en la guía de [rutas en barco desde Blanes](/es/blog/rutas-barco-desde-blanes) verás qué distancias son realistas en cada caso.
 
@@ -5006,7 +5006,7 @@ No tenemos un barco de 10 plazas y no vamos a fingir que sí. Lo que sí funcion
 
 Dos Remus 450 (5 + 5 = 10 personas) navegan juntos, fondean en la misma cala y el grupo se junta en el agua. Coordinamos las salidas a la misma hora desde el mismo pantalán. En la práctica, es una excursión de grupo con más libertad: cada barco decide si se queda un rato más en una cala o se adelanta a la siguiente.
 
-Coste orientativo para 10 personas, 4 horas en julio: **2 x 200 € = 400 €**, gasolina incluida. Salen **40 € por persona**, que es menos de lo que cuesta la mayoría de excursiones colectivas con horario fijo y 60 desconocidos a bordo.
+Coste orientativo para 10 personas, 4 horas en julio: **2 x 220 € = 440 €**, gasolina incluida. Salen **44 € por persona**, que es menos de lo que cuesta la mayoría de excursiones colectivas con horario fijo y 60 desconocidos a bordo.
 
 Si el grupo pasa de 12, escríbenos con antelación: hay que bloquear varios barcos el mismo día y en agosto eso no se improvisa.
 
@@ -5016,13 +5016,13 @@ Los números de abajo son de **julio, 4 horas**, que es la reserva más común d
 
 | Grupo | Barco | Precio 4 h | Por persona |
 |---|---|---|---|
-| 4 personas | Remus 450 (sin licencia) | 200 € | 50 € |
-| 5 personas | Remus 450 (sin licencia) | 200 € | 40 € |
-| 5 personas | Astec 480 (más espacio) | 230 € | 46 € |
-| 6 personas | Mingolla Brava 19 (con licencia) | 270 € | 45 € |
-| 6 personas | Excursión con capitán | 400 € | 67 € |
-| 7 personas | Pacific Craft 625 (con licencia) | 280 € | 40 € |
-| 10 personas | 2 x Remus 450 | 400 € | 40 € |
+| 4 personas | Remus 450 (sin licencia) | 220 € | 55 € |
+| 5 personas | Remus 450 (sin licencia) | 220 € | 44 € |
+| 5 personas | Astec 480 (más espacio) | 255 € | 51 € |
+| 6 personas | Mingolla Brava 19 (con licencia) | 295 € | 49 € |
+| 6 personas | Excursión con capitán | 440 € | 73 € |
+| 7 personas | Pacific Craft 625 (con licencia) | 310 € | 44 € |
+| 10 personas | 2 x Remus 450 | 440 € | 44 € |
 
 Lee la tabla al revés y verás el patrón: **cuanto más grande es el grupo, más barato sale por cabeza**. El barco cuesta lo mismo lo llenes o no. Cuatro personas en un barco de cinco plazas es la combinación que peor rinde económicamente.
 
@@ -5090,7 +5090,7 @@ Trabajamos de **abril a octubre**, con salidas de **09:00 a 20:00** desde el Pue
 
 El tramo sur de la Costa Brava es, en general, de navegación cómoda en verano. Por la mañana el mar suele estar en calma; por la tarde puede entrar el garbí, la brisa del suroeste. El viento a vigilar es la tramontana, fuerte y del norte. Consulta siempre el parte marítimo antes de salir; puedes hacerlo en la [previsión marítima de AEMET](https://www.aemet.es/es/eltiempo/prediccion/maritima). Y una norma de oro para fondear: hazlo sobre arena, nunca sobre las praderas de posidonia.
 
-Para hacerte una idea de precios, el alquiler sin licencia arranca **desde 75 € la hora**; las lanchas con licencia salen **desde 160 € las 2 horas** en temporada baja. La jornada completa y las rutas largas las presupuestamos según el barco y la fecha, porque cambian entre temporada media (julio) y alta (agosto).
+Para hacerte una idea de precios, el alquiler sin licencia arranca **desde 85 € la hora**; las lanchas con licencia salen **desde 175 € las 2 horas** en temporada baja. La jornada completa y las rutas largas las presupuestamos según el barco y la fecha, porque cambian entre temporada media (julio) y alta (agosto).
 
 ## Cómo reservar tu barco a Tossa de Mar
 

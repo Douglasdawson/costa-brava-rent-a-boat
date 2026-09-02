@@ -136,7 +136,7 @@ export default function ActivityFamiliesPage() {
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed">
-              {f?.heroDescription ?? "Una aventura segura y divertida para toda la familia. Barcos sin licencia desde el Puerto de Blanes con gasolina incluida, chalecos infantiles y calas protegidas perfectas para niños. Desde 70 EUR/hora."}
+              {f?.heroDescription ?? "Una aventura segura y divertida para toda la familia. Barcos sin licencia desde el Puerto de Blanes con gasolina incluida, chalecos infantiles y calas protegidas perfectas para niños. Desde 85 EUR/hora."}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">

@@ -91,12 +91,12 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+        prices: { "1h": 85, "2h": 125, "3h": 145, "4h": 165, "6h": 210, "8h": 240 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 140, "3h": 170, "4h": 200, "6h": 230, "8h": 270 },
-        weekendPrices: { "3h": 190, "4h": 220 }
+        prices: { "1h": 95, "2h": 155, "3h": 185, "4h": 220, "6h": 255, "8h": 295 },
+        weekendPrices: { "3h": 210, "4h": 240 }
       },
       ALTA: {
         period: "Agosto",
@@ -105,13 +105,13 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
         // sabado 1 y el domingo 2 al 100% de la flota entre las 11h y las 14h. La
         // conversion no cae en el tramo 200-350 EUR (55% igual que en 200-250), asi
         // que la subida se aplica a los tres cascos sin licencia equivalentes.
-        prices: { "1h": 100, "2h": 160, "3h": 190, "4h": 220, "6h": 270, "8h": 320 },
+        prices: { "1h": 110, "2h": 175, "3h": 210, "4h": 240, "6h": 295, "8h": 350 },
         // Agosto salta el +15% de finde a proposito (ver shouldApplyWeekendSurcharge),
         // asi que sin precio explicito el sabado de agosto se quedaba en 210 y el de
         // julio, con recargo, subia a 220: agosto salia MAS BARATO que julio en su
         // propio pico. Decision del dueno 2026-07-30: el sabado de agosto iguala al de
         // julio en todas las duraciones, y la de 4h sube a 230.
-        weekendPrices: { "1h": 120, "2h": 170, "3h": 200, "4h": 240, "6h": 270, "8h": 330 }
+        weekendPrices: { "1h": 130, "2h": 185, "3h": 220, "4h": 265, "6h": 295, "8h": 365 }
       }
     },
     extras: [
@@ -162,21 +162,21 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+        prices: { "1h": 85, "2h": 125, "3h": 145, "4h": 165, "6h": 210, "8h": 240 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 140, "3h": 170, "4h": 200, "6h": 230, "8h": 270 },
-        weekendPrices: { "3h": 190, "4h": 220 }
+        prices: { "1h": 95, "2h": 155, "3h": 185, "4h": 220, "6h": 255, "8h": 295 },
+        weekendPrices: { "3h": 210, "4h": 240 }
       },
       ALTA: {
         period: "Agosto",
         // [2026-08-05] +5%, igual que el Solar 450 (ver nota alli).
-        prices: { "1h": 100, "2h": 160, "3h": 190, "4h": 220, "6h": 270, "8h": 320 },
+        prices: { "1h": 110, "2h": 175, "3h": 210, "4h": 240, "6h": 295, "8h": 350 },
         // Mismo caso que el Solar 450: sin precio explicito el sabado de agosto (210)
         // quedaba por debajo del de julio. Decision del dueno 2026-07-30: el sabado de
         // agosto iguala al de julio en todas las duraciones, y la de 4h sube a 230.
-        weekendPrices: { "1h": 120, "2h": 170, "3h": 200, "4h": 240, "6h": 270, "8h": 330 }
+        weekendPrices: { "1h": 130, "2h": 185, "3h": 220, "4h": 265, "6h": 295, "8h": 365 }
       }
     },
     extras: [
@@ -227,21 +227,21 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+        prices: { "1h": 85, "2h": 125, "3h": 145, "4h": 165, "6h": 210, "8h": 240 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 140, "3h": 170, "4h": 200, "6h": 230, "8h": 270 },
-        weekendPrices: { "3h": 190, "4h": 220 }
+        prices: { "1h": 95, "2h": 155, "3h": 185, "4h": 220, "6h": 255, "8h": 295 },
+        weekendPrices: { "3h": 210, "4h": 240 }
       },
       ALTA: {
         period: "Agosto",
         // [2026-08-05] +5%, igual que el Solar 450 (ver nota alli).
-        prices: { "1h": 100, "2h": 160, "3h": 190, "4h": 220, "6h": 270, "8h": 320 },
+        prices: { "1h": 110, "2h": 175, "3h": 210, "4h": 240, "6h": 295, "8h": 350 },
         // Solar 450, Remus 450 y Remus 450 II son el MISMO modelo y llevan el mismo
         // precio todo el ano (decision del dueno 2026-07-30). En BAJA y MEDIA ya
         // coincidian; agosto se iguala al del Solar, que era el mas alto.
-        weekendPrices: { "1h": 120, "2h": 170, "3h": 200, "4h": 240, "6h": 270, "8h": 330 }
+        weekendPrices: { "1h": 130, "2h": 185, "3h": 220, "4h": 265, "6h": 295, "8h": 365 }
       }
     },
     extras: [
@@ -292,15 +292,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 70, "2h": 100, "3h": 120, "4h": 140, "6h": 180, "8h": 200 }
+        prices: { "1h": 75, "2h": 110, "3h": 130, "4h": 155, "6h": 200, "8h": 220 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 80, "2h": 120, "3h": 150, "4h": 170, "6h": 210, "8h": 250 }
+        prices: { "1h": 90, "2h": 130, "3h": 165, "4h": 185, "6h": 230, "8h": 275 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 90, "2h": 140, "3h": 170, "4h": 190, "6h": 240, "8h": 280 }
+        prices: { "1h": 100, "2h": 155, "3h": 185, "4h": 210, "6h": 265, "8h": 310 }
       }
     },
     extras: [
@@ -353,16 +353,16 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 80, "2h": 150, "3h": 180, "4h": 200, "6h": 240, "8h": 270 }
+        prices: { "1h": 90, "2h": 165, "3h": 200, "4h": 220, "6h": 265, "8h": 295 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 90, "2h": 160, "3h": 210, "4h": 230, "6h": 270, "8h": 340 },
-        weekendPrices: { "3h": 210, "4h": 250 }
+        prices: { "1h": 100, "2h": 175, "3h": 230, "4h": 255, "6h": 295, "8h": 375 },
+        weekendPrices: { "3h": 230, "4h": 275 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 100, "2h": 180, "3h": 220, "4h": 250, "6h": 290, "8h": 370 }
+        prices: { "1h": 110, "2h": 200, "3h": 240, "4h": 275, "6h": 320, "8h": 405 }
       }
     },
     extras: [
@@ -416,17 +416,17 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "2h": 160, "4h": 230, "8h": 280 }
+        prices: { "2h": 175, "4h": 255, "8h": 310 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "2h": 180, "4h": 270, "8h": 360 },
-        weekendPrices: { "2h": 190, "4h": 300, "8h": 380 }
+        prices: { "2h": 200, "4h": 295, "8h": 395 },
+        weekendPrices: { "2h": 210, "4h": 330, "8h": 420 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "2h": 190, "4h": 280, "8h": 380 },
-        weekendPrices: { "2h": 200, "4h": 320, "8h": 390 }
+        prices: { "2h": 210, "4h": 310, "8h": 420 },
+        weekendPrices: { "2h": 220, "4h": 350, "8h": 430 }
       }
     },
     extras: [
@@ -480,17 +480,17 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "2h": 160, "4h": 240, "8h": 290 }
+        prices: { "2h": 175, "4h": 265, "8h": 320 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "2h": 190, "4h": 280, "8h": 380 },
-        weekendPrices: { "2h": 200, "4h": 320, "8h": 390 }
+        prices: { "2h": 210, "4h": 310, "8h": 420 },
+        weekendPrices: { "2h": 220, "4h": 350, "8h": 430 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "2h": 200, "4h": 290, "8h": 390 },
-        weekendPrices: { "2h": 220, "4h": 340, "8h": 420 }
+        prices: { "2h": 220, "4h": 320, "8h": 430 },
+        weekendPrices: { "2h": 240, "4h": 375, "8h": 460 }
       }
     },
     extras: [
@@ -548,15 +548,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "2h": 180, "4h": 250, "8h": 300 }
+        prices: { "2h": 200, "4h": 275, "8h": 330 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "2h": 200, "4h": 280, "8h": 360 }
+        prices: { "2h": 220, "4h": 310, "8h": 395 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "2h": 220, "4h": 300, "8h": 420 }
+        prices: { "2h": 240, "4h": 330, "8h": 460 }
       }
     },
     extras: [
@@ -612,15 +612,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "2h": 240, "3h": 320, "4h": 380 }
+        prices: { "2h": 265, "3h": 350, "4h": 420 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "2h": 260, "3h": 340, "4h": 400 }
+        prices: { "2h": 285, "3h": 375, "4h": 440 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "2h": 280, "3h": 360, "4h": 420 }
+        prices: { "2h": 310, "3h": 395, "4h": 460 }
       }
     },
     extras: [
@@ -661,7 +661,7 @@ export function boatIncludesFuel(boatId: string, requiresLicense: boolean | null
 // `is_active` in the DB (managed from the CRM). The owner deactivated the
 // Astec 400 on 2026-05-29, so today the live fleet is 8 (4 license-free + 3
 // licensed + 1 captained excursion) and the cheapest license-free boat is
-// 75 EUR/h. Machine-readable surfaces (meta, llms.txt, ai-citations) must
+// 85 EUR/h. Machine-readable surfaces (meta, llms.txt, ai-citations) must
 // reflect the LIVE fleet, not the catalog — see CLAUDE.md "Flota viva".
 //
 // These helpers compute the stats from whatever active set they're given, so
@@ -780,7 +780,7 @@ export function catalogFleetStats(
 /**
  * Rewrite fleet-count and price-floor literals in our own marketing copy,
  * JSON-LD prose and llms.txt to match the LIVE fleet. The catalog is "9 boats
- * from 70€/h" but the live fleet (Astec 400 deactivated) is "8 from 75€/h", so
+ * from 85€/h" but the live fleet (Astec 400 deactivated) is "8 from 85€/h", so
  * static strings drift. Patterns are deliberately tight:
  *   • the price floor only matches "70" immediately followed by a currency
  *     token, so numeric JSON-LD fields ("price":"70") are never touched;

@@ -248,22 +248,22 @@ describe("getAvailableDurationsForDate peak-season cap (licence-free boats)", ()
 describe("calculateBasePrice", () => {
   it("returns correct price for solar-450 in BAJA 2h on weekday", () => {
     const price = calculateBasePrice("solar-450", new Date("2026-04-06T12:00:00"), "2h");
-    expect(price).toBe(115); // BAJA 2h = 115 per boatData.ts
+    expect(price).toBe(125); // BAJA 2h = 115 per boatData.ts
   });
 
   it("returns correct price for solar-450 in BAJA 1h on weekday", () => {
     const price = calculateBasePrice("solar-450", new Date("2026-04-06T12:00:00"), "1h");
-    expect(price).toBe(75);
+    expect(price).toBe(85);
   });
 
   it("returns correct price for solar-450 in MEDIA 2h on weekday", () => {
     const price = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "2h");
-    expect(price).toBe(140); // MEDIA 2h = 140 per boatData.ts
+    expect(price).toBe(155); // MEDIA 2h = 140 per boatData.ts
   });
 
   it("returns correct price for solar-450 in ALTA 2h on weekday", () => {
     const price = calculateBasePrice("solar-450", new Date("2026-08-06T12:00:00"), "2h");
-    expect(price).toBe(160); // ALTA 2h = 160 per boatData.ts (subida +5% 2026-08-05)
+    expect(price).toBe(175); // ALTA 2h = 160 per boatData.ts (subida +5% 2026-08-05)
   });
 
   it("applies weekend surcharge correctly (rounded to nearest 10)", () => {
@@ -271,8 +271,8 @@ describe("calculateBasePrice", () => {
     const weekendPrice = calculateBasePrice("solar-450", new Date("2026-04-04T12:00:00"), "2h");
     const weekdayPrice = calculateBasePrice("solar-450", new Date("2026-04-06T12:00:00"), "2h");
     // 115 * 1.15 = 132.25 → roundToNearestTen → 130
-    expect(weekendPrice).toBe(130);
-    expect(weekdayPrice).toBe(115); // catalog base, untouched
+    expect(weekendPrice).toBe(140);
+    expect(weekdayPrice).toBe(125); // catalog base, untouched
     // sanity: WEEKEND_SURCHARGE_FACTOR is still 1.15
     expect(WEEKEND_SURCHARGE_FACTOR).toBe(1.15);
   });
@@ -282,18 +282,18 @@ describe("calculateBasePrice", () => {
     const wkend4 = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "4h"); // Saturday
     const wkday3 = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "3h");
     const wkend3 = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "3h");
-    expect(wkday4).toBe(200); // MEDIA 4h weekday per boatData.ts
-    expect(wkend4).toBe(220); // explicit weekendPrices, NOT 200 * 1.15 = 230
-    expect(wkday3).toBe(170); // MEDIA 3h weekday per boatData.ts
-    expect(wkend3).toBe(190); // explicit weekendPrices, NOT 170 * 1.15 → 200
+    expect(wkday4).toBe(220); // MEDIA 4h weekday per boatData.ts
+    expect(wkend4).toBe(240); // explicit weekendPrices, NOT 200 * 1.15 = 230
+    expect(wkday3).toBe(185); // MEDIA 3h weekday per boatData.ts
+    expect(wkend3).toBe(210); // explicit weekendPrices, NOT 170 * 1.15 → 200
   });
 
   it("keeps the +15% weekend surcharge for July durations without an explicit weekend price", () => {
     // MEDIA 2h = 140 weekday; weekend 140 * 1.15 = 161 → roundToNearestTen → 160
     const weekday = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "2h");
     const weekend = calculateBasePrice("solar-450", new Date("2026-07-11T12:00:00"), "2h");
-    expect(weekday).toBe(140);
-    expect(weekend).toBe(160);
+    expect(weekday).toBe(155);
+    expect(weekend).toBe(180);
   });
 
   it("throws for unknown boat", () => {
@@ -361,19 +361,19 @@ describe("calculatePricingBreakdown", () => {
     expect(breakdown.duration).toBe("4h");
     expect(breakdown.season).toBe("BAJA");
     expect(breakdown.weekendSurcharge).toBe(false);
-    expect(breakdown.basePrice).toBe(150); // BAJA 4h = 150 per boatData.ts
+    expect(breakdown.basePrice).toBe(165); // BAJA 4h = 150 per boatData.ts
     expect(breakdown.selectedExtras).toEqual([]);
     expect(breakdown.selectedPacks).toEqual([]);
     expect(breakdown.extrasPrice).toBe(0);
     expect(breakdown.deposit).toBe(200);
-    expect(breakdown.subtotal).toBe(150);
-    expect(breakdown.total).toBe(350);
+    expect(breakdown.subtotal).toBe(165);
+    expect(breakdown.total).toBe(365);
   });
 
   it("includes weekend surcharge in breakdown (rounded to nearest 10)", () => {
     const breakdown = calculatePricingBreakdown("solar-450", new Date("2026-04-04T12:00:00"), "2h");
     expect(breakdown.weekendSurcharge).toBe(true);
-    expect(breakdown.basePrice).toBe(130); // 115 * 1.15 = 132.25 → roundToNearestTen → 130
+    expect(breakdown.basePrice).toBe(140); // 115 * 1.15 = 132.25 → roundToNearestTen → 130
   });
 
   it("calculates subtotal correctly (basePrice + extrasPrice)", () => {
@@ -385,7 +385,7 @@ describe("calculatePricingBreakdown", () => {
     );
     expect(breakdown.extrasPrice).toBe(17.5);
     expect(breakdown.subtotal).toBe(breakdown.basePrice + breakdown.extrasPrice);
-    expect(breakdown.subtotal).toBe(115 + 17.5);
+    expect(breakdown.subtotal).toBe(125 + 17.5);
   });
 
   it("calculates total correctly (subtotal + deposit)", () => {
@@ -396,7 +396,7 @@ describe("calculatePricingBreakdown", () => {
       ["Parking delante del Barco"]
     );
     expect(breakdown.total).toBe(breakdown.subtotal + breakdown.deposit);
-    expect(breakdown.total).toBe(115 + 10 + 200);
+    expect(breakdown.total).toBe(125 + 10 + 200);
   });
 
   it("throws for unknown boat", () => {
@@ -539,7 +539,7 @@ describe("priceFor (alias for calculateBasePrice)", () => {
 
   it("calculates correct price via priceFor alias", () => {
     const price = priceFor("solar-450", new Date("2026-04-06T12:00:00"), "2h");
-    expect(price).toBe(115); // BAJA 2h = 115 per boatData.ts
+    expect(price).toBe(125); // BAJA 2h = 115 per boatData.ts
   });
 });
 
@@ -585,11 +585,11 @@ describe("Integration: Full booking flow", () => {
     expect(breakdown.boatId).toBe("solar-450");
     expect(breakdown.season).toBe("BAJA");
     expect(breakdown.weekendSurcharge).toBe(false);
-    expect(breakdown.basePrice).toBe(150); // BAJA 4h = 150 per boatData.ts
+    expect(breakdown.basePrice).toBe(165); // BAJA 4h = 150 per boatData.ts
     expect(breakdown.extrasPrice).toBe(17.5); // Parking 10 + Snorkel 7.5
     expect(breakdown.deposit).toBe(200);
-    expect(breakdown.subtotal).toBe(167.5);
-    expect(breakdown.total).toBe(367.5);
+    expect(breakdown.subtotal).toBe(182.5);
+    expect(breakdown.total).toBe(382.5);
   });
 
   it("does NOT apply weekend surcharge in August (analysis showed day-of-week is irrelevant in August)", () => {
@@ -604,10 +604,10 @@ describe("Integration: Full booking flow", () => {
     // 170 NO es un recargo: es el weekendPrice explicito que el Solar 450 tiene en
     // ALTA desde 2026-07-30 (el sabado de agosto no puede costar menos que el de
     // julio). El +15% automatico sigue sin aplicarse, como asierta la linea de arriba.
-    expect(breakdown.basePrice).toBe(170);
+    expect(breakdown.basePrice).toBe(185);
     expect(breakdown.extrasPrice).toBe(10);
-    expect(breakdown.subtotal).toBe(180);
-    expect(breakdown.total).toBe(380);
+    expect(breakdown.subtotal).toBe(195);
+    expect(breakdown.total).toBe(395);
   });
 });
 
@@ -620,40 +620,40 @@ describe("explicit weekend prices (licensed sport boats, July & August)", () => 
   const augWeekend = new Date("2026-08-01T10:00:00");
 
   it("Trimarchi 57S July: weekday base, explicit weekend prices", () => {
-    expect(calculateBasePrice("trimarchi-57s", julWeekday, "2h")).toBe(190);
-    expect(calculateBasePrice("trimarchi-57s", julWeekday, "4h")).toBe(280);
-    expect(calculateBasePrice("trimarchi-57s", julWeekday, "8h")).toBe(380);
-    expect(calculateBasePrice("trimarchi-57s", julWeekend, "2h")).toBe(200);
-    expect(calculateBasePrice("trimarchi-57s", julWeekend, "4h")).toBe(320);
-    expect(calculateBasePrice("trimarchi-57s", julWeekend, "8h")).toBe(390);
+    expect(calculateBasePrice("trimarchi-57s", julWeekday, "2h")).toBe(210);
+    expect(calculateBasePrice("trimarchi-57s", julWeekday, "4h")).toBe(310);
+    expect(calculateBasePrice("trimarchi-57s", julWeekday, "8h")).toBe(420);
+    expect(calculateBasePrice("trimarchi-57s", julWeekend, "2h")).toBe(220);
+    expect(calculateBasePrice("trimarchi-57s", julWeekend, "4h")).toBe(350);
+    expect(calculateBasePrice("trimarchi-57s", julWeekend, "8h")).toBe(430);
   });
 
   it("Trimarchi 57S August: explicit weekend prices win despite the August surcharge skip", () => {
-    expect(calculateBasePrice("trimarchi-57s", augWeekday, "2h")).toBe(200);
-    expect(calculateBasePrice("trimarchi-57s", augWeekday, "4h")).toBe(290);
-    expect(calculateBasePrice("trimarchi-57s", augWeekday, "8h")).toBe(390);
+    expect(calculateBasePrice("trimarchi-57s", augWeekday, "2h")).toBe(220);
+    expect(calculateBasePrice("trimarchi-57s", augWeekday, "4h")).toBe(320);
+    expect(calculateBasePrice("trimarchi-57s", augWeekday, "8h")).toBe(430);
     // August normally skips the weekend surcharge; explicit weekendPrices override that
-    expect(calculateBasePrice("trimarchi-57s", augWeekend, "2h")).toBe(220);
-    expect(calculateBasePrice("trimarchi-57s", augWeekend, "4h")).toBe(340);
-    expect(calculateBasePrice("trimarchi-57s", augWeekend, "8h")).toBe(420);
+    expect(calculateBasePrice("trimarchi-57s", augWeekend, "2h")).toBe(240);
+    expect(calculateBasePrice("trimarchi-57s", augWeekend, "4h")).toBe(375);
+    expect(calculateBasePrice("trimarchi-57s", augWeekend, "8h")).toBe(460);
   });
 
   it("Mingolla Brava 19 July: weekday base, explicit weekend prices", () => {
-    expect(calculateBasePrice("mingolla-brava-19", julWeekday, "2h")).toBe(180);
-    expect(calculateBasePrice("mingolla-brava-19", julWeekday, "4h")).toBe(270);
-    expect(calculateBasePrice("mingolla-brava-19", julWeekday, "8h")).toBe(360);
-    expect(calculateBasePrice("mingolla-brava-19", julWeekend, "2h")).toBe(190);
-    expect(calculateBasePrice("mingolla-brava-19", julWeekend, "4h")).toBe(300);
-    expect(calculateBasePrice("mingolla-brava-19", julWeekend, "8h")).toBe(380);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekday, "2h")).toBe(200);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekday, "4h")).toBe(295);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekday, "8h")).toBe(395);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekend, "2h")).toBe(210);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekend, "4h")).toBe(330);
+    expect(calculateBasePrice("mingolla-brava-19", julWeekend, "8h")).toBe(420);
   });
 
   it("Mingolla Brava 19 August: explicit weekend prices win despite the August surcharge skip", () => {
-    expect(calculateBasePrice("mingolla-brava-19", augWeekday, "2h")).toBe(190);
-    expect(calculateBasePrice("mingolla-brava-19", augWeekday, "4h")).toBe(280);
-    expect(calculateBasePrice("mingolla-brava-19", augWeekday, "8h")).toBe(380);
-    expect(calculateBasePrice("mingolla-brava-19", augWeekend, "2h")).toBe(200);
-    expect(calculateBasePrice("mingolla-brava-19", augWeekend, "4h")).toBe(320);
-    expect(calculateBasePrice("mingolla-brava-19", augWeekend, "8h")).toBe(390);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekday, "2h")).toBe(210);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekday, "4h")).toBe(310);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekday, "8h")).toBe(420);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekend, "2h")).toBe(220);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekend, "4h")).toBe(350);
+    expect(calculateBasePrice("mingolla-brava-19", augWeekend, "8h")).toBe(430);
   });
 });
 
@@ -803,14 +803,14 @@ describe("calculatePricingBreakdown with overrides", () => {
   });
 
   it("applies a global multiplier override (+25%) on top of season pricing", () => {
-    // ALTA 2h Solar 450 = 160€ base, no weekend
+    // ALTA 2h Solar 450 = 175€ base, no weekend
     const date = TUESDAY_AUG_5;
     const overrides = [makeRule({ adjustmentValue: 0.25 })];
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
-    expect(breakdown.basePriceBeforeOverride).toBe(160);
-    expect(breakdown.basePrice).toBe(200); // 160 * 1.25 = 200
+    expect(breakdown.basePriceBeforeOverride).toBe(175);
+    expect(breakdown.basePrice).toBe(220); // 160 * 1.25 = 200
     expect(breakdown.appliedOverride?.label).toBe("Pico agosto");
-    expect(breakdown.subtotal).toBe(200);
+    expect(breakdown.subtotal).toBe(220);
   });
 
   it("override applies on top of weekend surcharge (jul, where surcharge IS active)", () => {
@@ -822,10 +822,10 @@ describe("calculatePricingBreakdown with overrides", () => {
     })];
     const breakdown = calculatePricingBreakdown("solar-450", julySaturday, "2h", [], [], overrides);
     // Solar 450 MEDIA 2h = 140. Weekend factor: 140 * 1.15 = 161 → roundToNearestTen → 160.
-    expect(breakdown.basePriceBeforeOverride).toBe(160);
+    expect(breakdown.basePriceBeforeOverride).toBe(180);
     expect(breakdown.weekendSurcharge).toBe(true);
     // 160 * 1.20 = 192 → roundToNearestTen → 190
-    expect(breakdown.basePrice).toBe(190);
+    expect(breakdown.basePrice).toBe(220);
   });
 
   it("override applies WITHOUT weekend surcharge in August (surcharge bypassed)", () => {
@@ -835,8 +835,8 @@ describe("calculatePricingBreakdown with overrides", () => {
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
     // 170 = weekendPrice explicito del Solar 450 en ALTA (no recargo: ver
     // shouldApplyWeekendSurcharge, que sigue devolviendo false en agosto).
-    expect(breakdown.basePriceBeforeOverride).toBe(170);
-    expect(breakdown.basePrice).toBe(190); // 170 * 1.10 = 187 → roundToNearestTen → 190
+    expect(breakdown.basePriceBeforeOverride).toBe(185);
+    expect(breakdown.basePrice).toBe(200); // 170 * 1.10 = 187 → roundToNearestTen → 190
     expect(breakdown.weekendSurcharge).toBe(false);
   });
 
@@ -851,11 +851,11 @@ describe("calculatePricingBreakdown with overrides", () => {
       [],
       overrides,
     );
-    expect(breakdown.basePrice).toBe(200); // 160 * 1.25 = 200
+    expect(breakdown.basePrice).toBe(220); // 160 * 1.25 = 200
     expect(breakdown.extrasPrice).toBe(10); // unchanged
     // deposit unchanged from solar-450's spec
     expect(breakdown.deposit).toBeGreaterThan(0);
-    expect(breakdown.subtotal).toBe(210); // 200 + 10
+    expect(breakdown.subtotal).toBe(230); // 200 + 10
     expect(breakdown.total).toBe(breakdown.subtotal + breakdown.deposit);
   });
 
@@ -863,14 +863,14 @@ describe("calculatePricingBreakdown with overrides", () => {
     const date = TUESDAY_AUG_5;
     const overrides = [makeRule({ adjustmentType: "flat_eur", adjustmentValue: 30 })];
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
-    expect(breakdown.basePrice).toBe(190); // 160 + 30
+    expect(breakdown.basePrice).toBe(210); // 160 + 30
   });
 
   it("does not apply override outside its date range", () => {
     const date = WEDNESDAY_AUG_19;
     const overrides = [makeRule({ dateEnd: "2026-08-17" })];
     const breakdown = calculatePricingBreakdown("solar-450", date, "2h", [], [], overrides);
-    expect(breakdown.basePrice).toBe(160); // ALTA base, unchanged
+    expect(breakdown.basePrice).toBe(175); // ALTA base, unchanged
     expect(breakdown.appliedOverride).toBeUndefined();
   });
 });

@@ -114,7 +114,7 @@ export default function LocationTossaPage() {
   //   (2) Excursión Privada con Capitán — ÚNICO charter guiado del catálogo.
   //       Pacific Craft 625 + patrón profesional, 4h máximo (no existe día
   //       completo con patrón), 7 pax, rutas Blanes↔Tossa. Precios por
-  //       temporada: 380€ baja / 400€ media / 420€ alta. IVA, patrón,
+  //       temporada: 420€ baja / 440€ media / 460€ alta. IVA, patrón,
   //       amarre, limpieza y seguro incluidos — combustible aparte.
   //       Catalog: /es/barco/excursion-privada
   //

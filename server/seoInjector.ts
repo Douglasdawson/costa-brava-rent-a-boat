@@ -679,37 +679,37 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   // MUST mirror client seo-config.ts categoryLicensed exactly (Lloret/Maresme rule).
   "/barcos-con-licencia": {
     es: {
-      title: "Alquiler Lancha Costa Brava Sin Patrón | Blanes desde 160€",
+      title: "Alquiler Lancha Costa Brava Sin Patrón | Blanes desde 175€",
       description: `3 lanchas de 80 a 115 CV para pilotar tú mismo desde Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Basta la Licencia de Navegación. ${BUSINESS_RATING_STR}★ Google.`,
       ogTitle: "Alquiler de Lanchas Sin Patrón en Blanes | Tossa en 30-45 min",
       ogDescription: `3 lanchas 80-115 CV. Tú al timón con tu Licencia de Navegación. Verificamos títulos extranjeros online. ${BUSINESS_RATING_STR}★ Google.`,
     },
     en: {
-      title: "Self-Drive Boat Rental Costa Brava | Blanes from 160€/2h",
+      title: "Self-Drive Boat Rental Costa Brava | Blanes from 175€/2h",
       description: `3 powerboats 80-115 HP you skipper yourself from Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Navigation Licence, ICC or EU equivalents. ${BUSINESS_RATING_STR}★ Google.`,
     },
     ca: {
-      title: "Lloguer Llanxa Costa Brava Sense Patró | Blanes des de 160€",
+      title: "Lloguer Llanxa Costa Brava Sense Patró | Blanes des de 175€",
       description: `3 llanxes de 80 a 115 CV per pilotar tu mateix des de Blanes: Lloret 15 min, Tossa de Mar 30-45 min. N'hi ha prou amb la Llicència de Navegació. ${BUSINESS_RATING_STR}★ Google.`,
     },
     fr: {
-      title: "Location Bateau Moteur Sans Skipper | Blanes dès 160€/2h",
+      title: "Location Bateau Moteur Sans Skipper | Blanes dès 175€/2h",
       description: `3 bateaux à moteur de 80 à 115 CV à piloter vous-même depuis Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Permis Côtier et ICC acceptés. ${BUSINESS_RATING_STR}★ Google.`,
     },
     de: {
-      title: "Motorboot Mieten Costa Brava Ohne Skipper | Blanes ab 160€/2h",
+      title: "Motorboot Mieten Costa Brava Ohne Skipper | Blanes ab 175€/2h",
       description: `3 Motorboote mit 80-115 PS zum Selbstfahren ab Blanes: Lloret 15 Min, Tossa de Mar 30-45 Min. SBF See und ICC anerkannt. ${BUSINESS_RATING_STR}★ Google.`,
     },
     nl: {
-      title: "Motorboot Huren Costa Brava Zonder Schipper | Blanes va 160€/2u",
+      title: "Motorboot Huren Costa Brava Zonder Schipper | Blanes va 175€/2u",
       description: `3 motorboten van 80-115 pk om zelf te varen vanuit Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Vaarbewijs en ICC geaccepteerd. ${BUSINESS_RATING_STR}★ Google.`,
     },
     it: {
-      title: "Noleggio Motoscafo Costa Brava Senza Skipper | Blanes da 160€",
+      title: "Noleggio Motoscafo Costa Brava Senza Skipper | Blanes da 175€",
       description: `3 motoscafi da 80 a 115 CV da pilotare tu stesso da Blanes: Lloret 15 min, Tossa de Mar 30-45 min. Patente nautica e ICC accettate. ${BUSINESS_RATING_STR}★ Google.`,
     },
     ru: {
-      title: "Аренда Катера Коста-Брава Без Шкипера | Бланес от 160€/2ч",
+      title: "Аренда Катера Коста-Брава Без Шкипера | Бланес от 175€/2ч",
       description: `3 катера 80-115 л.с., за штурвалом вы сами: Льорет 15 мин, Тосса-де-Мар 30-45 мин от Бланеса. Принимаем ICC и лицензии ЕС. ${BUSINESS_RATING_STR}★ Google.`,
     },
   },
@@ -758,37 +758,37 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     // north of Fenals, licensed-only (see rangeFromBlanes in es.ts).
     es: {
       title: `Alquilar Barco Lloret de Mar Sin Licencia · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
-      description: `Alquiler o alquilar barco a Lloret de Mar sin licencia desde Blanes. Santa Cristina y Sa Boadella a 25 min. 75€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva WhatsApp.`,
+      description: `Alquiler o alquilar barco a Lloret de Mar sin licencia desde Blanes. Santa Cristina y Sa Boadella a 25 min. 70€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva WhatsApp.`,
       ogTitle: `Alquilar Barco Lloret de Mar Sin Licencia · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
-      ogDescription: `Lloret de Mar en barco sin licencia desde Blanes (25 min). 75€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google. Santa Cristina, Sa Boadella, Cala Sant Francesc.`,
+      ogDescription: `Lloret de Mar en barco sin licencia desde Blanes (25 min). 70€/h gasolina incluida. ★${BUSINESS_RATING_STR} Google. Santa Cristina, Sa Boadella, Cala Sant Francesc.`,
     },
     en: {
       title: `Boat Rental Lloret de Mar Without License · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
-      description: `Boat rental to Lloret de Mar without a license, from Blanes. Santa Cristina and Sa Boadella in 25 min. From 75€/h, fuel included. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book on WhatsApp.`,
+      description: `Boat rental to Lloret de Mar without a license, from Blanes. Santa Cristina and Sa Boadella in 25 min. From 70€/h, fuel included. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book on WhatsApp.`,
     },
     ca: {
       title: `Lloguer de Vaixell a Lloret de Mar Sense Llicència · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
-      description: `Lloguer de vaixell a Lloret de Mar sense llicència des de Blanes. Santa Cristina i Sa Boadella a 25 min. Des de 75€/h, benzina inclosa. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Reserva per WhatsApp.`,
+      description: `Lloguer de vaixell a Lloret de Mar sense llicència des de Blanes. Santa Cristina i Sa Boadella a 25 min. Des de 70€/h, benzina inclosa. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Reserva per WhatsApp.`,
     },
     fr: {
       title: `Location de Bateau à Lloret de Mar Sans Permis · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
-      description: `Location de bateau à Lloret de Mar sans permis depuis Blanes. Santa Cristina et Sa Boadella en 25 min. Dès 75€/h, carburant inclus. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Réservez sur WhatsApp.`,
+      description: `Location de bateau à Lloret de Mar sans permis depuis Blanes. Santa Cristina et Sa Boadella en 25 min. Dès 70€/h, carburant inclus. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Réservez sur WhatsApp.`,
     },
     de: {
       title: `Boot Mieten Lloret de Mar Ohne Führerschein · Santa Cristina 25 Min · ★${BUSINESS_RATING_STR}`,
-      description: `Boot mieten nach Lloret de Mar ohne Führerschein, ab Blanes. Santa Cristina und Sa Boadella in 25 Min. Ab 75€/h, Kraftstoff inklusive. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Buchung per WhatsApp.`,
+      description: `Boot mieten nach Lloret de Mar ohne Führerschein, ab Blanes. Santa Cristina und Sa Boadella in 25 Min. Ab 70€/h, Kraftstoff inklusive. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Buchung per WhatsApp.`,
     },
     nl: {
       title: `Boot Huren Lloret de Mar Zonder Vaarbewijs · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
-      description: `Boot huren naar Lloret de Mar zonder vaarbewijs, vanaf Blanes. Santa Cristina en Sa Boadella in 25 min. Vanaf 75€/u, brandstof inbegrepen. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Boek via WhatsApp.`,
+      description: `Boot huren naar Lloret de Mar zonder vaarbewijs, vanaf Blanes. Santa Cristina en Sa Boadella in 25 min. Vanaf 70€/u, brandstof inbegrepen. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Boek via WhatsApp.`,
     },
     it: {
       title: `Noleggio Barca a Lloret de Mar Senza Patente · Santa Cristina 25 min · ★${BUSINESS_RATING_STR}`,
-      description: `Noleggio barca a Lloret de Mar senza patente, da Blanes. Santa Cristina e Sa Boadella in 25 min. Da 75€/h, carburante incluso. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Prenota su WhatsApp.`,
+      description: `Noleggio barca a Lloret de Mar senza patente, da Blanes. Santa Cristina e Sa Boadella in 25 min. Da 70€/h, carburante incluso. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Prenota su WhatsApp.`,
     },
     ru: {
       title: `Аренда Лодки в Льорет-де-Мар Без Лицензии · Санта-Кристина 25 мин · ★${BUSINESS_RATING_STR}`,
-      description: `Аренда лодки в Льорет-де-Мар без лицензии, из Бланеса. Санта-Кристина и Са-Боаделья за 25 минут. От 75€/ч, топливо включено. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Бронь в WhatsApp.`,
+      description: `Аренда лодки в Льорет-де-Мар без лицензии, из Бланеса. Санта-Кристина и Са-Боаделья за 25 минут. От 70€/ч, топливо включено. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Бронь в WhatsApp.`,
     },
   },
   "/alquiler-barcos-tossa-de-mar": {
@@ -796,7 +796,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Barco Tossa de Mar Con Licencia | Vila Vella desde el Mar",
       description: "Alquila barco con licencia (LN o superior) o charter con patrón desde Blanes a Tossa de Mar. Navega frente a la Vila Vella medieval. 30-45 min ida. Cala Pola, Giverola.",
       ogTitle: "Alquiler Barco Tossa de Mar | Licencia de Navegaci\u00f3n (LN) o Excursi\u00f3n con Capit\u00e1n",
-      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con LN desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte. 4.8\u2605.",
+      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con LN desde 175\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 420\u20ac. Combustible aparte. 4.8\u2605.",
     },
     en: {
       title: "Boat Trip to Tossa de Mar from Blanes",
@@ -937,38 +937,38 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-pineda-de-mar": {
     es: {
-      title: "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 75€/h",
-      description: "¿Alojado en Pineda de Mar? Puerto Blanes a 18 min por carretera o 12 min en tren R1. Alquila barco sin licencia desde 75€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa.",
+      title: "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 70€/h",
+      description: "¿Alojado en Pineda de Mar? Puerto Blanes a 18 min por carretera o 12 min en tren R1. Alquila barco sin licencia desde 70€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa.",
       ogTitle: "Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes",
-      ogDescription: "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 75€/h. 4.8★ Google.",
+      ogDescription: "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 70€/h. 4.8★ Google.",
     },
     en: {
-      title: "Boat Rental Pineda de Mar | Blanes Port 18 min | No License 75€/h",
-      description: "Staying in Pineda de Mar? Blanes Port is 18 min by car or 12 min by R1 train. Rent a boat without a license from 75€/h with fuel included. Sail to Blanes, Lloret or Tossa.",
+      title: "Boat Rental Pineda de Mar | Blanes Port 18 min | No License 70€/h",
+      description: "Staying in Pineda de Mar? Blanes Port is 18 min by car or 12 min by R1 train. Rent a boat without a license from 70€/h with fuel included. Sail to Blanes, Lloret or Tossa.",
     },
     ca: {
-      title: "Lloguer Vaixell Pineda de Mar | Port Blanes 18 min | Sense Llicència 75€/h",
-      description: "Allotjat a Pineda de Mar? Port Blanes a 18 min amb cotxe o 12 min amb tren R1. Lloga vaixell sense llicència des de 75€/h amb gasolina inclosa. Navega a Blanes, Lloret o Tossa.",
+      title: "Lloguer Vaixell Pineda de Mar | Port Blanes 18 min | Sense Llicència 70€/h",
+      description: "Allotjat a Pineda de Mar? Port Blanes a 18 min amb cotxe o 12 min amb tren R1. Lloga vaixell sense llicència des de 70€/h amb gasolina inclosa. Navega a Blanes, Lloret o Tossa.",
     },
     fr: {
-      title: "Location Bateau Pineda de Mar | Port Blanes 18 min | Sans Permis 75€/h",
-      description: "Logé à Pineda de Mar ? Port de Blanes à 18 min en voiture ou 12 min en train R1. Louez un bateau sans permis dès 75€/h essence incluse. Naviguez vers Blanes, Lloret ou Tossa.",
+      title: "Location Bateau Pineda de Mar | Port Blanes 18 min | Sans Permis 70€/h",
+      description: "Logé à Pineda de Mar ? Port de Blanes à 18 min en voiture ou 12 min en train R1. Louez un bateau sans permis dès 70€/h essence incluse. Naviguez vers Blanes, Lloret ou Tossa.",
     },
     de: {
-      title: "Bootsvermietung Pineda de Mar | Hafen Blanes 18 Min | Ohne Führerschein 75€/Std",
-      description: "Unterkunft in Pineda de Mar? Hafen Blanes 18 Min mit dem Auto oder 12 Min mit dem Zug R1. Boot ohne Führerschein ab 75€/Std mit Benzin inklusive. Fahr nach Blanes, Lloret oder Tossa.",
+      title: "Bootsvermietung Pineda de Mar | Hafen Blanes 18 Min | Ohne Führerschein 70€/Std",
+      description: "Unterkunft in Pineda de Mar? Hafen Blanes 18 Min mit dem Auto oder 12 Min mit dem Zug R1. Boot ohne Führerschein ab 70€/Std mit Benzin inklusive. Fahr nach Blanes, Lloret oder Tossa.",
     },
     nl: {
-      title: "Boot Huren Pineda de Mar | Haven Blanes 18 min | Zonder Vaarbewijs 75€/u",
-      description: "Verblijf je in Pineda de Mar? Haven Blanes op 18 min met de auto of 12 min met trein R1. Huur boot zonder vaarbewijs vanaf 75€/u met brandstof inbegrepen. Vaar naar Blanes, Lloret of Tossa.",
+      title: "Boot Huren Pineda de Mar | Haven Blanes 18 min | Zonder Vaarbewijs 70€/u",
+      description: "Verblijf je in Pineda de Mar? Haven Blanes op 18 min met de auto of 12 min met trein R1. Huur boot zonder vaarbewijs vanaf 70€/u met brandstof inbegrepen. Vaar naar Blanes, Lloret of Tossa.",
     },
     it: {
-      title: "Noleggio Barca Pineda de Mar | Porto Blanes 18 min | Senza Patente 75€/h",
-      description: "Alloggi a Pineda de Mar? Porto Blanes a 18 min in auto o 12 min in treno R1. Noleggia barca senza patente da 75€/h con carburante incluso. Naviga a Blanes, Lloret o Tossa.",
+      title: "Noleggio Barca Pineda de Mar | Porto Blanes 18 min | Senza Patente 70€/h",
+      description: "Alloggi a Pineda de Mar? Porto Blanes a 18 min in auto o 12 min in treno R1. Noleggia barca senza patente da 70€/h con carburante incluso. Naviga a Blanes, Lloret o Tossa.",
     },
     ru: {
-      title: "Аренда лодки Пинеда-де-Мар | Порт Бланес 18 мин | Без лицензии 75€/ч",
-      description: "Остановились в Пинеде-де-Мар? Порт Бланес в 18 мин на машине или 12 мин на поезде R1. Аренда лодки без лицензии от 75€/ч с бензином. Плывите в Бланес, Льорет или Тоссу.",
+      title: "Аренда лодки Пинеда-де-Мар | Порт Бланес 18 мин | Без лицензии 70€/ч",
+      description: "Остановились в Пинеде-де-Мар? Порт Бланес в 18 мин на машине или 12 мин на поезде R1. Аренда лодки без лицензии от 70€/ч с бензином. Плывите в Бланес, Льорет или Тоссу.",
     },
   },
   "/alquiler-barcos-palafolls": {
@@ -1250,13 +1250,13 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/precios": {
     es: {
       title: `Precios Alquiler Barcos por Horas Costa Brava ${SEASON_YEAR} | Blanes`,
-      description: "Consulta precios de alquiler de barcos en Blanes. Sin licencia desde 70\u20ac/hora. Con licencia desde 160\u20ac/2h. Gasolina incluida. Temporada baja, media y alta.",
+      description: "Consulta precios de alquiler de barcos en Blanes. Sin licencia desde 70\u20ac/hora. Con licencia desde 175\u20ac/2h. Gasolina incluida. Temporada baja, media y alta.",
       ogTitle: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Desde 70\u20ac`,
       ogDescription: "Compara precios de todos nuestros barcos en Blanes. Sin licencia desde 70\u20ac/h. Gasolina incluida. Temporada baja, media y alta.",
     },
     en: {
       title: `Boat Rental Prices by the Hour Blanes ${SEASON_YEAR} | Costa Brava`,
-      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 160\u20ac/2h. Fuel included. Low, mid and high season rates.",
+      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 175\u20ac/2h. Fuel included. Low, mid and high season rates.",
     },
     fr: {
       title: `Tarifs Location Bateaux \u00e0 l'Heure Blanes ${SEASON_YEAR} | Costa Brava`,
@@ -1981,7 +1981,7 @@ function buildBoatProductSchema(
   const licenseText = boat.requiresLicense ? "con licencia náutica" : "sin licencia náutica";
   // Offer.price is REQUIRED by Google merchant listings rich-result spec.
   // Always emit a numeric price; fall back to category floor when boat.pricing
-  // is missing or all 0 (sin licencia ≥ 70€/h, con licencia ≥ 160€/2h-paquete).
+  // is missing or all 0 (sin licencia ≥ 70€/h, con licencia ≥ 175€/2h-paquete).
   // Falsey-check below is `>0` not truthy so price=0 doesn't slip through.
   const FALLBACK_PRICE_BY_CATEGORY = boat.requiresLicense ? 160 : 70;
   const effectivePrice = (typeof fromPrice === "number" && fromPrice > 0) ? fromPrice : FALLBACK_PRICE_BY_CATEGORY;
@@ -2542,13 +2542,13 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
         estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "70" },
         step: lang === "en" ? [
           { "@type": "HowToStep", position: 1, name: "Check your licence", text: "The basic Licencia de Navegacion covers the whole licensed fleet, and equivalent foreign titles (ICC, Permis Cotier, SBF See) are verified free online before you book. No licence? We arrange the 1-day course, or you sail with a professional skipper." },
-          { "@type": "HowToStep", position: 2, name: "Choose your boat", text: "Licensed powerboats of 80-115 HP from 160 EUR/2 hours, or a private captained excursion from 240 EUR/2 hours. Boats without a licence remain available through September 30, 2026." },
+          { "@type": "HowToStep", position: 2, name: "Choose your boat", text: "Licensed powerboats of 80-115 HP from 175 EUR/2 hours, or a private captained excursion from 265 EUR/2 hours. Boats without a licence remain available through September 30, 2026." },
           { "@type": "HowToStep", position: 3, name: "Select date and time", text: "Choose date, start time, and duration. Available April to October, 09:00-20:00." },
           { "@type": "HowToStep", position: 4, name: "Confirm booking", text: "Book via WhatsApp (+34 611 500 372) or website. Bring the original licence on the day of departure." },
           { "@type": "HowToStep", position: 5, name: "Receive briefing and sail", text: "Safety briefing at Puerto de Blanes, then free rein to the coves and up to Tossa de Mar." },
         ] : [
           { "@type": "HowToStep", position: 1, name: "Comprueba tu titulacion", text: "La Licencia de Navegacion basta para toda la flota con licencia, y los titulos extranjeros equivalentes (ICC, Permis Cotier, SBF See) se verifican gratis online antes de reservar. Sin titulo, te organizamos el curso de 1 dia o sales con patron profesional." },
-          { "@type": "HowToStep", position: 2, name: "Elige tu barco", text: "Lanchas con licencia de 80-115 CV desde 160 EUR/2 horas, o excursion privada con patron desde 240 EUR/2 horas. Los barcos sin titulacion siguen disponibles hasta el 30 de septiembre de 2026." },
+          { "@type": "HowToStep", position: 2, name: "Elige tu barco", text: "Lanchas con licencia de 80-115 CV desde 175 EUR/2 horas, o excursion privada con patron desde 265 EUR/2 horas. Los barcos sin titulacion siguen disponibles hasta el 30 de septiembre de 2026." },
           { "@type": "HowToStep", position: 3, name: "Selecciona fecha y horario", text: "Elige fecha, hora de inicio y duracion. Disponible de abril a octubre, 09:00-20:00." },
           { "@type": "HowToStep", position: 4, name: "Confirma tu reserva", text: "Reserva por WhatsApp (+34 611 500 372) o web. Trae el titulo original el dia de la salida." },
           { "@type": "HowToStep", position: 5, name: "Briefing y a navegar", text: "Briefing de seguridad en el Puerto de Blanes y rumbo libre a las calas y hasta Tossa de Mar." },
@@ -2563,7 +2563,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Cuáles son los precios del alquiler?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 160€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion."
+              text: "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 175€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion."
             }
           },
           {
@@ -3015,15 +3015,15 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const service = buildLandingService(
         isEn ? "Boat Rental in Lloret de Mar (license-free, from Blanes)" : "Alquiler de Barcos en Lloret de Mar (sin licencia, desde Blanes)",
         isEn
-          ? "Sail from Blanes to Lloret de Mar. License-free boats reach Fenals Beach in 25 min (2-mile zone). Licensed boats explore the full Lloret coastline. From 75 EUR/hour, up to 7 people."
-          : "Navega desde Blanes hasta Lloret de Mar. Los barcos sin licencia llegan a Playa de Fenals en 25 min (zona de 2 millas). Los barcos con licencia recorren toda la costa de Lloret. Desde 75€/hora, hasta 7 personas.",
+          ? "Sail from Blanes to Lloret de Mar. License-free boats reach Fenals Beach in 25 min (2-mile zone). Licensed boats explore the full Lloret coastline. From 70 EUR/hour, up to 7 people."
+          : "Navega desde Blanes hasta Lloret de Mar. Los barcos sin licencia llegan a Playa de Fenals en 25 min (zona de 2 millas). Los barcos con licencia recorren toda la costa de Lloret. Desde 70€/hora, hasta 7 personas.",
         { low: 75, high: 420 },
       );
       const lloretBodyFallback = buildLocationBodyFallback(
         isEn ? "Boat Rental in Lloret de Mar (license-free, from Blanes)" : "Alquiler de Barcos en Lloret de Mar (sin licencia, desde Blanes)",
         isEn
-          ? "Sail from Blanes to Lloret de Mar in 25 minutes with a license-free boat (2-mile zone reaches Fenals Beach). Licensed boats explore the full Lloret coastline including Cala Banys and Santa Cristina. Rentals from 75€/hour, up to 7 people, fuel included on license-free boats."
-          : "Navega desde Blanes a Lloret de Mar en 25 minutos con barco sin licencia (la zona de 2 millas llega a Playa de Fenals). Los barcos con licencia recorren toda la costa de Lloret incluyendo Cala Banys y Santa Cristina. Alquileres desde 75€/hora, hasta 7 personas, gasolina incluida en barcos sin licencia.",
+          ? "Sail from Blanes to Lloret de Mar in 25 minutes with a license-free boat (2-mile zone reaches Fenals Beach). Licensed boats explore the full Lloret coastline including Cala Banys and Santa Cristina. Rentals from 70€/hour, up to 7 people, fuel included on license-free boats."
+          : "Navega desde Blanes a Lloret de Mar en 25 minutos con barco sin licencia (la zona de 2 millas llega a Playa de Fenals). Los barcos con licencia recorren toda la costa de Lloret incluyendo Cala Banys y Santa Cristina. Alquileres desde 70€/hora, hasta 7 personas, gasolina incluida en barcos sin licencia.",
         isEn
           ? [
               "Cala Sant Francesc — golden-sand cove under Marimurtra gardens",
@@ -3112,15 +3112,15 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const service = buildLandingService(
         isEn ? "Boat Trip from Blanes to Tossa de Mar" : "Excursión en Barco de Blanes a Tossa de Mar",
         isEn
-          ? "Reach Tossa de Mar from Blanes Port in 30-45 min with a licensed boat or our private excursion with captain (no license required). Licensed boats from 160 EUR/2h; private excursion from 240 EUR/2h with skipper."
-          : "Llega a Tossa de Mar desde el Puerto de Blanes en 30-45 min con barco con licencia o nuestra excursión privada con patrón (sin licencia). Barcos con licencia desde 160€/2h; excursión privada desde 240€/2h con patrón.",
+          ? "Reach Tossa de Mar from Blanes Port in 30-45 min with a licensed boat or our private excursion with captain (no license required). Licensed boats from 175 EUR/2h; private excursion from 265 EUR/2h with skipper."
+          : "Llega a Tossa de Mar desde el Puerto de Blanes en 30-45 min con barco con licencia o nuestra excursión privada con patrón (sin licencia). Barcos con licencia desde 175€/2h; excursión privada desde 265€/2h con patrón.",
         { low: 160, high: 420 },
       );
       const tossaBodyFallback = buildLocationBodyFallback(
         isEn ? "Boat Trip to Tossa de Mar from Blanes" : "Excursión en Barco a Tossa de Mar desde Blanes",
         isEn
-          ? "Reach Tossa de Mar's Vila Vella castle from Blanes in 30–45 minutes. Two options: rent a licensed boat (LNB / PER required) from 160€ for 2 hours, or join our private excursion with a professional captain (no license needed) from 240€ for 2 hours. Fuel apart on both options."
-          : "Llega a la Vila Vella de Tossa de Mar desde Blanes en 30–45 minutos. Dos opciones: alquilar un barco con licencia (LNB / PER requerida) desde 160€ por 2 horas, o unirte a nuestra excursión privada con capitán profesional (sin licencia) desde 240€ por 2 horas. Combustible aparte en ambas opciones.",
+          ? "Reach Tossa de Mar's Vila Vella castle from Blanes in 30–45 minutes. Two options: rent a licensed boat (LNB / PER required) from 175€ for 2 hours, or join our private excursion with a professional captain (no license needed) from 265€ for 2 hours. Fuel apart on both options."
+          : "Llega a la Vila Vella de Tossa de Mar desde Blanes en 30–45 minutos. Dos opciones: alquilar un barco con licencia (LNB / PER requerida) desde 175€ por 2 horas, o unirte a nuestra excursión privada con capitán profesional (sin licencia) desde 265€ por 2 horas. Combustible aparte en ambas opciones.",
         isEn
           ? [
               "Vila Vella — only fortified medieval village on the Catalan coast",
@@ -3647,8 +3647,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const serviceCaptained = buildLandingService(
         isEn ? "Private Captained Boat Excursion in Blanes" : "Excursión Privada en Barco con Patrón en Blanes",
         isEn
-          ? "Private boat excursion with a professional skipper from Blanes, Costa Brava: coves and sea caves between Blanes and Tossa de Mar, swim stop included. Up to 6 people aboard a Pacific Craft 625, from 240€/2h. No licence needed; fuel charged separately."
-          : "Excursión privada en barco con patrón profesional desde Blanes, Costa Brava: calas y cuevas marinas entre Blanes y Tossa de Mar con parada para nadar. Hasta 6 personas a bordo de una Pacific Craft 625, desde 240€/2h. Sin licencia; combustible aparte.",
+          ? "Private boat excursion with a professional skipper from Blanes, Costa Brava: coves and sea caves between Blanes and Tossa de Mar, swim stop included. Up to 6 people aboard a Pacific Craft 625, from 265€/2h. No licence needed; fuel charged separately."
+          : "Excursión privada en barco con patrón profesional desde Blanes, Costa Brava: calas y cuevas marinas entre Blanes y Tossa de Mar con parada para nadar. Hasta 6 personas a bordo de una Pacific Craft 625, desde 265€/2h. Sin licencia; combustible aparte.",
         { low: 240, high: 420 },
       );
       const captainedBodyFallback = buildLocationBodyFallback(
@@ -4109,8 +4109,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
             "@type": "Question",
             name: isEn ? "How much does it cost to rent a license-free boat in Blanes?" : "¿Cuánto cuesta alquilar un barco sin licencia en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "License-free boats in Blanes start from 70 EUR/hour in low season (April-June, September-October). Mid season (July) from 80 EUR/hour and high season (August) from 90 EUR/hour. Price includes fuel, insurance and safety equipment."
-              : "Los barcos sin licencia en Blanes cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 80 EUR/hora y en temporada alta (agosto) desde 90 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad." },
+              ? "License-free boats in Blanes start from 70 EUR/hour in low season (April-June, September-October). Mid season (July) from 95 EUR/hour and high season (August) from 110 EUR/hour. Price includes fuel, insurance and safety equipment."
+              : "Los barcos sin licencia en Blanes cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 95 EUR/hora y en temporada alta (agosto) desde 110 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad." },
           },
           {
             "@type": "Question",
@@ -4130,8 +4130,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
             "@type": "Question",
             name: isEn ? "How much does it cost to rent a licensed boat in Blanes?" : "¿Cuánto cuesta alquilar un barco con licencia en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Licensed boats in Blanes start from 160 EUR/2h in low season. They require a boating license (Basic Navigation License or ICC). More powerful boats with greater range to explore Costa Brava."
-              : "Los barcos con licencia en Blanes cuestan desde 160 EUR/2h en temporada baja. Requieren Licencia de Navegacion (LN) o equivalente (ICC). Son barcos mas potentes con mayor autonomia para explorar la Costa Brava." },
+              ? "Licensed boats in Blanes start from 175 EUR/2h in low season. They require a boating license (Basic Navigation License or ICC). More powerful boats with greater range to explore Costa Brava."
+              : "Los barcos con licencia en Blanes cuestan desde 175 EUR/2h en temporada baja. Requieren Licencia de Navegacion (LN) o equivalente (ICC). Son barcos mas potentes con mayor autonomia para explorar la Costa Brava." },
           },
         ],
       };
@@ -4171,8 +4171,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
       const service = buildLandingService(
         isEn ? `Boat Rental Prices Blanes ${SEASON_YEAR}` : `Precios Alquiler Barcos Blanes ${SEASON_YEAR}`,
         isEn
-          ? "Transparent prices for all our boats in Blanes, Costa Brava. License-free boats from 70 EUR/hour (fuel included). Licensed boats from 160 EUR/2h. Private excursion with captain from 240 EUR/2h. Low, mid and high season pricing."
-          : "Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Barcos sin licencia desde 70€/hora (gasolina incluida). Barcos con licencia desde 160€/2h. Excursión privada con patrón desde 240€/2h. Tarifas temporada baja, media y alta.",
+          ? "Transparent prices for all our boats in Blanes, Costa Brava. License-free boats from 70 EUR/hour (fuel included). Licensed boats from 175 EUR/2h. Private excursion with captain from 265 EUR/2h. Low, mid and high season pricing."
+          : "Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Barcos sin licencia desde 70€/hora (gasolina incluida). Barcos con licencia desde 175€/2h. Excursión privada con patrón desde 265€/2h. Tarifas temporada baja, media y alta.",
         { low: getFleetStats().priceFloor, high: 420 },
       );
       const speakable = {

@@ -26,11 +26,11 @@
 
 **Nota normativa (RD 1188/2025):** noleggiare senza patente è legale fino al 30 settembre 2026. Dal 1º ottobre 2026 chi noleggia un'imbarcazione a motore deve avere un titolo nautico; basta la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame. L'esenzione 5 m / 15 CV resta solo per le barche a uso privato. Guida: [Licencia de Navegación (titulín)](https://www.costabravarentaboat.com/it/corso-patente-nautica)
 
-- [Solar 450](https://www.costabravarentaboat.com/it/barco/solar-450): 5 persone, Mercury 15cv, serbatoio 30L, ampio prendisole di prua — da 75 EUR/h
-- [Remus 450](https://www.costabravarentaboat.com/it/barco/remus-450): 5 persone, Suzuki 15cv, familiare, tendalino Bi-Mini — da 75 EUR/h
+- [Solar 450](https://www.costabravarentaboat.com/it/barco/solar-450): 5 persone, Mercury 15cv, serbatoio 30L, ampio prendisole di prua — da 85 EUR/h
+- [Remus 450](https://www.costabravarentaboat.com/it/barco/remus-450): 5 persone, Suzuki 15cv, familiare, tendalino Bi-Mini — da 85 EUR/h
 - [Remus 450 II](https://www.costabravarentaboat.com/it/barco/remus-450-ii): stesso modello Remus 450, disponibilità extra nei giorni di alta richiesta
-- [Astec 400](https://www.costabravarentaboat.com/it/barco/astec-400): 4 persone, l'opzione più economica, ideale per coppie — da 70 EUR/h
-- [Astec 480](https://www.costabravarentaboat.com/it/barco/astec-480): 5 persone, impianto Bluetooth, serbatoio 50L, premium senza patente — da 80 EUR/h
+- [Astec 400](https://www.costabravarentaboat.com/it/barco/astec-400): 4 persone, l'opzione più economica, ideale per coppie — da 75 EUR/h
+- [Astec 480](https://www.costabravarentaboat.com/it/barco/astec-480): 5 persone, impianto Bluetooth, serbatoio 50L, premium senza patente — da 90 EUR/h
 
 ## Barche con patente (basta la Licencia de Navegación di base o un titolo estero equivalente come l'ICC)
 
@@ -40,7 +40,7 @@
 
 ## Opzione con skipper
 
-- [Escursione privata con skipper](https://www.costabravarentaboat.com/it/barco/excursion-privada): Pacific Craft 625 + skipper professionista, nessuna patente richiesta, da 240 EUR / 2h
+- [Escursione privata con skipper](https://www.costabravarentaboat.com/it/barco/excursion-privada): Pacific Craft 625 + skipper professionista, nessuna patente richiesta, da 265 EUR / 2h
 
 ## Moto d'acqua (jet ski)
 
@@ -74,7 +74,7 @@ Gestito da Coast Rent, azienda locale di Lloret de Mar che consigliamo (stessa r
 - **Email**: info@costabravarentaboat.com
 - **Stagione**: da aprile a ottobre
 - **Orario**: 09:00-20:00, da lunedì a domenica (durante la stagione)
-- **Fascia di prezzo**: 75-420 EUR a seconda della barca e della durata
+- **Fascia di prezzo**: 85-460 EUR a seconda della barca e della durata
 - **Valutazione**: 4,8/5 su Google Maps (oltre 300 recensioni; dato in tempo reale su [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Lingue**: spagnolo, inglese, catalano, francese, tedesco, olandese, italiano, russo
 - **Pagamento**: contanti e carta al porto (nessun pagamento online; il sito raccoglie richieste di prenotazione, il pagamento si gestisce di persona)

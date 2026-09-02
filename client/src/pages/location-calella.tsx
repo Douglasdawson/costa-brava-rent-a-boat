@@ -19,7 +19,7 @@ const config: LocationConfig = {
   ],
   schema: {
     name: "Alquiler de Barcos cerca de Calella",
-    description: "Alquila barcos desde el Puerto de Blanes, a solo 20 minutos en coche de Calella. Barcos sin licencia desde 70 EUR/hora.",
+    description: "Alquila barcos desde el Puerto de Blanes, a solo 20 minutos en coche de Calella. Barcos sin licencia desde 85 EUR/hora.",
     latitude: 41.6136,
     longitude: 2.6545,
     locality: "Calella",

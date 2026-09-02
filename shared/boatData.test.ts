@@ -10,22 +10,22 @@ import {
 } from "./boatData";
 
 describe("computeFleetStats", () => {
-  it("reports the LIVE fleet (Astec 400 deactivated) as 8 boats / 4 license-free / from 75", () => {
+  it("reports the LIVE fleet (Astec 400 deactivated) as 8 boats / 4 license-free / from 85", () => {
     const stats = catalogFleetStats(); // defaults to BASELINE_INACTIVE_BOAT_IDS
     expect(stats.fleetCount).toBe(8);
     expect(stats.licenseFreeCount).toBe(4);
     expect(stats.licensedCount).toBe(3);
     expect(stats.captainCount).toBe(1);
-    expect(stats.priceFloor).toBe(75);
+    expect(stats.priceFloor).toBe(85);
     expect(stats.cheapestBoatName).toBe("Solar 450");
     expect(stats.licenseFreeNames).not.toContain("Astec 400");
   });
 
-  it("reports the full CATALOG (no exclusions) as 9 boats / 5 license-free / from 70", () => {
+  it("reports the full CATALOG (no exclusions) as 9 boats / 5 license-free / from 75", () => {
     const stats = catalogFleetStats([]);
     expect(stats.fleetCount).toBe(9);
     expect(stats.licenseFreeCount).toBe(5);
-    expect(stats.priceFloor).toBe(70);
+    expect(stats.priceFloor).toBe(75);
     expect(stats.cheapestBoatName).toBe("Astec 400");
     expect(stats.licenseFreeNames).toContain("Astec 400");
   });
@@ -54,7 +54,7 @@ describe("boatDataRequiresLicense", () => {
 });
 
 describe("applyFleetStatsToText", () => {
-  const live = catalogFleetStats(); // 8 / 4 / 75
+  const live = catalogFleetStats(); // 8 / 4 / 85
 
   it("rewrites fleet count and license-free subset prose", () => {
     expect(applyFleetStatsToText("9-boat fleet: 5 license-free", live)).toBe(
@@ -65,9 +65,9 @@ describe("applyFleetStatsToText", () => {
   });
 
   it("rewrites the hourly price floor only when followed by a currency token", () => {
-    expect(applyFleetStatsToText("from 70€/h", live)).toBe("from 75€/h");
-    expect(applyFleetStatsToText("70 EUR/hour", live)).toBe("75 EUR/hour");
-    expect(applyFleetStatsToText("70-420 EUR", live)).toBe("75-420 EUR");
+    expect(applyFleetStatsToText("from 85€/h", live)).toBe("from 85€/h");
+    expect(applyFleetStatsToText("85 EUR/hour", live)).toBe("85 EUR/hour");
+    expect(applyFleetStatsToText("70-420 EUR", live)).toBe("85-420 EUR");
   });
 
   it("never touches numeric JSON-LD prices or capacities", () => {

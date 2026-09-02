@@ -120,13 +120,13 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "lloret-de-mar",
       es: {
         title: "Alquiler de barcos en Lloret de Mar (desde el Puerto de Blanes)",
-        body: "Alquiler de barcos para Lloret de Mar. Las salidas son desde el Puerto de Blanes, a 10 minutos por carretera de Lloret; no hay base de alquiler dentro de Lloret, se llega por mar. Sin licencia llegas a Playa de Fenals (sur de Lloret) en unos 25 minutos pasando por Cala Sant Francesc, Sa Forcanera, Santa Cristina y Cala Sa Boadella, desde 75€/h con gasolina incluida, mayores de 18 sin titulación (solo hasta el 30 de septiembre de 2026: el RD 1188/2025 pasa a exigir título náutico a todo arrendatario el 1 de octubre de 2026, y basta la Licencia de Navegación, que se saca en un día). Lloret centro, Cala Banys y Cala Canyelles quedan al norte de Fenals, fuera del límite de 2 millas sin licencia: solo con barco con licencia o excursión privada con patrón.",
-        snippet: "Alquiler de barcos para Lloret de Mar saliendo del Puerto de Blanes: con titulación hasta Lloret centro y Cala Canyelles; sin licencia hasta Playa de Fenals en 25 min, desde 75€/h.",
+        body: "Alquiler de barcos para Lloret de Mar. Las salidas son desde el Puerto de Blanes, a 10 minutos por carretera de Lloret; no hay base de alquiler dentro de Lloret, se llega por mar. Sin licencia llegas a Playa de Fenals (sur de Lloret) en unos 25 minutos pasando por Cala Sant Francesc, Sa Forcanera, Santa Cristina y Cala Sa Boadella, desde 85€/h con gasolina incluida, mayores de 18 sin titulación (solo hasta el 30 de septiembre de 2026: el RD 1188/2025 pasa a exigir título náutico a todo arrendatario el 1 de octubre de 2026, y basta la Licencia de Navegación, que se saca en un día). Lloret centro, Cala Banys y Cala Canyelles quedan al norte de Fenals, fuera del límite de 2 millas sin licencia: solo con barco con licencia o excursión privada con patrón.",
+        snippet: "Alquiler de barcos para Lloret de Mar saliendo del Puerto de Blanes: con titulación hasta Lloret centro y Cala Canyelles; sin licencia hasta Playa de Fenals en 25 min, desde 85€/h.",
       },
       en: {
         title: "Boat rental in Lloret de Mar (from the Port of Blanes)",
-        body: "Boat rental for Lloret de Mar. Trips depart from the Port of Blanes, 10 minutes by road from Lloret; there is no rental base inside Lloret, you reach it by sea. License-free you reach Playa de Fenals (south Lloret) in about 25 minutes, passing Cala Sant Francesc, Sa Forcanera, Santa Cristina and Cala Sa Boadella, from 75€/h fuel included, 18+ no license (through September 30, 2026 only: RD 1188/2025 requires a nautical qualification from every renter as of October 1, 2026, and the 1-day Licencia de Navegación is enough). Lloret town, Cala Banys and Cala Canyelles are north of Fenals, beyond the 2-mile license-free limit: only with a licensed boat or the captained private excursion.",
-        snippet: "Boat rental for Lloret de Mar departing from the Port of Blanes: licensed boats to Lloret town and Cala Canyelles; license-free to Playa de Fenals in 25 min, from 75€/h.",
+        body: "Boat rental for Lloret de Mar. Trips depart from the Port of Blanes, 10 minutes by road from Lloret; there is no rental base inside Lloret, you reach it by sea. License-free you reach Playa de Fenals (south Lloret) in about 25 minutes, passing Cala Sant Francesc, Sa Forcanera, Santa Cristina and Cala Sa Boadella, from 85€/h fuel included, 18+ no license (through September 30, 2026 only: RD 1188/2025 requires a nautical qualification from every renter as of October 1, 2026, and the 1-day Licencia de Navegación is enough). Lloret town, Cala Banys and Cala Canyelles are north of Fenals, beyond the 2-mile license-free limit: only with a licensed boat or the captained private excursion.",
+        snippet: "Boat rental for Lloret de Mar departing from the Port of Blanes: licensed boats to Lloret town and Cala Canyelles; license-free to Playa de Fenals in 25 min, from 85€/h.",
       },
     },
     {
@@ -134,13 +134,13 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "blanes",
       es: {
         title: "Alquiler de barcos en Blanes (puerto base)",
-        body: "Alquiler de barcos en el Puerto de Blanes, puerto base de toda la flota. Sin licencia desde 75€/h con gasolina incluida y con licencia hasta 7 personas. Briefing de seguridad de 15 minutos, parking gratuito a 100 m. Desde aquí navegas a Sa Palomera, Cala Sant Francesc, Santa Cristina y hasta Playa de Fenals.",
-        snippet: "Alquiler de barcos en el Puerto de Blanes, puerto base de la flota. Sin licencia desde 75€/h gasolina incluida.",
+        body: "Alquiler de barcos en el Puerto de Blanes, puerto base de toda la flota. Sin licencia desde 85€/h con gasolina incluida y con licencia hasta 7 personas. Briefing de seguridad de 15 minutos, parking gratuito a 100 m. Desde aquí navegas a Sa Palomera, Cala Sant Francesc, Santa Cristina y hasta Playa de Fenals.",
+        snippet: "Alquiler de barcos en el Puerto de Blanes, puerto base de la flota. Sin licencia desde 85€/h gasolina incluida.",
       },
       en: {
         title: "Boat rental in Blanes (home port)",
-        body: "Boat rental at the Port of Blanes, home port of the whole fleet. License-free from 75€/h fuel included, licensed boats up to 7 people. 15-minute safety briefing, free parking 100 m away. From here you sail to Sa Palomera, Cala Sant Francesc, Santa Cristina and up to Playa de Fenals.",
-        snippet: "Boat rental at the Port of Blanes, home port of the fleet. License-free from 75€/h fuel included.",
+        body: "Boat rental at the Port of Blanes, home port of the whole fleet. License-free from 85€/h fuel included, licensed boats up to 7 people. 15-minute safety briefing, free parking 100 m away. From here you sail to Sa Palomera, Cala Sant Francesc, Santa Cristina and up to Playa de Fenals.",
+        snippet: "Boat rental at the Port of Blanes, home port of the fleet. License-free from 85€/h fuel included.",
       },
     },
     {
@@ -162,13 +162,13 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "costa-brava",
       es: {
         title: "Alquiler de barcos en la Costa Brava (desde Blanes)",
-        body: "Alquiler de barcos en la Costa Brava saliendo del Puerto de Blanes, puerta sur de la Costa Brava. Sin licencia desde 75€/h con gasolina incluida para recorrer calas como Sa Palomera, Cala Sant Francesc, Santa Cristina y Playa de Fenals; con licencia llegas hasta Tossa de Mar y más al norte.",
-        snippet: "Alquiler de barcos en la Costa Brava desde el Puerto de Blanes: lanchas con titulación hasta Tossa de Mar y barcos sin licencia desde 75€/h hasta el 30 de septiembre de 2026.",
+        body: "Alquiler de barcos en la Costa Brava saliendo del Puerto de Blanes, puerta sur de la Costa Brava. Sin licencia desde 85€/h con gasolina incluida para recorrer calas como Sa Palomera, Cala Sant Francesc, Santa Cristina y Playa de Fenals; con licencia llegas hasta Tossa de Mar y más al norte.",
+        snippet: "Alquiler de barcos en la Costa Brava desde el Puerto de Blanes: lanchas con titulación hasta Tossa de Mar y barcos sin licencia desde 85€/h hasta el 30 de septiembre de 2026.",
       },
       en: {
         title: "Boat rental on the Costa Brava (from Blanes)",
-        body: "Boat rental on the Costa Brava departing from the Port of Blanes, the southern gateway to the Costa Brava. License-free from 75€/h fuel included to explore coves like Sa Palomera, Cala Sant Francesc, Santa Cristina and Playa de Fenals; licensed boats reach Tossa de Mar and further north.",
-        snippet: "Boat rental on the Costa Brava from the Port of Blanes: licensed powerboats up to Tossa de Mar and license-free boats from 75€/h through September 30, 2026.",
+        body: "Boat rental on the Costa Brava departing from the Port of Blanes, the southern gateway to the Costa Brava. License-free from 85€/h fuel included to explore coves like Sa Palomera, Cala Sant Francesc, Santa Cristina and Playa de Fenals; licensed boats reach Tossa de Mar and further north.",
+        snippet: "Boat rental on the Costa Brava from the Port of Blanes: licensed powerboats up to Tossa de Mar and license-free boats from 85€/h through September 30, 2026.",
       },
     },
     {
@@ -176,13 +176,13 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "malgrat-de-mar",
       es: {
         title: "Alquiler de barcos en Malgrat de Mar (desde el Puerto de Blanes)",
-        body: "Alquiler de barcos para Malgrat de Mar. Malgrat no tiene puerto de alquiler propio: el puerto más cercano es el Puerto de Blanes, a 8 km, unos 10 minutos en coche, 5 minutos en tren R1 (estación Malgrat de Mar a Blanes) o taxi por 12-15€. Sin licencia desde 75€/h con gasolina incluida, mayores de 18 sin titulación hasta el 30 de septiembre de 2026 (el RD 1188/2025 exige título náutico desde el 1 de octubre); con licencia hasta 7 personas. Navegas a Sa Palomera, Cala Sant Francesc, Santa Cristina y Playa de Fenals.",
-        snippet: "Alquiler de barcos para Malgrat de Mar: el puerto más cercano es Blanes (8 km, 10 min en coche, 5 min en R1). Sin licencia desde 75€/h.",
+        body: "Alquiler de barcos para Malgrat de Mar. Malgrat no tiene puerto de alquiler propio: el puerto más cercano es el Puerto de Blanes, a 8 km, unos 10 minutos en coche, 5 minutos en tren R1 (estación Malgrat de Mar a Blanes) o taxi por 12-15€. Sin licencia desde 85€/h con gasolina incluida, mayores de 18 sin titulación hasta el 30 de septiembre de 2026 (el RD 1188/2025 exige título náutico desde el 1 de octubre); con licencia hasta 7 personas. Navegas a Sa Palomera, Cala Sant Francesc, Santa Cristina y Playa de Fenals.",
+        snippet: "Alquiler de barcos para Malgrat de Mar: el puerto más cercano es Blanes (8 km, 10 min en coche, 5 min en R1). Sin licencia desde 85€/h.",
       },
       en: {
         title: "Boat rental in Malgrat de Mar (from the Port of Blanes)",
-        body: "Boat rental for Malgrat de Mar. Malgrat has no rental port of its own: the nearest port is the Port of Blanes, 8 km away, about 10 minutes by car, 5 minutes on the R1 train (Malgrat de Mar station to Blanes) or a 12-15€ taxi. License-free from 75€/h fuel included, 18+ no license (through September 30, 2026 only: RD 1188/2025 requires a nautical qualification from every renter as of October 1, 2026, and the 1-day Licencia de Navegación is enough); licensed boats up to 7 people. You sail to Sa Palomera, Cala Sant Francesc, Santa Cristina and Playa de Fenals.",
-        snippet: "Boat rental for Malgrat de Mar: nearest port is Blanes (8 km, 10 min by car, 5 min on the R1 train). License-free from 75€/h.",
+        body: "Boat rental for Malgrat de Mar. Malgrat has no rental port of its own: the nearest port is the Port of Blanes, 8 km away, about 10 minutes by car, 5 minutes on the R1 train (Malgrat de Mar station to Blanes) or a 12-15€ taxi. License-free from 85€/h fuel included, 18+ no license (through September 30, 2026 only: RD 1188/2025 requires a nautical qualification from every renter as of October 1, 2026, and the 1-day Licencia de Navegación is enough); licensed boats up to 7 people. You sail to Sa Palomera, Cala Sant Francesc, Santa Cristina and Playa de Fenals.",
+        snippet: "Boat rental for Malgrat de Mar: nearest port is Blanes (8 km, 10 min by car, 5 min on the R1 train). License-free from 85€/h.",
       },
     },
     {
@@ -190,13 +190,13 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "santa-susanna",
       es: {
         title: "Alquiler de barcos y paseos en barco en Santa Susanna (desde Blanes)",
-        body: "Alquiler de barcos y paseos en barco para Santa Susanna. Santa Susanna no tiene puerto: las salidas son desde el Puerto de Blanes, a 12 km, unos 15 minutos en coche o 10 minutos en tren R1. Puedes alquilar un barco sin licencia desde 75€/h con gasolina incluida y pilotarlo tú hasta el 30 de septiembre de 2026 (desde el 1 de octubre el RD 1188/2025 exige título náutico, y basta la Licencia de Navegación de un día que te organizamos), o reservar la excursión privada con patrón si prefieres un paseo en barco sin conducir. Calas: Sa Palomera, Cala Sant Francesc, Santa Cristina, Playa de Fenals.",
-        snippet: "Paseos en barco y alquiler para Santa Susanna: salidas desde el Puerto de Blanes (12 km, 15 min). Sin licencia desde 75€/h o excursión con patrón.",
+        body: "Alquiler de barcos y paseos en barco para Santa Susanna. Santa Susanna no tiene puerto: las salidas son desde el Puerto de Blanes, a 12 km, unos 15 minutos en coche o 10 minutos en tren R1. Puedes alquilar un barco sin licencia desde 85€/h con gasolina incluida y pilotarlo tú hasta el 30 de septiembre de 2026 (desde el 1 de octubre el RD 1188/2025 exige título náutico, y basta la Licencia de Navegación de un día que te organizamos), o reservar la excursión privada con patrón si prefieres un paseo en barco sin conducir. Calas: Sa Palomera, Cala Sant Francesc, Santa Cristina, Playa de Fenals.",
+        snippet: "Paseos en barco y alquiler para Santa Susanna: salidas desde el Puerto de Blanes (12 km, 15 min). Sin licencia desde 85€/h o excursión con patrón.",
       },
       en: {
         title: "Boat rental and boat trips in Santa Susanna (from Blanes)",
-        body: "Boat rental and boat trips for Santa Susanna. Santa Susanna has no port: departures are from the Port of Blanes, 12 km away, about 15 minutes by car or 10 minutes on the R1 train. You can rent a license-free boat from 75€/h fuel included and drive it yourself through September 30, 2026 (from October 1 RD 1188/2025 requires a nautical qualification, and the 1-day Licencia de Navegación we arrange is enough), or book the captained private excursion if you prefer a boat trip without driving. Coves: Sa Palomera, Cala Sant Francesc, Santa Cristina, Playa de Fenals.",
-        snippet: "Boat trips and boat rental for Santa Susanna: departures from the Port of Blanes (12 km, 15 min). License-free from 75€/h or captained excursion.",
+        body: "Boat rental and boat trips for Santa Susanna. Santa Susanna has no port: departures are from the Port of Blanes, 12 km away, about 15 minutes by car or 10 minutes on the R1 train. You can rent a license-free boat from 85€/h fuel included and drive it yourself through September 30, 2026 (from October 1 RD 1188/2025 requires a nautical qualification, and the 1-day Licencia de Navegación we arrange is enough), or book the captained private excursion if you prefer a boat trip without driving. Coves: Sa Palomera, Cala Sant Francesc, Santa Cristina, Playa de Fenals.",
+        snippet: "Boat trips and boat rental for Santa Susanna: departures from the Port of Blanes (12 km, 15 min). License-free from 85€/h or captained excursion.",
       },
     },
     {
@@ -204,12 +204,12 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "calella",
       es: {
         title: "Alquiler de barcos en Calella, Maresme (desde el Puerto de Blanes)",
-        body: "Alquiler de barcos para Calella del Maresme (provincia de Barcelona, línea de tren R1), no confundir con Calella de Palafrugell, que está 60 km más al norte. Calella no tiene puerto de alquiler: el más cercano es el Puerto de Blanes, a 17 km, unos 20 minutos en coche o 15 minutos en tren R1 (billete ~3€). Sin licencia desde 75€/h con gasolina incluida; con licencia hasta 7 personas.",
+        body: "Alquiler de barcos para Calella del Maresme (provincia de Barcelona, línea de tren R1), no confundir con Calella de Palafrugell, que está 60 km más al norte. Calella no tiene puerto de alquiler: el más cercano es el Puerto de Blanes, a 17 km, unos 20 minutos en coche o 15 minutos en tren R1 (billete ~3€). Sin licencia desde 85€/h con gasolina incluida; con licencia hasta 7 personas.",
         snippet: "Alquiler de barcos para Calella (Maresme, Barcelona, no Calella de Palafrugell): puerto más cercano Blanes, 20 min en coche o 15 min en R1.",
       },
       en: {
         title: "Boat rental in Calella, Maresme (from the Port of Blanes)",
-        body: "Boat rental for Calella in the Maresme (Barcelona province, R1 train line), not to be confused with Calella de Palafrugell, 60 km further north. Calella has no rental port: the nearest is the Port of Blanes, 17 km away, about 20 minutes by car or 15 minutes on the R1 train (ticket around 3€). License-free from 75€/h fuel included; licensed boats up to 7 people.",
+        body: "Boat rental for Calella in the Maresme (Barcelona province, R1 train line), not to be confused with Calella de Palafrugell, 60 km further north. Calella has no rental port: the nearest is the Port of Blanes, 17 km away, about 20 minutes by car or 15 minutes on the R1 train (ticket around 3€). License-free from 85€/h fuel included; licensed boats up to 7 people.",
         snippet: "Boat rental for Calella (Maresme, Barcelona, not Calella de Palafrugell): nearest port is Blanes, 20 min by car or 15 min on the R1 train.",
       },
     },
@@ -218,13 +218,13 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "pineda-de-mar",
       es: {
         title: "Alquiler de barcos en Pineda de Mar y el Alt Maresme (desde Blanes)",
-        body: "Alquiler de barcos para Pineda de Mar y el Alt Maresme. Pineda no tiene puerto de alquiler: el más cercano es el Puerto de Blanes, a unos 18 minutos en coche o 12 minutos en tren R1. Es el punto de salida de alquiler de barco más cercano para toda la costa del Alt Maresme (Malgrat, Santa Susanna, Pineda, Calella). Sin licencia desde 75€/h con gasolina incluida, mayores de 18 sin titulación hasta el 30 de septiembre de 2026 (el RD 1188/2025 exige título náutico desde el 1 de octubre; basta la Licencia de Navegación de un día).",
-        snippet: "Alquiler de barcos para Pineda de Mar y el Maresme: puerto más cercano Blanes (18 min coche, 12 min R1). Sin licencia desde 75€/h.",
+        body: "Alquiler de barcos para Pineda de Mar y el Alt Maresme. Pineda no tiene puerto de alquiler: el más cercano es el Puerto de Blanes, a unos 18 minutos en coche o 12 minutos en tren R1. Es el punto de salida de alquiler de barco más cercano para toda la costa del Alt Maresme (Malgrat, Santa Susanna, Pineda, Calella). Sin licencia desde 85€/h con gasolina incluida, mayores de 18 sin titulación hasta el 30 de septiembre de 2026 (el RD 1188/2025 exige título náutico desde el 1 de octubre; basta la Licencia de Navegación de un día).",
+        snippet: "Alquiler de barcos para Pineda de Mar y el Maresme: puerto más cercano Blanes (18 min coche, 12 min R1). Sin licencia desde 85€/h.",
       },
       en: {
         title: "Boat rental in Pineda de Mar and the Alt Maresme (from Blanes)",
-        body: "Boat rental for Pineda de Mar and the Alt Maresme. Pineda has no rental port: the nearest is the Port of Blanes, about 18 minutes by car or 12 minutes on the R1 train. It is the closest boat rental departure point for the whole Alt Maresme coast (Malgrat, Santa Susanna, Pineda, Calella). License-free from 75€/h fuel included, 18+ no license through September 30, 2026 (RD 1188/2025 requires a nautical qualification from October 1; the 1-day Licencia de Navegación is enough).",
-        snippet: "Boat rental for Pineda de Mar and the Maresme: nearest port is Blanes (18 min by car, 12 min on the R1 train). License-free from 75€/h.",
+        body: "Boat rental for Pineda de Mar and the Alt Maresme. Pineda has no rental port: the nearest is the Port of Blanes, about 18 minutes by car or 12 minutes on the R1 train. It is the closest boat rental departure point for the whole Alt Maresme coast (Malgrat, Santa Susanna, Pineda, Calella). License-free from 85€/h fuel included, 18+ no license through September 30, 2026 (RD 1188/2025 requires a nautical qualification from October 1; the 1-day Licencia de Navegación is enough).",
+        snippet: "Boat rental for Pineda de Mar and the Maresme: nearest port is Blanes (18 min by car, 12 min on the R1 train). License-free from 85€/h.",
       },
     },
     // Category pages (added 2026-08-06: they were the only money pages missing
@@ -239,8 +239,8 @@ async function collectLandings(): Promise<IndexItem[]> {
       },
       en: {
         title: "Self-drive powerboat rental in Blanes (licensed boats)",
-        body: "Self-drive powerboat rental at the Port of Blanes: 3 powerboats from 80 to 115 HP (Mingolla Brava 19, Trimarchi 57S and Pacific Craft 625) for 6-7 people, from 160€ per 2 hours. The basic Spanish Navigation Licence or an equivalent foreign licence (ICC, Permis Cotier, SBF See) is enough, verifiable online before booking. Skippering yourself you reach Lloret in 15 minutes and Tossa de Mar in 30-45. Fuel charged separately, 500€ deposit.",
-        snippet: "3 self-drive powerboats 80-115 HP in Blanes from 160€/2h. A basic boating licence is enough; Tossa de Mar in 30-45 min at your own helm.",
+        body: "Self-drive powerboat rental at the Port of Blanes: 3 powerboats from 80 to 115 HP (Mingolla Brava 19, Trimarchi 57S and Pacific Craft 625) for 6-7 people, from 175€ per 2 hours. The basic Spanish Navigation Licence or an equivalent foreign licence (ICC, Permis Cotier, SBF See) is enough, verifiable online before booking. Skippering yourself you reach Lloret in 15 minutes and Tossa de Mar in 30-45. Fuel charged separately, 500€ deposit.",
+        snippet: "3 self-drive powerboats 80-115 HP in Blanes from 175€/2h. A basic boating licence is enough; Tossa de Mar in 30-45 min at your own helm.",
       },
     },
     {
@@ -248,13 +248,13 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "barcos-sin-licencia",
       es: {
         title: "Alquiler de barcos sin licencia en Blanes",
-        body: "Alquiler de barcos sin licencia en el Puerto de Blanes desde 75€/h con gasolina incluida. Hasta 5 personas por barco, mayores de 18 años sin titulación, briefing de 15 minutos antes de salir. El RD 1188/2025 permite alquilar sin título hasta el 30 de septiembre de 2026; desde el 1 de octubre hace falta titulación náutica y basta la Licencia de Navegación (titulín), un curso de un día sin examen que te organizamos. Navegas por la costa de Blanes hasta Playa de Fenals dentro del límite de 2 millas.",
-        snippet: "Barcos sin licencia en Blanes desde 75€/h con gasolina incluida, sin titulación hasta el 30 de septiembre de 2026 (RD 1188/2025). Briefing de 15 min, hasta 5 personas.",
+        body: "Alquiler de barcos sin licencia en el Puerto de Blanes desde 85€/h con gasolina incluida. Hasta 5 personas por barco, mayores de 18 años sin titulación, briefing de 15 minutos antes de salir. El RD 1188/2025 permite alquilar sin título hasta el 30 de septiembre de 2026; desde el 1 de octubre hace falta titulación náutica y basta la Licencia de Navegación (titulín), un curso de un día sin examen que te organizamos. Navegas por la costa de Blanes hasta Playa de Fenals dentro del límite de 2 millas.",
+        snippet: "Barcos sin licencia en Blanes desde 85€/h con gasolina incluida, sin titulación hasta el 30 de septiembre de 2026 (RD 1188/2025). Briefing de 15 min, hasta 5 personas.",
       },
       en: {
         title: "License-free boat rental in Blanes",
-        body: "License-free boat rental at the Port of Blanes from 75€/h with fuel included. Up to 5 people per boat, 18+ with no licence needed, 15-minute briefing before departure. You cruise the Blanes coast up to Playa de Fenals within the 2-mile limit.",
-        snippet: "License-free boats in Blanes from 75€/h, fuel included. No licence needed, 15-min briefing, up to 5 people.",
+        body: "License-free boat rental at the Port of Blanes from 85€/h with fuel included. Up to 5 people per boat, 18+ with no licence needed, 15-minute briefing before departure. You cruise the Blanes coast up to Playa de Fenals within the 2-mile limit.",
+        snippet: "License-free boats in Blanes from 85€/h, fuel included. No licence needed, 15-min briefing, up to 5 people.",
       },
     },
     {

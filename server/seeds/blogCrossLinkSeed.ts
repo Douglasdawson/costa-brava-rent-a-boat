@@ -122,7 +122,7 @@ Si visitas Blanes entre el 21 y el 27 de julio, no te puedes perder el concurso 
 
 La combinacion ideal para una escapada de 2-3 dias en la Costa Brava:
 
-**Dia 1 - Mar:** Alquila un [barco sin licencia](/es/barcos-sin-licencia) por la manana (desde 70EUR/h) y explora las calas entre Blanes y Lloret. Por la tarde, paseo por el casco antiguo y cena de pescado en el puerto.
+**Dia 1 - Mar:** Alquila un [barco sin licencia](/es/barcos-sin-licencia) por la manana (desde 85EUR/h) y explora las calas entre Blanes y Lloret. Por la tarde, paseo por el casco antiguo y cena de pescado en el puerto.
 
 **Dia 2 - Tierra:** [Alquila un scooter en Coast Rent en Lloret](https://coastrent.es) y recorre la carretera costera hasta Tossa de Mar. Comida en Tossa, paseo por la Vila Vella y vuelta por la carretera interior.
 
@@ -138,7 +138,7 @@ No. Tenemos [barcos sin licencia](/es/barcos-sin-licencia) para hasta 5 personas
 
 ### Cuanto cuesta alquilar un barco en Blanes?
 
-Los [barcos sin licencia](/es/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/es/barcos-con-licencia) desde 160EUR por 2 horas. Gasolina incluida en barcos sin licencia.
+Los [barcos sin licencia](/es/barcos-sin-licencia) empiezan desde 85EUR/hora en temporada baja. Los [barcos con licencia](/es/barcos-con-licencia) desde 175EUR por 2 horas. Gasolina incluida en barcos sin licencia.
 
 ### Se puede ir de Blanes a Tossa de Mar en barco?
 
@@ -244,7 +244,7 @@ If you visit Blanes between July 21st and 27th, you can't miss the international
 
 The ideal combination for a 2-3 day Costa Brava getaway:
 
-**Day 1 - Sea:** Rent a [boat without licence](/en/boats-without-license) in the morning (from 70EUR/h) and explore the coves between Blanes and Lloret. In the afternoon, stroll through the old town and have a seafood dinner at the harbour.
+**Day 1 - Sea:** Rent a [boat without licence](/en/boats-without-license) in the morning (from 85EUR/h) and explore the coves between Blanes and Lloret. In the afternoon, stroll through the old town and have a seafood dinner at the harbour.
 
 **Day 2 - Land:** [Rent a scooter from Coast Rent in Lloret](https://coastrent.es) and ride the coastal road to Tossa de Mar. Lunch in Tossa, walk through the Vila Vella and return via the inland road.
 
@@ -260,7 +260,7 @@ No. We have [boats without licence](/en/boats-without-license) for up to 5 peopl
 
 ### How much does it cost to rent a boat in Blanes?
 
-[Boats without licence](/en/boats-without-license) start from 70EUR/hour in low season. [Licensed boats](/en/boats-with-license) from 160EUR for 2 hours. Fuel included on boats without licence.
+[Boats without licence](/en/boats-without-license) start from 85EUR/hour in low season. [Licensed boats](/en/boats-with-license) from 175EUR for 2 hours. Fuel included on boats without licence.
 
 ### Can you go from Blanes to Tossa de Mar by boat?
 
@@ -367,7 +367,7 @@ Si visitas Blanes entre el 21 y el 27 de julio, no te puedes perder el concurso 
 
 La combinacion ideal para una escapada de 2-3 dias en la Costa Brava:
 
-**Dia 1 - Mar:** Alquila un [barco sin licencia](/es/barcos-sin-licencia) por la manana (desde 70EUR/h) y explora las calas entre Blanes y Lloret. Por la tarde, paseo por el casco antiguo y cena de pescado en el puerto.
+**Dia 1 - Mar:** Alquila un [barco sin licencia](/es/barcos-sin-licencia) por la manana (desde 85EUR/h) y explora las calas entre Blanes y Lloret. Por la tarde, paseo por el casco antiguo y cena de pescado en el puerto.
 
 **Dia 2 - Tierra:** [Alquila un scooter en Coast Rent en Lloret](https://coastrent.es) y recorre la carretera costera hasta Tossa de Mar. Comida en Tossa, paseo por la Vila Vella y vuelta por la carretera interior.
 
@@ -383,7 +383,7 @@ No. Tenemos [barcos sin licencia](/es/barcos-sin-licencia) para hasta 5 personas
 
 ### Cuanto cuesta alquilar un barco en Blanes?
 
-Los [barcos sin licencia](/es/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/es/barcos-con-licencia) desde 160EUR por 2 horas. Gasolina incluida en barcos sin licencia.
+Los [barcos sin licencia](/es/barcos-sin-licencia) empiezan desde 85EUR/hora en temporada baja. Los [barcos con licencia](/es/barcos-con-licencia) desde 175EUR por 2 horas. Gasolina incluida en barcos sin licencia.
 
 ### Se puede ir de Blanes a Tossa de Mar en barco?
 
@@ -446,7 +446,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 **Punto de partida:** Puerto de Blanes
 **Barco recomendado:** [Remus 450](/es/barco/remus-450) (sin licencia, hasta 5 personas) o [Astec 480 Premium](/es/barco/astec-480) si quieres musica bluetooth a bordo
 **Duracion:** 4 horas
-**Precio:** Desde 150EUR (Remus 450, temporada baja) a 270EUR (Astec 480, temporada alta)
+**Precio:** Desde 165EUR (Remus 450, temporada baja) a 275EUR (Astec 480, temporada alta)
 
 #### Ruta marina recomendada (4 horas)
 
@@ -522,8 +522,8 @@ Aqui tienes el desglose de costes para una persona (los precios del barco se com
 
 | Concepto | Precio |
 |----------|--------|
-| Barco 4h sin licencia (5 personas) | 150-270EUR total |
-| **Barco por persona (5 personas)** | **30-54EUR** |
+| Barco 4h sin licencia (5 personas) | 165-275EUR total |
+| **Barco por persona (5 personas)** | **33-55EUR** |
 | Pack Premium extras (nevera + snorkel + paddle surf) | 30EUR total |
 | Comida en Lloret | 12-20EUR |
 | Scooter 125cc dia completo | 35-45EUR |
@@ -545,8 +545,8 @@ Si prefieres no meter todo en un dia, puedes repartirlo:
 
 Para grupos mas grandes, recomendamos un [barco con licencia](/es/barcos-con-licencia) que admite hasta 7 personas:
 
-- **[Trimarchi 57S](/es/barco/trimarchi-57s):** 7 personas, 110cv, desde 160EUR/2h
-- **[Pacific Craft 625](/es/barco/pacific-craft-625):** 7 personas, 115cv, desde 180EUR/2h
+- **[Trimarchi 57S](/es/barco/trimarchi-57s):** 7 personas, 110cv, desde 175EUR/2h
+- **[Pacific Craft 625](/es/barco/pacific-craft-625):** 7 personas, 115cv, desde 200EUR/2h
 - **[Excursion privada con capitan](/es/barco/excursion-privada):** 7 personas, desde 240EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
 
 **Nota:** Los barcos con licencia no incluyen gasolina. Presupuestar unos 40-80EUR adicionales segun la ruta.
@@ -621,7 +621,7 @@ Combining both experiences is like watching a film in 3D after seeing it in 2D: 
 **Starting point:** Blanes Harbour
 **Recommended boat:** [Remus 450](/en/boat/remus-450) (no licence needed, up to 5 people) or [Astec 480 Premium](/en/boat/astec-480) if you want Bluetooth music on board
 **Duration:** 4 hours
-**Price:** From 150EUR (Remus 450, low season) to 270EUR (Astec 480, high season)
+**Price:** From 165EUR (Remus 450, low season) to 275EUR (Astec 480, high season)
 
 #### Recommended sea route (4 hours)
 
@@ -697,8 +697,8 @@ Here's the cost breakdown per person (boat prices are shared among the group):
 
 | Item | Price |
 |------|-------|
-| 4h boat without licence (5 people) | 150-270EUR total |
-| **Boat per person (5 people)** | **30-54EUR** |
+| 4h boat without licence (5 people) | 165-275EUR total |
+| **Boat per person (5 people)** | **33-55EUR** |
 | Premium Pack extras (cooler + snorkel + paddle surf) | 30EUR total |
 | Lunch in Lloret | 12-20EUR |
 | 125cc scooter full day | 35-45EUR |
@@ -720,8 +720,8 @@ If you prefer not to pack everything into one day, you can spread it out:
 
 For larger groups, we recommend a [licensed boat](/en/boats-with-license) that takes up to 7 people:
 
-- **[Trimarchi 57S](/en/boat/trimarchi-57s):** 7 people, 110hp, from 160EUR/2h
-- **[Pacific Craft 625](/en/boat/pacific-craft-625):** 7 people, 115hp, from 180EUR/2h
+- **[Trimarchi 57S](/en/boat/trimarchi-57s):** 7 people, 110hp, from 175EUR/2h
+- **[Pacific Craft 625](/en/boat/pacific-craft-625):** 7 people, 115hp, from 200EUR/2h
 - **[Private excursion with captain](/en/boat/excursion-privada):** 7 people, from 240EUR/2h -- the captain takes you to the best coves and all you have to do is enjoy
 
 **Note:** Licensed boats do not include fuel. Budget an additional 40-80EUR depending on the route.
@@ -797,7 +797,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 **Punto de partida:** Puerto de Blanes
 **Barco recomendado:** [Remus 450](/es/barco/remus-450) (sin licencia, hasta 5 personas) o [Astec 480 Premium](/es/barco/astec-480) si quieres musica bluetooth a bordo
 **Duracion:** 4 horas
-**Precio:** Desde 150EUR (Remus 450, temporada baja) a 270EUR (Astec 480, temporada alta)
+**Precio:** Desde 165EUR (Remus 450, temporada baja) a 275EUR (Astec 480, temporada alta)
 
 #### Ruta marina recomendada (4 horas)
 
@@ -873,8 +873,8 @@ Aqui tienes el desglose de costes para una persona (los precios del barco se com
 
 | Concepto | Precio |
 |----------|--------|
-| Barco 4h sin licencia (5 personas) | 150-270EUR total |
-| **Barco por persona (5 personas)** | **30-54EUR** |
+| Barco 4h sin licencia (5 personas) | 165-275EUR total |
+| **Barco por persona (5 personas)** | **33-55EUR** |
 | Pack Premium extras (nevera + snorkel + paddle surf) | 30EUR total |
 | Comida en Lloret | 12-20EUR |
 | Scooter 125cc dia completo | 35-45EUR |
@@ -896,8 +896,8 @@ Si prefieres no meter todo en un dia, puedes repartirlo:
 
 Para grupos mas grandes, recomendamos un [barco con licencia](/es/barcos-con-licencia) que admite hasta 7 personas:
 
-- **[Trimarchi 57S](/es/barco/trimarchi-57s):** 7 personas, 110cv, desde 160EUR/2h
-- **[Pacific Craft 625](/es/barco/pacific-craft-625):** 7 personas, 115cv, desde 180EUR/2h
+- **[Trimarchi 57S](/es/barco/trimarchi-57s):** 7 personas, 110cv, desde 175EUR/2h
+- **[Pacific Craft 625](/es/barco/pacific-craft-625):** 7 personas, 115cv, desde 200EUR/2h
 - **[Excursion privada con capitan](/es/barco/excursion-privada):** 7 personas, desde 240EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
 
 **Nota:** Los barcos con licencia no incluyen gasolina. Presupuestar unos 40-80EUR adicionales segun la ruta.

@@ -22,13 +22,13 @@ export function computeFaqVars(boats: Boat[] | undefined | null): FaqVars {
   const excursion = active.filter((b) => b.id === "excursion-privada");
   return {
     fleetCount: active.length || 9,
-    noLicBaja1h: minPriceAcrossBoats(unlicensed, "1h", "BAJA") ?? 75,
-    noLicMedia1h: minPriceAcrossBoats(unlicensed, "1h", "MEDIA") ?? 85,
-    noLicAlta1h: minPriceAcrossBoats(unlicensed, "1h", "ALTA") ?? 95,
-    licBaja2h: minPriceAcrossBoats(licensed, "2h", "BAJA") ?? 160,
-    licAlta2h: minPriceAcrossBoats(licensed, "2h", "ALTA") ?? 200,
-    excursionBaja2h: minPriceAcrossBoats(excursion, "2h", "BAJA") ?? 240,
-    excursionBaja4h: minPriceAcrossBoats(excursion, "4h", "BAJA") ?? 380,
+    noLicBaja1h: minPriceAcrossBoats(unlicensed, "1h", "BAJA") ?? 85,
+    noLicMedia1h: minPriceAcrossBoats(unlicensed, "1h", "MEDIA") ?? 95,
+    noLicAlta1h: minPriceAcrossBoats(unlicensed, "1h", "ALTA") ?? 110,
+    licBaja2h: minPriceAcrossBoats(licensed, "2h", "BAJA") ?? 175,
+    licAlta2h: minPriceAcrossBoats(licensed, "2h", "ALTA") ?? 210,
+    excursionBaja2h: minPriceAcrossBoats(excursion, "2h", "BAJA") ?? 265,
+    excursionBaja4h: minPriceAcrossBoats(excursion, "4h", "BAJA") ?? 420,
   };
 }
 

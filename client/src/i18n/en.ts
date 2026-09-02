@@ -152,7 +152,7 @@ export const en: Translations = {
       privateTour: {
         name: "Private Tour",
         description: "Private tour with skipper included for an exclusive experience",
-        price: "From €240",
+        price: "From €265",
       },
       parking: {
         name: "Parking",
@@ -1033,10 +1033,10 @@ export const en: Translations = {
   },
   categoryLicenseFree: {
     synonymsTitle: "Motorboat, dinghy or vessel? Same thing",
-    synonymsBody: "However you search for it (motorboat hire on the Costa Brava, renting a vessel without a qualification, or hiring a small boat in Blanes), our 4 license-free boats are leisure motorboats up to 5 metres and 15 HP that any adult can drive without a nautical license. Same boat, same price from 75€/h with fuel included, whatever you call it.",
+    synonymsBody: "However you search for it (motorboat hire on the Costa Brava, renting a vessel without a qualification, or hiring a small boat in Blanes), our 4 license-free boats are leisure motorboats up to 5 metres and 15 HP that any adult can drive without a nautical license. Same boat, same price from 85€/h with fuel included, whatever you call it.",
     heroTitle: "Licence-Free Boats in Blanes",
     heroDescription:
-      "4 license-free boats from €75/h at Blanes Port, fuel included. Up to 5 people, no license or sailing certificate, no prior experience. 15-min safety briefing and off you go to the Costa Brava coves: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina and Sa Boadella up to Fenals Beach (Lloret de Mar).",
+      "4 license-free boats from €85/h at Blanes Port, fuel included. Up to 5 people, no license or sailing certificate, no prior experience. 15-min safety briefing and off you go to the Costa Brava coves: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina and Sa Boadella up to Fenals Beach (Lloret de Mar).",
     badgeNoLicense: "No Licence Required",
     badgePower: "Up to 15 HP",
     badgeCapacity: "4-7 people",
@@ -1144,7 +1144,7 @@ export const en: Translations = {
       "In Spain you can operate a boat of up to 5 metres in length with an engine of up to 15 HP (11 kW) without any qualification, under Royal Decree 875/2014. Our 4 licence-free boats (Solar 450, Remus 450, Remus 450 II and Astec 480) all fall within that limit: up to 5 people, fuel included and no licence. You only need to be over 18 and take the 15-minute safety briefing before setting off.",
     faqPriceQuestion: "How much does it cost to hire a licence-free boat by the hour?",
     faqPriceAnswer:
-      "Prices start at 75€/h with fuel included. We work in time slots: 1 hour from 75€, 2 hours from 115€, half a day (4 hours) from 150€ and a full day (8 hours) from 220€ in low season. Rates go up in high season and at weekends. There are no platform fees and no extra fuel charge: the price you book is the final price.",
+      "Prices start at 85€/h with fuel included. We work in time slots: 1 hour from 85€, 2 hours from 125€, half a day (4 hours) from 165€ and a full day (8 hours) from 240€ in low season. Rates go up in high season and at weekends. There are no platform fees and no extra fuel charge: the price you book is the final price.",
     faqWeatherQuestion: "What happens if the weather is bad?",
     faqWeatherAnswer:
       "If bad weather prevents the trip we move your date at no cost; if no date works, we issue a voucher for the amount paid valid for 12 months. If you contracted the Weather guarantee, you choose between a new date or a full cash refund, excluding the price of the guarantee itself. The criteria are objective: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds.",
@@ -1169,7 +1169,7 @@ export const en: Translations = {
     howToDurationLabel: "Process duration",
     howToDurationValue: "Booking 5 min · briefing 15 min · free sailing",
     howToCostLabel: "From",
-    howToCostValue: "€75/h with fuel included",
+    howToCostValue: "€85/h with fuel included",
     vsMarketplacesTitle: "Why Book Directly in Blanes Instead of a Marketplace",
     vsMarketplacesIntro:
       "Some marketplaces advertise licence-free boats on the Costa Brava from €55/day. It sounds cheap, but the price you see is not the price you pay. Here is what changes when you book directly with us compared to an intermediary platform.",
@@ -1191,12 +1191,12 @@ export const en: Translations = {
     vsMarketplacesRow5Direct: "Free date change up to 7 days before",
     vsMarketplacesRow5Market: "Marketplace policy + operator's own fee",
     vsMarketplacesConclusion:
-      "The final price with a marketplace is typically 20-35% higher than advertised once you add fuel, commission and extras. Our €75/h already includes everything: fuel, equipment, briefing, civil liability insurance and on-site support.",
+      "The final price with a marketplace is typically 20-35% higher than advertised once you add fuel, commission and extras. Our €85/h already includes everything: fuel, equipment, briefing, civil liability insurance and on-site support.",
   },
   categoryLicensed: {
     heroTitle: "Self-drive powerboat hire in Blanes: reach Tossa de Mar at the helm",
     heroDescription:
-      "Three licensed powerboats, 80 to 115 HP, at the Port of Blanes. You take the helm with your Licencia de Navegación or an equivalent foreign qualification, which we check online before your trip. From 160 EUR for 2 hours.",
+      "Three licensed powerboats, 80 to 115 HP, at the Port of Blanes. You take the helm with your Licencia de Navegación or an equivalent foreign qualification, which we check online before your trip. From 175 EUR for 2 hours.",
     badgeLicense: "The Licencia de Navegación is enough",
     badgePower: "80-115 HP",
     badgeCapacity: "6-7 people",
@@ -1312,7 +1312,7 @@ export const en: Translations = {
       "Yes, we accept equivalent foreign qualifications: the French Permis Cotier, the German SBF See, the international ICC and the equivalents from EEA countries. Check yours in the online checker on this page and bring the original on the day of departure.",
     faqPriceQuestion: "How much does it cost to hire a powerboat by the hour in Blanes?",
     faqPriceAnswer:
-      "From 160 EUR for 2 hours in low season, and from 190 EUR in August depending on the powerboat. Half day and full day have their own rates by season: the comparison table on this page and the pricing page show the detail. Fuel is paid separately.",
+      "From 175 EUR for 2 hours in low season, and from 210 EUR in August depending on the powerboat. Half day and full day have their own rates by season: the comparison table on this page and the pricing page show the detail. Fuel is paid separately.",
     faqFuelQuestion: "Is fuel included on the licensed boats?",
     faqFuelAnswer:
       "No. On licensed powerboats fuel is paid separately according to the actual consumption of the trip. Insurance and safety equipment are always included.",
@@ -1467,7 +1467,7 @@ export const en: Translations = {
     q2: "How long do you want to sail?",
     q2options: ["1-2 hours", "3-4 hours (half day)", "6-8 hours (full day)"],
     q3: "What's your budget?",
-    q3options: ["Budget (from 75€)", "Mid-range (100-200€)", "No limit"],
+    q3options: ["Budget (from 85€)", "Mid-range (100-200€)", "No limit"],
     result: "Your ideal boat is...",
     bestMatch: "Best match",
     alsoConsider: "Also consider",
@@ -1533,7 +1533,7 @@ export const en: Translations = {
         id: "precios",
         question: "What are the rental prices?",
         answer:
-          "Licence-free boats from 75€ with fuel included (1h, 2h, 3h, 4h, 6h or full day). Licensed boats from 160€ without fuel (2h, 4h, 8h). Prices vary by season (July/August) and boat.",
+          "Licence-free boats from 85€ with fuel included (1h, 2h, 3h, 4h, 6h or full day). Licensed boats from 175€ without fuel (2h, 4h, 8h). Prices vary by season (July/August) and boat.",
       },
       {
         id: "sin-licencia",
@@ -1600,13 +1600,13 @@ export const en: Translations = {
         id: "diferencia-licencia",
         question: "What is the difference between licence-free and licensed boats?",
         answer:
-          "Licence-free boats have up to 15 HP engines, capacity for 4-5 people, fuel included and start from 75€. Licensed boats have 80-115 HP engines, capacity for up to 7 people, greater range and start from 160€ (fuel not included). Licensed boats allow you to navigate further, all the way to Tossa de Mar and beyond.",
+          "Licence-free boats have up to 15 HP engines, capacity for 4-5 people, fuel included and start from 85€. Licensed boats have 80-115 HP engines, capacity for up to 7 people, greater range and start from 175€ (fuel not included). Licensed boats allow you to navigate further, all the way to Tossa de Mar and beyond.",
       },
       {
         id: "precio-blanes-vs-lloret",
         question: "Is it cheaper to rent a boat in Blanes or Lloret de Mar?",
         answer:
-          "Blanes is the most affordable boat rental location on the Costa Brava, with licence-free boats from 75€ per hour with fuel included. By operating from Blanes Port with our own fleet, we offer more competitive prices than other towns like Lloret de Mar or Tossa de Mar.",
+          "Blanes is the most affordable boat rental location on the Costa Brava, with licence-free boats from 85€ per hour with fuel included. By operating from Blanes Port with our own fleet, we offer more competitive prices than other towns like Lloret de Mar or Tossa de Mar.",
       },
       {
         id: "barco-grupo-grande",
@@ -1619,7 +1619,7 @@ export const en: Translations = {
         id: "precio-costa-brava",
         question: "How much does it cost to rent a boat on the Costa Brava?",
         answer:
-          "On the Costa Brava you can rent a boat from 75€ per hour in Blanes, with fuel included and no licence required. Prices vary by duration (1h to full day), boat type and season. July and August are peak season with higher prices; June and September offer the best value for money.",
+          "On the Costa Brava you can rent a boat from 85€ per hour in Blanes, with fuel included and no licence required. Prices vary by duration (1h to full day), boat type and season. July and August are peak season with higher prices; June and September offer the best value for money.",
       },
       {
         id: "blanes-tossa-barco",
@@ -1631,7 +1631,7 @@ export const en: Translations = {
         id: "excursion-con-patron",
         question: "How much does a boat trip with a captain cost?",
         answer:
-          "Our private excursions with a professional captain start from 240€ for 2 hours for up to 6 people. The captain takes you to the best coves, handles all the navigation and you do not need a licence. It is the perfect option for families or groups who want to enjoy without any worries.",
+          "Our private excursions with a professional captain start from 265€ for 2 hours for up to 6 people. The captain takes you to the best coves, handles all the navigation and you do not need a licence. It is the perfect option for families or groups who want to enjoy without any worries.",
       },
       // Decision-helping questions
       {
@@ -1644,7 +1644,7 @@ export const en: Translations = {
         id: "barco-vs-excursion",
         question: "What is better, renting a boat or a captain excursion?",
         answer:
-          "It depends on what you are looking for. Renting a licence-free boat (from 75€/h) gives you total freedom to go at your own pace and explore independently. The captain excursion (from 240€/2h) is ideal if you want to fully relax, have no experience or want to reach more distant coves like Tossa de Mar.",
+          "It depends on what you are looking for. Renting a licence-free boat (from 85€/h) gives you total freedom to go at your own pace and explore independently. The captain excursion (from 265€/2h) is ideal if you want to fully relax, have no experience or want to reach more distant coves like Tossa de Mar.",
       },
       {
         id: "mejor-epoca",
@@ -2163,7 +2163,7 @@ export const en: Translations = {
       {
         question: "How much does a sunset boat trip cost?",
         answer:
-          "A 2-hour sunset trip in a licence-free boat costs from 140 € in total ({noLicBaja1h} €/hour in low season). Fuel is included for licence-free boats. The boat takes up to 5 people, so the cost per person can be as low as 28 €. Licence-free boats include fuel, insurance, safety equipment and the briefing.",
+          "A 2-hour sunset trip in a licence-free boat costs from 155 € in total ({noLicBaja1h} €/hour in low season). Fuel is included for licence-free boats. The boat takes up to 5 people, so the cost per person can be as low as 28 €. Licence-free boats include fuel, insurance, safety equipment and the briefing.",
       },
     ],
     sunsetTimes: [
@@ -2247,7 +2247,7 @@ export const en: Translations = {
     ],
     heroTitle: "Sunset Boat Trip from Blanes",
     heroDescription:
-      "Watch the sunset over the Costa Brava from the deck of your own boat. Leave Blanes harbour, sail between hidden coves and enjoy the most magical light of the day over the Mediterranean. No boating licence needed. From €75/hour.",
+      "Watch the sunset over the Costa Brava from the deck of your own boat. Leave Blanes harbour, sail between hidden coves and enjoy the most magical light of the day over the Mediterranean. No boating licence needed. From €85/hour.",
     badgeGoldenHour: "Golden hour views",
     badgeDuration: "2 hours recommended",
     badgeCouples: "Perfect for couples",
@@ -2357,7 +2357,7 @@ export const en: Translations = {
       {
         name: "No-licence boats (4-5 people)",
         duration: "2-3 hours recommended",
-        price: "From €75/hour",
+        price: "From €85/hour",
         description:
           "Perfect for snorkelling in nearby coves like Cala Sant Francesc and Cala Bona. Fuel included. Anchor the boat and jump straight into the water.",
       },
@@ -2489,7 +2489,7 @@ export const en: Translations = {
         stops: ["Port of Blanes", "Cala Sant Francesc", "Return"],
         description:
           "Ideal for families with young children. Short sail to a sheltered cove with shallow, crystal-clear water. Time for swimming, easy snorkelling, and a picnic on board.",
-        price: "From €115 (2 h, low season)",
+        price: "From €125 (2 h, low season)",
         tip: "Perfect for a first boating experience with children. The cove has a sandy area and calm water.",
       },
       {
@@ -2497,13 +2497,13 @@ export const en: Translations = {
         stops: ["Port of Blanes", "Cala Bona", "Cala Sant Francesc", "Fenals Beach", "Return"],
         description:
           "The complete experience for families. Three stops with enough time to explore each cove. Combines swimming, snorkelling, picnicking, and spectacular coastal views.",
-        price: "From €150 (4 h, low season)",
+        price: "From €165 (4 h, low season)",
         tip: "Recommended for children aged 4 and up. Bring food, water, sun cream, and hats.",
       },
     ],
     heroTitle: "Family Boat Rental on the Costa Brava",
     heroDescription:
-      "A safe and fun adventure for the whole family. Licence-free boats from the Port of Blanes with fuel included, children's life jackets and sheltered coves perfect for kids. From €75/hour.",
+      "A safe and fun adventure for the whole family. Licence-free boats from the Port of Blanes with fuel included, children's life jackets and sheltered coves perfect for kids. From €85/hour.",
     badgeNoLicense: "No licence required",
     badgeKidsVests: "Children's life jackets included",
     badgeFuel: "Fuel included",
@@ -2632,7 +2632,7 @@ export const en: Translations = {
         type: "License-free boats",
         capacity: "4-5 people",
         autonomy: "Coastal fishing (up to 2 miles)",
-        price: "From €75/hour (fuel included)",
+        price: "From €85/hour (fuel included)",
         advantages: [
           "No boating license required",
           "Fuel included in the price",
@@ -3000,12 +3000,12 @@ export const en: Translations = {
     newsletterError: "Error sending. Please try again.",
     tableOfContents: "Contents",
     ctaTitle: "Ready for your adventure?",
-    ctaSubtitle: "Rent a boat from €75/hour · Fuel included",
+    ctaSubtitle: "Rent a boat from €85/hour · Fuel included",
     ctaBookNow: "Book now",
     ctaWhatsApp: "Ask on WhatsApp",
     relatedDestinationsTitle: "Related destinations",
     relatedBlanesName: "Blanes",
-    relatedBlanesDesc: "Home port. License-free boats from €75/h.",
+    relatedBlanesDesc: "Home port. License-free boats from €85/h.",
     relatedLloretName: "Lloret de Mar",
     relatedLloretDesc: "Coves and beaches 25 min by boat from Blanes.",
     relatedTossaName: "Tossa de Mar",
@@ -3466,7 +3466,7 @@ export const en: Translations = {
     tossaTitle: 'Tossa de Mar by boat',
     tossaDesc: 'The medieval Vila Vella, stunning cliffs and the most unspoilt coves on the Costa Brava.',
     pricesTitle: 'Prices and rates',
-    pricesDesc: 'Check seasonal prices for all our boats. From €75/hour without licence.',
+    pricesDesc: 'Check seasonal prices for all our boats. From €85/hour without licence.',
     guide: {
       heading: 'Guide to Sailing the Costa Brava from Blanes',
       geographyTitle: 'The coastline: from Blanes to Tossa de Mar',
@@ -3502,7 +3502,7 @@ export const en: Translations = {
       locationLloret: [
         { title: "Best Costa Brava coves by boat", description: "The 10 most spectacular coves between Blanes and Tossa" },
         { title: "Sunset boat trip", description: "A sunset experience on a boat" },
-        { title: "License-free boats", description: "4 boats from 75€/h, fuel included" },
+        { title: "License-free boats", description: "4 boats from 85€/h, fuel included" },
         { title: "Scooter rental in Lloret de Mar", description: "Explore the Costa Brava by road, from 8€/h with insurance included" },
       ],
       locationTossa: [
@@ -3532,7 +3532,7 @@ export const en: Translations = {
       activitySunset: [
         { title: "Boat routes from Blanes", description: "5 routes with interactive maps" },
         { title: "Best Costa Brava coves by boat", description: "The 10 most spectacular coves between Blanes and Tossa" },
-        { title: "License-free boats", description: "Perfect for sunset trips, from 75€/h" },
+        { title: "License-free boats", description: "Perfect for sunset trips, from 85€/h" },
       ],
       activityFishing: [
         { title: "Licensed boats", description: "Powerful boats for fishing spots" },
@@ -3554,13 +3554,13 @@ export const en: Translations = {
       jetskiHub: [
         { title: "Jet ski circuit", description: "Ride a license-free jet ski on a supervised circuit off Blanes" },
         { title: "Guided jet ski excursion to Tossa", description: "Guided route from Blanes to Tossa de Mar with a monitor" },
-        { title: "License-free boats", description: "4 boats from 75€/h, fuel included" },
+        { title: "License-free boats", description: "4 boats from 85€/h, fuel included" },
         { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
       ],
       jetskiCircuito: [
         { title: "Jet ski rental in Blanes", description: "Every license-free jet ski experience" },
         { title: "Guided jet ski excursion to Tossa", description: "Guided route from Blanes to Tossa de Mar with a monitor" },
-        { title: "License-free boats", description: "4 boats from 75€/h, fuel included" },
+        { title: "License-free boats", description: "4 boats from 85€/h, fuel included" },
         { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
       ],
       jetskiExcursion: [
@@ -3571,7 +3571,7 @@ export const en: Translations = {
       ],
       scooters: [
         { title: "Boat rental in Lloret de Mar", description: "Spectacular beaches and coves from Blanes harbour" },
-        { title: "License-free boats", description: "4 boats from 75€/h, fuel included" },
+        { title: "License-free boats", description: "4 boats from 85€/h, fuel included" },
         { title: "License-free jet ski rental", description: "Circuit and guided jet ski tour from Blanes" },
         { title: "Trip to Tossa de Mar", description: "Discover the Vila Vella and its crystal-clear coves" },
       ],
@@ -4800,7 +4800,7 @@ export const en: Translations = {
   captainedPage: {
     seoTitle: "Boat Rental with Skipper Costa Brava | From Blanes",
     seoDescription:
-      "Private boat trip with skipper from Blanes: coves and sea caves up to Tossa de Mar, with a swim stop. Up to 6 people, from 240€/2h. {rating}★ on Google.",
+      "Private boat trip with skipper from Blanes: coves and sea caves up to Tossa de Mar, with a swim stop. Up to 6 people, from 265€/2h. {rating}★ on Google.",
     heroTitle: "Boat rental with skipper on the Costa Brava: your private trip from Blanes",
     heroDescription:
       "All you do is enjoy it. Our professional skipper takes you to clear-water coves and sea caves between Blanes and Tossa de Mar, and anchors in the best spot of the day so you can swim. No licence, no experience and nothing to worry about.",
@@ -4938,7 +4938,7 @@ export const en: Translations = {
       },
       {
         q: "How much does the private boat trip cost?",
-        a: "From 240€ for 2 hours from April to June and in September, 260€ in July and 280€ in August. There are also 3 hour trips (from 320€) and 4 hour trips (from 380€). The price is per boat, for up to 6 people.",
+        a: "From 265€ for 2 hours from April to June and in September, 285€ in July and 310€ in August. There are also 3 hour trips (from 350€) and 4 hour trips (from 420€). The price is per boat, for up to 6 people.",
       },
       {
         q: "What route do we take, and who decides it?",
@@ -5205,7 +5205,7 @@ export const en: Translations = {
       ],
       hero: {
         title: 'Boat Rentals in Blanes',
-        subtitle: 'Boat rental directly from Blanes Port from €75/h, fuel included. License-free up to 5 people, with licence up to 7. Free parking 100m from the mooring, 15-min safety briefing. From here you sail to Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) and Lloret de Mar (25 min). Tossa de Mar 30-45 min with licence.',
+        subtitle: 'Boat rental directly from Blanes Port from €85/h, fuel included. License-free up to 5 people, with licence up to 7. Free parking 100m from the mooring, 15-min safety briefing. From here you sail to Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) and Lloret de Mar (25 min). Tossa de Mar 30-45 min with licence.',
         badgePort: 'Blanes Harbour',
         badgeCapacity: '4-7 people',
         badgeDuration: '1h-8h duration',
@@ -5493,7 +5493,7 @@ export const en: Translations = {
         varietyBoats: '8 Boats Available',
         varietyBoatsDesc: 'From license-free boats perfect for families to licensed vessels for experienced sailors. For 4 to 7 passengers.',
         fuelIncluded: 'Fuel Included',
-        fuelIncludedDesc: 'All our rentals include fuel in the price. No surprises or hidden costs. From €75/hour.',
+        fuelIncludedDesc: 'All our rentals include fuel in the price. No surprises or hidden costs. From €85/hour.',
         noExperience: 'No Experience Needed',
         noExperienceDesc: 'We offer license-free boats with a 15-minute training included. Ideal for tourists wanting a unique experience.',
         townAttractionsTitle: 'What to See in Malgrat de Mar',
@@ -5573,11 +5573,11 @@ export const en: Translations = {
         },
         {
           question: 'What\'s the best boat trip if I\'m staying in Santa Susanna?',
-          answer: 'From Blanes we recommend: (a) 4h cove route without license to Fenals Beach anchoring in 2-3 crystal-clear coves (from 135 € for 5 people); (b) 4h private excursion with skipper to Tossa and Cala Bona (from {excursionBaja4h} €, ideal if you have no boating experience); (c) Basic License boat if someone in the group has a qualification (from 240 € / 4h).',
+          answer: 'From Blanes we recommend: (a) 4h cove route without license to Fenals Beach anchoring in 2-3 crystal-clear coves (from 135 € for 5 people); (b) 4h private excursion with skipper to Tossa and Cala Bona (from {excursionBaja4h} €, ideal if you have no boating experience); (c) Basic License boat if someone in the group has a qualification (from 255 € / 4h).',
         },
         {
           question: 'Can I do a sunset boat trip from Santa Susanna?',
-          answer: 'Yes, it\'s very popular. From Blanes we offer sunset trips (18:30-21:00 depending on month) with a license-free boat at 115 € for 2 hours. You\'ll navigate the 7 coves in golden light. From Santa Susanna you\'re 15 min by car or 10 min by train. Book ahead in summer.',
+          answer: 'Yes, it\'s very popular. From Blanes we offer sunset trips (18:30-21:00 depending on month) with a license-free boat at 125 € for 2 hours. You\'ll navigate the 7 coves in golden light. From Santa Susanna you\'re 15 min by car or 10 min by train. Book ahead in summer.',
         },
         {
           question: 'Can I take a boat trip from Santa Susanna without driving myself?',
@@ -5599,7 +5599,7 @@ export const en: Translations = {
         varietyBoats: 'Boats for Everyone',
         varietyBoatsDesc: 'License-free for beginners and families, licensed for experienced sailors. Capacity from 4 to 7 passengers per boat.',
         fuelIncluded: 'All Inclusive',
-        fuelIncludedDesc: 'Price includes fuel from €75/hour. No hidden costs. Training, life jackets and safety equipment included.',
+        fuelIncludedDesc: 'Price includes fuel from €85/hour. No hidden costs. Training, life jackets and safety equipment included.',
         noExperience: 'First Time? No Problem',
         noExperienceDesc: 'Most of our customers have never sailed before. With 15 minutes of training you will be ready to set sail and enjoy.',
         townAttractionsTitle: 'What to See in Santa Susanna',
@@ -5669,7 +5669,7 @@ export const en: Translations = {
         closestPort: 'Your Costa Brava Port',
         closestPortDesc: 'Blanes is the most accessible nautical port from Calella. 20 minutes via the C-32 or N-II, with 8 boats and professional service.',
         varietyBoats: 'Full Fleet',
-        varietyBoatsDesc: 'License-free boats from €75/h for families and groups of friends. Licensed boats for qualified sailors or private skipper.',
+        varietyBoatsDesc: 'License-free boats from €85/h for families and groups of friends. Licensed boats for qualified sailors or private skipper.',
         fuelIncluded: 'All-Inclusive Price',
         fuelIncludedDesc: 'Fuel, training, life jackets and safety equipment included in the price. No surprises.',
         noExperience: 'For All Levels',
@@ -5700,7 +5700,7 @@ export const en: Translations = {
     costaBrava: {
       hero: {
         title: 'Boat Rental on the Costa Brava',
-        subtitle: 'Discover the best coves and beaches of the Costa Brava aboard our boats. Departures from the Port of Blanes, in the heart of the Catalan coast. Licence-free boats from €75/hour with fuel and insurance included.',
+        subtitle: 'Discover the best coves and beaches of the Costa Brava aboard our boats. Departures from the Port of Blanes, in the heart of the Catalan coast. Licence-free boats from €85/hour with fuel and insurance included.',
         badgePort: 'Port of Blanes',
         badgeCapacity: '4-7 people',
         badgeLicense: 'Licensed and licence-free',
@@ -5733,7 +5733,7 @@ export const en: Translations = {
         noLicenseCapacity: 'Maximum 5 persons on board',
         noLicenseNavigation: 'Coastal navigation up to 2 nautical miles',
         noLicenseFuel: 'Fuel included in the price',
-        noLicensePrice: 'From €75/hour',
+        noLicensePrice: 'From €85/hour',
         noLicenseDesc: 'Our licence-free boats are the ideal choice for families and groups who want to discover the coves of the Costa Brava without any hassle. You need no boating qualification: with a brief 15-minute training session you will be ready to set sail. All include fuel, fully comprehensive insurance, safety equipment and snorkelling gear. Perfect for coastal trips of 1 to 8 hours from the Port of Blanes.',
         licensedTitle: 'Licensed Boats',
         licensedPower: '40 HP to 115 HP',
@@ -5790,14 +5790,14 @@ export const en: Translations = {
         },
       ],
       seo: {
-        title: 'Boat Rental Tordera | Blanes Port 15 min | No License 75€/h | Tordera Delta',
-        description: 'Do you live in Tordera or near the Delta? Blanes Port is 15 min by car or 8 min by R1 train. Rent a boat without a license from 75€/h with fuel included. Explore the Tordera Delta.',
+        title: 'Boat Rental Tordera | Blanes Port 15 min | No License 85€/h | Tordera Delta',
+        description: 'Do you live in Tordera or near the Delta? Blanes Port is 15 min by car or 8 min by R1 train. Rent a boat without a license from 85€/h with fuel included. Explore the Tordera Delta.',
         ogTitle: 'Boat Rental Tordera | Tordera Delta by Boat',
-        ogDescription: 'From Tordera to Blanes Port in 15 min. Boat without license from 75€/h. Tordera Delta by boat. 4.8★.',
+        ogDescription: 'From Tordera to Blanes Port in 15 min. Boat without license from 85€/h. Tordera Delta by boat. 4.8★.',
       },
       schema: {
         name: 'Boat Rental near Tordera',
-        description: 'Rent boats from Blanes Port, just 15 minutes by car from Tordera. Boats without license from €75/hour with fuel included.',
+        description: 'Rent boats from Blanes Port, just 15 minutes by car from Tordera. Boats without license from €85/hour with fuel included.',
       },
       breadcrumbName: 'Boat Rental Tordera',
       sections: {
@@ -5812,7 +5812,7 @@ export const en: Translations = {
         whyCard2Title: '{fleetCount} boats available',
         whyCard2Desc: 'Our fleet includes {fleetCount} boats: boats without license ideal for families and beginners, and boats with license for the more experienced. From boats for 4 people to vessels for groups of up to 11 people.',
         whyCard3Title: 'Fuel included on boats without license',
-        whyCard3Desc: 'The price of boats without license includes fuel. From €75 per hour. No hidden costs or surprises in the final price.',
+        whyCard3Desc: 'The price of boats without license includes fuel. From €85 per hour. No hidden costs or surprises in the final price.',
         whyCard4Title: 'No previous experience necessary',
         whyCard4Desc: 'Before setting sail we offer you 15 minutes of practical training where you\'ll learn how to handle the engine, basic navigation rules and the best spots to explore. Anyone over 18 can pilot our boats without a license.',
         townTitle: 'Tordera: gateway to the Costa Brava',
@@ -5873,14 +5873,14 @@ export const en: Translations = {
         },
       ],
       seo: {
-        title: 'Boat Rental Palafolls | Blanes Port 12 min | No License 75€/h',
-        description: 'At a campsite or accommodation in Palafolls? Blanes Port is 12 min by car. Rent a boat without a license from 75€/h with fuel included. Ideal Costa Brava excursion.',
+        title: 'Boat Rental Palafolls | Blanes Port 12 min | No License 85€/h',
+        description: 'At a campsite or accommodation in Palafolls? Blanes Port is 12 min by car. Rent a boat without a license from 85€/h with fuel included. Ideal Costa Brava excursion.',
         ogTitle: 'Boat Rental Palafolls | 12 min to Blanes Port',
-        ogDescription: 'From Palafolls to Blanes Port in 12 min. Boat without license from 75€/h. Fuel included. 4.8★.',
+        ogDescription: 'From Palafolls to Blanes Port in 12 min. Boat without license from 85€/h. Fuel included. 4.8★.',
       },
       schema: {
         name: 'Boat Rental near Palafolls',
-        description: 'Rent boats from Blanes Port, just 12 minutes by car from Palafolls. Boats without license from €75/hour with fuel included.',
+        description: 'Rent boats from Blanes Port, just 12 minutes by car from Palafolls. Boats without license from €85/hour with fuel included.',
       },
       breadcrumbName: 'Boat Rental Palafolls',
       sections: {
@@ -5895,7 +5895,7 @@ export const en: Translations = {
         whyCard2Title: 'Ideal for campers',
         whyCard2Desc: 'If you\'re staying at one of Palafolls\' campsites such as La Masía, Neptuno, or the bungalow complexes in the area, renting a boat is the star activity that will make your holiday unique. Many families from nearby campsites visit us every season.',
         whyCard3Title: 'Fuel included on boats without license',
-        whyCard3Desc: 'The price of boats without license includes fuel. From €75 per hour. No hidden costs or fuel surcharges.',
+        whyCard3Desc: 'The price of boats without license includes fuel. From €85 per hour. No hidden costs or fuel surcharges.',
         whyCard4Title: 'No previous experience necessary',
         whyCard4Desc: 'Before setting sail, our team gives you 15 minutes of practical training. We teach you how to handle the engine, basic navigation rules and the best spots to explore. Anyone over 18 can pilot our boats without a license.',
         townTitle: 'Palafolls: campsites, nature and sea',
@@ -5968,14 +5968,14 @@ export const en: Translations = {
         },
       ],
       seo: {
-        title: 'Boat Rental Pineda de Mar | Blanes Port 18 min | No License 75€/h',
-        description: 'Staying in Pineda de Mar? Blanes Port is 18 min by car or 12 min by R1 train. Rent a boat without a license from 75€/h with fuel included. Sail to Blanes, Lloret or Tossa.',
+        title: 'Boat Rental Pineda de Mar | Blanes Port 18 min | No License 85€/h',
+        description: 'Staying in Pineda de Mar? Blanes Port is 18 min by car or 12 min by R1 train. Rent a boat without a license from 85€/h with fuel included. Sail to Blanes, Lloret or Tossa.',
         ogTitle: 'Boat Rental Pineda de Mar | 18 min to Blanes Port',
-        ogDescription: 'From Pineda de Mar to Blanes Port in 18 min. Boat without license from 75€/h. 4.8★ Google.',
+        ogDescription: 'From Pineda de Mar to Blanes Port in 18 min. Boat without license from 85€/h. 4.8★ Google.',
       },
       schema: {
         name: 'Boat Rental near Pineda de Mar',
-        description: 'Rent boats from Blanes Port, just 18 minutes by car from Pineda de Mar. Boats without license from €75/hour with fuel included.',
+        description: 'Rent boats from Blanes Port, just 18 minutes by car from Pineda de Mar. Boats without license from €85/hour with fuel included.',
       },
       breadcrumbName: 'Boat Rental Pineda de Mar',
       sections: {
@@ -5991,7 +5991,7 @@ export const en: Translations = {
         whyCard2Title: '{fleetCount} boats to choose from',
         whyCard2Desc: 'We have a fleet of {fleetCount} boats that includes boats without license ideal for families and beginners, as well as boats with license for experienced sailors. Capacity from 4 to 11 people depending on the model chosen.',
         whyCard3Title: 'Fuel included on boats without license',
-        whyCard3Desc: 'The price of boats without license includes fuel, so there are no surprises. From €75 per hour. The price you see is the final price.',
+        whyCard3Desc: 'The price of boats without license includes fuel, so there are no surprises. From €85 per hour. The price you see is the final price.',
         whyCard4Title: 'No previous experience necessary',
         whyCard4Desc: 'Before setting sail, our team gives you 15 minutes of practical training: engine handling, basic navigation rules and tips on the best coves. Anyone over 18 can pilot a boat without a license.',
         townTitle: 'Pineda de Mar: activities for hotel guests',

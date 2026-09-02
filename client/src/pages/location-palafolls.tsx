@@ -63,7 +63,7 @@ export default function LocationPalafollsPage() {
   const locationSchema = {
     "@type": "TouristDestination",
     "name": page?.schema?.name ?? "Alquiler de Barcos cerca de Palafolls",
-    "description": page?.schema?.description ?? "Alquila barcos desde el Puerto de Blanes, a solo 12 minutos en coche de Palafolls. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+    "description": page?.schema?.description ?? "Alquila barcos desde el Puerto de Blanes, a solo 12 minutos en coche de Palafolls. Barcos sin licencia desde 85 EUR/hora con gasolina incluida.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.6694,
@@ -125,10 +125,10 @@ export default function LocationPalafollsPage() {
   return (
     <div className="min-h-screen">
       <SEO
-        title={page?.seo?.title ?? "Alquiler Barco Palafolls | Puerto Blanes 12 min | Sin Licencia 70€/h"}
-        description={page?.seo?.description ?? "¿En camping o alojamiento en Palafolls? Puerto Blanes a 12 min en coche. Alquila barco sin licencia desde 70€/h con gasolina incluida. Excursión ideal Costa Brava."}
+        title={page?.seo?.title ?? "Alquiler Barco Palafolls | Puerto Blanes 12 min | Sin Licencia 85€/h"}
+        description={page?.seo?.description ?? "¿En camping o alojamiento en Palafolls? Puerto Blanes a 12 min en coche. Alquila barco sin licencia desde 85€/h con gasolina incluida. Excursión ideal Costa Brava."}
         ogTitle={page?.seo?.ogTitle ?? "Alquiler Barco Palafolls | 12 min al Puerto Blanes"}
-        ogDescription={page?.seo?.ogDescription ?? "Desde Palafolls al Puerto Blanes en 12 min. Barco sin licencia desde 70€/h. Gasolina incluida. 4.8★."}
+        ogDescription={page?.seo?.ogDescription ?? "Desde Palafolls al Puerto Blanes en 12 min. Barco sin licencia desde 85€/h. Gasolina incluida. 4.8★."}
         canonical={getCanonicalUrl("/alquiler-barcos-palafolls")}
         jsonLd={combinedJsonLd}
       />

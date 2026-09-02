@@ -164,7 +164,7 @@ export const es: Translations = {
       privateTour: {
         name: "Excursión Privada",
         description: "Tour privado con patrón incluido para una experiencia exclusiva",
-        price: "Desde 240€",
+        price: "Desde 265€",
       },
       parking: {
         name: "Parking",
@@ -689,7 +689,7 @@ export const es: Translations = {
       "La Vila Vella medieval, acantilados impresionantes y las calas más vírgenes de la Costa Brava.",
     pricesTitle: "Precios y tarifas",
     pricesDesc:
-      "Consulta los precios por temporada de todos nuestros barcos. Desde 75€/hora sin licencia.",
+      "Consulta los precios por temporada de todos nuestros barcos. Desde 85€/hora sin licencia.",
     guide: {
       heading: "Guía para navegar la Costa Brava desde Blanes",
       geographyTitle: "El litoral: de Blanes a Tossa de Mar",
@@ -786,7 +786,7 @@ export const es: Translations = {
       locationLloret: [
         { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
         { title: "Salida al atardecer en barco", description: "Experiencia de atardecer en barco" },
-        { title: "Barcos sin licencia", description: "4 barcos desde 75€/h, gasolina incluida" },
+        { title: "Barcos sin licencia", description: "4 barcos desde 85€/h, gasolina incluida" },
         { title: "Alquiler de scooters en Lloret de Mar", description: "Recorre la Costa Brava por carretera, desde 8€/h con seguro incluido" },
       ],
       locationTossa: [
@@ -816,7 +816,7 @@ export const es: Translations = {
       activitySunset: [
         { title: "Rutas en barco desde Blanes", description: "5 rutas con mapas interactivos" },
         { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
-        { title: "Barcos sin licencia", description: "Perfectos para salidas al atardecer, desde 75€/h" },
+        { title: "Barcos sin licencia", description: "Perfectos para salidas al atardecer, desde 85€/h" },
       ],
       activityFishing: [
         { title: "Barcos con licencia", description: "Barcos potentes para zonas de pesca" },
@@ -838,13 +838,13 @@ export const es: Translations = {
       jetskiHub: [
         { title: "Circuito en moto de agua", description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes" },
         { title: "Excursión guiada a Tossa en moto de agua", description: "Ruta guiada de Blanes a Tossa de Mar con monitor" },
-        { title: "Barcos sin licencia", description: "4 barcos desde 75€/h, gasolina incluida" },
+        { title: "Barcos sin licencia", description: "4 barcos desde 85€/h, gasolina incluida" },
         { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
       ],
       jetskiCircuito: [
         { title: "Alquiler de moto de agua en Blanes", description: "Todas las experiencias en moto de agua sin licencia" },
         { title: "Excursión guiada a Tossa en moto de agua", description: "Ruta guiada de Blanes a Tossa de Mar con monitor" },
-        { title: "Barcos sin licencia", description: "4 barcos desde 75€/h, gasolina incluida" },
+        { title: "Barcos sin licencia", description: "4 barcos desde 85€/h, gasolina incluida" },
         { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
       ],
       jetskiExcursion: [
@@ -855,7 +855,7 @@ export const es: Translations = {
       ],
       scooters: [
         { title: "Alquiler barcos en Lloret de Mar", description: "Playas y calas espectaculares desde el puerto de Blanes" },
-        { title: "Barcos sin licencia", description: "4 barcos desde 75€/h, gasolina incluida" },
+        { title: "Barcos sin licencia", description: "4 barcos desde 85€/h, gasolina incluida" },
         { title: "Alquiler de moto de agua sin licencia", description: "Circuito y excursión guiada en moto de agua desde Blanes" },
         { title: "Excursión a Tossa de Mar", description: "Descubre la Vila Vella y sus calas cristalinas" },
       ],
@@ -1744,7 +1744,7 @@ export const es: Translations = {
         // GSC 2026-05-18: subtitle SEO-extractable con keywords long-tail
         // (Puerto de Blanes, sin/con licencia, calas con tiempos)
         subtitle:
-          "Alquiler de barcos directo en el Puerto de Blanes desde 75€/h, gasolina incluida. Sin licencia hasta 5 personas, con licencia hasta 7. Parking gratuito a 100m del amarre, briefing de seguridad 15 minutos. Desde aquí navegas a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) y Lloret de Mar (25 min). Tossa de Mar a 30-45 min con licencia.",
+          "Alquiler de barcos directo en el Puerto de Blanes desde 85€/h, gasolina incluida. Sin licencia hasta 5 personas, con licencia hasta 7. Parking gratuito a 100m del amarre, briefing de seguridad 15 minutos. Desde aquí navegas a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min) y Lloret de Mar (25 min). Tossa de Mar a 30-45 min con licencia.",
         badgePort: "Puerto de Blanes",
         badgeCapacity: "4-7 personas",
         badgeDuration: "1h-8h duración",
@@ -2103,7 +2103,7 @@ export const es: Translations = {
           "Desde barcos sin licencia perfectos para familias hasta embarcaciones con licencia para navegantes experimentados. Para 4 a 7 personas.",
         fuelIncluded: "Gasolina Incluida",
         fuelIncludedDesc:
-          "Todos nuestros alquileres incluyen el combustible en el precio. Sin sorpresas ni costes ocultos. Desde 75 €/hora.",
+          "Todos nuestros alquileres incluyen el combustible en el precio. Sin sorpresas ni costes ocultos. Desde 85 €/hora.",
         noExperience: "Sin Experiencia Necesaria",
         noExperienceDesc:
           "Ofrecemos barcos sin licencia con formación incluida de 15 minutos. Ideal para turistas que quieren una experiencia única.",
@@ -2207,12 +2207,12 @@ export const es: Translations = {
         {
           question: "¿Cuál es la mejor excursión en barco si me alojo en Santa Susanna?",
           answer:
-            "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 150 € para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} €, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación (LN) si alguno del grupo tiene titulación (desde 230 € / 4h).",
+            "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 165 € para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} €, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación (LN) si alguno del grupo tiene titulación (desde 255 € / 4h).",
         },
         {
           question: "¿Puedo hacer una excursión en barco al atardecer desde Santa Susanna?",
           answer:
-            "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 115 € por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min por carretera o 10 min en tren. Reserva con antelación en verano.",
+            "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 125 € por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min por carretera o 10 min en tren. Reserva con antelación en verano.",
         },
         {
           question: "¿Puedo hacer un paseo en barco desde Santa Susanna sin pilotar yo?",
@@ -2239,7 +2239,7 @@ export const es: Translations = {
           "Sin licencia para principiantes y familias, con licencia para navegantes experimentados. Capacidad de 4 a 7 personas por embarcación.",
         fuelIncluded: "Todo Incluido",
         fuelIncludedDesc:
-          "Precio con gasolina incluida desde 75 €/hora. Sin costes ocultos. Formación, chalecos salvavidas y equipo de seguridad incluidos.",
+          "Precio con gasolina incluida desde 85 €/hora. Sin costes ocultos. Formación, chalecos salvavidas y equipo de seguridad incluidos.",
         noExperience: "¿Primera Vez? Sin Problema",
         noExperienceDesc:
           "La mayoría de nuestros clientes nunca han navegado antes. Con 15 minutos de formación estarás listo para zarpar y disfrutar.",
@@ -2329,7 +2329,7 @@ export const es: Translations = {
           "Blanes es el puerto náutico más accesible desde Calella. A 20 minutos por la C-32 o N-II, con 8 embarcaciones y servicio profesional.",
         varietyBoats: "Flota Completa",
         varietyBoatsDesc:
-          "Barcos sin licencia desde 75 €/h para familias y grupos de amigos. Barcos con licencia para navegantes titulados o patrón privado.",
+          "Barcos sin licencia desde 85 €/h para familias y grupos de amigos. Barcos con licencia para navegantes titulados o patrón privado.",
         fuelIncluded: "Precio Todo Incluido",
         fuelIncludedDesc:
           "Gasolina, formación, chalecos salvavidas y equipo de seguridad incluidos en el precio. Sin sorpresas.",
@@ -2372,7 +2372,7 @@ export const es: Translations = {
       hero: {
         title: "Alquiler de Barcos en la Costa Brava",
         subtitle:
-          "Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos. Salidas desde el Puerto de Blanes, en el corazón de la costa catalana. Barcos sin licencia desde 75 €/hora con gasolina y seguro incluidos.",
+          "Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos. Salidas desde el Puerto de Blanes, en el corazón de la costa catalana. Barcos sin licencia desde 85 €/hora con gasolina y seguro incluidos.",
         badgePort: "Puerto de Blanes",
         badgeCapacity: "4-7 personas",
         badgeLicense: "Con y sin licencia",
@@ -2416,7 +2416,7 @@ export const es: Translations = {
         noLicenseCapacity: "Máximo 5 personas a bordo",
         noLicenseNavigation: "Navegación costera hasta 2 millas",
         noLicenseFuel: "Gasolina incluida en el precio",
-        noLicensePrice: "Desde 75 €/hora",
+        noLicensePrice: "Desde 85 €/hora",
         noLicenseDesc:
           "El alquiler de barcos sin licencia en la Costa Brava es la opción ideal para familias y grupos que quieren descubrir las calas sin complicaciones. No necesitas ninguna titulación náutica: con una breve formación de 15 minutos estarás listo para zarpar. Todos incluyen gasolina, seguro de responsabilidad civil y accidentes, equipo de seguridad y material de snorkel. Perfectos para rutas costeras de 1 a 8 horas desde el Puerto de Blanes.",
         licensedTitle: "Barcos Con Licencia",
@@ -2490,17 +2490,17 @@ export const es: Translations = {
       ],
       seo: {
         title:
-          "Alquiler Barco Tordera | Puerto Blanes 15 min | Sin Licencia 75€/h | Delta del Tordera",
+          "Alquiler Barco Tordera | Puerto Blanes 15 min | Sin Licencia 85€/h | Delta del Tordera",
         description:
-          "¿Vives en Tordera o cerca del Delta? Puerto Blanes a 15 min por carretera o 8 min en tren R1. Alquila barco sin licencia desde 75€/h con gasolina incluida. Navega el Delta del Tordera.",
+          "¿Vives en Tordera o cerca del Delta? Puerto Blanes a 15 min por carretera o 8 min en tren R1. Alquila barco sin licencia desde 85€/h con gasolina incluida. Navega el Delta del Tordera.",
         ogTitle: "Alquiler Barco Tordera | Delta del Tordera en Barco",
         ogDescription:
-          "Desde Tordera al Puerto Blanes en 15 min. Barco sin licencia desde 75€/h. Delta del Tordera en barco. 4.8★.",
+          "Desde Tordera al Puerto Blanes en 15 min. Barco sin licencia desde 85€/h. Delta del Tordera en barco. 4.8★.",
       },
       schema: {
         name: "Alquiler de Barcos cerca de Tordera",
         description:
-          "Alquila barcos desde el Puerto de Blanes, a solo 15 minutos por carretera de Tordera. Barcos sin licencia desde 75 €/hora con gasolina incluida.",
+          "Alquila barcos desde el Puerto de Blanes, a solo 15 minutos por carretera de Tordera. Barcos sin licencia desde 85 €/hora con gasolina incluida.",
       },
       breadcrumbName: "Alquiler Barcos Tordera",
       sections: {
@@ -2519,7 +2519,7 @@ export const es: Translations = {
           "Nuestra flota incluye {fleetCount} barcos: embarcaciones sin licencia ideales para familias y principiantes, y barcos con licencia para los más experimentados. Desde barcas para 4 personas hasta embarcaciones para grupos de hasta 11 personas.",
         whyCard3Title: "Gasolina incluida en barcos sin licencia",
         whyCard3Desc:
-          "El precio de los barcos sin licencia incluye la gasolina. Desde 75 € por hora. Sin costes ocultos ni sorpresas en el precio final.",
+          "El precio de los barcos sin licencia incluye la gasolina. Desde 85 € por hora. Sin costes ocultos ni sorpresas en el precio final.",
         whyCard4Title: "Sin experiencia previa necesaria",
         whyCard4Desc:
           "Antes de zarpar te ofrecemos 15 minutos de formación práctica donde aprenderás a manejar el motor, las normas básicas de navegación y los mejores rincones para explorar. Cualquier persona mayor de 18 años puede pilotar nuestros barcos sin licencia.",
@@ -2596,17 +2596,17 @@ export const es: Translations = {
         },
       ],
       seo: {
-        title: "Alquiler Barco Palafolls | Puerto Blanes 12 min | Sin Licencia 75€/h",
+        title: "Alquiler Barco Palafolls | Puerto Blanes 12 min | Sin Licencia 85€/h",
         description:
-          "¿En camping o alojamiento en Palafolls? Puerto Blanes a 12 min por carretera. Alquila barco sin licencia desde 75€/h con gasolina incluida. Excursión ideal Costa Brava.",
+          "¿En camping o alojamiento en Palafolls? Puerto Blanes a 12 min por carretera. Alquila barco sin licencia desde 85€/h con gasolina incluida. Excursión ideal Costa Brava.",
         ogTitle: "Alquiler Barco Palafolls | 12 min al Puerto Blanes",
         ogDescription:
-          "Desde Palafolls al Puerto Blanes en 12 min. Barco sin licencia desde 75€/h. Gasolina incluida. 4.8★.",
+          "Desde Palafolls al Puerto Blanes en 12 min. Barco sin licencia desde 85€/h. Gasolina incluida. 4.8★.",
       },
       schema: {
         name: "Alquiler de Barcos cerca de Palafolls",
         description:
-          "Alquila barcos desde el Puerto de Blanes, a solo 12 minutos por carretera de Palafolls. Barcos sin licencia desde 75 €/hora con gasolina incluida.",
+          "Alquila barcos desde el Puerto de Blanes, a solo 12 minutos por carretera de Palafolls. Barcos sin licencia desde 85 €/hora con gasolina incluida.",
       },
       breadcrumbName: "Alquiler Barcos Palafolls",
       sections: {
@@ -2625,7 +2625,7 @@ export const es: Translations = {
           "Si te alojas en uno de los campings de Palafolls como La Masía, Neptuno, o los complejos de bungalows de la zona, alquilar un barco es la actividad estrella que hará únicas tus vacaciones. Muchas familias de campings cercanos nos visitan cada temporada.",
         whyCard3Title: "Gasolina incluida en barcos sin licencia",
         whyCard3Desc:
-          "El precio de los barcos sin licencia incluye la gasolina. Desde 75 € por hora. Sin costes ocultos ni suplementos por combustible.",
+          "El precio de los barcos sin licencia incluye la gasolina. Desde 85 € por hora. Sin costes ocultos ni suplementos por combustible.",
         whyCard4Title: "Sin experiencia previa necesaria",
         whyCard4Desc:
           "Antes de zarpar, nuestro equipo te da 15 minutos de formación práctica. Te enseñamos a manejar el motor, las normas básicas de navegación y los mejores rincones para explorar. Cualquier persona mayor de 18 años puede pilotar nuestros barcos sin licencia.",
@@ -2717,17 +2717,17 @@ export const es: Translations = {
         },
       ],
       seo: {
-        title: "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 75€/h",
+        title: "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 85€/h",
         description:
-          "¿Alojado en Pineda de Mar? Puerto Blanes a 18 min por carretera o 12 min en tren R1. Alquila barco sin licencia desde 75€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa.",
+          "¿Alojado en Pineda de Mar? Puerto Blanes a 18 min por carretera o 12 min en tren R1. Alquila barco sin licencia desde 85€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa.",
         ogTitle: "Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes",
         ogDescription:
-          "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 75€/h. 4.8★ Google.",
+          "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 85€/h. 4.8★ Google.",
       },
       schema: {
         name: "Alquiler de Barcos cerca de Pineda de Mar",
         description:
-          "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos por carretera de Pineda de Mar. Barcos sin licencia desde 75 €/hora con gasolina incluida.",
+          "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos por carretera de Pineda de Mar. Barcos sin licencia desde 85 €/hora con gasolina incluida.",
       },
       breadcrumbName: "Alquiler Barcos Pineda de Mar",
       sections: {
@@ -2747,7 +2747,7 @@ export const es: Translations = {
           "Disponemos de una flota de {fleetCount} barcos que incluye embarcaciones sin licencia ideales para familias y principiantes, así como barcos con licencia para navegantes experimentados. Capacidad de 4 a 11 personas según el modelo elegido.",
         whyCard3Title: "Gasolina incluida en barcos sin licencia",
         whyCard3Desc:
-          "El precio de los barcos sin licencia incluye la gasolina, así que no hay sorpresas. Desde 75 € por hora. El precio que ves es el precio final.",
+          "El precio de los barcos sin licencia incluye la gasolina, así que no hay sorpresas. Desde 85 € por hora. El precio que ves es el precio final.",
         whyCard4Title: "Sin experiencia previa necesaria",
         whyCard4Desc:
           "Antes de zarpar, nuestro equipo te da 15 minutos de formación práctica: manejo del motor, normas básicas de navegación y consejos sobre las mejores calas. Cualquier persona mayor de 18 años puede pilotar un barco sin licencia.",
@@ -2815,7 +2815,7 @@ export const es: Translations = {
     // GSC 2026-05-18: heroDescription extractable por Google cuando ignora meta.
     // Densidad de keywords + entidades concretas (precio, calas, capacidad).
     heroDescription:
-      "4 barcos sin licencia desde 75€/h en el Puerto de Blanes, gasolina incluida. Hasta 5 personas, sin carnet ni titulación, sin experiencia previa. Briefing de seguridad 15 minutos y a navegar por las calas de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina y Sa Boadella hasta Playa de Fenals (Lloret de Mar).",
+      "4 barcos sin licencia desde 85€/h en el Puerto de Blanes, gasolina incluida. Hasta 5 personas, sin carnet ni titulación, sin experiencia previa. Briefing de seguridad 15 minutos y a navegar por las calas de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina y Sa Boadella hasta Playa de Fenals (Lloret de Mar).",
     badgeNoLicense: "Sin Licencia Necesaria",
     badgePower: "Hasta 15 CV",
     badgeCapacity: "4-7 personas",
@@ -2837,7 +2837,7 @@ export const es: Translations = {
     // Sinónimos integrados aquí en vez de crear una landing duplicada.
     synonymsTitle: "¿Lancha, barca o embarcación? Es lo mismo",
     synonymsBody:
-      "Da igual cómo lo busques: alquiler de lanchas en la Costa Brava, alquiler de embarcaciones sin titulación o alquilar una barca en Blanes. Nuestros 4 barcos sin licencia son lanchas de recreo de hasta 5 metros y 15 CV que cualquier adulto puede pilotar sin carnet náutico. Mismo barco y mismo precio desde 75€/h con gasolina incluida, lo llames como lo llames.",
+      "Da igual cómo lo busques: alquiler de lanchas en la Costa Brava, alquiler de embarcaciones sin titulación o alquilar una barca en Blanes. Nuestros 4 barcos sin licencia son lanchas de recreo de hasta 5 metros y 15 CV que cualquier adulto puede pilotar sin carnet náutico. Mismo barco y mismo precio desde 85€/h con gasolina incluida, lo llames como lo llames.",
     fleetTitle: "Nuestra Flota Sin Licencia",
     advantagesTitle: "Ventajas del Alquiler de Barcos Sin Licencia en Costa Brava",
     totalAccessibility: "Accesibilidad Total",
@@ -2939,7 +2939,7 @@ export const es: Translations = {
       "En España puedes gobernar sin ninguna titulación una embarcación de hasta 5 metros de eslora y motor de hasta 15 CV (11 kW), según el Real Decreto 875/2014. Nuestros 4 barcos sin licencia (Solar 450, Remus 450, Remus 450 II y Astec 480) cumplen ese límite: hasta 5 personas, gasolina incluida y sin carnet. Solo necesitas ser mayor de 18 años y hacer el briefing de 15 minutos antes de zarpar.",
     faqPriceQuestion: "¿Cuánto cuesta alquilar un barco sin licencia por horas?",
     faqPriceAnswer:
-      "El precio arranca en 75€/h con la gasolina incluida. Trabajamos por franjas: 1 hora desde 75€, 2 horas desde 115€, medio día (4 horas) desde 150€ y día completo (8 horas) desde 220€ en temporada baja. La tarifa sube en temporada alta y los fines de semana. No hay comisiones de plataforma ni coste extra de combustible: el precio que reservas es el precio final.",
+      "El precio arranca en 85€/h con la gasolina incluida. Trabajamos por franjas: 1 hora desde 85€, 2 horas desde 125€, medio día (4 horas) desde 165€ y día completo (8 horas) desde 240€ en temporada baja. La tarifa sube en temporada alta y los fines de semana. No hay comisiones de plataforma ni coste extra de combustible: el precio que reservas es el precio final.",
     faqWeatherQuestion: "¿Qué pasa si hace mal tiempo?",
     faqWeatherAnswer:
       "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad.",
@@ -2966,7 +2966,7 @@ export const es: Translations = {
     howToDurationLabel: "Duración del proceso",
     howToDurationValue: "Reserva 5 min · briefing 15 min · navegación libre",
     howToCostLabel: "Coste desde",
-    howToCostValue: "75€/h con gasolina incluida",
+    howToCostValue: "85€/h con gasolina incluida",
     // Section: vs marketplaces (added 2026-05-21).
     // Responde al ALERT-2026-04-24-A: marketplaces bajaron precio floor 80€→55€/día.
     // Framing positivo, sin nombrar competidores. Defiende el snippet de precio.
@@ -2991,12 +2991,12 @@ export const es: Translations = {
     vsMarketplacesRow5Direct: "Cambio de fecha gratis hasta 7 días antes",
     vsMarketplacesRow5Market: "Política del marketplace + tarifa del armador",
     vsMarketplacesConclusion:
-      "El precio final con marketplace suele ser un 20-35% mayor que el anunciado una vez sumas gasolina, comisión y extras. Nuestros 75€/h incluyen ya todo: gasolina, equipamiento, briefing, seguro de responsabilidad civil y soporte en puerto.",
+      "El precio final con marketplace suele ser un 20-35% mayor que el anunciado una vez sumas gasolina, comisión y extras. Nuestros 85€/h incluyen ya todo: gasolina, equipamiento, briefing, seguro de responsabilidad civil y soporte en puerto.",
   },
   categoryLicensed: {
     heroTitle: "Alquiler de lanchas sin patrón en Blanes: llega pilotando hasta Tossa de Mar",
     heroDescription:
-      "Tres lanchas con licencia de 80 a 115 CV en el Puerto de Blanes. Tú al timón con tu Licencia de Navegación o título extranjero equivalente, que verificamos online antes de tu viaje. Desde 160 EUR las 2 horas.",
+      "Tres lanchas con licencia de 80 a 115 CV en el Puerto de Blanes. Tú al timón con tu Licencia de Navegación o título extranjero equivalente, que verificamos online antes de tu viaje. Desde 175 EUR las 2 horas.",
     badgeLicense: "Basta la Licencia de Navegación",
     badgePower: "80-115 CV",
     badgeCapacity: "6-7 personas",
@@ -3112,7 +3112,7 @@ export const es: Translations = {
       "Sí, aceptamos títulos extranjeros equivalentes: el Permis Cotier francés, el SBF See alemán, el ICC internacional y los equivalentes de países del EEE. Compruébalo en el verificador online de esta página y trae el título original el día de la salida.",
     faqPriceQuestion: "¿Cuánto cuesta alquilar una lancha por horas en Blanes?",
     faqPriceAnswer:
-      "Desde 160 EUR las 2 horas en temporada baja, y desde 190 EUR en agosto según la lancha. El medio día y el día completo tienen tarifas propias por temporada: la tabla comparativa de esta página y la página de precios muestran el detalle. La gasolina se paga aparte.",
+      "Desde 175 EUR las 2 horas en temporada baja, y desde 210 EUR en agosto según la lancha. El medio día y el día completo tienen tarifas propias por temporada: la tabla comparativa de esta página y la página de precios muestran el detalle. La gasolina se paga aparte.",
     faqFuelQuestion: "¿La gasolina está incluida en los barcos con licencia?",
     faqFuelAnswer:
       "No. En las lanchas con licencia la gasolina se paga aparte según el consumo real de la salida. El seguro y el equipo de seguridad sí están incluidos siempre.",
@@ -3189,7 +3189,7 @@ export const es: Translations = {
     ctaWhatsApp: "Preguntar por WhatsApp",
     relatedDestinationsTitle: "Destinos relacionados",
     relatedBlanesName: "Blanes",
-    relatedBlanesDesc: "Puerto base. Barcos sin licencia desde 75€/h.",
+    relatedBlanesDesc: "Puerto base. Barcos sin licencia desde 85€/h.",
     relatedLloretName: "Lloret de Mar",
     relatedLloretDesc: "Calas y playas a 25 min en barco desde Blanes.",
     relatedTossaName: "Tossa de Mar",
@@ -3307,7 +3307,7 @@ export const es: Translations = {
     q2: "¿Cuánto tiempo quieres navegar?",
     q2options: ["1-2 horas", "3-4 horas (medio día)", "6-8 horas (día completo)"],
     q3: "¿Cuál es tu presupuesto?",
-    q3options: ["Económico (desde 75€)", "Medio (100-200€)", "Sin límite"],
+    q3options: ["Económico (desde 85€)", "Medio (100-200€)", "Sin límite"],
     result: "Tu barco ideal es...",
     bestMatch: "Mejor opción",
     alsoConsider: "También puedes considerar",
@@ -3381,7 +3381,7 @@ export const es: Translations = {
         id: "precios",
         question: "¿Cuáles son los precios del alquiler?",
         answer:
-          "Barcos sin licencia desde 75€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o día completo). Barcos con licencia desde 160€ sin gasolina incluida (2h, 4h, 8h). Los precios varían según temporada (julio/agosto) y embarcación.",
+          "Barcos sin licencia desde 85€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o día completo). Barcos con licencia desde 175€ sin gasolina incluida (2h, 4h, 8h). Los precios varían según temporada (julio/agosto) y embarcación.",
       },
       {
         id: "sin-licencia",
@@ -3448,13 +3448,13 @@ export const es: Translations = {
         id: "diferencia-licencia",
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 75€. Los barcos con licencia tienen motores de 80-115 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde 160€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
+          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 85€. Los barcos con licencia tienen motores de 80-115 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde 175€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
       },
       {
         id: "precio-blanes-vs-lloret",
         question: "¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?",
         answer:
-          "Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde 75€ la hora con gasolina incluida. Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.",
+          "Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde 85€ la hora con gasolina incluida. Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.",
       },
       {
         id: "barco-grupo-grande",
@@ -3467,7 +3467,7 @@ export const es: Translations = {
         id: "precio-costa-brava",
         question: "¿Cuánto cuesta alquilar un barco en la Costa Brava?",
         answer:
-          "En la Costa Brava puedes alquilar un barco desde 75€ la hora en Blanes, con gasolina incluida y sin necesidad de licencia. Los precios varían según la duración (de 1h a día completo), el tipo de barco y la temporada. Julio y agosto son temporada alta con precios más elevados; junio y septiembre ofrecen la mejor relación calidad-precio.",
+          "En la Costa Brava puedes alquilar un barco desde 85€ la hora en Blanes, con gasolina incluida y sin necesidad de licencia. Los precios varían según la duración (de 1h a día completo), el tipo de barco y la temporada. Julio y agosto son temporada alta con precios más elevados; junio y septiembre ofrecen la mejor relación calidad-precio.",
       },
       {
         id: "blanes-tossa-barco",
@@ -3479,7 +3479,7 @@ export const es: Translations = {
         id: "excursion-con-patron",
         question: "¿Cuánto cuesta una excursión en barco con patrón?",
         answer:
-          "Nuestras excursiones privadas con patrón profesional parten desde 240€ por 2 horas para hasta 6 personas. El patrón os lleva a las mejores calas, se encarga de toda la navegación y no necesitáis licencia. Es la opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.",
+          "Nuestras excursiones privadas con patrón profesional parten desde 265€ por 2 horas para hasta 6 personas. El patrón os lleva a las mejores calas, se encarga de toda la navegación y no necesitáis licencia. Es la opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.",
       },
       // Decision-helping questions
       {
@@ -3492,7 +3492,7 @@ export const es: Translations = {
         id: "barco-vs-excursion",
         question: "¿Qué es mejor, alquilar un barco o una excursión con patrón?",
         answer:
-          "Depende de lo que busques. Alquilar un barco sin licencia (desde 75€/h) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursión con patrón (desde 240€/2h) es ideal si quieres relajarte completamente, no tienes experiencia o quieres llegar a calas más lejanas como Tossa de Mar.",
+          "Depende de lo que busques. Alquilar un barco sin licencia (desde 85€/h) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursión con patrón (desde 265€/2h) es ideal si quieres relajarte completamente, no tienes experiencia o quieres llegar a calas más lejanas como Tossa de Mar.",
       },
       {
         id: "mejor-epoca",
@@ -3780,7 +3780,7 @@ export const es: Translations = {
       {
         question: "¿Cuánto cuesta una excursión en barco al atardecer?",
         answer:
-          "Una excursión de 2 horas al atardecer en barco sin licencia cuesta desde 140 € en total ({noLicBaja1h} €/hora en temporada baja). La gasolina está incluida en barcos sin licencia. El barco admite hasta 5 personas, así que el coste por persona puede ser desde 28 €. Los barcos sin licencia incluyen gasolina, seguro, equipo de seguridad y la formación.",
+          "Una excursión de 2 horas al atardecer en barco sin licencia cuesta desde 155 € en total ({noLicBaja1h} €/hora en temporada baja). La gasolina está incluida en barcos sin licencia. El barco admite hasta 5 personas, así que el coste por persona puede ser desde 28 €. Los barcos sin licencia incluyen gasolina, seguro, equipo de seguridad y la formación.",
       },
     ],
     sunsetTimes: [
@@ -3865,7 +3865,7 @@ export const es: Translations = {
     // Page sections (headings, descriptions, badges, CTAs, lists)
     heroTitle: "Paseo en Barco al Atardecer desde Blanes",
     heroDescription:
-      "Contempla la puesta de sol sobre la Costa Brava desde la cubierta de tu propio barco. Sal del puerto de Blanes, navega entre calas escondidas y disfruta de la luz más mágica del día sobre el Mediterráneo. Sin licencia de navegación. Desde 75 €/hora.",
+      "Contempla la puesta de sol sobre la Costa Brava desde la cubierta de tu propio barco. Sal del puerto de Blanes, navega entre calas escondidas y disfruta de la luz más mágica del día sobre el Mediterráneo. Sin licencia de navegación. Desde 85 €/hora.",
     badgeGoldenHour: "Vistas a la hora dorada",
     badgeDuration: "2 horas recomendadas",
     badgeCouples: "Perfecto para parejas",
@@ -3974,7 +3974,7 @@ export const es: Translations = {
       {
         name: "Barcos sin licencia (4-5 personas)",
         duration: "2-3 horas recomendadas",
-        price: "Desde 75 €/hora",
+        price: "Desde 85 €/hora",
         description:
           "Perfectos para snorkel en calas cercanas como Cala Sant Francesc y Cala Bona. Gasolina incluida. Fondeas el barco y te tiras al agua directamente.",
       },
@@ -4107,7 +4107,7 @@ export const es: Translations = {
         stops: ["Puerto de Blanes", "Cala Sant Francesc", "Regreso"],
         description:
           "Ideal para familias con niños pequeños. Navegación corta hasta una cala protegida con agua poco profunda y cristalina. Tiempo para bañarse, hacer snorkel suave y picnic a bordo.",
-        price: "Desde 115 € (2 h, temporada baja)",
+        price: "Desde 125 € (2 h, temporada baja)",
         tip: "Perfecta para una primera experiencia en barco con niños. La cala tiene zona de arena y agua tranquila.",
       },
       {
@@ -4121,13 +4121,13 @@ export const es: Translations = {
         ],
         description:
           "La experiencia completa para familias. Tres paradas con tiempo suficiente para explorar cada cala. Combina baño, snorkel, picnic y vistas espectaculares de la costa.",
-        price: "Desde 150 € (4 h, temporada baja)",
+        price: "Desde 165 € (4 h, temporada baja)",
         tip: "Recomendada para niños a partir de 4 años. Llevar comida, agua, crema solar y gorras.",
       },
     ],
     heroTitle: "Alquiler de Barco para Familias en Costa Brava",
     heroDescription:
-      "Una aventura segura y divertida para toda la familia. Barcos sin licencia desde el Puerto de Blanes con gasolina incluida, chalecos infantiles y calas protegidas perfectas para niños. Desde 75 €/hora.",
+      "Una aventura segura y divertida para toda la familia. Barcos sin licencia desde el Puerto de Blanes con gasolina incluida, chalecos infantiles y calas protegidas perfectas para niños. Desde 85 €/hora.",
     badgeNoLicense: "Sin licencia necesaria",
     badgeKidsVests: "Chalecos infantiles incluidos",
     badgeFuel: "Gasolina incluida",
@@ -4258,7 +4258,7 @@ export const es: Translations = {
         type: "Barcos sin licencia",
         capacity: "4-5 personas",
         autonomy: "Pesca costera (hasta 2 millas)",
-        price: "Desde 75 €/hora (gasolina incluida)",
+        price: "Desde 85 €/hora (gasolina incluida)",
         advantages: [
           "Sin necesidad de título náutico",
           "Gasolina incluida en el precio",
@@ -6097,7 +6097,7 @@ export const es: Translations = {
   captainedPage: {
     seoTitle: "Alquiler de Barco con Patrón Costa Brava | Desde Blanes",
     seoDescription:
-      "Excursión privada en barco con patrón desde Blanes: calas y cuevas hasta Tossa de Mar, parada para nadar. Hasta 6 personas, desde 240€/2h. {rating}★ en Google.",
+      "Excursión privada en barco con patrón desde Blanes: calas y cuevas hasta Tossa de Mar, parada para nadar. Hasta 6 personas, desde 265€/2h. {rating}★ en Google.",
     heroTitle: "Alquiler de barco con patrón en la Costa Brava: tu excursión privada desde Blanes",
     heroDescription:
       "Tú solo disfrutas: nuestro patrón profesional os lleva a calas de aguas claras y cuevas marinas entre Blanes y Tossa de Mar, y fondea en el rincón perfecto del día para que os bañéis. Sin licencia, sin experiencia y sin preocuparte de nada.",
@@ -6235,7 +6235,7 @@ export const es: Translations = {
       },
       {
         q: "¿Cuánto cuesta la excursión privada en barco?",
-        a: "Desde 240€ las 2 horas de abril a junio y en septiembre, 260€ en julio y 280€ en agosto. También hay salidas de 3 horas (desde 320€) y 4 horas (desde 380€). El precio es por barco, para hasta 6 personas.",
+        a: "Desde 265€ las 2 horas de abril a junio y en septiembre, 285€ en julio y 310€ en agosto. También hay salidas de 3 horas (desde 350€) y 4 horas (desde 420€). El precio es por barco, para hasta 6 personas.",
       },
       {
         q: "¿Qué ruta hacemos y quién la decide?",

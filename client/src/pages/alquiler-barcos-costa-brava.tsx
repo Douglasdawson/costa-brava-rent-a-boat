@@ -52,7 +52,7 @@ export default function LocationCostaBravaPage() {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
     "name": "Alquiler de Barcos en la Costa Brava",
-    "description": "Alquiler de barcos sin licencia y con licencia en la Costa Brava. Salidas desde el Puerto de Blanes. Embarcaciones para 4-7 personas. Desde 70 EUR/hora.",
+    "description": "Alquiler de barcos sin licencia y con licencia en la Costa Brava. Salidas desde el Puerto de Blanes. Embarcaciones para 4-7 personas. Desde 85 EUR/hora.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.6667,
@@ -99,7 +99,7 @@ export default function LocationCostaBravaPage() {
         "name": "Cuanto cuesta alquilar un barco en la Costa Brava?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Los barcos sin licencia cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada alta (agosto) desde 90 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad."
+          "text": "Los barcos sin licencia cuestan desde 85 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada alta (agosto) desde 90 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad."
         }
       },
       {
@@ -195,7 +195,7 @@ export default function LocationCostaBravaPage() {
       "availability": "https://schema.org/InStock",
       "validFrom": `${new Date().getFullYear()}-04-01`,
       "validThrough": `${new Date().getFullYear()}-10-31`,
-      "description": "9 embarcaciones disponibles. 5 sin licencia náutica desde 70€/h con gasolina incluida. 3 con LNB (con licencia) y excursión privada con capitán."
+      "description": "9 embarcaciones disponibles. 5 sin licencia náutica desde 85€/h con gasolina incluida. 3 con LNB (con licencia) y excursión privada con capitán."
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -311,7 +311,7 @@ export default function LocationCostaBravaPage() {
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              {cb?.hero.subtitle || "Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos. Salidas desde el Puerto de Blanes, en el corazon de la costa catalana. Barcos sin licencia desde 70 EUR/hora con gasolina y seguro incluidos."}
+              {cb?.hero.subtitle || "Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos. Salidas desde el Puerto de Blanes, en el corazon de la costa catalana. Barcos sin licencia desde 85 EUR/hora con gasolina y seguro incluidos."}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
@@ -457,7 +457,7 @@ export default function LocationCostaBravaPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm font-semibold">{s?.noLicensePrice || "Desde 70 EUR/hora"}</span>
+                  <span className="text-sm font-semibold">{s?.noLicensePrice || "Desde 85 EUR/hora"}</span>
                 </li>
               </ul>
               <p className="text-muted-foreground text-sm">{s?.noLicenseDesc || ""}</p>

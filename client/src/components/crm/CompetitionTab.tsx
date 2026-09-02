@@ -42,7 +42,7 @@ const COMPETITORS: Competitor[] = [
     privateTour: true,
     languages: ["es", "en", "ca"],
     highlights: ["Flota más amplia de Blanes", "Cobra RIB 700 (12 pax, 250hp)", "8 años en Sitges"],
-    weakPoints: ["Solo 3 idiomas", "Entry más caro (80€ vs 70€)", "No son 100% locales"],
+    weakPoints: ["Solo 3 idiomas", "No son 100% locales"],
     lastResearched: "2026-04-22",
   },
   {

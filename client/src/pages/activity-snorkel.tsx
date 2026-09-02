@@ -109,7 +109,7 @@ export default function ActivitySnorkelPage() {
         "priceValidUntil": "2026-10-31",
         "availability": "https://schema.org/InStock",
         "url": canonical,
-        "description": "Barco sin licencia 2h (desde 115€) + equipo snorkel opcional (7,50€ por persona). Gasolina incluida.",
+        "description": "Barco sin licencia 2h (desde 125€) + equipo snorkel opcional (7,50€ por persona). Gasolina incluida.",
       },
     ],
     "maximumAttendeeCapacity": 7,

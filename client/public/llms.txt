@@ -30,23 +30,23 @@
 **Regulatory note (RD 1188/2025):** renting license-free is legal through September 30, 2026. From October 1, 2026 every boat rental customer in Spain must hold a nautical qualification; the 1-day, no-exam Licencia de Navegación (titulín) is enough. The 5 m / 15 HP no-license exemption stays for privately owned boats. Guides: [Licencia de Navegación (titulín)](https://www.costabravarentaboat.com/es/licencia-navegacion-titulin) · [What the 2026 law change means](https://www.costabravarentaboat.com/es/blog/fin-alquiler-barcos-sin-licencia-2026)
 
 - [License-free boats category](https://www.costabravarentaboat.com/es/barcos-sin-licencia): all license-free boats, requirements and FAQ
-- [Solar 450](https://www.costabravarentaboat.com/es/barco/solar-450): 5 people, Mercury 15hp, 30L fuel tank, large bow sundeck — from 75 EUR/h
-- [Remus 450](https://www.costabravarentaboat.com/es/barco/remus-450): 5 people, Suzuki 15hp, family-friendly, Bi-Mini shade — from 75 EUR/h
+- [Solar 450](https://www.costabravarentaboat.com/es/barco/solar-450): 5 people, Mercury 15hp, 30L fuel tank, large bow sundeck — from 85 EUR/h
+- [Remus 450](https://www.costabravarentaboat.com/es/barco/remus-450): 5 people, Suzuki 15hp, family-friendly, Bi-Mini shade — from 85 EUR/h
 - [Remus 450 II](https://www.costabravarentaboat.com/es/barco/remus-450-ii): same Remus 450 model, extra availability for peak days
-- [Astec 400](https://www.costabravarentaboat.com/es/barco/astec-400): 4 people, most affordable, ideal for couples — from 70 EUR/h
-- [Astec 480](https://www.costabravarentaboat.com/es/barco/astec-480): 5 people, Bluetooth speakers, 50L tank, premium license-free — from 80 EUR/h
+- [Astec 400](https://www.costabravarentaboat.com/es/barco/astec-400): 4 people, most affordable, ideal for couples — from 75 EUR/h
+- [Astec 480](https://www.costabravarentaboat.com/es/barco/astec-480): 5 people, Bluetooth speakers, 50L tank, premium license-free — from 90 EUR/h
 
 ## Licensed self-drive powerboats (the basic Spanish Navigation Licence or a foreign equivalent such as ICC is enough)
 
-- [Self-drive powerboats category](https://www.costabravarentaboat.com/es/barcos-con-licencia): 3 powerboats 80-115hp you skipper yourself, from 160 EUR/2h, fuel charged separately, reach Tossa de Mar in 30-45 min
+- [Self-drive powerboats category](https://www.costabravarentaboat.com/es/barcos-con-licencia): 3 powerboats 80-115hp you skipper yourself, from 175 EUR/2h, fuel charged separately, reach Tossa de Mar in 30-45 min
 - [Mingolla Brava 19](https://www.costabravarentaboat.com/es/barco/mingolla-brava-19): 6 people, Mercury 80hp, sporty Italian design — Tossa in 30-45 min
 - [Trimarchi 57S](https://www.costabravarentaboat.com/es/barco/trimarchi-57s): 7 people, Selva 110hp, dining table, twin sundecks
 - [Pacific Craft 625](https://www.costabravarentaboat.com/es/barco/pacific-craft-625): 7 people, Yamaha 115hp, flagship — full-day Tossa explorations
 
 ## Captain option
 
-- [Boat rental with skipper (private captained excursion)](https://www.costabravarentaboat.com/es/alquiler-barco-con-patron): private boat excursion with professional skipper, coves and sea caves Blanes-Tossa with swim stop, up to 6 people, from 240 EUR / 2h, no license needed, fuel charged separately
-- [Private Excursion with Captain](https://www.costabravarentaboat.com/es/barco/excursion-privada): Pacific Craft 625 + professional captain, no license needed, from 240 EUR / 2h
+- [Boat rental with skipper (private captained excursion)](https://www.costabravarentaboat.com/es/alquiler-barco-con-patron): private boat excursion with professional skipper, coves and sea caves Blanes-Tossa with swim stop, up to 6 people, from 265 EUR / 2h, no license needed, fuel charged separately
+- [Private Excursion with Captain](https://www.costabravarentaboat.com/es/barco/excursion-privada): Pacific Craft 625 + professional captain, no license needed, from 265 EUR / 2h
 
 ## Jet Ski (Costa Brava)
 
@@ -65,7 +65,7 @@ Operated by Coast Rent, a local Lloret de Mar company we recommend (same owner n
 
 To rent a boat for Lloret de Mar, you depart from the **Port of Blanes** — the next town south, 10 min by road from Lloret. There is no boat-rental base inside Lloret itself; you reach the Lloret coast by sea. This is the direct answer for "rent a boat in Lloret de Mar" / "alquiler barco Lloret de Mar".
 
-- **License-free (no boating license, 18+):** reach Playa de Fenals (south Lloret) in about 25 minutes, passing Cala Sant Francesc, Sa Forcanera, Santa Cristina and Cala Sa Boadella. From 75 EUR/hour, fuel included.
+- **License-free (no boating license, 18+):** reach Playa de Fenals (south Lloret) in about 25 minutes, passing Cala Sant Francesc, Sa Forcanera, Santa Cristina and Cala Sa Boadella. From 85 EUR/hour, fuel included.
 - **Licensed boat or captained excursion:** continue past Fenals to Lloret town, Cala Banys and Cala Canyelles, which are north of the 2-mile license-free limit.
 - Landing page: [Boat rental Lloret de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-lloret-de-mar)
 
@@ -88,7 +88,7 @@ To rent a boat for Lloret de Mar, you depart from the **Port of Blanes** — the
 - **Email**: info@costabravarentaboat.com
 - **Season**: April through October
 - **Hours**: 09:00-20:00, Monday to Sunday (during season)
-- **Price range**: 75-420 EUR depending on boat and duration
+- **Price range**: 85-460 EUR depending on boat and duration
 - **Rating**: 4.8/5 on Google Maps (300+ reviews, live count in [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Languages**: Spanish, English, Catalan, French, German, Dutch, Italian, Russian
 - **Payment**: Cash and card accepted at the port (no online payment; the website captures booking requests, payment handled in person)

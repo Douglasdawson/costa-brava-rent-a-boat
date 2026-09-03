@@ -248,7 +248,7 @@ describe("getAvailableDurationsForDate 4h cap (licence-free boats)", () => {
 describe("calculateBasePrice", () => {
   it("returns correct price for solar-450 in BAJA 2h on weekday", () => {
     const price = calculateBasePrice("solar-450", new Date("2026-04-06T12:00:00"), "2h");
-    expect(price).toBe(125); // BAJA 2h = 115 per boatData.ts
+    expect(price).toBe(135); // BAJA 2h per boatData.ts
   });
 
   it("returns correct price for solar-450 in BAJA 1h on weekday", () => {
@@ -270,9 +270,9 @@ describe("calculateBasePrice", () => {
     // Saturday (weekend) in BAJA with 2h
     const weekendPrice = calculateBasePrice("solar-450", new Date("2026-04-04T12:00:00"), "2h");
     const weekdayPrice = calculateBasePrice("solar-450", new Date("2026-04-06T12:00:00"), "2h");
-    // 115 * 1.15 = 132.25 → roundToNearestTen → 130
-    expect(weekendPrice).toBe(140);
-    expect(weekdayPrice).toBe(125); // catalog base, untouched
+    // 135 * 1.15 = 155.25 → roundToNearestTen → 160
+    expect(weekendPrice).toBe(160);
+    expect(weekdayPrice).toBe(135); // catalog base, untouched
     // sanity: WEEKEND_SURCHARGE_FACTOR is still 1.15
     expect(WEEKEND_SURCHARGE_FACTOR).toBe(1.15);
   });
@@ -361,19 +361,19 @@ describe("calculatePricingBreakdown", () => {
     expect(breakdown.duration).toBe("4h");
     expect(breakdown.season).toBe("BAJA");
     expect(breakdown.weekendSurcharge).toBe(false);
-    expect(breakdown.basePrice).toBe(165); // BAJA 4h = 150 per boatData.ts
+    expect(breakdown.basePrice).toBe(180); // BAJA 4h per boatData.ts
     expect(breakdown.selectedExtras).toEqual([]);
     expect(breakdown.selectedPacks).toEqual([]);
     expect(breakdown.extrasPrice).toBe(0);
     expect(breakdown.deposit).toBe(200);
-    expect(breakdown.subtotal).toBe(165);
-    expect(breakdown.total).toBe(365);
+    expect(breakdown.subtotal).toBe(180);
+    expect(breakdown.total).toBe(380);
   });
 
   it("includes weekend surcharge in breakdown (rounded to nearest 10)", () => {
     const breakdown = calculatePricingBreakdown("solar-450", new Date("2026-04-04T12:00:00"), "2h");
     expect(breakdown.weekendSurcharge).toBe(true);
-    expect(breakdown.basePrice).toBe(140); // 115 * 1.15 = 132.25 → roundToNearestTen → 130
+    expect(breakdown.basePrice).toBe(160); // 135 * 1.15 = 155.25 → roundToNearestTen → 160
   });
 
   it("calculates subtotal correctly (basePrice + extrasPrice)", () => {
@@ -385,7 +385,7 @@ describe("calculatePricingBreakdown", () => {
     );
     expect(breakdown.extrasPrice).toBe(17.5);
     expect(breakdown.subtotal).toBe(breakdown.basePrice + breakdown.extrasPrice);
-    expect(breakdown.subtotal).toBe(125 + 17.5);
+    expect(breakdown.subtotal).toBe(135 + 17.5);
   });
 
   it("calculates total correctly (subtotal + deposit)", () => {
@@ -396,7 +396,7 @@ describe("calculatePricingBreakdown", () => {
       ["Parking delante del Barco"]
     );
     expect(breakdown.total).toBe(breakdown.subtotal + breakdown.deposit);
-    expect(breakdown.total).toBe(125 + 10 + 200);
+    expect(breakdown.total).toBe(135 + 10 + 200);
   });
 
   it("throws for unknown boat", () => {
@@ -539,7 +539,7 @@ describe("priceFor (alias for calculateBasePrice)", () => {
 
   it("calculates correct price via priceFor alias", () => {
     const price = priceFor("solar-450", new Date("2026-04-06T12:00:00"), "2h");
-    expect(price).toBe(125); // BAJA 2h = 115 per boatData.ts
+    expect(price).toBe(135); // BAJA 2h per boatData.ts
   });
 });
 
@@ -585,11 +585,11 @@ describe("Integration: Full booking flow", () => {
     expect(breakdown.boatId).toBe("solar-450");
     expect(breakdown.season).toBe("BAJA");
     expect(breakdown.weekendSurcharge).toBe(false);
-    expect(breakdown.basePrice).toBe(165); // BAJA 4h = 150 per boatData.ts
+    expect(breakdown.basePrice).toBe(180); // BAJA 4h per boatData.ts
     expect(breakdown.extrasPrice).toBe(17.5); // Parking 10 + Snorkel 7.5
     expect(breakdown.deposit).toBe(200);
-    expect(breakdown.subtotal).toBe(182.5);
-    expect(breakdown.total).toBe(382.5);
+    expect(breakdown.subtotal).toBe(197.5);
+    expect(breakdown.total).toBe(397.5);
   });
 
   it("does NOT apply weekend surcharge in August (analysis showed day-of-week is irrelevant in August)", () => {

@@ -1156,7 +1156,7 @@ export const de: Translations = {
       "In Spanien darfst du ohne jede Qualifikation ein Boot von bis zu 5 Metern Länge mit einem Motor von bis zu 15 PS (11 kW) führen, gemäß dem Königlichen Dekret 875/2014. Unsere 4 führerscheinfreien Boote (Solar 450, Remus 450, Remus 450 II und Astec 480) halten dieses Limit ein: bis zu 5 Personen, Kraftstoff inklusive und ohne Führerschein. Du musst nur über 18 sein und vor dem Ablegen das 15-minütige Briefing absolvieren.",
     faqPriceQuestion: "Wie viel kostet die stundenweise Miete eines Boots ohne Führerschein?",
     faqPriceAnswer:
-      "Die Preise beginnen bei 85€/Std. inklusive Kraftstoff. Wir arbeiten mit Zeitfenstern: 1 Stunde ab 85€, 2 Stunden ab 125€, ein halber Tag (4 Stunden) ab 165€ und ein ganzer Tag (8 Stunden) ab 240€ in der Nebensaison. In der Hauptsaison und an Wochenenden steigen die Preise. Keine Plattformgebühren und keine zusätzlichen Kraftstoffkosten: Der gebuchte Preis ist der Endpreis.",
+      "Die Preise beginnen bei 85€/Std. inklusive Kraftstoff. Wir arbeiten mit Zeitfenstern: 1 Stunde ab 85€, 2 Stunden ab 135€ und ein halber Tag (4 Stunden) ab 180€ in der Nebensaison. In der Hauptsaison und an Wochenenden steigen die Preise. Keine Plattformgebühren und keine zusätzlichen Kraftstoffkosten: Der gebuchte Preis ist der Endpreis.",
     faqWeatherQuestion: "Was passiert bei schlechtem Wetter?",
     faqWeatherAnswer:
       "Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos; passt kein Termin, stellen wir einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Das Kriterium ist objektiv: eine offizielle AEMET-Küstenwarnung für das Gebiet im Zeitfenster deiner Miete, anhaltender Wind oder Böen über 20 Knoten, oder die Entscheidung unseres Personals aus Sicherheitsgründen.",
@@ -2451,7 +2451,7 @@ export const de: Translations = {
         stops: ["Hafen von Blanes", "Cala Sant Francesc", "Rückfahrt"],
         description:
           "Ideal für Familien mit kleinen Kindern. Kurze Fahrt zu einer geschützten Bucht mit flachem, kristallklarem Wasser. Zeit zum Baden, sanftem Schnorcheln und Picknick an Bord.",
-        price: "Ab 125 € (2 Std., Nebensaison)",
+        price: "Ab 135 € (2 Std., Nebensaison)",
         tip: "Perfekt für die erste Bootserfahrung mit Kindern. Die Bucht hat einen Sandbereich und ruhiges Wasser.",
       },
       {
@@ -2465,7 +2465,7 @@ export const de: Translations = {
         ],
         description:
           "Das komplette Erlebnis für Familien. Drei Stopps mit ausreichend Zeit, um jede Bucht zu erkunden. Kombiniert Baden, Schnorcheln, Picknick und spektakuläre Ausblicke auf die Küste.",
-        price: "Ab 165 € (4 Std., Nebensaison)",
+        price: "Ab 180 € (4 Std., Nebensaison)",
         tip: "Empfohlen für Kinder ab 4 Jahren. Essen, Wasser, Sonnencreme und Mützen mitbringen.",
       },
     ],
@@ -5550,7 +5550,7 @@ export const de: Translations = {
         },
         {
           question: 'Kann ich von Santa Susanna aus eine Bootsfahrt bei Sonnenuntergang machen?',
-          answer: 'Ja, sehr beliebt. Von Blanes aus bieten wir Sonnenuntergangsfahrten (18:30–21:00 Uhr je nach Monat) mit führerscheinfreiem Boot für 125 € für 2 Stunden an. Sie fahren bei goldenem Licht an 7 Buchten vorbei. Von Santa Susanna erreichen Sie uns in 15 Min. mit dem Auto oder 10 Min. mit dem Zug. Im Sommer bitte im Voraus buchen.',
+          answer: 'Ja, sehr beliebt. Von Blanes aus bieten wir Sonnenuntergangsfahrten (18:30–21:00 Uhr je nach Monat) mit führerscheinfreiem Boot für 135 € für 2 Stunden an. Sie fahren bei goldenem Licht an 7 Buchten vorbei. Von Santa Susanna erreichen Sie uns in 15 Min. mit dem Auto oder 10 Min. mit dem Zug. Im Sommer bitte im Voraus buchen.',
         },
         {
           question: 'Kann ich von Santa Susanna aus eine Bootstour machen, ohne selbst zu fahren?',

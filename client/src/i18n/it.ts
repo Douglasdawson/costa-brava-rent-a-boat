@@ -1154,7 +1154,7 @@ export const it: Translations = {
       "In Spagna puoi condurre senza alcuna abilitazione un'imbarcazione fino a 5 metri di lunghezza con motore fino a 15 CV (11 kW), secondo il Regio Decreto 875/2014. Le nostre 4 barche senza patente (Solar 450, Remus 450, Remus 450 II e Astec 480) rispettano questo limite: fino a 5 persone, carburante incluso e senza patente. Devi solo avere più di 18 anni e seguire il briefing di 15 minuti prima di salpare.",
     faqPriceQuestion: "Quanto costa noleggiare una barca senza patente a ore?",
     faqPriceAnswer:
-      "I prezzi partono da 85€/h con il carburante incluso. Lavoriamo per fasce orarie: 1 ora da 85€, 2 ore da 125€, mezza giornata (4 ore) da 165€ e giornata intera (8 ore) da 255€ in bassa stagione. Le tariffe salgono in alta stagione e nei fine settimana. Nessuna commissione di piattaforma né costo extra per il carburante: il prezzo che prenoti è il prezzo finale.",
+      "I prezzi partono da 85€/h con il carburante incluso. Lavoriamo per fasce orarie: 1 ora da 85€, 2 ore da 135€ e mezza giornata (4 ore) da 180€ in bassa stagione. Le tariffe salgono in alta stagione e nei fine settimana. Nessuna commissione di piattaforma né costo extra per il carburante: il prezzo che prenoti è il prezzo finale.",
     faqWeatherQuestion: "Cosa succede se il tempo è brutto?",
     faqWeatherAnswer:
       "Se il maltempo impedisce l'uscita spostiamo la data senza costi; se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Se hai sottoscritto la Garanzia maltempo, scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a 20 nodi, o la decisione del nostro personale per motivi di sicurezza.",
@@ -2444,7 +2444,7 @@ export const it: Translations = {
         stops: ["Porto di Blanes", "Cala Sant Francesc", "Ritorno"],
         description:
           "Ideale per famiglie con bambini piccoli. Breve navigazione fino a una caletta protetta con acqua bassa e cristallina. Tempo per fare il bagno, snorkeling leggero e picnic a bordo.",
-        price: "Da 125 € (2 h, bassa stagione)",
+        price: "Da 135 € (2 h, bassa stagione)",
         tip: "Perfetta per una prima esperienza in barca con bambini. La caletta ha zona sabbiosa e acqua tranquilla.",
       },
       {
@@ -2458,7 +2458,7 @@ export const it: Translations = {
         ],
         description:
           "L'esperienza completa per famiglie. Tre soste con tempo sufficiente per esplorare ogni caletta. Combina bagno, snorkeling, picnic e viste spettacolari della costa.",
-        price: "Da 165 € (4 h, bassa stagione)",
+        price: "Da 180 € (4 h, bassa stagione)",
         tip: "Consigliata per bambini dai 4 anni in su. Portare cibo, acqua, crema solare e cappelli.",
       },
     ],
@@ -5538,7 +5538,7 @@ export const it: Translations = {
         },
         {
           question: 'Posso fare un\'escursione in barca al tramonto da Santa Susanna?',
-          answer: 'Sì, è molto popolare. Da Blanes offriamo giri al tramonto (18:30-21:00 secondo il mese) con barca senza patente a 125 € per 2 ore. Navigherai per le 7 calette con luce dorata. Da Santa Susanna arrivi in 15 min in auto o 10 min in treno. Prenota in anticipo in estate.',
+          answer: 'Sì, è molto popolare. Da Blanes offriamo giri al tramonto (18:30-21:00 secondo il mese) con barca senza patente a 135 € per 2 ore. Navigherai per le 7 calette con luce dorata. Da Santa Susanna arrivi in 15 min in auto o 10 min in treno. Prenota in anticipo in estate.',
         },
         {
           question: 'Posso fare un giro in barca da Santa Susanna senza pilotare io?',

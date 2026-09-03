@@ -51,11 +51,11 @@ const config: LocationConfig = {
     },
     {
       question: "¿Cuál es la mejor excursión en barco si me alojo en Santa Susanna?",
-      answer: "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 165 EUR para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde 420 EUR, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación Básica si alguno del grupo tiene titulación (desde 255 EUR / 4h).",
+      answer: "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 180 EUR para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde 420 EUR, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación Básica si alguno del grupo tiene titulación (desde 255 EUR / 4h).",
     },
     {
       question: "¿Puedo hacer una excursión en barco al atardecer desde Santa Susanna?",
-      answer: "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 125 EUR por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min en coche o 10 min en tren. Reserva con antelación en verano.",
+      answer: "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 135 EUR por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min en coche o 10 min en tren. Reserva con antelación en verano.",
     },
   ],
   popularBoats: {

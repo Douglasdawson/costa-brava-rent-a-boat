@@ -72,7 +72,7 @@ import {
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
-import { getMinActivePrice } from "@shared/pricing";
+import { getMaximumDuration, getMinActivePrice } from "@shared/pricing";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "@shared/boatFaqBuilder";
 import { Breadcrumbs } from "./Breadcrumbs";
@@ -399,6 +399,24 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     a5: t.boatFaq!.a5,
     licenseTypes: t.licenseTypes!,
   };
+  // El FAQ publica la tabla de tarifas BAJA, asi que no puede anunciar franjas
+  // que la reserva rechaza (los barcos sin licencia estan topados a 4h).
+  const faqPricing = (() => {
+    const prices = boatData.pricing?.BAJA?.prices as
+      | Record<string, number | null | undefined>
+      | undefined;
+    if (!prices) return null;
+    const maxDuration = getMaximumDuration(boatId, new Date());
+    if (!maxDuration) return { BAJA: { prices } };
+    const maxHours = parseFloat(maxDuration);
+    return {
+      BAJA: {
+        prices: Object.fromEntries(
+          Object.entries(prices).filter(([d]) => parseFloat(d) <= maxHours)
+        ),
+      },
+    };
+  })();
   const boatFaqItems = buildBoatFaqItems(
     {
       name: boatName,
@@ -406,9 +424,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       requiresLicense,
       captained: isCaptainedBoat(boatId),
       licenseType: boatData.licenseType,
-      pricing: boatData.pricing as {
-        BAJA?: { prices?: Record<string, number | null | undefined> | null } | null;
-      } | null,
+      pricing: faqPricing,
       included: boatData.included,
     },
     boatFaqText

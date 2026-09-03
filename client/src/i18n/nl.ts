@@ -1151,7 +1151,7 @@ export const nl: Translations = {
       "In Spanje mag je zonder enig diploma een boot van maximaal 5 meter lang met een motor van maximaal 15 pk (11 kW) besturen, volgens Koninklijk Besluit 875/2014. Onze 4 boten zonder vaarbewijs (Solar 450, Remus 450, Remus 450 II en Astec 480) blijven binnen die grens: tot 5 personen, brandstof inbegrepen en zonder vaarbewijs. Je hoeft alleen ouder dan 18 te zijn en de briefing van 15 minuten te volgen voordat je vertrekt.",
     faqPriceQuestion: "Hoeveel kost het huren van een boot zonder vaarbewijs per uur?",
     faqPriceAnswer:
-      "De prijzen beginnen bij 85€/u inclusief brandstof. We werken met tijdvakken: 1 uur vanaf 85€, 2 uur vanaf 125€, een halve dag (4 uur) vanaf 165€ en een hele dag (8 uur) vanaf 240€ in het laagseizoen. In het hoogseizoen en in het weekend stijgen de tarieven. Geen platformkosten en geen extra brandstofkosten: de prijs die je boekt is de eindprijs.",
+      "De prijzen beginnen bij 85€/u inclusief brandstof. We werken met tijdvakken: 1 uur vanaf 85€, 2 uur vanaf 135€ en een halve dag (4 uur) vanaf 180€ in het laagseizoen. In het hoogseizoen en in het weekend stijgen de tarieven. Geen platformkosten en geen extra brandstofkosten: de prijs die je boekt is de eindprijs.",
     faqWeatherQuestion: "Wat gebeurt er bij slecht weer?",
     faqWeatherAnswer:
       "Als slecht weer de tocht verhindert, verzetten we de datum kosteloos; lukt geen enkele datum, dan geven we een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Heb je de Slechtweergarantie afgesloten, dan kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Het criterium is objectief: een officiële AEMET-kustwaarschuwing voor het gebied tijdens jouw huurperiode, aanhoudende wind of windstoten boven 20 knopen, of de beslissing van ons personeel om veiligheidsredenen.",
@@ -2446,7 +2446,7 @@ export const nl: Translations = {
         stops: ["Haven van Blanes", "Cala Sant Francesc", "Terugkeer"],
         description:
           "Ideaal voor gezinnen met jonge kinderen. Korte vaartocht naar een beschermde baai met ondiep en kristalhelder water. Tijd om te zwemmen, rustig te snorkelen en te picknicken aan boord.",
-        price: "Vanaf 125 € (2 u, laagseizoen)",
+        price: "Vanaf 135 € (2 u, laagseizoen)",
         tip: "Perfect voor een eerste bootervaring met kinderen. De baai heeft een zandstrand en rustig water.",
       },
       {
@@ -2460,7 +2460,7 @@ export const nl: Translations = {
         ],
         description:
           "De complete beleving voor gezinnen. Drie stops met voldoende tijd om elke baai te verkennen. Combineert zwemmen, snorkelen, picknicken en spectaculaire uitzichten op de kust.",
-        price: "Vanaf 165 € (4 u, laagseizoen)",
+        price: "Vanaf 180 € (4 u, laagseizoen)",
         tip: "Aanbevolen voor kinderen vanaf 4 jaar. Neem eten, water, zonnebrand en petjes mee.",
       },
     ],
@@ -5543,7 +5543,7 @@ export const nl: Translations = {
         },
         {
           question: 'Kan ik een bootexcursie bij zonsondergang maken vanuit Santa Susanna?',
-          answer: 'Ja, dat is erg populair. Vanuit Blanes bieden we zonsondergangstochten (18:30-21:00 afhankelijk van de maand) met een boot zonder vaarbewijs voor 125 € voor 2 uur. Je vaart langs de 7 baaien in goudkleurig licht. Vanuit Santa Susanna ben je er in 15 min met de auto of 10 min met de trein. Reserveer van tevoren in de zomer.',
+          answer: 'Ja, dat is erg populair. Vanuit Blanes bieden we zonsondergangstochten (18:30-21:00 afhankelijk van de maand) met een boot zonder vaarbewijs voor 135 € voor 2 uur. Je vaart langs de 7 baaien in goudkleurig licht. Vanuit Santa Susanna ben je er in 15 min met de auto of 10 min met de trein. Reserveer van tevoren in de zomer.',
         },
         {
           question: 'Kan ik vanuit Santa Susanna een boottocht maken zonder zelf te varen?',

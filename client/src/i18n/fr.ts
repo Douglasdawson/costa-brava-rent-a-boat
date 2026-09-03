@@ -1159,7 +1159,7 @@ export const fr: Translations = {
       "En Espagne, vous pouvez piloter sans aucun titre un bateau de jusqu'à 5 mètres de long avec un moteur de jusqu'à 15 CV (11 kW), selon le Décret Royal 875/2014. Nos 4 bateaux sans permis (Solar 450, Remus 450, Remus 450 II et Astec 480) respectent cette limite : jusqu'à 5 personnes, carburant inclus et sans permis. Il suffit d'avoir plus de 18 ans et de suivre le briefing de 15 minutes avant le départ.",
     faqPriceQuestion: "Combien coûte la location d'un bateau sans permis à l'heure ?",
     faqPriceAnswer:
-      "Les prix commencent à 85€/h avec le carburant inclus. Nous travaillons par créneaux : 1 heure à partir de 85€, 2 heures à partir de 125€, une demi-journée (4 heures) à partir de 165€ et une journée complète (8 heures) à partir de 240€ en basse saison. Les tarifs augmentent en haute saison et le week-end. Pas de commission de plateforme ni de supplément carburant : le prix que vous réservez est le prix final.",
+      "Les prix commencent à 85€/h avec le carburant inclus. Nous travaillons par créneaux : 1 heure à partir de 85€, 2 heures à partir de 135€ et une demi-journée (4 heures) à partir de 180€ en basse saison. Les tarifs augmentent en haute saison et le week-end. Pas de commission de plateforme ni de supplément carburant : le prix que vous réservez est le prix final.",
     faqWeatherQuestion: "Que se passe-t-il en cas de mauvais temps ?",
     faqWeatherAnswer:
       "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ; si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Si vous avez souscrit la Garantie mauvais temps, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant le créneau de votre location, vent soutenu ou rafales supérieures à 20 nœuds, ou la décision de notre personnel pour des raisons de sécurité.",
@@ -2453,7 +2453,7 @@ export const fr: Translations = {
         stops: ["Port de Blanes", "Cala Sant Francesc", "Retour"],
         description:
           "Idéal pour les familles avec jeunes enfants. Navigation courte jusqu'à une crique protégée avec eau peu profonde et cristalline. Temps pour se baigner, faire du snorkeling léger et pique-niquer à bord.",
-        price: "À partir de 125 € (2 h, basse saison)",
+        price: "À partir de 135 € (2 h, basse saison)",
         tip: "Parfait pour une première expérience en bateau avec des enfants. La crique dispose d'une zone de sable et d'une eau calme.",
       },
       {
@@ -2461,7 +2461,7 @@ export const fr: Translations = {
         stops: ["Port de Blanes", "Cala Bona", "Cala Sant Francesc", "Plage de Fenals", "Retour"],
         description:
           "L'expérience complète pour les familles. Trois arrêts avec suffisamment de temps pour explorer chaque crique. Combine baignade, snorkeling, pique-nique et vues spectaculaires sur la côte.",
-        price: "À partir de 165 € (4 h, basse saison)",
+        price: "À partir de 180 € (4 h, basse saison)",
         tip: "Recommandé pour les enfants à partir de 4 ans. Prévoir nourriture, eau, crème solaire et casquettes.",
       },
     ],
@@ -5545,7 +5545,7 @@ export const fr: Translations = {
         },
         {
           question: 'Puis-je faire une excursion en bateau au coucher du soleil depuis Santa Susanna ?',
-          answer: 'Oui, c\'est très populaire. Depuis Blanes, nous proposons des promenades au coucher du soleil (18h30-21h00 selon le mois) avec bateau sans permis à 125 € pour 2 heures. Vous naviguerez le long des 7 criques avec une lumière dorée. Depuis Santa Susanna, vous arrivez en 15 min en voiture ou 10 min en train. Réservez à l\'avance en été.',
+          answer: 'Oui, c\'est très populaire. Depuis Blanes, nous proposons des promenades au coucher du soleil (18h30-21h00 selon le mois) avec bateau sans permis à 135 € pour 2 heures. Vous naviguerez le long des 7 criques avec une lumière dorée. Depuis Santa Susanna, vous arrivez en 15 min en voiture ou 10 min en train. Réservez à l\'avance en été.',
         },
         {
           question: 'Puis-je faire une balade en bateau depuis Santa Susanna sans piloter moi-même ?',

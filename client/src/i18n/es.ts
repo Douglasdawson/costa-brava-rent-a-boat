@@ -2207,12 +2207,12 @@ export const es: Translations = {
         {
           question: "¿Cuál es la mejor excursión en barco si me alojo en Santa Susanna?",
           answer:
-            "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 165 € para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} €, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación (LN) si alguno del grupo tiene titulación (desde 255 € / 4h).",
+            "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 180 € para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} €, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación (LN) si alguno del grupo tiene titulación (desde 255 € / 4h).",
         },
         {
           question: "¿Puedo hacer una excursión en barco al atardecer desde Santa Susanna?",
           answer:
-            "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 125 € por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min por carretera o 10 min en tren. Reserva con antelación en verano.",
+            "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 135 € por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min por carretera o 10 min en tren. Reserva con antelación en verano.",
         },
         {
           question: "¿Puedo hacer un paseo en barco desde Santa Susanna sin pilotar yo?",
@@ -2939,7 +2939,7 @@ export const es: Translations = {
       "En España puedes gobernar sin ninguna titulación una embarcación de hasta 5 metros de eslora y motor de hasta 15 CV (11 kW), según el Real Decreto 875/2014. Nuestros 4 barcos sin licencia (Solar 450, Remus 450, Remus 450 II y Astec 480) cumplen ese límite: hasta 5 personas, gasolina incluida y sin carnet. Solo necesitas ser mayor de 18 años y hacer el briefing de 15 minutos antes de zarpar.",
     faqPriceQuestion: "¿Cuánto cuesta alquilar un barco sin licencia por horas?",
     faqPriceAnswer:
-      "El precio arranca en 85€/h con la gasolina incluida. Trabajamos por franjas: 1 hora desde 85€, 2 horas desde 125€, medio día (4 horas) desde 165€ y día completo (8 horas) desde 240€ en temporada baja. La tarifa sube en temporada alta y los fines de semana. No hay comisiones de plataforma ni coste extra de combustible: el precio que reservas es el precio final.",
+      "El precio arranca en 85€/h con la gasolina incluida. Trabajamos por franjas: 1 hora desde 85€, 2 horas desde 135€ y medio día (4 horas) desde 180€ en temporada baja. La tarifa sube en temporada alta y los fines de semana. No hay comisiones de plataforma ni coste extra de combustible: el precio que reservas es el precio final.",
     faqWeatherQuestion: "¿Qué pasa si hace mal tiempo?",
     faqWeatherAnswer:
       "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad.",
@@ -4107,7 +4107,7 @@ export const es: Translations = {
         stops: ["Puerto de Blanes", "Cala Sant Francesc", "Regreso"],
         description:
           "Ideal para familias con niños pequeños. Navegación corta hasta una cala protegida con agua poco profunda y cristalina. Tiempo para bañarse, hacer snorkel suave y picnic a bordo.",
-        price: "Desde 125 € (2 h, temporada baja)",
+        price: "Desde 135 € (2 h, temporada baja)",
         tip: "Perfecta para una primera experiencia en barco con niños. La cala tiene zona de arena y agua tranquila.",
       },
       {
@@ -4121,7 +4121,7 @@ export const es: Translations = {
         ],
         description:
           "La experiencia completa para familias. Tres paradas con tiempo suficiente para explorar cada cala. Combina baño, snorkel, picnic y vistas espectaculares de la costa.",
-        price: "Desde 165 € (4 h, temporada baja)",
+        price: "Desde 180 € (4 h, temporada baja)",
         tip: "Recomendada para niños a partir de 4 años. Llevar comida, agua, crema solar y gorras.",
       },
     ],

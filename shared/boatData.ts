@@ -91,7 +91,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 85, "2h": 125, "3h": 145, "4h": 165, "6h": 210, "8h": 240 }
+        prices: { "1h": 85, "2h": 135, "3h": 160, "4h": 180, "6h": 210, "8h": 240 }
       },
       MEDIA: {
         period: "Julio",
@@ -162,7 +162,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 85, "2h": 125, "3h": 145, "4h": 165, "6h": 210, "8h": 240 }
+        prices: { "1h": 85, "2h": 135, "3h": 160, "4h": 180, "6h": 210, "8h": 240 }
       },
       MEDIA: {
         period: "Julio",
@@ -227,7 +227,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 85, "2h": 125, "3h": 145, "4h": 165, "6h": 210, "8h": 240 }
+        prices: { "1h": 85, "2h": 135, "3h": 160, "4h": 180, "6h": 210, "8h": 240 }
       },
       MEDIA: {
         period: "Julio",
@@ -292,7 +292,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 110, "3h": 130, "4h": 155, "6h": 200, "8h": 220 }
+        prices: { "1h": 80, "2h": 120, "3h": 150, "4h": 170, "6h": 200, "8h": 220 }
       },
       MEDIA: {
         period: "Julio",

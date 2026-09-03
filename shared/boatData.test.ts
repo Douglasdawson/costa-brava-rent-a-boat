@@ -21,11 +21,11 @@ describe("computeFleetStats", () => {
     expect(stats.licenseFreeNames).not.toContain("Astec 400");
   });
 
-  it("reports the full CATALOG (no exclusions) as 9 boats / 5 license-free / from 75", () => {
+  it("reports the full CATALOG (no exclusions) as 9 boats / 5 license-free / from 80", () => {
     const stats = catalogFleetStats([]);
     expect(stats.fleetCount).toBe(9);
     expect(stats.licenseFreeCount).toBe(5);
-    expect(stats.priceFloor).toBe(75);
+    expect(stats.priceFloor).toBe(80);
     expect(stats.cheapestBoatName).toBe("Astec 400");
     expect(stats.licenseFreeNames).toContain("Astec 400");
   });

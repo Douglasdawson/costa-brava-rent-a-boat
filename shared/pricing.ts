@@ -12,7 +12,7 @@ export const WEEKEND_SURCHARGE_FACTOR = 1.15;
  * Round a price to the nearest multiple of 10 (e.g. 231 → 230, 235 → 240, 244 → 240).
  * Applied to outputs of weekend-surcharge and override calculations so the
  * customer never sees ugly figures like 187.5€ or 224.9€. Catalog base prices
- * (e.g. 85€, 125€) are NOT rounded — they're the owner's authored numbers.
+ * (e.g. 85€, 135€) are NOT rounded — they're the owner's authored numbers.
  */
 function roundToNearestTen(n: number): number {
   return Math.round(n / 10) * 10;

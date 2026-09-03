@@ -446,7 +446,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 **Punto de partida:** Puerto de Blanes
 **Barco recomendado:** [Remus 450](/es/barco/remus-450) (sin licencia, hasta 5 personas) o [Astec 480 Premium](/es/barco/astec-480) si quieres musica bluetooth a bordo
 **Duracion:** 4 horas
-**Precio:** Desde 165EUR (Remus 450, temporada baja) a 275EUR (Astec 480, temporada alta)
+**Precio:** Desde 180EUR (Remus 450, temporada baja) a 275EUR (Astec 480, temporada alta)
 
 #### Ruta marina recomendada (4 horas)
 
@@ -522,7 +522,7 @@ Aqui tienes el desglose de costes para una persona (los precios del barco se com
 
 | Concepto | Precio |
 |----------|--------|
-| Barco 4h sin licencia (5 personas) | 165-275EUR total |
+| Barco 4h sin licencia (5 personas) | 180-275EUR total |
 | **Barco por persona (5 personas)** | **33-55EUR** |
 | Pack Premium extras (nevera + snorkel + paddle surf) | 30EUR total |
 | Comida en Lloret | 12-20EUR |
@@ -621,7 +621,7 @@ Combining both experiences is like watching a film in 3D after seeing it in 2D: 
 **Starting point:** Blanes Harbour
 **Recommended boat:** [Remus 450](/en/boat/remus-450) (no licence needed, up to 5 people) or [Astec 480 Premium](/en/boat/astec-480) if you want Bluetooth music on board
 **Duration:** 4 hours
-**Price:** From 165EUR (Remus 450, low season) to 275EUR (Astec 480, high season)
+**Price:** From 180EUR (Remus 450, low season) to 275EUR (Astec 480, high season)
 
 #### Recommended sea route (4 hours)
 
@@ -697,7 +697,7 @@ Here's the cost breakdown per person (boat prices are shared among the group):
 
 | Item | Price |
 |------|-------|
-| 4h boat without licence (5 people) | 165-275EUR total |
+| 4h boat without licence (5 people) | 180-275EUR total |
 | **Boat per person (5 people)** | **33-55EUR** |
 | Premium Pack extras (cooler + snorkel + paddle surf) | 30EUR total |
 | Lunch in Lloret | 12-20EUR |
@@ -797,7 +797,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 **Punto de partida:** Puerto de Blanes
 **Barco recomendado:** [Remus 450](/es/barco/remus-450) (sin licencia, hasta 5 personas) o [Astec 480 Premium](/es/barco/astec-480) si quieres musica bluetooth a bordo
 **Duracion:** 4 horas
-**Precio:** Desde 165EUR (Remus 450, temporada baja) a 275EUR (Astec 480, temporada alta)
+**Precio:** Desde 180EUR (Remus 450, temporada baja) a 275EUR (Astec 480, temporada alta)
 
 #### Ruta marina recomendada (4 horas)
 
@@ -873,7 +873,7 @@ Aqui tienes el desglose de costes para una persona (los precios del barco se com
 
 | Concepto | Precio |
 |----------|--------|
-| Barco 4h sin licencia (5 personas) | 165-275EUR total |
+| Barco 4h sin licencia (5 personas) | 180-275EUR total |
 | **Barco por persona (5 personas)** | **33-55EUR** |
 | Pack Premium extras (nevera + snorkel + paddle surf) | 30EUR total |
 | Comida en Lloret | 12-20EUR |

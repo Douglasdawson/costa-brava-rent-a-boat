@@ -1144,7 +1144,7 @@ export const en: Translations = {
       "In Spain you can operate a boat of up to 5 metres in length with an engine of up to 15 HP (11 kW) without any qualification, under Royal Decree 875/2014. Our 4 licence-free boats (Solar 450, Remus 450, Remus 450 II and Astec 480) all fall within that limit: up to 5 people, fuel included and no licence. You only need to be over 18 and take the 15-minute safety briefing before setting off.",
     faqPriceQuestion: "How much does it cost to hire a licence-free boat by the hour?",
     faqPriceAnswer:
-      "Prices start at 85€/h with fuel included. We work in time slots: 1 hour from 85€, 2 hours from 125€, half a day (4 hours) from 165€ and a full day (8 hours) from 240€ in low season. Rates go up in high season and at weekends. There are no platform fees and no extra fuel charge: the price you book is the final price.",
+      "Prices start at 85€/h with fuel included. We work in time slots: 1 hour from 85€, 2 hours from 135€ and half a day (4 hours) from 180€ in low season. Rates go up in high season and at weekends. There are no platform fees and no extra fuel charge: the price you book is the final price.",
     faqWeatherQuestion: "What happens if the weather is bad?",
     faqWeatherAnswer:
       "If bad weather prevents the trip we move your date at no cost; if no date works, we issue a voucher for the amount paid valid for 12 months. If you contracted the Weather guarantee, you choose between a new date or a full cash refund, excluding the price of the guarantee itself. The criteria are objective: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds.",
@@ -2489,7 +2489,7 @@ export const en: Translations = {
         stops: ["Port of Blanes", "Cala Sant Francesc", "Return"],
         description:
           "Ideal for families with young children. Short sail to a sheltered cove with shallow, crystal-clear water. Time for swimming, easy snorkelling, and a picnic on board.",
-        price: "From €125 (2 h, low season)",
+        price: "From €135 (2 h, low season)",
         tip: "Perfect for a first boating experience with children. The cove has a sandy area and calm water.",
       },
       {
@@ -2497,7 +2497,7 @@ export const en: Translations = {
         stops: ["Port of Blanes", "Cala Bona", "Cala Sant Francesc", "Fenals Beach", "Return"],
         description:
           "The complete experience for families. Three stops with enough time to explore each cove. Combines swimming, snorkelling, picnicking, and spectacular coastal views.",
-        price: "From €165 (4 h, low season)",
+        price: "From €180 (4 h, low season)",
         tip: "Recommended for children aged 4 and up. Bring food, water, sun cream, and hats.",
       },
     ],
@@ -5577,7 +5577,7 @@ export const en: Translations = {
         },
         {
           question: 'Can I do a sunset boat trip from Santa Susanna?',
-          answer: 'Yes, it\'s very popular. From Blanes we offer sunset trips (18:30-21:00 depending on month) with a license-free boat at 125 € for 2 hours. You\'ll navigate the 7 coves in golden light. From Santa Susanna you\'re 15 min by car or 10 min by train. Book ahead in summer.',
+          answer: 'Yes, it\'s very popular. From Blanes we offer sunset trips (18:30-21:00 depending on month) with a license-free boat at 135 € for 2 hours. You\'ll navigate the 7 coves in golden light. From Santa Susanna you\'re 15 min by car or 10 min by train. Book ahead in summer.',
         },
         {
           question: 'Can I take a boat trip from Santa Susanna without driving myself?',

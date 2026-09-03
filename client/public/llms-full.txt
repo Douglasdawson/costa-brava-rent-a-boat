@@ -209,29 +209,25 @@ All prices in EUR. VAT included. Weekend surcharge: +15% on Saturdays and Sunday
 
 <!-- PRICING_TABLES_START -->
 
-### License-Free Boats (rentable without a licence through September 30, 2026)
+### License-Free Boats (rentable without a licence through September 30, 2026; maximum rental 4 hours)
 
 #### Solar 450 (5 people, fuel included)
 
 | Duration | Low Season (Apr-Jun, Sep-Oct) | Mid Season (July) | High Season (August) |
 |----------|-------------------------------|--------------------|-----------------------|
 | 1 hour   | 85 EUR                        | 95 EUR             | 110 EUR               |
-| 2 hours  | 125 EUR                       | 155 EUR            | 175 EUR               |
-| 3 hours  | 145 EUR                       | 185 EUR            | 210 EUR               |
-| 4 hours  | 165 EUR                       | 220 EUR            | 240 EUR               |
-| 6 hours  | 210 EUR                       | 255 EUR            | 295 EUR               |
-| 8 hours  | 240 EUR                       | 295 EUR            | 350 EUR               |
+| 2 hours  | 135 EUR                       | 155 EUR            | 175 EUR               |
+| 3 hours  | 160 EUR                       | 185 EUR            | 210 EUR               |
+| 4 hours  | 180 EUR                       | 220 EUR            | 240 EUR               |
 
 #### Remus 450 / Remus 450 II (5 people, fuel included)
 
 | Duration | Low Season (Apr-Jun, Sep-Oct) | Mid Season (July) | High Season (August) |
 |----------|-------------------------------|--------------------|-----------------------|
 | 1 hour   | 85 EUR                        | 95 EUR             | 110 EUR               |
-| 2 hours  | 125 EUR                       | 155 EUR            | 175 EUR               |
-| 3 hours  | 145 EUR                       | 185 EUR            | 210 EUR               |
-| 4 hours  | 165 EUR                       | 220 EUR            | 240 EUR               |
-| 6 hours  | 210 EUR                       | 255 EUR            | 295 EUR               |
-| 8 hours  | 240 EUR                       | 295 EUR            | 350 EUR               |
+| 2 hours  | 135 EUR                       | 155 EUR            | 175 EUR               |
+| 3 hours  | 160 EUR                       | 185 EUR            | 210 EUR               |
+| 4 hours  | 180 EUR                       | 220 EUR            | 240 EUR               |
 
 #### Astec 480 (5 people, fuel included - premium license-free)
 
@@ -241,8 +237,6 @@ All prices in EUR. VAT included. Weekend surcharge: +15% on Saturdays and Sunday
 | 2 hours  | 165 EUR                       | 175 EUR            | 200 EUR               |
 | 3 hours  | 200 EUR                       | 230 EUR            | 240 EUR               |
 | 4 hours  | 220 EUR                       | 255 EUR            | 275 EUR               |
-| 6 hours  | 265 EUR                       | 295 EUR            | 320 EUR               |
-| 8 hours  | 295 EUR                       | 375 EUR            | 405 EUR               |
 
 ### Licensed Boats (fuel NOT included)
 

@@ -1152,7 +1152,7 @@ export const ca: Translations = {
       "A Espanya pots governar sense cap titulació una embarcació de fins a 5 metres d'eslora i motor de fins a 15 CV (11 kW), segons el Reial Decret 875/2014. Els nostres 4 vaixells sense llicència (Solar 450, Remus 450, Remus 450 II i Astec 480) compleixen aquest límit: fins a 5 persones, benzina inclosa i sense carnet. Només cal ser major de 18 anys i fer el briefing de 15 minuts abans de salpar.",
     faqPriceQuestion: "Quant costa llogar un vaixell sense llicència per hores?",
     faqPriceAnswer:
-      "El preu arrenca a 85€/h amb la benzina inclosa. Treballem per franges: 1 hora des de 85€, 2 hores des de 125€, mig dia (4 hores) des de 165€ i dia complet (8 hores) des de 240€ en temporada baixa. La tarifa puja en temporada alta i els caps de setmana. No hi ha comissions de plataforma ni cost extra de combustible: el preu que reserves és el preu final.",
+      "El preu arrenca a 85€/h amb la benzina inclosa. Treballem per franges: 1 hora des de 85€, 2 hores des de 135€ i mig dia (4 hores) des de 180€ en temporada baixa. La tarifa puja en temporada alta i els caps de setmana. No hi ha comissions de plataforma ni cost extra de combustible: el preu que reserves és el preu final.",
     faqWeatherQuestion: "Què passa si fa mal temps?",
     faqWeatherAnswer:
       "Si el mal temps impedeix la sortida, canviem la data sense cost; si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Si vas contractar la Garantia de mal temps, tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja horària del teu lloguer, vent sostingut o ratxes superiors a 20 nusos, o la decisió del nostre personal per motius de seguretat.",
@@ -2439,7 +2439,7 @@ export const ca: Translations = {
         stops: ["Port de Blanes", "Cala Sant Francesc", "Retorn"],
         description:
           "Ideal per a famílies amb nens petits. Navegació curta fins a una cala protegida amb aigua poc profunda i cristal·lina. Temps per banyar-se, fer esnòrquel suau i pícnic a bord.",
-        price: "Des de 125 € (2 h, temporada baixa)",
+        price: "Des de 135 € (2 h, temporada baixa)",
         tip: "Perfecta per a una primera experiència en vaixell amb nens. La cala té zona de sorra i aigua tranquil·la.",
       },
       {
@@ -2447,7 +2447,7 @@ export const ca: Translations = {
         stops: ["Port de Blanes", "Cala Bona", "Cala Sant Francesc", "Platja de Fenals", "Retorn"],
         description:
           "L'experiència completa per a famílies. Tres parades amb temps suficient per explorar cada cala. Combina bany, esnòrquel, pícnic i vistes espectaculars de la costa.",
-        price: "Des de 165 € (4 h, temporada baixa)",
+        price: "Des de 180 € (4 h, temporada baixa)",
         tip: "Recomanada per a nens a partir de 4 anys. Porteu menjar, aigua, crema solar i gorres.",
       },
     ],
@@ -5529,7 +5529,7 @@ export const ca: Translations = {
         },
         {
           question: 'Puc fer una excursió amb vaixell a la posta de sol des de Santa Susanna?',
-          answer: 'Sí, és molt popular. Des de Blanes oferim passejos a la posta de sol (18:30-21:00 segons mes) amb vaixell sense llicència a 125 € per 2 hores. Navegaràs per les 7 cales amb llum daurada. Des de Santa Susanna arribes en 15 min amb cotxe o 10 min amb tren. Reserva amb antelació a l\'estiu.',
+          answer: 'Sí, és molt popular. Des de Blanes oferim passejos a la posta de sol (18:30-21:00 segons mes) amb vaixell sense llicència a 135 € per 2 hores. Navegaràs per les 7 cales amb llum daurada. Des de Santa Susanna arribes en 15 min amb cotxe o 10 min amb tren. Reserva amb antelació a l\'estiu.',
         },
         {
           question: 'Puc fer un passeig en barca des de Santa Susanna sense pilotar jo?',

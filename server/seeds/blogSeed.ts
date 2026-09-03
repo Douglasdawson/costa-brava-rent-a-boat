@@ -277,10 +277,10 @@ Los precios varían según la temporada:
 ### Temporada baja (abril - junio, septiembre - cierre)
 | Duración | Astec 400 | Solar 450 / Remus 450 | Astec 480 |
 |----------|-----------|------------------------|-----------|
-| 1 hora   | 75EUR       | 85EUR                    | 90EUR       |
-| 2 horas  | 110EUR      | 125EUR                   | 165EUR      |
-| 4 horas  | 155EUR      | 165EUR                   | 220EUR      |
-| 8 horas  | 240EUR      | 220EUR                   | 295EUR      |
+| 1 hora   | 80EUR       | 85EUR                    | 90EUR       |
+| 2 horas  | 120EUR      | 135EUR                   | 165EUR      |
+| 3 horas  | 150EUR      | 160EUR                   | 200EUR      |
+| 4 horas  | 170EUR      | 180EUR                   | 220EUR      |
 
 ### Temporada media (julio)
 Los precios aumentan entre un 10% y un 20% respecto a temporada baja.
@@ -1969,21 +1969,17 @@ A continuación te mostramos los precios orientativos para cada barco de nuestra
 
 | Barco | Personas | T. Baja | T. Media | T. Alta |
 |-------|----------|---------|----------|---------|
-| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 155 EUR | Desde 185 EUR | Desde 210 EUR |
-| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 165 EUR | Desde 220 EUR | Desde 240 EUR |
-| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 165 EUR | Desde 220 EUR | Desde 240 EUR |
+| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 170 EUR | Desde 185 EUR | Desde 210 EUR |
+| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 180 EUR | Desde 220 EUR | Desde 240 EUR |
+| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 180 EUR | Desde 220 EUR | Desde 240 EUR |
 | [Astec 480](/es/barco/astec-480) | Hasta 6 | Desde 220 EUR | Desde 255 EUR | Desde 275 EUR |
-| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 165 EUR | Desde 220 EUR | Desde 240 EUR |
+| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 180 EUR | Desde 220 EUR | Desde 240 EUR |
 
-### Alquiler de día completo (8 horas)
+### Alquiler de día completo
 
-| Barco | Personas | T. Baja | T. Media | T. Alta |
-|-------|----------|---------|----------|---------|
-| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 220 EUR | Desde 275 EUR | Desde 310 EUR |
-| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 240 EUR | Desde 295 EUR | Desde 350 EUR |
-| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 240 EUR | Desde 295 EUR | Desde 350 EUR |
-| [Astec 480](/es/barco/astec-480) | Hasta 6 | Desde 405 EUR | Desde 375 EUR | Desde 295 EUR |
-| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 240 EUR | Desde 295 EUR | Desde 350 EUR |
+Los barcos sin licencia se alquilan por franjas de un máximo de 4 horas, así que
+no hay tarifa de día completo. Para una salida larga, la opción es un
+[barco con licencia](/es/barcos-con-licencia), donde sí hay franja de 8 horas.
 
 **Nota:** Los precios son orientativos y pueden variar. Consulta los [precios exactos y disponibilidad en tiempo real](/es/barcos) en nuestra web.
 
@@ -3775,8 +3771,8 @@ No necesitas ningun titulo nautico. Te ensenamos a manejar el barco en un briefi
 
 | Barco | Capacidad | Precio desde (temporada baja) | Ideal para |
 |-------|-----------|-------------------------------|------------|
-| [Solar 450](/es/barco/solar-450) | 5 personas | 85 EUR/hora (125 EUR/2h) | Tomar el sol, solarium amplio |
-| [Remus 450](/es/barco/remus-450) | 5 personas | 85 EUR/hora (125 EUR/2h) | Familias con ninos, estabilidad |
+| [Solar 450](/es/barco/solar-450) | 5 personas | 85 EUR/hora (135 EUR/2h) | Tomar el sol, solarium amplio |
+| [Remus 450](/es/barco/remus-450) | 5 personas | 85 EUR/hora (135 EUR/2h) | Familias con ninos, estabilidad |
 | [Astec 480](/es/barco/astec-480) | 5 personas | 90 EUR/hora (165 EUR/2h) | Premium, musica bluetooth |
 
 **Importante:** Los barcos sin licencia pueden navegar hasta **2 millas nauticas** de la costa (unos 3,7 km). Esto significa que desde Blanes puedes llegar comodamente hasta la **playa de Fenals**, que esta a unos 5 km del puerto. Fenals es la segunda playa de Lloret, mas tranquila y familiar que la playa principal.
@@ -4910,7 +4906,7 @@ La regla que le doy a todo el mundo: en medio día, menos es más. Elige dos cal
 
 ## Cuánto cuesta medio día y qué incluye
 
-La franja de cuatro horas va desde 165 € en temporada baja (220 € en pleno julio) en un barco sin licencia, con la gasolina incluida. Esto último importa más de lo que parece: en los barcos sin licencia el combustible entra en el precio, así que lo que ves es lo que pagas, sin sorpresas al devolver la llave.
+La franja de cuatro horas va desde 180 € en temporada baja (220 € en pleno julio) en un barco sin licencia, con la gasolina incluida. Esto último importa más de lo que parece: en los barcos sin licencia el combustible entra en el precio, así que lo que ves es lo que pagas, sin sorpresas al devolver la llave.
 
 Dos matices honestos:
 

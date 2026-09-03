@@ -184,10 +184,10 @@ Completamente salvaje y sin ningún tipo de servicio ni acceso terrestre practic
 
 | | Precio desde | Capacidad |
 |---|---|---|
-| [Astec 400](/es/barco/astec-400) | 75 EUR/hora | 4 personas |
+| [Astec 400](/es/barco/astec-400) | 80 EUR/hora | 4 personas |
 | [Solar 450](/es/barco/solar-450) | 85 EUR/hora | 5 personas |
 | [Remus 450](/es/barco/remus-450) | 85 EUR/hora | 5 personas |
-| [Astec 480](/es/barco/astec-480) | 90 EUR/hora | 5 personas |
+| [Astec 480](/es/barco/astec-480) | 95 EUR/hora | 5 personas |
 
 ## Reserva tu barco y descubre estas calas
 
@@ -238,7 +238,7 @@ En Costa Brava Rent a Boat disponemos de **5 barcos sin licencia** adaptados a d
 - Capacidad: 4 personas
 - Motor: Suzuki 15hp
 - Lo mejor: Compacto y fácil de manejar, perfecto para parejas
-- **Desde 75EUR/hora** en temporada baja
+- **Desde 80EUR/hora** en temporada baja
 
 ### [Solar 450](/es/barco/solar-450) - El más popular
 - Capacidad: 5 personas
@@ -256,7 +256,7 @@ En Costa Brava Rent a Boat disponemos de **5 barcos sin licencia** adaptados a d
 - Capacidad: 5 personas
 - Motor: Parsun 40/15cv
 - Lo mejor: Equipo de música bluetooth, más espacio a bordo
-- **Desde 90EUR/hora** en temporada baja
+- **Desde 95EUR/hora** en temporada baja
 
 ## Qué incluye el alquiler
 
@@ -3773,7 +3773,7 @@ No necesitas ningun titulo nautico. Te ensenamos a manejar el barco en un briefi
 |-------|-----------|-------------------------------|------------|
 | [Solar 450](/es/barco/solar-450) | 5 personas | 85 EUR/hora (135 EUR/2h) | Tomar el sol, solarium amplio |
 | [Remus 450](/es/barco/remus-450) | 5 personas | 85 EUR/hora (135 EUR/2h) | Familias con ninos, estabilidad |
-| [Astec 480](/es/barco/astec-480) | 5 personas | 90 EUR/hora (165 EUR/2h) | Premium, musica bluetooth |
+| [Astec 480](/es/barco/astec-480) | 5 personas | 95 EUR/hora (165 EUR/2h) | Premium, musica bluetooth |
 
 **Importante:** Los barcos sin licencia pueden navegar hasta **2 millas nauticas** de la costa (unos 3,7 km). Esto significa que desde Blanes puedes llegar comodamente hasta la **playa de Fenals**, que esta a unos 5 km del puerto. Fenals es la segunda playa de Lloret, mas tranquila y familiar que la playa principal.
 
@@ -4081,7 +4081,7 @@ Cala Brava es una de las joyas mas desconocidas de Blanes. Se encuentra entre Ca
 
 Desde el barco, simplemente fondeas sobre la arena y te tiras al agua. El fondo marino aqui es excepcional: posidonia oceanica, bancos de sargos y obladas, y rocas cubiertas de gorgonias a poca profundidad. Si solo puedes hacer snorkel en un sitio de toda la Costa Brava, que sea aqui.
 
-**Barco recomendado:** El [Astec 400](/es/barco/astec-400) (desde 75 EUR/hora) es perfecto para parejas que quieran esta cala en exclusiva. Si vais 4-5 personas, el [Remus 450](/es/barco/remus-450) o el [Solar 450](/es/barco/solar-450) (desde 85 EUR/hora) os daran mas espacio.
+**Barco recomendado:** El [Astec 400](/es/barco/astec-400) (desde 80 EUR/hora) es perfecto para parejas que quieran esta cala en exclusiva. Si vais 4-5 personas, el [Remus 450](/es/barco/remus-450) o el [Solar 450](/es/barco/solar-450) (desde 85 EUR/hora) os daran mas espacio.
 
 ## 2. Las cuevas entre Cala Sant Francesc y Santa Cristina
 
@@ -4111,7 +4111,7 @@ Desde el barco, simplemente fondeas frente a esta seccion y tienes tu propia pla
 
 **Dato curioso:** En los anos 70 y 80, esta seccion de la playa era una zona naturista. Hoy en dia es mixta, pero sigue manteniendo un ambiente mucho mas tranquilo y natural que el resto de Boadella.
 
-**Barco recomendado:** El [Astec 480](/es/barco/astec-480) (desde 90 EUR/hora) con su equipo de musica bluetooth convierte esta parada en una experiencia premium.
+**Barco recomendado:** El [Astec 480](/es/barco/astec-480) (desde 95 EUR/hora) con su equipo de musica bluetooth convierte esta parada en una experiencia premium.
 
 ## 4. Micro-calas entre Lloret y Tossa
 
@@ -4279,7 +4279,7 @@ Si sois un grupo de hasta 5 personas, el [Astec 480](/es/barco/astec-480) es una
 - **Musica bluetooth** integrada
 - **Solarium acolchado** amplio
 - **Gasolina incluida** (sin sorpresas al final)
-- Desde **90 EUR/hora** en temporada baja
+- Desde **95 EUR/hora** en temporada baja
 
 El Astec 480 es especialmente popular para cumpleanos intimos y aniversarios de pareja o grupos pequenos.
 
@@ -4289,7 +4289,7 @@ El [Astec 400](/es/barco/astec-400) es la opcion mas economica, perfecta para un
 
 - Capacidad para 4 personas
 - **Sin licencia** necesaria
-- Desde **75 EUR/hora** en temporada baja
+- Desde **80 EUR/hora** en temporada baja
 - Gasolina, seguro y equipo incluidos
 
 ## Que se puede hacer en una celebracion en barco

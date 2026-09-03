@@ -522,7 +522,7 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      // Cap licence-free boats at 4h in peak season (July/August)
+      // Cap licence-free boats at 4h all season (owner rule 2026-09-03)
       const maxDuration = getMaximumDuration(boatId, start);
       if (maxDuration) {
         const maxHours = parseInt(maxDuration);
@@ -530,7 +530,7 @@ export function registerBookingRoutes(app: Express) {
           return res.status(400).json({
             available: false,
             reason: "above_maximum_duration",
-            message: `La duración máxima para barcos sin licencia en temporada alta es de ${maxHours} horas`,
+            message: `La duración máxima para barcos sin licencia es de ${maxHours} horas`,
             maximumDuration: maxDuration,
           });
         }

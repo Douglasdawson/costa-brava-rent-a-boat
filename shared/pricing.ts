@@ -189,16 +189,14 @@ export function getMinimumDurationForBoat(boatId: string, date: Date): Duration 
 }
 
 /**
- * Maximum bookable duration. Licence-free boats are capped at 4h in peak
- * season (July and August) so the team can fit more short rentals per boat
- * per day (owner rule 2026-06-24). Returns null when no cap applies; licensed
- * boats are never capped, and outside July/August there is no cap.
+ * Maximum bookable duration. Licence-free boats are capped at 4h all season
+ * (owner rule 2026-09-03, extends the July/August-only cap of 2026-06-24) so
+ * the team can fit more short rentals per boat per day. Returns null when no
+ * cap applies; licensed boats are never capped.
  */
-export function getMaximumDuration(boatId: string, date: Date): Duration | null {
+export function getMaximumDuration(boatId: string, _date: Date): Duration | null {
   const boat = BOAT_DATA[boatId];
   if (!boat) return null;
-  const month = date.getMonth() + 1; // 7 = July, 8 = August
-  if (month !== 7 && month !== 8) return null;
   if (boatDataRequiresLicense(boat)) return null;
   return '4h';
 }
@@ -655,7 +653,7 @@ export function getAvailableDurationsForDate(boatId: string, date: Date): Durati
   }
 
   const season = getSeason(date);
-  // Hide durations above the peak-season cap (licence-free boats, July/August).
+  // Hide durations above the cap (licence-free boats, 4h all season).
   const maxDuration = getMaximumDuration(boatId, date);
   const maxHours = maxDuration ? durationToHours(maxDuration) : Infinity;
   const boatDurations = (Object.keys(boat.pricing[season].prices) as Duration[])

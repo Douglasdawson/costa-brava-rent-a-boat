@@ -202,9 +202,9 @@ describe("getMaximumDuration", () => {
     expect(getMaximumDuration("solar-450", new Date("2026-08-15T12:00:00"))).toBe("4h");
   });
 
-  it("does not cap licence-free boats outside July/August", () => {
-    expect(getMaximumDuration("solar-450", new Date("2026-05-15T12:00:00"))).toBeNull();
-    expect(getMaximumDuration("solar-450", new Date("2026-09-15T12:00:00"))).toBeNull();
+  it("caps licence-free boats at 4h outside July/August too", () => {
+    expect(getMaximumDuration("solar-450", new Date("2026-05-15T12:00:00"))).toBe("4h");
+    expect(getMaximumDuration("solar-450", new Date("2026-09-15T12:00:00"))).toBe("4h");
   });
 
   it("never caps licensed boats", () => {
@@ -212,7 +212,7 @@ describe("getMaximumDuration", () => {
   });
 });
 
-describe("getAvailableDurationsForDate peak-season cap (licence-free boats)", () => {
+describe("getAvailableDurationsForDate 4h cap (licence-free boats)", () => {
   const hidden = (boatId: string, date: Date) => {
     const opts = getAvailableDurationsForDate(boatId, date);
     return opts.map((o) => o.duration);
@@ -240,8 +240,8 @@ describe("getAvailableDurationsForDate peak-season cap (licence-free boats)", ()
     expect(hidden("pacific-craft-625", new Date("2026-08-15T12:00:00"))).toContain("8h");
   });
 
-  it("still offers 8h for solar-450 in low season (May)", () => {
-    expect(hidden("solar-450", new Date("2026-05-15T12:00:00"))).toContain("8h");
+  it("hides 8h for solar-450 in low season too (May)", () => {
+    expect(hidden("solar-450", new Date("2026-05-15T12:00:00"))).not.toContain("8h");
   });
 });
 

@@ -32,7 +32,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { filterActivePrices, getMinActivePrice } from "@shared/pricing";
+import { filterActivePrices, getMaximumDuration, getMinActivePrice } from "@shared/pricing";
 import {
   isJetSkiProduct,
   getJetSkiProduct,
@@ -779,9 +779,14 @@ function FleetSection() {
                   {sortedBoats.map(boat => {
                     const rawBoat = boatsData?.find(b => b.id === boat.id);
                     const season = currentSeason || "BAJA";
+                    // Licence-free boats cap at 4h, so don't advertise slots
+                    // the booking wizard and the API will both reject.
+                    const maxHours = parseFloat(getMaximumDuration(boat.id, new Date()) ?? "Infinity");
                     const durations = Object.keys(
                       filterActivePrices(rawBoat?.pricing?.[season]?.prices)
-                    ).sort((a, b) => parseFloat(a) - parseFloat(b));
+                    )
+                      .filter(d => parseFloat(d) <= maxHours)
+                      .sort((a, b) => parseFloat(a) - parseFloat(b));
                     return (
                       <TableCell key={boat.id} className="text-center text-sm">
                         {durations.length > 0

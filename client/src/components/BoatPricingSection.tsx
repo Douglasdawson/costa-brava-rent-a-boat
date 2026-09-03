@@ -284,9 +284,9 @@ function DayPricingMode({
         });
       });
     }
-    // Peak-season cap: licence-free boats are limited to 4h in July/August,
-    // so hide any slot above the maximum for the selected date (owner rule
-    // 2026-06-24, mirrors getAvailableDurationsForDate / the booking wizard).
+    // Licence-free boats are limited to 4h all season, so hide any slot above
+    // the maximum for the selected date (owner rule 2026-09-03, mirrors
+    // getAvailableDurationsForDate / the booking wizard).
     const maxDuration = getMaximumDuration(boatId, selectedDate);
     if (maxDuration) {
       const maxHours = parseInt(maxDuration);

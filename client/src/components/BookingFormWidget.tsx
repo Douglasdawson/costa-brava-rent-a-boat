@@ -994,19 +994,18 @@ export default function BookingFormWidget({
           { value: "8h", label: t.booking.eightHours || "8 horas - Dia completo" },
         ];
       }
+      // Licence-free boats cap at 4h (owner rule 2026-09-03).
       return [
         { value: "1h", label: t.booking.oneHour || "1 hora" },
         { value: "2h", label: t.booking.twoHours || "2 horas" },
         { value: "3h", label: t.booking.threeHours || "3 horas" },
         { value: "4h", label: t.booking.fourHours || "4 horas - Medio dia" },
-        { value: "6h", label: t.booking.sixHours || "6 horas" },
-        { value: "8h", label: t.booking.eightHours || "8 horas - Dia completo" },
       ];
     }
 
     // Boat selected but no date — show boat-specific durations without restrictions
     const licensedDurations = ["2h", "4h", "8h"] as const;
-    const unlicensedDurations = ["1h", "2h", "3h", "4h", "6h", "8h"] as const;
+    const unlicensedDurations = ["1h", "2h", "3h", "4h"] as const;
     const durationLabelsBoat: Record<string, string> = {
       "1h": t.booking.oneHour || "1 hora",
       "2h": t.booking.twoHours || "2 horas",

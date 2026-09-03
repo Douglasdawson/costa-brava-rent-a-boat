@@ -6,6 +6,7 @@ import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { AI_CRAWLER_NAMES } from "../seo/constants";
 import { BOAT_DATA, type BoatData } from "../../shared/boatData";
+import { getMaximumDuration } from "../../shared/pricing";
 import { JETSKI_PRODUCTS, isJetSkiProduct, type JetSkiProduct } from "../../shared/jetskiProducts";
 import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
@@ -177,7 +178,12 @@ function renderBoatPricingTable(boat: BoatData): string {
     "| Duration | Low Season (Apr-Jun, Sep-Oct) | Mid Season (July) | High Season (August) |",
     "|----------|-------------------------------|--------------------|-----------------------|",
   ];
+  // Los barcos sin licencia estan topados a 4h: no publicamos franjas que la
+  // reserva rechaza (mismo tope que getAvailableDurationsForDate y /api/quote).
+  const maxDuration = getMaximumDuration(boat.id, new Date());
+  const maxHours = maxDuration ? parseFloat(maxDuration) : Infinity;
   for (const d of PRICING_DURATIONS) {
+    if (parseFloat(d.key) > maxHours) continue;
     const low = boat.pricing.BAJA?.prices?.[d.key];
     const mid = boat.pricing.MEDIA?.prices?.[d.key];
     const high = boat.pricing.ALTA?.prices?.[d.key];
@@ -253,11 +259,15 @@ function renderJetSkiPricingBlock(): string {
 function boatToProductSchema(boat: BoatData, businessUrl: string, ratingValue: number, reviewCount: number) {
   const lowSeasonPrices = boat.pricing.BAJA?.prices ?? {};
   const highSeasonPrices = boat.pricing.ALTA?.prices ?? {};
+  // El rango de la oferta solo puede citar franjas vendibles: los barcos sin
+  // licencia estan topados a 4h, asi que sus 6h y 8h quedan fuera.
+  const maxDurationProduct = getMaximumDuration(boat.id, new Date());
+  const maxHoursProduct = maxDurationProduct ? parseFloat(maxDurationProduct) : Infinity;
   const allPrices: number[] = [];
   for (const tier of [boat.pricing.BAJA, boat.pricing.MEDIA, boat.pricing.ALTA]) {
     if (tier?.prices) {
-      for (const v of Object.values(tier.prices)) {
-        if (typeof v === "number") allPrices.push(v);
+      for (const [d, v] of Object.entries(tier.prices)) {
+        if (typeof v === "number" && parseFloat(d) <= maxHoursProduct) allPrices.push(v);
       }
     }
   }

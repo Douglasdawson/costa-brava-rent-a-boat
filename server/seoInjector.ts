@@ -18,6 +18,7 @@ import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVa
 import { BOAT_DATA, applyFleetStatsToText, boatIncludesFuel, isCaptainedBoat } from "../shared/boatData";
 import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
+import { ACTIVITATUM_PICKS, activitatumPicksBySlot, activitatumTopicUrl, activitatumUrl } from "../shared/activitatumLinks";
 import { SHOP_PRODUCTS } from "../shared/shopData";
 import { NAUTICAL_GLOSSARY_ES } from "../shared/nauticalGlossary";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
@@ -186,6 +187,18 @@ function buildScootersStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
   return out;
 }
 
+// Activities bridge page (Activitatum, sister agency). Same shape as the
+// scooters one: copy lives in i18n activitiesPage, so all 8 locales get a
+// native title/description.
+function buildActivitiesStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
+  const out: Partial<Record<LangCode, SEOMeta>> = {};
+  for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+    const ap = (I18N_BY_LANG[lang] ?? i18nEs).activitiesPage ?? i18nEs.activitiesPage!;
+    out[lang] = { title: ap.seoTitle, description: ap.seoDescription };
+  }
+  return out;
+}
+
 // Captained private excursion landing ("alquiler de barco con patrón"). Meta
 // comes from the same i18n keys the page renders (captainedPage), so SSR and
 // client can never drift; {rating} resolves to the live GBP rating constant.
@@ -304,6 +317,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/excursion-jet-ski-blanes-tossa": buildJetskiStaticMeta("excursion", 190),
   "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
   "/alquiler-motos-lloret": buildScootersStaticMeta(),
+  "/actividades-costa-brava": buildActivitiesStaticMeta(),
   "/alquiler-barco-con-patron": buildCaptainedStaticMeta(),
   "/licencia-navegacion-titulin": buildNavigationLicenseStaticMeta(),
   "/tienda": buildTiendaStaticMeta(),
@@ -2778,6 +2792,77 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
     }
 
     // /faq - FAQPage schema (critical for AI search extraction)
+    // /actividades-costa-brava - bridge page to Activitatum (sister agency).
+    // Production serves no prerendered snapshot, so this fallback is the ONLY
+    // body a JS-less crawler reads. The whole point of the page is the outbound
+    // links, so they have to live here and not just in the hydrated JSX.
+    else if (metaKey === "/actividades-costa-brava") {
+      const ap = (I18N_BY_LANG[lang] ?? i18nEs).activitiesPage ?? i18nEs.activitiesPage!;
+      const linkFor = (key: keyof typeof ACTIVITATUM_PICKS) =>
+        activitatumUrl(ACTIVITATUM_PICKS[key].path, lang, "bridge");
+
+      const faq = {
+        "@type": "FAQPage",
+        "@id": `${BASE_URL}${metaKey}#faq`,
+        mainEntity: (ap.faq ?? []).map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      };
+      const breadcrumb = {
+        "@type": "BreadcrumbList",
+        "@id": `${BASE_URL}${metaKey}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Costa Brava Rent a Boat", item: BASE_URL },
+          { "@type": "ListItem", position: 2, name: ap.navLabel, item: `${BASE_URL}${metaKey}` },
+        ],
+      };
+
+      const renderList = (keys: (keyof typeof ACTIVITATUM_PICKS)[]) =>
+        keys
+          .map((key) => {
+            const copy = ap.activities?.[key];
+            if (!copy) return "";
+            return `  <li><a href="${linkFor(key)}">${esc(copy.name)}</a>: ${esc(ap.priceFrom)} ${ACTIVITATUM_PICKS[key].priceEur} EUR. ${esc(copy.note)}</li>`;
+          })
+          .filter(Boolean)
+          .join("\n");
+
+      const bodyFallback = `
+<h1>${esc(ap.hero?.title)}</h1>
+<p>${esc(ap.hero?.subtitle)}</p>
+<p>${esc(ap.intro)}</p>
+<h2>${esc(ap.afterBoatTitle)}</h2>
+<p>${esc(ap.afterBoatIntro)}</p>
+<ul>
+${renderList(activitatumPicksBySlot("afterBoat") as (keyof typeof ACTIVITATUM_PICKS)[])}
+</ul>
+<h2>${esc(ap.landDayTitle)}</h2>
+<p>${esc(ap.landDayIntro)}</p>
+<ul>
+${renderList(activitatumPicksBySlot("landDay") as (keyof typeof ACTIVITATUM_PICKS)[])}
+</ul>
+<h2>${esc(ap.rainyDayTitle)}</h2>
+<ul>
+${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PICKS)[])}
+</ul>
+<h2>${esc(ap.operatedByTitle)}</h2>
+<p>${esc(ap.operatedByText)}</p>
+<p>
+  <a href="${activitatumTopicUrl("blanes", lang, "bridge")}">${esc(ap.cta)}</a> ·
+  <a href="${activitatumTopicUrl("lloret", lang, "bridge")}">${esc(ap.ctaSecondary)}</a>
+</p>
+      `.trim();
+
+      return {
+        meta,
+        jsonLd: { "@context": "https://schema.org", "@graph": [faq, breadcrumb] },
+        availableLanguages,
+        bodyFallback,
+      };
+    }
+
     else if (metaKey === "/faq") {
       // Full FAQPage from i18n (same source + interpolation as the client's
       // faqSchemaFromI18n in faq.tsx) — previously 5 hardcoded Q&A in es/en

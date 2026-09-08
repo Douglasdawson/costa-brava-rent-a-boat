@@ -263,6 +263,8 @@ export function wrapper(content: string, options: WrapperOptions = {}): string {
                 <a href="https://www.instagram.com/costabravarentaboat/" style="color:${COLORS.border}; text-decoration:underline;">Instagram</a>
                 &nbsp;&middot;&nbsp;
                 <a href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5" style="color:${COLORS.border}; text-decoration:underline;">Google Maps</a>
+                &nbsp;&middot;&nbsp;
+                <a href="https://activitatum.com/t/blanes?utm_source=cbrb&utm_medium=referral&utm_campaign=email-footer" style="color:${COLORS.border}; text-decoration:underline;">Activitatum</a>
               </p>
             </td>
           </tr>

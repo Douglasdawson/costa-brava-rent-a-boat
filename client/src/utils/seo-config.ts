@@ -1808,6 +1808,8 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "https://www.tiktok.com/@costabravarentaboat",
       "https://www.linkedin.com/company/costabravarentaboat",
       "https://www.tripadvisor.com/Attraction_Review-g580331-d19938921-Reviews-Costa_Brava_Rent_a_Boat-Blanes_Costa_Brava_Province_of_Girona_Catalonia.html",
+      "https://coastrent.es",
+      "https://activitatum.com",
     ],
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",

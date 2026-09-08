@@ -983,6 +983,7 @@ export function registerRobotsRoutes(app: Express): void {
         "https://www.linkedin.com/company/costabravarentaboat",
         "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
         "https://coastrent.es",
+        "https://activitatum.com",
         ...(BUSINESS_APPLE_MAPS_URL ? [BUSINESS_APPLE_MAPS_URL] : []),
         ...(osmUri ? [osmUri] : []),
         ...(wikidataUri ? [wikidataUri] : []),

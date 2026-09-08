@@ -20,6 +20,7 @@ import { formatOrderNumber } from "@shared/shopData";
 import { calculateBasePrice, type Duration } from "@shared/pricing";
 import { generateOpaqueUnsubToken } from "../routes/newsletter";
 import { GOOGLE_REVIEW_URL } from "../../shared/businessProfile";
+import { activitatumTopicUrl, type ActivitatumSurface } from "../../shared/activitatumLinks";
 
 type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru" | "ca";
 
@@ -58,6 +59,11 @@ interface EmailStrings {
   emergencyCall: string;
   cancelTitle?: string;
   cancelLink?: string;
+  // Cross-sell hacia Activitatum. fr/de/it/nl van sin acentos, como el resto
+  // de este bloque: los emails de este archivo se escribieron en ASCII.
+  activitiesTitle?: string;
+  activitiesIntro?: string;
+  activitiesCta?: string;
 }
 
 const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
@@ -81,6 +87,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     thankYouTitle: "Gracias por navegar con nosotros",
     thankYouIntro: "Esperamos que disfrutaras de tu experiencia a bordo",
     thankYouPreheader: "Tu opinión en Google nos hace crecer — y tienes un detalle dentro",
+    activitiesTitle: "¿Y el resto de los días?",
+    activitiesIntro: "Parasailing, buggies o wakeboard a diez minutos del puerto. Los reserva Activitatum, la agencia de actividades con la que trabajamos.",
+    activitiesCta: "Ver actividades",
     reviewTitle: "Tu opinión nos importa",
     reviewDesc: "Si disfrutaste de la experiencia, nos encantaría que compartieras tu opinión en Google.",
     reviewButton: "Dejar una reseña en Google",
@@ -117,6 +126,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     thankYouTitle: "Thank you for sailing with us",
     thankYouIntro: "We hope you enjoyed your time on board",
     thankYouPreheader: "A Google review helps us grow — and there's a small gift inside",
+    activitiesTitle: "And the rest of your stay?",
+    activitiesIntro: "Parasailing, buggies or wakeboarding ten minutes from the port. Booked through Activitatum, the activity agency we work with.",
+    activitiesCta: "See activities",
     reviewTitle: "Your opinion matters to us",
     reviewDesc: "If you enjoyed the experience, we would love for you to share your review on Google.",
     reviewButton: "Leave a Google review",
@@ -153,6 +165,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     thankYouTitle: "Merci d'avoir navigue avec nous",
     thankYouIntro: "Nous esperons que vous avez apprecie votre experience a bord",
     thankYouPreheader: "Un avis Google nous aide a grandir — et un petit cadeau vous attend",
+    activitiesTitle: "Et le reste du sejour ?",
+    activitiesIntro: "Parachute ascensionnel, buggies ou wakeboard a dix minutes du port. Reservation via Activitatum, l'agence d'activites avec laquelle nous travaillons.",
+    activitiesCta: "Voir les activites",
     reviewTitle: "Votre avis nous importe",
     reviewDesc: "Si vous avez apprecie l'experience, nous serions ravis que vous partagiez votre avis sur Google.",
     reviewButton: "Laisser un avis Google",
@@ -187,6 +202,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     thankYouTitle: "Danke, dass Sie mit uns gefahren sind",
     thankYouIntro: "Wir hoffen, dass Sie Ihre Zeit an Bord genossen haben",
     thankYouPreheader: "Eine Google-Bewertung hilft uns sehr — und ein kleines Geschenk wartet auf Sie",
+    activitiesTitle: "Und der Rest des Aufenthalts?",
+    activitiesIntro: "Parasailing, Buggys oder Wakeboard zehn Minuten vom Hafen entfernt. Buchbar uber Activitatum, die Aktivitatenagentur, mit der wir zusammenarbeiten.",
+    activitiesCta: "Aktivitaten ansehen",
     reviewTitle: "Ihre Meinung ist uns wichtig",
     reviewDesc: "Wenn Sie das Erlebnis genossen haben, wurden wir uns freuen, wenn Sie Ihre Bewertung auf Google teilen.",
     reviewButton: "Google-Bewertung hinterlassen",
@@ -221,6 +239,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     thankYouTitle: "Bedankt voor het varen met ons",
     thankYouIntro: "We hopen dat u heeft genoten van uw tijd aan boord",
     thankYouPreheader: "Een Google-review helpt ons enorm — en er wacht een cadeautje binnen",
+    activitiesTitle: "En de rest van je verblijf?",
+    activitiesIntro: "Parasailing, buggy's of wakeboarden op tien minuten van de haven. Te boeken via Activitatum, het activiteitenbureau waarmee we samenwerken.",
+    activitiesCta: "Bekijk activiteiten",
     reviewTitle: "Uw mening is belangrijk voor ons",
     reviewDesc: "Als u de ervaring heeft genoten, zouden we het fijn vinden als u een review op Google achterlaat.",
     reviewButton: "Google-review achterlaten",
@@ -255,6 +276,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     thankYouTitle: "Grazie per aver navigato con noi",
     thankYouIntro: "Speriamo che abbia apprezzato la sua esperienza a bordo",
     thankYouPreheader: "Una recensione su Google ci aiuta tantissimo — e dentro c'è un piccolo regalo",
+    activitiesTitle: "E il resto del soggiorno?",
+    activitiesIntro: "Parasailing, buggy o wakeboard a dieci minuti dal porto. Si prenotano su Activitatum, l'agenzia di attivita con cui lavoriamo.",
+    activitiesCta: "Vedi le attivita",
     reviewTitle: "La sua opinione e importante per noi",
     reviewDesc: "Se ha apprezzato l'esperienza, ci farebbe piacere se condividesse la sua recensione su Google.",
     reviewButton: "Lascia una recensione su Google",
@@ -289,6 +313,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     thankYouTitle: "Spasibo, chto puteshestvovali s nami",
     thankYouIntro: "Nadeemsya, vam ponravilos na bortu",
     thankYouPreheader: "Otzyv na Google ochen nam pomogaet — i vnutri vas zhdyot nebolshoy podarok",
+    activitiesTitle: "А остальные дни?",
+    activitiesIntro: "Парасейлинг, багги или вейкборд в десяти минутах от порта. Бронирование через Activitatum, агентство, с которым мы работаем.",
+    activitiesCta: "Смотреть активности",
     reviewTitle: "Vashe mnenie vazhno dlya nas",
     reviewDesc: "Yesli vam ponravilos, my budem rady otzuvu na Google.",
     reviewButton: "Ostavit otzuv v Google",
@@ -323,6 +350,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     thankYouTitle: "Gràcies per navegar amb nosaltres",
     thankYouIntro: "Esperem que hagis gaudit de la teva experiència a bord",
     thankYouPreheader: "La teva ressenya a Google ens fa créixer — i tens un detall a dins",
+    activitiesTitle: "I la resta de dies?",
+    activitiesIntro: "Parasailing, buggies o wakeboard a deu minuts del port. Els reserva Activitatum, l'agència d'activitats amb qui treballem.",
+    activitiesCta: "Veure activitats",
     reviewTitle: "La teva opinió ens importa",
     reviewDesc: "Si vas gaudir de l'experiència, ens encantaria que compartissis la teva opinió a Google.",
     reviewButton: "Deixar una ressenya a Google",
@@ -467,6 +497,22 @@ function bookingDetailsTable(data: BookingEmailData, strings: EmailStrings): str
   </table>`;
 }
 
+/**
+ * Cross-sell block towards Activitatum (sister activity agency). Links to the
+ * Blanes collection rather than to single activities: the email does not have
+ * the translated activity names, and one good link beats three vague ones.
+ */
+function activitiesBlock(strings: EmailStrings, lang: string, surface: ActivitatumSurface): string {
+  if (!strings.activitiesTitle || !strings.activitiesIntro) return "";
+  const url = activitatumTopicUrl("blanes", lang, surface);
+  return `
+    <div style="background-color:#f8fafc; border-radius:8px; padding:18px; margin:20px 0;">
+      <p style="margin:0 0 6px; color:#1e3a5f; font-size:15px; font-weight:600;">${strings.activitiesTitle}</p>
+      <p style="margin:0 0 12px; color:#475569; font-size:14px; line-height:1.5;">${strings.activitiesIntro}</p>
+      <a href="${url}" target="_blank" style="color:#2563eb; font-size:14px; font-weight:600; text-decoration:underline;">${strings.activitiesCta || "activitatum.com"}</a>
+    </div>`;
+}
+
 // ===== EMAIL SENDING FUNCTIONS =====
 
 /**
@@ -506,6 +552,8 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
       <p style="margin:0; color:#475569; font-size:14px;">${strings.phone}: <a href="tel:+34611500372" style="color:#2563eb;">+34 611 500 372</a></p>
       <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:info@costabravarentaboat.com" style="color:#2563eb;">info@costabravarentaboat.com</a></p>
     </div>
+
+    ${activitiesBlock(strings, booking.language || "es", "booking-confirmation")}
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5;">
       ${strings.thanks}
@@ -655,6 +703,8 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.costabravarentaboat.com" target="_blank" style="display:inline-block; margin:0 4px; padding:8px 14px; background-color:#1877f2; color:#fff; border-radius:4px; font-size:12px; font-weight:600; text-decoration:none;">Facebook</a>
       <a href="https://www.instagram.com/costabravarentaboat/" target="_blank" style="display:inline-block; margin:0 4px; padding:8px 14px; background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; border-radius:4px; font-size:12px; font-weight:600; text-decoration:none;">Instagram</a>
     </div>
+
+    ${activitiesBlock(strings, booking.language || "es", "thankyou-email")}
 
     <!-- Discount Code -->
     <div style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); border-radius:8px; padding:24px; margin:20px 0; text-align:center;">

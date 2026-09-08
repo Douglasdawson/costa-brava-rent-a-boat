@@ -11,6 +11,7 @@ export const es: Translations = {
     viewComponents: "Ver Componentes",
     jetski: "Motos de agua",
     scooters: "Scooters",
+    activities: "Actividades",
     tienda: "Tienda",
     bookNow: "Reservar",
     myAccount: "Mi Cuenta",
@@ -6091,6 +6092,94 @@ export const es: Translations = {
       {
         q: "¿Puedo combinar el scooter con un día de barco?",
         a: "Sí. Nuestros barcos salen del puerto de Blanes, a unos 10 minutos de Lloret de Mar, así que puedes navegar por la mañana y recorrer la costa en scooter por la tarde, o al revés.",
+      },
+    ],
+  },
+  activitiesPage: {
+    seoTitle: "Qué hacer en Blanes y Lloret de Mar además del barco | Actividades",
+    seoDescription:
+      "Parasailing, buggies, wakeboard, paddle surf, hinchables y escape room en Blanes, Lloret de Mar y Fenals, desde 15€. Las reserva Activitatum; los barcos y las motos de agua, nosotros.",
+    navLabel: "Actividades",
+    hero: {
+      title: "Qué hacer en Blanes y Lloret además de navegar",
+      subtitle:
+        "Una salida en barco ocupa media jornada. Blanes y Lloret están a diez minutos, así que el resto del día cabe entero: esto es lo que hay a mano.",
+    },
+    chips: ["Desde 15€", "Blanes y Lloret", "Reserva instantánea"],
+    intro:
+      "No alquilamos nada de esto: lo operan empresas de la zona y se reserva en Activitatum, la agencia con la que trabajamos. Lo ponemos aquí porque es la pregunta que más nos hacen al devolver el barco.",
+    teaserTitle: "¿Y el resto del día?",
+    teaserText:
+      "Parasailing, buggies, wakeboard o paddle surf, a diez minutos del puerto. No los alquilamos nosotros: los reserva Activitatum, la agencia de actividades con la que trabajamos.",
+    afterBoatTitle: "La tarde después del barco",
+    afterBoatIntro:
+      "Todo esto sale de la playa de Blanes, a un paseo del puerto donde amarramos. Son sesiones de diez a veinte minutos: caben entre devolver el barco y cenar.",
+    landDayTitle: "El día que no toca mar",
+    landDayIntro:
+      "Planes de media jornada en Lloret, para cuando el viento se lleva la salida o simplemente no apetece repetir.",
+    rainyDayTitle: "Y si llueve",
+    priceFrom: "desde",
+    activities: {
+      flyfish: {
+        name: "Flyfish",
+        note: "El hinchable que levanta el vuelo con el tirón de la lancha. Cinco minutos y no hace falta experiencia.",
+      },
+      bananaBoat: {
+        name: "Banana boat",
+        note: "El clásico de arrastre, de cuatro a ocho personas por viaje. En grupo es lo más barato de la playa.",
+      },
+      paddle: {
+        name: "Paddle surf",
+        note: "Una hora de tabla por la bahía. Ponerse de pie cuesta unos diez minutos.",
+      },
+      wakeboard: {
+        name: "Wakeboard y esquí acuático",
+        note: "Con monitor en la lancha. Quince minutos dan para varios intentos y para levantarse.",
+      },
+      crazyUfo: {
+        name: "Crazy UFO",
+        note: "Un disco hinchable a remolque que gira hasta que alguien se cae. Se cae todo el mundo.",
+      },
+      parasailing: {
+        name: "Parasailing sobre la bahía de Lloret",
+        note: "Doscientos metros de cabo, con despegue y aterrizaje desde la plataforma de la lancha. Se sube y se baja seco.",
+      },
+      buggy: {
+        name: "Buggy por la costa",
+        note: "Dos horas de pistas por el interior de Lloret con parada en mirador. Se conduce con el carnet B.",
+      },
+      holidayPack: {
+        name: "Pack Holiday",
+        note: "Tres actividades de agua la misma tarde, más barato que contratarlas sueltas.",
+      },
+      escapeRoom: {
+        name: "Escape room en Malgrat de Mar",
+        note: "Noventa minutos a cubierto a diez minutos de Blanes. El plan de los días de tramuntana.",
+      },
+    },
+    operatedByTitle: "Lo reserva Activitatum",
+    operatedByText:
+      "Activitatum es la agencia de actividades con la que trabajamos, del mismo propietario que nosotros. Centraliza el calendario y el pago de los operadores de Blanes, Lloret y Fenals. Lo que va a motor por el agua sigue siendo nuestro: los barcos y las motos de agua se reservan en esta web.",
+    cta: "Ver actividades en Blanes",
+    ctaSecondary: "Ver actividades en Lloret de Mar",
+    ctaNote: "Se abre Activitatum en una pestaña nueva.",
+    faqTitle: "Preguntas frecuentes",
+    faq: [
+      {
+        q: "¿Las actividades salen del mismo sitio que los barcos?",
+        a: "Las de Blanes sí: la playa está al lado del puerto donde amarramos. Las de Lloret de Mar están a unos diez minutos en coche.",
+      },
+      {
+        q: "¿Puedo hacer una actividad el mismo día que alquilo el barco?",
+        a: "Es lo habitual. Una salida de media jornada deja la tarde libre, y las actividades de agua duran entre diez minutos y una hora.",
+      },
+      {
+        q: "¿Por qué se reserva en otra web?",
+        a: "Porque las operan empresas distintas de la nuestra. Activitatum reúne a los operadores de la zona en un solo calendario, con confirmación inmediata y el pase en el móvil.",
+      },
+      {
+        q: "¿También alquiláis motos de agua allí?",
+        a: "No. Las motos de agua y los barcos son nuestros y se reservan aquí, en esta misma web, sin intermediarios.",
       },
     ],
   },

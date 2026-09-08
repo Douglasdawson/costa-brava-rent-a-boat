@@ -32,6 +32,7 @@ import { useTranslations } from "@/lib/translations";
 import { getCanonicalUrl } from "@/lib/domain";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
+import ActivitatumTeaser from "@/components/ActivitatumTeaser";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -381,6 +382,7 @@ export default function LocationTorderaPage() {
         </div>
       </RevealSection>
 
+      <ActivitatumTeaser topic={"blanes"} surface="city-landing" />
       <RelatedLocationsSection currentLocation="tordera" />
 
       <Footer />

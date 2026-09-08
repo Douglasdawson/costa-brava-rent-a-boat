@@ -11,6 +11,7 @@ export const de: Translations = {
     viewComponents: "Komponenten Anzeigen",
     jetski: "Jetskis",
     scooters: "Roller",
+    activities: "Aktivitäten",
     tienda: "Shop",
     bookNow: "Verfügbarkeit prüfen",
     myAccount: "Mein Konto",
@@ -4709,6 +4710,91 @@ export const de: Translations = {
     ctaButton: "Schreiben Sie uns per WhatsApp",
     whatsappMessage:
       "Hallo, ich möchte Informationen zur Licencia de Navegación (Titulín) und zum Mieten eines Boots.",
+  },
+  activitiesPage: {
+    seoTitle: "Was man in Blanes und Lloret de Mar außer Boot fahren machen kann | Aktivitäten",
+    seoDescription: "Parasailing, Buggys, Wakeboard, Paddle-Surf, Wasserspielgeräte und Escape Room in Blanes, Lloret de Mar und Fenals, ab 15 EUR. Gebucht über Activitatum; die Boote und Jetskis sind unsere.",
+    navLabel: "Aktivitäten",
+    hero: {
+      title: "Was man in Blanes und Lloret außer Boot fahren machen kann",
+      subtitle: "Eine Bootstour dauert einen halben Tag. Blanes und Lloret liegen zehn Minuten auseinander, der Rest des Tages passt also komplett hinein: Das hier ist in Reichweite.",
+    },
+    chips: [
+      "Ab 15 EUR",
+      "Blanes und Lloret",
+      "Sofortige Buchung",
+    ],
+    intro: "Nichts davon vermieten wir selbst: Es wird von Betrieben aus der Gegend durchgeführt und über Activitatum gebucht, die Agentur, mit der wir arbeiten. Es steht hier, weil es die Frage ist, die man uns bei der Rückgabe des Bootes am häufigsten stellt.",
+    teaserTitle: "Und der Rest des Tages?",
+    teaserText: "Parasailing, Buggys, Wakeboard oder Paddle-Surf, zehn Minuten vom Hafen entfernt. Wir vermieten sie nicht: Das macht Activitatum, die Aktivitätenagentur, mit der wir arbeiten.",
+    afterBoatTitle: "Der Nachmittag nach dem Boot",
+    afterBoatIntro: "All das startet am Strand von Blanes, einen kurzen Spaziergang vom Hafen entfernt, in dem wir festmachen. Die Einheiten dauern zehn bis zwanzig Minuten: Sie passen zwischen Bootsrückgabe und Abendessen.",
+    landDayTitle: "Der Tag ohne Meer",
+    landDayIntro: "Halbtagespläne in Lloret, für den Fall, dass der Wind die Ausfahrt verhindert oder einfach keine Lust auf Wiederholung besteht.",
+    rainyDayTitle: "Und wenn es regnet",
+    priceFrom: "ab",
+    activities: {
+      flyfish: {
+        name: "Flyfish",
+        note: "Das aufblasbare Gerät, das durch den Zug des Bootes abhebt. Fünf Minuten, ohne Vorkenntnisse.",
+      },
+      bananaBoat: {
+        name: "Banana Boat",
+        note: "Der Klassiker im Schlepptau, vier bis acht Personen pro Fahrt. In der Gruppe das Günstigste am Strand.",
+      },
+      paddle: {
+        name: "Paddle-Surf",
+        note: "Eine Stunde auf dem Board durch die Bucht. Bis man steht, dauert es etwa zehn Minuten.",
+      },
+      wakeboard: {
+        name: "Wakeboard und Wasserski",
+        note: "Mit Betreuer im Boot. Fünfzehn Minuten reichen für mehrere Versuche und zum Aufstehen.",
+      },
+      crazyUfo: {
+        name: "Crazy UFO",
+        note: "Eine aufblasbare Scheibe im Schlepptau, die sich dreht, bis jemand herunterfällt. Es fallen alle herunter.",
+      },
+      parasailing: {
+        name: "Parasailing über der Bucht von Lloret",
+        note: "Zweihundert Meter Leine, Start und Landung von der Plattform des Bootes. Man geht trocken hoch und kommt trocken zurück.",
+      },
+      buggy: {
+        name: "Buggy entlang der Küste",
+        note: "Zwei Stunden auf Pisten im Hinterland von Lloret mit Halt an einem Aussichtspunkt. Der Führerschein Klasse B genügt.",
+      },
+      holidayPack: {
+        name: "Holiday Pack",
+        note: "Drei Wasseraktivitäten am selben Nachmittag, günstiger als einzeln gebucht.",
+      },
+      escapeRoom: {
+        name: "Escape Room in Malgrat de Mar",
+        note: "Neunzig Minuten unter Dach, zehn Minuten von Blanes. Der Plan für Tramuntana-Tage.",
+      },
+    },
+    operatedByTitle: "Gebucht über Activitatum",
+    operatedByText: "Activitatum ist die Aktivitätenagentur, mit der wir arbeiten, mit denselben Eigentümern wie wir. Sie bündelt Kalender und Zahlung der Anbieter aus Blanes, Lloret und Fenals. Was mit Motor über das Wasser fährt, bleibt bei uns: Boote und Jetskis werden auf dieser Website gebucht.",
+    cta: "Aktivitäten in Blanes ansehen",
+    ctaSecondary: "Aktivitäten in Lloret de Mar ansehen",
+    ctaNote: "Activitatum öffnet sich in einem neuen Tab.",
+    faqTitle: "Häufige Fragen",
+    faq: [
+      {
+        q: "Starten die Aktivitäten am selben Ort wie die Boote?",
+        a: "Die in Blanes ja: Der Strand liegt direkt neben dem Hafen, in dem wir festmachen. Die in Lloret de Mar sind etwa zehn Autominuten entfernt.",
+      },
+      {
+        q: "Kann ich eine Aktivität am selben Tag machen, an dem ich das Boot miete?",
+        a: "Das ist der Normalfall. Eine halbtägige Ausfahrt lässt den Nachmittag frei, und die Wasseraktivitäten dauern zwischen zehn Minuten und einer Stunde.",
+      },
+      {
+        q: "Warum wird auf einer anderen Website gebucht?",
+        a: "Weil andere Unternehmen sie durchführen. Activitatum bündelt die Anbieter der Gegend in einem Kalender, mit sofortiger Bestätigung und dem Ticket auf dem Handy.",
+      },
+      {
+        q: "Vermietet ihr dort auch Jetskis?",
+        a: "Nein. Jetskis und Boote gehören uns und werden hier auf dieser Website gebucht, ohne Zwischenhändler.",
+      },
+    ],
   },
   scootersPage: {
     seoTitle: "Roller- und Motorradverleih in Lloret de Mar | Coast Rent",

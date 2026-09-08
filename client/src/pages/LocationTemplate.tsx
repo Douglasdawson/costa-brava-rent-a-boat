@@ -38,6 +38,7 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
+import ActivitatumTeaser from "@/components/ActivitatumTeaser";
 
 // ---------------------------------------------------------------------------
 // Sub-components
@@ -703,6 +704,7 @@ export default function LocationTemplate({
       {afterFaq}
 
       <RelatedLocationsSection currentLocation={config.slug} />
+      <ActivitatumTeaser topic={config.slug === "blanes" ? "blanes" : "lloret"} surface="city-landing" />
       {config.relatedContentPage && (
         <RelatedContent currentPage={config.relatedContentPage} />
       )}

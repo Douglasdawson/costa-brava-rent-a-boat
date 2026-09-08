@@ -91,6 +91,7 @@ export interface Translations {
     viewComponents: string;
     jetski: string;
     scooters: string;
+    activities: string;
     tienda: string;
     bookNow: string;
     myAccount: string;
@@ -3143,6 +3144,34 @@ export interface Translations {
     combineTitle: string;
     combineText: string;
     cta: string;
+    ctaNote: string;
+    faqTitle: string;
+    faq: { q: string; a: string }[];
+  };
+  // Activities bridge page (/actividades-costa-brava) — everything on the coast
+  // that is NOT a boat or a jet ski, operated by local companies and booked on
+  // Activitatum. The activity keys must match ACTIVITATUM_PICKS in
+  // shared/activitatumLinks.ts: the page joins copy and price by that key.
+  activitiesPage?: {
+    seoTitle: string;
+    seoDescription: string;
+    navLabel: string;
+    hero: { title: string; subtitle: string };
+    chips: string[];
+    intro: string;
+    teaserTitle: string;
+    teaserText: string;
+    afterBoatTitle: string;
+    afterBoatIntro: string;
+    landDayTitle: string;
+    landDayIntro: string;
+    rainyDayTitle: string;
+    priceFrom: string;
+    activities: Record<string, { name: string; note: string }>;
+    operatedByTitle: string;
+    operatedByText: string;
+    cta: string;
+    ctaSecondary: string;
     ctaNote: string;
     faqTitle: string;
     faq: { q: string; a: string }[];

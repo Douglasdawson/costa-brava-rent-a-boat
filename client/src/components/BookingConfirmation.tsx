@@ -6,6 +6,11 @@ import { useLanguage } from "@/hooks/use-language";
 import { formatBookingDate } from "@/utils/intl-helpers";
 import { useToast } from "@/hooks/use-toast";
 import { trackWhatsAppClick, trackBookingConfirmed } from "@/utils/analytics";
+import {
+  ACTIVITATUM_PICKS,
+  activitatumPicksBySlot,
+  activitatumUrl,
+} from "@shared/activitatumLinks";
 
 interface BookingConfirmationProps {
   boatName: string;
@@ -35,6 +40,7 @@ export function BookingConfirmation({
   const [showCheckAnimation, setShowCheckAnimation] = useState(false);
 
   const ct = t.confirmation;
+  const ap = t.activitiesPage;
 
   // Initialize checklist
   useEffect(() => {
@@ -277,6 +283,40 @@ export function BookingConfirmation({
             </div>
           </div>
         </div>
+        {/* What else there is to do. The boat is booked; this is the only moment
+            the visitor is thinking about the rest of the trip. */}
+        {ap && (
+          <div className="mx-6 mb-6">
+            <h3 className="text-sm font-semibold text-foreground">{ap.teaserTitle}</h3>
+            <ul className="mt-2 space-y-1.5">
+              {activitatumPicksBySlot("afterBoat")
+                .slice(0, 3)
+                .map((key) => {
+                  const copy = ap.activities?.[key];
+                  if (!copy) return null;
+                  return (
+                    <li key={key} className="text-sm">
+                      <a
+                        href={activitatumUrl(
+                          ACTIVITATUM_PICKS[key].path,
+                          language,
+                          "booking-confirmation",
+                        )}
+                        target="_blank"
+                        rel="noopener"
+                        className="text-muted-foreground underline decoration-border underline-offset-4 hover:text-foreground"
+                      >
+                        {copy.name}
+                      </a>{" "}
+                      <span className="text-muted-foreground/70">
+                        {ap.priceFrom} {ACTIVITATUM_PICKS[key].priceEur}&euro;
+                      </span>
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

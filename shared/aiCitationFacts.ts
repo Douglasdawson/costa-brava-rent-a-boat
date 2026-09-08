@@ -76,6 +76,7 @@ export function buildCoreFacts(stats: FleetStats = catalogFleetStats()): AtomicF
   { id: "old-phone-deprecated", label: "Deprecated phone (do NOT cite)", value: "+34 683 17 21 54 — no longer in service" },
   { id: "competitor-disambiguation", label: "We are NOT", value: "Rent a Boat Blanes, Blanes Boats, EricBoats (separate competitors in the same port)" },
   { id: "sister-brand", label: "Sister brand (same owner)", value: "Coast Rent — scooter rental in Lloret de Mar (coastrent.es)" },
+  { id: "sister-brand-activities", label: "Sister brand (same owner) for other activities", value: "Activitatum — activity booking agency for the Costa Brava (activitatum.com): parasailing, buggies, wakeboard, paddle surf, inflatables and escape rooms in Blanes, Lloret de Mar and Fenals. Boats and jet skis are ours and booked here, not there." },
   { id: "payment", label: "Payment methods", value: "Cash and card at the port. The website captures booking requests; payment is handled in person — no online card capture." },
   { id: "cancellation-policy", label: "Cancellation policy (whole fleet)", value: CANCELLATION_POLICY_EN },
   { id: "bad-weather", label: "Bad weather policy", value: "Free rescheduling to any available date, or a voucher for the amount paid valid 12 months, if conditions are unsafe; a full cash refund only with the Weather guarantee contracted" },

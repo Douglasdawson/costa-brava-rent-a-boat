@@ -41,6 +41,7 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
+import ActivitatumTeaser from "@/components/ActivitatumTeaser";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -529,6 +530,7 @@ export default function LocationTossaPage() {
 
       <RelatedLocationsSection currentLocation="tossa" />
 
+      <ActivitatumTeaser topic={"lloret"} surface="city-landing" />
       <RelatedContent currentPage="locationTossa" />
 
       <Footer />

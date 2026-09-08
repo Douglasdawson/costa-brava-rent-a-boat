@@ -63,6 +63,9 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // Scooter rental bridge page (Coast Rent, Lloret) — t.scootersPage is
   // i18n-complete in all 8 locales; SSR meta via buildScootersStaticMeta.
   "/alquiler-motos-lloret": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Activities bridge page (Activitatum, Blanes + Lloret) — t.activitiesPage is
+  // i18n-complete in all 8 locales; SSR meta via buildActivitiesStaticMeta.
+  "/actividades-costa-brava": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   // Captained private excursion landing — t.captainedPage is i18n-complete in
   // all 8 locales; SSR meta via buildCaptainedStaticMeta.
   "/alquiler-barco-con-patron": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],

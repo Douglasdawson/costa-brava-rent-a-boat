@@ -11,6 +11,7 @@ export const ca: Translations = {
     viewComponents: "Veure Components",
     jetski: "Motos aquàtiques",
     scooters: "Scooters",
+    activities: "Activitats",
     tienda: "Botiga",
     bookNow: "Veure Disponibilitat",
     myAccount: "El Meu Compte",
@@ -4688,6 +4689,91 @@ export const ca: Translations = {
     ctaButton: "Escriu-nos per WhatsApp",
     whatsappMessage:
       "Hola, vull informació sobre com treure'm la Llicència de Navegació (titulí) i llogar un vaixell.",
+  },
+  activitiesPage: {
+    seoTitle: "Què fer a Blanes i Lloret de Mar a més del vaixell | Activitats",
+    seoDescription: "Parasailing, buggies, wakeboard, paddle surf, inflables i escape room a Blanes, Lloret de Mar i Fenals, des de 15 EUR. Els reserva Activitatum; els vaixells i les motos d'aigua, nosaltres.",
+    navLabel: "Activitats",
+    hero: {
+      title: "Què fer a Blanes i Lloret a més de navegar",
+      subtitle: "Una sortida en vaixell ocupa mig dia. Blanes i Lloret són a deu minuts, així que la resta del dia hi cap sencera: això és el que tens a mà.",
+    },
+    chips: [
+      "Des de 15 EUR",
+      "Blanes i Lloret",
+      "Reserva instantània",
+    ],
+    intro: "No lloguem res d'això: ho operen empreses de la zona i es reserva a Activitatum, l'agència amb qui treballem. Ho posem aquí perquè és la pregunta que més ens feu quan torneu el vaixell.",
+    teaserTitle: "I la resta del dia?",
+    teaserText: "Parasailing, buggies, wakeboard o paddle surf, a deu minuts del port. No els lloguem nosaltres: els reserva Activitatum, l'agència d'activitats amb qui treballem.",
+    afterBoatTitle: "La tarda després del vaixell",
+    afterBoatIntro: "Tot això surt de la platja de Blanes, a un tomb del port on amarrem. Són sessions de deu a vint minuts: hi caben entre tornar el vaixell i sopar.",
+    landDayTitle: "El dia que no toca mar",
+    landDayIntro: "Plans de mitja jornada a Lloret, per quan el vent s'endú la sortida o simplement no ve de gust repetir.",
+    rainyDayTitle: "I si plou",
+    priceFrom: "des de",
+    activities: {
+      flyfish: {
+        name: "Flyfish",
+        note: "L'inflable que s'enlaira amb l'estrebada de la llanxa. Cinc minuts i no cal experiència.",
+      },
+      bananaBoat: {
+        name: "Banana boat",
+        note: "El clàssic d'arrossegament, de quatre a vuit persones per viatge. En grup és el més barat de la platja.",
+      },
+      paddle: {
+        name: "Paddle surf",
+        note: "Una hora de taula per la badia. Posar-se dret costa uns deu minuts.",
+      },
+      wakeboard: {
+        name: "Wakeboard i esquí aquàtic",
+        note: "Amb monitor a la llanxa. Quinze minuts donen per a diversos intents i per aixecar-se.",
+      },
+      crazyUfo: {
+        name: "Crazy UFO",
+        note: "Un disc inflable a remolc que gira fins que algú cau. Cau tothom.",
+      },
+      parasailing: {
+        name: "Parasailing sobre la badia de Lloret",
+        note: "Dos-cents metres de cap, amb enlairament i aterratge des de la plataforma de la llanxa. Puges i baixes eixut.",
+      },
+      buggy: {
+        name: "Buggy per la costa",
+        note: "Dues hores de pistes per l'interior de Lloret amb parada en mirador. Es condueix amb el carnet B.",
+      },
+      holidayPack: {
+        name: "Pack Holiday",
+        note: "Tres activitats d'aigua la mateixa tarda, més barat que contractar-les soltes.",
+      },
+      escapeRoom: {
+        name: "Escape room a Malgrat de Mar",
+        note: "Noranta minuts a cobert a deu minuts de Blanes. El pla dels dies de tramuntana.",
+      },
+    },
+    operatedByTitle: "Ho reserva Activitatum",
+    operatedByText: "Activitatum és l'agència d'activitats amb qui treballem, del mateix propietari que nosaltres. Centralitza el calendari i el pagament dels operadors de Blanes, Lloret i Fenals. El que va a motor per l'aigua continua sent nostre: els vaixells i les motos d'aigua es reserven en aquesta web.",
+    cta: "Veure activitats a Blanes",
+    ctaSecondary: "Veure activitats a Lloret de Mar",
+    ctaNote: "S'obre Activitatum en una pestanya nova.",
+    faqTitle: "Preguntes freqüents",
+    faq: [
+      {
+        q: "Les activitats surten del mateix lloc que els vaixells?",
+        a: "Les de Blanes sí: la platja és al costat del port on amarrem. Les de Lloret de Mar són a uns deu minuts en cotxe.",
+      },
+      {
+        q: "Puc fer una activitat el mateix dia que llogo el vaixell?",
+        a: "És el més habitual. Una sortida de mitja jornada deixa la tarda lliure, i les activitats d'aigua duren entre deu minuts i una hora.",
+      },
+      {
+        q: "Per què es reserva en una altra web?",
+        a: "Perquè les operen empreses diferents de la nostra. Activitatum reuneix els operadors de la zona en un sol calendari, amb confirmació immediata i el passi al mòbil.",
+      },
+      {
+        q: "També llogueu motos d'aigua allà?",
+        a: "No. Les motos d'aigua i els vaixells són nostres i es reserven aquí, en aquesta mateixa web, sense intermediaris.",
+      },
+    ],
   },
   scootersPage: {
     seoTitle: "Lloguer de motos i scooters a Lloret de Mar | Coast Rent",

@@ -37,6 +37,7 @@ import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from 
 import { BOAT_DATA } from "@shared/boatData";
 import { trackLocationPageView } from "@/utils/analytics";
 import { translateBoatText } from "@shared/boatTextTranslations";
+import ActivitatumTeaser from "@/components/ActivitatumTeaser";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -614,6 +615,7 @@ export default function LocationBlanesPage() {
 
       <RelatedLocationsSection currentLocation="blanes" />
 
+      <ActivitatumTeaser topic={"blanes"} surface="city-landing" />
       <RelatedContent currentPage="locationBlanes" />
 
       <Footer />

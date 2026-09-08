@@ -55,6 +55,10 @@ export const ROUTE_SLUGS = {
   // Scooter rental bridge page (links out to Coast Rent, Lloret de Mar)
   scooters: { es: "alquiler-motos-lloret", en: "scooter-rental-lloret", fr: "location-scooter-lloret", de: "roller-mieten-lloret", nl: "scooter-huren-lloret", it: "noleggio-scooter-lloret", ca: "lloguer-motos-lloret", ru: "arenda-skuterov-lloret" },
 
+  // Activities bridge page (Activitatum, sister agency) — everything on the
+  // coast that is NOT a boat or a jet ski, which we sell ourselves.
+  activities: { es: "actividades-costa-brava", en: "costa-brava-activities", fr: "activites-costa-brava", de: "aktivitaeten-costa-brava", nl: "activiteiten-costa-brava", it: "attivita-costa-brava", ca: "activitats-costa-brava", ru: "aktivnosti-kosta-brava" },
+
   // Merch shop (collaboration with Laura Cabanas)
   tienda: { es: "tienda", en: "shop", fr: "boutique", de: "shop", nl: "shop", it: "negozio", ca: "botiga", ru: "magazin" },
 

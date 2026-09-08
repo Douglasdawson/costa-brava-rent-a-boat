@@ -462,6 +462,15 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href={localizedPath("activities")}
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-0.5 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                  data-testid="footer-activitatum-link"
+                >
+                  {t.activitiesPage?.navLabel ?? t.nav.activities}
+                </a>
+              </li>
+              <li>
+                <a
                   href={localizedPath("tienda")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-0.5 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >
@@ -598,18 +607,6 @@ export default function Footer() {
                 data-testid="footer-legal-notice-link"
               >
                 {t.footer.legalNotice}
-              </a>
-              <span className="text-primary-foreground/30" aria-hidden="true">
-                |
-              </span>
-              <a
-                href="https://activitatum.com/t/alquiler-barcos"
-                target="_blank"
-                rel="noopener"
-                className="hover:text-primary-foreground transition-colors min-h-11 inline-flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
-                data-testid="footer-activitatum-link"
-              >
-                Activitatum · Actividades Costa Brava
               </a>
             </div>
             <p className="text-primary-foreground/50 text-xs text-center text-balance">

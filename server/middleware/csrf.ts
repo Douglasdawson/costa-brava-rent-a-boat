@@ -23,6 +23,10 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
   if (req.path.startsWith("/api/crm/senal-link")) {
     return next();
   }
+  // Same contract for the sister school pushing alumni codes (x-api-key = CRM_API_KEY).
+  if (req.path === "/api/crm/alumni-code") {
+    return next();
+  }
 
   // Skip for the public MCP server — clients are Claude Desktop / Cursor /
   // LangGraph / etc., which do not send Origin headers on JSON-RPC POSTs.

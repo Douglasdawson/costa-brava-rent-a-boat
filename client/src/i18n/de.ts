@@ -679,7 +679,9 @@ export const de: Translations = {
     dismiss: "Jetzt nicht",
   },
   codeValidation: {
-    haveCode: "Haben Sie einen Geschenk-, Rabatt- oder Freundescode?",
+    haveCode: "Haben Sie einen Geschenk-, Rabatt-, Freundes- oder Schülercode?",
+    phoneMismatch: "Dieser Code ist an eine andere Telefonnummer gebunden: verwenden Sie die Nummer Ihrer Anmeldung bei der Schule",
+    notApplicable: "Dieser Code gilt nur für die Boote mit Führerschein",
     enterCode: "Code eingeben",
     validate: "Prüfen",
     validGiftCard: "Gültige Geschenkkarte",

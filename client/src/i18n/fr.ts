@@ -681,7 +681,9 @@ export const fr: Translations = {
     dismiss: "Pas maintenant",
   },
   codeValidation: {
-    haveCode: "Vous avez un code cadeau, de réduction ou ami?",
+    haveCode: "Vous avez un code cadeau, de réduction, ami ou élève ?",
+    phoneMismatch: "Ce code est lié à un autre téléphone : utilisez celui de votre inscription à l'école",
+    notApplicable: "Ce code n'est valable que sur les bateaux avec permis",
     enterCode: "Entrez votre code",
     validate: "Valider",
     validGiftCard: "Carte cadeau valide",

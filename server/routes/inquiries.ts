@@ -9,6 +9,7 @@ import { logger } from "../lib/logger";
 import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
 import { sendMetaConversion, getMetaBrowserIds } from "../lib/metaConversions";
 import { sendInquiryAdminNotification } from "../services/emailService";
+import { validatePromoCode } from "../lib/discountValidation";
 
 const submitLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -69,6 +70,19 @@ export function registerInquiryRoutes(app: Express) {
       }
 
       const inquiry = await storage.createWhatsappInquiry(parsed.data);
+
+      // The inquiry is the real conversion (the hold in /api/quote expires): count the use of
+      // a discount code here. Before this, useDiscountCode() had no caller and single-use codes
+      // were reusable. Best-effort: a counter must never fail the lead.
+      if (parsed.data.couponCode) {
+        const couponCode = parsed.data.couponCode;
+        void validatePromoCode(couponCode, {
+          phone: `${parsed.data.phonePrefix} ${parsed.data.phoneNumber}`,
+          boatId: parsed.data.boatId,
+        })
+          .then(promo => (promo.valid && promo.type === "discount" ? storage.useDiscountCode(couponCode, inquiry.id) : undefined))
+          .catch(err => logger.warn("[Inquiries] discount use count failed", { error: err instanceof Error ? err.message : String(err) }));
+      }
 
       // Safety-net admin notification: the wizard's only ping to the team was
       // the customer-initiated WhatsApp. A visitor who fills the form but never

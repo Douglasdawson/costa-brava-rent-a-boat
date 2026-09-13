@@ -1329,7 +1329,9 @@ export const es: Translations = {
     dismiss: "Ahora no",
   },
   codeValidation: {
-    haveCode: "¿Tienes un código de regalo, descuento o de amigo?",
+    haveCode: "¿Tienes un código de regalo, descuento, de amigo o de alumno?",
+    phoneMismatch: "Este código va ligado a otro teléfono: usa el mismo con el que te registraste en la escuela",
+    notApplicable: "Este código solo vale para los barcos con licencia",
     enterCode: "Introduce tu código",
     validate: "Validar",
     validGiftCard: "Tarjeta regalo válida",

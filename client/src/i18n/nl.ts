@@ -676,7 +676,9 @@ export const nl: Translations = {
     dismiss: "Niet nu",
   },
   codeValidation: {
-    haveCode: "Heb je een cadeaukaart, kortingscode of vriendencode?",
+    haveCode: "Heb je een cadeaukaart, kortingscode, vriendencode of leerlingcode?",
+    phoneMismatch: "Deze code hoort bij een ander telefoonnummer: gebruik het nummer waarmee je je bij de school hebt ingeschreven",
+    notApplicable: "Deze code geldt alleen voor de boten met vaarbewijs",
     enterCode: "Voer je code in",
     validate: "Valideren",
     validGiftCard: "Geldige cadeaukaart",

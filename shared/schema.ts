@@ -1001,6 +1001,11 @@ export const discountCodes = pgTable(
     maxUses: integer("max_uses").notNull().default(1),
     currentUses: integer("current_uses").notNull().default(0),
     customerEmail: text("customer_email"), // null = universal, set = specific customer
+    // Alumni codes issued by Escola Nàutica Blanes (sister school): bound to the student's
+    // phone (last 9 digits compared) and valid only on the licensed boats. Both columns are
+    // re-added on boot by server/migrations/applyDiscountCodesAlumniEnsure.ts.
+    customerPhone: text("customer_phone"),
+    licensedOnly: boolean("licensed_only").notNull().default(false),
     isActive: boolean("is_active").notNull().default(true),
     expiresAt: timestamp("expires_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })

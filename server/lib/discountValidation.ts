@@ -1,6 +1,25 @@
 import { storage } from "../storage";
 import { logger } from "./logger";
 import { isCrmReferralCode } from "./crmDamarStats";
+import { BOAT_DATA, boatDataRequiresLicense } from "../../shared/boatData";
+
+/**
+ * Phone equality for codes bound to a customer: last 9 digits, the Spanish national number,
+ * so "+34 611 500 372", "0034611500372" and "611500372" are the same person. Same rule the
+ * CRM bridge uses (crmDamarStats.ts). Empty on either side never matches.
+ */
+export function phoneMatches(a: string | null | undefined, b: string | null | undefined): boolean {
+  const da = (a ?? "").replace(/\D/g, "").slice(-9);
+  const db = (b ?? "").replace(/\D/g, "").slice(-9);
+  return da.length === 9 && da === db;
+}
+
+export interface PromoValidationContext {
+  /** Phone the customer typed in the wizard; required by phone-bound (alumni) codes. */
+  phone?: string | null;
+  /** Boat being quoted; licensedOnly codes only apply to boats that require a licence. */
+  boatId?: string | null;
+}
 
 /**
  * Discriminator for the *kind* of validation failure. The frontend uses this
@@ -14,6 +33,8 @@ export type PromoValidationErrorCode =
   | "consumed"          // existed but already redeemed (used / maxUses reached)
   | "cancelled"         // gift card explicitly cancelled
   | "inactive"          // discount inactive / gift card payment not completed
+  | "phone_mismatch"    // code bound to another customer's phone (alumni codes)
+  | "not_applicable"    // code valid but not for this boat (licensedOnly on a small boat)
   | "server_error";     // DB/infra error — the code may well be valid; retry
 
 /**
@@ -34,6 +55,8 @@ export interface PromoValidationResult {
   code?: string;
   /** Discount percentage (only for type "discount") */
   discountPercent?: number;
+  /** Alumni codes: only valid on boats with requiresLicense (enforced when boatId is known) */
+  licensedOnly?: boolean;
   /** Remaining balance in EUR (only for type "gift_card") */
   remainingAmount?: number;
 }
@@ -70,7 +93,7 @@ export function calculateDiscountAmount(
  * This is the single source of truth for code validation -- used by
  * the public validate endpoints, the quote endpoint, and payment creation.
  */
-export async function validatePromoCode(code: string): Promise<PromoValidationResult> {
+export async function validatePromoCode(code: string, ctx: PromoValidationContext = {}): Promise<PromoValidationResult> {
   const normalized = code.toUpperCase().trim();
 
   if (!normalized) {
@@ -147,11 +170,22 @@ export async function validatePromoCode(code: string): Promise<PromoValidationRe
       return { valid: false, errorCode: "inactive", error: "Este codigo de descuento no esta activo" };
     }
 
+    // Alumni codes are personal: without the right phone they do not exist for the caller.
+    if (discountCode.customerPhone && !phoneMatches(discountCode.customerPhone, ctx.phone)) {
+      return { valid: false, errorCode: "phone_mismatch", error: "Este codigo va ligado a otro telefono" };
+    }
+
+    const boatMeta = ctx.boatId ? BOAT_DATA[ctx.boatId] : undefined;
+    if (discountCode.licensedOnly && boatMeta && !boatDataRequiresLicense(boatMeta)) {
+      return { valid: false, errorCode: "not_applicable", error: "Este codigo solo vale para los barcos con licencia" };
+    }
+
     return {
       valid: true,
       type: "discount",
       code: normalized,
       discountPercent: discountCode.discountPercent,
+      licensedOnly: discountCode.licensedOnly,
     };
   } catch (err: unknown) {
     dbError = true;

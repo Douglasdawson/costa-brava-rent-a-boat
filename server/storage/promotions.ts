@@ -54,6 +54,47 @@ export async function getDiscountCodeByCode(code: string): Promise<DiscountCode 
   return found || undefined;
 }
 
+/**
+ * Alumni code pushed by Escola Nàutica Blanes: one row per student, keyed by code, updated
+ * every time their percentage changes (10 base + 10 per referred friend, capped at 30 there).
+ * Personal (phone-bound), licensed boats only, no expiry; a de-activation keeps the row.
+ */
+export async function upsertAlumniCode(input: {
+  code: string;
+  phone: string;
+  percent: number;
+  isActive?: boolean;
+}): Promise<DiscountCode> {
+  const code = input.code.toUpperCase().trim();
+  const values = {
+    code,
+    discountPercent: input.percent,
+    customerPhone: input.phone,
+    licensedOnly: true,
+    // ponytail: "unlimited" is a big number, not a nullable column; a student renting 10.000
+    // times is not a case worth a schema change.
+    maxUses: 10000,
+    isActive: input.isActive ?? true,
+    expiresAt: null,
+  };
+  const [row] = await db
+    .insert(discountCodes)
+    .values(values)
+    .onConflictDoUpdate({
+      target: discountCodes.code,
+      set: {
+        discountPercent: values.discountPercent,
+        customerPhone: values.customerPhone,
+        licensedOnly: true,
+        maxUses: values.maxUses,
+        isActive: values.isActive,
+        expiresAt: null,
+      },
+    })
+    .returning();
+  return row;
+}
+
 export async function useDiscountCode(code: string, bookingId: string): Promise<DiscountCode | undefined> {
   const [updated] = await db
     .update(discountCodes)

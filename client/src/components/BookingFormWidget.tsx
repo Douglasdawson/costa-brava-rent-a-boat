@@ -1717,6 +1717,10 @@ Looking forward to confirmation. Thanks!`;
           return cv.cancelled ?? cv.invalidCode;
         case "inactive":
           return cv.inactive ?? cv.invalidCode;
+        case "phone_mismatch":
+          return cv.phoneMismatch ?? cv.invalidCode;
+        case "not_applicable":
+          return cv.notApplicable ?? cv.invalidCode;
         case "server_error":
           // The code may be perfectly valid: saying "invalid" here would be a lie.
           return cv.serverError ?? cv.invalidCode;
@@ -1766,7 +1770,13 @@ Looking forward to confirmation. Thanks!`;
       const discountRes = await fetch("/api/discounts/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code }),
+        // Phone + boat let the server apply the alumni rules (code bound to a phone,
+        // valid only on licensed boats) instead of accepting a code it will later refuse.
+        body: JSON.stringify({
+          code,
+          phone: phoneNumber.trim() ? `${phonePrefix} ${phoneNumber.trim()}` : undefined,
+          boatId: selectedBoat || undefined,
+        }),
       });
 
       if (discountRes.ok) {

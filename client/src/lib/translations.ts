@@ -866,6 +866,8 @@ export interface Translations {
     /** P2.4: discriminated error messages from /api/{gift-cards,discounts}/validate.
      *  Optional — fall back to `invalidCode` when an unknown errorCode arrives. */
     notFound?: string;
+    phoneMismatch?: string;
+    notApplicable?: string;
     expired?: string;
     consumed?: string;
     cancelled?: string;

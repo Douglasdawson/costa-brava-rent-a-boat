@@ -171,6 +171,7 @@ export interface IStorage {
   createDiscountCode(data: InsertDiscountCode): Promise<DiscountCode>;
   getDiscountCodeByCode(code: string): Promise<DiscountCode | undefined>;
   useDiscountCode(code: string, bookingId: string): Promise<DiscountCode | undefined>;
+  upsertAlumniCode(input: { code: string; phone: string; percent: number; isActive?: boolean }): Promise<DiscountCode>;
   getDiscountCodes(): Promise<DiscountCode[]>;
   getDiscountCodesByEmail(email: string): Promise<DiscountCode[]>;
   generateRepeatCustomerCode(email: string, bookingId: string): Promise<DiscountCode>;

@@ -677,7 +677,9 @@ export const ca: Translations = {
     dismiss: "Ara no",
   },
   codeValidation: {
-    haveCode: "Tens un codi de regal, descompte o d'amic?",
+    haveCode: "Tens un codi de regal, descompte, d'amic o d'alumne?",
+    phoneMismatch: "Aquest codi va lligat a un altre telèfon: fes servir el mateix amb què et vas registrar a l'escola",
+    notApplicable: "Aquest codi només val per a les barques amb llicència",
     enterCode: "Introdueix el teu codi",
     validate: "Validar",
     validGiftCard: "Targeta regal vàlida",

@@ -564,6 +564,21 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log(`[migrations] applyAttributionColumnsEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
   }
 
+  // ── STEP 2.8b: alumni-code columns on discount_codes (Escola Nàutica Blanes) ──────
+  try {
+    const { applyDiscountCodesAlumniEnsure } = await import("./migrations/applyDiscountCodesAlumniEnsure");
+    const result = await applyDiscountCodesAlumniEnsure(pool);
+    if (result.applied) {
+      log(`[migrations] discount_codes alumni columns OK in ${result.durationMs}ms`);
+    } else if (result.error === "lock-held-by-other-instance") {
+      log(`[migrations] discount_codes alumni columns skipped (another instance holds lock)`);
+    } else {
+      log(`[migrations] discount_codes alumni columns FAILED: ${result.error}`);
+    }
+  } catch (err) {
+    log(`[migrations] applyDiscountCodesAlumniEnsure loader threw: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   // ── STEP 2.9: Idempotent boats canonical row seed ───────────────────────────────
   // Re-seeds any missing boat row from shared/boatData.ts on every boot.
   // Same Replit Republish pattern as 2.6/2.7/2.8, but for DML rather than DDL:

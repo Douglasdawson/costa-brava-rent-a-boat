@@ -180,6 +180,7 @@ export const storage = {
   createDiscountCode: promotionsRepo.createDiscountCode,
   getDiscountCodeByCode: promotionsRepo.getDiscountCodeByCode,
   useDiscountCode: promotionsRepo.useDiscountCode,
+  upsertAlumniCode: promotionsRepo.upsertAlumniCode,
   getDiscountCodes: promotionsRepo.getDiscountCodes,
   getDiscountCodesByEmail: promotionsRepo.getDiscountCodesByEmail,
   generateRepeatCustomerCode: promotionsRepo.generateRepeatCustomerCode,

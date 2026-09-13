@@ -18,7 +18,37 @@ const validateLimiter = rateLimit({
 // Validation schemas
 const validateCodeSchema = z.object({
   code: z.string().min(1, "El codigo de descuento es requerido").max(30),
+  // Optional context: phone-bound (alumni) codes need the customer's phone, and
+  // licensedOnly codes need the boat to say whether they apply.
+  phone: z.string().max(40).optional(),
+  boatId: z.string().max(64).optional(),
 });
+
+// Escola Nàutica Blanes pushes each student's personal code with its current percentage
+// (10 base + 10 per referred friend, capped at 30 on their side). Same shared secret as the
+// CRM bridge (CRM_API_KEY); the route sits in the CSRF skip-list, no cookie involved.
+const alumniCodeSchema = z.object({
+  codigo: z.string().min(4).max(30).regex(/^[A-Za-z0-9-]+$/, "Codigo invalido"),
+  telefono: z.string().min(6).max(40),
+  percent: z.number().int().min(1).max(30),
+  source: z.string().max(30).optional(),
+  isActive: z.boolean().optional(),
+});
+
+const alumniLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiados intentos. Intenta de nuevo en unos minutos." },
+});
+
+function apiKeyMatches(provided: unknown, configured: string | undefined): boolean {
+  if (!configured || typeof provided !== "string") return false;
+  const a = crypto.createHash("sha256").update(provided).digest();
+  const b = crypto.createHash("sha256").update(configured).digest();
+  return crypto.timingSafeEqual(a, b);
+}
 
 const createDiscountSchema = z.object({
   code: z.string().min(2, "El codigo debe tener al menos 2 caracteres").max(30)
@@ -30,6 +60,31 @@ const createDiscountSchema = z.object({
 });
 
 export function registerDiscountRoutes(app: Express) {
+  // ===== SISTER SCHOOL (server-to-server) =====
+
+  app.post("/api/crm/alumni-code", alumniLimiter, async (req, res) => {
+    if (!apiKeyMatches(req.headers["x-api-key"], process.env.CRM_API_KEY)) {
+      return res.status(401).json({ message: "No autorizado" });
+    }
+    const parsed = alumniCodeSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
+    }
+    try {
+      const row = await storage.upsertAlumniCode({
+        code: parsed.data.codigo,
+        phone: parsed.data.telefono,
+        percent: parsed.data.percent,
+        isActive: parsed.data.isActive,
+      });
+      logger.info("[AlumniCode] upserted", { code: row.code, percent: row.discountPercent, active: row.isActive, source: parsed.data.source });
+      res.json({ ok: true, code: row.code, percent: row.discountPercent, isActive: row.isActive });
+    } catch (error: unknown) {
+      logger.error("[AlumniCode] upsert failed", { error: error instanceof Error ? error.message : String(error) });
+      res.status(500).json({ message: "No se pudo guardar el codigo" });
+    }
+  });
+
   // ===== PUBLIC ENDPOINTS =====
 
   // Validate a discount code (public - customers validate during booking)
@@ -45,7 +100,7 @@ export function registerDiscountRoutes(app: Express) {
         });
       }
 
-      const result = await validatePromoCode(parsed.data.code);
+      const result = await validatePromoCode(parsed.data.code, { phone: parsed.data.phone, boatId: parsed.data.boatId });
 
       // Only return discount and friend-code results here (not gift cards, which
       // have their own endpoint). A friend code carries no discountPercent.

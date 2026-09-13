@@ -102,3 +102,75 @@ describe("calculateDiscountAmount", () => {
     expect(calculateDiscountAmount(promo, 100, 120)).toBe(0);
   });
 });
+
+// ── Alumni codes (Escola Nàutica Blanes): phone-bound, licensed boats only ──────────────
+import { phoneMatches } from "./discountValidation";
+
+describe("phoneMatches", () => {
+  it("compares the last 9 digits regardless of prefix and spacing", () => {
+    expect(phoneMatches("+34 611 500 372", "611500372")).toBe(true);
+    expect(phoneMatches("0034611500372", "+34 611-500-372")).toBe(true);
+  });
+  it("never matches empty or short numbers", () => {
+    expect(phoneMatches("", "611500372")).toBe(false);
+    expect(phoneMatches("12345", "12345")).toBe(false);
+    expect(phoneMatches(null, undefined)).toBe(false);
+  });
+  it("rejects a different number", () => {
+    expect(phoneMatches("+34 611 500 372", "+34 611 500 373")).toBe(false);
+  });
+});
+
+vi.mock("../storage", () => ({
+  storage: {
+    getGiftCardByCode: vi.fn(async () => undefined),
+    getDiscountCodeByCode: vi.fn(async (code: string) =>
+      code === "ALUMNO1"
+        ? {
+            code: "ALUMNO1",
+            discountPercent: 20,
+            maxUses: 10000,
+            currentUses: 3,
+            customerEmail: null,
+            customerPhone: "+34 611 500 372",
+            licensedOnly: true,
+            isActive: true,
+            expiresAt: null,
+          }
+        : undefined,
+    ),
+  },
+}));
+vi.mock("./crmDamarStats", () => ({ isCrmReferralCode: vi.fn(async () => false) }));
+
+import { validatePromoCode } from "./discountValidation";
+
+describe("validatePromoCode with an alumni code", () => {
+  beforeEach(() => vi.clearAllMocks());
+
+  it("is refused without the student's phone", async () => {
+    const r = await validatePromoCode("alumno1");
+    expect(r.valid).toBe(false);
+    expect(r.errorCode).toBe("phone_mismatch");
+  });
+
+  it("is refused with another phone", async () => {
+    const r = await validatePromoCode("ALUMNO1", { phone: "+34 600 000 000" });
+    expect(r.errorCode).toBe("phone_mismatch");
+  });
+
+  it("is valid with the right phone and carries licensedOnly", async () => {
+    const r = await validatePromoCode("ALUMNO1", { phone: "611 500 372" });
+    expect(r.valid).toBe(true);
+    expect(r.discountPercent).toBe(20);
+    expect(r.licensedOnly).toBe(true);
+  });
+
+  it("does not apply to a small (licence-free) boat but does to a licensed one", async () => {
+    const small = await validatePromoCode("ALUMNO1", { phone: "611500372", boatId: "solar-450" });
+    expect(small.valid).toBe(false);
+    expect(small.errorCode).toBe("not_applicable");
+    const licensed = await validatePromoCode("ALUMNO1", { phone: "611500372", boatId: "trimarchi-57s" });
+    expect(licensed.valid).toBe(true);
+  });
+});

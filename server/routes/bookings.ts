@@ -26,6 +26,8 @@ const quoteSchema = z.object({
   numberOfPeople: z.number().int().min(1, "Minimo 1 persona").max(20, "Maximo 20 personas"),
   extras: z.array(z.string().max(64)).max(10).optional(),
   discountCode: z.string().max(30).optional(),
+  // Optional: lets phone-bound (alumni) codes validate against the customer's phone.
+  customerPhone: z.string().max(40).optional(),
 });
 
 const paymentStatusSchema = z.object({
@@ -446,7 +448,7 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      const { boatId, startTime, endTime, numberOfPeople, extras, discountCode } = parsed.data;
+      const { boatId, startTime, endTime, numberOfPeople, extras, discountCode, customerPhone } = parsed.data;
 
       // Jet ski products are resold partner items with fixed slot pricing — they
       // are not priced by the per-hour engine and are requested via the
@@ -590,7 +592,7 @@ export function registerBookingRoutes(app: Express) {
       } | null = null;
 
       if (discountCode) {
-        const promo = await validatePromoCode(discountCode);
+        const promo = await validatePromoCode(discountCode, { phone: customerPhone, boatId });
         if (!promo.valid) {
           // A DB failure during validation must not masquerade as "invalid code":
           // return a retryable 503 so a valid code isn't rejected during a cold start.

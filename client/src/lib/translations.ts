@@ -83,6 +83,8 @@ export interface Translations {
   // Navigation
   nav: {
     home: string;
+    licensedBoats?: string;
+    captained?: string;
     fleet: string;
     booking: string;
     contact: string;
@@ -175,6 +177,8 @@ export interface Translations {
     bestForSundeck?: string;
     bestForFamilies?: string;
     bestForPremium?: string;
+    bestForPremiumPostEra?: string;
+    imageAltNoLicensePostEra?: string;
     imageAltWithLicense: string;
     imageAltNoLicense: string;
   };
@@ -229,6 +233,7 @@ export interface Translations {
     exploreMore?: string;
     exploreLinks?: {
       licenseFree: string;
+      licenseFreePostEra?: string;
       licensed: string;
       navigationLicense: string;
       pricing: string;
@@ -240,6 +245,7 @@ export interface Translations {
   // Never Sailed Section
   neverSailed: {
     title: string;
+    ctaPostEra?: string;
     subtitle: string;
     step1Title: string;
     step1Desc: string;
@@ -307,6 +313,7 @@ export interface Translations {
   footer: {
     company: string;
     description: string;
+    descriptionPostEra?: string;
     quickLinks: string;
     contact: string;
     followUs: string;
@@ -1698,6 +1705,15 @@ export interface Translations {
   // Category License-Free Page
   categoryLicenseFree?: {
     heroTitle: string;
+    // Post-era copy (RD 1188/2025), picked with eraCopy() from 2026-10-01.
+    postEraHeroTitle?: string;
+    postEraHeroDescription?: string;
+    postEraBadge?: string;
+    postEraCtaButton?: string;
+    postEraNoticeTitle?: string;
+    postEraNoticeBody?: string;
+    postEraNoticeLink?: string;
+    postEraFaqCarnetAnswer?: string;
     heroDescription: string;
     badgeNoLicense: string;
     badgePower: string;

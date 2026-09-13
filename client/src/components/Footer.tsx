@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { eraCopy } from "@shared/constants";
 import {
   Phone,
   Mail,
@@ -92,7 +93,7 @@ export default function Footer() {
               <LogoCostaBravaFooter className="h-10" />
             </a>
             <p className="text-sm text-primary-foreground/60 mb-3 leading-relaxed">
-              {t.footer.description}
+              {eraCopy(t.footer.description, t.footer.descriptionPostEra ?? t.footer.description)}
             </p>
             <div
               className="inline-flex items-center gap-1.5 text-xs text-primary-foreground/90 bg-primary-foreground/10 border border-primary-foreground/20 rounded-full px-3 py-1 mb-4"

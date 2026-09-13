@@ -20,6 +20,8 @@ import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { ACTIVITATUM_PICKS, activitatumPicksBySlot, activitatumTopicUrl, activitatumUrl } from "../shared/activitatumLinks";
 import { ESCOLA_NAUTICA_DOMAIN, escolaNauticaHandoff } from "../shared/escolaNauticaLinks";
+import { eraCopy } from "../shared/constants";
+import { postEraMeta } from "../shared/postEraMeta";
 import { SHOP_PRODUCTS } from "../shared/shopData";
 import { NAUTICAL_GLOSSARY_ES } from "../shared/nauticalGlossary";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
@@ -2384,8 +2386,11 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
   // 1. Static page lookup
   const pageMeta = STATIC_META[metaKey];
   if (pageMeta) {
-    const meta = pageMeta[lang] || pageMeta["es"];
-    if (!meta) return null;
+    const baseMeta = pageMeta[lang] || pageMeta["es"];
+    if (!baseMeta) return null;
+    // RD 1188/2025: from 2026-10-01 the titles that promised "sin licencia" tell the truth.
+    // Same map as the client's seo-config, so SSR and hydration never diverge.
+    const meta = postEraMeta(metaKey, lang, baseMeta);
     const availableLanguages = Object.keys(pageMeta) as LangCode[];
 
     // Helper: build a BreadcrumbList schema for any page (with @id for entity linking)
@@ -2900,7 +2905,16 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         "@type": "SpeakableSpecification",
         cssSelector: ["h1", "h2", "[data-speakable]", ".faq-answer", "[data-faq-answer]"],
       };
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [{ ...faqPage, speakable }, breadcrumb] }, availableLanguages };
+      // Production does not prerender: without this body a JS-less crawler gets the schema
+      // and an empty <div id="root">. Same items as the schema, as plain headings.
+      const faqBodyFallback = [
+        `<h1>${esc(fp?.schemaName ?? "FAQ")}</h1>`,
+        `<p>${esc(fp?.schemaDescription ?? "")}</p>`,
+        ...Object.values(mergedItems).map(
+          (item) => `<h2>${esc(item.question)}</h2>\n<p>${esc(substituteFaqVars(item.answer, faqVars))}</p>`,
+        ),
+      ].join("\n");
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [{ ...faqPage, speakable }, breadcrumb] }, availableLanguages, bodyFallback: faqBodyFallback };
     }
 
     // /testimonios - LocalBusiness with AggregateRating + individual Reviews
@@ -3487,10 +3501,18 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       const itemList = {
         "@type": "ItemList",
         "@id": `${BASE_URL}/barcos-sin-licencia#itemlist`,
-        name: isEn ? "License-Free Boats in Blanes" : "Barcos Sin Licencia en Blanes",
-        description: isEn
-          ? "5 license-free boats available for rent in Blanes, Costa Brava. No qualification needed, up to 15 HP."
-          : "5 barcos sin licencia disponibles para alquilar en Blanes, Costa Brava. No se necesita titulacion, hasta 15 CV.",
+        name: eraCopy(
+          isEn ? "License-Free Boats in Blanes" : "Barcos Sin Licencia en Blanes",
+          isEn ? "Small boats in Blanes (titulín required from October 2026)" : "Barcos pequeños en Blanes (con titulín desde octubre de 2026)",
+        ),
+        description: eraCopy(
+          isEn
+            ? "5 license-free boats available for rent in Blanes, Costa Brava. No qualification needed, up to 15 HP."
+            : "5 barcos sin licencia disponibles para alquilar en Blanes, Costa Brava. No se necesita titulacion, hasta 15 CV.",
+          isEn
+            ? `${noLicenseBoats.length} small boats (up to 15 HP) for rent in Blanes, Costa Brava. From 1 October 2026 the renter needs the Licencia de Navegación (1-day course, no exam) or sails with a skipper.`
+            : `${noLicenseBoats.length} barcos pequeños (hasta 15 CV) para alquilar en Blanes, Costa Brava. Desde el 1 de octubre de 2026 el arrendatario necesita la Licencia de Navegación (curso de 1 día, sin examen) o sale con patrón.`,
+        ),
         numberOfItems: noLicenseBoats.length,
         itemListElement: noLicenseBoats.map((boat, i) => ({
           "@type": "ListItem",
@@ -3500,9 +3522,14 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
           item: {
             "@type": "Product",
             name: boat.name,
-            description: isEn
-              ? `License-free boat for up to ${boat.capacity} people in Blanes`
-              : `Barco sin licencia para hasta ${boat.capacity} personas en Blanes`,
+            description: eraCopy(
+              isEn
+                ? `License-free boat for up to ${boat.capacity} people in Blanes`
+                : `Barco sin licencia para hasta ${boat.capacity} personas en Blanes`,
+              isEn
+                ? `Small boat (up to 15 HP) for up to ${boat.capacity} people in Blanes, titulín required`
+                : `Barco pequeño (hasta 15 CV) para hasta ${boat.capacity} personas en Blanes, con titulín`,
+            ),
             offers: {
               "@type": "Offer",
               priceCurrency: "EUR",
@@ -3522,7 +3549,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       const cf = (I18N_BY_LANG[lang] ?? i18nEs).categoryLicenseFree!;
       const clfFaqPairs: Array<[string, string]> = [
         [cf.faqWhichBoatQuestion, cf.faqWhichBoatAnswer],
-        [cf.faqCarnetQuestion, cf.faqCarnetAnswer],
+        [cf.faqCarnetQuestion, eraCopy(cf.faqCarnetAnswer, cf.postEraFaqCarnetAnswer ?? cf.faqCarnetAnswer)],
         [cf.faqPriceQuestion, cf.faqPriceAnswer],
         [cf.faqDistanceQuestion, cf.faqDistanceAnswer],
         [cf.faqExperienceQuestion, cf.faqExperienceAnswer],
@@ -3541,10 +3568,18 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "No License Boats" : "Barcos Sin Licencia", url: `${BASE_URL}/barcos-sin-licencia` }]);
       const service = buildLandingService(
-        isEn ? "License-Free Boat Rental in Blanes" : "Alquiler de Barcos Sin Licencia en Blanes",
-        isEn
-          ? "5 license-free boats (up to 15 HP) for rent in Blanes, Costa Brava. No qualification needed, anyone 18+ can drive. 15-minute safety briefing included. Fuel, insurance and safety equipment included in price."
-          : "5 barcos sin licencia (hasta 15 CV) para alquilar en Blanes, Costa Brava. No se necesita titulación, cualquier persona mayor de 18 años puede conducir. Formación de seguridad de 15 minutos incluida. Gasolina, seguro y equipo de seguridad incluidos en el precio.",
+        eraCopy(
+          isEn ? "License-Free Boat Rental in Blanes" : "Alquiler de Barcos Sin Licencia en Blanes",
+          isEn ? "Small Boat Rental in Blanes (titulín)" : "Alquiler de Barcos Pequeños en Blanes (con titulín)",
+        ),
+        eraCopy(
+          isEn
+            ? "5 license-free boats (up to 15 HP) for rent in Blanes, Costa Brava. No qualification needed, anyone 18+ can drive. 15-minute safety briefing included. Fuel, insurance and safety equipment included in price."
+            : "5 barcos sin licencia (hasta 15 CV) para alquilar en Blanes, Costa Brava. No se necesita titulación, cualquier persona mayor de 18 años puede conducir. Formación de seguridad de 15 minutos incluida. Gasolina, seguro y equipo de seguridad incluidos en el precio.",
+          isEn
+            ? `${noLicenseBoats.length} small boats (up to 15 HP) for rent in Blanes, Costa Brava. From 1 October 2026 (RD 1188/2025) the renter needs the Licencia de Navegación, a 1-day course with no exam, or sails with a skipper. 15-minute safety briefing included. Fuel, insurance and safety equipment included in price.`
+            : `${noLicenseBoats.length} barcos pequeños (hasta 15 CV) para alquilar en Blanes, Costa Brava. Desde el 1 de octubre de 2026 (RD 1188/2025) el arrendatario necesita la Licencia de Navegación, un curso de un día sin examen, o sale con patrón. Formación de seguridad de 15 minutos incluida. Gasolina, seguro y equipo de seguridad incluidos en el precio.`,
+        ),
         { low: getFleetStats().priceFloor, high: 370 },
       );
       // Native-language SSR body so non-ES locales carry unique content (not a
@@ -3552,17 +3587,26 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       // the CI-validated category i18n bundle. See translatedStaticPaths.ts.
       // Non-null assertion: CI (validate-translations) guarantees the key in all locales.
       // `cf` is declared above (for faqNoLicense) and reused here.
-      const noLicenseBodyFallback = buildLocationBodyFallback(
-        cf.heroTitle,
-        cf.heroDescription,
+      const noLicenseBody = buildLocationBodyFallback(
+        eraCopy(cf.heroTitle, cf.postEraHeroTitle ?? cf.heroTitle),
+        eraCopy(cf.heroDescription, cf.postEraHeroDescription ?? cf.heroDescription),
         [
           `${cf.freeNavigation} — ${cf.freeNavigationDesc}`,
           `${cf.easyToHandle} — ${cf.easyToHandleDesc}`,
           `${cf.safeLimits} — ${cf.safeLimitsDesc}`,
           `${cf.completeEquipment} — ${cf.completeEquipmentDesc}`,
         ],
-        cf.ctaButton,
+        eraCopy(cf.ctaButton, cf.postEraCtaButton ?? cf.ctaButton),
       );
+      // Post-era: the crawler body also carries what changed and where to get the titulín
+      // (the pillar in every language, the sister school only where it speaks the language).
+      const schoolSmall = eraCopy(null, escolaNauticaHandoff(lang, "category-small"));
+      const postEraNotice = eraCopy("", `
+<h2>${esc(cf.postEraNoticeTitle ?? "")}</h2>
+<p>${esc(cf.postEraNoticeBody ?? "")}</p>
+<p><a href="${esc(getLocalizedPath("navigationLicense", lang))}">${esc(cf.postEraNoticeLink ?? "")}</a></p>
+${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoolSmall.cta)}</a></p>` : ""}`);
+      const noLicenseBodyFallback = `${noLicenseBody}\n${postEraNotice}`.trim();
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqNoLicense, breadcrumb] }, availableLanguages, bodyFallback: noLicenseBodyFallback };
     }
 
@@ -4234,10 +4278,16 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
         mainEntity: [
           {
             "@type": "Question",
-            name: isEn ? "How much does it cost to rent a license-free boat in Blanes?" : "¿Cuánto cuesta alquilar un barco sin licencia en Blanes?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
+            name: eraCopy(
+              isEn ? "How much does it cost to rent a license-free boat in Blanes?" : "¿Cuánto cuesta alquilar un barco sin licencia en Blanes?",
+              isEn ? "How much does it cost to rent a small boat (titulín) in Blanes?" : "¿Cuánto cuesta alquilar un barco pequeño (con titulín) en Blanes?",
+            ),
+            acceptedAnswer: { "@type": "Answer", text: (isEn
               ? "License-free boats in Blanes start from 70 EUR/hour in low season (April-June, September-October). Mid season (July) from 95 EUR/hour and high season (August) from 110 EUR/hour. Price includes fuel, insurance and safety equipment."
-              : "Los barcos sin licencia en Blanes cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 95 EUR/hora y en temporada alta (agosto) desde 110 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad." },
+              : "Los barcos sin licencia en Blanes cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 95 EUR/hora y en temporada alta (agosto) desde 110 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad.")
+              + eraCopy("", isEn
+                ? " From 1 October 2026 (RD 1188/2025) the renter needs the Licencia de Navegación (titulín, a 1-day course) for these boats too."
+                : " Desde el 1 de octubre de 2026 (RD 1188/2025) el arrendatario necesita la Licencia de Navegación (titulín, curso de 1 día) también en estos barcos.") },
           },
           {
             "@type": "Question",
@@ -4646,7 +4696,18 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
           ru: ["с лицензией", "без лицензии"],
         };
         const [withLic, withoutLic] = licenseLabels[lang] || licenseLabels.es;
-        const licenseText = boat.requiresLicense ? withLic : withoutLic;
+        // RD 1188/2025: from 2026-10-01 the small boats are rented with the titulín, not "sin licencia".
+        const withoutLicPostEra: Record<string, string> = {
+          es: "hasta 15 CV, con titulín",
+          en: "up to 15 HP, titulín required",
+          ca: "fins a 15 CV, amb titulí",
+          fr: "15 CV max, avec titulín",
+          de: "bis 15 PS, mit Titulín",
+          nl: "tot 15 pk, met titulín",
+          it: "fino a 15 CV, con titulín",
+          ru: "до 15 л.с., с titulín",
+        };
+        const licenseText = boat.requiresLicense ? withLic : eraCopy(withoutLic, withoutLicPostEra[lang] ?? withoutLicPostEra.es);
         const fromPrice = (() => {
           // Filter out 0 placeholders — some boat.pricing rows have 0 for
           // tariff slots not yet defined (e.g. MEDIA.prices['6h']=0). Without

@@ -3,6 +3,8 @@ import type { Translations } from "../lib/translations";
 export const nl: Translations = {
   nav: {
     home: "Home",
+    licensedBoats: "Boten met vaarbewijs",
+    captained: "Met schipper",
     fleet: "Vloot",
     booking: "Boeking",
     contact: "Contact",
@@ -96,6 +98,9 @@ export const nl: Translations = {
     bestForSundeck: "Beste zonnedek",
     bestForFamilies: "Favoriet gezinnen",
     bestForPremium: "Premium zonder vaarbewijs",
+    bestForPremiumPostEra: "Premium tot 15 pk",
+    imageAltNoLicensePostEra:
+      "Boot {name} tot 15 pk (met titulín) huren in Blanes, Costa Brava: {capacity} personen, vanaf {price}€",
     imageAltNoLicense:
       "Boot huren {name} zonder vaarbewijs in Blanes, Costa Brava, {capacity} personen, vanaf {price}€",
     imageAltWithLicense:
@@ -168,6 +173,7 @@ export const nl: Translations = {
     exploreMore: "Ontdek onze diensten",
     exploreLinks: {
       licenseFree: "Boten zonder vaarbewijs",
+      licenseFreePostEra: "Kleine boten tot 15 pk in Blanes (met titulín)",
       licensed: "Boten met vaarbewijs",
       navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Prijzen en tarieven",
@@ -185,6 +191,7 @@ export const nl: Translations = {
     step3Title: "Geniet van de baaien",
     step3Desc: "Vaar vrij door de beste baaien van de Costa Brava.",
     cta: "Boten zonder vaarbewijs bekijken",
+    ctaPostEra: "Bekijk de kleine boten (met titulín)",
   },
   contact: {
     title: "Vragen?",
@@ -243,6 +250,7 @@ export const nl: Translations = {
   footer: {
     company: "Costa Brava Rent a Boat - Blanes",
     description: "Bootverhuur met en zonder vaarbewijs in Blanes, Costa Brava.",
+    descriptionPostEra: "Bootverhuur met vaarbewijs in Blanes, Costa Brava. Vaarbewijs in 1 dag of varen met schipper.",
     quickLinks: "Snelle Links",
     contact: "Contact",
     followUs: "Volg Ons",
@@ -1043,6 +1051,15 @@ export const nl: Translations = {
     synonymsTitle: "Motorboot, sloep of vaartuig? Hetzelfde",
     synonymsBody: "Hoe je het ook zoekt: motorboot huren aan de Costa Brava, een vaartuig huren zonder vaarbewijs of een sloep huren in Blanes. Onze 4 boten zonder vaarbewijs zijn recreatieve motorboten tot 5 meter en 15 pk die elke volwassene zonder vaarbewijs mag besturen. Dezelfde boot en dezelfde prijs vanaf 85€/u inclusief brandstof, hoe je het ook noemt.",
     heroTitle: "Boten Zonder Vaarbewijs in Blanes",
+    // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
+    postEraHeroTitle: "Boten zonder vaarbewijs in Blanes: vanaf 1 oktober 2026 te huur met de titulín",
+    postEraHeroDescription: "Dezelfde 4 kleine boten in de haven van Blanes (tot 15 pk, 5 plaatsen, brandstof inbegrepen) blijven te huur. Wat verandert is de wet: Koninklijk Besluit 1188/2025 eist vanaf 1 oktober 2026 dat de huurder een vaarbewijs heeft. De Licencia de Navegación, de titulín, volstaat: een cursus van één dag, 2 uur theorie en 4 uur praktijk, zonder examen en zonder vervaldatum. Geen vaarbewijs? Dan vaar je met een schipper.",
+    postEraBadge: "Met titulín (cursus van 1 dag)",
+    postEraCtaButton: "Boot reserveren met titulín",
+    postEraNoticeTitle: "Wat verandert op 1 oktober 2026",
+    postEraNoticeBody: "Tot nu toe werden deze boten zonder enig vaarbewijs verhuurd. Vanaf 1 oktober 2026 eist de wet dat de huurder minstens de Licencia de Navegación heeft. Daarmee bestuur je elke boot tot 6 meter binnen 2 zeemijl van de kust: onze hele vloot. Zonder vaarbewijs is het alternatief de privétocht met schipper.",
+    postEraNoticeLink: "Zo haal je de titulín in één dag",
+    postEraFaqCarnetAnswer: "Ja. Vanaf 1 oktober 2026 (Koninklijk Besluit 1188/2025) is voor het huren van elke motorboot een vaarbewijs nodig, ook voor boten tot 15 pk. Het minimum is de Licencia de Navegación (titulín): een cursus van één dag, 2 uur theorie en 4 uur praktijk, zonder examen en zonder vervaldatum, uitgegeven door erkende vaarscholen. Daarmee vaar je onze hele vloot. Zonder vaarbewijs kun je mee op de privétocht met schipper.",
     heroDescription:
       "4 boten zonder vaarbewijs vanaf 85€/u in de Haven van Blanes, brandstof inbegrepen. Tot 5 personen, zonder vaarbewijs of certificaat, zonder eerdere ervaring. 15 minuten veiligheidsinstructie en u vaart naar de baaien van de Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina en Sa Boadella tot het strand van Fenals (Lloret de Mar).",
     badgeNoLicense: "Geen Vaarbewijs Nodig",

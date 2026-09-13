@@ -6,6 +6,7 @@ import { eq, sql } from "drizzle-orm";
 import { logger } from "../lib/logger";
 import { getLocalizedPath, isValidLang, resolveSlug } from "../../shared/i18n-routes";
 import type { PageKey } from "../../shared/i18n-routes";
+import { SUPPORTED_LANGUAGES } from "../../shared/seoConstants";
 
 // In-memory cache for redirects (refreshed every 1 minute)
 let redirectCache: Map<string, { toPath: string; statusCode: number }> = new Map();
@@ -57,6 +58,19 @@ export function validateRedirect(fromPath: string, toPath: string): { valid: boo
   }
   return { valid: true };
 }
+
+// Three blog posts covered the same Blanes → Tossa route (2026-03-18, 2026-03-30, 2026-07-26).
+// The two older ones are unpublished in the seed and 301 to the one that ranks, in every
+// locale, so the query "alquiler barco tossa de mar" consolidates on a single URL.
+const TOSSA_DUPLICATE_REDIRECTS: Record<string, string> = (() => {
+  const target = "alquiler-barco-tossa-de-mar-desde-blanes";
+  const out: Record<string, string> = {};
+  for (const dup of ["excursion-barco-tossa-de-mar-desde-blanes", "barco-tossa-de-mar-desde-blanes"]) {
+    out[`/blog/${dup}`] = `/es/blog/${target}`;
+    for (const lang of SUPPORTED_LANGUAGES) out[`/${lang}/blog/${dup}`] = `/${lang}/blog/${target}`;
+  }
+  return out;
+})();
 
 // Express middleware for dynamic redirects
 export function redirectMiddleware() {
@@ -134,6 +148,7 @@ export function redirectMiddleware() {
       // (HTTP 200 + React Redirect). Googlebot indexaba el HTML antes del
       // JS redirect. 301 server-side la saca del índice y consolida en /es/.
       "/barcos": "/es/barcos-sin-licencia",
+      ...TOSSA_DUPLICATE_REDIRECTS,
     };
     const hardcodedTarget = hardcoded[req.path];
     if (hardcodedTarget) {

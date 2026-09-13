@@ -1023,7 +1023,7 @@ export function registerRobotsRoutes(app: Express): void {
       // strict graph terms).
       const organizationNode = {
         "@type": "Organization",
-        "@id": `${BASE_URL}/#org`,
+        "@id": `${BASE_URL}/#organization`,
         name: BUSINESS_LEGAL_NAME,
         legalName: BUSINESS_LEGAL_NAME,
         vatID: BUSINESS_VAT_ID,
@@ -1032,7 +1032,22 @@ export function registerRobotsRoutes(app: Express): void {
         url: BASE_URL,
         ...(wikidataUri ? { mainEntityOfPage: wikidataUri } : {}),
         brand: { "@id": `${BASE_URL}/#brand` },
-        subOrganization: { "@id": `${BASE_URL}/#business` },
+        subOrganization: [{ "@id": `${BASE_URL}/#business` }, { "@id": "https://escolanauticablanes.com/#organization" }],
+      };
+
+      // Sister nautical school (same company). Declared as its own node so an agent asked
+      // "who teaches the titulín in Blanes" resolves the entity instead of a bare sameAs URL.
+      // No offers and no price on purpose: it cannot sell until the AGR163 authorisation.
+      const schoolNode = {
+        "@type": "EducationalOrganization",
+        "@id": "https://escolanauticablanes.com/#organization",
+        name: "Escola Nàutica Blanes",
+        url: "https://escolanauticablanes.com",
+        parentOrganization: { "@id": `${BASE_URL}/#organization` },
+        description: lang === "es"
+          ? "Escuela náutica de DAMAR COSTA BRAVA S.L., la misma empresa que Costa Brava Rent a Boat, en el Puerto de Blanes. Imparte la Licencia de Navegación (titulín): curso de 1 día, 2 h de teoría y 4 h de prácticas, sin examen. Apertura prevista en abril de 2027; hoy solo lista de espera, sin precio ni fechas."
+          : "Nautical school of DAMAR COSTA BRAVA S.L., the same company as Costa Brava Rent a Boat, in Blanes harbour. Teaches the Licencia de Navegación (titulín): a 1-day course, 2 h theory and 4 h practice, no exam. Planned opening April 2027; today a waiting list only, no price and no dates.",
+        areaServed: { "@id": `${BASE_URL}/#place` },
       };
 
       const localBusinessNode = {
@@ -1046,7 +1061,7 @@ export function registerRobotsRoutes(app: Express): void {
           BUSINESS_LEGAL_NAME,
           "Costa Brava Rent a Boat Blanes",
         ],
-        parentOrganization: { "@id": `${BASE_URL}/#org` },
+        parentOrganization: { "@id": `${BASE_URL}/#organization` },
         brand: { "@id": `${BASE_URL}/#brand` },
         location: { "@id": `${BASE_URL}/#place` },
         vatID: BUSINESS_VAT_ID,
@@ -1125,6 +1140,7 @@ export function registerRobotsRoutes(app: Express): void {
         "@context": "https://schema.org",
         "@graph": [
           organizationNode,
+          schoolNode,
           brandNode,
           placeNode,
           localBusinessNode,

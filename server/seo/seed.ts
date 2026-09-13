@@ -76,6 +76,18 @@ const TRACKED_KEYWORDS: Array<{
   { keyword: "excursiones en barco blanes", language: "es", cluster: "con-patron", intent: "transactional" },
   { keyword: "paseo en barco blanes", language: "es", cluster: "con-patron", intent: "transactional" },
   { keyword: "excursion privada en barco costa brava", language: "es", cluster: "con-patron", intent: "transactional" },
+  // Titulín cluster (RD 1188/2025, 2026-09-13): from October every renter needs the Licencia de
+  // Navegación, so the course intent becomes the top of the rental funnel. These measure the
+  // pillar /es/licencia-navegacion-titulin and the post-era category page.
+  { keyword: "titulin", language: "es", cluster: "titulin", intent: "informational" },
+  { keyword: "licencia de navegacion blanes", language: "es", cluster: "titulin", intent: "transactional" },
+  { keyword: "licencia de navegacion costa brava", language: "es", cluster: "titulin", intent: "transactional" },
+  { keyword: "curso licencia de navegacion girona", language: "es", cluster: "titulin", intent: "transactional" },
+  { keyword: "escuela nautica blanes", language: "es", cluster: "titulin", intent: "transactional" },
+  { keyword: "escola nautica blanes", language: "ca", cluster: "titulin", intent: "transactional" },
+  { keyword: "alquiler barco con titulin", language: "es", cluster: "titulin", intent: "transactional" },
+  { keyword: "alquiler lancha blanes titulin", language: "es", cluster: "titulin", intent: "transactional" },
+  { keyword: "bootsführerschein spanien", language: "de", cluster: "titulin", intent: "informational" },
 ];
 
 export async function seedTrackedKeywords(): Promise<void> {

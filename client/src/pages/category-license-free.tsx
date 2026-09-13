@@ -37,6 +37,8 @@ import {
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { BOAT_DATA, type BoatData } from "@shared/boatData";
+import { eraCopy } from "@shared/constants";
+import { escolaNauticaHandoff } from "@shared/escolaNauticaLinks";
 import type { Boat } from "@shared/schema";
 import { minPriceAcrossBoats } from "@shared/pricing";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
@@ -123,6 +125,14 @@ export default function CategoryLicenseFreePage() {
   ];
 
   const clf = t.categoryLicenseFree!;
+  // RD 1188/2025: from 2026-10-01 the page keeps its URL and keyword but tells the truth:
+  // the same small boats, now rented with the titulín (or with a skipper).
+  const postEra = eraCopy(false, true);
+  const heroTitle = eraCopy(clf.heroTitle, clf.postEraHeroTitle ?? clf.heroTitle);
+  const heroDescription = eraCopy(clf.heroDescription, clf.postEraHeroDescription ?? clf.heroDescription);
+  const badgeLicense = eraCopy(clf.badgeNoLicense, clf.postEraBadge ?? clf.badgeNoLicense);
+  const ctaButton = eraCopy(clf.ctaButton, clf.postEraCtaButton ?? clf.ctaButton);
+  const schoolSmall = postEra ? escolaNauticaHandoff(language, "category-small") : null;
 
   // FAQ items for structured data and display
   // GSC 2026-05-18: added 3 long-tail FAQs (carnet, experiencia, group size)
@@ -135,7 +145,7 @@ export default function CategoryLicenseFreePage() {
     },
     {
       question: clf.faqCarnetQuestion,
-      answer: clf.faqCarnetAnswer,
+      answer: eraCopy(clf.faqCarnetAnswer, clf.postEraFaqCarnetAnswer ?? clf.faqCarnetAnswer),
     },
     {
       question: clf.faqPriceQuestion,
@@ -343,16 +353,16 @@ export default function CategoryLicenseFreePage() {
             <div className="flex items-center justify-center mb-6">
               <Zap className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                {clf.heroTitle}
+                {heroTitle}
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed">
-              {clf.heroDescription}
+              {heroDescription}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <CheckCircle className="w-4 h-4 mr-2" />
-                {clf.badgeNoLicense}
+                {badgeLicense}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Gauge className="w-4 h-4 mr-2" />
@@ -366,6 +376,35 @@ export default function CategoryLicenseFreePage() {
           </div>
         </div>
       </div>
+
+      {postEra && (
+        <section className="bg-muted/60 border-y border-border py-8" data-testid="post-era-notice">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xl sm:text-2xl font-heading font-bold mb-2">{clf.postEraNoticeTitle}</h2>
+            <p className="text-muted-foreground mb-4 max-w-3xl leading-relaxed">{clf.postEraNoticeBody}</p>
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              <a
+                href={localizedPath("navigationLicense")}
+                className="text-primary font-semibold hover:underline pointer-coarse:py-3"
+                data-testid="link-post-era-titulin"
+              >
+                {clf.postEraNoticeLink}
+              </a>
+              {schoolSmall && (
+                <a
+                  href={schoolSmall.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="text-primary font-semibold hover:underline pointer-coarse:py-3"
+                  data-testid="link-post-era-escola"
+                >
+                  {schoolSmall.cta}
+                </a>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* What are License-Free Boats */}
       <RevealSection className="py-16 sm:py-20">
@@ -837,7 +876,7 @@ export default function CategoryLicenseFreePage() {
             className="text-primary hover:text-primary"
             data-testid="button-whatsapp-license-free"
           >
-            {clf.ctaButton}
+            {ctaButton}
           </Button>
         </div>
       </div>

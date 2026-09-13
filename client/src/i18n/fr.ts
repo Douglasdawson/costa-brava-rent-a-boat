@@ -3,6 +3,8 @@ import type { Translations } from "../lib/translations";
 export const fr: Translations = {
   nav: {
     home: "Accueil",
+    licensedBoats: "Bateaux avec permis",
+    captained: "Avec skipper",
     fleet: "Flotte",
     booking: "Réservation",
     contact: "Contact",
@@ -98,6 +100,9 @@ export const fr: Translations = {
     bestForSundeck: "Meilleur solarium",
     bestForFamilies: "Favori familles",
     bestForPremium: "Premium sans permis",
+    bestForPremiumPostEra: "Premium 15 CV max",
+    imageAltNoLicensePostEra:
+      "Louer le bateau {name}, 15 CV max (avec titulín), à Blanes, Costa Brava : {capacity} personnes, dès {price}€",
     imageAltNoLicense:
       "Location bateau {name} sans permis à Blanes, Costa Brava, {capacity} personnes, dès {price}€",
     imageAltWithLicense:
@@ -172,6 +177,7 @@ export const fr: Translations = {
     exploreMore: "Découvrez nos services",
     exploreLinks: {
       licenseFree: "Bateaux sans permis",
+      licenseFreePostEra: "Petits bateaux jusqu'à 15 CV à Blanes (avec titulín)",
       licensed: "Bateaux avec permis",
       navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Prix et tarifs",
@@ -189,6 +195,7 @@ export const fr: Translations = {
     step3Title: "Profitez des criques",
     step3Desc: "Naviguez librement dans les meilleures criques de la Costa Brava.",
     cta: "Voir Bateaux sans Permis",
+    ctaPostEra: "Voir les petits bateaux (avec titulín)",
   },
   contact: {
     title: "Des Questions ?",
@@ -247,6 +254,7 @@ export const fr: Translations = {
   footer: {
     company: "Costa Brava Rent a Boat - Blanes",
     description: "Location de bateaux avec et sans permis à Blanes, Costa Brava.",
+    descriptionPostEra: "Location de bateaux avec permis à Blanes, Costa Brava. Permis en 1 jour ou sortie avec skipper.",
     quickLinks: "Liens Rapides",
     contact: "Contact",
     followUs: "Suivez-Nous",
@@ -1051,6 +1059,15 @@ export const fr: Translations = {
     synonymsTitle: "Vedette, barque ou embarcation ? C'est pareil",
     synonymsBody: "Peu importe comment vous le cherchez : location de vedettes sur la Costa Brava, location d'embarcations sans diplôme ou louer une barque à Blanes. Nos 4 bateaux sans permis sont des vedettes de plaisance jusqu'à 5 mètres et 15 CV que tout adulte peut piloter sans permis nautique. Même bateau, même prix dès 85€/h carburant inclus, quel que soit le nom que vous lui donnez.",
     heroTitle: "Bateaux Sans Permis à Blanes",
+    // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
+    postEraHeroTitle: "Bateaux sans permis à Blanes : depuis le 1er octobre 2026, location avec le titulín",
+    postEraHeroDescription: "Les mêmes 4 petits bateaux du port de Blanes (15 CV max, 5 places, carburant inclus) restent à louer. Ce qui change, c'est la loi : le décret royal 1188/2025 exige depuis le 1er octobre 2026 que le locataire possède un titre nautique. La Licencia de Navegación, le titulín, suffit : un cours d'une journée, 2 heures de théorie et 4 de pratique, sans examen et sans expiration. Pas de permis ? Vous partez avec un skipper.",
+    postEraBadge: "Avec titulín (cours d'1 jour)",
+    postEraCtaButton: "Réserver un bateau avec le titulín",
+    postEraNoticeTitle: "Ce qui change le 1er octobre 2026",
+    postEraNoticeBody: "Jusqu'ici ces bateaux se louaient sans aucun titre. Depuis le 1er octobre 2026, la loi exige que le locataire possède au moins la Licencia de Navegación. Avec elle, vous pilotez tout bateau jusqu'à 6 mètres à 2 milles de la côte : toute notre flotte. Sans titre, l'alternative est l'excursion privée avec skipper.",
+    postEraNoticeLink: "Comment obtenir le titulín en une journée",
+    postEraFaqCarnetAnswer: "Oui. Depuis le 1er octobre 2026 (décret royal 1188/2025), louer un bateau à moteur exige un titre nautique, y compris pour les bateaux de 15 CV max. Le minimum est la Licencia de Navegación (titulín) : un cours d'une journée, 2 heures de théorie et 4 de pratique, sans examen ni expiration, délivré par les écoles nautiques agréées. Elle couvre toute notre flotte. Sans permis, vous pouvez partir avec un skipper lors de l'excursion privée.",
     heroDescription:
       "4 bateaux sans permis dès 85€/h au Port de Blanes, carburant inclus. Jusqu'à 5 personnes, sans permis ni titulation, sans expérience préalable. Briefing de sécurité de 15 min et c'est parti pour naviguer dans les criques de la Costa Brava : Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina et Sa Boadella jusqu'à la plage de Fenals (Lloret de Mar).",
     badgeNoLicense: "Aucun Permis Requis",

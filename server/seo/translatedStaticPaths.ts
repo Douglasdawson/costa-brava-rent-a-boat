@@ -89,6 +89,9 @@ export const TRANSLATED_STATIC_PATHS: Readonly<Record<string, readonly LangCode[
   // SSRs the full FAQPage JSON-LD from it per language (2026-06-10), so non-ES
   // locales carry real native content instead of the old noindex default.
   "/faq": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
+  // Pricing: t.pricingPage is i18n-complete (54 keys x 8 locales, migrated 2026-05); it was the
+  // only money page still noindex outside ES.
+  "/precios": ["es", "en", "fr", "de", "ca", "nl", "it", "ru"],
   // Social Boat (salidas compartidas) — validation landing, ES-only launch.
   // i18n exists in all 8 locales but only ES is prerendered/indexed for now;
   // open more locales once the concept is validated and copy is reviewed.

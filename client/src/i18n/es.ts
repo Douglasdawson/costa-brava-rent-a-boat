@@ -3,6 +3,8 @@ import type { Translations } from "../lib/translations";
 export const es: Translations = {
   nav: {
     home: "Inicio",
+    licensedBoats: "Lanchas con licencia",
+    captained: "Con patrón",
     fleet: "Flota",
     booking: "Reserva",
     contact: "Contacto",
@@ -104,6 +106,9 @@ export const es: Translations = {
     bestForSundeck: "Mejor solárium",
     bestForFamilies: "Favorito familias",
     bestForPremium: "Premium sin licencia",
+    bestForPremiumPostEra: "Premium hasta 15 CV",
+    imageAltNoLicensePostEra:
+      "Alquilar barco {name} hasta 15 CV (con titulín) en Blanes, Costa Brava: {capacity} personas, desde {price}€",
     imageAltNoLicense:
       "Alquilar barco {name} sin licencia en Blanes, Costa Brava: {capacity} personas, desde {price}€",
     imageAltWithLicense:
@@ -177,6 +182,7 @@ export const es: Translations = {
     exploreLinks: {
       // GSC 2026-05-21: anchor diversificado a long-tail "sin carnet" + "Blanes"
       licenseFree: "Barcos sin licencia ni carnet en Blanes",
+      licenseFreePostEra: "Barcos pequeños hasta 15 CV en Blanes (con titulín)",
       licensed: "Barcos con licencia",
       navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Precios y tarifas",
@@ -194,6 +200,7 @@ export const es: Translations = {
     step3Title: "A disfrutar de las calas",
     step3Desc: "Navega libre por las mejores calas de la Costa Brava.",
     cta: "Ver Barcos sin Licencia",
+    ctaPostEra: "Ver barcos pequeños (con titulín)",
   },
   contact: {
     title: "¿Tienes Dudas?",
@@ -252,6 +259,7 @@ export const es: Translations = {
   footer: {
     company: "Costa Brava Rent a Boat - Blanes",
     description: "Alquiler de barcos con y sin licencia en Blanes, Costa Brava.",
+    descriptionPostEra: "Alquiler de barcos con titulación en Blanes, Costa Brava. Titulín en 1 día o salida con patrón.",
     quickLinks: "Enlaces Rápidos",
     contact: "Contacto",
     followUs: "Síguenos",
@@ -2817,6 +2825,15 @@ export const es: Translations = {
     // Densidad de keywords + entidades concretas (precio, calas, capacidad).
     heroDescription:
       "4 barcos sin licencia desde 85€/h en el Puerto de Blanes, gasolina incluida. Hasta 5 personas, sin carnet ni titulación, sin experiencia previa. Briefing de seguridad 15 minutos y a navegar por las calas de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina y Sa Boadella hasta Playa de Fenals (Lloret de Mar).",
+    // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
+    postEraHeroTitle: "Barcos sin licencia en Blanes: desde el 1 de octubre de 2026 se alquilan con titulín",
+    postEraHeroDescription: "Los mismos 4 barcos pequeños del Puerto de Blanes (hasta 15 CV, 5 plazas, gasolina incluida) siguen alquilándose. Lo que cambia es la ley: el RD 1188/2025 exige desde el 1 de octubre de 2026 que quien alquila tenga título náutico. Basta la Licencia de Navegación, el titulín: un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales con patrón.",
+    postEraBadge: "Con titulín (curso de 1 día)",
+    postEraCtaButton: "Reservar barco con titulín",
+    postEraNoticeTitle: "Qué cambia el 1 de octubre de 2026",
+    postEraNoticeBody: "Hasta ahora estos barcos se alquilaban sin ningún título. Desde el 1 de octubre de 2026 la ley pide que el arrendatario tenga al menos la Licencia de Navegación. Con ella pilotas cualquier barco de hasta 6 metros a 2 millas de la costa: toda nuestra flota. Sin título, la alternativa es la excursión privada con patrón.",
+    postEraNoticeLink: "Cómo sacarte el titulín en un día",
+    postEraFaqCarnetAnswer: "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para alquilar cualquier barco a motor hace falta un título náutico, también en los barcos de hasta 15 CV. El mínimo es la Licencia de Navegación (titulín): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad, que expiden las escuelas náuticas autorizadas. Con ella pilotas toda nuestra flota. Si no tienes título, puedes salir con patrón en la excursión privada.",
     badgeNoLicense: "Sin Licencia Necesaria",
     badgePower: "Hasta 15 CV",
     badgeCapacity: "4-7 personas",

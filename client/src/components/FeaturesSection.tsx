@@ -16,6 +16,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { minPriceAcrossBoats } from "@shared/pricing";
+import { eraCopy } from "@shared/constants";
 
 export default function FeaturesSection() {
   const t = useTranslations();
@@ -104,7 +105,7 @@ export default function FeaturesSection() {
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
             <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base whitespace-nowrap pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
-              {t.features.exploreLinks?.licenseFree || 'Barcos sin licencia'}
+              {eraCopy(t.features.exploreLinks?.licenseFree, t.features.exploreLinks?.licenseFreePostEra ?? t.features.exploreLinks?.licenseFree) || 'Barcos sin licencia'}
             </a>
             <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base whitespace-nowrap pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />

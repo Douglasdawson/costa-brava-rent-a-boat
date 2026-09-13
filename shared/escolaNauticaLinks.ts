@@ -27,7 +27,7 @@ export const ESCOLA_NAUTICA_DOMAIN = "https://escolanauticablanes.com";
 const ESCOLA_NAUTICA_PATH = "/";
 
 /** Superficie desde la que sale el enlace. Se lee en su GA4 como utm_campaign. */
-export type EscolaNauticaSurface = "titulin-course" | "faq" | "llms";
+export type EscolaNauticaSurface = "titulin-course" | "faq" | "llms" | "category-small" | "blog";
 
 export interface EscolaNauticaHandoff {
   url: string;

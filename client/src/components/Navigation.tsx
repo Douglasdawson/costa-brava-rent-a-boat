@@ -184,6 +184,9 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
   const navigationItems = [
     { label: t.nav.home, href: localizedPath("home") },
     { label: t.nav.fleet, href: "#fleet" },
+    // Pivote 2026 (RD 1188/2025): las dos categorías que se venden desde octubre salen del footer al menú.
+    { label: t.nav.licensedBoats ?? "Lanchas con licencia", href: localizedPath("categoryLicensed") },
+    { label: t.nav.captained ?? "Con patrón", href: localizedPath("categoryCaptained") },
     // Pivote 2026 (RD 1188/2025): el pilar del titulín entra en el menú principal.
     { label: t.navigationLicensePage?.navLabel ?? "Titulín", href: localizedPath("navigationLicense") },
     { label: t.nav.jetski, href: localizedPath("jetskiHub") },

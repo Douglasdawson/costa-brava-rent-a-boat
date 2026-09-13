@@ -3,6 +3,8 @@ import type { Translations } from "../lib/translations";
 export const ca: Translations = {
   nav: {
     home: "Inici",
+    licensedBoats: "Llanxes amb llicència",
+    captained: "Amb patró",
     fleet: "Flota",
     booking: "Reserva",
     contact: "Contacte",
@@ -96,6 +98,9 @@ export const ca: Translations = {
     bestForSundeck: "Millor solàrium",
     bestForFamilies: "Favorit famílies",
     bestForPremium: "Premium sense llicència",
+    bestForPremiumPostEra: "Premium fins a 15 CV",
+    imageAltNoLicensePostEra:
+      "Llogar barca {name} fins a 15 CV (amb titulí) a Blanes, Costa Brava: {capacity} persones, des de {price}€",
     imageAltNoLicense:
       "Lloguer vaixell {name} sense titol a Blanes, Costa Brava, {capacity} persones, des de {price}€",
     imageAltWithLicense:
@@ -168,6 +173,7 @@ export const ca: Translations = {
     exploreMore: "Descobreix els nostres serveis",
     exploreLinks: {
       licenseFree: "Vaixells sense llicència",
+      licenseFreePostEra: "Barques petites fins a 15 CV a Blanes (amb titulí)",
       licensed: "Vaixells amb llicència",
       navigationLicense: "Llic\u00E8ncia de Navegaci\u00F3 (titul\u00EDn)",
       pricing: "Preus i tarifes",
@@ -185,6 +191,7 @@ export const ca: Translations = {
     step3Title: "A gaudir de les cales",
     step3Desc: "Navega lliure per les millors cales de la Costa Brava.",
     cta: "Veure Vaixells sense Llicència",
+    ctaPostEra: "Veure barques petites (amb titulí)",
   },
   contact: {
     title: "Tens Dubtes?",
@@ -243,6 +250,7 @@ export const ca: Translations = {
   footer: {
     company: "Costa Brava Rent a Boat - Blanes",
     description: "Lloguer de barques amb i sense llicència a Blanes, Costa Brava.",
+    descriptionPostEra: "Lloguer de barques amb titulació a Blanes, Costa Brava. Titulí en 1 dia o sortida amb patró.",
     quickLinks: "Enllaços Ràpids",
     contact: "Contacte",
     followUs: "Segueix-nos",
@@ -1044,6 +1052,15 @@ export const ca: Translations = {
     synonymsTitle: "Llanxa, barca o embarcació? És el mateix",
     synonymsBody: "Tant és com ho busquis: lloguer de llanxes a la Costa Brava, lloguer d'embarcacions sense titulació o llogar una barca a Blanes. Els nostres 4 vaixells sense llicència són llanxes d'esbarjo de fins a 5 metres i 15 CV que qualsevol adult pot pilotar sense carnet nàutic. Mateix vaixell i mateix preu des de 85€/h amb gasolina inclosa, ho diguis com ho diguis.",
     heroTitle: "Vaixells Sense Llicència a Blanes",
+    // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
+    postEraHeroTitle: "Barques sense llicència a Blanes: des de l'1 d'octubre de 2026 es lloguen amb titulí",
+    postEraHeroDescription: "Les mateixes 4 barques petites del Port de Blanes (fins a 15 CV, 5 places, benzina inclosa) es continuen llogant. El que canvia és la llei: el RD 1188/2025 exigeix des de l'1 d'octubre de 2026 que qui lloga tingui títol nàutic. N'hi ha prou amb la Llicència de Navegació, el titulí: un curs d'un dia, 2 hores de teoria i 4 de pràctiques, sense examen i sense caducitat. Si no el tens, surts amb patró.",
+    postEraBadge: "Amb titulí (curs d'1 dia)",
+    postEraCtaButton: "Reservar barca amb titulí",
+    postEraNoticeTitle: "Què canvia l'1 d'octubre de 2026",
+    postEraNoticeBody: "Fins ara aquestes barques es llogaven sense cap títol. Des de l'1 d'octubre de 2026 la llei demana que l'arrendatari tingui com a mínim la Llicència de Navegació. Amb ella pilotes qualsevol embarcació de fins a 6 metres a 2 milles de la costa: tota la nostra flota. Sense títol, l'alternativa és l'excursió privada amb patró.",
+    postEraNoticeLink: "Com treure't el titulí en un dia",
+    postEraFaqCarnetAnswer: "Sí. Des de l'1 d'octubre de 2026 (RD 1188/2025) per llogar qualsevol embarcació a motor cal un títol nàutic, també a les barques de fins a 15 CV. El mínim és la Llicència de Navegació (titulí): un curs d'un dia, 2 hores de teoria i 4 de pràctiques, sense examen i sense caducitat, que expedeixen les escoles nàutiques autoritzades. Amb ella pilotes tota la nostra flota. Si no tens títol, pots sortir amb patró a l'excursió privada.",
     heroDescription:
       "4 barques sense llicència des de 85€/h al Port de Blanes, gasolina inclosa. Fins a 5 persones, sense carnet ni titulació, sense experiència prèvia. Briefing de seguretat de 15 minuts i a navegar per les cales de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina i Sa Boadella fins a la Platja de Fenals (Lloret de Mar).",
     badgeNoLicense: "Sense Llicència Necessària",

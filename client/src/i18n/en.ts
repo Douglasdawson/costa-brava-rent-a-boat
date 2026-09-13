@@ -3,6 +3,8 @@ import type { Translations } from "../lib/translations";
 export const en: Translations = {
   nav: {
     home: "Home",
+    licensedBoats: "Licensed boats",
+    captained: "With skipper",
     fleet: "Fleet",
     booking: "Booking",
     contact: "Contact",
@@ -99,6 +101,9 @@ export const en: Translations = {
     bestForSundeck: "Best sundeck",
     bestForFamilies: "Family favourite",
     bestForPremium: "Premium no-licence",
+    bestForPremiumPostEra: "Premium up to 15 HP",
+    imageAltNoLicensePostEra:
+      "Rent the {name} boat, up to 15 HP (titulín), in Blanes, Costa Brava: {capacity} people, from {price}€",
     imageAltNoLicense:
       "Rent {name} boat without license in Blanes, Costa Brava, {capacity} people, from {price}€",
     imageAltWithLicense:
@@ -164,6 +169,7 @@ export const en: Translations = {
     exploreMore: "Explore our services",
     exploreLinks: {
       licenseFree: "License-free boats",
+      licenseFreePostEra: "Small boats up to 15 HP in Blanes (titulín)",
       licensed: "Licensed boats",
       navigationLicense: "Navigation Licence (titul\u00EDn)",
       pricing: "Prices and rates",
@@ -181,6 +187,7 @@ export const en: Translations = {
     step3Title: "Enjoy the coves",
     step3Desc: "Sail freely through the best coves of the Costa Brava.",
     cta: "See Licence-Free Boats",
+    ctaPostEra: "See the small boats (titulín)",
   },
   contact: {
     title: "Got Questions?",
@@ -239,6 +246,7 @@ export const en: Translations = {
   footer: {
     company: "Costa Brava Rent a Boat - Blanes",
     description: "Licensed and licence-free boat rental in Blanes, Costa Brava.",
+    descriptionPostEra: "Boat rental for licence holders in Blanes, Costa Brava. Licence in 1 day or sail with a skipper.",
     quickLinks: "Quick Links",
     contact: "Contact",
     followUs: "Follow Us",
@@ -1036,6 +1044,15 @@ export const en: Translations = {
     synonymsTitle: "Motorboat, dinghy or vessel? Same thing",
     synonymsBody: "However you search for it (motorboat hire on the Costa Brava, renting a vessel without a qualification, or hiring a small boat in Blanes), our 4 license-free boats are leisure motorboats up to 5 metres and 15 HP that any adult can drive without a nautical license. Same boat, same price from 85€/h with fuel included, whatever you call it.",
     heroTitle: "Licence-Free Boats in Blanes",
+    // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
+    postEraHeroTitle: "Licence-free boats in Blanes: from 1 October 2026 they are rented with the titulín",
+    postEraHeroDescription: "The same 4 small boats in Blanes harbour (up to 15 HP, 5 seats, fuel included) are still for rent. What changes is the law: from 1 October 2026 Royal Decree 1188/2025 requires every renter to hold a nautical qualification. The Licencia de Navegación, the titulín, is enough: a one-day course, 2 hours of theory and 4 of practice, no exam, never expires. No licence yet? Sail with a skipper.",
+    postEraBadge: "Titulín required (1-day course)",
+    postEraCtaButton: "Book a boat with the titulín",
+    postEraNoticeTitle: "What changes on 1 October 2026",
+    postEraNoticeBody: "Until now these boats were rented with no qualification at all. From 1 October 2026 the law requires the renter to hold at least the Licencia de Navegación. With it you skipper any boat up to 6 metres within 2 nautical miles of the coast: our whole fleet. Without a licence, the alternative is the private excursion with a skipper.",
+    postEraNoticeLink: "How to get the titulín in one day",
+    postEraFaqCarnetAnswer: "Yes. From 1 October 2026 (Royal Decree 1188/2025) renting any motorboat requires a nautical qualification, including boats up to 15 HP. The minimum is the Licencia de Navegación (titulín): a one-day course, 2 hours of theory and 4 of practice, no exam, no expiry, issued by authorised nautical schools. It covers our whole fleet. Without a licence you can sail with a skipper on the private excursion.",
     heroDescription:
       "4 license-free boats from €85/h at Blanes Port, fuel included. Up to 5 people, no license or sailing certificate, no prior experience. 15-min safety briefing and off you go to the Costa Brava coves: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina and Sa Boadella up to Fenals Beach (Lloret de Mar).",
     badgeNoLicense: "No Licence Required",

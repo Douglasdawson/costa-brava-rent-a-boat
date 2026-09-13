@@ -74,6 +74,9 @@ const MONEY_PAGE_METAKEYS = new Set<string>([
   // out to the sister school, so GA4 reads it as pure bounce. A noindex here would take
   // the whole "sin licencia → título" positioning out of the index.
   "/licencia-navegacion-titulin",
+  // Captained landing: same WhatsApp tap-out conversion; it held ~1,000 imp/90d of "con patrón"
+  // demand and a noindex would hand that cluster back to the home.
+  "/alquiler-barco-con-patron",
   // Activity landings (sunset/snorkel/families/fishing) — same tap-out pattern.
   "/paseo-atardecer-barco-blanes",
   "/excursion-snorkel-barco-blanes",

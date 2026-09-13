@@ -1,6 +1,7 @@
 import { MapPin, GraduationCap, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "@/lib/translations";
+import { eraCopy } from "@shared/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const steps = [
@@ -74,7 +75,7 @@ export default function NeverSailedSection() {
           size="lg"
           className="font-sans text-base px-8"
         >
-          {t.neverSailed.cta}
+          {eraCopy(t.neverSailed.cta, t.neverSailed.ctaPostEra ?? t.neverSailed.cta)}
         </Button>
       </div>
     </section>

@@ -153,8 +153,10 @@ describe("las superficies que el tipo no alcanza", () => {
       "client/src/i18n/es.ts",
       "client/src/i18n/ca.ts",
       "client/src/i18n/en.ts",
+      "client/src/pages/category-license-free.tsx",
       "server/seoInjector.ts",
       "server/routes/robots.ts",
+      "server/seeds/blogSeed.ts",
     ];
     const root = path.resolve(__dirname, "..");
     const offenders: string[] = [];

@@ -23,6 +23,13 @@ export function isLicenseFreeEraActive(now: Date = new Date()): boolean {
   return now.toLocaleDateString("sv-SE", { timeZone: "Europe/Madrid" }) <= LICENSE_FREE_LAST_DAY;
 }
 
+// Pick the copy for the current era: `pre` while the license-free offer is still legal,
+// `post` from 2026-10-01 (Europe/Madrid). One helper so every dual surface (SSR meta,
+// i18n copy, boat labels) flips on the same clock and nobody re-implements the date test.
+export function eraCopy<T>(pre: T, post: T, now: Date = new Date()): T {
+  return isLicenseFreeEraActive(now) ? pre : post;
+}
+
 // Normalize customer-typed names ("Raul RIVELLES GARCIA" -> "Raul Rivelles Garcia").
 // Capitalizes after space, hyphen and apostrophe; caseless scripts (Chinese) pass through.
 export function formatPersonName(raw: string): string {

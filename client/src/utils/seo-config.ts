@@ -1,4 +1,5 @@
 import { Language } from "@/hooks/use-language";
+import { postEraMeta, SEO_PAGE_TO_META_KEY } from "@shared/postEraMeta";
 import { getBaseUrl } from "@/lib/domain";
 import { HREFLANG_CODES } from "@shared/seoConstants";
 import { getLocalizedPath } from "@shared/i18n-routes";
@@ -1602,7 +1603,11 @@ export const generateCanonicalUrl = (pageName: string, language: Language = 'es'
 
 // Get SEO config for a page and language with dynamic content replacement
 export const getSEOConfig = (pageName: string, language: Language, dynamicData?: Record<string, string>): SEOConfig => {
-  const config = SEO_CONFIGS[language]?.[pageName] || SEO_CONFIGS['es'][pageName] || SEO_CONFIGS['es']['home'];
+  const baseConfig = SEO_CONFIGS[language]?.[pageName] || SEO_CONFIGS['es'][pageName] || SEO_CONFIGS['es']['home'];
+  // RD 1188/2025: from 2026-10-01 the pages that promised "sin licencia" pick the post-era
+  // title/description from the shared map the SSR injector uses, so both stay identical.
+  const metaKey = SEO_PAGE_TO_META_KEY[pageName];
+  const config = metaKey ? postEraMeta(metaKey, language, baseConfig) : baseConfig;
   
   // Replace dynamic placeholders if provided
   if (dynamicData && Object.keys(dynamicData).length > 0) {

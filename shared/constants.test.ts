@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { formatPersonName, isLicenseFreeEraActive, LICENSE_FREE_LAST_DAY } from "./constants";
+import { eraCopy, formatPersonName, isLicenseFreeEraActive, LICENSE_FREE_LAST_DAY } from "./constants";
 
 describe("isLicenseFreeEraActive (RD 1188/2025)", () => {
   it("is active until Madrid midnight on the last legal day", () => {
@@ -19,6 +19,13 @@ describe("isLicenseFreeEraActive (RD 1188/2025)", () => {
 
   it("pins the regulatory date", () => {
     expect(LICENSE_FREE_LAST_DAY).toBe("2026-09-30");
+  });
+});
+
+describe("eraCopy", () => {
+  it("serves the pre-era copy on the last legal day and the post-era copy from October 1 (Madrid)", () => {
+    expect(eraCopy("pre", "post", new Date("2026-09-30T21:00:00Z"))).toBe("pre");
+    expect(eraCopy("pre", "post", new Date("2026-10-01T00:00:00+02:00"))).toBe("post");
   });
 });
 

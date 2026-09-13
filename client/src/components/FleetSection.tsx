@@ -10,6 +10,7 @@ import { useLocation } from "wouter";
 import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
+import { eraCopy } from "@shared/constants";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import {
@@ -354,7 +355,9 @@ function FleetSection() {
                   ? getBoatImage(boat.imageGallery[0].trim())
                   : undefined,
             imageAlt:
-              (boat.requiresLicense ? t.boats.imageAltWithLicense : t.boats.imageAltNoLicense)
+              (boat.requiresLicense
+                ? t.boats.imageAltWithLicense
+                : eraCopy(t.boats.imageAltNoLicense, t.boats.imageAltNoLicensePostEra ?? t.boats.imageAltNoLicense))
                 ?.replace("{name}", translateBoatText(boat.name, language))
                 .replace("{capacity}", String(boat.capacity))
                 .replace("{price}", String(basePrice)) ||

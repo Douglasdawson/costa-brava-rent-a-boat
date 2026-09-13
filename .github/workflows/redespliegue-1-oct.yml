@@ -1,0 +1,29 @@
+# El 1 de octubre de 2026 entra en vigor el RD 1188/2025 y el copy de la web cambia solo
+# por fecha (`isLicenseFreeEraActive()` en shared/constants.ts), pero el HTML servido se
+# regenera al construir: hay que redesplegar ese dia aunque no cambie ni una linea.
+# Coolify no programa deploys, asi que este workflow empuja un commit vacio a main a las
+# 06:00 de Madrid (04:00 UTC) y el webhook de Coolify hace el resto. `workflow_dispatch`
+# permite probar la cadena a mano. Borrar despues del 1-oct-2026.
+name: Redespliegue del 1 de octubre
+
+on:
+  schedule:
+    - cron: "0 4 1 10 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  redesplegar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Commit vacio que dispara el webhook de Coolify
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "chore: redespliegue programado (copy datado del RD 1188/2025)"
+          git push origin HEAD:main

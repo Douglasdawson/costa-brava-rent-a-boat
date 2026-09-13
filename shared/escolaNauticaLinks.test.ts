@@ -81,9 +81,17 @@ describe("el copy no vende lo que la escuela no puede dar", () => {
     // cifra ni un imperativo de compra.
     const selling = /\d+\s*(€|eur)|€\s*\d|reserva (tu|la)|inscr[ií]b(ete|ase)|apúntate al curso|book (now|your)|sign up for|enrol now/i;
     for (const lang of GATED) {
-      const handoff = escolaNauticaHandoff(lang, "titulin-course")!;
-      const text = `${handoff.title} ${handoff.body} ${handoff.cta}`;
+      const h = escolaNauticaHandoff(lang, "titulin-course")!;
+      const text = `${h.title} ${h.body} ${h.cta} ${h.finalTitle} ${h.finalBody}`;
       expect(text.match(selling), lang).toBeNull();
+    }
+  });
+
+  it("el CTA final tampoco promete fecha de convocatoria", () => {
+    for (const lang of GATED) {
+      const { finalTitle, finalBody } = escolaNauticaHandoff(lang, "titulin-course")!;
+      expect(finalTitle.length, lang).toBeGreaterThan(10);
+      expect(finalBody, lang).toContain("2027");
     }
   });
 

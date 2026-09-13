@@ -53,6 +53,12 @@ export default function NavigationLicensePage() {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(p?.whatsappMessage || "")}`;
   // null fuera de es/ca/en: la escuela hermana existe solo en castellano.
   const school = escolaNauticaHandoff(language, "titulin-course");
+  // Donde la escuela existe, los CTA principales llevan allí; en los otros 5 idiomas siguen
+  // yendo al WhatsApp, que es la única salida que ese visitante puede usar. El icono cambia
+  // con el destino: un logo de WhatsApp sobre un enlace a una web es una promesa falsa.
+  const ctaHref = school ? school.url : whatsappUrl;
+  const ctaLabel = school ? school.cta : p?.ctaButton;
+  const CtaIcon = school ? ExternalLink : SiWhatsapp;
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -106,9 +112,15 @@ export default function NavigationLicensePage() {
             {p?.hero?.subtitle}
           </p>
           <div className="mt-8">
-            <a href={whatsappUrl} target="_blank" rel="noopener" className={`${NAVY_CTA} min-h-12 px-9 text-base`}>
-              {p?.ctaButton}
-              <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
+            <a
+              href={ctaHref}
+              target="_blank"
+              rel="noopener"
+              className={`${NAVY_CTA} min-h-12 px-9 text-base`}
+              data-testid="cta-hero-titulin"
+            >
+              {ctaLabel}
+              <CtaIcon className="h-5 w-5" aria-hidden="true" />
             </a>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -205,15 +217,18 @@ export default function NavigationLicensePage() {
                 {school.title}
               </h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">{school.body}</p>
+              {/* Aqui el WhatsApp, no la escuela: los CTA grandes ya llevan alli, y este
+                  bloque es justo el que explica que hacer si necesitas el titulo antes de
+                  que la escuela abra. Sin el, la pagina se queda sin via de contacto. */}
               <a
-                href={school.url}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener"
                 className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-primary hover:underline"
-                data-testid="link-escola-nautica"
+                data-testid="link-titulin-whatsapp"
               >
-                {school.cta}
-                <ExternalLink className="h-4 w-4" />
+                {p?.ctaButton}
+                <SiWhatsapp className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
           )}
@@ -290,17 +305,20 @@ export default function NavigationLicensePage() {
       <section className="px-4 py-14 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
-            {p?.ctaTitle}
+            {school ? school.finalTitle : p?.ctaTitle}
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{p?.ctaText}</p>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            {school ? school.finalBody : p?.ctaText}
+          </p>
           <a
-            href={whatsappUrl}
+            href={ctaHref}
             target="_blank"
             rel="noopener"
             className={`${NAVY_CTA} mt-6 min-h-12 px-9 text-base`}
+            data-testid="cta-final-titulin"
           >
-            {p?.ctaButton}
-            <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
+            {ctaLabel}
+            <CtaIcon className="h-5 w-5" aria-hidden="true" />
           </a>
         </div>
       </section>
@@ -313,13 +331,14 @@ export default function NavigationLicensePage() {
             <p className="text-sm font-bold text-foreground">{p?.chips?.[0]}</p>
           </div>
           <a
-            href={whatsappUrl}
+            href={ctaHref}
             target="_blank"
             rel="noopener"
             className={`${NAVY_CTA} min-h-11 flex-shrink-0 px-6 text-sm`}
+            data-testid="cta-sticky-titulin"
           >
             {p?.navLabel}
-            <SiWhatsapp className="h-4 w-4" aria-hidden="true" />
+            <CtaIcon className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
       </div>

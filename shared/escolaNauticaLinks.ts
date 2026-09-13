@@ -34,6 +34,9 @@ export interface EscolaNauticaHandoff {
   title: string;
   body: string;
   cta: string;
+  /** Copy del CTA final de la pillar, que en es/ca/en deja de mandar al WhatsApp. */
+  finalTitle: string;
+  finalBody: string;
 }
 
 /**
@@ -48,18 +51,27 @@ const COPY: Record<string, Omit<EscolaNauticaHandoff, "url">> = {
     body:
       "El curso lo dan escuelas náuticas autorizadas y, desde abril de 2027, una de ellas será la nuestra: Escola Nàutica Blanes, de la misma empresa que Costa Brava Rent a Boat, en el puerto de Blanes. Todavía no hay matrícula abierta ni precio: en su web puedes ver cómo es el día de prácticas, con qué barcos se enseña y qué límites tiene el título, y dejar tu correo en la lista de espera. Si lo necesitas antes (desde el 1 de octubre de 2026 la ley ya pide título para alquilar), escríbenos por WhatsApp y te lo organizamos en una escuela autorizada de la zona, sin esperar a la nuestra.",
     cta: "Conocer Escola Nàutica Blanes",
+    finalTitle: "El titulín, con la escuela de la casa",
+    finalBody:
+      "Escola Nàutica Blanes abre en abril de 2027 en el puerto de Blanes. Mira cómo será el curso y deja tu correo para que te avisemos en cuanto haya fecha.",
   },
   ca: {
     title: "La nostra escola nàutica obre l'abril del 2027",
     body:
       "El curs el fan escoles nàutiques autoritzades i, a partir de l'abril del 2027, una d'elles serà la nostra: Escola Nàutica Blanes, de la mateixa empresa que Costa Brava Rent a Boat, al port de Blanes. Encara no hi ha matrícula oberta ni preu: al seu web pots veure com és el dia de pràctiques, amb quins vaixells s'ensenya i quins límits té el títol, i deixar el teu correu a la llista d'espera. Si el necessites abans (des de l'1 d'octubre del 2026 la llei ja demana títol per llogar), escriu-nos per WhatsApp i te l'organitzem en una escola autoritzada de la zona.",
     cta: "Conèixer Escola Nàutica Blanes",
+    finalTitle: "El titulí, amb l'escola de la casa",
+    finalBody:
+      "Escola Nàutica Blanes obre l'abril del 2027 al port de Blanes. Mira com serà el curs i deixa el teu correu perquè t'avisem quan hi hagi data.",
   },
   en: {
     title: "Our own nautical school opens in April 2027",
     body:
       "The course is run by authorised nautical schools and, from April 2027, one of them will be ours: Escola Nàutica Blanes, part of the same company as Costa Brava Rent a Boat, in Blanes harbour. Enrolment is not open and there is no price yet: the site explains what the practice day looks like, which boats you train on and what the licence lets you do, and you can leave your email on the waiting list. If you need the licence sooner (from 1 October 2026 the law requires one in order to rent), message us on WhatsApp and we will arrange it at an authorised school nearby.",
     cta: "Visit Escola Nàutica Blanes (site in Spanish)",
+    finalTitle: "The titulín, with our own school",
+    finalBody:
+      "Escola Nàutica Blanes opens in April 2027 in Blanes harbour. See what the course will be like and leave your email so we can let you know as soon as there is a date.",
   },
 };
 

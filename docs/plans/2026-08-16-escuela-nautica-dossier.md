@@ -6,6 +6,13 @@
 
 ---
 
+> ⚠️ **Actualizado el 30-ago-2026.** Este dossier sigue siendo válido para el modelo de negocio, el
+> reparto con Alex y el plan B de partnership. Para **trámites, costes, documentación y
+> equipamiento está superado**: ver `escolanauticablanes/docs/2026-08-30-ruta-apertura-escuela.md`
+> y la sección 12 al final de este documento, que lista qué datos de aquí han quedado desmentidos.
+
+---
+
 ## 1. Resumen ejecutivo
 
 La decisión no está entre "escuela propia" y "partnership": está bloqueada por **un solo dato que se resuelve con una llamada de teléfono**. El RD 875/2014 (art. 31.1.b, aplicable también en Cataluña por remisión expresa del art. 32) exige que las prácticas de la Licencia de Navegación las imparta alguien con **titulación profesional** — Patrón Profesional de Embarcaciones de Recreo (PPER), Patrón de Litoral, Patrón de Cabotaje, Capitán de la Marina Mercante o equivalente. **El PER no sirve.** Todo lo demás (barcos en lista 6ª, certificados de navegabilidad, seguros, base en puerto, clientela) ya lo tiene la empresa.
@@ -390,3 +397,35 @@ Ivan confirma: el socio del proyecto es **Alex, que tiene el PPER** → el gate 
 ---
 
 *Todo lo marcado como "a verificar" no está confirmado con fuente oficial y está recogido en la sección 9. Las cifras etiquetadas como estimación son cálculos propios, no datos de fuente.*
+
+---
+
+## 12. Corrección del 30-ago-2026 (verificación contra fichas oficiales)
+
+Trabajo hecho sobre las fichas de trámite, el BOE consolidado y el registro público de barcos
+homologados de la Generalitat. Ocho datos de este dossier han quedado desmentidos.
+
+| Decía este dossier | En realidad |
+|---|---|
+| Tasa AGR163: 117,40 € (fuente secundaria) | **129,60 €**, verificado en el calculador oficial de la OGE (modalidad SAEP004) |
+| Comunicación previa de acadèmia: "sin tasa localizada" | **129,60 €**, en la propia ficha 11252 |
+| El Pacific Craft 625 mide 6,24 m y es el único que supera el umbral | Su eslora de matriculación es **5,90 m**. Ningún barco de la flota llega a 6 m — pero ya no importa (ver abajo) |
+| Para la LN hay que comprar semirrígida porque el art. 33.1 es ambiguo | **Hay precedente de rígidas de menos de 6 m homologadas solo para LLN**: LO CODOLAR (`6ª TA-3-4-25`, Quicksilver Activ 605 Open, 5,75 m de casco) y LAIA (`6ª BA-1-164-24`, Trimarchi 53S, 5,00 m). La palanca es el art. 3.6: la eslora legal es la **de casco** (ISO 8666). **El Mingolla vale y no hay que comprar barco** |
+| La teoría se admite por videoconferencia, "como media Cataluña" | La FAQ oficial la exige **presencial** para la licencia, sin sustitución a distancia. Puede darse a bordo |
+| Con Selvamar cerrada queda un único competidor en Blanes | Cuatro academias con licencia a menos de 10 km, tres operando en el puerto de Blanes: Escola Nàutica Blanes (NANS y TITO), **Eric Boats** —alquiler *y* academia, como DAMAR— y **Nautic Ocean** (DOLCE VITA). Benchmark vivo: **Escola Nàutica Lloret, 150 €** |
+| Los documentos 9 y 10 del AGR163 son el contrato del patrón | El **8** es el contrato, el **9** la titulación y el **10** la **LEB con el AIS instalado** |
+| La ECNPC resuelve el expediente | Resuelve la **DG de Política Marítima i Pesca Sostenible**. La ECNPC solo gestiona formación y exámenes |
+
+**Tres requisitos que este dossier no recogía:**
+
+1. **LEB + MMSI** (Capitanía Marítima de **Palamós**, 106,60 €, modelo 790-085). Es el documento 10
+   del expediente, así que **va por delante del AGR163**, no en paralelo. El MMSI tarda 1 mes con
+   silencio negativo y se graba una sola vez en el AIS.
+2. **Equipamiento de zona 5** (art. 33.2.1º), que incluye **VHF** —vale portátil IPX7 homologado— y
+   las tablas del código de señales. Subir de zona 6 a zona 5 cuesta ~210-250 €; las bengalas son
+   las mismas en ambas zonas.
+3. **Reconocimiento psicofísico del alumno** (art. 21), obligatorio también para la licencia.
+
+**Coste de puesta en marcha revisado: ≈ 1.200-1.650 €** usando el Mingolla, no los 8.000-14.000 €
+del escenario B. El coste recurrente real no es una tasa: es el **alquiler de 4 h que cada sesión
+le quita al barco** (230-320 € según temporada).

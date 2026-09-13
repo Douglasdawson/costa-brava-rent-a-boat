@@ -1368,7 +1368,8 @@ export default function BookingFormWidget({
 
   // Step validation
   //  Step 1: When + Who      → date + people (soft cap = 12, capacity validated again on step 2)
-  //  Step 2: Boat            → boat selected + people within boat capacity (skipped on deep-link)
+  //  Step 2: Boat            → boat selected + people within boat capacity (skipped on deep-link
+  //                            only while the group fits the pre-selected boat)
   //  Step 3: Departure       → preferredTime + duration
   //  Step 4: Personal data   → first/last name + phone + email
   const canAdvanceFromStep1 = (): boolean => {
@@ -1413,8 +1414,11 @@ export default function BookingFormWidget({
         if (firstInvalid) scrollFieldIntoView(firstInvalid);
         return;
       }
-      // Deep-link short-circuit: skip the boat step when a boat was pre-selected from a boat detail CTA
-      if (skipBoatStep && selectedBoat) {
+      // Deep-link short-circuit: skip the boat step when a boat was pre-selected from a boat detail CTA.
+      // Solo si el grupo cabe: el paso 2 es el UNICO sitio que valida capacidad (canAdvanceFromStep2)
+      // y el que ofrece la alternativa (barco mayor o combinacion de dos). Saltarlo con un grupo que no
+      // cabe dejaba pedir un Astec 480 de 5 plazas para 6 personas.
+      if (skipBoatStep && selectedBoat && parseInt(numberOfPeople) <= getMaxCapacity()) {
         trackBookingStepComplete(
           currentStep,
           STEP_NAMES[currentStep] || `step_${currentStep}`,
@@ -1591,7 +1595,6 @@ export default function BookingFormWidget({
     const formattedDate = isSpanish
       ? formatDateSpanish(selectedDate)
       : formatDateEnglish(selectedDate);
-    const capacity = selectedBoatInfo?.capacity || "?";
     const standardDeposit = selectedBoatInfo?.specifications?.deposit || "?";
     // With the cover contracted the team needs the deposit they will actually
     // take, with the standard one alongside so the discount is auditable.

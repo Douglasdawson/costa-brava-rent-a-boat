@@ -25,6 +25,20 @@ const paginatedInquiriesQuerySchema = z.object({
   search: z.string().optional(),
 });
 
+/**
+ * True when the group does not fit in the requested boats. Multi-boat requests send both
+ * ids and the combined party size, so capacities add up. An unknown id yields false: a lead
+ * is worth more than a strict check, and the boat catalogue is the only thing missing.
+ */
+export function exceedsCapacity(
+  boats: Array<{ capacity: number } | undefined>,
+  numberOfPeople: number
+): boolean {
+  if (boats.some(boat => !boat)) return false;
+  const seats = boats.reduce((sum, boat) => sum + (boat?.capacity ?? 0), 0);
+  return numberOfPeople > seats;
+}
+
 export function registerInquiryRoutes(app: Express) {
   // Public: save inquiry when user submits booking form
   app.post("/api/booking-inquiries", submitLimiter, async (req, res) => {
@@ -41,6 +55,19 @@ export function registerInquiryRoutes(app: Express) {
           errors: parsed.error.flatten().fieldErrors,
         });
       }
+      // Capacity guard — mirrors the one in /api/quote (server/routes/bookings.ts). The wizard
+      // already keeps a group from picking a boat it does not fit in, so anything landing here
+      // over capacity is a direct POST or a half-restored session: it must not reach the CRM.
+      const boatIds = parsed.data.boatIds?.length ? parsed.data.boatIds : [parsed.data.boatId];
+      const requestedBoats = await Promise.all(boatIds.map(id => storage.getBoat(id)));
+      if (exceedsCapacity(requestedBoats, parsed.data.numberOfPeople)) {
+        const seats = requestedBoats.reduce((sum, boat) => sum + (boat?.capacity ?? 0), 0);
+        return res.status(400).json({
+          message: `Numero de personas (${parsed.data.numberOfPeople}) excede la capacidad (${seats})`,
+          reason: "capacity_exceeded",
+        });
+      }
+
       const inquiry = await storage.createWhatsappInquiry(parsed.data);
 
       // Safety-net admin notification: the wizard's only ping to the team was

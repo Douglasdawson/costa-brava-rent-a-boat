@@ -1740,6 +1740,9 @@ export const insertWhatsappInquirySchema = createInsertSchema(whatsappInquiries)
     notes: z.string().max(5000).optional().or(z.null()),
     // Accept boatIds explicitly (1..2). When omitted, the storage layer derives [boatId].
     boatIds: z.array(z.string().min(1)).min(1).max(2).optional(),
+    // The wizard sends `parseInt(...) || 0`: without a floor a 0-people lead reached the CRM.
+    // Upper bound matches /api/quote; the per-boat capacity is checked in the route.
+    numberOfPeople: z.coerce.number().int().min(1).max(20),
     licenseCountry: z
       .string()
       .regex(/^[A-Z]{2}$/i)

@@ -4509,7 +4509,7 @@ export const es: Translations = {
       titulin: {
         question: "¿Qué es el titulín y cómo me lo saco?",
         answer:
-          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas en una escuela náutica autorizada, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19 y la Trimarchi 57S. Escríbenos y te orientamos sobre dónde sacártelo cerca de Blanes.",
+          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas en una escuela náutica autorizada, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19 y la Trimarchi 57S. Lo expide cualquier escuela náutica autorizada: escríbenos por WhatsApp y te lo organizamos en una de la zona si lo necesitas ya. Nuestra propia escuela, Escola Nàutica Blanes (escolanauticablanes.com), abre en el puerto de Blanes en abril de 2027 y de momento solo tiene lista de espera.",
       },
       licenciasAceptadas: {
         question: "¿Qué licencias aceptan para barcos grandes?",
@@ -5987,7 +5987,7 @@ export const es: Translations = {
         },
       ],
       note:
-        "El curso se hace en escuelas náuticas de recreo autorizadas y federaciones náuticas. Nosotros te lo organizamos cerca de Blanes y lo combinamos con tu primer alquiler: sales titulado y con la lancha reservada el mismo viaje. Escríbenos y te damos fechas y precio.",
+        "El curso se hace en escuelas náuticas de recreo autorizadas y federaciones náuticas. Nosotros te lo organizamos cerca de Blanes y lo combinamos con tu primer alquiler: sales titulado y con la lancha reservada el mismo viaje. Escríbenos y te orientamos sobre dónde sacártelo cerca de Blanes.",
     },
     fleet: {
       title: "Con el titulín, esta flota es tuya",

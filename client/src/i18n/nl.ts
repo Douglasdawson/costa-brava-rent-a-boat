@@ -4656,7 +4656,7 @@ export const nl: Translations = {
         },
       ],
       note:
-        "De cursus wordt gegeven door erkende watersportscholen en federaties. Wij regelen hem voor je in de buurt van Blanes en combineren hem met je eerste huur: je gaat weg met vaarbewijs én de boot al geboekt in dezelfde reis. Schrijf ons voor data en prijs.",
+        "De cursus wordt gegeven door erkende watersportscholen en federaties. Wij regelen hem voor je in de buurt van Blanes en combineren hem met je eerste huur: je gaat weg met vaarbewijs én de boot al geboekt in dezelfde reis. Schrijf ons en we wijzen je een erkende school in de buurt van Blanes.",
     },
     fleet: {
       title: "Met de titulín is deze vloot van jou",

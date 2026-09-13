@@ -2804,7 +2804,7 @@ export const en: Translations = {
       titulin: {
         question: "What is the titulín and how do I get it?",
         answer:
-          "The titulín is the Licencia de Navegación: Spain's fastest boat licence. You get it in one day with 2 hours of theory and 4 hours of practice at an authorised nautical school, with no exam, and it never expires. It allows boats of up to 6 metres, in daytime and up to 2 miles from shelter: in our fleet it covers the Mingolla Brava 19 and the Trimarchi 57S. Message us and we will point you to where to get it near Blanes.",
+          "The titulín is the Licencia de Navegación: Spain's fastest boat licence. You get it in one day with 2 hours of theory and 4 hours of practice at an authorised nautical school, with no exam, and it never expires. It allows boats of up to 6 metres, in daytime and up to 2 miles from shelter: in our fleet it covers the Mingolla Brava 19 and the Trimarchi 57S. Any authorised nautical school can issue it: message us on WhatsApp and we will arrange one nearby if you need it now. Our own school, Escola Nàutica Blanes (escolanauticablanes.com, in Spanish), opens in Blanes harbour in April 2027 and for now only has a waiting list.",
       },
       licenciasAceptadas: {
         question: "What licenses do you accept for larger boats?",
@@ -4690,7 +4690,7 @@ export const en: Translations = {
         },
       ],
       note:
-        "The course is run by authorised recreational nautical schools and federations. We arrange it for you near Blanes and combine it with your first rental: you finish qualified with the boat already booked for the same trip. Write to us for dates and price.",
+        "The course is run by authorised recreational nautical schools and federations. We arrange it for you near Blanes and combine it with your first rental: you finish qualified with the boat already booked for the same trip. Message us and we will point you to an authorised school nearby.",
     },
     fleet: {
       title: "With the titulín, this fleet is yours",

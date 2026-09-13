@@ -4651,7 +4651,7 @@ export const it: Translations = {
         },
       ],
       note:
-        "Il corso si svolge presso scuole nautiche da diporto autorizzate e federazioni. Noi te lo organizziamo vicino a Blanes e lo combiniamo con il tuo primo noleggio: esci patentato e con il motoscafo già prenotato nello stesso viaggio. Scrivici per date e prezzo.",
+        "Il corso si svolge presso scuole nautiche da diporto autorizzate e federazioni. Noi te lo organizziamo vicino a Blanes e lo combiniamo con il tuo primo noleggio: esci patentato e con il motoscafo già prenotato nello stesso viaggio. Scrivici e ti indichiamo una scuola autorizzata vicino a Blanes.",
     },
     fleet: {
       title: "Con il titulín, questa flotta è tua",

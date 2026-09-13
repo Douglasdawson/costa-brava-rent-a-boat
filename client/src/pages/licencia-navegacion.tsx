@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   GraduationCap,
   LifeBuoy,
+  ExternalLink,
 } from "lucide-react";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
@@ -23,6 +24,7 @@ import {
   generateFAQSchema,
 } from "@/utils/seo-schemas";
 import { getLocalizedPath } from "@shared/i18n-routes";
+import { escolaNauticaHandoff } from "@shared/escolaNauticaLinks";
 
 const NAVY_CTA =
   "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
@@ -49,6 +51,8 @@ export default function NavigationLicensePage() {
   const licensedFleetPath = getLocalizedPath("categoryLicensed", language);
   const captainedPath = getLocalizedPath("categoryCaptained", language);
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(p?.whatsappMessage || "")}`;
+  // null fuera de es/ca/en: la escuela hermana existe solo en castellano.
+  const school = escolaNauticaHandoff(language, "titulin-course");
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -191,6 +195,28 @@ export default function NavigationLicensePage() {
           <p className="mx-auto mt-8 max-w-2xl text-center leading-relaxed text-muted-foreground">
             {p?.course?.note}
           </p>
+
+          {school && (
+            <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-border bg-card p-6 sm:p-8">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                <GraduationCap className="h-5 w-5 text-primary" />
+              </span>
+              <h3 className="mt-4 font-heading text-xl font-bold text-foreground">
+                {school.title}
+              </h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">{school.body}</p>
+              <a
+                href={school.url}
+                target="_blank"
+                rel="noopener"
+                className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-primary hover:underline"
+                data-testid="link-escola-nautica"
+              >
+                {school.cta}
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          )}
         </div>
       </section>
 

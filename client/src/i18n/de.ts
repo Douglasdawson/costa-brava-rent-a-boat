@@ -4663,7 +4663,7 @@ export const de: Translations = {
         },
       ],
       note:
-        "Der Kurs findet an autorisierten Wassersportschulen und Verbänden statt. Wir organisieren ihn für Sie in der Nähe von Blanes und kombinieren ihn mit Ihrer ersten Miete: Sie gehen mit Schein und bereits gebuchtem Boot aus derselben Reise. Schreiben Sie uns für Termine und Preis.",
+        "Der Kurs findet an autorisierten Wassersportschulen und Verbänden statt. Wir organisieren ihn für Sie in der Nähe von Blanes und kombinieren ihn mit Ihrer ersten Miete: Sie gehen mit Schein und bereits gebuchtem Boot aus derselben Reise. Schreiben Sie uns, und wir nennen Ihnen eine autorisierte Schule in der Nähe von Blanes.",
     },
     fleet: {
       title: "Mit dem Titulín gehört diese Flotte Ihnen",

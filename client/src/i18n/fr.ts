@@ -4658,7 +4658,7 @@ export const fr: Translations = {
         },
       ],
       note:
-        "Le cours est assuré par des écoles nautiques de plaisance agréées et des fédérations. Nous l organisons pour vous près de Blanes et le combinons à votre première location : vous repartez diplômé et avec le bateau déjà réservé pour le même séjour. Écrivez-nous pour les dates et le prix.",
+        "Le cours est assuré par des écoles nautiques de plaisance agréées et des fédérations. Nous l organisons pour vous près de Blanes et le combinons à votre première location : vous repartez diplômé et avec le bateau déjà réservé pour le même séjour. Écrivez-nous et nous vous orienterons vers une école agréée près de Blanes.",
     },
     fleet: {
       title: "Avec le titulín, cette flotte est à vous",

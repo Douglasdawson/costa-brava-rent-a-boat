@@ -2756,7 +2756,7 @@ export const ca: Translations = {
       titulin: {
         question: "Què és el titulí i com me'l trec?",
         answer:
-          "El titulí és la Llicència de Navegació: el títol nàutic més ràpid d'Espanya. S'aconsegueix en un dia amb 2 hores de teoria i 4 de pràctiques en una escola nàutica autoritzada, sense examen, i no caduca. Permet portar vaixells de fins a 6 metres, de dia i fins a 2 milles d'un abric: a la nostra flota cobreix la Mingolla Brava 19 i la Trimarchi 57S. Escriu-nos i t'orientem sobre on treure-te'l a prop de Blanes.",
+          "El titulí és la Llicència de Navegació: el títol nàutic més ràpid d'Espanya. S'aconsegueix en un dia amb 2 hores de teoria i 4 de pràctiques en una escola nàutica autoritzada, sense examen, i no caduca. Permet portar vaixells de fins a 6 metres, de dia i fins a 2 milles d'un abric: a la nostra flota cobreix la Mingolla Brava 19 i la Trimarchi 57S. L'expedeix qualsevol escola nàutica autoritzada: escriu-nos per WhatsApp i te l'organitzem en una de la zona si el necessites ja. La nostra pròpia escola, Escola Nàutica Blanes (escolanauticablanes.com), obre al port de Blanes l'abril del 2027 i de moment només té llista d'espera.",
       },
       licenciasAceptadas: {
         question: "Quines llicències accepteu per a barques grans?",
@@ -4642,7 +4642,7 @@ export const ca: Translations = {
         },
       ],
       note:
-        "El curs es fa en escoles nàutiques d esbarjo autoritzades i federacions nàutiques. Nosaltres te l organitzem prop de Blanes i el combinem amb el teu primer lloguer: surts titulat i amb la llanxa reservada el mateix viatge. Escriu-nos i et donem dates i preu.",
+        "El curs es fa en escoles nàutiques d esbarjo autoritzades i federacions nàutiques. Nosaltres te l organitzem prop de Blanes i el combinem amb el teu primer lloguer: surts titulat i amb la llanxa reservada el mateix viatge. Escriu-nos i t'orientem sobre on treure-te'l a prop de Blanes.",
     },
     fleet: {
       title: "Amb el titulí, aquesta flota és teva",

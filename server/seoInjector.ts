@@ -19,6 +19,7 @@ import { BOAT_DATA, applyFleetStatsToText, boatIncludesFuel, isCaptainedBoat } f
 import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { ACTIVITATUM_PICKS, activitatumPicksBySlot, activitatumTopicUrl, activitatumUrl } from "../shared/activitatumLinks";
+import { ESCOLA_NAUTICA_DOMAIN, escolaNauticaHandoff } from "../shared/escolaNauticaLinks";
 import { SHOP_PRODUCTS } from "../shared/shopData";
 import { NAUTICAL_GLOSSARY_ES } from "../shared/nauticalGlossary";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
@@ -2503,9 +2504,10 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "Mediterranean Sea", "Nautical Tourism", "Water Sports",
           "Maritime Safety", "Cabo de Santa Anna", "Botánico Marimurtra",
         ],
-        // sameAs: cluster de perfiles oficiales (alineado con
-        // client/src/utils/seo-config.ts). TODO: añadir YouTube cuando
-        // exista el canal del negocio.
+        // sameAs: perfiles oficiales + marcas hermanas del mismo propietario. Este es el
+        // que ven los crawlers (el de client/src/utils/seo-config.ts nunca llega al HTML:
+        // SEO.tsx se inhibe si ya hay un ld+json, y client/index.html siempre mete uno),
+        // así que los dominios hermanos tienen que estar AQUÍ. TODO: YouTube cuando exista.
         sameAs: [
           "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
           "https://www.instagram.com/costabravarentaboat/",
@@ -2513,6 +2515,9 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "https://www.tiktok.com/@costabravarentaboat",
           "https://www.linkedin.com/company/costabravarentaboat",
           "https://www.tripadvisor.com/Attraction_Review-g580331-d19938921-Reviews-Costa_Brava_Rent_a_Boat-Blanes_Costa_Brava_Province_of_Girona_Catalonia.html",
+          ESCOLA_NAUTICA_DOMAIN,
+          "https://coastrent.es",
+          "https://activitatum.com",
         ],
         hasMerchantReturnPolicy: {
           "@type": "MerchantReturnPolicy",
@@ -3758,6 +3763,43 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         cap.ctaButton,
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [serviceCaptained, faqCaptained, howToCaptained, breadcrumbCaptained] }, availableLanguages, bodyFallback: captainedBodyFallback };
+    }
+
+    // /licencia-navegacion-titulin - Pillar page of the 2026-08 titulín pivot. It had NO
+    // branch here, so crawlers without JS got an empty <div id="root"> on the page the whole
+    // positioning leans on (production does not prerender; see CLAUDE.md). No Service/offers
+    // schema on purpose: the course has no published price and we do not run the school.
+    // The sister-school link lives here too, or it would not exist for GPTBot/ClaudeBot.
+    else if (metaKey === "/licencia-navegacion-titulin") {
+      const nl = (I18N_BY_LANG[lang] ?? i18nEs).navigationLicensePage!;
+      const heading = nl.hero.title;
+      const summary = nl.hero.subtitle;
+      const school = escolaNauticaHandoff(lang, "titulin-course");
+      const faqLicense = {
+        "@type": "FAQPage",
+        "@id": `${BASE_URL}${metaKey}#faq`,
+        mainEntity: nl.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      };
+      const breadcrumbLicense = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
+      const licenseBodyFallback = `
+<h1>${esc(heading)}</h1>
+<p>${esc(summary)}</p>
+<p>${esc(nl.newRule.title)}: ${esc(nl.newRule.body)}</p>
+<ul>
+${nl.allows.items.map((item) => `  <li>${esc(item)}</li>`).join("\n")}
+</ul>
+<ul>
+${nl.course.steps.map((step) => `  <li>${esc(step.title)}: ${esc(step.description)}</li>`).join("\n")}
+</ul>
+<p>${esc(nl.course.note)}</p>
+${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta)}</a></p>` : ""}
+<p><a href="https://wa.me/34611500372">${esc(nl.ctaButton ?? nl.hero.title)}</a></p>
+      `.trim();
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [faqLicense, breadcrumbLicense] }, availableLanguages, bodyFallback: licenseBodyFallback };
     }
 
     // /paseo-atardecer-barco-blanes - Sunset activity. Fase 2 (2026-05-28):

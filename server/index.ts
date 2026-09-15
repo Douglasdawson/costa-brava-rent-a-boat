@@ -795,9 +795,20 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     );
   };
 
+  // A late response (handler finishing after the 30s timeout middleware already
+  // answered) throws ERR_HTTP_HEADERS_SENT. It is a per-request bug, never a
+  // reason to take the whole site down.
+  const isHeadersSentError = (err: unknown): boolean =>
+    (err as { code?: string } | null)?.code === "ERR_HTTP_HEADERS_SENT" ||
+    (err instanceof Error && err.message.includes("Cannot set headers after they are sent"));
+
   process.on("uncaughtException", (err) => {
     if (isNeonWebSocketError(err)) {
       log(`[DB] Neon WebSocket transient error (non-fatal, connection will retry): ${err.message}`);
+      return;
+    }
+    if (isHeadersSentError(err)) {
+      log(`Late response ignored (non-fatal): ${err.message}`);
       return;
     }
     log(`Uncaught exception — shutting down: ${err.message}\n${err.stack}`);
@@ -807,6 +818,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   process.on("unhandledRejection", (reason) => {
     if (isNeonWebSocketError(reason)) {
       log(`[DB] Neon WebSocket transient rejection (non-fatal, connection will retry)`);
+      return;
+    }
+    if (isHeadersSentError(reason)) {
+      log(`Late response ignored (non-fatal): ${reason instanceof Error ? reason.message : String(reason)}`);
       return;
     }
     log(`Unhandled rejection — shutting down: ${reason instanceof Error ? reason.message : String(reason)}`);

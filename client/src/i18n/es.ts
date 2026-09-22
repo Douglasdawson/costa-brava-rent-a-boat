@@ -3395,7 +3395,7 @@ export const es: Translations = {
         id: "titulin",
         question: "¿Qué es el titulín y cómo me lo saco?",
         answer:
-          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas a bordo, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19 y la Trimarchi 57S. Te organizamos el curso y lo combinamos con tu primer alquiler; escríbenos y te contamos cómo.",
+          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas a bordo, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19, la Trimarchi 57S y la Pacific Craft 625. Te organizamos el curso y lo combinamos con tu primer alquiler; escríbenos y te contamos cómo.",
       },
       {
         id: "precios",
@@ -3743,7 +3743,7 @@ export const es: Translations = {
     "mingolla-brava-19":
       "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere Licencia de Navegación (LN) o superior.",
     "pacific-craft-625":
-      "Lo mejor que puedes alquilar en Blanes. 6,24 metros de eslora, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere Licencia de Navegación (LN) o superior.",
+      "Lo mejor que puedes alquilar en Blanes. 5,90 metros de eslora de matriculación —el «625» es el nombre comercial, no la medida—, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere Licencia de Navegación (LN) o superior.",
     "excursion-privada":
       "Tú solo disfrutas: nuestro patrón profesional te lleva a calas secretas, cuevas marinas y rincones inaccesibles a pie entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según viento y corrientes. Ideal para celebraciones, aniversarios o familias que quieren una excursión privada exclusiva por la Costa Brava sin preocuparse de nada.",
   },
@@ -4528,7 +4528,7 @@ export const es: Translations = {
       titulin: {
         question: "¿Qué es el titulín y cómo me lo saco?",
         answer:
-          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas en una escuela náutica autorizada, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19 y la Trimarchi 57S. Lo expide cualquier escuela náutica autorizada: escríbenos por WhatsApp y te lo organizamos en una de la zona si lo necesitas ya. Nuestra propia escuela, Escola Nàutica Blanes (escolanauticablanes.com), abre en el puerto de Blanes en abril de 2027 y de momento solo tiene lista de espera.",
+          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas en una escuela náutica autorizada, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19, la Trimarchi 57S y la Pacific Craft 625. Lo expide cualquier escuela náutica autorizada: escríbenos por WhatsApp y te lo organizamos en una de la zona si lo necesitas ya. Nuestra propia escuela, Escola Nàutica Blanes (escolanauticablanes.com), abrirá en el puerto de Blanes: todavía no está autorizada, así que de momento solo tiene lista de espera.",
       },
       licenciasAceptadas: {
         question: "¿Qué licencias aceptan para barcos grandes?",
@@ -5051,11 +5051,11 @@ export const es: Translations = {
       {
         term: "LN (Licencia de Navegación)",
         definition:
-          "Titulación náutica española mínima reconocida por el RD 875/2014. Permite gobernar embarcaciones de hasta 6 metros de eslora, con motor adecuado al casco y hasta 2 millas náuticas de la costa, en horario diurno. Es la titulación mínima requerida para los barcos con licencia de nuestra flota (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625). Examen teórico + curso de seguridad básico.",
+          "Titulación náutica española mínima reconocida por el RD 875/2014. Permite gobernar embarcaciones de hasta 6 metros de eslora, con motor adecuado al casco y hasta 2 millas náuticas de la costa, en horario diurno. Es la titulación mínima requerida para los barcos con licencia de nuestra flota (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625). Sin examen: la escuela náutica autorizada certifica la formación y expide el título bajo su responsabilidad.",
         category: "titulacion",
       },
       {
-        term: "LNB (Licencia de Navegación Básica)",
+        term: "PNB (Patrón para Navegación Básica, «LNB»)",
         definition:
           "Titulación náutica española superior a la LN. Permite gobernar embarcaciones de hasta 8 metros de eslora y hasta 5 millas de la costa. Recomendable para quien quiera flexibilidad de zona. Válida de por vida tras aprobar el examen teórico + curso práctico.",
         category: "titulacion",
@@ -6011,7 +6011,7 @@ export const es: Translations = {
     fleet: {
       title: "Con el titulín, esta flota es tuya",
       body:
-        "La Licencia de Navegación te basta para alquilar nuestras lanchas Mingolla Brava 19 y Trimarchi 57S, con motores de 80 y 110 CV y rumbo libre hasta Tossa de Mar. Y a partir de octubre de 2026 será también el título que te permita seguir alquilando los barcos pequeños de la flota. Un curso de un día, y navegas por tu cuenta muchos veranos.",
+        "La Licencia de Navegación te basta para alquilar nuestras lanchas Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625, con motores de 80, 110 y 115 CV y rumbo libre hasta Tossa de Mar. Y a partir de octubre de 2026 será también el título que te permita seguir alquilando los barcos pequeños de la flota. Un curso de un día, y navegas por tu cuenta muchos veranos.",
       cta: "Ver los barcos que puedes llevar",
     },
     faqTitle: "Preguntas frecuentes sobre el titulín",
@@ -6026,7 +6026,7 @@ export const es: Translations = {
       },
       {
         q: "¿Qué puedo llevar con la Licencia de Navegación?",
-        a: "Embarcaciones a motor de hasta 6 metros de eslora, navegando de día y hasta 2 millas náuticas de un puerto o lugar de abrigo, además de motos de agua de clase C. En nuestra flota cubre la Mingolla Brava 19 y la Trimarchi 57S.",
+        a: "Embarcaciones a motor de hasta 6 metros de eslora, navegando de día y hasta 2 millas náuticas de un puerto o lugar de abrigo, además de motos de agua de clase C. En nuestra flota cubre la Mingolla Brava 19, la Trimarchi 57S y la Pacific Craft 625.",
       },
       {
         q: "¿Caduca? ¿Desde qué edad puedo sacármela?",

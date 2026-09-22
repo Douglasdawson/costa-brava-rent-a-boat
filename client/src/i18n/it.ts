@@ -1557,7 +1557,7 @@ export const it: Translations = {
         id: "titulin",
         question: "Che cos'\u00E8 il titul\u00EDn e come si prende?",
         answer:
-          "Il titul\u00EDn \u00E8 la Licencia de Navegaci\u00F3n: il titolo nautico pi\u00F9 rapido di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica a bordo, senza esame, e non scade. Consente barche fino a 6 metri, di giorno e fino a 2 miglia da un riparo: nella nostra flotta la Mingolla Brava 19 e la Trimarchi 57S. Ti organizziamo il corso e lo combiniamo con il tuo primo noleggio; scrivici e ti spieghiamo come.",
+          "Il titul\u00EDn \u00E8 la Licencia de Navegaci\u00F3n: il titolo nautico pi\u00F9 rapido di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica a bordo, senza esame, e non scade. Consente barche fino a 6 metri, di giorno e fino a 2 miglia da un riparo: nella nostra flotta la Mingolla Brava 19, la Trimarchi 57S e la Pacific Craft 625. Ti organizziamo il corso e lo combiniamo con il tuo primo noleggio; scrivici e ti spieghiamo come.",
       },
       {
         id: "precios",
@@ -1776,7 +1776,7 @@ export const it: Translations = {
     "mingolla-brava-19":
       "Il motoscafo ideale per esplorare tutta la costa: Lloret de Mar in 15 minuti, Tossa de Mar in mezz'ora. Con 80 cv, GPS e ecoscandaglio, raggiungerete cale che altre barche non possono. Doccia d'acqua dolce, Bluetooth e arco in acciaio inox per sport acquatici. Tutto il necessario per percorrere la Costa Brava in totale libertà. Richiede la Licencia de Navegación (LN) o un titolo superiore.",
     "pacific-craft-625":
-      "Il meglio che si possa noleggiare a Blanes. 6,24 metri, motore Yamaha 115 cv e spazio di lusso per 7 persone. Doppio solarium, tavolo per pranzare all'ancora, doccia d'acqua dolce e comandi elettronici. Per chi non vuole compromessi e cerca l'esperienza nautica più completa della Costa Brava. Richiede la Licencia de Navegación (LN) o un titolo superiore.",
+      "Il meglio che si possa noleggiare a Blanes. 5,90 metri di lunghezza di immatricolazione (il «625» è il nome commerciale, non la misura), motore Yamaha 115 cv e spazio di lusso per 7 persone. Doppio solarium, tavolo per pranzare all'ancora, doccia d'acqua dolce e comandi elettronici. Per chi non vuole compromessi e cerca l'esperienza nautica più completa della Costa Brava. Richiede la Licencia de Navegación (LN) o un titolo superiore.",
     "excursion-privada":
       "Voi vi godete il mare, il nostro skipper professionista vi porta in cale segrete, grotte marine e angoli inaccessibili a piedi tra Blanes e Tossa de Mar. Getterete l'ancora nella cala perfetta del giorno, scelta in base a vento e correnti. Ideale per celebrazioni, anniversari o famiglie che desiderano un'escursione privata esclusiva in Costa Brava senza pensieri.",
   },
@@ -2784,7 +2784,7 @@ export const it: Translations = {
       titulin: {
         question: "Cos'è il titulín e come lo ottengo?",
         answer:
-          "Il titulín è la Licencia de Navegación: la patente nautica più rapida di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica in una scuola nautica autorizzata, senza esame, e non scade mai. Permette barche fino a 6 metri, di giorno e fino a 2 miglia da un rifugio: nella nostra flotta copre la Mingolla Brava 19 e la Trimarchi 57S. Scrivici e ti indichiamo dove ottenerlo vicino a Blanes.",
+          "Il titulín è la Licencia de Navegación: la patente nautica più rapida di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica in una scuola nautica autorizzata, senza esame, e non scade mai. Permette barche fino a 6 metri, di giorno e fino a 2 miglia da un rifugio: nella nostra flotta copre la Mingolla Brava 19, la Trimarchi 57S e la Pacific Craft 625. Scrivici e ti indichiamo dove ottenerlo vicino a Blanes.",
       },
       licenciasAceptadas: {
         question: "Quali patenti accettate per le barche grandi?",
@@ -4082,11 +4082,11 @@ export const it: Translations = {
     terms: [
       {
         term: 'LN (Licencia de Navegación)',
-        definition: 'Patente nautica spagnola minima riconosciuta dal RD 875/2014. Permette di condurre imbarcazioni fino a 6 metri di lunghezza, con motore adeguato allo scafo e fino a 2 miglia nautiche dalla costa, in orario diurno. È la patente minima richiesta per le barche con licenza della nostra flotta (Mingolla Brava 19, Trimarchi 57S e Pacific Craft 625). Esame teorico + corso di sicurezza di base.',
+        definition: 'Patente nautica spagnola minima riconosciuta dal RD 875/2014. Permette di condurre imbarcazioni fino a 6 metri di lunghezza, con motore adeguato allo scafo e fino a 2 miglia nautiche dalla costa, in orario diurno. È la patente minima richiesta per le barche con licenza della nostra flotta (Mingolla Brava 19, Trimarchi 57S e Pacific Craft 625). Senza esame: la scuola nautica autorizzata certifica la formazione e rilascia il titolo sotto la propria responsabilità.',
         category: 'titulacion',
       },
       {
-        term: 'LNB (Licencia de Navegación Básica)',
+        term: 'PNB (Patrón para Navegación Básica, «LNB»)',
         definition: 'Patente nautica spagnola superiore alla LN. Permette di condurre imbarcazioni fino a 8 metri di lunghezza e fino a 5 miglia dalla costa. Consigliata per chi desidera maggiore flessibilità di zona. Valida a vita dopo aver superato l\'esame teorico + corso pratico.',
         category: 'titulacion',
       },
@@ -4675,7 +4675,7 @@ export const it: Translations = {
     fleet: {
       title: "Con il titulín, questa flotta è tua",
       body:
-        "La Licencia de Navegación ti basta per noleggiare i nostri motoscafi Mingolla Brava 19 e Trimarchi 57S, con motori da 80 e 110 CV e Tossa de Mar a portata di rotta. E da ottobre 2026 sarà anche il titolo che ti permetterà di continuare a noleggiare le barche piccole della flotta. Un giorno di corso, tante estati al timone.",
+        "La Licencia de Navegación ti basta per noleggiare i nostri motoscafi Mingolla Brava 19, Trimarchi 57S e Pacific Craft 625, con motori da 80, 110 e 115 CV e Tossa de Mar a portata di rotta. E da ottobre 2026 sarà anche il titolo che ti permetterà di continuare a noleggiare le barche piccole della flotta. Un giorno di corso, tante estati al timone.",
       cta: "Vedi le barche che puoi condurre",
     },
     faqTitle: "Domande frequenti sul titulín",
@@ -4690,7 +4690,7 @@ export const it: Translations = {
       },
       {
         q: "Cosa posso condurre con la Licencia de Navegación?",
-        a: "Imbarcazioni a motore fino a 6 metri di lunghezza, di giorno e fino a 2 miglia nautiche da un porto o rifugio, oltre alle moto d'acqua di classe C. Nella nostra flotta copre la Mingolla Brava 19 e la Trimarchi 57S.",
+        a: "Imbarcazioni a motore fino a 6 metri di lunghezza, di giorno e fino a 2 miglia nautiche da un porto o rifugio, oltre alle moto d'acqua di classe C. Nella nostra flotta copre la Mingolla Brava 19, la Trimarchi 57S e la Pacific Craft 625.",
       },
       {
         q: "Scade? Da che età posso ottenerla?",

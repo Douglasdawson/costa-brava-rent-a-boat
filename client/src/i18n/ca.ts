@@ -1555,7 +1555,7 @@ export const ca: Translations = {
         id: "titulin",
         question: "Qu\u00E8 \u00E9s el titul\u00EDn i com me'l trec?",
         answer:
-          "El titul\u00EDn \u00E9s la Llic\u00E8ncia de Navegaci\u00F3: el t\u00EDtol n\u00E0utic m\u00E9s r\u00E0pid d'Espanya. S'aconsegueix en un dia amb 2 hores de teoria i 4 de pr\u00E0ctiques a bord, sense examen, i no caduca. Permet portar vaixells de fins a 6 metres, de dia i fins a 2 milles d'un abric: a la nostra flota cobreix la Mingolla Brava 19 i la Trimarchi 57S. T'organitzem el curs i el combinem amb el teu primer lloguer; escriu-nos i t'expliquem com.",
+          "El titul\u00EDn \u00E9s la Llic\u00E8ncia de Navegaci\u00F3: el t\u00EDtol n\u00E0utic m\u00E9s r\u00E0pid d'Espanya. S'aconsegueix en un dia amb 2 hores de teoria i 4 de pr\u00E0ctiques a bord, sense examen, i no caduca. Permet portar vaixells de fins a 6 metres, de dia i fins a 2 milles d'un abric: a la nostra flota cobreix la Mingolla Brava 19, la Trimarchi 57S i la Pacific Craft 625. T'organitzem el curs i el combinem amb el teu primer lloguer; escriu-nos i t'expliquem com.",
       },
       {
         id: "precios",
@@ -1774,7 +1774,7 @@ export const ca: Translations = {
     "mingolla-brava-19":
       "La llanxa ideal per explorar tota la costa: Lloret de Mar en 15 minuts, Tossa de Mar en mitja hora. Amb 80 cv, GPS i sonda nàutica, arribes a cales que altres vaixells no assoleixen. Dutxa d'aigua dolça, bluetooth i arc d'acer inoxidable per a esports aquàtics. Tot l'equipament per recórrer la Costa Brava amb total autonomia. Requereix Llicència de Navegació (LN) o superior.",
     "pacific-craft-625":
-      "El millor que pots llogar a Blanes. 6,24 metres d'eslora, motor Yamaha 115 cv i espai de luxe per a 7 persones. Solarium doble, taula per dinar fondejats davant d'una cala, dutxa d'aigua dolça i comandament electrònic. Per als qui no volen compromisos i busquen l'experiència nàutica més completa de la Costa Brava. Requereix Llicència de Navegació (LN) o superior.",
+      "El millor que pots llogar a Blanes. 5,90 metres d'eslora de matriculació —el «625» és el nom comercial, no la mesura—, motor Yamaha 115 cv i espai de luxe per a 7 persones. Solarium doble, taula per dinar fondejats davant d'una cala, dutxa d'aigua dolça i comandament electrònic. Per als qui no volen compromisos i busquen l'experiència nàutica més completa de la Costa Brava. Requereix Llicència de Navegació (LN) o superior.",
     "excursion-privada":
       "Tu només gaudeixes: el nostre patró professional et porta a cales secretes, coves marines i racons inaccessibles a peu entre Blanes i Tossa de Mar. Fondejareu a la cala perfecta del dia, escollida segons vent i corrents. Ideal per a celebracions, aniversaris o famílies que volen una excursió privada exclusiva per la Costa Brava sense preocupar-se de res.",
   },
@@ -2775,7 +2775,7 @@ export const ca: Translations = {
       titulin: {
         question: "Què és el titulí i com me'l trec?",
         answer:
-          "El titulí és la Llicència de Navegació: el títol nàutic més ràpid d'Espanya. S'aconsegueix en un dia amb 2 hores de teoria i 4 de pràctiques en una escola nàutica autoritzada, sense examen, i no caduca. Permet portar vaixells de fins a 6 metres, de dia i fins a 2 milles d'un abric: a la nostra flota cobreix la Mingolla Brava 19 i la Trimarchi 57S. L'expedeix qualsevol escola nàutica autoritzada: escriu-nos per WhatsApp i te l'organitzem en una de la zona si el necessites ja. La nostra pròpia escola, Escola Nàutica Blanes (escolanauticablanes.com), obre al port de Blanes l'abril del 2027 i de moment només té llista d'espera.",
+          "El titulí és la Llicència de Navegació: el títol nàutic més ràpid d'Espanya. S'aconsegueix en un dia amb 2 hores de teoria i 4 de pràctiques en una escola nàutica autoritzada, sense examen, i no caduca. Permet portar vaixells de fins a 6 metres, de dia i fins a 2 milles d'un abric: a la nostra flota cobreix la Mingolla Brava 19, la Trimarchi 57S i la Pacific Craft 625. L'expedeix qualsevol escola nàutica autoritzada: escriu-nos per WhatsApp i te l'organitzem en una de la zona si el necessites ja. La nostra pròpia escola, Escola Nàutica Blanes (escolanauticablanes.com), obrirà al port de Blanes: encara no està autoritzada, així que de moment només té llista d'espera.",
       },
       licenciasAceptadas: {
         question: "Quines llicències accepteu per a barques grans?",
@@ -4073,11 +4073,11 @@ export const ca: Translations = {
     terms: [
       {
         term: 'LN (Licencia de Navegación)',
-        definition: 'Titulació nàutica espanyola mínima reconeguda pel RD 875/2014. Permet governar embarcacions de fins a 6 metres d\'eslora, amb motor adequat al casc i fins a 2 milles nàutiques de la costa, en horari diürn. És la titulació mínima requerida per als vaixells amb llicència de la nostra flota (Mingolla Brava 19, Trimarchi 57S i Pacific Craft 625). Examen teòric + curs de seguretat bàsic.',
+        definition: 'Titulació nàutica espanyola mínima reconeguda pel RD 875/2014. Permet governar embarcacions de fins a 6 metres d\'eslora, amb motor adequat al casc i fins a 2 milles nàutiques de la costa, en horari diürn. És la titulació mínima requerida per als vaixells amb llicència de la nostra flota (Mingolla Brava 19, Trimarchi 57S i Pacific Craft 625). Sense examen: l’escola nàutica autoritzada certifica la formació i expedeix el títol sota la seva responsabilitat.',
         category: 'titulacion',
       },
       {
-        term: 'LNB (Licencia de Navegación Básica)',
+        term: 'PNB (Patrón para Navegación Básica, «LNB»)',
         definition: 'Titulació nàutica espanyola superior a la LN. Permet governar embarcacions de fins a 8 metres d\'eslora i fins a 5 milles de la costa. Recomanable per a qui vulgui flexibilitat de zona. Vàlida de per vida després d\'aprovar l\'examen teòric + curs pràctic.',
         category: 'titulacion',
       },
@@ -4666,7 +4666,7 @@ export const ca: Translations = {
     fleet: {
       title: "Amb el titulí, aquesta flota és teva",
       body:
-        "La Llicència de Navegació et basta per llogar les nostres llanxes Mingolla Brava 19 i Trimarchi 57S, amb motors de 80 i 110 CV i rumb lliure fins a Tossa de Mar. I a partir d'octubre de 2026 serà també el títol que et permeti continuar llogant els vaixells petits de la flota. Un curs d'un dia, i navegues pel teu compte molts estius.",
+        "La Llicència de Navegació et basta per llogar les nostres llanxes Mingolla Brava 19, Trimarchi 57S i Pacific Craft 625, amb motors de 80, 110 i 115 CV i rumb lliure fins a Tossa de Mar. I a partir d'octubre de 2026 serà també el títol que et permeti continuar llogant els vaixells petits de la flota. Un curs d'un dia, i navegues pel teu compte molts estius.",
       cta: "Veure els vaixells que pots portar",
     },
     faqTitle: "Preguntes freqüents sobre el titulí",
@@ -4681,7 +4681,7 @@ export const ca: Translations = {
       },
       {
         q: "Què puc portar amb la Llicència de Navegació?",
-        a: "Embarcacions a motor de fins a 6 metres d'eslora, navegant de dia i fins a 2 milles nàutiques d'un port o lloc d'abric, a més de motos d'aigua de classe C. A la nostra flota cobreix la Mingolla Brava 19 i la Trimarchi 57S.",
+        a: "Embarcacions a motor de fins a 6 metres d'eslora, navegant de dia i fins a 2 milles nàutiques d'un port o lloc d'abric, a més de motos d'aigua de classe C. A la nostra flota cobreix la Mingolla Brava 19, la Trimarchi 57S i la Pacific Craft 625.",
       },
       {
         q: "Caduca? A partir de quina edat puc treure-me-la?",

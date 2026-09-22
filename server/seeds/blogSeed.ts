@@ -207,7 +207,7 @@ Con más de **307 reseñas en Google y una puntuación de 4,8 estrellas**, en Co
     isPublished: true,
     _publishedAt: new Date("2026-03-23T10:00:00Z"),
     excerpt: "Todo lo que necesitas saber para alquilar un barco sin licencia en Blanes: requisitos, precios desde 85EUR/hora, qué incluye el alquiler y consejos para tu primera experiencia náutica.",
-    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abre en abril de 2027 (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
+    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abrirá en cuanto resuelva su autorización (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
 
 Alquilar un barco sin licencia es una de las mejores experiencias que puedes vivir en la Costa Brava. No necesitas experiencia previa, ni título náutico, ni conocimientos especiales. En esta guía completa te explicamos absolutamente todo lo que necesitas saber para alquilar un barco sin licencia en Blanes durante la temporada 2026.
 
@@ -2112,7 +2112,7 @@ Alquilar un barco sin licencia en Blanes es más asequible de lo que imaginas. D
     isPublished: true,
     _publishedAt: new Date("2026-04-04T10:00:00Z"),
     excerpt: "No sabes qué barco elegir? Comparamos todos los barcos sin licencia de nuestra flota en Blanes: Astec 400, Astec 480, Remus 450, Solar 450 y Remus 450 II. Encuentra el tuyo.",
-    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abre en abril de 2027 (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
+    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abrirá en cuanto resuelva su autorización (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
 
 Elegir el barco adecuado puede marcar la diferencia entre un buen día y un día perfecto en el mar. En Costa Brava Rent a Boat disponemos de 5 modelos de barcos sin licencia, cada uno con características distintas pensadas para diferentes tipos de navegantes y grupos.
 
@@ -2467,7 +2467,7 @@ Septiembre es el secreto mejor guardado de la Costa Brava. Agua caliente, calas 
     isPublished: true,
     _publishedAt: new Date("2026-04-10T10:00:00Z"),
     excerpt: "Resolvemos las dudas más comunes sobre alquilar un barco sin licencia en Blanes: experiencia necesaria, precios, seguridad, capacidad y todo lo que necesitas saber.",
-    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abre en abril de 2027 (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
+    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abrirá en cuanto resuelva su autorización (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
 
 Alquilar un barco sin licencia es una experiencia cada vez más popular en la Costa Brava, pero es normal tener dudas antes de la primera vez. En este artículo respondemos las 10 preguntas que más nos hacen nuestros clientes para que reserves con total tranquilidad. Si prefieres verlo todo de un vistazo, tienes la información y la flota en nuestra guía de [alquiler de barco sin licencia en la Costa Brava](/es/barcos-sin-licencia).
 
@@ -3173,7 +3173,7 @@ La excursión en barco a Tossa de Mar es una de las experiencias más memorables
     isPublished: true,
     _publishedAt: new Date("2026-03-25T10:00:00Z"),
     excerpt: "No sabes si necesitas un barco con o sin licencia para tu dia en la Costa Brava? Te explicamos todas las diferencias, precios y ventajas de cada opcion para que elijas con confianza.",
-    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abre en abril de 2027 (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
+    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abrirá en cuanto resuelva su autorización (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
 
 Una de las preguntas mas frecuentes que recibimos en Costa Brava Rent a Boat es: "Necesito licencia para alquilar un barco?" La respuesta corta es que no siempre. En Espana puedes disfrutar de un dia de navegacion sin tener ningun titulo nautico. Pero tener licencia te abre mas opciones. En esta guia te explicamos todas las diferencias para que elijas la opcion perfecta para ti.
 
@@ -4178,7 +4178,7 @@ Esta ultima entrada no es un lugar concreto, sino una experiencia. Nuestro patro
 
 Lo mas interesante es que **el mejor sitio cambia cada dia**. Depende del viento, la corriente, la hora y la epoca del ano. El capitan lee las condiciones del dia y te lleva al rincon que estara perfecto en ese momento.
 
-**Que incluye la excursion:** El [capitan te lleva en el Pacific Craft 625](/es/barco/excursion-privada), un barco de 6,24 metros con capacidad para 7 personas. Desde 265 EUR por 2 horas. El capitan adapta la ruta a tus preferencias: snorkel, calas virgenes, vistas de Vila Vella o un mix de todo.
+**Que incluye la excursion:** El [capitan te lleva en el Pacific Craft 625](/es/barco/excursion-privada), un barco de 5,90 metros de eslora de matriculacion con capacidad para 7 personas. Desde 265 EUR por 2 horas. El capitan adapta la ruta a tus preferencias: snorkel, calas virgenes, vistas de Vila Vella o un mix de todo.
 
 **Para quien es ideal:** Familias con ninos (el capitan se encarga de todo), celebraciones (cumpleanos, aniversarios), y cualquiera que quiera la experiencia mas exclusiva y personalizada de la costa.
 
@@ -4247,7 +4247,7 @@ En esta guia te explicamos como organizar tu celebracion perfecta en barco desde
 
 ### Para grupos grandes (6-7 personas): Pacific Craft 625
 
-El [Pacific Craft 625](/es/barco/pacific-craft-625) es nuestra embarcacion estrella para celebraciones. Con **6,24 metros de eslora** y capacidad para **7 personas**, ofrece todo lo que necesitas para un evento en el mar:
+El [Pacific Craft 625](/es/barco/pacific-craft-625) es nuestra embarcacion estrella para celebraciones. Con **5,90 metros de eslora de matriculacion** y capacidad para **7 personas**, ofrece todo lo que necesitas para un evento en el mar:
 
 - **Solarium doble** (proa y popa) para tomar el sol todo el grupo
 - **Mesa central** para poner comida, bebida o la tarta de cumpleanos
@@ -4991,7 +4991,7 @@ Con una Licencia de Navegación (LN) o superior, se abre la flota grande:
 
 - **Mingolla Brava 19** (5,99 m, Mercury 80 cv): **6 personas**. Con GPS y sonda. Lloret en 15 minutos, Tossa en media hora.
 - **Trimarchi 57S** (5,7 m, 110 cv): **7 personas**. Solárium doble y mesa central para comer fondeados.
-- **Pacific Craft 625** (6,24 m, Yamaha 115 cv): **7 personas**. La más grande y equipada de la flota.
+- **Pacific Craft 625** (5,90 m, Yamaha 115 cv): **7 personas**. La más grande y equipada de la flota.
 
 Aquí el **combustible no está incluido** (se repone al devolver el barco) y la fianza sube a 500 €. Es el peaje por tener un barco que puede recorrer toda la costa entre Blanes y Tossa sin pensárselo. Toda la ficha técnica, en [barcos con licencia](/es/barcos-con-licencia).
 
@@ -5211,13 +5211,13 @@ Son **6 horas en un solo día**:
 - **2 horas de teoría** presencial: seguridad, balizamiento, meteorología básica y reglas de rumbo. La Generalitat no admite sustituirla por formación a distancia.
 - **4 horas de prácticas a bordo** con un patrón con titulación profesional: maniobra, gobierno, fondeo y vuelta a puerto.
 
-**No hay examen.** La escuela autorizada certifica la formación y expide la licencia bajo su responsabilidad. Solo hay dos requisitos administrativos: tener 18 años (16 con consentimiento de los tutores) y un certificado médico psicofísico, que cuesta unos 45 euros y lo paga el alumno.
+**No hay examen.** La escuela autorizada certifica la formación y expide la licencia bajo su responsabilidad. Solo hay dos requisitos administrativos: tener 18 años (16 con consentimiento de los tutores) y un certificado médico psicofísico, que lo paga el alumno y cuyo precio fija cada centro de reconocimiento.
 
 ## Dónde hacerlo cerca de Blanes
 
-Hoy lo imparten escuelas náuticas autorizadas de la comarca. En la zona, los cursos de un día se publican entre **150 y 199 euros** según la escuela y la temporada. Si quieres sacártelo antes de tu próximo alquiler, [escríbenos por WhatsApp](https://wa.me/34611500372) y te orientamos sobre las escuelas más cercanas al Puerto de Blanes.
+Hoy lo imparten escuelas náuticas autorizadas de la comarca. El precio lo pone cada escuela y varía con la temporada, así que conviene preguntarlo antes. Si quieres sacártelo antes de tu próximo alquiler, [escríbenos por WhatsApp](https://wa.me/34611500372) y te orientamos sobre las escuelas más cercanas al Puerto de Blanes.
 
-Y desde **abril de 2027** habrá una más: la nuestra. [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}) es la escuela náutica de la misma empresa que Costa Brava Rent a Boat, en el mismo puerto. Todavía no tiene matrícula abierta ni precio publicado: en su web puedes ver cómo será el día de prácticas y apuntarte a la lista de espera.
+Y habrá una más: la nuestra. [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}) es la escuela náutica de la misma empresa que Costa Brava Rent a Boat, en el mismo puerto. Todavía no tiene matrícula abierta ni precio publicado: en su web puedes ver cómo será el día de prácticas y apuntarte a la lista de espera.
 
 ## Qué puedes alquilar con el titulín
 
@@ -5266,7 +5266,7 @@ La lancha de entrada de la flota con licencia. Motor de 80 CV, 6 plazas y una pl
 
 ### [Trimarchi 57S](/es/barco/trimarchi-57s), 5,70 m
 
-La más marinera. Motor de 110 CV y 7 plazas, con una proa que corta bien el mar de tarde. Es el barco que usará nuestra escuela náutica para las prácticas del titulín a partir de abril de 2027, así que si te lo sacas con nosotros, alquilarás el mismo modelo con el que aprendiste.
+La más marinera. Motor de 110 CV y 7 plazas, con una proa que corta bien el mar de tarde. Es uno de los barcos con los que nuestra escuela náutica quiere dar las prácticas del titulín cuando abra, así que si te lo sacas con nosotros podrás alquilar un modelo parecido al que aprendiste.
 
 ### [Pacific Craft 625](/es/barco/pacific-craft-625), 5,90 m
 
@@ -5322,7 +5322,7 @@ Con el titulín, cualquiera de los siete barcos que se alquilan sin patrón: los
 
 Tienes dos salidas:
 
-- **Sacártelo en un día.** El titulín son 2 horas de teoría y 4 de prácticas, sin examen. Te explicamos [cómo hacerlo cerca de Blanes](/es/blog/sacarte-el-titulin-en-blanes-en-un-dia); desde abril de 2027 lo impartirá también [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), nuestra escuela en el mismo puerto.
+- **Sacártelo en un día.** El titulín son 2 horas de teoría y 4 de prácticas, sin examen. Te explicamos [cómo hacerlo cerca de Blanes](/es/blog/sacarte-el-titulin-en-blanes-en-un-dia); lo impartirá también [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), nuestra escuela en el mismo puerto, en cuanto resuelva su autorización.
 - **Salir con patrón.** La [excursión privada](/es/alquiler-barco-con-patron): un profesional pilota y tú disfrutas la ruta hasta Tossa con parada de baño.
 
 ## Lo que no cambia

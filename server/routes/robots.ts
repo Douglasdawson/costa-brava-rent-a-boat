@@ -1038,6 +1038,16 @@ export function registerRobotsRoutes(app: Express): void {
       // Sister nautical school (same company). Declared as its own node so an agent asked
       // "who teaches the titulín in Blanes" resolves the entity instead of a bare sameAs URL.
       // No offers and no price on purpose: it cannot sell until the AGR163 authorisation.
+      //
+      // 🔴 And the verb is FUTURE ("impartirá" / "will teach"), never present. This
+      // node is served to GPTBot, ClaudeBot and PerplexityBot, and an extractor that
+      // keeps only the first predicate would publish "Escola Nàutica Blanes imparte la
+      // Licencia de Navegación" — which is false while the AGR163 is pending, on the
+      // site that actually ranks. It said "Imparte"/"Teaches" until 22-Sep-2026.
+      //
+      // No opening date either: the school deliberately removed "abril de 2027" from
+      // its own site because it depends on a resolution nobody here controls, and the
+      // two sites cannot promise different things about the same school.
       const schoolNode = {
         "@type": "EducationalOrganization",
         "@id": "https://escolanauticablanes.com/#organization",
@@ -1045,8 +1055,8 @@ export function registerRobotsRoutes(app: Express): void {
         url: "https://escolanauticablanes.com",
         parentOrganization: { "@id": `${BASE_URL}/#organization` },
         description: lang === "es"
-          ? "Escuela náutica de DAMAR COSTA BRAVA S.L., la misma empresa que Costa Brava Rent a Boat, en el Puerto de Blanes. Imparte la Licencia de Navegación (titulín): curso de 1 día, 2 h de teoría y 4 h de prácticas, sin examen. Apertura prevista en abril de 2027; hoy solo lista de espera, sin precio ni fechas."
-          : "Nautical school of DAMAR COSTA BRAVA S.L., the same company as Costa Brava Rent a Boat, in Blanes harbour. Teaches the Licencia de Navegación (titulín): a 1-day course, 2 h theory and 4 h practice, no exam. Planned opening April 2027; today a waiting list only, no price and no dates.",
+          ? "Escuela náutica de DAMAR COSTA BRAVA S.L., la misma empresa que Costa Brava Rent a Boat, en el Puerto de Blanes. Impartirá la Licencia de Navegación (titulín): curso de 1 día, 2 h de teoría y 4 h de prácticas, sin examen. Todavía no está autorizada —el expediente sigue en trámite—, así que hoy solo hay lista de espera, sin precio ni fechas."
+          : "Nautical school of DAMAR COSTA BRAVA S.L., the same company as Costa Brava Rent a Boat, in Blanes harbour. Will teach the Licencia de Navegación (titulín): a 1-day course, 2 h theory and 4 h practice, no exam. Not authorised yet — the application is still pending — so today there is a waiting list only, no price and no dates.",
         areaServed: { "@id": `${BASE_URL}/#place` },
       };
 

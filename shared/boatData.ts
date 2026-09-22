@@ -507,10 +507,10 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     image: "PACIFIC_CRAFT_625_boat_fbe4f4d0.png",
     emotionTag: "emotionTags.luxury",
     subtitle: "Con licencia · 7 personas · La experiencia de lujo",
-    description: "Lo mejor que puedes alquilar en Blanes. 6,24 metros de eslora, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere Licencia de Navegación (LN) o superior.",
+    description: "Lo mejor que puedes alquilar en Blanes. 5,90 metros de eslora de matriculación —el «625» es el nombre comercial, no la medida—, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere Licencia de Navegación (LN) o superior.",
     specifications: {
       model: "Pacific Craft 625 Open",
-      length: "6,24m",
+      length: "5,90m",
       beam: "2,51m",
       engine: "Yamaha 115cv 4T",
       fuel: "Gasolina 127L",
@@ -576,7 +576,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     description: "Tú solo disfrutas: nuestro patrón profesional te lleva a calas secretas, cuevas marinas y rincones inaccesibles a pie entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según viento y corrientes. Ideal para celebraciones, aniversarios o familias que quieren una excursión privada exclusiva por la Costa Brava sin preocuparse de nada.",
     specifications: {
       model: "Pacific Craft 625 Open",
-      length: "6,24m",
+      length: "5,90m",
       beam: "2,51m",
       engine: "Yamaha 115cv 4T",
       fuel: "Gasolina 127L",

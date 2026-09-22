@@ -59,7 +59,7 @@ const LEVEL_RANK: Record<SpanishLicenseLevel, number> = {
 /**
  * Minimum Spanish level needed to operate any "with-license" boat in the
  * Costa Brava Rent a Boat fleet (Mingolla Brava 19 · 5,99m, Trimarchi 57S
- * · 5,7m, Pacific Craft 625 · 6,24m). Per business policy (CRM), the LN
+ * · 5,7m, Pacific Craft 625 · 5,90m). Per business policy (CRM), the LN
  * (Licencia de Navegación · ≤6m, motor adecuado, 2nm de costa) basta para
  * los tres. RD 875/2014, art. 11.1.
  */
@@ -141,7 +141,7 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
   PL: [
     // Patentes motonáuticas del Polski Związek Motorowodny i Narciarstwa Wodnego.
     // Sternik motorowodny: aguas interiores + mar hasta 2 mn de costa, casco ≤12 m, diurno
-    // (≈ PNB en alcance costero). Cubre de sobra la flota con licencia (barcos ≤6,24 m, 2 mn).
+    // (≈ PNB en alcance costero). Cubre de sobra la flota con licencia (barcos <6 m, 2 mn).
     { code: "sternik_motorowodny", label: "Sternik motorowodny", spanishEquivalent: "pnb" },
     { code: "morski_sternik_motorowodny", label: "Morski sternik motorowodny", spanishEquivalent: "per" },
     { code: "kapitan_motorowodny", label: "Kapitan motorowodny", spanishEquivalent: "patron_yate" },
@@ -169,7 +169,7 @@ export const COUNTRY_LICENSES: Record<string, ForeignLicense[]> = {
     // solo teorico (sin prueba practica) y el propio Sjofartsdirektoratet avisa
     // de que "no siempre basta en el extranjero" y recomienda el ICC. Por eso lo
     // anclamos al minimo defendible (LN) en vez de inflarlo a PNB o PER: cubre
-    // nuestra flota con licencia (<=6,24 m, 2 mn) y nada mas.
+    // nuestra flota con licencia (<6 m, 2 mn) y nada mas.
     { code: "batforerbevis", label: "Båtførerbevis", spanishEquivalent: "navegacion" },
     // Fritidsskippersertifikat (D5L): recreo de 15 a 24 m. La eslora daria
     // patron de yate, pero no exige navegacion de altura como el PY espanol,
@@ -283,7 +283,7 @@ export function verifyLicense({ country, hasIcc, licenseCode }: VerifyLicenseInp
     // ("Otra"): EEE reciprocity (Orden FOM/3200/2007 disp. final 3.ª, hoy
     // RD 875/2014) authorises them to govern Spanish boats up to the
     // attributions their own title confers. Our with-license fleet is small and
-    // coastal (≤6,24 m, 2 mn), so any genuine EEE sea title covers it. Flag as
+    // coastal (<6 m, 2 mn), so any genuine EEE sea title covers it. Flag as
     // probably valid pending manual confirmation instead of hard-rejecting.
     if (lic?.code === "other") {
       return EMPTY_RESULT("probably_valid", "eee_other_manual_check", null, true);

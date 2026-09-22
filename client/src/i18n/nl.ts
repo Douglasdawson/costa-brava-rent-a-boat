@@ -1560,7 +1560,7 @@ export const nl: Translations = {
         id: "titulin",
         question: "Wat is de titul\u00EDn en hoe haal ik hem?",
         answer:
-          "De titul\u00EDn is de Licencia de Navegaci\u00F3n: het snelste vaarbewijs van Spanje. Je haalt hem in \u00E9\u00E9n dag met 2 uur theorie en 4 uur praktijk aan boord, zonder examen, en hij verloopt nooit. Hij geldt voor boten tot 6 meter, overdag en tot 2 zeemijl van een beschutte haven: in onze vloot de Mingolla Brava 19 en de Trimarchi 57S. Wij regelen de cursus en combineren hem met je eerste huur; schrijf ons en we leggen het uit.",
+          "De titul\u00EDn is de Licencia de Navegaci\u00F3n: het snelste vaarbewijs van Spanje. Je haalt hem in \u00E9\u00E9n dag met 2 uur theorie en 4 uur praktijk aan boord, zonder examen, en hij verloopt nooit. Hij geldt voor boten tot 6 meter, overdag en tot 2 zeemijl van een beschutte haven: in onze vloot de Mingolla Brava 19, de Trimarchi 57S en de Pacific Craft 625. Wij regelen de cursus en combineren hem met je eerste huur; schrijf ons en we leggen het uit.",
       },
       {
         id: "precios",
@@ -1779,7 +1779,7 @@ export const nl: Translations = {
     "mingolla-brava-19":
       "De ideale speedboot om de hele kust te verkennen: Lloret de Mar in 15 minuten, Tossa de Mar in een half uur. Met 80 pk, GPS en dieptemeter bereikt u baaien die andere boten niet halen. Zoetwaterdouche, Bluetooth en RVS beugel voor watersport. Alle uitrusting om de Costa Brava in totale vrijheid te verkennen. Licencia de Navegación (LN) of hoger vereist.",
     "pacific-craft-625":
-      "Het beste wat u in Blanes kunt huren. 6,24 m, Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Licencia de Navegación (LN) of hoger vereist.",
+      "Het beste wat u in Blanes kunt huren. 5,90 m geregistreerde lengte (de «625» is de handelsnaam, niet de maat), Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Licencia de Navegación (LN) of hoger vereist.",
     "excursion-privada":
       "U geniet gewoon, onze professionele schipper brengt u naar geheime baaien, zeegrotten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
   },
@@ -2786,7 +2786,7 @@ export const nl: Translations = {
       titulin: {
         question: "Wat is de titulín en hoe haal ik hem?",
         answer:
-          "De titulín is de Licencia de Navegación: het snelste vaarbewijs van Spanje. Je haalt hem in één dag met 2 uur theorie en 4 uur praktijk bij een erkende watersportschool, zonder examen, en hij verloopt nooit. Hij staat boten tot 6 meter toe, overdag en tot 2 mijl van een schuilplaats: in onze vloot dekt hij de Mingolla Brava 19 en de Trimarchi 57S. Stuur ons een bericht en we wijzen je waar je hem in de buurt van Blanes kunt halen.",
+          "De titulín is de Licencia de Navegación: het snelste vaarbewijs van Spanje. Je haalt hem in één dag met 2 uur theorie en 4 uur praktijk bij een erkende watersportschool, zonder examen, en hij verloopt nooit. Hij staat boten tot 6 meter toe, overdag en tot 2 mijl van een schuilplaats: in onze vloot dekt hij de Mingolla Brava 19, de Trimarchi 57S en de Pacific Craft 625. Stuur ons een bericht en we wijzen je waar je hem in de buurt van Blanes kunt halen.",
       },
       licenciasAceptadas: {
         question: "Welke vaarbewijzen accepteren jullie voor grote boten?",
@@ -4087,11 +4087,11 @@ export const nl: Translations = {
     terms: [
       {
         term: 'LN (Licencia de Navegación)',
-        definition: 'Minimaal erkend Spaans vaarvaardigheidsbewijs volgens RD 875/2014. Maakt het besturen mogelijk van vaartuigen tot 6 meter lengte, met geschikte motor voor de romp en tot 2 zeemijl uit de kust, overdag. Dit is het minimaal vereiste vaarbewijs voor de vergunde boten in onze vloot (Mingolla Brava 19, Trimarchi 57S en Pacific Craft 625). Theoretisch examen + basis veiligheidscursus.',
+        definition: 'Minimaal erkend Spaans vaarvaardigheidsbewijs volgens RD 875/2014. Maakt het besturen mogelijk van vaartuigen tot 6 meter lengte, met geschikte motor voor de romp en tot 2 zeemijl uit de kust, overdag. Dit is het minimaal vereiste vaarbewijs voor de vergunde boten in onze vloot (Mingolla Brava 19, Trimarchi 57S en Pacific Craft 625). Geen examen: de erkende vaarschool certificeert de opleiding en geeft het vaarbewijs op eigen verantwoordelijkheid af.',
         category: 'titulacion',
       },
       {
-        term: 'LNB (Licencia de Navegación Básica)',
+        term: 'PNB (Patrón para Navegación Básica, «LNB»)',
         definition: 'Spaans vaarvaardigheidsbewijs van hoger niveau dan de LN. Maakt het besturen mogelijk van vaartuigen tot 8 meter lengte en tot 5 zeemijl uit de kust. Aan te raden voor wie flexibiliteit qua vaargebied wil. Levenslang geldig na het behalen van het theoretisch examen + praktijkcursus.',
         category: 'titulacion',
       },
@@ -4680,7 +4680,7 @@ export const nl: Translations = {
     fleet: {
       title: "Met de titulín is deze vloot van jou",
       body:
-        "De Licencia de Navegación is genoeg om onze speedboten Mingolla Brava 19 en Trimarchi 57S te huren, met motoren van 80 en 110 pk en Tossa de Mar binnen bereik. En vanaf oktober 2026 is het ook het vaarbewijs waarmee je de kleinere boten van de vloot kunt blijven huren. Eén cursusdag, vele zomers zelf aan het roer.",
+        "De Licencia de Navegación is genoeg om onze speedboten Mingolla Brava 19, Trimarchi 57S en Pacific Craft 625 te huren, met motoren van 80, 110 en 115 pk en Tossa de Mar binnen bereik. En vanaf oktober 2026 is het ook het vaarbewijs waarmee je de kleinere boten van de vloot kunt blijven huren. Eén cursusdag, vele zomers zelf aan het roer.",
       cta: "Bekijk de boten die je mag besturen",
     },
     faqTitle: "Veelgestelde vragen over de titulín",
@@ -4695,7 +4695,7 @@ export const nl: Translations = {
       },
       {
         q: "Wat mag ik besturen met de Licencia de Navegación?",
-        a: "Motorboten tot 6 meter lengte, overdag en tot 2 zeemijl van een haven of schuilplaats, plus waterscooters van klasse C. In onze vloot dekt hij de Mingolla Brava 19 en de Trimarchi 57S.",
+        a: "Motorboten tot 6 meter lengte, overdag en tot 2 zeemijl van een haven of schuilplaats, plus waterscooters van klasse C. In onze vloot dekt hij de Mingolla Brava 19, de Trimarchi 57S en de Pacific Craft 625.",
       },
       {
         q: "Verloopt hij? Vanaf welke leeftijd kan ik hem halen?",

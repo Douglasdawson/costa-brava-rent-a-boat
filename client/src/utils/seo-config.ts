@@ -189,11 +189,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: `3 lanchas 80-115 CV. T\u00fa al tim\u00f3n con tu Licencia de Navegaci\u00f3n. Verificamos t\u00edtulos extranjeros online. ${BUSINESS_RATING_STR}\u2605 Google.`
     },
     testimonios: {
-      title: "Opiniones Clientes Alquiler Barcos Costa Brava | 4.8\u2605 · 300+ Reviews Google | Blanes",
-      description: "Lee opiniones reales de clientes que alquilaron barcos en la Costa Brava desde Blanes. 4.8\u2605 con 300+ reviews verificadas. Descubre por qu\u00e9 nos eligen.",
+      title: `Opiniones Clientes Alquiler Barcos Costa Brava | ${BUSINESS_RATING_STR}\u2605 · ${BUSINESS_REVIEW_COUNT_STR} Reviews Google | Blanes`,
+      description: `Lee opiniones reales de clientes que alquilaron barcos en la Costa Brava desde Blanes. ${BUSINESS_RATING_STR}\u2605 con ${BUSINESS_REVIEW_COUNT_STR} reviews verificadas. Descubre por qu\u00e9 nos eligen.`,
       keywords: "opiniones alquiler barcos costa brava, reviews costa brava rent boat, testimonios alquiler barcos blanes, experiencias alquiler barcos costa brava, rese\u00f1as barcos costa brava",
-      ogTitle: "Opiniones Alquiler Barcos Costa Brava | 4.8\u2605 300+ Reviews",
-      ogDescription: "300+ opiniones reales verificadas. Descubre por qu\u00e9 somos la opci\u00f3n #1 para alquilar barcos en la Costa Brava desde Blanes."
+      ogTitle: `Opiniones Alquiler Barcos Costa Brava | ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Reviews`,
+      ogDescription: `${BUSINESS_REVIEW_COUNT_STR} opiniones reales verificadas. Descubre por qu\u00e9 somos la opci\u00f3n #1 para alquilar barcos en la Costa Brava desde Blanes.`
     },
     privacyPolicy: {
       title: "Política de Privacidad | Costa Brava Rent a Boat",
@@ -410,7 +410,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicenseFree: {
       title: "No License Boat Rental Costa Brava | 5 Boats from 85\u20ac/h Blanes",
-      description: "4 no-license boats in Blanes from 85\u20ac/h. Fuel included, 4-5 people. No experience needed, 15 min training. 4.8\u2605 Google (300+ reviews). Book online.",
+      description: `4 no-license boats in Blanes from 85\u20ac/h. Fuel included, 4-5 people. No experience needed, 15 min training. 4.8\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book online.`,
       keywords: "license free boats blanes, boats without license, no license boat rental costa brava, 15hp boats blanes",
       ogTitle: "No License Boats in Blanes | Easy & Safe Costa Brava",
       ogDescription: "Rent boats without license in Blanes. Up to 15 HP, 4-5 people. No qualification needed. Easy to drive. Book your adventure!"
@@ -424,7 +424,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Customer Reviews Boat Rental Blanes",
-      description: "Read real customer reviews who rented boats in Blanes. 300+ verified Google reviews. Costa Brava experiences.",
+      description: `Read real customer reviews who rented boats in Blanes. ${BUSINESS_REVIEW_COUNT_STR} verified Google reviews. Costa Brava experiences.`,
       keywords: "boat rental reviews blanes, reviews costa brava rent boat, customer testimonials boats"
     },
     privacyPolicy: {
@@ -509,7 +509,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 85\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Rent boats on the Costa Brava from Blanes Port. 4 no-license boats from 85\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online.",
+      description: `Rent boats on the Costa Brava from Blanes Port. 4 no-license boats from 85\u20ac/h, fuel included. Sail to hidden coves between Blanes and Tossa de Mar. 4.8\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book online.`,
       keywords: "boat rental costa brava, rent a boat costa brava, costa brava boat rental, no license boat costa brava, boat hire costa brava, costa brava boat trip"
     },
     boatRentalCostaBrava: {
@@ -636,7 +636,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicenseFree: {
       title: "Lloguer Barques Sense Llicencia Costa Brava | 5 Barques des de 85\u20ac/h Blanes",
-      description: "4 barques sense llicencia a Blanes des de 85\u20ac/h. Gasolina inclosa, 4-5 persones. Sense experiencia, formacio 15 min. 4.8\u2605 Google (300+ opinions). Reserva online.",
+      description: `4 barques sense llicencia a Blanes des de 85\u20ac/h. Gasolina inclosa, 4-5 persones. Sense experiencia, formacio 15 min. 4.8\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} opinions). Reserva online.`,
       keywords: "barques sense llicència blanes, lloguer barques sense títol, embarcacions sense permís costa brava, barques 15cv blanes",
       ogTitle: "Barques Sense Llicència a Blanes | Fàcil i Segur Costa Brava",
       ogDescription: "Lloga barques sense llicència a Blanes. Fins a 15 CV, 4-5 persones. No cal titulació. Fàcil de manejar. Reserva la teva aventura!"
@@ -650,7 +650,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Opinions Clients Lloguer Barques Blanes",
-      description: "Llegeix opinions reals de clients que han llogat barques a Blanes. 300+ ressenyes verificades a Google. Experiencies a la Costa Brava.",
+      description: `Llegeix opinions reals de clients que han llogat barques a Blanes. ${BUSINESS_REVIEW_COUNT_STR} ressenyes verificades a Google. Experiencies a la Costa Brava.`,
       keywords: "opinions lloguer barques blanes, ressenyes costa brava rent boat, testimonis clients barques"
     },
     privacyPolicy: {
@@ -802,7 +802,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicenseFree: {
       title: "Bateaux Sans Permis Costa Brava | 5 Bateaux des 85\u20ac/h Blanes",
-      description: "4 bateaux sans permis a Blanes des 85\u20ac/h. Carburant inclus, 4-5 personnes. Aucune experience, formation 15 min. 4.8\u2605 Google (300+ avis). Reservez en ligne.",
+      description: `4 bateaux sans permis a Blanes des 85\u20ac/h. Carburant inclus, 4-5 personnes. Aucune experience, formation 15 min. 4.8\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} avis). Reservez en ligne.`,
       keywords: "bateaux sans permis blanes, location bateaux sans license, embarcations sans permis costa brava, bateaux 15cv blanes"
     },
     categoryLicensed: {
@@ -814,7 +814,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Avis Clients Location Bateaux Blanes",
-      description: "Lisez les avis reels de clients ayant loue des bateaux a Blanes. 300+ avis Google verifies. Experiences sur la Costa Brava.",
+      description: `Lisez les avis reels de clients ayant loue des bateaux a Blanes. ${BUSINESS_REVIEW_COUNT_STR} avis Google verifies. Experiences sur la Costa Brava.`,
       keywords: "avis location bateaux blanes, reviews costa brava rent boat, temoignages clients bateaux"
     },
     privacyPolicy: {
@@ -966,7 +966,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicenseFree: {
       title: "Boote Ohne F\u00fchrerschein Costa Brava | 4 Boote ab 85\u20ac/h Blanes",
-      description: "4 Boote ohne F\u00fchrerschein in Blanes ab 85\u20ac/h. Kraftstoff inklusive, 4-5 Personen. Keine Erfahrung notig, 15 Min Einweisung. 4.8\u2605 Google (300+ Bewertungen). Online buchen.",
+      description: `4 Boote ohne F\u00fchrerschein in Blanes ab 85\u20ac/h. Kraftstoff inklusive, 4-5 Personen. Keine Erfahrung notig, 15 Min Einweisung. 4.8\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Online buchen.`,
       keywords: "boote ohne führerschein blanes, bootsverleih ohne lizenz, boote ohne erlaubnis costa brava, 15ps boote blanes"
     },
     categoryLicensed: {
@@ -978,7 +978,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Kundenbewertungen Bootsverleih Blanes",
-      description: "Lesen Sie echte Bewertungen von Kunden, die Boote in Blanes gemietet haben. 300+ verifizierte Google-Bewertungen. Erfahrungen Costa Brava.",
+      description: `Lesen Sie echte Bewertungen von Kunden, die Boote in Blanes gemietet haben. ${BUSINESS_REVIEW_COUNT_STR} verifizierte Google-Bewertungen. Erfahrungen Costa Brava.`,
       keywords: "bewertungen bootsverleih blanes, rezensionen costa brava rent boat, kundenerfahrungen boote"
     },
     privacyPolicy: {
@@ -1130,7 +1130,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicenseFree: {
       title: "Boten Zonder Vaarbewijs Costa Brava | 5 Boten vanaf 85\u20ac/u Blanes",
-      description: "4 boten zonder vaarbewijs in Blanes vanaf 85\u20ac/u. Brandstof inbegrepen, 4-5 personen. Geen ervaring nodig, 15 min instructie. 4.8\u2605 Google (300+ beoordelingen). Online boeken.",
+      description: `4 boten zonder vaarbewijs in Blanes vanaf 85\u20ac/u. Brandstof inbegrepen, 4-5 personen. Geen ervaring nodig, 15 min instructie. 4.8\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Online boeken.`,
       keywords: "boten zonder vaarbewijs blanes, bootverhuur zonder licentie, boten zonder vergunning costa brava, 15pk boten blanes"
     },
     categoryLicensed: {
@@ -1142,7 +1142,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Klantenbeoordelingen Bootverhuur Blanes",
-      description: "Lees echte beoordelingen van klanten die boten hebben gehuurd in Blanes. 300+ geverifieerde Google-reviews. Ervaringen Costa Brava.",
+      description: `Lees echte beoordelingen van klanten die boten hebben gehuurd in Blanes. ${BUSINESS_REVIEW_COUNT_STR} geverifieerde Google-reviews. Ervaringen Costa Brava.`,
       keywords: "beoordelingen bootverhuur blanes, reviews costa brava rent boat, klantervaringen boten"
     },
     privacyPolicy: {
@@ -1294,7 +1294,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicenseFree: {
       title: "Barche Senza Patente Costa Brava | 5 Barche da 85\u20ac/h Blanes",
-      description: "4 barche senza patente a Blanes da 85\u20ac/h. Carburante incluso, 4-5 persone. Nessuna esperienza, formazione 15 min. 4.8\u2605 Google (300+ recensioni). Prenota online.",
+      description: `4 barche senza patente a Blanes da 85\u20ac/h. Carburante incluso, 4-5 persone. Nessuna esperienza, formazione 15 min. 4.8\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Prenota online.`,
       keywords: "barche senza patente blanes, noleggio barche senza licenza, imbarcazioni senza permesso costa brava, barche 15cv blanes"
     },
     categoryLicensed: {
@@ -1306,7 +1306,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Recensioni Clienti Noleggio Barche Blanes",
-      description: "Leggi le recensioni reali dei clienti che hanno noleggiato barche a Blanes. 300+ recensioni Google verificate. Esperienze Costa Brava.",
+      description: `Leggi le recensioni reali dei clienti che hanno noleggiato barche a Blanes. ${BUSINESS_REVIEW_COUNT_STR} recensioni Google verificate. Esperienze Costa Brava.`,
       keywords: "recensioni noleggio barche blanes, reviews costa brava rent boat, testimonianze clienti barche"
     },
     privacyPolicy: {
@@ -1458,7 +1458,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicenseFree: {
       title: "Лодки Без Лицензии Коста-Брава | 5 Лодок от 85\u20ac/ч Бланес",
-      description: "4 лодки без лицензии в Бланесе от 85\u20ac/ч. Топливо включено, 4-5 человек. Без опыта, обучение 15 мин. 4.8\u2605 Google (300+ отзывов). Бронируйте онлайн.",
+      description: `4 лодки без лицензии в Бланесе от 85\u20ac/ч. Топливо включено, 4-5 человек. Без опыта, обучение 15 мин. 4.8\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Бронируйте онлайн.`,
       keywords: "лодки без лицензии бланес, аренда лодок без прав, лодки без разрешения коста брава, лодки 15лс бланес"
     },
     categoryLicensed: {
@@ -1470,7 +1470,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     testimonios: {
       title: "Отзывы Клиентов Аренда Лодок Бланес",
-      description: "Читайте реальные отзывы клиентов, арендовавших лодки в Бланесе. 300+ проверенных отзывов Google. Впечатления от Коста-Бравы.",
+      description: `Читайте реальные отзывы клиентов, арендовавших лодки в Бланесе. ${BUSINESS_REVIEW_COUNT_STR} проверенных отзывов Google. Впечатления от Коста-Бравы.`,
       keywords: "отзывы аренда лодок бланес, отзывы costa brava rent boat, впечатления клиентов лодки"
     },
     privacyPolicy: {
@@ -1800,7 +1800,7 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Credit Card, Bizum, Bank Transfer",
     "slogan": "Explora la Costa Brava desde el agua",
-    "award": "4.8 stars on Google Maps - 300+ reviews",
+    "award": `${BUSINESS_RATING_STR} stars on Google Maps - ${BUSINESS_REVIEW_COUNT_STR} reviews`,
     "hasMap": "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
     // sameAs: cluster de perfiles oficiales para entity disambiguation
     // (señal alta para Google Knowledge Graph / sitelinks). Mantener
@@ -1815,6 +1815,11 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "https://www.tripadvisor.com/Attraction_Review-g580331-d19938921-Reviews-Costa_Brava_Rent_a_Boat-Blanes_Costa_Brava_Province_of_Girona_Catalonia.html",
       "https://coastrent.es",
       "https://activitatum.com",
+      // La escuela hermana. Estaba en el sameAs del servidor (server/routes/robots.ts)
+      // pero no aquí, así que la conexión de entidad solo existía para quien lee
+      // /api/ai-context y no para Google — justo lo contrario de lo que pide el
+      // comentario de arriba.
+      "https://escolanauticablanes.com",
     ],
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",
@@ -2293,14 +2298,14 @@ export function generateSiteNavigationSchema(language: Language = 'es') {
         it: "Recensioni", ru: "Отзывы",
       },
       description: {
-        es: "300+ reseñas reales de clientes en Google.",
-        en: "300+ real customer reviews on Google.",
-        ca: "300+ ressenyes reals de clients a Google.",
-        fr: "300+ avis clients réels sur Google.",
-        de: "300+ echte Kundenbewertungen auf Google.",
-        nl: "300+ echte klantbeoordelingen op Google.",
-        it: "300+ recensioni reali dei clienti su Google.",
-        ru: "300+ реальных отзывов клиентов в Google.",
+        es: `${BUSINESS_REVIEW_COUNT_STR} reseñas reales de clientes en Google.`,
+        en: `${BUSINESS_REVIEW_COUNT_STR} real customer reviews on Google.`,
+        ca: `${BUSINESS_REVIEW_COUNT_STR} ressenyes reals de clients a Google.`,
+        fr: `${BUSINESS_REVIEW_COUNT_STR} avis clients réels sur Google.`,
+        de: `${BUSINESS_REVIEW_COUNT_STR} echte Kundenbewertungen auf Google.`,
+        nl: `${BUSINESS_REVIEW_COUNT_STR} echte klantbeoordelingen op Google.`,
+        it: `${BUSINESS_REVIEW_COUNT_STR} recensioni reali dei clienti su Google.`,
+        ru: `${BUSINESS_REVIEW_COUNT_STR} реальных отзывов клиентов в Google.`,
       },
     },
   ];

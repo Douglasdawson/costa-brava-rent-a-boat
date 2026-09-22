@@ -872,71 +872,12 @@ Calcula descuentos automaticos basados en fecha y ocupacion.
 
 ## 16. Pagos - Stripe
 
-### `POST /api/create-payment-intent`
-
-Crea un Stripe PaymentIntent para un hold o booking.
-
-- **Autenticacion:** Ninguna
-- **Body:**
-
-```json
-{
-  "holdId": "uuid-del-hold"
-}
-```
-
-O alternativamente:
-
-```json
-{
-  "bookingId": "uuid-del-booking"
-}
-```
-
-- **Nota:** Solo se cobra el importe del servicio (subtotal + extras). El deposito se cobra en efectivo en el puerto.
-- **Respuesta:** `200 OK`
-
-```json
-{
-  "success": true,
-  "clientSecret": "pi_xxx_secret_yyy",
-  "paymentIntentId": "pi_xxx",
-  "amount": 230,
-  "currency": "eur"
-}
-```
-
-- **Errores:**
-  - `400` - Datos invalidos, hold no disponible, importe invalido
-  - `404` - Hold/booking no encontrado
-  - `410` - Hold expirado
-  - `503` - Stripe no configurado
-
----
-
-### `POST /api/create-checkout-session`
-
-Crea una sesion de Stripe Checkout.
-
-- **Autenticacion:** Ninguna
-- **Body:**
-
-```json
-{
-  "bookingId": "uuid"
-}
-```
-
-- **Respuesta:** `200 OK`
-
-```json
-{
-  "sessionId": "cs_xxx",
-  "url": "https://checkout.stripe.com/c/pay/cs_xxx"
-}
-```
-
----
+> **No hay pago con tarjeta de una RESERVA de barco, y es a proposito.** La web capta
+> solicitudes y el cobro es en persona, en el pantalan. Los cuatro endpoints que habia aqui
+> (`create-payment-intent`, `create-checkout-session`, su gemelo `-mock` y
+> `simulate-payment-success`) se borraron el 22-sep-2026: no los llamaba nadie desde el
+> cliente, estaban publicos sin autenticacion y creaban cargos reales. Stripe se usa en la
+> **tienda** (`/api/shop/*`) y en la **senal del CRM DAMAR** (`/api/crm/senal-link`).
 
 ### `POST /api/stripe-webhook`
 
@@ -948,63 +889,6 @@ Webhook de Stripe (payment_intent.succeeded, payment_intent.payment_failed).
   - `payment_intent.succeeded` - Confirma booking y activa gift cards
   - `payment_intent.payment_failed` - Marca pago como fallido
 - **Respuesta:** `200 OK` - `{ "received": true }`
-
----
-
-### `POST /api/create-payment-intent-mock` (Solo desarrollo)
-
-Crea un PaymentIntent mock para testing.
-
-- **Autenticacion:** Ninguna
-- **Solo disponible:** `NODE_ENV !== "production"`
-- **Body:**
-
-```json
-{
-  "holdId": "uuid-del-hold"
-}
-```
-
-- **Respuesta:** `200 OK`
-
-```json
-{
-  "success": true,
-  "clientSecret": "pi_mock_xxx_secret_mock",
-  "paymentIntentId": "pi_mock_xxx",
-  "amount": 430,
-  "currency": "eur",
-  "mockMode": true,
-  "note": "This is a mock payment for testing. Use /api/simulate-payment-success to complete the payment."
-}
-```
-
----
-
-### `POST /api/simulate-payment-success` (Solo desarrollo)
-
-Simula un pago exitoso.
-
-- **Autenticacion:** Ninguna
-- **Solo disponible:** `NODE_ENV !== "production"`
-- **Body:**
-
-```json
-{
-  "paymentIntentId": "pi_mock_xxx"
-}
-```
-
-- **Respuesta:** `200 OK`
-
-```json
-{
-  "success": true,
-  "message": "Pago simulado exitosamente",
-  "bookingId": "uuid",
-  "status": "confirmed"
-}
-```
 
 ---
 

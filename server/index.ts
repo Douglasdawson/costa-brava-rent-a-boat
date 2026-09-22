@@ -178,15 +178,6 @@ const quoteLimiter = rateLimit({
   message: { message: "Demasiadas solicitudes de cotización. Espera un momento antes de intentarlo de nuevo." },
 });
 
-// Payment endpoints: up to 10 per 15 min (prevent abuse)
-const paymentLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 10,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { message: "Demasiadas solicitudes de pago. Intenta de nuevo en unos minutos." },
-});
-
 // Data export/bulk endpoints — stricter rate limit (30 req / 15 min)
 const dataExportLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -206,8 +197,6 @@ app.use("/api/auth/login", authLimiter);
 app.use("/api/auth/register", authLimiter);
 app.use("/api/auth/forgot-password", authLimiter);
 app.use("/api/quote", quoteLimiter);
-app.use("/api/create-payment-intent", paymentLimiter);
-app.use("/api/create-checkout-session", paymentLimiter);
 
 // CORS — strict origin enforcement for API routes
 // Webhooks (Stripe, Meta) are exempt because they are server-to-server with their own auth

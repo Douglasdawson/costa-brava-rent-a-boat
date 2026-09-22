@@ -38,6 +38,7 @@ interface DiscountCode {
   maxUses: number;
   currentUses: number;
   customerEmail: string | null;
+  customerPhone: string | null;
   isActive: boolean;
   expiresAt: string | null;
   createdAt: string;
@@ -59,6 +60,21 @@ interface DiscountManagementProps {
   adminToken: string;
 }
 
+/**
+ * A quien pertenece un codigo, dicho con la verdad.
+ *
+ * Solo el TELEFONO lo ata a una persona (`validatePromoCode` compara sus ultimos
+ * 9 digitos); el email se guarda y no se valida en ningun sitio, asi que un
+ * codigo que solo tiene email lo canjea cualquiera que lo teclee. Antes esta
+ * columna pintaba el email o "Universal", lo que hacia pasar por personal algo
+ * que no lo es.
+ */
+function titularDe(code: { customerPhone: string | null; customerEmail: string | null }): string {
+  if (code.customerPhone) return code.customerPhone;
+  if (code.customerEmail) return `${code.customerEmail} (no limita el uso)`;
+  return "Universal";
+}
+
 export function DiscountManagement({ adminToken }: DiscountManagementProps) {
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [showCampaignResults, setShowCampaignResults] = useState(false);
@@ -75,6 +91,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
   const [newDiscountPercent, setNewDiscountPercent] = useState(10);
   const [newMaxUses, setNewMaxUses] = useState(1);
   const [newCustomerEmail, setNewCustomerEmail] = useState("");
+  const [newCustomerPhone, setNewCustomerPhone] = useState("");
   const [newExpiresAt, setNewExpiresAt] = useState("");
 
   const headers = {
@@ -99,6 +116,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       discountPercent: number;
       maxUses: number;
       customerEmail?: string | null;
+      customerPhone?: string | null;
       expiresAt?: string | null;
     }) => {
       const res = await fetch("/api/admin/discounts", {
@@ -178,6 +196,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
     setNewDiscountPercent(10);
     setNewMaxUses(1);
     setNewCustomerEmail("");
+    setNewCustomerPhone("");
     setNewExpiresAt("");
   };
 
@@ -187,6 +206,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       discountPercent: newDiscountPercent,
       maxUses: newMaxUses,
       customerEmail: newCustomerEmail || null,
+      customerPhone: newCustomerPhone.trim() || null,
       expiresAt: newExpiresAt ? new Date(newExpiresAt).toISOString() : null,
     });
   };
@@ -322,7 +342,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                       <TableHead>Código</TableHead>
                       <TableHead>Descuento</TableHead>
                       <TableHead>Usos</TableHead>
-                      <TableHead>Email cliente</TableHead>
+                      <TableHead>Solo para</TableHead>
                       <TableHead>Estado</TableHead>
                       <TableHead>Expira</TableHead>
                       <TableHead>Creado</TableHead>
@@ -345,7 +365,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                             {code.currentUses}/{code.maxUses}
                           </TableCell>
                           <TableCell className="text-sm text-muted-foreground">
-                            {code.customerEmail || "Universal"}
+                            {titularDe(code)}
                           </TableCell>
                           <TableCell>
                             {isEffectivelyActive ? (
@@ -414,7 +434,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                     <span>Usos: {code.currentUses}/{code.maxUses}</span>
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    {code.customerEmail || "Universal"}
+                    {titularDe(code)}
                   </div>
                   <div className="flex items-center justify-between text-sm text-muted-foreground">
                     <span>
@@ -494,6 +514,26 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                 onChange={(e) => setNewMaxUses(parseInt(e.target.value) || 1)}
               />
             </div>
+            {/*
+              El telefono es el UNICO campo que ata el codigo a una persona:
+              validatePromoCode compara sus ultimos 9 digitos contra el que el
+              cliente teclea en el wizard. El email de abajo NO se valida en
+              ningun sitio, asi que su copy no puede prometer exclusividad.
+            */}
+            <div>
+              <Label htmlFor="discount-phone">Teléfono del cliente (opcional)</Label>
+              <Input
+                id="discount-phone"
+                type="tel"
+                value={newCustomerPhone}
+                onChange={(e) => setNewCustomerPhone(e.target.value)}
+                placeholder="+34 600 000 000"
+              />
+              <p className="mt-1 text-xs text-muted-foreground">
+                Si lo rellenas, el código solo funciona para ese número al reservar. Déjalo
+                vacío y lo podrá usar cualquiera.
+              </p>
+            </div>
             <div>
               <Label htmlFor="discount-email">Email del cliente (opcional)</Label>
               <Input
@@ -501,8 +541,11 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                 type="email"
                 value={newCustomerEmail}
                 onChange={(e) => setNewCustomerEmail(e.target.value)}
-                placeholder="Dejar vacío para código universal"
+                placeholder="Para saber a quién se lo diste"
               />
+              <p className="mt-1 text-xs text-muted-foreground">
+                Solo una nota interna: no limita quién puede canjearlo.
+              </p>
             </div>
             <div>
               <Label htmlFor="discount-expires">Fecha de expiración (opcional)</Label>

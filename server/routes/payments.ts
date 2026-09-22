@@ -12,7 +12,6 @@ import { sendBookingConfirmation } from "../services/emailService";
 import type { Booking, Boat } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { logger } from "../lib/logger";
-import { validatePromoCode, calculateDiscountAmount } from "../lib/discountValidation";
 
 type WaLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
 
@@ -76,25 +75,6 @@ async function trySendWhatsAppConfirmation(booking: Booking, boat: Boat): Promis
   }
 }
 
-const createPaymentIntentSchema = z.object({
-  holdId: z.string().optional(),
-  bookingId: z.string().optional(),
-}).refine(data => data.holdId || data.bookingId, {
-  message: "holdId o bookingId es requerido",
-});
-
-const createCheckoutSessionSchema = z.object({
-  bookingId: z.string().min(1, "Booking ID es requerido"),
-});
-
-const mockPaymentIntentSchema = z.object({
-  holdId: z.string().min(1, "ID de hold requerido"),
-});
-
-const simulatePaymentSchema = z.object({
-  paymentIntentId: z.string().min(1, "PaymentIntent ID requerido"),
-});
-
 // CRM DAMAR asks for a señal payment link with this contract (see lib/crmSenal.ts).
 // dateLabel is the CRM's canonical DD/MM/YYYY, passed through as display text.
 const crmSenalLinkSchema = z.object({
@@ -156,379 +136,30 @@ export const getStripe = () => {
 };
 
 export function registerPaymentRoutes(app: Express) {
-  // Create payment intent
-  app.post("/api/create-payment-intent", async (req, res) => {
-    try {
-      let stripeInstance: Stripe;
-      try {
-        stripeInstance = getStripe();
-      } catch (error: unknown) {
-        logger.error("[Payments] Stripe not configured", { error: error instanceof Error ? error.message : String(error) });
-        return res.status(503).json({
-          message: "Servicio de pagos no disponible",
-          success: false,
-        });
-      }
-
-      const parsed = createPaymentIntentSchema.safeParse(req.body);
-      if (!parsed.success) {
-        return res.status(400).json({
-          message: "Datos invalidos",
-          success: false,
-          errors: parsed.error.flatten().fieldErrors,
-        });
-      }
-
-      const { holdId, bookingId } = parsed.data;
-      const targetId = (holdId || bookingId) as string;
-
-      const hold = await storage.getBookingById(targetId);
-      if (!hold) {
-        return res.status(404).json({
-          message: "Hold/Booking no encontrado",
-          success: false,
-        });
-      }
-
-      if (holdId && hold.bookingStatus !== "hold") {
-        return res.status(400).json({
-          message: "El hold ya no está disponible",
-          success: false,
-          status: hold.bookingStatus,
-        });
-      }
-
-      if (hold.expiresAt && new Date() > hold.expiresAt) {
-        return res.status(410).json({
-          message: "El hold ha expirado",
-          success: false,
-        });
-      }
-
-      // Re-validate discount code at payment time to prevent stale/tampered discounts
-      if (hold.couponCode) {
-        const promo = await validatePromoCode(hold.couponCode);
-        if (!promo.valid) {
-          logger.warn("[Payments] Discount code invalid at payment time", {
-            holdId: hold.id,
-            couponCode: hold.couponCode,
-            error: promo.error,
-          });
-          return res.status(400).json({
-            message: `Codigo de descuento "${hold.couponCode}" ya no es valido: ${promo.error}`,
-            success: false,
-            reason: "invalid_discount_code",
-          });
-        }
-
-        // Recalculate expected amount with server-side discount to prevent amount tampering
-        const subtotal = parseFloat(hold.subtotal || "0");
-        const extrasTotal = parseFloat(hold.extrasTotal || "0");
-        const deposit = parseFloat(hold.deposit || "0");
-        const baseTotal = subtotal + extrasTotal;
-        const discountAmount = calculateDiscountAmount(promo, subtotal, baseTotal);
-        const expectedTotal = Math.max(0, baseTotal - discountAmount);
-
-        const storedTotal = parseFloat(hold.totalAmount);
-        // Allow 1 cent tolerance for floating-point rounding
-        if (Math.abs(storedTotal - expectedTotal) > 0.01) {
-          logger.warn("[Payments] Amount mismatch — possible discount tampering", {
-            holdId: hold.id,
-            couponCode: hold.couponCode,
-            storedTotal,
-            expectedTotal,
-            discountAmount,
-          });
-          // Correct the hold amount to the server-calculated value
-          await storage.updateBooking(hold.id, {
-            totalAmount: expectedTotal.toString(),
-          });
-          hold.totalAmount = expectedTotal.toString();
-        }
-      }
-
-      // Charge only service amount (subtotal + extras - discount) via Stripe.
-      // Deposit is collected in cash at the port — not charged online.
-      const depositAmount = parseFloat(hold.deposit || "0");
-      const serviceAmount = parseFloat(hold.totalAmount) - depositAmount;
-      if (serviceAmount <= 0) {
-        return res.status(400).json({ message: "Invalid booking amount" });
-      }
-
-      const paymentIntent = await stripeInstance.paymentIntents.create({
-        amount: Math.round(serviceAmount * 100),
-        currency: "eur",
-        metadata: {
-          holdId: hold.id,
-          sessionId: hold.sessionId || "",
-          boatId: hold.boatId,
-          bookingDate: hold.bookingDate.toISOString(),
-          startTime: hold.startTime.toISOString(),
-          endTime: hold.endTime.toISOString(),
-          numberOfPeople: hold.numberOfPeople.toString(),
-          depositAmount: depositAmount.toString(),
-          depositCollectionMethod: "cash_on_site",
-          ...(hold.couponCode ? { couponCode: hold.couponCode } : {}),
-        },
-        description: `Reserva de barco ${hold.boatId} - ${hold.bookingDate.toISOString().split("T")[0]}`,
-      });
-
-      await storage.updateBooking(hold.id, {
-        bookingStatus: "pending_payment",
-        paymentStatus: "pending",
-        stripePaymentIntentId: paymentIntent.id,
-      });
-
-      res.json({
-        success: true,
-        clientSecret: paymentIntent.client_secret,
-        paymentIntentId: paymentIntent.id,
-        amount: serviceAmount,
-        currency: "eur",
-      });
-    } catch (error: unknown) {
-      logger.error("[Payments] Error creating payment intent", { error: error instanceof Error ? error.message : error });
-      res.status(500).json({
-        message: "Error interno del servidor",
-        success: false,
-      });
-    }
-  });
-
-  // Create checkout session
-  app.post("/api/create-checkout-session", async (req, res) => {
-    try {
-      const stripeInstance = getStripe();
-
-      const parsed = createCheckoutSessionSchema.safeParse(req.body);
-      if (!parsed.success) {
-        return res.status(400).json({
-          message: "Datos invalidos",
-          errors: parsed.error.flatten().fieldErrors,
-        });
-      }
-
-      const { bookingId } = parsed.data;
-
-      const booking = await storage.getBooking(bookingId);
-      if (!booking) {
-        return res.status(404).json({ message: "Booking not found" });
-      }
-
-      // Deposit collected in cash on site — only charge service amount via Stripe
-      const depositAmt = parseFloat(booking.deposit || "0");
-      const serviceAmt = parseFloat(booking.totalAmount) - depositAmt;
-      if (serviceAmt <= 0) {
-        return res.status(400).json({ message: "Invalid booking amount" });
-      }
-
-      const session = await stripeInstance.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items: [
-          {
-            price_data: {
-              currency: "eur",
-              product_data: {
-                name: `Reserva de barco - ${booking.boatId}`,
-                description: `Reserva para ${booking.customerName} ${booking.customerSurname} el ${booking.bookingDate.toISOString().split("T")[0]}. Depósito ${depositAmt}€ a pagar en efectivo en el puerto.`,
-              },
-              unit_amount: Math.round(serviceAmt * 100),
-            },
-            quantity: 1,
-          },
-        ],
-        mode: "payment",
-        success_url: `${process.env.APP_URL || 'https://www.costabravarentaboat.com'}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
-        cancel_url: `${process.env.APP_URL || 'https://www.costabravarentaboat.com'}/booking?step=6&booking_id=${bookingId}`,
-        metadata: {
-          bookingId: bookingId,
-        },
-      });
-
-      res.json({
-        sessionId: session.id,
-        url: session.url,
-      });
-    } catch (error: unknown) {
-      logger.error("[Payments] Error creating checkout session", { error: error instanceof Error ? error.message : String(error) });
-      res.status(500).json({ message: "Error interno del servidor" });
-    }
-  });
-
-  // Mock payment intent (development only)
-  app.post("/api/create-payment-intent-mock", async (req, res) => {
-    if (process.env.NODE_ENV === "production") {
-      return res.status(404).json({
-        message: "Endpoint no disponible en producción",
-        success: false,
-      });
-    }
-
-    try {
-      const parsed = mockPaymentIntentSchema.safeParse(req.body);
-      if (!parsed.success) {
-        return res.status(400).json({
-          message: "Datos invalidos",
-          success: false,
-          errors: parsed.error.flatten().fieldErrors,
-        });
-      }
-
-      const { holdId } = parsed.data;
-
-      const hold = await storage.getBookingById(holdId);
-      if (!hold) {
-        return res.status(404).json({ message: "Hold no encontrado", success: false });
-      }
-
-      if (hold.bookingStatus !== "hold") {
-        return res.status(400).json({
-          message: "El hold ya no está disponible",
-          success: false,
-          status: hold.bookingStatus,
-        });
-      }
-
-      if (hold.expiresAt && new Date() > hold.expiresAt) {
-        return res.status(410).json({ message: "El hold ha expirado", success: false });
-      }
-
-      // Re-validate discount code at payment time (same logic as real payment)
-      if (hold.couponCode) {
-        const promo = await validatePromoCode(hold.couponCode);
-        if (!promo.valid) {
-          logger.warn("[Payments] Discount code invalid at mock payment time", {
-            holdId: hold.id,
-            couponCode: hold.couponCode,
-            error: promo.error,
-          });
-          return res.status(400).json({
-            message: `Codigo de descuento "${hold.couponCode}" ya no es valido: ${promo.error}`,
-            success: false,
-            reason: "invalid_discount_code",
-          });
-        }
-
-        // Recalculate and correct if tampered
-        const subtotal = parseFloat(hold.subtotal || "0");
-        const extrasTotal = parseFloat(hold.extrasTotal || "0");
-        const baseTotal = subtotal + extrasTotal;
-        const discountAmount = calculateDiscountAmount(promo, subtotal, baseTotal);
-        const expectedTotal = Math.max(0, baseTotal - discountAmount);
-
-        const storedTotal = parseFloat(hold.totalAmount);
-        if (Math.abs(storedTotal - expectedTotal) > 0.01) {
-          logger.warn("[Payments] Amount mismatch in mock payment — correcting", {
-            holdId: hold.id,
-            storedTotal,
-            expectedTotal,
-          });
-          await storage.updateBooking(hold.id, {
-            totalAmount: expectedTotal.toString(),
-          });
-          hold.totalAmount = expectedTotal.toString();
-        }
-      }
-
-      const mockPaymentIntentId = `pi_mock_${Date.now()}_${Math.random().toString(36).substring(7)}`;
-
-      await storage.updateBooking(hold.id, {
-        bookingStatus: "pending_payment",
-        paymentStatus: "pending",
-        stripePaymentIntentId: mockPaymentIntentId,
-      });
-
-      res.json({
-        success: true,
-        clientSecret: `${mockPaymentIntentId}_secret_mock`,
-        paymentIntentId: mockPaymentIntentId,
-        amount: Number(hold.totalAmount),
-        currency: "eur",
-        mockMode: true,
-        note: "This is a mock payment for testing. Use /api/simulate-payment-success to complete the payment.",
-      });
-    } catch (error: unknown) {
-      logger.error("[Payments] Error creating mock payment intent", { error: error instanceof Error ? error.message : String(error) });
-      res.status(500).json({
-        message: "Error interno del servidor",
-        success: false,
-      });
-    }
-  });
-
-  // Simulate payment success (development only)
-  app.post("/api/simulate-payment-success", async (req, res) => {
-    if (process.env.NODE_ENV === "production") {
-      return res.status(404).json({
-        message: "Endpoint no disponible en producción",
-        success: false,
-      });
-    }
-
-    try {
-      const parsed = simulatePaymentSchema.safeParse(req.body);
-      if (!parsed.success) {
-        return res.status(400).json({
-          message: "Datos invalidos",
-          success: false,
-          errors: parsed.error.flatten().fieldErrors,
-        });
-      }
-
-      const { paymentIntentId } = parsed.data;
-
-      const booking = await db
-        .select()
-        .from(bookings)
-        .where(eq(bookings.stripePaymentIntentId, paymentIntentId))
-        .limit(1);
-
-      if (booking.length === 0) {
-        return res.status(404).json({
-          message: "Reserva no encontrada para este PaymentIntent",
-          success: false,
-        });
-      }
-
-      const confirmedBooking = await storage.updateBooking(booking[0].id, {
-        bookingStatus: "confirmed",
-        paymentStatus: "completed",
-      });
-
-      // Send confirmation email + WhatsApp
-      if (confirmedBooking) {
-        const boat = await storage.getBoat(confirmedBooking.boatId);
-        if (boat) {
-          const extras = await storage.getBookingExtras(confirmedBooking.id);
-          if (confirmedBooking.customerEmail) {
-            sendBookingConfirmation({ booking: confirmedBooking, boat, extras }).catch(
-              (err: unknown) => logger.error("[SimulatePayment] Error sending confirmation email", { error: err instanceof Error ? err.message : String(err) })
-            );
-          }
-          trySendWhatsAppConfirmation(confirmedBooking, boat).catch(() => {});
-        }
-
-        // Decrement extras inventory stock (fire-and-forget)
-        storage.decrementExtrasStock(confirmedBooking.id).catch((err: unknown) => {
-          logger.error(`[Payments] Failed to decrement extras stock for booking ${confirmedBooking.id}`, { error: err instanceof Error ? err.message : String(err) });
-        });
-      }
-
-      res.json({
-        success: true,
-        message: "Pago simulado exitosamente",
-        bookingId: booking[0].id,
-        status: "confirmed",
-      });
-    } catch (error: unknown) {
-      logger.error("[Payments] Error simulating payment", { error: error instanceof Error ? error.message : String(error) });
-      res.status(500).json({
-        message: "Error interno del servidor",
-        success: false,
-      });
-    }
-  });
-
+  // El pago con tarjeta de una RESERVA de barco no existe, y es a proposito.
+  //
+  // Aqui vivian cuatro handlers publicos y sin autenticacion —create-payment-intent,
+  // create-checkout-session, su gemelo -mock y simulate-payment-success— que
+  // creaban PaymentIntents y Checkout Sessions reales para una reserva. No los
+  // llamaba NADIE desde client/ (el wizard acaba en /api/booking-inquiries, o sea
+  // en WhatsApp) y contradecian la regla del CLAUDE.md de este repo: la web capta
+  // solicitudes y el cobro es en persona, en el pantalan.
+  //
+  // Se borraron el 22-sep-2026 tras comprobarlo en produccion: de 74 reservas,
+  // UNA tenia stripePaymentIntentId —ya resuelta—, cero holds vivos y cero pagos
+  // pendientes. Ademas arrastraban un bug latente: revalidaban el cupon con
+  // validatePromoCode(hold.couponCode) SIN contexto, y como el hold se crea con
+  // customerPhone: "N/A" (server/routes/bookings.ts, /api/quote no persiste el
+  // telefono), cualquier codigo ligado a un telefono —los de alumno de la escuela
+  // nautica— habria fallado con phone_mismatch justo al pagar.
+  //
+  // Si algun dia se activa el pago online de la senal, hay que reintroducirlo
+  // pasando el telefono y el barco a validatePromoCode, y persistir el telefono
+  // real en el hold: sin eso, los codigos personales se rompen en el ultimo paso.
+  //
+  // Lo que SIGUE vivo en este fichero: el webhook (gift cards y la senal del CRM
+  // DAMAR), los dos endpoints de senal del CRM y el refund de admin. La tienda
+  // cobra por su propio flujo, /api/shop/*.
   // CRM DAMAR: mint a single-use señal payment link for a rental. Server-to-server
   // only, authenticated with the CRM_API_KEY the two apps already share (the CRM
   // resolves it via getCrmApiKey). Listed in the CSRF skip-list: no browser cookie

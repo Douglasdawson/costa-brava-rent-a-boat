@@ -55,7 +55,12 @@ const createDiscountSchema = z.object({
     .regex(/^[A-Z0-9-]+$/, "El codigo debe contener solo letras mayusculas, numeros y guiones"),
   discountPercent: z.number().int().min(1, "El descuento debe ser al menos 1%").max(100, "El descuento no puede superar 100%"),
   maxUses: z.number().int().min(1, "Debe permitir al menos 1 uso").default(1),
+  // Solo una ETIQUETA para saber a quien se le dio: validatePromoCode NO lo mira,
+  // asi que un codigo con email sigue siendo canjeable por cualquiera.
   customerEmail: z.string().email("Email invalido").optional().nullable(),
+  // ESTE si ata el codigo a una persona: validatePromoCode compara los ultimos
+  // 9 digitos contra el telefono que el cliente teclea en el wizard.
+  customerPhone: z.string().min(6, "Telefono demasiado corto").max(40).optional().nullable(),
   expiresAt: z.string().datetime({ offset: true }).optional().nullable(),
 });
 
@@ -157,7 +162,7 @@ export function registerDiscountRoutes(app: Express) {
         });
       }
 
-      const { code, discountPercent, maxUses, customerEmail, expiresAt } = parsed.data;
+      const { code, discountPercent, maxUses, customerEmail, customerPhone, expiresAt } = parsed.data;
 
       // Check if code already exists
       const existing = await storage.getDiscountCodeByCode(code);
@@ -170,6 +175,7 @@ export function registerDiscountRoutes(app: Express) {
         discountPercent,
         maxUses,
         customerEmail: customerEmail ? customerEmail.toLowerCase().trim() : null,
+        customerPhone: customerPhone ? customerPhone.trim() : null,
         isActive: true,
         expiresAt: expiresAt ? new Date(expiresAt) : null,
       });

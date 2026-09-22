@@ -194,8 +194,8 @@ GET  /api/boats/:id                # Detalle barco
 POST /api/boats/:id/check-availability
 POST /api/quote                    # Cotización + hold temporal
 GET  /api/bookings/:id             # Detalle reserva
-POST /api/create-payment-intent    # Stripe PaymentIntent
-POST /api/stripe-webhook           # Webhook Stripe
+POST /api/booking-inquiries        # Solicitud de reserva (acaba en WhatsApp)
+POST /api/stripe-webhook           # Webhook Stripe (tienda y senal del CRM)
 GET  /api/testimonials             # Testimonios verificados
 GET  /api/blog                     # Posts publicados
 GET  /api/blog/:slug               # Post por slug
@@ -321,11 +321,14 @@ draft → hold → pending_payment → confirmed
 
 ### 7.2 Flujo
 1. Usuario selecciona barco, fecha, duración
-2. `POST /api/quote` → Crea hold temporal (30 min)
-3. Usuario completa datos personales
-4. `POST /api/create-payment-intent` → Stripe
-5. Usuario paga
-6. Stripe webhook → `confirmed`
+2. Usuario completa datos personales y, si tiene, su código de descuento
+3. `POST /api/booking-inquiries` → se registra la solicitud
+4. Se abre WhatsApp con el resumen y el total ya descontado
+5. El equipo contacta y **el cobro es en persona, en el pantalán**
+
+No hay pago con tarjeta de una reserva: los endpoints que lo hacían se borraron el
+22-sep-2026 (nadie los llamaba y estaban públicos sin auth). Stripe se usa en la tienda
+(`/api/shop/*`) y en la señal del CRM DAMAR (`/api/crm/senal-link`).
 
 ### 7.3 Buffer de Disponibilidad
 - Desarrollo: 5 minutos

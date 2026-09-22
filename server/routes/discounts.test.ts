@@ -6,6 +6,7 @@ import { createTestApp } from "../test/setup";
 vi.mock("../storage", () => ({
   storage: {
     getDiscountCodeByCode: vi.fn(),
+    createDiscountCode: vi.fn(async (data: Record<string, unknown>) => ({ id: "uuid", ...data })),
   },
 }));
 vi.mock("../lib/logger", () => ({
@@ -140,5 +141,59 @@ describe("POST /api/discounts/validate", () => {
 
     expect(res.body.valid).toBe(true);
     expect(res.body.discountPercent).toBe(20);
+  });
+});
+
+/**
+ * El telefono es lo unico que ata un codigo a una persona: `validatePromoCode`
+ * compara sus ultimos 9 digitos contra el que el cliente teclea en el wizard.
+ * Hasta el 22-sep-2026 el panel no lo exponia —solo email, que no se valida en
+ * ningun sitio—, asi que desde ahi era imposible crear un codigo realmente
+ * personal. Si alguien quita el campo del zod, esto lo caza: el codigo volveria
+ * a guardarse sin telefono y seria canjeable por cualquiera, en silencio.
+ */
+describe("POST /api/admin/discounts — el telefono que ata el codigo", () => {
+  let app: ReturnType<typeof createTestApp>;
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockedStorage.getDiscountCodeByCode.mockResolvedValue(undefined);
+    app = createTestApp();
+    registerDiscountRoutes(app);
+  });
+
+  const crear = (body: Record<string, unknown>) =>
+    request(app)
+      .post("/api/admin/discounts")
+      .send({ code: "PRUEBA-1", discountPercent: 10, maxUses: 1, ...body });
+
+  it("persiste el telefono cuando se manda", async () => {
+    const res = await crear({ customerPhone: "+34 611 500 372" });
+    expect(res.status).toBe(200);
+    expect(mockedStorage.createDiscountCode).toHaveBeenCalledWith(
+      expect.objectContaining({ customerPhone: "+34 611 500 372" }),
+    );
+  });
+
+  it("sin telefono lo guarda como null, no como cadena vacia", async () => {
+    const res = await crear({});
+    expect(res.status).toBe(200);
+    expect(mockedStorage.createDiscountCode).toHaveBeenCalledWith(
+      expect.objectContaining({ customerPhone: null }),
+    );
+  });
+
+  it("rechaza un telefono demasiado corto para ser uno", async () => {
+    const res = await crear({ customerPhone: "123" });
+    expect(res.status).toBe(400);
+    expect(mockedStorage.createDiscountCode).not.toHaveBeenCalled();
+  });
+
+  it("el email sigue guardandose en minusculas, y no limita nada", async () => {
+    const res = await crear({ customerEmail: "Maria@Ejemplo.COM" });
+    expect(res.status).toBe(200);
+    expect(mockedStorage.createDiscountCode).toHaveBeenCalledWith(
+      expect.objectContaining({ customerEmail: "maria@ejemplo.com", customerPhone: null }),
+    );
   });
 });

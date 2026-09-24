@@ -16,7 +16,7 @@ import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCEL
 import { buildCoreFacts } from "../shared/aiCitationFacts";
 import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
 import { BOAT_DATA, applyFleetStatsToText, boatIncludesFuel, isCaptainedBoat, isPubliclyListed } from "../shared/boatData";
-import { isJetSkiProduct } from "../shared/jetskiProducts";
+import { isJetSkiProduct, JETSKI_PRODUCTS, type JetSkiProduct } from "../shared/jetskiProducts";
 import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { ACTIVITATUM_PICKS, activitatumPicksBySlot, activitatumTopicUrl, activitatumUrl } from "../shared/activitatumLinks";
@@ -149,16 +149,19 @@ async function getDbMeta(pagePath: string, lang: string): Promise<{ title?: stri
   }
 }
 
-// Jet ski landing pages (circuito / excursión). Built from i18n jetskiLanding
+type JetskiCopyKey = "circuito" | "excursion" | "efoil";
+
+// Jet ski / eFoil landing pages. Built from i18n jetskiLanding
 // so all 8 locales get a native title/description derived from the hero copy.
 function buildJetskiStaticMeta(
-  copyKey: "circuito" | "excursion",
+  copyKey: JetskiCopyKey,
   minPrice: number,
 ): Partial<Record<LangCode, SEOMeta>> {
   const out: Partial<Record<LangCode, SEOMeta>> = {};
   for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
     const jl = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
     const product = jl[copyKey];
+    if (!product) continue;
     const fromLabel = jl.fromLabel;
     // Prefer the keyword-rich seoTitle ("alquiler moto de agua…") when present;
     // fall back to the hero title + price for older locales.
@@ -169,6 +172,106 @@ function buildJetskiStaticMeta(
   }
   return out;
 }
+
+// ---- Jet ski / eFoil SSR bodies -------------------------------------------
+// Prerender is inactive in production, so this HTML is ALL that non-JS
+// crawlers (GPTBot, ClaudeBot, PerplexityBot...) see of these pages. It mirrors
+// the visible page: prices from the catalogue (never hand-typed), how it works,
+// requirements, what's included, the FAQ as text, and real <a> links to the
+// sibling experiences and the hub.
+const JETSKI_COPY_KEY_BY_PAGE: Record<string, JetskiCopyKey> = {
+  jetskiCircuito: "circuito",
+  jetskiExcursion: "excursion",
+  efoilBlanes: "efoil",
+};
+
+function jetskiPriceTableHtml(product: JetSkiProduct, lang: LangCode): string {
+  const jl = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
+  const hasTwo = product.slots.some((sl) => sl.price2);
+  const head = `<tr><th>${esc(jl.priceColDuration ?? "Duración")}</th><th>${esc(jl.priceColOne ?? "1 persona")}</th>${hasTwo ? `<th>${esc(jl.priceColTwo ?? "2 personas")}</th>` : ""}</tr>`;
+  const rows = product.slots
+    .map((sl) => `<tr><td>${esc(sl.label)}</td><td>${sl.price} €</td>${hasTwo ? `<td>${sl.price2 ? `${sl.price2} €` : "-"}</td>` : ""}</tr>`)
+    .join("\n");
+  return `<table>\n<thead>${head}</thead>\n<tbody>\n${rows}\n</tbody>\n</table>`;
+}
+
+function jetskiProductLabel(product: JetSkiProduct, lang: LangCode): string {
+  const key = JETSKI_COPY_KEY_BY_PAGE[product.pageKey];
+  const jl = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
+  return (key && jl[key]?.navLabel) || product.name;
+}
+
+function jetskiFaqHtml(title: string, faq: { q: string; a: string }[]): string {
+  if (faq.length === 0) return "";
+  return `<h2>${esc(title)}</h2>\n<dl>\n${faq.map((f) => `<dt>${esc(f.q)}</dt><dd>${esc(f.a)}</dd>`).join("\n")}\n</dl>`;
+}
+
+export function buildJetskiLandingBody(product: JetSkiProduct, lang: LangCode): string {
+  const t = I18N_BY_LANG[lang] ?? i18nEs;
+  const jl = t.jetskiLanding;
+  const key = JETSKI_COPY_KEY_BY_PAGE[product.pageKey];
+  const c = key ? jl[key] : undefined;
+  const included = c?.included?.length ? c.included : product.included;
+  const siblings = JETSKI_PRODUCTS.filter((p) => p.id !== product.id);
+  const links = [
+    `<li><a href="${BASE_URL}${getLocalizedPath("jetskiHub", lang)}">${esc(t.jetskiHub?.hero?.title ?? t.jetskiHub?.navLabel)}</a></li>`,
+    ...siblings.map((p) => {
+      const sk = JETSKI_COPY_KEY_BY_PAGE[p.pageKey];
+      const sub = (sk && jl[sk]?.hero?.subtitle) || p.subtitle;
+      const minPrice = Math.min(...p.slots.map((sl) => sl.price));
+      return `<li><a href="${BASE_URL}${getLocalizedPath(p.pageKey as PageKey, lang)}">${esc(jetskiProductLabel(p, lang))}</a>: ${esc(sub)} ${esc(jl.fromLabel)} ${minPrice} €.</li>`;
+    }),
+    `<li><a href="${BASE_URL}${getLocalizedPath("locationBlanes", lang)}">${esc(t.relatedContent?.items?.efoilBlanes?.[3]?.title ?? "Blanes")}</a></li>`,
+  ];
+  return [
+    `<h1>${esc(c?.hero?.title ?? product.name)}</h1>`,
+    `<p>${esc(c?.hero?.subtitle ?? product.subtitle)}</p>`,
+    c?.intro ? `<p>${esc(c.intro)}</p>` : "",
+    `<h2>${esc(jl.slotsTitle)}</h2>`,
+    jetskiPriceTableHtml(product, lang),
+    c?.how?.length ? `<h2>${esc(c.howTitle ?? "")}</h2>\n${c.how.map((para) => `<p>${esc(para)}</p>`).join("\n")}` : "",
+    c?.requirements?.length ? `<h2>${esc(jl.requirementsTitle ?? "")}</h2>\n<ul>\n${c.requirements.map((r) => `<li>${esc(r)}</li>`).join("\n")}\n</ul>` : "",
+    included.length ? `<h2>${esc(jl.includedTitle)}</h2>\n<ul>\n${included.map((r) => `<li>${esc(r)}</li>`).join("\n")}\n</ul>` : "",
+    jetskiFaqHtml(jl.faqTitle, c?.faq ?? []),
+    `<h2>${esc(jl.moreTitle ?? "")}</h2>\n<ul>\n${links.join("\n")}\n</ul>`,
+    `<p><a href="https://wa.me/34611500372">${esc(jl.ctaRequest)}</a></p>`,
+  ].filter(Boolean).join("\n");
+}
+
+export function buildJetskiHubBody(lang: LangCode): string {
+  const t = I18N_BY_LANG[lang] ?? i18nEs;
+  const hub = t.jetskiHub;
+  const jl = t.jetskiLanding;
+  const products = JETSKI_PRODUCTS.map((p) => {
+    const key = JETSKI_COPY_KEY_BY_PAGE[p.pageKey];
+    const c = key ? jl[key] : undefined;
+    const href = `${BASE_URL}${getLocalizedPath(p.pageKey as PageKey, lang)}`;
+    const minPrice = Math.min(...p.slots.map((sl) => sl.price));
+    return `<h3><a href="${href}">${esc(jetskiProductLabel(p, lang))}</a></h3>\n<p>${esc(c?.hero?.subtitle ?? p.subtitle)} ${esc(jl.fromLabel)} ${minPrice} €.</p>`;
+  });
+  const prices = JETSKI_PRODUCTS.map((p) => `<h3>${esc(jetskiProductLabel(p, lang))}</h3>\n${jetskiPriceTableHtml(p, lang)}`);
+  return [
+    `<h1>${esc(hub.hero.title)}</h1>`,
+    `<p>${esc(hub.hero.subtitle)}</p>`,
+    hub.intro ? `<p>${esc(hub.intro)}</p>` : "",
+    `<h2>${esc(hub.productsTitle)}</h2>`,
+    ...products,
+    hub.pricesTitle ? `<h2>${esc(hub.pricesTitle)}</h2>` : "",
+    ...prices,
+    ...(hub.guide ?? []).map((g) => `<h2>${esc(g.title)}</h2>\n<p>${esc(g.text)}</p>`),
+    jetskiFaqHtml(hub.faqTitle, hub.faq ?? []),
+    `<p><a href="https://wa.me/34611500372">${esc(jl.ctaRequest)}</a></p>`,
+  ].filter(Boolean).join("\n");
+}
+
+const JETSKI_LANDING_BY_META_KEY: Record<string, JetSkiProduct> = Object.fromEntries(
+  JETSKI_PRODUCTS.map((p) => [`/${getSlugForPage(p.pageKey as PageKey, "es")}`, p]),
+);
+
+const JETSKI_AREA_SERVED = ["Blanes", "Lloret de Mar", "Tossa de Mar", "Malgrat de Mar", "Santa Susanna"].map((name) => ({
+  "@type": "City",
+  name,
+}));
 
 // Jet ski hub/category page ("alquiler de moto de agua en Blanes"), head term.
 function buildJetskiHubStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
@@ -319,6 +422,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   ...buildMatrixStaticMetaEntries(),
   "/circuito-jet-ski-blanes": buildJetskiStaticMeta("circuito", 65),
   "/excursion-jet-ski-blanes-tossa": buildJetskiStaticMeta("excursion", 190),
+  "/efoil-blanes": buildJetskiStaticMeta("efoil", 95),
   "/alquiler-moto-de-agua-blanes": buildJetskiHubStaticMeta(),
   "/alquiler-motos-lloret": buildScootersStaticMeta(),
   "/actividades-costa-brava": buildActivitiesStaticMeta(),
@@ -2749,7 +2853,9 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       const captainedLabel = tHome.captainedPage?.crossLinkLabel
         ?? (isEn ? "Boat with skipper" : "Barco con patrón");
       const captainedHref = `${BASE_URL}/${lang}/${getSlugForPage("categoryCaptained", lang)}`;
-      const jetskiLabel = tHome.jetskiHub?.navLabel ?? (isEn ? "Jet skis" : "Motos de agua");
+      // Keyword anchor ("Alquiler de motos de agua en Blanes"): the home ranks
+      // for jet ski queries in EN/NL and should hand that to the hub.
+      const jetskiLabel = tHome.jetskiHub?.hero?.title ?? tHome.jetskiHub?.navLabel ?? (isEn ? "Jet ski rental in Blanes" : "Motos de agua");
       const jetskiHref = `${BASE_URL}/${lang}/${getSlugForPage("jetskiHub", lang)}`;
       const efoilLabel = tHome.jetskiLanding?.efoil?.navLabel ?? "eFoil";
       const efoilHref = `${BASE_URL}/${lang}/${getSlugForPage("efoilBlanes", lang)}`;
@@ -4001,58 +4107,56 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] }, availableLanguages, bodyFallback: snorkelBodyFallback };
     }
 
-    // /circuito-jet-ski-blanes - Jet ski circuit landing. i18n-complete in all 8
-    // locales (t.jetskiLanding.circuito), so emit a native SSR body + index.
-    else if (metaKey === "/circuito-jet-ski-blanes") {
-      const jsk = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding?.circuito;
-      const jl = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
+    // Jet ski / eFoil landings (circuito, excursión, eFoil). i18n-complete in
+    // all 8 locales (t.jetskiLanding.*); one branch driven by the catalogue.
+    // No aggregateRating on the Service: the business reviews are not reviews
+    // of these products and Google can invalidate rich results for that. The
+    // rating lives on the LocalBusiness node only.
+    else if (JETSKI_LANDING_BY_META_KEY[metaKey]) {
+      const product = JETSKI_LANDING_BY_META_KEY[metaKey];
+      const key = JETSKI_COPY_KEY_BY_PAGE[product.pageKey];
+      const t = I18N_BY_LANG[lang] ?? i18nEs;
+      const jsk = key ? t.jetskiLanding?.[key] : undefined;
       const heading = jsk?.hero.title ?? meta.title;
       const summary = jsk?.hero.subtitle ?? meta.description;
-      // No aggregateRating on the Service: the business reviews are not reviews
-      // of the jet ski product; Google can invalidate rich results for that.
-      // The rating lives on the LocalBusiness node only.
-      const service = buildLandingService(heading, summary, { low: 65, high: 190 }, { includeRating: false });
-      const faq = {
-        "@type": "FAQPage",
-        mainEntity: (jsk?.faq ?? []).map((item) => ({
-          "@type": "Question",
-          name: item.q,
-          acceptedAnswer: { "@type": "Answer", text: item.a },
-        })),
-      };
-      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
-      const jetskiCircuitoBodyFallback = buildLocationBodyFallback(
-        heading,
-        summary,
-        jsk?.chips ?? [],
-        jl?.ctaRequest ?? heading,
-      );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] }, availableLanguages, bodyFallback: jetskiCircuitoBodyFallback };
-    }
-
-    // /excursion-jet-ski-blanes-tossa - Guided jet ski route Blanes → Tossa.
-    // i18n-complete in all 8 locales (t.jetskiLanding.excursion), native SSR + index.
-    else if (metaKey === "/excursion-jet-ski-blanes-tossa") {
-      const jsk = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding?.excursion;
-      const jl = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
-      const heading = jsk?.hero.title ?? meta.title;
-      const summary = jsk?.hero.subtitle ?? meta.description;
-      // No aggregateRating on the Service (see circuito branch above).
-      const service = buildLandingService(heading, summary, { low: 190, high: 330 }, { includeRating: false });
-      const touristTrip = {
-        "@type": "TouristTrip",
+      const pageUrl = `${BASE_URL}${getLocalizedPath(product.pageKey as PageKey, lang)}`;
+      const service = {
+        "@type": "Service",
         name: heading,
+        serviceType: key === "efoil" ? "eFoil lesson" : "Jet ski rental",
         description: summary,
-        touristType: ["Water sports", "Adventure"],
-        maximumAttendeeCapacity: 2,
-        itinerary: {
-          "@type": "ItemList",
-          itemListElement: [
-            { "@type": "Place", name: "Puerto de Blanes" },
-            { "@type": "Place", name: "Tossa de Mar" },
-          ],
-        },
+        url: pageUrl,
+        image: `${BASE_URL}${product.image}`,
+        provider: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
+        areaServed: JETSKI_AREA_SERVED,
+        offers: product.slots.map((sl) => ({
+          "@type": "Offer",
+          name: `${heading} · ${sl.label}`,
+          price: String(sl.price),
+          priceCurrency: "EUR",
+          availability: "https://schema.org/InStock",
+          priceValidUntil: `${SEASON_YEAR}-10-31`,
+          url: pageUrl,
+          seller: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
+        })),
       };
+      const touristTrip = key === "excursion"
+        ? [{
+            "@type": "TouristTrip",
+            name: heading,
+            description: summary,
+            touristType: ["Water sports", "Adventure"],
+            maximumAttendeeCapacity: 2,
+            itinerary: {
+              "@type": "ItemList",
+              itemListElement: [
+                { "@type": "Place", name: "Puerto de Blanes" },
+                { "@type": "Place", name: "Lloret de Mar" },
+                { "@type": "Place", name: "Tossa de Mar" },
+              ],
+            },
+          }]
+        : [];
       const faq = {
         "@type": "FAQPage",
         mainEntity: (jsk?.faq ?? []).map((item) => ({
@@ -4061,39 +4165,68 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
           acceptedAnswer: { "@type": "Answer", text: item.a },
         })),
       };
-      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
-      const jetskiExcursionBodyFallback = buildLocationBodyFallback(
-        heading,
-        summary,
-        jsk?.chips ?? [],
-        jl?.ctaRequest ?? heading,
-      );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, touristTrip, faq, breadcrumb] }, availableLanguages, bodyFallback: jetskiExcursionBodyFallback };
+      const breadcrumb = buildBreadcrumb([
+        { name: t.nav?.home ?? homeCrumb.name, url: BASE_URL },
+        { name: t.jetskiHub?.navLabel ?? heading, url: `${BASE_URL}${getLocalizedPath("jetskiHub", lang)}` },
+        { name: heading, url: pageUrl },
+      ]);
+      return {
+        meta,
+        jsonLd: { "@context": "https://schema.org", "@graph": [service, ...touristTrip, faq, breadcrumb] },
+        availableLanguages,
+        bodyFallback: buildJetskiLandingBody(product, lang),
+      };
     }
 
     // /alquiler-moto-de-agua-blanes - Jet ski hub/category (head term). Groups
-    // both activities; CollectionPage + ItemList linking to the two landings.
+    // all the water activities; CollectionPage + ItemList + OfferCatalog.
     else if (metaKey === "/alquiler-moto-de-agua-blanes") {
-      const hub = (I18N_BY_LANG[lang] ?? i18nEs).jetskiHub;
-      const jlh = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
+      const t = I18N_BY_LANG[lang] ?? i18nEs;
+      const hub = t.jetskiHub;
       const heading = hub?.hero?.title ?? meta.title;
       const summary = hub?.hero?.subtitle ?? meta.description;
-      const items = [
-        { key: "jetskiCircuito" as const, label: jlh?.circuito?.navLabel ?? "" },
-        { key: "jetskiExcursion" as const, label: jlh?.excursion?.navLabel ?? "" },
-      ];
+      const pageUrl = `${BASE_URL}${getLocalizedPath("jetskiHub", lang)}`;
+      const items = JETSKI_PRODUCTS.map((p) => ({
+        product: p,
+        label: jetskiProductLabel(p, lang),
+        url: `${BASE_URL}${getLocalizedPath(p.pageKey as PageKey, lang)}`,
+      }));
       const collection = {
         "@type": "CollectionPage",
         name: heading,
         description: summary,
-        url: `${BASE_URL}${metaKey}`,
+        url: pageUrl,
         mainEntity: {
           "@type": "ItemList",
           itemListElement: items.map((it, i) => ({
             "@type": "ListItem",
             position: i + 1,
             name: it.label,
-            url: `${BASE_URL}${getLocalizedPath(it.key, lang)}`,
+            url: it.url,
+          })),
+        },
+      };
+      const service = {
+        "@type": "Service",
+        name: heading,
+        serviceType: "Jet ski rental",
+        description: summary,
+        url: pageUrl,
+        provider: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
+        areaServed: JETSKI_AREA_SERVED,
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: heading,
+          itemListElement: items.map((it) => ({
+            "@type": "OfferCatalog",
+            name: it.label,
+            url: it.url,
+            itemListElement: it.product.slots.map((sl) => ({
+              "@type": "Offer",
+              name: `${it.label} · ${sl.label}`,
+              price: String(sl.price),
+              priceCurrency: "EUR",
+            })),
           })),
         },
       };
@@ -4105,14 +4238,13 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
           acceptedAnswer: { "@type": "Answer", text: item.a },
         })),
       };
-      const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
-      const hubBodyFallback = buildLocationBodyFallback(
-        heading,
-        summary,
-        items.map((it) => it.label).filter(Boolean),
-        hub?.navLabel ?? heading,
-      );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [collection, faq, breadcrumb] }, availableLanguages, bodyFallback: hubBodyFallback };
+      const breadcrumb = buildBreadcrumb([{ name: t.nav?.home ?? homeCrumb.name, url: BASE_URL }, { name: heading, url: pageUrl }]);
+      return {
+        meta,
+        jsonLd: { "@context": "https://schema.org", "@graph": [collection, service, faq, breadcrumb] },
+        availableLanguages,
+        bodyFallback: buildJetskiHubBody(lang),
+      };
     }
 
     // Satellite location pages (tordera / palafolls / pineda). Fase 2 (2026-05-28):

@@ -1773,7 +1773,7 @@ export const fr: Translations = {
     "jetski-circuito":
       "Prenez les commandes d'un jet ski sur un circuit balisé face à Blanes. Idéal pour goûter à l'adrénaline du jet ski sans permis : briefing de sécurité et gilet de sauvetage inclus.",
     "jetski-excursion-monitor":
-      "Parcourez la Costa Brava en jet ski accompagné d'un moniteur diplômé, sur un itinéraire guidé à travers les criques entre Blanes et Lloret. Sans permis, avec briefing, gilet et carburant du parcours inclus.",
+      "Parcourez la Costa Brava en jet ski accompagné d'un moniteur diplômé, sur un itinéraire guidé de Blanes vers Tossa de Mar à travers les criques de Blanes et de Lloret. Sans permis, avec briefing, gilet et carburant du parcours inclus.",
     "solar-450":
       "Conçu pour les amoureux du soleil. Son solarium rembourrré est le plus grand de toute la flotte sans permis : mouillez dans une crique aux eaux turquoise près de Blanes et détendez-vous comme nulle part ailleurs. Aucun permis nécessaire, nous vous apprenons à le piloter en 15 minutes. Carburant, assurance et équipement de sécurité inclus.",
     "remus-450":
@@ -3499,6 +3499,7 @@ export const fr: Translations = {
         { title: "Sortie en bateau au coucher du soleil", description: "Une expérience au coucher du soleil en bateau" },
         { title: "Bateaux sans permis", description: "4 bateaux dès 85€/h, carburant inclus" },
         { title: "Location de scooters à Lloret de Mar", description: "Parcourez la Costa Brava par la route, dès 8€/h avec assurance incluse" },
+        { title: "Jet ski près de Lloret", description: "Circuit et excursion guidée en jet ski depuis Blanes, sans permis" },
       ],
       locationTossa: [
         { title: "Plus de destinations sur la Costa Brava", description: "Découvrez tous les itinéraires et criques de la Costa Brava en bateau" },
@@ -3549,20 +3550,36 @@ export const fr: Translations = {
       jetskiHub: [
         { title: "Circuit en jet ski", description: "Pilotez un jet ski sans permis sur un circuit surveillé face à Blanes" },
         { title: "Excursion guidée à Tossa en jet ski", description: "Itinéraire guidé de Blanes à Tossa de Mar avec moniteur" },
-        { title: "Bateaux sans permis", description: "4 bateaux dès 85€/h, carburant inclus" },
+        { title: "eFoil à Blanes", description: "Volez au-dessus de l'eau sur une planche électrique, avec moniteur et sans permis" },
         { title: "Location de bateaux Blanes", description: "Tout sur la location de bateau au port de Blanes" },
       ],
       jetskiCircuito: [
         { title: "Location de jet ski à Blanes", description: "Toutes les expériences en jet ski sans permis" },
         { title: "Excursion guidée à Tossa en jet ski", description: "Itinéraire guidé de Blanes à Tossa de Mar avec moniteur" },
-        { title: "Bateaux sans permis", description: "4 bateaux dès 85€/h, carburant inclus" },
+        { title: "eFoil à Blanes", description: "Volez au-dessus de l'eau sur une planche électrique, avec moniteur et sans permis" },
         { title: "Location de bateaux Blanes", description: "Tout sur la location de bateau au port de Blanes" },
       ],
       jetskiExcursion: [
         { title: "Location de jet ski à Blanes", description: "Toutes les expériences en jet ski sans permis" },
         { title: "Circuit en jet ski sans permis", description: "Première prise en main sur un circuit surveillé face à Blanes" },
         { title: "Excursion à Tossa de Mar", description: "Découvrez la Vila Vella et ses criques cristallines" },
-        { title: "Prix et tarifs", description: "Consultez les tarifs par saison" },
+        { title: "eFoil à Blanes", description: "Volez au-dessus de l'eau sur une planche électrique, avec moniteur et sans permis" },
+      ],
+      efoilBlanes: [
+        { title: "Location de jet ski à Blanes", description: "Toutes les expériences en jet ski sans permis" },
+        { title: "Circuit en jet ski", description: "Pilotez un jet ski sans permis sur un circuit surveillé face à Blanes" },
+        { title: "Excursion guidée à Tossa en jet ski", description: "Itinéraire guidé de Blanes à Tossa de Mar avec moniteur" },
+        { title: "Location de bateaux Blanes", description: "Tout sur la location de bateau au port de Blanes" },
+      ],
+      locationMalgrat: [
+        { title: "Location de jet ski à Blanes", description: "Circuit et excursion guidée en jet ski, à quelques minutes de Malgrat" },
+        { title: "Circuit en jet ski", description: "Pilotez un jet ski sans permis sur un circuit surveillé face à Blanes" },
+        { title: "Location de bateaux Blanes", description: "Tout sur la location de bateau au port de Blanes" },
+      ],
+      locationSantaSusanna: [
+        { title: "Location de jet ski à Blanes", description: "Circuit et excursion guidée en jet ski, à quelques minutes de Santa Susanna" },
+        { title: "Circuit en jet ski", description: "Pilotez un jet ski sans permis sur un circuit surveillé face à Blanes" },
+        { title: "Location de bateaux Blanes", description: "Tout sur la location de bateau au port de Blanes" },
       ],
       scooters: [
         { title: "Location de bateaux à Lloret de Mar", description: "Plages et criques spectaculaires depuis le port de Blanes" },
@@ -4417,6 +4434,29 @@ export const fr: Translations = {
     "intro": "Deux façons de profiter du jet-ski sans permis depuis le port de Blanes. Choisissez le circuit pour un premier contact ou l'excursion guidée, avec un moniteur, pour parcourir la côte jusqu'à Tossa de Mar.",
     "productsTitle": "Nos expériences en jet-ski",
     "faqTitle": "Questions fréquentes",
+    "pricesTitle": "Prix de location de jet-ski à Blanes",
+    "guide": [
+      {
+        "title": "Circuit ou excursion ? Comment choisir",
+        "text": "Si vous n'avez jamais piloté de jet-ski ou si vous avez peu de temps, commencez par le circuit : dès 15 minutes, dans une zone balisée face à Blanes et à votre rythme. Si vous vous sentez à l'aise et voulez découvrir la côte, l'excursion avec moniteur vous emmène le long des criques de Blanes et de Lloret de Mar en direction de Tossa de Mar, en 1 ou 2 heures."
+      },
+      {
+        "title": "Jet-ski sans permis sur la Costa Brava",
+        "text": "Pour piloter un jet-ski seul en Espagne, il faut un titre nautique. Sans permis, il existe deux façons d'en faire, et ce sont les deux que nous proposons : sur un circuit balisé ou lors d'une excursion guidée par un moniteur diplômé. Il suffit d'avoir 18 ans pour piloter et d'apporter votre carte d'identité ou votre passeport."
+      },
+      {
+        "title": "Si vous logez à Lloret, Malgrat, Santa Susanna ou Tossa",
+        "text": "Blanes se trouve à quelques minutes en voiture de Lloret de Mar, Malgrat de Mar et Santa Susanna, et dispose d'une gare sur la ligne R1 de Rodalies. Réservez ici et nous vous envoyons par WhatsApp le point de rendez-vous exact."
+      },
+      {
+        "title": "Et l'eFoil ?",
+        "text": "Envie de quelque chose de différent ? Essayez l'eFoil : une planche électrique qui s'élève au-dessus de l'eau grâce à une aile immergée. Cours avec moniteur dès 30 minutes, sans permis et sans expérience préalable."
+      },
+      {
+        "title": "Saison et réservations",
+        "text": "Les jet-skis sortent du printemps à l'automne, lorsque l'état de la mer le permet. En juillet et en août, les créneaux se remplissent vite : envoyez votre demande quelques jours à l'avance et nous vous confirmons la disponibilité par WhatsApp, sans engagement."
+      }
+    ],
     "faq": [
       {
         "q": "Ai-je besoin d'un permis pour le jet-ski ?",
@@ -4429,13 +4469,33 @@ export const fr: Translations = {
       {
         "q": "D'où partent-ils ?",
         "a": "Du port de Blanes (Gérone), au même ponton que nos bateaux."
+      },
+      {
+        "q": "Quel âge faut-il avoir ?",
+        "a": "18 ans pour piloter. Les passagers peuvent monter dès 14 ans ; s'ils sont mineurs, avec l'autorisation de leur père, de leur mère ou de leur tuteur légal."
+      },
+      {
+        "q": "Quels documents dois-je apporter ?",
+        "a": "La carte d'identité ou le passeport est obligatoire le jour de l'activité. Aucun permis ni expérience préalable n'est nécessaire."
+      },
+      {
+        "q": "Que dois-je apporter ?",
+        "a": "Maillot de bain, serviette et crème solaire. Aux mois plus frais, un haut thermique ou une combinaison. Le gilet de sauvetage est fourni."
+      },
+      {
+        "q": "Et s'il fait mauvais temps ?",
+        "a": "Si l'état de la mer ne permet pas de sortir, nous cherchons une autre date sans aucun frais."
+      },
+      {
+        "q": "Comment réserver ?",
+        "a": "Choisissez l'expérience et le créneau, indiquez la date et envoyez la demande. Nous vous confirmons la disponibilité par WhatsApp ; d'ici là, aucun engagement."
       }
     ]
   },
   jetskiLanding: {
     efoil: {
       "navLabel": "E-Foil à Blanes",
-      "seoTitle": "Cours d'e-foil à Blanes · Volez au-dessus de l'eau sans permis",
+      "seoTitle": "eFoil à Blanes : cours avec moniteur, sans permis",
       "hero": {
         "title": "E-Foil à Blanes",
         "subtitle": "Volez au-dessus de l'eau sur une planche à hydrofoil électrique. Avec moniteur, sans permis et sans expérience."
@@ -4467,10 +4527,45 @@ export const fr: Translations = {
         {
           "q": "Et si le temps se gâte ?",
           "a": "L'activité peut être reportée pour raisons météo et nous fixons une autre date sans frais."
+        },
+        {
+          "q": "Est-ce difficile à apprendre ?",
+          "a": "Moins qu'il n'y paraît. Le moteur électrique fait l'effort et le moniteur vous guide pas à pas : la plupart des gens parviennent à décoller dès leur première séance."
+        },
+        {
+          "q": "Peut-on venir à deux ?",
+          "a": "Oui. En plus des séances individuelles de 30 et 60 minutes, il existe une formule tandem de 60 minutes pour deux personnes."
+        },
+        {
+          "q": "Et si j'arrive en retard ?",
+          "a": "Mieux vaut arriver à l'heure : chaque séance a un horaire fixe et un retard peut faire perdre la réservation."
         }
+      ],
+      "howTitle": "Comment se déroule le cours d'eFoil",
+      "how": [
+        "L'eFoil est une planche équipée d'un mât et d'une aile immergée sous l'eau, propulsée par un moteur électrique que vous contrôlez avec une télécommande sans fil. En prenant de la vitesse, l'aile soulève la planche et vous glissez au-dessus de l'eau, presque en silence.",
+        "Le cours commence sur la plage de Blanes. Le moniteur vous explique la télécommande et la posture, puis vous entrez dans l'eau allongé ou à genoux sur la planche. Quand vous vous sentez à l'aise, vous vous levez et vous décollez.",
+        "Vous pouvez choisir 30 ou 60 minutes, ou la formule tandem de 60 minutes pour deux personnes. Pour continuer à progresser, il existe des packs de 5 et 10 heures : demandez-nous par WhatsApp."
+      ],
+      "requirements": [
+        "Pas d'âge minimum : les mineurs ont besoin de l'autorisation de leur père, de leur mère ou de leur tuteur légal",
+        "Carte d'identité ou passeport obligatoire le jour de l'activité",
+        "Caution de 20€ par eFoil, restituée à la fin",
+        "Sans permis ni expérience préalable"
+      ],
+      "included": [
+        "Moniteur pendant toute la séance",
+        "Planche eFoil et batterie",
+        "Gilet et matériel de sécurité",
+        "Assurance responsabilité civile"
       ]
     },
     pricePerTwo: "1 personne · {price}€ pour 2",
+    requirementsTitle: "Conditions requises",
+    priceColDuration: "Durée",
+    priceColOne: "1 personne",
+    priceColTwo: "2 personnes",
+    moreTitle: "Plus d'expériences sur l'eau",
     specCapacity: "1-2 personnes",
     "fromLabel": "dès",
     "ctaRequest": "Réserver",
@@ -4480,7 +4575,7 @@ export const fr: Translations = {
     "reassurance": "Sans engagement · confirmation par WhatsApp",
     "circuito": {
       "navLabel": "Circuit en Jet Ski",
-      "seoTitle": "Location de jet-ski à Blanes · Circuit en jet-ski sans permis",
+      "seoTitle": "Circuit en jet ski à Blanes sans permis | 15 à 60 min",
       "hero": {
         "title": "Circuit en Jet Ski à Blanes",
         "subtitle": "Prenez les commandes d'un jet ski sur un circuit balisé au large de Blanes. Sans permis, à partir de 15 minutes."
@@ -4502,13 +4597,48 @@ export const fr: Translations = {
         },
         {
           "q": "Âge minimum ?",
-          "a": "18 ans pour piloter ; les mineurs peuvent être passagers selon les règles de l'opérateur."
+          "a": "18 ans pour piloter. Les passagers peuvent monter dès 14 ans ; s'ils sont mineurs, avec l'autorisation de leur père, de leur mère ou de leur tuteur légal."
+        },
+        {
+          "q": "Que dois-je apporter ?",
+          "a": "Maillot de bain, serviette, crème solaire et votre carte d'identité ou passeport. Aux mois plus frais, un haut thermique ou une combinaison. Le gilet est fourni."
+        },
+        {
+          "q": "Et s'il fait mauvais temps ?",
+          "a": "Si l'état de la mer ne permet pas de sortir, nous cherchons une autre date sans aucun frais."
+        },
+        {
+          "q": "Puis-je avoir des photos ou une vidéo ?",
+          "a": "Oui, il existe un pack photo et vidéo à réserver à l'avance. Demandez-le en envoyant votre demande."
+        },
+        {
+          "q": "Quelle différence avec l'excursion ?",
+          "a": "Sur le circuit, vous pilotez librement dans une zone balisée face à Blanes. Lors de l'excursion, vous partez en pleine mer en file derrière un moniteur, le long de la côte en direction de Tossa de Mar."
         }
+      ],
+      "howTitle": "Comment se déroule le circuit",
+      "how": [
+        "Avant de partir, le moniteur vous donne un briefing de sécurité à terre : comment accélérer et freiner, comment tourner et quels signaux vous verrez sur l'eau. Vous enfilez le gilet homologué et nous vous accompagnons jusqu'au jet ski.",
+        "Le circuit est une zone balisée et signalée face à Blanes, conçue pour apprendre à piloter sans trafic de bateaux autour. Vous pilotez dès la première minute, à votre rythme, sous la surveillance du moniteur depuis l'eau.",
+        "Si c'est votre première fois, 15 ou 30 minutes suffisent pour prendre confiance. Avec 45 ou 60 minutes, vous avez le temps de vous lâcher et de profiter de la vitesse. Si vous êtes deux, vous pouvez monter ensemble sur le même jet ski."
+      ],
+      "requirements": [
+        "18 ans pour piloter le jet ski",
+        "Passagers dès 14 ans, avec l'autorisation du père, de la mère ou du tuteur s'ils sont mineurs",
+        "Carte d'identité ou passeport obligatoire le jour de l'activité",
+        "Sans permis ni expérience préalable"
+      ],
+      "included": [
+        "Gilet de sauvetage homologué",
+        "Briefing de sécurité",
+        "Circuit balisé surveillé par un moniteur",
+        "Carburant",
+        "Assurance responsabilité civile"
       ]
     },
     "excursion": {
       "navLabel": "Excursion en Jet Ski avec Moniteur",
-      "seoTitle": "Location de jet-ski à Blanes · Excursion guidée à Tossa de Mar",
+      "seoTitle": "Excursion en jet ski de Blanes à Tossa de Mar avec moniteur",
       "hero": {
         "title": "Excursion en Jet Ski de Blanes à Tossa",
         "subtitle": "Parcourez la Costa Brava en jet ski accompagné d'un moniteur diplômé, sur un itinéraire guidé de Blanes à Tossa de Mar. Sans permis."
@@ -4532,7 +4662,46 @@ export const fr: Translations = {
         {
           "q": "Quelle durée ?",
           "a": "Option de 1 heure ou 2 heures vers Tossa de Mar."
+        },
+        {
+          "q": "Âge minimum ?",
+          "a": "18 ans pour piloter. Les passagers peuvent monter dès 14 ans ; s'ils sont mineurs, avec l'autorisation de leur père, de leur mère ou de leur tuteur légal."
+        },
+        {
+          "q": "Faut-il de l'expérience ?",
+          "a": "Non. Avant de partir, vous recevez un briefing de sécurité et, pendant tout l'itinéraire, vous suivez le moniteur, qui fixe le rythme et le parcours."
+        },
+        {
+          "q": "Que dois-je apporter ?",
+          "a": "Maillot de bain, serviette, crème solaire et votre carte d'identité ou passeport. Aux mois plus frais, un haut thermique ou une combinaison."
+        },
+        {
+          "q": "Et s'il fait mauvais temps ?",
+          "a": "Si l'état de la mer ne permet pas de sortir, nous cherchons une autre date sans aucun frais."
+        },
+        {
+          "q": "Puis-je avoir des photos ou une vidéo ?",
+          "a": "Oui, il existe un pack photo et vidéo à réserver à l'avance. Demandez-le en envoyant votre demande."
         }
+      ],
+      "howTitle": "Comment se déroule l'excursion",
+      "how": [
+        "Vous partez en groupe de Blanes avec un moniteur diplômé qui ouvre la route. Les jet skis naviguent en file derrière lui, en gardant la distance de sécurité, et vous pilotez le vôtre à tout moment.",
+        "L'itinéraire longe la côte vers le nord : Sa Palomera, les criques de Blanes, la côte de Lloret de Mar et les falaises en direction de Tossa de Mar. La distance parcourue dépend de la durée choisie et de l'état de la mer : le moniteur adapte le parcours.",
+        "C'est la façon de découvrir la Costa Brava depuis l'eau sans permis ni expérience : le briefing préalable vous explique tout ce qu'il faut pour piloter en toute sécurité."
+      ],
+      "requirements": [
+        "18 ans pour piloter le jet ski",
+        "Passagers dès 14 ans, avec l'autorisation du père, de la mère ou du tuteur s'ils sont mineurs",
+        "Carte d'identité ou passeport obligatoire le jour de l'activité",
+        "Sans permis ni expérience préalable"
+      ],
+      "included": [
+        "Moniteur diplômé qui guide l'itinéraire",
+        "Carburant",
+        "Assurance responsabilité civile",
+        "Gilet de sauvetage homologué",
+        "Briefing de sécurité"
       ]
     }
   },
@@ -6123,7 +6292,7 @@ export const fr: Translations = {
   },
   activitiesSection: {
     title: "Au-delà du bateau : jet ski et eFoil",
-    subtitle: "Volez au-dessus de l'eau en eFoil ou prenez les commandes d'un jet ski à Blanes. Sans permis et sans expérience : on vous explique tout avant de partir.",
+    subtitle: "Prenez les commandes d'un jet ski à Blanes ou volez au-dessus de l'eau en eFoil. Sans permis et sans expérience : on vous explique tout avant de partir.",
     newBadge: "Nouveau",
   },
   titulinSection: {

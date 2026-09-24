@@ -1814,7 +1814,7 @@ export const en: Translations = {
     "jetski-circuito":
       "Take the controls of a jet ski on a buoy-marked circuit off Blanes. Ideal for a first taste of jet ski adrenaline with no license needed: safety briefing and life jacket included.",
     "jetski-excursion-monitor":
-      "Ride along the Costa Brava on a jet ski accompanied by a qualified instructor, on a guided route through the coves between Blanes and Lloret. No license needed, with briefing, life jacket and fuel for the route included.",
+      "Ride along the Costa Brava on a jet ski accompanied by a qualified instructor, on a guided route from Blanes towards Tossa de Mar through the coves of Blanes and Lloret. No license needed, with briefing, life jacket and fuel for the route included.",
     "solar-450":
       "Designed for sun lovers. Its cushioned solarium is the largest in the entire no-licence fleet: anchor in a turquoise cove near Blanes and relax like nowhere else. No licence needed, we teach you to drive in 15 minutes. Fuel, insurance and safety equipment included.",
     "remus-450":
@@ -3531,6 +3531,7 @@ export const en: Translations = {
         { title: "Sunset boat trip", description: "A sunset experience on a boat" },
         { title: "License-free boats", description: "4 boats from 85€/h, fuel included" },
         { title: "Scooter rental in Lloret de Mar", description: "Explore the Costa Brava by road, from 8€/h with insurance included" },
+        { title: "Jet skis near Lloret", description: "Jet ski circuit and guided tour from Blanes, no licence needed" },
       ],
       locationTossa: [
         { title: "More destinations on the Costa Brava", description: "Discover every Costa Brava route and cove by boat" },
@@ -3581,20 +3582,36 @@ export const en: Translations = {
       jetskiHub: [
         { title: "Jet ski circuit", description: "Ride a license-free jet ski on a supervised circuit off Blanes" },
         { title: "Guided jet ski excursion to Tossa", description: "Guided route from Blanes to Tossa de Mar with a monitor" },
-        { title: "License-free boats", description: "4 boats from 85€/h, fuel included" },
+        { title: "eFoil in Blanes", description: "Fly above the water on an electric board, with an instructor and no licence needed" },
         { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
       ],
       jetskiCircuito: [
         { title: "Jet ski rental in Blanes", description: "Every license-free jet ski experience" },
         { title: "Guided jet ski excursion to Tossa", description: "Guided route from Blanes to Tossa de Mar with a monitor" },
-        { title: "License-free boats", description: "4 boats from 85€/h, fuel included" },
+        { title: "eFoil in Blanes", description: "Fly above the water on an electric board, with an instructor and no licence needed" },
         { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
       ],
       jetskiExcursion: [
         { title: "Jet ski rental in Blanes", description: "Every license-free jet ski experience" },
         { title: "License-free jet ski circuit", description: "A first taste on a supervised circuit off Blanes" },
         { title: "Trip to Tossa de Mar", description: "Discover the Vila Vella and its crystal-clear coves" },
-        { title: "Prices and rates", description: "Check rates by season" },
+        { title: "eFoil in Blanes", description: "Fly above the water on an electric board, with an instructor and no licence needed" },
+      ],
+      efoilBlanes: [
+        { title: "Jet ski rental in Blanes", description: "Every license-free jet ski experience" },
+        { title: "Jet ski circuit", description: "Ride a license-free jet ski on a supervised circuit off Blanes" },
+        { title: "Guided jet ski excursion to Tossa", description: "Guided route from Blanes to Tossa de Mar with a monitor" },
+        { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
+      ],
+      locationMalgrat: [
+        { title: "Jet ski rental in Blanes", description: "Jet ski circuit and guided tour, a few minutes from Malgrat" },
+        { title: "Jet ski circuit", description: "Ride a license-free jet ski on a supervised circuit off Blanes" },
+        { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
+      ],
+      locationSantaSusanna: [
+        { title: "Jet ski rental in Blanes", description: "Jet ski circuit and guided tour, a few minutes from Santa Susanna" },
+        { title: "Jet ski circuit", description: "Ride a license-free jet ski on a supervised circuit off Blanes" },
+        { title: "Boat rental Blanes", description: "Everything about renting a boat in Blanes Port" },
       ],
       scooters: [
         { title: "Boat rental in Lloret de Mar", description: "Spectacular beaches and coves from Blanes harbour" },
@@ -4449,6 +4466,29 @@ export const en: Translations = {
     "intro": "Two ways to enjoy a jet ski without a license from the port of Blanes. Choose the circuit for a first taste or the guided tour, with an instructor, to travel the coast all the way to Tossa de Mar.",
     "productsTitle": "Our jet ski experiences",
     "faqTitle": "FAQ",
+    "pricesTitle": "Jet ski rental prices in Blanes",
+    "guide": [
+      {
+        "title": "Circuit or tour? How to choose",
+        "text": "If you have never ridden a jet ski or you are short on time, start with the circuit: from 15 minutes, in a buoyed area off Blanes and at your own pace. If you feel confident and want to see the coast, the tour with an instructor takes you past the coves of Blanes and Lloret de Mar towards Tossa de Mar, in 1 or 2 hours."
+      },
+      {
+        "title": "Jet skis without a licence on the Costa Brava",
+        "text": "To ride a jet ski on your own in Spain you need a boating qualification. Without a licence there are two ways to do it, and we offer both: inside a buoyed circuit or on a tour guided by a qualified instructor. You only need to be 18 to ride and bring your ID card or passport."
+      },
+      {
+        "title": "Staying in Lloret, Malgrat, Santa Susanna or Tossa?",
+        "text": "Blanes is a few minutes' drive from Lloret de Mar, Malgrat de Mar and Santa Susanna, and has a train station on the Rodalies R1 line. Book here and we will send you the exact meeting point on WhatsApp."
+      },
+      {
+        "title": "What about the eFoil?",
+        "text": "If you fancy something different, try the eFoil: an electric board that rises above the water thanks to a submerged wing. Lessons with an instructor from 30 minutes, no licence and no previous experience needed."
+      },
+      {
+        "title": "Season and bookings",
+        "text": "The jet skis run from spring to autumn, whenever sea conditions allow. In July and August the slots fill up fast: send your request a few days ahead and we will confirm availability on WhatsApp, with no commitment."
+      }
+    ],
     "faq": [
       {
         "q": "Do I need a license for the jet ski?",
@@ -4461,13 +4501,33 @@ export const en: Translations = {
       {
         "q": "Where do they depart from?",
         "a": "From the port of Blanes (Girona), at the same jetty as our boats."
+      },
+      {
+        "q": "What is the minimum age?",
+        "a": "18 to ride. Passengers can come along from age 14; minors need the consent of a parent or legal guardian."
+      },
+      {
+        "q": "What documents do I need?",
+        "a": "An ID card or passport is required on the day of the activity. No licence or previous experience is needed."
+      },
+      {
+        "q": "What should I bring?",
+        "a": "Swimwear, a towel and sun cream. In the cooler months, a thermal top or a wetsuit. We provide the life jacket."
+      },
+      {
+        "q": "What if the weather is bad?",
+        "a": "If sea conditions do not allow us to go out, we find another date at no cost."
+      },
+      {
+        "q": "How do I book?",
+        "a": "Choose the experience and time slot, pick the date and send your request. We confirm availability on WhatsApp; until then there is no commitment."
       }
     ]
   },
   jetskiLanding: {
     efoil: {
       "navLabel": "E-Foil in Blanes",
-      "seoTitle": "E-foil lessons in Blanes · Fly above the water, no licence",
+      "seoTitle": "eFoil in Blanes: lesson with instructor, no licence needed",
       "hero": {
         "title": "E-Foil in Blanes",
         "subtitle": "Fly above the water on an electric hydrofoil board. With an instructor, no licence and no experience needed."
@@ -4499,10 +4559,45 @@ export const en: Translations = {
         {
           "q": "What if the weather turns?",
           "a": "The activity can be postponed for weather reasons and we arrange another date at no cost."
+        },
+        {
+          "q": "Is it hard to learn?",
+          "a": "Less than it looks. The electric motor does the work and the instructor guides you step by step: most people manage to take off in their first session."
+        },
+        {
+          "q": "Can two of us go together?",
+          "a": "Yes. As well as the 30 and 60 minute solo sessions, there is a 60 minute tandem option for two people."
+        },
+        {
+          "q": "What if I arrive late?",
+          "a": "Please be on time: every session has a fixed start time and arriving late can mean losing your booking."
         }
+      ],
+      "howTitle": "What an eFoil lesson is like",
+      "how": [
+        "An eFoil is a board with a mast and a wing under the water, driven by an electric motor that you control with a wireless remote. As it picks up speed, the wing lifts the board and you glide above the water, almost silently.",
+        "The lesson starts on the beach in Blanes. The instructor explains the remote and your stance, and you head into the water lying or kneeling on the board. Once you feel comfortable, you stand up and take off.",
+        "You can choose 30 or 60 minutes, or the 60 minute tandem option for two people. If you want to keep progressing, there are 5 and 10 hour packs: ask us on WhatsApp."
+      ],
+      "requirements": [
+        "No minimum age: minors need the consent of a parent or legal guardian",
+        "ID card or passport required on the day of the activity",
+        "20€ deposit per eFoil, returned when you finish",
+        "No licence or previous experience needed"
+      ],
+      "included": [
+        "Instructor for the whole session",
+        "eFoil board and battery",
+        "Vest and safety gear",
+        "Third-party liability insurance"
       ]
     },
     pricePerTwo: "1 person · {price}€ for 2",
+    requirementsTitle: "Requirements",
+    priceColDuration: "Duration",
+    priceColOne: "1 person",
+    priceColTwo: "2 people",
+    moreTitle: "More experiences on the water",
     specCapacity: "1-2 people",
     "fromLabel": "from",
     "ctaRequest": "Book now",
@@ -4512,7 +4607,7 @@ export const en: Translations = {
     "reassurance": "No commitment · we confirm via WhatsApp",
     "circuito": {
       "navLabel": "Jet Ski Circuit",
-      "seoTitle": "Jet ski rental in Blanes · No-license jet ski circuit",
+      "seoTitle": "Jet ski circuit in Blanes, no licence needed | 15 to 60 min",
       "hero": {
         "title": "Jet Ski Circuit in Blanes",
         "subtitle": "Take the controls of a jet ski on a marked course off Blanes. No licence needed, from 15 minutes."
@@ -4534,13 +4629,48 @@ export const en: Translations = {
         },
         {
           "q": "Minimum age?",
-          "a": "18 to drive; minors may ride as passengers per the operator's rules."
+          "a": "18 to ride. Passengers can come along from age 14; minors need the consent of a parent or legal guardian."
+        },
+        {
+          "q": "What should I bring?",
+          "a": "Swimwear, a towel, sun cream and your ID card or passport. In the cooler months, a thermal top or a wetsuit. We provide the life jacket."
+        },
+        {
+          "q": "What if the weather is bad?",
+          "a": "If sea conditions do not allow us to go out, we find another date at no cost."
+        },
+        {
+          "q": "Can I get photos or video?",
+          "a": "Yes, there is a photo and video pack that must be booked in advance. Ask for it when you send your request."
+        },
+        {
+          "q": "How is it different from the tour?",
+          "a": "On the circuit you ride freely inside a buoyed area off Blanes. On the tour you head out to open sea in single file behind an instructor, following the coast towards Tossa de Mar."
         }
+      ],
+      "howTitle": "What the circuit is like",
+      "how": [
+        "Before you set off, the instructor gives you a safety briefing on land: how to accelerate and brake, how to turn and which signals you will see on the water. You put on an approved life jacket and we walk you to the jet ski.",
+        "The circuit is a buoyed, signposted area off Blanes, designed for learning to ride with no boat traffic around you. You are at the controls from the very first minute, at your own pace, with the instructor supervising from the water.",
+        "If it is your first time, 15 or 30 minutes is enough to build confidence. With 45 or 60 minutes you have time to loosen up and enjoy the speed. If there are two of you, you can ride together on the same jet ski."
+      ],
+      "requirements": [
+        "Aged 18 or over to ride the jet ski",
+        "Passengers from age 14, with consent from a parent or guardian if under 18",
+        "ID card or passport required on the day of the activity",
+        "No licence or previous experience needed"
+      ],
+      "included": [
+        "Approved life jacket",
+        "Safety briefing",
+        "Buoyed circuit supervised by an instructor",
+        "Fuel",
+        "Third-party liability insurance"
       ]
     },
     "excursion": {
       "navLabel": "Guided Jet Ski Tour",
-      "seoTitle": "Jet ski rental in Blanes · Guided tour to Tossa de Mar",
+      "seoTitle": "Guided jet ski tour from Blanes to Tossa de Mar, no licence",
       "hero": {
         "title": "Jet Ski Tour from Blanes to Tossa",
         "subtitle": "Explore the Costa Brava by jet ski accompanied by a qualified instructor, on a guided route from Blanes to Tossa de Mar. No license."
@@ -4564,7 +4694,46 @@ export const en: Translations = {
         {
           "q": "How long is it?",
           "a": "There's a 1-hour or 2-hour option towards Tossa de Mar."
+        },
+        {
+          "q": "Minimum age?",
+          "a": "18 to ride. Passengers can come along from age 14; minors need the consent of a parent or legal guardian."
+        },
+        {
+          "q": "Do I need experience?",
+          "a": "No. Before setting off you get a safety briefing, and throughout the route you follow the instructor, who sets the pace and the course."
+        },
+        {
+          "q": "What should I bring?",
+          "a": "Swimwear, a towel, sun cream and your ID card or passport. In the cooler months, a thermal top or a wetsuit."
+        },
+        {
+          "q": "What if the weather is bad?",
+          "a": "If sea conditions do not allow us to go out, we find another date at no cost."
+        },
+        {
+          "q": "Can I get photos or video?",
+          "a": "Yes, there is a photo and video pack that must be booked in advance. Ask for it when you send your request."
         }
+      ],
+      "howTitle": "What the tour is like",
+      "how": [
+        "You set off from Blanes as a group with a qualified instructor leading the way. The jet skis ride in single file behind them, keeping a safe distance, and you are at the controls of your own the whole time.",
+        "The route follows the coast north: Sa Palomera, the coves of Blanes, the Lloret de Mar coastline and the cliffs towards Tossa de Mar. How far you get depends on the duration you choose and on sea conditions: the instructor adapts the route.",
+        "It is the way to see the Costa Brava from the water with no licence or experience: the briefing beforehand covers everything you need to ride safely."
+      ],
+      "requirements": [
+        "Aged 18 or over to ride the jet ski",
+        "Passengers from age 14, with consent from a parent or guardian if under 18",
+        "ID card or passport required on the day of the activity",
+        "No licence or previous experience needed"
+      ],
+      "included": [
+        "Qualified instructor guiding the route",
+        "Fuel",
+        "Third-party liability insurance",
+        "Approved life jacket",
+        "Safety briefing"
       ]
     }
   },
@@ -6155,7 +6324,7 @@ export const en: Translations = {
   },
   activitiesSection: {
     title: "Beyond the boat: jet ski and eFoil",
-    subtitle: "Fly above the water on an eFoil or take the controls of a jet ski in Blanes. No licence and no experience needed: we explain everything before you head out.",
+    subtitle: "Take the controls of a jet ski in Blanes or fly above the water on an eFoil. No licence and no experience needed: we explain everything before you head out.",
     newBadge: "New",
   },
   titulinSection: {

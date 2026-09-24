@@ -79,6 +79,10 @@ export default defineConfig({
           // Enlaces vanity que el servidor redirige (302) a Google Reviews. Sin esto,
           // el SW serviría la SPA y mostraría su 404 en vez de dejar pasar al servidor.
           /^\/(resena|resenas|review|reviews)\/?$/i,
+          // Fichas de barco de las motos de agua / eFoil y rutas Wix "motos de
+          // agua": el servidor las redirige (301) a su landing (server/seo/redirects.ts).
+          /^\/([a-z]{2}\/)?(barco|boat|bateau|boot|barca|vaixell|lodka)\/(jetski-circuito|jetski-excursion-monitor|efoil-blanes)\/?$/,
+          /^\/([a-z]{2}\/)?(motos-de-agua|excursiones-moto-agua)\/?$/,
         ],
         cleanupOutdatedCaches: true,
         skipWaiting: true,

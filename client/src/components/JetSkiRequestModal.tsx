@@ -30,6 +30,46 @@ interface JetSkiRequestModalProps {
 const CTA_CLASS =
   "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 disabled:opacity-60 disabled:pointer-events-none";
 
+// The WhatsApp message goes to the owner: Spanish when the visitor browses in
+// Spanish, English for every other locale (the owner reads both, not the rest).
+const WA_COPY = {
+  es: {
+    intro: "¡Hola! Me gustaría solicitar información para esta actividad:",
+    introDirect: "¡Hola! Me gustaría información para esta actividad:",
+    product: "Producto",
+    date: "Fecha",
+    duration: "Duración",
+    people: "Persona/s",
+    total: "Total",
+    myDetails: "Mis datos",
+    phone: "Tel",
+    noEmail: "(no indicado)",
+    thanks: "¡Gracias!",
+    locale: "es-ES",
+  },
+  en: {
+    intro: "Hi! I'd like to request information about this activity:",
+    introDirect: "Hi! I'd like some information about this activity:",
+    product: "Activity",
+    date: "Date",
+    duration: "Duration",
+    people: "People",
+    total: "Total",
+    myDetails: "My details",
+    phone: "Phone",
+    noEmail: "(not provided)",
+    thanks: "Thank you!",
+    locale: "en-GB",
+  },
+} as const;
+
+// Catalogue names are Spanish-only (shared/jetskiProducts.ts).
+const PRODUCT_NAME_EN: Record<string, string> = {
+  "jetski-circuito": "Jet Ski Circuit",
+  "jetski-excursion-monitor": "Guided Jet Ski Tour",
+  "efoil-blanes": "eFoil in Blanes",
+};
+
 const inputClass =
   "w-full rounded-lg border border-border bg-background px-3 py-3 text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring";
 
@@ -57,6 +97,8 @@ export default function JetSkiRequestModal({ product, onClose }: JetSkiRequestMo
   if (!product) return null;
 
   const selectedSlot = product.slots.find(s => s.id === slotId) ?? product.slots[0];
+  const wa = language === "es" ? WA_COPY.es : WA_COPY.en;
+  const waProductName = language === "es" ? product.name : (PRODUCT_NAME_EN[product.id] ?? product.name);
 
   // Effective price for the chosen party size: some slots (the 15-min circuit)
   // are priced per person (65€ for 1, 80€ for 2). Per-craft slots ignore this.
@@ -79,7 +121,7 @@ export default function JetSkiRequestModal({ product, onClose }: JetSkiRequestMo
     const dateStr = when.trim()
       ? (() => {
           try {
-            return new Date(`${when}T00:00:00`).toLocaleDateString("es-ES", {
+            return new Date(`${when}T00:00:00`).toLocaleDateString(wa.locale, {
               weekday: "long",
               year: "numeric",
               month: "long",
@@ -92,20 +134,20 @@ export default function JetSkiRequestModal({ product, onClose }: JetSkiRequestMo
       : "Flexible";
 
     const whatsappMessage = [
-      `¡Hola! Me gustaría solicitar información para ir en jet ski:`,
+      wa.intro,
       ``,
-      `🚀 *Producto:* ${product.name}`,
-      `📅 *Fecha:* ${dateStr}`,
-      `⏱️ *Duración:* ${selectedSlot.label}`,
-      `👥 *Persona/s:* ${people}`,
-      `💶 *Total:* ${effectivePrice}€`,
+      `🚀 *${wa.product}:* ${waProductName}`,
+      `📅 *${wa.date}:* ${dateStr}`,
+      `⏱️ *${wa.duration}:* ${selectedSlot.label}`,
+      `👥 *${wa.people}:* ${people}`,
+      `💶 *${wa.total}:* ${effectivePrice}€`,
       ``,
-      `*Mis datos:*`,
+      `*${wa.myDetails}:*`,
       `${firstName.trim()} ${lastName.trim()}`.trim(),
-      `Tel: ${phonePrefix}${phoneNumber.trim()}`,
-      `Email: ${email.trim() || "(no indicado)"}`,
+      `${wa.phone}: ${phonePrefix}${phoneNumber.trim()}`,
+      `Email: ${email.trim() || wa.noEmail}`,
       ``,
-      `¡Gracias!`,
+      wa.thanks,
     ]
       .filter(line => line !== null)
       .join("\n");
@@ -176,14 +218,14 @@ export default function JetSkiRequestModal({ product, onClose }: JetSkiRequestMo
   // who prefer to just chat. Prefills product + slot + party size.
   const handleWhatsAppDirect = () => {
     const lines = [
-      `¡Hola! Me gustaría información para ir en jet ski:`,
+      wa.introDirect,
       ``,
-      `🚀 *Producto:* ${product.name}`,
-      `⏱️ *Duración:* ${selectedSlot.label}`,
-      `👥 *Persona/s:* ${people}`,
-      when.trim() ? `📅 *Fecha:* ${when.trim()}` : "",
+      `🚀 *${wa.product}:* ${waProductName}`,
+      `⏱️ *${wa.duration}:* ${selectedSlot.label}`,
+      `👥 *${wa.people}:* ${people}`,
+      when.trim() ? `📅 *${wa.date}:* ${when.trim()}` : "",
       ``,
-      `¡Gracias!`,
+      wa.thanks,
     ].filter(Boolean);
     trackWhatsAppClick("jetski_whatsapp_direct");
     openWhatsApp(lines.join("\n"));

@@ -2048,7 +2048,7 @@ Para poner los precios en perspectiva, compara el coste de alquilar un barco con
 | Kayak guiado | 30-50 EUR | 2-3 horas |
 | Paddle surf alquiler | 15-25 EUR | 1 hora |
 | Parasailing | 40-60 EUR | 15 minutos |
-| Jet ski | 80-120 EUR | 30 minutos |
+| [Moto de agua](/es/alquiler-moto-de-agua-blanes) (circuito) | Desde 65 EUR (15 min), 110 EUR (30 min) | 15-60 minutos |
 
 Como ves, el alquiler de barco sin licencia es una de las actividades con mejor relación calidad-precio de la Costa Brava, especialmente cuando se divide entre varias personas.
 
@@ -5328,6 +5328,333 @@ Tienes dos salidas:
 ## Lo que no cambia
 
 Los precios por franja, la gasolina incluida en los barcos pequeños, el límite de la casa de una milla mar adentro y la costa entre el río Tordera y la playa de Fenals, y la [política de cancelación](/es/garantias) con la Garantía de mal tiempo. Reserva como siempre: eliges barco y hora en la web y confirmamos por WhatsApp.`,
+  },
+  // ===== 2026-09-24: cluster moto de agua + eFoil =====
+  {
+    title: "Cuánto cuesta alquilar una moto de agua en Blanes",
+    slug: "precio-alquiler-moto-de-agua-blanes",
+    category: "Guías",
+    author: "Iván Ramírez Dawson",
+    featuredImage: "/images/jetski-hub/jet-ski-blanes-hero.webp",
+    metaDescription: "Alquiler de moto de agua en Blanes, precios: circuito desde 65 € (15 min) y excursión con monitor desde 190 € (1 h). Sin licencia y con gasolina incluida.",
+    tags: ["alquiler moto de agua blanes precio", "precio moto de agua blanes", "alquiler moto de agua blanes", "jet ski blanes precio", "moto de agua sin licencia costa brava", "circuito moto de agua blanes"],
+    isPublished: true,
+    _publishedAt: new Date("2026-09-22T10:00:00Z"),
+    titleByLang: { es: "Cuánto cuesta alquilar una moto de agua en Blanes" },
+    excerpt: "Tarifas completas de moto de agua en Blanes: circuito de 15 a 60 minutos y excursión con monitor de 1 o 2 horas. Qué incluye el precio, cuánto suma ir dos en la misma moto y cómo elegir.",
+    content: `Si estás buscando el precio del alquiler de una moto de agua en Blanes, lo habitual es encontrar cifras sueltas sin saber qué incluyen ni cuánto dura de verdad la salida. Aquí tienes nuestras tarifas completas, qué entra en el precio, cuánto cambia si vais dos en la misma moto y cómo elegir entre el circuito y la excursión con monitor. Sin letra pequeña.
+
+## Dos formas de subirte a una moto de agua en Blanes
+
+Tenemos dos experiencias de moto de agua, y el precio depende sobre todo de cuál elijas y de cuánto tiempo quieras estar en el agua:
+
+- **Circuito**: conduces tú en una zona balizada y señalizada frente a Blanes, supervisada por un monitor. Es la opción para probar la sensación de pilotar, dar gas y trazar curvas en un espacio controlado. Duraciones de 15 a 60 minutos.
+- **Excursión con monitor**: sales del circuito y recorres la costa hacia el norte detrás de un monitor titulado, con las motos en fila india y guardando la distancia de seguridad. Duraciones de 1 o 2 horas.
+
+En ninguna de las dos necesitas licencia náutica. Tienes toda la información en nuestra página de [alquiler de moto de agua en Blanes](/es/alquiler-moto-de-agua-blanes).
+
+## Precios del circuito de moto de agua
+
+| Duración | 1 persona | 2 personas en la misma moto |
+|---|---|---|
+| 15 minutos | 65 € | 80 € |
+| 30 minutos | 110 € | 135 € |
+| 45 minutos | 155 € | 180 € |
+| 60 minutos | 190 € | 210 € |
+
+El precio es por moto. Si vais dos en la misma, la diferencia respecto a ir solo es de entre 15 y 25 euros según la duración, así que compartir moto sale bastante más a cuenta que alquilar dos.
+
+¿Qué duración elegir? Si nunca has llevado una moto de agua y solo quieres probar, los 15 minutos dan para entender cómo responde el acelerador y hacer las primeras curvas. Si quieres coger confianza y disfrutar de verdad, 30 o 45 minutos dejan margen para soltarte. Y si vais dos y queréis turnaros al manillar, la hora completa es la que mejor se reparte. Todos los detalles están en la página del [circuito de moto de agua en Blanes](/es/circuito-jet-ski-blanes).
+
+## Precios de la excursión en moto de agua con monitor
+
+| Duración | 1 persona | 2 personas en la misma moto |
+|---|---|---|
+| 1 hora | 190 € | 210 € |
+| 2 horas | 330 € | 355 € |
+
+En la excursión no das vueltas en una zona cerrada: sigues al monitor por la costa. La ruta sale de Blanes hacia el norte, pasa por Sa Palomera y las calas de Blanes, continúa por la costa de Lloret de Mar y, si el tiempo y el mar acompañan, se adentra en los acantilados camino de Tossa de Mar. Hasta dónde se llega depende de la duración elegida y del estado del mar, porque el monitor adapta el recorrido a las condiciones del día. Lo contamos tramo a tramo en [de Blanes a Tossa en moto de agua](/es/blog/excursion-moto-de-agua-blanes-tossa) y puedes reservarla en la página de la [excursión en moto de agua de Blanes a Tossa](/es/excursion-jet-ski-blanes-tossa).
+
+## Un detalle que casi nadie mira: 1 hora cuesta lo mismo
+
+Fíjate en las dos tablas: **60 minutos de circuito y 1 hora de excursión tienen el mismo precio**, 190 € para una persona y 210 € para dos. Así que, si tienes claro que quieres una hora, la pregunta no es cuál sale más barata sino qué experiencia buscas:
+
+- **El circuito** es para pilotar a tu ritmo, repetir curvas y ganar soltura en un espacio acotado.
+- **La excursión** es para ver la costa desde el agua, con un guía delante marcando la ruta.
+
+## Qué incluye el precio
+
+En las dos experiencias, el precio de la tabla ya incluye:
+
+- **Gasolina**, que no se calcula aparte.
+- **Chaleco salvavidas homologado** para cada persona.
+- **Briefing de seguridad** antes de salir, donde te explicamos el manejo y las normas.
+- **Seguro de responsabilidad civil**.
+- En la excursión, además, **el monitor** que guía el grupo.
+
+Como extra opcional hay un **pack de fotos y vídeo**, que hay que pedir con antelación al reservar.
+
+## Requisitos para alquilar la moto de agua
+
+- **Para conducir hay que tener 18 años.**
+- **Los pasajeros pueden ir desde los 14 años**, con consentimiento de sus padres o tutores.
+- **DNI o pasaporte obligatorio**, en vigor.
+- **Máximo 2 personas por moto.**
+
+No hace falta experiencia previa ni ninguna titulación: el circuito está supervisado por un monitor y en la excursión vas siempre detrás de uno.
+
+## Qué llevar
+
+Bañador, toalla y protección solar. En los meses más frescos conviene traer además una camiseta térmica o un neopreno, porque en la moto te mojas y el viento enfría.
+
+## Si el mar no acompaña
+
+Si el estado del mar no permite hacer la actividad, **se cambia de fecha sin coste**. No pierdes lo reservado por un día de mala mar.
+
+## Cómo reservar y cómo llegar
+
+Elige la experiencia y la franja en la página de [alquiler de moto de agua en Blanes](/es/alquiler-moto-de-agua-blanes), envía la solicitud y te confirmamos la disponibilidad por WhatsApp. Hasta que no te confirmamos, no hay ningún compromiso.
+
+Blanes está a pocos minutos en coche de Lloret de Mar, Malgrat de Mar y Santa Susanna, y tiene estación de tren de Rodalies en la línea R1, así que si te alojas en el Maresme o en la Costa Brava sur llegas sin complicaciones.
+
+Y si lo que te llama es algo más tranquilo y silencioso, también tenemos [eFoil en Blanes](/es/efoil-blanes), desde 95 € la media hora.
+
+## Preguntas rápidas
+
+**¿Necesito licencia para alquilar la moto de agua?**
+No. En el circuito conduces en una zona balizada supervisada por un monitor, y en la excursión vas guiado por un monitor titulado.
+
+**¿Cuánto cuesta la moto de agua más barata?**
+El circuito de 15 minutos, a 65 € para una persona u 80 € si vais dos en la misma moto.
+
+**¿La gasolina se paga aparte?**
+No. Está incluida en el precio, igual que el chaleco, el briefing y el seguro de responsabilidad civil.
+
+**¿Puede conducir un menor?**
+No. Para conducir hay que tener 18 años. Desde los 14 se puede ir de pasajero con consentimiento de los padres.
+
+**¿Qué pasa si hace mal tiempo?**
+Si el mar no permite salir, cambiamos la fecha sin coste.
+`,
+  },
+  {
+    title: "De Blanes a Tossa en moto de agua: la ruta con monitor",
+    slug: "excursion-moto-de-agua-blanes-tossa",
+    category: "Rutas",
+    author: "Iván Ramírez Dawson",
+    featuredImage: "/images/boats/jetski-excursion-monitor/jet-ski-excursion-monitor-blanes-tossa.webp",
+    metaDescription: "Excursión en moto de agua de Blanes hacia Tossa de Mar con monitor: la ruta por Sa Palomera, Lloret y los acantilados. 1 h desde 190 €, sin licencia.",
+    tags: ["excursion moto de agua tossa de mar", "moto de agua blanes tossa", "excursion jet ski tossa de mar", "ruta moto de agua costa brava", "moto de agua con monitor blanes", "excursion moto de agua blanes"],
+    isPublished: true,
+    _publishedAt: new Date("2026-09-23T10:00:00Z"),
+    titleByLang: { es: "De Blanes a Tossa en moto de agua: la ruta con monitor" },
+    excerpt: "La excursión en moto de agua sale de Blanes y sigue la costa hacia Tossa de Mar detrás de un monitor titulado. Te contamos la ruta tramo a tramo, cómo funciona el grupo, precios y qué necesitas.",
+    content: `Pilotar una moto de agua en un circuito está bien. Pilotarla siguiendo la costa de la Costa Brava sur, con los acantilados a un lado y el mar abierto al otro, es otra cosa. Esa es la idea de nuestra excursión en moto de agua: sales de Blanes y pones rumbo norte, hacia Tossa de Mar, detrás de un monitor titulado que marca la ruta. En esta guía te contamos cómo funciona, qué verás por el camino y qué tienes que saber antes de reservar.
+
+## Cómo funciona la excursión con monitor
+
+La excursión no es un alquiler libre. Vas en grupo y guiado:
+
+- **Un monitor titulado va delante** y decide la ruta, el ritmo y las paradas.
+- **Las motos le siguen en fila india**, una detrás de otra, **guardando la distancia de seguridad**.
+- **Tú conduces tu propia moto**, solo o con un acompañante detrás.
+
+Gracias a este formato **no necesitas licencia náutica**: el monitor es quien lleva la navegación y tú te concentras en pilotar y disfrutar. Antes de salir hay un **briefing de seguridad** en el que te explicamos el manejo de la moto, las señales del monitor y cómo mantener la posición en la fila.
+
+## La ruta tramo a tramo
+
+La excursión sale de Blanes y sigue la línea de costa hacia el norte. Este es el recorrido:
+
+### Sa Palomera
+
+El punto de partida simbólico. Sa Palomera es la roca que marca el inicio de la Costa Brava, y verla desde el agua, con el paseo de Blanes detrás, es la mejor forma de empezar. Aquí se van cogiendo las sensaciones de la moto antes de ganar mar.
+
+### Las calas de Blanes
+
+Pasada Sa Palomera, la costa cambia de golpe: se acaba la playa urbana y empiezan las calas de Blanes, con pinos que bajan hasta las rocas y agua clara. Es el tramo en el que mucha gente entiende por qué la Costa Brava se llama así.
+
+### La costa de Lloret de Mar
+
+La ruta sigue hacia el norte por la costa de Lloret de Mar. Verla desde una moto de agua te da una perspectiva que no tienes desde el paseo: el perfil de la costa entero, de punta a punta.
+
+### Los acantilados camino de Tossa
+
+Pasado Lloret, el litoral se vuelve más agreste: acantilados, roca y menos construcción. Es el tramo más espectacular de la ruta, en dirección a Tossa de Mar.
+
+## Hasta dónde llegas: 1 hora o 2 horas
+
+Aquí conviene ser claros: **hasta dónde se llega depende de la duración que elijas y del estado del mar**. El monitor adapta la ruta a las condiciones del día, y la seguridad del grupo manda sobre cualquier punto del mapa.
+
+- **Con 1 hora** recorres el arranque de la ruta desde Blanes, con Sa Palomera y las calas como protagonistas, y el monitor decide cuánto se avanza según el mar.
+- **Con 2 horas** hay más margen para avanzar hacia el norte y adentrarse en los acantilados camino de Tossa, siempre que el mar lo permita.
+
+Si tu objetivo es ver la costa de Tossa desde el agua, la excursión de 2 horas es la que te da más opciones. Si es tu primera vez en moto de agua y quieres algo más corto, la de 1 hora ya te enseña lo mejor de Blanes.
+
+## Precios de la excursión en moto de agua
+
+| Duración | 1 persona | 2 personas en la misma moto |
+|---|---|---|
+| 1 hora | 190 € | 210 € |
+| 2 horas | 330 € | 355 € |
+
+El precio es por moto. Ir dos en la misma solo suma 20 € en la de 1 hora y 25 € en la de 2 horas. Si quieres comparar con el circuito y el resto de tarifas, lo tienes todo en [cuánto cuesta alquilar una moto de agua en Blanes](/es/blog/precio-alquiler-moto-de-agua-blanes).
+
+## Qué incluye
+
+- **Gasolina.**
+- **Chaleco salvavidas homologado.**
+- **Briefing de seguridad** antes de salir.
+- **Seguro de responsabilidad civil.**
+- **El monitor** que guía la excursión.
+
+Si quieres un recuerdo de la ruta, hay un **pack de fotos y vídeo** opcional que se reserva con antelación.
+
+## Requisitos
+
+- **18 años para conducir.**
+- **Pasajeros desde 14 años**, con consentimiento de sus padres o tutores.
+- **DNI o pasaporte obligatorio.**
+- **1 o 2 personas por moto.**
+
+## Qué llevar
+
+Bañador, toalla y protección solar. En una excursión de 1 o 2 horas el sol pega más de lo que parece, así que no te olvides de la crema. En los meses más frescos, trae una camiseta térmica o un neopreno: sobre la moto te mojas y con el viento se nota.
+
+## Si el mar no acompaña
+
+La ruta hacia Tossa es de mar abierto, y no todos los días son buenos para hacerla. Si el estado del mar no permite la actividad, **cambiamos la fecha sin coste**. Y si el mar permite salir pero no avanzar hacia el norte, el monitor adapta la ruta a lo que sea seguro ese día.
+
+## ¿Excursión o circuito?
+
+Si lo que quieres es pilotar a tu ritmo, repetir curvas y ganar soltura, el [circuito de moto de agua en Blanes](/es/circuito-jet-ski-blanes) es la opción: una zona balizada frente a Blanes, supervisada por un monitor, desde 15 minutos. Si lo que te atrae es recorrer la costa y ver calas y acantilados, la excursión es lo tuyo. Curiosamente, la hora de circuito y la hora de excursión cuestan lo mismo.
+
+Puedes ver las dos opciones juntas en la página de [alquiler de moto de agua en Blanes](/es/alquiler-moto-de-agua-blanes).
+
+## Cómo reservar
+
+Entra en la página de la [excursión en moto de agua de Blanes a Tossa](/es/excursion-jet-ski-blanes-tossa), elige duración y franja, y envía la solicitud. Te confirmamos la disponibilidad por WhatsApp y hasta entonces no hay ningún compromiso.
+
+Blanes está a pocos minutos en coche de Lloret de Mar, Malgrat de Mar y Santa Susanna, y se llega también en tren con la línea R1 de Rodalies.
+
+## Preguntas rápidas
+
+**¿Se llega hasta Tossa de Mar?**
+Depende de la duración y del mar. La ruta va hacia Tossa, pero el monitor la adapta a las condiciones del día. Con 2 horas hay más margen para avanzar hacia los acantilados de Tossa.
+
+**¿Necesito licencia o experiencia?**
+No. La excursión va guiada por un monitor titulado y el grupo navega en fila india detrás de él.
+
+**¿Puedo ir con mi pareja o un amigo en la misma moto?**
+Sí, hasta 2 personas por moto. Quien conduce tiene que tener 18 años.
+
+**¿Qué pasa si hace mal tiempo?**
+Si el mar no permite hacer la excursión, se cambia la fecha sin coste.
+`,
+  },
+  {
+    title: "eFoil en Blanes: cómo es tu primera clase",
+    slug: "efoil-blanes-primera-clase",
+    category: "Guías",
+    author: "Iván Ramírez Dawson",
+    featuredImage: "/images/boats/efoil-blanes/efoil-blanes-costa-brava.webp",
+    metaDescription: "eFoil en Blanes: cómo es la primera clase, de la playa a volar sobre el agua. Qué es el eFoil, precios desde 95 € (30 min), qué llevar y cómo reservar.",
+    tags: ["efoil blanes", "efoil costa brava", "clase efoil blanes", "primera clase efoil", "que es el efoil", "efoil precio"],
+    isPublished: true,
+    _publishedAt: new Date("2026-09-24T08:00:00Z"),
+    titleByLang: { es: "eFoil en Blanes: cómo es tu primera clase" },
+    excerpt: "El eFoil es una tabla eléctrica que se eleva sobre el agua. Te contamos cómo funciona y cómo es una primera clase en Blanes, paso a paso: de tumbado en la tabla a volar de pie, con precios y consejos.",
+    content: `Si has visto a alguien deslizándose por encima del agua, de pie sobre una tabla y sin hacer ruido, probablemente era un eFoil. Parece difícil, y la primera vez que lo ves cuesta creer que se pueda aprender en una sesión. En esta guía te contamos qué es exactamente el eFoil, cómo es tu primera clase en Blanes paso a paso y qué tienes que saber antes de reservar.
+
+## Qué es el eFoil
+
+El eFoil es una tabla con un **mástil y un ala sumergida** debajo, impulsada por un **motor eléctrico**. La velocidad se controla con un **mando inalámbrico** que llevas en la mano: aprietas y la tabla avanza, sueltas y se detiene.
+
+Lo que lo hace especial es lo que pasa cuando coge velocidad: el ala sumergida genera sustentación y **la tabla se eleva por encima del agua**. A partir de ese momento solo el mástil y el ala tocan el mar, y tú vas "volando" sobre la superficie. Como el motor es eléctrico, **es casi silencioso**: no hay ruido de motor ni olor a gasolina, solo el sonido del agua.
+
+Esa mezcla de sensación de vuelo y silencio es lo que engancha a la gente que lo prueba.
+
+## Cómo es tu primera clase, paso a paso
+
+### Antes de entrar al agua
+
+La clase empieza **en la playa, en Blanes**. Antes de mojarte, te explicamos cómo funciona la tabla, cómo se usa el mando y cómo es la postura en cada fase. Es una parte corta pero importante: entender lo que vas a hacer antes de hacerlo ahorra muchas caídas.
+
+Un consejo práctico: **llega puntual**. Las sesiones tienen una franja horaria fija, y el tiempo que se pierde esperando es tiempo que no pasas en el agua.
+
+### Primera fase: tumbado o de rodillas
+
+Nadie empieza de pie. **Al principio vas tumbado o de rodillas sobre la tabla**, con poca velocidad. Así te acostumbras a cómo responde el mando, a cómo se mueve la tabla y a mantener el equilibrio sin riesgo. Es la fase en la que pierdes el miedo y le coges el tacto al acelerador.
+
+### Segunda fase: de pie
+
+Cuando ya controlas la tabla de rodillas, llega el momento de **ponerte de pie**. Todavía sin volar: la tabla sigue apoyada en el agua mientras encuentras la posición y el equilibrio. Aquí es normal caerse alguna vez. Caer al agua forma parte del aprendizaje y es lo que te enseña dónde está el punto de equilibrio.
+
+### Tercera fase: el despegue
+
+Con la postura asentada, aumentas poco a poco la velocidad y la tabla empieza a subir. Ese momento en que notas que dejas de rozar el agua y te elevas es el que todo el mundo recuerda de su primera clase. Y la buena noticia es que **la mayoría de la gente consigue despegar en su primera sesión**.
+
+### Unos consejos para la primera vez
+
+- **Movimientos suaves con el mando.** Al principio, acelerar poco a poco da mucha más estabilidad que un acelerón.
+- **Mira al frente, no a la tabla.** El equilibrio se encuentra mejor con la vista en el horizonte.
+- **No tengas prisa por ponerte de pie.** Cuanto más cómodo estés en la fase anterior, más fácil será la siguiente.
+
+## Precios del eFoil en Blanes
+
+| Sesión | Precio |
+|---|---|
+| 30 minutos | 95 € |
+| 60 minutos | 165 € |
+| Tándem, 60 minutos | 200 € |
+| Packs de 5 y 10 horas | Consultar |
+
+Hay una **fianza de 20 €**, reembolsable.
+
+¿Qué sesión elegir para la primera clase? La de 30 minutos sirve para probar y saber si te gusta. La de 60 minutos deja más margen para pasar por las tres fases con calma y disfrutar del vuelo cuando ya lo has conseguido. Y si te engancha y quieres seguir practicando, pregúntanos por los packs de 5 y 10 horas.
+
+Tienes todas las sesiones y la reserva en la página de [eFoil en Blanes](/es/efoil-blanes).
+
+## Quién puede hacer eFoil
+
+**No hay límite de edad.** Los menores necesitan el consentimiento de sus padres o tutores. Tampoco hace falta experiencia previa en surf, windsurf ni ningún otro deporte de tabla: la clase empieza desde cero.
+
+## Qué llevar
+
+- **Bañador y toalla.**
+- **Protección solar.**
+- En los meses más frescos, **una camiseta térmica o un neopreno**, porque en el eFoil te vas a mojar, sobre todo al principio.
+
+## Si el mar no acompaña
+
+El eFoil necesita un mar tranquilo para aprender bien. Si el estado del mar no permite la actividad, **se cambia la fecha sin coste**.
+
+## Cómo reservar
+
+Entra en la página de [eFoil en Blanes](/es/efoil-blanes), elige la sesión y la franja horaria y envía la solicitud. Te confirmamos la disponibilidad por WhatsApp, y hasta entonces no hay ningún compromiso.
+
+Blanes está a pocos minutos en coche de Lloret de Mar, Malgrat de Mar y Santa Susanna, y tiene estación de tren de Rodalies en la línea R1, así que es fácil llegar aunque no te alojes en el pueblo.
+
+## Y si buscas más velocidad
+
+Si después del eFoil te quedas con ganas de algo más potente, en Blanes también tenemos [moto de agua](/es/alquiler-moto-de-agua-blanes): un [circuito](/es/circuito-jet-ski-blanes) frente a la playa desde 15 minutos y una [excursión con monitor hacia Tossa de Mar](/es/excursion-jet-ski-blanes-tossa). Los precios, en [cuánto cuesta alquilar una moto de agua en Blanes](/es/blog/precio-alquiler-moto-de-agua-blanes).
+
+## Preguntas rápidas
+
+**¿Es difícil aprender eFoil?**
+Menos de lo que parece. La clase avanza por fases, de tumbado a de pie, y la mayoría de la gente despega en su primera sesión.
+
+**¿Hace falta saber hacer surf?**
+No. La primera clase empieza desde cero, en la playa.
+
+**¿Hay edad mínima?**
+No hay límite de edad. Los menores necesitan el consentimiento de sus padres o tutores.
+
+**¿Cuánto cuesta la primera clase?**
+Desde 95 € la sesión de 30 minutos. La de 60 minutos cuesta 165 €. Hay una fianza reembolsable de 20 €.
+
+**¿Hace ruido?**
+Casi nada. El motor es eléctrico y el eFoil es prácticamente silencioso.
+`,
   },
 ];
 

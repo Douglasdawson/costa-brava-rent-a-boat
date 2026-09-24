@@ -47,6 +47,8 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
   const [open, setOpen] = useState(false);
 
   const minPrice = Math.min(...product.slots.map((s) => s.price));
+  // Translated list when the locale has it; the catalogue list is Spanish-only.
+  const included = c?.included?.length ? c.included : product.included ?? [];
 
   // SEO meta built from the (already translated) i18n copy, so each locale gets
   // a native title/description without separate seo-config entries.
@@ -74,7 +76,7 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
         name: "Costa Brava Rent a Boat - Blanes",
         "@id": `${BASE_DOMAIN}/#business`,
       },
-      areaServed: { "@type": "Place", name: "Blanes, Costa Brava" },
+      areaServed: ["Blanes", "Lloret de Mar", "Tossa de Mar", "Malgrat de Mar"].map((name) => ({ "@type": "City", name })),
       // No aggregateRating: the business reviews are not reviews of this
       // product; Google can invalidate rich results for borrowed ratings.
       offers: product.slots.map((s) => ({
@@ -169,6 +171,20 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
         </section>
       )}
 
+      {/* CÓMO ES */}
+      {(c?.how || []).length > 0 && (
+        <section className="px-4 pb-14 sm:px-6">
+          <div className="mx-auto max-w-2xl">
+            <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{c?.howTitle}</h2>
+            <div className="mt-5 space-y-4 text-muted-foreground">
+              {c!.how!.map((para) => (
+                <p key={para}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FRANJAS Y PRECIOS */}
       <section className="bg-muted/40 px-4 py-14 sm:px-6">
         <div className="mx-auto max-w-2xl">
@@ -205,15 +221,34 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
         </div>
       </section>
 
+      {/* REQUISITOS */}
+      {(c?.requirements || []).length > 0 && (
+        <section className="px-4 pt-14 sm:px-6">
+          <div className="mx-auto max-w-2xl">
+            <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              {g?.requirementsTitle || "Requisitos"}
+            </h2>
+            <ul className="mt-6 space-y-2">
+              {c!.requirements!.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-muted-foreground">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-success" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
       {/* INCLUYE */}
-      {product.included?.length > 0 && (
+      {included.length > 0 && (
         <section className="px-4 py-14 sm:px-6">
           <div className="mx-auto max-w-2xl">
             <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
               {g?.includedTitle || "Qué incluye"}
             </h2>
             <ul className="mt-6 grid gap-2 sm:grid-cols-2">
-              {product.included.map((item) => (
+              {included.map((item) => (
                 <li key={item} className="flex items-center gap-2 text-muted-foreground">
                   <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-success" />
                   {item}

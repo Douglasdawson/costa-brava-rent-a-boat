@@ -801,6 +801,7 @@ export const es: Translations = {
         { title: "Salida al atardecer en barco", description: "Experiencia de atardecer en barco" },
         { title: "Barcos sin licencia", description: "4 barcos desde 85€/h, gasolina incluida" },
         { title: "Alquiler de scooters en Lloret de Mar", description: "Recorre la Costa Brava por carretera, desde 8€/h con seguro incluido" },
+        { title: "Motos de agua cerca de Lloret", description: "Circuito y excursión guiada en moto de agua desde Blanes, sin licencia" },
       ],
       locationTossa: [
         { title: "Más destinos en la Costa Brava", description: "Descubre todas las rutas y calas de la Costa Brava en barco" },
@@ -851,20 +852,36 @@ export const es: Translations = {
       jetskiHub: [
         { title: "Circuito en moto de agua", description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes" },
         { title: "Excursión guiada a Tossa en moto de agua", description: "Ruta guiada de Blanes a Tossa de Mar con monitor" },
-        { title: "Barcos sin licencia", description: "4 barcos desde 85€/h, gasolina incluida" },
+        { title: "eFoil en Blanes", description: "Vuela sobre el agua con una tabla eléctrica, con instructor y sin licencia" },
         { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
       ],
       jetskiCircuito: [
         { title: "Alquiler de moto de agua en Blanes", description: "Todas las experiencias en moto de agua sin licencia" },
         { title: "Excursión guiada a Tossa en moto de agua", description: "Ruta guiada de Blanes a Tossa de Mar con monitor" },
-        { title: "Barcos sin licencia", description: "4 barcos desde 85€/h, gasolina incluida" },
+        { title: "eFoil en Blanes", description: "Vuela sobre el agua con una tabla eléctrica, con instructor y sin licencia" },
         { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
       ],
       jetskiExcursion: [
         { title: "Alquiler de moto de agua en Blanes", description: "Todas las experiencias en moto de agua sin licencia" },
         { title: "Circuito en moto de agua sin licencia", description: "Primera toma de contacto en un circuito vigilado frente a Blanes" },
         { title: "Excursión a Tossa de Mar", description: "Descubre la Vila Vella y sus calas cristalinas" },
-        { title: "Precios y tarifas", description: "Consulta tarifas por temporada" },
+        { title: "eFoil en Blanes", description: "Vuela sobre el agua con una tabla eléctrica, con instructor y sin licencia" },
+      ],
+      efoilBlanes: [
+        { title: "Alquiler de moto de agua en Blanes", description: "Todas las experiencias en moto de agua sin licencia" },
+        { title: "Circuito en moto de agua", description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes" },
+        { title: "Excursión guiada a Tossa en moto de agua", description: "Ruta guiada de Blanes a Tossa de Mar con monitor" },
+        { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
+      ],
+      locationMalgrat: [
+        { title: "Alquiler de moto de agua en Blanes", description: "Circuito y excursión guiada en moto de agua, a pocos minutos de Malgrat" },
+        { title: "Circuito en moto de agua", description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes" },
+        { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
+      ],
+      locationSantaSusanna: [
+        { title: "Alquiler de moto de agua en Blanes", description: "Circuito y excursión guiada en moto de agua, a pocos minutos de Santa Susanna" },
+        { title: "Circuito en moto de agua", description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes" },
+        { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
       ],
       scooters: [
         { title: "Alquiler barcos en Lloret de Mar", description: "Playas y calas espectaculares desde el puerto de Blanes" },
@@ -3734,7 +3751,7 @@ export const es: Translations = {
     "jetski-circuito":
       "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes. Ideal para probar la adrenalina del jet ski sin necesidad de licencia: briefing de seguridad y chaleco incluidos.",
     "jetski-excursion-monitor":
-      "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada por las calas entre Blanes y Lloret. Sin licencia, con briefing, chaleco y combustible del recorrido incluidos.",
+      "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada desde Blanes hacia Tossa de Mar por las calas de Blanes y Lloret. Sin licencia, con briefing, chaleco y combustible del recorrido incluidos.",
     "solar-450":
       "El barco pensado para quienes quieren tomar el sol en el mar. Su solárium acolchado es el más amplio de toda la flota sin licencia: fondea en una cala de agua turquesa cerca de Blanes y relájate como en ningún otro sitio. Sin carnet necesario, te enseñamos a manejarla en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
     "remus-450":
@@ -5746,6 +5763,29 @@ export const es: Translations = {
       "Dos formas de disfrutar la moto de agua sin licencia desde el puerto de Blanes. Elige el circuito para una primera toma de contacto o la excursión guiada, con monitor, para recorrer la costa hasta Tossa de Mar.",
     productsTitle: "Nuestras experiencias en moto de agua",
     faqTitle: "Preguntas frecuentes",
+    pricesTitle: "Precios de alquiler de motos de agua en Blanes",
+    guide: [
+      {
+        title: "¿Circuito o excursión? Cómo elegir",
+        text: "Si nunca has pilotado una moto de agua o vas con poco tiempo, empieza por el circuito: desde 15 minutos, en una zona balizada frente a Blanes y a tu ritmo. Si ya te ves con confianza y quieres ver la costa, la excursión con monitor te lleva por las calas de Blanes y Lloret de Mar en dirección a Tossa de Mar, en 1 o 2 horas.",
+      },
+      {
+        title: "Motos de agua sin licencia en la Costa Brava",
+        text: "Para pilotar una moto de agua por tu cuenta en España hace falta titulación náutica. Sin licencia hay dos formas de hacerlo, y son las dos que ofrecemos: dentro de un circuito balizado o en una excursión guiada por un monitor titulado. Solo necesitas tener 18 años para pilotar y llevar tu DNI o pasaporte.",
+      },
+      {
+        title: "Si te alojas en Lloret, Malgrat, Santa Susanna o Tossa",
+        text: "Blanes está a pocos minutos en coche de Lloret de Mar, Malgrat de Mar y Santa Susanna, y tiene estación de tren de la línea R1 de Rodalies. Haz la reserva desde aquí y te enviamos por WhatsApp el punto de encuentro exacto.",
+      },
+      {
+        title: "¿Y el eFoil?",
+        text: "Si te apetece algo diferente, prueba el eFoil: una tabla eléctrica que se eleva sobre el agua gracias a un ala sumergida. Clase con instructor desde 30 minutos, sin licencia y sin experiencia previa.",
+      },
+      {
+        title: "Temporada y reservas",
+        text: "Las motos de agua salen de primavera a otoño, siempre que el estado del mar lo permita. En julio y agosto las franjas se llenan rápido: envía tu solicitud con unos días de antelación y te confirmamos la disponibilidad por WhatsApp, sin compromiso.",
+      },
+    ],
     faq: [
       {
         q: "¿Necesito licencia para la moto de agua?",
@@ -5759,12 +5799,32 @@ export const es: Translations = {
         q: "¿Desde dónde salen?",
         a: "Desde el puerto de Blanes (Girona), en el mismo pantalán que nuestros barcos.",
       },
+      {
+        q: "¿Qué edad hay que tener?",
+        a: "18 años para pilotar. Los pasajeros pueden subir desde los 14 años; si son menores, con autorización de su padre, madre o tutor legal.",
+      },
+      {
+        q: "¿Qué documentación necesito?",
+        a: "El DNI o el pasaporte es obligatorio el día de la actividad. No hace falta licencia ni experiencia previa.",
+      },
+      {
+        q: "¿Qué tengo que llevar?",
+        a: "Bañador, toalla y protección solar. En los meses más frescos, una camiseta térmica o un neopreno. El chaleco salvavidas lo ponemos nosotros.",
+      },
+      {
+        q: "¿Qué pasa si hace mal tiempo?",
+        a: "Si el estado del mar no permite salir, buscamos otra fecha sin ningún coste.",
+      },
+      {
+        q: "¿Cómo se reserva?",
+        a: "Elige la experiencia y la franja, indica la fecha y envía la solicitud. Te confirmamos la disponibilidad por WhatsApp; hasta entonces no hay ningún compromiso.",
+      },
     ],
   },
   jetskiLanding: {
     efoil: {
       "navLabel": "E-Foil en Blanes",
-      "seoTitle": "Cursos de e-foil en Blanes · Vuela sobre el agua sin licencia",
+      "seoTitle": "eFoil en Blanes: clase con instructor, sin licencia ni experiencia",
       "hero": {
         "title": "E-Foil en Blanes",
         "subtitle": "Vuela sobre el agua con una tabla eléctrica de hidrofoil. Con instructor, sin licencia y sin experiencia previa."
@@ -5796,10 +5856,45 @@ export const es: Translations = {
         {
           "q": "¿Qué pasa si hace mal tiempo?",
           "a": "La actividad se puede aplazar por motivos meteorológicos y se busca otra fecha sin coste."
+        },
+        {
+          "q": "¿Es difícil aprender?",
+          "a": "Menos de lo que parece. El motor eléctrico hace el esfuerzo y el instructor te guía paso a paso: la mayoría de la gente consigue despegar en su primera sesión."
+        },
+        {
+          "q": "¿Podemos ir dos personas?",
+          "a": "Sí. Además de las sesiones individuales de 30 y 60 minutos, hay una modalidad tándem de 60 minutos para dos personas."
+        },
+        {
+          "q": "¿Qué pasa si llego tarde?",
+          "a": "Conviene llegar puntual: cada sesión tiene una hora fija y un retraso puede hacer perder la reserva."
         }
+      ],
+      "howTitle": "Cómo es la clase de eFoil",
+      "how": [
+        "El eFoil es una tabla con un mástil y un ala sumergida bajo el agua, impulsada por un motor eléctrico que controlas con un mando inalámbrico. Al coger velocidad, el ala levanta la tabla y navegas por encima del agua, casi en silencio.",
+        "La clase empieza en la playa de Blanes. El instructor te explica el mando y la postura, y entras al agua tumbado o de rodillas sobre la tabla. Cuando te sientes cómodo, te pones de pie y despegas.",
+        "Puedes elegir 30 o 60 minutos, o la modalidad tándem de 60 minutos para dos personas. Si quieres seguir progresando, hay bonos de 5 y 10 horas: pregúntanos por WhatsApp."
+      ],
+      "requirements": [
+        "Sin edad mínima: los menores necesitan autorización de su padre, madre o tutor legal",
+        "DNI o pasaporte obligatorio el día de la actividad",
+        "Fianza de 20€ por eFoil, que se devuelve al terminar",
+        "Sin licencia ni experiencia previa"
+      ],
+      "included": [
+        "Instructor durante toda la sesión",
+        "Tabla eFoil y batería",
+        "Chaleco y material de seguridad",
+        "Seguro de responsabilidad civil"
       ]
     },
     pricePerTwo: "1 persona · {price}€ los 2",
+    requirementsTitle: "Requisitos",
+    priceColDuration: "Duración",
+    priceColOne: "1 persona",
+    priceColTwo: "2 personas",
+    moreTitle: "Más experiencias en el agua",
     specCapacity: "1-2 personas",
     "fromLabel": "desde",
     "ctaRequest": "Reservar",
@@ -5809,7 +5904,7 @@ export const es: Translations = {
     "reassurance": "Sin compromiso · te confirmamos por WhatsApp",
     "circuito": {
       "navLabel": "Circuito en Jet Ski",
-      "seoTitle": "Alquiler de moto de agua en Blanes · Circuito en jet ski sin licencia",
+      "seoTitle": "Circuito de moto de agua en Blanes sin licencia | De 15 a 60 min",
       "hero": {
         "title": "Circuito en Jet Ski en Blanes",
         "subtitle": "Ponte a los mandos de una moto de agua en un circuito balizado frente a Blanes. Sin licencia, desde 15 minutos."
@@ -5831,13 +5926,48 @@ export const es: Translations = {
         },
         {
           "q": "¿Desde qué edad?",
-          "a": "18 años para pilotar; menores pueden ir de pasajeros según normativa del operador."
+          "a": "18 años para pilotar. Los pasajeros pueden subir desde los 14 años; si son menores, con autorización de su padre, madre o tutor legal."
+        },
+        {
+          "q": "¿Qué tengo que llevar?",
+          "a": "Bañador, toalla, protección solar y tu DNI o pasaporte. En los meses más frescos, una camiseta térmica o un neopreno. El chaleco lo ponemos nosotros."
+        },
+        {
+          "q": "¿Qué pasa si hace mal tiempo?",
+          "a": "Si el estado del mar no permite salir, buscamos otra fecha sin ningún coste."
+        },
+        {
+          "q": "¿Puedo tener fotos o vídeo?",
+          "a": "Sí, hay un pack de fotos y vídeo que se reserva con antelación. Pídelo al enviar la solicitud."
+        },
+        {
+          "q": "¿En qué se diferencia de la excursión?",
+          "a": "En el circuito pilotas por libre dentro de una zona balizada frente a Blanes. En la excursión sales a mar abierto en fila detrás de un monitor, recorriendo la costa en dirección a Tossa de Mar."
         }
+      ],
+      "howTitle": "Cómo es el circuito",
+      "how": [
+        "Antes de salir, el monitor te da un briefing de seguridad en tierra: cómo se acelera y se frena, cómo se gira y qué señales vas a ver en el agua. Te pones el chaleco homologado y te acompañamos hasta la moto.",
+        "El circuito es una zona balizada y señalizada frente a Blanes, pensada para aprender a pilotar sin tráfico de barcos alrededor. Pilotas tú desde el primer minuto, a tu ritmo, con el monitor supervisando desde el agua.",
+        "Si es tu primera vez, 15 o 30 minutos bastan para coger confianza. Con 45 o 60 minutos da tiempo a soltarse y disfrutar de la velocidad. Si vais dos, podéis ir juntos en la misma moto."
+      ],
+      "requirements": [
+        "18 años para pilotar la moto de agua",
+        "Pasajeros desde 14 años, con autorización de padre, madre o tutor si son menores",
+        "DNI o pasaporte obligatorio el día de la actividad",
+        "Sin licencia ni experiencia previa"
+      ],
+      "included": [
+        "Chaleco salvavidas homologado",
+        "Briefing de seguridad",
+        "Circuito balizado supervisado por un monitor",
+        "Combustible",
+        "Seguro de responsabilidad civil"
       ]
     },
     "excursion": {
       "navLabel": "Excursión en Jet Ski con Monitor",
-      "seoTitle": "Alquiler de moto de agua en Blanes · Excursión guiada a Tossa de Mar",
+      "seoTitle": "Excursión en moto de agua de Blanes a Tossa con monitor, sin licencia",
       "hero": {
         "title": "Excursión en Jet Ski de Blanes a Tossa",
         "subtitle": "Recorre la Costa Brava en moto de agua acompañado por un monitor titulado, con ruta guiada desde Blanes hacia Tossa de Mar. Sin licencia."
@@ -5861,7 +5991,46 @@ export const es: Translations = {
         {
           "q": "¿Cuánto dura?",
           "a": "Hay opción de 1 hora o 2 horas hacia Tossa de Mar."
+        },
+        {
+          "q": "¿Desde qué edad?",
+          "a": "18 años para pilotar. Los pasajeros pueden subir desde los 14 años; si son menores, con autorización de su padre, madre o tutor legal."
+        },
+        {
+          "q": "¿Hace falta experiencia?",
+          "a": "No. Antes de salir recibes un briefing de seguridad y durante toda la ruta sigues al monitor, que marca el ritmo y el recorrido."
+        },
+        {
+          "q": "¿Qué tengo que llevar?",
+          "a": "Bañador, toalla, protección solar y tu DNI o pasaporte. En los meses más frescos, una camiseta térmica o un neopreno."
+        },
+        {
+          "q": "¿Qué pasa si hace mal tiempo?",
+          "a": "Si el estado del mar no permite salir, buscamos otra fecha sin ningún coste."
+        },
+        {
+          "q": "¿Puedo tener fotos o vídeo?",
+          "a": "Sí, hay un pack de fotos y vídeo que se reserva con antelación. Pídelo al enviar la solicitud."
         }
+      ],
+      "howTitle": "Cómo es la excursión",
+      "how": [
+        "Salís en grupo desde Blanes con un monitor titulado que abre la ruta. Las motos navegan en fila detrás de él, manteniendo la distancia de seguridad, y tú pilotas la tuya en todo momento.",
+        "La ruta sigue la costa hacia el norte: Sa Palomera, las calas de Blanes, la costa de Lloret de Mar y los acantilados en dirección a Tossa de Mar. Hasta dónde se llega depende de la duración que elijas y del estado del mar: el monitor adapta el recorrido.",
+        "Es la forma de ver la Costa Brava desde el agua sin licencia ni experiencia: el briefing previo te explica todo lo necesario para pilotar con seguridad."
+      ],
+      "requirements": [
+        "18 años para pilotar la moto de agua",
+        "Pasajeros desde 14 años, con autorización de padre, madre o tutor si son menores",
+        "DNI o pasaporte obligatorio el día de la actividad",
+        "Sin licencia ni experiencia previa"
+      ],
+      "included": [
+        "Monitor titulado que guía la ruta",
+        "Combustible",
+        "Seguro de responsabilidad civil",
+        "Chaleco salvavidas homologado",
+        "Briefing de seguridad"
       ]
     }
   },
@@ -6522,7 +6691,7 @@ export const es: Translations = {
   },
   activitiesSection: {
     title: "Más allá del barco: moto de agua y eFoil",
-    subtitle: "Vuela sobre el agua con el eFoil o ponte a los mandos de una moto de agua en Blanes. Sin licencia y sin experiencia previa: te lo explicamos todo antes de salir.",
+    subtitle: "Ponte a los mandos de una moto de agua en Blanes o vuela sobre el agua con el eFoil. Sin licencia y sin experiencia previa: te lo explicamos todo antes de salir.",
     newBadge: "Novedad",
   },
   titulinSection: {

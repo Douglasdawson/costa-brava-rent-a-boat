@@ -1770,7 +1770,7 @@ export const de: Translations = {
     "jetski-circuito":
       "Übernimm das Steuer eines Jetskis auf einem markierten Rundkurs vor Blanes. Ideal, um den Adrenalinkick des Jetski-Fahrens ohne Führerschein zu erleben: Sicherheitseinweisung und Schwimmweste inklusive.",
     "jetski-excursion-monitor":
-      "Erkunde die Costa Brava auf dem Jetski in Begleitung eines lizenzierten Guides, mit geführter Route durch die Buchten zwischen Blanes und Lloret. Ohne Führerschein, mit Einweisung, Schwimmweste und Kraftstoff für die Tour inklusive.",
+      "Erkunde die Costa Brava auf dem Jetski in Begleitung eines lizenzierten Guides, mit geführter Route von Blanes Richtung Tossa de Mar vorbei an den Buchten von Blanes und Lloret. Ohne Führerschein, mit Einweisung, Schwimmweste und Kraftstoff für die Tour inklusive.",
     "solar-450":
       "Für Sonnenliebhaber gemacht. Sein gepolstertes Solarium ist das größte der gesamten führerscheinfreien Flotte: Ankern Sie in einer türkisfarbenen Bucht nahe Blanes und entspannen Sie wie nirgendwo sonst. Kein Bootsführerschein nötig, wir zeigen Ihnen in 15 Minuten, wie es geht. Treibstoff, Versicherung und Sicherheitsausrüstung inklusive.",
     "remus-450":
@@ -3504,6 +3504,7 @@ export const de: Translations = {
         { title: "Bootstour bei Sonnenuntergang", description: "Sonnenuntergangserlebnis auf dem Boot" },
         { title: "Boote ohne Führerschein", description: "4 Boote ab 85€/Std., Kraftstoff inklusive" },
         { title: "Rollerverleih in Lloret de Mar", description: "Erkunden Sie die Costa Brava auf der Straße, ab 8€/Std. mit Versicherung inklusive" },
+        { title: "Jetskis bei Lloret", description: "Rundkurs und geführte Jetski-Tour ab Blanes, ohne Führerschein" },
       ],
       locationTossa: [
         { title: "Weitere Ziele an der Costa Brava", description: "Entdecken Sie alle Routen und Buchten der Costa Brava mit dem Boot" },
@@ -3554,20 +3555,36 @@ export const de: Translations = {
       jetskiHub: [
         { title: "Jetski-Rundkurs", description: "Fahren Sie einen Jetski ohne Führerschein auf einem überwachten Rundkurs vor Blanes" },
         { title: "Geführte Jetski-Tour nach Tossa", description: "Geführte Route von Blanes nach Tossa de Mar mit Betreuer" },
-        { title: "Boote ohne Führerschein", description: "4 Boote ab 85€/Std., Kraftstoff inklusive" },
+        { title: "eFoil in Blanes", description: "Fliegen Sie mit einem elektrischen Board über das Wasser, mit Lehrer und ohne Führerschein" },
         { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
       ],
       jetskiCircuito: [
         { title: "Jetski-Verleih in Blanes", description: "Alle Jetski-Erlebnisse ohne Führerschein" },
         { title: "Geführte Jetski-Tour nach Tossa", description: "Geführte Route von Blanes nach Tossa de Mar mit Betreuer" },
-        { title: "Boote ohne Führerschein", description: "4 Boote ab 85€/Std., Kraftstoff inklusive" },
+        { title: "eFoil in Blanes", description: "Fliegen Sie mit einem elektrischen Board über das Wasser, mit Lehrer und ohne Führerschein" },
         { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
       ],
       jetskiExcursion: [
         { title: "Jetski-Verleih in Blanes", description: "Alle Jetski-Erlebnisse ohne Führerschein" },
         { title: "Jetski-Rundkurs ohne Führerschein", description: "Erster Kontakt auf einem überwachten Rundkurs vor Blanes" },
         { title: "Ausflug nach Tossa de Mar", description: "Entdecken Sie die Vila Vella und ihre kristallklaren Buchten" },
-        { title: "Preise und Tarife", description: "Preise nach Saison ansehen" },
+        { title: "eFoil in Blanes", description: "Fliegen Sie mit einem elektrischen Board über das Wasser, mit Lehrer und ohne Führerschein" },
+      ],
+      efoilBlanes: [
+        { title: "Jetski-Verleih in Blanes", description: "Alle Jetski-Erlebnisse ohne Führerschein" },
+        { title: "Jetski-Rundkurs", description: "Fahren Sie einen Jetski ohne Führerschein auf einem überwachten Rundkurs vor Blanes" },
+        { title: "Geführte Jetski-Tour nach Tossa", description: "Geführte Route von Blanes nach Tossa de Mar mit Betreuer" },
+        { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
+      ],
+      locationMalgrat: [
+        { title: "Jetski-Verleih in Blanes", description: "Rundkurs und geführte Jetski-Tour, nur wenige Minuten von Malgrat entfernt" },
+        { title: "Jetski-Rundkurs", description: "Fahren Sie einen Jetski ohne Führerschein auf einem überwachten Rundkurs vor Blanes" },
+        { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
+      ],
+      locationSantaSusanna: [
+        { title: "Jetski-Verleih in Blanes", description: "Rundkurs und geführte Jetski-Tour, nur wenige Minuten von Santa Susanna entfernt" },
+        { title: "Jetski-Rundkurs", description: "Fahren Sie einen Jetski ohne Führerschein auf einem überwachten Rundkurs vor Blanes" },
+        { title: "Bootsverleih Blanes", description: "Alles über Bootsmiete im Hafen von Blanes" },
       ],
       scooters: [
         { title: "Bootsverleih in Lloret de Mar", description: "Spektakuläre Strände und Buchten ab dem Hafen von Blanes" },
@@ -4412,7 +4429,7 @@ export const de: Translations = {
     },
   },
   jetskiHub: {
-    "seoTitle": "Jetski-Verleih in Blanes (Costa Brava) | Ohne Führerschein",
+    "seoTitle": "Jetski mieten in Blanes (Costa Brava) | Ohne Führerschein",
     "navLabel": "Jetskis",
     "hero": {
       "title": "Jetski-Verleih in Blanes",
@@ -4422,6 +4439,29 @@ export const de: Translations = {
     "intro": "Zwei Möglichkeiten, den Jetski ohne Führerschein vom Hafen von Blanes aus zu genießen. Wähle den Rundkurs für einen ersten Kontakt oder die geführte Tour, mit einem Guide, um die Küste bis nach Tossa de Mar zu erkunden.",
     "productsTitle": "Unsere Jetski-Erlebnisse",
     "faqTitle": "Häufige Fragen",
+    "pricesTitle": "Preise für den Jetski-Verleih in Blanes",
+    "guide": [
+      {
+        "title": "Rundkurs oder Tour? So wählst du",
+        "text": "Wenn du noch nie einen Jetski gefahren bist oder wenig Zeit hast, fang mit dem Rundkurs an: ab 15 Minuten, in einem markierten Bereich vor Blanes und in deinem eigenen Tempo. Wenn du dich schon sicher fühlst und die Küste sehen willst, bringt dich die Tour mit Guide in 1 oder 2 Stunden an den Buchten von Blanes und Lloret de Mar vorbei in Richtung Tossa de Mar."
+      },
+      {
+        "title": "Jetski ohne Führerschein an der Costa Brava",
+        "text": "Um in Spanien auf eigene Faust Jetski zu fahren, braucht man einen Bootsführerschein. Ohne Führerschein gibt es zwei Möglichkeiten, und genau diese beiden bieten wir an: auf einem markierten Rundkurs oder auf einer Tour mit einem ausgebildeten Guide. Du musst nur 18 Jahre alt sein, um zu fahren, und deinen Personalausweis oder Reisepass dabeihaben."
+      },
+      {
+        "title": "Wenn du in Lloret, Malgrat, Santa Susanna oder Tossa wohnst",
+        "text": "Blanes liegt nur wenige Autominuten von Lloret de Mar, Malgrat de Mar und Santa Susanna entfernt und hat einen Bahnhof der Rodalies-Linie R1. Buche hier und wir schicken dir den genauen Treffpunkt per WhatsApp."
+      },
+      {
+        "title": "Und das eFoil?",
+        "text": "Lust auf etwas anderes? Probier das eFoil: ein elektrisches Board, das sich dank eines Unterwasserflügels über das Wasser erhebt. Stunde mit Lehrer ab 30 Minuten, ohne Führerschein und ohne Vorkenntnisse."
+      },
+      {
+        "title": "Saison und Buchung",
+        "text": "Die Jetskis fahren von Frühling bis Herbst, sofern das Meer es zulässt. Im Juli und August sind die Zeitfenster schnell ausgebucht: Schick deine Anfrage ein paar Tage im Voraus, und wir bestätigen die Verfügbarkeit per WhatsApp, unverbindlich."
+      }
+    ],
     "faq": [
       {
         "q": "Brauche ich einen Führerschein für den Jetski?",
@@ -4434,13 +4474,33 @@ export const de: Translations = {
       {
         "q": "Von wo starten sie?",
         "a": "Vom Hafen von Blanes (Girona), am selben Steg wie unsere Boote."
+      },
+      {
+        "q": "Wie alt muss man sein?",
+        "a": "18 Jahre zum Fahren. Mitfahrer dürfen ab 14 Jahren mit; Minderjährige brauchen die Zustimmung eines Elternteils oder Erziehungsberechtigten."
+      },
+      {
+        "q": "Welche Dokumente brauche ich?",
+        "a": "Personalausweis oder Reisepass sind am Tag der Aktivität Pflicht. Ein Führerschein oder Vorkenntnisse sind nicht nötig."
+      },
+      {
+        "q": "Was soll ich mitbringen?",
+        "a": "Badekleidung, Handtuch und Sonnenschutz. In den kühleren Monaten ein Thermoshirt oder einen Neoprenanzug. Die Schwimmweste stellen wir."
+      },
+      {
+        "q": "Was passiert bei schlechtem Wetter?",
+        "a": "Wenn das Meer keine Ausfahrt zulässt, suchen wir kostenlos einen neuen Termin."
+      },
+      {
+        "q": "Wie buche ich?",
+        "a": "Wähle das Erlebnis und das Zeitfenster, gib das Datum an und sende die Anfrage. Wir bestätigen die Verfügbarkeit per WhatsApp; bis dahin gehst du keinerlei Verpflichtung ein."
       }
     ]
   },
   jetskiLanding: {
     efoil: {
       "navLabel": "E-Foil in Blanes",
-      "seoTitle": "E-Foil-Kurse in Blanes · Über dem Wasser fliegen, ohne Führerschein",
+      "seoTitle": "eFoil in Blanes: Kurs mit Lehrer, ohne Führerschein",
       "hero": {
         "title": "E-Foil in Blanes",
         "subtitle": "Fliege über dem Wasser auf einem elektrischen Hydrofoil-Board. Mit Guide, ohne Führerschein und ohne Vorkenntnisse."
@@ -4472,10 +4532,45 @@ export const de: Translations = {
         {
           "q": "Was passiert bei schlechtem Wetter?",
           "a": "Die Aktivität kann aus Wettergründen verschoben werden und wir finden kostenlos einen neuen Termin."
+        },
+        {
+          "q": "Ist es schwer zu lernen?",
+          "a": "Weniger, als es aussieht. Der Elektromotor übernimmt die Arbeit und der Lehrer führt dich Schritt für Schritt: Die meisten heben schon in der ersten Stunde ab."
+        },
+        {
+          "q": "Können wir zu zweit kommen?",
+          "a": "Ja. Neben den Einzelstunden von 30 und 60 Minuten gibt es eine 60-minütige Tandem-Variante für zwei Personen."
+        },
+        {
+          "q": "Was passiert, wenn ich zu spät komme?",
+          "a": "Komm bitte pünktlich: Jede Stunde hat eine feste Uhrzeit, und bei Verspätung kann die Buchung verfallen."
         }
+      ],
+      "howTitle": "So läuft die eFoil-Stunde ab",
+      "how": [
+        "Das eFoil ist ein Board mit einem Mast und einem Flügel unter Wasser, angetrieben von einem Elektromotor, den du mit einer kabellosen Fernbedienung steuerst. Sobald es Fahrt aufnimmt, hebt der Flügel das Board an und du gleitest fast lautlos über das Wasser.",
+        "Die Stunde beginnt am Strand von Blanes. Der Lehrer erklärt dir die Fernbedienung und die Haltung, und du gehst liegend oder kniend auf dem Board ins Wasser. Sobald du dich sicher fühlst, stehst du auf und hebst ab.",
+        "Du kannst 30 oder 60 Minuten wählen oder die 60-minütige Tandem-Variante für zwei Personen. Wer weiter Fortschritte machen will, bekommt 5er- und 10er-Stundenpakete: Frag uns per WhatsApp."
+      ],
+      "requirements": [
+        "Kein Mindestalter: Minderjährige brauchen die Zustimmung eines Elternteils oder Erziehungsberechtigten",
+        "Personalausweis oder Reisepass am Tag der Aktivität Pflicht",
+        "Kaution von 20€ pro eFoil, die am Ende zurückerstattet wird",
+        "Ohne Führerschein und ohne Vorkenntnisse"
+      ],
+      "included": [
+        "Lehrer während der gesamten Stunde",
+        "eFoil-Board und Akku",
+        "Schwimmweste und Sicherheitsausrüstung",
+        "Haftpflichtversicherung"
       ]
     },
     pricePerTwo: "1 Person · {price}€ für 2",
+    requirementsTitle: "Voraussetzungen",
+    priceColDuration: "Dauer",
+    priceColOne: "1 Person",
+    priceColTwo: "2 Personen",
+    moreTitle: "Weitere Erlebnisse auf dem Wasser",
     specCapacity: "1-2 Personen",
     "fromLabel": "ab",
     "ctaRequest": "Buchen",
@@ -4485,7 +4580,7 @@ export const de: Translations = {
     "reassurance": "Unverbindlich · Bestätigung per WhatsApp",
     "circuito": {
       "navLabel": "Jet-Ski-Rundkurs",
-      "seoTitle": "Jetski-Verleih in Blanes · Jetski-Rundkurs ohne Führerschein",
+      "seoTitle": "Jetski-Rundkurs in Blanes ohne Führerschein | 15 bis 60 Min",
       "hero": {
         "title": "Jet-Ski-Rundkurs in Blanes",
         "subtitle": "Übernimm das Steuer eines Jetskis auf einem markierten Rundkurs vor Blanes. Ohne Führerschein, ab 15 Minuten."
@@ -4507,13 +4602,48 @@ export const de: Translations = {
         },
         {
           "q": "Mindestalter?",
-          "a": "18 zum Fahren; Minderjährige können je nach Regeln des Betreibers als Mitfahrer mit."
+          "a": "18 Jahre zum Fahren. Mitfahrer dürfen ab 14 Jahren mit; Minderjährige brauchen die Zustimmung eines Elternteils oder Erziehungsberechtigten."
+        },
+        {
+          "q": "Was soll ich mitbringen?",
+          "a": "Badekleidung, Handtuch, Sonnenschutz und deinen Personalausweis oder Reisepass. In den kühleren Monaten ein Thermoshirt oder einen Neoprenanzug. Die Schwimmweste stellen wir."
+        },
+        {
+          "q": "Was passiert bei schlechtem Wetter?",
+          "a": "Wenn das Meer keine Ausfahrt zulässt, suchen wir kostenlos einen neuen Termin."
+        },
+        {
+          "q": "Kann ich Fotos oder Videos bekommen?",
+          "a": "Ja, es gibt ein Foto- und Videopaket, das im Voraus gebucht wird. Gib es einfach bei deiner Anfrage an."
+        },
+        {
+          "q": "Was ist der Unterschied zur Tour?",
+          "a": "Auf dem Rundkurs fährst du frei in einem markierten Bereich vor Blanes. Bei der Tour fährst du aufs offene Meer, in einer Reihe hinter einem Guide, entlang der Küste in Richtung Tossa de Mar."
         }
+      ],
+      "howTitle": "So läuft der Rundkurs ab",
+      "how": [
+        "Vor dem Start gibt dir der Guide an Land eine Sicherheitseinweisung: wie man Gas gibt und bremst, wie man lenkt und welche Zeichen du auf dem Wasser siehst. Du ziehst die zugelassene Schwimmweste an und wir begleiten dich zum Jetski.",
+        "Der Rundkurs ist ein markierter und ausgeschilderter Bereich vor Blanes, gedacht zum Fahrenlernen ohne Bootsverkehr ringsum. Du fährst ab der ersten Minute selbst, in deinem Tempo, und der Guide beaufsichtigt dich vom Wasser aus.",
+        "Beim ersten Mal reichen 15 oder 30 Minuten, um Sicherheit zu gewinnen. Mit 45 oder 60 Minuten bleibt Zeit, locker zu werden und die Geschwindigkeit zu genießen. Wenn ihr zu zweit seid, könnt ihr zusammen auf demselben Jetski fahren."
+      ],
+      "requirements": [
+        "18 Jahre zum Fahren des Jetskis",
+        "Mitfahrer ab 14 Jahren, Minderjährige mit Zustimmung eines Elternteils oder Erziehungsberechtigten",
+        "Personalausweis oder Reisepass am Tag der Aktivität Pflicht",
+        "Ohne Führerschein und ohne Vorkenntnisse"
+      ],
+      "included": [
+        "Zugelassene Schwimmweste",
+        "Sicherheitseinweisung",
+        "Markierter Rundkurs unter Aufsicht eines Guides",
+        "Kraftstoff",
+        "Haftpflichtversicherung"
       ]
     },
     "excursion": {
       "navLabel": "Jet-Ski-Tour mit Monitor",
-      "seoTitle": "Jetski-Verleih in Blanes · Geführte Tour nach Tossa de Mar",
+      "seoTitle": "Geführte Jetski-Tour von Blanes nach Tossa de Mar",
       "hero": {
         "title": "Jet-Ski-Tour von Blanes nach Tossa",
         "subtitle": "Erkunde die Costa Brava mit dem Jet-Ski in Begleitung eines ausgebildeten Monitors, auf einer geführten Route von Blanes nach Tossa de Mar. Ohne Führerschein."
@@ -4537,7 +4667,46 @@ export const de: Translations = {
         {
           "q": "Wie lange dauert es?",
           "a": "Es gibt eine Option von 1 Stunde oder 2 Stunden Richtung Tossa de Mar."
+        },
+        {
+          "q": "Mindestalter?",
+          "a": "18 Jahre zum Fahren. Mitfahrer dürfen ab 14 Jahren mit; Minderjährige brauchen die Zustimmung eines Elternteils oder Erziehungsberechtigten."
+        },
+        {
+          "q": "Brauche ich Erfahrung?",
+          "a": "Nein. Vor dem Start bekommst du eine Sicherheitseinweisung, und während der ganzen Route folgst du dem Guide, der Tempo und Strecke vorgibt."
+        },
+        {
+          "q": "Was soll ich mitbringen?",
+          "a": "Badekleidung, Handtuch, Sonnenschutz und deinen Personalausweis oder Reisepass. In den kühleren Monaten ein Thermoshirt oder einen Neoprenanzug."
+        },
+        {
+          "q": "Was passiert bei schlechtem Wetter?",
+          "a": "Wenn das Meer keine Ausfahrt zulässt, suchen wir kostenlos einen neuen Termin."
+        },
+        {
+          "q": "Kann ich Fotos oder Videos bekommen?",
+          "a": "Ja, es gibt ein Foto- und Videopaket, das im Voraus gebucht wird. Gib es einfach bei deiner Anfrage an."
         }
+      ],
+      "howTitle": "So läuft die Tour ab",
+      "how": [
+        "Ihr startet als Gruppe in Blanes mit einem ausgebildeten Guide, der vorausfährt. Die Jetskis fahren mit Sicherheitsabstand in einer Reihe hinter ihm, und du steuerst deinen eigenen Jetski die ganze Zeit selbst.",
+        "Die Route folgt der Küste nach Norden: Sa Palomera, die Buchten von Blanes, die Küste von Lloret de Mar und die Klippen in Richtung Tossa de Mar. Wie weit ihr kommt, hängt von der gewählten Dauer und vom Seegang ab: Der Guide passt die Strecke an.",
+        "So siehst du die Costa Brava vom Wasser aus, ohne Führerschein und ohne Erfahrung: Die Einweisung vorab erklärt dir alles, was du zum sicheren Fahren brauchst."
+      ],
+      "requirements": [
+        "18 Jahre zum Fahren des Jetskis",
+        "Mitfahrer ab 14 Jahren, Minderjährige mit Zustimmung eines Elternteils oder Erziehungsberechtigten",
+        "Personalausweis oder Reisepass am Tag der Aktivität Pflicht",
+        "Ohne Führerschein und ohne Vorkenntnisse"
+      ],
+      "included": [
+        "Ausgebildeter Guide, der die Route führt",
+        "Kraftstoff",
+        "Haftpflichtversicherung",
+        "Zugelassene Schwimmweste",
+        "Sicherheitseinweisung"
       ]
     }
   },
@@ -6128,7 +6297,7 @@ export const de: Translations = {
   },
   activitiesSection: {
     title: "Mehr als Boot: Jetski und eFoil",
-    subtitle: "Schweben Sie mit dem eFoil über das Wasser oder steuern Sie einen Jetski in Blanes. Ohne Führerschein und ohne Vorkenntnisse: Wir erklären Ihnen vor dem Start alles.",
+    subtitle: "Steuern Sie einen Jetski in Blanes oder schweben Sie mit dem eFoil über das Wasser. Ohne Führerschein und ohne Vorkenntnisse: Wir erklären Ihnen vor dem Start alles.",
     newBadge: "Neu",
   },
   titulinSection: {

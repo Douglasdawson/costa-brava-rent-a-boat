@@ -1770,7 +1770,7 @@ export const nl: Translations = {
     "jetski-circuito":
       "Neem zelf de besturing van een waterscooter op een afgebakend circuit voor de kust van Blanes. Ideaal om de adrenaline van jetskiën te proeven zonder vaarbewijs: veiligheidsbriefing en zwemvest inbegrepen.",
     "jetski-excursion-monitor":
-      "Verken de Costa Brava per waterscooter onder begeleiding van een gediplomeerde instructeur, met een begeleide route langs de baaien tussen Blanes en Lloret. Zonder vaarbewijs, met briefing, zwemvest en brandstof voor de tocht inbegrepen.",
+      "Verken de Costa Brava per waterscooter onder begeleiding van een gediplomeerde instructeur, met een begeleide route van Blanes richting Tossa de Mar langs de baaien van Blanes en Lloret. Zonder vaarbewijs, met briefing, zwemvest en brandstof voor de tocht inbegrepen.",
     "solar-450":
       "Ontworpen voor zonliefhebbers. Het gewatteerde solarium is het grootste van de hele vaarbewijsvrije vloot: anker in een turquoise baai bij Blanes en ontspan als nergens anders. Geen vaarbewijs nodig, wij leren u in 15 minuten hoe u vaart. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "remus-450":
@@ -3497,6 +3497,7 @@ export const nl: Translations = {
         { title: "Boottocht bij zonsondergang", description: "Zonsondergang beleven op een boot" },
         { title: "Boten zonder vaarbewijs", description: "4 boten vanaf 85€/u, brandstof inbegrepen" },
         { title: "Scooterverhuur in Lloret de Mar", description: "Verken de Costa Brava over de weg, vanaf 8€/u met verzekering inbegrepen" },
+        { title: "Jetski huren bij Lloret", description: "Jetski-circuit en begeleide waterscootertocht vanuit Blanes, zonder vaarbewijs" },
       ],
       locationTossa: [
         { title: "Meer bestemmingen aan de Costa Brava", description: "Ontdek alle routes en baaien van de Costa Brava per boot" },
@@ -3547,20 +3548,36 @@ export const nl: Translations = {
       jetskiHub: [
         { title: "Jetski-circuit", description: "Bestuur een jetski zonder vaarbewijs op een bewaakt circuit voor Blanes" },
         { title: "Begeleide jetski-tocht naar Tossa", description: "Begeleide route van Blanes naar Tossa de Mar met instructeur" },
-        { title: "Boten zonder vaarbewijs", description: "4 boten vanaf 85€/u, brandstof inbegrepen" },
+        { title: "eFoil in Blanes", description: "Zweef boven het water op een elektrisch board, met instructeur en zonder vaarbewijs" },
         { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
       ],
       jetskiCircuito: [
         { title: "Jetski huren in Blanes", description: "Alle jetski-ervaringen zonder vaarbewijs" },
         { title: "Begeleide jetski-tocht naar Tossa", description: "Begeleide route van Blanes naar Tossa de Mar met instructeur" },
-        { title: "Boten zonder vaarbewijs", description: "4 boten vanaf 85€/u, brandstof inbegrepen" },
+        { title: "eFoil in Blanes", description: "Zweef boven het water op een elektrisch board, met instructeur en zonder vaarbewijs" },
         { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
       ],
       jetskiExcursion: [
         { title: "Jetski huren in Blanes", description: "Alle jetski-ervaringen zonder vaarbewijs" },
         { title: "Jetski-circuit zonder vaarbewijs", description: "Eerste kennismaking op een bewaakt circuit voor Blanes" },
         { title: "Tocht naar Tossa de Mar", description: "Ontdek de Vila Vella en haar kristalheldere baaien" },
-        { title: "Prijzen en tarieven", description: "Bekijk tarieven per seizoen" },
+        { title: "eFoil in Blanes", description: "Zweef boven het water op een elektrisch board, met instructeur en zonder vaarbewijs" },
+      ],
+      efoilBlanes: [
+        { title: "Jetski huren in Blanes", description: "Alle jetski-ervaringen zonder vaarbewijs" },
+        { title: "Jetski-circuit", description: "Bestuur een jetski zonder vaarbewijs op een bewaakt circuit voor Blanes" },
+        { title: "Begeleide jetski-tocht naar Tossa", description: "Begeleide route van Blanes naar Tossa de Mar met instructeur" },
+        { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
+      ],
+      locationMalgrat: [
+        { title: "Jetski huren in Blanes", description: "Jetski-circuit en begeleide tocht, op een paar minuten van Malgrat" },
+        { title: "Jetski-circuit", description: "Bestuur een jetski zonder vaarbewijs op een bewaakt circuit voor Blanes" },
+        { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
+      ],
+      locationSantaSusanna: [
+        { title: "Jetski huren in Blanes", description: "Jetski-circuit en begeleide tocht, op een paar minuten van Santa Susanna" },
+        { title: "Jetski-circuit", description: "Bestuur een jetski zonder vaarbewijs op een bewaakt circuit voor Blanes" },
+        { title: "Botenverhuur Blanes", description: "Alles over een boot huren in de haven van Blanes" },
       ],
       scooters: [
         { title: "Boot huren in Lloret de Mar", description: "Spectaculaire stranden en baaien vanuit de haven van Blanes" },
@@ -4415,6 +4432,29 @@ export const nl: Translations = {
     "intro": "Twee manieren om zonder vaarbewijs van de jetski te genieten vanuit de haven van Blanes. Kies het circuit voor een eerste kennismaking of de begeleide tour, met een instructeur, om de kust tot Tossa de Mar te verkennen.",
     "productsTitle": "Onze jetski-ervaringen",
     "faqTitle": "Veelgestelde vragen",
+    "pricesTitle": "Prijzen jetski huren in Blanes",
+    "guide": [
+      {
+        "title": "Circuit of tocht? Zo kies je",
+        "text": "Heb je nog nooit op een waterscooter gezeten of heb je weinig tijd, begin dan met het circuit: vanaf 15 minuten, in een afgebakend gebied voor Blanes en in je eigen tempo. Voel je je zeker en wil je de kust zien, dan neemt de tocht met instructeur je mee langs de baaien van Blanes en Lloret de Mar richting Tossa de Mar, in 1 of 2 uur."
+      },
+      {
+        "title": "Waterscooter zonder vaarbewijs aan de Costa Brava",
+        "text": "Om in Spanje op eigen houtje een waterscooter te besturen heb je een vaarbewijs nodig. Zonder vaarbewijs kan het op twee manieren, en die bieden we allebei aan: binnen een afgebakend circuit of op een tocht onder leiding van een gediplomeerde instructeur. Je moet alleen 18 jaar zijn om te besturen en je identiteitskaart of paspoort meenemen."
+      },
+      {
+        "title": "Verblijf je in Lloret, Malgrat, Santa Susanna of Tossa?",
+        "text": "Blanes ligt op een paar minuten rijden van Lloret de Mar, Malgrat de Mar en Santa Susanna, en heeft een treinstation aan lijn R1 van Rodalies. Boek hier en we sturen je het exacte ontmoetingspunt via WhatsApp."
+      },
+      {
+        "title": "En de eFoil?",
+        "text": "Zin in iets anders? Probeer de eFoil: een elektrisch board dat boven het water uitkomt dankzij een vleugel onder water. Les met instructeur vanaf 30 minuten, zonder vaarbewijs en zonder ervaring."
+      },
+      {
+        "title": "Seizoen en reserveren",
+        "text": "De jetski's varen van het voorjaar tot de herfst, zolang de zee het toelaat. In juli en augustus raken de tijdsloten snel vol: stuur je aanvraag een paar dagen van tevoren en we bevestigen de beschikbaarheid vrijblijvend via WhatsApp."
+      }
+    ],
     "faq": [
       {
         "q": "Heb ik een vaarbewijs nodig voor de jetski?",
@@ -4427,13 +4467,33 @@ export const nl: Translations = {
       {
         "q": "Waar vertrekken ze vandaan?",
         "a": "Vanuit de haven van Blanes (Girona), aan dezelfde steiger als onze boten."
+      },
+      {
+        "q": "Hoe oud moet je zijn?",
+        "a": "18 jaar om te besturen. Passagiers mogen mee vanaf 14 jaar; minderjarigen met toestemming van een ouder of wettelijke voogd."
+      },
+      {
+        "q": "Welke documenten heb ik nodig?",
+        "a": "Een identiteitskaart of paspoort is verplicht op de dag van de activiteit. Een vaarbewijs of ervaring is niet nodig."
+      },
+      {
+        "q": "Wat moet ik meenemen?",
+        "a": "Zwemkleding, een handdoek en zonnebrand. In de koelere maanden een thermoshirt of wetsuit. Het zwemvest krijg je van ons."
+      },
+      {
+        "q": "Wat als het slecht weer is?",
+        "a": "Als de zee het niet toelaat om uit te varen, zoeken we kosteloos een andere datum."
+      },
+      {
+        "q": "Hoe reserveer ik?",
+        "a": "Kies de ervaring en het tijdslot, geef de datum op en verstuur je aanvraag. We bevestigen de beschikbaarheid via WhatsApp; tot dan zit je nergens aan vast."
       }
     ]
   },
   jetskiLanding: {
     efoil: {
       "navLabel": "E-Foil in Blanes",
-      "seoTitle": "E-foil lessen in Blanes · Vlieg boven het water, zonder vaarbewijs",
+      "seoTitle": "eFoil in Blanes: les met instructeur, zonder vaarbewijs of ervaring",
       "hero": {
         "title": "E-Foil in Blanes",
         "subtitle": "Vlieg boven het water op een elektrisch hydrofoilboard. Met instructeur, zonder vaarbewijs en zonder ervaring."
@@ -4465,10 +4525,45 @@ export const nl: Translations = {
         {
           "q": "En als het weer omslaat?",
           "a": "De activiteit kan om weersredenen worden uitgesteld en we plannen kosteloos een andere datum."
+        },
+        {
+          "q": "Is het moeilijk om te leren?",
+          "a": "Minder dan het lijkt. De elektromotor doet het werk en de instructeur begeleidt je stap voor stap: de meeste mensen komen in hun eerste sessie al los van het water."
+        },
+        {
+          "q": "Kunnen we met z'n tweeën?",
+          "a": "Ja. Naast de individuele sessies van 30 en 60 minuten is er een tandemoptie van 60 minuten voor twee personen."
+        },
+        {
+          "q": "Wat als ik te laat ben?",
+          "a": "Kom op tijd: elke sessie heeft een vast begintijdstip en te laat komen kan betekenen dat je je reservering verliest."
         }
+      ],
+      "howTitle": "Zo gaat een eFoil-les",
+      "how": [
+        "Een eFoil is een board met een mast en een vleugel onder water, aangedreven door een elektromotor die je met een draadloze afstandsbediening regelt. Zodra je vaart maakt, tilt de vleugel het board op en zweef je bijna geruisloos boven het water.",
+        "De les begint op het strand van Blanes. De instructeur legt de afstandsbediening en je houding uit, en je gaat liggend of geknield op het board het water in. Voel je je op je gemak, dan ga je staan en kom je los.",
+        "Je kunt kiezen uit 30 of 60 minuten, of de tandemoptie van 60 minuten voor twee personen. Wil je verder komen, dan zijn er pakketten van 5 en 10 uur: vraag het ons via WhatsApp."
+      ],
+      "requirements": [
+        "Geen minimumleeftijd: minderjarigen hebben toestemming nodig van een ouder of wettelijke voogd",
+        "Identiteitskaart of paspoort verplicht op de dag van de activiteit",
+        "Borg van 20€ per eFoil, die je na afloop terugkrijgt",
+        "Geen vaarbewijs of ervaring nodig"
+      ],
+      "included": [
+        "Instructeur tijdens de hele sessie",
+        "eFoil-board en accu",
+        "Vest en veiligheidsmateriaal",
+        "Aansprakelijkheidsverzekering"
       ]
     },
     pricePerTwo: "1 persoon · {price}€ voor 2",
+    requirementsTitle: "Voorwaarden",
+    priceColDuration: "Duur",
+    priceColOne: "1 persoon",
+    priceColTwo: "2 personen",
+    moreTitle: "Meer ervaringen op het water",
     specCapacity: "1-2 personen",
     "fromLabel": "vanaf",
     "ctaRequest": "Boeken",
@@ -4478,7 +4573,7 @@ export const nl: Translations = {
     "reassurance": "Vrijblijvend · we bevestigen via WhatsApp",
     "circuito": {
       "navLabel": "Jetski-circuit",
-      "seoTitle": "Jetski huren in Blanes · Jetski-circuit zonder vaarbewijs",
+      "seoTitle": "Jetski circuit in Blanes zonder vaarbewijs | 15 tot 60 min",
       "hero": {
         "title": "Jetski-circuit in Blanes",
         "subtitle": "Neem het stuur van een jetski op een uitgezet parcours voor Blanes. Geen vaarbewijs nodig, vanaf 15 minuten.",
@@ -4500,13 +4595,48 @@ export const nl: Translations = {
         },
         {
           "q": "Minimumleeftijd?",
-          "a": "18 jaar om te besturen; minderjarigen mogen mee als passagier volgens de regels van de aanbieder."
+          "a": "18 jaar om te besturen. Passagiers mogen mee vanaf 14 jaar; minderjarigen met toestemming van een ouder of wettelijke voogd."
+        },
+        {
+          "q": "Wat moet ik meenemen?",
+          "a": "Zwemkleding, een handdoek, zonnebrand en je identiteitskaart of paspoort. In de koelere maanden een thermoshirt of wetsuit. Het zwemvest krijg je van ons."
+        },
+        {
+          "q": "Wat als het slecht weer is?",
+          "a": "Als de zee het niet toelaat om uit te varen, zoeken we kosteloos een andere datum."
+        },
+        {
+          "q": "Kan ik foto's of video krijgen?",
+          "a": "Ja, er is een foto- en videopakket dat je vooraf reserveert. Vraag erom als je je aanvraag verstuurt."
+        },
+        {
+          "q": "Wat is het verschil met de tocht?",
+          "a": "Op het circuit vaar je vrij rond binnen een afgebakend gebied voor Blanes. Bij de tocht ga je de open zee op, in een rij achter een instructeur, langs de kust richting Tossa de Mar."
         }
+      ],
+      "howTitle": "Zo gaat het circuit",
+      "how": [
+        "Voor vertrek geeft de instructeur je op de wal een veiligheidsbriefing: hoe je gas geeft en remt, hoe je draait en welke signalen je op het water ziet. Je trekt een goedgekeurd zwemvest aan en we lopen met je mee naar de waterscooter.",
+        "Het circuit is een afgebakend en gemarkeerd gebied voor Blanes, bedoeld om te leren varen zonder bootverkeer om je heen. Je bestuurt de jetski zelf vanaf de eerste minuut, in je eigen tempo, terwijl de instructeur vanaf het water toezicht houdt.",
+        "Is het je eerste keer, dan is 15 of 30 minuten genoeg om vertrouwen te krijgen. Met 45 of 60 minuten heb je tijd om los te komen en van de snelheid te genieten. Met z'n tweeën kun je samen op dezelfde jetski."
+      ],
+      "requirements": [
+        "18 jaar om de jetski te besturen",
+        "Passagiers vanaf 14 jaar, met toestemming van een ouder of voogd als ze minderjarig zijn",
+        "Identiteitskaart of paspoort verplicht op de dag van de activiteit",
+        "Geen vaarbewijs of ervaring nodig"
+      ],
+      "included": [
+        "Goedgekeurd zwemvest",
+        "Veiligheidsbriefing",
+        "Afgebakend circuit onder toezicht van een instructeur",
+        "Brandstof",
+        "Aansprakelijkheidsverzekering"
       ]
     },
     "excursion": {
       "navLabel": "Jetski-tour met begeleider",
-      "seoTitle": "Jetski huren in Blanes · Begeleide tour naar Tossa de Mar",
+      "seoTitle": "Begeleide jetskitocht van Blanes naar Tossa de Mar, geen vaarbewijs",
       "hero": {
         "title": "Jetski-tour van Blanes naar Tossa",
         "subtitle": "Verken de Costa Brava op een jetski, vergezeld door een gediplomeerde begeleider, met een begeleide route van Blanes naar Tossa de Mar. Zonder vaarbewijs.",
@@ -4530,7 +4660,46 @@ export const nl: Translations = {
         {
           "q": "Hoe lang duurt het?",
           "a": "Er is een optie van 1 uur of 2 uur richting Tossa de Mar."
+        },
+        {
+          "q": "Vanaf welke leeftijd?",
+          "a": "18 jaar om te besturen. Passagiers mogen mee vanaf 14 jaar; minderjarigen met toestemming van een ouder of wettelijke voogd."
+        },
+        {
+          "q": "Heb ik ervaring nodig?",
+          "a": "Nee. Voor vertrek krijg je een veiligheidsbriefing en de hele route volg je de begeleider, die het tempo en de koers bepaalt."
+        },
+        {
+          "q": "Wat moet ik meenemen?",
+          "a": "Zwemkleding, een handdoek, zonnebrand en je identiteitskaart of paspoort. In de koelere maanden een thermoshirt of wetsuit."
+        },
+        {
+          "q": "Wat als het slecht weer is?",
+          "a": "Als de zee het niet toelaat om uit te varen, zoeken we kosteloos een andere datum."
+        },
+        {
+          "q": "Kan ik foto's of video krijgen?",
+          "a": "Ja, er is een foto- en videopakket dat je vooraf reserveert. Vraag erom als je je aanvraag verstuurt."
         }
+      ],
+      "howTitle": "Zo gaat de tocht",
+      "how": [
+        "Jullie vertrekken als groep vanuit Blanes met een gediplomeerde begeleider die voorop vaart. De waterscooters varen in een rij achter hem aan, op veilige afstand, en je bestuurt je eigen jetski de hele tijd zelf.",
+        "De route volgt de kust naar het noorden: Sa Palomera, de baaien van Blanes, de kust van Lloret de Mar en de kliffen richting Tossa de Mar. Hoe ver je komt hangt af van de duur die je kiest en van de zee: de begeleider past de route aan.",
+        "Zo zie je de Costa Brava vanaf het water zonder vaarbewijs of ervaring: de briefing vooraf legt alles uit wat je nodig hebt om veilig te varen."
+      ],
+      "requirements": [
+        "18 jaar om de jetski te besturen",
+        "Passagiers vanaf 14 jaar, met toestemming van een ouder of voogd als ze minderjarig zijn",
+        "Identiteitskaart of paspoort verplicht op de dag van de activiteit",
+        "Geen vaarbewijs of ervaring nodig"
+      ],
+      "included": [
+        "Gediplomeerde begeleider die de route leidt",
+        "Brandstof",
+        "Aansprakelijkheidsverzekering",
+        "Goedgekeurd zwemvest",
+        "Veiligheidsbriefing"
       ]
     }
   },
@@ -6121,7 +6290,7 @@ export const nl: Translations = {
   },
   activitiesSection: {
     title: "Meer dan een boot: jetski en eFoil",
-    subtitle: "Zweef boven het water op een eFoil of neem het stuur van een jetski in Blanes. Zonder vaarbewijs en zonder ervaring: we leggen alles uit voordat je vertrekt.",
+    subtitle: "Neem het stuur van een jetski in Blanes of zweef boven het water op een eFoil. Zonder vaarbewijs en zonder ervaring: we leggen alles uit voordat je vertrekt.",
     newBadge: "Nieuw",
   },
   titulinSection: {

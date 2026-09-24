@@ -74,6 +74,15 @@ export default function JetSkiBlanesHub() {
     };
   });
 
+  const jl = t.jetskiLanding;
+  const pricedProducts = JETSKI_PRODUCTS.map((p, i) => ({
+    id: p.id,
+    href: cards[i].href,
+    title: cards[i].title,
+    slots: p.slots,
+    hasTwo: p.slots.some((s) => s.price2),
+  }));
+
   const jsonLd = [
     generateBreadcrumbSchema([
       { name: t.nav.home, url: generateCanonicalUrl("home", language) },
@@ -234,6 +243,58 @@ export default function JetSkiBlanesHub() {
           </div>
         </div>
       </section>
+
+      {/* PRECIOS — every slot, straight from the catalogue */}
+      <section className="bg-muted/40 px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-center font-heading text-3xl font-bold text-foreground sm:text-4xl">
+            {h?.pricesTitle || "Precios"}
+          </h2>
+          <div className="mt-10 space-y-8">
+            {pricedProducts.map((p) => (
+              <div key={p.id}>
+                <h3 className="font-heading text-lg font-semibold text-foreground">
+                  <a href={p.href} className="underline-offset-4 hover:underline">{p.title}</a>
+                </h3>
+                <div className="mt-3 overflow-x-auto">
+                  <table className="w-full text-left text-sm">
+                    <thead className="text-muted-foreground">
+                      <tr className="border-b border-border">
+                        <th scope="col" className="py-2 pr-4 font-medium">{jl?.priceColDuration || "Duración"}</th>
+                        <th scope="col" className="py-2 pr-4 font-medium">{jl?.priceColOne || "1 persona"}</th>
+                        {p.hasTwo && <th scope="col" className="py-2 font-medium">{jl?.priceColTwo || "2 personas"}</th>}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {p.slots.map((s) => (
+                        <tr key={s.id} className="border-b border-border/60">
+                          <td className="py-2.5 pr-4 text-foreground">{s.label}</td>
+                          <td className="py-2.5 pr-4 font-semibold text-foreground">{s.price}€</td>
+                          {p.hasTwo && <td className="py-2.5 font-semibold text-foreground">{s.price2 ? `${s.price2}€` : "-"}</td>}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GUÍA */}
+      {(h?.guide || []).length > 0 && (
+        <section className="px-4 py-16 sm:px-6">
+          <div className="mx-auto max-w-2xl space-y-10">
+            {h!.guide!.map((g) => (
+              <div key={g.title}>
+                <h2 className="font-heading text-2xl font-bold text-foreground">{g.title}</h2>
+                <p className="mt-3 leading-relaxed text-muted-foreground">{g.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* FAQ */}
       {(h?.faq || []).length > 0 && (

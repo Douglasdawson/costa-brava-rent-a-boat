@@ -3080,6 +3080,11 @@ export interface Translations {
     includedTitle: string;
     faqTitle: string;
     reassurance: string;
+    requirementsTitle?: string;
+    priceColDuration?: string;
+    priceColOne?: string;
+    priceColTwo?: string;
+    moreTitle?: string;
     circuito: JetskiLandingCopy;
     excursion: JetskiLandingCopy;
     efoil?: JetskiLandingCopy;
@@ -3090,6 +3095,8 @@ export interface Translations {
     hero: { title: string; subtitle: string; cta: string };
     intro: string;
     productsTitle: string;
+    pricesTitle?: string;
+    guide?: { title: string; text: string }[];
     faqTitle: string;
     faq: { q: string; a: string }[];
   };
@@ -3379,6 +3386,11 @@ interface JetskiLandingCopy {
   chips: string[];
   intro: string;
   faq: { q: string; a: string }[];
+  howTitle?: string;
+  how?: string[];
+  requirements?: string[];
+  /** Translated "what's included"; falls back to the Spanish catalogue list. */
+  included?: string[];
 }
 function deepMerge(
   target: Record<string, any>,

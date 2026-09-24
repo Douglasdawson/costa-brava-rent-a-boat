@@ -3,6 +3,7 @@ import path from "path";
 import type { Express } from "express";
 import { storage } from "../storage";
 import { isPubliclyListed } from "../../shared/boatData";
+import { isJetSkiProduct } from "../../shared/jetskiProducts";
 import { logger } from "../lib/logger";
 import { registerRobotsRoutes } from "./robots";
 import { requireAdminSession } from "./auth-middleware";
@@ -340,6 +341,7 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "jetskiHub", "0.8", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "jetskiCircuito", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "jetskiExcursion", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "efoilBlanes", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "scooters", "0.6", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "activities", "0.6", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "categoryCaptained", "0.8", null, "monthly");
@@ -409,7 +411,8 @@ ${hreflangLinks}  </url>\n`;
       const baseUrl = getBaseUrl();
 
       const boats = await storage.getAllBoats();
-      const activeBoats = boats.filter(b => isPubliclyListed(b));
+      // Jet ski / eFoil rows have their own landings; their /barco/ URLs 301 there.
+      const activeBoats = boats.filter(b => isPubliclyListed(b) && !isJetSkiProduct(b.id));
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

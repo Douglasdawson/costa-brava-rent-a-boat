@@ -83,6 +83,12 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       pageKey: "scooters",
       type: "actividad",
     },
+    {
+      title: "Motos de agua cerca de Lloret",
+      description: "Circuito y excursion guiada en moto de agua desde Blanes, sin licencia",
+      pageKey: "jetskiHub",
+      type: "actividad",
+    },
   ],
   locationTossa: [
     {
@@ -348,10 +354,10 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       type: "actividad",
     },
     {
-      title: "Barcos sin licencia",
-      description: "5 barcos desde 85EUR/h, gasolina incluida",
-      pageKey: "categoryLicenseFree",
-      type: "guia",
+      title: "eFoil en Blanes",
+      description: "Vuela sobre el agua con una tabla electrica, con instructor y sin licencia",
+      pageKey: "efoilBlanes",
+      type: "actividad",
     },
     {
       title: "Alquiler barcos Blanes",
@@ -374,10 +380,10 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       type: "actividad",
     },
     {
-      title: "Barcos sin licencia",
-      description: "5 barcos desde 85EUR/h, gasolina incluida",
-      pageKey: "categoryLicenseFree",
-      type: "guia",
+      title: "eFoil en Blanes",
+      description: "Vuela sobre el agua con una tabla electrica, con instructor y sin licencia",
+      pageKey: "efoilBlanes",
+      type: "actividad",
     },
     {
       title: "Alquiler barcos Blanes",
@@ -394,8 +400,8 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       type: "actividad",
     },
     {
-      title: "Circuito en moto de agua sin licencia",
-      description: "Primera toma de contacto en un circuito vigilado frente a Blanes",
+      title: "Circuito en moto de agua",
+      description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes",
       pageKey: "jetskiCircuito",
       type: "actividad",
     },
@@ -406,10 +412,76 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       type: "ubicacion",
     },
     {
-      title: "Precios y tarifas",
-      description: "Consulta tarifas por temporada",
-      pageKey: "pricing",
-      type: "guia",
+      title: "eFoil en Blanes",
+      description: "Vuela sobre el agua con una tabla electrica, con instructor y sin licencia",
+      pageKey: "efoilBlanes",
+      type: "actividad",
+    },
+  ],
+  efoilBlanes: [
+    {
+      title: "Alquiler de moto de agua en Blanes",
+      description: "Todas las experiencias en moto de agua sin licencia",
+      pageKey: "jetskiHub",
+      type: "actividad",
+    },
+    {
+      title: "Circuito en moto de agua",
+      description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes",
+      pageKey: "jetskiCircuito",
+      type: "actividad",
+    },
+    {
+      title: "Excursion guiada a Tossa en moto de agua",
+      description: "Ruta guiada de Blanes a Tossa de Mar con monitor",
+      pageKey: "jetskiExcursion",
+      type: "actividad",
+    },
+    {
+      title: "Alquiler barcos Blanes",
+      description: "Todo sobre alquilar barco en Puerto de Blanes",
+      pageKey: "locationBlanes",
+      type: "ubicacion",
+    },
+  ],
+  locationMalgrat: [
+    {
+      title: "Alquiler de moto de agua en Blanes",
+      description: "Circuito y excursion guiada en moto de agua, a pocos minutos de Malgrat",
+      pageKey: "jetskiHub",
+      type: "actividad",
+    },
+    {
+      title: "Circuito en moto de agua",
+      description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes",
+      pageKey: "jetskiCircuito",
+      type: "actividad",
+    },
+    {
+      title: "Alquiler barcos Blanes",
+      description: "Todo sobre alquilar barco en Puerto de Blanes",
+      pageKey: "locationBlanes",
+      type: "ubicacion",
+    },
+  ],
+  locationSantaSusanna: [
+    {
+      title: "Alquiler de moto de agua en Blanes",
+      description: "Circuito y excursion guiada en moto de agua, a pocos minutos de Santa Susanna",
+      pageKey: "jetskiHub",
+      type: "actividad",
+    },
+    {
+      title: "Circuito en moto de agua",
+      description: "Pilota una moto de agua sin licencia en un circuito vigilado frente a Blanes",
+      pageKey: "jetskiCircuito",
+      type: "actividad",
+    },
+    {
+      title: "Alquiler barcos Blanes",
+      description: "Todo sobre alquilar barco en Puerto de Blanes",
+      pageKey: "locationBlanes",
+      type: "ubicacion",
     },
   ],
   scooters: [

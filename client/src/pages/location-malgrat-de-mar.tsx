@@ -2,6 +2,7 @@ import { Waves, TreePine, Footprints } from "lucide-react";
 import LocationTemplate, { type LocationConfig } from "./LocationTemplate";
 
 const config: LocationConfig = {
+  relatedContentPage: "locationMalgrat",
   slug: "malgrat",
   seoKey: "locationMalgrat",
   translationKey: "malgrat",

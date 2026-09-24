@@ -81,7 +81,14 @@ function collectJetSkiProducts(): IndexItem[] {
     sourceId: p.id,
     lang: "es",
     title: p.name,
-    body: [p.name, p.subtitle, p.description, ...(p.features ?? []), ...(p.included ?? [])].join(" \n "),
+    body: [
+      p.name,
+      p.subtitle,
+      p.description,
+      ...(p.features ?? []),
+      ...(p.included ?? []),
+      `Precios: ${p.slots.map((s) => `${s.label} ${s.price}€${s.price2 ? ` (${s.price2}€ 2 personas)` : ""}`).join(", ")}`,
+    ].join(" \n "),
     snippet: p.description.slice(0, 240),
     url: `${BASE_URL}${getLocalizedPath(p.pageKey as PageKey, "es")}`,
   }));
@@ -270,6 +277,22 @@ async function collectLandings(): Promise<IndexItem[]> {
         title: "Boat rental with skipper in Blanes (private captained excursion)",
         body: "Private boat excursion with a professional skipper from the Port of Blanes: coves and sea caves between Blanes and Tossa de Mar with an anchored swim stop. Up to 6 people aboard a 115 HP Pacific Craft 625 Open, 2, 3 or 4 hour trips from 240€ per boat (2h in low season). Nobody aboard needs a licence. Skipper, mooring, cleaning, VAT and insurance included; fuel is paid separately based on consumption. 200€ deposit.",
         snippet: "Private captained boat excursion from Blanes: coves and caves to Tossa de Mar, up to 6 people, from 240€/2h. No licence needed; fuel charged separately.",
+      },
+    },
+    // Jet ski / eFoil hub. Product prices live in collectJetSkiProducts (read
+    // from the catalogue); this row carries the shared facts and routes to them.
+    {
+      pageKey: "jetskiHub",
+      sourceId: "alquiler-moto-de-agua-blanes",
+      es: {
+        title: "Alquiler de moto de agua y eFoil en Blanes",
+        body: "Motos de agua y eFoil desde Blanes, sin licencia. Circuito en moto de agua en una zona balizada frente a Blanes, de 15 a 60 minutos; excursión guiada en moto de agua de Blanes hacia Tossa de Mar detrás de un monitor titulado, 1 h o 2 h; clases de eFoil (tabla eléctrica de hidrofoil) con instructor, 30 o 60 min o tándem de 60 min, packs de 5 y 10 horas bajo petición. Moto de agua: 18 años para conducir, pasajeros desde 14 con consentimiento paterno, DNI o pasaporte obligatorio; incluye combustible, chaleco, briefing y seguro de responsabilidad civil. Si el tiempo impide salir, cambio de fecha gratis. eFoil: sin límite de edad (menores con consentimiento), fianza de 20€ reembolsable.",
+        snippet: "Moto de agua y eFoil en Blanes sin licencia: circuito balizado de 15-60 min, excursión guiada a Tossa de Mar de 1-2 h y clases de eFoil con instructor.",
+      },
+      en: {
+        title: "Jet ski rental and eFoil in Blanes",
+        body: "Jet skis and eFoil from Blanes, no licence needed. Jet ski circuit in a buoyed zone off Blanes, 15 to 60 minutes; guided jet ski excursion from Blanes toward Tossa de Mar behind a qualified instructor, 1 h or 2 h; eFoil (electric hydrofoil board) lessons with an instructor, 30 or 60 min or a 60 min tandem, 5 and 10 hour packs on request. Jet ski: 18+ to drive, passengers from 14 with parental consent, ID or passport mandatory; fuel, life jacket, safety briefing and civil liability insurance included. If the weather prevents the outing, the date is changed free of charge. eFoil: no age limit (minors need parental consent), 20€ refundable deposit.",
+        snippet: "Jet ski and eFoil in Blanes, no licence needed: buoyed circuit 15-60 min, guided excursion to Tossa de Mar 1-2 h and eFoil lessons with an instructor.",
       },
     },
   ];

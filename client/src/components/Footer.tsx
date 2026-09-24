@@ -458,6 +458,22 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href={localizedPath("jetskiHub")}
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-0.5 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                >
+                  {t.jetskiHub?.hero?.title ?? t.nav.jetski}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={localizedPath("efoilBlanes")}
+                  className="text-primary-foreground hover:text-primary-foreground transition-colors py-0.5 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                >
+                  {t.jetskiLanding?.efoil?.navLabel ?? "eFoil"}
+                </a>
+              </li>
+              <li>
+                <a
                   href={localizedPath("scooters")}
                   className="text-primary-foreground hover:text-primary-foreground transition-colors py-0.5 flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 >

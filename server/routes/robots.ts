@@ -234,10 +234,16 @@ function generatePricingTables(): string {
  * Built from the canonical JETSKI_PRODUCTS shared module (our own offering).
  */
 function renderJetSkiPricingBlock(): string {
-  const lines: string[] = ["### Jet Ski (Costa Brava)"];
+  const lines: string[] = [
+    "### Jet Ski & eFoil (Blanes, Costa Brava)",
+    "",
+    `Overview: ${jetskiHubUrl(BASE_URL)}. ${JETSKI_COMMON_FACTS}`,
+  ];
   for (const product of JETSKI_PRODUCTS) {
     lines.push("");
     lines.push(`#### ${product.name} (${product.subtitle})`);
+    lines.push("");
+    lines.push(`${jetskiLandingUrl(product, BASE_URL)} — ${JETSKI_PRODUCT_FACTS[product.id] ?? ""}`.trim());
     lines.push("");
     lines.push("| Slot | Price |");
     lines.push("|------|-------|");
@@ -337,19 +343,37 @@ function jetskiLandingUrl(product: JetSkiProduct, businessUrl: string): string {
   return `${businessUrl}${getLocalizedPath(product.pageKey as PageKey, "es")}`;
 }
 
+/** Absolute ES URL of the jet ski hub page that groups the three products. */
+function jetskiHubUrl(businessUrl: string): string {
+  return `${businessUrl}${getLocalizedPath("jetskiHub", "es")}`;
+}
+
+// Key facts for the AI layer (llms, feed, ai-search fallback). Prices are
+// never written here: they come from the slots in JETSKI_PRODUCTS.
+const JETSKI_COMMON_FACTS =
+  "Jet ski: no licence needed, 18+ to drive, passengers from 14 with parental consent, ID or passport mandatory; fuel, life jacket, safety briefing and civil liability insurance included; if the weather cancels the outing, the date is changed free of charge.";
+const JETSKI_PRODUCT_FACTS: Record<string, string> = {
+  "jetski-circuito":
+    "Jet ski in a buoyed zone off Blanes, 15 to 60 minutes, 1-2 people per jet ski, no licence needed.",
+  "jetski-excursion-monitor":
+    "Guided jet ski excursion from Blanes toward Tossa de Mar behind a qualified instructor, 1 h or 2 h, 1-2 people per jet ski, no licence needed.",
+  "efoil-blanes":
+    "Electric hydrofoil board (eFoil) lesson with an instructor from the beach, no licence or experience needed, no age limit (minors need parental consent), 20 EUR refundable deposit; 30 or 60 min, or 60 min tandem; 5 and 10 hour packs on request.",
+};
+
 /**
  * Map a JetSkiProduct to a Schema.org Service node, mirroring how
  * `boatToProductSchema` exposes the boat fleet. One Offer per closed time-slot
- * (15/30/60 min for the circuit, 1h/2h for the guided excursion) so AI agents
- * can quote exact prices. Reuses the same GBP rating vars for aggregateRating.
+ * (15/30/45/60 min for the circuit, 1h/2h for the guided excursion, 30/60 min
+ * and tandem for the eFoil) so AI agents can quote exact prices.
+ *
+ * No aggregateRating: the GBP rating belongs to the business, and borrowing it
+ * on a product/service node can invalidate rich results. Same rule the SSR
+ * schema follows.
  */
-function jetskiToServiceSchema(
-  product: JetSkiProduct,
-  businessUrl: string,
-  ratingValue: number,
-  reviewCount: number,
-) {
+function jetskiToServiceSchema(product: JetSkiProduct, businessUrl: string) {
   const url = jetskiLandingUrl(product, businessUrl);
+  const serviceType = product.id === "efoil-blanes" ? "eFoil lesson" : "Jet ski rental";
   return {
     "@type": "Service",
     "@id": `${url}#service`,
@@ -357,13 +381,13 @@ function jetskiToServiceSchema(
     description: product.description,
     url,
     image: `${businessUrl}${product.image}`,
-    serviceType: "Jet ski rental",
-    category: "Jet ski rental",
+    serviceType,
+    category: serviceType,
     provider: { "@id": `${businessUrl}/#business` },
-    areaServed: [
-      { "@type": "Place", name: "Blanes" },
-      { "@type": "Place", name: "Costa Brava" },
-    ],
+    areaServed: ["Blanes", "Lloret de Mar", "Tossa de Mar", "Malgrat de Mar"].map((name) => ({
+      "@type": "Place",
+      name,
+    })),
     additionalProperty: [
       { "@type": "PropertyValue", name: "capacity", value: product.capacity },
       { "@type": "PropertyValue", name: "licenseRequired", value: false },
@@ -376,12 +400,6 @@ function jetskiToServiceSchema(
       availability: "https://schema.org/InStock",
       url,
     })),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue,
-      reviewCount,
-      bestRating: 5,
-    },
   };
 }
 
@@ -1159,9 +1177,7 @@ export function registerRobotsRoutes(app: Express): void {
           ...Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b)).map((b) =>
             boatToProductSchema(b, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
           ),
-          ...JETSKI_PRODUCTS.map((p) =>
-            jetskiToServiceSchema(p, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
-          ),
+          ...JETSKI_PRODUCTS.map((p) => jetskiToServiceSchema(p, BASE_URL)),
         ],
         // Convenience fields outside the @graph for agents that don't parse
         // JSON-LD graphs but still want the discovery URLs.
@@ -1255,17 +1271,28 @@ export function registerRobotsRoutes(app: Express): void {
         tags: b.features,
       }));
 
-      const jetskiItems = JETSKI_PRODUCTS.map((p) => {
-        const url = `${BASE_URL}${getLocalizedPath(p.pageKey as PageKey, "es")}`;
-        return {
-          id: url,
-          url,
-          title: `${p.name} — ${p.subtitle}`,
-          content_text: p.description,
-          summary: p.subtitle,
-          tags: p.features,
-        };
-      });
+      const jetskiItems = [
+        {
+          id: jetskiHubUrl(BASE_URL),
+          url: jetskiHubUrl(BASE_URL),
+          title: "Jet ski and eFoil in Blanes — circuit, excursion to Tossa de Mar and eFoil lessons",
+          content_text: JETSKI_COMMON_FACTS,
+          summary: "Jet ski and eFoil experiences from Blanes, no licence needed.",
+          tags: ["jet ski", "eFoil", "Blanes", "Tossa de Mar"],
+        },
+        ...JETSKI_PRODUCTS.map((p) => {
+          const url = jetskiLandingUrl(p, BASE_URL);
+          const prices = p.slots.map((s) => `${s.label} ${s.price} EUR`).join(", ");
+          return {
+            id: url,
+            url,
+            title: `${p.name} — ${p.subtitle}`,
+            content_text: `${p.description} ${JETSKI_PRODUCT_FACTS[p.id] ?? ""} Prices: ${prices}.`,
+            summary: p.subtitle,
+            tags: p.features,
+          };
+        }),
+      ];
 
       const body = {
         version: "https://jsonfeed.org/version/1.1",
@@ -1353,10 +1380,14 @@ export function registerRobotsRoutes(app: Express): void {
         const s = score(blob);
         if (s > 0) hits.push({ type: "boat", title: b.name, snippet: b.description.slice(0, 240), url: `${BASE_URL}/es/barco/${b.id}`, score: s });
       }
+      {
+        const s = score(`jet ski moto de agua eFoil Blanes ${JETSKI_COMMON_FACTS}`);
+        if (s > 0) hits.push({ type: "jetski", title: "Jet ski and eFoil in Blanes", snippet: JETSKI_COMMON_FACTS.slice(0, 240), url: jetskiHubUrl(BASE_URL), score: s });
+      }
       for (const p of JETSKI_PRODUCTS) {
-        const blob = [p.name, p.subtitle, p.description, ...(p.features ?? []), ...(p.included ?? [])].join(" ");
+        const blob = [p.name, p.subtitle, p.description, JETSKI_PRODUCT_FACTS[p.id] ?? "", ...(p.features ?? []), ...(p.included ?? [])].join(" ");
         const s = score(blob);
-        if (s > 0) hits.push({ type: "jetski", title: p.name, snippet: p.description.slice(0, 240), url: `${BASE_URL}${getLocalizedPath(p.pageKey as PageKey, "es")}`, score: s });
+        if (s > 0) hits.push({ type: "jetski", title: p.name, snippet: p.description.slice(0, 240), url: jetskiLandingUrl(p, BASE_URL), score: s });
       }
       for (const g of NAUTICAL_GLOSSARY_ES) {
         const s = score(`${g.term} ${g.definition}`);

@@ -7,6 +7,7 @@ import { logger } from "../lib/logger";
 import { getLocalizedPath, isValidLang, resolveSlug } from "../../shared/i18n-routes";
 import type { PageKey } from "../../shared/i18n-routes";
 import { SUPPORTED_LANGUAGES } from "../../shared/seoConstants";
+import { JETSKI_PRODUCTS } from "../../shared/jetskiProducts";
 
 // In-memory cache for redirects (refreshed every 1 minute)
 let redirectCache: Map<string, { toPath: string; statusCode: number }> = new Map();
@@ -68,6 +69,27 @@ const TOSSA_DUPLICATE_REDIRECTS: Record<string, string> = (() => {
   for (const dup of ["excursion-barco-tossa-de-mar-desde-blanes", "barco-tossa-de-mar-desde-blanes"]) {
     out[`/blog/${dup}`] = `/es/blog/${target}`;
     for (const lang of SUPPORTED_LANGUAGES) out[`/${lang}/blog/${dup}`] = `/${lang}/blog/${target}`;
+  }
+  return out;
+})();
+
+// Jet ski / eFoil consolidation (2026-09-24). The products also live as rows in
+// `boats`, so /{lang}/barco/efoil-blanes rendered a boat detail page that
+// competed with (and outranked) the real landing. Every boat-detail URL of a
+// jet ski product, and the legacy Wix "motos de agua" paths that used to point
+// at the boat category, now 301 to the landing / hub in the same language.
+const JETSKI_REDIRECTS: Record<string, string> = (() => {
+  const out: Record<string, string> = {};
+  for (const p of JETSKI_PRODUCTS) {
+    const pageKey = p.pageKey as PageKey;
+    out[`/barco/${p.id}`] = getLocalizedPath(pageKey, "es");
+    for (const lang of SUPPORTED_LANGUAGES) {
+      out[`${getLocalizedPath("boatDetail", lang)}/${p.id}`] = getLocalizedPath(pageKey, lang);
+    }
+  }
+  for (const legacy of ["motos-de-agua", "excursiones-moto-agua"]) {
+    out[`/${legacy}`] = getLocalizedPath("jetskiHub", "es");
+    for (const lang of SUPPORTED_LANGUAGES) out[`/${lang}/${legacy}`] = getLocalizedPath("jetskiHub", lang);
   }
   return out;
 })();
@@ -149,6 +171,7 @@ export function redirectMiddleware() {
       // JS redirect. 301 server-side la saca del índice y consolida en /es/.
       "/barcos": "/es/barcos-sin-licencia",
       ...TOSSA_DUPLICATE_REDIRECTS,
+      ...JETSKI_REDIRECTS,
     };
     const hardcodedTarget = hardcoded[req.path];
     if (hardcodedTarget) {
@@ -202,7 +225,7 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/copia-de-embarcaciones": getLocalizedPath("categoryLicenseFree", "es"),
     "/copy-of-extras": getLocalizedPath("pricing", "es"),
     "/copy-of-hoteles-y-alojamientos": getLocalizedPath("locationBlanes", "es"),
-    "/motos-de-agua": getLocalizedPath("categoryLicenseFree", "es"),
+    "/motos-de-agua": getLocalizedPath("jetskiHub", "es"),
     "/alquiler-con-licencia": getLocalizedPath("categoryLicensed", "es"),
 
     // Old boat detail URLs -> ES boat detail
@@ -214,7 +237,7 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/barco-con-licencia-blanes-trimarchi-57-s": getLocalizedPath("boatDetail", "es") + "/trimarchi-57s",
     "/barco-con-licencia-blanes-mingolla-brava-19": getLocalizedPath("boatDetail", "es") + "/mingolla-brava-19",
     "/excursiones-privadas-con-patron-blanes": getLocalizedPath("categoryLicensed", "es"),
-    "/excursiones-moto-agua": getLocalizedPath("categoryLicenseFree", "es"),
+    "/excursiones-moto-agua": getLocalizedPath("jetskiHub", "es"),
     "/condiciones-generales-alquiler": getLocalizedPath("condicionesGenerales", "es"),
     "/preguntas-frequentes": getLocalizedPath("faq", "es"),
     "/fuegos-artificiales-blanes-2025": getLocalizedPath("blog", "es"),
@@ -234,19 +257,19 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/ca/beneteau-flyer-5-5": getLocalizedPath("categoryLicensed", "ca"),
     "/en/barco-con-licencia-blanes-pacific-craft-625": getLocalizedPath("boatDetail", "en") + "/pacific-craft-625",
     "/fr/barco-sin-licencia-blanes-solar-450": getLocalizedPath("boatDetail", "fr") + "/solar-450",
-    "/en/motos-de-agua": getLocalizedPath("categoryLicenseFree", "en"),
+    "/en/motos-de-agua": getLocalizedPath("jetskiHub", "en"),
     "/en/nota-legal": getLocalizedPath("privacyPolicy", "en"),
     "/fr/copia-de-embarcaciones": getLocalizedPath("categoryLicenseFree", "fr"),
     "/fr/beneteau-flyer-5-5": getLocalizedPath("categoryLicensed", "fr"),
     "/en/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "en"),
-    "/fr/motos-de-agua": getLocalizedPath("categoryLicenseFree", "fr"),
+    "/fr/motos-de-agua": getLocalizedPath("jetskiHub", "fr"),
     "/ca/copy-of-extras": getLocalizedPath("pricing", "ca"),
     "/blank": getLocalizedPath("home", "es"),
     "/barco-sin-licencia-solar-450-blanes": getLocalizedPath("boatDetail", "es") + "/solar-450",
     "/excursion-barco-privado": getLocalizedPath("categoryLicensed", "es"),
     "/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "es"),
     "/es/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "es"),
-    "/es/motos-de-agua": getLocalizedPath("categoryLicenseFree", "es"),
+    "/es/motos-de-agua": getLocalizedPath("jetskiHub", "es"),
     "/nota-legal": getLocalizedPath("privacyPolicy", "es"),
     "/beneteau-flyer-5-5": getLocalizedPath("categoryLicensed", "es"),
 
@@ -295,7 +318,7 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/ca/blog/alquiler-barco-costa-brava-guia-completa": "/ca/blog/alquiler-barco-sin-licencia-blanes-guia",
     "/ca/barco-con-licencia-blanes-pacific-craft-625": "/ca/vaixell/pacific-craft-625",
     "/fr/barco-con-licencia-blanes-trimarchi-57-s": "/fr/bateau/trimarchi-57s",
-    "/ca/excursiones-moto-agua": "/ca/vaixell-sense-llicencia",
+    "/ca/excursiones-moto-agua": getLocalizedPath("jetskiHub", "ca"),
     "/ca/barco-rodman-todo-incluido-blanes": "/ca/vaixell-amb-llicencia",
     "/ca/barco-sin-licencia-blanes-remus-450": "/ca/vaixell/remus-450",
     "/ca/barco-sin-licencia-blanes-astec-450": "/ca/vaixell/astec-480",

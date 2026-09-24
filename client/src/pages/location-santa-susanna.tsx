@@ -2,6 +2,7 @@ import { Waves, Castle, Star } from "lucide-react";
 import LocationTemplate, { type LocationConfig } from "./LocationTemplate";
 
 const config: LocationConfig = {
+  relatedContentPage: "locationSantaSusanna",
   slug: "santa-susanna",
   seoKey: "locationSantaSusanna",
   translationKey: "santaSusanna",

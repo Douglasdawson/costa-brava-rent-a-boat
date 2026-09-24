@@ -36,6 +36,7 @@ import { flagEmojiToIso2 } from "@/utils/phone-prefixes";
 const LicenseVerifierPanel = lazy(() => import("@/components/booking/LicenseVerifierPanel"));
 import { formatBookingDate as formatBookingDateDesktop, getLocaleForLanguage } from "@/utils/intl-helpers";
 import { translateBoatText } from "@shared/boatTextTranslations";
+import { isLicenseFreeEraActive } from "@shared/constants";
 
 // Slide animation variants — transform + opacity only. P1.17 (2026-05-20)
 // removed `filter: blur(...)` because it's compositor-dependent in Safari and
@@ -562,7 +563,7 @@ function Step1BoatDate({
   return (
     <div className="space-y-5">
       {/* License filter */}
-      {!preSelectedBoatId && (
+      {!preSelectedBoatId && isLicenseFreeEraActive() && (
         <div>
           <p className="text-xs font-semibold text-muted-foreground mb-2">
             {t.wizard.haveNauticalLicense}
@@ -597,11 +598,11 @@ function Step1BoatDate({
         <Suspense fallback={<LicenseVerifierPanelSkeleton />}>
           <LicenseVerifierPanel
             verifier={licenseVerifier}
-            onSwitchToUnlicensed={() => {
+            onSwitchToUnlicensed={isLicenseFreeEraActive() ? () => {
               setLicenseFilter("without");
               setSelectedBoat("");
               licenseVerifier.dismiss();
-            }}
+            } : undefined}
           />
         </Suspense>
       )}

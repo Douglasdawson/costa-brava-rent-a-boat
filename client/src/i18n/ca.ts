@@ -5,6 +5,9 @@ export const ca: Translations = {
     home: "Inici",
     licensedBoats: "Llanxes amb llicència",
     captained: "Amb patró",
+    boats: "Barques",
+    allFleet: "Tota la flota",
+    more: "Més",
     fleet: "Flota",
     booking: "Reserva",
     contact: "Contacte",
@@ -60,6 +63,7 @@ export const ca: Translations = {
     askWhatsApp: "Pregunta'ns per WhatsApp",
     testimonialQuote: "Experi\u00E8ncia incre\u00EFble, repetirem segur",
     testimonialQuoteShort: "Repetirem segur",
+    summaryGeoPostEra: "Costa Brava Rent a Boat lloga des del Port de Blanes llanxes de 80 a 115 CV per a patrons titulats i una excursió privada amb capità, a més de motos d'aigua i eFoil. Des de l'1 d'octubre de 2026 el RD 1188/2025 exigeix títol nàutic per llogar: n'hi ha prou amb la Llicència de Navegació, el titulet d'un dia sense examen, o un títol estranger equivalent que verifiquem en línia. Atenció en 8 idiomes. Temporada d'abril a octubre.",
     summaryGeo:
       "Costa Brava Rent a Boat opera la flota de lloguer d'embarcacions m\u00E9s gran del Port de Blanes amb 9 vaixells: 3 llanxes de 80 a 115 CV per a patrons titulats, 5 vaixells sense titulaci\u00F3 (llogables fins al 30 de setembre de 2026, quan el RD 1188/2025 passa a exigir t\u00EDtol n\u00E0utic a tot arrendatari) i 1 excursi\u00F3 privada amb patr\u00F3. N'hi ha prou amb la Llic\u00E8ncia de Navegaci\u00F3, el titul\u00EDn d'un dia sense examen, o un t\u00EDtol estranger equivalent que verifiquem en l\u00EDnia. Atenci\u00F3 en 8 idiomes. Temporada d'abril a octubre. 4,8\u2605 a Google amb m\u00E9s de 300 ressenyes.",
   },
@@ -100,7 +104,7 @@ export const ca: Translations = {
     bestForPremium: "Premium sense llicència",
     bestForPremiumPostEra: "Premium fins a 15 CV",
     imageAltNoLicensePostEra:
-      "Llogar barca {name} fins a 15 CV (amb titulí) a Blanes, Costa Brava: {capacity} persones, des de {price}€",
+      "Llogar barca {name} amb patró a Blanes, Costa Brava: {capacity} persones, des de {price}€",
     imageAltNoLicense:
       "Lloguer vaixell {name} sense titol a Blanes, Costa Brava, {capacity} persones, des de {price}€",
     imageAltWithLicense:
@@ -143,7 +147,7 @@ export const ca: Translations = {
       description: "Assessorament abans, durant i després. Sempre localitzables per WhatsApp.",
     },
     whyUs: "Per què Costa Brava Rent a Boat Blanes?",
-    whyUsSub: "Gasolina inclosa, sense sorpreses, i el millor assessorament pel teu dia al mar.",
+    whyUsSub: "Preus clars, sense sorpreses, i el millor assessorament per al teu dia al mar.",
     extrasTitle: "Extres Disponibles",
     extrasSub: "Completa la teva experiència amb els nostres extres opcionals.",
     extras: {
@@ -173,7 +177,7 @@ export const ca: Translations = {
     exploreMore: "Descobreix els nostres serveis",
     exploreLinks: {
       licenseFree: "Vaixells sense llicència",
-      licenseFreePostEra: "Barques petites fins a 15 CV a Blanes (amb titulí)",
+      licenseFreePostEra: "Barques sense llicència: què canvia a l'octubre de 2026",
       licensed: "Vaixells amb llicència",
       navigationLicense: "Llic\u00E8ncia de Navegaci\u00F3 (titul\u00EDn)",
       pricing: "Preus i tarifes",
@@ -191,10 +195,10 @@ export const ca: Translations = {
     step3Title: "A gaudir de les cales",
     step3Desc: "Navega lliure per les millors cales de la Costa Brava.",
     cta: "Veure Vaixells sense Llicència",
-    ctaPostEra: "Veure barques petites (amb titulí)",
+    ctaPostEra: "Veure llanxes amb titulí",
   },
   contact: {
-    title: "Tens Dubtes?",
+    title: "Tens dubtes?",
     subtitle: "Responem en menys de 5 minuts per WhatsApp. Sense compromís.",
     name: "Nom",
     email: "Email",
@@ -740,6 +744,9 @@ export const ca: Translations = {
       "Sorprèn algú especial amb una experiència inoblidable navegant per les cales de la Costa Brava.",
   },
   boatDetail: {
+    retiredTitle: "Aquesta barca ja no es lloga",
+    retiredBody: "Des de l'1 d'octubre del 2026 la llei exigeix titulació nàutica per llogar qualsevol barca de motor, i aquesta era de la nostra flota sense llicència. Amb el titulet portes les nostres llanxes, i si prefereixes no portar el timó, surts amb patró.",
+    retiredCta: "Veure la flota disponible",
     notFound: "Embarcació no trobada",
     backToFleet: "Tornar a la flota",
     description: "Descripció",
@@ -1055,14 +1062,14 @@ export const ca: Translations = {
     synonymsBody: "Tant és com ho busquis: lloguer de llanxes a la Costa Brava, lloguer d'embarcacions sense titulació o llogar una barca a Blanes. Els nostres 4 vaixells sense llicència són llanxes d'esbarjo de fins a 5 metres i 15 CV que qualsevol adult pot pilotar sense carnet nàutic. Mateix vaixell i mateix preu des de 85€/h amb gasolina inclosa, ho diguis com ho diguis.",
     heroTitle: "Vaixells Sense Llicència a Blanes",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
-    postEraHeroTitle: "Barques sense llicència a Blanes: des de l'1 d'octubre de 2026 es lloguen amb titulí",
-    postEraHeroDescription: "Les mateixes 4 barques petites del Port de Blanes (fins a 15 CV, 5 places, benzina inclosa) es continuen llogant. El que canvia és la llei: el RD 1188/2025 exigeix des de l'1 d'octubre de 2026 que qui lloga tingui títol nàutic. N'hi ha prou amb la Llicència de Navegació, el titulí: un curs d'un dia, 2 hores de teoria i 4 de pràctiques, sense examen i sense caducitat. Si no el tens, surts amb patró.",
-    postEraBadge: "Amb titulí (curs d'1 dia)",
-    postEraCtaButton: "Reservar barca amb titulí",
+    postEraHeroTitle: "Barques sense llicència a Blanes: des de l'1 d'octubre de 2026 ja no les lloguem",
+    postEraHeroDescription: "Des de l'1 d'octubre de 2026 la llei exigeix títol nàutic per llogar qualsevol barca de motor, i hem retirat les nostres barques petites sense llicència. Amb el titulet, un curs d'un dia sense examen, portes les nostres llanxes; i si no vols portar el timó, surts amb patró.",
+    postEraBadge: "Titulí en 1 dia, sense examen",
+    postEraCtaButton: "Veure llanxes amb titulí",
     postEraNoticeTitle: "Què canvia l'1 d'octubre de 2026",
-    postEraNoticeBody: "Fins ara aquestes barques es llogaven sense cap títol. Des de l'1 d'octubre de 2026 la llei demana que l'arrendatari tingui com a mínim la Llicència de Navegació. Amb ella pilotes qualsevol embarcació de fins a 6 metres a 2 milles de la costa: tota la nostra flota. Sense títol, l'alternativa és l'excursió privada amb patró.",
+    postEraNoticeBody: "Fins al 30 de setembre de 2026 llogàvem barques petites sense cap títol. Des de l'1 d'octubre la llei demana que l'arrendatari tingui com a mínim la Llicència de Navegació, i aquestes barques deixen de llogar-se. Amb ella pilotes qualsevol embarcació de fins a 6 metres a 2 milles de la costa, incloses les nostres tres llanxes amb llicència. Sense títol, l'alternativa és l'excursió privada amb patró.",
     postEraNoticeLink: "Com treure't el titulí en un dia",
-    postEraFaqCarnetAnswer: "Sí. Des de l'1 d'octubre de 2026 (RD 1188/2025) per llogar qualsevol embarcació a motor cal un títol nàutic, també a les barques de fins a 15 CV. El mínim és la Llicència de Navegació (titulí): un curs d'un dia, 2 hores de teoria i 4 de pràctiques, sense examen i sense caducitat, que expedeixen les escoles nàutiques autoritzades. Amb ella pilotes tota la nostra flota. Si no tens títol, pots sortir amb patró a l'excursió privada.",
+    postEraFaqCarnetAnswer: "Sí. Des de l'1 d'octubre de 2026 (RD 1188/2025) per llogar qualsevol embarcació a motor cal un títol nàutic, i per això ja no lloguem barques sense llicència. El mínim és la Llicència de Navegació (titulí): un curs d'un dia, 2 hores de teoria i 4 de pràctiques, sense examen i sense caducitat, que expedeixen les escoles nàutiques autoritzades. Amb ella pilotes les nostres tres llanxes amb llicència. Si no tens títol, pots sortir amb patró a l'excursió privada.",
     heroDescription:
       "4 barques sense llicència des de 85€/h al Port de Blanes, gasolina inclosa. Fins a 5 persones, sense carnet ni titulació, sense experiència prèvia. Briefing de seguretat de 15 minuts i a navegar per les cales de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina i Sa Boadella fins a la Platja de Fenals (Lloret de Mar).",
     badgeNoLicense: "Sense Llicència Necessària",
@@ -1688,7 +1695,7 @@ export const ca: Translations = {
     yearsExperience: "6+ anys d'experiència",
     fullInsurance: "Assegurança inclosa",
     happyCustomers: "5000+ clients satisfets",
-    fleetInsured: "Flota assegurada al 100%",
+    fleetInsured: "Assegurança de RC i accidents inclosa",
     zeroIncidents: "0 incidents de seguretat",
     certifiedCaptains: "Capitans certificats",
     officialPort: "Port oficial de Blanes",
@@ -6097,5 +6104,23 @@ export const ca: Translations = {
       success: 'Guia enviada. Revisa el teu email.',
       error: 'Error en enviar. Torna-ho a intentar.',
     },
+  },
+  activitiesSection: {
+    title: "Més enllà de la barca: moto d'aigua i eFoil",
+    subtitle: "Vola sobre l'aigua amb l'eFoil o posa't als comandaments d'una moto d'aigua a Blanes. Sense llicència i sense experiència prèvia: t'ho expliquem tot abans de sortir.",
+    newBadge: "Novetat",
+  },
+  titulinSection: {
+    title: "Treu-te el titulet en un dia i navega pel teu compte",
+    subtitle: "6 hores de curs, sense examen i per a tota la vida. Te l'organitzem a prop de Blanes i el combinem amb el teu primer lloguer: acabes el curs amb el títol a la mà i la llanxa reservada.",
+    ctaPrimary: "Vull treure'm el titulet",
+    captainedLine: "Prefereixes no portar el timó?",
+    captainedCta: "Surt amb patró professional",
+  },
+  extrasSection: {
+    title: "Extres per al teu dia al mar",
+    subtitle: "Afegeix-los a qualsevol barca de la flota, en reservar o al port. El mateix preu a totes les barques.",
+    packsTitle: "Packs amb descompte",
+    packSaving: "En lloc de {price} per separat",
   },
 };

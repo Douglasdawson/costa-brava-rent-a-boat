@@ -5,6 +5,9 @@ export const fr: Translations = {
     home: "Accueil",
     licensedBoats: "Bateaux avec permis",
     captained: "Avec skipper",
+    boats: "Bateaux",
+    allFleet: "Toute la flotte",
+    more: "Plus",
     fleet: "Flotte",
     booking: "Réservation",
     contact: "Contact",
@@ -62,6 +65,7 @@ export const fr: Translations = {
     askWhatsApp: "Demandez-nous sur WhatsApp",
     testimonialQuote: "Exp\u00E9rience incroyable, nous reviendrons",
     testimonialQuoteShort: "Nous reviendrons",
+    summaryGeoPostEra: "Costa Brava Rent a Boat loue depuis le port de Blanes des bateaux à moteur de 80 à 115 CV pour skippers diplômés et une excursion privée avec capitaine, ainsi que des jet skis et de l'eFoil. Depuis le 1er octobre 2026, le RD 1188/2025 exige un permis bateau pour louer : la Licencia de Navegación, une formation d'un jour sans examen, suffit, tout comme un permis étranger équivalent que nous vérifions en ligne. Accueil en 8 langues. Saison d'avril à octobre.",
     summaryGeo:
       "Costa Brava Rent a Boat exploite la plus grande flotte de location de bateaux du Port de Blanes avec 9 bateaux : 3 bateaux \u00E0 moteur de 80 \u00E0 115 CV pour skippers dipl\u00F4m\u00E9s, 5 bateaux sans permis (louables jusqu'au 30 septembre 2026, date \u00E0 laquelle le RD 1188/2025 exige un titre nautique de tout locataire) et 1 excursion priv\u00E9e avec capitaine. La Licencia de Navegaci\u00F3n, le titul\u00EDn d'une journ\u00E9e sans examen, ou un titre \u00E9tranger \u00E9quivalent que nous v\u00E9rifions en ligne. Service en 8 langues. Saison d'avril \u00E0 octobre. 4,8\u2605 sur Google avec plus de 300 avis.",
   },
@@ -102,7 +106,7 @@ export const fr: Translations = {
     bestForPremium: "Premium sans permis",
     bestForPremiumPostEra: "Premium 15 CV max",
     imageAltNoLicensePostEra:
-      "Louer le bateau {name}, 15 CV max (avec titulín), à Blanes, Costa Brava : {capacity} personnes, dès {price}€",
+      "Louer le bateau {name} avec skipper à Blanes, Costa Brava : {capacity} personnes, dès {price}€",
     imageAltNoLicense:
       "Location bateau {name} sans permis à Blanes, Costa Brava, {capacity} personnes, dès {price}€",
     imageAltWithLicense:
@@ -147,7 +151,7 @@ export const fr: Translations = {
     },
     whyUs: "Pourquoi Costa Brava Rent a Boat Blanes?",
     whyUsSub:
-      "Essence incluse, sans surprises, et les meilleurs conseils pour votre journée en mer.",
+      "Des prix clairs, sans surprise, et les meilleurs conseils pour votre journée en mer.",
     extrasTitle: "Extras Disponibles",
     extrasSub: "Complétez votre expérience avec nos extras optionnels.",
     extras: {
@@ -177,7 +181,7 @@ export const fr: Translations = {
     exploreMore: "Découvrez nos services",
     exploreLinks: {
       licenseFree: "Bateaux sans permis",
-      licenseFreePostEra: "Petits bateaux jusqu'à 15 CV à Blanes (avec titulín)",
+      licenseFreePostEra: "Bateaux sans permis : ce qui change en octobre 2026",
       licensed: "Bateaux avec permis",
       navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Prix et tarifs",
@@ -195,10 +199,10 @@ export const fr: Translations = {
     step3Title: "Profitez des criques",
     step3Desc: "Naviguez librement dans les meilleures criques de la Costa Brava.",
     cta: "Voir Bateaux sans Permis",
-    ctaPostEra: "Voir les petits bateaux (avec titulín)",
+    ctaPostEra: "Voir les bateaux à moteur avec titulín",
   },
   contact: {
-    title: "Des Questions ?",
+    title: "Des questions ?",
     subtitle: "Réponse en moins de 5 minutes par WhatsApp. Sans engagement.",
     name: "Nom",
     email: "Email",
@@ -744,6 +748,9 @@ export const fr: Translations = {
       "Surprenez quelqu'un de spécial avec une expérience inoubliable en naviguant dans les criques de la Costa Brava.",
   },
   boatDetail: {
+    retiredTitle: "Ce bateau n'est plus proposé à la location",
+    retiredBody: "Depuis le 1er octobre 2026, la loi exige un permis bateau pour louer tout bateau à moteur, et celui-ci faisait partie de notre flotte sans permis. Avec le permis de base, vous pilotez nos bateaux à moteur, et si vous préférez ne pas prendre la barre, vous sortez avec un skipper.",
+    retiredCta: "Voir la flotte disponible",
     notFound: "Bateau introuvable",
     backToFleet: "Retour à la flotte",
     description: "Description",
@@ -1062,14 +1069,14 @@ export const fr: Translations = {
     synonymsBody: "Peu importe comment vous le cherchez : location de vedettes sur la Costa Brava, location d'embarcations sans diplôme ou louer une barque à Blanes. Nos 4 bateaux sans permis sont des vedettes de plaisance jusqu'à 5 mètres et 15 CV que tout adulte peut piloter sans permis nautique. Même bateau, même prix dès 85€/h carburant inclus, quel que soit le nom que vous lui donnez.",
     heroTitle: "Bateaux Sans Permis à Blanes",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
-    postEraHeroTitle: "Bateaux sans permis à Blanes : depuis le 1er octobre 2026, location avec le titulín",
-    postEraHeroDescription: "Les mêmes 4 petits bateaux du port de Blanes (15 CV max, 5 places, carburant inclus) restent à louer. Ce qui change, c'est la loi : le décret royal 1188/2025 exige depuis le 1er octobre 2026 que le locataire possède un titre nautique. La Licencia de Navegación, le titulín, suffit : un cours d'une journée, 2 heures de théorie et 4 de pratique, sans examen et sans expiration. Pas de permis ? Vous partez avec un skipper.",
-    postEraBadge: "Avec titulín (cours d'1 jour)",
-    postEraCtaButton: "Réserver un bateau avec le titulín",
+    postEraHeroTitle: "Bateaux sans permis à Blanes : depuis le 1er octobre 2026, nous ne les louons plus",
+    postEraHeroDescription: "Depuis le 1er octobre 2026, la loi exige un permis bateau pour louer tout bateau à moteur, et nous avons retiré nos petits bateaux sans permis. Avec le titulín, une formation d'un jour sans examen, vous pilotez nos bateaux à moteur ; et si vous préférez ne pas prendre la barre, vous partez avec un skipper.",
+    postEraBadge: "Titulín en 1 jour, sans examen",
+    postEraCtaButton: "Voir les bateaux à moteur avec titulín",
     postEraNoticeTitle: "Ce qui change le 1er octobre 2026",
-    postEraNoticeBody: "Jusqu'ici ces bateaux se louaient sans aucun titre. Depuis le 1er octobre 2026, la loi exige que le locataire possède au moins la Licencia de Navegación. Avec elle, vous pilotez tout bateau jusqu'à 6 mètres à 2 milles de la côte : toute notre flotte. Sans titre, l'alternative est l'excursion privée avec skipper.",
+    postEraNoticeBody: "Jusqu'au 30 septembre 2026, nous louions des petits bateaux sans aucun titre. Depuis le 1er octobre, la loi exige que le locataire possède au moins la Licencia de Navegación, et ces bateaux ne se louent plus. Avec elle, vous pilotez tout bateau jusqu'à 6 mètres à 2 milles de la côte, y compris nos trois bateaux à moteur avec permis. Sans titre, l'alternative est l'excursion privée avec skipper.",
     postEraNoticeLink: "Comment obtenir le titulín en une journée",
-    postEraFaqCarnetAnswer: "Oui. Depuis le 1er octobre 2026 (décret royal 1188/2025), louer un bateau à moteur exige un titre nautique, y compris pour les bateaux de 15 CV max. Le minimum est la Licencia de Navegación (titulín) : un cours d'une journée, 2 heures de théorie et 4 de pratique, sans examen ni expiration, délivré par les écoles nautiques agréées. Elle couvre toute notre flotte. Sans permis, vous pouvez partir avec un skipper lors de l'excursion privée.",
+    postEraFaqCarnetAnswer: "Oui. Depuis le 1er octobre 2026 (décret royal 1188/2025), louer un bateau à moteur exige un titre nautique, c'est pourquoi nous ne louons plus de bateaux sans permis. Le minimum est la Licencia de Navegación (titulín) : un cours d'une journée, 2 heures de théorie et 4 de pratique, sans examen ni expiration, délivré par les écoles nautiques agréées. Elle couvre nos trois bateaux à moteur avec permis. Sans permis, vous pouvez partir avec un skipper lors de l'excursion privée.",
     heroDescription:
       "4 bateaux sans permis dès 85€/h au Port de Blanes, carburant inclus. Jusqu'à 5 personnes, sans permis ni titulation, sans expérience préalable. Briefing de sécurité de 15 min et c'est parti pour naviguer dans les criques de la Costa Brava : Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina et Sa Boadella jusqu'à la plage de Fenals (Lloret de Mar).",
     badgeNoLicense: "Aucun Permis Requis",
@@ -1696,7 +1703,7 @@ export const fr: Translations = {
     yearsExperience: "6+ ans d'expérience",
     fullInsurance: "Assurance incluse",
     happyCustomers: "5000+ clients satisfaits",
-    fleetInsured: "Flotte assurée à 100%",
+    fleetInsured: "Assurance RC et accidents incluse",
     zeroIncidents: "0 incidents de sécurité",
     certifiedCaptains: "Capitaines certifiés",
     officialPort: "Port officiel de Blanes",
@@ -6113,5 +6120,23 @@ export const fr: Translations = {
       success: 'Guide envoyé ! Vérifiez votre email.',
       error: 'Échec de l\'envoi. Veuillez réessayer.',
     },
+  },
+  activitiesSection: {
+    title: "Au-delà du bateau : jet ski et eFoil",
+    subtitle: "Volez au-dessus de l'eau en eFoil ou prenez les commandes d'un jet ski à Blanes. Sans permis et sans expérience : on vous explique tout avant de partir.",
+    newBadge: "Nouveau",
+  },
+  titulinSection: {
+    title: "Passez le titulín en une journée et pilotez vous-même",
+    subtitle: "6 heures de formation, sans examen et valable à vie. Nous l'organisons près de Blanes et le combinons avec votre première location : vous terminez la formation avec votre permis en main et votre bateau réservé.",
+    ctaPrimary: "Je veux passer le titulín",
+    captainedLine: "Vous préférez ne pas prendre la barre ?",
+    captainedCta: "Partez avec un skipper professionnel",
+  },
+  extrasSection: {
+    title: "Des extras pour votre journée en mer",
+    subtitle: "Ajoutez-les à n'importe quel bateau de la flotte, à la réservation ou au port. Le même prix sur tous les bateaux.",
+    packsTitle: "Packs avantageux",
+    packSaving: "Au lieu de {price} séparément",
   },
 };

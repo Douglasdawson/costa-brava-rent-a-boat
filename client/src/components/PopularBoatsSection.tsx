@@ -4,7 +4,8 @@ import { Ship } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { BOAT_DATA, boatDataRequiresLicense } from "@shared/boatData";
+import { BOAT_DATA, boatDataRequiresLicense, isPubliclyListed } from "@shared/boatData";
+import { isCatalogBoatPubliclyListed } from "@shared/publicFleet";
 import { getBoatImage } from "@/utils/boatImages";
 import type { Boat } from "@shared/schema";
 import { translateBoatText } from "@shared/boatTextTranslations";
@@ -65,8 +66,10 @@ export default function PopularBoatsSection({
   // While loading (or if the API fails) fall back to the static catalog so
   // SSR/first paint still shows cards.
   const { data: liveBoats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  // RD 1188/2025: licence-free boats leave public surfaces on 2026-10-01.
   const isLive = (boatId: string) =>
-    !liveBoats || liveBoats.some((b) => b.id === boatId && b.isActive);
+    isCatalogBoatPubliclyListed(BOAT_DATA[boatId]) &&
+    (!liveBoats || liveBoats.some((b) => b.id === boatId && isPubliclyListed(b)));
 
   return (
     <RevealSection className={`py-16 sm:py-20 ${bgClass}`}>

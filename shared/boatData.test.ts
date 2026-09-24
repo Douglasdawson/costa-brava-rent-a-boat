@@ -6,6 +6,7 @@ import {
   boatDataRequiresLicense,
   BOAT_DATA,
   BASELINE_INACTIVE_BOAT_IDS,
+  isPubliclyListed,
   type FleetStatBoat,
 } from "./boatData";
 
@@ -78,5 +79,41 @@ describe("applyFleetStatsToText", () => {
 
   it("BASELINE_INACTIVE_BOAT_IDS documents the deactivated hull", () => {
     expect(BASELINE_INACTIVE_BOAT_IDS).toContain("astec-400");
+  });
+});
+
+describe("isPubliclyListed (RD 1188/2025)", () => {
+  const lastDay = new Date("2026-09-30T23:30:00+02:00");
+  const firstDay = new Date("2026-10-01T00:30:00+02:00");
+  const free = { id: "solar-450", requiresLicense: false, isActive: true };
+  const licensed = { id: "mingolla-brava-19", requiresLicense: true, isActive: true };
+  // The live DB row has requiresLicense=false: it must stay by id, not by flag.
+  const captained = { id: "excursion-privada", requiresLicense: false, isActive: true };
+  const jetski = { id: "jetski-circuito", requiresLicense: false, isActive: true };
+  const efoil = { id: "efoil-blanes", requiresLicense: false, isActive: true };
+
+  it("keeps licence-free boats until Sept 30 (Madrid)", () => {
+    expect(isPubliclyListed(free, lastDay)).toBe(true);
+  });
+  it("hides licence-free boats from Oct 1 but keeps everything else", () => {
+    expect(isPubliclyListed(free, firstDay)).toBe(false);
+    expect(isPubliclyListed(licensed, firstDay)).toBe(true);
+    expect(isPubliclyListed(captained, firstDay)).toBe(true);
+    expect(isPubliclyListed(jetski, firstDay)).toBe(true);
+    expect(isPubliclyListed(efoil, firstDay)).toBe(true);
+  });
+  it("never lists inactive boats", () => {
+    expect(isPubliclyListed({ ...licensed, isActive: false }, lastDay)).toBe(false);
+  });
+});
+
+describe("computeFleetStats price floor without hourly boats", () => {
+  it("falls back to the cheapest block instead of 0", () => {
+    const stats = computeFleetStats([
+      { id: "a", name: "A", requiresLicense: true, pricing: { BAJA: { prices: { "2h": 175, "4h": 300 } } } },
+      { id: "b", name: "B", requiresLicense: true, pricing: { BAJA: { prices: { "2h": 190 } } } },
+    ]);
+    expect(stats.priceFloor).toBe(175);
+    expect(stats.cheapestBoatName).toBe("A");
   });
 });

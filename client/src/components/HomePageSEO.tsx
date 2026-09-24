@@ -23,6 +23,7 @@ import {
 import { useBusinessStats } from "@/hooks/useBusinessStats";
 import { BUSINESS_RATING, BUSINESS_REVIEW_COUNT } from "@shared/businessProfile";
 import type { Boat } from "@shared/schema";
+import { isPubliclyListed } from "@shared/boatData";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { getMinActivePrice } from "@shared/pricing";
 
@@ -46,7 +47,7 @@ export default function HomePageSEO() {
   const serviceSchema = generateServiceSchema(language);
   const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Inicio", url: "/" }]);
 
-  const activeBoats = (boats || []).filter(boat => boat.isActive);
+  const activeBoats = (boats || []).filter(boat => isPubliclyListed(boat));
   const fleetItems = activeBoats.map(boat => ({
     id: boat.id,
     name: boat.name,

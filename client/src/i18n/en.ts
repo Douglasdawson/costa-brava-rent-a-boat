@@ -5,6 +5,9 @@ export const en: Translations = {
     home: "Home",
     licensedBoats: "Licensed boats",
     captained: "With skipper",
+    boats: "Boats",
+    allFleet: "Full fleet",
+    more: "More",
     fleet: "Fleet",
     booking: "Booking",
     contact: "Contact",
@@ -63,6 +66,7 @@ export const en: Translations = {
     askWhatsApp: "Ask us on WhatsApp",
     testimonialQuote: "Amazing experience, we will definitely come back",
     testimonialQuoteShort: "We will be back",
+    summaryGeoPostEra: "Costa Brava Rent a Boat rents 80 to 115 HP powerboats for licensed skippers and a private excursion with a captain from the Port of Blanes, plus jet skis and eFoil. From 1 October 2026 Spanish law (RD 1188/2025) requires a boating licence to rent: the Licencia de Navegación, a one-day course with no exam, is enough, as is an equivalent foreign licence that we verify online. Service in 8 languages. Season from April to October.",
     summaryGeo:
       "Costa Brava Rent a Boat operates the largest boat rental fleet in the Port of Blanes with 9 boats: 3 powerboats of 80 to 115 HP for licensed skippers, 5 boats without a licence (rentable through September 30, 2026, when Royal Decree 1188/2025 starts requiring a nautical qualification from every renter) and 1 private excursion with skipper. The basic Navigation Licence, the one-day no-exam titul\u00EDn, or an equivalent foreign title we verify online. Assistance in 8 languages. Season from April to October. 4.8\u2605 on Google with over 300 reviews.",
   },
@@ -103,7 +107,7 @@ export const en: Translations = {
     bestForPremium: "Premium no-licence",
     bestForPremiumPostEra: "Premium up to 15 HP",
     imageAltNoLicensePostEra:
-      "Rent the {name} boat, up to 15 HP (titulín), in Blanes, Costa Brava: {capacity} people, from {price}€",
+      "Rent the {name} boat with a skipper in Blanes, Costa Brava: {capacity} people, from {price}€",
     imageAltNoLicense:
       "Rent {name} boat without license in Blanes, Costa Brava, {capacity} people, from {price}€",
     imageAltWithLicense:
@@ -145,7 +149,7 @@ export const en: Translations = {
       description: "Guidance before, during, and after. Always reachable via WhatsApp.",
     },
     whyUs: "Why Costa Brava Rent a Boat Blanes?",
-    whyUsSub: "Fuel included, no surprises, and the best guidance for your day at sea.",
+    whyUsSub: "Clear prices, no surprises, and the best guidance for your day at sea.",
     extrasTitle: "Available Extras",
     extrasSub: "Complete your experience with our optional extras.",
     extras: {
@@ -169,7 +173,7 @@ export const en: Translations = {
     exploreMore: "Explore our services",
     exploreLinks: {
       licenseFree: "License-free boats",
-      licenseFreePostEra: "Small boats up to 15 HP in Blanes (titulín)",
+      licenseFreePostEra: "Licence-free boats: what changes in October 2026",
       licensed: "Licensed boats",
       navigationLicense: "Navigation Licence (titul\u00EDn)",
       pricing: "Prices and rates",
@@ -187,10 +191,10 @@ export const en: Translations = {
     step3Title: "Enjoy the coves",
     step3Desc: "Sail freely through the best coves of the Costa Brava.",
     cta: "See Licence-Free Boats",
-    ctaPostEra: "See the small boats (titulín)",
+    ctaPostEra: "See motorboats with the titulín",
   },
   contact: {
-    title: "Got Questions?",
+    title: "Got questions?",
     subtitle: "We reply in under 5 minutes on WhatsApp. No commitment.",
     name: "Name",
     email: "Email",
@@ -734,6 +738,9 @@ export const en: Translations = {
       "Surprise someone special with an unforgettable experience sailing the coves of the Costa Brava.",
   },
   boatDetail: {
+    retiredTitle: "This boat is no longer for rent",
+    retiredBody: "Since 1 October 2026 the law requires a boating licence to rent any motorboat, and this one belonged to our licence-free fleet. With the basic licence you can skipper our motorboats, and if you'd rather not take the helm, you can go out with a skipper.",
+    retiredCta: "See the available fleet",
     notFound: "Boat not found",
     backToFleet: "Back to fleet",
     description: "Description",
@@ -1047,14 +1054,14 @@ export const en: Translations = {
     synonymsBody: "However you search for it (motorboat hire on the Costa Brava, renting a vessel without a qualification, or hiring a small boat in Blanes), our 4 license-free boats are leisure motorboats up to 5 metres and 15 HP that any adult can drive without a nautical license. Same boat, same price from 85€/h with fuel included, whatever you call it.",
     heroTitle: "Licence-Free Boats in Blanes",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
-    postEraHeroTitle: "Licence-free boats in Blanes: from 1 October 2026 they are rented with the titulín",
-    postEraHeroDescription: "The same 4 small boats in Blanes harbour (up to 15 HP, 5 seats, fuel included) are still for rent. What changes is the law: from 1 October 2026 Royal Decree 1188/2025 requires every renter to hold a nautical qualification. The Licencia de Navegación, the titulín, is enough: a one-day course, 2 hours of theory and 4 of practice, no exam, never expires. No licence yet? Sail with a skipper.",
-    postEraBadge: "Titulín required (1-day course)",
-    postEraCtaButton: "Book a boat with the titulín",
+    postEraHeroTitle: "Licence-free boats in Blanes: from 1 October 2026 we no longer rent them",
+    postEraHeroDescription: "Since 1 October 2026 Spanish law requires a boating licence to rent any motorboat, so we have withdrawn our small licence-free boats. With the titulín, a one-day course with no exam, you can skipper our motorboats; and if you'd rather not take the helm, you go out with a skipper.",
+    postEraBadge: "Titulín in 1 day, no exam",
+    postEraCtaButton: "See motorboats with the titulín",
     postEraNoticeTitle: "What changes on 1 October 2026",
-    postEraNoticeBody: "Until now these boats were rented with no qualification at all. From 1 October 2026 the law requires the renter to hold at least the Licencia de Navegación. With it you skipper any boat up to 6 metres within 2 nautical miles of the coast: our whole fleet. Without a licence, the alternative is the private excursion with a skipper.",
+    postEraNoticeBody: "Until 30 September 2026 we rented small boats with no qualification at all. From 1 October the law requires the renter to hold at least the Licencia de Navegación, and those boats are no longer rented. With it you skipper any boat up to 6 metres within 2 nautical miles of the coast, including our three licensed motorboats. Without a licence, the alternative is the private excursion with a skipper.",
     postEraNoticeLink: "How to get the titulín in one day",
-    postEraFaqCarnetAnswer: "Yes. From 1 October 2026 (Royal Decree 1188/2025) renting any motorboat requires a nautical qualification, including boats up to 15 HP. The minimum is the Licencia de Navegación (titulín): a one-day course, 2 hours of theory and 4 of practice, no exam, no expiry, issued by authorised nautical schools. It covers our whole fleet. Without a licence you can sail with a skipper on the private excursion.",
+    postEraFaqCarnetAnswer: "Yes. From 1 October 2026 (Royal Decree 1188/2025) renting any motorboat requires a nautical qualification, which is why we no longer rent licence-free boats. The minimum is the Licencia de Navegación (titulín): a one-day course, 2 hours of theory and 4 of practice, no exam, no expiry, issued by authorised nautical schools. It covers our three licensed motorboats. Without a licence you can sail with a skipper on the private excursion.",
     heroDescription:
       "4 license-free boats from €85/h at Blanes Port, fuel included. Up to 5 people, no license or sailing certificate, no prior experience. 15-min safety briefing and off you go to the Costa Brava coves: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina and Sa Boadella up to Fenals Beach (Lloret de Mar).",
     badgeNoLicense: "No Licence Required",
@@ -1737,7 +1744,7 @@ export const en: Translations = {
     yearsExperience: "6+ years of experience",
     fullInsurance: "Insurance included",
     happyCustomers: "5000+ happy customers",
-    fleetInsured: "Fleet 100% insured",
+    fleetInsured: "Liability and accident insurance included",
     zeroIncidents: "0 safety incidents",
     certifiedCaptains: "Certified captains",
     officialPort: "Official Blanes port",
@@ -6145,5 +6152,23 @@ export const en: Translations = {
       success: 'Guide sent! Check your email.',
       error: 'Failed to send. Please try again.',
     },
+  },
+  activitiesSection: {
+    title: "Beyond the boat: jet ski and eFoil",
+    subtitle: "Fly above the water on an eFoil or take the controls of a jet ski in Blanes. No licence and no experience needed: we explain everything before you head out.",
+    newBadge: "New",
+  },
+  titulinSection: {
+    title: "Get your titulín in one day and skipper your own boat",
+    subtitle: "A 6-hour course, no exam, and it never expires. We arrange it near Blanes and combine it with your first rental: you finish the course with your licence in hand and your boat booked.",
+    ctaPrimary: "I want my titulín",
+    captainedLine: "Rather not take the helm?",
+    captainedCta: "Go out with a professional skipper",
+  },
+  extrasSection: {
+    title: "Extras for your day at sea",
+    subtitle: "Add them to any boat in the fleet, when booking or at the harbour. Same price on every boat.",
+    packsTitle: "Money-saving packs",
+    packSaving: "Instead of {price} separately",
   },
 };

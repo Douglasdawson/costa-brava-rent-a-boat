@@ -5,6 +5,9 @@ export const de: Translations = {
     home: "Startseite",
     licensedBoats: "Boote mit Schein",
     captained: "Mit Skipper",
+    boats: "Boote",
+    allFleet: "Gesamte Flotte",
+    more: "Mehr",
     fleet: "Flotte",
     booking: "Buchung",
     contact: "Kontakt",
@@ -62,6 +65,7 @@ export const de: Translations = {
     askWhatsApp: "Fragen Sie uns per WhatsApp",
     testimonialQuote: "Unglaubliche Erfahrung, wir kommen wieder",
     testimonialQuoteShort: "Wir kommen wieder",
+    summaryGeoPostEra: "Costa Brava Rent a Boat vermietet im Hafen von Blanes Motorboote mit 80 bis 115 PS für Skipper mit Schein und eine private Ausfahrt mit Kapitän, dazu Jetskis und eFoil. Seit dem 1. Oktober 2026 verlangt das RD 1188/2025 für die Miete einen Bootsführerschein: Es reicht die Licencia de Navegación, ein eintägiger Kurs ohne Prüfung, oder ein gleichwertiger ausländischer Schein, den wir online prüfen. Service in 8 Sprachen. Saison von April bis Oktober.",
     summaryGeo:
       "Costa Brava Rent a Boat betreibt die gr\u00F6\u00DFte Bootsverleihflotte im Hafen von Blanes mit 9 Boote: 3 Motorboote von 80 bis 115 PS f\u00FCr Skipper mit Schein, 5 Boote ohne F\u00FChrerschein (mietbar bis zum 30. September 2026, wenn das RD 1188/2025 von jedem Mieter einen Bootsf\u00FChrerschein verlangt) und 1 Privatausflug mit Skipper. Die Licencia de Navegaci\u00F3n, der eint\u00E4gige Titul\u00EDn ohne Pr\u00FCfung, oder ein gleichwertiger ausl\u00E4ndischer Schein, den wir online pr\u00FCfen. Beratung in 8 Sprachen. Saison April bis Oktober. 4,8\u2605 bei Google mit \u00FCber 300 Bewertungen.",
   },
@@ -102,7 +106,7 @@ export const de: Translations = {
     bestForPremium: "Premium ohne Lizenz",
     bestForPremiumPostEra: "Premium bis 15 PS",
     imageAltNoLicensePostEra:
-      "Boot {name} bis 15 PS (mit Titulín) in Blanes, Costa Brava mieten: {capacity} Personen, ab {price}€",
+      "Boot {name} mit Skipper in Blanes, Costa Brava mieten: {capacity} Personen, ab {price}€",
     imageAltNoLicense:
       "Boot mieten {name} ohne Führerschein in Blanes, Costa Brava, {capacity} Personen, ab {price}€",
     imageAltWithLicense:
@@ -146,7 +150,7 @@ export const de: Translations = {
     },
     whyUs: "Warum Costa Brava Rent a Boat Blanes?",
     whyUsSub:
-      "Benzin inklusive, keine Überraschungen und die beste Beratung für deinen Tag auf dem Meer.",
+      "Klare Preise, keine Überraschungen und die beste Beratung für Ihren Tag auf dem Meer.",
     extrasTitle: "Verfügbare Extras",
     extrasSub: "Vervollständigen Sie Ihr Erlebnis mit unseren optionalen Extras.",
     extras: {
@@ -176,7 +180,7 @@ export const de: Translations = {
     exploreMore: "Entdecken Sie unsere Services",
     exploreLinks: {
       licenseFree: "Boote ohne Führerschein",
-      licenseFreePostEra: "Kleine Boote bis 15 PS in Blanes (mit Titulín)",
+      licenseFreePostEra: "Boote ohne Führerschein: was sich im Oktober 2026 ändert",
       licensed: "Boote mit Führerschein",
       navigationLicense: "Licencia de Navegaci\u00F3n (Titul\u00EDn)",
       pricing: "Preise und Tarife",
@@ -194,7 +198,7 @@ export const de: Translations = {
     step3Title: "Genießen Sie die Buchten",
     step3Desc: "Fahren Sie frei durch die besten Buchten der Costa Brava.",
     cta: "Boote ohne Führerschein ansehen",
-    ctaPostEra: "Kleine Boote ansehen (mit Titulín)",
+    ctaPostEra: "Motorboote mit Titulín ansehen",
   },
   contact: {
     title: "Fragen?",
@@ -742,6 +746,9 @@ export const de: Translations = {
       "Überrasche jemand Besonderen mit einem unvergesslichen Erlebnis in den Buchten der Costa Brava.",
   },
   boatDetail: {
+    retiredTitle: "Dieses Boot wird nicht mehr vermietet",
+    retiredBody: "Seit dem 1. Oktober 2026 schreibt das Gesetz für die Miete jedes Motorboots einen Bootsführerschein vor, und dieses Boot gehörte zu unserer führerscheinfreien Flotte. Mit dem Einsteigerschein fahren Sie unsere Motorboote, und wenn Sie lieber nicht selbst steuern, fahren Sie mit Skipper.",
+    retiredCta: "Verfügbare Flotte ansehen",
     notFound: "Boot nicht gefunden",
     backToFleet: "Zurück zur Flotte",
     description: "Beschreibung",
@@ -1059,14 +1066,14 @@ export const de: Translations = {
     synonymsBody: "Egal wie du suchst: Motorboot mieten an der Costa Brava, Wasserfahrzeug ohne Schein leihen oder eine Barke in Blanes mieten. Unsere 4 führerscheinfreien Boote sind Freizeit-Motorboote bis 5 Meter und 15 PS, die jeder Erwachsene ohne Bootsführerschein fahren darf. Gleiches Boot, gleicher Preis ab 85€/Std. inkl. Kraftstoff, wie auch immer du es nennst.",
     heroTitle: "Boote Ohne Führerschein in Blanes",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
-    postEraHeroTitle: "Boote ohne Führerschein in Blanes: seit dem 1. Oktober 2026 mit Titulín zu mieten",
-    postEraHeroDescription: "Dieselben 4 kleinen Boote im Hafen Blanes (bis 15 PS, 5 Plätze, Kraftstoff inklusive) sind weiterhin mietbar. Was sich ändert, ist das Gesetz: das Königliche Dekret 1188/2025 verlangt seit dem 1. Oktober 2026, dass der Mieter einen Bootsführerschein besitzt. Die Licencia de Navegación, der Titulín, genügt: ein Tageskurs, 2 Stunden Theorie und 4 Stunden Praxis, ohne Prüfung und unbefristet gültig. Ohne Schein fahren Sie mit Skipper.",
-    postEraBadge: "Mit Titulín (1-Tages-Kurs)",
-    postEraCtaButton: "Boot mit Titulín buchen",
+    postEraHeroTitle: "Boote ohne Führerschein in Blanes: seit dem 1. Oktober 2026 vermieten wir sie nicht mehr",
+    postEraHeroDescription: "Seit dem 1. Oktober 2026 schreibt das Gesetz für die Miete jedes Motorboots einen Bootsführerschein vor, deshalb haben wir unsere kleinen führerscheinfreien Boote aus der Vermietung genommen. Mit dem Titulín, einem eintägigen Kurs ohne Prüfung, fahren Sie unsere Motorboote; und wer nicht selbst steuern möchte, fährt mit Skipper.",
+    postEraBadge: "Titulín an 1 Tag, ohne Prüfung",
+    postEraCtaButton: "Motorboote mit Titulín ansehen",
     postEraNoticeTitle: "Was sich am 1. Oktober 2026 ändert",
-    postEraNoticeBody: "Bisher wurden diese Boote ganz ohne Schein vermietet. Seit dem 1. Oktober 2026 verlangt das Gesetz vom Mieter mindestens die Licencia de Navegación. Damit steuern Sie jedes Boot bis 6 Meter innerhalb von 2 Seemeilen vor der Küste: unsere gesamte Flotte. Ohne Schein bleibt die private Tour mit Skipper.",
+    postEraNoticeBody: "Bis zum 30. September 2026 haben wir kleine Boote ganz ohne Schein vermietet. Seit dem 1. Oktober verlangt das Gesetz vom Mieter mindestens die Licencia de Navegación, und diese Boote werden nicht mehr vermietet. Damit steuern Sie jedes Boot bis 6 Meter innerhalb von 2 Seemeilen vor der Küste, auch unsere drei führerscheinpflichtigen Motorboote. Ohne Schein bleibt die private Tour mit Skipper.",
     postEraNoticeLink: "So bekommen Sie den Titulín an einem Tag",
-    postEraFaqCarnetAnswer: "Ja. Seit dem 1. Oktober 2026 (Königliches Dekret 1188/2025) braucht man zum Mieten jedes Motorboots einen Bootsführerschein, auch bei Booten bis 15 PS. Das Minimum ist die Licencia de Navegación (Titulín): ein Tageskurs mit 2 Stunden Theorie und 4 Stunden Praxis, ohne Prüfung, unbefristet, ausgestellt von zugelassenen Bootsschulen. Damit fahren Sie unsere gesamte Flotte. Ohne Schein können Sie bei der privaten Tour mit Skipper mitfahren.",
+    postEraFaqCarnetAnswer: "Ja. Seit dem 1. Oktober 2026 (Königliches Dekret 1188/2025) braucht man zum Mieten jedes Motorboots einen Bootsführerschein, deshalb vermieten wir keine führerscheinfreien Boote mehr. Das Minimum ist die Licencia de Navegación (Titulín): ein Tageskurs mit 2 Stunden Theorie und 4 Stunden Praxis, ohne Prüfung, unbefristet, ausgestellt von zugelassenen Bootsschulen. Damit fahren Sie unsere drei führerscheinpflichtigen Motorboote. Ohne Schein können Sie bei der privaten Tour mit Skipper mitfahren.",
     heroDescription:
       "4 führerscheinfreie Boote ab 85€/h im Hafen Blanes, Kraftstoff inklusive. Bis zu 5 Personen, ohne Führerschein oder Bootsschein, ohne Vorerfahrung. 15-minütige Sicherheitseinweisung und los geht's zu den Buchten der Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina und Sa Boadella bis zum Strand von Fenals (Lloret de Mar).",
     badgeNoLicense: "Kein Führerschein Erforderlich",
@@ -1693,7 +1700,7 @@ export const de: Translations = {
     yearsExperience: "6+ Jahre Erfahrung",
     fullInsurance: "Versicherung inklusive",
     happyCustomers: "5000+ zufriedene Kunden",
-    fleetInsured: "Flotte 100% versichert",
+    fleetInsured: "Haftpflicht- und Unfallversicherung inklusive",
     zeroIncidents: "0 Sicherheitsvorfälle",
     certifiedCaptains: "Zertifizierte Kapitäne",
     officialPort: "Offizieller Hafen von Blanes",
@@ -6118,5 +6125,23 @@ export const de: Translations = {
       success: 'Führer gesendet! Prüfen Sie Ihre E-Mail.',
       error: 'Fehler beim Senden. Bitte erneut versuchen.',
     },
+  },
+  activitiesSection: {
+    title: "Mehr als Boot: Jetski und eFoil",
+    subtitle: "Schweben Sie mit dem eFoil über das Wasser oder steuern Sie einen Jetski in Blanes. Ohne Führerschein und ohne Vorkenntnisse: Wir erklären Ihnen vor dem Start alles.",
+    newBadge: "Neu",
+  },
+  titulinSection: {
+    title: "Machen Sie den Titulín an einem Tag und fahren Sie selbst",
+    subtitle: "6 Stunden Kurs, ohne Prüfung und lebenslang gültig. Wir organisieren ihn in der Nähe von Blanes und kombinieren ihn mit Ihrer ersten Miete: Sie beenden den Kurs mit dem Schein in der Hand und dem gebuchten Boot.",
+    ctaPrimary: "Ich will den Titulín machen",
+    captainedLine: "Lieber nicht selbst steuern?",
+    captainedCta: "Mit professionellem Skipper hinausfahren",
+  },
+  extrasSection: {
+    title: "Extras für Ihren Tag auf dem Meer",
+    subtitle: "Buchen Sie sie zu jedem Boot der Flotte dazu, bei der Reservierung oder im Hafen. Gleicher Preis auf allen Booten.",
+    packsTitle: "Sparpakete",
+    packSaving: "Statt {price} einzeln",
   },
 };

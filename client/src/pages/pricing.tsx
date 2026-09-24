@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Users, Anchor, Fuel, ArrowRight, ChevronRight } from "lucide-react";
-import { isCaptainedBoat, boatIncludesFuel } from "@shared/boatData";
+import { isCaptainedBoat, boatIncludesFuel, isPubliclyListed } from "@shared/boatData";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
@@ -121,7 +121,7 @@ export default function PricingPage() {
 
   const activeBoats = (boats || [])
     // Jet ski products use slot pricing, not the per-hour/season table shown here.
-    .filter(boat => boat.isActive && !isJetSkiProduct(boat.id))
+    .filter(boat => isPubliclyListed(boat) && !isJetSkiProduct(boat.id))
     .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999));
 
   // Always defined at runtime: useTranslations deep-merges missing keys from es.ts.

@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { BOAT_DATA, BASELINE_INACTIVE_BOAT_IDS } from "@shared/boatData";
+import { isCatalogBoatPubliclyListed } from "@shared/publicFleet";
 import { NAUTICAL_GLOSSARY_ES } from "@shared/nauticalGlossary";
 import { BUSINESS_DISPLAY_NAME } from "@shared/businessProfile";
 import { CORE_FACTS, type AtomicFact } from "@shared/aiCitationFacts";
@@ -95,7 +96,7 @@ export default function AiCitationsPage() {
                 </tr>
               </thead>
               <tbody>
-                {Object.values(BOAT_DATA).filter((b) => !BASELINE_INACTIVE_BOAT_IDS.includes(b.id)).map((b) => {
+                {Object.values(BOAT_DATA).filter((b) => !BASELINE_INACTIVE_BOAT_IDS.includes(b.id) && isCatalogBoatPubliclyListed(b)).map((b) => {
                   const lowH1 = b.pricing?.BAJA?.prices?.["1h"];
                   const lowH2 = b.pricing?.BAJA?.prices?.["2h"];
                   const fromPrice = typeof lowH1 === "number" ? lowH1 : typeof lowH2 === "number" ? Math.round(lowH2 / 2) : null;

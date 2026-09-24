@@ -80,11 +80,19 @@ interface TownLocationPage {
 }
 
 export interface Translations {
+  // Home sections (2026-09-24 redesign)
+  activitiesSection: { title: string; subtitle: string; newBadge: string };
+  titulinSection: { title: string; subtitle: string; ctaPrimary: string; captainedLine: string; captainedCta: string };
+  extrasSection: { title: string; subtitle: string; packsTitle: string; packSaving: string };
+
   // Navigation
   nav: {
     home: string;
     licensedBoats?: string;
     captained?: string;
+    boats: string;
+    allFleet: string;
+    more: string;
     fleet: string;
     booking: string;
     contact: string;
@@ -140,6 +148,8 @@ export interface Translations {
     testimonialQuote: string;
     testimonialQuoteShort: string;
     summaryGeo?: string;
+    /** From 2026-10-01 (RD 1188/2025): licence-free boats are withdrawn. */
+    summaryGeoPostEra?: string;
   };
 
   // Fleet Section
@@ -919,6 +929,9 @@ export interface Translations {
 
   // Boat Detail Page
   boatDetail: {
+    retiredTitle?: string;
+    retiredBody?: string;
+    retiredCta?: string;
     notFound: string;
     backToFleet: string;
     description: string;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
+import { isPubliclyListed } from "@shared/boatData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -43,7 +44,7 @@ export default function GiftCardsPage() {
   const [purchaseComplete, setPurchaseComplete] = useState(false);
   const [giftCardCode, setGiftCardCode] = useState("");
   const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
-  const fleetCount = (boats || []).filter((b) => b.isActive && !isJetSkiProduct(b.id)).length || 8;
+  const fleetCount = (boats || []).filter((b) => isPubliclyListed(b) && !isJetSkiProduct(b.id)).length || 8;
   const { toast } = useToast();
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();

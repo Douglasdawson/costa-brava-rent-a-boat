@@ -323,8 +323,8 @@ export default function CategoryLicenseFreePage() {
   const combinedJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      serviceSchema,
-      itemListSchema,
+      // RD 1188/2025: from 2026-10-01 these boats are no longer offered, so no Service/Offer markup.
+      ...(postEra ? [] : [serviceSchema, itemListSchema]),
       breadcrumbSchema,
       faqSchema,
       ...(howToSchema ? [howToSchema] : [])
@@ -351,7 +351,7 @@ export default function CategoryLicenseFreePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <Zap className="w-8 h-8 text-primary mr-4" />
+              <Zap className="hidden sm:block w-8 h-8 flex-shrink-0 text-primary mr-4" aria-hidden="true" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
                 {heroTitle}
               </h1>
@@ -364,6 +364,9 @@ export default function CategoryLicenseFreePage() {
                 <CheckCircle className="w-4 h-4 mr-2" />
                 {badgeLicense}
               </Badge>
+              {/* 15 CV / 5 plazas describe the withdrawn boats: gone from 2026-10-01. */}
+              {!postEra && (
+                <>
               <Badge variant="outline" className="text-primary border-primary">
                 <Gauge className="w-4 h-4 mr-2" />
                 {clf.badgePower}
@@ -372,6 +375,8 @@ export default function CategoryLicenseFreePage() {
                 <Users className="w-4 h-4 mr-2" />
                 {clf.badgeCapacity}
               </Badge>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -385,17 +390,24 @@ export default function CategoryLicenseFreePage() {
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               <a
                 href={localizedPath("navigationLicense")}
-                className="text-primary font-semibold hover:underline pointer-coarse:py-3"
+                className="text-primary font-semibold underline underline-offset-4 hover:opacity-80 pointer-coarse:py-3"
                 data-testid="link-post-era-titulin"
               >
                 {clf.postEraNoticeLink}
+              </a>
+              <a
+                href={localizedPath("categoryLicensed")}
+                className="text-primary font-semibold underline underline-offset-4 hover:opacity-80 pointer-coarse:py-3"
+                data-testid="link-post-era-licensed"
+              >
+                {ctaButton}
               </a>
               {schoolSmall && (
                 <a
                   href={schoolSmall.url}
                   target="_blank"
                   rel="noopener"
-                  className="text-primary font-semibold hover:underline pointer-coarse:py-3"
+                  className="text-primary font-semibold underline underline-offset-4 hover:opacity-80 pointer-coarse:py-3"
                   data-testid="link-post-era-escola"
                 >
                   {schoolSmall.cta}
@@ -522,7 +534,8 @@ export default function CategoryLicenseFreePage() {
         </div>
       </RevealSection>
 
-      {/* Our License-Free Fleet */}
+      {/* Our License-Free Fleet (not offered from 2026-10-01) */}
+      {!postEra && (
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
@@ -563,8 +576,10 @@ export default function CategoryLicenseFreePage() {
           </div>
         </div>
       </RevealSection>
+      )}
 
       {/* Section B: Detailed Comparison Table */}
+      {!postEra && (
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
@@ -608,6 +623,7 @@ export default function CategoryLicenseFreePage() {
           </div>
         </div>
       </RevealSection>
+      )}
 
       {/* vs Marketplaces - Direct booking advantage (added 2026-05-21) */}
       {hasVsMarketplaces && (
@@ -861,6 +877,8 @@ export default function CategoryLicenseFreePage() {
       </div>
 
       {/* CTA Section */}
+      {/* Licence-free booking CTA: gone from 2026-10-01; the notice above links to the licensed boats. */}
+      {!postEra && (
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">
@@ -880,6 +898,7 @@ export default function CategoryLicenseFreePage() {
           </Button>
         </div>
       </div>
+      )}
 
       <RelatedContent currentPage="categoryLicenseFree" />
 

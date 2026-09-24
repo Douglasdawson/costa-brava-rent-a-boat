@@ -190,7 +190,7 @@ function BoatCard({
               (isRecommended || isPopular) && (
                 <div className="absolute top-3 left-3 z-10">
                   {isRecommended ? (
-                    <div className="inline-flex items-center gap-1 bg-cta text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
+                    <div className="inline-flex items-center gap-1 bg-cta text-primary-foreground dark:text-background text-xs font-bold px-2.5 py-1 rounded-full">
                       <ThumbsUp className="w-3 h-3" />
                       {t.recommendation?.recommendedForYou}
                     </div>
@@ -273,7 +273,7 @@ function BoatCard({
           onClick={handleBooking}
           className={`text-base font-medium px-6 py-2.5 min-h-11 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none transition-colors ${
             isRecommended || isPopular
-              ? "bg-cta hover:bg-cta/90 text-primary-foreground cta-pulse cta-hover-lift"
+              ? "bg-cta hover:bg-cta/90 text-primary-foreground dark:text-background cta-pulse cta-hover-lift"
               : "border border-foreground/15 text-foreground hover:border-foreground/40 bg-transparent"
           }`}
           data-testid={`button-book-${id}`}

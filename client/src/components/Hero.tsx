@@ -5,7 +5,7 @@ import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useBusinessStats } from "@/hooks/useBusinessStats";
-import { isLicenseFreeEraActive } from "@shared/constants";
+import { eraCopy, isLicenseFreeEraActive } from "@shared/constants";
 
 import BoatQuizModal from "./BoatQuizModal";
 import { GBP_PROFILE_URL } from "@shared/businessProfile";
@@ -89,7 +89,7 @@ export default function Hero() {
 
             {t.hero.summaryGeo && (
               <p className="sr-only" data-testid="hero-summary-geo">
-                {t.hero.summaryGeo}
+                {eraCopy(t.hero.summaryGeo, t.hero.summaryGeoPostEra ?? t.hero.summaryGeo)}
               </p>
             )}
 

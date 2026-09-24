@@ -1,4 +1,6 @@
 // Real boat data from costabravarentaboat.com
+import { isLicenseFreeEraActive } from "./constants";
+import { isJetSkiProduct } from "./jetskiProducts";
 // Image imports moved to client-side to avoid ESBuild PNG import issues during server build
 
 export interface BoatData {
@@ -653,6 +655,28 @@ export function boatIncludesFuel(boatId: string, requiresLicense: boolean | null
   return true;
 }
 
+/**
+ * Whether a boat is offered on PUBLIC surfaces (home, wizard, detail, SEO).
+ * RD 1188/2025: from 2026-10-01 (Madrid) every renter needs a licence, and the
+ * owner chose to hide the self-drive licence-free boats instead of relabelling
+ * them. Licensed boats, the captained excursion and the jet ski / eFoil
+ * activities stay. The excursion is matched by id (isCaptainedBoat), NOT by
+ * requiresLicense: its DB row carries requiresLicense=false. The CRM must NOT
+ * use this: it still needs to see those hulls.
+ */
+export function isPubliclyListed(
+  boat: { id: string; requiresLicense?: boolean | null; isActive?: boolean | null },
+  now: Date = new Date(),
+): boolean {
+  if (boat.isActive === false) return false;
+  return (
+    isLicenseFreeEraActive(now) ||
+    !!boat.requiresLicense ||
+    isCaptainedBoat(boat.id) ||
+    isJetSkiProduct(boat.id)
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Live fleet statistics (single source for "N boats / from X€/h" copy)
 // ---------------------------------------------------------------------------
@@ -730,6 +754,22 @@ export function computeFleetStats(boats: FleetStatBoat[]): FleetStats {
     if (typeof hourly === "number" && hourly > 0 && hourly < priceFloor) {
       priceFloor = hourly;
       cheapestBoatName = boat.name;
+    }
+  }
+
+  // From 2026-10-01 the listed fleet has no hourly boat (licensed boats and the
+  // excursion start at multi-hour blocks), so the floor falls back to the
+  // cheapest block instead of 0 (which would print "desde 0 EUR").
+  // ponytail: absolute block price, not per hour; the "X€/h" strings that still
+  // embed it are licence-free copy retired by postEraMeta.
+  if (!Number.isFinite(priceFloor)) {
+    for (const boat of boats) {
+      for (const price of Object.values(boat.pricing?.BAJA?.prices ?? {})) {
+        if (typeof price === "number" && price > 0 && price < priceFloor) {
+          priceFloor = price;
+          cheapestBoatName = boat.name;
+        }
+      }
     }
   }
 

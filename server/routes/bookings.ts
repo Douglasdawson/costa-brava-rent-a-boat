@@ -13,6 +13,7 @@ import { validatePromoCode, calculateDiscountAmount } from "../lib/discountValid
 import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
 import { OPERATING_START_HOUR, OPERATING_END_HOUR, formatPersonName } from "@shared/constants";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
+import { isBookableOn, BOAT_NOT_BOOKABLE_MESSAGE } from "@shared/publicFleet";
 
 const isoDateString = z
   .string()
@@ -338,6 +339,12 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
+      // A hold quoted on Sept 30 must not become an October request for a delisted boat.
+      const holdBoat = await storage.getBoat(hold.boatId);
+      if (holdBoat && hold.startTime && !isBookableOn(holdBoat, hold.startTime)) {
+        return res.status(409).json({ success: false, message: BOAT_NOT_BOOKABLE_MESSAGE, reason: "boat_not_listed" });
+      }
+
       // Promote hold → requested AND persist real customer data (replacing the
       // "Hold Temporal" placeholders that /api/quote stamped). The conditional UPDATE
       // (only from hold/pending_payment) prevents clobbering a concurrent admin
@@ -544,6 +551,15 @@ export function registerBookingRoutes(app: Express) {
           message: "Barco no encontrado",
           available: false,
           reason: "boat_not_found",
+        });
+      }
+
+      // RD 1188/2025: licence-free boats are not rented from 2026-10-01.
+      if (!isBookableOn(boat, start)) {
+        return res.status(409).json({
+          message: BOAT_NOT_BOOKABLE_MESSAGE,
+          available: false,
+          reason: "boat_not_listed",
         });
       }
 

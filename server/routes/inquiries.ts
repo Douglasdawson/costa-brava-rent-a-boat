@@ -10,6 +10,7 @@ import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer"
 import { sendMetaConversion, getMetaBrowserIds } from "../lib/metaConversions";
 import { sendInquiryAdminNotification } from "../services/emailService";
 import { validatePromoCode } from "../lib/discountValidation";
+import { isBookableOn, BOAT_NOT_BOOKABLE_MESSAGE } from "@shared/publicFleet";
 
 const submitLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -67,6 +68,11 @@ export function registerInquiryRoutes(app: Express) {
           message: `Numero de personas (${parsed.data.numberOfPeople}) excede la capacidad (${seats})`,
           reason: "capacity_exceeded",
         });
+      }
+
+      // RD 1188/2025: no requests for licence-free boats from 2026-10-01 (unknown ids pass, as above).
+      if (requestedBoats.some(boat => boat && !isBookableOn(boat, parsed.data.bookingDate))) {
+        return res.status(409).json({ message: BOAT_NOT_BOOKABLE_MESSAGE, reason: "boat_not_listed" });
       }
 
       const inquiry = await storage.createWhatsappInquiry(parsed.data);

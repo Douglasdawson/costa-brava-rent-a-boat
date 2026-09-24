@@ -15,7 +15,8 @@ import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES } from "../shared/businessProfile";
 import { buildCoreFacts } from "../shared/aiCitationFacts";
 import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
-import { BOAT_DATA, applyFleetStatsToText, boatIncludesFuel, isCaptainedBoat } from "../shared/boatData";
+import { BOAT_DATA, applyFleetStatsToText, boatIncludesFuel, isCaptainedBoat, isPubliclyListed } from "../shared/boatData";
+import { isJetSkiProduct } from "../shared/jetskiProducts";
 import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { ACTIVITATUM_PICKS, activitatumPicksBySlot, activitatumTopicUrl, activitatumUrl } from "../shared/activitatumLinks";
@@ -2259,6 +2260,8 @@ interface ResolvedPage {
   // Inspection rejected with "indexing problems detected during live test"
   // because the page was 100% client-rendered with empty body.
   bodyFallback?: string;
+  // Force noindex regardless of translation status (e.g. a boat no longer offered).
+  noindex?: boolean;
   // Suppress hreflang emission. Used by lang-agnostic root-level pages like
   // /ai-citations where switchLanguagePath would otherwise emit alternates
   // pointing at the homepages (there is no /:lang variant of the page).
@@ -2683,26 +2686,46 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       const heroT = (I18N_BY_LANG[lang] ?? i18nEs).hero;
       const homeH1 = heroT?.title
         ?? (isEn ? `Costa Brava Rent a Boat — Blanes, Spain` : `Costa Brava Rent a Boat — Blanes, Costa Brava`);
-      const homeSummary = heroT?.summaryGeo ?? heroT?.subtitle
+      const homeSummary = eraCopy(heroT?.summaryGeo, heroT?.summaryGeoPostEra ?? heroT?.summaryGeo) ?? heroT?.subtitle
         ?? (isEn
           ? `Largest boat rental fleet in the Port of Blanes (9 boats): 3 licensed powerboats of 80-115 HP, 5 boats without a licence and 1 private excursion with captain. The basic Licencia de Navegación is enough; foreign titles verified online. Licence-free rental runs through September 30, 2026 (RD 1188/2025). Season April–October. ${stats.rating.toFixed(1)}★ on Google with ${stats.userRatingCount}+ reviews.`
           : `Mayor flota de alquiler de embarcaciones del Puerto de Blanes (9 barcos): 3 lanchas con licencia de 80-115 CV, 5 barcos sin titulación y 1 excursión privada con capitán. Basta la Licencia de Navegación; verificamos títulos extranjeros online. El alquiler sin titulación llega hasta el 30 de septiembre de 2026 (RD 1188/2025). Temporada abril–octubre. ${stats.rating.toFixed(1)}★ en Google con ${stats.userRatingCount}+ reseñas.`);
       // Counts use the "9 boats" / "5 boats" baselines: applyFleetStatsToText()
       // rewrites them to the live fleet before the HTML is sent.
+      // RD 1188/2025: from 2026-10-01 the licence-free boats are off the public fleet
+      // (isPubliclyListed), so the first three facts switch to the licensed-only fleet.
       const facts = isEn
         ? [
-            "9 boats: 3 licensed powerboats (80-115 HP), 5 boats without a licence, 1 private excursion with captain",
-            "The basic Licencia de Navegación is enough for the whole licensed fleet; foreign titles verified online before booking",
-            "Licence-free rental is legal through September 30, 2026 — from October 1 RD 1188/2025 requires a nautical qualification from every renter",
+            ...eraCopy(
+              [
+                "9 boats: 3 licensed powerboats (80-115 HP), 5 boats without a licence, 1 private excursion with captain",
+                "The basic Licencia de Navegación is enough for the whole licensed fleet; foreign titles verified online before booking",
+                "Licence-free rental is legal through September 30, 2026 — from October 1 RD 1188/2025 requires a nautical qualification from every renter",
+              ],
+              [
+                "9 boats: 3 licensed powerboats (80-115 HP) and 1 private excursion with captain; plus jet ski and eFoil activities, no licence needed",
+                "The basic Licencia de Navegación is enough for the whole fleet; foreign titles verified online before booking",
+                "No licence yet? The Licencia de Navegación (titulín) takes 1 day: 2 hours of theory and 4 of practice, no exam. Or sail with a captain",
+              ],
+            ),
             "8 languages: Spanish, English, Catalan, French, German, Dutch, Italian, Russian",
             "Coves accessible: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella, Fenals",
             "Open daily 09:00–20:00 from April to October",
             "Hours response time on WhatsApp +34 611 500 372",
           ]
         : [
-            "9 barcos: 3 lanchas con licencia (80-115 CV), 5 barcos sin titulación, 1 excursión privada con capitán",
-            "Basta la Licencia de Navegación para toda la flota con licencia; verificamos títulos extranjeros online antes de reservar",
-            "El alquiler sin titulación es legal hasta el 30 de septiembre de 2026 — desde el 1 de octubre el RD 1188/2025 exige título náutico a todo arrendatario",
+            ...eraCopy(
+              [
+                "9 barcos: 3 lanchas con licencia (80-115 CV), 5 barcos sin titulación, 1 excursión privada con capitán",
+                "Basta la Licencia de Navegación para toda la flota con licencia; verificamos títulos extranjeros online antes de reservar",
+                "El alquiler sin titulación es legal hasta el 30 de septiembre de 2026 — desde el 1 de octubre el RD 1188/2025 exige título náutico a todo arrendatario",
+              ],
+              [
+                "9 barcos: 3 lanchas con licencia (80-115 CV) y 1 excursión privada con capitán; además, moto de agua y eFoil sin licencia",
+                "Basta la Licencia de Navegación para toda la flota; verificamos títulos extranjeros online antes de reservar",
+                "¿Aún sin título? La Licencia de Navegación (titulín) se saca en 1 día: 2 horas de teoría y 4 de prácticas, sin examen. O sal con capitán",
+              ],
+            ),
             "8 idiomas: español, inglés, catalán, francés, alemán, neerlandés, italiano, ruso",
             "Calas accesibles: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella, Fenals",
             "Abierto todos los días 09:00–20:00 de abril a octubre",
@@ -2726,6 +2749,10 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       const captainedLabel = tHome.captainedPage?.crossLinkLabel
         ?? (isEn ? "Boat with skipper" : "Barco con patrón");
       const captainedHref = `${BASE_URL}/${lang}/${getSlugForPage("categoryCaptained", lang)}`;
+      const jetskiLabel = tHome.jetskiHub?.navLabel ?? (isEn ? "Jet skis" : "Motos de agua");
+      const jetskiHref = `${BASE_URL}/${lang}/${getSlugForPage("jetskiHub", lang)}`;
+      const efoilLabel = tHome.jetskiLanding?.efoil?.navLabel ?? "eFoil";
+      const efoilHref = `${BASE_URL}/${lang}/${getSlugForPage("efoilBlanes", lang)}`;
       const bodyFallback = `
 <h1>${esc(homeH1)}</h1>
 <p>${esc(homeSummary)}</p>
@@ -2735,7 +2762,9 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
 <p>
   <a href="${licensedHref}">${esc(licensedLabel)}</a> ·
   <a href="${titulinHref}">${esc(titulinLabel)}</a> ·
-  <a href="${captainedHref}">${esc(captainedLabel)}</a>
+  <a href="${captainedHref}">${esc(captainedLabel)}</a> ·
+  <a href="${jetskiHref}">${esc(jetskiLabel)}</a> ·
+  <a href="${efoilHref}">${esc(efoilLabel)}</a>
 </p>
 <p>
   <a href="https://wa.me/34611500372">${esc(ctaLabel)}</a> ·
@@ -3491,7 +3520,9 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
     else if (metaKey === "/barcos-sin-licencia") {
       const allBoats = await storage.getAllBoats();
       const noLicenseBoats = allBoats
-        .filter(b => b.isActive && !b.requiresLicense)
+        // The captained excursion and the jet ski / eFoil rows also carry
+        // requiresLicense=false in the DB: they are not self-drive licence-free boats.
+        .filter(b => b.isActive && !b.requiresLicense && !isCaptainedBoat(b.id) && !isJetSkiProduct(b.id))
         .map(b => {
           const seasons = b.pricing ? Object.values(b.pricing) as Array<{ prices?: Record<string, number> }> : [];
           const prices = seasons.flatMap(s => s?.prices ? Object.values(s.prices) : []);
@@ -3607,7 +3638,10 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
 <p><a href="${esc(getLocalizedPath("navigationLicense", lang))}">${esc(cf.postEraNoticeLink ?? "")}</a></p>
 ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoolSmall.cta)}</a></p>` : ""}`);
       const noLicenseBodyFallback = `${noLicenseBody}\n${postEraNotice}`.trim();
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqNoLicense, breadcrumb] }, availableLanguages, bodyFallback: noLicenseBodyFallback };
+      // Post-era these boats are no longer offered (isPubliclyListed): no Service/Offer markup,
+      // mirroring category-license-free.tsx.
+      const noLicenseGraph = eraCopy<object[]>([service, itemList, faqNoLicense, breadcrumb], [faqNoLicense, breadcrumb]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": noLicenseGraph }, availableLanguages, bodyFallback: noLicenseBodyFallback };
     }
 
     // /barcos-con-licencia - self-drive powerboats. Retargeted 2026-08-06 to the
@@ -4684,6 +4718,19 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
     try {
       const boats = await storage.getAllBoats();
       const boat = boats.find(b => b.id === boatId);
+      // RD 1188/2025: from 2026-10-01 the licence-free boats are no longer rented.
+      // Keep the URL alive (no 404) but noindex it and drop the Product schema.
+      if (boat && boat.isActive && !isPubliclyListed(boat)) {
+        const bd = (I18N_BY_LANG[lang] ?? i18nEs).boatDetail;
+        const retiredBody = bd.retiredBody ?? i18nEs.boatDetail.retiredBody ?? "";
+        const meta: SEOMeta = { title: `${boat.name} | Costa Brava Rent a Boat`, description: retiredBody };
+        const bodyFallback = `
+<h1>${esc(bd.retiredTitle ?? i18nEs.boatDetail.retiredTitle ?? "")}</h1>
+<p>${esc(retiredBody)}</p>
+<p><a href="${getLocalizedPath("home", lang)}#fleet">${esc(bd.retiredCta ?? i18nEs.boatDetail.retiredCta ?? "")}</a></p>
+        `.trim();
+        return { meta, hasTranslation: true, noindex: true, bodyFallback };
+      }
       if (boat) {
         const licenseLabels: Record<string, [string, string]> = {
           es: ["con licencia", "sin licencia"],
@@ -5211,7 +5258,8 @@ export async function serveWithSEO(
       // isThinGuardExempt). Fail-safe (errors → not noindex). Cached 1h, so this
       // is a Map lookup on the hot path after the first request per page.
       const { metaKey: thinGuardMetaKey } = pathToStaticMetaKey(canonicalPath);
-      const effectiveNoindex = noindex || (await shouldNoindexThinContent(canonicalPath, thinGuardMetaKey));
+      const effectiveNoindex =
+        noindex || !!resolved.noindex || (await shouldNoindexThinContent(canonicalPath, thinGuardMetaKey));
 
       // Check LRU cache for pre-injected HTML (avoids 9+ regex replacements).
       // Key includes the index decision so a thin/healthy flip can't serve stale robots.

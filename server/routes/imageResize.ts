@@ -4,13 +4,36 @@ import sharp from "sharp";
 import path from "path";
 import fs from "fs";
 
-// Rate limit image resize to prevent CPU-intensive DoS
+// Simple in-memory LRU-like cache
+const cache = new Map<string, Buffer>();
+const MAX_CACHE_ENTRIES = 500;
+
+/** Same key the handler computes; null-safe so the limiter's skip can call it. */
+function cacheKeyFor(query: Record<string, unknown>): string {
+  const { file, w, q } = query;
+  if (typeof file !== "string") return "";
+  let decoded: string;
+  try {
+    decoded = decodeURIComponent(file);
+  } catch {
+    return "";
+  }
+  const sanitized = decoded.replace(/\.\./g, "").replace(/\\/g, "/");
+  const width = Math.min(Math.max(parseInt(w as string) || 800, 100), 2000);
+  const quality = Math.min(Math.max(parseInt(q as string) || 80, 10), 100);
+  return `${sanitized}:${width}:${quality}`;
+}
+
+// Rate limit image resize to prevent CPU-intensive DoS. Cache hits cost no CPU,
+// so they skip the limiter: counting them made the 4th-5th home load in a minute
+// (or a shared hotel / CGNAT IP) get 429s and show boats without photos.
 const imageResizeLimiter = rateLimit({
   windowMs: 60 * 1000,
   max: 30, // 30 resizes per minute per IP
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: "Too many resize requests" },
+  skip: req => cache.has(cacheKeyFor(req.query)),
 });
 
 const IMAGES_DIRS = [
@@ -43,9 +66,6 @@ function resolveFilename(filename: string): string {
   return filename;
 }
 
-// Simple in-memory LRU-like cache
-const cache = new Map<string, Buffer>();
-const MAX_CACHE_ENTRIES = 500;
 
 export function registerImageResizeRoutes(app: Express) {
   // Route outside /api/ — needs its own rate limiter

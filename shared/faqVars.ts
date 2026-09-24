@@ -7,6 +7,7 @@
 
 import type { Boat } from "./schema";
 import { minPriceAcrossBoats } from "./pricing";
+import { isPubliclyListed } from "./boatData";
 
 /**
  * Variables available for FAQ answer substitution on public pages.
@@ -15,8 +16,9 @@ import { minPriceAcrossBoats } from "./pricing";
  */
 export type FaqVars = Record<string, string | number>;
 
-export function computeFaqVars(boats: Boat[] | undefined | null): FaqVars {
-  const active = (boats || []).filter((b) => b.isActive);
+export function computeFaqVars(boats: Boat[] | undefined | null, now: Date = new Date()): FaqVars {
+  // Publicly listed, not just active: RD 1188/2025 hides licence-free boats from 2026-10-01.
+  const active = (boats || []).filter((b) => isPubliclyListed(b, now));
   const unlicensed = active.filter((b) => !b.requiresLicense && b.id !== "excursion-privada");
   const licensed = active.filter((b) => b.requiresLicense);
   const excursion = active.filter((b) => b.id === "excursion-privada");

@@ -24,6 +24,7 @@ import { eq, sql, desc, inArray } from "drizzle-orm";
 import { logger } from "../lib/logger";
 import { generateEmbedding } from "../messaging/embeddings";
 import { BOAT_DATA } from "../../shared/boatData";
+import { isCatalogBoatPubliclyListed } from "../../shared/publicFleet";
 import { JETSKI_PRODUCTS } from "../../shared/jetskiProducts";
 import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { boatRoutes } from "../../shared/routesData";
@@ -63,7 +64,7 @@ function slug(s: string): string {
 }
 
 async function collectBoats(): Promise<IndexItem[]> {
-  return Object.values(BOAT_DATA).map((b) => ({
+  return Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b)).map((b) => ({
     sourceType: "boat",
     sourceId: b.id,
     lang: "es",

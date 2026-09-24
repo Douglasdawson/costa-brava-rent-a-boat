@@ -4,10 +4,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HelpCircle, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { trackFaqExpanded } from "@/utils/analytics";
@@ -18,7 +17,6 @@ import type { Boat } from "@shared/schema";
 const PREVIEW_COUNT = 8;
 
 export default function FAQPreview() {
-  const { ref: revealRef, isVisible } = useScrollReveal();
   const t = useTranslations();
   const { localizedPath } = useLanguage();
 
@@ -38,20 +36,14 @@ export default function FAQPreview() {
   const viewAll = faqPreview.viewAll;
 
   return (
-    <section
-      ref={revealRef}
-      className={`py-16 sm:py-20 lg:py-24 bg-background transition-[opacity,transform,filter] duration-500 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}
-      aria-labelledby="faq-preview-title"
-    >
-      <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
-            <HelpCircle className="w-6 h-6 text-primary" />
-          </div>
+    <section className="bg-muted/40 py-16 sm:py-24" aria-labelledby="faq-preview-title">
+      {/* Same scaffold as the other home sections: left heading on a max-w-6xl
+          grid, the accordion kept at a readable max-w-3xl. */}
+      <div className="container mx-auto max-w-6xl px-4">
+        <div className="mb-10 max-w-2xl">
           <h2
             id="faq-preview-title"
-            className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-3"
+            className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight text-balance mb-3"
           >
             {title}
           </h2>
@@ -62,7 +54,7 @@ export default function FAQPreview() {
         <Accordion
           type="single"
           collapsible
-          className="space-y-2"
+          className="max-w-3xl space-y-2"
           onValueChange={value => {
             if (value) trackFaqExpanded(value);
           }}
@@ -84,10 +76,10 @@ export default function FAQPreview() {
         </Accordion>
 
         {/* Link to full FAQ */}
-        <div className="text-center mt-8">
+        <div className="mt-8">
           <a
             href={localizedPath("faq")}
-            className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline pointer-coarse:py-3 pointer-coarse:-my-3"
+            className="inline-flex items-center gap-2 text-primary dark:text-sky-300 font-semibold text-sm hover:underline pointer-coarse:py-3 pointer-coarse:-my-3"
           >
             {viewAll}
             <ArrowRight className="w-4 h-4" />

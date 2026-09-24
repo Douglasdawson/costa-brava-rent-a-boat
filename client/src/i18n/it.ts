@@ -5,6 +5,9 @@ export const it: Translations = {
     home: "Home",
     licensedBoats: "Barche con patente",
     captained: "Con skipper",
+    boats: "Barche",
+    allFleet: "Tutta la flotta",
+    more: "Altro",
     fleet: "Flotta",
     booking: "Prenotazione",
     contact: "Contatto",
@@ -62,6 +65,7 @@ export const it: Translations = {
     askWhatsApp: "Chiedici su WhatsApp",
     testimonialQuote: "Esperienza incredibile, torneremo sicuramente",
     testimonialQuoteShort: "Torneremo sicuramente",
+    summaryGeoPostEra: "Costa Brava Rent a Boat noleggia dal Porto di Blanes motoscafi da 80 a 115 CV per skipper patentati e un'escursione privata con capitano, oltre a moto d'acqua ed eFoil. Dal 1° ottobre 2026 il RD 1188/2025 richiede la patente nautica per noleggiare: basta la Licencia de Navegación, un corso di un giorno senza esame, o una patente straniera equivalente che verifichiamo online. Assistenza in 8 lingue. Stagione da aprile a ottobre.",
     summaryGeo:
       "Costa Brava Rent a Boat gestisce la flotta di noleggio imbarcazioni pi\u00F9 grande del Porto di Blanes con 9 barche: 3 motoscafi da 80 a 115 CV per skipper patentati, 5 barche senza patente (noleggiabili fino al 30 settembre 2026, quando il RD 1188/2025 inizia a richiedere un titolo nautico a ogni noleggiatore) e 1 escursione privata con skipper. Basta la Licencia de Navegaci\u00F3n, il titul\u00EDn di un giorno senza esame, o un titolo estero equivalente che verifichiamo online. Assistenza in 8 lingue. Stagione da aprile a ottobre. 4.8\u2605 su Google con oltre 300 recensioni.",
   },
@@ -102,7 +106,7 @@ export const it: Translations = {
     bestForPremium: "Premium senza patente",
     bestForPremiumPostEra: "Premium fino a 15 CV",
     imageAltNoLicensePostEra:
-      "Noleggiare la barca {name} fino a 15 CV (con titulín) a Blanes, Costa Brava: {capacity} persone, da {price}€",
+      "Noleggiare la barca {name} con skipper a Blanes, Costa Brava: {capacity} persone, da {price}€",
     imageAltNoLicense:
       "Noleggio barca {name} senza patente a Blanes, Costa Brava, {capacity} persone, da {price}€",
     imageAltWithLicense:
@@ -145,7 +149,7 @@ export const it: Translations = {
     },
     whyUs: "Perché Costa Brava Rent a Boat Blanes?",
     whyUsSub:
-      "Carburante incluso, nessuna sorpresa e i migliori consigli per la tua giornata in mare.",
+      "Prezzi chiari, nessuna sorpresa e i migliori consigli per la tua giornata in mare.",
     extrasTitle: "Extra Disponibili",
     extrasSub: "Completa la tua esperienza con i nostri extra opzionali.",
     extras: {
@@ -175,7 +179,7 @@ export const it: Translations = {
     exploreMore: "Scopri i nostri servizi",
     exploreLinks: {
       licenseFree: "Barche senza patente",
-      licenseFreePostEra: "Barche piccole fino a 15 CV a Blanes (con titulín)",
+      licenseFreePostEra: "Barche senza patente: cosa cambia a ottobre 2026",
       licensed: "Barche con patente",
       navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Prezzi e tariffe",
@@ -193,10 +197,10 @@ export const it: Translations = {
     step3Title: "Goditi le cale",
     step3Desc: "Naviga liberamente nelle migliori cale della Costa Brava.",
     cta: "Vedi Barche senza Patente",
-    ctaPostEra: "Vedi le barche piccole (con titulín)",
+    ctaPostEra: "Vedi i motoscafi con titulín",
   },
   contact: {
-    title: "Hai Domande?",
+    title: "Hai domande?",
     subtitle: "Rispondiamo in meno di 5 minuti su WhatsApp. Senza impegno.",
     name: "Nome",
     email: "Email",
@@ -742,6 +746,9 @@ export const it: Translations = {
       "Sorprendi una persona speciale con un'esperienza indimenticabile navigando tra le calette della Costa Brava.",
   },
   boatDetail: {
+    retiredTitle: "Questa barca non è più a noleggio",
+    retiredBody: "Dal 1° ottobre 2026 la legge richiede la patente nautica per noleggiare qualsiasi barca a motore, e questa faceva parte della nostra flotta senza patente. Con la patente base guidi i nostri motoscafi, e se preferisci non stare al timone, esci con lo skipper.",
+    retiredCta: "Vedi la flotta disponibile",
     notFound: "Barca non trovata",
     backToFleet: "Torna alla flotta",
     description: "Descrizione",
@@ -1057,14 +1064,14 @@ export const it: Translations = {
     synonymsBody: "Comunque lo cerchi: noleggio motoscafi sulla Costa Brava, noleggio imbarcazioni senza patente o affittare una barca a Blanes. Le nostre 4 barche senza patente sono motoscafi da diporto fino a 5 metri e 15 CV che qualsiasi adulto può guidare senza patente nautica. Stessa barca e stesso prezzo da 85€/h con carburante incluso, comunque tu la chiami.",
     heroTitle: "Barche Senza Patente a Blanes",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
-    postEraHeroTitle: "Barche senza patente a Blanes: dal 1 ottobre 2026 si noleggiano con il titulín",
-    postEraHeroDescription: "Le stesse 4 barche piccole del porto di Blanes (fino a 15 CV, 5 posti, carburante incluso) restano a noleggio. Quello che cambia è la legge: il Regio Decreto 1188/2025 esige dal 1 ottobre 2026 che chi noleggia abbia una patente nautica. Basta la Licencia de Navegación, il titulín: un corso di un giorno, 2 ore di teoria e 4 di pratica, senza esame e senza scadenza. Se non ce l'hai, esci con uno skipper.",
-    postEraBadge: "Con titulín (corso di 1 giorno)",
-    postEraCtaButton: "Prenota una barca con il titulín",
+    postEraHeroTitle: "Barche senza patente a Blanes: dal 1 ottobre 2026 non le noleggiamo più",
+    postEraHeroDescription: "Dal 1° ottobre 2026 la legge richiede la patente nautica per noleggiare qualsiasi barca a motore, e abbiamo ritirato le nostre piccole barche senza patente. Con il titulín, un corso di un giorno senza esame, guidi i nostri motoscafi; e se preferisci non stare al timone, esci con lo skipper.",
+    postEraBadge: "Titulín in 1 giorno, senza esame",
+    postEraCtaButton: "Vedi i motoscafi con titulín",
     postEraNoticeTitle: "Cosa cambia il 1 ottobre 2026",
-    postEraNoticeBody: "Finora queste barche si noleggiavano senza alcuna patente. Dal 1 ottobre 2026 la legge richiede che chi noleggia abbia almeno la Licencia de Navegación. Con essa guidi qualsiasi barca fino a 6 metri entro 2 miglia dalla costa: tutta la nostra flotta. Senza patente, l'alternativa è l'escursione privata con skipper.",
+    postEraNoticeBody: "Fino al 30 settembre 2026 noleggiavamo barche piccole senza alcuna patente. Dal 1 ottobre la legge richiede che chi noleggia abbia almeno la Licencia de Navegación, e quelle barche non si noleggiano più. Con essa guidi qualsiasi barca fino a 6 metri entro 2 miglia dalla costa, compresi i nostri tre motoscafi con patente. Senza patente, l'alternativa è l'escursione privata con skipper.",
     postEraNoticeLink: "Come prendere il titulín in un giorno",
-    postEraFaqCarnetAnswer: "Sì. Dal 1 ottobre 2026 (Regio Decreto 1188/2025) per noleggiare qualsiasi barca a motore serve una patente nautica, anche per le barche fino a 15 CV. Il minimo è la Licencia de Navegación (titulín): un corso di un giorno, 2 ore di teoria e 4 di pratica, senza esame e senza scadenza, rilasciato dalle scuole nautiche autorizzate. Copre tutta la nostra flotta. Senza patente puoi uscire con uno skipper nell'escursione privata.",
+    postEraFaqCarnetAnswer: "Sì. Dal 1 ottobre 2026 (Regio Decreto 1188/2025) per noleggiare qualsiasi barca a motore serve una patente nautica, per questo non noleggiamo più barche senza patente. Il minimo è la Licencia de Navegación (titulín): un corso di un giorno, 2 ore di teoria e 4 di pratica, senza esame e senza scadenza, rilasciato dalle scuole nautiche autorizzate. Copre i nostri tre motoscafi con patente. Senza patente puoi uscire con uno skipper nell'escursione privata.",
     heroDescription:
       "4 barche senza patente da 85€/h al Porto di Blanes, carburante incluso. Fino a 5 persone, senza patente né titolazione, senza esperienza precedente. Briefing di sicurezza di 15 minuti e si parte per navigare nelle cale della Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina e Sa Boadella fino alla Spiaggia di Fenals (Lloret de Mar).",
     badgeNoLicense: "Nessuna Patente Necessaria",
@@ -1690,7 +1697,7 @@ export const it: Translations = {
     yearsExperience: "6+ anni di esperienza",
     fullInsurance: "Assicurazione inclusa",
     happyCustomers: "5000+ clienti soddisfatti",
-    fleetInsured: "Flotta assicurata al 100%",
+    fleetInsured: "Assicurazione RC e infortuni inclusa",
     zeroIncidents: "0 incidenti di sicurezza",
     certifiedCaptains: "Capitani certificati",
     officialPort: "Porto ufficiale di Blanes",
@@ -6106,5 +6113,23 @@ export const it: Translations = {
       success: 'Guida inviata! Controlla la tua email.',
       error: 'Errore di invio. Riprova.',
     },
+  },
+  activitiesSection: {
+    title: "Oltre la barca: moto d'acqua ed eFoil",
+    subtitle: "Vola sull'acqua con l'eFoil o prendi i comandi di una moto d'acqua a Blanes. Senza patente e senza esperienza: ti spieghiamo tutto prima di partire.",
+    newBadge: "Novità",
+  },
+  titulinSection: {
+    title: "Prendi il titulín in un giorno e guida da solo",
+    subtitle: "6 ore di corso, senza esame e valido per sempre. Lo organizziamo vicino a Blanes e lo abbiniamo al tuo primo noleggio: finisci il corso con la patente in mano e la barca prenotata.",
+    ctaPrimary: "Voglio prendere il titulín",
+    captainedLine: "Preferisci non stare al timone?",
+    captainedCta: "Esci con uno skipper professionista",
+  },
+  extrasSection: {
+    title: "Extra per la tua giornata in mare",
+    subtitle: "Aggiungili a qualsiasi barca della flotta, al momento della prenotazione o al porto. Stesso prezzo su tutte le barche.",
+    packsTitle: "Pacchetti convenienti",
+    packSaving: "Invece di {price} separatamente",
   },
 };

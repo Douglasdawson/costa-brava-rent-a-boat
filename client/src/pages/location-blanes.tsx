@@ -35,6 +35,7 @@ import { useTranslations } from "@/lib/translations";
 import { HeroImage } from "./LocationTemplate";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 import { BOAT_DATA } from "@shared/boatData";
+import { isCatalogBoatPubliclyListed } from "@shared/publicFleet";
 import { trackLocationPageView } from "@/utils/analytics";
 import { translateBoatText } from "@shared/boatTextTranslations";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
@@ -249,7 +250,7 @@ export default function LocationBlanesPage() {
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-8">{s.fleetIntro}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {Object.values(BOAT_DATA).map((boat) => {
+            {Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b)).map((boat) => {
               const isNoLicense = boat.features.some(
                 (f) => f.toLowerCase().includes("sin licencia")
               );
@@ -336,7 +337,7 @@ export default function LocationBlanesPage() {
                 </tr>
               </thead>
               <tbody>
-                {Object.values(BOAT_DATA).map((boat) => (
+                {Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b)).map((boat) => (
                   <tr key={boat.id} className="border-b hover:bg-muted/30">
                     <td className="p-3">
                       <a href={localizedPath("boatDetail", boat.id)} className="text-primary hover:underline font-medium">

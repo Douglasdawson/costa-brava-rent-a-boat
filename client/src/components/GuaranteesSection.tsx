@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useCoveragePrices } from "@/hooks/useCoveragePrices";
 
 /**
@@ -26,7 +25,6 @@ import { useCoveragePrices } from "@/hooks/useCoveragePrices";
 export default function GuaranteesSection() {
   const t = useTranslations();
   const { localizedPath } = useLanguage();
-  const { ref, isVisible } = useScrollReveal();
   const prices = useCoveragePrices();
   const g = t.garantiasPage;
 
@@ -44,13 +42,8 @@ export default function GuaranteesSection() {
   ];
 
   return (
-    <section
-      ref={ref}
-      className={`border-y border-border bg-muted/40 py-16 transition-[opacity,transform,filter] duration-500 sm:py-20 lg:py-24 ${
-        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"
-      }`}
-    >
-      <div className="container mx-auto grid max-w-4xl grid-cols-1 gap-x-10 gap-y-9 px-4 lg:grid-cols-12">
+    <section className="bg-muted/40 py-16 sm:py-24">
+      <div className="container mx-auto grid max-w-6xl grid-cols-1 gap-x-10 gap-y-9 px-4 lg:grid-cols-12">
         {/* The argument. */}
         <div className="lg:col-span-5 lg:row-start-1">
           <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-cta">
@@ -73,7 +66,7 @@ export default function GuaranteesSection() {
             <dl className="mt-4">
               {g.criteria.map((text, i) => (
                 <div key={text} className="border-t border-border py-3.5 first:border-t-0 first:pt-0">
-                  <dt className="font-mono text-xl font-bold tabular-nums tracking-tight text-cta sm:text-2xl">
+                  <dt className="font-mono text-xl font-bold tabular-nums tracking-tight text-cta dark:text-foreground sm:text-2xl">
                     {g.criteriaMarks[i]}
                   </dt>
                   <dd className="mt-1 text-[13px] leading-snug text-muted-foreground">{text}</dd>

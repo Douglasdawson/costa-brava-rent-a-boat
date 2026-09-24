@@ -5,7 +5,8 @@ import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { AI_CRAWLER_NAMES } from "../seo/constants";
-import { BOAT_DATA, type BoatData } from "../../shared/boatData";
+import { BOAT_DATA, isPubliclyListed, type BoatData } from "../../shared/boatData";
+import { isCatalogBoatPubliclyListed } from "../../shared/publicFleet";
 import { getMaximumDuration } from "../../shared/pricing";
 import { JETSKI_PRODUCTS, isJetSkiProduct, type JetSkiProduct } from "../../shared/jetskiProducts";
 import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
@@ -877,7 +878,7 @@ export function registerRobotsRoutes(app: Express): void {
         // own Service nodes in the @graph); counting them here inflated
         // fleet/fleetSize vs the canonical live fleet.
         boats = allBoats
-          .filter((b) => b.isActive && !isJetSkiProduct(b.id))
+          .filter((b) => isPubliclyListed(b) && !isJetSkiProduct(b.id))
           .map((b) => {
             const canonical = findCanonicalBoatData(b.name);
             const engineDescription = b.specifications?.engine ?? canonical?.specifications?.engine;
@@ -913,7 +914,7 @@ export function registerRobotsRoutes(app: Express): void {
       // canonical static fleet from shared/boatData.ts so AI agents never see an empty fleet
       // (or worse, a partially populated one with default 70 EUR / 15hp for premium boats).
       if (boats.length === 0) {
-        boats = Object.values(BOAT_DATA).map(boatDataToAiContext);
+        boats = Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b)).map(boatDataToAiContext);
       }
 
       const gbpStats = getCurrentStats();
@@ -1155,7 +1156,7 @@ export function registerRobotsRoutes(app: Express): void {
           placeNode,
           localBusinessNode,
           buildSeasonEvent(BASE_URL, floor),
-          ...Object.values(BOAT_DATA).map((b) =>
+          ...Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b)).map((b) =>
             boatToProductSchema(b, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
           ),
           ...JETSKI_PRODUCTS.map((p) =>
@@ -1245,7 +1246,7 @@ export function registerRobotsRoutes(app: Express): void {
         logger.warn("[feed-llms] blog fetch failed", { error: e instanceof Error ? e.message : String(e) });
       }
 
-      const boatItems = Object.values(BOAT_DATA).map((b) => ({
+      const boatItems = Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b)).map((b) => ({
         id: `${BASE_URL}/es/barco/${b.id}`,
         url: `${BASE_URL}/es/barco/${b.id}`,
         title: `${b.name} — ${b.subtitle}`,
@@ -1347,7 +1348,7 @@ export function registerRobotsRoutes(app: Express): void {
         score: number;
       }
       const hits: Hit[] = [];
-      for (const b of Object.values(BOAT_DATA)) {
+      for (const b of Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b))) {
         const blob = [b.name, b.subtitle, b.description, ...(b.features ?? []), ...(b.equipment ?? [])].join(" ");
         const s = score(blob);
         if (s > 0) hits.push({ type: "boat", title: b.name, snippet: b.description.slice(0, 240), url: `${BASE_URL}/es/barco/${b.id}`, score: s });

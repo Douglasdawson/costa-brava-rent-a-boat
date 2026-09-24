@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { eraCopy } from "@shared/constants";
+import { eraCopy, isLicenseFreeEraActive } from "@shared/constants";
 import {
   Phone,
   Mail,
@@ -409,6 +409,8 @@ export default function Footer() {
               {t.footer.services}
             </h3>
             <ul className="space-y-1 text-sm">
+              {/* "Sin necesidad de licencia" stops being true on 2026-10-01 (RD 1188/2025). */}
+              {isLicenseFreeEraActive() && (
               <li>
                 <a
                   href={localizedPath("categoryLicenseFree")}
@@ -417,6 +419,7 @@ export default function Footer() {
                   {t.boats.withoutLicense}
                 </a>
               </li>
+              )}
               <li>
                 <a
                   href={localizedPath("categoryLicensed")}

@@ -11,21 +11,39 @@
  * reachable we fall back to the static catalog minus BASELINE_INACTIVE_BOAT_IDS
  * (see shared/boatData.ts) so the fallback still yields the live 8/75, never the
  * catalog's 9/70.
+ *
+ * The cache holds the active boats, not the stats: the stats are recomputed per
+ * call over the PUBLICLY LISTED subset, so the RD 1188/2025 switch on 2026-10-01
+ * (licence-free boats leave public surfaces) happens at Madrid midnight without a
+ * redeploy or a cache refresh.
  */
 
 import { storage } from "../storage";
 import { logger } from "./logger";
 import {
-  catalogFleetStats,
+  BASELINE_INACTIVE_BOAT_IDS,
+  BOAT_DATA,
+  boatDataRequiresLicense,
   computeFleetStats,
+  isCaptainedBoat,
+  isPubliclyListed,
   type FleetStats,
   type FleetStatBoat,
 } from "../../shared/boatData";
 import { isJetSkiProduct } from "../../shared/jetskiProducts";
 
-const FALLBACK: FleetStats = catalogFleetStats();
+// Static catalog minus the baseline-inactive hulls. The captained excursion is
+// flagged as licensed (as its DB row is) so isPubliclyListed keeps it.
+const FALLBACK: FleetStatBoat[] = Object.values(BOAT_DATA)
+  .filter((b) => !BASELINE_INACTIVE_BOAT_IDS.includes(b.id))
+  .map((b) => ({
+    id: b.id,
+    name: b.name,
+    requiresLicense: boatDataRequiresLicense(b) || isCaptainedBoat(b.id),
+    pricing: b.pricing,
+  }));
 
-let cached: FleetStats = FALLBACK;
+let cached: FleetStatBoat[] = FALLBACK;
 let lastLoadedAt = 0;
 let lastAttemptAt = 0;
 let loadingPromise: Promise<void> | null = null;
@@ -56,16 +74,15 @@ async function loadFromDb(): Promise<void> {
         requiresLicense: b.requiresLicense,
         pricing: b.pricing,
       }));
-      cached = computeFleetStats(input);
+      cached = input;
+      const stats = statsFor(cached, new Date());
       logger.info("[fleetStatsCache] Loaded", {
-        fleetCount: cached.fleetCount,
-        licenseFreeCount: cached.licenseFreeCount,
-        priceFloor: cached.priceFloor,
+        fleetCount: stats.fleetCount,
+        licenseFreeCount: stats.licenseFreeCount,
+        priceFloor: stats.priceFloor,
       });
     } else {
-      logger.warn("[fleetStatsCache] No active boats in DB, using catalog fallback", {
-        fallback: FALLBACK,
-      });
+      logger.warn("[fleetStatsCache] No active boats in DB, using catalog fallback");
     }
     lastLoadedAt = Date.now();
   } catch (error: unknown) {
@@ -74,17 +91,22 @@ async function loadFromDb(): Promise<void> {
   }
 }
 
+/** Stats over the boats offered to the public at `now` (exported for tests). */
+export function statsFor(boats: FleetStatBoat[], now: Date): FleetStats {
+  return computeFleetStats(boats.filter((b) => isPubliclyListed(b, now)));
+}
+
 /**
- * Synchronous accessor for SSR generators. Returns the last loaded value (or
- * the catalog fallback) and triggers a background refresh if stale.
+ * Synchronous accessor for SSR generators. Computes the stats from the last
+ * loaded boats (or the catalog fallback) and triggers a background refresh if stale.
  */
-export function getFleetStats(): FleetStats {
-  const now = Date.now();
-  if (now - lastLoadedAt > REFRESH_INTERVAL_MS && now - lastAttemptAt > RETRY_BACKOFF_MS) {
+export function getFleetStats(now: Date = new Date()): FleetStats {
+  const ts = Date.now();
+  if (ts - lastLoadedAt > REFRESH_INTERVAL_MS && ts - lastAttemptAt > RETRY_BACKOFF_MS) {
     // Fire and forget — current call returns stale value, next call gets fresh.
     triggerRefresh();
   }
-  return cached;
+  return statsFor(cached, now);
 }
 
 /** Initialize the cache at server startup. Awaited from startScheduledServices. */

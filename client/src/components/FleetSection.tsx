@@ -11,6 +11,7 @@ import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { eraCopy } from "@shared/constants";
+import { isCaptainedBoat, isPubliclyListed } from "@shared/boatData";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import {
@@ -239,7 +240,12 @@ const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
   );
 });
 
-function FleetSection() {
+interface FleetSectionProps {
+  /** Home renders jet ski / eFoil in their own ActivitiesSection, so it drops them here. */
+  excludeActivities?: boolean;
+}
+
+function FleetSection({ excludeActivities = false }: FleetSectionProps) {
   const t = useTranslations();
   const { language, localizedPath } = useLanguage();
   const [, setLocation] = useLocation();
@@ -281,7 +287,7 @@ function FleetSection() {
         "fleet",
         "Fleet Section",
         boatsData
-          .filter(b => b.isActive)
+          .filter(b => isPubliclyListed(b) && !(excludeActivities && isJetSkiProduct(b.id)))
           .map(boat => {
             const pricing = boat.pricing as Record<
               string,
@@ -298,7 +304,7 @@ function FleetSection() {
           })
       );
     }
-  }, [boatsData]);
+  }, [boatsData, excludeActivities]);
 
   const currentSeason = useMemo(() => getCurrentSeason(), []);
 
@@ -308,7 +314,7 @@ function FleetSection() {
   const boats = useMemo(
     () =>
       (boatsData || [])
-        .filter(boat => boat.isActive)
+        .filter(boat => isPubliclyListed(boat) && !(excludeActivities && isJetSkiProduct(boat.id)))
         .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999))
         .map(boat => {
           // Current season base price (minimum duration price), fallback to BAJA.
@@ -357,7 +363,11 @@ function FleetSection() {
             imageAlt:
               (boat.requiresLicense
                 ? t.boats.imageAltWithLicense
-                : eraCopy(t.boats.imageAltNoLicense, t.boats.imageAltNoLicensePostEra ?? t.boats.imageAltNoLicense))
+                : eraCopy(
+                    t.boats.imageAltNoLicense,
+                    t.boats.imageAltNoLicensePostEra ?? t.boats.imageAltNoLicense
+                  )
+              )
                 ?.replace("{name}", translateBoatText(boat.name, language))
                 .replace("{capacity}", String(boat.capacity))
                 .replace("{price}", String(basePrice)) ||
@@ -378,7 +388,13 @@ function FleetSection() {
               : undefined,
           };
         }),
-    [boatsData, currentSeason, t, language]
+    [boatsData, currentSeason, t, language, excludeActivities]
+  );
+
+  // From 2026-10-01 there are no self-drive licence-free boats left, so the
+  // licence filter would only ever show one option: hide it instead.
+  const showLicenseFilter = boats.some(
+    b => !b.requiresLicense && !b.isJetSki && !isCaptainedBoat(b.id),
   );
 
   // Dynamic group size options based on max boat capacity
@@ -392,7 +408,9 @@ function FleetSection() {
     let filtered = boats;
 
     // Apply license filter
-    if (licenseFilter === "no") {
+    if (!showLicenseFilter) {
+      // no-op: filter hidden
+    } else if (licenseFilter === "no") {
       filtered = filtered.filter(b => !b.requiresLicense);
     } else if (licenseFilter === "yes") {
       filtered = filtered.filter(b => b.requiresLicense);
@@ -404,7 +422,7 @@ function FleetSection() {
 
     // Filter: only show boats whose capacity falls within the selected bucket
     return filtered.filter(b => b.capacity >= option.min && b.capacity <= option.max);
-  }, [boats, selectedGroupSize, licenseFilter, groupSizeOptions]);
+  }, [boats, selectedGroupSize, licenseFilter, groupSizeOptions, showLicenseFilter]);
 
   const isBoatRecommended = useCallback(
     (capacity: number): boolean => {
@@ -473,23 +491,25 @@ function FleetSection() {
           className="flex lg:hidden items-center justify-center gap-3 mb-6 sticky z-30 bg-background/95 backdrop-blur-sm py-2 -mx-3 px-3 sm:-mx-4 sm:px-4 md:static md:bg-transparent md:backdrop-blur-none md:py-0 md:mx-0 md:px-0"
           style={{ top: "calc(var(--nav-height) + 8px)" }}
         >
-          <div className="relative flex-1 min-w-0 md:flex-none">
-            <Anchor className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-            <label htmlFor="fleet-license-filter" className="sr-only">
-              {t.recommendation?.withoutLicense || "License filter"}
-            </label>
-            <select
-              id="fleet-license-filter"
-              value={licenseFilter}
-              onChange={e => setLicenseFilter(e.target.value as "all" | "no" | "yes")}
-              className="appearance-none w-full md:w-auto bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 min-h-11 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
-            >
-              <option value="all">{t.recommendation?.all}</option>
-              <option value="no">{t.recommendation?.withoutLicense}</option>
-              <option value="yes">{t.recommendation?.withLicense}</option>
-            </select>
-            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-          </div>
+          {showLicenseFilter && (
+            <div className="relative flex-1 min-w-0 md:flex-none">
+              <Anchor className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+              <label htmlFor="fleet-license-filter" className="sr-only">
+                {t.recommendation?.withoutLicense || "License filter"}
+              </label>
+              <select
+                id="fleet-license-filter"
+                value={licenseFilter}
+                onChange={e => setLicenseFilter(e.target.value as "all" | "no" | "yes")}
+                className="appearance-none w-full md:w-auto bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 min-h-11 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+              >
+                <option value="all">{t.recommendation?.all}</option>
+                <option value="no">{t.recommendation?.withoutLicense}</option>
+                <option value="yes">{t.recommendation?.withLicense}</option>
+              </select>
+              <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+            </div>
+          )}
           <div className="relative flex-1 min-w-0 md:flex-none">
             <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             <label htmlFor="fleet-group-size" className="sr-only">
@@ -515,31 +535,33 @@ function FleetSection() {
         {/* Desktop: pill buttons */}
         <div className="hidden lg:flex flex-row items-center justify-center gap-6 mb-8">
           {/* License filter */}
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
-              <Anchor className="w-4 h-4" />
-              {t.recommendation?.licenseFilter}
-            </span>
-            <div className="flex gap-1.5">
-              {[
-                { value: "all" as const, label: t.recommendation?.all },
-                { value: "no" as const, label: t.recommendation?.withoutLicense },
-                { value: "yes" as const, label: t.recommendation?.withLicense },
-              ].map(opt => (
-                <button
-                  key={opt.value}
-                  onClick={() => setLicenseFilter(opt.value)}
-                  className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
-                    licenseFilter === opt.value
-                      ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground"
-                      : "bg-muted text-muted-foreground hover:bg-muted-foreground/10"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              ))}
+          {showLicenseFilter && (
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
+                <Anchor className="w-4 h-4" />
+                {t.recommendation?.licenseFilter}
+              </span>
+              <div className="flex gap-1.5">
+                {[
+                  { value: "all" as const, label: t.recommendation?.all },
+                  { value: "no" as const, label: t.recommendation?.withoutLicense },
+                  { value: "yes" as const, label: t.recommendation?.withLicense },
+                ].map(opt => (
+                  <button
+                    key={opt.value}
+                    onClick={() => setLicenseFilter(opt.value)}
+                    className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
+                      licenseFilter === opt.value
+                        ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-background"
+                        : "bg-muted text-muted-foreground hover:bg-muted-foreground/10"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Group size selector */}
           <div className="flex items-center gap-2">
@@ -552,7 +574,7 @@ function FleetSection() {
                 onClick={() => setSelectedGroupSize(null)}
                 className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
                   selectedGroupSize === null
-                    ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground"
+                    ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-background"
                     : "bg-muted text-muted-foreground hover:bg-muted-foreground/10"
                 }`}
               >
@@ -564,7 +586,7 @@ function FleetSection() {
                   onClick={() => setSelectedGroupSize(option.label)}
                   className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
                     selectedGroupSize === option.label
-                      ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground"
+                      ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-background"
                       : "bg-muted text-muted-foreground hover:bg-muted-foreground/10"
                   }`}
                 >
@@ -580,7 +602,7 @@ function FleetSection() {
               onClick={() => setViewMode("grid")}
               className={`inline-flex items-center justify-center min-h-11 min-w-11 rounded-full transition-colors ${
                 viewMode === "grid"
-                  ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground"
+                  ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-background"
                   : "bg-muted text-muted-foreground hover:bg-muted-foreground/10"
               }`}
               aria-label={t.a11y.gridView}
@@ -591,7 +613,7 @@ function FleetSection() {
               onClick={() => setViewMode("table")}
               className={`hidden md:inline-flex items-center justify-center min-h-11 min-w-11 rounded-full transition-colors ${
                 viewMode === "table"
-                  ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-foreground"
+                  ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-background"
                   : "bg-muted text-muted-foreground hover:bg-muted-foreground/10"
               }`}
               aria-label={t.comparison.compare}
@@ -752,13 +774,9 @@ function FleetSection() {
                   {sortedBoats.map(boat => (
                     <TableCell key={boat.id} className="text-center">
                       {boat.requiresLicense ? (
-                        <span className="text-popular font-medium">
-                          {t.comparison.tableYes}
-                        </span>
+                        <span className="text-popular font-medium">{t.comparison.tableYes}</span>
                       ) : (
-                        <span className="text-success font-medium">
-                          {t.comparison.tableNo}
-                        </span>
+                        <span className="text-success font-medium">{t.comparison.tableNo}</span>
                       )}
                     </TableCell>
                   ))}
@@ -784,7 +802,9 @@ function FleetSection() {
                     const season = currentSeason || "BAJA";
                     // Licence-free boats cap at 4h, so don't advertise slots
                     // the booking wizard and the API will both reject.
-                    const maxHours = parseFloat(getMaximumDuration(boat.id, new Date()) ?? "Infinity");
+                    const maxHours = parseFloat(
+                      getMaximumDuration(boat.id, new Date()) ?? "Infinity"
+                    );
                     const durations = Object.keys(
                       filterActivePrices(rawBoat?.pricing?.[season]?.prices)
                     )
@@ -839,9 +859,7 @@ function FleetSection() {
                   {sortedBoats.map(boat => (
                     <TableCell key={boat.id} className="text-center">
                       {!boat.requiresLicense ? (
-                        <span className="text-success font-medium">
-                          {t.comparison.tableYes}
-                        </span>
+                        <span className="text-success font-medium">{t.comparison.tableYes}</span>
                       ) : (
                         <span className="text-muted-foreground">{t.comparison.tableNo}</span>
                       )}
@@ -874,7 +892,7 @@ function FleetSection() {
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center max-w-sm sm:max-w-2xl mx-auto">
             {quizAvailable && (
               <button
-                className="border border-primary text-primary hover:bg-primary/5 px-5 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-sm lg:text-base min-h-11"
+                className="border border-primary text-primary dark:border-sky-300 dark:text-sky-300 hover:bg-primary/5 px-5 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-sm lg:text-base min-h-11"
                 onClick={() => {
                   window.dispatchEvent(new CustomEvent("cbrb:openQuiz"));
                 }}
@@ -947,10 +965,7 @@ function FleetSection() {
         </div>
       </div>
 
-      <JetSkiRequestModal
-        product={jetskiProduct}
-        onClose={() => setJetskiProduct(null)}
-      />
+      <JetSkiRequestModal product={jetskiProduct} onClose={() => setJetskiProduct(null)} />
     </section>
   );
 }

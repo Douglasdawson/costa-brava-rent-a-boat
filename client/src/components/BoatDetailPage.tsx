@@ -84,7 +84,7 @@ import AvailabilityUrgency from "./AvailabilityUrgency";
 import { LiveInterestIndicator } from "./LiveInterestIndicator";
 import { TrustBadges } from "./TrustBadges";
 import { BoatHeroChips } from "./BoatHeroChips";
-import { boatIncludesFuel, isCaptainedBoat } from "@shared/boatData";
+import { boatIncludesFuel, isCaptainedBoat, isPubliclyListed } from "@shared/boatData";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { BookingPrefillData } from "@/hooks/bookingModalContext";
 import { trackGoogleAdsRemarketing } from "@/utils/google-ads";
@@ -203,7 +203,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     if (!boats || !boatData) return [];
     const currentCapacity = boatData.capacity;
     const currentRequiresLicense = boatData.requiresLicense;
-    const candidates = boats.filter(b => b.id !== boatId && !isJetSkiProduct(b.id));
+    const candidates = boats.filter(
+      b => b.id !== boatId && !isJetSkiProduct(b.id) && isPubliclyListed(b)
+    );
     const sameCategory = candidates.filter(b => b.requiresLicense === currentRequiresLicense);
     const pool = sameCategory.length > 0 ? sameCategory : candidates;
     return pool
@@ -256,6 +258,36 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </a>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  // RD 1188/2025: from 2026-10-01 the licence-free boats are no longer rented.
+  // Inactive boats keep the regular page (their notice would be wrong for them).
+  if (boatData.isActive && !isPubliclyListed(boatData)) {
+    return (
+      <div className="min-h-screen bg-background">
+        <SEO
+          title={`${boatName} | Costa Brava Rent a Boat`}
+          description={t.boatDetail.retiredBody ?? ""}
+          canonical={generateCanonicalUrl("boatDetail", language, boatId)}
+          robots="noindex, follow"
+        />
+        <Navigation />
+        <main className="flex items-center justify-center min-h-[70vh] px-4 pt-24 pb-16">
+          <div className="max-w-xl text-center">
+            <h1 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-4">
+              {t.boatDetail.retiredTitle}
+            </h1>
+            <p className="text-muted-foreground leading-relaxed mb-8">{t.boatDetail.retiredBody}</p>
+            <Button asChild size="lg">
+              <a href={`${localizedPath("home")}#fleet`} data-testid="link-retired-boat-fleet">
+                {t.boatDetail.retiredCta}
+              </a>
+            </Button>
+          </div>
+        </main>
+        <Footer />
       </div>
     );
   }

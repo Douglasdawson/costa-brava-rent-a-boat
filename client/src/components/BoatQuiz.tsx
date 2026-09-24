@@ -4,7 +4,8 @@ import { Users, Clock, Wallet, Anchor, ChevronLeft, ChevronRight, RotateCcw } fr
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { trackBlogCtaClick, trackBoatQuizStart, trackBoatQuizComplete } from "@/utils/analytics";
-import { BOAT_DATA, type BoatData } from "@shared/boatData";
+import { BOAT_DATA, isPubliclyListed, type BoatData } from "@shared/boatData";
+import { isCatalogBoatPubliclyListed } from "@shared/publicFleet";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 
@@ -102,7 +103,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
   // resolves we recommend from the full catalog (graceful fallback).
   const { data: liveBoats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const liveBoatIds = useMemo(
-    () => (liveBoats ? new Set(liveBoats.filter(b => b.isActive).map(b => b.id)) : null),
+    () => (liveBoats ? new Set(liveBoats.filter(b => isPubliclyListed(b)).map(b => b.id)) : null),
     [liveBoats]
   );
 
@@ -130,6 +131,8 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
     return Object.values(BOAT_DATA)
       .filter(boat => QUIZ_SCORING_META[boat.id])
       .filter(boat => !liveBoatIds || liveBoatIds.has(boat.id))
+      // RD 1188/2025: licence-free boats leave the public catalog on 2026-10-01.
+      .filter(boat => isCatalogBoatPubliclyListed(boat))
       .map(boat => ({
         id: boat.id,
         name: boat.name,

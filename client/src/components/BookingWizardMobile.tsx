@@ -32,6 +32,7 @@ import { flagEmojiToIso2 } from "@/utils/phone-prefixes";
 const LicenseVerifierPanel = lazy(() => import("@/components/booking/LicenseVerifierPanel"));
 import { formatBookingDate as formatLocalisedDate, getLocaleForLanguage } from "@/utils/intl-helpers";
 import { translateBoatText } from "@shared/boatTextTranslations";
+import { isLicenseFreeEraActive } from "@shared/constants";
 
 interface PhonePrefix {
   code: string;
@@ -448,7 +449,7 @@ function Step2Boat({
             : t.wizard.haveNauticalLicense}
         </p>
       </div>
-      {!preSelectedBoatId && (
+      {!preSelectedBoatId && isLicenseFreeEraActive() && (
         <fieldset className="border-0 p-0 m-0">
           <legend className="sr-only">{t.a11y.filterByLicense}</legend>
           <div role="radiogroup" aria-label={t.a11y.filterByLicense} className="flex gap-2">
@@ -485,11 +486,11 @@ function Step2Boat({
         <Suspense fallback={<LicenseVerifierPanelSkeleton />}>
           <LicenseVerifierPanel
             verifier={licenseVerifier}
-            onSwitchToUnlicensed={() => {
+            onSwitchToUnlicensed={isLicenseFreeEraActive() ? () => {
               setLicenseFilter("without");
               setSelectedBoat("");
               licenseVerifier.dismiss();
-            }}
+            } : undefined}
           />
         </Suspense>
       )}

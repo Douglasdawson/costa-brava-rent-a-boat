@@ -5,6 +5,9 @@ export const es: Translations = {
     home: "Inicio",
     licensedBoats: "Lanchas con licencia",
     captained: "Con patrón",
+    boats: "Barcos",
+    allFleet: "Toda la flota",
+    more: "Más",
     fleet: "Flota",
     booking: "Reserva",
     contact: "Contacto",
@@ -68,6 +71,7 @@ export const es: Translations = {
     // Boat" without affecting visual hierarchy.
     // Fleet numbers use the "9 embarcaciones" / "5 barcos" baselines on purpose:
     // applyFleetStatsToText() rewrites them to the live counts at request time.
+    summaryGeoPostEra: "Costa Brava Rent a Boat alquila desde el Puerto de Blanes lanchas de 80 a 115 CV para patrones titulados y una excursión privada con capitán, además de motos de agua y eFoil. Desde el 1 de octubre de 2026 el RD 1188/2025 exige título náutico para alquilar: basta la Licencia de Navegación, el titulín de un día sin examen, o un título extranjero equivalente que verificamos online. Atención en 8 idiomas. Temporada de abril a octubre.",
     summaryGeo:
       "Costa Brava Rent a Boat opera la mayor flota de alquiler de embarcaciones del Puerto de Blanes con 9 embarcaciones: 3 lanchas de 80 a 115 CV para patrones titulados, 5 barcos sin titulaci\u00F3n (alquilables hasta el 30 de septiembre de 2026, cuando el RD 1188/2025 pasa a exigir t\u00EDtulo n\u00E1utico a todo arrendatario) y 1 excursi\u00F3n privada con capit\u00E1n. Basta la Licencia de Navegaci\u00F3n, el titul\u00EDn de un d\u00EDa sin examen, o un t\u00EDtulo extranjero equivalente que verificamos online. Atenci\u00F3n en 8 idiomas. Temporada de abril a octubre. 4.8\u2605 en Google con m\u00E1s de 300 rese\u00F1as.",
   },
@@ -108,7 +112,7 @@ export const es: Translations = {
     bestForPremium: "Premium sin licencia",
     bestForPremiumPostEra: "Premium hasta 15 CV",
     imageAltNoLicensePostEra:
-      "Alquilar barco {name} hasta 15 CV (con titulín) en Blanes, Costa Brava: {capacity} personas, desde {price}€",
+      "Alquilar barco {name} con patrón en Blanes, Costa Brava: {capacity} personas, desde {price}€",
     imageAltNoLicense:
       "Alquilar barco {name} sin licencia en Blanes, Costa Brava: {capacity} personas, desde {price}€",
     imageAltWithLicense:
@@ -151,7 +155,7 @@ export const es: Translations = {
       description: "Asesoramiento antes, durante y después. Siempre localizables por WhatsApp.",
     },
     whyUs: "¿Por qué Costa Brava Rent a Boat Blanes?",
-    whyUsSub: "Gasolina incluida, sin sorpresas, y el mejor asesoramiento para tu día en el mar.",
+    whyUsSub: "Precios claros, sin sorpresas, y el mejor asesoramiento para tu día en el mar.",
     extrasTitle: "Extras Disponibles",
     extrasSub: "Completa tu experiencia con nuestros extras opcionales.",
     extras: {
@@ -182,7 +186,7 @@ export const es: Translations = {
     exploreLinks: {
       // GSC 2026-05-21: anchor diversificado a long-tail "sin carnet" + "Blanes"
       licenseFree: "Barcos sin licencia ni carnet en Blanes",
-      licenseFreePostEra: "Barcos pequeños hasta 15 CV en Blanes (con titulín)",
+      licenseFreePostEra: "Barcos sin licencia: qué cambia en octubre de 2026",
       licensed: "Barcos con licencia",
       navigationLicense: "Licencia de Navegaci\u00F3n (titul\u00EDn)",
       pricing: "Precios y tarifas",
@@ -200,10 +204,10 @@ export const es: Translations = {
     step3Title: "A disfrutar de las calas",
     step3Desc: "Navega libre por las mejores calas de la Costa Brava.",
     cta: "Ver Barcos sin Licencia",
-    ctaPostEra: "Ver barcos pequeños (con titulín)",
+    ctaPostEra: "Ver lanchas con titulín",
   },
   contact: {
-    title: "¿Tienes Dudas?",
+    title: "¿Tienes dudas?",
     subtitle: "Te respondemos en menos de 5 minutos por WhatsApp. Sin compromiso.",
     name: "Nombre",
     email: "Email",
@@ -1392,6 +1396,9 @@ export const es: Translations = {
       "Sorprende a alguien especial con una experiencia inolvidable navegando por las calas de la Costa Brava.",
   },
   boatDetail: {
+    retiredTitle: "Este barco ya no se alquila",
+    retiredBody: "Desde el 1 de octubre de 2026 la ley exige titulación náutica para alquilar cualquier barco a motor, y este era de nuestra flota sin licencia. Con el titulín llevas nuestras lanchas, y si prefieres no llevar el timón, sales con patrón.",
+    retiredCta: "Ver la flota disponible",
     notFound: "Barco no encontrado",
     backToFleet: "Volver a la flota",
     description: "Descripción",
@@ -2828,14 +2835,14 @@ export const es: Translations = {
     heroDescription:
       "4 barcos sin licencia desde 85€/h en el Puerto de Blanes, gasolina incluida. Hasta 5 personas, sin carnet ni titulación, sin experiencia previa. Briefing de seguridad 15 minutos y a navegar por las calas de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina y Sa Boadella hasta Playa de Fenals (Lloret de Mar).",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
-    postEraHeroTitle: "Barcos sin licencia en Blanes: desde el 1 de octubre de 2026 se alquilan con titulín",
-    postEraHeroDescription: "Los mismos 4 barcos pequeños del Puerto de Blanes (hasta 15 CV, 5 plazas, gasolina incluida) siguen alquilándose. Lo que cambia es la ley: el RD 1188/2025 exige desde el 1 de octubre de 2026 que quien alquila tenga título náutico. Basta la Licencia de Navegación, el titulín: un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales con patrón.",
-    postEraBadge: "Con titulín (curso de 1 día)",
-    postEraCtaButton: "Reservar barco con titulín",
+    postEraHeroTitle: "Barcos sin licencia en Blanes: desde el 1 de octubre de 2026 ya no los alquilamos",
+    postEraHeroDescription: "Desde el 1 de octubre de 2026 la ley exige título náutico para alquilar cualquier barco a motor, y hemos retirado nuestros barcos pequeños sin licencia. Con el titulín, un curso de un día sin examen, llevas nuestras lanchas; y si no quieres llevar el timón, sales con patrón.",
+    postEraBadge: "Titulín en 1 día, sin examen",
+    postEraCtaButton: "Ver lanchas con titulín",
     postEraNoticeTitle: "Qué cambia el 1 de octubre de 2026",
-    postEraNoticeBody: "Hasta ahora estos barcos se alquilaban sin ningún título. Desde el 1 de octubre de 2026 la ley pide que el arrendatario tenga al menos la Licencia de Navegación. Con ella pilotas cualquier barco de hasta 6 metros a 2 millas de la costa: toda nuestra flota. Sin título, la alternativa es la excursión privada con patrón.",
+    postEraNoticeBody: "Hasta el 30 de septiembre de 2026 alquilábamos barcos pequeños sin ningún título. Desde el 1 de octubre la ley pide que el arrendatario tenga al menos la Licencia de Navegación, y esos barcos dejan de alquilarse. Con ella pilotas cualquier barco de hasta 6 metros a 2 millas de la costa, incluidas nuestras tres lanchas con licencia. Sin título, la alternativa es la excursión privada con patrón.",
     postEraNoticeLink: "Cómo sacarte el titulín en un día",
-    postEraFaqCarnetAnswer: "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para alquilar cualquier barco a motor hace falta un título náutico, también en los barcos de hasta 15 CV. El mínimo es la Licencia de Navegación (titulín): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad, que expiden las escuelas náuticas autorizadas. Con ella pilotas toda nuestra flota. Si no tienes título, puedes salir con patrón en la excursión privada.",
+    postEraFaqCarnetAnswer: "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para alquilar cualquier barco a motor hace falta un título náutico, y por eso ya no alquilamos barcos sin licencia. El mínimo es la Licencia de Navegación (titulín): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad, que expiden las escuelas náuticas autorizadas. Con ella pilotas nuestras tres lanchas con licencia. Si no tienes título, puedes salir con patrón en la excursión privada.",
     badgeNoLicense: "Sin Licencia Necesaria",
     badgePower: "Hasta 15 CV",
     badgeCapacity: "4-7 personas",
@@ -3601,7 +3608,7 @@ export const es: Translations = {
     fullInsurance: "Seguro incluido",
     foreignLicenseVerified: "Verificamos tu título extranjero",
     happyCustomers: "5000+ clientes satisfechos",
-    fleetInsured: "Flota asegurada al 100%",
+    fleetInsured: "Seguro de RC y accidentes incluido",
     zeroIncidents: "0 incidentes de seguridad",
     certifiedCaptains: "Capitanes certificados",
     officialPort: "Puerto oficial de Blanes",
@@ -6512,5 +6519,23 @@ export const es: Translations = {
         a: "La colección Costa Brava Culture está diseñada junto a Laura Cabanas, diseñadora de moda de Lloret de Mar, en colaboración con Costa Brava Rent a Boat (Blanes).",
       },
     ],
+  },
+  activitiesSection: {
+    title: "Más allá del barco: moto de agua y eFoil",
+    subtitle: "Vuela sobre el agua con el eFoil o ponte a los mandos de una moto de agua en Blanes. Sin licencia y sin experiencia previa: te lo explicamos todo antes de salir.",
+    newBadge: "Novedad",
+  },
+  titulinSection: {
+    title: "Sácate el titulín en un día y navega por tu cuenta",
+    subtitle: "6 horas de curso, sin examen y para toda la vida. Te lo organizamos cerca de Blanes y lo combinamos con tu primer alquiler: acabas el curso con el título en la mano y la lancha reservada.",
+    ctaPrimary: "Quiero sacarme el titulín",
+    captainedLine: "¿Prefieres no llevar el timón?",
+    captainedCta: "Sal con patrón profesional",
+  },
+  extrasSection: {
+    title: "Extras para tu día en el mar",
+    subtitle: "Añádelos a cualquier barco de la flota, al reservar o en el puerto. El mismo precio en todos los barcos.",
+    packsTitle: "Packs con descuento",
+    packSaving: "En vez de {price} por separado",
   },
 };

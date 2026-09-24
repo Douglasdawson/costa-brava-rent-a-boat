@@ -46,7 +46,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { useLicenseVerifier } from "@/hooks/useLicenseVerifier";
-import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
+import { BOAT_DATA, EXTRA_PACKS, isPubliclyListed } from "@shared/boatData";
 import {
   calculateExtrasPrice,
   calculatePackSavings,
@@ -79,7 +79,7 @@ import {
   validateBookingDate,
   getLocalISODate,
 } from "@/utils/booking-validation";
-import { OPERATING_START_HOUR, OPERATING_END_HOUR } from "@shared/constants";
+import { OPERATING_START_HOUR, OPERATING_END_HOUR, isLicenseFreeEraActive } from "@shared/constants";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
 
 // Generated from shared operating hours so the dropdown can never include a
@@ -202,7 +202,10 @@ export default function BookingFormWidget({
   const [preferredTime, setPreferredTime] = useState(prefillTime || "10:00");
   const [showPrefixDropdown, setShowPrefixDropdown] = useState(false);
   const [prefixSearch, setPrefixSearch] = useState("");
-  const [licenseFilter, setLicenseFilter] = useState<"with" | "without">("without");
+  // RD 1188/2025: from 2026-10-01 there is no licence-free offer, so the wizard starts (and stays) on "with".
+  const [licenseFilter, setLicenseFilter] = useState<"with" | "without">(() =>
+    isLicenseFreeEraActive() ? "without" : "with"
+  );
   const licenseVerifier = useLicenseVerifier();
   const [selectedBoat, setSelectedBoat] = useState<string>(preSelectedBoatId || "");
   // Secondary boat for multi-boat bookings (groups too big for a single boat).
@@ -403,7 +406,7 @@ export default function BookingFormWidget({
       if (saved.email) setEmail(saved.email);
       if (saved.numberOfPeople && saved.numberOfPeople !== "0")
         setNumberOfPeople(saved.numberOfPeople);
-      if (saved.licenseFilter) setLicenseFilter(saved.licenseFilter);
+      if (saved.licenseFilter && isLicenseFreeEraActive()) setLicenseFilter(saved.licenseFilter);
       if (saved.licenseVerifier) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         licenseVerifier.hydrate(saved.licenseVerifier as any);
@@ -681,10 +684,12 @@ export default function BookingFormWidget({
   // Get selected prefix info (using shared helper)
   const selectedPrefixInfo = findPrefixByCode(phonePrefix);
 
-  // Fetch all boats from API
-  const { data: allBoats = [], isLoading: isBoatsLoading } = useQuery<Boat[]>({
+  // Fetch all boats from API. /api/boats also feeds the CRM, so the public
+  // filter (RD 1188/2025: no licence-free boats from 2026-10-01) lives here.
+  const { data: fetchedBoats, isLoading: isBoatsLoading } = useQuery<Boat[]>({
     queryKey: ["/api/boats"],
   });
+  const allBoats = useMemo(() => (fetchedBoats ?? []).filter(b => isPubliclyListed(b)), [fetchedBoats]);
 
   // Coverage prices live in the CRM; the constants are the fallback if it's down.
   const { data: coveragePrices = COVERAGE_PRICES_FALLBACK } = useQuery<CoveragePrices>({
@@ -845,6 +850,9 @@ export default function BookingFormWidget({
     // their own slot-request modal in the fleet section, never this wizard.
     .filter(boat => !isJetSkiProduct(boat.id))
     .filter(boat => {
+      // Post-era the toggle is gone and every listed boat is offered. Filtering on
+      // requiresLicense would drop the captained excursion (false in the DB).
+      if (!isLicenseFreeEraActive()) return true;
       if (licenseFilter === "with") return !!boat.requiresLicense;
       if (licenseFilter === "without") return !boat.requiresLicense;
       return true;
@@ -854,16 +862,23 @@ export default function BookingFormWidget({
   // Get selected boat info
   const selectedBoatInfo = allBoats.find(boat => boat.id === selectedBoat);
 
+  // Drop a selection (preselected, restored from sessionStorage) that is no longer offered.
+  useEffect(() => {
+    if (!fetchedBoats) return;
+    if (selectedBoat && !allBoats.some(b => b.id === selectedBoat)) setSelectedBoat("");
+    if (selectedSecondaryBoat && !allBoats.some(b => b.id === selectedSecondaryBoat)) setSelectedSecondaryBoat("");
+  }, [fetchedBoats, allBoats, selectedBoat, selectedSecondaryBoat]);
+
   // Update license filter based on pre-selected boat
   useEffect(() => {
-    if (preSelectedBoatId && selectedBoatInfo) {
+    if (preSelectedBoatId && selectedBoatInfo && isLicenseFreeEraActive()) {
       setLicenseFilter(selectedBoatInfo.requiresLicense ? "with" : "without");
     }
   }, [preSelectedBoatId, selectedBoatInfo]);
 
   // Reset boat selection when license filter changes if current boat doesn't match filter
   useEffect(() => {
-    if (selectedBoat && selectedBoatInfo && !preSelectedBoatId) {
+    if (selectedBoat && selectedBoatInfo && !preSelectedBoatId && isLicenseFreeEraActive()) {
       if (licenseFilter === "with" && !selectedBoatInfo.requiresLicense) {
         setSelectedBoat("");
       } else if (licenseFilter === "without" && !!selectedBoatInfo.requiresLicense) {

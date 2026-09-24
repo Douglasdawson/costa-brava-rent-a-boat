@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import type { Express } from "express";
 import { storage } from "../storage";
+import { isPubliclyListed } from "../../shared/boatData";
 import { logger } from "../lib/logger";
 import { registerRobotsRoutes } from "./robots";
 import { requireAdminSession } from "./auth-middleware";
@@ -242,7 +243,7 @@ export function registerSitemapRoutes(app: Express) {
         storage.getAllDestinations(),
       ]);
 
-      const activeBoats = boats.filter(b => b.isActive);
+      const activeBoats = boats.filter(b => isPubliclyListed(b));
       const publishedPosts = blogPosts.filter(p => p.isPublished);
       const publishedDests = destinations.filter(d => d.isPublished);
 
@@ -408,7 +409,7 @@ ${hreflangLinks}  </url>\n`;
       const baseUrl = getBaseUrl();
 
       const boats = await storage.getAllBoats();
-      const activeBoats = boats.filter(b => b.isActive);
+      const activeBoats = boats.filter(b => isPubliclyListed(b));
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

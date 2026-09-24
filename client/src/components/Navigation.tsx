@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, UserCircle, Calendar, Sun, Moon, ShoppingBag } from "lucide-react";
+import { Menu, X, UserCircle, Calendar, Sun, Moon, ShoppingBag, ChevronDown } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import logoIcon from "@/assets/real-photos/logo-icon.png";
 import LogoCostaBravaSVG from "@/components/icons/LogoCostavaBravaSVG";
@@ -15,6 +15,17 @@ import { trackBookingFormOpen } from "@/utils/analytics";
 import { useTheme } from "@/hooks/use-theme";
 import { lockScroll, unlockScroll } from "@/utils/scroll-lock";
 import { useThrottledScroll } from "@/hooks/useThrottledScroll";
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface NavGroup {
+  id: string;
+  label: string;
+  items: NavItem[];
+}
 
 interface NavigationProps {
   /** Shop cart: when onCartClick is set, a cart icon with badge renders in the header (used by /tienda only). */
@@ -181,21 +192,104 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
     }
   };
 
-  const navigationItems = [
-    { label: t.nav.home, href: localizedPath("home") },
-    { label: t.nav.fleet, href: "#fleet" },
+  const nav = {
+    home: { label: t.nav.home, href: localizedPath("home") },
+    fleet: { label: t.nav.fleet, href: "#fleet" },
     // Pivote 2026 (RD 1188/2025): las dos categorías que se venden desde octubre salen del footer al menú.
-    { label: t.nav.licensedBoats ?? "Lanchas con licencia", href: localizedPath("categoryLicensed") },
-    { label: t.nav.captained ?? "Con patrón", href: localizedPath("categoryCaptained") },
+    licensed: { label: t.nav.licensedBoats ?? "Lanchas con licencia", href: localizedPath("categoryLicensed") },
+    captained: { label: t.nav.captained ?? "Con patrón", href: localizedPath("categoryCaptained") },
     // Pivote 2026 (RD 1188/2025): el pilar del titulín entra en el menú principal.
-    { label: t.navigationLicensePage?.navLabel ?? "Titulín", href: localizedPath("navigationLicense") },
-    { label: t.nav.jetski, href: localizedPath("jetskiHub") },
-    { label: t.nav.scooters, href: localizedPath("scooters") },
-    { label: t.nav.tienda, href: localizedPath("tienda") },
-    { label: t.footer.destinations, href: localizedPath("routes") },
-    { label: t.garantiasPage.navLabel, href: localizedPath("garantias") },
-    { label: "Blog", href: localizedPath("blog") },
+    titulin: { label: t.navigationLicensePage?.navLabel ?? "Titulín", href: localizedPath("navigationLicense") },
+    jetski: { label: t.nav.jetski, href: localizedPath("jetskiHub") },
+    scooters: { label: t.nav.scooters, href: localizedPath("scooters") },
+    tienda: { label: t.nav.tienda, href: localizedPath("tienda") },
+    routes: { label: t.footer.destinations, href: localizedPath("routes") },
+    garantias: { label: t.garantiasPage.navLabel, href: localizedPath("garantias") },
+    blog: { label: "Blog", href: localizedPath("blog") },
+  };
+
+  // Mobile: full flat list (vertical space is not the constraint there).
+  const navigationItems: NavItem[] = [
+    nav.home,
+    nav.fleet,
+    nav.licensed,
+    nav.captained,
+    nav.titulin,
+    nav.jetski,
+    nav.scooters,
+    nav.tienda,
+    nav.routes,
+    nav.garantias,
+    nav.blog,
   ];
+
+  // Desktop: 11 flat links overflowed the bar below ~1450px (measured 2026-09-24),
+  // so secondary pages live in two disclosure groups. "Inicio" is the logo.
+  const desktopItems: (NavItem | NavGroup)[] = [
+    { id: "boats", label: t.nav.boats, items: [{ ...nav.fleet, label: t.nav.allFleet }, nav.licensed, nav.captained] },
+    nav.titulin,
+    nav.jetski,
+    nav.routes,
+    { id: "more", label: t.nav.more, items: [nav.scooters, nav.tienda, nav.garantias, nav.blog] },
+  ];
+
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+
+  // Close the open desktop group on outside click / Escape.
+  useEffect(() => {
+    if (!openGroup) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (!(e.target as Element).closest?.(`[data-nav-group="${openGroup}"]`)) setOpenGroup(null);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      document.querySelector<HTMLButtonElement>(`[data-nav-group="${openGroup}"] > button`)?.focus();
+      setOpenGroup(null);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [openGroup]);
+
+  const renderNavLink = (item: NavItem, className: string, testId: string, onDone?: () => void) => {
+    const active = isNavItemActive(item.href);
+    // Page routes: render as <a> so Googlebot can crawl them
+    if (!item.href.startsWith("#")) {
+      return (
+        <a
+          key={item.href}
+          href={item.href}
+          onClick={e => {
+            e.preventDefault();
+            onDone?.();
+            handleNavigation(item.href, item.label);
+          }}
+          className={className}
+          data-testid={testId}
+          {...(active ? { "aria-current": "page" as const } : {})}
+        >
+          {item.label}
+        </a>
+      );
+    }
+    // Anchor links: keep as button
+    return (
+      <button
+        key={item.href}
+        onClick={() => {
+          onDone?.();
+          handleNavigation(item.href, item.label);
+        }}
+        className={`cursor-pointer bg-transparent border-none ${className}`}
+        data-testid={testId}
+      >
+        {item.label}
+      </button>
+    );
+  };
 
   const homePath = localizedPath("home");
   const isTransparent =
@@ -210,7 +304,8 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
       const destSlug = getSlugForPage("destinations", language);
       return path.includes(routesSlug) || path.includes(destSlug);
     }
-    return false;
+    if (href.startsWith("#")) return false;
+    return path === href || path.startsWith(`${href}/`);
   };
 
   return (
@@ -246,54 +341,68 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
             aria-label="Primary"
             className="hidden lg:flex min-w-0 items-center justify-center gap-x-3 xl:gap-x-6 px-4"
           >
-            {navigationItems.map(item => {
-              const activeClass = isNavItemActive(item.href)
-                ? "text-foreground font-semibold"
-                : "text-foreground/70 font-medium";
-              const baseClass = `text-sm xl:text-base pointer-coarse:py-3 hover:text-foreground transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:outline-none ${activeClass}`;
-              // Page routes: render as <a> so Googlebot can crawl them
-              if (!item.href.startsWith("#")) {
-                return (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={e => {
-                      e.preventDefault();
-                      handleNavigation(item.href, item.label);
-                    }}
-                    className={baseClass}
-                    data-testid={`nav-link-${item.label.toLowerCase()}`}
-                    {...(isNavItemActive(item.href) ? { "aria-current": "page" as const } : {})}
-                  >
-                    {item.label}
-                  </a>
+            {desktopItems.map(entry => {
+              const itemClass = (active: boolean) =>
+                `text-sm xl:text-base pointer-coarse:py-3 hover:text-foreground transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:outline-none ${active ? "text-foreground font-semibold" : "text-foreground/70 font-medium"}`;
+              if (!("items" in entry)) {
+                return renderNavLink(
+                  entry,
+                  itemClass(isNavItemActive(entry.href)),
+                  `nav-link-${entry.label.toLowerCase()}`,
                 );
               }
-              // Anchor links: keep as button
+              const isOpen = openGroup === entry.id;
+              const panelId = `nav-group-${entry.id}`;
               return (
-                <button
-                  key={item.label}
-                  onClick={() => handleNavigation(item.href, item.label)}
-                  className={`cursor-pointer bg-transparent border-none ${baseClass}`}
-                  data-testid={`nav-link-${item.label.toLowerCase()}`}
+                // Links stay in the DOM while closed (hidden via CSS, not unmounted) so crawlers see them.
+                <div
+                  key={entry.id}
+                  data-nav-group={entry.id}
+                  className="group relative"
+                  onMouseLeave={() => isOpen && setOpenGroup(null)}
+                  onBlur={e => {
+                    // Tabbing out of the group closes it (keyboard parity with the mouse).
+                    if (isOpen && !e.currentTarget.contains(e.relatedTarget as Node | null)) setOpenGroup(null);
+                  }}
                 >
-                  {item.label}
-                </button>
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => setOpenGroup(isOpen ? null : entry.id)}
+                    className={`inline-flex items-center gap-1 cursor-pointer bg-transparent border-none ${itemClass(entry.items.some(i => isNavItemActive(i.href)))}`}
+                    data-testid={`nav-group-${entry.id}`}
+                  >
+                    {entry.label}
+                    <ChevronDown
+                      className={`h-3.5 w-3.5 opacity-60 transition-transform duration-200 motion-reduce:transition-none [@media(hover:hover)]:group-hover:rotate-180 ${isOpen ? "rotate-180" : ""}`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                  {/* pt-3 bridges the gap so the pointer can travel from trigger to panel without closing it */}
+                  <div
+                    id={panelId}
+                    className={`absolute left-1/2 top-full -translate-x-1/2 pt-3 transition-[opacity,visibility] duration-150 motion-reduce:transition-none ${isOpen ? "visible opacity-100" : "invisible opacity-0 [@media(hover:hover)]:group-hover:visible [@media(hover:hover)]:group-hover:opacity-100"}`}
+                  >
+                    <div className="min-w-52 rounded-xl border border-border bg-background p-1.5 shadow-md">
+                      {entry.items.map(item => {
+                        const active = isNavItemActive(item.href);
+                        return renderNavLink(
+                          item,
+                          `flex w-full items-center rounded-lg px-3 py-2.5 text-left text-sm whitespace-nowrap transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:outline-none ${active ? "text-foreground font-semibold" : "text-foreground/80 font-medium"}`,
+                          `nav-link-${item.label.toLowerCase()}`,
+                          () => setOpenGroup(null),
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
               );
             })}
           </nav>
 
           {/* Right side buttons */}
           <div className="hidden lg:flex flex-shrink-0 items-center space-x-1.5 xl:space-x-3 z-10 lg:justify-self-end">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              aria-label={theme === "dark" ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
-              className="text-foreground/70 hover:text-foreground hover:bg-muted"
-            >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
             <LanguageSelector
               variant="minimal"
               className="text-foreground/70 hover:text-foreground hover:bg-muted"
@@ -319,7 +428,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
               aria-label={t.a11y.bookBoatNow}
-              className="bg-cta hover:bg-cta/90 text-primary-foreground rounded-full px-6 py-2 text-sm font-medium btn-elevated cta-pulse focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+              className="bg-cta hover:bg-cta/90 text-primary-foreground dark:text-background rounded-full px-6 py-2 text-sm font-medium btn-elevated cta-pulse focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
             >
               {t.nav.bookNow}
             </Button>
@@ -377,42 +486,18 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
           className={`lg:hidden overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3 border-t border-border bg-background" : "max-h-0 opacity-0 py-0"}`}
         >
           <div className="grid grid-cols-1 gap-0">
-            {navigationItems.map(item => {
-              const baseClass =
-                "px-4 py-3.5 text-foreground hover:text-primary hover:bg-muted transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none";
-              if (!item.href.startsWith("#")) {
-                return (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={e => {
-                      e.preventDefault();
-                      handleNavigation(item.href, item.label);
-                    }}
-                    className={baseClass}
-                    data-testid={`mobile-nav-${item.label.toLowerCase()}`}
-                    {...(isNavItemActive(item.href) ? { "aria-current": "page" as const } : {})}
-                  >
-                    {item.label}
-                  </a>
-                );
-              }
-              return (
-                <button
-                  key={item.label}
-                  onClick={() => handleNavigation(item.href, item.label)}
-                  className={`bg-transparent border-none cursor-pointer ${baseClass}`}
-                  data-testid={`mobile-nav-${item.label.toLowerCase()}`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+            {navigationItems.map(item =>
+              renderNavLink(
+                item,
+                "px-4 py-3.5 text-foreground hover:text-primary hover:bg-muted transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none",
+                `mobile-nav-${item.label.toLowerCase()}`,
+              ),
+            )}
           </div>
           <div className="px-4 py-2 border-t border-border mt-1 pt-3">
             <div className="flex flex-wrap items-center gap-3">
               <Button
-                className="bg-cta hover:bg-cta/90 text-primary-foreground rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                className="bg-cta hover:bg-cta/90 text-primary-foreground dark:text-background rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                 onClick={handleMobileBooking}
                 data-testid="mobile-button-book"
                 aria-label={t.a11y.bookBoatNow}

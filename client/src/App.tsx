@@ -22,13 +22,11 @@ import Footer from "./components/Footer";
 
 // Lazy load below-fold homepage sections
 const FleetSection = lazy(() => import("@/components/FleetSection"));
-const NeverSailedSection = lazy(() => import("@/components/NeverSailedSection"));
-const RangeFromBlanesSection = lazy(() => import("@/components/RangeFromBlanesSection"));
-const GiftCardBanner = lazy(() => import("@/components/GiftCardBanner"));
-const LicenseComparisonSection = lazy(() => import("@/components/LicenseComparisonSection"));
+const ActivitiesSection = lazy(() => import("@/components/ActivitiesSection"));
+const TitulinSection = lazy(() => import("@/components/TitulinSection"));
+const ExtrasSection = lazy(() => import("@/components/ExtrasSection"));
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const GuaranteesSection = lazy(() => import("@/components/GuaranteesSection"));
-const HomepageLocationsSection = lazy(() => import("@/components/HomepageLocationsSection"));
 const FAQPreview = lazy(() => import("@/components/FAQPreview"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 
@@ -168,29 +166,30 @@ function HomePage() {
       <Navigation />
       <main id="main-content">
         <Hero />
+        {/* Order agreed 2026-09-24: boats, then water activities apart, the
+            titulín pitch, extras, trust (guarantees, why us), FAQ and the
+            contact + harbour map close. Licence-free boats leave the fleet on
+            2026-10-01 by themselves (isPubliclyListed). */}
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <FleetSection />
+          <FleetSection excludeActivities />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <LicenseComparisonSection />
+          <ActivitiesSection />
         </Suspense>
-        {/* Right after the licence comparison: by here the visitor has picked a
-            boat and the next thing in the way is "and if the weather turns?".
-            The band answers it before the reasons-to-choose-us block. */}
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <TitulinSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <ExtrasSection />
+        </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <GuaranteesSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <RangeFromBlanesSection variant="home" />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FeaturesSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FAQPreview />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <HomepageLocationsSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ContactSection />

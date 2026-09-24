@@ -196,10 +196,16 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
     home: { label: t.nav.home, href: localizedPath("home") },
     fleet: { label: t.nav.fleet, href: "#fleet" },
     // Pivote 2026 (RD 1188/2025): las dos categorías que se venden desde octubre salen del footer al menú.
-    licensed: { label: t.nav.licensedBoats ?? "Lanchas con licencia", href: localizedPath("categoryLicensed") },
+    licensed: {
+      label: t.nav.licensedBoats ?? "Lanchas con licencia",
+      href: localizedPath("categoryLicensed"),
+    },
     captained: { label: t.nav.captained ?? "Con patrón", href: localizedPath("categoryCaptained") },
     // Pivote 2026 (RD 1188/2025): el pilar del titulín entra en el menú principal.
-    titulin: { label: t.navigationLicensePage?.navLabel ?? "Titulín", href: localizedPath("navigationLicense") },
+    titulin: {
+      label: t.navigationLicensePage?.navLabel ?? "Titulín",
+      href: localizedPath("navigationLicense"),
+    },
     jetski: { label: t.nav.jetski, href: localizedPath("jetskiHub") },
     scooters: { label: t.nav.scooters, href: localizedPath("scooters") },
     tienda: { label: t.nav.tienda, href: localizedPath("tienda") },
@@ -208,25 +214,14 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
     blog: { label: "Blog", href: localizedPath("blog") },
   };
 
-  // Mobile: full flat list (vertical space is not the constraint there).
-  const navigationItems: NavItem[] = [
-    nav.home,
-    nav.fleet,
-    nav.licensed,
-    nav.captained,
-    nav.titulin,
-    nav.jetski,
-    nav.scooters,
-    nav.tienda,
-    nav.routes,
-    nav.garantias,
-    nav.blog,
-  ];
-
-  // Desktop: 11 flat links overflowed the bar below ~1450px (measured 2026-09-24),
-  // so secondary pages live in two disclosure groups. "Inicio" is the logo.
+  // 11 flat links overflowed the desktop bar below ~1450px (measured 2026-09-24) and made
+  // the mobile menu a long scroll, so both use two disclosure groups. "Inicio" is the logo.
   const desktopItems: (NavItem | NavGroup)[] = [
-    { id: "boats", label: t.nav.boats, items: [{ ...nav.fleet, label: t.nav.allFleet }, nav.licensed, nav.captained] },
+    {
+      id: "boats",
+      label: t.nav.boats,
+      items: [{ ...nav.fleet, label: t.nav.allFleet }, nav.licensed, nav.captained],
+    },
     nav.titulin,
     nav.jetski,
     nav.routes,
@@ -243,7 +238,9 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
     };
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
-      document.querySelector<HTMLButtonElement>(`[data-nav-group="${openGroup}"] > button`)?.focus();
+      document
+        .querySelector<HTMLButtonElement>(`[data-nav-group="${openGroup}"] > button`)
+        ?.focus();
       setOpenGroup(null);
     };
     document.addEventListener("pointerdown", onPointerDown);
@@ -348,7 +345,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
                 return renderNavLink(
                   entry,
                   itemClass(isNavItemActive(entry.href)),
-                  `nav-link-${entry.label.toLowerCase()}`,
+                  `nav-link-${entry.label.toLowerCase()}`
                 );
               }
               const isOpen = openGroup === entry.id;
@@ -362,7 +359,8 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
                   onMouseLeave={() => isOpen && setOpenGroup(null)}
                   onBlur={e => {
                     // Tabbing out of the group closes it (keyboard parity with the mouse).
-                    if (isOpen && !e.currentTarget.contains(e.relatedTarget as Node | null)) setOpenGroup(null);
+                    if (isOpen && !e.currentTarget.contains(e.relatedTarget as Node | null))
+                      setOpenGroup(null);
                   }}
                 >
                   <button
@@ -391,7 +389,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
                           item,
                           `flex w-full items-center rounded-lg px-3 py-2.5 text-left text-sm whitespace-nowrap transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:outline-none ${active ? "text-foreground font-semibold" : "text-foreground/80 font-medium"}`,
                           `nav-link-${item.label.toLowerCase()}`,
-                          () => setOpenGroup(null),
+                          () => setOpenGroup(null)
                         );
                       })}
                     </div>
@@ -483,16 +481,43 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
         <nav
           aria-label={t.a11y.mobileNavMenu}
           aria-hidden={!isOpen}
-          className={`lg:hidden overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3 border-t border-border bg-background" : "max-h-0 opacity-0 py-0"}`}
+          className={`lg:hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain opacity-100 py-3 border-t border-border bg-background" : "max-h-0 overflow-hidden opacity-0 py-0"}`}
         >
           <div className="grid grid-cols-1 gap-0">
-            {navigationItems.map(item =>
-              renderNavLink(
-                item,
-                "px-4 py-3.5 text-foreground hover:text-primary hover:bg-muted transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none",
-                `mobile-nav-${item.label.toLowerCase()}`,
-              ),
-            )}
+            {desktopItems.map(entry => {
+              const linkClass =
+                "px-4 py-3.5 text-foreground hover:text-primary hover:bg-muted transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-foreground focus-visible:outline-none";
+              if (!("items" in entry)) {
+                return renderNavLink(entry, linkClass, `mobile-nav-${entry.label.toLowerCase()}`);
+              }
+              // Native <details>: no JS state, and closed links stay in the DOM for crawlers.
+              return (
+                <details
+                  key={entry.id}
+                  className="group"
+                  data-testid={`mobile-nav-group-${entry.id}`}
+                >
+                  <summary
+                    className={`${linkClass} flex items-center justify-between cursor-pointer list-none [&::-webkit-details-marker]:hidden`}
+                  >
+                    {entry.label}
+                    <ChevronDown
+                      className="h-4 w-4 opacity-60 transition-transform duration-200 motion-reduce:transition-none group-open:rotate-180"
+                      aria-hidden="true"
+                    />
+                  </summary>
+                  <div className="pb-1">
+                    {entry.items.map(item =>
+                      renderNavLink(
+                        item,
+                        `${linkClass} pl-8 py-3 text-foreground/80`,
+                        `mobile-nav-${item.label.toLowerCase()}`
+                      )
+                    )}
+                  </div>
+                </details>
+              );
+            })}
           </div>
           <div className="px-4 py-2 border-t border-border mt-1 pt-3">
             <div className="flex flex-wrap items-center gap-3">

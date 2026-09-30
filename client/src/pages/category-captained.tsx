@@ -400,7 +400,7 @@ export default function CategoryCaptainedPage() {
                   {cp.vsLinkLicensed}
                 </a>
                 <a
-                  href={localizedPath("categoryLicenseFree")}
+                  href={localizedPath("navigationLicense")}
                   className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
                 >
                   <ChevronRight className="w-4 h-4" />

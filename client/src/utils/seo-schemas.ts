@@ -336,7 +336,7 @@ export function generateCovesItemListSchema(t?: Translations) {
   const propDistance = cs?.propDistance ?? "Distancia náutica desde Port de Blanes";
   const propDistanceUnit = cs?.propDistanceUnit ?? "millas náuticas";
   const propLicenseRequired = cs?.propLicenseRequired ?? "Requiere licencia náutica";
-  const propEndpoint = cs?.propEndpoint ?? "Límite norte legal sin-licencia";
+  const propEndpoint = cs?.propEndpoint ?? "Última cala de la ruta hacia el norte";
   const descriptions = cs?.descriptions ?? COVE_DESC_FALLBACK_ES;
   return {
     "@context": "https://schema.org",

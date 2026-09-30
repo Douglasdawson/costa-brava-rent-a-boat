@@ -737,7 +737,7 @@ export const it: Translations = {
     whyP1:
       "Un regalo originale che non si dimentica. Navigare tra le calette della Costa Brava, scoprire spiagge nascoste e godersi il Mediterraneo è un'esperienza unica che supera qualsiasi regalo materiale.",
     whyP2:
-      "Le nostre carte regalo sono valide per tutte le nostre {count} barche, sia senza patente che con patente. Il destinatario sceglie la barca, la data e la durata che preferisce durante tutta la stagione (da aprile a ottobre).",
+      "Le nostre carte regalo sono valide per tutte le nostre {count} barche: i motoscafi con patente e l'escursione privata con skipper. Il destinatario sceglie la barca, la data e la durata che preferisce durante tutta la stagione (da aprile a ottobre).",
     whyP3:
       "Perfetta per compleanni, anniversari, addii al celibato o al nubilato o semplicemente per sorprendere una persona speciale. Il mare è sempre il regalo migliore.",
     viewFleet: "Vedi la flotta",
@@ -954,7 +954,7 @@ export const it: Translations = {
         needsIcc: "Il tuo paese rilascia l'ICC. Richiedilo alla tua federazione nautica prima di viaggiare.",
         notRecognized: "La tua patente nazionale non è riconosciuta direttamente in Spagna. Scrivici su WhatsApp e vediamo insieme le opzioni.",
         insufficient: "La tua patente è di livello inferiore alla Licencia de Navegación spagnola, il minimo per la nostra flotta con patente. Valuta di ottenere la LN o un titolo superiore.",
-        inlandOnly: "La tua patente autorizza fiumi e laghi, non la navigazione marittima. Buona notizia: le nostre barche senza patente non richiedono alcun titolo, sono perfette per te.",
+        inlandOnly: "La tua patente autorizza fiumi e laghi, non la navigazione marittima, quindi non vale per le nostre barche. Con la Licencia de Navegación (corso di un giorno, senza esame) potrai guidarle, oppure puoi uscire con lo skipper nell'escursione privata.",
       },
       pill: {
         valid: "Valida",
@@ -1240,7 +1240,7 @@ export const it: Translations = {
     whatAreTitle: "Che cos'è un motoscafo con patente?",
     advancedNavigation: "Più potenza, più raggio",
     advancedNavigationDesc:
-      "I nostri motoscafi montano motori da 80 a 115 CV, contro i 15 CV delle barche senza patente. Questo si traduce in una velocità di crociera reale e nell'arrivare a calette che restano fuori dalla portata di una barca da principianti.",
+      "I nostri motoscafi montano motori da 80 a 115 CV, contro i 15 CV di una barca da principianti. Questo si traduce in una velocità di crociera reale e nell'arrivare a calette che restano fuori dalla portata di una barca piccola.",
     greaterFreedom: "La rotta la decidi tu",
     greaterFreedomDesc:
       "Senza skipper a bordo, il programma lo fai tu entro la zona che la tua patente consente: partire presto per ancorare quasi in solitaria a Santa Cristina, pranzare davanti a Fenals o arrivare a Tossa a metà mattina.",
@@ -1294,7 +1294,7 @@ export const it: Translations = {
     regulationForeign:
       "Se il tuo titolo è di un altro Paese dello SEE si applica la reciprocità europea, e accettiamo anche l'ICC internazionale. Portalo in originale il giorno della partenza insieme al tuo documento di identità.",
     regulationFuelDeposit:
-      "A differenza delle nostre barche senza patente, qui il carburante non è incluso: si paga a parte secondo il consumo reale. La cauzione è di 500 EUR e viene restituita alla fine se la barca torna come è uscita.",
+      "Il carburante non è incluso: si paga a parte secondo il consumo reale. La cauzione è di 500 EUR e viene restituita alla fine se la barca torna come è uscita.",
     howToTitle: "Come noleggiare un motoscafo senza skipper a Blanes",
     howToIntro:
       "Dal primo messaggio alla navigazione ci sono cinque passi e nessuno richiede il pagamento online: prenoti, verifichi il tuo titolo e paghi in porto il giorno della partenza.",
@@ -1337,7 +1337,7 @@ export const it: Translations = {
       "Sì. I nostri tre motoscafi si noleggiano senza skipper: lo skipper sei tu, con la tua Licencia de Navegación o qualsiasi titolo superiore in vigore. E se preferisci non stare al timone, abbiamo un'escursione privata con skipper professionista.",
     faqTossaQuestion: "Posso arrivare a Tossa de Mar al timone partendo da Blanes?",
     faqTossaAnswer:
-      "Sì. Dal Porto di Blanes si raggiunge la baia di Tossa de Mar in 30-45 minuti con uno qualsiasi dei nostri motoscafi con patente. È un tragitto che le barche senza patente non raggiungono: la loro zona si ferma tra Blanes e Lloret.",
+      "Sì. Dal Porto di Blanes si raggiunge la baia di Tossa de Mar in 30-45 minuti con uno qualsiasi dei nostri motoscafi con patente.",
     faqLanchaQuestion: "Quali motoscafi posso noleggiare a Blanes e per quante persone?",
     faqLanchaAnswer:
       "Tre motoscafi da 80 a 115 CV: il Mingolla Brava 19 per 6 persone, il Trimarchi 57S per 7 e il Pacific Craft 625 per 7. Tutti partono dal Porto di Blanes a ore, mezza giornata o giornata intera.",
@@ -1366,7 +1366,7 @@ export const it: Translations = {
     linksTossa: "Noleggio barca a Tossa de Mar",
     linksBlogTossa: "La rotta da Blanes a Tossa passo per passo",
     linksPricing: "Prezzi per stagione e durata",
-    linksNoLicense: "Senza patente? Guarda le barche senza patente",
+    linksNoLicense: "Senza patente? Esci con lo skipper",
     linksSkipper: "Preferisci lo skipper? Escursione privata con capitano",
     ctaTitle: "Hai il titolo? Il motoscafo ti aspetta a Blanes",
     ctaDescription:
@@ -1505,7 +1505,7 @@ export const it: Translations = {
     q2: "Per quanto tempo vuoi navigare?",
     q2options: ["1-2 ore", "3-4 ore (mezza giornata)", "6-8 ore (giornata intera)"],
     q3: "Qual è il tuo budget?",
-    q3options: ["Economico (da 85€)", "Medio (100-200€)", "Senza limite"],
+    q3options: ["Economico", "Medio (100-200€)", "Senza limite"],
     result: "La tua barca ideale è...",
     bestMatch: "Scelta migliore",
     alsoConsider: "Puoi anche considerare",
@@ -1558,7 +1558,7 @@ export const it: Translations = {
         id: "normativa2026",
         question: "\u00C8 vero che nel 2026 finisce il noleggio di barche senza patente?",
         answer:
-          "Cambia la legge: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1\u00BA ottobre 2026. Fino al 30 settembre 2026 non cambia nulla e le nostre barche senza patente si noleggiano come sempre. Da quella data baster\u00E0 la Licencia de Navegaci\u00F3n (titul\u00EDn), un corso di 1 giorno senza esame, o qualsiasi titolo superiore o estero equivalente. L'escursione con skipper non \u00E8 toccata: l\u00EC la barca la conduce un professionista.",
+          "Sì, la legge è cambiata: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1° ottobre 2026, e da quella data non noleggiamo più barche senza patente. Basta la Licencia de Navegación (titulín), un corso di un giorno senza esame, o qualsiasi titolo superiore o estero equivalente. L'escursione con skipper non è toccata: lì la barca la conduce un professionista.",
       },
       {
         id: "titulin",
@@ -1570,19 +1570,19 @@ export const it: Translations = {
         id: "precios",
         question: "Quali sono i prezzi del noleggio?",
         answer:
-          "Barche senza patente da 85€ con carburante incluso (1h, 2h, 3h, 4h, 6h o giornata intera). Barche con patente da 175€ senza carburante (2h, 4h, 8h). I prezzi variano in base alla stagione (luglio/agosto) e alla barca.",
+          "Barche con patente da {licBaja2h}€ per 2 ore in bassa stagione, carburante non incluso (2h, 4h, 8h). Escursione privata con skipper da {excursionBaja2h}€ per 2 ore. I prezzi variano in base alla stagione (luglio/agosto) e alla barca.",
       },
       {
         id: "sin-licencia",
         question: "Posso noleggiare una barca senza patente nautica?",
         answer:
-          "Fino al 30 settembre 2026 s\u00EC: abbiamo barche senza patente fino a 15 CV e basta avere pi\u00F9 di 18 anni, con un briefing completo prima di partire. Dal 1\u00BA ottobre 2026 il RD 1188/2025 richiede un titolo a ogni noleggiatore; la Licencia de Navegaci\u00F3n (titul\u00EDn) si prende in un giorno e te la organizziamo noi. Se preferisci non prendere alcun titolo, l'escursione con skipper non ne richiede in nessuna data.",
+          "Dal 1° ottobre 2026, no: il RD 1188/2025 richiede un titolo a chiunque noleggi una barca a motore. La Licencia de Navegación (titulín) si prende in un giorno, senza esame, e te la organizziamo noi. Se preferisci non prendere alcun titolo, l'escursione con skipper non ne richiede.",
       },
       {
         id: "incluye",
         question: "Cosa è incluso nel prezzo?",
         answer:
-          "Tutti i noleggi includono: barca completamente attrezzata, carburante (barche senza patente), giubbotti salvagente, kit di sicurezza, ancora, scaletta da bagno, istruzioni d'uso e assicurazione base.",
+          "Tutti i noleggi includono: barca attrezzata, giubbotti salvagente, kit di sicurezza, ancora, scaletta da bagno, istruzioni d'uso e assicurazione base. Il carburante si paga a parte in base al consumo.",
       },
       {
         id: "cancelacion",
@@ -1600,7 +1600,7 @@ export const it: Translations = {
         id: "experiencia",
         question: "Serve esperienza precedente?",
         answer:
-          "No, nessuna. Prima di salpare ti diamo una spiegazione completa della barca (10-15 min). Le nostre barche senza patente sono molto facili da manovrare.",
+          "Non serve altra esperienza oltre al titulín, che include le prove pratiche. Prima di salpare ti diamo una spiegazione completa della barca (10-15 min), e se preferisci non stare al timone, esci con lo skipper.",
       },
       {
         id: "comida-bebida",
@@ -1900,8 +1900,8 @@ export const it: Translations = {
   pricingPage: {
     heroTitle: "Prezzi Noleggio Barche a Blanes 2026",
     heroSubtitle:
-      "Consulta e confronta i prezzi di tutte le nostre barche. Stagione bassa, media e alta. Barche senza patente con carburante incluso.",
-    fuelBadge: "Carburante incluso (senza patente)",
+      "Consulta e confronta i prezzi dei nostri motoscafi con patente e dell'escursione privata con skipper. Stagione bassa, media e alta.",
+    fuelBadge: "Carburante a parte, secondo consumo",
     fleetCountSuffix: "imbarcazioni disponibili",
     portAccessible: "Porto di Blanes: accessibile da",
     seasonLabels: {
@@ -1944,7 +1944,7 @@ export const it: Translations = {
     peopleSuffix: "persone",
     info: {
       whatIncludesTitle: "Cosa include il prezzo?",
-      fuelIncludedItem: "<strong>Carburante incluso</strong> nelle barche senza patente",
+      fuelIncludedItem: "<strong>Carburante a parte</strong>, secondo il consumo reale dell'uscita",
       insurance: "Assicurazione kasko e attrezzatura di sicurezza",
       briefing: "Briefing di 15 minuti prima della partenza",
       equipment: "Attrezzatura snorkeling e paddle surf (secondo disponibilità)",
@@ -1961,9 +1961,9 @@ export const it: Translations = {
     faq: {
       q1: "Quanto costa noleggiare una barca senza patente a Blanes?",
       a1Template:
-        "Le barche senza patente a Blanes costano da {noLicBaja1h} €/ora in stagione bassa (aprile-giugno, settembre-ottobre). In stagione media (luglio) da {noLicMedia1h} €/ora e in stagione alta (agosto) da {noLicAlta1h} €/ora. Il prezzo include carburante, assicurazione e attrezzatura di sicurezza.",
+        "Dal 1° ottobre 2026 non noleggiamo più barche senza patente: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi barca a motore. Con la Licencia de Navegación (titulín, corso di un giorno senza esame) noleggi i nostri motoscafi da {licBaja2h} € per 2 ore in bassa stagione; senza patente, l'escursione privata con skipper parte da {excursionBaja2h} € per 2 ore.",
       q2: "Il carburante è incluso nel prezzo?",
-      a2: "Sì, tutte le nostre barche senza patente includono il carburante nel prezzo. Per le barche con patente, il carburante si paga a parte in base al consumo effettivo.",
+      a2: "No. Nessuna delle nostre barche include il carburante: si paga a parte in base al consumo reale dell'uscita.",
       q3: "C'è differenza di prezzo tra stagione bassa e alta?",
       a3: "Sì. La stagione bassa (aprile-giugno e settembre-ottobre) ha i prezzi migliori. La stagione media è luglio con prezzi intermedi, e la stagione alta è agosto con le tariffe più elevate. Consigliamo di prenotare in stagione bassa per il miglior rapporto qualità-prezzo.",
       q4: "Quanto costa noleggiare una barca con patente?",
@@ -2055,17 +2055,17 @@ export const it: Translations = {
     seasonalEvent: {
       name: "Stagione {year}, Noleggio Barche in Costa Brava",
       description:
-        "Noleggia barche senza patente a Blanes, Costa Brava. Stagione da aprile a ottobre.",
+        "Noleggia barche a Blanes, Costa Brava: motoscafi con la Licencia de Navegación o escursione privata con skipper. Stagione da aprile a ottobre.",
     },
     coves: {
-      listName: "Calette accessibili dal Porto di Blanes con barca senza patente",
+      listName: "Calette raggiungibili in barca dal Porto di Blanes",
       listDescription:
-        "Elenco ordinato delle 8 principali calette tra Blanes e Playa de Fenals accessibili con barca senza patente in meno di 25 minuti di navigazione (limite legale 2 miglia nautiche, 5 nodi).",
+        "Elenco ordinato delle 8 principali calette tra Blanes e Playa de Fenals, a meno di 25 minuti di navigazione dal Porto di Blanes.",
       propTimeFromPort: "Tempo di navigazione dal Port de Blanes",
       propDistance: "Distanza nautica dal Port de Blanes",
       propDistanceUnit: "miglia nautiche",
       propLicenseRequired: "Richiede patente nautica",
-      propEndpoint: "Limite nord legale senza patente",
+      propEndpoint: "Ultima cala del percorso verso nord",
       descriptions: {
         saPalomera:
           "Roccia emblematica nel Port de Blanes, punto di riferimento costiero. Prima tappa naturale. Acque cristalline.",
@@ -2082,7 +2082,7 @@ export const it: Translations = {
         calaSaBoadella:
           "Caletta semi-incontaminata con sezione naturista. Rocce e pini. Accesso a piedi difficile, barca la migliore opzione.",
         playaDeFenals:
-          "Spiaggia urbana a sud di Lloret de Mar. Limite nord legale per imbarcazioni senza patente da Blanes.",
+          "Spiaggia urbana a sud di Lloret de Mar, a pochi minuti in barca da Blanes.",
       },
     },
   },
@@ -2134,7 +2134,7 @@ export const it: Translations = {
       {
         question: "Ho bisogno della patente nautica per un'escursione al tramonto?",
         answer:
-          "No. Le nostre barche senza patente sono perfette per escursioni al tramonto. Devi solo essere maggiorenne. Ti forniamo una formazione sulla sicurezza di 15 minuti prima di partire. Le barche sono facili da manovrare e hanno una velocità massima che le rende molto sicure per navigare al tramonto.",
+          "Sì: dal 1° ottobre 2026, per guidare serve almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame; con essa guidi uno qualsiasi dei nostri motoscafi. Se nessuno del gruppo ha la patente, esci con lo skipper nell'escursione privata: la barca la conduce un professionista e voi vi godete solo il tramonto.",
       },
       {
         question: "È sicuro stare in barca al tramonto e rientrare con poca luce?",
@@ -2144,7 +2144,7 @@ export const it: Translations = {
       {
         question: "Quanto costa un'escursione in barca al tramonto?",
         answer:
-          "Un'escursione di 2 ore al tramonto in barca senza patente costa a partire da 155 € in totale ({noLicBaja1h} €/ora in bassa stagione). Il carburante è incluso nelle barche senza patente. La barca può ospitare fino a 5 persone, quindi il costo a persona può essere a partire da 28 €. Le barche senza patente includono carburante, assicurazione, attrezzatura di sicurezza e formazione.",
+          "Il prezzo è per barca, non per persona: un'uscita di 2 ore su uno dei nostri motoscafi con patente o nell'escursione privata con skipper si divide tra tutto il gruppo. Nella pagina dei prezzi trovi la tariffa di ogni barca secondo la stagione. Il carburante si paga a parte in base al consumo.",
       },
     ],
     sunsetTimes: [
@@ -2228,7 +2228,7 @@ export const it: Translations = {
     ],
     heroTitle: "Gita in Barca al Tramonto da Blanes",
     heroDescription:
-      "Contempla il tramonto sulla Costa Brava dal ponte della tua barca. Parti dal porto di Blanes, naviga tra calette nascoste e goditi la luce più magica del giorno sul Mediterraneo. Senza patente nautica. Da 85 €/ora.",
+      "Contempla il tramonto sulla Costa Brava dal ponte della tua barca. Parti dal porto di Blanes, naviga tra calette nascoste e goditi la luce più magica del giorno sul Mediterraneo. Con il titulín su uno dei nostri motoscafi o con lo skipper nell'escursione privata.",
     badgeGoldenHour: "Viste alla golden hour",
     badgeDuration: "2 ore consigliate",
     badgeCouples: "Perfetto per coppie",
@@ -2239,9 +2239,9 @@ export const it: Translations = {
     whyPrivateTitle: "La vostra esperienza privata",
     whyPrivateDesc:
       "A differenza delle crociere al tramonto di gruppo, la barca è solo vostra. Scegliete dove ancorare, quanto tempo restare e cosa portare a bordo. Nessuna guida che vi mette fretta, nessun altro turista. Solo voi e il Mediterraneo nel suo momento più bello.",
-    whyAffordableTitle: "Facile e accessibile",
+    whyAffordableTitle: "Con il titulín o con lo skipper",
     whyAffordableDesc:
-      "Le nostre barche senza patente sono incredibilmente facili da manovrare. Dopo una formazione di 15 minuti al porto, siete pronti. La barca può ospitare fino a 5 persone, quindi una gita di 2 ore al tramonto può costare da 28 € a persona con carburante incluso. Meno della maggior parte delle cene sulla Costa Brava.",
+      "Con la Licencia de Navegación, un corso di un giorno senza esame, guidi uno qualsiasi dei nostri motoscafi, fino a 7 posti. Il prezzo è per barca, non per persona, quindi diviso tra il gruppo risulta conveniente. Se preferisci non stare al timone, l'escursione privata con skipper vi porta ai panorami migliori.",
     whyTemperatureTitle: "Temperatura perfetta al tramonto",
     whyTemperatureDesc:
       "A tarda sera, il calore del giorno si è attenuato. La brezza marina vi mantiene comodi. L'acqua è al suo punto più caldo dopo aver assorbito il sole tutto il giorno. È il momento ideale per stare in acqua, che si tratti di nuotare, galleggiare o semplicemente contemplare il cielo che cambia colore.",
@@ -2269,7 +2269,7 @@ export const it: Translations = {
       "Asciugamani se andate a nuotare",
     ],
     exploreMore: "Esplora altre esperienze",
-    linkNoLicense: "Barche senza patente",
+    linkNoLicense: "Barche con patente",
     linkSnorkel: "Escursione di snorkeling",
     linkPrices: "Prezzi e tariffe",
     linkBlanes: "Info sul porto di Blanes",
@@ -2277,7 +2277,7 @@ export const it: Translations = {
     faqTitle: "Domande frequenti",
     ctaTitle: "Prenota la tua gita in barca al tramonto da Blanes",
     ctaDescription:
-      "Il modo più magico per concludere una giornata sulla Costa Brava. Partenze dal porto di Blanes, da aprile a ottobre. Senza patente. Carburante incluso.",
+      "Il modo più magico per concludere una giornata sulla Costa Brava. Partenze dal porto di Blanes, da aprile a ottobre, con il titulín o con lo skipper.",
     ctaWhatsApp: "Prenota su WhatsApp",
     ctaViewBoats: "Vedi le barche disponibili",
     breadcrumbHome: "Home",
@@ -2337,11 +2337,11 @@ export const it: Translations = {
     ],
     recommendedBoats: [
       {
-        name: "Barche senza patente (4-5 persone)",
-        duration: "2-3 ore consigliate",
-        price: "A partire da 85 €/ora",
+        name: "Escursione privata con skipper (fino a 6 persone)",
+        duration: "2-4 ore consigliate",
+        price: "Skipper incluso",
         description:
-          "Perfette per snorkeling nelle calette vicine come Cala Sant Francesc e Cala Bona. Carburante incluso. Ancori la barca e ti tuffi direttamente in acqua.",
+          "Il nostro skipper vi porta alle calette con la migliore visibilità del giorno e ancora perché possiate tuffarvi direttamente in acqua. Nessuno del gruppo ha bisogno di patente nautica.",
       },
       {
         name: "Barche con patente (6-7 persone)",
@@ -2368,9 +2368,9 @@ export const it: Translations = {
     whyMultiTitle: "Più spot in un'unica uscita",
     whyMultiDesc:
       "In un'uscita di 3-4 ore puoi visitare 2-3 cale diverse. Ognuna ha un ecosistema diverso: praterie di posidonia, fondali rocciosi, pareti verticali. È come fare tre escursioni di snorkeling in una sola.",
-    whyNoExpTitle: "Nessuna esperienza necessaria",
+    whyNoExpTitle: "Con il titulín o con lo skipper",
     whyNoExpDesc:
-      "Non serve la patente nautica per le nostre barche senza patente. Ti diamo una formazione di 15 minuti al porto. Lo snorkeling è l'attività acquatica più accessibile: ti servono solo maschera, boccaglio e voglia di scoprire.",
+      "Con il titulín, un corso di un giorno senza esame, guidi uno dei nostri motoscafi, e prima di partire ti spieghiamo la barca in 15 minuti. Se nessuno del gruppo ha la patente, l'escursione con skipper vi porta alle calette. Lo snorkeling è l'attività acquatica più accessibile: ti servono solo maschera, boccaglio e voglia di scoprire.",
     spotsTitle: "Migliori cale per lo snorkeling vicino a Blanes",
     equipmentTitle: "Attrezzatura da snorkeling inclusa e disponibile",
     includedTitle: "Incluso con tutte le barche",
@@ -2408,7 +2408,7 @@ export const it: Translations = {
       },
     ],
     exploreTitle: "Esplora altre attività e servizi",
-    linkNoLicense: "Barche senza patente",
+    linkNoLicense: "Escursione privata con skipper",
     linkLicensed: "Barche con patente",
     linkFamilies: "Barche per famiglie",
     linkPrices: "Prezzi e tariffe",
@@ -2430,12 +2430,12 @@ export const it: Translations = {
       {
         question: "Ho bisogno della patente nautica per noleggiare una barca familiare?",
         answer:
-          "No. Le nostre barche senza patente non richiedono alcun titolo nautico. Devi solo essere maggiorenne. Ti forniamo una formazione completa di 15 minuti prima della partenza. Sono barche sicure, stabili e molto facili da manovrare.",
+          "Sì: dal 1° ottobre 2026 la legge richiede almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame, per noleggiare qualsiasi barca a motore. Se nessuno in famiglia ha la patente, l'opzione è l'escursione privata con skipper: la barca la conduce un professionista.",
       },
       {
         question: "Cosa include il prezzo del noleggio?",
         answer:
-          "Il prezzo delle barche senza patente include carburante, assicurazione, giubbotti di salvataggio per tutti (inclusi quelli per bambini), scaletta da bagno, tendalino/bimini per l'ombra e il briefing di sicurezza. Solo l'attrezzatura da snorkeling è aggiuntiva (7,50 €/persona).",
+          "Il prezzo include assicurazione, giubbotti di salvataggio per tutti (inclusi quelli per bambini) e la spiegazione della barca prima della partenza. Il carburante si paga a parte in base al consumo, e l'attrezzatura da snorkeling è aggiuntiva (7,50 €/persona).",
       },
       {
         question: "Cosa dobbiamo portare per un'uscita in barca con bambini?",
@@ -2455,9 +2455,9 @@ export const it: Translations = {
           "Prima della partenza, dedichiamo 15 minuti a spiegare il funzionamento della barca, le zone di navigazione sicure e le norme base. Risolviamo tutti i dubbi prima di salpare.",
       },
       {
-        title: "Barche stabili e facili da manovrare",
+        title: "Barche stabili e spaziose",
         description:
-          "Le nostre barche senza patente hanno scafo in vetroresina con grande stabilità. Motore di bassa potenza, velocità controllata e facile manovra anche per principianti.",
+          "I nostri motoscafi hanno scafo in vetroresina e sono stabili e spaziosi, da 6 o 7 posti. Se preferisci non stare al timone, nell'escursione privata lo tiene il nostro skipper.",
       },
       {
         title: "Zona di navigazione protetta",
@@ -2471,7 +2471,7 @@ export const it: Translations = {
         stops: ["Porto di Blanes", "Cala Sant Francesc", "Ritorno"],
         description:
           "Ideale per famiglie con bambini piccoli. Breve navigazione fino a una caletta protetta con acqua bassa e cristallina. Tempo per fare il bagno, snorkeling leggero e picnic a bordo.",
-        price: "Da 135 € (2 h, bassa stagione)",
+        price: "2 h, con il titulín o con lo skipper",
         tip: "Perfetta per una prima esperienza in barca con bambini. La caletta ha zona sabbiosa e acqua tranquilla.",
       },
       {
@@ -2485,23 +2485,23 @@ export const it: Translations = {
         ],
         description:
           "L'esperienza completa per famiglie. Tre soste con tempo sufficiente per esplorare ogni caletta. Combina bagno, snorkeling, picnic e viste spettacolari della costa.",
-        price: "Da 180 € (4 h, bassa stagione)",
+        price: "4 h, con il titulín o con lo skipper",
         tip: "Consigliata per bambini dai 4 anni in su. Portare cibo, acqua, crema solare e cappelli.",
       },
     ],
     heroTitle: "Noleggio Barca per Famiglie sulla Costa Brava",
     heroDescription:
-      "Un'avventura sicura e divertente per tutta la famiglia. Barche senza patente dal Porto di Blanes con carburante incluso, giubbotti per bambini e calette protette perfette per i più piccoli. Da 85 €/ora.",
-    badgeNoLicense: "Senza patente necessaria",
+      "Un'avventura sicura e divertente per tutta la famiglia. Motoscafi con patente dal Porto di Blanes, che guidi con il titulín, oppure escursione privata con skipper, con giubbotti per bambini e calette protette perfette per i più piccoli.",
+    badgeNoLicense: "Titulín in 1 giorno o skipper",
     badgeKidsVests: "Giubbotti per bambini inclusi",
-    badgeFuel: "Carburante incluso",
+    badgeFuel: "Calette tranquille per bambini",
     whyTitle: "Perché è perfetto per le famiglie",
     whyMemoriesTitle: "Un'esperienza che ricorderanno sempre",
     whyMemoriesDesc:
       "Noleggiare una barca in famiglia è molto più di una gita in mare. Significa scoprire insieme calette nascoste, vedere pesci sott'acqua, fare un picnic galleggiando in acque turchesi e creare ricordi che i bambini racconteranno per anni. Sulla Costa Brava, la costa tra Blanes e Lloret offre lo scenario perfetto.",
     whyNoStressTitle: "Senza stress, senza complicazioni",
     whyNoStressDesc:
-      "Non serve esperienza precedente né patente nautica. Vi insegniamo tutto in 15 minuti. Le barche sono stabili, facili da manovrare e con velocità limitata. Il carburante è incluso, quindi nessuna sorpresa sul prezzo. Venite solo con voglia di divertirvi.",
+      "Con il titulín, un corso di un giorno senza esame, il timone è tuo, e prima di partire ti spieghiamo la barca in 15 minuti. Se preferite staccare del tutto, nell'escursione privata lo tiene il nostro skipper. Venite solo con voglia di divertirvi.",
     whyCalmCovesTitle: "Calette tranquille per i bambini",
     whyCalmCovesDesc:
       "Consigliamo calette riparate con acqua bassa e senza moto ondoso. Cala Sant Francesc ha un fondale sabbioso ideale per il bagno sicuro dei bambini. Cala Bona offre acque cristalline perfette per le prime esperienze di snorkeling.",
@@ -2535,16 +2535,16 @@ export const it: Translations = {
       "Giochi da spiaggia gonfiabili",
     ],
     exploreTitle: "Scopri di più sui nostri servizi",
-    linkNoLicense: "Barche senza patente",
+    linkNoLicense: "Barche con patente",
     linkSnorkel: "Escursione di snorkeling",
     linkPrices: "Prezzi e tariffe",
     linkBlanes: "Porto di Blanes",
     linkRoutes: "Rotte marittime",
     ctaTitle: "Prenota una barca per tutta la famiglia",
     ctaDescription:
-      "Barche sicure, facili da manovrare e con tutto incluso. Il piano perfetto per una giornata in famiglia sulla Costa Brava. Partenze dal Porto di Blanes da aprile a ottobre.",
+      "Barche stabili e spaziose, con il titulín o con lo skipper. Il piano perfetto per una giornata in famiglia sulla Costa Brava. Partenze dal Porto di Blanes da aprile a ottobre.",
     ctaWhatsApp: "Prenota su WhatsApp",
-    ctaViewBoats: "Vedi barche senza patente",
+    ctaViewBoats: "Vedi barche con patente",
     faqTitle: "Domande frequenti sulle barche per famiglie",
   },
   activityFishing: {
@@ -2562,7 +2562,7 @@ export const it: Translations = {
       {
         question: "Che barca mi serve per pescare in mare?",
         answer:
-          "Dipende dal tipo di pesca. Per la pesca a fondo in calette vicine (spigole, orate), è sufficiente una barca senza licenza. Per la pesca in acque aperte (ricciole, traina), hai bisogno di una barca con licenza che ha maggiore autonomia e potenza. Contattaci su WhatsApp e ti consiglieremo in base alla tua esperienza.",
+          "Per pescare usiamo le nostre barche con patente, che guidi con la Licencia de Navegación (titulín) o un titolo superiore. Vanno bene per la pesca a fondo in calette vicine (spigole, orate) e, nei limiti della tua patente, per uscire in acque più aperte (ricciole, traina). Contattaci su WhatsApp e ti consiglieremo in base alla tua esperienza.",
       },
       {
         question: "Quali sono le normative di pesca sulla Costa Brava?",
@@ -2616,19 +2616,6 @@ export const it: Translations = {
         ],
         recommendation: "Consigliata per pescatori esperti che vogliono pescare in acque aperte.",
       },
-      {
-        type: "Barche senza patente",
-        capacity: "4-5 persone",
-        autonomy: "Pesca costiera (fino a 2 miglia)",
-        price: "A partire da 85 €/ora (carburante incluso)",
-        advantages: [
-          "Senza necessità di patente nautica",
-          "Carburante incluso nel prezzo",
-          "Perfette per pesca a fondo nelle calette",
-          "Ideali per iniziare a pescare in barca",
-        ],
-        recommendation: "Consigliata per pesca ricreativa leggera vicino alla costa.",
-      },
     ],
     fishingSpots: [
       {
@@ -2655,9 +2642,9 @@ export const it: Translations = {
     ],
     heroTitle: "Pesca dalla Barca a Blanes - Costa Brava",
     heroDescription:
-      "Noleggia una barca al Porto di Blanes e vai a pescare nelle acque della Costa Brava. Spigole, orate, ricciole e altro ancora. Barche con e senza patente per adattarsi al tuo livello di esperienza. Porta la tua attrezzatura e noi mettiamo la barca.",
+      "Noleggia una barca al Porto di Blanes e vai a pescare nelle acque della Costa Brava. Spigole, orate, ricciole e altro ancora. Barche con patente che guidi con il titulín o un titolo superiore. Porta la tua attrezzatura e noi mettiamo la barca.",
     badgeSpecies: "5+ specie target",
-    badgeLicense: "Con e senza patente",
+    badgeLicense: "Con il titulín o superiore",
     badgeDuration: "4-6 ore consigliate",
     whyTitle: "Perché pescare da Blanes",
     whyLocationTitle: "Posizione strategica",
@@ -2716,7 +2703,7 @@ export const it: Translations = {
       "Porta crema solare, acqua abbondante, cappello e occhiali da sole polarizzati (aiutano a vedere i pesci in acqua). Una maglietta a maniche lunghe ti protegge dal sole durante le ore di pesca. Non dimenticare la licenza di pesca stampata o sul cellulare.",
     exploreTitle: "Esplora altre attività e servizi",
     linkLicensed: "Barche con patente",
-    linkNoLicense: "Barche senza patente",
+    linkNoLicense: "Titulín in 1 giorno",
     linkSnorkel: "Escursione di snorkeling",
     linkPrices: "Prezzi e tariffe",
     linkBlanes: "Porto di Blanes",
@@ -2746,7 +2733,7 @@ export const it: Translations = {
     infoSeasonTitle: "Stagione",
     infoSeasonDesc: "Aprile - Ottobre. Prenotazioni flessibili da 1 a 8 ore.",
     infoFleetTitle: "9 Imbarcazioni",
-    infoFleetDesc: "Flotta per 4-7 persone. Con e senza patente nautica, più escursione privata con skipper.",
+    infoFleetDesc: "Flotta per 6-7 persone: motoscafi con patente ed escursione privata con skipper.",
     categories: {
       all: "Tutte",
       reservas: "Prenotazioni e Prezzi",
@@ -2761,7 +2748,7 @@ export const it: Translations = {
       precios: {
         question: "Quali sono i prezzi del noleggio?",
         answer:
-          "I nostri prezzi variano in base all'imbarcazione e alla durata. Barche senza patente da {noLicBaja1h}€ con carburante incluso (1h, 2h, 3h, 4h, 6h, 8h). Barche con patente da {licBaja2h}€ senza carburante incluso (2h, 4h, 8h).",
+          "I nostri prezzi variano in base all'imbarcazione e alla durata. Barche con patente da {licBaja2h}€ senza carburante incluso (2h, 4h, 8h). Escursione privata con skipper da {excursionBaja2h}€ per 2 ore.",
       },
       reserva: {
         question: "Come posso fare una prenotazione?",
@@ -2781,12 +2768,12 @@ export const it: Translations = {
       sinLicencia: {
         question: "Posso noleggiare una barca senza patente nautica?",
         answer:
-          "Fino al 30 settembre 2026 s\u00EC: abbiamo barche senza patente fino a 15 CV e basta avere pi\u00F9 di 18 anni, con un briefing completo prima di partire. Dal 1\u00BA ottobre 2026 il RD 1188/2025 richiede un titolo a ogni noleggiatore; la Licencia de Navegaci\u00F3n (titul\u00EDn) si prende in un giorno e te la organizziamo noi. Se preferisci non prendere alcun titolo, l'escursione con skipper non ne richiede in nessuna data.",
+          "Dal 1° ottobre 2026, no: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi barca a motore, e abbiamo ritirato le nostre barche senza patente. Basta la Licencia de Navegación (titulín), un corso di un giorno senza esame. Senza patente, puoi uscire con lo skipper nell'escursione privata.",
       },
       normativa2026: {
         question: "È vero che nel 2026 finisce il noleggio di barche senza patente?",
         answer:
-          "La legge cambia: il Regio Decreto 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1º ottobre 2026. Fino al 30 settembre 2026 non cambia nulla e le nostre barche senza patente si noleggiano come sempre. Da quella data basterà la Licencia de Navegación (titulín), un corso di 1 giorno senza esame, oppure qualsiasi titolo superiore o straniero equivalente. L'escursione con skipper non è interessata: lì la barca la conduce un professionista.",
+          "Sì, la legge è cambiata: il Regio Decreto 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1° ottobre 2026, e da quella data non noleggiamo più barche senza patente. Basta la Licencia de Navegación (titulín), un corso di un giorno senza esame, oppure qualsiasi titolo superiore o straniero equivalente. L'escursione con skipper non è interessata: lì la barca la conduce un professionista.",
       },
       titulin: {
         question: "Cos'è il titulín e come lo ottengo?",
@@ -2811,12 +2798,12 @@ export const it: Translations = {
       queIncluye: {
         question: "Cosa è incluso nel prezzo?",
         answer:
-          "Incluso: imbarcazione equipaggiata, carburante (nelle barche senza patente), giubbotti di salvataggio, kit di sicurezza, ancora e cima, scaletta da bagno, istruzioni e mappa, assicurazione base e supporto telefonico.",
+          "Incluso: imbarcazione equipaggiata, giubbotti di salvataggio, kit di sicurezza, ancora e cima, scaletta da bagno, istruzioni e mappa, assicurazione base e supporto telefonico. Il carburante si paga a parte in base al consumo.",
       },
       combustible: {
         question: "Devo pagare il carburante?",
         answer:
-          "Il carburante è incluso nelle imbarcazioni senza patente. Nelle imbarcazioni con patente, vengono consegnate con il serbatoio pieno e al termine del noleggio il nostro team ti accompagna alla stazione di rifornimento per riempire nuovamente il serbatoio.",
+          "Nessuna delle nostre barche include il carburante. Le imbarcazioni con patente vengono consegnate con il serbatoio pieno e al termine del noleggio il nostro team ti accompagna alla stazione di rifornimento per riempire nuovamente il serbatoio. Nell'escursione privata con skipper il carburante si paga a parte, salvo che si concordi un prezzo chiuso prima di prenotare.",
       },
       extras: {
         question: "Quali extra posso aggiungere?",
@@ -2831,7 +2818,7 @@ export const it: Translations = {
       porDondeNavegar: {
         question: "Dove posso navigare?",
         answer:
-          "Zona autorizzata: Nord fino a Playa de Fenals (senza patente) o Sant Feliu de Guíxols (con patente). Sud fino alla fine della spiaggia di Blanes (senza patente) o senza limiti (con patente). Massimo 2 miglia dalla costa. Calette consigliate: Cala Brava, Cala Sant Francesc, Playa de Lloret.",
+          "Zona autorizzata: a nord fino a Sant Feliu de Guíxols; a sud, senza limiti. Con la Licencia de Navegación si naviga fino a 2 miglia dalla costa. Calette consigliate: Cala Brava, Cala Sant Francesc, Playa de Lloret.",
       },
       seguridad: {
         question: "Quali misure di sicurezza avete?",
@@ -2921,12 +2908,12 @@ export const it: Translations = {
       diferenciaLicencia: {
         question: "Qual è la differenza tra barche senza patente e con patente?",
         answer:
-          "Le barche senza patente hanno fino a 15 CV, capacità di 4-5 persone, carburante incluso e costano da {noLicBaja1h}€. Le barche con patente hanno motori da 40-150 CV, capacità fino a 7 persone, maggiore autonomia e costano da {licBaja2h}€ (carburante non incluso). Le barche con patente permettono di navigare più lontano, fino a Tossa de Mar e oltre.",
+          "Fino al 30 settembre 2026 noleggiavamo barche senza patente fino a 15 CV e 4-5 posti. Dal 1° ottobre 2026 la legge richiede un titolo per noleggiare, quindi noleggiamo i nostri motoscafi con patente: motori da 80-115 CV, fino a 7 persone e autonomia per arrivare a Tossa de Mar, da {licBaja2h}€ (carburante non incluso). Basta la Licencia de Navegación, un corso di un giorno senza esame.",
       },
       precioBlanesVsLloret: {
         question: "È più economico noleggiare una barca a Blanes o a Lloret de Mar?",
         answer:
-          "Blanes è il punto di noleggio nautico più conveniente della Costa Brava, con barche senza patente da {noLicBaja1h}€ l'ora con carburante incluso. Operando dal Porto di Blanes con la nostra flotta, offriamo prezzi più competitivi rispetto ad altre località come Lloret de Mar o Tossa de Mar.",
+          "Operiamo dal Porto di Blanes con la nostra flotta: motoscafi con patente da {licBaja2h}€ per 2 ore in bassa stagione ed escursione privata con skipper. Non dipendendo da intermediari, offriamo prezzi più competitivi rispetto ad altre località come Lloret de Mar o Tossa de Mar.",
       },
       barcoGrupoGrande: {
         question: "Quale barca consigliate per un gruppo grande?",
@@ -2936,12 +2923,12 @@ export const it: Translations = {
       precioCostaBrava: {
         question: "Quanto costa noleggiare una barca in Costa Brava?",
         answer:
-          "In Costa Brava puoi noleggiare una barca da {noLicBaja1h}€ l'ora a Blanes, con carburante incluso e senza bisogno di patente. I prezzi variano in base alla durata (da 1h a giornata intera), al tipo di barca e alla stagione. Luglio e agosto sono alta stagione con prezzi più elevati; giugno e settembre offrono il miglior rapporto qualità-prezzo.",
+          "In Costa Brava puoi noleggiare un motoscafo con patente da {licBaja2h}€ per 2 ore a Blanes (carburante a parte), con la Licencia de Navegación o un titolo superiore. Senza patente, l'escursione privata con skipper parte da {excursionBaja2h}€. I prezzi variano in base alla durata, al tipo di barca e alla stagione. Luglio e agosto sono alta stagione con prezzi più elevati; giugno e settembre offrono il miglior rapporto qualità-prezzo.",
       },
       tossaBarco: {
         question: "Si può andare a Tossa de Mar in barca da Blanes?",
         answer:
-          "Sì, Tossa de Mar è a circa 30 minuti in barca da Blanes. Tuttavia, hai bisogno di una barca con patente o di prenotare la nostra escursione con skipper, poiché le barche senza patente hanno un raggio di navigazione limitato. Il percorso costiero da Blanes a Tossa è spettacolare, con calette vergini e scogliere.",
+          "Sì, Tossa de Mar è a 30-45 minuti in barca da Blanes con uno dei nostri motoscafi con patente, oppure con la nostra escursione privata con skipper. Il percorso costiero da Blanes a Tossa è spettacolare, con calette vergini e scogliere.",
       },
       excursionPatron: {
         question: "Quanto costa un'escursione in barca con skipper?",
@@ -2951,12 +2938,12 @@ export const it: Translations = {
       seguroSinExperiencia: {
         question: "È sicuro noleggiare una barca senza esperienza?",
         answer:
-          "Assolutamente sicuro. Prima di uscire in mare, il nostro team ti fa un briefing di 15 minuti dove ti spiega il funzionamento della barca, le norme di navigazione e la zona autorizzata. Le barche senza patente sono molto stabili e facili da manovrare, e la zona di Blanes ha acque tranquille e protette.",
+          "Assolutamente sicuro. Prima di uscire in mare, il nostro team ti fa un briefing di 15 minuti in cui ti spiega il funzionamento della barca, le norme di navigazione e la zona autorizzata. Chi guida ha almeno la Licencia de Navegación, con prove pratiche incluse, e la zona di Blanes ha acque tranquille e protette. Se preferisci non stare al timone, esci con lo skipper.",
       },
       barcoVsExcursion: {
         question: "Cosa è meglio, noleggiare una barca o un'escursione con skipper?",
         answer:
-          "Dipende da cosa cerchi. Noleggiare una barca senza patente (da {noLicBaja1h}€/h) ti dà totale libertà per andare al tuo ritmo ed esplorare per conto tuo. L'escursione con skipper (da {excursionBaja2h}€/2h) è ideale se vuoi rilassarti completamente, non hai esperienza o vuoi raggiungere calette più lontane come Tossa de Mar.",
+          "Dipende da cosa cerchi. Noleggiare un motoscafo con patente (da {licBaja2h}€ per 2 ore, con il titulín) ti dà totale libertà per andare al tuo ritmo ed esplorare per conto tuo. L'escursione con skipper (da {excursionBaja2h}€/2h) è ideale se vuoi rilassarti completamente, non hai la patente o vuoi raggiungere calette più lontane come Tossa de Mar.",
       },
       mejorEpoca: {
         question: "Qual è il periodo migliore per noleggiare una barca a Blanes?",
@@ -2988,12 +2975,12 @@ export const it: Translations = {
     newsletterError: "Errore nell'invio. Riprova.",
     tableOfContents: "Indice",
     ctaTitle: "Pronto per la tua avventura?",
-    ctaSubtitle: "Noleggia una barca da 85€/ora · Benzina inclusa",
+    ctaSubtitle: "Noleggia un motoscafo con il titulín o esci con lo skipper dal Porto di Blanes",
     ctaBookNow: "Prenota ora",
     ctaWhatsApp: "Chiedi su WhatsApp",
     relatedDestinationsTitle: "Destinazioni correlate",
     relatedBlanesName: "Blanes",
-    relatedBlanesDesc: "Porto base. Barche senza patente a partire da 85€/h.",
+    relatedBlanesDesc: "Porto base. Motoscafi con patente ed escursione con skipper.",
     relatedLloretName: "Lloret de Mar",
     relatedLloretDesc: "Calette e spiagge a 25 min in barca da Blanes.",
     relatedTossaName: "Tossa de Mar",
@@ -3336,7 +3323,7 @@ export const it: Translations = {
       paragraph1:
         "Ogni stagione, centinaia di famiglie, coppie e gruppi di amici salpano dal Porto di Blanes per scoprire le cale più belle della Costa Brava. Queste sono le loro parole, senza filtri.",
       paragraph2:
-        "Ti accogliamo in 8 lingue, offriamo barche senza patente con carburante incluso e opzioni con skipper se preferisci rilassarti. Non lo diciamo noi: lo dice chi è già salito a bordo.",
+        "Ti accogliamo in 8 lingue, noleggiamo motoscafi con la Licencia de Navegación e offriamo l'escursione privata con skipper se preferisci rilassarti. Non lo diciamo noi: lo dice chi è già salito a bordo.",
       imageAlt: "Coppia in navigazione su un Trimarchi 57S lungo la Costa Brava",
     },
     filter: { title: "Filtra per barca", all: "Tutte" },
@@ -3390,7 +3377,7 @@ export const it: Translations = {
       cta: "Iscriviti gratis",
     },
     chips: [
-      "Naviga Senza Bisogno di Patente",
+      "Al timone chi ha il titulín",
       "Uno del gruppo guida",
       "Dal Porto di Blanes",
       "Aprile–Ottobre",
@@ -3399,7 +3386,7 @@ export const it: Translations = {
     faq: [
       {
         q: "Serve la patente?",
-        a: "No. Sono barche senza patente (meno di 5 m e 15 cv) e uno del gruppo guida, di giorno e fino a 2 miglia nautiche dalla costa. Non serve esperienza.",
+        a: "Sì: dal 1° ottobre 2026 la legge richiede che chi guida abbia almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame. Il resto del gruppo viaggia come passeggero. Stiamo adattando le uscite condivise a questa norma: iscriviti e ti avvisiamo.",
       },
       {
         q: "Quanto costa?",
@@ -3427,7 +3414,7 @@ export const it: Translations = {
       whenFlexible: "Flessibile / quando capita",
       whenOptions: ["Flessibile / quando capita", "Giugno", "Luglio", "Agosto", "Settembre"],
       pilot: "Ti andrebbe di guidare tu?",
-      pilotHint: "Con queste barche non serve la patente. Ci aiuta a organizzare il gruppo.",
+      pilotHint: "Per guidare serve la Licencia de Navegación (titulín). Ci aiuta a organizzare il gruppo.",
       pilotYes: "Sì, nessun problema",
       pilotMaybe: "Forse",
       pilotNo: "Preferisco che guidi un altro",
@@ -3454,13 +3441,13 @@ export const it: Translations = {
     tossaTitle: 'Tossa de Mar in barca',
     tossaDesc: 'La Vila Vella medievale, scogliere impressionanti e le cale più incontaminate della Costa Brava.',
     pricesTitle: 'Prezzi e tariffe',
-    pricesDesc: 'Consultate i prezzi stagionali di tutte le nostre barche. Da 85€/ora senza patente.',
+    pricesDesc: "Consultate i prezzi stagionali dei nostri motoscafi con patente e dell'escursione privata con skipper.",
     guide: {
       heading: 'Guida per navigare la Costa Brava da Blanes',
       geographyTitle: 'Il litorale: da Blanes a Tossa de Mar',
       geographyBody: 'Il Porto di Blanes segna l\'inizio della Costa Brava. Navigando verso nord, lo scoglio di Sa Palomera lascia il posto a una successione di calette dalle acque turchesi: Cala Sant Francesc, Santa Cristina e Cala Treumal prima di arrivare a Lloret de Mar (circa 25 minuti in barca), e più oltre Cala Boadella e le calette incontaminate di Tossa de Mar, con la sua Vila Vella medievale che domina il mare. Con una barca con patente, il tragitto Blanes–Tossa richiede circa 30-45 minuti di navigazione tranquilla lungo la costa.',
       seaTitle: 'Condizioni del mare e venti',
-      seaBody: 'Il tratto meridionale della Costa Brava offre, in generale, una navigazione comoda in estate. Al mattino il mare è solitamente calmo; nel pomeriggio può arrivare il garbí, la brezza di sudovest che increspa leggermente la superficie. Il vento da tenere d\'occhio è la tramontana, forte e da nord, che può alzarsi rapidamente: consulta sempre le previsioni meteo marine prima di partire. Le imbarcazioni senza patente possono navigare fino a 2 miglia nautiche dalla costa (3,7 km) e a una velocità massima di 5 nodi, sufficiente per esplorare tutte queste calette in sicurezza.',
+      seaBody: "Il tratto meridionale della Costa Brava offre, in generale, una navigazione comoda in estate. Al mattino il mare è solitamente calmo; nel pomeriggio può arrivare il garbí, la brezza di sudovest che increspa leggermente la superficie. Il vento da tenere d'occhio è la tramontana, forte e da nord, che può alzarsi rapidamente: consulta sempre le previsioni meteo marine prima di partire. Con i nostri motoscafi con patente, che guidi con la Licencia de Navegación, esplori tutte queste calette in sicurezza.",
       calasTitle: 'Calette e snorkeling',
       calasBody: 'Le calette tra Blanes e Tossa hanno fondali rocciosi e acque cristalline, ideali per ancorare e fare snorkeling. Cala Bona, Cala Treumal e Santa Cristina offrono acque riparate; a Lloret, Cala Boadella; e verso Tossa, Cala Llevadó, Cala Giverola e Cala Pola, molte delle quali accessibili solo via mare. Ricorda di ancorare su fondale sabbioso (mai sulle praterie di posidonia, che sono protette) e di dare cima sufficiente perché l\'ancora faccia presa.',
       seasonTitle: 'Periodo migliore per navigare',
@@ -3490,7 +3477,7 @@ export const it: Translations = {
       locationLloret: [
         { title: "Le migliori calette della Costa Brava in barca", description: "Le 10 calette più spettacolari tra Blanes e Tossa" },
         { title: "Uscita in barca al tramonto", description: "Esperienza al tramonto in barca" },
-        { title: "Barche senza patente", description: "4 barche da 85€/h, carburante incluso" },
+        { title: "Barche con patente", description: "Arriva a Lloret e Tossa al timone con il titulín" },
         { title: "Noleggio scooter a Lloret de Mar", description: "Esplora la Costa Brava su strada, da 8€/h con assicurazione inclusa" },
         { title: "Moto d'acqua vicino a Lloret", description: "Circuito ed escursione guidata in moto d'acqua da Blanes, senza patente" },
       ],
@@ -3509,7 +3496,7 @@ export const it: Translations = {
       ],
       activitySnorkel: [
         { title: "Le migliori calette di Blanes in barca", description: "Calette dalle acque cristalline perfette per lo snorkeling" },
-        { title: "Barche senza patente", description: "Perfette per escursioni di snorkeling" },
+        { title: "Barche con patente", description: "Calette per lo snorkeling da Blanes a Tossa, con il titulín" },
         { title: "Noleggio barche Blanes", description: "Tutto sul noleggio barche al porto di Blanes" },
         { title: "Circuito in moto d'acqua", description: "Adrenalina in moto d'acqua senza patente davanti a Blanes" },
       ],
@@ -3521,7 +3508,7 @@ export const it: Translations = {
       activitySunset: [
         { title: "Rotte in barca da Blanes", description: "5 rotte con mappe interattive" },
         { title: "Le migliori calette della Costa Brava in barca", description: "Le 10 calette più spettacolari tra Blanes e Tossa" },
-        { title: "Barche senza patente", description: "Perfette per uscite al tramonto, da 85€/h" },
+        { title: "Barche con patente", description: "L'ora dorata dal tuo motoscafo, con il titulín" },
       ],
       activityFishing: [
         { title: "Barche con patente", description: "Barche potenti per le zone di pesca" },
@@ -3531,7 +3518,7 @@ export const it: Translations = {
       ],
       categoryLicenseFree: [
         { title: "Barca senza patente vs con patente", description: "Guida comparativa completa" },
-        { title: "Barche per famiglie", description: "Un'esperienza perfetta senza bisogno di patente" },
+        { title: "Barche per famiglie", description: "Una giornata in famiglia con il titulín o con lo skipper" },
         { title: "Cosa portare in barca con te", description: "Checklist per la tua giornata in mare" },
         { title: "Noleggio moto d'acqua senza patente", description: "Circuito ed escursione guidata in moto d'acqua da Blanes" },
       ],
@@ -3576,7 +3563,7 @@ export const it: Translations = {
       ],
       scooters: [
         { title: "Noleggio barche a Lloret de Mar", description: "Spiagge e calette spettacolari dal porto di Blanes" },
-        { title: "Barche senza patente", description: "4 barche da 85€/h, carburante incluso" },
+        { title: "Barche con patente", description: "Al timone con il titulín, un corso di un giorno senza esame" },
         { title: "Noleggio moto d'acqua senza patente", description: "Circuito ed escursione guidata in moto d'acqua da Blanes" },
         { title: "Escursione a Tossa de Mar", description: "Scopri la Vila Vella e le sue calette cristalline" },
       ],
@@ -3586,9 +3573,9 @@ export const it: Translations = {
     pages: {
       snorkel__locationBlanes: {
         seoTitle: 'Snorkeling in barca da Blanes: le migliori calette | Costa Brava Rent a Boat',
-        seoDescription: 'Noleggia una barca senza patente a Blanes e fai snorkeling a Cala Sant Francesc, Sa Forcanera o Cala Treumal. Carburante incluso, senza esperienza, calette a meno di 2 miglia.',
+        seoDescription: "Snorkeling in barca da Blanes a Cala Sant Francesc, Sa Forcanera o Cala Treumal. Dal 1° ottobre 2026, con il titulín sui nostri motoscafi o con lo skipper nell'escursione privata.",
         h1: 'Snorkeling in barca da Blanes',
-        intro: 'Dal Porto di Blanes, in pochi minuti di navigazione arrivi a calette con acque cristalline e fondali rocciosi perfetti per lo snorkeling. Con una barca senza patente (carburante incluso e senza bisogno di esperienza) scegli la tua caletta, ancori e ti tuffi in acqua al tuo ritmo.',
+        intro: "Dal Porto di Blanes, in pochi minuti di navigazione arrivi a calette con acque cristalline e fondali rocciosi perfetti per lo snorkeling. Con il titulín guidi uno dei nostri motoscafi, scegli la tua caletta, ancori e ti tuffi in acqua al tuo ritmo; senza patente, esci con lo skipper nell'escursione privata.",
         spotsTitle: 'Migliori calette per snorkeling vicino a Blanes',
         spots: [
           {
@@ -3609,22 +3596,22 @@ export const it: Translations = {
           },
         ],
         boatsTitle: 'Quale barca scegliere per fare snorkeling',
-        boatsIntro: 'Per lo snorkeling a Blanes raccomandiamo le nostre barche senza patente: includono il carburante, si guidano senza patente nautica e arrivano senza problema a queste calette, tutte entro le 2 miglia dalla costa. Sono dotate di scaletta da bagno per entrare e uscire dall\'acqua comodamente.',
+        boatsIntro: "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper. Con il titulín guidi uno dei nostri tre motoscafi con patente, da 6 o 7 posti; nell'escursione privata con skipper, fino a 6 persone, nessuno del gruppo ha bisogno di patente.",
         practicalTitle: 'Informazioni pratiche',
-        practicalBody: 'Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Le barche senza patente navigano fino a 2 miglia nautiche dalla costa, distanza più che sufficiente per tutte queste calette. Porta maschera e boccaglio, protezione solare e acqua. Ricorda di ancorare sulla sabbia, mai sulle praterie di posidonia.',
+        practicalBody: "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Tutte queste calette sono a pochi minuti dal porto. Porta maschera e boccaglio, protezione solare e acqua. Ricorda di ancorare sulla sabbia, mai sulle praterie di posidonia.",
         faqTitle: 'Domande frequenti',
         faq: [
           {
             q: 'Ho bisogno della patente per fare snorkeling in barca da Blanes?',
-            a: 'No. Le nostre barche senza patente si guidano senza patente nautica e arrivano a tutte le calette di snorkeling vicine a Blanes. Ti spieghiamo il funzionamento prima di partire.',
+            a: "Sì: dal 1° ottobre 2026, per guidare serve almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame. Se nessuno del gruppo ha la patente, l'escursione privata con skipper vi porta alle calette.",
           },
           {
             q: 'L\'attrezzatura da snorkeling è inclusa?',
-            a: 'La barca include scaletta da bagno e carburante. Per lo snorkeling ti consigliamo di portare la tua maschera e il tuo boccaglio, così ti assicuri una taglia comoda.',
+            a: "Ti consigliamo di portare la tua maschera e il tuo boccaglio, così ti assicuri una taglia comoda. Tieni presente che il carburante non è incluso: si paga a parte in base al consumo.",
           },
         ],
         ctaTitle: 'Prenota la tua uscita di snorkeling a Blanes',
-        ctaText: 'Scegli data e barca senza patente, e preparati alla migliore giornata di snorkeling tra le calette di Blanes.',
+        ctaText: "Scegli data e barca, con il titulín o con lo skipper, e preparati alla migliore giornata di snorkeling tra le calette di Blanes.",
       },
       snorkel__locationLloret: {
         seoTitle: 'Snorkeling in barca a Lloret de Mar: Cala Boadella e Cala Banys | Costa Brava Rent a Boat',
@@ -3651,7 +3638,7 @@ export const it: Translations = {
           },
         ],
         boatsTitle: 'Quale barca scegliere per arrivare a Lloret',
-        boatsIntro: 'Le calette di Lloret si trovano oltre il limite di 2 miglia delle barche senza patente, quindi per arrivarci serve una delle nostre barche con patente. Sono comode, coprono il tragitto da Blanes in circa 25 minuti e ti danno autonomia per visitare più calette nella stessa uscita.',
+        boatsIntro: "Per arrivare alle calette di Lloret ti serve una delle nostre barche con patente, che guidi con il titulín, oppure l'escursione privata con skipper. Coprono il tragitto da Blanes in circa 25 minuti e ti danno autonomia per visitare più calette nella stessa uscita.",
         practicalTitle: 'Informazioni pratiche',
         practicalBody: 'Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Il tragitto fino alle calette di Lloret richiede circa 25 minuti di navigazione tranquilla lungo la costa. Porta maschera e boccaglio, protezione solare e acqua. Ancora sulla sabbia, mai sulle praterie di posidonia.',
         faqTitle: 'Domande frequenti',
@@ -3693,14 +3680,14 @@ export const it: Translations = {
           },
         ],
         boatsTitle: 'Quale barca scegliere per arrivare a Tossa',
-        boatsIntro: 'Tossa si trova ben oltre le 2 miglia, fuori dalla portata delle barche senza patente. Per arrivare alle sue calette serve una delle nostre barche con patente, che coprono il tragitto da Blanes in 30-45 minuti e ti permettono di passare la giornata esplorando più calette.',
+        boatsIntro: "Tossa è a 30-45 minuti da Blanes con una delle nostre barche con patente, che guidi con il titulín, oppure con l'escursione privata con skipper. Ti permettono di passare la giornata esplorando più calette.",
         practicalTitle: 'Informazioni pratiche',
         practicalBody: 'Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. La navigazione fino a Tossa richiede 30-45 minuti; per questo conviene prenotare durate di 4 ore o più per godersi la destinazione con calma. Porta maschera e boccaglio, protezione solare e acqua. Rispetta le zone protette e ancora solo sulla sabbia.',
         faqTitle: 'Domande frequenti',
         faq: [
           {
             q: 'Si può andare da Blanes a Tossa con una barca senza patente?',
-            a: 'No. Tossa si trova fuori dal limite di 2 miglia delle barche senza patente; il tragitto si fa con una barca con patente, in 30-45 minuti da Blanes.',
+            a: "No. Dal 1° ottobre 2026 serve almeno la Licencia de Navegación (titulín) per noleggiare; con essa arrivi a Tossa in 30-45 minuti da Blanes. Senza patente, puoi andarci con lo skipper nell'escursione privata.",
           },
           {
             q: 'Perché Tossa è buona per lo snorkeling?',
@@ -3712,14 +3699,14 @@ export const it: Translations = {
       },
       snorkel__locationCostaBrava: {
         seoTitle: 'Snorkeling in barca sulla Costa Brava: le migliori calette da Blanes | Costa Brava Rent a Boat',
-        seoDescription: 'Percorri in barca le migliori calette per snorkeling della Costa Brava sud, da Blanes a Tossa de Mar. Barche senza patente per le calette vicine e con patente per il tratto completo.',
+        seoDescription: "Percorri in barca le migliori calette per lo snorkeling della Costa Brava sud, da Blanes a Tossa de Mar, con il titulín sui nostri motoscafi o con lo skipper nell'escursione privata.",
         h1: 'Snorkeling in barca sulla Costa Brava',
         intro: 'Il tratto sud della Costa Brava, da Blanes a Tossa de Mar, concentra decine di calette con fondali rocciosi e acqua trasparente ideali per lo snorkeling. Dal Porto di Blanes puoi scegliere tra un\'uscita breve alle calette più vicine o una giornata completa percorrendo la costa.',
         spotsTitle: 'Calette imperdibili per snorkeling sulla Costa Brava sud',
         spots: [
           {
             name: 'Cala Sant Francesc (Blanes)',
-            description: 'La caletta più accessibile, riparata e adatta alle famiglie: il punto di partenza perfetto, alla portata di una barca senza patente.',
+            description: "La caletta più accessibile, riparata e adatta alle famiglie: il punto di partenza perfetto, a pochi minuti dal porto.",
           },
           {
             name: 'Cala Boadella (Lloret)',
@@ -3735,14 +3722,14 @@ export const it: Translations = {
           },
         ],
         boatsTitle: 'Quale barca scegliere a seconda di quanto lontano vuoi arrivare',
-        boatsIntro: 'Per le calette più vicine a Blanes basta una barca senza patente, con carburante incluso e senza patente nautica. Per percorrere il tratto completo fino a Lloret e Tossa (oltre le 2 miglia) serve una barca con patente, con autonomia per visitare più calette in giornata.',
+        boatsIntro: "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper. I nostri motoscafi con patente ti danno autonomia per visitare in giornata calette di Blanes, Lloret e Tossa; nell'escursione privata, la rotta la decide il nostro skipper.",
         practicalTitle: 'Informazioni pratiche',
-        practicalBody: 'Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Le barche senza patente navigano fino a 2 miglia; per arrivare a Lloret (~25 min) o Tossa (30-45 min) si usa una barca con patente. Porta maschera e boccaglio, protezione solare e acqua. Ancora sempre sulla sabbia, mai sulla posidonia.',
+        practicalBody: "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Con una barca con patente arrivi a Lloret in circa 25 minuti e a Tossa in 30-45 minuti. Porta maschera e boccaglio, protezione solare e acqua. Ancora sempre sulla sabbia, mai sulla posidonia.",
         faqTitle: 'Domande frequenti',
         faq: [
           {
             q: 'Che tratto della Costa Brava posso percorrere in un\'uscita?',
-            a: 'Con una barca con patente puoi visitare calette di Blanes, Lloret e Tossa in una giornata; con una senza patente ti godrai le calette più vicine a Blanes.',
+            a: "Con una barca con patente o con l'escursione privata con skipper puoi visitare calette di Blanes, Lloret e Tossa in una giornata.",
           },
           {
             q: 'Qual è il periodo migliore per lo snorkeling?',
@@ -3755,10 +3742,10 @@ export const it: Translations = {
       families__locationBlanes: {
         seoTitle: "Noleggio barca per famiglie a Blanes | Costa Brava Rent a Boat",
         seoDescription:
-          "Una giornata in barca in famiglia da Blanes: calette tranquille, acqua poco profonda e barche ampie e stabili, diverse senza patente con carburante incluso. Senza esperienza previa.",
+          "Una giornata in barca in famiglia da Blanes: calette tranquille, acqua poco profonda e barche ampie e stabili fino a 7 posti. Con il titulín o con lo skipper nell'escursione privata.",
         h1: "Noleggio barca per famiglie a Blanes",
         intro:
-          "Una giornata in barca in famiglia dal Porto di Blanes è uno dei piani più belli della Costa Brava: calette riparate a pochi minuti, acqua tranquilla dove i bambini fanno il bagno con calma e barche ampie e stabili. Senza esperienza previa: ti spieghiamo tutto prima di partire.",
+          "Una giornata in barca in famiglia dal Porto di Blanes è uno dei piani più belli della Costa Brava: calette riparate a pochi minuti, acqua tranquilla dove i bambini fanno il bagno con calma e barche ampie e stabili. Con il titulín il timone è tuo; con lo skipper, pensate solo a divertirvi.",
         spotsTitle: "Le migliori calette per andare in famiglia vicino a Blanes",
         spots: [
           { name: "Cala Sant Francesc (Cala Bona)", description: "Caletta di sabbia riparata dai pini, con acqua tranquilla e poco profonda sulla riva: la preferita per le famiglie con bambini piccoli." },
@@ -3767,14 +3754,14 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per andare in famiglia",
         boatsIntro:
-          "Per le famiglie consigliamo barche spaziose e stabili, con prendisole e zona d'ombra. Diverse sono senza patente (con carburante incluso e senza patente nautica) e per gruppi numerosi disponiamo di imbarcazioni fino a 7 posti.",
+          "Per le famiglie consigliamo barche spaziose e stabili, da 6 o 7 posti. Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper nell'escursione privata, dove nessuno del gruppo ha bisogno di patente.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
-          "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Portiamo giubbotti salvagente di tutte le taglie, comprese quelle per bambini. Porta protezione solare, cappello, acqua e qualcosa da mangiare. Le calette vicine a Blanes sono entro le 2 miglia, raggiungibili anche con una barca senza patente.",
+          "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Portiamo giubbotti salvagente di tutte le taglie, comprese quelle per bambini. Porta protezione solare, cappello, acqua e qualcosa da mangiare. Le calette vicine a Blanes sono a pochi minuti dal porto.",
         faqTitle: "Domande frequenti",
         faq: [
           { q: "È sicuro andare in barca con i bambini?", a: "Sì. Portiamo giubbotti salvagente per bambini, le calette vicine sono tranquille e poco profonde, e ti spieghiamo la conduzione e la sicurezza prima di partire." },
-          { q: "Serve la patente per andare in famiglia da Blanes?", a: "No per le calette vicine: diverse delle nostre barche si conducono senza patente nautica. Per gruppi numerosi o maggiore autonomia ci sono anche opzioni con patente." },
+          { q: "Serve la patente per andare in famiglia da Blanes?", a: "Sì: dal 1° ottobre 2026, chi guida deve avere almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame. Se nessuno in famiglia ha la patente, l'opzione è l'escursione privata con skipper: la barca la conduce il nostro skipper." },
         ],
         ctaTitle: "Prenota la tua giornata in barca in famiglia a Blanes",
         ctaText: "Scegli data e barca, e goditi una giornata in mare con i tuoi cari partendo dal Porto di Blanes.",
@@ -3821,13 +3808,13 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per arrivare a Tossa in famiglia",
         boatsIntro:
-          "Tossa è fuori dalla portata delle barche senza patente, quindi il viaggio si fa con una delle nostre barche con patente, spaziose e fino a 7 posti. Coprono il tragitto da Blanes in 30-45 minuti; conviene prenotare durate di mezza giornata o più.",
+          "Tossa è a 30-45 minuti da Blanes con una delle nostre barche con patente, spaziose e fino a 7 posti, che guidi con il titulín; potete anche andarci con lo skipper nell'escursione privata. Conviene prenotare durate di mezza giornata o più.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
           "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. La navigazione fino a Tossa è di 30-45 minuti. Portiamo giubbotti di tutte le taglie; porta protezione solare, cappello, acqua e cibo per la giornata.",
         faqTitle: "Domande frequenti",
         faq: [
-          { q: "Si può andare a Tossa in famiglia con una barca senza patente?", a: "No. Tossa è oltre il limite di 2 miglia; il viaggio si fa con una barca con patente, in 30-45 minuti da Blanes." },
+          { q: "Si può andare a Tossa in famiglia con una barca senza patente?", a: "No. Dal 1° ottobre 2026 serve almeno la Licencia de Navegación (titulín) per noleggiare; con essa arrivate a Tossa in 30-45 minuti da Blanes. Senza patente, potete andarci con lo skipper nell'escursione privata." },
           { q: "È un buon piano per un'intera giornata?", a: "Sì: data la distanza, l'ideale è prenotare mezza giornata o l'intera giornata e combinare la Platja Gran con qualche caletta vicina." },
         ],
         ctaTitle: "Prenota la tua giornata in barca in famiglia a Tossa",
@@ -3836,25 +3823,25 @@ export const it: Translations = {
       families__locationCostaBrava: {
         seoTitle: "Noleggio barca per famiglie sulla Costa Brava | Costa Brava Rent a Boat",
         seoDescription:
-          "Giornata in barca in famiglia sulla Costa Brava sud da Blanes: calette tranquille e spiagge di sabbia da Blanes a Tossa. Barche senza patente per le vicinanze e con patente per il tratto completo.",
+          "Giornata in barca in famiglia sulla Costa Brava sud da Blanes: calette tranquille e spiagge di sabbia da Blanes a Tossa, con il titulín sui nostri motoscafi o con lo skipper nell'escursione privata.",
         h1: "Noleggio barca per famiglie sulla Costa Brava",
         intro:
           "La Costa Brava sud, da Blanes a Tossa de Mar, è fatta per goderla in famiglia: calette riparate, spiagge di sabbia e acqua tranquilla. Dal Porto di Blanes scegli tra un'uscita breve alle calette vicine o una giornata esplorando la costa.",
         spotsTitle: "Calette e spiagge per famiglie imperdibili",
         spots: [
-          { name: "Cala Sant Francesc (Blanes)", description: "La più accessibile e riparata, alla portata di una barca senza patente: il piano perfetto per iniziare con i bambini." },
+          { name: "Cala Sant Francesc (Blanes)", description: "La più accessibile e riparata, a pochi minuti dal porto: il piano perfetto per iniziare con i bambini." },
           { name: "Santa Cristina (Lloret)", description: "Grande spiaggia di sabbia con servizi e acque tranquille, nel tratto centrale della costa." },
           { name: "Platja Gran de Tossa", description: "Sabbia ai piedi della Vila Vella medievale, ricompensa per chi fa la traversata completa con una barca con patente." },
         ],
         boatsTitle: "Quale barca scegliere a seconda di quanto lontano vuoi arrivare",
         boatsIntro:
-          "Per le calette vicine a Blanes basta una barca senza patente, con carburante incluso. Per percorrere il tratto fino a Lloret e Tossa (oltre le 2 miglia) serve una barca con patente, spaziosa e fino a 7 posti.",
+          "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper. I nostri motoscafi con patente, spaziosi e fino a 7 posti, arrivano a Lloret e Tossa; l'escursione privata con skipper accoglie fino a 6 persone.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
-          "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Le barche senza patente navigano fino a 2 miglia; per arrivare a Lloret (~25 min) o Tossa (30-45 min) si usa una barca con patente. Portiamo giubbotti di tutte le taglie.",
+          "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Con una barca con patente arrivi a Lloret in circa 25 minuti e a Tossa in 30-45 minuti. Portiamo giubbotti di tutte le taglie.",
         faqTitle: "Domande frequenti",
         faq: [
-          { q: "Quale tratto possiamo percorrere in famiglia in una giornata?", a: "Con una barca con patente, le calette di Blanes, Lloret e Tossa in una giornata; con una senza patente, le calette tranquille più vicine a Blanes." },
+          { q: "Quale tratto possiamo percorrere in famiglia in una giornata?", a: "Con una barca con patente o con l'escursione privata con skipper, calette di Blanes, Lloret e Tossa in una giornata." },
           { q: "Qual è il periodo migliore per andare con i bambini?", a: "Da giugno a settembre, con il mare più caldo e tranquillo; luglio e agosto offrono le migliori condizioni di balneazione." },
         ],
         ctaTitle: "Prenota la tua giornata in barca in famiglia sulla Costa Brava",
@@ -3863,7 +3850,7 @@ export const it: Translations = {
       sunset__locationBlanes: {
         seoTitle: "Giro in barca al tramonto a Blanes | Costa Brava Rent a Boat",
         seoDescription:
-          "Naviga nel tardo pomeriggio da Blanes e goditi la luce dorata sulla costa, lo scoglio di Sa Palomera e la baia. Giro tranquillo in barca, senza esperienza previa.",
+          "Naviga nel tardo pomeriggio da Blanes e goditi la luce dorata sulla costa, lo scoglio di Sa Palomera e la baia. Giro tranquillo in barca, con il titulín o con lo skipper.",
         h1: "Giro in barca al tramonto a Blanes",
         intro:
           "Nel tardo pomeriggio, quando la luce diventa dorata, la costa di Blanes offre il suo lato più bello vista dal mare. Un giro tranquillo in barca partendo dal Porto di Blanes per vedere lo scoglio di Sa Palomera e le scogliere accendersi con gli ultimi raggi.",
@@ -3875,14 +3862,14 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per il tramonto",
         boatsIntro:
-          "Per un giro al tramonto consigliamo barche comode con un buon prendisole. Diverse sono senza patente (con carburante incluso e senza patente nautica) ideali per un'uscita breve e rilassata vicino a Blanes.",
+          "Per il tramonto consigliamo un'uscita breve e rilassata vicino a Blanes. Dal 1° ottobre 2026 noleggi uno dei nostri motoscafi con la Licencia de Navegación (corso di un giorno, senza esame), oppure esci con lo skipper nell'escursione privata.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
           "Stagione da aprile a ottobre, con partenze fino alle 20:00 dal Porto di Blanes; la fascia del tardo pomeriggio è quella che regala la luce migliore. Sulla Costa Brava il sole tramonta dietro la costa, quindi ti godrai la luce dorata e le scogliere illuminate più che il tramonto sull'acqua. Porta una giacca leggera: al calar della sera rinfresca.",
         faqTitle: "Domande frequenti",
         faq: [
           { q: "A che ora è la partenza al tramonto?", a: "Operiamo fino alle 20:00; l'ultima fascia del pomeriggio è quella che offre la luce dorata. Ti consigliamo di prenotare 1 o 2 ore a fine giornata." },
-          { q: "Serve la patente?", a: "No per un giro vicino a Blanes: diverse delle nostre barche si conducono senza patente nautica e ti spieghiamo la conduzione prima di partire." },
+          { q: "Serve la patente?", a: "Sì: dal 1° ottobre 2026 serve almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame. Senza patente, puoi uscire con lo skipper nell'escursione privata." },
         ],
         ctaTitle: "Prenota il tuo giro al tramonto a Blanes",
         ctaText: "Scegli data e barca, e goditi l'ora dorata in mare partendo dal Porto di Blanes.",
@@ -3929,7 +3916,7 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per arrivare a Tossa al tramonto",
         boatsIntro:
-          "Tossa è fuori dalla portata delle barche senza patente, quindi il giro si fa con una delle nostre barche con patente, comode e con un buon prendisole. Il tragitto da Blanes è di 30-45 minuti.",
+          "Per il giro fino a Tossa usiamo le nostre barche con patente, comode e con un buon prendisole, che guidi con il titulín; puoi anche andarci con lo skipper nell'escursione privata. Il tragitto da Blanes è di 30-45 minuti.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
           "Stagione da aprile a ottobre, con partenze fino alle 20:00 dal Porto di Blanes. Data la distanza (30-45 min), pianifica la partenza per sfruttare l'ultima luce e rientrare con tranquillità. Su questa costa il sole tramonta dietro la terra: ciò che è spettacolare è la Vila Vella illuminata. Porta una giacca leggera.",
@@ -3944,26 +3931,26 @@ export const it: Translations = {
       sunset__locationCostaBrava: {
         seoTitle: "Giro in barca al tramonto sulla Costa Brava | Costa Brava Rent a Boat",
         seoDescription:
-          "Tramonto in barca sulla Costa Brava sud da Blanes: luce dorata su scogliere, calette e la Vila Vella di Tossa. Barca senza patente per le vicinanze, con patente per il tratto completo.",
+          "Tramonto in barca sulla Costa Brava sud da Blanes: luce dorata su scogliere, calette e la Vila Vella di Tossa. Con il titulín sui nostri motoscafi o con lo skipper nell'escursione privata.",
         h1: "Giro in barca al tramonto sulla Costa Brava",
         intro:
           "La Costa Brava sud, da Blanes a Tossa, offre nel tardo pomeriggio una successione di scogliere, calette e paesi che si accendono con la luce dorata. Dal Porto di Blanes scegli tra un giro breve nelle vicinanze o un'uscita più lunga lungo la costa.",
         spotsTitle: "I migliori angoli della costa al tramonto",
         spots: [
-          { name: "Sa Palomera (Blanes)", description: "Lo scoglio che apre la Costa Brava, alla portata di una barca senza patente: il piano più semplice per l'ora dorata." },
+          { name: "Sa Palomera (Blanes)", description: "Lo scoglio che apre la Costa Brava, a pochi minuti dal porto: il piano più semplice per l'ora dorata." },
           { name: "Cala Banys (Lloret)", description: "Scogliere suggestive che spiccano con la luce bassa, nel tratto centrale della costa." },
           { name: "Vila Vella (Tossa)", description: "Le mura medievali illuminate sul mare, la ricompensa della traversata completa con una barca con patente." },
         ],
         boatsTitle: "Quale barca scegliere a seconda di quanto lontano vuoi arrivare",
         boatsIntro:
-          "Per un giro vicino a Blanes basta una barca senza patente, con carburante incluso. Per percorrere il tratto fino a Lloret e Tossa (oltre le 2 miglia) serve una barca con patente, comoda e con un buon prendisole.",
+          "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper. Con i nostri motoscafi con patente percorri il tratto fino a Lloret e Tossa; nell'escursione privata, il giro lo fa il nostro skipper.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
-          "Stagione da aprile a ottobre, con partenze fino alle 20:00 dal Porto di Blanes. Su questa costa il sole tramonta dietro la terra: ti godrai la luce dorata e i paesi e le scogliere illuminate. Le barche senza patente arrivano fino a 2 miglia; per Lloret o Tossa si usa una barca con patente. Porta una giacca leggera.",
+          "Stagione da aprile a ottobre, con partenze fino alle 20:00 dal Porto di Blanes. Su questa costa il sole tramonta dietro la terra: ti godrai la luce dorata e i paesi e le scogliere illuminate. Con una barca con patente arrivi a Lloret o Tossa. Porta una giacca leggera.",
         faqTitle: "Domande frequenti",
         faq: [
           { q: "Dove si vede il tramonto migliore dalla barca?", a: "Vicino a Blanes, Sa Palomera; nel tratto completo, la Vila Vella di Tossa illuminata è la cosa più spettacolare." },
-          { q: "Serve una barca con patente?", a: "Solo se vuoi arrivare a Lloret o Tossa. Per l'ora dorata vicino a Blanes basta una barca senza patente." },
+          { q: "Serve una barca con patente?", a: "Sì: dal 1° ottobre 2026 tutte le nostre barche a noleggio si guidano con almeno la Licencia de Navegación (titulín). Se non hai la patente, esci con lo skipper nell'escursione privata." },
         ],
         ctaTitle: "Prenota il tuo giro al tramonto sulla Costa Brava",
         ctaText: "Scegli la tua barca a seconda di quanto lontano vuoi arrivare e insegui l'ora dorata partendo da Blanes.",
@@ -3983,7 +3970,7 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per pescare",
         boatsIntro:
-          "Per pescare usiamo le nostre barche con patente, con maggiore autonomia e portata rispetto alle barche senza patente. Sono le più indicate per spostarti tra le zone di pesca e passare la giornata in comodità.",
+          "Per pescare usiamo le nostre barche con patente, che guidi con il titulín: hanno autonomia e portata per spostarti tra le zone di pesca e passare la giornata in comodità.",
         practicalTitle: "Informazioni pratiche e normativa",
         practicalBody:
           "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Per pescare serve la licenza di pesca ricreativa della Catalogna, che è responsabilità del cliente. Rispetta le taglie minime, le specie protette e le zone regolamentate. L'attrezzatura da pesca non è inclusa.",
@@ -4037,14 +4024,14 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per arrivare a Tossa",
         boatsIntro:
-          "Tossa è fuori dalla portata delle barche senza patente, quindi il viaggio si fa con una delle nostre barche con patente, con autonomia per la giornata. Il tragitto da Blanes è di 30-45 minuti.",
+          "Il viaggio a Tossa si fa con una delle nostre barche con patente, con autonomia per la giornata. Il tragitto da Blanes è di 30-45 minuti.",
         practicalTitle: "Informazioni pratiche e normativa",
         practicalBody:
           "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Parte del litorale di Tossa è zona protetta dove la pesca è limitata: rispetta i suoi limiti. Serve la licenza di pesca ricreativa della Catalogna (a carico del cliente) e devi rispettare taglie e specie. L'attrezzatura da pesca non è inclusa.",
         faqTitle: "Domande frequenti",
         faq: [
           { q: "Si può pescare a Tossa de Mar?", a: "Solo fuori dalle zone protette e con licenza di pesca ricreativa. Parte del litorale è riserva dove la pesca è limitata o vietata." },
-          { q: "Si arriva con una barca senza patente?", a: "No. Tossa è oltre il limite di 2 miglia; si arriva con una barca con patente, in 30-45 minuti da Blanes." },
+          { q: "Si arriva con una barca senza patente?", a: "No. Dal 1° ottobre 2026 serve almeno la Licencia de Navegación (titulín) per noleggiare; con essa ci arrivi in 30-45 minuti da Blanes." },
         ],
         ctaTitle: "Prenota la tua uscita di pesca vicino a Tossa",
         ctaText: "Scegli data e barca con patente, rispetta le zone protette e prepara la tua giornata di pesca partendo da Blanes.",
@@ -4064,7 +4051,7 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per pescare lungo la costa",
         boatsIntro:
-          "Per la pesca usiamo barche con patente, con l'autonomia necessaria per percorrere la costa tra le zone. Le barche senza patente, limitate a 2 miglia, non sono l'opzione per questo tipo di uscite.",
+          "Per la pesca usiamo barche con patente, con l'autonomia necessaria per percorrere la costa tra le zone. Basta la Licencia de Navegación (titulín), un corso di un giorno senza esame.",
         practicalTitle: "Informazioni pratiche e normativa",
         practicalBody:
           "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Serve la licenza di pesca ricreativa della Catalogna (a carico del cliente). Rispetta le taglie minime, le specie protette e, in modo particolare, le zone regolamentate come la riserva di Tossa. L'attrezzatura da pesca non è inclusa.",
@@ -4089,7 +4076,7 @@ export const it: Translations = {
     intro: '{count} termini essenziali per noleggiare una barca sulla Costa Brava. Patenti nautiche, unità di misura, parti della barca e vocabolario marino.',
     filterAll: 'Tutti',
     ctaTitle: 'Pronto a noleggiare la tua barca?',
-    ctaDesc: 'Ora che conosci la terminologia, scegli la tua barca senza patente o con patente per esplorare la Costa Brava.',
+    ctaDesc: "Ora che conosci la terminologia, scegli la tua barca per esplorare la Costa Brava: con il titulín o con lo skipper.",
     ctaFleet: 'Vedi la flotta',
     ctaFaq: 'Domande frequenti',
     schemaName: 'Glossario nautico, Noleggio barche Costa Brava',
@@ -4186,7 +4173,7 @@ export const it: Translations = {
       },
       {
         term: 'Bimini / Toldo bimini',
-        definition: 'Tendalino apribile che copre il pozzetto della barca fornendo ombra. Essenziale per la navigazione con bambini o in estate. La maggior parte delle nostre barche senza licenza lo include di serie.',
+        definition: "Tendalino apribile che copre il pozzetto della barca fornendo ombra. Essenziale per la navigazione con bambini o in estate.",
         category: 'equipamiento',
       },
       {
@@ -4806,9 +4793,9 @@ export const it: Translations = {
     newRule: {
       title: "Cambio di legge: cosa succede il 1º ottobre 2026",
       body:
-        "Il Regio Decreto 1188/2025 modifica la normativa spagnola sui titoli nautici (RD 875/2014): dal 1º ottobre 2026, per noleggiare qualsiasi imbarcazione a motore servirà un titolo nautico, anche per le barche piccole che finora si noleggiavano senza patente. L'esenzione per le barche fino a 5 metri e 15 CV resta solo per le imbarcazioni a uso privato.",
+        "Il Regio Decreto 1188/2025 modifica la normativa spagnola sui titoli nautici (RD 875/2014): dal 1° ottobre 2026, per noleggiare qualsiasi imbarcazione a motore serve un titolo nautico, anche per le barche piccole che fino ad allora si noleggiavano senza patente. L'esenzione per le barche fino a 5 metri e 15 CV resta solo per le imbarcazioni a uso privato.",
       note:
-        "Fino al 30 settembre 2026 non cambia nulla: le nostre barche senza patente si noleggiano come sempre. Il cambio riguarda le prossime stagioni, e la Licencia de Navegación è il modo più semplice per giocare d'anticipo.",
+        "Fino al 30 settembre 2026 noleggiavamo barche senza patente; dal 1° ottobre, non più. Con la Licencia de Navegación, un corso di un giorno senza esame, guidi i nostri tre motoscafi con patente; senza patente, esci con lo skipper nell'escursione privata.",
     },
     whatIs: {
       title: "Cos'è la Licencia de Navegación (il titulín)",
@@ -4851,14 +4838,14 @@ export const it: Translations = {
     fleet: {
       title: "Con il titulín, questa flotta è tua",
       body:
-        "La Licencia de Navegación ti basta per noleggiare i nostri motoscafi Mingolla Brava 19, Trimarchi 57S e Pacific Craft 625, con motori da 80, 110 e 115 CV e Tossa de Mar a portata di rotta. E da ottobre 2026 sarà anche il titolo che ti permetterà di continuare a noleggiare le barche piccole della flotta. Un giorno di corso, tante estati al timone.",
+        "La Licencia de Navegación ti basta per noleggiare i nostri motoscafi Mingolla Brava 19, Trimarchi 57S e Pacific Craft 625, con motori da 80, 110 e 115 CV e Tossa de Mar a portata di rotta. Da ottobre 2026 è anche il titolo minimo richiesto dalla legge per noleggiare qualsiasi barca a motore. Un giorno di corso, tante estati al timone.",
       cta: "Vedi le barche che puoi condurre",
     },
     faqTitle: "Domande frequenti sul titulín",
     faq: [
       {
         q: "Mi serve già una patente per noleggiare una barca?",
-        a: "Per ora no: fino al 30 settembre 2026 le barche fino a 5 metri e 15 CV si noleggiano senza patente, come sempre. Dal 1º ottobre 2026, il RD 1188/2025 richiede un titolo nautico a chi noleggia qualsiasi imbarcazione a motore, e la Licencia de Navegación è il più rapido da ottenere.",
+        a: "Sì. Dal 1° ottobre 2026, il RD 1188/2025 richiede un titolo nautico a chi noleggia qualsiasi imbarcazione a motore, anche le barche fino a 5 metri e 15 CV che prima si noleggiavano senza patente. La Licencia de Navegación è il più rapido da ottenere: un corso di un giorno, senza esame.",
       },
       {
         q: "Quanto dura il corso e c'è un esame?",
@@ -4878,7 +4865,7 @@ export const it: Translations = {
       },
       {
         q: "E se non voglio prendere nessuna patente?",
-        a: "Hai due opzioni: noleggiare una barca senza patente fino al 30 settembre 2026, oppure prenotare l'escursione privata con skipper, dove un professionista conduce la barca e nessuno a bordo ha bisogno di titoli, in qualsiasi data della stagione.",
+        a: "Puoi prenotare l'escursione privata con skipper: un professionista conduce la barca e nessuno a bordo ha bisogno di titoli, in qualsiasi data della stagione. Dal 1° ottobre 2026 non noleggiamo più barche senza patente.",
       },
     ],
     alternative: {
@@ -5016,7 +5003,7 @@ export const it: Translations = {
       "Il noleggio di scooter e moto è gestito da Coast Rent, azienda locale di Lloret de Mar che consigliamo. Prenotazione, consegna e assistenza clienti si gestiscono direttamente sul loro sito, disponibile nella tua lingua.",
     combineTitle: "Combina mare e strada",
     combineText:
-      "Al mattino, barca senza patente dal porto di Blanes; al pomeriggio, scooter fino a Tossa de Mar lungo una delle strade costiere più belle della Catalogna. Blanes e Lloret distano 10 minuti: puoi fare entrambe le cose nello stesso giorno.",
+      "Al mattino, barca dal porto di Blanes, con il titulín o con lo skipper; al pomeriggio, scooter fino a Tossa de Mar lungo una delle strade costiere più belle della Catalogna. Blanes e Lloret distano 10 minuti: puoi fare entrambe le cose nello stesso giorno.",
     cta: "Verifica la disponibilità su coastrent.es",
     ctaNote: "Apre il sito di Coast Rent in una nuova scheda.",
     faqTitle: "Domande frequenti",
@@ -5162,9 +5149,9 @@ export const it: Translations = {
       "Per chi vuole staccare del tutto, festeggia qualcosa o non ha la patente nautica e vuole arrivare fino alle grotte di Tossa senza limiti di potenza.",
     vsSelfDriveTitle: "Senza skipper: al timone ci sei tu",
     vsSelfDriveText:
-      "Con la patente nautica puoi noleggiare le nostre imbarcazioni da 80-115 cv e tracciare la tua rotta. E senza patente, le barche senza patente ti portano per le cale vicine.",
+      "Con la Licencia de Navegación (corso di un giorno, senza esame) o un titolo superiore puoi noleggiare le nostre imbarcazioni da 80-115 cv e tracciare la tua rotta.",
     vsLinkLicensed: "Barche senza skipper (con patente nautica)",
-    vsLinkFree: "Barche senza patente",
+    vsLinkFree: "Titulín in 1 giorno",
     faq: [
       {
         q: "Serve la patente o esperienza per questa escursione?",
@@ -5196,7 +5183,7 @@ export const it: Translations = {
       },
       {
         q: "In cosa si differenzia dal noleggiare una barca senza skipper?",
-        a: "Noleggiando senza skipper al timone ci sei tu, e per le imbarcazioni grandi serve la patente nautica. Nell'escursione privata la barca la conduce il nostro skipper: nessuno del gruppo ha bisogno della patente e siete tutti passeggeri. È l'opzione per staccare del tutto o per gruppi senza patente nautica.",
+        a: "Noleggiando senza skipper al timone ci sei tu, e per questo ti serve almeno la Licencia de Navegación. Nell'escursione privata la barca la conduce il nostro skipper: nessuno del gruppo ha bisogno della patente e siete tutti passeggeri. È l'opzione per staccare del tutto o per gruppi senza patente nautica.",
       },
     ],
     linksTitle: "Continua a esplorare",
@@ -5276,7 +5263,7 @@ export const it: Translations = {
     },
     boatCta: {
       title: "La barca non entra nella borsa",
-      text: "L'illustrazione nasce da una delle nostre barche. L'originale si noleggia a ore nel porto di Blanes, con o senza patente.",
+      text: "L'illustrazione nasce da una delle nostre barche del porto di Blanes, dove noleggiamo motoscafi a ore e usciamo con lo skipper.",
       cta: "Vedi barche e prezzi",
     },
     cart: {

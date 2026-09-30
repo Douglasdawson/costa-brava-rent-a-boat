@@ -11,7 +11,7 @@ import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { eraCopy } from "@shared/constants";
-import { isCaptainedBoat, isPubliclyListed } from "@shared/boatData";
+import { boatIncludesFuel, isCaptainedBoat, isPubliclyListed } from "@shared/boatData";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import {
@@ -858,7 +858,7 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
                   </TableCell>
                   {sortedBoats.map(boat => (
                     <TableCell key={boat.id} className="text-center">
-                      {!boat.requiresLicense ? (
+                      {boatIncludesFuel(boat.id, boat.requiresLicense) ? (
                         <span className="text-success font-medium">{t.comparison.tableYes}</span>
                       ) : (
                         <span className="text-muted-foreground">{t.comparison.tableNo}</span>

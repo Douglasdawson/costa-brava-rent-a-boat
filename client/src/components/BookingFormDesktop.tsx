@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import type { Boat } from "@shared/schema";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
-import { EXTRA_PACKS } from "@shared/boatData";
+import { EXTRA_PACKS, boatIncludesFuel } from "@shared/boatData";
 import { getBoatCatalogMinPrice, isBestValueSeasonForLongDuration } from "@shared/pricing";
 import { useFleetAvailabilityForDate, type DayStatus } from "@/hooks/useFleetAvailabilityForDate";
 import { PARTIAL_TONE, BOOKED_TONE } from "@/components/AvailabilityCalendar";
@@ -1543,14 +1543,14 @@ function Step5Contact({
             {selectedBoatInfo && (
               <div
                 className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium ${
-                  selectedBoatInfo.requiresLicense
+                  !boatIncludesFuel(selectedBoatInfo.id, selectedBoatInfo.requiresLicense)
                     ? "bg-popular/10 border border-popular/20 text-popular"
                     : "bg-success/10 border border-success/20 text-success"
                 }`}
               >
                 <Fuel className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
                 <span>
-                  {selectedBoatInfo.requiresLicense
+                  {!boatIncludesFuel(selectedBoatInfo.id, selectedBoatInfo.requiresLicense)
                     ? t.bookingWizard?.fuel?.notIncluded || "Combustible no incluido"
                     : t.bookingWizard?.fuel?.included || "Combustible incluido"}
                 </span>

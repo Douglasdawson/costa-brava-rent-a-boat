@@ -72,9 +72,9 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       type: "actividad",
     },
     {
-      title: "Barcos sin licencia",
-      description: "5 barcos desde 85EUR/h, gasolina incluida",
-      pageKey: "categoryLicenseFree",
+      title: "Barcos con licencia",
+      description: "Pilota tu propia lancha con el titulin",
+      pageKey: "categoryLicensed",
       type: "guia",
     },
     {
@@ -159,9 +159,9 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       type: "blog",
     },
     {
-      title: "Barcos sin licencia",
-      description: "Perfectos para excursiones de snorkel",
-      pageKey: "categoryLicenseFree",
+      title: "Barcos con licencia",
+      description: "Pilota tu propia lancha con el titulin",
+      pageKey: "categoryLicensed",
       type: "guia",
     },
     {
@@ -213,9 +213,9 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       type: "blog",
     },
     {
-      title: "No license boats",
-      description: "Perfect for sunset trips, from 85EUR/h",
-      pageKey: "categoryLicenseFree",
+      title: "Licensed boats",
+      description: "Skipper your own motorboat with the Licencia de Navegacion",
+      pageKey: "categoryLicensed",
       type: "guia",
     },
   ],
@@ -328,9 +328,9 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       type: "guia",
     },
     {
-      title: "Barcos sin licencia",
-      description: "5 barcos desde 85EUR/h, gasolina incluida",
-      pageKey: "categoryLicenseFree",
+      title: "Titulin en 1 dia",
+      description: "La Licencia de Navegacion: curso de 1 dia, sin examen",
+      pageKey: "navigationLicense",
       type: "guia",
     },
     {
@@ -492,9 +492,9 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
       type: "ubicacion",
     },
     {
-      title: "Barcos sin licencia",
-      description: "5 barcos desde 85EUR/h, gasolina incluida",
-      pageKey: "categoryLicenseFree",
+      title: "Barcos con licencia",
+      description: "Pilota tu propia lancha con el titulin",
+      pageKey: "categoryLicensed",
       type: "guia",
     },
     {

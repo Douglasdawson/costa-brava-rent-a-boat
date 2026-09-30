@@ -22,6 +22,7 @@ import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { isLicenseFreeEraActive } from "@shared/constants";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { trackPhoneClick } from "@/utils/analytics";
 import {
@@ -390,7 +391,7 @@ const t: Record<Language, {
     fleetLicenseFree: "5 boten zonder vaarbewijs",
     fleetLicenseFreeDesc: "Geen vaarbewijs nodig. Boten tot 15 PK, makkelijk te besturen en veilig. Alle verhuur zonder vaarbewijs is inclusief brandstof, verzekering, BTW, aanlegkosten, reiniging en veiligheidsuitrusting.",
     fleetLicensed: "3 boten met vaarbewijs",
-    fleetLicensedDesc: "Voor ervaren zeilers met vaarbewijs. Boten tot 150 PK. Brandstof is niet inbegrepen.",
+    fleetLicensedDesc: "Voor ervaren zeilers met vaarbewijs. Boten tot 115 PK. Brandstof is niet inbegrepen.",
     fleetExcursion: "1 privé-excursie met schipper",
     fleetExcursionDesc: "Een professionele schipper brengt u naar de mooiste baaien van de Costa Brava.",
     fleetIncluded: "Inbegrepen bij boten zonder vaarbewijs: brandstof, verzekering, BTW, aanlegkosten, reiniging, reddingsvesten en veiligheidsuitrusting.",
@@ -500,7 +501,7 @@ const t: Record<Language, {
     fleetLicenseFree: "5 lodok bez licenzii",
     fleetLicenseFreeDesc: "Licenzija ne trebuetsja. Lodki do 15 l.s., prostye v upravlenii i bezopasnye. Vsja arenda bez licenzii vkljuchaet toplivo, strahovku, NDS, shvartovku, uborku i oborudovanie bezopasnosti.",
     fleetLicensed: "3 lodki s licenziej",
-    fleetLicensedDesc: "Dlja opytnyh morjakov s licenziej. Lodki do 150 l.s. Toplivo ne vkljucheno.",
+    fleetLicensedDesc: "Dlja opytnyh morjakov s licenziej. Lodki do 115 l.s. Toplivo ne vkljucheno.",
     fleetExcursion: "1 chastnaja ehkskursija s kapitanom",
     fleetExcursionDesc: "Professional'nyj shkiper otvezyot vas v luchshie buhty Kosta Bravy.",
     fleetIncluded: "Vkljucheno v lodki bez licenzii: toplivo, strahovka, NDS, shvartovka, uborka, spasatel'nye zhilety i oborudovanie bezopasnosti.",
@@ -540,6 +541,139 @@ const t: Record<Language, {
 };
 
 // ---------------------------------------------------------------------------
+// Post-era copy (RD 1188/2025): from 2026-10-01 no boat is rented without a
+// qualification and none includes fuel. Only the keys that carried the old
+// promise are overridden; eraCopy() swaps them at midnight Europe/Madrid.
+// ---------------------------------------------------------------------------
+type PostEraKey =
+  | "metaDescription" | "heroSubheading" | "badgeFleet" | "whoWeAreP1" | "whoWeAreP2"
+  | "fleetIntro" | "fleetLicenseFree" | "fleetLicenseFreeDesc" | "fleetIncluded"
+  | "whyTransparencyDesc" | "whyExperience" | "whyExperienceDesc" | "linkFleet";
+
+const tPostEra: Record<Language, Pick<typeof t.es, PostEraKey>> = {
+  es: {
+    metaDescription: `Costa Brava Rent a Boat es una empresa familiar de alquiler de barcos en el Puerto de Blanes, Girona. Barcos con licencia (titulín en 1 día) y excursión privada con patrón. ${BUSINESS_RATING_STR} estrellas en Google Maps. Temporada de abril a octubre.`,
+    heroSubheading: `Empresa familiar de alquiler de barcos en el Puerto de Blanes, Costa Brava. Barcos con licencia y excursión privada con patrón, con ${BUSINESS_REVIEW_COUNT_STR} reseñas en Google Maps.`,
+    badgeFleet: "3 barcos con licencia y excursión con patrón",
+    whoWeAreP1: "Costa Brava Rent a Boat es una empresa familiar con base en el Puerto de Blanes, en la comarca de la Selva, provincia de Girona, Cataluña, España. Operamos 4 embarcaciones, tres barcos con licencia y una excursión privada con patrón, para que disfrutes del mar Mediterráneo en la Costa Brava.",
+    whoWeAreP2: "Nuestra misión es hacer accesible la experiencia de navegar por la Costa Brava: con tu título náutico, con la Licencia de Navegación que se saca en un curso de 1 día o con un patrón profesional que lleve el barco por ti. Creemos que descubrir calas escondidas, bañarse en aguas cristalinas y explorar la costa desde el mar debería estar al alcance de cualquier familia, pareja o grupo de amigos.",
+    fleetIntro: "Desde el 1 de octubre de 2026 la ley exige título náutico para alquilar cualquier barco a motor. Por eso nuestra flota son 4 embarcaciones: tres barcos con licencia de hasta 115 CV y una excursión privada con patrón para quien no tiene título.",
+    fleetLicenseFree: "Titulín en 1 día",
+    fleetLicenseFreeDesc: "¿Sin título náutico? La Licencia de Navegación (titulín) se obtiene con un curso de 1 día, sin examen, y basta para llevar nuestros tres barcos con licencia. Antes de salir, te damos una sesión de 15 minutos sobre el barco y la zona en tu idioma.",
+    fleetIncluded: "Incluido en todos los alquileres: seguro, amarre, chalecos salvavidas y equipo de seguridad. El combustible no está incluido.",
+    whyTransparencyDesc: "El precio que ves incluye seguro, amarre y equipo de seguridad. El combustible va aparte y siempre lo indicamos antes de reservar. Sin costes ocultos ni sorpresas al volver al puerto.",
+    whyExperience: "Sin título, con patrón",
+    whyExperienceDesc: "Si aún no tienes título, reserva la excursión privada: un patrón profesional lleva el barco y tú solo disfrutas de las calas. Y si prefieres llevarlo tú, el titulín se saca en un curso de 1 día.",
+    linkFleet: "Barcos con licencia",
+  },
+  en: {
+    metaDescription: `Costa Brava Rent a Boat is a family-run boat rental business in the Port of Blanes, Girona. Licensed motorboats (licence in 1 day) and a private excursion with a skipper. ${BUSINESS_RATING_STR} stars on Google Maps. Season from April to October.`,
+    heroSubheading: `Family-run boat rental business in the Port of Blanes, Costa Brava. Licensed motorboats and a private excursion with a skipper, with ${BUSINESS_REVIEW_COUNT_STR} reviews on Google Maps.`,
+    badgeFleet: "3 licensed boats and a skippered excursion",
+    whoWeAreP1: "Costa Brava Rent a Boat is a family-run business based in the Port of Blanes, in the Selva county, province of Girona, Catalonia, Spain. We operate 4 vessels, three licensed motorboats and a private excursion with a skipper, so you can enjoy the Mediterranean Sea on the Costa Brava.",
+    whoWeAreP2: "Our mission is to make sailing along the Costa Brava accessible to everyone: with your boating licence, with the Licencia de Navegación you can get in a 1-day course, or with a professional skipper at the helm. We believe that discovering hidden coves, swimming in crystal-clear waters and exploring the coast from the sea should be within reach of any family, couple or group of friends.",
+    fleetIntro: "Since 1 October 2026 Spanish law requires a boating licence to rent any motorboat. That is why our fleet is 4 vessels: three licensed motorboats up to 115 HP and a private excursion with a skipper for those without a licence.",
+    fleetLicenseFree: "Licence in 1 day",
+    fleetLicenseFreeDesc: "No boating licence? The Licencia de Navegación (titulín) takes a 1-day course, with no exam, and it is enough to skipper our three licensed boats. Before departure, we give you a 15-minute session on the boat and the area in your language.",
+    fleetIncluded: "Included with every rental: insurance, mooring, life jackets and safety equipment. Fuel is not included.",
+    whyTransparencyDesc: "The price you see includes insurance, mooring and safety equipment. Fuel is extra and we always state it before you book. No hidden costs or surprises when you return to port.",
+    whyExperience: "No licence? Sail with a skipper",
+    whyExperienceDesc: "If you do not have a licence yet, book the private excursion: a professional skipper runs the boat and you just enjoy the coves. And if you would rather skipper it yourself, the titulín takes a 1-day course.",
+    linkFleet: "Licensed boats",
+  },
+  ca: {
+    metaDescription: `Costa Brava Rent a Boat és una empresa familiar de lloguer de vaixells al Port de Blanes, Girona. Vaixells amb llicència (titulí en 1 dia) i excursió privada amb patró. ${BUSINESS_RATING_STR} estrelles a Google Maps.`,
+    heroSubheading: `Empresa familiar de lloguer de vaixells al Port de Blanes, Costa Brava. Vaixells amb llicència i excursió privada amb patró, amb ${BUSINESS_REVIEW_COUNT_STR} ressenyes a Google Maps.`,
+    badgeFleet: "3 vaixells amb llicència i excursió amb patró",
+    whoWeAreP1: "Costa Brava Rent a Boat és una empresa familiar amb base al Port de Blanes, a la comarca de la Selva, província de Girona, Catalunya, Espanya. Operem 4 embarcacions, tres vaixells amb llicència i una excursió privada amb patró, perquè gaudeixis del Mediterrani a la Costa Brava.",
+    whoWeAreP2: "La nostra missió és fer accessible l'experiència de navegar per la Costa Brava: amb el teu títol nàutic, amb la Llicència de Navegació que es treu en un curs d'1 dia o amb un patró professional que porti el vaixell per tu.",
+    fleetIntro: "Des de l'1 d'octubre de 2026 la llei exigeix títol nàutic per llogar qualsevol embarcació a motor. Per això la nostra flota són 4 embarcacions: tres vaixells amb llicència de fins a 115 CV i una excursió privada amb patró per a qui no té títol.",
+    fleetLicenseFree: "Titulí en 1 dia",
+    fleetLicenseFreeDesc: "Sense títol nàutic? La Llicència de Navegació (titulí) s'obté amb un curs d'1 dia, sense examen, i n'hi ha prou per portar els nostres tres vaixells amb llicència. Abans de sortir, et fem una sessió de 15 minuts sobre el vaixell i la zona en el teu idioma.",
+    fleetIncluded: "Inclòs en tots els lloguers: assegurança, amarratge, armilles salvavides i equip de seguretat. El combustible no està inclòs.",
+    whyTransparencyDesc: "El preu que veus inclou assegurança, amarratge i equip de seguretat. El combustible va a part i sempre l'indiquem abans de reservar. Sense costos ocults.",
+    whyExperience: "Sense títol, amb patró",
+    whyExperienceDesc: "Si encara no tens títol, reserva l'excursió privada: un patró professional porta el vaixell i tu només gaudeixes de les cales. I si el vols portar tu, el titulí es treu en un curs d'1 dia.",
+    linkFleet: "Vaixells amb llicència",
+  },
+  fr: {
+    metaDescription: `Costa Brava Rent a Boat est une entreprise familiale de location de bateaux au Port de Blanes, Girona. Bateaux avec permis (titulín en 1 jour) et excursion privée avec skipper. ${BUSINESS_RATING_STR} étoiles sur Google Maps.`,
+    heroSubheading: `Entreprise familiale de location de bateaux au Port de Blanes, Costa Brava. Bateaux avec permis et excursion privée avec skipper, avec ${BUSINESS_REVIEW_COUNT_STR} avis sur Google Maps.`,
+    badgeFleet: "3 bateaux avec permis et excursion avec skipper",
+    whoWeAreP1: "Costa Brava Rent a Boat est une entreprise familiale basée au Port de Blanes, dans la province de Girona, Catalogne, Espagne. Nous exploitons 4 embarcations, trois bateaux avec permis et une excursion privée avec skipper, pour profiter de la Méditerranée sur la Costa Brava.",
+    whoWeAreP2: "Notre mission est de rendre la navigation sur la Costa Brava accessible à tous : avec votre permis bateau, avec la Licencia de Navegación qui s'obtient en un cours d'1 jour, ou avec un skipper professionnel à la barre.",
+    fleetIntro: "Depuis le 1er octobre 2026, la loi espagnole exige un permis pour louer tout bateau à moteur. Notre flotte compte donc 4 embarcations : trois bateaux avec permis jusqu'à 115 CV et une excursion privée avec skipper pour ceux qui n'ont pas de permis.",
+    fleetLicenseFree: "Permis en 1 jour",
+    fleetLicenseFreeDesc: "Pas de permis bateau ? La Licencia de Navegación (titulín) s'obtient en un cours d'1 jour, sans examen, et suffit pour piloter nos trois bateaux avec permis. Avant le départ, nous vous accordons une séance de 15 minutes sur le bateau et la zone dans votre langue.",
+    fleetIncluded: "Inclus dans toutes les locations : assurance, amarrage, gilets de sauvetage et équipement de sécurité. Le carburant n'est pas inclus.",
+    whyTransparencyDesc: "Le prix affiché inclut l'assurance, l'amarrage et l'équipement de sécurité. Le carburant est en sus et toujours indiqué avant la réservation. Pas de frais cachés.",
+    whyExperience: "Sans permis, avec skipper",
+    whyExperienceDesc: "Si vous n'avez pas encore de permis, réservez l'excursion privée : un skipper professionnel pilote le bateau et vous profitez des criques. Et si vous préférez piloter vous-même, le titulín s'obtient en un cours d'1 jour.",
+    linkFleet: "Bateaux avec permis",
+  },
+  de: {
+    metaDescription: `Costa Brava Rent a Boat ist ein familiengeführtes Bootsvermietungsunternehmen im Hafen von Blanes, Girona. Boote mit Führerschein (Titulín an 1 Tag) und private Ausfahrt mit Skipper. ${BUSINESS_RATING_STR} Sterne bei Google Maps.`,
+    heroSubheading: `Familiengeführte Bootsvermietung im Hafen von Blanes, Costa Brava. Boote mit Führerschein und private Ausfahrt mit Skipper, mit ${BUSINESS_REVIEW_COUNT_STR} Bewertungen bei Google Maps.`,
+    badgeFleet: "3 Boote mit Führerschein und Ausfahrt mit Skipper",
+    whoWeAreP1: "Costa Brava Rent a Boat ist ein familiengeführtes Unternehmen mit Sitz im Hafen von Blanes, in der Provinz Girona, Katalonien, Spanien. Wir betreiben 4 Boote: drei Boote mit Führerschein und eine private Ausfahrt mit Skipper.",
+    whoWeAreP2: "Unsere Mission ist es, das Bootsfahren an der Costa Brava für jeden zugänglich zu machen: mit Ihrem Bootsführerschein, mit der Licencia de Navegación, die man in einem 1-Tages-Kurs erwirbt, oder mit einem professionellen Skipper am Steuer.",
+    fleetIntro: "Seit dem 1. Oktober 2026 verlangt das spanische Gesetz für jede Motorbootmiete einen Bootsführerschein. Deshalb besteht unsere Flotte aus 4 Booten: drei Boote mit Führerschein bis 115 PS und eine private Ausfahrt mit Skipper für alle ohne Schein.",
+    fleetLicenseFree: "Schein an 1 Tag",
+    fleetLicenseFreeDesc: "Kein Bootsführerschein? Die Licencia de Navegación (Titulín) erwerben Sie in einem 1-Tages-Kurs ohne Prüfung, und sie reicht für unsere drei Boote mit Führerschein. Vor der Abfahrt erklären wir Ihnen 15 Minuten lang Boot und Fahrgebiet in Ihrer Sprache.",
+    fleetIncluded: "Bei jeder Miete inklusive: Versicherung, Anlegegebühr, Schwimmwesten und Sicherheitsausrüstung. Treibstoff ist nicht inbegriffen.",
+    whyTransparencyDesc: "Der angezeigte Preis enthält Versicherung, Anlegegebühr und Sicherheitsausrüstung. Treibstoff kommt hinzu und wird vor der Buchung immer angegeben. Keine versteckten Kosten.",
+    whyExperience: "Ohne Schein, mit Skipper",
+    whyExperienceDesc: "Noch keinen Schein? Buchen Sie die private Ausfahrt: Ein professioneller Skipper steuert das Boot und Sie genießen die Buchten. Und wenn Sie lieber selbst fahren, erwerben Sie den Titulín in einem 1-Tages-Kurs.",
+    linkFleet: "Boote mit Führerschein",
+  },
+  nl: {
+    metaDescription: `Costa Brava Rent a Boat is een familiebedrijf voor bootverhuur in de haven van Blanes, Girona. Boten met vaarbewijs (titulín in 1 dag) en een privé-excursie met schipper. ${BUSINESS_RATING_STR} sterren op Google Maps.`,
+    heroSubheading: `Familiebedrijf voor bootverhuur in de haven van Blanes, Costa Brava. Boten met vaarbewijs en een privé-excursie met schipper, met ${BUSINESS_REVIEW_COUNT_STR} beoordelingen op Google Maps.`,
+    badgeFleet: "3 boten met vaarbewijs en excursie met schipper",
+    whoWeAreP1: "Costa Brava Rent a Boat is een familiebedrijf gevestigd in de haven van Blanes, in de provincie Girona, Catalonië, Spanje. Wij hebben 4 vaartuigen: drie boten met vaarbewijs en een privé-excursie met schipper.",
+    whoWeAreP2: "Onze missie is varen langs de Costa Brava voor iedereen toegankelijk te maken: met je vaarbewijs, met de Licencia de Navegación die je in een cursus van 1 dag haalt, of met een professionele schipper aan het roer.",
+    fleetIntro: "Sinds 1 oktober 2026 eist de Spaanse wet een vaarbewijs om een motorboot te huren. Daarom bestaat onze vloot uit 4 vaartuigen: drie boten met vaarbewijs tot 115 pk en een privé-excursie met schipper voor wie geen vaarbewijs heeft.",
+    fleetLicenseFree: "Vaarbewijs in 1 dag",
+    fleetLicenseFreeDesc: "Geen vaarbewijs? De Licencia de Navegación (titulín) haal je in een cursus van 1 dag, zonder examen, en daarmee vaar je onze drie boten met vaarbewijs. Voor vertrek krijg je een sessie van 15 minuten over de boot en het vaargebied in je eigen taal.",
+    fleetIncluded: "Inbegrepen bij elke huur: verzekering, aanlegkosten, reddingsvesten en veiligheidsuitrusting. Brandstof is niet inbegrepen.",
+    whyTransparencyDesc: "De getoonde prijs is inclusief verzekering, aanlegkosten en veiligheidsuitrusting. Brandstof komt erbij en vermelden we altijd voor je boekt. Geen verborgen kosten.",
+    whyExperience: "Geen vaarbewijs, met schipper",
+    whyExperienceDesc: "Nog geen vaarbewijs? Boek de privé-excursie: een professionele schipper vaart de boot en jij geniet van de baaien. En wil je liever zelf varen, dan haal je de titulín in een cursus van 1 dag.",
+    linkFleet: "Boten met vaarbewijs",
+  },
+  it: {
+    metaDescription: `Costa Brava Rent a Boat è un'azienda familiare di noleggio barche nel Porto di Blanes, Girona. Barche con patente (titulín in 1 giorno) ed escursione privata con skipper. ${BUSINESS_RATING_STR} stelle su Google Maps.`,
+    heroSubheading: `Azienda familiare di noleggio barche nel Porto di Blanes, Costa Brava. Barche con patente ed escursione privata con skipper, con ${BUSINESS_REVIEW_COUNT_STR} recensioni su Google Maps.`,
+    badgeFleet: "3 barche con patente ed escursione con skipper",
+    whoWeAreP1: "Costa Brava Rent a Boat è un'azienda familiare con sede nel Porto di Blanes, nella provincia di Girona, Catalogna, Spagna. Gestiamo 4 imbarcazioni: tre barche con patente e un'escursione privata con skipper.",
+    whoWeAreP2: "La nostra missione è rendere la navigazione lungo la Costa Brava accessibile a tutti: con la tua patente nautica, con la Licencia de Navegación che si ottiene con un corso di 1 giorno, o con uno skipper professionista al timone.",
+    fleetIntro: "Dal 1 ottobre 2026 la legge spagnola richiede una patente nautica per noleggiare qualsiasi barca a motore. Per questo la nostra flotta conta 4 imbarcazioni: tre barche con patente fino a 115 CV e un'escursione privata con skipper per chi non ha la patente.",
+    fleetLicenseFree: "Patente in 1 giorno",
+    fleetLicenseFreeDesc: "Niente patente nautica? La Licencia de Navegación (titulín) si ottiene con un corso di 1 giorno, senza esame, e basta per guidare le nostre tre barche con patente. Prima di partire, ti dedichiamo una sessione di 15 minuti sulla barca e sulla zona nella tua lingua.",
+    fleetIncluded: "Incluso in ogni noleggio: assicurazione, ormeggio, giubbotti di salvataggio e attrezzatura di sicurezza. Il carburante non è incluso.",
+    whyTransparencyDesc: "Il prezzo che vedi include assicurazione, ormeggio e attrezzatura di sicurezza. Il carburante è a parte e lo indichiamo sempre prima della prenotazione. Nessun costo nascosto.",
+    whyExperience: "Senza patente, con skipper",
+    whyExperienceDesc: "Se non hai ancora la patente, prenota l'escursione privata: uno skipper professionista guida la barca e tu ti godi le calette. E se preferisci guidarla tu, il titulín si ottiene con un corso di 1 giorno.",
+    linkFleet: "Barche con patente",
+  },
+  ru: {
+    metaDescription: `Costa Brava Rent a Boat: семейная компания по аренде лодок в порту Бланеса, Жирона. Лодки с правами (titulín за 1 день) и частная экскурсия с капитаном. Оценка ${BUSINESS_RATING_STR} в Google Maps.`,
+    heroSubheading: `Семейная компания по аренде лодок в порту Бланеса, Коста-Брава. Лодки с правами и частная экскурсия с капитаном. Оценка ${BUSINESS_RATING_STR} в Google Maps.`,
+    badgeFleet: "3 лодки с правами и экскурсия с капитаном",
+    whoWeAreP1: "Costa Brava Rent a Boat: семейная компания в порту Бланеса, провинция Жирона, Каталония, Испания. У нас 4 судна: три лодки с правами и частная экскурсия с капитаном.",
+    whoWeAreP2: "Наша миссия: сделать морские прогулки по Коста-Браве доступными для всех, с вашими правами, с Licencia de Navegación, которую получают за однодневный курс, или с профессиональным капитаном у штурвала.",
+    fleetIntro: "С 1 октября 2026 года закон Испании требует права для аренды любой моторной лодки. Поэтому наш флот: 4 судна, три лодки с правами мощностью до 115 л.с. и частная экскурсия с капитаном для тех, у кого нет прав.",
+    fleetLicenseFree: "Права за 1 день",
+    fleetLicenseFreeDesc: "Нет прав? Licencia de Navegación (titulín) получают за однодневный курс без экзамена, и её достаточно для наших трёх лодок с правами. Перед выходом мы проводим 15-минутный инструктаж по лодке и акватории на вашем языке.",
+    fleetIncluded: "Включено в каждую аренду: страховка, стоянка, спасательные жилеты и оборудование безопасности. Топливо не включено.",
+    whyTransparencyDesc: "Цена включает страховку, стоянку и оборудование безопасности. Топливо оплачивается отдельно, и мы всегда указываем это до бронирования. Без скрытых платежей.",
+    whyExperience: "Без прав, с капитаном",
+    whyExperienceDesc: "Если у вас ещё нет прав, забронируйте частную экскурсию: лодкой управляет профессиональный капитан, а вы наслаждаетесь бухтами. А если хотите управлять сами, titulín получают за однодневный курс.",
+    linkFleet: "Лодки с правами",
+  },
+};
+
+// ---------------------------------------------------------------------------
 // "Why choose us" items — language-independent structure, text from translations
 // ---------------------------------------------------------------------------
 const whyItems = [
@@ -552,7 +686,7 @@ const whyItems = [
 ] as const;
 
 // Map the key to the corresponding title/desc translation keys
-function getWhyTitle(key: typeof whyItems[number]["key"], lang: Language): string {
+function getWhyTitle(key: typeof whyItems[number]["key"], dict: typeof t.es): string {
   const map: Record<typeof whyItems[number]["key"], keyof typeof t.es> = {
     safety: "whySafety",
     languages: "whyLanguages",
@@ -561,10 +695,10 @@ function getWhyTitle(key: typeof whyItems[number]["key"], lang: Language): strin
     reviews: "whyReviews",
     local: "whyLocal",
   };
-  return t[lang][map[key]];
+  return dict[map[key]];
 }
 
-function getWhyDesc(key: typeof whyItems[number]["key"], lang: Language): string {
+function getWhyDesc(key: typeof whyItems[number]["key"], dict: typeof t.es): string {
   const map: Record<typeof whyItems[number]["key"], keyof typeof t.es> = {
     safety: "whySafetyDesc",
     languages: "whyLanguagesDesc",
@@ -573,7 +707,7 @@ function getWhyDesc(key: typeof whyItems[number]["key"], lang: Language): string
     reviews: "whyReviewsDesc",
     local: "whyLocalDesc",
   };
-  return t[lang][map[key]];
+  return dict[map[key]];
 }
 
 // ---------------------------------------------------------------------------
@@ -581,7 +715,8 @@ function getWhyDesc(key: typeof whyItems[number]["key"], lang: Language): string
 // ---------------------------------------------------------------------------
 export default function AboutPage() {
   const { language, localizedPath } = useLanguage();
-  const txt = t[language];
+  const licenseFreeEra = isLicenseFreeEraActive();
+  const txt = licenseFreeEra ? t[language] : { ...t[language], ...tPostEra[language] };
   const tr = useTranslations();
 
   const handleBookingWhatsApp = () => {
@@ -598,7 +733,9 @@ export default function AboutPage() {
         "@id": "https://www.costabravarentaboat.com/#localbusiness",
         "name": "Costa Brava Rent a Boat",
         "alternateName": "CBRAB",
-        "description": "Family-run boat rental business in the Port of Blanes, Costa Brava, Spain. Largest fleet in Blanes with 8 boats including 5 licence-free, 3 licensed motorboats and 1 private excursion with captain.",
+        "description": licenseFreeEra
+          ? "Family-run boat rental business in the Port of Blanes, Costa Brava, Spain. Largest fleet in Blanes with 8 boats including 5 licence-free, 3 licensed motorboats and 1 private excursion with captain."
+          : "Family-run boat rental business in the Port of Blanes, Costa Brava, Spain. 3 licensed motorboats (Licencia de Navegación or higher) and 1 private excursion with a professional skipper.",
         "url": "https://www.costabravarentaboat.com",
         "telephone": "+34611500372",
         "email": "info@costabravarentaboat.com",
@@ -656,14 +793,14 @@ export default function AboutPage() {
           "@type": "OfferCatalog",
           "name": "Boat Rental Services",
           "itemListElement": [
-            {
+            ...(licenseFreeEra ? [{
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
                 "name": "Licence-free boat rental",
                 "description": "Rent a boat without a licence. Includes fuel, insurance, VAT, mooring, cleaning and safety equipment."
               }
-            },
+            }] : []),
             {
               "@type": "Offer",
               "itemOffered": {
@@ -865,8 +1002,8 @@ export default function AboutPage() {
                     <Icon className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-semibold text-lg mb-1">{getWhyTitle(item.key, language)}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{getWhyDesc(item.key, language)}</p>
+                    <h3 className="font-heading font-semibold text-lg mb-1">{getWhyTitle(item.key, txt)}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{getWhyDesc(item.key, txt)}</p>
                   </div>
                 </div>
               );
@@ -952,7 +1089,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading font-semibold text-lg mb-4">{txt.linksTitle}</h3>
           <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
+            <a href={localizedPath(licenseFreeEra ? "categoryLicenseFree" : "categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
               {txt.linkFleet}
             </a>

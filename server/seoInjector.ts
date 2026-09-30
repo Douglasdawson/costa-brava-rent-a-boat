@@ -3392,8 +3392,8 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       const tossaBodyFallback = buildLocationBodyFallback(
         isEn ? "Boat Trip to Tossa de Mar from Blanes" : "Excursión en Barco a Tossa de Mar desde Blanes",
         isEn
-          ? "Reach Tossa de Mar's Vila Vella castle from Blanes in 30–45 minutes. Two options: rent a licensed boat (LNB / PER required) from 175€ for 2 hours, or join our private excursion with a professional captain (no license needed) from 265€ for 2 hours. Fuel apart on both options."
-          : "Llega a la Vila Vella de Tossa de Mar desde Blanes en 30–45 minutos. Dos opciones: alquilar un barco con licencia (LNB / PER requerida) desde 175€ por 2 horas, o unirte a nuestra excursión privada con capitán profesional (sin licencia) desde 265€ por 2 horas. Combustible aparte en ambas opciones.",
+          ? "Reach Tossa de Mar's Vila Vella castle from Blanes in 30–45 minutes. Two options: rent a licensed boat (Licencia de Navegación or higher) from 175€ for 2 hours, or join our private excursion with a professional captain (no license needed) from 265€ for 2 hours. Fuel apart on both options."
+          : "Llega a la Vila Vella de Tossa de Mar desde Blanes en 30–45 minutos. Dos opciones: alquilar un barco con licencia (con la Licencia de Navegación o superior) desde 175€ por 2 horas, o unirte a nuestra excursión privada con capitán profesional (sin licencia) desde 265€ por 2 horas. Combustible aparte en ambas opciones.",
         isEn
           ? [
               "Vila Vella — only fortified medieval village on the Catalan coast",

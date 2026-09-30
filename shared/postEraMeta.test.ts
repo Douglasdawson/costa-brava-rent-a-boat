@@ -35,7 +35,7 @@ describe("the post-era map tells the truth", () => {
   it("no entry promises licence-free rental and every entry names the titulín or a skipper", () => {
     for (const [key, langs] of Object.entries(POST_ERA_META)) {
       for (const [lang, f] of Object.entries(langs)) {
-        const text = `${f?.title ?? ""} ${f?.description ?? ""}`;
+        const text = [f?.title, f?.description, f?.ogTitle, f?.ogDescription].filter(Boolean).join(" ");
         expect(text, `${key}.${lang}`).not.toMatch(promise);
         expect(text, `${key}.${lang}`).toMatch(/titul|licencia de navegaci|llicència|patr[óo]n|skipper|schipper|капитан|права/i);
       }

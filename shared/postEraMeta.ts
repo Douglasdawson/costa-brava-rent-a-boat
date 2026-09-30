@@ -81,6 +81,27 @@ function allLangs(fields: PostEraFields): LangMap {
   return out;
 }
 
+/** Activity pages: per-language head + lead sentence, the same titulín-or-skipper tail. */
+const ACTIVITY_TAIL: Record<string, { title: string; desc: string }> = {
+  es: { title: "Con Titulín o Patrón", desc: `Con titulín (curso de 1 día) o con patrón desde octubre de 2026. ★${R} Google.` },
+  en: { title: "Licence in 1 Day or Skipper", desc: `With the titulín (1-day licence) or with a skipper from October 2026. ★${R} Google.` },
+  ca: { title: "Amb Titulí o Patró", desc: `Amb titulí (curs d'1 dia) o amb patró des d'octubre de 2026. ★${R} Google.` },
+  fr: { title: "Permis en 1 jour ou Skipper", desc: `Avec le titulín (permis en 1 jour) ou avec skipper depuis octobre 2026. ★${R} Google.` },
+  de: { title: "Schein an 1 Tag oder Skipper", desc: `Mit dem Titulín (Schein an 1 Tag) oder mit Skipper seit Oktober 2026. ★${R} Google.` },
+  nl: { title: "Vaarbewijs in 1 dag of Schipper", desc: `Met de titulín (vaarbewijs in 1 dag) of met schipper sinds oktober 2026. ★${R} Google.` },
+  it: { title: "Patente in 1 giorno o Skipper", desc: `Con il titulín (patente in 1 giorno) o con skipper da ottobre 2026. ★${R} Google.` },
+  ru: { title: "Права за 1 день или Капитан", desc: `С titulín (права за 1 день) или с капитаном с октября 2026 года. ★${R} Google.` },
+};
+
+function activity(copy: Record<(typeof LANGS)[number], [head: string, lead: string]>): LangMap {
+  const out: LangMap = {};
+  for (const l of LANGS) {
+    const [head, lead] = copy[l];
+    out[l] = { title: `${head} | ${ACTIVITY_TAIL[l].title}`, description: `${lead} ${ACTIVITY_TAIL[l].desc}` };
+  }
+  return out;
+}
+
 export const POST_ERA_META: Record<string, LangMap> = {
   "/barcos-sin-licencia": {
     es: {
@@ -188,6 +209,12 @@ export const POST_ERA_META: Record<string, LangMap> = {
     nl: {
       description: `Vaar naar Tossa de Mar vanaf Blanes met een motorboot. Sinds 1 oktober 2026 met de Licencia de Navegación (vaarbewijs in 1 dag) of met schipper. ★${R} Google. Boek via WhatsApp.`,
     },
+    en: { ogDescription: `Tossa by boat from Blanes: Vila Vella, Mar d'en Roig and Cala Llevadó. With the Licencia de Navegación (1-day course) or with a skipper. ★${R} Google.` },
+    ca: { ogDescription: `Tossa en barca des de Blanes: Vila Vella, Mar d'en Roig i Cala Llevadó. Amb la Llicència de Navegació (curs d'1 dia) o amb patró. ★${R} Google.` },
+    fr: { ogDescription: `Tossa en bateau depuis Blanes : Vila Vella, Mar d'en Roig et Cala Llevadó. Avec la Licencia de Navegación (cours d'1 jour) ou avec skipper. ★${R} Google.` },
+    de: { ogDescription: `Tossa mit dem Boot ab Blanes: Vila Vella, Mar d'en Roig und Cala Llevadó. Mit der Licencia de Navegación (1-Tages-Kurs) oder mit Skipper. ★${R} Google.` },
+    it: { ogDescription: `Tossa in barca da Blanes: Vila Vella, Mar d'en Roig e Cala Llevadó. Con la Licencia de Navegación (corso di 1 giorno) o con skipper. ★${R} Google.` },
+    ru: { ogDescription: `Тосса на лодке из Бланеса: Вила-Велья, Мар-ден-Роиг и Кала-Льевадо. С Licencia de Navegación (курс за 1 день) или с капитаном. ★${R} Google.` },
   },
   "/alquiler-barcos-malgrat-de-mar": town("Malgrat de Mar", 10),
   "/alquiler-barcos-santa-susanna": town("Santa Susanna", 15),
@@ -231,7 +258,10 @@ export const POST_ERA_META: Record<string, LangMap> = {
     },
   },
   "/precios": {
-    es: { description: `Precios de alquiler de barcos en Blanes por temporada y duración. Desde el 1 de octubre de 2026 todos los barcos se alquilan con título: titulín en 1 día o salida con patrón. ★${R} Google.` },
+    es: {
+      ogTitle: "Precios Alquiler Barcos Costa Brava | Con Titulín o Patrón",
+      description: `Precios de alquiler de barcos en Blanes por temporada y duración. Desde el 1 de octubre de 2026 todos los barcos se alquilan con título: titulín en 1 día o salida con patrón. ★${R} Google.`,
+    },
     en: { description: `Boat rental prices in Blanes by season and duration. From 1 October 2026 every boat is rented with a licence: titulín in 1 day or sail with a skipper. ★${R} Google.` },
     ca: { description: `Preus de lloguer de barques a Blanes per temporada i durada. Des de l'1 d'octubre de 2026 totes les barques es lloguen amb títol: titulí en 1 dia o sortida amb patró. ★${R} Google.` },
     fr: { description: `Tarifs de location de bateaux à Blanes par saison et durée. Depuis le 1er octobre 2026, chaque bateau se loue avec un permis : titulín en 1 jour ou sortie avec skipper. ★${R} Google.` },
@@ -260,22 +290,46 @@ export const POST_ERA_META: Record<string, LangMap> = {
     it: { description: "Prenota la tua barca a Blanes in pochi minuti. Con titulín o con skipper, da 2 ore. Risposta WhatsApp immediata." },
     ru: { description: "Забронируйте лодку в Бланесе за минуты. С titulín или с капитаном, от 2 часов. Мгновенный ответ в WhatsApp." },
   },
-  "/excursion-snorkel-barco-blanes": {
-    es: { description: `Excursión de snorkel en barco desde Blanes: calas de aguas cristalinas, fauna marina y equipo de snorkel como extra. Con titulín (curso de 1 día) o con patrón desde octubre de 2026. ★${R} Google.` },
-    en: { description: `Snorkel boat trip from Blanes: crystal-clear coves, marine life and snorkel gear as an extra. With the titulín (1-day licence) or with a skipper from October 2026. ★${R} Google.` },
-  },
-  "/barco-familias-costa-brava": {
-    es: { description: `Alquiler de barco para familias en Blanes: barcos estables y seguros para niños. Con titulín (curso de 1 día) o con patrón desde octubre de 2026. ★${R} Google.` },
-    en: { description: `Family boat rental in Blanes: stable boats, safe for children. With the titulín (1-day licence) or with a skipper from October 2026. ★${R} Google.` },
-  },
-  "/paseo-atardecer-barco-blanes": {
-    es: { description: `Paseo en barco al atardecer desde Blanes: puesta de sol sobre la Costa Brava y calas doradas. Con titulín (curso de 1 día) o con patrón desde octubre de 2026. ★${R} Google.` },
-    en: { description: `Sunset boat trip from Blanes: golden coves and the sun setting over the Costa Brava. With the titulín (1-day licence) or with a skipper from October 2026. ★${R} Google.` },
-  },
-  "/pesca-barco-blanes": {
-    es: { description: `Pesca recreativa en barco desde Blanes: lubinas, doradas y sargos en aguas de la Costa Brava. Con titulín (curso de 1 día) o con patrón desde octubre de 2026. ★${R} Google.` },
-    en: { description: `Recreational fishing by boat from Blanes: sea bass, bream and sargo in Costa Brava waters. With the titulín (1-day licence) or with a skipper from October 2026. ★${R} Google.` },
-  },
+  "/excursion-snorkel-barco-blanes": activity({
+    es: ["Snorkel en Barco Blanes", "Excursión de snorkel en barco desde Blanes: calas de aguas cristalinas, fauna marina y equipo de snorkel como extra."],
+    en: ["Snorkel Boat Trip Blanes", "Snorkel boat trip from Blanes: crystal-clear coves, marine life and snorkel gear as an extra."],
+    ca: ["Snorkel en Barca Blanes", "Excursió de snorkel en barca des de Blanes: cales d'aigües cristal·lines, fauna marina i equip de snorkel com a extra."],
+    fr: ["Snorkeling en Bateau Blanes", "Excursion snorkeling en bateau depuis Blanes : criques aux eaux cristallines, faune marine et équipement de snorkeling en option."],
+    de: ["Schnorcheln per Boot Blanes", "Schnorchel-Bootsausflug ab Blanes: kristallklare Buchten, Meeresfauna und Schnorchelausrüstung als Extra."],
+    nl: ["Snorkelen per Boot Blanes", "Snorkelboottocht vanuit Blanes: kristalheldere baaien, zeeleven en snorkeluitrusting als extra."],
+    it: ["Snorkeling in Barca Blanes", "Escursione di snorkeling in barca da Blanes: calette cristalline, fauna marina e attrezzatura da snorkeling come extra."],
+    ru: ["Снорклинг на Лодке Бланес", "Снорклинг-экскурсия на лодке из Бланеса: кристально чистые бухты, морская фауна и снаряжение для снорклинга за доплату."],
+  }),
+  "/barco-familias-costa-brava": activity({
+    es: ["Barco para Familias Blanes", "Alquiler de barco para familias en Blanes: barcos estables y seguros para niños."],
+    en: ["Family Boat Rental Blanes", "Family boat rental in Blanes: stable boats, safe for children."],
+    ca: ["Barca per a Famílies Blanes", "Lloguer de barca per a famílies a Blanes: barques estables i segures per a nens."],
+    fr: ["Bateau en Famille Blanes", "Location de bateau pour familles à Blanes : bateaux stables et sûrs pour les enfants."],
+    de: ["Familienboot Blanes", "Bootsverleih für Familien in Blanes: stabile Boote, sicher für Kinder."],
+    nl: ["Gezinsboot Blanes", "Bootverhuur voor gezinnen in Blanes: stabiele boten, veilig voor kinderen."],
+    it: ["Barca per Famiglie Blanes", "Noleggio barca per famiglie a Blanes: barche stabili e sicure per i bambini."],
+    ru: ["Лодка для Семей Бланес", "Аренда лодки для семей в Бланесе: устойчивые лодки, безопасные для детей."],
+  }),
+  "/paseo-atardecer-barco-blanes": activity({
+    es: ["Barco al Atardecer Blanes", "Paseo en barco al atardecer desde Blanes: puesta de sol sobre la Costa Brava y calas doradas."],
+    en: ["Sunset Boat Trip Blanes", "Sunset boat trip from Blanes: golden coves and the sun setting over the Costa Brava."],
+    ca: ["Barca al Capvespre Blanes", "Passeig en barca al capvespre des de Blanes: posta de sol sobre la Costa Brava i cales daurades."],
+    fr: ["Bateau Coucher de Soleil Blanes", "Balade en bateau au coucher de soleil depuis Blanes : lumière dorée sur la Costa Brava et ses criques."],
+    de: ["Sonnenuntergang per Boot Blanes", "Bootstour zum Sonnenuntergang ab Blanes: goldene Stunde über der Costa Brava und ihren Buchten."],
+    nl: ["Boot bij Zonsondergang Blanes", "Boottocht bij zonsondergang vanuit Blanes: gouden uur boven de Costa Brava en haar baaien."],
+    it: ["Barca al Tramonto Blanes", "Gita in barca al tramonto da Blanes: ora dorata sulla Costa Brava e calette dorate."],
+    ru: ["Лодка на Закате Бланес", "Прогулка на лодке на закате из Бланеса: золотой час над Коста-Бравой и её бухтами."],
+  }),
+  "/pesca-barco-blanes": activity({
+    es: ["Pesca en Barco Blanes", "Pesca recreativa en barco desde Blanes: lubinas, doradas y sargos en aguas de la Costa Brava."],
+    en: ["Fishing Boat Trip Blanes", "Recreational fishing by boat from Blanes: sea bass, bream and sargo in Costa Brava waters."],
+    ca: ["Pesca en Barca Blanes", "Pesca recreativa en barca des de Blanes: llobarros, orades i sards a la Costa Brava."],
+    fr: ["Pêche en Bateau Blanes", "Pêche récréative en bateau depuis Blanes : bars, dorades et sars dans les eaux de la Costa Brava."],
+    de: ["Angeln per Boot Blanes", "Freizeitangeln per Boot ab Blanes: Wolfsbarsch, Dorade und Brasse in den Gewässern der Costa Brava."],
+    nl: ["Vissen per Boot Blanes", "Recreatief vissen per boot vanuit Blanes: zeebaars, dorade en zeebrasem in de wateren van de Costa Brava."],
+    it: ["Pesca in Barca Blanes", "Pesca ricreativa in barca da Blanes: spigole, orate e saraghi nelle acque della Costa Brava."],
+    ru: ["Рыбалка на Лодке Бланес", "Любительская рыбалка на лодке из Бланеса: сибас, дорада и сарг в водах Коста-Бравы."],
+  }),
   "/boat-rental-costa-brava": allLangs({
     title: "Boat Rental Costa Brava | Licence in 1 Day or Skipper, Blanes",
     description: `Rent a boat in Blanes, Costa Brava. From 1 October 2026 every renter needs the Licencia de Navegación (1-day course, no exam) or sails with a skipper. ★${R} Google.`,

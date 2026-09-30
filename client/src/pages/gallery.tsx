@@ -13,6 +13,7 @@ import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { queryClient } from "@/lib/queryClient";
+import { isLicenseFreeEraActive } from "@shared/constants";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -133,8 +134,64 @@ const galleryText: Record<string, {
   },
 };
 
+// Post-era (RD 1188/2025): from 2026-10-01 there is no licence-free fleet, so the
+// sentence pairs the licensed boats with the skippered excursion instead.
+type PostEraKey = "introP2licenseFree" | "introP2mid" | "introP2licensed" | "introP2post";
+
+const galleryTextPostEra: Record<string, Record<PostEraKey, string>> = {
+  es: {
+    introP2licenseFree: "barcos con licencia",
+    introP2mid: "como si prefieres una",
+    introP2licensed: "excursión con patrón",
+    introP2post: "en la que solo te dejas llevar, las fotos de esta galería muestran la variedad de experiencias que puedes vivir: snorkel en aguas cristalinas, atardeceres desde cubierta, fondeo en calas vírgenes y la diversión en familia que solo el mar puede ofrecer.",
+  },
+  en: {
+    introP2licenseFree: "licensed boats",
+    introP2mid: "or prefer a",
+    introP2licensed: "skippered excursion",
+    introP2post: "where you simply relax, the photos in this gallery show the variety of experiences you can enjoy: snorkelling in crystal-clear waters, sunsets from the deck, anchoring in pristine coves and the family fun that only the sea can offer.",
+  },
+  fr: {
+    introP2licenseFree: "bateaux avec permis",
+    introP2mid: "ou que vous préfériez une",
+    introP2licensed: "excursion avec skipper",
+    introP2post: "pour simplement profiter, les photos de cette galerie montrent la variété d'expériences que vous pouvez vivre : snorkeling dans des eaux cristallines, couchers de soleil depuis le pont, mouillage dans des criques vierges et le plaisir en famille que seule la mer peut offrir.",
+  },
+  de: {
+    introP2licenseFree: "Booten mit Führerschein",
+    introP2mid: "fahren oder eine",
+    introP2licensed: "Ausfahrt mit Skipper",
+    introP2post: "bevorzugen, um einfach zu genießen: Die Fotos in dieser Galerie zeigen die Vielfalt der Erlebnisse, vom Schnorcheln in kristallklarem Wasser über Sonnenuntergänge vom Deck und Ankern in unberührten Buchten bis zum Familienspaß, den nur das Meer bieten kann.",
+  },
+  nl: {
+    introP2licenseFree: "boten met vaarbewijs",
+    introP2mid: "of de voorkeur geeft aan een",
+    introP2licensed: "excursie met schipper",
+    introP2post: "om gewoon te genieten, de foto's in deze galerij tonen de verscheidenheid aan ervaringen: snorkelen in kristalhelder water, zonsondergangen vanaf het dek, ankeren in ongerepte baaien en het familieplezier dat alleen de zee kan bieden.",
+  },
+  it: {
+    introP2licenseFree: "barche con patente",
+    introP2mid: "o che preferisca la nostra",
+    introP2licensed: "escursione con skipper",
+    introP2post: "per goderti il mare senza pensieri, le foto di questa galleria mostrano la varietà di esperienze che puoi vivere: snorkeling in acque cristalline, tramonti dal ponte, ancoraggio in calette incontaminate e il divertimento in famiglia che solo il mare può offrire.",
+  },
+  ru: {
+    introP2licenseFree: "лодок с правами",
+    introP2mid: "или предпочитаете",
+    introP2licensed: "экскурсию с капитаном",
+    introP2post: "чтобы просто отдохнуть, фотографии в этой галерее показывают разнообразие впечатлений: снорклинг в кристально чистой воде, закаты с палубы, якорные стоянки в нетронутых бухтах и семейное веселье, которое может подарить только море.",
+  },
+  ca: {
+    introP2licenseFree: "barques amb llicència",
+    introP2mid: "com si prefereixes una",
+    introP2licensed: "excursió amb patró",
+    introP2post: "per només gaudir, les fotos d'aquesta galeria mostren la varietat d'experiències que pots viure: snorkel en aigües cristal·lines, postes de sol des de coberta, fondeig en cales verges i la diversió en família que només el mar pot oferir.",
+  },
+};
+
 function getGalleryText(language: Language) {
-  return galleryText[language] || galleryText.es;
+  const base = galleryText[language] || galleryText.es;
+  return isLicenseFreeEraActive() ? base : { ...base, ...(galleryTextPostEra[language] || galleryTextPostEra.es) };
 }
 
 interface GalleryPhoto {
@@ -219,7 +276,7 @@ export default function GalleryPage() {
                 {gt.introP2pre}{" "}
                 <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">{gt.introP2licenseFree}</a>{" "}
                 {gt.introP2mid}{" "}
-                <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline">{gt.introP2licensed}</a>{" "}
+                <a href={localizedPath(isLicenseFreeEraActive() ? "categoryLicensed" : "categoryCaptained")} className="text-primary hover:underline">{gt.introP2licensed}</a>{" "}
                 {gt.introP2post}
               </p>
               <Button variant="outline" onClick={() => setShowSubmitForm(true)}>

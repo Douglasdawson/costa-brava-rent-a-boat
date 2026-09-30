@@ -33,7 +33,7 @@ const blogPostsData: BlogPostSeed[] = [
       es: "Descubre las 15 mejores calas de la Costa Brava accesibles solo en barco. Mapa con coordenadas GPS, fotos y consejos para llegar desde Blanes.",
       en: "Discover the 15 best Costa Brava coves accessible only by boat. GPS coordinates map, photos and tips for getting there from Blanes.",
     },
-    content: `La Costa Brava esconde algunos de los rincones más espectaculares del Mediterráneo occidental, pero muchos de ellos tienen un secreto: solo se puede llegar por mar. Acantilados de 50 metros, pinos que crecen hasta el borde del agua y aguas tan transparentes que ves el fondo a 8 metros de profundidad. Las calas de la zona Blanes-Lloret (calas 1-11) son accesibles con un barco **sin licencia**; las calas del tramo Lloret-Tossa (calas 12-15) requieren **Licencia de Navegación (LN)** o superior, o nuestra **Excursión Privada con Capitán**.
+    content: `La Costa Brava esconde algunos de los rincones más espectaculares del Mediterráneo occidental, pero muchos de ellos tienen un secreto: solo se puede llegar por mar. Acantilados de 50 metros, pinos que crecen hasta el borde del agua y aguas tan transparentes que ves el fondo a 8 metros de profundidad. Desde el 1 de octubre de 2026, para llegar a cualquiera de ellas necesitas la **Licencia de Navegación (LN)** o superior (el titulín: curso de 1 día, sin examen), o nuestra **Excursión Privada con Capitán**.
 
 En este artículo hemos recopilado las **15 calas más impresionantes entre Blanes y Tossa de Mar** — la zona sur de la Costa Brava — con coordenadas GPS exactas, nivel de dificultad, y consejos prácticos para que planifiques tu ruta desde el Puerto de Blanes.
 
@@ -48,7 +48,7 @@ Probablemente la cala más recóndita de toda la Costa Brava. Con más de 15 hec
 
 **Consejo:** Llega antes de las 11:00 en temporada alta. El fondeo es fácil sobre arena a 3-4 metros de profundidad. Lleva snorkel: la vida marina en las rocas laterales es espectacular.
 
-**Barco recomendado:** Cualquiera de nuestros [barcos sin licencia](/es/barcos) es perfecto para esta escapada rápida.
+**Barco recomendado:** Cualquiera de nuestras [lanchas con licencia](/es/barcos-con-licencia) o la [excursión privada con capitán](/es/barco/excursion-privada) son perfectas para esta escapada rápida.
 
 ### 2. Cala Sant Francesc (Blanes)
 
@@ -66,7 +66,7 @@ Aunque técnicamente se puede llegar andando por un sendero desde el Jardín Bot
 
 Una cala pequeña pero muy bonita, con un islote rocoso que la protege del oleaje. Fondo arenoso ideal para niños. Desde aquí se ven los jardines de Santa Clotilde arriba.
 
-**Barco recomendado:** El [Astec 400](/es/barco/astec-400) es ideal para parejas que buscan intimidad.
+**Barco recomendado:** La [Mingolla Brava 19](/es/barco/mingolla-brava-19), si tienes licencia, o la [excursión privada con capitán](/es/barco/excursion-privada), ideales para parejas que buscan intimidad.
 
 ### 4. Cala Treumal (Lloret de Mar)
 
@@ -75,7 +75,7 @@ Una cala pequeña pero muy bonita, con un islote rocoso que la protege del oleaj
 
 Dividida en dos por una formación rocosa, Treumal combina arena y roca con un agua excepcionalmente limpia. La parte sur es más tranquila y perfecta para anclar.
 
-**Barco recomendado:** El [Astec 480](/es/barco/astec-480) con su equipo de música bluetooth es genial para pasar una mañana relajada aquí.
+**Barco recomendado:** La [Trimarchi 57S](/es/barco/trimarchi-57s), si tienes licencia, es genial para pasar una mañana relajada aquí.
 
 ### 5. Cala Boadella (Lloret de Mar)
 
@@ -173,22 +173,22 @@ Completamente salvaje y sin ningún tipo de servicio ni acceso terrestre practic
 - **Guarda las coordenadas GPS:** Descarga un mapa offline en tu móvil antes de salir. Te servirán para encontrar las calas más escondidas.
 - **Respeta el entorno:** No tires basura al mar y respeta las zonas de fondeo marcadas.
 - **Consulta el tiempo:** Antes de planificar tu ruta, consulta la previsión meteorológica. Nosotros te asesoraremos en el briefing de seguridad.
-- **Combina calas:** Con 4 horas sin licencia puedes visitar 3-4 calas del tramo Blanes-Lloret cómodamente. Para llegar a las calas de Tossa (Giverola, Pola, Llevadó, Morisca) necesitas barco con LN (o superior) o nuestra Excursión Privada con Capitán (pack 4h).
+- **Combina calas:** Con 4 horas puedes visitar 3-4 calas del tramo Blanes-Lloret cómodamente. Con una lancha con licencia, las calas de Tossa (Giverola, Pola, Llevadó, Morisca) quedan a 30-45 minutos; si nadie tiene título, nuestra Excursión Privada con Capitán (pack 4h) también llega hasta allí.
 
 ## Cómo llegar a estas calas desde Blanes
 
-**Calas 1-11 (Blanes-Lloret) — barcos sin licencia:** Todas estas calas están dentro del límite legal de 2 millas náuticas para barcos sin licencia. Nuestros barcos alcanzan las calas más cercanas (Sa Forcanera, Sant Francesc) en menos de 10 minutos, y las más lejanas del tramo sin licencia (hasta Cala de los Frares, Lloret) en unos 30 minutos. No necesitas ninguna titulación náutica — antes de salir te damos una **formación práctica de 15 minutos** sobre el manejo del barco, las normas básicas de navegación y te indicamos las mejores calas según las condiciones del día. Gasolina incluida en el precio.
+**Calas 1-11 (Blanes-Lloret):** Nuestras lanchas alcanzan las calas más cercanas (Sa Forcanera, Sant Francesc) en menos de 10 minutos, y Lloret en unos 15 minutos. Desde el 1 de octubre de 2026 necesitas la Licencia de Navegación (curso de 1 día, sin examen) o una titulación superior para pilotarlas; antes de salir te damos una **formación práctica de 15 minutos** sobre el manejo del barco, las normas básicas de navegación y te indicamos las mejores calas según las condiciones del día. Si nadie del grupo tiene título, la Excursión Privada con Capitán os lleva. ¿Aún no tienes la licencia? [Sácate el titulín](/es/licencia-navegacion-titulin).
 
-**Calas 12-15 (Tossa de Mar) — requieren LN o superior, o Excursión Privada con Capitán:** Las calas de Giverola, Pola, Llevadó y Morisca están fuera del alcance legal de los barcos sin licencia. Para llegar a ellas necesitas barco con **Licencia de Navegación (LN)** o superior desde 175 € (pack 2h) o nuestra **Excursión Privada con Capitán** 4h desde 420 €. El trayecto desde Blanes es de **30-45 min** hasta la zona de Tossa. Importante: los barcos con licencia **no incluyen gasolina** (calcula 30-50 € adicionales para ida y vuelta).
+**Calas 12-15 (Tossa de Mar), con LN o superior, o Excursión Privada con Capitán:** Para llegar a Giverola, Pola, Llevadó y Morisca necesitas barco con **Licencia de Navegación (LN)** o superior desde 175 € (pack 2h) o nuestra **Excursión Privada con Capitán** 4h desde 420 €. El trayecto desde Blanes es de **30-45 min** hasta la zona de Tossa. Importante: ningún barco **incluye gasolina** (calcula 30-50 € adicionales para ida y vuelta).
 
-### Barcos sin licencia recomendados (calas 1-11)
+### Barcos recomendados
 
-| | Precio desde | Capacidad |
-|---|---|---|
-| [Astec 400](/es/barco/astec-400) | 80 EUR/hora | 4 personas |
-| [Solar 450](/es/barco/solar-450) | 85 EUR/hora | 5 personas |
-| [Remus 450](/es/barco/remus-450) | 85 EUR/hora | 5 personas |
-| [Astec 480](/es/barco/astec-480) | 95 EUR/hora | 5 personas |
+| | Capacidad |
+|---|---|
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 personas |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 personas |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 personas |
+| [Excursión Privada con Capitán](/es/barco/excursion-privada) | 6 personas |
 
 ## Reserva tu barco y descubre estas calas
 
@@ -197,101 +197,68 @@ Con más de **307 reseñas en Google y una puntuación de 4,8 estrellas**, en Co
 
   // ===== POST 2: Alquiler sin licencia =====
   {
-    title: "Guía Completa: Alquiler de Barcos sin Licencia en Blanes 2026",
+    title: "Alquilar barco sin licencia en Blanes: qué cambia desde octubre de 2026",
     slug: "alquiler-barco-sin-licencia-blanes-guia",
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/alquiler-barco-sin-licencia-blanes-guia.webp",
-    metaDescription: "Todo lo que necesitas saber para alquilar un barco sin licencia en Blanes. Requisitos, precios, qué incluye y consejos prácticos.",
+    metaDescription: "Alquilar barco sin licencia en Blanes terminó el 1-oct-2026 (RD 1188/2025). Hoy navegas con el titulín, curso de 1 día, o sales con patrón.",
     tags: ["alquiler barco sin licencia", "barco sin licencia blanes", "alquilar barco costa brava", "barco sin carnet blanes", "alquiler embarcacion blanes"],
     isPublished: true,
     _publishedAt: new Date("2026-03-23T10:00:00Z"),
-    excerpt: "Todo lo que necesitas saber para alquilar un barco sin licencia en Blanes: requisitos, precios desde 85EUR/hora, qué incluye el alquiler y consejos para tu primera experiencia náutica.",
-    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abrirá en cuanto resuelva su autorización (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
+    excerpt: "Desde el 1 de octubre de 2026 ya no se alquilan barcos sin licencia. Qué era un barco sin licencia, qué cambia y cómo navegar hoy desde Blanes: con el titulín o con patrón.",
+    content: `> **Actualización: desde el 1 de octubre de 2026 ya no se alquila ningún barco sin titulación (RD 1188/2025).** Hoy puedes navegar con la Licencia de Navegación, que se saca en un día, o salir con patrón en nuestra excursión privada.
 
-Alquilar un barco sin licencia es una de las mejores experiencias que puedes vivir en la Costa Brava. No necesitas experiencia previa, ni título náutico, ni conocimientos especiales. En esta guía completa te explicamos absolutamente todo lo que necesitas saber para alquilar un barco sin licencia en Blanes durante la temporada 2026.
+Hasta el 30 de septiembre de 2026, alquilar un barco sin licencia era una de las formas más sencillas de disfrutar del mar en la Costa Brava: no hacía falta experiencia previa ni título náutico. Esa etapa ha terminado. En esta guía te explicamos qué era exactamente un "barco sin licencia", qué ha cambiado y cómo puedes salir a navegar desde Blanes a partir de ahora.
 
 ## Qué significa "barco sin licencia"
 
-En España, la legislación náutica permite pilotar embarcaciones de recreo sin necesidad de título náutico siempre que cumplan estas condiciones:
+En España, la legislación náutica permitía pilotar embarcaciones de recreo sin necesidad de título náutico siempre que cumplieran estas condiciones:
 
 - **Motor de hasta 15 CV** (caballos de vapor)
 - **Eslora máxima de 5 metros**
 - **Navegación en zona diurna** (de sol a sol)
 - **Distancia máxima de la costa:** 2 millas náuticas (aproximadamente 3,7 km)
 
-Estas limitaciones están pensadas para garantizar la seguridad. Los barcos sin licencia son embarcaciones estables, sencillas de manejar y diseñadas para que cualquier persona mayor de edad pueda disfrutar del mar de forma segura.
+Desde el 1 de octubre de 2026, el RD 1188/2025 reserva esta exención a los barcos privados. Para alquilar cualquier barco a motor hace falta una titulación, aunque el barco cumpla esos límites.
 
-## Quién puede alquilar un barco sin licencia
+## Quién puede alquilar un barco ahora
 
-Los requisitos para alquilar son muy sencillos:
+Desde el 1 de octubre de 2026 tienes dos caminos:
 
-- **Edad mínima:** 18 años (el patrón debe ser mayor de edad)
-- **Documento de identidad:** DNI, pasaporte o documento equivalente
-- **Depósito de fianza:** 200EUR sin licencia y 500EUR con licencia (se devuelve al finalizar)
-- **No se requiere:** Licencia, título, carnet, ni experiencia previa
+- **Con la Licencia de Navegación (el titulín) o una titulación superior:** llevas tú mismo una de nuestras lanchas con licencia. El titulín es un curso de un día, sin examen. Más información en [sácate el titulín](/es/licencia-navegacion-titulin).
+- **Sin título:** sales en nuestra [excursión privada con patrón](/es/alquiler-barco-con-patron), para hasta 6 personas. El patrón lleva el barco y tú solo disfrutas.
 
-Los menores pueden ir como pasajeros sin problema, siempre acompañados de un adulto responsable.
+En los dos casos necesitas un documento de identidad (DNI, pasaporte o equivalente). Si llevas tú la lancha, debes ser mayor de edad y dejar un depósito de fianza que se devuelve al finalizar. Los menores pueden ir como pasajeros sin problema, siempre acompañados de un adulto responsable.
 
-## Nuestra flota sin licencia
+## Nuestra flota desde octubre de 2026
 
-En Costa Brava Rent a Boat disponemos de **5 barcos sin licencia** adaptados a diferentes necesidades:
+Hasta el 30 de septiembre alquilábamos cinco barcos sin licencia: Astec 400, Solar 450, Remus 450, Remus 450 II y Astec 480. Desde el 1 de octubre ya no se alquilan. Esto es lo que puedes reservar hoy:
 
-### [Astec 400](/es/barco/astec-400) - Ideal para parejas
-- Capacidad: 4 personas
-- Motor: Suzuki 15hp
-- Lo mejor: Compacto y fácil de manejar, perfecto para parejas
-- **Desde 80EUR/hora** en temporada baja
+### Lanchas con licencia
+- **Mingolla Brava 19:** hasta 6 personas
+- **Trimarchi 57S:** hasta 7 personas
+- **Pacific Craft 625:** hasta 7 personas, 5,90 m de eslora de matriculación
 
-### [Solar 450](/es/barco/solar-450) - El más popular
-- Capacidad: 5 personas
-- Motor: Mercury 15cv
-- Lo mejor: Gran solarium, escalera de baño, muy estable
-- **Desde 85EUR/hora** en temporada baja
+Necesitas la Licencia de Navegación o una titulación superior. Con estas lanchas llegas a Lloret y a Tossa de Mar (de Blanes a Tossa son 30-45 minutos). Consulta los [barcos con licencia](/es/barcos-con-licencia).
 
-### [Remus 450](/es/barco/remus-450) y [Remus 450 II](/es/barco/remus-450-ii) - Familiares
-- Capacidad: 5 personas
-- Motor: Suzuki 15cv
-- Lo mejor: Toldo Bi Mini amplio, perfectos para familias
-- **Desde 85EUR/hora** en temporada baja
-
-### [Astec 480](/es/barco/astec-480) - El más espacioso
-- Capacidad: 5 personas
-- Motor: Parsun 40/15cv
-- Lo mejor: Equipo de música bluetooth, más espacio a bordo
-- **Desde 95EUR/hora** en temporada baja
+### Excursión privada con patrón
+- **Hasta 6 personas**, sin necesidad de título. Más información en [excursión con patrón](/es/alquiler-barco-con-patron).
 
 ## Qué incluye el alquiler
 
-Todos nuestros barcos sin licencia incluyen:
+Hasta septiembre, los barcos sin licencia incluían la gasolina. **Desde el 1 de octubre de 2026 ningún barco incluye gasolina.** Lo que sigue incluido:
 
-- **Gasolina:** El combustible está incluido en el precio. No pagas ni un euro más por el consumo de gasolina.
 - **IVA:** El precio que ves es el precio final con impuestos incluidos.
-- **Seguro:** Responsabilidad civil obligatoria (RD 607/1999) y seguro de accidentes para los ocupantes.
+- **Seguro:** Responsabilidad civil obligatoria (RD 607/1999).
 - **Amarre:** El uso del amarre en el puerto de Blanes.
 - **Limpieza:** No tienes que preocuparte de lavar el barco al volver.
 - **Equipo de seguridad:** Chalecos salvavidas, extintor y todo el equipo reglamentario.
 - **Briefing de seguridad:** Una explicación completa antes de salir.
 
-## Precios temporada 2026
+## Precios
 
-Los precios varían según la temporada:
-
-### Temporada baja (abril - junio, septiembre - cierre)
-| Duración | Astec 400 | Solar 450 / Remus 450 | Astec 480 |
-|----------|-----------|------------------------|-----------|
-| 1 hora   | 80EUR       | 85EUR                    | 90EUR       |
-| 2 horas  | 120EUR      | 135EUR                   | 165EUR      |
-| 3 horas  | 150EUR      | 160EUR                   | 200EUR      |
-| 4 horas  | 170EUR      | 180EUR                   | 220EUR      |
-
-### Temporada media (julio)
-Los precios aumentan entre un 10% y un 20% respecto a temporada baja.
-
-### Temporada alta (agosto)
-Los precios aumentan entre un 20% y un 30% respecto a temporada baja.
-
-Consulta los precios actualizados de cada barco en nuestra [página de barcos](/es/barcos).
+Las tarifas de los barcos sin licencia que publicábamos en esta guía ya no se aplican, porque esos barcos no se alquilan desde el 1 de octubre de 2026. Consulta los precios actualizados de las lanchas con licencia y de la excursión con patrón en nuestra [página de barcos](/es/barcos).
 
 ## El briefing de seguridad
 
@@ -329,10 +296,10 @@ Te recomendamos llevar:
 
 Reservar es muy sencillo:
 
-1. **Elige tu barco** en nuestra [página de barcos](/es/barcos)
+1. **Elige cómo vas a navegar:** [sácate el titulín](/es/licencia-navegacion-titulin) para llevar una de nuestras [lanchas con licencia](/es/barcos-con-licencia), o reserva la [excursión con patrón](/es/alquiler-barco-con-patron) si no tienes título
 2. **Selecciona fecha y hora** en el calendario
 3. **Añade extras** si quieres (snorkel, paddle surf, seascooter, nevera...)
-4. **Completa el pago** online de forma segura con tarjeta
+4. **Confirma la solicitud:** te respondemos por WhatsApp o email y el pago se hace en el puerto
 5. **Recibe confirmación** por email y WhatsApp
 6. **Preséntate en el puerto** 15 minutos antes de la hora reservada
 
@@ -343,10 +310,9 @@ Con más de **307 reseñas en Google y una puntuación media de 4,8 estrellas**,
 - La simpatía y profesionalidad del equipo
 - La claridad del briefing de seguridad
 - El estado impecable de los barcos
-- Que la gasolina está incluida (sin sorpresas)
 - La flexibilidad y atención personalizada
 
-[Reserva tu barco sin licencia](/es/barcos) y descubre por qué somos la empresa de alquiler de barcos mejor valorada de Blanes.`,
+[Sácate el titulín](/es/licencia-navegacion-titulin), elige entre nuestros [barcos con licencia](/es/barcos-con-licencia) o sal con la [excursión con patrón](/es/alquiler-barco-con-patron), y descubre por qué somos la empresa de alquiler de barcos mejor valorada de Blanes.`,
   },
 
   // ===== POST 3: Que hacer en Blanes =====
@@ -365,9 +331,9 @@ Con más de **307 reseñas en Google y una puntuación media de 4,8 estrellas**,
 
 ## 1. Alquilar un barco y explorar la costa
 
-Sin duda, la mejor forma de conocer la Costa Brava es desde el mar. Desde el puerto de Blanes puedes [alquilar un barco sin licencia](/es/barcos) y navegar hasta calas escondidas, cuevas y playas inaccesibles por tierra. Es una experiencia que transforma completamente tu forma de ver la costa.
+Sin duda, la mejor forma de conocer la Costa Brava es desde el mar. Desde el puerto de Blanes puedes [alquilar un barco](/es/barcos), con la Licencia de Navegación o con patrón, y navegar hasta calas escondidas, cuevas y playas inaccesibles por tierra. Es una experiencia que transforma completamente tu forma de ver la costa.
 
-**Nuestro consejo:** El [Astec 480](/es/barco/astec-480) con equipo de música bluetooth es perfecto para pasar una mañana inolvidable. Y si es tu primera vez, no te preocupes: te explicamos todo en un briefing de seguridad antes de salir. Lee nuestra [guía de alquiler sin licencia](/es/blog/alquiler-barco-sin-licencia-blanes-guia) para más detalles.
+**Nuestro consejo:** Si nadie del grupo tiene título, la [excursión con patrón](/es/alquiler-barco-con-patron) os lleva sin que tengáis que pilotar. Si quieres llevar tú el timón, desde el 1 de octubre de 2026 necesitas la Licencia de Navegación, que se saca en un día y sin examen: lo explicamos en nuestra [guía del titulín](/es/licencia-navegacion-titulin). Y si es tu primera vez, no te preocupes: te explicamos todo en un briefing de seguridad antes de salir.
 
 ## 2. Visitar el Jardí Botànic Marimurtra
 
@@ -454,11 +420,11 @@ Contáctanos por [WhatsApp](https://wa.me/34611500372) o reserva directamente en
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/boat-rental-costa-brava-english-guide.webp",
-    metaDescription: "Complete English guide to renting a boat in Costa Brava, Spain. No license needed, prices from 85EUR/h, beautiful coves near Blanes.",
+    metaDescription: "Complete English guide to renting a boat in Costa Brava, Spain: license rules from October 2026, licensed boats, skippered trips and coves near Blanes.",
     tags: ["boat rental costa brava", "rent boat blanes", "costa brava boat hire", "no license boat spain", "boat rental spain"],
     isPublished: true,
     _publishedAt: new Date("2026-04-06T10:00:00Z"),
-    excerpt: "Everything English-speaking visitors need to know about renting a boat in Costa Brava. No license required, prices from 85EUR per hour, and stunning Mediterranean coves.",
+    excerpt: "Everything English-speaking visitors need to know about renting a boat in Costa Brava: the license rules since October 2026, our licensed boats, skippered trips and stunning Mediterranean coves.",
     content: `Planning a trip to Costa Brava and dreaming of exploring the coastline from the water? Renting a boat is one of the best experiences you can have in this stunning part of Spain. This complete guide covers everything English-speaking visitors need to know about boat rental in Blanes, the gateway to Costa Brava.
 
 ## Getting to Blanes
@@ -473,30 +439,20 @@ Once in Blanes, our base is at the **Port of Blanes**, easily accessible on foot
 
 ## Do You Need a Boat License?
 
-**Good news: No!** In Spain, you can rent and operate a boat without any license as long as the boat meets these requirements:
+**Since 1 October 2026: yes.** Under Royal Decree RD 1188/2025, nobody can rent a motorboat in Spain without a boating qualification. Until 30 September 2026, rental boats up to 5 meters and 15 HP could be driven without a license, in daylight and within 2 nautical miles of the coast (approximately 3.7 km); that exemption now applies only to privately owned boats.
 
-- Engine power up to 15 HP (horsepower)
-- Maximum length of 5 meters
-- Daytime navigation only
-- Stay within 2 nautical miles of the coast (approximately 3.7 km)
+You still have two ways to get out on the water:
 
-This means you can rent one of our no-license boats and start exploring right away, even if you have never driven a boat before. We provide a thorough safety briefing before you set off.
+- **Get the Licencia de Navegación** (the "titulín"): a one-day course with no exam that lets you drive any of our three licensed boats. [See how it works](/es/licencia-navegacion-titulin).
+- **Go with a skipper** on our [private excursion](/es/alquiler-barco-con-patron): you need no qualification at all.
 
-If you **do** have a Spanish or international boating license, you can rent our larger, more powerful boats for longer trips along the coast.
+If you already have a Spanish or international boating license, you can rent our licensed boats for longer trips along the coast.
 
 ## Our Fleet
 
-### No-License Boats (No Experience Required)
+### No-License Boats (until 30 September 2026)
 
-| Boat | Capacity | Best For | Price From |
-|------|----------|----------|------------|
-| [Astec 400](/es/barco/astec-400) | 4 people | Couples | 75EUR/hour |
-| [Solar 450](/es/barco/solar-450) | 5 people | Families | 85EUR/hour |
-| [Remus 450](/es/barco/remus-450) | 5 people | Families | 85EUR/hour |
-| [Remus 450 II](/es/barco/remus-450-ii) | 5 people | Groups | 85EUR/hour |
-| [Astec 480](/es/barco/astec-480) | 5 people | Groups (Bluetooth) | 90EUR/hour |
-
-**All no-license boats include:** Fuel, insurance, mooring, cleaning, safety equipment, and a personal safety briefing.
+Until the end of September 2026 we also rented five small no-license boats (Astec 400, Solar 450, Remus 450, Remus 450 II and Astec 480). Since 1 October 2026 the law no longer allows them to be rented without a qualification, so they are no longer available.
 
 ### Licensed Boats (Boating License Required)
 
@@ -510,7 +466,7 @@ If you **do** have a Spanish or international boating license, you can rent our 
 
 ### Private Excursion with Captain
 
-Do not have a license but want a bigger boat? Our [Private Excursion with Captain](/es/barco/excursion-privada) includes a professional skipper who takes you to the best coves and hidden spots along the coast. Perfect for special occasions, groups up to 7 people, from 240EUR for 2 hours.
+No license? Our [Private Excursion with Captain](/es/barco/excursion-privada) includes a professional skipper who takes you to the best coves and hidden spots along the coast. Perfect for special occasions, groups up to 6 people, from 240EUR for 2 hours.
 
 ## What to Expect on Your Day
 
@@ -634,7 +590,7 @@ Esta es la ruta perfecta para quien alquila un barco por primera vez o tiene poc
 - Posiblemente peces y medusas (inofensivas) nadando bajo el barco
 
 ### Barco recomendado
-Cualquier [barco sin licencia](/es/barcos). El [Astec 400](/es/barco/astec-400) es ideal para parejas, y el [Solar 450](/es/barco/solar-450) para familias.
+Cualquiera de nuestros [barcos con licencia](/es/barcos) si tienes la Licencia de Navegación: la [Mingolla Brava 19](/es/barco/mingolla-brava-19) es ideal para parejas y grupos pequeños, y la [Trimarchi 57S](/es/barco/trimarchi-57s) para familias. Si nadie del grupo tiene título, sal con capitán en la [excursión privada](/es/barco/excursion-privada).
 
 ---
 
@@ -658,7 +614,7 @@ Con una hora más, puedes explorar dos de las mejores calas de Blanes y disfruta
 - Flora y fauna marina variada en las zonas rocosas entre calas
 
 ### Barco recomendado
-[Solar 450](/es/barco/solar-450) o [Remus 450](/es/barco/remus-450). Ambos tienen escalera de baño que facilita entrar y salir del agua. No olvides añadir **snorkel** (7,50EUR) al reservar.
+[Mingolla Brava 19](/es/barco/mingolla-brava-19) o [Trimarchi 57S](/es/barco/trimarchi-57s), con la Licencia de Navegación. Si nadie del grupo tiene título, la [excursión privada con capitán](/es/barco/excursion-privada) hace esta ruta por ti. No olvides añadir **snorkel** (7,50EUR) al reservar.
 
 ---
 
@@ -685,7 +641,7 @@ Esta ruta te lleva más allá de Blanes, recorriendo la impresionante costa hast
 - Acantilados cubiertos de vegetación mediterránea
 
 ### Barco recomendado
-El [Astec 480](/es/barco/astec-480) con su mayor autonomía y equipo bluetooth para poner música durante la travesía. Si tienes licencia, la [Mingolla Brava 19](/es/barco/mingolla-brava-19) te permite cubrir la distancia más rápidamente.
+La [Mingolla Brava 19](/es/barco/mingolla-brava-19), con la Licencia de Navegación (curso de 1 día, sin examen): cubre la distancia con soltura y te deja más tiempo para parar en las calas. Si nadie del grupo tiene título, la [excursión privada con capitán](/es/barco/excursion-privada) es la alternativa.
 
 ---
 
@@ -695,7 +651,7 @@ El [Astec 480](/es/barco/astec-480) con su mayor autonomía y equipo bluetooth p
 
 La ruta estrella. Navegar de Blanes a Tossa de Mar es una experiencia que recordarás siempre. La costa entre ambos pueblos es salvaje, espectacular y llena de sorpresas.
 
-**Importante:** Esta ruta requiere un barco con licencia o nuestra excursión con capitán, ya que la distancia y duración exceden lo recomendable para barcos sin licencia.
+**Importante:** Para esta ruta necesitas la Licencia de Navegación (o una titulación superior) para llevar una de nuestras lanchas, o bien contratar nuestra excursión con capitán, en la que no necesitas título.
 
 ### Itinerario
 
@@ -768,7 +724,7 @@ Elige la ruta que más te inspire y [reserva tu barco](/es/barcos). Si no estás
     isPublished: true,
     _publishedAt: new Date("2026-04-20T10:00:00Z"),
     excerpt: "Todos los consejos que necesitas para tu primera experiencia alquilando un barco: desde qué esperar en el briefing hasta cómo fondear, nadar y gestionar el combustible.",
-    content: `Alquilar un barco por primera vez puede generar una mezcla de emoción y nervios. Es completamente normal. Pero te aseguramos que es mucho más sencillo de lo que parece. En Costa Brava Rent a Boat recibimos cada temporada a cientos de personas que nunca habían pisado un barco y todas terminan con una sonrisa enorme. Aquí van nuestros **mejores consejos para que tu primera experiencia sea perfecta**. Todos valen tanto si eliges uno de nuestros [barcos sin licencia en Blanes](/es/barcos-sin-licencia) como una salida con patrón.
+    content: `Alquilar un barco por primera vez puede generar una mezcla de emoción y nervios. Es completamente normal. Pero te aseguramos que es mucho más sencillo de lo que parece. En Costa Brava Rent a Boat recibimos cada temporada a cientos de personas que nunca habían pisado un barco y todas terminan con una sonrisa enorme. Aquí van nuestros **mejores consejos para que tu primera experiencia sea perfecta**. Todos valen tanto si llevas tú una de nuestras [lanchas con licencia](/es/barcos-con-licencia) con el titulín como si sales con patrón.
 
 ## Antes de llegar: la preparación
 
@@ -855,9 +811,9 @@ Una de las mejores partes de ir en barco es poder bañarte en calas de aguas cri
 
 ## Gestión del combustible
 
-En nuestros barcos sin licencia, **la gasolina está incluida** en el precio. Esto significa que no tienes que preocuparte de quedarte sin combustible ni de calcular el consumo. El tanque está lleno cuando sales y es más que suficiente para el tiempo que has reservado.
+**La gasolina no está incluida** en el precio de ningún barco: se paga aparte, así que merece la pena navegar con cabeza.
 
-Aun así, algún consejo práctico:
+Algún consejo práctico:
 
 - **Navega a velocidad moderada** -- Además de consumir menos, disfrutarás más del paisaje y el viaje será más cómodo.
 - **No dejes el motor al ralentí mucho tiempo** -- Si vas a estar parado en una cala, apaga el motor en lugar de dejarlo encendido.
@@ -907,7 +863,7 @@ Al volver al puerto:
 
 En Costa Brava Rent a Boat llevamos años haciendo que la primera experiencia náutica de nuestros clientes sea segura, fácil y espectacular. Con **307 reseñas en Google y 4,8 estrellas**, nuestros clientes confirman que es una de las mejores actividades que pueden hacer en la Costa Brava.
 
-No hace falta experiencia. No hace falta licencia. Solo hace falta ganas de pasar un día increíble en el mar.
+No hace falta experiencia: con la Licencia de Navegación (curso de 1 día, sin examen) llevas tú la lancha, y con patrón ni siquiera eso. Solo hacen falta ganas de pasar un día increíble en el mar.
 
 [Reserva tu barco ahora](/es/barcos) o pregúntanos por [WhatsApp](https://wa.me/34611500372). Estamos deseando recibirte en el puerto de Blanes.`,
   },
@@ -1099,24 +1055,21 @@ Navegar con niños en la Costa Brava es una de esas experiencias que se quedan g
     category: "Seguridad",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/seguridad-navegacion-mar-guia.webp",
-    metaDescription: "Guía de seguridad para navegar sin licencia en la Costa Brava. Equipamiento, meteorología, emergencias y normativa.",
+    metaDescription: "Guía de seguridad para navegar en la Costa Brava: equipamiento, meteorología, emergencias y qué titulación necesitas desde octubre de 2026.",
     tags: ["seguridad navegacion", "normas barco sin licencia", "seguridad maritima", "navegar seguro", "normativa barcos", "emergencias mar"],
     isPublished: true,
     _publishedAt: new Date("2026-03-20T10:00:00Z"),
-    excerpt: "Antes de salir a navegar, conoce las normas de seguridad esenciales: equipamiento obligatorio, cómo consultar el tiempo, qué hacer en emergencias y la normativa de barcos sin licencia.",
+    excerpt: "Antes de salir a navegar, conoce las normas de seguridad esenciales: equipamiento obligatorio, cómo consultar el tiempo, qué hacer en emergencias y qué titulación necesitas desde octubre de 2026.",
     content: `La seguridad en el mar es la base de cualquier experiencia náutica. Tanto si es tu primera vez navegando como si ya tienes experiencia, conocer las normas básicas de seguridad te permitirá disfrutar del mar con total tranquilidad. En esta guía te explicamos todo lo que necesitas saber antes de subir a bordo.
 
-## Normativa de barcos sin licencia en España
+## Qué titulación necesitas para alquilar un barco en España
 
-En España, puedes alquilar y pilotar un barco sin licencia siempre que cumpla estas características:
+Hasta el 30 de septiembre de 2026 se podían alquilar sin titulación barcos de hasta 5 metros de eslora y 15 CV (11,03 kW), en navegación diurna y a un máximo de 2 millas náuticas (unos 3,7 km) de la costa. El RD 1188/2025 cambió esa norma: **desde el 1 de octubre de 2026 ya no se alquila ningún barco a motor sin titulación**. La exención de 5 metros y 15 CV queda solo para barcos privados.
 
-- **Eslora máxima de 5 metros** (todos nuestros barcos cumplen esta normativa)
-- **Potencia máxima de 15 CV** (11,03 kW)
-- **Navegación diurna exclusivamente** (desde el amanecer hasta el anochecer)
-- **Distancia máxima de la costa: 2 millas náuticas** (unos 3,7 km)
-- **No se requiere ningún título náutico** ni experiencia previa
+Hoy tienes dos opciones:
 
-Esto significa que cualquier persona mayor de 18 años puede pilotar nuestros barcos. Es completamente legal y seguro. La normativa española está diseñada para que estos barcos sean accesibles a todo el mundo.
+- **Con la Licencia de Navegación (el «titulín»)**: se saca en un curso de 1 día, sin examen, y te permite llevar nuestras lanchas con licencia: la Mingolla Brava 19 (6 personas), la Trimarchi 57S (7 personas) y la Pacific Craft 625 (7 personas). Más información sobre [cómo sacarte el titulín](/es/licencia-navegacion-titulin) y nuestros [barcos con licencia](/es/barcos-con-licencia).
+- **Con patrón**: en nuestra [excursión privada con patrón](/es/alquiler-barco-con-patron) (hasta 6 personas) no necesitas ningún título.
 
 ### Edad mínima y responsabilidad
 
@@ -1161,7 +1114,7 @@ El estado del mar es el factor más importante para una navegación segura. En C
 - **AEMET** (aemet.es) -- La agencia meteorológica oficial de España. Consulta la previsión marítima para la costa catalana.
 - **Puertos del Estado** (puertos.es) -- Datos en tiempo real de boyas oceanográficas, incluyendo altura de ola y temperatura del agua.
 
-### Condiciones ideales para navegar sin licencia
+### Condiciones ideales para navegar
 
 | Parámetro | Ideal | Aceptable | No recomendable |
 |-----------|-------|-----------|-----------------|
@@ -1224,7 +1177,7 @@ Fondear (anclar el barco) es una maniobra sencilla pero que requiere atención:
 
 ## Qué hacer en caso de emergencia
 
-Las emergencias en el mar son muy poco frecuentes, especialmente en barcos sin licencia que navegan cerca de la costa. Pero es importante saber qué hacer:
+Las emergencias en el mar son muy poco frecuentes, especialmente en salidas de recreo cerca de la costa. Pero es importante saber qué hacer:
 
 ### Persona al agua
 
@@ -1678,7 +1631,7 @@ A diferencia de otros municipios de la Costa Brava que se urbanizaron de forma d
 
 En las últimas décadas, Blanes ha apostado por un turismo de calidad orientado a la naturaleza y la experiencia. El **turismo náutico** se ha convertido en uno de los pilares de esta nueva etapa:
 
-- **Alquiler de barcos sin licencia:** Empresas como Costa Brava Rent a Boat permiten que cualquier persona disfrute de la navegación sin necesidad de titulación.
+- **Alquiler de barcos:** Empresas como Costa Brava Rent a Boat acercan la navegación a cualquiera: desde el 1 de octubre de 2026, con la Licencia de Navegación (curso de 1 día, sin examen) o en una salida con patrón.
 - **Excursiones en barco:** Rutas organizadas por la costa con guías locales.
 - **Vela y kayak:** Actividades náuticas para todos los niveles.
 - **Snorkel y buceo:** Aprovechando la riqueza de los fondos marinos.
@@ -1924,12 +1877,14 @@ La Costa Brava bajo el agua es tan espectacular como sobre ella. Con un barco de
     category: "Consejos",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/cuanto-cuesta-alquilar-barco-blanes-precios.webp",
-    metaDescription: "Precios actualizados para alquilar barcos sin licencia en Blanes en 2026. Compara temporadas, barcos y qué incluye cada precio.",
+    metaDescription: "Precios de alquiler de barco en Blanes: temporadas, qué incluye y cómo ahorrar. Desde el 1-oct-2026, con Licencia de Navegación o con patrón.",
     tags: ["precios alquiler barco", "barco sin licencia precio", "alquilar barco blanes", "cuanto cuesta barco", "tarifas barco costa brava", "precios barco 2026"],
     isPublished: true,
     _publishedAt: new Date("2026-04-01T10:00:00Z"),
-    excerpt: "Te explicamos cuánto cuesta alquilar un barco sin licencia en Blanes en 2026. Precios por temporada, qué incluye y consejos para ahorrar en tu experiencia náutica.",
-    content: `Una de las preguntas más frecuentes que recibimos es: **"Cuánto cuesta alquilar un barco en Blanes?"** La respuesta depende de varios factores: la temporada, el barco que elijas y la duración del alquiler. En esta guía te damos toda la información de precios para 2026 para que puedas planificar tu día de navegación sin sorpresas. Todos los precios corresponden a nuestros [barcos sin licencia en la Costa Brava](/es/barcos-sin-licencia), con la gasolina siempre incluida.
+    excerpt: "Cuánto cuesta alquilar un barco en Blanes en 2026: temporadas, qué incluye el precio y consejos para ahorrar. Desde el 1 de octubre, con Licencia de Navegación o con patrón.",
+    content: `> **Actualización: desde el 1 de octubre de 2026 ya no se alquila ningún barco sin titulación (RD 1188/2025).** Hoy puedes navegar con la Licencia de Navegación, que se saca en un día, o salir con patrón en nuestra excursión privada.
+
+Una de las preguntas más frecuentes que recibimos es: **"Cuánto cuesta alquilar un barco en Blanes?"** La respuesta depende de varios factores: la temporada, el barco que elijas y la duración del alquiler. En esta guía te damos toda la información de precios para 2026 para que puedas planificar tu día de navegación sin sorpresas.
 
 ## Temporadas y precios: cómo funciona
 
@@ -1966,37 +1921,27 @@ Los meses de mayor demanda. El agua está en su mejor temperatura (24-26 grados)
 
 ## Precios por barco y temporada (2026)
 
-A continuación te mostramos los precios orientativos para cada barco de nuestra flota. Todos los precios incluyen **gasolina, chalecos salvavidas, seguro y briefing de seguridad**.
+Hasta el 30 de septiembre de 2026, esta sección recogía las tarifas de nuestros barcos sin licencia (Astec 400, Solar 450, Remus 450, Remus 450 II y Astec 480). Desde el 1 de octubre de 2026 esos barcos ya no se alquilan (RD 1188/2025) y sus tarifas dejan de aplicarse. Hoy tienes dos opciones:
 
-### Alquiler de medio día (4 horas)
+- **[Barcos con licencia](/es/barcos-con-licencia)**, con la Licencia de Navegación ([el titulín](/es/licencia-navegacion-titulin), curso de 1 día, sin examen) o una titulación superior: [Mingolla Brava 19](/es/barco/mingolla-brava-19) hasta 6 personas, [Trimarchi 57S](/es/barco/trimarchi-57s) hasta 7 y [Pacific Craft 625](/es/barco/pacific-craft-625) hasta 7. Con ellos llegas a Lloret y a Tossa de Mar, y hay franja de día completo (8 horas).
+- **[Excursión privada con patrón](/es/alquiler-barco-con-patron)**, hasta 6 personas. No necesitas ningún título.
 
-| Barco | Personas | T. Baja | T. Media | T. Alta |
-|-------|----------|---------|----------|---------|
-| [Astec 400](/es/barco/astec-400) | Hasta 4 | Desde 170 EUR | Desde 185 EUR | Desde 210 EUR |
-| [Solar 450](/es/barco/solar-450) | Hasta 5 | Desde 180 EUR | Desde 220 EUR | Desde 240 EUR |
-| [Remus 450](/es/barco/remus-450) | Hasta 5 | Desde 180 EUR | Desde 220 EUR | Desde 240 EUR |
-| [Astec 480](/es/barco/astec-480) | Hasta 6 | Desde 220 EUR | Desde 255 EUR | Desde 275 EUR |
-| [Remus 450 II](/es/barco/remus-450-ii) | Hasta 5 | Desde 180 EUR | Desde 220 EUR | Desde 240 EUR |
+El precio depende de la temporada, del barco y de la duración, y la gasolina no está incluida en ningún barco.
 
-### Alquiler de día completo
-
-Los barcos sin licencia se alquilan por franjas de un máximo de 4 horas, así que
-no hay tarifa de día completo. Para una salida larga, la opción es un
-[barco con licencia](/es/barcos-con-licencia), donde sí hay franja de 8 horas.
-
-**Nota:** Los precios son orientativos y pueden variar. Consulta los [precios exactos y disponibilidad en tiempo real](/es/barcos) en nuestra web.
+**Nota:** Consulta los [precios exactos y disponibilidad en tiempo real](/es/barcos) en nuestra web.
 
 ## Qué incluye el precio
 
 Todos nuestros alquileres incluyen, sin coste adicional:
 
-- **Gasolina:** El depósito va lleno y no tienes que preocuparte del combustible. Está incluido en el precio.
 - **Chalecos salvavidas:** Para todos los pasajeros, incluidos niños. Homologados y en perfecto estado.
 - **Seguro de responsabilidad civil:** Cobertura obligatoria para la navegación.
 - **Briefing de seguridad:** Antes de salir, nuestro equipo te explica el manejo del barco, la seguridad y la zona de navegación. Dura unos 15 minutos.
 - **Ancla y equipo de fondeo:** Para que puedas anclar en las calas.
 - **Escalera de baño:** Para entrar y salir del agua cómodamente.
 - **Soporte para teléfono:** Disponible en el puesto de mando.
+
+**Gasolina:** desde el 1 de octubre de 2026 no está incluida en ningún barco y se paga aparte.
 
 ### Extras opcionales
 
@@ -2031,11 +1976,11 @@ Si es tu primera vez o no estás seguro de cuántas horas quieres navegar, el al
 
 ### 4. Divide el coste entre el grupo
 
-El precio del barco es por embarcación, no por persona. Un barco como el [Astec 480](/es/barco/astec-480) para 5 personas en temporada baja puede salir a menos de **22 EUR por persona** para un día completo. Difícilmente encontrarás una actividad con mejor relación calidad-precio en la Costa Brava.
+El precio del barco es por embarcación, no por persona. En una [Trimarchi 57S](/es/barco/trimarchi-57s) o una [Pacific Craft 625](/es/barco/pacific-craft-625), con capacidad para 7 personas, el coste se reparte entre todo el grupo. Difícilmente encontrarás una actividad con mejor relación calidad-precio en la Costa Brava.
 
 ### 5. Elige el barco adecuado
 
-No necesitas el barco más grande o más caro si sois pocos. Para una pareja, el [Astec 400](/es/barco/astec-400) es perfecto y es la opción más económica. Para un grupo de 4-5 personas, el [Astec 480](/es/barco/astec-480) ofrece la mejor relación espacio-precio.
+No necesitas el barco más grande si sois pocos. Para una pareja o un grupo pequeño, la [Mingolla Brava 19](/es/barco/mingolla-brava-19) es suficiente. Si nadie del grupo tiene título, la [excursión privada con patrón](/es/alquiler-barco-con-patron) te ahorra sacarte la licencia.
 
 ## Comparativa: alquiler de barco vs. otras actividades
 
@@ -2043,14 +1988,14 @@ Para poner los precios en perspectiva, compara el coste de alquilar un barco con
 
 | Actividad | Precio aprox. por persona | Duración |
 |-----------|--------------------------|----------|
-| **Alquiler barco sin licencia** (6 pers.) | **Desde 22 EUR** | 4-8 horas |
+| **Lancha con licencia o excursión con patrón** (6-7 pers.) | **Precio del barco dividido entre el grupo** | Varias horas |
 | Excursión en barco turístico | 25-40 EUR | 1-2 horas |
 | Kayak guiado | 30-50 EUR | 2-3 horas |
 | Paddle surf alquiler | 15-25 EUR | 1 hora |
 | Parasailing | 40-60 EUR | 15 minutos |
 | [Moto de agua](/es/alquiler-moto-de-agua-blanes) (circuito) | Desde 65 EUR (15 min), 110 EUR (30 min) | 15-60 minutos |
 
-Como ves, el alquiler de barco sin licencia es una de las actividades con mejor relación calidad-precio de la Costa Brava, especialmente cuando se divide entre varias personas.
+Como ves, alquilar un barco es una de las actividades con mejor relación calidad-precio de la Costa Brava, especialmente cuando se divide entre varias personas.
 
 ## Proceso de reserva y pago
 
@@ -2059,7 +2004,7 @@ Como ves, el alquiler de barco sin licencia es una de las actividades con mejor 
 1. **Entra en nuestra web** y selecciona tu [barco preferido](/es/barcos)
 2. **Elige la fecha y el horario** (mañana, tarde o día completo)
 3. **Selecciona los extras** que quieras (snorkel, toldo, altavoz...)
-4. **Completa la reserva** con pago online seguro
+4. **Envía la solicitud** y te confirmamos por WhatsApp o email
 
 El pago se realiza de forma segura mediante Stripe. Aceptamos todas las tarjetas de crédito y débito.
 
@@ -2083,42 +2028,55 @@ Una sola política, igual para todos los barcos:
 ## Preguntas frecuentes sobre precios
 
 **¿La gasolina está incluida?**
-Sí, siempre. El depósito va lleno y no pagas nada extra por combustible.
+No. Desde el 1 de octubre de 2026 ningún barco incluye la gasolina: se paga aparte.
 
 **¿Hay costes ocultos?**
-No. El precio que ves en la web es lo que pagas, más la fianza (que se devuelve) y los extras que elijas.
+No. El precio que ves en la web es lo que pagas, más la fianza (que se devuelve), la gasolina y los extras que elijas.
 
 **¿Puedo pagar en efectivo?**
-La reserva se paga online con tarjeta. La fianza se puede pagar en efectivo o con tarjeta.
+No hay pago online: el alquiler se paga en el puerto. La fianza se puede pagar en efectivo o con tarjeta.
 
 **¿Hay descuento para residentes?**
 Consulta con nosotros directamente. Ofrecemos condiciones especiales para clientes habituales y residentes de la zona.
 
 ---
 
-Alquilar un barco sin licencia en Blanes es más asequible de lo que imaginas. Desde 90 EUR para un grupo, tienes acceso a las calas más bonitas de la Costa Brava, con gasolina y seguridad incluidas.
+Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Dividido entre el grupo, alquilar un barco en Blanes sigue siendo más asequible de lo que imaginas, y con licencia llegas hasta Lloret y Tossa de Mar.
 
 [Consulta precios y disponibilidad](/es/barcos) en tiempo real y reserva tu día perfecto en el mar.`,
   },
   // ===== POST 14: Comparativa de Barcos =====
   {
-    title: "Comparativa de Barcos sin Licencia en Blanes: Cuál Elegir",
+    title: "Barcos sin licencia en Blanes: comparativa y qué elegir desde octubre de 2026",
     slug: "comparativa-barcos-sin-licencia-blanes",
     category: "Consejos",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/comparativa-barcos-sin-licencia-blanes.webp",
-    metaDescription: "Compara todos los barcos sin licencia disponibles en Blanes. Astec 400, Astec 480, Remus 450, Solar 450 y Remus 450 II frente a frente.",
+    metaDescription: "Comparativa de barcos sin licencia en Blanes y qué elegir desde el 1-oct-2026: lancha con licencia con el titulín o excursión con patrón.",
     tags: ["barcos sin licencia blanes", "comparativa barcos", "mejor barco alquiler", "astec 480", "remus 450", "solar 450", "remus 450 ii"],
     isPublished: true,
     _publishedAt: new Date("2026-04-04T10:00:00Z"),
-    excerpt: "No sabes qué barco elegir? Comparamos todos los barcos sin licencia de nuestra flota en Blanes: Astec 400, Astec 480, Remus 450, Solar 450 y Remus 450 II. Encuentra el tuyo.",
-    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abrirá en cuanto resuelva su autorización (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
+    excerpt: "Hasta septiembre de 2026 alquilábamos 5 barcos sin licencia. Te contamos cómo eran y qué elegir ahora: lancha con licencia con el titulín o excursión con patrón.",
+    content: `> **Actualización: desde el 1 de octubre de 2026 ya no se alquila ningún barco sin titulación (RD 1188/2025).** Hoy puedes navegar con la Licencia de Navegación, que se saca en un día, o salir con patrón en nuestra excursión privada.
 
-Elegir el barco adecuado puede marcar la diferencia entre un buen día y un día perfecto en el mar. En Costa Brava Rent a Boat disponemos de 5 modelos de barcos sin licencia, cada uno con características distintas pensadas para diferentes tipos de navegantes y grupos.
+Elegir el barco adecuado puede marcar la diferencia entre un buen día y un día perfecto en el mar. Hasta el 30 de septiembre de 2026, en Costa Brava Rent a Boat alquilábamos 5 modelos de barcos sin licencia, cada uno con características distintas pensadas para diferentes tipos de navegantes y grupos. Desde el 1 de octubre ya no se alquilan.
 
-En esta guía comparamos todos nuestros barcos para que elijas el que mejor se adapta a tus necesidades: ya seas una pareja buscando intimidad, una familia con niños o un grupo de amigos que quiere vivir una aventura. Puedes ver la flota completa y las condiciones en nuestra página de [alquiler de barcos sin licencia en Blanes](/es/barcos-sin-licencia).
+En esta guía te contamos cómo eran esos barcos y, sobre todo, qué opción te conviene ahora: una de nuestras [lanchas con licencia](/es/barcos-con-licencia), que llevas tú con el titulín, o la [excursión con patrón](/es/alquiler-barco-con-patron), para la que no necesitas título.
 
-## Tabla comparativa general
+## Qué puedes alquilar desde octubre de 2026
+
+| Opción | Capacidad | Qué necesitas |
+|--------|-----------|---------------|
+| **Mingolla Brava 19** | 6 personas | Licencia de Navegación o superior |
+| **Trimarchi 57S** | 7 personas | Licencia de Navegación o superior |
+| **Pacific Craft 625** (5,90 m de eslora de matriculación) | 7 personas | Licencia de Navegación o superior |
+| **Excursión privada con patrón** | 6 personas | Nada: el patrón lleva el barco |
+
+La Licencia de Navegación (el titulín) es un curso de un día, sin examen: [sácate el titulín](/es/licencia-navegacion-titulin). Con las lanchas con licencia llegas a Lloret y a Tossa de Mar (de Blanes a Tossa son 30-45 minutos). Ningún barco incluye gasolina desde el 1 de octubre.
+
+## Tabla comparativa de la antigua flota sin licencia
+
+Estos eran los barcos sin licencia que alquilábamos hasta el 30 de septiembre de 2026:
 
 | Característica | [Astec 400](/es/barco/astec-400) | [Astec 480](/es/barco/astec-480) | [Remus 450](/es/barco/remus-450) | [Solar 450](/es/barco/solar-450) | [Remus 450 II](/es/barco/remus-450-ii) |
 |---------------|------------|------------|-------------|-------------|-----------|
@@ -2131,20 +2089,20 @@ En esta guía comparamos todos nuestros barcos para que elijas el que mejor se a
 
 ## Astec 400: El compacto para parejas
 
-El [Astec 400](/es/barco/astec-400) es nuestra embarcación más compacta y la opción más económica de la flota. Con sus 4 metros de eslora, es ágil, fácil de manejar y perfecto para quienes buscan una experiencia íntima en el mar.
+El [Astec 400](/es/barco/astec-400) era nuestra embarcación más compacta y la opción más económica de la flota. Con sus 4 metros de eslora, es ágil, fácil de manejar y perfecto para quienes buscaban una experiencia íntima en el mar.
 
 ### Puntos fuertes
 
-- **El más económico:** Los precios más bajos de toda nuestra flota, ideal para presupuestos ajustados.
-- **Muy maniobrable:** Su tamaño compacto lo hace extremadamente fácil de manejar, perfecto para principiantes absolutos.
+- **El más económico:** Tenía los precios más bajos de toda nuestra flota.
+- **Muy maniobrable:** Su tamaño compacto lo hace extremadamente fácil de manejar.
 - **Ideal para calas pequeñas:** Puede acceder a rincones donde embarcaciones más grandes no caben.
 - **Consumo reducido:** Al ser más ligero, el consumo de combustible es menor.
 
-### Para quién es
+### Para quién era
 
-- **Parejas** que buscan un día romántico en el mar
-- **Principiantes absolutos** que quieren un barco sencillo y sin complicaciones
-- **Presupuesto ajustado** sin renunciar a la experiencia completa
+- **Parejas** que buscaban un día romántico en el mar
+- **Principiantes** que querían un barco sencillo y sin complicaciones
+- **Presupuestos ajustados** sin renunciar a la experiencia completa
 
 ### Limitaciones
 
@@ -2154,42 +2112,42 @@ El [Astec 400](/es/barco/astec-400) es nuestra embarcación más compacta y la o
 
 ## Astec 480: El favorito de las familias
 
-El [Astec 480](/es/barco/astec-480) es, con diferencia, nuestro barco más demandado. Con 4,80 metros es la embarcación más grande de la flota, y su eslora extra se nota en estabilidad, espacio y confort.
+El [Astec 480](/es/barco/astec-480) era, con diferencia, nuestro barco sin licencia más demandado. Con 4,80 metros era la embarcación más grande de la flota sin licencia, y su eslora extra se nota en estabilidad, espacio y confort.
 
 ### Puntos fuertes
 
-- **El más estable:** Su casco ancho y su eslora de 4,80 metros le dan una estabilidad excelente, incluso con algo de oleaje. Los pasajeros se sienten seguros.
-- **Mayor capacidad:** Hasta 5 personas pueden navegar cómodamente. Es el barco sin licencia más espacioso de la flota.
-- **Espacio de sobra:** Hay sitio para mochilas, nevera, equipo de snorkel y todo lo que necesites.
+- **El más estable:** Su casco ancho y su eslora de 4,80 metros le dan una estabilidad excelente, incluso con algo de oleaje.
+- **Mayor capacidad:** Hasta 5 personas navegaban cómodamente. Era el barco sin licencia más espacioso de la flota.
+- **Espacio de sobra:** Hay sitio para mochilas, nevera, equipo de snorkel y todo lo necesario.
 - **Escalera de baño amplia:** Entrar y salir del agua es cómodo incluso para niños.
 
-### Para quién es
+### Para quién era
 
-- **Familias con niños:** La estabilidad y el espacio lo hacen ideal para navegar con los más pequeños
-- **Grupos de 4-5 personas:** El barco sin licencia donde 5 personas van realmente cómodas
-- **Día completo de navegación:** Su espacio permite pasar 8 horas a bordo sin agobios
+- **Familias con niños:** La estabilidad y el espacio lo hacían ideal para navegar con los más pequeños
+- **Grupos de 4-5 personas:** El barco sin licencia donde 5 personas iban realmente cómodas
+- **Día completo de navegación:** Su espacio permitía pasar muchas horas a bordo sin agobios
 
 ### Limitaciones
 
 - Al ser más grande, es ligeramente menos ágil en maniobras que los modelos más pequeños
-- Mayor demanda, especialmente en temporada alta. Conviene reservar con antelación
+- Era el más solicitado, especialmente en temporada alta
 
 ## Remus 450: El polivalente
 
-El [Remus 450](/es/barco/remus-450) es un barco equilibrado que ofrece un buen compromiso entre espacio, maniobrabilidad y precio. Es la opción polivalente por excelencia.
+El [Remus 450](/es/barco/remus-450) es un barco equilibrado que ofrecía un buen compromiso entre espacio, maniobrabilidad y precio. Era la opción polivalente por excelencia.
 
 ### Puntos fuertes
 
-- **Equilibrio perfecto:** 4,50 metros de eslora ofrecen un buen espacio sin perder agilidad.
+- **Equilibrio:** 4,50 metros de eslora ofrecen un buen espacio sin perder agilidad.
 - **Diseño funcional:** La distribución del espacio a bordo está bien pensada para aprovecharlo al máximo.
 - **Buena estabilidad:** El casco ofrece una navegación suave y estable.
-- **Precio intermedio:** Se sitúa en la franja media de precios con una excelente relación calidad-precio.
+- **Precio intermedio:** Se situaba en la franja media de precios de la flota sin licencia.
 
-### Para quién es
+### Para quién era
 
-- **Grupos de 3-4 personas** que quieren comodidad sin pagar por un barco grande
-- **Familias con 1-2 niños** que buscan un buen espacio a precio razonable
-- **Navegantes que buscan el mejor equilibrio** entre todas las características
+- **Grupos de 3-4 personas** que querían comodidad sin pagar por un barco grande
+- **Familias con 1-2 niños** que buscaban un buen espacio a precio razonable
+- **Navegantes que buscaban el mejor equilibrio** entre todas las características
 
 ### Limitaciones
 
@@ -2198,19 +2156,19 @@ El [Remus 450](/es/barco/remus-450) es un barco equilibrado que ofrece un buen c
 
 ## Solar 450: El cómodo
 
-El [Solar 450](/es/barco/solar-450) destaca por su diseño orientado al confort. Es un barco pensado para quienes valoran la comodidad y la experiencia de navegación por encima de todo.
+El [Solar 450](/es/barco/solar-450) destaca por su diseño orientado al confort. Era el barco pensado para quienes valoraban la comodidad y la experiencia de navegación por encima de todo.
 
 ### Puntos fuertes
 
 - **Asientos ergonómicos:** La posición de los asientos está pensada para largas horas de navegación sin cansancio.
 - **Diseño moderno:** Líneas modernas y estilizadas que lo hacen visualmente atractivo.
 - **Navegación suave:** Su diseño de casco proporciona una navegación cómoda incluso con algo de oleaje.
-- **Equipamiento completo:** Bien equipado de serie con todo lo necesario.
+- **Equipamiento completo:** Bien equipado de serie.
 
-### Para quién es
+### Para quién era
 
-- **Parejas y grupos pequeños** que priorizan el confort
-- **Navegantes que valoran el diseño** y la experiencia a bordo
+- **Parejas y grupos pequeños** que priorizaban el confort
+- **Navegantes que valoraban el diseño** y la experiencia a bordo
 - **Jornadas largas** donde la comodidad de los asientos importa
 
 ### Limitaciones
@@ -2220,55 +2178,55 @@ El [Solar 450](/es/barco/solar-450) destaca por su diseño orientado al confort.
 
 ## Remus 450 II: El deportivo
 
-El [Remus 450 II](/es/barco/remus-450-ii) es el barco con carácter más deportivo de nuestra flota. Su diseño ofrece sensaciones de navegación más dinámicas.
+El [Remus 450 II](/es/barco/remus-450-ii) era el barco sin licencia con carácter más deportivo de nuestra flota. Su diseño ofrece sensaciones de navegación más dinámicas.
 
 ### Puntos fuertes
 
 - **Sensación deportiva:** Su diseño de casco transmite mayor dinamismo en la navegación.
 - **Aspecto atractivo:** Líneas estilizadas y un look moderno que destaca en las calas.
 - **Buenas prestaciones:** Respuesta ágil a la caña del timón.
-- **Bien equipado:** Incluye todo el equipamiento necesario para una jornada completa.
+- **Bien equipado:** Con todo el equipamiento necesario para una jornada completa.
 
-### Para quién es
+### Para quién era
 
-- **Grupos de amigos** que buscan una experiencia más dinámica
-- **Jóvenes y parejas** que valoran el diseño deportivo
-- **Quienes ya tienen experiencia** y buscan sensaciones diferentes
+- **Grupos de amigos** que buscaban una experiencia más dinámica
+- **Jóvenes y parejas** que valoraban el diseño deportivo
+- **Quienes ya tenían experiencia** y buscaban sensaciones diferentes
 
 ### Limitaciones
 
 - Puede ser algo menos estable que el Astec 480 en mar con oleaje
-- No es la mejor opción para familias con niños pequeños que priorizan estabilidad
+- No era la mejor opción para familias con niños pequeños que priorizan estabilidad
 
-## Guía rápida: qué barco elegir según tu situación
+## Guía rápida: qué elegir hoy según tu situación
 
 ### Sois una pareja
-**Recomendación:** [Astec 400](/es/barco/astec-400)
-Es el más económico y su tamaño compacto es perfecto para dos personas. Tendréis intimidad y espacio de sobra. Si queréis más confort, el [Solar 450](/es/barco/solar-450) es un paso arriba.
+**Recomendación:** [Mingolla Brava 19](/es/barcos-con-licencia) con el titulín, o la [excursión con patrón](/es/alquiler-barco-con-patron)
+Si os sacáis el titulín, cualquiera de nuestras lanchas con licencia os sobra de espacio. Si preferís no llevar el barco, la excursión con patrón es la opción más cómoda.
 
 ### Sois una familia con niños pequeños (3-8 años)
-**Recomendación:** [Astec 480](/es/barco/astec-480)
-Sin duda. Su estabilidad y espacio son ideales para navegar con niños. Los pequeños pueden moverse a bordo con seguridad y hay sitio para todo el equipamiento familiar.
+**Recomendación:** [Excursión con patrón](/es/alquiler-barco-con-patron)
+El patrón lleva el barco y vosotros os ocupáis solo de los niños. Hasta 6 personas y sin necesidad de título.
 
 ### Sois una familia con niños mayores (9-16 años)
-**Recomendación:** [Astec 480](/es/barco/astec-480) o [Remus 450](/es/barco/remus-450)
-Depende del número de personas. Si sois 5-6, el Astec 480 es la opción. Si sois 4, el Remus 450 ofrece un buen espacio a mejor precio.
+**Recomendación:** [Trimarchi 57S o Pacific Craft 625](/es/barcos-con-licencia)
+Con el titulín, las dos admiten hasta 7 personas. Si nadie tiene título, la [excursión con patrón](/es/alquiler-barco-con-patron) admite hasta 6.
 
 ### Sois un grupo de amigos (3-4 personas)
-**Recomendación:** [Remus 450 II](/es/barco/remus-450-ii) o [Solar 450](/es/barco/solar-450)
-El Remus 450 II para quienes buscan dinamismo, el Solar 450 para quienes priorizan comodidad.
+**Recomendación:** [Mingolla Brava 19](/es/barcos-con-licencia)
+Hasta 6 personas y suficiente para llegar a Lloret o a Tossa de Mar con la Licencia de Navegación.
 
-### Sois un grupo grande (4-5 personas)
-**Recomendación:** [Astec 480](/es/barco/astec-480)
-Es el barco sin licencia más espacioso, con capacidad para 5 personas. Para 4 personas con mucho equipaje, también es la mejor opción.
+### Sois un grupo grande (5-7 personas)
+**Recomendación:** [Trimarchi 57S o Pacific Craft 625](/es/barcos-con-licencia)
+Son las de mayor capacidad, con hasta 7 personas. Sin título, la [excursión con patrón](/es/alquiler-barco-con-patron) admite hasta 6.
 
 ### Es tu primera vez en un barco
-**Recomendación:** [Astec 400](/es/barco/astec-400) o [Astec 480](/es/barco/astec-480)
-El Astec 400 por su sencillez y maniobrabilidad. El Astec 480 por su estabilidad que transmite seguridad. Ambos son perfectos para principiantes.
+**Recomendación:** [Excursión con patrón](/es/alquiler-barco-con-patron) o [sácate el titulín](/es/licencia-navegacion-titulin)
+La excursión con patrón no exige ninguna experiencia. Si quieres llevar tú el barco, el titulín es un curso de un día, sin examen.
 
-### Quieres el mejor barco posible (sin importar precio)
-**Recomendación:** [Astec 480](/es/barco/astec-480)
-El más grande, el más estable, el más espacioso. Es nuestro barco insignia por algo.
+### Quieres llegar lo más lejos posible
+**Recomendación:** [Lanchas con licencia](/es/barcos-con-licencia)
+Con el titulín llegas a Lloret y a Tossa de Mar: de Blanes a Tossa son 30-45 minutos.
 
 ## Extras disponibles para todos los barcos
 
@@ -2283,15 +2241,15 @@ Los extras se seleccionan durante el proceso de reserva.
 
 ## Disponibilidad y reservas
 
-Todos nuestros barcos están disponibles de **abril a octubre**. En temporada alta (julio-agosto), los barcos se agotan con rapidez, especialmente los fines de semana. Recomendamos reservar con la mayor antelación posible.
+Navegamos de **abril a octubre**. En temporada alta (julio-agosto), los barcos se agotan con rapidez, especialmente los fines de semana. Recomendamos reservar con la mayor antelación posible.
 
-Consulta la [disponibilidad en tiempo real de todos nuestros barcos](/es/barcos) y reserva directamente online.
+Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Consulta la [disponibilidad en tiempo real de todos nuestros barcos](/es/barcos).
 
 ---
 
 Cada barco de nuestra flota tiene su personalidad y sus puntos fuertes. Lo importante es elegir el que se adapte a tu grupo, tu experiencia y tus expectativas. Y si tienes dudas, escríbenos por [WhatsApp](https://wa.me/34611500372) y te ayudaremos a decidir.
 
-[Ver todos los barcos](/es/barcos) y reservar online.`,
+[Sácate el titulín](/es/licencia-navegacion-titulin), mira los [barcos con licencia](/es/barcos-con-licencia) o reserva la [excursión con patrón](/es/alquiler-barco-con-patron).`,
   },
   // ===== POST 15: Costa Brava en Septiembre =====
   {
@@ -2457,74 +2415,71 @@ Septiembre es el secreto mejor guardado de la Costa Brava. Agua caliente, calas 
   },
   // ===== POST 16: Preguntas Frecuentes =====
   {
-    title: "10 Preguntas Frecuentes sobre Alquilar un Barco sin Licencia",
+    title: "Alquilar un barco sin licencia: 10 preguntas y qué cambia desde octubre de 2026",
     slug: "preguntas-frecuentes-alquiler-barco-sin-licencia",
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/preguntas-frecuentes-alquiler-barco-sin-licencia.webp",
-    metaDescription: "Resolvemos las 10 preguntas más frecuentes sobre alquilar un barco sin licencia en Blanes. Todo lo que necesitas saber antes de reservar.",
+    metaDescription: "Alquilar un barco sin licencia en Blanes: 10 preguntas y qué cambia desde octubre de 2026. Titulín en un día o salida con patrón.",
     tags: ["preguntas frecuentes barco", "barco sin licencia FAQ", "alquilar barco dudas", "primera vez barco", "barco sin experiencia", "barco sin carnet"],
     isPublished: true,
     _publishedAt: new Date("2026-04-10T10:00:00Z"),
-    excerpt: "Resolvemos las dudas más comunes sobre alquilar un barco sin licencia en Blanes: experiencia necesaria, precios, seguridad, capacidad y todo lo que necesitas saber.",
-    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abrirá en cuanto resuelva su autorización (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
+    excerpt: "Resolvemos las dudas más comunes sobre alquilar un barco sin licencia en Blanes y qué cambia desde el 1 de octubre de 2026: titulín en un día o salida con patrón.",
+    content: `> **Actualización: desde el 1 de octubre de 2026 ya no se alquila ningún barco sin titulación (RD 1188/2025).** Hoy puedes navegar con la [Licencia de Navegación](/es/licencia-navegacion-titulin), que se saca en un día, o salir con patrón en nuestra [excursión privada](/es/alquiler-barco-con-patron).
 
-Alquilar un barco sin licencia es una experiencia cada vez más popular en la Costa Brava, pero es normal tener dudas antes de la primera vez. En este artículo respondemos las 10 preguntas que más nos hacen nuestros clientes para que reserves con total tranquilidad. Si prefieres verlo todo de un vistazo, tienes la información y la flota en nuestra guía de [alquiler de barco sin licencia en la Costa Brava](/es/barcos-sin-licencia).
+Hasta el 30 de septiembre de 2026, alquilar un barco sin licencia era una de las experiencias más populares de la Costa Brava. Desde el 1 de octubre la norma ha cambiado, pero las dudas de la primera vez siguen siendo las mismas. En este artículo respondemos las 10 preguntas que más nos hacían nuestros clientes, con las reglas que se aplican hoy. Si prefieres verlo todo de un vistazo, tienes el curso y los requisitos en nuestra guía de la [Licencia de Navegación (el titulín)](/es/licencia-navegacion-titulin).
 
 ## ¿Necesito licencia o carnet de navegación para alquilar un barco?
 
-**No, no necesitas ninguna licencia ni titulación náutica.** En España, la normativa permite pilotar embarcaciones de hasta 5 metros de eslora y 15 CV de potencia sin necesidad de ningún título. Todos nuestros barcos cumplen estas características.
+**Desde el 1 de octubre de 2026, sí.** El RD 1188/2025 acabó con el alquiler sin titulación: la antigua exención para embarcaciones de hasta 5 metros de eslora y 15 CV queda solo para barcos privados. Por eso ya no alquilamos nuestros barcos sin licencia (Solar 450, Remus 450, Remus 450 II, Astec 400 y Astec 480).
 
-Lo único que necesitas es:
-- Ser **mayor de 18 años** para ser el patrón (quien conduce el barco)
-- Un **documento de identidad** válido (DNI, pasaporte o documento europeo)
-- Ganas de disfrutar del mar
+Hoy tienes dos caminos:
+- **Llevar tú la lancha:** necesitas la **Licencia de Navegación** (el «titulín», un curso de 1 día, sin examen) o una titulación superior, ser **mayor de 18 años** y un **documento de identidad** válido (DNI, pasaporte o documento europeo)
+- **Salir con patrón:** en la **excursión privada** conduce un patrón profesional y tú no necesitas ningún título
 
-No importa si nunca has estado en un barco. Antes de cada salida, nuestro equipo te da un **briefing completo de 15 minutos** donde te explican el manejo del barco, las normas de seguridad y la zona de navegación. Cuando termines el briefing, estarás perfectamente preparado para navegar.
+En los dos casos, antes de cada salida nuestro equipo te da un **briefing completo** donde te explica el barco, las normas de seguridad y la zona de navegación.
 
 ## ¿Necesito experiencia previa para manejar el barco?
 
-**No, no necesitas ninguna experiencia previa.** La gran mayoría de nuestros clientes son personas que nunca han pilotado un barco. Nuestros barcos están diseñados específicamente para ser **fáciles e intuitivos**: tienen un timón tipo caña que funciona como el manillar de una moto, un acelerador sencillo y marcha adelante y atrás.
+**No hace falta ser un experto.** Si sales con patrón, no necesitas ninguna experiencia: él lleva el barco y tú solo disfrutas. Si prefieres llevar la lancha tú, el curso de la Licencia de Navegación incluye prácticas en el agua, así que llegas al puerto sabiendo lo básico.
 
-El briefing que te damos antes de salir cubre todo lo que necesitas saber:
+El briefing que te damos antes de salir repasa todo lo que necesitas saber:
 
 - **Arrancar y apagar el motor:** Tan sencillo como girar una llave
 - **Acelerar y frenar:** Un solo mando con posiciones claras
-- **Girar:** Mueves la caña del timón a izquierda o derecha
+- **Maniobrar:** Cómo gobernar el barco en el puerto y en mar abierto
 - **Fondear (anclar):** Te enseñamos paso a paso cómo soltar y recoger el ancla
 - **Normas de seguridad:** Distancias, velocidades y qué hacer en caso de cualquier incidencia
 
-Después de las primeras 5 minutos navegando, la inmensa mayoría de nuestros clientes se sienten completamente cómodos y seguros. Es mucho más fácil de lo que parece.
+Después de los primeros minutos navegando, la inmensa mayoría de nuestros clientes se sienten completamente cómodos y seguros.
 
 ## ¿Cuántas personas caben en un barco?
 
-La capacidad depende del modelo de barco que elijas:
+La capacidad depende del barco que elijas:
 
 | Barco | Capacidad máxima | Ideal para |
 |-------|-----------------|------------|
-| [Astec 400](/es/barco/astec-400) | 4 personas | Parejas o grupos pequeños |
-| [Solar 450](/es/barco/solar-450) | 5 personas | Familias o grupos medianos |
-| [Remus 450](/es/barco/remus-450) | 5 personas | Familias o grupos medianos |
-| [Remus 450 II](/es/barco/remus-450-ii) | 5 personas | Grupos de amigos |
-| [Astec 480](/es/barco/astec-480) | 5 personas | Familias o grupos |
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | 6 personas | Familias o grupos medianos |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | 7 personas | Grupos de amigos |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | 7 personas | Grupos y rutas largas |
+| [Excursión privada con patrón](/es/barco/excursion-privada) | 6 personas | Quien no tiene título |
 
-La capacidad máxima incluye adultos y niños, incluidos bebés. Nuestra recomendación es que, para mayor comodidad, navegues con **una persona menos** de la capacidad máxima. Por ejemplo, en un barco de 5 plazas, 4 personas irán muy cómodas.
+La capacidad máxima incluye adultos y niños, incluidos bebés. Las tres lanchas piden Licencia de Navegación o superior; la excursión privada no pide ningún título porque la lleva nuestro patrón. Nuestra recomendación es que, para mayor comodidad, navegues con **una persona menos** de la capacidad máxima.
 
-Para grupos mayores de 5 personas, la opción es alquilar dos barcos y navegar juntos. Es una experiencia muy divertida y permite mantener contacto visual entre los dos barcos.
+Para grupos mayores de 7 personas, la opción es alquilar dos barcos y navegar juntos. Es una experiencia muy divertida y permite mantener contacto visual entre los dos barcos.
 
 ## ¿Qué incluye el precio del alquiler?
 
-Nuestros precios incluyen **todo lo necesario** para navegar:
+Nuestros precios incluyen lo necesario para navegar:
 
-- **Gasolina:** El depósito va lleno. No pagas nada extra por combustible, da igual cuánto navegues.
 - **Chalecos salvavidas:** Para todos los pasajeros, incluidas tallas infantiles. Homologados y en perfecto estado.
 - **Seguro de responsabilidad civil:** La cobertura obligatoria para navegar.
-- **Briefing de seguridad:** Explicación práctica de 15 minutos antes de la salida.
+- **Briefing de seguridad:** Explicación práctica antes de la salida.
 - **Equipo de fondeo:** Ancla con cadena suficiente para fondear en cualquier cala.
 - **Escalera de baño:** Para entrar y salir del agua con comodidad.
 - **Soporte para teléfono:** En el puesto de mando, para usar el GPS.
 
-**No hay costes ocultos.** El precio que ves en la web es lo que pagas, más la fianza (que se devuelve) y los extras opcionales que decidas contratar.
+**La gasolina no va incluida.** Hasta el 30 de septiembre de 2026 los barcos sin licencia la llevaban incluida en el precio; desde el 1 de octubre ningún barco de la flota incluye combustible. El precio final es el del alquiler, el combustible, la fianza (que se devuelve) y los extras opcionales que decidas contratar.
 
 ### Extras opcionales
 
@@ -2535,7 +2490,7 @@ Nuestros precios incluyen **todo lo necesario** para navegar:
 
 ## ¿Es seguro? ¿Qué pasa si hay una emergencia?
 
-**Es completamente seguro.** Nuestros barcos están diseñados para la navegación recreativa cerca de la costa, con todas las medidas de seguridad obligatorias:
+**Es completamente seguro.** Nuestros barcos están preparados para la navegación recreativa cerca de la costa, con todas las medidas de seguridad obligatorias:
 
 - **Chalecos salvavidas** para todos los pasajeros
 - **Llave de seguridad (kill switch)** que apaga el motor automáticamente si el piloto se cae
@@ -2550,7 +2505,7 @@ Las emergencias son extremadamente raras. En nuestra experiencia, la incidencia 
 
 ## ¿Hasta dónde puedo navegar?
 
-Con un barco sin licencia puedes navegar hasta **2 millas náuticas de la costa** (unos 3,7 km). En la práctica, no necesitas alejarte tanto: las mejores calas y zonas de baño están a pocos cientos de metros de la costa.
+Hasta el 30 de septiembre de 2026, los barcos sin licencia podían alejarse hasta **2 millas náuticas de la costa** (unos 3,7 km), el límite que fijaba el RD 875/2014. Hoy, con una de nuestras lanchas con licencia llegas a Lloret de Mar y a Tossa de Mar, y en la excursión privada es el patrón quien decide la ruta según el mar del día. En la práctica, las mejores calas y zonas de baño están a pocos cientos de metros de la costa.
 
 Desde el puerto de Blanes puedes navegar hacia el norte (dirección Lloret de Mar y Tossa de Mar) o hacia el sur (dirección Malgrat de Mar). La zona norte es la más espectacular, con acantilados, calas escondidas y fondos marinos impresionantes.
 
@@ -2564,9 +2519,9 @@ Desde el puerto de Blanes puedes navegar hacia el norte (dirección Lloret de Ma
 | Sa Caleta | 5 km | 18 minutos |
 | Playa Fenals (Lloret) | 6 km | 20 minutos |
 | Cala Canyelles | 8 km | 25 minutos |
-| Tossa de Mar | 15 km | 45 minutos |
+| Tossa de Mar | 15 km | 30-45 minutos |
 
-Con un alquiler de medio día (4 horas) puedes visitar 2-3 calas cómodamente. Con un día completo (8 horas), puedes llegar hasta Canyelles o incluso Tossa de Mar si las condiciones son buenas.
+Con un alquiler de medio día (4 horas) puedes visitar 2-3 calas cómodamente. Con más tiempo, puedes llegar hasta Canyelles o incluso Tossa de Mar si las condiciones son buenas.
 
 ## ¿Qué pasa si hace mal tiempo?
 
@@ -2612,7 +2567,7 @@ Si durante la navegación las condiciones empeoran inesperadamente, **llámanos*
 | Junio y Septiembre | 1 semana |
 | Abril, Mayo, Octubre | 2-3 días |
 
-La reserva se hace **100% online** a través de nuestra [web](/es/barcos). El proceso es rápido: eliges barco, fecha, horario y extras, y pagas de forma segura con tarjeta.
+La solicitud se hace **online** a través de nuestra [web](/es/barcos): eliges barco, fecha, horario y extras, te confirmamos por WhatsApp o email y el pago se hace en el puerto.
 
 ## ¿Puedo llevar a mi perro en el barco?
 
@@ -2632,7 +2587,7 @@ Avísanos al hacer la reserva si llevarás mascota para que podamos aconsejarte 
 
 Esperamos haber resuelto tus dudas. Si tienes alguna pregunta que no hemos cubierto, estamos a un mensaje de distancia. Escríbenos por [WhatsApp](https://wa.me/34611500372) o llámanos al [+34 611 500 372](tel:+34611500372).
 
-[Reserva tu barco](/es/barcos) y vive la experiencia de navegar por la Costa Brava sin licencia, sin experiencia y sin preocupaciones.`,
+[Sácate el titulín](/es/licencia-navegacion-titulin) y elige entre nuestros [barcos con licencia](/es/barcos-con-licencia), o sal en la [excursión con patrón](/es/alquiler-barco-con-patron) y vive la Costa Brava sin preocupaciones.`,
   },
   // ===== POST 17: Excursiones para Grupos =====
   {
@@ -2658,7 +2613,7 @@ Hay algo mágico en compartir un barco con tus personas favoritas. Estar en medi
 
 ### Aventura accesible
 
-No hace falta experiencia ni licencia para pilotar nuestros barcos. Cualquier miembro del grupo mayor de 18 años puede ser el patrón. Es una aventura real, con la emoción de pilotar un barco y descubrir calas, pero sin la complejidad de la navegación profesional.
+Para pilotar una de nuestras lanchas basta con que alguien del grupo tenga la Licencia de Navegación (el [titulín](/es/licencia-navegacion-titulin): curso de 1 día, sin examen) o un título superior. Y si nadie la tiene, la [excursión privada con patrón](/es/alquiler-barco-con-patron) os lleva sin que nadie toque el timón. Es una aventura real, con la emoción de descubrir calas, pero sin la complejidad de la navegación profesional.
 
 ### Fotos y recuerdos inolvidables
 
@@ -2673,7 +2628,7 @@ Las despedidas de soltera o soltero en barco son, de lejos, el evento más popul
 **Cómo organizar una despedida en barco:**
 
 1. **Elige la fecha:** Preferiblemente entre semana para mejor disponibilidad y precio
-2. **Cuenta el grupo:** Si sois más de 6, necesitaréis 2 barcos (lo cual es todavía más divertido)
+2. **Cuenta el grupo:** Si sois más de 7, necesitaréis 2 barcos (lo cual es todavía más divertido)
 3. **Reserva con antelación:** Las despedidas suelen ser en fin de semana de temporada alta. Reserva con 2-3 semanas mínimo.
 4. **Planifica el catering:** Prepara un picnic con champán, fruta y aperitivos
 5. **Decoración:** Puedes decorar el barco con globos, banderines o lo que quieras (siempre que no se vuele al mar)
@@ -2699,7 +2654,7 @@ Un cumpleaños en barco es un regalo que no se olvida. Ya sea para el cumpleañe
 Un día de navegación es una actividad de team building excepcional. Fuera de la oficina, en un entorno relajado y divertido, los equipos se conectan de una forma diferente.
 
 **Formato recomendado para empresas:**
-- **2-3 barcos** navegando juntos (hasta 15-18 personas)
+- **2-3 barcos** navegando juntos (hasta unas 20 personas)
 - **Ruta coordinada** con paradas en las mismas calas
 - **Actividad de snorkel** como elemento de equipo
 - **Comida de grupo** en un restaurante del puerto al volver
@@ -2712,21 +2667,21 @@ Abuelos, padres, hijos, primos... Una excursión familiar en barco es una forma 
 
 ### Grupos de 2-4 personas
 
-Un solo barco es suficiente. El [Astec 400](/es/barco/astec-400) para parejas o el [Remus 450](/es/barco/remus-450) para 3-4 personas.
+Un solo barco es suficiente: cualquiera de nuestras [lanchas con licencia](/es/barcos-con-licencia) o, si nadie tiene título, la [excursión privada con patrón](/es/alquiler-barco-con-patron).
 
-### Grupos de 4-5 personas
+### Grupos de 5-7 personas
 
-El [Astec 480](/es/barco/astec-480) con capacidad para 5 personas es la opción ideal. Es el barco sin licencia más espacioso y estable, perfecto para que el grupo vaya cómodo.
+La **Trimarchi 57S** y la **Pacific Craft 625**, con capacidad para 7 personas, son la opción ideal para que el grupo vaya cómodo. La **Mingolla Brava 19** y la excursión con patrón admiten 6.
 
-### Grupos de 7-12 personas
+### Grupos de 8-14 personas
 
-**Dos barcos** navegando juntos. La configuración más popular:
-- 2 x [Astec 480](/es/barco/astec-480) para hasta 12 personas
-- 1 x [Astec 480](/es/barco/astec-480) + 1 x [Solar 450](/es/barco/solar-450) para hasta 11 personas
+**Dos barcos** navegando juntos. Las configuraciones posibles:
+- Trimarchi 57S + Pacific Craft 625 para hasta 14 personas (hace falta alguien con título en cada lancha)
+- Una lancha con licencia + la excursión privada con patrón para hasta 13 personas, si solo una persona del grupo tiene título
 
 Navegar en dos barcos es en realidad más divertido que ir todos juntos: puedes hacer carreras suaves hasta las calas, reuniros al fondear y disfrutar de más espacio.
 
-### Grupos de más de 12 personas
+### Grupos de más de 14 personas
 
 Para grupos grandes, la opción es **3 o más barcos**. Contáctanos directamente por [WhatsApp](https://wa.me/34611500372) para coordinar reservas de varios barcos y te ayudaremos a organizar la logística.
 
@@ -2735,7 +2690,7 @@ Para grupos grandes, la opción es **3 o más barcos**. Contáctanos directament
 ### Paso 1: Define el grupo
 
 - **Cuántas personas:** Determina el número exacto para saber cuántos barcos necesitas
-- **Edades:** Si hay niños pequeños o personas mayores, prioriza barcos estables como el [Astec 480](/es/barco/astec-480)
+- **Edades:** Si hay niños pequeños o personas mayores, prioriza la excursión con patrón o las lanchas más amplias, como la Pacific Craft 625
 - **Nivel de aventura:** No todos los grupos buscan lo mismo. Algunos quieren navegar y explorar, otros prefieren fondear en una cala y pasar el día tranquilamente
 
 ### Paso 2: Elige fecha y horario
@@ -2758,7 +2713,7 @@ Para grupos, un picnic a bordo es casi obligatorio. Coordinad la comida entre to
 - **Punto de encuentro:** Puerto de Blanes, 15 minutos antes de la hora reservada
 - **Aparcamiento:** Hay parking público cerca del puerto
 - **Briefing conjunto:** Si son varios barcos, haremos el briefing de seguridad a todos a la vez
-- **Patrones designados:** Cada barco necesita un patrón (mayor de 18 años). Decidid antes quién conducirá cada barco.
+- **Patrones designados:** Cada lancha necesita a alguien con la Licencia de Navegación o un título superior. Decidid antes quién conducirá cada barco.
 
 ## Ruta recomendada para grupos
 
@@ -2808,28 +2763,7 @@ Para grupos, un picnic a bordo es casi obligatorio. Coordinad la comida entre to
 
 ## Presupuesto para grupos
 
-La ventaja del alquiler de barco para grupos es que **el coste se divide entre todos**. Algunos ejemplos:
-
-### Despedida de 8 personas (2 barcos, medio día, temporada media)
-
-- 2 x [Solar 450](/es/barco/solar-450) medio día: aprox. 440 EUR total
-- Kit snorkel x 8: 60 EUR
-- Altavoz Bluetooth x 2: incluido como extra
-- **Total por persona: aprox. 63 EUR**
-
-### Cumpleaños de 5 personas (1 barco, día completo, temporada media)
-
-- 1 x [Astec 480](/es/barco/astec-480) día completo: aprox. 375 EUR
-- Kit snorkel x 6: 45 EUR
-- **Total por persona: aprox. 84 EUR**
-
-### Team building de 12 personas (2 barcos, día completo, temporada media)
-
-- 2 x [Astec 480](/es/barco/astec-480) día completo: aprox. 750 EUR
-- Kit snorkel x 12: 90 EUR
-- **Total por persona: aprox. 70 EUR**
-
-Difícilmente encontrarás una actividad de grupo tan memorable por menos de 70 EUR por persona.
+La ventaja del alquiler de barco para grupos es que **el coste se divide entre todos**. El precio es por barco, no por persona, así que cuanto más lleno vaya, menos sale por cabeza. Tienes la tarifa de cada lancha y de la excursión con patrón en [precios](/es/precios). Suma el combustible, que no está incluido en ningún barco, y los extras que quieras, como el kit de snorkel o el altavoz Bluetooth.
 
 ---
 
@@ -2922,7 +2856,7 @@ La ruta más sencilla y una de las más gratificantes. Sales del puerto, navegas
 
 **Duración:** 3-4 horas
 **Dificultad:** Media
-**Mejor barco:** [Astec 480](/es/barco/astec-480) o [Remus 450](/es/barco/remus-450)
+**Mejor barco:** [Trimarchi 57S](/es/barco/trimarchi-57s) o [Mingolla Brava 19](/es/barco/mingolla-brava-19) (con licencia)
 
 Los acantilados entre Blanes y Lloret son espectaculares al atardecer. Las paredes de roca se tiñen de dorado y naranja, y los pinos que crecen en lo alto crean siluetas dramáticas.
 
@@ -2940,7 +2874,7 @@ Los acantilados entre Blanes y Lloret son espectaculares al atardecer. Las pared
 
 **Duración:** 6-8 horas (ruta completa)
 **Dificultad:** Avanzada (por distancia)
-**Mejor barco:** [Astec 480](/es/barco/astec-480)
+**Mejor barco:** [Pacific Craft 625](/es/barco/pacific-craft-625) (con licencia) o la [excursión privada con patrón](/es/barco/excursion-privada)
 
 Para los más aventureros, navegar hasta Tossa de Mar y ver el atardecer con el faro y las murallas medievales como fondo es la experiencia definitiva.
 
@@ -2960,7 +2894,7 @@ Para los más aventureros, navegar hasta Tossa de Mar y ver el atardecer con el 
 
 **Duración:** 2 horas
 **Dificultad:** Muy fácil
-**Mejor barco:** [Astec 400](/es/barco/astec-400) (perfecto para parejas)
+**Mejor barco:** la [excursión privada con patrón](/es/barco/excursion-privada), para que ninguno de los dos tenga que pilotar
 
 La ruta más sencilla y romántica. No necesitas ir lejos. Simplemente sal del puerto, fondea en la bahía de Blanes a unos 200 metros de la playa y disfruta del atardecer con una botella de cava y tu mejor compañía.
 
@@ -3009,7 +2943,7 @@ Si quieres organizar una experiencia romántica para tu pareja, aquí tienes nue
 - Lleva una manta ligera para la brisa del anochecer
 
 **La experiencia:**
-1. **17:30** -- Recogéis el barco ([Astec 400](/es/barco/astec-400) es perfecto para dos)
+1. **17:30** -- Recogéis el barco (la [Mingolla Brava 19](/es/barco/mingolla-brava-19) si tenéis el titulín, o la [excursión privada con patrón](/es/barco/excursion-privada) si preferís que pilote otro)
 2. **17:45** -- Navegación hasta Cala Sant Francesc. Último baño del día con la luz dorada.
 3. **18:45** -- Regreso lento bordeando la costa. Paráis el motor y os dejáis mecer por el mar.
 4. **19:15** -- Fondeo en la bahía de Blanes. Aperitivos y cava con vistas al atardecer.
@@ -3029,7 +2963,7 @@ Es una experiencia que cuesta menos de lo que imaginas y que deja un recuerdo im
 
 ## Consideraciones de seguridad
 
-- **Regresa antes del anochecer.** Los barcos sin licencia solo pueden navegar de día. Calcula tu regreso para llegar al puerto con luz suficiente.
+- **Regresa antes del anochecer.** Calcula tu regreso para llegar al puerto con luz suficiente y dentro del horario del alquiler.
 - **Lleva linterna o usa la del móvil** por si acaso la luz baja más rápido de lo esperado.
 - **Nuestro horario de atención** cubre toda la franja horaria de navegación. Si tienes cualquier duda, llámanos.
 
@@ -3061,17 +2995,17 @@ En esta guía te contamos **todo lo que necesitas saber** para hacer la excursi�
 | Concepto | Detalle |
 |----------|---------|
 | **Distancia** | ~15 km por mar desde Puerto de Blanes |
-| **Tiempo** | 45 min - 1 hora (según barco y mar) |
+| **Tiempo** | 30-45 min (según barco y mar) |
 | **Precio desde** | 175 EUR / 2 horas (barco con licencia) |
-| **Licencia necesaria** | Sí (PER/PNB) o excursión con patrón |
+| **Licencia necesaria** | Sí (Licencia de Navegación o superior) o excursión con patrón |
 | **Mejor época** | Junio y septiembre |
-| **Dificultad** | Fácil con licencia, no apto sin licencia |
+| **Dificultad** | Fácil con licencia o con patrón |
 
 ## ¿Necesito licencia para ir a Tossa de Mar en barco?
 
-**Sí.** Tossa de Mar está más allá del límite de 2 millas náuticas que permite la navegación sin licencia en España. Para llegar necesitas:
+**Sí.** Desde el 1 de octubre de 2026 no se alquila ningún barco a motor sin titulación (RD 1188/2025). Para llegar a Tossa tienes dos opciones:
 
-1. **Un barco con licencia** (PER o PNB) — Traes tu propia titulación y alquilas uno de nuestros barcos: [Mingolla Brava 19](/es/barco/mingolla-brava-19) (80 CV), [Trimarchi 57S](/es/barco/trimarchi-57s) (110 CV) o [Pacific Craft 625](/es/barco/pacific-craft-625) (115 CV).
+1. **Un barco con licencia**, si tienes la Licencia de Navegación (el «titulín», curso de 1 día, sin examen) o una titulación superior. Alquilas uno de nuestros barcos: [Mingolla Brava 19](/es/barco/mingolla-brava-19) (80 CV), [Trimarchi 57S](/es/barco/trimarchi-57s) (110 CV) o [Pacific Craft 625](/es/barco/pacific-craft-625) (115 CV).
 2. **Excursión privada con patrón** — Nuestro capitán profesional te lleva. Tú solo disfrutas. Ideal para quien no tiene licencia pero quiere vivir la experiencia.
 
 ## Precios para ir en barco a Tossa de Mar
@@ -3083,7 +3017,7 @@ Para una excursión a Tossa recomendamos **mínimo 4 horas** (ida + exploración
 | Mingolla Brava 19 (80 CV) | 6 personas | 255 EUR | 310 EUR |
 | Trimarchi 57S (110 CV) | 7 personas | 265 EUR | 320 EUR |
 | Pacific Craft 625 (115 CV) | 7 personas | 275 EUR | 330 EUR |
-| Excursión con patrón | 7 personas | 420 EUR (4h) | — |
+| Excursión con patrón | 6 personas | 420 EUR (4h) | — |
 
 **Nota:** Los barcos con licencia NO incluyen combustible. Calcula unos 40-60 EUR adicionales de gasolina para la ida y vuelta a Tossa.
 
@@ -3163,95 +3097,94 @@ La excursión en barco a Tossa de Mar es una de las experiencias más memorables
 
   // ===== POST: Barco sin licencia vs con licencia =====
   {
-    title: "Barco sin licencia vs con licencia: Guia completa para elegir",
+    title: "Barco sin licencia vs con licencia: qué cambia desde octubre de 2026",
     slug: "barco-sin-licencia-vs-con-licencia-guia",
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/barco-sin-licencia-vs-con-licencia-guia.webp",
-    metaDescription: "Barco sin licencia vs con licencia: comparativa completa con precios, distancias, capacidad y actividades para ayudarte a elegir el barco perfecto en Blanes.",
+    metaDescription: "Barco sin licencia vs con licencia: desde octubre de 2026 alquilas con la Licencia de Navegación (1 día, sin examen) o sales con patrón.",
     tags: ["barco sin licencia", "barco con licencia", "comparativa barcos", "licencia nautica", "que barco elegir"],
     isPublished: true,
     _publishedAt: new Date("2026-03-25T10:00:00Z"),
-    excerpt: "No sabes si necesitas un barco con o sin licencia para tu dia en la Costa Brava? Te explicamos todas las diferencias, precios y ventajas de cada opcion para que elijas con confianza.",
-    content: `> **Actualización (RD 1188/2025): desde el 1 de octubre de 2026 alquilar cualquier barco a motor exige un título náutico**, también estos barcos de hasta 15 CV. Los seguimos alquilando igual, pero necesitas al menos la [Licencia de Navegación, el titulín](/es/licencia-navegacion-titulin): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad. Si no lo tienes, sales [con patrón](/es/alquiler-barco-con-patron). Nuestra propia escuela, [Escola Nàutica Blanes](${escolaNauticaUrl("es", "blog")}), abrirá en cuanto resuelva su autorización (hoy solo lista de espera). Lo que lees debajo describe cómo era el alquiler hasta el 30 de septiembre de 2026.
+    excerpt: "Desde el 1 de octubre de 2026 ya no se alquilan barcos sin licencia. Te explicamos qué cambia, cómo sacarte el titulín en un día y cuándo te conviene salir con patrón.",
+    content: `> **Actualización: desde el 1 de octubre de 2026 ya no se alquila ningún barco sin titulación (RD 1188/2025).** Hoy puedes navegar con la [Licencia de Navegación](/es/licencia-navegacion-titulin), que se saca en un día, o salir con patrón en nuestra [excursión privada](/es/alquiler-barco-con-patron).
 
-Una de las preguntas mas frecuentes que recibimos en Costa Brava Rent a Boat es: "Necesito licencia para alquilar un barco?" La respuesta corta es que no siempre. En Espana puedes disfrutar de un dia de navegacion sin tener ningun titulo nautico. Pero tener licencia te abre mas opciones. En esta guia te explicamos todas las diferencias para que elijas la opcion perfecta para ti.
+Una de las preguntas mas frecuentes que recibimos en Costa Brava Rent a Boat es: "Necesito licencia para alquilar un barco?" Hasta el 30 de septiembre de 2026 la respuesta corta era que no siempre. Desde el 1 de octubre de 2026 la respuesta es otra: para llevar tu un barco de alquiler necesitas un titulo nautico, y si no lo tienes sales con patron. En esta guia te explicamos que era un barco sin licencia, que ha cambiado y cual es la opcion perfecta para ti hoy.
 
-## Que es un barco sin licencia
+## Que era un barco sin licencia
 
-Un barco sin licencia es una embarcacion de hasta 5 metros de eslora y un motor de hasta 15 CV que, segun la legislacion espanola, cualquier persona mayor de 18 anos puede pilotar sin necesitar titulo nautico. Solo necesitas tu DNI o pasaporte y prestar atencion al briefing de seguridad que te damos antes de salir.
+Un barco sin licencia era una embarcacion de hasta 5 metros de eslora y un motor de hasta 15 CV que, segun la legislacion espanola (RD 875/2014), cualquier persona mayor de 18 anos podia pilotar sin titulo nautico, hasta 2 millas nauticas de la costa. Desde el 1 de octubre de 2026, el RD 1188/2025 deja esa exencion solo para barcos privados: para alquilar cualquier barco a motor hace falta titulacion.
 
-En [Costa Brava Rent a Boat](/es/barcos-sin-licencia) disponemos de varios modelos sin licencia: el [Solar 450](/es/barco/solar-450), el [Astec 480](/es/barco/astec-480), el [Astec 400](/es/barco/astec-400) y el [Remus 450](/es/barco/remus-450). Todos incluyen combustible, equipo de seguridad y un briefing completo.
+En Costa Brava Rent a Boat teniamos varios modelos sin licencia: el Solar 450, el Remus 450, el Remus 450 II, el Astec 400 y el Astec 480. Desde el 1 de octubre de 2026 ya no los alquilamos.
 
 ## Que es un barco con licencia
 
-Un barco con licencia requiere que el patron (la persona que conduce) tenga una titulacion nautica oficial. Para nuestra flota basta la LN (Licencia de Navegacion) o superior — LNB, PER, PNB o Capitan de Yate. Estos barcos son mas grandes, mas potentes y te permiten navegar a mayor distancia de la costa.
+Un barco con licencia requiere que el patron (la persona que conduce) tenga una titulacion nautica oficial. Para nuestra flota basta la LN (Licencia de Navegacion, el titulin: un curso de 1 dia, sin examen) o superior, como LNB, PER, PNB o Capitan de Yate. Estos barcos son mas grandes y mas potentes.
 
-Nuestros [barcos con licencia](/es/barcos-con-licencia) incluyen el [Pacific Craft 625](/es/barco/pacific-craft-625) y la [Mingolla Brava 19](/es/barco/mingolla-brava-19). Tambien ofrecemos la [excursion privada con capitan](/es/barco/excursion-privada) para quienes quieran un barco grande sin tener licencia.
+Nuestros [barcos con licencia](/es/barcos-con-licencia) son el [Pacific Craft 625](/es/barco/pacific-craft-625), la [Mingolla Brava 19](/es/barco/mingolla-brava-19) y la [Trimarchi 57S](/es/barco/trimarchi-57s). Tambien ofrecemos la [excursion privada con capitan](/es/barco/excursion-privada) para quienes quieran salir en barco sin tener licencia.
 
-## Tabla comparativa: sin licencia vs con licencia
+## Tabla comparativa: sin licencia (hasta sept. 2026) vs con licencia
 
-| Caracteristica | Sin licencia | Con licencia |
+| Caracteristica | Sin licencia (hasta el 30-sep-2026) | Con licencia |
 |---|---|---|
-| **Titulo necesario** | Ninguno | PER o superior |
+| **Titulo necesario** | Ninguno | Licencia de Navegacion o superior |
 | **Eslora maxima** | 5 metros | 6-7+ metros |
 | **Potencia motor** | Hasta 15 CV | 100-150 CV |
 | **Velocidad maxima** | 5-6 nudos (~10 km/h) | 20-30 nudos (~45 km/h) |
-| **Distancia de costa** | 2 millas nauticas | Sin limite practico |
+| **Distancia de costa** | 2 millas nauticas | Llegas a Lloret y Tossa de Mar |
 | **Capacidad** | 4-5 personas | 6-7 personas |
 | **Combustible incluido** | Si | No (se paga aparte) |
-| **Precio desde** | 85 EUR/hora | 150 EUR/hora |
-| **Ideal para** | Familias, principiantes, calas cercanas | Grupos grandes, rutas largas, experiencias deportivas |
+| **Precio desde** | Ya no se alquila | 150 EUR/hora |
+| **Ideal para** | Ya no disponible desde el 1-oct-2026 | Familias, grupos, rutas largas, calas cercanas |
 
-## Quien deberia elegir un barco sin licencia
+## Quien elegia un barco sin licencia, y que hacer ahora
 
-El barco sin licencia es perfecto si:
+El barco sin licencia era la opcion de quien:
 
-- **Nunca has navegado antes.** No necesitas experiencia previa. Te ensenamos todo en un briefing de 10 minutos.
-- **Vienes con familia.** Los barcos son estables, seguros y faciles de manejar. Los ninos disfrutan muchisimo.
-- **Quieres visitar calas cercanas.** Desde el puerto de Blanes, tienes [Cala Sant Francesc](/es/rutas), Cala Bona, Cala Treumal y la playa de Santa Cristina a menos de 15 minutos.
-- **Buscas la opcion mas economica.** Desde 85 EUR la hora con combustible incluido, es la forma mas accesible de disfrutar del mar.
-- **Prefieres tranquilidad.** Navegar a ritmo lento, fondear en una cala, banarte y hacer snorkel sin prisas.
+- **Nunca habia navegado antes.** Hoy la alternativa es sacarse la [Licencia de Navegacion](/es/licencia-navegacion-titulin), un curso de un dia sin examen con practicas incluidas, o salir con patron.
+- **Venia con familia.** Nuestras lanchas con licencia llevan de 6 a 7 personas, y en la excursion privada el patron se ocupa del barco mientras tu te ocupas de los ninos.
+- **Queria visitar calas cercanas.** Desde el puerto de Blanes, tienes [Cala Sant Francesc](/es/rutas), Cala Bona, Cala Treumal y la playa de Santa Cristina a menos de 15 minutos, tambien con una lancha con licencia.
+- **Buscaba la opcion mas economica.** Esa tarifa desaparecio con los propios barcos el 30 de septiembre de 2026.
+- **Preferia tranquilidad.** Navegar a ritmo lento, fondear en una cala, banarte y hacer snorkel sin prisas se sigue pudiendo hacer con titulin o con patron.
 
-### Barcos sin licencia recomendados
+### Que alquilar ahora si no tienes titulo
 
-- [Solar 450](/es/barco/solar-450): Compacto y agil, ideal para parejas.
-- [Astec 480](/es/barco/astec-480): El mas espacioso sin licencia, perfecto para familias de 4-5 personas.
-- [Astec 400](/es/barco/astec-400): Maniobrable y comodo, buena relacion calidad-precio.
-- [Remus 450](/es/barco/remus-450): Robusto y estable, ideal para principiantes.
+- [Sacate el titulin](/es/licencia-navegacion-titulin): un dia de curso y llevas cualquiera de nuestras lanchas con licencia.
+- [Excursion con patron](/es/alquiler-barco-con-patron): no necesitas ningun titulo, hasta 6 personas.
 
 ## Quien deberia elegir un barco con licencia
 
 El barco con licencia es la mejor opcion si:
 
-- **Tienes experiencia nautica.** Ya sabes navegar y quieres un barco con mas prestaciones.
-- **Quieres llegar mas lejos.** Puedes hacer la [ruta Blanes - Tossa de Mar](/es/rutas) ida y vuelta en un solo dia con tiempo de sobra.
+- **Tienes la Licencia de Navegacion o una titulacion superior.** Con el titulin ya puedes llevar cualquiera de nuestras lanchas.
+- **Quieres llegar mas lejos.** Puedes hacer la [ruta Blanes - Tossa de Mar](/es/rutas) ida y vuelta en un solo dia con tiempo de sobra: son 30-45 minutos de trayecto.
 - **Venís en un grupo grande.** Capacidad para 6-7 personas con espacio para moverse comodamente.
 - **Buscas velocidad.** Los barcos con licencia alcanzan 20-30 nudos, lo que te permite cubrir mas terreno y visitar mas calas.
 - **Quieres pescar o hacer deportes nauticos.** La potencia extra permite actividades que no son posibles con barcos mas pequenos.
 
 ### Barcos con licencia recomendados
 
-- [Pacific Craft 625](/es/barco/pacific-craft-625): 115 CV, hasta 7 personas, ideal para rutas largas hasta Tossa de Mar.
+- [Pacific Craft 625](/es/barco/pacific-craft-625): 115 CV, hasta 7 personas, 5,90 m de eslora de matriculacion, ideal para rutas largas hasta Tossa de Mar.
 - [Mingolla Brava 19](/es/barco/mingolla-brava-19): 100 CV, versatil y comoda, perfecta para grupos de 6 personas.
+- [Trimarchi 57S](/es/barco/trimarchi-57s): hasta 7 personas.
 
-## Y si quiero un barco grande pero no tengo licencia?
+## Y si quiero salir en barco pero no tengo licencia?
 
 Tenemos la solucion perfecta: nuestra [excursion privada con capitan](/es/barco/excursion-privada). Un patron profesional te lleva en un barco de 19 pies por las mejores calas y rutas de la Costa Brava. Tu solo te preocupas de disfrutar.
 
-Esta opcion es ideal para celebraciones, despedidas, aniversarios o simplemente para quienes quieren la experiencia de un barco grande sin necesitar licencia.
+Esta opcion es ideal para celebraciones, despedidas, aniversarios o simplemente para quienes quieren navegar sin necesitar licencia.
 
 ## Precios y duraciones
 
-Tanto los barcos sin licencia como con licencia se pueden alquilar por horas. Las duraciones mas populares son 2 horas y 4 horas. Consulta todos los [precios actualizados en nuestra web](/es/precios).
+Los barcos con licencia y la excursion privada se pueden alquilar por horas. Las duraciones mas populares son 2 horas y 4 horas. Consulta todos los [precios actualizados en nuestra web](/es/precios).
 
 En temporada alta (julio-agosto), recomendamos reservar con al menos una semana de antelacion, especialmente para fines de semana.
 
 ---
 
-Elegir entre barco sin licencia o con licencia depende de tu experiencia, el tamano de tu grupo y lo lejos que quieras llegar. En cualquier caso, la Costa Brava te ofrece una experiencia de navegacion inolvidable.
+Desde el 1 de octubre de 2026, elegir ya no es entre barco sin licencia o con licencia: es entre llevar tu la lancha con el titulin o salir con patron. Depende de tu experiencia, el tamano de tu grupo y lo lejos que quieras llegar. En cualquier caso, la Costa Brava te ofrece una experiencia de navegacion inolvidable.
 
-[Explora todos nuestros barcos](/es/barcos) y reserva online en menos de 2 minutos. Si tienes dudas, escribenos por [WhatsApp](https://wa.me/34611500372) y te asesoramos encantados.`,
+[Sacate el titulin](/es/licencia-navegacion-titulin), mira nuestros [barcos con licencia](/es/barcos-con-licencia) o reserva la [excursion con patron](/es/alquiler-barco-con-patron). Si tienes dudas, escribenos por [WhatsApp](https://wa.me/34611500372) y te asesoramos encantados.`,
   },
 
   // ===== POST: Que llevar en un barco de alquiler =====
@@ -3273,7 +3206,7 @@ Elegir entre barco sin licencia o con licencia depende de tu experiencia, el tam
 Antes de preparar tu mochila, ten en cuenta que cuando [alquilas un barco con nosotros](/es/barcos) ya te proporcionamos:
 
 - **Equipo de seguridad completo:** chalecos salvavidas para todos los pasajeros (incluidos ninos), bengalas, extintor y botiquin basico.
-- **Combustible incluido** en todos los [barcos sin licencia](/es/barcos-sin-licencia) (los barcos con licencia no incluyen combustible).
+- **Combustible:** no esta incluido en ningun barco, tenlo en cuenta en el presupuesto del dia.
 - **Briefing de seguridad y navegacion:** te explicamos como manejar el barco, las zonas recomendadas y consejos practicos.
 - **Mapa de rutas y calas:** para que sepas exactamente donde ir.
 - **Ancla y cabo de fondeo:** para que puedas parar en cualquier cala.
@@ -3319,7 +3252,7 @@ Lleva mas agua de la que crees necesaria. Los ninos se deshidratan rapido, espec
 
 - **Equipo de snorkel:** Si no lo has anadido como extra en tu reserva, puedes traer el tuyo. Las calas cerca de [Blanes](/es/alquiler-barcos-blanes) tienen fondos marinos espectaculares.
 - **Camara acuatica o funda sumergible para el movil:** Las fotos desde el agua y bajo el agua son las mejores del viaje.
-- **Altavoz bluetooth portatil:** Musica suave mientras fondeas en una cala. Nuestros barcos [Astec 480](/es/barco/astec-480) ya incluyen altavoz bluetooth.
+- **Altavoz bluetooth portatil:** Musica suave mientras fondeas en una cala.
 - **Juegos de agua:** Para los ninos: pistolas de agua, hinchables pequenos.
 - **Libro o revista:** Para los ratos de fondeo mientras los demas se banan.
 
@@ -3370,12 +3303,12 @@ Un dia en el mar es una de las mejores experiencias que puedes vivir en la Costa
     category: "Experiencias",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/alquiler-barco-familias-costa-brava.webp",
-    metaDescription: "Alquiler de barcos para familias en la Costa Brava: barcos sin licencia seguros, calas poco profundas, snorkel y la experiencia perfecta desde Blanes.",
+    metaDescription: "Alquiler de barcos para familias en la Costa Brava: lanchas con titulin o excursion con patron, calas poco profundas y snorkel desde Blanes.",
     tags: ["barco familias", "excursion familiar barco", "costa brava niños", "actividades acuaticas familias", "barco con niños"],
     isPublished: true,
     _publishedAt: new Date("2026-04-01T10:00:00Z"),
-    excerpt: "Descubre por que alquilar un barco sin licencia en Blanes es la actividad perfecta para familias con ninos: seguro, facil, asequible y con calas espectaculares a pocos minutos.",
-    content: `Si hay una actividad que transforma unas vacaciones familiares en la Costa Brava en algo verdaderamente especial, es alquilar un barco. No hace falta tener experiencia, ni licencia, ni ser un lobo de mar. Solo hacen falta ganas de vivir una aventura juntos en el Mediterraneo.
+    excerpt: "Descubre por que alquilar un barco en Blanes es la actividad perfecta para familias con ninos: con la Licencia de Navegacion (1 dia, sin examen) o con patron, y calas espectaculares a pocos minutos.",
+    content: `Si hay una actividad que transforma unas vacaciones familiares en la Costa Brava en algo verdaderamente especial, es alquilar un barco. No hace falta ser un lobo de mar: desde el 1 de octubre de 2026 alquilas con la Licencia de Navegacion (curso de 1 dia, sin examen) o sales con patron. Solo hacen falta ganas de vivir una aventura juntos en el Mediterraneo.
 
 En [Costa Brava Rent a Boat](/es/alquiler-barcos-blanes) llevamos anos ayudando a familias a crear recuerdos inolvidables en el mar. En esta guia te contamos todo lo que necesitas saber para planificar la excursion familiar perfecta.
 
@@ -3391,9 +3324,9 @@ Alquilar un barco ofrece algo que pocas actividades pueden igualar: combina aven
 - **Actividades multiples:** Navegacion + snorkel + bano + picnic, todo en una sola salida.
 - **Para todas las edades:** Desde bebes (con precauciones) hasta abuelos. No hay limites de edad.
 
-## Barcos sin licencia: seguros y faciles para familias
+## Lanchas con licencia y excursion con patron: seguras y faciles para familias
 
-Todos nuestros [barcos sin licencia](/es/barcos-sin-licencia) estan pensados para que cualquier persona pueda pilotarlos con seguridad, incluso sin experiencia previa. Antes de salir, te damos un briefing completo de 10-15 minutos donde te explicamos:
+Desde el 1 de octubre de 2026 ya no se alquila ningun barco sin titulacion (RD 1188/2025). Con la [Licencia de Navegacion](/es/licencia-navegacion-titulin), que se saca en un curso de 1 dia sin examen, puedes llevar cualquiera de nuestras [lanchas con licencia](/es/barcos-con-licencia). Y si nadie de la familia tiene titulo, podeis salir con patron en la [excursion privada](/es/barco/excursion-privada). Antes de salir con una lancha, te damos un briefing completo de 10-15 minutos donde te explicamos:
 
 - Como arrancar, acelerar y frenar el motor.
 - Como maniobrar y fondear (anclar) en una cala.
@@ -3406,24 +3339,24 @@ Todos nuestros [barcos sin licencia](/es/barcos-sin-licencia) estan pensados par
 La seguridad de los mas pequenos es nuestra prioridad:
 
 - **Chalecos salvavidas infantiles:** Disponemos de chalecos para todas las tallas, incluidos bebes. Todos los menores deben llevar chaleco puesto durante la navegacion.
-- **Barcos estables:** Nuestros barcos sin licencia son embarcaciones anchas y estables, disenadas para no volcar y soportar oleaje moderado.
-- **Velocidad controlada:** Con un maximo de 5-6 nudos (unos 10 km/h), la navegacion es tranquila y segura.
+- **Barcos estables:** Nuestras lanchas son embarcaciones anchas y estables, preparadas para soportar oleaje moderado.
+- **Ritmo tranquilo:** Con ninos a bordo, navegad despacio y bordeando la costa. Las calas mas bonitas estan a pocos minutos del puerto.
 - **Zonas protegidas:** Las calas cercanas a Blanes estan protegidas del oleaje y tienen aguas poco profundas, ideales para ninos.
 - **Contacto permanente:** Tienes nuestro numero de telefono y estamos siempre pendientes por si necesitas asistencia.
 
 ## Que barco elegir para tu familia
 
-### Familias de 3-4 personas
+### Familias de hasta 6 personas
 
-El [Astec 480](/es/barco/astec-480) es nuestro barco estrella para familias. Con casi 5 metros de eslora, ofrece el maximo espacio posible sin necesitar licencia. Tiene espacio para moverse comodamente, guardar mochilas y nevera, y cuenta con altavoz bluetooth integrado. Capacidad maxima: 5 personas.
+La [Mingolla Brava 19](/es/barco/mingolla-brava-19) es una lancha con licencia comoda para familias: tiene espacio para moverse, guardar mochilas y nevera. Capacidad maxima: 6 personas. Necesitas la Licencia de Navegacion o una titulacion superior.
 
-### Parejas con 1-2 ninos
+### Familias de hasta 7 personas
 
-El [Solar 450](/es/barco/solar-450) es compacto, agil y muy facil de manejar. Perfecto si sois 3-4 personas y buscais una experiencia mas deportiva. Es el barco ideal para primera vez.
+La [Trimarchi 57S](/es/barco/trimarchi-57s) y el [Pacific Craft 625](/es/barco/pacific-craft-625) admiten hasta 7 personas. Con el titulin podeis llevar cualquiera de las dos y llegar a Lloret o incluso a Tossa de Mar (de 30 a 45 minutos desde Blanes).
 
-### Familias grandes (6+ personas)
+### Familias sin titulo nautico
 
-Si sois mas de 5, necesitareis un [barco con licencia](/es/barcos-con-licencia) como el [Pacific Craft 625](/es/barco/pacific-craft-625) (hasta 7 personas) o contratar nuestra [excursion privada con capitan](/es/barco/excursion-privada), donde un patron profesional os lleva por las mejores calas sin que necesiteis ningun titulo.
+Si nadie de la familia tiene titulacion, contratad nuestra [excursion privada con capitan](/es/barco/excursion-privada) (hasta 6 personas), donde un patron profesional os lleva por las mejores calas sin que necesiteis ningun titulo.
 
 ## Itinerario familiar recomendado: 2 horas
 
@@ -3459,7 +3392,7 @@ Si teneis toda la manana, el alquiler de 4 horas os permite llegar mas lejos:
 
 ## Precios para familias
 
-Los [precios](/es/precios) de nuestros barcos sin licencia empiezan desde 85 EUR la hora, con combustible incluido. Las duraciones mas populares para familias son:
+Consulta los [precios](/es/precios) actualizados de nuestras lanchas con licencia y de la excursion con patron. Desde el 1 de octubre de 2026 ningun barco incluye la gasolina. Las duraciones mas populares para familias son:
 
 - **2 horas:** Suficiente para visitar 2-3 calas cercanas. Ideal con ninos pequenos.
 - **4 horas:** La experiencia completa. Tiempo para explorar, nadar, hacer snorkel y comer a bordo.
@@ -3501,7 +3434,7 @@ Alquilar un barco en familia es una de esas experiencias que los ninos recordara
     isPublished: true,
     _publishedAt: new Date("2026-04-04T10:00:00Z"),
     excerpt: "Descubre las 10 mejores calas cerca de Blanes que puedes visitar en barco: desde Cala Sant Francesc hasta rincones secretos a menos de 30 minutos del puerto.",
-    content: `Blanes es el punto de partida perfecto para explorar algunas de las calas mas bonitas del Mediterraneo. Mientras que nuestra guia de [las mejores calas de la Costa Brava](/es/blog/mejores-calas-costa-brava-en-barco) cubre toda la costa desde Blanes hasta Tossa de Mar, en este articulo nos centramos exclusivamente en las calas cercanas al puerto de Blanes, esas que puedes visitar incluso con un alquiler de solo 2 horas en un [barco sin licencia](/es/barcos-sin-licencia).
+    content: `Blanes es el punto de partida perfecto para explorar algunas de las calas mas bonitas del Mediterraneo. Mientras que nuestra guia de [las mejores calas de la Costa Brava](/es/blog/mejores-calas-costa-brava-en-barco) cubre toda la costa desde Blanes hasta Tossa de Mar, en este articulo nos centramos exclusivamente en las calas cercanas al puerto de Blanes, esas que puedes visitar incluso con un alquiler de solo 2 horas en una [lancha con licencia](/es/barcos-con-licencia).
 
 ## 1. Cala Sant Francesc
 
@@ -3605,13 +3538,13 @@ No tiene acceso a pie (los acantilados la rodean por completo) y solo se puede l
 
 ## Que barco elegir para explorar las calas de Blanes
 
-Todas estas calas estan a menos de 15 minutos del puerto, lo que las hace perfectas para un alquiler corto de 2 horas en un [barco sin licencia](/es/barcos-sin-licencia):
+Todas estas calas estan a menos de 15 minutos del puerto, lo que las hace perfectas para un alquiler corto de 2 horas. Desde el 1 de octubre de 2026 alquilas con la [Licencia de Navegacion](/es/licencia-navegacion-titulin) (curso de 1 dia, sin examen) o sales con patron:
 
-- [Astec 480](/es/barco/astec-480): El mas espacioso. Ideal para familias que quieren visitar 3-4 calas comodamente.
-- [Solar 450](/es/barco/solar-450): Agil y maniobrable. Perfecto para parejas que quieren explorar los rincones mas estrechos.
-- [Remus 450](/es/barco/remus-450): Estable y robusto. La mejor opcion para principiantes absolutos.
+- [Mingolla Brava 19](/es/barco/mingolla-brava-19): Hasta 6 personas. Ideal para familias que quieren visitar 3-4 calas comodamente.
+- [Trimarchi 57S](/es/barco/trimarchi-57s): Hasta 7 personas. Espacio de sobra para un grupo.
+- [Excursion privada con patron](/es/barco/excursion-privada): Hasta 6 personas y no necesitas ningun titulo. El patron os lleva a las mejores calas del dia.
 
-Si tienes licencia y quieres combinar calas cercanas con una escapada mas lejana a [Tossa de Mar](/es/alquiler-barcos-tossa-de-mar), el [Pacific Craft 625](/es/barco/pacific-craft-625) te permite hacerlo comodamente en una jornada de 4 horas.
+Si quieres combinar calas cercanas con una escapada mas lejana a [Tossa de Mar](/es/alquiler-barcos-tossa-de-mar) (de 30 a 45 minutos desde Blanes), el [Pacific Craft 625](/es/barco/pacific-craft-625) (hasta 7 personas) te permite hacerlo comodamente en una jornada de 4 horas.
 
 ## Consejos para visitar estas calas
 
@@ -3630,7 +3563,7 @@ Si tienes licencia y quieres combinar calas cercanas con una escapada mas lejana
     category: "Experiences",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/sunset-boat-trip-blanes-costa-brava.webp",
-    metaDescription: "Experience a magical sunset boat trip in Blanes, Costa Brava. No license needed, stunning coastal views, hidden coves and golden hour photography tips.",
+    metaDescription: "Experience a magical sunset boat trip in Blanes, Costa Brava. With the one-day titulín or a skipper, hidden coves and golden hour photography tips.",
     tags: ["sunset boat trip", "blanes sunset", "evening boat ride costa brava", "romantic boat trip", "atardecer barco blanes"],
     isPublished: true,
     _publishedAt: new Date("2026-04-07T10:00:00Z"),
@@ -3643,9 +3576,9 @@ Blanes sits at the southernmost tip of the Costa Brava, facing southwest across 
 
 From the port of Blanes, you are just minutes away from some of the most beautiful coastal scenery in Catalonia. The combination of dramatic cliffs, hidden coves, and crystal-clear water makes every sunset trip unique.
 
-## No license needed
+## Navigation Licence or skipper
 
-One of the best things about renting a boat in Blanes is that you do not need a boating license. Spanish law allows anyone over 18 to pilot boats under 5 meters with engines up to 15 HP. Our [boats without license](/es/barcos-sin-licencia) are easy to drive and we give you a full safety briefing before departure. Even if you have never been on a boat before, you will feel confident within minutes.
+Since 1 October 2026, anyone renting a motorboat in Spain needs a boating qualification (RD 1188/2025). The good news: the Navigation Licence (the "titulín") takes a single day, with no exam, and it lets you skipper our [licensed boats](/es/barcos-con-licencia). [Get your titulín](/es/licencia-navegacion-titulin) and we give you a full safety briefing before departure, so you will feel confident within minutes.
 
 If you prefer to sit back and enjoy without worrying about navigation, our [private excursion with a captain](/es/barco/excursion-privada) is the perfect option. A professional skipper takes you on a curated route while you relax with drinks and watch the show.
 
@@ -3682,13 +3615,13 @@ Check sunset times for your travel dates and book your time slot accordingly. Yo
 
 Head south from the port to Cala Sant Francesc, just 5 minutes away. This stunning cove surrounded by pine-covered cliffs catches the last light of the day beautifully. Drop anchor, swim in the turquoise water, and watch the sun dip below the horizon from the most beautiful cove in [Blanes](/es/alquiler-barcos-blanes).
 
-**Best boat:** [Solar 450](/es/barco/solar-450) or [Astec 400](/es/barco/astec-400) for an intimate experience.
+**Best boat:** [Mingolla Brava 19](/es/barco/mingolla-brava-19) for an intimate experience.
 
 ### Route 2: Coastal cruise to Santa Cristina (for groups)
 
 Navigate south past Cala Sant Francesc, Cala Bona, and Cala Treumal to reach the beach of Santa Cristina. The hermitage perched on the cliff above the beach is breathtaking in the sunset light. On the way back, hug the coastline and watch the cliffs change color as the light fades.
 
-**Best boat:** [Astec 480](/es/barco/astec-480) for families, or [Pacific Craft 625](/es/barco/pacific-craft-625) for larger groups with a license.
+**Best boat:** [Trimarchi 57S](/es/barco/trimarchi-57s) or [Pacific Craft 625](/es/barco/pacific-craft-625) for groups of up to 7 with a licence, or the [private excursion with a skipper](/es/barco/excursion-privada) for up to 6 with no licence required.
 
 ### Route 3: Sa Palomera panoramic (quick and stunning)
 
@@ -3721,7 +3654,7 @@ A sunset boat trip is one of the most romantic activities on the Costa Brava. Im
 
 For the ultimate romantic experience, we recommend:
 
-- The [Solar 450](/es/barco/solar-450) for its intimate size and easy handling.
+- The [Mingolla Brava 19](/es/barco/mingolla-brava-19) for its compact size, or the [private excursion](/es/barco/excursion-privada) if you would rather leave the helm to a skipper.
 - A 2-hour booking starting 90 minutes before sunset.
 - Cala Sant Francesc as your destination.
 - A bottle of something sparkling and some local cheese and fuet.
@@ -3729,7 +3662,7 @@ For the ultimate romantic experience, we recommend:
 
 ## Pricing
 
-Our [boats without license](/es/barcos-sin-licencia) start from 85 EUR per hour, with fuel included. A 2-hour sunset trip for two to four people is one of the best value experiences on the Costa Brava. Check our current [prices](/es/precios) for all options and seasonal rates.
+Sunset trips run on our [licensed boats](/es/barcos-con-licencia) with your Navigation Licence, or on the [private excursion with a skipper](/es/barco/excursion-privada). Fuel is not included. Check our current [prices](/es/precios) for all options and seasonal rates.
 
 ---
 
@@ -3745,19 +3678,16 @@ A sunset boat trip in Blanes is more than just an activity. It is one of those r
     category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/alquiler-barco-lloret-de-mar-precios-guia.webp",
-    metaDescription: "Alquiler de barco en Lloret de Mar: precios desde 85 EUR/hora, como llegar desde Blanes, calas disponibles y barcos sin licencia y con licencia.",
+    metaDescription: "Alquiler de barco en Lloret de Mar: precios, como llegar desde Blanes, calas en ruta y barcos con licencia o excursion con patron.",
     tags: ["alquiler barco lloret de mar", "barco lloret precio", "lloret de mar en barco", "lloret blanes barco"],
     isPublished: true,
     _publishedAt: new Date("2026-03-28T10:00:00Z"),
-    excerpt: "Lloret de Mar no tiene puerto de alquiler propio, pero desde el Puerto de Blanes estas a solo 25 minutos en barco. Te explicamos precios, opciones sin licencia y con licencia, y las calas que puedes descubrir por el camino.",
+    excerpt: "Lloret de Mar no tiene puerto de alquiler propio, pero desde el Puerto de Blanes estas a solo 25 minutos en barco. Te explicamos precios, opciones con licencia y con patron, y las calas que puedes descubrir por el camino.",
     titleByLang: {
       es: "Alquiler de Barco en Lloret de Mar: Precios, Opciones y Como Llegar desde Blanes",
       en: "Boat Rental in Lloret de Mar: Prices, Options and How to Get There from Blanes",
     },
-    excerptByLang: {
-      es: "Lloret de Mar no tiene puerto de alquiler propio, pero desde el Puerto de Blanes estas a solo 25 minutos en barco. Te explicamos precios, opciones sin licencia y con licencia, y las calas que puedes descubrir por el camino.",
-      en: "Lloret de Mar does not have its own rental port, but from Puerto de Blanes you are just 25 minutes away by boat. We explain prices, license-free and licensed options, and the coves you can discover along the way.",
-    },
+    excerptByLang: {"en":"Lloret de Mar does not have its own rental port, but from Puerto de Blanes you are just 25 minutes away by boat. We explain prices, licensed and skippered options, and the coves you can discover along the way.","es":"Lloret de Mar no tiene puerto de alquiler propio, pero desde el Puerto de Blanes estas a solo 25 minutos en barco. Te explicamos precios, opciones con licencia y con patron, y las calas que puedes descubrir por el camino."},
     content: `Si estas buscando alquilar un barco en Lloret de Mar, hay algo importante que debes saber: **Lloret no tiene un puerto de alquiler de embarcaciones de recreo**. La playa principal de Lloret es una bahia abierta sin instalaciones portuarias para alquiler turistico. Pero eso no significa que no puedas disfrutar de Lloret desde el mar. Todo lo contrario.
 
 El **Puerto de Blanes** esta a solo 10 minutos en coche o 15 minutos en autobus desde Lloret de Mar, y desde ahi puedes navegar hacia las calas mas bonitas de la costa, incluyendo las que estan frente a Lloret. En esta guia te explicamos todas las opciones, precios y lo que puedes ver por el camino.
@@ -3774,23 +3704,13 @@ Una vez en el puerto, nos encontraras en el pantalon principal. Te recomendamos 
 
 ## Precios de alquiler de barco para ir a Lloret
 
-### Barcos sin licencia (desde 85 EUR/hora)
+### Barcos sin licencia: ya no se alquilan
 
-No necesitas ningun titulo nautico. Te ensenamos a manejar el barco en un briefing de 15 minutos. **Gasolina, seguro y equipo de seguridad incluidos.**
-
-| Barco | Capacidad | Precio desde (temporada baja) | Ideal para |
-|-------|-----------|-------------------------------|------------|
-| [Solar 450](/es/barco/solar-450) | 5 personas | 85 EUR/hora (135 EUR/2h) | Tomar el sol, solarium amplio |
-| [Remus 450](/es/barco/remus-450) | 5 personas | 85 EUR/hora (135 EUR/2h) | Familias con ninos, estabilidad |
-| [Astec 480](/es/barco/astec-480) | 5 personas | 95 EUR/hora (165 EUR/2h) | Premium, musica bluetooth |
-
-**Importante:** Los barcos sin licencia pueden navegar hasta **2 millas nauticas** de la costa (unos 3,7 km). Esto significa que desde Blanes puedes llegar comodamente hasta la **playa de Fenals**, que esta a unos 5 km del puerto. Fenals es la segunda playa de Lloret, mas tranquila y familiar que la playa principal.
-
-Sin embargo, **para llegar a la playa principal de Lloret de Mar** (que esta a unos 6 km del puerto de Blanes), la ruta costera supera el limite de 2 millas en algunos tramos. Para esa ruta necesitas un barco con licencia o nuestra excursion con capitan.
+Hasta el 30 de septiembre de 2026 esta ruta tambien se podia hacer en barco sin licencia, hasta la playa de Fenals. **Desde el 1 de octubre de 2026 ya no se alquila ningun barco sin titulacion (RD 1188/2025)**: alquilas con la Licencia de Navegacion (curso de 1 dia, sin examen) o sales con patron. Si no tienes titulo, puedes [sacarte el titulin](/es/licencia-navegacion-titulin) en un dia o reservar nuestra excursion con capitan.
 
 ### Barcos con licencia (desde 175 EUR/2 horas)
 
-Requieren **Licencia de Navegacion (LN) o superior** (PNB, PER...). El combustible NO esta incluido (se paga aparte al repostar).
+Requieren **Licencia de Navegacion (LN) o superior** (PNB, PER...). La LN es el "titulin": un curso de 1 dia, sin examen. El combustible NO esta incluido (se paga aparte al repostar).
 
 | Barco | Capacidad | Precio desde (temporada baja) | Motor |
 |-------|-----------|-------------------------------|-------|
@@ -3806,7 +3726,7 @@ Si no tienes licencia pero quieres un barco grande y llegar hasta Lloret o mas a
 
 ## Que puedes ver en barco de Blanes a Lloret
 
-La ruta costera de Blanes hacia Playa de Fenals (sur de Lloret) es una de las mas bonitas de la Costa Brava. Estas son las paradas, en orden desde el puerto, todas accesibles con barco sin licencia:
+La ruta costera de Blanes hacia Playa de Fenals (sur de Lloret) es una de las mas bonitas de la Costa Brava. Estas son las paradas, en orden desde el puerto:
 
 ### 1. Sa Forcanera (5 min desde el puerto)
 
@@ -3834,25 +3754,24 @@ Cala semivirgen rodeada de pinos, con uno de los mejores fondeos de la zona. El 
 
 ### 7. Playa de Fenals (25 min desde el puerto)
 
-La playa familiar al sur de Lloret y **el punto mas lejano al que puedes llegar con barco sin licencia** (limite legal de 2 millas nauticas). Mas al norte, la playa de Lloret centro (con el Castillo de Sa Caleta y la escultura de la Dona Marinera), Cala Banys y Cala Canyelles quedan fuera del rango sin licencia: solo se llega con barco con licencia o con la excursion con capitan.
+La playa familiar al sur de Lloret. Hasta el 30 de septiembre de 2026 era el punto mas lejano al que llegaban los barcos sin licencia. Mas al norte, la playa de Lloret centro (con el Castillo de Sa Caleta y la escultura de la Dona Marinera), Cala Banys y Cala Canyelles quedan a pocos minutos con barco con licencia o con la excursion con capitan.
 
-## Tabla comparativa: sin licencia vs con licencia para ir a Lloret
+## Tabla comparativa: con licencia vs excursion con capitan para ir a Lloret
 
-| | Sin licencia | Con licencia | Excursion con capitan |
-|---|---|---|---|
-| **Precio desde** | 85 EUR/h | 175 EUR/2h | 265 EUR/2h |
-| **Llegas a Fenals** | Si | Si | Si |
-| **Llegas a Lloret playa** | No | Si | Si |
-| **Combustible incluido** | Si | No | No |
-| **Necesitas titulo** | No | Licencia de Navegacion (LN) | No |
-| **Duracion recomendada** | 3-4 horas | 4-6 horas | 2-4 horas |
-| **Capacidad maxima** | 5 personas | 7 personas | 7 personas |
+| | Con licencia | Excursion con capitan |
+|---|---|---|
+| **Precio desde** | 175 EUR/2h | 265 EUR/2h |
+| **Llegas a Fenals** | Si | Si |
+| **Llegas a Lloret playa** | Si | Si |
+| **Combustible incluido** | No | No |
+| **Necesitas titulo** | Licencia de Navegacion (LN) | No |
+| **Duracion recomendada** | 4-6 horas | 2-4 horas |
+| **Capacidad maxima** | 7 personas | 6 personas |
 
 ## Duracion recomendada para una excursion a Lloret
 
 Si tu objetivo es **llegar hasta la zona de Lloret y disfrutar de las calas**, te recomendamos:
 
-- **Con barco sin licencia:** Minimo **3 horas**, idealmente **4 horas**. Esto te da tiempo para navegar hasta Fenals (25 min), fondear y banarte (1-1,5h), explorar alguna cala intermedia y volver al puerto con calma.
 - **Con barco con licencia:** Minimo **4 horas** para llegar a Lloret playa, fondear, banarte y volver. Si quieres explorar varias calas, reserva **6-8 horas**.
 - **Excursion con capitan:** Con **2 horas** ya puedes hacer una ruta espectacular. El capitan conoce los mejores rincones y optimiza el tiempo.
 
@@ -3884,7 +3803,7 @@ Complementa tu experiencia con nuestros extras:
 
 ---
 
-Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es tu puerta de entrada perfecta a toda la costa. Con barcos desde 85 EUR la hora y la posibilidad de llegar a Fenals sin licencia, no hay excusa para no descubrir Lloret desde el mar.
+Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es tu puerta de entrada perfecta a toda la costa. Con la Licencia de Navegacion (curso de 1 dia, sin examen) o con patron, no hay excusa para no descubrir Lloret desde el mar.
 
 [Reserva tu barco ahora](/es/barcos) o escribenos por [WhatsApp](https://wa.me/34611500372) si tienes dudas sobre que barco elegir para tu excursion a Lloret.`,
   },
@@ -3911,28 +3830,28 @@ Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es 
     },
     content: `Tossa de Mar es, probablemente, el pueblo mas bonito de la Costa Brava. Su recinto amurallado medieval, la Vila Vella, se levanta sobre un promontorio rocoso que se adentra en el mar, y la vista desde un barco es absolutamente espectacular. Si estas planeando visitar Tossa de Mar en barco desde Blanes, esta guia te explica todo lo que necesitas saber.
 
-## Puedo llegar a Tossa de Mar con un barco sin licencia?
+## Que necesito para llegar a Tossa de Mar en barco?
 
-**La respuesta corta es no.** Tossa de Mar esta a unos 12 km del Puerto de Blanes siguiendo la costa. Los barcos sin licencia tienen un limite de navegacion de 2 millas nauticas (3,7 km) desde la costa, pero eso no es el problema principal. El problema es la **distancia y el tiempo**: con un motor de 15 CV, tardarias mas de 45 minutos en cada sentido navegando a velocidad maxima, lo que haria inviable una excursion de ida y vuelta en un alquiler de pocas horas.
+**Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegacion (curso de 1 dia, sin examen) o sales con patron** (RD 1188/2025: ya no se alquila ningun barco sin titulacion). Tossa de Mar esta a unos 12 km del Puerto de Blanes siguiendo la costa: con una lancha con licencia llegas en 30-45 minutos.
 
-Para llegar a Tossa necesitas un **barco con licencia** (PER o PNB) o nuestra **excursion privada con capitan**.
+Para llegar a Tossa necesitas un **barco con licencia** (basta la [Licencia de Navegacion](/es/licencia-navegacion-titulin), el titulin, o una titulacion superior) o nuestra **excursion privada con capitan**.
 
 ## Tiempo de navegacion Blanes - Tossa de Mar
 
 | Barco | Motor | Tiempo aprox. |
 |-------|-------|---------------|
-| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | Mercury 80cv | 25-30 min |
-| [Trimarchi 57S](/es/barco/trimarchi-57s) | Selva 110cv | 20-25 min |
-| [Pacific Craft 625](/es/barco/pacific-craft-625) | Yamaha 115cv | 20-25 min |
-| [Excursion con capitan](/es/barco/excursion-privada) | Yamaha 115cv | 20-25 min |
+| [Mingolla Brava 19](/es/barco/mingolla-brava-19) | Mercury 80cv | 30-45 min |
+| [Trimarchi 57S](/es/barco/trimarchi-57s) | Selva 110cv | 30-45 min |
+| [Pacific Craft 625](/es/barco/pacific-craft-625) | Yamaha 115cv | 30-45 min |
+| [Excursion con capitan](/es/barco/excursion-privada) | Yamaha 115cv | 30-45 min |
 
-Con un barco con licencia, la travesia es rapida y comoda. En 25 minutos estas fondeando frente a las murallas de la Vila Vella, una imagen que no olvidaras.
+Con un barco con licencia, la travesia es rapida y comoda. En 30-45 minutos estas fondeando frente a las murallas de la Vila Vella, una imagen que no olvidaras.
 
 ## Precios para ir a Tossa de Mar en barco
 
 ### Barcos con licencia
 
-Requieren titulacion nautica PER o PNB. **El combustible NO esta incluido** y se paga aparte al repostar (calcula unos 30-50 EUR de gasolina para la ida y vuelta a Tossa, dependiendo del barco y la velocidad).
+Requieren la Licencia de Navegacion (el titulin, curso de 1 dia sin examen) o una titulacion superior. **El combustible NO esta incluido** y se paga aparte al repostar (calcula unos 30-50 EUR de gasolina para la ida y vuelta a Tossa, dependiendo del barco y la velocidad).
 
 | Barco | Capacidad | Precio desde (temporada baja) | Duracion recomendada |
 |-------|-----------|-------------------------------|----------------------|
@@ -4043,7 +3962,7 @@ El consumo varia segun la velocidad. Navegar a velocidad de crucero (no a maxima
 | | Barco con licencia | Excursion con capitan |
 |---|---|---|
 | **Precio desde** | 175 EUR/2h + combustible | 265 EUR/2h (combustible no incluido) |
-| **Necesitas licencia** | Si (PER/PNB) | No |
+| **Necesitas licencia** | Si (titulin o superior) | No |
 | **Libertad de ruta** | Total | El capitan adapta a tus preferencias |
 | **Conocimiento local** | Depende de ti | El capitan conoce cada rincon |
 | **Ideal para** | Navegantes experimentados | Familias, celebraciones, primera vez |
@@ -4077,12 +3996,12 @@ La ruta de Blanes a Tossa de Mar en barco es una de las experiencias imprescindi
     },
     content: `La Costa Brava no seria la Costa Brava sin sus calas escondidas. Pero muchas de las mejores no tienen acceso por tierra, o el camino es tan complicado que casi nadie llega. La unica forma real de disfrutarlas es desde el mar. Y desde el Puerto de Blanes tienes acceso directo a todas ellas.
 
-En esta guia te presentamos **7 playas y calas entre Blanes y Tossa de Mar que solo puedes visitar comodamente en barco**. Para cada una te explicamos como llegar, que barco necesitas y si merece la pena llevar equipo de snorkel.
+En esta guia te presentamos **7 playas y calas entre Blanes y Tossa de Mar que solo puedes visitar comodamente en barco**. Para cada una te explicamos como llegar, que barco necesitas y si merece la pena llevar equipo de snorkel. Desde el 1 de octubre de 2026 alquilas con la [Licencia de Navegacion](/es/licencia-navegacion-titulin) (curso de 1 dia, sin examen) o sales con patron.
 
 ## 1. Cala Brava
 
 **Distancia desde el Puerto de Blanes:** 2 km (8 minutos en barco)
-**Barco necesario:** Cualquier barco sin licencia
+**Barco necesario:** Cualquier lancha con licencia o la excursion con capitan
 **Snorkel:** 9/10
 **Mejor hora:** 10:00 - 13:00 (el sol ilumina el fondo marino)
 
@@ -4090,12 +4009,12 @@ Cala Brava es una de las joyas mas desconocidas de Blanes. Se encuentra entre Ca
 
 Desde el barco, simplemente fondeas sobre la arena y te tiras al agua. El fondo marino aqui es excepcional: posidonia oceanica, bancos de sargos y obladas, y rocas cubiertas de gorgonias a poca profundidad. Si solo puedes hacer snorkel en un sitio de toda la Costa Brava, que sea aqui.
 
-**Barco recomendado:** El [Astec 400](/es/barco/astec-400) (desde 80 EUR/hora) es perfecto para parejas que quieran esta cala en exclusiva. Si vais 4-5 personas, el [Remus 450](/es/barco/remus-450) o el [Solar 450](/es/barco/solar-450) (desde 85 EUR/hora) os daran mas espacio.
+**Barco recomendado:** La [Mingolla Brava 19](/es/barco/mingolla-brava-19) (desde 175 EUR/2h) es perfecta para parejas o grupos pequenos que quieran esta cala en exclusiva. Si vais mas, la [Trimarchi 57S](/es/barco/trimarchi-57s) admite hasta 7 personas.
 
 ## 2. Las cuevas entre Cala Sant Francesc y Santa Cristina
 
 **Distancia desde el Puerto de Blanes:** 2,5 km (10 minutos en barco)
-**Barco necesario:** Barco sin licencia (mejor uno pequeno para acercarse a las rocas)
+**Barco necesario:** Lancha con licencia o excursion con capitan (acercate a las rocas despacio)
 **Snorkel:** 8/10
 **Mejor hora:** Por la manana, con el sol rasante sobre el agua
 
@@ -4110,7 +4029,7 @@ No son playas propiamente dichas: son formaciones rocosas con pequenas piscinas 
 ## 3. La cara oculta de Cala Boadella
 
 **Distancia desde el Puerto de Blanes:** 4 km (12 minutos en barco)
-**Barco necesario:** Barco sin licencia
+**Barco necesario:** Lancha con licencia o excursion con capitan
 **Snorkel:** 7/10
 **Mejor hora:** Manana para snorkel, tarde para sol
 
@@ -4120,12 +4039,12 @@ Desde el barco, simplemente fondeas frente a esta seccion y tienes tu propia pla
 
 **Dato curioso:** En los anos 70 y 80, esta seccion de la playa era una zona naturista. Hoy en dia es mixta, pero sigue manteniendo un ambiente mucho mas tranquilo y natural que el resto de Boadella.
 
-**Barco recomendado:** El [Astec 480](/es/barco/astec-480) (desde 95 EUR/hora) con su equipo de musica bluetooth convierte esta parada en una experiencia premium.
+**Barco recomendado:** El [Pacific Craft 625](/es/barco/pacific-craft-625) (desde 200 EUR/2h), con su solarium y su mesa para comer a bordo, convierte esta parada en una experiencia premium.
 
 ## 4. Micro-calas entre Lloret y Tossa
 
 **Distancia desde el Puerto de Blanes:** 8-10 km (25-30 minutos en barco)
-**Barco necesario:** Barco con licencia (la distancia supera la zona practica de los sin licencia)
+**Barco necesario:** Barco con licencia o excursion con capitan
 **Snorkel:** 10/10
 **Mejor hora:** Todo el dia (las paredes rocosas crean sombra natural)
 
@@ -4178,21 +4097,21 @@ Esta ultima entrada no es un lugar concreto, sino una experiencia. Nuestro patro
 
 Lo mas interesante es que **el mejor sitio cambia cada dia**. Depende del viento, la corriente, la hora y la epoca del ano. El capitan lee las condiciones del dia y te lleva al rincon que estara perfecto en ese momento.
 
-**Que incluye la excursion:** El [capitan te lleva en el Pacific Craft 625](/es/barco/excursion-privada), un barco de 5,90 metros de eslora de matriculacion con capacidad para 7 personas. Desde 265 EUR por 2 horas. El capitan adapta la ruta a tus preferencias: snorkel, calas virgenes, vistas de Vila Vella o un mix de todo.
+**Que incluye la excursion:** El [capitan te lleva en el Pacific Craft 625](/es/barco/excursion-privada), un barco de 5,90 metros de eslora de matriculacion para hasta 6 personas. Desde 265 EUR por 2 horas. El capitan adapta la ruta a tus preferencias: snorkel, calas virgenes, vistas de Vila Vella o un mix de todo.
 
 **Para quien es ideal:** Familias con ninos (el capitan se encarga de todo), celebraciones (cumpleanos, aniversarios), y cualquiera que quiera la experiencia mas exclusiva y personalizada de la costa.
 
 ## Que barco necesito? Resumen rapido
 
-| Playa/Cala | Sin licencia | Con licencia | Excursion capitan |
-|------------|:---:|:---:|:---:|
-| 1. Cala Brava | Si | Si | Si |
-| 2. Cuevas Sant Francesc - Santa Cristina | Si | Si | Si |
-| 3. Cala Boadella (cara oculta) | Si | Si | Si |
-| 4. Micro-calas Lloret - Tossa | No | Si | Si |
-| 5. Cala Pola | No | Si | Si |
-| 6. Calas norte de Tossa | No | Si | Si |
-| 7. Rincones secretos del capitan | No | No | Si |
+| Playa/Cala | Con licencia (titulin) | Excursion capitan |
+|------------|:---:|:---:|
+| 1. Cala Brava | Si | Si |
+| 2. Cuevas Sant Francesc - Santa Cristina | Si | Si |
+| 3. Cala Boadella (cara oculta) | Si | Si |
+| 4. Micro-calas Lloret - Tossa | Si | Si |
+| 5. Cala Pola | Si | Si |
+| 6. Calas norte de Tossa | Si | Si |
+| 7. Rincones secretos del capitan | No | Si |
 
 ## Extras imprescindibles para estas calas
 
@@ -4262,9 +4181,9 @@ El [Pacific Craft 625](/es/barco/pacific-craft-625) es nuestra embarcacion estre
 | 4 horas | 275 EUR | 310 EUR | 330 EUR |
 | 8 horas | 330 EUR | 395 EUR | 460 EUR |
 
-**Requiere licencia nautica** (PER o PNB). Si nadie del grupo tiene licencia, la excursion con capitan es vuestra opcion.
+**Requiere titulacion nautica**: basta la [Licencia de Navegacion](/es/licencia-navegacion-titulin) (el titulin, un curso de 1 dia sin examen) o una superior. Si nadie del grupo tiene titulo, la excursion con capitan es vuestra opcion.
 
-### Para grupos grandes sin licencia: Excursion con capitan
+### Para grupos grandes sin titulo: Excursion con capitan
 
 La [excursion privada con capitan](/es/barco/excursion-privada) es la opcion perfecta para celebraciones donde **nadie tiene licencia nautica**. Un patron profesional os lleva en el Pacific Craft 625 por las mejores calas mientras vosotros solo os preocupais de pasarlo bien.
 
@@ -4281,25 +4200,15 @@ La [excursion privada con capitan](/es/barco/excursion-privada) es la opcion per
 - Conoce las mejores calas para cada tipo de celebracion
 - Podeis dedicar toda vuestra atencion a disfrutar
 
-### Para grupos medianos (5 personas): Astec 480
+### Para grupos de 6-7 personas con titulin: Mingolla Brava 19 y Trimarchi 57S
 
-Si sois un grupo de hasta 5 personas, el [Astec 480](/es/barco/astec-480) es una excelente opcion **sin necesidad de licencia**:
+Desde el 1 de octubre de 2026 ya no alquilamos barcos sin titulacion. Si alguien del grupo tiene la [Licencia de Navegacion](/es/licencia-navegacion-titulin) (el titulin, un curso de 1 dia sin examen) o una titulacion superior, el [Mingolla Brava 19](/es/barco/mingolla-brava-19) (6 personas) y el [Trimarchi 57S](/es/barco/trimarchi-57s) (7 personas) son una excelente opcion:
 
 - **Musica bluetooth** integrada
-- **Solarium acolchado** amplio
-- **Gasolina incluida** (sin sorpresas al final)
-- Desde **95 EUR/hora** en temporada baja
+- Potencia para llegar a Lloret y a Tossa de Mar
+- Combustible no incluido
 
-El Astec 480 es especialmente popular para cumpleanos intimos y aniversarios de pareja o grupos pequenos.
-
-### Para parejas o grupos de 4: Astec 400
-
-El [Astec 400](/es/barco/astec-400) es la opcion mas economica, perfecta para un aniversario romantico o un cumpleanos intimo:
-
-- Capacidad para 4 personas
-- **Sin licencia** necesaria
-- Desde **80 EUR/hora** en temporada baja
-- Gasolina, seguro y equipo incluidos
+Son especialmente populares para cumpleanos intimos y aniversarios de pareja o grupos pequenos. Si nadie tiene titulo, la excursion con capitan os lleva sin que tengais que pilotar.
 
 ## Que se puede hacer en una celebracion en barco
 
@@ -4311,7 +4220,7 @@ Fondeais el barco, os tirais al agua, nadais, haceis snorkel y disfrutais de la 
 
 ### Musica y ambiente
 
-Los barcos [Astec 480](/es/barco/astec-480), [Mingolla Brava 19](/es/barco/mingolla-brava-19), [Trimarchi 57S](/es/barco/trimarchi-57s) y [Pacific Craft 625](/es/barco/pacific-craft-625) tienen **equipo de musica bluetooth**. Conectais vuestro movil y poneis vuestra playlist favorita. Musica sonando mientras fondeais en una cala de agua turquesa: asi se celebra en la Costa Brava.
+Los barcos [Mingolla Brava 19](/es/barco/mingolla-brava-19), [Trimarchi 57S](/es/barco/trimarchi-57s) y [Pacific Craft 625](/es/barco/pacific-craft-625) tienen **equipo de musica bluetooth**. Conectais vuestro movil y poneis vuestra playlist favorita. Musica sonando mientras fondeais en una cala de agua turquesa: asi se celebra en la Costa Brava.
 
 ### Picnic a bordo
 
@@ -4356,26 +4265,21 @@ Es el complemento perfecto para un dia completo de celebracion en el mar.
 
 ### Aniversario romantico
 
-- **Barco recomendado:** [Astec 400](/es/barco/astec-400) o [Solar 450](/es/barco/solar-450)
+- **Barco recomendado:** [Mingolla Brava 19](/es/barco/mingolla-brava-19) (con titulin) o [excursion con capitan](/es/barco/excursion-privada)
 - **Duracion:** 2-3 horas, idealmente al atardecer
 - **Ruta:** Cala Sant Francesc, fondear y disfrutar de la tranquilidad
 - **Toque especial:** Llevad una botella de cava y algo para picar. El atardecer desde una cala sin nadie alrededor es puro romanticismo.
 
 ### Reunion familiar
 
-- **Barco recomendado:** [Astec 480](/es/barco/astec-480) o [Remus 450](/es/barco/remus-450) (sin licencia, facil para todos)
+- **Barco recomendado:** [Trimarchi 57S](/es/barco/trimarchi-57s) (con titulin) o [excursion con capitan](/es/barco/excursion-privada) (nadie tiene que pilotar)
 - **Duracion:** 3-4 horas
 - **Ruta:** Calas cercanas con aguas poco profundas, perfectas para ninos
 - **Toque especial:** El paddle surf es un exito total con ninos y adolescentes. La nevera con bebidas frias mantiene a todos contentos.
 
 ## Lo que dicen nuestros clientes
 
-Nuestros clientes valoran especialmente las celebraciones en barco. Con mas de **307 resenas en Google** y una puntuacion media de **4,8 estrellas**, estos son algunos comentarios reales de clientes que celebraron eventos con nosotros:
-
-- "Hicimos la despedida de soltera de mi amiga y fue el mejor plan que hemos hecho nunca. El capitan nos llevo a unas calas preciosas."
-- "Celebramos el cumpleanos de mi hijo de 10 anos. Los ninos no querian volver al puerto."
-- "Aniversario de boda perfecto. Cava, atardecer y una cala para nosotros solos."
-- "Grupo de 7 amigos, dia completo. La mejor experiencia de nuestras vacaciones en la Costa Brava."
+Nuestros clientes valoran especialmente las celebraciones en barco. Puedes leer sus opiniones reales, sin filtros, en nuestro perfil de Google.
 
 ## Consejos practicos para celebraciones en barco
 
@@ -4444,7 +4348,7 @@ Una celebracion en barco en la Costa Brava no es solo un plan original: es una e
       es: "Barco sin licencia navegando entre las calas de la Costa Brava sur, la ruta que se hace desde el Puerto de Blanes",
       en: "License-free boat sailing between the coves of the southern Costa Brava, the route departing from the Port of Blanes",
     },
-    metaDescription: "Alquiler de barco para Malgrat de Mar: el puerto más cercano es Blanes, a 10 min en coche o 5 en tren R1. Sin licencia desde 85 EUR/hora, gasolina incluida.",
+    metaDescription: "Alquiler de barco para Malgrat de Mar: el puerto más cercano es Blanes, a 10 min en coche o 5 en tren R1. Con titulín en lancha o con patrón.",
     tags: ["alquiler barco malgrat de mar", "barco malgrat sin licencia", "alquiler barco maresme", "malgrat de mar blanes"],
     isPublished: true,
     _publishedAt: new Date("2026-06-20T10:00:00Z"),
@@ -4459,7 +4363,7 @@ Una celebracion en barco en la Costa Brava no es solo un plan original: es una e
     },
     content: `Si pasas tus vacaciones en Malgrat de Mar y quieres alquilar un barco, hay un dato clave: **Malgrat no tiene puerto deportivo con alquiler de embarcaciones**. Su costa es una playa larga y abierta, sin instalaciones náuticas de recreo. La buena noticia es que el **Puerto de Blanes**, la puerta sur de la Costa Brava, está a solo **8 km**: es el punto de salida en barco más cercano para todo el Alt Maresme.
 
-En esta guía te contamos cómo llegar desde Malgrat, qué barcos puedes alquilar (con y sin licencia), cuánto cuesta y qué ruta de calas te espera.
+En esta guía te contamos cómo llegar desde Malgrat, qué barcos puedes alquilar (con titulín o con patrón), cuánto cuesta y qué ruta de calas te espera.
 
 ## Cómo llegar de Malgrat de Mar al Puerto de Blanes
 
@@ -4471,21 +4375,13 @@ Te recomendamos llegar **15 minutos antes** de tu hora de reserva para el briefi
 
 ## Qué barco puedes alquilar si estás en Malgrat
 
-### Sin licencia (desde 85 EUR/hora, gasolina incluida)
+### Si no tienes título
 
-Cualquier persona mayor de 18 años puede pilotar nuestros barcos sin licencia: son embarcaciones de hasta 15 CV que por ley no requieren titulación. Antes de salir te enseñamos el manejo en 15 minutos.
-
-| Barco | Capacidad | Ideal para |
-|-------|-----------|------------|
-| [Solar 450](/es/barco/solar-450) | 5 personas | Tomar el sol, solárium amplio |
-| [Remus 450](/es/barco/remus-450) | 5 personas | Familias con niños |
-| [Astec 480](/es/barco/astec-480) | 5 personas | Extra de confort, música bluetooth |
-
-Con un barco sin licencia puedes navegar hasta **2 millas náuticas** de la costa: llegas a Cala Sant Francesc, Santa Cristina, Cala Sa Boadella y hasta la **Playa de Fenals** (sur de Lloret de Mar).
+Desde el 1 de octubre de 2026 (RD 1188/2025) ya no se alquila ningún barco a motor sin titulación. Si quieres pilotar, la Licencia de Navegación, el [titulín](/es/licencia-navegacion-titulin), se saca en un curso de 1 día sin examen. Si prefieres no pilotar, tienes la excursión privada con patrón (más abajo).
 
 ### Con licencia (desde 175 EUR/2 horas)
 
-Si tienes la Licencia de Navegación, el PNB o el PER, puedes alquilar barcos más potentes de hasta 7 plazas y llegar hasta **Tossa de Mar** en 30-45 minutos. En estos barcos el combustible no está incluido.
+Si tienes la Licencia de Navegación, el PNB o el PER, puedes alquilar nuestras lanchas de 6 a 7 plazas ([Mingolla Brava 19](/es/barco/mingolla-brava-19), [Trimarchi 57S](/es/barco/trimarchi-57s) y [Pacific Craft 625](/es/barco/pacific-craft-625)) y llegar hasta **Tossa de Mar** en 30-45 minutos. En estos barcos el combustible no está incluido.
 
 ### Excursión privada con patrón
 
@@ -4493,7 +4389,7 @@ Si tienes la Licencia de Navegación, el PNB o el PER, puedes alquilar barcos m�
 
 ## La ruta de calas desde Blanes
 
-Saliendo del puerto rumbo norte pasarás por **Sa Palomera** (la roca que marca el inicio de la Costa Brava), **Cala Sant Francesc**, **Sa Forcanera**, la ermita de **Santa Cristina**, **Cala Treumal** y **Cala Sa Boadella**, hasta la **Playa de Fenals**. Todas están dentro del rango legal sin licencia y tienen fondos perfectos para el snorkel.
+Saliendo del puerto rumbo norte pasarás por **Sa Palomera** (la roca que marca el inicio de la Costa Brava), **Cala Sant Francesc**, **Sa Forcanera**, la ermita de **Santa Cristina**, **Cala Treumal** y **Cala Sa Boadella**, hasta la **Playa de Fenals**. Todas quedan a poca distancia del puerto y tienen fondos perfectos para el snorkel.
 
 ## Preguntas frecuentes desde Malgrat
 
@@ -4503,8 +4399,8 @@ No. La costa de Malgrat no tiene puerto deportivo. El puerto de alquiler más ce
 **¿Cuánto dura una salida recomendable?**
 Mínimo 2 horas; lo ideal son 3-4 horas para llegar hasta Fenals, fondear en un par de calas y bañarte con calma.
 
-**¿Qué incluye el precio sin licencia?**
-Gasolina, seguro, equipo de seguridad y briefing. Solo dejas una fianza reembolsable el día de la salida.
+**¿Qué incluye el precio?**
+Seguro, equipo de seguridad y briefing. El combustible no está incluido: se calcula según el consumo real de la salida. Solo dejas una fianza reembolsable el día de la salida.
 
 [Consulta disponibilidad para tu fecha](/es/alquiler-barcos-malgrat-de-mar) o escríbenos por [WhatsApp](https://wa.me/34611500372): respondemos en 8 idiomas.`,
   },
@@ -4520,30 +4416,28 @@ Gasolina, seguro, equipo de seguridad y briefing. Solo dejas una fianza reembols
       es: "Familia disfrutando de un paseo en barco por las calas de la Costa Brava cerca de Santa Susanna",
       en: "Family enjoying a boat trip along the Costa Brava coves near Santa Susanna",
     },
-    metaDescription: "¿Paseo en barco en Santa Susanna? Las salidas parten del Puerto de Blanes, a 15 min. Barco sin licencia desde 85 EUR/hora o excursión privada con patrón.",
+    metaDescription: "¿Paseo en barco en Santa Susanna? Las salidas parten del Puerto de Blanes, a 15 min: lancha con la Licencia de Navegación o excursión privada con patrón.",
     tags: ["paseo en barco santa susanna", "boottocht santa susanna", "alquiler barco santa susanna", "excursion barco santa susanna"],
     isPublished: true,
     _publishedAt: new Date("2026-06-24T10:00:00Z"),
-    excerpt: "Santa Susanna no tiene puerto, pero a 15 minutos está el Puerto de Blanes: alquila un barco sin licencia y pilótalo tú, o reserva un paseo en barco con patrón por las calas de la Costa Brava sur.",
+    excerpt: "Santa Susanna no tiene puerto, pero a 15 minutos está el Puerto de Blanes: pilota tú una lancha con la Licencia de Navegación (curso de 1 día, sin examen) o reserva un paseo en barco con patrón por las calas de la Costa Brava sur.",
     titleByLang: {
       es: "Paseo en Barco desde Santa Susanna: Opciones, Precios y Cómo Reservar",
       en: "Boat Trip from Santa Susanna: Options, Prices and How to Book",
     },
-    excerptByLang: {
-      es: "Santa Susanna no tiene puerto, pero a 15 minutos está el Puerto de Blanes: alquila un barco sin licencia y pilótalo tú, o reserva un paseo en barco con patrón por las calas de la Costa Brava sur.",
-      en: "Santa Susanna has no port, but the Port of Blanes is 15 minutes away: rent a license-free boat and drive it yourself, or book a captained boat trip along the coves of the southern Costa Brava.",
-    },
+    excerptByLang: {"en":"Santa Susanna has no port, but the Port of Blanes is 15 minutes away: drive a boat yourself with the Spanish Navigation Licence (a one-day course, no exam) or book a captained boat trip along the coves of the southern Costa Brava.","es":"Santa Susanna no tiene puerto, pero a 15 minutos está el Puerto de Blanes: pilota tú una lancha con la Licencia de Navegación (curso de 1 día, sin examen) o reserva un paseo en barco con patrón por las calas de la Costa Brava sur."},
     content: `Santa Susanna es uno de los destinos familiares más potentes del Maresme: kilómetros de playa, hoteles con toboganes y el mar delante todo el día. Lo que no tiene es puerto. Si buscas un **paseo en barco desde Santa Susanna**, las salidas parten del **Puerto de Blanes**, a solo **12 km**: 15 minutos en coche o 10 minutos en tren R1.
 
 Y aquí viene lo importante: tienes dos maneras muy distintas de vivir el mar, según si quieres pilotar tú o que te lleven.
 
-## Opción 1: alquila un barco sin licencia y pilótalo tú
+## Opción 1: alquila una lancha con licencia y pilótala tú
 
-Desde **85 EUR/hora con la gasolina incluida**, cualquier mayor de 18 años puede llevar uno de nuestros barcos sin licencia (hasta 15 CV, no requieren titulación por ley). Te damos un briefing de 15 minutos y sales a navegar por tu cuenta.
+Desde el 1 de octubre de 2026 ya no se alquila ningún barco sin titulación (RD 1188/2025). Con la **Licencia de Navegación** (el titulín: curso de 1 día, sin examen) o una titulación superior puedes llevar una de nuestras [lanchas con licencia](/es/barcos-con-licencia). Te damos un briefing de 15 minutos y sales a navegar por tu cuenta.
 
-- Capacidad: hasta 5 personas por barco.
-- Alcance legal: 2 millas náuticas de la costa, suficiente para toda la ruta de calas Blanes-Fenals.
-- Incluye gasolina, seguro y equipo de seguridad.
+- Capacidad: de 6 a 7 personas según la lancha.
+- Alcance: las calas de Blanes y la costa hasta Lloret y Tossa de Mar (de Blanes a Tossa, 30-45 minutos).
+- Incluye seguro y equipo de seguridad; la gasolina no está incluida.
+- ¿Aún no tienes título? [Sácate el titulín en un día](/es/licencia-navegacion-titulin).
 
 Es la opción favorita de parejas y familias con niños mayores: tú decides dónde parar, cuándo bañarte y cuánto rato quedarte en cada cala.
 
@@ -4573,7 +4467,7 @@ Si te apetece el plan al final del día, pregunta por la [salida al atardecer](/
 No hay puerto en Santa Susanna, así que ninguna embarcación de recreo sale desde allí. El punto de salida real más cercano es el Puerto de Blanes.
 
 **¿Cuánto cuesta un paseo en barco para una familia de 4?**
-Con barco sin licencia, desde 85 EUR/hora (el precio es por barco, no por persona). La excursión con patrón se cotiza por salida completa: pide precio por WhatsApp según horas y fecha.
+Con una lancha con licencia, el precio es por barco, no por persona: consulta la tarifa de cada una en su ficha. La excursión con patrón se cotiza por salida completa: pide precio por WhatsApp según horas y fecha.
 
 **¿Puedo reservar solo 1 hora?**
 Sí, aunque para llegar hasta Fenals y bañarte con calma recomendamos 2-3 horas como mínimo.
@@ -4592,7 +4486,7 @@ Sí, aunque para llegar hasta Fenals y bañarte con calma recomendamos 2-3 horas
       es: "Cala Sant Francesc vista desde un barco de alquiler saliendo del Puerto de Blanes, cerca de Calella",
       en: "Cala Sant Francesc seen from a rental boat departing the Port of Blanes, near Calella",
     },
-    metaDescription: "Alquiler de barco para Calella del Maresme (Barcelona): puerto más cercano Blanes, a 20 min. Sin licencia desde 85 EUR/h. No es Calella de Palafrugell.",
+    metaDescription: "Alquiler de barco para Calella del Maresme (Barcelona): puerto más cercano Blanes, a 20 min. Con titulín o con patrón. No es Calella de Palafrugell.",
     tags: ["alquiler barco calella", "barco calella maresme", "calella barcelona barco", "alquiler barco maresme"],
     isPublished: true,
     _publishedAt: new Date("2026-06-27T10:00:00Z"),
@@ -4620,19 +4514,13 @@ Si estás alojado en Calella del Maresme y quieres alquilar un barco, tu punto d
 
 ## Barcos disponibles y precios
 
-### Sin licencia, desde 85 EUR/hora
+### Si no tienes título
 
-Mayores de 18 años, sin titulación: por ley, las embarcaciones de hasta 15 CV no la requieren. Briefing de 15 minutos incluido, igual que la **gasolina, el seguro y el equipo de seguridad**.
-
-| Barco | Capacidad | Punto fuerte |
-|-------|-----------|--------------|
-| [Solar 450](/es/barco/solar-450) | 5 personas | Solárium para tomar el sol |
-| [Remus 450](/es/barco/remus-450) | 5 personas | Estable, perfecto con niños |
-| [Astec 480](/es/barco/astec-480) | 5 personas | Confort y música bluetooth |
+Desde el 1 de octubre de 2026 (RD 1188/2025) ya no se alquila ningún barco a motor sin titulación. Si quieres pilotar, la Licencia de Navegación, el [titulín](/es/licencia-navegacion-titulin), se saca en un curso de 1 día sin examen. Si no, sales con patrón (más abajo).
 
 ### Con licencia, hasta 7 personas
 
-Con la Licencia de Navegación o superior accedes a barcos de 80 a 115 CV que llegan hasta **Tossa de Mar**. Combustible aparte.
+Con la Licencia de Navegación o superior accedes a nuestras tres lanchas de 80 a 115 CV ([Mingolla Brava 19](/es/barco/mingolla-brava-19), [Trimarchi 57S](/es/barco/trimarchi-57s) y [Pacific Craft 625](/es/barco/pacific-craft-625)), que llegan hasta **Tossa de Mar**. Combustible aparte.
 
 ### Con patrón
 
@@ -4640,7 +4528,7 @@ La [excursión privada con capitán](/es/barco/excursion-privada) es la alternat
 
 ## La ruta que te espera
 
-Desde el Puerto de Blanes navegarás la costa de acantilados que da nombre a la Costa Brava: **Cala Sant Francesc**, **Sa Forcanera**, **Santa Cristina**, **Cala Sa Boadella** y **Playa de Fenals**, todas dentro del rango sin licencia (2 millas náuticas). Es un paisaje que la costa del Maresme, más lineal y arenosa, no puede ofrecer: por eso merece la pena el salto a Blanes.
+Desde el Puerto de Blanes navegarás la costa de acantilados que da nombre a la Costa Brava: **Cala Sant Francesc**, **Sa Forcanera**, **Santa Cristina**, **Cala Sa Boadella** y **Playa de Fenals**, todas a poca distancia del puerto. Es un paisaje que la costa del Maresme, más lineal y arenosa, no puede ofrecer: por eso merece la pena el salto a Blanes.
 
 ## Preguntas frecuentes
 
@@ -4667,7 +4555,7 @@ No. Calella de Palafrugell está 60 km al norte; desde allí no somos su opción
       es: "Playa de la Costa Brava solo accesible en barco, a menos de 20 minutos de Pineda de Mar",
       en: "Costa Brava beach only reachable by boat, less than 20 minutes from Pineda de Mar",
     },
-    metaDescription: "Alquiler de barco para Pineda de Mar y el Alt Maresme: puerto más cercano Blanes, a 18 min en coche o 12 en tren R1. Sin licencia desde 85 EUR/hora.",
+    metaDescription: "Alquiler de barco para Pineda de Mar y el Alt Maresme: puerto más cercano Blanes, a 18 min en coche o 12 en tren R1. Con titulín o con patrón.",
     tags: ["alquiler barco pineda de mar", "alquiler barco maresme", "barco pineda sin licencia", "puerto blanes maresme"],
     isPublished: true,
     _publishedAt: new Date("2026-07-01T10:00:00Z"),
@@ -4692,11 +4580,9 @@ Desde Pineda estás especialmente bien situado: **18 minutos en coche o 12 minut
 
 ## Qué puedes alquilar en el Puerto de Blanes
 
-### Barcos sin licencia, desde 85 EUR/hora
+### Si nunca has llevado un barco: el titulín en un día
 
-La opción estrella para quien nunca ha llevado un barco: embarcaciones de hasta 15 CV que **no requieren titulación** (mayores de 18 años). Incluyen **gasolina, seguro y equipo de seguridad**, más un briefing de 15 minutos en tu idioma antes de zarpar.
-
-Con ellos navegas legalmente hasta **2 millas náuticas** de la costa: suficiente para toda la ruta de calas entre Blanes y la Playa de Fenals (sur de Lloret de Mar).
+Desde el 1 de octubre de 2026 ya no se alquila ningún barco a motor sin titulación (RD 1188/2025). La vía más corta es la [Licencia de Navegación](/es/licencia-navegacion-titulin), el «titulín»: un curso de 1 día, sin examen, que te habilita para las lanchas con licencia de la flota. Si prefieres no pilotar, sales con patrón.
 
 ### Barcos con licencia
 
@@ -4713,7 +4599,7 @@ La costa del Maresme es una playa continua de arena; bonita, pero lineal. En cua
 ## Plan recomendado desde Pineda
 
 1. Tren R1 de Pineda a Blanes a media mañana (12 minutos).
-2. Salida de 3-4 horas con barco sin licencia: ruta de calas hasta Fenals con paradas para nadar y snorkel.
+2. Salida de 3-4 horas con una lancha con licencia (con titulín) o con patrón: ruta de calas hasta Fenals con paradas para nadar y snorkel.
 3. Comida a bordo fondeados en Cala Sa Boadella (puedes añadir nevera con hielo como extra).
 4. Vuelta al puerto y tren de regreso: a las 19:00 estás de nuevo en Pineda.
 
@@ -4723,10 +4609,10 @@ La costa del Maresme es una playa continua de arena; bonita, pero lineal. En cua
 No para alquiler de embarcaciones de recreo. Blanes es el primer puerto deportivo al norte del Maresme y concentra la oferta de alquiler de la zona.
 
 **¿Cuánto cuesta para un grupo de 5?**
-Un barco sin licencia de 5 plazas cuesta desde 85 EUR/hora en temporada baja: el precio es por barco, así que entre 5 sale muy a cuenta.
+Depende del barco y de la franja horaria: el precio es por barco, no por persona, así que entre 5 sale muy a cuenta. Tienes las tarifas actualizadas en la [página de precios](/es/precios).
 
 **¿Necesito experiencia?**
-Ninguna. El briefing de 15 minutos cubre todo lo necesario y la ruta Blanes-Fenals está protegida y es ideal para principiantes.
+Para llevar una lancha necesitas la Licencia de Navegación (curso de 1 día, sin examen); si sales con patrón, ninguna. La ruta Blanes-Fenals está protegida y es ideal para una primera salida.
 
 [Consulta disponibilidad desde Pineda de Mar](/es/alquiler-barcos-pineda-de-mar) o escríbenos por [WhatsApp](https://wa.me/34611500372): te respondemos al momento.`,
   },
@@ -4756,26 +4642,26 @@ Una nota honesta: si buscas tranquilidad y aguas medio vacías, agosto no es tu 
 
 La pregunta que más recibo en julio es "¿tenéis barco para la semana que viene en agosto?". La respuesta sincera: depende del día, y cuanto antes preguntes, mejor. Los fines de semana de agosto y la franja del 10 al 20 son los primeros en cerrarse, a veces con una o dos semanas de margen.
 
-Operamos la flota más grande del [alquiler de barcos en la Costa Brava](/es/alquiler-barcos-costa-brava) desde el puerto de Blanes, con ocho embarcaciones, así que casi siempre encontramos hueco moviendo horarios o barco. Pero en agosto no damos por sentada ninguna fecha. Mi consejo: si ya sabes el día, escríbenos por WhatsApp en cuanto tengas el viaje cerrado. Trabajamos sin pagos online: la web recoge tu solicitud de reserva y el pago se gestiona de forma manual, así que reservar es tan sencillo como confirmar fecha, barco y franja horaria.
+Operamos la flota más grande del [alquiler de barcos en la Costa Brava](/es/alquiler-barcos-costa-brava) desde el puerto de Blanes, así que casi siempre encontramos hueco moviendo horarios o barco. Pero en agosto no damos por sentada ninguna fecha. Mi consejo: si ya sabes el día, escríbenos por WhatsApp en cuanto tengas el viaje cerrado. Trabajamos sin pagos online: la web recoge tu solicitud de reserva y el pago se gestiona de forma manual, así que reservar es tan sencillo como confirmar fecha, barco y franja horaria.
 
 ## Mejores horarios para navegar en agosto
 
 En verano la ventana operativa es de 09:00 a 20:00, once horas para repartir. En agosto hay dos franjas que recomiendo por encima del resto:
 
-- **Salida temprana (sobre las 9:00 a 9:30).** El mar está plano, todavía no aprieta el calor y llegas a las calas antes que las multitudes. Es la mejor opción para familias con niños y para quien sale por primera vez sin experiencia.
+- **Salida temprana (sobre las 9:00 a 9:30).** El mar está plano, todavía no aprieta el calor y llegas a las calas antes que las multitudes. Es la mejor opción para familias con niños y para quien sale por primera vez.
 - **Atardecer (última franja de la tarde).** El garbí ya ha aflojado, la luz es preciosa y las playas se vacían. Perfecto para parejas o para un baño largo fondeado sin nadie alrededor.
 
 La franja que evito recomendar en agosto es el mediodía cerrado: máximo calor, máxima gente en las calas y el garbí entrando justo cuando toca volver. Si solo puedes salir a esa hora, no pasa nada, pero ve con margen para regresar antes de que refresque la brisa.
 
-Recuerda que sin licencia puedes navegar hasta 2 millas náuticas de la costa (unos 3,7 km), suficiente para encadenar Sa Palomera, Cala Sant Francesc (a unos 8 minutos), Cala Treumal (15 minutos) y Lloret de Mar (25 minutos). Tossa de Mar queda algo más lejos, a 30 a 45 minutos, y se hace mejor con un barco con licencia.
+Con una lancha con licencia encadenas sin prisas Sa Palomera, Cala Sant Francesc, Cala Treumal y Lloret de Mar. Tossa de Mar queda algo más lejos, a 30 a 45 minutos.
 
 ## Qué barco elegir y cuánto cuesta en agosto
 
-Aquí hay un detalle importante de agosto que mucha gente desconoce: los [barcos sin licencia desde el puerto de Blanes](/es/barcos-sin-licencia) se alquilan en julio y agosto en tramos de 1 a 4 horas, no por día completo. Es una decisión nuestra para que más gente pueda salir cada día en plena temporada. Tenemos cuatro barcos sin licencia (Solar 450, Remus 450, Remus 450 II y Astec 480), todos con gasolina incluida en el precio, para hasta 5 personas y sin necesidad de carnet: basta con ser mayor de 18 años y hacer el briefing de 15 minutos en el pantalán.
+Aquí hay un cambio importante que mucha gente desconoce: desde el 1 de octubre de 2026 ya no se alquila ningún barco sin titulación (RD 1188/2025), así que los barcos pequeños que antes se llevaban sin carnet (Solar 450, Remus 450, Remus 450 II y Astec 480) ya no se alquilan. Desde esa fecha alquilas con la [Licencia de Navegación](/es/licencia-navegacion-titulin) (curso de 1 día, sin examen) o sales con patrón.
 
-Si quieres el día completo, o sois un grupo más grande, la opción son los [barcos con licencia para el día completo](/es/barcos-con-licencia): tres embarcaciones de 6 y 7 plazas (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625), que sí permiten jornadas largas. Y para quien prefiere no conducir, está la excursión privada con capitán, hasta 6 personas, con nosotros al timón.
+Con el titulín llevas cualquiera de los [barcos con licencia para el día completo](/es/barcos-con-licencia): tres embarcaciones de 6 y 7 plazas (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625), que permiten jornadas largas. Y para quien prefiere no conducir, está la [excursión privada con patrón](/es/alquiler-barco-con-patron), hasta 6 personas, con nosotros al timón.
 
-Sobre el precio, sé claro: agosto es el mes más caro del año porque es temporada alta. El resto de la temporada verás tarifas desde 75 euros la hora; en agosto el punto de partida sube y arranca en torno a los 95 euros la hora en los barcos sin licencia. La gasolina va incluida en los barcos sin licencia, así que no hay sorpresas de combustible al final del día. Tienes el desglose por barco y duración en la [tabla de precios por temporada](/es/precios).
+Sobre el precio, sé claro: agosto es el mes más caro del año porque es temporada alta. Ten en cuenta también que ningún barco incluye la gasolina. Tienes el desglose por barco y duración en la [tabla de precios por temporada](/es/precios).
 
 ## Cómo reservar y preguntas frecuentes
 
@@ -4785,7 +4671,7 @@ Reservar es directo: eliges fecha, barco y franja, nos lo cuentas por WhatsApp a
 
 **¿Y si hace mal tiempo el día de mi reserva?** Reprogramamos sin coste o te damos un bono válido 12 meses; con la Garantía de mal tiempo contratada, te devolvemos el dinero. El cambio de fecha también es gratuito hasta 7 días antes de la salida, sujeto a disponibilidad. Las reservas confirmadas con depósito no se devuelven en dinero fuera de ese supuesto.
 
-**¿Necesito experiencia?** No para los barcos sin licencia. Te explicamos cómo arrancar, virar, fondear y volver a puerto antes de salir.
+**¿Necesito experiencia?** Necesitas la Licencia de Navegación (curso de 1 día, sin examen) para llevar una lancha, o ninguna si sales con patrón. Antes de salir te explicamos cómo arrancar, virar, fondear y volver a puerto.
 
 **¿Hay aparcamiento?** Sí, a unos 100 metros del amarre.
 
@@ -4803,8 +4689,8 @@ Si tu objetivo es exprimir el verano en el agua, planifica con tiempo, sal pront
     isPublished: true,
     _publishedAt: new Date("2026-07-07T10:00:00Z"),
     titleByLang: { es: "Alquilar barco con patrón o sin patrón en la Costa Brava" },
-    excerpt: "\"Sin licencia\" y \"sin patrón\" no son lo mismo. Te explico la diferencia, cuándo elegir cada opción y los precios reales desde el puerto de Blanes.",
-    content: `Cada verano recibimos la misma llamada: "quiero un barco, pero no tengo licencia, ¿me tenéis que llevar vosotros?". La respuesta corta es no, no hace falta. Pero detrás de esa duda hay dos conceptos que la gente mezcla constantemente: "sin licencia" y "sin patrón". No significan lo mismo, y entender la diferencia es lo que decide qué día en el mar vas a tener.
+    excerpt: "\"Sin licencia\" y \"sin patrón\" no son lo mismo, y desde octubre de 2026 la diferencia importa más. Cuándo elegir cada opción y precios reales desde el puerto de Blanes.",
+    content: `Cada verano recibimos la misma llamada: "quiero un barco, pero no tengo licencia, ¿me tenéis que llevar vosotros?". La respuesta corta, desde el 1 de octubre de 2026: o te sacas la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Pero detrás de esa duda hay dos conceptos que la gente mezcla constantemente: "sin licencia" y "sin patrón". No significan lo mismo, y entender la diferencia es lo que decide qué día en el mar vas a tener.
 
 En esta guía te explico, desde el puerto de Blanes, qué es un barco con patrón y qué es uno sin patrón, cuándo conviene cada opción y cuánto cuesta de verdad en 2026.
 
@@ -4812,20 +4698,20 @@ En esta guía te explico, desde el puerto de Blanes, qué es un barco con patró
 
 Son dos preguntas distintas:
 
-- **¿Necesito licencia?** Depende de la potencia y la eslora del barco. En España, la normativa permite gobernar embarcaciones de hasta 15 CV y menos de 5 metros sin ninguna titulación, siempre que no te alejes más de 2 millas náuticas de la costa (unos 3,7 km). Lo regula el [Real Decreto 875/2014](https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344).
+- **¿Necesito licencia?** Depende de la potencia y la eslora del barco. Hasta el 30 de septiembre de 2026, la normativa permitía alquilar y gobernar embarcaciones de hasta 15 CV y menos de 5 metros sin ninguna titulación, siempre que no te alejaras más de 2 millas náuticas de la costa (unos 3,7 km), según el [Real Decreto 875/2014](https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344). Desde el 1 de octubre de 2026, el Real Decreto 1188/2025 exige título para alquilar cualquier barco a motor: esa exención queda solo para barcos privados.
 - **¿Quién conduce?** Aquí entra el patrón. "Sin patrón" quiere decir que conduces tú. "Con patrón" quiere decir que va a bordo un profesional que se encarga de todo.
 
-Por eso puedes tener un barco sin licencia que además es sin patrón (lo llevas tú, sin título), o un barco con patrón donde tampoco necesitas licencia porque conduce él. Son combinaciones diferentes, y cada una encaja con un tipo de plan.
+Por eso, desde octubre de 2026, las combinaciones de alquiler son dos: un barco sin patrón que llevas tú con tu título, o un barco con patrón donde no necesitas licencia porque conduce él. Cada una encaja con un tipo de plan.
 
 ## Barco sin patrón: tú llevas el timón
 
-Un barco sin patrón es un alquiler en el que el capitán del día eres tú. Nadie de nuestro equipo sube contigo. Dentro de esta modalidad tenemos dos familias de barcos.
+Un barco sin patrón es un alquiler en el que el capitán del día eres tú. Nadie de nuestro equipo sube contigo, y desde el 1 de octubre de 2026 esta modalidad exige título.
 
-**Sin licencia (y sin patrón).** Son nuestros barcos más alquilados: la Remus 450, la Solar 450, la Remus 450 II y la Astec 480, todos para hasta 5 personas. No necesitas ningún título. Antes de salir te damos una explicación de 15 minutos en el pantalán (arranque, gobierno, fondeo y las reglas básicas) y ya navegas por tu cuenta. Llevan motor de 15 CV, así que la velocidad es tranquila y el radio de acción son esas 2 millas de costa, de sobra para llegar a las calas de Blanes y Lloret. La **gasolina va incluida**, igual que el seguro y el equipo de seguridad. Tienes el detalle en la página de [barcos sin licencia](/es/barcos-sin-licencia).
+**Sin licencia (y sin patrón): hasta el 30 de septiembre de 2026.** Eran nuestros barcos más alquilados: la Remus 450, la Solar 450, la Remus 450 II y la Astec 480, de 15 CV y hasta 5 personas, que se podían llevar sin ningún título. Desde el 1 de octubre de 2026 ya no se alquilan: si quieres llevar el timón, [sácate el titulín](/es/licencia-navegacion-titulin) en un día, sin examen.
 
-**Con licencia (y sin patrón).** Si tienes la Licencia de Navegación (LN) o superior, se abren los barcos grandes: la Mingolla Brava 19 (6 personas, 80 CV), la Trimarchi 57S (7 personas, 110 CV) y la Pacific Craft 625 (7 personas, 115 CV). Más potencia, más distancia de costa permitida y más capacidad. Aquí la **gasolina no está incluida**: pagas el combustible que gastes. Los tienes en [barcos con licencia](/es/barcos-con-licencia).
+**Con licencia (y sin patrón).** Si tienes la Licencia de Navegación (LN, el titulín: curso de 1 día, sin examen) o superior, puedes llevar nuestras lanchas: la Mingolla Brava 19 (6 personas, 80 CV), la Trimarchi 57S (7 personas, 110 CV) y la Pacific Craft 625 (7 personas, 115 CV). Más potencia, más distancia de costa permitida y más capacidad. Aquí la **gasolina no está incluida**: pagas el combustible que gastes. Los tienes en [barcos con licencia](/es/barcos-con-licencia).
 
-Si dudas entre estas dos familias, escribimos una comparativa a fondo en [barco sin licencia vs con licencia](/es/blog/barco-sin-licencia-vs-con-licencia-guia).
+Si quieres ver qué cambió entre las dos familias, tienes la comparativa a fondo en [barco sin licencia vs con licencia](/es/blog/barco-sin-licencia-vs-con-licencia-guia).
 
 ## Barco con patrón: te subes y solo disfrutas
 
@@ -4839,9 +4725,9 @@ Es la opción honesta cuando nadie del grupo tiene título, cuando es una celebr
 
 Después de años haciendo esto, la recomendación se resume rápido:
 
-- **Primera vez, pareja o familia con niños, presupuesto ajustado:** sin licencia y sin patrón. Conduces tú, la gasolina va incluida y es la forma más económica de tener el barco todo el día para vosotros.
+- **Primera vez, pareja o familia con niños:** si nadie tiene título, con patrón; si os apetece conducir, sacaos el titulín (curso de 1 día, sin examen) y llevad una lancha. Desde el 1 de octubre de 2026 ya no hay alquiler sin título.
 - **Tienes la LN y quieres más barco:** con licencia y sin patrón. Ganas potencia, distancia y sitio para 6 o 7 personas.
-- **Nadie tiene licencia pero queréis un barco grande o ir más lejos:** con patrón. Es la única manera legal de llegar más allá de las 2 millas o de subir a 6 personas sin título.
+- **Nadie tiene licencia:** con patrón. Desde el 1 de octubre de 2026 es la única manera legal de salir al mar en barco de alquiler sin título.
 - **Celebración, aniversario o quieres desconectar del todo:** con patrón. Pagas más, pero no gestionas nada.
 
 No hay una respuesta mejor que otra: hay la que encaja con tu grupo y tu día.
@@ -4850,7 +4736,6 @@ No hay una respuesta mejor que otra: hay la que encaja con tu grupo y tu día.
 
 Los precios cambian por temporada. Estos son los de referencia para 2026 (julio es temporada media, agosto la más alta):
 
-- **Sin licencia, sin patrón:** desde 85 EUR/hora en temporada baja. En julio, 2 horas 155 EUR, 4 horas 220 EUR y el día completo (8 horas) 295 EUR. Gasolina incluida.
 - **Con licencia, sin patrón:** desde 175 EUR las 2 horas en baja. En julio, la Mingolla Brava 19 son 200 EUR las 2 horas, 295 EUR las 4 horas y 395 EUR el día. Gasolina aparte.
 - **Con patrón (excursión privada):** desde 265 EUR las 2 horas en baja. En julio, 285 EUR las 2 horas, 375 EUR las 3 horas y 440 EUR las 4 horas. Patrón incluido, gasolina aparte.
 
@@ -4907,24 +4792,24 @@ Un consejo práctico que damos siempre: antes de decidir, mira el parte marítim
 
 Con medio día no vas a llegar a Tossa de Mar y volver con calma (eso es plan de jornada completa), pero tienes un abanico de calas estupendo a tiro de piedra de Blanes.
 
-Si alquilas un **barco sin licencia**, te mueves dentro de las 2 millas náuticas de costa (unos 3,7 km) que marca la ley para esta categoría, en horario diurno. Dentro de ese radio entran algunas de las mejores calas de la zona: Cala Sant Francesc, Sa Palomera, Cala Sa Forcanera y Cala Bona, todas a pocos minutos del puerto. Con cuatro horas encadenas dos o tres sin agobio.
+Desde el puerto tienes al alcance algunas de las mejores calas de la zona: Cala Sant Francesc, Sa Palomera, Cala Sa Forcanera y Cala Bona, todas a pocos minutos del puerto. Con cuatro horas encadenas dos o tres sin agobio.
 
-Si vas hacia el sur, [de Blanes a Lloret de Mar en barco](/es/alquiler-barcos-lloret-de-mar) es un salto corto y muy agradecido para media jornada, con calas como Boadella o Sa Boadella al alcance. Y si alquilas un **barco con licencia**, la cosa cambia: con más potencia llegas antes y más lejos, aunque para exprimir de verdad el tramo hasta Tossa sigo recomendando la jornada completa.
+Si vas hacia el sur, [de Blanes a Lloret de Mar en barco](/es/alquiler-barcos-lloret-de-mar) es un salto corto y muy agradecido para media jornada, con calas como Boadella o Sa Boadella al alcance. Con la potencia de una **lancha con licencia** llegas antes y más lejos, aunque para exprimir de verdad el tramo hasta Tossa sigo recomendando la jornada completa.
 
 La regla que le doy a todo el mundo: en medio día, menos es más. Elige dos calas y disfrútalas, en vez de correr para tachar cinco de una lista.
 
 ## Cuánto cuesta medio día y qué incluye
 
-La franja de cuatro horas va desde 180 € en temporada baja (220 € en pleno julio) en un barco sin licencia, con la gasolina incluida. Esto último importa más de lo que parece: en los barcos sin licencia el combustible entra en el precio, así que lo que ves es lo que pagas, sin sorpresas al devolver la llave.
+Desde el 1 de octubre de 2026 el medio día se hace en una lancha con licencia, pilotando con la Licencia de Navegación (el [titulín](/es/licencia-navegacion-titulin), un curso de 1 día sin examen), o en la excursión privada con patrón, sin título. El precio de las cuatro horas depende del barco que elijas.
 
 Dos matices honestos:
 
 - El precio varía según la temporada y el día. En temporada alta y los fines de semana la tarifa sube (aplicamos un recargo de fin de semana), así que un sábado de agosto no cuesta lo mismo que un martes de junio.
-- Los barcos con licencia se tarifan aparte y **no** llevan la gasolina incluida, porque consumen bastante más. Para esos conviene pedir el precio cerrado de tu franja concreta.
+- Ningún barco lleva la gasolina incluida: se paga aparte según el consumo real. Por eso conviene pedir el precio cerrado de tu franja concreta.
 
-Para no jugar a las adivinanzas, lo mejor es mirar la tarifa real de tu fecha en nuestra [página de precios](/es/precios) o pedirnos un presupuesto por WhatsApp con el día y la franja que quieres. Te decimos el total exacto, sin comisiones de plataforma de por medio. Si quieres comparar antes de decidir, tenemos toda la flota sin carnet detallada en [barcos sin licencia](/es/barcos-sin-licencia) y el resto de opciones en la página de [alquiler de barcos en la Costa Brava](/es/alquiler-barcos-costa-brava).
+Para no jugar a las adivinanzas, lo mejor es mirar la tarifa real de tu fecha en nuestra [página de precios](/es/precios) o pedirnos un presupuesto por WhatsApp con el día y la franja que quieres. Te decimos el total exacto, sin comisiones de plataforma de por medio. Si quieres comparar antes de decidir, tenemos las lanchas detalladas en [barcos con licencia](/es/barcos-con-licencia), la salida sin pilotar en [excursión con patrón](/es/alquiler-barco-con-patron) y el resto de opciones en la página de [alquiler de barcos en la Costa Brava](/es/alquiler-barcos-costa-brava).
 
-Nuestra flota viva son ocho embarcaciones: cuatro sin licencia (para hasta cinco personas cada una) y el resto con licencia o con capitán. Todas salen del mismo Puerto de Blanes.
+Hoy salimos con tres lanchas con licencia (de 6 a 7 personas) y la excursión privada con patrón (hasta 6 personas). Todas salen del mismo Puerto de Blanes.
 
 ## Cómo reservar tu medio día
 
@@ -4945,55 +4830,44 @@ En temporada alta las franjas buenas vuelan, sobre todo las mañanas de fin de s
     category: "Guías",
     author: "Iván Ramírez Dawson",
     featuredImage: "/images/blog/excursiones-barco-grupos-eventos-blanes.webp",
-    metaDescription: "Alquiler de barco para grupos en la Costa Brava: capacidad real de cada barco, cuándo necesitas licencia y precio por persona. Reserva por WhatsApp.",
+    metaDescription: "Alquiler de barco para grupos en la Costa Brava: capacidad real de cada barco, licencia o patrón desde octubre de 2026 y precio por persona.",
     tags: ["alquiler barco grupos costa brava", "cuantas personas caben en un barco de alquiler", "alquiler barco 6 personas costa brava", "alquiler barco 7 personas blanes", "barco sin licencia capacidad", "precio por persona alquiler barco"],
     isPublished: true,
     _publishedAt: new Date("2026-07-14T10:00:00Z"),
     titleByLang: { es: "Alquiler de barco para grupos en la Costa Brava: 4, 6 o 7" },
-    excerpt: "Cuántas personas caben de verdad en cada barco de Blanes: 5 sin licencia, 6 o 7 con licencia, y dos barcos si sois más de 8. Con precio por persona.",
+    excerpt: "Cuántas personas caben de verdad en cada barco de Blanes: 6 o 7 en las lanchas con licencia, 6 en la excursión con patrón, y dos barcos si sois más. Con precio por persona.",
     content: `Cada julio nos pasa lo mismo. Llega un WhatsApp que dice "somos ocho, ¿nos cabe un barco?" y la respuesta honesta es no: os caben dos. La capacidad de una embarcación no es una recomendación flexible, es un número escrito en la hoja de registro, y de él dependen el seguro y la propia estabilidad del barco.
 
-Esta guía resuelve la pregunta antes de que reserves: cuántas personas caben de verdad en cada barco de la flota de Blanes, a partir de qué tamaño de grupo necesitas licencia náutica, y cuánto sale por cabeza según seáis cuatro, seis o siete.
+Esta guía resuelve la pregunta antes de que reserves: cuántas personas caben de verdad en cada barco de la flota de Blanes, qué necesitas para salir (licencia náutica o patrón), y cuánto sale por cabeza según seáis cuatro, seis o siete.
 
 ## Por qué la capacidad no se negocia
 
 La capacidad máxima de una embarcación de recreo está fijada por el fabricante y homologada en su documentación. No es un número que el alquilador pueda estirar "porque los niños son pequeños". Dos motivos:
 
 - **Seguro.** La póliza de responsabilidad civil cubre la navegación con el número de plazas homologado. Un pasajero de más deja al barco entero fuera de cobertura.
-- **Estabilidad.** En una embarcación de 4,5 metros, el peso extra de una persona se nota en cuanto todos se mueven al mismo lado para saltar al agua.
+- **Estabilidad.** En una embarcación de menos de 6 metros, el peso extra de una persona se nota en cuanto todos se mueven al mismo lado para saltar al agua.
 
 Nota práctica que casi nadie tiene clara: en la mayoría de embarcaciones **los bebés y los niños cuentan como una persona**. Si sois dos adultos y tres niños, sois cinco.
 
-## Grupos de 2 a 5 personas: la flota sin licencia
+## Grupos de 2 a 5 personas: desde octubre, con titulín o con patrón
 
-Aquí está el grueso de nuestras reservas, y es la única franja donde puedes navegar **sin ningún título náutico**. Los cuatro barcos sin licencia activos hoy en Blanes admiten **hasta 5 personas**:
+Hasta el 30 de septiembre de 2026 esta era la franja donde se podía navegar **sin ningún título náutico**, en barcos de hasta 15 cv y 5 plazas. Desde el **1 de octubre de 2026** (RD 1188/2025) ya no se alquila ningún barco sin titulación, así que un grupo pequeño tiene los mismos dos caminos que uno de seis o siete: la **Licencia de Navegación** (curso de 1 día, sin examen) en una lancha con licencia, o la excursión con patrón. Para 2 a 5 personas cualquiera de las opciones va holgada: la más pequeña admite 6.
 
-| Barco | Capacidad | Motor | Fianza |
-|---|---|---|---|
-| Solar 450 | 5 personas | Mercury 15 cv | 250 € |
-| Remus 450 | 5 personas | 15 cv | 200 € |
-| Remus 450 II | 5 personas | 15 cv | 200 € |
-| Astec 480 | 5 personas | 15 cv | 300 € |
+El límite de **2 millas náuticas desde la costa** y 15 cv del [Real Decreto 875/2014](https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344) sigue existiendo, pero desde esa fecha solo vale para barcos privados, no de alquiler. Si nadie del grupo tiene título, [sácate el titulín](/es/licencia-navegacion-titulin) o mira la excursión con patrón más abajo.
 
-La gasolina está incluida en toda la flota sin licencia. Eso importa cuando comparas precios: en muchos sitios el depósito lo pagas aparte al volver.
+## Grupos de 6 y 7 personas: licencia o patrón
 
-Un aviso sincero: cinco adultos en un barco de 4,5 metros caben, pero van justos si el plan es pasar ocho horas fondeados tomando el sol. Si sois cinco adultos y queréis espacio, plantéate el **Astec 480**, que es el más ancho de los cuatro, o directamente salta al bloque de abajo.
-
-El límite legal de navegación sin licencia es de **2 millas náuticas desde la costa** (unos 3,7 km) y motor de hasta 15 cv, según el [Real Decreto 875/2014](https://www.boe.es/buscar/act.php?id=BOE-A-2014-10344). Suena poco y no lo es: desde Blanes te da de sobra para llegar a Lloret de Mar o a las calas de Sa Forcanera y Treumal. Los detalles del proceso están en la página de [barcos sin licencia](/es/barcos-sin-licencia).
-
-## Grupos de 6 y 7 personas: aquí ya necesitas licencia o patrón
-
-Este es el escalón que sorprende a la gente. **No existe barco sin licencia para seis personas.** La normativa que permite navegar sin título limita la potencia a 15 cv, y con 15 cv nadie fabrica una embarcación homologada para seis. Así que en cuanto sois seis, tenéis dos caminos y solo dos.
+Hasta septiembre de 2026 este era el escalón que sorprendía a la gente: no existía barco sin licencia para seis personas, porque con 15 cv nadie fabrica una embarcación homologada para seis. Hoy, sea cual sea el tamaño del grupo, tenéis dos caminos y solo dos.
 
 ### Camino 1: alguien del grupo tiene licencia
 
-Con una Licencia de Navegación (LN) o superior, se abre la flota grande:
+Con una Licencia de Navegación (LN, el titulín: curso de 1 día, sin examen) o superior, se abre la flota:
 
 - **Mingolla Brava 19** (5,99 m, Mercury 80 cv): **6 personas**. Con GPS y sonda. Lloret en 15 minutos, Tossa en media hora.
 - **Trimarchi 57S** (5,7 m, 110 cv): **7 personas**. Solárium doble y mesa central para comer fondeados.
 - **Pacific Craft 625** (5,90 m, Yamaha 115 cv): **7 personas**. La más grande y equipada de la flota.
 
-Aquí el **combustible no está incluido** (se repone al devolver el barco) y la fianza sube a 500 €. Es el peaje por tener un barco que puede recorrer toda la costa entre Blanes y Tossa sin pensárselo. Toda la ficha técnica, en [barcos con licencia](/es/barcos-con-licencia).
+El **combustible no está incluido** (se repone al devolver el barco) y la fianza es de 500 €. Es el peaje por tener un barco que puede recorrer toda la costa entre Blanes y Tossa sin pensárselo. Toda la ficha técnica, en [barcos con licencia](/es/barcos-con-licencia).
 
 Y sí, sirven las licencias extranjeras equivalentes. Si tienes un título francés, italiano, alemán o británico, es muy probable que valga; el verificador de la web te lo confirma antes de reservar.
 
@@ -5009,9 +4883,9 @@ Si dudas entre conducir tú o que conduzca un profesional, en la guía de [rutas
 
 No tenemos un barco de 10 plazas y no vamos a fingir que sí. Lo que sí funciona, y lo hacemos muchos fines de semana de agosto, es **salir con dos barcos a la vez**.
 
-Dos Remus 450 (5 + 5 = 10 personas) navegan juntos, fondean en la misma cala y el grupo se junta en el agua. Coordinamos las salidas a la misma hora desde el mismo pantalán. En la práctica, es una excursión de grupo con más libertad: cada barco decide si se queda un rato más en una cala o se adelanta a la siguiente.
+Dos lanchas con licencia (por ejemplo, Mingolla Brava 19 y Pacific Craft 625: 6 + 7 = 13 personas) navegan juntas, fondean en la misma cala y el grupo se junta en el agua. Coordinamos las salidas a la misma hora desde el mismo pantalán. En la práctica, es una excursión de grupo con más libertad: cada barco decide si se queda un rato más en una cala o se adelanta a la siguiente. Hace falta una persona con titulación en cada lancha; si solo la tiene uno, combinad una lancha con la excursión con patrón.
 
-Coste orientativo para 10 personas, 4 horas en julio: **2 x 220 € = 440 €**, gasolina incluida. Salen **44 € por persona**, que es menos de lo que cuesta la mayoría de excursiones colectivas con horario fijo y 60 desconocidos a bordo.
+Coste orientativo para 13 personas, 4 horas en julio: **295 € + 310 € = 605 €**, más el combustible. Salen unos **47 € por persona**, que es menos de lo que cuesta la mayoría de excursiones colectivas con horario fijo y 60 desconocidos a bordo.
 
 Si el grupo pasa de 12, escríbenos con antelación: hay que bloquear varios barcos el mismo día y en agosto eso no se improvisa.
 
@@ -5021,17 +4895,14 @@ Los números de abajo son de **julio, 4 horas**, que es la reserva más común d
 
 | Grupo | Barco | Precio 4 h | Por persona |
 |---|---|---|---|
-| 4 personas | Remus 450 (sin licencia) | 220 € | 55 € |
-| 5 personas | Remus 450 (sin licencia) | 220 € | 44 € |
-| 5 personas | Astec 480 (más espacio) | 255 € | 51 € |
 | 6 personas | Mingolla Brava 19 (con licencia) | 295 € | 49 € |
 | 6 personas | Excursión con capitán | 440 € | 73 € |
 | 7 personas | Pacific Craft 625 (con licencia) | 310 € | 44 € |
-| 10 personas | 2 x Remus 450 | 440 € | 44 € |
+| 13 personas | Mingolla Brava 19 + Pacific Craft 625 | 605 € | 47 € |
 
-Lee la tabla al revés y verás el patrón: **cuanto más grande es el grupo, más barato sale por cabeza**. El barco cuesta lo mismo lo llenes o no. Cuatro personas en un barco de cinco plazas es la combinación que peor rinde económicamente.
+Lee la tabla al revés y verás el patrón: **cuanto más grande es el grupo, más barato sale por cabeza**. El barco cuesta lo mismo lo llenes o no. Cuatro personas en una lancha de seis o siete plazas es la combinación que peor rinde económicamente.
 
-En los barcos con licencia hay que sumar el combustible, que en una salida de 4 horas por la costa suele moverse entre 30 y 60 € según lo rápido que navegues. En agosto, todos los precios suben. La tabla completa por temporada y duración está en [precios](/es/precios).
+Hay que sumar el combustible (ningún barco lo incluye), que en una salida de 4 horas por la costa suele moverse entre 30 y 60 € según lo rápido que navegues. En agosto, todos los precios suben. La tabla completa por temporada y duración está en [precios](/es/precios).
 
 ## Cómo reservar (y qué preguntarnos antes)
 
@@ -5053,7 +4924,7 @@ Y si después de leer esto ves que tu plan es una fiesta de 20 personas con DJ a
     category: "Rutas",
     author: "Iván Ramírez Dawson",
     featuredImage: "/images/blog/ruta-barco-blanes-tossa-mar.webp",
-    metaDescription: "Alquiler de barco a Tossa de Mar desde Blanes: la ruta real por mar, las calas que verás y qué barco elegir. Reserva por WhatsApp, gasolina incluida.",
+    metaDescription: "Alquiler de barco a Tossa de Mar desde Blanes: la ruta real por mar, las calas que verás y qué barco elegir. Con titulín o con patrón, reserva por WhatsApp.",
     tags: ["alquiler barco tossa de mar", "alquiler barco tossa de mar sin licencia", "de blanes a tossa de mar en barco", "barco tossa de mar desde blanes", "ruta barco costa brava tossa", "excursion barco tossa de mar"],
     isPublished: true,
     _publishedAt: new Date("2026-07-26T10:00:00Z"),
@@ -5065,9 +4936,9 @@ Y si después de leer esto ves que tu plan es una fiesta de 20 personas con DJ a
 
 Por la costa, de Blanes a Tossa hay alrededor de 12 a 13 kilómetros en línea de navegación, pasando primero por Lloret de Mar. El primer tramo, de Blanes a Lloret, son unos 4 kilómetros cómodos. De Lloret a Tossa hay otros 8 a 9 kilómetros de acantilados, pinos hasta el agua y calas escondidas; los barcos comerciales que hacen ese salto en verano tardan unos 45 minutos.
 
-Aquí es donde conviene ser honesto con los números. Las embarcaciones **sin licencia** navegan a unos **5 nudos (unos 9,3 km/h)** y por ley no pueden alejarse más de **2 millas náuticas de la costa (3,7 km)**. A esa velocidad, recorrer 12-13 km solo de ida ya son cerca de 1 hora y 20 minutos, y otro tanto de vuelta. En un alquiler sin licencia de 2 o 4 horas, casi todo el tiempo se te iría navegando, sin margen para fondear, bañarte o comer algo.
+Aquí es donde conviene ser honesto con los números: son 12-13 km solo de ida, y el barco decide si te queda tiempo para fondear, bañarte o comer algo. Desde el 1 de octubre de 2026 ya no se alquila ningún barco sin titulación (RD 1188/2025), así que las opciones son una lancha con licencia o la excursión con patrón.
 
-Por eso, si tu plan es de verdad llegar hasta Tossa, hay dos caminos sensatos: reservar la **jornada completa (8 horas)** en un barco sin licencia, o elegir una **lancha con licencia**, que navega más rápido y hace el trayecto de Blanes a Tossa en 30-45 minutos, con el día entero por delante.
+Por eso, si tu plan es de verdad llegar hasta Tossa, lo sensato es una **lancha con licencia**, que hace el trayecto de Blanes a Tossa en 30-45 minutos y te deja el día entero por delante. Si nadie del grupo tiene título, la excursión privada con patrón os lleva.
 
 ## Qué verás en la ruta hacia Tossa
 
@@ -5079,15 +4950,15 @@ El premio final es la llegada a Tossa de Mar desde el agua: la **Vila Vella**, e
 
 ## Qué barco elegir según tu plan
 
-No hay un barco "mejor", hay uno que encaja con tu día. Estas son las opciones reales de nuestra flota, que puedes ver en detalle en [barcos sin licencia](/es/barcos-sin-licencia) y [lanchas con licencia](/es/barcos-con-licencia):
+No hay un barco "mejor", hay uno que encaja con tu día. Estas son las opciones reales de nuestra flota, que puedes ver en detalle en [lanchas con licencia](/es/barcos-con-licencia) y [excursión con patrón](/es/alquiler-barco-con-patron):
 
-**Si quieres llegar a Tossa sí o sí.** Ve a por una lancha con licencia (nuestra flota con titulación son el [Mingolla Brava 19](/es/barco/mingolla-brava-19), el [Trimarchi 57S](/es/barco/trimarchi-57s) y el [Pacific Craft 625](/es/barco/pacific-craft-625), de 6 a 7 personas) o reserva la jornada de 8 horas en uno sin licencia. Con licencia navegas más rápido, el trayecto cunde y te queda tarde para fondear en una cala de Tossa antes de volver. Basta la Licencia de Navegación, y si tu título es extranjero puedes comprobarlo online en la página de la flota.
+**Si quieres llegar a Tossa sí o sí.** Ve a por una lancha con licencia (nuestra flota con titulación son el [Mingolla Brava 19](/es/barco/mingolla-brava-19), el [Trimarchi 57S](/es/barco/trimarchi-57s) y el [Pacific Craft 625](/es/barco/pacific-craft-625), de 6 a 7 personas). Con licencia navegas más rápido, el trayecto cunde y te queda tarde para fondear en una cala de Tossa antes de volver. Basta la Licencia de Navegación, y si tu título es extranjero puedes comprobarlo online en la página de la flota.
 
-**Si es tu primera vez y no tienes titulación.** Los barcos sin licencia (Solar 450, Remus 450, Remus 450 II y Astec 480, hasta 5 personas, con **gasolina incluida**) se gobiernan sin carné y son perfectos para un día de calas. Para ellos, nuestro consejo sincero es no forzar la ruta hasta Tossa en media jornada: disfruta Lloret, Santa Cristina y las calas intermedias, que están más cerca y las harás sin agobios. Tossa, para la jornada completa.
+**Si es tu primera vez y no tienes titulación.** Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia. Tienes dos caminos: sacarte la Licencia de Navegación, el [titulín](/es/licencia-navegacion-titulin), que es un curso de 1 día sin examen, o salir con patrón (lo tienes justo debajo). Si es tu primera salida pilotando, nuestro consejo sincero es no forzar la ruta hasta Tossa en media jornada: disfruta Lloret, Santa Cristina y las calas intermedias, que están más cerca y las harás sin agobios. Tossa, para la jornada completa.
 
 **Si prefieres no conducir tú.** La [Excursión Privada con Capitán](/es/barco/excursion-privada) (hasta 6 personas) es la opción cómoda: patrón local a bordo, tú solo disfrutas. Ideal si quieres una ruta larga hacia el norte sin preocuparte de la navegación.
 
-Recuerda que los barcos sin licencia incluyen el combustible; las lanchas con licencia y la excursión con capitán no lo incluyen, se calcula según el consumo real de la salida.
+Recuerda que ni las lanchas con licencia ni la excursión con capitán incluyen el combustible: se calcula según el consumo real de la salida.
 
 ## Cuándo ir y qué tener en cuenta
 
@@ -5095,7 +4966,7 @@ Trabajamos de **abril a octubre**, con salidas de **09:00 a 20:00** desde el Pue
 
 El tramo sur de la Costa Brava es, en general, de navegación cómoda en verano. Por la mañana el mar suele estar en calma; por la tarde puede entrar el garbí, la brisa del suroeste. El viento a vigilar es la tramontana, fuerte y del norte. Consulta siempre el parte marítimo antes de salir; puedes hacerlo en la [previsión marítima de AEMET](https://www.aemet.es/es/eltiempo/prediccion/maritima). Y una norma de oro para fondear: hazlo sobre arena, nunca sobre las praderas de posidonia.
 
-Para hacerte una idea de precios, el alquiler sin licencia arranca **desde 85 € la hora**; las lanchas con licencia salen **desde 175 € las 2 horas** en temporada baja. La jornada completa y las rutas largas las presupuestamos según el barco y la fecha, porque cambian entre temporada media (julio) y alta (agosto).
+Para hacerte una idea de precios, las lanchas con licencia salen **desde 175 € las 2 horas** en temporada baja. La jornada completa y las rutas largas las presupuestamos según el barco y la fecha, porque cambian entre temporada media (julio) y alta (agosto).
 
 ## Cómo reservar tu barco a Tossa de Mar
 
@@ -5117,65 +4988,65 @@ Sin pagos online ni comisiones de plataforma: la web recoge tu solicitud y cerra
     isPublished: true,
     _publishedAt: new Date("2026-08-16T10:00:00Z"),
     titleByLang: { es: "Fin del alquiler de barcos sin licencia en 2026: qué dice la nueva ley y cómo seguir navegando" },
-    excerpt: "El RD 1188/2025 pone fecha final al alquiler de barcos sin titulación: 1 de octubre de 2026. Te lo contamos desde dentro, como empresa afectada: qué cambia exactamente, qué no cambia y las tres formas de seguir saliendo al mar.",
-    content: `Vamos a contarte esto desde dentro. Somos una empresa de alquiler de barcos en el Puerto de Blanes y una parte importante de nuestra flota son embarcaciones **sin licencia**: barcos pequeños que cualquier adulto podía alquilar y gobernar sin titulación. Una nueva ley pone fecha final a ese modelo en toda España, y preferimos que lo leas aquí, con las fechas exactas y sin alarmismo, antes que en un titular a medias.
+    excerpt: "El RD 1188/2025 puso fin al alquiler de barcos sin titulación el 1 de octubre de 2026. Te lo contamos desde dentro, como empresa afectada: qué ha cambiado exactamente, qué no ha cambiado y las tres formas de seguir saliendo al mar.",
+    content: `Vamos a contarte esto desde dentro. Somos una empresa de alquiler de barcos en el Puerto de Blanes y una parte importante de nuestra flota eran embarcaciones **sin licencia**: barcos pequeños que cualquier adulto podía alquilar y gobernar sin titulación. Una nueva ley puso fin a ese modelo en toda España el 1 de octubre de 2026, y preferimos que lo leas aquí, con las fechas exactas y sin alarmismo, antes que en un titular a medias.
 
 ## Qué dice exactamente la nueva ley
 
 El **Real Decreto 1188/2025, de 26 de diciembre** ([publicado en el BOE el 30 de diciembre de 2025](https://www.boe.es/buscar/doc.php?id=BOE-A-2025-27010)) modifica el RD 875/2014, la norma que regula las titulaciones náuticas de recreo.
 
-Hasta ahora, esa norma tenía una exención muy conocida: las embarcaciones a motor de **hasta 5 metros de eslora y 15 CV de potencia** podían gobernarse **sin ningún título**, de día y hasta 2 millas náuticas de un abrigo. Sobre esa exención se construyó todo el sector del "alquiler de barcos sin licencia", el nuestro incluido.
+Hasta el 30 de septiembre de 2026, esa norma tenía una exención muy conocida: las embarcaciones a motor de **hasta 5 metros de eslora y 15 CV de potencia** podían gobernarse **sin ningún título**, de día y hasta 2 millas náuticas de un abrigo. Sobre esa exención se construyó todo el sector del "alquiler de barcos sin licencia", el nuestro incluido.
 
-El cambio es quirúrgico: la exención **se mantiene, pero solo para uso privado**. El texto nuevo lo dice sin rodeos: en los casos de **arrendamiento** de estas embarcaciones, **el arrendatario deberá estar en posesión del título correspondiente**. Traducido: si el barco es tuyo, todo sigue igual; si lo alquilas, necesitarás un título náutico.
+El cambio es quirúrgico: la exención **se mantiene, pero solo para uso privado**. El texto nuevo lo dice sin rodeos: en los casos de **arrendamiento** de estas embarcaciones, **el arrendatario deberá estar en posesión del título correspondiente**. Traducido: si el barco es tuyo, todo sigue igual; si lo alquilas, necesitas un título náutico.
 
 El motivo que da el propio decreto es el elevado número de incidentes y accidentes en estas actividades. Y siendo honestos, desde dentro del sector: que se pida una formación mínima de un día para llevar un barco no nos parece una mala noticia para la seguridad de nadie.
 
 ## Las fechas que importan
 
-- **Hasta el 30 de septiembre de 2026**: no cambia absolutamente nada. Los barcos sin licencia se alquilan como siempre, esta temporada incluida.
-- **Desde el 1 de octubre de 2026**: entra en vigor la modificación. Para alquilar cualquier embarcación a motor, también las de menos de 5 metros y 15 CV, el cliente deberá tener un título náutico.
+- **Hasta el 30 de septiembre de 2026**: los barcos sin licencia se alquilaron como siempre, temporada 2026 incluida.
+- **Desde el 1 de octubre de 2026**: la modificación está en vigor. Para alquilar cualquier embarcación a motor, también las de menos de 5 metros y 15 CV, el cliente tiene que tener un título náutico.
 
-Es decir: la temporada 2026 se completa con las reglas de siempre, y el cambio real se nota a partir de la **temporada 2027**.
+Es decir: la temporada 2026 se completó con las reglas de siempre, y desde el **1 de octubre de 2026** ya no se alquila ningún barco sin titulación.
 
 ## A quién afecta y a quién no
 
-**Te afecta si:** tu plan era alquilar un barco sin titulación a partir de octubre de 2026, aquí o en cualquier puerto de España. La norma es estatal y afecta a todas las empresas de alquiler por igual.
+**Te afecta si:** quieres alquilar un barco a motor sin titulación, aquí o en cualquier puerto de España. La norma es estatal y afecta a todas las empresas de alquiler por igual.
 
 **No te afecta si:**
 
 - **Tienes barco propio** de hasta 5 metros y 15 CV: el uso privado conserva la exención.
 - **Ya tienes un título náutico**, español o extranjero equivalente (ICC, Permis Côtier, SBF See y otros europeos). Puedes comprobar el tuyo en el verificador gratuito de nuestra página de [barcos con licencia](/es/barcos-con-licencia).
-- **Sales con patrón**: en la [excursión privada con patrón](/es/alquiler-barco-con-patron) el barco lo gobierna un profesional y nadie a bordo necesita titulación. Eso no cambia ni ahora ni después.
+- **Sales con patrón**: en la [excursión privada con patrón](/es/alquiler-barco-con-patron) el barco lo gobierna un profesional y nadie a bordo necesita titulación. Eso no ha cambiado.
 
 ## La solución más sencilla: la Licencia de Navegación (el titulín)
 
 Aquí viene la parte que casi nadie cuenta: el título que pide la ley para estos barcos es el más fácil de obtener de toda la escala náutica española. La **Licencia de Navegación**, el famoso **titulín**, se consigue en **un solo día**: 2 horas de teoría y 4 horas de prácticas a bordo en una escuela náutica autorizada o federación. **Sin examen**. Y no caduca nunca.
 
-Y hay un giro que convierte la obligación en oportunidad: el titulín no te habilita solo para los barcos pequeños. Te permite gobernar embarcaciones **de hasta 6 metros de eslora**, siempre de día y hasta 2 millas de un abrigo. En nuestra flota, eso significa que con un día de curso puedes alquilar lanchas como la **Mingolla Brava 19** o la **Trimarchi 57S**, con motores de 80 y 110 CV, con las que sí se llega a Tossa de Mar. Más barco del que podías llevar sin título.
+Y hay un giro que convierte la obligación en oportunidad: el titulín no te habilita solo para los barcos pequeños. Te permite gobernar embarcaciones **de hasta 6 metros de eslora**, siempre de día y hasta 2 millas de un abrigo. En nuestra flota, eso significa que con un día de curso puedes alquilar lanchas como la **Mingolla Brava 19**, la **Trimarchi 57S** o la **Pacific Craft 625**, con motores de 80, 110 y 115 CV, con las que sí se llega a Tossa de Mar. Más barco del que podías llevar sin título.
 
 Hemos preparado una guía completa del titulín, con lo que permite, cómo se consigue y sus preguntas frecuentes: [Licencia de Navegación (titulín) en Blanes](/es/licencia-navegacion-titulin).
 
-## Qué vamos a hacer nosotros
+## Qué hemos hecho nosotros
 
-Nuestra flota no se va a ninguna parte. Los mismos barcos que hoy se alquilan sin licencia seguirán en el agua en 2027; lo que cambia es el requisito de quien los alquila. Estamos trabajando para que el salto sea lo más corto posible: orientarte sobre dónde sacarte el titulín cerca de Blanes, verificar títulos extranjeros antes de la reserva y, para quien no quiera saber nada de cursos, la excursión con patrón de siempre.
+Desde el 1 de octubre de 2026 hemos dejado de alquilar los barcos sin licencia (Solar 450, Remus 450, Remus 450 II, Astec 400 y Astec 480). Seguimos alquilando las tres lanchas con licencia ([Mingolla Brava 19](/es/barco/mingolla-brava-19), [Trimarchi 57S](/es/barco/trimarchi-57s) y [Pacific Craft 625](/es/barco/pacific-craft-625)), que se llevan con el titulín, y la excursión privada con patrón, en la que nadie a bordo necesita título. Queremos que el salto sea lo más corto posible: te orientamos sobre dónde sacarte el titulín cerca de Blanes, verificamos títulos extranjeros antes de la reserva y, para quien no quiera saber nada de cursos, está la excursión con patrón de siempre.
 
 Si tienes dudas sobre tu caso concreto, escríbenos por **WhatsApp al +34 611 500 372** y te lo aclaramos en dos mensajes.
 
 ## Preguntas rápidas
 
-**¿Puedo alquilar sin título este verano y en septiembre?**
-Sí. Hasta el 30 de septiembre de 2026 todo funciona como siempre.
+**¿Todavía puedo alquilar un barco sin título?**
+No. El último día fue el 30 de septiembre de 2026: desde el 1 de octubre ningún barco a motor se alquila sin titulación.
 
 **¿La norma es solo de Cataluña?**
 No, es un Real Decreto estatal: aplica en toda España por igual.
 
-**¿Qué título me pedirán para alquilar un barco pequeño en 2027?**
+**¿Qué título me piden ahora para alquilar un barco pequeño?**
 Como mínimo la Licencia de Navegación (titulín), que se obtiene en un día y sin examen. Cualquier título superior (PNB, PER) o extranjero equivalente también sirve.
 
 **¿Y si no quiero sacarme ningún título?**
 Tienes la excursión privada con patrón: un profesional lleva el barco y tú solo disfrutas. Disponible toda la temporada, con la ley nueva y con la vieja.
 
-El mar no cierra el 1 de octubre de 2026: solo cambia la llave para entrar. Y la llave, de verdad, se saca en un día.
+El mar no cerró el 1 de octubre de 2026: solo cambió la llave para entrar. Y la llave, de verdad, se saca en un día.
 `,
   },
   // ===== 2026-09-13: cluster titulín (RD 1188/2025) =====
@@ -5221,7 +5092,7 @@ Y habrá una más: la nuestra. [Escola Nàutica Blanes](${escolaNauticaUrl("es",
 
 ## Qué puedes alquilar con el titulín
 
-Toda nuestra flota. Los tres barcos con licencia entran en el límite de 6 metros de eslora de inscripción: el [Mingolla Brava 19](/es/barco/mingolla-brava-19) (5,99 m), el [Trimarchi 57S](/es/barco/trimarchi-57s) (5,70 m) y el [Pacific Craft 625](/es/barco/pacific-craft-625) (5,90 m). Y, por supuesto, los [barcos pequeños de hasta 15 CV](/es/barcos-sin-licencia), que desde octubre también piden el título.
+Todas nuestras lanchas. Los tres barcos con licencia entran en el límite de 6 metros de eslora de inscripción: el [Mingolla Brava 19](/es/barco/mingolla-brava-19) (5,99 m), el [Trimarchi 57S](/es/barco/trimarchi-57s) (5,70 m) y el [Pacific Craft 625](/es/barco/pacific-craft-625) (5,90 m). Y si prefieres no pilotar, la [excursión con patrón](/es/alquiler-barco-con-patron) no pide ningún título.
 
 Con la licencia en la mano, la ruta clásica es pilotar tú mismo hasta [Tossa de Mar](/es/blog/alquiler-barco-tossa-de-mar-desde-blanes): entre 30 y 45 minutos desde Blanes en una lancha de 80 a 115 CV.
 
@@ -5282,7 +5153,7 @@ Los tres se alquilan por franjas de 2, 4 o 8 horas. Precios actualizados en la [
 
 ## Y los barcos pequeños
 
-Los cuatro barcos de hasta 15 CV que hasta septiembre de 2026 se alquilaban sin título siguen en la flota. Desde el 1 de octubre también piden la Licencia de Navegación, así que con el titulín eliges entre siete barcos, no entre tres. Si el plan es tranquilo (calas de Blanes, snorkel, niños a bordo), siguen siendo la opción más económica y llevan la gasolina incluida.
+Los barcos de hasta 15 CV que hasta el 30 de septiembre de 2026 se alquilaban sin título ya no se alquilan. Desde el 1 de octubre la flota de alquiler son estas tres lanchas con licencia y la excursión privada con patrón, y ningún barco incluye la gasolina. Para un plan tranquilo (calas de Blanes, snorkel, niños a bordo), la Mingolla Brava 19 es la opción más sencilla.
 
 ## Todavía no tienes el título
 
@@ -5306,7 +5177,7 @@ Se saca en un día: te lo contamos en [cómo sacarte el titulín en Blanes](/es/
 
 1. **Tu título náutico** en vigor: la Licencia de Navegación (titulín) o cualquiera superior (PNB, PER, Patrón de Yate).
 2. **DNI, NIE o pasaporte** de la persona que va a pilotar.
-3. La **fianza**, que se devuelve al final: 200 euros en los barcos pequeños y 500 en las lanchas con licencia.
+3. La **fianza**, que se devuelve al final: 500 euros en las lanchas con licencia.
 
 El briefing de seguridad de 15 minutos antes de zarpar se mantiene para todos, con o sin experiencia.
 
@@ -5316,7 +5187,7 @@ Los que sean equivalentes al mínimo español: el **ICC** internacional, el **Pe
 
 ## Qué barco puedes llevar
 
-Con el titulín, cualquiera de los siete barcos que se alquilan sin patrón: los tres con licencia (hasta 6 metros de eslora de inscripción) y los cuatro pequeños de hasta 15 CV. Cuál conviene, en [qué lancha puedes llevar con el titulín](/es/blog/que-lancha-puedes-llevar-con-el-titulin).
+Con el titulín, cualquiera de las tres lanchas que se alquilan sin patrón: Mingolla Brava 19 (6 personas), Trimarchi 57S (7 personas) y Pacific Craft 625 (7 personas, 5,90 m de eslora de matriculación). Los barcos pequeños de hasta 15 CV ya no se alquilan. Cuál conviene, en [qué lancha puedes llevar con el titulín](/es/blog/que-lancha-puedes-llevar-con-el-titulin).
 
 ## Y si no tienes título
 
@@ -5327,7 +5198,7 @@ Tienes dos salidas:
 
 ## Lo que no cambia
 
-Los precios por franja, la gasolina incluida en los barcos pequeños, el límite de la casa de una milla mar adentro y la costa entre el río Tordera y la playa de Fenals, y la [política de cancelación](/es/garantias) con la Garantía de mal tiempo. Reserva como siempre: eliges barco y hora en la web y confirmamos por WhatsApp.`,
+Los precios por franja de las lanchas con licencia y la [política de cancelación](/es/garantias) con la Garantía de mal tiempo. La gasolina no está incluida en ningún barco, y con licencia llegas a Lloret y a Tossa de Mar (de Blanes a Tossa son 30-45 minutos). Reserva como siempre: eliges barco y hora en la web y confirmamos por WhatsApp.`,
   },
   // ===== 2026-09-24: cluster moto de agua + eFoil =====
   {

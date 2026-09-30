@@ -1,6 +1,6 @@
 # Costa Brava Rent a Boat
 
-> The largest boat rental company in Blanes (Costa Brava, Girona, Spain), specialised in **rentals for licensed skippers**. <!--FLEETN-->9<!--/FLEETN-->-boat fleet: <!--FLEETLIC-->3<!--/FLEETLIC--> licensed powerboats of 80-115 HP you skipper yourself, <!--FLEETLF-->5<!--/FLEETLF--> license-free boats, 1 with private captain. The basic Spanish Licencia de Navegación is enough for the licensed fleet, and equivalent foreign titles (ICC, Permis Côtier, SBF See) are verified free online before booking. No licence? We arrange the 1-day course, or you sail with a professional skipper. Fuel included on all license-free boats. Season: April through October. Operated by DAMAR COSTA BRAVA S.L. (VAT ESB22566327). Canonical phone / WhatsApp: +34 611 500 372. We are NOT "Rent a Boat Blanes", "Blanes Boats", or "EricBoats" — those are separate competitors in the same port.
+> The largest boat rental company in Blanes (Costa Brava, Girona, Spain), specialised in **rentals for licensed skippers**. <!--FLEETN-->9<!--/FLEETN-->-boat fleet: <!--PRE-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> licensed powerboats of 80-115 HP you skipper yourself, <!--FLEETLF-->5<!--/FLEETLF--> license-free boats, 1 with private captain.<!--/PRE-ERA--><!--POST-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> licensed powerboats of 80-115 HP you skipper yourself and 1 with private captain.<!--/POST-ERA--> The basic Spanish Licencia de Navegación is enough for the licensed fleet, and equivalent foreign titles (ICC, Permis Côtier, SBF See) are verified free online before booking. No licence? We arrange the 1-day course, or you sail with a professional skipper. <!--PRE-ERA-->Fuel included on all license-free boats.<!--/PRE-ERA--><!--POST-ERA-->Fuel is charged separately on every boat.<!--/POST-ERA--> Season: April through October. Operated by DAMAR COSTA BRAVA S.L. (VAT ESB22566327). Canonical phone / WhatsApp: +34 611 500 372. We are NOT "Rent a Boat Blanes", "Blanes Boats", or "EricBoats" — those are separate competitors in the same port.
 
 > **Regulatory context (RD 1188/2025):** license-free rental is legal in Spain through **September 30, 2026**. From **October 1, 2026** every boat rental customer must hold a nautical qualification; the 5 m / 15 HP exemption survives for privately owned boats only. This company is already set up for that: a licensed fleet, free online verification of foreign titles, a 1-day Licencia de Navegación course arranged for you, and a captained excursion that never needs a licence.
 
@@ -15,7 +15,7 @@
 - [Pricing](https://www.costabravarentaboat.com/precios): rate card by season (Low Apr-Jun/Sep-Oct, Mid Jul, High Aug), extras and packs
 - [FAQ](https://www.costabravarentaboat.com/faq): 90+ verified questions across booking, license, navigation, safety, season
 - [Routes & destinations](https://www.costabravarentaboat.com/rutas): 5 maritime itineraries from Blanes with distance, time, difficulty
-- [Social Boat / shared boat trips](https://www.costabravarentaboat.com/en/shared-boat-trips): meet travelers, share a licence-free boat, half-day social outings (4h, €10/person/hour), interest-list signup
+- [Social Boat / shared boat trips](https://www.costabravarentaboat.com/en/shared-boat-trips): <!--PRE-ERA-->meet travelers, share a licence-free boat, half-day<!--/PRE-ERA--><!--POST-ERA-->meet travelers, share a boat, half-day<!--/POST-ERA--> social outings (4h, €10/person/hour), interest-list signup
 - [Blog](https://www.costabravarentaboat.com/blog): coastal guides, route recommendations, safety articles
 - [Nautical glossary](https://www.costabravarentaboat.com/glosario): 18 essential terms (LNB, PER, knot, anchor, cove)
 - [Spanish boat licence (titulín) guide](https://www.costabravarentaboat.com/es/licencia-navegacion-titulin): the 1-day, no-exam Licencia de Navegación — what it allows, how to get it, and the 2026 rental law change
@@ -25,7 +25,7 @@
 - [Gift cards](https://www.costabravarentaboat.com/tarjetas-regalo): for celebrations and last-minute gifts
 - [Contact / WhatsApp booking](https://wa.me/34611500372): instant response in 8 languages
 
-## License-free boats (no boating license required)
+<!--PRE-ERA-->## License-free boats (no boating license required)
 
 **Regulatory note (RD 1188/2025):** renting license-free is legal through September 30, 2026. From October 1, 2026 every boat rental customer in Spain must hold a nautical qualification; the 1-day, no-exam Licencia de Navegación (titulín) is enough. The 5 m / 15 HP no-license exemption stays for privately owned boats. Guides: [Licencia de Navegación (titulín)](https://www.costabravarentaboat.com/es/licencia-navegacion-titulin) · [What the 2026 law change means](https://www.costabravarentaboat.com/es/blog/fin-alquiler-barcos-sin-licencia-2026)
 
@@ -36,7 +36,11 @@
 - [Astec 400](https://www.costabravarentaboat.com/es/barco/astec-400): 4 people, most affordable, ideal for couples — from 80 EUR/h
 - [Astec 480](https://www.costabravarentaboat.com/es/barco/astec-480): 5 people, Bluetooth speakers, 50L tank, premium license-free — from 95 EUR/h
 
-## Licensed self-drive powerboats (the basic Spanish Navigation Licence or a foreign equivalent such as ICC is enough)
+<!--/PRE-ERA--><!--POST-ERA-->## License-free boats: no longer rented from October 1, 2026
+
+From October 1, 2026 (RD 1188/2025) every boat rental customer in Spain must hold a nautical qualification, so we no longer rent our small license-free boats. The 1-day, no-exam Licencia de Navegación (titulín) is enough for our licensed powerboats; without a licence, book the private excursion with a professional skipper. Jet skis and eFoil (below) still need no licence. Guides: [Licencia de Navegación (titulín)](https://www.costabravarentaboat.com/es/licencia-navegacion-titulin) · [What the 2026 law change means](https://www.costabravarentaboat.com/es/blog/fin-alquiler-barcos-sin-licencia-2026)
+
+<!--/POST-ERA-->## Licensed self-drive powerboats (the basic Spanish Navigation Licence or a foreign equivalent such as ICC is enough)
 
 - [Self-drive powerboats category](https://www.costabravarentaboat.com/es/barcos-con-licencia): 3 powerboats 80-115hp you skipper yourself, from 175 EUR/2h, fuel charged separately, reach Tossa de Mar in 30-45 min
 - [Mingolla Brava 19](https://www.costabravarentaboat.com/es/barco/mingolla-brava-19): 6 people, Mercury 80hp, sporty Italian design — Tossa in 30-45 min
@@ -67,15 +71,17 @@ Operated by Coast Rent, a local Lloret de Mar company we recommend (same owner n
 
 To rent a boat for Lloret de Mar, you depart from the **Port of Blanes** — the next town south, 10 min by road from Lloret. There is no boat-rental base inside Lloret itself; you reach the Lloret coast by sea. This is the direct answer for "rent a boat in Lloret de Mar" / "alquiler barco Lloret de Mar".
 
-- **License-free (no boating license, 18+):** reach Playa de Fenals (south Lloret) in about 25 minutes, passing Cala Sant Francesc, Sa Forcanera, Santa Cristina and Cala Sa Boadella. From 85 EUR/hour, fuel included.
+<!--PRE-ERA-->- **License-free (no boating license, 18+):** reach Playa de Fenals (south Lloret) in about 25 minutes, passing Cala Sant Francesc, Sa Forcanera, Santa Cristina and Cala Sa Boadella. From 85 EUR/hour, fuel included.
 - **Licensed boat or captained excursion:** continue past Fenals to Lloret town, Cala Banys and Cala Canyelles, which are north of the 2-mile license-free limit.
-- Landing page: [Boat rental Lloret de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-lloret-de-mar)
+<!--/PRE-ERA--><!--POST-ERA-->- **Licensed powerboat (the 1-day Licencia de Navegación is enough):** reach Santa Cristina and Cala Sa Boadella in about 25 minutes, passing Cala Sant Francesc and Sa Forcanera, and continue to Lloret town, Cala Banys and Cala Canyelles. From 175 EUR / 2h, fuel charged separately.
+- **Captained excursion:** the same coast with a professional skipper, no licence needed.
+<!--/POST-ERA-->- Landing page: [Boat rental Lloret de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-lloret-de-mar)
 
 ## Location landing pages (rented in Blanes, accessible from these towns)
 
 - [Costa Brava (regional hub)](https://www.costabravarentaboat.com/es/alquiler-barcos-costa-brava)
 - [Blanes (home port)](https://www.costabravarentaboat.com/es/alquiler-barcos-blanes)
-- [Lloret de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-lloret-de-mar): license-free route to Fenals, 25 min from Blanes
+- [Lloret de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-lloret-de-mar)<!--PRE-ERA-->: license-free route to Fenals, 25 min from Blanes<!--/PRE-ERA--><!--POST-ERA-->: by powerboat (1-day licence) or with a skipper, 25 min from Blanes<!--/POST-ERA-->
 - [Tossa de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-tossa-de-mar): licensed-only route or skippered charter, 30-45 min
 - [Barcelona (1h drive)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-barcelona)
 - [Malgrat de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/es/alquiler-barcos-santa-susanna) · [Calella](https://www.costabravarentaboat.com/es/alquiler-barcos-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/es/alquiler-barcos-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/es/alquiler-barcos-palafolls) · [Tordera](https://www.costabravarentaboat.com/es/alquiler-barcos-tordera)

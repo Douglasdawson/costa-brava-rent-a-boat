@@ -29,6 +29,7 @@ import { JETSKI_PRODUCTS } from "../../shared/jetskiProducts";
 import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { boatRoutes } from "../../shared/routesData";
 import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
+import { eraCopy } from "../../shared/constants";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
@@ -112,6 +113,98 @@ async function collectRoutes(): Promise<IndexItem[]> {
   }
   return items;
 }
+
+// RD 1188/2025: from 2026-10-01 the licence-free boats are no longer rented and no rentable
+// boat includes fuel. Post-era text for the landings whose copy promised either; the daily
+// 04:30 rebuild swaps it in (the dense embedding is only regenerated when missing, so the
+// old vector lingers until a forced rebuild; body and snippet, which is what we serve, update).
+type LandingText = { title?: string; body?: string; snippet?: string };
+const POST_ERA_OFFER = {
+  es: "Desde el 1 de octubre de 2026 (RD 1188/2025) se alquila con título náutico: basta la Licencia de Navegación (titulín, curso de 1 día sin examen) para nuestras 3 lanchas de 80-115 CV, hasta 7 personas, desde 175€ las 2 horas y gasolina aparte. Sin título, la excursión privada con patrón.",
+  en: "From 1 October 2026 (RD 1188/2025) you rent with a nautical licence: the 1-day, no-exam Licencia de Navegación (titulín) covers our 3 powerboats of 80-115 HP, up to 7 people, from 175€ per 2 hours, fuel charged separately. Without a licence, the private excursion with skipper.",
+};
+const POST_ERA_LANDINGS: Record<string, { es: LandingText; en: LandingText }> = {
+  "lloret-de-mar": {
+    es: {
+      body: `Alquiler de barcos para Lloret de Mar. Las salidas son desde el Puerto de Blanes, a 10 minutos por carretera de Lloret; no hay base de alquiler dentro de Lloret, se llega por mar. En lancha llegas a Santa Cristina y Sa Boadella en unos 25 minutos pasando por Cala Sant Francesc y Sa Forcanera, y sigues hasta Lloret centro, Cala Banys y Cala Canyelles. ${POST_ERA_OFFER.es}`,
+      snippet: "Alquiler de barcos para Lloret de Mar saliendo del Puerto de Blanes: lanchas con titulín hasta Lloret centro y Cala Canyelles, o excursión con patrón.",
+    },
+    en: {
+      body: `Boat rental for Lloret de Mar. Trips depart from the Port of Blanes, 10 minutes by road from Lloret; there is no rental base inside Lloret, you reach it by sea. By powerboat you reach Santa Cristina and Sa Boadella in about 25 minutes, passing Cala Sant Francesc and Sa Forcanera, and continue to Lloret town, Cala Banys and Cala Canyelles. ${POST_ERA_OFFER.en}`,
+      snippet: "Boat rental for Lloret de Mar departing from the Port of Blanes: powerboats with the 1-day licence to Lloret town and Cala Canyelles, or a captained excursion.",
+    },
+  },
+  blanes: {
+    es: {
+      body: `Alquiler de barcos en el Puerto de Blanes, puerto base de toda la flota. ${POST_ERA_OFFER.es} Parking gratuito a 100 m. Desde aquí navegas a Sa Palomera, Cala Sant Francesc, Santa Cristina, Lloret y Tossa de Mar.`,
+      snippet: "Alquiler de barcos en el Puerto de Blanes, puerto base de la flota. Lanchas con titulín (curso de 1 día) o excursión con patrón.",
+    },
+    en: {
+      body: `Boat rental at the Port of Blanes, home port of the whole fleet. ${POST_ERA_OFFER.en} Free parking 100 m away. From here you sail to Sa Palomera, Cala Sant Francesc, Santa Cristina, Lloret and Tossa de Mar.`,
+      snippet: "Boat rental at the Port of Blanes, home port of the fleet. Powerboats with the 1-day licence or a captained excursion.",
+    },
+  },
+  "costa-brava": {
+    es: {
+      body: `Alquiler de barcos en la Costa Brava saliendo del Puerto de Blanes, puerta sur de la Costa Brava. ${POST_ERA_OFFER.es} Calas como Sa Palomera, Cala Sant Francesc y Santa Cristina, y hasta Tossa de Mar y más al norte.`,
+      snippet: "Alquiler de barcos en la Costa Brava desde el Puerto de Blanes: lanchas con titulín hasta Tossa de Mar o excursión privada con patrón.",
+    },
+    en: {
+      body: `Boat rental on the Costa Brava departing from the Port of Blanes, the southern gateway to the Costa Brava. ${POST_ERA_OFFER.en} Coves like Sa Palomera, Cala Sant Francesc and Santa Cristina, up to Tossa de Mar and further north.`,
+      snippet: "Boat rental on the Costa Brava from the Port of Blanes: powerboats with the 1-day licence up to Tossa de Mar, or a private captained excursion.",
+    },
+  },
+  "malgrat-de-mar": {
+    es: {
+      body: `Alquiler de barcos para Malgrat de Mar. Malgrat no tiene puerto de alquiler propio: el puerto más cercano es el Puerto de Blanes, a 8 km, unos 10 minutos en coche, 5 minutos en tren R1 (estación Malgrat de Mar a Blanes) o taxi por 12-15€. ${POST_ERA_OFFER.es}`,
+      snippet: "Alquiler de barcos para Malgrat de Mar: el puerto más cercano es Blanes (8 km, 10 min en coche, 5 min en R1). Lanchas con titulín o excursión con patrón.",
+    },
+    en: {
+      body: `Boat rental for Malgrat de Mar. Malgrat has no rental port of its own: the nearest port is the Port of Blanes, 8 km away, about 10 minutes by car, 5 minutes on the R1 train (Malgrat de Mar station to Blanes) or a 12-15€ taxi. ${POST_ERA_OFFER.en}`,
+      snippet: "Boat rental for Malgrat de Mar: nearest port is Blanes (8 km, 10 min by car, 5 min on the R1 train). Powerboats with the 1-day licence or a captained excursion.",
+    },
+  },
+  "santa-susanna": {
+    es: {
+      body: `Alquiler de barcos y paseos en barco para Santa Susanna. Santa Susanna no tiene puerto: las salidas son desde el Puerto de Blanes, a 12 km, unos 15 minutos en coche o 10 minutos en tren R1. ${POST_ERA_OFFER.es}`,
+      snippet: "Paseos en barco y alquiler para Santa Susanna: salidas desde el Puerto de Blanes (12 km, 15 min). Lanchas con titulín o excursión con patrón.",
+    },
+    en: {
+      body: `Boat rental and boat trips for Santa Susanna. Santa Susanna has no port: departures are from the Port of Blanes, 12 km away, about 15 minutes by car or 10 minutes on the R1 train. ${POST_ERA_OFFER.en}`,
+      snippet: "Boat trips and boat rental for Santa Susanna: departures from the Port of Blanes (12 km, 15 min). Powerboats with the 1-day licence or a captained excursion.",
+    },
+  },
+  calella: {
+    es: {
+      body: `Alquiler de barcos para Calella del Maresme (provincia de Barcelona, línea de tren R1), no confundir con Calella de Palafrugell, que está 60 km más al norte. Calella no tiene puerto de alquiler: el más cercano es el Puerto de Blanes, a 17 km, unos 20 minutos en coche o 15 minutos en tren R1 (billete ~3€). ${POST_ERA_OFFER.es}`,
+    },
+    en: {
+      body: `Boat rental for Calella in the Maresme (Barcelona province, R1 train line), not to be confused with Calella de Palafrugell, 60 km further north. Calella has no rental port: the nearest is the Port of Blanes, 17 km away, about 20 minutes by car or 15 minutes on the R1 train (ticket around 3€). ${POST_ERA_OFFER.en}`,
+    },
+  },
+  "pineda-de-mar": {
+    es: {
+      body: `Alquiler de barcos para Pineda de Mar y el Alt Maresme. Pineda no tiene puerto de alquiler: el más cercano es el Puerto de Blanes, a unos 18 minutos en coche o 12 minutos en tren R1. Es el punto de salida de alquiler de barco más cercano para toda la costa del Alt Maresme (Malgrat, Santa Susanna, Pineda, Calella). ${POST_ERA_OFFER.es}`,
+      snippet: "Alquiler de barcos para Pineda de Mar y el Maresme: puerto más cercano Blanes (18 min coche, 12 min R1). Lanchas con titulín o excursión con patrón.",
+    },
+    en: {
+      body: `Boat rental for Pineda de Mar and the Alt Maresme. Pineda has no rental port: the nearest is the Port of Blanes, about 18 minutes by car or 12 minutes on the R1 train. It is the closest boat rental departure point for the whole Alt Maresme coast (Malgrat, Santa Susanna, Pineda, Calella). ${POST_ERA_OFFER.en}`,
+      snippet: "Boat rental for Pineda de Mar and the Maresme: nearest port is Blanes (18 min by car, 12 min on the R1 train). Powerboats with the 1-day licence or a captained excursion.",
+    },
+  },
+  "barcos-sin-licencia": {
+    es: {
+      title: "Barcos sin licencia en Blanes: fin del alquiler el 30 de septiembre de 2026",
+      body: `Hasta el 30 de septiembre de 2026 alquilábamos barcos pequeños sin licencia en el Puerto de Blanes. Desde el 1 de octubre de 2026 el RD 1188/2025 exige título náutico para alquilar cualquier barco a motor y esos barcos ya no se alquilan. ${POST_ERA_OFFER.es} Las motos de agua y el eFoil siguen sin requerir licencia.`,
+      snippet: "Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia en Blanes (RD 1188/2025): lanchas con titulín en 1 día o excursión con patrón.",
+    },
+    en: {
+      title: "Licence-free boats in Blanes: rental ended on 30 September 2026",
+      body: `Until 30 September 2026 we rented small licence-free boats at the Port of Blanes. From 1 October 2026 RD 1188/2025 requires a nautical licence to rent any motorboat, and those boats are no longer rented. ${POST_ERA_OFFER.en} Jet skis and eFoil still need no licence.`,
+      snippet: "From 1 October 2026 we no longer rent licence-free boats in Blanes (RD 1188/2025): powerboats with the 1-day licence or a captained excursion.",
+    },
+  },
+};
 
 // Destination landing pages indexed as first-class items so the hybrid search
 // ranks them directly (previously a town like Lloret only surfaced inside
@@ -299,7 +392,7 @@ async function collectLandings(): Promise<IndexItem[]> {
   const items: IndexItem[] = [];
   for (const d of defs) {
     for (const lang of ["es", "en"] as const) {
-      const c = d[lang];
+      const c = { ...d[lang], ...eraCopy({}, POST_ERA_LANDINGS[d.sourceId]?.[lang] ?? {}) };
       items.push({
         sourceType: "landing",
         sourceId: d.sourceId,

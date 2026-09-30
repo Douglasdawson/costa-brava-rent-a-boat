@@ -21,7 +21,7 @@ import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { ACTIVITATUM_PICKS, activitatumPicksBySlot, activitatumTopicUrl, activitatumUrl } from "../shared/activitatumLinks";
 import { ESCOLA_NAUTICA_DOMAIN, escolaNauticaHandoff } from "../shared/escolaNauticaLinks";
-import { eraCopy } from "../shared/constants";
+import { eraCopy, isLicenseFreeEraActive } from "../shared/constants";
 import { postEraMeta } from "../shared/postEraMeta";
 import { SHOP_PRODUCTS } from "../shared/shopData";
 import { NAUTICAL_GLOSSARY_ES } from "../shared/nauticalGlossary";
@@ -2173,14 +2173,32 @@ function buildBoatProductSchema(
   return schema;
 }
 
+// RD 1188/2025: from 2026-10-01 the licence-free boats are no longer rented and no rentable
+// boat includes fuel. Shared post-era answers for the Maresme town landings (Malgrat, Santa
+// Susanna, Calella, Pineda), picked with eraCopy at request time.
+const POST_ERA_TOWN = {
+  offerEn: "Powerboats with the Licencia de Navegacion (1-day course, no exam) from 175 EUR per 2 hours, or a private excursion with skipper.",
+  offerEs: "Lanchas con Licencia de Navegación (curso de 1 día, sin examen) desde 175 EUR por 2 horas, o excursión privada con patrón.",
+  priceEn: "Powerboats with the Licencia de Navegacion start from 175 EUR per 2 hours, fuel charged separately. Without a licence, the private excursion with skipper starts from 265 EUR per 2 hours.",
+  priceEs: "Las lanchas con Licencia de Navegación cuestan desde 175 EUR por 2 horas, gasolina aparte. Sin título, la excursión privada con patrón cuesta desde 265 EUR por 2 horas.",
+  licenceEn: "Yes, to skipper the boat yourself: from 1 October 2026 Spanish law (RD 1188/2025) requires a nautical licence to rent any motorboat. The Licencia de Navegacion is a 1-day course with no exam, and it covers our three powerboats. Without a licence, book the private excursion with skipper.",
+  licenceEs: "Sí, para llevar tú el barco: desde el 1 de octubre de 2026 la ley (RD 1188/2025) exige título náutico para alquilar cualquier barco a motor. La Licencia de Navegación es un curso de 1 día sin examen y cubre nuestras tres lanchas. Sin título, reserva la excursión privada con patrón.",
+};
+
 // Build Event schema for the seasonal business (aggressive: recurring seasonal event)
 function buildSeasonalEvent(isEn: boolean): object {
   return {
     "@type": "Event",
     name: isEn ? `Costa Brava Boat Rental Season ${SEASON_YEAR}` : `Temporada de Alquiler de Barcos Costa Brava ${SEASON_YEAR}`,
     description: isEn
-      ? `Boat rental season in Blanes, Costa Brava. April to October ${SEASON_YEAR}. License-free boats from 70 EUR/hour. 9 boats available.`
-      : `Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre ${SEASON_YEAR}. Barcos sin licencia desde 70 EUR/hora. 9 embarcaciones disponibles.`,
+      ? eraCopy(
+          `Boat rental season in Blanes, Costa Brava. April to October ${SEASON_YEAR}. License-free boats from 70 EUR/hour. 9 boats available.`,
+          `Boat rental season in Blanes, Costa Brava. April to October ${SEASON_YEAR}. Powerboats with the Licencia de Navegacion (1-day course) and a private excursion with skipper. 9 boats available.`,
+        )
+      : eraCopy(
+          `Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre ${SEASON_YEAR}. Barcos sin licencia desde 70 EUR/hora. 9 embarcaciones disponibles.`,
+          `Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre ${SEASON_YEAR}. Lanchas con Licencia de Navegacion (curso de 1 dia) y excursion privada con patron. 9 embarcaciones disponibles.`,
+        ),
     startDate: `${SEASON_YEAR}-04-01`,
     endDate: `${SEASON_YEAR}-10-31`,
     eventStatus: "https://schema.org/EventScheduled",
@@ -2318,7 +2336,8 @@ function buildSiteNavigation(lang: LangCode): object {
     "@type": "ItemList",
     "@id": `${BASE_URL}/#sitenav`,
     name: "Costa Brava Rent a Boat - Site Navigation",
-    itemListElement: items.map((item, i) => ({
+    // RD 1188/2025: from 2026-10-01 the licence-free category is no longer a primary destination.
+    itemListElement: items.filter((item) => item.key !== "categoryLicenseFree" || isLicenseFreeEraActive()).map((item, i) => ({
       "@type": "SiteNavigationElement",
       position: i + 1,
       name: item.name[lang] ?? item.name.es,
@@ -2606,7 +2625,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "PNB (Patrón de Navegación Básica)", "Límite 2 millas náuticas",
           "Navegación a 5 nudos", "Matrícula lista 6ª", "Título náutico",
           // Actividades / servicios
-          "Alquiler de barcos con licencia", "Alquiler de barcos sin licencia",
+          "Alquiler de barcos con licencia", ...eraCopy(["Alquiler de barcos sin licencia"], []),
           "Licencia de Navegación (titulín)", "RD 1188/2025",
           "Verificación de títulos náuticos extranjeros",
           "Excursión privada con capitán", "Snorkel Costa Brava",
@@ -2673,13 +2692,13 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
         estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "70" },
         step: lang === "en" ? [
           { "@type": "HowToStep", position: 1, name: "Check your licence", text: "The basic Licencia de Navegacion covers the whole licensed fleet, and equivalent foreign titles (ICC, Permis Cotier, SBF See) are verified free online before you book. No licence? We arrange the 1-day course, or you sail with a professional skipper." },
-          { "@type": "HowToStep", position: 2, name: "Choose your boat", text: "Licensed powerboats of 80-115 HP from 175 EUR/2 hours, or a private captained excursion from 265 EUR/2 hours. Boats without a licence remain available through September 30, 2026." },
+          { "@type": "HowToStep", position: 2, name: "Choose your boat", text: "Licensed powerboats of 80-115 HP from 175 EUR/2 hours, or a private captained excursion from 265 EUR/2 hours. " + eraCopy("Boats without a licence remain available through September 30, 2026.", "Fuel is charged separately.") },
           { "@type": "HowToStep", position: 3, name: "Select date and time", text: "Choose date, start time, and duration. Available April to October, 09:00-20:00." },
           { "@type": "HowToStep", position: 4, name: "Confirm booking", text: "Book via WhatsApp (+34 611 500 372) or website. Bring the original licence on the day of departure." },
           { "@type": "HowToStep", position: 5, name: "Receive briefing and sail", text: "Safety briefing at Puerto de Blanes, then free rein to the coves and up to Tossa de Mar." },
         ] : [
           { "@type": "HowToStep", position: 1, name: "Comprueba tu titulacion", text: "La Licencia de Navegacion basta para toda la flota con licencia, y los titulos extranjeros equivalentes (ICC, Permis Cotier, SBF See) se verifican gratis online antes de reservar. Sin titulo, te organizamos el curso de 1 dia o sales con patron profesional." },
-          { "@type": "HowToStep", position: 2, name: "Elige tu barco", text: "Lanchas con licencia de 80-115 CV desde 175 EUR/2 horas, o excursion privada con patron desde 265 EUR/2 horas. Los barcos sin titulacion siguen disponibles hasta el 30 de septiembre de 2026." },
+          { "@type": "HowToStep", position: 2, name: "Elige tu barco", text: "Lanchas con licencia de 80-115 CV desde 175 EUR/2 horas, o excursion privada con patron desde 265 EUR/2 horas. " + eraCopy("Los barcos sin titulacion siguen disponibles hasta el 30 de septiembre de 2026.", "La gasolina se paga aparte.") },
           { "@type": "HowToStep", position: 3, name: "Selecciona fecha y horario", text: "Elige fecha, hora de inicio y duracion. Disponible de abril a octubre, 09:00-20:00." },
           { "@type": "HowToStep", position: 4, name: "Confirma tu reserva", text: "Reserva por WhatsApp (+34 611 500 372) o web. Trae el titulo original el dia de la salida." },
           { "@type": "HowToStep", position: 5, name: "Briefing y a navegar", text: "Briefing de seguridad en el Puerto de Blanes y rumbo libre a las calas y hasta Tossa de Mar." },
@@ -2694,7 +2713,10 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Cuáles son los precios del alquiler?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 175€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion."
+              text: eraCopy(
+                "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 175€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion.",
+                "Lanchas con licencia desde 175€ por 2 horas (2h, 4h u 8h) y excursion privada con patron desde 265€ por 2 horas. La gasolina se paga aparte segun consumo. Los precios varian segun temporada (julio/agosto) y embarcacion.",
+              )
             }
           },
           {
@@ -2710,7 +2732,10 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Puedo alquilar un barco sin tener licencia náutica?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Hasta el 30 de septiembre de 2026, sí: tenemos barcos sin licencia de hasta 15 CV y solo necesitas ser mayor de 18 años, con briefing completo antes de salir. A partir del 1 de octubre de 2026 el RD 1188/2025 exige título náutico a todo arrendatario de una embarcación a motor; la Licencia de Navegación (titulín) se saca en un día, sin examen, y te organizamos el curso. La excursión privada con patrón no requiere titulación en ninguna fecha."
+              text: eraCopy(
+                "Hasta el 30 de septiembre de 2026, sí: tenemos barcos sin licencia de hasta 15 CV y solo necesitas ser mayor de 18 años, con briefing completo antes de salir. A partir del 1 de octubre de 2026 el RD 1188/2025 exige título náutico a todo arrendatario de una embarcación a motor; la Licencia de Navegación (titulín) se saca en un día, sin examen, y te organizamos el curso. La excursión privada con patrón no requiere titulación en ninguna fecha.",
+                "Para llevar tú el barco, no: desde el 1 de octubre de 2026 el RD 1188/2025 exige título náutico a todo arrendatario de una embarcación a motor, y ya no alquilamos barcos sin licencia. La Licencia de Navegación (titulín) se saca en un día, sin examen, y con ella llevas nuestras tres lanchas. Sin título, la excursión privada con patrón es la alternativa: el patrón lleva el barco.",
+              )
             }
           },
           {
@@ -2726,7 +2751,10 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Qué está incluido en el precio?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Incluido en todos los alquileres: embarcación equipada, gasolina (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla, escalera de baño, instrucciones de uso y seguro básico."
+              text: eraCopy(
+                "Incluido en todos los alquileres: embarcación equipada, gasolina (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla, escalera de baño, instrucciones de uso y seguro básico.",
+                "Incluido en todos los alquileres: embarcación equipada, chalecos salvavidas, kit de seguridad, ancla, escalera de baño, instrucciones de uso y seguro básico. La gasolina se paga aparte segun consumo.",
+              )
             }
           },
           {
@@ -3109,8 +3137,8 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         "@type": "TouristDestination",
         name: isEn ? "Blanes Port - Boat Rental" : "Puerto de Blanes - Alquiler de Barcos",
         description: isEn
-          ? "Rent boats in Blanes Port, the gateway to Costa Brava. 9 boats available with and without license. Explore coves, beaches, and the Mediterranean coast."
-          : "Alquila barcos en el Puerto de Blanes, la puerta de la Costa Brava. 9 embarcaciones disponibles con y sin licencia. Explora calas, playas y la costa mediterránea.",
+          ? eraCopy("Rent boats in Blanes Port, the gateway to Costa Brava. 9 boats available with and without license. Explore coves, beaches, and the Mediterranean coast.", "Rent boats in Blanes Port, the gateway to Costa Brava. 9 boats available: powerboats with the Licencia de Navegacion (1-day course) and a private excursion with skipper. Explore coves, beaches, and the Mediterranean coast.")
+          : eraCopy("Alquila barcos en el Puerto de Blanes, la puerta de la Costa Brava. 9 embarcaciones disponibles con y sin licencia. Explora calas, playas y la costa mediterránea.", "Alquila barcos en el Puerto de Blanes, la puerta de la Costa Brava. 9 embarcaciones disponibles: lanchas con Licencia de Navegación (curso de 1 día) y excursión privada con patrón. Explora calas, playas y la costa mediterránea."),
         url: `${BASE_URL}/alquiler-barcos-blanes`,
         touristType: [
           { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas náuticos" },
@@ -3156,15 +3184,15 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       const service = buildLandingService(
         isEn ? "Boat Rental in Blanes, Costa Brava" : "Alquiler de Barcos en Blanes, Costa Brava",
         isEn
-          ? "Rent license-free and licensed boats from Blanes Port. 9 boats available, up to 7 people, from 70 EUR/hour. Fuel included on license-free boats."
-          : "Alquiler de barcos sin licencia y con licencia desde el Puerto de Blanes. 9 embarcaciones disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en los barcos sin licencia.",
+          ? eraCopy("Rent license-free and licensed boats from Blanes Port. 9 boats available, up to 7 people, from 70 EUR/hour. Fuel included on license-free boats.", "Rent powerboats with the Licencia de Navegacion (1-day course, no exam) or a private excursion with skipper from Blanes Port. 9 boats available, up to 7 people, from 175 EUR per 2 hours. Fuel charged separately.")
+          : eraCopy("Alquiler de barcos sin licencia y con licencia desde el Puerto de Blanes. 9 embarcaciones disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en los barcos sin licencia.", "Alquiler de lanchas con Licencia de Navegación (curso de 1 día, sin examen) y excursión privada con patrón desde el Puerto de Blanes. 9 embarcaciones disponibles, hasta 7 personas, desde 175€ por 2 horas. Gasolina aparte."),
         { low: getFleetStats().priceFloor, high: 420 },
       );
       const blanesBodyFallback = buildLocationBodyFallback(
         isEn ? "Boat Rental in Blanes, Costa Brava" : "Alquiler de Barcos en Blanes, Costa Brava",
         isEn
-          ? "Rent license-free and licensed boats directly from Blanes Port (Girona). 9 boats available, up to 7 people, from 70€/hour. Fuel included on all license-free boats. The closest harbor for exploring Sa Palomera, Sant Francesc cove, and the southern Costa Brava."
-          : "Alquila barcos sin licencia y con licencia directamente desde el Puerto de Blanes (Girona). 9 barcos disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en todos los barcos sin licencia. El puerto más cercano para explorar Sa Palomera, Cala Sant Francesc y la Costa Brava sur.",
+          ? eraCopy("Rent license-free and licensed boats directly from Blanes Port (Girona). 9 boats available, up to 7 people, from 70€/hour. Fuel included on all license-free boats. The closest harbor for exploring Sa Palomera, Sant Francesc cove, and the southern Costa Brava.", "Rent powerboats directly from Blanes Port (Girona) with the Licencia de Navegacion, a 1-day course with no exam, or sail with a skipper on our private excursion. 9 boats available, up to 7 people, from 175€ per 2 hours, fuel charged separately. The closest harbor for exploring Sa Palomera, Sant Francesc cove, and the southern Costa Brava.")
+          : eraCopy("Alquila barcos sin licencia y con licencia directamente desde el Puerto de Blanes (Girona). 9 barcos disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en todos los barcos sin licencia. El puerto más cercano para explorar Sa Palomera, Cala Sant Francesc y la Costa Brava sur.", "Alquila lanchas directamente desde el Puerto de Blanes (Girona) con la Licencia de Navegación, un curso de 1 día sin examen, o sal con patrón en nuestra excursión privada. 9 barcos disponibles, hasta 7 personas, desde 175€ por 2 horas, gasolina aparte. El puerto más cercano para explorar Sa Palomera, Cala Sant Francesc y la Costa Brava sur."),
         isEn
           ? [
               "Sa Palomera rock — 5 minutes from the port",
@@ -3221,15 +3249,17 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
             "@type": "Question",
             name: isEn ? "How long does it take to reach Lloret de Mar by boat from Blanes?" : "Cuanto se tarda en llegar a Lloret de Mar en barco desde Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "About 25 minutes from Blanes Port to Fenals Beach (south Lloret) with a license-free boat. It's one of our most popular routes."
-              : "Unos 25 minutos desde el Puerto de Blanes hasta Playa de Fenals (sur de Lloret) con barco sin licencia. Es una de nuestras rutas mas populares." },
+              ? eraCopy("About 25 minutes from Blanes Port to Fenals Beach (south Lloret) with a license-free boat. It's one of our most popular routes.", "About 25 minutes from Blanes Port to Santa Cristina and Sa Boadella (south Lloret) by powerboat. It's one of our most popular routes.")
+              : eraCopy("Unos 25 minutos desde el Puerto de Blanes hasta Playa de Fenals (sur de Lloret) con barco sin licencia. Es una de nuestras rutas mas populares.", "Unos 25 minutos desde el Puerto de Blanes hasta Santa Cristina y Sa Boadella (sur de Lloret) en lancha. Es una de nuestras rutas mas populares.") },
           },
           {
             "@type": "Question",
-            name: isEn ? "Can I reach Lloret de Mar with a license-free boat?" : "Puedo llegar a Lloret de Mar con un barco sin licencia?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
+            name: eraCopy(isEn ? "Can I reach Lloret de Mar with a license-free boat?" : "Puedo llegar a Lloret de Mar con un barco sin licencia?", isEn ? "Do I need a licence to reach Lloret de Mar by boat?" : "Necesito licencia para llegar a Lloret de Mar en barco?"),
+            acceptedAnswer: { "@type": "Answer", text: eraCopy(isEn
               ? "Yes! License-free boats reach the south Lloret coast within the 2-mile zone: Santa Cristina, Sa Boadella and Playa de Fenals. Cala Banys and Lloret town beach lie north of Fenals, licensed boats only."
-              : "Si! Los barcos sin licencia llegan a la costa sur de Lloret dentro de la zona de 2 millas: Santa Cristina, Sa Boadella y Playa de Fenals. Cala Banys y la playa de Lloret centro quedan al norte de Fenals, solo con licencia." },
+              : "Si! Los barcos sin licencia llegan a la costa sur de Lloret dentro de la zona de 2 millas: Santa Cristina, Sa Boadella y Playa de Fenals. Cala Banys y la playa de Lloret centro quedan al norte de Fenals, solo con licencia.", isEn
+              ? "To skipper the boat yourself, yes: from 1 October 2026 Spanish law (RD 1188/2025) requires a nautical licence to rent any motorboat. The Licencia de Navegacion, a 1-day course with no exam, is enough for our powerboats, which reach the whole Lloret coast. Without a licence, book the private excursion with skipper."
+              : "Para llevar tú el barco, sí: desde el 1 de octubre de 2026 la ley (RD 1188/2025) exige título náutico para alquilar cualquier barco a motor. Basta la Licencia de Navegación, un curso de 1 día sin examen, y con ella nuestras lanchas llegan a toda la costa de Lloret. Sin título, reserva la excursión privada con patrón.") },
           },
           {
             "@type": "Question",
@@ -3252,30 +3282,34 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         imageType: "image/avif",
       };
       const service = buildLandingService(
-        isEn ? "Boat Rental in Lloret de Mar (license-free, from Blanes)" : "Alquiler de Barcos en Lloret de Mar (sin licencia, desde Blanes)",
-        isEn
+        eraCopy(isEn ? "Boat Rental in Lloret de Mar (license-free, from Blanes)" : "Alquiler de Barcos en Lloret de Mar (sin licencia, desde Blanes)", isEn ? "Boat Rental in Lloret de Mar (from Blanes, licence in 1 day or skipper)" : "Alquiler de Barcos en Lloret de Mar (desde Blanes, con titulín o patrón)"),
+        eraCopy(isEn
           ? "Sail from Blanes to Lloret de Mar. License-free boats reach Fenals Beach in 25 min (2-mile zone). Licensed boats explore the full Lloret coastline. From 70 EUR/hour, up to 7 people."
-          : "Navega desde Blanes hasta Lloret de Mar. Los barcos sin licencia llegan a Playa de Fenals en 25 min (zona de 2 millas). Los barcos con licencia recorren toda la costa de Lloret. Desde 70€/hora, hasta 7 personas.",
+          : "Navega desde Blanes hasta Lloret de Mar. Los barcos sin licencia llegan a Playa de Fenals en 25 min (zona de 2 millas). Los barcos con licencia recorren toda la costa de Lloret. Desde 70€/hora, hasta 7 personas.", isEn
+          ? "Sail from Blanes to Lloret de Mar. With the Licencia de Navegacion (1-day course) our powerboats reach Santa Cristina in 25 min and explore the full Lloret coastline; without a licence, sail with a skipper. From 175 EUR per 2 hours, up to 7 people."
+          : "Navega desde Blanes hasta Lloret de Mar. Con la Licencia de Navegación (curso de 1 día) nuestras lanchas llegan a Santa Cristina en 25 min y recorren toda la costa de Lloret; sin título, sales con patrón. Desde 175€ por 2 horas, hasta 7 personas."),
         { low: 75, high: 420 },
       );
       const lloretBodyFallback = buildLocationBodyFallback(
-        isEn ? "Boat Rental in Lloret de Mar (license-free, from Blanes)" : "Alquiler de Barcos en Lloret de Mar (sin licencia, desde Blanes)",
-        isEn
+        eraCopy(isEn ? "Boat Rental in Lloret de Mar (license-free, from Blanes)" : "Alquiler de Barcos en Lloret de Mar (sin licencia, desde Blanes)", isEn ? "Boat Rental in Lloret de Mar (from Blanes, licence in 1 day or skipper)" : "Alquiler de Barcos en Lloret de Mar (desde Blanes, con titulín o patrón)"),
+        eraCopy(isEn
           ? "Sail from Blanes to Lloret de Mar in 25 minutes with a license-free boat (2-mile zone reaches Fenals Beach). Licensed boats explore the full Lloret coastline including Cala Banys and Santa Cristina. Rentals from 70€/hour, up to 7 people, fuel included on license-free boats."
-          : "Navega desde Blanes a Lloret de Mar en 25 minutos con barco sin licencia (la zona de 2 millas llega a Playa de Fenals). Los barcos con licencia recorren toda la costa de Lloret incluyendo Cala Banys y Santa Cristina. Alquileres desde 70€/hora, hasta 7 personas, gasolina incluida en barcos sin licencia.",
+          : "Navega desde Blanes a Lloret de Mar en 25 minutos con barco sin licencia (la zona de 2 millas llega a Playa de Fenals). Los barcos con licencia recorren toda la costa de Lloret incluyendo Cala Banys y Santa Cristina. Alquileres desde 70€/hora, hasta 7 personas, gasolina incluida en barcos sin licencia.", isEn
+          ? "Sail from Blanes to Lloret de Mar in about 25 minutes. From 1 October 2026 you rent with the Licencia de Navegacion, a 1-day course with no exam, and our powerboats explore the full Lloret coastline including Cala Banys and Santa Cristina; without a licence, sail with a skipper. Rentals from 175€ per 2 hours, up to 7 people, fuel charged separately."
+          : "Navega desde Blanes a Lloret de Mar en unos 25 minutos. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación, un curso de 1 día sin examen, y nuestras lanchas recorren toda la costa de Lloret incluyendo Cala Banys y Santa Cristina; sin título, sales con patrón. Alquileres desde 175€ por 2 horas, hasta 7 personas, gasolina aparte."),
         isEn
           ? [
               "Cala Sant Francesc — golden-sand cove under Marimurtra gardens",
               "Cala Santa Cristina — family-friendly sandy beach",
               "Cala Sa Boadella — semi-virgin pine cove",
-              "Playa de Fenals — northern legal limit for license-free boats",
+              eraCopy("Playa de Fenals — northern legal limit for license-free boats", "Playa de Fenals: wide sandy beach in south Lloret"),
               "Sa Forcanera cove — snorkel paradise on the way",
             ]
           : [
               "Cala Sant Francesc — cala de arena dorada bajo los jardines de Marimurtra",
               "Cala Santa Cristina — playa de arena familiar",
               "Cala Sa Boadella — cala semi-virgen con pinos",
-              "Playa de Fenals — límite norte legal para barcos sin licencia",
+              eraCopy("Playa de Fenals — límite norte legal para barcos sin licencia", "Playa de Fenals: gran playa de arena al sur de Lloret"),
               "Cala Sa Forcanera — paraíso del snorkel en la ruta",
             ],
         isEn ? "Book via WhatsApp +34 611 500 372" : "Reserva por WhatsApp +34 611 500 372",
@@ -3386,8 +3420,8 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         "@type": "TouristDestination",
         name: isEn ? "Boat Rental near Malgrat de Mar" : "Alquiler de Barcos cerca de Malgrat de Mar",
         description: isEn
-          ? "Rent boats from Blanes Port, just 10 minutes by car from Malgrat de Mar. License-free boats from 70 EUR/hour with fuel included."
-          : "Alquila barcos desde el Puerto de Blanes, a solo 10 minutos en coche de Malgrat de Mar. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+          ? "Rent boats from Blanes Port, just 10 minutes by car from Malgrat de Mar. " + eraCopy("License-free boats from 70 EUR/hour with fuel included.", POST_ERA_TOWN.offerEn)
+          : "Alquila barcos desde el Puerto de Blanes, a solo 10 minutos en coche de Malgrat de Mar. " + eraCopy("Barcos sin licencia desde 70 EUR/hora con gasolina incluida.", POST_ERA_TOWN.offerEs),
         url: `${BASE_URL}/alquiler-barcos-malgrat-de-mar`,
         touristType: [
           { "@type": "Audience", audienceType: isEn ? "Family tourists" : "Turistas familiares" },
@@ -3411,8 +3445,8 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       const service = buildLandingService(
         isEn ? "Boat Rental for Malgrat de Mar (from Blanes Port)" : "Alquiler de Barcos para Malgrat de Mar (desde el Puerto de Blanes)",
         isEn
-          ? "License-free and licensed boat rental for Malgrat de Mar visitors. Departures from Blanes Port, 8 km away (10 min by car, 5 min by R1 train). License-free boats from 70 EUR/hour with fuel included."
-          : "Alquiler de barcos sin licencia y con licencia para visitantes de Malgrat de Mar. Salidas desde el Puerto de Blanes, a 8 km (10 min en coche, 5 min en tren R1). Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+          ? eraCopy("License-free and licensed boat rental for ", "Boat rental for ") + "Malgrat de Mar visitors. Departures from Blanes Port, 8 km away (10 min by car, 5 min by R1 train). " + eraCopy("License-free boats from 70 EUR/hour with fuel included.", POST_ERA_TOWN.offerEn)
+          : eraCopy("Alquiler de barcos sin licencia y con licencia para ", "Alquiler de barcos para ") + "visitantes de Malgrat de Mar. Salidas desde el Puerto de Blanes, a 8 km (10 min en coche, 5 min en tren R1). " + eraCopy("Barcos sin licencia desde 70 EUR/hora con gasolina incluida.", POST_ERA_TOWN.offerEs),
         { low: getFleetStats().priceFloor, high: 420 },
       );
       const faq = {
@@ -3429,15 +3463,15 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
             "@type": "Question",
             name: isEn ? "How much does it cost to rent a boat from Blanes?" : "¿Cuánto cuesta alquilar un barco desde Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Boat rental starts from 70 EUR per hour with fuel included. No license needed for boats up to 15 HP."
-              : "El alquiler de barco empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV." },
+              ? eraCopy("Boat rental starts from 70 EUR per hour with fuel included. No license needed for boats up to 15 HP.", POST_ERA_TOWN.priceEn)
+              : eraCopy("El alquiler de barco empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV.", POST_ERA_TOWN.priceEs) },
           },
           {
             "@type": "Question",
             name: isEn ? "Do I need a boating license?" : "Necesito licencia de navegacion?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "No! We offer license-free boats that anyone over 18 can operate. We provide 15 minutes of training before departure."
-              : "No! Ofrecemos barcos sin licencia que cualquier mayor de 18 anos puede manejar. Damos 15 minutos de formacion antes de zarpar." },
+              ? eraCopy("No! We offer license-free boats that anyone over 18 can operate. We provide 15 minutes of training before departure.", POST_ERA_TOWN.licenceEn)
+              : eraCopy("No! Ofrecemos barcos sin licencia que cualquier mayor de 18 anos puede manejar. Damos 15 minutos de formacion antes de zarpar.", POST_ERA_TOWN.licenceEs) },
           },
         ],
       };
@@ -3465,8 +3499,8 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         "@type": "TouristDestination",
         name: isEn ? "Boat Rental near Santa Susanna" : "Alquiler de Barcos cerca de Santa Susanna",
         description: isEn
-          ? "Rent boats from Blanes Port, just 15 minutes by car from Santa Susanna. License-free boats from 70 EUR/hour with fuel included."
-          : "Alquila barcos desde el Puerto de Blanes, a solo 15 minutos en coche de Santa Susanna. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+          ? "Rent boats from Blanes Port, just 15 minutes by car from Santa Susanna. " + eraCopy("License-free boats from 70 EUR/hour with fuel included.", POST_ERA_TOWN.offerEn)
+          : "Alquila barcos desde el Puerto de Blanes, a solo 15 minutos en coche de Santa Susanna. " + eraCopy("Barcos sin licencia desde 70 EUR/hora con gasolina incluida.", POST_ERA_TOWN.offerEs),
         url: `${BASE_URL}/alquiler-barcos-santa-susanna`,
         touristType: [
           { "@type": "Audience", audienceType: isEn ? "Resort tourists" : "Turistas de resort" },
@@ -3487,8 +3521,8 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       const service = buildLandingService(
         isEn ? "Boat Rental and Boat Trips for Santa Susanna (from Blanes Port)" : "Alquiler de Barcos y Paseos en Barco para Santa Susanna (desde el Puerto de Blanes)",
         isEn
-          ? "Rent a license-free boat and drive it yourself, or book the captained private excursion for a boat trip without driving. Departures from Blanes Port, 12 km from Santa Susanna (15 min by car, 10 min by R1 train). From 70 EUR/hour with fuel included."
-          : "Alquila un barco sin licencia y pilótalo tú, o reserva la excursión privada con patrón para un paseo en barco sin conducir. Salidas desde el Puerto de Blanes, a 12 km de Santa Susanna (15 min en coche, 10 min en tren R1). Desde 70 EUR/hora con gasolina incluida.",
+          ? eraCopy("Rent a license-free boat and drive it yourself, or book the captained private excursion for a boat trip without driving. Departures from Blanes Port, 12 km from Santa Susanna (15 min by car, 10 min by R1 train). From 70 EUR/hour with fuel included.", "Rent a powerboat with the Licencia de Navegacion (1-day course, no exam) and drive it yourself, or book the captained private excursion for a boat trip without driving. Departures from Blanes Port, 12 km from Santa Susanna (15 min by car, 10 min by R1 train). From 175 EUR per 2 hours, fuel charged separately.")
+          : eraCopy("Alquila un barco sin licencia y pilótalo tú, o reserva la excursión privada con patrón para un paseo en barco sin conducir. Salidas desde el Puerto de Blanes, a 12 km de Santa Susanna (15 min en coche, 10 min en tren R1). Desde 70 EUR/hora con gasolina incluida.", "Alquila una lancha con la Licencia de Navegación (curso de 1 día, sin examen) y pilótala tú, o reserva la excursión privada con patrón para un paseo en barco sin conducir. Salidas desde el Puerto de Blanes, a 12 km de Santa Susanna (15 min en coche, 10 min en tren R1). Desde 175 EUR por 2 horas, gasolina aparte."),
         { low: getFleetStats().priceFloor, high: 420 },
       );
       const faq = {
@@ -3505,15 +3539,15 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
             "@type": "Question",
             name: isEn ? "How much does it cost to rent a boat from Blanes?" : "¿Cuánto cuesta alquilar un barco desde Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "From 70 EUR per hour with fuel included. License-free boats available for up to 7 passengers."
-              : "Desde 70 EUR por hora con gasolina incluida. Barcos sin licencia disponibles para hasta 7 pasajeros." },
+              ? eraCopy("From 70 EUR per hour with fuel included. License-free boats available for up to 7 passengers.", POST_ERA_TOWN.priceEn)
+              : eraCopy("Desde 70 EUR por hora con gasolina incluida. Barcos sin licencia disponibles para hasta 7 pasajeros.", POST_ERA_TOWN.priceEs) },
           },
           {
             "@type": "Question",
             name: isEn ? "Do I need a boating license?" : "Necesito licencia de navegacion?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "No license needed! Our boats up to 15 HP can be operated by anyone over 18. Training included."
-              : "No se necesita licencia! Nuestros barcos de hasta 15 CV pueden ser manejados por cualquier mayor de 18 anos. Formacion incluida." },
+              ? eraCopy("No license needed! Our boats up to 15 HP can be operated by anyone over 18. Training included.", POST_ERA_TOWN.licenceEn)
+              : eraCopy("No se necesita licencia! Nuestros barcos de hasta 15 CV pueden ser manejados por cualquier mayor de 18 anos. Formacion incluida.", POST_ERA_TOWN.licenceEs) },
           },
         ],
       };
@@ -3541,8 +3575,8 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         "@type": "TouristDestination",
         name: isEn ? "Boat Rental near Calella" : "Alquiler de Barcos cerca de Calella",
         description: isEn
-          ? "Rent boats from Blanes Port, just 20 minutes by car from Calella. License-free boats from 70 EUR/hour with fuel included."
-          : "Alquila barcos desde el Puerto de Blanes, a solo 20 minutos en coche de Calella. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+          ? "Rent boats from Blanes Port, just 20 minutes by car from Calella. " + eraCopy("License-free boats from 70 EUR/hour with fuel included.", POST_ERA_TOWN.offerEn)
+          : "Alquila barcos desde el Puerto de Blanes, a solo 20 minutos en coche de Calella. " + eraCopy("Barcos sin licencia desde 70 EUR/hora con gasolina incluida.", POST_ERA_TOWN.offerEs),
         url: `${BASE_URL}/alquiler-barcos-calella`,
         touristType: [
           { "@type": "Audience", audienceType: isEn ? "Beach tourists" : "Turistas de playa" },
@@ -3567,8 +3601,8 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       const service = buildLandingService(
         isEn ? "Boat Rental for Calella, Maresme (from Blanes Port)" : "Alquiler de Barcos para Calella, Maresme (desde el Puerto de Blanes)",
         isEn
-          ? "License-free and licensed boat rental for visitors staying in Calella (Maresme, Barcelona province). Departures from Blanes Port, 17 km away (20 min by car, 15 min by R1 train). License-free boats from 70 EUR/hour with fuel included."
-          : "Alquiler de barcos sin licencia y con licencia para visitantes alojados en Calella (Maresme, provincia de Barcelona). Salidas desde el Puerto de Blanes, a 17 km (20 min en coche, 15 min en tren R1). Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+          ? eraCopy("License-free and licensed boat rental for ", "Boat rental for ") + "visitors staying in Calella (Maresme, Barcelona province). Departures from Blanes Port, 17 km away (20 min by car, 15 min by R1 train). " + eraCopy("License-free boats from 70 EUR/hour with fuel included.", POST_ERA_TOWN.offerEn)
+          : eraCopy("Alquiler de barcos sin licencia y con licencia para ", "Alquiler de barcos para ") + "visitantes alojados en Calella (Maresme, provincia de Barcelona). Salidas desde el Puerto de Blanes, a 17 km (20 min en coche, 15 min en tren R1). " + eraCopy("Barcos sin licencia desde 70 EUR/hora con gasolina incluida.", POST_ERA_TOWN.offerEs),
         { low: getFleetStats().priceFloor, high: 420 },
       );
       const faq = {
@@ -3585,15 +3619,15 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
             "@type": "Question",
             name: isEn ? "How much does it cost to rent a boat?" : "¿Cuánto cuesta alquilar un barco?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Boat rental starts from 70 EUR per hour with fuel included. No license required for boats up to 15 HP."
-              : "El alquiler empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV." },
+              ? eraCopy("Boat rental starts from 70 EUR per hour with fuel included. No license required for boats up to 15 HP.", POST_ERA_TOWN.priceEn)
+              : eraCopy("El alquiler empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV.", POST_ERA_TOWN.priceEs) },
           },
           {
             "@type": "Question",
             name: isEn ? "Do I need a boating license?" : "Necesito licencia de navegacion?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "No! We have license-free boats for anyone over 18. 15 minutes of training included before departure."
-              : "No! Tenemos barcos sin licencia para cualquier mayor de 18 anos. 15 minutos de formacion incluidos antes de zarpar." },
+              ? eraCopy("No! We have license-free boats for anyone over 18. 15 minutes of training included before departure.", POST_ERA_TOWN.licenceEn)
+              : eraCopy("No! Tenemos barcos sin licencia para cualquier mayor de 18 anos. 15 minutos de formacion incluidos antes de zarpar.", POST_ERA_TOWN.licenceEs) },
           },
           {
             "@type": "Question",
@@ -3695,9 +3729,12 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         [cf.faqChildrenQuestion, cf.faqChildrenAnswer],
         [cf.faqWeatherQuestion, cf.faqWeatherAnswer],
       ];
+      // Post-era the client keeps only the licence and weather questions (category-license-free.tsx):
+      // the rest described renting these boats without a licence.
+      const clfFaqPairsLive = eraCopy(clfFaqPairs, clfFaqPairs.filter(([q]) => q === cf.faqCarnetQuestion || q === cf.faqWeatherQuestion));
       const faqNoLicense = {
         "@type": "FAQPage",
-        mainEntity: clfFaqPairs.map(([q, a]) => ({
+        mainEntity: clfFaqPairsLive.map(([q, a]) => ({
           "@type": "Question",
           name: q,
           acceptedAnswer: { "@type": "Answer", text: a },
@@ -3727,12 +3764,13 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       const noLicenseBody = buildLocationBodyFallback(
         eraCopy(cf.heroTitle, cf.postEraHeroTitle ?? cf.heroTitle),
         eraCopy(cf.heroDescription, cf.postEraHeroDescription ?? cf.heroDescription),
-        [
+        // Post-era the "advantages" section is hidden on the client too.
+        eraCopy([
           `${cf.freeNavigation} — ${cf.freeNavigationDesc}`,
           `${cf.easyToHandle} — ${cf.easyToHandleDesc}`,
           `${cf.safeLimits} — ${cf.safeLimitsDesc}`,
           `${cf.completeEquipment} — ${cf.completeEquipmentDesc}`,
-        ],
+        ], []),
         eraCopy(cf.ctaButton, cf.postEraCtaButton ?? cf.ctaButton),
       );
       // Post-era: the crawler body also carries what changed and where to get the titulín
@@ -4295,8 +4333,8 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
         "@type": "TouristDestination",
         name: isEn ? "Boat Rental near Pineda de Mar" : "Alquiler de Barcos cerca de Pineda de Mar",
         description: isEn
-          ? "Rent boats from Blanes Port, 18 minutes by car or 12 minutes by R1 train from Pineda de Mar. License-free boats from 70 EUR/hour with fuel included."
-          : "Alquila barcos desde el Puerto de Blanes, a 18 minutos en coche o 12 minutos en tren R1 desde Pineda de Mar. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+          ? "Rent boats from Blanes Port, 18 minutes by car or 12 minutes by R1 train from Pineda de Mar. " + eraCopy("License-free boats from 70 EUR/hour with fuel included.", POST_ERA_TOWN.offerEn)
+          : "Alquila barcos desde el Puerto de Blanes, a 18 minutos en coche o 12 minutos en tren R1 desde Pineda de Mar. " + eraCopy("Barcos sin licencia desde 70 EUR/hora con gasolina incluida.", POST_ERA_TOWN.offerEs),
         url: `${BASE_URL}/alquiler-barcos-pineda-de-mar`,
         touristType: [
           { "@type": "Audience", audienceType: isEn ? "Beach tourists" : "Turistas de playa" },
@@ -4328,15 +4366,15 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
             "@type": "Question",
             name: isEn ? "How much does it cost to rent a boat from Blanes?" : "¿Cuánto cuesta alquilar un barco desde Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Boat rental starts from 70 EUR per hour with fuel included. No license needed for boats up to 15 HP."
-              : "El alquiler de barco empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV." },
+              ? eraCopy("Boat rental starts from 70 EUR per hour with fuel included. No license needed for boats up to 15 HP.", POST_ERA_TOWN.priceEn)
+              : eraCopy("El alquiler de barco empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV.", POST_ERA_TOWN.priceEs) },
           },
           {
             "@type": "Question",
             name: isEn ? "Do I need a boating license?" : "¿Necesito licencia de navegación?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "No! We offer license-free boats that anyone over 18 can operate. We provide 15 minutes of training before departure."
-              : "¡No! Ofrecemos barcos sin licencia que cualquier mayor de 18 años puede manejar. Damos 15 minutos de formación antes de zarpar." },
+              ? eraCopy("No! We offer license-free boats that anyone over 18 can operate. We provide 15 minutes of training before departure.", POST_ERA_TOWN.licenceEn)
+              : eraCopy("¡No! Ofrecemos barcos sin licencia que cualquier mayor de 18 años puede manejar. Damos 15 minutos de formación antes de zarpar.", POST_ERA_TOWN.licenceEs) },
           },
         ],
       };
@@ -4383,9 +4421,9 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
         tool: [{ "@type": "HowToTool", name: isEn ? "Smartphone with marine weather app (Windy/Windguru)" : "Móvil con app de meteo marina (Windy/Windguru)" }],
         step: [
           { "@type": "HowToStep", position: 1, name: isEn ? "Check the morning weather window" : "Comprueba la ventana de tiempo matinal", text: isEn ? "Mornings 09:00-12:00 are calmest. From midday the southerly Garbí thermal wind picks up — return to port by 15:00 if you want flat seas." : "Las mañanas 09:00-12:00 son las más tranquilas. A mediodía suele entrar el térmico sur (Garbí); regresa al puerto antes de las 15:00 para mantener mar plana." },
-          { "@type": "HowToStep", position: 2, name: isEn ? "Pick a route within your boat's range" : "Elige una ruta dentro del alcance del barco", text: isEn ? "License-free boats: stay within 2 nautical miles, top destination Playa de Fenals, south Lloret (25 min). Licensed boats: full coast up to Tossa de Mar (30-45 min) and beyond." : "Barco sin licencia: hasta 2 millas náuticas, destino top Playa de Fenals, sur de Lloret (25 min). Con licencia: costa completa hasta Tossa de Mar (30-45 min) y más allá." },
+          { "@type": "HowToStep", position: 2, name: isEn ? "Pick a route within your boat's range" : "Elige una ruta dentro del alcance del barco", text: eraCopy(isEn ? "License-free boats: stay within 2 nautical miles, top destination Playa de Fenals, south Lloret (25 min). Licensed boats: full coast up to Tossa de Mar (30-45 min) and beyond." : "Barco sin licencia: hasta 2 millas náuticas, destino top Playa de Fenals, sur de Lloret (25 min). Con licencia: costa completa hasta Tossa de Mar (30-45 min) y más allá.", isEn ? "With the Licencia de Navegacion our powerboats cover the coast from Blanes to Lloret (25 min) and Tossa de Mar (30-45 min); with the private excursion the skipper picks the coves for you." : "Con la Licencia de Navegación nuestras lanchas recorren la costa de Blanes a Lloret (25 min) y Tossa de Mar (30-45 min); en la excursión privada el patrón elige las calas por ti.") },
           { "@type": "HowToStep", position: 3, name: isEn ? "Plan anchoring stops" : "Planifica las paradas de fondeo", text: isEn ? "Sa Palomera (5 min), Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina (22 min), Fenals (25 min). Anchor on sandy bottom only — Posidonia seagrass is protected." : "Sa Palomera (5 min), Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina (22 min), Fenals (25 min). Fondea solo en arena — la Posidonia está protegida." },
-          { "@type": "HowToStep", position: 4, name: isEn ? "Plan fuel and return time" : "Planifica gasolina y hora de retorno", text: isEn ? "License-free boats consume ~2-3 L/h at cruising speed. 25-30 L tank lasts 8-10 h easily. Return 30 min before sunset for safe mooring." : "Barco sin licencia consume ~2-3 L/h a velocidad de crucero. Depósito 25-30 L da para 8-10 h sin problemas. Regresa 30 min antes del ocaso." },
+          { "@type": "HowToStep", position: 4, name: isEn ? "Plan fuel and return time" : "Planifica gasolina y hora de retorno", text: eraCopy(isEn ? "License-free boats consume ~2-3 L/h at cruising speed. 25-30 L tank lasts 8-10 h easily. Return 30 min before sunset for safe mooring." : "Barco sin licencia consume ~2-3 L/h a velocidad de crucero. Depósito 25-30 L da para 8-10 h sin problemas. Regresa 30 min antes del ocaso.", isEn ? "Powerboats leave port with a full tank and fuel is charged separately by actual consumption, so plan the route before leaving. Return 30 min before sunset for safe mooring." : "Las lanchas salen con el depósito lleno y la gasolina se paga aparte según consumo real, así que planifica la ruta antes de salir. Regresa 30 min antes del ocaso.") },
           { "@type": "HowToStep", position: 5, name: isEn ? "Bring snorkel gear + water" : "Lleva snorkel + agua", text: isEn ? "Most coves have crystal-clear rocky seabeds (Cala Brava and Cala Sant Francesc especially). Rent snorkel kit on board for 7.50 EUR if you didn't bring." : "La mayoría de calas tiene fondos rocosos cristalinos (especialmente Cala Brava y Cala Sant Francesc). Alquila equipo de snorkel a bordo por 7,50 EUR si no llevas." },
         ],
       };
@@ -4442,7 +4480,8 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const faq = {
         "@type": "FAQPage",
         mainEntity: [
-          {
+          // RD 1188/2025: the small licence-free boats are not rented from 2026-10-01.
+          ...eraCopy<object[]>([{
             "@type": "Question",
             name: eraCopy(
               isEn ? "How much does it cost to rent a license-free boat in Blanes?" : "¿Cuánto cuesta alquilar un barco sin licencia en Blanes?",
@@ -4454,13 +4493,15 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
               + eraCopy("", isEn
                 ? " From 1 October 2026 (RD 1188/2025) the renter needs the Licencia de Navegación (titulín, a 1-day course) for these boats too."
                 : " Desde el 1 de octubre de 2026 (RD 1188/2025) el arrendatario necesita la Licencia de Navegación (titulín, curso de 1 día) también en estos barcos.") },
-          },
+          }], []),
           {
             "@type": "Question",
             name: isEn ? "Is fuel included in the rental price?" : "La gasolina esta incluida en el precio del alquiler?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
+            acceptedAnswer: { "@type": "Answer", text: eraCopy(isEn
               ? "Yes, all our license-free boats include fuel in the price. For licensed boats, fuel is paid separately based on actual consumption."
-              : "Si, todos nuestros barcos sin licencia incluyen la gasolina en el precio. Para los barcos con licencia, el combustible se paga aparte segun el consumo real." },
+              : "Si, todos nuestros barcos sin licencia incluyen la gasolina en el precio. Para los barcos con licencia, el combustible se paga aparte segun el consumo real.", isEn
+              ? "No. Fuel is paid separately based on actual consumption: the powerboats leave port with a full tank."
+              : "No. La gasolina se paga aparte segun el consumo real: las lanchas salen del puerto con el deposito lleno.") },
           },
           {
             "@type": "Question",
@@ -4482,7 +4523,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
         "@type": "OfferCatalog",
         name: isEn ? `Boat Rental Prices Blanes ${SEASON_YEAR}` : `Precios Alquiler Barcos Blanes ${SEASON_YEAR}`,
         itemListElement: [
-          {
+          ...eraCopy<object[]>([{
             "@type": "Offer",
             name: isEn ? "License-Free Boats" : "Barcos Sin Licencia",
             priceCurrency: "EUR",
@@ -4494,7 +4535,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
               description: isEn ? "Low season starting price" : "Precio desde temporada baja",
             },
             availability: "https://schema.org/InStock",
-          },
+          }], []),
           {
             "@type": "Offer",
             name: isEn ? "Licensed Boats" : "Barcos Con Licencia",
@@ -4514,8 +4555,8 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const service = buildLandingService(
         isEn ? `Boat Rental Prices Blanes ${SEASON_YEAR}` : `Precios Alquiler Barcos Blanes ${SEASON_YEAR}`,
         isEn
-          ? "Transparent prices for all our boats in Blanes, Costa Brava. License-free boats from 70 EUR/hour (fuel included). Licensed boats from 175 EUR/2h. Private excursion with captain from 265 EUR/2h. Low, mid and high season pricing."
-          : "Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Barcos sin licencia desde 70€/hora (gasolina incluida). Barcos con licencia desde 175€/2h. Excursión privada con patrón desde 265€/2h. Tarifas temporada baja, media y alta.",
+          ? eraCopy("Transparent prices for all our boats in Blanes, Costa Brava. License-free boats from 70 EUR/hour (fuel included). Licensed boats from 175 EUR/2h. Private excursion with captain from 265 EUR/2h. Low, mid and high season pricing.", "Transparent prices for all our boats in Blanes, Costa Brava. Powerboats with the Licencia de Navegacion from 175 EUR/2h, fuel charged separately. Private excursion with captain from 265 EUR/2h. Low, mid and high season pricing.")
+          : eraCopy("Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Barcos sin licencia desde 70€/hora (gasolina incluida). Barcos con licencia desde 175€/2h. Excursión privada con patrón desde 265€/2h. Tarifas temporada baja, media y alta.", "Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Lanchas con Licencia de Navegación desde 175€/2h, gasolina aparte. Excursión privada con patrón desde 265€/2h. Tarifas temporada baja, media y alta."),
         { low: getFleetStats().priceFloor, high: 420 },
       );
       const speakable = {
@@ -4612,16 +4653,20 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
           {
             "@type": "Question",
             name: isEn ? "Do I need a license to rent a boat on the Costa Brava?" : "¿Necesito licencia para alquilar un barco en la Costa Brava?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
+            acceptedAnswer: { "@type": "Answer", text: eraCopy(isEn
               ? "No. We offer 5 license-free boats for up to 7 people. You only need to be 18 or older. We provide 15 minutes of training before departure."
-              : "No. Ofrecemos 5 barcos sin licencia para hasta 7 personas. Solo necesitas ser mayor de 18 años. Proporcionamos 15 minutos de formación antes de salir." },
+              : "No. Ofrecemos 5 barcos sin licencia para hasta 7 personas. Solo necesitas ser mayor de 18 años. Proporcionamos 15 minutos de formación antes de salir.", isEn
+              ? "Yes, to skipper the boat yourself: from 1 October 2026 Spanish law (RD 1188/2025) requires a nautical licence to rent any motorboat. The Licencia de Navegacion is a 1-day course with no exam and covers our three powerboats (up to 7 people). Without a licence, book the private excursion with skipper."
+              : "Sí, para llevar tú el barco: desde el 1 de octubre de 2026 la ley (RD 1188/2025) exige título náutico para alquilar cualquier barco a motor. La Licencia de Navegación es un curso de 1 día sin examen y cubre nuestras tres lanchas (hasta 7 personas). Sin título, reserva la excursión privada con patrón.") },
           },
           {
             "@type": "Question",
             name: isEn ? "How much does it cost to rent a boat on the Costa Brava?" : "¿Cuánto cuesta alquilar un barco en la Costa Brava?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
+            acceptedAnswer: { "@type": "Answer", text: eraCopy(isEn
               ? "License-free boats from 70 EUR/hour in low season, 90 EUR/hour in August. Price includes fuel, insurance and safety equipment. Full-day rentals available."
-              : "Los barcos sin licencia cuestan desde 70€/hora en temporada baja y 90€/hora en agosto. El precio incluye gasolina, seguro y equipo de seguridad. Disponible alquiler de día completo." },
+              : "Los barcos sin licencia cuestan desde 70€/hora en temporada baja y 90€/hora en agosto. El precio incluye gasolina, seguro y equipo de seguridad. Disponible alquiler de día completo.", isEn
+              ? "Powerboats with the Licencia de Navegacion from 175 EUR per 2 hours; the private excursion with skipper from 265 EUR per 2 hours. Fuel is charged separately; insurance and safety equipment are included. Full-day rentals available."
+              : "Lanchas con Licencia de Navegación desde 175€ por 2 horas; excursión privada con patrón desde 265€ por 2 horas. La gasolina se paga aparte; seguro y equipo de seguridad incluidos. Disponible alquiler de día completo.") },
           },
           {
             "@type": "Question",
@@ -4633,9 +4678,11 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
           {
             "@type": "Question",
             name: isEn ? "Where can I navigate on the Costa Brava?" : "¿Dónde puedo navegar en la Costa Brava?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
+            acceptedAnswer: { "@type": "Answer", text: eraCopy(isEn
               ? "License-free boats: Cala Brava (15 min), Cala Sant Francesc (20 min), Playa de Fenals, south Lloret (25 min). Licensed boats: full Costa Brava up to Tossa de Mar (45 min) and Sant Feliu de Guíxols (90 min)."
-              : "Barcos sin licencia: Cala Brava (15 min), Cala Sant Francesc (20 min), Playa de Fenals, sur de Lloret (25 min). Barcos con licencia: toda la Costa Brava hasta Tossa de Mar (45 min) y Sant Feliu de Guíxols (90 min)." },
+              : "Barcos sin licencia: Cala Brava (15 min), Cala Sant Francesc (20 min), Playa de Fenals, sur de Lloret (25 min). Barcos con licencia: toda la Costa Brava hasta Tossa de Mar (45 min) y Sant Feliu de Guíxols (90 min).", isEn
+              ? "With our powerboats: Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina and Lloret (25 min), Tossa de Mar (30-45 min) and Sant Feliu de Guíxols (90 min)."
+              : "Con nuestras lanchas: Cala Brava (15 min), Cala Sant Francesc (20 min), Santa Cristina y Lloret (25 min), Tossa de Mar (30-45 min) y Sant Feliu de Guíxols (90 min).") },
           },
           {
             "@type": "Question",
@@ -4851,8 +4898,10 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
       const boats = await storage.getAllBoats();
       const boat = boats.find(b => b.id === boatId);
       // RD 1188/2025: from 2026-10-01 the licence-free boats are no longer rented.
-      // Keep the URL alive (no 404) but noindex it and drop the Product schema.
-      if (boat && boat.isActive && !isPubliclyListed(boat)) {
+      // Keep the URL alive (no 404) but noindex it and drop the Product schema. Also for a hull
+      // already deactivated in the CRM (Astec 400): without this it fell through to the normal
+      // page and told crawlers "hasta 15 CV, con titulín, gasolina incluida".
+      if (boat && !isPubliclyListed({ ...boat, isActive: true })) {
         const bd = (I18N_BY_LANG[lang] ?? i18nEs).boatDetail;
         const retiredBody = bd.retiredBody ?? i18nEs.boatDetail.retiredBody ?? "";
         const meta: SEOMeta = { title: `${boat.name} | Costa Brava Rent a Boat`, description: retiredBody };
@@ -5395,7 +5444,8 @@ export async function serveWithSEO(
 
       // Check LRU cache for pre-injected HTML (avoids 9+ regex replacements).
       // Key includes the index decision so a thin/healthy flip can't serve stale robots.
-      const cacheKey = `${canonicalPath}:${lang}:${effectiveNoindex ? "n" : "i"}`;
+      // The era is part of the key so the RD 1188/2025 switch at Madrid midnight cannot serve cached pre-era HTML.
+      const cacheKey = `${canonicalPath}:${lang}:${effectiveNoindex ? "n" : "i"}:${isLicenseFreeEraActive() ? "pre" : "post"}`;
       const cachedHtml = getCachedInjectedHtml(cacheKey);
       if (cachedHtml) {
         res.set("Content-Type", "text/html; charset=utf-8");

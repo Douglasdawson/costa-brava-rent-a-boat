@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
+import { postEraMeta } from "@shared/postEraMeta";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -49,7 +50,7 @@ export default function LocationPinedaDeMarPage() {
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const t = useTranslations();
-  const { localizedPath } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("pineda"); }, []);
 
   const page = t.locationPages.pineda;
@@ -66,7 +67,7 @@ export default function LocationPinedaDeMarPage() {
   const locationSchema = {
     "@type": "TouristDestination",
     "name": page?.schema?.name ?? "Alquiler de Barcos cerca de Pineda de Mar",
-    "description": page?.schema?.description ?? "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos en coche de Pineda de Mar. Barcos sin licencia desde 85 EUR/hora con gasolina incluida.",
+    "description": page?.schema?.description ?? "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos en coche de Pineda de Mar. Con la Licencia de Navegación o con patrón.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.6281,
@@ -128,10 +129,12 @@ export default function LocationPinedaDeMarPage() {
   return (
     <div className="min-h-screen">
       <SEO
-        title={page?.seo?.title ?? "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 85€/h"}
-        description={page?.seo?.description ?? "¿Alojado en Pineda de Mar? Puerto Blanes a 18 min en coche o 12 min en tren R1. Alquila barco sin licencia desde 85€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa."}
+        {...postEraMeta("/alquiler-barcos-pineda-de-mar", language, {
+          title: page?.seo?.title ?? "Alquiler Barco Pineda de Mar | Puerto Blanes a 18 min | Titulín o Patrón",
+          description: page?.seo?.description ?? "¿Alojado en Pineda de Mar? El Puerto de Blanes está a 18 min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón.",
+        })}
         ogTitle={page?.seo?.ogTitle ?? "Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes"}
-        ogDescription={page?.seo?.ogDescription ?? "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 85€/h. 4.8★ Google."}
+        ogDescription={page?.seo?.ogDescription ?? "Desde Pineda de Mar al Puerto Blanes en 18 min. Con titulín o con patrón."}
         canonical={getCanonicalUrl("/alquiler-barcos-pineda-de-mar")}
         jsonLd={combinedJsonLd}
       />
@@ -386,7 +389,7 @@ export default function LocationPinedaDeMarPage() {
       <PopularBoatsSection
         title={t.popularBoatsSection?.pages?.pineda?.title ?? "Barcos populares para alquilar desde el Puerto de Blanes"}
         description={t.popularBoatsSection?.pages?.pineda?.description}
-        boatIds={["remus-450", "solar-450", "astec-480", "astec-400"]}
+        boatIds={["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"]}
       />
 
       {/* FAQ Section */}

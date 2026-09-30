@@ -63,27 +63,14 @@ export default function LocationBarcelonaPage() {
     { name: "Alquiler barcos cerca de Barcelona", url: "/alquiler-barcos-cerca-barcelona" },
   ]);
 
-  const faqItems = [
-    {
-      question: "¿Puedo alquilar un barco sin licencia cerca de Barcelona?",
-      answer: "Sí, en Blanes (Costa Brava), a solo 70 minutos de Barcelona por la autopista AP-7, puedes alquilar barcos sin licencia desde {noLicBaja1h} €/hora. No necesitas experiencia previa ni titulación náutica, solo ser mayor de 18 años.",
-    },
-    {
-      question: "¿Cuánto se tarda de Barcelona a Blanes?",
-      answer: "En coche por la AP-7 se tarda aproximadamente 70 minutos. En tren RENFE (línea R1 Rodalies) unos 90 minutos desde Barcelona Sants o Passeig de Gràcia. También hay autobuses directos desde la Estación del Nord.",
-    },
-    {
-      question: "¿Es más barato alquilar un barco en Blanes que en Barcelona?",
-      answer: "Sí, significativamente. En Blanes los barcos sin licencia cuestan desde {noLicBaja1h} €/hora con gasolina incluida, mientras que en puertos de Barcelona los precios suelen empezar desde 120-150 €/hora. Además, las aguas en la Costa Brava son mucho más cristalinas y hay menos tráfico marítimo.",
-    },
-  ];
+  const faqItems = useMemo(() => lb.faqItems ?? [], [lb.faqItems]);
 
   const processedFaqItems = useMemo(
     () => faqItems.map((item) => ({
       question: substituteFaqVars(item.question, faqVars),
       answer: substituteFaqVars(item.answer, faqVars),
     })),
-    [faqVars],
+    [faqItems, faqVars],
   );
 
   const faqSchema = {
@@ -103,7 +90,7 @@ export default function LocationBarcelonaPage() {
     "@type": "TouristDestination",
     name: "Alquiler de Barcos cerca de Barcelona - Blanes, Costa Brava",
     description:
-      "Alquiler de barcos sin licencia a 70 minutos de Barcelona. Puerto de Blanes, Costa Brava. Desde 85 € con gasolina incluida.",
+      "Alquiler de barcos a 70 minutos de Barcelona con Licencia de Navegación o con patrón. Puerto de Blanes, Costa Brava.",
     geo: {
       "@type": "GeoCoordinates",
       latitude: 41.6722504,
@@ -311,8 +298,8 @@ export default function LocationBarcelonaPage() {
       <PopularBoatsSection
         title={t.popularBoatsSection?.pages?.barcelona?.title ?? "Barcos para tu escapada desde Barcelona"}
         description={t.popularBoatsSection?.pages?.barcelona?.description}
-        boatIds={["remus-450", "astec-480", "pacific-craft-625", "excursion-privada"]}
-        badgeLabel={(id) => (id === "excursion-privada" ? (t.popularBoatsSection?.badges?.captain ?? "Con capitán") : id === "pacific-craft-625" ? (t.popularBoatsSection?.badges?.licensed ?? "Con licencia") : (t.popularBoatsSection?.badges?.noLicense ?? "Sin licencia"))}
+        boatIds={["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"]}
+        badgeLabel={(id) => (id === "excursion-privada" ? (t.popularBoatsSection?.badges?.captain ?? "Con capitán") : (t.popularBoatsSection?.badges?.licensed ?? "Con licencia"))}
         badgeVariant={(id) => (id === "excursion-privada" || id === "pacific-craft-625" ? "outline" : "secondary")}
       />
 

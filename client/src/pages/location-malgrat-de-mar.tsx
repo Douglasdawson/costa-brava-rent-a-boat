@@ -20,7 +20,7 @@ const config: LocationConfig = {
   ],
   schema: {
     name: "Alquiler de Barcos cerca de Malgrat de Mar",
-    description: "Alquila barcos desde el Puerto de Blanes, a solo 10 minutos en coche de Malgrat de Mar. Barcos sin licencia desde 85 EUR/hora.",
+    description: "Alquila barcos desde el Puerto de Blanes, a solo 10 minutos en coche de Malgrat de Mar. Con la Licencia de Navegación o con patrón.",
     latitude: 41.6458,
     longitude: 2.7419,
     locality: "Malgrat de Mar",
@@ -36,11 +36,11 @@ const config: LocationConfig = {
     },
     {
       question: "¿Cuánto cuesta alquilar un barco desde Blanes?",
-      answer: "El alquiler de barco empieza desde {noLicBaja1h} EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV. Disponemos de {fleetCount} barcos para 4-11 personas.",
+      answer: "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
     },
     {
       question: "¿Necesito licencia de navegación?",
-      answer: "No necesariamente. Ofrecemos barcos sin licencia que cualquier mayor de 18 años puede manejar. Te damos 15 minutos de formación antes de zarpar. También tenemos barcos con licencia.",
+      answer: "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: curso de 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
     },
     {
       question: "¿Hay parking en el Puerto de Blanes?",
@@ -52,7 +52,7 @@ const config: LocationConfig = {
     },
     {
       question: "¿Qué calas se pueden alcanzar en barco desde Blanes si estoy alojado en Malgrat?",
-      answer: "Con un barco sin licencia desde Blanes llegas en 25 minutos a Playa de Fenals (sur de Lloret), pasando por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. Con barco con Licencia de Navegación Básica puedes llegar a Tossa de Mar (45 min) y más allá.",
+      answer: "Desde Blanes, en unos 25 minutos de navegación costera pasas por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals (sur de Lloret). Con un barco con Licencia de Navegación (LN) o con la excursión privada con patrón puedes seguir hasta Lloret centro y Tossa de Mar (30-45 min).",
     },
     {
       question: "¿Hay servicio de transfer desde hoteles de Malgrat al Puerto de Blanes?",
@@ -61,8 +61,8 @@ const config: LocationConfig = {
   ],
   popularBoats: {
     title: "Barcos populares para alquilar desde el Puerto de Blanes",
-    description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
-    boatIds: ["remus-450", "solar-450", "astec-480", "pacific-craft-625"],
+    description: "A 10 minutos de Malgrat de Mar. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
+    boatIds: ["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"],
   },
 };
 

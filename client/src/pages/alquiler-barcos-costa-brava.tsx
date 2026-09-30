@@ -21,6 +21,8 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { Link } from "wouter";
 import { trackLocationPageView } from "@/utils/analytics";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
+import { BOAT_DATA } from "@shared/boatData";
+import { isCatalogBoatPubliclyListed } from "@shared/publicFleet";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -53,7 +55,7 @@ export default function LocationCostaBravaPage() {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
     "name": "Alquiler de Barcos en la Costa Brava",
-    "description": "Alquiler de barcos sin licencia y con licencia en la Costa Brava. Salidas desde el Puerto de Blanes. Embarcaciones para 4-7 personas. Desde 85 EUR/hora.",
+    "description": "Alquiler de barcos en la Costa Brava con Licencia de Navegación o con patrón. Salidas desde el Puerto de Blanes. Embarcaciones para hasta 7 personas.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.6667,
@@ -89,10 +91,10 @@ export default function LocationCostaBravaPage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Necesito licencia para alquilar un barco en la Costa Brava?",
+        "name": "¿Necesito licencia para alquilar un barco en la Costa Brava?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. Ofrecemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18 anos. Proporcionamos 15 minutos de formacion antes de salir."
+          "text": "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: curso de 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas."
         }
       },
       {
@@ -100,7 +102,7 @@ export default function LocationCostaBravaPage() {
         "name": "Cuanto cuesta alquilar un barco en la Costa Brava?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Los barcos sin licencia cuestan desde 85 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada alta (agosto) desde 90 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad."
+          "text": "Los barcos con Licencia de Navegación van en packs de 2, 4 u 8 horas y la excursión privada con patrón sale de 2 a 4 horas; las tarifas por temporada están en la página de precios. El combustible se paga aparte."
         }
       },
       {
@@ -121,10 +123,10 @@ export default function LocationCostaBravaPage() {
       },
       {
         "@type": "Question",
-        "name": "Esta incluida la gasolina en el precio?",
+        "name": "¿Está incluida la gasolina en el precio?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "En barcos sin licencia, si: gasolina, seguro de responsabilidad civil y accidentes y equipo de seguridad estan incluidos. En barcos con licencia el combustible se paga aparte segun consumo real."
+          "text": "No. En ningún barco está incluido el combustible: se paga aparte según el consumo real. El precio sí incluye IVA, amarre, limpieza, seguro de responsabilidad civil y equipo de seguridad."
         }
       },
       {
@@ -132,15 +134,15 @@ export default function LocationCostaBravaPage() {
         "name": faqT?.experienceQ || "Necesito experiencia previa para alquilar un barco en la Costa Brava?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": faqT?.experienceA || "No, no necesitas ninguna experiencia previa. Para nuestros barcos sin licencia (hasta 15 CV) solo debes ser mayor de 18 anos. Te proporcionamos una formacion practica de 15 minutos."
+          "text": faqT?.experienceA || "No, no necesitas experiencia previa. Con la excursión privada con patrón no pilotas tú. Para llevar el timón basta la Licencia de Navegación (curso de 1 día, sin examen) y ser mayor de 18 años; antes de salir te explicamos cómo maniobrar, fondear y usar el equipo de seguridad. Nuestro personal estará disponible por teléfono durante toda tu navegación."
         }
       },
       {
         "@type": "Question",
-        "name": faqT?.distanceQ || "Hasta donde puedo navegar sin licencia desde Blanes?",
+        "name": faqT?.distanceQ || "¿Hasta dónde puedo navegar desde Blanes?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": faqT?.distanceA || "Con un barco sin licencia puedes navegar hasta 2 millas nauticas de la costa (3,7 km). Esto te permite explorar Cala Brava, Cala Sant Francesc, Lloret de Mar y Cala Treumal."
+          "text": faqT?.distanceA || "Con la Licencia de Navegación, de día y cerca de la costa, llegas desde Blanes a Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal y Tossa de Mar (30-45 min) y, en jornada completa, a Sant Feliu de Guíxols. Con la excursión privada con patrón haces la ruta sin titulación."
         }
       },
       {
@@ -163,12 +165,14 @@ export default function LocationCostaBravaPage() {
   };
 
   // Combine schemas
+  // Publicly listed catalog (RD 1188/2025 hides licence-free boats from 2026-10-01).
+  const LISTED_BOATS = Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b));
   // Service schema with AggregateOffer for price-range rich snippets in SERP
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     "serviceType": "Boat rental",
-    "name": "Alquiler de barcos en la Costa Brava — sin licencia y con licencia",
+    "name": "Alquiler de barcos en la Costa Brava con Licencia de Navegación o con patrón",
     "areaServed": {
       "@type": "Place",
       "name": "Costa Brava, Catalonia, Spain"
@@ -190,13 +194,13 @@ export default function LocationCostaBravaPage() {
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "EUR",
-      "lowPrice": "70",
+      "lowPrice": String(Math.min(...LISTED_BOATS.flatMap((b) => Object.values(b.pricing.BAJA.prices)))),
       "highPrice": "420",
-      "offerCount": "8",
+      "offerCount": String(LISTED_BOATS.length),
       "availability": "https://schema.org/InStock",
       "validFrom": `${new Date().getFullYear()}-04-01`,
       "validThrough": `${new Date().getFullYear()}-10-31`,
-      "description": "9 embarcaciones disponibles. 5 sin licencia náutica desde 85€/h con gasolina incluida. 3 con LNB (con licencia) y excursión privada con capitán."
+      "description": "Barcos con Licencia de Navegación (Mingolla Brava 19, Trimarchi 57S, Pacific Craft 625) y excursión privada con patrón. Combustible aparte."
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -244,17 +248,17 @@ export default function LocationCostaBravaPage() {
   // Navigation routes data
   const routes = [
     {
-      title: s?.routeBlanesLloret || "Blanes - Lloret de Mar: 30 min, facil, sin licencia",
+      title: s?.routeBlanesLloret || "Blanes - Lloret de Mar: 15-30 min, fácil",
       description: s?.routeBlanesLloretDesc || "",
       difficulty: "easy" as const,
     },
     {
-      title: s?.routeBlaneCalaBrava || "Blanes - Cala Brava: 15 min, facil, sin licencia",
+      title: s?.routeBlaneCalaBrava || "Blanes - Cala Brava: 15 min, fácil",
       description: s?.routeBlaneCalaBravaDesc || "",
       difficulty: "easy" as const,
     },
     {
-      title: s?.routeBlanesTossa || "Blanes - Tossa de Mar: 45 min, media, licencia recomendada",
+      title: s?.routeBlanesTossa || "Blanes - Tossa de Mar: 30-45 min, media, con titulín o patrón",
       description: s?.routeBlanesTossaDesc || "",
       difficulty: "medium" as const,
     },
@@ -312,7 +316,7 @@ export default function LocationCostaBravaPage() {
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              {cb?.hero.subtitle || "Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos. Salidas desde el Puerto de Blanes, en el corazon de la costa catalana. Barcos sin licencia desde 85 EUR/hora con gasolina y seguro incluidos."}
+              {cb?.hero.subtitle || "Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos. Salidas desde el Puerto de Blanes, en el corazón de la costa catalana. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón."}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
@@ -321,11 +325,11 @@ export default function LocationCostaBravaPage() {
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Users className="w-4 h-4 mr-2" />
-                {cb?.hero.badgeCapacity || "4-7 personas"}
+                {cb?.hero.badgeCapacity || "Hasta 7 personas"}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Ship className="w-4 h-4 mr-2" />
-                {cb?.hero.badgeLicense || "Con y sin licencia"}
+                {cb?.hero.badgeLicense || "Con titulín o con patrón"}
               </Badge>
             </div>
           </div>
@@ -344,7 +348,7 @@ export default function LocationCostaBravaPage() {
                 {s?.introP2 || "En Costa Brava Rent a Boat te ofrecemos la forma mas facil de explorar esta costa."}
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                {s?.introP3 || "En los barcos sin licencia el precio incluye gasolina, seguro de responsabilidad civil y accidentes y equipo de seguridad."}
+                {s?.introP3 || "El precio incluye IVA, amarre, limpieza, seguro de responsabilidad civil y equipo de seguridad; el combustible se paga aparte según el consumo. Sin costes ocultos. Reserva hoy y descubre por qué miles de familias eligen la Costa Brava cada verano para sus aventuras náuticas."}
               </p>
             </div>
             <div className="lg:col-span-2">
@@ -438,27 +442,27 @@ export default function LocationCostaBravaPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {/* No License Column */}
             <div className="border border-primary rounded-lg p-6 bg-primary/5">
-              <h3 className="font-bold text-xl mb-4 text-primary">{s?.noLicenseTitle || "Barcos Sin Licencia"}</h3>
+              <h3 className="font-bold text-xl mb-4 text-primary">{s?.noLicenseTitle || "Excursión con Patrón"}</h3>
               <ul className="space-y-3 mb-4">
                 <li className="flex items-center gap-2">
                   <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm">{s?.noLicensePower || "Hasta 15 CV de potencia"}</span>
+                  <span className="text-sm">{s?.noLicensePower || "Patrón profesional a bordo"}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Users className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm">{s?.noLicenseCapacity || "Maximo 5 personas a bordo"}</span>
+                  <span className="text-sm">{s?.noLicenseCapacity || "Hasta 6 personas a bordo"}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <NavigationIcon className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm">{s?.noLicenseNavigation || "Navegacion costera hasta 2 millas"}</span>
+                  <span className="text-sm">{s?.noLicenseNavigation || "No necesitas titulación"}</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Sun className="w-4 h-4 text-green-600 flex-shrink-0" />
-                  <span className="text-sm font-semibold text-green-700">{s?.noLicenseFuel || "Gasolina incluida en el precio"}</span>
+                  <Sun className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                  <span className="text-sm font-semibold text-orange-700">{s?.noLicenseFuel || "Combustible no incluido en ningún barco"}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm font-semibold">{s?.noLicensePrice || "Desde 85 EUR/hora"}</span>
+                  <span className="text-sm font-semibold">{s?.noLicensePrice || "Salidas de 2 a 4 horas"}</span>
                 </li>
               </ul>
               <p className="text-muted-foreground text-sm">{s?.noLicenseDesc || ""}</p>
@@ -470,11 +474,11 @@ export default function LocationCostaBravaPage() {
               <ul className="space-y-3 mb-4">
                 <li className="flex items-center gap-2">
                   <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm">{s?.licensedPower || "De 40 CV a 150 CV"}</span>
+                  <span className="text-sm">{s?.licensedPower || "De 80 CV a 115 CV"}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Users className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm">{s?.licensedCapacity || "Hasta 12 personas a bordo"}</span>
+                  <span className="text-sm">{s?.licensedCapacity || "Hasta 7 personas a bordo"}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <NavigationIcon className="w-4 h-4 text-primary flex-shrink-0" />
@@ -486,7 +490,7 @@ export default function LocationCostaBravaPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm font-semibold">{s?.licensedPrice || "Desde 90 EUR/hora"}</span>
+                  <span className="text-sm font-semibold">{s?.licensedPrice || "Packs de 2, 4 y 8 horas"}</span>
                 </li>
               </ul>
               <p className="text-muted-foreground text-sm">{s?.licensedDesc || ""}</p>
@@ -526,7 +530,7 @@ export default function LocationCostaBravaPage() {
             {s?.pricingTitle || "Precios Alquiler Barco Costa Brava 2026"}
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-8">
-            {s?.noLicenseFuel || "Gasolina incluida en el precio"} (sin licencia) | {s?.licensedFuel || "Combustible NO incluido"} (con licencia)
+            {s?.noLicenseFuel || "Combustible no incluido en ningún barco"}
           </p>
         </div>
         <FleetSection />
@@ -589,7 +593,7 @@ export default function LocationCostaBravaPage() {
             </Link>
             <Link href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
-              Alquiler de barcos sin licencia en la Costa Brava
+              {t.locationPages.blanes.sections?.crossLinkLicenseFree}
             </Link>
             <Link href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
@@ -610,7 +614,7 @@ export default function LocationCostaBravaPage() {
             {s?.ctaTitle || "Reserva tu Barco en la Costa Brava"}
           </h2>
           <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
-            {s?.ctaDescription || "Elige tu barco, fecha y horario. Gasolina, seguro y formacion incluidos en barcos sin licencia. Reserva por WhatsApp y recibe confirmacion inmediata."}
+            {s?.ctaDescription || "Elige tu barco, fecha y horario: con el titulín o con patrón. Seguro y equipo de seguridad incluidos. Reserva por WhatsApp: te confirmamos en menos de 2 horas."}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

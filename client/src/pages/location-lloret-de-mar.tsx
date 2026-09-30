@@ -77,7 +77,7 @@ export default function LocationLloretPage() {
   const locationSchema = {
     "@type": "TouristDestination",
     "name": "Excursiones en Barco a Lloret de Mar desde Blanes",
-    "description": "Alquiler de barcos para visitar Lloret de Mar desde Puerto de Blanes. Embarcaciones sin licencia y con licencia para descubrir las playas de Lloret.",
+    "description": "Alquiler de barcos para visitar Lloret de Mar desde Puerto de Blanes, con Licencia de Navegación o con patrón, para descubrir las playas de Lloret.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.6988,
@@ -107,41 +107,18 @@ export default function LocationLloretPage() {
     { name: t.breadcrumbs.locationLloret, url: "/alquiler-barcos-lloret-de-mar" }
   ]);
 
-  // FAQ data for both schema and visible section. Reads from i18n first; if a
-  // locale hasn't been pro-translated yet, the Spanish source-of-truth array
-  // below is used so we never leak one language's copy into another (Round 2
-  // H1 bug lesson). Five questions, each tuned to a specific commercial
-  // intent around the real Blanes→Fenals sin-licencia range.
+  // FAQ data for both schema and visible section, from i18n only (all 8 locales
+  // carry it; the old Spanish fallback promised licence-free rentals, which end
+  // on 2026-10-01 under RD 1188/2025).
   const lloretFaqFromI18n = (t.locationPages.lloret as { faqItems?: Array<{ question: string; answer: string }> } | undefined)?.faqItems;
-  const faqItems = lloretFaqFromI18n && lloretFaqFromI18n.length > 0 ? lloretFaqFromI18n : [
-    {
-      question: "¿Necesito licencia o experiencia para llegar a Lloret en barco?",
-      answer: "No. Nuestros barcos sin licencia cumplen las condiciones legales para navegar hasta Playa de Fenals (sur de Lloret) sin titulación ni experiencia previa. Te damos un briefing de 15 minutos antes de salir. La única restricción es ser mayor de 18 años."
-    },
-    {
-      question: "¿Hasta dónde exactamente puedo llegar con barco sin licencia?",
-      answer: "Legalmente, hasta 2 millas náuticas de la costa, a máximo 5 nudos, con 15 CV. Desde Blanes, eso son 25 minutos de navegación hasta la Playa de Fenals, pasando por 7 calas. La Playa de Lloret centro y Cala Canyelles quedan al norte de Fenals — no son accesibles con barco sin licencia."
-    },
-    {
-      question: "¿Cuánto cuesta alquilar un barco sin licencia para ir a Lloret?",
-      answer: "Desde {noLicBaja1h} €/hora (temporada baja) y {noLicAlta1h} €/hora (temporada alta, julio–agosto). Con gasolina incluida en barcos sin licencia."
-    },
-    {
-      question: "¿Puedo llegar a Tossa de Mar desde Lloret con barco sin licencia?",
-      answer: "No. Tossa está 4–5 millas al norte de Fenals, fuera del rango legal sin licencia. Para ir a Tossa en barco desde Blanes necesitas (a) barco con Licencia de Navegación Básica (LNB), o (b) Excursión Privada con Capitán."
-    },
-    {
-      question: "¿Qué pasa si el mar está malo?",
-      answer: "Si la previsión marca >20 nudos sostenidos o alerta por olas >1.5 m, no salimos y te cambiamos la fecha sin coste; si no logramos acordar ninguna, recibes un bono válido 12 meses. El tramo Blanes–Fenals está protegido de la Tramuntana por la propia costa, así que es de los más seguros para principiantes incluso con viento del norte."
-    }
-  ];
+  const faqItems = lloretFaqFromI18n ?? [];
 
   const processedFaqItems = useMemo(
     () => faqItems.map((item) => ({
       question: substituteFaqVars(item.question, faqVars),
       answer: substituteFaqVars(item.answer, faqVars),
     })),
-    [faqVars],
+    [faqItems, faqVars],
   );
 
   const faqSchema = {
@@ -194,7 +171,7 @@ export default function LocationLloretPage() {
             <source type="image/webp" srcSet="/images/locations/hero-lloret-de-mar-mobile.webp" />
             <img
               src="/images/locations/hero-lloret-de-mar.jpg"
-              alt="Cala cerca de Lloret de Mar desde un barco sin licencia, aguas turquesa Costa Brava"
+              alt="Cala cerca de Lloret de Mar vista desde un barco, aguas turquesa Costa Brava"
               className="absolute inset-0 w-full h-full object-cover"
               width={1920}
               height={1080}
@@ -444,7 +421,7 @@ export default function LocationLloretPage() {
       <PopularBoatsSection
         title={t.popularBoatsSection?.pages?.lloret?.title ?? "Barcos populares para tu ruta a Lloret de Mar"}
         description={t.popularBoatsSection?.pages?.lloret?.description}
-        boatIds={["remus-450", "solar-450", "astec-480", "pacific-craft-625"]}
+        boatIds={["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"]}
       />
 
       {/* FAQ Section */}

@@ -72,7 +72,7 @@ export default function LocationBlanesPage() {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
     "name": blanesSchema?.name ?? "Alquiler de Barcos en Blanes, Costa Brava",
-    "description": blanesSchema?.description ?? "Alquiler de barcos sin licencia y con licencia en Blanes. Puerto de Blanes, Costa Brava. Embarcaciones para 4-7 personas.",
+    "description": blanesSchema?.description ?? "Alquiler de barcos en Blanes con Licencia de Navegación o con patrón. Puerto de Blanes, Costa Brava. Embarcaciones para hasta 7 personas.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.6722504,
@@ -551,7 +551,7 @@ export default function LocationBlanesPage() {
       <PopularBoatsSection
         title={t.popularBoatsSection?.pages?.blanes?.title ?? "Barcos populares en el Puerto de Blanes"}
         description={t.popularBoatsSection?.pages?.blanes?.description}
-        boatIds={["remus-450", "solar-450", "astec-480", "pacific-craft-625"]}
+        boatIds={["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"]}
       />
 
       {/* FAQ */}

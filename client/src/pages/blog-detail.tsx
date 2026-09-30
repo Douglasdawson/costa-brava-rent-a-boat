@@ -416,7 +416,7 @@ function BlogConversionBanner({ slug }: { slug: string }) {
         {bd.ctaTitle || "Listo para tu aventura?"}
       </h3>
       <p className="text-muted-foreground text-sm sm:text-base mb-5">
-        {bd.ctaSubtitle || "Alquila un barco desde 75\u20AC/hora \u00B7 Gasolina incluida"}
+        {bd.ctaSubtitle || "Alquila una lancha con el titulín o sal con patrón desde el Puerto de Blanes"}
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
         <Button

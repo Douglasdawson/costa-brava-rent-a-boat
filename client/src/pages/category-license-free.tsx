@@ -138,7 +138,7 @@ export default function CategoryLicenseFreePage() {
   // GSC 2026-05-18: added 3 long-tail FAQs (carnet, experiencia, group size)
   // Fase 2 2026-07-24: added which-boat / price-per-hour / bad-weather FAQs
   // (mirror exact search queries). Ordered by search intent.
-  const faqItems = [
+  const allFaqItems = [
     {
       question: clf.faqWhichBoatQuestion,
       answer: clf.faqWhichBoatAnswer,
@@ -176,6 +176,10 @@ export default function CategoryLicenseFreePage() {
       answer: clf.faqWeatherAnswer,
     },
   ];
+  // From 2026-10-01 the licence-free boats are withdrawn: only the answers that stay true remain.
+  const faqItems = postEra
+    ? allFaqItems.filter(i => i.question === clf.faqCarnetQuestion || i.question === clf.faqWeatherQuestion)
+    : allFaqItems;
 
   // Best-for descriptions keyed by boat id
   const bestForMap: Record<string, string> = {
@@ -293,7 +297,7 @@ export default function CategoryLicenseFreePage() {
     : [];
 
   // HowTo schema for SERP rich result. Each step is keyword-rich.
-  const howToSchema = hasHowTo
+  const howToSchema = hasHowTo && !postEra
     ? {
         "@type": "HowTo",
         "name": clf.howToTitle,
@@ -419,6 +423,7 @@ export default function CategoryLicenseFreePage() {
       )}
 
       {/* What are License-Free Boats */}
+      {!postEra && (
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
@@ -474,6 +479,7 @@ export default function CategoryLicenseFreePage() {
           </div>
         </div>
       </RevealSection>
+      )}
 
       {/* Photo break */}
       <div className="w-full overflow-hidden">
@@ -491,6 +497,7 @@ export default function CategoryLicenseFreePage() {
       </div>
 
       {/* Section A: Legal Framework / Regulation */}
+      {!postEra && (
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
@@ -533,6 +540,7 @@ export default function CategoryLicenseFreePage() {
           </div>
         </div>
       </RevealSection>
+      )}
 
       {/* Our License-Free Fleet (not offered from 2026-10-01) */}
       {!postEra && (
@@ -626,7 +634,7 @@ export default function CategoryLicenseFreePage() {
       )}
 
       {/* vs Marketplaces - Direct booking advantage (added 2026-05-21) */}
-      {hasVsMarketplaces && (
+      {hasVsMarketplaces && !postEra && (
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
@@ -676,6 +684,7 @@ export default function CategoryLicenseFreePage() {
       )}
 
       {/* Advantages */}
+      {!postEra && (
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
@@ -728,8 +737,10 @@ export default function CategoryLicenseFreePage() {
           </div>
         </div>
       </RevealSection>
+      )}
 
       {/* Safety and Requirements */}
+      {!postEra && (
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
@@ -787,9 +798,10 @@ export default function CategoryLicenseFreePage() {
           </div>
         </div>
       </RevealSection>
+      )}
 
       {/* HowTo Section - 5 steps to rent (added 2026-05-21 for SERP rescue) */}
-      {hasHowTo && (
+      {hasHowTo && !postEra && (
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
@@ -844,6 +856,7 @@ export default function CategoryLicenseFreePage() {
       </RevealSection>
 
       {/* Explore Destinations - Internal Linking */}
+      {!postEra && (
       <div className="py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading font-semibold text-lg mb-4">Navega desde Blanes con barco sin licencia</h3>
@@ -875,6 +888,7 @@ export default function CategoryLicenseFreePage() {
           </div>
         </div>
       </div>
+      )}
 
       {/* CTA Section */}
       {/* Licence-free booking CTA: gone from 2026-10-01; the notice above links to the licensed boats. */}

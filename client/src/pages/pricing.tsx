@@ -30,6 +30,7 @@ import {
 import type { Boat } from "@shared/schema";
 import { getMinActivePrice, minPriceAcrossBoats } from "@shared/pricing";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
+import { isLicenseFreeEraActive } from "@shared/constants";
 import { substituteFaqVars, computeFaqVars } from "@/utils/faqVars";
 import { getBoatImage } from "@/utils/boatImages";
 import { translateBoatText } from "@shared/boatTextTranslations";
@@ -623,14 +624,17 @@ export default function PricingPage() {
       <div className="py-8 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-x-6 gap-y-3 justify-center">
-            <a
-              href={localizedPath("categoryLicenseFree")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-              data-testid="pricing-link-license-free"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {t.breadcrumbs.categoryLicenseFree}
-            </a>
+            {/* Licence-free rental ends 2026-10-01 (RD 1188/2025): no link after that. */}
+            {isLicenseFreeEraActive() && (
+              <a
+                href={localizedPath("categoryLicenseFree")}
+                className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
+                data-testid="pricing-link-license-free"
+              >
+                <ChevronRight className="w-4 h-4" />
+                {t.breadcrumbs.categoryLicenseFree}
+              </a>
+            )}
             <a
               href={localizedPath("categoryLicensed")}
               className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"

@@ -85,7 +85,7 @@ export default function ActivitySnorkelPage() {
     "@type": "TouristTrip",
     "@id": `${canonical}#tour`,
     "name": "Ruta de Snorkel en Barco desde Blanes",
-    "description": "Excursión en barco sin licencia desde el Puerto de Blanes hacia calas vírgenes de aguas cristalinas ideales para snorkel. Equipo opcional (7,50€). Gasolina, seguro y kit de seguridad incluidos.",
+    "description": "Excursión en barco desde el Puerto de Blanes hacia calas vírgenes de aguas cristalinas ideales para snorkel, en lancha con licencia (Licencia de Navegación) o en la excursión privada con patrón. Equipo opcional (7,50€). Seguro y kit de seguridad incluidos; gasolina aparte.",
     "touristType": ["Adventure", "Family", "Nature"],
     "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
     "provider": {
@@ -101,18 +101,6 @@ export default function ActivitySnorkelPage() {
         { "@type": "Place", "name": "Cala Sa Forcanera", "description": "Cala virgen con fondo rocoso y biodiversidad" },
       ],
     },
-    "offers": [
-      {
-        "@type": "Offer",
-        "name": "Barco sin licencia 2h con equipo snorkel",
-        "price": "125",
-        "priceCurrency": "EUR",
-        "priceValidUntil": "2026-10-31",
-        "availability": "https://schema.org/InStock",
-        "url": canonical,
-        "description": "Barco sin licencia 2h (desde 135€) + equipo snorkel opcional (7,50€ por persona). Gasolina incluida.",
-      },
-    ],
     "maximumAttendeeCapacity": 7,
   };
 
@@ -194,7 +182,7 @@ export default function ActivitySnorkelPage() {
                   </p>
                   <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyNoExpTitle ?? "Sin necesidad de experiencia"}</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    {s?.whyNoExpDesc ?? "No necesitas licencia de navegación para nuestros barcos sin licencia. Te damos una formación de 15 minutos en el puerto. El snorkel es la actividad acuática más accesible: solo necesitas máscara, tubo y ganas de descubrir."}
+                    {s?.whyNoExpDesc ?? "Con el titulín, un curso de 1 día sin examen, llevas una de nuestras lanchas, y antes de salir te explicamos el barco en 15 minutos. Si nadie del grupo tiene título, la excursión con patrón os lleva a las calas. El snorkel es la actividad acuática más accesible: solo necesitas máscara, tubo y ganas de descubrir."}
                   </p>
                 </div>
               </div>
@@ -342,9 +330,9 @@ export default function ActivitySnorkelPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading font-semibold text-lg mb-4">{s?.exploreTitle ?? "Explora más actividades y servicios"}</h3>
           <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
+            <a href={localizedPath("categoryCaptained")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
-              {s?.linkNoLicense ?? "Barcos sin licencia"}
+              {s?.linkNoLicense ?? "Excursión privada con patrón"}
             </a>
             <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
@@ -382,7 +370,7 @@ export default function ActivitySnorkelPage() {
               <SiWhatsapp className="w-5 h-5 mr-2" aria-hidden="true" />
               {s?.ctaWhatsApp ?? "Reservar por WhatsApp"}
             </Button>
-            <a href={localizedPath("categoryLicenseFree")}>
+            <a href={localizedPath("categoryLicensed")}>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
                 <Anchor className="w-5 h-5 mr-2" />
                 {s?.ctaViewBoats ?? "Ver barcos disponibles"}

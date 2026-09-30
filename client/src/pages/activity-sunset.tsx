@@ -428,7 +428,7 @@ export default function ActivitySunsetPage() {
           </h3>
           <div className="flex flex-wrap gap-x-6 gap-y-3">
             <a
-              href={localizedPath("categoryLicenseFree")}
+              href={localizedPath("categoryLicensed")}
               className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
             >
               <ChevronRight className="w-4 h-4" />
@@ -484,7 +484,7 @@ export default function ActivitySunsetPage() {
               <SiWhatsapp className="w-5 h-5 mr-2" aria-hidden="true" />
               {s.ctaWhatsApp}
             </Button>
-            <a href={localizedPath("categoryLicenseFree")}>
+            <a href={localizedPath("categoryLicensed")}>
               <Button
                 size="lg"
                 variant="outline"

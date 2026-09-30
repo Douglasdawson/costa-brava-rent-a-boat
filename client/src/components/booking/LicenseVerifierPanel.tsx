@@ -477,7 +477,7 @@ function SummaryView({
       return tv?.insufficientForFleet ?? "Insuficiente para nuestra flota. Necesitas PER o superior.";
     }
     if (status === "inland_only") {
-      return tv?.resultDesc?.inlandOnly ?? "Tu licencia autoriza ríos y lagos, no navegación marítima. Buena noticia: nuestros barcos sin licencia no requieren ningún título — son perfectos para ti.";
+      return tv?.resultDesc?.inlandOnly ?? "Tu licencia autoriza ríos y lagos, no navegación marítima, así que no sirve para nuestros barcos. Con la Licencia de Navegación (curso de 1 día, sin examen) podrás llevarlos, o puedes salir con patrón en la excursión privada.";
     }
     return null;
   })();

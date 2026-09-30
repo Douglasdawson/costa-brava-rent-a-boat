@@ -76,7 +76,7 @@ export default function ActivityFishingPage() {
     "@type": "TouristTrip",
     "@id": `${canonical}#tour`,
     "name": "Alquiler de Barco para Pesca Recreativa desde Blanes",
-    "description": "Alquiler de barco sin licencia o con licencia desde el Puerto de Blanes para pesca recreativa en calas rocosas o aguas abiertas de la Costa Brava. Equipo de pesca NO incluido (trae el tuyo). Requiere licencia de pesca recreativa de la Generalitat.",
+    "description": "Alquiler de barco con licencia (basta la Licencia de Navegacion) desde el Puerto de Blanes para pesca recreativa en calas rocosas o aguas abiertas de la Costa Brava. Equipo de pesca NO incluido (trae el tuyo). Requiere licencia de pesca recreativa de la Generalitat.",
     "touristType": ["Adventure", "Sports", "Fishing"],
     "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
     "provider": {
@@ -84,28 +84,6 @@ export default function ActivityFishingPage() {
       "@id": "https://www.costabravarentaboat.com/#organization",
       "name": "Costa Brava Rent a Boat",
     },
-    "offers": [
-      {
-        "@type": "Offer",
-        "name": "Barco sin licencia para pesca costera (2h)",
-        "price": "115",
-        "priceCurrency": "EUR",
-        "priceValidUntil": "2026-10-31",
-        "availability": "https://schema.org/InStock",
-        "url": canonical,
-        "description": "Ideal para pesca a fondo en calas cercanas (lubinas, doradas). Hasta 15 CV, gasolina incluida.",
-      },
-      {
-        "@type": "Offer",
-        "name": "Barco con licencia para pesca en aguas abiertas (2h)",
-        "price": "160",
-        "priceCurrency": "EUR",
-        "priceValidUntil": "2026-10-31",
-        "availability": "https://schema.org/InStock",
-        "url": canonical,
-        "description": "Para pesca en aguas abiertas (serviolas, curricán). Requiere Licencia de Navegación Básica (LNB) o PER. Gasolina NO incluida.",
-      },
-    ],
     "maximumAttendeeCapacity": 7,
   };
 
@@ -140,7 +118,7 @@ export default function ActivityFishingPage() {
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed">
-              {fi?.heroDescription ?? "Alquila un barco en el Puerto de Blanes y sal a pescar en las aguas de la Costa Brava. Lubinas, doradas, serviolas y más. Barcos con y sin licencia para adaptarse a tu nivel de experiencia. Trae tu equipo y nosotros ponemos el barco."}
+              {fi?.heroDescription ?? "Alquila un barco en el Puerto de Blanes y sal a pescar en las aguas de la Costa Brava. Lubinas, doradas, serviolas y más. Barcos con licencia que llevas con el titulín o un título superior. Trae tu equipo y nosotros ponemos el barco."}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
@@ -149,7 +127,7 @@ export default function ActivityFishingPage() {
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Ship className="w-4 h-4 mr-2" />
-                {fi?.badgeLicense ?? "Con y sin licencia"}
+                {fi?.badgeLicense ?? "Con titulín o superior"}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Clock className="w-4 h-4 mr-2" />
@@ -389,9 +367,9 @@ export default function ActivityFishingPage() {
               <ChevronRight className="w-4 h-4" />
               {fi?.linkLicensed ?? "Barcos con licencia"}
             </a>
-            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
+            <a href={localizedPath("navigationLicense")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
-              {fi?.linkNoLicense ?? "Barcos sin licencia"}
+              {fi?.linkNoLicense ?? "Titulín en 1 día"}
             </a>
             <a href={localizedPath("activitySnorkel")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />

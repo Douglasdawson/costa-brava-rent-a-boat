@@ -702,7 +702,7 @@ export const es: Translations = {
       "La Vila Vella medieval, acantilados impresionantes y las calas más vírgenes de la Costa Brava.",
     pricesTitle: "Precios y tarifas",
     pricesDesc:
-      "Consulta los precios por temporada de todos nuestros barcos. Desde 85€/hora sin licencia.",
+      "Consulta los precios por temporada de nuestras lanchas con licencia y de la excursión privada con patrón.",
     guide: {
       heading: "Guía para navegar la Costa Brava desde Blanes",
       geographyTitle: "El litoral: de Blanes a Tossa de Mar",
@@ -710,7 +710,7 @@ export const es: Translations = {
         "El Puerto de Blanes marca el inicio de la Costa Brava. Navegando hacia el norte, el peñón de Sa Palomera da paso a una sucesión de calas de aguas turquesas: Cala Sant Francesc, Santa Cristina y Cala Treumal antes de llegar a Lloret de Mar (a unos 25 minutos en barco), y más allá Cala Boadella y las calas vírgenes de Tossa de Mar, con su Vila Vella medieval coronando el mar. Con un barco con licencia, el trayecto Blanes–Tossa son unos 30-45 minutos de navegación tranquila pegado a la costa.",
       seaTitle: "Condiciones de mar y vientos",
       seaBody:
-        "El tramo sur de la Costa Brava es, en general, de navegación cómoda en verano. Por la mañana el mar suele estar en calma; por la tarde puede entrar el garbí, la brisa del suroeste que riza ligeramente la superficie. El viento a vigilar es la tramontana, fuerte y del norte, que puede levantarse con rapidez: consulta siempre el parte meteorológico marítimo antes de salir. Las embarcaciones sin licencia navegan hasta 2 millas náuticas de la costa (3,7 km) y a un máximo de 5 nudos, suficiente para recorrer todas estas calas con seguridad.",
+        "El tramo sur de la Costa Brava es, en general, de navegación cómoda en verano. Por la mañana el mar suele estar en calma; por la tarde puede entrar el garbí, la brisa del suroeste que riza ligeramente la superficie. El viento a vigilar es la tramontana, fuerte y del norte, que puede levantarse con rapidez: consulta siempre el parte meteorológico marítimo antes de salir. Con nuestras lanchas con licencia, que llevas con la Licencia de Navegación, recorres todas estas calas con seguridad.",
       calasTitle: "Calas y snorkel",
       calasBody:
         "Las calas entre Blanes y Tossa tienen fondos rocosos y aguas cristalinas, ideales para fondear y hacer snorkel. Cala Bona, Cala Treumal y Santa Cristina ofrecen aguas resguardadas; en Lloret, Cala Boadella; y hacia Tossa, Cala Llevadó, Cala Giverola y Cala Pola, muchas accesibles solo por mar. Recuerda fondear sobre fondo arenoso (nunca sobre las praderas de posidonia, protegidas) y largar cabo suficiente para que el ancla agarre.",
@@ -799,7 +799,7 @@ export const es: Translations = {
       locationLloret: [
         { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
         { title: "Salida al atardecer en barco", description: "Experiencia de atardecer en barco" },
-        { title: "Barcos sin licencia", description: "4 barcos desde 85€/h, gasolina incluida" },
+        { title: "Barcos con licencia", description: "Llega a Lloret y Tossa pilotando con el titulín" },
         { title: "Alquiler de scooters en Lloret de Mar", description: "Recorre la Costa Brava por carretera, desde 8€/h con seguro incluido" },
         { title: "Motos de agua cerca de Lloret", description: "Circuito y excursión guiada en moto de agua desde Blanes, sin licencia" },
       ],
@@ -818,7 +818,7 @@ export const es: Translations = {
       ],
       activitySnorkel: [
         { title: "Mejores calas de Blanes en barco", description: "Calas con aguas cristalinas perfectas para snorkel" },
-        { title: "Barcos sin licencia", description: "Perfectos para excursiones de snorkel" },
+        { title: "Barcos con licencia", description: "Calas de snorkel de Blanes a Tossa, con el titulín" },
         { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes" },
         { title: "Circuito en moto de agua", description: "Adrenalina en moto de agua sin licencia frente a Blanes" },
       ],
@@ -830,7 +830,7 @@ export const es: Translations = {
       activitySunset: [
         { title: "Rutas en barco desde Blanes", description: "5 rutas con mapas interactivos" },
         { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas más espectaculares entre Blanes y Tossa" },
-        { title: "Barcos sin licencia", description: "Perfectos para salidas al atardecer, desde 85€/h" },
+        { title: "Barcos con licencia", description: "La hora dorada desde tu propia lancha, con el titulín" },
       ],
       activityFishing: [
         { title: "Barcos con licencia", description: "Barcos potentes para zonas de pesca" },
@@ -840,7 +840,7 @@ export const es: Translations = {
       ],
       categoryLicenseFree: [
         { title: "Barco sin licencia vs con licencia", description: "Guía comparativa completa" },
-        { title: "Barcos para familias", description: "Experiencia perfecta sin necesidad de licencia" },
+        { title: "Barcos para familias", description: "Un día en familia con el titulín o con patrón" },
         { title: "Qué llevar en el barco", description: "Checklist para tu día en el mar" },
         { title: "Alquiler de moto de agua sin licencia", description: "Circuito y excursión guiada en moto de agua desde Blanes" },
       ],
@@ -885,7 +885,7 @@ export const es: Translations = {
       ],
       scooters: [
         { title: "Alquiler barcos en Lloret de Mar", description: "Playas y calas espectaculares desde el puerto de Blanes" },
-        { title: "Barcos sin licencia", description: "4 barcos desde 85€/h, gasolina incluida" },
+        { title: "Barcos con licencia", description: "Pilota con el titulín, un curso de 1 día sin examen" },
         { title: "Alquiler de moto de agua sin licencia", description: "Circuito y excursión guiada en moto de agua desde Blanes" },
         { title: "Excursión a Tossa de Mar", description: "Descubre la Vila Vella y sus calas cristalinas" },
       ],
@@ -896,10 +896,10 @@ export const es: Translations = {
       snorkel__locationBlanes: {
         seoTitle: "Snorkel en barco desde Blanes: las mejores calas | Costa Brava Rent a Boat",
         seoDescription:
-          "Alquila un barco sin licencia en Blanes y haz snorkel en Cala Sant Francesc, Sa Forcanera o Cala Treumal. Gasolina incluida, sin experiencia previa, calas a menos de 2 millas.",
+          "Snorkel en barco desde Blanes en Cala Sant Francesc, Sa Forcanera o Cala Treumal. Desde el 1 de octubre de 2026, con el titulín en nuestras lanchas o con patrón en la excursión privada.",
         h1: "Snorkel en barco desde Blanes",
         intro:
-          "Desde el Puerto de Blanes, en pocos minutos de navegación llegas a calas de aguas cristalinas y fondos rocosos perfectos para el snorkel. Con un barco sin licencia (gasolina incluida y sin necesidad de experiencia) eliges tu cala, fondeas y te lanzas al agua a tu ritmo.",
+          "Desde el Puerto de Blanes, en pocos minutos de navegación llegas a calas de aguas cristalinas y fondos rocosos perfectos para el snorkel. Con el titulín llevas una de nuestras lanchas, eliges tu cala, fondeas y te lanzas al agua a tu ritmo; sin título, sales con patrón en la excursión privada.",
         spotsTitle: "Mejores calas para snorkel cerca de Blanes",
         spots: [
           { name: "Cala Sant Francesc (Cala Bona)", description: "Ensenada protegida de pinos a la salida de Blanes, de agua tranquila y rocas laterales llenas de vida: el mejor primer fondeo para snorkel en familia." },
@@ -909,17 +909,17 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para hacer snorkel",
         boatsIntro:
-          "Para el snorkel en Blanes recomendamos nuestros barcos sin licencia: llevan la gasolina incluida, se gobiernan sin titulación y llegan sin problema a estas calas, todas dentro de las 2 millas de la costa. Incorporan escalera de baño para entrar y salir del agua con comodidad.",
+          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Con el titulín llevas una de nuestras tres lanchas con licencia, de 6 o 7 plazas; en la excursión privada con patrón, para hasta 6 personas, nadie del grupo necesita título.",
         practicalTitle: "Información práctica",
         practicalBody:
-          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Los barcos sin licencia navegan hasta 2 millas náuticas de la costa, distancia más que suficiente para todas estas calas. Trae tus gafas y tubo, protección solar y agua. Recuerda fondear sobre arena, nunca sobre las praderas de posidonia.",
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Todas estas calas quedan a pocos minutos del puerto. Trae tus gafas y tubo, protección solar y agua. Recuerda fondear sobre arena, nunca sobre las praderas de posidonia.",
         faqTitle: "Preguntas frecuentes",
         faq: [
-          { q: "¿Necesito licencia para hacer snorkel en barco desde Blanes?", a: "No. Nuestros barcos sin licencia se gobiernan sin titulación náutica y llegan a todas las calas de snorkel cercanas a Blanes. Te explicamos el manejo antes de salir." },
-          { q: "¿Está incluido el equipo de snorkel?", a: "El barco incluye escalera de baño y la gasolina. Para el snorkel te recomendamos traer tus propias gafas y tubo, así te aseguras una talla cómoda." },
+          { q: "¿Necesito licencia para hacer snorkel en barco desde Blanes?", a: "Sí: desde el 1 de octubre de 2026, para pilotar hace falta al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen. Si nadie del grupo tiene título, la excursión privada con patrón os lleva a las calas." },
+          { q: "¿Está incluido el equipo de snorkel?", a: "Te recomendamos traer tus propias gafas y tubo, así te aseguras una talla cómoda. Ten en cuenta que la gasolina no está incluida: se paga aparte según el consumo." },
         ],
         ctaTitle: "Reserva tu salida de snorkel en Blanes",
-        ctaText: "Elige fecha y barco sin licencia, y prepara la mejor jornada de snorkel por las calas de Blanes.",
+        ctaText: "Elige fecha y barco, con titulín o con patrón, y prepara la mejor jornada de snorkel por las calas de Blanes.",
       },
       snorkel__locationLloret: {
         seoTitle: "Snorkel en barco en Lloret de Mar: calas Boadella y Banys | Costa Brava Rent a Boat",
@@ -937,7 +937,7 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para llegar a Lloret",
         boatsIntro:
-          "Las calas de Lloret quedan más allá del límite de 2 millas de los barcos sin licencia, así que para llegar hasta ellas necesitas uno de nuestros barcos con licencia. Son cómodos, cubren el trayecto desde Blanes en unos 25 minutos y te dan autonomía para encadenar varias calas en la misma salida.",
+          "Para llegar a las calas de Lloret necesitas uno de nuestros barcos con licencia, que llevas con el titulín, o la excursión privada con patrón. Cubren el trayecto desde Blanes en unos 25 minutos y te dan autonomía para encadenar varias calas en la misma salida.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. El trayecto hasta las calas de Lloret son unos 25 minutos de navegación tranquila pegada a la costa. Trae tus gafas y tubo, protección solar y agua. Fondea sobre arena, nunca sobre las praderas de posidonia.",
@@ -965,13 +965,13 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para llegar a Tossa",
         boatsIntro:
-          "Tossa queda bastante más allá de las 2 millas, fuera del alcance de los barcos sin licencia. Para llegar a sus calas necesitas uno de nuestros barcos con licencia, que cubren el trayecto desde Blanes en 30-45 minutos y te permiten pasar el día explorando varias calas.",
+          "Tossa queda a 30-45 minutos de Blanes con uno de nuestros barcos con licencia, que llevas con el titulín, o con la excursión privada con patrón. Te permiten pasar el día explorando varias calas.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. La navegación hasta Tossa es de 30-45 minutos; por eso conviene reservar duraciones de 4 horas o más para disfrutar el destino sin prisa. Trae tus gafas y tubo, protección solar y agua. Respeta las zonas protegidas y fondea solo sobre arena.",
         faqTitle: "Preguntas frecuentes",
         faq: [
-          { q: "¿Se puede ir de Blanes a Tossa en barco sin licencia?", a: "No. Tossa está fuera del límite de 2 millas de los barcos sin licencia; el trayecto se hace con un barco con licencia, en 30-45 minutos desde Blanes." },
+          { q: "¿Se puede ir de Blanes a Tossa en barco sin licencia?", a: "No. Desde el 1 de octubre de 2026 hace falta al menos la Licencia de Navegación (titulín) para alquilar; con ella llegas a Tossa en 30-45 minutos desde Blanes. Sin título, puedes ir con patrón en la excursión privada." },
           { q: "¿Por qué Tossa es buena para snorkel?", a: "Parte de su litoral está protegido, con fondos rocosos y praderas muy bien conservados; calas como La Mar Menuda o Giverola ofrecen una visibilidad excelente." },
         ],
         ctaTitle: "Reserva tu salida de snorkel en Tossa de Mar",
@@ -980,26 +980,26 @@ export const es: Translations = {
       snorkel__locationCostaBrava: {
         seoTitle: "Snorkel en barco por la Costa Brava: las mejores calas desde Blanes | Costa Brava Rent a Boat",
         seoDescription:
-          "Recorre en barco las mejores calas de snorkel de la Costa Brava sur, de Blanes a Tossa de Mar. Barcos sin licencia para las calas cercanas y con licencia para el tramo completo.",
+          "Recorre en barco las mejores calas de snorkel de la Costa Brava sur, de Blanes a Tossa de Mar, con el titulín en nuestras lanchas o con patrón en la excursión privada.",
         h1: "Snorkel en barco por la Costa Brava",
         intro:
           "El tramo sur de la Costa Brava, de Blanes a Tossa de Mar, concentra decenas de calas de fondo rocoso y agua transparente ideales para el snorkel. Desde el Puerto de Blanes puedes elegir entre una salida corta a las calas más cercanas o una jornada completa recorriendo la costa.",
         spotsTitle: "Calas de snorkel imprescindibles en la Costa Brava sur",
         spots: [
-          { name: "Cala Sant Francesc (Blanes)", description: "La cala más accesible, resguardada y familiar: el punto de partida perfecto, dentro del alcance de un barco sin licencia." },
+          { name: "Cala Sant Francesc (Blanes)", description: "La cala más accesible, resguardada y familiar: el punto de partida perfecto, a pocos minutos del puerto." },
           { name: "Cala Boadella (Lloret)", description: "Rincón rocoso de agua limpia, uno de los mejores fondeos de snorkel del tramo medio de la costa." },
           { name: "Cala Giverola (Tossa)", description: "Cala profunda de aguas cristalinas entre montañas, ya en el extremo norte del recorrido." },
           { name: "Cala Pola (Tossa)", description: "Entorno natural protegido con fondo de roca y arena, recompensa para quien hace la travesía completa." },
         ],
         boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
         boatsIntro:
-          "Para las calas más cercanas a Blanes basta un barco sin licencia, con gasolina incluida y sin titulación. Para recorrer el tramo completo hasta Lloret y Tossa (más allá de las 2 millas) necesitas un barco con licencia, con autonomía para encadenar varias calas en el día.",
+          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Nuestras lanchas con licencia te dan autonomía para encadenar calas de Blanes, Lloret y Tossa en el día; en la excursión privada, la ruta la hace nuestro patrón.",
         practicalTitle: "Información práctica",
         practicalBody:
-          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Los barcos sin licencia navegan hasta 2 millas; para llegar a Lloret (~25 min) o Tossa (30-45 min) se usa un barco con licencia. Trae tus gafas y tubo, protección solar y agua. Fondea siempre sobre arena, nunca sobre posidonia.",
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Con barco con licencia llegas a Lloret en unos 25 minutos y a Tossa en 30-45 minutos. Trae tus gafas y tubo, protección solar y agua. Fondea siempre sobre arena, nunca sobre posidonia.",
         faqTitle: "Preguntas frecuentes",
         faq: [
-          { q: "¿Qué tramo de la Costa Brava puedo recorrer en una salida?", a: "Con un barco con licencia puedes encadenar calas de Blanes, Lloret y Tossa en una jornada; con uno sin licencia disfrutarás de las calas más cercanas a Blanes." },
+          { q: "¿Qué tramo de la Costa Brava puedo recorrer en una salida?", a: "Con un barco con licencia o con la excursión privada con patrón puedes encadenar calas de Blanes, Lloret y Tossa en una jornada." },
           { q: "¿Cuál es la mejor época para el snorkel?", a: "De junio a septiembre el mar está más cálido y claro; julio y agosto ofrecen las mejores condiciones, y junio o septiembre, calas más tranquilas." },
         ],
         ctaTitle: "Reserva tu ruta de snorkel por la Costa Brava",
@@ -1008,10 +1008,10 @@ export const es: Translations = {
       families__locationBlanes: {
         seoTitle: "Alquiler de barco para familias en Blanes | Costa Brava Rent a Boat",
         seoDescription:
-          "Un día de barco en familia desde Blanes: calas tranquilas, agua poco profunda y barcos amplios y estables, varios sin licencia con gasolina incluida. Sin experiencia previa.",
+          "Un día de barco en familia desde Blanes: calas tranquilas, agua poco profunda y barcos amplios y estables de hasta 7 plazas. Con el titulín o con patrón en la excursión privada.",
         h1: "Alquiler de barco para familias en Blanes",
         intro:
-          "Un día de barco en familia desde el Puerto de Blanes es de los mejores planes de la Costa Brava: calas resguardadas a pocos minutos, agua tranquila donde los niños se bañan con calma y barcos amplios y estables. Sin experiencia previa: te explicamos todo antes de salir.",
+          "Un día de barco en familia desde el Puerto de Blanes es de los mejores planes de la Costa Brava: calas resguardadas a pocos minutos, agua tranquila donde los niños se bañan con calma y barcos amplios y estables. Con el titulín llevas tú el timón; con patrón, solo os preocupáis de disfrutar.",
         spotsTitle: "Mejores calas para ir en familia cerca de Blanes",
         spots: [
           { name: "Cala Sant Francesc (Cala Bona)", description: "Cala de arena resguardada de pinos, con agua tranquila y poco profunda en la orilla: la favorita para familias con niños pequeños." },
@@ -1020,14 +1020,14 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para ir en familia",
         boatsIntro:
-          "Para familias recomendamos barcos espaciosos y estables, con solárium y zona de sombra. Varios son sin licencia (con gasolina incluida y sin titulación), y para grupos grandes contamos con embarcaciones de hasta 7 plazas.",
+          "Para familias recomendamos barcos espaciosos y estables, de 6 o 7 plazas. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón en la excursión privada, donde nadie del grupo necesita título.",
         practicalTitle: "Información práctica",
         practicalBody:
-          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Llevamos chalecos salvavidas de todas las tallas, incluidas infantiles. Trae protección solar, gorra, agua y algo de picar. Las calas cercanas a Blanes están dentro de las 2 millas, alcanzables incluso con barco sin licencia.",
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Llevamos chalecos salvavidas de todas las tallas, incluidas infantiles. Trae protección solar, gorra, agua y algo de picar. Las calas cercanas a Blanes están a pocos minutos del puerto.",
         faqTitle: "Preguntas frecuentes",
         faq: [
           { q: "¿Es seguro ir en barco con niños?", a: "Sí. Llevamos chalecos salvavidas infantiles, las calas cercanas son tranquilas y poco profundas, y te explicamos el manejo y la seguridad antes de salir." },
-          { q: "¿Hace falta licencia para ir en familia desde Blanes?", a: "No para las calas cercanas: varios de nuestros barcos se gobiernan sin titulación. Para grupos grandes o más autonomía también hay opciones con licencia." },
+          { q: "¿Hace falta licencia para ir en familia desde Blanes?", a: "Sí: desde el 1 de octubre de 2026, quien pilota necesita al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen. Si nadie de la familia tiene título, la excursión privada con patrón es la opción: el barco lo lleva nuestro patrón." },
         ],
         ctaTitle: "Reserva tu día de barco en familia en Blanes",
         ctaText: "Elige fecha y barco, y disfruta de un día en el mar con los tuyos saliendo del Puerto de Blanes.",
@@ -1074,13 +1074,13 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para llegar a Tossa en familia",
         boatsIntro:
-          "Tossa está fuera del alcance de los barcos sin licencia, así que el viaje se hace con uno de nuestros barcos con licencia, espaciosos y de hasta 7 plazas. Cubren el trayecto desde Blanes en 30-45 minutos; conviene reservar duraciones de medio día o más.",
+          "Tossa queda a 30-45 minutos de Blanes con uno de nuestros barcos con licencia, espaciosos y de hasta 7 plazas, que llevas con el titulín; también podéis ir con patrón en la excursión privada. Conviene reservar duraciones de medio día o más.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. La navegación hasta Tossa es de 30-45 minutos. Llevamos chalecos de todas las tallas; trae protección solar, gorra, agua y comida para el día.",
         faqTitle: "Preguntas frecuentes",
         faq: [
-          { q: "¿Se puede ir a Tossa en familia con barco sin licencia?", a: "No. Tossa está fuera del límite de 2 millas; el viaje se hace con un barco con licencia, en 30-45 minutos desde Blanes." },
+          { q: "¿Se puede ir a Tossa en familia con barco sin licencia?", a: "No. Desde el 1 de octubre de 2026 hace falta al menos la Licencia de Navegación (titulín) para alquilar; con ella llegáis a Tossa en 30-45 minutos desde Blanes. Sin título, podéis ir con patrón en la excursión privada." },
           { q: "¿Es buen plan para un día completo?", a: "Sí: por la distancia, lo ideal es reservar medio día o jornada completa y combinar la Platja Gran con alguna cala cercana." },
         ],
         ctaTitle: "Reserva tu día de barco en familia en Tossa",
@@ -1089,25 +1089,25 @@ export const es: Translations = {
       families__locationCostaBrava: {
         seoTitle: "Alquiler de barco para familias en la Costa Brava | Costa Brava Rent a Boat",
         seoDescription:
-          "Día de barco en familia por la Costa Brava sur desde Blanes: calas tranquilas y playas de arena de Blanes a Tossa. Barcos sin licencia para lo cercano y con licencia para el tramo completo.",
+          "Día de barco en familia por la Costa Brava sur desde Blanes: calas tranquilas y playas de arena de Blanes a Tossa, con el titulín en nuestras lanchas o con patrón en la excursión privada.",
         h1: "Alquiler de barco para familias por la Costa Brava",
         intro:
           "La Costa Brava sur, de Blanes a Tossa de Mar, está hecha para disfrutarla en familia: calas resguardadas, playas de arena y agua tranquila. Desde el Puerto de Blanes eliges entre una salida corta a las calas cercanas o una jornada explorando la costa.",
         spotsTitle: "Calas y playas familiares imprescindibles",
         spots: [
-          { name: "Cala Sant Francesc (Blanes)", description: "La más accesible y resguardada, dentro del alcance de un barco sin licencia: el plan perfecto para empezar con niños." },
+          { name: "Cala Sant Francesc (Blanes)", description: "La más accesible y resguardada, a pocos minutos del puerto: el plan perfecto para empezar con niños." },
           { name: "Santa Cristina (Lloret)", description: "Gran playa de arena con servicios y aguas tranquilas, en el tramo medio de la costa." },
           { name: "Platja Gran de Tossa", description: "Arena al pie de la Vila Vella medieval, recompensa para quien hace la travesía completa con un barco con licencia." },
         ],
         boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
         boatsIntro:
-          "Para las calas cercanas a Blanes basta un barco sin licencia, con gasolina incluida. Para recorrer el tramo hasta Lloret y Tossa (más allá de las 2 millas) necesitas un barco con licencia, espacioso y de hasta 7 plazas.",
+          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Nuestras lanchas con licencia, espaciosas y de hasta 7 plazas, llegan a Lloret y Tossa; la excursión privada con patrón admite hasta 6 personas.",
         practicalTitle: "Información práctica",
         practicalBody:
-          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Los barcos sin licencia navegan hasta 2 millas; para llegar a Lloret (~25 min) o Tossa (30-45 min) se usa un barco con licencia. Llevamos chalecos de todas las tallas.",
+          "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Con barco con licencia llegas a Lloret en unos 25 minutos y a Tossa en 30-45 minutos. Llevamos chalecos de todas las tallas.",
         faqTitle: "Preguntas frecuentes",
         faq: [
-          { q: "¿Qué tramo podemos recorrer en familia en un día?", a: "Con un barco con licencia, calas de Blanes, Lloret y Tossa en una jornada; con uno sin licencia, las calas tranquilas más cercanas a Blanes." },
+          { q: "¿Qué tramo podemos recorrer en familia en un día?", a: "Con un barco con licencia o con la excursión privada con patrón, calas de Blanes, Lloret y Tossa en una jornada." },
           { q: "¿Cuál es la mejor época para ir con niños?", a: "De junio a septiembre, con el mar más cálido y tranquilo; julio y agosto ofrecen las mejores condiciones de baño." },
         ],
         ctaTitle: "Reserva tu día de barco en familia por la Costa Brava",
@@ -1116,7 +1116,7 @@ export const es: Translations = {
       sunset__locationBlanes: {
         seoTitle: "Paseo en barco al atardecer en Blanes | Costa Brava Rent a Boat",
         seoDescription:
-          "Navega a última hora de la tarde desde Blanes y disfruta de la luz dorada sobre la costa, el peñón de Sa Palomera y la bahía. Paseo tranquilo en barco, sin experiencia previa.",
+          "Navega a última hora de la tarde desde Blanes y disfruta de la luz dorada sobre la costa, el peñón de Sa Palomera y la bahía. Paseo tranquilo en barco, con el titulín o con patrón.",
         h1: "Paseo en barco al atardecer en Blanes",
         intro:
           "A última hora de la tarde, cuando la luz se vuelve dorada, la costa de Blanes ofrece su cara más bonita desde el mar. Un paseo tranquilo en barco saliendo del Puerto de Blanes para ver el peñón de Sa Palomera y los acantilados encenderse con los últimos rayos.",
@@ -1128,14 +1128,14 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para el atardecer",
         boatsIntro:
-          "Para un paseo al atardecer recomendamos barcos cómodos con buen solárium. Varios son sin licencia (con gasolina incluida y sin titulación), ideales para una salida corta y relajada cerca de Blanes.",
+          "Para el atardecer recomendamos una salida corta y relajada cerca de Blanes. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) una de nuestras lanchas, o sales con patrón en la excursión privada.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes; la franja de última hora de la tarde es la que regala la mejor luz. En la Costa Brava el sol se pone tras la costa, así que disfrutarás de la luz dorada y los acantilados iluminados más que de la puesta sobre el agua. Trae una chaqueta ligera: al caer la tarde refresca.",
         faqTitle: "Preguntas frecuentes",
         faq: [
           { q: "¿A qué hora es la salida al atardecer?", a: "Operamos hasta las 20:00; la última franja de la tarde es la que ofrece la luz dorada. Te recomendamos reservar 1 o 2 horas a última hora del día." },
-          { q: "¿Necesito licencia?", a: "No para un paseo cercano a Blanes: varios de nuestros barcos se gobiernan sin titulación y te explicamos el manejo antes de salir." },
+          { q: "¿Necesito licencia?", a: "Sí: desde el 1 de octubre de 2026 hace falta al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen. Sin título, puedes salir con patrón en la excursión privada." },
         ],
         ctaTitle: "Reserva tu paseo al atardecer en Blanes",
         ctaText: "Elige fecha y barco, y disfruta de la hora dorada en el mar saliendo del Puerto de Blanes.",
@@ -1182,7 +1182,7 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para llegar a Tossa al atardecer",
         boatsIntro:
-          "Tossa está fuera del alcance de los barcos sin licencia, así que el paseo se hace con uno de nuestros barcos con licencia, cómodos y con buen solárium. El trayecto desde Blanes es de 30-45 minutos.",
+          "Para el paseo hasta Tossa usamos nuestros barcos con licencia, cómodos y con buen solárium, que llevas con el titulín; también puedes ir con patrón en la excursión privada. El trayecto desde Blanes es de 30-45 minutos.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes. Por la distancia (30-45 min), planifica la salida para aprovechar la última luz y el regreso con tranquilidad. En esta costa el sol se pone tras la tierra: lo espectacular es la Vila Vella iluminada. Trae una chaqueta ligera.",
@@ -1197,26 +1197,26 @@ export const es: Translations = {
       sunset__locationCostaBrava: {
         seoTitle: "Paseo en barco al atardecer por la Costa Brava | Costa Brava Rent a Boat",
         seoDescription:
-          "Atardecer en barco por la Costa Brava sur desde Blanes: luz dorada sobre acantilados, calas y la Vila Vella de Tossa. Barco sin licencia para lo cercano, con licencia para el tramo completo.",
+          "Atardecer en barco por la Costa Brava sur desde Blanes: luz dorada sobre acantilados, calas y la Vila Vella de Tossa. Con el titulín en nuestras lanchas o con patrón en la excursión privada.",
         h1: "Paseo en barco al atardecer por la Costa Brava",
         intro:
           "La Costa Brava sur, de Blanes a Tossa, ofrece a última hora de la tarde una sucesión de acantilados, calas y pueblos que se encienden con la luz dorada. Desde el Puerto de Blanes eliges entre un paseo corto cerca o una salida más larga por la costa.",
         spotsTitle: "Mejores rincones de la costa al atardecer",
         spots: [
-          { name: "Sa Palomera (Blanes)", description: "El peñón que abre la Costa Brava, dentro del alcance de un barco sin licencia: el plan más sencillo para la hora dorada." },
+          { name: "Sa Palomera (Blanes)", description: "El peñón que abre la Costa Brava, a pocos minutos del puerto: el plan más sencillo para la hora dorada." },
           { name: "Cala Banys (Lloret)", description: "Acantilados dramáticos que destacan con la luz baja, en el tramo medio de la costa." },
           { name: "Vila Vella (Tossa)", description: "Las murallas medievales iluminadas sobre el mar, la recompensa de la travesía completa con un barco con licencia." },
         ],
         boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
         boatsIntro:
-          "Para un paseo cercano a Blanes basta un barco sin licencia, con gasolina incluida. Para recorrer el tramo hasta Lloret y Tossa (más allá de las 2 millas) necesitas un barco con licencia, cómodo y con buen solárium.",
+          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Con nuestras lanchas con licencia recorres el tramo hasta Lloret y Tossa; en la excursión privada, el paseo lo hace nuestro patrón.",
         practicalTitle: "Información práctica",
         practicalBody:
-          "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes. En esta costa el sol se pone tras la tierra: disfrutarás de la luz dorada y los pueblos y acantilados iluminados. Los barcos sin licencia llegan hasta 2 millas; para Lloret o Tossa se usa un barco con licencia. Trae una chaqueta ligera.",
+          "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes. En esta costa el sol se pone tras la tierra: disfrutarás de la luz dorada y los pueblos y acantilados iluminados. Con barco con licencia llegas a Lloret o Tossa. Trae una chaqueta ligera.",
         faqTitle: "Preguntas frecuentes",
         faq: [
           { q: "¿Dónde se ve el mejor atardecer desde el barco?", a: "Cerca de Blanes, Sa Palomera; en el tramo completo, la Vila Vella de Tossa iluminada es lo más espectacular." },
-          { q: "¿Necesito barco con licencia?", a: "Solo si quieres llegar a Lloret o Tossa. Para la hora dorada cerca de Blanes basta un barco sin licencia." },
+          { q: "¿Necesito barco con licencia?", a: "Sí: desde el 1 de octubre de 2026 todos nuestros barcos de alquiler se llevan con al menos la Licencia de Navegación (titulín). Si no tienes título, sal con patrón en la excursión privada." },
         ],
         ctaTitle: "Reserva tu paseo al atardecer por la Costa Brava",
         ctaText: "Elige tu barco según hasta dónde quieras llegar y persigue la hora dorada saliendo desde Blanes.",
@@ -1236,7 +1236,7 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para pescar",
         boatsIntro:
-          "Para pescar usamos nuestros barcos con licencia, con mayor autonomía y alcance que los barcos sin licencia. Son los más indicados para moverte entre zonas de pesca y pasar la jornada con comodidad.",
+          "Para pescar usamos nuestros barcos con licencia, que llevas con el titulín: tienen autonomía y alcance para moverte entre zonas de pesca y pasar la jornada con comodidad.",
         practicalTitle: "Información práctica y normativa",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Para pescar necesitas la licencia de pesca recreativa de Cataluña, que es responsabilidad del cliente. Respeta las tallas mínimas, las especies protegidas y las zonas reguladas. El equipo de pesca no está incluido.",
@@ -1290,14 +1290,14 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para llegar a Tossa",
         boatsIntro:
-          "Tossa está fuera del alcance de los barcos sin licencia, así que el viaje se hace con uno de nuestros barcos con licencia, con autonomía para la jornada. El trayecto desde Blanes es de 30-45 minutos.",
+          "El viaje a Tossa se hace con uno de nuestros barcos con licencia, con autonomía para la jornada. El trayecto desde Blanes es de 30-45 minutos.",
         practicalTitle: "Información práctica y normativa",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Parte del litoral de Tossa es zona protegida donde la pesca está restringida: respeta sus límites. Necesitas la licencia de pesca recreativa de Cataluña (a cargo del cliente) y debes respetar tallas y especies. El equipo de pesca no está incluido.",
         faqTitle: "Preguntas frecuentes",
         faq: [
           { q: "¿Se puede pescar en Tossa de Mar?", a: "Solo fuera de las zonas protegidas y con licencia de pesca recreativa. Parte del litoral es reserva donde la pesca está restringida o prohibida." },
-          { q: "¿Se llega en barco sin licencia?", a: "No. Tossa está fuera del límite de 2 millas; se llega con un barco con licencia, en 30-45 minutos desde Blanes." },
+          { q: "¿Se llega en barco sin licencia?", a: "No. Desde el 1 de octubre de 2026 hace falta al menos la Licencia de Navegación (titulín) para alquilar; con ella llegas en 30-45 minutos desde Blanes." },
         ],
         ctaTitle: "Reserva tu salida de pesca cerca de Tossa",
         ctaText: "Elige fecha y barco con licencia, respeta las zonas protegidas y prepara tu jornada de pesca saliendo desde Blanes.",
@@ -1317,7 +1317,7 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para pescar por la costa",
         boatsIntro:
-          "Para la pesca usamos barcos con licencia, con la autonomía necesaria para recorrer la costa entre zonas. Los barcos sin licencia, limitados a 2 millas, no son la opción para este tipo de salidas.",
+          "Para la pesca usamos barcos con licencia, con la autonomía necesaria para recorrer la costa entre zonas. Basta la Licencia de Navegación (titulín), un curso de 1 día sin examen.",
         practicalTitle: "Información práctica y normativa",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Necesitas la licencia de pesca recreativa de Cataluña (a cargo del cliente). Respeta tallas mínimas, especies protegidas y, muy especialmente, las zonas reguladas como la reserva de Tossa. El equipo de pesca no está incluido.",
@@ -1404,7 +1404,7 @@ export const es: Translations = {
     whyP1:
       "Un regalo original que no se olvida. Navegar por las calas de la Costa Brava, descubrir playas escondidas y disfrutar del Mediterráneo es una experiencia única que supera cualquier regalo material.",
     whyP2:
-      "Nuestras tarjetas regalo son válidas para cualquiera de nuestros {count} barcos, tanto sin licencia como con licencia. El destinatario elige el barco, la fecha y la duración que prefiera durante toda la temporada (abril a octubre).",
+      "Nuestras tarjetas regalo son válidas para cualquiera de nuestros {count} barcos: las lanchas con licencia y la excursión privada con patrón. El destinatario elige el barco, la fecha y la duración que prefiera durante toda la temporada (abril a octubre).",
     whyP3:
       "Perfecta para cumpleaños, aniversarios, despedidas de soltero/a o simplemente para sorprender a alguien especial. El mar siempre es el mejor regalo.",
     viewFleet: "Ver la flota",
@@ -1628,7 +1628,7 @@ export const es: Translations = {
         needsIcc: "Tu país emite ICC. Pídelo en tu federación náutica antes de viajar.",
         notRecognized: "Tu licencia nacional no se reconoce directamente en España. Escríbenos por WhatsApp y miramos contigo qué opciones tienes.",
         insufficient: "Tu licencia queda por debajo de la Licencia de Navegación española, el mínimo para nuestra flota con licencia. Considera obtener la LN o un título superior.",
-        inlandOnly: "Tu licencia autoriza ríos y lagos, no navegación marítima. Buena noticia: nuestros barcos sin licencia no requieren ningún título: son perfectos para ti.",
+        inlandOnly: "Tu licencia autoriza ríos y lagos, no navegación marítima, así que no sirve para nuestros barcos. Con la Licencia de Navegación (curso de 1 día, sin examen) podrás llevarlos, o puedes salir con patrón en la excursión privada.",
       },
       pill: {
         valid: "Válida",
@@ -3047,7 +3047,7 @@ export const es: Translations = {
     whatAreTitle: "¿Qué es una lancha con licencia?",
     advancedNavigation: "Más potencia, más radio",
     advancedNavigationDesc:
-      "Nuestras lanchas montan motores de 80 a 115 CV, frente a los 15 CV de los barcos sin licencia. Eso se traduce en velocidad de crucero real y en llegar a calas que quedan fuera del alcance de un barco de iniciación.",
+      "Nuestras lanchas montan motores de 80 a 115 CV, frente a los 15 CV de un barco de iniciación. Eso se traduce en velocidad de crucero real y en llegar a calas que quedan fuera del alcance de un barco pequeño.",
     greaterFreedom: "Tú decides el rumbo",
     greaterFreedomDesc:
       "Sin patrón a bordo, el plan lo marcas tú dentro de la zona que permite tu titulación: madrugar para fondear casi en solitario en Santa Cristina, comer frente a Fenals o plantarte en Tossa a media mañana.",
@@ -3101,7 +3101,7 @@ export const es: Translations = {
     regulationForeign:
       "Si tu título es de otro país del EEE se aplica la reciprocidad europea, y también aceptamos el ICC internacional. Tráelo en original el día de la salida junto con tu documento de identidad.",
     regulationFuelDeposit:
-      "A diferencia de nuestros barcos sin licencia, aquí la gasolina no está incluida: se paga aparte según el consumo real. La fianza es de 500 EUR y se devuelve al finalizar si el barco vuelve como salió.",
+      "La gasolina no está incluida: se paga aparte según el consumo real. La fianza es de 500 EUR y se devuelve al finalizar si el barco vuelve como salió.",
     howToTitle: "Cómo alquilar una lancha sin patrón en Blanes",
     howToIntro:
       "Del primer mensaje a estar navegando hay cinco pasos y ninguno requiere pago online: reservas, verificas tu título y pagas en el puerto el día de la salida.",
@@ -3144,7 +3144,7 @@ export const es: Translations = {
       "Sí. Nuestras tres lanchas se alquilan sin patrón: el patrón eres tú con tu Licencia de Navegación o cualquier título superior en vigor. Y si prefieres no pilotar, tenemos una excursión privada con patrón profesional.",
     faqTossaQuestion: "¿Puedo llegar a Tossa de Mar pilotando yo desde Blanes?",
     faqTossaAnswer:
-      "Sí. Desde el Puerto de Blanes se llega a la bahía de Tossa de Mar en 30-45 minutos con cualquiera de nuestras lanchas con licencia. Es un trayecto que los barcos sin licencia no alcanzan: su zona se queda en Blanes y Lloret.",
+      "Sí. Desde el Puerto de Blanes se llega a la bahía de Tossa de Mar en 30-45 minutos con cualquiera de nuestras lanchas con licencia.",
     faqLanchaQuestion: "¿Qué lanchas puedo alquilar en Blanes y para cuántas personas?",
     faqLanchaAnswer:
       "Tres lanchas de 80 a 115 CV: la Mingolla Brava 19 para 6 personas, la Trimarchi 57S para 7 y la Pacific Craft 625 para 7. Todas salen del Puerto de Blanes por horas, medio día o día completo.",
@@ -3173,7 +3173,7 @@ export const es: Translations = {
     linksTossa: "Alquiler de barco en Tossa de Mar",
     linksBlogTossa: "La ruta Blanes a Tossa paso a paso",
     linksPricing: "Precios por temporada y duración",
-    linksNoLicense: "¿Sin titulación? Mira los barcos sin licencia",
+    linksNoLicense: "¿Sin titulación? Sal con patrón",
     linksSkipper: "¿Prefieres patrón? Excursión privada con capitán",
     ctaTitle: "¿Tienes el título? La lancha te espera en Blanes",
     ctaDescription:
@@ -3228,12 +3228,12 @@ export const es: Translations = {
     newsletterError: "Error al enviar. Inténtalo de nuevo.",
     tableOfContents: "Índice",
     ctaTitle: "Listo para tu aventura?",
-    ctaSubtitle: "Alquila un barco desde 75\u20AC/hora \u00B7 Gasolina incluida",
+    ctaSubtitle: "Alquila una lancha con el titulín o sal con patrón desde el Puerto de Blanes",
     ctaBookNow: "Reservar ahora",
     ctaWhatsApp: "Preguntar por WhatsApp",
     relatedDestinationsTitle: "Destinos relacionados",
     relatedBlanesName: "Blanes",
-    relatedBlanesDesc: "Puerto base. Barcos sin licencia desde 85€/h.",
+    relatedBlanesDesc: "Puerto base. Lanchas con licencia y excursión con patrón.",
     relatedLloretName: "Lloret de Mar",
     relatedLloretDesc: "Calas y playas a 25 min en barco desde Blanes.",
     relatedTossaName: "Tossa de Mar",
@@ -3351,7 +3351,7 @@ export const es: Translations = {
     q2: "¿Cuánto tiempo quieres navegar?",
     q2options: ["1-2 horas", "3-4 horas (medio día)", "6-8 horas (día completo)"],
     q3: "¿Cuál es tu presupuesto?",
-    q3options: ["Económico (desde 85€)", "Medio (100-200€)", "Sin límite"],
+    q3options: ["Económico", "Medio (100-200€)", "Sin límite"],
     result: "Tu barco ideal es...",
     bestMatch: "Mejor opción",
     alsoConsider: "También puedes considerar",
@@ -3413,7 +3413,7 @@ export const es: Translations = {
         id: "normativa2026",
         question: "¿Es verdad que en 2026 se acaba el alquiler de barcos sin licencia?",
         answer:
-          "Cambia la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor a partir del 1 de octubre de 2026. Hasta el 30 de septiembre de 2026 todo sigue igual y nuestros barcos sin licencia se alquilan como siempre. Desde esa fecha bastará la Licencia de Navegación (titulín), un curso de 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
+          "Sí, cambió la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor desde el 1 de octubre de 2026, y desde esa fecha ya no alquilamos barcos sin licencia. Basta la Licencia de Navegación (titulín), un curso de 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
       },
       {
         id: "titulin",
@@ -3425,19 +3425,19 @@ export const es: Translations = {
         id: "precios",
         question: "¿Cuáles son los precios del alquiler?",
         answer:
-          "Barcos sin licencia desde 85€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o día completo). Barcos con licencia desde 175€ sin gasolina incluida (2h, 4h, 8h). Los precios varían según temporada (julio/agosto) y embarcación.",
+          "Barcos con licencia desde {licBaja2h}€ las 2 horas en temporada baja, sin gasolina incluida (2h, 4h, 8h). Excursión privada con patrón desde {excursionBaja2h}€ las 2 horas. Los precios varían según temporada (julio/agosto) y embarcación.",
       },
       {
         id: "sin-licencia",
         question: "¿Puedo alquilar un barco sin tener licencia náutica?",
         answer:
-          "Hasta el 30 de septiembre de 2026, sí: tenemos barcos sin licencia de hasta 15 CV y solo necesitas ser mayor de 18 años, con un briefing completo antes de salir. A partir del 1 de octubre de 2026 el RD 1188/2025 exige título a todo arrendatario; la Licencia de Navegación (titulín) se saca en un día y te la organizamos nosotros. Si prefieres no titularte, la excursión con patrón no requiere título en ninguna fecha.",
+          "Desde el 1 de octubre de 2026, no: el RD 1188/2025 exige título a todo arrendatario de un barco a motor. La Licencia de Navegación (titulín) se saca en un día, sin examen, y te la organizamos nosotros. Si prefieres no titularte, la excursión con patrón no requiere título.",
       },
       {
         id: "incluye",
         question: "¿Qué está incluido en el precio?",
         answer:
-          "Incluido en todos los alquileres: embarcación equipada, gasolina (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla, escalera de baño, instrucciones de uso y seguro básico.",
+          "Incluido en todos los alquileres: embarcación equipada, chalecos salvavidas, kit de seguridad, ancla, escalera de baño, instrucciones de uso y seguro básico. La gasolina se paga aparte según el consumo.",
       },
       {
         id: "cancelacion",
@@ -3455,7 +3455,7 @@ export const es: Translations = {
         id: "experiencia",
         question: "¿Necesito experiencia previa?",
         answer:
-          "No, ninguna. Antes de zarpar te damos una explicación completa del barco (10-15 min). Nuestros barcos sin licencia son muy fáciles de manejar.",
+          "No hace falta más experiencia que la del titulín, que incluye prácticas. Antes de zarpar te damos una explicación completa del barco (10-15 min), y si prefieres no llevar el timón, sales con patrón.",
       },
       {
         id: "comida-bebida",
@@ -3492,13 +3492,13 @@ export const es: Translations = {
         id: "diferencia-licencia",
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 85€. Los barcos con licencia tienen motores de 80-115 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde 175€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
+          "Hasta el 30 de septiembre de 2026 alquilábamos barcos sin licencia de hasta 15 CV y 4-5 plazas. Desde el 1 de octubre de 2026 la ley exige título para alquilar, así que alquilamos nuestras lanchas con licencia: motores de 80-115 CV, hasta 7 personas y autonomía para llegar a Tossa de Mar, desde {licBaja2h}€ (gasolina no incluida). Basta la Licencia de Navegación, un curso de 1 día sin examen.",
       },
       {
         id: "precio-blanes-vs-lloret",
         question: "¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?",
         answer:
-          "Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde 85€ la hora con gasolina incluida. Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.",
+          "Operamos desde el Puerto de Blanes con nuestra propia flota: lanchas con licencia desde {licBaja2h}€ las 2 horas en temporada baja y excursión privada con patrón. Al no depender de intermediarios, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.",
       },
       {
         id: "barco-grupo-grande",
@@ -3511,13 +3511,13 @@ export const es: Translations = {
         id: "precio-costa-brava",
         question: "¿Cuánto cuesta alquilar un barco en la Costa Brava?",
         answer:
-          "En la Costa Brava puedes alquilar un barco desde 85€ la hora en Blanes, con gasolina incluida y sin necesidad de licencia. Los precios varían según la duración (de 1h a día completo), el tipo de barco y la temporada. Julio y agosto son temporada alta con precios más elevados; junio y septiembre ofrecen la mejor relación calidad-precio.",
+          "En la Costa Brava puedes alquilar una lancha con licencia desde {licBaja2h}€ las 2 horas en Blanes (gasolina aparte), con la Licencia de Navegación o un título superior. Sin título, la excursión privada con patrón sale desde {excursionBaja2h}€. Los precios varían según la duración, el tipo de barco y la temporada. Julio y agosto son temporada alta con precios más elevados; junio y septiembre ofrecen la mejor relación calidad-precio.",
       },
       {
         id: "blanes-tossa-barco",
         question: "¿Se puede ir a Tossa de Mar en barco desde Blanes?",
         answer:
-          "Sí, Tossa de Mar está a unos 30 minutos en barco desde Blanes. Sin embargo, necesitas un barco con licencia o contratar nuestra excursión con patrón, ya que los barcos sin licencia tienen un radio de navegación limitado. La ruta costera de Blanes a Tossa es espectacular, con calas vírgenes y acantilados.",
+          "Sí, Tossa de Mar está a 30-45 minutos en barco desde Blanes con una de nuestras lanchas con licencia, o con nuestra excursión privada con patrón. La ruta costera de Blanes a Tossa es espectacular, con calas vírgenes y acantilados.",
       },
       {
         id: "excursion-con-patron",
@@ -3530,13 +3530,13 @@ export const es: Translations = {
         id: "seguro-sin-experiencia",
         question: "¿Es seguro alquilar un barco sin experiencia?",
         answer:
-          "Totalmente seguro. Antes de salir a navegar, nuestro equipo te da un briefing de 15 minutos donde te explica el funcionamiento del barco, las normas de navegación y la zona autorizada. Los barcos sin licencia son muy estables y fáciles de manejar, y la zona de Blanes tiene aguas tranquilas y protegidas.",
+          "Totalmente seguro. Antes de salir a navegar, nuestro equipo te da un briefing de 15 minutos donde te explica el funcionamiento del barco, las normas de navegación y la zona autorizada. Quien pilota tiene al menos la Licencia de Navegación, con prácticas incluidas, y la zona de Blanes tiene aguas tranquilas y protegidas. Si prefieres no llevar el timón, sales con patrón.",
       },
       {
         id: "barco-vs-excursion",
         question: "¿Qué es mejor, alquilar un barco o una excursión con patrón?",
         answer:
-          "Depende de lo que busques. Alquilar un barco sin licencia (desde 85€/h) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursión con patrón (desde 265€/2h) es ideal si quieres relajarte completamente, no tienes experiencia o quieres llegar a calas más lejanas como Tossa de Mar.",
+          "Depende de lo que busques. Alquilar una lancha con licencia (desde {licBaja2h}€ las 2 horas, con el titulín) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursión con patrón (desde {excursionBaja2h}€/2h) es ideal si quieres relajarte completamente, no tienes título o quieres que te lleven a calas más lejanas como Tossa de Mar.",
       },
       {
         id: "mejor-epoca",
@@ -3814,7 +3814,7 @@ export const es: Translations = {
       {
         question: "¿Necesito licencia de navegación para una excursión al atardecer?",
         answer:
-          "No. Nuestros barcos sin licencia son perfectos para excursiones al atardecer. Solo necesitas ser mayor de 18 años. Te damos una formación de seguridad de 15 minutos antes de salir. Los barcos son fáciles de manejar y tienen una velocidad máxima que los hace muy seguros para navegar al atardecer.",
+          "Sí: desde el 1 de octubre de 2026, para pilotar hace falta al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen; con ella llevas cualquiera de nuestras lanchas. Si nadie del grupo tiene título, sal con patrón en la excursión privada: el barco lo lleva un profesional y vosotros solo miráis el atardecer.",
       },
       {
         question: "¿Es seguro estar en barco al atardecer y volver con poca luz?",
@@ -3824,7 +3824,7 @@ export const es: Translations = {
       {
         question: "¿Cuánto cuesta una excursión en barco al atardecer?",
         answer:
-          "Una excursión de 2 horas al atardecer en barco sin licencia cuesta desde 155 € en total ({noLicBaja1h} €/hora en temporada baja). La gasolina está incluida en barcos sin licencia. El barco admite hasta 5 personas, así que el coste por persona puede ser desde 28 €. Los barcos sin licencia incluyen gasolina, seguro, equipo de seguridad y la formación.",
+          "El precio es por barco, no por persona: una salida de 2 horas en una de nuestras lanchas con licencia o en la excursión privada con patrón se reparte entre todo el grupo. En la página de precios tienes la tarifa de cada barco según la temporada. La gasolina se paga aparte según el consumo.",
       },
     ],
     sunsetTimes: [
@@ -3909,7 +3909,7 @@ export const es: Translations = {
     // Page sections (headings, descriptions, badges, CTAs, lists)
     heroTitle: "Paseo en Barco al Atardecer desde Blanes",
     heroDescription:
-      "Contempla la puesta de sol sobre la Costa Brava desde la cubierta de tu propio barco. Sal del puerto de Blanes, navega entre calas escondidas y disfruta de la luz más mágica del día sobre el Mediterráneo. Sin licencia de navegación. Desde 85 €/hora.",
+      "Contempla la puesta de sol sobre la Costa Brava desde la cubierta de tu propio barco. Sal del puerto de Blanes, navega entre calas escondidas y disfruta de la luz más mágica del día sobre el Mediterráneo. Con el titulín en una de nuestras lanchas o con patrón en la excursión privada.",
     badgeGoldenHour: "Vistas a la hora dorada",
     badgeDuration: "2 horas recomendadas",
     badgeCouples: "Perfecto para parejas",
@@ -3920,9 +3920,9 @@ export const es: Translations = {
     whyPrivateTitle: "Tu propia experiencia privada",
     whyPrivateDesc:
       "A diferencia de los cruceros al atardecer en grupo, el barco es solo vuestro. Elegís dónde fondear, cuánto tiempo quedaros y qué llevar a bordo. No hay guía que os meta prisa, ni otros turistas. Solo vosotros y el Mediterráneo en su momento más bonito.",
-    whyAffordableTitle: "Fácil y asequible",
+    whyAffordableTitle: "Con titulín o con patrón",
     whyAffordableDesc:
-      "Nuestros barcos sin licencia son increíblemente fáciles de manejar. Después de una formación de 15 minutos en el puerto, estáis listos. El barco admite hasta 5 personas, así que una excursión de 2 horas al atardecer puede costar desde 28 € por persona con gasolina incluida. Menos que la mayoría de cenas en la Costa Brava.",
+      "Con la Licencia de Navegación, un curso de 1 día sin examen, llevas cualquiera de nuestras lanchas, de hasta 7 plazas. El precio es por barco, no por persona, así que repartido entre el grupo sale a buen precio. Si prefieres no llevar el timón, la excursión privada con patrón os lleva a las mejores vistas.",
     whyTemperatureTitle: "Temperatura perfecta al atardecer",
     whyTemperatureDesc:
       "A última hora de la tarde, el calor del día se ha suavizado. La brisa marina os mantiene cómodos. El agua está en su punto más cálido tras absorber sol todo el día. Es el momento ideal para estar en el agua, ya sea para nadar, flotar o simplemente contemplar cómo cambia el cielo de color.",
@@ -3950,7 +3950,7 @@ export const es: Translations = {
       "Toallas si vais a nadar",
     ],
     exploreMore: "Explora más experiencias",
-    linkNoLicense: "Barcos sin licencia",
+    linkNoLicense: "Barcos con licencia",
     linkSnorkel: "Excursión de snorkel",
     linkPrices: "Precios y tarifas",
     linkBlanes: "Info del puerto de Blanes",
@@ -3958,7 +3958,7 @@ export const es: Translations = {
     faqTitle: "Preguntas frecuentes",
     ctaTitle: "Reserva tu paseo en barco al atardecer desde Blanes",
     ctaDescription:
-      "La forma más mágica de terminar un día en la Costa Brava. Salidas desde el puerto de Blanes, de abril a octubre. Sin licencia. Gasolina incluida.",
+      "La forma más mágica de terminar un día en la Costa Brava. Salidas desde el puerto de Blanes, de abril a octubre, con el titulín o con patrón.",
     ctaWhatsApp: "Reservar por WhatsApp",
     ctaViewBoats: "Ver barcos disponibles",
     breadcrumbHome: "Inicio",
@@ -4016,11 +4016,11 @@ export const es: Translations = {
     ],
     recommendedBoats: [
       {
-        name: "Barcos sin licencia (4-5 personas)",
-        duration: "2-3 horas recomendadas",
-        price: "Desde 85 €/hora",
+        name: "Excursión privada con patrón (hasta 6 personas)",
+        duration: "2-4 horas recomendadas",
+        price: "Patrón incluido",
         description:
-          "Perfectos para snorkel en calas cercanas como Cala Sant Francesc y Cala Bona. Gasolina incluida. Fondeas el barco y te tiras al agua directamente.",
+          "Nuestro patrón os lleva a las calas con mejor visibilidad del día y fondea para que os tiréis al agua directamente. Nadie del grupo necesita título náutico.",
       },
       {
         name: "Barcos con licencia (6-7 personas)",
@@ -4047,9 +4047,9 @@ export const es: Translations = {
     whyMultiTitle: "Múltiples spots en una salida",
     whyMultiDesc:
       "En una salida de 3-4 horas puedes visitar 2-3 calas diferentes. Cada una tiene un ecosistema distinto: praderas de posidonia, fondos rocosos, paredes verticales. Es como hacer tres excursiones de snorkel en una sola.",
-    whyNoExpTitle: "Sin necesidad de experiencia",
+    whyNoExpTitle: "Con titulín o con patrón",
     whyNoExpDesc:
-      "No necesitas licencia de navegación para nuestros barcos sin licencia. Te damos una formación de 15 minutos en el puerto. El snorkel es la actividad acuática más accesible: solo necesitas máscara, tubo y ganas de descubrir.",
+      "Con el titulín, un curso de 1 día sin examen, llevas una de nuestras lanchas, y antes de salir te explicamos el barco en 15 minutos. Si nadie del grupo tiene título, la excursión con patrón os lleva a las calas. El snorkel es la actividad acuática más accesible: solo necesitas máscara, tubo y ganas de descubrir.",
     spotsTitle: "Mejores calas para snorkel cerca de Blanes",
     equipmentTitle: "Equipo de snorkel incluido y disponible",
     includedTitle: "Incluido con todos los barcos",
@@ -4087,7 +4087,7 @@ export const es: Translations = {
       },
     ],
     exploreTitle: "Explora más actividades y servicios",
-    linkNoLicense: "Barcos sin licencia",
+    linkNoLicense: "Excursión privada con patrón",
     linkLicensed: "Barcos con licencia",
     linkFamilies: "Barcos para familias",
     linkPrices: "Precios y tarifas",
@@ -4110,12 +4110,12 @@ export const es: Translations = {
       {
         question: "¿Necesito licencia de navegación para alquilar un barco familiar?",
         answer:
-          "No. Nuestros barcos sin licencia no requieren ningún título náutico. Solo necesitas ser mayor de 18 años. Te damos una formación completa de 15 minutos antes de salir. Son barcos seguros, estables y muy fáciles de manejar.",
+          "Sí: desde el 1 de octubre de 2026 la ley exige al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen, para alquilar cualquier barco a motor. Si nadie de la familia tiene título, la excursión privada con patrón es la opción: el barco lo lleva un profesional.",
       },
       {
         question: "¿Qué incluye el precio del alquiler?",
         answer:
-          "El precio de los barcos sin licencia incluye gasolina, seguro, chalecos salvavidas para todos (incluidos infantiles), escalera de baño, toldo/bimini para sombra y la formación de seguridad. Solo el equipo de snorkel es adicional (7,50 €/persona).",
+          "El precio incluye seguro, chalecos salvavidas para todos (incluidos infantiles) y la explicación del barco antes de salir. La gasolina se paga aparte según el consumo, y el equipo de snorkel es adicional (7,50 €/persona).",
       },
       {
         question: "¿Qué debemos llevar para una salida en barco con niños?",
@@ -4135,9 +4135,9 @@ export const es: Translations = {
           "Antes de salir, dedicamos 15 minutos a enseñar el manejo del barco, las zonas de navegación seguras y las normas básicas. Resolvemos todas las dudas antes de zarpar.",
       },
       {
-        title: "Barcos estables y fáciles de manejar",
+        title: "Barcos estables y espaciosos",
         description:
-          "Nuestros barcos sin licencia tienen casco de fibra de vidrio con gran estabilidad. Motor de baja potencia, velocidad controlada y fácil manejo incluso para novatos.",
+          "Nuestras lanchas tienen casco de fibra de vidrio y son estables y espaciosas, de 6 o 7 plazas. Si prefieres no llevar el timón, en la excursión privada lo lleva nuestro patrón.",
       },
       {
         title: "Zona de navegación protegida",
@@ -4151,7 +4151,7 @@ export const es: Translations = {
         stops: ["Puerto de Blanes", "Cala Sant Francesc", "Regreso"],
         description:
           "Ideal para familias con niños pequeños. Navegación corta hasta una cala protegida con agua poco profunda y cristalina. Tiempo para bañarse, hacer snorkel suave y picnic a bordo.",
-        price: "Desde 135 € (2 h, temporada baja)",
+        price: "2 h, con titulín o con patrón",
         tip: "Perfecta para una primera experiencia en barco con niños. La cala tiene zona de arena y agua tranquila.",
       },
       {
@@ -4165,23 +4165,23 @@ export const es: Translations = {
         ],
         description:
           "La experiencia completa para familias. Tres paradas con tiempo suficiente para explorar cada cala. Combina baño, snorkel, picnic y vistas espectaculares de la costa.",
-        price: "Desde 180 € (4 h, temporada baja)",
+        price: "4 h, con titulín o con patrón",
         tip: "Recomendada para niños a partir de 4 años. Llevar comida, agua, crema solar y gorras.",
       },
     ],
     heroTitle: "Alquiler de Barco para Familias en Costa Brava",
     heroDescription:
-      "Una aventura segura y divertida para toda la familia. Barcos sin licencia desde el Puerto de Blanes con gasolina incluida, chalecos infantiles y calas protegidas perfectas para niños. Desde 85 €/hora.",
-    badgeNoLicense: "Sin licencia necesaria",
+      "Una aventura segura y divertida para toda la familia. Lanchas con licencia desde el Puerto de Blanes, que llevas con el titulín, o excursión privada con patrón, con chalecos infantiles y calas protegidas perfectas para niños.",
+    badgeNoLicense: "Titulín en 1 día o patrón",
     badgeKidsVests: "Chalecos infantiles incluidos",
-    badgeFuel: "Gasolina incluida",
+    badgeFuel: "Calas tranquilas para niños",
     whyTitle: "Por qué es perfecto para familias",
     whyMemoriesTitle: "Una experiencia que recordarán siempre",
     whyMemoriesDesc:
       "Alquilar un barco en familia es mucho más que un paseo por el mar. Es descubrir calas escondidas juntos, ver peces bajo el agua, hacer un picnic flotando en aguas turquesas y crear recuerdos que los niños contarán durante años. En la Costa Brava, la costa entre Blanes y Lloret ofrece el escenario perfecto.",
     whyNoStressTitle: "Sin estrés, sin complicaciones",
     whyNoStressDesc:
-      "No necesitas experiencia previa ni licencia de navegación. Te enseñamos todo en 15 minutos. Los barcos son estables, fáciles de manejar y tienen velocidad limitada. La gasolina está incluida, así que no hay sorpresas con el precio. Solo necesitas venir con ganas de pasarlo bien.",
+      "Con el titulín, un curso de 1 día sin examen, llevas tú el timón, y antes de salir te explicamos el barco en 15 minutos. Si prefieres desconectar del todo, en la excursión privada lo lleva nuestro patrón. Solo necesitas venir con ganas de pasarlo bien.",
     whyCalmCovesTitle: "Calas tranquilas para niños",
     whyCalmCovesDesc:
       "Recomendamos calas protegidas con agua poco profunda y sin oleaje. Cala Sant Francesc tiene fondo de arena ideal para que los niños se bañen con seguridad. Cala Bona ofrece aguas cristalinas perfectas para primeras experiencias de snorkel.",
@@ -4215,16 +4215,16 @@ export const es: Translations = {
       "Juguetes de playa hinchables",
     ],
     exploreTitle: "Descubre más sobre nuestros servicios",
-    linkNoLicense: "Barcos sin licencia",
+    linkNoLicense: "Barcos con licencia",
     linkSnorkel: "Excursión de snorkel",
     linkPrices: "Precios y tarifas",
     linkBlanes: "Puerto de Blanes",
     linkRoutes: "Rutas marítimas",
     ctaTitle: "Reserva un barco para toda la familia",
     ctaDescription:
-      "Barcos seguros, fáciles de manejar y con todo incluido. El plan perfecto para un día en familia en la Costa Brava. Salidas desde el Puerto de Blanes de abril a octubre.",
+      "Barcos estables y espaciosos, con el titulín o con patrón. El plan perfecto para un día en familia en la Costa Brava. Salidas desde el Puerto de Blanes de abril a octubre.",
     ctaWhatsApp: "Reservar por WhatsApp",
-    ctaViewBoats: "Ver barcos sin licencia",
+    ctaViewBoats: "Ver barcos con licencia",
     faqTitle: "Preguntas frecuentes sobre barcos para familias",
   },
 
@@ -4243,7 +4243,7 @@ export const es: Translations = {
       {
         question: "¿Qué barco necesito para pescar en el mar?",
         answer:
-          "Depende del tipo de pesca. Para pesca a fondo en calas cercanas (lubinas, doradas), un barco sin licencia es suficiente. Para pesca en aguas abiertas (serviolas, curricán), necesitas un barco con licencia que tiene mayor autonomía y potencia. Contáctanos por WhatsApp y te asesoramos según tu experiencia.",
+          "Para pescar usamos nuestros barcos con licencia, que llevas con la Licencia de Navegación (titulín) o un título superior. Sirven para la pesca a fondo en calas cercanas (lubinas, doradas) y, dentro de lo que permita tu titulación, para salir a aguas más abiertas (serviolas, curricán). Contáctanos por WhatsApp y te asesoramos según tu experiencia.",
       },
       {
         question: "¿Cuáles son las regulaciones de pesca en la Costa Brava?",
@@ -4298,19 +4298,6 @@ export const es: Translations = {
         recommendation:
           "Recomendado para pescadores con experiencia que quieran pescar en aguas abiertas.",
       },
-      {
-        type: "Barcos sin licencia",
-        capacity: "4-5 personas",
-        autonomy: "Pesca costera (hasta 2 millas)",
-        price: "Desde 85 €/hora (gasolina incluida)",
-        advantages: [
-          "Sin necesidad de título náutico",
-          "Gasolina incluida en el precio",
-          "Perfectos para pesca a fondo en calas",
-          "Ideal para iniciarse en la pesca desde barco",
-        ],
-        recommendation: "Recomendado para pesca recreativa ligera cerca de la costa.",
-      },
     ],
     fishingSpots: [
       {
@@ -4337,9 +4324,9 @@ export const es: Translations = {
     ],
     heroTitle: "Pesca desde Barco en Blanes - Costa Brava",
     heroDescription:
-      "Alquila un barco en el Puerto de Blanes y sal a pescar en las aguas de la Costa Brava. Lubinas, doradas, serviolas y más. Barcos con y sin licencia para adaptarse a tu nivel de experiencia. Trae tu equipo y nosotros ponemos el barco.",
+      "Alquila un barco en el Puerto de Blanes y sal a pescar en las aguas de la Costa Brava. Lubinas, doradas, serviolas y más. Barcos con licencia que llevas con el titulín o un título superior. Trae tu equipo y nosotros ponemos el barco.",
     badgeSpecies: "5+ especies objetivo",
-    badgeLicense: "Con y sin licencia",
+    badgeLicense: "Con titulín o superior",
     badgeDuration: "4-6 horas recomendadas",
     whyTitle: "Por qué pescar desde Blanes",
     whyLocationTitle: "Ubicación estratégica",
@@ -4398,7 +4385,7 @@ export const es: Translations = {
       "Lleva crema solar, agua abundante, gorra y gafas de sol polarizadas (ayudan a ver peces en el agua). Una camiseta de manga larga te protege del sol durante las horas de pesca. No olvides la licencia de pesca impresa o en el móvil.",
     exploreTitle: "Explora más actividades y servicios",
     linkLicensed: "Barcos con licencia",
-    linkNoLicense: "Barcos sin licencia",
+    linkNoLicense: "Titulín en 1 día",
     linkSnorkel: "Excursión de snorkel",
     linkPrices: "Precios y tarifas",
     linkBlanes: "Puerto de Blanes",
@@ -4507,7 +4494,7 @@ export const es: Translations = {
     infoSeasonTitle: "Temporada",
     infoSeasonDesc: "Abril - Octubre. Reservas flexibles con duración de 1-8 horas.",
     infoFleetTitle: "8 Embarcaciones",
-    infoFleetDesc: "Flota para 4-7 personas. Con y sin licencia náutica, y excursión privada con patrón.",
+    infoFleetDesc: "Flota para 6-7 personas: lanchas con licencia y excursión privada con patrón.",
     categories: {
       all: "Todas",
       reservas: "Reservas y Precios",
@@ -4522,7 +4509,7 @@ export const es: Translations = {
       precios: {
         question: "¿Cuáles son los precios del alquiler?",
         answer:
-          "Nuestros precios varían según la embarcación y duración. Barcos sin licencia desde {noLicBaja1h}€ con gasolina incluida (1h, 2h, 3h, 4h, 6h, 8h). Barcos con licencia desde {licBaja2h}€ sin gasolina incluida (2h, 4h, 8h).",
+          "Nuestros precios varían según la embarcación y duración. Barcos con licencia desde {licBaja2h}€ sin gasolina incluida (2h, 4h, 8h). Excursión privada con patrón desde {excursionBaja2h}€ las 2 horas.",
       },
       reserva: {
         question: "¿Cómo puedo hacer una reserva?",
@@ -4542,12 +4529,12 @@ export const es: Translations = {
       sinLicencia: {
         question: "¿Puedo alquilar sin tener licencia náutica?",
         answer:
-          "¡Sí! Tenemos barcos perfectos sin licencia. Son de hasta 15 CV, máximo 4-5 personas, fáciles de manejar con briefing completo. Solo necesitas ser mayor de 18 años.",
+          "Desde el 1 de octubre de 2026, no: el RD 1188/2025 exige título náutico para alquilar cualquier barco a motor, y hemos retirado nuestros barcos sin licencia. Basta la Licencia de Navegación (titulín), un curso de 1 día sin examen. Sin título, puedes salir con patrón en la excursión privada.",
       },
       normativa2026: {
         question: "¿Es verdad que en 2026 se acaba el alquiler de barcos sin licencia?",
         answer:
-          "Cambia la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor a partir del 1 de octubre de 2026. Hasta el 30 de septiembre de 2026 todo sigue igual y nuestros barcos sin licencia se alquilan como siempre. Desde esa fecha bastará la Licencia de Navegación (titulín), un curso de 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
+          "Sí, cambió la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor desde el 1 de octubre de 2026, y desde esa fecha ya no alquilamos barcos sin licencia. Basta la Licencia de Navegación (titulín), un curso de 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
       },
       titulin: {
         question: "¿Qué es el titulín y cómo me lo saco?",
@@ -4572,12 +4559,12 @@ export const es: Translations = {
       queIncluye: {
         question: "¿Qué está incluido en el precio?",
         answer:
-          "Incluido: embarcación equipada, combustible (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla y cabo, escalera de baño, instrucciones y mapa, seguro básico y soporte telefónico.",
+          "Incluido: embarcación equipada, chalecos salvavidas, kit de seguridad, ancla y cabo, escalera de baño, instrucciones y mapa, seguro básico y soporte telefónico. La gasolina se paga aparte según el consumo.",
       },
       combustible: {
         question: "¿Tengo que pagar combustible?",
         answer:
-          "El combustible está incluido en las embarcaciones sin licencia. En las embarcaciones con licencia, se entregan con el depósito lleno y al finalizar el alquiler nuestro equipo te acompaña a la gasolinera para llenar de nuevo el depósito.",
+          "Ninguno de nuestros barcos incluye el combustible. Las embarcaciones con licencia se entregan con el depósito lleno y al finalizar el alquiler nuestro equipo te acompaña a la gasolinera para llenar de nuevo el depósito. En la excursión privada con patrón el combustible se paga aparte, salvo que se acuerde un precio cerrado antes de reservar.",
       },
       extras: {
         question: "¿Qué extras puedo añadir?",
@@ -4592,7 +4579,7 @@ export const es: Translations = {
       porDondeNavegar: {
         question: "¿Por dónde puedo navegar?",
         answer:
-          "Zona autorizada: Norte hasta Playa de Fenals (sin licencia) o Sant Feliu de Guíxols (con licencia). Sur hasta final playa de Blanes (sin licencia) o sin límite (con licencia). Máximo 2 millas de la costa. Calas recomendadas: Cala Brava, Cala Sant Francesc, Playa de Lloret.",
+          "Zona autorizada: al norte hasta Sant Feliu de Guíxols; al sur, sin límite. Con la Licencia de Navegación se navega hasta 2 millas de la costa. Calas recomendadas: Cala Brava, Cala Sant Francesc, Playa de Lloret.",
       },
       seguridad: {
         question: "¿Qué medidas de seguridad tienen?",
@@ -4682,12 +4669,12 @@ export const es: Translations = {
       diferenciaLicencia: {
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde {noLicBaja1h}€. Los barcos con licencia tienen motores de 80-115 CV, capacidad de hasta 7 personas, mayor autonomía y cuestan desde {licBaja2h}€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.",
+          "Hasta el 30 de septiembre de 2026 alquilábamos barcos sin licencia de hasta 15 CV y 4-5 plazas. Desde el 1 de octubre de 2026 la ley exige título para alquilar, así que alquilamos nuestras lanchas con licencia: motores de 80-115 CV, hasta 7 personas y autonomía para llegar a Tossa de Mar, desde {licBaja2h}€ (gasolina no incluida). Basta la Licencia de Navegación, un curso de 1 día sin examen.",
       },
       precioBlanesVsLloret: {
         question: "¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?",
         answer:
-          "Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde {noLicBaja1h}€ la hora con gasolina incluida. Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.",
+          "Operamos desde el Puerto de Blanes con nuestra propia flota: lanchas con licencia desde {licBaja2h}€ las 2 horas en temporada baja y excursión privada con patrón. Al no depender de intermediarios, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.",
       },
       barcoGrupoGrande: {
         question: "¿Qué barco recomendáis para un grupo grande?",
@@ -4697,12 +4684,12 @@ export const es: Translations = {
       precioCostaBrava: {
         question: "¿Cuánto cuesta alquilar un barco en la Costa Brava?",
         answer:
-          "En la Costa Brava puedes alquilar un barco desde {noLicBaja1h}€ la hora en Blanes, con gasolina incluida y sin necesidad de licencia. Los precios varían según la duración (de 1h a día completo), el tipo de barco y la temporada. Julio y agosto son temporada alta con precios más elevados; junio y septiembre ofrecen la mejor relación calidad-precio.",
+          "En la Costa Brava puedes alquilar una lancha con licencia desde {licBaja2h}€ las 2 horas en Blanes (gasolina aparte), con la Licencia de Navegación o un título superior. Sin título, la excursión privada con patrón sale desde {excursionBaja2h}€. Los precios varían según la duración, el tipo de barco y la temporada. Julio y agosto son temporada alta con precios más elevados; junio y septiembre ofrecen la mejor relación calidad-precio.",
       },
       tossaBarco: {
         question: "¿Se puede ir a Tossa de Mar en barco desde Blanes?",
         answer:
-          "Sí, Tossa de Mar está a unos 30 minutos en barco desde Blanes. Sin embargo, necesitas un barco con licencia o contratar nuestra excursión con patrón, ya que los barcos sin licencia tienen un radio de navegación limitado. La ruta costera de Blanes a Tossa es espectacular, con calas vírgenes y acantilados.",
+          "Sí, Tossa de Mar está a 30-45 minutos en barco desde Blanes con una de nuestras lanchas con licencia, o con nuestra excursión privada con patrón. La ruta costera de Blanes a Tossa es espectacular, con calas vírgenes y acantilados.",
       },
       excursionPatron: {
         question: "¿Cuánto cuesta una excursión en barco con patrón?",
@@ -4712,12 +4699,12 @@ export const es: Translations = {
       seguroSinExperiencia: {
         question: "¿Es seguro alquilar un barco sin experiencia?",
         answer:
-          "Totalmente seguro. Antes de salir a navegar, nuestro equipo te da un briefing de 15 minutos donde te explica el funcionamiento del barco, las normas de navegación y la zona autorizada. Los barcos sin licencia son muy estables y fáciles de manejar, y la zona de Blanes tiene aguas tranquilas y protegidas.",
+          "Totalmente seguro. Antes de salir a navegar, nuestro equipo te da un briefing de 15 minutos donde te explica el funcionamiento del barco, las normas de navegación y la zona autorizada. Quien pilota tiene al menos la Licencia de Navegación, con prácticas incluidas, y la zona de Blanes tiene aguas tranquilas y protegidas. Si prefieres no llevar el timón, sales con patrón.",
       },
       barcoVsExcursion: {
         question: "¿Qué es mejor, alquilar un barco o una excursión con patrón?",
         answer:
-          "Depende de lo que busques. Alquilar un barco sin licencia (desde {noLicBaja1h}€/h) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursión con patrón (desde {excursionBaja2h}€/2h) es ideal si quieres relajarte completamente, no tienes experiencia o quieres llegar a calas más lejanas como Tossa de Mar.",
+          "Depende de lo que busques. Alquilar una lancha con licencia (desde {licBaja2h}€ las 2 horas, con el titulín) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursión con patrón (desde {excursionBaja2h}€/2h) es ideal si quieres relajarte completamente, no tienes título o quieres que te lleven a calas más lejanas como Tossa de Mar.",
       },
       mejorEpoca: {
         question: "¿Cuál es la mejor época para alquilar un barco en Blanes?",
@@ -4730,8 +4717,8 @@ export const es: Translations = {
   pricingPage: {
     heroTitle: "Precios Alquiler de Barcos en Blanes 2026",
     heroSubtitle:
-      "Consulta y compara los precios de todos nuestros barcos. Temporada baja, media y alta. Barcos sin licencia con gasolina incluida.",
-    fuelBadge: "Gasolina incluida (sin licencia)",
+      "Consulta y compara los precios de nuestras lanchas con licencia y de la excursión privada con patrón. Temporada baja, media y alta.",
+    fuelBadge: "Gasolina aparte, según consumo",
     fleetCountSuffix: "embarcaciones disponibles",
     portAccessible: "Puerto de Blanes: accesible desde",
     seasonLabels: {
@@ -4774,7 +4761,7 @@ export const es: Translations = {
     peopleSuffix: "personas",
     info: {
       whatIncludesTitle: "¿Qué incluye el precio?",
-      fuelIncludedItem: "<strong>Gasolina incluida</strong> en barcos sin licencia",
+      fuelIncludedItem: "<strong>Gasolina aparte</strong>, según el consumo real de la salida",
       insurance: "Seguro de responsabilidad civil y accidentes",
       briefing: "Formación de 15 minutos antes de zarpar",
       equipment: "Equipo de snorkel y paddle surf (según disponibilidad)",
@@ -4792,9 +4779,9 @@ export const es: Translations = {
     faq: {
       q1: "¿Cuánto cuesta alquilar un barco sin licencia en Blanes?",
       a1Template:
-        "Los barcos sin licencia en Blanes cuestan desde {noLicBaja1h} €/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde {noLicMedia1h} €/hora y en temporada alta (agosto) desde {noLicAlta1h} €/hora. El precio incluye gasolina, seguro y equipo de seguridad.",
+        "Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia: el RD 1188/2025 exige título náutico para alquilar cualquier barco a motor. Con la Licencia de Navegación (titulín, curso de 1 día sin examen) alquilas nuestras lanchas desde {licBaja2h} € las 2 horas en temporada baja; sin título, la excursión privada con patrón sale desde {excursionBaja2h} € las 2 horas.",
       q2: "¿La gasolina está incluida en el precio?",
-      a2: "Sí, todos nuestros barcos sin licencia incluyen la gasolina en el precio. Para los barcos con licencia, el combustible se paga aparte según el consumo real.",
+      a2: "No. Ninguno de nuestros barcos incluye la gasolina: se paga aparte según el consumo real de la salida.",
       q3: "¿Hay diferencia de precio entre temporada baja y alta?",
       a3: "Sí. La temporada baja (abril-junio y septiembre-octubre) tiene los mejores precios. La temporada media es julio con precios intermedios, y la temporada alta es agosto con las tarifas más altas. Recomendamos reservar en temporada baja para la mejor relación calidad-precio.",
       q4: "¿Cuánto cuesta alquilar un barco con licencia?",
@@ -5056,7 +5043,7 @@ export const es: Translations = {
     filterAll: "Todos",
     ctaTitle: "¿Listo para alquilar tu barco?",
     ctaDesc:
-      "Ahora que dominas la terminología, elige tu barco sin licencia o con licencia para explorar la Costa Brava.",
+      "Ahora que dominas la terminología, elige tu barco para explorar la Costa Brava: con el titulín o con patrón.",
     ctaFleet: "Ver la flota",
     ctaFaq: "Preguntas frecuentes",
     schemaName: "Glosario náutico · Alquiler de barcos Costa Brava",
@@ -5171,7 +5158,7 @@ export const es: Translations = {
       {
         term: "Bimini / Toldo bimini",
         definition:
-          "Toldo desplegable que cubre la bañera del barco proporcionando sombra. Esencial para navegación con niños o en verano. La mayoría de nuestros barcos sin licencia lo incorporan de serie.",
+          "Toldo desplegable que cubre la bañera del barco proporcionando sombra. Esencial para navegación con niños o en verano.",
         category: "equipamiento",
       },
       {
@@ -5418,17 +5405,17 @@ export const es: Translations = {
     seasonalEvent: {
       name: "Temporada {year}: Alquiler de Barcos en Costa Brava",
       description:
-        "Alquila barcos sin licencia en Blanes, Costa Brava. Temporada de abril a octubre.",
+        "Alquila barcos en Blanes, Costa Brava: lanchas con la Licencia de Navegación o excursión privada con patrón. Temporada de abril a octubre.",
     },
     coves: {
-      listName: "Calas accesibles desde el Puerto de Blanes con barco sin licencia",
+      listName: "Calas accesibles en barco desde el Puerto de Blanes",
       listDescription:
-        "Lista ordenada de las 8 calas principales entre Blanes y Playa de Fenals accesibles con barco sin licencia en menos de 25 minutos de navegación (límite legal 2 millas náuticas, 5 nudos).",
+        "Lista ordenada de las 8 calas principales entre Blanes y Playa de Fenals, a menos de 25 minutos de navegación desde el Puerto de Blanes.",
       propTimeFromPort: "Tiempo de navegación desde Port de Blanes",
       propDistance: "Distancia náutica desde Port de Blanes",
       propDistanceUnit: "millas náuticas",
       propLicenseRequired: "Requiere licencia náutica",
-      propEndpoint: "Límite norte legal sin-licencia",
+      propEndpoint: "Última cala de la ruta hacia el norte",
       descriptions: {
         saPalomera:
           "Roca emblemática en el Port de Blanes, punto de referencia costero. Primera parada natural. Aguas cristalinas.",
@@ -5444,7 +5431,7 @@ export const es: Translations = {
         calaSaBoadella:
           "Cala semi-virgen con sección naturista. Roca y pinos. Acceso a pie difícil, barco la mejor opción.",
         playaDeFenals:
-          "Playa urbana al sur de Lloret de Mar. Límite norte legal para embarcaciones sin licencia desde Blanes.",
+          "Playa urbana al sur de Lloret de Mar, a pocos minutos en barco desde Blanes.",
       },
     },
   },
@@ -5614,7 +5601,7 @@ export const es: Translations = {
       paragraph1:
         "Cada temporada, cientos de familias, parejas y grupos de amigos zarpan desde el Puerto de Blanes para descubrir las calas más bonitas de la Costa Brava. Estas son sus palabras, sin filtros.",
       paragraph2:
-        "Atendemos en 8 idiomas, ofrecemos barcos sin licencia con gasolina incluida y opciones con patrón si prefieres relajarte. No lo decimos nosotros: lo dicen quienes ya han subido a bordo.",
+        "Atendemos en 8 idiomas, alquilamos lanchas con la Licencia de Navegación y ofrecemos la excursión privada con patrón si prefieres relajarte. No lo decimos nosotros: lo dicen quienes ya han subido a bordo.",
       imageAlt: "Pareja navegando en Trimarchi 57S por la Costa Brava",
     },
     filter: { title: "Filtrar por barco", all: "Todos" },
@@ -5668,7 +5655,7 @@ export const es: Translations = {
       cta: "Apúntate gratis",
     },
     chips: [
-      "Navega Sin Necesidad de Tener Licencia",
+      "Pilota quien tenga el titulín",
       "Uno del grupo pilota",
       "Desde el Puerto de Blanes",
       "Abril–Octubre",
@@ -5677,7 +5664,7 @@ export const es: Translations = {
     faq: [
       {
         q: "¿Necesito licencia?",
-        a: "No. Son barcos sin licencia (menos de 5 m y 15 cv) y uno del grupo pilota, de día y hasta 2 millas náuticas de la costa. No hace falta experiencia previa.",
+        a: "Sí: desde el 1 de octubre de 2026 la ley exige que quien pilota tenga al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen. El resto del grupo va de pasajero. Estamos adaptando las salidas compartidas a esta norma: apúntate y te avisamos.",
       },
       {
         q: "¿Cuánto cuesta?",
@@ -5705,7 +5692,7 @@ export const es: Translations = {
       whenFlexible: "Flexible / cuando sea",
       whenOptions: ["Flexible / cuando sea", "Junio", "Julio", "Agosto", "Septiembre"],
       pilot: "¿Te animarías a pilotar?",
-      pilotHint: "Con estos barcos no se necesita licencia. Nos ayuda a organizar el grupo.",
+      pilotHint: "Para pilotar hace falta la Licencia de Navegación (titulín). Nos ayuda a organizar el grupo.",
       pilotYes: "Sí, sin problema",
       pilotMaybe: "Quizás",
       pilotNo: "Prefiero que pilote otro",
@@ -6142,9 +6129,9 @@ export const es: Translations = {
     newRule: {
       title: "Cambio de ley: qué pasa el 1 de octubre de 2026",
       body:
-        "El Real Decreto 1188/2025 modifica la normativa de titulaciones náuticas (RD 875/2014): a partir del 1 de octubre de 2026, para alquilar cualquier embarcación a motor hará falta estar en posesión de un título náutico, también en los barcos pequeños que hasta ahora se alquilaban sin licencia. La exención de los barcos de hasta 5 metros y 15 CV queda solo para embarcaciones de uso privado.",
+        "El Real Decreto 1188/2025 modifica la normativa de titulaciones náuticas (RD 875/2014): desde el 1 de octubre de 2026, para alquilar cualquier embarcación a motor hace falta estar en posesión de un título náutico, también en los barcos pequeños que hasta entonces se alquilaban sin licencia. La exención de los barcos de hasta 5 metros y 15 CV queda solo para embarcaciones de uso privado.",
       note:
-        "Hasta el 30 de septiembre de 2026 todo sigue igual: nuestros barcos sin licencia se alquilan como siempre. El cambio afecta a las temporadas siguientes, y la Licencia de Navegación es la forma más sencilla de adelantarte.",
+        "Hasta el 30 de septiembre de 2026 alquilábamos barcos sin licencia; desde el 1 de octubre, ya no. Con la Licencia de Navegación, un curso de 1 día sin examen, llevas nuestras tres lanchas con licencia; sin título, sales con patrón en la excursión privada.",
     },
     whatIs: {
       title: "Qué es la Licencia de Navegación (el titulín)",
@@ -6187,14 +6174,14 @@ export const es: Translations = {
     fleet: {
       title: "Con el titulín, esta flota es tuya",
       body:
-        "La Licencia de Navegación te basta para alquilar nuestras lanchas Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625, con motores de 80, 110 y 115 CV y rumbo libre hasta Tossa de Mar. Y a partir de octubre de 2026 será también el título que te permita seguir alquilando los barcos pequeños de la flota. Un curso de un día, y navegas por tu cuenta muchos veranos.",
+        "La Licencia de Navegación te basta para alquilar nuestras lanchas Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625, con motores de 80, 110 y 115 CV y rumbo libre hasta Tossa de Mar. Desde octubre de 2026 es además el título mínimo que pide la ley para alquilar cualquier barco a motor. Un curso de un día, y navegas por tu cuenta muchos veranos.",
       cta: "Ver los barcos que puedes llevar",
     },
     faqTitle: "Preguntas frecuentes sobre el titulín",
     faq: [
       {
         q: "¿Necesito ya un título para alquilar un barco?",
-        a: "De momento no: hasta el 30 de septiembre de 2026 los barcos de hasta 5 metros y 15 CV se alquilan sin titulación, como siempre. A partir del 1 de octubre de 2026, el RD 1188/2025 exige un título náutico a quien alquila cualquier embarcación a motor, y la Licencia de Navegación es el más rápido de conseguir.",
+        a: "Sí. Desde el 1 de octubre de 2026, el RD 1188/2025 exige un título náutico a quien alquila cualquier embarcación a motor, también los barcos de hasta 5 metros y 15 CV que antes se alquilaban sin titulación. La Licencia de Navegación es el más rápido de conseguir: un curso de 1 día, sin examen.",
       },
       {
         q: "¿Cuánto dura el curso y hay examen?",
@@ -6214,7 +6201,7 @@ export const es: Translations = {
       },
       {
         q: "¿Y si no quiero sacarme ningún título?",
-        a: "Tienes dos opciones: alquilar un barco sin licencia hasta el 30 de septiembre de 2026, o reservar la excursión privada con patrón, donde un profesional lleva el barco y nadie a bordo necesita titulación, en cualquier fecha de la temporada.",
+        a: "Puedes reservar la excursión privada con patrón: un profesional lleva el barco y nadie a bordo necesita titulación, en cualquier fecha de la temporada. Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia.",
       },
     ],
     alternative: {
@@ -6267,7 +6254,7 @@ export const es: Translations = {
       "El alquiler de scooters y motos lo opera Coast Rent, empresa local de Lloret de Mar que recomendamos. La reserva, la entrega y la atención al cliente se gestionan directamente en su web, disponible en tu idioma.",
     combineTitle: "Combina mar y carretera",
     combineText:
-      "Por la mañana, barco sin licencia desde el puerto de Blanes; por la tarde, scooter hasta Tossa de Mar por una de las carreteras costeras más bonitas de Cataluña. Blanes y Lloret están a 10 minutos: puedes hacer ambas cosas el mismo día.",
+      "Por la mañana, barco desde el puerto de Blanes, con el titulín o con patrón; por la tarde, scooter hasta Tossa de Mar por una de las carreteras costeras más bonitas de Cataluña. Blanes y Lloret están a 10 minutos: puedes hacer ambas cosas el mismo día.",
     cta: "Ver disponibilidad en coastrent.es",
     ctaNote: "Se abre la web de Coast Rent en una pestaña nueva.",
     faqTitle: "Preguntas frecuentes",
@@ -6501,9 +6488,9 @@ export const es: Translations = {
       "Para quien quiere desconectar del todo, celebra algo o no tiene titulación y quiere llegar hasta las cuevas de Tossa sin límites de potencia.",
     vsSelfDriveTitle: "Sin patrón: pilotas tú",
     vsSelfDriveText:
-      "Con titulación náutica puedes alquilar nuestras lanchas de 80-115 cv y marcar tu propia ruta. Y sin titulación, los barcos sin licencia te llevan por las calas cercanas.",
+      "Con la Licencia de Navegación (curso de 1 día, sin examen) o un título superior puedes alquilar nuestras lanchas de 80-115 cv y marcar tu propia ruta.",
     vsLinkLicensed: "Lanchas sin patrón (con titulación)",
-    vsLinkFree: "Barcos sin licencia",
+    vsLinkFree: "Titulín en 1 día",
     faq: [
       {
         q: "¿Necesito licencia o experiencia para esta excursión?",
@@ -6535,7 +6522,7 @@ export const es: Translations = {
       },
       {
         q: "¿En qué se diferencia de alquilar un barco sin patrón?",
-        a: "Al alquilar sin patrón pilotas tú, y para las lanchas grandes necesitas titulación náutica. En la excursión privada el barco lo lleva nuestro patrón: nadie del grupo necesita licencia y todos vais de pasajeros. Es la opción para desconectar del todo o para grupos sin titulación.",
+        a: "Al alquilar sin patrón pilotas tú, y para eso necesitas al menos la Licencia de Navegación. En la excursión privada el barco lo lleva nuestro patrón: nadie del grupo necesita licencia y todos vais de pasajeros. Es la opción para desconectar del todo o para grupos sin titulación.",
       },
     ],
     linksTitle: "Sigue explorando",
@@ -6617,7 +6604,7 @@ export const es: Translations = {
     boatCta: {
       title: "El barco no cabe en la bolsa",
       text:
-        "La ilustración sale de uno de nuestros barcos. El original se alquila por horas en el puerto de Blanes, con o sin licencia.",
+        "La ilustración sale de uno de nuestros barcos del puerto de Blanes, donde alquilamos lanchas por horas y salimos con patrón.",
       cta: "Ver barcos y precios",
     },
     cart: {

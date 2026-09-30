@@ -82,7 +82,7 @@ export default function ActivityFamiliesPage() {
     "@type": "TouristTrip",
     "@id": `${canonical}#tour`,
     "name": "Excursion Familiar en Barco desde Blanes",
-    "description": "Alquiler de barco sin licencia desde el Puerto de Blanes para familias con ninos. Navegacion a calas tranquilas y aguas cristalinas en la Costa Brava Sur. Briefing de seguridad 15 min. Chalecos salvavidas infantiles incluidos.",
+    "description": "Alquiler de barco para familias con ninos desde el Puerto de Blanes: lanchas con licencia que se llevan con la Licencia de Navegacion, o excursion privada con patron. Navegacion a calas tranquilas y aguas cristalinas en la Costa Brava Sur. Chalecos salvavidas infantiles incluidos.",
     "touristType": ["Family", "Beach", "Nature"],
     "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
     "provider": {
@@ -90,18 +90,6 @@ export default function ActivityFamiliesPage() {
       "@id": "https://www.costabravarentaboat.com/#organization",
       "name": "Costa Brava Rent a Boat",
     },
-    "offers": [
-      {
-        "@type": "Offer",
-        "name": "Pack familia 4h (hasta 5 personas)",
-        "price": "150",
-        "priceCurrency": "EUR",
-        "priceValidUntil": "2026-10-31",
-        "availability": "https://schema.org/InStock",
-        "url": canonical,
-        "description": "Barco sin licencia para 4-5 personas, 4h, gasolina + chalecos ninos + kit seguridad incluido.",
-      },
-    ],
     "maximumAttendeeCapacity": 7,
     "isFamilyFriendly": true,
   };
@@ -137,12 +125,12 @@ export default function ActivityFamiliesPage() {
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed">
-              {f?.heroDescription ?? "Una aventura segura y divertida para toda la familia. Barcos sin licencia desde el Puerto de Blanes con gasolina incluida, chalecos infantiles y calas protegidas perfectas para niños. Desde 85 EUR/hora."}
+              {f?.heroDescription ?? "Una aventura segura y divertida para toda la familia. Lanchas con licencia desde el Puerto de Blanes, que llevas con el titulín, o excursión privada con patrón, con chalecos infantiles y calas protegidas perfectas para niños."}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <Shield className="w-4 h-4 mr-2" />
-                {f?.badgeNoLicense ?? "Sin licencia necesaria"}
+                {f?.badgeNoLicense ?? "Titulín en 1 día o patrón"}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Baby className="w-4 h-4 mr-2" />
@@ -150,7 +138,7 @@ export default function ActivityFamiliesPage() {
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Sun className="w-4 h-4 mr-2" />
-                {f?.badgeFuel ?? "Gasolina incluida"}
+                {f?.badgeFuel ?? "Calas tranquilas para niños"}
               </Badge>
             </div>
           </div>
@@ -172,7 +160,7 @@ export default function ActivityFamiliesPage() {
               </p>
               <h3 className="font-heading font-semibold text-lg mb-3">{f?.whyNoStressTitle ?? "Sin estrés, sin complicaciones"}</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                {f?.whyNoStressDesc ?? "No necesitas experiencia previa ni licencia de navegación. Te enseñamos todo en 15 minutos. Los barcos son estables, fáciles de manejar y tienen velocidad limitada. La gasolina está incluida, así que no hay sorpresas con el precio. Solo necesitas venir con ganas de pasarlo bien."}
+                {f?.whyNoStressDesc ?? "Con el titulín, un curso de 1 día sin examen, llevas tú el timón, y antes de salir te explicamos el barco en 15 minutos. Si prefieres desconectar del todo, en la excursión privada lo lleva nuestro patrón. Solo necesitas venir con ganas de pasarlo bien."}
               </p>
               <h3 className="font-heading font-semibold text-lg mb-3">{f?.whyCalmCovesTitle ?? "Calas tranquilas para niños"}</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -320,9 +308,9 @@ export default function ActivityFamiliesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="font-heading font-semibold text-lg mb-4">{f?.exploreTitle ?? "Descubre más sobre nuestros servicios"}</h3>
           <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
+            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
-              {f?.linkNoLicense ?? "Barcos sin licencia"}
+              {f?.linkNoLicense ?? "Barcos con licencia"}
             </a>
             <a href={localizedPath("activitySnorkel")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
@@ -360,10 +348,10 @@ export default function ActivityFamiliesPage() {
               <SiWhatsapp className="w-5 h-5 mr-2" aria-hidden="true" />
               {f?.ctaWhatsApp ?? "Reservar por WhatsApp"}
             </Button>
-            <a href={localizedPath("categoryLicenseFree")}>
+            <a href={localizedPath("categoryLicensed")}>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
                 <Anchor className="w-5 h-5 mr-2" />
-                {f?.ctaViewBoats ?? "Ver barcos sin licencia"}
+                {f?.ctaViewBoats ?? "Ver barcos con licencia"}
               </Button>
             </a>
           </div>

@@ -33,6 +33,7 @@ import {
 } from "@/utils/seo-config";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -148,7 +149,7 @@ export default function LocationBarcelonaPage() {
       {/* Hero */}
       <div className="bg-card border-b border-border pt-24 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-6">
+          <h1 className="text-h1 font-heading font-bold text-foreground mb-6">
             {lb.hero.title}
           </h1>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto mb-6">
@@ -176,7 +177,7 @@ export default function LocationBarcelonaPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+              <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
                 <Waves className="w-6 h-6 text-primary" />
                 {lb.whyBlanes.title}
               </h2>
@@ -224,7 +225,7 @@ export default function LocationBarcelonaPage() {
       {/* How to get from Barcelona */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <MapPin className="w-6 h-6 text-primary" />
             {lb.howToGet.title}
           </h2>
@@ -262,7 +263,7 @@ export default function LocationBarcelonaPage() {
       {/* Our boats */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <Anchor className="w-6 h-6 text-primary" />
             {lb.boats.title}
           </h2>
@@ -318,7 +319,7 @@ export default function LocationBarcelonaPage() {
       {/* FAQ section */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
             {lb.faqTitle}
           </h2>
           <FAQSection items={processedFaqItems} />
@@ -328,7 +329,7 @@ export default function LocationBarcelonaPage() {
       {/* CTA */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{lb.cta.title}</h2>
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">{lb.cta.title}</h2>
           <p className="text-lg text-white/85 mb-6 max-w-2xl mx-auto">{sub(lb.cta.subtitle)}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -358,7 +359,7 @@ export default function LocationBarcelonaPage() {
       {/* Blog section */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-4">
             {lb.blog.title}
           </h2>
           <p
@@ -370,6 +371,7 @@ export default function LocationBarcelonaPage() {
         </div>
       </RevealSection>
 
+      <BookingStickyBar />
       <Footer />
     </div>
   );

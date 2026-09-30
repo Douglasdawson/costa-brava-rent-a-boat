@@ -86,7 +86,7 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
             <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
               <Waves className="w-7 h-7 text-primary" />
             </div>
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground tracking-tight mb-4">
+            <h1 className="font-heading text-h1 font-semibold text-foreground tracking-tight mb-4">
               {copy.h1}
             </h1>
             <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">{copy.intro}</p>
@@ -95,7 +95,7 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
 
           {/* Spots */}
           <section className="mb-12">
-            <h2 className="font-heading text-2xl font-semibold text-foreground mb-5 flex items-center gap-2">
+            <h2 className="font-heading text-h2 font-semibold text-foreground mb-5 flex items-center gap-2">
               <MapPin className="w-6 h-6 text-primary" /> {copy.spotsTitle}
             </h2>
             <dl className="space-y-5">
@@ -110,7 +110,7 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
 
           {/* Boats */}
           <section className="mb-12">
-            <h2 className="font-heading text-2xl font-semibold text-foreground mb-3 flex items-center gap-2">
+            <h2 className="font-heading text-h2 font-semibold text-foreground mb-3 flex items-center gap-2">
               <Ship className="w-6 h-6 text-primary" /> {copy.boatsTitle}
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-5">{copy.boatsIntro}</p>
@@ -129,7 +129,7 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
 
           {/* Practical */}
           <section className="mb-12">
-            <h2 className="font-heading text-2xl font-semibold text-foreground mb-3 flex items-center gap-2">
+            <h2 className="font-heading text-h2 font-semibold text-foreground mb-3 flex items-center gap-2">
               <Info className="w-6 h-6 text-primary" /> {copy.practicalTitle}
             </h2>
             <p className="text-muted-foreground leading-relaxed">{copy.practicalBody}</p>
@@ -137,7 +137,7 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
 
           {/* FAQ */}
           <section className="mb-12">
-            <h2 className="font-heading text-2xl font-semibold text-foreground mb-5 flex items-center gap-2">
+            <h2 className="font-heading text-h2 font-semibold text-foreground mb-5 flex items-center gap-2">
               <Clock className="w-6 h-6 text-primary" /> {copy.faqTitle}
             </h2>
             <dl className="space-y-5">
@@ -153,7 +153,7 @@ export default function OccasionMatrixPage({ combo }: OccasionMatrixPageProps) {
           {/* CTA */}
           <div className="text-center bg-muted/30 rounded-2xl p-8 sm:p-12">
             <Anchor className="w-10 h-10 text-primary mx-auto mb-4" />
-            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-foreground mb-3">{copy.ctaTitle}</h2>
+            <h2 className="font-heading text-h2 font-semibold text-foreground mb-3">{copy.ctaTitle}</h2>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">{copy.ctaText}</p>
             <a
               href={localizedPath("booking")}

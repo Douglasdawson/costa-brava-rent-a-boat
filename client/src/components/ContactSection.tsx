@@ -59,7 +59,7 @@ export default function ContactSection() {
           <div>
             <h2
               id="contact-title"
-              className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl md:text-4xl"
+              className="font-heading text-h2 font-semibold tracking-tight text-foreground text-balance"
             >
               {t.contact.title}
             </h2>
@@ -106,7 +106,7 @@ export default function ContactSection() {
           <div className="lg:col-span-2">
             <h2
               id="location-title"
-              className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl md:text-4xl"
+              className="font-heading text-h2 font-semibold tracking-tight text-foreground text-balance"
             >
               {t.contact.mapTitle}
             </h2>

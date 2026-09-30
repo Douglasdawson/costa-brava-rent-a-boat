@@ -37,7 +37,7 @@ export function LegalPageLayout({ heroTitle, lastUpdated, sections }: LegalPageL
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-3 mb-3">
             <Shield className="w-7 h-7 text-primary" aria-hidden="true" />
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+            <h1 className="text-h1 font-heading font-bold text-foreground">
               {heroTitle}
             </h1>
           </div>

@@ -352,7 +352,7 @@ export default function CategoryLicenseFreePage() {
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
               <Zap className="hidden sm:block w-8 h-8 flex-shrink-0 text-primary mr-4" aria-hidden="true" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+              <h1 className="text-h1 font-heading font-bold text-foreground">
                 {heroTitle}
               </h1>
             </div>
@@ -423,7 +423,7 @@ export default function CategoryLicenseFreePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
-              <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+              <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
                 <Shield className="w-6 h-6 text-primary" />
                 {clf.whatAreTitle}
               </h2>
@@ -493,7 +493,7 @@ export default function CategoryLicenseFreePage() {
       {/* Section A: Legal Framework / Regulation */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
             <FileText className="w-6 h-6 text-primary" />
             {clf.regulationTitle}
           </h2>
@@ -538,7 +538,7 @@ export default function CategoryLicenseFreePage() {
       {!postEra && (
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
             <Anchor className="w-6 h-6 text-primary" />
             {clf.fleetTitle}
           </h2>
@@ -582,7 +582,7 @@ export default function CategoryLicenseFreePage() {
       {!postEra && (
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
             <ArrowLeftRight className="w-6 h-6 text-primary" />
             {clf.comparisonTitle}
           </h2>
@@ -629,7 +629,7 @@ export default function CategoryLicenseFreePage() {
       {hasVsMarketplaces && (
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
             <ArrowLeftRight className="w-6 h-6 text-primary" />
             {clf.vsMarketplacesTitle}
           </h2>
@@ -678,7 +678,7 @@ export default function CategoryLicenseFreePage() {
       {/* Advantages */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
             <Heart className="w-6 h-6 text-primary" />
             {clf.advantagesTitle}
           </h2>
@@ -732,7 +732,7 @@ export default function CategoryLicenseFreePage() {
       {/* Safety and Requirements */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
             <Shield className="w-6 h-6 text-primary" />
             {clf.safetyTitle}
           </h2>
@@ -792,7 +792,7 @@ export default function CategoryLicenseFreePage() {
       {hasHowTo && (
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
             <ListChecks className="w-6 h-6 text-primary" />
             {clf.howToTitle}
           </h2>
@@ -835,7 +835,7 @@ export default function CategoryLicenseFreePage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
             <FileText className="w-6 h-6 text-primary" />
             {language === 'es' ? 'Preguntas Frecuentes' : language === 'en' ? 'Frequently Asked Questions' : language === 'ca' ? 'Preguntes Frequents' : language === 'fr' ? 'Questions Frequentes' : language === 'de' ? 'Haufig Gestellte Fragen' : language === 'nl' ? 'Veelgestelde Vragen' : language === 'it' ? 'Domande Frequenti' : 'Часто задаваемые вопросы'}
           </h2>
@@ -881,7 +881,7 @@ export default function CategoryLicenseFreePage() {
       {!postEra && (
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">
+          <h2 className="text-h2 font-heading font-bold mb-4 text-white">
             {clf.ctaTitle}
           </h2>
           <p className="text-lg mb-6 max-w-2xl mx-auto text-white/90 leading-relaxed">

@@ -411,7 +411,7 @@ function BlogPage() {
         <Navigation />
         <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-md">
-            <h2 className="text-2xl font-bold text-foreground mb-4">{bp.errorTitle}</h2>
+            <h2 className="text-h2 font-bold text-foreground mb-4">{bp.errorTitle}</h2>
             <p className="text-muted-foreground mb-6">{bp.errorDescription}</p>
             <Button onClick={() => window.location.reload()} size="lg" data-testid="button-reload">
               {bp.retry}
@@ -431,7 +431,7 @@ function BlogPage() {
       {/* Header — editorial style, no gradient hero */}
       <header className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 md:pb-12">
         <div className="max-w-3xl">
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
+          <h1 className="font-display text-display font-bold tracking-tight text-foreground leading-[1.1]">
             {bp.title}
           </h1>
           <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
@@ -518,7 +518,7 @@ function BlogPage() {
                     </div>
 
                     <h2
-                      className="font-display text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4"
+                      className="font-display text-h2 font-bold leading-tight mb-4"
                       data-testid={`text-title-${featuredPost.slug}`}
                     >
                       {localized(featuredPost.titleByLang as Record<string, string> | null, featuredPost.title, language)}

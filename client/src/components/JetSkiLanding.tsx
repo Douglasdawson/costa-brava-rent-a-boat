@@ -20,6 +20,7 @@ import RelatedContent from "@/components/RelatedContent";
 import ReviewsSection from "@/components/ReviewsSection";
 import { getJetSkiProduct, type JetSkiProduct } from "@shared/jetskiProducts";
 import type { PageKey } from "@shared/i18n-routes";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 
 const CTA_CLASS =
   "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
@@ -136,7 +137,7 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-black/65" />
 
         <div className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
-          <h1 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)] sm:text-5xl lg:text-6xl">
+          <h1 className="font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
             {c?.hero?.title || product.name}
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
@@ -175,7 +176,7 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
       {(c?.how || []).length > 0 && (
         <section className="px-4 pb-14 sm:px-6">
           <div className="mx-auto max-w-2xl">
-            <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{c?.howTitle}</h2>
+            <h2 className="font-heading text-h2 font-bold text-foreground">{c?.howTitle}</h2>
             <div className="mt-5 space-y-4 text-muted-foreground">
               {c!.how!.map((para) => (
                 <p key={para}>{para}</p>
@@ -186,9 +187,9 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
       )}
 
       {/* FRANJAS Y PRECIOS */}
-      <section className="bg-muted/40 px-4 py-14 sm:px-6">
+      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-2xl">
-          <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
             {g?.slotsTitle || "Franjas y precios"}
           </h2>
           <div className="mt-8 space-y-3">
@@ -225,7 +226,7 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
       {(c?.requirements || []).length > 0 && (
         <section className="px-4 pt-14 sm:px-6">
           <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
               {g?.requirementsTitle || "Requisitos"}
             </h2>
             <ul className="mt-6 space-y-2">
@@ -242,9 +243,9 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
 
       {/* INCLUYE */}
       {included.length > 0 && (
-        <section className="px-4 py-14 sm:px-6">
+        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
           <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
               {g?.includedTitle || "Qué incluye"}
             </h2>
             <ul className="mt-6 grid gap-2 sm:grid-cols-2">
@@ -261,9 +262,9 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
 
       {/* FAQ */}
       {(c?.faq || []).length > 0 && (
-        <section className="bg-muted/40 px-4 py-14 sm:px-6">
+        <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
           <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
               {g?.faqTitle || "Preguntas frecuentes"}
             </h2>
             <dl className="mt-8 divide-y divide-border">
@@ -279,8 +280,8 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
       )}
 
       {/* Sticky mobile CTA */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-[0_-6px_24px_-8px_hsl(215_45%_20%/0.3)] backdrop-blur lg:hidden">
-        <div className="mx-auto flex max-w-md items-center justify-between gap-3">
+      <MobileStickyBar>
+        <div className="flex items-center justify-between gap-3">
           <div className="leading-tight">
             <p className="text-sm font-bold text-foreground">{g?.fromLabel || "desde"} {minPrice}€</p>
             <p className="text-xs text-muted-foreground">{g?.specCapacity ?? product.specifications.capacity}</p>
@@ -289,8 +290,7 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
             {g?.ctaRequest || "Solicitar"}
           </button>
         </div>
-      </div>
-      <div className="h-20 lg:hidden" />
+      </MobileStickyBar>
 
       <ReviewsSection />
       <RelatedContent currentPage={pageKey} />

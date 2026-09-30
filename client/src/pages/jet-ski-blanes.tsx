@@ -145,7 +145,7 @@ export default function JetSkiBlanesHub() {
         <div
           className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}
         >
-          <h1 className="font-heading text-4xl font-bold leading-[1.04] tracking-tight [text-shadow:0_2px_20px_hsl(215_45%_12%/0.55)] sm:text-5xl lg:text-6xl">
+          <h1 className="font-heading text-display font-bold leading-[1.04] tracking-tight [text-shadow:0_2px_20px_hsl(215_45%_12%/0.55)]">
             {h?.hero?.title}
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/90 [text-shadow:0_1px_12px_hsl(215_45%_12%/0.5)]">
@@ -164,7 +164,7 @@ export default function JetSkiBlanesHub() {
       <section id="experiencias" className="scroll-mt-24 px-4 py-16 sm:px-6 lg:py-24">
         <div className="mx-auto max-w-5xl">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
+            <h2 className="font-heading text-h2 font-bold text-foreground">
               {h?.productsTitle || "Nuestras experiencias en moto de agua"}
             </h2>
             {h?.intro && (
@@ -245,9 +245,9 @@ export default function JetSkiBlanesHub() {
       </section>
 
       {/* PRECIOS — every slot, straight from the catalogue */}
-      <section className="bg-muted/40 px-4 py-16 sm:px-6">
+      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-center font-heading text-3xl font-bold text-foreground sm:text-4xl">
+          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
             {h?.pricesTitle || "Precios"}
           </h2>
           <div className="mt-10 space-y-8">
@@ -284,11 +284,11 @@ export default function JetSkiBlanesHub() {
 
       {/* GUÍA */}
       {(h?.guide || []).length > 0 && (
-        <section className="px-4 py-16 sm:px-6">
+        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
           <div className="mx-auto max-w-2xl space-y-10">
             {h!.guide!.map((g) => (
               <div key={g.title}>
-                <h2 className="font-heading text-2xl font-bold text-foreground">{g.title}</h2>
+                <h2 className="font-heading text-h2 font-bold text-foreground">{g.title}</h2>
                 <p className="mt-3 leading-relaxed text-muted-foreground">{g.text}</p>
               </div>
             ))}
@@ -298,9 +298,9 @@ export default function JetSkiBlanesHub() {
 
       {/* FAQ */}
       {(h?.faq || []).length > 0 && (
-        <section className="bg-muted/40 px-4 py-16 sm:px-6">
+        <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
           <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-3xl font-bold text-foreground sm:text-4xl">
+            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
               {h?.faqTitle || "Preguntas frecuentes"}
             </h2>
             <dl className="mt-10 divide-y divide-border">

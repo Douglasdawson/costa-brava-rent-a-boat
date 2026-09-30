@@ -39,6 +39,7 @@ import { isCatalogBoatPubliclyListed } from "@shared/publicFleet";
 import { trackLocationPageView } from "@/utils/analytics";
 import { translateBoatText } from "@shared/boatTextTranslations";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -139,15 +140,15 @@ export default function LocationBlanesPage() {
       {/* Hero Section — photo-led (the flagship page had a gradient hero while
           brand principle #1 is "the sea sells itself"; critique 2026-07) */}
       <div className="relative pt-20 sm:pt-24">
-        <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
+        <div className="relative w-full min-h-[max(55vh,420px)] sm:min-h-[max(55vh,520px)] flex flex-col overflow-hidden">
           <HeroImage
             basePath="/images/locations/hero-blanes"
             alt={t.locationPages.blanes.hero.imageAlt ?? t.locationPages.blanes.hero.title}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
-          <div className="relative z-10 h-full flex items-end pb-12 sm:pb-16">
+          <div className="relative z-10 flex-1 flex items-end pt-8 pb-12 sm:pb-16">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white drop-shadow-lg mb-3">
+              <h1 className="text-h1 font-heading font-bold text-white drop-shadow-lg mb-3">
                 {t.locationPages.blanes.hero.title}
               </h1>
               <p className="text-lg text-white/90 mb-6 max-w-2xl drop-shadow">
@@ -196,7 +197,7 @@ export default function LocationBlanesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+              <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
                 <Star className="w-6 h-6 text-primary" />
                 {s.whyBlanesTitle}
               </h2>
@@ -244,7 +245,7 @@ export default function LocationBlanesPage() {
       {/* Fleet Section */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <Anchor className="w-6 h-6 text-primary" />
             {s.fleetTitle}
           </h2>
@@ -297,7 +298,7 @@ export default function LocationBlanesPage() {
       {/* Complete Guide */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <Ship className="w-6 h-6 text-primary" />
             {s.guideTitle}
           </h2>
@@ -321,7 +322,7 @@ export default function LocationBlanesPage() {
       {/* Pricing Table */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <Tag className="w-6 h-6 text-primary" />
             {s.pricingTitle}
           </h2>
@@ -372,7 +373,7 @@ export default function LocationBlanesPage() {
       {/* Popular Experiences */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <Sun className="w-6 h-6 text-orange-500" />
             {s.experiencesTitle}
           </h2>
@@ -423,7 +424,7 @@ export default function LocationBlanesPage() {
       {/* Key Destinations from Blanes */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
             <NavigationIcon className="w-6 h-6 text-primary" />
             {s.destinationsTitle}
           </h2>
@@ -461,7 +462,7 @@ export default function LocationBlanesPage() {
       {/* Local Services */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <Car className="w-6 h-6 text-primary" />
             {s.servicesTitle}
           </h2>
@@ -563,7 +564,7 @@ export default function LocationBlanesPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{s.ctaTitle}</h2>
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">{s.ctaTitle}</h2>
           <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
             {s.ctaDescription}
           </p>
@@ -584,7 +585,7 @@ export default function LocationBlanesPage() {
       {/* Location Map */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-6">{s.mapTitle}</h2>
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-6">{s.mapTitle}</h2>
           <div className="rounded-2xl overflow-hidden">
             <div className="w-full h-64 md:h-80">
               <iframe
@@ -619,6 +620,7 @@ export default function LocationBlanesPage() {
       <ActivitatumTeaser topic={"blanes"} surface="city-landing" />
       <RelatedContent currentPage="locationBlanes" />
 
+      <BookingStickyBar />
       <Footer />
     </div>
   );

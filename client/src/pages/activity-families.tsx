@@ -26,6 +26,7 @@ import { useTranslations } from "@/lib/translations";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { FAQSection } from "@/components/FAQSection";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 // Icons paired by position to the i18n arrays.
 const SAFETY_ICONS = [Shield, Star, Anchor, Waves];
@@ -130,8 +131,8 @@ export default function ActivityFamiliesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <Heart className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+              <Heart className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
+              <h1 className="text-h1 font-heading font-bold text-foreground">
                 {f?.heroTitle ?? "Alquiler de Barco para Familias en Costa Brava"}
               </h1>
             </div>
@@ -159,7 +160,7 @@ export default function ActivityFamiliesPage() {
       {/* Why Perfect for Families */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-10">
             <Star className="w-6 h-6 text-primary" />
             {f?.whyTitle ?? "Por qué es perfecto para familias"}
           </h2>
@@ -214,7 +215,7 @@ export default function ActivityFamiliesPage() {
       {/* Safety Features */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-10">
             <Shield className="w-6 h-6 text-primary" />
             {f?.safetyTitle ?? "Seguridad para toda la familia"}
           </h2>
@@ -240,7 +241,7 @@ export default function ActivityFamiliesPage() {
       {/* Family Routes */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-10">
             <MapPin className="w-6 h-6 text-primary" />
             {f?.routesTitle ?? "Itinerarios recomendados para familias"}
           </h2>
@@ -272,7 +273,7 @@ export default function ActivityFamiliesPage() {
       {/* What to Bring */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-10">
             <Users className="w-6 h-6 text-primary" />
             {f?.whatToBringTitle ?? "Qué llevar para un día en barco con niños"}
           </h2>
@@ -346,7 +347,7 @@ export default function ActivityFamiliesPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">{f?.ctaTitle ?? "Reserva un barco para toda la familia"}</h2>
+          <h2 className="text-h2 font-heading font-bold mb-4 text-white">{f?.ctaTitle ?? "Reserva un barco para toda la familia"}</h2>
           <p className="text-lg mb-6 text-white/90 leading-relaxed">
             {f?.ctaDescription ?? "Barcos seguros, fáciles de manejar y con todo incluido. El plan perfecto para un día en familia en la Costa Brava. Salidas desde el Puerto de Blanes de abril a octubre."}
           </p>
@@ -372,7 +373,7 @@ export default function ActivityFamiliesPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-10">
             <HelpCircle className="w-6 h-6 text-primary" />
             {f?.faqTitle ?? "Preguntas frecuentes sobre barcos para familias"}
           </h2>
@@ -381,6 +382,7 @@ export default function ActivityFamiliesPage() {
       </RevealSection>
 
       <RelatedContent currentPage="activityFamilies" />
+      <BookingStickyBar />
       <Footer />
     </div>
   );

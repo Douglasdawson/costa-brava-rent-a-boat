@@ -41,6 +41,7 @@ import {
 import { apiRequest } from "@/lib/queryClient";
 import { generateHreflangLinks, generateCanonicalUrl, BASE_DOMAIN } from "@/utils/seo-config";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 
 /**
  * The capsule's own palette, scoped to this page. These are the two inks the
@@ -560,7 +561,7 @@ export default function TiendaPage() {
 
       {/* DELIVERY: three rows of plain text. Icon-topped cards would be the
           third identical grid on one page. */}
-      <section className="px-5 py-16 sm:px-8">
+      <section className="px-5 py-12 sm:py-16 lg:py-20 sm:px-8">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-heading text-2xl font-bold tracking-[-0.01em] text-foreground">
             {s.delivery.title}
@@ -609,7 +610,7 @@ export default function TiendaPage() {
       </section>
 
       {/* FAQ */}
-      <section className="px-5 py-16 sm:px-8">
+      <section className="px-5 py-12 sm:py-16 lg:py-20 sm:px-8">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-heading text-2xl font-bold tracking-[-0.01em] text-foreground">
             {s.faqTitle}
@@ -660,8 +661,8 @@ export default function TiendaPage() {
           always-on bar spends a fifth of a phone screen saying nothing. */}
       {cart.count > 0 && (
         <>
-          <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-[0_-6px_24px_-8px_hsl(215_45%_20%/0.3)] backdrop-blur motion-safe:animate-in motion-safe:slide-in-from-bottom-4 lg:hidden">
-            <div className="mx-auto flex max-w-md items-center justify-between gap-3">
+          <MobileStickyBar className="motion-safe:animate-in motion-safe:slide-in-from-bottom-4">
+            <div className="flex items-center justify-between gap-3">
               <p className="text-sm font-bold text-foreground">
                 {cart.count} · {formatPrice(totals.payableCents)}
               </p>
@@ -674,8 +675,7 @@ export default function TiendaPage() {
                 {s.cart.checkout}
               </button>
             </div>
-          </div>
-          <div className="h-20 lg:hidden" />
+          </MobileStickyBar>
         </>
       )}
 

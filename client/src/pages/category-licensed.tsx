@@ -32,6 +32,7 @@ import type { Boat } from "@shared/schema";
 import { BOAT_DATA, isCaptainedBoat, type BoatData } from "@shared/boatData";
 import { minPriceAcrossBoats } from "@shared/pricing";
 import { translateBoatText } from "@shared/boatTextTranslations";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({
   children,
@@ -163,8 +164,8 @@ export default function CategoryLicensedPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <Award className="w-8 h-8 text-primary mr-4 shrink-0" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+              <Award className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
+              <h1 className="text-h1 font-heading font-bold text-foreground">
                 {cl.heroTitle}
               </h1>
             </div>
@@ -194,7 +195,7 @@ export default function CategoryLicensedPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+              <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
                 {cl.whatAreTitle}
               </h2>
               <div className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
@@ -265,7 +266,7 @@ export default function CategoryLicensedPage() {
       {/* ═══ ROUTE: BLANES TO TOSSA ═══ */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
             <MapPin className="w-6 h-6 text-primary shrink-0" />
             {cl.routeTitle}
           </h2>
@@ -300,7 +301,7 @@ export default function CategoryLicensedPage() {
       {/* ═══ REQUIREMENTS + LICENSE VERIFIER ═══ */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
             <Award className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
             {cl.requirementsTitle}
           </h2>
@@ -375,7 +376,7 @@ export default function CategoryLicensedPage() {
       {/* ═══ OUR LICENSED FLEET ═══ cards link to each boat page */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-12">
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-12">
             <Anchor className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
             {cl.fleetTitle}
           </h2>
@@ -417,7 +418,7 @@ export default function CategoryLicensedPage() {
       {/* ═══ COMPARISON TABLE ═══ */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
             <ArrowLeftRight className="w-6 h-6 text-primary shrink-0" />
             {cl.comparisonTitle}
           </h2>
@@ -473,7 +474,7 @@ export default function CategoryLicensedPage() {
       {/* ═══ REGULATION ═══ */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
             <Scale className="w-6 h-6 text-primary shrink-0" />
             {cl.regulationTitle}
           </h2>
@@ -489,7 +490,7 @@ export default function CategoryLicensedPage() {
       {/* ═══ HOW TO: 5 STEPS ═══ */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
             <ListChecks className="w-6 h-6 text-primary shrink-0" />
             {cl.howToTitle}
           </h2>
@@ -513,7 +514,7 @@ export default function CategoryLicensedPage() {
       {/* ═══ DIRECT VS MARKETPLACES ═══ */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-4">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
             <ArrowLeftRight className="w-6 h-6 text-primary shrink-0" />
             {cl.vsMarketplacesTitle}
           </h2>
@@ -578,7 +579,7 @@ export default function CategoryLicensedPage() {
       {/* ═══ FAQ ═══ mirrored 1:1 by the server-side FAQPage schema */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
             <FileText className="w-6 h-6 text-primary shrink-0" />
             {language === "es"
               ? "Preguntas Frecuentes"
@@ -647,7 +648,7 @@ export default function CategoryLicensedPage() {
       {/* ═══ CTA ═══ full-width */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">
             {cl.ctaTitle}
           </h2>
           <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{cl.ctaDescription}</p>
@@ -664,6 +665,7 @@ export default function CategoryLicensedPage() {
       </div>
 
       <RelatedContent currentPage="categoryLicensed" />
+      <BookingStickyBar />
       <Footer />
     </div>
   );

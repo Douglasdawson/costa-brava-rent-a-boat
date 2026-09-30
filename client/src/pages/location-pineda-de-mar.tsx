@@ -34,6 +34,7 @@ import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from 
 import { getCanonicalUrl } from "@/lib/domain";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -140,15 +141,15 @@ export default function LocationPinedaDeMarPage() {
       {/* Hero Section — photo-led with CTA + social proof (was a gradient hero
           with no CTA at all; critique 2026-07) */}
       <div className="relative pt-20 sm:pt-24">
-        <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
+        <div className="relative w-full min-h-[max(55vh,420px)] sm:min-h-[max(55vh,520px)] flex flex-col overflow-hidden">
           <HeroImage
             basePath="/images/locations/hero-pineda-de-mar"
             alt={s?.heroImageAlt ?? s?.heroTitle ?? "Costa Brava"}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
-          <div className="relative z-10 h-full flex items-end pb-12 sm:pb-16">
+          <div className="relative z-10 flex-1 flex items-end pt-8 pb-12 sm:pb-16">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white drop-shadow-lg mb-3">
+              <h1 className="text-h1 font-heading font-bold text-white drop-shadow-lg mb-3">
                 {s?.heroTitle ?? "Alquiler de Barcos cerca de Pineda de Mar"}
               </h1>
               <p className="text-lg text-white/90 mb-6 max-w-2xl drop-shadow">
@@ -197,7 +198,7 @@ export default function LocationPinedaDeMarPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+              <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
                 <Anchor className="w-6 h-6 text-primary" />
                 {s?.whyTitle}
               </h2>
@@ -245,7 +246,7 @@ export default function LocationPinedaDeMarPage() {
       {/* Town Attractions */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
             <Star className="w-6 h-6 text-primary" />
             {s?.townTitle}
           </h2>
@@ -279,7 +280,7 @@ export default function LocationPinedaDeMarPage() {
       {/* How to Get to Blanes */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
             <Car className="w-6 h-6 text-primary" />
             {s?.howTitle}
           </h2>
@@ -315,7 +316,7 @@ export default function LocationPinedaDeMarPage() {
       {/* Boat Destinations from Blanes */}
       <div className="py-8 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
             <Anchor className="w-6 h-6 text-primary" />
             {s?.destsTitle}
           </h2>
@@ -337,7 +338,7 @@ export default function LocationPinedaDeMarPage() {
       {/* Pricing Overview */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
             <Clock className="w-6 h-6 text-primary" />
             {s?.pricingTitle}
           </h2>
@@ -368,7 +369,7 @@ export default function LocationPinedaDeMarPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{s?.ctaTitle}</h2>
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">{s?.ctaTitle}</h2>
           <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">{s?.ctaDesc}</p>
           <Button
             onClick={handleBookingWhatsApp}
@@ -391,7 +392,7 @@ export default function LocationPinedaDeMarPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
             {s?.faqTitle}
           </h2>
           <FAQSection items={processedFaqItems} />
@@ -400,6 +401,7 @@ export default function LocationPinedaDeMarPage() {
 
       <RelatedLocationsSection currentLocation="pineda" />
 
+      <BookingStickyBar />
       <Footer />
     </div>
   );

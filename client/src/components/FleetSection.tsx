@@ -472,7 +472,7 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
     >
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
+          <h2 className="font-heading text-h2 font-semibold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
             {t.fleet.title}
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground font-normal mt-3 max-w-xl sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4 text-pretty">

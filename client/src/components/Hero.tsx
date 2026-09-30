@@ -81,7 +81,7 @@ export default function Hero() {
           {/* Text group — top on mobile, centered with CTAs on tablet+ */}
           <div className="text-center flex flex-col items-center">
             <h1
-              className="font-heading font-bold text-primary-foreground tracking-tight mb-2 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] hyphens-auto break-words"
+              className="font-heading font-bold text-primary-foreground tracking-tight [word-spacing:0.18em] mb-2 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] hyphens-manual break-words"
               style={{ fontSize: "clamp(1.75rem, 5.5vw, 3.5rem)" }}
             >
               {t.hero.title}
@@ -107,7 +107,7 @@ export default function Hero() {
           <div className="text-center flex flex-col items-center">
             {/* Specs callout — single DOM instance, positioned above CTAs for all viewports */}
             <div className="mb-3 lg:mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <p data-speakable className="font-bold text-primary-foreground text-base sm:text-lg lg:text-xl lg:font-semibold">
+              <p data-speakable className="font-semibold text-primary-foreground text-sm sm:text-lg lg:text-xl">
                 {t.hero.specsLine}
               </p>
               <p className="mt-1.5 inline-block rounded-full bg-black/35 px-3 py-1 text-sm text-primary-foreground/90 backdrop-blur-sm">

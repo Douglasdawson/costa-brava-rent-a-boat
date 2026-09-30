@@ -276,7 +276,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <Navigation />
         <main className="flex items-center justify-center min-h-[70vh] px-4 pt-24 pb-16">
           <div className="max-w-xl text-center">
-            <h1 className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-4">
+            <h1 className="font-heading text-h1 font-bold text-foreground mb-4">
               {t.boatDetail.retiredTitle}
             </h1>
             <p className="text-muted-foreground leading-relaxed mb-8">{t.boatDetail.retiredBody}</p>
@@ -538,10 +538,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
             </span>
           </div>
-          <h1 className="font-heading font-bold text-white text-2xl sm:text-3xl md:text-4xl leading-tight mb-1">
+          <h1 className="font-heading font-bold text-white text-h1 leading-tight mb-1">
             {boatName}
-            <span className="font-normal text-white/70 text-lg sm:text-xl md:text-2xl mx-2">·</span>
-            <span className="font-normal text-white/80 text-lg sm:text-xl md:text-2xl">
+            <span className="hidden sm:inline font-normal text-white/70 text-lg sm:text-xl md:text-2xl mx-2">·</span>
+            <span className="block sm:inline font-normal text-white/80 text-lg sm:text-xl md:text-2xl">
               {t.boatDetail.locationSuffix}
             </span>
           </h1>
@@ -643,7 +643,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     variant="ghost"
                     size="icon"
                     onClick={prevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 pointer-coarse:md:opacity-100 transition-opacity duration-200"
                     data-testid="button-prev-image"
                     aria-label="Previous image"
                   >
@@ -653,7 +653,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     variant="ghost"
                     size="icon"
                     onClick={nextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 pointer-coarse:md:opacity-100 transition-opacity duration-200"
                     data-testid="button-next-image"
                     aria-label="Next image"
                   >
@@ -791,7 +791,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <Tabs defaultValue="caracteristicas">
             <div className="relative border-b border-border">
               <div className="px-4 pt-4 overflow-x-auto">
-                <TabsList className="h-auto bg-transparent p-0 gap-1 w-max">
+                <TabsList className="h-auto bg-transparent p-0 gap-1 flex-wrap justify-start w-full sm:w-max sm:flex-nowrap">
                   <TabsTrigger
                     value="caracteristicas"
                     className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
@@ -1165,7 +1165,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       {/* FAQ Section — items come from shared/boatFaqBuilder, derived from admin data */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <h2 className="text-2xl font-heading font-bold text-foreground mb-6 text-center">
+        <h2 className="text-h2 font-heading font-bold text-foreground mb-6 text-center">
           {boatFaqTitle}
         </h2>
         <div className="space-y-4 max-w-3xl mx-auto">
@@ -1198,7 +1198,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <button
               onClick={() => handleReservation()}
               tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-              className="flex-1 bg-primary text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+              className="flex-1 min-h-12 bg-cta text-cta-foreground py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
             >
               <Calendar className="w-4 h-4" />
               <span>
@@ -1214,10 +1214,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               target="_blank"
               rel="noopener noreferrer"
               tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-              className="flex-1 bg-whatsapp text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2"
+              aria-label="WhatsApp"
+              className="flex-none min-h-12 min-w-12 border border-border bg-background text-foreground px-3 rounded-lg flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2"
             >
-              <SiWhatsapp className="w-4 h-4" />
-              <span>WhatsApp</span>
+              <SiWhatsapp className="w-5 h-5 text-whatsapp" />
             </a>
           </div>
         </div>

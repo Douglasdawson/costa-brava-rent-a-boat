@@ -189,7 +189,7 @@ export default function TestimoniosPage() {
               />
               <h1
                 id="testimonios-hero-title"
-                className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-center text-foreground"
+                className="text-h1 font-heading font-bold text-center text-foreground"
               >
                 {tt?.hero.title ?? "Lo que dicen quienes ya han navegado"}
               </h1>
@@ -231,7 +231,7 @@ export default function TestimoniosPage() {
             <div className="lg:col-span-3 space-y-5">
               <h2
                 id="testimonios-intro-title"
-                className="text-2xl sm:text-3xl font-heading font-bold text-foreground"
+                className="text-h2 font-heading font-bold text-foreground"
               >
                 {tt?.intro.title ?? "Experiencias reales en el mar"}
               </h2>
@@ -317,7 +317,7 @@ export default function TestimoniosPage() {
         >
           <h2
             id="testimonios-cta-title"
-            className="text-2xl sm:text-3xl font-heading font-bold mb-4"
+            className="text-h2 font-heading font-bold mb-4"
           >
             {tt?.cta.title ?? ""}
           </h2>

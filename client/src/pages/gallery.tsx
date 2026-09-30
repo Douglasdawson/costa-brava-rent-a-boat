@@ -196,7 +196,7 @@ export default function GalleryPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mt-8">
             <Camera className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-blue-100" />
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">
+            <h1 className="text-h1 font-heading font-bold mb-4">
               {t.gallery?.title || "Galeria de Fotos"}
             </h1>
             <p className="text-lg sm:text-xl max-w-3xl mx-auto text-blue-50">
@@ -211,7 +211,7 @@ export default function GalleryPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3 space-y-5">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
+              <h2 className="text-h2 font-heading font-bold text-foreground">
                 {t.gallery?.title || "Momentos en el mar"}
               </h2>
               <p className="text-muted-foreground leading-relaxed">{gt.introP1}</p>
@@ -244,7 +244,7 @@ export default function GalleryPage() {
       {/* Photo gallery grid */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-8 text-center">
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-8 text-center">
             {t.gallery?.title || "Galeria"}
           </h2>
 
@@ -314,7 +314,7 @@ export default function GalleryPage() {
       {/* CTA Section */}
       <RevealSection className="py-16 sm:py-20 bg-primary text-primary-foreground">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">
+          <h2 className="text-h2 font-heading font-bold mb-4">
             {gt.ctaTitle}
           </h2>
           <p className="text-primary-foreground/85 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">

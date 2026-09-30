@@ -33,6 +33,7 @@ import { getCanonicalUrl } from "@/lib/domain";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -141,8 +142,8 @@ export default function LocationPalafollsPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <MapPin className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+              <MapPin className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
+              <h1 className="text-h1 font-heading font-bold text-foreground">
                 {s?.heroTitle ?? "Alquiler de Barcos cerca de Palafolls"}
               </h1>
             </div>
@@ -172,7 +173,7 @@ export default function LocationPalafollsPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+              <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
                 <Anchor className="w-6 h-6 text-primary" />
                 {s?.whyTitle}
               </h2>
@@ -220,7 +221,7 @@ export default function LocationPalafollsPage() {
       {/* Town Attractions */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
             <Star className="w-6 h-6 text-primary" />
             {s?.townTitle}
           </h2>
@@ -254,7 +255,7 @@ export default function LocationPalafollsPage() {
       {/* How to Get to Blanes */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
             <Car className="w-6 h-6 text-primary" />
             {s?.howTitle}
           </h2>
@@ -298,7 +299,7 @@ export default function LocationPalafollsPage() {
       {/* Boat Destinations from Blanes */}
       <div className="py-8 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
             <Anchor className="w-6 h-6 text-primary" />
             {s?.destsTitle}
           </h2>
@@ -320,7 +321,7 @@ export default function LocationPalafollsPage() {
       {/* Pricing Overview */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
             <Clock className="w-6 h-6 text-primary" />
             {s?.pricingTitle}
           </h2>
@@ -351,7 +352,7 @@ export default function LocationPalafollsPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{s?.ctaTitle}</h2>
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">{s?.ctaTitle}</h2>
           <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">{s?.ctaDesc}</p>
           <Button
             onClick={handleBookingWhatsApp}
@@ -374,7 +375,7 @@ export default function LocationPalafollsPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
             {s?.faqTitle}
           </h2>
           <FAQSection items={processedFaqItems} />
@@ -384,6 +385,7 @@ export default function LocationPalafollsPage() {
       <ActivitatumTeaser topic={"blanes"} surface="city-landing" />
       <RelatedLocationsSection currentLocation="palafolls" />
 
+      <BookingStickyBar />
       <Footer />
     </div>
   );

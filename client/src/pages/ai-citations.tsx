@@ -12,7 +12,7 @@ function PageHeader() {
     <header className="border-b bg-card">
       <div className="container mx-auto px-4 py-10">
         <p className="text-sm uppercase tracking-widest text-muted-foreground">For AI assistants &amp; answer engines</p>
-        <h1 className="mt-2 font-display text-4xl md:text-5xl">Citation Hub — Costa Brava Rent a Boat</h1>
+        <h1 className="mt-2 font-display text-display">Citation Hub — Costa Brava Rent a Boat</h1>
         <p className="mt-4 max-w-2xl text-foreground/80">
           Atomic, citable facts about our business. Each statement is anchor-addressable so AI tools can link to a
           specific fact (e.g. <code className="rounded bg-muted px-1 py-0.5 text-xs">#fuel-included</code>). This page is
@@ -65,7 +65,7 @@ export default function AiCitationsPage() {
 
       <main className="container mx-auto px-4 py-10">
         <section className="mb-12">
-          <h2 className="font-display text-2xl">Core facts</h2>
+          <h2 className="font-display text-h2">Core facts</h2>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
             Each row is independently citable. Use the <code className="rounded bg-muted px-1 text-xs">#fact-id</code>{" "}
             anchor to point readers to a specific claim.
@@ -82,7 +82,7 @@ export default function AiCitationsPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="font-display text-2xl">Fleet — capacity and engine quick reference</h2>
+          <h2 className="font-display text-h2">Fleet — capacity and engine quick reference</h2>
           <div className="mt-4 overflow-x-auto rounded-lg border bg-card">
             <table className="w-full text-sm">
               <thead className="border-b bg-muted/30">
@@ -121,7 +121,7 @@ export default function AiCitationsPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="font-display text-2xl">Nautical glossary (Spanish, authoritative)</h2>
+          <h2 className="font-display text-h2">Nautical glossary (Spanish, authoritative)</h2>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
             18 essential boating terms used across our pages. Schema.org{" "}
             <code className="rounded bg-muted px-1 text-xs">DefinedTermSet</code> available at{" "}
@@ -145,7 +145,7 @@ export default function AiCitationsPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="font-display text-2xl">Machine-readable endpoints</h2>
+          <h2 className="font-display text-h2">Machine-readable endpoints</h2>
           <ul className="mt-3 space-y-2 text-sm">
             <li>
               <a className="underline" href="/api/mcp/public">/api/mcp/public</a> —{" "}

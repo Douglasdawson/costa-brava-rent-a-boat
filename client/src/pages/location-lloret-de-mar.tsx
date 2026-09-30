@@ -43,6 +43,7 @@ import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -185,7 +186,7 @@ export default function LocationLloretPage() {
           <link rel="preload"> so the mobile variant starts downloading during
           HTML parse, before React hydrates. */}
       <div className="relative pt-20 sm:pt-24">
-        <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
+        <div className="relative w-full min-h-[max(55vh,420px)] sm:min-h-[max(55vh,520px)] flex flex-col overflow-hidden">
           <picture>
             <source media="(min-width: 768px)" type="image/avif" srcSet="/images/locations/hero-lloret-de-mar.avif" />
             <source type="image/avif" srcSet="/images/locations/hero-lloret-de-mar-mobile.avif" />
@@ -202,12 +203,12 @@ export default function LocationLloretPage() {
             />
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
-          <div className="relative z-10 h-full flex items-center">
+          <div className="relative z-10 flex-1 flex items-center py-8">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <div className="text-center max-w-4xl mx-auto">
                 <div className="inline-flex items-center justify-center mb-4">
                   <MapPin className="w-7 h-7 text-white mr-3 drop-shadow" />
-                  <h1 className="text-2xl sm:text-3xl lg:text-5xl font-heading font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+                  <h1 className="text-h1 font-heading font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                     {t.locationPages.lloret.hero.title}
                   </h1>
                 </div>
@@ -253,7 +254,7 @@ export default function LocationLloretPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+              <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
                 <Star className="w-6 h-6 text-primary" />
                 {s.whyLloretTitle}
               </h2>
@@ -304,7 +305,7 @@ export default function LocationLloretPage() {
       {/* What to Do in Lloret */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <Music className="w-6 h-6 text-primary" />
             {s.whatToDoTitle}
           </h2>
@@ -358,7 +359,7 @@ export default function LocationLloretPage() {
       {/* Navigation Tips */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <NavigationIcon className="w-6 h-6 text-primary" />
             {s.navigationTipsTitle}
           </h2>
@@ -422,7 +423,7 @@ export default function LocationLloretPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">
             {s.ctaTitle}
           </h2>
           <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
@@ -449,7 +450,7 @@ export default function LocationLloretPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
             Preguntas frecuentes sobre Lloret de Mar en barco
           </h2>
           <FAQSection items={processedFaqItems} />
@@ -462,6 +463,7 @@ export default function LocationLloretPage() {
       <ActivitatumTeaser topic={"lloret"} surface="city-landing" />
       <RelatedContent currentPage="locationLloret" />
 
+      <BookingStickyBar />
       <Footer />
     </div>
   );

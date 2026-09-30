@@ -34,7 +34,7 @@ export default function TitulinSection() {
           <div>
             <h2
               id="titulin-title"
-              className="font-heading text-3xl font-semibold tracking-tight text-balance sm:text-4xl md:text-5xl"
+              className="font-heading text-h2 font-semibold tracking-tight text-balance"
             >
               {s.title}
             </h2>

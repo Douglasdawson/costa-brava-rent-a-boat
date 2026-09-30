@@ -23,7 +23,7 @@ export default function DestinationsSection() {
         {/* Destinations */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-heading text-h2 font-bold text-foreground mb-4">
               {t.destinations.fromBlanes}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
@@ -73,7 +73,7 @@ export default function DestinationsSection() {
         {/* Categories */}
         <div>
           <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-heading text-h2 font-bold text-foreground mb-4">
               {t.destinations.boatTypes}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">

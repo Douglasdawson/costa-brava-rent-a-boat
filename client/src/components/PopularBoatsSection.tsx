@@ -74,7 +74,7 @@ export default function PopularBoatsSection({
   return (
     <RevealSection className={`py-16 sm:py-20 ${bgClass}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+        <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
           <Ship className="w-6 h-6 text-primary" />
           {title}
         </h2>

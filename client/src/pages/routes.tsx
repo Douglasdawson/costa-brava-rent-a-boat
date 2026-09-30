@@ -159,7 +159,7 @@ function RoutesPage() {
       {/* ═══ HERO ═══ */}
       <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-20 sm:pt-24 pb-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-3">
+          <h1 className="text-h1 font-heading font-bold text-foreground mb-3">
             {t.routes?.title || "Rutas Sugeridas"}
           </h1>
           <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
@@ -246,7 +246,7 @@ function RoutesPage() {
       {t.routes?.guide && (
         <RevealSection className="py-16 sm:py-20">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-8">
+            <h2 className="text-h2 font-heading font-bold text-foreground mb-8">
               {t.routes.guide.heading}
             </h2>
             <div className="space-y-8">

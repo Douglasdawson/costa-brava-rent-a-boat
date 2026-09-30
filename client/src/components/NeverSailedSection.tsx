@@ -25,7 +25,7 @@ export default function NeverSailedSection() {
     <section ref={revealRef} className={`below-fold py-16 md:py-24 bg-background transition-[opacity,transform,filter] duration-500 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
       <div className="container mx-auto px-4 max-w-4xl text-center">
         {/* Header */}
-        <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-3">
+        <h2 className="font-heading text-h2 font-semibold text-foreground tracking-tight mb-3">
           {t.neverSailed.title}
         </h2>
         <p className="text-muted-foreground text-lg md:text-xl mb-12 md:mb-16 max-w-2xl mx-auto text-balance">

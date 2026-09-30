@@ -85,7 +85,7 @@ export default function DestinationDetailPage({ slug: slugProp }: { slug?: strin
         <main id="main-content" className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
           <Card>
             <CardContent className="pt-6">
-              <h2 className="text-2xl font-bold mb-4">Destino no encontrado</h2>
+              <h2 className="text-h2 font-bold mb-4">Destino no encontrado</h2>
               <p className="text-muted-foreground mb-6">
                 El destino que buscas no existe o ha sido eliminado.
               </p>
@@ -137,7 +137,7 @@ export default function DestinationDetailPage({ slug: slugProp }: { slug?: strin
         <article className="space-y-6">
           <header className="space-y-4">
             <h1 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight"
+              className="text-h1 font-bold tracking-tight"
               data-testid={`text-title-${destination.slug}`}
             >
               {destination.name}

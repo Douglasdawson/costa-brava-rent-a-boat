@@ -732,8 +732,8 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <Anchor className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+              <Anchor className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
+              <h1 className="text-h1 font-heading font-bold text-foreground">
                 {txt.heroHeading}
               </h1>
             </div>
@@ -773,7 +773,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3 space-y-5">
-              <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground">
+              <h2 className="flex items-center gap-3 text-h2 font-heading font-bold text-foreground">
                 <Users className="w-6 h-6 text-primary" />
                 {txt.whoWeAreTitle}
               </h2>
@@ -813,7 +813,7 @@ export default function AboutPage() {
       {/* Our Fleet */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold text-foreground mb-4">
             <Ship className="w-6 h-6 text-primary" />
             {txt.fleetTitle}
           </h2>
@@ -852,7 +852,7 @@ export default function AboutPage() {
       {/* Why Choose Us */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold text-foreground mb-8">
             <Shield className="w-6 h-6 text-primary" />
             {txt.whyTitle}
           </h2>
@@ -878,7 +878,7 @@ export default function AboutPage() {
       {/* Location */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold text-foreground mb-8">
             <MapPin className="w-6 h-6 text-primary" />
             {txt.locationTitle}
           </h2>
@@ -912,7 +912,7 @@ export default function AboutPage() {
       {/* Contact */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold text-foreground mb-4">
             <Phone className="w-6 h-6 text-primary" />
             {txt.contactTitle}
           </h2>
@@ -979,7 +979,7 @@ export default function AboutPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{txt.ctaHeading}</h2>
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">{txt.ctaHeading}</h2>
           <p className="text-lg text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">{txt.ctaText}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

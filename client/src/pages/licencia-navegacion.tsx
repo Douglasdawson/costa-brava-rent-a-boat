@@ -25,6 +25,7 @@ import {
 } from "@/utils/seo-schemas";
 import { getLocalizedPath } from "@shared/i18n-routes";
 import { escolaNauticaHandoff } from "@shared/escolaNauticaLinks";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 
 const NAVY_CTA =
   "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
@@ -105,7 +106,7 @@ export default function NavigationLicensePage() {
         <div
           className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
         >
-          <h1 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)] sm:text-5xl lg:text-6xl">
+          <h1 className="font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
             {p?.hero?.title}
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
@@ -138,7 +139,7 @@ export default function NavigationLicensePage() {
       </section>
 
       {/* NEW RULE (RD 1188/2025) */}
-      <section className="px-4 py-14 sm:px-6">
+      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-3xl rounded-2xl bg-primary p-6 text-primary-foreground sm:p-10">
           <div className="flex flex-wrap items-center gap-3">
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
@@ -154,13 +155,13 @@ export default function NavigationLicensePage() {
       </section>
 
       {/* WHAT IT IS + WHAT IT ALLOWS */}
-      <section className="bg-muted/40 px-4 py-14 sm:px-6">
+      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto grid max-w-4xl gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
             <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/10">
               <GraduationCap className="h-5 w-5 text-primary" />
             </span>
-            <h2 className="mt-4 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <h2 className="mt-4 font-heading text-h2 font-bold text-foreground">
               {p?.whatIs?.title}
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">{p?.whatIs?.body}</p>
@@ -169,7 +170,7 @@ export default function NavigationLicensePage() {
             <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/10">
               <Anchor className="h-5 w-5 text-primary" />
             </span>
-            <h2 className="mt-4 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <h2 className="mt-4 font-heading text-h2 font-bold text-foreground">
               {p?.allows?.title}
             </h2>
             <ul className="mt-4 space-y-3">
@@ -186,9 +187,9 @@ export default function NavigationLicensePage() {
       </section>
 
       {/* COURSE STEPS (a real sequence: theory → practice → licence) */}
-      <section className="px-4 py-14 sm:px-6">
+      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
             {p?.course?.title}
           </h2>
           <ol className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -236,7 +237,7 @@ export default function NavigationLicensePage() {
       </section>
 
       {/* FLEET BRIDGE */}
-      <section className="bg-muted/40 px-4 py-14 sm:px-6">
+      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto grid max-w-4xl items-center gap-8 lg:grid-cols-2">
           <img
             src={fleetImage}
@@ -248,7 +249,7 @@ export default function NavigationLicensePage() {
             className="aspect-[4/3] w-full rounded-2xl object-cover"
           />
           <div>
-            <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <h2 className="font-heading text-h2 font-bold text-foreground">
               {p?.fleet?.title}
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">{p?.fleet?.body}</p>
@@ -262,9 +263,9 @@ export default function NavigationLicensePage() {
 
       {/* FAQ */}
       {(p?.faq || []).length > 0 && (
-        <section className="px-4 py-14 sm:px-6">
+        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
           <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
               {p?.faqTitle}
             </h2>
             <dl className="mt-8 divide-y divide-border">
@@ -280,7 +281,7 @@ export default function NavigationLicensePage() {
       )}
 
       {/* NO-LICENCE ALTERNATIVE (captained excursion) */}
-      <section className="bg-muted/40 px-4 py-14 sm:px-6">
+      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-6 sm:p-8">
           <div className="flex flex-wrap items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-success/10">
@@ -302,9 +303,9 @@ export default function NavigationLicensePage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="px-4 py-14 sm:px-6">
+      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="font-heading text-h2 font-bold text-foreground">
             {school ? school.finalTitle : p?.ctaTitle}
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
@@ -324,8 +325,8 @@ export default function NavigationLicensePage() {
       </section>
 
       {/* Sticky mobile CTA */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-[0_-6px_24px_-8px_hsl(215_45%_20%/0.3)] backdrop-blur lg:hidden">
-        <div className="mx-auto flex max-w-md items-center justify-between gap-3">
+      <MobileStickyBar>
+        <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 leading-tight">
             <GraduationCap className="h-4 w-4 flex-shrink-0 text-success" />
             <p className="text-sm font-bold text-foreground">{p?.chips?.[0]}</p>
@@ -341,8 +342,7 @@ export default function NavigationLicensePage() {
             <CtaIcon className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
-      </div>
-      <div className="h-20 lg:hidden" />
+      </MobileStickyBar>
 
       <Footer />
     </div>

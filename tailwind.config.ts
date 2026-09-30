@@ -120,6 +120,14 @@ export default {
           offline: "rgb(156 163 175)",
         },
       },
+      // Heading scale, mobile first (px at 390 -> max): display 36 -> 60 for
+      // photo-hero landings, h1 30 -> 44 for content pages, h2 24 -> 36.
+      // h1 must always read bigger than h2 on a phone; before this, both were 24px.
+      fontSize: {
+        display: ["clamp(2.25rem, 1.5rem + 3.2vw, 3.75rem)", { lineHeight: "1.05" }],
+        h1: ["clamp(1.875rem, 1.45rem + 1.8vw, 2.75rem)", { lineHeight: "1.15" }],
+        h2: ["clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem)", { lineHeight: "1.2" }],
+      },
       fontFamily: {
         sans: ["'Archivo'", "Inter", "var(--font-sans)"],
         display: ["'Clash Display'", "'Archivo'", "sans-serif"],

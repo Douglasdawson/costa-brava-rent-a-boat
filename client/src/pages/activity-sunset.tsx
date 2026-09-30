@@ -30,6 +30,7 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 // Icons paired by position to t.activitySunset.viewpoints.
 const VIEWPOINT_ICONS = [MapPin, Camera, Star];
@@ -164,8 +165,8 @@ export default function ActivitySunsetPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <Sunset className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+              <Sunset className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
+              <h1 className="text-h1 font-heading font-bold text-foreground">
                 {s.heroTitle}
               </h1>
             </div>
@@ -195,7 +196,7 @@ export default function ActivitySunsetPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+              <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
                 {s.whyTitle}
               </h2>
               <div className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
@@ -265,7 +266,7 @@ export default function ActivitySunsetPage() {
       {/* ═══ BEST VIEWPOINTS ═══ feature grid */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-center text-foreground mb-12">
+          <h2 className="text-h2 font-heading font-bold text-center text-foreground mb-12">
             <Camera className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
             {s.viewpointsTitle}
           </h2>
@@ -303,7 +304,7 @@ export default function ActivitySunsetPage() {
       {/* ═══ SUNSET TIMES BY MONTH ═══ table */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
             <Calendar className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
             {s.sunsetTimesTitle}
           </h2>
@@ -351,7 +352,7 @@ export default function ActivitySunsetPage() {
       {/* ═══ ROMANTIC IDEAS ═══ icon-led grid */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
             <Wine className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
             {s.romanticIdeasTitle}
           </h2>
@@ -380,7 +381,7 @@ export default function ActivitySunsetPage() {
       {/* ═══ WHAT TO BRING ═══ */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
             <Users className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
             {s.whatToBringTitle}
           </h2>
@@ -468,7 +469,7 @@ export default function ActivitySunsetPage() {
       {/* ═══ CTA ═══ full-width */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">
             {s.ctaTitle}
           </h2>
           <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">
@@ -500,7 +501,7 @@ export default function ActivitySunsetPage() {
       {/* ═══ FAQ ═══ */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-center mb-10">
+          <h2 className="text-h2 font-heading font-bold text-center mb-10">
             {s.faqTitle}
           </h2>
           <FAQSection items={faqs} />
@@ -508,6 +509,7 @@ export default function ActivitySunsetPage() {
       </RevealSection>
 
       <RelatedContent currentPage="activitySunset" />
+      <BookingStickyBar />
       <Footer />
     </div>
   );

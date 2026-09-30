@@ -12,6 +12,7 @@ import {
   BASE_DOMAIN,
 } from "@/utils/seo-config";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 import {
   ACTIVITATUM_DOMAIN,
   ACTIVITATUM_PICKS,
@@ -105,7 +106,7 @@ export default function ActivitiesPage() {
         <div
           className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
         >
-          <h1 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)] sm:text-5xl lg:text-6xl">
+          <h1 className="font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
             {s?.hero?.title}
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
@@ -146,9 +147,9 @@ export default function ActivitiesPage() {
       )}
 
       {/* AFTER THE BOAT — many, cheap, short: reads as a rate list, not as cards */}
-      <section className="border-y border-border bg-muted/40 px-4 py-14 sm:px-6">
+      <section className="border-y border-border bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="font-heading text-h2 font-bold text-foreground">
             {s?.afterBoatTitle}
           </h2>
           <p className="mt-3 max-w-prose leading-relaxed text-muted-foreground">
@@ -187,9 +188,9 @@ export default function ActivitiesPage() {
       </section>
 
       {/* HALF-DAY PLANS — few and pricier, so they get the room */}
-      <section className="px-4 py-16 sm:px-6">
+      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="font-heading text-h2 font-bold text-foreground">
             {s?.landDayTitle}
           </h2>
           <p className="mt-3 max-w-prose leading-relaxed text-muted-foreground">
@@ -247,7 +248,7 @@ export default function ActivitiesPage() {
       )}
 
       {/* WHO OPERATES THIS */}
-      <section className="bg-muted/40 px-4 py-14 sm:px-6">
+      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-6 sm:p-8">
           <div className="flex flex-wrap items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
@@ -283,9 +284,9 @@ export default function ActivitiesPage() {
 
       {/* FAQ */}
       {(s?.faq || []).length > 0 && (
-        <section className="px-4 py-14 sm:px-6">
+        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
           <div className="mx-auto max-w-2xl">
-            <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <h2 className="font-heading text-h2 font-bold text-foreground">
               {s?.faqTitle}
             </h2>
             <dl className="mt-8 divide-y divide-border">
@@ -301,8 +302,8 @@ export default function ActivitiesPage() {
       )}
 
       {/* Sticky mobile CTA */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-[0_-6px_24px_-8px_hsl(215_45%_20%/0.3)] backdrop-blur lg:hidden">
-        <div className="mx-auto flex max-w-md items-center justify-between gap-3">
+      <MobileStickyBar>
+        <div className="flex items-center justify-between gap-3">
           <p className="text-sm font-bold leading-tight text-foreground">{s?.chips?.[0]}</p>
           <a
             href={blanesUrl}
@@ -314,8 +315,7 @@ export default function ActivitiesPage() {
             <ExternalLink className="h-4 w-4" />
           </a>
         </div>
-      </div>
-      <div className="h-20 lg:hidden" />
+      </MobileStickyBar>
 
       <RelatedContent currentPage="activities" />
       <Footer />

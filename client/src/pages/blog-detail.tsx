@@ -22,6 +22,7 @@ import { generateHowToSchema } from "@/data/howToBlogPosts";
 import { trackBlogView, trackBlogScroll, trackBlogCtaClick, trackBlogShare, trackWhatsAppClick } from "@/utils/analytics";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import type { BlogPost } from "@shared/schema";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 
 const LOCALE_MAP: Record<string, string> = {
   es: 'es-ES', en: 'en-GB', ca: 'ca-ES', fr: 'fr-FR',
@@ -128,7 +129,7 @@ function TableOfContents({ items, title }: { items: TocItem[]; title: string }) 
       <div className="lg:hidden mb-6">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors w-full py-2"
+          className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors w-full min-h-11 py-2"
         >
           <List className="w-4 h-4" />
           {title}
@@ -145,7 +146,7 @@ function TableOfContents({ items, title }: { items: TocItem[]; title: string }) 
                   document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' });
                   setIsOpen(false);
                 }}
-                className={`block text-sm py-1 transition-colors ${item.level === 3 ? 'pl-4' : ''} ${activeId === item.id ? 'text-cta font-medium' : 'text-muted-foreground hover:text-foreground'}`}
+                className={`block text-sm py-1 pointer-coarse:py-2.5 transition-colors ${item.level === 3 ? 'pl-4' : ''} ${activeId === item.id ? 'text-cta font-medium' : 'text-muted-foreground hover:text-foreground'}`}
               >
                 {item.text}
               </a>
@@ -199,7 +200,7 @@ function StickyMobileCTA({ slug }: { slug: string }) {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-background/95 backdrop-blur-sm border-t border-border p-3 safe-area-bottom">
+    <MobileStickyBar>
       <Link
         href={`${localizedPath("home")}#fleet`}
         onClick={() => trackBlogCtaClick(slug, 'sticky_mobile_cta')}
@@ -208,7 +209,7 @@ function StickyMobileCTA({ slug }: { slug: string }) {
         <Anchor className="w-4 h-4" />
         {t.hero?.bookNow || 'Reservar'}
       </Link>
-    </div>
+    </MobileStickyBar>
   );
 }
 
@@ -712,7 +713,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
         <main id="main-content" className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
           <Card>
             <CardContent className="pt-6">
-              <h2 className="text-2xl font-bold mb-4">{bd.notFoundTitle}</h2>
+              <h2 className="text-h2 font-bold mb-4">{bd.notFoundTitle}</h2>
               <p className="text-muted-foreground mb-6">
                 {bd.notFoundDescription}
               </p>
@@ -788,7 +789,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                 </Badge>
 
                 <h1
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight"
+                  className="text-h1 font-heading font-bold tracking-tight"
                   data-testid={`text-title-${post.slug}`}
                 >
                   {localized(post.titleByLang as Record<string, string> | null, post.title, language)}
@@ -808,7 +809,8 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                   </div>
                   <span className="text-muted-foreground">{estimateReadingTime(post.content)} {bd.minRead}</span>
                   {post.tags && post.tags.length > 0 && (
-                    <>
+                    // Keyword chips are noise on a phone: they push the article below the fold.
+                    <div className="hidden sm:contents">
                       <span className="text-border">|</span>
                       <div className="flex flex-wrap gap-1.5">
                         {post.tags.map((tag, index) => (
@@ -822,7 +824,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                           </Badge>
                         ))}
                       </div>
-                    </>
+                    </div>
                   )}
                 </div>
 
@@ -853,9 +855,6 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                 </div>
               )}
 
-              {/* E1: Inline Newsletter CTA (before content) */}
-              <InlineNewsletterCTA bd={bd} language={language} />
-
               {/* Mobile TOC (collapsible, shown above content) */}
               <TableOfContents items={tocItems} title={bd.tableOfContents} />
 
@@ -868,6 +867,9 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                   {localized(post.contentByLang as Record<string, string> | null, post.content, language)}
                 </ReactMarkdown>
               </div>
+
+              {/* E1: Inline Newsletter CTA (after content: the reader came for the article) */}
+              <InlineNewsletterCTA bd={bd} language={language} />
 
               {/* Share Buttons */}
               <ShareButtons
@@ -929,7 +931,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
           <section className="mt-16 pt-8 border-t max-w-4xl">
-            <h2 className="text-2xl font-bold mb-6" data-testid="text-related-posts-title">
+            <h2 className="text-h2 font-bold mb-6" data-testid="text-related-posts-title">
               {bd.relatedArticles}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

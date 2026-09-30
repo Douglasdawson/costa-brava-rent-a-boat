@@ -39,6 +39,7 @@ import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 // ---------------------------------------------------------------------------
 // Sub-components
@@ -325,15 +326,15 @@ export default function LocationTemplate({
       {/* ═══ HERO ═══ */}
       {config.heroImage ? (
         <div className="relative pt-20 sm:pt-24">
-          <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
+          <div className="relative w-full min-h-[max(55vh,420px)] sm:min-h-[max(55vh,520px)] flex flex-col overflow-hidden">
             <HeroImage
               basePath={config.heroImage.basePath}
               alt={hero?.imageAlt ?? config.heroImage.alt}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
-            <div className="relative z-10 h-full flex items-end pb-12 sm:pb-16">
+            <div className="relative z-10 flex-1 flex items-end pt-8 pb-12 sm:pb-16">
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white drop-shadow-lg mb-3">
+                <h1 className="text-h1 font-heading font-bold text-white drop-shadow-lg mb-3">
                   {hero?.title}
                 </h1>
                 <p className="text-lg text-white/90 mb-6 max-w-2xl drop-shadow">
@@ -390,8 +391,8 @@ export default function LocationTemplate({
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
               <div className="flex items-center justify-center mb-6">
-                <MapPin className="w-8 h-8 text-primary mr-4" />
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+                <MapPin className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
+                <h1 className="text-h1 font-heading font-bold text-foreground">
                   {hero?.title}
                 </h1>
               </div>
@@ -450,7 +451,7 @@ export default function LocationTemplate({
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
               <div className="lg:col-span-3">
-                <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+                <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
                   {s.whyRentTitle}
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
@@ -519,7 +520,7 @@ export default function LocationTemplate({
       {s && (
         <RevealSection className="py-16 sm:py-20 bg-muted">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-center text-foreground mb-12">
+            <h2 className="text-h2 font-heading font-bold text-center text-foreground mb-12">
               <Star className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
               {s.townAttractionsTitle}
             </h2>
@@ -550,7 +551,7 @@ export default function LocationTemplate({
       {s && (
         <RevealSection className="py-16 sm:py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+            <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
               {s.howToGetTitle}
             </h2>
             <div className="grid sm:grid-cols-2 gap-8">
@@ -615,7 +616,7 @@ export default function LocationTemplate({
       {s && (
         <RevealSection className="py-12 sm:py-16 bg-muted">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+            <h2 className="text-h2 font-heading font-bold text-foreground mb-4">
               <Anchor className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
               {s.boatDestinationsTitle}
             </h2>
@@ -651,7 +652,7 @@ export default function LocationTemplate({
       {s && (
         <div className="py-16 sm:py-20 bg-primary">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+            <h2 className="text-h2 font-heading font-bold text-white mb-4">
               {s.ctaTitle}
             </h2>
             <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">
@@ -694,7 +695,7 @@ export default function LocationTemplate({
       {/* ═══ FAQ ═══ */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-center mb-10">
+          <h2 className="text-h2 font-heading font-bold text-center mb-10">
             {config.faqTitle}
           </h2>
           <FAQSection items={processedFaqItems} />
@@ -708,6 +709,7 @@ export default function LocationTemplate({
       {config.relatedContentPage && (
         <RelatedContent currentPage={config.relatedContentPage} />
       )}
+      <BookingStickyBar />
       <Footer />
     </div>
   );

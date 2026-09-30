@@ -840,7 +840,7 @@ function Step2Details({
             <button
               type="button"
               onClick={() => onGoToStep(1)}
-              className="text-xs font-semibold underline underline-offset-2"
+              className="text-xs font-semibold underline underline-offset-2 pointer-coarse:min-h-11"
             >
               {t.bookingWizard?.boatStatus?.changeDate ?? "Cambiar fecha"}
             </button>
@@ -848,7 +848,7 @@ function Step2Details({
               <button
                 type="button"
                 onClick={() => onGoToStep(2)}
-                className="text-xs font-semibold underline underline-offset-2"
+                className="text-xs font-semibold underline underline-offset-2 pointer-coarse:min-h-11"
               >
                 {t.bookingWizard?.boatStatus?.seeOtherBoat ?? "Ver otro barco"}
               </button>

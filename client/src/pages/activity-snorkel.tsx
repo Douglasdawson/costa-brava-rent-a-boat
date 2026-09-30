@@ -26,6 +26,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import React from "react";
 import { translateBoatText } from "@shared/boatTextTranslations";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 // Icons paired by position to the `spots` array in t.activitySnorkel.
 const SPOT_ICONS = [Star, Eye, Fish];
@@ -140,8 +141,8 @@ export default function ActivitySnorkelPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <Waves className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+              <Waves className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
+              <h1 className="text-h1 font-heading font-bold text-foreground">
                 {s?.heroTitle ?? "Excursión de Snorkel en Barco desde Blanes"}
               </h1>
             </div>
@@ -169,7 +170,7 @@ export default function ActivitySnorkelPage() {
       {/* Why Snorkel from a Boat */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <Star className="w-6 h-6 text-primary" />
             {s?.whyTitle ?? "Por qué hacer snorkel desde un barco"}
           </h2>
@@ -227,7 +228,7 @@ export default function ActivitySnorkelPage() {
       {/* Best Snorkel Spots */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <MapPin className="w-6 h-6 text-primary" />
             {s?.spotsTitle ?? "Mejores calas para snorkel cerca de Blanes"}
           </h2>
@@ -254,7 +255,7 @@ export default function ActivitySnorkelPage() {
       {/* Equipment Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <Anchor className="w-6 h-6 text-primary" />
             {s?.equipmentTitle ?? "Equipo de snorkel incluido y disponible"}
           </h2>
@@ -288,7 +289,7 @@ export default function ActivitySnorkelPage() {
       {/* Recommended Boats */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <Users className="w-6 h-6 text-primary" />
             {s?.boatsTitle ?? "Barcos recomendados para snorkel"}
           </h2>
@@ -313,7 +314,7 @@ export default function ActivitySnorkelPage() {
       {/* Suggested Route */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <Sun className="w-6 h-6 text-primary" />
             {s?.routeTitle ?? "Ruta de snorkel recomendada (3 horas)"}
           </h2>
@@ -368,7 +369,7 @@ export default function ActivitySnorkelPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">{s?.ctaTitle ?? "Reserva tu excursión de snorkel desde Blanes"}</h2>
+          <h2 className="text-h2 font-heading font-bold mb-4 text-white">{s?.ctaTitle ?? "Reserva tu excursión de snorkel desde Blanes"}</h2>
           <p className="text-lg mb-6 text-white/90 leading-relaxed">
             {s?.ctaDescription ?? "Elige tu barco, añade el equipo de snorkel y descubre los fondos marinos de la Costa Brava. Salidas desde el Puerto de Blanes de abril a octubre."}
           </p>
@@ -394,7 +395,7 @@ export default function ActivitySnorkelPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             {s?.faqTitle ?? "Preguntas frecuentes sobre snorkel en barco"}
           </h2>
           <FAQSection items={faqs} />
@@ -402,6 +403,7 @@ export default function ActivitySnorkelPage() {
       </RevealSection>
 
       <RelatedContent currentPage="activitySnorkel" />
+      <BookingStickyBar />
       <Footer />
     </div>
   );

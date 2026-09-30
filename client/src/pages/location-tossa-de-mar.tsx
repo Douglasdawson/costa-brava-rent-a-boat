@@ -42,6 +42,7 @@ import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -199,7 +200,7 @@ export default function LocationTossaPage() {
           framing the new Tossa positioning depends on. LCP image preloaded
           via server/seoInjector.ts LcpPreload. */}
       <div className="relative pt-20 sm:pt-24">
-        <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
+        <div className="relative w-full min-h-[max(55vh,420px)] sm:min-h-[max(55vh,520px)] flex flex-col overflow-hidden">
           <picture>
             <source media="(min-width: 768px)" type="image/avif" srcSet="/images/locations/hero-tossa-de-mar.avif" />
             <source type="image/avif" srcSet="/images/locations/hero-tossa-de-mar-mobile.avif" />
@@ -216,12 +217,12 @@ export default function LocationTossaPage() {
             />
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
-          <div className="relative z-10 h-full flex items-center">
+          <div className="relative z-10 flex-1 flex items-center py-8">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <div className="text-center max-w-4xl mx-auto">
                 <div className="inline-flex items-center justify-center mb-4">
                   <Castle className="w-7 h-7 text-white mr-3 drop-shadow" />
-                  <h1 className="text-2xl sm:text-3xl lg:text-5xl font-heading font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+                  <h1 className="text-h1 font-heading font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                     {t.locationPages.tossa.hero.title}
                   </h1>
                 </div>
@@ -280,7 +281,7 @@ export default function LocationTossaPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+              <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
                 <Crown className="w-6 h-6 text-primary" />
                 {s.whyTossaTitle}
               </h2>
@@ -331,7 +332,7 @@ export default function LocationTossaPage() {
       {/* Main Beaches and Historic Sites */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
             <Shield className="w-6 h-6 text-primary" />
             {s.attractionsTitle}
           </h2>
@@ -369,7 +370,7 @@ export default function LocationTossaPage() {
       {/* What to Do in Tossa */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <Heart className="w-6 h-6 text-primary" />
             {s.whatToDoTitle}
           </h2>
@@ -423,7 +424,7 @@ export default function LocationTossaPage() {
       {/* Navigation Tips */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
             <NavigationIcon className="w-6 h-6 text-primary" />
             {s.navigationTipsTitle}
           </h2>
@@ -491,7 +492,7 @@ export default function LocationTossaPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">
             {s.ctaTitle}
           </h2>
           <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
@@ -520,7 +521,7 @@ export default function LocationTossaPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
             Preguntas frecuentes sobre Tossa de Mar en barco
           </h2>
           <FAQSection items={processedFaqItems} />
@@ -533,6 +534,7 @@ export default function LocationTossaPage() {
       <ActivitatumTeaser topic={"lloret"} surface="city-landing" />
       <RelatedContent currentPage="locationTossa" />
 
+      <BookingStickyBar />
       <Footer />
     </div>
   );

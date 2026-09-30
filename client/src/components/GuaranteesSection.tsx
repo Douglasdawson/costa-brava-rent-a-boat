@@ -49,7 +49,7 @@ export default function GuaranteesSection() {
           <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-cta">
             {g.navLabel}
           </p>
-          <h2 className="mt-3 font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <h2 className="mt-3 font-heading text-h2 font-semibold tracking-tight text-foreground">
             {g.heroTitle}
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">{g.heroSubtitle}</p>

@@ -13,6 +13,7 @@ import {
   BASE_DOMAIN,
 } from "@/utils/seo-config";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 import {
   PHONE_PREFIXES,
   flagEmojiToIso2,
@@ -182,7 +183,7 @@ export default function SharedSailingPage() {
             {s.hero.badge}
           </span>
 
-          <h1 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)] sm:text-5xl lg:text-6xl">
+          <h1 className="font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
             {s.hero.title}
           </h1>
 
@@ -229,7 +230,7 @@ export default function SharedSailingPage() {
           {status === "success" ? (
             <div role="status" className="rounded-2xl border border-border bg-card p-8 text-center">
               <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-[hsl(var(--ring))]" />
-              <h2 className="mb-2 font-heading text-2xl font-bold text-foreground">
+              <h2 className="mb-2 font-heading text-h2 font-bold text-foreground">
                 {s.form.successTitle}
               </h2>
               <p className="text-muted-foreground">{s.form.successText}</p>
@@ -237,7 +238,7 @@ export default function SharedSailingPage() {
           ) : (
             <>
               <div className="mb-7 text-center">
-                <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+                <h2 className="font-heading text-h2 font-bold text-foreground">
                   {s.form.title}
                 </h2>
                 <p className="mt-2 text-muted-foreground">{s.form.subtitle}</p>
@@ -445,7 +446,7 @@ export default function SharedSailingPage() {
       {/* ═══ FAQ (contenido citable para buscadores de IA) ═══ */}
       <section className="px-4 py-16 sm:px-6 lg:py-20">
         <div className="mx-auto max-w-2xl">
-          <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
             {s.faqTitle}
           </h2>
           <dl className="mt-8 divide-y divide-border">
@@ -461,8 +462,8 @@ export default function SharedSailingPage() {
 
       {/* ═══ Barra CTA fija (solo móvil) ═══ */}
       {status !== "success" && (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-[0_-6px_24px_-8px_hsl(215_45%_20%/0.3)] backdrop-blur lg:hidden">
-          <div className="mx-auto flex max-w-md items-center justify-between gap-3">
+        <MobileStickyBar>
+          <div className="flex items-center justify-between gap-3">
             <div className="leading-tight">
               <p className="text-sm font-bold text-foreground">{s.hero.priceHook}</p>
               <p className="text-xs text-muted-foreground">{s.hero.priceNote}</p>
@@ -471,11 +472,8 @@ export default function SharedSailingPage() {
               {s.hero.cta}
             </a>
           </div>
-        </div>
+        </MobileStickyBar>
       )}
-
-      {/* Margen para que la barra fija no tape el contenido en móvil */}
-      <div className="h-20 lg:hidden" />
 
       <Footer />
     </div>

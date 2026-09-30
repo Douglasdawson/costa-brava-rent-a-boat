@@ -43,7 +43,7 @@ export default function FAQPreview() {
         <div className="mb-10 max-w-2xl">
           <h2
             id="faq-preview-title"
-            className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight text-balance mb-3"
+            className="font-heading text-h2 font-semibold text-foreground tracking-tight text-balance mb-3"
           >
             {title}
           </h2>

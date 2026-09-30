@@ -33,6 +33,7 @@ import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { substituteFaqVars, computeFaqVars } from "@/utils/faqVars";
 import { getBoatImage } from "@/utils/boatImages";
 import { translateBoatText } from "@shared/boatTextTranslations";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 type SeasonKey = "BAJA" | "MEDIA" | "ALTA";
 
@@ -236,7 +237,7 @@ export default function PricingPage() {
       {/* ═══ HERO ═══ */}
       <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-28 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
+          <h1 className="text-h1 font-heading font-bold text-foreground mb-4">
             {pp.heroTitle}
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">{pp.heroSubtitle}</p>
@@ -268,7 +269,7 @@ export default function PricingPage() {
             </a>{" "}
             (20 min)
           </p>
-          <LastUpdated date="2026-05-31" className="text-center mt-4" />
+          <LastUpdated date="2026-09-03" className="text-center mt-4" />
         </div>
       </div>
 
@@ -277,7 +278,7 @@ export default function PricingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-6">
+              <h2 className="text-h2 font-heading font-bold text-foreground mb-6">
                 {pp.info.whatIncludesTitle}
               </h2>
               <ul className="space-y-4 text-muted-foreground leading-relaxed">
@@ -588,7 +589,7 @@ export default function PricingPage() {
       {/* ═══ IMPORTANT INFO ═══ */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
             {pp.info.importantTitle}
           </h2>
           <ul className="space-y-3 text-muted-foreground leading-relaxed max-w-3xl">
@@ -603,7 +604,7 @@ export default function PricingPage() {
       {/* ═══ FAQ ═══ */}
       <RevealSection className="py-16 sm:py-20 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
             {pp.faqTitle}
           </h2>
           <FAQSection
@@ -653,7 +654,7 @@ export default function PricingPage() {
       {/* ═══ CTA ═══ full-width */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">
             {pp.cta.title}
           </h2>
           <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{pp.cta.subtitle}</p>
@@ -669,6 +670,7 @@ export default function PricingPage() {
         </div>
       </div>
 
+      <BookingStickyBar />
       <Footer />
     </main>
   );

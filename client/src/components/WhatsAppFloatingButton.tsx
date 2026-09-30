@@ -42,6 +42,8 @@ export default function WhatsAppFloatingButton() {
 
   // On boat detail pages the mobile sticky CTA already includes a WhatsApp
   // button, so hide the FAB on mobile while that bar is visible.
+  // Pages with a MobileStickyBar ([data-sticky-cta]) lift the FAB above it via
+  // the body:has() variant in className, so it never covers the bar's CTA.
   const hiddenOnMobile = isBoatDetailPage && pastStickyCta;
 
   const whatsappMessage = encodeURIComponent(
@@ -56,7 +58,7 @@ export default function WhatsAppFloatingButton() {
       title="WhatsApp"
       aria-label="Contactar por WhatsApp"
       onClick={() => trackWhatsAppClick("floating_button")}
-      className={`fixed bottom-16 sm:bottom-6 right-4 z-50 mb-safe items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full shadow-lg transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:outline-none bg-whatsapp ${
+      className={`fixed bottom-16 sm:bottom-6 max-lg:[body:has([data-sticky-cta])_&]:bottom-24 right-4 z-50 mb-safe items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full shadow-lg transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:outline-none bg-whatsapp ${
         hiddenOnMobile ? "hidden md:flex" : "flex"
       }`}
     >

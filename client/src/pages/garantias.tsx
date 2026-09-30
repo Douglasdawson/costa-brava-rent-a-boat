@@ -13,6 +13,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { generateHreflangLinks, generateCanonicalUrl, getSEOConfig } from "@/utils/seo-config";
 import { generateBreadcrumbSchema } from "@/utils/seo-schemas";
 import { COVERAGE_PRICES_FALLBACK, type CoveragePrices } from "@shared/pricing";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 
 const NAVY_CTA =
   "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
@@ -47,7 +48,7 @@ function Reveal({ className = "", children }: { className?: string; children: Re
 function RecordHeader({ name, price }: { name: string; price: string }) {
   return (
     <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b-2 border-foreground pb-4">
-      <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{name}</h2>
+      <h2 className="font-heading text-h2 font-bold text-foreground">{name}</h2>
       <p className="font-mono text-3xl font-bold tabular-nums leading-none text-cta sm:text-4xl">
         {price}
       </p>
@@ -152,7 +153,7 @@ export default function GarantiasPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/85 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
             {g.navLabel}
           </p>
-          <h1 className="mt-4 font-heading text-4xl font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)] sm:text-5xl">
+          <h1 className="mt-4 font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
             {g.heroTitle}
           </h1>
           <p className="mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
@@ -303,7 +304,7 @@ export default function GarantiasPage() {
       {/* CLOSE — the decision belongs in the booking flow, so send them there. */}
       <Reveal className="bg-primary px-4 py-16 sm:px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-2xl font-bold text-primary-foreground sm:text-3xl">
+          <h2 className="font-heading text-h2 font-bold text-primary-foreground">
             {g.ctaTitle}
           </h2>
           <button
@@ -334,7 +335,7 @@ export default function GarantiasPage() {
       </div>
 
       {/* Sticky CTA on phones: the page is long enough that the close scrolls away. */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 px-4 py-3 backdrop-blur lg:hidden">
+      <MobileStickyBar>
         <button
           type="button"
           onClick={() => openBookingModal()}
@@ -342,8 +343,7 @@ export default function GarantiasPage() {
         >
           {g.ctaLabel}
         </button>
-      </div>
-      <div className="h-20 lg:hidden" />
+      </MobileStickyBar>
 
       <Footer />
     </div>

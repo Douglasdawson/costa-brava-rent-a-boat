@@ -174,7 +174,7 @@ export default function GiftCardsPage() {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-2">
+              <h2 className="text-h2 font-heading font-bold text-foreground mb-2">
                 {t.giftCards?.purchaseSuccess || "Tarjeta regalo creada"}
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
@@ -224,7 +224,7 @@ export default function GiftCardsPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mt-8">
             <Gift className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-primary" />
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">
+            <h1 className="text-h1 font-heading font-bold mb-4">
               {t.giftCards?.title || "Tarjetas Regalo"}
             </h1>
             <p className="text-lg sm:text-xl max-w-3xl mx-auto text-muted-foreground">
@@ -239,7 +239,7 @@ export default function GiftCardsPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3 space-y-5">
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
+              <h2 className="text-h2 font-heading font-bold text-foreground">
                 {t.giftCards?.whyTitle || "¿Por qué regalar una experiencia en barco?"}
               </h2>
               <p className="text-muted-foreground leading-relaxed">{t.giftCards?.whyP1 || ""}</p>
@@ -429,7 +429,7 @@ export default function GiftCardsPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20 bg-background">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-6">
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-6">
             Preguntas frecuentes sobre tarjetas regalo
           </h2>
           <div className="space-y-3">
@@ -451,7 +451,7 @@ export default function GiftCardsPage() {
       {/* CTA Section */}
       <RevealSection className="py-16 sm:py-20 bg-primary text-primary-foreground">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">
+          <h2 className="text-h2 font-heading font-bold mb-4">
             {t.giftCards?.ctaTitle || "El mar siempre es el mejor regalo"}
           </h2>
           <p className="text-primary-foreground/85 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">

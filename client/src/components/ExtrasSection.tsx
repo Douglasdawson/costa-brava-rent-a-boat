@@ -45,7 +45,7 @@ export default function ExtrasSection() {
         <div className="mb-10 max-w-2xl sm:mb-12">
           <h2
             id="extras-title"
-            className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl md:text-4xl"
+            className="font-heading text-h2 font-semibold tracking-tight text-foreground text-balance"
           >
             {s.title}
           </h2>

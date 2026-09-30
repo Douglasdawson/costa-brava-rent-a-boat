@@ -811,11 +811,11 @@ function Step3Departure({
             {(t.bookingWizard?.hints?.boatNotAvailableForDate ?? "Sin disponibilidad para {date}. Mira otro día o cambia de barco.")
               .replace("{date}", formatLocalisedDate(selectedDate, language))}
           </p>
-          <div className="mt-2 flex flex-wrap gap-3">
+          <div className="mt-1 flex flex-wrap gap-x-4">
             <button
               type="button"
               onClick={() => onGoToStep(1)}
-              className="text-xs font-semibold underline underline-offset-2"
+              className="min-h-11 text-sm font-semibold underline underline-offset-2"
             >
               {t.bookingWizard?.boatStatus?.changeDate ?? "Cambiar fecha"}
             </button>
@@ -823,7 +823,7 @@ function Step3Departure({
               <button
                 type="button"
                 onClick={() => onGoToStep(2)}
-                className="text-xs font-semibold underline underline-offset-2"
+                className="min-h-11 text-sm font-semibold underline underline-offset-2"
               >
                 {t.bookingWizard?.boatStatus?.seeOtherBoat ?? "Ver otro barco"}
               </button>

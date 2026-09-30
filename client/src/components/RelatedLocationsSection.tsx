@@ -76,7 +76,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
             <div className="text-center mb-8">
               <div className="flex items-center justify-center gap-2 mb-3">
                 <Anchor className="w-6 h-6 text-primary" aria-hidden="true" />
-                <h2 className="font-heading text-2xl lg:text-3xl font-bold text-foreground">
+                <h2 className="font-heading text-h2 font-bold text-foreground">
                   {rl.boatTitle}
                 </h2>
               </div>
@@ -162,7 +162,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
         {/* Boat categories */}
         <div>
           <div className="text-center mb-8">
-            <h2 className="font-heading text-2xl lg:text-3xl font-bold text-foreground mb-3">
+            <h2 className="font-heading text-h2 font-bold text-foreground mb-3">
               {rl.categoriesTitle}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

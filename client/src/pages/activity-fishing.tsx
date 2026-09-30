@@ -25,6 +25,7 @@ import { useTranslations } from "@/lib/translations";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { FAQSection } from "@/components/FAQSection";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -133,8 +134,8 @@ export default function ActivityFishingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <Fish className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+              <Fish className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
+              <h1 className="text-h1 font-heading font-bold text-foreground">
                 {fi?.heroTitle ?? "Pesca desde Barco en Blanes - Costa Brava"}
               </h1>
             </div>
@@ -162,7 +163,7 @@ export default function ActivityFishingPage() {
       {/* Why Fish from Blanes */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <Star className="w-6 h-6 text-primary" />
             {fi?.whyTitle ?? "Por qué pescar desde Blanes"}
           </h2>
@@ -217,7 +218,7 @@ export default function ActivityFishingPage() {
       {/* Fish Species */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <Fish className="w-6 h-6 text-primary" />
             {fi?.speciesTitle ?? "Especies que puedes pescar en Blanes"}
           </h2>
@@ -248,7 +249,7 @@ export default function ActivityFishingPage() {
       {/* Recommended Boats */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <Anchor className="w-6 h-6 text-primary" />
             {fi?.boatsTitle ?? "Barcos recomendados para pesca"}
           </h2>
@@ -284,7 +285,7 @@ export default function ActivityFishingPage() {
       {/* Fishing Spots */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <MapPin className="w-6 h-6 text-primary" />
             {fi?.spotsTitle ?? "Zonas de pesca desde Blanes"}
           </h2>
@@ -307,7 +308,7 @@ export default function ActivityFishingPage() {
       {/* Regulations */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <AlertTriangle className="w-6 h-6 text-primary" />
             {fi?.regulationsTitle ?? "Regulaciones y normativa de pesca"}
           </h2>
@@ -349,7 +350,7 @@ export default function ActivityFishingPage() {
       {/* Bring Your Own Equipment */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             <Shield className="w-6 h-6 text-primary" />
             {fi?.equipmentTitle ?? "Equipo de pesca: trae el tuyo"}
           </h2>
@@ -411,7 +412,7 @@ export default function ActivityFishingPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">{fi?.ctaTitle ?? "Reserva tu barco para pescar en Blanes"}</h2>
+          <h2 className="text-h2 font-heading font-bold mb-4 text-white">{fi?.ctaTitle ?? "Reserva tu barco para pescar en Blanes"}</h2>
           <p className="text-lg mb-6 text-white/90 leading-relaxed">
             {fi?.ctaDescription ?? "Trae tu equipo, nosotros ponemos el barco. Lubinas, doradas, serviolas y más te esperan en las aguas de la Costa Brava. Salidas desde el Puerto de Blanes."}
           </p>
@@ -437,7 +438,7 @@ export default function ActivityFishingPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
             {fi?.faqTitle ?? "Preguntas frecuentes sobre pesca desde barco"}
           </h2>
           <FAQSection items={faqs} />
@@ -445,6 +446,7 @@ export default function ActivityFishingPage() {
       </RevealSection>
 
       <RelatedContent currentPage="activityFishing" />
+      <BookingStickyBar />
       <Footer />
     </div>
   );

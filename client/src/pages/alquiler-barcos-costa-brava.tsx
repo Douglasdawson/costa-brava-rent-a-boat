@@ -20,6 +20,7 @@ import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBrea
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { Link } from "wouter";
 import { trackLocationPageView } from "@/utils/analytics";
+import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollReveal();
@@ -305,8 +306,8 @@ export default function LocationCostaBravaPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
-              <MapPin className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+              <MapPin className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
+              <h1 className="text-h1 font-heading font-bold text-foreground">
                 {cb?.hero.title || "Alquiler de Barcos en la Costa Brava"}
               </h1>
             </div>
@@ -375,7 +376,7 @@ export default function LocationCostaBravaPage() {
       {/* Why Choose Costa Brava */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
             <Star className="w-6 h-6 text-primary" />
             {s?.whyChooseTitle || "Por que elegir la Costa Brava para alquilar un barco"}
           </h2>
@@ -407,7 +408,7 @@ export default function LocationCostaBravaPage() {
       {/* Navigation Guide */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
             <NavigationIcon className="w-6 h-6 text-primary" />
             {s?.navigationGuideTitle || "Guia de Navegacion por la Costa Brava"}
           </h2>
@@ -430,7 +431,7 @@ export default function LocationCostaBravaPage() {
       {/* Boat Types Comparison */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
             <Ship className="w-6 h-6 text-primary" />
             {s?.boatTypesTitle || "Tipos de Barcos para la Costa Brava"}
           </h2>
@@ -497,7 +498,7 @@ export default function LocationCostaBravaPage() {
       {/* Best Coves */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
             <Waves className="w-6 h-6 text-primary" />
             {s?.bestCovesTitle || "Las Mejores Calas de la Costa Brava en Barco"}
           </h2>
@@ -520,7 +521,7 @@ export default function LocationCostaBravaPage() {
       {/* Fleet / Pricing */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-2">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-2">
             <Clock className="w-6 h-6 text-primary" />
             {s?.pricingTitle || "Precios Alquiler Barco Costa Brava 2026"}
           </h2>
@@ -534,7 +535,7 @@ export default function LocationCostaBravaPage() {
       {/* Departure Ports */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
             <NavigationIcon className="w-6 h-6 text-primary" />
             Puertos de Salida y Destinos
           </h2>
@@ -571,7 +572,7 @@ export default function LocationCostaBravaPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
             Preguntas Frecuentes sobre Alquiler de Barcos en la Costa Brava
           </h2>
           <FAQSection items={faqDisplayItems} />
@@ -605,7 +606,7 @@ export default function LocationCostaBravaPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+          <h2 className="text-h2 font-heading font-bold text-white mb-4">
             {s?.ctaTitle || "Reserva tu Barco en la Costa Brava"}
           </h2>
           <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
@@ -629,6 +630,7 @@ export default function LocationCostaBravaPage() {
 
       <RelatedContent currentPage="locationCostaBrava" />
 
+      <BookingStickyBar />
       <Footer />
     </div>
   );

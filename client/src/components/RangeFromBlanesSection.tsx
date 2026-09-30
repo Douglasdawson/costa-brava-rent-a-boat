@@ -53,7 +53,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
           )}
           <h2
             id="range-from-blanes-title"
-            className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-4 text-balance"
+            className="font-heading text-h2 font-semibold text-foreground tracking-tight mb-4 text-balance"
           >
             {headline}
           </h2>

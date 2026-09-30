@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 import {
   generateHreflangLinks,
   generateCanonicalUrl,
@@ -123,7 +124,7 @@ export default function FuegosBlanesPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/85 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
             {s?.hero?.eyebrow}
           </p>
-          <h1 className="mt-4 font-heading text-4xl font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)] sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
             {s?.hero?.title}
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
@@ -158,13 +159,13 @@ export default function FuegosBlanesPage() {
       )}
 
       {/* PRICE + INCLUDES */}
-      <section className="bg-muted/40 px-4 py-14 sm:px-6">
+      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <p className="font-heading text-6xl font-bold text-foreground">{s?.priceLabel}</p>
             <p className="mt-2 text-muted-foreground">{s?.priceMeta}</p>
           </div>
-          <h2 className="mt-10 text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="mt-10 text-center font-heading text-h2 font-bold text-foreground">
             {s?.includesTitle}
           </h2>
           <ul className="mx-auto mt-6 grid max-w-2xl gap-3 sm:grid-cols-2">
@@ -188,9 +189,9 @@ export default function FuegosBlanesPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="px-4 py-14 sm:px-6">
+      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
             {s?.detailsTitle}
           </h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -214,9 +215,9 @@ export default function FuegosBlanesPage() {
       </section>
 
       {/* PROGRAM */}
-      <section className="bg-muted/40 px-4 py-14 sm:px-6">
+      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-2xl">
-          <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
             {s?.programTitle}
           </h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -239,9 +240,9 @@ export default function FuegosBlanesPage() {
 
       {/* FAQ */}
       {(s?.faq || []).length > 0 && (
-        <section className="px-4 py-14 sm:px-6">
+        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
           <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
               {s?.faqTitle}
             </h2>
             <dl className="mt-8 divide-y divide-border">
@@ -257,8 +258,8 @@ export default function FuegosBlanesPage() {
       )}
 
       {/* Sticky mobile CTA */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-[0_-6px_24px_-8px_hsl(215_45%_20%/0.3)] backdrop-blur lg:hidden">
-        <div className="mx-auto flex max-w-md items-center justify-between gap-3">
+      <MobileStickyBar>
+        <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 leading-tight">
             <CalendarCheck className="h-4 w-4 flex-shrink-0 text-success" />
             <p className="text-sm font-bold text-foreground">{s?.priceLabel} {s?.priceMeta}</p>
@@ -273,8 +274,7 @@ export default function FuegosBlanesPage() {
             <SiWhatsapp className="h-4 w-4" />
           </a>
         </div>
-      </div>
-      <div className="h-20 lg:hidden" />
+      </MobileStickyBar>
 
       <Footer />
     </div>

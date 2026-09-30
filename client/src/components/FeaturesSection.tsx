@@ -12,7 +12,7 @@ export default function FeaturesSection() {
       <div className="container mx-auto max-w-6xl px-4">
         {/* Main Features */}
         <div className="mb-10 max-w-2xl sm:mb-12">
-          <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl md:text-4xl">
+          <h2 className="font-heading text-h2 font-semibold tracking-tight text-foreground text-balance">
             {t.features.whyUs}
           </h2>
           <p className="mt-3 text-base text-muted-foreground text-pretty sm:text-lg">

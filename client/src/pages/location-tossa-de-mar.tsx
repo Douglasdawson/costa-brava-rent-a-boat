@@ -76,7 +76,7 @@ export default function LocationTossaPage() {
   const locationSchema = {
     "@type": "TouristDestination",
     "name": "Excursiones en Barco a Tossa de Mar desde Blanes",
-    "description": "Alquiler de barcos para visitar Tossa de Mar desde Puerto de Blanes. Embarcaciones sin licencia y con licencia para descubrir la Vila Vella y calas de Tossa.",
+    "description": "Alquiler de barcos para visitar Tossa de Mar desde Puerto de Blanes, con Licencia de Navegación o con patrón, para descubrir la Vila Vella y calas de Tossa.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.7200,
@@ -123,39 +123,14 @@ export default function LocationTossaPage() {
   // Todos los precios que aparecen en esta FAQ vienen de shared/boatData.ts
   // o del producto excursion-privada en el catálogo — ninguno es asunción.
   const tossaFaqFromI18n = (t.locationPages.tossa as { faqItems?: Array<{ question: string; answer: string }> } | undefined)?.faqItems;
-  const faqItems = tossaFaqFromI18n && tossaFaqFromI18n.length > 0 ? tossaFaqFromI18n : [
-    {
-      question: "¿Puedo llegar a Tossa de Mar con barco sin licencia desde Blanes?",
-      answer: "No. Los barcos sin licencia (2 millas de costa, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret), 4 millas antes de Tossa. Para llegar a Tossa necesitas Licencia de Navegación Básica (LNB) o contratar la Excursión Privada con Capitán."
-    },
-    {
-      question: "¿Cuánto se tarda en barco de Blanes a Tossa?",
-      answer: "Entre 45 minutos y 1 hora desde el Puerto de Blanes. 7 millas de costa espectacular con acantilados y calas vírgenes."
-    },
-    {
-      question: "¿Cuánto cuesta la Excursión Privada con Capitán a Tossa?",
-      answer: "Pacific Craft 625 con patrón profesional, 4 h máximo, hasta 7 personas. Desde {excursionBaja4h} € temporada baja (abril-junio, septiembre-cierre). Incluye IVA, patrón, amarre, limpieza y seguro. Combustible aparte."
-    },
-    {
-      question: "¿Cuánto cuesta alquilar a Tossa con Licencia de Navegación Básica (LNB)?",
-      answer: "Packs cerrados 2 h / 4 h / 8 h, sin patrón. Desde {licBaja2h} € (2 h temporada baja) con los barcos con licencia. 3 tiers estacionales. Fianza 500 €. IVA, amarre, limpieza y seguro incluidos; combustible aparte."
-    },
-    {
-      question: "¿Puedo desembarcar en Tossa pueblo desde el barco?",
-      answer: "No hay amarre turístico público en Tossa. Se puede fondear en calas cercanas como Cala Llevadó, Mar d'en Roig o Cala Pola."
-    },
-    {
-      question: "¿Merece la pena ir a Tossa en barco si no tengo licencia?",
-      answer: "Sí, mediante la Excursión Privada con Capitán (Pacific Craft 625, 4 h, desde {excursionBaja4h} €). Única opción sin necesidad de licencia."
-    }
-  ];
+  const faqItems = tossaFaqFromI18n ?? [];
 
   const processedFaqItems = useMemo(
     () => faqItems.map((item) => ({
       question: substituteFaqVars(item.question, faqVars),
       answer: substituteFaqVars(item.answer, faqVars),
     })),
-    [faqVars],
+    [faqItems, faqVars],
   );
 
   const faqSchema = {

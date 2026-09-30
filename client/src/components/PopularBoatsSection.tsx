@@ -4,7 +4,7 @@ import { Ship } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { BOAT_DATA, boatDataRequiresLicense, isPubliclyListed } from "@shared/boatData";
+import { BOAT_DATA, boatDataRequiresLicense, isCaptainedBoat, isPubliclyListed } from "@shared/boatData";
 import { isCatalogBoatPubliclyListed } from "@shared/publicFleet";
 import { getBoatImage } from "@/utils/boatImages";
 import type { Boat } from "@shared/schema";
@@ -88,7 +88,11 @@ export default function PopularBoatsSection({
             .map(({ boatId, boat }) => {
               const lowestPrice = Math.min(...Object.values(boat.pricing.BAJA.prices));
               const isNoLicense = !boatDataRequiresLicense(boat);
-              const label = badgeLabel ? badgeLabel(boatId) : isNoLicense ? t.booking.withoutLicense : t.booking.withLicense;
+              // The captained excursion needs no licence but is not a licence-free rental: badge it as such.
+              const defaultLabel = isCaptainedBoat(boatId)
+                ? (t.popularBoatsSection?.badges?.captain ?? t.booking.withLicense)
+                : isNoLicense ? t.booking.withoutLicense : t.booking.withLicense;
+              const label = badgeLabel ? badgeLabel(boatId) : defaultLabel;
               const variant = badgeVariant ? badgeVariant(boatId) : isNoLicense ? "secondary" : "outline";
               return (
                 <a

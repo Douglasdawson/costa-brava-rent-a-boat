@@ -20,7 +20,7 @@ const config: LocationConfig = {
   ],
   schema: {
     name: "Alquiler de Barcos cerca de Santa Susanna",
-    description: "Alquila barcos desde el Puerto de Blanes, a solo 15 minutos en coche de Santa Susanna. Barcos sin licencia desde 85 EUR/hora.",
+    description: "Alquila barcos desde el Puerto de Blanes, a solo 15 minutos en coche de Santa Susanna. Con la Licencia de Navegación o con patrón.",
     latitude: 41.6332,
     longitude: 2.7133,
     locality: "Santa Susanna",
@@ -36,11 +36,11 @@ const config: LocationConfig = {
     },
     {
       question: "¿Cuánto cuesta alquilar un barco desde Blanes si estoy en Santa Susanna?",
-      answer: "El alquiler de barco empieza desde {noLicBaja1h} EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV. Disponemos de {fleetCount} barcos para 4-11 personas.",
+      answer: "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
     },
     {
       question: "¿Necesito licencia de navegación para alquilar un barco?",
-      answer: "No necesariamente. Ofrecemos barcos sin licencia que cualquier mayor de 18 años puede manejar. Te damos 15 minutos de formación antes de zarpar. También tenemos barcos con licencia.",
+      answer: "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: curso de 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
     },
     {
       question: "¿Es fácil llegar en transporte público desde Santa Susanna?",
@@ -52,17 +52,17 @@ const config: LocationConfig = {
     },
     {
       question: "¿Cuál es la mejor excursión en barco si me alojo en Santa Susanna?",
-      answer: "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 180 EUR para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde 420 EUR, ideal si no tienes experiencia náutica); (c) Barco con Licencia de Navegación Básica si alguno del grupo tiene titulación (desde 255 EUR / 4h).",
+      answer: "Desde Blanes recomendamos: (a) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} €, ideal si no tienes titulación ni experiencia náutica); (b) Barco con Licencia de Navegación (LN) 4h para fondear en 2-3 calas entre Blanes y Lloret o subir hasta Tossa (desde 255 € / 4h). Si nadie del grupo tiene titulación, el titulín se saca en un curso de 1 día, sin examen.",
     },
     {
       question: "¿Puedo hacer una excursión en barco al atardecer desde Santa Susanna?",
-      answer: "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 135 EUR por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min en coche o 10 min en tren. Reserva con antelación en verano.",
+      answer: "Sí, es muy popular. Desde Blanes puedes salir al atardecer (18:30-21:00 según mes) con un barco con Licencia de Navegación en pack de 2 horas, desde {licBaja2h} €, o con la excursión privada con patrón. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min por carretera o 10 min en tren. Reserva con antelación en verano.",
     },
   ],
   popularBoats: {
     title: "Barcos populares para alquilar desde el Puerto de Blanes",
-    description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
-    boatIds: ["remus-450", "solar-450", "astec-480", "pacific-craft-625"],
+    description: "A 15 minutos de Santa Susanna. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
+    boatIds: ["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"],
   },
 };
 

@@ -19,7 +19,7 @@ const config: LocationConfig = {
   ],
   schema: {
     name: "Alquiler de Barcos cerca de Calella",
-    description: "Alquila barcos desde el Puerto de Blanes, a solo 20 minutos en coche de Calella. Barcos sin licencia desde 85 EUR/hora.",
+    description: "Alquila barcos desde el Puerto de Blanes, a solo 20 minutos en coche de Calella. Con la Licencia de Navegación o con patrón.",
     latitude: 41.6136,
     longitude: 2.6545,
     locality: "Calella",
@@ -35,11 +35,11 @@ const config: LocationConfig = {
     },
     {
       question: "¿Cuánto cuesta alquilar un barco desde Blanes si estoy en Calella?",
-      answer: "El alquiler de barco empieza desde {noLicBaja1h} EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV. Disponemos de {fleetCount} barcos para 4-11 personas.",
+      answer: "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
     },
     {
       question: "¿Necesito experiencia previa para alquilar un barco?",
-      answer: "No necesitas experiencia. Ofrecemos barcos sin licencia que cualquier mayor de 18 años puede manejar. Te damos 15 minutos de formación antes de zarpar, incluyendo normas de navegación y seguridad.",
+      answer: "No hace falta experiencia previa. Con la excursión privada con patrón no pilotas tú. Si quieres llevar el timón necesitas la Licencia de Navegación (curso de 1 día, sin examen) y, antes de zarpar, te explicamos el barco, el fondeo y las normas de seguridad.",
     },
     {
       question: "¿Puedo ir y volver desde Calella en transporte público?",
@@ -51,7 +51,7 @@ const config: LocationConfig = {
     },
     {
       question: "¿Puedo hacer una excursión en barco desde Calella a Tossa de Mar?",
-      answer: "No directamente desde Calella (no hay alquiler). Desde Blanes sí: con un barco con Licencia de Navegación Básica (LNB) llegas a Tossa en 45 min (desde {licBaja2h} EUR/2h), o con nuestra Excursión Privada con Capitán 4h hasta Tossa incluyendo Cala Bona y Vila Vella (desde {excursionBaja4h} EUR para hasta 7 personas). Los barcos sin licencia no pueden llegar a Tossa por el límite legal de 2 millas.",
+      answer: "No directamente desde Calella (no hay alquiler). Desde Blanes sí: con un barco con Licencia de Navegación (LN) llegas a Tossa en 30-45 min (desde {licBaja2h} €/2h), o con nuestra Excursión Privada con Capitán 4h hasta Tossa incluyendo Cala Bona y Vila Vella (desde {excursionBaja4h} € para hasta 6 personas, más el patrón), que no requiere titulación.",
     },
     {
       question: "¿Cuánto cuesta el tren R1 de Calella a Blanes?",
@@ -60,8 +60,8 @@ const config: LocationConfig = {
   ],
   popularBoats: {
     title: "Barcos populares para alquilar desde el Puerto de Blanes",
-    description: "Estos son los barcos sin licencia que más alquilamos. Todos llegan hasta Playa de Fenals (sur de Lloret) en 25 minutos y son ideales para 2-7 personas.",
-    boatIds: ["remus-450", "solar-450", "astec-480", "pacific-craft-625"],
+    description: "A 20 minutos de Calella. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
+    boatIds: ["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"],
   },
 };
 

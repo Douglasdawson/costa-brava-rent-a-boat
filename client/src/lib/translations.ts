@@ -2685,6 +2685,7 @@ export interface Translations {
     howToGet: Record<string, string>;
     boats: Record<string, string>;
     faqTitle: string;
+    faqItems?: Array<{ question: string; answer: string }>;
     cta: {
       title: string;
       subtitle: string;

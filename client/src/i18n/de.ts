@@ -3504,7 +3504,7 @@ export const de: Translations = {
         { title: "Die besten Buchten der Costa Brava mit dem Boot", description: "Die 10 spektakulärsten Buchten zwischen Blanes und Tossa" },
         { title: "Bootstour bei Sonnenuntergang", description: "Sonnenuntergangserlebnis auf dem Boot" },
         { title: "Boote mit Führerschein", description: "Mit dem Titulín selbst nach Lloret und Tossa fahren" },
-        { title: "Rollerverleih in Lloret de Mar", description: "Erkunden Sie die Costa Brava auf der Straße, ab 8€/Std. mit Versicherung inklusive" },
+        { title: "Rollerverleih in Lloret de Mar", description: "Erkunden Sie die Costa Brava auf der Straße, Roller ab 45€/Tag mit Versicherung inklusive" },
         { title: "Jetskis bei Lloret", description: "Rundkurs und geführte Jetski-Tour ab Blanes, ohne Führerschein" },
       ],
       locationTossa: [
@@ -4995,33 +4995,33 @@ export const de: Translations = {
   scootersPage: {
     seoTitle: "Roller- und Motorradverleih in Lloret de Mar | Coast Rent",
     seoDescription:
-      "Mieten Sie Roller, Motorräder und E-Bikes in Lloret de Mar bei Coast Rent: ab 8€/Stunde, Versicherung inklusive, ohne Kaution und mit kostenloser Stornierung. Kombinieren Sie es mit Ihrem Bootstag an der Costa Brava.",
+      "Mieten Sie Roller, Motorräder und Fahrräder in Lloret de Mar bei Coast Rent: Roller ab 45€/Tag, Versicherung inklusive, Buchung ohne Kreditkarte und kostenlose Stornierung. Kombinieren Sie es mit Ihrem Bootstag an der Costa Brava.",
     navLabel: "Roller",
     hero: {
       title: "Roller- und Motorradverleih in Lloret de Mar",
       subtitle:
-        "Erkunden Sie die Costa Brava auf der Straße mit Coast Rent: Roller, Motorräder und E-Bikes in Lloret de Mar ab 8€/Stunde, mit Versicherung inklusive und ohne Kaution.",
+        "Erkunden Sie die Costa Brava auf der Straße mit Coast Rent: Roller, Motorräder und Fahrräder in Lloret de Mar ab 15€/Tag, mit Versicherung, Helm und unbegrenzten Kilometern inklusive.",
     },
-    chips: ["Ab 8€/Stunde", "Versicherung inklusive", "Ohne Kaution", "Kostenlose Stornierung"],
+    chips: ["Ab 15€/Tag", "Versicherung inklusive", "Buchung ohne Karte", "Kostenlose Stornierung"],
     intro:
-      "Das Meer ist nicht der einzige Weg, die Costa Brava zu entdecken. Mit einem Motorrad oder Roller verbinden Sie Lloret de Mar, Tossa de Mar und die Kurvenstraßen entlang der Steilküste in Ihrem eigenen Tempo. Coast Rent in Lloret de Mar vermietet Roller, Motorräder und E-Bikes mit Übergabe in wenigen Minuten und kostenloser Stornierung.",
+      "Das Meer ist nicht der einzige Weg, die Costa Brava zu entdecken. Mit einem Motorrad oder Roller verbinden Sie Lloret de Mar, Tossa de Mar und die Kurvenstraßen entlang der Steilküste in Ihrem eigenen Tempo. Coast Rent in Lloret de Mar vermietet Roller, Motorräder und Fahrräder mit Übergabe in wenigen Minuten und kostenloser Stornierung.",
     vehiclesTitle: "Verfügbare Fahrzeuge",
     vehicles: [
       {
-        name: "Roller 49ccm",
-        description: "Ideal für Lloret und die nahe Küste. Fahrbar bereits mit Führerschein der Klasse AM.",
+        name: "Roller 50ccm",
+        description: "Piaggio Liberty 50, ideal für Lloret und die nahe Küste. Ab 45€/Tag; Führerschein AM oder Pkw-Führerschein (B) genügt.",
       },
       {
         name: "Roller 125ccm",
-        description: "Die perfekte Balance für Ausflüge entlang der Costa Brava. Ein Pkw-Führerschein (B) mit 3 Jahren Fahrpraxis genügt.",
+        description: "Kymco Sky Town 125 oder MITT Urban 125: die ideale Wahl für Ausflüge an der Costa Brava. Ab 45€/Tag; Führerschein B seit mindestens 3 Jahren oder A1.",
       },
       {
-        name: "Motorrad CF Moto 650 MT",
-        description: "Für lange Touren über die Straßen der Costa Brava und das Hinterland von Girona. Erfordert Führerschein A2 oder A.",
+        name: "Motorräder 125ccm und 650ccm",
+        description: "Motron X-Nord 125 ab 75€/Tag oder CF Moto 650 MT ab 105€/Tag für längere Touren an der Costa Brava und ins Hinterland von Girona (Klasse A2 oder A).",
       },
       {
-        name: "E-Bike",
-        description: "Ohne Führerschein und ohne Anstrengung: Touren auf der Strandpromenade und den Küstenwegen.",
+        name: "Fahrrad",
+        description: "Ein Rockrider ohne Führerschein für Fahrten entlang der Strandpromenade von Lloret. Ab 15€/Tag.",
       },
     ],
     operatedByTitle: "Ein Service von Coast Rent",
@@ -5036,11 +5036,11 @@ export const de: Translations = {
     faq: [
       {
         q: "Welchen Führerschein brauche ich, um in Lloret de Mar einen Roller zu mieten?",
-        a: "Für den 49ccm-Roller genügt der Führerschein der Klasse AM. Für den 125ccm reicht ein Pkw-Führerschein (B) mit mindestens 3 Jahren Fahrpraxis. Das 650ccm-Motorrad erfordert die Klasse A2 oder A. E-Bikes benötigen keinen Führerschein.",
+        a: "Für den 50ccm-Roller genügt der Führerschein AM oder ein Pkw-Führerschein (B). Für den 125ccm brauchen Sie die Klasse B seit mindestens 3 Jahren oder A1. Die CF Moto 650 MT erfordert die Klasse A2 oder A. Für das Fahrrad ist kein Führerschein nötig.",
       },
       {
         q: "Muss ich eine Kaution hinterlegen?",
-        a: "Nein. Coast Rent verlangt keine Kaution, und die Versicherung ist im Mietpreis enthalten.",
+        a: "Ja. Bei der Abholung hinterlegen Sie je nach Fahrzeug eine Kaution von 50 bis 300€, die Sie bei unbeschädigter Rückgabe vollständig zurückerhalten. Für die Buchung sind weder Kreditkarte noch Vorauszahlung nötig, und die Haftpflichtversicherung ist im Preis enthalten.",
       },
       {
         q: "Kann ich meine Buchung stornieren?",

@@ -3483,7 +3483,7 @@ export const ca: Translations = {
         { title: "Millors cales de la Costa Brava en vaixell", description: "Les 10 cales més espectaculars entre Blanes i Tossa" },
         { title: "Sortida en vaixell a la posta de sol", description: "Experiència de posta de sol en vaixell" },
         { title: "Vaixells amb llicència", description: "Arriba a Lloret i Tossa pilotant amb el titulí" },
-        { title: "Lloguer de scooters a Lloret de Mar", description: "Recorre la Costa Brava per carretera, des de 8€/h amb assegurança inclosa" },
+        { title: "Lloguer de scooters a Lloret de Mar", description: "Recorre la Costa Brava per carretera, scooters des de 45€/dia amb assegurança inclosa" },
         { title: "Motos d'aigua a prop de Lloret", description: "Circuit i excursió guiada en moto d'aigua des de Blanes, sense llicència" },
       ],
       locationTossa: [
@@ -4974,33 +4974,33 @@ export const ca: Translations = {
   scootersPage: {
     seoTitle: "Lloguer de motos i scooters a Lloret de Mar | Coast Rent",
     seoDescription:
-      "Lloga scooters, motos i bicicletes elèctriques a Lloret de Mar amb Coast Rent: des de 8€/hora, assegurança inclosa, sense fiança i cancel·lació gratuïta. Combina-ho amb el teu dia en vaixell per la Costa Brava.",
+      "Lloga scooters, motos i bicicletes a Lloret de Mar amb Coast Rent: scooters des de 45€/dia, assegurança inclosa, reserva sense targeta i cancel·lació gratuïta. Combina-ho amb el teu dia en vaixell per la Costa Brava.",
     navLabel: "Scooters",
     hero: {
       title: "Lloguer de scooters i motos a Lloret de Mar",
       subtitle:
-        "Recorre la Costa Brava per carretera amb Coast Rent: scooters, motos i bicicletes elèctriques a Lloret de Mar des de 8€/hora, amb assegurança inclosa i sense fiança.",
+        "Recorre la Costa Brava per carretera amb Coast Rent: scooters, motos i bicicletes a Lloret de Mar des de 15€/dia, amb assegurança, casc i quilometratge il·limitat inclosos.",
     },
-    chips: ["Des de 8€/hora", "Assegurança inclosa", "Sense fiança", "Cancel·lació gratuïta"],
+    chips: ["Des de 15€/dia", "Assegurança inclosa", "Reserva sense targeta", "Cancel·lació gratuïta"],
     intro:
-      "El mar no és l'única manera de descobrir la Costa Brava. Amb una moto o un scooter pots enllaçar Lloret de Mar, Tossa de Mar i les carreteres de revolts arran dels penya-segats al teu ritme. Coast Rent, a Lloret de Mar, lloga scooters, motos i bicicletes elèctriques amb recollida en pocs minuts i cancel·lació gratuïta.",
+      "El mar no és l'única manera de descobrir la Costa Brava. Amb una moto o un scooter pots enllaçar Lloret de Mar, Tossa de Mar i les carreteres de revolts arran dels penya-segats al teu ritme. Coast Rent, a Lloret de Mar, lloga scooters, motos i bicicletes amb recollida en pocs minuts i cancel·lació gratuïta.",
     vehiclesTitle: "Vehicles disponibles",
     vehicles: [
       {
-        name: "Scooter 49cc",
-        description: "Ideal per moure't per Lloret i la costa propera. Es condueix des del carnet AM.",
+        name: "Scooter 50cc",
+        description: "Piaggio Liberty 50, ideal per moure't per Lloret i la costa propera. Des de 45€/dia; val el carnet AM o el B de cotxe.",
       },
       {
         name: "Scooter 125cc",
-        description: "L'equilibri perfecte per a excursions per la Costa Brava. Val el carnet B de cotxe amb 3 anys d'antiguitat.",
+        description: "Kymco Sky Town 125 o MITT Urban 125: l'equilibri perfecte per a excursions per la Costa Brava. Des de 45€/dia; carnet B amb 3 anys d'antiguitat o A1.",
       },
       {
-        name: "Moto CF Moto 650 MT",
-        description: "Per a rutes llargues per les carreteres de la Costa Brava i l'interior de Girona. Requereix carnet A2 o A.",
+        name: "Motos 125cc i 650cc",
+        description: "Motron X-Nord 125 des de 75€/dia, o CF Moto 650 MT des de 105€/dia per a rutes llargues per la Costa Brava i l'interior de Girona (carnet A2 o A).",
       },
       {
-        name: "Bicicleta elèctrica",
-        description: "Sense carnet i sense esforç: passejades pel passeig marítim i els camins de ronda.",
+        name: "Bicicleta",
+        description: "Rockrider sense carnet per passejar pel passeig marítim de Lloret. Des de 15€/dia.",
       },
     ],
     operatedByTitle: "Un servei de Coast Rent",
@@ -5015,11 +5015,11 @@ export const ca: Translations = {
     faq: [
       {
         q: "Quin carnet necessito per llogar un scooter a Lloret de Mar?",
-        a: "Per a l'scooter de 49cc n'hi ha prou amb el carnet AM. Per al de 125cc val el carnet B de cotxe amb almenys 3 anys d'antiguitat. La moto de 650cc requereix carnet A2 o A. Les bicicletes elèctriques no necessiten carnet.",
+        a: "Per a l'scooter de 50cc val el carnet AM o el B de cotxe. Per al de 125cc, el carnet B amb almenys 3 anys d'antiguitat o l'A1. La moto CF Moto 650 MT requereix carnet A2 o A. La bicicleta no necessita carnet.",
       },
       {
         q: "Cal deixar fiança?",
-        a: "No. Coast Rent no demana fiança, i l'assegurança està inclosa en el preu del lloguer.",
+        a: "Sí. En recollir el vehicle es deixa una fiança d'entre 50 i 300€ segons el vehicle, que es retorna íntegrament en tornar-lo sense danys. Per reservar no cal targeta ni pagament anticipat, i l'assegurança a tercers està inclosa en el preu.",
       },
       {
         q: "Puc cancel·lar la reserva?",

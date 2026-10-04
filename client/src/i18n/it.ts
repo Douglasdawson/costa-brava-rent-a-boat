@@ -3492,7 +3492,7 @@ export const it: Translations = {
         { title: "Le migliori calette della Costa Brava in barca", description: "Le 10 calette più spettacolari tra Blanes e Tossa" },
         { title: "Uscita in barca al tramonto", description: "Esperienza al tramonto in barca" },
         { title: "Barche con patente", description: "Arriva a Lloret e Tossa al timone con il titulín" },
-        { title: "Noleggio scooter a Lloret de Mar", description: "Esplora la Costa Brava su strada, da 8€/h con assicurazione inclusa" },
+        { title: "Noleggio scooter a Lloret de Mar", description: "Esplora la Costa Brava su strada, scooter da 45€/giorno con assicurazione inclusa" },
         { title: "Moto d'acqua vicino a Lloret", description: "Circuito ed escursione guidata in moto d'acqua da Blanes, senza patente" },
       ],
       locationTossa: [
@@ -4983,33 +4983,33 @@ export const it: Translations = {
   scootersPage: {
     seoTitle: "Noleggio moto e scooter a Lloret de Mar | Coast Rent",
     seoDescription:
-      "Noleggia scooter, moto e bici elettriche a Lloret de Mar con Coast Rent: da 8€/ora, assicurazione inclusa, senza cauzione e cancellazione gratuita. Abbinalo alla tua giornata in barca sulla Costa Brava.",
+      "Noleggia scooter, moto e biciclette a Lloret de Mar con Coast Rent: scooter da 45€/giorno, assicurazione inclusa, prenotazione senza carta e cancellazione gratuita. Abbinalo alla tua giornata in barca sulla Costa Brava.",
     navLabel: "Scooter",
     hero: {
       title: "Noleggio scooter e moto a Lloret de Mar",
       subtitle:
-        "Esplora la Costa Brava su strada con Coast Rent: scooter, moto e bici elettriche a Lloret de Mar da 8€/ora, con assicurazione inclusa e senza cauzione.",
+        "Esplora la Costa Brava su strada con Coast Rent: scooter, moto e biciclette a Lloret de Mar da 15€/giorno, con assicurazione, casco e chilometraggio illimitato inclusi.",
     },
-    chips: ["Da 8€/ora", "Assicurazione inclusa", "Senza cauzione", "Cancellazione gratuita"],
+    chips: ["Da 15€/giorno", "Assicurazione inclusa", "Prenoti senza carta", "Cancellazione gratuita"],
     intro:
-      "Il mare non è l'unico modo per scoprire la Costa Brava. Con una moto o uno scooter puoi collegare Lloret de Mar, Tossa de Mar e le strade panoramiche a picco sulle scogliere al tuo ritmo. Coast Rent, a Lloret de Mar, noleggia scooter, moto e bici elettriche con ritiro in pochi minuti e cancellazione gratuita.",
+      "Il mare non è l'unico modo per scoprire la Costa Brava. Con una moto o uno scooter puoi collegare Lloret de Mar, Tossa de Mar e le strade panoramiche a picco sulle scogliere al tuo ritmo. Coast Rent, a Lloret de Mar, noleggia scooter, moto e biciclette con ritiro in pochi minuti e cancellazione gratuita.",
     vehiclesTitle: "Veicoli disponibili",
     vehicles: [
       {
-        name: "Scooter 49cc",
-        description: "Ideale per muoversi a Lloret e lungo la costa vicina. Si guida già con la patente AM.",
+        name: "Scooter 50cc",
+        description: "Piaggio Liberty 50, ideale per muoversi a Lloret e sulla costa vicina. Da 45€/giorno; basta la patente AM o la B auto.",
       },
       {
         name: "Scooter 125cc",
-        description: "L'equilibrio perfetto per le escursioni sulla Costa Brava. Basta la patente B auto con 3 anni di anzianità.",
+        description: "Kymco Sky Town 125 o MITT Urban 125: l'equilibrio perfetto per le escursioni sulla Costa Brava. Da 45€/giorno; patente B da almeno 3 anni o A1.",
       },
       {
-        name: "Moto CF Moto 650 MT",
-        description: "Per itinerari lunghi sulle strade della Costa Brava e nell'entroterra di Girona. Richiede patente A2 o A.",
+        name: "Moto 125cc e 650cc",
+        description: "Motron X-Nord 125 da 75€/giorno, oppure CF Moto 650 MT da 105€/giorno per i giri lunghi sulla Costa Brava e nell'entroterra di Girona (patente A2 o A).",
       },
       {
-        name: "Bici elettrica",
-        description: "Senza patente e senza fatica: passeggiate sul lungomare e sui sentieri costieri.",
+        name: "Bicicletta",
+        description: "Una Rockrider, senza patente, per pedalare sul lungomare di Lloret. Da 15€/giorno.",
       },
     ],
     operatedByTitle: "Un servizio Coast Rent",
@@ -5024,11 +5024,11 @@ export const it: Translations = {
     faq: [
       {
         q: "Che patente serve per noleggiare uno scooter a Lloret de Mar?",
-        a: "Per lo scooter 49cc basta la patente AM. Per il 125cc va bene la patente B auto con almeno 3 anni di anzianità. La moto 650cc richiede la patente A2 o A. Le bici elettriche non richiedono patente.",
+        a: "Per lo scooter 50cc basta la patente AM o la B auto. Per il 125cc serve la patente B da almeno 3 anni o la A1. La CF Moto 650 MT richiede la patente A2 o A. La bicicletta non richiede patente.",
       },
       {
         q: "Bisogna lasciare una cauzione?",
-        a: "No. Coast Rent non chiede cauzione, e l'assicurazione è inclusa nel prezzo del noleggio.",
+        a: "Sì. Al ritiro del veicolo si lascia una cauzione tra 50 e 300€ a seconda del veicolo, restituita per intero alla riconsegna senza danni. Per prenotare non servono carta né pagamento anticipato, e l'assicurazione verso terzi è inclusa nel prezzo.",
       },
       {
         q: "Posso cancellare la prenotazione?",

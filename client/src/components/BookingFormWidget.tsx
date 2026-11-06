@@ -238,7 +238,7 @@ export default function BookingFormWidget({
 
   // Leaving step 5 without the weather guarantee opens a confirmation once, so a
   // customer who declines it has read what that means (clause 7 of the terms:
-  // reschedule, else a 12-month voucher, never cash). Deliberately NOT persisted
+  // no refund for a bad forecast if the trip can go ahead). Deliberately NOT persisted
   // in sessionStorage: a reload should show the warning again.
   const [showWeatherWarning, setShowWeatherWarning] = useState(false);
   const [weatherWarningAck, setWeatherWarningAck] = useState(false);
@@ -1649,14 +1649,15 @@ export default function BookingFormWidget({
       }
     }
 
-    // Mirrors clause 7 of the rental terms (reschedule, else 12-month voucher,
-    // no cash refund) and must never read as harsher than that clause. The
+    // Mirrors clause 7 of the rental terms (no refund for a bad forecast if the
+    // trip can go ahead; if we suspend: new date, voucher or refund) and must
+    // never read as harsher than that clause. The
     // step-5 gate guarantees the warning dialog was acknowledged before this
     // message can exist without the guarantee.
     const weatherDeclinedBlock = !weatherGuarantee
       ? isSpanish
-        ? `\n\n✋ *Sin garantía de mal tiempo*\n${separator}\nAcepto que la paga y señal no se devuelve en dinero: si el mal tiempo impide salir, se cambia la fecha sin coste o, si no acordamos una, recibo un bono válido 12 meses.`
-        : `\n\n✋ *No weather guarantee*\n${separator}\nI accept that the advance payment is not refunded in cash: if bad weather prevents sailing, the date is changed free of charge or, if we cannot agree on one, I receive a voucher valid for 12 months.`
+        ? `\n\n✋ *Sin garantía de mal tiempo*\n${separator}\nAcepto que, si la salida es posible, no podré cancelar con devolución por la previsión del tiempo. Si la empresa suspende por mal tiempo, elijo entre nueva fecha sin coste, bono válido 12 meses o devolución íntegra.`
+        : `\n\n✋ *No weather guarantee*\n${separator}\nI accept that, if the trip can go ahead, I cannot cancel with a refund because of the forecast. If the company suspends for bad weather, I choose between a new date at no cost, a voucher valid for 12 months or a full refund.`
       : "";
 
     if (isSpanish) {

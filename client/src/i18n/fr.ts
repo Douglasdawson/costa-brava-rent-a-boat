@@ -463,25 +463,25 @@ export const fr: Translations = {
     coverages: {
       title: "Couvertures optionnelles",
       weatherName: "Garantie mauvais temps",
-      weatherDesc: "Si le mauvais temps empêche la sortie, vous récupérez en espèces ce que vous avez payé d'avance.",
+      weatherDesc: "Si la prévision AEMET de la veille annonce une alerte ou 15 nœuds et plus, vous annulez et récupérez tout.",
       depositName: "Caution réduite",
       depositDesc: "Vous laissez {amount}€ de caution{standard} le jour de la sortie.",
       stepTitle: "Si la mer n'est pas d'accord",
       stepSubtitle: "C'est vous qui décidez comment être couvert.",
       withoutLabel: "Sans garantie",
-      withoutBody: "Nous changeons la date sans frais. Si aucune date ne convient, vous recevez un bon valable 12 mois. Pas de remboursement en espèces.",
+      withoutBody: "Si nous annulons : nouvelle date, bon ou remboursement, au choix. Si nous sortons et pas vous, pas de remboursement.",
       withLabel: "Avec garantie",
-      withBody: "À vous de choisir : nouvelle date ou remboursement intégral.",
+      withBody: "C'est vous qui décidez : 15 nœuds ou une alerte dans la prévision de la veille ? Vous annulez, on rembourse tout.",
       triggerAemetMark: "AEMET",
       triggerAemet: "Avis côtier officiel pour la zone pendant votre créneau.",
       triggerWindMark: "20 nœuds",
       triggerWind: "Vent soutenu ou rafales au-dessus, ou décision de l'entreprise pour la sécurité.",
       standardSuffix: " au lieu de {std}",
       noneCta: "Continuer sans couvertures",
-      criteriaShort: "Mauvais temps = avis AEMET, vent au-dessus de 20 nœuds ou décision de l'entreprise.",
+      criteriaShort: "Nous annulons en cas d'avis AEMET ou de vent au-dessus de 20 nœuds. Avec la garantie, 15 nœuds dans la prévision de la veille vous permettent d'annuler.",
       warnTitle: "Continuer sans la garantie mauvais temps ?",
       warnBody:
-        "Si le mauvais temps empêche la sortie, nous décalons la date sans frais. Si aucune date ne convient, vous recevez un bon du montant versé, valable 12 mois. Pas de remboursement en espèces.",
+        "Si nous annulons la sortie pour mauvais temps, vous choisissez toujours entre nouvelle date, bon ou remboursement. Mais si la sortie est possible et que vous renoncez à cause de la prévision, il n'y a pas de remboursement.",
       warnAdd: "Ajouter pour {price}€",
       warnContinue: "Continuer sans garantie",
     },
@@ -778,7 +778,7 @@ export const fr: Translations = {
     heroChipReviews: "{rating} · {count} avis sur Google",
     heroChipFuelInsurance: "Carburant et assurance inclus",
     heroChipInsurance: "Assurance incluse",
-    heroChipWeather: "Si la mer ne se prête pas, on reprogramme",
+    heroChipWeather: "Si nous annulons, nouvelle date ou remboursement",
     recommendedBadge: "Recommandé",
     viewsToday: "visites de ce bateau aujourd'hui",
     viewCustomerGallery: "Voir la galerie photos clients",
@@ -1191,7 +1191,7 @@ export const fr: Translations = {
       "Les prix commencent à 85€/h avec le carburant inclus. Nous travaillons par créneaux : 1 heure à partir de 85€, 2 heures à partir de 135€ et une demi-journée (4 heures) à partir de 180€ en basse saison. Les tarifs augmentent en haute saison et le week-end. Pas de commission de plateforme ni de supplément carburant : le prix que vous réservez est le prix final.",
     faqWeatherQuestion: "Que se passe-t-il en cas de mauvais temps ?",
     faqWeatherAnswer:
-      "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ; si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Si vous avez souscrit la Garantie mauvais temps, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant le créneau de votre location, vent soutenu ou rafales supérieures à 20 nœuds, ou la décision de notre personnel pour des raisons de sécurité.",
+      "Si nous annulons la sortie pour mauvais temps, vous choisissez entre une nouvelle date sans frais, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant votre créneau de location, vent soutenu ou rafales au-dessus de 20 nœuds, ou décision de notre personnel pour des raisons de sécurité. Avec la Garantie mauvais temps, vous pouvez en plus annuler vous-même, jusqu'à l'heure de départ, avec remboursement intégral (hors prix de la garantie elle-même) si la prévision AEMET publiée la veille annonce un avis côtier ou un vent de 15 nœuds ou plus pour votre créneau. Sans la garantie, si la sortie est possible et que vous préférez ne pas venir, il n'y a pas de remboursement.",
     howToTitle: "Comment louer un bateau sans permis à Blanes (5 étapes)",
     howToIntro:
       "Louer un bateau sans permis au Port de Blanes est plus simple qu'il n'y paraît. Voici les 5 étapes du processus, de la réservation au retour, pour savoir exactement à quoi s'attendre le jour de votre sortie.",
@@ -1332,7 +1332,7 @@ export const fr: Translations = {
     vsMarketplacesRow2Direct: "Nous le vérifions en ligne avant la réservation",
     vsMarketplacesRow2Market: "Il est contrôlé le jour du départ, au port",
     vsMarketplacesRow3Label: "Garantie mauvais temps",
-    vsMarketplacesRow3Direct: "En option à la réservation : nouvelle date ou remboursement en espèces",
+    vsMarketplacesRow3Direct: "En option : annulation remboursée si la prévision de la veille atteint 15 nœuds",
     vsMarketplacesRow3Market: "Selon les conditions de chaque portail",
     vsMarketplacesRow4Label: "Changements de date",
     vsMarketplacesRow4Direct: "Gratuits jusqu'à 7 jours avant, en nous parlant directement",
@@ -1365,7 +1365,7 @@ export const fr: Translations = {
       "Elle est déposée le jour du départ et restituée intégralement lorsque le bateau est rendu dans l'état où il est parti. Il existe aussi une option de caution réduite si vous préférez bloquer un montant plus faible.",
     faqWeatherQuestion: "Que se passe-t-il en cas de mauvais temps le jour de la location ?",
     faqWeatherAnswer:
-      "Vous pouvez changer la date gratuitement jusqu'à 7 jours avant le départ. Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou nous vous émettons un bon du montant versé, valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date et le remboursement intégral en espèces.",
+      "Vous pouvez changer la date gratuitement jusqu'à 7 jours avant le départ. Si nous annulons la sortie pour mauvais temps, vous choisissez entre une nouvelle date, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces. Avec la Garantie mauvais temps, vous pouvez en plus annuler vous-même avec remboursement intégral si la prévision AEMET de la veille annonce un avis côtier ou un vent de 15 nœuds ou plus.",
     faqCrossLinkLabel: "Voir les bateaux avec permis",
     crossLinkFromFree: "Vous avez un titre ? Des bateaux de 80 à 115 CV jusqu'à Tossa",
     linksTitle: "Continuez à explorer",
@@ -1596,13 +1596,13 @@ export const fr: Translations = {
         id: "cancelacion",
         question: "Quelle est la politique d'annulation ?",
         answer:
-          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
+          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si nous annulons la sortie pour mauvais temps, vous choisissez entre une nouvelle date sans frais, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces. Avec la Garantie mauvais temps souscrite, vous pouvez en plus annuler vous-même avec remboursement intégral (hors prix de la garantie elle-même) si, la veille, l'AEMET prévoit un avis côtier ou un vent de 15 nœuds ou plus pour votre créneau, même si la sortie restait possible. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
       },
       {
         id: "mal-tiempo",
         question: "Que se passe-t-il en cas de mauvais temps ?",
         answer:
-          "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ; si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Si vous avez souscrit la Garantie mauvais temps, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant le créneau de votre location, vent soutenu ou rafales supérieures à 20 nœuds, ou la décision de notre personnel pour des raisons de sécurité.",
+          "Si nous annulons la sortie pour mauvais temps, vous choisissez entre une nouvelle date sans frais, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant votre créneau de location, vent soutenu ou rafales au-dessus de 20 nœuds, ou décision de notre personnel pour des raisons de sécurité. Avec la Garantie mauvais temps, vous pouvez en plus annuler vous-même, jusqu'à l'heure de départ, avec remboursement intégral (hors prix de la garantie elle-même) si la prévision AEMET publiée la veille annonce un avis côtier ou un vent de 15 nœuds ou plus pour votre créneau. Sans la garantie, si la sortie est possible et que vous préférez ne pas venir, il n'y a pas de remboursement.",
       },
       {
         id: "experiencia",
@@ -2145,7 +2145,7 @@ export const fr: Translations = {
     aFuel:
       "Oui, mais uniquement si cela est convenu avant de formaliser la location : comme c'est notre skipper qui effectue l'itinéraire préétabli, nous pouvons fixer la consommation à l'avance et vous proposer un prix carburant inclus. Dans ce cas, le prix de la location est supérieur à celui des packs standard. Sans accord préalable, le carburant se règle séparément selon la consommation.",
     q5: "Quelle est la politique d'annulation ?",
-    a5: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
+    a5: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si nous annulons la sortie pour mauvais temps, vous choisissez entre une nouvelle date sans frais, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces. Avec la Garantie mauvais temps souscrite, vous pouvez en plus annuler vous-même avec remboursement intégral (hors prix de la garantie elle-même) si, la veille, l'AEMET prévoit un avis côtier ou un vent de 15 nœuds ou plus pour votre créneau, même si la sortie restait possible. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
   },
   activitySunset: {
     faqItems: [
@@ -2785,7 +2785,7 @@ export const fr: Translations = {
       cancelacion: {
         question: "Quelle est la politique d'annulation ?",
         answer:
-          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
+          "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si nous annulons la sortie pour mauvais temps, vous choisissez entre une nouvelle date sans frais, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces. Avec la Garantie mauvais temps souscrite, vous pouvez en plus annuler vous-même avec remboursement intégral (hors prix de la garantie elle-même) si, la veille, l'AEMET prévoit un avis côtier ou un vent de 15 nœuds ou plus pour votre créneau, même si la sortie restait possible. En dehors de ces cas, les réservations confirmées avec acompte ne sont pas remboursées en espèces.",
       },
       sinLicencia: {
         question: "Puis-je louer un bateau sans permis nautique ?",
@@ -2850,7 +2850,7 @@ export const fr: Translations = {
       malTiempo: {
         question: "Que se passe-t-il s'il fait mauvais temps ?",
         answer:
-          "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ; si aucune date ne convient, nous émettons un bon du montant versé valable 12 mois. Si vous avez souscrit la Garantie mauvais temps, vous choisissez entre une nouvelle date ou le remboursement intégral en espèces, hors prix de la garantie elle-même. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant le créneau de votre location, vent soutenu ou rafales supérieures à 20 nœuds, ou la décision de notre personnel pour des raisons de sécurité.",
+          "Si nous annulons la sortie pour mauvais temps, vous choisissez entre une nouvelle date sans frais, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces. Le critère est objectif : avis côtier officiel de l'AEMET pour la zone pendant votre créneau de location, vent soutenu ou rafales au-dessus de 20 nœuds, ou décision de notre personnel pour des raisons de sécurité. Avec la Garantie mauvais temps, vous pouvez en plus annuler vous-même, jusqu'à l'heure de départ, avec remboursement intégral (hors prix de la garantie elle-même) si la prévision AEMET publiée la veille annonce un avis côtier ou un vent de 15 nœuds ou plus pour votre créneau. Sans la garantie, si la sortie est possible et que vous préférez ne pas venir, il n'y a pas de remboursement.",
       },
       emergencia: {
         question: "Que faire en cas d'urgence ?",
@@ -3124,11 +3124,11 @@ export const fr: Translations = {
         },
         {
           title: "6. Zone de navigation et durée",
-          body: "Zone autorisée : au nord jusqu'au port de Sant Feliu de Guíxols et, en tout état de cause, à moins d'un mille de la côte et dans les limites du permis du capitaine. Naviguer en dehors de cette zone prive la sortie de la couverture de l'assurance.\n\nLa vitesse maximale dans les ports et dans les chenaux balisés des plages est de 3 nœuds. Il faut respecter la zone de baignade, mouiller en dehors des bouées jaunes, naviguer à plus de 200 m des plages et des falaises et garder 100 m de distance avec les bouées de plongeurs.\n\nLes bateaux devront regagner le Port de Blanes avant la fin du créneau horaire réservé. Si le check-out a lieu après l'heure convenue sans préavis, un montant de 150 € par tranche de 30 minutes de retard, ou sa part proportionnelle, sera facturé.",
+          body: "Zone autorisée : au nord jusqu'au port de Sant Feliu de Guíxols et, en tout état de cause, à moins de deux milles de la côte et dans les limites du permis du capitaine. Naviguer en dehors de cette zone prive la sortie de la couverture de l'assurance.\n\nLa vitesse maximale dans les ports et dans les chenaux balisés des plages est de 3 nœuds. Il faut respecter la zone de baignade, mouiller en dehors des bouées jaunes, naviguer à plus de 200 m des plages et des falaises et garder 100 m de distance avec les bouées de plongeurs.\n\nLes bateaux devront regagner le Port de Blanes avant la fin du créneau horaire réservé. Si le check-out a lieu après l'heure convenue sans préavis, le tarif horaire en vigueur du bateau majoré de 50 % sera facturé par tranche de 30 minutes de retard entamée (pour les bateaux sans prix à l'heure, le tarif horaire correspond à la moitié du prix de 2 heures de la saison).",
         },
         {
           title: "7. Politique d'annulation",
-          body: "- Changement de date gratuit jusqu'à 7 jours avant le départ, sous réserve de disponibilité du bateau.\n- Mauvais temps sans garantie souscrite : report sans frais ou, si aucune nouvelle date n'est convenue, bon du montant versé valable 12 mois. Aucun remboursement en espèces.\n- Mauvais temps avec la Garantie mauvais temps souscrite : le client choisit entre une nouvelle date ou le remboursement intégral en espèces des sommes versées pour la location, hors montant de la garantie elle-même, non remboursable.\n- Critère objectif de mauvais temps : avis côtier officiel de l'AEMET pour la zone de navigation pendant le créneau horaire de la location, vent soutenu ou rafales supérieures à vingt nœuds, ou décision du personnel de l'entreprise pour des raisons de sécurité.\n- Si la sortie ne peut avoir lieu pour une cause imputable à l'entreprise (panne ou autre), les sommes versées sont remboursées.\n- En dehors des cas ci-dessus, les réservations confirmées avec acompte ne sont pas remboursables en espèces.\n\nLa Garantie mauvais temps et la Caution réduite sont des garanties commerciales propres à Costa Brava Rent a Boat et ne constituent pas un contrat d'assurance. La décision de suspension pour conditions météorologiques appartient au prestataire et est prise pour des raisons de sécurité. Communication par écrit à info@costabravarentaboat.com ou WhatsApp +34 611 500 372.",
+          body: "- Changement de date gratuit jusqu'à 7 jours avant le départ, sous réserve de disponibilité du bateau.\n- Suspension pour mauvais temps décidée par l'entreprise : le client choisit entre une nouvelle date sans frais, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces des sommes versées.\n- Critère objectif de suspension : avis côtier officiel de l'AEMET pour la zone de navigation pendant le créneau horaire de la location, vent soutenu ou rafales supérieures à vingt nœuds, ou décision du personnel de l'entreprise pour des raisons de sécurité.\n- Garantie mauvais temps souscrite : le client peut annuler de sa propre initiative, jusqu'à l'heure de départ, avec remboursement intégral des sommes versées pour la location (hors montant de la garantie elle-même, non remboursable) lorsque la prévision de l'AEMET publiée la veille pour la zone et le créneau de la location annonce un avis côtier ou un vent soutenu ou des rafales de quinze nœuds ou plus, même si l'entreprise estime la sortie possible.\n- Si la sortie ne peut avoir lieu pour une cause imputable à l'entreprise (panne ou autre), les sommes versées sont remboursées.\n- En dehors des cas ci-dessus, l'annulation par le client ou la non-présentation ne donne pas droit au remboursement des réservations confirmées avec acompte.\n\nLa Garantie mauvais temps et la Caution réduite sont des garanties commerciales propres à Costa Brava Rent a Boat et ne constituent pas un contrat d'assurance. La décision de suspension pour conditions météorologiques appartient au prestataire et est prise pour des raisons de sécurité. Communication par écrit à info@costabravarentaboat.com ou WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obligations du client",
@@ -4781,7 +4781,7 @@ export const fr: Translations = {
       },
       {
         q: "Que se passe-t-il en cas de mauvais temps ?",
-        a: "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou vous remettons un bon valable 12 mois. Avec la Garantie mauvais temps souscrite, nous vous remboursons en espèces.",
+        a: "Si nous annulons la sortie pour mauvais temps, vous choisissez : nouvelle date sans frais, bon valable 12 mois ou remboursement. Avec la Garantie mauvais temps, vous pouvez en plus annuler vous-même si la prévision de la veille annonce 15 nœuds ou une alerte.",
       },
     ],
   },
@@ -4789,13 +4789,13 @@ export const fr: Translations = {
     navLabel: "Garanties",
     heroTitle: "Si la mer dit non, la réponse est déjà écrite",
     heroSubtitle:
-      "Si le mauvais temps empêche la sortie, nous changeons la date sans frais ; si nous n'en trouvons pas d'autre, vous recevez un bon valable 12 mois. Avec la Garantie mauvais temps, vous choisissez : nouvelle date ou remboursement. Sans petits caractères.",
-    weatherTitle: "Si le mauvais temps empêche la sortie",
+      "Si nous annulons la sortie pour mauvais temps, vous choisissez : nouvelle date, bon valable 12 mois ou remboursement. Avec la Garantie mauvais temps, la décision vous revient aussi : si la prévision de la veille annonce 15 nœuds ou une alerte, vous annulez et nous remboursons tout. Sans petits caractères.",
+    weatherTitle: "Si la météo ne suit pas",
     withoutLabel: "Sans la garantie",
-    withoutBody: "Nous décalons la date sans frais. Si aucune date ne convient, vous recevez un bon du montant versé, valable 12 mois. Pas de remboursement en espèces.",
+    withoutBody: "Si nous annulons la sortie, vous choisissez : nouvelle date sans frais, bon du montant versé valable 12 mois ou remboursement intégral. Si la sortie est possible et que vous préférez ne pas partir, pas de remboursement (changement de date gratuit jusqu'à 7 jours avant).",
     withLabel: "Avec la Garantie mauvais temps",
-    withBody: "Vous choisissez : une nouvelle date ou votre argent intégralement, hors prix de la garantie elle-même.",
-    criteriaTitle: "Ce qui compte comme mauvais temps",
+    withBody: "En plus, c'est vous qui décidez : si la prévision AEMET publiée la veille annonce un avis côtier ou un vent de 15 nœuds ou plus pour votre créneau, vous pouvez annuler jusqu'à l'heure de départ et récupérer tout ce que vous avez payé pour la location, hors prix de la garantie elle-même.",
+    criteriaTitle: "Quand nous annulons la sortie",
     criteriaMarks: ["AEMET", "20 kn", "L'entreprise"],
     criteria: [
       "Avis côtier officiel de l'AEMET pour notre zone de navigation pendant le créneau de votre location.",
@@ -5211,7 +5211,7 @@ export const fr: Translations = {
       },
       {
         q: "Que se passe-t-il en cas de mauvais temps ?",
-        a: "Si le mauvais temps empêche la sortie, nous décalons la date sans frais ou, si aucune date ne convient, nous vous émettons un bon du montant versé, valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date et le remboursement intégral en espèces.",
+        a: "Si nous annulons la sortie pour mauvais temps, vous choisissez entre une nouvelle date sans frais, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces. Avec la Garantie mauvais temps souscrite, vous pouvez en plus annuler vous-même avec remboursement intégral si la prévision AEMET de la veille annonce un avis côtier ou un vent de 15 nœuds ou plus.",
       },
       {
         q: "Quelle est la différence avec une location de bateau sans skipper ?",
@@ -5581,7 +5581,7 @@ export const fr: Translations = {
         },
         {
           question: 'Que se passe-t-il si la mer est mauvaise ?',
-          answer: 'Si les prévisions indiquent >20 nœuds soutenus ou une alerte pour vagues >1,5 m, nous ne sortons pas et nous changeons votre date sans frais ; si nous ne trouvons pas de date, vous recevez un bon valable 12 mois. Le tronçon Blanes-Fenals est protégé de la Tramontane par la côte elle-même, ce qui en fait l\'un des plus sûrs pour les débutants, même par vent du nord.',
+          answer: 'Si les prévisions indiquent >20 nœuds soutenus ou une alerte pour vagues >1,5 m, nous ne sortons pas et vous choisissez : nouvelle date sans frais, bon valable 12 mois ou remboursement intégral. Le tronçon Blanes-Fenals est protégé de la Tramontane par la côte elle-même, ce qui en fait l\'un des plus sûrs pour les débutants, même par vent du nord.',
         },
         {
           question: 'Comment aller de Lloret de Mar au Port de Blanes ?',
@@ -6026,7 +6026,7 @@ export const fr: Translations = {
         distanceQ: 'Jusqu\'où puis-je naviguer depuis Blanes ?',
         distanceA: 'Avec la Licencia de Navegación, de jour et près de la côte, vous atteignez depuis Blanes Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal et Tossa de Mar (30-45 min) et, à la journée, Sant Feliu de Guíxols. Avec l\'excursion privée avec skipper, vous faites la route sans permis.',
         weatherQ: 'Que se passe-t-il en cas de mauvais temps le jour de ma réservation ?',
-        weatherA: 'La sécurité est notre priorité. Si le mauvais temps empêche la sortie, nous changeons la date sans frais ou, si aucune date ne convient, nous émettons un bon du montant payé valable 12 mois. Avec la Garantie mauvais temps souscrite, vous choisissez entre une nouvelle date ou le remboursement intégral en argent, hors prix de la garantie elle-même.',
+        weatherA: 'La sécurité est notre priorité. Si nous annulons la sortie pour mauvais temps, vous choisissez entre une nouvelle date sans frais, un bon du montant versé valable 12 mois ou le remboursement intégral en espèces. Avec la Garantie mauvais temps souscrite, vous pouvez en plus annuler vous-même avec remboursement intégral (hors prix de la garantie elle-même) si la prévision AEMET de la veille annonce un avis côtier ou un vent de 15 nœuds ou plus.',
         petsQ: 'Puis-je amener mon animal de compagnie sur le bateau ?',
         petsA: 'Oui, les animaux sont les bienvenus sur tous nos bateaux. Nous recommandons d\'apporter de l\'eau fraîche, une serviette et une protection solaire pour votre animal.',
       },

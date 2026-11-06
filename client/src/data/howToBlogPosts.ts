@@ -68,7 +68,7 @@ export const HOW_TO_BLOG_POSTS: Record<string, HowToBlogEntry> = {
       },
       {
         name: "Devuelve el barco a la hora acordada",
-        text: "Regresa al puerto antes de la hora estipulada. Nuestro equipo inspecciona el barco brevemente. Si todo está bien, te devuelven la fianza. En caso de retraso sin aviso, se cobra 150€ por cada 30 minutos.",
+        text: "Regresa al puerto antes de la hora estipulada. Nuestro equipo inspecciona el barco brevemente. Si todo está bien, te devuelven la fianza. En caso de retraso sin aviso, se cobra la tarifa horaria vigente del barco incrementada en un 50 % por cada fracción de 30 minutos.",
       },
     ],
   },
@@ -110,7 +110,7 @@ export const HOW_TO_BLOG_POSTS: Record<string, HowToBlogEntry> = {
       },
       {
         name: "Devuelve el barco a tiempo y sin daños",
-        text: "Regresa 5-10 min antes del horario. Entrega las llaves. Nuestro equipo inspecciona brevemente el barco. Si todo está bien, la fianza se libera en minutos. Retraso sin aviso: 150€ por cada 30 min.",
+        text: "Regresa 5-10 min antes del horario. Entrega las llaves. Nuestro equipo inspecciona brevemente el barco. Si todo está bien, la fianza se libera en minutos. Retraso sin aviso: tarifa horaria vigente +50 % por cada fracción de 30 min.",
       },
     ],
   },

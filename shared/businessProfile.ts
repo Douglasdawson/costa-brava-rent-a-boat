@@ -119,7 +119,7 @@ export const GBP_PROFILE_URL = `https://www.google.com/maps/search/?api=1&query=
 // (schema.org, llms.txt, FAQ, emails) debe referenciar esta constante en vez
 // de duplicar el texto. La versión i18n vive en client/src/i18n/<lang>.ts.
 export const CANCELLATION_POLICY_ES =
-  "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.";
+  "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si cancelamos nosotros por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. Con la Garantía de mal tiempo contratada puedes además cancelar tú con devolución íntegra (excluido el precio de la propia garantía) si la víspera AEMET prevé aviso costero o viento de 15 nudos o más para tu franja, aunque la salida fuera posible. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.";
 
 // Redacción contractual de lo mismo, en viñetas. La página de condiciones
 // generales la imprime dos veces (bloque con titulación y bloque sin), así que
@@ -128,11 +128,11 @@ export const CANCELLATION_POLICY_ES =
 // La primera viñeta lleva los datos de contacto como enlaces y por eso la
 // renderiza el componente; estas son las que van tal cual.
 export const CANCELLATION_TERMS_BULLETS_ES: readonly string[] = [
-  "Mal tiempo verificado por nuestro equipo, sin Garantía contratada: reprogramación sin coste o, si no se acuerda nueva fecha, bono por el importe abonado con validez de 12 meses. No procede la devolución en dinero.",
-  "Mal tiempo con la Garantía de mal tiempo contratada: el cliente elige entre una nueva fecha o la devolución íntegra en dinero de las cantidades abonadas por el alquiler, excluido el importe de la propia garantía, que no es reembolsable.",
-  "Criterio objetivo de mal tiempo: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.",
+  "Suspensión por mal tiempo decidida por la empresa: el cliente elige entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero de las cantidades abonadas.",
+  "Criterio objetivo de suspensión: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.",
+  "Garantía de mal tiempo contratada: el cliente puede cancelar por su cuenta, hasta la hora de salida, con devolución íntegra de las cantidades abonadas por el alquiler (excluido el importe de la propia garantía, que no es reembolsable) cuando la previsión de AEMET publicada el día anterior para la zona y la franja del alquiler indique aviso costero o viento sostenido o rachas de quince nudos o más, aunque la empresa considere posible la salida.",
   "Si la salida no puede realizarse por causa imputable a la empresa (avería u otra), se devuelven las cantidades abonadas.",
-  "Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.",
+  "Fuera de los supuestos anteriores, la cancelación por el cliente o la no presentación no da derecho a la devolución de las reservas confirmadas con depósito.",
 ];
 
 // Alcance real del seguro, verificado leyendo las polizas el 2026-07-30. Cada

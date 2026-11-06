@@ -462,25 +462,25 @@ export const it: Translations = {
     coverages: {
       title: "Coperture opzionali",
       weatherName: "Garanzia maltempo",
-      weatherDesc: "Se il maltempo impedisce l'uscita, recuperi in denaro quanto hai pagato in anticipo.",
+      weatherDesc: "Decidi tu: se la previsione AEMET del giorno prima indica avviso costiero o 15 nodi o più, annulli e ti rimborsiamo tutto.",
       depositName: "Cauzione ridotta",
       depositDesc: "Lasci {amount}€ di cauzione{standard} il giorno dell'uscita.",
       stepTitle: "Se il mare non collabora",
       stepSubtitle: "Decidi tu come vuoi essere coperto.",
       withoutLabel: "Senza garanzia",
-      withoutBody: "Spostiamo la data senza costi. Se non riusciamo a concordarne una, ricevi un buono valido 12 mesi. Nessun rimborso in denaro.",
+      withoutBody: "Se annulliamo noi per maltempo, scegli tu: nuova data senza costi, buono di 12 mesi o rimborso in denaro. Se decidi di non uscire ma noi usciamo, non c'è rimborso.",
       withLabel: "Con garanzia",
-      withBody: "Scegli tu: nuova data o il denaro indietro, per intero.",
+      withBody: "In più decidi tu: se la previsione del giorno prima indica avviso costiero o 15 nodi o più, annulli e ti rimborsiamo tutto.",
       triggerAemetMark: "AEMET",
       triggerAemet: "Avviso costiero ufficiale per la zona nella tua fascia oraria.",
       triggerWindMark: "20 nodi",
       triggerWind: "Vento sostenuto o raffiche superiori, o decisione dell'azienda per sicurezza.",
       standardSuffix: " invece di {std}",
       noneCta: "Continua senza coperture",
-      criteriaShort: "Maltempo = avviso AEMET, vento oltre 20 nodi o decisione dell'azienda.",
+      criteriaShort: "Annulliamo noi con avviso AEMET, vento oltre 20 nodi o per sicurezza; con la garanzia puoi annullare tu già da 15 nodi previsti.",
       warnTitle: "Continuare senza la garanzia maltempo?",
       warnBody:
-        "Se il maltempo impedisce l'uscita, spostiamo la data senza costi. Se non riusciamo a concordarne una, ricevi un buono per l'importo versato, valido 12 mesi. Nessun rimborso in denaro.",
+        "Se annulliamo noi per maltempo, scegli comunque tra nuova data, buono o rimborso in denaro. Senza garanzia, però, non puoi annullare tu con rimborso se la previsione è brutta ma noi usciamo.",
       warnAdd: "Aggiungi per {price}€",
       warnContinue: "Continua senza garanzia",
     },
@@ -776,7 +776,7 @@ export const it: Translations = {
     heroChipReviews: "{rating} · {count} recensioni su Google",
     heroChipFuelInsurance: "Carburante e assicurazione inclusi",
     heroChipInsurance: "Assicurazione inclusa",
-    heroChipWeather: "Se il mare non aiuta, riprogrammiamo",
+    heroChipWeather: "Se il mare non aiuta: nuova data o rimborso",
     recommendedBadge: "Consigliato",
     viewsToday: "visite a questa barca oggi",
     viewCustomerGallery: "Vedi galleria foto clienti",
@@ -1186,7 +1186,7 @@ export const it: Translations = {
       "I prezzi partono da 85€/h con il carburante incluso. Lavoriamo per fasce orarie: 1 ora da 85€, 2 ore da 135€ e mezza giornata (4 ore) da 180€ in bassa stagione. Le tariffe salgono in alta stagione e nei fine settimana. Nessuna commissione di piattaforma né costo extra per il carburante: il prezzo che prenoti è il prezzo finale.",
     faqWeatherQuestion: "Cosa succede se il tempo è brutto?",
     faqWeatherAnswer:
-      "Se il maltempo impedisce l'uscita spostiamo la data senza costi; se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Se hai sottoscritto la Garanzia maltempo, scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a 20 nodi, o la decisione del nostro personale per motivi di sicurezza.",
+      "Se annulliamo noi per maltempo, scegli tu: nuova data senza costi, un buono per l'importo versato valido 12 mesi o il rimborso integrale in denaro. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia del tuo noleggio, vento sostenuto o raffiche oltre 20 nodi, o la decisione del nostro personale per motivi di sicurezza. Con la Garanzia maltempo puoi inoltre annullare tu con rimborso integrale (escluso il prezzo della garanzia) se la previsione AEMET del giorno prima indica avviso costiero o vento di 15 nodi o più, anche se noi usciremmo.",
     howToTitle: "Come noleggiare una barca senza patente a Blanes (5 passi)",
     howToIntro:
       "Noleggiare una barca senza patente al Porto di Blanes è più semplice di quanto sembri. Ecco i 5 passi del processo, dalla prenotazione alla riconsegna, per sapere esattamente cosa aspettarti il giorno della tua uscita.",
@@ -1327,7 +1327,7 @@ export const it: Translations = {
     vsMarketplacesRow2Direct: "La verifichiamo online prima di prenotare",
     vsMarketplacesRow2Market: "Si controlla il giorno della partenza, in porto",
     vsMarketplacesRow3Label: "Garanzia maltempo",
-    vsMarketplacesRow3Direct: "Opzionale alla prenotazione: nuova data o rimborso in denaro",
+    vsMarketplacesRow3Direct: "Opzionale: annulli tu con rimborso integrale se la previsione del giorno prima è brutta",
     vsMarketplacesRow3Market: "Secondo le condizioni di ogni portale",
     vsMarketplacesRow4Label: "Cambi di data",
     vsMarketplacesRow4Direct: "Gratis fino a 7 giorni prima, parlando direttamente con noi",
@@ -1360,7 +1360,7 @@ export const it: Translations = {
       "Si versa il giorno della partenza e viene restituita per intero alla riconsegna del motoscafo nello stesso stato in cui è uscito. Esiste anche una copertura opzionale di cauzione ridotta, se preferisci bloccare un importo minore.",
     faqWeatherQuestion: "Cosa succede se c'è maltempo il giorno del noleggio?",
     faqWeatherAnswer:
-      "Puoi cambiare data gratis fino a 7 giorni prima della partenza. Se il maltempo impedisce l'uscita, spostiamo la data senza costi o ti emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro.",
+      "Puoi cambiare data gratis fino a 7 giorni prima della partenza. Se annulliamo noi per maltempo, scegli tra nuova data, buono di 12 mesi o rimborso in denaro. Con la Garanzia maltempo puoi anche annullare tu con rimborso integrale se la previsione del giorno prima indica avviso costiero o 15 nodi o più.",
     faqCrossLinkLabel: "Vedi i motoscafi con patente",
     crossLinkFromFree: "Hai la patente? Motoscafi da 80 a 115 CV fino a Tossa",
     linksTitle: "Continua a esplorare",
@@ -1590,13 +1590,13 @@ export const it: Translations = {
         id: "cancelacion",
         question: "Qual è la politica di cancellazione?",
         answer:
-          "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se il maltempo impedisce l'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Al di fuori di questi casi, le prenotazioni confermate con caparra non vengono rimborsate in denaro.",
+          "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se annulliamo noi per maltempo, scegli tra nuova data senza costi, un buono per l'importo versato valido 12 mesi o il rimborso integrale in denaro. Con la Garanzia maltempo sottoscritta puoi inoltre annullare tu con rimborso integrale (escluso il prezzo della garanzia) se il giorno prima AEMET prevede avviso costiero o vento di 15 nodi o più per la tua fascia, anche se l'uscita fosse possibile. Fuori da questi casi, le prenotazioni confermate con acconto non vengono rimborsate in denaro.",
       },
       {
         id: "mal-tiempo",
         question: "Cosa succede se c'è brutto tempo?",
         answer:
-          "Se il maltempo impedisce l'uscita spostiamo la data senza costi; se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Se hai sottoscritto la Garanzia maltempo, scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a 20 nodi, o la decisione del nostro personale per motivi di sicurezza.",
+          "Se annulliamo noi per maltempo, scegli tu: nuova data senza costi, un buono per l'importo versato valido 12 mesi o il rimborso integrale in denaro. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia del tuo noleggio, vento sostenuto o raffiche oltre 20 nodi, o la decisione del nostro personale per motivi di sicurezza. Con la Garanzia maltempo puoi inoltre annullare tu con rimborso integrale (escluso il prezzo della garanzia) se la previsione AEMET del giorno prima indica avviso costiero o vento di 15 nodi o più, anche se noi usciremmo.",
       },
       {
         id: "experiencia",
@@ -2138,7 +2138,7 @@ export const it: Translations = {
     aFuel:
       "Sì, ma solo se concordato prima di formalizzare il noleggio: poiché è il nostro skipper a seguire la rotta prestabilita, possiamo definire il consumo in anticipo e offrirti un prezzo con carburante incluso. In tal caso il prezzo del noleggio è superiore a quello dei pacchetti standard. Se non viene concordato in anticipo, il carburante si paga a parte in base al consumo.",
     q5: "Qual è la politica di cancellazione?",
-    a5: "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se il maltempo impedisce l'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Al di fuori di questi casi, le prenotazioni confermate con caparra non vengono rimborsate in denaro.",
+    a5: "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se annulliamo noi per maltempo, scegli tra nuova data senza costi, un buono per l'importo versato valido 12 mesi o il rimborso integrale in denaro. Con la Garanzia maltempo sottoscritta puoi inoltre annullare tu con rimborso integrale (escluso il prezzo della garanzia) se il giorno prima AEMET prevede avviso costiero o vento di 15 nodi o più per la tua fascia, anche se l'uscita fosse possibile. Fuori da questi casi, le prenotazioni confermate con acconto non vengono rimborsate in denaro.",
   },
   activitySunset: {
     faqItems: [
@@ -2779,7 +2779,7 @@ export const it: Translations = {
       cancelacion: {
         question: "Qual è la politica di cancellazione?",
         answer:
-          "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se il maltempo impedisce l'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Al di fuori di questi casi, le prenotazioni confermate con caparra non vengono rimborsate in denaro.",
+          "Cambio data gratuito fino a 7 giorni prima dell'uscita (soggetto a disponibilità). Se annulliamo noi per maltempo, scegli tra nuova data senza costi, un buono per l'importo versato valido 12 mesi o il rimborso integrale in denaro. Con la Garanzia maltempo sottoscritta puoi inoltre annullare tu con rimborso integrale (escluso il prezzo della garanzia) se il giorno prima AEMET prevede avviso costiero o vento di 15 nodi o più per la tua fascia, anche se l'uscita fosse possibile. Fuori da questi casi, le prenotazioni confermate con acconto non vengono rimborsate in denaro.",
       },
       sinLicencia: {
         question: "Posso noleggiare una barca senza patente nautica?",
@@ -2844,7 +2844,7 @@ export const it: Translations = {
       malTiempo: {
         question: "Cosa succede se c'è maltempo?",
         answer:
-          "Se il maltempo impedisce l'uscita spostiamo la data senza costi; se non troviamo una data, emettiamo un buono per l'importo versato valido 12 mesi. Se hai sottoscritto la Garanzia maltempo, scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a 20 nodi, o la decisione del nostro personale per motivi di sicurezza.",
+          "Se annulliamo noi per maltempo, scegli tu: nuova data senza costi, un buono per l'importo versato valido 12 mesi o il rimborso integrale in denaro. Il criterio è oggettivo: avviso costiero ufficiale AEMET per la zona nella fascia del tuo noleggio, vento sostenuto o raffiche oltre 20 nodi, o la decisione del nostro personale per motivi di sicurezza. Con la Garanzia maltempo puoi inoltre annullare tu con rimborso integrale (escluso il prezzo della garanzia) se la previsione AEMET del giorno prima indica avviso costiero o vento di 15 nodi o più, anche se noi usciremmo.",
       },
       emergencia: {
         question: "Cosa faccio in caso di emergenza?",
@@ -3117,11 +3117,11 @@ export const it: Translations = {
         },
         {
           title: "6. Zona di navigazione e durata",
-          body: "Zona autorizzata: a nord fino al porto di Sant Feliu de Guíxols e, in ogni caso, entro un miglio dalla costa e nei limiti della patente del comandante. Navigare al di fuori di questa zona lascia l'uscita senza copertura assicurativa.\n\nLa velocità massima nei porti e nei canali segnalati delle spiagge è di 3 nodi. Occorre rispettare la zona dei bagnanti, ancorare fuori dalle boe gialle, navigare a più di 200 m da spiagge e scogliere e mantenere 100 m di distanza dalle boe dei subacquei.\n\nLe imbarcazioni dovranno rientrare nel Porto di Blanes prima del termine della fascia oraria prenotata. Se il check-out avviene oltre l'orario stabilito senza preavviso, verrà addebitato un importo di 150 € per ogni 30 minuti di ritardo o la relativa parte proporzionale.",
+          body: "Zona autorizzata: a nord fino al porto di Sant Feliu de Guíxols e, in ogni caso, entro due miglia dalla costa e nei limiti della patente del comandante. Navigare al di fuori di questa zona lascia l'uscita senza copertura assicurativa.\n\nLa velocità massima nei porti e nei canali segnalati delle spiagge è di 3 nodi. Occorre rispettare la zona dei bagnanti, ancorare fuori dalle boe gialle, navigare a più di 200 m da spiagge e scogliere e mantenere 100 m di distanza dalle boe dei subacquei.\n\nLe imbarcazioni dovranno rientrare nel Porto di Blanes prima del termine della fascia oraria prenotata. Se il check-out avviene oltre l'orario stabilito senza preavviso, verrà addebitata, per ogni frazione di 30 minuti di ritardo, la tariffa oraria vigente dell'imbarcazione maggiorata del 50 % (per le imbarcazioni senza prezzo di 1 ora, la tariffa oraria è la metà del prezzo di 2 ore della stagione).",
         },
         {
           title: "7. Politica di cancellazione",
-          body: "- Cambio data gratuito fino a 7 giorni prima dell'uscita, soggetto a disponibilità dell'imbarcazione.\n- Maltempo senza garanzia sottoscritta: riprogrammazione senza costi o, se non si concorda una nuova data, buono per l'importo versato valido 12 mesi. Non è previsto il rimborso in denaro.\n- Maltempo con la Garanzia maltempo sottoscritta: il cliente sceglie tra una nuova data o il rimborso integrale in denaro delle somme versate per il noleggio, escluso l'importo della garanzia stessa, che non è rimborsabile.\n- Criterio oggettivo di maltempo: avviso costiero ufficiale AEMET per la zona di navigazione nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a venti nodi, o la decisione del personale dell'azienda per motivi di sicurezza.\n- Se l'uscita non può svolgersi per causa imputabile all'azienda (guasto o altro), le somme versate vengono restituite.\n- Al di fuori dei casi precedenti, le prenotazioni confermate con caparra non sono rimborsabili in denaro.\n\nLa Garanzia maltempo e la Cauzione ridotta sono garanzie commerciali proprie di Costa Brava Rent a Boat e non costituiscono un contratto di assicurazione. La decisione sulla sospensione per condizioni meteorologiche spetta al prestatore ed è presa con criteri di sicurezza. Comunicazione per iscritto a info@costabravarentaboat.com o WhatsApp +34 611 500 372.",
+          body: "- Cambio data gratuito fino a 7 giorni prima dell'uscita, soggetto a disponibilità dell'imbarcazione.\n- Sospensione per maltempo decisa dall'azienda: il cliente sceglie tra una nuova data senza costi, un buono per l'importo versato valido 12 mesi o il rimborso integrale in denaro delle somme versate.\n- Criterio oggettivo di sospensione: avviso costiero ufficiale AEMET per la zona di navigazione nella fascia oraria del noleggio, vento sostenuto o raffiche superiori a venti nodi, o la decisione del personale dell'azienda per motivi di sicurezza.\n- Garanzia maltempo sottoscritta: il cliente può annullare di sua iniziativa, fino all'orario di partenza, con rimborso integrale delle somme versate per il noleggio (escluso l'importo della garanzia stessa, che non è rimborsabile) quando la previsione AEMET pubblicata il giorno precedente per la zona e la fascia del noleggio indica avviso costiero o vento sostenuto o raffiche di quindici nodi o più, anche se l'azienda ritiene possibile l'uscita.\n- Se l'uscita non può svolgersi per causa imputabile all'azienda (guasto o altro), le somme versate vengono restituite.\n- Al di fuori dei casi precedenti, l'annullamento da parte del cliente o la mancata presentazione non dà diritto al rimborso delle prenotazioni confermate con caparra.\n\nLa Garanzia maltempo e la Cauzione ridotta sono garanzie commerciali proprie di Costa Brava Rent a Boat e non costituiscono un contratto di assicurazione. La decisione sulla sospensione per condizioni meteorologiche spetta al prestatore ed è presa con criteri di sicurezza, fermo restando il diritto del cliente che ha sottoscritto la Garanzia maltempo. Comunicazione per iscritto a info@costabravarentaboat.com o WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obblighi del cliente",
@@ -4774,7 +4774,7 @@ export const it: Translations = {
       },
       {
         q: "Cosa succede in caso di maltempo?",
-        a: "Se il maltempo impedisce l'uscita spostiamo la data senza costi o ti diamo un buono valido 12 mesi. Con la Garanzia maltempo sottoscritta, ti rimborsiamo in denaro.",
+        a: "Se annulliamo noi per maltempo, scegli tra nuova data, buono di 12 mesi o rimborso in denaro. Con la Garanzia maltempo puoi anche annullare tu con rimborso integrale se la previsione del giorno prima indica avviso costiero o 15 nodi o più.",
       },
     ],
   },
@@ -4782,13 +4782,13 @@ export const it: Translations = {
     navLabel: "Garanzie",
     heroTitle: "Se il mare dice no, la risposta è già scritta",
     heroSubtitle:
-      "Se il maltempo impedisce l'uscita spostiamo la data senza costi; se non ne troviamo un'altra, ricevi un buono valido 12 mesi. Con la Garanzia maltempo scegli tu: nuova data o rimborso in denaro. Senza clausole nascoste.",
-    weatherTitle: "Se il maltempo impedisce l'uscita",
+      "Se annulliamo noi per maltempo, scegli tu: nuova data, buono di 12 mesi o rimborso in denaro. Con la Garanzia maltempo decidi anche tu: se la previsione del giorno prima indica avviso costiero o 15 nodi o più, annulli e ti rimborsiamo tutto. Senza clausole nascoste.",
+    weatherTitle: "Se le previsioni non aiutano",
     withoutLabel: "Senza la garanzia",
-    withoutBody: "Spostiamo la data senza costi. Se non troviamo una data, ricevi un buono per l'importo versato, valido 12 mesi. Nessun rimborso in denaro.",
+    withoutBody: "Se annulliamo noi per maltempo, scegli tu: nuova data senza costi, un buono per l'importo versato (valido 12 mesi) o il rimborso integrale in denaro. Se decidi di non uscire ma noi usciamo, non c'è rimborso: il cambio data è gratuito solo fino a 7 giorni prima.",
     withLabel: "Con la Garanzia maltempo",
-    withBody: "Scegli tu: nuova data o il denaro indietro per intero, escluso il prezzo della garanzia stessa.",
-    criteriaTitle: "Quando si considera maltempo",
+    withBody: "In più decidi tu: se la previsione AEMET del giorno prima indica avviso costiero o vento di 15 nodi o più per la tua fascia, annulli fino all'orario di partenza e ti rimborsiamo tutto, escluso il prezzo della garanzia stessa.",
+    criteriaTitle: "Quando sospendiamo l'uscita",
     criteriaMarks: ["AEMET", "20 kn", "L'azienda"],
     criteria: [
       "Avviso costiero ufficiale AEMET per la nostra zona di navigazione nella fascia oraria del tuo noleggio.",
@@ -5204,7 +5204,7 @@ export const it: Translations = {
       },
       {
         q: "Cosa succede se c'è maltempo?",
-        a: "Se il maltempo impedisce di uscire, spostiamo la data senza costi o, se non riusciamo a concordarne una, ti emettiamo un buono per l'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro.",
+        a: "Se annulliamo noi per maltempo, scegli tra nuova data, un buono per l'importo versato valido 12 mesi o il rimborso in denaro. Con la Garanzia maltempo puoi inoltre annullare tu con rimborso integrale se la previsione AEMET del giorno prima indica avviso costiero o 15 nodi o più.",
       },
       {
         q: "In cosa si differenzia dal noleggiare una barca senza skipper?",
@@ -5574,7 +5574,7 @@ export const it: Translations = {
         },
         {
           question: 'Cosa succede se il mare è mosso?',
-          answer: 'Se le previsioni indicano >20 nodi sostenuti o un\'allerta per onde >1,5 m, non usciamo e ti cambiamo la data senza costi; se non riusciamo a concordarne una, ricevi un buono valido 12 mesi. Il tratto Blanes–Fenals è protetto dalla Tramontana dalla costa stessa, quindi è tra i più sicuri per i principianti anche con vento da nord.',
+          answer: 'Se le previsioni indicano >20 nodi sostenuti o un\'allerta per onde >1,5 m, non usciamo e scegli tu: nuova data senza costi, buono valido 12 mesi o rimborso in denaro. Il tratto Blanes–Fenals è protetto dalla Tramontana dalla costa stessa, quindi è tra i più sicuri per i principianti anche con vento da nord.',
         },
         {
           question: 'Come arrivo da Lloret de Mar al porto di Blanes?',
@@ -6019,7 +6019,7 @@ export const it: Translations = {
         distanceQ: 'Fin dove posso navigare da Blanes?',
         distanceA: 'Con la Licencia de Navegación, di giorno e vicino alla costa, da Blanes arrivi a Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal e Tossa de Mar (30-45 min) e, in giornata intera, a Sant Feliu de Guíxols. Con l\'escursione privata con skipper fai la rotta senza patente.',
         weatherQ: 'Cosa succede se c\'e maltempo il giorno della mia prenotazione?',
-        weatherA: 'La sicurezza è la nostra priorità. Se il maltempo impedisce l\'uscita, spostiamo la data senza costi o, se non troviamo una data, emettiamo un buono per l\'importo versato valido 12 mesi. Con la Garanzia maltempo sottoscritta scegli tra una nuova data o il rimborso integrale in denaro, escluso il prezzo della garanzia stessa.',
+        weatherA: 'La sicurezza è la nostra priorità. Se annulliamo noi per maltempo, scegli tra nuova data senza costi, un buono per l\'importo versato valido 12 mesi o il rimborso integrale in denaro. Con la Garanzia maltempo puoi inoltre annullare tu con rimborso integrale (escluso il prezzo della garanzia) se la previsione AEMET del giorno prima indica avviso costiero o vento di 15 nodi o più.',
         petsQ: 'Posso portare animali domestici sulla barca?',
         petsA: 'Sì, gli animali domestici sono benvenuti su tutte le nostre barche. Consigliamo di portare acqua fresca, un asciugamano e una protezione solare adeguata per il vostro animale.',
       },

@@ -13,8 +13,9 @@ function hasTimeOverlap(
 //
 // Since the single fleet-wide policy of 2026-05-26 there are no notice-based
 // refund tiers: a confirmed booking with a deposit is never refunded in cash.
-// Bad weather is settled off this path (new date, or a 12-month voucher, or a
-// cash refund only when the paid Garantia de mal tiempo was contracted), so a
+// Bad weather is settled off this path (company suspension: new date, voucher
+// or refund; client cancellation on a bad forecast only with the paid
+// Garantia de mal tiempo), so a
 // tier here that pays out for enough notice would silently undercut it.
 function calculateRefundTier(_hoursUntilStart: number): { refundPercentage: number } {
   return { refundPercentage: 0 };

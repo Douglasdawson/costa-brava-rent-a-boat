@@ -459,25 +459,25 @@ export const ca: Translations = {
     coverages: {
       title: "Cobertures opcionals",
       weatherName: "Garantia de mal temps",
-      weatherDesc: "Si el mal temps impedeix sortir, recuperes en diners el que hagis pagat per avançat.",
+      weatherDesc: "Si la previsió d'AEMET de la vigília dona avís o 15 nusos o més, pots cancel·lar i et retornem tot.",
       depositName: "Fiança reduïda",
       depositDesc: "Deixes {amount}€ de fiança{standard} el dia de la sortida.",
       stepTitle: "Si el mar no acompanya",
       stepSubtitle: "Tu decideixes com vols estar cobert.",
       withoutLabel: "Sense garantia",
-      withoutBody: "Canviem la data sense cost. Si no aconseguim acordar-ne cap, reps un val vàlid 12 mesos. No hi ha devolució en diners.",
+      withoutBody: "Si cancel·lem nosaltres: nova data, val o devolució, tu tries. Si sortim i tu no, no hi ha devolució.",
       withLabel: "Amb garantia",
-      withBody: "Tries tu: nova data o els diners de tornada, íntegres.",
+      withBody: "Decideixes tu: la previsió de la vigília dona 15 nusos o avís? Cancel·les i et retornem tot.",
       triggerAemetMark: "AEMET",
       triggerAemet: "Avís costaner oficial per a la zona en la teva franja horària.",
       triggerWindMark: "20 nusos",
       triggerWind: "Vent sostingut o ratxes per damunt, o decisió de l'empresa per seguretat.",
       standardSuffix: " en lloc de {std}",
       noneCta: "Continuar sense cobertures",
-      criteriaShort: "Mal temps = avís d'AEMET, vent per sobre de 20 nusos o decisió de l'empresa.",
+      criteriaShort: "Cancel·lem amb avís d'AEMET o vent per sobre de 20 nusos. Amb la garantia, 15 nusos a la previsió de la vigília et permeten cancel·lar.",
       warnTitle: "Seguir sense la garantia de mal temps?",
       warnBody:
-        "Si el mal temps impedeix sortir, canviem la data sense cost. Si no aconseguim acordar-ne cap, reps un val per l'import abonat, vàlid 12 mesos. No hi ha devolució en diners.",
+        "Si cancel·lem nosaltres per mal temps, igualment tries entre nova data, val o devolució. Però si es pot sortir i decideixes no fer-ho per la previsió, no hi ha devolució.",
       warnAdd: "Afegir per {price}€",
       warnContinue: "Continuar sense garantia",
     },
@@ -773,7 +773,7 @@ export const ca: Translations = {
     heroChipReviews: "{rating} · {count} ressenyes a Google",
     heroChipFuelInsurance: "Carburant i assegurança inclosos",
     heroChipInsurance: "Assegurança inclosa",
-    heroChipWeather: "Si el mar no acompanya, reprogramem",
+    heroChipWeather: "Si cancel·lem, nova data o devolució",
     recommendedBadge: "Recomanat",
     viewsToday: "visites a aquesta barca avui",
     viewCustomerGallery: "Veure galeria de fotos de clients",
@@ -1184,7 +1184,7 @@ export const ca: Translations = {
       "El preu arrenca a 85€/h amb la benzina inclosa. Treballem per franges: 1 hora des de 85€, 2 hores des de 135€ i mig dia (4 hores) des de 180€ en temporada baixa. La tarifa puja en temporada alta i els caps de setmana. No hi ha comissions de plataforma ni cost extra de combustible: el preu que reserves és el preu final.",
     faqWeatherQuestion: "Què passa si fa mal temps?",
     faqWeatherAnswer:
-      "Si el mal temps impedeix la sortida, canviem la data sense cost; si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Si vas contractar la Garantia de mal temps, tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja horària del teu lloguer, vent sostingut o ratxes superiors a 20 nusos, o la decisió del nostre personal per motius de seguretat.",
+      "Si cancel·lem nosaltres per mal temps, tries entre una nova data sense cost, un bo per l'import abonat amb validesa de 12 mesos o la devolució íntegra en diners. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja del teu lloguer, vent sostingut o ratxes per sobre de 20 nusos, o la decisió del nostre personal per motius de seguretat. Amb la Garantia de mal temps pots, a més, cancel·lar tu fins a l'hora de sortida amb devolució íntegra (exclòs el preu de la mateixa garantia) si la previsió d'AEMET publicada el dia anterior indica avís costaner o vent de 15 nusos o més per a la teva franja. Sense la garantia, si la sortida és possible i prefereixes no venir, no hi ha devolució.",
     howToTitle: "Com llogar un vaixell sense llicència a Blanes (5 passos)",
     howToIntro:
       "Llogar un vaixell sense llicència al Port de Blanes és més senzill del que sembla. Aquí tens els 5 passos del procés, des de la reserva fins a la devolució, perquè sàpigues exactament què esperar el dia de la teva sortida.",
@@ -1325,7 +1325,7 @@ export const ca: Translations = {
     vsMarketplacesRow2Direct: "La verifiquem en línia abans de reservar",
     vsMarketplacesRow2Market: "Es comprova el dia de la sortida al port",
     vsMarketplacesRow3Label: "Garantia de mal temps",
-    vsMarketplacesRow3Direct: "Opcional en reservar: nova data o devolució en diners",
+    vsMarketplacesRow3Direct: "Opcional: cancel·les amb devolució íntegra si la previsió de la vigília arriba a 15 nusos",
     vsMarketplacesRow3Market: "Segons les condicions de cada portal",
     vsMarketplacesRow4Label: "Canvis de data",
     vsMarketplacesRow4Direct: "Gratis fins a 7 dies abans, parlant directament amb nosaltres",
@@ -1358,7 +1358,7 @@ export const ca: Translations = {
       "Es diposita el dia de la sortida i es retorna íntegra en tornar la llanxa en el mateix estat en què va sortir. També hi ha una cobertura opcional de fiança reduïda si prefereixes bloquejar menys import.",
     faqWeatherQuestion: "Què passa si fa mal temps el dia del lloguer?",
     faqWeatherAnswer:
-      "Pots canviar la data de franc fins a 7 dies abans de la sortida. Si el mal temps impedeix salpar, canviem la data sense cost o t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners.",
+      "Pots canviar la data de franc fins a 7 dies abans de la sortida. Si cancel·lem nosaltres per mal temps, tries entre una nova data, un bo per l'import abonat amb validesa de 12 mesos o la devolució íntegra en diners. Amb la Garantia de mal temps pots, a més, cancel·lar tu amb devolució íntegra si la previsió d'AEMET de la vigília indica avís costaner o vent de 15 nusos o més.",
     faqCrossLinkLabel: "Veure les llanxes amb llicència",
     crossLinkFromFree: "Tens titulació? Llanxes de 80 a 115 CV fins a Tossa",
     linksTitle: "Continua explorant",
@@ -1588,13 +1588,13 @@ export const ca: Translations = {
         id: "cancelacion",
         question: "Quina és la política de cancel·lació?",
         answer:
-          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
+          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si cancel·lem nosaltres per mal temps, tries entre una nova data sense cost, un bo per l'import abonat amb validesa de 12 mesos o la devolució íntegra en diners. Amb la Garantia de mal temps contractada pots, a més, cancel·lar tu amb devolució íntegra (exclòs el preu de la mateixa garantia) si la vigília AEMET preveu avís costaner o vent de 15 nusos o més per a la teva franja, encara que la sortida fos possible. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
       },
       {
         id: "mal-tiempo",
         question: "Què passa si fa mal temps?",
         answer:
-          "Si el mal temps impedeix la sortida, canviem la data sense cost; si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Si vas contractar la Garantia de mal temps, tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja horària del teu lloguer, vent sostingut o ratxes superiors a 20 nusos, o la decisió del nostre personal per motius de seguretat.",
+          "Si cancel·lem nosaltres per mal temps, tries entre una nova data sense cost, un bo per l'import abonat amb validesa de 12 mesos o la devolució íntegra en diners. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja del teu lloguer, vent sostingut o ratxes per sobre de 20 nusos, o la decisió del nostre personal per motius de seguretat. Amb la Garantia de mal temps pots, a més, cancel·lar tu fins a l'hora de sortida amb devolució íntegra (exclòs el preu de la mateixa garantia) si la previsió d'AEMET publicada el dia anterior indica avís costaner o vent de 15 nusos o més per a la teva franja. Sense la garantia, si la sortida és possible i prefereixes no venir, no hi ha devolució.",
       },
       {
         id: "experiencia",
@@ -2136,7 +2136,7 @@ export const ca: Translations = {
     aFuel:
       "Sí, però únicament si s'acorda abans de formalitzar el lloguer: com que és el nostre patró qui fa la ruta preestablerta, podem tancar el consum per endavant i oferir-te un preu amb combustible inclòs. En aquest cas el preu del lloguer és superior al dels packs estàndard. Si no es pacta prèviament, el combustible es paga a part segons consum.",
     q5: "Quina és la política de cancel·lació?",
-    a5: "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
+    a5: "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si cancel·lem nosaltres per mal temps, tries entre una nova data sense cost, un bo per l'import abonat amb validesa de 12 mesos o la devolució íntegra en diners. Amb la Garantia de mal temps contractada pots, a més, cancel·lar tu amb devolució íntegra (exclòs el preu de la mateixa garantia) si la vigília AEMET preveu avís costaner o vent de 15 nusos o més per a la teva franja, encara que la sortida fos possible. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
   },
   activitySunset: {
     faqItems: [
@@ -2770,7 +2770,7 @@ export const ca: Translations = {
       cancelacion: {
         question: "Quina és la política de cancel·lació?",
         answer:
-          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
+          "Canvi de data gratuït fins a 7 dies abans de la sortida (subjecte a disponibilitat). Si cancel·lem nosaltres per mal temps, tries entre una nova data sense cost, un bo per l'import abonat amb validesa de 12 mesos o la devolució íntegra en diners. Amb la Garantia de mal temps contractada pots, a més, cancel·lar tu amb devolució íntegra (exclòs el preu de la mateixa garantia) si la vigília AEMET preveu avís costaner o vent de 15 nusos o més per a la teva franja, encara que la sortida fos possible. Fora d'aquests supòsits, les reserves confirmades amb dipòsit no es retornen en diners.",
       },
       sinLicencia: {
         question: "Puc llogar un vaixell sense tenir llic\u00E8ncia n\u00E0utica?",
@@ -2835,7 +2835,7 @@ export const ca: Translations = {
       malTiempo: {
         question: "Què passa si fa mal temps?",
         answer:
-          "Si el mal temps impedeix la sortida, canviem la data sense cost; si no aconseguim acordar-ne una, t'emetem un val per l'import abonat amb validesa de 12 mesos. Si vas contractar la Garantia de mal temps, tries entre nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja horària del teu lloguer, vent sostingut o ratxes superiors a 20 nusos, o la decisió del nostre personal per motius de seguretat.",
+          "Si cancel·lem nosaltres per mal temps, tries entre una nova data sense cost, un bo per l'import abonat amb validesa de 12 mesos o la devolució íntegra en diners. El criteri és objectiu: avís costaner oficial de l'AEMET per a la zona en la franja del teu lloguer, vent sostingut o ratxes per sobre de 20 nusos, o la decisió del nostre personal per motius de seguretat. Amb la Garantia de mal temps pots, a més, cancel·lar tu fins a l'hora de sortida amb devolució íntegra (exclòs el preu de la mateixa garantia) si la previsió d'AEMET publicada el dia anterior indica avís costaner o vent de 15 nusos o més per a la teva franja. Sense la garantia, si la sortida és possible i prefereixes no venir, no hi ha devolució.",
       },
       emergencia: {
         question: "Què faig en cas d'emergència?",
@@ -3108,11 +3108,11 @@ export const ca: Translations = {
         },
         {
           title: "6. Zona de navegació i durada",
-          body: "Zona autoritzada: al nord fins al port de Sant Feliu de Guíxols i, en tot cas, dins d'una milla de la costa i dels límits de la titulació del patró. Navegar fora d'aquesta zona deixa la sortida sense cobertura de l'assegurança.\n\nLa velocitat màxima als ports i als canals abalisats de les platges és de 3 nusos. Cal respectar la zona de banyistes, fondejar fora de les boies grogues, navegar a més de 200 m de platges i penya-segats i mantenir 100 m de distància amb les boies de submarinistes.\n\nLes embarcacions hauran de tornar al Port de Blanes abans del final de la franja horària contractada. Si el check-out es fa més tard de l'hora estipulada sense avís, es cobrarà un import de 150 € per cada 30 minuts de retard o la seva part proporcional.",
+          body: "Zona autoritzada: al nord fins al port de Sant Feliu de Guíxols i, en tot cas, dins de dues milles de la costa i dels límits de la titulació del patró. Navegar fora d'aquesta zona deixa la sortida sense cobertura de l'assegurança.\n\nLa velocitat màxima als ports i als canals abalisats de les platges és de 3 nusos. Cal respectar la zona de banyistes, fondejar fora de les boies grogues, navegar a més de 200 m de platges i penya-segats i mantenir 100 m de distància amb les boies de submarinistes.\n\nLes embarcacions hauran de tornar al Port de Blanes abans del final de la franja horària contractada. Si el check-out es fa més tard de l'hora estipulada sense avís, es cobrarà la tarifa horària vigent de l'embarcació incrementada en un 50 % per cada fracció de 30 minuts de retard (en les embarcacions sense preu d'1 hora, la tarifa horària és la meitat del preu de 2 hores de la temporada).",
         },
         {
           title: "7. Política de cancel·lació",
-          body: "- Canvi de data gratuït fins a 7 dies abans de la sortida, subjecte a disponibilitat de l'embarcació.\n- Mal temps sense Garantia contractada: reprogramació sense cost o, si no s'acorda nova data, val per l'import abonat amb validesa de 12 mesos. No escau la devolució en diners.\n- Mal temps amb la Garantia de mal temps contractada: el client tria entre una nova data o la devolució íntegra en diners de les quantitats abonades pel lloguer, exclòs l'import de la mateixa garantia, que no és reemborsable.\n- Criteri objectiu de mal temps: avís costaner oficial de l'AEMET per a la zona de navegació en la franja horària del lloguer, vent sostingut o ratxes superiors a vint nusos, o la decisió del personal de l'empresa per motius de seguretat.\n- Si la sortida no es pot fer per causa imputable a l'empresa (avaria o altra), es retornen les quantitats abonades.\n- Fora dels supòsits anteriors, les reserves confirmades amb dipòsit no són reemborsables en diners.\n\nLa Garantia de mal temps i la Fiança reduïda són garanties comercials pròpies de Costa Brava Rent a Boat i no constitueixen un contracte d'assegurança. La decisió sobre suspensió per condicions meteorològiques correspon al prestador i es pren amb criteris de seguretat. Comunicació per escrit a info@costabravarentaboat.com o WhatsApp +34 611 500 372.",
+          body: "- Canvi de data gratuït fins a 7 dies abans de la sortida, subjecte a disponibilitat de l'embarcació.\n- Suspensió per mal temps decidida per l'empresa: el client tria entre una nova data sense cost, un val per l'import abonat amb validesa de 12 mesos o la devolució íntegra en diners de les quantitats abonades.\n- Criteri objectiu de suspensió: avís costaner oficial de l'AEMET per a la zona de navegació en la franja horària del lloguer, vent sostingut o ratxes superiors a vint nusos, o la decisió del personal de l'empresa per motius de seguretat.\n- Garantia de mal temps contractada: el client pot cancel·lar pel seu compte, fins a l'hora de sortida, amb devolució íntegra de les quantitats abonades pel lloguer (exclòs l'import de la mateixa garantia, que no és reemborsable) quan la previsió de l'AEMET publicada el dia anterior per a la zona i la franja del lloguer indiqui avís costaner o vent sostingut o ratxes de quinze nusos o més, encara que l'empresa consideri possible la sortida.\n- Si la sortida no es pot fer per causa imputable a l'empresa (avaria o altra), es retornen les quantitats abonades.\n- Fora dels supòsits anteriors, la cancel·lació pel client o la no presentació no dona dret a la devolució de les reserves confirmades amb dipòsit.\n\nLa Garantia de mal temps i la Fiança reduïda són garanties comercials pròpies de Costa Brava Rent a Boat i no constitueixen un contracte d'assegurança. La decisió sobre suspensió per condicions meteorològiques correspon al prestador i es pren amb criteris de seguretat. Comunicació per escrit a info@costabravarentaboat.com o WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obligacions del client",
@@ -4765,7 +4765,7 @@ export const ca: Translations = {
       },
       {
         q: "Què passa si fa mal temps?",
-        a: "Si el mal temps impedeix sortir, canviem la data sense cost o et donem un val vàlid 12 mesos. Amb la Garantia de mal temps contractada, et retornem els diners.",
+        a: "Si cancel·lem nosaltres per mal temps, tries: nova data sense cost, un val de 12 mesos o els diners de tornada. Amb la Garantia de mal temps pots, a més, cancel·lar tu si la previsió de la vigília dona 15 nusos o avís.",
       },
     ],
   },
@@ -4773,13 +4773,13 @@ export const ca: Translations = {
     navLabel: "Garanties",
     heroTitle: "Si el mar no acompanya, ja està decidit",
     heroSubtitle:
-      "Si el mal temps impedeix sortir, et canviem la data sense cost; si no en trobem una altra, reps un val de 12 mesos. Amb la Garantia de mal temps tries tu: nova data o els diners de tornada. Sense lletra petita.",
-    weatherTitle: "Si el mal temps impedeix sortir",
+      "Si cancel·lem nosaltres per mal temps, tries tu: nova data, un val de 12 mesos o els diners de tornada. Amb la Garantia de mal temps també decideixes tu: si la previsió de la vigília dona 15 nusos o avís, cancel·les i t'ho retornem tot. Sense lletra petita.",
+    weatherTitle: "Si la previsió no acompanya",
     withoutLabel: "Sense la Garantia",
-    withoutBody: "Canviem la data sense cost. Si no aconseguim acordar-ne cap, reps un val per l'import abonat, vàlid 12 mesos. No hi ha devolució en diners.",
+    withoutBody: "Si cancel·lem nosaltres, tries: nova data sense cost, un val per l'import abonat vàlid 12 mesos o la devolució íntegra. Si es pot sortir i prefereixes no fer-ho, no hi ha devolució (el canvi de data és gratuït fins a 7 dies abans).",
     withLabel: "Amb la Garantia de mal temps",
-    withBody: "Tries: nova data o els diners de tornada, íntegres, exclòs el preu de la mateixa garantia.",
-    criteriaTitle: "Quan es considera mal temps",
+    withBody: "A més, decideixes tu: si la previsió d'AEMET publicada el dia anterior indica avís costaner o vent de 15 nusos o més per a la teva franja, pots cancel·lar fins a l'hora de sortida i et retornem tot el que has pagat pel lloguer, exclòs el preu de la mateixa garantia.",
+    criteriaTitle: "Quan suspenem la sortida",
     criteriaMarks: ["AEMET", "20 kn", "L'empresa"],
     criteria: [
       "Avís costaner oficial de l'AEMET per a la nostra zona de navegació en la franja horària del teu lloguer.",
@@ -5195,7 +5195,7 @@ export const ca: Translations = {
       },
       {
         q: "Què passa si fa mal temps?",
-        a: "Si el mal temps impedeix sortir, canviem la data sense cost o, si no aconseguim acordar-ne una, t'emetem un bo per l'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre nova data o la devolució íntegra en diners.",
+        a: "Si cancel·lem nosaltres per mal temps, tries entre una nova data sense cost, un bo per l'import abonat amb validesa de 12 mesos o la devolució íntegra en diners. Amb la Garantia de mal temps contractada pots, a més, cancel·lar tu amb devolució íntegra si la previsió d'AEMET de la vigília indica avís costaner o vent de 15 nusos o més.",
       },
       {
         q: "En què es diferencia de llogar un vaixell sense patró?",
@@ -5565,7 +5565,7 @@ export const ca: Translations = {
         },
         {
           question: 'Què passa si la mar està dolenta?',
-          answer: 'Si la previsió marca >20 nusos sostinguts o alerta per onades >1,5 m, no sortim i et canviem la data sense cost; si no aconseguim acordar-ne cap, reps un bo vàlid 12 mesos. El tram Blanes–Fenals està protegit de la Tramuntana per la pròpia costa, així que és dels més segurs per a principiants fins i tot amb vent del nord.',
+          answer: 'Si la previsió marca >20 nusos sostinguts o alerta per onades >1,5 m, no sortim i tries tu: nova data sense cost, un bo de 12 mesos o la devolució íntegra. El tram Blanes–Fenals està protegit de la Tramuntana per la pròpia costa, així que és dels més segurs per a principiants fins i tot amb vent del nord.',
         },
         {
           question: 'Com arribo de Lloret de Mar al Port de Blanes?',
@@ -6010,7 +6010,7 @@ export const ca: Translations = {
         distanceQ: 'Fins on puc navegar des de Blanes?',
         distanceA: 'Amb la Llicència de Navegació, de dia i a prop de la costa, arribes des de Blanes a Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal i Tossa de Mar (30-45 min) i, en jornada completa, a Sant Feliu de Guíxols. Amb l\'excursió privada amb patró fas la ruta sense titulació.',
         weatherQ: 'Què passa si fa mal temps el dia de la meva reserva?',
-        weatherA: 'La seguretat és la nostra prioritat. Si el mal temps impedeix sortir, canviem la data sense cost o, si no n\'acordem cap de nova, t\'emetem un bo per l\'import abonat amb validesa de 12 mesos. Amb la Garantia de mal temps contractada tries entre una nova data o la devolució íntegra en diners, exclòs el preu de la mateixa garantia.',
+        weatherA: 'La seguretat és la nostra prioritat. Si cancel·lem nosaltres per mal temps, tries entre una nova data sense cost, un bo per l\'import abonat amb validesa de 12 mesos o la devolució íntegra en diners. Amb la Garantia de mal temps contractada pots, a més, cancel·lar tu amb devolució íntegra (exclòs el preu de la mateixa garantia) si la previsió d\'AEMET de la vigília indica avís costaner o vent de 15 nusos o més.',
         petsQ: 'Puc portar mascotes a la barca?',
         petsA: 'Sí, les mascotes són benvingudes a totes les nostres barques. Recomanem portar aigua fresca, una tovallola i protecció solar adequada per a la teva mascota.',
       },

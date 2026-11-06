@@ -19,7 +19,7 @@ import { getShopStrings, shopItemLabel, deliveryInstructions } from "../lib/shop
 import { formatOrderNumber } from "@shared/shopData";
 import { calculateBasePrice, type Duration } from "@shared/pricing";
 import { generateOpaqueUnsubToken } from "../routes/newsletter";
-import { GOOGLE_REVIEW_URL } from "../../shared/businessProfile";
+import { GOOGLE_REVIEW_URL, CANCELLATION_POLICY_ES } from "../../shared/businessProfile";
 import { activitatumTopicUrl, type ActivitatumSurface } from "../../shared/activitatumLinks";
 
 type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru" | "ca";
@@ -103,7 +103,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hora", colHours: "horas",
     phone: "Teléfono",
     emergencyCall: "En caso de incidencia, llámanos al",
-    cancelTitle: "Cambio de fecha gratuito hasta 7 días antes (sujeto a disponibilidad). Si el mal tiempo impide salir: nueva fecha sin coste o bono de 12 meses; devolución en dinero solo con la Garantía de mal tiempo contratada.",
+    cancelTitle: "Cambio de fecha gratuito hasta 7 días antes (sujeto a disponibilidad). Si suspendemos por mal tiempo: nueva fecha, bono de 12 meses o devolución íntegra, a tu elección. Con la Garantía de mal tiempo puedes además cancelar con devolución si la víspera AEMET prevé aviso costero o 15 nudos o más.",
     cancelLink: "Cancelar mi reserva",
   },
   en: {
@@ -142,7 +142,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hour", colHours: "hours",
     phone: "Phone",
     emergencyCall: "In case of emergency, call us at",
-    cancelTitle: "Free date change up to 7 days before departure (subject to availability). If bad weather stops the trip: a new date at no cost or a 12-month voucher; cash refund only with the Weather guarantee.",
+    cancelTitle: "Free date change up to 7 days before departure (subject to availability). If we suspend for bad weather: new date, 12-month voucher or full refund, your choice. With the Weather guarantee you can also cancel for a refund if the day-before AEMET forecast shows a coastal warning or 15+ knots.",
     cancelLink: "Cancel my booking",
   },
   fr: {
@@ -181,6 +181,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "heure", colHours: "heures",
     phone: "Téléphone",
     emergencyCall: "En cas d'incident, appelez-nous au",
+    cancelTitle: "Changement de date gratuit jusqu'à 7 jours avant le départ (sous réserve de disponibilité). Si nous annulons pour mauvais temps : nouvelle date, bon de 12 mois ou remboursement intégral, au choix. Avec la Garantie mauvais temps, vous pouvez aussi annuler avec remboursement si la veille l'AEMET prévoit une alerte côtière ou 15 nœuds ou plus.",
   },
   de: {
     bookingConfirmed: "Buchung bestatigt",
@@ -218,6 +219,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "Stunde", colHours: "Stunden",
     phone: "Telefon",
     emergencyCall: "Im Notfall rufen Sie uns an",
+    cancelTitle: "Kostenlose Terminänderung bis 7 Tage vor Abfahrt (je nach Verfügbarkeit). Wenn wir wegen schlechten Wetters absagen: neuer Termin, Gutschein für 12 Monate oder volle Rückerstattung, nach Ihrer Wahl. Mit der Schlechtwetter-Garantie können Sie zusätzlich mit Rückerstattung stornieren, wenn die AEMET-Vorhersage vom Vortag eine Küstenwarnung oder 15 Knoten oder mehr zeigt.",
   },
   nl: {
     bookingConfirmed: "Boeking bevestigd",
@@ -255,6 +257,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "uur", colHours: "uur",
     phone: "Telefoon",
     emergencyCall: "In geval van een incident, bel ons op",
+    cancelTitle: "Gratis datumwijziging tot 7 dagen voor vertrek (afhankelijk van beschikbaarheid). Als wij afzeggen wegens slecht weer: nieuwe datum, tegoedbon van 12 maanden of volledige terugbetaling, naar keuze. Met de Slechtweergarantie kunt u ook annuleren met terugbetaling als de AEMET-voorspelling van de dag ervoor een kustwaarschuwing of 15 knopen of meer aangeeft.",
   },
   it: {
     bookingConfirmed: "Prenotazione confermata",
@@ -292,6 +295,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "ora", colHours: "ore",
     phone: "Telefono",
     emergencyCall: "In caso di incidente, chiamateci al",
+    cancelTitle: "Cambio data gratuito fino a 7 giorni prima della partenza (salvo disponibilità). Se annulliamo per maltempo: nuova data, buono valido 12 mesi o rimborso integrale, a scelta. Con la Garanzia maltempo può anche annullare con rimborso se la previsione AEMET del giorno prima indica un'allerta costiera o 15 nodi o più.",
   },
   ru: {
     bookingConfirmed: "Bronirovanie podtverzhdeno",
@@ -329,6 +333,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "chas", colHours: "chasov",
     phone: "Телефон",
     emergencyCall: "В случае инцидента позвоните нам по номеру",
+    cancelTitle: "Бесплатный перенос даты не позднее чем за 7 дней до выхода (при наличии свободных дат). Если мы отменяем выход из-за плохой погоды: новая дата, сертификат на 12 месяцев или полный возврат денег, на ваш выбор. С гарантией на случай плохой погоды вы также можете отменить с возвратом, если прогноз AEMET накануне показывает штормовое предупреждение или ветер от 15 узлов.",
   },
   ca: {
     bookingConfirmed: "Reserva confirmada",
@@ -366,7 +371,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hora", colHours: "hores",
     phone: "Telèfon",
     emergencyCall: "En cas d'incidència, truca'ns al",
-    cancelTitle: "Canvi de data gratuït fins a 7 dies abans (subjecte a disponibilitat). Si el mal temps impedeix sortir: nova data sense cost o val de 12 mesos; devolució en diners només amb la Garantia de mal temps contractada.",
+    cancelTitle: "Canvi de data gratuït fins a 7 dies abans (subjecte a disponibilitat). Si suspenem per mal temps: nova data, val de 12 mesos o devolució íntegra, a la teva elecció. Amb la Garantia de mal temps també pots cancel·lar amb devolució si la vigília AEMET preveu avís costaner o 15 nusos o més.",
     cancelLink: "Cancel·lar la meva reserva",
   },
 };
@@ -567,7 +572,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
 
   const cancelBlock = cancelUrl ? `
     <div style="margin-top:24px; padding:16px; background-color:#f8fafc; border-radius:8px; border:1px solid #e2e8f0; text-align:center;">
-      <p style="margin:0 0 8px; color:#64748b; font-size:13px;">${strings.cancelTitle || "Cambio de fecha gratis hasta 7 días antes. Reservas con depósito no reembolsables (excepto mal tiempo)."}</p>
+      <p style="margin:0 0 8px; color:#64748b; font-size:13px;">${strings.cancelTitle || "Cambio de fecha gratis hasta 7 días antes. Si suspendemos por mal tiempo: nueva fecha, bono o devolución."}</p>
       <a href="${cancelUrl}" style="color:#dc2626; font-size:13px; text-decoration:underline;">${strings.cancelLink || "Cancelar mi reserva"}</a>
     </div>
   ` : "";
@@ -1065,7 +1070,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   const policyBlock = `
     <div style="background:#f1f5f9; border-radius:8px; padding:16px; margin:16px 0; font-size:14px; color:#334155;">
       <p style="margin:0 0 8px; font-weight:bold;">Política de cancelación</p>
-      <p style="margin:0;">Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.</p>
+      <p style="margin:0;">${CANCELLATION_POLICY_ES}</p>
     </div>
   `;
 

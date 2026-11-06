@@ -461,25 +461,25 @@ export const de: Translations = {
     coverages: {
       title: "Optionale Zusatzleistungen",
       weatherName: "Schlechtwetter-Garantie",
-      weatherDesc: "Wenn schlechtes Wetter die Ausfahrt verhindert, bekommst du in bar zurück, was du im Voraus gezahlt hast.",
+      weatherDesc: "Meldet die AEMET-Vorhersage am Vortag eine Warnung oder 15 Knoten und mehr, stornierst du und bekommst alles zurück.",
       depositName: "Reduzierte Kaution",
       depositDesc: "Du hinterlegst {amount}€ Kaution{standard} am Tag der Ausfahrt.",
       stepTitle: "Wenn das Meer nicht mitspielt",
       stepSubtitle: "Du entscheidest, wie du abgesichert sein willst.",
       withoutLabel: "Ohne Garantie",
-      withoutBody: "Wir verschieben den Termin kostenlos. Falls kein Termin passt, erhältst du einen Gutschein mit 12 Monaten Gültigkeit. Keine Rückzahlung in bar.",
+      withoutBody: "Sagen wir ab: neuer Termin, Gutschein oder Geld zurück, du wählst. Fahren wir und du nicht: keine Erstattung.",
       withLabel: "Mit Garantie",
-      withBody: "Du wählst: neuer Termin oder das Geld vollständig zurück.",
+      withBody: "Du entscheidest: 15 Knoten oder eine Warnung in der Vorhersage vom Vortag? Stornieren, alles zurück.",
       triggerAemetMark: "AEMET",
       triggerAemet: "Offizielle Küstenwarnung für das Gebiet in deinem Zeitfenster.",
       triggerWindMark: "20 Knoten",
       triggerWind: "Anhaltender Wind oder Böen darüber, oder Entscheidung des Unternehmens aus Sicherheitsgründen.",
       standardSuffix: " statt {std}",
       noneCta: "Ohne Zusatzleistungen fortfahren",
-      criteriaShort: "Schlechtes Wetter = AEMET-Warnung, Wind über 20 Knoten oder Entscheidung des Unternehmens.",
+      criteriaShort: "Wir sagen ab bei AEMET-Warnung oder Wind über 20 Knoten. Mit der Garantie kannst du schon bei 15 Knoten in der Vorhersage vom Vortag stornieren.",
       warnTitle: "Ohne Schlechtwetter-Garantie fortfahren?",
       warnBody:
-        "Wenn schlechtes Wetter die Ausfahrt verhindert, verschieben wir den Termin kostenlos. Passt kein Termin, bekommst du einen Gutschein über den gezahlten Betrag, 12 Monate gültig. Keine Rückerstattung in Geld.",
+        "Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du trotzdem zwischen neuem Termin, Gutschein oder Erstattung. Ist die Ausfahrt aber möglich und du verzichtest wegen der Vorhersage, gibt es keine Erstattung.",
       warnAdd: "Für {price}€ hinzufügen",
       warnContinue: "Ohne Garantie fortfahren",
     },
@@ -776,7 +776,7 @@ export const de: Translations = {
     heroChipReviews: "{rating} · {count} Google-Bewertungen",
     heroChipFuelInsurance: "Treibstoff und Versicherung inklusive",
     heroChipInsurance: "Versicherung inklusive",
-    heroChipWeather: "Bei schlechtem Seegang verschieben wir",
+    heroChipWeather: "Sagen wir ab: neuer Termin oder Geld zurück",
     recommendedBadge: "Empfohlen",
     viewsToday: "Aufrufe dieses Boots heute",
     viewCustomerGallery: "Kundenfotogalerie ansehen",
@@ -1188,7 +1188,7 @@ export const de: Translations = {
       "Die Preise beginnen bei 85€/Std. inklusive Kraftstoff. Wir arbeiten mit Zeitfenstern: 1 Stunde ab 85€, 2 Stunden ab 135€ und ein halber Tag (4 Stunden) ab 180€ in der Nebensaison. In der Hauptsaison und an Wochenenden steigen die Preise. Keine Plattformgebühren und keine zusätzlichen Kraftstoffkosten: Der gebuchte Preis ist der Endpreis.",
     faqWeatherQuestion: "Was passiert bei schlechtem Wetter?",
     faqWeatherAnswer:
-      "Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos; passt kein Termin, stellen wir einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Das Kriterium ist objektiv: eine offizielle AEMET-Küstenwarnung für das Gebiet im Zeitfenster deiner Miete, anhaltender Wind oder Böen über 20 Knoten, oder die Entscheidung unseres Personals aus Sicherheitsgründen.",
+      "Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du zwischen einem neuen Termin ohne Kosten, einem Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder der vollständigen Rückerstattung in Geld. Das Kriterium ist objektiv: eine offizielle AEMET-Küstenwarnung für das Gebiet im Zeitfenster deiner Miete, anhaltender Wind oder Böen über 20 Knoten, oder die Entscheidung unseres Personals aus Sicherheitsgründen. Mit der Schlechtwetter-Garantie kannst du außerdem bis zur Abfahrtszeit selbst stornieren und erhältst alles zurück (ohne den Preis der Garantie selbst), wenn die am Vortag veröffentlichte AEMET-Vorhersage für dein Zeitfenster eine Küstenwarnung oder Wind ab 15 Knoten meldet. Ohne die Garantie gibt es keine Erstattung, wenn die Ausfahrt möglich ist und du lieber nicht kommst.",
     howToTitle: "Wie man in Blanes ein Boot ohne Führerschein mietet (5 Schritte)",
     howToIntro:
       "Ein Boot ohne Führerschein im Hafen von Blanes zu mieten ist einfacher als gedacht. Hier sind die 5 Schritte des Ablaufs – von der Buchung bis zur Rückgabe – damit Sie genau wissen, was Sie am Tag der Abfahrt erwartet.",
@@ -1329,7 +1329,7 @@ export const de: Translations = {
     vsMarketplacesRow2Direct: "Wir prüfen ihn online vor der Buchung",
     vsMarketplacesRow2Market: "Wird am Tag der Ausfahrt im Hafen geprüft",
     vsMarketplacesRow3Label: "Schlechtwetter-Garantie",
-    vsMarketplacesRow3Direct: "Optional bei der Buchung: neuer Termin oder Rückerstattung in Geld",
+    vsMarketplacesRow3Direct: "Optional: Storno mit voller Erstattung, wenn die Vorhersage vom Vortag 15 Knoten erreicht",
     vsMarketplacesRow3Market: "Je nach den Bedingungen des jeweiligen Portals",
     vsMarketplacesRow4Label: "Terminänderungen",
     vsMarketplacesRow4Direct: "Kostenlos bis 7 Tage vorher, direkt mit uns",
@@ -1362,7 +1362,7 @@ export const de: Translations = {
       "Sie wird am Tag der Ausfahrt hinterlegt und vollständig erstattet, wenn das Motorboot in demselben Zustand zurückkommt, in dem es losgefahren ist. Es gibt außerdem eine optionale Deckung für eine reduzierte Kaution, wenn du lieber weniger Geld blockierst.",
     faqWeatherQuestion: "Was passiert, wenn am Miettag schlechtes Wetter ist?",
     faqWeatherAnswer:
-      "Du kannst den Termin bis 7 Tage vor der Ausfahrt kostenlos ändern. Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos oder stellen einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld.",
+      "Du kannst den Termin bis 7 Tage vor der Ausfahrt kostenlos ändern. Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du zwischen einem neuen Termin, einem Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder der vollständigen Rückerstattung in Geld. Mit der Schlechtwetter-Garantie kannst du außerdem selbst stornieren und erhältst alles zurück, wenn die AEMET-Vorhersage vom Vortag eine Küstenwarnung oder Wind ab 15 Knoten meldet.",
     faqCrossLinkLabel: "Die Motorboote mit Führerschein ansehen",
     crossLinkFromFree: "Hast du einen Schein? Motorboote mit 80 bis 115 PS bis Tossa",
     linksTitle: "Weiter stöbern",
@@ -1593,13 +1593,13 @@ export const de: Translations = {
         id: "cancelacion",
         question: "Wie lautet die Stornierungsrichtlinie?",
         answer:
-          "Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt (nach Verfügbarkeit). Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos oder stellen, wenn kein Termin passt, einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Außerhalb dieser Fälle werden bestätigte Buchungen mit Anzahlung nicht in Geld erstattet.",
+          "Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt (nach Verfügbarkeit). Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du zwischen einem neuen Termin ohne Kosten, einem Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder der vollständigen Rückerstattung in Geld. Mit gebuchter Schlechtwetter-Garantie kannst du außerdem selbst stornieren und erhältst alles zurück (ohne den Preis der Garantie selbst), wenn AEMET am Vortag für dein Zeitfenster eine Küstenwarnung oder Wind ab 15 Knoten vorhersagt, auch wenn die Ausfahrt möglich wäre. Außerhalb dieser Fälle werden bestätigte Buchungen mit Anzahlung nicht in Geld erstattet.",
       },
       {
         id: "mal-tiempo",
         question: "Was passiert bei schlechtem Wetter?",
         answer:
-          "Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos; passt kein Termin, stellen wir einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Das Kriterium ist objektiv: eine offizielle AEMET-Küstenwarnung für das Gebiet im Zeitfenster deiner Miete, anhaltender Wind oder Böen über 20 Knoten, oder die Entscheidung unseres Personals aus Sicherheitsgründen.",
+          "Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du zwischen einem neuen Termin ohne Kosten, einem Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder der vollständigen Rückerstattung in Geld. Das Kriterium ist objektiv: eine offizielle AEMET-Küstenwarnung für das Gebiet im Zeitfenster deiner Miete, anhaltender Wind oder Böen über 20 Knoten, oder die Entscheidung unseres Personals aus Sicherheitsgründen. Mit der Schlechtwetter-Garantie kannst du außerdem bis zur Abfahrtszeit selbst stornieren und erhältst alles zurück (ohne den Preis der Garantie selbst), wenn die am Vortag veröffentlichte AEMET-Vorhersage für dein Zeitfenster eine Küstenwarnung oder Wind ab 15 Knoten meldet. Ohne die Garantie gibt es keine Erstattung, wenn die Ausfahrt möglich ist und du lieber nicht kommst.",
       },
       {
         id: "experiencia",
@@ -2143,7 +2143,7 @@ export const de: Translations = {
     aFuel:
       "Ja, aber nur wenn dies vor Abschluss der Miete vereinbart wird: Da unser Skipper eine festgelegte Route fährt, können wir den Verbrauch im Voraus festlegen und dir einen Preis inklusive Kraftstoff anbieten. In diesem Fall liegt der Mietpreis über dem der Standard-Pakete. Ohne vorherige Vereinbarung wird der Kraftstoff separat je nach Verbrauch berechnet.",
     q5: "Wie lautet die Stornierungsbedingung?",
-    a5: "Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt (nach Verfügbarkeit). Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos oder stellen, wenn kein Termin passt, einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Außerhalb dieser Fälle werden bestätigte Buchungen mit Anzahlung nicht in Geld erstattet.",
+    a5: "Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt (nach Verfügbarkeit). Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du zwischen einem neuen Termin ohne Kosten, einem Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder der vollständigen Rückerstattung in Geld. Mit gebuchter Schlechtwetter-Garantie kannst du außerdem selbst stornieren und erhältst alles zurück (ohne den Preis der Garantie selbst), wenn AEMET am Vortag für dein Zeitfenster eine Küstenwarnung oder Wind ab 15 Knoten vorhersagt, auch wenn die Ausfahrt möglich wäre. Außerhalb dieser Fälle werden bestätigte Buchungen mit Anzahlung nicht in Geld erstattet.",
   },
   activitySunset: {
     faqItems: [
@@ -2787,7 +2787,7 @@ export const de: Translations = {
       cancelacion: {
         question: "Wie lautet die Stornierungsbedingung?",
         answer:
-          "Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt (nach Verfügbarkeit). Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos oder stellen, wenn kein Termin passt, einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Außerhalb dieser Fälle werden bestätigte Buchungen mit Anzahlung nicht in Geld erstattet.",
+          "Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt (nach Verfügbarkeit). Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du zwischen einem neuen Termin ohne Kosten, einem Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder der vollständigen Rückerstattung in Geld. Mit gebuchter Schlechtwetter-Garantie kannst du außerdem selbst stornieren und erhältst alles zurück (ohne den Preis der Garantie selbst), wenn AEMET am Vortag für dein Zeitfenster eine Küstenwarnung oder Wind ab 15 Knoten vorhersagt, auch wenn die Ausfahrt möglich wäre. Außerhalb dieser Fälle werden bestätigte Buchungen mit Anzahlung nicht in Geld erstattet.",
       },
       sinLicencia: {
         question: "Kann ich ein Boot ohne Bootsf\u00FChrerschein mieten?",
@@ -2852,7 +2852,7 @@ export const de: Translations = {
       malTiempo: {
         question: "Was passiert bei schlechtem Wetter?",
         answer:
-          "Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos; passt kein Termin, stellen wir einen Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit aus. Mit gebuchter Schlechtwetter-Garantie wählst du zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld, ohne den Preis der Garantie selbst. Das Kriterium ist objektiv: eine offizielle AEMET-Küstenwarnung für das Gebiet im Zeitfenster deiner Miete, anhaltender Wind oder Böen über 20 Knoten, oder die Entscheidung unseres Personals aus Sicherheitsgründen.",
+          "Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du zwischen einem neuen Termin ohne Kosten, einem Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder der vollständigen Rückerstattung in Geld. Das Kriterium ist objektiv: eine offizielle AEMET-Küstenwarnung für das Gebiet im Zeitfenster deiner Miete, anhaltender Wind oder Böen über 20 Knoten, oder die Entscheidung unseres Personals aus Sicherheitsgründen. Mit der Schlechtwetter-Garantie kannst du außerdem bis zur Abfahrtszeit selbst stornieren und erhältst alles zurück (ohne den Preis der Garantie selbst), wenn die am Vortag veröffentlichte AEMET-Vorhersage für dein Zeitfenster eine Küstenwarnung oder Wind ab 15 Knoten meldet. Ohne die Garantie gibt es keine Erstattung, wenn die Ausfahrt möglich ist und du lieber nicht kommst.",
       },
       emergencia: {
         question: "Was mache ich im Notfall?",
@@ -3126,11 +3126,11 @@ export const de: Translations = {
         },
         {
           title: "6. Fahrtgebiet und Dauer",
-          body: "Zugelassenes Gebiet: nördlich bis zum Hafen von Sant Feliu de Guíxols und in jedem Fall innerhalb einer Meile von der Küste sowie innerhalb der Grenzen des Führerscheins des Bootsführers. Wer außerhalb dieses Gebiets fährt, verliert für die Ausfahrt den Versicherungsschutz.\n\nDie Höchstgeschwindigkeit in Häfen und in den betonnten Fahrrinnen der Strände beträgt 3 Knoten. Die Badezone ist zu respektieren, außerhalb der gelben Bojen zu ankern, mehr als 200 m von Stränden und Klippen entfernt zu fahren und 100 m Abstand zu Taucherbojen zu halten.\n\nDie Boote müssen vor Ablauf des gebuchten Zeitfensters in den Hafen von Blanes zurückkehren. Erfolgt der Check-out ohne Ankündigung später als vereinbart, werden 150 € je 30 Minuten Verspätung oder der entsprechende Anteil berechnet.",
+          body: "Zugelassenes Gebiet: nördlich bis zum Hafen von Sant Feliu de Guíxols und in jedem Fall innerhalb von zwei Meilen von der Küste sowie innerhalb der Grenzen des Führerscheins des Bootsführers. Wer außerhalb dieses Gebiets fährt, verliert für die Ausfahrt den Versicherungsschutz.\n\nDie Höchstgeschwindigkeit in Häfen und in den betonnten Fahrrinnen der Strände beträgt 3 Knoten. Die Badezone ist zu respektieren, außerhalb der gelben Bojen zu ankern, mehr als 200 m von Stränden und Klippen entfernt zu fahren und 100 m Abstand zu Taucherbojen zu halten.\n\nDie Boote müssen vor Ablauf des gebuchten Zeitfensters in den Hafen von Blanes zurückkehren. Erfolgt der Check-out ohne Ankündigung später als vereinbart, wird für jeweils angefangene 30 Minuten Verspätung der geltende Stundentarif des Bootes zuzüglich 50 % berechnet (bei Booten ohne 1-Stunden-Preis entspricht der Stundentarif der Hälfte des 2-Stunden-Preises der Saison).",
         },
         {
           title: "7. Stornierungsbedingungen",
-          body: "- Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt, nach Verfügbarkeit des Bootes.\n- Schlechtes Wetter ohne gebuchte Garantie: kostenlose Verschiebung oder, wenn kein neuer Termin vereinbart wird, ein Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit. Eine Rückerstattung in Geld erfolgt nicht.\n- Schlechtes Wetter mit gebuchter Schlechtwetter-Garantie: Der Kunde wählt zwischen einem neuen Termin und der vollständigen Rückerstattung der für die Miete gezahlten Beträge in Geld, ohne den Preis der Garantie selbst, der nicht erstattet wird.\n- Objektives Schlechtwetter-Kriterium: eine offizielle AEMET-Küstenwarnung für das Fahrtgebiet im Zeitfenster der Miete, anhaltender Wind oder Böen über zwanzig Knoten, oder die Entscheidung des Personals aus Sicherheitsgründen.\n- Kann die Ausfahrt aus einem vom Unternehmen zu vertretenden Grund (Defekt o. Ä.) nicht stattfinden, werden die gezahlten Beträge erstattet.\n- Außerhalb der genannten Fälle sind bestätigte Buchungen mit Anzahlung nicht in Geld erstattungsfähig.\n\nDie Schlechtwetter-Garantie und die Reduzierte Kaution sind eigene kommerzielle Garantien von Costa Brava Rent a Boat und stellen keinen Versicherungsvertrag dar. Die Entscheidung über eine Absage wegen Wetterbedingungen liegt beim Anbieter und erfolgt aus Sicherheitsgründen. Schriftliche Mitteilung an info@costabravarentaboat.com oder WhatsApp +34 611 500 372.",
+          body: "- Kostenlose Terminänderung bis 7 Tage vor der Ausfahrt, nach Verfügbarkeit des Bootes.\n- Absage wegen schlechten Wetters durch das Unternehmen: Der Kunde wählt zwischen einem neuen Termin ohne Kosten, einem Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder der vollständigen Rückerstattung der gezahlten Beträge in Geld.\n- Objektives Absagekriterium: eine offizielle AEMET-Küstenwarnung für das Fahrtgebiet im Zeitfenster der Miete, anhaltender Wind oder Böen über zwanzig Knoten, oder die Entscheidung des Personals des Unternehmens aus Sicherheitsgründen.\n- Gebuchte Schlechtwetter-Garantie: Der Kunde kann bis zur Abfahrtszeit selbst stornieren und erhält die für die Miete gezahlten Beträge vollständig zurück (ohne den Preis der Garantie selbst, der nicht erstattet wird), wenn die am Vortag veröffentlichte AEMET-Vorhersage für das Gebiet und das Zeitfenster der Miete eine Küstenwarnung oder anhaltenden Wind oder Böen von fünfzehn Knoten oder mehr meldet, auch wenn das Unternehmen die Ausfahrt für möglich hält.\n- Kann die Ausfahrt aus einem vom Unternehmen zu vertretenden Grund (Defekt o. Ä.) nicht stattfinden, werden die gezahlten Beträge erstattet.\n- Außerhalb der genannten Fälle begründen die Stornierung durch den Kunden oder das Nichterscheinen keinen Anspruch auf Erstattung bestätigter Buchungen mit Anzahlung.\n\nDie Schlechtwetter-Garantie und die Reduzierte Kaution sind eigene kommerzielle Garantien von Costa Brava Rent a Boat und stellen keinen Versicherungsvertrag dar. Die Entscheidung über eine Absage wegen Wetterbedingungen liegt beim Anbieter und erfolgt aus Sicherheitsgründen. Schriftliche Mitteilung an info@costabravarentaboat.com oder WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Pflichten des Kunden",
@@ -4786,7 +4786,7 @@ export const de: Translations = {
       },
       {
         q: "Was passiert bei schlechtem Wetter?",
-        a: "Verhindert schlechtes Wetter die Ausfahrt, verschieben wir den Termin kostenlos oder geben dir einen Gutschein mit 12 Monaten Gültigkeit. Mit gebuchter Schlechtwetter-Garantie erstatten wir das Geld.",
+        a: "Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du: neuer Termin ohne Kosten, Gutschein mit 12 Monaten Gültigkeit oder Geld zurück. Mit der Schlechtwetter-Garantie kannst du außerdem selbst stornieren, wenn die Vorhersage vom Vortag 15 Knoten oder eine Warnung meldet.",
       },
     ],
   },
@@ -4794,13 +4794,13 @@ export const de: Translations = {
     navLabel: "Garantien",
     heroTitle: "Wenn das Meer nicht mitspielt, steht die Antwort schon fest",
     heroSubtitle:
-      "Wenn schlechtes Wetter die Ausfahrt verhindert, verschieben wir deinen Termin kostenlos; finden wir keinen neuen, bekommst du einen Gutschein über 12 Monate. Mit der Schlechtwetter-Garantie entscheidest du: neuer Termin oder Geld zurück. Ohne Kleingedrucktes.",
-    weatherTitle: "Wenn schlechtes Wetter die Ausfahrt verhindert",
+      "Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du: neuer Termin, Gutschein über 12 Monate oder Geld zurück. Mit der Schlechtwetter-Garantie entscheidest du auch selbst: Meldet die Vorhersage vom Vortag 15 Knoten oder eine Warnung, stornierst du und wir erstatten alles. Ohne Kleingedrucktes.",
+    weatherTitle: "Wenn die Vorhersage nicht mitspielt",
     withoutLabel: "Ohne Garantie",
-    withoutBody: "Wir verschieben den Termin kostenlos. Passt kein Termin, bekommst du einen Gutschein über den gezahlten Betrag, 12 Monate gültig. Keine Rückerstattung in Geld.",
+    withoutBody: "Sagen wir ab, wählst du: neuer Termin ohne Kosten, Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder volle Erstattung. Ist die Ausfahrt möglich und du möchtest nicht fahren, gibt es keine Erstattung (Terminänderung kostenlos bis 7 Tage vorher).",
     withLabel: "Mit der Schlechtwetter-Garantie",
-    withBody: "Du wählst: neuer Termin oder dein Geld vollständig zurück, ohne den Preis der Garantie selbst.",
-    criteriaTitle: "Wann gilt schlechtes Wetter",
+    withBody: "Zusätzlich entscheidest du: Meldet die am Vortag veröffentlichte AEMET-Vorhersage für dein Zeitfenster eine Küstenwarnung oder Wind ab 15 Knoten, kannst du bis zur Abfahrtszeit stornieren und bekommst alles zurück, was du für die Miete gezahlt hast, ohne den Preis der Garantie selbst.",
+    criteriaTitle: "Wann wir die Ausfahrt absagen",
     criteriaMarks: ["AEMET", "20 kn", "Das Unternehmen"],
     criteria: [
       "Offizielle AEMET-Küstenwarnung für unser Fahrtgebiet im Zeitfenster deiner Miete.",
@@ -5216,7 +5216,7 @@ export const de: Translations = {
       },
       {
         q: "Was passiert bei schlechtem Wetter?",
-        a: "Wenn schlechtes Wetter die Ausfahrt unmöglich macht, verschieben wir den Termin kostenlos oder stellen Ihnen, falls wir uns auf keinen neuen Termin einigen können, einen Gutschein über den gezahlten Betrag aus, der 12 Monate gültig ist. Mit der gebuchten Schlechtwetter-Garantie wählen Sie zwischen einem neuen Termin und der vollständigen Rückerstattung in Geld.",
+        a: "Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählen Sie zwischen einem neuen Termin ohne Kosten, einem Gutschein über den gezahlten Betrag mit 12 Monaten Gültigkeit oder der vollständigen Rückerstattung in Geld. Mit der gebuchten Schlechtwetter-Garantie können Sie außerdem selbst stornieren und erhalten alles zurück, wenn die AEMET-Vorhersage vom Vortag eine Küstenwarnung oder Wind ab 15 Knoten meldet.",
       },
       {
         q: "Worin unterscheidet sie sich von einer Bootsmiete ohne Skipper?",
@@ -5586,7 +5586,7 @@ export const de: Translations = {
         },
         {
           question: 'Was passiert bei schlechtem Wetter?',
-          answer: 'Wenn die Vorhersage >20 Knoten anhaltenden Wind oder eine Warnung wegen Wellen >1,5 m anzeigt, fahren wir nicht raus und verlegen Ihren Termin kostenlos; finden wir keinen, erhalten Sie einen 12 Monate gültigen Gutschein. Die Strecke Blanes–Fenals ist durch die Küste selbst vor der Tramuntana geschützt und damit auch bei Nordwind eine der sichersten für Einsteiger.',
+          answer: 'Wenn die Vorhersage >20 Knoten anhaltenden Wind oder eine Warnung wegen Wellen >1,5 m anzeigt, fahren wir nicht raus und Sie wählen: neuer Termin ohne Kosten, ein 12 Monate gültiger Gutschein oder die volle Erstattung. Die Strecke Blanes–Fenals ist durch die Küste selbst vor der Tramuntana geschützt und damit auch bei Nordwind eine der sichersten für Einsteiger.',
         },
         {
           question: 'Wie komme ich von Lloret de Mar zum Hafen von Blanes?',
@@ -6031,7 +6031,7 @@ export const de: Translations = {
         distanceQ: 'Wie weit kann ich ab Blanes fahren?',
         distanceA: 'Mit der Licencia de Navegación, tagsüber und in Küstennähe, erreichen Sie ab Blanes Cala Brava (15 Min.), Cala Sant Francesc (20 Min.), Lloret de Mar (30 Min.), Cala Treumal und Tossa de Mar (30-45 Min.) und als Tagestour Sant Feliu de Guíxols. Mit der privaten Tour mit Skipper fahren Sie die Route ohne Schein.',
         weatherQ: 'Was passiert bei schlechtem Wetter am Tag meiner Buchung?',
-        weatherA: 'Sicherheit hat bei uns oberste Prioritaet. Wenn schlechtes Wetter die Ausfahrt verhindert, verschieben wir den Termin kostenlos oder stellen, falls kein neuer Termin passt, einen 12 Monate gueltigen Gutschein ueber den gezahlten Betrag aus. Mit der Schlechtwetter-Garantie waehlst du zwischen einem neuen Termin oder der vollstaendigen Rueckerstattung in Geld, ausgenommen der Preis der Garantie selbst.',
+        weatherA: 'Sicherheit hat bei uns oberste Priorität. Sagen wir die Ausfahrt wegen schlechten Wetters ab, wählst du zwischen einem neuen Termin ohne Kosten, einem 12 Monate gültigen Gutschein über den gezahlten Betrag oder der vollständigen Rückerstattung in Geld. Mit der Schlechtwetter-Garantie kannst du außerdem selbst stornieren und erhältst alles zurück (ausgenommen der Preis der Garantie selbst), wenn die AEMET-Vorhersage vom Vortag eine Küstenwarnung oder Wind ab 15 Knoten meldet.',
         petsQ: 'Kann ich Haustiere mit auf das Boot nehmen?',
         petsA: 'Ja, Haustiere sind auf allen unseren Booten willkommen. Wir empfehlen, frisches Wasser, ein Handtuch und geeigneten Sonnenschutz fuer Ihr Tier mitzubringen.',
       },

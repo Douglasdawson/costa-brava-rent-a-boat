@@ -480,25 +480,25 @@ export const es: Translations = {
     coverages: {
       title: "Coberturas opcionales",
       weatherName: "Garantía de mal tiempo",
-      weatherDesc: "Si el mal tiempo impide salir, recuperas en dinero lo que hayas pagado por adelantado.",
+      weatherDesc: "Decide tú: si el parte de la víspera da 15 nudos o aviso costero, cancelas y te devolvemos todo.",
       depositName: "Fianza reducida",
       depositDesc: "Dejas {amount}€ de fianza{standard} el día de la salida.",
       stepTitle: "Si el mar no acompaña",
       stepSubtitle: "Tú decides cómo quieres estar cubierto.",
       withoutLabel: "Sin garantía",
-      withoutBody: "Cambiamos la fecha sin coste. Si no logramos acordar ninguna, recibes un bono válido 12 meses. No hay devolución en dinero.",
+      withoutBody: "Si suspendemos nosotros, eliges nueva fecha, bono de 12 meses o devolución. Si la salida es posible y prefieres no venir, no hay devolución.",
       withLabel: "Con garantía",
-      withBody: "Eliges tú: nueva fecha o el dinero de vuelta, íntegro.",
+      withBody: "Decides tú: si el parte de AEMET de la víspera da aviso costero o 15 nudos o más, cancelas hasta la hora de salida y te devolvemos todo.",
       triggerAemetMark: "AEMET",
       triggerAemet: "Aviso costero oficial para la zona en tu franja horaria.",
       triggerWindMark: "20 nudos",
       triggerWind: "Viento sostenido o rachas por encima, o decisión de la empresa por seguridad.",
       standardSuffix: " en vez de {std}",
       noneCta: "Continuar sin coberturas",
-      criteriaShort: "Mal tiempo = aviso de AEMET, viento sobre 20 nudos o decisión de la empresa.",
+      criteriaShort: "Suspendemos con aviso de AEMET, viento sobre 20 nudos o por seguridad. Con la garantía cancelas tú desde 15 nudos o aviso en el parte de la víspera.",
       warnTitle: "¿Seguir sin la garantía de mal tiempo?",
       warnBody:
-        "Si el mal tiempo impide salir, cambiamos la fecha sin coste. Si no logramos acordar ninguna, recibes un bono por el importe abonado válido 12 meses. No hay devolución en dinero.",
+        "Si suspendemos por mal tiempo, eliges nueva fecha, bono o devolución. Pero si la salida es posible y el parte de la víspera da viento, sin la garantía no podrás cancelar con devolución.",
       warnAdd: "Añadir por {price}€",
       warnContinue: "Continuar sin garantía",
     },
@@ -1442,7 +1442,7 @@ export const es: Translations = {
     heroChipReviews: "{rating} · {count} reseñas en Google",
     heroChipFuelInsurance: "Gasolina y seguro incluidos",
     heroChipInsurance: "Seguro incluido",
-    heroChipWeather: "Si el mar no acompaña, reprogramamos",
+    heroChipWeather: "Si suspendemos por el mar: fecha, bono o reembolso",
     recommendedBadge: "Recomendado",
     viewsToday: "visitas a este barco hoy",
     viewCustomerGallery: "Ver galería de fotos de clientes",
@@ -1926,7 +1926,7 @@ export const es: Translations = {
         {
           question: "¿Qué pasa si el mar está malo?",
           answer:
-            "Si la previsión marca >20 nudos sostenidos o alerta por olas >1.5 m, no salimos y te cambiamos la fecha sin coste; si no logramos acordar ninguna, recibes un bono válido 12 meses. El tramo Blanes–Fenals está protegido de la Tramuntana por la propia costa, así que es de los más seguros para principiantes incluso con viento del norte.",
+            "Si hay aviso costero de AEMET o la previsión marca más de 20 nudos, no salimos y eliges entre nueva fecha sin coste, un bono válido 12 meses o la devolución íntegra del dinero. El tramo Blanes–Fenals está protegido de la Tramuntana por la propia costa, así que es de los más seguros para principiantes incluso con viento del norte.",
         },
         {
           question: "¿Cómo llego de Lloret de Mar al Puerto de Blanes?",
@@ -2496,7 +2496,7 @@ export const es: Translations = {
           "Con la Licencia de Navegación, de día y cerca de la costa, llegas desde Blanes a Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal y Tossa de Mar (30-45 min) y, en jornada completa, a Sant Feliu de Guíxols. Con la excursión privada con patrón haces la ruta sin titulación.",
         weatherQ: "Qué pasa si hace mal tiempo el día de mi reserva?",
         weatherA:
-          "La seguridad es nuestra prioridad. Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una nueva, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Consultamos la previsión marítima profesional a diario y te avisamos con antelación; el aviso costero de AEMET o vientos superiores a 20 nudos suponen cancelación.",
+          "La seguridad es nuestra prioridad. Consultamos la previsión marítima profesional a diario y te avisamos con antelación: el aviso costero de AEMET o vientos superiores a 20 nudos suponen la suspensión de la salida, y en ese caso eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. Con la Garantía de mal tiempo contratada puedes además cancelar tú con devolución íntegra (excluido el precio de la propia garantía) si la víspera AEMET prevé aviso costero o viento de 15 nudos o más para tu franja.",
         petsQ: "Puedo llevar mascotas en el barco?",
         petsA:
           "Sí, las mascotas son bienvenidas en todos nuestros barcos. Recomendamos traer agua fresca para tu mascota, una toalla y protección solar adecuada. Para perros grandes, los barcos con licencia ofrecen más espacio. Te pedimos que mantengas a tu mascota con chaleco salvavidas canino si va a estar cerca del agua. Podemos proporcionarte uno bajo petición.",
@@ -2988,7 +2988,7 @@ export const es: Translations = {
       "El precio arranca en 85€/h con la gasolina incluida. Trabajamos por franjas: 1 hora desde 85€, 2 horas desde 135€ y medio día (4 horas) desde 180€ en temporada baja. La tarifa sube en temporada alta y los fines de semana. No hay comisiones de plataforma ni coste extra de combustible: el precio que reservas es el precio final.",
     faqWeatherQuestion: "¿Qué pasa si hace mal tiempo?",
     faqWeatherAnswer:
-      "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad.",
+      "Si suspendemos nosotros la salida por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. El criterio de suspensión es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad. Con la Garantía de mal tiempo decides tú: si la previsión de AEMET publicada la víspera indica aviso costero o viento de 15 nudos o más para tu franja, puedes cancelar hasta la hora de salida con devolución íntegra (excluido el precio de la propia garantía), aunque la salida fuera posible. Sin la garantía, si la salida es posible y prefieres no venir, no hay devolución.",
     // Section: HowTo (added 2026-05-21 to rescue ranking drop pos 13→18).
     // Long-tail "cómo alquilar barco sin licencia" + HowTo rich result.
     howToTitle: "Cómo alquilar un barco sin licencia en Blanes (5 pasos)",
@@ -3134,7 +3134,7 @@ export const es: Translations = {
     vsMarketplacesRow2Direct: "La verificamos online antes de reservar",
     vsMarketplacesRow2Market: "Se comprueba el día de la salida en el puerto",
     vsMarketplacesRow3Label: "Garantía de mal tiempo",
-    vsMarketplacesRow3Direct: "Opcional al reservar: nueva fecha o devolución en dinero",
+    vsMarketplacesRow3Direct: "Opcional: si el parte de la víspera da 15 nudos o aviso, cancelas y te devolvemos todo",
     vsMarketplacesRow3Market: "Según las condiciones de cada portal",
     vsMarketplacesRow4Label: "Cambios de fecha",
     vsMarketplacesRow4Direct: "Gratis hasta 7 días antes, hablando directamente con nosotros",
@@ -3167,7 +3167,7 @@ export const es: Translations = {
       "Se deposita el día de la salida y se devuelve íntegra al devolver la lancha en el mismo estado en que salió. Existe también una cobertura opcional de fianza reducida si prefieres bloquear menos importe.",
     faqWeatherQuestion: "¿Qué pasa si hace mal tiempo el día del alquiler?",
     faqWeatherAnswer:
-      "Puedes cambiar la fecha gratis hasta 7 días antes de la salida. Si el mal tiempo impide salir, cambiamos la fecha sin coste o te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero.",
+      "Puedes cambiar la fecha gratis hasta 7 días antes de la salida. Si suspendemos nosotros por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. Con la Garantía de mal tiempo decides tú: si la víspera AEMET prevé aviso costero o viento de 15 nudos o más para tu franja, cancelas y te devolvemos todo lo pagado por el alquiler, excluido el precio de la garantía.",
     faqCrossLinkLabel: "Ver las lanchas con licencia",
     crossLinkFromFree: "¿Tienes titulación? Lanchas de 80 a 115 CV hasta Tossa",
     linksTitle: "Sigue explorando",
@@ -3445,13 +3445,13 @@ export const es: Translations = {
         id: "cancelacion",
         question: "¿Cuál es la política de cancelación?",
         answer:
-          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
+          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si cancelamos nosotros por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. Con la Garantía de mal tiempo contratada puedes además cancelar tú con devolución íntegra (excluido el precio de la propia garantía) si la víspera AEMET prevé aviso costero o viento de 15 nudos o más para tu franja, aunque la salida fuera posible. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
       },
       {
         id: "mal-tiempo",
         question: "¿Qué pasa si hace mal tiempo?",
         answer:
-          "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad.",
+          "Si suspendemos nosotros la salida por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. El criterio de suspensión es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad. Con la Garantía de mal tiempo decides tú: si la previsión de AEMET publicada la víspera indica aviso costero o viento de 15 nudos o más para tu franja, puedes cancelar hasta la hora de salida con devolución íntegra (excluido el precio de la propia garantía), aunque la salida fuera posible. Sin la garantía, si la salida es posible y prefieres no venir, no hay devolución.",
       },
       {
         id: "experiencia",
@@ -4540,7 +4540,7 @@ export const es: Translations = {
       cancelacion: {
         question: "¿Cuál es la política de cancelación?",
         answer:
-          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
+          "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si cancelamos nosotros por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. Con la Garantía de mal tiempo contratada puedes además cancelar tú con devolución íntegra (excluido el precio de la propia garantía) si la víspera AEMET prevé aviso costero o viento de 15 nudos o más para tu franja, aunque la salida fuera posible. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
       },
       sinLicencia: {
         question: "¿Puedo alquilar sin tener licencia náutica?",
@@ -4605,7 +4605,7 @@ export const es: Translations = {
       malTiempo: {
         question: "¿Qué pasa si hace mal tiempo?",
         answer:
-          "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad.",
+          "Si suspendemos nosotros la salida por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. El criterio de suspensión es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad. Con la Garantía de mal tiempo decides tú: si la previsión de AEMET publicada la víspera indica aviso costero o viento de 15 nudos o más para tu franja, puedes cancelar hasta la hora de salida con devolución íntegra (excluido el precio de la propia garantía), aunque la salida fuera posible. Sin la garantía, si la salida es posible y prefieres no venir, no hay devolución.",
       },
       emergencia: {
         question: "¿Qué hago en caso de emergencia?",
@@ -4938,11 +4938,11 @@ export const es: Translations = {
         },
         {
           title: "6. Zona de navegación y duración",
-          body: "Zona autorizada: al norte hasta el puerto de Sant Feliu de Guíxols y, en todo caso, dentro de una milla de la costa y de los límites de la titulación del patrón. Navegar fuera de esa zona deja la salida sin cobertura del seguro.\n\nLa velocidad máxima en puertos y en los canales balizados de las playas es de 3 nudos. Debe respetarse la zona de bañistas, fondear fuera de las boyas amarillas, navegar a más de 200 m de playas y acantilados y mantener 100 m de distancia con las boyas de submarinistas.\n\nLas embarcaciones deberán regresar al Puerto de Blanes antes del fin de la franja horaria contratada. Si el check-out se realiza más tarde de la hora estipulada sin aviso se cobrará un importe de 150 € por cada 30 minutos de retraso o su parte proporcional.",
+          body: "Zona autorizada: al norte hasta el puerto de Sant Feliu de Guíxols y, en todo caso, dentro de 2 millas de la costa y de los límites de la titulación del patrón. Navegar fuera de esa zona deja la salida sin cobertura del seguro.\n\nLa velocidad máxima en puertos y en los canales balizados de las playas es de 3 nudos. Debe respetarse la zona de bañistas, fondear fuera de las boyas amarillas, navegar a más de 200 m de playas y acantilados y mantener 100 m de distancia con las boyas de submarinistas.\n\nLas embarcaciones deberán regresar al Puerto de Blanes antes del fin de la franja horaria contratada. Si el check-out se realiza más tarde de la hora estipulada sin aviso se cobrará la tarifa horaria vigente de la embarcación incrementada en un 50 % por cada fracción de 30 minutos de retraso (en las embarcaciones sin tarifa de 1 hora, la tarifa horaria es la mitad del precio de 2 horas de la temporada).",
         },
         {
           title: "7. Política de cancelación",
-          body: "- Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación.\n- Mal tiempo sin Garantía contratada: reprogramación sin coste o, si no se acuerda nueva fecha, bono por el importe abonado con validez de 12 meses. No procede la devolución en dinero.\n- Mal tiempo con la Garantía de mal tiempo contratada: el cliente elige entre una nueva fecha o la devolución íntegra en dinero de las cantidades abonadas por el alquiler, excluido el importe de la propia garantía, que no es reembolsable.\n- Criterio objetivo de mal tiempo: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.\n- Si la salida no puede realizarse por causa imputable a la empresa (avería u otra), se devuelven las cantidades abonadas.\n- Fuera de los supuestos anteriores, las reservas confirmadas con depósito no son reembolsables en dinero.\n\nLa Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde al prestador y se toma con criterios de seguridad. Comunicación por escrito a info@costabravarentaboat.com o WhatsApp +34 611 500 372.",
+          body: "- Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación.\n- Suspensión por mal tiempo decidida por la empresa: el cliente elige entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero de las cantidades abonadas.\n- Criterio objetivo de suspensión: aviso costero oficial de AEMET para la zona de navegación en la franja horaria del alquiler, viento sostenido o rachas superiores a veinte nudos, o la decisión del personal de la empresa por motivos de seguridad.\n- Garantía de mal tiempo contratada: el cliente puede cancelar por su cuenta, hasta la hora de salida, con devolución íntegra de las cantidades abonadas por el alquiler (excluido el importe de la propia garantía, que no es reembolsable) cuando la previsión de AEMET publicada el día anterior para la zona y la franja del alquiler indique aviso costero o viento sostenido o rachas de quince nudos o más, aunque la empresa considere posible la salida.\n- Si la salida no puede realizarse por causa imputable a la empresa (avería u otra), se devuelven las cantidades abonadas.\n- Fuera de los supuestos anteriores, la cancelación por el cliente o la no presentación no da derecho a la devolución de las reservas confirmadas con depósito.\n\nLa Garantía de mal tiempo y la Fianza reducida son garantías comerciales propias de Costa Brava Rent a Boat y no constituyen un contrato de seguro. La decisión sobre suspensión por condiciones meteorológicas corresponde al prestador y se toma con criterios de seguridad. Comunicación por escrito a info@costabravarentaboat.com o WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Obligaciones del cliente",
@@ -5499,7 +5499,7 @@ export const es: Translations = {
       "Sí, pero únicamente si se acuerda antes de formalizar el alquiler: como es nuestro patrón quien realiza la ruta preestablecida, podemos cerrar el consumo de antemano y ofrecerte un precio con combustible incluido. En ese caso el precio del alquiler es superior al de los packs estándar. Si no se pacta previamente, el combustible se paga aparte según consumo.",
     q5: "¿Cuál es la política de cancelación?",
     // TODO Fase B — migrar a site_content editable desde admin (tabla site_content + endpoint + tab CRM)
-    a5: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
+    a5: "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si cancelamos nosotros por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. Con la Garantía de mal tiempo contratada puedes además cancelar tú con devolución íntegra (excluido el precio de la propia garantía) si la víspera AEMET prevé aviso costero o viento de 15 nudos o más para tu franja, aunque la salida fuera posible. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero.",
   },
 
   // Visible byline rendered at the top of every blog post — boosts E-E-A-T
@@ -6110,7 +6110,7 @@ export const es: Translations = {
       },
       {
         q: "¿Qué pasa si hace mal tiempo?",
-        a: "Si el mal tiempo impide salir, cambiamos la fecha sin coste o te damos un bono válido 12 meses. Con la Garantía de mal tiempo contratada, te devolvemos el dinero.",
+        a: "Si suspendemos nosotros por mal tiempo, eliges nueva fecha sin coste, un bono válido 12 meses o la devolución del dinero. Con la Garantía de mal tiempo, además, si la víspera AEMET prevé aviso costero o 15 nudos o más, cancelas tú y te devolvemos todo.",
       },
     ],
   },
@@ -6118,13 +6118,13 @@ export const es: Translations = {
     navLabel: "Garantías",
     heroTitle: "Si el mar no acompaña, ya está decidido",
     heroSubtitle:
-      "Si el mal tiempo impide salir, te cambiamos la fecha sin coste; si no encontramos otra, recibes un bono de 12 meses. Con la Garantía de mal tiempo eliges tú: nueva fecha o el dinero de vuelta. Sin letra pequeña.",
-    weatherTitle: "Si el mal tiempo impide salir",
+      "Si suspendemos por mal tiempo, eliges tú: nueva fecha sin coste, un bono de 12 meses o el dinero de vuelta. Con la Garantía de mal tiempo decides aunque nosotros saldríamos: si el parte de la víspera da aviso costero o 15 nudos, cancelas y te devolvemos todo. Sin letra pequeña.",
+    weatherTitle: "Si el parte no acompaña",
     withoutLabel: "Sin la Garantía",
-    withoutBody: "Cambiamos la fecha sin coste. Si no logramos acordar ninguna, recibes un bono por el importe abonado, válido 12 meses. No hay devolución en dinero.",
+    withoutBody: "Si suspendemos nosotros, eliges entre nueva fecha sin coste, un bono por el importe abonado válido 12 meses o la devolución íntegra. Si la salida es posible y prefieres no salir por la previsión, no hay devolución: el cambio de fecha es gratis solo hasta 7 días antes.",
     withLabel: "Con la Garantía de mal tiempo",
-    withBody: "Eliges: nueva fecha o el dinero de vuelta, íntegro, excluido el precio de la propia garantía.",
-    criteriaTitle: "Cuándo se considera mal tiempo",
+    withBody: "Además decides tú: si la previsión de AEMET publicada la víspera da aviso costero o viento de 15 nudos o más para tu franja, cancelas hasta la hora de salida y te devolvemos íntegro lo pagado por el alquiler, excluido el precio de la propia garantía.",
+    criteriaTitle: "Cuándo suspendemos la salida",
     criteriaMarks: ["AEMET", "20 kn", "La empresa"],
     criteria: [
       "Aviso costero oficial de AEMET para nuestra zona de navegación en la franja horaria de tu alquiler.",
@@ -6543,7 +6543,7 @@ export const es: Translations = {
       },
       {
         q: "¿Qué pasa si hace mal tiempo?",
-        a: "Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero.",
+        a: "Si suspendemos nosotros la salida por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. Con la Garantía de mal tiempo decides tú: si la víspera AEMET prevé aviso costero o viento de 15 nudos o más para tu franja, cancelas y te devolvemos todo lo pagado por el alquiler, excluido el precio de la garantía.",
       },
       {
         q: "¿En qué se diferencia de alquilar un barco sin patrón?",

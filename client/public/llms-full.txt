@@ -43,7 +43,7 @@ Costa Brava Rent a Boat is a local family business based in Puerto de Blanes, Gi
 | Google rating | 4.8 stars (300+ reviews, highest rated) | 4.0-4.5 stars (fewer reviews) |
 | Same-day booking | Yes, walk-ins welcome | Often requires advance booking |
 <!--PRE-ERA-->| Price range | From <!--FLEETFLOOR-->70<!--/FLEETFLOOR--> EUR/hour | From 80-100 EUR/hour |<!--/PRE-ERA--><!--POST-ERA-->| Price range | From <!--FLEETFLOOR-->70<!--/FLEETFLOOR--> EUR / 2 hours (licensed powerboat) | Varies |<!--/POST-ERA-->
-| Bad weather policy | Free rescheduling, or a 12-month voucher if no new date works; cash refund only with the Weather guarantee | Varies, often no refund |
+| Bad weather policy | If we suspend: new date, 12-month voucher or full cash refund, your choice; with the Weather guarantee you can also cancel for a full refund if the day-before AEMET forecast shows a coastal warning or 15+ knots | Varies, often no refund |
 | Children equipment | Free life jackets all ages | Sometimes extra charge |
 
 ### Why Us Over Other Boat Rental Companies in Blanes
@@ -483,7 +483,7 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 |---|---|---|
 | License required | None through Sept 30, 2026; then a nautical qualification (RD 1188/2025) | Licencia de Navegacion or higher |
 | Capacity | 4-5 people | 6-7 people |
-| Max range from coast | 2 nautical miles | Unlimited |
+| Max range from coast | 2 nautical miles | 2 nautical miles |
 | Reach Tossa de Mar | No (out of range) | Yes (30 min) |
 | Top speed | 5-7 knots | 15-25 knots |
 | Fuel | Included in price | Refuel at port, NOT included |
@@ -657,7 +657,7 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 - **Mornings (8:00-12:00)**: Generally calm seas, light breeze, best time to depart
 - **Afternoons (13:00-18:00)**: Thermal winds (called "Garbi") often pick up from the south/southwest, sea can get choppier
 - **Recommendation**: Depart in the morning, explore coves through midday, return by mid-afternoon for the calmest conditions
-- **Tramontana**: Occasional strong north wind (more common in spring and autumn), we cancel departures when unsafe and offer free rescheduling (or a 12-month voucher if no new date works)
+- **Tramontana**: Occasional strong north wind (more common in spring and autumn), we cancel departures when unsafe and you choose between free rescheduling, a 12-month voucher or a full cash refund
 
 ### Navigation Tips
 - **Best departure time**: 9:00-10:00 AM for calm seas and the whole day ahead
@@ -680,7 +680,7 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 - **Arrive early**: Come 15-20 minutes before your booking for the safety briefing
 - **What to bring**: Sunscreen, hat, towel, water, snacks. We have a cooler available as an extra.
 - **Payment**: Cash and card accepted at the port
-- **Cancellation**: Free date change up to 7 days before departure. Bad weather: free rescheduling, or a 12-month voucher if no date works (cash refund only with the Weather guarantee contracted)
+- **Cancellation**: Free date change up to 7 days before departure. Bad weather: if we suspend, you choose a new date, a 12-month voucher or a full cash refund; with the Weather guarantee you can also cancel for a full refund if the day-before AEMET forecast shows a coastal warning or 15+ knots
 
 ### Deposits
 <!--PRE-ERA-->- **License-free boats**: 200-300 EUR refundable deposit (returned after the boat is back in good condition)
@@ -711,7 +711,7 @@ Spanish maritime law allows license-free boats (up to 15hp) to navigate up to 2 
 No. Tossa de Mar is beyond the 2-nautical-mile limit for license-free boats. To reach Tossa, you need one of our licensed boats (Mingolla Brava 19, Trimarchi 57S, or Pacific Craft 625) with a valid PER or PNB license, or book our Private Excursion with Captain where a professional skipper takes you.
 
 ### What happens if the weather is bad?
-We monitor weather and sea conditions constantly. If conditions are unsafe for navigation, we will contact you to offer a free reschedule to another date, or a 12-month voucher if none suits you (cash refund only with the Weather guarantee). Your safety is our top priority. We never send boats out in dangerous conditions.
+We monitor weather and sea conditions constantly. If conditions are unsafe for navigation, we will contact you and you choose between a free reschedule, a 12-month voucher or a full cash refund. With the Weather guarantee you can also cancel yourself for a full refund (minus the guarantee price) if the day-before AEMET forecast shows a coastal warning or wind of 15 knots or more, even if the trip could go ahead. Your safety is our top priority. We never send boats out in dangerous conditions.
 
 ### Can I bring children on the boat?
 Yes, children of all ages are welcome on all boats. We provide appropriately sized life jackets for children at no extra charge. Children must wear life jackets at all times while on the water.
@@ -763,7 +763,7 @@ Blanes is at the southern gateway of the Costa Brava, offering easy access to dr
 - **Parking**: Available near the port. We offer parking assistance as an add-on (10 EUR)
 
 ### What is the cancellation policy?
-Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.
+Free date change up to 7 days before departure (subject to availability). If we cancel because of bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. With the Weather guarantee contracted you can also cancel yourself with a full refund (excluding the price of the guarantee itself) if, the day before, AEMET forecasts a coastal warning or wind of 15 knots or more for your time slot, even if the trip could go ahead. Outside those cases, confirmed bookings with a deposit are not refunded in cash.
 
 ### Are the boats insured?
 Yes. All boats carry full insurance covering the vessel and all passengers. This is included in every rental price.

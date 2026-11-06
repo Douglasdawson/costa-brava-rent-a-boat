@@ -351,13 +351,14 @@ export function coverageDepositTier(
  * `weatherDeclined` is not a purchase: it records that the customer was shown
  * the step-5 warning and chose to continue without the weather guarantee, so a
  * later "nobody told me" claim can be answered from the inquiry itself. Wording
- * mirrors clause 7 of the rental terms (reschedule, else a 12-month voucher, no
- * cash refund) and must never read as harsher than that clause.
+ * mirrors clause 7 of the rental terms: without the guarantee a bad forecast is
+ * no reason to cancel with refund if the trip can go ahead; if the company
+ * suspends, the customer still picks new date, 12-month voucher or refund.
  */
 export const COVERAGE_INQUIRY_NAMES = {
   weather: "Garantía de mal tiempo",
   deposit: "Fianza reducida",
-  weatherDeclined: "Avisado: sin garantía de mal tiempo (acepta bono, sin devolución)",
+  weatherDeclined: "Avisado: sin garantía de mal tiempo (no cancela con devolución por previsión; si suspendemos: fecha, bono o reembolso)",
 } as const;
 
 /**

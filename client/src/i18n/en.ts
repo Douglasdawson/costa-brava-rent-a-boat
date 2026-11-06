@@ -454,25 +454,25 @@ export const en: Translations = {
     coverages: {
       title: "Optional coverages",
       weatherName: "Weather guarantee",
-      weatherDesc: "If bad weather stops you sailing, you get back in cash whatever you paid upfront.",
+      weatherDesc: "If the day-before AEMET forecast shows a warning or 15+ knots, you can cancel and get everything back.",
       depositName: "Reduced deposit",
       depositDesc: "You leave a {amount}€ deposit{standard} on the day.",
       stepTitle: "If the sea says no",
       stepSubtitle: "You decide how you want to be covered.",
       withoutLabel: "Without guarantee",
-      withoutBody: "We move your date at no cost. If no date works, you get a voucher valid for 12 months. No cash refund.",
+      withoutBody: "If we call it off: new date, voucher or refund, your choice. If we sail and you don't, no refund.",
       withLabel: "With guarantee",
-      withBody: "Your call: a new date or your money back in full.",
+      withBody: "Your call: day-before forecast at 15 knots or a warning? Cancel and get it all back.",
       triggerAemetMark: "AEMET",
       triggerAemet: "Official coastal warning for the area during your time slot.",
       triggerWindMark: "20 knots",
       triggerWind: "Sustained wind or gusts above it, or the company's decision on safety.",
       standardSuffix: " instead of {std}",
       noneCta: "Continue without coverages",
-      criteriaShort: "Bad weather = AEMET warning, wind above 20 knots or the company's decision.",
+      criteriaShort: "We call it off with an AEMET warning or wind over 20 knots. With the guarantee, 15 knots in the day-before forecast lets you cancel.",
       warnTitle: "Continue without the bad weather guarantee?",
       warnBody:
-        "If bad weather stops the trip, we move your date at no cost. If no date works, you get a voucher for the amount paid, valid for 12 months. No cash refund.",
+        "If we call off the trip for bad weather, you still choose a new date, a voucher or a refund. But if we can sail and you decide not to because of the forecast, there's no refund.",
       warnAdd: "Add for {price}€",
       warnContinue: "Continue without it",
     },
@@ -767,7 +767,7 @@ export const en: Translations = {
     heroChipReviews: "{rating} · {count} reviews on Google",
     heroChipFuelInsurance: "Fuel and insurance included",
     heroChipInsurance: "Insurance included",
-    heroChipWeather: "If the sea isn't right, we reschedule",
+    heroChipWeather: "If we call it off, new date or refund",
     recommendedBadge: "Recommended",
     viewsToday: "visits to this boat today",
     viewCustomerGallery: "View customer photo gallery",
@@ -1176,7 +1176,7 @@ export const en: Translations = {
       "Prices start at 85€/h with fuel included. We work in time slots: 1 hour from 85€, 2 hours from 135€ and half a day (4 hours) from 180€ in low season. Rates go up in high season and at weekends. There are no platform fees and no extra fuel charge: the price you book is the final price.",
     faqWeatherQuestion: "What happens if the weather is bad?",
     faqWeatherAnswer:
-      "If bad weather prevents the trip we move your date at no cost; if no date works, we issue a voucher for the amount paid valid for 12 months. If you contracted the Weather guarantee, you choose between a new date or a full cash refund, excluding the price of the guarantee itself. The criteria are objective: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds.",
+      "If we call off the trip for bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. We call it off on objective criteria: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds. With the Weather guarantee you can also cancel yourself, up to departure time, with a full refund (excluding the price of the guarantee itself) if the AEMET forecast published the day before shows a coastal warning or wind of 15 knots or more for your slot. Without the guarantee, if the trip can go ahead and you'd rather not come, there's no refund.",
     howToTitle: "How to Hire a Licence-Free Boat in Blanes (5 Steps)",
     howToIntro:
       "Hiring a licence-free boat at the Port of Blanes is simpler than it sounds. Here are the 5 steps of the process, from booking to return, so you know exactly what to expect on the day.",
@@ -1317,7 +1317,7 @@ export const en: Translations = {
     vsMarketplacesRow2Direct: "We check it online before you book",
     vsMarketplacesRow2Market: "Checked at the port on the day of departure",
     vsMarketplacesRow3Label: "Weather guarantee",
-    vsMarketplacesRow3Direct: "Optional when you book: new date or your money back",
+    vsMarketplacesRow3Direct: "Optional: cancel with a full refund if the day-before forecast hits 15 kn",
     vsMarketplacesRow3Market: "Depends on each portal's terms",
     vsMarketplacesRow4Label: "Date changes",
     vsMarketplacesRow4Direct: "Free up to 7 days before, talking directly to us",
@@ -1350,7 +1350,7 @@ export const en: Translations = {
       "It is left on the day of departure and returned in full when you bring the powerboat back in the same condition it went out in. There is also an optional Reduced deposit if you would rather block a smaller amount.",
     faqWeatherQuestion: "What happens if the weather is bad on the day of the hire?",
     faqWeatherAnswer:
-      "You can change the date free of charge up to 7 days before departure. If bad weather stops the trip, we move your date at no cost or issue you a voucher for the amount paid, valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund.",
+      "You can change the date free of charge up to 7 days before departure. If we call off the trip for bad weather, you choose between a new date, a voucher for the amount paid valid for 12 months or a full cash refund. With the Weather guarantee you can also cancel yourself with a full refund if the day-before AEMET forecast shows a coastal warning or wind of 15 knots or more.",
     faqCrossLinkLabel: "See the licensed powerboats",
     crossLinkFromFree: "Got a qualification? Powerboats from 80 to 115 HP, all the way to Tossa",
     linksTitle: "Keep exploring",
@@ -1580,13 +1580,13 @@ export const en: Translations = {
         id: "cancelacion",
         question: "What is the cancellation policy?",
         answer:
-          "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
+          "Free date change up to 7 days before departure (subject to availability). If we call off the trip for bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. With the Weather guarantee contracted you can also cancel yourself with a full refund (excluding the price of the guarantee itself) if the day before AEMET forecasts a coastal warning or wind of 15 knots or more for your slot, even if the trip could go ahead. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
       },
       {
         id: "mal-tiempo",
         question: "What happens if the weather is bad?",
         answer:
-          "If bad weather prevents the trip we move your date at no cost; if no date works, we issue a voucher for the amount paid valid for 12 months. If you contracted the Weather guarantee, you choose between a new date or a full cash refund, excluding the price of the guarantee itself. The criteria are objective: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds.",
+          "If we call off the trip for bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. We call it off on objective criteria: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds. With the Weather guarantee you can also cancel yourself, up to departure time, with a full refund (excluding the price of the guarantee itself) if the AEMET forecast published the day before shows a coastal warning or wind of 15 knots or more for your slot. Without the guarantee, if the trip can go ahead and you'd rather not come, there's no refund.",
       },
       {
         id: "experiencia",
@@ -2184,7 +2184,7 @@ export const en: Translations = {
     aFuel:
       "Yes, but only if it is agreed before finalising the rental: since our skipper sails a preset route, we can fix the fuel consumption in advance and offer you a price with fuel included. In that case the rental price is higher than the standard packs. Without a prior agreement, fuel is paid separately based on consumption.",
     q5: "What is the cancellation policy?",
-    a5: "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
+    a5: "Free date change up to 7 days before departure (subject to availability). If we call off the trip for bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. With the Weather guarantee contracted you can also cancel yourself with a full refund (excluding the price of the guarantee itself) if the day before AEMET forecasts a coastal warning or wind of 15 knots or more for your slot, even if the trip could go ahead. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
   },
   activitySunset: {
     faqItems: [
@@ -2818,7 +2818,7 @@ export const en: Translations = {
       cancelacion: {
         question: "What is the cancellation policy?",
         answer:
-          "Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
+          "Free date change up to 7 days before departure (subject to availability). If we call off the trip for bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. With the Weather guarantee contracted you can also cancel yourself with a full refund (excluding the price of the guarantee itself) if the day before AEMET forecasts a coastal warning or wind of 15 knots or more for your slot, even if the trip could go ahead. Outside those cases, confirmed bookings with a deposit are not refunded in cash.",
       },
       sinLicencia: {
         question: "Can I rent a boat without a boating licence?",
@@ -2883,7 +2883,7 @@ export const en: Translations = {
       malTiempo: {
         question: "What happens if the weather is bad?",
         answer:
-          "If bad weather prevents the trip we move your date at no cost; if no date works, we issue a voucher for the amount paid valid for 12 months. If you contracted the Weather guarantee, you choose between a new date or a full cash refund, excluding the price of the guarantee itself. The criteria are objective: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds.",
+          "If we call off the trip for bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. We call it off on objective criteria: an official AEMET coastal warning for the area during your rental slot, sustained wind or gusts above 20 knots, or our staff's decision on safety grounds. With the Weather guarantee you can also cancel yourself, up to departure time, with a full refund (excluding the price of the guarantee itself) if the AEMET forecast published the day before shows a coastal warning or wind of 15 knots or more for your slot. Without the guarantee, if the trip can go ahead and you'd rather not come, there's no refund.",
       },
       emergencia: {
         question: "What do I do in case of emergency?",
@@ -3156,11 +3156,11 @@ export const en: Translations = {
         },
         {
           title: "6. Navigation Area and Duration",
-          body: "Authorised area: north as far as the port of Sant Feliu de Guíxols and, in any case, within one mile of the coast and within the limits of the skipper's qualification. Sailing outside this area leaves the trip without insurance cover.\n\nThe maximum speed in ports and in the marked channels off the beaches is 3 knots. Swimmer areas must be respected, anchoring outside the yellow buoys, navigating more than 200 m from beaches and cliffs and keeping 100 m from divers' buoys.\n\nBoats must return to the Port of Blanes before the end of the booked time slot. If check-out takes place later than the agreed time without notice, a charge of 150 € for every 30 minutes of delay, or the proportional part thereof, will apply.",
+          body: "Authorised area: north as far as the port of Sant Feliu de Guíxols and, in any case, within two miles of the coast and within the limits of the skipper's qualification. Sailing outside this area leaves the trip without insurance cover.\n\nThe maximum speed in ports and in the marked channels off the beaches is 3 knots. Swimmer areas must be respected, anchoring outside the yellow buoys, navigating more than 200 m from beaches and cliffs and keeping 100 m from divers' buoys.\n\nBoats must return to the Port of Blanes before the end of the booked time slot. If check-out takes place later than the agreed time without notice, the boat's current hourly rate increased by 50% will be charged for every 30-minute fraction of delay (for boats without a 1-hour price, the hourly rate is half the season's 2-hour price).",
         },
         {
           title: "7. Cancellation Policy",
-          body: "- Free date change up to 7 days before departure, subject to boat availability.\n- Bad weather without the guarantee contracted: rescheduling at no cost or, if no new date is agreed, a voucher for the amount paid valid for 12 months. No cash refund applies.\n- Bad weather with the Weather guarantee contracted: the customer chooses between a new date or a full cash refund of the amounts paid for the rental, excluding the price of the guarantee itself, which is non-refundable.\n- Objective bad-weather criteria: an official AEMET coastal warning for the navigation area during the rental time slot, sustained wind or gusts above twenty knots, or the company staff's decision on safety grounds.\n- If the trip cannot go ahead for reasons attributable to the company (breakdown or other), the amounts paid are refunded.\n- Outside the cases above, confirmed bookings with a deposit are not refundable in cash.\n\nThe Weather guarantee and the Reduced deposit are commercial guarantees of Costa Brava Rent a Boat and do not constitute an insurance contract. The decision to suspend for weather conditions rests with the provider and is taken on safety grounds. Written notice to info@costabravarentaboat.com or WhatsApp +34 611 500 372.",
+          body: "- Free date change up to 7 days before departure, subject to boat availability.\n- Suspension for bad weather decided by the company: the customer chooses between a new date at no cost, a voucher for the amount paid valid for 12 months, or a full cash refund of the amounts paid.\n- Objective suspension criteria: an official AEMET coastal warning for the navigation area during the rental time slot, sustained wind or gusts above twenty knots, or the company staff's decision on safety grounds.\n- Weather guarantee contracted: the customer may cancel on their own initiative, up to the departure time, with a full refund of the amounts paid for the rental (excluding the price of the guarantee itself, which is non-refundable) when the AEMET forecast published the day before for the area and time slot of the rental shows a coastal warning or sustained wind or gusts of fifteen knots or more, even if the company considers the trip possible.\n- If the trip cannot go ahead for reasons attributable to the company (breakdown or other), the amounts paid are refunded.\n- Outside the cases above, cancellation by the customer or failure to show up does not entitle the customer to a refund of confirmed bookings with a deposit.\n\nThe Weather guarantee and the Reduced deposit are commercial guarantees of Costa Brava Rent a Boat and do not constitute an insurance contract. The decision to suspend for weather conditions rests with the provider and is taken on safety grounds. Written notice to info@costabravarentaboat.com or WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Customer Obligations",
@@ -4813,7 +4813,7 @@ export const en: Translations = {
       },
       {
         q: "What if the weather is bad?",
-        a: "If bad weather stops the trip we move the date at no cost or give you a voucher valid for 12 months. With the Weather guarantee contracted, we refund your money.",
+        a: "If we call off the trip for bad weather, you choose: a new date at no cost, a 12-month voucher or your money back. With the Weather guarantee you can also cancel yourself if the day-before forecast shows 15 knots or a warning.",
       },
     ],
   },
@@ -4821,13 +4821,13 @@ export const en: Translations = {
     navLabel: "Guarantees",
     heroTitle: "If the sea says no, the answer is already written",
     heroSubtitle:
-      "If bad weather stops the trip we move your date free of charge; if we can't find another one, you get a 12-month voucher. With the Weather guarantee you choose: a new date or your money back. No small print.",
-    weatherTitle: "If bad weather stops the trip",
+      "If we call off the trip for bad weather, you choose: a new date, a 12-month voucher or your money back. With the Weather guarantee the decision is also yours: if the day-before forecast shows 15 knots or a warning, you cancel and we refund everything. No small print.",
+    weatherTitle: "If the forecast looks bad",
     withoutLabel: "Without the guarantee",
-    withoutBody: "We move your date at no cost. If no date works, you get a voucher for the amount paid, valid for 12 months. No cash refund.",
+    withoutBody: "If we call off the trip, you choose: a new date at no cost, a voucher for the amount paid valid for 12 months, or a full refund. If the trip can go ahead and you'd rather not sail, there's no refund (date changes are free up to 7 days before).",
     withLabel: "With the Weather guarantee",
-    withBody: "You choose: a new date or your money back in full, excluding the price of the guarantee itself.",
-    criteriaTitle: "What counts as bad weather",
+    withBody: "You also decide: if the AEMET forecast published the day before shows a coastal warning or wind of 15 knots or more for your slot, you can cancel up to departure time and get back everything you paid for the rental, excluding the price of the guarantee itself.",
+    criteriaTitle: "When we call off the trip",
     criteriaMarks: ["AEMET", "20 kn", "The company"],
     criteria: [
       "An official AEMET coastal warning for our navigation area during your rental slot.",
@@ -5243,7 +5243,7 @@ export const en: Translations = {
       },
       {
         q: "What happens if the weather is bad?",
-        a: "If bad weather stops the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid, valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund.",
+        a: "If we call off the trip for bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. With the Weather guarantee contracted you can also cancel yourself with a full refund if the day-before AEMET forecast shows a coastal warning or wind of 15 knots or more.",
       },
       {
         q: "How is it different from renting a boat without a skipper?",
@@ -5613,7 +5613,7 @@ export const en: Translations = {
         },
         {
           question: 'What happens if the sea is rough?',
-          answer: 'If the forecast shows >20 knots sustained or a warning for waves >1.5 m, we don\'t go out and we change your date at no cost; if we can\'t agree on one, you receive a voucher valid for 12 months. The Blanes–Fenals stretch is sheltered from the Tramuntana by the coast itself, so it\'s one of the safest for beginners even with a north wind.',
+          answer: 'If the forecast shows >20 knots sustained or a warning for waves >1.5 m, we don\'t go out and you choose: a new date at no cost, a 12-month voucher or a full refund. The Blanes–Fenals stretch is sheltered from the Tramuntana by the coast itself, so it\'s one of the safest for beginners even with a north wind.',
         },
         {
           question: 'How do I get from Lloret de Mar to the Port of Blanes?',
@@ -6058,7 +6058,7 @@ export const en: Translations = {
         distanceQ: 'How far can I sail from Blanes?',
         distanceA: 'With the Licencia de Navegación, by day and close to the coast, from Blanes you reach Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal and Tossa de Mar (30-45 min) and, on a full day, Sant Feliu de Guíxols. With the private excursion with a skipper you do the route without a qualification.',
         weatherQ: 'What happens if the weather is bad on the day of my booking?',
-        weatherA: 'Safety is our priority. If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. We check the professional maritime forecast daily and notify you in advance; an official AEMET coastal warning or winds above 20 knots mean cancellation.',
+        weatherA: 'Safety is our priority. If we call off the trip for bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. With the Weather guarantee contracted you can also cancel yourself with a full refund (excluding the price of the guarantee itself) if the day-before AEMET forecast shows a coastal warning or wind of 15 knots or more. We check the professional maritime forecast daily and notify you in advance; an official AEMET coastal warning or winds above 20 knots mean cancellation.',
         petsQ: 'Can I bring pets on the boat?',
         petsA: 'Yes, pets are welcome on all our boats. We recommend bringing fresh water for your pet, a towel and suitable sun protection. For large dogs, licensed boats offer more space. We ask that you keep your pet in a canine life jacket if it will be near the water. We can provide one upon request.',
       },

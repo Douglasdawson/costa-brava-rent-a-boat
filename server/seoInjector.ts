@@ -2770,7 +2770,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Por dónde puedo navegar?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Con Licencia de Navegación o título superior tienes rumbo libre por la Costa Brava: Lloret en 15 minutos, Cala Canyelles, Tossa de Mar en 30-45 minutos y, en jornada completa, Sant Feliu de Guíxols y Platja d'Aro. Los barcos sin titulación quedan entre Playa de Fenals al norte y el final de la playa de Blanes al sur, siempre a menos de 2 millas de la costa."
+              text: "Con Licencia de Navegación o título superior navegas por la Costa Brava hasta 2 millas de la costa: Lloret en 15 minutos, Cala Canyelles, Tossa de Mar en 30-45 minutos y, en jornada completa, Sant Feliu de Guíxols y Platja d'Aro. Los barcos sin titulación quedan entre Playa de Fenals al norte y el final de la playa de Blanes al sur, siempre a menos de 2 millas de la costa."
             }
           },
           {
@@ -2778,7 +2778,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             name: "¿Qué pasa si hace mal tiempo?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Si el mal tiempo impide la salida, cambiamos la fecha sin coste; si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Si contrataste la Garantía de mal tiempo, eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. El criterio es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad."
+              text: "Si suspendemos nosotros la salida por mal tiempo, eliges entre una nueva fecha sin coste, un bono por el importe abonado con validez de 12 meses o la devolución íntegra en dinero. El criterio de suspensión es objetivo: aviso costero oficial de AEMET para la zona en la franja horaria de tu alquiler, viento sostenido o rachas superiores a 20 nudos, o la decisión de nuestro personal por motivos de seguridad. Con la Garantía de mal tiempo decides tú: si la previsión de AEMET publicada la víspera indica aviso costero o viento de 15 nudos o más para tu franja, puedes cancelar hasta la hora de salida con devolución íntegra (excluido el precio de la propia garantía), aunque la salida fuera posible. Sin la garantía, si la salida es posible y prefieres no venir, no hay devolución."
             }
           },
           {

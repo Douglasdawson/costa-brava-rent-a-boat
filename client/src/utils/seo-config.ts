@@ -12,6 +12,7 @@ import {
   BUSINESS_REGION,
   BUSINESS_POSTAL_CODE,
   BUSINESS_COUNTRY,
+  CANCELLATION_POLICY_ES,
 } from "@shared/businessProfile";
 
 // Dynamic season year: Nov-Dec → next year, otherwise current year
@@ -1828,7 +1829,7 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
       "refundType": "https://schema.org/NoReturnRefund",
       "additionalType": "https://www.costabravarentaboat.com/terms-conditions",
-      "description": "Cambio de fecha gratuito hasta 7 días antes de la salida (sujeto a disponibilidad). Si el mal tiempo impide salir, cambiamos la fecha sin coste o, si no logramos acordar una, te emitimos un bono por el importe abonado con validez de 12 meses. Con la Garantía de mal tiempo contratada eliges entre nueva fecha o la devolución íntegra en dinero, excluido el precio de la propia garantía. Fuera de esos supuestos, las reservas confirmadas con depósito no se devuelven en dinero. / Free date change up to 7 days before departure (subject to availability). If bad weather prevents the trip, we move your date at no cost or, if no date works, we issue a voucher for the amount paid valid for 12 months. With the Weather guarantee contracted you choose between a new date or a full cash refund, excluding the price of the guarantee itself. Outside those cases, confirmed bookings with a deposit are not refunded in cash."
+      "description": `${CANCELLATION_POLICY_ES} / Free date change up to 7 days before departure (subject to availability). If we cancel because of bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. With the Weather guarantee contracted you can also cancel yourself with a full refund (excluding the price of the guarantee itself) if, the day before, AEMET forecasts a coastal warning or wind of 15 knots or more for your time slot, even if the trip could go ahead. Outside those cases, confirmed bookings with a deposit are not refunded in cash.`
     }
   };
 

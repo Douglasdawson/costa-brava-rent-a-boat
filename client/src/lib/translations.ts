@@ -549,8 +549,9 @@ export interface Translations {
       triggerWindMark?: string;
       triggerWind?: string;
       // Confirmation shown when leaving step 5 without the weather guarantee.
-      // warnBody must stay level with clause 7 of the rental terms (reschedule,
-      // else a 12-month voucher, no cash refund): never harsher, never softer.
+      // warnBody must stay level with clause 7 of the rental terms (no refund for
+      // a bad forecast if the trip can go ahead; if we suspend: date, voucher or
+      // refund): never harsher, never softer.
       warnTitle?: string;
       warnBody?: string;
       warnAdd?: string; // {price} = weather guarantee price

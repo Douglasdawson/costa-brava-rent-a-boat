@@ -55,7 +55,9 @@ export default function BoatGuarantees({ requiresLicense, boatDeposit }: BoatGua
   const own = digits(boatDeposit);
   const showDeposit = standard != null && own != null && standard === own;
 
-  const marks = g.criteriaMarks ?? [];
+  // The card sells the guarantee, so it shows ITS trigger (AEMET forecast the
+  // day before, 15 kn), not the 20 kn suspension criterion of criteriaMarks.
+  const marks = [g.criteriaMarks?.[0] ?? "AEMET", "15 kn"];
 
   return (
     <section

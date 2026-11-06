@@ -459,25 +459,25 @@ export const nl: Translations = {
     coverages: {
       title: "Optionele garanties",
       weatherName: "Slechtweergarantie",
-      weatherDesc: "Als slecht weer de tocht onmogelijk maakt, krijg je in geld terug wat je vooraf hebt betaald.",
+      weatherDesc: "Beslis jij: geeft de AEMET-verwachting van de dag ervoor een kustwaarschuwing of 15 knopen of meer, dan annuleer je en krijg je alles terug.",
       depositName: "Verlaagde borg",
       depositDesc: "Je laat {amount}€ borg achter{standard} op de dag zelf.",
       stepTitle: "Als de zee niet meewerkt",
       stepSubtitle: "Jij bepaalt hoe je gedekt wilt zijn.",
       withoutLabel: "Zonder garantie",
-      withoutBody: "We verzetten de datum kosteloos. Lukt geen enkele datum, dan krijg je een tegoedbon die 12 maanden geldig is. Geen teruggave in geld.",
+      withoutBody: "Annuleren wij wegens slecht weer, dan kies je: een nieuwe datum, een tegoedbon van 12 maanden of je geld terug. Besluit jij niet te varen terwijl wij wel uitvaren, dan is er geen terugbetaling.",
       withLabel: "Met garantie",
-      withBody: "Jij kiest: een nieuwe datum of je geld volledig terug.",
+      withBody: "Bovendien beslis jij: geeft de verwachting van de dag ervoor een kustwaarschuwing of 15 knopen of meer, dan annuleer je en krijg je alles terug.",
       triggerAemetMark: "AEMET",
       triggerAemet: "Officiële kustwaarschuwing voor het gebied tijdens jouw tijdslot.",
       triggerWindMark: "20 knopen",
       triggerWind: "Aanhoudende wind of vlagen daarboven, of de beslissing van het bedrijf voor de veiligheid.",
       standardSuffix: " in plaats van {std}",
       noneCta: "Doorgaan zonder garanties",
-      criteriaShort: "Slecht weer = AEMET-waarschuwing, wind boven 20 knopen of beslissing van het bedrijf.",
+      criteriaShort: "Wij annuleren bij een AEMET-waarschuwing, wind boven 20 knopen of om veiligheidsredenen; met de garantie mag jij al annuleren vanaf 15 knopen in de verwachting.",
       warnTitle: "Doorgaan zonder de slechtweergarantie?",
       warnBody:
-        "Als slecht weer het uitvaren verhindert, verzetten we je datum kosteloos. Lukt geen enkele datum, dan krijg je een tegoedbon voor het betaalde bedrag, 12 maanden geldig. Geen terugbetaling in geld.",
+        "Annuleren wij wegens slecht weer, dan kies je nog steeds een nieuwe datum, een tegoedbon of je geld terug. Zonder garantie kun je echter niet zelf annuleren met terugbetaling als de verwachting slecht is maar wij wel uitvaren.",
       warnAdd: "Toevoegen voor {price}€",
       warnContinue: "Doorgaan zonder garantie",
     },
@@ -773,7 +773,7 @@ export const nl: Translations = {
     heroChipReviews: "{rating} · {count} Google-reviews",
     heroChipFuelInsurance: "Brandstof en verzekering inbegrepen",
     heroChipInsurance: "Verzekering inbegrepen",
-    heroChipWeather: "Als de zee niet meewerkt, plannen we om",
+    heroChipWeather: "Als de zee niet meewerkt: nieuwe datum of geld terug",
     recommendedBadge: "Aanbevolen",
     viewsToday: "weergaven van deze boot vandaag",
     viewCustomerGallery: "Bekijk klantenfotogalerij",
@@ -1183,7 +1183,7 @@ export const nl: Translations = {
       "De prijzen beginnen bij 85€/u inclusief brandstof. We werken met tijdvakken: 1 uur vanaf 85€, 2 uur vanaf 135€ en een halve dag (4 uur) vanaf 180€ in het laagseizoen. In het hoogseizoen en in het weekend stijgen de tarieven. Geen platformkosten en geen extra brandstofkosten: de prijs die je boekt is de eindprijs.",
     faqWeatherQuestion: "Wat gebeurt er bij slecht weer?",
     faqWeatherAnswer:
-      "Als slecht weer de tocht verhindert, verzetten we de datum kosteloos; lukt geen enkele datum, dan geven we een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Heb je de Slechtweergarantie afgesloten, dan kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Het criterium is objectief: een officiële AEMET-kustwaarschuwing voor het gebied tijdens jouw huurperiode, aanhoudende wind of windstoten boven 20 knopen, of de beslissing van ons personeel om veiligheidsredenen.",
+      "Annuleren wij wegens slecht weer, dan kies jij: een nieuwe datum zonder kosten, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid of volledige terugbetaling in geld. Het criterium is objectief: een officiële AEMET-kustwaarschuwing voor het gebied tijdens jouw huurperiode, aanhoudende wind of windstoten boven 20 knopen, of de beslissing van ons personeel om veiligheidsredenen. Met de Slechtweergarantie kun je bovendien zelf annuleren met volledige terugbetaling (exclusief de prijs van de garantie) als de AEMET-verwachting van de dag ervoor een kustwaarschuwing of wind van 15 knopen of meer geeft, ook als wij wel zouden uitvaren.",
     howToTitle: "Een boot zonder vaarbewijs huren in Blanes (5 stappen)",
     howToIntro:
       "Een boot zonder vaarbewijs huren in de haven van Blanes is eenvoudiger dan het lijkt. Dit zijn de 5 stappen van het proces, van de reservering tot de teruggave, zodat je precies weet wat je kunt verwachten op de dag van vertrek.",
@@ -1328,7 +1328,7 @@ export const nl: Translations = {
     vsMarketplacesRow2Direct: "We controleren het online voordat je reserveert",
     vsMarketplacesRow2Market: "Wordt op de dag van vertrek in de haven gecontroleerd",
     vsMarketplacesRow3Label: "Slechtweergarantie",
-    vsMarketplacesRow3Direct: "Optioneel bij het reserveren: nieuwe datum of terugbetaling in geld",
+    vsMarketplacesRow3Direct: "Optioneel: annuleer zelf met volledige terugbetaling als de verwachting van de dag ervoor slecht is",
     vsMarketplacesRow3Market: "Afhankelijk van de voorwaarden van elk portaal",
     vsMarketplacesRow4Label: "Datumwijzigingen",
     vsMarketplacesRow4Direct: "Gratis tot 7 dagen van tevoren, rechtstreeks met ons geregeld",
@@ -1363,7 +1363,7 @@ export const nl: Translations = {
       "Je betaalt hem op de dag van vertrek en je krijgt hem volledig terug als je de speedboot inlevert in dezelfde staat als bij vertrek. Er bestaat ook een optionele dekking Verlaagde borg als je liever een lager bedrag blokkeert.",
     faqWeatherQuestion: "Wat gebeurt er als het slecht weer is op de dag van de huur?",
     faqWeatherAnswer:
-      "Je kunt de datum gratis wijzigen tot 7 dagen voor vertrek. Als slecht weer de tocht verhindert, verzetten we de datum kosteloos of geven we een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Met de afgesloten Slechtweergarantie kies je tussen een nieuwe datum of volledige terugbetaling in geld.",
+      "Je kunt de datum gratis wijzigen tot 7 dagen voor vertrek. Annuleren wij wegens slecht weer, dan kies je een nieuwe datum, een tegoedbon van 12 maanden of je geld terug. Met de Slechtweergarantie kun je ook zelf annuleren met volledige terugbetaling als de verwachting van de dag ervoor een kustwaarschuwing of 15 knopen of meer geeft.",
     faqCrossLinkLabel: "Bekijk de speedboten met vaarbewijs",
     crossLinkFromFree: "Heb je een vaarbewijs? Speedboten van 80 tot 115 pk tot Tossa",
     linksTitle: "Verder ontdekken",
@@ -1593,13 +1593,13 @@ export const nl: Translations = {
         id: "cancelacion",
         question: "Wat is het annuleringsbeleid?",
         answer:
-          "Gratis datumwijziging tot 7 dagen voor vertrek (op basis van beschikbaarheid). Als slecht weer de tocht verhindert, verzetten we de datum kosteloos of geven we, als geen datum lukt, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Met de afgesloten Slechtweergarantie kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Buiten die gevallen worden bevestigde boekingen met aanbetaling niet in geld terugbetaald.",
+          "Gratis datumwijziging tot 7 dagen voor vertrek (op basis van beschikbaarheid). Annuleren wij wegens slecht weer, dan kies je tussen een nieuwe datum zonder kosten, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid of volledige terugbetaling in geld. Met de afgesloten Slechtweergarantie kun je bovendien zelf annuleren met volledige terugbetaling (exclusief de prijs van de garantie) als AEMET de dag ervoor een kustwaarschuwing of wind van 15 knopen of meer voorspelt voor jouw tijdslot, ook als de tocht mogelijk zou zijn. Buiten die gevallen worden bevestigde boekingen met aanbetaling niet in geld terugbetaald.",
       },
       {
         id: "mal-tiempo",
         question: "Wat gebeurt er bij slecht weer?",
         answer:
-          "Als slecht weer de tocht verhindert, verzetten we de datum kosteloos; lukt geen enkele datum, dan geven we een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Heb je de Slechtweergarantie afgesloten, dan kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Het criterium is objectief: een officiële AEMET-kustwaarschuwing voor het gebied tijdens jouw huurperiode, aanhoudende wind of windstoten boven 20 knopen, of de beslissing van ons personeel om veiligheidsredenen.",
+          "Annuleren wij wegens slecht weer, dan kies jij: een nieuwe datum zonder kosten, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid of volledige terugbetaling in geld. Het criterium is objectief: een officiële AEMET-kustwaarschuwing voor het gebied tijdens jouw huurperiode, aanhoudende wind of windstoten boven 20 knopen, of de beslissing van ons personeel om veiligheidsredenen. Met de Slechtweergarantie kun je bovendien zelf annuleren met volledige terugbetaling (exclusief de prijs van de garantie) als de AEMET-verwachting van de dag ervoor een kustwaarschuwing of wind van 15 knopen of meer geeft, ook als wij wel zouden uitvaren.",
       },
       {
         id: "experiencia",
@@ -2141,7 +2141,7 @@ export const nl: Translations = {
     aFuel:
       "Ja, maar alleen als dit vóór het afronden van de huur wordt afgesproken: omdat onze schipper een vooraf vastgestelde route vaart, kunnen we het verbruik vooraf vastleggen en je een prijs inclusief brandstof aanbieden. In dat geval ligt de huurprijs hoger dan die van de standaardpakketten. Zonder voorafgaande afspraak wordt brandstof apart betaald op basis van verbruik.",
     q5: "Wat is het annuleringsbeleid?",
-    a5: "Gratis datumwijziging tot 7 dagen voor vertrek (op basis van beschikbaarheid). Als slecht weer de tocht verhindert, verzetten we de datum kosteloos of geven we, als geen datum lukt, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Met de afgesloten Slechtweergarantie kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Buiten die gevallen worden bevestigde boekingen met aanbetaling niet in geld terugbetaald.",
+    a5: "Gratis datumwijziging tot 7 dagen voor vertrek (op basis van beschikbaarheid). Annuleren wij wegens slecht weer, dan kies je tussen een nieuwe datum zonder kosten, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid of volledige terugbetaling in geld. Met de afgesloten Slechtweergarantie kun je bovendien zelf annuleren met volledige terugbetaling (exclusief de prijs van de garantie) als AEMET de dag ervoor een kustwaarschuwing of wind van 15 knopen of meer voorspelt voor jouw tijdslot, ook als de tocht mogelijk zou zijn. Buiten die gevallen worden bevestigde boekingen met aanbetaling niet in geld terugbetaald.",
   },
   activitySunset: {
     faqItems: [
@@ -2781,7 +2781,7 @@ export const nl: Translations = {
       cancelacion: {
         question: "Wat is het annuleringsbeleid?",
         answer:
-          "Gratis datumwijziging tot 7 dagen voor vertrek (op basis van beschikbaarheid). Als slecht weer de tocht verhindert, verzetten we de datum kosteloos of geven we, als geen datum lukt, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Met de afgesloten Slechtweergarantie kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Buiten die gevallen worden bevestigde boekingen met aanbetaling niet in geld terugbetaald.",
+          "Gratis datumwijziging tot 7 dagen voor vertrek (op basis van beschikbaarheid). Annuleren wij wegens slecht weer, dan kies je tussen een nieuwe datum zonder kosten, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid of volledige terugbetaling in geld. Met de afgesloten Slechtweergarantie kun je bovendien zelf annuleren met volledige terugbetaling (exclusief de prijs van de garantie) als AEMET de dag ervoor een kustwaarschuwing of wind van 15 knopen of meer voorspelt voor jouw tijdslot, ook als de tocht mogelijk zou zijn. Buiten die gevallen worden bevestigde boekingen met aanbetaling niet in geld terugbetaald.",
       },
       sinLicencia: {
         question: "Kan ik een boot huren zonder vaarbewijs?",
@@ -2846,7 +2846,7 @@ export const nl: Translations = {
       malTiempo: {
         question: "Wat gebeurt er bij slecht weer?",
         answer:
-          "Als slecht weer de tocht verhindert, verzetten we de datum kosteloos; lukt geen enkele datum, dan geven we een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Heb je de Slechtweergarantie afgesloten, dan kies je tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf. Het criterium is objectief: een officiële AEMET-kustwaarschuwing voor het gebied tijdens jouw huurperiode, aanhoudende wind of windstoten boven 20 knopen, of de beslissing van ons personeel om veiligheidsredenen.",
+          "Annuleren wij wegens slecht weer, dan kies jij: een nieuwe datum zonder kosten, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid of volledige terugbetaling in geld. Het criterium is objectief: een officiële AEMET-kustwaarschuwing voor het gebied tijdens jouw huurperiode, aanhoudende wind of windstoten boven 20 knopen, of de beslissing van ons personeel om veiligheidsredenen. Met de Slechtweergarantie kun je bovendien zelf annuleren met volledige terugbetaling (exclusief de prijs van de garantie) als de AEMET-verwachting van de dag ervoor een kustwaarschuwing of wind van 15 knopen of meer geeft, ook als wij wel zouden uitvaren.",
       },
       emergencia: {
         question: "Wat moet ik doen bij een noodgeval?",
@@ -3119,11 +3119,11 @@ export const nl: Translations = {
         },
         {
           title: "6. Vaargebied en duur",
-          body: "Toegestaan gebied: noordwaarts tot de haven van Sant Feliu de Guíxols en in elk geval binnen één zeemijl uit de kust en binnen de grenzen van het vaarbewijs van de schipper. Wie buiten dat gebied vaart, is voor die tocht niet door de verzekering gedekt.\n\nDe maximumsnelheid in havens en in de betonde vaargeulen bij de stranden bedraagt 3 knopen. De zwemzone moet worden gerespecteerd, er moet buiten de gele boeien worden geankerd, op meer dan 200 m van stranden en kliffen worden gevaren en 100 m afstand worden gehouden tot duikersboeien.\n\nDe boten moeten vóór het einde van het geboekte tijdslot terug zijn in de haven van Blanes. Vindt de check-out zonder bericht later plaats dan afgesproken, dan wordt 150 € per 30 minuten vertraging of het evenredige deel daarvan in rekening gebracht.",
+          body: "Toegestaan gebied: noordwaarts tot de haven van Sant Feliu de Guíxols en in elk geval binnen twee zeemijl uit de kust en binnen de grenzen van het vaarbewijs van de schipper. Wie buiten dat gebied vaart, is voor die tocht niet door de verzekering gedekt.\n\nDe maximumsnelheid in havens en in de betonde vaargeulen bij de stranden bedraagt 3 knopen. De zwemzone moet worden gerespecteerd, er moet buiten de gele boeien worden geankerd, op meer dan 200 m van stranden en kliffen worden gevaren en 100 m afstand worden gehouden tot duikersboeien.\n\nDe boten moeten vóór het einde van het geboekte tijdslot terug zijn in de haven van Blanes. Vindt de check-out zonder bericht later plaats dan afgesproken, dan wordt per fractie van 30 minuten vertraging het geldende uurtarief van de boot, verhoogd met 50 %, in rekening gebracht (bij boten zonder prijs voor 1 uur is het uurtarief de helft van de 2-uursprijs van het seizoen).",
         },
         {
           title: "7. Annuleringsbeleid",
-          body: "- Gratis datumwijziging tot 7 dagen voor vertrek, op basis van beschikbaarheid van de boot.\n- Slecht weer zonder afgesloten garantie: kosteloos verzetten of, als geen nieuwe datum wordt afgesproken, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Terugbetaling in geld is niet van toepassing.\n- Slecht weer met de afgesloten Slechtweergarantie: de klant kiest tussen een nieuwe datum of volledige terugbetaling in geld van de voor de huur betaalde bedragen, exclusief de prijs van de garantie zelf, die niet terugbetaalbaar is.\n- Objectief slechtweercriterium: een officiële AEMET-kustwaarschuwing voor het vaargebied tijdens het huurtijdvak, aanhoudende wind of windstoten boven twintig knopen, of de beslissing van het personeel om veiligheidsredenen.\n- Kan de tocht niet doorgaan door een oorzaak die aan het bedrijf toe te rekenen is (defect of anders), dan worden de betaalde bedragen terugbetaald.\n- Buiten de bovenstaande gevallen zijn bevestigde boekingen met aanbetaling niet in geld terugbetaalbaar.\n\nDe Slechtweergarantie en de Verlaagde borg zijn eigen commerciële garanties van Costa Brava Rent a Boat en vormen geen verzekeringsovereenkomst. De beslissing tot annulering wegens weersomstandigheden ligt bij de aanbieder en wordt genomen om veiligheidsredenen. Schriftelijke melding aan info@costabravarentaboat.com of WhatsApp +34 611 500 372.",
+          body: "- Gratis datumwijziging tot 7 dagen voor vertrek, op basis van beschikbaarheid van de boot.\n- Afgelasting wegens slecht weer door het bedrijf: de klant kiest tussen een nieuwe datum zonder kosten, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid of volledige terugbetaling in geld van de betaalde bedragen.\n- Objectief afgelastingscriterium: een officiële AEMET-kustwaarschuwing voor het vaargebied tijdens het huurtijdvak, aanhoudende wind of windstoten boven twintig knopen, of de beslissing van het personeel van het bedrijf om veiligheidsredenen.\n- Afgesloten Slechtweergarantie: de klant kan tot het vertrekuur zelf annuleren met volledige terugbetaling van de voor de huur betaalde bedragen (exclusief de prijs van de garantie zelf, die niet terugbetaalbaar is) wanneer de AEMET-verwachting die de dag ervoor is gepubliceerd voor het gebied en het tijdvak van de huur een kustwaarschuwing of aanhoudende wind of windstoten van vijftien knopen of meer aangeeft, ook als het bedrijf de tocht mogelijk acht.\n- Kan de tocht niet doorgaan door een oorzaak die aan het bedrijf toe te rekenen is (defect of anders), dan worden de betaalde bedragen terugbetaald.\n- Buiten de bovenstaande gevallen geeft annulering door de klant of niet-verschijnen geen recht op terugbetaling van bevestigde boekingen met aanbetaling.\n\nDe Slechtweergarantie en de Verlaagde borg zijn eigen commerciële garanties van Costa Brava Rent a Boat en vormen geen verzekeringsovereenkomst. De beslissing tot afgelasting wegens weersomstandigheden ligt bij de aanbieder en wordt genomen om veiligheidsredenen, onverminderd het recht van de klant met de Slechtweergarantie. Schriftelijke melding aan info@costabravarentaboat.com of WhatsApp +34 611 500 372.",
         },
         {
           title: "8. Verplichtingen van de klant",
@@ -4779,7 +4779,7 @@ export const nl: Translations = {
       },
       {
         q: "Wat gebeurt er bij slecht weer?",
-        a: "Als slecht weer de tocht verhindert, verzetten we de datum kosteloos of geven we een tegoedbon die 12 maanden geldig is. Met de afgesloten Slechtweergarantie betalen we je geld terug.",
+        a: "Annuleren wij wegens slecht weer, dan kies je een nieuwe datum, een tegoedbon van 12 maanden of je geld terug. Met de Slechtweergarantie kun je ook zelf annuleren met volledige terugbetaling als de verwachting van de dag ervoor een kustwaarschuwing of 15 knopen of meer geeft.",
       },
     ],
   },
@@ -4787,13 +4787,13 @@ export const nl: Translations = {
     navLabel: "Garanties",
     heroTitle: "Als de zee nee zegt, ligt het antwoord al vast",
     heroSubtitle:
-      "Als slecht weer het uitvaren belet, verzetten we je datum kosteloos; vinden we geen andere, dan krijg je een waardebon van 12 maanden. Met de Slechtweergarantie kies jij: een nieuwe datum of je geld terug. Zonder kleine lettertjes.",
-    weatherTitle: "Als slecht weer de tocht verhindert",
+      "Annuleren wij wegens slecht weer, dan kies jij: een nieuwe datum, een tegoedbon van 12 maanden of je geld terug. Met de Slechtweergarantie beslis je bovendien zelf: geeft de verwachting van de dag ervoor een kustwaarschuwing of 15 knopen of meer, dan annuleer je en krijg je alles terug. Zonder kleine lettertjes.",
+    weatherTitle: "Als de verwachting niet meezit",
     withoutLabel: "Zonder garantie",
-    withoutBody: "We verzetten je datum kosteloos. Lukt geen enkele datum, dan krijg je een tegoedbon voor het betaalde bedrag, 12 maanden geldig. Geen terugbetaling in geld.",
+    withoutBody: "Annuleren wij wegens slecht weer, dan kies je: een nieuwe datum zonder kosten, een tegoedbon voor het betaalde bedrag (12 maanden geldig) of je geld volledig terug. Besluit jij niet te varen terwijl wij wel uitvaren, dan is er geen terugbetaling: de datum wijzigen is alleen gratis tot 7 dagen van tevoren.",
     withLabel: "Met de Slechtweergarantie",
-    withBody: "Jij kiest: een nieuwe datum of je geld volledig terug, exclusief de prijs van de garantie zelf.",
-    criteriaTitle: "Wanneer geldt het als slecht weer",
+    withBody: "Bovendien beslis jij: geeft de AEMET-verwachting van de dag ervoor een kustwaarschuwing of wind van 15 knopen of meer voor jouw tijdslot, dan annuleer je tot het vertrekuur en krijg je alles terug, exclusief de prijs van de garantie zelf.",
+    criteriaTitle: "Wanneer wij de tocht afgelasten",
     criteriaMarks: ["AEMET", "20 kn", "Het bedrijf"],
     criteria: [
       "Een officiële AEMET-kustwaarschuwing voor ons vaargebied tijdens jouw huurperiode.",
@@ -5209,7 +5209,7 @@ export const nl: Translations = {
       },
       {
         q: "Wat gebeurt er bij slecht weer?",
-        a: "Als slecht weer het uitvaren verhindert, verzetten we de datum kosteloos of geven we, als we samen geen nieuwe datum vinden, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid. Heb je de Slechtweergarantie afgesloten, dan kies je tussen een nieuwe datum of volledige terugbetaling in geld.",
+        a: "Annuleren wij wegens slecht weer, dan kies je een nieuwe datum, een tegoedbon voor het betaalde bedrag met 12 maanden geldigheid of je geld terug. Met de Slechtweergarantie kun je bovendien zelf annuleren met volledige terugbetaling als de AEMET-verwachting van de dag ervoor een kustwaarschuwing of 15 knopen of meer geeft.",
       },
       {
         q: "Wat is het verschil met een boot huren zonder schipper?",
@@ -5579,7 +5579,7 @@ export const nl: Translations = {
         },
         {
           question: 'Wat gebeurt er als het slecht weer is?',
-          answer: 'Als de voorspelling >20 knopen aanhoudende wind of een waarschuwing voor golven >1,5 m aangeeft, varen we niet uit en verzetten we je datum kosteloos; lukt het niet om een datum af te spreken, dan krijg je een tegoedbon die 12 maanden geldig is. Het traject Blanes–Fenals wordt door de kust zelf beschermd tegen de Tramuntana en is daardoor ook bij noordenwind een van de veiligste voor beginners.',
+          answer: 'Als de voorspelling >20 knopen aanhoudende wind of een waarschuwing voor golven >1,5 m aangeeft, varen we niet uit en kies je: een nieuwe datum zonder kosten, een tegoedbon van 12 maanden of je geld terug. Het traject Blanes–Fenals wordt door de kust zelf beschermd tegen de Tramuntana en is daardoor ook bij noordenwind een van de veiligste voor beginners.',
         },
         {
           question: 'Hoe kom ik van Lloret de Mar naar de haven van Blanes?',
@@ -6024,7 +6024,7 @@ export const nl: Translations = {
         distanceQ: 'Hoe ver kan ik varen vanuit Blanes?',
         distanceA: 'Met de Licencia de Navegación, overdag en dicht bij de kust, bereik je vanuit Blanes Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal en Tossa de Mar (30-45 min) en, op een hele dag, Sant Feliu de Guíxols. Met de privétocht met schipper vaar je de route zonder vaarbewijs.',
         weatherQ: 'Wat gebeurt er bij slecht weer op de dag van mijn boeking?',
-        weatherA: 'Veiligheid is onze prioriteit. Als slecht weer de vaart verhindert, verzetten wij de datum kosteloos of geven wij, als geen nieuwe datum lukt, een voucher voor het betaalde bedrag, 12 maanden geldig. Met de Slechtweergarantie kiest u tussen een nieuwe datum of volledige terugbetaling in geld, exclusief de prijs van de garantie zelf.',
+        weatherA: 'Veiligheid is onze prioriteit. Annuleren wij wegens slecht weer, dan kiest u tussen een nieuwe datum zonder kosten, een voucher voor het betaalde bedrag met 12 maanden geldigheid of volledige terugbetaling in geld. Met de Slechtweergarantie kunt u bovendien zelf annuleren met volledige terugbetaling (exclusief de prijs van de garantie) als de AEMET-verwachting van de dag ervoor een kustwaarschuwing of wind van 15 knopen of meer geeft.',
         petsQ: 'Mag ik huisdieren meenemen op de boot?',
         petsA: 'Ja, huisdieren zijn welkom op al onze boten. Wij raden aan om vers water, een handdoek en geschikte zonnebescherming voor uw dier mee te nemen.',
       },

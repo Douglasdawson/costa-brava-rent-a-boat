@@ -112,7 +112,7 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">PROHIBICIONES:</h3>
                 <p className="text-foreground">
-                  Queda prohibido sobrepasar la distancia de una milla desde la costa (1,8 km), los límites de navegación autorizados por la titulación náutica del patrón y la zona de navegación indicada en la sección «ZONA DE NAVEGACIÓN», sobrepasar el número de plazas máximo permitido según el modelo de la embarcación alquilada, varar la embarcación en la playa o acceder a ella. Entrar, permanecer o salir del agua con el motor en funcionamiento y dejar la embarcación amarrada o anclada sin ninguna persona a bordo.
+                  Queda prohibido sobrepasar la distancia de 2 millas desde la costa (3,7 km), los límites de navegación autorizados por la titulación náutica del patrón y la zona de navegación indicada en la sección «ZONA DE NAVEGACIÓN», sobrepasar el número de plazas máximo permitido según el modelo de la embarcación alquilada, varar la embarcación en la playa o acceder a ella. Entrar, permanecer o salir del agua con el motor en funcionamiento y dejar la embarcación amarrada o anclada sin ninguna persona a bordo.
                 </p>
               </div>
 
@@ -130,7 +130,7 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ENTREGA Y RECOGIDA:</h3>
                 <p className="text-foreground">
-                  La embarcación será entregada y devuelta en el puerto base (Puerto de Blanes). Se devolverá con todo su equipamiento en las mismas condiciones en las que se entregó y en la fecha y hora estipuladas en el contrato. Si el check-out se realiza más tarde de la hora estipulada sin aviso se cobrará un importe de 150€ por cada 30 minutos de retraso o su parte proporcional. En caso de devolver la embarcación antes de la hora prevista de entrega no se hará ningún tipo de abono.
+                  La embarcación será entregada y devuelta en el puerto base (Puerto de Blanes). Se devolverá con todo su equipamiento en las mismas condiciones en las que se entregó y en la fecha y hora estipuladas en el contrato. Si el check-out se realiza más tarde de la hora estipulada sin aviso se cobrará la tarifa horaria vigente de la embarcación incrementada en un 50 % por cada fracción de 30 minutos de retraso (en las embarcaciones sin tarifa de 1 hora, la tarifa horaria es la mitad del precio de 2 horas de la temporada). En caso de devolver la embarcación antes de la hora prevista de entrega no se hará ningún tipo de abono.
                 </p>
               </div>
 
@@ -157,7 +157,7 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ZONA DE NAVEGACIÓN:</h3>
                 <p className="text-foreground">
-                  La zona autorizada llega al norte hasta el puerto de Sant Feliu de Guíxols, siempre dentro de una milla de la costa y de los límites de la titulación del patrón. Rebasar ese punto es navegar fuera de la zona autorizada: si en esa situación se requiere asistencia, la empresa no se hará responsable y el seguro no cubrirá ningún tipo de pérdidas y/o daños personales. Si es necesario remolcar la embarcación por falta de combustible, por navegar fuera de la zona autorizada o por una avería imputable al arrendatario, se cobrarán 1.000,00€ en concepto de maniobra de rescate. El remolque por una avería no imputable al arrendatario no tiene coste para él.
+                  La zona autorizada llega al norte hasta el puerto de Sant Feliu de Guíxols, siempre dentro de 2 millas de la costa y de los límites de la titulación del patrón. Rebasar ese punto es navegar fuera de la zona autorizada: si en esa situación se requiere asistencia, la empresa no se hará responsable y el seguro no cubrirá ningún tipo de pérdidas y/o daños personales. Si es necesario remolcar la embarcación por falta de combustible, por navegar fuera de la zona autorizada o por una avería imputable al arrendatario, se cobrarán 1.000,00€ en concepto de maniobra de rescate. El remolque por una avería no imputable al arrendatario no tiene coste para él.
                 </p>
               </div>
 
@@ -212,7 +212,7 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ENTREGA Y RECOGIDA:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>La embarcación será entregada y devuelta en el puerto base, Puerto de Blanes. Se devolverá con todo su equipamiento en las mismas condiciones en las que se entregó y en la fecha y hora estipuladas en el contrato. Si el check-out se realiza más tarde de la hora estipulada sin aviso, se cobrará un importe de 150€ por cada 30 minutos de retraso o su parte proporcional. En caso de devolver la embarcación antes de la hora prevista de entrega no se hará ningún tipo de abono.</p>
+                  <p>La embarcación será entregada y devuelta en el puerto base, Puerto de Blanes. Se devolverá con todo su equipamiento en las mismas condiciones en las que se entregó y en la fecha y hora estipuladas en el contrato. Si el check-out se realiza más tarde de la hora estipulada sin aviso, se cobrará la tarifa horaria vigente de la embarcación incrementada en un 50 % por cada fracción de 30 minutos de retraso (en las embarcaciones sin tarifa de 1 hora, la tarifa horaria es la mitad del precio de 2 horas de la temporada). En caso de devolver la embarcación antes de la hora prevista de entrega no se hará ningún tipo de abono.</p>
                   <p>Es muy importante que el patrón y/o tripulantes lleven siempre un teléfono disponible para poder contactar con nosotros o para que el equipo de Costa Brava Rent a Boat tenga la posibilidad llamarles para informarles de cualquier imprevisto que surja.</p>
                 </div>
               </div>

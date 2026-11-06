@@ -36,6 +36,12 @@ export async function openActiviframe(path: string, lang: string, fallbackHref: 
   try {
     const api = await load();
     api.open({ path, lang: LANGS.has(lang) ? lang : "en" });
+    // The loader caps the frame at 520px (phone column). On desktop let it grow so the
+    // guide page shows its 3-column grid; below 900px keep the loader's own sizing.
+    if (window.innerWidth >= 900) {
+      const frame = document.querySelector<HTMLIFrameElement>('[role="dialog"][aria-label="Activitatum"] iframe');
+      if (frame) frame.style.maxWidth = "min(1120px, 100%)";
+    }
   } catch {
     window.open(fallbackHref, "_blank", "noopener");
   }

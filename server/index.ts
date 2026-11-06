@@ -109,7 +109,7 @@ if (!isDev) {
       directives: {
         defaultSrc: ["'self'"],
         // Note: 'unsafe-inline' required by GTM; 'unsafe-eval' removed — monitor for issues
-        scriptSrc: ["'self'", "'unsafe-inline'", "data:", "https://www.googletagmanager.com", "https://www.google-analytics.com", "https://googletagmanager.com", "https://js.stripe.com", "https://connect.facebook.net", "https://www.googleadservices.com", "https://googleads.g.doubleclick.net"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "data:", "https://www.googletagmanager.com", "https://www.google-analytics.com", "https://googletagmanager.com", "https://js.stripe.com", "https://connect.facebook.net", "https://www.googleadservices.com", "https://googleads.g.doubleclick.net", "https://activitatum.com"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
         imgSrc: ["'self'", "data:", "https:", "blob:"],
@@ -120,7 +120,7 @@ if (!isDev) {
         // region a visitor resolves to; keep the bare host too, some hits skip the
         // region prefix.
         connectSrc: ["'self'", "https://storage.googleapis.com", "https://www.google-analytics.com", "https://region1.google-analytics.com", "https://analytics.google.com", "https://*.analytics.google.com", "https://www.googletagmanager.com", "https://api.stripe.com", "https://www.facebook.com", "https://connect.facebook.net", "https://www.googleadservices.com", "https://googleads.g.doubleclick.net", "https://stats.g.doubleclick.net", "https://www.google.com", "https://pagead2.googlesyndication.com", "wss:"],
-        frameSrc: ["'self'", "https://js.stripe.com", "https://www.googletagmanager.com", "https://www.facebook.com", "https://www.google.com"],
+        frameSrc: ["'self'", "https://activitatum.com", "https://js.stripe.com", "https://www.googletagmanager.com", "https://www.facebook.com", "https://www.google.com"],
         // helmet's default is form-action 'self', which blocks the Meta pixel's
         // form-based fallback to facebook.com/tr/. Only that host is added: the
         // point of the directive is to stop forms POSTing to arbitrary origins.

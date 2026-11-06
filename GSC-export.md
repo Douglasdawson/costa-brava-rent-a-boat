@@ -1,7 +1,7 @@
 # GSC Export — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-08-16 10:21:43 UTC
-**Periodo:** 2026-07-16 a 2026-08-13 (28 dias)
+**Ultima actualizacion:** 2026-09-30 16:22:43 UTC
+**Periodo:** 2026-08-30 a 2026-09-27 (28 dias)
 
 ---
 
@@ -9,10 +9,10 @@
 
 | Metrica | Valor |
 |---------|-------|
-| Total clics | 2500 |
-| Total impresiones | 62.915 |
-| CTR medio | 3.97% |
-| Posicion media | 5.4 |
+| Total clics | 787 |
+| Total impresiones | 29.547 |
+| CTR medio | 2.66% |
+| Posicion media | 8.2 |
 
 ---
 
@@ -20,36 +20,36 @@
 
 | # | Keyword | Clics | Impresiones | CTR | Posicion |
 |---|---------|-------|-------------|-----|----------|
-| 1 | alquiler barco costa brava | 48 | 2115 | 2.27% | 2.8 |
-| 2 | alquilar barco costa brava | 20 | 839 | 2.38% | 2.7 |
-| 3 | alquiler barcos costa brava | 17 | 820 | 2.07% | 2.2 |
-| 4 | costa brava boats | 8 | 634 | 1.26% | 3.6 |
-| 5 | alquiler de barcos costa brava | 16 | 604 | 2.65% | 1.9 |
-| 6 | costa brava rent boat | 62 | 508 | 12.20% | 2.2 |
-| 7 | alquiler barco blanes | 20 | 480 | 4.17% | 5.2 |
-| 8 | costa brava rent a boat | 124 | 440 | 28.18% | 1.8 |
-| 9 | boot huren blanes | 29 | 370 | 7.84% | 2.1 |
-| 10 | rent boat costa brava | 8 | 361 | 2.22% | 4.1 |
-| 11 | location bateau blanes | 30 | 323 | 9.29% | 1.8 |
-| 12 | barco sin licencia costa brava | 13 | 302 | 4.30% | 5.2 |
-| 13 | boot huren costa brava | 9 | 275 | 3.27% | 3.0 |
-| 14 | rent a boat blanes | 30 | 268 | 11.19% | 2.3 |
-| 15 | location bateau costa brava | 9 | 247 | 3.64% | 5.8 |
-| 16 | rent a boat costa brava | 17 | 244 | 6.97% | 3.1 |
-| 17 | alquiler barco sin licencia costa brava | 9 | 209 | 4.31% | 6.8 |
-| 18 | alquiler barcos blanes | 10 | 205 | 4.88% | 6.7 |
-| 19 | boat rental costa brava | 9 | 205 | 4.39% | 4.6 |
-| 20 | alquiler barco blanes sin licencia | 17 | 204 | 8.33% | 5.5 |
-| 21 | rent a boat | 6 | 199 | 3.02% | 9.9 |
-| 22 | barcos sin licencia costa brava | 3 | 198 | 1.52% | 5.7 |
-| 23 | barcos costa brava | 3 | 187 | 1.60% | 7.3 |
-| 24 | alquiler de barco costa brava | 8 | 173 | 4.62% | 3.4 |
-| 25 | alquiler barco tossa de mar | 5 | 155 | 3.23% | 9.5 |
-| 26 | alquiler barco costa brava sin patrón | 2 | 155 | 1.29% | 9.6 |
-| 27 | barco costa brava | 2 | 155 | 1.29% | 8.0 |
-| 28 | alquiler barco lloret de mar | 3 | 154 | 1.95% | 9.2 |
-| 29 | bateau sans permis lloret de mar | 4 | 149 | 2.68% | 8.1 |
-| 30 | location bateau sans permis blanes | 11 | 139 | 7.91% | 1.7 |
+| 1 | alquiler barco costa brava | 1 | 384 | 0.26% | 10.5 |
+| 2 | alquiler barco blanes | 7 | 187 | 3.74% | 8.4 |
+| 3 | alquiler de barcos costa brava | 5 | 172 | 2.91% | 5.6 |
+| 4 | costa brava boats | 1 | 161 | 0.62% | 4.9 |
+| 5 | costa brava rent boat | 10 | 146 | 6.85% | 2.2 |
+| 6 | costa brava rent a boat | 49 | 139 | 35.25% | 2.0 |
+| 7 | boot huren blanes | 5 | 106 | 4.72% | 10.3 |
+| 8 | boat rental costa brava | 2 | 101 | 1.98% | 6.9 |
+| 9 | rent a boat costa brava | 3 | 93 | 3.23% | 5.6 |
+| 10 | location bateau espagne | 1 | 93 | 1.08% | 6.0 |
+| 11 | location bateau blanes | 1 | 92 | 1.09% | 8.2 |
+| 12 | alquiler barco sin licencia costa brava | 3 | 89 | 3.37% | 14.3 |
+| 13 | rent a boat blanes | 9 | 80 | 11.25% | 2.0 |
+| 14 | alquiler barco blanes sin licencia | 1 | 71 | 1.41% | 11.9 |
+| 15 | alquiler barcos blanes | 4 | 70 | 5.71% | 6.9 |
+| 16 | alquiler barco tossa de mar | 3 | 66 | 4.55% | 12.3 |
+| 17 | boat rental blanes | 6 | 64 | 9.38% | 7.9 |
+| 18 | boot huren costa brava | 1 | 64 | 1.56% | 9.1 |
+| 19 | que hacer en blanes | 3 | 55 | 5.45% | 9.0 |
+| 20 | boat hire costa brava | 2 | 50 | 4.00% | 6.7 |
+| 21 | costa brava boat rental | 5 | 49 | 10.20% | 6.8 |
+| 22 | blanes boat trip | 3 | 45 | 6.67% | 2.9 |
+| 23 | blanes boat rental | 1 | 43 | 2.33% | 3.7 |
+| 24 | alquiler catamaran costa brava | 1 | 42 | 2.38% | 16.7 |
+| 25 | location bateau sans permis lloret de mar | 1 | 41 | 2.44% | 5.6 |
+| 26 | blanes rent a boat | 5 | 38 | 13.16% | 2.9 |
+| 27 | costa brava rent a boat blanes | 13 | 37 | 35.14% | 1.8 |
+| 28 | blanes bootstour | 1 | 37 | 2.70% | 4.1 |
+| 29 | alquiler barcos tossa de mar | 1 | 35 | 2.86% | 19.3 |
+| 30 | excursion bateau blanes | 1 | 35 | 2.86% | 1.5 |
 
 ---
 
@@ -57,26 +57,26 @@
 
 | # | URL | Clics | Impresiones | CTR | Posicion |
 |---|-----|-------|-------------|-----|----------|
-| 1 | / | 1576 | 45.921 | 3.43% | 4.3 |
-| 2 | /es/ | 446 | 18.705 | 2.38% | 8.7 |
-| 3 | /en/ | 75 | 2103 | 3.57% | 8.9 |
-| 4 | /es/barcos-sin-licencia | 67 | 2904 | 2.31% | 8.9 |
-| 5 | /fr/location-bateau-costa-brava | 39 | 1986 | 1.96% | 9.0 |
-| 6 | /de/ | 32 | 1467 | 2.18% | 8.2 |
-| 7 | /es/snorkel-blanes | 25 | 550 | 4.55% | 7.2 |
-| 8 | /nl/ | 20 | 1850 | 1.08% | 9.5 |
-| 9 | /es/alquiler-barcos-pineda-de-mar | 18 | 395 | 4.56% | 7.3 |
-| 10 | /de/boot-mieten-santa-susanna | 15 | 156 | 9.62% | 6.8 |
-| 11 | /ca/ | 14 | 693 | 2.02% | 7.3 |
-| 12 | /es/alquiler-barcos-santa-susanna | 14 | 279 | 5.02% | 8.5 |
-| 13 | /fr/ | 14 | 877 | 1.60% | 8.9 |
-| 14 | /en/boats-without-license | 11 | 434 | 2.53% | 6.6 |
-| 15 | /en/boat-rental-malgrat-de-mar | 10 | 196 | 5.10% | 8.7 |
-| 16 | /es/alquiler-barcos-malgrat-de-mar | 9 | 349 | 2.58% | 9.1 |
-| 17 | /fr/location-bateau-blanes | 8 | 730 | 1.10% | 9.7 |
-| 18 | /fr/location-bateau-pineda-de-mar | 8 | 89 | 8.99% | 6.3 |
-| 19 | /nl/boot-huren-pineda-de-mar | 8 | 157 | 5.10% | 6.7 |
-| 20 | /es/alquiler-barcos-lloret-de-mar | 7 | 578 | 1.21% | 9.6 |
+| 1 | / | 375 | 12.730 | 2.95% | 4.4 |
+| 2 | /es/ | 68 | 6044 | 1.13% | 15.4 |
+| 3 | /es/barcos-sin-licencia | 23 | 1384 | 1.66% | 9.6 |
+| 4 | /en/ | 22 | 758 | 2.90% | 8.9 |
+| 5 | /de/bootsfuehrerschein-kurs | 19 | 268 | 7.09% | 5.1 |
+| 6 | /es/licencia-navegacion-titulin | 15 | 218 | 6.88% | 7.9 |
+| 7 | /en/boats-without-license | 14 | 584 | 2.40% | 7.5 |
+| 8 | /de/roller-mieten-lloret | 12 | 398 | 3.02% | 7.9 |
+| 9 | /fr/location-scooter-lloret | 12 | 535 | 2.24% | 8.9 |
+| 10 | /nl/ | 10 | 424 | 2.36% | 10.9 |
+| 11 | /de/ | 8 | 390 | 2.05% | 8.4 |
+| 12 | /blog/que-hacer-en-blanes-verano | 7 | 337 | 2.08% | 9.3 |
+| 13 | /ca/ | 7 | 208 | 3.37% | 8.6 |
+| 14 | /en/boat-rental-malgrat-de-mar | 7 | 277 | 2.53% | 9.4 |
+| 15 | /es/alquiler-barcos-santa-susanna | 7 | 164 | 4.27% | 11.1 |
+| 16 | /es/alquiler-motos-lloret | 7 | 700 | 1.00% | 7.8 |
+| 17 | /en/boat-license-course | 6 | 202 | 2.97% | 6.1 |
+| 18 | /en/boat-rental-calella | 6 | 288 | 2.08% | 7.4 |
+| 19 | /es/alquiler-barcos-malgrat-de-mar | 6 | 214 | 2.80% | 10.6 |
+| 20 | /ru/lodka-bez-litsenzii | 6 | 77 | 7.79% | 5.0 |
 
 ---
 
@@ -86,34 +86,22 @@ Estas keywords estan cerca de la primera pagina o en posiciones bajas de la prim
 
 | # | Keyword | Posicion | Impresiones | Clics | CTR | Accion sugerida |
 |---|---------|----------|-------------|-------|-----|-----------------|
-| 1 | boat rental blanes | 5.0 | 116 | 15 | 12.93% | Optimizar meta title/description para mejorar CTR |
-| 2 | barco sin licencia costa brava | 5.2 | 302 | 13 | 4.30% | Optimizar meta title/description para mejorar CTR |
-| 3 | alquiler barco blanes | 5.2 | 480 | 20 | 4.17% | Optimizar meta title/description para mejorar CTR |
-| 4 | location bateau sans permis tossa de mar | 5.2 | 115 | 7 | 6.09% | Optimizar meta title/description para mejorar CTR |
-| 5 | alquilar barco | 5.3 | 109 | 2 | 1.83% | Optimizar meta title/description para mejorar CTR |
-| 6 | alquiler barco blanes sin licencia | 5.5 | 204 | 17 | 8.33% | Optimizar meta title/description para mejorar CTR |
-| 7 | alquiler de barcos blanes | 5.5 | 58 | 2 | 3.45% | Optimizar meta title/description para mejorar CTR |
-| 8 | barcos sin licencia costa brava | 5.7 | 198 | 3 | 1.52% | Optimizar meta title/description para mejorar CTR |
-| 9 | alquiler barca sin licencia costa brava | 5.7 | 123 | 6 | 4.88% | Optimizar meta title/description para mejorar CTR |
-| 10 | location bateau costa brava | 5.8 | 247 | 9 | 3.64% | Optimizar meta title/description para mejorar CTR |
-| 11 | alquiler barca blanes | 6.0 | 64 | 2 | 3.13% | Optimizar meta title/description para mejorar CTR |
-| 12 | alquiler barco costa brava sin carnet | 6.2 | 81 | 3 | 3.70% | Optimizar meta title/description para mejorar CTR |
-| 13 | alquiler barcos blanes | 6.7 | 205 | 10 | 4.88% | Optimizar meta title/description para mejorar CTR |
-| 14 | alquiler barco sin licencia costa brava | 6.8 | 209 | 9 | 4.31% | Optimizar meta title/description para mejorar CTR |
-| 15 | alquiler de barcos en blanes | 7.2 | 128 | 3 | 2.34% | Optimizar meta title/description para mejorar CTR |
-| 16 | alquiler barco sin licencia lloret de mar | 7.3 | 121 | 6 | 4.96% | Optimizar meta title/description para mejorar CTR |
-| 17 | barcos costa brava | 7.3 | 187 | 3 | 1.60% | Optimizar meta title/description para mejorar CTR |
-| 18 | barcos blanes | 7.4 | 68 | 3 | 4.41% | Optimizar meta title/description para mejorar CTR |
-| 19 | location bateau sans permis lloret de mar | 8.0 | 134 | 5 | 3.73% | Optimizar meta title/description para mejorar CTR |
-| 20 | barco costa brava | 8.0 | 155 | 2 | 1.29% | Optimizar meta title/description para mejorar CTR |
-| 21 | bateau sans permis lloret de mar | 8.1 | 149 | 4 | 2.68% | Optimizar meta title/description para mejorar CTR |
-| 22 | boat hire costa brava | 8.3 | 67 | 4 | 5.97% | Optimizar meta title/description para mejorar CTR |
-| 23 | alquiler barco lloret de mar | 9.2 | 154 | 3 | 1.95% | Optimizar meta title/description para mejorar CTR |
-| 24 | boot mieten lloret de mar | 9.2 | 81 | 4 | 4.94% | Optimizar meta title/description para mejorar CTR |
-| 25 | alquiler barco tossa de mar | 9.5 | 155 | 5 | 3.23% | Optimizar meta title/description para mejorar CTR |
-| 26 | alquiler barco costa brava sin patrón | 9.6 | 155 | 2 | 1.29% | Optimizar meta title/description para mejorar CTR |
-| 27 | rent a boat | 9.9 | 199 | 6 | 3.02% | Optimizar meta title/description para mejorar CTR |
-| 28 | alquiler barco sin licencia | 10.0 | 112 | 3 | 2.68% | Optimizar meta title/description para mejorar CTR |
+| 1 | rent a boat costa brava | 5.6 | 93 | 3 | 3.23% | Optimizar meta title/description para mejorar CTR |
+| 2 | alquiler de barcos costa brava | 5.6 | 172 | 5 | 2.91% | Optimizar meta title/description para mejorar CTR |
+| 3 | location bateau espagne | 6.0 | 93 | 1 | 1.08% | Optimizar meta title/description para mejorar CTR |
+| 4 | boat hire costa brava | 6.7 | 50 | 2 | 4.00% | Optimizar meta title/description para mejorar CTR |
+| 5 | boat rental costa brava | 6.9 | 101 | 2 | 1.98% | Optimizar meta title/description para mejorar CTR |
+| 6 | alquiler barcos blanes | 6.9 | 70 | 4 | 5.71% | Optimizar meta title/description para mejorar CTR |
+| 7 | boat rental blanes | 7.9 | 64 | 6 | 9.38% | Optimizar meta title/description para mejorar CTR |
+| 8 | location bateau blanes | 8.2 | 92 | 1 | 1.09% | Optimizar meta title/description para mejorar CTR |
+| 9 | alquiler barco blanes | 8.4 | 187 | 7 | 3.74% | Optimizar meta title/description para mejorar CTR |
+| 10 | que hacer en blanes | 9.0 | 55 | 3 | 5.45% | Optimizar meta title/description para mejorar CTR |
+| 11 | boot huren costa brava | 9.1 | 64 | 1 | 1.56% | Optimizar meta title/description para mejorar CTR |
+| 12 | boot huren blanes | 10.3 | 106 | 5 | 4.72% | Crear/mejorar contenido dedicado para subir a top 10 |
+| 13 | alquiler barco costa brava | 10.5 | 384 | 1 | 0.26% | Crear/mejorar contenido dedicado para subir a top 10 |
+| 14 | alquiler barco blanes sin licencia | 11.9 | 71 | 1 | 1.41% | Crear/mejorar contenido dedicado para subir a top 10 |
+| 15 | alquiler barco tossa de mar | 12.3 | 66 | 3 | 4.55% | Crear/mejorar contenido dedicado para subir a top 10 |
+| 16 | alquiler barco sin licencia costa brava | 14.3 | 89 | 3 | 3.37% | Crear/mejorar contenido dedicado para subir a top 10 |
 
 ---
 

@@ -1,6 +1,6 @@
 # GA4 Export — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-08-16 10:21:43 UTC
+**Ultima actualizacion:** 2026-09-30 16:22:43 UTC
 
 ---
 
@@ -8,12 +8,12 @@
 
 | Metrica | Ultimas 24h | Ultimos 7 dias |
 |---------|-------------|----------------|
-| Sesiones | 288 | 1827 |
-| Usuarios activos | 227 | 1364 |
-| Nuevos usuarios | 193 | 1272 |
-| Paginas vistas | 446 | 2886 |
-| Tasa de rebote | 24.0% | 21.6% |
-| Duracion media sesion | 4m 4s | 4m 51s |
+| Sesiones | 41 | 363 |
+| Usuarios activos | 39 | 260 |
+| Nuevos usuarios | 35 | 242 |
+| Paginas vistas | 62 | 579 |
+| Tasa de rebote | 41.5% | 33.6% |
+| Duracion media sesion | 1m 27s | 4m 52s |
 
 ---
 
@@ -21,25 +21,23 @@
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Direct | 87 | 58 |
-| 2 | Organic Search | 83 | 65 |
-| 3 | Paid Social | 74 | 71 |
-| 4 | AI Assistant | 22 | 20 |
-| 5 | Unassigned | 14 | 9 |
-| 6 | Organic Social | 6 | 6 |
-| 7 | Referral | 5 | 3 |
+| 1 | Direct | 18 | 17 |
+| 2 | Paid Social | 12 | 12 |
+| 3 | Organic Search | 5 | 5 |
+| 4 | Organic Social | 5 | 4 |
+| 5 | Referral | 1 | 1 |
 
 ## Trafico por Fuente (ultimos 7 dias)
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Organic Search | 594 | 414 |
-| 2 | Direct | 514 | 361 |
-| 3 | Paid Social | 369 | 341 |
-| 4 | AI Assistant | 184 | 151 |
-| 5 | Organic Social | 113 | 88 |
-| 6 | Unassigned | 44 | 24 |
-| 7 | Referral | 14 | 9 |
+| 1 | Direct | 124 | 88 |
+| 2 | Organic Search | 91 | 66 |
+| 3 | Paid Social | 75 | 72 |
+| 4 | Organic Social | 28 | 16 |
+| 5 | Referral | 27 | 4 |
+| 6 | AI Assistant | 15 | 13 |
+| 7 | Unassigned | 3 | 3 |
 
 ---
 
@@ -47,16 +45,16 @@
 
 | # | Pagina | Visitas | Usuarios | Duracion media |
 |---|--------|---------|----------|----------------|
-| 1 | /es/ | 1010 | 697 | 2m 40s |
-| 2 | /fr/ | 333 | 187 | 4m 60s |
-| 3 | /en/ | 305 | 167 | 5m 58s |
-| 4 | /nl/ | 139 | 74 | 5m 50s |
-| 5 | /de/ | 124 | 69 | 3m 24s |
-| 6 | /ca/ | 66 | 44 | 2m 59s |
-| 7 | /es/barco/solar-450 | 43 | 53 | 6m 60s |
-| 8 | /es/barco/remus-450 | 38 | 47 | 2m 13s |
-| 9 | /es/barco/remus-450-ii | 32 | 46 | 3m 44s |
-| 10 | /es/barco/trimarchi-57s | 32 | 23 | 5m 30s |
+| 1 | /es/ | 181 | 121 | 2m 0s |
+| 2 | /en/ | 86 | 41 | 3m 27s |
+| 3 | /de/ | 39 | 24 | 3m 48s |
+| 4 | /nl/ | 34 | 13 | 3m 21s |
+| 5 | /fr/ | 27 | 12 | 1m 40s |
+| 6 | /es/barco/trimarchi-57s | 10 | 6 | 0m 35s |
+| 7 | /es/barcos-sin-licencia | 10 | 10 | 0m 9s |
+| 8 | /es/licencia-navegacion-titulin | 8 | 6 | 2m 44s |
+| 9 | /en/boats-without-license | 7 | 6 | 2m 23s |
+| 10 | /en/jet-ski-circuit-blanes | 7 | 3 | 9m 30s |
 
 ---
 
@@ -64,18 +62,18 @@
 
 | Evento | Cantidad |
 |--------|----------|
-| whatsapp_click | 23 |
+| whatsapp_click | 0 |
 | phone_click | 0 |
-| booking_started | 14 |
+| booking_started | 0 |
 | booking_request_submitted | 0 |
 | purchase | 0 |
-| generate_lead | 14 |
+| generate_lead | 0 |
 
 ## Tasa de Conversion (ultimos 7 dias)
 
 | Metrica | Valor |
 |---------|-------|
-| Reservas iniciadas | 76 |
+| Reservas iniciadas | 11 |
 | Compras completadas | 0 |
 | Tasa de conversion | **0.0%** |
 

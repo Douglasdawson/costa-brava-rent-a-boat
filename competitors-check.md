@@ -1,7 +1,7 @@
 # Competitors Check — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-08-16 05:00:20 UTC
-**Periodo comparado:** 2026-08-09 vs 2026-08-16
+**Ultima actualizacion:** 2026-09-28 05:00:19 UTC
+**Periodo comparado:** 2026-09-21 vs 2026-09-28
 
 ---
 

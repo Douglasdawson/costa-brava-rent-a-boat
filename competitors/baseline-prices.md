@@ -1,6 +1,6 @@
 # Baseline de precios y flota — competidores
 
-> Primer scan: 2026-08-07. Última actualización incremental: 2026-08-28.
+> Primer scan: 2026-08-07. Última actualización incremental: 2026-10-06 (costabravarentboat copy "13 embarcaciones", 12 listadas).
 > Este archivo es la referencia contra la que los watch
 > posteriores comparan. Actualizar de forma incremental (no reescribir entero):
 > cuando un precio/flota cambie, anotar el valor nuevo + fecha, conservando el viejo.
@@ -23,6 +23,15 @@ Excursión Privada con Capitán (6 pax, no incluye gasolina):
 
 AOV ≈ 162 €. Flota viva: 8 embarcaciones (4 sin licencia + 3 con licencia + 1 excursión). Puerto de Blanes.
 
+**Corrección 2026-09-24**: las cifras de arriba estaban desfasadas respecto a `shared/boatData.ts`.
+Valores vigentes leídos hoy (BAJA / MEDIA / ALTA, Solar 450 = Remus 450 = Remus 450 II):
+- 1h: 85 / 95 / 110 · 2h: 135 / 155 / 175 · 4h: 180 / 220 / 240 · 8h: 240 / 295 / 350
+- Astec 480: BAJA 1h 95 · 2h 165 · 4h 220 · 8h 295. Astec 400 (desactivado): BAJA 1h 80.
+- Excursión Privada con patrón BAJA: 2h 265 · 3h 350 · 4h 420.
+- Con licencia BAJA 2h/4h/8h: Mingolla 175/255/310 · Trimarchi 57S 175/265/320 · Pacific Craft 625 200/275/330.
+- Ojo: el floor público lo calcula en vivo `fleetStatsCache` (puede incluir `pricing_overrides`); estas son tarifas de lista.
+- **Desde el 1-oct-2026 (RD 1188/2025) la oferta "sin licencia" deja de ser legal para alquiler**; `isLicenseFreeEraActive()` apaga el copy datado ese día.
+
 ---
 
 ## 1. bluesailcostabrava.com — Blanes (content-led)
@@ -38,6 +47,7 @@ AOV ≈ 162 €. Flota viva: 8 embarcaciones (4 sin licencia + 3 con licencia + 
 - **Contenido**: blog activo. Post "Los Fuegos de Blanes 2026" (slug .../los-fuegos-de-blanes-2023, título actualizado a 2026). og:updated_time 2026-03-20.
 - **Mensaje**: +25 años de experiencia; campamentos náuticos escolares; trabajos de síntesis del medio marino.
 - **Tel**: +34 872 72 32 50 (Blanes) / +34 972 10 86 47 (Lloret) / WhatsApp +34 657 85 29 04.
+- **Update 2026-09-29**: home ES og:updated sigue en 2026-03-20; EN en 2025-02-21. Sin precios nuevos. Copy de home: "tengas titulación o no, déjate llevar por uno de nuestros patrones" (producto con patrón, no depende del sin licencia). Sin posts nuevos detectados vía búsqueda.
 
 ## 2. rentboatscostabrava.com — Palamós (posicionamiento regional)
 - **Base**: Port Marina de Palamós (NO Blanes; ~40 km norte, zona Palafrugell). Horario 09:00-18:00.
@@ -55,6 +65,8 @@ AOV ≈ 162 €. Flota viva: 8 embarcaciones (4 sin licencia + 3 con licencia + 
 - **Tel**: +34 608 909 409.
 - **Update 2026-08-25**: grid de 5 barcos y precios confirmados idénticos carácter por carácter (170-250€). Sin cambios.
 - **Update 2026-08-28**: grid y precios confirmados idénticos de nuevo (170-250€). `article:modified_time` sigue en 2026-06-30.
+- **Update 2026-09-24**: grid (5 barcos) y precios idénticos (170-250€); mod. 2026-06-30. Sigue vendiendo "la mayor flota sin titulación" sin marco temporal a 6 días del RD 1188/2025.
+- **Update 2026-09-29**: grid (5 barcos) y precios idénticos (170-250€); mod. 2026-06-30. Meta-description sigue con "la mayor flota sin titulación de la zona" a 2 días del RD. Footer de landings por localidad sigue vivo.
 
 ## 3. costabravarentboat.com — Platja d'Aro / Tossa / Llançà ⚠️ DEFENSIVO (1 letra de diferencia)
 - **Base**: Club Nàutic Port d'Aro (Platja d'Aro) + Tossa de Mar + **Llançà (NUEVO 2026)**.
@@ -76,6 +88,8 @@ AOV ≈ 162 €. Flota viva: 8 embarcaciones (4 sin licencia + 3 con licencia + 
 - **Tel**: +34 669 008 529 (Silvia) / +34 695 662 794.
 - **Update 2026-08-25**: 12 barcos y precios confirmados idénticos (280-2100€). Llançà sigue "novedad 2026". Sin blog. Sin cambios.
 - **Update 2026-08-28**: 12 barcos y precios confirmados idénticos de nuevo (280-2100€). Llançà sigue "novedad 2026". Sin blog. Sin cambios.
+- **Update 2026-09-24**: 12 barcos y precios idénticos (280-2100€). Nuevo dato visible: unidades por modelo (605 Sundeck x4, Promotor 600 x2, 755 Sundeck x3, resto x1 = 17 cascos). Sin blog. Sin cambios de precio.
+- **Update 2026-09-29**: 12 barcos, 17 unidades, precios idénticos (280-2100€). Sin cambios.
 
 ## 4. blanesboats.com — Blanes (competidor geográfico directo, fuerte EN)
 - **Base**: Pg. de Mestrança 116, 17300 Blanes (misma calle que CBRB, Passeig Mestrança). Idiomas ca/es/en/fr.
@@ -88,6 +102,8 @@ AOV ≈ 162 €. Flota viva: 8 embarcaciones (4 sin licencia + 3 con licencia + 
 - **Tel/WhatsApp**: +34 690 222 118. Fuerte en TripAdvisor.
 - **Update 2026-08-25**: página 1 de flota sin cambios. Meta-keywords sigue incluyendo "eric boats, eric boats blanes" (varias semanas consecutivas de persistencia).
 - **Update 2026-08-28**: página 1 de flota confirmada idéntica (9 licenciados + Voraz 500 x2 + Voraz 450 unidades 1/6/2/3). "eric boats, eric boats blanes" sigue en meta-keywords.
+- **Update 2026-09-24**: página 1 idéntica. "eric boats" sigue en meta-keywords (ahora sabemos que EricBoats es otro operador del mismo puerto: Blanes Boats está metiendo la marca del competidor en sus keywords). Condición de reserva visible: 50% de pago para confirmar.
+- **Update 2026-09-29**: página 1 idéntica (9 con licencia + Voraz 500 x2 + Voraz 450 unidades 1/6/2/3, todas "NO LICENSE FUEL INCLUDED"). "eric boats" sigue en meta-keywords. Sin reacción al RD.
 
 ## 5. samboat.com/blanes — marketplace (baja precios, capta volumen)
 - **Modelo**: marketplace de propietarios. 27-28 barcos sin licencia listados en Blanes (26 motor + 1 RIB).
@@ -102,6 +118,8 @@ AOV ≈ 162 €. Flota viva: 8 embarcaciones (4 sin licencia + 3 con licencia + 
 - **Update 2026-08-18**: 28 listings (plano). Suelo real **$104,34/día** (mismos listings Voraz 450: 122224/186848/186847/186841/186849) vs $103,81 (plano, +0,5%). Media **$244,61/día** vs $243,37 (plano, +0,5%). Titular meta hoy "desde $139,12" — mismo patrón de ruido ya documentado (el listing más caro sale primero en el orden de scraping del titular). Ningún cambio cruza el 10%.
 - **Update 2026-08-25**: 28 listings (plano). Suelo real **$104,34/día** y media **$244,61/día** — idénticos a 08-18, primera vez sin el +0,5% de ruido habitual. Titular meta "desde $139,12" (idéntico). Astec 400 Sant Andreu de Llavaneres $115,34 → $115,93 (+0,5%, dentro de ruido). Ningún cambio cruza el 10%.
 - **Update 2026-08-28**: página propia inconsistente en el recuento ("24 boats available in Blanes" en el cuerpo vs "26 motorboats + 1 RIB" = 27 en el desglose); se documenta la inconsistencia, no se puede confirmar 28 exacto hoy. Suelo real (listings individuales Voraz 450) **$104,81/día** vs $104,34 (+0,45%, dentro de ruido). Media declarada **$245,71/día** vs $244,61 (+0,45%). Titular meta hoy "desde $139,74" (ruido de scraping, no es el suelo real, mismo patrón documentado semanas anteriores). Astec 400 Sant Andreu de Llavaneres $115,93 → $116,45 (+0,45%, dentro de ruido). Ningún cambio cruza el 10%.
+- **Update 2026-09-24** (URL `/boat-rental/blanes/without-license`): la página declara **24 listings** (22 motor + 2 RIB) vs 27-28 en agosto (-4, fin de temporada o cambio de URL de conteo; no concluyente). Suelo real Voraz 450 **$102,70/día** vs $104,81 (-2,0%). Media **$233,93/día** vs $245,71 (-4,8%). Titular meta "desde $171,17" (mismo ruido de titular). Astec 400 SdLl $114,11 (-2,0%). Ningún cambio cruza el 10%. Página general Blanes (todas las categorías): 206 barcos, "desde 120 €/día".
+- **Update 2026-09-29**: 24 listings (22 motor + 2 RIB, plano). Suelo real Voraz 450 **$102,40/día** vs $102,70 (-0,3%). Media **$233,25/día** vs $233,93 (-0,3%). Titular meta "desde $170,67" (ruido). Astec 400 SdLl $113,78 (-0,3%). Ningún cambio cruza el 10%. Sigue listando sin licencia sin aviso del RD.
 
 ---
 
@@ -151,3 +169,48 @@ empresa sin visita directa.
   competidor de precio más cercano geográfica y comercialmente detectado hasta ahora, más
   relevante que EricBoats o SamBoat en este eje. Propuesta: formalizar como 6º operador vigilado
   desde ya (datos completamente accesibles por fetch simple, sin el bloqueo JS de EricBoats).
+- **Update 2026-09-24 — tabla de precios extraída** (ficha Estable 415 I; gasolina incluida, fianza 200€,
+  + gastos de gestión si reserva web). Temporadas propias: BAJA = 1/6-30/6 y 1/9-30/9; ALTA = 1/7-31/8
+  (no publican abril-mayo ni octubre).
+  - BAJA: 2h 125 € · 4h 160 € · 6h 200 € · 8h 240 €
+  - ALTA: 2h 130 € · 4h 180 € · 6h 230 € · 8h 275 €
+  - El "desde 80€" del listado no aparece en la ficha (probable 1h no publicada o precio antiguo).
+  - Tel. en web +34 601 909 910; un snippet de buscador da 636 71 80 16 (dato viejo, no verificado).
+  - Horario 09-21h. Reserva: 40% de señal (snippet de su FAQ).
+- **Update 2026-09-29**: listado idéntico (5 barcos, "DESDE 80€ / SIN TITULACIÓN", reserva vía FareHarbor). Sin aviso del RD.
+
+---
+
+## 7. ericboatsblanes.com — Blanes ⭐ desbloqueado 2026-09-24 (mismo puerto que CBRB)
+- **Base**: Club de Vela Blanes, Esplanada del Port s/n. EricBoats, S.L. (también opera en Sitges:
+  su Facebook es "ericboatssitges"). Tel +34 696 409 149 / +34 607 198 519. Idiomas es/ca/en/fr.
+- **Flota (12)**: sin licencia — Remus 450, Voraz 450, Voraz 475, Cobra 480 sport (6+2 px), Voraz 500
+  (6 px); con licencia — Flyer 5.5 Spacedeck (90hp), Cap Camarat 5.5 (115hp), Marsea CM100 (100cv),
+  Key Largo 22 (150hp), Cap Camarat 650 (150hp), Sportdeck 6.6 (150hp, 10 px), Cobra RIB 700 (250hp, 12 px).
+- **Precios Voraz 450** (gasolina incluida; ALTA = 1/7-31/8): BAJA 1h 80 · 2h 135 · 4h 180 · 8h 270;
+  ALTA 1h 85 · 2h 150 · 4h 200 · 8h 295. Incluye nevera con hielo, snorkel y cañas.
+- **Reserva**: por teléfono/formulario (sin pago online visible). Ficha modificada 2026-02-10.
+- Home modificada 2024-11-13: no ha tocado copy por el RD 1188/2025.
+- **Update 2026-09-29**: menú de flota idéntico (12). Home sigue con mod. 2024-11-13. Sin reacción al RD.
+
+---
+## Update 2026-10-02 (primer scan post-RD 1188/2025)
+- Precios y flotas de los 7 operadores sin cambios >10 %. SamBoat sin licencia: suelo $101,68/día (-0,7 %), media $231,61, 24 listings.
+- rentaboatblanes, Blanes Boats, EricBoats, SamBoat y rentboatscostabrava siguen publicando oferta "sin licencia" sin aviso del RD.
+- rentboatscostabrava declara hoy "20 embarcaciones" (grid sigue en 5). BlueSail: sin posts nuevos (blog 4 páginas).
+
+## Update 2026-10-09
+- Sin cambios >10 % en precio o flota. RentBoatsCB 5 barcos 170-250 €; CostaBravaRentBoat 12 modelos 280-2100 € (ya sin claim "13 embarcaciones"); rentaboatblanes 5 barcos "desde 80 €"; BlueSail blog p.1 idéntico; Blanes Boats Voraz 450 sin licencia. SamBoat sin licencia: 24 listings, suelo hoy $167,79 (con filtro, no comparable con $101,68).
+- Ninguno menciona el RD 1188/2025.
+
+- **Update 2026-10-13**: RentBoatsCB (5 barcos, 170-250€), CostaBravaRentBoat (12 modelos, 280-2100€, 18 unidades listadas), BlueSail blog p.1 (mismos 10 posts), Blanes Boats portada (Voraz 450 x4 sin licencia) sin cambios. SamBoat sin licencia mostró $55,91 (media=suelo, "0 available listings"): dato no fiable, baseline $102,40 se mantiene.
+
+- **Update 2026-10-20**: sin cambios >10 % en ningún operador (RentBoatsCB 5 barcos 170-250 €; CostaBravaRentBoat 12 modelos, 18 uds; BlueSail blog p.1 idéntico; Blanes Boats Voraz 450 x4). SamBoat $56,13 no fiable. Alerta RD 1188/2025 +1 (7).
+
+## Update 2026-10-23
+- Sin cambios de precio/flota en RentBoatsCB (170-250), CostaBravaRentBoat (280-2100), Blanes Boats (Voraz 450 x4 sin licencia). BlueSail blog p.1 idéntico (41 entradas). SamBoat no accesible/no comparable (baseline $102,40 se mantiene).
+- **Update 2026-10-27**: rentboatscostabrava grid idéntico (170-250€) pero mod_time 2026-10-26. Resto sin cambios.
+
+- **Update 2026-11-03**: sin cambios >10 % (RentBoatsCB 170-250; CostaBravaRentBoat 280-2100; rentaboatblanes 5 barcos desde 80). Blanes Boats Voraz 450 x5 (antes x4). BlueSail blog p.1 idéntico. SamBoat no comparable. Alerta RD +1 (10).
+
+- **Update 2026-11-06**: sin cambios >10 % (RentBoatsCB 170-250; CostaBravaRentBoat 280-2100; rentaboatblanes 5 barcos desde 80). Blanes Boats Voraz 450 x4 en portada (antes x5). BlueSail blog p.1 idéntico, sitemap sin lastmod nuevo. SamBoat no comparable. Alerta RD +1 (11).

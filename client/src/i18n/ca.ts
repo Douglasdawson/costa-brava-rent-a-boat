@@ -286,6 +286,8 @@ export const ca: Translations = {
     faqLabel: "Preguntes Freqüents",
     customerReviews: "Opinions de Clients",
     cookiesPolicy: "Política de Cookies",
+    cookieSettings: "Configurar galetes",
+    newsletterLegal: "En subscriure't acceptes rebre la guia i correus ocasionals amb novetats i ofertes de DAMAR COSTA BRAVA S.L. Pots donar-te de baixa des de qualsevol correu. Més informació a la {privacyPolicy}.",
     legalNotice: "Avís Legal",
     rentalConditions: "Condicions del Lloguer",
     destinations: "Destinacions",
@@ -2996,7 +2998,7 @@ export const ca: Translations = {
       "Aquest text està disponible en diversos idiomes. En cas de discrepància o ambigüitat en la traducció, la versió en castellà (espanyol) prevaldrà a tots els efectes jurídics.",
     privacy: {
       heroTitle: "Política de Privadesa",
-      lastUpdated: "Darrera actualització: febrer de 2026",
+      lastUpdated: "Darrera actualització: novembre de 2026",
       sections: [
         {
           title: "1. Responsable del tractament",
@@ -3004,23 +3006,23 @@ export const ca: Translations = {
         },
         {
           title: "2. Dades personals que recopilem",
-          body: "Dades facilitades per l'usuari en fer una reserva:\n- Nom i cognoms\n- Número de telèfon\n- Adreça de correu electrònic\n- Data i hora de la reserva, embarcació seleccionada i nombre de persones\n\nDades recopilades automàticament:\n- Dades de navegació (adreça IP, tipus de navegador, pàgines visitades) mitjançant Google Analytics\n- Galetes tècniques i de preferència (idioma seleccionat)\n\nNo recopilem dades de categories especials (salut, origen racial, opinions polítiques, etc.) ni dades de menors de 14 anys.",
+          body: "Dades que ens facilites:\n- Reserva o sol·licitud: nom i cognoms, telèfon, correu electrònic, idioma, data i hora, embarcació, nombre de persones i extres.\n- Botiga i targetes regal: nom, correu electrònic, telèfon i, si tries l'enviament a domicili, l'adreça de lliurament. Les dades de la targeta les tracta directament Stripe; nosaltres no les veiem ni les guardem.\n- Guia gratuïta i newsletter: el teu correu electrònic i idioma.\n- Juntament amb la teva sol·licitud de reserva guardem l'origen de la visita (la campanya o el web que t'hi va portar).\n- Al port, per signar el contracte: document d'identitat i titulació nàutica del patró.\n\nDades que es recullen en navegar:\n- Galetes tècniques i de preferència (idioma, la teva elecció de galetes).\n- Només si acceptes les galetes: dades de navegació (adreça IP, navegador, pàgines visitades) i identificadors de galetes de Google Analytics, Google Ads i Meta.\n\nNo recopilem dades de categories especials (salut, origen racial, opinions polítiques, etc.) ni dades de menors de 14 anys.",
         },
         {
           title: "3. Finalitat del tractament i base jurídica",
-          body: "Gestionem les teves dades amb les finalitats i bases jurídiques següents (RGPD):\n\n- Gestió i confirmació de reserves d'embarcacions, Art. 6.1.b, execució d'un contracte\n- Enviament de recordatoris i comunicacions relatives a la reserva, Art. 6.1.b, execució d'un contracte\n- Atenció al client i resolució d'incidències, Art. 6.1.b i 6.1.f, execució de contracte / interès legítim\n- Anàlisi estadística del trànsit web (Google Analytics), Art. 6.1.a, consentiment (bàner de galetes)\n- Compliment d'obligacions legals i fiscals, Art. 6.1.c, obligació legal\n\nNo prenem decisions automatitzades ni elaborem perfils amb fins de segmentació publicitària a partir de les teves dades de reserva.",
+          body: "Gestionem les teves dades amb les finalitats i bases jurídiques següents (RGPD):\n\n- Gestió i confirmació de reserves d'embarcacions, Art. 6.1.b, execució d'un contracte o mesures precontractuals a petició teva\n- Enviament de recordatoris i comunicacions relatives a la reserva, Art. 6.1.b, execució d'un contracte\n- Venda i lliurament de productes de la botiga i de targetes regal, Art. 6.1.b, execució d'un contracte\n- Atenció al client i resolució d'incidències, Art. 6.1.b i 6.1.f, execució de contracte / interès legítim\n- Enviament de la guia gratuïta i de correus ocasionals amb novetats i ofertes, Art. 6.1.a, consentiment en subscriure't (et pots donar de baixa des de qualsevol correu)\n- Anàlisi estadística del trànsit web (Google Analytics), Art. 6.1.a, consentiment (bàner de galetes)\n- Mesura de l'eficàcia dels nostres anuncis (Google Ads i Meta), Art. 6.1.a, consentiment (bàner de galetes). Només si l'has donat, en enviar una sol·licitud de reserva comuniquem a Meta el teu correu i telèfon xifrats amb hash (SHA-256), la teva IP i el teu navegador per saber quin anunci la va generar\n- Compliment d'obligacions legals i fiscals, Art. 6.1.c, obligació legal\n\nNo prenem decisions automatitzades amb efectes jurídics sobre tu ni elaborem perfils a partir de les teves dades de reserva.",
         },
         {
           title: "4. Terminis de conservació",
-          body: "- Dades de reserva: 5 anys des de la data del servei (RD 1619/2012, Llei 58/2003 General Tributària).\n- Comunicacions per WhatsApp/email: 1 any des de la darrera comunicació, llevat que hi hagi una reclamació en curs.\n- Dades d'anàlisi web (Google Analytics): segons la configuració de retenció de Google Analytics (per defecte, 14 mesos).\n- Galetes de sessió: s'eliminen en tancar el navegador.",
+          body: "- Dades de reserva, comandes de la botiga i targetes regal: 5 anys des de la data del servei o de la compra (RD 1619/2012, Llei 58/2003 General Tributària).\n- Comunicacions per WhatsApp/email: 1 any des de la darrera comunicació, llevat que hi hagi una reclamació en curs.\n- Newsletter: fins que et donis de baixa.\n- Dades d'anàlisi web (Google Analytics): 14 mesos.\n- Galetes: el termini de cadascuna figura a la Política de Galetes.",
         },
         {
           title: "5. Destinataris i transferències internacionals",
-          body: "Les teves dades poden ser comunicades als tercers encarregats del tractament següents:\n\n- SendGrid (Twilio Inc., EUA): Servei d'enviament d'emails de confirmació i recordatoris. Transferència internacional emparada en les Clàusules Contractuals Tipus aprovades per la Comissió Europea.\n- Google LLC (EUA): Google Analytics i Google Tag Manager. Només si l'usuari ha donat el seu consentiment a través del bàner de galetes. Transferència emparada en el Marc de Privadesa de Dades UE-EUA.\n- Stripe Inc. (EUA): Processament de pagaments amb targeta, si escau. No emmagatzemem dades de targeta; Stripe actua com a encarregat independent sota PCI-DSS.\n- WhatsApp (Meta Platforms Ireland Ltd.): Canal de comunicació per a gestió de reserves. Les comunicacions iniciades per l'usuari a WhatsApp estan subjectes a la política de privadesa de WhatsApp.\n\nNo venem ni cedim les teves dades a tercers amb fins comercials.",
+          body: "Per prestar el servei, les teves dades les tracten per compte nostre aquests proveïdors (encarregats del tractament):\n\n- Neon Inc. (EUA): base de dades on es guarden reserves, comandes i subscripcions. Transferència emparada en les Clàusules Contractuals Tipus de la Comissió Europea.\n- Hetzner Online GmbH (Alemanya): allotjament del servidor web, en centres de dades de la UE.\n- SendGrid i Twilio (Twilio Inc., EUA): enviament de correus de confirmació, recordatoris i newsletter, i avisos interns per WhatsApp a l'equip quan entra una reserva. Transferència emparada en el Marc de Privadesa de Dades UE-EUA i en les Clàusules Contractuals Tipus.\n- Stripe Payments Europe Ltd. (Irlanda): cobrament amb targeta de les comandes de la botiga i les targetes regal. Stripe actua com a encarregat per processar el pagament i com a responsable independent per a les seves pròpies obligacions legals (prevenció del frau i normativa financera).\n\nNomés si acceptes les galetes:\n- Google LLC (EUA): Google Analytics, Google Tag Manager i Google Ads. Transferència emparada en el Marc de Privadesa de Dades UE-EUA.\n- Meta Platforms Ireland Ltd. (Irlanda): Píxel de Meta i API de Conversions, per mesurar els nostres anuncis a Facebook i Instagram. Meta pot transferir dades als EUA a l'empara del Marc de Privadesa de Dades UE-EUA.\n\nAltres destinataris:\n- WhatsApp (Meta Platforms Ireland Ltd.): canal de comunicació per gestionar reserves, només si ens escrius per WhatsApp. Aquestes comunicacions també estan subjectes a la política de privadesa de WhatsApp.\n- Laura Cabanas (Carrer del Carme 5, Lloret de Mar): si tries recollir una comanda de la botiga al seu establiment, li facilitem el teu nom i el número de comanda per lliurar-te-la.\n- Empresa de transport: si tries l'enviament a domicili, el teu nom, adreça i telèfon per al lliurament.\n- Administracions públiques i jutjats, quan ho exigeixi la llei.\n\nNo venem ni cedim les teves dades a tercers amb fins comercials.",
         },
         {
           title: "6. Els teus drets (ARCO+)",
-          body: "En virtut dels articles 15 a 22 del RGPD i la LOPD-GDD, tens dret a:\n\n- Accés: obtenir confirmació sobre si tractem les teves dades i, si escau, una còpia.\n- Rectificació: sol·licitar la correcció de dades inexactes.\n- Supressió («dret a l'oblit»): demanar l'eliminació de les teves dades quan ja no siguin necessàries per a les finalitats per a les quals van ser recollides, llevat d'obligació legal de conservació.\n- Oposició: oposar-te al tractament basat en interès legítim.\n- Limitació del tractament: sol·licitar que suspenguem el tractament mentre es resol una reclamació.\n- Portabilitat: rebre les teves dades en format estructurat i llegible per màquina.\n- Retirada del consentiment: pots retirar en qualsevol moment el consentiment prestat (p. ex., per a galetes analítiques) sense que això afecti la licitud del tractament previ.\n\nCom exercir els teus drets: envia un email a info@costabravarentaboat.com indicant el dret que vols exercir i adjuntant còpia del teu DNI o un altre document identificatiu. Respondrem en el termini màxim d'1 mes.\n\nSi consideres que el tractament no és conforme al RGPD, tens dret a presentar una reclamació davant l'Agència Espanyola de Protecció de Dades (AEPD): www.aepd.es",
+          body: "En virtut dels articles 15 a 22 del RGPD i la LOPD-GDD, tens dret a:\n\n- Accés: obtenir confirmació sobre si tractem les teves dades i, si escau, una còpia.\n- Rectificació: sol·licitar la correcció de dades inexactes.\n- Supressió («dret a l'oblit»): demanar l'eliminació de les teves dades quan ja no siguin necessàries per a les finalitats per a les quals van ser recollides, llevat d'obligació legal de conservació.\n- Oposició: oposar-te al tractament basat en interès legítim.\n- Limitació del tractament: sol·licitar que suspenguem el tractament mentre es resol una reclamació.\n- Portabilitat: rebre les teves dades en format estructurat i llegible per màquina.\n- Retirada del consentiment: pots retirar en qualsevol moment el consentiment prestat sense que això afecti la licitud del tractament previ. El de les galetes, des de «Configurar galetes» al peu de pàgina; el de la newsletter, des de l'enllaç de baixa de qualsevol correu.\n\nCom exercir els teus drets: envia un email a info@costabravarentaboat.com indicant el dret que vols exercir, des de l'adreça de correu amb què vas fer la reserva o la subscripció. Només et demanarem un document identificatiu si tenim dubtes raonables sobre la teva identitat (art. 12.6 RGPD). Respondrem en el termini màxim d'1 mes.\n\nSi consideres que el tractament no és conforme al RGPD, tens dret a presentar una reclamació davant l'Agència Espanyola de Protecció de Dades (AEPD): www.aepd.es",
         },
         {
           title: "7. Mesures de seguretat",
@@ -3038,31 +3040,39 @@ export const ca: Translations = {
     },
     cookies: {
       heroTitle: "Política de Galetes",
-      lastUpdated: "Darrera actualització: febrer de 2026",
+      lastUpdated: "Darrera actualització: novembre de 2026",
       sections: [
         {
-          title: "Introducció",
-          body: "En compliment del que disposa l'article 22.2 de la Llei 34/2002, d'11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic, aquest lloc web t'informa, en aquesta secció, sobre la política de recollida i tractament de galetes.",
+          title: "1. Què són les galetes",
+          body: "Una galeta és un petit fitxer que un web desa al teu navegador per recordar informació sobre la teva visita. Aquesta política explica, d'acord amb l'article 22.2 de la Llei 34/2002 (LSSI-CE), quines galetes i tecnologies similars (com l'emmagatzematge local del navegador) fa servir costabravarentaboat.com, per a què i durant quant de temps.",
         },
         {
-          title: "Què són les galetes?",
-          body: "Una galeta és un fitxer que es descarrega al teu ordinador en accedir a determinades pàgines web. Les galetes permeten a una pàgina web, entre altres coses, emmagatzemar i recuperar informació sobre els hàbits de navegació d'un usuari o del seu equip i, depenent de la informació que continguin i de la forma en què utilitzis el teu equip, poden utilitzar-se per reconèixer l'usuari.",
+          title: "2. Galetes tècniques i de preferència (sempre actives)",
+          body: "Són necessàries perquè el web funcioni o per recordar el que tu has triat. No requereixen consentiment.\n\n- cookieConsent (pròpia, galeta i emmagatzematge local): desa la teva elecció al bàner de galetes. Durada: 1 any.\n- costa-brava-language (pròpia, galeta i emmagatzematge local): idioma triat. Durada: 1 any.\n- theme (pròpia, emmagatzematge local): mode clar o fosc. Persistent fins que esborris les dades del navegador.\n- cbrb_lastVisit (pròpia, emmagatzematge local): data de la teva darrera visita, per mostrar-te l'avís de benvinguda quan tornis. Persistent fins que esborris les dades del navegador.\n- Galetes de sessió del procés de reserva i del carretó de la botiga (pròpies): s'esborren en tancar el navegador.\n- Galetes d'Stripe (de tercers, només a la pàgina de pagament): prevenció del frau en el cobrament.",
         },
         {
-          title: "Quins tipus de galetes utilitza aquest lloc web?",
-          body: "Aquest lloc web utilitza els tipus de galetes següents:\n\nGaletes d'anàlisi: Són aquelles que, ben tractades per nosaltres o per tercers, ens permeten quantificar el nombre d'usuaris i així fer el mesurament i l'anàlisi estadística de la utilització que fan els usuaris del servei ofert.\n\nGaletes tècniques: Permeten a l'usuari la navegació a través de l'àrea restringida i la utilització de les seves diferents funcions, com ara dur a terme el procés de reserva d'una embarcació.\n\nGaletes de personalització: Permeten a l'usuari accedir al servei amb algunes característiques de caràcter general predefinides en funció d'una sèrie de criteris com l'idioma o el tipus de navegador.\n\nGaletes publicitàries: Tractades per aquest web o per tercers, permeten gestionar de la forma més eficaç possible l'oferta dels espais publicitaris que hi ha a la pàgina web.\n\nGaletes de tercers: Fem servir els serveis de Google Analytics per a les nostres estadístiques. Algunes galetes són essencials per al funcionament del lloc. El nostre lloc inclou altres funcionalitats proporcionades per tercers (compartir a xarxes socials com Facebook, Instagram o TikTok).",
+          title: "3. Emmagatzematge propi de sessió per mesurar campanyes",
+          body: "Dades que es desen només al teu navegador mentre dura la visita i s'esborren en tancar-lo. No es comparteixen amb tercers.\n\n- cb_attribution i cbrab_utm (pròpies, emmagatzematge de sessió): origen de la visita (paràmetres utm de la campanya que t'hi va portar). Si envies una sol·licitud de reserva, es desa amb ella per saber quina campanya funciona.\n- ab_session_id (pròpia, emmagatzematge de sessió): identificador aleatori per mostrar de manera coherent una mateixa versió de la pàgina en les proves A/B.",
         },
         {
-          title: "Desactivar les galetes",
-          body: "Pots permetre, bloquejar o eliminar les galetes instal·lades al teu equip mitjançant la configuració de les opcions del navegador instal·lat al teu ordinador. A la majoria dels navegadors web s'ofereix la possibilitat de permetre, bloquejar o eliminar les galetes instal·lades al teu equip.\n\nPots accedir a la configuració dels navegadors webs més freqüents per acceptar, instal·lar o desactivar les galetes: Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple), Opera.",
+          title: "4. Galetes d'anàlisi (només amb el teu consentiment)",
+          body: "Ens permeten comptar visites i saber quines pàgines funcionen millor. Només s'instal·len si prems «Acceptar-les totes»; fins aleshores no es carrega cap script de Google.\n\n- _ga (Google Analytics, Google LLC): distingeix usuaris únics. Durada: 2 anys.\n- _ga_<ID> (Google Analytics, Google LLC): manté l'estat de la sessió. Durada: 2 anys.",
         },
         {
-          title: "Advertència sobre eliminar galetes",
-          body: "Pots eliminar i bloquejar totes les galetes d'aquest lloc, però part del lloc no funcionarà o la qualitat de la pàgina web pot veure's afectada.",
+          title: "5. Galetes publicitàries (només amb el teu consentiment)",
+          body: "Serveixen per mesurar quins anuncis de Google, Facebook i Instagram porten reserves. Només s'instal·len si prems «Acceptar-les totes».\n\n- _gcl_au i _gcl_aw (Google Ads, Google LLC): atribueixen visites i reserves a un anunci de Google. Durada: 90 dies.\n- _fbp (Meta Platforms Ireland Ltd.): identifica el navegador per mesurar els anuncis de Meta. Durada: 90 dies.\n- _fbc (Meta Platforms Ireland Ltd.): desa el clic en un anunci de Meta. Durada: 90 dies.\n- _msclkid (Microsoft Advertising, pròpia): desa el clic en un anunci de Bing. Durada: 90 dies.\n\nAmb el teu consentiment també fem servir l'API de Conversions de Meta, explicada a la Política de Privadesa.",
         },
         {
-          title: "Contacte",
-          body: "Si tens qualsevol dubte sobre la nostra política de galetes, pots contactar amb nosaltres a través dels nostres canals de contacte disponibles a la secció de contacte del web.",
+          title: "6. Com acceptar, rebutjar o retirar el teu consentiment",
+          body: "En entrar per primera vegada veuràs un bàner amb dues opcions del mateix pes: «Acceptar-les totes» i «Només essencials». Si tries «Només essencials», només es fan servir les galetes tècniques de l'apartat 2 i l'emmagatzematge de sessió de l'apartat 3.\n\nPots canviar d'opinió quan vulguis des de l'enllaç «Configurar galetes» del peu de pàgina: el bàner torna a aparèixer i, si retires el consentiment, esborrem les galetes d'anàlisi i publicitàries i recarreguem la pàgina.\n\nTambé pots bloquejar o esborrar les galetes des de la configuració del teu navegador (Chrome, Firefox, Safari o Edge). Si bloqueges les tècniques, part del web pot deixar de funcionar.",
+        },
+        {
+          title: "7. Transferències internacionals",
+          body: "Google i Meta poden tractar dades als Estats Units. Aquestes transferències estan emparades en el Marc de Privadesa de Dades UE-EUA. Més informació a la Política de Privadesa.",
+        },
+        {
+          title: "8. Contacte",
+          body: "Si tens dubtes sobre aquesta política, escriu-nos a info@costabravarentaboat.com.",
         },
       ],
     },
@@ -3074,11 +3084,11 @@ export const ca: Translations = {
 
     terms: {
       heroTitle: "Termes i Condicions",
-      lastUpdated: "Darrera actualització: juliol de 2026",
+      lastUpdated: "Darrera actualització: novembre de 2026",
       sections: [
         {
           title: "1. Identificació del titular",
-          body: "Raó social: DAMAR COSTA BRAVA S.L. (que opera sota la marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicili social: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Espanya\nTelèfon de contacte: +34 611 500 372\nCorreu electrònic: info@costabravarentaboat.com\nActivitat: lloguer d'embarcacions d'esbarjo (amb i sense titulació nàutica) al Port de Blanes, Costa Brava.",
+          body: "Raó social: DAMAR COSTA BRAVA S.L. (que opera sota la marca comercial Costa Brava Rent a Boat)\nCIF: B22566327\nDomicili social: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Espanya\nTelèfon de contacte: +34 611 500 372\nCorreu electrònic: info@costabravarentaboat.com\nActivitat: lloguer d'embarcacions d'esbarjo (amb titulació nàutica o amb patró) i de motos d'aigua al Port de Blanes, Costa Brava.",
         },
         {
           title: "2. Objecte",
@@ -3086,19 +3096,19 @@ export const ca: Translations = {
         },
         {
           title: "3. Procés de reserva",
-          body: "El web recull sol·licituds de reserva. El client emplena un formulari amb data, vaixell, durada i dades de contacte. El prestador confirmarà manualment la disponibilitat i enviarà un missatge de confirmació per WhatsApp o correu electrònic.\n\nEn el lloguer d'embarcacions el pagament es gestiona presencialment al Port de Blanes, en el moment d'embarcar: el web no cobra automàticament l'import del lloguer. Els productes de la botiga i les targetes regal sí que es paguen en línia amb targeta en el moment de la compra, segons les seccions 13 a 17.\n\nLa reserva queda ferma només després de la confirmació explícita del prestador.",
+          body: "El web recull sol·licituds de reserva. El client emplena un formulari amb data, vaixell, durada i dades de contacte. El prestador confirmarà manualment la disponibilitat i enviarà un missatge de confirmació per WhatsApp o correu electrònic.\n\nEn el lloguer d'embarcacions el pagament es gestiona presencialment al Port de Blanes, en el moment d'embarcar: el web no cobra automàticament l'import del lloguer. Els productes de la botiga i les targetes regal sí que es paguen en línia amb targeta en el moment de la compra, segons les seccions 13 a 17.\n\nLa reserva queda ferma només després de la confirmació explícita del prestador.\n\nDret de desistiment: el lloguer d'una embarcació o d'una moto d'aigua per a una data concreta és un servei d'esbarjo i, d'acord amb l'article 103.l del Reial decret legislatiu 1/2007, no està subjecte al dret de desistiment de 14 dies. Els canvis i les cancel·lacions es regeixen per la secció 7.",
         },
         {
           title: "4. Requisits per a l'arrendatari",
-          body: "- El patró ha de ser major de 18 anys i presentar DNI o passaport en vigor.\n- Per a embarcacions amb llicència, el patró ha de presentar la titulació nàutica original (Llicència de Navegació, PER, PNB, Capità de Iot o equivalent europea).\n- Per a embarcacions sense llicència, no es requereix titulació, però el patró rebrà una formació de 15 minuts abans de zarpar.\n- Els menors d'edat hauran d'anar acompanyats d'un adult responsable i portar armilla salvavides obligatòria durant la navegació.",
+          body: "- El patró ha de ser major de 18 anys i presentar DNI o passaport en vigor.\n- El patró ha de presentar la titulació nàutica original (Llicència de Navegació, PER, PNB, Capità de Iot o equivalent europea). Des de l'1 d'octubre de 2026 (RD 1188/2025) no es lloguen embarcacions sense titulació; en l'excursió amb patró professional el client no necessita titulació.\n- Els menors d'edat hauran d'anar acompanyats d'un adult responsable i portar armilla salvavides obligatòria durant la navegació.",
         },
         {
           title: "5. Fiança i condicions de pagament",
-          body: "Abans de salpar s'abona una fiança (200 € a les embarcacions sense titulació i 500 € a les que requereixen titulació) que es retorna íntegrament al retorn si l'embarcació es lliura en el mateix estat en què es va rebre. L'import vigent és sempre el que figura en el moment de la reserva i al contracte que se signa al port.\n\nEl client pot contractar de manera voluntària la Fiança reduïda, que rebaixa l'import retingut a canvi d'un preu tancat. És una garantia comercial pròpia i no un contracte d'assegurança; el seu preu no és reemborsable.\n\nEn cas de danys, pèrdua de material o incompliment de la zona de navegació autoritzada, el prestador podrà retenir totalment o parcialment la fiança per cobrir els costos.",
+          body: "Abans de salpar s'abona una fiança (500 € a les embarcacions amb titulació) que es retorna íntegrament al retorn si l'embarcació es lliura en el mateix estat en què es va rebre. L'import vigent és sempre el que figura en el moment de la reserva i al contracte que se signa al port.\n\nEl client pot contractar de manera voluntària la Fiança reduïda, que rebaixa l'import retingut a canvi d'un preu tancat. És una garantia comercial pròpia i no un contracte d'assegurança; el seu preu no és reemborsable.\n\nEn cas de danys, pèrdua de material o incompliment de la zona de navegació autoritzada, el prestador podrà retenir totalment o parcialment la fiança per cobrir els costos.",
         },
         {
           title: "6. Zona de navegació i durada",
-          body: "Zones autoritzades: nord fins a la Platja de Fenals (sense titulació) o Sant Feliu de Guíxols (amb titulació); sud fins a la desembocadura del riu Tordera, al final de la platja de Blanes (sense titulació), o sense límit (amb titulació). Màxim 2 milles nàutiques de la costa per als vaixells sense titulació.\n\nLa velocitat màxima als ports i als canals abalisats de les platges és de 3 nusos. Cal respectar la zona de banyistes, fondejar fora de les boies grogues, navegar a més de 200 m de platges i penya-segats i mantenir 100 m de distància amb les boies de submarinistes.\n\nLes embarcacions hauran de tornar al Port de Blanes abans del final de la franja horària contractada. Si el check-out es fa més tard de l'hora estipulada sense avís, es cobrarà un import de 150 € per cada 30 minuts de retard o la seva part proporcional.",
+          body: "Zona autoritzada: al nord fins al port de Sant Feliu de Guíxols i, en tot cas, dins d'una milla de la costa i dels límits de la titulació del patró. Navegar fora d'aquesta zona deixa la sortida sense cobertura de l'assegurança.\n\nLa velocitat màxima als ports i als canals abalisats de les platges és de 3 nusos. Cal respectar la zona de banyistes, fondejar fora de les boies grogues, navegar a més de 200 m de platges i penya-segats i mantenir 100 m de distància amb les boies de submarinistes.\n\nLes embarcacions hauran de tornar al Port de Blanes abans del final de la franja horària contractada. Si el check-out es fa més tard de l'hora estipulada sense avís, es cobrarà un import de 150 € per cada 30 minuts de retard o la seva part proporcional.",
         },
         {
           title: "7. Política de cancel·lació",
@@ -3118,7 +3128,7 @@ export const ca: Translations = {
         },
         {
           title: "11. Legislació aplicable i jurisdicció",
-          body: "Aquestes condicions es regeixen per la legislació espanyola. Per a qualsevol controvèrsia són competents els Jutjats i Tribunals de Blanes, sense perjudici del fur que legalment correspongui al client consumidor, que en cap cas renuncia al del seu domicili.\n\nEl client consumidor podrà acudir a la Plataforma de Resolució de Litigis en Línia de la Comissió Europea (https://ec.europa.eu/consumers/odr) per a la resolució extrajudicial de conflictes. Hi ha fulls oficials de reclamació a la seva disposició.",
+          body: "Aquestes condicions es regeixen per la legislació espanyola. Per a qualsevol controvèrsia són competents els Jutjats i Tribunals de Blanes, sense perjudici del fur que legalment correspongui al client consumidor, que en cap cas renuncia al del seu domicili.\n\nHi ha fulls oficials de reclamació a disposició del client consumidor, que també pot acudir als serveis públics de consum (Agència Catalana del Consum).",
         },
         {
           title: "12. Modificacions",
@@ -3142,7 +3152,7 @@ export const ca: Translations = {
         },
         {
           title: "17. Targetes regal",
-          body: "Les targetes regal es compren en línia amb targeta bancària i es lliuren per correu electrònic amb un codi únic. Són vàlides durant 12 mesos des de la seva emissió, bescanviables per qualsevol servei de lloguer subjecte a disponibilitat, i no són fraccionables en diverses reserves ni bescanviables per diners.\n\nEn tractar-se d'un contingut digital lliurat de manera immediata, el dret de desistiment no resulta aplicable un cop enviat el codi, d'acord amb l'article 103.m del Reial decret legislatiu 1/2007. Si la targeta no s'arriba a utilitzar dins del termini de validesa, l'import no es reemborsa.",
+          body: "Les targetes regal es compren en línia amb targeta bancària i es lliuren per correu electrònic amb un codi únic. Són vàlides durant 12 mesos des de la seva emissió, bescanviables per qualsevol servei de lloguer subjecte a disponibilitat, i no són fraccionables en diverses reserves ni bescanviables per diners.\n\nPots desistir de la compra d'una targeta regal en un termini de 14 dies naturals des de la compra, sense indicar-ne el motiu, sempre que el codi no s'hagi bescanviat: n'hi ha prou d'escriure a info@costabravarentaboat.com o per WhatsApp al +34 611 500 372, i et retornarem l'import pel mateix mitjà de pagament en un màxim de 14 dies. Si la targeta no s'arriba a utilitzar dins del termini de validesa, l'import no es reemborsa.",
         },
         {
           title: "18. Motos d'aigua i altres activitats nàutiques",
@@ -3152,17 +3162,18 @@ export const ca: Translations = {
     },
     legalNotice: {
       heroTitle: "Avís Legal",
-      lastUpdated: "Última actualització: juliol de 2026",
+      lastUpdated: "Última actualització: novembre de 2026",
       identificationTitle: "1. Dades identificatives del titular",
       labels: {
         legalName: "Raó social",
         taxId: "CIF",
+        registry: "Dades registrals",
         address: "Domicili social",
         phone: "Telèfon",
         email: "Correu electrònic",
         activity: "Activitat",
       },
-      activityValue: "Lloguer d'embarcacions d'esbarjo amb i sense titulació nàutica al Port de Blanes (Girona), i venda de productes de la col·lecció pròpia a través de la botiga en línia.",
+      activityValue: "Lloguer d'embarcacions d'esbarjo (amb titulació nàutica o amb patró) i de motos d'aigua al Port de Blanes (Girona), i venda de productes de la col·lecció pròpia i targetes regal a través de la botiga en línia.",
       sections: [
         {
           title: "2. Objecte i àmbit d'aplicació",
@@ -3178,7 +3189,7 @@ export const ca: Translations = {
         },
         {
           title: "5. Legislació aplicable i resolució de conflictes",
-          body: "Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol controvèrsia són competents els Jutjats i Tribunals de Blanes, sense perjudici del fur que legalment correspongui al client consumidor.\n\nEl consumidor pot acudir així mateix a la Plataforma de Resolució de Litigis en Línia de la Comissió Europea (https://ec.europa.eu/consumers/odr). Hi ha fulls oficials de reclamació a disposició del client.",
+          body: "Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol controvèrsia són competents els Jutjats i Tribunals de Blanes, sense perjudici del fur que legalment correspongui al client consumidor.\n\nHi ha fulls oficials de reclamació a disposició del client, que també pot acudir als serveis públics de consum (Agència Catalana del Consum).",
         },
       ],
     },
@@ -3234,7 +3245,7 @@ export const ca: Translations = {
   cookieBanner: {
     ariaLabel: "Avís de cookies",
     message:
-      "Utilitzem cookies pròpies i de tercers (Google Analytics) per millorar la teva experiència i analitzar el trànsit web. Pots acceptar totes les cookies o només les essencials.",
+      "Utilitzem galetes pròpies i, només si les acceptes, de tercers: Google Analytics (estadística), Google Ads i Meta (mesurament d'anuncis). Pots acceptar-les totes o quedar-te només amb les essencials, i canviar d'opinió quan vulguis des de «Configurar galetes» al peu de pàgina.",
     cookiesPolicy: "Política de Cookies",
     privacyPolicy: "Política de Privacitat",
     essentialOnly: "Només essencials",

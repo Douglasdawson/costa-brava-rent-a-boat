@@ -11,6 +11,7 @@ import { getStripe } from "./payments";
 import { logger } from "../lib/logger";
 import { validatePromoCode, calculateDiscountAmount } from "../lib/discountValidation";
 import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
+import { hasTrackingConsent } from "../lib/consent";
 import { OPERATING_START_HOUR, OPERATING_END_HOUR, formatPersonName } from "@shared/constants";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { isBookableOn, BOAT_NOT_BOOKABLE_MESSAGE } from "@shared/publicFleet";
@@ -385,7 +386,7 @@ export function registerBookingRoutes(app: Express) {
         },
         {
           clientId: deriveClientIdFromRequest(req),
-          userAgent: req.headers["user-agent"],
+          userAgent: hasTrackingConsent(req) ? req.headers["user-agent"] : undefined,
         },
       );
 

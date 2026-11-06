@@ -15,6 +15,7 @@ import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import LogoCostaBravaFooter from "@/components/icons/LogoCostaBravaFooter";
 import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "@/components/icons/BrandIcons";
 import { useTranslations } from "@/lib/translations";
+import { NewsletterLegalNote } from "@/components/NewsletterLegalNote";
 import { useLanguage } from "@/hooks/use-language";
 import { BUSINESS_ADDRESS_FORMATTED } from "@shared/businessProfile";
 import CentresNLCatalunyaLogo from "@/components/icons/CentresNLCatalunyaLogo";
@@ -206,6 +207,9 @@ export default function Footer() {
               )}
               {newsletterState === "error" && (
                 <p className="text-xs text-red-400 mt-1">{t.locationPages.newsletter.error}</p>
+              )}
+              {newsletterState !== "success" && (
+                <NewsletterLegalNote className="text-xs text-primary-foreground/60 mt-2" />
               )}
             </div>
           </div>
@@ -596,6 +600,17 @@ export default function Footer() {
               >
                 {t.footer.cookiesPolicy}
               </a>
+              <span className="text-primary-foreground/30" aria-hidden="true">
+                |
+              </span>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event("cbrb:cookie-settings"))}
+                className="hover:text-primary-foreground transition-colors min-h-11 inline-flex items-center rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
+                data-testid="footer-cookie-settings"
+              >
+                {t.footer.cookieSettings}
+              </button>
               <span className="text-primary-foreground/30" aria-hidden="true">
                 |
               </span>

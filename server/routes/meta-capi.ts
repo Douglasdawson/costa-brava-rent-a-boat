@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createHash } from "crypto";
 import { logger } from "../lib/logger";
 import { config } from "../config";
+import { hasTrackingConsent } from "../lib/consent";
 
 // Meta Conversion API endpoint
 // Sends server-side events to Meta for better attribution (bypasses ad blockers)
@@ -40,6 +41,10 @@ export function registerMetaCAPIRoutes(app: Express) {
   app.post("/api/meta-capi/event", async (req, res) => {
     const pixelId = process.env.META_PIXEL_ID;
     const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
+
+    if (!hasTrackingConsent(req)) {
+      return res.json({ success: true, queued: false, reason: "no_consent" });
+    }
 
     if (!pixelId || !accessToken) {
       // Silently accept if not configured - don't break the flow

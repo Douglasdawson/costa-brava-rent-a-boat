@@ -27,6 +27,25 @@ function updateGTMConsent(granted: boolean) {
   }
 }
 
+// Server mirror of the choice (server/lib/consent.ts gates Meta CAPI / GA4 MP).
+function setConsentCookie(value: "accepted" | "essential") {
+  document.cookie = `cookieConsent=${value}; max-age=31536000; path=/; SameSite=Lax`;
+}
+
+// Withdrawing consent must actually stop tracking: drop the analytics/ads
+// cookies that GTM or the Meta Pixel set while consent was granted.
+function clearTrackingCookies() {
+  const host = window.location.hostname;
+  const domains = ["", host, `.${host}`, `.${host.replace(/^www\./, "")}`];
+  document.cookie.split(";").forEach((c) => {
+    const name = c.split("=")[0].trim();
+    if (!/^(_ga|_gid|_gat|_gcl_|_fbp|_fbc)/.test(name)) return;
+    domains.forEach((d) => {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${d ? `; domain=${d}` : ""}`;
+    });
+  });
+}
+
 export default function CookieBanner() {
   const [location] = useLocation();
   const { localizedPath } = useLanguage();
@@ -40,11 +59,19 @@ export default function CookieBanner() {
   const [animateIn, setAnimateIn] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("cookieConsent");
-    if (!stored) {
+    const show = () => {
       setVisible(true);
       requestAnimationFrame(() => requestAnimationFrame(() => setAnimateIn(true)));
+    };
+    const stored = localStorage.getItem("cookieConsent");
+    if (!stored) show();
+    // Visitors who chose before the server cookie existed: backfill it.
+    else if ((stored === "accepted" || stored === "essential") && !document.cookie.includes("cookieConsent=")) {
+      setConsentCookie(stored);
     }
+    // Footer "Cookie settings" re-opens the banner to change/withdraw consent.
+    window.addEventListener("cbrb:cookie-settings", show);
+    return () => window.removeEventListener("cbrb:cookie-settings", show);
   }, []);
 
   const dismiss = (action: () => void) => {
@@ -57,7 +84,9 @@ export default function CookieBanner() {
 
   const handleAcceptAll = () => dismiss(() => {
     localStorage.setItem("cookieConsent", "accepted");
+    setConsentCookie("accepted");
     updateGTMConsent(true);
+    (window as unknown as { cbrbLoadTracking?: () => void }).cbrbLoadTracking?.();
     trackCookieConsent('accepted');
 
     const metaPixelId = document.querySelector('meta[name="fb-pixel-id"]')?.getAttribute('content');
@@ -67,8 +96,17 @@ export default function CookieBanner() {
   });
 
   const handleEssentialOnly = () => dismiss(() => {
+    const wasAccepted = localStorage.getItem("cookieConsent") === "accepted";
     localStorage.setItem("cookieConsent", "essential");
+    setConsentCookie("essential");
     updateGTMConsent(false);
+    if (wasAccepted) {
+      // GTM / Pixel are already running in this tab: wipe their cookies and
+      // reload so nothing keeps firing after the withdrawal.
+      clearTrackingCookies();
+      window.location.reload();
+      return;
+    }
     trackCookieConsent('essential');
   });
 
@@ -105,7 +143,6 @@ export default function CookieBanner() {
           </div>
           <div className="flex flex-row gap-2 flex-shrink-0 w-full sm:w-auto">
             <Button
-              variant="outline"
               size="sm"
               onClick={handleEssentialOnly}
               className="flex-1 sm:flex-none text-xs"

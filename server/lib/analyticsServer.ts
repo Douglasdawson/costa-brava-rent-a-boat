@@ -1,6 +1,7 @@
 import { randomUUID } from "crypto";
 import type { Request } from "express";
 import { logger } from "./logger";
+import { hasTrackingConsent } from "./consent";
 
 const GA4_MEASUREMENT_ID = process.env.GA4_MEASUREMENT_ID;
 const GA4_API_SECRET = process.env.GA4_API_SECRET;
@@ -24,7 +25,10 @@ function extractClientIdFromGaCookie(cookieValue: string | undefined | null): st
   return `${parts[2]}.${parts[3]}`;
 }
 
+// Without cookie consent every server event gets a throwaway random id, so GA4
+// only counts it in aggregate and can't tie it to the visitor.
 export function deriveClientIdFromRequest(req: Request): string {
+  if (!hasTrackingConsent(req)) return randomUUID();
   const gaCookie = req.cookies?._ga as string | undefined;
   const fromCookie = extractClientIdFromGaCookie(gaCookie);
   if (fromCookie) return fromCookie;

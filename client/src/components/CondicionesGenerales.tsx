@@ -148,7 +148,7 @@ export default function CondicionesGenerales() {
                   <p>{INSURANCE_SEATS_LIMIT_ES}</p>
                   <p>El cliente deberá depositar una fianza{depositStandardCL ? ` de ${depositStandardCL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
                   <p>Quedan excluidas de la cobertura del seguro las actividades realizadas por la embarcación asegurada que conlleven el arrastre de artefactos como bananas, ruedas neumáticas, esquís, etc. El arrendatario de la embarcación se responsabilizará de la utilización de los mismos y de las consecuencias que de ello pudieran derivarse.</p>
-                  <p>La empresa no asume responsabilidad alguna por pérdidas o daños en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, así como por retrasos por consecuencia de avería de la embarcación e incluso el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
+                  <p>La empresa no asume responsabilidad alguna por pérdidas o daños en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, así como por el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
                 </div>
               </div>
 
@@ -157,21 +157,21 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ZONA DE NAVEGACIÓN:</h3>
                 <p className="text-foreground">
-                  Costa Brava Rent a Boat recomienda por seguridad no sobrepasar el puerto de Sant Feliu, ya que en caso de mal tiempo o cambio repentino de climatología puede ocasionar problemas hallarse tan lejos del puerto base. Si bajo su responsabilidad deciden rebasar ese punto deben saber que si navegando en zonas no autorizadas se requiere de asistencia la empresa no se hará responsable y el seguro no cubrirá ningún tipo de pérdidas y/o daños personales. En caso de necesidad de remolque de la embarcación por avería o falta de combustible se cobrará 1.000,00€ en concepto de maniobra de rescate.
+                  La zona autorizada llega al norte hasta el puerto de Sant Feliu de Guíxols, siempre dentro de una milla de la costa y de los límites de la titulación del patrón. Rebasar ese punto es navegar fuera de la zona autorizada: si en esa situación se requiere asistencia, la empresa no se hará responsable y el seguro no cubrirá ningún tipo de pérdidas y/o daños personales. Si es necesario remolcar la embarcación por falta de combustible, por navegar fuera de la zona autorizada o por una avería imputable al arrendatario, se cobrarán 1.000,00€ en concepto de maniobra de rescate. El remolque por una avería no imputable al arrendatario no tiene coste para él.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">AVERÍAS:</h3>
                 <p className="text-foreground">
-                  En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar imperativamente e inmediatamente a Costa Brava Rent a Boat, que le informará sobre las instrucciones a seguir. Si durante el alquiler se produjera una avería no imputable al arrendatario y que no permitiera seguir con el alquiler, Costa Brava Rent a Boat reembolsará al contratante las horas no navegadas o entregará una embarcación de características similares a la contratada. Dicha elección quedará exclusivamente al buen criterio de Costa Brava Rent a Boat sin otra responsabilidad. En caso de que la avería o accidente fuera imputable al contratante, éste deberá abonar los gastos de remolque y de las reparaciones oportunas para quedar la embarcación, motor o accesorios en el estado en que se le entregó por la empresa al inicio del contrato de alquiler, siendo sólo Costa Brava Rent a Boat la autorizada a efectuar dichas reparaciones.
+                  En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar imperativamente e inmediatamente a Costa Brava Rent a Boat, que le informará sobre las instrucciones a seguir. Si durante el alquiler se produjera una avería no imputable al arrendatario y que no permitiera seguir con el alquiler, Costa Brava Rent a Boat reembolsará al contratante las horas no navegadas o entregará una embarcación de características similares a la contratada. Si no hay una embarcación similar disponible o el cliente no la acepta, se le reembolsarán las horas no navegadas. En caso de que la avería o accidente fuera imputable al contratante, éste deberá abonar los gastos de remolque y de las reparaciones oportunas para quedar la embarcación, motor o accesorios en el estado en que se le entregó por la empresa al inicio del contrato de alquiler, siendo sólo Costa Brava Rent a Boat la autorizada a efectuar dichas reparaciones.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">LEGISLACIÓN:</h3>
                 <p className="text-foreground">
-                  Este contrato se rige por la legislación española. Para cuanta controversia pudiera surgir de su contenido o interpretación son competentes los Juzgados y Tribunales de {BUSINESS_JURISDICTION}, sin perjuicio del fuero que legalmente corresponda al cliente consumidor, que en ningún caso renuncia al de su domicilio. El cliente consumidor puede acudir además a la Plataforma de Resolución de Litigios en Línea de la Comisión Europea (<a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-primary underline">ec.europa.eu/consumers/odr</a>).
+                  Este contrato se rige por la legislación española. Para cuanta controversia pudiera surgir de su contenido o interpretación son competentes los Juzgados y Tribunales de {BUSINESS_JURISDICTION}, sin perjuicio del fuero que legalmente corresponda al cliente consumidor, que en ningún caso renuncia al de su domicilio. El cliente consumidor dispone de hojas oficiales de reclamación y puede acudir a los servicios públicos de consumo (Agència Catalana del Consum).
                 </p>
               </div>
             </CardContent>
@@ -183,6 +183,9 @@ export default function CondicionesGenerales() {
               <CardTitle className="text-2xl text-primary">
                 Condiciones Generales del Alquiler para Embarcaciones SIN TITULACIÓN
               </CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Aplicables solo a las reservas con salida hasta el 30 de septiembre de 2026. Desde el 1 de octubre de 2026 (RD 1188/2025) no se alquilan embarcaciones sin titulación.
+              </p>
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-foreground">
@@ -240,14 +243,14 @@ export default function CondicionesGenerales() {
                   <p>Costa Brava Rent a Boat - Blanes le recuerda los siguientes puntos:</p>
                   <p>• Si navegando en zonas no autorizadas se requiere asistencia, la empresa no se hará responsable y el seguro no cubrirá ningún tipo de pérdidas y/o daños personales.</p>
                   <p>• En el caso que se sobrepase la zona de navegación indicada en el mismo contrato podrá ser sancionado con 200,00€ por imprudencia.</p>
-                  <p>• En caso de necesidad de remolque de la embarcación por avería fuera de la zona de navegación o falta de combustible se cobrará 500,00€ por dicho servicio.</p>
+                  <p>• En caso de necesidad de remolque de la embarcación por avería fuera de la zona de navegación o falta de combustible se cobrará 500,00€ por dicho servicio. El remolque por una avería no imputable al arrendatario no tiene coste para él.</p>
                 </div>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">AVERÍAS:</h3>
                 <p className="text-foreground">
-                  En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar imperativamente e inmediatamente al arrendador que le informará sobre las instrucciones a seguir. Si durante el alquiler se produjera una avería no imputable al arrendatario, la cual no permitiera seguir con el alquiler, Costa Brava Rent a Boat reembolsará al contratante las horas no navegadas o entregará una embarcación de características similares a la contratada. Dicha elección quedará exclusivamente al buen criterio de Costa Brava Rent a Boat sin otra responsabilidad. En caso de que la avería o accidente fuera imputable a la responsabilidad del contratante, éste deberá abonar los gastos de remolque y de las reparaciones oportunas para quedar la embarcación, motor o accesorios en el estado en que se le entregó por la empresa al inicio del contrato de alquiler, siendo sólo Costa Brava Rent a Boat la autorizada a efectuar dichas reparaciones.
+                  En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar imperativamente e inmediatamente al arrendador que le informará sobre las instrucciones a seguir. Si durante el alquiler se produjera una avería no imputable al arrendatario, la cual no permitiera seguir con el alquiler, Costa Brava Rent a Boat reembolsará al contratante las horas no navegadas o entregará una embarcación de características similares a la contratada. Si no hay una embarcación similar disponible o el cliente no la acepta, se le reembolsarán las horas no navegadas. En caso de que la avería o accidente fuera imputable a la responsabilidad del contratante, éste deberá abonar los gastos de remolque y de las reparaciones oportunas para quedar la embarcación, motor o accesorios en el estado en que se le entregó por la empresa al inicio del contrato de alquiler, siendo sólo Costa Brava Rent a Boat la autorizada a efectuar dichas reparaciones.
                 </p>
               </div>
             </CardContent>

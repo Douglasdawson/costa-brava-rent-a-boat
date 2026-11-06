@@ -32,6 +32,8 @@ export const BUSINESS_DISPLAY_NAME = "Costa Brava Rent a Boat - Blanes";
 export const BUSINESS_LEGAL_NAME = "DAMAR COSTA BRAVA S.L.";
 export const BUSINESS_VAT_ID = "ESB22566327";
 export const BUSINESS_TAX_ID = "B22566327";
+// LSSI art. 10.1.b. Source: BORME-A-2025-128-17 (Girona, 08/07/2025), acto 307183.
+export const BUSINESS_MERCANTILE_REGISTRY = "Registro Mercantil de Girona, hoja GI-77080, inscripción 1.ª";
 
 // Postal address — single source of truth. MUST match the Google Business
 // Profile exactly (Name/Address/Phone consistency for local SEO). The street

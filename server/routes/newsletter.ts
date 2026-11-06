@@ -45,7 +45,7 @@ const submitLimiter = rateLimit({
 const subscribeSchema = z.object({
   email: z.string().email({ message: "Email inválido" }),
   language: z.string().min(2).max(5).default("es"),
-  source: z.enum(["footer", "popup"]).default("footer"),
+  source: z.enum(["footer", "popup", "blog_inline"]).default("footer"),
 });
 
 export function registerNewsletterRoutes(app: Express) {

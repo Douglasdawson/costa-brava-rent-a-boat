@@ -7,6 +7,7 @@ import { requireAdminSession, requireTabAccess } from "./auth";
 import { sendMetaWhatsAppMessage, isMetaWhatsAppConfigured } from "../messaging/metaClient";
 import { logger } from "../lib/logger";
 import { sendGA4Event, deriveClientIdFromRequest } from "../lib/analyticsServer";
+import { hasTrackingConsent } from "../lib/consent";
 import { sendMetaConversion, getMetaBrowserIds } from "../lib/metaConversions";
 import { sendInquiryAdminNotification } from "../services/emailService";
 import { validatePromoCode } from "../lib/discountValidation";
@@ -101,7 +102,8 @@ export function registerInquiryRoutes(app: Express) {
         })
       );
 
-      // Server-side GA4 event — sobrevive a cookie consent denial y race conditions del cliente.
+      // Server-side GA4 event — sobrevive a race conditions del cliente. Sin consentimiento
+      // va anónimo (client_id aleatorio, sin user-agent).
       void sendGA4Event(
         "generate_lead",
         {
@@ -114,17 +116,19 @@ export function registerInquiryRoutes(app: Express) {
         },
         {
           clientId: deriveClientIdFromRequest(req),
-          userAgent: req.headers["user-agent"],
+          userAgent: hasTrackingConsent(req) ? req.headers["user-agent"] : undefined,
         }
       );
 
       // Server-side Meta CAPI "Lead" — the single source of truth for Meta.
       // Every lead (homepage form AND the wizard's safety-net) funnels through an
       // inquiry, so firing here once per inquiry means exactly one Meta Lead per
-      // real lead. Stable event_id keeps it idempotent. Survives ad blockers and
-      // cookie-consent denial; before this, Meta saw 0 leads from these forms.
+      // real lead. Stable event_id keeps it idempotent. Survives ad blockers;
+      // before this, Meta saw 0 leads from these forms.
+      // Only with cookie consent: it sends the hashed email/phone + IP to Meta
+      // for ad measurement, which needs consent (RGPD 6.1.a, LSSI 22.2).
       const fb = getMetaBrowserIds(req);
-      void sendMetaConversion({
+      if (hasTrackingConsent(req)) void sendMetaConversion({
         eventName: "Lead",
         eventId: `lead-inquiry-${inquiry.id}`,
         email: inquiry.email,

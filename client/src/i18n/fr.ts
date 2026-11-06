@@ -290,6 +290,8 @@ export const fr: Translations = {
     faqLabel: "Questions Fréquentes",
     customerReviews: "Avis Clients",
     cookiesPolicy: "Politique de Cookies",
+    cookieSettings: "Paramètres des cookies",
+    newsletterLegal: "En vous inscrivant, vous acceptez de recevoir le guide et des e-mails occasionnels de nouveautés et d'offres de DAMAR COSTA BRAVA S.L. Vous pouvez vous désinscrire depuis chaque e-mail. Plus d'informations dans notre {privacyPolicy}.",
     legalNotice: "Mentions Légales",
     rentalConditions: "Conditions de Location",
     destinations: "Destinations",
@@ -3012,7 +3014,7 @@ export const fr: Translations = {
       "Ce texte est disponible en plusieurs langues. En cas de divergence ou d'ambiguïté dans la traduction, la version en castillan (espagnol) prévaut à toutes fins juridiques.",
     privacy: {
       heroTitle: "Politique de Confidentialité",
-      lastUpdated: "Dernière mise à jour : février 2026",
+      lastUpdated: "Dernière mise à jour : novembre 2026",
       sections: [
         {
           title: "1. Responsable du traitement",
@@ -3020,23 +3022,23 @@ export const fr: Translations = {
         },
         {
           title: "2. Données personnelles que nous collectons",
-          body: "Données fournies par l'utilisateur lors d'une réservation :\n- Nom et prénoms\n- Numéro de téléphone\n- Adresse e-mail\n- Date et heure de la réservation, embarcation sélectionnée et nombre de personnes\n\nDonnées collectées automatiquement :\n- Données de navigation (adresse IP, type de navigateur, pages visitées) via Google Analytics\n- Cookies techniques et de préférence (langue sélectionnée)\n\nNous ne collectons pas de données de catégories particulières (santé, origine raciale, opinions politiques, etc.) ni de données de mineurs de moins de 14 ans.",
+          body: "Données que vous nous fournissez :\n- Réservation ou demande : nom et prénoms, téléphone, adresse e-mail, langue, date et heure, embarcation, nombre de personnes et options.\n- Boutique et cartes cadeaux : nom, adresse e-mail, téléphone et, si vous choisissez la livraison à domicile, l'adresse de livraison. Les données de la carte bancaire sont traitées directement par Stripe ; nous ne les voyons pas et ne les conservons pas.\n- Guide gratuit et newsletter : votre adresse e-mail et votre langue.\n- Avec votre demande de réservation, nous enregistrons l'origine de la visite (la campagne ou le site qui vous a amené chez nous).\n- Au port, pour signer le contrat : pièce d'identité et permis nautique du capitaine.\n\nDonnées collectées lors de la navigation :\n- Cookies techniques et de préférence (langue, votre choix en matière de cookies).\n- Uniquement si vous acceptez les cookies : données de navigation (adresse IP, navigateur, pages visitées) et identifiants de cookies de Google Analytics, Google Ads et Meta.\n\nNous ne collectons pas de données de catégories particulières (santé, origine raciale, opinions politiques, etc.) ni de données de mineurs de moins de 14 ans.",
         },
         {
           title: "3. Finalité du traitement et base juridique",
-          body: "Nous traitons vos données pour les finalités et bases juridiques suivantes (RGPD) :\n\n- Gestion et confirmation des réservations d'embarcations, Art. 6.1.b, exécution d'un contrat\n- Envoi de rappels et communications relatives à la réservation, Art. 6.1.b, exécution d'un contrat\n- Service client et résolution d'incidents, Art. 6.1.b et 6.1.f, exécution de contrat / intérêt légitime\n- Analyse statistique du trafic web (Google Analytics), Art. 6.1.a, consentement (bannière de cookies)\n- Respect des obligations légales et fiscales, Art. 6.1.c, obligation légale\n\nNous ne prenons pas de décisions automatisées et n'établissons pas de profils à des fins de segmentation publicitaire à partir de vos données de réservation.",
+          body: "Nous traitons vos données pour les finalités et bases juridiques suivantes (RGPD) :\n\n- Gestion et confirmation des réservations d'embarcations, Art. 6.1.b, exécution d'un contrat ou mesures précontractuelles prises à votre demande\n- Envoi de rappels et communications relatives à la réservation, Art. 6.1.b, exécution d'un contrat\n- Vente et livraison des produits de la boutique et des cartes cadeaux, Art. 6.1.b, exécution d'un contrat\n- Service client et résolution d'incidents, Art. 6.1.b et 6.1.f, exécution de contrat / intérêt légitime\n- Envoi du guide gratuit et d'e-mails occasionnels avec nouveautés et offres, Art. 6.1.a, consentement lors de votre inscription (vous pouvez vous désinscrire depuis n'importe quel e-mail)\n- Analyse statistique du trafic web (Google Analytics), Art. 6.1.a, consentement (bannière de cookies)\n- Mesure de l'efficacité de nos annonces (Google Ads et Meta), Art. 6.1.a, consentement (bannière de cookies). Uniquement si vous l'avez donné, lorsque vous envoyez une demande de réservation, nous communiquons à Meta votre e-mail et votre téléphone chiffrés par hachage (SHA-256), votre adresse IP et votre navigateur afin de savoir quelle annonce l'a générée\n- Respect des obligations légales et fiscales, Art. 6.1.c, obligation légale\n\nNous ne prenons pas de décisions automatisées produisant des effets juridiques à votre égard et n'établissons pas de profils à partir de vos données de réservation.",
         },
         {
           title: "4. Durées de conservation",
-          body: "- Données de réservation : 5 ans à compter de la date du service (RD 1619/2012, Loi 58/2003 Générale des Impôts).\n- Communications par WhatsApp/e-mail : 1 an à compter de la dernière communication, sauf réclamation en cours.\n- Données d'analyse web (Google Analytics) : selon la configuration de rétention de Google Analytics (par défaut, 14 mois).\n- Cookies de session : supprimés à la fermeture du navigateur.",
+          body: "- Données de réservation, commandes de la boutique et cartes cadeaux : 5 ans à compter de la date du service ou de l'achat (RD 1619/2012, Loi 58/2003 Générale des Impôts).\n- Communications par WhatsApp/e-mail : 1 an à compter de la dernière communication, sauf réclamation en cours.\n- Newsletter : jusqu'à votre désinscription.\n- Données d'analyse web (Google Analytics) : 14 mois.\n- Cookies : la durée de chacun figure dans la Politique de Cookies.",
         },
         {
           title: "5. Destinataires et transferts internationaux",
-          body: "Vos données peuvent être communiquées aux sous-traitants suivants :\n\n- SendGrid (Twilio Inc., États-Unis) : Service d'envoi d'e-mails de confirmation et de rappels. Transfert international couvert par les Clauses Contractuelles Types approuvées par la Commission Européenne.\n- Google LLC (États-Unis) : Google Analytics et Google Tag Manager. Uniquement si l'utilisateur a donné son consentement via la bannière de cookies. Transfert couvert par le Cadre de Confidentialité des Données UE-États-Unis.\n- Stripe Inc. (États-Unis) : Traitement des paiements par carte, le cas échéant. Nous ne stockons pas les données de carte ; Stripe agit en tant que sous-traitant indépendant sous PCI-DSS.\n- WhatsApp (Meta Platforms Ireland Ltd.) : Canal de communication pour la gestion des réservations. Les communications initiées par l'utilisateur sur WhatsApp sont soumises à la politique de confidentialité de WhatsApp.\n\nNous ne vendons ni ne cédons vos données à des tiers à des fins commerciales.",
+          body: "Pour fournir le service, vos données sont traitées pour notre compte par les prestataires suivants (sous-traitants) :\n\n- Neon Inc. (États-Unis) : base de données où sont enregistrées les réservations, les commandes et les inscriptions. Transfert couvert par les Clauses Contractuelles Types de la Commission Européenne.\n- Hetzner Online GmbH (Allemagne) : hébergement du serveur web, dans des centres de données de l'UE.\n- SendGrid et Twilio (Twilio Inc., États-Unis) : envoi des e-mails de confirmation, de rappel et de la newsletter, ainsi que d'alertes internes par WhatsApp à l'équipe lorsqu'une réservation arrive. Transfert couvert par le Cadre de Confidentialité des Données UE-États-Unis et par les Clauses Contractuelles Types.\n- Stripe Payments Europe Ltd. (Irlande) : paiement par carte des commandes de la boutique et des cartes cadeaux. Stripe agit en tant que sous-traitant pour traiter le paiement et en tant que responsable de traitement indépendant pour ses propres obligations légales (prévention de la fraude et réglementation financière).\n\nUniquement si vous acceptez les cookies :\n- Google LLC (États-Unis) : Google Analytics, Google Tag Manager et Google Ads. Transfert couvert par le Cadre de Confidentialité des Données UE-États-Unis.\n- Meta Platforms Ireland Ltd. (Irlande) : Pixel Meta et API Conversions, pour mesurer nos annonces sur Facebook et Instagram. Meta peut transférer des données aux États-Unis dans le cadre du Cadre de Confidentialité des Données UE-États-Unis.\n\nAutres destinataires :\n- WhatsApp (Meta Platforms Ireland Ltd.) : canal de communication pour la gestion des réservations, uniquement si vous nous écrivez sur WhatsApp. Ces communications sont également soumises à la politique de confidentialité de WhatsApp.\n- Laura Cabanas (Carrer del Carme 5, Lloret de Mar) : si vous choisissez de retirer une commande de la boutique dans son établissement, nous lui communiquons votre nom et le numéro de commande pour vous la remettre.\n- Transporteur : si vous choisissez la livraison à domicile, votre nom, votre adresse et votre téléphone pour la livraison.\n- Administrations publiques et tribunaux, lorsque la loi l'exige.\n\nNous ne vendons ni ne cédons vos données à des tiers à des fins commerciales.",
         },
         {
           title: "6. Vos droits (ARCO+)",
-          body: "En vertu des articles 15 à 22 du RGPD et de la LOPD-GDD, vous avez le droit de :\n\n- Accès : obtenir la confirmation que nous traitons vos données et, le cas échéant, une copie.\n- Rectification : demander la correction de données inexactes.\n- Suppression (« droit à l'oubli ») : demander l'effacement de vos données lorsqu'elles ne sont plus nécessaires aux finalités pour lesquelles elles ont été collectées, sauf obligation légale de conservation.\n- Opposition : vous opposer au traitement fondé sur l'intérêt légitime.\n- Limitation du traitement : demander que nous suspendions le traitement pendant la résolution d'une réclamation.\n- Portabilité : recevoir vos données dans un format structuré et lisible par machine.\n- Retrait du consentement : vous pouvez retirer à tout moment le consentement donné (par ex., pour les cookies analytiques) sans que cela n'affecte la licéité du traitement antérieur.\n\nComment exercer vos droits : envoyez un e-mail à info@costabravarentaboat.com en indiquant le droit que vous souhaitez exercer et en joignant une copie de votre pièce d'identité ou autre document d'identification. Nous vous répondrons dans un délai maximum d'1 mois.\n\nSi vous estimez que le traitement n'est pas conforme au RGPD, vous avez le droit de déposer une réclamation auprès de l'Agence Espagnole de Protection des Données (AEPD) : www.aepd.es",
+          body: "En vertu des articles 15 à 22 du RGPD et de la LOPD-GDD, vous avez le droit de :\n\n- Accès : obtenir la confirmation que nous traitons vos données et, le cas échéant, une copie.\n- Rectification : demander la correction de données inexactes.\n- Suppression (« droit à l'oubli ») : demander l'effacement de vos données lorsqu'elles ne sont plus nécessaires aux finalités pour lesquelles elles ont été collectées, sauf obligation légale de conservation.\n- Opposition : vous opposer au traitement fondé sur l'intérêt légitime.\n- Limitation du traitement : demander que nous suspendions le traitement pendant la résolution d'une réclamation.\n- Portabilité : recevoir vos données dans un format structuré et lisible par machine.\n- Retrait du consentement : vous pouvez retirer à tout moment le consentement donné sans que cela n'affecte la licéité du traitement antérieur. Pour les cookies, via « Paramètres des cookies » en pied de page ; pour la newsletter, via le lien de désinscription de n'importe quel e-mail.\n\nComment exercer vos droits : envoyez un e-mail à info@costabravarentaboat.com en indiquant le droit que vous souhaitez exercer, depuis l'adresse e-mail utilisée pour la réservation ou l'inscription. Nous ne vous demanderons une pièce d'identité qu'en cas de doutes raisonnables sur votre identité (art. 12.6 RGPD). Nous vous répondrons dans un délai maximum d'1 mois.\n\nSi vous estimez que le traitement n'est pas conforme au RGPD, vous avez le droit de déposer une réclamation auprès de l'Agence Espagnole de Protection des Données (AEPD) : www.aepd.es",
         },
         {
           title: "7. Mesures de sécurité",
@@ -3054,31 +3056,39 @@ export const fr: Translations = {
     },
     cookies: {
       heroTitle: "Politique relative aux Cookies",
-      lastUpdated: "Dernière mise à jour : février 2026",
+      lastUpdated: "Dernière mise à jour : novembre 2026",
       sections: [
         {
-          title: "Introduction",
-          body: "Conformément aux dispositions de l'article 22.2 de la Loi 34/2002, du 11 juillet, relative aux Services de la Société de l'Information et au Commerce Électronique, ce site web vous informe, dans cette section, de la politique de collecte et de traitement des cookies.",
+          title: "1. Qu'est-ce qu'un cookie",
+          body: "Un cookie est un petit fichier qu'un site web enregistre dans votre navigateur pour mémoriser des informations sur votre visite. Conformément à l'article 22.2 de la Loi 34/2002 (LSSI-CE), cette politique explique quels cookies et technologies similaires (comme le stockage local du navigateur) costabravarentaboat.com utilise, dans quel but et pour combien de temps.",
         },
         {
-          title: "Qu'est-ce qu'un cookie ?",
-          body: "Un cookie est un fichier qui se télécharge sur votre ordinateur lors de l'accès à certaines pages web. Les cookies permettent à une page web, entre autres choses, de stocker et de récupérer des informations sur les habitudes de navigation d'un utilisateur ou de son équipement et, selon les informations qu'ils contiennent et la façon dont vous utilisez votre équipement, ils peuvent être utilisés pour reconnaître l'utilisateur.",
+          title: "2. Cookies techniques et de préférence (toujours actifs)",
+          body: "Ils sont nécessaires au fonctionnement du site ou pour mémoriser vos choix. Ils ne nécessitent pas de consentement.\n\n- cookieConsent (interne, cookie et stockage local) : enregistre votre choix dans la bannière de cookies. Durée : 1 an.\n- costa-brava-language (interne, cookie et stockage local) : langue choisie. Durée : 1 an.\n- theme (interne, stockage local) : mode clair ou sombre. Persistant jusqu'à ce que vous effaciez les données du navigateur.\n- cbrb_lastVisit (interne, stockage local) : date de votre dernière visite, pour afficher le message de bienvenue à votre retour. Persistant jusqu'à ce que vous effaciez les données du navigateur.\n- Cookies de session du processus de réservation et du panier de la boutique (internes) : supprimés à la fermeture du navigateur.\n- Cookies de Stripe (tiers, uniquement sur la page de paiement) : prévention de la fraude lors du paiement.",
         },
         {
-          title: "Quels types de cookies ce site web utilise-t-il ?",
-          body: "Ce site web utilise les types de cookies suivants :\n\nCookies d'analyse : Ce sont ceux qui, traités par nous ou par des tiers, nous permettent de quantifier le nombre d'utilisateurs et ainsi de réaliser la mesure et l'analyse statistique de l'utilisation que font les utilisateurs du service proposé.\n\nCookies techniques : Ils permettent à l'utilisateur de naviguer dans l'espace restreint et d'utiliser ses différentes fonctions, comme par exemple effectuer le processus de réservation d'une embarcation.\n\nCookies de personnalisation : Ils permettent à l'utilisateur d'accéder au service avec certaines caractéristiques générales prédéfinies en fonction d'une série de critères tels que la langue ou le type de navigateur.\n\nCookies publicitaires : Traités par ce site ou par des tiers, ils permettent de gérer de la manière la plus efficace possible l'offre des espaces publicitaires présents sur la page web.\n\nCookies tiers : Nous utilisons les services de Google Analytics pour nos statistiques. Certains cookies sont essentiels au fonctionnement du site. Notre site inclut d'autres fonctionnalités fournies par des tiers (partage sur les réseaux sociaux tels que Facebook, Instagram ou TikTok).",
+          title: "3. Stockage de session interne pour mesurer les campagnes",
+          body: "Données enregistrées uniquement dans votre navigateur pendant la visite et supprimées à sa fermeture. Elles ne sont pas partagées avec des tiers.\n\n- cb_attribution et cbrab_utm (internes, stockage de session) : origine de la visite (paramètres utm de la campagne qui vous a amené). Si vous envoyez une demande de réservation, elle est enregistrée avec celle-ci pour savoir quelle campagne fonctionne.\n- ab_session_id (interne, stockage de session) : identifiant aléatoire permettant d'afficher de façon cohérente une même version de la page lors des tests A/B.",
         },
         {
-          title: "Désactiver les cookies",
-          body: "Vous pouvez autoriser, bloquer ou supprimer les cookies installés sur votre équipement en configurant les options du navigateur installé sur votre ordinateur. Dans la plupart des navigateurs web, il est possible d'autoriser, de bloquer ou de supprimer les cookies installés sur votre équipement.\n\nVous pouvez accéder aux paramètres des navigateurs web les plus courants pour accepter, installer ou désactiver les cookies : Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple), Opera.",
+          title: "4. Cookies d'analyse (uniquement avec votre consentement)",
+          body: "Ils nous permettent de compter les visites et de savoir quelles pages fonctionnent le mieux. Ils ne sont installés que si vous cliquez sur « Tout accepter » ; jusque-là, aucun script de Google n'est chargé.\n\n- _ga (Google Analytics, Google LLC) : distingue les utilisateurs uniques. Durée : 2 ans.\n- _ga_<ID> (Google Analytics, Google LLC) : conserve l'état de la session. Durée : 2 ans.",
         },
         {
-          title: "Avertissement concernant la suppression des cookies",
-          body: "Vous pouvez supprimer et bloquer tous les cookies de ce site, mais une partie du site ne fonctionnera pas ou la qualité de la page web pourra être affectée.",
+          title: "5. Cookies publicitaires (uniquement avec votre consentement)",
+          body: "Ils servent à mesurer quelles annonces Google, Facebook et Instagram génèrent des réservations. Ils ne sont installés que si vous cliquez sur « Tout accepter ».\n\n- _gcl_au et _gcl_aw (Google Ads, Google LLC) : attribuent les visites et les réservations à une annonce Google. Durée : 90 jours.\n- _fbp (Meta Platforms Ireland Ltd.) : identifie le navigateur pour mesurer les annonces Meta. Durée : 90 jours.\n- _fbc (Meta Platforms Ireland Ltd.) : enregistre le clic sur une annonce Meta. Durée : 90 jours.\n- _msclkid (Microsoft Advertising, interne) : enregistre le clic sur une annonce Bing. Durée : 90 jours.\n\nAvec votre consentement, nous utilisons également l'API Conversions de Meta, expliquée dans la Politique de Confidentialité.",
         },
         {
-          title: "Contact",
-          body: "Si vous avez des questions concernant notre politique relative aux cookies, vous pouvez nous contacter via nos canaux de contact disponibles dans la section contact du site web.",
+          title: "6. Comment accepter, refuser ou retirer votre consentement",
+          body: "Lors de votre première visite, vous verrez une bannière avec deux options de même importance : « Tout accepter » et « Essentiels uniquement ». Si vous choisissez « Essentiels uniquement », seuls les cookies techniques de la section 2 et le stockage de session de la section 3 sont utilisés.\n\nVous pouvez changer d'avis à tout moment via le lien « Paramètres des cookies » en pied de page : la bannière réapparaît et, si vous retirez votre consentement, nous supprimons les cookies d'analyse et publicitaires et rechargeons la page.\n\nVous pouvez également bloquer ou supprimer les cookies dans les paramètres de votre navigateur (Chrome, Firefox, Safari ou Edge). Si vous bloquez les cookies techniques, une partie du site peut cesser de fonctionner.",
+        },
+        {
+          title: "7. Transferts internationaux",
+          body: "Google et Meta peuvent traiter des données aux États-Unis. Ces transferts sont couverts par le Cadre de Confidentialité des Données UE-États-Unis. Plus d'informations dans la Politique de Confidentialité.",
+        },
+        {
+          title: "8. Contact",
+          body: "Pour toute question sur cette politique, écrivez-nous à info@costabravarentaboat.com.",
         },
       ],
     },
@@ -3090,11 +3100,11 @@ export const fr: Translations = {
 
     terms: {
       heroTitle: "Conditions Générales",
-      lastUpdated: "Dernière mise à jour : juillet 2026",
+      lastUpdated: "Dernière mise à jour : novembre 2026",
       sections: [
         {
           title: "1. Identification du titulaire",
-          body: "Raison sociale : DAMAR COSTA BRAVA S.L. (exploitant sous la marque commerciale Costa Brava Rent a Boat)\nNuméro fiscal (CIF) : B22566327\nSiège social : Carrer Delícia, 1, 17310 Lloret de Mar, Gérone, Espagne\nTéléphone de contact : +34 611 500 372\nCourrier électronique : info@costabravarentaboat.com\nActivité : location de bateaux de plaisance (avec et sans permis nautique) au Port de Blanes, Costa Brava.",
+          body: "Raison sociale : DAMAR COSTA BRAVA S.L. (exploitant sous la marque commerciale Costa Brava Rent a Boat)\nNuméro fiscal (CIF) : B22566327\nSiège social : Carrer Delícia, 1, 17310 Lloret de Mar, Gérone, Espagne\nTéléphone de contact : +34 611 500 372\nCourrier électronique : info@costabravarentaboat.com\nActivité : location de bateaux de plaisance (avec permis nautique ou avec skipper) et de jet-skis au Port de Blanes, Costa Brava.",
         },
         {
           title: "2. Objet",
@@ -3102,19 +3112,19 @@ export const fr: Translations = {
         },
         {
           title: "3. Processus de réservation",
-          body: "Le site recueille des demandes de réservation. Le client remplit un formulaire avec la date, le bateau, la durée et ses coordonnées. Le prestataire confirme manuellement la disponibilité et envoie un message de confirmation par WhatsApp ou par courrier électronique.\n\nPour la location de bateaux, le paiement se fait sur place au Port de Blanes, au moment de l'embarquement : le site ne prélève pas automatiquement le montant de la location. Les produits de la boutique et les cartes cadeaux se paient en revanche en ligne par carte au moment de l'achat, conformément aux sections 13 à 17.\n\nLa réservation n'est ferme qu'après confirmation explicite du prestataire.",
+          body: "Le site recueille des demandes de réservation. Le client remplit un formulaire avec la date, le bateau, la durée et ses coordonnées. Le prestataire confirme manuellement la disponibilité et envoie un message de confirmation par WhatsApp ou par courrier électronique.\n\nPour la location de bateaux, le paiement se fait sur place au Port de Blanes, au moment de l'embarquement : le site ne prélève pas automatiquement le montant de la location. Les produits de la boutique et les cartes cadeaux se paient en revanche en ligne par carte au moment de l'achat, conformément aux sections 13 à 17.\n\nLa réservation n'est ferme qu'après confirmation explicite du prestataire.\n\nDroit de rétractation : la location d'un bateau ou d'un jet-ski pour une date déterminée est un service de loisirs et, conformément à l'article 103.l du décret royal législatif espagnol 1/2007, n'est pas soumise au droit de rétractation de 14 jours. Les modifications et annulations sont régies par la section 7.",
         },
         {
           title: "4. Conditions requises pour le locataire",
-          body: "- Le capitaine doit être âgé de plus de 18 ans et présenter une carte d'identité ou un passeport en cours de validité.\n- Pour les embarcations avec permis, le capitaine doit présenter le permis nautique original (Licencia de Navegación, PER, PNB, Capitaine de Yacht ou équivalent européen).\n- Pour les embarcations sans permis, aucun titre n'est requis, mais le capitaine recevra une formation de 15 minutes avant de prendre la mer.\n- Les mineurs doivent être accompagnés d'un adulte responsable et porter un gilet de sauvetage obligatoire pendant la navigation.",
+          body: "- Le capitaine doit être âgé de plus de 18 ans et présenter une carte d'identité ou un passeport en cours de validité.\n- Le capitaine doit présenter le permis nautique original (Licencia de Navegación, PER, PNB, Capitaine de Yacht ou équivalent européen). Depuis le 1er octobre 2026 (RD 1188/2025), aucune embarcation n'est louée sans permis ; pour l'excursion avec skipper professionnel, le client n'a besoin d'aucun permis.\n- Les mineurs doivent être accompagnés d'un adulte responsable et porter un gilet de sauvetage obligatoire pendant la navigation.",
         },
         {
           title: "5. Caution et conditions de paiement",
-          body: "Avant l'appareillage, une caution est versée (200 € pour les bateaux sans permis et 500 € pour ceux qui en exigent un), restituée intégralement au retour si le bateau est rendu dans l'état où il a été reçu. Le montant applicable est toujours celui indiqué au moment de la réservation et dans le contrat signé au port.\n\nLe client peut souscrire volontairement la Caution réduite, qui abaisse le montant retenu contre un prix forfaitaire. Il s'agit d'une garantie commerciale propre et non d'un contrat d'assurance ; son prix n'est pas remboursable.\n\nEn cas de dommages, de perte de matériel ou de non-respect de la zone de navigation autorisée, le prestataire pourra retenir tout ou partie de la caution pour couvrir les frais.",
+          body: "Avant l'appareillage, une caution est versée (500 € pour les bateaux avec permis), restituée intégralement au retour si le bateau est rendu dans l'état où il a été reçu. Le montant applicable est toujours celui indiqué au moment de la réservation et dans le contrat signé au port.\n\nLe client peut souscrire volontairement la Caution réduite, qui abaisse le montant retenu contre un prix forfaitaire. Il s'agit d'une garantie commerciale propre et non d'un contrat d'assurance ; son prix n'est pas remboursable.\n\nEn cas de dommages, de perte de matériel ou de non-respect de la zone de navigation autorisée, le prestataire pourra retenir tout ou partie de la caution pour couvrir les frais.",
         },
         {
           title: "6. Zone de navigation et durée",
-          body: "Zones autorisées : au nord jusqu'à la plage de Fenals (sans permis) ou Sant Feliu de Guíxols (avec permis) ; au sud jusqu'à l'embouchure du fleuve Tordera, à l'extrémité de la plage de Blanes (sans permis), ou sans limite (avec permis). Maximum 2 milles nautiques de la côte pour les bateaux sans permis.\n\nLa vitesse maximale dans les ports et dans les chenaux balisés des plages est de 3 nœuds. Il faut respecter la zone de baignade, mouiller en dehors des bouées jaunes, naviguer à plus de 200 m des plages et des falaises et garder 100 m de distance avec les bouées de plongeurs.\n\nLes bateaux devront regagner le Port de Blanes avant la fin du créneau horaire réservé. Si le check-out a lieu après l'heure convenue sans préavis, un montant de 150 € par tranche de 30 minutes de retard, ou sa part proportionnelle, sera facturé.",
+          body: "Zone autorisée : au nord jusqu'au port de Sant Feliu de Guíxols et, en tout état de cause, à moins d'un mille de la côte et dans les limites du permis du capitaine. Naviguer en dehors de cette zone prive la sortie de la couverture de l'assurance.\n\nLa vitesse maximale dans les ports et dans les chenaux balisés des plages est de 3 nœuds. Il faut respecter la zone de baignade, mouiller en dehors des bouées jaunes, naviguer à plus de 200 m des plages et des falaises et garder 100 m de distance avec les bouées de plongeurs.\n\nLes bateaux devront regagner le Port de Blanes avant la fin du créneau horaire réservé. Si le check-out a lieu après l'heure convenue sans préavis, un montant de 150 € par tranche de 30 minutes de retard, ou sa part proportionnelle, sera facturé.",
         },
         {
           title: "7. Politique d'annulation",
@@ -3134,7 +3144,7 @@ export const fr: Translations = {
         },
         {
           title: "11. Législation applicable et juridiction",
-          body: "Les présentes conditions sont régies par la loi espagnole. Les Tribunaux de Blanes sont compétents pour tout litige, sans préjudice du for légalement ouvert au client consommateur, qui ne renonce en aucun cas à celui de son domicile.\n\nLe consommateur peut saisir la Plateforme de Règlement en Ligne des Litiges de la Commission européenne (https://ec.europa.eu/consumers/odr) pour un règlement extrajudiciaire. Des feuilles officielles de réclamation sont à sa disposition.",
+          body: "Les présentes conditions sont régies par la loi espagnole. Les Tribunaux de Blanes sont compétents pour tout litige, sans préjudice du for légalement ouvert au client consommateur, qui ne renonce en aucun cas à celui de son domicile.\n\nDes feuilles officielles de réclamation sont à la disposition du client consommateur, qui peut également s'adresser aux services publics de la consommation (Agència Catalana del Consum).",
         },
         {
           title: "12. Modifications",
@@ -3158,7 +3168,7 @@ export const fr: Translations = {
         },
         {
           title: "17. Cartes cadeaux",
-          body: "Les cartes cadeaux s'achètent en ligne par carte bancaire et sont remises par courrier électronique avec un code unique. Elles sont valables 12 mois à compter de leur émission, utilisables pour tout service de location sous réserve de disponibilité, et ne sont ni fractionnables sur plusieurs réservations ni échangeables contre de l'argent.\n\nS'agissant d'un contenu numérique fourni immédiatement, le droit de rétractation ne s'applique pas une fois le code envoyé, conformément à l'article 103.m du décret royal législatif espagnol 1/2007. Si la carte n'est pas utilisée dans son délai de validité, le montant n'est pas remboursé.",
+          body: "Les cartes cadeaux s'achètent en ligne par carte bancaire et sont remises par courrier électronique avec un code unique. Elles sont valables 12 mois à compter de leur émission, utilisables pour tout service de location sous réserve de disponibilité, et ne sont ni fractionnables sur plusieurs réservations ni échangeables contre de l'argent.\n\nVous pouvez vous rétracter de l'achat d'une carte cadeau dans un délai de 14 jours calendaires à compter de l'achat, sans avoir à donner de motif, à condition que le code n'ait pas été utilisé : il suffit d'écrire à info@costabravarentaboat.com ou par WhatsApp au +34 611 500 372, et nous vous rembourserons le montant par le même moyen de paiement dans un délai maximum de 14 jours. Si la carte n'est pas utilisée dans son délai de validité, le montant n'est pas remboursé.",
         },
         {
           title: "18. Jet-skis et autres activités nautiques",
@@ -3168,17 +3178,18 @@ export const fr: Translations = {
     },
     legalNotice: {
       heroTitle: "Mentions Légales",
-      lastUpdated: "Dernière mise à jour : juillet 2026",
+      lastUpdated: "Dernière mise à jour : novembre 2026",
       identificationTitle: "1. Données d'identification de l'éditeur",
       labels: {
         legalName: "Raison sociale",
         taxId: "Numéro fiscal (CIF)",
+        registry: "Immatriculation",
         address: "Siège social",
         phone: "Téléphone",
         email: "Courrier électronique",
         activity: "Activité",
       },
-      activityValue: "Location de bateaux de plaisance avec et sans permis nautique au Port de Blanes (Gérone), et vente de produits de la collection maison via la boutique en ligne.",
+      activityValue: "Location de bateaux de plaisance (avec permis nautique ou avec skipper) et de jet-skis au Port de Blanes (Gérone), et vente de produits de la collection maison et de cartes cadeaux via la boutique en ligne.",
       sections: [
         {
           title: "2. Objet et champ d'application",
@@ -3194,7 +3205,7 @@ export const fr: Translations = {
         },
         {
           title: "5. Loi applicable et résolution des litiges",
-          body: "Les présentes mentions légales sont régies par la loi espagnole. Les Tribunaux de Blanes sont compétents pour tout litige, sans préjudice du for légalement ouvert au client consommateur.\n\nLe consommateur peut également saisir la Plateforme de Règlement en Ligne des Litiges de la Commission européenne (https://ec.europa.eu/consumers/odr). Des feuilles officielles de réclamation sont à la disposition du client.",
+          body: "Les présentes mentions légales sont régies par la loi espagnole. Les Tribunaux de Blanes sont compétents pour tout litige, sans préjudice du for légalement ouvert au client consommateur.\n\nDes feuilles officielles de réclamation sont à la disposition du client, qui peut également s'adresser aux services publics de la consommation (Agència Catalana del Consum).",
         },
       ],
     },
@@ -3250,7 +3261,7 @@ export const fr: Translations = {
   cookieBanner: {
     ariaLabel: "Information sur les cookies",
     message:
-      "Nous utilisons des cookies propres et tiers (Google Analytics) pour améliorer votre expérience et analyser le trafic du site. Vous pouvez accepter tous les cookies ou uniquement les cookies essentiels.",
+      "Nous utilisons nos propres cookies et, uniquement si vous les acceptez, des cookies tiers : Google Analytics (statistiques), Google Ads et Meta (mesure publicitaire). Vous pouvez tous les accepter ou ne garder que les essentiels, et changer d'avis à tout moment via « Paramètres des cookies » en bas de page.",
     cookiesPolicy: "Politique de Cookies",
     privacyPolicy: "Politique de Confidentialité",
     essentialOnly: "Essentiels uniquement",

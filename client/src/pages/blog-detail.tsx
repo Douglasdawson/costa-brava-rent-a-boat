@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { NewsletterLegalNote } from "@/components/NewsletterLegalNote";
 import { Link, useParams, useLocation } from "wouter";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -315,6 +316,7 @@ function InlineNewsletterCTA({ bd, language }: { bd: Record<string, string>; lan
       {state === 'error' && (
         <p className="text-xs text-red-500 mt-2">{bd.newsletterError}</p>
       )}
+      <NewsletterLegalNote className="text-xs text-muted-foreground mt-3" />
     </div>
   );
 }

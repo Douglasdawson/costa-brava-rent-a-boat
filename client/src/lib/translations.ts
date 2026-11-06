@@ -355,6 +355,8 @@ export interface Translations {
     faqLabel: string;
     customerReviews: string;
     cookiesPolicy: string;
+    cookieSettings: string;
+    newsletterLegal: string;
     legalNotice: string;
     rentalConditions: string;
     destinations: string;
@@ -2861,6 +2863,7 @@ export interface Translations {
       labels: {
         legalName: string;
         taxId: string;
+        registry: string;
         address: string;
         phone: string;
         email: string;

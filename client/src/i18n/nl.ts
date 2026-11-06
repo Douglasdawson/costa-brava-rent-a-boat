@@ -286,6 +286,8 @@ export const nl: Translations = {
     faqLabel: "Veelgestelde Vragen",
     customerReviews: "Klantbeoordelingen",
     cookiesPolicy: "Cookiebeleid",
+    cookieSettings: "Cookie-instellingen",
+    newsletterLegal: "Door je in te schrijven ga je akkoord met het ontvangen van de gids en af en toe e-mails met nieuws en aanbiedingen van DAMAR COSTA BRAVA S.L. Je kunt je via elke e-mail uitschrijven. Meer informatie in ons {privacyPolicy}.",
     legalNotice: "Juridische Mededeling",
     rentalConditions: "Huurvoorwaarden",
     destinations: "Bestemmingen",
@@ -3007,7 +3009,7 @@ export const nl: Translations = {
       "Deze tekst is beschikbaar in meerdere talen. In geval van discrepantie of dubbelzinnigheid in de vertaling prevaleert de Spaanse versie (castellano) voor alle juridische doeleinden.",
     privacy: {
       heroTitle: "Privacybeleid",
-      lastUpdated: "Laatste update: februari 2026",
+      lastUpdated: "Laatste update: november 2026",
       sections: [
         {
           title: "1. Verwerkingsverantwoordelijke",
@@ -3015,23 +3017,23 @@ export const nl: Translations = {
         },
         {
           title: "2. Persoonsgegevens die we verzamelen",
-          body: "Gegevens verstrekt door de gebruiker bij het maken van een reservering:\n- Voor- en achternaam\n- Telefoonnummer\n- E-mailadres\n- Datum en tijd van de reservering, geselecteerde boot en aantal personen\n\nAutomatisch verzamelde gegevens:\n- Navigatiegegevens (IP-adres, browsertype, bezochte pagina's) via Google Analytics\n- Technische en voorkeurscookies (geselecteerde taal)\n\nWe verzamelen geen gegevens uit bijzondere categorieën (gezondheid, raciale afkomst, politieke opvattingen, enz.) noch gegevens van minderjarigen onder de 14 jaar.",
+          body: "Gegevens die u ons verstrekt:\n- Reservering of aanvraag: voor- en achternaam, telefoonnummer, e-mailadres, taal, datum en tijd, boot, aantal personen en extra's.\n- Webshop en cadeaubonnen: naam, e-mailadres, telefoonnummer en, als u kiest voor thuisbezorging, het afleveradres. De kaartgegevens worden rechtstreeks door Stripe verwerkt; wij zien of bewaren ze niet.\n- Gratis gids en nieuwsbrief: uw e-mailadres en taal.\n- Bij uw boekingsaanvraag slaan we de herkomst van het bezoek op (de campagne of website die u naar ons heeft gebracht).\n- In de haven, bij het ondertekenen van het contract: identiteitsbewijs en vaarbewijs van de schipper.\n\nGegevens die tijdens het surfen worden verzameld:\n- Technische en voorkeurscookies (taal, uw cookiekeuze).\n- Alleen als u de cookies accepteert: navigatiegegevens (IP-adres, browser, bezochte pagina's) en cookie-identificatoren van Google Analytics, Google Ads en Meta.\n\nWe verzamelen geen gegevens uit bijzondere categorieën (gezondheid, raciale afkomst, politieke opvattingen, enz.) noch gegevens van minderjarigen onder de 14 jaar.",
         },
         {
           title: "3. Doel van de verwerking en rechtsgrondslag",
-          body: "We verwerken uw gegevens voor de volgende doeleinden en rechtsgronden (AVG):\n\n- Beheer en bevestiging van bootverhuurreserveringen, Art. 6.1.b, uitvoering van een overeenkomst\n- Verzenden van herinneringen en communicatie met betrekking tot de reservering, Art. 6.1.b, uitvoering van een overeenkomst\n- Klantenservice en afhandeling van incidenten, Art. 6.1.b en 6.1.f, uitvoering van overeenkomst / gerechtvaardigd belang\n- Statistische analyse van webverkeer (Google Analytics), Art. 6.1.a, toestemming (cookiebanner)\n- Naleving van wettelijke en fiscale verplichtingen, Art. 6.1.c, wettelijke verplichting\n\nWe nemen geen geautomatiseerde beslissingen en maken geen profielen voor reclamedoeleinden op basis van uw reserveringsgegevens.",
+          body: "We verwerken uw gegevens voor de volgende doeleinden en rechtsgronden (AVG):\n\n- Beheer en bevestiging van bootverhuurreserveringen: Art. 6.1.b, uitvoering van een overeenkomst of precontractuele maatregelen op uw verzoek\n- Verzenden van herinneringen en communicatie met betrekking tot de reservering: Art. 6.1.b, uitvoering van een overeenkomst\n- Verkoop en levering van producten uit de webshop en van cadeaubonnen: Art. 6.1.b, uitvoering van een overeenkomst\n- Klantenservice en afhandeling van incidenten: Art. 6.1.b en 6.1.f, uitvoering van overeenkomst / gerechtvaardigd belang\n- Verzenden van de gratis gids en af en toe e-mails met nieuws en aanbiedingen: Art. 6.1.a, toestemming bij uw inschrijving (u kunt zich via elke e-mail afmelden)\n- Statistische analyse van webverkeer (Google Analytics): Art. 6.1.a, toestemming (cookiebanner)\n- Meten van de effectiviteit van onze advertenties (Google Ads en Meta): Art. 6.1.a, toestemming (cookiebanner). Alleen als u die heeft gegeven, delen we bij het versturen van een boekingsaanvraag uw met hash versleutelde (SHA-256) e-mailadres en telefoonnummer, uw IP-adres en uw browser met Meta, om te weten welke advertentie de aanvraag heeft opgeleverd\n- Naleving van wettelijke en fiscale verplichtingen: Art. 6.1.c, wettelijke verplichting\n\nWe nemen geen geautomatiseerde beslissingen met rechtsgevolgen voor u en stellen geen profielen op aan de hand van uw reserveringsgegevens.",
         },
         {
           title: "4. Bewaartermijnen",
-          body: "- Reserveringsgegevens: 5 jaar vanaf de datum van de dienstverlening (RD 1619/2012, Ley 58/2003 General Tributaria).\n- Communicatie via WhatsApp/e-mail: 1 jaar vanaf de laatste communicatie, tenzij er een lopende klacht is.\n- Webanalysegegevens (Google Analytics): volgens de bewaarinstellingen van Google Analytics (standaard 14 maanden).\n- Sessiecookies: worden verwijderd bij het sluiten van de browser.",
+          body: "- Reserveringsgegevens, bestellingen in de webshop en cadeaubonnen: 5 jaar vanaf de datum van de dienstverlening of de aankoop (RD 1619/2012, Ley 58/2003 General Tributaria).\n- Communicatie via WhatsApp/e-mail: 1 jaar vanaf de laatste communicatie, tenzij er een lopende klacht is.\n- Nieuwsbrief: totdat u zich afmeldt.\n- Webanalysegegevens (Google Analytics): 14 maanden.\n- Cookies: de termijn van elke cookie staat in het Cookiebeleid.",
         },
         {
           title: "5. Ontvangers en internationale doorgifte",
-          body: "Uw gegevens kunnen worden doorgegeven aan de volgende verwerkers:\n\n- SendGrid (Twilio Inc., VS): Service voor het verzenden van bevestigings- en herinneringsmails. Internationale doorgifte op basis van de door de Europese Commissie goedgekeurde Standaard Contractuele Clausules.\n- Google LLC (VS): Google Analytics en Google Tag Manager. Alleen als de gebruiker toestemming heeft gegeven via de cookiebanner. Doorgifte op basis van het EU-VS Data Privacy Framework.\n- Stripe Inc. (VS): Verwerking van kaartbetalingen, indien van toepassing. We slaan geen kaartgegevens op; Stripe handelt als onafhankelijke verwerker onder PCI-DSS.\n- WhatsApp (Meta Platforms Ireland Ltd.): Communicatiekanaal voor reserveringsbeheer. Door de gebruiker geïnitieerde communicatie via WhatsApp valt onder het privacybeleid van WhatsApp.\n\nWe verkopen of verstrekken uw gegevens niet aan derden voor commerciële doeleinden.",
+          body: "Om de dienst te verlenen, worden uw gegevens namens ons verwerkt door de volgende leveranciers (verwerkers):\n\n- Neon Inc. (VS): database waarin reserveringen, bestellingen en inschrijvingen worden opgeslagen. Doorgifte op basis van de Standaard Contractuele Clausules van de Europese Commissie.\n- Hetzner Online GmbH (Duitsland): hosting van de webserver, in datacenters in de EU.\n- SendGrid en Twilio (Twilio Inc., VS): verzending van bevestigingsmails, herinneringen en de nieuwsbrief, en interne WhatsApp-meldingen aan het team wanneer er een reservering binnenkomt. Doorgifte op basis van het EU-VS Data Privacy Framework en de Standaard Contractuele Clausules.\n- Stripe Payments Europe Ltd. (Ierland): kaartbetaling van bestellingen in de webshop en van cadeaubonnen. Stripe treedt op als verwerker voor de betaling en als zelfstandige verwerkingsverantwoordelijke voor zijn eigen wettelijke verplichtingen (fraudepreventie en financiële regelgeving).\n\nAlleen als u de cookies accepteert:\n- Google LLC (VS): Google Analytics, Google Tag Manager en Google Ads. Doorgifte op basis van het EU-VS Data Privacy Framework.\n- Meta Platforms Ireland Ltd. (Ierland): Meta-pixel en Conversions API, om onze advertenties op Facebook en Instagram te meten. Meta kan gegevens doorgeven aan de VS op basis van het EU-VS Data Privacy Framework.\n\nAndere ontvangers:\n- WhatsApp (Meta Platforms Ireland Ltd.): communicatiekanaal voor reserveringsbeheer, alleen als u ons via WhatsApp schrijft. Die communicatie valt ook onder het privacybeleid van WhatsApp.\n- Laura Cabanas (Carrer del Carme 5, Lloret de Mar): als u ervoor kiest een bestelling uit de webshop in haar zaak af te halen, geven we haar uw naam en het bestelnummer om die aan u te overhandigen.\n- Transportbedrijf: als u kiest voor thuisbezorging, uw naam, adres en telefoonnummer voor de levering.\n- Overheidsinstanties en rechtbanken, wanneer de wet dat vereist.\n\nWe verkopen of verstrekken uw gegevens niet aan derden voor commerciële doeleinden.",
         },
         {
           title: "6. Uw rechten (ARCO+)",
-          body: "Op grond van de artikelen 15 tot en met 22 van de AVG en de LOPD-GDD heeft u het recht op:\n\n- Inzage: bevestiging verkrijgen of we uw gegevens verwerken en, indien van toepassing, een kopie ontvangen.\n- Rectificatie: correctie van onjuiste gegevens verzoeken.\n- Wissing (recht op vergetelheid): verwijdering van uw gegevens vragen wanneer deze niet langer nodig zijn voor de doeleinden waarvoor ze zijn verzameld, behoudens wettelijke bewaarplicht.\n- Bezwaar: bezwaar maken tegen verwerking op basis van gerechtvaardigd belang.\n- Beperking van de verwerking: vragen om opschorting van de verwerking terwijl een klacht wordt behandeld.\n- Gegevensoverdraagbaarheid: uw gegevens ontvangen in een gestructureerd, machineleesbaar formaat.\n- Intrekking van toestemming: u kunt te allen tijde uw toestemming intrekken (bijv. voor analytische cookies) zonder dat dit afbreuk doet aan de rechtmatigheid van de eerdere verwerking.\n\nHoe u uw rechten uitoefent: stuur een e-mail naar info@costabravarentaboat.com met vermelding van het recht dat u wilt uitoefenen en voeg een kopie van uw identiteitsbewijs of ander identificatiedocument toe. We reageren binnen maximaal 1 maand.\n\nAls u van mening bent dat de verwerking niet in overeenstemming is met de AVG, heeft u het recht een klacht in te dienen bij de Spaanse Autoriteit Gegevensbescherming (AEPD): www.aepd.es",
+          body: "Op grond van de artikelen 15 tot en met 22 van de AVG en de LOPD-GDD heeft u het recht op:\n\n- Inzage: bevestiging verkrijgen of we uw gegevens verwerken en, indien van toepassing, een kopie ontvangen.\n- Rectificatie: correctie van onjuiste gegevens verzoeken.\n- Wissing (recht op vergetelheid): verwijdering van uw gegevens vragen wanneer deze niet langer nodig zijn voor de doeleinden waarvoor ze zijn verzameld, behoudens wettelijke bewaarplicht.\n- Bezwaar: bezwaar maken tegen verwerking op basis van gerechtvaardigd belang.\n- Beperking van de verwerking: vragen om opschorting van de verwerking terwijl een klacht wordt behandeld.\n- Gegevensoverdraagbaarheid: uw gegevens ontvangen in een gestructureerd, machineleesbaar formaat.\n- Intrekking van toestemming: u kunt te allen tijde uw toestemming intrekken zonder dat dit afbreuk doet aan de rechtmatigheid van de eerdere verwerking. Die voor cookies via «Cookie-instellingen» onderaan de pagina; die voor de nieuwsbrief via de afmeldlink in elke e-mail.\n\nHoe u uw rechten uitoefent: stuur een e-mail naar info@costabravarentaboat.com met vermelding van het recht dat u wilt uitoefenen, vanaf het e-mailadres waarmee u de reservering of inschrijving heeft gedaan. We vragen alleen om een identiteitsbewijs als we redelijke twijfel hebben over uw identiteit (art. 12.6 AVG). We reageren binnen maximaal 1 maand.\n\nAls u van mening bent dat de verwerking niet in overeenstemming is met de AVG, heeft u het recht een klacht in te dienen bij de Spaanse Autoriteit Gegevensbescherming (AEPD): www.aepd.es",
         },
         {
           title: "7. Beveiligingsmaatregelen",
@@ -3049,31 +3051,39 @@ export const nl: Translations = {
     },
     cookies: {
       heroTitle: "Cookiebeleid",
-      lastUpdated: "Laatste update: februari 2026",
+      lastUpdated: "Laatste update: november 2026",
       sections: [
         {
-          title: "Inleiding",
-          body: "In overeenstemming met artikel 22.2 van Wet 34/2002 van 11 juli betreffende diensten van de informatiemaatschappij en elektronische handel, informeert deze website u in deze sectie over het beleid inzake het verzamelen en verwerken van cookies.",
+          title: "1. Wat zijn cookies",
+          body: "Een cookie is een klein bestand dat een website in uw browser opslaat om informatie over uw bezoek te onthouden. Dit beleid legt, conform artikel 22.2 van de Ley 34/2002 (LSSI-CE), uit welke cookies en vergelijkbare technologieën (zoals de lokale opslag van de browser) costabravarentaboat.com gebruikt, waarvoor en hoe lang.",
         },
         {
-          title: "Wat zijn cookies?",
-          body: "Een cookie is een bestand dat op uw computer wordt gedownload wanneer u bepaalde webpagina's bezoekt. Cookies stellen een website onder andere in staat om informatie over de surfgewoonten van een gebruiker of diens apparaat op te slaan en op te halen en, afhankelijk van de informatie die ze bevatten en de manier waarop u uw apparaat gebruikt, kunnen ze worden gebruikt om de gebruiker te herkennen.",
+          title: "2. Technische en voorkeurscookies (altijd actief)",
+          body: "Deze zijn nodig om de website te laten werken of om te onthouden wat u heeft gekozen. Ze vereisen geen toestemming.\n\n- cookieConsent (eigen, cookie en lokale opslag): slaat uw keuze in de cookiebanner op. Duur: 1 jaar.\n- costa-brava-language (eigen, cookie en lokale opslag): gekozen taal. Duur: 1 jaar.\n- theme (eigen, lokale opslag): lichte of donkere modus. Blijft bewaard totdat u de browsergegevens wist.\n- cbrb_lastVisit (eigen, lokale opslag): datum van uw laatste bezoek, om u bij terugkomst de welkomstmelding te tonen. Blijft bewaard totdat u de browsergegevens wist.\n- Sessiecookies van het boekingsproces en van het winkelmandje van de webshop (eigen): worden verwijderd bij het sluiten van de browser.\n- Cookies van Stripe (derden, alleen op de betaalpagina): fraudepreventie bij de betaling.",
         },
         {
-          title: "Welke soorten cookies gebruikt deze website?",
-          body: "Deze website gebruikt de volgende soorten cookies:\n\nAnalytische cookies: Dit zijn cookies die, verwerkt door ons of door derden, ons in staat stellen het aantal gebruikers te kwantificeren en zo een statistische meting en analyse uit te voeren van het gebruik dat gebruikers maken van de aangeboden dienst.\n\nTechnische cookies: Stellen de gebruiker in staat om door het beveiligde gebied te navigeren en de verschillende functies ervan te gebruiken, zoals het uitvoeren van het reserveringsproces voor een boot.\n\nPersonalisatiecookies: Stellen de gebruiker in staat om toegang te krijgen tot de dienst met bepaalde vooraf gedefinieerde algemene kenmerken op basis van een reeks criteria zoals de taal of het type browser.\n\nReclamecookies: Verwerkt door deze website of door derden, stellen ze ons in staat om het aanbod van advertentieruimte op de website zo efficiënt mogelijk te beheren.\n\nCookies van derden: We gebruiken de diensten van Google Analytics voor onze statistieken. Sommige cookies zijn essentieel voor het functioneren van de site. Onze site bevat andere functionaliteiten van derden (delen op sociale media zoals Facebook, Instagram of TikTok).",
+          title: "3. Eigen sessieopslag om campagnes te meten",
+          body: "Gegevens die alleen in uw browser worden opgeslagen zolang het bezoek duurt en worden verwijderd bij het sluiten ervan. Ze worden niet met derden gedeeld.\n\n- cb_attribution en cbrab_utm (eigen, sessieopslag): herkomst van het bezoek (utm-parameters van de campagne die u naar ons heeft gebracht). Als u een boekingsaanvraag verstuurt, wordt dit daarbij opgeslagen om te weten welke campagne werkt.\n- ab_session_id (eigen, sessieopslag): willekeurige identificator om in A/B-tests consequent dezelfde versie van de pagina te tonen.",
         },
         {
-          title: "Cookies uitschakelen",
-          body: "U kunt de op uw apparaat geïnstalleerde cookies toestaan, blokkeren of verwijderen door de opties van de op uw computer geïnstalleerde browser te configureren. In de meeste webbrowsers kunt u geïnstalleerde cookies toestaan, blokkeren of verwijderen.\n\nU kunt toegang krijgen tot de instellingen van de meest gebruikte webbrowsers om cookies te accepteren, installeren of uitschakelen: Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple), Opera.",
+          title: "4. Analytische cookies (alleen met uw toestemming)",
+          body: "Hiermee kunnen we bezoeken tellen en zien welke pagina's het beste werken. Ze worden alleen geplaatst als u op «Alles accepteren» klikt; tot die tijd wordt er geen enkel script van Google geladen.\n\n- _ga (Google Analytics, Google LLC): onderscheidt unieke gebruikers. Duur: 2 jaar.\n- _ga_<ID> (Google Analytics, Google LLC): houdt de sessiestatus bij. Duur: 2 jaar.",
         },
         {
-          title: "Waarschuwing over het verwijderen van cookies",
-          body: "U kunt alle cookies van deze site verwijderen en blokkeren, maar een deel van de site zal dan niet functioneren of de kwaliteit van de website kan worden aangetast.",
+          title: "5. Advertentiecookies (alleen met uw toestemming)",
+          body: "Hiermee meten we welke advertenties van Google, Facebook en Instagram reserveringen opleveren. Ze worden alleen geplaatst als u op «Alles accepteren» klikt.\n\n- _gcl_au en _gcl_aw (Google Ads, Google LLC): koppelen bezoeken en reserveringen aan een Google-advertentie. Duur: 90 dagen.\n- _fbp (Meta Platforms Ireland Ltd.): identificeert de browser om advertenties van Meta te meten. Duur: 90 dagen.\n- _fbc (Meta Platforms Ireland Ltd.): slaat de klik op een advertentie van Meta op. Duur: 90 dagen.\n- _msclkid (Microsoft Advertising, eigen): slaat de klik op een Bing-advertentie op. Duur: 90 dagen.\n\nMet uw toestemming gebruiken we ook de Conversions API van Meta, uitgelegd in het Privacybeleid.",
         },
         {
-          title: "Contact",
-          body: "Als u vragen heeft over ons cookiebeleid, kunt u contact met ons opnemen via onze contactkanalen die beschikbaar zijn in het contactgedeelte van de website.",
+          title: "6. Hoe u uw toestemming geeft, weigert of intrekt",
+          body: "Bij uw eerste bezoek ziet u een banner met twee even zwaarwegende opties: «Alles accepteren» en «Alleen essentiële». Kiest u «Alleen essentiële», dan worden alleen de technische cookies uit sectie 2 en de sessieopslag uit sectie 3 gebruikt.\n\nU kunt op elk moment van gedachten veranderen via de link «Cookie-instellingen» onderaan de pagina: de banner verschijnt opnieuw en als u uw toestemming intrekt, verwijderen we de analytische en advertentiecookies en laden we de pagina opnieuw.\n\nU kunt cookies ook blokkeren of verwijderen via de instellingen van uw browser (Chrome, Firefox, Safari of Edge). Als u de technische cookies blokkeert, kan een deel van de website niet meer werken.",
+        },
+        {
+          title: "7. Internationale doorgifte",
+          body: "Google en Meta kunnen gegevens in de Verenigde Staten verwerken. Die doorgifte is gebaseerd op het EU-VS Data Privacy Framework. Meer informatie in het Privacybeleid.",
+        },
+        {
+          title: "8. Contact",
+          body: "Heeft u vragen over dit beleid, schrijf ons dan op info@costabravarentaboat.com.",
         },
       ],
     },
@@ -3085,11 +3095,11 @@ export const nl: Translations = {
 
     terms: {
       heroTitle: "Algemene Voorwaarden",
-      lastUpdated: "Laatste update: juli 2026",
+      lastUpdated: "Laatste update: november 2026",
       sections: [
         {
           title: "1. Identificatie van de eigenaar",
-          body: "Statutaire naam: DAMAR COSTA BRAVA S.L. (handelend onder de merknaam Costa Brava Rent a Boat)\nFiscaal nummer (CIF): B22566327\nStatutaire zetel: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spanje\nContacttelefoon: +34 611 500 372\nE-mail: info@costabravarentaboat.com\nActiviteit: verhuur van pleziervaartuigen (met en zonder vaarbewijs) in de haven van Blanes, Costa Brava.",
+          body: "Statutaire naam: DAMAR COSTA BRAVA S.L. (handelend onder de merknaam Costa Brava Rent a Boat)\nFiscaal nummer (CIF): B22566327\nStatutaire zetel: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spanje\nContacttelefoon: +34 611 500 372\nE-mail: info@costabravarentaboat.com\nActiviteit: verhuur van pleziervaartuigen (met vaarbewijs of met schipper) en van waterscooters in de haven van Blanes, Costa Brava.",
         },
         {
           title: "2. Doel",
@@ -3097,19 +3107,19 @@ export const nl: Translations = {
         },
         {
           title: "3. Reserveringsproces",
-          body: "De website verzamelt boekingsaanvragen. De klant vult een formulier in met datum, boot, duur en contactgegevens. De aanbieder bevestigt de beschikbaarheid handmatig en stuurt een bevestiging via WhatsApp of e-mail.\n\nBij bootverhuur wordt de betaling ter plaatse in de haven van Blanes afgehandeld op het moment van inschepen: de website incasseert het huurbedrag niet automatisch. Producten uit de webshop en cadeaubonnen worden wel online met kaart betaald op het moment van aankoop, volgens de secties 13 tot en met 17.\n\nDe boeking is pas definitief na uitdrukkelijke bevestiging door de aanbieder.",
+          body: "De website verzamelt boekingsaanvragen. De klant vult een formulier in met datum, boot, duur en contactgegevens. De aanbieder bevestigt de beschikbaarheid handmatig en stuurt een bevestiging via WhatsApp of e-mail.\n\nBij bootverhuur wordt de betaling ter plaatse in de haven van Blanes afgehandeld op het moment van inschepen: de website incasseert het huurbedrag niet automatisch. Producten uit de webshop en cadeaubonnen worden wel online met kaart betaald op het moment van aankoop, volgens de secties 13 tot en met 17.\n\nDe boeking is pas definitief na uitdrukkelijke bevestiging door de aanbieder.\n\nHerroepingsrecht: de huur van een boot of waterscooter voor een specifieke datum is een vrijetijdsdienst en valt, conform artikel 103.l van het Spaanse Koninklijk Wetsbesluit 1/2007, niet onder het herroepingsrecht van 14 dagen. Wijzigingen en annuleringen vallen onder sectie 7.",
         },
         {
           title: "4. Vereisten voor de huurder",
-          body: "- De schipper moet 18 jaar of ouder zijn en een geldig identiteitsbewijs of paspoort tonen.\n- Voor boten waarvoor een vergunning vereist is, moet de schipper het originele vaarbewijs tonen (Licencia de Navegación, PER, PNB, Kapitein Jacht of Europees equivalent).\n- Voor boten zonder vergunning is geen vaarbewijs vereist, maar de schipper krijgt een training van 15 minuten voordat hij uitvaart.\n- Minderjarigen moeten vergezeld zijn van een verantwoordelijke volwassene en tijdens de vaart verplicht een reddingsvest dragen.",
+          body: "- De schipper moet 18 jaar of ouder zijn en een geldig identiteitsbewijs of paspoort tonen.\n- De schipper moet het originele vaarbewijs tonen (Licencia de Navegación, PER, PNB, Kapitein Jacht of Europees equivalent). Sinds 1 oktober 2026 (RD 1188/2025) worden er geen boten zonder vaarbewijs meer verhuurd; bij de excursie met professionele schipper heeft de klant geen vaarbewijs nodig.\n- Minderjarigen moeten vergezeld zijn van een verantwoordelijke volwassene en tijdens de vaart verplicht een reddingsvest dragen.",
         },
         {
           title: "5. Borg en betalingsvoorwaarden",
-          body: "Voor vertrek wordt een waarborgsom betaald (200 € voor boten zonder vaarbewijs en 500 € voor boten die er een vereisen), die bij terugkomst volledig wordt terugbetaald als de boot in dezelfde staat wordt ingeleverd. Het geldende bedrag is altijd het bedrag dat bij de boeking wordt vermeld en in het contract dat in de haven wordt ondertekend.\n\nDe klant kan vrijwillig de Verlaagde waarborgsom afsluiten, die het ingehouden bedrag verlaagt tegen een vaste prijs. Het is een eigen commerciële garantie en geen verzekeringsovereenkomst; de prijs ervan wordt niet terugbetaald.\n\nBij schade, verlies van materiaal of overtreding van het toegestane vaargebied kan de aanbieder de waarborgsom geheel of gedeeltelijk inhouden om de kosten te dekken.",
+          body: "Voor vertrek wordt een waarborgsom betaald (500 € voor boten met vaarbewijs), die bij terugkomst volledig wordt terugbetaald als de boot in dezelfde staat wordt ingeleverd. Het geldende bedrag is altijd het bedrag dat bij de boeking wordt vermeld en in het contract dat in de haven wordt ondertekend.\n\nDe klant kan vrijwillig de Verlaagde waarborgsom afsluiten, die het ingehouden bedrag verlaagt tegen een vaste prijs. Het is een eigen commerciële garantie en geen verzekeringsovereenkomst; de prijs ervan wordt niet terugbetaald.\n\nBij schade, verlies van materiaal of overtreding van het toegestane vaargebied kan de aanbieder de waarborgsom geheel of gedeeltelijk inhouden om de kosten te dekken.",
         },
         {
           title: "6. Vaargebied en duur",
-          body: "Toegestane gebieden: noordwaarts tot het strand van Fenals (zonder vaarbewijs) of Sant Feliu de Guíxols (met vaarbewijs); zuidwaarts tot de monding van de rivier Tordera, aan het einde van het strand van Blanes (zonder vaarbewijs), of onbeperkt (met vaarbewijs). Maximaal 2 zeemijl uit de kust voor boten zonder vaarbewijs.\n\nDe maximumsnelheid in havens en in de betonde vaargeulen bij de stranden bedraagt 3 knopen. De zwemzone moet worden gerespecteerd, er moet buiten de gele boeien worden geankerd, op meer dan 200 m van stranden en kliffen worden gevaren en 100 m afstand worden gehouden tot duikersboeien.\n\nDe boten moeten vóór het einde van het geboekte tijdslot terug zijn in de haven van Blanes. Vindt de check-out zonder bericht later plaats dan afgesproken, dan wordt 150 € per 30 minuten vertraging of het evenredige deel daarvan in rekening gebracht.",
+          body: "Toegestaan gebied: noordwaarts tot de haven van Sant Feliu de Guíxols en in elk geval binnen één zeemijl uit de kust en binnen de grenzen van het vaarbewijs van de schipper. Wie buiten dat gebied vaart, is voor die tocht niet door de verzekering gedekt.\n\nDe maximumsnelheid in havens en in de betonde vaargeulen bij de stranden bedraagt 3 knopen. De zwemzone moet worden gerespecteerd, er moet buiten de gele boeien worden geankerd, op meer dan 200 m van stranden en kliffen worden gevaren en 100 m afstand worden gehouden tot duikersboeien.\n\nDe boten moeten vóór het einde van het geboekte tijdslot terug zijn in de haven van Blanes. Vindt de check-out zonder bericht later plaats dan afgesproken, dan wordt 150 € per 30 minuten vertraging of het evenredige deel daarvan in rekening gebracht.",
         },
         {
           title: "7. Annuleringsbeleid",
@@ -3129,7 +3139,7 @@ export const nl: Translations = {
         },
         {
           title: "11. Toepasselijk recht en jurisdictie",
-          body: "Deze voorwaarden worden beheerst door het Spaanse recht. Voor elk geschil zijn de rechtbanken van Blanes bevoegd, onverminderd het forum dat de consument wettelijk toekomt en waarvan hij in geen geval afstand doet.\n\nDe consument kan zich voor buitengerechtelijke beslechting wenden tot het platform voor onlinegeschillenbeslechting van de Europese Commissie (https://ec.europa.eu/consumers/odr). Officiële klachtenformulieren staan te zijner beschikking.",
+          body: "Deze voorwaarden worden beheerst door het Spaanse recht. Voor elk geschil zijn de rechtbanken van Blanes bevoegd, onverminderd het forum dat de consument wettelijk toekomt en waarvan hij in geen geval afstand doet.\n\nOfficiële klachtenformulieren staan ter beschikking van de consument, die zich ook kan wenden tot de openbare consumentendiensten (Agència Catalana del Consum).",
         },
         {
           title: "12. Wijzigingen",
@@ -3153,7 +3163,7 @@ export const nl: Translations = {
         },
         {
           title: "17. Cadeaubonnen",
-          body: "Cadeaubonnen worden online met bankkaart gekocht en per e-mail geleverd met een unieke code. Ze zijn 12 maanden geldig vanaf uitgifte, inwisselbaar voor elke verhuurdienst onder voorbehoud van beschikbaarheid, en niet te splitsen over meerdere boekingen of in te wisselen voor geld.\n\nOmdat het gaat om digitale inhoud die onmiddellijk wordt geleverd, is het herroepingsrecht niet van toepassing zodra de code is verzonden, conform artikel 103.m van het Spaanse Koninklijk Wetsbesluit 1/2007. Wordt de bon niet binnen de geldigheidstermijn gebruikt, dan wordt het bedrag niet terugbetaald.",
+          body: "Cadeaubonnen worden online met bankkaart gekocht en per e-mail geleverd met een unieke code. Ze zijn 12 maanden geldig vanaf uitgifte, inwisselbaar voor elke verhuurdienst onder voorbehoud van beschikbaarheid, en niet te splitsen over meerdere boekingen of in te wisselen voor geld.\n\nU kunt de aankoop van een cadeaubon binnen 14 kalenderdagen na aankoop herroepen, zonder opgave van redenen, zolang de code niet is ingewisseld: schrijf naar info@costabravarentaboat.com of via WhatsApp naar +34 611 500 372, en we betalen het bedrag binnen maximaal 14 dagen terug via hetzelfde betaalmiddel. Wordt de bon niet binnen de geldigheidstermijn gebruikt, dan wordt het bedrag niet terugbetaald.",
         },
         {
           title: "18. Waterscooters en andere wateractiviteiten",
@@ -3163,17 +3173,18 @@ export const nl: Translations = {
     },
     legalNotice: {
       heroTitle: "Juridische Mededeling",
-      lastUpdated: "Laatst bijgewerkt: juli 2026",
+      lastUpdated: "Laatst bijgewerkt: november 2026",
       identificationTitle: "1. Identificatiegegevens van de aanbieder",
       labels: {
         legalName: "Statutaire naam",
         taxId: "Fiscaal nummer (CIF)",
+        registry: "Handelsregister",
         address: "Statutaire zetel",
         phone: "Telefoon",
         email: "E-mail",
         activity: "Activiteit",
       },
-      activityValue: "Verhuur van pleziervaartuigen met en zonder vaarbewijs in de haven van Blanes (Girona), en verkoop van producten uit de eigen collectie via de webshop.",
+      activityValue: "Verhuur van pleziervaartuigen (met vaarbewijs of met schipper) en van waterscooters in de haven van Blanes (Girona), en verkoop van producten uit de eigen collectie en cadeaubonnen via de webshop.",
       sections: [
         {
           title: "2. Voorwerp en toepassingsgebied",
@@ -3189,7 +3200,7 @@ export const nl: Translations = {
         },
         {
           title: "5. Toepasselijk recht en geschillenbeslechting",
-          body: "Deze juridische mededeling wordt beheerst door het Spaanse recht. Voor elk geschil zijn de rechtbanken van Blanes bevoegd, onverminderd het forum dat de consument wettelijk toekomt.\n\nDe consument kan zich eveneens wenden tot het platform voor onlinegeschillenbeslechting van de Europese Commissie (https://ec.europa.eu/consumers/odr). Officiële klachtenformulieren zijn beschikbaar voor de klant.",
+          body: "Deze juridische mededeling wordt beheerst door het Spaanse recht. Voor elk geschil zijn de rechtbanken van Blanes bevoegd, onverminderd het forum dat de consument wettelijk toekomt.\n\nOfficiële klachtenformulieren zijn beschikbaar voor de klant, die zich ook kan wenden tot de openbare consumentendiensten (Agència Catalana del Consum).",
         },
       ],
     },
@@ -3245,7 +3256,7 @@ export const nl: Translations = {
   cookieBanner: {
     ariaLabel: "Cookiemelding",
     message:
-      "We gebruiken eigen cookies en cookies van derden (Google Analytics) om je ervaring te verbeteren en het webverkeer te analyseren. Je kunt alle cookies accepteren of alleen de essentiële.",
+      "We gebruiken eigen cookies en, alleen als je ze accepteert, cookies van derden: Google Analytics (statistiek), Google Ads en Meta (advertentiemeting). Je kunt ze allemaal accepteren of alleen de essentiële houden, en je keuze altijd wijzigen via ‘Cookie-instellingen’ onderaan de pagina.",
     cookiesPolicy: "Cookiebeleid",
     privacyPolicy: "Privacybeleid",
     essentialOnly: "Alleen essentiële",

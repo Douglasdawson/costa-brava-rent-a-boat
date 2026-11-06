@@ -289,6 +289,8 @@ export const de: Translations = {
     faqLabel: "Häufige Fragen",
     customerReviews: "Kundenbewertungen",
     cookiesPolicy: "Cookie-Richtlinie",
+    cookieSettings: "Cookie-Einstellungen",
+    newsletterLegal: "Mit der Anmeldung erklärst du dich einverstanden, den Guide und gelegentliche E-Mails mit Neuigkeiten und Angeboten von DAMAR COSTA BRAVA S.L. zu erhalten. Du kannst dich in jeder E-Mail abmelden. Mehr dazu in unserer {privacyPolicy}.",
     legalNotice: "Impressum",
     rentalConditions: "Mietbedingungen",
     destinations: "Reiseziele",
@@ -3014,7 +3016,7 @@ export const de: Translations = {
       "Dieser Text ist in mehreren Sprachen verfügbar. Im Falle von Unstimmigkeiten oder Mehrdeutigkeiten in der Übersetzung ist die spanische Version (Castellano) in jeder Hinsicht rechtsverbindlich.",
     privacy: {
       heroTitle: "Datenschutzerklärung",
-      lastUpdated: "Letzte Aktualisierung: Februar 2026",
+      lastUpdated: "Letzte Aktualisierung: November 2026",
       sections: [
         {
           title: "1. Verantwortlicher für die Datenverarbeitung",
@@ -3022,23 +3024,23 @@ export const de: Translations = {
         },
         {
           title: "2. Personenbezogene Daten, die wir erheben",
-          body: "Vom Nutzer bei der Buchung angegebene Daten:\n- Vor- und Nachname\n- Telefonnummer\n- E-Mail-Adresse\n- Datum und Uhrzeit der Buchung, ausgewähltes Boot und Anzahl der Personen\n\nAutomatisch erhobene Daten:\n- Navigationsdaten (IP-Adresse, Browsertyp, besuchte Seiten) über Google Analytics\n- Technische Cookies und Präferenz-Cookies (ausgewählte Sprache)\n\nWir erheben keine Daten besonderer Kategorien (Gesundheit, ethnische Herkunft, politische Meinungen usw.) und keine Daten von Minderjährigen unter 14 Jahren.",
+          body: "Daten, die Sie uns mitteilen:\n- Buchung oder Anfrage: Vor- und Nachname, Telefonnummer, E-Mail-Adresse, Sprache, Datum und Uhrzeit, Boot, Anzahl der Personen und Extras.\n- Shop und Geschenkgutscheine: Name, E-Mail-Adresse, Telefonnummer und, wenn Sie Lieferung nach Hause wählen, die Lieferadresse. Die Kartendaten verarbeitet direkt Stripe; wir sehen und speichern sie nicht.\n- Kostenloser Guide und Newsletter: Ihre E-Mail-Adresse und Sprache.\n- Zusammen mit Ihrer Buchungsanfrage speichern wir die Herkunft des Besuchs (die Kampagne oder Website, über die Sie zu uns gekommen sind).\n- Im Hafen, zur Unterzeichnung des Vertrags: Ausweisdokument und Bootsführerschein des Bootsführers.\n\nBeim Surfen erhobene Daten:\n- Technische Cookies und Präferenz-Cookies (Sprache, Ihre Cookie-Auswahl).\n- Nur wenn Sie Cookies akzeptieren: Navigationsdaten (IP-Adresse, Browser, besuchte Seiten) und Cookie-Kennungen von Google Analytics, Google Ads und Meta.\n\nWir erheben keine Daten besonderer Kategorien (Gesundheit, ethnische Herkunft, politische Meinungen usw.) und keine Daten von Minderjährigen unter 14 Jahren.",
         },
         {
           title: "3. Zweck der Verarbeitung und Rechtsgrundlage",
-          body: "Wir verarbeiten deine Daten zu folgenden Zwecken und auf folgender Rechtsgrundlage (DSGVO):\n\n- Verwaltung und Bestätigung von Bootsbuchungen: Art. 6 Abs. 1 lit. b, Vertragserfüllung\n- Versand von Erinnerungen und Mitteilungen zur Buchung: Art. 6 Abs. 1 lit. b, Vertragserfüllung\n- Kundenbetreuung und Bearbeitung von Vorfällen: Art. 6 Abs. 1 lit. b und lit. f, Vertragserfüllung / berechtigtes Interesse\n- Statistische Analyse des Web-Traffics (Google Analytics): Art. 6 Abs. 1 lit. a, Einwilligung (Cookie-Banner)\n- Erfüllung gesetzlicher und steuerlicher Pflichten: Art. 6 Abs. 1 lit. c, rechtliche Verpflichtung\n\nWir treffen keine automatisierten Einzelentscheidungen und erstellen keine Profile für Werbezwecke auf Grundlage deiner Buchungsdaten.",
+          body: "Wir verarbeiten Ihre Daten zu folgenden Zwecken und auf folgender Rechtsgrundlage (DSGVO):\n\n- Verwaltung und Bestätigung von Bootsbuchungen: Art. 6 Abs. 1 lit. b, Vertragserfüllung oder vorvertragliche Maßnahmen auf Ihre Anfrage\n- Versand von Erinnerungen und Mitteilungen zur Buchung: Art. 6 Abs. 1 lit. b, Vertragserfüllung\n- Verkauf und Lieferung von Shop-Produkten und Geschenkgutscheinen: Art. 6 Abs. 1 lit. b, Vertragserfüllung\n- Kundenbetreuung und Bearbeitung von Vorfällen: Art. 6 Abs. 1 lit. b und lit. f, Vertragserfüllung / berechtigtes Interesse\n- Versand des kostenlosen Guides und gelegentlicher E-Mails mit Neuigkeiten und Angeboten: Art. 6 Abs. 1 lit. a, Einwilligung bei der Anmeldung (Abmeldung über jede E-Mail möglich)\n- Statistische Analyse des Web-Traffics (Google Analytics): Art. 6 Abs. 1 lit. a, Einwilligung (Cookie-Banner)\n- Messung der Wirksamkeit unserer Anzeigen (Google Ads und Meta): Art. 6 Abs. 1 lit. a, Einwilligung (Cookie-Banner). Nur wenn Sie eingewilligt haben, übermitteln wir beim Absenden einer Buchungsanfrage Ihre gehashte (SHA-256) E-Mail-Adresse und Telefonnummer, Ihre IP-Adresse und Ihren Browser an Meta, um zu erfahren, welche Anzeige sie ausgelöst hat\n- Erfüllung gesetzlicher und steuerlicher Pflichten: Art. 6 Abs. 1 lit. c, rechtliche Verpflichtung\n\nWir treffen keine automatisierten Entscheidungen mit rechtlicher Wirkung Ihnen gegenüber und erstellen keine Profile auf Grundlage Ihrer Buchungsdaten.",
         },
         {
           title: "4. Speicherfristen",
-          body: "- Buchungsdaten: 5 Jahre ab Datum der Leistung (RD 1619/2012, Ley 58/2003 General Tributaria).\n- WhatsApp-/E-Mail-Kommunikation: 1 Jahr ab letzter Kommunikation, sofern keine laufende Reklamation vorliegt.\n- Web-Analysedaten (Google Analytics): gemäß den Aufbewahrungseinstellungen von Google Analytics (standardmäßig 14 Monate).\n- Sitzungs-Cookies: werden beim Schließen des Browsers gelöscht.",
+          body: "- Buchungsdaten, Shop-Bestellungen und Geschenkgutscheine: 5 Jahre ab Datum der Leistung oder des Kaufs (RD 1619/2012, Ley 58/2003 General Tributaria).\n- WhatsApp-/E-Mail-Kommunikation: 1 Jahr ab letzter Kommunikation, sofern keine laufende Reklamation vorliegt.\n- Newsletter: bis zu Ihrer Abmeldung.\n- Web-Analysedaten (Google Analytics): 14 Monate.\n- Cookies: Die Speicherdauer jedes Cookies ist in der Cookie-Richtlinie angegeben.",
         },
         {
           title: "5. Empfänger und internationale Datenübermittlungen",
-          body: "Ihre Daten können an folgende Auftragsverarbeiter weitergegeben werden:\n\n- SendGrid (Twilio Inc., USA): Versand von Bestätigungs- und Erinnerungs-E-Mails. Internationale Übermittlung auf Grundlage der von der Europäischen Kommission genehmigten Standardvertragsklauseln.\n- Google LLC (USA): Google Analytics und Google Tag Manager. Nur wenn der Nutzer über das Cookie-Banner seine Einwilligung erteilt hat. Übermittlung auf Grundlage des EU-US Data Privacy Framework.\n- Stripe Inc. (USA): Kreditkartenabwicklung, falls zutreffend. Wir speichern keine Kartendaten; Stripe handelt als unabhängiger Auftragsverarbeiter gemäß PCI-DSS.\n- WhatsApp (Meta Platforms Ireland Ltd.): Kommunikationskanal für die Buchungsverwaltung. Vom Nutzer über WhatsApp initiierte Kommunikation unterliegt der Datenschutzerklärung von WhatsApp.\n\nWir verkaufen Ihre Daten nicht und geben sie nicht zu kommerziellen Zwecken an Dritte weiter.",
+          body: "Zur Erbringung der Leistung verarbeiten folgende Anbieter Ihre Daten in unserem Auftrag (Auftragsverarbeiter):\n\n- Neon Inc. (USA): Datenbank, in der Buchungen, Bestellungen und Anmeldungen gespeichert werden. Übermittlung auf Grundlage der Standardvertragsklauseln der Europäischen Kommission.\n- Hetzner Online GmbH (Deutschland): Hosting des Webservers in Rechenzentren in der EU.\n- SendGrid und Twilio (Twilio Inc., USA): Versand von Bestätigungs-, Erinnerungs- und Newsletter-E-Mails sowie interne WhatsApp-Benachrichtigungen an das Team bei Eingang einer Buchung. Übermittlung auf Grundlage des EU-US Data Privacy Framework und der Standardvertragsklauseln.\n- Stripe Payments Europe Ltd. (Irland): Kartenzahlung von Shop-Bestellungen und Geschenkgutscheinen. Stripe handelt als Auftragsverarbeiter für die Zahlungsabwicklung und als eigenständiger Verantwortlicher für seine eigenen gesetzlichen Pflichten (Betrugsprävention und Finanzvorschriften).\n\nNur wenn Sie Cookies akzeptieren:\n- Google LLC (USA): Google Analytics, Google Tag Manager und Google Ads. Übermittlung auf Grundlage des EU-US Data Privacy Framework.\n- Meta Platforms Ireland Ltd. (Irland): Meta-Pixel und Conversions API, um unsere Anzeigen auf Facebook und Instagram zu messen. Meta kann Daten auf Grundlage des EU-US Data Privacy Framework in die USA übermitteln.\n\nWeitere Empfänger:\n- WhatsApp (Meta Platforms Ireland Ltd.): Kommunikationskanal für die Buchungsverwaltung, nur wenn Sie uns per WhatsApp schreiben. Diese Kommunikation unterliegt auch der Datenschutzerklärung von WhatsApp.\n- Laura Cabanas (Carrer del Carme 5, Lloret de Mar): Wenn Sie eine Shop-Bestellung in ihrem Geschäft abholen, teilen wir ihr Ihren Namen und die Bestellnummer mit, damit sie Ihnen die Bestellung aushändigen kann.\n- Versandunternehmen: Wenn Sie Lieferung nach Hause wählen, Ihr Name, Ihre Adresse und Telefonnummer für die Zustellung.\n- Behörden und Gerichte, sofern gesetzlich vorgeschrieben.\n\nWir verkaufen Ihre Daten nicht und geben sie nicht zu kommerziellen Zwecken an Dritte weiter.",
         },
         {
           title: "6. Ihre Rechte (Betroffenenrechte)",
-          body: "Gemäß Art. 15 bis 22 DSGVO und LOPD-GDD haben Sie das Recht auf:\n\n- Auskunft: Bestätigung darüber zu erhalten, ob wir Ihre Daten verarbeiten, und ggf. eine Kopie zu erhalten.\n- Berichtigung: Korrektur unrichtiger Daten zu verlangen.\n- Löschung (Recht auf Vergessenwerden): Löschung Ihrer Daten zu verlangen, wenn sie für die Zwecke, für die sie erhoben wurden, nicht mehr erforderlich sind, sofern keine gesetzliche Aufbewahrungspflicht besteht.\n- Widerspruch: der Verarbeitung auf Grundlage eines berechtigten Interesses zu widersprechen.\n- Einschränkung der Verarbeitung: die Aussetzung der Verarbeitung zu verlangen, während eine Beschwerde geprüft wird.\n- Datenübertragbarkeit: Ihre Daten in einem strukturierten, maschinenlesbaren Format zu erhalten.\n- Widerruf der Einwilligung: Sie können Ihre Einwilligung (z. B. für Analyse-Cookies) jederzeit widerrufen, ohne dass dies die Rechtmäßigkeit der vorherigen Verarbeitung berührt.\n\nSo machen Sie Ihre Rechte geltend: Senden Sie eine E-Mail an info@costabravarentaboat.com, geben Sie an, welches Recht Sie ausüben möchten, und fügen Sie eine Kopie Ihres Personalausweises oder eines anderen Ausweisdokuments bei. Wir antworten innerhalb von maximal 1 Monat.\n\nWenn Sie der Ansicht sind, dass die Verarbeitung nicht der DSGVO entspricht, haben Sie das Recht, bei der spanischen Datenschutzbehörde (AEPD) Beschwerde einzulegen: www.aepd.es",
+          body: "Gemäß Art. 15 bis 22 DSGVO und LOPD-GDD haben Sie das Recht auf:\n\n- Auskunft: Bestätigung darüber zu erhalten, ob wir Ihre Daten verarbeiten, und ggf. eine Kopie zu erhalten.\n- Berichtigung: Korrektur unrichtiger Daten zu verlangen.\n- Löschung (Recht auf Vergessenwerden): Löschung Ihrer Daten zu verlangen, wenn sie für die Zwecke, für die sie erhoben wurden, nicht mehr erforderlich sind, sofern keine gesetzliche Aufbewahrungspflicht besteht.\n- Widerspruch: der Verarbeitung auf Grundlage eines berechtigten Interesses zu widersprechen.\n- Einschränkung der Verarbeitung: die Aussetzung der Verarbeitung zu verlangen, während eine Beschwerde geprüft wird.\n- Datenübertragbarkeit: Ihre Daten in einem strukturierten, maschinenlesbaren Format zu erhalten.\n- Widerruf der Einwilligung: Sie können Ihre Einwilligung jederzeit widerrufen, ohne dass dies die Rechtmäßigkeit der vorherigen Verarbeitung berührt. Für Cookies über „Cookie-Einstellungen“ in der Fußzeile; für den Newsletter über den Abmeldelink in jeder E-Mail.\n\nSo machen Sie Ihre Rechte geltend: Senden Sie eine E-Mail an info@costabravarentaboat.com und geben Sie an, welches Recht Sie ausüben möchten, und zwar von der E-Mail-Adresse, mit der Sie gebucht oder sich angemeldet haben. Ein Ausweisdokument verlangen wir nur, wenn wir begründete Zweifel an Ihrer Identität haben (Art. 12.6 DSGVO). Wir antworten innerhalb von maximal 1 Monat.\n\nWenn Sie der Ansicht sind, dass die Verarbeitung nicht der DSGVO entspricht, haben Sie das Recht, bei der spanischen Datenschutzbehörde (AEPD) Beschwerde einzulegen: www.aepd.es",
         },
         {
           title: "7. Sicherheitsmaßnahmen",
@@ -3056,31 +3058,39 @@ export const de: Translations = {
     },
     cookies: {
       heroTitle: "Cookie-Richtlinie",
-      lastUpdated: "Letzte Aktualisierung: Februar 2026",
+      lastUpdated: "Letzte Aktualisierung: November 2026",
       sections: [
         {
-          title: "Einleitung",
-          body: "In Übereinstimmung mit Artikel 22 Absatz 2 des spanischen Gesetzes 34/2002 vom 11. Juli über Dienste der Informationsgesellschaft und den elektronischen Geschäftsverkehr informiert diese Website Sie in diesem Abschnitt über die Richtlinie zur Erhebung und Verarbeitung von Cookies.",
+          title: "1. Was Cookies sind",
+          body: "Ein Cookie ist eine kleine Datei, die eine Website in Ihrem Browser speichert, um sich Informationen über Ihren Besuch zu merken. Diese Richtlinie erläutert gemäß Artikel 22.2 des Gesetzes 34/2002 (LSSI-CE), welche Cookies und ähnlichen Technologien (etwa den lokalen Speicher des Browsers) costabravarentaboat.com verwendet, wofür und wie lange.",
         },
         {
-          title: "Was sind Cookies?",
-          body: "Ein Cookie ist eine Datei, die beim Zugriff auf bestimmte Websites auf Ihren Computer heruntergeladen wird. Cookies ermöglichen es einer Website unter anderem, Informationen über die Surfgewohnheiten eines Nutzers oder seines Geräts zu speichern und abzurufen, und je nach den darin enthaltenen Informationen und der Art der Nutzung des Geräts können sie zur Wiedererkennung des Nutzers verwendet werden.",
+          title: "2. Technische Cookies und Präferenz-Cookies (immer aktiv)",
+          body: "Sie sind erforderlich, damit die Website funktioniert oder sich Ihre Auswahl merkt. Sie erfordern keine Einwilligung.\n\n- cookieConsent (eigenes, Cookie und lokaler Speicher): speichert Ihre Auswahl im Cookie-Banner. Dauer: 1 Jahr.\n- costa-brava-language (eigenes, Cookie und lokaler Speicher): gewählte Sprache. Dauer: 1 Jahr.\n- theme (eigenes, lokaler Speicher): heller oder dunkler Modus. Dauerhaft, bis Sie die Browserdaten löschen.\n- cbrb_lastVisit (eigenes, lokaler Speicher): Datum Ihres letzten Besuchs, um Ihnen bei der Rückkehr den Willkommenshinweis anzuzeigen. Dauerhaft, bis Sie die Browserdaten löschen.\n- Sitzungs-Cookies des Buchungsvorgangs und des Shop-Warenkorbs (eigene): werden beim Schließen des Browsers gelöscht.\n- Stripe-Cookies (Drittanbieter, nur auf der Zahlungsseite): Betrugsprävention bei der Zahlung.",
         },
         {
-          title: "Welche Arten von Cookies verwendet diese Website?",
-          body: "Diese Website verwendet folgende Arten von Cookies:\n\nAnalyse-Cookies: Cookies, die – von uns oder Dritten verarbeitet – es uns ermöglichen, die Anzahl der Nutzer zu quantifizieren und so eine statistische Messung und Analyse der Nutzung des angebotenen Dienstes durch die Nutzer durchzuführen.\n\nTechnische Cookies: Ermöglichen dem Nutzer die Navigation durch den geschützten Bereich und die Nutzung seiner verschiedenen Funktionen, z. B. die Durchführung des Buchungsvorgangs für ein Boot.\n\nPersonalisierungs-Cookies: Ermöglichen dem Nutzer den Zugriff auf den Dienst mit einigen allgemeinen Merkmalen, die auf der Grundlage einer Reihe von Kriterien wie Sprache oder Browsertyp vordefiniert sind.\n\nWerbe-Cookies: Von dieser Website oder von Dritten verarbeitet, ermöglichen die möglichst effiziente Verwaltung der Werbeflächen auf der Website.\n\nCookies von Drittanbietern: Wir nutzen die Dienste von Google Analytics für unsere Statistiken. Einige Cookies sind für den Betrieb der Website unerlässlich. Unsere Website enthält weitere Funktionen, die von Dritten bereitgestellt werden (Teilen in sozialen Netzwerken wie Facebook, Instagram oder TikTok).",
+          title: "3. Eigener Sitzungsspeicher zur Kampagnenmessung",
+          body: "Daten, die nur während des Besuchs in Ihrem Browser gespeichert und beim Schließen gelöscht werden. Sie werden nicht an Dritte weitergegeben.\n\n- cb_attribution und cbrab_utm (eigene, Sitzungsspeicher): Herkunft des Besuchs (utm-Parameter der Kampagne, über die Sie gekommen sind). Wenn Sie eine Buchungsanfrage senden, wird sie zusammen mit dieser gespeichert, damit wir wissen, welche Kampagne funktioniert.\n- ab_session_id (eigenes, Sitzungsspeicher): zufällige Kennung, um bei A/B-Tests einheitlich dieselbe Version der Seite anzuzeigen.",
         },
         {
-          title: "Cookies deaktivieren",
-          body: "Sie können die auf Ihrem Gerät installierten Cookies über die Einstellungen des auf Ihrem Computer installierten Browsers zulassen, blockieren oder löschen. In den meisten Webbrowsern besteht die Möglichkeit, die auf Ihrem Gerät installierten Cookies zuzulassen, zu blockieren oder zu löschen.\n\nSie können auf die Konfiguration der gängigsten Webbrowser zugreifen, um Cookies zu akzeptieren, zu installieren oder zu deaktivieren: Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple), Opera.",
+          title: "4. Analyse-Cookies (nur mit Ihrer Einwilligung)",
+          body: "Sie ermöglichen es uns, Besuche zu zählen und zu erkennen, welche Seiten am besten funktionieren. Sie werden nur gesetzt, wenn Sie auf „Alle akzeptieren“ klicken; bis dahin wird kein Google-Skript geladen.\n\n- _ga (Google Analytics, Google LLC): unterscheidet eindeutige Nutzer. Dauer: 2 Jahre.\n- _ga_<ID> (Google Analytics, Google LLC): speichert den Sitzungsstatus. Dauer: 2 Jahre.",
         },
         {
-          title: "Hinweis zum Löschen von Cookies",
-          body: "Sie können alle Cookies dieser Website löschen und blockieren, aber ein Teil der Website funktioniert dann möglicherweise nicht oder die Qualität der Website kann beeinträchtigt werden.",
+          title: "5. Werbe-Cookies (nur mit Ihrer Einwilligung)",
+          body: "Sie dienen dazu zu messen, welche Anzeigen auf Google, Facebook und Instagram Buchungen bringen. Sie werden nur gesetzt, wenn Sie auf „Alle akzeptieren“ klicken.\n\n- _gcl_au und _gcl_aw (Google Ads, Google LLC): ordnen Besuche und Buchungen einer Google-Anzeige zu. Dauer: 90 Tage.\n- _fbp (Meta Platforms Ireland Ltd.): erkennt den Browser, um Meta-Anzeigen zu messen. Dauer: 90 Tage.\n- _fbc (Meta Platforms Ireland Ltd.): speichert den Klick auf eine Meta-Anzeige. Dauer: 90 Tage.\n- _msclkid (Microsoft Advertising, eigenes): speichert den Klick auf eine Bing-Anzeige. Dauer: 90 Tage.\n\nMit Ihrer Einwilligung nutzen wir außerdem die Conversions API von Meta, die in der Datenschutzerklärung erläutert wird.",
         },
         {
-          title: "Kontakt",
-          body: "Wenn Sie Fragen zu unserer Cookie-Richtlinie haben, können Sie uns über die im Kontaktbereich der Website verfügbaren Kontaktkanäle erreichen.",
+          title: "6. So akzeptieren, ablehnen oder widerrufen Sie Ihre Einwilligung",
+          body: "Beim ersten Besuch sehen Sie ein Banner mit zwei gleichwertigen Optionen: „Alle akzeptieren“ und „Nur essenzielle“. Wenn Sie „Nur essenzielle“ wählen, werden nur die technischen Cookies aus Abschnitt 2 und der Sitzungsspeicher aus Abschnitt 3 verwendet.\n\nSie können Ihre Meinung jederzeit über den Link „Cookie-Einstellungen“ in der Fußzeile ändern: Das Banner erscheint erneut, und wenn Sie Ihre Einwilligung widerrufen, löschen wir die Analyse- und Werbe-Cookies und laden die Seite neu.\n\nSie können Cookies auch in den Einstellungen Ihres Browsers (Chrome, Firefox, Safari oder Edge) blockieren oder löschen. Wenn Sie die technischen Cookies blockieren, funktionieren Teile der Website möglicherweise nicht mehr.",
+        },
+        {
+          title: "7. Internationale Datenübermittlungen",
+          body: "Google und Meta können Daten in den Vereinigten Staaten verarbeiten. Diese Übermittlungen erfolgen auf Grundlage des EU-US Data Privacy Framework. Weitere Informationen in der Datenschutzerklärung.",
+        },
+        {
+          title: "8. Kontakt",
+          body: "Wenn Sie Fragen zu dieser Richtlinie haben, schreiben Sie uns an info@costabravarentaboat.com.",
         },
       ],
     },
@@ -3092,11 +3102,11 @@ export const de: Translations = {
 
     terms: {
       heroTitle: "Allgemeine Geschäftsbedingungen",
-      lastUpdated: "Letzte Aktualisierung: Juli 2026",
+      lastUpdated: "Letzte Aktualisierung: November 2026",
       sections: [
         {
           title: "1. Angaben zum Betreiber",
-          body: "Firmenname: DAMAR COSTA BRAVA S.L. (tätig unter der Handelsmarke Costa Brava Rent a Boat)\nSteuernummer (CIF): B22566327\nGeschäftssitz: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spanien\nKontakttelefon: +34 611 500 372\nE-Mail: info@costabravarentaboat.com\nTätigkeit: Vermietung von Freizeitbooten (mit und ohne Bootsführerschein) im Hafen von Blanes, Costa Brava.",
+          body: "Firmenname: DAMAR COSTA BRAVA S.L. (tätig unter der Handelsmarke Costa Brava Rent a Boat)\nSteuernummer (CIF): B22566327\nGeschäftssitz: Carrer Delícia, 1, 17310 Lloret de Mar, Girona, Spanien\nKontakttelefon: +34 611 500 372\nE-Mail: info@costabravarentaboat.com\nTätigkeit: Vermietung von Freizeitbooten (mit Bootsführerschein oder mit Skipper) und Jetskis im Hafen von Blanes, Costa Brava.",
         },
         {
           title: "2. Gegenstand",
@@ -3104,19 +3114,19 @@ export const de: Translations = {
         },
         {
           title: "3. Buchungsablauf",
-          body: "Die Website nimmt Buchungsanfragen entgegen. Der Kunde füllt ein Formular mit Datum, Boot, Dauer und Kontaktdaten aus. Der Anbieter bestätigt die Verfügbarkeit manuell und sendet eine Bestätigung per WhatsApp oder E-Mail.\n\nBei der Bootsvermietung erfolgt die Zahlung vor Ort im Hafen von Blanes beim Einschiffen: Die Website bucht den Mietbetrag nicht automatisch ab. Shop-Produkte und Geschenkgutscheine werden dagegen beim Kauf online per Karte bezahlt, gemäß den Abschnitten 13 bis 17.\n\nDie Buchung ist erst nach ausdrücklicher Bestätigung des Anbieters verbindlich.",
+          body: "Die Website nimmt Buchungsanfragen entgegen. Der Kunde füllt ein Formular mit Datum, Boot, Dauer und Kontaktdaten aus. Der Anbieter bestätigt die Verfügbarkeit manuell und sendet eine Bestätigung per WhatsApp oder E-Mail.\n\nBei der Bootsvermietung erfolgt die Zahlung vor Ort im Hafen von Blanes beim Einschiffen: Die Website bucht den Mietbetrag nicht automatisch ab. Shop-Produkte und Geschenkgutscheine werden dagegen beim Kauf online per Karte bezahlt, gemäß den Abschnitten 13 bis 17.\n\nDie Buchung ist erst nach ausdrücklicher Bestätigung des Anbieters verbindlich.\n\nWiderrufsrecht: Die Miete eines Bootes oder Jetskis für ein bestimmtes Datum ist eine Freizeitdienstleistung und unterliegt gemäß Artikel 103.l des spanischen Königlichen Gesetzesdekrets 1/2007 nicht dem 14-tägigen Widerrufsrecht. Änderungen und Stornierungen richten sich nach Abschnitt 7.",
         },
         {
           title: "4. Anforderungen an den Mieter",
-          body: "- Der Bootsführer muss mindestens 18 Jahre alt sein und einen gültigen Personalausweis oder Reisepass vorlegen.\n- Für zulassungspflichtige Boote muss der Bootsführer den Original-Bootsführerschein vorlegen (Licencia de Navegación, PER, PNB, Capitán de Yate oder europäisches Äquivalent).\n- Für Boote ohne Führerscheinpflicht ist keine Lizenz erforderlich, aber der Bootsführer erhält vor dem Ablegen eine 15-minütige Einweisung.\n- Minderjährige müssen von einem verantwortlichen Erwachsenen begleitet werden und während der Fahrt eine Schwimmweste tragen.",
+          body: "- Der Bootsführer muss mindestens 18 Jahre alt sein und einen gültigen Personalausweis oder Reisepass vorlegen.\n- Der Bootsführer muss den Original-Bootsführerschein vorlegen (Licencia de Navegación, PER, PNB, Capitán de Yate oder europäisches Äquivalent). Seit dem 1. Oktober 2026 (RD 1188/2025) werden keine Boote ohne Führerschein vermietet; bei der Ausfahrt mit professionellem Skipper benötigt der Kunde keinen Führerschein.\n- Minderjährige müssen von einem verantwortlichen Erwachsenen begleitet werden und während der Fahrt eine Schwimmweste tragen.",
         },
         {
           title: "5. Kaution und Zahlungsbedingungen",
-          body: "Vor dem Auslaufen wird eine Kaution hinterlegt (200 € bei Booten ohne Führerschein und 500 € bei führerscheinpflichtigen Booten), die bei der Rückkehr vollständig erstattet wird, sofern das Boot im selben Zustand zurückgegeben wird. Maßgeblich ist stets der Betrag, der zum Zeitpunkt der Buchung angegeben wird und im Vertrag steht, der im Hafen unterschrieben wird.\n\nDer Kunde kann freiwillig die Reduzierte Kaution buchen, die den einbehaltenen Betrag gegen einen Festpreis senkt. Es handelt sich um eine eigene kommerzielle Garantie und nicht um einen Versicherungsvertrag; ihr Preis ist nicht erstattungsfähig.\n\nBei Schäden, Verlust von Ausrüstung oder Verletzung des zugelassenen Fahrtgebiets kann der Anbieter die Kaution ganz oder teilweise zur Deckung der Kosten einbehalten.",
+          body: "Vor dem Auslaufen wird eine Kaution hinterlegt (500 € bei führerscheinpflichtigen Booten), die bei der Rückkehr vollständig erstattet wird, sofern das Boot im selben Zustand zurückgegeben wird. Maßgeblich ist stets der Betrag, der zum Zeitpunkt der Buchung angegeben wird und im Vertrag steht, der im Hafen unterschrieben wird.\n\nDer Kunde kann freiwillig die Reduzierte Kaution buchen, die den einbehaltenen Betrag gegen einen Festpreis senkt. Es handelt sich um eine eigene kommerzielle Garantie und nicht um einen Versicherungsvertrag; ihr Preis ist nicht erstattungsfähig.\n\nBei Schäden, Verlust von Ausrüstung oder Verletzung des zugelassenen Fahrtgebiets kann der Anbieter die Kaution ganz oder teilweise zur Deckung der Kosten einbehalten.",
         },
         {
           title: "6. Fahrtgebiet und Dauer",
-          body: "Zugelassene Gebiete: nördlich bis zum Strand von Fenals (ohne Führerschein) bzw. Sant Feliu de Guíxols (mit Führerschein); südlich bis zur Mündung des Flusses Tordera am Ende des Strandes von Blanes (ohne Führerschein) oder unbegrenzt (mit Führerschein). Höchstens 2 Seemeilen von der Küste für Boote ohne Führerschein.\n\nDie Höchstgeschwindigkeit in Häfen und in den betonnten Fahrrinnen der Strände beträgt 3 Knoten. Die Badezone ist zu respektieren, außerhalb der gelben Bojen zu ankern, mehr als 200 m von Stränden und Klippen entfernt zu fahren und 100 m Abstand zu Taucherbojen zu halten.\n\nDie Boote müssen vor Ablauf des gebuchten Zeitfensters in den Hafen von Blanes zurückkehren. Erfolgt der Check-out ohne Ankündigung später als vereinbart, werden 150 € je 30 Minuten Verspätung oder der entsprechende Anteil berechnet.",
+          body: "Zugelassenes Gebiet: nördlich bis zum Hafen von Sant Feliu de Guíxols und in jedem Fall innerhalb einer Meile von der Küste sowie innerhalb der Grenzen des Führerscheins des Bootsführers. Wer außerhalb dieses Gebiets fährt, verliert für die Ausfahrt den Versicherungsschutz.\n\nDie Höchstgeschwindigkeit in Häfen und in den betonnten Fahrrinnen der Strände beträgt 3 Knoten. Die Badezone ist zu respektieren, außerhalb der gelben Bojen zu ankern, mehr als 200 m von Stränden und Klippen entfernt zu fahren und 100 m Abstand zu Taucherbojen zu halten.\n\nDie Boote müssen vor Ablauf des gebuchten Zeitfensters in den Hafen von Blanes zurückkehren. Erfolgt der Check-out ohne Ankündigung später als vereinbart, werden 150 € je 30 Minuten Verspätung oder der entsprechende Anteil berechnet.",
         },
         {
           title: "7. Stornierungsbedingungen",
@@ -3136,7 +3146,7 @@ export const de: Translations = {
         },
         {
           title: "11. Anwendbares Recht und Gerichtsstand",
-          body: "Diese Bedingungen unterliegen spanischem Recht. Für Streitigkeiten sind die Gerichte von Blanes zuständig, unbeschadet des dem Verbraucher gesetzlich zustehenden Gerichtsstands, auf den er in keinem Fall verzichtet.\n\nVerbraucher können sich zur außergerichtlichen Beilegung an die Plattform zur Online-Streitbeilegung der Europäischen Kommission wenden (https://ec.europa.eu/consumers/odr). Amtliche Beschwerdeformulare stehen ihnen zur Verfügung.",
+          body: "Diese Bedingungen unterliegen spanischem Recht. Für Streitigkeiten sind die Gerichte von Blanes zuständig, unbeschadet des dem Verbraucher gesetzlich zustehenden Gerichtsstands, auf den er in keinem Fall verzichtet.\n\nAmtliche Beschwerdeformulare stehen Verbrauchern zur Verfügung, die sich außerdem an die öffentlichen Verbraucherschutzstellen wenden können (Agència Catalana del Consum).",
         },
         {
           title: "12. Änderungen",
@@ -3160,7 +3170,7 @@ export const de: Translations = {
         },
         {
           title: "17. Geschenkgutscheine",
-          body: "Geschenkgutscheine werden online per Bankkarte gekauft und per E-Mail mit einem eindeutigen Code zugestellt. Sie sind ab Ausstellung 12 Monate gültig, gegen jede Mietleistung nach Verfügbarkeit einlösbar und weder auf mehrere Buchungen aufteilbar noch in Geld umtauschbar.\n\nDa es sich um sofort geliefeten digitalen Inhalt handelt, gilt das Widerrufsrecht nach Versand des Codes nicht, gemäß Artikel 103.m des spanischen Königlichen Gesetzesdekrets 1/2007. Wird der Gutschein innerhalb der Gültigkeitsdauer nicht eingelöst, wird der Betrag nicht erstattet.",
+          body: "Geschenkgutscheine werden online per Bankkarte gekauft und per E-Mail mit einem eindeutigen Code zugestellt. Sie sind ab Ausstellung 12 Monate gültig, gegen jede Mietleistung nach Verfügbarkeit einlösbar und weder auf mehrere Buchungen aufteilbar noch in Geld umtauschbar.\n\nSie können den Kauf eines Geschenkgutscheins innerhalb von 14 Kalendertagen ab dem Kauf ohne Angabe von Gründen widerrufen, sofern der Code noch nicht eingelöst wurde: Schreiben Sie einfach an info@costabravarentaboat.com oder per WhatsApp an +34 611 500 372, und wir erstatten Ihnen den Betrag über dasselbe Zahlungsmittel innerhalb von höchstens 14 Tagen. Wird der Gutschein innerhalb der Gültigkeitsdauer nicht eingelöst, wird der Betrag nicht erstattet.",
         },
         {
           title: "18. Jetskis und weitere Wasseraktivitäten",
@@ -3170,17 +3180,18 @@ export const de: Translations = {
     },
     legalNotice: {
       heroTitle: "Impressum",
-      lastUpdated: "Letzte Aktualisierung: Juli 2026",
+      lastUpdated: "Letzte Aktualisierung: November 2026",
       identificationTitle: "1. Angaben zum Anbieter",
       labels: {
         legalName: "Firmenname",
         taxId: "Steuernummer (CIF)",
+        registry: "Handelsregister",
         address: "Geschäftssitz",
         phone: "Telefon",
         email: "E-Mail",
         activity: "Tätigkeit",
       },
-      activityValue: "Vermietung von Freizeitbooten mit und ohne Bootsführerschein im Hafen von Blanes (Girona) sowie Verkauf von Produkten der eigenen Kollektion über den Online-Shop.",
+      activityValue: "Vermietung von Freizeitbooten (mit Bootsführerschein oder mit Skipper) und Jetskis im Hafen von Blanes (Girona) sowie Verkauf von Produkten der eigenen Kollektion und Geschenkgutscheinen über den Online-Shop.",
       sections: [
         {
           title: "2. Gegenstand und Geltungsbereich",
@@ -3196,7 +3207,7 @@ export const de: Translations = {
         },
         {
           title: "5. Anwendbares Recht und Streitbeilegung",
-          body: "Dieses Impressum unterliegt spanischem Recht. Für Streitigkeiten sind die Gerichte von Blanes zuständig, unbeschadet des dem Verbraucher gesetzlich zustehenden Gerichtsstands.\n\nVerbraucher können sich zudem an die Plattform zur Online-Streitbeilegung der Europäischen Kommission wenden (https://ec.europa.eu/consumers/odr). Amtliche Beschwerdeformulare stehen den Kunden zur Verfügung.",
+          body: "Dieses Impressum unterliegt spanischem Recht. Für Streitigkeiten sind die Gerichte von Blanes zuständig, unbeschadet des dem Verbraucher gesetzlich zustehenden Gerichtsstands.\n\nAmtliche Beschwerdeformulare stehen den Kunden zur Verfügung, die sich außerdem an die öffentlichen Verbraucherschutzstellen wenden können (Agència Catalana del Consum).",
         },
       ],
     },
@@ -3252,7 +3263,7 @@ export const de: Translations = {
   cookieBanner: {
     ariaLabel: "Cookie-Hinweis",
     message:
-      "Wir verwenden eigene Cookies und Cookies von Drittanbietern (Google Analytics), um dein Erlebnis zu verbessern und den Website-Traffic zu analysieren. Du kannst alle Cookies akzeptieren oder nur die essenziellen.",
+      "Wir verwenden eigene Cookies und, nur wenn du zustimmst, Cookies von Drittanbietern: Google Analytics (Statistik), Google Ads und Meta (Anzeigenmessung). Du kannst alle akzeptieren oder nur die notwendigen behalten und deine Wahl jederzeit über „Cookie-Einstellungen“ in der Fußzeile ändern.",
     cookiesPolicy: "Cookie-Richtlinie",
     privacyPolicy: "Datenschutzerklärung",
     essentialOnly: "Nur essenzielle",

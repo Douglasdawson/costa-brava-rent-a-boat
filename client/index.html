@@ -184,30 +184,32 @@
         page_type: location.pathname === '/' ? 'home' : 'content',
       });
     </script>
-    <!-- GTM — lazy-injected on idle or first interaction to keep ~300ms of main
-         thread off the critical path (GA4 + Google Ads configured as GTM tags).
-         dataLayer + Consent Mode are inline above, so gtag()/dataLayer.push()
-         queue events safely until gtm.js arrives. -->
+    <!-- GTM (GA4 + Google Ads) — only injected AFTER the visitor accepts cookies
+         (LSSI art. 22.2): Consent Mode "advanced" sent cookieless pings to Google
+         before consent, which the privacy policy says we don't do. Returning
+         visitors who accepted load it lazily (idle / first interaction); the
+         banner calls window.cbrbLoadTracking() on accept. -->
     <script>
     (function(){
       var w=window,d=document,loaded=false;
       function loadTracking(){
-        if(loaded)return;loaded=true;
+        if(loaded)return;
+        if(localStorage.getItem('cookieConsent')!=='accepted')return;
+        loaded=true;
         ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
           w.removeEventListener(ev,loadTracking);
         });
-        // Google Tag Manager (handles GA4 + Google Ads + all tags)
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(w,d,'script','dataLayer','GTM-WPSV63W');
       }
-      // First interaction wins (passive listeners, self-removing)
+      w.cbrbLoadTracking=loadTracking;
+      if(_consent!=='accepted')return;
       ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
         w.addEventListener(ev,loadTracking,{passive:true,once:false});
       });
-      // Otherwise wait for idle after load (fallback: 3s timer)
       w.addEventListener('load',function(){
         if('requestIdleCallback' in w){
           w.requestIdleCallback(loadTracking,{timeout:3000});
@@ -219,10 +221,6 @@
     </script>
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPSV63W"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

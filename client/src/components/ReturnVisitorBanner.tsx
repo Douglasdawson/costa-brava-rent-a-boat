@@ -69,7 +69,7 @@ export function ReturnVisitorBanner() {
 
   return (
     <div
-      className="fixed top-16 left-0 right-0 z-40 bg-indigo-50 dark:bg-indigo-950/30 border-b border-indigo-200 dark:border-indigo-800 animate-in slide-in-from-top-2 duration-300"
+      className="fixed top-[calc(4.5rem+env(safe-area-inset-top,0px))] left-3 right-3 md:top-[5.5rem] md:left-6 md:right-6 lg:top-[6.5rem] z-40 bg-indigo-50 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 rounded-2xl shadow-md animate-in slide-in-from-top-2 duration-300"
       role="banner"
       aria-label={rt?.welcomeBack ?? "Welcome back"}
     >

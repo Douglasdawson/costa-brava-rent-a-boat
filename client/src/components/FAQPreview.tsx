@@ -40,7 +40,7 @@ export default function FAQPreview() {
       {/* Same scaffold as the other home sections: left heading on a max-w-6xl
           grid, the accordion kept at a readable max-w-3xl. */}
       <div className="container mx-auto max-w-6xl px-4">
-        <div className="mb-10 max-w-2xl">
+        <div className="mb-10 max-w-2xl lg:mx-auto lg:text-center">
           <h2
             id="faq-preview-title"
             className="font-heading text-h2 font-semibold text-foreground tracking-tight text-balance mb-3"
@@ -54,7 +54,7 @@ export default function FAQPreview() {
         <Accordion
           type="single"
           collapsible
-          className="max-w-3xl space-y-2"
+          className="max-w-3xl space-y-2 lg:mx-auto"
           onValueChange={value => {
             if (value) trackFaqExpanded(value);
           }}
@@ -76,7 +76,7 @@ export default function FAQPreview() {
         </Accordion>
 
         {/* Link to full FAQ */}
-        <div className="mt-8">
+        <div className="mt-8 lg:text-center">
           <a
             href={localizedPath("faq")}
             className="inline-flex items-center gap-2 text-primary dark:text-sky-300 font-semibold text-sm hover:underline pointer-coarse:py-3 pointer-coarse:-my-3"

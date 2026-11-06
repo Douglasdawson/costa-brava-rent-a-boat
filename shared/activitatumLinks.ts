@@ -136,3 +136,6 @@ export const ACTIVITATUM_BLOCKED = [
   // Motos: ya tienen su página puente hacia coastrent.es.
   "/t/alquiler-motos",
 ] as const;
+
+/** Página de guía de esta web en Activitatum: fija el canal aff:guia-cbrb (50 % de la comisión). */
+export const ACTIVITATUM_GUIDE_PATH = "/g/cbrb";

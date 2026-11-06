@@ -38,7 +38,7 @@ export const nl: Translations = {
     subtitleLine2:
       "Nog geen vaarbewijs? Wij regelen het in \u00E9\u00E9n dag, of je vaart met een schipper.",
     subtitleMobile: "Motorboten met vaarbewijs vanuit Blanes. Vrije vaart tot Tossa de Mar.",
-    specsLine: "Tot 115 pk \u00B7 7 plaatsen \u00B7 Vrije vaart tot Tossa de Mar",
+    specsLine: "Tot 115 pk \u00B7 7 plaatsen \u00B7 Vrije vaart tot Tossa de Mar en verder",
     licenseNote:
       "De basis Licencia de Navegaci\u00F3n volstaat. Buitenlandse vaarbewijzen verifi\u00EBren wij online voor je boekt.",
     bookNow: "Beschikbaarheid bekijken",

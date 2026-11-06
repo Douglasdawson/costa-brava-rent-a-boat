@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, UserCircle, Calendar, Sun, Moon, ShoppingBag, ChevronDown } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
@@ -9,6 +9,8 @@ import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { getSlugForPage } from "@shared/i18n-routes";
+import { ACTIVITATUM_GUIDE_PATH, activitatumUrl } from "@shared/activitatumLinks";
+import { openActiviframe } from "@/lib/activiframe";
 import { useAuth } from "@/hooks/useAuth";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackBookingFormOpen } from "@/utils/analytics";
@@ -19,6 +21,8 @@ import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 interface NavItem {
   label: string;
   href: string;
+  /** Activitatum path: opens in the Activiframe overlay; href stays a real link as fallback. */
+  embedPath?: string;
 }
 
 interface NavGroup {
@@ -35,6 +39,7 @@ interface NavigationProps {
 
 export default function Navigation({ cartCount = 0, onCartClick }: NavigationProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [currentLocation, setLocation] = useLocation();
 
@@ -72,8 +77,19 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
         unlockScroll("mobile-nav");
       }
     };
+    // Click/tap outside the navbar closes the menu
+    const onPointerDown = (e: PointerEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+        unlockScroll("mobile-nav");
+      }
+    };
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
   }, [isOpen]);
 
   const handleMyAccountClick = () => {
@@ -209,7 +225,12 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
     jetski: { label: t.nav.jetski, href: localizedPath("jetskiHub") },
     scooters: { label: t.nav.scooters, href: localizedPath("scooters") },
     tienda: { label: t.nav.tienda, href: localizedPath("tienda") },
-    routes: { label: t.footer.destinations, href: localizedPath("routes") },
+    // Activitatum (sister OTA): our guide page, curated without our own boats/jet skis.
+    activities: {
+      label: t.nav.activities,
+      href: activitatumUrl(ACTIVITATUM_GUIDE_PATH, language, "nav"),
+      embedPath: ACTIVITATUM_GUIDE_PATH,
+    },
     garantias: { label: t.garantiasPage.navLabel, href: localizedPath("garantias") },
     blog: { label: "Blog", href: localizedPath("blog") },
   };
@@ -224,7 +245,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
     },
     nav.titulin,
     nav.jetski,
-    nav.routes,
+    nav.activities,
     { id: "more", label: t.nav.more, items: [nav.scooters, nav.tienda, nav.garantias, nav.blog] },
   ];
 
@@ -253,6 +274,25 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
 
   const renderNavLink = (item: NavItem, className: string, testId: string, onDone?: () => void) => {
     const active = isNavItemActive(item.href);
+    if (item.embedPath) {
+      return (
+        <a
+          key={item.href}
+          href={item.href}
+          target="_blank"
+          rel="noopener"
+          onClick={e => {
+            e.preventDefault();
+            onDone?.();
+            void openActiviframe(item.embedPath!, language, item.href);
+          }}
+          className={className}
+          data-testid={testId}
+        >
+          {item.label}
+        </a>
+      );
+    }
     // Page routes: render as <a> so Googlebot can crawl them
     if (!item.href.startsWith("#")) {
       return (
@@ -306,7 +346,7 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
   };
 
   return (
-    <nav className="fixed top-3 left-3 right-3 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-border shadow-md md:top-6 md:left-6 md:right-6 pt-safe">
+    <nav ref={navRef} className="fixed top-3 left-3 right-3 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-border shadow-md md:top-6 md:left-6 md:right-6 pt-safe">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:outline-none"

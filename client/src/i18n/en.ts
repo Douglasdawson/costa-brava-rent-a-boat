@@ -40,7 +40,7 @@ export const en: Translations = {
     subtitleLine2:
       "No licence yet? We get you one in a day, or you sail with a professional skipper.",
     subtitleMobile: "Licensed powerboats from Blanes. Free rein to Tossa de Mar.",
-    specsLine: "Up to 115 HP \u00B7 7 seats \u00B7 Free rein to Tossa de Mar",
+    specsLine: "Up to 115 HP \u00B7 7 seats \u00B7 Free rein to Tossa de Mar and beyond",
     licenseNote:
       "The basic Navigation Licence is enough. We verify foreign titles online before you book.",
     bookNow: "Check Availability",

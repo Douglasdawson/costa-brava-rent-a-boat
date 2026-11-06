@@ -39,7 +39,7 @@ export const it: Translations = {
     subtitleLine2:
       "Non hai la patente? Te la facciamo prendere in un giorno, o esci con uno skipper.",
     subtitleMobile: "Motoscafi con patente da Blanes. Rotta libera fino a Tossa de Mar.",
-    specsLine: "Fino a 115 CV \u00B7 7 posti \u00B7 Rotta libera fino a Tossa de Mar",
+    specsLine: "Fino a 115 CV \u00B7 7 posti \u00B7 Rotta libera fino a Tossa de Mar e oltre",
     licenseNote:
       "Basta la Licencia de Navegaci\u00F3n di base. Verifichiamo i titoli esteri online prima della prenotazione.",
     bookNow: "Verifica Disponibilit\u00E0",

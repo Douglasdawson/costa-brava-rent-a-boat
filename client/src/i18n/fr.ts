@@ -39,7 +39,7 @@ export const fr: Translations = {
     subtitleLine2:
       "Pas encore de permis ? Nous vous l'obtenons en un jour, ou vous partez avec un skipper.",
     subtitleMobile: "Bateaux avec permis depuis Blanes. Cap libre jusqu'\u00E0 Tossa de Mar.",
-    specsLine: "Jusqu'\u00E0 115 CV \u00B7 7 places \u00B7 Cap libre jusqu'\u00E0 Tossa de Mar",
+    specsLine: "Jusqu'\u00E0 115 CV \u00B7 7 places \u00B7 Cap libre jusqu'\u00E0 Tossa de Mar et au-del\u00E0",
     licenseNote:
       "La Licencia de Navegaci\u00F3n de base suffit. Nous v\u00E9rifions les titres \u00E9trangers en ligne avant la r\u00E9servation.",
     bookNow: "Voir Disponibilit\u00E9s",

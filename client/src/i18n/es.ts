@@ -40,7 +40,7 @@ export const es: Translations = {
       "Lanchas de hasta 115 CV para patrones titulados, rumbo libre hasta Tossa de Mar.",
     subtitleLine2: "¿Aún sin título? Te lo sacamos en un día, o sales con patrón profesional.",
     subtitleMobile: "Lanchas con titulación en Blanes. Rumbo libre hasta Tossa de Mar.",
-    specsLine: "Hasta 115 CV · 7 plazas · Rumbo libre hasta Tossa de Mar",
+    specsLine: "Hasta 115 CV · 7 plazas · Rumbo libre hasta Tossa de Mar y más allá",
     licenseNote:
       "Basta la Licencia de Navegación. Verificamos títulos extranjeros online antes de reservar.",
     bookNow: "Reservar",

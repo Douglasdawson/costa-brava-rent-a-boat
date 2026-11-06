@@ -38,7 +38,7 @@ export const ca: Translations = {
       "Llanxes de fins a 115 CV per a patrons titulats, rumb lliure fins a Tossa de Mar.",
     subtitleLine2: "Encara sense t\u00EDtol? Te'l traiem en un dia, o surts amb patr\u00F3 professional.",
     subtitleMobile: "Llanxes amb titulaci\u00F3 des de Blanes. Rumb lliure fins a Tossa de Mar.",
-    specsLine: "Fins a 115 CV \u00B7 7 places \u00B7 Rumb lliure fins a Tossa de Mar",
+    specsLine: "Fins a 115 CV \u00B7 7 places \u00B7 Rumb lliure fins a Tossa de Mar i m\u00E9s enll\u00E0",
     licenseNote:
       "N'hi ha prou amb la Llic\u00E8ncia de Navegaci\u00F3. Verifiquem t\u00EDtols estrangers en l\u00EDnia abans de reservar.",
     bookNow: "Veure Disponibilitat",

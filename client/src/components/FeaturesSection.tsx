@@ -11,8 +11,8 @@ export default function FeaturesSection() {
     <section className="bg-background py-16 sm:py-24">
       <div className="container mx-auto max-w-6xl px-4">
         {/* Main Features */}
-        <div className="mb-10 max-w-2xl sm:mb-12">
-          <h2 className="font-heading text-h2 font-semibold tracking-tight text-foreground text-balance">
+        <div className="mb-10 max-w-2xl lg:max-w-none sm:mb-12">
+          <h2 className="font-heading text-h2 font-semibold tracking-tight text-foreground text-balance lg:whitespace-nowrap">
             {t.features.whyUs}
           </h2>
           <p className="mt-3 text-base text-muted-foreground text-pretty sm:text-lg">

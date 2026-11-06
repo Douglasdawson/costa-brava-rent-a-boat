@@ -30,36 +30,34 @@ export default function TitulinSection() {
       aria-labelledby="titulin-title"
     >
       <div className="container mx-auto max-w-6xl px-4">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid gap-14 lg:grid-cols-[6fr_5fr] lg:items-center lg:gap-20">
           <div>
             <h2
               id="titulin-title"
-              className="font-heading text-h2 font-semibold tracking-tight text-balance"
+              className="font-heading text-h2 font-semibold leading-[1.08] tracking-tight text-balance lg:text-[clamp(2.25rem,3.2vw,3rem)]"
             >
               {s.title}
             </h2>
-            <p className="mt-4 max-w-xl text-base text-primary-foreground/85 text-pretty sm:text-lg">
+            <p className="mt-5 max-w-lg text-base text-primary-foreground/85 text-pretty sm:text-lg">
               {s.subtitle}
             </p>
 
             {p?.chips && (
-              <ul className="mt-6 flex flex-wrap gap-2">
+              <ul className="mt-8 grid max-w-md grid-cols-1 gap-x-8 gap-y-3 text-sm sm:grid-cols-2">
                 {p.chips.map(chip => (
-                  <li
-                    key={chip}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-primary-foreground/25 px-3 py-1.5 text-sm"
-                  >
-                    <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                  <li key={chip} className="flex items-center gap-2.5 text-primary-foreground/90">
+                    <Check className="h-4 w-4 flex-shrink-0 text-primary-foreground/60" aria-hidden="true" />
                     {chip}
                   </li>
                 ))}
               </ul>
             )}
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
               <Button
                 asChild
-                className="min-h-11 rounded-full bg-background px-6 text-foreground hover:bg-background/90 dark:bg-foreground dark:text-background dark:hover:bg-foreground/90"
+                size="lg"
+                className="min-h-12 rounded-full bg-background px-7 text-base text-foreground hover:bg-background/90 dark:bg-foreground dark:text-background dark:hover:bg-foreground/90"
                 data-testid="button-titulin-page"
               >
                 <Link href={localizedPath("navigationLicense")}>
@@ -71,7 +69,7 @@ export default function TitulinSection() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-primary-foreground/30 px-5 text-sm font-medium transition-colors hover:bg-primary-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground/60"
+                className="inline-flex min-h-11 items-center gap-2 text-sm font-medium underline-offset-4 transition-opacity hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-foreground"
                 data-testid="button-titulin-whatsapp"
               >
                 <SiWhatsapp className="h-4 w-4" aria-hidden="true" />
@@ -79,7 +77,7 @@ export default function TitulinSection() {
               </a>
             </div>
 
-            <p className="mt-6 text-sm text-primary-foreground/75">
+            <p className="mt-8 text-sm text-primary-foreground/75">
               {s.captainedLine}{" "}
               <Link
                 href={localizedPath("categoryCaptained")}
@@ -90,29 +88,30 @@ export default function TitulinSection() {
             </p>
           </div>
 
-          {/* The course IS a sequence, so the numbers carry information here. */}
-          <ol className="space-y-3 self-center">
+          {/* The course IS a sequence, so the numbers carry information here:
+              one continuous rail joins the three steps instead of three loose cards. */}
+          <ol>
             {p?.course?.steps?.map((step, i) => (
               <li
                 key={step.title}
-                className="flex gap-4 rounded-2xl bg-primary-foreground/[0.07] p-5"
+                className="relative pb-10 pl-16 last:pb-0 before:absolute before:bottom-1 before:left-[19px] before:top-12 before:w-px before:bg-primary-foreground/25 last:before:hidden"
               >
-                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary-foreground font-heading text-sm font-semibold text-primary">
+                <span className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground font-heading text-base font-semibold text-primary">
                   {i + 1}
                 </span>
-                <div>
-                  <h3 className="font-heading font-semibold">{step.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-primary-foreground/90">
-                    {step.description}
-                  </p>
-                </div>
+                <h3 className="font-heading text-xl font-semibold leading-tight lg:text-2xl">
+                  {step.title}
+                </h3>
+                <p className="mt-2 max-w-md text-base leading-relaxed text-primary-foreground/85 text-pretty">
+                  {step.description}
+                </p>
               </li>
             ))}
           </ol>
         </div>
 
         {school && (
-          <div className="mt-12 flex flex-col gap-4 border-t border-primary-foreground/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-16 flex flex-col gap-4 border-t border-primary-foreground/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
             <div className="max-w-2xl">
               <p className="font-heading font-semibold">{school.finalTitle}</p>
               <p className="mt-1 text-sm leading-relaxed text-primary-foreground/90">

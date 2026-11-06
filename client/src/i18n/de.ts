@@ -39,7 +39,7 @@ export const de: Translations = {
     subtitleLine2:
       "Noch keinen Schein? Wir besorgen ihn an einem Tag, oder Sie fahren mit Skipper.",
     subtitleMobile: "Motorboote mit Schein ab Blanes. Freie Fahrt bis Tossa de Mar.",
-    specsLine: "Bis 115 PS \u00B7 7 Pl\u00E4tze \u00B7 Freie Fahrt bis Tossa de Mar",
+    specsLine: "Bis 115 PS \u00B7 7 Pl\u00E4tze \u00B7 Freie Fahrt bis Tossa de Mar und dar\u00FCber hinaus",
     licenseNote:
       "Die einfache Licencia de Navegaci\u00F3n gen\u00FCgt. Ausl\u00E4ndische Scheine pr\u00FCfen wir online vor der Buchung.",
     bookNow: "Verf\u00FCgbarkeit pr\u00FCfen",

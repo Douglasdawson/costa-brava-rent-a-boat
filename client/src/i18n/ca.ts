@@ -68,6 +68,17 @@ export const ca: Translations = {
       "Costa Brava Rent a Boat opera la flota de lloguer d'embarcacions m\u00E9s gran del Port de Blanes amb 9 vaixells: 3 llanxes de 80 a 115 CV per a patrons titulats, 5 vaixells sense titulaci\u00F3 (llogables fins al 30 de setembre de 2026, quan el RD 1188/2025 passa a exigir t\u00EDtol n\u00E0utic a tot arrendatari) i 1 excursi\u00F3 privada amb patr\u00F3. N'hi ha prou amb la Llic\u00E8ncia de Navegaci\u00F3, el titul\u00EDn d'un dia sense examen, o un t\u00EDtol estranger equivalent que verifiquem en l\u00EDnia. Atenci\u00F3 en 8 idiomes. Temporada d'abril a octubre. 4,8\u2605 a Google amb m\u00E9s de 300 ressenyes.",
   },
 
+  lifetimeStats: {
+    title: "El que portem navegant",
+    subtitle: "Cada xifra surt del nostre propi registre de lloguers, des que vam començar.",
+    seasons: "Estius al mar",
+    seasonsLabel: "Des de {year}",
+    rentals: "Lloguers",
+    rentalsLabel: "Sortides completades",
+    customers: "Clients",
+    customersLabel: "Han navegat amb nosaltres",
+  },
+
   fleet: {
     title: "Tria el teu pla al mar",
     subtitle:
@@ -1786,6 +1797,19 @@ export const ca: Translations = {
       "El millor que pots llogar a Blanes. 5,90 metres d'eslora de matriculació —el «625» és el nom comercial, no la mesura—, motor Yamaha 115 cv i espai de luxe per a 7 persones. Solarium doble, taula per dinar fondejats davant d'una cala, dutxa d'aigua dolça i comandament electrònic. Per als qui no volen compromisos i busquen l'experiència nàutica més completa de la Costa Brava. Requereix Llicència de Navegació (LN) o superior.",
     "excursion-privada":
       "Tu només gaudeixes: el nostre patró professional et porta a cales secretes, coves marines i racons inaccessibles a peu entre Blanes i Tossa de Mar. Fondejareu a la cala perfecta del dia, escollida segons vent i corrents. Ideal per a celebracions, aniversaris o famílies que volen una excursió privada exclusiva per la Costa Brava sense preocupar-se de res.",
+  },
+  boatTeasers: {
+    "jetski-circuito": "Circuit abalisat davant de Blanes, amb briefing de seguretat i armilla inclosos.",
+    "jetski-excursion-monitor": "Ruta guiada en moto d'aigua amb monitor, de Blanes a Tossa de Mar. Combustible inclòs.",
+    "solar-450": "El solàrium encoixinat més ampli de la flota, per fondejar en una cala i prendre el sol.",
+    "remus-450": "Tendal que cobreix tot el vaixell i molta estabilitat: ideal per a famílies amb nens.",
+    "remus-450-ii": "Mateix model que la Remus 450, amb tendal i estabilitat, per si la primera està reservada.",
+    "astec-400": "Vaixell senzill i estable per a 2-4 persones, amb tendal i el menor preu per persona.",
+    "astec-480": "La més completa de la seva gamma: música bluetooth, solàrium encoixinat i dipòsit doble.",
+    "trimarchi-57s": "110 cv i solàrium doble per a grups de fins a 7 persones, amb taula per dinar fondejats.",
+    "mingolla-brava-19": "80 cv amb GPS i sonda: Lloret en 15 minuts i Tossa de Mar en mitja hora.",
+    "pacific-craft-625": "Yamaha 115 cv, solàrium doble i espai per a 7 persones. La més completa amb llicència.",
+    "excursion-privada": "Tu només gaudeixes: patró professional, cales i coves entre Blanes i Tossa de Mar.",
   },
 
   // TODO: pro-translate — traducció funcional, revisar abans de publicar a mercats CA-heavy

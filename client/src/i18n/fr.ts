@@ -70,6 +70,17 @@ export const fr: Translations = {
       "Costa Brava Rent a Boat exploite la plus grande flotte de location de bateaux du Port de Blanes avec 9 bateaux : 3 bateaux \u00E0 moteur de 80 \u00E0 115 CV pour skippers dipl\u00F4m\u00E9s, 5 bateaux sans permis (louables jusqu'au 30 septembre 2026, date \u00E0 laquelle le RD 1188/2025 exige un titre nautique de tout locataire) et 1 excursion priv\u00E9e avec capitaine. La Licencia de Navegaci\u00F3n, le titul\u00EDn d'une journ\u00E9e sans examen, ou un titre \u00E9tranger \u00E9quivalent que nous v\u00E9rifions en ligne. Service en 8 langues. Saison d'avril \u00E0 octobre. 4,8\u2605 sur Google avec plus de 300 avis.",
   },
 
+  lifetimeStats: {
+    title: "Ce que nous avons déjà navigué",
+    subtitle: "Chaque chiffre vient de notre propre registre de locations, depuis nos débuts.",
+    seasons: "Étés en mer",
+    seasonsLabel: "Depuis {year}",
+    rentals: "Locations",
+    rentalsLabel: "Sorties réalisées",
+    customers: "Clients",
+    customersLabel: "Ont navigué avec nous",
+  },
+
   fleet: {
     title: "Choisissez votre sortie en mer",
     subtitle:
@@ -1794,6 +1805,19 @@ export const fr: Translations = {
       "Le meilleur bateau à louer à Blanes. 5,90 m de longueur d'immatriculation (le « 625 » est le nom commercial, pas la mesure), moteur Yamaha 115 cv et espace de luxe pour 7 personnes. Double solarium, table pour déjeuner au mouillage, douche d'eau douce et commandes électroniques. Pour ceux qui ne veulent aucun compromis et recherchent l'expérience nautique la plus complète de la Costa Brava. Licencia de Navegación (LN) ou titre supérieur requis.",
     "excursion-privada":
       "Vous n'avez qu'à profiter : notre skipper professionnel vous emmène vers des criques secrètes, des grottes marines et des recoins inaccessibles à pied entre Blanes et Tossa de Mar. Vous mouillerez dans la crique parfaite du jour, choisie selon le vent et les courants. Idéal pour les célébrations, anniversaires ou familles qui souhaitent une excursion privée exclusive sur la Costa Brava sans aucun souci.",
+  },
+  boatTeasers: {
+    "jetski-circuito": "Circuit balisé devant Blanes, avec briefing de sécurité et gilet inclus.",
+    "jetski-excursion-monitor": "Parcours guidé en jet ski avec moniteur, de Blanes à Tossa de Mar. Carburant inclus.",
+    "solar-450": "Le solarium matelassé le plus large de la flotte, pour mouiller dans une crique et bronzer.",
+    "remus-450": "Un taud couvre tout le bateau, avec une grande stabilité : idéal pour les familles avec enfants.",
+    "remus-450-ii": "Même modèle que le Remus 450, avec taud et stabilité, si le premier est déjà réservé.",
+    "astec-400": "Bateau simple et stable pour 2 à 4 personnes, avec taud et le prix par personne le plus bas.",
+    "astec-480": "La plus complète de sa gamme : musique bluetooth, solarium matelassé et double réservoir.",
+    "trimarchi-57s": "110 ch et double solarium pour jusqu'à 7 personnes, avec table pour déjeuner au mouillage.",
+    "mingolla-brava-19": "80 ch avec GPS et sondeur : Lloret en 15 minutes, Tossa de Mar en une demi-heure.",
+    "pacific-craft-625": "Yamaha 115 ch, double solarium et place pour 7 personnes. La plus complète avec permis.",
+    "excursion-privada": "Vous profitez, c'est tout : skipper professionnel, criques et grottes entre Blanes et Tossa de Mar.",
   },
 
   // TODO: pro-translate — traduction fonctionnelle, à faire relire avant usage marketing FR

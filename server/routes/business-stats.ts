@@ -3,6 +3,7 @@ import { storage } from "../storage";
 import { syncGbpStats } from "../services/gbpSync";
 import { requireAdminSession } from "./auth-middleware";
 import { logger } from "../lib/logger";
+import { getCrmDamarLifetimeStats } from "../lib/crmDamarStats";
 import {
   BUSINESS_RATING,
   BUSINESS_REVIEW_COUNT,
@@ -31,7 +32,10 @@ export function registerBusinessStatsRoutes(app: Express) {
         });
       }
 
-      res.set("Cache-Control", "public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400");
+      res.set(
+        "Cache-Control",
+        "public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400"
+      );
       res.json({
         rating: row.rating,
         userRatingCount: row.userRatingCount,
@@ -47,6 +51,40 @@ export function registerBusinessStatsRoutes(app: Express) {
       const msg = error instanceof Error ? error.message : "unknown";
       logger.error("[business-stats] GET error", { error: msg });
       res.status(500).json({ message: "Error: " + msg });
+    }
+  });
+
+  // Public lifetime numbers (years, rentals, customers) read from the CRM.
+  // Rounded DOWN to the nearest 50 so the "+" on the page is always true.
+  // available:false hides the section: never invent numbers.
+  app.get("/api/business-stats/lifetime", async (_req, res) => {
+    const unavailable = () => {
+      res.set("Cache-Control", "public, max-age=300");
+      return res.json({ available: false });
+    };
+    try {
+      const stats = await getCrmDamarLifetimeStats();
+      if (!stats || stats.rentals < 100 || stats.customers < 100) return unavailable();
+      const firstYear = Number(stats.firstDate.slice(0, 4));
+      // Summers (seasons) active, first one included: matches the hero's "+7 veranos".
+      const seasons = new Date().getFullYear() - firstYear + 1;
+      const floor50 = (n: number) => Math.floor(n / 50) * 50;
+      res.set(
+        "Cache-Control",
+        "public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400"
+      );
+      return res.json({
+        available: true,
+        sinceYear: firstYear,
+        seasons,
+        rentals: floor50(stats.rentals),
+        customers: floor50(stats.customers),
+      });
+    } catch (error: unknown) {
+      logger.error("[business-stats] GET lifetime error", {
+        error: error instanceof Error ? error.message : "unknown",
+      });
+      return unavailable();
     }
   });
 

@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Anchor, Fuel, Star, ThumbsUp } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Anchor, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
-import { boatIncludesFuel } from "@shared/boatData";
+import { boatIncludesFuel, isCaptainedBoat } from "@shared/boatData";
 
 interface BoatCardProps {
   id: string;
@@ -82,7 +82,7 @@ const BoatCardImage = memo(function BoatCardImage({
   );
 });
 
-/** Memoized pricing display — clean, no anchoring */
+/** Price block: total is the headline (what you pay), per-person is the second line. */
 const BoatCardPricing = memo(function BoatCardPricing({
   basePrice,
   capacity,
@@ -96,26 +96,20 @@ const BoatCardPricing = memo(function BoatCardPricing({
   fromLabel: string;
   hidePerPerson?: boolean;
 }) {
-  if (hidePerPerson) {
-    return (
-      <div className="text-right flex-shrink-0 space-y-0.5">
-        <div className="text-sm text-muted-foreground">{fromLabel}</div>
-        <div className="flex items-baseline justify-end">
-          <span className="text-cta font-semibold text-xl">{basePrice}&euro;</span>
-        </div>
-      </div>
-    );
-  }
   return (
-    <div className="text-right flex-shrink-0 space-y-0.5">
-      <div className="text-sm text-muted-foreground">{fromLabel}</div>
-      <div className="flex items-baseline gap-1.5 justify-end">
-        <span className="text-cta font-semibold text-xl">
-          {Math.ceil(basePrice / capacity)}&euro;
-        </span>
-        <span className="text-xs text-muted-foreground">/{perPersonLabel}</span>
+    <div className="min-w-0">
+      <div className="text-xs text-muted-foreground leading-none mb-1">{fromLabel}</div>
+      <div className="font-heading font-semibold text-2xl leading-none tracking-tight text-foreground tabular-nums">
+        {basePrice}&euro;
       </div>
-      <span className="text-xs text-muted-foreground">{basePrice}&euro; total</span>
+      {!hidePerPerson && (
+        <div className="mt-1.5 text-xs text-muted-foreground tabular-nums">
+          <span className="font-medium text-foreground/80">
+            {Math.ceil(basePrice / capacity)}&euro;
+          </span>{" "}
+          / {perPersonLabel}
+        </div>
+      )}
     </div>
   );
 });
@@ -162,78 +156,80 @@ function BoatCard({
     [handleDetails]
   );
 
+  const licenseLabel = isCaptainedBoat(id)
+    ? t.nav.captained
+    : requiresLicense
+      ? t.boats.withLicense
+      : t.boats.withoutLicense;
+  const showFuel = boatIncludesFuel(id, requiresLicense);
+  const detailsHref = isJetSki ? jetskiHref || "#" : localizedPath("boatDetail", id);
+
   return (
     <Card
-      className={`overflow-hidden boat-card-tilt ${
-        isRecommended ? "border-2 border-cta" : "hover:border-cta/50 transition-colors"
+      className={`group/card flex h-full flex-col overflow-hidden transition-colors ${
+        isRecommended ? "border-2 border-cta" : "hover:border-cta/40"
       }`}
     >
-      {(() => {
-        const imageInner = (
-          <>
-            <BoatCardImage
-              image={image}
-              imageSrcSet={imageSrcSet}
-              imageTablet={imageTablet}
-              imageMobile={imageMobile}
-              imageAlt={imageAlt}
-              imageError={imageError}
-              onImageError={handleImageError}
-            />
-            {isJetSki ? (
-              <div className="absolute top-3 left-3 z-10">
-                <div className="inline-flex items-center gap-1 bg-foreground text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
-                  {t.jetski?.badge || "Jet ski"}
-                </div>
-              </div>
-            ) : (
-              (isRecommended || isPopular) && (
-                <div className="absolute top-3 left-3 z-10">
-                  {isRecommended ? (
-                    <div className="inline-flex items-center gap-1 bg-cta text-primary-foreground dark:text-background text-xs font-bold px-2.5 py-1 rounded-full">
-                      <ThumbsUp className="w-3 h-3" />
-                      {t.recommendation?.recommendedForYou}
-                    </div>
-                  ) : (
-                    <div className="inline-flex items-center gap-1 bg-popular text-popular-foreground text-xs font-bold px-2.5 py-1 rounded-full">
-                      <Star className="w-3 h-3 fill-popular-foreground" />
-                      {t.boats.mostPopular}
-                    </div>
-                  )}
-                </div>
-              )
-            )}
-          </>
-        );
-        // Jet ski products link to their dedicated landing page (like boats link
-        // to their detail page); the "Solicitar" button below opens the modal.
-        return isJetSki ? (
-          <a
-            href={jetskiHref || "#"}
-            onClick={handleDetailsClick}
-            className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
-            data-testid={`image-${id}`}
-            aria-label={`${name}`}
-          >
-            {imageInner}
-          </a>
-        ) : (
-          <a
-            href={localizedPath("boatDetail", id)}
-            onClick={handleDetailsClick}
-            className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
-            data-testid={`image-${id}`}
-            aria-label={`${t.a11y.viewBoatDetails} ${name}`}
-          >
-            {imageInner}
-          </a>
-        );
-      })()}
-      <CardContent className="p-3 sm:p-4">
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex-1 mr-2">
-            <h3 className="font-heading font-medium text-lg text-foreground">{name}</h3>
-          </div>
+      <a
+        href={detailsHref}
+        onClick={handleDetailsClick}
+        className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+        data-testid={`image-${id}`}
+        aria-label={isJetSki ? name : `${t.a11y.viewBoatDetails} ${name}`}
+      >
+        <BoatCardImage
+          image={image}
+          imageSrcSet={imageSrcSet}
+          imageTablet={imageTablet}
+          imageMobile={imageMobile}
+          imageAlt={imageAlt}
+          imageError={imageError}
+          onImageError={handleImageError}
+        />
+        <div className="absolute top-3 left-3 right-3 z-10 flex items-start justify-between gap-2">
+          <span className="inline-flex items-center rounded-full bg-background px-3 py-1 text-xs font-medium text-foreground">
+            {isJetSki ? t.jetski?.badge || "Jet ski" : licenseLabel}
+          </span>
+          {!isJetSki && (isRecommended || isPopular) && (
+            <span
+              className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${
+                isRecommended
+                  ? "bg-cta text-primary-foreground dark:text-background"
+                  : "bg-popular text-popular-foreground"
+              }`}
+            >
+              {isRecommended ? (
+                <ThumbsUp className="w-3 h-3" aria-hidden="true" />
+              ) : (
+                <Star className="w-3 h-3 fill-popular-foreground" aria-hidden="true" />
+              )}
+              {isRecommended ? t.recommendation?.recommendedForYou : t.boats.mostPopular}
+            </span>
+          )}
+        </div>
+      </a>
+
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <h3 className="font-heading font-semibold text-xl leading-tight tracking-tight text-foreground text-balance">
+          {name}
+        </h3>
+
+        <div className="mt-3 flex flex-wrap items-center gap-y-1 divide-x divide-border text-sm">
+          <p className="pr-3.5 text-muted-foreground">
+            <span className="font-heading text-lg font-semibold tabular-nums text-foreground">
+              {capacity}
+            </span>{" "}
+            {t.boats.people}
+          </p>
+          {enginePower && <p className="px-3.5 font-medium text-foreground/80">{enginePower}</p>}
+          {showFuel && (
+            <p className="pl-3.5 font-medium text-success">{t.boatDetail.fuelIncluded}</p>
+          )}
+        </div>
+
+        <p className="mt-3 mb-5 text-sm leading-relaxed text-muted-foreground">{description}</p>
+
+        <div className="mt-auto flex flex-wrap items-end justify-between gap-x-4 gap-y-3 border-t border-border pt-4">
           <BoatCardPricing
             basePrice={basePrice}
             capacity={capacity}
@@ -241,45 +237,16 @@ function BoatCard({
             fromLabel={isJetSki ? t.jetski?.fromLabel || t.boats.from : t.boats.from}
             hidePerPerson={isJetSki}
           />
+          <button
+            onClick={handleBooking}
+            className={`flex-shrink-0 rounded-full bg-cta px-6 py-2.5 min-h-11 text-base font-medium text-primary-foreground dark:text-background transition-colors hover:bg-cta/90 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none ${
+              isRecommended || isPopular ? "cta-pulse" : ""
+            }`}
+            data-testid={`button-book-${id}`}
+          >
+            {isJetSki ? t.jetski?.requestCta || t.boats.book : t.boats.book}
+          </button>
         </div>
-
-        <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{description}</p>
-
-        <p className="text-xs xs:text-sm text-muted-foreground mb-2 inline-flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
-          <span>
-            {capacity} {t.boats.people}
-          </span>
-          {enginePower && (
-            <>
-              <span aria-hidden="true">·</span>
-              <span>{enginePower}</span>
-            </>
-          )}
-          <span aria-hidden="true">·</span>
-          <span>{requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}</span>
-          {boatIncludesFuel(id, requiresLicense) && (
-              <>
-                <span aria-hidden="true">·</span>
-                <span className="inline-flex items-center gap-1 text-success font-medium">
-                  <Fuel className="w-3 h-3" aria-hidden="true" />
-                  {t.boatDetail.fuelIncluded}
-                </span>
-              </>
-            )}
-        </p>
-      </CardContent>
-      <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-end">
-        <button
-          onClick={handleBooking}
-          className={`text-base font-medium px-6 py-2.5 min-h-11 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none transition-colors ${
-            isRecommended || isPopular
-              ? "bg-cta hover:bg-cta/90 text-primary-foreground dark:text-background cta-pulse cta-hover-lift"
-              : "border border-foreground/15 text-foreground hover:border-foreground/40 bg-transparent"
-          }`}
-          data-testid={`button-book-${id}`}
-        >
-          {isJetSki ? t.jetski?.requestCta || t.boats.book : t.boats.book}
-        </button>
       </div>
     </Card>
   );

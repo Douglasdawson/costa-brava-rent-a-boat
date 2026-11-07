@@ -68,6 +68,17 @@ export const nl: Translations = {
       "Costa Brava Rent a Boat beheert de grootste bootverhuurvloot van de haven van Blanes met 9 boten: 3 motorboten van 80 tot 115 pk voor schippers met vaarbewijs, 5 boten zonder vaarbewijs (te huren tot 30 september 2026, wanneer RD 1188/2025 van elke huurder een vaarbewijs gaat eisen) en 1 priv\u00E9-excursie met schipper. De Licencia de Navegaci\u00F3n, de eendaagse titul\u00EDn zonder examen, of een gelijkwaardig buitenlands vaarbewijs dat wij online verifi\u00EBren. Service in 8 talen. Seizoen van april tot oktober. 4.8\u2605 op Google met meer dan 300 beoordelingen.",
   },
 
+  lifetimeStats: {
+    title: "Hoe lang we al op het water zijn",
+    subtitle: "Elk cijfer komt uit ons eigen verhuurregister, sinds we begonnen zijn.",
+    seasons: "Zomers op zee",
+    seasonsLabel: "Sinds {year}",
+    rentals: "Verhuren",
+    rentalsLabel: "Voltooide tochten",
+    customers: "Klanten",
+    customersLabel: "Hebben met ons gevaren",
+  },
+
   fleet: {
     title: "Kies jouw dagje op zee",
     subtitle:
@@ -1791,6 +1802,19 @@ export const nl: Translations = {
       "Het beste wat u in Blanes kunt huren. 5,90 m geregistreerde lengte (de «625» is de handelsnaam, niet de maat), Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Licencia de Navegación (LN) of hoger vereist.",
     "excursion-privada":
       "U geniet gewoon, onze professionele schipper brengt u naar geheime baaien, zeegrotten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
+  },
+  boatTeasers: {
+    "jetski-circuito": "Afgebakend circuit voor Blanes, met veiligheidsbriefing en zwemvest inbegrepen.",
+    "jetski-excursion-monitor": "Begeleide jetskitocht met instructeur, van Blanes naar Tossa de Mar. Brandstof inbegrepen.",
+    "solar-450": "Het ruimste gepolsterde zonnedek van de vloot, om voor anker te gaan in een baai.",
+    "remus-450": "Een tent over de hele boot en veel stabiliteit: ideaal voor gezinnen met kinderen.",
+    "remus-450-ii": "Zelfde model als de Remus 450, met tent en stabiliteit, voor als de eerste vol zit.",
+    "astec-400": "Eenvoudige, stabiele boot voor 2-4 personen, met tent en de laagste prijs per persoon.",
+    "astec-480": "De meest complete van haar klasse: bluetooth-muziek, gepolsterd zonnedek en dubbele tank.",
+    "trimarchi-57s": "110 pk en dubbel zonnedek voor groepen tot 7 personen, met tafel om voor anker te eten.",
+    "mingolla-brava-19": "80 pk met GPS en dieptemeter: Lloret in 15 minuten, Tossa de Mar in een half uur.",
+    "pacific-craft-625": "Yamaha 115 pk, dubbel zonnedek en plek voor 7 personen. De meest complete met vaarbewijs.",
+    "excursion-privada": "Jij geniet alleen: professionele schipper, baaien en zeegrotten tussen Blanes en Tossa de Mar.",
   },
 
   // TODO: pro-translate — functionele vertaling, proeflezen vóór productief gebruik in NL-markt

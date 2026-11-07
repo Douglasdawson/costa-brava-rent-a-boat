@@ -71,6 +71,17 @@ export const en: Translations = {
       "Costa Brava Rent a Boat operates the largest boat rental fleet in the Port of Blanes with 9 boats: 3 powerboats of 80 to 115 HP for licensed skippers, 5 boats without a licence (rentable through September 30, 2026, when Royal Decree 1188/2025 starts requiring a nautical qualification from every renter) and 1 private excursion with skipper. The basic Navigation Licence, the one-day no-exam titul\u00EDn, or an equivalent foreign title we verify online. Assistance in 8 languages. Season from April to October. 4.8\u2605 on Google with over 300 reviews.",
   },
 
+  lifetimeStats: {
+    title: "How long we have been at sea",
+    subtitle: "Every figure comes from our own rental records, since the day we started.",
+    seasons: "Summers at sea",
+    seasonsLabel: "Since {year}",
+    rentals: "Rentals",
+    rentalsLabel: "Trips completed",
+    customers: "Customers",
+    customersLabel: "Have sailed with us",
+  },
+
   fleet: {
     title: "Choose your day on the water",
     subtitle:
@@ -1835,6 +1846,19 @@ export const en: Translations = {
       "The best rental in Blanes. 5.90 m registered length — the «625» is the trade name, not the measurement —, 115 hp Yamaha engine and luxury space for 7. Double solarium, dining table for meals at anchor, freshwater shower and electronic controls. For those who want no compromises and seek the most complete boating experience on the Costa Brava. Licencia de Navegación (LN) or higher required.",
     "excursion-privada":
       "You just enjoy, our professional skipper takes you to secret coves, sea caves and spots inaccessible on foot between Blanes and Tossa de Mar. You'll anchor in the perfect cove of the day, chosen by wind and currents. Ideal for celebrations, anniversaries or families who want an exclusive private excursion on the Costa Brava with zero worries.",
+  },
+  boatTeasers: {
+    "jetski-circuito": "Buoyed circuit off Blanes, with safety briefing and life jacket included.",
+    "jetski-excursion-monitor": "Guided jet ski route with an instructor, from Blanes to Tossa de Mar. Fuel included.",
+    "solar-450": "The widest padded sundeck in the fleet, to anchor in a cove and soak up the sun.",
+    "remus-450": "An awning covering the whole boat and great stability: ideal for families with kids.",
+    "remus-450-ii": "Same model as the Remus 450, with awning and stability, in case the first is booked.",
+    "astec-400": "Simple, stable boat for 2-4 people, with an awning and the lowest price per person.",
+    "astec-480": "The most complete of its range: bluetooth music, padded sundeck and double fuel tank.",
+    "trimarchi-57s": "110 hp and a double sundeck for groups of up to 7, with a table for lunch at anchor.",
+    "mingolla-brava-19": "80 hp with GPS and depth sounder: Lloret in 15 minutes, Tossa de Mar in half an hour.",
+    "pacific-craft-625": "Yamaha 115 hp, double sundeck and room for 7 people. The most complete licensed boat.",
+    "excursion-privada": "You just enjoy: professional skipper, coves and sea caves between Blanes and Tossa de Mar.",
   },
 
   // TODO: pro-translate — functional translation only, proofread before prod use in EN-heavy markets

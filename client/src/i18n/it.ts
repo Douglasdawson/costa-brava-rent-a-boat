@@ -70,6 +70,17 @@ export const it: Translations = {
       "Costa Brava Rent a Boat gestisce la flotta di noleggio imbarcazioni pi\u00F9 grande del Porto di Blanes con 9 barche: 3 motoscafi da 80 a 115 CV per skipper patentati, 5 barche senza patente (noleggiabili fino al 30 settembre 2026, quando il RD 1188/2025 inizia a richiedere un titolo nautico a ogni noleggiatore) e 1 escursione privata con skipper. Basta la Licencia de Navegaci\u00F3n, il titul\u00EDn di un giorno senza esame, o un titolo estero equivalente che verifichiamo online. Assistenza in 8 lingue. Stagione da aprile a ottobre. 4.8\u2605 su Google con oltre 300 recensioni.",
   },
 
+  lifetimeStats: {
+    title: "Da quanto navighiamo",
+    subtitle: "Ogni cifra arriva dal nostro registro dei noleggi, fin dall'inizio.",
+    seasons: "Estati in mare",
+    seasonsLabel: "Dal {year}",
+    rentals: "Noleggi",
+    rentalsLabel: "Uscite completate",
+    customers: "Clienti",
+    customersLabel: "Hanno navigato con noi",
+  },
+
   fleet: {
     title: "Scegli la tua uscita in mare",
     subtitle:
@@ -1788,6 +1799,19 @@ export const it: Translations = {
       "Il meglio che si possa noleggiare a Blanes. 5,90 metri di lunghezza di immatricolazione (il «625» è il nome commerciale, non la misura), motore Yamaha 115 cv e spazio di lusso per 7 persone. Doppio solarium, tavolo per pranzare all'ancora, doccia d'acqua dolce e comandi elettronici. Per chi non vuole compromessi e cerca l'esperienza nautica più completa della Costa Brava. Richiede la Licencia de Navegación (LN) o un titolo superiore.",
     "excursion-privada":
       "Voi vi godete il mare, il nostro skipper professionista vi porta in cale segrete, grotte marine e angoli inaccessibili a piedi tra Blanes e Tossa de Mar. Getterete l'ancora nella cala perfetta del giorno, scelta in base a vento e correnti. Ideale per celebrazioni, anniversari o famiglie che desiderano un'escursione privata esclusiva in Costa Brava senza pensieri.",
+  },
+  boatTeasers: {
+    "jetski-circuito": "Circuito delimitato davanti a Blanes, con briefing di sicurezza e giubbotto inclusi.",
+    "jetski-excursion-monitor": "Percorso guidato in moto d'acqua con istruttore, da Blanes a Tossa de Mar. Carburante incluso.",
+    "solar-450": "Il prendisole imbottito più ampio della flotta, per ancorare in una cala e prendere il sole.",
+    "remus-450": "Tendalino su tutta la barca e grande stabilità: ideale per famiglie con bambini.",
+    "remus-450-ii": "Stesso modello della Remus 450, con tendalino e stabilità, se la prima è già prenotata.",
+    "astec-400": "Barca semplice e stabile per 2-4 persone, con tendalino e il prezzo per persona più basso.",
+    "astec-480": "La più completa della sua gamma: musica bluetooth, prendisole imbottito e doppio serbatoio.",
+    "trimarchi-57s": "110 cv e doppio prendisole per gruppi fino a 7 persone, con tavolo per pranzare all'ancora.",
+    "mingolla-brava-19": "80 cv con GPS ed ecoscandaglio: Lloret in 15 minuti, Tossa de Mar in mezz'ora.",
+    "pacific-craft-625": "Yamaha 115 cv, doppio prendisole e spazio per 7 persone. La più completa con patente.",
+    "excursion-privada": "Tu ti godi solo il viaggio: skipper professionista, cale e grotte tra Blanes e Tossa de Mar.",
   },
 
   // TODO: pro-translate — traduzione funzionale, revisionare prima dell'uso in mercati IT-heavy

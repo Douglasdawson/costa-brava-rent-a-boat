@@ -22,6 +22,7 @@ import Footer from "./components/Footer";
 
 // Lazy load below-fold homepage sections
 const FleetSection = lazy(() => import("@/components/FleetSection"));
+const LifetimeStatsSection = lazy(() => import("@/components/LifetimeStatsSection"));
 const ActivitiesSection = lazy(() => import("@/components/ActivitiesSection"));
 const TitulinSection = lazy(() => import("@/components/TitulinSection"));
 const ExtrasSection = lazy(() => import("@/components/ExtrasSection"));
@@ -172,6 +173,9 @@ function HomePage() {
             2026-10-01 by themselves (isPubliclyListed). */}
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FleetSection excludeActivities />
+        </Suspense>
+        <Suspense fallback={null}>
+          <LifetimeStatsSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ActivitiesSection />

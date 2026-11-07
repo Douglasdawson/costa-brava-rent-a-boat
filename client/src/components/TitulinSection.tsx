@@ -31,19 +31,19 @@ export default function TitulinSection() {
     >
       <div className="container mx-auto max-w-6xl px-4">
         <div className="grid gap-14 lg:grid-cols-[6fr_5fr] lg:items-center lg:gap-20">
-          <div className="lg:text-center">
+          <div className="text-center">
             <h2
               id="titulin-title"
               className="font-heading text-h2 font-semibold leading-[1.08] tracking-tight text-balance lg:text-[clamp(2.25rem,3.2vw,3rem)]"
             >
               {s.title}
             </h2>
-            <p className="mt-5 max-w-lg text-base lg:mx-auto text-primary-foreground/85 text-pretty sm:text-lg">
+            <p className="mt-5 max-w-lg text-base mx-auto text-primary-foreground/85 text-pretty sm:text-lg">
               {s.subtitle}
             </p>
 
             {p?.chips && (
-              <ul className="mt-8 grid max-w-md grid-cols-1 gap-x-8 gap-y-3 text-sm sm:grid-cols-2 lg:mx-auto lg:justify-items-center">
+              <ul className="mt-8 grid max-w-md grid-cols-1 gap-x-8 gap-y-3 text-sm sm:grid-cols-2 mx-auto justify-items-center">
                 {p.chips.map(chip => (
                   <li key={chip} className="flex items-center gap-2.5 text-primary-foreground/90">
                     <Check className="h-4 w-4 flex-shrink-0 text-primary-foreground/60" aria-hidden="true" />
@@ -53,7 +53,7 @@ export default function TitulinSection() {
               </ul>
             )}
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4 lg:justify-center">
+            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4 justify-center">
               <Button
                 asChild
                 size="lg"

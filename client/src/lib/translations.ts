@@ -152,6 +152,19 @@ export interface Translations {
     summaryGeoPostEra?: string;
   };
 
+  // Lifetime numbers section (data from the CRM)
+  lifetimeStats: {
+    title: string;
+    subtitle: string;
+    seasons: string;
+    /** Contains {year}. */
+    seasonsLabel: string;
+    rentals: string;
+    rentalsLabel: string;
+    customers: string;
+    customersLabel: string;
+  };
+
   // Fleet Section
   fleet: {
     title: string;
@@ -2437,6 +2450,8 @@ export interface Translations {
 
   // Boat descriptions (keyed by boat ID)
   boatDescriptions?: Record<string, string>;
+  /** One-line card blurbs (<=95 chars), shown whole on the fleet cards. */
+  boatTeasers?: Record<string, string>;
 
   // Navigation range component (used on home + Lloret page)
   rangeFromBlanes?: {

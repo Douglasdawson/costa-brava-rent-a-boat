@@ -70,6 +70,17 @@ export const de: Translations = {
       "Costa Brava Rent a Boat betreibt die gr\u00F6\u00DFte Bootsverleihflotte im Hafen von Blanes mit 9 Boote: 3 Motorboote von 80 bis 115 PS f\u00FCr Skipper mit Schein, 5 Boote ohne F\u00FChrerschein (mietbar bis zum 30. September 2026, wenn das RD 1188/2025 von jedem Mieter einen Bootsf\u00FChrerschein verlangt) und 1 Privatausflug mit Skipper. Die Licencia de Navegaci\u00F3n, der eint\u00E4gige Titul\u00EDn ohne Pr\u00FCfung, oder ein gleichwertiger ausl\u00E4ndischer Schein, den wir online pr\u00FCfen. Beratung in 8 Sprachen. Saison April bis Oktober. 4,8\u2605 bei Google mit \u00FCber 300 Bewertungen.",
   },
 
+  lifetimeStats: {
+    title: "So lange sind wir schon auf dem Wasser",
+    subtitle: "Jede Zahl stammt aus unserem eigenen Vermietungsregister, seit unserem Start.",
+    seasons: "Sommer auf dem Meer",
+    seasonsLabel: "Seit {year}",
+    rentals: "Vermietungen",
+    rentalsLabel: "Abgeschlossene Ausfahrten",
+    customers: "Kunden",
+    customersLabel: "Sind mit uns gefahren",
+  },
+
   fleet: {
     title: "Wähle deinen Tag auf dem Meer",
     subtitle:
@@ -1791,6 +1802,19 @@ export const de: Translations = {
       "Das beste Mietboot in Blanes. 5,90 m eingetragene Länge (die «625» ist der Handelsname, nicht das Maß), Yamaha 115 PS und luxuriöser Platz für 7. Doppeltes Solarium, Tisch für Mahlzeiten vor Anker, Süßwasserdusche und elektronische Steuerung. Für alle, die keine Kompromisse eingehen und das kompletteste Bootserlebnis an der Costa Brava suchen. Licencia de Navegación (LN) oder höher erforderlich.",
     "excursion-privada":
       "Sie genießen einfach, unser professioneller Skipper bringt Sie zu geheimen Buchten, Meerhöhlen und zu Fuß unzugänglichen Orten zwischen Blanes und Tossa de Mar. Sie ankern in der perfekten Bucht des Tages, ausgewählt nach Wind und Strömungen. Ideal für Feiern, Jubiläen oder Familien, die einen exklusiven Privatausflug an der Costa Brava ganz ohne Sorgen erleben möchten.",
+  },
+  boatTeasers: {
+    "jetski-circuito": "Markierter Rundkurs vor Blanes, Sicherheitseinweisung und Schwimmweste inklusive.",
+    "jetski-excursion-monitor": "Geführte Jetski-Tour mit Instruktor von Blanes nach Tossa de Mar. Treibstoff inklusive.",
+    "solar-450": "Das größte gepolsterte Sonnendeck der Flotte, zum Ankern in einer Bucht und Sonnenbaden.",
+    "remus-450": "Sonnensegel über dem ganzen Boot und hohe Stabilität: ideal für Familien mit Kindern.",
+    "remus-450-ii": "Gleiches Modell wie die Remus 450, mit Sonnensegel und Stabilität, falls die erste ausgebucht ist.",
+    "astec-400": "Einfaches, stabiles Boot für 2-4 Personen, mit Sonnensegel und dem niedrigsten Preis pro Person.",
+    "astec-480": "Die vollständigste ihrer Klasse: Bluetooth-Musik, gepolstertes Sonnendeck und doppelter Tank.",
+    "trimarchi-57s": "110 PS und doppeltes Sonnendeck für bis zu 7 Personen, mit Tisch zum Essen vor Anker.",
+    "mingolla-brava-19": "80 PS mit GPS und Echolot: Lloret in 15 Minuten, Tossa de Mar in einer halben Stunde.",
+    "pacific-craft-625": "Yamaha 115 PS, doppeltes Sonnendeck und Platz für 7 Personen. Das vollständigste Boot mit Lizenz.",
+    "excursion-privada": "Sie genießen nur: professioneller Skipper, Buchten und Meereshöhlen zwischen Blanes und Tossa de Mar.",
   },
 
   // TODO: pro-translate — nur funktionale Übersetzung, vor produktivem Einsatz lektorieren (DE ist ein wichtiger Markt)

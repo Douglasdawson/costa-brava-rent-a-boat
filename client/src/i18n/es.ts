@@ -76,6 +76,17 @@ export const es: Translations = {
       "Costa Brava Rent a Boat opera la mayor flota de alquiler de embarcaciones del Puerto de Blanes con 9 embarcaciones: 3 lanchas de 80 a 115 CV para patrones titulados, 5 barcos sin titulaci\u00F3n (alquilables hasta el 30 de septiembre de 2026, cuando el RD 1188/2025 pasa a exigir t\u00EDtulo n\u00E1utico a todo arrendatario) y 1 excursi\u00F3n privada con capit\u00E1n. Basta la Licencia de Navegaci\u00F3n, el titul\u00EDn de un d\u00EDa sin examen, o un t\u00EDtulo extranjero equivalente que verificamos online. Atenci\u00F3n en 8 idiomas. Temporada de abril a octubre. 4.8\u2605 en Google con m\u00E1s de 300 rese\u00F1as.",
   },
 
+  lifetimeStats: {
+    title: "Lo que llevamos navegando",
+    subtitle: "Cada cifra sale de nuestro propio registro de alquileres, desde que empezamos.",
+    seasons: "Veranos en el mar",
+    seasonsLabel: "Desde {year}",
+    rentals: "Alquileres",
+    rentalsLabel: "Salidas completadas",
+    customers: "Clientes",
+    customersLabel: "Han navegado con nosotros",
+  },
+
   fleet: {
     title: "Elige tu plan en el mar",
     subtitle:
@@ -3772,6 +3783,19 @@ export const es: Translations = {
       "Lo mejor que puedes alquilar en Blanes. 5,90 metros de eslora de matriculación —el «625» es el nombre comercial, no la medida—, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere Licencia de Navegación (LN) o superior.",
     "excursion-privada":
       "Tú solo disfrutas: nuestro patrón profesional te lleva a calas secretas, cuevas marinas y rincones inaccesibles a pie entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según viento y corrientes. Ideal para celebraciones, aniversarios o familias que quieren una excursión privada exclusiva por la Costa Brava sin preocuparse de nada.",
+  },
+  boatTeasers: {
+    "jetski-circuito": "Circuito balizado frente a Blanes, con briefing de seguridad y chaleco incluidos.",
+    "jetski-excursion-monitor": "Ruta guiada en moto de agua con monitor, de Blanes a Tossa de Mar. Combustible incluido.",
+    "solar-450": "El solárium acolchado más amplio de la flota, para fondear en una cala y tomar el sol.",
+    "remus-450": "Toldo que cubre todo el barco y mucha estabilidad: ideal para familias con niños.",
+    "remus-450-ii": "Mismo modelo que la Remus 450, con toldo y estabilidad, por si la primera está reservada.",
+    "astec-400": "Barco sencillo y estable para 2-4 personas, con toldo y el menor precio por persona.",
+    "astec-480": "La más completa de su gama: música bluetooth, solárium acolchado y depósito doble.",
+    "trimarchi-57s": "110 cv y solárium doble para grupos de hasta 7 personas, con mesa para comer fondeados.",
+    "mingolla-brava-19": "80 cv con GPS y sonda: Lloret en 15 minutos y Tossa de Mar en media hora.",
+    "pacific-craft-625": "Yamaha 115 cv, solárium doble y espacio para 7 personas. La más completa con licencia.",
+    "excursion-privada": "Tú solo disfrutas: patrón profesional, calas y cuevas entre Blanes y Tossa de Mar.",
   },
 
   rangeFromBlanes: {

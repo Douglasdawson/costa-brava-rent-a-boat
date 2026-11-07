@@ -57,12 +57,15 @@ export default function ExtrasSection() {
         <div className="grid gap-8 lg:grid-cols-5 lg:gap-12">
           <ul
             role="list"
-            className="divide-y divide-border border-y border-border lg:col-span-3 lg:self-start"
+            className="border-t border-border lg:col-span-3 lg:grid lg:grid-cols-2 lg:gap-x-10 lg:self-start"
           >
             {EXTRAS.map(extra => {
               const Icon = ICONS[extra.icon] ?? Star;
               return (
-                <li key={extra.name} className="flex items-center gap-4 py-4">
+                <li
+                  key={extra.name}
+                  className="flex items-center gap-4 border-b border-border py-4"
+                >
                   <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-muted">
                     <Icon className="h-5 w-5 text-foreground/80" aria-hidden="true" />
                   </span>

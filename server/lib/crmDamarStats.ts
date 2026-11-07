@@ -78,6 +78,66 @@ export async function getCrmDamarBookingStats(opts?: {
   }
 }
 
+// ── Lifetime numbers for the public "stats" section ─────────────────────────
+// Only PAST, confirmed, non-cancelled rentals count ("realizados"): a paid
+// booking for next week has not happened yet. Customers = distinct real client
+// ids among them; rows with the PENDIENTE / ANONIMIZADO sentinels are left out,
+// so the figure is a lower bound (it is shown rounded down anyway).
+
+export interface CrmDamarLifetimeStats {
+  /** ISO date (YYYY-MM-DD) of the first confirmed rental. */
+  firstDate: string;
+  rentals: number;
+  customers: number;
+}
+
+const LIFETIME_TTL_MS = 6 * 60 * 60 * 1000;
+let lifetimeCache: { at: number; data: CrmDamarLifetimeStats | null } | null = null;
+
+export async function getCrmDamarLifetimeStats(): Promise<CrmDamarLifetimeStats | null> {
+  const url = process.env.CRMDAMAR_DATABASE_URL;
+  if (!url) return null;
+  if (lifetimeCache && Date.now() - lifetimeCache.at < LIFETIME_TTL_MS) return lifetimeCache.data;
+
+  try {
+    const sql = neon(url);
+    // rentals_real.date is TEXT with mixed formats (see above): parse both.
+    const rows = await sql`
+      WITH r AS (
+        SELECT client_dni,
+               CASE WHEN date ~ '^[0-9]{2}/[0-9]{2}/[0-9]{4}$' THEN to_date(date, 'DD/MM/YYYY')
+                    WHEN date ~ '^[0-9]{4}-[0-9]{2}-[0-9]{2}' THEN left(date, 10)::date
+               END AS d
+        FROM rentals_real
+        WHERE estado_reserva = 'reserva_pagada'
+          AND cancelled_rain = false AND cancelled_sea = false
+          AND cancelled_wind = false AND cancelled_breakdown = false
+      )
+      SELECT COUNT(*)::int AS rentals,
+             MIN(d)::text AS first_date,
+             COUNT(DISTINCT client_dni) FILTER (
+               WHERE client_dni IS NOT NULL AND client_dni NOT IN ('', 'PENDIENTE', 'ANONIMIZADO')
+             )::int AS customers
+      FROM r
+      WHERE d >= DATE '2015-01-01' AND d <= CURRENT_DATE`;
+    const row = (rows as Array<Record<string, unknown>>)[0] || {};
+    const data: CrmDamarLifetimeStats | null = row.first_date
+      ? {
+          firstDate: String(row.first_date),
+          rentals: Number(row.rentals) || 0,
+          customers: Number(row.customers) || 0,
+        }
+      : null;
+    lifetimeCache = { at: Date.now(), data };
+    return data;
+  } catch (error) {
+    logger.warn("[crmdamar] lifetime stats query error", {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return null;
+  }
+}
+
 // ── Referral codes (CRM "trae a un amigo") ───────────────────────────────────
 // The CRM issues one personal code per customer (CBRB-NAME99; older DAMAR- ones
 // are still valid). A friend can type it in the booking form: it is NOT a

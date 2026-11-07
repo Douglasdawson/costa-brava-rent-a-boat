@@ -5010,6 +5010,15 @@ export const ru: Translations = {
       },
     ],
   },
+  coastrentOffice: {
+    title: "Офис бронирования в Льорет-де-Мар",
+    opensOn: "открывается 1 февраля 2027 года",
+    open: "открыт",
+    departures: "Лодки отправляются из порта Бланеса, в 10 минутах.",
+    catalogCta: "Все транспортные средства Coast Rent",
+    paddlePick: "Сапсёрфинг в Льорет-де-Мар (Coast Rent)",
+    postBooking: "А на суше? Скутер, велосипед или сапборд в Льорет-де-Мар",
+  },
   scootersPage: {
     seoTitle: "Аренда мотоциклов и скутеров в Льорет-де-Мар | Coast Rent",
     seoDescription:

@@ -6266,6 +6266,18 @@ export const es: Translations = {
     whatsappMessage:
       "Hola, quiero información sobre cómo sacarme la Licencia de Navegación (titulín) y alquilar un barco.",
   },
+  // Oficina de reservas en Lloret (tienda de Coast Rent en el Centro Comercial Carabela, desde el
+  // 1-feb-2027). La frase la monta CoastrentOfficeNote.tsx y el bodyFallback de seoInjector:
+  // "{title}: {Coast Rent, Carabela, Av. Just Marlès 2} ({opensOn|open}). {departures}".
+  coastrentOffice: {
+    title: "Oficina de reservas en Lloret de Mar",
+    opensOn: "abre el 1 de febrero de 2027",
+    open: "abierta",
+    departures: "Los barcos salen del Puerto de Blanes, a 10 minutos.",
+    catalogCta: "Todos los vehículos de Coast Rent",
+    paddlePick: "Paddle surf en Lloret de Mar (Coast Rent)",
+    postBooking: "¿Y en tierra? Scooter, bici o paddle surf en Lloret de Mar",
+  },
   scootersPage: {
     seoTitle: "Alquiler de motos y scooters en Lloret de Mar | Coast Rent",
     seoDescription:

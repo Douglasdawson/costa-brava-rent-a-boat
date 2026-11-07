@@ -20,6 +20,7 @@ import { isJetSkiProduct, JETSKI_PRODUCTS, type JetSkiProduct } from "../shared/
 import { getFleetStats } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { ACTIVITATUM_PICKS, activitatumPicksBySlot, activitatumTopicUrl, activitatumUrl } from "../shared/activitatumLinks";
+import { CARABELA, COASTRENT_DOMAIN, COASTRENT_ORG_ID, carabelaOpen, carabelaPosJsonLd, coastrentUrl, type CoastrentSurface } from "../shared/coastrentLinks";
 import { ESCOLA_NAUTICA_DOMAIN, escolaNauticaHandoff } from "../shared/escolaNauticaLinks";
 import { eraCopy, isLicenseFreeEraActive } from "../shared/constants";
 import { postEraMeta } from "../shared/postEraMeta";
@@ -2551,6 +2552,14 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
 <p><a href="https://wa.me/34611500372">${esc(ctaLabel)}</a></p>
     `.trim();
 
+    // Oficina de reservas en Lloret (Coast Rent, Centro Comercial Carabela, desde el 1-feb-2027).
+    // Misma frase que CoastrentOfficeNote.tsx, para los crawlers sin JS: dice siempre que los
+    // barcos salen de Blanes. El gating por fecha es carabelaOpen().
+    const coastrentOfficeHtml = (surface: CoastrentSurface): string => {
+      const co = (I18N_BY_LANG[lang] ?? i18nEs).coastrentOffice;
+      return `<p><strong>${esc(co.title)}:</strong> <a href="${coastrentUrl("home", lang, surface)}">${esc(CARABELA.shortLabel)}</a> (${esc(carabelaOpen() ? co.open : co.opensOn)}). ${esc(co.departures)}</p>`;
+    };
+
     // For home page: add rich JSON-LD graph with all schemas
     // NOTE: Google will NOT show star snippets for self-reviewed LocalBusiness schemas.
     // Stars can only appear on Product schemas (boat detail pages). The AggregateRating
@@ -2650,6 +2659,9 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "https://coastrent.es",
           "https://activitatum.com",
         ],
+        // Punto de venta en Lloret: la tienda de Coast Rent en Carabela (mismo @id que en
+        // coastrent.es). Se publica ya con validFrom; el copy visible se gatea por fecha.
+        hasPOS: carabelaPosJsonLd(),
         hasMerchantReturnPolicy: {
           "@type": "MerchantReturnPolicy",
           "@id": "https://www.costabravarentaboat.com/#return-policy",
@@ -2961,6 +2973,71 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
         meta,
         jsonLd: { "@context": "https://schema.org", "@graph": [...products, shopFaq, breadcrumb] },
         availableLanguages,
+      };
+    }
+
+    // /alquiler-motos-lloret - página puente hacia Coast Rent (Lloret, misma propiedad).
+    // Hasta 2026-11 solo tenía meta: el HTML servido no llevaba NI UN enlace a coastrent.es
+    // (curl -A GPTBot lo confirmó), así que para los crawlers sin JS el puente no existía.
+    // Misma lógica que la rama de actividades de abajo: lo que importa son los enlaces.
+    else if (metaKey === "/alquiler-motos-lloret") {
+      const sp = (I18N_BY_LANG[lang] ?? i18nEs).scootersPage;
+      const co = (I18N_BY_LANG[lang] ?? i18nEs).coastrentOffice;
+      const pageUrl = `${BASE_URL}${getLocalizedPath("scooters", lang)}`;
+      // Espejo del Service que emite scooters.tsx (que nunca llega al DOM: SEO.tsx se inhibe
+      // porque index.html ya trae un ld+json). Mismo @id del provider que usa coastrent.es.
+      const service = {
+        "@type": "Service",
+        "@id": `${BASE_URL}/#service-scooters`,
+        name: sp.hero.title,
+        serviceType: sp.navLabel,
+        description: sp.seoDescription,
+        url: pageUrl,
+        image: `${BASE_URL}/images/scooters/alquiler-scooter-lloret-de-mar-costa-brava.webp`,
+        provider: {
+          "@type": "LocalBusiness",
+          "@id": COASTRENT_ORG_ID,
+          name: "Coast Rent",
+          url: COASTRENT_DOMAIN,
+          address: { "@type": "PostalAddress", addressLocality: "Lloret de Mar", addressRegion: "Girona", addressCountry: "ES" },
+        },
+        areaServed: { "@type": "Place", name: "Lloret de Mar, Costa Brava" },
+      };
+      const faq = {
+        "@type": "FAQPage",
+        "@id": `${BASE_URL}${metaKey}#faq`,
+        mainEntity: (sp.faq ?? []).map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: sp.navLabel, url: pageUrl }]);
+
+      const bodyFallback = `
+<h1>${esc(sp.hero.title)}</h1>
+<p>${esc(sp.hero.subtitle)}</p>
+<p>${esc(sp.intro)}</p>
+<h2>${esc(sp.vehiclesTitle)}</h2>
+<ul>
+${(sp.vehicles ?? []).map((v) => `  <li>${esc(v.name)}: ${esc(v.description)}</li>`).join("\n")}
+</ul>
+<h2>${esc(sp.combineTitle)}</h2>
+<p>${esc(sp.combineText)}</p>
+<h2>${esc(sp.operatedByTitle)}</h2>
+<p>${esc(sp.operatedByText)}</p>
+<p>
+  <a href="${coastrentUrl("home", lang, "bridge")}">${esc(sp.cta)}</a> ·
+  <a href="${coastrentUrl("catalog", lang, "bridge")}">${esc(co.catalogCta)}</a>
+</p>
+${coastrentOfficeHtml("bridge")}
+      `.trim();
+
+      return {
+        meta,
+        jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, breadcrumb] },
+        availableLanguages,
+        bodyFallback,
       };
     }
 
@@ -3314,7 +3391,10 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
             ],
         isEn ? "Book via WhatsApp +34 611 500 372" : "Reserva por WhatsApp +34 611 500 372",
       );
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: lloretLcp, bodyFallback: lloretBodyFallback };
+      // La oficina de Carabela también para los crawlers: es la página que responde a
+      // "alquiler barco Lloret" y la IA tiene que leer que se reserva en Lloret y se sale de Blanes.
+      const lloretBodyWithOffice = `${lloretBodyFallback}\n${coastrentOfficeHtml("landing-lloret")}`;
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: lloretLcp, bodyFallback: lloretBodyWithOffice };
     }
 
     // /alquiler-barcos-tossa-de-mar - TouristDestination + FAQPage for Tossa

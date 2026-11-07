@@ -30,6 +30,7 @@ import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { boatRoutes } from "../../shared/routesData";
 import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
 import { eraCopy } from "../../shared/constants";
+import { CARABELA } from "../../shared/coastrentLinks";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
@@ -119,6 +120,13 @@ async function collectRoutes(): Promise<IndexItem[]> {
 // 04:30 rebuild swaps it in (the dense embedding is only regenerated when missing, so the
 // old vector lingers until a forced rebuild; body and snippet, which is what we serve, update).
 type LandingText = { title?: string; body?: string; snippet?: string };
+// Oficina de reservas en Lloret (Coast Rent, Carabela). Va en las dos eras del landing de Lloret:
+// la fecha ya dice desde cuándo, así que la frase es verdad antes y después de la apertura.
+// Lo que nunca cambia: en Lloret no hay barcos, se sale de Blanes.
+const LLORET_OFFICE = {
+  es: `Desde el 1 de febrero de 2027 hay oficina de reservas en Lloret: la tienda de Coast Rent en ${CARABELA.streetAddress}, misma propiedad, donde se reserva el barco; las salidas siguen siendo desde el Puerto de Blanes.`,
+  en: `From 1 February 2027 there is a booking office in Lloret: the Coast Rent shop at ${CARABELA.streetAddress}, same ownership, where you book the boat; departures remain from the Port of Blanes.`,
+};
 const POST_ERA_OFFER = {
   es: "Desde el 1 de octubre de 2026 (RD 1188/2025) se alquila con título náutico: basta la Licencia de Navegación (titulín, curso de 1 día sin examen) para nuestras 3 lanchas de 80-115 CV, hasta 7 personas, desde 175€ las 2 horas y gasolina aparte. Sin título, la excursión privada con patrón.",
   en: "From 1 October 2026 (RD 1188/2025) you rent with a nautical licence: the 1-day, no-exam Licencia de Navegación (titulín) covers our 3 powerboats of 80-115 HP, up to 7 people, from 175€ per 2 hours, fuel charged separately. Without a licence, the private excursion with skipper.",
@@ -126,11 +134,11 @@ const POST_ERA_OFFER = {
 const POST_ERA_LANDINGS: Record<string, { es: LandingText; en: LandingText }> = {
   "lloret-de-mar": {
     es: {
-      body: `Alquiler de barcos para Lloret de Mar. Las salidas son desde el Puerto de Blanes, a 10 minutos por carretera de Lloret; no hay base de alquiler dentro de Lloret, se llega por mar. En lancha llegas a Santa Cristina y Sa Boadella en unos 25 minutos pasando por Cala Sant Francesc y Sa Forcanera, y sigues hasta Lloret centro, Cala Banys y Cala Canyelles. ${POST_ERA_OFFER.es}`,
+      body: `Alquiler de barcos para Lloret de Mar. Las salidas son desde el Puerto de Blanes, a 10 minutos por carretera de Lloret; no hay barcos dentro de Lloret, se llega por mar. ${LLORET_OFFICE.es} En lancha llegas a Santa Cristina y Sa Boadella en unos 25 minutos pasando por Cala Sant Francesc y Sa Forcanera, y sigues hasta Lloret centro, Cala Banys y Cala Canyelles. ${POST_ERA_OFFER.es}`,
       snippet: "Alquiler de barcos para Lloret de Mar saliendo del Puerto de Blanes: lanchas con titulín hasta Lloret centro y Cala Canyelles, o excursión con patrón.",
     },
     en: {
-      body: `Boat rental for Lloret de Mar. Trips depart from the Port of Blanes, 10 minutes by road from Lloret; there is no rental base inside Lloret, you reach it by sea. By powerboat you reach Santa Cristina and Sa Boadella in about 25 minutes, passing Cala Sant Francesc and Sa Forcanera, and continue to Lloret town, Cala Banys and Cala Canyelles. ${POST_ERA_OFFER.en}`,
+      body: `Boat rental for Lloret de Mar. Trips depart from the Port of Blanes, 10 minutes by road from Lloret; there are no boats inside Lloret, you reach it by sea. ${LLORET_OFFICE.en} By powerboat you reach Santa Cristina and Sa Boadella in about 25 minutes, passing Cala Sant Francesc and Sa Forcanera, and continue to Lloret town, Cala Banys and Cala Canyelles. ${POST_ERA_OFFER.en}`,
       snippet: "Boat rental for Lloret de Mar departing from the Port of Blanes: powerboats with the 1-day licence to Lloret town and Cala Canyelles, or a captained excursion.",
     },
   },
@@ -221,12 +229,12 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "lloret-de-mar",
       es: {
         title: "Alquiler de barcos en Lloret de Mar (desde el Puerto de Blanes)",
-        body: "Alquiler de barcos para Lloret de Mar. Las salidas son desde el Puerto de Blanes, a 10 minutos por carretera de Lloret; no hay base de alquiler dentro de Lloret, se llega por mar. Sin licencia llegas a Playa de Fenals (sur de Lloret) en unos 25 minutos pasando por Cala Sant Francesc, Sa Forcanera, Santa Cristina y Cala Sa Boadella, desde 85€/h con gasolina incluida, mayores de 18 sin titulación (solo hasta el 30 de septiembre de 2026: el RD 1188/2025 pasa a exigir título náutico a todo arrendatario el 1 de octubre de 2026, y basta la Licencia de Navegación, que se saca en un día). Lloret centro, Cala Banys y Cala Canyelles quedan al norte de Fenals, fuera del límite de 2 millas sin licencia: solo con barco con licencia o excursión privada con patrón.",
+        body: `Alquiler de barcos para Lloret de Mar. Las salidas son desde el Puerto de Blanes, a 10 minutos por carretera de Lloret; no hay barcos dentro de Lloret, se llega por mar. ${LLORET_OFFICE.es} Sin licencia llegas a Playa de Fenals (sur de Lloret) en unos 25 minutos pasando por Cala Sant Francesc, Sa Forcanera, Santa Cristina y Cala Sa Boadella, desde 85€/h con gasolina incluida, mayores de 18 sin titulación (solo hasta el 30 de septiembre de 2026: el RD 1188/2025 pasa a exigir título náutico a todo arrendatario el 1 de octubre de 2026, y basta la Licencia de Navegación, que se saca en un día). Lloret centro, Cala Banys y Cala Canyelles quedan al norte de Fenals, fuera del límite de 2 millas sin licencia: solo con barco con licencia o excursión privada con patrón.`,
         snippet: "Alquiler de barcos para Lloret de Mar saliendo del Puerto de Blanes: con titulación hasta Lloret centro y Cala Canyelles; sin licencia hasta Playa de Fenals en 25 min, desde 85€/h.",
       },
       en: {
         title: "Boat rental in Lloret de Mar (from the Port of Blanes)",
-        body: "Boat rental for Lloret de Mar. Trips depart from the Port of Blanes, 10 minutes by road from Lloret; there is no rental base inside Lloret, you reach it by sea. License-free you reach Playa de Fenals (south Lloret) in about 25 minutes, passing Cala Sant Francesc, Sa Forcanera, Santa Cristina and Cala Sa Boadella, from 85€/h fuel included, 18+ no license (through September 30, 2026 only: RD 1188/2025 requires a nautical qualification from every renter as of October 1, 2026, and the 1-day Licencia de Navegación is enough). Lloret town, Cala Banys and Cala Canyelles are north of Fenals, beyond the 2-mile license-free limit: only with a licensed boat or the captained private excursion.",
+        body: `Boat rental for Lloret de Mar. Trips depart from the Port of Blanes, 10 minutes by road from Lloret; there are no boats inside Lloret, you reach it by sea. ${LLORET_OFFICE.en} License-free you reach Playa de Fenals (south Lloret) in about 25 minutes, passing Cala Sant Francesc, Sa Forcanera, Santa Cristina and Cala Sa Boadella, from 85€/h fuel included, 18+ no license (through September 30, 2026 only: RD 1188/2025 requires a nautical qualification from every renter as of October 1, 2026, and the 1-day Licencia de Navegación is enough). Lloret town, Cala Banys and Cala Canyelles are north of Fenals, beyond the 2-mile license-free limit: only with a licensed boat or the captained private excursion.`,
         snippet: "Boat rental for Lloret de Mar departing from the Port of Blanes: licensed boats to Lloret town and Cala Canyelles; license-free to Playa de Fenals in 25 min, from 85€/h.",
       },
     },

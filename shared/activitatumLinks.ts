@@ -9,6 +9,8 @@
  * Por eso los destinos son una lista CERRADA: si no está aquí, no se puede enlazar.
  */
 
+import { carabelaOpen } from "./coastrentLinks";
+
 export const ACTIVITATUM_DOMAIN = "https://activitatum.com";
 
 /**
@@ -61,10 +63,16 @@ export const ACTIVITATUM_PICKS = {
 export type ActivitatumPick = keyof typeof ACTIVITATUM_PICKS;
 export type ActivitatumSlot = "afterBoat" | "landDay" | "rainyDay";
 
-/** Las fichas de un hueco concreto, en el orden en que se declaran arriba. */
-export function activitatumPicksBySlot(slot: ActivitatumSlot): ActivitatumPick[] {
+/**
+ * Las fichas de un hueco concreto, en el orden en que se declaran arriba.
+ *
+ * El paddle es de un tercero y desde el 1-feb-2027 compite con el del grupo (Coast Rent lo
+ * alquila en el Centro Comercial Carabela de Lloret): ese día deja de salir aquí, en la página
+ * de actividades y en su fallback SSR a la vez, y ActivitatumTeaser pone el de Coast Rent.
+ */
+export function activitatumPicksBySlot(slot: ActivitatumSlot, now: Date = new Date()): ActivitatumPick[] {
   return (Object.keys(ACTIVITATUM_PICKS) as ActivitatumPick[]).filter(
-    (key) => ACTIVITATUM_PICKS[key].slot === slot,
+    (key) => ACTIVITATUM_PICKS[key].slot === slot && !(key === "paddle" && carabelaOpen(now)),
   );
 }
 

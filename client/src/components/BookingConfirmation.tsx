@@ -11,6 +11,7 @@ import {
   activitatumPicksBySlot,
   activitatumUrl,
 } from "@shared/activitatumLinks";
+import { coastrentUrl } from "@shared/coastrentLinks";
 
 interface BookingConfirmationProps {
   boatName: string;
@@ -314,6 +315,18 @@ export function BookingConfirmation({
                     </li>
                   );
                 })}
+              {/* Tierra: Coast Rent (misma propiedad) a 10 min del puerto. Sin precio a propósito,
+                  los suyos cambian y no son nuestros. */}
+              <li className="text-sm">
+                <a
+                  href={coastrentUrl("home", language, "post-booking")}
+                  target="_blank"
+                  rel="noopener"
+                  className="text-muted-foreground underline decoration-border underline-offset-4 hover:text-foreground"
+                >
+                  {t.coastrentOffice.postBooking}
+                </a>
+              </li>
             </ul>
           </div>
         )}

@@ -5006,6 +5006,15 @@ export const ca: Translations = {
       },
     ],
   },
+  coastrentOffice: {
+    title: "Oficina de reserves a Lloret de Mar",
+    opensOn: "obre l'1 de febrer de 2027",
+    open: "oberta",
+    departures: "Els vaixells surten del Port de Blanes, a 10 minuts.",
+    catalogCta: "Tots els vehicles de Coast Rent",
+    paddlePick: "Paddle surf a Lloret de Mar (Coast Rent)",
+    postBooking: "I a terra? Scooter, bici o paddle surf a Lloret de Mar",
+  },
   scootersPage: {
     seoTitle: "Lloguer de motos i scooters a Lloret de Mar | Coast Rent",
     seoDescription:

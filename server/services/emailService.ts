@@ -21,6 +21,7 @@ import { calculateBasePrice, type Duration } from "@shared/pricing";
 import { generateOpaqueUnsubToken } from "../routes/newsletter";
 import { GOOGLE_REVIEW_URL, CANCELLATION_POLICY_ES } from "../../shared/businessProfile";
 import { activitatumTopicUrl, type ActivitatumSurface } from "../../shared/activitatumLinks";
+import { coastrentUrl } from "../../shared/coastrentLinks";
 
 type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru" | "ca";
 
@@ -64,6 +65,11 @@ interface EmailStrings {
   activitiesTitle?: string;
   activitiesIntro?: string;
   activitiesCta?: string;
+  // Cross-sell hacia Coast Rent (tierra: scooter, bici, paddle; misma propiedad). Mismo
+  // criterio ASCII que el bloque de arriba.
+  coastrentTitle?: string;
+  coastrentIntro?: string;
+  coastrentCta?: string;
 }
 
 const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
@@ -90,6 +96,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     activitiesTitle: "¿Y el resto de los días?",
     activitiesIntro: "Parasailing, buggies o wakeboard a diez minutos del puerto. Los reserva Activitatum, la agencia de actividades con la que trabajamos.",
     activitiesCta: "Ver actividades",
+    coastrentTitle: "¿Y en tierra?",
+    coastrentIntro: "Scooter, bici o paddle surf en Lloret de Mar con Coast Rent, la tienda hermana a 10 minutos del puerto. Desde el 1 de febrero de 2027, su local del Centro Comercial Carabela es también nuestra oficina de reservas en Lloret.",
+    coastrentCta: "Ver Coast Rent",
     reviewTitle: "Tu opinión nos importa",
     reviewDesc: "Si disfrutaste de la experiencia, nos encantaría que compartieras tu opinión en Google.",
     reviewButton: "Dejar una reseña en Google",
@@ -129,6 +138,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     activitiesTitle: "And the rest of your stay?",
     activitiesIntro: "Parasailing, buggies or wakeboarding ten minutes from the port. Booked through Activitatum, the activity agency we work with.",
     activitiesCta: "See activities",
+    coastrentTitle: "And on land?",
+    coastrentIntro: "Scooter, bike or paddle board in Lloret de Mar with Coast Rent, our sister shop 10 minutes from the port. From 1 February 2027 its Centro Comercial Carabela shop is also our booking office in Lloret.",
+    coastrentCta: "See Coast Rent",
     reviewTitle: "Your opinion matters to us",
     reviewDesc: "If you enjoyed the experience, we would love for you to share your review on Google.",
     reviewButton: "Leave a Google review",
@@ -168,6 +180,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     activitiesTitle: "Et le reste du sejour ?",
     activitiesIntro: "Parachute ascensionnel, buggies ou wakeboard a dix minutes du port. Reservation via Activitatum, l'agence d'activites avec laquelle nous travaillons.",
     activitiesCta: "Voir les activites",
+    coastrentTitle: "Et sur terre ?",
+    coastrentIntro: "Scooter, velo ou paddle a Lloret de Mar avec Coast Rent, la boutique soeur a dix minutes du port. A partir du 1er fevrier 2027, sa boutique du Centro Comercial Carabela est aussi notre bureau de reservation a Lloret.",
+    coastrentCta: "Voir Coast Rent",
     reviewTitle: "Votre avis nous importe",
     reviewDesc: "Si vous avez apprecie l'experience, nous serions ravis que vous partagiez votre avis sur Google.",
     reviewButton: "Laisser un avis Google",
@@ -206,6 +221,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     activitiesTitle: "Und der Rest des Aufenthalts?",
     activitiesIntro: "Parasailing, Buggys oder Wakeboard zehn Minuten vom Hafen entfernt. Buchbar uber Activitatum, die Aktivitatenagentur, mit der wir zusammenarbeiten.",
     activitiesCta: "Aktivitaten ansehen",
+    coastrentTitle: "Und an Land?",
+    coastrentIntro: "Roller, Fahrrad oder SUP in Lloret de Mar mit Coast Rent, dem Schwesterladen zehn Minuten vom Hafen. Ab 1. Februar 2027 ist sein Laden im Centro Comercial Carabela auch unser Buchungsburo in Lloret.",
+    coastrentCta: "Coast Rent ansehen",
     reviewTitle: "Ihre Meinung ist uns wichtig",
     reviewDesc: "Wenn Sie das Erlebnis genossen haben, wurden wir uns freuen, wenn Sie Ihre Bewertung auf Google teilen.",
     reviewButton: "Google-Bewertung hinterlassen",
@@ -244,6 +262,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     activitiesTitle: "En de rest van je verblijf?",
     activitiesIntro: "Parasailing, buggy's of wakeboarden op tien minuten van de haven. Te boeken via Activitatum, het activiteitenbureau waarmee we samenwerken.",
     activitiesCta: "Bekijk activiteiten",
+    coastrentTitle: "En op het land?",
+    coastrentIntro: "Scooter, fiets of sup in Lloret de Mar met Coast Rent, onze zusterwinkel op tien minuten van de haven. Vanaf 1 februari 2027 is hun winkel in het Centro Comercial Carabela ook ons boekingskantoor in Lloret.",
+    coastrentCta: "Bekijk Coast Rent",
     reviewTitle: "Uw mening is belangrijk voor ons",
     reviewDesc: "Als u de ervaring heeft genoten, zouden we het fijn vinden als u een review op Google achterlaat.",
     reviewButton: "Google-review achterlaten",
@@ -282,6 +303,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     activitiesTitle: "E il resto del soggiorno?",
     activitiesIntro: "Parasailing, buggy o wakeboard a dieci minuti dal porto. Si prenotano su Activitatum, l'agenzia di attivita con cui lavoriamo.",
     activitiesCta: "Vedi le attivita",
+    coastrentTitle: "E a terra?",
+    coastrentIntro: "Scooter, bici o paddle surf a Lloret de Mar con Coast Rent, il negozio gemello a dieci minuti dal porto. Dal 1 febbraio 2027 il suo negozio nel Centro Comercial Carabela e anche il nostro ufficio prenotazioni a Lloret.",
+    coastrentCta: "Vedi Coast Rent",
     reviewTitle: "La sua opinione e importante per noi",
     reviewDesc: "Se ha apprezzato l'esperienza, ci farebbe piacere se condividesse la sua recensione su Google.",
     reviewButton: "Lascia una recensione su Google",
@@ -320,6 +344,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     activitiesTitle: "А остальные дни?",
     activitiesIntro: "Парасейлинг, багги или вейкборд в десяти минутах от порта. Бронирование через Activitatum, агентство, с которым мы работаем.",
     activitiesCta: "Смотреть активности",
+    coastrentTitle: "А на суше?",
+    coastrentIntro: "Скутер, велосипед или сапборд в Льорет-де-Мар с Coast Rent, нашим дочерним магазином в десяти минутах от порта. С 1 февраля 2027 года его магазин в торговом центре Carabela также является нашим офисом бронирования в Льорете.",
+    coastrentCta: "Смотреть Coast Rent",
     reviewTitle: "Vashe mnenie vazhno dlya nas",
     reviewDesc: "Yesli vam ponravilos, my budem rady otzuvu na Google.",
     reviewButton: "Ostavit otzuv v Google",
@@ -358,6 +385,9 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     activitiesTitle: "I la resta de dies?",
     activitiesIntro: "Parasailing, buggies o wakeboard a deu minuts del port. Els reserva Activitatum, l'agència d'activitats amb qui treballem.",
     activitiesCta: "Veure activitats",
+    coastrentTitle: "I a terra?",
+    coastrentIntro: "Scooter, bici o paddle surf a Lloret de Mar amb Coast Rent, la botiga germana a deu minuts del port. Des de l'1 de febrer de 2027, el seu local del Centro Comercial Carabela és també la nostra oficina de reserves a Lloret.",
+    coastrentCta: "Veure Coast Rent",
     reviewTitle: "La teva opinió ens importa",
     reviewDesc: "Si vas gaudir de l'experiència, ens encantaria que compartissis la teva opinió a Google.",
     reviewButton: "Deixar una ressenya a Google",
@@ -518,6 +548,22 @@ function activitiesBlock(strings: EmailStrings, lang: string, surface: Activitat
     </div>`;
 }
 
+/**
+ * Bloque gemelo hacia Coast Rent (tierra: scooter, bici, paddle; misma propiedad, a 10 min del
+ * puerto). Enlaza a su home en el idioma del cliente; campaña "email" para que GA4 lo separe
+ * del puente y del post-reserva. Sin precios: son suyos y cambian.
+ */
+function coastrentBlock(strings: EmailStrings, lang: string): string {
+  if (!strings.coastrentTitle || !strings.coastrentIntro) return "";
+  const url = coastrentUrl("home", lang, "email");
+  return `
+    <div style="background-color:#f8fafc; border-radius:8px; padding:18px; margin:20px 0;">
+      <p style="margin:0 0 6px; color:#1e3a5f; font-size:15px; font-weight:600;">${strings.coastrentTitle}</p>
+      <p style="margin:0 0 12px; color:#475569; font-size:14px; line-height:1.5;">${strings.coastrentIntro}</p>
+      <a href="${url}" target="_blank" style="color:#2563eb; font-size:14px; font-weight:600; text-decoration:underline;">${strings.coastrentCta || "coastrent.es"}</a>
+    </div>`;
+}
+
 // ===== EMAIL SENDING FUNCTIONS =====
 
 /**
@@ -559,6 +605,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     </div>
 
     ${activitiesBlock(strings, booking.language || "es", "booking-confirmation")}
+    ${coastrentBlock(strings, booking.language || "es")}
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5;">
       ${strings.thanks}
@@ -710,6 +757,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
     </div>
 
     ${activitiesBlock(strings, booking.language || "es", "thankyou-email")}
+    ${coastrentBlock(strings, booking.language || "es")}
 
     <!-- Discount Code -->
     <div style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); border-radius:8px; padding:24px; margin:20px 0; text-align:center;">

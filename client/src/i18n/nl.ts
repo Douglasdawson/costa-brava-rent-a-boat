@@ -5020,6 +5020,15 @@ export const nl: Translations = {
       },
     ],
   },
+  coastrentOffice: {
+    title: "Boekingskantoor in Lloret de Mar",
+    opensOn: "opent op 1 februari 2027",
+    open: "geopend",
+    departures: "De boten vertrekken vanuit de haven van Blanes, op 10 minuten.",
+    catalogCta: "Alle voertuigen van Coast Rent",
+    paddlePick: "Suppen in Lloret de Mar (Coast Rent)",
+    postBooking: "En op het land? Scooter, fiets of sup in Lloret de Mar",
+  },
   scootersPage: {
     seoTitle: "Scooter- en motorverhuur in Lloret de Mar | Coast Rent",
     seoDescription:

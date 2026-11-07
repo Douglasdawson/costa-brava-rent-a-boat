@@ -6,6 +6,7 @@ import LogoCostaBravaFooter from "@/components/icons/LogoCostaBravaFooter";
 import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "@/components/icons/BrandIcons";
 import { useTranslations } from "@/lib/translations";
 import { NewsletterLegalNote } from "@/components/NewsletterLegalNote";
+import CoastrentOfficeNote from "@/components/CoastrentOfficeNote";
 import { useLanguage } from "@/hooks/use-language";
 import { BUSINESS_ADDRESS_FORMATTED } from "@shared/businessProfile";
 import CentresNLCatalunyaLogo from "@/components/icons/CentresNLCatalunyaLogo";
@@ -399,6 +400,11 @@ export default function Footer() {
                   strokeWidth={2.5}
                 />
                 <p className="text-sm">{t.footer.businessHours}</p>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-4 h-4 text-primary-foreground/50 flex-shrink-0 mt-1" strokeWidth={2.5} />
+                <CoastrentOfficeNote surface="contact" className="text-xs leading-relaxed text-primary-foreground/60" />
               </div>
             </div>
           </motion.div>

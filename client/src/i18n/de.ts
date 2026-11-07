@@ -5027,6 +5027,15 @@ export const de: Translations = {
       },
     ],
   },
+  coastrentOffice: {
+    title: "Buchungsbüro in Lloret de Mar",
+    opensOn: "öffnet am 1. Februar 2027",
+    open: "geöffnet",
+    departures: "Die Boote starten im Hafen von Blanes, 10 Minuten entfernt.",
+    catalogCta: "Alle Fahrzeuge von Coast Rent",
+    paddlePick: "Stand-up-Paddling in Lloret de Mar (Coast Rent)",
+    postBooking: "Und an Land? Roller, Fahrrad oder SUP in Lloret de Mar",
+  },
   scootersPage: {
     seoTitle: "Roller- und Motorradverleih in Lloret de Mar | Coast Rent",
     seoDescription:

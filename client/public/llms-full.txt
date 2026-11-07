@@ -218,6 +218,7 @@ Road scooter, motorbike and bicycle rental in Lloret de Mar, operated by Coast R
 - **Operator**: Coast Rent (https://coastrent.es), Lloret de Mar
 - **Vehicles**: 50cc scooter Piaggio Liberty 50 (AM or B licence), 125cc scooters Kymco Sky Town 125 / MITT Urban 125 (B licence with 3+ years or A1), 125cc motorbike Motron X-Nord 125, CF Moto 650 MT motorbike (A2/A licence), Rockrider bicycle (no licence). No e-bikes.
 - **Conditions**: Daily rates (no hourly rental): bicycle from 15 EUR/day, 50cc and 125cc scooters from 45 EUR/day, 125cc motorbike from 75 EUR/day, CF Moto 650 MT from 105 EUR/day. Third-party insurance, helmet (scooters and motorbikes) and unlimited mileage included. No card or upfront payment to book. Refundable deposit of 50-300 EUR at pick-up depending on the vehicle, returned in full if there is no damage. Free cancellation up to 24h before pick-up
+- **Lloret booking office (from 1 February 2027)**: Coast Rent's second shop in the Centro Comercial Carabela, Avinguda Just Marlès Vilarrodona 2, 17310 Lloret de Mar (daily 10:00-20:00, +34 611 500 372) sells and books Costa Brava Rent a Boat rentals, and also rents paddle boards and electric scooters. There are no boats in Lloret: every departure is from the Port of Blanes, 10 min by road
 - **Best for**: Combining a boat morning from Blanes with a coastal road trip to Tossa de Mar in the afternoon (Blanes–Lloret: ~10 min)
 
 ## Other Activities in Blanes, Lloret de Mar & Fenals (booked on activitatum.com)
@@ -427,6 +428,7 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 ### Lloret de Mar
 - **Distance**: 6 km / 10 min drive
 - **Connection to boat rental**: <!--PRE-ERA-->Also reachable by boat from Blanes (30 min license-free).<!--/PRE-ERA--><!--POST-ERA-->Also reachable by boat from Blanes (about 25-30 min by powerboat).<!--/POST-ERA--> Major tourist destination, many visitors come to Blanes port for boat rental.
+- **Booking office**: from 1 February 2027, the Coast Rent shop in the Centro Comercial Carabela (Avinguda Just Marlès 2, same ownership) books our boats in Lloret; there are no boats in Lloret, departures remain at the Port of Blanes
 - **Page**: https://costabravarentaboat.com/alquiler-barcos-lloret-de-mar
 
 ### Barcelona

@@ -2,6 +2,7 @@ import { Language } from "@/hooks/use-language";
 import { postEraMeta, SEO_PAGE_TO_META_KEY } from "@shared/postEraMeta";
 import { getBaseUrl } from "@/lib/domain";
 import { HREFLANG_CODES } from "@shared/seoConstants";
+import { carabelaPosJsonLd } from "@shared/coastrentLinks";
 import { getLocalizedPath } from "@shared/i18n-routes";
 import type { PageKey } from "@shared/i18n-routes";
 import {
@@ -1803,6 +1804,9 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
     "slogan": "Explora la Costa Brava desde el agua",
     "award": `${BUSINESS_RATING_STR} stars on Google Maps - ${BUSINESS_REVIEW_COUNT_STR} reviews`,
     "hasMap": "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
+    // Punto de venta en Lloret (Coast Rent, Carabela, desde el 1-feb-2027). Mismo nodo que
+    // emiten seoInjector.ts y robots.ts: un solo generador en shared/coastrentLinks.ts.
+    "hasPOS": carabelaPosJsonLd(),
     // sameAs: cluster de perfiles oficiales para entity disambiguation
     // (señal alta para Google Knowledge Graph / sitelinks). Mantener
     // sincronizado con server/seoInjector.ts. TODO: añadir YouTube cuando

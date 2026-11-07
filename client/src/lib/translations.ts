@@ -3188,6 +3188,18 @@ export interface Translations {
     ctaButton: string;
     whatsappMessage: string;
   };
+  // Oficina de reservas en Lloret (Coast Rent, Centro Comercial Carabela, desde el 1-feb-2027).
+  // Consumido por CoastrentOfficeNote.tsx, BookingConfirmation, ActivitatumTeaser y el
+  // bodyFallback de seoInjector; el gating por fecha es carabelaOpen() de shared/coastrentLinks.
+  coastrentOffice: {
+    title: string;
+    opensOn: string;
+    open: string;
+    departures: string;
+    catalogCta: string;
+    paddlePick: string;
+    postBooking: string;
+  };
   scootersPage: {
     seoTitle: string;
     seoDescription: string;

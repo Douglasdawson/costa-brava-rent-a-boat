@@ -24,16 +24,16 @@ import {
   generateBreadcrumbSchema,
   generateFAQSchema,
 } from "@/utils/seo-schemas";
+import { COASTRENT_DOMAIN, COASTRENT_ORG_ID, coastrentUrl } from "@shared/coastrentLinks";
 
 const NAVY_CTA =
   "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
 
-const COAST_RENT_URL = "https://coastrent.es";
-
 /**
  * Bridge page for road scooter/motorbike rental in Lloret de Mar. The service
  * is operated by Coast Rent (sister business we openly recommend); the CTA
- * deep-links to their site in the visitor's language.
+ * deep-links to their site in the visitor's language, with UTM so GA4 can tell
+ * this bridge apart from the other surfaces (see shared/coastrentLinks.ts).
  */
 export default function ScootersPage() {
   const { language } = useLanguage();
@@ -42,7 +42,7 @@ export default function ScootersPage() {
 
   const hreflangLinks = generateHreflangLinks("scooters");
   const canonical = generateCanonicalUrl("scooters", language);
-  const coastRentUrl = `${COAST_RENT_URL}/${language}`;
+  const coastRentUrl = coastrentUrl("home", language, "bridge");
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -59,15 +59,19 @@ export default function ScootersPage() {
     {
       "@context": "https://schema.org",
       "@type": "Service",
+      "@id": `${BASE_DOMAIN}/#service-scooters`,
       name: s?.hero?.title,
       serviceType: s?.navLabel,
       description: s?.seoDescription,
       url: canonical,
       image: `${BASE_DOMAIN}${heroImage}`,
+      // Mismo @id que usa coastrent.es para su Organization: así el grafo enlaza la entidad
+      // en vez de crear un "Coast Rent" flotante por cada página que lo cita.
       provider: {
         "@type": "LocalBusiness",
+        "@id": COASTRENT_ORG_ID,
         name: "Coast Rent",
-        url: COAST_RENT_URL,
+        url: COASTRENT_DOMAIN,
         address: {
           "@type": "PostalAddress",
           addressLocality: "Lloret de Mar",

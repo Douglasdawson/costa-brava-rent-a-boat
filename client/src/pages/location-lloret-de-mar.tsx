@@ -43,6 +43,7 @@ import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
+import CoastrentOfficeNote from "@/components/CoastrentOfficeNote";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -436,6 +437,15 @@ export default function LocationLloretPage() {
 
 
       <RelatedLocationsSection currentLocation="lloret" />
+
+      {/* Oficina de reservas en Lloret (Carabela). Va en esta landing porque es la página que
+          responde a "alquiler barco Lloret": el visitante tiene que saber que puede reservar
+          en Lloret pero que el barco lo coge en Blanes. */}
+      <section className="px-4 pb-6 sm:px-6">
+        <div className="mx-auto max-w-4xl">
+          <CoastrentOfficeNote surface="landing-lloret" className="leading-relaxed text-muted-foreground" />
+        </div>
+      </section>
 
       <ActivitatumTeaser topic={"lloret"} surface="city-landing" />
       <RelatedContent currentPage="locationLloret" />

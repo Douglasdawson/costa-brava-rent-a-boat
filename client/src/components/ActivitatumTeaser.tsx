@@ -9,6 +9,7 @@ import {
   type ActivitatumTopic,
   type ActivitatumSurface,
 } from "@shared/activitatumLinks";
+import { carabelaOpen, coastrentUrl } from "@shared/coastrentLinks";
 
 interface ActivitatumTeaserProps {
   /** Which Activitatum town collection this page belongs to. */
@@ -67,6 +68,20 @@ export default function ActivitatumTeaser({ topic, surface }: ActivitatumTeaserP
                   </li>
                 );
               })}
+              {/* Desde la apertura de Carabela el paddle del grupo sustituye al de Activitatum
+                  (activitatumPicksBySlot ya lo ha quitado de la lista de arriba). */}
+              {carabelaOpen() && (
+                <li>
+                  <a
+                    href={coastrentUrl("paddle", language, "picks")}
+                    target="_blank"
+                    rel="noopener"
+                    className="text-muted-foreground underline decoration-border underline-offset-4 hover:text-foreground hover:decoration-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
+                  >
+                    {t.coastrentOffice.paddlePick}
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
 

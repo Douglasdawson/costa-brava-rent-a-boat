@@ -6,6 +6,7 @@ import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { AI_CRAWLER_NAMES } from "../seo/constants";
 import { eraCopy, isLicenseFreeEraActive } from "../../shared/constants";
+import { carabelaPosJsonLd } from "../../shared/coastrentLinks";
 import { BOAT_DATA, isCaptainedBoat, isPubliclyListed, type BoatData } from "../../shared/boatData";
 import { isCatalogBoatPubliclyListed } from "../../shared/publicFleet";
 import { getMaximumDuration } from "../../shared/pricing";
@@ -1142,6 +1143,10 @@ export function registerRobotsRoutes(app: Express): void {
         priceRange: `${floor}-420 EUR`,
         aggregateRating: { "@type": "AggregateRating", ratingValue: gbpStats.rating, reviewCount: gbpStats.userRatingCount, bestRating: 5 },
         sameAs: sameAsList,
+        // Punto de venta en Lloret desde el 1-feb-2027: la tienda de Coast Rent en el Centro
+        // Comercial Carabela, con el mismo @id que publica coastrent.es. No hay barcos en
+        // Lloret (las salidas siguen en Blanes): es oficina, y el nodo lo dice con validFrom.
+        hasPOS: carabelaPosJsonLd(),
         hasMerchantReturnPolicy: {
           "@type": "MerchantReturnPolicy",
           "@id": `${BASE_URL}/#return-policy`,

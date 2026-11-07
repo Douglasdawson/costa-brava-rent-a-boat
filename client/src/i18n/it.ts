@@ -5015,6 +5015,15 @@ export const it: Translations = {
       },
     ],
   },
+  coastrentOffice: {
+    title: "Ufficio prenotazioni a Lloret de Mar",
+    opensOn: "apre il 1º febbraio 2027",
+    open: "aperto",
+    departures: "Le barche partono dal porto di Blanes, a 10 minuti.",
+    catalogCta: "Tutti i veicoli di Coast Rent",
+    paddlePick: "Paddle surf a Lloret de Mar (Coast Rent)",
+    postBooking: "E a terra? Scooter, bici o paddle surf a Lloret de Mar",
+  },
   scootersPage: {
     seoTitle: "Noleggio moto e scooter a Lloret de Mar | Coast Rent",
     seoDescription:

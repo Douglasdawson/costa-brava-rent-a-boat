@@ -16,6 +16,7 @@ import {
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CoastrentOfficeNote from "@/components/CoastrentOfficeNote";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/utils/seo-config";
@@ -1041,6 +1042,7 @@ export default function AboutPage() {
                 <Clock className="w-5 h-5 text-primary flex-shrink-0" />
                 <span className="text-muted-foreground">{txt.locationHours}</span>
               </div>
+              <CoastrentOfficeNote surface="contact" className="pt-2 text-sm leading-relaxed text-muted-foreground" />
             </div>
           </div>
         </div>

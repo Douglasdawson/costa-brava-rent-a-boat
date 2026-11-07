@@ -79,7 +79,8 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     },
     {
       title: "Alquiler de scooters en Lloret de Mar",
-      description: "Recorre la Costa Brava por carretera, desde 8EUR/h con seguro incluido",
+      description:
+        "Recorre la Costa Brava por carretera, scooters desde 45EUR/dia y bicis desde 15EUR/dia con seguro incluido",
       pageKey: "scooters",
       type: "actividad",
     },

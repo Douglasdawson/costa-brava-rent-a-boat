@@ -3623,7 +3623,7 @@ export const es: Translations = {
     freeGuideSent: "Guía enviada. Revisa tu email.",
   },
   authority: {
-    yearsExperience: "6+ años de experiencia",
+    yearsExperience: "+7 veranos de experiencia",
     fullInsurance: "Seguro incluido",
     foreignLicenseVerified: "Verificamos tu título extranjero",
     happyCustomers: "5000+ clientes satisfechos",

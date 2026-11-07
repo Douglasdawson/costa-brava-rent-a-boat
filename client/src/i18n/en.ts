@@ -1743,7 +1743,7 @@ export const en: Translations = {
   },
   authority: {
     foreignLicenseVerified: "We verify your foreign licence",
-    yearsExperience: "6+ years of experience",
+    yearsExperience: "7+ summers of experience",
     fullInsurance: "Insurance included",
     happyCustomers: "5000+ happy customers",
     fleetInsured: "Liability and accident insurance included",

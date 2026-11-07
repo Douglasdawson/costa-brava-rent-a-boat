@@ -1696,7 +1696,7 @@ export const it: Translations = {
   },
   authority: {
     foreignLicenseVerified: "Verifichiamo il tuo titolo estero",
-    yearsExperience: "6+ anni di esperienza",
+    yearsExperience: "7+ estati di esperienza",
     fullInsurance: "Assicurazione inclusa",
     happyCustomers: "5000+ clienti soddisfatti",
     fleetInsured: "Assicurazione RC e infortuni inclusa",

@@ -204,7 +204,7 @@ export default function ActivitySnorkelPage() {
       {/* Photo break */}
       <div className="w-full overflow-hidden">
         <img
-          src="/images/blog/snorkel-mar.jpg"
+          src="/images/blog/snorkel-mar.webp"
           alt="Snorkeling in the crystal-clear waters of Costa Brava"
           className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
           loading="lazy"

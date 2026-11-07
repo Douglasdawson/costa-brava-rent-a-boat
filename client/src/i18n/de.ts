@@ -1699,7 +1699,7 @@ export const de: Translations = {
   },
   authority: {
     foreignLicenseVerified: "Wir pr\u00FCfen Ihren ausl\u00E4ndischen Schein",
-    yearsExperience: "6+ Jahre Erfahrung",
+    yearsExperience: "7+ Sommer Erfahrung",
     fullInsurance: "Versicherung inklusive",
     happyCustomers: "5000+ zufriedene Kunden",
     fleetInsured: "Haftpflicht- und Unfallversicherung inklusive",

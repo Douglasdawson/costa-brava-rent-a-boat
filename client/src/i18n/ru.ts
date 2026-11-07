@@ -1701,7 +1701,7 @@ export const ru: Translations = {
   },
   authority: {
     foreignLicenseVerified: "\u041F\u0440\u043E\u0432\u0435\u0440\u044F\u0435\u043C \u0432\u0430\u0448\u0435 \u0438\u043D\u043E\u0441\u0442\u0440\u0430\u043D\u043D\u043E\u0435 \u0443\u0434\u043E\u0441\u0442\u043E\u0432\u0435\u0440\u0435\u043D\u0438\u0435",
-    yearsExperience: "6+ лет опыта",
+    yearsExperience: "7+ сезонов опыта",
     fullInsurance: "Страховка включена",
     happyCustomers: "5000+ довольных клиентов",
     fleetInsured: "Страхование ответственности и от несчастных случаев включено",

@@ -417,7 +417,7 @@ export default function GiftCardsPage() {
       {/* Photo break */}
       <div className="w-full overflow-hidden">
         <img
-          src="/images/blog/grupos-barco.jpg"
+          src="/images/blog/grupos-barco.webp"
           alt="Grupo de amigos disfrutando en barco por la Costa Brava"
           className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
           loading="lazy"

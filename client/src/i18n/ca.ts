@@ -1694,7 +1694,7 @@ export const ca: Translations = {
   },
   authority: {
     foreignLicenseVerified: "Verifiquem el teu t\u00EDtol estranger",
-    yearsExperience: "6+ anys d'experiència",
+    yearsExperience: "+7 estius d'experiència",
     fullInsurance: "Assegurança inclosa",
     happyCustomers: "5000+ clients satisfets",
     fleetInsured: "Assegurança de RC i accidents inclosa",

@@ -2606,8 +2606,8 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
         currenciesAccepted: "EUR",
         aggregateRating,
         ...(buildReviews() ? { review: buildReviews() } : {}),
-        image: `${BASE_URL}/og-image.jpg`,
-        logo: `${BASE_URL}/og-image.jpg`,
+        image: `${BASE_URL}/og-image.webp`,
+        logo: `${BASE_URL}/og-image.webp`,
         // Knowledge graph signal — entities this business has expertise on.
         // AI agents use knowsAbout to route topical queries to authoritative
         // sources. More entities = wider topical authority fingerprint.

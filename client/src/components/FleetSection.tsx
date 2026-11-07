@@ -83,19 +83,6 @@ function BoatCardSkeleton() {
   );
 }
 
-/** All possible group size filter buckets */
-const ALL_GROUP_SIZE_OPTIONS = [
-  { label: "1-4", min: 1, max: 4 },
-  { label: "4-5", min: 4, max: 5 },
-  { label: "6-7", min: 6, max: 7 },
-  { label: "8+", min: 8, max: 99 },
-];
-
-/** Build filter options dynamically based on max boat capacity */
-function getGroupSizeOptions(maxCapacity: number) {
-  return ALL_GROUP_SIZE_OPTIONS.filter(o => o.min <= maxCapacity);
-}
-
 /**
  * Determine current season from today's date (Spain timezone).
  * Returns null if outside operational season (Nov-March).
@@ -161,8 +148,6 @@ interface VirtualizedBoatGridProps {
     jetskiHref?: string;
   }>;
   popularBoatId: string;
-  selectedGroupSize: string | null;
-  isBoatRecommended: (capacity: number) => boolean;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -175,8 +160,6 @@ interface VirtualizedBoatGridProps {
 const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
   boats,
   popularBoatId,
-  selectedGroupSize,
-  isBoatRecommended,
   onBooking,
   onDetails,
 }: VirtualizedBoatGridProps) {
@@ -216,18 +199,10 @@ const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
             }}
           >
             {rows[virtualRow.index].map(boat => (
-              <div
-                key={boat.id}
-                className={`transition-opacity duration-300 ${
-                  selectedGroupSize !== null && !isBoatRecommended(boat.capacity)
-                    ? "opacity-50"
-                    : "opacity-100"
-                }`}
-              >
+              <div key={boat.id}>
                 <BoatCard
                   {...boat}
                   isPopular={boat.id === popularBoatId}
-                  isRecommended={isBoatRecommended(boat.capacity)}
                   onBooking={onBooking}
                   onDetails={onDetails}
                 />
@@ -252,7 +227,6 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
   const { openBookingModal } = useBookingModal();
   const { ref: revealRef, isVisible } = useScrollReveal();
   const [jetskiProduct, setJetskiProduct] = useState<JetSkiProduct | null>(null);
-  const [selectedGroupSize, setSelectedGroupSize] = useState<string | null>(null);
   const [licenseFilter, setLicenseFilter] = useState<"all" | "no" | "yes">("all");
   const [checklistOpen, setChecklistOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
@@ -394,16 +368,10 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
   // From 2026-10-01 there are no self-drive licence-free boats left, so the
   // licence filter would only ever show one option: hide it instead.
   const showLicenseFilter = boats.some(
-    b => !b.requiresLicense && !b.isJetSki && !isCaptainedBoat(b.id),
+    b => !b.requiresLicense && !b.isJetSki && !isCaptainedBoat(b.id)
   );
 
-  // Dynamic group size options based on max boat capacity
-  const groupSizeOptions = useMemo(() => {
-    const maxCapacity = boats.reduce((max, b) => Math.max(max, b.capacity), 0);
-    return getGroupSizeOptions(maxCapacity);
-  }, [boats]);
-
-  // Filter by license and group size
+  // Filter by license
   const sortedBoats = useMemo(() => {
     let filtered = boats;
 
@@ -416,23 +384,8 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
       filtered = filtered.filter(b => b.requiresLicense);
     }
 
-    if (selectedGroupSize === null) return filtered;
-    const option = groupSizeOptions.find(o => o.label === selectedGroupSize);
-    if (!option) return filtered;
-
-    // Filter: only show boats whose capacity falls within the selected bucket
-    return filtered.filter(b => b.capacity >= option.min && b.capacity <= option.max);
-  }, [boats, selectedGroupSize, licenseFilter, groupSizeOptions, showLicenseFilter]);
-
-  const isBoatRecommended = useCallback(
-    (capacity: number): boolean => {
-      if (selectedGroupSize === null) return false;
-      const option = groupSizeOptions.find(o => o.label === selectedGroupSize);
-      if (!option) return false;
-      return capacity >= option.min && capacity <= option.max;
-    },
-    [selectedGroupSize, groupSizeOptions]
-  );
+    return filtered;
+  }, [boats, licenseFilter, showLicenseFilter]);
 
   const handleBooking = useCallback(
     (boatId: string) => {
@@ -510,26 +463,6 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
               <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             </div>
           )}
-          <div className="relative flex-1 min-w-0 md:flex-none">
-            <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-            <label htmlFor="fleet-group-size" className="sr-only">
-              {t.boats?.people || "Group size"}
-            </label>
-            <select
-              id="fleet-group-size"
-              value={selectedGroupSize ?? ""}
-              onChange={e => setSelectedGroupSize(e.target.value || null)}
-              className="appearance-none w-full md:w-auto bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 min-h-11 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
-            >
-              <option value="">{t.recommendation?.all}</option>
-              {groupSizeOptions.map(option => (
-                <option key={option.label} value={option.label}>
-                  {option.label} {t.boats?.people}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-          </div>
         </div>
 
         {/* Desktop: pill buttons */}
@@ -562,39 +495,6 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
               </div>
             </div>
           )}
-
-          {/* Group size selector */}
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
-              <Users className="w-4 h-4" />
-              {t.recommendation?.howManyPeople}
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              <button
-                onClick={() => setSelectedGroupSize(null)}
-                className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
-                  selectedGroupSize === null
-                    ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-background"
-                    : "bg-muted text-muted-foreground hover:bg-muted-foreground/10"
-                }`}
-              >
-                {t.recommendation?.all}
-              </button>
-              {groupSizeOptions.map(option => (
-                <button
-                  key={option.label}
-                  onClick={() => setSelectedGroupSize(option.label)}
-                  className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
-                    selectedGroupSize === option.label
-                      ? "bg-foreground text-primary-foreground dark:bg-cta dark:text-background"
-                      : "bg-muted text-muted-foreground hover:bg-muted-foreground/10"
-                  }`}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* View mode toggle: grid / table */}
           <div className="flex items-center gap-1.5">
@@ -636,26 +536,16 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
               <VirtualizedBoatGrid
                 boats={sortedBoats}
                 popularBoatId={popularBoatId}
-                selectedGroupSize={selectedGroupSize}
-                isBoatRecommended={isBoatRecommended}
                 onBooking={handleBooking}
                 onDetails={handleDetails}
               />
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
                 {sortedBoats.map(boat => (
-                  <div
-                    key={boat.id}
-                    className={`transition-opacity duration-300 ${
-                      selectedGroupSize !== null && !isBoatRecommended(boat.capacity)
-                        ? "opacity-50"
-                        : "opacity-100"
-                    }`}
-                  >
+                  <div key={boat.id}>
                     <BoatCard
                       {...boat}
                       isPopular={boat.id === popularBoatId}
-                      isRecommended={isBoatRecommended(boat.capacity)}
                       onBooking={handleBooking}
                       onDetails={handleDetails}
                     />
@@ -669,7 +559,6 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
                 <button
                   onClick={() => {
                     setLicenseFilter("all");
-                    setSelectedGroupSize(null);
                   }}
                   className="px-4 py-2 rounded-full border border-border text-foreground text-sm font-medium hover:bg-muted transition-colors"
                 >

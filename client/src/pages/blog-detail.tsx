@@ -851,7 +851,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                     {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
                     width={1200}
                     height={630}
-                    onError={(e) => { (e.target as HTMLImageElement).src = "/images/blog/barco-mar.jpg"; }}
+                    onError={(e) => { (e.target as HTMLImageElement).src = "/images/blog/barco-mar.webp"; }}
                     data-testid={`img-featured-${post.slug}`}
                   />
                 </div>
@@ -953,7 +953,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                         loading="lazy"
                         width={600}
                         height={400}
-                        onError={(e) => { (e.target as HTMLImageElement).src = "/images/blog/barco-mar.jpg"; }}
+                        onError={(e) => { (e.target as HTMLImageElement).src = "/images/blog/barco-mar.webp"; }}
                       />
                     )}
                     <CardHeader className={relatedPost.featuredImage ? "pt-4" : ""}>

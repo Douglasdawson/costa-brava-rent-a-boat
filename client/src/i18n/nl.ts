@@ -1699,7 +1699,7 @@ export const nl: Translations = {
   },
   authority: {
     foreignLicenseVerified: "Wij verifi\u00EBren je buitenlandse vaarbewijs",
-    yearsExperience: "6+ jaar ervaring",
+    yearsExperience: "7+ zomers ervaring",
     fullInsurance: "Verzekering inbegrepen",
     happyCustomers: "5000+ tevreden klanten",
     fleetInsured: "Aansprakelijkheids- en ongevallenverzekering inbegrepen",

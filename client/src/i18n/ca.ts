@@ -68,6 +68,12 @@ export const ca: Translations = {
       "Costa Brava Rent a Boat opera la flota de lloguer d'embarcacions m\u00E9s gran del Port de Blanes amb 9 vaixells: 3 llanxes de 80 a 115 CV per a patrons titulats, 5 vaixells sense titulaci\u00F3 (llogables fins al 30 de setembre de 2026, quan el RD 1188/2025 passa a exigir t\u00EDtol n\u00E0utic a tot arrendatari) i 1 excursi\u00F3 privada amb patr\u00F3. N'hi ha prou amb la Llic\u00E8ncia de Navegaci\u00F3, el titul\u00EDn d'un dia sense examen, o un t\u00EDtol estranger equivalent que verifiquem en l\u00EDnia. Atenci\u00F3 en 8 idiomes. Temporada d'abril a octubre. 4,8\u2605 a Google amb m\u00E9s de 300 ressenyes.",
   },
 
+  // Facts of the JS-less home body (server/seoInjector.ts, home branch).
+  homeSsr: {
+    hours: "Obert cada dia de 09:00 a 20:00, d'abril a octubre.",
+    coves: "Cales accessibles des del port: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella i Fenals.",
+  },
+
   lifetimeStats: {
     title: "El que portem navegant",
     subtitle: "Cada xifra surt del nostre propi registre de lloguers, des que vam començar.",

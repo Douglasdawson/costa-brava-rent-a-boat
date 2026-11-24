@@ -70,6 +70,12 @@ export const de: Translations = {
       "Costa Brava Rent a Boat betreibt die gr\u00F6\u00DFte Bootsverleihflotte im Hafen von Blanes mit 9 Boote: 3 Motorboote von 80 bis 115 PS f\u00FCr Skipper mit Schein, 5 Boote ohne F\u00FChrerschein (mietbar bis zum 30. September 2026, wenn das RD 1188/2025 von jedem Mieter einen Bootsf\u00FChrerschein verlangt) und 1 Privatausflug mit Skipper. Die Licencia de Navegaci\u00F3n, der eint\u00E4gige Titul\u00EDn ohne Pr\u00FCfung, oder ein gleichwertiger ausl\u00E4ndischer Schein, den wir online pr\u00FCfen. Beratung in 8 Sprachen. Saison April bis Oktober. 4,8\u2605 bei Google mit \u00FCber 300 Bewertungen.",
   },
 
+  // Facts of the JS-less home body (server/seoInjector.ts, home branch).
+  homeSsr: {
+    hours: "Täglich von 09:00 bis 20:00 Uhr geöffnet, von April bis Oktober.",
+    coves: "Vom Hafen aus erreichbare Buchten: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella und Fenals.",
+  },
+
   lifetimeStats: {
     title: "So lange sind wir schon auf dem Wasser",
     subtitle: "Jede Zahl stammt aus unserem eigenen Vermietungsregister, seit unserem Start.",

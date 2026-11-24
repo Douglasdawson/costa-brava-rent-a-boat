@@ -2890,7 +2890,6 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       // SSR body fallback for AI crawlers (CCBot, ClaudeBot etc.) that parse
       // HTML but don't execute React hydration. Contains the citation-worthy
       // facts a LLM would extract for "what is Costa Brava Rent a Boat".
-      const stats = getCurrentStats();
       // Use the real per-language hero copy so the pre-hydration paint matches
       // the H1 React eventually renders (Hero.tsx → t.hero.title) AND is in the
       // visitor's language. Before this, the SSR fallback H1/summary were
@@ -2898,54 +2897,8 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       // (the reported "página en castellano" symptom). Falls back to the brand
       // string only if a locale somehow lacks the hero block.
       const heroT = (I18N_BY_LANG[lang] ?? i18nEs).hero;
-      const homeH1 = heroT?.title
-        ?? (isEn ? `Costa Brava Rent a Boat — Blanes, Spain` : `Costa Brava Rent a Boat — Blanes, Costa Brava`);
-      const homeSummary = eraCopy(heroT?.summaryGeo, heroT?.summaryGeoPostEra ?? heroT?.summaryGeo) ?? heroT?.subtitle
-        ?? (isEn
-          ? `Largest boat rental fleet in the Port of Blanes (9 boats): 3 licensed powerboats of 80-115 HP, 5 boats without a licence and 1 private excursion with captain. The basic Licencia de Navegación is enough; foreign titles verified online. Licence-free rental runs through September 30, 2026 (RD 1188/2025). Season April–October. ${stats.rating.toFixed(1)}★ on Google with ${stats.userRatingCount}+ reviews.`
-          : `Mayor flota de alquiler de embarcaciones del Puerto de Blanes (9 barcos): 3 lanchas con licencia de 80-115 CV, 5 barcos sin titulación y 1 excursión privada con capitán. Basta la Licencia de Navegación; verificamos títulos extranjeros online. El alquiler sin titulación llega hasta el 30 de septiembre de 2026 (RD 1188/2025). Temporada abril–octubre. ${stats.rating.toFixed(1)}★ en Google con ${stats.userRatingCount}+ reseñas.`);
-      // Counts use the "9 boats" / "5 boats" baselines: applyFleetStatsToText()
-      // rewrites them to the live fleet before the HTML is sent.
-      // RD 1188/2025: from 2026-10-01 the licence-free boats are off the public fleet
-      // (isPubliclyListed), so the first three facts switch to the licensed-only fleet.
-      const facts = isEn
-        ? [
-            ...eraCopy(
-              [
-                "9 boats: 3 licensed powerboats (80-115 HP), 5 boats without a licence, 1 private excursion with captain",
-                "The basic Licencia de Navegación is enough for the whole licensed fleet; foreign titles verified online before booking",
-                "Licence-free rental is legal through September 30, 2026 — from October 1 RD 1188/2025 requires a nautical qualification from every renter",
-              ],
-              [
-                "9 boats: 3 licensed powerboats (80-115 HP) and 1 private excursion with captain; plus jet ski and eFoil activities, no licence needed",
-                "The basic Licencia de Navegación is enough for the whole fleet; foreign titles verified online before booking",
-                "No licence yet? The Licencia de Navegación (titulín) takes 1 day: 2 hours of theory and 4 of practice, no exam. Or sail with a captain",
-              ],
-            ),
-            "8 languages: Spanish, English, Catalan, French, German, Dutch, Italian, Russian",
-            "Coves accessible: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella, Fenals",
-            "Open daily 09:00–20:00 from April to October",
-            "Hours response time on WhatsApp +34 611 500 372",
-          ]
-        : [
-            ...eraCopy(
-              [
-                "9 barcos: 3 lanchas con licencia (80-115 CV), 5 barcos sin titulación, 1 excursión privada con capitán",
-                "Basta la Licencia de Navegación para toda la flota con licencia; verificamos títulos extranjeros online antes de reservar",
-                "El alquiler sin titulación es legal hasta el 30 de septiembre de 2026 — desde el 1 de octubre el RD 1188/2025 exige título náutico a todo arrendatario",
-              ],
-              [
-                "9 barcos: 3 lanchas con licencia (80-115 CV) y 1 excursión privada con capitán; además, moto de agua y eFoil sin licencia",
-                "Basta la Licencia de Navegación para toda la flota; verificamos títulos extranjeros online antes de reservar",
-                "¿Aún sin título? La Licencia de Navegación (titulín) se saca en 1 día: 2 horas de teoría y 4 de prácticas, sin examen. O sal con capitán",
-              ],
-            ),
-            "8 idiomas: español, inglés, catalán, francés, alemán, neerlandés, italiano, ruso",
-            "Calas accesibles: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella, Fenals",
-            "Abierto todos los días 09:00–20:00 de abril a octubre",
-            "Respuesta inmediata por WhatsApp +34 611 500 372",
-          ];
-      const ctaLabel = isEn ? "Book via WhatsApp" : "Reserva por WhatsApp";
+      const homeH1 = heroT?.title ?? "Costa Brava Rent a Boat, Blanes";
+      const homeSummary = eraCopy(heroT?.summaryGeo, heroT?.summaryGeoPostEra ?? heroT?.summaryGeo) ?? heroT?.subtitle ?? "";
       // The three money pages of the 2026 pivot. Without these the JS-less crawler
       // reads about the licence requirement and has no route to act on it: the menu
       // and hero links only exist after hydration.
@@ -2953,26 +2906,48 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       // the ONLY thing GPTBot/ClaudeBot read, so the other six languages must not
       // get Spanish anchor text.
       const tHome = I18N_BY_LANG[lang] ?? i18nEs;
-      const licensedLabel = tHome.boats?.withLicense ?? (isEn ? "Licensed boats" : "Barcos con licencia");
+      const licensedLabel = tHome.boats?.withLicense ?? i18nEs.boats.withLicense;
       const licensedHref = `${BASE_URL}/${lang}/${getSlugForPage("categoryLicensed", lang)}`;
-      const titulinLabel = tHome.navigationLicensePage?.navLabel
-        ?? (isEn ? "What the titulín is" : "Qué es el titulín");
+      const titulinLabel = tHome.navigationLicensePage?.navLabel ?? i18nEs.navigationLicensePage?.navLabel ?? "Titulín";
       const titulinHref = `${BASE_URL}/${lang}/${getSlugForPage("navigationLicense", lang)}`;
-      const captainedLabel = tHome.captainedPage?.crossLinkLabel
-        ?? (isEn ? "Boat with skipper" : "Barco con patrón");
+      const captainedLabel = tHome.captainedPage?.crossLinkLabel ?? i18nEs.captainedPage?.crossLinkLabel ?? "";
       const captainedHref = `${BASE_URL}/${lang}/${getSlugForPage("categoryCaptained", lang)}`;
       // Keyword anchor ("Alquiler de motos de agua en Blanes"): the home ranks
       // for jet ski queries in EN/NL and should hand that to the hub.
-      const jetskiLabel = tHome.jetskiHub?.hero?.title ?? tHome.jetskiHub?.navLabel ?? (isEn ? "Jet ski rental in Blanes" : "Motos de agua");
+      const jetskiLabel = tHome.jetskiHub?.hero?.title ?? tHome.jetskiHub?.navLabel ?? i18nEs.jetskiHub.navLabel;
       const jetskiHref = `${BASE_URL}/${lang}/${getSlugForPage("jetskiHub", lang)}`;
       const efoilLabel = tHome.jetskiLanding?.efoil?.navLabel ?? "eFoil";
       const efoilHref = `${BASE_URL}/${lang}/${getSlugForPage("efoilBlanes", lang)}`;
+      // Visible text of the home for the JS-less crawler, 100% from the locale bundle
+      // (no es/en ternary, no literal fleet counts or prices: applyFleetStatsToText has
+      // nothing to rewrite here). Sections follow the three ways to rent after RD 1188/2025:
+      // licensed powerboats (Licencia de Navegación), captained excursion, titulín pillar.
+      const hs = tHome.homeSsr;
+      const ctaLabel = tHome.captainedPage?.ctaButton ?? "WhatsApp";
+      const section = (title: string | undefined, paras: Array<string | undefined>): string => {
+        const body = paras.filter(Boolean).map((x) => `<p>${esc(x as string)}</p>`).join("\n");
+        return title && body ? `<h2>${esc(title)}</h2>\n${body}` : "";
+      };
+      const fe = tHome.features;
+      const facts = [
+        ...[fe.security, fe.capacity, fe.includes, fe.personalAttention].map((f) => (f ? `${f.title}: ${f.description}` : "")),
+        `${tHome.contact?.location ?? ""}. ${tHome.contact?.scheduleTime ?? ""}`,
+        hs?.hours,
+        hs?.coves,
+        tHome.hero?.whatsappContact,
+      ].filter((f): f is string => Boolean(f && f.trim() !== "."));
       const bodyFallback = `
 <h1>${esc(homeH1)}</h1>
 <p>${esc(homeSummary)}</p>
+<p>${esc(heroT?.specsLine ?? "")}</p>
+${section(fe.withLicense?.title, [fe.withLicense?.description, heroT?.licenseNote])}
+${section(tHome.captainedPage?.crossLinkLabel, [tHome.captainedPage?.heroDescription])}
+${section(tHome.navigationLicensePage?.hero?.title, [tHome.navigationLicensePage?.fleet?.body, heroT?.subtitleLine2])}
+<h2>${esc(fe.title)}</h2>
 <ul>
 ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
 </ul>
+<p>${esc(tHome.boatDetail?.ssrInsurance ?? "")}</p>
 <p>
   <a href="${licensedHref}">${esc(licensedLabel)}</a> ·
   <a href="${titulinHref}">${esc(titulinLabel)}</a> ·
@@ -2985,7 +2960,7 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
   <a href="${BASE_URL}${getLocalizedPath("pricing", lang)}">${esc(tHome.features.exploreLinks?.pricing ?? i18nEs.features.exploreLinks?.pricing ?? "")}</a> ·
   <a href="${BASE_URL}${getLocalizedPath("faq", lang)}">${esc(tHome.nav.faq)}</a>
 </p>
-      `.trim();
+      `.replace(/\n{2,}/g, "\n").trim();
       return { meta, jsonLd, availableLanguages, bodyFallback };
     }
 

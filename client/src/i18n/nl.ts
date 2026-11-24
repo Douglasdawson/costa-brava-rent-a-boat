@@ -68,6 +68,12 @@ export const nl: Translations = {
       "Costa Brava Rent a Boat beheert de grootste bootverhuurvloot van de haven van Blanes met 9 boten: 3 motorboten van 80 tot 115 pk voor schippers met vaarbewijs, 5 boten zonder vaarbewijs (te huren tot 30 september 2026, wanneer RD 1188/2025 van elke huurder een vaarbewijs gaat eisen) en 1 priv\u00E9-excursie met schipper. De Licencia de Navegaci\u00F3n, de eendaagse titul\u00EDn zonder examen, of een gelijkwaardig buitenlands vaarbewijs dat wij online verifi\u00EBren. Service in 8 talen. Seizoen van april tot oktober. 4.8\u2605 op Google met meer dan 300 beoordelingen.",
   },
 
+  // Facts of the JS-less home body (server/seoInjector.ts, home branch).
+  homeSsr: {
+    hours: "Dagelijks open van 09:00 tot 20:00 uur, van april tot oktober.",
+    coves: "Baaien bereikbaar vanuit de haven: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella en Fenals.",
+  },
+
   lifetimeStats: {
     title: "Hoe lang we al op het water zijn",
     subtitle: "Elk cijfer komt uit ons eigen verhuurregister, sinds we begonnen zijn.",

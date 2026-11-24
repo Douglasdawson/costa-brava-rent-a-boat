@@ -52,7 +52,6 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Paginas publicas | `pages/*.tsx` | 39 paginas (10 locations, 4 activities, 3 jet ski, scooters, 2 categories, blog, FAQ, about, etc.) |
 | Componentes | `components/*.tsx` | Componentes publicos (Hero, Fleet, Booking, Navigation, etc.) |
 | Booking flow (modal del Hero) | `BookingFormWidget.tsx` → `BookingWizardMobile.tsx` / `BookingFormDesktop.tsx` | Wizard de 4 steps (barco / viaje / datos / confirmar). Lazy-loaded via `useBookingModal`. Es lo que abre el CTA del Hero. |
-| Booking flow (ruta separada) | `components/booking-flow/` | Wizard de 3 steps (`Tu plan` / `Tus datos` / `Confirmar`) montado en `App.tsx` como ruta. NO es el del Hero. |
 | Panel admin CRM | `components/crm/` | 25+ componentes (Dashboard, Calendar, Bookings, Fleet, etc.) |
 | UI base | `components/ui/` | Componentes shadcn/ui |
 | Traducciones i18n | `i18n/*.ts` | 8 idiomas (es, en, ca, fr, de, nl, it, ru) |
@@ -98,6 +97,13 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Stats de flota viva (conteos/floor públicos) | `server/lib/fleetStatsCache.ts` (excluye jet skis vía `isJetSkiProduct`; jamás contar filas jetski de `boats` como flota) → consumido por seoInjector `applyFleetStatsToText`, llms.txt y `/api/ai-context`. Al escribir copy nuevo server-side usar "70 EUR" como baseline: el runtime lo reescribe al floor vivo |
 | Reindexación GSC automatizada | Claude-in-Chrome + `javascript_tool` (la UI de GSC nunca llega a document_idle: screenshots/read_page fallan siempre). Técnica completa en memoria `geo-audit-maresme-2026-07-02`. Propiedad `sc-domain:costabravarentaboat.com`, cuenta ivanramirezdawson@gmail.com |
 | Slugs i18n de rutas | `shared/i18n-routes.ts` |
+| Titulo/description de ficha de barco (SSR = cliente) | `shared/boatPageMeta.ts` (`buildBoatPageMeta`, precio de bloque real "desde 175 EUR / 2 h", nunca "/h" con precio de 2 h); lo consumen `seoInjector.ts` y `seo-config.ts`/`BoatDetailPage.tsx`. Test de paridad `server/boatDetailSeo.test.ts` |
+| JSON-LD con precios y rating | Precios derivados de la flota viva (`getSegmentPriceRange` en `server/lib/fleetStatsCache.ts`, `priceCeilingAcrossBoats` en `shared/pricing.ts`): ningun literal 160/240/420. `aggregateRating` SOLO en el nodo LocalBusiness; nunca en Service/Product. `SEASON_YEAR` unico en `shared/constants.ts`. Test `server/seoJsonLd.test.ts` |
+| Enlaces internos sin JS (bodyFallback) | `internalLinksHtml` + 5.o parametro de `buildLocationBodyFallback` en `seoInjector.ts`; todo href con `getLocalizedPath` y prefijo de idioma, nunca `/barcos`. Tossa siempre la ultima; sin enlace a categoryLicenseFree. Test `server/seoLinks.test.ts` |
+| Sitemap de fichas y lastmod | `server/routes/sitemaps.ts` (4 fichas x 8 idiomas, 9 hreflang) y `shared/seoLastmod.ts`: SUBIR A MANO `BOAT_PAGES_LASTMOD` y los lastmod de landings al cambiar su contenido (la tabla `boats` no tiene `updated_at`) |
+| Redirects y soft 404 | `server/seo/redirects.ts` (`retiredBoatTarget`: barcos retirados en UN salto a categoryLicensed; sin cadenas, test de ausencia de bucles) y `isValidSPARoute` + `DYNAMIC_PAGE_KEYS` (`shared/i18n-routes.ts`): `/es/barco` y `/es/<estatica>/x` dan 404. Tests `server/seoRouting.test.ts` |
+| Guardian de afirmaciones prohibidas | `shared/forbiddenClaims.test.ts` (seguro "todo riesgo", PER/PNB, rango ilimitado, curso propio del titulin, excursion de 7 plazas) sobre llms*.txt post-era, CORE_FACTS, metas, i18n y seeds. Se arregla el copy, no la regla. Los grupos de bots IA de `robots.txt` repiten los `Disallow` (RFC 9309): test `server/robotsTxt.test.ts` |
+| Autopilot del blog | Apagado por defecto: `publishNextDraft` exige `BLOG_AUTOPILOT_PUBLISH=1` Y `blog_autopilot_config.is_enabled`. `GET /api/blog/:slug` no sirve borradores. El prompt usa `buildBoatsInfo` (solo barcos publicables, `FLEET_MIN_LICENSE`) |
 | Traducciones UI | `client/src/i18n/<idioma>.ts` |
 | Carga lazy de idiomas (NO tocar a la ligera) | `client/src/i18n/loaders.ts` + `client/src/hooks/use-language.tsx` (seedInitialLanguage) + `client/src/main.tsx` (precarga el locale antes de montar React) + modulepreload por locale en `server/seoInjector.ts` |
 | Rendimiento de carga (estado + reglas) | `docs/perf/2026-06-11-load-audit.md` (manualChunks, guard de prerender stale, GTM en idle, caches) |
@@ -111,7 +117,6 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Circuit breaker | `server/lib/circuitBreaker.ts` |
 | Retry queue | `server/lib/retryQueue.ts` |
 | Audit logs | `server/lib/audit.ts` |
-| Booking flow (wizard) | `client/src/components/booking-flow/` |
 | Panel admin layout | `client/src/components/crm/AdminLayout.tsx` |
 | CRM tabs/componentes | `client/src/components/crm/*.tsx` |
 | SEO Autopilot MCP server | `server/mcp/seo-autopilot/{index,router,tools}.ts` (montado en `/api/mcp/seo-autopilot`) |
@@ -373,7 +378,7 @@ Coolify tiene `build_command = "npm run build"`, que **arranca borrando `dist/pr
 - **Modelo**: Sin pagos online -- la web captura solicitudes de reserva, el pago se gestiona manualmente
 - **Flota**: catalogo de 9 barcos en `shared/boatData.ts`; flota VIVA = `is_active` en DB (2026-06: 8 activos, Astec 400 desactivado por el owner). Copy publico alineado a la flota viva
 - **Combustible**: Solo barcos sin-licencia incluyen gasolina; barcos con licencia y excursion privada NO
-- **Analytics**: GA4 server-side (Measurement Protocol) instrumentado para `generate_lead` (inquiries) y `booking_request_submitted` (bookings) -- requiere `GA4_MEASUREMENT_ID` + `GA4_API_SECRET` en env. Helper: `server/lib/analyticsServer.ts`
+- **Analytics**: GA4 server-side (Measurement Protocol) instrumentado para `generate_lead` (inquiries) y `booking_request_submitted` (solo lo emite `POST /api/bookings/submit-request`, que el navegador ya no llama: el flujo real es `BookingFormWidget` a `/api/booking-inquiries`, que emite `generate_lead`; NO añadir el evento en inquiries, `admin-ads.ts` lo contaría doble) -- requiere `GA4_MEASUREMENT_ID` + `GA4_API_SECRET` en env. Helper: `server/lib/analyticsServer.ts`
 
 ## Preguntas Frecuentes del Desarrollo
 

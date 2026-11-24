@@ -153,6 +153,10 @@ export interface Translations {
   };
 
   // Lifetime numbers section (data from the CRM)
+  homeSsr: {
+    hours: string;
+    coves: string;
+  };
   lifetimeStats: {
     title: string;
     subtitle: string;

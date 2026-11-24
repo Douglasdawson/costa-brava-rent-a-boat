@@ -71,6 +71,12 @@ export const en: Translations = {
       "Costa Brava Rent a Boat operates the largest boat rental fleet in the Port of Blanes with 9 boats: 3 powerboats of 80 to 115 HP for licensed skippers, 5 boats without a licence (rentable through September 30, 2026, when Royal Decree 1188/2025 starts requiring a nautical qualification from every renter) and 1 private excursion with skipper. The basic Navigation Licence, the one-day no-exam titul\u00EDn, or an equivalent foreign title we verify online. Assistance in 8 languages. Season from April to October. 4.8\u2605 on Google with over 300 reviews.",
   },
 
+  // Facts of the JS-less home body (server/seoInjector.ts, home branch).
+  homeSsr: {
+    hours: "Open daily from 09:00 to 20:00, April to October.",
+    coves: "Coves within reach of the port: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella and Fenals.",
+  },
+
   lifetimeStats: {
     title: "How long we have been at sea",
     subtitle: "Every figure comes from our own rental records, since the day we started.",

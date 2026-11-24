@@ -76,6 +76,12 @@ export const es: Translations = {
       "Costa Brava Rent a Boat opera la mayor flota de alquiler de embarcaciones del Puerto de Blanes con 9 embarcaciones: 3 lanchas de 80 a 115 CV para patrones titulados, 5 barcos sin titulaci\u00F3n (alquilables hasta el 30 de septiembre de 2026, cuando el RD 1188/2025 pasa a exigir t\u00EDtulo n\u00E1utico a todo arrendatario) y 1 excursi\u00F3n privada con capit\u00E1n. Basta la Licencia de Navegaci\u00F3n, el titul\u00EDn de un d\u00EDa sin examen, o un t\u00EDtulo extranjero equivalente que verificamos online. Atenci\u00F3n en 8 idiomas. Temporada de abril a octubre. 4.8\u2605 en Google con m\u00E1s de 300 rese\u00F1as.",
   },
 
+  // Facts of the JS-less home body (server/seoInjector.ts, home branch).
+  homeSsr: {
+    hours: "Abierto todos los días de 09:00 a 20:00, de abril a octubre.",
+    coves: "Calas accesibles desde el puerto: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella y Fenals.",
+  },
+
   lifetimeStats: {
     title: "Lo que llevamos navegando",
     subtitle: "Cada cifra sale de nuestro propio registro de alquileres, desde que empezamos.",

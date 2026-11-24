@@ -70,6 +70,12 @@ export const it: Translations = {
       "Costa Brava Rent a Boat gestisce la flotta di noleggio imbarcazioni pi\u00F9 grande del Porto di Blanes con 9 barche: 3 motoscafi da 80 a 115 CV per skipper patentati, 5 barche senza patente (noleggiabili fino al 30 settembre 2026, quando il RD 1188/2025 inizia a richiedere un titolo nautico a ogni noleggiatore) e 1 escursione privata con skipper. Basta la Licencia de Navegaci\u00F3n, il titul\u00EDn di un giorno senza esame, o un titolo estero equivalente che verifichiamo online. Assistenza in 8 lingue. Stagione da aprile a ottobre. 4.8\u2605 su Google con oltre 300 recensioni.",
   },
 
+  // Facts of the JS-less home body (server/seoInjector.ts, home branch).
+  homeSsr: {
+    hours: "Aperti tutti i giorni dalle 09:00 alle 20:00, da aprile a ottobre.",
+    coves: "Cale raggiungibili dal porto: Sa Palomera, Sa Forcanera, Sant Francesc, S'Agulla, Treumal, Santa Cristina, Sa Boadella e Fenals.",
+  },
+
   lifetimeStats: {
     title: "Da quanto navighiamo",
     subtitle: "Ogni cifra arriva dal nostro registro dei noleggi, fin dall'inizio.",
